@@ -64,7 +64,7 @@ h1{font-size:34px;font-weight:800;line-height:1.18;letter-spacing:-.02em}
 
 /* CATALOG */
 main{padding:12px 0 56px}
-.cat-sect{margin-top:34px}
+.cat-sect{margin-top:34px;scroll-margin-top:64px}
 .cat-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .cat-dot{width:14px;height:14px;border-radius:5px}
 .cat-title{font-size:20px;font-weight:800;letter-spacing:-.01em}
@@ -110,8 +110,10 @@ footer{margin-top:48px;padding:22px 0 34px;border-top:1px solid var(--line);font
   .stat b{font-size:20px}
 }
 </style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
+<div id="topmenu" style="background:#0B120E;overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="max-width:1120px;margin:0 auto;display:flex;gap:4px;padding:9px 14px"><a href="./" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">🏠 Asosiy</a><a href="./#cat-moliya" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Moliya</a><a href="./#cat-qurilish" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Qurilish</a><a href="./#cat-kommunal" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Kommunal</a><a href="./#cat-hayot" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Hayotiy</a><a href="shablonlar.html" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">📄 Shablonlar</a></div></div>
 
 <header>
   <div class="wrap">
@@ -144,7 +146,7 @@ footer{margin-top:48px;padding:22px 0 34px;border-top:1px solid var(--line);font
   <div class="no-results" id="noResults"></div>
   <section class="about" id="aboutBlock"></section>
   <footer>
-    <span>© 2026 Kalki.uz</span>
+    <span>© 2026 Kalki.uz — Achchi loyihasi</span>
     <span data-i="footTxt"></span>
   </footer>
 </main>
@@ -264,7 +266,7 @@ footer{margin-top:48px;padding:22px 0 34px;border-top:1px solid var(--line);font
         catCount++;shown++;
       }
       if(catCount){
-        html+='<section class="cat-sect"><div class="cat-head">'
+        html+='<section class="cat-sect" id="cat-'+cat.id+'"><div class="cat-head">'
           +'<span class="cat-dot" style="background:'+cat.color+'"></span>'
           +'<span class="cat-title">'+t('catNames')[cat.id]+'</span>'
           +'<span class="cat-count">'+catCount+'</span></div>'
@@ -293,6 +295,9 @@ footer{margin-top:48px;padding:22px 0 34px;border-top:1px solid var(--line);font
 
   applyLang();
 })();
+</script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
 </script>
 </body>
 </html>

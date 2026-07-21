@@ -1,0 +1,12 @@
+{
+  "name": "Kalki.uz — onlayn kalkulyatorlar",
+  "short_name": "Kalki.uz",
+  "description": "O'zbekiston uchun 18+ bepul onlayn kalkulyator",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F7F8F6",
+  "theme_color": "#0E3B2E",
+  "icons": [
+    {"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
