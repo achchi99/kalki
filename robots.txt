@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kalki.uz/sitemap.xml
