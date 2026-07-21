@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Pensiya kalkulyatori — O'zbekistonda pensiya miqdorini hisoblash</title>
+<meta name="description" content="Pensiya kalkulyatori: ish staji va o'rtacha oylik bo'yicha taxminiy pensiya miqdorini hisoblang. Пенсионный калькулятор Узбекистан.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:19px;font-weight:700;color:var(--ink);padding:13px 14px;min-width:0}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px}
+.receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body data-cat="hayot">
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span><span data-i="brand"></span></div>
+      <div class="lang-seg" role="group" aria-label="Til / Язык">
+        <button type="button" id="langUz" class="on">UZ</button>
+        <button type="button" id="langRu">RU</button>
+      </div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="form-card">
+    <div class="field">
+      <label data-i="lGender"></label>
+      <div class="seg">
+        <button type="button" id="gM" class="on" data-i="segM"></button>
+        <button type="button" id="gF" data-i="segF"></button>
+      </div>
+      <p class="hint" id="genderHint"></p>
+    </div>
+    <div class="field">
+      <label for="salary" data-i="lSalary"></label>
+      <div class="input-shell">
+        <input type="text" id="salary" inputmode="numeric" value="5 000 000" autocomplete="off">
+        <span class="unit" data-i="uSum"></span>
+      </div>
+      <p class="hint" data-i="hSalary"></p>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="staj" data-i="lStaj"></label>
+      <div class="input-shell">
+        <input type="text" id="staj" inputmode="numeric" value="30" autocomplete="off">
+        <span class="unit" data-i="uYears"></span>
+      </div>
+      <p class="hint" data-i="hStaj"></p>
+    </div>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">—</div>
+        <div class="lbl" data-i="lblMain"></div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kBase"></span><span class="v" id="rBase">—</span></div>
+        <div class="rrow"><span class="k" data-i="kExtra"></span><span class="v" id="rExtra">—</span></div>
+        <div class="rrow"><span class="k" data-i="kPct"></span><span class="v accent" id="rPct">—</span></div>
+        <div class="rrow"><span class="k" data-i="kCapNote"></span><span class="v" id="rCap">—</span></div>
+      </div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare"></button>
+      </div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <footer data-i="foot"></footer>
+</main>
+
+<script>
+(function(){
+  var CAP=5652000; // 12 BVIP, 2026-yil boshi
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Hayotiy",
+      h1:"Pensiya kalkulyatori",
+      sub:"Ish staji va o'rtacha oylik bo'yicha yoshga doir pensiyaning taxminiy miqdorini hisoblang.",
+      lGender:"Jins",segM:"Erkak",segF:"Ayol",
+      hintM:"Pensiya yoshi 60, minimal staj 25 yil.",
+      hintF:"Pensiya yoshi 55, minimal staj 20 yil.",
+      lSalary:"O'rtacha oylik",uSum:"so'm",
+      hSalary:"Oxirgi 10 yildagi eng yuqori 5 ketma-ket yil bo'yicha o'rtacha oylik.",
+      lStaj:"Umumiy ish staji",uYears:"yil",
+      hStaj:"Rasmiy (daftarchaga yozilgan) staj.",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Taxminiy oylik pensiya",
+      kBase:"Bazaviy qism (55%)",kExtra:"Qo'shimcha staj uchun",kPct:"Jami foiz",kCapNote:"Hisobga olingan oylik",
+      capApplied:"cheklov qo'llandi",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      shareTitle:"Pensiya hisobi",
+      foot:"Taxminiy hisob: unvon ustamalari va jamg'arib boriladigan pensiya kirmagan. Rasmiy hisobni Pensiya jamg'armasi hujjatlar asosida chiqaradi.",
+      seo:'<h2>Pensiya qanday hisoblanadi?</h2><p>Formula: oxirgi 10 yil ichidagi eng yuqori 5 ketma-ket yillik o\'rtacha oylik × (55% + minimal stajdan oshgan har bir yil uchun 1%). Jami foiz 75% dan oshmaydi. Hisobga olinadigan oylikning yuqori chegarasi 12 BVIP (2026-yil boshida 5 652 000 so\'m).</p><h2>Minimal staj qancha?</h2><p>Erkaklar uchun 60 yoshda 25 yil, ayollar uchun 55 yoshda 20 yil. Staj yetmasa, pensiya mavjud stajga proporsional tayinlanadi.</p><h2>Bu hisob nimani o\'z ichiga olmaydi?</h2><p>Faxriy unvonlar uchun ustamalar, imtiyozli toifalar va INPS jamg\'arma pensiyasi bu hisobga kirmagan — ular yakuniy summani oshirishi mumkin. Aniq hisob uchun Pensiya jamg\'armasiga murojaat qiling.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Жизнь",
+      h1:"Пенсионный калькулятор",
+      sub:"Рассчитайте примерный размер пенсии по возрасту на основе стажа и среднего заработка.",
+      lGender:"Пол",segM:"Мужчина",segF:"Женщина",
+      hintM:"Пенсионный возраст 60, минимальный стаж 25 лет.",
+      hintF:"Пенсионный возраст 55, минимальный стаж 20 лет.",
+      lSalary:"Средняя зарплата",uSum:"сум",
+      hSalary:"Средняя за лучшие 5 последовательных лет из последних 10.",
+      lStaj:"Общий трудовой стаж",uYears:"лет",
+      hStaj:"Официальный (записанный в трудовой) стаж.",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",
+      lblMain:"Примерная пенсия в месяц",
+      kBase:"Базовая часть (55%)",kExtra:"За стаж сверх нормы",kPct:"Итоговый процент",kCapNote:"Учтённая зарплата",
+      capApplied:"применён потолок",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      shareTitle:"Расчёт пенсии",
+      foot:"Примерный расчёт: надбавки за звания и накопительная пенсия не учтены. Официальный расчёт делает Пенсионный фонд по документам.",
+      seo:'<h2>Как рассчитывается пенсия?</h2><p>Формула: средняя зарплата за лучшие 5 последовательных лет из последних 10 × (55% + 1% за каждый год стажа сверх минимума). Итоговый процент не превышает 75%. Потолок учитываемой зарплаты — 12 БВИП (на начало 2026 года 5 652 000 сум).</p><h2>Какой минимальный стаж?</h2><p>Для мужчин — 25 лет при возрасте 60 лет, для женщин — 20 лет при возрасте 55 лет. Если стажа не хватает, пенсия назначается пропорционально имеющемуся стажу.</p><h2>Что не входит в этот расчёт?</h2><p>Надбавки за почётные звания, льготные категории и накопительная пенсия ИНПС не учтены — они могут увеличить итоговую сумму. За точным расчётом обращайтесь в Пенсионный фонд.</p>'
+    }
+  };
+
+  var lang='uz', gender='m', calcData=null;
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('genderHint').textContent=gender==='m'?t('hintM'):t('hintF');
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  $('salary').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmt(parseInt(v,10)):'';
+  });
+
+  function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  $('gM').onclick=function(){gender='m';$('genderHint').textContent=t('hintM');setSeg(this,$('gF'))};
+  $('gF').onclick=function(){gender='f';$('genderHint').textContent=t('hintF');setSeg(this,$('gM'))};
+
+  function calc(){
+    var sal=num($('salary').value), staj=num($('staj').value);
+    if(!sal||!staj){$('receipt').classList.remove('show');return}
+    var minStaj=gender==='m'?25:20;
+    var capped=Math.min(sal,CAP);
+    var extraYears=Math.max(0,Math.floor(staj)-minStaj);
+    var pct=Math.min(75,55+extraYears);
+    var ratio=staj<minStaj?staj/minStaj:1; // proporsional
+    var base=capped*0.55*ratio;
+    var extra=capped*(pct-55)/100;
+    var pension=capped*pct/100*ratio;
+    calcData={pension:pension,base:base,extra:staj<minStaj?0:extra,pct:pct,capped:capped,capHit:sal>CAP,ratio:ratio};
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  function renderResult(){
+    var d=calcData, sum=' '+t('uSum');
+    $('mainNum').textContent='\u2248 '+fmt(d.pension)+sum;
+    $('rBase').textContent=fmt(d.base)+sum;
+    $('rExtra').textContent='+'+fmt(d.extra)+sum;
+    $('rPct').textContent=d.pct+'%'+(d.ratio<1?' \u00D7 '+(d.ratio*100).toFixed(0)+'%':'');
+    $('rCap').textContent=fmt(d.capped)+sum+(d.capHit?' ('+t('capApplied')+')':'');
+  }
+
+  $('calcBtn').onclick=calc;
+  $('shareBtn').onclick=function(){
+    if(!calcData)return;
+    var txt=t('shareTitle')+': '+t('lblMain')+' \u2248 '+fmt(calcData.pension)+' '+t('uSum')+' ('+calcData.pct+'%)';
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt);b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  applyLang();
+  calc();
+})();
+</script>
+</body>
+</html>

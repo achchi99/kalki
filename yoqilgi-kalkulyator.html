@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yoqilg'i kalkulyatori — benzin sarfi va metanga o'tish hisobi</title>
+<meta name="description" content="Yoqilg'i kalkulyatori: yo'l xarajati, benzin va metan solishtiruvi, GBO o'zini oqlash muddati. Калькулятор расхода топлива, окупаемость ГБО.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45;--ok-soft:#E7F3EC}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.mode-tabs{display:flex;background:rgba(255,255,255,.14);border-radius:11px;padding:4px;gap:4px;margin-top:16px}
+.mode-tabs button{flex:1;border:0;background:transparent;font:inherit;font-size:14.5px;font-weight:800;color:var(--cat-text);padding:11px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mode-tabs button.on{background:#fff;color:var(--cat)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.2;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.rrow.sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:11px}
+.status-ok{margin-top:14px;background:var(--ok-soft);border-radius:10px;padding:11px 13px;font-size:13.5px;font-weight:700;color:var(--ok)}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body data-cat="kommunal">
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span>Kalki.uz</div>
+      <div class="lang-seg" role="group" aria-label="Til / Язык">
+        <button type="button" id="langUz" class="on">UZ</button>
+        <button type="button" id="langRu">RU</button>
+      </div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+    <div class="mode-tabs">
+      <button type="button" id="tabTrip" class="on" data-i="tabTrip"></button>
+      <button type="button" id="tabGbo" data-i="tabGbo"></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- TRIP -->
+  <section class="form-card" id="tripCard">
+    <div class="field">
+      <label for="dist" data-i="lDist"></label>
+      <div class="input-shell"><input type="text" id="dist" inputmode="numeric" value="450"><span class="unit">km</span></div>
+      <p class="hint" data-i="hDist"></p>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="cons" data-i="lCons"></label>
+        <div class="input-shell"><input type="text" id="cons" inputmode="decimal" value="8"><span class="unit" data-i="uCons"></span></div>
+      </div>
+      <div class="field">
+        <label for="fprice" data-i="lFprice"></label>
+        <div class="input-shell"><input type="text" id="fprice" inputmode="numeric" value="13 000"><span class="unit" data-i="uFprice"></span></div>
+      </div>
+    </div>
+    <button type="button" class="calc-btn" id="calcTrip" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="tripReceipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="big-figure">
+        <div class="num" id="tripNum">—</div>
+        <div class="lbl" data-i="lblTrip"></div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kFuel"></span><span class="v" id="rFuel">—</span></div>
+        <div class="rrow"><span class="k" data-i="kPerKm"></span><span class="v" id="rPerKm">—</span></div>
+      </div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <!-- GBO -->
+  <section class="form-card" id="gboCard" style="display:none">
+    <div class="sect-title" data-i="sBenzin"></div>
+    <div class="row2">
+      <div class="field">
+        <label for="bCons" data-i="lBCons"></label>
+        <div class="input-shell"><input type="text" id="bCons" inputmode="decimal" value="8"><span class="unit">l/100km</span></div>
+      </div>
+      <div class="field">
+        <label for="bPrice" data-i="lBPrice"></label>
+        <div class="input-shell"><input type="text" id="bPrice" inputmode="numeric" value="13 000"><span class="unit" data-i="uSomL"></span></div>
+      </div>
+    </div>
+    <div class="sect-title" data-i="sMetan"></div>
+    <div class="row2">
+      <div class="field">
+        <label for="mCons" data-i="lMCons"></label>
+        <div class="input-shell"><input type="text" id="mCons" inputmode="decimal" value="9"><span class="unit">m³/100km</span></div>
+      </div>
+      <div class="field">
+        <label for="mPrice" data-i="lMPrice"></label>
+        <div class="input-shell"><input type="text" id="mPrice" inputmode="numeric" value="5 000"><span class="unit" data-i="uSomM3"></span></div>
+      </div>
+    </div>
+    <div class="sect-title" data-i="sGbo"></div>
+    <div class="row2">
+      <div class="field">
+        <label for="gboCost" data-i="lGboCost"></label>
+        <div class="input-shell"><input type="text" id="gboCost" inputmode="numeric" value="9 000 000"><span class="unit" data-i="uSom"></span></div>
+      </div>
+      <div class="field">
+        <label for="monthKm" data-i="lMonthKm"></label>
+        <div class="input-shell"><input type="text" id="monthKm" inputmode="numeric" value="2 000"><span class="unit">km</span></div>
+      </div>
+    </div>
+    <p class="hint" data-i="hGbo"></p>
+    <button type="button" class="calc-btn" id="calcGbo" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="gboReceipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="big-figure">
+        <div class="num" id="gboNum">—</div>
+        <div class="lbl" data-i="lblPayback"></div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kB100"></span><span class="v" id="rB100">—</span></div>
+        <div class="rrow"><span class="k" data-i="kM100"></span><span class="v" id="rM100">—</span></div>
+        <div class="rrow"><span class="k" data-i="kSave100"></span><span class="v accent" id="rSave100">—</span></div>
+        <div class="rrow sep"><span class="k" data-i="kSaveMonth"></span><span class="v" id="rSaveMonth">—</span></div>
+        <div class="rrow"><span class="k" data-i="kSaveYear"></span><span class="v" id="rSaveYear">—</span></div>
+      </div>
+      <div class="status-ok" id="gboVerdict"></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <footer data-i="foot"></footer>
+</main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      cat:"Kommunal",
+      h1:"Yoqilg'i kalkulyatori",
+      sub:"Yo'l xarajatini hisoblang yoki metanga o'tish qancha vaqtda o'zini oqlashini bilib oling.",
+      tabTrip:"Yo'l xarajati",tabGbo:"Metanga o'tish",
+      lDist:"Masofa",hDist:"Masalan, Qarshi–Toshkent \u2248 450 km.",
+      lCons:"Sarf",uCons:"l/100km",
+      lFprice:"Yoqilg'i narxi",uFprice:"so'm/l",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblTrip:"Yo'l uchun yoqilg'i xarajati",
+      kFuel:"Kerakli yoqilg'i",kPerKm:"1 km narxi",
+      sBenzin:"Benzin",sMetan:"Metan",sGbo:"GBO va yurish",
+      lBCons:"Benzin sarfi",lBPrice:"Benzin narxi",uSomL:"so'm/l",
+      lMCons:"Metan sarfi",lMPrice:"Metan narxi",uSomM3:"so'm/m³",
+      lGboCost:"GBO o'rnatish narxi",uSom:"so'm",
+      lMonthKm:"Oylik yurish",
+      hGbo:"Metan sarfi odatda benzin sarfidan ~10–15% yuqori (m³ hisobida) — buni hisobga olib kiriting.",
+      lblPayback:"GBO o'zini oqlash muddati",
+      kB100:"Benzin: 100 km xarajati",kM100:"Metan: 100 km xarajati",kSave100:"100 km da tejash",
+      kSaveMonth:"Oylik tejash",kSaveYear:"Yillik tejash",
+      months:"oy",
+      verdictFmt:"{m} oydan keyin GBO o'zini to'liq oqlaydi va har yili \u2248 {y} so'm cho'ntagingizda qoladi.",
+      verdictNo:"Bu ko'rsatkichlarda metan tejamli emas — narxlar va sarfni qayta tekshiring.",
+      foot:"Narxlar o'zgarib turadi — joriy zapravka narxlarini kiriting. Hisob-kitob ma'lumot uchun.",
+      seo:'<h2>Metanga o\'tish qachon foydali?</h2><p>Asosiy omil — oylik yurish. Kuniga 60–70 km dan ko\'p yuradiganlar uchun GBO odatda 6–12 oyda o\'zini oqlaydi. Kam yuradiganlarga (oyiga 500 km dan kam) o\'tish yillar davomida oqlanmasligi mumkin.</p><h2>Metanning kamchiliklari bormi?</h2><p>Bor: ballon yukxonadan joy oladi, quvvat 5–10% pasayadi, zapravkalarda navbat bo\'lishi mumkin, ballonni davriy attestatsiyadan o\'tkazish kerak. Bularni ham hisobga oling — kalkulyator faqat moliyaviy tomonini ko\'rsatadi.</p><h2>Sarfni qanday aniq bilaman?</h2><p>Bakni to\'ldirib, masofa o\'lchagichni nolga tushiring, keyingi to\'ldirishda quyilgan hajmni bosib o\'tilgan km ga bo\'lib 100 ga ko\'paytiring — bu sizning real sarfingiz.</p>'
+    },
+    ru:{
+      cat:"Коммуналка",
+      h1:"Топливный калькулятор",
+      sub:"Рассчитайте расходы на поездку или узнайте, за сколько окупится переход на метан.",
+      tabTrip:"Расходы на поездку",tabGbo:"Переход на метан",
+      lDist:"Расстояние",hDist:"Например, Карши–Ташкент \u2248 450 км.",
+      lCons:"Расход",uCons:"л/100км",
+      lFprice:"Цена топлива",uFprice:"сум/л",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",
+      lblTrip:"Расход топлива на поездку",
+      kFuel:"Нужно топлива",kPerKm:"Цена 1 км",
+      sBenzin:"Бензин",sMetan:"Метан",sGbo:"ГБО и пробег",
+      lBCons:"Расход бензина",lBPrice:"Цена бензина",uSomL:"сум/л",
+      lMCons:"Расход метана",lMPrice:"Цена метана",uSomM3:"сум/м³",
+      lGboCost:"Стоимость установки ГБО",uSom:"сум",
+      lMonthKm:"Пробег в месяц",
+      hGbo:"Расход метана обычно на ~10–15% выше бензинового (в м³) — учитывайте это.",
+      lblPayback:"Срок окупаемости ГБО",
+      kB100:"Бензин: 100 км",kM100:"Метан: 100 км",kSave100:"Экономия на 100 км",
+      kSaveMonth:"Экономия в месяц",kSaveYear:"Экономия в год",
+      months:"мес.",
+      verdictFmt:"Через {m} мес. ГБО полностью окупится, и каждый год \u2248 {y} сум останется в кармане.",
+      verdictNo:"При этих показателях метан не выгоден — перепроверьте цены и расход.",
+      foot:"Цены меняются — вводите актуальные с заправки. Расчёт носит справочный характер.",
+      seo:'<h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p>'
+    }
+  };
+  var lang='uz', tripData=null, gboData=null;
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+  var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var som=function(){return lang==='uz'?"so'm":'сум'};
+
+  ['fprice','bPrice','mPrice','gboCost','monthKm','dist'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+    });
+  });
+
+  function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  $('tabTrip').onclick=function(){
+    setSeg(this,$('tabGbo'));
+    $('tripCard').style.display='block';$('gboCard').style.display='none';
+    $('gboReceipt').classList.remove('show');
+    if(tripData)$('tripReceipt').classList.add('show');
+  };
+  $('tabGbo').onclick=function(){
+    setSeg(this,$('tabTrip'));
+    $('tripCard').style.display='none';$('gboCard').style.display='block';
+    $('tripReceipt').classList.remove('show');
+    if(gboData)$('gboReceipt').classList.add('show');
+  };
+
+  $('calcTrip').onclick=function(){
+    var d=num($('dist').value), c=num($('cons').value), p=num($('fprice').value);
+    if(!d||!c||!p)return;
+    var liters=d*c/100, cost=liters*p;
+    tripData={liters:liters,cost:cost,perKm:cost/d};
+    $('tripNum').textContent=fmt(tripData.cost)+' '+som();
+    $('rFuel').textContent=tripData.liters.toFixed(1).replace('.',',')+' l';
+    $('rPerKm').textContent=fmt(tripData.perKm)+' '+som();
+    $('tripReceipt').classList.add('show');
+  };
+
+  $('calcGbo').onclick=function(){
+    var bc=num($('bCons').value), bp=num($('bPrice').value);
+    var mc=num($('mCons').value), mp=num($('mPrice').value);
+    var gbo=num($('gboCost').value), km=num($('monthKm').value);
+    if(!bc||!bp||!mc||!mp||!gbo||!km)return;
+    var b100=bc*bp, m100=mc*mp, save100=b100-m100;
+    var saveMonth=save100*km/100, saveYear=saveMonth*12;
+    gboData={b100:b100,m100:m100,save100:save100,saveMonth:saveMonth,saveYear:saveYear,payback:save100>0?gbo/saveMonth:0};
+    $('rB100').textContent=fmt(b100)+' '+som();
+    $('rM100').textContent=fmt(m100)+' '+som();
+    $('rSave100').textContent=(save100>0?'\u2212':'+')+fmt(Math.abs(save100))+' '+som();
+    $('rSaveMonth').textContent=fmt(saveMonth)+' '+som();
+    $('rSaveYear').textContent=fmt(saveYear)+' '+som();
+    if(save100>0){
+      var months=Math.ceil(gboData.payback);
+      $('gboNum').textContent='\u2248 '+months+' '+t('months');
+      $('gboVerdict').textContent=t('verdictFmt').replace('{m}',months).replace('{y}',fmt(saveYear));
+    }else{
+      $('gboNum').textContent='—';
+      $('gboVerdict').textContent=t('verdictNo');
+    }
+    $('gboReceipt').classList.add('show');
+  };
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  applyLang();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yer maydoni konvertori — gektar, sotix, tanob, m²</title>
+<meta name="description" content="Yer maydoni konvertori: gektar, sotix, tanob, m², akr. O'lchamlardan maydon, panjara uzunligi va yer narxi hisobi. Конвертер площади земли.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.card2{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:20px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+h2.sect{font-size:17px;font-weight:800;margin-bottom:4px}
+.sect-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.field{margin-bottom:14px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:12.5px;font-weight:700;color:var(--muted);padding:0 12px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3;min-width:74px;justify-content:center}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.fun-fact{
+  margin-top:14px;background:var(--cat-soft);border-radius:11px;padding:12px 14px;
+  font-size:13.5px;font-weight:700;color:var(--cat);
+}
+.derived{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--cat-soft);border-radius:10px;padding:11px 14px;margin-top:6px;font-size:13.5px;font-weight:700;color:var(--cat)}
+.derived .dv{font-size:15px;font-weight:800;text-align:right}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body data-cat="qurilish">
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span><span data-i="brand"></span></div>
+      <div class="lang-seg" role="group" aria-label="Til / Язык">
+        <button type="button" id="langUz" class="on">UZ</button>
+        <button type="button" id="langRu">RU</button>
+      </div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="form-card">
+    <h2 class="sect" data-i="s1"></h2>
+    <p class="sect-sub" data-i="s1sub"></p>
+    <div class="field"><div class="input-shell"><input type="text" id="m2" inputmode="decimal" value="2 500"><span class="unit">m²</span></div></div>
+    <div class="field"><div class="input-shell"><input type="text" id="sotix" inputmode="decimal"><span class="unit" data-i="uSotix"></span></div></div>
+    <div class="field"><div class="input-shell"><input type="text" id="tanob" inputmode="decimal"><span class="unit" data-i="uTanob"></span></div></div>
+    <div class="field"><div class="input-shell"><input type="text" id="gektar" inputmode="decimal"><span class="unit" data-i="uGa"></span></div></div>
+    <div class="field" style="margin-bottom:0"><div class="input-shell"><input type="text" id="akr" inputmode="decimal"><span class="unit" data-i="uAkr"></span></div></div>
+    <div class="field" style="margin-top:14px;margin-bottom:0">
+      <label for="tanobSize" data-i="lTanobSize"></label>
+      <div class="input-shell"><input type="text" id="tanobSize" inputmode="numeric" value="2 500"><span class="unit">m²</span></div>
+      <p class="hint" data-i="hTanobSize"></p>
+    </div>
+    <div class="fun-fact" id="funFact"></div>
+  </section>
+
+  <section class="card2">
+    <h2 class="sect" data-i="s2"></h2>
+    <p class="sect-sub" data-i="s2sub"></p>
+    <div class="row2">
+      <div class="field">
+        <label for="plotL" data-i="lPlotL"></label>
+        <div class="input-shell"><input type="text" id="plotL" inputmode="decimal" value="50"><span class="unit">m</span></div>
+      </div>
+      <div class="field">
+        <label for="plotW" data-i="lPlotW"></label>
+        <div class="input-shell"><input type="text" id="plotW" inputmode="decimal" value="50"><span class="unit">m</span></div>
+      </div>
+    </div>
+    <div class="derived"><span data-i="dPlotArea"></span><span class="dv" id="plotAreaV">—</span></div>
+    <div class="derived"><span data-i="dPerimeter"></span><span class="dv" id="perimeterV">—</span></div>
+    <p class="hint" data-i="hPerimeter"></p>
+  </section>
+
+  <section class="card2">
+    <h2 class="sect" data-i="s3"></h2>
+    <p class="sect-sub" data-i="s3sub"></p>
+    <div class="field">
+      <label for="pricePerSotix" data-i="lPriceSotix"></label>
+      <div class="input-shell"><input type="text" id="pricePerSotix" inputmode="numeric" value="30 000 000"><span class="unit" data-i="uSomSotix"></span></div>
+    </div>
+    <div class="derived"><span data-i="dTotalPrice"></span><span class="dv" id="totalPriceV">—</span></div>
+    <div class="derived"><span data-i="dPriceM2"></span><span class="dv" id="priceM2V">—</span></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <footer data-i="foot"></footer>
+</main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Qishloq xo'jaligi",
+      h1:"Yer maydoni konvertori",
+      sub:"Gektar, sotix, tanob, m² va akr — istalgan birlikni kiriting, qolganlari darhol hisoblanadi.",
+      s1:"Birliklar konvertori",
+      s1sub:"Istalgan maydonchaga qiymat yozing — qolganlari avtomatik yangilanadi.",
+      uSotix:"sotix",uTanob:"tanob",uGa:"gektar",uAkr:"akr",
+      lTanobSize:"1 tanob necha m²? (sozlanadi)",
+      hTanobSize:"Tanob hududga qarab farq qiladi: odatda 1500–3000 m². O'z hududingiz qiymatini kiriting.",
+      funFactTpl:["Bu maydon \u2248 ","футбол","ta futbol maydoniga teng"," ta futbol maydoni (har biri 105\u00D768 m)"],
+      s2:"O'lchamlardan maydon",
+      s2sub:"Uchastka bo'yi va enini kiriting — maydoni va panjara uzunligi chiqadi.",
+      lPlotL:"Uzunligi",lPlotW:"Kengligi",
+      dPlotArea:"Maydon:",dPerimeter:"Perimetr (panjara):",
+      hPerimeter:"Panjara/devor materialini hisoblashda perimetrdan foydalaning.",
+      s3:"Yer narxi hisobi",
+      s3sub:"Yuqoridagi konvertordagi maydon uchun hisoblanadi.",
+      lPriceSotix:"1 sotix narxi",uSomSotix:"so'm",
+      dTotalPrice:"Umumiy narx:",dPriceM2:"1 m² narxi:",
+      som:"so'm",
+      foot:"1 sotix = 100 m², 1 gektar = 10 000 m², 1 akr = 4 046,86 m². Tanob qiymati sozlanadi.",
+      seo:'<h2>Tanob nima va nega har xil?</h2><p>Tanob — Markaziy Osiyoning tarixiy yer o\'lchovi. Hududga qarab qiymati farq qilgan: ayrim viloyatlarda ~1500 m², boshqalarida 2500–3000 m² deb qabul qilinadi. Shuning uchun konvertorda tanob qiymatini o\'zingiz sozlashingiz mumkin — bu boshqa hech qaysi konvertorda yo\'q.</p><h2>Sotix va gektar qanday bog\'langan?</h2><p>1 sotix = 100 m² (10\u00D710 metr). 1 gektar = 100 sotix = 10 000 m². Tomorqa hujjatlarida odatda sotix, fermer xo\'jaliklarida gektar ishlatiladi.</p><h2>Yer narxini qanday solishtirish kerak?</h2><p>E\'lonlarda narx goh sotixiga, goh umumiy ko\'rsatiladi. Konvertor ikkalasini ham 1 m² narxiga keltiradi — turli uchastkalarni halol solishtirishning yagona to\'g\'ri usuli.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Сельское хозяйство",
+      h1:"Конвертер площади земли",
+      sub:"Гектар, сотка, таноб, м² и акр — введите любую единицу, остальные пересчитаются мгновенно.",
+      s1:"Конвертер единиц",
+      s1sub:"Введите значение в любое поле — остальные обновятся автоматически.",
+      uSotix:"соток",uTanob:"таноб",uGa:"гектар",uAkr:"акр",
+      lTanobSize:"1 таноб — сколько м²? (настраивается)",
+      hTanobSize:"Таноб отличается по регионам: обычно 1500–3000 м². Введите значение вашего региона.",
+      funFactTpl:["Эта площадь \u2248 ","футбол","футбольных полей"," футбольных полей (каждое 105\u00D768 м)"],
+      s2:"Площадь по размерам",
+      s2sub:"Введите длину и ширину участка — получите площадь и длину забора.",
+      lPlotL:"Длина",lPlotW:"Ширина",
+      dPlotArea:"Площадь:",dPerimeter:"Периметр (забор):",
+      hPerimeter:"Используйте периметр для расчёта материала забора.",
+      s3:"Расчёт цены земли",
+      s3sub:"Считается для площади из конвертера выше.",
+      lPriceSotix:"Цена за 1 сотку",uSomSotix:"сум",
+      dTotalPrice:"Общая цена:",dPriceM2:"Цена за 1 м²:",
+      som:"сум",
+      foot:"1 сотка = 100 м², 1 гектар = 10 000 м², 1 акр = 4 046,86 м². Значение таноба настраивается.",
+      seo:'<h2>Что такое таноб и почему он разный?</h2><p>Таноб — историческая среднеазиатская мера площади. Значение зависело от региона: где-то ~1500 м², где-то 2500–3000 м². Поэтому в конвертере значение таноба настраивается — этого нет ни в одном другом конвертере.</p><h2>Как связаны сотка и гектар?</h2><p>1 сотка = 100 м² (10\u00D710 метров). 1 гектар = 100 соток = 10 000 м². В документах на участки обычно сотки, в фермерских хозяйствах — гектары.</p><h2>Как честно сравнивать цены на землю?</h2><p>В объявлениях цена то за сотку, то общая. Конвертер приводит всё к цене за 1 м² — единственный корректный способ сравнить разные участки.</p>'
+    }
+  };
+
+  var lang='uz', m2Val=2500, updating=false;
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var fmtN=function(n,dec){
+    var d=dec===undefined?2:dec;
+    var r=Math.round(n*Math.pow(10,d))/Math.pow(10,d);
+    var p=r.toString().split('.');
+    p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');
+    return p.join(',');
+  };
+  var fmtI=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+
+  function tanobM2(){return num($('tanobSize').value)||2500}
+
+  function setAll(from){
+    if(updating)return;
+    updating=true;
+    if(from!=='m2')$('m2').value=fmtN(m2Val,m2Val>=100?0:2);
+    if(from!=='sotix')$('sotix').value=fmtN(m2Val/100,3);
+    if(from!=='tanob')$('tanob').value=fmtN(m2Val/tanobM2(),3);
+    if(from!=='gektar')$('gektar').value=fmtN(m2Val/10000,4);
+    if(from!=='akr')$('akr').value=fmtN(m2Val/4046.86,4);
+    updating=false;
+    renderFun();
+    renderPrice();
+  }
+
+  function bindUnit(id,factorFn){
+    $(id).addEventListener('input',function(){
+      if(updating)return;
+      var v=num(this.value);
+      m2Val=v*factorFn();
+      setAll(id);
+    });
+  }
+  bindUnit('m2',function(){return 1});
+  bindUnit('sotix',function(){return 100});
+  bindUnit('tanob',function(){return tanobM2()});
+  bindUnit('gektar',function(){return 10000});
+  bindUnit('akr',function(){return 4046.86});
+  $('tanobSize').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmtI(parseInt(v,10)):'';
+    setAll('tanobSize');
+  });
+
+  function renderFun(){
+    var fields=Math.round(m2Val/7140*10)/10;
+    var tpl=t('funFactTpl');
+    $('funFact').textContent='\u26BD '+tpl[0]+fmtN(fields,1)+tpl[3];
+  }
+
+  function renderPlot(){
+    var L=num($('plotL').value), W=num($('plotW').value);
+    if(L&&W){
+      var area=L*W;
+      $('plotAreaV').textContent=fmtI(area)+' m² = '+fmtN(area/100,2)+' '+t('uSotix');
+      $('perimeterV').textContent=fmtN(2*(L+W),1)+' m';
+    }else{
+      $('plotAreaV').textContent='—';$('perimeterV').textContent='—';
+    }
+  }
+  $('plotL').addEventListener('input',renderPlot);
+  $('plotW').addEventListener('input',renderPlot);
+
+  function renderPrice(){
+    var ps=num($('pricePerSotix').value);
+    if(ps&&m2Val){
+      var total=m2Val/100*ps;
+      $('totalPriceV').textContent=fmtI(total)+' '+t('som');
+      $('priceM2V').textContent=fmtI(ps/100)+' '+t('som');
+    }else{
+      $('totalPriceV').textContent='—';$('priceM2V').textContent='—';
+    }
+  }
+  $('pricePerSotix').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmtI(parseInt(v,10)):'';
+    renderPrice();
+  });
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    setAll('');renderPlot();renderPrice();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  applyLang();
+})();
+</script>
+</body>
+</html>

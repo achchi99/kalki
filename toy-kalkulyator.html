@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>To'y xarajatlari kalkulyatori — to'y byudjetini hisoblash</title>
+<meta name="description" content="To'y kalkulyatori: zal, nahorgi osh, san'atkor, foto-video, sarpo va barcha xarajatlarni batafsil hisoblang. Калькулятор расходов на свадьбу.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.derived{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--cat-soft);border-radius:10px;padding:10px 13px;margin-top:8px;font-size:13px;font-weight:700;color:var(--cat)}
+.derived .dv{font-size:14.5px;font-weight:800}
+.sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 0}
+.toggle-row .tl{font-size:14px;font-weight:700}
+.switch{position:relative;width:52px;height:30px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:#D8DFDA;border-radius:99px;transition:.2s;cursor:pointer}
+.slider::before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch input:checked + .slider{background:var(--cat)}
+.switch input:checked + .slider::before{transform:translateX(22px)}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:5px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right;white-space:nowrap}
+.rrow .v.accent{color:var(--accent)}
+.rrow.sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:11px}
+.rrow .pct{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:6px}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px}
+.receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body data-cat="hayot">
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="brand-dot"></span><span data-i="brand"></span></div>
+      <div class="lang-seg" role="group" aria-label="Til / Язык">
+        <button type="button" id="langUz" class="on">UZ</button>
+        <button type="button" id="langRu">RU</button>
+      </div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="form-card">
+
+    <div class="sect-title" data-i="sMain"></div>
+    <div class="field">
+      <div class="row2">
+        <div>
+          <label for="guests" data-i="lGuests"></label>
+          <div class="input-shell"><input type="text" id="guests" inputmode="numeric" value="200" autocomplete="off"><span class="unit" data-i="uPeople1"></span></div>
+        </div>
+        <div>
+          <label for="seatPrice" data-i="lSeat"></label>
+          <div class="input-shell"><input type="text" id="seatPrice" inputmode="numeric" value="250 000" autocomplete="off"><span class="unit" data-i="uPerP1"></span></div>
+        </div>
+      </div>
+      <div class="derived"><span data-i="dHall"></span><span class="dv" id="hallVal">—</span></div>
+    </div>
+
+    <div class="sect-title" data-i="sOsh"></div>
+    <div class="field">
+      <div class="row2">
+        <div>
+          <label for="oshGuests" data-i="lOshG"></label>
+          <div class="input-shell"><input type="text" id="oshGuests" inputmode="numeric" value="300" autocomplete="off"><span class="unit" data-i="uPeople2"></span></div>
+        </div>
+        <div>
+          <label for="oshPrice" data-i="lOshP"></label>
+          <div class="input-shell"><input type="text" id="oshPrice" inputmode="numeric" value="80 000" autocomplete="off"><span class="unit" data-i="uPerP2"></span></div>
+        </div>
+      </div>
+      <div class="derived"><span data-i="dOsh"></span><span class="dv" id="oshVal">—</span></div>
+    </div>
+
+    <div class="sect-title" data-i="sServices"></div>
+    <div class="field"><label for="artist" data-i="lArtist"></label>
+      <div class="input-shell"><input type="text" id="artist" inputmode="numeric" value="20 000 000" autocomplete="off"><span class="unit" data-i="uSum1"></span></div>
+      <p class="hint" data-i="hArtist"></p>
+    </div>
+    <div class="field"><label for="photo" data-i="lPhoto"></label>
+      <div class="input-shell"><input type="text" id="photo" inputmode="numeric" value="8 000 000" autocomplete="off"><span class="unit" data-i="uSum2"></span></div>
+    </div>
+    <div class="field"><label for="decor" data-i="lDecor"></label>
+      <div class="input-shell"><input type="text" id="decor" inputmode="numeric" value="5 000 000" autocomplete="off"><span class="unit" data-i="uSum3"></span></div>
+      <p class="hint" data-i="hDecor"></p>
+    </div>
+    <div class="field"><label for="cars" data-i="lCars"></label>
+      <div class="input-shell"><input type="text" id="cars" inputmode="numeric" value="4 000 000" autocomplete="off"><span class="unit" data-i="uSum4"></span></div>
+    </div>
+
+    <div class="sect-title" data-i="sCouple"></div>
+    <div class="field"><label for="bride" data-i="lBride"></label>
+      <div class="input-shell"><input type="text" id="bride" inputmode="numeric" value="15 000 000" autocomplete="off"><span class="unit" data-i="uSum5"></span></div>
+      <p class="hint" data-i="hBride"></p>
+    </div>
+    <div class="field"><label for="groom" data-i="lGroom"></label>
+      <div class="input-shell"><input type="text" id="groom" inputmode="numeric" value="7 000 000" autocomplete="off"><span class="unit" data-i="uSum6"></span></div>
+    </div>
+    <div class="field"><label for="sarpo" data-i="lSarpo"></label>
+      <div class="input-shell"><input type="text" id="sarpo" inputmode="numeric" value="25 000 000" autocomplete="off"><span class="unit" data-i="uSum7"></span></div>
+      <p class="hint" data-i="hSarpo"></p>
+    </div>
+
+    <div class="sect-title" data-i="sOther"></div>
+    <div class="field"><label for="invites" data-i="lInvites"></label>
+      <div class="input-shell"><input type="text" id="invites" inputmode="numeric" value="2 000 000" autocomplete="off"><span class="unit" data-i="uSum8"></span></div>
+      <p class="hint" data-i="hInvites"></p>
+    </div>
+    <div class="field"><label for="other" data-i="lOther"></label>
+      <div class="input-shell"><input type="text" id="other" inputmode="numeric" value="3 000 000" autocomplete="off"><span class="unit" data-i="uSum9"></span></div>
+    </div>
+
+    <div class="field" style="margin-bottom:0">
+      <div class="toggle-row">
+        <span class="tl" data-i="lReserve"></span>
+        <label class="switch"><input type="checkbox" id="reserve" checked><span class="slider"></span></label>
+      </div>
+      <p class="hint" data-i="hReserve"></p>
+    </div>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">—</div>
+        <div class="lbl" data-i="lblMain"></div>
+      </div>
+      <div class="receipt-rows" id="breakRows"></div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare"></button>
+      </div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <footer data-i="foot"></footer>
+</main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Hayotiy",
+      h1:"To'y xarajatlari kalkulyatori",
+      sub:"Zaldan sarpogacha — to'yning barcha xarajatlarini batafsil hisoblang va byudjetni oldindan biling.",
+      sMain:"Asosiy to'y (kechki bazm)",
+      lGuests:"Mehmonlar soni",uPeople1:"kishi",
+      lSeat:"Bir kishilik narx",uPerP1:"so'm",
+      dHall:"Zal va dasturxon jami:",
+      sOsh:"Nahorgi osh",
+      lOshG:"Osh mehmonlari",uPeople2:"kishi",
+      lOshP:"Bir kishiga",uPerP2:"so'm",
+      dOsh:"Nahorgi osh jami:",
+      sServices:"Xizmatlar",
+      lArtist:"San'atkor va musiqa",uSum1:"so'm",
+      hArtist:"Xonanda, dj, jonli musiqa — hammasini qo'shib.",
+      lPhoto:"Foto va video",uSum2:"so'm",
+      lDecor:"Bezash va gullar",uSum3:"so'm",
+      hDecor:"Zal bezagi, gulchambar, mashina bezagi.",
+      lCars:"Mashinalar korteji",uSum4:"so'm",
+      sCouple:"Kelin-kuyov",
+      lBride:"Kelin liboslari va go'zallik",uSum5:"so'm",
+      hBride:"Kelinlik ko'ylagi, milliy libos, pardoz, soch.",
+      lGroom:"Kuyov kiyimlari",uSum6:"so'm",
+      lSarpo:"Sarpo va sovg'alar",uSum7:"so'm",
+      hSarpo:"Ikkala tomon sarposi, qarindoshlarga sovg'alar.",
+      sOther:"Boshqa",
+      lInvites:"Taklifnoma va mayda-chuyda",uSum8:"so'm",
+      hInvites:"Taklifnomalar, shirinlik qutilari, mehmon sovg'achalari.",
+      lOther:"Boshqa xarajatlar",uSum9:"so'm",
+      lReserve:"Kutilmagan xarajatlar uchun +10%",
+      hReserve:"Amaliyotda har doim rejadan ortiq chiqadi — zaxira tavsiya etiladi.",
+      btnCalc:"Hisoblash",rTag:"To'y byudjeti",
+      lblMain:"Jami taxminiy xarajat",
+      names:{hall:"Zal va dasturxon",osh:"Nahorgi osh",artist:"San'atkor va musiqa",photo:"Foto-video",decor:"Bezash va gullar",cars:"Mashinalar",bride:"Kelin liboslari",groom:"Kuyov kiyimlari",sarpo:"Sarpo va sovg'alar",invites:"Taklifnoma",other:"Boshqa"},
+      kSub:"Jami (zaxirasiz)",kReserve:"Zaxira (+10%)",kPerGuest:"Bir mehmonga (bazm)",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      foot:"Hisob-kitob taxminiy — narxlar hudud va mavsumga qarab farq qiladi.",
+      seo:'<h2>To\'y byudjeti qanday taqsimlanadi?</h2><p>Odatda eng katta uch modda: zal-dasturxon (30–40%), sarpo-sovg\'alar (15–25%) va san\'atkor (10–20%). Kalkulyator har moddaning umumiy byudjetdagi ulushini foizda ko\'rsatadi — qayerni qisqartirish mumkinligini darhol ko\'rasiz.</p><h2>Qayerdan tejash mumkin?</h2><p>Eng samarali yo\'llar: mehmonlar sonini aniq belgilash (har 10 mehmon — sezilarli summa), mavsumdan tashqari sana tanlash (zallar kuz oylarida qimmat), san\'atkorni to\'liq kecha o\'rniga 2 soatga kelishish.</p><h2>Nega +10% zaxira kerak?</h2><p>Amaliyotda deyarli har doim rejadan tashqari xarajat chiqadi: qo\'shimcha mehmonlar, unutilgan mayda-chuyda, oxirgi daqiqadagi o\'zgarishlar. 10% zaxira byudjetni real qiladi.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Жизнь",
+      h1:"Калькулятор расходов на свадьбу",
+      sub:"От зала до сарпо — детально рассчитайте все расходы и узнайте бюджет заранее.",
+      sMain:"Основная свадьба (вечерний банкет)",
+      lGuests:"Количество гостей",uPeople1:"чел.",
+      lSeat:"Цена за человека",uPerP1:"сум",
+      dHall:"Зал и стол итого:",
+      sOsh:"Утренний плов",
+      lOshG:"Гостей на плове",uPeople2:"чел.",
+      lOshP:"На человека",uPerP2:"сум",
+      dOsh:"Утренний плов итого:",
+      sServices:"Услуги",
+      lArtist:"Артист и музыка",uSum1:"сум",
+      hArtist:"Певец, диджей, живая музыка — всё вместе.",
+      lPhoto:"Фото и видео",uSum2:"сум",
+      lDecor:"Оформление и цветы",uSum3:"сум",
+      hDecor:"Декор зала, букеты, украшение машин.",
+      lCars:"Кортеж",uSum4:"сум",
+      sCouple:"Жених и невеста",
+      lBride:"Наряды невесты и красота",uSum5:"сум",
+      hBride:"Свадебное платье, национальный наряд, макияж, причёска.",
+      lGroom:"Одежда жениха",uSum6:"сум",
+      lSarpo:"Сарпо и подарки",uSum7:"сум",
+      hSarpo:"Сарпо обеих сторон, подарки родственникам.",
+      sOther:"Прочее",
+      lInvites:"Приглашения и мелочи",uSum8:"сум",
+      hInvites:"Пригласительные, коробки сладостей, сувениры гостям.",
+      lOther:"Другие расходы",uSum9:"сум",
+      lReserve:"Резерв на непредвиденное +10%",
+      hReserve:"На практике всегда выходит больше плана — резерв рекомендуется.",
+      btnCalc:"Рассчитать",rTag:"Бюджет свадьбы",
+      lblMain:"Итого примерных расходов",
+      names:{hall:"Зал и стол",osh:"Утренний плов",artist:"Артист и музыка",photo:"Фото-видео",decor:"Оформление и цветы",cars:"Кортеж",bride:"Наряды невесты",groom:"Одежда жениха",sarpo:"Сарпо и подарки",invites:"Приглашения",other:"Прочее"},
+      kSub:"Итого (без резерва)",kReserve:"Резерв (+10%)",kPerGuest:"На одного гостя (банкет)",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      foot:"Расчёт приблизительный — цены зависят от региона и сезона.",
+      seo:'<h2>Как распределяется свадебный бюджет?</h2><p>Обычно три крупнейшие статьи: зал и стол (30–40%), сарпо и подарки (15–25%) и артист (10–20%). Калькулятор показывает долю каждой статьи в процентах — сразу видно, где можно сократить.</p><h2>Где можно сэкономить?</h2><p>Самое эффективное: точно определить число гостей (каждые 10 гостей — заметная сумма), выбрать несезонную дату (осенью залы дороже), договориться с артистом на 2 часа вместо всего вечера.</p><h2>Зачем резерв +10%?</h2><p>На практике почти всегда возникают незапланированные расходы: дополнительные гости, забытые мелочи, изменения в последний момент. Резерв 10% делает бюджет реалистичным.</p>'
+    }
+  };
+
+  var lang='uz', calcData=null;
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var sumWord=function(){return lang==='uz'?"so'm":'сум'};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    updateDerived();
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  var moneyIds=['seatPrice','oshPrice','artist','photo','decor','cars','bride','groom','sarpo','invites','other'];
+  var intIds=['guests','oshGuests'];
+  moneyIds.concat(intIds).forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'0';
+      updateDerived();
+    });
+  });
+
+  function updateDerived(){
+    var hall=num($('guests').value)*num($('seatPrice').value);
+    var osh=num($('oshGuests').value)*num($('oshPrice').value);
+    $('hallVal').textContent=hall?fmt(hall)+' '+sumWord():'—';
+    $('oshVal').textContent=osh?fmt(osh)+' '+sumWord():'—';
+  }
+
+  function calc(){
+    var items={
+      hall:num($('guests').value)*num($('seatPrice').value),
+      osh:num($('oshGuests').value)*num($('oshPrice').value),
+      artist:num($('artist').value),
+      photo:num($('photo').value),
+      decor:num($('decor').value),
+      cars:num($('cars').value),
+      bride:num($('bride').value),
+      groom:num($('groom').value),
+      sarpo:num($('sarpo').value),
+      invites:num($('invites').value),
+      other:num($('other').value)
+    };
+    var sub=0;for(var k in items)sub+=items[k];
+    if(!sub){$('receipt').classList.remove('show');return}
+    var res=$('reserve').checked?sub*0.1:0;
+    calcData={items:items,sub:sub,res:res,total:sub+res,guests:num($('guests').value)};
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  function renderResult(){
+    var d=calcData, sum=' '+sumWord();
+    $('mainNum').textContent=fmt(d.total)+sum;
+    // sort items desc
+    var arr=[];for(var k in d.items){if(d.items[k]>0)arr.push([k,d.items[k]])}
+    arr.sort(function(a,b){return b[1]-a[1]});
+    var html='';
+    for(var i=0;i<arr.length;i++){
+      var pct=(arr[i][1]/d.sub*100).toFixed(0);
+      html+='<div class="rrow"><span class="k">'+t('names')[arr[i][0]]+'<span class="pct">'+pct+'%</span></span><span class="v">'+fmt(arr[i][1])+'</span></div>';
+    }
+    html+='<div class="rrow sep"><span class="k">'+t('kSub')+'</span><span class="v">'+fmt(d.sub)+sum+'</span></div>';
+    if(d.res>0){html+='<div class="rrow"><span class="k">'+t('kReserve')+'</span><span class="v accent">+'+fmt(d.res)+sum+'</span></div>'}
+    if(d.guests>0){html+='<div class="rrow"><span class="k">'+t('kPerGuest')+'</span><span class="v">'+fmt(d.total/d.guests)+sum+'</span></div>'}
+    $('breakRows').innerHTML=html;
+  }
+
+  $('calcBtn').onclick=calc;
+  $('reserve').addEventListener('change',function(){if(calcData)calc()});
+  $('shareBtn').onclick=function(){
+    if(!calcData)return;
+    var txt=t('h1')+': '+t('lblMain')+' \u2248 '+fmt(calcData.total)+' '+sumWord()+' ('+calcData.guests+' '+t('uPeople1')+')';
+    var b=this;
+    if(navigator.share){navigator.share({title:t('h1'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt);b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  applyLang();
+  calc();
+})();
+</script>
+</body>
+</html>

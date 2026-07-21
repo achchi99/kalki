@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kalki.uz — O'zbekiston uchun onlayn kalkulyatorlar</title>
+<meta name="description" content="Kalki.uz — kredit, ipoteka, ish haqi, g'isht, beton, bojxona, homiladorlik, pensiya va boshqa 15+ bepul onlayn kalkulyator. O'zbek va rus tillarida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;
+  --moliya:#0E3B2E;--moliya-soft:#EAF3EE;--moliya-acc:#D99A2B;
+  --qurilish:#8C3B2A;--qurilish-soft:#F6EDE8;--qurilish-acc:#D9A96B;
+  --hayot:#5B3A63;--hayot-soft:#F3EDF5;--hayot-acc:#D98BA6;
+  --kommunal:#1D4E6B;--kommunal-soft:#E8F1F6;--kommunal-acc:#6FB3D9;
+  --hero:#1A2B24;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{
+  background:linear-gradient(160deg,#0E3B2E 0%,#1A2B24 55%,#452B4B 100%);
+  color:#fff;padding:30px 16px 30px;
+}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.logo{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.logo .dot{color:#D99A2B}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:#CBDDD3;padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:#0E3B2E}
+h1{font-size:27px;font-weight:800;line-height:1.25;letter-spacing:-.01em;max-width:20ch}
+.sub{margin-top:10px;font-size:14.5px;color:#C9D6CE;max-width:44ch}
+.search-shell{
+  margin-top:20px;display:flex;align-items:center;gap:10px;
+  background:#fff;border-radius:12px;padding:0 14px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.search-shell svg{flex-shrink:0;opacity:.45}
+.search-shell input{
+  flex:1;border:0;outline:0;font:inherit;font-size:16px;font-weight:600;color:var(--ink);
+  padding:15px 0;background:transparent;min-width:0;
+}
+.stats{display:flex;gap:20px;margin-top:18px}
+.stat{font-size:12.5px;font-weight:700;color:#9FB5AA}
+.stat b{display:block;font-size:19px;color:#fff;font-weight:800}
+main{padding-top:8px}
+.cat-sect{margin-top:26px}
+.cat-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.cat-dot{width:12px;height:12px;border-radius:4px}
+.cat-title{font-size:17px;font-weight:800}
+.cat-count{font-size:12px;font-weight:800;color:var(--muted);background:#EEF2EF;border-radius:99px;padding:3px 10px;margin-left:auto}
+.cards{display:flex;flex-direction:column;gap:10px}
+a.calc-card{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cc);
+  border-radius:12px;padding:14px 16px;
+  text-decoration:none;color:var(--ink);
+  transition:transform .1s,box-shadow .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+a.calc-card:active{transform:scale(.985)}
+.cc-icon{
+  width:42px;height:42px;border-radius:11px;background:var(--ccs);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
+}
+.cc-body{min-width:0;flex:1}
+.cc-name{font-size:15px;font-weight:800;line-height:1.3}
+.cc-desc{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.cc-arrow{color:var(--cc);font-size:18px;font-weight:800;flex-shrink:0}
+.no-results{display:none;text-align:center;color:var(--muted);font-weight:700;padding:32px 0}
+.about{margin-top:36px;font-size:14.5px;color:#33403A}
+.about h2{font-size:18px;font-weight:800;color:var(--ink);margin:20px 0 8px}
+.about p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap" style="padding-bottom:0">
+    <div class="topbar">
+      <div class="logo">Kalki<span class="dot">.uz</span></div>
+      <div class="lang-seg" role="group" aria-label="Til / Язык">
+        <button type="button" id="langUz" class="on">UZ</button>
+        <button type="button" id="langRu">RU</button>
+      </div>
+    </div>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+    <div class="search-shell">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#16211C" stroke-width="2.4"/><path d="M20 20l-3.5-3.5" stroke="#16211C" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <input type="text" id="search" data-ph="searchPh" autocomplete="off">
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="statCount">15</b><span data-i="stCalc"></span></div>
+      <div class="stat"><b>2</b><span data-i="stLang"></span></div>
+      <div class="stat"><b>100%</b><span data-i="stFree"></span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="catalog"></div>
+  <div class="no-results" id="noResults" data-i="noRes"></div>
+
+  <section class="about" id="aboutBlock"></section>
+  <footer>© Kalki.uz — <span data-i="footTxt"></span></footer>
+</main>
+
+<script>
+(function(){
+  var CATS=[
+    {id:'moliya', color:'var(--moliya)', soft:'var(--moliya-soft)'},
+    {id:'qurilish', color:'var(--qurilish)', soft:'var(--qurilish-soft)'},
+    {id:'kommunal', color:'var(--kommunal)', soft:'var(--kommunal-soft)'},
+    {id:'hayot', color:'var(--hayot)', soft:'var(--hayot-soft)'}
+  ];
+  var CALCS=[
+    {cat:'moliya', href:'kredit-kalkulyator.html', icon:'💳', id:'kredit'},
+    {cat:'moliya', href:'ipoteka-kalkulyator.html', icon:'🏠', id:'ipoteka'},
+    {cat:'moliya', href:'omonat-kalkulyator.html', icon:'🏦', id:'omonat'},
+    {cat:'moliya', href:'oylik-soliq-kalkulyator.html', icon:'💵', id:'oylik'},
+    {cat:'moliya', href:'qqs-kalkulyator.html', icon:'🧾', id:'qqs'},
+    {cat:'moliya', href:'bojxona-kalkulyator.html', icon:'🚗', id:'bojxona'},
+    {cat:'qurilish', href:'gisht-kalkulyator.html', icon:'🧱', id:'gisht'},
+    {cat:'qurilish', href:'beton-kalkulyator.html', icon:'🏗️', id:'beton'},
+    {cat:'qurilish', href:'yer-konvertor.html', icon:'🌾', id:'yer'},
+    {cat:'kommunal', href:'konditsioner-kalkulyator.html', icon:'❄️', id:'konditsioner'},
+    {cat:'kommunal', href:'yoqilgi-kalkulyator.html', icon:'⛽', id:'yoqilgi'},
+    {cat:'hayot', href:'dtm-kalkulyator.html', icon:'🎓', id:'dtm'},
+    {cat:'hayot', href:'kaloriya-kalkulyator.html', icon:'🍚', id:'kaloriya'},
+    {cat:'hayot', href:'homiladorlik-kalkulyator.html', icon:'👶', id:'homila'},
+    {cat:'hayot', href:'pensiya-kalkulyator.html', icon:'👵', id:'pensiya'},
+    {cat:'hayot', href:'zakot-qurbonlik-kalkulyator.html', icon:'🕌', id:'zakot'},
+    {cat:'hayot', href:'toy-kalkulyator.html', icon:'💍', id:'toy'},
+    {cat:'hayot', href:'alkogol-kalkulyator.html', icon:'⚠️', id:'alkogol'}
+  ];
+  var I={
+    uz:{
+      h1:"O'zbekiston uchun onlayn kalkulyatorlar",
+      sub:"Kredit va ish haqidan tortib g'isht va to'ygacha — hammasini bir joyda, bepul hisoblang.",
+      searchPh:"Kalkulyator qidirish...",
+      stCalc:"kalkulyator",stLang:"til",stFree:"bepul",
+      noRes:"Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.",
+      catNames:{moliya:"Moliya",qurilish:"Qurilish va yer",kommunal:"Kommunal va avto",hayot:"Hayotiy"},
+      names:{
+        kredit:["Kredit kalkulyatori","Oylik to'lov, annuitet va differensial jadval"],
+        ipoteka:["Ipoteka kalkulyatori","Boshlang'ich to'lov, oylik to'lov, tavsiya daromad"],
+        omonat:["Omonat kalkulyatori","Depozit daromadi, kapitalizatsiya, to'ldirish"],
+        oylik:["Ish haqi kalkulyatori","Qo'lga tegadigan oylik, soliqlar 2026"],
+        qqs:["QQS kalkulyatori","12% QQSni qo'shish va ajratish"],
+        bojxona:["Bojxona kalkulyatori","Avto rastamojkasi, elektromobil, 2026"],
+        gisht:["G'isht kalkulyatori","G'isht, shlakoblok, penoblok, gazoblok soni"],
+        beton:["Beton kalkulyatori","M100–M300: sement, qum, shag'al, suv"],
+        yer:["Yer maydoni konvertori","Gektar, sotix, tanob, narx hisobi"],
+        kaloriya:["Kaloriya kalkulyatori","Kunlik me'yor + o'zbek taomlari kundaligi"],
+        homila:["Homiladorlik kalkulyatori","Tug'ilish sanasi, hafta va trimestr"],
+        pensiya:["Pensiya kalkulyatori","Staj va oylik bo'yicha taxminiy pensiya"],
+        zakot:["Zakot va Qurbonlik","Nisob, zakot 2,5%, qurbonlik ulushlari"],
+        toy:["To'y xarajatlari","Zal, osh, san'atkor, sarpo — to'liq byudjet"],
+        alkogol:["Alkogol kalkulyatori","Promille va chiqib ketish vaqti (ma'lumot uchun)"]
+      },
+      aboutHtml:'<h2>Kalki.uz nima?</h2><p>Kalki.uz — O\'zbekiston sharoitiga moslashtirilgan bepul onlayn kalkulyatorlar to\'plami. Soliq stavkalari, bank foizlari, bojxona qoidalari — hammasi mahalliy qonunchilik asosida va muntazam yangilanadi.</p><h2>Nega aynan Kalki?</h2><p>Har bir kalkulyator o\'zbek va rus tillarida, telefonga mos, tez ochiladi va ro\'yxatdan o\'tishni talab qilmaydi. Natijani bir tugma bilan Telegram\'da ulashish mumkin.</p>',
+      footTxt:"barcha hisob-kitoblar ma'lumot uchun"
+    },
+    ru:{
+      h1:"Онлайн-калькуляторы для Узбекистана",
+      sub:"От кредита и зарплаты до кирпича и свадьбы — считайте всё в одном месте, бесплатно.",
+      searchPh:"Поиск калькулятора...",
+      stCalc:"калькуляторов",stLang:"языка",stFree:"бесплатно",
+      noRes:"Ничего не найдено. Попробуйте другое слово.",
+      catNames:{moliya:"Финансы",qurilish:"Стройка и земля",kommunal:"Коммуналка и авто",hayot:"Жизнь"},
+      names:{
+        kredit:["Кредитный калькулятор","Ежемесячный платёж, аннуитет и график"],
+        ipoteka:["Ипотечный калькулятор","Взнос, платёж, рекомендуемый доход"],
+        omonat:["Депозитный калькулятор","Доход, капитализация, пополнение"],
+        oylik:["Зарплатный калькулятор","Сумма на руки, налоги 2026"],
+        qqs:["Калькулятор НДС","Начислить и выделить 12% НДС"],
+        bojxona:["Калькулятор растаможки","Пошлины, электромобили, 2026"],
+        gisht:["Калькулятор кирпича","Кирпич, шлакоблок, пеноблок, газоблок"],
+        beton:["Калькулятор бетона","М100–М300: цемент, песок, щебень"],
+        yer:["Конвертер площади","Гектар, сотка, таноб, цена земли"],
+        konditsioner:["Калькулятор кондиционера","Подбор класса BTU для комнаты"],
+        yoqilgi:["Топливный калькулятор","Расходы на поездку и окупаемость ГБО"],
+        dtm:["Калькулятор баллов DTM","Общий балл с коэффициентами 3,1/2,1/1,1"],
+        kaloriya:["Калькулятор калорий","Дневная норма + дневник узбекских блюд"],
+        homila:["Калькулятор беременности","Дата родов, неделя и триместр"],
+        pensiya:["Пенсионный калькулятор","Примерная пенсия по стажу и зарплате"],
+        zakot:["Закят и Курбан","Нисаб, закят 2,5%, доли курбана"],
+        toy:["Расходы на свадьбу","Зал, плов, артист, сарпо — весь бюджет"],
+        alkogol:["Алкогольный калькулятор","Промилле и время выведения (справочно)"]
+      },
+      aboutHtml:'<h2>Что такое Kalki.uz?</h2><p>Kalki.uz — коллекция бесплатных онлайн-калькуляторов, адаптированных под Узбекистан. Налоговые ставки, банковские проценты, таможенные правила — всё по местному законодательству и регулярно обновляется.</p><h2>Почему именно Kalki?</h2><p>Каждый калькулятор на узбекском и русском, оптимизирован под телефон, быстро открывается и не требует регистрации. Результат можно отправить в Telegram одной кнопкой.</p>',
+      footTxt:"все расчёты носят справочный характер"
+    }
+  };
+
+  var lang='uz';
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+
+  function render(filter){
+    var q=(filter||'').toLowerCase().trim();
+    var html='', shown=0;
+    for(var c=0;c<CATS.length;c++){
+      var cat=CATS[c], items='';
+      var catCount=0;
+      for(var i=0;i<CALCS.length;i++){
+        var calc=CALCS[i];
+        if(calc.cat!==cat.id)continue;
+        var n=t('names')[calc.id];
+        if(q && (n[0]+' '+n[1]).toLowerCase().indexOf(q)===-1)continue;
+        items+='<a class="calc-card" href="'+calc.href+'" style="--cc:'+cat.color+';--ccs:'+cat.soft+'">'
+          +'<span class="cc-icon">'+calc.icon+'</span>'
+          +'<span class="cc-body"><span class="cc-name">'+n[0]+'</span><span class="cc-desc">'+n[1]+'</span></span>'
+          +'<span class="cc-arrow">\u203A</span></a>';
+        catCount++;shown++;
+      }
+      if(catCount){
+        html+='<section class="cat-sect"><div class="cat-head">'
+          +'<span class="cat-dot" style="background:'+cat.color+'"></span>'
+          +'<span class="cat-title">'+t('catNames')[cat.id]+'</span>'
+          +'<span class="cat-count">'+catCount+'</span></div>'
+          +'<div class="cards">'+items+'</div></section>';
+      }
+    }
+    $('catalog').innerHTML=html;
+    $('noResults').style.display=shown?'none':'block';
+    $('statCount').textContent=CALCS.length;
+  }
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('search').placeholder=t('searchPh');
+    $('aboutBlock').innerHTML=t('aboutHtml');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    render($('search').value);
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  $('search').addEventListener('input',function(){render(this.value)});
+
+  applyLang();
+})();
+</script>
+</body>
+</html>
