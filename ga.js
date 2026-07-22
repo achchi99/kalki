@@ -1,7 +1,7 @@
 // Google Analytics 4 — ID'ni pastdagi qatorga yozing va push qiling.
 // GA hisobini oching: analytics.google.com -> Admin -> Create Property -> Web -> kalki.uz
 // "Measurement ID" (G- bilan boshlanadi) ni oling va shu yerga qo'ying:
-var GA_ID = 'G-J4CG1EZTEW';
+var GA_ID = 'G-XXXXXXXXXX';
 
 if (GA_ID.indexOf('XXXX') === -1) {
   var s = document.createElement('script');
