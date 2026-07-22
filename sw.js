@@ -1,8 +1,9 @@
-const CACHE='kalki-v3';
+const CACHE='kalki-v4';
 const ASSETS=[
   '/',
   '/favicon.svg',
   '/manifest.json',
+  '/ga.js',
   '/alkogol-kalkulyator',
   '/beton-kalkulyator',
   '/bojxona-kalkulyator',
@@ -13,18 +14,22 @@ const ASSETS=[
   '/kaloriya-kalkulyator',
   '/konditsioner-kalkulyator',
   '/kredit-kalkulyator',
+  '/maxfiylik',
   '/omonat-kalkulyator',
   '/oylik-soliq-kalkulyator',
   '/pensiya-kalkulyator',
   '/qqs-kalkulyator',
   '/shablonlar',
+  '/shartlar',
   '/toy-kalkulyator',
   '/yer-konvertor',
   '/yoqilgi-kalkulyator',
   '/zakot-qurbonlik-kalkulyator'
 ];
 self.addEventListener('install',e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>Promise.allSettled(ASSETS.map(u=>c.add(u)))).then(()=>self.skipWaiting()));
+  e.waitUntil(
+    caches.open(CACHE).then(c=>Promise.allSettled(ASSETS.map(u=>c.add(u)))).then(()=>self.skipWaiting())
+  );
 });
 self.addEventListener('activate',e=>{
   e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));

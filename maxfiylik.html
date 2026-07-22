@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Maxfiylik siyosati — Kalki.uz</title>
+<meta name="description" content="Kalki.uz maxfiylik siyosati: qanday ma'lumotlar yig'iladi va ular qanday ishlatiladi. Политика конфиденциальности Kalki.uz.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cat:#1A2B24;--accent:#D99A2B;--cat-text:#C9D6CE;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 30px;min-height:120px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+h1{font-size:25px;font-weight:800;line-height:1.2}
+main{padding-top:24px;font-size:15px}
+main h2{font-size:18px;font-weight:800;margin:22px 0 8px}
+main p{margin-bottom:10px}
+main ul{margin:0 0 10px 20px}
+main li{margin-bottom:6px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<script src="ga.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <h1 data-i="h1"></h1>
+  </div>
+</header>
+<main class="wrap" id="content"></main>
+<script>
+(function(){
+  var I={
+    uz:{h1:"Maxfiylik siyosati",body:'<p><em>Oxirgi yangilanish: 2026-yil iyul</em></p>'
+      +'<h2>1. Umumiy qoidalar</h2><p>Ushbu siyosat Kalki.uz sayti (keyingi o\u2018rinlarda — «Sayt») foydalanuvchilarining ma\u2019lumotlari qanday yig\u2018ilishi va ishlatilishini tushuntiradi. Saytdan foydalanish orqali siz ushbu siyosatga rozilik bildirasiz.</p>'
+      +'<h2>2. Qanday ma\u2019lumotlar yig\u2018iladi</h2><ul><li><b>Kalkulyatorlarga kiritilgan raqamlar</b> — faqat sizning brauzeringizda qayta ishlanadi va serverga yuborilmaydi hamda saqlanmaydi.</li><li><b>Texnik ma\u2019lumotlar</b> — tashriflar soni, sahifa ko\u2018rilishlari, qurilma turi, mamlakat kabi anonim statistika (Cloudflare Web Analytics va Google Analytics orqali).</li><li>Sayt ro\u2018yxatdan o\u2018tishni talab qilmaydi va ismingiz, telefon raqamingiz kabi shaxsiy ma\u2019lumotlarni so\u2018ramaydi.</li></ul>'
+      +'<h2>3. Cookie va o\u2018xshash texnologiyalar</h2><p>Sayt ish faoliyatini tahlil qilish uchun cookie fayllardan (Google Analytics) foydalanishi mumkin. Kelajakda saytda Google AdSense reklama tizimi ishlatilishi mumkin — bunda Google va uning hamkorlari reklamani moslashtirish uchun cookie fayllardan foydalanadi. Cookie\u2019larni brauzer sozlamalarida o\u2018chirib qo\u2018yishingiz mumkin.</p>'
+      +'<h2>4. Ma\u2019lumotlardan foydalanish</h2><p>Anonim statistika faqat saytni yaxshilash (qaysi kalkulyatorlar foydali ekanini tushunish) uchun ishlatiladi. Ma\u2019lumotlar uchinchi shaxslarga sotilmaydi.</p>'
+      +'<h2>5. Uchinchi tomon xizmatlari</h2><p>Saytda Google Fonts, Cloudflare, Google Analytics xizmatlari ishlatiladi — ular o\u2018z maxfiylik siyosatlariga ega.</p>'
+      +'<h2>6. Bolalar</h2><p>Sayt umumiy auditoriya uchun mo\u2018ljallangan va bolalardan ataylab hech qanday ma\u2019lumot yig\u2018maydi.</p>'
+      +'<h2>7. O\u2018zgarishlar va aloqa</h2><p>Siyosat yangilanishi mumkin — o\u2018zgarishlar shu sahifada e\u2019lon qilinadi. Savollar bo\u2018lsa: Telegram orqali murojaat qiling (sayt pastidagi «Aloqa» havolasi).</p>'},
+    ru:{h1:"Политика конфиденциальности",body:'<p><em>Последнее обновление: июль 2026</em></p>'
+      +'<h2>1. Общие положения</h2><p>Настоящая политика объясняет, какие данные собираются и как используются на сайте Kalki.uz (далее — «Сайт»). Используя Сайт, вы соглашаетесь с этой политикой.</p>'
+      +'<h2>2. Какие данные собираются</h2><ul><li><b>Числа, введённые в калькуляторы</b> — обрабатываются только в вашем браузере, не отправляются на сервер и не сохраняются.</li><li><b>Технические данные</b> — анонимная статистика: число визитов, просмотры страниц, тип устройства, страна (через Cloudflare Web Analytics и Google Analytics).</li><li>Сайт не требует регистрации и не запрашивает личные данные (имя, телефон).</li></ul>'
+      +'<h2>3. Cookie и похожие технологии</h2><p>Сайт может использовать cookie для аналитики (Google Analytics). В будущем на сайте может использоваться реклама Google AdSense — при этом Google и его партнёры используют cookie для персонализации рекламы. Вы можете отключить cookie в настройках браузера.</p>'
+      +'<h2>4. Использование данных</h2><p>Анонимная статистика используется только для улучшения сайта. Данные не продаются третьим лицам.</p>'
+      +'<h2>5. Сторонние сервисы</h2><p>На сайте используются Google Fonts, Cloudflare, Google Analytics — у них свои политики конфиденциальности.</p>'
+      +'<h2>6. Дети</h2><p>Сайт предназначен для общей аудитории и намеренно не собирает данные детей.</p>'
+      +'<h2>7. Изменения и контакты</h2><p>Политика может обновляться — изменения публикуются на этой странице. Вопросы: через Telegram (ссылка «Контакты» внизу сайта).</p>'}
+  };
+  var lang='uz';
+  function apply(){
+    document.documentElement.lang=lang;
+    document.querySelector('[data-i="h1"]').textContent=I[lang].h1;
+    document.getElementById('content').innerHTML=I[lang].body;
+    document.getElementById('langUz').classList.toggle('on',lang==='uz');
+    document.getElementById('langRu').classList.toggle('on',lang==='ru');
+  }
+  document.getElementById('langUz').onclick=function(){lang='uz';apply()};
+  document.getElementById('langRu').onclick=function(){lang='ru';apply()};
+  apply();
+})();
+</script>
+</body>
+</html>
