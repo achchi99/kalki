@@ -1,4 +1,4 @@
-const CACHE='kalki-v4';
+const CACHE='kalki-v8';
 const ASSETS=[
   '/',
   '/favicon.svg',
@@ -15,6 +15,7 @@ const ASSETS=[
   '/konditsioner-kalkulyator',
   '/kredit-kalkulyator',
   '/maxfiylik',
+  '/oila-byudjet-kalkulyator',
   '/omonat-kalkulyator',
   '/oylik-soliq-kalkulyator',
   '/pensiya-kalkulyator',
