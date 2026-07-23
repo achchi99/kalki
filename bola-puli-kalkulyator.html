@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bola puli kalkulyatori — nafaqa chiqish ehtimolini hisoblash 2026</title>
+<meta name="description" content="Bola puli va moddiy yordam kalkulyatori 2026: jon boshiga daromad, 715 ming mezon, nafaqa chiqish ehtimoli. Детское пособие калькулятор.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45;--ok-soft:#E7F3EC;--warn:#B3261E;--warn-soft:#FBEAE8;--mid:#8A6D1F;--mid-soft:#FBF3DD}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;position:relative;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.risk{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.risk input{width:19px;height:19px;accent-color:var(--warn);flex-shrink:0;margin-top:1px}
+.risk label{font-size:13.5px;font-weight:700;cursor:pointer;margin:0;color:var(--ink)}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.verdict{margin-top:14px;border-radius:12px;padding:16px}
+.verdict.v-ok{background:var(--ok-soft)}
+.verdict.v-mid{background:var(--mid-soft)}
+.verdict.v-no{background:#F0F0EC}
+.verdict .v-title{font-size:17px;font-weight:800}
+.verdict.v-ok .v-title{color:var(--ok)}
+.verdict.v-mid .v-title{color:var(--mid)}
+.verdict.v-no .v-title{color:var(--muted)}
+.verdict .v-desc{font-size:13.5px;font-weight:600;color:#33403A;margin-top:6px;line-height:1.5}
+.gauge{margin-top:16px}
+.gauge-bar{position:relative;height:16px;border-radius:99px;background:linear-gradient(90deg,#1E6B45 0%,#1E6B45 44%,#8A6D1F 44%,#8A6D1F 56%,#C77 56%,#C77 66%,#D8DFDA 66%);overflow:visible}
+.gauge-pin{position:absolute;top:-5px;width:4px;height:26px;background:var(--ink);border-radius:2px;transform:translateX(-2px)}
+.gauge-labels{display:flex;justify-content:space-between;font-size:10.5px;font-weight:700;color:var(--muted);margin-top:6px}
+.receipt-rows{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.risk-warn{margin-top:12px;background:var(--warn-soft);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:700;color:var(--warn);display:none}
+.disclaimer{margin-top:12px;background:#EEF2EF;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5}
+.receipt-actions{display:flex;gap:10px;margin-top:16px}
+.receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js" defer></script>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+</head>
+<body data-cat="hayot">
+<div id="topmenu" style="background:#0B120E;overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="max-width:560px;margin:0 auto;display:flex;gap:4px;padding:9px 14px"><a href="./" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">🏠 Asosiy</a><a href="./#cat-moliya" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Moliya</a><a href="./#cat-qurilish" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Qurilish</a><a href="./#cat-kommunal" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Kommunal</a><a href="./#cat-hayot" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Hayotiy</a><a href="shablonlar" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">📄 Shablonlar</a></div></div>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./" style="text-decoration:none"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg" role="group"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="form-card">
+    <div class="field">
+      <label for="members" data-i="lMembers"></label>
+      <div class="input-shell"><input type="text" id="members" inputmode="numeric" value="5"><span class="unit" data-i="uP"></span></div>
+      <p class="hint" data-i="hMembers"></p>
+    </div>
+    <div class="field">
+      <label for="income" data-i="lIncome"></label>
+      <div class="input-shell"><input type="text" id="income" inputmode="numeric" value="3 000 000"><span class="unit" data-i="uSom"></span></div>
+      <p class="hint" data-i="hIncome"></p>
+    </div>
+
+    <div class="sect-title" data-i="sRisk"></div>
+    <p class="hint" style="margin-top:-4px;margin-bottom:10px" data-i="hRisk"></p>
+    <div class="risk"><input type="checkbox" id="r1"><label for="r1" data-i="r1"></label></div>
+    <div class="risk"><input type="checkbox" id="r2"><label for="r2" data-i="r2"></label></div>
+    <div class="risk"><input type="checkbox" id="r3"><label for="r3" data-i="r3"></label></div>
+    <div class="risk"><input type="checkbox" id="r4"><label for="r4" data-i="r4"></label></div>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="verdict" id="verdict">
+        <div class="v-title" id="vTitle">—</div>
+        <div class="v-desc" id="vDesc"></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-bar"><div class="gauge-pin" id="gaugePin" style="left:0%"></div></div>
+        <div class="gauge-labels"><span>0</span><span>715 000</span><span>893 750</span><span>1 072 500+</span></div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kPerCap"></span><span class="v" id="rPerCap">—</span></div>
+        <div class="rrow"><span class="k" data-i="kLimit"></span><span class="v">715 000 <span data-i="uSom2"></span></span></div>
+        <div class="rrow"><span class="k" data-i="kRatio"></span><span class="v" id="rRatio">—</span></div>
+      </div>
+      <div class="risk-warn" id="riskWarn"></div>
+      <div class="disclaimer" data-i="disc"></div>
+      <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare"></button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div>
+  <nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a></div></nav>
+  <footer data-i="foot"></footer>
+  <div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
+  <div id="legal-links" style="margin-top:10px;font-size:12.5px;font-weight:700"><a href="maxfiylik" style="color:#5C6B63;text-decoration:none">Maxfiylik</a><span style="color:#B9C2BC"> · </span><a href="shartlar" style="color:#5C6B63;text-decoration:none">Foydalanish shartlari</a><span style="color:#B9C2BC"> · </span><a href="https://t.me/kalki_uz" style="color:#5C6B63;text-decoration:none">Aloqa</a></div>
+</main>
+
+<script>
+(function(){
+  var MIX=715000; // 2026: minimal iste'mol xarajati (jon boshiga, oyiga)
+  var I={
+    uz:{
+      cat:"Hayotiy",
+      h1:"Bola puli kalkulyatori",
+      sub:"Oilangizga nafaqa yoki moddiy yordam chiqish ehtimolini 2026-yil mezonlari bo'yicha oldindan bilib oling.",
+      lMembers:"Oila a'zolari soni",uP:"kishi",
+      hMembers:"Bir xonadonda yashovchi barcha a'zolar: ota-ona, bolalar, boqimdagi kattalar.",
+      lIncome:"Oilaning jami oylik rasmiy daromadi",uSom:"so'm",uSom2:"so'm",
+      hIncome:"Barcha manbalar: oyliklar, pensiya, stipendiya, rasmiy ijara daromadi va h.k.",
+      sRisk:"Qo'shimcha omillar",
+      hRisk:"Tizim bularni avtomatik tekshiradi — mavjud bo'lsa belgilang:",
+      r1:"Oilada bittadan ortiq uy-joy yoki yer uchastkasi bor",
+      r2:"Noturar joy bor (do'kon, ombor, ishlab chiqarish binosi)",
+      r3:"3 yoshgacha bo'lgan (yangi) avtomobil bor",
+      r4:"So'nggi yilda katta xarid yoki xorijga (ziyoratdan tashqari) safar bo'lgan",
+      btnCalc:"Ehtimolni hisoblash",rTag:"Dastlabki baho",
+      v1t:"Ehtimol yuqori — to'liq miqdorda",
+      v1d:"Jon boshiga daromad 715 000 so'mdan past — oila «kam ta'minlangan» mezoniga mos keladi. Nafaqa to'liq miqdorda tayinlanishi ehtimoli yuqori.",
+      v2t:"Ehtimol bor — 75% miqdorda",
+      v2d:"Daromad mezonning 1–1,25 baravari oralig'ida — «kambag'allik chegarasidagi oila» toifasi. Yangi tartibda (2026-yil 1-fevraldan) nafaqa 75% miqdorda, 6 oyga tayinlanishi mumkin.",
+      v3t:"Ehtimol past — 50% miqdorda",
+      v3d:"Daromad mezonning 1,25–1,5 baravari oralig'ida. Nafaqa 50% miqdorda tayinlanishi mumkin, lekin boshqa omillar ham baholanadi.",
+      v4t:"Mezondan yuqori — tayinlanmaydi",
+      v4d:"Jon boshiga daromad 1,5 baravardan oshgan — joriy mezonlar bo'yicha nafaqa tayinlanmaydi. Daromad kamaysa, qayta murojaat qilish mumkin.",
+      kPerCap:"Jon boshiga daromad",kLimit:"2026 mezoni (MIX)",kRatio:"Mezonga nisbat",
+      riskMsg:"⚠️ Belgilangan omil(lar) nafaqani rad etishga sabab bo'lishi mumkin — daromad mos kelsa ham. Tizim mulk, avto va xaridlarni avtomatik tekshiradi.",
+      disc:"Bu dastlabki mo'ljal. Yakuniy qarorni «Ijtimoiy reestr» tizimi va mahalliy komissiya barcha omillarni (shu jumladan ochiq e'lon qilinmagan mezonlarni) tekshirib qabul qiladi. Ariza: my.gov.uz yoki mahalladagi «Inson» markazi orqali, bepul.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      foot:"Mezon: 2026-yil uchun minimal iste'mol xarajati — 715 000 so'm (VM 654-son qarori asosidagi tizim). Ma'lumot uchun.",
+      seo:'<h2>Bola puli kimga beriladi?</h2><p>Oilaning har bir a\u2019zosiga to\u2018g\u2018ri keladigan o\u2018rtacha oylik daromad minimal iste\u2019mol xarajatidan (2026-yilda 715 000 so\u2018m) oshmasa, oila kam ta\u2019minlangan hisoblanadi va 18 yoshgacha bolalar uchun nafaqa olishi mumkin. 2026-yil 1-fevraldan yangi tartib: daromad mezonning 1\u20131,25 baravari bo\u2018lsa nafaqa 75%, 1,25\u20131,5 baravari bo\u2018lsa 50% miqdorda beriladi.</p><h2>Nega daromad mos bo\u2018lsa ham rad etilishi mumkin?</h2><p>«Ijtimoiy reestr» tizimi idoralararo ma\u2019lumotlarni avtomatik tekshiradi: bittadan ortiq ko\u2018chmas mulk, noturar joylar, yangi avtomobil, yirik xaridlar va boshqa omillar rad etish sababi bo\u2018lishi mumkin. Shuning uchun kalkulyator natijasi \u2014 mo\u2018ljal, kafolat emas.</p><h2>Qanday ariza beriladi?</h2><p>Onlayn my.gov.uz orqali yoki mahalladagi «Inson» ijtimoiy xizmatlar markazida. Xizmat bepul. Javob elektron tarzda keladi. Rad etilsa, tuman hokimligi huzuridagi apellyatsiya kengashiga murojaat qilish mumkin (2026-yildan).</p>'
+    },
+    ru:{
+      cat:"Жизнь",
+      h1:"Калькулятор детского пособия",
+      sub:"Узнайте заранее вероятность назначения пособия или материальной помощи по критериям 2026 года.",
+      lMembers:"Число членов семьи",uP:"чел.",
+      hMembers:"Все проживающие вместе: родители, дети, иждивенцы.",
+      lIncome:"Общий официальный доход семьи в месяц",uSom:"сум",uSom2:"сум",
+      hIncome:"Все источники: зарплаты, пенсия, стипендия, официальная аренда и т.д.",
+      sRisk:"Дополнительные факторы",
+      hRisk:"Система проверяет это автоматически — отметьте, если есть:",
+      r1:"Более одного жилья или земельного участка",
+      r2:"Нежилая недвижимость (магазин, склад, цех)",
+      r3:"Автомобиль младше 3 лет",
+      r4:"Крупная покупка или зарубежная поездка (кроме паломничества) за последний год",
+      btnCalc:"Рассчитать вероятность",rTag:"Предварительная оценка",
+      v1t:"Вероятность высокая — в полном размере",
+      v1d:"Доход на человека ниже 715 000 сум — семья соответствует критерию «малообеспеченной». Высокая вероятность назначения пособия в полном размере.",
+      v2t:"Вероятность есть — в размере 75%",
+      v2d:"Доход в диапазоне 1–1,25 критерия — категория «семья на границе бедности». По новому порядку (с 1 февраля 2026) пособие может быть назначено в размере 75% на 6 месяцев.",
+      v3t:"Вероятность низкая — в размере 50%",
+      v3d:"Доход в диапазоне 1,25–1,5 критерия. Пособие может быть назначено в размере 50%, но оцениваются и другие факторы.",
+      v4t:"Выше критерия — не назначается",
+      v4d:"Доход на человека превышает 1,5 критерия — по текущим правилам пособие не назначается. При снижении дохода можно обратиться повторно.",
+      kPerCap:"Доход на человека",kLimit:"Критерий 2026 (МПР)",kRatio:"Отношение к критерию",
+      riskMsg:"⚠️ Отмеченные факторы могут стать причиной отказа — даже при подходящем доходе. Система автоматически проверяет имущество, авто и покупки.",
+      disc:"Это предварительная оценка. Окончательное решение принимает система «Социальный реестр» и местная комиссия с учётом всех факторов (включая непубличные критерии). Заявка: через my.gov.uz или центр «Инсон» в махалле, бесплатно.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      foot:"Критерий: минимальные потребительские расходы на 2026 год — 715 000 сум (система на основе ПКМ №654). Справочно.",
+      seo:'<h2>Кому положено детское пособие?</h2><p>Если средний доход на каждого члена семьи не превышает минимальных потребительских расходов (715 000 сум в 2026), семья считается малообеспеченной и может получать пособие на детей до 18 лет. С 1 февраля 2026 новый порядок: при доходе 1–1,25 критерия пособие 75%, при 1,25–1,5 — 50%.</p><h2>Почему могут отказать даже при подходящем доходе?</h2><p>Система «Социальный реестр» автоматически проверяет межведомственные данные: более одной недвижимости, нежилые объекты, новый автомобиль, крупные покупки. Поэтому результат калькулятора — ориентир, не гарантия.</p><h2>Как подать заявку?</h2><p>Онлайн через my.gov.uz или в центре «Инсон» в махалле. Бесплатно. При отказе с 2026 года можно обратиться в апелляционный совет при хокимияте района.</p>'
+    }
+  };
+  var lang='uz', calcData=null;
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+  var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+
+  ['income','members'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'0';
+    });
+  });
+
+  function calc(){
+    var m=num($('members').value), inc=num($('income').value);
+    if(!m){$('receipt').classList.remove('show');return}
+    var perCap=inc/m;
+    var ratio=perCap/MIX;
+    var risks=['r1','r2','r3','r4'].filter(function(id){return $(id).checked});
+    calcData={perCap:perCap,ratio:ratio,risks:risks.length};
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  function renderResult(){
+    var d=calcData, v=$('verdict');
+    var key;
+    if(d.ratio<=1){key='v1';v.className='verdict v-ok'}
+    else if(d.ratio<=1.25){key='v2';v.className='verdict v-mid'}
+    else if(d.ratio<=1.5){key='v3';v.className='verdict v-mid'}
+    else{key='v4';v.className='verdict v-no'}
+    $('vTitle').textContent=t(key+'t');
+    $('vDesc').textContent=t(key+'d');
+    // gauge: 0..1.5+ MIX -> 0..100% (1.0 MIX = 44%, 1.25 = 56%, 1.5 = 66%)
+    var pos=Math.min(97,d.ratio/1.5*66);
+    $('gaugePin').style.left=pos+'%';
+    var sum=' '+(lang==='uz'?"so'm":'сум');
+    $('rPerCap').textContent=fmt(d.perCap)+sum;
+    $('rRatio').textContent=(Math.round(d.ratio*100)/100).toString().replace('.',',')+'\u00D7';
+    var rw=$('riskWarn');
+    if(d.risks>0){rw.style.display='block';rw.textContent=t('riskMsg')}
+    else rw.style.display='none';
+  }
+
+  $('calcBtn').onclick=calc;
+  ['r1','r2','r3','r4'].forEach(function(id){$(id).addEventListener('change',function(){if(calcData)calc()})});
+  $('shareBtn').onclick=function(){
+    if(!calcData)return;
+    var txt=t('h1')+': '+t('kPerCap')+' '+fmt(calcData.perCap)+' '+(lang==='uz'?"so'm":'сум');
+    var b=this;
+    if(navigator.share){navigator.share({title:t('h1'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt);b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  applyLang();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate"></div>
+</div>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var b=document.createElement('button');
+    b.type='button';b.textContent='PDF';
+    b.onclick=function(){window.print()};
+    acts[i].appendChild(b);
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+</body>
+</html>
