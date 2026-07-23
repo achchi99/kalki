@@ -69,6 +69,7 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+@media (max-width:360px){.elec-grid{grid-template-columns:1fr}}
 </style>
 <link rel="manifest" href="manifest.json">
 <style id="printcss">
@@ -156,11 +157,11 @@ img,svg{height:auto}
       </div>
       <div id="elecBox" style="margin-top:18px;border-top:1px dashed var(--line);padding-top:16px">
         <div style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px" data-i="sElec"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div class="elec-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-bottom:10px">
           <div><label style="display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px" data-i="lHours"></label>
             <div style="display:flex;align-items:center;border:1.5px solid var(--line);border-radius:9px;background:#FBFCFB;overflow:hidden"><input type="text" id="hours" inputmode="numeric" value="8" style="flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:700;padding:9px 11px;min-width:0;color:var(--ink)"><span style="font-size:11px;font-weight:700;color:var(--muted);padding:0 9px;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3" data-i="uHours"></span></div></div>
           <div><label style="display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px" data-i="lTariff"></label>
-            <div style="display:flex;align-items:center;border:1.5px solid var(--line);border-radius:9px;background:#FBFCFB;overflow:hidden"><input type="text" id="tariff" inputmode="numeric" value="450" style="flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:700;padding:9px 11px;min-width:0;color:var(--ink)"><span style="font-size:11px;font-weight:700;color:var(--muted);padding:0 9px;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3" data-i="uTariff"></span></div></div>
+            <div style="display:flex;align-items:center;border:1.5px solid var(--line);border-radius:9px;background:#FBFCFB;overflow:hidden"><input type="text" id="tariff" inputmode="numeric" value="650" style="flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:700;padding:9px 11px;min-width:0;color:var(--ink)"><span style="font-size:11px;font-weight:700;color:var(--muted);padding:0 9px;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3" data-i="uTariff"></span></div></div>
         </div>
         <label style="display:flex;align-items:center;gap:8px;padding:9px 11px;background:var(--cat-soft);border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent"><input type="checkbox" id="inverter" checked style="width:18px;height:18px;accent-color:var(--cat)"><span style="font-size:13px;font-weight:700;color:var(--cat)" data-i="lInverter"></span></label>
         <div class="receipt-rows" style="margin-top:14px;border-top:1px dashed var(--line);padding-top:12px">
@@ -207,8 +208,8 @@ img,svg{height:auto}
       lblClass:"tavsiya etiladigan sinf (BTU/soat ming hisobida)",
       kNeed:"Kerakli sovutish quvvati",kBtu:"BTU/soatda",kCover:"Tanlangan sinf quvvati",
       sElec:"Elektr xarajati",
-      lHours:"Kuniga necha soat ishlaydi",uHours:"soat/kun",
-      lTariff:"Elektr narxi",uTariff:"so'm/kWt",
+      lHours:"Kuniga necha soat",uHours:"soat",
+      lTariff:"Elektr narxi (kWt)",uTariff:"so'm",
       lInverter:"Inverter konditsioner (tok tejaydi)",
       kDayKwh:"Kunlik elektr sarfi",kMonth:"Oyiga taxminan",kSummer:"Yozgi 3 oy uchun",
       foot:"Hisob 100 W/m² bazasida, quyosh +20%, oxirgi qavat +15%. Aniq tanlov uchun ustaga maslahat soling.",
@@ -229,8 +230,8 @@ img,svg{height:auto}
       lblClass:"рекомендуемый класс (тысяч BTU/час)",
       kNeed:"Нужная мощность охлаждения",kBtu:"В BTU/час",kCover:"Мощность выбранного класса",
       sElec:"Расход электричества",
-      lHours:"Сколько часов в день работает",uHours:"ч/день",
-      lTariff:"Цена электричества",uTariff:"сум/кВт",
+      lHours:"Часов в день",uHours:"ч",
+      lTariff:"Цена (кВт)",uTariff:"сум",
       lInverter:"Инверторный кондиционер (экономит ток)",
       kDayKwh:"Расход в день",kMonth:"В месяц примерно",kSummer:"За 3 летних месяца",
       foot:"Расчёт от базы 100 Вт/м², солнце +20%, последний этаж +15%. Для точного подбора посоветуйтесь с мастером.",

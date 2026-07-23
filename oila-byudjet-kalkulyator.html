@@ -37,7 +37,8 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
 .row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
 .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-@media (max-width:380px){.row2,.row3{grid-template-columns:1fr}}
+@media (max-width:480px){.row3{grid-template-columns:1fr}}
+@media (max-width:360px){.row2{grid-template-columns:1fr}}
 .seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
 .seg button{flex:1;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:10px 4px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
 .seg button.on{background:var(--cat);color:#fff}
