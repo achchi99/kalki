@@ -207,7 +207,7 @@ img,svg{height:auto}
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare"></button>
       </div>
-      <div id="smeta-cta" style="margin-top:20px;background:#F6EDE8;border:1px solid #E5D0C6;border-radius:12px;padding:16px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:14.5px;font-weight:800;color:#8C3B2A" data-smeta="title"></div><div style="font-size:12.5px;font-weight:600;color:#6E5048;margin-top:3px" data-smeta="desc"></div></div><a href="shablonlar" style="background:#8C3B2A;color:#fff;font-size:13.5px;font-weight:800;padding:11px 16px;border-radius:9px;text-decoration:none;white-space:nowrap">📊 <span data-smeta="btn"></span></a></div>
+      <div id="smeta-cta" style="margin-top:20px;background:#F6EDE8;border:1px solid #E5D0C6;border-radius:12px;padding:16px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div id="smTitle" style="font-size:14.5px;font-weight:800;color:#8C3B2A"></div><div id="smDesc" style="font-size:12.5px;font-weight:600;color:#6E5048;margin-top:3px"></div></div><a href="shablonlar" style="background:#8C3B2A;color:#fff;font-size:13.5px;font-weight:800;padding:11px 16px;border-radius:9px;text-decoration:none;white-space:nowrap">📊 <span id="smBtn"></span></a></div>
     </div>
     <div class="receipt-edge"></div>
   </section>
@@ -312,6 +312,12 @@ img,svg{height:auto}
     var els=document.querySelectorAll('[data-i]');
     for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
     $('seoBlock').innerHTML=t('seo');
+    (function(){
+      var SM={uz:{t:"To'liq smeta kerakmi?",d:"Materiallar, ish haqi, transport — barchasini hisoblaydigan Excel shablonini yuklab oling.",b:"Smeta shabloni"},
+              ru:{t:"Нужна полная смета?",d:"Скачайте Excel-шаблон: материалы, работа, транспорт — всё считается автоматически.",b:"Шаблон сметы"}};
+      var m=SM[lang]||SM.uz;
+      if($('smTitle')){$('smTitle').textContent=m.t;$('smDesc').textContent=m.d;$('smBtn').textContent=m.b;}
+    })();
     $('langUz').classList.toggle('on',lang==='uz');
     $('langRu').classList.toggle('on',lang==='ru');
     buildMatList();updateThickUI();
