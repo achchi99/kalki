@@ -1,11 +1,13 @@
-const CACHE='kalki-v17';
+const CACHE='kalki-v23';
 const ASSETS=[
   '/',
   '/favicon.svg',
   '/manifest.json',
   '/ga.js',
   '/alkogol-kalkulyator',
+  '/avto-xarajat-kalkulyator',
   '/beton-kalkulyator',
+  '/biz-haqimizda',
   '/bojxona-kalkulyator',
   '/bola-puli-kalkulyator',
   '/chorva-kalkulyator',
@@ -22,11 +24,14 @@ const ASSETS=[
   '/oylik-soliq-kalkulyator',
   '/pensiya-kalkulyator',
   '/qqs-kalkulyator',
+  '/quyosh-panel-kalkulyator',
   '/remont-kalkulyator',
   '/shablonlar',
   '/shartlar',
   '/tom-kalkulyator',
   '/toy-kalkulyator',
+  '/uy-qurish-kalkulyator',
+  '/yandex_5489ebe17687cac1',
   '/yer-konvertor',
   '/yoqilgi-kalkulyator',
   '/zakot-qurbonlik-kalkulyator'
