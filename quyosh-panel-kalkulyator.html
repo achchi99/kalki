@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Quyosh paneli kalkulyatori — nechta panel kerak va o'zini qoplashi</title>
+<meta name="description" content="Quyosh paneli kalkulyatori: oylik elektr sarfingizga qarab nechta panel, invertor quvvati, taxminiy narx va necha yilda o'zini qoplashi. Калькулятор солнечных панелей.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45;--ok-soft:#E7F3EC;--accent2:#D99A2B}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;position:relative;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{flex:1;min-width:calc(50% - 4px);border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:10px 4px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.sect-title:first-child{margin-top:0}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big-figure .num{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--cat)}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600}
+.kwp-badge{margin-top:8px;display:inline-block;background:var(--cat-soft);color:var(--cat);font-size:13px;font-weight:800;padding:6px 12px;border-radius:99px}
+.receipt-rows{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:7px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right;white-space:nowrap}
+.rrow .v.accent{color:var(--accent)}
+.rrow.sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}
+.payback{margin-top:16px;background:linear-gradient(135deg,#E7F3EC,#F0F7F2);border-radius:12px;padding:16px;text-align:center}
+.payback .yr{font-size:28px;font-weight:800;color:var(--ok)}
+.payback .desc{font-size:13px;font-weight:600;color:#33403A;margin-top:4px}
+.note{margin-top:14px;background:#EEF2EF;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5}
+.receipt-actions{display:flex;gap:10px;margin-top:16px}
+.receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js" defer></script>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+</head>
+<body data-cat="kommunal">
+<div id="topmenu" style="background:#0B120E;overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="max-width:560px;margin:0 auto;display:flex;gap:4px;padding:9px 14px"><a href="./" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">🏠 Asosiy</a><a href="./#cat-moliya" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Moliya</a><a href="./#cat-qurilish" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Qurilish</a><a href="./#cat-kommunal" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Kommunal</a><a href="./#cat-hayot" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Hayotiy</a><a href="shablonlar" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">📄 Shablonlar</a></div></div>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./" style="text-decoration:none"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg" role="group"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat"></span>
+    <h1 data-i="h1"></h1>
+    <p class="sub" data-i="sub"></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="form-card">
+    <div class="sect-title" data-i="sConsume"></div>
+    <div class="field">
+      <label for="monthKwh" data-i="lMonthKwh"></label>
+      <div class="input-shell"><input type="text" id="monthKwh" inputmode="numeric" value="400"><span class="unit" data-i="uKwh"></span></div>
+      <p class="hint" data-i="hMonthKwh"></p>
+    </div>
+    <div class="field">
+      <label for="tariff" data-i="lTariff"></label>
+      <div class="input-shell"><input type="text" id="tariff" inputmode="numeric" value="650"><span class="unit" data-i="uTariff"></span></div>
+      <p class="hint" data-i="hTariff"></p>
+    </div>
+
+    <div class="sect-title" data-i="sRegion"></div>
+    <div class="field">
+      <div class="seg" id="regionSeg">
+        <button type="button" data-region="high" class="on" data-i="regHigh"></button>
+        <button type="button" data-region="mid" data-i="regMid"></button>
+      </div>
+      <p class="hint" data-i="hRegion"></p>
+    </div>
+
+    <div class="sect-title" data-i="sPanel"></div>
+    <div class="field">
+      <label for="panelW" data-i="lPanelW"></label>
+      <div class="input-shell"><input type="text" id="panelW" inputmode="numeric" value="550"><span class="unit" data-i="uWatt"></span></div>
+      <p class="hint" data-i="hPanelW"></p>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="kwpPrice" data-i="lKwpPrice"></label>
+      <div class="input-shell"><input type="text" id="kwpPrice" inputmode="numeric" value="9 000 000"><span class="unit" data-i="uKwpPrice"></span></div>
+      <p class="hint" data-i="hKwpPrice"></p>
+    </div>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc"></button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag"></div>
+      <div class="big-figure">
+        <div class="num" id="panelCount">—</div>
+        <div class="lbl" data-i="lblPanels"></div>
+      </div>
+      <div class="kwp-badge" id="kwpBadge">—</div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kInverter"></span><span class="v accent" id="rInverter">—</span></div>
+        <div class="rrow"><span class="k" data-i="kArea"></span><span class="v" id="rArea">—</span></div>
+        <div class="rrow"><span class="k" data-i="kYearGen"></span><span class="v" id="rYearGen">—</span></div>
+        <div class="rrow sep"><span class="k" data-i="kCost"></span><span class="v" id="rCost">—</span></div>
+        <div class="rrow"><span class="k" data-i="kYearSave"></span><span class="v" id="rYearSave">—</span></div>
+      </div>
+      <div class="payback">
+        <div class="yr" id="paybackYr">—</div>
+        <div class="desc" data-i="paybackDesc"></div>
+      </div>
+      <div class="note" data-i="noteTxt"></div>
+      <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare"></button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"></section>
+  <div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="konditsioner-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Konditsioner" data-rel-ru="Кондиционер">Konditsioner</span></a><a href="yoqilgi-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Yoqilg'i" data-rel-ru="Топливо">Yoqilg'i</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Kredit</span></a></div></div>
+  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div>
+  <nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont</a></div></nav>
+  <div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
+  <div id="legal-links" style="margin-top:10px;font-size:12.5px;font-weight:700"><a href="maxfiylik" style="color:#5C6B63;text-decoration:none">Maxfiylik</a><span style="color:#B9C2BC"> · </span><a href="shartlar" style="color:#5C6B63;text-decoration:none">Foydalanish shartlari</a><span style="color:#B9C2BC"> · </span><a href="https://t.me/kalki_uz" style="color:#5C6B63;text-decoration:none">Aloqa</a></div>
+  <footer data-i="foot"></footer>
+</main>
+
+<script>
+(function(){
+  // Yillik ishlab chiqarish: 1 kWp panel yiliga necha kWt beradi (hududga qarab)
+  var YIELD={high:1700, mid:1500}; // Qashqadaryo/janub: 1700; markaz: 1500
+  var I={
+    uz:{
+      cat:"Kommunal",
+      h1:"Quyosh paneli kalkulyatori",
+      sub:"Oylik elektr sarfingizni kiriting — nechta panel kerak, narxi va necha yilda o'zini qoplashini hisoblab beradi.",
+      sConsume:"Elektr iste'moli",
+      lMonthKwh:"Oylik elektr sarfi",uKwh:"kWt/oy",
+      hMonthKwh:"Elektr hisobingizga qarang (o'rtacha oylik kVt·soat). Bilmасangiz, hisob summasini tarifga bo'ling.",
+      lTariff:"Elektr narxi (1 kWt)",uTariff:"so'm",
+      hTariff:"Hozirgi tarif. Ko'p sarflasangiz, yuqori pog'ona narxini kiriting (900–1100 so'm).",
+      sRegion:"Hududingiz",
+      regHigh:"Janub (Qashqadaryo, Buxoro...)",regMid:"Markaz (Toshkent, Farg'ona...)",
+      hRegion:"Janubiy viloyatlarда quyosh ko'proq — panel ko'proq elektr beradi.",
+      sPanel:"Panel va narx",
+      lPanelW:"Bitta panel quvvati",uWatt:"Vt",
+      hPanelW:"Hozirgi panellar odatda 450–600 Vt. Bilmasangiz 550 qoldiring.",
+      lKwpPrice:"1 kWt tizim narxi (o'rnatilgan)",uKwpPrice:"so'm/kWt",
+      hKwpPrice:"Panel + invertor + o'rnatish, «kalitli» narx. O'zbekistonда ~8–10 mln so'm/kWt.",
+      btnCalc:"Hisoblash",rTag:"Quyosh tizimi hisobi",
+      lblPanels:"panel kerak",
+      kwpFmt:"Tizim quvvati: {kwp} kWt",
+      kInverter:"Invertor quvvati",kArea:"Kerakli joy (tom)",kYearGen:"Yillik ishlab chiqarish",
+      kCost:"Taxminiy umumiy narx",kYearSave:"Yiliga elektrда tejash",
+      paybackDesc:"da o'zini qoplaydi",paybackYr:"{y} yil",
+      noteTxt:"Hisob o'rtacha sharoit uchun. Aniq natija tom yo'nalishi, soya, panel sifati va o'rnatuvchiga bog'liq. Bir necha o'rnatuvchidan narx so'rang.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      foot:"Yillik ishlab chiqarish: janub ~1700, markaz ~1500 kWt/kWt. Narxlar taxminiy — ma'lumot uchun.",
+      seo:'<h2>Nechta quyosh paneli kerak?</h2><p>Bu sizning elektr sarfingizga bog\'liq. Kalkulyator oylik iste\'molingizni yillikка aylantiradi va hududingizdagi quyosh salohiyatiga qarab kerakli tizim quvvatini (kWt) hisoblaydi. O\'zbekistonда 1 kWt tizim yiliga 1500–1700 kWt elektr beradi — janubiy viloyatларда (Qashqadaryo, Buxoro, Surxondaryo) eng ko\'p.</p><h2>Necha yilda o\'zini qoplaydi?</h2><p>Tizim narxini yillik tejamga bo\'lsak, qoplanish muddati chiqadi. Elektr narxi qancha yuqori bo\'lsa va quyosh qancha ko\'p bo\'lsa, shuncha tez qoplanadi. O\'zbekistonда odatda 5–9 yil, panellar esa 25 yil xizmat qiladi — ya\'ni qoplangandan keyin elektr deyarli tekin.</p><h2>On-grid yoki off-grid?</h2><p>Bu kalkulyator tarmoqqa ulangan (on-grid) tizim uchun — eng arzon va ommabop. Akkumulyatorli (off-grid) tizim qimmatroq, lekin tarmoq o\'chganда ham ishlaydi. Aniq loyiha uchun o\'rnatuvchi mutaxassис bilan maslahatlashing.</p>'
+    },
+    ru:{
+      cat:"Коммуналка",
+      h1:"Калькулятор солнечных панелей",
+      sub:"Введите месячный расход электричества — посчитает число панелей, цену и срок окупаемости.",
+      sConsume:"Потребление электричества",
+      lMonthKwh:"Месячный расход",uKwh:"кВт/мес",
+      hMonthKwh:"Смотрите в счёте за свет (средние кВт·ч в месяц). Не знаете — разделите сумму счёта на тариф.",
+      lTariff:"Цена электричества (1 кВт)",uTariff:"сум",
+      hTariff:"Текущий тариф. При большом расходе введите цену высокой ступени (900–1100 сум).",
+      sRegion:"Ваш регион",
+      regHigh:"Юг (Кашкадарья, Бухара...)",regMid:"Центр (Ташкент, Фергана...)",
+      hRegion:"На юге больше солнца — панели дают больше энергии.",
+      sPanel:"Панель и цена",
+      lPanelW:"Мощность одной панели",uWatt:"Вт",
+      hPanelW:"Современные панели обычно 450–600 Вт. Не знаете — оставьте 550.",
+      lKwpPrice:"Цена 1 кВт системы (под ключ)",uKwpPrice:"сум/кВт",
+      hKwpPrice:"Панели + инвертор + монтаж, цена «под ключ». В Узбекистане ~8–10 млн сум/кВт.",
+      btnCalc:"Рассчитать",rTag:"Расчёт солнечной системы",
+      lblPanels:"панелей нужно",
+      kwpFmt:"Мощность системы: {kwp} кВт",
+      kInverter:"Мощность инвертора",kArea:"Нужно места (крыша)",kYearGen:"Годовая выработка",
+      kCost:"Примерная общая цена",kYearSave:"Экономия в год",
+      paybackDesc:"окупаемость",paybackYr:"{y} лет",
+      noteTxt:"Расчёт для средних условий. Точный результат зависит от ориентации крыши, тени, качества панелей и монтажника. Запросите цены у нескольких установщиков.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      foot:"Годовая выработка: юг ~1700, центр ~1500 кВт/кВт. Цены примерные — справочно.",
+      seo:'<h2>Сколько нужно солнечных панелей?</h2><p>Это зависит от вашего расхода. Калькулятор переводит месячное потребление в годовое и по солнечному потенциалу региона считает нужную мощность системы (кВт). В Узбекистане 1 кВт системы даёт 1500–1700 кВт·ч в год — больше всего на юге (Кашкадарья, Бухара, Сурхандарья).</p><h2>За сколько лет окупается?</h2><p>Делим цену системы на годовую экономию — получаем срок окупаемости. Чем выше цена электричества и больше солнца, тем быстрее. В Узбекистане обычно 5–9 лет, а панели служат 25 лет — то есть после окупаемости электричество почти бесплатное.</p><h2>On-grid или off-grid?</h2><p>Этот калькулятор для системы, подключённой к сети (on-grid) — самой дешёвой и популярной. Система с аккумуляторами (off-grid) дороже, но работает при отключении сети. Для точного проекта проконсультируйтесь с установщиком.</p>'
+    }
+  };
+  var lang='uz', region='high', calcData=null;
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+  var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var som=function(){return lang==='uz'?"so'm":'сум'};
+
+  ['tariff','kwpPrice'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'0';
+    });
+  });
+
+  var regBtns=document.querySelectorAll('[data-region]');
+  for(var b=0;b<regBtns.length;b++){
+    regBtns[b].onclick=function(){
+      region=this.getAttribute('data-region');
+      for(var j=0;j<regBtns.length;j++)regBtns[j].classList.remove('on');
+      this.classList.add('on');
+      if(calcData)calc();
+    };
+  }
+
+  function calc(){
+    var monthKwh=num($('monthKwh').value), tariff=num($('tariff').value);
+    var panelW=num($('panelW').value)||550, kwpPrice=num($('kwpPrice').value);
+    if(!monthKwh||!tariff){$('receipt').classList.remove('show');return}
+    var yearKwh=monthKwh*12;
+    var yieldPerKwp=YIELD[region];
+    // Kerakli tizim quvvati (kWp) = yillik sarf / yillik ishlab chiqarish (1 kWp uchun)
+    var kwp=yearKwh/yieldPerKwp;
+    var panelCount=Math.ceil(kwp*1000/panelW);
+    var actualKwp=panelCount*panelW/1000; // haqiqiy (butun panelга yaxlitlangan)
+    var inverterKw=Math.ceil(actualKwp*0.9*10)/10; // invertor ~ tizimning 0.9x
+    var area=Math.ceil(panelCount*2.3); // 1 panel ~2.3 m²
+    var yearGen=actualKwp*yieldPerKwp;
+    var cost=actualKwp*kwpPrice;
+    var yearSave=Math.min(yearGen,yearKwh)*tariff; // sarfдан ortiq ishlab chiqargani tejamга kirmaydi (on-grid, oddiy)
+    var payback=yearSave>0?cost/yearSave:0;
+    calcData={panelCount:panelCount,kwp:actualKwp,inverterKw:inverterKw,area:area,
+      yearGen:yearGen,cost:cost,yearSave:yearSave,payback:payback};
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  function renderResult(){
+    var d=calcData, sum=' '+som();
+    $('panelCount').textContent=d.panelCount;
+    $('kwpBadge').textContent=t('kwpFmt').replace('{kwp}',(Math.round(d.kwp*10)/10).toString().replace('.',','));
+    $('rInverter').textContent=(Math.round(d.inverterKw*10)/10).toString().replace('.',',')+' kW';
+    $('rArea').textContent='\u2248 '+d.area+' m\u00B2';
+    $('rYearGen').textContent=fmt(d.yearGen)+' '+(lang==='uz'?'kWt':'кВт');
+    $('rCost').textContent=fmt(d.cost)+sum;
+    $('rYearSave').textContent=fmt(d.yearSave)+sum;
+    var yr=d.payback;
+    var yrTxt=yr>=1?(Math.round(yr*10)/10).toString().replace('.',','):(Math.round(yr*12)+' '+(lang==='uz'?'oy':'мес'));
+    $('paybackYr').textContent=yr>=1?t('paybackYr').replace('{y}',yrTxt):yrTxt;
+  }
+
+  $('monthKwh').addEventListener('input',function(){var v=this.value.replace(/[^\d]/g,'');this.value=v?fmt(parseInt(v,10)):'0';if(calcData)calc()});
+  ['tariff','panelW','kwpPrice'].forEach(function(id){$(id).addEventListener('input',function(){if(calcData)calc()})});
+  $('calcBtn').onclick=calc;
+  $('shareBtn').onclick=function(){
+    if(!calcData)return;
+    var txt=t('h1')+': '+calcData.panelCount+' '+t('lblPanels')+', '+(Math.round(calcData.kwp*10)/10).toString().replace('.',',')+' kW, '+fmt(calcData.cost)+' '+som();
+    var b=this;
+    if(navigator.share){navigator.share({title:t('h1'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt);b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    (function(){
+      var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+      var _t=document.getElementById('relTitle');
+      if(_t)_t.textContent=_rt[lang]||_rt.uz;
+      var _rl=document.querySelectorAll('[data-rel-uz]');
+      for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+    })();
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  applyLang();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate"></div>
+</div>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var b=document.createElement('button');
+    b.type='button';b.textContent='PDF';
+    b.onclick=function(){window.print()};
+    acts[i].appendChild(b);
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+</body>
+</html>

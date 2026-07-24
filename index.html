@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kalki.uz — O'zbekiston uchun onlayn kalkulyatorlar</title>
-<meta name="description" content="Kalki.uz — kredit, ipoteka, ish haqi, g'isht, beton, bojxona, DTM, homiladorlik, pensiya va boshqa 18 ta bepul onlayn kalkulyator. O'zbek va rus tillarida.">
+<meta name="description" content="Kalki.uz — kredit, ipoteka, ish haqi, g'isht, beton, bojxona, DTM, homiladorlik, pensiya va boshqa 20 dan ortiq bepul onlayn kalkulyator. O'zbek va rus tillarida.">
 <meta name="theme-color" content="#0E3B2E">
 <meta property="og:title" content="Kalki.uz — onlayn kalkulyatorlar">
-<meta property="og:description" content="Kredit, ish haqi, g'isht, bojxona, DTM va yana 18 ta kalkulyator — bepul, o'zbek va rus tillarida.">
+<meta property="og:description" content="Kredit, ish haqi, g'isht, bojxona, DTM va yana 20 dan ortiq kalkulyator — bepul, o'zbek va rus tillarida.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kalki.uz/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -185,10 +185,13 @@ img,svg{height:auto}
     {cat:'moliya', href:'bojxona-kalkulyator', icon:'\uD83D\uDE97', id:'bojxona'},
     {cat:'qurilish', href:'gisht-kalkulyator', icon:'\uD83E\uDDF1', id:'gisht'},
     {cat:'qurilish', href:'beton-kalkulyator', icon:'\uD83C\uDFD7\uFE0F', id:'beton'},
+    {cat:'qurilish', href:'tom-kalkulyator', icon:'\uD83C\uDFE0', id:'tom'},
+    {cat:'qurilish', href:'remont-kalkulyator', icon:'\uD83D\uDD28', id:'remont'},
     {cat:'qurilish', href:'yer-konvertor', icon:'\uD83C\uDF3E', id:'yer'},
     {cat:'qurilish', href:'chorva-kalkulyator', icon:'\uD83D\uDC02', id:'chorva'},
     {cat:'kommunal', href:'konditsioner-kalkulyator', icon:'\u2744\uFE0F', id:'konditsioner'},
     {cat:'kommunal', href:'yoqilgi-kalkulyator', icon:'\u26FD', id:'yoqilgi'},
+    {cat:'kommunal', href:'quyosh-panel-kalkulyator', icon:'\u2600\uFE0F', id:'quyosh'},
     {cat:'hayot', href:'dtm-kalkulyator', icon:'\uD83C\uDF93', id:'dtm'},
     {cat:'hayot', href:'bola-puli-kalkulyator', icon:'\uD83C\uDF7C', id:'bolapuli'},
     {cat:'hayot', href:'kaloriya-kalkulyator', icon:'\uD83C\uDF5A', id:'kaloriya'},
@@ -202,7 +205,7 @@ img,svg{height:auto}
     uz:{
       badge:"O'zbekiston uchun",
       h1:"Hammasini bir joyda hisoblang",
-      sub:"Kredit va ish haqidan tortib g'isht, bojxona va DTM ballgacha — 18 ta bepul kalkulyator, mahalliy qonunchilik asosida.",
+      sub:"Kredit va ish haqidan tortib g'isht, bojxona va DTM ballgacha — 20 dan ortiq bepul kalkulyator, mahalliy qonunchilik asosida.",
       searchPh:"Kalkulyator qidirish...",
       stCalc:"kalkulyator",stLang:"til",stFree:"bepul",
       noRes:"Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.",
@@ -217,9 +220,12 @@ img,svg{height:auto}
         bojxona:["Bojxona kalkulyatori","Avto rastamojkasi, elektromobil, 2026"],
         gisht:["G'isht kalkulyatori","G'isht, shlakoblok, penoblok, gazoblok soni"],
         beton:["Beton kalkulyatori","M100–M300: sement, qum, shag'al, suv"],
+        tom:["Tom materiali kalkulyatori","Profnastil, cherepitsa, brus va vint hisobi"],
+        remont:["Remont kalkulyatori","Xona bo'yicha laminat, oboy, bo'yoq va byudjet"],
         yer:["Yer maydoni konvertori","Gektar, sotix, tanob, narx hisobi"],
         konditsioner:["Konditsioner kalkulyatori","Xona uchun BTU sinfini tanlash"],
         yoqilgi:["Yoqilg'i kalkulyatori","Yo'l xarajati va metanga o'tish hisobi"],
+        quyosh:["Quyosh paneli kalkulyatori","Nechta panel, narxi va qoplanish muddati"],
         dtm:["DTM ball kalkulyatori","3,1 / 2,1 / 1,1 koeffitsiyentlarda umumiy ball"],
         bolapuli:["Bola puli kalkulyatori","Nafaqa chiqish ehtimoli, 2026 mezonlari"],
         chorva:["Chorvachilik kalkulyatori","Mol/qo'y boqishdan real foyda va zararsizlik"],
@@ -251,9 +257,14 @@ img,svg{height:auto}
         bojxona:["Калькулятор растаможки","Пошлины, электромобили, 2026"],
         gisht:["Калькулятор кирпича","Кирпич, шлакоблок, пеноблок, газоблок"],
         beton:["Калькулятор бетона","М100–М300: цемент, песок, щебень"],
+        tom:["Калькулятор кровли","Профнастил, черепица, брус и саморезы"],
+        remont:["Калькулятор ремонта","Ламинат, обои, краска и бюджет по комнате"],
+        tom:["Калькулятор кровли","Профнастил, черепица, брус и саморезы"],
+        remont:["Калькулятор ремонта","Ламинат, обои, краска и бюджет по комнате"],
         yer:["Конвертер площади","Гектар, сотка, таноб, цена земли"],
         konditsioner:["Калькулятор кондиционера","Подбор класса BTU для комнаты"],
         yoqilgi:["Топливный калькулятор","Расходы на поездку и окупаемость ГБО"],
+        quyosh:["Калькулятор солнечных панелей","Сколько панелей, цена и окупаемость"],
         dtm:["Калькулятор баллов DTM","Общий балл с коэффициентами 3,1/2,1/1,1"],
         bolapuli:["Детское пособие","Вероятность назначения, критерии 2026"],
         chorva:["Откорм скота","Реальная прибыль от откорма КРС и баранов"],
