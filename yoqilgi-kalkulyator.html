@@ -166,14 +166,18 @@ img,svg{height:auto}
       </div>
     </div>
     <div class="sect-title" data-i="sMetan"></div>
+    <div class="seg" id="gasTypeSeg" style="margin-bottom:12px">
+      <button type="button" data-gas="metan" class="on" data-i="gMetan"></button>
+      <button type="button" data-gas="propan" data-i="gPropan"></button>
+    </div>
     <div class="row2">
       <div class="field">
         <label for="mCons" data-i="lMCons"></label>
-        <div class="input-shell"><input type="text" id="mCons" inputmode="decimal" value="9"><span class="unit">m³/100km</span></div>
+        <div class="input-shell"><input type="text" id="mCons" inputmode="decimal" value="9"><span class="unit" id="mConsUnit">m³/100km</span></div>
       </div>
       <div class="field">
         <label for="mPrice" data-i="lMPrice"></label>
-        <div class="input-shell"><input type="text" id="mPrice" inputmode="numeric" value="5 000"><span class="unit" data-i="uSomM3"></span></div>
+        <div class="input-shell"><input type="text" id="mPrice" inputmode="numeric" value="5 000"><span class="unit" id="mPriceUnit" data-i="uSomM3"></span></div>
       </div>
     </div>
     <div class="sect-title" data-i="sGbo"></div>
@@ -211,11 +215,12 @@ img,svg{height:auto}
   </section>
 
   <section class="seo" id="seoBlock"></section>
+  <a id="articleLink" href="avto-bojxona-2026" style="display:flex;align-items:center;gap:12px;margin-top:24px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:12px;padding:14px 16px;text-decoration:none;color:#16211C"><span style="font-size:22px">📰</span><span style="flex:1;min-width:0"><span style="display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#B8862B;margin-bottom:2px" data-art-label>Foydali maqola</span><span style="display:block;font-size:14px;font-weight:700;line-height:1.3" data-art-uz="Avto import: 2026 bojxona to'lovlari" data-art-ru="Импорт авто: растаможка 2026">Avto import: 2026 bojxona to'lovlari</span></span><span style="font-size:18px;color:#D99A2B">→</span></a>
   <div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="bojxona-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bojxona" data-rel-ru="Растаможка">Bojxona</span></a><a href="konditsioner-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Konditsioner" data-rel-ru="Кондиционер">Konditsioner</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Kredit</span></a></div></div>
-  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram’ga yozish</a></div>
+  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div></div>
   <nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish</a></div></nav>
   <footer data-i="foot"></footer>
-  <div id="legal-links" style="margin-top:10px;font-size:12.5px;font-weight:700"><a href="blog" style="color:#5C6B63;text-decoration:none">Maqolalar</a><span style="color:#B9C2BC"> · </span><a href="biz-haqimizda" style="color:#5C6B63;text-decoration:none">Biz haqimizda</a><span style="color:#B9C2BC"> · </span><a href="maxfiylik" style="color:#5C6B63;text-decoration:none">Maxfiylik</a><span style="color:#B9C2BC"> · </span><a href="shartlar" style="color:#5C6B63;text-decoration:none">Foydalanish shartlari</a><span style="color:#B9C2BC"> · </span><a href="https://t.me/kalki_uz" style="color:#5C6B63;text-decoration:none">Aloqa</a><span style="color:#B9C2BC"> · </span><a href="mailto:info@kalki.uz" style="color:#5C6B63;text-decoration:none">info@kalki.uz</a></div>
+  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div>
   <div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
 </main>
 
@@ -233,7 +238,8 @@ img,svg{height:auto}
       btnCalc:"Hisoblash",rTag:"Hisob natijasi",
       lblTrip:"Yo'l uchun yoqilg'i xarajati",
       kFuel:"Kerakli yoqilg'i",kPerKm:"1 km narxi",
-      sBenzin:"Benzin",sMetan:"Metan",sGbo:"GBO va yurish",
+      sBenzin:"Benzin",sMetan:"Gaz (metan yoki propan)",sGbo:"GBO va yurish",
+      gMetan:"Metan (m³)",gPropan:"Propan (litr)",
       lBCons:"Benzin sarfi",lBPrice:"Benzin narxi",uSomL:"so'm/l",
       lMCons:"Metan sarfi",lMPrice:"Metan narxi",uSomM3:"so'm/m³",
       lGboCost:"GBO o'rnatish narxi",uSom:"so'm",
@@ -246,7 +252,7 @@ img,svg{height:auto}
       verdictFmt:"{m} oydan keyin GBO o'zini to'liq oqlaydi va har yili ≈ {y} so'm cho'ntagingizda qoladi.",
       verdictNo:"Bu ko'rsatkichlarda metan tejamli emas — narxlar va sarfni qayta tekshiring.",
       foot:"Narxlar o'zgarib turadi — joriy zapravka narxlarini kiriting. Hisob-kitob ma'lumot uchun.",
-      seo:'<h2>Metanga o\'tish qachon foydali?</h2><p>Asosiy omil — oylik yurish. Kuniga 60–70 km dan ko\'p yuradiganlar uchun GBO odatda 6–12 oyda o\'zini oqlaydi. Kam yuradiganlarga (oyiga 500 km dan kam) o\'tish yillar davomida oqlanmasligi mumkin.</p><h2>Metanning kamchiliklari bormi?</h2><p>Bor: ballon yukxonadan joy oladi, quvvat 5–10% pasayadi, zapravkalarda navbat bo\'lishi mumkin, ballonni davriy attestatsiyadan o\'tkazish kerak. Bularni ham hisobga oling — kalkulyator faqat moliyaviy tomonini ko\'rsatadi.</p><h2>Sarfni qanday aniq bilaman?</h2><p>Bakni to\'ldirib, masofa o\'lchagichni nolga tushiring, keyingi to\'ldirishda quyilgan hajmni bosib o\'tilgan km ga bo\'lib 100 ga ko\'paytiring — bu sizning real sarfingiz.</p>'
+      seo:'<h2>Metanga o\'tish qachon foydali?</h2><p>Asosiy omil — oylik yurish. Kuniga 60–70 km dan ko\'p yuradiganlar uchun GBO odatda 6–12 oyda o\'zini oqlaydi. Kam yuradiganlarga (oyiga 500 km dan kam) o\'tish yillar davomida oqlanmasligi mumkin.</p><h2>Metanning kamchiliklari bormi?</h2><p>Bor: ballon yukxonadan joy oladi, quvvat 5–10% pasayadi, zapravkalarda navbat bo\'lishi mumkin, ballonni davriy attestatsiyadan o\'tkazish kerak. Bularni ham hisobga oling — kalkulyator faqat moliyaviy tomonini ko\'rsatadi.</p><h2>Metan yoki propan — qaysi biri yaxshi?</h2><p>Metan (CNG) arzonroq va ekologik toza, lekin ballon og\'ir va katta, quvvat ko\'proq pasayadi, zapravkalar kam. Propan (LPG, avtogaz) biroz qimmatroq, lekin ballon yengil va ixcham, quvvat kam pasayadi, zapravkalar ko\'p. Ko\'p yuradiganlar (taksi) uchun metan tejamliroq; kam-o\'rta yuradiganlar uchun propan qulayroq. Kalkulyatorda ikkalasini solishtiring.</p><h2>Sarfni qanday aniq bilaman?</h2><p>Bakni to\'ldirib, masofa o\'lchagichni nolga tushiring, keyingi to\'ldirishda quyilgan hajmni bosib o\'tilgan km ga bo\'lib 100 ga ko\'paytiring — bu sizning real sarfingiz.</p>'
     },
     ru:{
       cat:"Коммуналка",
@@ -259,7 +265,8 @@ img,svg{height:auto}
       btnCalc:"Рассчитать",rTag:"Результат расчёта",
       lblTrip:"Расход топлива на поездку",
       kFuel:"Нужно топлива",kPerKm:"Цена 1 км",
-      sBenzin:"Бензин",sMetan:"Метан",sGbo:"ГБО и пробег",
+      sBenzin:"Бензин",sMetan:"Газ (метан или пропан)",sGbo:"ГБО и пробег",
+      gMetan:"Метан (m³)",gPropan:"Пропан (литр)",
       lBCons:"Расход бензина",lBPrice:"Цена бензина",uSomL:"сум/л",
       lMCons:"Расход метана",lMPrice:"Цена метана",uSomM3:"сум/м³",
       lGboCost:"Стоимость установки ГБО",uSom:"сум",
@@ -272,10 +279,10 @@ img,svg{height:auto}
       verdictFmt:"Через {m} мес. ГБО полностью окупится, и каждый год ≈ {y} сум останется в кармане.",
       verdictNo:"При этих показателях метан не выгоден — перепроверьте цены и расход.",
       foot:"Цены меняются — вводите актуальные с заправки. Расчёт носит справочный характер.",
-      seo:'<h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p>'
+      seo:'<h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Метан или пропан — что лучше?</h2><p>Метан (CNG) дешевле и экологичнее, но баллон тяжёлый и большой, мощность падает сильнее, заправок мало. Пропан (LPG, автогаз) чуть дороже, но баллон лёгкий и компактный, мощность падает меньше, заправок много. Для много ездящих (такси) выгоднее метан; для средних пробегов удобнее пропан. Сравните оба в калькуляторе.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p>'
     }
   };
-  var lang='uz', tripData=null, gboData=null;
+  var lang='uz', gasType='metan', tripData=null, gboData=null;
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
@@ -314,6 +321,28 @@ img,svg{height:auto}
     $('tripReceipt').classList.add('show');
   };
 
+
+  // Gaz turi (metan/propan) almashtirish
+  var GAS={metan:{cons:9,price:5000,unitCons:'m\u00B3/100km',unitPrice:{uz:"so'm/m\u00B3",ru:'\u0441\u0443\u043c/m\u00B3'}},
+           propan:{cons:11,price:6500,unitCons:'l/100km',unitPrice:{uz:"so'm/l",ru:'\u0441\u0443\u043c/\u043b'}}};
+  function setGasUnits(){
+    var g=GAS[gasType];
+    var cu=document.getElementById('mConsUnit'); if(cu)cu.textContent=g.unitCons;
+    var pu=document.getElementById('mPriceUnit'); if(pu)pu.textContent=g.unitPrice[lang]||g.unitPrice.uz;
+  }
+  var gasBtns=document.querySelectorAll('[data-gas]');
+  for(var gi=0;gi<gasBtns.length;gi++){
+    gasBtns[gi].onclick=function(){
+      gasType=this.getAttribute('data-gas');
+      for(var j=0;j<gasBtns.length;j++)gasBtns[j].classList.remove('on');
+      this.classList.add('on');
+      var g=GAS[gasType];
+      document.getElementById('mCons').value=g.cons;
+      document.getElementById('mPrice').value=g.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');
+      setGasUnits();
+    };
+  }
+  
   $('calcGbo').onclick=function(){
     var bc=num($('bCons').value), bp=num($('bPrice').value);
     var mc=num($('mCons').value), mp=num($('mPrice').value);
@@ -349,9 +378,14 @@ img,svg{height:auto}
       var _t=document.getElementById('relTitle');
       if(_t)_t.textContent=_rt[lang]||_rt.uz;
       var _rl=document.querySelectorAll('[data-rel-uz]');
+      var _al=document.querySelector('[data-art-uz]');
+      if(_al)_al.textContent=_al.getAttribute(lang==='ru'?'data-art-ru':'data-art-uz');
+      var _albl=document.querySelector('[data-art-label]');
+      if(_albl)_albl.textContent=(lang==='ru'?'Полезная статья':'Foydali maqola');
       for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
+    if(typeof setGasUnits==='function')setGasUnits();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
