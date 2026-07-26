@@ -1,4 +1,4 @@
-const CACHE='kalki-v29';
+const CACHE='kalki-v30';
 const ASSETS=[
   '/',
   '/favicon.svg',

@@ -80,6 +80,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   .receipt.show,.receipt.show *{visibility:visible!important}
   .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
   .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
   #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
   #topmenu,header,nav{display:none!important}
 }
@@ -323,13 +324,35 @@ img,svg{height:auto}
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
   // PDF button in every receipt-actions
+  function showPrintHint(btn){
+    var box=document.getElementById('printhint');
+    if(!box){
+      box=document.createElement('div');
+      box.id='printhint';
+      box.className='noprint';
+      box.style.cssText='margin-top:10px;background:#FFF8EC;border:1px solid #F0DFC0;border-radius:10px;padding:11px 13px;font-size:12.5px;font-weight:600;color:#6B5320;line-height:1.5';
+      var row=btn.parentNode;
+      if(row&&row.parentNode)row.parentNode.insertBefore(box,row.nextSibling);
+    }
+    box.textContent = document.documentElement.lang==='ru'
+      ? 'Окно печати не открылось? Откройте меню браузера и выберите «Печать». Если вы открыли страницу внутри Telegram, нажмите «...» и «Открыть в браузере».'
+      : 'Chop etish oynasi ochilmadimi? Brauzer menyusini oching va «Chop etish» ni tanlang. Sahifani Telegram ichida ochgan bo\'lsangiz, «...» tugmasi orqali «Brauzerda ochish» ni bosing.';
+    box.style.display='block';
+    if(window.__phTimer)clearTimeout(window.__phTimer);
+    window.__phTimer=setTimeout(function(){box.style.display='none'},10000);
+  }
   var acts=document.querySelectorAll('.receipt-actions');
   for(var i=0;i<acts.length;i++){
-    if(acts[i].querySelector('.pdfbtn'))continue;
-    var b=document.createElement('button');
-    b.type='button';b.textContent='PDF';b.className='pdfbtn';
-    b.onclick=function(){window.print()};
-    acts[i].appendChild(b);
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){
+      try{window.print()}catch(e){}
+      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||''))showPrintHint(this);
+    };
   }
   // Validation: red message if calc pressed but no result appeared
   var btns=document.querySelectorAll('.calc-btn');
