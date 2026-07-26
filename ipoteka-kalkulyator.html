@@ -420,22 +420,59 @@ img,svg{height:auto}
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
   // PDF button in every receipt-actions
-  function showPrintHint(btn){
-    var box=document.getElementById('printhint');
-    if(!box){
-      box=document.createElement('div');
-      box.id='printhint';
-      box.className='noprint';
-      box.style.cssText='margin-top:10px;background:#FFF8EC;border:1px solid #F0DFC0;border-radius:10px;padding:11px 13px;font-size:12.5px;font-weight:600;color:#6B5320;line-height:1.5';
-      var row=btn.parentNode;
-      if(row&&row.parentNode)row.parentNode.insertBefore(box,row.nextSibling);
-    }
-    box.textContent = document.documentElement.lang==='ru'
-      ? 'Окно печати не открылось? Откройте меню браузера и выберите «Печать». Если вы открыли страницу внутри Telegram, нажмите «...» и «Открыть в браузере».'
-      : 'Chop etish oynasi ochilmadimi? Brauzer menyusini oching va «Chop etish» ni tanlang. Sahifani Telegram ichida ochgan bo\'lsangiz, «...» tugmasi orqali «Brauzerda ochish» ni bosing.';
-    box.style.display='block';
-    if(window.__phTimer)clearTimeout(window.__phTimer);
-    window.__phTimer=setTimeout(function(){box.style.display='none'},10000);
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
   }
   var acts=document.querySelectorAll('.receipt-actions');
   for(var i=0;i<acts.length;i++){
@@ -445,10 +482,7 @@ img,svg{height:auto}
       b.type='button';b.textContent='PDF';b.className='pdfbtn';
       acts[i].appendChild(b);
     }
-    b.onclick=function(){
-      try{window.print()}catch(e){}
-      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||''))showPrintHint(this);
-    };
+    b.onclick=function(){kMakePdf(this)};
   }
   // Validation: red message if calc pressed but no result appeared
   var btns=document.querySelectorAll('.calc-btn');

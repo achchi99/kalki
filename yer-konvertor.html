@@ -150,6 +150,8 @@ img,svg{height:auto}
     <div class="derived"><span data-i="dPriceM2">1 m² narxi:</span><span class="dv" id="priceM2V">300&nbsp;000 so'm</span></div>
   </section>
 
+  <div class="receipt-actions" style="display:flex;gap:10px;margin-top:20px"><button type="button" class="pdfbtn">PDF</button><button id="urlShareBtn" type="button">Ulashish</button></div>
+
   <section class="seo" id="seoBlock"><h2>Tanob nima va nega har xil?</h2><p>Tanob — Markaziy Osiyoning tarixiy yer o'lchovi. Hududga qarab qiymati farq qilgan: ayrim viloyatlarda ~1500 m², boshqalarida 2500–3000 m² deb qabul qilinadi. Shuning uchun konvertorda tanob qiymatini o'zingiz sozlashingiz mumkin — bu boshqa hech qaysi konvertorda yo'q.</p><h2>Sotix va gektar qanday bog'langan?</h2><p>1 sotix = 100 m² (10×10 metr). 1 gektar = 100 sotix = 10 000 m². Tomorqa hujjatlarida odatda sotix, fermer xo'jaliklarida gektar ishlatiladi.</p><h2>Yer narxini qanday solishtirish kerak?</h2><p>E'lonlarda narx goh sotixiga, goh umumiy ko'rsatiladi. Konvertor ikkalasini ham 1 m² narxiga keltiradi — turli uchastkalarni halol solishtirishning yagona to'g'ri usuli.</p></section>
   <div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="gisht-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #8C3B2A;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="G'isht" data-rel-ru="Кирпич">G'isht</span></a><a href="beton-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #8C3B2A;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Beton" data-rel-ru="Бетон">Beton</span></a><a href="chorva-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #8C3B2A;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Chorvachilik" data-rel-ru="Откорм скота">Chorvachilik</span></a><a href="ipoteka-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ipoteka" data-rel-ru="Ипотека">Ipoteka</span></a></div></div>
   <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram’ga yozish</a>
@@ -325,22 +327,59 @@ img,svg{height:auto}
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
   // PDF button in every receipt-actions
-  function showPrintHint(btn){
-    var box=document.getElementById('printhint');
-    if(!box){
-      box=document.createElement('div');
-      box.id='printhint';
-      box.className='noprint';
-      box.style.cssText='margin-top:10px;background:#FFF8EC;border:1px solid #F0DFC0;border-radius:10px;padding:11px 13px;font-size:12.5px;font-weight:600;color:#6B5320;line-height:1.5';
-      var row=btn.parentNode;
-      if(row&&row.parentNode)row.parentNode.insertBefore(box,row.nextSibling);
-    }
-    box.textContent = document.documentElement.lang==='ru'
-      ? 'Окно печати не открылось? Откройте меню браузера и выберите «Печать». Если вы открыли страницу внутри Telegram, нажмите «...» и «Открыть в браузере».'
-      : 'Chop etish oynasi ochilmadimi? Brauzer menyusini oching va «Chop etish» ni tanlang. Sahifani Telegram ichida ochgan bo\'lsangiz, «...» tugmasi orqali «Brauzerda ochish» ni bosing.';
-    box.style.display='block';
-    if(window.__phTimer)clearTimeout(window.__phTimer);
-    window.__phTimer=setTimeout(function(){box.style.display='none'},10000);
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
   }
   var acts=document.querySelectorAll('.receipt-actions');
   for(var i=0;i<acts.length;i++){
@@ -350,10 +389,7 @@ img,svg{height:auto}
       b.type='button';b.textContent='PDF';b.className='pdfbtn';
       acts[i].appendChild(b);
     }
-    b.onclick=function(){
-      try{window.print()}catch(e){}
-      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||''))showPrintHint(this);
-    };
+    b.onclick=function(){kMakePdf(this)};
   }
   // Validation: red message if calc pressed but no result appeared
   var btns=document.querySelectorAll('.calc-btn');
