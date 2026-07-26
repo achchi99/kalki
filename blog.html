@@ -39,6 +39,13 @@ footer a{color:var(--muted);text-decoration:none}
 <script src="ga.js" defer></script>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:image" content="https://kalki.uz/og-image.png">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
 </head>
 <body>
 <header>
@@ -51,6 +58,7 @@ footer a{color:var(--muted);text-decoration:none}
     <p class="tagline" id="pageTagline"></p>
   </div>
 </header>
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"></nav></div>
 <main class="wrap" id="postList"></main>
 <footer class="wrap">
   <div><a href="./" id="backHome"></a> · <a href="biz-haqimizda" id="aboutLink"></a></div>
@@ -100,6 +108,37 @@ footer a{color:var(--muted);text-decoration:none}
   document.getElementById('langUz').onclick=function(){lang='uz';render()};
   document.getElementById('langRu').onclick=function(){lang='ru';render()};
   render();
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={uz:{home:'Asosiy'},ru:{home:'Главная'}};
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">\u203A</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":name,"item":base+page}
+      ]});
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){['langUz','langRu'].forEach(function(id){
+    var b=document.getElementById(id);if(b)b.addEventListener('click',function(){setTimeout(build,140);});});},220);
 })();
 </script>
 </body>

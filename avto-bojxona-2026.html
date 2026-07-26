@@ -33,10 +33,17 @@ main p{margin-bottom:12px}
 main ul{margin:0 0 12px 22px}
 main li{margin-bottom:7px}
 main strong{font-weight:800}
-.cta-calc{margin:24px 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:16px 18px}
-.cta-calc .t{font-weight:800;font-size:15px;margin-bottom:4px}
-.cta-calc .d{font-size:13.5px;color:var(--muted);margin-bottom:12px}
-.cta-calc a{display:inline-block;background:var(--cat);color:#fff;font-weight:800;font-size:14px;padding:10px 18px;border-radius:9px;text-decoration:none}
+.cta-calc{margin:28px 0;background:linear-gradient(135deg,#1A2B24,#2C4A3B);border-radius:14px;padding:20px 20px 18px;box-shadow:0 8px 22px rgba(26,43,36,.16)}
+.cta-calc .t{font-weight:800;font-size:17px;margin-bottom:6px;color:#fff;line-height:1.3}
+.cta-calc .t::before{content:"🧮  ";font-size:19px}
+.cta-calc .d{font-size:13.5px;color:#C4D2CA;margin-bottom:15px;line-height:1.55}
+.cta-calc a{display:block;text-align:center;background:#D99A2B;color:#16211C;font-weight:800;font-size:15px;padding:13px 20px;border-radius:10px;text-decoration:none}
+.cta-calc a:active{background:#C4881F}
+.endcalcs{margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+.endcalcs .lbl{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.endcalcs .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.endcalcs .row{grid-template-columns:1fr}}
+.endcalcs a{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:700}
 .disclaimer{margin-top:24px;background:#EEF2EF;border-radius:10px;padding:13px 15px;font-size:12.5px;color:var(--muted);line-height:1.5}
 footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 footer a{color:var(--muted);text-decoration:none}
@@ -44,6 +51,13 @@ footer a{color:var(--muted);text-decoration:none}
 <script src="ga.js" defer></script>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:image" content="https://kalki.uz/og-image.png">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
 </head>
 <body>
 <header>
@@ -57,6 +71,7 @@ footer a{color:var(--muted);text-decoration:none}
     <div class="meta" id="artMeta"></div>
   </div>
 </header>
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"></nav></div>
 <main class="wrap" id="artBody"></main>
 <footer class="wrap">
   <a href="blog" id="backBlog"></a> · <a href="./" id="backHome"></a>
@@ -76,6 +91,13 @@ footer a{color:var(--muted);text-decoration:none}
     var fq=DATA[lang].faq||[];
     for(var i=0;i<fq.length;i++){faqHtml+='<div style="border-bottom:1px solid #E3E9E4;padding:12px 0"><div style="font-weight:800;font-size:15px;margin-bottom:5px">'+fq[i].q+'</div><div style="font-size:14px;color:#33403A">'+fq[i].a+'</div></div>';}
     document.getElementById('artBody').innerHTML+=faqHtml;
+    var ENDCALCS=[{"h": "bojxona-kalkulyator", "uz": "Bojxona kalkulyatori", "ru": "Калькулятор растаможки"}, {"h": "avto-xarajat-kalkulyator", "uz": "Avto saqlash xarajati", "ru": "Содержание авто"}, {"h": "yoqilgi-kalkulyator", "uz": "Yoqilgi va GBO", "ru": "Топливо и ГБО"}, {"h": "kredit-kalkulyator", "uz": "Avtokredit", "ru": "Автокредит"}];
+    var ecHtml='<div class="endcalcs"><div class="lbl">'+(lang==='ru'?'Полезные калькуляторы':'Foydali kalkulyatorlar')+'</div><div class="row">';
+    for(var e=0;e<ENDCALCS.length;e++){
+      ecHtml+='<a href="'+ENDCALCS[e].h+'"><span>🧮</span><span>'+(lang==='ru'?ENDCALCS[e].ru:ENDCALCS[e].uz)+'</span></a>';
+    }
+    ecHtml+='</div></div>';
+    document.getElementById('artBody').innerHTML+=ecHtml;
     document.getElementById('backBlog').textContent=UI[lang].back;
     document.getElementById('backHome').textContent=UI[lang].home;
     document.getElementById('langUz').classList.toggle('on',lang==='uz');
@@ -101,6 +123,40 @@ footer a{color:var(--muted);text-decoration:none}
   document.getElementById('langUz').onclick=function(){lang='uz';render()};
   document.getElementById('langRu').onclick=function(){lang='ru';render()};
   render();
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={uz:{home:'Asosiy',blog:'Maqolalar'},ru:{home:'Главная',blog:'Статьи'}};
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var short=name.length>42?name.slice(0,40).trim()+'\u2026':name;
+    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">\u203A</span>'
+      +'<a href="blog">'+L.blog+'</a><span class="sep">\u203A</span>'
+      +'<span class="cur">'+short+'</span>';
+    var old=document.getElementById('bc-ld');if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.blog,"item":base+'blog'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]});
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){['langUz','langRu'].forEach(function(id){
+    var b=document.getElementById(id);if(b)b.addEventListener('click',function(){setTimeout(build,140);});});},220);
 })();
 </script>
 </body>

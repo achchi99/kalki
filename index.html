@@ -341,5 +341,19 @@ img,svg{height:auto}
 <script>
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
 </script>
+<script id="hashjump">
+(function(){
+  // Breadcrumb'dan #cat-... bilan kelganda, katalog chizilgach o'sha bo'limga o'tamiz
+  function jump(){
+    var h=location.hash;
+    if(!h||h.indexOf('#cat-')!==0)return;
+    var el=document.getElementById(h.slice(1));
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(jump,220);});
+  else setTimeout(jump,220);
+  window.addEventListener('hashchange',jump);
+})();
+</script>
 </body>
 </html>
