@@ -1,4 +1,4 @@
-const CACHE='kalki-v33';
+const CACHE='kalki-v34';
 const ASSETS=[
   '/',
   '/favicon.svg',
@@ -12,6 +12,7 @@ const ASSETS=[
   '/blog',
   '/bojxona-kalkulyator',
   '/bola-puli-kalkulyator',
+  '/bolalar-nafaqasi-2026',
   '/chorva-kalkulyator',
   '/dtm-2026',
   '/dtm-kalkulyator',
