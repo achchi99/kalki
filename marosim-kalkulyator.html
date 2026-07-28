@@ -1,0 +1,815 @@
+<!DOCTYPE html><html lang="uz"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Marosim xarajatlari kalkulyatori — osh, to'y, ehson smetasi</title>
+<meta name="description" content="Marosim kalkulyatori: osh, sho'rva, qozon kabob, manti uchun mahsulot miqdori va umumiy smeta. Mehmonlar soniga qarab guruch, go'sht, sabzi va boshqa xarajatlarni hisoblang.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/marosim-kalkulyator">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452C4C;--accent:#C89BD4;--cat-soft:#F2EBF4;--cat-text:#D9C6E0}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:44ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 16px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10)}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+select{-webkit-appearance:none;appearance:none;cursor:pointer}
+.unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+details{border:1.5px solid var(--line);border-radius:12px;margin-bottom:10px;background:#FBFCFB;overflow:hidden}
+details[open]{background:var(--card)}
+summary{padding:13px 14px;font-size:14.5px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
+details[open] summary::after{content:"\2212"}
+.sec-body{padding:2px 12px 12px}
+.irow{display:grid;grid-template-columns:22px 1fr 62px 34px 84px;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid #F2F5F3}
+.irow:last-child{border-bottom:0}
+.irow input[type=checkbox]{width:19px;height:19px;accent-color:var(--cat)}
+.irow .nm{font-size:13px;font-weight:700;line-height:1.25;min-width:0;overflow-wrap:anywhere}
+.irow .q,.irow .p{border:1px solid var(--line);border-radius:7px;padding:7px 4px;font:inherit;font-size:13px;font-weight:700;text-align:center;background:#fff;min-width:0;width:100%}
+.irow .p{background:#FFFDF7}
+.irow .u{font-size:10.5px;color:var(--muted);font-weight:700;text-align:center}
+.rowhead{display:grid;grid-template-columns:22px 1fr 62px 34px 84px;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-bottom:6px;border-bottom:1.5px solid var(--line);margin-bottom:2px}
+.rowhead span:nth-child(3),.rowhead span:nth-child(5){text-align:center}
+.addrow{display:flex;gap:6px;margin-top:10px}
+.addrow input{flex:1;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:13px;font-weight:700;min-width:0}
+.addrow button{background:var(--cat);color:#fff;border:0;border-radius:8px;padding:9px 14px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.custrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #F2F5F3;font-size:13px}
+.custrow .cn{flex:1;font-weight:700}
+.custrow .cv{font-weight:800;white-space:nowrap}
+.custrow .del{background:none;border:0;color:#B04A3A;font-size:17px;cursor:pointer;padding:0 4px;line-height:1}
+.calc-btn{width:100%;margin-top:18px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 18px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.2;word-break:break-word;color:var(--cat)}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.pp{margin-top:8px;display:inline-block;background:var(--cat-soft);color:var(--cat);font-size:13.5px;font-weight:800;padding:6px 12px;border-radius:99px}
+.grp{margin-top:18px}
+.grp h3{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.lrow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:5px 0}
+.lrow .lk{color:var(--ink);font-weight:600}
+.lrow .lq{font-weight:800;white-space:nowrap;text-align:right}
+.lrow .lq small{color:var(--muted);font-weight:700;margin-left:5px}
+.gtot{display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;padding-top:7px;margin-top:4px;border-top:1px dashed var(--line);color:var(--cat)}
+.total-box{margin-top:20px;background:var(--cat);color:#fff;border-radius:12px;padding:16px 18px;text-align:center}
+.total-box .l{font-size:12px;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
+.total-box .a{font-size:26px;font-weight:800;margin-top:4px}
+.note{margin-top:14px;background:#EEF2EF;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5}
+.receipt-actions{display:flex;gap:10px;margin-top:16px}
+.receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer}
+.receipt-edge{height:14px;background:radial-gradient(circle at 8px -4px, transparent 8px, var(--card) 8.5px);background-size:22px 14px;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js" defer=""></script>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Marosim uchun qancha mahsulot kerak?","acceptedAnswer":{"@type":"Answer","text":"Mehmonlar sonini kiriting va taom turini tanlang — kalkulyator guruch, go'sht, sabzi, piyoz va boshqa mahsulotlarning kerakli miqdorini hisoblab beradi. Masalan 100 kishilik oshga taxminan 15 kg guruch, 15 kg go'sht va 15 kg sabzi ketadi. Miqdorlar o'rtacha me'yorlarga asoslangan, har qatorni o'zingiz o'zgartirishingiz mumkin."}},{"@type":"Question","name":"Nega narxlar oldindan yozilmagan?","acceptedAnswer":{"@type":"Answer","text":"Mahsulot narxlari hudud va mavsumga qarab keskin farq qiladi: Toshkentdagi go'sht narxi viloyatdagidan boshqacha, qishda sabzavot qimmatroq. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z bozoringizdagi narxni kiritasiz va aniq smeta olasiz. Narx kiritmasangiz ham xarid ro'yxati baribir chiqadi."}},{"@type":"Question","name":"Qaysi marosimlar uchun mos?","acceptedAnswer":{"@type":"Answer","text":"Osh, ehson, sunnat to'yi, xudoyi, iftorlik, choy dasturxoni — mehmon kutiladigan har qanday tadbir uchun. Taom turini almashtirsangiz (sho'rva, qozon kabob, manti, norin, lag'mon, mastava), ingredientlar ro'yxati ham avtomatik o'zgaradi."}},{"@type":"Question","name":"Prokat va xizmatlar ham kiradimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Stol, stul, qozon, o'choq, samovar kabi prokat jihozlarini va oshpaz, ofitsiant, fotograf kabi xizmatlarni belgilab, narxini kiritishingiz mumkin. Mehmonlar soniga qarab taxminiy miqdor avtomatik taklif qilinadi — masalan har 8 mehmonga 1 stol, har 25 mehmonga 1 ofitsiant."}},{"@type":"Question","name":"Natijani saqlab qo'ysa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, natijani PDF sifatida yuklab olishingiz yoki havolasini ulashishingiz mumkin. Havolada kiritgan ma'lumotlaringiz saqlanadi, ya'ni oilangiz yoki oshpaz bilan bo'lishsangiz, ular xuddi shu hisobni ko'radi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Marosim xarajatlari","item":"https://kalki.uz/marosim-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Marosim xarajatlari","description":"Marosim kalkulyatori: osh, sho'rva, qozon kabob, manti uchun mahsulot miqdori va umumiy smeta. Mehmonlar soniga qarab guruch, go'sht, sabzi va boshqa xarajatlarni hisoblang.","url":"https://kalki.uz/marosim-kalkulyator","applicationCategory":"LifestyleApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
+<body data-cat="hayot">
+<div id="topmenu" style="background:#0B120E;overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="max-width:560px;margin:0 auto;display:flex;gap:4px;padding:9px 14px"><a href="./" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">🏠 Asosiy</a><a href="./#cat-moliya" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Moliya</a><a href="./#cat-qurilish" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Qurilish</a><a href="./#cat-kommunal" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Kommunal</a><a href="./#cat-hayot" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Hayotiy</a><a href="shablonlar" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">📄 Shablonlar</a></div></div>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Kundalik hayot</span>
+    <h1 data-i="h1">Marosim xarajatlari</h1>
+    <p class="sub" data-i="sub">Osh, ehson, sunnat yoki iftorlik — mehmonlar soniga qarab mahsulot miqdori va umumiy smetani hisoblang.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-hayot">Kundalik hayot</a><span class="sep">›</span><span class="cur">Marosim xarajatlari</span></nav>
+  <section class="form-card">
+    <div class="field">
+      <label for="dish" data-i="lDish">Marosim taomi</label>
+      <div class="input-shell"><select id="dish"><option value="osh" selected="">Osh</option><option value="shorva">Sho'rva</option><option value="qozonkabob">Qozon kabob</option><option value="dimlama">Dimlama</option><option value="manti">Manti</option><option value="norin">Norin</option><option value="lagmon">Lag'mon</option><option value="mastava">Mastava</option><option value="iftorlik">Iftorlik</option><option value="choy">Choy dasturxoni</option><option value="boshqa">Boshqa</option></select></div>
+    </div>
+    <div class="field" id="otherNameWrap" style="display:none">
+      <label for="otherName" data-i="lOtherName">Taom nomi</label>
+      <div class="input-shell"><input type="text" id="otherName" value=""></div>
+    </div>
+    <div class="field">
+      <label for="guests" data-i="lGuests">Mehmonlar soni</label>
+      <div class="input-shell"><input type="text" id="guests" inputmode="numeric" value="100"><span class="unit" data-i="uKishi">kishi</span></div>
+      <p class="hint" data-i="hGuests">Miqdorlar mehmonlar soniga qarab avtomatik hisoblanadi. Har qatordagi miqdorni o'zingiz o'zgartirishingiz mumkin.</p>
+    </div>
+    <div id="sections"><details open=""><summary>Asosiy taom</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_guruch" checked=""><span class="nm" data-nm="guruch">Guruch</span><input type="text" class="q" id="q_guruch" inputmode="decimal" value="15"><span class="u" data-u="guruch">kg</span><input type="text" class="p" id="p_guruch" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_gosht" checked=""><span class="nm" data-nm="gosht">Go'sht</span><input type="text" class="q" id="q_gosht" inputmode="decimal" value="15"><span class="u" data-u="gosht">kg</span><input type="text" class="p" id="p_gosht" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_sabzi" checked=""><span class="nm" data-nm="sabzi">Sabzi</span><input type="text" class="q" id="q_sabzi" inputmode="decimal" value="15"><span class="u" data-u="sabzi">kg</span><input type="text" class="p" id="p_sabzi" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_piyoz" checked=""><span class="nm" data-nm="piyoz">Piyoz</span><input type="text" class="q" id="q_piyoz" inputmode="decimal" value="5"><span class="u" data-u="piyoz">kg</span><input type="text" class="p" id="p_piyoz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_yog" checked=""><span class="nm" data-nm="yog">Yog'</span><input type="text" class="q" id="q_yog" inputmode="decimal" value="5"><span class="u" data-u="yog">litr</span><input type="text" class="p" id="p_yog" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_noxat" checked=""><span class="nm" data-nm="noxat">No'xat</span><input type="text" class="q" id="q_noxat" inputmode="decimal" value="1"><span class="u" data-u="noxat">kg</span><input type="text" class="p" id="p_noxat" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_mayiz" checked=""><span class="nm" data-nm="mayiz">Mayiz</span><input type="text" class="q" id="q_mayiz" inputmode="decimal" value="0.5"><span class="u" data-u="mayiz">kg</span><input type="text" class="p" id="p_mayiz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_zira" checked=""><span class="nm" data-nm="zira">Ziravorlar</span><input type="text" class="q" id="q_zira" inputmode="decimal" value="0.3"><span class="u" data-u="zira">kg</span><input type="text" class="p" id="p_zira" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_tuz" checked=""><span class="nm" data-nm="tuz">Tuz</span><input type="text" class="q" id="q_tuz" inputmode="decimal" value="0.5"><span class="u" data-u="tuz">kg</span><input type="text" class="p" id="p_tuz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_sarimsoq" checked=""><span class="nm" data-nm="sarimsoq">Sarimsoq</span><input type="text" class="q" id="q_sarimsoq" inputmode="decimal" value="0.5"><span class="u" data-u="sarimsoq">kg</span><input type="text" class="p" id="p_sarimsoq" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Salatlar</summary><div class="sec-body"><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_achchiq" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="achchiq">Achchiq-chuchuk</span></label><div id="salbox_achchiq" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_pomidor" checked=""><span class="nm" data-nm="s_pomidor">Pomidor</span><input type="text" class="q" id="q_s_pomidor" inputmode="decimal" value="8"><span class="u" data-u="s_pomidor">kg</span><input type="text" class="p" id="p_s_pomidor" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_piyoz" checked=""><span class="nm" data-nm="s_piyoz">Piyoz</span><input type="text" class="q" id="q_s_piyoz" inputmode="decimal" value="3"><span class="u" data-u="s_piyoz">kg</span><input type="text" class="p" id="p_s_piyoz" inputmode="numeric" placeholder="0"></div></div></div><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_bahor" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="bahor">Bahor</span></label><div id="salbox_bahor" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_bodring" checked=""><span class="nm" data-nm="s_bodring">Bodring</span><input type="text" class="q" id="q_s_bodring" inputmode="decimal" value="5"><span class="u" data-u="s_bodring">kg</span><input type="text" class="p" id="p_s_bodring" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_pomidor2" checked=""><span class="nm" data-nm="s_pomidor2">Pomidor</span><input type="text" class="q" id="q_s_pomidor2" inputmode="decimal" value="5"><span class="u" data-u="s_pomidor2">kg</span><input type="text" class="p" id="p_s_pomidor2" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_kokat" checked=""><span class="nm" data-nm="s_kokat">Ko'katlar</span><input type="text" class="q" id="q_s_kokat" inputmode="decimal" value="1"><span class="u" data-u="s_kokat">kg</span><input type="text" class="p" id="p_s_kokat" inputmode="numeric" placeholder="0"></div></div></div><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_olivye" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="olivye">Olivye</span></label><div id="salbox_olivye" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_kartoshka" checked=""><span class="nm" data-nm="s_kartoshka">Kartoshka</span><input type="text" class="q" id="q_s_kartoshka" inputmode="decimal" value="5"><span class="u" data-u="s_kartoshka">kg</span><input type="text" class="p" id="p_s_kartoshka" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_sabzi" checked=""><span class="nm" data-nm="s_sabzi">Sabzi</span><input type="text" class="q" id="q_s_sabzi" inputmode="decimal" value="3"><span class="u" data-u="s_sabzi">kg</span><input type="text" class="p" id="p_s_sabzi" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_tuxum" checked=""><span class="nm" data-nm="s_tuxum">Tuxum</span><input type="text" class="q" id="q_s_tuxum" inputmode="decimal" value="50"><span class="u" data-u="s_tuxum">dona</span><input type="text" class="p" id="p_s_tuxum" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_kolbasa" checked=""><span class="nm" data-nm="s_kolbasa">Kolbasa</span><input type="text" class="q" id="q_s_kolbasa" inputmode="decimal" value="4"><span class="u" data-u="s_kolbasa">kg</span><input type="text" class="p" id="p_s_kolbasa" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_noxat" checked=""><span class="nm" data-nm="s_noxat">Konserva no'xat</span><input type="text" class="q" id="q_s_noxat" inputmode="decimal" value="2"><span class="u" data-u="s_noxat">kg</span><input type="text" class="p" id="p_s_noxat" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_mayonez" checked=""><span class="nm" data-nm="s_mayonez">Mayonez</span><input type="text" class="q" id="q_s_mayonez" inputmode="decimal" value="3"><span class="u" data-u="s_mayonez">kg</span><input type="text" class="p" id="p_s_mayonez" inputmode="numeric" placeholder="0"></div></div></div><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_mimoza" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="mimoza">Mimoza</span></label><div id="salbox_mimoza" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_baliq" checked=""><span class="nm" data-nm="s_baliq">Baliq konservasi</span><input type="text" class="q" id="q_s_baliq" inputmode="decimal" value="4"><span class="u" data-u="s_baliq">kg</span><input type="text" class="p" id="p_s_baliq" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_tuxum2" checked=""><span class="nm" data-nm="s_tuxum2">Tuxum</span><input type="text" class="q" id="q_s_tuxum2" inputmode="decimal" value="50"><span class="u" data-u="s_tuxum2">dona</span><input type="text" class="p" id="p_s_tuxum2" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_sabzi2" checked=""><span class="nm" data-nm="s_sabzi2">Sabzi</span><input type="text" class="q" id="q_s_sabzi2" inputmode="decimal" value="3"><span class="u" data-u="s_sabzi2">kg</span><input type="text" class="p" id="p_s_sabzi2" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_pishloq" checked=""><span class="nm" data-nm="s_pishloq">Pishloq</span><input type="text" class="q" id="q_s_pishloq" inputmode="decimal" value="2"><span class="u" data-u="s_pishloq">kg</span><input type="text" class="p" id="p_s_pishloq" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_mayonez2" checked=""><span class="nm" data-nm="s_mayonez2">Mayonez</span><input type="text" class="q" id="q_s_mayonez2" inputmode="decimal" value="3"><span class="u" data-u="s_mayonez2">kg</span><input type="text" class="p" id="p_s_mayonez2" inputmode="numeric" placeholder="0"></div></div></div><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_koreys" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="koreys">Koreyscha</span></label><div id="salbox_koreys" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_koreys" checked=""><span class="nm" data-nm="s_koreys">Koreyscha sabzi</span><input type="text" class="q" id="q_s_koreys" inputmode="decimal" value="6"><span class="u" data-u="s_koreys">kg</span><input type="text" class="p" id="p_s_koreys" inputmode="numeric" placeholder="0"></div></div></div><div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px"><input type="checkbox" id="sal_mevali" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="mevali">Mevali salat</span></label><div id="salbox_mevali" style="display:none;padding-left:8px"><div class="irow"><input type="checkbox" id="c_s_meva" checked=""><span class="nm" data-nm="s_meva">Meva aralash</span><input type="text" class="q" id="q_s_meva" inputmode="decimal" value="10"><span class="u" data-u="s_meva">kg</span><input type="text" class="p" id="p_s_meva" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_s_smetana" checked=""><span class="nm" data-nm="s_smetana">Smetana</span><input type="text" class="q" id="q_s_smetana" inputmode="decimal" value="2"><span class="u" data-u="s_smetana">kg</span><input type="text" class="p" id="p_s_smetana" inputmode="numeric" placeholder="0"></div></div></div></div></details><details><summary>Ichimliklar</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_d_suv" checked=""><span class="nm" data-nm="d_suv">Suv</span><input type="text" class="q" id="q_d_suv" inputmode="decimal" value="50"><span class="u" data-u="d_suv">litr</span><input type="text" class="p" id="p_d_suv" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_d_gazli" checked=""><span class="nm" data-nm="d_gazli">Cola / Fanta</span><input type="text" class="q" id="q_d_gazli" inputmode="decimal" value="30"><span class="u" data-u="d_gazli">litr</span><input type="text" class="p" id="p_d_gazli" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_d_sharbat" checked=""><span class="nm" data-nm="d_sharbat">Sharbat</span><input type="text" class="q" id="q_d_sharbat" inputmode="decimal" value="20"><span class="u" data-u="d_sharbat">litr</span><input type="text" class="p" id="p_d_sharbat" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_d_choy"><span class="nm" data-nm="d_choy">Choy (quruq)</span><input type="text" class="q" id="q_d_choy" inputmode="decimal" value="0.5"><span class="u" data-u="d_choy">kg</span><input type="text" class="p" id="p_d_choy" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_d_qahva"><span class="nm" data-nm="d_qahva">Qahva</span><input type="text" class="q" id="q_d_qahva" inputmode="decimal" value="0.5"><span class="u" data-u="d_qahva">kg</span><input type="text" class="p" id="p_d_qahva" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_d_muz"><span class="nm" data-nm="d_muz">Muz</span><input type="text" class="q" id="q_d_muz" inputmode="decimal" value="10"><span class="u" data-u="d_muz">kg</span><input type="text" class="p" id="p_d_muz" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Meva va shirinlik</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_f_tarvuz" checked=""><span class="nm" data-nm="f_tarvuz">Tarvuz</span><input type="text" class="q" id="q_f_tarvuz" inputmode="decimal" value="30"><span class="u" data-u="f_tarvuz">kg</span><input type="text" class="p" id="p_f_tarvuz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_qovun" checked=""><span class="nm" data-nm="f_qovun">Qovun</span><input type="text" class="q" id="q_f_qovun" inputmode="decimal" value="25"><span class="u" data-u="f_qovun">kg</span><input type="text" class="p" id="p_f_qovun" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_uzum" checked=""><span class="nm" data-nm="f_uzum">Uzum</span><input type="text" class="q" id="q_f_uzum" inputmode="decimal" value="10"><span class="u" data-u="f_uzum">kg</span><input type="text" class="p" id="p_f_uzum" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_olma"><span class="nm" data-nm="f_olma">Olma</span><input type="text" class="q" id="q_f_olma" inputmode="decimal" value="15"><span class="u" data-u="f_olma">kg</span><input type="text" class="p" id="p_f_olma" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_banan"><span class="nm" data-nm="f_banan">Banan</span><input type="text" class="q" id="q_f_banan" inputmode="decimal" value="15"><span class="u" data-u="f_banan">kg</span><input type="text" class="p" id="p_f_banan" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_apelsin"><span class="nm" data-nm="f_apelsin">Apelsin</span><input type="text" class="q" id="q_f_apelsin" inputmode="decimal" value="15"><span class="u" data-u="f_apelsin">kg</span><input type="text" class="p" id="p_f_apelsin" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_konfet"><span class="nm" data-nm="f_konfet">Konfet</span><input type="text" class="q" id="q_f_konfet" inputmode="decimal" value="5"><span class="u" data-u="f_konfet">kg</span><input type="text" class="p" id="p_f_konfet" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_pechenye"><span class="nm" data-nm="f_pechenye">Pechenye</span><input type="text" class="q" id="q_f_pechenye" inputmode="decimal" value="5"><span class="u" data-u="f_pechenye">kg</span><input type="text" class="p" id="p_f_pechenye" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_f_tort"><span class="nm" data-nm="f_tort">Tort</span><input type="text" class="q" id="q_f_tort" inputmode="decimal" value="10"><span class="u" data-u="f_tort">kg</span><input type="text" class="p" id="p_f_tort" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Non mahsulotlari</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_b_non" checked=""><span class="nm" data-nm="b_non">Non</span><input type="text" class="q" id="q_b_non" inputmode="decimal" value="50"><span class="u" data-u="b_non">dona</span><input type="text" class="p" id="p_b_non" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_b_patir" checked=""><span class="nm" data-nm="b_patir">Patir</span><input type="text" class="q" id="q_b_patir" inputmode="decimal" value="40"><span class="u" data-u="b_patir">dona</span><input type="text" class="p" id="p_b_patir" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_b_somsa" checked=""><span class="nm" data-nm="b_somsa">Somsa</span><input type="text" class="q" id="q_b_somsa" inputmode="decimal" value="100"><span class="u" data-u="b_somsa">dona</span><input type="text" class="p" id="p_b_somsa" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_b_kulcha"><span class="nm" data-nm="b_kulcha">Kulcha</span><input type="text" class="q" id="q_b_kulcha" inputmode="decimal" value="50"><span class="u" data-u="b_kulcha">dona</span><input type="text" class="p" id="p_b_kulcha" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Bir martalik idishlar</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_x_stakan" checked=""><span class="nm" data-nm="x_stakan">Stakan</span><input type="text" class="q" id="q_x_stakan" inputmode="decimal" value="200"><span class="u" data-u="x_stakan">dona</span><input type="text" class="p" id="p_x_stakan" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_x_tarelka" checked=""><span class="nm" data-nm="x_tarelka">Tarelka</span><input type="text" class="q" id="q_x_tarelka" inputmode="decimal" value="200"><span class="u" data-u="x_tarelka">dona</span><input type="text" class="p" id="p_x_tarelka" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_x_qoshiq" checked=""><span class="nm" data-nm="x_qoshiq">Qoshiq</span><input type="text" class="q" id="q_x_qoshiq" inputmode="decimal" value="150"><span class="u" data-u="x_qoshiq">dona</span><input type="text" class="p" id="p_x_qoshiq" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_x_vilka"><span class="nm" data-nm="x_vilka">Vilka</span><input type="text" class="q" id="q_x_vilka" inputmode="decimal" value="100"><span class="u" data-u="x_vilka">dona</span><input type="text" class="p" id="p_x_vilka" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_x_salfetka"><span class="nm" data-nm="x_salfetka">Salfetka</span><input type="text" class="q" id="q_x_salfetka" inputmode="decimal" value="300"><span class="u" data-u="x_salfetka">dona</span><input type="text" class="p" id="p_x_salfetka" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Prokat jihozlari</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_r_stol"><span class="nm" data-nm="r_stol">Stol</span><input type="text" class="q" id="q_r_stol" inputmode="numeric" value="13"><span class="u">dona</span><input type="text" class="p" id="p_r_stol" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_stul"><span class="nm" data-nm="r_stul">Stul</span><input type="text" class="q" id="q_r_stul" inputmode="numeric" value="100"><span class="u">dona</span><input type="text" class="p" id="p_r_stul" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_qozon"><span class="nm" data-nm="r_qozon">Qozon</span><input type="text" class="q" id="q_r_qozon" inputmode="numeric" value="2"><span class="u">dona</span><input type="text" class="p" id="p_r_qozon" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_ochoq"><span class="nm" data-nm="r_ochoq">O'choq</span><input type="text" class="q" id="q_r_ochoq" inputmode="numeric" value="2"><span class="u">dona</span><input type="text" class="p" id="p_r_ochoq" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_gaz"><span class="nm" data-nm="r_gaz">Gaz balloni</span><input type="text" class="q" id="q_r_gaz" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_r_gaz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_choynak"><span class="nm" data-nm="r_choynak">Choynak</span><input type="text" class="q" id="q_r_choynak" inputmode="numeric" value="13"><span class="u">dona</span><input type="text" class="p" id="p_r_choynak" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_samovar"><span class="nm" data-nm="r_samovar">Samovar</span><input type="text" class="q" id="q_r_samovar" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_r_samovar" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_termos"><span class="nm" data-nm="r_termos">Termos</span><input type="text" class="q" id="q_r_termos" inputmode="numeric" value="5"><span class="u">dona</span><input type="text" class="p" id="p_r_termos" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_idish"><span class="nm" data-nm="r_idish">Idishlar (komplekt)</span><input type="text" class="q" id="q_r_idish" inputmode="numeric" value="100"><span class="u">dona</span><input type="text" class="p" id="p_r_idish" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_soyabon"><span class="nm" data-nm="r_soyabon">Soyabon</span><input type="text" class="q" id="q_r_soyabon" inputmode="numeric" value="5"><span class="u">dona</span><input type="text" class="p" id="p_r_soyabon" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_r_karnay"><span class="nm" data-nm="r_karnay">Karnay-surnay jihozlari</span><input type="text" class="q" id="q_r_karnay" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_r_karnay" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Xizmatlar</summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span></span><span>Narxi</span></div><div class="irow"><input type="checkbox" id="c_v_oshpaz"><span class="nm" data-nm="v_oshpaz">Oshpaz</span><input type="text" class="q" id="q_v_oshpaz" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_oshpaz" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_yordamchi"><span class="nm" data-nm="v_yordamchi">Yordamchi oshpaz</span><input type="text" class="q" id="q_v_yordamchi" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_yordamchi" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_ofitsiant"><span class="nm" data-nm="v_ofitsiant">Ofitsiant</span><input type="text" class="q" id="q_v_ofitsiant" inputmode="numeric" value="4"><span class="u">dona</span><input type="text" class="p" id="p_v_ofitsiant" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_idishyuv"><span class="nm" data-nm="v_idishyuv">Idish yuvuvchi</span><input type="text" class="q" id="q_v_idishyuv" inputmode="numeric" value="2"><span class="u">dona</span><input type="text" class="p" id="p_v_idishyuv" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_tozalov"><span class="nm" data-nm="v_tozalov">Tozalovchi</span><input type="text" class="q" id="q_v_tozalov" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_tozalov" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_fotograf"><span class="nm" data-nm="v_fotograf">Fotograf</span><input type="text" class="q" id="q_v_fotograf" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_fotograf" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_videograf"><span class="nm" data-nm="v_videograf">Videograf</span><input type="text" class="q" id="q_v_videograf" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_videograf" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_dj"><span class="nm" data-nm="v_dj">DJ</span><input type="text" class="q" id="q_v_dj" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_dj" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_boshlovchi"><span class="nm" data-nm="v_boshlovchi">Boshlovchi</span><input type="text" class="q" id="q_v_boshlovchi" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_boshlovchi" inputmode="numeric" placeholder="0"></div><div class="irow"><input type="checkbox" id="c_v_dekor"><span class="nm" data-nm="v_dekor">Dekor</span><input type="text" class="q" id="q_v_dekor" inputmode="numeric" value="1"><span class="u">dona</span><input type="text" class="p" id="p_v_dekor" inputmode="numeric" placeholder="0"></div></div></details><details><summary>Qo'shimcha xarajatlar</summary><div class="sec-body"><div id="custList"></div><div class="addrow"><input type="text" id="custName" placeholder="Nomi"><input type="text" id="custPrice" inputmode="numeric" placeholder="Summa" style="max-width:110px"><button type="button" id="custAdd">Qo'shish</button></div></div></details></div>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Marosim smetasi</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">-</div>
+        <div class="lbl" id="mainLbl"></div>
+      </div>
+      <div class="pp" id="perPerson"></div>
+      <div id="listOut"></div>
+      <div class="total-box"><div class="l" data-i="totLbl">Jami xarajat</div><div class="a" id="grandTotal">-</div></div>
+      <div class="note" data-i="noteTxt">Miqdorlar o'rtacha me'yorlar asosida. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Real ehtiyoj mehmonlar ishtahasi va taom tayyorlash uslubiga qarab farq qiladi.</div>
+      <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <section class="seo" id="seoBlock"><h2>Marosim uchun qancha mahsulot kerak?</h2><p>Mehmonlar sonini kiriting va taom turini tanlang — kalkulyator guruch, go'sht, sabzi, piyoz va boshqa mahsulotlarning kerakli miqdorini hisoblab beradi. Masalan 100 kishilik oshga taxminan 15 kg guruch, 15 kg go'sht va 15 kg sabzi ketadi. Miqdorlar o'rtacha me'yorlarga asoslangan, har qatorni o'zingiz o'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Mahsulot narxlari hudud va mavsumga qarab keskin farq qiladi: Toshkentdagi go'sht narxi viloyatdagidan boshqacha, qishda sabzavot qimmatroq. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z bozoringizdagi narxni kiritasiz va aniq smeta olasiz. Narx kiritmasangiz ham xarid ro'yxati baribir chiqadi.</p><h2>Qaysi marosimlar uchun mos?</h2><p>Osh, ehson, sunnat to'yi, xudoyi, iftorlik, choy dasturxoni — mehmon kutiladigan har qanday tadbir uchun. Taom turini almashtirsangiz (sho'rva, qozon kabob, manti, norin, lag'mon, mastava), ingredientlar ro'yxati ham avtomatik o'zgaradi.</p><h2>Prokat va xizmatlar ham kiradimi?</h2><p>Ha. Stol, stul, qozon, o'choq, samovar kabi prokat jihozlarini va oshpaz, ofitsiant, fotograf kabi xizmatlarni belgilab, narxini kiritishingiz mumkin. Mehmonlar soniga qarab taxminiy miqdor avtomatik taklif qilinadi — masalan har 8 mehmonga 1 stol, har 25 mehmonga 1 ofitsiant.</p><h2>Natijani saqlab qo'ysa bo'ladimi?</h2><p>Ha, natijani PDF sifatida yuklab olishingiz yoki havolasini ulashishingiz mumkin. Havolada kiritgan ma'lumotlaringiz saqlanadi, ya'ni oilangiz yoki oshpaz bilan bo'lishsangiz, ular xuddi shu hisobni ko'radi.</p></section>
+  <div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="toy-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💒</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="To'y byudjeti" data-rel-ru="Бюджет свадьбы">To'y byudjeti</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="chorva-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #8C3B2A;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🐄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Chorva boqish" data-rel-ru="Откорм скота">Chorva boqish</span></a><a href="zakot-qurbonlik-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🕌</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Zakot va qurbonlik" data-rel-ru="Закят и курбан">Zakot va qurbonlik</span></a></div></div>
+  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div>
+  <nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab</a></div></nav>
+  <div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
+  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div>
+  <footer data-i="foot">Hisob taxminiy. Miqdorlarni oshpaz bilan maslahatlashib aniqlashtiring.</footer>
+</main>
+
+<script>
+(function(){
+var DB={"DISHES": {"osh": {"uz": "Osh", "ru": "Плов", "ing": [{"id": "guruch", "uz": "Guruch", "ru": "Рис", "per": 0.15, "u": "kg"}, {"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.15, "u": "kg"}, {"id": "sabzi", "uz": "Sabzi", "ru": "Морковь", "per": 0.15, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.05, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.05, "u": "l"}, {"id": "noxat", "uz": "No'xat", "ru": "Нут", "per": 0.01, "u": "kg"}, {"id": "mayiz", "uz": "Mayiz", "ru": "Изюм", "per": 0.005, "u": "kg"}, {"id": "zira", "uz": "Ziravorlar", "ru": "Специи", "per": 0.003, "u": "kg"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.005, "u": "kg"}, {"id": "sarimsoq", "uz": "Sarimsoq", "ru": "Чеснок", "per": 0.005, "u": "kg"}]}, "shorva": {"uz": "Sho'rva", "ru": "Шурпа", "ing": [{"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.15, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.2, "u": "kg"}, {"id": "sabzi", "uz": "Sabzi", "ru": "Морковь", "per": 0.08, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.05, "u": "kg"}, {"id": "pomidor", "uz": "Pomidor", "ru": "Помидор", "per": 0.05, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.02, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.005, "u": "kg"}, {"id": "zira", "uz": "Ziravorlar", "ru": "Специи", "per": 0.002, "u": "kg"}]}, "qozonkabob": {"uz": "Qozon kabob", "ru": "Казан-кабоб", "ing": [{"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.25, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.25, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.08, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.05, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.005, "u": "kg"}, {"id": "zira", "uz": "Ziravorlar", "ru": "Специи", "per": 0.003, "u": "kg"}]}, "dimlama": {"uz": "Dimlama", "ru": "Димлама", "ing": [{"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.15, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.2, "u": "kg"}, {"id": "sabzi", "uz": "Sabzi", "ru": "Морковь", "per": 0.1, "u": "kg"}, {"id": "karam", "uz": "Karam", "ru": "Капуста", "per": 0.1, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.06, "u": "kg"}, {"id": "pomidor", "uz": "Pomidor", "ru": "Помидор", "per": 0.06, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.03, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.005, "u": "kg"}]}, "manti": {"uz": "Manti", "ru": "Манты", "ing": [{"id": "un", "uz": "Un", "ru": "Мука", "per": 0.12, "u": "kg"}, {"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.15, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.1, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.05, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.01, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.004, "u": "kg"}]}, "norin": {"uz": "Norin", "ru": "Норин", "ing": [{"id": "un", "uz": "Un", "ru": "Мука", "per": 0.1, "u": "kg"}, {"id": "gosht", "uz": "Go'sht (qazi)", "ru": "Мясо (казы)", "per": 0.15, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.05, "u": "kg"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.004, "u": "kg"}]}, "lagmon": {"uz": "Lag'mon", "ru": "Лагман", "ing": [{"id": "un", "uz": "Un", "ru": "Мука", "per": 0.12, "u": "kg"}, {"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.12, "u": "kg"}, {"id": "sabzavot", "uz": "Sabzavotlar", "ru": "Овощи", "per": 0.2, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.05, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.03, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.004, "u": "kg"}]}, "mastava": {"uz": "Mastava", "ru": "Мастава", "ing": [{"id": "guruch", "uz": "Guruch", "ru": "Рис", "per": 0.06, "u": "kg"}, {"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.12, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.12, "u": "kg"}, {"id": "sabzi", "uz": "Sabzi", "ru": "Морковь", "per": 0.06, "u": "kg"}, {"id": "piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.05, "u": "kg"}, {"id": "pomidor", "uz": "Pomidor", "ru": "Помидор", "per": 0.05, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.02, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.004, "u": "kg"}]}, "iftorlik": {"uz": "Iftorlik", "ru": "Ифтар", "ing": [{"id": "gosht", "uz": "Go'sht", "ru": "Мясо", "per": 0.1, "u": "kg"}, {"id": "guruch", "uz": "Guruch", "ru": "Рис", "per": 0.05, "u": "kg"}, {"id": "kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.1, "u": "kg"}, {"id": "xurmo", "uz": "Xurmo", "ru": "Финики", "per": 0.03, "u": "kg"}, {"id": "yog", "uz": "Yog'", "ru": "Масло", "per": 0.02, "u": "l"}, {"id": "tuz", "uz": "Tuz", "ru": "Соль", "per": 0.003, "u": "kg"}]}, "choy": {"uz": "Choy dasturxoni", "ru": "Чайный стол", "ing": [{"id": "konfet", "uz": "Konfet", "ru": "Конфеты", "per": 0.05, "u": "kg"}, {"id": "pechenye", "uz": "Pechenye", "ru": "Печенье", "per": 0.05, "u": "kg"}, {"id": "quruqmeva", "uz": "Quruq meva", "ru": "Сухофрукты", "per": 0.05, "u": "kg"}, {"id": "choy", "uz": "Choy (quruq)", "ru": "Чай (сухой)", "per": 0.005, "u": "kg"}, {"id": "shakar", "uz": "Shakar", "ru": "Сахар", "per": 0.02, "u": "kg"}]}, "boshqa": {"uz": "Boshqa", "ru": "Другое", "ing": []}}, "SALADS": [{"id": "achchiq", "uz": "Achchiq-chuchuk", "ru": "Ачик-чучук", "ing": [{"id": "s_pomidor", "uz": "Pomidor", "ru": "Помидор", "per": 0.08, "u": "kg"}, {"id": "s_piyoz", "uz": "Piyoz", "ru": "Лук", "per": 0.03, "u": "kg"}]}, {"id": "bahor", "uz": "Bahor", "ru": "Весенний", "ing": [{"id": "s_bodring", "uz": "Bodring", "ru": "Огурец", "per": 0.05, "u": "kg"}, {"id": "s_pomidor2", "uz": "Pomidor", "ru": "Помидор", "per": 0.05, "u": "kg"}, {"id": "s_kokat", "uz": "Ko'katlar", "ru": "Зелень", "per": 0.01, "u": "kg"}]}, {"id": "olivye", "uz": "Olivye", "ru": "Оливье", "ing": [{"id": "s_kartoshka", "uz": "Kartoshka", "ru": "Картофель", "per": 0.05, "u": "kg"}, {"id": "s_sabzi", "uz": "Sabzi", "ru": "Морковь", "per": 0.03, "u": "kg"}, {"id": "s_tuxum", "uz": "Tuxum", "ru": "Яйца", "per": 0.5, "u": "dona"}, {"id": "s_kolbasa", "uz": "Kolbasa", "ru": "Колбаса", "per": 0.04, "u": "kg"}, {"id": "s_noxat", "uz": "Konserva no'xat", "ru": "Консерв. горошек", "per": 0.02, "u": "kg"}, {"id": "s_mayonez", "uz": "Mayonez", "ru": "Майонез", "per": 0.03, "u": "kg"}]}, {"id": "mimoza", "uz": "Mimoza", "ru": "Мимоза", "ing": [{"id": "s_baliq", "uz": "Baliq konservasi", "ru": "Рыбные консервы", "per": 0.04, "u": "kg"}, {"id": "s_tuxum2", "uz": "Tuxum", "ru": "Яйца", "per": 0.5, "u": "dona"}, {"id": "s_sabzi2", "uz": "Sabzi", "ru": "Морковь", "per": 0.03, "u": "kg"}, {"id": "s_pishloq", "uz": "Pishloq", "ru": "Сыр", "per": 0.02, "u": "kg"}, {"id": "s_mayonez2", "uz": "Mayonez", "ru": "Майонез", "per": 0.03, "u": "kg"}]}, {"id": "koreys", "uz": "Koreyscha", "ru": "По-корейски", "ing": [{"id": "s_koreys", "uz": "Koreyscha sabzi", "ru": "Морковь по-корейски", "per": 0.06, "u": "kg"}]}, {"id": "mevali", "uz": "Mevali salat", "ru": "Фруктовый салат", "ing": [{"id": "s_meva", "uz": "Meva aralash", "ru": "Фрукты микс", "per": 0.1, "u": "kg"}, {"id": "s_smetana", "uz": "Smetana", "ru": "Сметана", "per": 0.02, "u": "kg"}]}], "DRINKS": [{"id": "d_suv", "uz": "Suv", "ru": "Вода", "per": 0.5, "u": "l"}, {"id": "d_gazli", "uz": "Cola / Fanta", "ru": "Cola / Fanta", "per": 0.3, "u": "l"}, {"id": "d_sharbat", "uz": "Sharbat", "ru": "Сок", "per": 0.2, "u": "l"}, {"id": "d_choy", "uz": "Choy (quruq)", "ru": "Чай (сухой)", "per": 0.005, "u": "kg"}, {"id": "d_qahva", "uz": "Qahva", "ru": "Кофе", "per": 0.005, "u": "kg"}, {"id": "d_muz", "uz": "Muz", "ru": "Лёд", "per": 0.1, "u": "kg"}], "FRUITS": [{"id": "f_tarvuz", "uz": "Tarvuz", "ru": "Арбуз", "per": 0.3, "u": "kg"}, {"id": "f_qovun", "uz": "Qovun", "ru": "Дыня", "per": 0.25, "u": "kg"}, {"id": "f_uzum", "uz": "Uzum", "ru": "Виноград", "per": 0.1, "u": "kg"}, {"id": "f_olma", "uz": "Olma", "ru": "Яблоки", "per": 0.15, "u": "kg"}, {"id": "f_banan", "uz": "Banan", "ru": "Бананы", "per": 0.15, "u": "kg"}, {"id": "f_apelsin", "uz": "Apelsin", "ru": "Апельсины", "per": 0.15, "u": "kg"}, {"id": "f_konfet", "uz": "Konfet", "ru": "Конфеты", "per": 0.05, "u": "kg"}, {"id": "f_pechenye", "uz": "Pechenye", "ru": "Печенье", "per": 0.05, "u": "kg"}, {"id": "f_tort", "uz": "Tort", "ru": "Торт", "per": 0.1, "u": "kg"}], "BREAD": [{"id": "b_non", "uz": "Non", "ru": "Лепёшка", "per": 0.5, "u": "dona"}, {"id": "b_patir", "uz": "Patir", "ru": "Патир", "per": 0.4, "u": "dona"}, {"id": "b_somsa", "uz": "Somsa", "ru": "Самса", "per": 1, "u": "dona"}, {"id": "b_kulcha", "uz": "Kulcha", "ru": "Кульча", "per": 0.5, "u": "dona"}], "DISPOSABLE": [{"id": "x_stakan", "uz": "Stakan", "ru": "Стаканы", "per": 2, "u": "dona"}, {"id": "x_tarelka", "uz": "Tarelka", "ru": "Тарелки", "per": 2, "u": "dona"}, {"id": "x_qoshiq", "uz": "Qoshiq", "ru": "Ложки", "per": 1.5, "u": "dona"}, {"id": "x_vilka", "uz": "Vilka", "ru": "Вилки", "per": 1, "u": "dona"}, {"id": "x_salfetka", "uz": "Salfetka", "ru": "Салфетки", "per": 3, "u": "dona"}], "RENTALS": [{"id": "r_stol", "uz": "Stol", "ru": "Столы", "each": 8, "fixed": false}, {"id": "r_stul", "uz": "Stul", "ru": "Стулья", "each": 1, "fixed": false}, {"id": "r_qozon", "uz": "Qozon", "ru": "Казан", "each": 50, "fixed": false}, {"id": "r_ochoq", "uz": "O'choq", "ru": "Очаг", "each": 50, "fixed": false}, {"id": "r_gaz", "uz": "Gaz balloni", "ru": "Газовый баллон", "each": 100, "fixed": false}, {"id": "r_choynak", "uz": "Choynak", "ru": "Чайники", "each": 8, "fixed": false}, {"id": "r_samovar", "uz": "Samovar", "ru": "Самовар", "each": null, "fixed": true}, {"id": "r_termos", "uz": "Termos", "ru": "Термос", "each": 20, "fixed": false}, {"id": "r_idish", "uz": "Idishlar (komplekt)", "ru": "Посуда (комплект)", "each": 1, "fixed": false}, {"id": "r_soyabon", "uz": "Soyabon", "ru": "Зонт / навес", "each": 20, "fixed": false}, {"id": "r_karnay", "uz": "Karnay-surnay jihozlari", "ru": "Карнай-сурнай", "each": null, "fixed": true}], "SERVICES": [{"id": "v_oshpaz", "uz": "Oshpaz", "ru": "Повар", "each": 100, "fixed": false}, {"id": "v_yordamchi", "uz": "Yordamchi oshpaz", "ru": "Помощник повара", "each": 100, "fixed": false}, {"id": "v_ofitsiant", "uz": "Ofitsiant", "ru": "Официант", "each": 25, "fixed": false}, {"id": "v_idishyuv", "uz": "Idish yuvuvchi", "ru": "Мойщик посуды", "each": 50, "fixed": false}, {"id": "v_tozalov", "uz": "Tozalovchi", "ru": "Уборщик", "each": 100, "fixed": false}, {"id": "v_fotograf", "uz": "Fotograf", "ru": "Фотограф", "each": null, "fixed": true}, {"id": "v_videograf", "uz": "Videograf", "ru": "Видеограф", "each": null, "fixed": true}, {"id": "v_dj", "uz": "DJ", "ru": "DJ", "each": null, "fixed": true}, {"id": "v_boshlovchi", "uz": "Boshlovchi", "ru": "Ведущий", "each": null, "fixed": true}, {"id": "v_dekor", "uz": "Dekor", "ru": "Декор", "each": null, "fixed": true}]};
+var lang='uz', calcData=null, customItems=[];
+var $=function(id){return document.getElementById(id)};
+var t=function(k){return I[lang][k]};
+var som=function(){return lang==='uz'?"so'm":'сум'};
+var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
+var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+function qty(v,u){
+  if(u==='dona')return Math.ceil(v);
+  if(v<10)return Math.round(v*10)/10;
+  return Math.round(v);
+}
+function unitLabel(u){
+  if(u==='dona')return lang==='uz'?'dona':'шт';
+  if(u==='l')return lang==='uz'?'litr':'литр';
+  return 'kg';
+}
+
+var I={
+ uz:{cat:"Kundalik hayot",h1:"Marosim xarajatlari",
+  sub:"Osh, ehson, sunnat yoki iftorlik — mehmonlar soniga qarab mahsulot miqdori va umumiy smetani hisoblang.",
+  lDish:"Marosim taomi",lOtherName:"Taom nomi",lGuests:"Mehmonlar soni",uKishi:"kishi",
+  hGuests:"Miqdorlar mehmonlar soniga qarab avtomatik hisoblanadi. Har qatordagi miqdorni o'zingiz o'zgartirishingiz mumkin.",
+  btnCalc:"Hisoblash",rTag:"Marosim smetasi",
+  lblMain:"Umumiy xarajat",lblNoPrice:"Xarid ro'yxati tayyor",
+  ppFmt:"Bir kishiga: {p} so'm",totLbl:"Jami xarajat",
+  secDish:"Asosiy taom",secSalad:"Salatlar",secDrink:"Ichimliklar",secFruit:"Meva va shirinlik",
+  secBread:"Non mahsulotlari",secDisp:"Bir martalik idishlar",secRent:"Prokat jihozlari",
+  secServ:"Xizmatlar",secCustom:"Qo'shimcha xarajatlar",
+  colName:"Nomi",colQty:"Miqdor",colPrice:"Narxi",
+  addName:"Nomi",addPrice:"Summa",addBtn:"Qo'shish",
+  noteTxt:"Miqdorlar o'rtacha me'yorlar asosida. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Real ehtiyoj mehmonlar ishtahasi va taom tayyorlash uslubiga qarab farq qiladi.",
+  btnShare:"Ulashish",copied:"Nusxalandi",
+  foot:"Hisob taxminiy. Miqdorlarni oshpaz bilan maslahatlashib aniqlashtiring.",
+  seo:'<h2>Marosim uchun qancha mahsulot kerak?</h2><p>Mehmonlar sonini kiriting va taom turini tanlang — kalkulyator guruch, go\'sht, sabzi, piyoz va boshqa mahsulotlarning kerakli miqdorini hisoblab beradi. Masalan 100 kishilik oshga taxminan 15 kg guruch, 15 kg go\'sht va 15 kg sabzi ketadi. Miqdorlar o\'rtacha me\'yorlarga asoslangan, har qatorni o\'zingiz o\'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Mahsulot narxlari hudud va mavsumga qarab keskin farq qiladi: Toshkentdagi go\'sht narxi viloyatdagidan boshqacha, qishda sabzavot qimmatroq. Shuning uchun kalkulyator hech qanday narxni o\'zi belgilamaydi — siz o\'z bozoringizdagi narxni kiritasiz va aniq smeta olasiz. Narx kiritmasangiz ham xarid ro\'yxati baribir chiqadi.</p><h2>Qaysi marosimlar uchun mos?</h2><p>Osh, ehson, sunnat to\'yi, xudoyi, iftorlik, choy dasturxoni — mehmon kutiladigan har qanday tadbir uchun. Taom turini almashtirsangiz (sho\'rva, qozon kabob, manti, norin, lag\'mon, mastava), ingredientlar ro\'yxati ham avtomatik o\'zgaradi.</p><h2>Prokat va xizmatlar ham kiradimi?</h2><p>Ha. Stol, stul, qozon, o\'choq, samovar kabi prokat jihozlarini va oshpaz, ofitsiant, fotograf kabi xizmatlarni belgilab, narxini kiritishingiz mumkin. Mehmonlar soniga qarab taxminiy miqdor avtomatik taklif qilinadi — masalan har 8 mehmonga 1 stol, har 25 mehmonga 1 ofitsiant.</p><h2>Natijani saqlab qo\'ysa bo\'ladimi?</h2><p>Ha, natijani PDF sifatida yuklab olishingiz yoki havolasini ulashishingiz mumkin. Havolada kiritgan ma\'lumotlaringiz saqlanadi, ya\'ni oilangiz yoki oshpaz bilan bo\'lishsangiz, ular xuddi shu hisobni ko\'radi.</p>'},
+ ru:{cat:"Жизнь",h1:"Расходы на мероприятие",
+  sub:"Плов, поминки, суннат или ифтар — рассчитайте количество продуктов и общую смету по числу гостей.",
+  lDish:"Блюдо мероприятия",lOtherName:"Название блюда",lGuests:"Число гостей",uKishi:"чел.",
+  hGuests:"Количества считаются автоматически по числу гостей. Любое количество можно изменить вручную.",
+  btnCalc:"Рассчитать",rTag:"Смета мероприятия",
+  lblMain:"Общий расход",lblNoPrice:"Список покупок готов",
+  ppFmt:"На одного: {p} сум",totLbl:"Итого расход",
+  secDish:"Основное блюдо",secSalad:"Салаты",secDrink:"Напитки",secFruit:"Фрукты и сладости",
+  secBread:"Хлебные изделия",secDisp:"Одноразовая посуда",secRent:"Прокат оборудования",
+  secServ:"Услуги",secCustom:"Дополнительные расходы",
+  colName:"Название",colQty:"Кол-во",colPrice:"Цена",
+  addName:"Название",addPrice:"Сумма",addBtn:"Добавить",
+  noteTxt:"Количества основаны на средних нормах. Цены вводите сами — калькулятор не устанавливает никаких цен. Реальная потребность зависит от аппетита гостей и способа приготовления.",
+  btnShare:"Поделиться",copied:"Скопировано",
+  foot:"Расчёт примерный. Уточните количества с поваром.",
+  seo:'<h2>Сколько продуктов нужно на мероприятие?</h2><p>Введите число гостей и выберите блюдо — калькулятор посчитает нужное количество риса, мяса, моркови, лука и других продуктов. Например, на плов для 100 человек уходит примерно 15 кг риса, 15 кг мяса и 15 кг моркови. Количества основаны на средних нормах, каждую строку можно изменить.</p><h2>Почему цены не указаны заранее?</h2><p>Цены на продукты сильно различаются по регионам и сезонам: мясо в Ташкенте стоит иначе, чем в области, зимой овощи дороже. Поэтому калькулятор не задаёт цены — вы вводите цены своего рынка и получаете точную смету. Даже без цен список покупок всё равно формируется.</p><h2>Для каких мероприятий подходит?</h2><p>Плов, поминки, суннат-той, худойи, ифтар, чайный стол — для любого мероприятия с гостями. При смене блюда (шурпа, казан-кабоб, манты, норин, лагман, мастава) список ингредиентов меняется автоматически.</p><h2>Прокат и услуги учитываются?</h2><p>Да. Можно отметить прокат — столы, стулья, казан, очаг, самовар — и услуги: повар, официант, фотограф, и ввести их цену. Количество предлагается автоматически по числу гостей: например, 1 стол на 8 гостей, 1 официант на 25 гостей.</p><h2>Можно ли сохранить результат?</h2><p>Да, результат можно скачать в PDF или поделиться ссылкой. В ссылке сохраняются введённые данные, то есть семья или повар увидят точно такой же расчёт.</p>'}
+};
+
+// ---- UI qurish ----
+function itemRow(it, checked, qv){
+  return '<div class="irow"><input type="checkbox" id="c_'+it.id+'"'+(checked?' checked':'')+'>'
+   +'<span class="nm" data-nm="'+it.id+'"></span>'
+   +'<input type="text" class="q" id="q_'+it.id+'" inputmode="decimal" value="'+qv+'">'
+   +'<span class="u" data-u="'+it.id+'"></span>'
+   +'<input type="text" class="p" id="p_'+it.id+'" inputmode="numeric" placeholder="0">'
+   +'</div>';
+}
+function head(){
+  return '<div class="rowhead"><span></span><span>'+t('colName')+'</span><span>'+t('colQty')+'</span><span></span><span>'+t('colPrice')+'</span></div>';
+}
+function section(key,title,inner,open){
+  return '<details'+(open?' open':'')+'><summary>'+title+'</summary><div class="sec-body">'+inner+'</div></details>';
+}
+function buildSections(){
+  var g=num($('guests').value)||0, d=$('dish').value, h='';
+  // asosiy taom
+  var dishIng=DB.DISHES[d].ing, s='';
+  if(dishIng.length){ s=head(); for(var i=0;i<dishIng.length;i++){var x=dishIng[i];s+=itemRow(x,true,qty(x.per*g,x.u));} }
+  h+=section('dish',t('secDish'),s||'<p class="hint">'+t('hGuests')+'</p>',true);
+  // salatlar
+  s='';
+  for(var j=0;j<DB.SALADS.length;j++){
+    var sal=DB.SALADS[j];
+    s+='<div style="margin-bottom:6px"><label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:4px">'
+      +'<input type="checkbox" id="sal_'+sal.id+'" style="width:19px;height:19px;accent-color:var(--cat)"><span data-salnm="'+sal.id+'"></span></label>'
+      +'<div id="salbox_'+sal.id+'" style="display:none;padding-left:8px">';
+    for(var k=0;k<sal.ing.length;k++){var y=sal.ing[k];s+=itemRow(y,true,qty(y.per*g,y.u));}
+    s+='</div></div>';
+  }
+  h+=section('salad',t('secSalad'),s);
+  // ichimlik, meva, non, idish
+  var groups=[['drink',t('secDrink'),DB.DRINKS],['fruit',t('secFruit'),DB.FRUITS],
+              ['bread',t('secBread'),DB.BREAD],['disp',t('secDisp'),DB.DISPOSABLE]];
+  for(var m=0;m<groups.length;m++){
+    var arr=groups[m][2]; s=head();
+    for(var n=0;n<arr.length;n++){var z=arr[n];s+=itemRow(z,n<3,qty(z.per*g,z.u));}
+    h+=section(groups[m][0],groups[m][1],s);
+  }
+  // prokat va xizmatlar
+  var rg=[['rent',t('secRent'),DB.RENTALS],['serv',t('secServ'),DB.SERVICES]];
+  for(var p=0;p<rg.length;p++){
+    var arr2=rg[p][2]; s=head();
+    for(var q=0;q<arr2.length;q++){
+      var r=arr2[q];
+      var cnt=r.fixed?1:Math.max(1,Math.ceil(g/r.each));
+      s+='<div class="irow"><input type="checkbox" id="c_'+r.id+'">'
+        +'<span class="nm" data-nm="'+r.id+'"></span>'
+        +'<input type="text" class="q" id="q_'+r.id+'" inputmode="numeric" value="'+cnt+'">'
+        +'<span class="u">'+(lang==='uz'?'dona':'шт')+'</span>'
+        +'<input type="text" class="p" id="p_'+r.id+'" inputmode="numeric" placeholder="0"></div>';
+    }
+    h+=section(rg[p][0],rg[p][1],s);
+  }
+  // qo'shimcha
+  h+=section('cust',t('secCustom'),
+     '<div id="custList"></div><div class="addrow"><input type="text" id="custName" placeholder="'+t('addName')+'">'
+     +'<input type="text" id="custPrice" inputmode="numeric" placeholder="'+t('addPrice')+'" style="max-width:110px">'
+     +'<button type="button" id="custAdd">'+t('addBtn')+'</button></div>');
+  $('sections').innerHTML=h;
+  wireRows();
+  applyNames();
+  renderCustom();
+}
+function wireRows(){
+  var qs=document.querySelectorAll('.q');
+  for(var i=0;i<qs.length;i++){qs[i].addEventListener('input',function(){this.setAttribute('data-dirty','1')})}
+  var ps=document.querySelectorAll('.p');
+  for(var j=0;j<ps.length;j++){
+    ps[j].addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+    });
+  }
+  for(var k=0;k<DB.SALADS.length;k++){
+    (function(id){
+      var cb=$('sal_'+id);
+      if(cb)cb.addEventListener('change',function(){
+        var b=$('salbox_'+id); if(b)b.style.display=this.checked?'block':'none';
+      });
+    })(DB.SALADS[k].id);
+  }
+  var ca=$('custAdd');
+  if(ca)ca.onclick=function(){
+    var n=$('custName').value.trim(), p=num($('custPrice').value);
+    if(!n)return;
+    customItems.push({n:n,p:p});
+    $('custName').value=''; $('custPrice').value='';
+    renderCustom();
+  };
+}
+function renderCustom(){
+  var box=$('custList'); if(!box)return;
+  var h='';
+  for(var i=0;i<customItems.length;i++){
+    h+='<div class="custrow"><span class="cn">'+customItems[i].n+'</span>'
+      +'<span class="cv">'+fmt(customItems[i].p)+' '+som()+'</span>'
+      +'<button type="button" class="del" data-ci="'+i+'">x</button></div>';
+  }
+  box.innerHTML=h;
+  var dels=box.querySelectorAll('.del');
+  for(var j=0;j<dels.length;j++){
+    dels[j].onclick=function(){customItems.splice(parseInt(this.getAttribute('data-ci'),10),1);renderCustom()};
+  }
+}
+function applyNames(){
+  var all=[].concat(DB.DRINKS,DB.FRUITS,DB.BREAD,DB.DISPOSABLE,DB.RENTALS,DB.SERVICES,DB.DISHES[$('dish').value].ing);
+  for(var i=0;i<DB.SALADS.length;i++)all=all.concat(DB.SALADS[i].ing);
+  for(var j=0;j<all.length;j++){
+    var el=document.querySelector('[data-nm="'+all[j].id+'"]');
+    if(el)el.textContent=all[j][lang];
+    var ue=document.querySelector('[data-u="'+all[j].id+'"]');
+    if(ue)ue.textContent=unitLabel(all[j].u);
+  }
+  for(var k=0;k<DB.SALADS.length;k++){
+    var se=document.querySelector('[data-salnm="'+DB.SALADS[k].id+'"]');
+    if(se)se.textContent=DB.SALADS[k][lang];
+  }
+}
+function refreshQty(){
+  var g=num($('guests').value)||0, d=$('dish').value;
+  var all=[].concat(DB.DRINKS,DB.FRUITS,DB.BREAD,DB.DISPOSABLE,DB.DISHES[d].ing);
+  for(var i=0;i<DB.SALADS.length;i++)all=all.concat(DB.SALADS[i].ing);
+  for(var j=0;j<all.length;j++){
+    var el=$('q_'+all[j].id);
+    if(el&&el.getAttribute('data-dirty')!=='1')el.value=qty(all[j].per*g,all[j].u);
+  }
+  var rs=[].concat(DB.RENTALS,DB.SERVICES);
+  for(var k=0;k<rs.length;k++){
+    var e2=$('q_'+rs[k].id);
+    if(e2&&e2.getAttribute('data-dirty')!=='1')e2.value=rs[k].fixed?1:Math.max(1,Math.ceil(g/rs[k].each));
+  }
+}
+// ---- hisoblash ----
+function collect(arr,groupKey,groupName){
+  var out=[], total=0;
+  for(var i=0;i<arr.length;i++){
+    var it=arr[i], cb=$('c_'+it.id);
+    if(!cb||!cb.checked)continue;
+    var q=num($('q_'+it.id).value), p=num($('p_'+it.id).value);
+    if(!q)continue;
+    var cost=q*p;
+    total+=cost;
+    out.push({n:it[lang],q:q,u:it.u?unitLabel(it.u):(lang==='uz'?'dona':'шт'),cost:cost});
+  }
+  return {key:groupKey,name:groupName,items:out,total:total};
+}
+function calc(){
+  var g=num($('guests').value);
+  if(!g){$('receipt').classList.remove('show');return}
+  var groups=[];
+  groups.push(collect(DB.DISHES[$('dish').value].ing,'dish',t('secDish')));
+  var salIng=[];
+  for(var i=0;i<DB.SALADS.length;i++){
+    var cb=$('sal_'+DB.SALADS[i].id);
+    if(cb&&cb.checked)salIng=salIng.concat(DB.SALADS[i].ing);
+  }
+  groups.push(collect(salIng,'salad',t('secSalad')));
+  groups.push(collect(DB.DRINKS,'drink',t('secDrink')));
+  groups.push(collect(DB.FRUITS,'fruit',t('secFruit')));
+  groups.push(collect(DB.BREAD,'bread',t('secBread')));
+  groups.push(collect(DB.DISPOSABLE,'disp',t('secDisp')));
+  groups.push(collect(DB.RENTALS,'rent',t('secRent')));
+  groups.push(collect(DB.SERVICES,'serv',t('secServ')));
+  var custTotal=0, custList=[];
+  for(var j=0;j<customItems.length;j++){custTotal+=customItems[j].p;custList.push({n:customItems[j].n,q:0,u:'',cost:customItems[j].p})}
+  if(custList.length)groups.push({key:'cust',name:t('secCustom'),items:custList,total:custTotal});
+  var grand=0;
+  for(var k=0;k<groups.length;k++)grand+=groups[k].total;
+  calcData={guests:g,groups:groups,grand:grand,dish:$('dish').value,
+            dishName:($('dish').value==='boshqa'&&$('otherName').value)?$('otherName').value:DB.DISHES[$('dish').value][lang]};
+  render();
+  $('receipt').classList.add('show');
+}
+function render(){
+  var d=calcData, sum=' '+som();
+  if(d.grand>0){
+    $('mainNum').textContent=fmt(d.grand)+sum;
+    $('mainLbl').textContent=t('lblMain');
+    $('perPerson').style.display='inline-block';
+    $('perPerson').textContent=t('ppFmt').replace('{p}',fmt(d.grand/d.guests));
+  }else{
+    $('mainNum').textContent=d.guests+' '+t('uKishi');
+    $('mainLbl').textContent=t('lblNoPrice');
+    $('perPerson').style.display='none';
+  }
+  var h='';
+  for(var i=0;i<d.groups.length;i++){
+    var gr=d.groups[i];
+    if(!gr.items.length)continue;
+    h+='<div class="grp"><h3>'+gr.name+'</h3>';
+    for(var j=0;j<gr.items.length;j++){
+      var it=gr.items[j];
+      var right = it.q ? (it.q+' <small>'+it.u+'</small>') : '';
+      if(it.cost>0)right+= (right?' &middot; ':'')+'<small>'+fmt(it.cost)+sum+'</small>';
+      h+='<div class="lrow"><span class="lk">'+it.n+'</span><span class="lq">'+right+'</span></div>';
+    }
+    if(gr.total>0)h+='<div class="gtot"><span>'+(lang==='uz'?'Bo\'lim jami':'Итого раздел')+'</span><span>'+fmt(gr.total)+sum+'</span></div>';
+    h+='</div>';
+  }
+  $('listOut').innerHTML=h;
+  $('grandTotal').textContent=d.grand>0?fmt(d.grand)+sum:'-';
+}
+// ---- til ----
+function fillDishSelect(){
+  var sel=$('dish'), cur=sel.value, h='';
+  for(var k in DB.DISHES){h+='<option value="'+k+'"'+(cur===k?' selected':'')+'>'+DB.DISHES[k][lang]+'</option>'}
+  sel.innerHTML=h;
+  if(cur)sel.value=cur;
+}
+function applyLang(){
+  document.documentElement.lang=lang;
+  var els=document.querySelectorAll('[data-i]');
+  for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+  $('seoBlock').innerHTML=t('seo');
+  fillDishSelect();
+  buildSections();
+  $('langUz').classList.toggle('on',lang==='uz');
+  (function(){
+    var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+    var _t=document.getElementById('relTitle');
+    if(_t)_t.textContent=_rt[lang]||_rt.uz;
+    var _rl=document.querySelectorAll('[data-rel-uz]');
+    for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+  })();
+  $('langRu').classList.toggle('on',lang==='ru');
+  if(calcData)calc();
+}
+$('guests').addEventListener('input',function(){
+  var v=this.value.replace(/[^\d]/g,'');
+  this.value=v;
+  refreshQty();
+});
+$('dish').addEventListener('change',function(){
+  $('otherNameWrap').style.display=this.value==='boshqa'?'block':'none';
+  buildSections();
+});
+$('calcBtn').onclick=calc;
+$('shareBtn').onclick=function(){
+  if(!calcData)return;
+  var txt=t('h1')+': '+calcData.dishName+', '+calcData.guests+' '+t('uKishi')
+    +(calcData.grand>0?' — '+fmt(calcData.grand)+' '+som():'');
+  var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+  var b=this;
+  if(navigator.share){navigator.share({title:t('h1'),text:txt,url:url}).catch(function(){})}
+  else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+url);b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+};
+$('langUz').onclick=function(){lang='uz';applyLang()};
+$('langRu').onclick=function(){lang='ru';applyLang()};
+applyLang();
+})();
+</script>
+
+
+
+
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate"></div>
+</div>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-mat],.seg button.on[data-roof],.seg button.on[data-region],.seg button.on[data-loc],.seg button.on[data-an],.seg button.on[data-slope],[data-loc].on');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">\u203A</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">\u203A</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='LifestyleApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+</body></html>

@@ -1,4 +1,4 @@
-// Google Analytics 4 — ID'ni pastdagi qatorga yozing va push qiling.
+// Google Analytics 4 — kalki.uz
 // GA hisobini oching: analytics.google.com -> Admin -> Create Property -> Web -> kalki.uz
 // "Measurement ID" (G- bilan boshlanadi) ni oling va shu yerga qo'ying:
 var GA_ID = 'G-J4CG1EZTEW';
