@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Maktabga tayyorgarlik kalkulyatori — o'quv yili xarajatlari</title>
-<meta name="description" content="Maktabga tayyorgarlik kalkulyatori: forma, poyabzal, daftar, kitob va to'lovlar. Sinfga qarab tavsiya etilgan ro'yxat, umumiy smeta va xarid ro'yxati. Калькулятор подготовки к школе.">
+<meta name="description" content="Maktabga tayyorgarlik kalkulyatori: sinfni tanlang — kerakli ro'yxat va taxminiy xarajat chiqadi. Forma, daftar, kitob va to'lovlar. Калькулятор подготовки к школе.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://kalki.uz/maktab-kalkulyator">
 <link rel="manifest" href="manifest.json">
@@ -15,7 +15,7 @@ body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452C4C;--accent:#C89BD4;--cat-s
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
-.wrap{max-width:620px;margin:0 auto;padding:0 16px 48px}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 48px}
 header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
 header .wrap{padding-bottom:0}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
@@ -28,26 +28,29 @@ header .wrap{padding-bottom:0}
 .cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:44ch}
-.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px 20px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10)}
-.field{margin-bottom:14px}
-label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 15px 18px;margin-top:14px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.step{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.field{margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
 .input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
 .input-shell:focus-within{border-color:var(--cat)}
 input[type=text],select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:11px 12px;min-width:0}
 select{-webkit-appearance:none;appearance:none;cursor:pointer}
 .unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
 .hint{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
-.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:10px 4px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:9px 4px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .seg button.on{background:var(--cat);color:#fff}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;-webkit-overflow-scrolling:touch}
-.tabs button{border:1.5px solid var(--line);background:#fff;font:inherit;font-size:13.5px;font-weight:800;color:var(--muted);padding:9px 14px;border-radius:99px;cursor:pointer;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;-webkit-overflow-scrolling:touch}
+.tabs button{border:1.5px solid var(--line);background:#fff;font:inherit;font-size:13px;font-weight:800;color:var(--muted);padding:8px 13px;border-radius:99px;cursor:pointer;white-space:nowrap}
 .tabs button.on{background:var(--cat);color:#fff;border-color:var(--cat)}
 .tabs .addch{border-style:dashed;color:var(--cat)}
-.prog{margin:14px 0 4px}
-.prog .bar{height:9px;background:#EEF2EF;border-radius:99px;overflow:hidden}
-.prog .fill{height:100%;background:var(--cat);border-radius:99px;transition:width .3s}
-.prog .lb{font-size:12px;font-weight:700;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between}
+.qrow{display:grid;grid-template-columns:1fr 118px;gap:9px;align-items:center;padding:8px 0;border-bottom:1px solid #F2F5F3}
+.qrow:last-child{border-bottom:0}
+.qrow .ql{font-size:13.5px;font-weight:700}
+.qrow .qs{font-size:11.5px;color:var(--muted);font-weight:600;display:block;margin-top:1px}
+.qrow input{border:1.5px solid var(--line);border-radius:8px;padding:9px 8px;font:inherit;font-size:14px;font-weight:700;text-align:right;background:#FFFDF7;width:100%;min-width:0}
 details{border:1.5px solid var(--line);border-radius:12px;margin-bottom:9px;background:#FBFCFB;overflow:hidden}
 details[open]{background:var(--card)}
 summary{padding:12px 13px;font-size:14px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
@@ -56,13 +59,13 @@ summary .cnt{font-size:11.5px;font-weight:800;color:var(--accent);background:var
 summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
 details[open] summary::after{content:"\2212"}
 .sec-body{padding:2px 11px 11px}
-.irow{display:grid;grid-template-columns:21px 1fr 56px 82px;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid #F2F5F3}
+.irow{display:grid;grid-template-columns:21px 1fr 52px 80px;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid #F2F5F3}
 .irow:last-child{border-bottom:0}
 .irow input[type=checkbox]{width:19px;height:19px;accent-color:var(--cat)}
 .irow .nm{font-size:13px;font-weight:700;line-height:1.25;min-width:0;overflow-wrap:anywhere}
 .irow .q,.irow .p{border:1px solid var(--line);border-radius:7px;padding:7px 3px;font:inherit;font-size:13px;font-weight:700;text-align:center;background:#fff;min-width:0;width:100%}
 .irow .p{background:#FFFDF7}
-.rowhead{display:grid;grid-template-columns:21px 1fr 56px 82px;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-bottom:6px;border-bottom:1.5px solid var(--line);margin-bottom:2px}
+.rowhead{display:grid;grid-template-columns:21px 1fr 52px 80px;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-bottom:6px;border-bottom:1.5px solid var(--line);margin-bottom:2px}
 .rowhead span:nth-child(3),.rowhead span:nth-child(4){text-align:center}
 .addrow{display:flex;gap:6px;margin-top:10px}
 .addrow input{flex:1;border:1px solid var(--line);border-radius:8px;padding:9px;font:inherit;font-size:13px;font-weight:700;min-width:0}
@@ -71,9 +74,12 @@ details[open] summary::after{content:"\2212"}
 .custrow .cn{flex:1;font-weight:700}
 .custrow .cv{font-weight:800;white-space:nowrap}
 .custrow .del{background:none;border:0;color:#B04A3A;font-size:17px;cursor:pointer;padding:0 4px;line-height:1}
-.calc-btn{width:100%;margin-top:16px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn{width:100%;margin-top:14px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
-.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.listcard{margin-top:14px;background:var(--cat-soft);border:1px solid #E4D5E9;border-radius:12px;padding:14px 15px}
+.listcard .lt{font-size:13.5px;font-weight:800;color:var(--cat-deep);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.listcard .li{font-size:13px;color:#4A3B50;line-height:1.7}
+.receipt{margin-top:22px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
 .receipt.show{display:block}
 .receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 18px 18px}
 .receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
@@ -109,7 +115,6 @@ details[open] summary::after{content:"\2212"}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 </style>
-<link rel="manifest" href="manifest.json">
 <style id="printcss">
 @media print{
   body *{visibility:hidden!important}
@@ -143,7 +148,7 @@ img,svg{height:auto}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:image" content="https://kalki.uz/og-image.png">
 <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
-<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Maktabga tayyorgarlik qancha turadi?","acceptedAnswer":{"@type":"Answer","text":"Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog'liq. Bu kalkulyator forma, poyabzal, sumka, daftar-qalam, kitob va maktab to'lovlarini bir joyda yig'ib, umumiy smetani chiqaradi. Har bir farzand alohida hisoblanadi, natijada esa ham umumiy, ham har bola bo'yicha summa ko'rinadi."}},{"@type":"Question","name":"Sinfga qarab tavsiya qanday ishlaydi?","acceptedAnswer":{"@type":"Answer","text":"Sinfni tanlaganingizda kalkulyator o'sha yoshdagi bolaga odatda kerak bo'ladigan miqdorni o'zi taklif qiladi. Masalan 1-sinf uchun ko'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko'proq daftar, sirkul, transportir va kalkulyator tavsiya etiladi. Bu majburiy ro'yxat emas — istagan bandni olib tashlashingiz yoki miqdorini o'zgartirishingiz mumkin."}},{"@type":"Question","name":"Nega narxlar oldindan yozilmagan?","acceptedAnswer":{"@type":"Answer","text":"Maktab buyumlarining narxi bozor, do'kon va hududga qarab keskin farq qiladi, avgust oyida esa talab oshib narx ko'tariladi. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z do'koningizdagi narxni kiritasiz. Narx kiritmasangiz ham xarid ro'yxati baribir tayyor bo'ladi."}},{"@type":"Question","name":"Oylarga bo'lib yig'sa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig'ish kerakligini ko'rsatadi. Bir yo'la katta summa topish o'rniga oldindan bo'lib yig'ish oila byudjetiga ancha yengil."}},{"@type":"Question","name":"Xarid ro'yxatini do'konga olib borsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Natijadan keyin belgilanadigan xarid ro'yxati chiqadi — telefoningizda do'kon aylanib, olgan narsangizni belgilab borasiz. Ro'yxat brauzeringizda saqlanadi, sahifani yopib qayta ochsangiz ham yo'qolmaydi. Natijani PDF yoki Excel (CSV) sifatida ham yuklab olishingiz mumkin."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Maktabga tayyorgarlik","item":"https://kalki.uz/maktab-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Maktabga tayyorgarlik","description":"Maktabga tayyorgarlik kalkulyatori: forma, poyabzal, daftar, kitob va to'lovlar. Sinfga qarab tavsiya etilgan ro'yxat, umumiy smeta va xarid ro'yxati. Калькулятор подготовки к школе.","url":"https://kalki.uz/maktab-kalkulyator","applicationCategory":"EducationApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Maktabga tayyorgarlik qancha turadi?","acceptedAnswer":{"@type":"Answer","text":"Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog'liq. Bu kalkulyator ikki xil ishlaydi: tez hisobda 5 ta maydonni to'ldirasiz va darhol natija olasiz, batafsil rejimda esa har bir band bo'yicha aniq hisoblaysiz. Ikkalasida ham sinfga qarab kerakli ro'yxat avtomatik tavsiya qilinadi."}},{"@type":"Question","name":"Sinfga qarab tavsiya qanday ishlaydi?","acceptedAnswer":{"@type":"Answer","text":"Sinfni tanlaganingizda kalkulyator o'sha yoshdagi bolaga odatda kerak bo'ladigan ro'yxatni darrov ko'rsatadi — narx kiritish ham shart emas. Masalan 1-sinf uchun ko'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko'proq daftar, sirkul, transportir va kalkulyator. Bu majburiy ro'yxat emas, batafsil rejimda istagan bandni o'zgartirishingiz mumkin."}},{"@type":"Question","name":"Nega narxlar oldindan yozilmagan?","acceptedAnswer":{"@type":"Answer","text":"Maktab buyumlarining narxi bozor, do'kon va hududga qarab keskin farq qiladi, avgustda esa talab oshib narx ko'tariladi. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z do'koningizdagi narxni kiritasiz."}},{"@type":"Question","name":"Oylarga bo'lib yig'sa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig'ish kerakligini ko'rsatadi. Bir yo'la katta summa topish o'rniga oldindan bo'lib yig'ish oila byudjetiga ancha yengil."}},{"@type":"Question","name":"Bir necha farzandni birdan hisoblasa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, \"+ Farzand\" tugmasi orqali qo'shasiz. Har bir farzand o'z sinfi bo'yicha alohida hisoblanadi, natijada esa ham umumiy summa, ham har bola bo'yicha summa ko'rinadi. Xarid ro'yxati va natijani PDF yoki Excel (CSV) sifatida yuklab olish mumkin."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Maktabga tayyorgarlik","item":"https://kalki.uz/maktab-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Maktabga tayyorgarlik","description":"Maktabga tayyorgarlik kalkulyatori: sinfni tanlang — kerakli ro'yxat va taxminiy xarajat chiqadi. Forma, daftar, kitob va to'lovlar. Калькулятор подготовки к школе.","url":"https://kalki.uz/maktab-kalkulyator","applicationCategory":"EducationApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
 <body data-cat="hayot">
 <div id="topmenu" style="background:#0B120E;overflow-x:auto;-webkit-overflow-scrolling:touch"><div style="max-width:560px;margin:0 auto;display:flex;gap:4px;padding:9px 14px"><a href="./" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">🏠 Asosiy</a><a href="./#cat-moliya" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Moliya</a><a href="./#cat-qurilish" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Qurilish</a><a href="./#cat-kommunal" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Kommunal</a><a href="./#cat-hayot" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">Hayotiy</a><a href="shablonlar" style="color:#CBD5CE;font-size:13px;font-weight:800;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap">📄 Shablonlar</a></div></div>
 <header>
@@ -154,42 +159,53 @@ img,svg{height:auto}
     </div>
     <span class="cat-badge" data-i="cat">Kundalik hayot</span>
     <h1 data-i="h1">Maktabga tayyorgarlik</h1>
-    <p class="sub" data-i="sub">Forma, daftar, kitob va to'lovlar — sinfga qarab tavsiya bilan, bir necha farzand uchun birdan hisoblang.</p>
+    <p class="sub" data-i="sub">Sinfni tanlang — kerakli ro'yxat darrov chiqadi. Xarajatni tez yoki batafsil hisoblang.</p>
   </div>
 </header>
 
 <main class="wrap">
   <nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-hayot">Kundalik hayot</a><span class="sep">›</span><span class="cur">Maktabga tayyorgarlik</span></nav>
-  <section class="form-card">
+
+  <section class="card">
+    <div class="step" data-i="step1">1-qadam — Farzand</div>
     <div class="tabs" id="tabs"><button type="button" class="on" data-tab="0">1-farzand</button><button type="button" class="addch" id="addChild">+ Farzand</button></div>
-    <div class="field">
-      <label data-i="lGrade">Sinf</label>
-      <div class="input-shell"><select id="grade"><option value="1" selected="">1-sinf</option><option value="2">2-sinf</option><option value="3">3-sinf</option><option value="4">4-sinf</option><option value="5">5-sinf</option><option value="6">6-sinf</option><option value="7">7-sinf</option><option value="8">8-sinf</option><option value="9">9-sinf</option><option value="10">10-sinf</option><option value="11">11-sinf</option></select></div>
+    <div class="row2">
+      <div class="field"><label data-i="lGrade">Sinf</label>
+        <div class="input-shell"><select id="grade"><option value="1" selected="">1-sinf</option><option value="2">2-sinf</option><option value="3">3-sinf</option><option value="4">4-sinf</option><option value="5">5-sinf</option><option value="6">6-sinf</option><option value="7">7-sinf</option><option value="8">8-sinf</option><option value="9">9-sinf</option><option value="10">10-sinf</option><option value="11">11-sinf</option></select></div></div>
+      <div class="field"><label data-i="lGender">Jinsi</label>
+        <div class="seg" id="genderSeg">
+          <button type="button" data-gender="m" data-i="gBoy" class="on">O'g'il</button>
+          <button type="button" data-gender="f" data-i="gGirl">Qiz</button>
+        </div></div>
     </div>
-    <div class="field">
-      <label data-i="lGender">Jinsi</label>
-      <div class="seg" id="genderSeg">
-        <button type="button" data-gender="m" data-i="gBoy" class="on">O'g'il</button>
-        <button type="button" data-gender="f" data-i="gGirl">Qiz</button>
-      </div>
-    </div>
-    <div class="field">
-      <label data-i="lSchool">Maktab turi</label>
+    <div class="field" style="margin-bottom:0"><label data-i="lSchool">Maktab turi</label>
       <div class="seg" id="schoolSeg">
         <button type="button" data-school="davlat" data-i="scState" class="on">Davlat</button>
         <button type="button" data-school="xususiy" data-i="scPriv">Xususiy</button>
-      </div>
-      <p class="hint" data-i="hRec">Sinf va jinsni tanlaganingizda miqdorlar avtomatik tavsiya qilinadi. Har qatorni o'zingiz o'zgartirishingiz mumkin.</p>
+      </div></div>
+    <div class="listcard">
+      <div class="lt"><span>📋</span><span data-i="recTitle">Shu sinf uchun tavsiya etiladi</span></div>
+      <div class="li" id="recPreview">2 shim, 3 ko'ylak, 1 kostyum, 1 galstuk, 1 kamar, 1 sviter, 1 kurtka, 1 sport formasi, 1 kepka, 1 kundalik tufli, 1 sport oyoq kiyimi, 1 qishki etik, 1 tapochka, 1 ryukzak, 1 penal, 1 tushlik qutisi, 1 suv idishi, 1 yomg'ir qoplamasi, 20 katak daftar, 10 chiziqli daftar, 5 ruchka, 10 qalam, 3 o'chirg'ich, 2 chizg'ich, 1 rangli qalam, 1 flomaster, 1 guash, 1 akvarel, 2 plastilin, 3 albom, 2 yelim, 1 qaychi, 20 fayl, 2 papka, 20 muqova, 1 kundalik, 1 darsliklar, 1 ish daftarlari</div>
     </div>
-    <div class="prog">
-      <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
-      <div class="lb"><span data-i="progLbl">To'ldirilgan bo'limlar</span><span id="progPct">0%</span></div>
+  </section>
+
+  <section class="card">
+    <div class="step" data-i="step2">2-qadam — Xarajat</div>
+    <div class="seg" id="modeSeg" style="margin-bottom:12px">
+      <button type="button" data-mode="tez" data-i="mTez" class="on">Tez hisob</button>
+      <button type="button" data-mode="batafsil" data-i="mBatafsil">Batafsil</button>
     </div>
-    <div id="sections"><details><summary>Maktab formasi<span class="cnt">9</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="f_shim" checked=""><span class="nm">Shim</span><input type="text" class="q" data-q="f_shim" inputmode="numeric" value="2"><input type="text" class="p" data-p="f_shim" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_koylak" checked=""><span class="nm">Ko'ylak</span><input type="text" class="q" data-q="f_koylak" inputmode="numeric" value="3"><input type="text" class="p" data-p="f_koylak" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_kostyum" checked=""><span class="nm">Kostyum</span><input type="text" class="q" data-q="f_kostyum" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_kostyum" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_galstuk" checked=""><span class="nm">Galstuk</span><input type="text" class="q" data-q="f_galstuk" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_galstuk" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_kamar" checked=""><span class="nm">Kamar</span><input type="text" class="q" data-q="f_kamar" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_kamar" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_sviter" checked=""><span class="nm">Sviter</span><input type="text" class="q" data-q="f_sviter" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_sviter" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_kurtka" checked=""><span class="nm">Kurtka</span><input type="text" class="q" data-q="f_kurtka" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_kurtka" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_sport" checked=""><span class="nm">Sport formasi</span><input type="text" class="q" data-q="f_sport" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_sport" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="f_kepka" checked=""><span class="nm">Kepka</span><input type="text" class="q" data-q="f_kepka" inputmode="numeric" value="1"><input type="text" class="p" data-p="f_kepka" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Poyabzal<span class="cnt">4</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="p_tufli" checked=""><span class="nm">Kundalik tufli</span><input type="text" class="q" data-q="p_tufli" inputmode="numeric" value="1"><input type="text" class="p" data-p="p_tufli" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="p_sport" checked=""><span class="nm">Sport oyoq kiyimi</span><input type="text" class="q" data-q="p_sport" inputmode="numeric" value="1"><input type="text" class="p" data-p="p_sport" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="p_etik" checked=""><span class="nm">Qishki etik</span><input type="text" class="q" data-q="p_etik" inputmode="numeric" value="1"><input type="text" class="p" data-p="p_etik" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="p_tapochka" checked=""><span class="nm">Tapochka</span><input type="text" class="q" data-q="p_tapochka" inputmode="numeric" value="1"><input type="text" class="p" data-p="p_tapochka" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Maktab sumkasi<span class="cnt">5</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="s_ryukzak" checked=""><span class="nm">Ryukzak</span><input type="text" class="q" data-q="s_ryukzak" inputmode="numeric" value="1"><input type="text" class="p" data-p="s_ryukzak" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="s_penal" checked=""><span class="nm">Penal</span><input type="text" class="q" data-q="s_penal" inputmode="numeric" value="1"><input type="text" class="p" data-p="s_penal" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="s_tushlik" checked=""><span class="nm">Tushlik qutisi</span><input type="text" class="q" data-q="s_tushlik" inputmode="numeric" value="1"><input type="text" class="p" data-p="s_tushlik" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="s_suv" checked=""><span class="nm">Suv idishi</span><input type="text" class="q" data-q="s_suv" inputmode="numeric" value="1"><input type="text" class="p" data-p="s_suv" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="s_yomgir" checked=""><span class="nm">Yomg'ir qoplamasi</span><input type="text" class="q" data-q="s_yomgir" inputmode="numeric" value="1"><input type="text" class="p" data-p="s_yomgir" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Daftar va yozuv qurollari<span class="cnt">18</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="k_katak" checked=""><span class="nm">Katak daftar</span><input type="text" class="q" data-q="k_katak" inputmode="numeric" value="20"><input type="text" class="p" data-p="k_katak" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_chiziq" checked=""><span class="nm">Chiziqli daftar</span><input type="text" class="q" data-q="k_chiziq" inputmode="numeric" value="10"><input type="text" class="p" data-p="k_chiziq" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_qalin"><span class="nm">Qalin daftar</span><input type="text" class="q" data-q="k_qalin" inputmode="numeric" value=""><input type="text" class="p" data-p="k_qalin" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_ruchka" checked=""><span class="nm">Ruchka</span><input type="text" class="q" data-q="k_ruchka" inputmode="numeric" value="5"><input type="text" class="p" data-p="k_ruchka" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_qalam" checked=""><span class="nm">Qalam</span><input type="text" class="q" data-q="k_qalam" inputmode="numeric" value="10"><input type="text" class="p" data-p="k_qalam" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_ochirgich" checked=""><span class="nm">O'chirg'ich</span><input type="text" class="q" data-q="k_ochirgich" inputmode="numeric" value="3"><input type="text" class="p" data-p="k_ochirgich" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_chizgich" checked=""><span class="nm">Chizg'ich</span><input type="text" class="q" data-q="k_chizgich" inputmode="numeric" value="2"><input type="text" class="p" data-p="k_chizgich" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_rangli" checked=""><span class="nm">Rangli qalam</span><input type="text" class="q" data-q="k_rangli" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_rangli" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_flomaster" checked=""><span class="nm">Flomaster</span><input type="text" class="q" data-q="k_flomaster" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_flomaster" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_guash" checked=""><span class="nm">Guash</span><input type="text" class="q" data-q="k_guash" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_guash" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_akvarel" checked=""><span class="nm">Akvarel</span><input type="text" class="q" data-q="k_akvarel" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_akvarel" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_plastilin" checked=""><span class="nm">Plastilin</span><input type="text" class="q" data-q="k_plastilin" inputmode="numeric" value="2"><input type="text" class="p" data-p="k_plastilin" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_albom" checked=""><span class="nm">Albom</span><input type="text" class="q" data-q="k_albom" inputmode="numeric" value="3"><input type="text" class="p" data-p="k_albom" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_yelim" checked=""><span class="nm">Yelim</span><input type="text" class="q" data-q="k_yelim" inputmode="numeric" value="2"><input type="text" class="p" data-p="k_yelim" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_qaychi" checked=""><span class="nm">Qaychi</span><input type="text" class="q" data-q="k_qaychi" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_qaychi" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_fayl" checked=""><span class="nm">Fayl</span><input type="text" class="q" data-q="k_fayl" inputmode="numeric" value="20"><input type="text" class="p" data-p="k_fayl" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_papka" checked=""><span class="nm">Papka</span><input type="text" class="q" data-q="k_papka" inputmode="numeric" value="2"><input type="text" class="p" data-p="k_papka" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_muqova" checked=""><span class="nm">Muqova</span><input type="text" class="q" data-q="k_muqova" inputmode="numeric" value="20"><input type="text" class="p" data-p="k_muqova" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_kundalik" checked=""><span class="nm">Kundalik</span><input type="text" class="q" data-q="k_kundalik" inputmode="numeric" value="1"><input type="text" class="p" data-p="k_kundalik" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_sirkul"><span class="nm">Sirkul</span><input type="text" class="q" data-q="k_sirkul" inputmode="numeric" value=""><input type="text" class="p" data-p="k_sirkul" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="k_transportir"><span class="nm">Transportir</span><input type="text" class="q" data-q="k_transportir" inputmode="numeric" value=""><input type="text" class="p" data-p="k_transportir" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Kitoblar<span class="cnt">2</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="b_darslik" checked=""><span class="nm">Darsliklar</span><input type="text" class="q" data-q="b_darslik" inputmode="numeric" value="1"><input type="text" class="p" data-p="b_darslik" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="b_ishdaftar" checked=""><span class="nm">Ish daftarlari</span><input type="text" class="q" data-q="b_ishdaftar" inputmode="numeric" value="1"><input type="text" class="p" data-p="b_ishdaftar" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="b_qoshimcha"><span class="nm">Qo'shimcha kitoblar</span><input type="text" class="q" data-q="b_qoshimcha" inputmode="numeric" value=""><input type="text" class="p" data-p="b_qoshimcha" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="b_lugat"><span class="nm">Lug'at</span><input type="text" class="q" data-q="b_lugat" inputmode="numeric" value=""><input type="text" class="p" data-p="b_lugat" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="b_atlas"><span class="nm">Atlas</span><input type="text" class="q" data-q="b_atlas" inputmode="numeric" value=""><input type="text" class="p" data-p="b_atlas" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="b_xarita"><span class="nm">Xarita</span><input type="text" class="q" data-q="b_xarita" inputmode="numeric" value=""><input type="text" class="p" data-p="b_xarita" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>To'lovlar<span class="cnt">5</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="t_oquv"><span class="nm">O'quv to'lovi</span><input type="text" class="q" data-q="t_oquv" inputmode="numeric" value=""><input type="text" class="p" data-p="t_oquv" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_sinf" checked=""><span class="nm">Sinf fondi</span><input type="text" class="q" data-q="t_sinf" inputmode="numeric" value="1"><input type="text" class="p" data-p="t_sinf" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_maktab" checked=""><span class="nm">Maktab fondi</span><input type="text" class="q" data-q="t_maktab" inputmode="numeric" value="1"><input type="text" class="p" data-p="t_maktab" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_ovqat" checked=""><span class="nm">Ovqat puli</span><input type="text" class="q" data-q="t_ovqat" inputmode="numeric" value="9"><input type="text" class="p" data-p="t_ovqat" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_transport" checked=""><span class="nm">Transport</span><input type="text" class="q" data-q="t_transport" inputmode="numeric" value="9"><input type="text" class="p" data-p="t_transport" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_togarak" checked=""><span class="nm">To'garaklar</span><input type="text" class="q" data-q="t_togarak" inputmode="numeric" value="9"><input type="text" class="p" data-p="t_togarak" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_repetitor"><span class="nm">Repetitor</span><input type="text" class="q" data-q="t_repetitor" inputmode="numeric" value=""><input type="text" class="p" data-p="t_repetitor" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_internet"><span class="nm">Internet platformasi</span><input type="text" class="q" data-q="t_internet" inputmode="numeric" value=""><input type="text" class="p" data-p="t_internet" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="t_boshqa"><span class="nm">Boshqa to'lov</span><input type="text" class="q" data-q="t_boshqa" inputmode="numeric" value=""><input type="text" class="p" data-p="t_boshqa" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Elektron qurilmalar<span class="cnt">0</span></summary><div class="sec-body"><div class="rowhead"><span></span><span>Nomi</span><span>Miqdor</span><span>Narxi</span></div><div class="irow"><input type="checkbox" data-ck="e_telefon"><span class="nm">Telefon</span><input type="text" class="q" data-q="e_telefon" inputmode="numeric" value=""><input type="text" class="p" data-p="e_telefon" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="e_planshet"><span class="nm">Planshet</span><input type="text" class="q" data-q="e_planshet" inputmode="numeric" value=""><input type="text" class="p" data-p="e_planshet" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="e_noutbuk"><span class="nm">Noutbuk</span><input type="text" class="q" data-q="e_noutbuk" inputmode="numeric" value=""><input type="text" class="p" data-p="e_noutbuk" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="e_printer"><span class="nm">Printer</span><input type="text" class="q" data-q="e_printer" inputmode="numeric" value=""><input type="text" class="p" data-p="e_printer" inputmode="numeric" value="" placeholder="0"></div><div class="irow"><input type="checkbox" data-ck="e_kalkulyator"><span class="nm">Kalkulyator</span><input type="text" class="q" data-q="e_kalkulyator" inputmode="numeric" value=""><input type="text" class="p" data-p="e_kalkulyator" inputmode="numeric" value="" placeholder="0"></div></div></details><details><summary>Qo'shimcha xarajatlar<span class="cnt">0</span></summary><div class="sec-body"><div id="custList"></div><div class="addrow"><input type="text" id="custName" placeholder="Nomi"><input type="text" id="custPrice" inputmode="numeric" placeholder="Summa" style="max-width:100px"><button type="button" id="custAdd">Qo'shish</button></div></div></details></div>
-    <div class="field" style="margin-top:14px">
+    <div id="quickPanel" style="display: block;">
+      <p class="hint" style="margin-top:0;margin-bottom:8px" data-i="hQuick">Har bo'lim uchun taxminiy summani kiriting — 5 ta maydon yetarli.</p>
+      <div id="quickRows"><div class="qrow"><span><span class="ql">Kiyim va poyabzal</span><span class="qs">forma, ko'ylak, tufli, kurtka</span></span><input type="text" data-qk="kiyim" inputmode="numeric" placeholder="0" value=""></div><div class="qrow"><span><span class="ql">Sumka va o'quv qurollari</span><span class="qs">ryukzak, daftar, ruchka, albom</span></span><input type="text" data-qk="sumka" inputmode="numeric" placeholder="0" value=""></div><div class="qrow"><span><span class="ql">Kitoblar</span><span class="qs">darslik, ish daftari, lug'at</span></span><input type="text" data-qk="kitob" inputmode="numeric" placeholder="0" value=""></div><div class="qrow"><span><span class="ql">Maktab to'lovlari</span><span class="qs">ovqat, transport, fond — oyiga</span></span><input type="text" data-qk="tolov" inputmode="numeric" placeholder="0" value=""></div><div class="qrow"><span><span class="ql">Elektronika</span><span class="qs">ixtiyoriy — telefon, planshet</span></span><input type="text" data-qk="elektron" inputmode="numeric" placeholder="0" value=""></div><div class="qrow"><span><span class="ql">Qo'shimcha</span><span class="qs">fotosessiya, ekskursiya, sovg'a</span></span><input type="text" data-qk="boshqa" inputmode="numeric" placeholder="0" value=""></div></div>
+    </div>
+    <div id="detailPanel" style="display:none">
+      <p class="hint" style="margin-top:0;margin-bottom:8px" data-i="hDetail">Har bir band bo'yicha aniq hisob. Miqdorlar sinfga qarab tavsiya qilingan.</p>
+      <div id="sections"></div>
+    </div>
+    <div class="field" style="margin-top:14px;margin-bottom:0">
       <label for="months" data-i="lMonths">Sentyabrgacha necha oy qoldi</label>
       <div class="input-shell"><input type="text" id="months" inputmode="numeric" value="2"><span class="unit" data-i="uOy">oy</span></div>
-      <p class="hint" data-i="hMonths">Xarajatni oylarga bo'lib yig'ish rejasini ko'rsatadi.</p>
     </div>
     <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
   </section>
@@ -210,7 +226,7 @@ img,svg{height:auto}
         <div id="chkOut"></div>
       </div>
       <div class="total-box"><div class="l" data-i="totLbl">Jami xarajat</div><div class="a" id="grandTotal">-</div></div>
-      <div class="note" data-i="noteTxt">Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi, hech qayerga yuborilmaydi.</div>
+      <div class="note" data-i="noteTxt">Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi.</div>
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
         <button type="button" id="csvBtn" data-i="btnCsv">Excel (CSV)</button>
@@ -219,78 +235,101 @@ img,svg{height:auto}
     <div class="receipt-edge"></div>
   </section>
 
-  <section class="seo" id="seoBlock"><h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog'liq. Bu kalkulyator forma, poyabzal, sumka, daftar-qalam, kitob va maktab to'lovlarini bir joyda yig'ib, umumiy smetani chiqaradi. Har bir farzand alohida hisoblanadi, natijada esa ham umumiy, ham har bola bo'yicha summa ko'rinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o'sha yoshdagi bolaga odatda kerak bo'ladigan miqdorni o'zi taklif qiladi. Masalan 1-sinf uchun ko'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko'proq daftar, sirkul, transportir va kalkulyator tavsiya etiladi. Bu majburiy ro'yxat emas — istagan bandni olib tashlashingiz yoki miqdorini o'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do'kon va hududga qarab keskin farq qiladi, avgust oyida esa talab oshib narx ko'tariladi. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z do'koningizdagi narxni kiritasiz. Narx kiritmasangiz ham xarid ro'yxati baribir tayyor bo'ladi.</p><h2>Oylarga bo'lib yig'sa bo'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig'ish kerakligini ko'rsatadi. Bir yo'la katta summa topish o'rniga oldindan bo'lib yig'ish oila byudjetiga ancha yengil.</p><h2>Xarid ro'yxatini do'konga olib borsa bo'ladimi?</h2><p>Ha. Natijadan keyin belgilanadigan xarid ro'yxati chiqadi — telefoningizda do'kon aylanib, olgan narsangizni belgilab borasiz. Ro'yxat brauzeringizda saqlanadi, sahifani yopib qayta ochsangiz ham yo'qolmaydi. Natijani PDF yoki Excel (CSV) sifatida ham yuklab olishingiz mumkin.</p></section>
-  <div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="bola-puli-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👶</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bola puli" data-rel-ru="Детское пособие">Bola puli</span></a><a href="marosim-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🍽️</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Marosim xarajatlari" data-rel-ru="Расходы на мероприятие">Marosim xarajatlari</span></a></div></div>
-  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div>
-  <nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati</a></div></nav>
-  <div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
-  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div>
+<div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="bola-puli-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👶</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bola puli" data-rel-ru="Детское пособие">Bola puli</span></a><a href="marosim-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🍽️</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Marosim xarajatlari" data-rel-ru="Расходы на мероприятие">Marosim xarajatlari</span></a></div></div>
+<div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div>
+<nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot / Qurbonlik</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati</a></div></nav>
+<div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div>
+<div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div>
+  <section class="seo" id="seoBlock"><h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog'liq. Bu kalkulyator ikki xil ishlaydi: tez hisobda 5 ta maydonni to'ldirasiz va darhol natija olasiz, batafsil rejimda esa har bir band bo'yicha aniq hisoblaysiz. Ikkalasida ham sinfga qarab kerakli ro'yxat avtomatik tavsiya qilinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o'sha yoshdagi bolaga odatda kerak bo'ladigan ro'yxatni darrov ko'rsatadi — narx kiritish ham shart emas. Masalan 1-sinf uchun ko'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko'proq daftar, sirkul, transportir va kalkulyator. Bu majburiy ro'yxat emas, batafsil rejimda istagan bandni o'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do'kon va hududga qarab keskin farq qiladi, avgustda esa talab oshib narx ko'tariladi. Shuning uchun kalkulyator hech qanday narxni o'zi belgilamaydi — siz o'z do'koningizdagi narxni kiritasiz.</p><h2>Oylarga bo'lib yig'sa bo'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig'ish kerakligini ko'rsatadi. Bir yo'la katta summa topish o'rniga oldindan bo'lib yig'ish oila byudjetiga ancha yengil.</p><h2>Bir necha farzandni birdan hisoblasa bo'ladimi?</h2><p>Ha, "+ Farzand" tugmasi orqali qo'shasiz. Har bir farzand o'z sinfi bo'yicha alohida hisoblanadi, natijada esa ham umumiy summa, ham har bola bo'yicha summa ko'rinadi. Xarid ro'yxati va natijani PDF yoki Excel (CSV) sifatida yuklab olish mumkin.</p></section>
   <footer data-i="foot">Hisob taxminiy. Maktab ro'yxati va narxlar hududga qarab farq qiladi.</footer>
 </main>
 
 <script>
 (function(){
 var DB={"CATS": [{"id": "forma", "uz": "Maktab formasi", "ru": "Школьная форма", "items": [{"id": "f_shim", "uz": "Shim", "ru": "Брюки", "rec": [2, 2, 2], "g": "m"}, {"id": "f_yubka", "uz": "Yubka", "ru": "Юбка", "rec": [2, 2, 2], "g": "f"}, {"id": "f_koylak", "uz": "Ko'ylak", "ru": "Рубашка / блузка", "rec": [3, 3, 3]}, {"id": "f_kostyum", "uz": "Kostyum", "ru": "Костюм", "rec": [1, 1, 1]}, {"id": "f_sarafan", "uz": "Sarafan", "ru": "Сарафан", "rec": [1, 1, 0], "g": "f"}, {"id": "f_galstuk", "uz": "Galstuk", "ru": "Галстук", "rec": [1, 1, 1]}, {"id": "f_kamar", "uz": "Kamar", "ru": "Ремень", "rec": [1, 1, 1], "g": "m"}, {"id": "f_sviter", "uz": "Sviter", "ru": "Свитер", "rec": [1, 1, 1]}, {"id": "f_kurtka", "uz": "Kurtka", "ru": "Куртка", "rec": [1, 1, 1]}, {"id": "f_sport", "uz": "Sport formasi", "ru": "Спортивная форма", "rec": [1, 1, 1]}, {"id": "f_kepka", "uz": "Kepka", "ru": "Кепка", "rec": [1, 0, 0]}]}, {"id": "poyabzal", "uz": "Poyabzal", "ru": "Обувь", "items": [{"id": "p_tufli", "uz": "Kundalik tufli", "ru": "Повседневные туфли", "rec": [1, 1, 1]}, {"id": "p_sport", "uz": "Sport oyoq kiyimi", "ru": "Спортивная обувь", "rec": [1, 1, 1]}, {"id": "p_etik", "uz": "Qishki etik", "ru": "Зимние сапоги", "rec": [1, 1, 1]}, {"id": "p_tapochka", "uz": "Tapochka", "ru": "Тапочки", "rec": [1, 1, 0]}]}, {"id": "sumka", "uz": "Maktab sumkasi", "ru": "Школьная сумка", "items": [{"id": "s_ryukzak", "uz": "Ryukzak", "ru": "Рюкзак", "rec": [1, 1, 1]}, {"id": "s_penal", "uz": "Penal", "ru": "Пенал", "rec": [1, 1, 1]}, {"id": "s_tushlik", "uz": "Tushlik qutisi", "ru": "Ланч-бокс", "rec": [1, 1, 0]}, {"id": "s_suv", "uz": "Suv idishi", "ru": "Бутылка для воды", "rec": [1, 1, 1]}, {"id": "s_yomgir", "uz": "Yomg'ir qoplamasi", "ru": "Дождевик для рюкзака", "rec": [1, 0, 0]}]}, {"id": "kansel", "uz": "Daftar va yozuv qurollari", "ru": "Тетради и канцтовары", "items": [{"id": "k_katak", "uz": "Katak daftar", "ru": "Тетрадь в клетку", "rec": [20, 25, 30]}, {"id": "k_chiziq", "uz": "Chiziqli daftar", "ru": "Тетрадь в линейку", "rec": [10, 15, 15]}, {"id": "k_qalin", "uz": "Qalin daftar", "ru": "Общая тетрадь", "rec": [0, 3, 5]}, {"id": "k_ruchka", "uz": "Ruchka", "ru": "Ручка", "rec": [5, 10, 12]}, {"id": "k_qalam", "uz": "Qalam", "ru": "Карандаш", "rec": [10, 5, 5]}, {"id": "k_ochirgich", "uz": "O'chirg'ich", "ru": "Ластик", "rec": [3, 2, 2]}, {"id": "k_chizgich", "uz": "Chizg'ich", "ru": "Линейка", "rec": [2, 2, 2]}, {"id": "k_rangli", "uz": "Rangli qalam", "ru": "Цветные карандаши", "rec": [1, 1, 0]}, {"id": "k_flomaster", "uz": "Flomaster", "ru": "Фломастеры", "rec": [1, 1, 0]}, {"id": "k_guash", "uz": "Guash", "ru": "Гуашь", "rec": [1, 1, 0]}, {"id": "k_akvarel", "uz": "Akvarel", "ru": "Акварель", "rec": [1, 1, 0]}, {"id": "k_plastilin", "uz": "Plastilin", "ru": "Пластилин", "rec": [2, 1, 0]}, {"id": "k_albom", "uz": "Albom", "ru": "Альбом", "rec": [3, 1, 1]}, {"id": "k_yelim", "uz": "Yelim", "ru": "Клей", "rec": [2, 1, 1]}, {"id": "k_qaychi", "uz": "Qaychi", "ru": "Ножницы", "rec": [1, 1, 1]}, {"id": "k_fayl", "uz": "Fayl", "ru": "Файлы", "rec": [20, 30, 40]}, {"id": "k_papka", "uz": "Papka", "ru": "Папка", "rec": [2, 3, 4]}, {"id": "k_muqova", "uz": "Muqova", "ru": "Обложки", "rec": [20, 25, 30]}, {"id": "k_kundalik", "uz": "Kundalik", "ru": "Дневник", "rec": [1, 1, 1]}, {"id": "k_sirkul", "uz": "Sirkul", "ru": "Циркуль", "rec": [0, 1, 1]}, {"id": "k_transportir", "uz": "Transportir", "ru": "Транспортир", "rec": [0, 1, 1]}]}, {"id": "kitob", "uz": "Kitoblar", "ru": "Книги", "items": [{"id": "b_darslik", "uz": "Darsliklar", "ru": "Учебники", "rec": [1, 1, 1]}, {"id": "b_ishdaftar", "uz": "Ish daftarlari", "ru": "Рабочие тетради", "rec": [1, 1, 1]}, {"id": "b_qoshimcha", "uz": "Qo'shimcha kitoblar", "ru": "Доп. литература", "rec": [0, 1, 1]}, {"id": "b_lugat", "uz": "Lug'at", "ru": "Словарь", "rec": [0, 1, 1]}, {"id": "b_atlas", "uz": "Atlas", "ru": "Атлас", "rec": [0, 1, 1]}, {"id": "b_xarita", "uz": "Xarita", "ru": "Карта", "rec": [0, 1, 0]}]}, {"id": "tolov", "uz": "To'lovlar", "ru": "Платежи", "items": [{"id": "t_oquv", "uz": "O'quv to'lovi", "ru": "Плата за обучение", "rec": [0, 0, 0], "priv": [9, 9, 9]}, {"id": "t_sinf", "uz": "Sinf fondi", "ru": "Классный фонд", "rec": [1, 1, 1]}, {"id": "t_maktab", "uz": "Maktab fondi", "ru": "Школьный фонд", "rec": [1, 1, 1]}, {"id": "t_ovqat", "uz": "Ovqat puli", "ru": "Питание", "rec": [9, 9, 9]}, {"id": "t_transport", "uz": "Transport", "ru": "Транспорт", "rec": [9, 9, 9]}, {"id": "t_togarak", "uz": "To'garaklar", "ru": "Кружки", "rec": [9, 9, 9]}, {"id": "t_repetitor", "uz": "Repetitor", "ru": "Репетитор", "rec": [0, 9, 9]}, {"id": "t_internet", "uz": "Internet platformasi", "ru": "Онлайн-платформа", "rec": [0, 9, 9]}, {"id": "t_boshqa", "uz": "Boshqa to'lov", "ru": "Прочий платёж", "rec": [0, 0, 0]}]}, {"id": "elektron", "uz": "Elektron qurilmalar", "ru": "Электроника", "items": [{"id": "e_telefon", "uz": "Telefon", "ru": "Телефон", "rec": [0, 0, 0]}, {"id": "e_planshet", "uz": "Planshet", "ru": "Планшет", "rec": [0, 0, 0]}, {"id": "e_noutbuk", "uz": "Noutbuk", "ru": "Ноутбук", "rec": [0, 0, 0]}, {"id": "e_printer", "uz": "Printer", "ru": "Принтер", "rec": [0, 0, 0]}, {"id": "e_kalkulyator", "uz": "Kalkulyator", "ru": "Калькулятор", "rec": [0, 1, 1]}]}], "GROUPS": {"kiyim": ["forma", "poyabzal"], "sumka": ["sumka", "kansel"], "kitob": ["kitob"], "tolov": ["tolov"], "elektron": ["elektron"]}};
-var COLORS={kiyim:'#5B3A63',sumka:'#1D4E6B',kitob:'#8C3B2A',tolov:'#0E3B2E',elektron:'#B08A2E'};
+var QCATS=[
+ {k:'kiyim',cats:['forma','poyabzal']},
+ {k:'sumka',cats:['sumka','kansel']},
+ {k:'kitob',cats:['kitob']},
+ {k:'tolov',cats:['tolov'],monthly:true},
+ {k:'elektron',cats:['elektron']}
+];
+var COLORS={kiyim:'#5B3A63',sumka:'#1D4E6B',kitob:'#8C3B2A',tolov:'#0E3B2E',elektron:'#B08A2E',boshqa:'#8A968F'};
 var lang='uz', calcData=null, checked={};
-var state={children:[newChild()],active:0,months:2};
-function newChild(){return {grade:1,gender:'m',school:'davlat',items:{},custom:[]}}
+var state={children:[newChild()],active:0,months:2,mode:'tez'};
+function newChild(){return {grade:1,gender:'m',school:'davlat',items:{},custom:[],quick:{kiyim:0,sumka:0,kitob:0,tolov:0,elektron:0,boshqa:0}}}
 var $=function(id){return document.getElementById(id)};
 var t=function(k){return I[lang][k]};
 var som=function(){return lang==='uz'?"so'm":'сум'};
 var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
 var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+var SCHOOL_MONTHS=9;
 
 var I={
  uz:{cat:"Kundalik hayot",h1:"Maktabga tayyorgarlik",
-  sub:"Forma, daftar, kitob va to'lovlar — sinfga qarab tavsiya bilan, bir necha farzand uchun birdan hisoblang.",
+  sub:"Sinfni tanlang \u2014 kerakli ro'yxat darrov chiqadi. Xarajatni tez yoki batafsil hisoblang.",
+  step1:"1-qadam \u2014 Farzand",step2:"2-qadam \u2014 Xarajat",
   lGrade:"Sinf",lGender:"Jinsi",gBoy:"O'g'il",gGirl:"Qiz",
   lSchool:"Maktab turi",scState:"Davlat",scPriv:"Xususiy",
-  hRec:"Sinf va jinsni tanlaganingizda miqdorlar avtomatik tavsiya qilinadi. Har qatorni o'zingiz o'zgartirishingiz mumkin.",
-  progLbl:"To'ldirilgan bo'limlar",
+  recTitle:"Shu sinf uchun tavsiya etiladi",
+  mTez:"Tez hisob",mBatafsil:"Batafsil",
+  hQuick:"Har bo'lim uchun taxminiy summani kiriting \u2014 5 ta maydon yetarli.",
+  hDetail:"Har bir band bo'yicha aniq hisob. Miqdorlar sinfga qarab tavsiya qilingan.",
+  qKiyim:"Kiyim va poyabzal",qKiyimS:"forma, ko'ylak, tufli, kurtka",
+  qSumka:"Sumka va o'quv qurollari",qSumkaS:"ryukzak, daftar, ruchka, albom",
+  qKitob:"Kitoblar",qKitobS:"darslik, ish daftari, lug'at",
+  qTolov:"Maktab to'lovlari",qTolovS:"ovqat, transport, fond \u2014 oyiga",
+  qElektron:"Elektronika",qElektronS:"ixtiyoriy \u2014 telefon, planshet",
+  qBoshqa:"Qo'shimcha",qBoshqaS:"fotosessiya, ekskursiya, sovg'a",
   lMonths:"Sentyabrgacha necha oy qoldi",uOy:"oy",
-  hMonths:"Xarajatni oylarga bo'lib yig'ish rejasini ko'rsatadi.",
   btnCalc:"Hisoblash",rTag:"Maktab xarajatlari",lblMain:"Umumiy xarajat",
   totLbl:"Jami xarajat",
   planFmt:"{m} oy qoldi. Har oy taxminan {s} so'm yig'ish kerak.",
   planNow:"Xarajatni bir yo'la qoplash kerak.",
   chkTitle:"Xarid ro'yxati",
   childFmt:"{n}-farzand",gradeFmt:"{g}-sinf",
-  gKiyim:"Kiyim va poyabzal",gSumka:"Sumka va qurollar",gKitob:"Kitoblar",gTolov:"To'lovlar",gElektron:"Elektronika",gBoshqa:"Qo'shimcha",
   secCustom:"Qo'shimcha xarajatlar",
   colName:"Nomi",colQty:"Miqdor",colPrice:"Narxi",
   addName:"Nomi",addPrice:"Summa",addBtn:"Qo'shish",
-  addChild:"+ Farzand",delChild:"Farzandni o'chirish",
-  noteTxt:"Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi, hech qayerga yuborilmaydi.",
+  addChild:"+ Farzand",delChild:"O'chirish",
+  tolovNote:"{m} oyga hisoblandi",
+  noteTxt:"Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz \u2014 kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi.",
   btnShare:"Ulashish",btnCsv:"Excel (CSV)",copied:"Nusxalandi",
   foot:"Hisob taxminiy. Maktab ro'yxati va narxlar hududga qarab farq qiladi.",
-  seo:'<h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog\'liq. Bu kalkulyator forma, poyabzal, sumka, daftar-qalam, kitob va maktab to\'lovlarini bir joyda yig\'ib, umumiy smetani chiqaradi. Har bir farzand alohida hisoblanadi, natijada esa ham umumiy, ham har bola bo\'yicha summa ko\'rinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o\'sha yoshdagi bolaga odatda kerak bo\'ladigan miqdorni o\'zi taklif qiladi. Masalan 1-sinf uchun ko\'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko\'proq daftar, sirkul, transportir va kalkulyator tavsiya etiladi. Bu majburiy ro\'yxat emas — istagan bandni olib tashlashingiz yoki miqdorini o\'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do\'kon va hududga qarab keskin farq qiladi, avgust oyida esa talab oshib narx ko\'tariladi. Shuning uchun kalkulyator hech qanday narxni o\'zi belgilamaydi — siz o\'z do\'koningizdagi narxni kiritasiz. Narx kiritmasangiz ham xarid ro\'yxati baribir tayyor bo\'ladi.</p><h2>Oylarga bo\'lib yig\'sa bo\'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig\'ish kerakligini ko\'rsatadi. Bir yo\'la katta summa topish o\'rniga oldindan bo\'lib yig\'ish oila byudjetiga ancha yengil.</p><h2>Xarid ro\'yxatini do\'konga olib borsa bo\'ladimi?</h2><p>Ha. Natijadan keyin belgilanadigan xarid ro\'yxati chiqadi — telefoningizda do\'kon aylanib, olgan narsangizni belgilab borasiz. Ro\'yxat brauzeringizda saqlanadi, sahifani yopib qayta ochsangiz ham yo\'qolmaydi. Natijani PDF yoki Excel (CSV) sifatida ham yuklab olishingiz mumkin.</p>'},
+  seo:'<h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog\'liq. Bu kalkulyator ikki xil ishlaydi: tez hisobda 5 ta maydonni to\'ldirasiz va darhol natija olasiz, batafsil rejimda esa har bir band bo\'yicha aniq hisoblaysiz. Ikkalasida ham sinfga qarab kerakli ro\'yxat avtomatik tavsiya qilinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o\'sha yoshdagi bolaga odatda kerak bo\'ladigan ro\'yxatni darrov ko\'rsatadi \u2014 narx kiritish ham shart emas. Masalan 1-sinf uchun ko\'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko\'proq daftar, sirkul, transportir va kalkulyator. Bu majburiy ro\'yxat emas, batafsil rejimda istagan bandni o\'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do\'kon va hududga qarab keskin farq qiladi, avgustda esa talab oshib narx ko\'tariladi. Shuning uchun kalkulyator hech qanday narxni o\'zi belgilamaydi \u2014 siz o\'z do\'koningizdagi narxni kiritasiz.</p><h2>Oylarga bo\'lib yig\'sa bo\'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig\'ish kerakligini ko\'rsatadi. Bir yo\'la katta summa topish o\'rniga oldindan bo\'lib yig\'ish oila byudjetiga ancha yengil.</p><h2>Bir necha farzandni birdan hisoblasa bo\'ladimi?</h2><p>Ha, "+ Farzand" tugmasi orqali qo\'shasiz. Har bir farzand o\'z sinfi bo\'yicha alohida hisoblanadi, natijada esa ham umumiy summa, ham har bola bo\'yicha summa ko\'rinadi. Xarid ro\'yxati va natijani PDF yoki Excel (CSV) sifatida yuklab olish mumkin.</p>'},
  ru:{cat:"Жизнь",h1:"Подготовка к школе",
-  sub:"Форма, тетради, книги и платежи — с рекомендациями по классу, сразу на нескольких детей.",
+  sub:"Выберите класс \u2014 список появится сразу. Расход считайте быстро или подробно.",
+  step1:"Шаг 1 \u2014 Ребёнок",step2:"Шаг 2 \u2014 Расходы",
   lGrade:"Класс",lGender:"Пол",gBoy:"Мальчик",gGirl:"Девочка",
   lSchool:"Тип школы",scState:"Государственная",scPriv:"Частная",
-  hRec:"При выборе класса и пола количества рекомендуются автоматически. Каждую строку можно изменить.",
-  progLbl:"Заполнено разделов",
+  recTitle:"Рекомендуется для этого класса",
+  mTez:"Быстрый расчёт",mBatafsil:"Подробно",
+  hQuick:"Введите примерную сумму по разделам \u2014 достаточно 5 полей.",
+  hDetail:"Точный расчёт по каждой позиции. Количества рекомендованы по классу.",
+  qKiyim:"Одежда и обувь",qKiyimS:"форма, рубашка, туфли, куртка",
+  qSumka:"Сумка и канцтовары",qSumkaS:"рюкзак, тетради, ручки, альбом",
+  qKitob:"Книги",qKitobS:"учебники, рабочие тетради, словарь",
+  qTolov:"Школьные платежи",qTolovS:"питание, транспорт, фонд \u2014 в месяц",
+  qElektron:"Электроника",qElektronS:"по желанию \u2014 телефон, планшет",
+  qBoshqa:"Дополнительно",qBoshqaS:"фотосессия, экскурсия, подарки",
   lMonths:"Сколько месяцев до сентября",uOy:"мес.",
-  hMonths:"Покажет план накопления по месяцам.",
   btnCalc:"Рассчитать",rTag:"Школьные расходы",lblMain:"Общий расход",
   totLbl:"Итого расход",
   planFmt:"Осталось {m} мес. Нужно откладывать примерно {s} сум в месяц.",
   planNow:"Расход нужно покрыть сразу.",
   chkTitle:"Список покупок",
   childFmt:"{n}-й ребёнок",gradeFmt:"{g} класс",
-  gKiyim:"Одежда и обувь",gSumka:"Сумка и канцтовары",gKitob:"Книги",gTolov:"Платежи",gElektron:"Электроника",gBoshqa:"Дополнительно",
   secCustom:"Дополнительные расходы",
   colName:"Название",colQty:"Кол-во",colPrice:"Цена",
   addName:"Название",addPrice:"Сумма",addBtn:"Добавить",
-  addChild:"+ Ребёнок",delChild:"Удалить ребёнка",
-  noteTxt:"Количества — средняя рекомендация по классу. Цены вводите сами, калькулятор не задаёт цен. Данные хранятся только в вашем браузере и никуда не отправляются.",
+  addChild:"+ Ребёнок",delChild:"Удалить",
+  tolovNote:"посчитано за {m} мес.",
+  noteTxt:"Количества \u2014 средняя рекомендация по классу. Цены вводите сами, калькулятор не задаёт цен. Данные хранятся только в вашем браузере.",
   btnShare:"Поделиться",btnCsv:"Excel (CSV)",copied:"Скопировано",
   foot:"Расчёт примерный. Список школы и цены зависят от региона.",
-  seo:'<h2>Сколько стоит подготовка к школе?</h2><p>Расход зависит от класса ребёнка, типа школы и числа детей в семье. Калькулятор собирает форму, обувь, сумку, канцтовары, книги и школьные платежи в одну смету. Каждый ребёнок считается отдельно, а в результате видна и общая сумма, и сумма по каждому ребёнку.</p><h2>Как работает рекомендация по классу?</h2><p>При выборе класса калькулятор сам предлагает количества, которые обычно нужны ребёнку этого возраста. Например, для 1 класса больше альбомов, пластилина и цветных карандашей, а для 9 класса — больше тетрадей, циркуль, транспортир и калькулятор. Это не обязательный список: любую строку можно убрать или изменить.</p><h2>Почему цены не указаны заранее?</h2><p>Цены на школьные товары сильно зависят от рынка, магазина и региона, а в августе спрос поднимает их ещё выше. Поэтому калькулятор не задаёт цен — вы вводите цены своего магазина. Даже без цен список покупок всё равно формируется.</p><h2>Можно ли копить по месяцам?</h2><p>Да. Укажите, сколько месяцев осталось до сентября, и калькулятор покажет, сколько откладывать ежемесячно. Копить заранее заметно легче для семейного бюджета, чем искать всю сумму сразу.</p><h2>Можно ли взять список покупок в магазин?</h2><p>Да. После расчёта появляется отмечаемый список покупок — ходите по магазину и отмечайте купленное в телефоне. Список сохраняется в браузере, при повторном открытии страницы он не пропадёт. Результат можно скачать в PDF или Excel (CSV).</p>'}
+  seo:'<h2>Сколько стоит подготовка к школе?</h2><p>Расход зависит от класса ребёнка, типа школы и числа детей в семье. Калькулятор работает в двух режимах: в быстром вы заполняете 5 полей и сразу получаете результат, в подробном считаете по каждой позиции. В обоих случаях список нужного рекомендуется автоматически по классу.</p><h2>Как работает рекомендация по классу?</h2><p>При выборе класса калькулятор сразу показывает список, который обычно нужен ребёнку этого возраста \u2014 цены вводить не обязательно. Например, для 1 класса больше альбомов, пластилина и цветных карандашей, для 9 класса \u2014 больше тетрадей, циркуль, транспортир и калькулятор. В подробном режиме любую позицию можно изменить.</p><h2>Почему цены не указаны заранее?</h2><p>Цены на школьные товары сильно зависят от рынка, магазина и региона, а в августе спрос поднимает их выше. Поэтому калькулятор не задаёт цен \u2014 вы вводите цены своего магазина.</p><h2>Можно ли копить по месяцам?</h2><p>Да. Укажите, сколько месяцев осталось до сентября, и калькулятор покажет, сколько откладывать ежемесячно.</p><h2>Можно ли считать нескольких детей сразу?</h2><p>Да, кнопкой "+ Ребёнок". Каждый ребёнок считается отдельно по своему классу, в результате видна и общая сумма, и сумма по каждому. Список покупок и результат можно скачать в PDF или Excel (CSV).</p>'}
 };
 
-// ---- yordamchi ----
 function band(g){return g<=4?0:(g<=8?1:2)}
 function recFor(item,ch){
   if(item.g&&item.g!==ch.gender)return -1;
@@ -312,58 +351,60 @@ function applyRec(c){
       if(!c.items[it.id])c.items[it.id]={c:false,q:0,p:0,d:false};
       var st=c.items[it.id];
       if(st.d)continue;
-      if(r<0){st.c=false;st.q=0}
-      else{st.c=r>0;st.q=r}
+      if(r<0){st.c=false;st.q=0}else{st.c=r>0;st.q=r}
     }
   }
 }
-// ---- saqlash ----
-function save(){
-  try{localStorage.setItem('kalki_maktab',JSON.stringify({s:state,ck:checked}))}catch(e){}
-}
+function save(){try{localStorage.setItem('kalki_maktab2',JSON.stringify({s:state,ck:checked}))}catch(e){}}
 function load(){
   try{
-    var raw=localStorage.getItem('kalki_maktab');
+    var raw=localStorage.getItem('kalki_maktab2');
     if(!raw)return false;
     var o=JSON.parse(raw);
-    if(o&&o.s&&o.s.children&&o.s.children.length){state=o.s;checked=o.ck||{};return true}
+    if(o&&o.s&&o.s.children&&o.s.children.length){
+      state=o.s;checked=o.ck||{};
+      for(var i=0;i<state.children.length;i++)if(!state.children[i].quick)state.children[i].quick={kiyim:0,sumka:0,kitob:0,tolov:0,elektron:0,boshqa:0};
+      if(!state.mode)state.mode='tez';
+      return true;
+    }
   }catch(e){}
   return false;
 }
-// ---- UI ----
-function renderTabs(){
-  var h='';
-  for(var i=0;i<state.children.length;i++){
-    h+='<button type="button" class="'+(i===state.active?'on':'')+'" data-tab="'+i+'">'
-      +t('childFmt').replace('{n}',i+1)+'</button>';
+// ---- tavsiya ko'rinishi ----
+function recPreview(){
+  var c=ch(), out=[];
+  for(var i=0;i<DB.CATS.length;i++){
+    var cat=DB.CATS[i];
+    if(cat.id==='tolov'||cat.id==='elektron')continue;
+    for(var j=0;j<cat.items.length;j++){
+      var it=cat.items[j], r=recFor(it,c);
+      if(r>0)out.push(r+' '+it[lang].toLowerCase());
+    }
   }
-  h+='<button type="button" class="addch" id="addChild">'+t('addChild')+'</button>';
-  if(state.children.length>1)h+='<button type="button" class="addch" id="delChild" style="color:#B04A3A">'+t('delChild')+'</button>';
-  $('tabs').innerHTML=h;
-  var bs=$('tabs').querySelectorAll('[data-tab]');
-  for(var j=0;j<bs.length;j++){
-    bs[j].onclick=function(){state.active=parseInt(this.getAttribute('data-tab'),10);renderAll()};
+  $('recPreview').textContent=out.join(', ');
+}
+// ---- tez rejim ----
+function renderQuick(){
+  var c=ch(), h='';
+  var keys=[['kiyim','qKiyim','qKiyimS'],['sumka','qSumka','qSumkaS'],['kitob','qKitob','qKitobS'],
+            ['tolov','qTolov','qTolovS'],['elektron','qElektron','qElektronS'],['boshqa','qBoshqa','qBoshqaS']];
+  for(var i=0;i<keys.length;i++){
+    var k=keys[i];
+    h+='<div class="qrow"><span><span class="ql">'+t(k[1])+'</span><span class="qs">'+t(k[2])+'</span></span>'
+      +'<input type="text" data-qk="'+k[0]+'" inputmode="numeric" placeholder="0" value="'+(c.quick[k[0]]?fmt(c.quick[k[0]]):'')+'"></div>';
   }
-  $('addChild').onclick=function(){
-    var nc=newChild();applyRec(nc);
-    state.children.push(nc);state.active=state.children.length-1;renderAll();save();
-  };
-  var dc=$('delChild');
-  if(dc)dc.onclick=function(){
-    state.children.splice(state.active,1);
-    if(state.active>=state.children.length)state.active=state.children.length-1;
-    renderAll();save();
-  };
+  $('quickRows').innerHTML=h;
+  var ins=$('quickRows').querySelectorAll('[data-qk]');
+  for(var j=0;j<ins.length;j++){
+    ins[j].oninput=function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+      ch().quick[this.getAttribute('data-qk')]=num(this.value);
+      save();
+    };
+  }
 }
-function renderControls(){
-  var c=ch(), gh='';
-  for(var g=1;g<=11;g++)gh+='<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+t('gradeFmt').replace('{g}',g)+'</option>';
-  $('grade').innerHTML=gh;
-  var gb=$('genderSeg').querySelectorAll('[data-gender]');
-  for(var i=0;i<gb.length;i++)gb[i].classList.toggle('on',gb[i].getAttribute('data-gender')===c.gender);
-  var sb=$('schoolSeg').querySelectorAll('[data-school]');
-  for(var j=0;j<sb.length;j++)sb[j].classList.toggle('on',sb[j].getAttribute('data-school')===c.school);
-}
+// ---- batafsil rejim ----
 function renderSections(){
   var c=ch(), h='';
   for(var i=0;i<DB.CATS.length;i++){
@@ -383,7 +424,6 @@ function renderSections(){
     if(!shown)continue;
     h+='<details><summary>'+cat[lang]+'<span class="cnt">'+on+'</span></summary><div class="sec-body">'+body+'</div></details>';
   }
-  // qo'shimcha
   var ch2='';
   for(var k=0;k<c.custom.length;k++){
     ch2+='<div class="custrow"><span class="cn">'+c.custom[k].n+'</span><span class="cv">'+fmt(c.custom[k].p)+' '+som()+'</span>'
@@ -395,65 +435,61 @@ function renderSections(){
     +'<input type="text" id="custPrice" inputmode="numeric" placeholder="'+t('addPrice')+'" style="max-width:100px">'
     +'<button type="button" id="custAdd">'+t('addBtn')+'</button></div></div></details>';
   $('sections').innerHTML=h;
-  wire();
-  updateProgress();
+  wireDetail();
 }
-function wire(){
-  var c=ch();
+function wireDetail(){
   var cks=$('sections').querySelectorAll('[data-ck]');
-  for(var i=0;i<cks.length;i++){
-    cks[i].onchange=function(){
-      var st=itemState(this.getAttribute('data-ck'));
-      st.c=this.checked; st.d=true; updateProgress(); save();
-    };
-  }
+  for(var i=0;i<cks.length;i++)cks[i].onchange=function(){var st=itemState(this.getAttribute('data-ck'));st.c=this.checked;st.d=true;save()};
   var qs=$('sections').querySelectorAll('[data-q]');
-  for(var j=0;j<qs.length;j++){
-    qs[j].oninput=function(){
-      var st=itemState(this.getAttribute('data-q'));
-      st.q=num(this.value); st.d=true; save();
-    };
-  }
+  for(var j=0;j<qs.length;j++)qs[j].oninput=function(){var st=itemState(this.getAttribute('data-q'));st.q=num(this.value);st.d=true;save()};
   var ps=$('sections').querySelectorAll('[data-p]');
-  for(var k=0;k<ps.length;k++){
-    ps[k].oninput=function(){
-      var v=this.value.replace(/[^\d]/g,'');
-      this.value=v?fmt(parseInt(v,10)):'';
-      itemState(this.getAttribute('data-p')).p=num(this.value);
-      save();
-    };
-  }
+  for(var k=0;k<ps.length;k++)ps[k].oninput=function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmt(parseInt(v,10)):'';
+    itemState(this.getAttribute('data-p')).p=num(this.value);save();
+  };
   var ca=$('custAdd');
   if(ca)ca.onclick=function(){
     var n=$('custName').value.trim(), p=num($('custPrice').value);
     if(!n)return;
-    ch().custom.push({n:n,p:p});
-    renderSections(); save();
+    ch().custom.push({n:n,p:p});renderSections();save();
   };
   var dels=$('sections').querySelectorAll('.del');
-  for(var m=0;m<dels.length;m++){
-    dels[m].onclick=function(){
-      ch().custom.splice(parseInt(this.getAttribute('data-ci'),10),1);
-      renderSections(); save();
-    };
-  }
+  for(var m=0;m<dels.length;m++)dels[m].onclick=function(){
+    ch().custom.splice(parseInt(this.getAttribute('data-ci'),10),1);renderSections();save();
+  };
 }
-function updateProgress(){
-  var c=ch(), done=0, tot=DB.CATS.length+1;
-  for(var i=0;i<DB.CATS.length;i++){
-    var any=false;
-    for(var j=0;j<DB.CATS[i].items.length;j++){
-      var st=c.items[DB.CATS[i].items[j].id];
-      if(st&&st.c&&st.p>0){any=true;break}
-    }
-    if(any)done++;
-  }
-  if(c.custom.length)done++;
-  var pct=Math.round(done/tot*100);
-  $('progFill').style.width=pct+'%';
-  $('progPct').textContent=pct+'%';
+function renderTabs(){
+  var h='';
+  for(var i=0;i<state.children.length;i++)
+    h+='<button type="button" class="'+(i===state.active?'on':'')+'" data-tab="'+i+'">'+t('childFmt').replace('{n}',i+1)+'</button>';
+  h+='<button type="button" class="addch" id="addChild">'+t('addChild')+'</button>';
+  if(state.children.length>1)h+='<button type="button" class="addch" id="delChild" style="color:#B04A3A">'+t('delChild')+'</button>';
+  $('tabs').innerHTML=h;
+  var bs=$('tabs').querySelectorAll('[data-tab]');
+  for(var j=0;j<bs.length;j++)bs[j].onclick=function(){state.active=parseInt(this.getAttribute('data-tab'),10);renderAll()};
+  $('addChild').onclick=function(){var nc=newChild();applyRec(nc);state.children.push(nc);state.active=state.children.length-1;renderAll();save()};
+  var dc=$('delChild');
+  if(dc)dc.onclick=function(){
+    state.children.splice(state.active,1);
+    if(state.active>=state.children.length)state.active=state.children.length-1;
+    renderAll();save();
+  };
 }
-function renderAll(){renderTabs();renderControls();renderSections()}
+function renderControls(){
+  var c=ch(), gh='';
+  for(var g=1;g<=11;g++)gh+='<option value="'+g+'"'+(c.grade===g?' selected':'')+'>'+t('gradeFmt').replace('{g}',g)+'</option>';
+  $('grade').innerHTML=gh;
+  var gb=$('genderSeg').querySelectorAll('[data-gender]');
+  for(var i=0;i<gb.length;i++)gb[i].classList.toggle('on',gb[i].getAttribute('data-gender')===c.gender);
+  var sb=$('schoolSeg').querySelectorAll('[data-school]');
+  for(var j=0;j<sb.length;j++)sb[j].classList.toggle('on',sb[j].getAttribute('data-school')===c.school);
+  var mb=$('modeSeg').querySelectorAll('[data-mode]');
+  for(var k=0;k<mb.length;k++)mb[k].classList.toggle('on',mb[k].getAttribute('data-mode')===state.mode);
+  $('quickPanel').style.display=state.mode==='tez'?'block':'none';
+  $('detailPanel').style.display=state.mode==='batafsil'?'block':'none';
+}
+function renderAll(){renderTabs();renderControls();recPreview();renderQuick();if(state.mode==='batafsil')renderSections()}
 
 // ---- hisoblash ----
 function calc(){
@@ -462,34 +498,58 @@ function calc(){
   var perChild=[], groupTot={kiyim:0,sumka:0,kitob:0,tolov:0,elektron:0,boshqa:0}, grand=0, shop=[];
   for(var i=0;i<state.children.length;i++){
     var c=state.children[i], cTot=0, cCats=[];
-    for(var j=0;j<DB.CATS.length;j++){
-      var cat=DB.CATS[j], sub=0, items=[];
-      for(var k=0;k<cat.items.length;k++){
-        var it=cat.items[k];
-        if(it.g&&it.g!==c.gender)continue;
-        var st=c.items[it.id];
-        if(!st||!st.c||!st.q)continue;
-        var cost=st.q*st.p;
-        sub+=cost;
-        items.push({n:it[lang],q:st.q,cost:cost});
-        if(['forma','poyabzal','sumka','kansel','kitob'].indexOf(cat.id)>-1)
-          shop.push({k:i+'_'+it.id,n:it[lang],q:st.q,ch:i});
+    // xarid ro'yxati (har doim tavsiyadan)
+    for(var s=0;s<DB.CATS.length;s++){
+      var sc=DB.CATS[s];
+      if(['forma','poyabzal','sumka','kansel','kitob'].indexOf(sc.id)<0)continue;
+      for(var s2=0;s2<sc.items.length;s2++){
+        var si=sc.items[s2], st2=c.items[si.id];
+        if(!st2||!st2.c||!st2.q)continue;
+        shop.push({k:i+'_'+si.id,n:si[lang],q:st2.q,ch:i});
       }
-      if(items.length){cCats.push({name:cat[lang],sub:sub,items:items});cTot+=sub}
-      var gk=null;
-      for(var gname in DB.GROUPS){if(DB.GROUPS[gname].indexOf(cat.id)>-1){gk=gname;break}}
-      if(gk)groupTot[gk]+=sub;
     }
-    var custSum=0;
-    for(var m=0;m<c.custom.length;m++)custSum+=c.custom[m].p;
-    if(custSum){cCats.push({name:t('secCustom'),sub:custSum,items:c.custom.map(function(x){return {n:x.n,q:0,cost:x.p}})});cTot+=custSum}
-    groupTot.boshqa+=custSum;
+    if(state.mode==='tez'){
+      for(var q=0;q<QCATS.length;q++){
+        var qc=QCATS[q], v=c.quick[qc.k]||0;
+        if(qc.monthly)v=v*SCHOOL_MONTHS;
+        if(!v)continue;
+        groupTot[qc.k]+=v; cTot+=v;
+        cCats.push({name:t('q'+qc.k.charAt(0).toUpperCase()+qc.k.slice(1)),sub:v,items:[],
+                    note:qc.monthly?t('tolovNote').replace('{m}',SCHOOL_MONTHS):''});
+      }
+      var qb=c.quick.boshqa||0;
+      if(qb){groupTot.boshqa+=qb;cTot+=qb;cCats.push({name:t('qBoshqa'),sub:qb,items:[]})}
+    }else{
+      for(var j=0;j<DB.CATS.length;j++){
+        var cat=DB.CATS[j], sub=0, items=[];
+        for(var k=0;k<cat.items.length;k++){
+          var it=cat.items[k];
+          if(it.g&&it.g!==c.gender)continue;
+          var st=c.items[it.id];
+          if(!st||!st.c||!st.q)continue;
+          var cost=st.q*st.p;
+          sub+=cost; items.push({n:it[lang],q:st.q,cost:cost});
+        }
+        if(items.length){cCats.push({name:cat[lang],sub:sub,items:items});cTot+=sub}
+        for(var gn in COLORS){
+          var grp=QCATS.filter(function(x){return x.k===gn})[0];
+          if(grp&&grp.cats.indexOf(cat.id)>-1)groupTot[gn]+=sub;
+        }
+      }
+      var custSum=0;
+      for(var m=0;m<c.custom.length;m++)custSum+=c.custom[m].p;
+      if(custSum){
+        cCats.push({name:t('secCustom'),sub:custSum,items:c.custom.map(function(x){return {n:x.n,q:0,cost:x.p}})});
+        cTot+=custSum; groupTot.boshqa+=custSum;
+      }
+    }
     grand+=cTot;
     perChild.push({idx:i,grade:c.grade,total:cTot,cats:cCats});
   }
-  calcData={perChild:perChild,groupTot:groupTot,grand:grand,months:months,shop:shop};
+  calcData={perChild:perChild,groupTot:groupTot,grand:grand,months:months,shop:shop,mode:state.mode};
   render(); save();
   $('receipt').classList.add('show');
+  if($('receipt').scrollIntoView)try{$('receipt').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
 }
 function donut(parts,total){
   if(!total)return '';
@@ -505,28 +565,22 @@ function donut(parts,total){
 function render(){
   var d=calcData, sum=' '+som();
   $('mainNum').textContent=d.grand>0?fmt(d.grand)+sum:'-';
-  // reja
   if(d.grand>0&&d.months>0){
     $('planBox').style.display='block';
     $('planBox').textContent=t('planFmt').replace('{m}',d.months).replace('{s}',fmt(d.grand/d.months));
-  }else if(d.grand>0){
-    $('planBox').style.display='block';
-    $('planBox').textContent=t('planNow');
-  }else $('planBox').style.display='none';
-  // grafik
+  }else if(d.grand>0){$('planBox').style.display='block';$('planBox').textContent=t('planNow')}
+  else $('planBox').style.display='none';
   var keys=['kiyim','sumka','kitob','tolov','elektron','boshqa'];
-  var lbl={kiyim:t('gKiyim'),sumka:t('gSumka'),kitob:t('gKitob'),tolov:t('gTolov'),elektron:t('gElektron'),boshqa:t('gBoshqa')};
-  var cols={kiyim:COLORS.kiyim,sumka:COLORS.sumka,kitob:COLORS.kitob,tolov:COLORS.tolov,elektron:COLORS.elektron,boshqa:'#8A968F'};
+  var lbl={kiyim:t('qKiyim'),sumka:t('qSumka'),kitob:t('qKitob'),tolov:t('qTolov'),elektron:t('qElektron'),boshqa:t('qBoshqa')};
   var parts=[],lg='';
   for(var i=0;i<keys.length;i++){
     var v=d.groupTot[keys[i]]||0;
     if(!v)continue;
-    parts.push({v:v,c:cols[keys[i]]});
-    lg+='<div class="lgrow"><span class="dot" style="background:'+cols[keys[i]]+'"></span><span>'+lbl[keys[i]]+'</span><span class="v">'+fmt(v)+sum+'</span></div>';
+    parts.push({v:v,c:COLORS[keys[i]]});
+    lg+='<div class="lgrow"><span class="dot" style="background:'+COLORS[keys[i]]+'"></span><span>'+lbl[keys[i]]+'</span><span class="v">'+fmt(v)+sum+'</span></div>';
   }
   $('chartBox').innerHTML=donut(parts,d.grand);
   $('legendBox').innerHTML=lg;
-  // bolalar
   var h='';
   if(d.perChild.length>1){
     h+='<div class="grp"><h3>'+t('childFmt').replace('{n}','')+'</h3>';
@@ -537,7 +591,6 @@ function render(){
     h+='</div>';
   }
   $('childOut').innerHTML=h;
-  // bo'limlar
   var ch3='';
   for(var k=0;k<d.perChild.length;k++){
     var p=d.perChild[k];
@@ -548,15 +601,13 @@ function render(){
       ch3+='<div class="grp"><h3>'+cc.name+'</h3>';
       for(var n=0;n<cc.items.length;n++){
         var it=cc.items[n];
-        var right=(it.q?it.q+' x ':'')+(it.cost>0?fmt(it.cost)+sum:'-');
-        ch3+='<div class="lrow"><span class="lk">'+it.n+'</span><span class="lq">'+right+'</span></div>';
+        ch3+='<div class="lrow"><span class="lk">'+it.n+'</span><span class="lq">'+(it.q?it.q+' x ':'')+(it.cost>0?fmt(it.cost)+sum:'-')+'</span></div>';
       }
-      if(cc.sub>0)ch3+='<div class="lrow" style="border-top:1px dashed var(--line);margin-top:4px;padding-top:6px"><span class="lk" style="font-weight:800">'+(lang==='uz'?"Bo'lim jami":'Итого')+'</span><span class="lq" style="color:var(--cat)">'+fmt(cc.sub)+sum+'</span></div>';
+      if(cc.sub>0)ch3+='<div class="lrow"'+(cc.items.length?' style="border-top:1px dashed var(--line);margin-top:4px;padding-top:6px"':'')+'><span class="lk" style="font-weight:800">'+(cc.note||(lang==='uz'?"Jami":'Итого'))+'</span><span class="lq" style="color:var(--cat)">'+fmt(cc.sub)+sum+'</span></div>';
       ch3+='</div>';
     }
   }
   $('catOut').innerHTML=ch3;
-  // xarid ro'yxati
   if(d.shop.length){
     $('chkWrap').style.display='block';
     var sh='';
@@ -568,45 +619,36 @@ function render(){
     }
     $('chkOut').innerHTML=sh;
     var ls=$('chkOut').querySelectorAll('.chkitem');
-    for(var w=0;w<ls.length;w++){
-      ls[w].querySelector('input').onchange=function(){
-        var lab=this.parentNode, key=lab.getAttribute('data-k');
-        checked[key]=this.checked;
-        lab.classList.toggle('done',this.checked);
-        save();
-      };
-    }
+    for(var w=0;w<ls.length;w++)ls[w].querySelector('input').onchange=function(){
+      var lab=this.parentNode;checked[lab.getAttribute('data-k')]=this.checked;
+      lab.classList.toggle('done',this.checked);save();
+    };
   }else $('chkWrap').style.display='none';
   $('grandTotal').textContent=d.grand>0?fmt(d.grand)+sum:'-';
 }
-// ---- eksport ----
 function toCsv(){
   if(!calcData)return;
-  var rows=[[t('h1')]];
-  rows.push([]);
+  var rows=[[t('h1')],[]];
   for(var i=0;i<calcData.perChild.length;i++){
     var p=calcData.perChild[i];
     rows.push([t('childFmt').replace('{n}',p.idx+1)+' - '+t('gradeFmt').replace('{g}',p.grade)]);
     for(var j=0;j<p.cats.length;j++){
-      rows.push([p.cats[j].name]);
+      rows.push([p.cats[j].name,'','',p.cats[j].sub]);
       for(var k=0;k<p.cats[j].items.length;k++){
         var it=p.cats[j].items[k];
         rows.push(['',it.n,it.q||'',it.cost||0]);
       }
     }
-    rows.push(['',t('totLbl'),'',p.total]);
-    rows.push([]);
+    rows.push(['',t('totLbl'),'',p.total]);rows.push([]);
   }
   rows.push([t('totLbl'),'','',calcData.grand]);
   var csv='\uFEFF'+rows.map(function(r){return r.map(function(x){return '"'+String(x==null?'':x).replace(/"/g,'""')+'"'}).join(';')}).join('\r\n');
   var blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
   var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='kalki-maktab.csv';
+  a.href=URL.createObjectURL(blob);a.download='kalki-maktab.csv';
   document.body.appendChild(a);a.click();
   setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
 }
-// ---- til ----
 function applyLang(){
   document.documentElement.lang=lang;
   var els=document.querySelectorAll('[data-i]');
@@ -614,21 +656,21 @@ function applyLang(){
   $('seoBlock').innerHTML=t('seo');
   renderAll();
   $('langUz').classList.toggle('on',lang==='uz');
-  (function(){
-    var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
-    var _t=document.getElementById('relTitle');
-    if(_t)_t.textContent=_rt[lang]||_rt.uz;
-    var _rl=document.querySelectorAll('[data-rel-uz]');
-    for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
-  })();
   $('langRu').classList.toggle('on',lang==='ru');
   if(calcData)calc();
 }
-$('grade').onchange=function(){ch().grade=parseInt(this.value,10);applyRec(ch());renderSections();save()};
+$('grade').onchange=function(){ch().grade=parseInt(this.value,10);applyRec(ch());recPreview();if(state.mode==='batafsil')renderSections();save()};
 var gbs=$('genderSeg').querySelectorAll('[data-gender]');
-for(var a=0;a<gbs.length;a++)gbs[a].onclick=function(){ch().gender=this.getAttribute('data-gender');applyRec(ch());renderControls();renderSections();save()};
+for(var a=0;a<gbs.length;a++)gbs[a].onclick=function(){ch().gender=this.getAttribute('data-gender');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();save()};
 var sbs=$('schoolSeg').querySelectorAll('[data-school]');
-for(var b=0;b<sbs.length;b++)sbs[b].onclick=function(){ch().school=this.getAttribute('data-school');applyRec(ch());renderControls();renderSections();save()};
+for(var b=0;b<sbs.length;b++)sbs[b].onclick=function(){ch().school=this.getAttribute('data-school');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();save()};
+var mbs=$('modeSeg').querySelectorAll('[data-mode]');
+for(var e=0;e<mbs.length;e++)mbs[e].onclick=function(){
+  state.mode=this.getAttribute('data-mode');
+  renderControls();
+  if(state.mode==='batafsil')renderSections();else renderQuick();
+  save();
+};
 $('months').oninput=function(){this.value=this.value.replace(/[^\d]/g,'');state.months=num(this.value);save()};
 $('calcBtn').onclick=calc;
 $('csvBtn').onclick=toCsv;
@@ -642,7 +684,6 @@ $('shareBtn').onclick=function(){
 };
 $('langUz').onclick=function(){lang='uz';applyLang()};
 $('langRu').onclick=function(){lang='ru';applyLang()};
-// boshlash
 (function init(){
   var restored=load();
   if(!restored)applyRec(state.children[0]);
