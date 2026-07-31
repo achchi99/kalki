@@ -128,6 +128,21 @@ input[type=text]{
 .receipt-actions button:active{background:var(--cat-soft)}
 .receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
+.early-payoff{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.ep-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
+.ep-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.ep-row label{margin:0;font-size:13px;font-weight:700;color:var(--muted)}
+.ep-val{font-size:15px;font-weight:800;color:var(--cat);white-space:nowrap}
+input[type=range]{width:100%;height:6px;border-radius:99px;background:#EEF2EF;outline:0;-webkit-appearance:none;appearance:none;cursor:pointer;margin:6px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:#EEF2EF}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ep-results{margin-top:12px;background:var(--cat-soft);border-radius:10px;padding:12px 14px}
+.ep-results .hint{margin:0}
+.ep-line{font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.6}
+.ep-line.accent{color:var(--cat)}
+
 .sched{margin-top:26px;display:none}
 .sched.show{display:block}
 .sched h2{font-size:17px;font-weight:800;margin-bottom:12px}
@@ -259,6 +274,19 @@ img,svg{height:auto}
         <div class="rrow"><span class="k" data-i="kInterest">Foizlar (ustama)</span><span class="v accent" id="rInterest">+19&nbsp;677&nbsp;499 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kTerm">Muddat</span><span class="v" id="rTerm">36 oy</span></div>
       </div>
+      <div class="early-payoff" id="earlyPayoff">
+        <div class="ep-head" data-i="epTitle">Kreditni erta yopish simulyatori</div>
+        <div class="ep-row">
+          <label for="extraSlider" data-i="epLabel">Oyiga qo'shimcha qancha to'lay olaman?</label>
+          <span class="ep-val" id="epVal">0 so'm</span>
+        </div>
+        <input type="range" id="extraSlider" min="0" max="5000000" step="50000" value="0">
+        <div class="ep-results">
+          <p class="hint" id="epHint" data-i="epHint">Slayderni suring — erta yopish va tejashni ko'ring.</p>
+          <div class="ep-line" id="epMonths" style="display:none"></div>
+          <div class="ep-line accent" id="epSaved" style="display:none"></div>
+        </div>
+      </div>
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
         <button type="button" id="schedBtn" data-i="btnSched">To'lov jadvali</button>
@@ -309,6 +337,11 @@ img,svg{height:auto}
       lblMonthly:"Oylik to'lov",lblFirstLast:"Birinchi va oxirgi to'lov",
       kAmount:"Kredit summasi",kTotal:"Umumiy to'lov",kInterest:"Foizlar (ustama)",kTerm:"Muddat",
       months:"oy",btnShare:"Ulashish",btnSched:"To'lov jadvali",copied:"Nusxalandi ✓",
+      epTitle:"Kreditni erta yopish simulyatori",
+      epLabel:"Oyiga qo'shimcha qancha to'lay olaman?",
+      epHint:"Slayderni suring — erta yopish va tejashni ko'ring.",
+      epMonthsTpl:"Siz kreditni {n} oy erta yopasiz",
+      epSavedTpl:"Bankka beriladigan foizlardan {y} tejab qolasiz!",
       schedH:"Oylik to'lov jadvali",
       thN:"Oy",thPay:"To'lov",thPr:"Asosiy qarz",thInt:"Foiz",thBal:"Qoldiq",
       moreShow:"Barchasini ko'rsatish",moreHide:"Yig'ish",
@@ -332,6 +365,11 @@ img,svg{height:auto}
       lblMonthly:"Ежемесячный платёж",lblFirstLast:"Первый и последний платёж",
       kAmount:"Сумма кредита",kTotal:"Общая выплата",kInterest:"Переплата (проценты)",kTerm:"Срок",
       months:"мес.",btnShare:"Поделиться",btnSched:"График платежей",copied:"Скопировано ✓",
+      epTitle:"Симулятор досрочного погашения",
+      epLabel:"Сколько дополнительно можете платить в месяц?",
+      epHint:"Подвиньте ползунок — узнайте, насколько раньше закроете кредит и сколько сэкономите.",
+      epMonthsTpl:"Вы закроете кредит на {n} мес. раньше",
+      epSavedTpl:"Сэкономите на процентах банку {y}!",
       schedH:"График ежемесячных платежей",
       thN:"Мес.",thPay:"Платёж",thPr:"Осн. долг",thInt:"Проценты",thBal:"Остаток",
       moreShow:"Показать все",moreHide:"Свернуть",
@@ -367,7 +405,7 @@ img,svg{height:auto}
       for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
-    if(rows.length){renderResult();renderRows()}
+    if(rows.length){renderResult();renderRows();updateEarlyPayoff()}
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
@@ -409,12 +447,52 @@ img,svg{height:auto}
         if(k2===n)lastPay=pay;
       }
     }
-    calcData={P:P,n:n,total:total,interest:interest,monthly:monthly,firstPay:firstPay,lastPay:lastPay};
+    calcData={P:P,n:n,total:total,interest:interest,monthly:monthly,firstPay:firstPay,lastPay:lastPay,i:i};
     expanded=false;
     renderResult();renderRows();
     $('receipt').classList.add('show');
     $('sched').classList.remove('show');
+    var maxExtra=Math.max(500000,Math.min(5000000,Math.round(P*0.2/50000)*50000));
+    $('extraSlider').max=maxExtra;
+    $('extraSlider').value=0;
+    updateEarlyPayoff();
   }
+
+  function simulateEarly(extra){
+    var P=calcData.P, i=calcData.i, n=calcData.n, prFix=P/n;
+    var bal=P, month=0, interestPaid=0;
+    var guard=Math.min(1200,n*3+60);
+    while(bal>0.5&&month<guard){
+      month++;
+      var fo=bal*i;
+      var basePrincipal=type==='ann'?(calcData.monthly-fo):prFix;
+      var principalPay=Math.min(bal,Math.max(0.01,basePrincipal+extra));
+      bal-=principalPay;
+      interestPaid+=fo;
+    }
+    return {n2:month,interestPaid:interestPaid};
+  }
+
+  function updateEarlyPayoff(){
+    var extra=num($('extraSlider').value);
+    $('epVal').textContent=fmt(extra)+' '+t('uSum');
+    if(!calcData)return;
+    if(extra<=0){
+      $('epHint').style.display='block';
+      $('epMonths').style.display='none';
+      $('epSaved').style.display='none';
+      return;
+    }
+    var sim=simulateEarly(extra);
+    var monthsSaved=Math.max(0,calcData.n-sim.n2);
+    var interestSaved=Math.max(0,calcData.interest-sim.interestPaid);
+    $('epHint').style.display='none';
+    $('epMonths').style.display='block';
+    $('epSaved').style.display='block';
+    $('epMonths').textContent=t('epMonthsTpl').replace('{n}',monthsSaved);
+    $('epSaved').textContent=t('epSavedTpl').replace('{y}',fmt(interestSaved)+' '+t('uSum'));
+  }
+  $('extraSlider').addEventListener('input',updateEarlyPayoff);
 
   function renderResult(){
     if(!calcData)return;

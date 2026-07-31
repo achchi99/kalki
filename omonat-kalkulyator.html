@@ -168,13 +168,21 @@ img,svg{height:auto}
       </div>
       <p class="hint" data-i="hMonthly">Har oy omonatga qo'shadigan summangiz. Yo'q bo'lsa 0 qoldiring.</p>
     </div>
-    <div class="field" style="margin-bottom:0">
+    <div class="field">
       <label data-i="lCap">Foizlar kapitalizatsiyasi</label>
       <div class="seg">
         <button type="button" id="capYes" class="on" data-i="segCapYes">Bor</button>
         <button type="button" id="capNo" data-i="segCapNo">Yo'q</button>
       </div>
       <p class="hint" id="capHint">Foizlar har oy omonatga qo'shilib, o'zi ham foiz keltiradi — daromad ko'proq.</p>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="inflation" data-i="lInflation">Kutilayotgan yillik inflyatsiya (%)</label>
+      <div class="input-shell">
+        <input type="text" id="inflation" inputmode="decimal" value="10" autocomplete="off">
+        <span class="unit" data-i="uRate">% yillik</span>
+      </div>
+      <p class="hint" data-i="hInflation">O'zbekistonda rasmiy prognoz odatda 8–12% atrofida. Real foyda shu inflyatsiya hisobga olingan holda ko'rsatiladi.</p>
     </div>
     <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
   </section>
@@ -189,6 +197,7 @@ img,svg{height:auto}
       <div class="receipt-rows">
         <div class="rrow"><span class="k" data-i="kDeposited">Jami qo'yilgan pul</span><span class="v" id="rDeposited">20&nbsp;000&nbsp;000 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kEarned">Foiz daromadi</span><span class="v accent" id="rEarned">+4&nbsp;387&nbsp;822 so'm</span></div>
+        <div class="rrow"><span class="k" data-i="kRealEarned">Real xarid qobiliyatidagi foydangiz</span><span class="v accent" id="rRealEarned">+0 so'm (0.0%)</span></div>
         <div class="rrow"><span class="k" data-i="kYield">Samarali daromadlilik</span><span class="v" id="rYield">21.9% yillik</span></div>
         <div class="rrow"><span class="k" data-i="kTerm">Muddat</span><span class="v" id="rTerm">12 oy</span></div>
       </div>
@@ -239,8 +248,10 @@ img,svg{height:auto}
       segCapYes:"Bor",segCapNo:"Yo'q",
       hintCapYes:"Foizlar har oy omonatga qo'shilib, o'zi ham foiz keltiradi — daromad ko'proq.",
       hintCapNo:"Foizlar har oy alohida to'lanadi, omonat o'zgarmaydi.",
+      lInflation:"Kutilayotgan yillik inflyatsiya (%)",
+      hInflation:"O'zbekistonda rasmiy prognoz odatda 8–12% atrofida. Real foyda shu inflyatsiya hisobga olingan holda ko'rsatiladi.",
       btnCalc:"Hisoblash",rTag:"Hisob natijasi",lblFinal:"Muddat oxiridagi jami summa",
-      kDeposited:"Jami qo'yilgan pul",kEarned:"Foiz daromadi",kYield:"Samarali daromadlilik",kTerm:"Muddat",
+      kDeposited:"Jami qo'yilgan pul",kEarned:"Foiz daromadi",kRealEarned:"Real xarid qobiliyatidagi foydangiz",kYield:"Samarali daromadlilik",kTerm:"Muddat",
       months:"oy",btnShare:"Ulashish",btnSched:"Oylik jadval",copied:"Nusxalandi ✓",
       schedH:"Omonat o'sish jadvali",
       thN:"Oy",thStart:"Boshida",thInt:"Foiz",thAdd:"Qo'shildi",thEnd:"Oxirida",
@@ -263,8 +274,10 @@ img,svg{height:auto}
       segCapYes:"Есть",segCapNo:"Нет",
       hintCapYes:"Проценты ежемесячно прибавляются к вкладу и сами приносят доход — итог больше.",
       hintCapNo:"Проценты выплачиваются отдельно каждый месяц, вклад не растёт.",
+      lInflation:"Ожидаемая годовая инфляция (%)",
+      hInflation:"Официальный прогноз в Узбекистане обычно 8–12%. Реальный доход показан с учётом этой инфляции.",
       btnCalc:"Рассчитать",rTag:"Результат расчёта",lblFinal:"Итоговая сумма в конце срока",
-      kDeposited:"Всего вложено",kEarned:"Доход по процентам",kYield:"Эффективная доходность",kTerm:"Срок",
+      kDeposited:"Всего вложено",kEarned:"Доход по процентам",kRealEarned:"Доход в реальной покупательной способности",kYield:"Эффективная доходность",kTerm:"Срок",
       months:"мес.",btnShare:"Поделиться",btnSched:"Помесячный график",copied:"Скопировано ✓",
       schedH:"График роста вклада",
       thN:"Мес.",thStart:"В начале",thInt:"Проценты",thAdd:"Пополнение",thEnd:"В конце",
@@ -344,7 +357,21 @@ img,svg{height:auto}
     $('rEarned').textContent='+'+fmt(d.earned)+sum;
     $('rYield').textContent=d.effYield.toFixed(1)+'% '+(lang==='uz'?'yillik':'годовых');
     $('rTerm').textContent=d.n+' '+t('months');
+    updateRealProfit();
   }
+
+  function updateRealProfit(){
+    if(!calcData)return;
+    var d=calcData, sum=' '+t('uSum');
+    var infl=num($('inflation').value);
+    var divisor=1+(infl/100)*(d.n/12);
+    var realFinal=d.finalSum/divisor;
+    var realEarned=realFinal-d.deposited;
+    var realYield=d.deposited?realEarned/d.deposited*(12/d.n)*100:0;
+    var sign=realEarned>=0?'+':'';
+    $('rRealEarned').textContent=sign+fmt(realEarned)+sum+' ('+realYield.toFixed(1)+'%)';
+  }
+  $('inflation').addEventListener('input',updateRealProfit);
 
   function renderRows(){
     var lim=expanded?rows.length:Math.min(12,rows.length), html='';
