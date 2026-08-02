@@ -1,4 +1,4 @@
-const CACHE='kalki-v39';
+const CACHE='kalki-v40';
 const ASSETS=[
   '/',
   '/favicon.svg',
@@ -37,6 +37,7 @@ const ASSETS=[
   '/tom-kalkulyator',
   '/toy-byudjeti-2026',
   '/toy-kalkulyator',
+  '/universitet-kontrakt-kalkulyator',
   '/uy-qurish-kalkulyator',
   '/yandex_5489ebe17687cac1',
   '/yer-konvertor',
