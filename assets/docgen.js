@@ -195,6 +195,32 @@
 
   KD.hasBlanks = function (s) { BLANK_RE.lastIndex = 0; return BLANK_RE.test(String(s)); };
 
+  /* ============================ BANDLARNI QAYTA RAQAMLASH ============================ */
+
+  // Shablonda bandlar "2.1.", "2.2." deb yozilgan, lekin ba'zilari shartli —
+  // qiymat kiritilmasa hujjatga tushmaydi. O'shanda raqamda bo'shliq qolardi
+  // (2.1 -> 2.3). Yuridik hujjatda raqam sakrashi ishonchni tushiradi, shuning
+  // uchun raqamlar har render paytida ketma-ket qayta hisoblanadi.
+  // Bir darajali ro'yxatlarga ("1. ", "2. ") tegilmaydi — ular sikl bilan quriladi.
+  var HEAD_RE = /^\s*\d+\.\s+([\s\S]*)$/;
+  var CLAUSE_RE = /^\s*\d+\.\d+\.\s+([\s\S]*)$/;
+
+  KD.renumber = function (blocks) {
+    var sec = 0, clause = 0;
+    for (var i = 0; i < blocks.length; i++) {
+      var b = blocks[i];
+      if (!b || !b.text) continue;
+      if (b.k === 'h') {
+        var mh = String(b.text).match(HEAD_RE);
+        if (mh) { sec++; clause = 0; b.text = sec + '. ' + mh[1]; }
+      } else if (b.k === 'p') {
+        var mp = String(b.text).match(CLAUSE_RE);
+        if (mp) { clause++; b.text = sec + '.' + clause + '. ' + mp[1]; }
+      }
+    }
+    return blocks;
+  };
+
   /* ============================ FORMA ============================ */
 
   function $(id) { return document.getElementById(id); }
@@ -465,7 +491,9 @@
     function currentBlocks() {
       var v = values();
       var c = cfg.compute ? cfg.compute(v, ctx.lang) : {};
-      return cfg.doc(v, c, ctx.lang);
+      // Ko'rinish va Word bitta ro'yxatdan quriladi, shuning uchun raqamlash
+      // shu yerda — ikkalasida ham bir xil bo'lishi kafolatlanadi.
+      return KD.renumber(cfg.doc(v, c, ctx.lang));
     }
 
     function renderPreview() {

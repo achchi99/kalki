@@ -1,4 +1,4 @@
-const CACHE='kalki-v44';
+const CACHE='kalki-v45';
 const ASSETS=[
   '/',
   '/assets/docgen.js',
