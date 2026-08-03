@@ -1,0 +1,695 @@
+<!DOCTYPE html><html lang="uz"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tilxat namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Qarz tilxati namunasi: summa, muddat va foiz shartlarini kiriting, tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец расписки о займе онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/tilxat-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<meta property="og:title" content="Tilxat namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Qarz tilxati namunasi: summa, muddat va foiz shartlarini kiriting, tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец расписки о займе онлайн.">
+<meta property="og:url" content="https://kalki.uz/tilxat-namunasi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tilxat namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Qarz tilxati namunasi: summa, muddat va foiz shartlarini kiriting, tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец расписки о займе онлайн.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#topmenu .tm-s{display:none}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #topmenu .tm-f{display:none}
+  #topmenu .tm-s{display:inline}
+}
+@media (max-width:400px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11.5px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Tilxat namunasi","item":"https://kalki.uz/tilxat-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Tilxat namunasi","description":"Qarz tilxati namunasi: summa, muddat va foiz shartlarini kiriting, tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец расписки о займе онлайн.","url":"https://kalki.uz/tilxat-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Tilxat notarial tasdiqlanishi shartmi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q, tilxat oddiy yozma shaklda ham haqiqiy hisoblanadi va tomonlar imzosi yetarli. Notarial tasdiqlash majburiy emas, lekin katta summalarda tavsiya etiladi — bu hujjatning ishonchliligini oshiradi va nizo chiqqanda uni inkor qilish qiyinlashadi."}},{"@type":"Question","name":"Tilxatni chop etib imzolasa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, bo'ladi va u haqiqiy hisoblanadi. Lekin sud amaliyotida qarz oluvchining o'z qo'li bilan to'liq yozilgan tilxat kuchliroq dalil bo'ladi, chunki qo'lyozma ekspertizasi orqali uni kim yozgani aniqlanadi. Shuning uchun generatordan chiqqan matnni qo'lda ko'chirib yozish maslahat beriladi."}},{"@type":"Question","name":"Qarz qaytarilganda nima qilish kerak?","acceptedAnswer":{"@type":"Answer","text":"Qarz to'liq qaytarilgach, qarz beruvchi tilxatni qarz oluvchiga qaytarishi yoki uning ustiga «summa to'liq qaytarildi» deb yozib, sana qo'yib imzolashi kerak. Bo'lib to'lanayotgan bo'lsa, har bir to'lov uchun alohida qayd yuritilgani ma'qul — aks holda qancha to'langani bahsli bo'lib qoladi."}},{"@type":"Question","name":"Valyutada qarz berish mumkinmi?","acceptedAnswer":{"@type":"Answer","text":"Tilxatda summa qaysi valyutada berilgani aniq ko'rsatilishi kerak. Bu generator so'm, AQSH dollari va yevroni qo'llab-quvvatlaydi va summani tanlangan valyutaga mos so'z bilan yozadi. Valyuta kursi hujjatga yozilmaydi — u kunlik o'zgaradi, kerak bo'lsa tomonlar alohida kelishadi."}},{"@type":"Question","name":"Qaytarish sanasi yozilmasa nima bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Muddat ko'rsatilmagan tilxat ham haqiqiy, lekin qarzni qaytarishni talab qilish murakkablashadi — qachondan boshlab muddat buzilgani noaniq qoladi. Shuning uchun aniq sana yozish tavsiya etiladi. Generator sanani kiritganingizda qarz muddatini kunlarda ham hisoblab qo'yadi."}},{"@type":"Question","name":"Guvohlar bo'lishi shartmi?","acceptedAnswer":{"@type":"Answer","text":"Shart emas. Lekin katta summalarda guvoh tilxat tuzilganini va pul haqiqatan topshirilganini tasdiqlashi mumkin. Guvohning F.I.Sh. va pasport ma'lumotlari yozilib, imzo qo'yishi kerak. Generatorda guvohlar sonini 0, 1 yoki 2 deb tanlaysiz — kerak bo'lmasa band matndan butunlay chiqib ketadi."}},{"@type":"Question","name":"Foiz miqdorini kim belgilaydi?","acceptedAnswer":{"@type":"Answer","text":"Foiz miqdorini tomonlar o'zaro kelishib belgilaydi. Bu generator hech qanday stavkani oldindan yozib qo'ymaydi — siz kelishilgan miqdorni kiritasiz. Foizsiz qarz ham keng tarqalgan, bunda «Foizsiz» tanlansa, tegishli band tilxatda aniq qayd etiladi."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1060px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar" class="tm-on"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Tilxat namunasi</h1>
+    <p class="sub" data-i="sub">Qarz berish yoki olishda tilxat rasmiylashtiring. Formani to'ldiring — matn o'ng tarafda darrov shakllanadi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Tilxat namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Tilxat</b> — bir shaxs ikkinchisidan pul qarz olganini tasdiqlaydigan hujjat. Og'zaki kelishuv nizo chiqqanda deyarli isbotlanmaydi, yozma tilxat esa asosiy dalil bo'lib xizmat qiladi. Formani to'ldiring: summa so'z bilan yoziladi, qarz muddati kunlarda hisoblanadi. Kiritilgan ma'lumot faqat shu brauzerda saqlanadi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Umumiy</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="city"><label>Tuzilgan shahar</label><div class="dg-shell"><input type="text" data-f="city" value="" placeholder="Toshkent"></div></div><div class="dg-field dg-half" data-fw="signDate"><label>Tuzilgan sana</label><div class="dg-shell"><input type="date" data-f="signDate" value="" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qarz beruvchi</div><div class="dg-rows"><div class="dg-field" data-fw="lnFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="lnFio" value="" placeholder="Aliyev Alisher Alimovich"></div></div><div class="dg-field dg-half" data-fw="lnPasSer"><label>Pasport seriyasi</label><div class="dg-shell"><input type="text" data-f="lnPasSer" value="" placeholder="AA"></div></div><div class="dg-field dg-half" data-fw="lnPasNum"><label>Pasport raqami</label><div class="dg-shell"><input type="text" data-f="lnPasNum" value="" placeholder="1234567"></div></div><div class="dg-field" data-fw="lnPasBy"><label>Kim tomonidan berilgan</label><div class="dg-shell"><input type="text" data-f="lnPasBy" value="" placeholder="Chilonzor tuman IIB"></div></div><div class="dg-field dg-half" data-fw="lnJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="lnJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field dg-half" data-fw="lnPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="lnPhone" value="" placeholder="+998 90 123 45 67"></div></div><div class="dg-field" data-fw="lnAddr"><label>Yashash manzili</label><div class="dg-shell"><input type="text" data-f="lnAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qarz oluvchi</div><div class="dg-rows"><div class="dg-field" data-fw="brFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="brFio" value="" placeholder="Aliyev Alisher Alimovich"></div></div><div class="dg-field dg-half" data-fw="brPasSer"><label>Pasport seriyasi</label><div class="dg-shell"><input type="text" data-f="brPasSer" value="" placeholder="AA"></div></div><div class="dg-field dg-half" data-fw="brPasNum"><label>Pasport raqami</label><div class="dg-shell"><input type="text" data-f="brPasNum" value="" placeholder="1234567"></div></div><div class="dg-field" data-fw="brPasBy"><label>Kim tomonidan berilgan</label><div class="dg-shell"><input type="text" data-f="brPasBy" value="" placeholder="Chilonzor tuman IIB"></div></div><div class="dg-field dg-half" data-fw="brJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="brJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field dg-half" data-fw="brPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="brPhone" value="" placeholder="+998 90 123 45 67"></div></div><div class="dg-field" data-fw="brAddr"><label>Yashash manzili</label><div class="dg-shell"><input type="text" data-f="brAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qarz shartlari</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="amount"><label>Qarz summasi</label><div class="dg-shell"><input type="text" data-f="amount" inputmode="numeric" value="" placeholder="10 000 000"></div></div><div class="dg-field dg-half" data-fw="cur"><label>Valyuta</label><div class="dg-shell"><select data-f="cur"><option value="som" selected="">so'm</option><option value="usd">AQSH dollari (USD)</option><option value="eur">yevro (EUR)</option></select></div></div><div class="dg-field dg-half" data-fw="returnDate"><label>Qaytarish sanasi</label><div class="dg-shell"><input type="date" data-f="returnDate" value="" placeholder=""></div><div class="dg-hint">Muddat kunlarda avtomatik hisoblanadi.</div></div><div class="dg-field" data-fw="interest"><label>Foiz</label><div class="dg-seg"><button type="button" data-seg="interest" data-val="yoq" class="on">Foizsiz</button><button type="button" data-seg="interest" data-val="bor">Foizli</button></div></div><div class="dg-field" data-fw="repay"><label>Qaytarish tartibi</label><div class="dg-seg"><button type="button" data-seg="repay" data-val="birYola" class="on">Bir yo'la</button><button type="button" data-seg="repay" data-val="bolib">Bo'lib-bo'lib</button></div></div><div class="dg-field dg-half" data-fw="penalty"><label>Kechiktirilganda penya</label><div class="dg-shell"><input type="text" data-f="penalty" value="" placeholder="0,1"><span class="dg-unit">% kuniga</span></div><div class="dg-hint">Bo'sh qoldirsangiz penya bandi tilxatga kirmaydi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Guvohlar (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="wn"><label>Guvohlar soni</label><div class="dg-seg"><button type="button" data-seg="wn" data-val="0" class="on">Yo'q</button><button type="button" data-seg="wn" data-val="1">1 ta</button><button type="button" data-seg="wn" data-val="2">2 ta</button></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Tilxatni ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Tilxat matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 5</span></div>
+        <div id="docBody"><div class="dg-title">TILXAT</div><div class="dg-sub"><span class="ph">______________</span> shahri          <span class="ph">________________________</span></div><div class="dg-p">Men, <span class="ph">________________________________</span> (pasport: seriya <span class="ph">_____</span> № <span class="ph">_________</span>, kim tomonidan berilgan: <span class="ph">________________________</span>, manzil: <span class="ph">____________________________</span>), <span class="ph">________________________________</span> (pasport: seriya <span class="ph">_____</span> № <span class="ph">_________</span>, kim tomonidan berilgan: <span class="ph">________________________</span>, manzil: <span class="ph">____________________________</span>)dan <span class="ph">________________</span> (<span class="ph">__________________________</span>) so'm miqdorida pul mablag'ini qarzga oldim.</div><div class="dg-p">1. Pul mablag'i ushbu tilxat tuzilgan kunda menga to'liq topshirildi. Summa bo'yicha da'voim yo'q.</div><div class="dg-p">2. Ushbu summani <span class="ph">______________________</span>gacha qaytarish majburiyatini olaman.</div><div class="dg-p">3. Qarz foizsiz berildi. Pul mablag'idan foydalanganlik uchun foiz hisoblanmaydi.</div><div class="dg-p">4. Qarz bir yo'la, to'liq summa bilan qaytariladi.</div><div class="dg-p">5. Ushbu tilxat ikki nusxada, har bir tomon uchun bittadan tuzildi va ikkalasi bir xil kuchga ega.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>Qarz oluvchi:</div><div><span class="ph">__________________________</span></div><div>_______________ (imzo)</div></div><div><div>Qarz beruvchi:</div><div><span class="ph">__________________________</span></div><div>_______________ (imzo)</div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Tilxatni qarz oluvchi o'z qo'li bilan ko'chirib yozgani tavsiya etiladi.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Sud amaliyotida <b>qarz oluvchining o'z qo'li bilan to'liq yozilgan</b> tilxat kuchliroq dalil hisoblanadi — chunki zarurat tug'ilganda qo'lyozma ekspertizasi orqali kimning yozgani aniqlanadi. Shuning uchun quyidagi matnni chop etib imzolash o'rniga, <b>qarz oluvchi uni qo'lda ko'chirib yozgani</b> ma'qul. Generatordan chiqqan matn namuna va nazorat ro'yxati sifatida ishlatilsin.</div><div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Katta summalar bo'yicha hujjatni yurist bilan tekshiring yoki notarial tasdiqlang. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.</div>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Tilxat nima va u qanday kuchga ega?</h2><p>Tilxat — bir shaxs ikkinchisidan ma'lum summani qarzga olganini yozma tasdiqlaydigan hujjat. Ko'pchilik pulni tanish-bilish orqali, hech qanday qog'ozsiz beradi va qaytarilmaganda qo'lida hech qanday dalil qolmaydi. Og'zaki kelishuvni isbotlash deyarli imkonsiz: guvoh bo'lmasa, sud faqat tomonlarning bir-biriga zid gaplarini eshitadi. Yozma tilxat esa qarz munosabati mavjudligini tasdiqlaydigan asosiy hujjat bo'lib xizmat qiladi.</p><p>Tilxat murakkab hujjat emas — unda kim kimdan, qancha, qachongacha qarz olgani aniq yozilishi kifoya. Muhimi, ma'lumotlar to'liq va aniq bo'lsin: faqat ism-familiya emas, pasport ma'lumotlari va manzil ham ko'rsatilsin. Aks holda nizo chiqqanda kim haqida gap ketayotganini isbotlash qiyinlashadi.</p><p>Tilxat va qarz shartnomasi orasida amaliy farq bor. Shartnoma ikki tomon imzolaydigan, huquq va majburiyatlar batafsil yozilgan hujjat. Tilxat esa bir tomonlama — uni qarz oluvchi yozadi va pulni olganini tasdiqlaydi. Kichik va o'rta summalarda tilxat yetarli, katta va uzoq muddatli qarzlarda esa to'liq shartnoma tuzish ma'qulroq.</p><h2>Tilxatda nima bo'lishi shart?</h2><p>Ishonchli tilxatda quyidagilar bo'ladi: tuzilgan sana va joy, qarz beruvchi va qarz oluvchining to'liq ma'lumotlari (F.I.Sh., pasport seriya va raqami, kim tomonidan berilgani, JSHSHIR, yashash manzili), qarz summasi raqam va so'z bilan, qaytarish muddati, foiz bo'lsa uning miqdori, qaytarish tartibi va tomonlar imzosi.</p><p>Summani so'z bilan yozish moliyaviy hujjatlarda muhim: raqamda bitta nol qo'shilib qolsa yoki o'chib ketsa, so'z bilan yozilgan variant haqiqiy hisoblanadi. Shuning uchun generator summani avtomatik so'zga aylantiradi va valyutasini ham qo'shadi.</p><p>Yana bir muhim band — pul haqiqatan topshirilganini qayd etish. Amaliyotda «qarz berdim» degan yozuv bor-u, «pulni oldim» degani yo'q tilxatlar uchraydi. Shunda qarz oluvchi pul umuman berilmaganini aytishi mumkin. Generator matnida pul tilxat tuzilgan kunda to'liq topshirilgani va summa bo'yicha da'vo yo'qligi alohida band sifatida yoziladi.</p><h2>Nega tilxatni qo'lda yozish tavsiya etiladi?</h2><p>Chop etilgan va imzolangan tilxat ham haqiqiy hisoblanadi, lekin nizo chiqqanda qarz oluvchi imzoni inkor qilishi mumkin. Agar tilxat butunlay qarz oluvchining qo'li bilan yozilgan bo'lsa, qo'lyozma ekspertizasi orqali uni kim yozgani aniqlanadi — bu ancha kuchli dalil. Imzo qisqa bo'lgani uchun uni tekshirish qiyinroq, to'liq matn esa ekspertiza uchun yetarli material beradi.</p><p>Shu sababli amaliyotda tilxatni qarz oluvchi o'z qo'li bilan to'liq ko'chirib yozishi maslahat beriladi. Generatordan chiqqan matn bunda namuna va nazorat ro'yxati vazifasini bajaradi: hech bir muhim band tushib qolmaydi, iboralar to'g'ri shakllanadi.</p><h2>Foizli va foizsiz qarz</h2><p>Qarz foizsiz ham, foizli ham berilishi mumkin — buni tomonlar o'zlari kelishadi. Foizsiz qarzda tilxatda shu holat aniq yozilishi kerak, aks holda keyinchalik bahs chiqishi mumkin. Foizli qarzda esa yillik foiz miqdori va u qanday hisoblanishi ko'rsatiladi.</p><p>Bu generator hech qanday foiz stavkasini o'zi belgilamaydi — siz kelishilgan miqdorni kiritasiz, chunki stavka har bir holatda turlicha bo'ladi va vaqt o'tishi bilan o'zgaradi. «Foizsiz» tanlansangiz, foiz haqidagi band matndan butunlay chiqib ketadi va uning o'rniga qarz foizsiz ekani aniq qayd etiladi.</p><h2>Qaytarish muddati va tartibi</h2><p>Muddat aniq sana bilan ko'rsatilishi kerak: «qisqa vaqtdan keyin» yoki «imkon topilganda» kabi noaniq iboralar tilxatni kuchsizlantiradi. Generator tuzilgan va qaytarish sanalari orasidagi kunlar sonini avtomatik hisoblab, matnga qo'shadi — bu keyinchalik muddat buzilganini hisoblashda qulay.</p><p>Qarzni bir yo'la yoki bo'lib-bo'lib qaytarish mumkin. Bo'lib to'lashda qismlar soni va davriyligi yoziladi — masalan, to'rt qismga bo'lib, har oyda. Generator har bir qism summasini o'zi hisoblab qo'yadi, shunda to'lov qachon va qancha bo'lishi oldindan aniq bo'ladi va hisob-kitobda chalkashlik chiqmaydi.</p><p>Kechiktirilgan holat uchun penya belgilash mumkin. Bu majburiy emas, lekin qarzni o'z vaqtida qaytarishga undaydi. Penya foizini ham siz kiritasiz — bo'sh qoldirsangiz, tegishli band tilxatga umuman kirmaydi.</p><h2>Guvohlar va qarz qaytarilmagan holat</h2><p>Guvohlar majburiy emas, lekin katta summalarda foydali. Guvoh tilxat tuzilganini va pul haqiqatan berilganini tasdiqlashi mumkin. Guvohning ham F.I.Sh. va pasport ma'lumotlari yozilib, imzo qo'yishi kerak — shundagina uning ishtiroki ahamiyatga ega bo'ladi. Generatorda guvohlar soni ixtiyoriy: kerak bo'lmasa, tegishli band matndan butunlay chiqib ketadi.</p><p>Qarz muddatida qaytarilmasa, avval yozma talab yuborish tavsiya etiladi — bu keyingi bosqichlar uchun dalil bo'ladi. Kelishuvga erishilmasa, masala sud tartibida hal qilinadi va o'shanda tilxat asosiy hujjat sifatida taqdim etiladi. Shuning uchun tilxat asli saqlanishi, nusxasi esa alohida joyda turishi kerak.</p><h2>Tipik xatolar</h2><p>Eng keng tarqalgan xatolar: pasport ma'lumotlarini yozmaslik (faqat ism bilan cheklanish), summani faqat raqamda ko'rsatish, qaytarish sanasini aniq yozmaslik, foizsiz ekanini qayd etmaslik va tilxatni bitta nusxada qoldirish. Yana bir xato — pulni tilxat imzolanishidan oldin berish.</p><p>Katta summalarda notarial tasdiqlash yoki bank o'tkazmasi orqali to'lash tavsiya etiladi — o'tkazma o'zi qo'shimcha dalil bo'ladi. Qarz qaytarilgach, tilxat qarz oluvchiga qaytarilishi yoki ustiga to'liq qaytarilgani haqida yozuv qo'yilishi kerak.</p><p>Generatorda formani to'ldirasiz — matn real vaqtda o'ng tarafda shakllanadi, to'ldirilmagan joylar sariq rangda ajratiladi. Barcha hisob brauzeringizda bajariladi, ma'lumot serverga yuborilmaydi. Tayyor matnni Word yoki PDF sifatida yuklab olasiz.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Tilxat notarial tasdiqlanishi shartmi?</h2><p>Yo'q, tilxat oddiy yozma shaklda ham haqiqiy hisoblanadi va tomonlar imzosi yetarli. Notarial tasdiqlash majburiy emas, lekin katta summalarda tavsiya etiladi — bu hujjatning ishonchliligini oshiradi va nizo chiqqanda uni inkor qilish qiyinlashadi.</p><h2>Tilxatni chop etib imzolasa bo'ladimi?</h2><p>Ha, bo'ladi va u haqiqiy hisoblanadi. Lekin sud amaliyotida qarz oluvchining o'z qo'li bilan to'liq yozilgan tilxat kuchliroq dalil bo'ladi, chunki qo'lyozma ekspertizasi orqali uni kim yozgani aniqlanadi. Shuning uchun generatordan chiqqan matnni qo'lda ko'chirib yozish maslahat beriladi.</p><h2>Qarz qaytarilganda nima qilish kerak?</h2><p>Qarz to'liq qaytarilgach, qarz beruvchi tilxatni qarz oluvchiga qaytarishi yoki uning ustiga «summa to'liq qaytarildi» deb yozib, sana qo'yib imzolashi kerak. Bo'lib to'lanayotgan bo'lsa, har bir to'lov uchun alohida qayd yuritilgani ma'qul — aks holda qancha to'langani bahsli bo'lib qoladi.</p><h2>Valyutada qarz berish mumkinmi?</h2><p>Tilxatda summa qaysi valyutada berilgani aniq ko'rsatilishi kerak. Bu generator so'm, AQSH dollari va yevroni qo'llab-quvvatlaydi va summani tanlangan valyutaga mos so'z bilan yozadi. Valyuta kursi hujjatga yozilmaydi — u kunlik o'zgaradi, kerak bo'lsa tomonlar alohida kelishadi.</p><h2>Qaytarish sanasi yozilmasa nima bo'ladi?</h2><p>Muddat ko'rsatilmagan tilxat ham haqiqiy, lekin qarzni qaytarishni talab qilish murakkablashadi — qachondan boshlab muddat buzilgani noaniq qoladi. Shuning uchun aniq sana yozish tavsiya etiladi. Generator sanani kiritganingizda qarz muddatini kunlarda ham hisoblab qo'yadi.</p><h2>Guvohlar bo'lishi shartmi?</h2><p>Shart emas. Lekin katta summalarda guvoh tilxat tuzilganini va pul haqiqatan topshirilganini tasdiqlashi mumkin. Guvohning F.I.Sh. va pasport ma'lumotlari yozilib, imzo qo'yishi kerak. Generatorda guvohlar sonini 0, 1 yoki 2 deb tanlaysiz — kerak bo'lmasa band matndan butunlay chiqib ketadi.</p><h2>Foiz miqdorini kim belgilaydi?</h2><p>Foiz miqdorini tomonlar o'zaro kelishib belgilaydi. Bu generator hech qanday stavkani oldindan yozib qo'ymaydi — siz kelishilgan miqdorni kiritasiz. Foizsiz qarz ham keng tarqalgan, bunda «Foizsiz» tanlansa, tegishli band tilxatda aniq qayd etiladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">QQS 2026: qanday hisoblanadi va kim to'laydi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Bolalar nafaqasi 2026: yangi miqdorlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="ishonchnoma-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ishonchnoma namunasi" data-rel-ru="Образец доверенности">Ishonchnoma namunasi</span></a><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🏠</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ijara shartnomasi" data-rel-ru="Договор аренды">Ijara shartnomasi</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💳</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit kalkulyatori" data-rel-ru="Кредитный калькулятор">Kredit kalkulyatori</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Hujjat namunasi ma'lumot uchun. Qarz shartlarini tomonlar o'zaro kelishib belgilaydi.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+var lang='uz';
+
+/* ---------- tarjimalar ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Tilxat namunasi",
+  sub:"Qarz berish yoki olishda tilxat rasmiylashtiring. Formani to'ldiring — matn o'ng tarafda darrov shakllanadi.",
+  intro:"<b>Tilxat</b> — bir shaxs ikkinchisidan pul qarz olganini tasdiqlaydigan hujjat. Og'zaki kelishuv nizo chiqqanda deyarli isbotlanmaydi, yozma tilxat esa asosiy dalil bo'lib xizmat qiladi. Formani to'ldiring: summa so'z bilan yoziladi, qarz muddati kunlarda hisoblanadi. Kiritilgan ma'lumot faqat shu brauzerda saqlanadi.",
+  prevTitle:"Tilxat matni",
+  jump:"Tilxatni ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTitle:"Muhim maslahat",
+  tipTxt:"Sud amaliyotida <b>qarz oluvchining o'z qo'li bilan to'liq yozilgan</b> tilxat kuchliroq dalil hisoblanadi — chunki zarurat tug'ilganda qo'lyozma ekspertizasi orqali kimning yozgani aniqlanadi. Shuning uchun quyidagi matnni chop etib imzolash o'rniga, <b>qarz oluvchi uni qo'lda ko'chirib yozgani</b> ma'qul. Generatordan chiqqan matn namuna va nazorat ro'yxati sifatida ishlatilsin.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Katta summalar bo'yicha hujjatni yurist bilan tekshiring yoki notarial tasdiqlang. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.",
+  foot:"Hujjat namunasi ma'lumot uchun. Qarz shartlarini tomonlar o'zaro kelishib belgilaydi.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Tilxat nima va u qanday kuchga ega?</h2><p>Tilxat — bir shaxs ikkinchisidan ma'lum summani qarzga olganini yozma tasdiqlaydigan hujjat. Ko'pchilik pulni tanish-bilish orqali, hech qanday qog'ozsiz beradi va qaytarilmaganda qo'lida hech qanday dalil qolmaydi. Og'zaki kelishuvni isbotlash deyarli imkonsiz: guvoh bo'lmasa, sud faqat tomonlarning bir-biriga zid gaplarini eshitadi. Yozma tilxat esa qarz munosabati mavjudligini tasdiqlaydigan asosiy hujjat bo'lib xizmat qiladi.</p><p>Tilxat murakkab hujjat emas — unda kim kimdan, qancha, qachongacha qarz olgani aniq yozilishi kifoya. Muhimi, ma'lumotlar to'liq va aniq bo'lsin: faqat ism-familiya emas, pasport ma'lumotlari va manzil ham ko'rsatilsin. Aks holda nizo chiqqanda kim haqida gap ketayotganini isbotlash qiyinlashadi.</p><p>Tilxat va qarz shartnomasi orasida amaliy farq bor. Shartnoma ikki tomon imzolaydigan, huquq va majburiyatlar batafsil yozilgan hujjat. Tilxat esa bir tomonlama — uni qarz oluvchi yozadi va pulni olganini tasdiqlaydi. Kichik va o'rta summalarda tilxat yetarli, katta va uzoq muddatli qarzlarda esa to'liq shartnoma tuzish ma'qulroq.</p><h2>Tilxatda nima bo'lishi shart?</h2><p>Ishonchli tilxatda quyidagilar bo'ladi: tuzilgan sana va joy, qarz beruvchi va qarz oluvchining to'liq ma'lumotlari (F.I.Sh., pasport seriya va raqami, kim tomonidan berilgani, JSHSHIR, yashash manzili), qarz summasi raqam va so'z bilan, qaytarish muddati, foiz bo'lsa uning miqdori, qaytarish tartibi va tomonlar imzosi.</p><p>Summani so'z bilan yozish moliyaviy hujjatlarda muhim: raqamda bitta nol qo'shilib qolsa yoki o'chib ketsa, so'z bilan yozilgan variant haqiqiy hisoblanadi. Shuning uchun generator summani avtomatik so'zga aylantiradi va valyutasini ham qo'shadi.</p><p>Yana bir muhim band — pul haqiqatan topshirilganini qayd etish. Amaliyotda «qarz berdim» degan yozuv bor-u, «pulni oldim» degani yo'q tilxatlar uchraydi. Shunda qarz oluvchi pul umuman berilmaganini aytishi mumkin. Generator matnida pul tilxat tuzilgan kunda to'liq topshirilgani va summa bo'yicha da'vo yo'qligi alohida band sifatida yoziladi.</p><h2>Nega tilxatni qo'lda yozish tavsiya etiladi?</h2><p>Chop etilgan va imzolangan tilxat ham haqiqiy hisoblanadi, lekin nizo chiqqanda qarz oluvchi imzoni inkor qilishi mumkin. Agar tilxat butunlay qarz oluvchining qo'li bilan yozilgan bo'lsa, qo'lyozma ekspertizasi orqali uni kim yozgani aniqlanadi — bu ancha kuchli dalil. Imzo qisqa bo'lgani uchun uni tekshirish qiyinroq, to'liq matn esa ekspertiza uchun yetarli material beradi.</p><p>Shu sababli amaliyotda tilxatni qarz oluvchi o'z qo'li bilan to'liq ko'chirib yozishi maslahat beriladi. Generatordan chiqqan matn bunda namuna va nazorat ro'yxati vazifasini bajaradi: hech bir muhim band tushib qolmaydi, iboralar to'g'ri shakllanadi.</p><h2>Foizli va foizsiz qarz</h2><p>Qarz foizsiz ham, foizli ham berilishi mumkin — buni tomonlar o'zlari kelishadi. Foizsiz qarzda tilxatda shu holat aniq yozilishi kerak, aks holda keyinchalik bahs chiqishi mumkin. Foizli qarzda esa yillik foiz miqdori va u qanday hisoblanishi ko'rsatiladi.</p><p>Bu generator hech qanday foiz stavkasini o'zi belgilamaydi — siz kelishilgan miqdorni kiritasiz, chunki stavka har bir holatda turlicha bo'ladi va vaqt o'tishi bilan o'zgaradi. «Foizsiz» tanlansangiz, foiz haqidagi band matndan butunlay chiqib ketadi va uning o'rniga qarz foizsiz ekani aniq qayd etiladi.</p><h2>Qaytarish muddati va tartibi</h2><p>Muddat aniq sana bilan ko'rsatilishi kerak: «qisqa vaqtdan keyin» yoki «imkon topilganda» kabi noaniq iboralar tilxatni kuchsizlantiradi. Generator tuzilgan va qaytarish sanalari orasidagi kunlar sonini avtomatik hisoblab, matnga qo'shadi — bu keyinchalik muddat buzilganini hisoblashda qulay.</p><p>Qarzni bir yo'la yoki bo'lib-bo'lib qaytarish mumkin. Bo'lib to'lashda qismlar soni va davriyligi yoziladi — masalan, to'rt qismga bo'lib, har oyda. Generator har bir qism summasini o'zi hisoblab qo'yadi, shunda to'lov qachon va qancha bo'lishi oldindan aniq bo'ladi va hisob-kitobda chalkashlik chiqmaydi.</p><p>Kechiktirilgan holat uchun penya belgilash mumkin. Bu majburiy emas, lekin qarzni o'z vaqtida qaytarishga undaydi. Penya foizini ham siz kiritasiz — bo'sh qoldirsangiz, tegishli band tilxatga umuman kirmaydi.</p><h2>Guvohlar va qarz qaytarilmagan holat</h2><p>Guvohlar majburiy emas, lekin katta summalarda foydali. Guvoh tilxat tuzilganini va pul haqiqatan berilganini tasdiqlashi mumkin. Guvohning ham F.I.Sh. va pasport ma'lumotlari yozilib, imzo qo'yishi kerak — shundagina uning ishtiroki ahamiyatga ega bo'ladi. Generatorda guvohlar soni ixtiyoriy: kerak bo'lmasa, tegishli band matndan butunlay chiqib ketadi.</p><p>Qarz muddatida qaytarilmasa, avval yozma talab yuborish tavsiya etiladi — bu keyingi bosqichlar uchun dalil bo'ladi. Kelishuvga erishilmasa, masala sud tartibida hal qilinadi va o'shanda tilxat asosiy hujjat sifatida taqdim etiladi. Shuning uchun tilxat asli saqlanishi, nusxasi esa alohida joyda turishi kerak.</p><h2>Tipik xatolar</h2><p>Eng keng tarqalgan xatolar: pasport ma'lumotlarini yozmaslik (faqat ism bilan cheklanish), summani faqat raqamda ko'rsatish, qaytarish sanasini aniq yozmaslik, foizsiz ekanini qayd etmaslik va tilxatni bitta nusxada qoldirish. Yana bir xato — pulni tilxat imzolanishidan oldin berish.</p><p>Katta summalarda notarial tasdiqlash yoki bank o'tkazmasi orqali to'lash tavsiya etiladi — o'tkazma o'zi qo'shimcha dalil bo'ladi. Qarz qaytarilgach, tilxat qarz oluvchiga qaytarilishi yoki ustiga to'liq qaytarilgani haqida yozuv qo'yilishi kerak.</p><p>Generatorda formani to'ldirasiz — matn real vaqtda o'ng tarafda shakllanadi, to'ldirilmagan joylar sariq rangda ajratiladi. Barcha hisob brauzeringizda bajariladi, ma'lumot serverga yuborilmaydi. Tayyor matnni Word yoki PDF sifatida yuklab olasiz.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец расписки о займе",
+  sub:"Оформите расписку при передаче денег в долг. Заполните форму — текст сформируется справа сразу.",
+  intro:"<b>Расписка</b> — документ, подтверждающий, что одно лицо взяло у другого деньги в долг. Устную договорённость при споре почти невозможно доказать, а письменная расписка служит основным доказательством. Заполните форму: сумма пишется прописью, срок займа считается в днях. Введённые данные остаются только в вашем браузере.",
+  prevTitle:"Текст расписки",
+  jump:"Посмотреть расписку ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTitle:"Важный совет",
+  tipTxt:"В судебной практике расписка, <b>полностью написанная рукой заёмщика</b>, считается более сильным доказательством — при необходимости почерковедческая экспертиза установит, кто её писал. Поэтому вместо того чтобы распечатать и подписать, лучше, чтобы <b>заёмщик переписал текст от руки</b>. Текст из генератора используйте как образец и контрольный список.",
+  warnTxt:"<b>Внимание.</b> Документ готовится как образец и не является юридической консультацией. По крупным суммам проверьте документ с юристом или заверьте нотариально. Kalki.uz не несёт ответственности за последствия использования документа.",
+  foot:"Образец документа носит справочный характер. Условия займа стороны определяют по взаимному согласию.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Что такое расписка и какую силу она имеет?</h2><p>Расписка — документ, письменно подтверждающий, что одно лицо взяло у другого определённую сумму в долг. Многие дают деньги знакомым без каких-либо бумаг, и при невозврате не остаётся никаких доказательств. Устную договорённость доказать почти невозможно: без свидетелей суд слышит лишь взаимно противоречащие объяснения сторон. Письменная расписка же служит основным документом, подтверждающим заёмные отношения.</p><p>Расписка — несложный документ: достаточно чётко указать, кто у кого, сколько и до какого срока взял. Важно, чтобы данные были полными: не только имя и фамилия, но и паспортные данные с адресом. Иначе при споре будет трудно доказать, о ком идёт речь.</p><p>Между распиской и договором займа есть практическая разница. Договор подписывают обе стороны, в нём подробно описаны права и обязанности. Расписка односторонняя — её пишет заёмщик, подтверждая получение денег. При небольших и средних суммах расписки достаточно, при крупных и долгосрочных займах лучше составить полноценный договор.</p><h2>Что обязательно должно быть в расписке?</h2><p>В надёжной расписке указываются: дата и место составления, полные данные займодавца и заёмщика (Ф.И.О., серия и номер паспорта, кем выдан, ПИНФЛ, адрес проживания), сумма займа цифрами и прописью, срок возврата, размер процентов при их наличии, порядок возврата и подписи сторон.</p><p>Написание суммы прописью важно в финансовых документах: если в цифрах добавится или потеряется ноль, действительным считается вариант прописью. Поэтому генератор переводит сумму в слова автоматически и добавляет название валюты.</p><p>Ещё один важный пункт — фиксация самого факта передачи денег. На практике встречаются расписки, где написано «дал в долг», но нет «деньги получил». Тогда заёмщик может заявить, что деньги вообще не передавались. В тексте генератора отдельным пунктом указано, что средства получены полностью в день составления и претензий по сумме нет.</p><h2>Почему расписку советуют писать от руки?</h2><p>Распечатанная и подписанная расписка тоже действительна, но при споре заёмщик может отрицать подпись. Если расписка полностью написана рукой заёмщика, почерковедческая экспертиза установит автора — это гораздо более сильное доказательство. Подпись коротка и её сложнее исследовать, а полный текст даёт эксперту достаточный материал.</p><p>Поэтому на практике рекомендуют, чтобы заёмщик переписал текст своей рукой полностью. Текст из генератора при этом служит образцом и контрольным списком: ни один важный пункт не будет упущен, формулировки останутся корректными.</p><h2>Процентный и беспроцентный заём</h2><p>Заём может быть как беспроцентным, так и процентным — это стороны определяют сами. При беспроцентном займе условие нужно прямо указать в расписке, иначе позже может возникнуть спор. При процентном указывается годовая ставка и порядок её начисления.</p><p>Генератор не задаёт никаких ставок — вы вводите согласованный размер, поскольку в каждом случае он свой и со временем меняется. При выборе «Без процентов» пункт о процентах полностью исчезает из текста, а вместо него прямо фиксируется беспроцентный характер займа.</p><h2>Срок и порядок возврата</h2><p>Срок должен быть указан конкретной датой: формулировки вроде «через некоторое время» или «когда будет возможность» ослабляют расписку. Генератор автоматически считает количество дней между датой составления и датой возврата и добавляет его в текст — это удобно при последующем расчёте просрочки.</p><p>Долг можно вернуть единовременно или частями. При возврате частями указывается количество частей и периодичность — например, четырьмя частями ежемесячно. Генератор сам рассчитывает размер каждой части, поэтому заранее ясно, когда и сколько нужно платить, и в расчётах не возникает путаницы.</p><p>На случай просрочки можно предусмотреть пеню. Это не обязательно, но стимулирует вернуть долг вовремя. Процент пени вы тоже вводите сами — если оставить поле пустым, соответствующий пункт в расписку не войдёт.</p><h2>Свидетели и невозврат долга</h2><p>Свидетели не обязательны, но полезны при крупных суммах. Свидетель может подтвердить, что расписка составлялась и деньги действительно передавались. У свидетеля тоже указываются Ф.И.О. и паспортные данные, и он ставит подпись — только тогда его участие имеет значение. В генераторе количество свидетелей необязательно: если они не нужны, пункт полностью исчезает из текста.</p><p>Если долг не возвращён в срок, сначала рекомендуется направить письменное требование — оно станет доказательством для следующих шагов. Если договориться не удалось, вопрос решается в судебном порядке, и расписка предъявляется как основной документ. Поэтому оригинал расписки нужно хранить, а копию держать отдельно.</p><h2>Типичные ошибки</h2><p>Самые частые ошибки: не указать паспортные данные (ограничиться именем), написать сумму только цифрами, не указать точную дату возврата, не отметить беспроцентность и оставить расписку в одном экземпляре. Ещё одна ошибка — передать деньги до подписания.</p><p>При крупных суммах рекомендуется нотариальное заверение или перевод через банк — сам перевод станет дополнительным доказательством. После возврата долга расписку следует вернуть заёмщику либо сделать на ней отметку о полном погашении.</p><p>В генераторе вы заполняете форму — текст формируется справа в реальном времени, незаполненные места подсвечиваются жёлтым. Все расчёты выполняются в браузере, данные не отправляются на сервер. Готовый текст скачивается в Word или PDF.</p>"
+ }
+};
+
+/* ---------- tomon maydonlari ---------- */
+function personFields(pre){
+  return [
+    {id:pre+'Fio',t:'text',label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Aliyev Alisher Alimovich',ru:'Алиев Алишер Алимович'}},
+    {id:pre+'PasSer',t:'text',half:true,label:{uz:'Pasport seriyasi',ru:'Серия паспорта'},ph:{uz:'AA',ru:'AA'}},
+    {id:pre+'PasNum',t:'text',half:true,label:{uz:'Pasport raqami',ru:'Номер паспорта'},ph:{uz:'1234567',ru:'1234567'}},
+    {id:pre+'PasBy',t:'text',label:{uz:'Kim tomonidan berilgan',ru:'Кем выдан'},ph:{uz:'Chilonzor tuman IIB',ru:'ОВД Чиланзарского района'}},
+    {id:pre+'Jshshir',t:'text',half:true,label:{uz:'JSHSHIR',ru:'ПИНФЛ'},ph:{uz:'14 raqam',ru:'14 цифр'}},
+    {id:pre+'Phone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}},
+    {id:pre+'Addr',t:'text',label:{uz:'Yashash manzili',ru:'Адрес проживания'},ph:{uz:'Toshkent sh., Chilonzor t., 5-kvartal, 12-uy',ru:'г. Ташкент, Чиланзарский р-н, 5-квартал, д.12'}}
+  ];
+}
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'tilxat',
+ file:'tilxat',
+ sections:[
+  {id:'gen',title:{uz:'Umumiy',ru:'Общее'},fields:[
+    {id:'city',t:'text',half:true,label:{uz:'Tuzilgan shahar',ru:'Город составления'},ph:{uz:'Toshkent',ru:'Ташкент'}},
+    {id:'signDate',t:'date',half:true,label:{uz:'Tuzilgan sana',ru:'Дата составления'}}
+  ]},
+  {id:'lender',title:{uz:'Qarz beruvchi',ru:'Займодавец'},fields:personFields('ln')},
+  {id:'borrower',title:{uz:'Qarz oluvchi',ru:'Заёмщик'},fields:personFields('br')},
+  {id:'sum',title:{uz:'Qarz shartlari',ru:'Условия займа'},fields:[
+    {id:'amount',t:'num',half:true,label:{uz:'Qarz summasi',ru:'Сумма займа'},ph:{uz:'10 000 000',ru:'10 000 000'}},
+    {id:'cur',t:'sel',def:'som',half:true,label:{uz:'Valyuta',ru:'Валюта'},
+     opts:[{v:'som',label:{uz:"so'm",ru:'сум'}},{v:'usd',label:{uz:'AQSH dollari (USD)',ru:'доллар США (USD)'}},{v:'eur',label:{uz:'yevro (EUR)',ru:'евро (EUR)'}}]},
+    {id:'returnDate',t:'date',half:true,label:{uz:'Qaytarish sanasi',ru:'Дата возврата'},
+     hint:{uz:'Muddat kunlarda avtomatik hisoblanadi.',ru:'Срок в днях считается автоматически.'}},
+    {id:'interest',t:'seg',def:'yoq',label:{uz:'Foiz',ru:'Проценты'},
+     opts:[{v:'yoq',label:{uz:'Foizsiz',ru:'Без процентов'}},{v:'bor',label:{uz:'Foizli',ru:'С процентами'}}]},
+    {id:'rate',t:'text',half:true,showIf:function(v){return v.interest==='bor'},
+     unit:{uz:'% yillik',ru:'% годовых'},label:{uz:'Yillik foiz stavkasi',ru:'Годовая ставка'},ph:{uz:'12',ru:'12'},
+     hint:{uz:"Stavkani tomonlar kelishadi — kalkulyator uni o'zi belgilamaydi.",ru:'Ставку определяют стороны — калькулятор её не задаёт.'}},
+    {id:'repay',t:'seg',def:'birYola',label:{uz:'Qaytarish tartibi',ru:'Порядок возврата'},
+     opts:[{v:'birYola',label:{uz:"Bir yo'la",ru:'Единовременно'}},{v:'bolib',label:{uz:"Bo'lib-bo'lib",ru:'Частями'}}]},
+    {id:'parts',t:'text',half:true,showIf:function(v){return v.repay==='bolib'},
+     unit:{uz:'qism',ru:'частей'},label:{uz:"Bo'laklar soni",ru:'Количество частей'},ph:{uz:'4',ru:'4'}},
+    {id:'period',t:'sel',def:'oylik',half:true,showIf:function(v){return v.repay==='bolib'},
+     label:{uz:'Davriyligi',ru:'Периодичность'},
+     opts:[{v:'oylik',label:{uz:'Har oyda',ru:'Ежемесячно'}},{v:'haftalik',label:{uz:'Har haftada',ru:'Еженедельно'}},{v:'choraklik',label:{uz:'Har chorakda',ru:'Ежеквартально'}}]},
+    {id:'penalty',t:'text',half:true,unit:{uz:'% kuniga',ru:'% в день'},label:{uz:'Kechiktirilganda penya',ru:'Пеня за просрочку'},ph:{uz:'0,1',ru:'0,1'},
+     hint:{uz:"Bo'sh qoldirsangiz penya bandi tilxatga kirmaydi.",ru:'Если оставить пустым, пункт о пене не войдёт в расписку.'}}
+  ]},
+  {id:'wit',title:{uz:'Guvohlar (ixtiyoriy)',ru:'Свидетели (необязательно)'},fields:[
+    {id:'wn',t:'seg',def:'0',label:{uz:'Guvohlar soni',ru:'Количество свидетелей'},
+     opts:[{v:'0',label:{uz:"Yo'q",ru:'Нет'}},{v:'1',label:{uz:'1 ta',ru:'1'}},{v:'2',label:{uz:'2 ta',ru:'2'}}]},
+    {id:'w1Fio',t:'text',showIf:function(v){return v.wn==='1'||v.wn==='2'},label:{uz:'1-guvoh F.I.Sh.',ru:'Ф.И.О. 1-го свидетеля'},ph:{uz:'Yusupov Sardor Alisherovich',ru:'Юсупов Сардор Алишерович'}},
+    {id:'w1Pas',t:'text',showIf:function(v){return v.wn==='1'||v.wn==='2'},label:{uz:'1-guvoh pasporti',ru:'Паспорт 1-го свидетеля'},ph:{uz:'AA 1234567',ru:'AA 1234567'}},
+    {id:'w2Fio',t:'text',showIf:function(v){return v.wn==='2'},label:{uz:'2-guvoh F.I.Sh.',ru:'Ф.И.О. 2-го свидетеля'},ph:{uz:'Rahimov Jasur Baxtiyorovich',ru:'Рахимов Жасур Бахтиёрович'}},
+    {id:'w2Pas',t:'text',showIf:function(v){return v.wn==='2'},label:{uz:'2-guvoh pasporti',ru:'Паспорт 2-го свидетеля'},ph:{uz:'AB 7654321',ru:'AB 7654321'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var amount=KD.num(v.amount), parts=KD.num(v.parts);
+   return {
+     days: KD.daysBetween(v.signDate,v.returnDate),
+     partSum: (v.repay==='bolib'&&amount&&parts) ? amount/parts : 0
+   };
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var cur=KD.curName(v.cur||'som',lang);
+
+   function person(pre){
+     var s=KD.v(v[pre+'Fio'],32)+' ('+(ru?'паспорт: серия ':'pasport: seriya ')+KD.v(v[pre+'PasSer'],5)
+       +' № '+KD.v(v[pre+'PasNum'],9)
+       +', '+(ru?'выдан: ':'kim tomonidan berilgan: ')+KD.v(v[pre+'PasBy'],24);
+     if(v[pre+'Jshshir']) s+=', '+(ru?'ПИНФЛ: ':'JSHSHIR: ')+v[pre+'Jshshir'];
+     s+=', '+(ru?'адрес: ':'manzil: ')+KD.v(v[pre+'Addr'],28);
+     if(v[pre+'Phone']) s+=', '+(ru?'тел.: ':'tel.: ')+v[pre+'Phone'];
+     return s+')';
+   }
+   function name(pre){return KD.v(v[pre+'Fio'],26)}
+
+   var per={
+     oylik:{uz:'har oyda',ru:'ежемесячно'},
+     haftalik:{uz:'har haftada',ru:'еженедельно'},
+     choraklik:{uz:'har chorakda',ru:'ежеквартально'}
+   }[v.period||'oylik'];
+
+   var b=[];
+   b.push({k:'title',text:ru?'РАСПИСКА':'TILXAT'});
+   b.push({k:'sub',text:(ru?'г. ':'')+KD.v(v.city,14)+(ru?'':' shahri')+'          '+(v.signDate?KD.fmtDate(v.signDate,lang):B(24))});
+
+   b.push({k:'p',text:ru
+     ?'Я, '+person('br')+', получил(а) в долг от '+person('ln')+' денежные средства в размере '+(v.amount?KD.moneyIn(v.amount,lang,v.cur):B(16)+' ('+B(26)+') '+cur)+'.'
+     :'Men, '+person('br')+', '+person('ln')+'dan '+(v.amount?KD.moneyIn(v.amount,lang,v.cur):B(16)+' ('+B(26)+') '+cur)+' miqdorida pul mablag\'ini qarzga oldim.'});
+
+   // Tilxatda bo'lim sarlavhalari yo'q — bandlar tekis raqamlanadi.
+   // Bandlar avval massivga yig'iladi, keyin sikl bilan raqamlanadi: shartli band
+   // qo'shilmasa, raqamda bo'shliq qolishi tuzilishiga ko'ra imkonsiz.
+   var cl=[];
+
+   cl.push(ru
+     ?'Денежные средства получены мной полностью в день составления настоящей расписки. Претензий по сумме не имею.'
+     :'Pul mablag\'i ushbu tilxat tuzilgan kunda menga to\'liq topshirildi. Summa bo\'yicha da\'voim yo\'q.');
+
+   cl.push(ru
+     ?'Обязуюсь вернуть указанную сумму в срок до '+(v.returnDate?KD.fmtDate(v.returnDate,lang):B(22))+(c.days>0?' (срок займа — '+KD.fmtNum(c.days)+' дн.)':'')+'.'
+     :'Ushbu summani '+(v.returnDate?KD.fmtDate(v.returnDate,lang):B(22))+'gacha qaytarish majburiyatini olaman'+(c.days>0?' (qarz muddati — '+KD.fmtNum(c.days)+' kun)':'')+'.');
+
+   cl.push(v.interest==='bor'
+     ?(ru?'За пользование займом начисляются проценты в размере '+KD.v(v.rate,5)+'% годовых от суммы займа.'
+         :'Qarzdan foydalanganlik uchun qarz summasining yiliga '+KD.v(v.rate,5)+'% miqdorida foiz hisoblanadi.')
+     :(ru?'Заём является беспроцентным. Проценты за пользование денежными средствами не начисляются.'
+         :'Qarz foizsiz berildi. Pul mablag\'idan foydalanganlik uchun foiz hisoblanmaydi.'));
+
+   cl.push(v.repay==='bolib'
+     ?(ru?'Возврат производится '+KD.v(v.parts,4)+' равными частями '+per.ru+(c.partSum?', по '+KD.moneyIn(c.partSum,lang,v.cur)+' каждая':'')+'.'
+         :'Qarz '+KD.v(v.parts,4)+' ta teng qismga bo\'lib, '+per.uz+' qaytariladi'+(c.partSum?', har bir qism — '+KD.moneyIn(c.partSum,lang,v.cur):'')+'.')
+     :(ru?'Возврат производится единовременно, одной суммой.'
+         :'Qarz bir yo\'la, to\'liq summa bilan qaytariladi.'));
+
+   if(v.penalty){
+     cl.push(ru
+       ?'При нарушении срока возврата уплачивается пеня в размере '+v.penalty+'% от невозвращённой суммы за каждый день просрочки.'
+       :'Qaytarish muddati buzilgan taqdirda, qaytarilmagan summaning har bir kechikkan kun uchun '+v.penalty+'% miqdorida penya to\'lanadi.');
+   }
+
+   if(v.wn==='1'||v.wn==='2'){
+     var wl=[];
+     wl.push(KD.v(v.w1Fio,26)+' ('+(ru?'паспорт ':'pasport ')+KD.v(v.w1Pas,12)+')');
+     if(v.wn==='2') wl.push(KD.v(v.w2Fio,26)+' ('+(ru?'паспорт ':'pasport ')+KD.v(v.w2Pas,12)+')');
+     cl.push(ru
+       ?'Настоящая расписка составлена в присутствии свидетелей: '+wl.join('; ')+'.'
+       :'Ushbu tilxat quyidagi guvohlar ishtirokida tuzildi: '+wl.join('; ')+'.');
+   }
+
+   cl.push(ru
+     ?'Настоящая расписка составлена в двух экземплярах, по одному для каждой стороны, имеющих одинаковую силу.'
+     :'Ushbu tilxat ikki nusxada, har bir tomon uchun bittadan tuzildi va ikkalasi bir xil kuchga ega.');
+
+   for(var ci=0;ci<cl.length;ci++) b.push({k:'p',text:(ci+1)+'. '+cl[ci]});
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[(ru?'Заёмщик:':'Qarz oluvchi:'),name('br'),'_______________ '+(ru?'(подпись)':'(imzo)')],
+     right:[(ru?'Займодавец:':'Qarz beruvchi:'),name('ln'),'_______________ '+(ru?'(подпись)':'(imzo)')]});
+
+   if(v.wn==='1'||v.wn==='2'){
+     b.push({k:'gap'});
+     b.push({k:'sig',
+       left:[(ru?'Свидетель 1:':'1-guvoh:'),KD.v(v.w1Fio,22),'_______________ '+(ru?'(подпись)':'(imzo)')],
+       right:v.wn==='2'?[(ru?'Свидетель 2:':'2-guvoh:'),KD.v(v.w2Fio,22),'_______________ '+(ru?'(подпись)':'(imzo)')]:['']});
+   }
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Рекомендуется, чтобы заёмщик переписал текст своей рукой.'
+     :'Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma\'lumot uchun mo\'ljallangan. Tilxatni qarz oluvchi o\'z qo\'li bilan ko\'chirib yozgani tavsiya etiladi.'});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[
+  ["Tilxat notarial tasdiqlanishi shartmi?","Yo'q, tilxat oddiy yozma shaklda ham haqiqiy hisoblanadi va tomonlar imzosi yetarli. Notarial tasdiqlash majburiy emas, lekin katta summalarda tavsiya etiladi — bu hujjatning ishonchliligini oshiradi va nizo chiqqanda uni inkor qilish qiyinlashadi."],
+  ["Tilxatni chop etib imzolasa bo'ladimi?","Ha, bo'ladi va u haqiqiy hisoblanadi. Lekin sud amaliyotida qarz oluvchining o'z qo'li bilan to'liq yozilgan tilxat kuchliroq dalil bo'ladi, chunki qo'lyozma ekspertizasi orqali uni kim yozgani aniqlanadi. Shuning uchun generatordan chiqqan matnni qo'lda ko'chirib yozish maslahat beriladi."],
+  ["Qarz qaytarilganda nima qilish kerak?","Qarz to'liq qaytarilgach, qarz beruvchi tilxatni qarz oluvchiga qaytarishi yoki uning ustiga «summa to'liq qaytarildi» deb yozib, sana qo'yib imzolashi kerak. Bo'lib to'lanayotgan bo'lsa, har bir to'lov uchun alohida qayd yuritilgani ma'qul — aks holda qancha to'langani bahsli bo'lib qoladi."],
+  ["Valyutada qarz berish mumkinmi?","Tilxatda summa qaysi valyutada berilgani aniq ko'rsatilishi kerak. Bu generator so'm, AQSH dollari va yevroni qo'llab-quvvatlaydi va summani tanlangan valyutaga mos so'z bilan yozadi. Valyuta kursi hujjatga yozilmaydi — u kunlik o'zgaradi, kerak bo'lsa tomonlar alohida kelishadi."],
+  ["Qaytarish sanasi yozilmasa nima bo'ladi?","Muddat ko'rsatilmagan tilxat ham haqiqiy, lekin qarzni qaytarishni talab qilish murakkablashadi — qachondan boshlab muddat buzilgani noaniq qoladi. Shuning uchun aniq sana yozish tavsiya etiladi. Generator sanani kiritganingizda qarz muddatini kunlarda ham hisoblab qo'yadi."],
+  ["Guvohlar bo'lishi shartmi?","Shart emas. Lekin katta summalarda guvoh tilxat tuzilganini va pul haqiqatan topshirilganini tasdiqlashi mumkin. Guvohning F.I.Sh. va pasport ma'lumotlari yozilib, imzo qo'yishi kerak. Generatorda guvohlar sonini 0, 1 yoki 2 deb tanlaysiz — kerak bo'lmasa band matndan butunlay chiqib ketadi."],
+  ["Foiz miqdorini kim belgilaydi?","Foiz miqdorini tomonlar o'zaro kelishib belgilaydi. Bu generator hech qanday stavkani oldindan yozib qo'ymaydi — siz kelishilgan miqdorni kiritasiz. Foizsiz qarz ham keng tarqalgan, bunda «Foizsiz» tanlansa, tegishli band tilxatda aniq qayd etiladi."]
+ ],
+ ru:[
+  ["Обязательно ли заверять расписку у нотариуса?","Нет, расписка действительна и в простой письменной форме, достаточно подписей сторон. Нотариальное заверение не обязательно, но рекомендуется при крупных суммах — это повышает надёжность документа и затрудняет его оспаривание."],
+  ["Можно ли распечатать расписку и подписать?","Да, можно, и она будет действительна. Но в судебной практике расписка, полностью написанная рукой заёмщика, является более сильным доказательством, так как почерковедческая экспертиза установит автора. Поэтому текст из генератора рекомендуется переписать от руки."],
+  ["Что делать после возврата долга?","После полного возврата займодавец должен вернуть расписку заёмщику либо написать на ней «сумма возвращена полностью», поставить дату и подпись. При возврате частями лучше вести отдельные отметки по каждому платежу — иначе размер погашенного станет спорным."],
+  ["Можно ли давать в долг в валюте?","В расписке нужно чётко указать, в какой валюте передана сумма. Генератор поддерживает сумы, доллары США и евро и пишет сумму прописью в соответствии с выбранной валютой. Курс в документ не вносится — он меняется ежедневно, при необходимости стороны договариваются о нём отдельно."],
+  ["Что если не указать дату возврата?","Расписка без срока тоже действительна, но требовать возврат сложнее — неясно, с какого момента срок нарушен. Поэтому рекомендуется указывать конкретную дату. При её вводе генератор также посчитает срок займа в днях."],
+  ["Обязательны ли свидетели?","Не обязательны. Но при крупных суммах свидетель может подтвердить, что расписка составлялась и деньги действительно передавались. У свидетеля указываются Ф.И.О. и паспортные данные, и он ставит подпись. В генераторе выбирается 0, 1 или 2 свидетеля — если они не нужны, пункт полностью исчезает из текста."],
+  ["Кто определяет размер процентов?","Размер процентов стороны определяют по взаимному согласию. Генератор не задаёт никаких ставок заранее — вы вводите согласованный размер. Беспроцентный заём тоже распространён: при выборе «Без процентов» это прямо фиксируется в расписке."]
+ ]
+};
+
+/* ---------- til ---------- */
+function applyLang(){
+  document.documentElement.lang=lang;
+  var t=I[lang];
+  var els=document.querySelectorAll('[data-i]');
+  for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-i');if(t[k]!=null)els[i].textContent=t[k]}
+  var hs=document.querySelectorAll('[data-i-html]');
+  for(var j=0;j<hs.length;j++){var k2=hs[j].getAttribute('data-i-html');if(t[k2]!=null)hs[j].innerHTML=t[k2]}
+  var seo=document.getElementById('seoBlock');
+  if(seo)seo.innerHTML=t.seo;
+  var fb=document.getElementById('faqBlock');
+  if(fb){
+    var f=FAQ[lang],fh='';
+    for(var q=0;q<f.length;q++)fh+='<h2>'+f[q][0]+'</h2><p>'+f[q][1]+'</p>';
+    fb.innerHTML=fh;
+  }
+  document.getElementById('langUz').classList.toggle('on',lang==='uz');
+  document.getElementById('langRu').classList.toggle('on',lang==='ru');
+  document.title=lang==='ru'
+    ? 'Образец расписки о займе — заполнить онлайн и скачать Word'
+    : "Tilxat namunasi — onlayn to'ldirib, Word yuklab oling";
+}
+document.getElementById('langUz').onclick=function(){lang='uz';applyLang()};
+document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};
+
+applyLang();
+KD.init(CFG);
+
+var jb=document.getElementById('jumpBtn');
+if(jb)jb.onclick=function(){
+  var el=document.getElementById('docPreview');
+  if(el&&el.scrollIntoView)try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){el.scrollIntoView()}
+};
+})();
+
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+</body></html>

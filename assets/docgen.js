@@ -128,11 +128,37 @@
 
   KD.currency = function (lang) { return lang === 'ru' ? 'сум' : "so'm"; };
 
+  // Valyutalar. Kurs YOZILMAYDI — konvertatsiya qilinmaydi, faqat nomi.
+  KD.CUR = {
+    som: { uz: "so'm", ru: 'сум' },
+    usd: { uz: 'AQSH dollari', ru: 'долларов США' },
+    eur: { uz: 'yevro', ru: 'евро' }
+  };
+
+  KD.curName = function (cur, lang) {
+    var c = KD.CUR[cur] || KD.CUR.som;
+    return lang === 'ru' ? c.ru : c.uz;
+  };
+
   // 12500000 -> "12 500 000 (o'n ikki million besh yuz ming) so'm"
   KD.money = function (n, lang) {
     n = KD.num(n);
     if (!n) return '';
     return KD.fmtNum(n) + ' (' + KD.num2words(n, lang) + ') ' + KD.currency(lang);
+  };
+
+  // Valyutasi tanlanadigan variant: 1000 -> "1 000 (bir ming) AQSH dollari"
+  KD.moneyIn = function (n, lang, cur) {
+    n = KD.num(n);
+    if (!n) return '';
+    return KD.fmtNum(n) + ' (' + KD.num2words(n, lang) + ') ' + KD.curName(cur, lang);
+  };
+
+  // Ikki sana orasidagi kunlar soni (qarz muddati uchun)
+  KD.daysBetween = function (a, b) {
+    var d1 = KD.parseDate(a), d2 = KD.parseDate(b);
+    if (!d1 || !d2) return 0;
+    return Math.round((d2 - d1) / 86400000);
   };
 
   var MONTHS_UZ = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
