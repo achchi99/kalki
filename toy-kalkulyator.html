@@ -124,21 +124,18 @@ img,svg{height:auto}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"To'y byudjeti qanday taqsimlanadi?","acceptedAnswer":{"@type":"Answer","text":"Odatda eng katta uch modda: zal-dasturxon (30–40%), sarpo-sovg'alar (15–25%) va san'atkor (10–20%). Kalkulyator har moddaning umumiy byudjetdagi ulushini foizda ko'rsatadi — qayerni qisqartirish mumkinligini darhol ko'rasiz."}},{"@type":"Question","name":"Qayerdan tejash mumkin?","acceptedAnswer":{"@type":"Answer","text":"Eng samarali yo'llar: mehmonlar sonini aniq belgilash (har 10 mehmon — sezilarli summa), mavsumdan tashqari sana tanlash (zallar kuz oylarida qimmat), san'atkorni to'liq kecha o'rniga 2 soatga kelishish."}},{"@type":"Question","name":"Nega +10% zaxira kerak?","acceptedAnswer":{"@type":"Answer","text":"Amaliyotda deyarli har doim rejadan tashqari xarajat chiqadi: qo'shimcha mehmonlar, unutilgan mayda-chuyda, oxirgi daqiqadagi o'zgarishlar. 10% zaxira byudjetni real qiladi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"To'y xarajatlari kalkulyatori","item":"https://kalki.uz/toy-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"To'y xarajatlari kalkulyatori","description":"To'y kalkulyatori: zal, nahorgi osh, san'atkor, foto-video, sarpo va barcha xarajatlarni batafsil hisoblang. Калькулятор расходов на свадьбу.","url":"https://kalki.uz/toy-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
 <body data-cat="hayot">
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot" class="tm-on">Hayotiy</a><a href="hujjatlar"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 
 <header>
   <div class="wrap">
@@ -789,5 +786,27 @@ img,svg{height:auto}
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>

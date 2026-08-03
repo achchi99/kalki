@@ -101,21 +101,18 @@ img,svg{height:auto}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"}]}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Hujjat generatori nima?","acceptedAnswer":{"@type":"Answer","text":"Hujjat generatori — bo'sh shablonni yuklab olib, uni Word'da qo'lda to'ldirish o'rniga, saytda formani to'ldirib tayyor faylni olish imkonini beruvchi vosita. Siz maydonlarni to'ldirasiz, matn real vaqtda shakllanadi, so'ng Word (.docx) yoki PDF sifatida yuklab olasiz. Kompyuterda Word o'rnatilgan bo'lishi shart emas — hammasi brauzerda bajariladi va telefonda ham ishlaydi."}},{"@type":"Question","name":"Nega bu qulayroq?","acceptedAnswer":{"@type":"Answer","text":"Bo'sh shablonda odam ko'pincha adashadi: qaysi joyga nima yozilishini bilmaydi, summani so'z bilan yozishni unutadi, sanalarni noto'g'ri hisoblaydi. Generator bu ishlarni o'zi bajaradi: summani so'zga aylantiradi, shartnoma tugash sanasini hisoblaydi, jismoniy va yuridik shaxs uchun kerakli maydonlarni o'zi almashtiradi. To'ldirilmagan joylar sariq rangda ko'rinib turadi."}},{"@type":"Question","name":"Ma'lumotlarim qayerda saqlanadi?","acceptedAnswer":{"@type":"Answer","text":"Faqat brauzeringizda. Kiritgan ma'lumotlaringiz — F.I.Sh., pasport, summalar — serverga yuborilmaydi. Sahifani yopib qayta ochsangiz, oxirgi holat tiklanadi, chunki u brauzer xotirasida saqlanadi. Xohlasangiz «Tozalash» tugmasi bilan hammasini o'chirasiz."}},{"@type":"Question","name":"Hujjat yuridik kuchga egami?","acceptedAnswer":{"@type":"Answer","text":"Generator tayyorlagan matn umumiy namuna hisoblanadi. Ko'p hollarda tomonlar imzosi bilan yozma hujjat yetarli, lekin ayrim hujjatlar uchun — masalan ishonchnoma, ko'chmas mulk bitimlari — notarial tasdiqlash talab etiladi. Muhim va katta summali bitimlar oldidan hujjatni yurist bilan tekshirib chiqish tavsiya etiladi."}},{"@type":"Question","name":"Yangi hujjatlar qo'shiladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Hozircha oltita generator tayyor, qolganlari ustida ish olib borilmoqda va «Tez orada» deb belgilangan. Sizga qaysi hujjat kerakligini Telegram orqali yozsangiz, navbatni shunga qarab belgilaymiz."}}]}</script></head>
 <body>
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1120px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar" class="tm-on"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1120px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 
 <header>
   <div class="wrap">
@@ -317,5 +314,27 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>

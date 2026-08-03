@@ -117,21 +117,18 @@ img,svg{height:auto}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"BTU nima va sinflar nimani anglatadi?","acceptedAnswer":{"@type":"Answer","text":"BTU/soat — sovutish quvvati birligi. \"7\", \"9\", \"12\" kabi sinflar ming BTU'ni anglatadi: \"9-lik\" ≈ 2,6 kW va odatda 20–25 m² xonaga mos. Noto'g'ri (kichik) tanlov — konditsioner tinmay ishlaydi, ko'p tok yeydi va tez ishdan chiqadi."}},{"@type":"Question","name":"O'zbekiston yozida nimaga e'tibor berish kerak?","acceptedAnswer":{"@type":"Answer","text":"+40° va undan issiq kunlarda quyoshli tomondagi xonalarga zaxirali sinf oling. Inverter modellar tokni 30–40% tejaydi — narx farqi 2–3 mavsumda qoplanadi."}},{"@type":"Question","name":"Bitta katta konditsioner butun uyga yetadimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q — sovuq havo devorlardan o'tmaydi. Har yopiq xonaga alohida ichki blok kerak, yoki kanalli/multi-split tizim o'rnatiladi."}},{"@type":"Question","name":"Konditsioner yozda qancha tok yeydi?","acceptedAnswer":{"@type":"Answer","text":"Iste'mol sovutish quvvatining taxminan uchdan biriga teng (masalan 2,6 kW sovutuvchi \"9-lik\" ~0,9 kW tok tortadi). Inverter model o'rtacha 30% kam yeydi, chunki kerakli haroratga yetgach quvvatni pasaytiradi. Kunlik soat, elektr narxi va inverter-yo'qligini kiritsangiz, kalkulyator oylik va yozgi 3 oylik xarajatni ko'rsatadi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kommunal va avto","item":"https://kalki.uz/#cat-kommunal"},{"@type":"ListItem","position":3,"name":"Konditsioner kalkulyatori","item":"https://kalki.uz/konditsioner-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Konditsioner kalkulyatori","description":"Konditsioner quvvati kalkulyatori: xona maydoni bo'yicha necha BTU kerakligini hisoblang (7/9/12/18/24). Калькулятор мощности кондиционера BTU.","url":"https://kalki.uz/konditsioner-kalkulyator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
 <body data-cat="kommunal">
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal" class="tm-on">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" class="tm-on" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 
 <header>
   <div class="wrap">
@@ -729,5 +726,27 @@ img,svg{height:auto}
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>

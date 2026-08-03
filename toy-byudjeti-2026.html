@@ -71,21 +71,18 @@ footer a{color:var(--muted);text-decoration:none}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="art-ld">{"@context":"https://schema.org","@type":"Article","headline":"To'y byudjeti 2026: Toshkent va viloyat narxlari","datePublished":"2026-07-22","inLanguage":"uz","author":{"@type":"Organization","name":"Kalki.uz"},"publisher":{"@type":"Organization","name":"Kalki.uz"}}</script><script type="application/ld+json" id="art-faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Toshkentda toy qimmatroqmi?","acceptedAnswer":{"@type":"Answer","text":"Ha, odatda Toshkentda toyxona, taom va xizmatlar viloyatga qaraganda qimmatroq. Farq mehmonlar soniga qarab millionlab som bolishi mumkin."}},{"@type":"Question","name":"Mehmon soni byudjetga qanday tasir qiladi?","acceptedAnswer":{"@type":"Answer","text":"Bevosita va kuchli. Har mehmon taom, joy va bazan sovga xarajatini oshiradi. Mehmon sonini kamaytirish — byudjetni tejashning eng samarali yoli."}},{"@type":"Question","name":"Qaysi mavsumda toy arzon?","acceptedAnswer":{"@type":"Answer","text":"Qish oylarida (talab kam) toyxona va xizmatlar arzonroq bolishi mumkin. Yoz va kuz — eng band va qimmat mavsum."}},{"@type":"Question","name":"Toyga qancha zaxira kerak?","acceptedAnswer":{"@type":"Answer","text":"Umumiy byudjetning 10-15% zaxira tavsiya etiladi — kutilmagan mehmonlar, qoshimcha xarajatlar uchun. Bu oxirgi daqiqada qarzdan saqlaydi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Maqolalar","item":"https://kalki.uz/blog"},{"@type":"ListItem","position":3,"name":"To'y byudjeti 2026: Toshkent va viloyat narxlari","item":"https://kalki.uz/toy-byudjeti-2026"}]}</script></head>
 <body>
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:680px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog" class="tm-on">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:680px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" class="tm-on" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 <header>
   <div class="wrap">
     <div class="topbar">
@@ -189,5 +186,27 @@ footer a{color:var(--muted);text-decoration:none}
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>

@@ -71,21 +71,18 @@ footer a{color:var(--muted);text-decoration:none}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="art-ld">{"@context":"https://schema.org","@type":"Article","headline":"Bolalar nafaqasi 2026: yangi miqdorlar va kim ola oladi","datePublished":"2026-07-27","inLanguage":"uz","author":{"@type":"Organization","name":"Kalki.uz"},"publisher":{"@type":"Organization","name":"Kalki.uz"}}</script><script type="application/ld+json" id="art-faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"3 yoshgacha bola uchun nafaqa qancha?","acceptedAnswer":{"@type":"Answer","text":"2026-yil 1-iyuldan bitta bola uchun 386 000 so’m. Ikkinchi farzandga qo’shimcha 177 000, uchinchi va keyingilariga 118 000 so’mdan qo’shiladi."}},{"@type":"Question","name":"Daromad chegarasi qancha?","acceptedAnswer":{"@type":"Answer","text":"2026-yilda jon boshiga oyiga 715 000 so’m. Oilaning umumiy daromadi a’zolar soniga bo’linib, shu raqam bilan solishtiriladi."}},{"@type":"Question","name":"Bolasi yo’q oila nafaqa oladimi?","acceptedAnswer":{"@type":"Answer","text":"18 yoshgacha bolasi bo’lmagan kam ta’minlangan oilalar moddiy yordam olishi mumkin — 2026-yil 1-iyuldan 450 000 so’m."}},{"@type":"Question","name":"Nafaqa qancha muddatga beriladi?","acceptedAnswer":{"@type":"Answer","text":"Odatda belgilangan muddatga tayinlanadi, so’ngra oila holati qayta ko’rib chiqiladi. Bolalar soni yoki daromad o’zgarsa, miqdor keyingi oydan qayta hisoblanadi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Maqolalar","item":"https://kalki.uz/blog"},{"@type":"ListItem","position":3,"name":"Bolalar nafaqasi 2026: yangi miqdorlar va kim ola oladi","item":"https://kalki.uz/bolalar-nafaqasi-2026"}]}</script></head>
 <body>
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:680px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog" class="tm-on">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:680px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" class="tm-on" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 <header>
   <div class="wrap">
     <div class="topbar">
@@ -189,5 +186,27 @@ footer a{color:var(--muted);text-decoration:none}
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>

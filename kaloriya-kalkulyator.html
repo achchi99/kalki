@@ -121,21 +121,18 @@ img,svg{height:auto}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#topmenu .tm-s{display:none}
 @media (max-width:640px){
   #topmenu .tm-in{gap:3px;padding:7px 9px}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #topmenu .tm-f{display:none}
-  #topmenu .tm-s{display:inline}
 }
-@media (max-width:400px){
+@media (max-width:420px){
   #topmenu .tm-in{gap:3px;padding:6px 7px}
-  #topmenu a{font-size:11.5px;padding:4px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 <script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kunlik me'yor qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Eng aniq hisoblangan Mifflin-San Jeor formulasi qo'llaniladi: bazal almashinuv (organizm tinch holatda sarflaydigan energiya) hisoblanib, faollik koeffitsiyentiga ko'paytiriladi. Maqsadga qarab kamaytirish uchun mo'tadil −15%, vazn olish uchun +12% qo'llanadi — keskin cheklovlar sog'liqqa zarar."}},{"@type":"Question","name":"O'zbek taomlari kaloriyasi qayerdan olingan?","acceptedAnswer":{"@type":"Answer","text":"Qiymatlar o'rtacha retseptlar bo'yicha: masalan, bir laylik osh (~350 g) taxminan 700–750 kkal — bu o'rtacha me'yorning uchdan biri. Yog' miqdori oshsa kaloriya sezilarli oshadi, shuning uchun raqamlar mo'ljal sifatida qaralsin."}},{"@type":"Question","name":"Natijani qanday ishlatish kerak?","acceptedAnswer":{"@type":"Answer","text":"Kun davomida yegan taomlaringizni qo'shib boring — me'yordan qancha qolgani ko'rinadi. Muhimi mukammal aniqlik emas, umumiy muvozanat: haftalik o'rtacha ko'rsatkich kunlik tebranishlardan muhimroq."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Kaloriya kalkulyatori","item":"https://kalki.uz/kaloriya-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Kaloriya kalkulyatori","description":"Kunlik kaloriya me'yorini aniq hisoblang (Mifflin-San Jeor) va o'zbek milliy taomlari — osh, lag'mon, somsa, manti kaloriyasini kunlik me'yorga solishtiring.","url":"https://kalki.uz/kaloriya-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
 <body data-cat="hayot">
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot" class="tm-on">Hayotiy</a><a href="hujjatlar"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 
 <header>
   <div class="wrap">
@@ -818,5 +815,27 @@ img,svg{height:auto}
 
 
 
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
 
 </body></html>
