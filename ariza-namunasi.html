@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="uz"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ariza namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Ariza namunasi: turini tanlang, matn shabloni to'ladi, ilovalarni qo'shing va tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец заявления онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/ariza-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<meta property="og:title" content="Ariza namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Ariza namunasi: turini tanlang, matn shabloni to'ladi, ilovalarni qo'shing va tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец заявления онлайн.">
+<meta property="og:url" content="https://kalki.uz/ariza-namunasi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ariza namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Ariza namunasi: turini tanlang, matn shabloni to'ladi, ilovalarni qo'shing va tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец заявления онлайн.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#topmenu .tm-s{display:none}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #topmenu .tm-f{display:none}
+  #topmenu .tm-s{display:inline}
+}
+@media (max-width:400px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11.5px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Ariza namunasi","item":"https://kalki.uz/ariza-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Ariza namunasi","description":"Ariza namunasi: turini tanlang, matn shabloni to'ladi, ilovalarni qo'shing va tayyor Word yoki PDF faylni yuklab oling. Bepul. Образец заявления онлайн.","url":"https://kalki.uz/ariza-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ariza necha nusxada yoziladi?","acceptedAnswer":{"@type":"Answer","text":"Ikki nusxada. Bir nusxani tashkilotga topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib imzo chekadi va u sizda qoladi. Aynan shu nusxa arizangiz topshirilganini isbotlaydi — usiz keyinchalik «ariza kelmagan» degan javobga qarshi dalilingiz bo'lmaydi."}},{"@type":"Question","name":"Lavozim egasining ismini bilmasam nima qilay?","acceptedAnswer":{"@type":"Answer","text":"Bilmasangiz ham ariza yozish mumkin. Bunday holda faqat tashkilot nomi va lavozimni ko'rsatish yetarli — masalan, «... direktoriga». Generatorda F.I.Sh. maydonini bo'sh qoldirsangiz, hujjatda ortiqcha bo'sh chiziq qolmaydi."}},{"@type":"Question","name":"Ilovalarni ko'rsatish shartmi?","acceptedAnswer":{"@type":"Answer","text":"Hujjat ilova qilsangiz — ha, ularni ro'yxat qilish kerak. Bu qabul qiluvchiga nima topshirilganini ko'rsatadi va sizga keyinchalik qaysi hujjat berilganini isbotlash imkonini beradi. Ilova bo'lmasa, generatorda hech narsa qo'shmang — «Ilova:» bandi arizada umuman chiqmaydi."}},{"@type":"Question","name":"Ariza matnini o'zim yozsam bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. «Erkin matn (bo'sh)» turini tanlasangiz, maydon bo'sh qoladi va istagan matningizni yozasiz. Boshqa turlarni tanlaganda ham shablon faqat boshlang'ich nuqta — uni to'liq o'zgartirishingiz mumkin."}},{"@type":"Question","name":"Arizani elektron shaklda yuborsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ko'p tashkilotlar elektron murojaatni qabul qiladi. Bunda tizim bergan murojaat raqamini albatta saqlab qo'ying — u qog'oz nusxadagi imzo o'rnini bosadi. Pochta orqali yuborsangiz, xabarnomali buyurtma xat tanlang."}},{"@type":"Question","name":"Javob qancha vaqtda keladi?","acceptedAnswer":{"@type":"Answer","text":"Murojaatlarni ko'rib chiqish muddatlari qonunchilikda belgilangan va turiga qarab farq qiladi. Bu generator muddatlarni oldindan yozib qo'ymaydi, chunki ular vaqti-vaqti bilan o'zgaradi — aniq muddatni tashkilotning o'zidan yoki rasmiy manbadan aniqlang."}},{"@type":"Question","name":"Bitta arizada bir nechta masala yozsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Bog'liq bo'lmagan masalalar birlashtirilsa, ularning bir qismi e'tibordan chetda qolishi mumkin. Har bir masalani alohida arizada yozsangiz, har biri o'z tartibida ko'rib chiqiladi va javob aniqroq bo'ladi."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1060px"><a href="./">🏠 Asosiy</a><a href="./#cat-moliya">Moliya</a><a href="./#cat-qurilish">Qurilish</a><a href="./#cat-kommunal">Kommunal</a><a href="./#cat-hayot">Hayotiy</a><a href="hujjatlar" class="tm-on"><span class="tm-f">📝 Hujjatlar generatori</span><span class="tm-s">📝 Hujjatlar</span></a><a href="shablonlar">📄 Shablonlar</a><a href="blog">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Ariza namunasi</h1>
+    <p class="sub" data-i="sub">Tashkilotga ariza yozing. Turini tanlang — matn shabloni to'ladi, keyin uni o'zingizga moslab tahrirlaysiz.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Ariza namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Ariza</b> — tashkilot yoki mansabdor shaxsga yozma murojaat. Uning shakli deyarli har doim bir xil: o'ng yuqori burchakda kimga va kimdan, o'rtada sarlavha, so'ng murojaat matni, oxirida sana va imzo. Turini tanlasangiz matn shabloni avtomatik to'ladi — uni o'zingizga moslab o'zgartirasiz. Kiritilgan ma'lumot faqat shu brauzerda saqlanadi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Kimga</div><div class="dg-rows"><div class="dg-field" data-fw="toOrg"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="toOrg" value="" placeholder="&quot;Chilonzor tuman bolalar bog'chasi&quot; DMTT"></div></div><div class="dg-field dg-half" data-fw="toPost"><label>Lavozimi</label><div class="dg-shell"><input type="text" data-f="toPost" value="" placeholder="direktoriga"></div></div><div class="dg-field dg-half" data-fw="toFio"><label>F.I.Sh. (ma'lum bo'lsa)</label><div class="dg-shell"><input type="text" data-f="toFio" value="" placeholder="Aliyev A. A."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kimdan</div><div class="dg-rows"><div class="dg-field" data-fw="frFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="frFio" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field" data-fw="frAddr"><label>Yashash manzili</label><div class="dg-shell"><input type="text" data-f="frAddr" value="" placeholder="Toshkent sh., Yunusobod t., 4-kvartal, 7-uy, 12-xonadon"></div></div><div class="dg-field dg-half" data-fw="frPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="frPhone" value="" placeholder="+998 90 123 45 67"></div></div><div class="dg-field dg-half" data-fw="frJshshir"><label>JSHSHIR (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="frJshshir" value="" placeholder="14 raqam"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ariza matni</div><div class="dg-rows"><div class="dg-field" data-fw="atype"><label>Ariza turi</label><div class="dg-shell"><select data-f="atype"><option value="malumotnoma" selected="">Ma'lumotnoma berish so'rovi</option><option value="nusxa">Hujjat nusxasini berish so'rovi</option><option value="ruxsat">Ruxsat so'rash</option><option value="yordam">Moddiy yordam so'rash</option><option value="qabul">Bolani bog'cha/maktabga qabul qilish</option><option value="qayta">Qarorni qayta ko'rib chiqish so'rovi</option><option value="shikoyat">Shikoyat / murojaat</option><option value="erkin">Erkin matn (bo'sh)</option></select></div><div class="dg-hint">Turni tanlaganda matn shabloni to'ladi — keyin uni tahrirlang.</div></div><div class="dg-field" data-fw="body"><label>Matn</label><div class="dg-shell"><textarea data-f="body" rows="6" placeholder="Arizangiz matnini shu yerga yozing...">Menga ______________________ maqsadi uchun ish/o'qish joyimdan ma'lumotnoma berishingizni so'rayman. Ma'lumotnoma ______________________ tashkilotiga taqdim etiladi.</textarea></div><div class="dg-hint">Shablonni o'zingizga moslab tahrirlang. Bo'sh chiziqlar o'rniga o'z ma'lumotlaringizni yozing.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ilovalar (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="attach"><label>Ilova qilinadigan hujjatlar</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="attach">+ Ilova qo'shish</button></div><div class="dg-hint">Bitta ilova qo'shmasangiz, "Ilova:" bandi arizada umuman chiqmaydi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Sana</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="signDate"><label>Ariza sanasi</label><div class="dg-shell"><input type="date" data-f="signDate" value="" placeholder=""></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Arizani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Ariza matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 6</span></div>
+        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div><span class="ph">____________________________</span>dan</div><div><span class="ph">______________________________</span></div></div><div class="dg-title">ARIZA</div><div class="dg-p">Menga ______________________ maqsadi uchun ish/o'qish joyimdan ma'lumotnoma berishingizni so'rayman. Ma'lumotnoma ______________________ tashkilotiga taqdim etiladi.</div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (imzo)</div><div><span class="ph">________________________</span></div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Ariza ikki nusxada topshiriladi.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Ariza <b>ikki nusxada</b> tayyorlanadi. Bir nusxasini topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib, imzo chekadi va u sizda qoladi — bu arizangiz topshirilganini isbotlaydigan yagona dalil. Pochta orqali yuborsangiz, xabarnomali buyurtma xat tanlang.</div><div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Ba'zi tashkilotlar o'z ariza shaklini talab qilishi mumkin — topshirishdan oldin aniqlang. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.</div>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Ariza nima va u qanday yoziladi?</h2><p>Ariza — fuqaroning tashkilot yoki mansabdor shaxsga yozma murojaati. Ma'lumotnoma olish, hujjat nusxasini so'rash, ruxsat olish, moddiy yordam so'rash yoki qaror ustidan e'tiroz bildirish — bularning hammasi ariza orqali rasmiylashtiriladi. Og'zaki so'rov qabul qilinishi mumkin, lekin uning topshirilgani hech qayerda qayd etilmaydi va javob berish muddati ham boshlanmaydi.</p><p>Arizaning shakli deyarli har doim bir xil. O'ng yuqori burchakda kimga (tashkilot, lavozim, F.I.Sh.) va kimdan (F.I.Sh., manzil, telefon) yoziladi. O'rtada katta harflar bilan sarlavha turadi. Keyin murojaat matni bayon qilinadi, oxirida sana va imzo qo'yiladi. Ilova qilinadigan hujjatlar bo'lsa, ular raqamlangan ro'yxat sifatida ko'rsatiladi.</p><p>Ariza va shikoyat orasida farq bor. Ariza — biror narsa so'rash yoki taklif kiritish, shikoyat esa buzilgan huquqni tiklashni talab qilish. Amalda ikkalasi ham bir xil shaklda yoziladi va «murojaat» tushunchasi ostida ko'rib chiqiladi, shuning uchun sarlavhada «ARIZA» deb yozish aksariyat hollarda yetarli bo'ladi.</p><h2>Ariza matni qanday yozilishi kerak?</h2><p>Matn qisqa, aniq va hurmatli ohangda bo'lishi kerak. Eng yaxshi tuzilma: nima so'rayotganingiz, nima uchun kerakligi va qanday hujjatlar ilova qilingani. Uzun kirish so'zlar, hissiy iboralar va takrorlar arizani kuchsizlantiradi — mansabdor shaxs o'nlab murojaatni ko'radi va aniq yozilgani tezroq hal qilinadi.</p><p>Muhim tafsilotlarni aniq yozing: sanalar, hujjat raqamlari, tashkilot nomlari. «Yaqinda», «bir necha marta» kabi noaniq iboralar o'rniga aniq sana va son ko'rsating. Bu generatorda tur tanlaganingizda matn shabloni to'ladi, undagi bo'sh joylarni o'z ma'lumotlaringiz bilan to'ldirasiz.</p><p>Ohang muhim. Talab qiluvchi yoki tahdid ohangidagi matn ko'pincha teskari natija beradi va rasmiy javob bilan yopiladi. Hurmatli, ammo qat'iy uslub eng samarali: nima bo'lgani bayon qilinadi, qaysi hujjat buni tasdiqlashi ko'rsatiladi va aniq nima so'ralayotgani yoziladi.</p><h2>Kimga va kimdan bloki qanday to'ldiriladi?</h2><p>Bu blok o'ng yuqori burchakda joylashadi va uch qatordan iborat bo'ladi: tashkilot nomi, mansabdor shaxsning lavozimi va uning F.I.Sh. Ba'zan lavozim va ism ma'lum bo'lmaydi — bunda faqat tashkilot nomi va lavozimni yozish ham yetarli, masalan «direktoriga».</p><p>«Kimdan» qismida to'liq F.I.Sh., yashash manzili va telefon raqami ko'rsatiladi. Telefon muhim: ko'p hollarda javob telefon orqali beriladi yoki qo'shimcha hujjat so'rash uchun bog'lanishadi. JSHSHIR ixtiyoriy — ba'zi tashkilotlar so'raydi, ba'zilari yo'q.</p><p>Bu blok chapga emas, aynan o'ngga tekislanadi — bu rasmiy hujjatlarning umumiy qoidasi va uni buzish arizani beparvo tayyorlangandek ko'rsatadi. Generator blokni avtomatik to'g'ri joylashtiradi, siz faqat maydonlarni to'ldirasiz.</p><h2>Ilovalar qanday rasmiylashtiriladi?</h2><p>Arizaga hujjat ilova qilinsa, ular matndan keyin raqamlangan ro'yxat sifatida yoziladi. Bu ikki jihatdan foydali: qabul qiluvchi nima topshirilganini darrov ko'radi, siz esa keyinchalik qaysi hujjat berilganini isbotlay olasiz. Generatorda ilovalarni bittalab qo'shasiz va ular hujjatda avtomatik raqamlanadi.</p><p>Ilova umuman bo'lmasa, «Ilova:» bandi arizada umuman chiqmaydi — bo'sh sarlavha qolib ketmaydi. Nusxa topshirsangiz, asl nusxani o'zingizda saqlang: tashkilotga faqat nusxa beriladi, asli faqat ko'rsatish uchun taqdim etiladi.</p><h2>Arizani qanday topshirish kerak?</h2><p>Ariza ikki nusxada tayyorlanadi. Bir nusxa tashkilotga topshiriladi, ikkinchisiga qabul qilgan xodim qabul qilingan sanani yozib, imzo chekadi va uni sizga qaytaradi. Bu nusxa — arizangiz haqiqatan topshirilganini isbotlaydigan yagona hujjat. Usiz keyinchalik «ariza kelmagan» degan javobga qarshi hech narsa qila olmaysiz.</p><p>Pochta orqali yuborishda xabarnomali buyurtma xat tanlanadi — xabarnoma xat yetib borgani va kim qabul qilganini tasdiqlaydi. Ko'p tashkilotlar elektron murojaatni ham qabul qiladi; bunda tizim bergan murojaat raqamini saqlab qo'ying.</p><p>Arizani boshqa odam orqali topshirsangiz, unga ishonchnoma kerak bo'lishi mumkin — tashkilotdan oldindan aniqlang. Yaqin qarindosh topshirganda ham ko'p joyda hujjat so'raladi, shuning uchun bu masalani oldindan hal qilib qo'ygan ma'qul.</p><h2>Javob qancha vaqtda beriladi?</h2><p>Murojaatlarni ko'rib chiqish muddatlari qonunchilikda belgilangan va murojaat turiga qarab farq qiladi. Aniq muddatni tashkilotning o'zidan yoki rasmiy manbadan aniqlash to'g'ri bo'ladi — chunki muddatlar vaqti-vaqti bilan o'zgaradi va bu generator ularni oldindan yozib qo'ymaydi. Javob kelmasa, yuqori turuvchi tashkilotga murojaat qilish yoki sud tartibida shikoyat qilish mumkin.</p><p>Javob kutayotganda topshirilgan nusxangizni, murojaat raqamini va yozishmalarni saqlang — keyingi bosqichlarda ular kerak bo'ladi.</p><p>Javob mazmunan qoniqtirmasa, uni qayta ko'rib chiqishni so'rab yangi ariza yozish mumkin. Bunda oldingi murojaat raqami va javob sanasini ko'rsatish shart — shunda masala noldan emas, davomi sifatida ko'riladi.</p><h2>Tipik xatolar</h2><p>Eng keng tarqalgan xatolar: telefon raqamini yozmaslik, ariza matnida aniq so'rov bo'lmasligi (muammo tasvirlangan-u, nima so'ralayotgani noaniq), ilovalarni ro'yxat qilmaslik, sana qo'ymaslik va arizani bitta nusxada topshirish.</p><p>Yana bir xato — bitta arizada bir nechta bog'liq bo'lmagan masalani birlashtirish. Har bir masala alohida arizada yozilsa, ularning har biri o'z tartibida ko'rib chiqiladi va javob ham aniqroq bo'ladi. Generatorda matn maydonini istagancha tahrirlashingiz mumkin — shablon faqat boshlang'ich nuqta.</p><p>Nusxa topshirganda asl hujjatni hech qachon bermang: tashkilotga nusxa beriladi, asli faqat solishtirish uchun ko'rsatiladi. Agar asl hujjat talab qilinsa, uning qaytarilishi haqida ariza nusxangizga qayd qildiring.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Ariza necha nusxada yoziladi?</h2><p>Ikki nusxada. Bir nusxani tashkilotga topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib imzo chekadi va u sizda qoladi. Aynan shu nusxa arizangiz topshirilganini isbotlaydi — usiz keyinchalik «ariza kelmagan» degan javobga qarshi dalilingiz bo'lmaydi.</p><h2>Lavozim egasining ismini bilmasam nima qilay?</h2><p>Bilmasangiz ham ariza yozish mumkin. Bunday holda faqat tashkilot nomi va lavozimni ko'rsatish yetarli — masalan, «... direktoriga». Generatorda F.I.Sh. maydonini bo'sh qoldirsangiz, hujjatda ortiqcha bo'sh chiziq qolmaydi.</p><h2>Ilovalarni ko'rsatish shartmi?</h2><p>Hujjat ilova qilsangiz — ha, ularni ro'yxat qilish kerak. Bu qabul qiluvchiga nima topshirilganini ko'rsatadi va sizga keyinchalik qaysi hujjat berilganini isbotlash imkonini beradi. Ilova bo'lmasa, generatorda hech narsa qo'shmang — «Ilova:» bandi arizada umuman chiqmaydi.</p><h2>Ariza matnini o'zim yozsam bo'ladimi?</h2><p>Ha. «Erkin matn (bo'sh)» turini tanlasangiz, maydon bo'sh qoladi va istagan matningizni yozasiz. Boshqa turlarni tanlaganda ham shablon faqat boshlang'ich nuqta — uni to'liq o'zgartirishingiz mumkin.</p><h2>Arizani elektron shaklda yuborsa bo'ladimi?</h2><p>Ko'p tashkilotlar elektron murojaatni qabul qiladi. Bunda tizim bergan murojaat raqamini albatta saqlab qo'ying — u qog'oz nusxadagi imzo o'rnini bosadi. Pochta orqali yuborsangiz, xabarnomali buyurtma xat tanlang.</p><h2>Javob qancha vaqtda keladi?</h2><p>Murojaatlarni ko'rib chiqish muddatlari qonunchilikda belgilangan va turiga qarab farq qiladi. Bu generator muddatlarni oldindan yozib qo'ymaydi, chunki ular vaqti-vaqti bilan o'zgaradi — aniq muddatni tashkilotning o'zidan yoki rasmiy manbadan aniqlang.</p><h2>Bitta arizada bir nechta masala yozsa bo'ladimi?</h2><p>Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Bog'liq bo'lmagan masalalar birlashtirilsa, ularning bir qismi e'tibordan chetda qolishi mumkin. Har bir masalani alohida arizada yozsangiz, har biri o'z tartibida ko'rib chiqiladi va javob aniqroq bo'ladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">QQS 2026: qanday hisoblanadi va kim to'laydi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Bolalar nafaqasi 2026: yangi miqdorlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="tilxat-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💰</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Tilxat namunasi" data-rel-ru="Образец расписки">Tilxat namunasi</span></a><a href="ishonchnoma-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ishonchnoma" data-rel-ru="Доверенность">Ishonchnoma</span></a><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💼</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="bola-puli-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🍼</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bola puli kalkulyatori" data-rel-ru="Детское пособие">Bola puli kalkulyatori</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Ariza namunasi ma'lumot uchun. Talablar tashkilotga qarab farq qilishi mumkin.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+var lang='uz';
+
+/* ---------- ariza turlari: matn shablonlari ----------
+   Shablon matnni oldindan to'ldiradi, foydalanuvchi keyin tahrirlay oladi.
+   Hech qanday summa, muddat yoki stavka yozilmaydi — bo'sh joy qoldiriladi. */
+var TPL={
+ malumotnoma:{
+   uz:"Menga ______________________ maqsadi uchun ish/o'qish joyimdan ma'lumotnoma berishingizni so'rayman. Ma'lumotnoma ______________________ tashkilotiga taqdim etiladi.",
+   ru:"Прошу выдать мне справку с места работы/учёбы для ______________________. Справка будет представлена в ______________________."
+ },
+ nusxa:{
+   uz:"Menga ______________________ hujjatining tasdiqlangan nusxasini berishingizni so'rayman. Nusxa ______________________ maqsadi uchun zarur.",
+   ru:"Прошу выдать мне заверенную копию документа ______________________. Копия необходима для ______________________."
+ },
+ ruxsat:{
+   uz:"Menga ______________________ ni amalga oshirishga ruxsat berishingizni so'rayman. Sabab: ______________________.",
+   ru:"Прошу разрешить мне ______________________. Причина: ______________________."
+ },
+ yordam:{
+   uz:"Og'ir moddiy ahvolim sababli menga moddiy yordam ko'rsatishingizni so'rayman. Ahvolimning sababi: ______________________. Oilamda ______ nafar shaxs bor.",
+   ru:"В связи с тяжёлым материальным положением прошу оказать мне материальную помощь. Причина: ______________________. В моей семье ______ человек."
+ },
+ qabul:{
+   uz:"Farzandim ______________________ ni (tug'ilgan sanasi: ______________________) ______________________ ga qabul qilishingizni so'rayman.",
+   ru:"Прошу принять моего ребёнка ______________________ (дата рождения: ______________________) в ______________________."
+ },
+ qayta:{
+   uz:"______________________ sanasidagi ______________________ qarorini qayta ko'rib chiqishingizni so'rayman. Sabab: ______________________.",
+   ru:"Прошу пересмотреть решение ______________________ от ______________________. Основание: ______________________."
+ },
+ shikoyat:{
+   uz:"______________________ holati yuzasidan murojaat qilaman. Holat quyidagicha: ______________________. Choralar ko'rishingizni va natijasi haqida menga xabar berishingizni so'rayman.",
+   ru:"Обращаюсь по факту ______________________. Обстоятельства: ______________________. Прошу принять меры и сообщить мне о результате."
+ },
+ erkin:{uz:"",ru:""}
+};
+
+/* ---------- tarjimalar ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Ariza namunasi",
+  sub:"Tashkilotga ariza yozing. Turini tanlang — matn shabloni to'ladi, keyin uni o'zingizga moslab tahrirlaysiz.",
+  intro:"<b>Ariza</b> — tashkilot yoki mansabdor shaxsga yozma murojaat. Uning shakli deyarli har doim bir xil: o'ng yuqori burchakda kimga va kimdan, o'rtada sarlavha, so'ng murojaat matni, oxirida sana va imzo. Turini tanlasangiz matn shabloni avtomatik to'ladi — uni o'zingizga moslab o'zgartirasiz. Kiritilgan ma'lumot faqat shu brauzerda saqlanadi.",
+  prevTitle:"Ariza matni",
+  jump:"Arizani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTitle:"Maslahat",
+  tipTxt:"Ariza <b>ikki nusxada</b> tayyorlanadi. Bir nusxasini topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib, imzo chekadi va u sizda qoladi — bu arizangiz topshirilganini isbotlaydigan yagona dalil. Pochta orqali yuborsangiz, xabarnomali buyurtma xat tanlang.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Ba'zi tashkilotlar o'z ariza shaklini talab qilishi mumkin — topshirishdan oldin aniqlang. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.",
+  foot:"Ariza namunasi ma'lumot uchun. Talablar tashkilotga qarab farq qilishi mumkin.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Ariza nima va u qanday yoziladi?</h2><p>Ariza — fuqaroning tashkilot yoki mansabdor shaxsga yozma murojaati. Ma'lumotnoma olish, hujjat nusxasini so'rash, ruxsat olish, moddiy yordam so'rash yoki qaror ustidan e'tiroz bildirish — bularning hammasi ariza orqali rasmiylashtiriladi. Og'zaki so'rov qabul qilinishi mumkin, lekin uning topshirilgani hech qayerda qayd etilmaydi va javob berish muddati ham boshlanmaydi.</p><p>Arizaning shakli deyarli har doim bir xil. O'ng yuqori burchakda kimga (tashkilot, lavozim, F.I.Sh.) va kimdan (F.I.Sh., manzil, telefon) yoziladi. O'rtada katta harflar bilan sarlavha turadi. Keyin murojaat matni bayon qilinadi, oxirida sana va imzo qo'yiladi. Ilova qilinadigan hujjatlar bo'lsa, ular raqamlangan ro'yxat sifatida ko'rsatiladi.</p><p>Ariza va shikoyat orasida farq bor. Ariza — biror narsa so'rash yoki taklif kiritish, shikoyat esa buzilgan huquqni tiklashni talab qilish. Amalda ikkalasi ham bir xil shaklda yoziladi va «murojaat» tushunchasi ostida ko'rib chiqiladi, shuning uchun sarlavhada «ARIZA» deb yozish aksariyat hollarda yetarli bo'ladi.</p><h2>Ariza matni qanday yozilishi kerak?</h2><p>Matn qisqa, aniq va hurmatli ohangda bo'lishi kerak. Eng yaxshi tuzilma: nima so'rayotganingiz, nima uchun kerakligi va qanday hujjatlar ilova qilingani. Uzun kirish so'zlar, hissiy iboralar va takrorlar arizani kuchsizlantiradi — mansabdor shaxs o'nlab murojaatni ko'radi va aniq yozilgani tezroq hal qilinadi.</p><p>Muhim tafsilotlarni aniq yozing: sanalar, hujjat raqamlari, tashkilot nomlari. «Yaqinda», «bir necha marta» kabi noaniq iboralar o'rniga aniq sana va son ko'rsating. Bu generatorda tur tanlaganingizda matn shabloni to'ladi, undagi bo'sh joylarni o'z ma'lumotlaringiz bilan to'ldirasiz.</p><p>Ohang muhim. Talab qiluvchi yoki tahdid ohangidagi matn ko'pincha teskari natija beradi va rasmiy javob bilan yopiladi. Hurmatli, ammo qat'iy uslub eng samarali: nima bo'lgani bayon qilinadi, qaysi hujjat buni tasdiqlashi ko'rsatiladi va aniq nima so'ralayotgani yoziladi.</p><h2>Kimga va kimdan bloki qanday to'ldiriladi?</h2><p>Bu blok o'ng yuqori burchakda joylashadi va uch qatordan iborat bo'ladi: tashkilot nomi, mansabdor shaxsning lavozimi va uning F.I.Sh. Ba'zan lavozim va ism ma'lum bo'lmaydi — bunda faqat tashkilot nomi va lavozimni yozish ham yetarli, masalan «direktoriga».</p><p>«Kimdan» qismida to'liq F.I.Sh., yashash manzili va telefon raqami ko'rsatiladi. Telefon muhim: ko'p hollarda javob telefon orqali beriladi yoki qo'shimcha hujjat so'rash uchun bog'lanishadi. JSHSHIR ixtiyoriy — ba'zi tashkilotlar so'raydi, ba'zilari yo'q.</p><p>Bu blok chapga emas, aynan o'ngga tekislanadi — bu rasmiy hujjatlarning umumiy qoidasi va uni buzish arizani beparvo tayyorlangandek ko'rsatadi. Generator blokni avtomatik to'g'ri joylashtiradi, siz faqat maydonlarni to'ldirasiz.</p><h2>Ilovalar qanday rasmiylashtiriladi?</h2><p>Arizaga hujjat ilova qilinsa, ular matndan keyin raqamlangan ro'yxat sifatida yoziladi. Bu ikki jihatdan foydali: qabul qiluvchi nima topshirilganini darrov ko'radi, siz esa keyinchalik qaysi hujjat berilganini isbotlay olasiz. Generatorda ilovalarni bittalab qo'shasiz va ular hujjatda avtomatik raqamlanadi.</p><p>Ilova umuman bo'lmasa, «Ilova:» bandi arizada umuman chiqmaydi — bo'sh sarlavha qolib ketmaydi. Nusxa topshirsangiz, asl nusxani o'zingizda saqlang: tashkilotga faqat nusxa beriladi, asli faqat ko'rsatish uchun taqdim etiladi.</p><h2>Arizani qanday topshirish kerak?</h2><p>Ariza ikki nusxada tayyorlanadi. Bir nusxa tashkilotga topshiriladi, ikkinchisiga qabul qilgan xodim qabul qilingan sanani yozib, imzo chekadi va uni sizga qaytaradi. Bu nusxa — arizangiz haqiqatan topshirilganini isbotlaydigan yagona hujjat. Usiz keyinchalik «ariza kelmagan» degan javobga qarshi hech narsa qila olmaysiz.</p><p>Pochta orqali yuborishda xabarnomali buyurtma xat tanlanadi — xabarnoma xat yetib borgani va kim qabul qilganini tasdiqlaydi. Ko'p tashkilotlar elektron murojaatni ham qabul qiladi; bunda tizim bergan murojaat raqamini saqlab qo'ying.</p><p>Arizani boshqa odam orqali topshirsangiz, unga ishonchnoma kerak bo'lishi mumkin — tashkilotdan oldindan aniqlang. Yaqin qarindosh topshirganda ham ko'p joyda hujjat so'raladi, shuning uchun bu masalani oldindan hal qilib qo'ygan ma'qul.</p><h2>Javob qancha vaqtda beriladi?</h2><p>Murojaatlarni ko'rib chiqish muddatlari qonunchilikda belgilangan va murojaat turiga qarab farq qiladi. Aniq muddatni tashkilotning o'zidan yoki rasmiy manbadan aniqlash to'g'ri bo'ladi — chunki muddatlar vaqti-vaqti bilan o'zgaradi va bu generator ularni oldindan yozib qo'ymaydi. Javob kelmasa, yuqori turuvchi tashkilotga murojaat qilish yoki sud tartibida shikoyat qilish mumkin.</p><p>Javob kutayotganda topshirilgan nusxangizni, murojaat raqamini va yozishmalarni saqlang — keyingi bosqichlarda ular kerak bo'ladi.</p><p>Javob mazmunan qoniqtirmasa, uni qayta ko'rib chiqishni so'rab yangi ariza yozish mumkin. Bunda oldingi murojaat raqami va javob sanasini ko'rsatish shart — shunda masala noldan emas, davomi sifatida ko'riladi.</p><h2>Tipik xatolar</h2><p>Eng keng tarqalgan xatolar: telefon raqamini yozmaslik, ariza matnida aniq so'rov bo'lmasligi (muammo tasvirlangan-u, nima so'ralayotgani noaniq), ilovalarni ro'yxat qilmaslik, sana qo'ymaslik va arizani bitta nusxada topshirish.</p><p>Yana bir xato — bitta arizada bir nechta bog'liq bo'lmagan masalani birlashtirish. Har bir masala alohida arizada yozilsa, ularning har biri o'z tartibida ko'rib chiqiladi va javob ham aniqroq bo'ladi. Generatorda matn maydonini istagancha tahrirlashingiz mumkin — shablon faqat boshlang'ich nuqta.</p><p>Nusxa topshirganda asl hujjatni hech qachon bermang: tashkilotga nusxa beriladi, asli faqat solishtirish uchun ko'rsatiladi. Agar asl hujjat talab qilinsa, uning qaytarilishi haqida ariza nusxangizga qayd qildiring.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец заявления",
+  sub:"Напишите заявление в организацию. Выберите тип — шаблон текста заполнится, затем отредактируйте под себя.",
+  intro:"<b>Заявление</b> — письменное обращение в организацию или к должностному лицу. Его форма почти всегда одинакова: в правом верхнем углу кому и от кого, по центру заголовок, далее текст обращения, в конце дата и подпись. При выборе типа шаблон текста заполняется автоматически — вы правите его под себя. Введённые данные остаются только в вашем браузере.",
+  prevTitle:"Текст заявления",
+  jump:"Посмотреть заявление ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTitle:"Совет",
+  tipTxt:"Заявление готовится <b>в двух экземплярах</b>. Один вы сдаёте, на втором принявший сотрудник ставит дату и подпись, и он остаётся у вас — это единственное доказательство того, что заявление подано. При отправке почтой выбирайте заказное письмо с уведомлением.",
+  warnTxt:"<b>Внимание.</b> Документ готовится как образец и не является юридической консультацией. Некоторые организации требуют собственную форму заявления — уточните перед подачей. Kalki.uz не несёт ответственности за последствия использования документа.",
+  foot:"Образец заявления носит справочный характер. Требования могут отличаться в зависимости от организации.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Что такое заявление и как оно пишется?</h2><p>Заявление — письменное обращение гражданина в организацию или к должностному лицу. Получение справки, запрос копии документа, просьба о разрешении, обращение за материальной помощью или возражение на решение — всё это оформляется заявлением. Устная просьба может быть принята, но нигде не фиксируется, и срок ответа при этом не начинается.</p><p>Форма заявления почти всегда одинакова. В правом верхнем углу указывается кому (организация, должность, Ф.И.О.) и от кого (Ф.И.О., адрес, телефон). По центру прописными буквами идёт заголовок. Далее излагается суть обращения, в конце ставятся дата и подпись. Если прилагаются документы, они перечисляются нумерованным списком.</p><h2>Как писать текст заявления?</h2><p>Текст должен быть кратким, конкретным и в уважительном тоне. Лучшая структура: что вы просите, зачем это нужно и какие документы приложены. Длинные вступления, эмоциональные обороты и повторы ослабляют заявление — должностное лицо просматривает десятки обращений, и чётко написанное решается быстрее.</p><p>Указывайте важные детали точно: даты, номера документов, названия организаций. Вместо расплывчатых «недавно» и «несколько раз» приводите конкретные даты и числа. В этом генераторе при выборе типа заполняется шаблон, а пропуски в нём вы заполняете своими данными.</p><p>Тон важен. Требовательный или угрожающий текст часто даёт обратный результат и закрывается формальным ответом. Наиболее действенный стиль — уважительный, но твёрдый: излагается, что произошло, каким документом это подтверждается и что конкретно вы просите.</p><h2>Как заполняется блок «кому и от кого»?</h2><p>Этот блок располагается в правом верхнем углу и состоит из трёх строк: название организации, должность должностного лица и его Ф.И.О. Иногда должность и имя неизвестны — тогда достаточно указать организацию и должность, например «директору».</p><p>В части «от кого» указываются полные Ф.И.О., адрес проживания и номер телефона. Телефон важен: часто ответ дают по телефону или связываются для запроса дополнительных документов. ПИНФЛ необязателен — одни организации его спрашивают, другие нет.</p><p>Этот блок выравнивается именно по правому краю, а не по левому — таково общее правило оформления официальных документов, и его нарушение создаёт впечатление небрежно подготовленного заявления. Генератор размещает блок автоматически, вам остаётся заполнить поля.</p><h2>Как оформляются приложения?</h2><p>Если к заявлению прилагаются документы, они перечисляются после текста нумерованным списком. Это полезно вдвойне: принимающий сразу видит, что сдано, а вы впоследствии сможете доказать, какие документы передали. В генераторе приложения добавляются по одному и нумеруются в документе автоматически.</p><p>Если приложений нет вовсе, пункт «Приложение:» в заявлении не появляется — пустой заголовок не остаётся. Сдавая копии, храните оригиналы у себя: в организацию передаётся копия, а оригинал предъявляется только для сверки.</p><h2>Как подавать заявление?</h2><p>Заявление готовится в двух экземплярах. Один сдаётся в организацию, на втором принявший сотрудник указывает дату приёма и расписывается, после чего возвращает его вам. Этот экземпляр — единственный документ, подтверждающий, что заявление действительно подано. Без него позже нечего противопоставить ответу «заявление не поступало».</p><p>При отправке почтой выбирается заказное письмо с уведомлением — уведомление подтверждает доставку и того, кто получил. Многие организации принимают и электронные обращения; в этом случае сохраните номер обращения, выданный системой.</p><p>Если заявление подаёт другой человек, ему может потребоваться доверенность — уточните заранее в организации. Даже при подаче близким родственником во многих местах запрашивают документ, поэтому этот вопрос лучше решить до визита.</p><h2>В какой срок дают ответ?</h2><p>Сроки рассмотрения обращений установлены законодательством и различаются в зависимости от вида обращения. Точный срок правильнее уточнить в самой организации или по официальному источнику — сроки время от времени меняются, и генератор их заранее не фиксирует. Если ответа нет, можно обратиться в вышестоящую организацию или обжаловать в судебном порядке.</p><p>Пока ждёте ответ, храните свой экземпляр, номер обращения и переписку — на следующих этапах они понадобятся.</p><p>Если ответ не устраивает по существу, можно подать новое заявление с просьбой пересмотреть решение. В нём обязательно указывают номер предыдущего обращения и дату ответа — тогда вопрос рассматривается как продолжение, а не с нуля.</p><h2>Типичные ошибки</h2><p>Самые частые ошибки: не указать номер телефона, отсутствие конкретной просьбы в тексте (проблема описана, а что требуется — неясно), не перечислить приложения, не поставить дату и подать заявление в одном экземпляре.</p><p>Ещё одна ошибка — объединять в одном заявлении несколько не связанных между собой вопросов. Если каждый вопрос изложен отдельным заявлением, каждый рассматривается в своём порядке и ответ получается точнее. В генераторе поле текста можно править сколько угодно — шаблон лишь отправная точка.</p><p>Сдавая копии, никогда не отдавайте оригинал: в организацию передаётся копия, а оригинал предъявляется только для сверки. Если оригинал всё же требуют, зафиксируйте на своём экземпляре заявления условие о его возврате.</p><p>И последнее: перед подачей перечитайте текст целиком. Опечатка в номере документа, неверная дата или пропущенная фамилия приводят к тому, что заявление возвращают на доработку, а срок рассмотрения начинается заново. Генератор показывает готовый текст справа целиком — прочитайте его до конца перед скачиванием.</p>"
+ }
+};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'ariza',
+ file:'ariza',
+ sections:[
+  {id:'to',title:{uz:'Kimga',ru:'Кому'},fields:[
+    {id:'toOrg',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Chilonzor tuman bolalar bog\'chasi" DMTT',ru:'ГДОУ "Детский сад Чиланзарского района"'}},
+    {id:'toPost',t:'text',half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'direktoriga',ru:'директору'}},
+    {id:'toFio',t:'text',half:true,label:{uz:'F.I.Sh. (ma\'lum bo\'lsa)',ru:'Ф.И.О. (если известно)'},ph:{uz:'Aliyev A. A.',ru:'Алиев А. А.'}}
+  ]},
+  {id:'from',title:{uz:'Kimdan',ru:'От кого'},fields:[
+    {id:'frFio',t:'text',label:{uz:'F.I.Sh. (to\'liq)',ru:'Ф.И.О. (полностью)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:'frAddr',t:'text',label:{uz:'Yashash manzili',ru:'Адрес проживания'},ph:{uz:'Toshkent sh., Yunusobod t., 4-kvartal, 7-uy, 12-xonadon',ru:'г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12'}},
+    {id:'frPhone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}},
+    {id:'frJshshir',t:'text',half:true,label:{uz:'JSHSHIR (ixtiyoriy)',ru:'ПИНФЛ (необязательно)'},ph:{uz:'14 raqam',ru:'14 цифр'}}
+  ]},
+  {id:'body',title:{uz:'Ariza matni',ru:'Текст заявления'},fields:[
+    {id:'atype',t:'sel',def:'malumotnoma',label:{uz:'Ariza turi',ru:'Тип заявления'},
+     hint:{uz:'Turni tanlaganda matn shabloni to\'ladi — keyin uni tahrirlang.',ru:'При выборе типа заполняется шаблон текста — затем отредактируйте его.'},
+     opts:[
+      {v:'malumotnoma',label:{uz:'Ma\'lumotnoma berish so\'rovi',ru:'Просьба выдать справку'}},
+      {v:'nusxa',label:{uz:'Hujjat nusxasini berish so\'rovi',ru:'Просьба выдать копию документа'}},
+      {v:'ruxsat',label:{uz:'Ruxsat so\'rash',ru:'Просьба о разрешении'}},
+      {v:'yordam',label:{uz:'Moddiy yordam so\'rash',ru:'Просьба о материальной помощи'}},
+      {v:'qabul',label:{uz:'Bolani bog\'cha/maktabga qabul qilish',ru:'Приём ребёнка в сад/школу'}},
+      {v:'qayta',label:{uz:'Qarorni qayta ko\'rib chiqish so\'rovi',ru:'Просьба пересмотреть решение'}},
+      {v:'shikoyat',label:{uz:'Shikoyat / murojaat',ru:'Жалоба / обращение'}},
+      {v:'erkin',label:{uz:'Erkin matn (bo\'sh)',ru:'Свободный текст (пусто)'}}
+     ],
+     onSet:function(val,state,lg){ var t=TPL[val]; if(t) state.body = t[lg]||t.uz; }},
+    {id:'body',t:'area',rows:6,def:TPL.malumotnoma.uz,label:{uz:'Matn',ru:'Текст'},
+     ph:{uz:'Arizangiz matnini shu yerga yozing...',ru:'Напишите здесь текст заявления...'},
+     hint:{uz:'Shablonni o\'zingizga moslab tahrirlang. Bo\'sh chiziqlar o\'rniga o\'z ma\'lumotlaringizni yozing.',ru:'Отредактируйте шаблон под себя. Вместо прочерков впишите свои данные.'}}
+  ]},
+  {id:'att',title:{uz:'Ilovalar (ixtiyoriy)',ru:'Приложения (необязательно)'},fields:[
+    {id:'attach',t:'list',label:{uz:'Ilova qilinadigan hujjatlar',ru:'Прилагаемые документы'},
+     ph:{uz:'Pasport nusxasi, 1 varaq',ru:'Копия паспорта, 1 лист'},
+     addLabel:{uz:'+ Ilova qo\'shish',ru:'+ Добавить приложение'},
+     hint:{uz:'Bitta ilova qo\'shmasangiz, "Ilova:" bandi arizada umuman chiqmaydi.',ru:'Если не добавить ни одного, пункт «Приложение:» в заявлении не появится.'}}
+  ]},
+  {id:'gen',title:{uz:'Sana',ru:'Дата'},fields:[
+    {id:'signDate',t:'date',half:true,label:{uz:'Ariza sanasi',ru:'Дата заявления'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var a=Array.isArray(v.attach)?v.attach.filter(function(x){return String(x||'').trim()}):[];
+   return {attach:a};
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+
+   // o'ng yuqori burchak: kimga / kimdan
+   var head=[];
+   head.push(KD.v(v.toOrg,30));
+   var post=String(v.toPost||'').trim(), fio=String(v.toFio||'').trim();
+   if(post||fio) head.push((post?post:'')+(post&&fio?' ':'')+(fio?fio:''));
+   else head.push(B(24));
+   head.push('');
+   head.push((ru?'от ':'')+KD.v(v.frFio,28)+(ru?'':'dan'));
+   head.push(KD.v(v.frAddr,30));
+   if(v.frPhone) head.push((ru?'тел.: ':'tel.: ')+v.frPhone);
+   if(v.frJshshir) head.push((ru?'ПИНФЛ: ':'JSHSHIR: ')+v.frJshshir);
+   b.push({k:'right',lines:head});
+
+   b.push({k:'title',text:ru?'ЗАЯВЛЕНИЕ':'ARIZA'});
+
+   var body=String(v.body||'').trim();
+   if(body){
+     var paras=body.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
+     for(var i=0;i<paras.length;i++) b.push({k:'p',text:paras[i]});
+   } else {
+     b.push({k:'p',text:B(60)});
+   }
+
+   // ilovalar — bo'sh bo'lsa bu qism umuman chiqmaydi
+   if(c.attach.length){
+     b.push({k:'gap'});
+     b.push({k:'p',text:(ru?'Приложение:':'Ilova:')});
+     for(var j=0;j<c.attach.length;j++) b.push({k:'p',text:(j+1)+'. '+c.attach[j]+';'});
+   }
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[(v.signDate?KD.fmtDate(v.signDate,lang):B(22))],
+     right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.frFio,24)]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Заявление подаётся в двух экземплярах.'
+     :'Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma\'lumot uchun mo\'ljallangan. Ariza ikki nusxada topshiriladi.'});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[
+  ["Ariza necha nusxada yoziladi?","Ikki nusxada. Bir nusxani tashkilotga topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib imzo chekadi va u sizda qoladi. Aynan shu nusxa arizangiz topshirilganini isbotlaydi — usiz keyinchalik «ariza kelmagan» degan javobga qarshi dalilingiz bo'lmaydi."],
+  ["Lavozim egasining ismini bilmasam nima qilay?","Bilmasangiz ham ariza yozish mumkin. Bunday holda faqat tashkilot nomi va lavozimni ko'rsatish yetarli — masalan, «... direktoriga». Generatorda F.I.Sh. maydonini bo'sh qoldirsangiz, hujjatda ortiqcha bo'sh chiziq qolmaydi."],
+  ["Ilovalarni ko'rsatish shartmi?","Hujjat ilova qilsangiz — ha, ularni ro'yxat qilish kerak. Bu qabul qiluvchiga nima topshirilganini ko'rsatadi va sizga keyinchalik qaysi hujjat berilganini isbotlash imkonini beradi. Ilova bo'lmasa, generatorda hech narsa qo'shmang — «Ilova:» bandi arizada umuman chiqmaydi."],
+  ["Ariza matnini o'zim yozsam bo'ladimi?","Ha. «Erkin matn (bo'sh)» turini tanlasangiz, maydon bo'sh qoladi va istagan matningizni yozasiz. Boshqa turlarni tanlaganda ham shablon faqat boshlang'ich nuqta — uni to'liq o'zgartirishingiz mumkin."],
+  ["Arizani elektron shaklda yuborsa bo'ladimi?","Ko'p tashkilotlar elektron murojaatni qabul qiladi. Bunda tizim bergan murojaat raqamini albatta saqlab qo'ying — u qog'oz nusxadagi imzo o'rnini bosadi. Pochta orqali yuborsangiz, xabarnomali buyurtma xat tanlang."],
+  ["Javob qancha vaqtda keladi?","Murojaatlarni ko'rib chiqish muddatlari qonunchilikda belgilangan va turiga qarab farq qiladi. Bu generator muddatlarni oldindan yozib qo'ymaydi, chunki ular vaqti-vaqti bilan o'zgaradi — aniq muddatni tashkilotning o'zidan yoki rasmiy manbadan aniqlang."],
+  ["Bitta arizada bir nechta masala yozsa bo'ladimi?","Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Bog'liq bo'lmagan masalalar birlashtirilsa, ularning bir qismi e'tibordan chetda qolishi mumkin. Har bir masalani alohida arizada yozsangiz, har biri o'z tartibida ko'rib chiqiladi va javob aniqroq bo'ladi."]
+ ],
+ ru:[
+  ["В скольких экземплярах пишется заявление?","В двух. Один вы сдаёте в организацию, на втором принявший сотрудник ставит дату и подпись, и он остаётся у вас. Именно этот экземпляр подтверждает, что заявление подано — без него позже нечего противопоставить ответу «заявление не поступало»."],
+  ["Что делать, если не знаю Ф.И.О. должностного лица?","Заявление можно написать и без этого. Достаточно указать организацию и должность — например, «директору ...». Если оставить поле Ф.И.О. пустым, в документе не останется лишнего прочерка."],
+  ["Обязательно ли перечислять приложения?","Если вы прилагаете документы — да, их нужно перечислить. Это показывает принимающему, что именно сдано, и позволяет вам впоследствии доказать, какие документы переданы. Если приложений нет, ничего не добавляйте — пункт «Приложение:» в заявлении не появится."],
+  ["Можно ли написать текст заявления самому?","Да. При выборе типа «Свободный текст (пусто)» поле остаётся пустым, и вы пишете любой текст. При выборе других типов шаблон — лишь отправная точка, его можно изменить полностью."],
+  ["Можно ли подать заявление в электронном виде?","Многие организации принимают электронные обращения. В этом случае обязательно сохраните номер обращения, выданный системой — он заменяет подпись на бумажном экземпляре. При отправке почтой выбирайте заказное письмо с уведомлением."],
+  ["В какой срок приходит ответ?","Сроки рассмотрения обращений установлены законодательством и зависят от вида обращения. Генератор не фиксирует сроки заранее, поскольку они время от времени меняются — уточните точный срок в самой организации или по официальному источнику."],
+  ["Можно ли изложить в одном заявлении несколько вопросов?","Технически можно, но не рекомендуется. Если объединить не связанные между собой вопросы, часть из них может остаться без внимания. Когда каждый вопрос изложен отдельным заявлением, каждый рассматривается в своём порядке и ответ получается точнее."]
+ ]
+};
+
+/* ---------- til ---------- */
+function applyLang(){
+  document.documentElement.lang=lang;
+  var t=I[lang];
+  var els=document.querySelectorAll('[data-i]');
+  for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-i');if(t[k]!=null)els[i].textContent=t[k]}
+  var hs=document.querySelectorAll('[data-i-html]');
+  for(var j=0;j<hs.length;j++){var k2=hs[j].getAttribute('data-i-html');if(t[k2]!=null)hs[j].innerHTML=t[k2]}
+  var seo=document.getElementById('seoBlock');
+  if(seo)seo.innerHTML=t.seo;
+  var fb=document.getElementById('faqBlock');
+  if(fb){
+    var f=FAQ[lang],fh='';
+    for(var q=0;q<f.length;q++)fh+='<h2>'+f[q][0]+'</h2><p>'+f[q][1]+'</p>';
+    fb.innerHTML=fh;
+  }
+  document.getElementById('langUz').classList.toggle('on',lang==='uz');
+  document.getElementById('langRu').classList.toggle('on',lang==='ru');
+  document.title=lang==='ru'
+    ? 'Образец заявления — заполнить онлайн и скачать Word'
+    : "Ariza namunasi — onlayn to'ldirib, Word yuklab oling";
+}
+document.getElementById('langUz').onclick=function(){lang='uz';applyLang()};
+document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};
+
+applyLang();
+KD.init(CFG);
+
+var jb=document.getElementById('jumpBtn');
+if(jb)jb.onclick=function(){
+  var el=document.getElementById('docPreview');
+  if(el&&el.scrollIntoView)try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){el.scrollIntoView()}
+};
+})();
+
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+</body></html>

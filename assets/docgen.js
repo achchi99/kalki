@@ -286,8 +286,21 @@
       }
       inner = '<div class="dg-shell"><select data-f="' + attrEsc(f.id) + '">' + os + '</select></div>';
     } else if (f.t === 'area') {
-      inner = '<div class="dg-shell"><textarea data-f="' + attrEsc(f.id) + '" rows="2" placeholder="' + ph + '">'
+      inner = '<div class="dg-shell"><textarea data-f="' + attrEsc(f.id) + '" rows="' + (f.rows || 2) + '" placeholder="' + ph + '">'
         + escHtml(val) + '</textarea></div>';
+    } else if (f.t === 'list') {
+      // Dinamik qatorlar (masalan, ariza ilovalari). Qiymat — massiv.
+      var arr = Array.isArray(val) ? val : [];
+      var rows = '';
+      for (var r = 0; r < arr.length; r++) {
+        rows += '<div class="dg-lrow"><span class="dg-lnum">' + (r + 1) + '.</span>'
+          + '<input type="text" data-li="' + attrEsc(f.id) + '" data-idx="' + r + '" value="' + attrEsc(arr[r]) + '" placeholder="' + ph + '">'
+          + '<button type="button" class="dg-ldel" data-ldel="' + attrEsc(f.id) + '" data-idx="' + r + '" aria-label="'
+          + (lang === 'ru' ? 'Удалить' : "O'chirish") + '">×</button></div>';
+      }
+      inner = '<div class="dg-list">' + rows
+        + '<button type="button" class="dg-ladd" data-ladd="' + attrEsc(f.id) + '">'
+        + escHtml(L(f.addLabel, lang) || (lang === 'ru' ? '+ Добавить' : "+ Qo'shish")) + '</button></div>';
     } else {
       var type = f.t === 'date' ? 'date' : 'text';
       var im = f.t === 'num' ? ' inputmode="numeric"' : '';
@@ -333,9 +346,48 @@
             el.value = v;
           }
           ctx.state[id] = v;
-          ctx.onChange(fld && fld.rerender);
+          // onSet: maydon boshqa maydon qiymatini to'ldirishi mumkin
+          // (masalan, ariza turi tanlanganda matn shabloni qo'yiladi)
+          var rerender = fld && fld.rerender;
+          if (fld && fld.onSet) { fld.onSet(v, ctx.state, ctx.lang); rerender = true; }
+          ctx.onChange(rerender);
         });
       })(ins[i]);
+    }
+
+    // dinamik ro'yxat: qator matnini o'zgartirish (qayta chizmaymiz — fokus yo'qolmasin)
+    var lis = host.querySelectorAll('[data-li]');
+    for (var L1 = 0; L1 < lis.length; L1++) {
+      (function (el) {
+        var id = el.getAttribute('data-li'), idx = +el.getAttribute('data-idx');
+        el.addEventListener('input', function () {
+          if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
+          ctx.state[id][idx] = el.value;
+          ctx.onChange(false);
+        });
+      })(lis[L1]);
+    }
+    // qator qo'shish / o'chirish — formani qayta chizadi
+    var adds = host.querySelectorAll('[data-ladd]');
+    for (var L2 = 0; L2 < adds.length; L2++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-ladd');
+          if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
+          ctx.state[id].push('');
+          ctx.onChange(true);
+        });
+      })(adds[L2]);
+    }
+    var dels = host.querySelectorAll('[data-ldel]');
+    for (var L3 = 0; L3 < dels.length; L3++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-ldel'), idx = +btn.getAttribute('data-idx');
+          if (Array.isArray(ctx.state[id])) ctx.state[id].splice(idx, 1);
+          ctx.onChange(true);
+        });
+      })(dels[L3]);
     }
     // segment tugmalari
     var segs = host.querySelectorAll('[data-seg]');
@@ -360,6 +412,11 @@
       if (b.k === 'sig') {
         h += '<div class="dg-sig"><div>' + b.left.map(function (t) { return '<div>' + KD.blanksToHtml(t) + '</div>'; }).join('')
           + '</div><div>' + b.right.map(function (t) { return '<div>' + KD.blanksToHtml(t) + '</div>'; }).join('') + '</div></div>';
+        continue;
+      }
+      // o'ngga tekislangan blok (ariza "kimga / kimdan" sarlavhasi)
+      if (b.k === 'right') {
+        h += '<div class="dg-right">' + b.lines.map(function (t) { return '<div>' + KD.blanksToHtml(t) + '</div>'; }).join('') + '</div>';
         continue;
       }
       var cls = b.k === 'title' ? 'dg-title' : b.k === 'sub' ? 'dg-sub' : b.k === 'h' ? 'dg-h' : b.k === 'note' ? 'dg-note' : 'dg-p';
@@ -390,7 +447,9 @@
     function para(text, o) {
       o = o || {};
       return new D.Paragraph({
-        alignment: o.center ? D.AlignmentType.CENTER : (o.left ? D.AlignmentType.LEFT : D.AlignmentType.JUSTIFIED),
+        alignment: o.center ? D.AlignmentType.CENTER
+          : (o.right ? D.AlignmentType.RIGHT
+            : (o.left ? D.AlignmentType.LEFT : D.AlignmentType.JUSTIFIED)),
         spacing: { after: o.after == null ? 120 : o.after, line: 276 },
         children: [new D.TextRun({ text: KD.blanksToText(text), bold: !!o.bold, italics: !!o.italic, size: o.size })]
       });
@@ -404,6 +463,10 @@
       else if (b.k === 'h') out.push(para(b.text, { bold: true, left: true, after: 100 }));
       else if (b.k === 'note') out.push(para(b.text, { italic: true, size: 20, after: 100 }));
       else if (b.k === 'gap') out.push(para('', { after: 160 }));
+      else if (b.k === 'right') {
+        for (var ri = 0; ri < b.lines.length; ri++) out.push(para(b.lines[ri], { right: true, after: 40 }));
+        out.push(para('', { after: 120 }));
+      }
       else if (b.k === 'sig') {
         out.push(new D.Table({
           width: { size: 100, type: D.WidthType.PERCENTAGE },
@@ -534,6 +597,7 @@
           var b = blocks[i];
           if (!b) continue;
           if (b.k === 'sig') { n += (b.left.filter(KD.hasBlanks).length + b.right.filter(KD.hasBlanks).length); continue; }
+          if (b.k === 'right') { n += b.lines.filter(KD.hasBlanks).length; continue; }
           if (b.text && KD.hasBlanks(b.text)) n++;
         }
         left.textContent = ctx.lang === 'ru'
