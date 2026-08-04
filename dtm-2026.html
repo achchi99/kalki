@@ -159,9 +159,9 @@ footer a{color:var(--muted);text-decoration:none}
     var h=document.querySelector('h1');
     var name=h&&h.textContent?h.textContent.trim():'';
     if(!name)return;
-    var short=name.length>42?name.slice(0,40).trim()+'\u2026':name;
-    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">\u203A</span>'
-      +'<a href="blog">'+L.blog+'</a><span class="sep">\u203A</span>'
+    var short=name.length>42?name.slice(0,40).trim()+'…':name;
+    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">›</span>'
+      +'<a href="blog">'+L.blog+'</a><span class="sep">›</span>'
       +'<span class="cur">'+short+'</span>';
     var old=document.getElementById('bc-ld');if(old)old.remove();
     var base='https://kalki.uz/';

@@ -112,6 +112,25 @@
     return lang === 'ru' ? ruNum2Words(n) : uzNum2Words(n);
   };
 
+  /* ============================ O'LCHOV (GA4) ============================
+     Hujjat yuklab olinganini sanaymiz — sahifaga kirish emas, aynan natija.
+     gtag bo'lmasa (reklama bloklovchi, ga.js yuklanmagan) jimgina o'tkazamiz:
+     o'lchov hech qachon yuklab olishni buzmasligi kerak. */
+
+  // Hodisalardagi `doc` — sahifa manzili bilan bir xil bo'lishi uchun pathname'dan
+  // olinadi: Word ham, PDF ham bitta slug bilan yozilsin.
+  KD.slug = function (fallback) {
+    var p = '';
+    try { p = (location.pathname || '').replace(/^\//, '').replace(/\.html$/, ''); } catch (e) {}
+    return p || fallback || '';
+  };
+
+  KD.ga = function (name, params) {
+    try {
+      if (typeof gtag === 'function') gtag('event', name, params || {});
+    } catch (e) {}
+  };
+
   /* ============================ FORMATLASH ============================ */
 
   var NBSP = String.fromCharCode(160);
@@ -664,6 +683,7 @@
         loadDocx().then(function (D) {
           return D.Packer.toBlob(buildDocx(D, currentBlocks())).then(function (blob) {
             saveBlob(blob, cfg.file + '-' + todayStamp() + '.docx');
+            KD.ga('doc_download', { doc: KD.slug(cfg.id), format: 'word' });
             done();
           });
         })['catch'](function () {
@@ -700,6 +720,7 @@
           : "Havolada siz kiritgan ma'lumotlar (F.I.Sh., pasport, summalar) bo'ladi. Faqat ishonchli odamga yuboring. Davom etamizmi?";
         if (!confirm(warn)) return;
         var url = location.origin + location.pathname + '?p=' + b64encode(ctx.state);
+        KD.ga('doc_share_link', { doc: KD.slug(cfg.id) });
         var btn = this, orig = btn.textContent;
         if (navigator.share) {
           navigator.share({ title: document.title, url: url })['catch'](function () {});

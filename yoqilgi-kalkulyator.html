@@ -356,8 +356,8 @@ img,svg{height:auto}
 
 
   // Gaz turi (metan/propan) almashtirish
-  var GAS={metan:{cons:9,price:5000,unitCons:'m\u00B3/100km',unitPrice:{uz:"so'm/m\u00B3",ru:'\u0441\u0443\u043c/m\u00B3'}},
-           propan:{cons:11,price:6500,unitCons:'l/100km',unitPrice:{uz:"so'm/l",ru:'\u0441\u0443\u043c/\u043b'}}};
+  var GAS={metan:{cons:9,price:5000,unitCons:'m³/100km',unitPrice:{uz:"so'm/m³",ru:'сум/m³'}},
+           propan:{cons:11,price:6500,unitCons:'l/100km',unitPrice:{uz:"so'm/l",ru:'сум/л'}}};
   function setGasUnits(){
     var g=GAS[gasType];
     var cu=document.getElementById('mConsUnit'); if(cu)cu.textContent=g.unitCons;
@@ -371,7 +371,7 @@ img,svg{height:auto}
       this.classList.add('on');
       var g=GAS[gasType];
       document.getElementById('mCons').value=g.cons;
-      document.getElementById('mPrice').value=g.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0');
+      document.getElementById('mPrice').value=fmt(g.price);
       setGasUnits();
     };
   }
@@ -427,7 +427,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">4.8.2026</div>
 </div>
 <script>
 (function(){
@@ -701,9 +701,9 @@ img,svg{height:auto}
     var L=NAMES[curLang()], name=pageName();
     if(!name)return;
     el.innerHTML='<a href="./">'+L.home+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');
     if(old)old.remove();

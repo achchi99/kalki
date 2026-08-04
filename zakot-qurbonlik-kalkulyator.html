@@ -535,7 +535,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">4.8.2026</div>
 </div>
 <script>
 (function(){
@@ -774,9 +774,9 @@ img,svg{height:auto}
     var L=NAMES[curLang()], name=pageName();
     if(!name)return;
     el.innerHTML='<a href="./">'+L.home+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');
     if(old)old.remove();

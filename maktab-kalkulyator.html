@@ -283,25 +283,26 @@ function newChild(){return {grade:1,gender:'m',school:'davlat',items:{},custom:[
 var $=function(id){return document.getElementById(id)};
 var t=function(k){return I[lang][k]};
 var som=function(){return lang==='uz'?"so'm":'сум'};
-var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
-var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+var NBSP=String.fromCharCode(160);
+var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,NBSP)};
+var num=function(s){return parseFloat(String(s).replace(new RegExp(NBSP,'g'),'').replace(/\s/g,'').replace(',','.'))||0};
 var SCHOOL_MONTHS=9;
 
 var I={
  uz:{cat:"Kundalik hayot",h1:"Maktabga tayyorgarlik",
-  sub:"Sinfni tanlang \u2014 kerakli ro'yxat darrov chiqadi. Xarajatni tez yoki batafsil hisoblang.",
-  step1:"1-qadam \u2014 Farzand",step2:"2-qadam \u2014 Xarajat",
+  sub:"Sinfni tanlang — kerakli ro'yxat darrov chiqadi. Xarajatni tez yoki batafsil hisoblang.",
+  step1:"1-qadam — Farzand",step2:"2-qadam — Xarajat",
   lGrade:"Sinf",lGender:"Jinsi",gBoy:"O'g'il",gGirl:"Qiz",
   lSchool:"Maktab turi",scState:"Davlat",scPriv:"Xususiy",
   recTitle:"Shu sinf uchun tavsiya etiladi",
   mTez:"Tez hisob",mBatafsil:"Batafsil",
-  hQuick:"Har bo'lim uchun taxminiy summani kiriting \u2014 5 ta maydon yetarli.",
+  hQuick:"Har bo'lim uchun taxminiy summani kiriting — 5 ta maydon yetarli.",
   hDetail:"Har bir band bo'yicha aniq hisob. Miqdorlar sinfga qarab tavsiya qilingan.",
   qKiyim:"Kiyim va poyabzal",qKiyimS:"forma, ko'ylak, tufli, kurtka",
   qSumka:"Sumka va o'quv qurollari",qSumkaS:"ryukzak, daftar, ruchka, albom",
   qKitob:"Kitoblar",qKitobS:"darslik, ish daftari, lug'at",
-  qTolov:"Maktab to'lovlari",qTolovS:"ovqat, transport, fond \u2014 oyiga",
-  qElektron:"Elektronika",qElektronS:"ixtiyoriy \u2014 telefon, planshet",
+  qTolov:"Maktab to'lovlari",qTolovS:"ovqat, transport, fond — oyiga",
+  qElektron:"Elektronika",qElektronS:"ixtiyoriy — telefon, planshet",
   qBoshqa:"Qo'shimcha",qBoshqaS:"fotosessiya, ekskursiya, sovg'a",
   lMonths:"Sentyabrgacha necha oy qoldi",uOy:"oy",
   btnCalc:"Hisoblash",rTag:"Maktab xarajatlari",lblMain:"Umumiy xarajat",
@@ -315,24 +316,24 @@ var I={
   addName:"Nomi",addPrice:"Summa",addBtn:"Qo'shish",
   addChild:"+ Farzand",delChild:"O'chirish",
   tolovNote:"{m} oyga hisoblandi",
-  noteTxt:"Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz \u2014 kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi.",
+  noteTxt:"Miqdorlar sinf bo'yicha o'rtacha tavsiya. Narxlarni o'zingiz kiritasiz — kalkulyator hech qanday narxni o'zi belgilamaydi. Ma'lumotlaringiz faqat shu brauzerda saqlanadi.",
   btnShare:"Ulashish",btnCsv:"Excel (CSV)",copied:"Nusxalandi",
   foot:"Hisob taxminiy. Maktab ro'yxati va narxlar hududga qarab farq qiladi.",
-  seo:'<h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog\'liq. Bu kalkulyator ikki xil ishlaydi: tez hisobda 5 ta maydonni to\'ldirasiz va darhol natija olasiz, batafsil rejimda esa har bir band bo\'yicha aniq hisoblaysiz. Ikkalasida ham sinfga qarab kerakli ro\'yxat avtomatik tavsiya qilinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o\'sha yoshdagi bolaga odatda kerak bo\'ladigan ro\'yxatni darrov ko\'rsatadi \u2014 narx kiritish ham shart emas. Masalan 1-sinf uchun ko\'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko\'proq daftar, sirkul, transportir va kalkulyator. Bu majburiy ro\'yxat emas, batafsil rejimda istagan bandni o\'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do\'kon va hududga qarab keskin farq qiladi, avgustda esa talab oshib narx ko\'tariladi. Shuning uchun kalkulyator hech qanday narxni o\'zi belgilamaydi \u2014 siz o\'z do\'koningizdagi narxni kiritasiz.</p><h2>Oylarga bo\'lib yig\'sa bo\'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig\'ish kerakligini ko\'rsatadi. Bir yo\'la katta summa topish o\'rniga oldindan bo\'lib yig\'ish oila byudjetiga ancha yengil.</p><h2>Bir necha farzandni birdan hisoblasa bo\'ladimi?</h2><p>Ha, "+ Farzand" tugmasi orqali qo\'shasiz. Har bir farzand o\'z sinfi bo\'yicha alohida hisoblanadi, natijada esa ham umumiy summa, ham har bola bo\'yicha summa ko\'rinadi. Xarid ro\'yxati va natijani PDF yoki Excel (CSV) sifatida yuklab olish mumkin.</p>'},
+  seo:'<h2>Maktabga tayyorgarlik qancha turadi?</h2><p>Xarajat farzandning sinfi, maktab turi va oilada nechta bola borligiga bog\'liq. Bu kalkulyator ikki xil ishlaydi: tez hisobda 5 ta maydonni to\'ldirasiz va darhol natija olasiz, batafsil rejimda esa har bir band bo\'yicha aniq hisoblaysiz. Ikkalasida ham sinfga qarab kerakli ro\'yxat avtomatik tavsiya qilinadi.</p><h2>Sinfga qarab tavsiya qanday ishlaydi?</h2><p>Sinfni tanlaganingizda kalkulyator o\'sha yoshdagi bolaga odatda kerak bo\'ladigan ro\'yxatni darrov ko\'rsatadi — narx kiritish ham shart emas. Masalan 1-sinf uchun ko\'proq albom, plastilin va rangli qalam, 9-sinf uchun esa ko\'proq daftar, sirkul, transportir va kalkulyator. Bu majburiy ro\'yxat emas, batafsil rejimda istagan bandni o\'zgartirishingiz mumkin.</p><h2>Nega narxlar oldindan yozilmagan?</h2><p>Maktab buyumlarining narxi bozor, do\'kon va hududga qarab keskin farq qiladi, avgustda esa talab oshib narx ko\'tariladi. Shuning uchun kalkulyator hech qanday narxni o\'zi belgilamaydi — siz o\'z do\'koningizdagi narxni kiritasiz.</p><h2>Oylarga bo\'lib yig\'sa bo\'ladimi?</h2><p>Ha. Sentyabrgacha necha oy qolganini kiritsangiz, kalkulyator har oy qancha yig\'ish kerakligini ko\'rsatadi. Bir yo\'la katta summa topish o\'rniga oldindan bo\'lib yig\'ish oila byudjetiga ancha yengil.</p><h2>Bir necha farzandni birdan hisoblasa bo\'ladimi?</h2><p>Ha, "+ Farzand" tugmasi orqali qo\'shasiz. Har bir farzand o\'z sinfi bo\'yicha alohida hisoblanadi, natijada esa ham umumiy summa, ham har bola bo\'yicha summa ko\'rinadi. Xarid ro\'yxati va natijani PDF yoki Excel (CSV) sifatida yuklab olish mumkin.</p>'},
  ru:{cat:"Жизнь",h1:"Подготовка к школе",
-  sub:"Выберите класс \u2014 список появится сразу. Расход считайте быстро или подробно.",
-  step1:"Шаг 1 \u2014 Ребёнок",step2:"Шаг 2 \u2014 Расходы",
+  sub:"Выберите класс — список появится сразу. Расход считайте быстро или подробно.",
+  step1:"Шаг 1 — Ребёнок",step2:"Шаг 2 — Расходы",
   lGrade:"Класс",lGender:"Пол",gBoy:"Мальчик",gGirl:"Девочка",
   lSchool:"Тип школы",scState:"Государственная",scPriv:"Частная",
   recTitle:"Рекомендуется для этого класса",
   mTez:"Быстрый расчёт",mBatafsil:"Подробно",
-  hQuick:"Введите примерную сумму по разделам \u2014 достаточно 5 полей.",
+  hQuick:"Введите примерную сумму по разделам — достаточно 5 полей.",
   hDetail:"Точный расчёт по каждой позиции. Количества рекомендованы по классу.",
   qKiyim:"Одежда и обувь",qKiyimS:"форма, рубашка, туфли, куртка",
   qSumka:"Сумка и канцтовары",qSumkaS:"рюкзак, тетради, ручки, альбом",
   qKitob:"Книги",qKitobS:"учебники, рабочие тетради, словарь",
-  qTolov:"Школьные платежи",qTolovS:"питание, транспорт, фонд \u2014 в месяц",
-  qElektron:"Электроника",qElektronS:"по желанию \u2014 телефон, планшет",
+  qTolov:"Школьные платежи",qTolovS:"питание, транспорт, фонд — в месяц",
+  qElektron:"Электроника",qElektronS:"по желанию — телефон, планшет",
   qBoshqa:"Дополнительно",qBoshqaS:"фотосессия, экскурсия, подарки",
   lMonths:"Сколько месяцев до сентября",uOy:"мес.",
   btnCalc:"Рассчитать",rTag:"Школьные расходы",lblMain:"Общий расход",
@@ -346,10 +347,10 @@ var I={
   addName:"Название",addPrice:"Сумма",addBtn:"Добавить",
   addChild:"+ Ребёнок",delChild:"Удалить",
   tolovNote:"посчитано за {m} мес.",
-  noteTxt:"Количества \u2014 средняя рекомендация по классу. Цены вводите сами, калькулятор не задаёт цен. Данные хранятся только в вашем браузере.",
+  noteTxt:"Количества — средняя рекомендация по классу. Цены вводите сами, калькулятор не задаёт цен. Данные хранятся только в вашем браузере.",
   btnShare:"Поделиться",btnCsv:"Excel (CSV)",copied:"Скопировано",
   foot:"Расчёт примерный. Список школы и цены зависят от региона.",
-  seo:'<h2>Сколько стоит подготовка к школе?</h2><p>Расход зависит от класса ребёнка, типа школы и числа детей в семье. Калькулятор работает в двух режимах: в быстром вы заполняете 5 полей и сразу получаете результат, в подробном считаете по каждой позиции. В обоих случаях список нужного рекомендуется автоматически по классу.</p><h2>Как работает рекомендация по классу?</h2><p>При выборе класса калькулятор сразу показывает список, который обычно нужен ребёнку этого возраста \u2014 цены вводить не обязательно. Например, для 1 класса больше альбомов, пластилина и цветных карандашей, для 9 класса \u2014 больше тетрадей, циркуль, транспортир и калькулятор. В подробном режиме любую позицию можно изменить.</p><h2>Почему цены не указаны заранее?</h2><p>Цены на школьные товары сильно зависят от рынка, магазина и региона, а в августе спрос поднимает их выше. Поэтому калькулятор не задаёт цен \u2014 вы вводите цены своего магазина.</p><h2>Можно ли копить по месяцам?</h2><p>Да. Укажите, сколько месяцев осталось до сентября, и калькулятор покажет, сколько откладывать ежемесячно.</p><h2>Можно ли считать нескольких детей сразу?</h2><p>Да, кнопкой "+ Ребёнок". Каждый ребёнок считается отдельно по своему классу, в результате видна и общая сумма, и сумма по каждому. Список покупок и результат можно скачать в PDF или Excel (CSV).</p>'}
+  seo:'<h2>Сколько стоит подготовка к школе?</h2><p>Расход зависит от класса ребёнка, типа школы и числа детей в семье. Калькулятор работает в двух режимах: в быстром вы заполняете 5 полей и сразу получаете результат, в подробном считаете по каждой позиции. В обоих случаях список нужного рекомендуется автоматически по классу.</p><h2>Как работает рекомендация по классу?</h2><p>При выборе класса калькулятор сразу показывает список, который обычно нужен ребёнку этого возраста — цены вводить не обязательно. Например, для 1 класса больше альбомов, пластилина и цветных карандашей, для 9 класса — больше тетрадей, циркуль, транспортир и калькулятор. В подробном режиме любую позицию можно изменить.</p><h2>Почему цены не указаны заранее?</h2><p>Цены на школьные товары сильно зависят от рынка, магазина и региона, а в августе спрос поднимает их выше. Поэтому калькулятор не задаёт цен — вы вводите цены своего магазина.</p><h2>Можно ли копить по месяцам?</h2><p>Да. Укажите, сколько месяцев осталось до сентября, и калькулятор покажет, сколько откладывать ежемесячно.</p><h2>Можно ли считать нескольких детей сразу?</h2><p>Да, кнопкой "+ Ребёнок". Каждый ребёнок считается отдельно по своему классу, в результате видна и общая сумма, и сумма по каждому. Список покупок и результат можно скачать в PDF или Excel (CSV).</p>'}
 };
 
 function band(g){return g<=4?0:(g<=8?1:2)}
@@ -664,7 +665,7 @@ function toCsv(){
     rows.push(['',t('totLbl'),'',p.total]);rows.push([]);
   }
   rows.push([t('totLbl'),'','',calcData.grand]);
-  var csv='\uFEFF'+rows.map(function(r){return r.map(function(x){return '"'+String(x==null?'':x).replace(/"/g,'""')+'"'}).join(';')}).join('\r\n');
+  var csv=String.fromCharCode(0xFEFF)+rows.map(function(r){return r.map(function(x){return '"'+String(x==null?'':x).replace(/"/g,'""')+'"'}).join(';')}).join('\r\n');
   var blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);a.download='kalki-maktab.csv';
@@ -718,7 +719,7 @@ $('langRu').onclick=function(){lang='ru';applyLang()};
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">4.8.2026</div>
 </div>
 <script>
 (function(){
@@ -905,9 +906,9 @@ $('langRu').onclick=function(){lang='ru';applyLang()};
     var L=NAMES[curLang()], name=pageName();
     if(!name)return;
     el.innerHTML='<a href="./">'+L.home+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');
     if(old)old.remove();

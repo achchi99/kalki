@@ -147,7 +147,7 @@ footer a{color:var(--muted);text-decoration:none}
     var h=document.querySelector('h1');
     var name=h&&h.textContent?h.textContent.trim():'';
     if(!name)return;
-    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">\u203A</span>'
+    el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');if(old)old.remove();
     var base='https://kalki.uz/';

@@ -230,8 +230,9 @@ img,svg{height:auto}
     }
   };
   var lang='uz', calcData=null;
-  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0')};
-  var num=function(s){return parseFloat(String(s).replace(/\u00A0/g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var NBSP=String.fromCharCode(160);
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,NBSP)};
+  var num=function(s){return parseFloat(String(s).replace(new RegExp(NBSP,'g'),'').replace(/\s/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var som=function(){return lang==='uz'?"so'm":'сум'};
@@ -324,7 +325,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">3.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">4.8.2026</div>
 </div>
 <script>
 (function(){
@@ -511,9 +512,9 @@ img,svg{height:auto}
     var L=NAMES[curLang()], name=pageName();
     if(!name)return;
     el.innerHTML='<a href="./">'+L.home+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
-      +'<span class="sep">\u203A</span>'
+      +'<span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');
     if(old)old.remove();
