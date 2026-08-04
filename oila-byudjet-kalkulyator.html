@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Oilaviy byudjet kalkulyatori — daromad, xarajat va jamg'arma hisobi</title>
 <link rel="canonical" href="https://kalki.uz/oila-byudjet-kalkulyator">
-<meta name="description" content="Oila byudjeti kalkulyatori: er-xotin daromadi, bolalar ta'limi, yashash joyiga qarab oziq-ovqat savati (go'sht, un, yog'...) va jamg'arma imkoniyati. Семейный бюджет калькулятор.">
+<meta name="description" content="Oila byudjeti kalkulyatori: daromad va oila soniga qarab oziq-ovqat savati, xarajatlar, kredit yuki foizi va 0-100 moliyaviy salomatlik balli. Семейный бюджет и долговая нагрузка.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -85,6 +85,78 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .status.s-ok{background:var(--ok-soft);color:var(--ok)}
 .status.s-mid{background:var(--mid-soft);color:var(--mid)}
 .status.s-neg{background:var(--warn-soft);color:var(--warn)}
+/* --- ixtiyoriy bloklar (yig'ilgan holatda) --- */
+.step{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+details.opt{border:1.5px solid var(--line);border-radius:12px;margin-bottom:10px;background:#FBFCFB;overflow:hidden}
+details.opt[open]{background:var(--card)}
+details.opt>summary{padding:13px 14px;font-size:14.5px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
+details.opt>summary::-webkit-details-marker{display:none}
+details.opt>summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
+details.opt[open]>summary::after{content:"−"}
+.opt-body{padding:2px 13px 14px}
+.opt-note{font-size:12px;color:var(--muted);font-weight:600;margin-top:8px;line-height:1.5}
+/* --- majburiyatlar (kredit) --- */
+.crow{display:grid;grid-template-columns:1fr 92px 66px 58px 26px;gap:6px;align-items:center;margin-bottom:7px}
+.crow input{border:1px solid var(--line);border-radius:8px;padding:9px 7px;font:inherit;font-size:13px;font-weight:700;background:#fff;min-width:0;width:100%}
+.crow .cdel{background:none;border:0;color:#B04A3A;font-size:18px;cursor:pointer;padding:0;line-height:1}
+.crowhead{display:grid;grid-template-columns:1fr 92px 66px 58px 26px;gap:6px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);margin-bottom:5px}
+@media (max-width:520px){
+  .crow,.crowhead{grid-template-columns:1fr 1fr;gap:5px}
+  .crowhead{display:none}
+  .crow{border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;margin-bottom:9px}
+  .crow input{border-color:#E3E9E4}
+  .crow .cdel{grid-column:2;justify-self:end}
+}
+.cadd{margin-top:4px;background:var(--cat-soft);color:var(--cat);border:0;border-radius:9px;padding:10px 14px;font:inherit;font-size:13.5px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.linkrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.linkrow a{font-size:12.5px;font-weight:700;color:var(--cat);text-decoration:none;background:var(--cat-soft);border-radius:8px;padding:7px 11px}
+/* --- qarz yuki --- */
+.debt{margin-top:14px;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;background:#FBFCFB}
+.debt-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.debt-pct{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.debt-lvl{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:99px}
+.dl-1{background:var(--ok-soft);color:var(--ok)}
+.dl-2{background:var(--mid-soft);color:var(--mid)}
+.dl-3{background:#F6EDE8;color:#8C3B2A}
+.dl-4{background:var(--warn-soft);color:var(--warn)}
+.debt-bar{height:9px;border-radius:99px;background:#E9EFEA;overflow:hidden;margin-top:9px}
+.debt-bar i{display:block;height:100%;border-radius:99px}
+.debt-facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:11px}
+.debt-facts div{font-size:12.5px;font-weight:600;color:var(--muted)}
+.debt-facts b{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-top:2px}
+.pay1{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+@media (max-width:480px){.pay1{grid-template-columns:1fr}}
+.pay1 .pc{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.pay1 .pc .pt{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+.pay1 .pc .pn{font-size:14.5px;font-weight:800;margin-top:4px;overflow-wrap:anywhere}
+.pay1 .pc .ps{font-size:12px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.45}
+/* --- moliyaviy salomatlik balli --- */
+.score{margin-top:16px;border:1.5px solid var(--line);border-radius:12px;padding:15px 14px;background:#FBFCFB}
+.score-head{display:flex;align-items:baseline;gap:10px}
+.score-num{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.score-of{font-size:14px;font-weight:700;color:var(--muted)}
+.score-ttl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.sbars{margin-top:13px}
+.sbar{margin-bottom:9px}
+.sbar .sl{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.sbar .sl b{color:var(--ink);font-weight:800}
+.sbar .st{height:7px;border-radius:99px;background:#E9EFEA;overflow:hidden}
+.sbar .st i{display:block;height:100%;border-radius:99px;background:var(--cat)}
+.focus{margin-top:13px;border-top:1.5px dashed var(--line);padding-top:11px}
+.focus .ft{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:7px}
+.focus .fi{display:flex;gap:9px;margin-bottom:8px}
+.focus .fi .fd{width:5px;border-radius:99px;background:var(--accent);flex:none}
+.focus .fi .fb{font-size:12.5px;line-height:1.5}
+.focus .fi .fb b{display:block;font-weight:800;color:var(--ink);margin-bottom:1px}
+.focus .fi .fb span{color:var(--muted);font-weight:600}
+.score-note{margin-top:11px;font-size:11.5px;color:var(--muted);font-weight:600;line-height:1.5}
+/* --- oylik solishtirish --- */
+.cmp{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.cmp b{font-weight:800}
+.cmp .up{color:var(--ok)}
+.cmp .down{color:var(--warn)}
+.cmp .flat{color:var(--muted)}
+.histbtn{background:none;border:0;color:var(--muted);font:inherit;font-size:11.5px;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;margin-top:9px}
 .receipt-actions{display:flex;gap:10px;margin-top:16px}
 .receipt-actions button{flex:1;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .receipt-actions button:active{background:var(--cat-soft)}
@@ -120,13 +192,13 @@ img,svg{height:auto}
 <script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:image" content="https://kalki.uz/og-image.png">
 <meta property="og:title" content="Oilaviy byudjet kalkulyatori — daromad, xarajat va jamg'arma hisobi">
-<meta property="og:description" content="Oila byudjeti kalkulyatori: er-xotin daromadi, bolalar ta'limi, yashash joyiga qarab oziq-ovqat savati (go'sht, un, yog'...) va jamg'arma imkoniyati. Семейный бюджет калькулятор.">
+<meta property="og:description" content="Oila byudjeti kalkulyatori: daromad va oila soniga qarab oziq-ovqat savati, xarajatlar, kredit yuki foizi va 0-100 moliyaviy salomatlik balli. Семейный бюджет и долговая нагрузка.">
 <meta property="og:url" content="https://kalki.uz/oila-byudjet-kalkulyator">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Oilaviy byudjet kalkulyatori — daromad, xarajat va jamg'arma hisobi">
-<meta name="twitter:description" content="Oila byudjeti kalkulyatori: er-xotin daromadi, bolalar ta'limi, yashash joyiga qarab oziq-ovqat savati (go'sht, un, yog'...) va jamg'arma imkoniyati. Семейный бюджет калькулятор.">
+<meta name="twitter:description" content="Oila byudjeti kalkulyatori: daromad va oila soniga qarab oziq-ovqat savati, xarajatlar, kredit yuki foizi va 0-100 moliyaviy salomatlik balli. Семейный бюджет и долговая нагрузка.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
 #breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
@@ -150,7 +222,7 @@ img,svg{height:auto}
   #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
-<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Oila byudjetini qanday to'g'ri taqsimlash kerak?","acceptedAnswer":{"@type":"Answer","text":"Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg'armaga. O'zbekiston sharoitida ko'p oilalar uchun 20% jamg'arma — erishsa bo'ladigan kuchli maqsad."}},{"@type":"Question","name":"Oziq-ovqat savati qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Kalkulyator har bir katta kishi uchun oylik o'rtacha iste'mol me'yorlarini oladi (masalan, 8 kg un, 4 kg go'sht, 1,5 l yog'), bolalar uchun 60% koeffitsiyent qo'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro'yxatiga yaqin mo'ljal."}},{"@type":"Question","name":"Jamg'armani qayerda saqlash kerak?","acceptedAnswer":{"@type":"Answer","text":"Eng oddiy yo'l — bankdagi muddatli omonat: pul ishlaydi va qo'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg'armangiz qancha o'sishini hisoblab ko'ring."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Moliya","item":"https://kalki.uz/#cat-moliya"},{"@type":"ListItem","position":3,"name":"Oilaviy byudjet kalkulyatori","item":"https://kalki.uz/oila-byudjet-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Oilaviy byudjet kalkulyatori","description":"Oila byudjeti kalkulyatori: er-xotin daromadi, bolalar ta'limi, yashash joyiga qarab oziq-ovqat savati (go'sht, un, yog'...) va jamg'arma imkoniyati. Семейный бюджет калькулятор.","url":"https://kalki.uz/oila-byudjet-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Oila byudjetini qanday to'g'ri taqsimlash kerak?","acceptedAnswer":{"@type":"Answer","text":"Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg'armaga. O'zbekiston sharoitida ko'p oilalar uchun 20% jamg'arma — erishsa bo'ladigan kuchli maqsad."}},{"@type":"Question","name":"Oziq-ovqat savati qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Kalkulyator har bir katta kishi uchun oylik o'rtacha iste'mol me'yorlarini oladi (masalan, 8 kg un, 4 kg go'sht, 1,5 l yog'), bolalar uchun 60% koeffitsiyent qo'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro'yxatiga yaqin mo'ljal."}},{"@type":"Question","name":"Jamg'armani qayerda saqlash kerak?","acceptedAnswer":{"@type":"Answer","text":"Eng oddiy yo'l — bankdagi muddatli omonat: pul ishlaydi va qo'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg'armangiz qancha o'sishini hisoblab ko'ring."}},{"@type":"Question","name":"Qarz yuki foizi nima va qancha bo'lishi kerak?","acceptedAnswer":{"@type":"Answer","text":"Qarz yuki — barcha kreditlar bo'yicha oylik to'lovning oylik daromadga nisbati. Masalan daromad 8 million, kredit to'lovlari 1,5 million bo'lsa, qarz yuki 18,75 foiz. Bu ko'rsatkich shuning uchun muhimki, u kredit summasidan emas, aynan oylik naqd oqimdan kelib chiqadi — katta kredit uzoq muddatga olingan bo'lsa yuk yengil, kichik kredit qisqa muddatga olingan bo'lsa yuk og'ir bo'lishi mumkin. Umumiy mo'ljal shunday: 20 foizgacha yengil, 20–35 foiz o'rtacha, 35–50 foiz og'ir, 50 foizdan yuqorisi xavfli hisoblanadi. 50 foizdan oshganda har qanday kutilmagan xarajat — kasallik, avtomobil ta'miri, to'y — darrov yangi qarzga olib keladi, chunki byudjetda bo'sh joy qolmaydi. Banklar ham kredit berishda shu nisbatga qaraydi, shuning uchun yuk yuqori bo'lsa yangi kredit olish qiyinlashadi."}},{"@type":"Question","name":"Zaxira fondi qancha bo'lgani ma'qul?","acceptedAnswer":{"@type":"Answer","text":"Zaxira fondi — ishsiz qolganda yoki kutilmagan xarajat chiqqanda kredit olmasdan yashab turish uchun chetga qo'yilgan pul. Odatda oylik xarajatning uch-olti barobari tavsiya etiladi: agar oila oyiga 6,5 million sarflasa, to'liq zaxira 20–39 million bo'ladi. Bu katta raqamdek ko'rinadi, lekin u bir yo'la yig'ilmaydi. Amalda birinchi maqsad bir oylik xarajatga teng summa bo'lishi kerak — aynan shu birinchi oy eng ko'p qarzdan saqlaydi. Keyin asta-sekin uch oyga, so'ng olti oyga yetkaziladi. Zaxira pulni tavakkalchilik bilan joylashtirmaslik kerak: u tez yechib olinadigan joyda, masalan muddatli omonatda turishi lozim, chunki uning vazifasi daromad keltirish emas, kerak bo'lganda darrov qo'l ostida bo'lish."}},{"@type":"Question","name":"Kredit to'lovi byudjetning necha foizidan oshmasligi kerak?","acceptedAnswer":{"@type":"Answer","text":"Keng qo'llaniladigan mo'ljal — 35 foiz. Shu chegaragacha oila kutilmagan xarajatni yangi qarzsiz ko'tara oladi. 35 foizdan oshgach byudjet tarang bo'ladi, 50 foizdan oshsa esa xavfli hisoblanadi: bunday holatda odatda yangi kredit bilan eski kreditni yopish boshlanadi va bu tez orada chuqurlashadi. Kalkulyator kredit qatorlarini kiritganingizda shu nisbatni o'zi hisoblab, rangli chiziqda ko'rsatadi."}},{"@type":"Question","name":"Moliyaviy salomatlik balli qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Ball 0 dan 100 gacha bo'lib, to'rt qismdan iborat, har biri 25 balldan. Birinchisi — jamg'arma ulushi: oyiga chetga qo'yayotgan pulingiz daromadning 20 foiziga yetsa to'liq 25 ball beriladi. Ikkinchisi — qarz yuki: kredit to'lovi daromadning 50 foiziga yetganda 0 ball, kredit umuman bo'lmasa 25 ball. Uchinchisi — zaxira fondi: jamg'armangiz olti oylik xarajatni qoplasa 25 ball. To'rtinchisi — daromad manbalari: bitta manba 10, ikkitasi 18, uchtasi va undan ko'pi 25 ball. Formulalar ataylab ochiq ko'rsatilgan, chunki yopiq ball ishonchsiz bo'ladi. Ball baho emas: u qaysi tomon bo'sh ekanini ko'rsatadi, xolos. Shuning uchun natija ostida eng kam ball to'plagan ikkita qism va ular bo'yicha bittadan aniq harakat yoziladi."}},{"@type":"Question","name":"Ma'lumotlarim qayerda saqlanadi?","acceptedAnswer":{"@type":"Answer","text":"Faqat sizning brauzeringizda. Kiritgan daromadingiz, xarajatlaringiz va kredit ma'lumotlaringiz serverga yuborilmaydi — ular brauzer xotirasida qoladi, shuning uchun sahifani qayta ochsangiz oxirgi holat tiklanadi. Har oyning natijasi ham shu yerda saqlanadi va keyingi oy kirganingizda o'tgan oy bilan solishtirish ko'rsatiladi. Xohlasangiz «Tarixni tozalash» tugmasi bilan hammasini o'chirasiz. Ulashish havolasini yuborsangiz esa ma'lumotlar havolaning o'zida kodlanadi — havolani faqat ishonchli odamga bering."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Moliya","item":"https://kalki.uz/#cat-moliya"},{"@type":"ListItem","position":3,"name":"Oilaviy byudjet kalkulyatori","item":"https://kalki.uz/oila-byudjet-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Oilaviy byudjet kalkulyatori","description":"Oila byudjeti kalkulyatori: daromad va oila soniga qarab oziq-ovqat savati, xarajatlar, kredit yuki foizi va 0-100 moliyaviy salomatlik balli. Семейный бюджет и долговая нагрузка.","url":"https://kalki.uz/oila-byudjet-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
 <body data-cat="moliya">
 <nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" class="tm-on" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
 
@@ -165,14 +237,14 @@ img,svg{height:auto}
     </div>
     <span class="cat-badge" data-i="cat">Moliya</span>
     <h1 data-i="h1">Oilaviy byudjet kalkulyatori</h1>
-    <p class="sub" data-i="sub">Daromad, bolalar ta'limi va yashash joyingizga qarab: oziq-ovqat savati, xarajatlar va jamg'arma imkoniyati.</p>
+    <p class="sub" data-i="sub">Daromad va oila a'zolari sonini kiriting — xarajat, kredit yuki va moliyaviy salomatlik balli darhol chiqadi.</p>
   </div>
 </header>
 
 <main class="wrap">
   <nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-moliya">Moliya</a><span class="sep">›</span><span class="cur">Oilaviy byudjet kalkulyatori</span></nav>
-  <section class="form-card">
-
+  <section class="form-card" id="cardMain">
+    <div class="step" data-i="step1">1-qadam — Asosiy</div>
     <div class="sect-title" data-i="sIncome">Oila daromadi (oyiga)</div>
     <div class="row2">
       <div class="field">
@@ -211,82 +283,18 @@ img,svg{height:auto}
     </div>
     <p class="hint" style="margin-top:-6px" data-i="hKids">Bola bo'lmagan bo'limga 0 qoldiring.</p>
 
-    <div class="sect-title" data-i="sLoc">Yashash joyi</div>
-    <div class="field">
-      <div class="seg">
-        <button type="button" data-loc="tosh" data-i="locT">Toshkent sh.</button>
-        <button type="button" data-loc="vil" class="on" data-i="locV">Viloyat markazi</button>
-        <button type="button" data-loc="tum" data-i="locD">Tuman</button>
-      </div>
-      <p class="hint" data-i="hLoc">Oziq-ovqat narxlari joyga qarab moslanadi: Toshkent +20%, tuman −10%.</p>
-    </div>
-
-    <div class="sect-title" data-i="sEdu">Ta'lim xarajati (1 bolaga, oyiga)</div>
-    <div class="row3">
-      <div class="field">
-        <label for="costG" data-i="lCostG">Bog'cha</label>
-        <div class="input-shell"><input type="text" id="costG" inputmode="numeric" value="400 000"><span class="unit" data-i="u4">so'm</span></div>
-      </div>
-      <div class="field">
-        <label for="costM" data-i="lCostM">Maktab</label>
-        <div class="input-shell"><input type="text" id="costM" inputmode="numeric" value="200 000"><span class="unit" data-i="u5">so'm</span></div>
-      </div>
-      <div class="field">
-        <label for="costU" data-i="lCostU">Kontrakt</label>
-        <div class="input-shell"><input type="text" id="costU" inputmode="numeric" value="1 500 000"><span class="unit" data-i="u6">so'm</span></div>
-      </div>
-    </div>
-    <p class="hint" style="margin-top:-6px" data-i="hEdu">Kontrakt: yillik summani 12 ga bo'lib yozing. Maktab: kiyim, daftar, qo'shimcha darslar o'rtachasi.</p>
-
-    <div class="sect-title" data-i="sFixed">Doimiy xarajatlar (oyiga)</div>
-    <div class="row2">
-      <div class="field">
-        <label for="komm" data-i="lKomm">Kommunal (gaz, svet, suv)</label>
-        <div class="input-shell"><input type="text" id="komm" inputmode="numeric" value="500 000"><span class="unit" data-i="u7">so'm</span></div>
-      </div>
-      <div class="field">
-        <label for="rent" data-i="lRent">Uy ijarasi</label>
-        <div class="input-shell"><input type="text" id="rent" inputmode="numeric" value="0"><span class="unit" data-i="u8">so'm</span></div>
-      </div>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label for="trans" data-i="lTrans">Transport / benzin</label>
-        <div class="input-shell"><input type="text" id="trans" inputmode="numeric" value="600 000"><span class="unit" data-i="u9">so'm</span></div>
-      </div>
-      <div class="field">
-        <label for="conn" data-i="lConn">Telefon, internet</label>
-        <div class="input-shell"><input type="text" id="conn" inputmode="numeric" value="200 000"><span class="unit" data-i="u10">so'm</span></div>
-      </div>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label for="health" data-i="lHealth">Dori va salomatlik</label>
-        <div class="input-shell"><input type="text" id="health" inputmode="numeric" value="300 000"><span class="unit" data-i="u12">so'm</span></div>
-      </div>
-      <div class="field">
-        <label for="fun" data-i="lFun">Kafe, restoran, ko'ngilochar</label>
-        <div class="input-shell"><input type="text" id="fun" inputmode="numeric" value="500 000"><span class="unit" data-i="u13">so'm</span></div>
-      </div>
-    </div>
-    <p class="hint" style="margin-top:-6px" data-i="hFun">Sog'lom me'yor: daromadning 5–10% i. Dam olish kerak, lekin nazorat ham muhim.</p>
-    <div class="field" style="margin-bottom:0">
-      <label for="other" data-i="lOther">Boshqa (kiyim, mehmon...)</label>
-      <div class="input-shell"><input type="text" id="other" inputmode="numeric" value="300 000"><span class="unit" data-i="u11">so'm</span></div>
-      <p class="hint" data-i="hOther">Kiyim, mehmon, sovg'a — oyiga o'rtacha.</p>
-    </div>
-
-    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Byudjetni hisoblash</button>
+    <p class="hint" style="margin-top:-2px" data-i="hMain">Shu ikki bo'lim yetarli — natija darhol chiqadi. Quyidagi bloklar ixtiyoriy.</p>
   </section>
 
-  <section class="receipt" id="receipt" aria-live="polite">
+  <section class="receipt show" id="receipt" aria-live="polite">
     <div class="receipt-body">
       <div class="receipt-tag" data-i="rTag">Oila byudjeti</div>
+      <div class="cmp" id="cmpBox" style="display:none"></div>
       <div class="big-figure">
-        <div class="num" id="mainNum">—</div>
-        <div class="lbl" id="mainLbl"></div>
+        <div class="num" id="mainNum">3&nbsp;800&nbsp;000 so'm (48%)</div>
+        <div class="lbl" id="mainLbl">Oyiga jamg'arma imkoniyati</div>
       </div>
-      <div class="pct-bar" id="pctBar"></div>
+      <div class="pct-bar" id="pctBar"><div class="seg-x" style="width:22.5%;background:#1D4E6B"></div><div class="seg-x" style="width:23.75%;background:#8C3B2A"></div><div class="seg-x" style="width:6.25%;background:#C77"></div><div class="seg-x" style="width:47.5%;background:#D99A2B"></div></div>
       <div class="pct-legend">
         <span style="--lc:#1D4E6B" data-i="legFood">Oziq-ovqat</span>
         <span style="--lc:#5B3A63" data-i="legEdu">Ta'lim</span>
@@ -294,24 +302,45 @@ img,svg{height:auto}
         <span style="--lc:#D99A2B" data-i="legSave">Jamg'arma</span>
       </div>
       <div class="receipt-rows">
-        <div class="rrow"><span class="k" data-i="kIncome">Jami daromad</span><span class="v" id="rIncome">—</span></div>
-        <div class="rrow"><span class="k" data-i="kFood">Oziq-ovqat savati</span><span class="v" id="rFood">—</span></div>
+        <div class="rrow"><span class="k" data-i="kIncome">Jami daromad</span><span class="v" id="rIncome">8&nbsp;000&nbsp;000 so'm</span></div>
+        <div class="rrow"><span class="k" data-i="kFood">Oziq-ovqat savati</span><span class="v" id="rFood">1&nbsp;800&nbsp;000 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kEdu">Ta'lim</span><span class="v" id="rEdu">—</span></div>
-        <div class="rrow"><span class="k" data-i="kFixed">Doimiy xarajatlar</span><span class="v" id="rFixed">—</span></div>
-        <div class="rrow"><span class="k" data-i="kHealth">Dori va salomatlik</span><span class="v" id="rHealth">—</span></div>
-        <div class="rrow"><span class="k" data-i="kFun">Ko'ngilochar</span><span class="v" id="rFun">—</span></div>
-        <div class="rrow sep"><span class="k" data-i="kSpend">Jami xarajat</span><span class="v" id="rSpend">—</span></div>
-        <div class="rrow"><span class="k" data-i="kSpendPct">Xarajat / daromad</span><span class="v" id="rSpendPct">—</span></div>
-        <div class="rrow"><span class="k" data-i="kSave">Jamg'armaga qoladi</span><span class="v ok" id="rSave">—</span></div>
+        <div class="rrow"><span class="k" data-i="kFixed">Doimiy xarajatlar</span><span class="v" id="rFixed">1&nbsp;600&nbsp;000 so'm</span></div>
+        <div class="rrow"><span class="k" data-i="kHealth">Dori va salomatlik</span><span class="v" id="rHealth">300&nbsp;000 so'm</span></div>
+        <div class="rrow"><span class="k" data-i="kFun">Ko'ngilochar</span><span class="v" id="rFun">500&nbsp;000 so'm</span></div>
+        <div class="rrow sep"><span class="k" data-i="kSpend">Jami xarajat</span><span class="v" id="rSpend">4&nbsp;200&nbsp;000 so'm</span></div>
+        <div class="rrow" id="rCreditRow" style="display:none"><span class="k" data-i="kCredit">Kredit to'lovlari</span><span class="v" id="rCredit">—</span></div>
+        <div class="rrow"><span class="k" data-i="kSpendPct">Xarajat / daromad</span><span class="v" id="rSpendPct">53%</span></div>
+        <div class="rrow"><span class="k" data-i="kSave">Jamg'armaga qoladi</span><span class="v ok" id="rSave">3&nbsp;800&nbsp;000 so'm</span></div>
       </div>
 
+      <div class="debt" id="debtBox" style="display:none">
+        <div class="score-ttl" data-i="dTitle">Qarz yuki</div>
+        <div class="debt-top"><span class="debt-pct" id="debtPct">—</span><span class="debt-lvl" id="debtLvl"></span></div>
+        <div class="debt-bar"><i id="debtBar"></i></div>
+        <div class="status s-neg" id="debtWarn" style="display:none;margin-top:11px"></div>
+        <div class="debt-facts">
+          <div><span data-i="dFree">Qarzsiz bo'lish sanasi</span><b id="debtFree">—</b></div>
+          <div><span data-i="dLeft">Qolgan to'lovlar summasi</span><b id="debtLeft">—</b></div>
+          <div><span data-i="dMonth">Jami oylik to'lov</span><b id="debtMonth">—</b></div>
+        </div>
+        <div class="pay1" id="payFirst"></div>
+      </div>
+      <div class="score" id="scoreBox">
+        <div class="score-ttl" data-i="scTitle">Moliyaviy salomatlik balli</div>
+        <div class="score-head"><span class="score-num" id="scoreNum">35</span><span class="score-of">/ 100</span></div>
+        <div id="scoreEmpty" class="opt-note" data-i="scEmpty" style="display:none">Hisoblash uchun daromadni kiriting.</div>
+        <div class="sbars" id="scoreBars"><div class="sbar" data-sk="cmpSave" data-sv="0"><div class="sl"><span>Jamg'arma ulushi</span><b>0 / 25</b></div><div class="st"><i style="width:0%"></i></div></div><div class="sbar" data-sk="cmpDebt" data-sv="25"><div class="sl"><span>Qarz yuki</span><b>25 / 25</b></div><div class="st"><i style="width:100%"></i></div></div><div class="sbar" data-sk="cmpFund" data-sv="0"><div class="sl"><span>Zaxira fondi</span><b>0 / 25</b></div><div class="st"><i style="width:0%"></i></div></div><div class="sbar" data-sk="cmpSrc" data-sv="10"><div class="sl"><span>Daromad manbalari</span><b>10 / 25</b></div><div class="st"><i style="width:40%"></i></div></div></div>
+        <div class="focus" id="scoreFocus"><div class="ft">Eng ko'p ta'sir qiladigan 2 ta joy:</div><div class="fi" data-fk="cmpSave"><span class="fd"></span><span class="fb"><b>Jamg'arma ulushi</b><span>Daromadning 10 foizini avtomatik chetga qo'yish eng oson boshlanish.</span></span></div><div class="fi" data-fk="cmpFund"><span class="fd"></span><span class="fb"><b>Zaxira fondi</b><span>Kamida bir oylik xarajatga teng zaxira — kutilmagan holat uchun birinchi qadam.</span></span></div></div>
+        <div class="score-note" data-i="scNote">Bu ball — o'zini o'zi baholash vositasi, moliyaviy maslahat emas.</div>
+      </div>
       <div class="basket" id="basket">
         <div class="basket-head" id="basketHead"><span data-i="bTitle">Oziq-ovqat savati tafsiloti (bosing)</span><span class="tog">▾</span></div>
-        <div class="basket-list" id="basketList"></div>
+        <div class="basket-list" id="basketList"><div class="brow"><span><span class="bn">Un</span> <span class="bq">16 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Guruch</span> <span class="bq">6 kg</span></span><span class="bv">90&nbsp;000</span></div><div class="brow"><span><span class="bn">Go'sht (mol/qo'y)</span> <span class="bq">6 kg</span></span><span class="bv">750&nbsp;000</span></div><div class="brow"><span><span class="bn">Tovuq go'shti</span> <span class="bq">4 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">O'simlik yog'i</span> <span class="bq">3 l</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Shakar</span> <span class="bq">4 kg</span></span><span class="bv">52&nbsp;000</span></div><div class="brow"><span><span class="bn">Kartoshka</span> <span class="bq">12 kg</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Sabzavotlar</span> <span class="bq">20 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">Meva</span> <span class="bq">8 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Sut-qatiq</span> <span class="bq">8 l</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Tuxum</span> <span class="bq">30 dona</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Choy, tuz, mayda-chuyda</span></span><span class="bv">120&nbsp;000</span></div><div class="brow" style="border-top:1.5px dashed var(--line)"><span class="bn">Oziq-ovqat savati</span><span class="bv">1&nbsp;800&nbsp;000 so'm</span></div><div style="font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 0 2px">2 kishilik oila uchun, viloyat markazi narxlarida</div></div>
       </div>
 
-      <div class="status" id="statusBox"></div>
-      <div class="status" id="funBox" style="display:none;margin-top:10px"></div>
+      <div class="status s-ok" id="statusBox">Ajoyib! Daromadning 48% ini jamg'aryapsiz — moliyaviy sog'lom oila (maqsad: kamida 20%). Bu pulni omonatga qo'yib ko'paytirishingiz mumkin — Omonat kalkulyatorida hisoblang.</div>
+      <div class="status s-ok" id="funBox" style="display: block; margin-top: 10px;">✅ Ko'ngilochar xarajat me'yorda (6%). Dam olishga ham, byudjetga ham zarar yo'q — balans yaxshi.</div>
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
       <button type="button" class="pdfbtn">PDF</button></div>
@@ -319,9 +348,118 @@ img,svg{height:auto}
     <div class="receipt-edge"></div>
   </section>
 
+  <section class="form-card" id="cardOpt">
+    <div class="step" data-i="step2">2-qadam — Aniqlashtirish (ixtiyoriy)</div>
+    <details class="opt" id="dLoc"><summary data-i="sumLoc">Yashash joyi va ta'lim</summary><div class="opt-body">
+      <div class="sect-title" data-i="sLoc">Yashash joyi</div>
+      <div class="field">
+        <div class="seg">
+          <button type="button" data-loc="tosh" data-i="locT">Toshkent sh.</button>
+          <button type="button" data-loc="vil" class="on" data-i="locV">Viloyat markazi</button>
+          <button type="button" data-loc="tum" data-i="locD">Tuman</button>
+        </div>
+        <p class="hint" data-i="hLoc">Oziq-ovqat narxlari joyga qarab moslanadi: Toshkent +20%, tuman −10%.</p>
+      </div>
+
+      <div class="sect-title" data-i="sEdu">Ta'lim xarajati (1 bolaga, oyiga)</div>
+      <div class="row3">
+        <div class="field">
+          <label for="costG" data-i="lCostG">Bog'cha</label>
+          <div class="input-shell"><input type="text" id="costG" inputmode="numeric" value="400 000"><span class="unit" data-i="u4">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="costM" data-i="lCostM">Maktab</label>
+          <div class="input-shell"><input type="text" id="costM" inputmode="numeric" value="200 000"><span class="unit" data-i="u5">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="costU" data-i="lCostU">Kontrakt</label>
+          <div class="input-shell"><input type="text" id="costU" inputmode="numeric" value="1 500 000"><span class="unit" data-i="u6">so'm</span></div>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:-6px" data-i="hEdu">Kontrakt: yillik summani 12 ga bo'lib yozing. Maktab: kiyim, daftar, qo'shimcha darslar o'rtachasi.</p>
+
+    </div></details>
+    <details class="opt" id="dFixed"><summary data-i="sumFixed">Doimiy xarajatlar</summary><div class="opt-body">
+      <div class="sect-title" data-i="sFixed">Doimiy xarajatlar (oyiga)</div>
+      <div class="row2">
+        <div class="field">
+          <label for="komm" data-i="lKomm">Kommunal (gaz, svet, suv)</label>
+          <div class="input-shell"><input type="text" id="komm" inputmode="numeric" value="500 000"><span class="unit" data-i="u7">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="rent" data-i="lRent">Uy ijarasi</label>
+          <div class="input-shell"><input type="text" id="rent" inputmode="numeric" value="0"><span class="unit" data-i="u8">so'm</span></div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="trans" data-i="lTrans">Transport / benzin</label>
+          <div class="input-shell"><input type="text" id="trans" inputmode="numeric" value="600 000"><span class="unit" data-i="u9">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="conn" data-i="lConn">Telefon, internet</label>
+          <div class="input-shell"><input type="text" id="conn" inputmode="numeric" value="200 000"><span class="unit" data-i="u10">so'm</span></div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="health" data-i="lHealth">Dori va salomatlik</label>
+          <div class="input-shell"><input type="text" id="health" inputmode="numeric" value="300 000"><span class="unit" data-i="u12">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="fun" data-i="lFun">Kafe, restoran, ko'ngilochar</label>
+          <div class="input-shell"><input type="text" id="fun" inputmode="numeric" value="500 000"><span class="unit" data-i="u13">so'm</span></div>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:-6px" data-i="hFun">Sog'lom me'yor: daromadning 5–10% i. Dam olish kerak, lekin nazorat ham muhim.</p>
+      <div class="field" style="margin-bottom:0">
+        <label for="other" data-i="lOther">Boshqa (kiyim, mehmon...)</label>
+        <div class="input-shell"><input type="text" id="other" inputmode="numeric" value="300 000"><span class="unit" data-i="u11">so'm</span></div>
+        <p class="hint" data-i="hOther">Kiyim, mehmon, sovg'a — oyiga o'rtacha.</p>
+      </div>
+
+    </div></details>
+    <details class="opt" id="dCredit"><summary data-i="sumCredit">Majburiyatlar (kredit va qarzlar)</summary><div class="opt-body">
+      <p class="hint" style="margin-top:0" data-i="hCredit">Oylik to'lov va qolgan muddat yetarli. Foiz stavkasini kiritsangiz, qo'shimcha tahlil ochiladi.</p>
+      <div class="crowhead"><span data-i="cName">Nomi</span><span data-i="cPay">Oylik to'lov</span><span data-i="cMon">Qolgan oy</span><span data-i="cRate">Foiz %</span><span></span></div>
+      <div id="creditList"><div class="crow"><input type="text" data-cf="n" value="" placeholder="Ipoteka, avtokredit..."><input type="text" data-cf="pay" inputmode="numeric" value="" placeholder="Oylik to'lov"><input type="text" data-cf="mon" inputmode="numeric" value="" placeholder="Qolgan oy"><input type="text" data-cf="rate" inputmode="decimal" value="" placeholder="Foiz %"><button type="button" class="cdel" aria-label="O'chirish">×</button></div></div>
+      <button type="button" class="cadd" id="creditAdd" data-i="btnAddCredit">+ Kredit qo'shish</button>
+      <div class="linkrow">
+        <a href="kredit-kalkulyator" data-i="lnkCredit">Kredit kalkulyatori</a>
+        <a href="ipoteka-kalkulyator" data-i="lnkIpoteka">Ipoteka kalkulyatori</a>
+        <a href="shablon-oila-byudjet.xlsx" download="" data-i="lnkExcel">Excel shablon</a>
+      </div>
+    </div></details>
+    <details class="opt" id="dScore"><summary data-i="sumScore">Moliyaviy salomatlik</summary><div class="opt-body">
+      <p class="hint" style="margin-top:0" data-i="hScore">Bu uch maydon faqat ballni aniqlashtirish uchun. Bo'sh qoldirsangiz ham byudjet hisoblanadi.</p>
+      <div class="row2">
+        <div class="field">
+          <label for="saveMonth" data-i="lSaveMonth">Oyiga chetga qo'yayotgan pul</label>
+          <div class="input-shell"><input type="text" id="saveMonth" inputmode="numeric" value="0"><span class="unit" data-i="u14">so'm</span></div>
+        </div>
+        <div class="field">
+          <label for="savePool" data-i="lSavePool">Jamg'armadagi mavjud pul</label>
+          <div class="input-shell"><input type="text" id="savePool" inputmode="numeric" value="0"><span class="unit" data-i="u15">so'm</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lSources">Daromad manbalari soni</label>
+        <div class="seg" id="srcSeg">
+          <button type="button" data-src="1" class="on">1</button>
+          <button type="button" data-src="2">2</button>
+          <button type="button" data-src="3" data-i="src3">3 va undan ko'p</button>
+        </div>
+        <p class="hint" data-i="hSources">Ish haqi, tadbirkorlik, ijara, nafaqa — alohida manba sifatida sanaladi.</p>
+      </div>
+    </div></details>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Byudjetni hisoblash</button>
+    <button type="button" class="histbtn" id="clearHist" data-i="btnClearHist">Tarixni tozalash</button>
+    <p class="opt-note" data-i="privacyNote">Kiritilgan ma'lumotlar faqat shu brauzerda saqlanadi va hech qayerga yuborilmaydi.</p>
+  </section>
+
   
   
-  <section class="seo" id="seoBlock"><h2>Oila byudjetini qanday to'g'ri taqsimlash kerak?</h2><p>Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg'armaga. O'zbekiston sharoitida ko'p oilalar uchun 20% jamg'arma — erishsa bo'ladigan kuchli maqsad.</p><h2>Oziq-ovqat savati qanday hisoblanadi?</h2><p>Kalkulyator har bir katta kishi uchun oylik o'rtacha iste'mol me'yorlarini oladi (masalan, 8 kg un, 4 kg go'sht, 1,5 l yog'), bolalar uchun 60% koeffitsiyent qo'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro'yxatiga yaqin mo'ljal.</p><h2>Jamg'armani qayerda saqlash kerak?</h2><p>Eng oddiy yo'l — bankdagi muddatli omonat: pul ishlaydi va qo'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg'armangiz qancha o'sishini hisoblab ko'ring.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Bolalar nafaqasi 2026: yangi miqdorlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="omonat-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Omonat" data-rel-ru="Депозит">Omonat</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Ish haqi</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Kredit</span></a><a href="kaloriya-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kaloriya" data-rel-ru="Калории">Kaloriya</span></a><a href="shablon-oila-byudjet.xlsx" download="" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1E6B45;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet jadvali (Excel)" data-rel-ru="Таблица семейного бюджета (Excel)">Oilaviy byudjet jadvali (Excel)</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Oziq-ovqat me'yorlari o'rtacha iste'mol asosida, narxlar taxminiy. Har oila farq qiladi — natijani mo'ljal sifatida ishlating.</footer></main>
+  <section class="seo" id="seoBlock"><h2>Oila byudjetini qanday to'g'ri taqsimlash kerak?</h2><p>Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg'armaga. O'zbekiston sharoitida ko'p oilalar uchun 20% jamg'arma — erishsa bo'ladigan kuchli maqsad.</p><h2>Oziq-ovqat savati qanday hisoblanadi?</h2><p>Kalkulyator har bir katta kishi uchun oylik o'rtacha iste'mol me'yorlarini oladi (masalan, 8 kg un, 4 kg go'sht, 1,5 l yog'), bolalar uchun 60% koeffitsiyent qo'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro'yxatiga yaqin mo'ljal.</p><h2>Jamg'armani qayerda saqlash kerak?</h2><p>Eng oddiy yo'l — bankdagi muddatli omonat: pul ishlaydi va qo'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg'armangiz qancha o'sishini hisoblab ko'ring.</p><h2>Qarz yuki foizi nima va qancha bo'lishi kerak?</h2><p>Qarz yuki — barcha kreditlar bo'yicha oylik to'lovning oylik daromadga nisbati. Masalan daromad 8 million, kredit to'lovlari 1,5 million bo'lsa, qarz yuki 18,75 foiz. Bu ko'rsatkich shuning uchun muhimki, u kredit summasidan emas, aynan oylik naqd oqimdan kelib chiqadi — katta kredit uzoq muddatga olingan bo'lsa yuk yengil, kichik kredit qisqa muddatga olingan bo'lsa yuk og'ir bo'lishi mumkin.</p><p>Umumiy mo'ljal shunday: 20 foizgacha yengil, 20–35 foiz o'rtacha, 35–50 foiz og'ir, 50 foizdan yuqorisi xavfli hisoblanadi. 50 foizdan oshganda har qanday kutilmagan xarajat — kasallik, avtomobil ta'miri, to'y — darrov yangi qarzga olib keladi, chunki byudjetda bo'sh joy qolmaydi. Banklar ham kredit berishda shu nisbatga qaraydi, shuning uchun yuk yuqori bo'lsa yangi kredit olish qiyinlashadi.</p><h2>Zaxira fondi qancha bo'lgani ma'qul?</h2><p>Zaxira fondi — ishsiz qolganda yoki kutilmagan xarajat chiqqanda kredit olmasdan yashab turish uchun chetga qo'yilgan pul. Odatda oylik xarajatning uch-olti barobari tavsiya etiladi: agar oila oyiga 6,5 million sarflasa, to'liq zaxira 20–39 million bo'ladi. Bu katta raqamdek ko'rinadi, lekin u bir yo'la yig'ilmaydi.</p><p>Amalda birinchi maqsad bir oylik xarajatga teng summa bo'lishi kerak — aynan shu birinchi oy eng ko'p qarzdan saqlaydi. Keyin asta-sekin uch oyga, so'ng olti oyga yetkaziladi. Zaxira pulni tavakkalchilik bilan joylashtirmaslik kerak: u tez yechib olinadigan joyda, masalan muddatli omonatda turishi lozim, chunki uning vazifasi daromad keltirish emas, kerak bo'lganda darrov qo'l ostida bo'lish.</p><h2>Kredit to'lovi byudjetning necha foizidan oshmasligi kerak?</h2><p>Keng qo'llaniladigan mo'ljal — 35 foiz. Shu chegaragacha oila kutilmagan xarajatni yangi qarzsiz ko'tara oladi. 35 foizdan oshgach byudjet tarang bo'ladi, 50 foizdan oshsa esa xavfli hisoblanadi: bunday holatda odatda yangi kredit bilan eski kreditni yopish boshlanadi va bu tez orada chuqurlashadi. Kalkulyator kredit qatorlarini kiritganingizda shu nisbatni o'zi hisoblab, rangli chiziqda ko'rsatadi.</p><h2>Moliyaviy salomatlik balli qanday hisoblanadi?</h2><p>Ball 0 dan 100 gacha bo'lib, to'rt qismdan iborat, har biri 25 balldan. Birinchisi — jamg'arma ulushi: oyiga chetga qo'yayotgan pulingiz daromadning 20 foiziga yetsa to'liq 25 ball beriladi. Ikkinchisi — qarz yuki: kredit to'lovi daromadning 50 foiziga yetganda 0 ball, kredit umuman bo'lmasa 25 ball. Uchinchisi — zaxira fondi: jamg'armangiz olti oylik xarajatni qoplasa 25 ball. To'rtinchisi — daromad manbalari: bitta manba 10, ikkitasi 18, uchtasi va undan ko'pi 25 ball.</p><p>Formulalar ataylab ochiq ko'rsatilgan, chunki yopiq ball ishonchsiz bo'ladi. Ball baho emas: u qaysi tomon bo'sh ekanini ko'rsatadi, xolos. Shuning uchun natija ostida eng kam ball to'plagan ikkita qism va ular bo'yicha bittadan aniq harakat yoziladi.</p><h2>Ma'lumotlarim qayerda saqlanadi?</h2><p>Faqat sizning brauzeringizda. Kiritgan daromadingiz, xarajatlaringiz va kredit ma'lumotlaringiz serverga yuborilmaydi — ular brauzer xotirasida qoladi, shuning uchun sahifani qayta ochsangiz oxirgi holat tiklanadi. Har oyning natijasi ham shu yerda saqlanadi va keyingi oy kirganingizda o'tgan oy bilan solishtirish ko'rsatiladi.</p><p>Xohlasangiz «Tarixni tozalash» tugmasi bilan hammasini o'chirasiz. Ulashish havolasini yuborsangiz esa ma'lumotlar havolaning o'zida kodlanadi — havolani faqat ishonchli odamga bering.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Bolalar nafaqasi 2026: yangi miqdorlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="omonat-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Omonat" data-rel-ru="Депозит">Omonat</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Ish haqi</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Kredit</span></a><a href="kaloriya-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kaloriya" data-rel-ru="Калории">Kaloriya</span></a><a href="shablon-oila-byudjet.xlsx" download="" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1E6B45;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet jadvali (Excel)" data-rel-ru="Таблица семейного бюджета (Excel)">Oilaviy byudjet jadvali (Excel)</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Oziq-ovqat me'yorlari o'rtacha iste'mol asosida, narxlar taxminiy. Har oila farq qiladi — natijani mo'ljal sifatida ishlating.</footer></main>
 
 <script>
 (function(){
@@ -347,7 +485,7 @@ img,svg{height:auto}
     uz:{
       cat:"Moliya",
       h1:"Oilaviy byudjet kalkulyatori",
-      sub:"Daromad, bolalar ta'limi va yashash joyingizga qarab: oziq-ovqat savati, xarajatlar va jamg'arma imkoniyati.",
+      sub:"Daromad va oila a'zolari sonini kiriting — xarajat, kredit yuki va moliyaviy salomatlik balli darhol chiqadi.",
       sIncome:"Oila daromadi (oyiga)",
       lIncH:"Er oyligi",lIncW:"Xotin oyligi",lIncX:"Qo'shimcha daromad",
       hIncX:"Ijara, pensiya, tomorqa, qo'shimcha ish — bo'lmasa 0 qoldiring.",
@@ -366,6 +504,39 @@ img,svg{height:auto}
       hFun:"Sog'lom me'yor: daromadning 5–10% i. Dam olish kerak, lekin nazorat ham muhim.",
       hOther:"Kiyim, mehmon, sovg'a — oyiga o'rtacha.",
       u1:"so'm",u2:"so'm",u3:"so'm",u4:"so'm",u5:"so'm",u6:"so'm",u7:"so'm",u8:"so'm",u9:"so'm",u10:"so'm",u11:"so'm",u12:"so'm",u13:"so'm",
+      step1:"1-qadam — Asosiy",step2:"2-qadam — Aniqlashtirish (ixtiyoriy)",
+      hMain:"Shu ikki bo'lim yetarli — natija darhol chiqadi. Quyidagi bloklar ixtiyoriy.",
+      sumLoc:"Yashash joyi va ta'lim",sumFixed:"Doimiy xarajatlar",
+      sumCredit:"Majburiyatlar (kredit va qarzlar)",sumScore:"Moliyaviy salomatlik",
+      hCredit:"Oylik to'lov va qolgan muddat yetarli. Foiz stavkasini kiritsangiz, qo'shimcha tahlil ochiladi.",
+      cName:"Nomi",cPay:"Oylik to'lov",cMon:"Qolgan oy",cRate:"Foiz %",
+      phName:"Ipoteka, avtokredit...",btnAddCredit:"+ Kredit qo'shish",del:"O'chirish",
+      lnkCredit:"Kredit kalkulyatori",lnkIpoteka:"Ipoteka kalkulyatori",lnkExcel:"Excel shablon",
+      hScore:"Bu uch maydon faqat ballni aniqlashtirish uchun. Bo'sh qoldirsangiz ham byudjet hisoblanadi.",
+      lSaveMonth:"Oyiga chetga qo'yayotgan pul",lSavePool:"Jamg'armadagi mavjud pul",
+      lSources:"Daromad manbalari soni",src3:"3 va undan ko'p",
+      hSources:"Ish haqi, tadbirkorlik, ijara, nafaqa — alohida manba sifatida sanaladi.",
+      u14:"so'm",u15:"so'm",
+      kCredit:"Kredit to'lovlari",
+      dTitle:"Qarz yuki",dFree:"Qarzsiz bo'lish sanasi",dLeft:"Qolgan to'lovlar summasi",dMonth:"Jami oylik to'lov",
+      dl1:"Yengil",dl2:"O'rtacha",dl3:"Og'ir",dl4:"Xavfli",
+      dWarn:"Kredit to'lovi daromadning yarmidan ko'pini olyapti. Bu holatda kutilmagan xarajat darrov yangi qarzga olib keladi — birinchi navbatda eng kichik kreditni yopishga harakat qiling.",
+      pfFast:"Eng tez yengillik",pfFastSub:"Qolgan summasi eng kichik. Yopilgach oylik yuk darrov kamayadi.",
+      pfCost:"Eng kam ortiqcha to'lov",pfCostSub:"Foiz stavkasi eng yuqori. Uzoqda jami to'lov kamayadi.",
+      pfNoRate:"Foiz stavkalarini kiritsangiz, ikkinchi variant ham ko'rinadi.",
+      scTitle:"Moliyaviy salomatlik balli",scEmpty:"Hisoblash uchun daromadni kiriting.",
+      scNote:"Bu ball — o'zini o'zi baholash vositasi, moliyaviy maslahat emas.",
+      cmpSave:"Jamg'arma ulushi",cmpDebt:"Qarz yuki",cmpFund:"Zaxira fondi",cmpSrc:"Daromad manbalari",
+      focusTitle:"Eng ko'p ta'sir qiladigan 2 ta joy:",
+      actSave:"Daromadning 10 foizini avtomatik chetga qo'yish eng oson boshlanish.",
+      actDebt:"Yangi kredit olishdan oldin mavjudlaridan bittasini yopish yukni sezilarli kamaytiradi.",
+      actFund:"Kamida bir oylik xarajatga teng zaxira — kutilmagan holat uchun birinchi qadam.",
+      actSrc:"Ikkinchi daromad manbasi bitta ish joyiga bog'liqlikni kamaytiradi.",
+      cmpLead:"O'tgan oyga nisbatan:",cmpBall:"ball",cmpQoldiq:"qoldiq",
+      btnClearHist:"Tarixni tozalash",
+      privacyNote:"Kiritilgan ma'lumotlar faqat shu brauzerda saqlanadi va hech qayerga yuborilmaydi.",
+      months:["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr"],
+      dateFmt:"{y}-yil {m}",
       btnCalc:"Byudjetni hisoblash",rTag:"Oila byudjeti",
       lblSave:"Oyiga jamg'arma imkoniyati",lblDef:"Byudjet taqchilligi (yetishmayapti)",
       legFood:"Oziq-ovqat",legEdu:"Ta'lim",legFixed:"Doimiy",legSave:"Jamg'arma",
@@ -384,12 +555,12 @@ img,svg{height:auto}
       locNames:{tosh:"Toshkent",vil:"viloyat markazi",tum:"tuman"},
       btnShare:"Ulashish",copied:"Nusxalandi ✓",
       foot:"Oziq-ovqat me'yorlari o'rtacha iste'mol asosida, narxlar taxminiy. Har oila farq qiladi — natijani mo'ljal sifatida ishlating.",
-      seo:'<h2>Oila byudjetini qanday to\'g\'ri taqsimlash kerak?</h2><p>Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg\'armaga. O\'zbekiston sharoitida ko\'p oilalar uchun 20% jamg\'arma — erishsa bo\'ladigan kuchli maqsad.</p><h2>Oziq-ovqat savati qanday hisoblanadi?</h2><p>Kalkulyator har bir katta kishi uchun oylik o\'rtacha iste\'mol me\'yorlarini oladi (masalan, 8 kg un, 4 kg go\'sht, 1,5 l yog\'), bolalar uchun 60% koeffitsiyent qo\'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro\'yxatiga yaqin mo\'ljal.</p><h2>Jamg\'armani qayerda saqlash kerak?</h2><p>Eng oddiy yo\'l — bankdagi muddatli omonat: pul ishlaydi va qo\'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg\'armangiz qancha o\'sishini hisoblab ko\'ring.</p>'
+      seo:'<h2>Oila byudjetini qanday to\'g\'ri taqsimlash kerak?</h2><p>Mashhur 50/30/20 qoidasi: daromadning 50% i zaruriy xarajatlarga (oziq-ovqat, kommunal, transport), 30% i istaklarga (mehmon, kiyim, dam olish), 20% i jamg\'armaga. O\'zbekiston sharoitida ko\'p oilalar uchun 20% jamg\'arma — erishsa bo\'ladigan kuchli maqsad.</p><h2>Oziq-ovqat savati qanday hisoblanadi?</h2><p>Kalkulyator har bir katta kishi uchun oylik o\'rtacha iste\'mol me\'yorlarini oladi (masalan, 8 kg un, 4 kg go\'sht, 1,5 l yog\'), bolalar uchun 60% koeffitsiyent qo\'llaydi va yashash joyingizga qarab narxlarni moslaydi. Bu aniq buxgalteriya emas — real xarid ro\'yxatiga yaqin mo\'ljal.</p><h2>Jamg\'armani qayerda saqlash kerak?</h2><p>Eng oddiy yo\'l — bankdagi muddatli omonat: pul ishlaydi va qo\'l tegmaydi. Omonat kalkulyatorimizda turli foiz stavkalarida jamg\'armangiz qancha o\'sishini hisoblab ko\'ring.</p><h2>Qarz yuki foizi nima va qancha bo\'lishi kerak?</h2><p>Qarz yuki — barcha kreditlar bo\'yicha oylik to\'lovning oylik daromadga nisbati. Masalan daromad 8 million, kredit to\'lovlari 1,5 million bo\'lsa, qarz yuki 18,75 foiz. Bu ko\'rsatkich shuning uchun muhimki, u kredit summasidan emas, aynan oylik naqd oqimdan kelib chiqadi — katta kredit uzoq muddatga olingan bo\'lsa yuk yengil, kichik kredit qisqa muddatga olingan bo\'lsa yuk og\'ir bo\'lishi mumkin.</p><p>Umumiy mo\'ljal shunday: 20 foizgacha yengil, 20–35 foiz o\'rtacha, 35–50 foiz og\'ir, 50 foizdan yuqorisi xavfli hisoblanadi. 50 foizdan oshganda har qanday kutilmagan xarajat — kasallik, avtomobil ta\'miri, to\'y — darrov yangi qarzga olib keladi, chunki byudjetda bo\'sh joy qolmaydi. Banklar ham kredit berishda shu nisbatga qaraydi, shuning uchun yuk yuqori bo\'lsa yangi kredit olish qiyinlashadi.</p><h2>Zaxira fondi qancha bo\'lgani ma\'qul?</h2><p>Zaxira fondi — ishsiz qolganda yoki kutilmagan xarajat chiqqanda kredit olmasdan yashab turish uchun chetga qo\'yilgan pul. Odatda oylik xarajatning uch-olti barobari tavsiya etiladi: agar oila oyiga 6,5 million sarflasa, to\'liq zaxira 20–39 million bo\'ladi. Bu katta raqamdek ko\'rinadi, lekin u bir yo\'la yig\'ilmaydi.</p><p>Amalda birinchi maqsad bir oylik xarajatga teng summa bo\'lishi kerak — aynan shu birinchi oy eng ko\'p qarzdan saqlaydi. Keyin asta-sekin uch oyga, so\'ng olti oyga yetkaziladi. Zaxira pulni tavakkalchilik bilan joylashtirmaslik kerak: u tez yechib olinadigan joyda, masalan muddatli omonatda turishi lozim, chunki uning vazifasi daromad keltirish emas, kerak bo\'lganda darrov qo\'l ostida bo\'lish.</p><h2>Kredit to\'lovi byudjetning necha foizidan oshmasligi kerak?</h2><p>Keng qo\'llaniladigan mo\'ljal — 35 foiz. Shu chegaragacha oila kutilmagan xarajatni yangi qarzsiz ko\'tara oladi. 35 foizdan oshgach byudjet tarang bo\'ladi, 50 foizdan oshsa esa xavfli hisoblanadi: bunday holatda odatda yangi kredit bilan eski kreditni yopish boshlanadi va bu tez orada chuqurlashadi. Kalkulyator kredit qatorlarini kiritganingizda shu nisbatni o\'zi hisoblab, rangli chiziqda ko\'rsatadi.</p><h2>Moliyaviy salomatlik balli qanday hisoblanadi?</h2><p>Ball 0 dan 100 gacha bo\'lib, to\'rt qismdan iborat, har biri 25 balldan. Birinchisi — jamg\'arma ulushi: oyiga chetga qo\'yayotgan pulingiz daromadning 20 foiziga yetsa to\'liq 25 ball beriladi. Ikkinchisi — qarz yuki: kredit to\'lovi daromadning 50 foiziga yetganda 0 ball, kredit umuman bo\'lmasa 25 ball. Uchinchisi — zaxira fondi: jamg\'armangiz olti oylik xarajatni qoplasa 25 ball. To\'rtinchisi — daromad manbalari: bitta manba 10, ikkitasi 18, uchtasi va undan ko\'pi 25 ball.</p><p>Formulalar ataylab ochiq ko\'rsatilgan, chunki yopiq ball ishonchsiz bo\'ladi. Ball baho emas: u qaysi tomon bo\'sh ekanini ko\'rsatadi, xolos. Shuning uchun natija ostida eng kam ball to\'plagan ikkita qism va ular bo\'yicha bittadan aniq harakat yoziladi.</p><h2>Ma\'lumotlarim qayerda saqlanadi?</h2><p>Faqat sizning brauzeringizda. Kiritgan daromadingiz, xarajatlaringiz va kredit ma\'lumotlaringiz serverga yuborilmaydi — ular brauzer xotirasida qoladi, shuning uchun sahifani qayta ochsangiz oxirgi holat tiklanadi. Har oyning natijasi ham shu yerda saqlanadi va keyingi oy kirganingizda o\'tgan oy bilan solishtirish ko\'rsatiladi.</p><p>Xohlasangiz «Tarixni tozalash» tugmasi bilan hammasini o\'chirasiz. Ulashish havolasini yuborsangiz esa ma\'lumotlar havolaning o\'zida kodlanadi — havolani faqat ishonchli odamga bering.</p>'
     },
     ru:{
       cat:"Финансы",
       h1:"Калькулятор семейного бюджета",
-      sub:"По доходам, детям и месту проживания: продуктовая корзина, расходы и возможность накоплений.",
+      sub:"Введите доход и число членов семьи — расходы, долговая нагрузка и показатель финансового здоровья появятся сразу.",
       sIncome:"Доход семьи (в месяц)",
       lIncH:"Зарплата мужа",lIncW:"Зарплата жены",lIncX:"Доп. доход",
       hIncX:"Аренда, пенсия, огород, подработка — если нет, оставьте 0.",
@@ -408,6 +579,39 @@ img,svg{height:auto}
       hFun:"Здоровая норма: 5–10% дохода. Отдых нужен, но контроль важен.",
       hOther:"Одежда, гости, подарки — в среднем за месяц.",
       u1:"сум",u2:"сум",u3:"сум",u4:"сум",u5:"сум",u6:"сум",u7:"сум",u8:"сум",u9:"сум",u10:"сум",u11:"сум",u12:"сум",u13:"сум",
+      step1:"Шаг 1 — Основное",step2:"Шаг 2 — Уточнение (необязательно)",
+      hMain:"Этих двух блоков достаточно — результат появится сразу. Блоки ниже необязательны.",
+      sumLoc:"Место проживания и обучение",sumFixed:"Постоянные расходы",
+      sumCredit:"Обязательства (кредиты и долги)",sumScore:"Финансовое здоровье",
+      hCredit:"Достаточно ежемесячного платежа и оставшегося срока. Если укажете ставку, откроется дополнительный анализ.",
+      cName:"Название",cPay:"Платёж в месяц",cMon:"Осталось мес.",cRate:"Ставка %",
+      phName:"Ипотека, автокредит...",btnAddCredit:"+ Добавить кредит",del:"Удалить",
+      lnkCredit:"Кредитный калькулятор",lnkIpoteka:"Ипотечный калькулятор",lnkExcel:"Шаблон Excel",
+      hScore:"Эти три поля нужны только для уточнения показателя. Без них бюджет всё равно считается.",
+      lSaveMonth:"Откладываете в месяц",lSavePool:"Накоплено сейчас",
+      lSources:"Число источников дохода",src3:"3 и больше",
+      hSources:"Зарплата, бизнес, аренда, пособие — считаются отдельными источниками.",
+      u14:"сум",u15:"сум",
+      kCredit:"Платежи по кредитам",
+      dTitle:"Долговая нагрузка",dFree:"Дата выхода из долгов",dLeft:"Сумма оставшихся платежей",dMonth:"Всего платежей в месяц",
+      dl1:"Лёгкая",dl2:"Средняя",dl3:"Тяжёлая",dl4:"Опасная",
+      dWarn:"Платежи по кредитам забирают больше половины дохода. В таком положении любая неожиданная трата сразу ведёт к новому долгу — в первую очередь постарайтесь закрыть самый маленький кредит.",
+      pfFast:"Быстрее станет легче",pfFastSub:"Наименьший остаток. После закрытия месячная нагрузка снизится сразу.",
+      pfCost:"Меньше переплата",pfCostSub:"Самая высокая ставка. На длинной дистанции общая выплата будет меньше.",
+      pfNoRate:"Укажите процентные ставки — тогда появится и второй вариант.",
+      scTitle:"Показатель финансового здоровья",scEmpty:"Для расчёта введите доход.",
+      scNote:"Этот показатель — инструмент самооценки, а не финансовая рекомендация.",
+      cmpSave:"Доля накоплений",cmpDebt:"Долговая нагрузка",cmpFund:"Резервный фонд",cmpSrc:"Источники дохода",
+      focusTitle:"2 места с наибольшим влиянием:",
+      actSave:"Автоматически откладывать 10 процентов дохода — самое простое начало.",
+      actDebt:"Закрыть один из существующих кредитов до того, как брать новый, заметно снизит нагрузку.",
+      actFund:"Резерв хотя бы на один месяц расходов — первый шаг на случай неожиданности.",
+      actSrc:"Второй источник дохода снижает зависимость от одного места работы.",
+      cmpLead:"По сравнению с прошлым месяцем:",cmpBall:"показатель",cmpQoldiq:"остаток",
+      btnClearHist:"Очистить историю",
+      privacyNote:"Введённые данные хранятся только в этом браузере и никуда не отправляются.",
+      months:["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
+      dateFmt:"{m} {y}",
       btnCalc:"Рассчитать бюджет",rTag:"Семейный бюджет",
       lblSave:"Возможность накоплений в месяц",lblDef:"Дефицит бюджета (не хватает)",
       legFood:"Продукты",legEdu:"Обучение",legFixed:"Постоянные",legSave:"Накопления",
@@ -426,21 +630,26 @@ img,svg{height:auto}
       locNames:{tosh:"Ташкент",vil:"обл. центр",tum:"район"},
       btnShare:"Поделиться",copied:"Скопировано ✓",
       foot:"Нормы продуктов — по среднему потреблению, цены примерные. Каждая семья разная — используйте как ориентир.",
-      seo:'<h2>Как правильно делить семейный бюджет?</h2><p>Известное правило 50/30/20: 50% дохода — обязательные расходы (продукты, коммуналка, транспорт), 30% — желания (гости, одежда, отдых), 20% — накопления. В условиях Узбекистана 20% накоплений — достижимая сильная цель.</p><h2>Как считается продуктовая корзина?</h2><p>Калькулятор берёт средние месячные нормы на взрослого (например, 8 кг муки, 4 кг мяса, 1,5 л масла), применяет коэффициент 60% для детей и подстраивает цены под ваш регион. Это не бухгалтерия — а ориентир, близкий к реальному списку покупок.</p><h2>Где хранить накопления?</h2><p>Самый простой путь — срочный вклад в банке: деньги работают и не тратятся. Посчитайте рост накоплений в нашем Депозитном калькуляторе.</p>'
+      seo:'<h2>Как правильно делить семейный бюджет?</h2><p>Известное правило 50/30/20: 50% дохода — обязательные расходы (продукты, коммуналка, транспорт), 30% — желания (гости, одежда, отдых), 20% — накопления. В условиях Узбекистана 20% накоплений — достижимая сильная цель.</p><h2>Как считается продуктовая корзина?</h2><p>Калькулятор берёт средние месячные нормы на взрослого (например, 8 кг муки, 4 кг мяса, 1,5 л масла), применяет коэффициент 60% для детей и подстраивает цены под ваш регион. Это не бухгалтерия — а ориентир, близкий к реальному списку покупок.</p><h2>Где хранить накопления?</h2><p>Самый простой путь — срочный вклад в банке: деньги работают и не тратятся. Посчитайте рост накоплений в нашем Депозитном калькуляторе.</p><h2>Что такое долговая нагрузка и какой она должна быть?</h2><p>Долговая нагрузка — это отношение ежемесячных платежей по всем кредитам к ежемесячному доходу. Например, при доходе 8 миллионов и платежах 1,5 миллиона нагрузка составляет 18,75 процента. Показатель важен тем, что считается не от суммы кредита, а именно от ежемесячного денежного потока: крупный кредит на длинный срок может давать лёгкую нагрузку, а небольшой на короткий срок — тяжёлую.</p><p>Общий ориентир такой: до 20 процентов — лёгкая, 20–35 — средняя, 35–50 — тяжёлая, свыше 50 — опасная. При нагрузке выше 50 процентов любая неожиданная трата — болезнь, ремонт машины, свадьба — сразу ведёт к новому долгу, потому что свободного места в бюджете не остаётся. Банки при выдаче кредита тоже смотрят на это соотношение, поэтому при высокой нагрузке получить новый кредит сложнее.</p><h2>Каким должен быть резервный фонд?</h2><p>Резервный фонд — это деньги, отложенные на случай потери работы или неожиданных трат, чтобы не брать кредит. Обычно рекомендуют сумму в три-шесть месячных расходов: если семья тратит 6,5 миллиона в месяц, полный резерв составит 20–39 миллионов. Цифра выглядит большой, но она и не собирается сразу.</p><p>На практике первая цель — сумма, равная одному месяцу расходов: именно этот первый месяц чаще всего и спасает от долга. Затем резерв постепенно доводят до трёх месяцев, потом до шести. Резервные деньги не стоит размещать рискованно: они должны лежать там, откуда их можно быстро забрать, например на срочном вкладе, ведь их задача — не приносить доход, а быть под рукой в нужный момент.</p><h2>Какую часть бюджета не должен превышать платёж по кредиту?</h2><p>Распространённый ориентир — 35 процентов. До этой границы семья способна выдержать неожиданную трату без нового долга. Выше 35 процентов бюджет становится напряжённым, а выше 50 считается опасным: в таком положении обычно начинается закрытие старого кредита новым, и ситуация быстро углубляется. Калькулятор считает это соотношение сам, как только вы заполните строки кредитов, и показывает его цветной шкалой.</p><h2>Как считается показатель финансового здоровья?</h2><p>Показатель принимает значения от 0 до 100 и состоит из четырёх частей по 25 баллов. Первая — доля накоплений: если вы откладываете 20 процентов дохода, начисляются полные 25 баллов. Вторая — долговая нагрузка: при платежах в 50 процентов дохода это 0 баллов, при полном отсутствии кредитов — 25. Третья — резервный фонд: если накоплений хватает на шесть месяцев расходов, начисляется 25 баллов. Четвёртая — источники дохода: один источник даёт 10 баллов, два — 18, три и более — 25.</p><p>Формулы показаны открыто намеренно, потому что закрытому баллу нет доверия. Это не оценка: показатель лишь указывает, какая сторона просела. Поэтому под результатом называются две части с наименьшим баллом и по одному конкретному действию для каждой.</p><h2>Где хранятся мои данные?</h2><p>Только в вашем браузере. Введённые доходы, расходы и данные по кредитам не отправляются на сервер — они остаются в памяти браузера, поэтому при повторном открытии страницы восстанавливается последнее состояние. Результат каждого месяца тоже хранится здесь, и в следующем месяце показывается сравнение с предыдущим.</p><p>При желании всё удаляется кнопкой «Очистить историю». Если же вы отправляете ссылку, данные кодируются в самой ссылке — отправляйте её только тем, кому доверяете.</p>'
     }
   };
 
   var lang='uz', loc='vil', calcData=null;
+  var LS='kalki_byudjet';
+  var srcCount=1, gaScore=null, gaReturn=false, restoring=false;
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/ /g,'').replace(/\s/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var som=function(){return lang==='uz'?"so'm":'сум'};
 
-  ['incH','incW','incX','adults','kidsG','kidsM','kidsU','costG','costM','costU','komm','rent','trans','conn','health','fun','other'].forEach(function(id){
+  // Daromad va oila tarkibi kiritilishi bilan natija darhol chiqadi —
+  // "Hisoblash" tugmasini bosish shart emas.
+  ['incH','incW','incX','adults','kidsG','kidsM','kidsU','costG','costM','costU','komm','rent','trans','conn','health','fun','other','saveMonth','savePool'].forEach(function(id){
     $(id).addEventListener('input',function(){
       var v=this.value.replace(/[^\d]/g,'');
       this.value=v?fmt(parseInt(v,10)):'0';
+      calc();
     });
   });
 
@@ -454,11 +663,165 @@ img,svg{height:auto}
     };
   }
 
+  /* ================= MAJBURIYATLAR (kredit va qarzlar) =================
+     Qiymatlar DOM da yashaydi — har bosishda qayta chizilsa fokus yo'qolardi.
+     Qayta chizish faqat qator qo'shilganda/o'chirilganda bo'ladi. */
+  function escAttr(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+  function creditRowHtml(c){
+    c=c||{};
+    return '<div class="crow">'
+      +'<input type="text" data-cf="n" value="'+escAttr(c.n)+'" placeholder="'+escAttr(t('phName'))+'">'
+      +'<input type="text" data-cf="pay" inputmode="numeric" value="'+escAttr(c.pay)+'" placeholder="'+escAttr(t('cPay'))+'">'
+      +'<input type="text" data-cf="mon" inputmode="numeric" value="'+escAttr(c.mon)+'" placeholder="'+escAttr(t('cMon'))+'">'
+      +'<input type="text" data-cf="rate" inputmode="decimal" value="'+escAttr(c.rate)+'" placeholder="'+escAttr(t('cRate'))+'">'
+      +'<button type="button" class="cdel" aria-label="'+escAttr(t('del'))+'">×</button>'
+      +'</div>';
+  }
+  function renderCredits(list){
+    var arr=(list&&list.length)?list:[{}];
+    var h='';
+    for(var i=0;i<arr.length;i++)h+=creditRowHtml(arr[i]);
+    $('creditList').innerHTML=h;
+  }
+  // DOM dan o'qish: to'liq qatorlar (to'lov va muddat bor) hisobga olinadi
+  function readCredits(){
+    var out=[], rows=$('creditList').querySelectorAll('.crow');
+    for(var i=0;i<rows.length;i++){
+      var r=rows[i];
+      var g=function(f){var e=r.querySelector('[data-cf="'+f+'"]');return e?e.value:''};
+      var pay=num(g('pay')), mon=Math.round(num(g('mon'))), rate=num(g('rate'));
+      if(!(pay>0)||!(mon>0))continue;
+      out.push({n:g('n').trim(),pay:pay,mon:mon,rate:rate>0?rate:0});
+    }
+    return out;
+  }
+  function rawCredits(){
+    var out=[], rows=$('creditList').querySelectorAll('.crow');
+    for(var i=0;i<rows.length;i++){
+      var r=rows[i];
+      var g=function(f){var e=r.querySelector('[data-cf="'+f+'"]');return e?e.value:''};
+      out.push({n:g('n'),pay:g('pay'),mon:g('mon'),rate:g('rate')});
+    }
+    return out;
+  }
+  function debtInfo(list,income){
+    var monthly=0,left=0,maxMon=0;
+    for(var i=0;i<list.length;i++){
+      monthly+=list[i].pay;
+      left+=list[i].pay*list[i].mon;
+      if(list[i].mon>maxMon)maxMon=list[i].mon;
+    }
+    var pct=income>0?monthly/income*100:0;
+    var lvl=pct<=20?1:(pct<=35?2:(pct<=50?3:4));
+    // qarzsiz bo'lish sanasi: bugundan eng uzun qolgan muddat
+    var free=null;
+    if(maxMon>0){var d=new Date();d.setMonth(d.getMonth()+maxMon);free=d;}
+    // qaysi kreditni birinchi yopish — ikkita variant, hech biri "to'g'ri" deb ko'rsatilmaydi
+    var fast=null,cost=null;
+    for(var j=0;j<list.length;j++){
+      var rem=list[j].pay*list[j].mon;
+      if(!fast||rem<fast.rem)fast={c:list[j],rem:rem};
+      if(list[j].rate>0&&(!cost||list[j].rate>cost.c.rate))cost={c:list[j]};
+    }
+    return {monthly:monthly,left:left,maxMon:maxMon,pct:pct,lvl:lvl,free:free,fast:fast,cost:cost,count:list.length};
+  }
+  function fmtMonth(d){
+    if(!d)return '—';
+    return t('dateFmt').replace('{y}',d.getFullYear()).replace('{m}',t('months')[d.getMonth()]);
+  }
+
+  /* ================= MOLIYAVIY SALOMATLIK BALLI =================
+     To'rt komponent, har biri 25 balldan. D yoki X+K nol bo'lsa ball
+     ko'rsatilmaydi — nolga bo'lish bo'lmaydi. */
+  function scoreCalc(D,X,K,J,Z,M){
+    if(!(D>0)||!((X+K)>0))return null;
+    var c1=25*Math.min(Math.max((J/D)/0.20,0),1);
+    var c2=25*Math.max(1-(K/D)/0.50,0);
+    var c3=25*Math.min(Math.max((Z/(X+K))/6,0),1);
+    var c4=M>=3?25:(M===2?18:10);
+    return {
+      parts:[
+        {k:'cmpSave',v:c1,act:'actSave'},
+        {k:'cmpDebt',v:c2,act:'actDebt'},
+        {k:'cmpFund',v:c3,act:'actFund'},
+        {k:'cmpSrc', v:c4,act:'actSrc'}
+      ],
+      total:Math.round(c1+c2+c3+c4)
+    };
+  }
+
+  /* ================= OYLIK SAQLASH VA SOLISHTIRISH ================= */
+  function monthKey(d){d=d||new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)}
+  function store(){
+    try{var o=JSON.parse(localStorage.getItem(LS)||'null');if(o&&typeof o==='object')return o}catch(e){}
+    return {m:{},last:null};
+  }
+  function persist(){
+    if(restoring||!calcData)return;
+    try{
+      var st=store();
+      st.m[monthKey()]={income:calcData.income,spend:calcData.spend,
+        credit:calcData.debt.monthly,save:calcData.save,score:calcData.score?calcData.score.total:null};
+      st.last={
+        f:{incH:$('incH').value,incW:$('incW').value,incX:$('incX').value,
+           adults:$('adults').value,kidsG:$('kidsG').value,kidsM:$('kidsM').value,kidsU:$('kidsU').value,
+           costG:$('costG').value,costM:$('costM').value,costU:$('costU').value,
+           komm:$('komm').value,rent:$('rent').value,trans:$('trans').value,conn:$('conn').value,
+           health:$('health').value,fun:$('fun').value,other:$('other').value,
+           saveMonth:$('saveMonth').value,savePool:$('savePool').value},
+        loc:loc,src:srcCount,credits:rawCredits()
+      };
+      localStorage.setItem(LS,JSON.stringify(st));
+    }catch(e){}
+  }
+  function prevSnap(){
+    var st=store(), cur=monthKey();
+    var keys=Object.keys(st.m||{}).filter(function(k){return k<cur}).sort();
+    return keys.length?st.m[keys[keys.length-1]]:null;
+  }
+  function restoreLast(){
+    var st=store();
+    if(!st.last)return false;
+    restoring=true;
+    try{
+      var f=st.last.f||{};
+      for(var id in f){var e=$(id);if(e)e.value=f[id];}
+      if(st.last.loc){
+        loc=st.last.loc;
+        var lb=document.querySelectorAll('[data-loc]');
+        for(var i=0;i<lb.length;i++)lb[i].classList.toggle('on',lb[i].getAttribute('data-loc')===loc);
+      }
+      if(st.last.src)setSrc(st.last.src,true);
+      if(st.last.credits&&st.last.credits.length){
+        renderCredits(st.last.credits);
+        if(readCredits().length)$('dCredit').open=true;
+      }
+    }catch(e){}
+    restoring=false;
+    return true;
+  }
+  function setSrc(n,quiet){
+    srcCount=n;
+    var b=$('srcSeg').querySelectorAll('button');
+    for(var i=0;i<b.length;i++)b[i].classList.toggle('on',b[i].getAttribute('data-src')===String(n));
+    if(!quiet){calc();persist();}
+  }
+  function ga(name,params){
+    try{ if(typeof gtag==='function')gtag('event',name,params||{}); }catch(e){}
+  }
+
   function calc(){
     var income=num($('incH').value)+num($('incW').value)+num($('incX').value);
     var adults=num($('adults').value), kg=num($('kidsG').value), km=num($('kidsM').value), ku=num($('kidsU').value);
     var kids=kg+km+ku;
-    if(!income||!adults){$('receipt').classList.remove('show');return}
+    if(!income||!adults){
+      // Daromadsiz ball hisoblanmaydi — eski qiymat qolib ketmasligi uchun
+      // ko'rsatkichni ham tozalaymiz.
+      $('receipt').classList.remove('show');
+      calcData=null;
+      renderScore({score:null});
+      return;
+    }
     var eaters=adults+kids*KID_COEF;
     var mult=LOC_MULT[loc];
 
@@ -476,10 +839,18 @@ img,svg{height:auto}
     var health=num($('health').value);
     var fun=num($('fun').value);
     var spend=food+edu+fixed+health+fun;
-    var save=income-spend;
-    calcData={income:income,food:food,edu:edu,fixed:fixed,health:health,fun:fun,spend:spend,save:save,basket:basket,people:adults+kids};
+    // Kredit to'lovi alohida modda: xarajatlar ichiga yashirilmaydi, lekin
+    // oylik qoldiqdan albatta ayriladi.
+    var credits=readCredits();
+    var debt=debtInfo(credits,income);
+    var save=income-spend-debt.monthly;
+    var score=scoreCalc(income,spend,debt.monthly,num($('saveMonth').value),num($('savePool').value),srcCount);
+    calcData={income:income,food:food,edu:edu,fixed:fixed,health:health,fun:fun,
+              spend:spend,debt:debt,save:save,score:score,basket:basket,people:adults+kids};
     renderResult();
     $('receipt').classList.add('show');
+    persist();
+    if(score&&score.total!==gaScore){gaScore=score.total;ga('budget_score',{score:score.total});}
   }
 
   function renderResult(){
@@ -499,9 +870,10 @@ img,svg{height:auto}
 
     // Foiz chizig'i
     var segs=[
-      ['#1D4E6B',d.food],['#5B3A63',d.edu],['#8C3B2A',d.fixed+d.health],['#C77',d.fun],['#D99A2B',Math.max(0,d.save)]
+      ['#1D4E6B',d.food],['#5B3A63',d.edu],['#8C3B2A',d.fixed+d.health],['#C77',d.fun],
+      ['#B04A3A',d.debt.monthly],['#D99A2B',Math.max(0,d.save)]
     ];
-    var total=d.food+d.edu+d.fixed+Math.max(0,d.save);
+    var total=d.food+d.edu+d.fixed+d.health+d.fun+d.debt.monthly+Math.max(0,d.save);
     var bar='';
     for(var i=0;i<segs.length;i++){
       var w=total?(segs[i][1]/total*100):0;
@@ -516,7 +888,9 @@ img,svg{height:auto}
     $('rHealth').textContent=d.health?fmt(d.health)+sum:'—';
     $('rFun').textContent=d.fun?fmt(d.fun)+sum:'—';
     $('rSpend').textContent=fmt(d.spend)+sum;
-    $('rSpendPct').textContent=Math.round(d.spend/d.income*100)+'%';
+    $('rCreditRow').style.display=d.debt.monthly>0?'':'none';
+    $('rCredit').textContent=d.debt.monthly>0?fmt(d.debt.monthly)+sum:'—';
+    $('rSpendPct').textContent=d.income?Math.round((d.spend+d.debt.monthly)/d.income*100)+'%':'—';
     var rs=$('rSave');
     rs.textContent=(d.save>=0?'':'−')+fmt(Math.abs(d.save))+sum;
     rs.className='v '+(d.save>=0?'ok':'neg');
@@ -540,6 +914,10 @@ img,svg{height:auto}
     else if(savePctAbs>=10){st.className='status s-mid';st.textContent=t('stMid').replace('{p}',savePctAbs)}
     else{st.className='status s-mid';st.textContent=t('stTight').replace('{p}',savePctAbs)}
 
+    renderDebt(d);
+    renderScore(d);
+    renderCompare(d);
+
     // Ko'ngilochar norma ogohlantirishi
     var funPct=d.income?(d.fun/d.income*100):0;
     var fb=$('funBox');
@@ -551,8 +929,124 @@ img,svg{height:auto}
     }else{fb.style.display='none'}
   }
 
+  function renderDebt(d){
+    var box=$('debtBox'), sum=' '+som();
+    if(!d.debt.count){box.style.display='none';return}
+    box.style.display='block';
+    var pct=Math.round(d.debt.pct*10)/10;
+    $('debtPct').textContent=String(pct).replace('.',',')+'%';
+    var lv=$('debtLvl');
+    lv.className='debt-lvl dl-'+d.debt.lvl;
+    lv.textContent=t('dl'+d.debt.lvl);
+    var colors={1:'#2E7D5B',2:'#D99A2B',3:'#8C3B2A',4:'#B04A3A'};
+    var bar=$('debtBar');
+    bar.style.width=Math.min(100,d.debt.pct)+'%';
+    bar.style.background=colors[d.debt.lvl];
+    var w=$('debtWarn');
+    if(d.debt.lvl===4){w.style.display='block';w.textContent=t('dWarn')}else{w.style.display='none'}
+    $('debtFree').textContent=fmtMonth(d.debt.free);
+    $('debtLeft').textContent=fmt(d.debt.left)+sum;
+    $('debtMonth').textContent=fmt(d.debt.monthly)+sum;
+
+    var h='';
+    if(d.debt.fast){
+      h+='<div class="pc"><div class="pt">'+t('pfFast')+'</div><div class="pn">'
+        +(d.debt.fast.c.n||t('cName'))+'</div><div class="ps">'+t('pfFastSub')
+        +' ('+fmt(d.debt.fast.rem)+sum+')</div></div>';
+    }
+    if(d.debt.cost){
+      h+='<div class="pc"><div class="pt">'+t('pfCost')+'</div><div class="pn">'
+        +(d.debt.cost.c.n||t('cName'))+'</div><div class="ps">'+t('pfCostSub')
+        +' ('+String(d.debt.cost.c.rate).replace('.',',')+'%)</div></div>';
+    }else if(d.debt.count){
+      h+='<div class="pc"><div class="ps">'+t('pfNoRate')+'</div></div>';
+    }
+    $('payFirst').innerHTML=h;
+  }
+
+  function renderScore(d){
+    var sc=d.score;
+    if(!sc){
+      $('scoreNum').textContent='—';
+      $('scoreEmpty').style.display='block';
+      $('scoreBars').innerHTML='';
+      $('scoreFocus').innerHTML='';
+      return;
+    }
+    $('scoreEmpty').style.display='none';
+    $('scoreNum').textContent=sc.total;
+    var h='';
+    for(var i=0;i<sc.parts.length;i++){
+      var p=sc.parts[i], v=Math.round(p.v*10)/10;
+      h+='<div class="sbar" data-sk="'+p.k+'" data-sv="'+v+'"><div class="sl"><span>'+t(p.k)
+        +'</span><b>'+String(v).replace('.',',')+' / 25</b></div>'
+        +'<div class="st"><i style="width:'+(p.v/25*100)+'%"></i></div></div>';
+    }
+    $('scoreBars').innerHTML=h;
+    // Eng past ikkita komponent — baho emas, qayerga qarash kerakligi
+    var sorted=sc.parts.slice().sort(function(a,b){return a.v-b.v}).slice(0,2);
+    var f='<div class="ft">'+t('focusTitle')+'</div>';
+    for(var j=0;j<sorted.length;j++){
+      f+='<div class="fi" data-fk="'+sorted[j].k+'"><span class="fd"></span><span class="fb"><b>'
+        +t(sorted[j].k)+'</b><span>'+t(sorted[j].act)+'</span></span></div>';
+    }
+    $('scoreFocus').innerHTML=f;
+  }
+
+  function renderCompare(d){
+    var box=$('cmpBox'), prev=prevSnap();
+    if(!prev){box.style.display='none';return}
+    var parts=[];
+    function chunk(label,diff,isMoney){
+      var cls=diff>0?'up':(diff<0?'down':'flat');
+      var sign=diff>0?'+':(diff<0?'−':'');
+      var val=isMoney?fmt(Math.abs(diff))+' '+som():Math.abs(diff);
+      parts.push('<span class="'+cls+'">'+label+' <b>'+(diff===0?'0':sign+val)+'</b></span>');
+    }
+    if(d.score&&prev.score!=null)chunk(t('cmpBall'),d.score.total-prev.score,false);
+    if(prev.save!=null)chunk(t('cmpQoldiq'),Math.round(d.save-prev.save),true);
+    if(!parts.length){box.style.display='none';return}
+    box.style.display='flex';
+    box.innerHTML='<span>'+t('cmpLead')+'</span>'+parts.join('');
+  }
+
   $('basketHead').onclick=function(){$('basket').classList.toggle('open')};
   $('calcBtn').onclick=calc;
+  // Kredit qatorlari: qiymat o'zgarsa darhol qayta hisoblanadi
+  $('creditList').addEventListener('input',function(e){
+    var el=e.target;
+    if(el&&el.getAttribute&&el.getAttribute('data-cf')==='pay'){
+      var v=el.value.replace(/[^\d]/g,'');
+      el.value=v?fmt(parseInt(v,10)):'';
+    }
+    calc();
+  });
+  $('creditList').addEventListener('click',function(e){
+    var b=e.target;
+    if(!b||!b.classList||!b.classList.contains('cdel'))return;
+    var row=b.parentNode;
+    if($('creditList').querySelectorAll('.crow').length<=1){
+      var ins=row.querySelectorAll('input');
+      for(var i=0;i<ins.length;i++)ins[i].value='';
+    }else{
+      row.parentNode.removeChild(row);
+    }
+    calc();
+  });
+  $('creditAdd').onclick=function(){
+    $('creditList').insertAdjacentHTML('beforeend',creditRowHtml({}));
+    var n=$('creditList').querySelectorAll('.crow').length;
+    ga('budget_credit_added',{count:n});
+    calc();
+  };
+  var srcBtns=$('srcSeg').querySelectorAll('button');
+  for(var sb=0;sb<srcBtns.length;sb++){
+    (function(b){b.onclick=function(){setSrc(parseInt(b.getAttribute('data-src'),10))}})(srcBtns[sb]);
+  }
+  $('clearHist').onclick=function(){
+    try{localStorage.removeItem(LS)}catch(e){}
+    $('cmpBox').style.display='none';
+  };
   $('shareBtn').onclick=function(){
     if(!calcData)return;
     var txt=t('h1')+': '+t('kIncome')+' '+fmt(calcData.income)+' '+som()+', '+t('kSave')+' '+fmt(calcData.save)+' '+som();
@@ -575,11 +1069,38 @@ img,svg{height:auto}
       for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
+    // Kredit qatorlari placeholder'lari tilga bog'liq — qiymatlarni saqlab qayta chizamiz
+    renderCredits(rawCredits());
     if(calcData)renderResult();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  renderCredits([{}]);
   applyLang();
+  restoreLast();
+  calc();
+  // Qaytib kelish gipotezasini o'lchaydigan asosiy raqam
+  (function(){
+    var n=Object.keys(store().m||{}).length;
+    if(n>0&&!gaReturn){gaReturn=true;ga('budget_return_visit',{months:n});}
+  })();
+  // Kredit qatorlari va daromad manbalari id ga ega emas — ulashish havolasi
+  // uchun alohida chiqarib beramiz.
+  window.__budgetExtra=function(){return {c:rawCredits(),src:srcCount}};
+  window.__budgetRestoreExtra=function(o){
+    if(!o)return;
+    if(o.c&&o.c.length){renderCredits(o.c);if(readCredits().length)$('dCredit').open=true;}
+    if(o.src)setSrc(o.src,true);
+  };
+  // URL orqali holat tiklangach qayta hisoblash uchun
+  window.__budgetSync=function(){
+    var on=$('srcSeg').querySelector('button.on');
+    if(on)srcCount=parseInt(on.getAttribute('data-src'),10)||1;
+    var lo=document.querySelector('[data-loc].on');
+    if(lo)loc=lo.getAttribute('data-loc');
+    calc();
+  };
 })();
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
@@ -717,12 +1238,17 @@ img,svg{height:auto}
             restored=true;}
         }
       }
+      // Kredit qatorlari id ga ega emas (dinamik qo'shiladi), shuning uchun
+      // ular alohida ilgak orqali tiklanadi.
+      if(data.x&&window.__budgetRestoreExtra){window.__budgetRestoreExtra(data.x);restored=true;}
+      if(restored&&window.__budgetSync)window.__budgetSync();
       return restored;
     }catch(e){return false;}
   }
   // Joriy holatni URL'ga kodlash
   window.__buildShareUrl=function(){
     var data={i:{},b:[],c:{}};
+    if(window.__budgetExtra)data.x=window.__budgetExtra();
     var inputs=document.querySelectorAll('input[type="text"]');
     for(var i=0;i<inputs.length;i++){
       if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
