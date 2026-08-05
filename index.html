@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="uz" data-lang="uz"><head>
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
 <meta charset="UTF-8">
 <script id="langboot">
 (function(){try{
@@ -195,7 +196,7 @@ img,svg{height:auto}
         <input type="text" id="search" autocomplete="off" placeholder="Kalkulyator qidirish...">
       </div>
       <div class="stats">
-        <div class="stat"><b id="statCount">30</b><span data-i="stCalc">kalkulyator</span></div>
+        <div class="stat"><b id="statCount">30+</b><span data-i="stCalc">kalkulyator</span></div>
         <div class="stat"><b>2</b><span data-i="stLang">til</span></div>
         <div class="stat"><b>100%</b><span data-i="stFree">bepul</span></div>
       </div>
@@ -257,7 +258,8 @@ img,svg{height:auto}
   ];
   // Matnlarda kalkulyator soni "30+" ko'rinishida yoziladi (aniq raqam emas) —
   // shunda yangi kalkulyator qo'shilganda tavsif, meta va OG matnlari eskirmaydi.
-  // Hero'dagi statCount esa CALCS.length dan avtomatik olinadi.
+  // Hero'dagi statCount ham xuddi shunday "+" bilan chiqadi: aniq son ko'rsatilsa,
+  // katalog o'sganda raqam sayt matnlaridagi "30+" bilan ziddiyatga tushardi.
   var I={
     uz:{
       badge:"O'zbekiston uchun",
@@ -381,7 +383,7 @@ img,svg{height:auto}
     $('catalog').innerHTML=html;
     $('noResults').textContent=t('noRes');
     $('noResults').style.display=shown?'none':'block';
-    $('statCount').textContent=CALCS.length;
+    $('statCount').textContent=CALCS.length+'+';
   }
 
   function applyLang(){
@@ -491,5 +493,6 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch
   },240);
 })();
 </script>
+
 
 </body></html>

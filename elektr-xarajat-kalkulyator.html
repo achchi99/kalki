@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="uz" data-lang="uz"><head>
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
 <meta charset="UTF-8">
 <script id="langboot">
 (function(){try{
@@ -16,6 +17,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
 <script src="assets/lang.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Elektr energiyasi xarajati kalkulyatori — oylik to'lovni hisoblash</title>
 <meta name="description" content="Elektr energiyasi kalkulyatori: konditsioner, isitgich, kir yuvish mashinasi va boshqa qurilmalarning oylik elektr xarajatini hisoblang. Калькулятор расхода электроэнергии.">
@@ -191,7 +193,7 @@ img,svg{height:auto}
       <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
     </div>
     <div class="receipt-edge"></div>
-  </section>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
 
   
   
@@ -341,7 +343,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">4.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">5.8.2026</div>
 </div>
 <script>
 (function(){
@@ -704,5 +706,6 @@ img,svg{height:auto}
   },240);
 })();
 </script>
+
 
 </body></html>
