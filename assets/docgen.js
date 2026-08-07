@@ -320,6 +320,38 @@
       inner = '<div class="dg-list">' + rows
         + '<button type="button" class="dg-ladd" data-ladd="' + attrEsc(f.id) + '">'
         + escHtml(L(f.addLabel, lang) || (lang === 'ru' ? '+ Добавить' : "+ Qo'shish")) + '</button></div>';
+    } else if (f.t === 'table') {
+      // Ko'p ustunli dinamik qatorlar (dalolatnomadagi mol-mulk jadvali).
+      // Qiymat — obyektlar massivi: [{name:'',unit:'',qty:''}, ...].
+      // 'list' dan farqi shundaki, bir qatorda bir nechta maydon bo'ladi.
+      var trs = Array.isArray(val) ? val : [];
+      var head = '';
+      for (var hc = 0; hc < f.cols.length; hc++) {
+        head += '<span class="dg-th"' + (f.cols[hc].narrow ? ' data-narrow="1"' : '') + '>'
+          + escHtml(L(f.cols[hc].label, lang)) + '</span>';
+      }
+      var trows = '';
+      for (var tr = 0; tr < trs.length; tr++) {
+        var row = trs[tr] && typeof trs[tr] === 'object' ? trs[tr] : {};
+        var cells = '';
+        for (var ci = 0; ci < f.cols.length; ci++) {
+          var col = f.cols[ci];
+          cells += '<input type="text" data-tb="' + attrEsc(f.id) + '" data-idx="' + tr + '"'
+            + ' data-col="' + attrEsc(col.id) + '"' + (col.narrow ? ' data-narrow="1"' : '')
+            + (col.num ? ' inputmode="numeric"' : '')
+            + ' value="' + attrEsc(row[col.id] == null ? '' : row[col.id]) + '"'
+            + ' placeholder="' + attrEsc(L(col.ph, lang)) + '"'
+            + ' aria-label="' + attrEsc(L(col.label, lang)) + '">';
+        }
+        trows += '<div class="dg-trow"><span class="dg-lnum">' + (tr + 1) + '.</span>' + cells
+          + '<button type="button" class="dg-ldel" data-tdel="' + attrEsc(f.id) + '" data-idx="' + tr + '" aria-label="'
+          + (lang === 'ru' ? 'Удалить' : "O'chirish") + '">×</button></div>';
+      }
+      inner = '<div class="dg-table" style="--dgc:' + f.cols.length + '">'
+        + (trows ? '<div class="dg-trow dg-thead"><span class="dg-lnum"></span>' + head + '<span></span></div>' : '')
+        + trows
+        + '<button type="button" class="dg-ladd" data-tadd="' + attrEsc(f.id) + '">'
+        + escHtml(L(f.addLabel, lang) || (lang === 'ru' ? '+ Добавить строку' : "+ Qator qo'shish")) + '</button></div>';
     } else {
       var type = f.t === 'date' ? 'date' : 'text';
       var im = f.t === 'num' ? ' inputmode="numeric"' : '';
@@ -386,6 +418,41 @@
         });
       })(lis[L1]);
     }
+    // jadval katakchalari: qiymat o'zgarsa qayta chizmaymiz — fokus yo'qolmasin
+    var tbs = host.querySelectorAll('[data-tb]');
+    for (var T1 = 0; T1 < tbs.length; T1++) {
+      (function (el) {
+        var id = el.getAttribute('data-tb'), idx = +el.getAttribute('data-idx'), col = el.getAttribute('data-col');
+        el.addEventListener('input', function () {
+          if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
+          if (!ctx.state[id][idx] || typeof ctx.state[id][idx] !== 'object') ctx.state[id][idx] = {};
+          ctx.state[id][idx][col] = el.value;
+          ctx.onChange(false);
+        });
+      })(tbs[T1]);
+    }
+    var tadds = host.querySelectorAll('[data-tadd]');
+    for (var T2 = 0; T2 < tadds.length; T2++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-tadd');
+          if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
+          ctx.state[id].push({});
+          ctx.onChange(true);
+        });
+      })(tadds[T2]);
+    }
+    var tdels = host.querySelectorAll('[data-tdel]');
+    for (var T3 = 0; T3 < tdels.length; T3++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-tdel'), idx = +btn.getAttribute('data-idx');
+          if (Array.isArray(ctx.state[id])) ctx.state[id].splice(idx, 1);
+          ctx.onChange(true);
+        });
+      })(tdels[T3]);
+    }
+
     // qator qo'shish / o'chirish — formani qayta chizadi
     var adds = host.querySelectorAll('[data-ladd]');
     for (var L2 = 0; L2 < adds.length; L2++) {

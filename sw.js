@@ -1,4 +1,4 @@
-const CACHE='kalki-v53';
+const CACHE='kalki-v54';
 const ASSETS=[
   '/',
   '/assets/docgen.js',
@@ -12,6 +12,7 @@ const ASSETS=[
   '/ariza-namunasi',
   '/avto-oldi-sotdi-shartnomasi-namunasi',
   '/ishdan-boshash-arizasi-namunasi',
+  '/topshirish-qabul-dalolatnomasi-namunasi',
   '/favicon.svg',
   '/manifest.json',
   '/ga.js',
