@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xizmat ko'rsatish shartnomasi namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Xizmat ko'rsatish shartnomasi namunasi: to'rt xil to'lov tartibi, QQS ajratib hisoblash, kafolat va penya bandlari. Summa so'z bilan. Word yoki PDF. Образец договора оказания услуг онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/xizmat-korsatish-shartnomasi-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-table{display:flex;flex-direction:column;gap:7px}
+.dg-trow{display:grid;grid-template-columns:16px repeat(var(--dgc),1fr) 34px;align-items:center;gap:7px}
+.dg-trow input{min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);padding:9px 10px}
+.dg-trow input:focus{outline:0;border-color:var(--cat)}
+.dg-trow input[data-narrow]{text-align:center}
+.dg-thead{padding-bottom:2px}
+.dg-th{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding-left:3px}
+@media (max-width:720px){
+  .dg-trow{grid-template-columns:16px 1fr 34px;row-gap:5px}
+  .dg-trow input{grid-column:2}
+  .dg-trow .dg-lnum{grid-row:span 3}
+  .dg-trow .dg-ldel{grid-row:span 3;align-self:start}
+  .dg-thead{display:none}
+}
+.stage-warn{margin-top:10px;padding:11px 13px;background:#FDF4E3;border:1px solid #EBD3A0;border-radius:11px;font-size:12.5px;line-height:1.5;font-weight:600;color:#6B5220}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<meta property="og:title" content="Xizmat ko'rsatish shartnomasi namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Xizmat ko'rsatish shartnomasi namunasi: to'rt xil to'lov tartibi, QQS ajratib hisoblash, kafolat va penya bandlari. Summa so'z bilan. Word yoki PDF. Образец договора оказания услуг онлайн.">
+<meta property="og:url" content="https://kalki.uz/xizmat-korsatish-shartnomasi-namunasi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Xizmat ko'rsatish shartnomasi namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Xizmat ko'rsatish shartnomasi namunasi: to'rt xil to'lov tartibi, QQS ajratib hisoblash, kafolat va penya bandlari. Summa so'z bilan. Word yoki PDF. Образец договора оказания услуг онлайн.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+}
+@media (max-width:420px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Xizmat ko'rsatish shartnomasi namunasi","item":"https://kalki.uz/xizmat-korsatish-shartnomasi-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Xizmat ko'rsatish shartnomasi namunasi","description":"Xizmat ko'rsatish shartnomasi namunasi: to'rt xil to'lov tartibi, QQS ajratib hisoblash, kafolat va penya bandlari. Summa so'z bilan. Word yoki PDF. Образец договора оказания услуг онлайн.","url":"https://kalki.uz/xizmat-korsatish-shartnomasi-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Xizmat shartnomasi bilan mehnat shartnomasini qanday farqlash kerak?","acceptedAnswer":{"@type":"Answer","text":"Asosiy mezon — bo'ysunish va natija. Agar odam belgilangan ish vaqtida keladi, ichki tartib qoidalariga bo'ysunadi va doimiy funksiyani bajaradi — bu mehnat munosabati, hujjat qanday nomlanganidan qat'i nazar. Xizmat shartnomasida esa ijrochi qachon va qanday ishlashini o'zi hal qiladi, javobgarligi esa aniq natija uchun bo'ladi. Doimiy ishni xizmat shartnomasi bilan rasmiylashtirish tekshiruvda qayta kvalifikatsiya qilinishiga olib kelishi mumkin."}},{"@type":"Question","name":"Oldindan to'lov qancha bo'lishi kerak?","acceptedAnswer":{"@type":"Answer","text":"Qonun aniq foiz belgilamaydi — bu tomonlarning kelishuvi. Amalda ijrochining boshlang'ich xarajatlariga qarab belgilanadi: materiallar ko'p bo'lsa, oldindan to'lov ham kattaroq bo'ladi. Generatorda foizni o'zingiz kiritasiz va shartnoma matnida oldindan to'lov hamda qolgan summa avtomatik hisoblanadi."}},{"@type":"Question","name":"Ijrochi QQS to'lovchisi bo'lmasa nima yoziladi?","acceptedAnswer":{"@type":"Answer","text":"«QQS siz» variantini tanlang — shartnomaga xizmat qiymatiga QQS qo'shilmasligi haqidagi band yoziladi va uch qatorli hisob-kitob chiqmaydi. Bu ijrochining soliq maqomiga bog'liq, shuning uchun shartnoma tuzishdan oldin uni aniqlab oling. Amaldagi stavkani rasmiy manbadan tekshiring."}},{"@type":"Question","name":"Ish natijasini qabul qilish dalolatnomasi majburiymi?","acceptedAnswer":{"@type":"Answer","text":"Qonun har doim ham majburlamaydi, lekin amalda u ijrochining eng kuchli himoyasi. Dalolatnoma bo'lmasa, to'lov qilingandan keyin ham «xizmat to'liq ko'rsatilmagan» degan da'vo chiqishi mumkin. Generatorda tegishli bandni yoqsangiz, shartnomaga qabul qilish tartibi qo'shiladi; dalolatnomaning o'zini alohida generator bilan tayyorlaysiz."}},{"@type":"Question","name":"Bosqichlar yig'indisi umumiy summaga to'g'ri kelmasa nima bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Generator buni xatolik deb hisoblamaydi va shartnomani baribir shakllantiradi — faqat natija ostida eslatma ko'rsatadi va farqni ko'rsatib beradi. Ba'zan farq ataylab qoldiriladi (masalan oxirgi bosqich kafolat ushlab qolinishi bilan), lekin ko'p hollarda bu kiritishdagi adashish bo'ladi. Eslatmani ko'rib, raqamlarni tekshirib chiqing."}},{"@type":"Question","name":"Shartnomani muddatidan oldin bekor qilsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, agar shartnomada bekor qilish tartibi yozilgan bo'lsa. Odatda tomon boshqa tomonni belgilangan kun oldin yozma ogohlantiradi va shu paytgacha bajarilgan ish uchun hisob-kitob qilinadi. Generatorda ogohlantirish muddati tahrirlanadigan maydon — standart qiymat faqat boshlang'ich nuqta, uni o'zingizga moslashtiring."}},{"@type":"Question","name":"Penya stavkasini qanday belgilash kerak?","acceptedAnswer":{"@type":"Answer","text":"Penya odatda kechiktirilgan har bir kun uchun summadan foiz sifatida hisoblanadi. Muhimi — bazani ham aniq yozish: foiz umumiy summadanmi yoki faqat kechiktirilgan qismidanmi olinadi. Generatorda ikkalasini ham o'zingiz kiritasiz, chunki bu tomonlarning kelishuv predmeti va qonun aniq raqam belgilamaydi. Juda yuqori penya keyinchalik kamaytirilishi mumkinligini ham hisobga oling."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1060px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Xizmat ko'rsatish shartnomasi namunasi</h1>
+    <p class="sub" data-i="sub">Buyurtmachi va ijrochi o'rtasidagi pullik xizmat shartnomasini onlayn to'ldiring. To'lov tartibini tanlang — matn mos ravishda o'zgaradi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Xizmat ko'rsatish shartnomasi namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Xizmat ko'rsatish shartnomasi</b> — ijrochi xizmatni ko'rsatish, buyurtmachi esa uning haqini to'lash majburiyatini oladigan kelishuv. Mehnat shartnomasidan farqi shundaki, bu yerda javobgarlik jarayon uchun emas, <b>natija</b> uchun bo'ladi. Predmetni aniq yozing, to'lov tartibini tanlang — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Shartnoma ma'lumotlari</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="ctrNum"><label>Shartnoma raqami</label><div class="dg-shell"><input type="text" data-f="ctrNum" value="" placeholder="7"></div></div><div class="dg-field dg-half" data-fw="city"><label>Shahar</label><div class="dg-shell"><input type="text" data-f="city" value="" placeholder="Toshkent"></div></div><div class="dg-field dg-half" data-fw="ctrDate"><label>Sana</label><div class="dg-shell"><input type="date" data-f="ctrDate" value="2026-08-07" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Buyurtmachi</div><div class="dg-rows"><div class="dg-field" data-fw="csType"><label>Kim sifatida</label><div class="dg-seg"><button type="button" data-seg="csType" data-val="jismoniy">Jismoniy shaxs</button><button type="button" data-seg="csType" data-val="yuridik" class="on">Yuridik shaxs</button></div></div><div class="dg-field" data-fw="csOrg"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="csOrg" value="" placeholder="&quot;Nur Savdo&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="csStir"><label>STIR (INN)</label><div class="dg-shell"><input type="text" data-f="csStir" value="" placeholder="123456789"></div></div><div class="dg-field dg-half" data-fw="csMfo"><label>MFO</label><div class="dg-shell"><input type="text" data-f="csMfo" value="" placeholder="00123"></div></div><div class="dg-field" data-fw="csBank"><label>Bank nomi</label><div class="dg-shell"><input type="text" data-f="csBank" value="" placeholder="Ipoteka-bank Chilonzor filiali"></div></div><div class="dg-field" data-fw="csAcc"><label>Hisob raqami</label><div class="dg-shell"><input type="text" data-f="csAcc" value="" placeholder="20208000..."></div></div><div class="dg-field" data-fw="csDir"><label>Direktor F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="csDir" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field" data-fw="csAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="csAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div><div class="dg-field dg-half" data-fw="csPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="csPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ijrochi</div><div class="dg-rows"><div class="dg-field" data-fw="exType"><label>Kim sifatida</label><div class="dg-seg"><button type="button" data-seg="exType" data-val="jismoniy">Jismoniy shaxs</button><button type="button" data-seg="exType" data-val="yuridik" class="on">Yuridik shaxs</button></div></div><div class="dg-field" data-fw="exOrg"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="exOrg" value="" placeholder="&quot;Nur Savdo&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="exStir"><label>STIR (INN)</label><div class="dg-shell"><input type="text" data-f="exStir" value="" placeholder="123456789"></div></div><div class="dg-field dg-half" data-fw="exMfo"><label>MFO</label><div class="dg-shell"><input type="text" data-f="exMfo" value="" placeholder="00123"></div></div><div class="dg-field" data-fw="exBank"><label>Bank nomi</label><div class="dg-shell"><input type="text" data-f="exBank" value="" placeholder="Ipoteka-bank Chilonzor filiali"></div></div><div class="dg-field" data-fw="exAcc"><label>Hisob raqami</label><div class="dg-shell"><input type="text" data-f="exAcc" value="" placeholder="20208000..."></div></div><div class="dg-field" data-fw="exDir"><label>Direktor F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="exDir" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field" data-fw="exAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="exAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div><div class="dg-field dg-half" data-fw="exPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="exPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Xizmat</div><div class="dg-rows"><div class="dg-field" data-fw="srvName"><label>Xizmat nomi</label><div class="dg-shell"><input type="text" data-f="srvName" value="" placeholder="Korporativ sayt ishlab chiqish"></div></div><div class="dg-field" data-fw="srvDesc"><label>Batafsil tavsif</label><div class="dg-shell"><textarea data-f="srvDesc" rows="4" placeholder="Nima qilinadi, natija qanday ko'rinishda topshiriladi, uni qanday tekshirish mumkin..."></textarea></div><div class="dg-hint">Shartnomaning eng muhim maydoni. Umumiy so'zlar o'rniga aniq hajm va natijani yozing.</div></div><div class="dg-field" data-fw="srvPlace"><label>Bajarilish joyi</label><div class="dg-shell"><input type="text" data-f="srvPlace" value="" placeholder="Ijrochining ish joyi / masofadan"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Muddat</div><div class="dg-rows"><div class="dg-field" data-fw="termMode"><label>Muddat qanday belgilanadi</label><div class="dg-seg"><button type="button" data-seg="termMode" data-val="dates" class="on">Ikki sana bilan</button><button type="button" data-seg="termMode" data-val="days">Kun soni bilan</button></div></div><div class="dg-field dg-half" data-fw="startDate"><label>Boshlanish sanasi</label><div class="dg-shell"><input type="date" data-f="startDate" value="" placeholder=""></div></div><div class="dg-field dg-half" data-fw="endDate"><label>Tugash sanasi</label><div class="dg-shell"><input type="date" data-f="endDate" value="" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Narx</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="total"><label>Xizmat qiymati</label><div class="dg-shell"><input type="text" data-f="total" inputmode="numeric" value="" placeholder="15000000"><span class="dg-unit">so'm</span></div><div class="dg-hint">«QQS bilan» tanlansa, bu summa QQS'siz baza hisoblanadi va soliq ustiga qo'shiladi.</div></div><div class="dg-field" data-fw="vat"><label>QQS</label><div class="dg-seg"><button type="button" data-seg="vat" data-val="siz" class="on">QQS siz</button><button type="button" data-seg="vat" data-val="bilan">QQS bilan</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">To'lov tartibi</div><div class="dg-rows"><div class="dg-field" data-fw="payMode"><label>To'lov qanday amalga oshiriladi</label><div class="dg-seg"><button type="button" data-seg="payMode" data-val="full" class="on">Ish tugagach to'liq</button><button type="button" data-seg="payMode" data-val="prepay">Oldindan + qolgani</button><button type="button" data-seg="payMode" data-val="stages">Bosqichma-bosqich</button><button type="button" data-seg="payMode" data-val="monthly">Oylik</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qo'shimcha bandlar (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="actAccept"><label>Natija dalolatnoma bilan qabul qilinadi</label><div class="dg-seg"><button type="button" data-seg="actAccept" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="actAccept" data-val="ha">Ha</button></div></div><div class="dg-field" data-fw="warranty"><label>Kafolat muddati</label><div class="dg-seg"><button type="button" data-seg="warranty" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="warranty" data-val="ha">Ha</button></div></div><div class="dg-field" data-fw="penalty"><label>Kechikkanlik uchun penya</label><div class="dg-seg"><button type="button" data-seg="penalty" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="penalty" data-val="ha">Ha</button></div></div><div class="dg-field" data-fw="confidential"><label>Maxfiylik sharti</label><div class="dg-seg"><button type="button" data-seg="confidential" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="confidential" data-val="ha">Ha</button></div></div><div class="dg-field" data-fw="materials"><label>Materiallar kim hisobidan</label><div class="dg-seg"><button type="button" data-seg="materials" data-val="yoq" class="on">Band kerak emas</button><button type="button" data-seg="materials" data-val="ijrochi">Ijrochi</button><button type="button" data-seg="materials" data-val="buyurtmachi">Buyurtmachi</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Bekor qilish</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="cancelDays"><label>Ogohlantirish muddati</label><div class="dg-shell"><input type="text" data-f="cancelDays" inputmode="numeric" value="10" placeholder=""><span class="dg-unit">kun</span></div><div class="dg-hint">Shartnomadan chiqmoqchi bo'lgan tomon necha kun oldin yozma ogohlantiradi.</div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Shartnomani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Shartnoma matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 9</span></div>
+        <div id="docBody"><div class="dg-title">XIZMAT KO'RSATISH SHARTNOMASI</div><div class="dg-sub">№ <span class="ph">______</span></div><div class="dg-sub"><span class="ph">______________</span> sh.          «7» avgust 2026 yil</div><div class="dg-p"><span class="ph">__________________________________</span> (STIR: <span class="ph">___________</span>, h/r: <span class="ph">____________________</span>, bank: <span class="ph">______________________</span>, MFO: <span class="ph">_______</span>, manzil: <span class="ph">__________________________</span>), direktor <span class="ph">__________________________</span> timsolida, ustav asosida ish yurituvchi, keyingi o'rinlarda «Buyurtmachi» deb ataladi, bir tomondan, va <span class="ph">__________________________________</span> (STIR: <span class="ph">___________</span>, h/r: <span class="ph">____________________</span>, bank: <span class="ph">______________________</span>, MFO: <span class="ph">_______</span>, manzil: <span class="ph">__________________________</span>), direktor <span class="ph">__________________________</span> timsolida, ustav asosida ish yurituvchi, keyingi o'rinlarda «Ijrochi» deb ataladi, ikkinchi tomondan, ushbu shartnomani quyidagilar haqida tuzdik:</div><div class="dg-h">1. SHARTNOMA PREDMETI</div><div class="dg-p">1.1. Ijrochi Buyurtmachiga quyidagi xizmatni ko'rsatish majburiyatini oladi: <span class="ph">________________________________</span>, Buyurtmachi esa uni qabul qilib olish va ushbu shartnoma shartlari asosida haqini to'lash majburiyatini oladi.</div><div class="dg-p">1.2. Xizmat mazmuni: <span class="ph">______________________________________________</span></div><div class="dg-p">1.3. Xizmat ko'rsatiladigan joy: <span class="ph">____________________________</span>.</div><div class="dg-h">2. XIZMAT KO'RSATISH MUDDATI</div><div class="dg-p">2.1. Xizmat <span class="ph">____________________</span>dan <span class="ph">____________________</span>gacha bo'lgan davrda ko'rsatiladi.</div><div class="dg-h">3. XIZMAT NARXI VA TO'LOV TARTIBI</div><div class="dg-p">3.1. Xizmat qiymati ni tashkil etadi.</div><div class="dg-p">3.2. Qiymat QQS'siz ko'rsatilgan; xizmat qiymatiga soliq qo'shilmaydi.</div><div class="dg-p">3.3. To'lov xizmat ko'rsatilgandan keyin bir yo'la, to'liq hajmda amalga oshiriladi.</div><div class="dg-h">4. TOMONLARNING MAJBURIYATLARI</div><div class="dg-p">4.1. Ijrochi xizmatni shaxsan yoki uchinchi shaxslarni jalb qilgan holda ko'rsatish, uning sifatini va kelishilgan muddatlarga rioya etilishini ta'minlash majburiyatini oladi.</div><div class="dg-p">4.2. Buyurtmachi Ijrochiga xizmat ko'rsatish uchun zarur ma'lumot va ruxsatni taqdim etish hamda to'lovni o'z vaqtida amalga oshirish majburiyatini oladi.</div><div class="dg-h">5. SHARTNOMANI BEKOR QILISH</div><div class="dg-p">5.1. Har bir tomon boshqa tomonni kamida 10 kun oldin yozma ogohlantirgan holda shartnomani bajarishdan bosh tortishga haqli.</div><div class="dg-p">5.2. Shartnoma muddatidan oldin bekor qilinganda, bekor qilingan sanaga qadar haqiqatan ko'rsatilgan xizmat qismi to'lanishi lozim.</div><div class="dg-h">6. YAKUNIY QOIDALAR</div><div class="dg-p">6.1. Shartnoma imzolangan paytdan kuchga kiradi va tomonlar o'z majburiyatlarini to'liq bajargunga qadar amal qiladi.</div><div class="dg-p">6.2. Shartnoma bir xil yuridik kuchga ega ikki nusxada, har bir tomon uchun bittadan tuzildi.</div><div class="dg-p">6.3. Ushbu shartnomada tartibga solinmagan masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>Buyurtmachi:</div><div><span class="ph">________________________</span></div><div>_______________ (imzo)</div></div><div><div>Ijrochi:</div><div><span class="ph">________________________</span></div><div>_______________ (imzo)</div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Soliq stavkalari va majburiy talablarni amaldagi qonunchilikdan tekshiring.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div id="stageWarn" class="stage-warn noprint" style="display:none"></div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Shartnomaning eng muhim bandi — <b>predmet</b>. «Konsalting xizmatlari» degan yozuv nizoda hech narsani himoya qilmaydi. Nima qilinishi, natija qanday ko'rinishda topshirilishi va uni qanday tekshirish mumkinligini batafsil yozing.</div>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Xizmat ko'rsatish shartnomasi nima va nega yozma bo'lishi kerak?</h2><p>Xizmat ko'rsatish shartnomasi — bir tomon (ijrochi) muayyan xizmatni ko'rsatish, ikkinchi tomon (buyurtmachi) esa uning haqini to'lash majburiyatini oladigan kelishuv. Buxgalteriya xizmati, sayt yasash, ta'mirlash, reklama, o'qitish, konsalting — bularning barchasi shu shartnoma bilan rasmiylashtiriladi.</p><p>Og'zaki kelishuv ham kelishuv hisoblanadi, lekin nizo chiqqanda uni isbotlash deyarli imkonsiz. Qancha to'lanishi kerak edi, ish qachon tugashi kerak edi, natija qanday bo'lishi lozim edi — bularning hammasi tomonlarning xotirasiga qolib ketadi va har biri o'zicha eslaydi.</p><p>Yozma shartnoma uch narsani bir joyda qayd etadi: nima qilinadi, qancha to'lanadi va qachon. Shu uch element aniq yozilgan bo'lsa, kelishmovchiliklarning katta qismi umuman yuzaga kelmaydi. Qolgan bandlar — kafolat, penya, maxfiylik — qo'shimcha himoya qatlami.</p><p>Yuridik shaxslar uchun yozma shakl amalda majburiy: to'lov bank orqali o'tadi, buxgalteriya xarajatni asoslash uchun hujjat talab qiladi va soliq hisobotida ham shartnoma asos bo'ladi.</p><h2>Mehnat shartnomasidan farqi nimada?</h2><p>Bu eng ko'p adashiladigan joy va farqi juda muhim. Mehnat shartnomasida xodim <b>jarayonga</b> jalb qilinadi: u ish vaqti rejimiga bo'ysunadi, ichki tartib qoidalariga rioya qiladi, lavozim majburiyatlarini muntazam bajaradi va buning evaziga muntazam ish haqi oladi. Xizmat shartnomasida esa ijrochi <b>natija</b> uchun javob beradi — qachon va qanday ishlashini o'zi belgilaydi.</p><p>Ikkinchi farq — kafolatlar. Mehnat shartnomasi xodimga ta'til, kasallik varaqasi, ish haqining eng kam miqdori va ishdan bo'shatish tartibi kabi kafolatlarni beradi. Xizmat shartnomasida bu kafolatlar yo'q: ijrochi o'z faoliyatini o'zi tashkil qiladi va ta'til so'ramaydi.</p><p>Uchinchi farq — soliq va ajratmalar. Mehnat munosabatlarida ish beruvchi ish haqidan soliq ushlab qoladi va majburiy ajratmalarni to'laydi. Xizmat shartnomasida esa tartib boshqacha bo'lib, ijrochining maqomiga (yakka tartibdagi tadbirkor, o'zini o'zi band qilgan shaxs yoki oddiy jismoniy shaxs) bog'liq.</p><p>Nega bu muhim? Chunki amalda mehnat munosabatlarini xizmat shartnomasi bilan yashirishga urinishlar bo'ladi. Agar odam har kuni belgilangan vaqtda ishga kelsa, rahbariyatga bo'ysunsa va doimiy funksiyani bajarsa — bu mehnat munosabati, hujjat qanday nomlanganidan qat'i nazar. Tekshiruvda bunday shartnoma qayta kvalifikatsiya qilinishi mumkin.</p><p>Shuning uchun xizmat shartnomasini aynan natijaga yo'naltirilgan ishlar uchun tuzing: aniq loyiha, aniq hajm, aniq topshirish nuqtasi bo'lsin.</p><h2>Xizmat predmetini qanday aniq yozish kerak?</h2><p>Predmet — shartnomaning eng muhim bandi. «Konsalting xizmatlari» yoki «IT xizmatlari» degan yozuv hech narsani aniqlamaydi: nizo chiqqanda ijrochi «men shuni qildim», buyurtmachi esa «men buni kutgandim» deb qoladi.</p><p>To'g'ri yozish uchun uchta savolga javob bering: nima qilinadi, natija qanday ko'rinishda topshiriladi va uni qanday tekshirish mumkin. Masalan «sayt yasash» emas, balki «beshta sahifadan iborat korporativ sayt: bosh sahifa, xizmatlar, biz haqimizda, aloqa, blog; adaptiv dizayn; administrator paneli bilan».</p><p>Bajarilish joyi ham yoziladi. Ijrochi buyurtmachi hududida ishlaydimi, o'z ofisidami yoki masofadanmi — bu javobgarlik va xarajatlar taqsimotiga ta'sir qiladi.</p><p>Generatorda predmet uchun alohida batafsil tavsif maydoni bor. Uni to'ldirishga vaqt ayamang: keyinchalik «bu kelishilmagan edi» degan bahsning oldini oladigan yagona narsa shu matn.</p><h2>To'lov tartibi variantlari va qaysi biri kimga foydali?</h2><p><b>Ish tugagach to'liq to'lov</b> — buyurtmachi uchun eng xavfsiz variant: pul faqat natija olingandan keyin to'lanadi. Ijrochi uchun esa xavfli, chunki u butun ishni o'z hisobidan bajaradi va to'lanmaslik xavfini o'z zimmasiga oladi.</p><p><b>Oldindan to'lov va qolgani</b> — eng keng tarqalgan muvozanat. Ijrochi materiallar va boshlang'ich xarajatlarni qoplaydi, buyurtmachi esa pulning bir qismini natijaga bog'lab qoldiradi. Oldindan to'lov foizi shartnomada aniq yozilishi kerak.</p><p><b>Bosqichma-bosqich to'lov</b> — uzoq muddatli va katta loyihalar uchun. Har bosqichning nomi, muddati va summasi alohida yoziladi, to'lov esa o'sha bosqich qabul qilingandan keyin amalga oshiriladi. Bu ikkala tomon uchun ham xavfni kamaytiradi va loyihaning borishini nazorat qilishga imkon beradi.</p><p><b>Oylik to'lov</b> — davomiy xizmatlar uchun: buxgalteriya, texnik qo'llab-quvvatlash, SMM, tozalash. Bunda natija bir martalik emas, balki muntazam bo'ladi va shartnoma odatda oylar soni bilan belgilanadi.</p><p>Generatorda to'rt variant tugma bilan tanlanadi va shartnoma matni to'liq mos ravishda o'zgaradi. Bosqichli variantda bosqichlar yig'indisi umumiy summaga to'g'ri kelmasa, generator eslatma ko'rsatadi — bu xatolik emas, lekin ko'pincha kiritishdagi adashishni bildiradi.</p><h2>QQS: kim to'laydi va shartnomada qanday ko'rsatiladi?</h2><p>Qo'shilgan qiymat solig'i ijrochining soliq maqomiga bog'liq. Ijrochi QQS to'lovchisi bo'lsa, xizmat qiymatiga QQS qo'shiladi va shartnomada u alohida ko'rsatiladi. QQS to'lovchisi bo'lmasa, shartnomada soliq olinmasligi haqida band yoziladi.</p><p>Eng ko'p uchraydigan xato — shartnomada faqat bitta summa yozib, QQS shunga kiradimi yoki ustiga qo'shiladimi degan savolni ochiq qoldirish. Bu keyinchalik to'g'ridan-to'g'ri moliyaviy nizoga aylanadi, chunki farq sezilarli bo'lishi mumkin.</p><p>To'g'ri usul — uch qatorda yozish: xizmat qiymati, QQS summasi va to'lanadigan jami summa. Generator aynan shunday qiladi va uchala raqamni o'zi hisoblaydi.</p><p>Stavka shartnomada foydalanuvchi kiritadigan maydon bo'lib qoladi — generator uni oldindan belgilamaydi, chunki stavkalar vaqti-vaqti bilan o'zgaradi va turli holatlarda farq qilishi mumkin. Amaldagi stavkani rasmiy manbadan tekshiring; hisob-kitobni tezda ko'rish uchun QQS kalkulyatoridan foydalanishingiz mumkin.</p><h2>Kafolat va penya bandlari</h2><p>Kafolat muddati — ijrochi o'z ishidagi kamchiliklarni bepul tuzatish majburiyatini oladigan davr. U shartnomada aniq yozilmasa, kafolat masalasi umumiy qoidalar bo'yicha hal qilinadi va bu ko'pincha ikkala tomon uchun ham noaniqlik tug'diradi.</p><p>Kafolat muddatini xizmat turiga qarab belgilash mantiqiy: ta'mirlash ishlari uchun bir muddat, dasturiy mahsulot uchun boshqa. Generatorda muddatni kun yoki oyda ko'rsatishingiz mumkin.</p><p>Penya — majburiyat kechiktirilgani uchun to'lanadigan summa. U ikki tomonga ham tegishli bo'lishi mumkin: ijrochi ishni kechiktirsa ham, buyurtmachi to'lovni kechiktirsa ham. Penya odatda kechiktirilgan har kun uchun summadan foiz sifatida hisoblanadi.</p><p>Penya stavkasini shartnomada yozganda o'lchovni ham ko'rsating: nimadan foiz olinadi — umumiy summadanmi yoki kechiktirilgan qismidanmi. Generatorda stavka va baza foydalanuvchi tomonidan kiritiladi, chunki bu tomonlarning kelishuv predmeti.</p><p>Maxfiylik bandi esa ijrochi ish davomida bilib qolgan tijorat ma'lumotlarini oshkor qilmaslik majburiyatini belgilaydi. Buyurtmachining ichki ma'lumotlariga kirish bo'ladigan xizmatlarda bu band deyarli har doim kerak.</p><h2>Ish natijasini qabul qilish</h2><p>Xizmat ko'rsatilib bo'lingach, natija rasman qabul qilinishi kerak. Eng ishonchli usul — topshirish-qabul dalolatnomasini tuzish: unda nima topshirilgani, qachon va qanday holatda ekani qayd etiladi.</p><p>Dalolatnomasiz to'lov qilingan bo'lsa ham, keyinchalik «xizmat to'liq ko'rsatilmagan» degan da'vo chiqishi mumkin. Aksincha, imzolangan dalolatnoma ijrochi uchun majburiyat bajarilganining eng kuchli dalili bo'ladi.</p><p>Qabul qilish tartibini shartnomada yozib qo'yish foydali: buyurtmachi natijani necha kun ichida ko'rib chiqadi, e'tiroz bo'lsa uni qanday bildiradi va e'tiroz bildirilmasa nima bo'ladi. Bu tartib ishning cho'zilib ketishining oldini oladi.</p><p>Generatorda «natija dalolatnoma bilan qabul qilinadi» bandini yoqsangiz, shartnomaga tegishli band qo'shiladi. Dalolatnomaning o'zini alohida generator bilan tayyorlashingiz mumkin.</p><h2>Tipik xatolar</h2><p>Birinchi xato — predmetni umumiy yozish. «Xizmatlar ko'rsatiladi» degan shartnoma amalda hech narsani himoya qilmaydi.</p><p>Ikkinchi xato — muddatni ko'rsatmaslik. Boshlanish va tugash sanasi bo'lmasa, ish qachon kechikkan hisoblanishini aniqlab bo'lmaydi va penya bandi ham ishlamay qoladi.</p><p>Uchinchi xato — QQS masalasini ochiq qoldirish. Summaning ichidami yoki ustigami degan savol shartnomada hal qilinishi kerak, keyin emas.</p><p>To'rtinchi xato — natijani qabul qilish tartibini yozmaslik. Kim, qachon va qanday qabul qiladi degan savol ochiq qolsa, to'lov ham cho'zilib ketadi.</p><p>Beshinchi xato — mehnat munosabatini xizmat shartnomasi bilan rasmiylashtirish. Doimiy ish vaqti va bo'ysunish bo'lgan joyda bu shartnoma noto'g'ri tanlangan hujjat bo'ladi.</p><p>Oltinchi xato — bekor qilish tartibini yozmaslik. Tomonlardan biri shartnomadan chiqmoqchi bo'lsa, necha kun oldin ogohlantirishi kerakligi yozilgan bo'lsa, ajralish tinch o'tadi. Generatorda bu muddat tahrirlanadigan maydon.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Xizmat shartnomasi bilan mehnat shartnomasini qanday farqlash kerak?</h2><p>Asosiy mezon — bo'ysunish va natija. Agar odam belgilangan ish vaqtida keladi, ichki tartib qoidalariga bo'ysunadi va doimiy funksiyani bajaradi — bu mehnat munosabati, hujjat qanday nomlanganidan qat'i nazar. Xizmat shartnomasida esa ijrochi qachon va qanday ishlashini o'zi hal qiladi, javobgarligi esa aniq natija uchun bo'ladi. Doimiy ishni xizmat shartnomasi bilan rasmiylashtirish tekshiruvda qayta kvalifikatsiya qilinishiga olib kelishi mumkin.</p><h2>Oldindan to'lov qancha bo'lishi kerak?</h2><p>Qonun aniq foiz belgilamaydi — bu tomonlarning kelishuvi. Amalda ijrochining boshlang'ich xarajatlariga qarab belgilanadi: materiallar ko'p bo'lsa, oldindan to'lov ham kattaroq bo'ladi. Generatorda foizni o'zingiz kiritasiz va shartnoma matnida oldindan to'lov hamda qolgan summa avtomatik hisoblanadi.</p><h2>Ijrochi QQS to'lovchisi bo'lmasa nima yoziladi?</h2><p>«QQS siz» variantini tanlang — shartnomaga xizmat qiymatiga QQS qo'shilmasligi haqidagi band yoziladi va uch qatorli hisob-kitob chiqmaydi. Bu ijrochining soliq maqomiga bog'liq, shuning uchun shartnoma tuzishdan oldin uni aniqlab oling. Amaldagi stavkani rasmiy manbadan tekshiring.</p><h2>Ish natijasini qabul qilish dalolatnomasi majburiymi?</h2><p>Qonun har doim ham majburlamaydi, lekin amalda u ijrochining eng kuchli himoyasi. Dalolatnoma bo'lmasa, to'lov qilingandan keyin ham «xizmat to'liq ko'rsatilmagan» degan da'vo chiqishi mumkin. Generatorda tegishli bandni yoqsangiz, shartnomaga qabul qilish tartibi qo'shiladi; dalolatnomaning o'zini alohida generator bilan tayyorlaysiz.</p><h2>Bosqichlar yig'indisi umumiy summaga to'g'ri kelmasa nima bo'ladi?</h2><p>Generator buni xatolik deb hisoblamaydi va shartnomani baribir shakllantiradi — faqat natija ostida eslatma ko'rsatadi va farqni ko'rsatib beradi. Ba'zan farq ataylab qoldiriladi (masalan oxirgi bosqich kafolat ushlab qolinishi bilan), lekin ko'p hollarda bu kiritishdagi adashish bo'ladi. Eslatmani ko'rib, raqamlarni tekshirib chiqing.</p><h2>Shartnomani muddatidan oldin bekor qilsa bo'ladimi?</h2><p>Ha, agar shartnomada bekor qilish tartibi yozilgan bo'lsa. Odatda tomon boshqa tomonni belgilangan kun oldin yozma ogohlantiradi va shu paytgacha bajarilgan ish uchun hisob-kitob qilinadi. Generatorda ogohlantirish muddati tahrirlanadigan maydon — standart qiymat faqat boshlang'ich nuqta, uni o'zingizga moslashtiring.</p><h2>Penya stavkasini qanday belgilash kerak?</h2><p>Penya odatda kechiktirilgan har bir kun uchun summadan foiz sifatida hisoblanadi. Muhimi — bazani ham aniq yozish: foiz umumiy summadanmi yoki faqat kechiktirilgan qismidanmi olinadi. Generatorda ikkalasini ham o'zingiz kiritasiz, chunki bu tomonlarning kelishuv predmeti va qonun aniq raqam belgilamaydi. Juda yuqori penya keyinchalik kamaytirilishi mumkinligini ham hisobga oling.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Bog'liq hujjat namunalari" data-artt-ru="Связанные образцы документов">Bog'liq hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="topshirish-qabul-dalolatnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📦</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Topshirish-qabul dalolatnomasi" data-art-ru="Акт приёма-передачи">Topshirish-qabul dalolatnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📋</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat shartnomasi" data-art-ru="Трудовой договор">Mehnat shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🏠</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ijara shartnomasi" data-art-ru="Договор аренды жилья">Ijara shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="topshirish-qabul-dalolatnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📦</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Topshirish-qabul dalolatnomasi" data-rel-ru="Акт приёма-передачи">Topshirish-qabul dalolatnomasi</span></a><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="qqs-kalkulyator" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">🧾</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="QQS kalkulyatori" data-rel-ru="Калькулятор НДС">QQS kalkulyatori</span></a><a href="qqs-2026" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📰</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="QQS 2026 maqolasi" data-rel-ru="Статья про НДС 2026">QQS 2026 maqolasi</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Shartnoma namunasi ma'lumot uchun. Soliq stavkalari va majburiy talablarni amaldagi qonunchilikdan tekshiring.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">7.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+function addDays(s,n){
+  var d=KD.parseDate(s);
+  if(!d||!n)return '';
+  d.setDate(d.getDate()+n);
+  return iso(d);
+}
+
+/* Bosqichlar yig'indisi jami summaga to'g'ri kelmasa eslatma ko'rsatiladi.
+   Bu xatolik emas — shartnoma baribir shakllanadi, faqat diqqat qaratiladi. */
+function setStageWarn(c,lang){
+  var el=document.getElementById('stageWarn');
+  if(!el)return;
+  var show=(c.payMode==='stages'&&c.stageCount>0&&c.grand>0&&Math.abs(c.stageDiff)>0.5);
+  el.style.display=show?'':'none';
+  if(!show)return;
+  var ru=lang==='ru';
+  var more=c.stageDiff>0;
+  var d=KD.fmtNum(Math.abs(c.stageDiff))+' '+KD.currency(lang);
+  el.textContent=ru
+    ?('Обратите внимание: сумма этапов ('+KD.fmtNum(c.stageSum)+') '
+      +(more?'больше':'меньше')+' общей суммы к оплате ('+KD.fmtNum(c.grand)+') на '+d
+      +'. Это не ошибка, но чаще всего означает опечатку — проверьте цифры.')
+    :("Diqqat: bosqichlar yig'indisi ("+KD.fmtNum(c.stageSum)+") to'lanadigan jami summadan ("
+      +KD.fmtNum(c.grand)+") "+d+" ga "+(more?"ko'p":'kam')
+      +". Bu xatolik emas, lekin ko'pincha kiritishdagi adashishni bildiradi — raqamlarni tekshiring.");
+}
+
+/* ---------- interfeys matnlari ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Xizmat ko'rsatish shartnomasi namunasi",
+  sub:"Buyurtmachi va ijrochi o'rtasidagi pullik xizmat shartnomasini onlayn to'ldiring. To'lov tartibini tanlang — matn mos ravishda o'zgaradi.",
+  intro:"<b>Xizmat ko'rsatish shartnomasi</b> — ijrochi xizmatni ko'rsatish, buyurtmachi esa uning haqini to'lash majburiyatini oladigan kelishuv. Mehnat shartnomasidan farqi shundaki, bu yerda javobgarlik jarayon uchun emas, <b>natija</b> uchun bo'ladi. Predmetni aniq yozing, to'lov tartibini tanlang — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.",
+  prevTitle:"Shartnoma matni",
+  jump:"Shartnomani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTxt:"Shartnomaning eng muhim bandi — <b>predmet</b>. «Konsalting xizmatlari» degan yozuv nizoda hech narsani himoya qilmaydi. Nima qilinishi, natija qanday ko'rinishda topshirilishi va uni qanday tekshirish mumkinligini batafsil yozing.",
+  foot:"Shartnoma namunasi ma'lumot uchun. Soliq stavkalari va majburiy talablarni amaldagi qonunchilikdan tekshiring.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Xizmat ko'rsatish shartnomasi nima va nega yozma bo'lishi kerak?</h2><p>Xizmat ko'rsatish shartnomasi — bir tomon (ijrochi) muayyan xizmatni ko'rsatish, ikkinchi tomon (buyurtmachi) esa uning haqini to'lash majburiyatini oladigan kelishuv. Buxgalteriya xizmati, sayt yasash, ta'mirlash, reklama, o'qitish, konsalting — bularning barchasi shu shartnoma bilan rasmiylashtiriladi.</p><p>Og'zaki kelishuv ham kelishuv hisoblanadi, lekin nizo chiqqanda uni isbotlash deyarli imkonsiz. Qancha to'lanishi kerak edi, ish qachon tugashi kerak edi, natija qanday bo'lishi lozim edi — bularning hammasi tomonlarning xotirasiga qolib ketadi va har biri o'zicha eslaydi.</p><p>Yozma shartnoma uch narsani bir joyda qayd etadi: nima qilinadi, qancha to'lanadi va qachon. Shu uch element aniq yozilgan bo'lsa, kelishmovchiliklarning katta qismi umuman yuzaga kelmaydi. Qolgan bandlar — kafolat, penya, maxfiylik — qo'shimcha himoya qatlami.</p><p>Yuridik shaxslar uchun yozma shakl amalda majburiy: to'lov bank orqali o'tadi, buxgalteriya xarajatni asoslash uchun hujjat talab qiladi va soliq hisobotida ham shartnoma asos bo'ladi.</p><h2>Mehnat shartnomasidan farqi nimada?</h2><p>Bu eng ko'p adashiladigan joy va farqi juda muhim. Mehnat shartnomasida xodim <b>jarayonga</b> jalb qilinadi: u ish vaqti rejimiga bo'ysunadi, ichki tartib qoidalariga rioya qiladi, lavozim majburiyatlarini muntazam bajaradi va buning evaziga muntazam ish haqi oladi. Xizmat shartnomasida esa ijrochi <b>natija</b> uchun javob beradi — qachon va qanday ishlashini o'zi belgilaydi.</p><p>Ikkinchi farq — kafolatlar. Mehnat shartnomasi xodimga ta'til, kasallik varaqasi, ish haqining eng kam miqdori va ishdan bo'shatish tartibi kabi kafolatlarni beradi. Xizmat shartnomasida bu kafolatlar yo'q: ijrochi o'z faoliyatini o'zi tashkil qiladi va ta'til so'ramaydi.</p><p>Uchinchi farq — soliq va ajratmalar. Mehnat munosabatlarida ish beruvchi ish haqidan soliq ushlab qoladi va majburiy ajratmalarni to'laydi. Xizmat shartnomasida esa tartib boshqacha bo'lib, ijrochining maqomiga (yakka tartibdagi tadbirkor, o'zini o'zi band qilgan shaxs yoki oddiy jismoniy shaxs) bog'liq.</p><p>Nega bu muhim? Chunki amalda mehnat munosabatlarini xizmat shartnomasi bilan yashirishga urinishlar bo'ladi. Agar odam har kuni belgilangan vaqtda ishga kelsa, rahbariyatga bo'ysunsa va doimiy funksiyani bajarsa — bu mehnat munosabati, hujjat qanday nomlanganidan qat'i nazar. Tekshiruvda bunday shartnoma qayta kvalifikatsiya qilinishi mumkin.</p><p>Shuning uchun xizmat shartnomasini aynan natijaga yo'naltirilgan ishlar uchun tuzing: aniq loyiha, aniq hajm, aniq topshirish nuqtasi bo'lsin.</p><h2>Xizmat predmetini qanday aniq yozish kerak?</h2><p>Predmet — shartnomaning eng muhim bandi. «Konsalting xizmatlari» yoki «IT xizmatlari» degan yozuv hech narsani aniqlamaydi: nizo chiqqanda ijrochi «men shuni qildim», buyurtmachi esa «men buni kutgandim» deb qoladi.</p><p>To'g'ri yozish uchun uchta savolga javob bering: nima qilinadi, natija qanday ko'rinishda topshiriladi va uni qanday tekshirish mumkin. Masalan «sayt yasash» emas, balki «beshta sahifadan iborat korporativ sayt: bosh sahifa, xizmatlar, biz haqimizda, aloqa, blog; adaptiv dizayn; administrator paneli bilan».</p><p>Bajarilish joyi ham yoziladi. Ijrochi buyurtmachi hududida ishlaydimi, o'z ofisidami yoki masofadanmi — bu javobgarlik va xarajatlar taqsimotiga ta'sir qiladi.</p><p>Generatorda predmet uchun alohida batafsil tavsif maydoni bor. Uni to'ldirishga vaqt ayamang: keyinchalik «bu kelishilmagan edi» degan bahsning oldini oladigan yagona narsa shu matn.</p><h2>To'lov tartibi variantlari va qaysi biri kimga foydali?</h2><p><b>Ish tugagach to'liq to'lov</b> — buyurtmachi uchun eng xavfsiz variant: pul faqat natija olingandan keyin to'lanadi. Ijrochi uchun esa xavfli, chunki u butun ishni o'z hisobidan bajaradi va to'lanmaslik xavfini o'z zimmasiga oladi.</p><p><b>Oldindan to'lov va qolgani</b> — eng keng tarqalgan muvozanat. Ijrochi materiallar va boshlang'ich xarajatlarni qoplaydi, buyurtmachi esa pulning bir qismini natijaga bog'lab qoldiradi. Oldindan to'lov foizi shartnomada aniq yozilishi kerak.</p><p><b>Bosqichma-bosqich to'lov</b> — uzoq muddatli va katta loyihalar uchun. Har bosqichning nomi, muddati va summasi alohida yoziladi, to'lov esa o'sha bosqich qabul qilingandan keyin amalga oshiriladi. Bu ikkala tomon uchun ham xavfni kamaytiradi va loyihaning borishini nazorat qilishga imkon beradi.</p><p><b>Oylik to'lov</b> — davomiy xizmatlar uchun: buxgalteriya, texnik qo'llab-quvvatlash, SMM, tozalash. Bunda natija bir martalik emas, balki muntazam bo'ladi va shartnoma odatda oylar soni bilan belgilanadi.</p><p>Generatorda to'rt variant tugma bilan tanlanadi va shartnoma matni to'liq mos ravishda o'zgaradi. Bosqichli variantda bosqichlar yig'indisi umumiy summaga to'g'ri kelmasa, generator eslatma ko'rsatadi — bu xatolik emas, lekin ko'pincha kiritishdagi adashishni bildiradi.</p><h2>QQS: kim to'laydi va shartnomada qanday ko'rsatiladi?</h2><p>Qo'shilgan qiymat solig'i ijrochining soliq maqomiga bog'liq. Ijrochi QQS to'lovchisi bo'lsa, xizmat qiymatiga QQS qo'shiladi va shartnomada u alohida ko'rsatiladi. QQS to'lovchisi bo'lmasa, shartnomada soliq olinmasligi haqida band yoziladi.</p><p>Eng ko'p uchraydigan xato — shartnomada faqat bitta summa yozib, QQS shunga kiradimi yoki ustiga qo'shiladimi degan savolni ochiq qoldirish. Bu keyinchalik to'g'ridan-to'g'ri moliyaviy nizoga aylanadi, chunki farq sezilarli bo'lishi mumkin.</p><p>To'g'ri usul — uch qatorda yozish: xizmat qiymati, QQS summasi va to'lanadigan jami summa. Generator aynan shunday qiladi va uchala raqamni o'zi hisoblaydi.</p><p>Stavka shartnomada foydalanuvchi kiritadigan maydon bo'lib qoladi — generator uni oldindan belgilamaydi, chunki stavkalar vaqti-vaqti bilan o'zgaradi va turli holatlarda farq qilishi mumkin. Amaldagi stavkani rasmiy manbadan tekshiring; hisob-kitobni tezda ko'rish uchun QQS kalkulyatoridan foydalanishingiz mumkin.</p><h2>Kafolat va penya bandlari</h2><p>Kafolat muddati — ijrochi o'z ishidagi kamchiliklarni bepul tuzatish majburiyatini oladigan davr. U shartnomada aniq yozilmasa, kafolat masalasi umumiy qoidalar bo'yicha hal qilinadi va bu ko'pincha ikkala tomon uchun ham noaniqlik tug'diradi.</p><p>Kafolat muddatini xizmat turiga qarab belgilash mantiqiy: ta'mirlash ishlari uchun bir muddat, dasturiy mahsulot uchun boshqa. Generatorda muddatni kun yoki oyda ko'rsatishingiz mumkin.</p><p>Penya — majburiyat kechiktirilgani uchun to'lanadigan summa. U ikki tomonga ham tegishli bo'lishi mumkin: ijrochi ishni kechiktirsa ham, buyurtmachi to'lovni kechiktirsa ham. Penya odatda kechiktirilgan har kun uchun summadan foiz sifatida hisoblanadi.</p><p>Penya stavkasini shartnomada yozganda o'lchovni ham ko'rsating: nimadan foiz olinadi — umumiy summadanmi yoki kechiktirilgan qismidanmi. Generatorda stavka va baza foydalanuvchi tomonidan kiritiladi, chunki bu tomonlarning kelishuv predmeti.</p><p>Maxfiylik bandi esa ijrochi ish davomida bilib qolgan tijorat ma'lumotlarini oshkor qilmaslik majburiyatini belgilaydi. Buyurtmachining ichki ma'lumotlariga kirish bo'ladigan xizmatlarda bu band deyarli har doim kerak.</p><h2>Ish natijasini qabul qilish</h2><p>Xizmat ko'rsatilib bo'lingach, natija rasman qabul qilinishi kerak. Eng ishonchli usul — topshirish-qabul dalolatnomasini tuzish: unda nima topshirilgani, qachon va qanday holatda ekani qayd etiladi.</p><p>Dalolatnomasiz to'lov qilingan bo'lsa ham, keyinchalik «xizmat to'liq ko'rsatilmagan» degan da'vo chiqishi mumkin. Aksincha, imzolangan dalolatnoma ijrochi uchun majburiyat bajarilganining eng kuchli dalili bo'ladi.</p><p>Qabul qilish tartibini shartnomada yozib qo'yish foydali: buyurtmachi natijani necha kun ichida ko'rib chiqadi, e'tiroz bo'lsa uni qanday bildiradi va e'tiroz bildirilmasa nima bo'ladi. Bu tartib ishning cho'zilib ketishining oldini oladi.</p><p>Generatorda «natija dalolatnoma bilan qabul qilinadi» bandini yoqsangiz, shartnomaga tegishli band qo'shiladi. Dalolatnomaning o'zini alohida generator bilan tayyorlashingiz mumkin.</p><h2>Tipik xatolar</h2><p>Birinchi xato — predmetni umumiy yozish. «Xizmatlar ko'rsatiladi» degan shartnoma amalda hech narsani himoya qilmaydi.</p><p>Ikkinchi xato — muddatni ko'rsatmaslik. Boshlanish va tugash sanasi bo'lmasa, ish qachon kechikkan hisoblanishini aniqlab bo'lmaydi va penya bandi ham ishlamay qoladi.</p><p>Uchinchi xato — QQS masalasini ochiq qoldirish. Summaning ichidami yoki ustigami degan savol shartnomada hal qilinishi kerak, keyin emas.</p><p>To'rtinchi xato — natijani qabul qilish tartibini yozmaslik. Kim, qachon va qanday qabul qiladi degan savol ochiq qolsa, to'lov ham cho'zilib ketadi.</p><p>Beshinchi xato — mehnat munosabatini xizmat shartnomasi bilan rasmiylashtirish. Doimiy ish vaqti va bo'ysunish bo'lgan joyda bu shartnoma noto'g'ri tanlangan hujjat bo'ladi.</p><p>Oltinchi xato — bekor qilish tartibini yozmaslik. Tomonlardan biri shartnomadan chiqmoqchi bo'lsa, necha kun oldin ogohlantirishi kerakligi yozilgan bo'lsa, ajralish tinch o'tadi. Generatorda bu muddat tahrirlanadigan maydon.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец договора оказания услуг",
+  sub:"Заполните онлайн договор возмездного оказания услуг между заказчиком и исполнителем. Выберите порядок оплаты — текст изменится соответственно.",
+  intro:"<b>Договор оказания услуг</b> — соглашение, по которому исполнитель обязуется оказать услугу, а заказчик — её оплатить. Отличие от трудового договора в том, что ответственность здесь наступает не за процесс, а за <b>результат</b>. Опишите предмет точно, выберите порядок оплаты — текст сформируется справа в реальном времени. Введённые данные не отправляются на сервер.",
+  prevTitle:"Текст договора",
+  jump:"Посмотреть договор ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTxt:"Важнейший пункт договора — <b>предмет</b>. Запись «консалтинговые услуги» не защищает в споре ни от чего. Опишите подробно, что делается, в каком виде сдаётся результат и как его проверить.",
+  foot:"Образец договора носит справочный характер. Налоговые ставки и обязательные требования проверьте по действующему законодательству.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Что такое договор оказания услуг и почему он должен быть письменным?</h2><p>Договор оказания услуг — соглашение, по которому одна сторона (исполнитель) обязуется оказать определённую услугу, а другая (заказчик) — её оплатить. Бухгалтерское обслуживание, разработка сайта, ремонт, реклама, обучение, консалтинг — всё это оформляется этим договором.</p><p>Устная договорённость тоже является договорённостью, но при споре доказать её почти невозможно. Сколько следовало заплатить, когда работа должна была завершиться, каким должен быть результат — всё это остаётся в памяти сторон, и каждая помнит по-своему.</p><p>Письменный договор фиксирует в одном месте три вещи: что делается, сколько платится и когда. Если эти три элемента изложены чётко, большая часть разногласий не возникает вовсе. Остальные пункты — гарантия, пеня, конфиденциальность — дополнительный слой защиты.</p><p>Для юридических лиц письменная форма обязательна на практике: оплата проходит через банк, бухгалтерии нужен документ для обоснования расхода, и в налоговой отчётности договор также служит основанием.</p><h2>Чем он отличается от трудового договора?</h2><p>Это место, где чаще всего ошибаются, и различие принципиально. По трудовому договору работник вовлекается в <b>процесс</b>: подчиняется режиму рабочего времени, соблюдает правила внутреннего распорядка, регулярно выполняет должностные обязанности и получает за это регулярную заработную плату. По договору услуг исполнитель отвечает за <b>результат</b> — как и когда работать, он определяет сам.</p><p>Второе отличие — гарантии. Трудовой договор даёт работнику отпуск, больничный, минимальный размер оплаты труда и порядок увольнения. В договоре услуг этих гарантий нет: исполнитель организует свою деятельность самостоятельно и отпуск не запрашивает.</p><p>Третье отличие — налоги и отчисления. В трудовых отношениях работодатель удерживает налог с заработной платы и уплачивает обязательные отчисления. В договоре услуг порядок иной и зависит от статуса исполнителя (индивидуальный предприниматель, самозанятый или обычное физическое лицо).</p><p>Почему это важно? На практике встречаются попытки прикрыть трудовые отношения договором услуг. Если человек ежедневно приходит к определённому времени, подчиняется руководству и выполняет постоянную функцию — это трудовые отношения, как бы ни назывался документ. При проверке такой договор может быть переквалифицирован.</p><p>Поэтому заключайте договор услуг именно под работы, ориентированные на результат: конкретный проект, конкретный объём, конкретная точка сдачи.</p><h2>Как правильно описать предмет услуги?</h2><p>Предмет — важнейший пункт договора. Запись «консалтинговые услуги» или «ИТ-услуги» ничего не конкретизирует: при споре исполнитель скажет «я сделал это», а заказчик — «я ожидал другого».</p><p>Чтобы описать верно, ответьте на три вопроса: что делается, в каком виде сдаётся результат и как его проверить. Например, не «разработка сайта», а «корпоративный сайт из пяти страниц: главная, услуги, о компании, контакты, блог; адаптивная вёрстка; с панелью администратора».</p><p>Указывается и место оказания услуги. Работает ли исполнитель на территории заказчика, в своём офисе или удалённо — это влияет на распределение ответственности и расходов.</p><p>В генераторе для предмета предусмотрено отдельное поле подробного описания. Не жалейте на него времени: именно этот текст — единственное, что предотвращает последующий спор «мы об этом не договаривались».</p><h2>Варианты порядка оплаты и кому какой выгоден</h2><p><b>Полная оплата по завершении</b> — самый безопасный вариант для заказчика: деньги платятся только после получения результата. Для исполнителя он рискован, поскольку всю работу он выполняет за свой счёт и принимает на себя риск неоплаты.</p><p><b>Аванс и остаток</b> — наиболее распространённый баланс. Исполнитель покрывает материалы и начальные расходы, а заказчик оставляет часть суммы привязанной к результату. Размер аванса должен быть прямо указан в договоре.</p><p><b>Поэтапная оплата</b> — для длительных и крупных проектов. Название, срок и сумма каждого этапа указываются отдельно, а оплата производится после приёмки соответствующего этапа. Это снижает риск для обеих сторон и позволяет контролировать ход проекта.</p><p><b>Ежемесячная оплата</b> — для длящихся услуг: бухгалтерия, техническая поддержка, SMM, уборка. Здесь результат не разовый, а регулярный, и договор обычно определяется количеством месяцев.</p><p>В генераторе четыре варианта выбираются кнопкой, и текст договора меняется полностью. В поэтапном варианте, если сумма этапов не совпадает с общей, генератор показывает напоминание — это не ошибка, но чаще всего указывает на опечатку при вводе.</p><h2>НДС: кто платит и как это указывается в договоре</h2><p>Налог на добавленную стоимость зависит от налогового статуса исполнителя. Если исполнитель является плательщиком НДС, налог добавляется к стоимости услуги и указывается в договоре отдельной строкой. Если не является — в договор включается пункт о том, что налог не взимается.</p><p>Самая частая ошибка — указать в договоре одну сумму и оставить открытым вопрос, входит НДС в неё или начисляется сверху. Позже это превращается в прямой финансовый спор, поскольку разница может быть заметной.</p><p>Правильный способ — тремя строками: стоимость услуги, сумма НДС и итоговая сумма к оплате. Генератор делает именно так и рассчитывает все три числа сам.</p><p>Ставка остаётся полем, которое заполняет пользователь — генератор не задаёт её заранее, поскольку ставки время от времени меняются и могут различаться в разных случаях. Проверьте действующую ставку по официальному источнику; чтобы быстро увидеть расчёт, можно воспользоваться калькулятором НДС.</p><h2>Пункты о гарантии и пене</h2><p>Гарантийный срок — период, в течение которого исполнитель обязуется бесплатно устранять недостатки своей работы. Если он не указан в договоре, вопрос гарантии решается по общим правилам, что часто создаёт неопределённость для обеих сторон.</p><p>Логично устанавливать срок в зависимости от вида услуги: для ремонтных работ один, для программного продукта другой. В генераторе срок можно указать в днях или месяцах.</p><p>Пеня — сумма, уплачиваемая за просрочку исполнения обязательства. Она может касаться обеих сторон: и когда исполнитель задерживает работу, и когда заказчик задерживает оплату. Обычно пеня считается как процент от суммы за каждый день просрочки.</p><p>Указывая ставку пени, определите и базу: от чего берётся процент — от общей суммы или от просроченной части. В генераторе и ставка, и база вводятся пользователем, поскольку это предмет договорённости сторон.</p><p>Пункт о конфиденциальности устанавливает обязанность исполнителя не разглашать коммерческую информацию, ставшую известной в ходе работы. В услугах с доступом к внутренним данным заказчика он нужен почти всегда.</p><h2>Приёмка результата работы</h2><p>После оказания услуги результат должен быть формально принят. Самый надёжный способ — составить акт приёма-передачи: в нём фиксируется, что именно сдано, когда и в каком состоянии.</p><p>Даже если оплата произведена без акта, позже может появиться претензия, что услуга оказана не в полном объёме. И наоборот, подписанный акт — сильнейшее доказательство исполнения обязательства для исполнителя.</p><p>Полезно прописать в договоре и сам порядок приёмки: в какой срок заказчик рассматривает результат, как заявляет возражения и что происходит, если возражений не поступило. Такой порядок предотвращает затягивание работы.</p><p>Если включить в генераторе пункт «результат принимается по акту», в договор добавится соответствующее положение. Сам акт можно подготовить отдельным генератором.</p><h2>Типичные ошибки</h2><p>Первая ошибка — общее описание предмета. Договор с формулировкой «оказываются услуги» на практике не защищает ни от чего.</p><p>Вторая ошибка — не указать сроки. Без даты начала и завершения невозможно определить, когда работа считается просроченной, и пункт о пене перестаёт работать.</p><p>Третья ошибка — оставить открытым вопрос НДС. Входит он в сумму или начисляется сверху, должно решаться в договоре, а не после.</p><p>Четвёртая ошибка — не описать порядок приёмки результата. Если остаётся неясным, кто, когда и как принимает работу, затягивается и оплата.</p><p>Пятая ошибка — оформлять трудовые отношения договором услуг. Там, где есть постоянный режим работы и подчинение, этот договор — неверно выбранный документ.</p><p>Шестая ошибка — не прописать порядок расторжения. Если указано, за сколько дней сторона должна предупредить о выходе из договора, расставание проходит спокойно. В генераторе этот срок — редактируемое поле.</p>"
+ }
+};
+
+/* ---------- yordamchi: tomon maydonlari ---------- */
+function partyFields(pre){
+  var isUr=function(v){return v[pre+'Type']==='yuridik'};
+  var isJis=function(v){return v[pre+'Type']!=='yuridik'};
+  return [
+    {id:pre+'Type',t:'seg',def:'yuridik',label:{uz:'Kim sifatida',ru:'В качестве кого'},
+     opts:[{v:'jismoniy',label:{uz:'Jismoniy shaxs',ru:'Физлицо'}},{v:'yuridik',label:{uz:'Yuridik shaxs',ru:'Юрлицо'}}]},
+    {id:pre+'Fio',t:'text',showIf:isJis,label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Aliyev Alisher Alimovich',ru:'Алиев Алишер Алимович'}},
+    {id:pre+'PasSer',t:'text',showIf:isJis,half:true,label:{uz:'Pasport seriyasi',ru:'Серия паспорта'},ph:{uz:'AA',ru:'AA'}},
+    {id:pre+'PasNum',t:'text',showIf:isJis,half:true,label:{uz:'Pasport raqami',ru:'Номер паспорта'},ph:{uz:'1234567',ru:'1234567'}},
+    {id:pre+'Jshshir',t:'text',showIf:isJis,half:true,label:{uz:'JSHSHIR (ixtiyoriy)',ru:'ПИНФЛ (необязательно)'},ph:{uz:'14 raqam',ru:'14 цифр'}},
+    {id:pre+'Org',t:'text',showIf:isUr,label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Nur Savdo" MChJ',ru:'ООО "Nur Savdo"'}},
+    {id:pre+'Stir',t:'text',showIf:isUr,half:true,label:{uz:'STIR (INN)',ru:'ИНН'},ph:{uz:'123456789',ru:'123456789'}},
+    {id:pre+'Mfo',t:'text',showIf:isUr,half:true,label:{uz:'MFO',ru:'МФО'},ph:{uz:'00123',ru:'00123'}},
+    {id:pre+'Bank',t:'text',showIf:isUr,label:{uz:'Bank nomi',ru:'Название банка'},ph:{uz:'Ipoteka-bank Chilonzor filiali',ru:'Ипотека-банк, Чиланзарский филиал'}},
+    {id:pre+'Acc',t:'text',showIf:isUr,label:{uz:'Hisob raqami',ru:'Расчётный счёт'},ph:{uz:'20208000...',ru:'20208000...'}},
+    {id:pre+'Dir',t:'text',showIf:isUr,label:{uz:'Direktor F.I.Sh.',ru:'Ф.И.О. директора'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:pre+'Addr',t:'text',label:{uz:'Manzil',ru:'Адрес'},ph:{uz:'Toshkent sh., Chilonzor t., 5-kvartal, 12-uy',ru:'г. Ташкент, Чиланзарский р-н, 5-квартал, д.12'}},
+    {id:pre+'Phone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}}
+  ];
+}
+
+var byDates=function(s){return (s.termMode||'dates')==='dates'};
+var byDays=function(s){return s.termMode==='days'};
+var hasVat=function(s){return s.vat==='bilan'};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'xizmatshartnoma',
+ file:'xizmat-korsatish-shartnomasi',
+ sections:[
+  {id:'head',title:{uz:'Shartnoma ma\'lumotlari',ru:'Данные договора'},fields:[
+    {id:'ctrNum',t:'text',half:true,label:{uz:'Shartnoma raqami',ru:'Номер договора'},ph:{uz:'7',ru:'7'}},
+    {id:'city',t:'text',half:true,label:{uz:'Shahar',ru:'Город'},ph:{uz:'Toshkent',ru:'Ташкент'}},
+    {id:'ctrDate',t:'date',half:true,def:today(),label:{uz:'Sana',ru:'Дата'}}
+  ]},
+  {id:'cs',title:{uz:'Buyurtmachi',ru:'Заказчик'},fields:partyFields('cs')},
+  {id:'ex',title:{uz:'Ijrochi',ru:'Исполнитель'},fields:partyFields('ex')},
+  {id:'srv',title:{uz:'Xizmat',ru:'Услуга'},fields:[
+    {id:'srvName',t:'text',label:{uz:'Xizmat nomi',ru:'Наименование услуги'},ph:{uz:'Korporativ sayt ishlab chiqish',ru:'Разработка корпоративного сайта'}},
+    {id:'srvDesc',t:'area',rows:4,label:{uz:'Batafsil tavsif',ru:'Подробное описание'},
+     ph:{uz:"Nima qilinadi, natija qanday ko'rinishda topshiriladi, uni qanday tekshirish mumkin...",ru:'Что делается, в каком виде сдаётся результат, как его проверить...'},
+     hint:{uz:"Shartnomaning eng muhim maydoni. Umumiy so'zlar o'rniga aniq hajm va natijani yozing.",ru:'Важнейшее поле договора. Вместо общих слов укажите конкретный объём и результат.'}},
+    {id:'srvPlace',t:'text',label:{uz:'Bajarilish joyi',ru:'Место оказания'},ph:{uz:"Ijrochining ish joyi / masofadan",ru:'Место работы исполнителя / удалённо'}}
+  ]},
+  {id:'term',title:{uz:'Muddat',ru:'Срок'},fields:[
+    {id:'termMode',t:'seg',def:'dates',label:{uz:'Muddat qanday belgilanadi',ru:'Как определяется срок'},
+     opts:[
+      {v:'dates',label:{uz:'Ikki sana bilan',ru:'Двумя датами'}},
+      {v:'days',label:{uz:'Kun soni bilan',ru:'Количеством дней'}}
+     ]},
+    {id:'startDate',t:'date',half:true,label:{uz:'Boshlanish sanasi',ru:'Дата начала'}},
+    {id:'endDate',t:'date',half:true,showIf:byDates,label:{uz:'Tugash sanasi',ru:'Дата окончания'}},
+    {id:'days',t:'num',half:true,showIf:byDays,unit:{uz:'kun',ru:'дней'},
+     label:{uz:'Bajarish muddati',ru:'Срок выполнения'},
+     hint:{uz:'Tugash sanasi boshlanish sanasidan avtomatik hisoblanadi.',ru:'Дата окончания рассчитывается от даты начала автоматически.'}}
+  ]},
+  {id:'price',title:{uz:'Narx',ru:'Стоимость'},fields:[
+    {id:'total',t:'num',half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Xizmat qiymati',ru:'Стоимость услуги'},ph:{uz:'15000000',ru:'15000000'},
+     hint:{uz:"«QQS bilan» tanlansa, bu summa QQS'siz baza hisoblanadi va soliq ustiga qo'shiladi.",ru:'При выборе «с НДС» эта сумма считается базой без налога, и НДС начисляется сверху.'}},
+    {id:'vat',t:'seg',def:'siz',label:{uz:'QQS',ru:'НДС'},
+     opts:[{v:'siz',label:{uz:'QQS siz',ru:'Без НДС'}},{v:'bilan',label:{uz:'QQS bilan',ru:'С НДС'}}]},
+    {id:'vatRate',t:'num',half:true,def:'12',showIf:hasVat,unit:{uz:'%',ru:'%'},
+     label:{uz:'QQS stavkasi',ru:'Ставка НДС'},
+     hint:{uz:'Amaldagi stavkani rasmiy manbadan tekshiring — generator uni oldindan belgilamaydi.',ru:'Проверьте действующую ставку по официальному источнику — генератор её не задаёт.'}}
+  ]},
+  {id:'pay',title:{uz:"To'lov tartibi",ru:'Порядок оплаты'},fields:[
+    {id:'payMode',t:'seg',def:'full',label:{uz:"To'lov qanday amalga oshiriladi",ru:'Как производится оплата'},
+     opts:[
+      {v:'full',label:{uz:"Ish tugagach to'liq",ru:'Полностью по завершении'}},
+      {v:'prepay',label:{uz:'Oldindan + qolgani',ru:'Аванс + остаток'}},
+      {v:'stages',label:{uz:'Bosqichma-bosqich',ru:'Поэтапно'}},
+      {v:'monthly',label:{uz:'Oylik',ru:'Ежемесячно'}}
+     ]},
+    {id:'prepayPct',t:'num',half:true,def:'30',unit:{uz:'%',ru:'%'},
+     label:{uz:"Oldindan to'lov foizi",ru:'Размер аванса'},
+     showIf:function(s){return s.payMode==='prepay'}},
+    {id:'stages',t:'table',showIf:function(s){return s.payMode==='stages'},
+     label:{uz:'Bosqichlar',ru:'Этапы'},
+     addLabel:{uz:"+ Bosqich qo'shish",ru:'+ Добавить этап'},
+     hint:{uz:"Bosqichlar yig'indisi jami summaga to'g'ri kelmasa, natija ostida eslatma chiqadi.",ru:'Если сумма этапов не совпадает с общей, под результатом появится напоминание.'},
+     cols:[
+      {id:'name',label:{uz:'Bosqich nomi',ru:'Название этапа'},ph:{uz:'Dizayn maketi',ru:'Дизайн-макет'}},
+      {id:'term',narrow:true,label:{uz:'Muddati',ru:'Срок'},ph:{uz:'15 kun',ru:'15 дней'}},
+      {id:'sum',narrow:true,num:true,label:{uz:'Summasi',ru:'Сумма'},ph:{uz:'5000000',ru:'5000000'}}
+     ]},
+    {id:'monthlySum',t:'num',half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:"Oylik to'lov",ru:'Ежемесячный платёж'},ph:{uz:'2500000',ru:'2500000'},
+     showIf:function(s){return s.payMode==='monthly'}},
+    {id:'months',t:'num',half:true,def:'12',unit:{uz:'oy',ru:'мес.'},label:{uz:'Oylar soni',ru:'Количество месяцев'},
+     showIf:function(s){return s.payMode==='monthly'}}
+  ]},
+  {id:'extra',title:{uz:"Qo'shimcha bandlar (ixtiyoriy)",ru:'Дополнительные пункты (необязательно)'},fields:[
+    {id:'actAccept',t:'seg',def:'yoq',label:{uz:'Natija dalolatnoma bilan qabul qilinadi',ru:'Результат принимается по акту'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'warranty',t:'seg',def:'yoq',label:{uz:'Kafolat muddati',ru:'Гарантийный срок'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'warrantyVal',t:'num',half:true,def:'6',label:{uz:'Kafolat muddati',ru:'Срок гарантии'},
+     showIf:function(s){return s.warranty==='ha'}},
+    {id:'warrantyUnit',t:'seg',def:'oy',label:{uz:"Kafolat o'lchovi",ru:'Единица гарантии'},
+     opts:[{v:'kun',label:{uz:'kun',ru:'дней'}},{v:'oy',label:{uz:'oy',ru:'месяцев'}}],
+     showIf:function(s){return s.warranty==='ha'}},
+    {id:'penalty',t:'seg',def:'yoq',label:{uz:'Kechikkanlik uchun penya',ru:'Пеня за просрочку'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'penaltyRate',t:'text',half:true,def:'0,1',unit:{uz:'% / kun',ru:'% / день'},
+     label:{uz:'Penya stavkasi',ru:'Ставка пени'},
+     showIf:function(s){return s.penalty==='ha'}},
+    {id:'penaltyBase',t:'seg',def:'kechikkan',label:{uz:'Penya nimadan hisoblanadi',ru:'База для пени'},
+     opts:[
+      {v:'kechikkan',label:{uz:'Kechiktirilgan summadan',ru:'От просроченной суммы'}},
+      {v:'umumiy',label:{uz:'Umumiy summadan',ru:'От общей суммы'}}
+     ],
+     showIf:function(s){return s.penalty==='ha'}},
+    {id:'confidential',t:'seg',def:'yoq',label:{uz:'Maxfiylik sharti',ru:'Условие о конфиденциальности'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'materials',t:'seg',def:'yoq',label:{uz:'Materiallar kim hisobidan',ru:'За чей счёт материалы'},
+     opts:[
+      {v:'yoq',label:{uz:'Band kerak emas',ru:'Пункт не нужен'}},
+      {v:'ijrochi',label:{uz:'Ijrochi',ru:'Исполнитель'}},
+      {v:'buyurtmachi',label:{uz:'Buyurtmachi',ru:'Заказчик'}}
+     ]}
+  ]},
+  {id:'fin',title:{uz:'Bekor qilish',ru:'Расторжение'},fields:[
+    {id:'cancelDays',t:'num',half:true,def:'10',unit:{uz:'kun',ru:'дней'},
+     label:{uz:'Ogohlantirish muddati',ru:'Срок предупреждения'},
+     hint:{uz:'Shartnomadan chiqmoqchi bo\'lgan tomon necha kun oldin yozma ogohlantiradi.',ru:'За сколько дней сторона письменно предупреждает о выходе из договора.'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var total=KD.num(v.total);
+   var rate=KD.num(v.vatRate);
+   var withVat=(v.vat==='bilan');
+   var vatSum=withVat?Math.round(total*rate/100):0;
+   var grand=total+vatSum;
+
+   var end=(v.termMode==='days')?addDays(v.startDate,KD.num(v.days)):(v.endDate||'');
+
+   var st=Array.isArray(v.stages)?v.stages.filter(function(r){
+     return r&&typeof r==='object'&&(String(r.name||'').trim()||KD.num(r.sum));
+   }):[];
+   var stageSum=0;
+   for(var i=0;i<st.length;i++) stageSum+=KD.num(st[i].sum);
+
+   var months=KD.num(v.months);
+   var monthlySum=KD.num(v.monthlySum);
+
+   var c={
+     total:total,withVat:withVat,rate:rate,vatSum:vatSum,grand:grand,
+     end:end,payMode:v.payMode||'full',
+     prepay:Math.round(grand*KD.num(v.prepayPct)/100),
+     stages:st,stageCount:st.length,stageSum:stageSum,stageDiff:stageSum-grand,
+     months:months,monthlySum:monthlySum,monthlyTotal:monthlySum*months
+   };
+   setStageWarn(c,lang);
+   return c;
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+
+   function party(pre){
+     var yur=v[pre+'Type']==='yuridik';
+     if(yur){
+       var s=KD.v(v[pre+'Org'],34)+' ('+(ru?'ИНН: ':'STIR: ')+KD.v(v[pre+'Stir'],11)
+         +', '+(ru?'р/с: ':'h/r: ')+KD.v(v[pre+'Acc'],20)
+         +', '+(ru?'банк: ':'bank: ')+KD.v(v[pre+'Bank'],22)
+         +', '+(ru?'МФО: ':'MFO: ')+KD.v(v[pre+'Mfo'],7)
+         +', '+(ru?'адрес: ':'manzil: ')+KD.v(v[pre+'Addr'],26)+')';
+       var dir=KD.v(v[pre+'Dir'],26);
+       s+=ru?', в лице директора '+dir+', действующего на основании устава'
+            :', direktor '+dir+" timsolida, ustav asosida ish yurituvchi";
+       return s;
+     }
+     var p=KD.v(v[pre+'Fio'],32)+' ('+(ru?'паспорт: серия ':'pasport: seriya ')+KD.v(v[pre+'PasSer'],5)
+       +' № '+KD.v(v[pre+'PasNum'],9);
+     if(v[pre+'Jshshir']) p+=', '+(ru?'ПИНФЛ: ':'JSHSHIR: ')+v[pre+'Jshshir'];
+     p+=', '+(ru?'адрес: ':'manzil: ')+KD.v(v[pre+'Addr'],26)+')';
+     return p;
+   }
+   function partyName(pre){
+     return v[pre+'Type']==='yuridik'?KD.v(v[pre+'Org'],24):KD.v(v[pre+'Fio'],24);
+   }
+
+   b.push({k:'title',text:ru?'ДОГОВОР ОКАЗАНИЯ УСЛУГ':"XIZMAT KO'RSATISH SHARTNOMASI"});
+   b.push({k:'sub',text:'№ '+KD.v(v.ctrNum,6)});
+   var cityTxt=ru?('г. '+KD.v(v.city,14)):(KD.v(v.city,14)+' sh.');
+   b.push({k:'sub',text:cityTxt+'          '+(v.ctrDate?KD.fmtDate(v.ctrDate,lang):B(22))});
+
+   b.push({k:'p',text:party('cs')
+     +(ru?', именуемый в дальнейшем «Заказчик», с одной стороны, и '
+         :", keyingi o'rinlarda «Buyurtmachi» deb ataladi, bir tomondan, va ")
+     +party('ex')
+     +(ru?', именуемый в дальнейшем «Исполнитель», с другой стороны, заключили настоящий договор о нижеследующем:'
+         :", keyingi o'rinlarda «Ijrochi» deb ataladi, ikkinchi tomondan, ushbu shartnomani quyidagilar haqida tuzdik:")});
+
+   /* 1. PREDMET */
+   b.push({k:'h',text:ru?'1. ПРЕДМЕТ ДОГОВОРА':'1. SHARTNOMA PREDMETI'});
+   b.push({k:'p',text:ru
+     ?'1.1. Исполнитель обязуется оказать Заказчику услугу: '+KD.v(v.srvName,32)+', а Заказчик обязуется принять и оплатить её на условиях настоящего договора.'
+     :'1.1. Ijrochi Buyurtmachiga quyidagi xizmatni ko\'rsatish majburiyatini oladi: '+KD.v(v.srvName,32)+', Buyurtmachi esa uni qabul qilib olish va ushbu shartnoma shartlari asosida haqini to\'lash majburiyatini oladi.'});
+   var desc=String(v.srvDesc||'').trim();
+   if(desc){
+     var dp=desc.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
+     b.push({k:'p',text:(ru?'1.2. Содержание услуги:':'1.2. Xizmat mazmuni:')});
+     for(var di=0;di<dp.length;di++) b.push({k:'p',text:dp[di]});
+   } else {
+     b.push({k:'p',text:(ru?'1.2. Содержание услуги: ':'1.2. Xizmat mazmuni: ')+B(46)});
+   }
+   b.push({k:'p',text:(ru?'1.3. Место оказания услуги: ':'1.3. Xizmat ko\'rsatiladigan joy: ')+KD.v(v.srvPlace,28)+'.'});
+
+   /* 2. MUDDAT */
+   b.push({k:'h',text:ru?'2. СРОК ОКАЗАНИЯ УСЛУГИ':'2. XIZMAT KO\'RSATISH MUDDATI'});
+   var sd=v.startDate?KD.fmtDate(v.startDate,lang):B(20);
+   var ed=c.end?KD.fmtDate(c.end,lang):B(20);
+   // Ruschada fmtDate "г." bilan tugaydi — yana nuqta qo'yilsa "г.." bo'lardi.
+   b.push({k:'p',text:ru
+     ?'2.1. Услуга оказывается в период с '+sd+' по '+ed+(c.end?'':'.')
+     :'2.1. Xizmat '+sd+'dan '+ed+'gacha bo\'lgan davrda ko\'rsatiladi.'});
+   if(v.termMode==='days'&&KD.num(v.days)){
+     b.push({k:'p',text:ru
+       ?'2.2. Срок выполнения составляет '+KD.fmtNum(KD.num(v.days))+' календарных дней с даты начала.'
+       :'2.2. Bajarish muddati boshlanish sanasidan boshlab '+KD.fmtNum(KD.num(v.days))+' kalendar kunini tashkil etadi.'});
+   }
+
+   /* 3. NARX VA TO'LOV */
+   b.push({k:'h',text:ru?'3. СТОИМОСТЬ И ПОРЯДОК ОПЛАТЫ':'3. XIZMAT NARXI VA TO\'LOV TARTIBI'});
+   if(c.withVat){
+     b.push({k:'p',text:(ru?'3.1. Стоимость услуги составляет ':'3.1. Xizmat qiymati ')+KD.money(c.total,lang)+(ru?'.':'ni tashkil etadi.')});
+     b.push({k:'p',text:ru
+       ?'3.2. НДС по ставке '+(c.rate?KD.fmtNum(c.rate):B(4))+'% составляет '+KD.money(c.vatSum,lang)+'.'
+       :'3.2. '+(c.rate?KD.fmtNum(c.rate):B(4))+'% stavkadagi QQS summasi '+KD.money(c.vatSum,lang)+'ni tashkil etadi.'});
+     b.push({k:'p',text:(ru?'3.3. Итого к оплате: ':'3.3. To\'lanadigan jami summa: ')+KD.money(c.grand,lang)+'.'});
+   } else {
+     b.push({k:'p',text:(ru?'3.1. Стоимость услуги составляет ':'3.1. Xizmat qiymati ')+KD.money(c.total,lang)+(ru?'.':'ni tashkil etadi.')});
+     b.push({k:'p',text:ru
+       ?'3.2. Стоимость указана без НДС; налог к стоимости услуги не добавляется.'
+       :'3.2. Qiymat QQS\'siz ko\'rsatilgan; xizmat qiymatiga soliq qo\'shilmaydi.'});
+   }
+
+   if(c.payMode==='full'){
+     b.push({k:'p',text:ru
+       ?'3.4. Оплата производится единовременно, в полном объёме, после оказания услуги.'
+       :'3.4. To\'lov xizmat ko\'rsatilgandan keyin bir yo\'la, to\'liq hajmda amalga oshiriladi.'});
+   } else if(c.payMode==='prepay'){
+     var pct=KD.num(v.prepayPct);
+     b.push({k:'p',text:ru
+       ?'3.4. Заказчик уплачивает аванс в размере '+(pct?KD.fmtNum(pct):B(4))+'% от суммы к оплате, что составляет '+KD.money(c.prepay,lang)+'.'
+       :'3.4. Buyurtmachi to\'lanadigan summaning '+(pct?KD.fmtNum(pct):B(4))+'% miqdorida oldindan to\'lovni amalga oshiradi, bu '+KD.money(c.prepay,lang)+'ni tashkil etadi.'});
+     b.push({k:'p',text:ru
+       ?'3.5. Оставшаяся сумма — '+KD.money(c.grand-c.prepay,lang)+' — уплачивается после оказания услуги.'
+       :'3.5. Qolgan summa — '+KD.money(c.grand-c.prepay,lang)+' — xizmat ko\'rsatilgandan keyin to\'lanadi.'});
+   } else if(c.payMode==='stages'){
+     b.push({k:'p',text:ru
+       ?'3.4. Оплата производится поэтапно. Каждый этап оплачивается после его приёмки Заказчиком:'
+       :'3.4. To\'lov bosqichma-bosqich amalga oshiriladi. Har bir bosqich Buyurtmachi tomonidan qabul qilingandan keyin to\'lanadi:'});
+     if(c.stages.length){
+       for(var si=0;si<c.stages.length;si++){
+         var st=c.stages[si];
+         var parts=[String(st.name||'').trim()||B(20)];
+         if(String(st.term||'').trim()) parts.push((ru?'срок: ':'muddati: ')+st.term);
+         if(KD.num(st.sum)) parts.push(KD.fmtNum(KD.num(st.sum))+' '+KD.currency(lang));
+         b.push({k:'p',text:(si+1)+'. '+parts.join(' — ')+';'});
+       }
+     } else {
+       b.push({k:'p',text:'1. '+B(36)+';'});
+     }
+   } else {
+     b.push({k:'p',text:ru
+       ?'3.4. Оплата производится ежемесячно в размере '+KD.money(c.monthlySum,lang)+'.'
+       :'3.4. To\'lov har oy '+KD.money(c.monthlySum,lang)+' miqdorida amalga oshiriladi.'});
+     if(c.months){
+       b.push({k:'p',text:ru
+         ?'3.5. Услуга оказывается в течение '+KD.fmtNum(c.months)+' месяцев; общая сумма по договору составляет '+KD.money(c.monthlyTotal,lang)+'.'
+         :'3.5. Xizmat '+KD.fmtNum(c.months)+' oy davomida ko\'rsatiladi; shartnoma bo\'yicha umumiy summa '+KD.money(c.monthlyTotal,lang)+' ni tashkil etadi.'});
+     }
+   }
+
+   /* 4. TOMONLARNING MAJBURIYATLARI */
+   b.push({k:'h',text:ru?'4. ОБЯЗАТЕЛЬСТВА СТОРОН':'4. TOMONLARNING MAJBURIYATLARI'});
+   b.push({k:'p',text:ru
+     ?'4.1. Исполнитель обязуется оказать услугу лично либо с привлечением третьих лиц, обеспечив её качество и соблюдение согласованных сроков.'
+     :'4.1. Ijrochi xizmatni shaxsan yoki uchinchi shaxslarni jalb qilgan holda ko\'rsatish, uning sifatini va kelishilgan muddatlarga rioya etilishini ta\'minlash majburiyatini oladi.'});
+   b.push({k:'p',text:ru
+     ?'4.2. Заказчик обязуется предоставить Исполнителю информацию и доступ, необходимые для оказания услуги, а также своевременно произвести оплату.'
+     :'4.2. Buyurtmachi Ijrochiga xizmat ko\'rsatish uchun zarur ma\'lumot va ruxsatni taqdim etish hamda to\'lovni o\'z vaqtida amalga oshirish majburiyatini oladi.'});
+   if(v.materials==='ijrochi'){
+     b.push({k:'p',text:ru
+       ?'4.3. Материалы, необходимые для оказания услуги, предоставляются за счёт Исполнителя и их стоимость включена в цену договора.'
+       :'4.3. Xizmat ko\'rsatish uchun zarur materiallar Ijrochi hisobidan taqdim etiladi va ularning qiymati shartnoma narxiga kiritilgan.'});
+   } else if(v.materials==='buyurtmachi'){
+     b.push({k:'p',text:ru
+       ?'4.3. Материалы, необходимые для оказания услуги, предоставляются за счёт Заказчика и в цену договора не включены.'
+       :'4.3. Xizmat ko\'rsatish uchun zarur materiallar Buyurtmachi hisobidan taqdim etiladi va shartnoma narxiga kiritilmagan.'});
+   }
+   if(v.actAccept==='ha'){
+     b.push({k:'p',text:ru
+       ?'4.4. Результат оказанной услуги принимается по акту приёма-передачи, подписываемому обеими сторонами.'
+       :'4.4. Ko\'rsatilgan xizmat natijasi ikkala tomon imzolaydigan topshirish-qabul dalolatnomasi asosida qabul qilinadi.'});
+   }
+
+   /* 5. KAFOLAT VA JAVOBGARLIK */
+   var hasW=(v.warranty==='ha'), hasP=(v.penalty==='ha');
+   if(hasW||hasP){
+     b.push({k:'h',text:ru?'5. ГАРАНТИЯ И ОТВЕТСТВЕННОСТЬ':'5. KAFOLAT VA JAVOBGARLIK'});
+     if(hasW){
+       var wv=KD.num(v.warrantyVal);
+       var wu=(v.warrantyUnit==='kun')?(ru?'дней':'kun'):(ru?'месяцев':'oy');
+       b.push({k:'p',text:ru
+         ?'5.1. Исполнитель устанавливает гарантийный срок на результат услуги — '+(wv?KD.fmtNum(wv):B(4))+' '+wu+' с даты приёмки. В течение этого срока выявленные недостатки устраняются Исполнителем безвозмездно.'
+         :'5.1. Ijrochi xizmat natijasiga kafolat muddatini belgilaydi — qabul qilingan sanadan boshlab '+(wv?KD.fmtNum(wv):B(4))+' '+wu+'. Ushbu muddat ichida aniqlangan kamchiliklar Ijrochi tomonidan bepul bartaraf etiladi.'});
+     }
+     if(hasP){
+       var pr=String(v.penaltyRate||'').trim();
+       var base=(v.penaltyBase==='umumiy')
+         ?(ru?'общей суммы договора':'shartnomaning umumiy summasidan')
+         :(ru?'просроченной суммы':'kechiktirilgan summadan');
+       b.push({k:'p',text:ru
+         ?'5.2. За нарушение сроков виновная сторона уплачивает пеню в размере '+(pr||B(5))+'% от '+base+' за каждый день просрочки.'
+         :'5.2. Muddatlar buzilgani uchun aybdor tomon har bir kechiktirilgan kun uchun '+base+' '+(pr||B(5))+'% miqdorida penya to\'laydi.'});
+     }
+   }
+
+   /* 6. MAXFIYLIK */
+   if(v.confidential==='ha'){
+     b.push({k:'h',text:ru?'6. КОНФИДЕНЦИАЛЬНОСТЬ':'6. MAXFIYLIK'});
+     b.push({k:'p',text:ru
+       ?'6.1. Стороны обязуются не разглашать третьим лицам сведения, ставшие им известными в связи с исполнением настоящего договора, без письменного согласия другой стороны.'
+       :'6.1. Tomonlar ushbu shartnomani bajarish munosabati bilan o\'zlariga ma\'lum bo\'lgan ma\'lumotlarni boshqa tomonning yozma roziligisiz uchinchi shaxslarga oshkor qilmaslik majburiyatini oladi.'});
+   }
+
+   /* 7. BEKOR QILISH */
+   b.push({k:'h',text:ru?'7. РАСТОРЖЕНИЕ ДОГОВОРА':'7. SHARTNOMANI BEKOR QILISH'});
+   var cd=KD.num(v.cancelDays);
+   b.push({k:'p',text:ru
+     ?'7.1. Каждая из сторон вправе отказаться от исполнения договора, письменно предупредив другую сторону не менее чем за '+(cd?KD.fmtNum(cd):B(4))+' дней.'
+     :'7.1. Har bir tomon boshqa tomonni kamida '+(cd?KD.fmtNum(cd):B(4))+' kun oldin yozma ogohlantirgan holda shartnomani bajarishdan bosh tortishga haqli.'});
+   b.push({k:'p',text:ru
+     ?'7.2. При досрочном расторжении оплате подлежит фактически оказанная часть услуги на дату расторжения.'
+     :'7.2. Shartnoma muddatidan oldin bekor qilinganda, bekor qilingan sanaga qadar haqiqatan ko\'rsatilgan xizmat qismi to\'lanishi lozim.'});
+
+   /* 8. YAKUNIY QOIDALAR */
+   b.push({k:'h',text:ru?'8. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ':'8. YAKUNIY QOIDALAR'});
+   b.push({k:'p',text:ru
+     ?'8.1. Договор вступает в силу с момента подписания и действует до полного исполнения сторонами своих обязательств.'
+     :'8.1. Shartnoma imzolangan paytdan kuchga kiradi va tomonlar o\'z majburiyatlarini to\'liq bajargunga qadar amal qiladi.'});
+   b.push({k:'p',text:ru
+     ?'8.2. Договор составлен в двух экземплярах, имеющих одинаковую юридическую силу, по одному для каждой стороны.'
+     :'8.2. Shartnoma bir xil yuridik kuchga ega ikki nusxada, har bir tomon uchun bittadan tuzildi.'});
+   b.push({k:'p',text:ru
+     ?'8.3. Не урегулированные настоящим договором вопросы разрешаются в соответствии с законодательством Республики Узбекистан.'
+     :'8.3. Ushbu shartnomada tartibga solinmagan masalalar O\'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.'});
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[(ru?'Заказчик:':'Buyurtmachi:'),partyName('cs'),'_______________ '+(ru?'(подпись)':'(imzo)')],
+     right:[(ru?'Исполнитель:':'Ijrochi:'),partyName('ex'),'_______________ '+(ru?'(подпись)':'(imzo)')]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Налоговые ставки и обязательные требования проверьте по действующему законодательству.'
+     :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Soliq stavkalari va majburiy talablarni amaldagi qonunchilikdan tekshiring."});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[["Xizmat shartnomasi bilan mehnat shartnomasini qanday farqlash kerak?","Asosiy mezon — bo'ysunish va natija. Agar odam belgilangan ish vaqtida keladi, ichki tartib qoidalariga bo'ysunadi va doimiy funksiyani bajaradi — bu mehnat munosabati, hujjat qanday nomlanganidan qat'i nazar. Xizmat shartnomasida esa ijrochi qachon va qanday ishlashini o'zi hal qiladi, javobgarligi esa aniq natija uchun bo'ladi. Doimiy ishni xizmat shartnomasi bilan rasmiylashtirish tekshiruvda qayta kvalifikatsiya qilinishiga olib kelishi mumkin."],["Oldindan to'lov qancha bo'lishi kerak?","Qonun aniq foiz belgilamaydi — bu tomonlarning kelishuvi. Amalda ijrochining boshlang'ich xarajatlariga qarab belgilanadi: materiallar ko'p bo'lsa, oldindan to'lov ham kattaroq bo'ladi. Generatorda foizni o'zingiz kiritasiz va shartnoma matnida oldindan to'lov hamda qolgan summa avtomatik hisoblanadi."],["Ijrochi QQS to'lovchisi bo'lmasa nima yoziladi?","«QQS siz» variantini tanlang — shartnomaga xizmat qiymatiga QQS qo'shilmasligi haqidagi band yoziladi va uch qatorli hisob-kitob chiqmaydi. Bu ijrochining soliq maqomiga bog'liq, shuning uchun shartnoma tuzishdan oldin uni aniqlab oling. Amaldagi stavkani rasmiy manbadan tekshiring."],["Ish natijasini qabul qilish dalolatnomasi majburiymi?","Qonun har doim ham majburlamaydi, lekin amalda u ijrochining eng kuchli himoyasi. Dalolatnoma bo'lmasa, to'lov qilingandan keyin ham «xizmat to'liq ko'rsatilmagan» degan da'vo chiqishi mumkin. Generatorda tegishli bandni yoqsangiz, shartnomaga qabul qilish tartibi qo'shiladi; dalolatnomaning o'zini alohida generator bilan tayyorlaysiz."],["Bosqichlar yig'indisi umumiy summaga to'g'ri kelmasa nima bo'ladi?","Generator buni xatolik deb hisoblamaydi va shartnomani baribir shakllantiradi — faqat natija ostida eslatma ko'rsatadi va farqni ko'rsatib beradi. Ba'zan farq ataylab qoldiriladi (masalan oxirgi bosqich kafolat ushlab qolinishi bilan), lekin ko'p hollarda bu kiritishdagi adashish bo'ladi. Eslatmani ko'rib, raqamlarni tekshirib chiqing."],["Shartnomani muddatidan oldin bekor qilsa bo'ladimi?","Ha, agar shartnomada bekor qilish tartibi yozilgan bo'lsa. Odatda tomon boshqa tomonni belgilangan kun oldin yozma ogohlantiradi va shu paytgacha bajarilgan ish uchun hisob-kitob qilinadi. Generatorda ogohlantirish muddati tahrirlanadigan maydon — standart qiymat faqat boshlang'ich nuqta, uni o'zingizga moslashtiring."],["Penya stavkasini qanday belgilash kerak?","Penya odatda kechiktirilgan har bir kun uchun summadan foiz sifatida hisoblanadi. Muhimi — bazani ham aniq yozish: foiz umumiy summadanmi yoki faqat kechiktirilgan qismidanmi olinadi. Generatorda ikkalasini ham o'zingiz kiritasiz, chunki bu tomonlarning kelishuv predmeti va qonun aniq raqam belgilamaydi. Juda yuqori penya keyinchalik kamaytirilishi mumkinligini ham hisobga oling."]],
+ ru:[["Как отличить договор услуг от трудового договора?","Основной критерий — подчинение и результат. Если человек приходит к установленному времени, подчиняется правилам внутреннего распорядка и выполняет постоянную функцию — это трудовые отношения, как бы ни назывался документ. По договору услуг исполнитель сам решает, когда и как работать, а отвечает за конкретный результат. Оформление постоянной работы договором услуг может привести к переквалификации при проверке."],["Каким должен быть размер аванса?","Закон не устанавливает конкретный процент — это предмет договорённости сторон. На практике размер зависит от начальных расходов исполнителя: чем больше материалов, тем выше аванс. В генераторе процент вводите вы, а сумма аванса и остатка в тексте договора рассчитывается автоматически."],["Что писать, если исполнитель не является плательщиком НДС?","Выберите вариант «без НДС» — в договор будет включён пункт о том, что налог к стоимости услуги не добавляется, и трёхстрочный расчёт не появится. Это зависит от налогового статуса исполнителя, поэтому выясните его до заключения договора. Действующую ставку проверьте по официальному источнику."],["Обязателен ли акт приёмки результата работы?","Закон не всегда обязывает, но на практике это самая сильная защита исполнителя. Без акта даже после оплаты может появиться претензия, что услуга оказана не в полном объёме. Если включить соответствующий пункт в генераторе, в договор добавится порядок приёмки; сам акт вы подготовите отдельным генератором."],["Что будет, если сумма этапов не совпадает с общей суммой?","Генератор не считает это ошибкой и всё равно формирует договор — он лишь показывает напоминание под результатом и выводит разницу. Иногда расхождение оставляют намеренно (например, при удержании гарантийной суммы на последнем этапе), но чаще это опечатка при вводе. Увидев напоминание, перепроверьте цифры."],["Можно ли расторгнуть договор досрочно?","Да, если в договоре описан порядок расторжения. Обычно сторона письменно предупреждает другую за установленное количество дней, и за фактически выполненную к этому моменту работу производится расчёт. В генераторе срок предупреждения — редактируемое поле, а значение по умолчанию лишь отправная точка."],["Как определить ставку пени?","Пеня обычно считается как процент от суммы за каждый день просрочки. Важно чётко указать и базу: берётся процент от общей суммы или только от просроченной части. В генераторе оба параметра вводите вы, поскольку это предмет договорённости сторон и закон конкретной цифры не устанавливает. Учтите также, что чрезмерно высокая пеня может быть впоследствии уменьшена."]]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Xizmat ko'rsatish shartnomasi namunasi — onlayn to'ldirib, Word yuklab oling",
+    ru:'Образец договора оказания услуг — заполнить онлайн и скачать Word'
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  // O'lchov: PDF haqiqatan yasalgandagina yuboriladi.
+  // gtag bo'lmasa jimgina o'tkazamiz — o'lchov yuklab olishni hech qachon buzmasin.
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='stageWarn'||id==='datanote')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+</body></html>
