@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tavsifnoma namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Tavsifnoma namunasi: xodim yoki talaba uchun. Ish staji avtomatik hisoblanadi, baholar tabiiy matnga birlashadi. Word yoki PDF yuklab oling. Образец характеристики онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/tavsifnoma-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-checks{display:flex;flex-wrap:wrap;gap:7px}
+.dg-chk{border:1.5px solid var(--line);background:#FBFCFB;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:9px 13px;border-radius:99px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s,color .15s}
+.dg-chk:hover{border-color:var(--cat)}
+.dg-chk.on{background:var(--cat);border-color:var(--cat);color:#fff}
+.dg-chk.on::before{content:"✓ ";font-weight:800}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<meta property="og:title" content="Tavsifnoma namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Tavsifnoma namunasi: xodim yoki talaba uchun. Ish staji avtomatik hisoblanadi, baholar tabiiy matnga birlashadi. Word yoki PDF yuklab oling. Образец характеристики онлайн.">
+<meta property="og:url" content="https://kalki.uz/tavsifnoma-namunasi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tavsifnoma namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Tavsifnoma namunasi: xodim yoki talaba uchun. Ish staji avtomatik hisoblanadi, baholar tabiiy matnga birlashadi. Word yoki PDF yuklab oling. Образец характеристики онлайн.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+}
+@media (max-width:420px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Tavsifnoma namunasi","item":"https://kalki.uz/tavsifnoma-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Tavsifnoma namunasi","description":"Tavsifnoma namunasi: xodim yoki talaba uchun. Ish staji avtomatik hisoblanadi, baholar tabiiy matnga birlashadi. Word yoki PDF yuklab oling. Образец характеристики онлайн.","url":"https://kalki.uz/tavsifnoma-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Tavsifnomani kim yozadi — xodimning o'zimi yoki tashkilotmi?","acceptedAnswer":{"@type":"Answer","text":"Rasman uni tashkilot beradi va rahbar imzolaydi. Amalda esa loyihasini ko'pincha xodimning bevosita rahbari yoki kadrlar bo'limi tayyorlaydi, ba'zan xodimning o'ziga ham dastlabki variantni yozish taklif qilinadi. Bunday holatda generatordan foydalanib matnni tayyorlab, tasdiqlashga topshirasiz — yakuniy mazmun baribir tashkilotning bahosi bo'lib qoladi."}},{"@type":"Question","name":"Tavsifnoma muhrsiz ham yaroqlimi?","acceptedAnswer":{"@type":"Answer","text":"Ko'p tashkilotlarda yo'q. Muhr hujjatni rasmiy qiladigan asosiy element bo'lib, bank va sud kabi rasmiy talab qo'yadigan joylarda muhrsiz tavsifnoma qabul qilinmasligi mumkin. Shuning uchun hujjatni tashkilot blankasida chop etib, rahbar imzosi va muhri bilan rasmiylashtiring — generatorda muhr o'rni belgilab qo'yilgan."}},{"@type":"Question","name":"Intizomiy jazolar haqida yozish shartmi?","acceptedAnswer":{"@type":"Answer","text":"Sud va harbiy komissariat uchun beriladigan tavsifnomalarda bu ma'lumot odatda kutiladi va uni tushirib qoldirish hujjatning ishonchliligiga putur yetkazadi. Boshqa holatlarda ham savolni ochiq qoldirmagan ma'qul. Generatorda ikkita variant bor: jazolar yo'qligi haqidagi band yoki ularni tavsiflash maydoni."}},{"@type":"Question","name":"Ish stajini qanday hisoblash kerak?","acceptedAnswer":{"@type":"Answer","text":"Ishga qabul qilingan sanadan tavsifnoma berilayotgan sanagacha. Generatorda ishga kirgan sanani kiritsangiz, staj yil va oyda avtomatik hisoblanadi va matnga yoziladi. Agar xodim tashkilotda uzilishlar bilan ishlagan bo'lsa, buni matnda alohida izohlash to'g'riroq bo'ladi — hisob esa uzluksiz davrga qaraladi."}},{"@type":"Question","name":"Talaba tavsifnomasini kim imzolaydi?","acceptedAnswer":{"@type":"Answer","text":"Odatda ikki imzo bo'ladi: dekan, direktor yoki o'quv ishlari bo'yicha o'rinbosari va shaxsni bevosita biladigan kurator yoki sinf rahbari. Ikkinchi imzo muhim, chunki aynan u talabaning kundalik faoliyati va xulq-atvorini biladi. Generatorda ikkala imzolovchining lavozimi va F.I.Sh. maydonlari bor."}},{"@type":"Question","name":"Tavsifnomada salbiy baho yozish mumkinmi?","acceptedAnswer":{"@type":"Answer","text":"Ha, tavsifnoma ijobiy bo'lishi shart emas — u tashkilotning haqqoniy bahosi. Lekin baho asoslangan va haqiqatga mos bo'lishi kerak: aslida bo'lmagan jazoni yoki isbotlanmagan ayblovni yozish keyinchalik e'tirozga sabab bo'ladi. Shaxs tavsifnoma mazmuni bilan rozi bo'lmasa, uni tuzatishni yozma so'rashi mumkin."}},{"@type":"Question","name":"Bitta tavsifnomani bir necha joyga ishlatsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Oxirgi jumlada hujjat qayerga berilayotgani ko'rsatiladi, ko'p tashkilotlar esa aynan o'z nomiga yozilgan hujjatni talab qiladi. Generatorda oluvchini tugma bilan almashtirib, har bir joy uchun alohida nusxa tayyorlash bir necha soniya vaqt oladi."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1060px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Tavsifnoma namunasi</h1>
+    <p class="sub" data-i="sub">Xodim yoki talaba uchun tavsifnoma tayyorlang. Rejimni tanlang — forma ham, hujjat matni ham to'liq o'zgaradi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Tavsifnoma namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Tavsifnoma</b> — tashkilot yoki ta'lim muassasasi beradigan, shaxsning faoliyati va sifatlarini bayon etadigan rasmiy hujjat. Uni bank, sud, harbiy komissariat yoki yangi ish joyi so'rashi mumkin. Rejimni tanlang, maydonlarni to'ldiring — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Kim uchun</div><div class="dg-rows"><div class="dg-field" data-fw="mode"><label>Tavsifnoma turi</label><div class="dg-seg"><button type="button" data-seg="mode" data-val="xodim" class="on">Xodim uchun</button><button type="button" data-seg="mode" data-val="talaba">Talaba / o'quvchi uchun</button></div><div class="dg-hint">Rejim almashganda forma maydonlari ham, hujjat matni ham to'liq o'zgaradi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Tashkilot</div><div class="dg-rows"><div class="dg-field" data-fw="orgName"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="orgName" value="" placeholder="&quot;Anor Savdo&quot; MChJ"></div></div><div class="dg-field" data-fw="orgAddr"><label>Tashkilot manzili</label><div class="dg-shell"><input type="text" data-f="orgAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-uy"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Shaxs</div><div class="dg-rows"><div class="dg-field" data-fw="fio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="fio" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field dg-half" data-fw="birthYear"><label>Tug'ilgan yili</label><div class="dg-shell"><input type="text" data-f="birthYear" inputmode="numeric" value="" placeholder="1995"></div></div><div class="dg-field" data-fw="education"><label>Ma'lumoti</label><div class="dg-shell"><input type="text" data-f="education" value="" placeholder="oliy, Toshkent davlat iqtisodiyot universiteti"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Mehnat faoliyati</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="position"><label>Lavozimi</label><div class="dg-shell"><input type="text" data-f="position" value="" placeholder="sotuv menejeri"></div></div><div class="dg-field dg-half" data-fw="dept"><label>Bo'limi</label><div class="dg-shell"><input type="text" data-f="dept" value="" placeholder="savdo bo'limi"></div></div><div class="dg-field dg-half" data-fw="hireDate"><label>Ishga kirgan sanasi</label><div class="dg-shell"><input type="date" data-f="hireDate" value="" placeholder=""></div><div class="dg-hint">Staj shu sanadan avtomatik hisoblanadi.</div></div><div class="dg-field" data-fw="prevPosts"><label>Oldingi lavozimlari (ixtiyoriy)</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="prevPosts">+ Lavozim qo'shish</button></div><div class="dg-hint">Bitta ham qo'shmasangiz, bu band hujjatda chiqmaydi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Baholar</div><div class="dg-rows"><div class="dg-field" data-fw="quality"><label>Ish sifati baholari</label><div class="dg-checks"><button type="button" class="dg-chk" data-chk="quality" data-val="masul" aria-pressed="false">Mas'uliyatli</button><button type="button" class="dg-chk" data-chk="quality" data-val="vaqt" aria-pressed="false">O'z vaqtida bajaradi</button><button type="button" class="dg-chk" data-chk="quality" data-val="jamoa" aria-pressed="false">Jamoada yaxshi ishlaydi</button><button type="button" class="dg-chk" data-chk="quality" data-val="tashabbus" aria-pressed="false">Tashabbuskor</button><button type="button" class="dg-chk" data-chk="quality" data-val="malaka" aria-pressed="false">Malakasini oshirib boradi</button><button type="button" class="dg-chk" data-chk="quality" data-val="intizom" aria-pressed="false">Intizomli</button></div><div class="dg-hint">Tanlanganlari bitta tabiiy paragrafga birlashtiriladi. Hech biri tanlanmasa, paragraf chiqmaydi.</div></div><div class="dg-field" data-fw="rewards"><label>Rag'batlar (ixtiyoriy)</label><div class="dg-shell"><textarea data-f="rewards" rows="2" placeholder="2024-yilda «Yilning eng yaxshi xodimi» ko'krak nishoni bilan taqdirlangan"></textarea></div></div><div class="dg-field" data-fw="discipline"><label>Intizomiy jazolar</label><div class="dg-seg"><button type="button" data-seg="discipline" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="discipline" data-val="bor">Bor</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kimga beriladi</div><div class="dg-rows"><div class="dg-field" data-fw="recipient"><label>Taqdim etish joyi</label><div class="dg-seg"><button type="button" data-seg="recipient" data-val="joy" class="on">Taqdim etish joyi bo'yicha</button><button type="button" data-seg="recipient" data-val="bank">Bankka</button><button type="button" data-seg="recipient" data-val="sud">Sudga</button><button type="button" data-seg="recipient" data-val="harbiy">Harbiy komissariatga</button><button type="button" data-seg="recipient" data-val="ish">Yangi ish joyiga</button><button type="button" data-seg="recipient" data-val="boshqa">Boshqa</button></div></div><div class="dg-field dg-half" data-fw="docDate"><label>Sana</label><div class="dg-shell"><input type="date" data-f="docDate" value="2026-08-07" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Imzolovchilar</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="sign1Post"><label>1-imzolovchi lavozimi</label><div class="dg-shell"><input type="text" data-f="sign1Post" value="" placeholder="Direktor"></div></div><div class="dg-field dg-half" data-fw="sign1Fio"><label>1-imzolovchi F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="sign1Fio" value="" placeholder="Aliyev A. A."></div></div><div class="dg-field dg-half" data-fw="sign2Post"><label>2-imzolovchi lavozimi</label><div class="dg-shell"><input type="text" data-f="sign2Post" value="" placeholder="Kadrlar bo'limi boshlig'i"></div></div><div class="dg-field dg-half" data-fw="sign2Fio"><label>2-imzolovchi F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="sign2Fio" value="" placeholder="Sobirova M. R."></div><div class="dg-hint">Ikkinchi imzo ixtiyoriy: bo'sh qoldirsangiz hujjatda chiqmaydi. Talaba tavsifnomasida odatda kurator yoki sinf rahbari imzolaydi.</div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Tavsifnomani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Tavsifnoma matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 3</span></div>
+        <div id="docBody"><div class="dg-title">TAVSIFNOMA</div><div class="dg-p"><span class="ph">______________________________</span>, <span class="ph">______</span>-yilda tug'ilgan, <span class="ph">____________________________</span> tashkilotida ishlaydi.</div><div class="dg-p"><span class="ph">____________________</span>dan boshlab «<span class="ph">________________________</span>» lavozimida ishlab kelmoqda.</div><div class="dg-p">Intizomiy jazolarga ega emas.</div><div class="dg-gap"></div><div class="dg-p">Tavsifnoma taqdim etish joyi bo'yicha berildi.</div><div class="dg-sig"><div><div>«7» avgust 2026 yil</div><div></div><div><span class="ph">__________________</span>  _______________  <span class="ph">__________________</span></div></div><div><div>M.O'.</div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Tavsifnoma tashkilot blankasida chop etilib, imzo va muhr bilan tasdiqlanadi.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Tavsifnomani <b>tashkilot blankasida</b> chop eting va rahbar imzosi hamda muhr bilan rasmiylashtiring — muhrsiz hujjat bank va sud kabi joylarda qabul qilinmasligi mumkin. Baholarni umumiy so'z bilan emas, aniq jumla bilan yozing.</div>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Tavsifnoma nima va qachon so'raladi?</h2><p>Tavsifnoma — tashkilot yoki ta'lim muassasasi tomonidan beriladigan, shaxsning ish yoki o'qish faoliyati, kasbiy sifatlari va xulq-atvorini bayon etadigan rasmiy hujjat. U shaxsning o'zi haqidagi fikri emas, balki uni bilgan tashkilotning yozma bahosi.</p><p>Ko'p hollarda uni boshqa tashkilot so'raydi. Yangi ish joyi nomzodning oldingi ish beruvchisi qanday baholaganini bilishni xohlaydi, bank kredit berishdan oldin qarz oluvchining barqaror ishlayotganiga ishonch hosil qilmoqchi bo'ladi, sud esa ish ko'rib chiqishda shaxsni tavsiflovchi ma'lumotni so'raydi.</p><p>Talabalar uchun tavsifnoma amaliyot, stipendiya, grant, yotoqxona yoki boshqa muassasaga o'tish masalalarida kerak bo'ladi. Harbiy komissariat ham chaqiruvga bog'liq masalalarda tavsifnoma so'rashi mumkin.</p><p>Hujjatning kuchi uni kim berganiga bog'liq: tavsifnoma tashkilot blankasida, rahbar imzosi va muhri bilan rasmiylashtirilsa, u rasmiy hujjat sifatida qabul qilinadi.</p><h2>Xodim va talaba tavsifnomasi farqi</h2><p>Ikkala hujjat ham bir maqsadga xizmat qiladi, lekin mazmuni butunlay boshqacha. <b>Xodim tavsifnomasi</b> mehnat faoliyatiga qaratiladi: lavozim, ish staji, bajarilgan vazifalar, kasbiy malaka, mehnat intizomi, rag'batlar va agar bo'lsa, intizomiy jazolar.</p><p><b>Talaba tavsifnomasi</b> esa o'quv faoliyatini bayon etadi: kurs yoki sinf, yo'nalish, o'zlashtirish darajasi, ilmiy va ijtimoiy faollik, sport va tanlovlardagi ishtirok hamda jamoadagi xulq-atvori.</p><p>Imzolovchilar ham farq qiladi. Xodim tavsifnomasini odatda tashkilot rahbari imzolaydi, ko'pincha kadrlar bo'limi boshlig'i ham qo'shimcha imzo qo'yadi. Talaba tavsifnomasini esa dekan yoki direktor imzolaydi, ikkinchi imzo kurator yoki sinf rahbariniki bo'ladi.</p><p>Generatorda bu ikki rejim yuqoridagi tugmalar bilan almashtiriladi: forma maydonlari ham, tayyor matn ham to'liq o'zgaradi, shuning uchun keraksiz maydonlarni o'chirib o'tirishga hojat yo'q.</p><h2>Tavsifnomada nimalar yozilishi kerak?</h2><p>Tavsifnoma odatda uch qismdan iborat bo'ladi. Birinchi qism — shaxsning ma'lumotlari: F.I.Sh., tug'ilgan yili, ma'lumoti, lavozimi yoki o'qish joyi. Bu qism hujjat kimga tegishli ekanini aniq belgilaydi.</p><p>Ikkinchi qism — faoliyat bayoni. Xodim uchun bu ish staji, egallagan lavozimlari va bajaradigan vazifalari; talaba uchun o'zlashtirish darajasi va o'quv faoliyati. Bu yerda aniq ma'lumotlar keltirilishi kerak, umumiy iboralar emas.</p><p>Uchinchi qism — baho. Aynan shu qism tavsifnomani ma'lumotnomadan ajratib turadi: bu yerda tashkilot shaxsning sifatlari haqidagi fikrini bildiradi. Mas'uliyat, intizom, jamoadagi munosabat, tashabbuskorlik — bularning har biri alohida jumla bo'lib yoziladi.</p><p>Generatorda baholar belgilash orqali tanlanadi va tanlanganlari bitta tabiiy paragrafga birlashtiriladi — ro'yxat ko'rinishida emas, o'qiladigan matn shaklida. Hech biri tanlanmasa, o'sha paragraf hujjatda umuman chiqmaydi.</p><p>Oxirida tavsifnoma qayerga berilayotgani ko'rsatiladi, so'ng sana, imzolar va muhr o'rni keladi.</p><h2>Kim imzolaydi va muhr shartmi?</h2><p>Xodim tavsifnomasini tashkilot rahbari imzolaydi. Katta tashkilotlarda kadrlar bo'limi boshlig'ining imzosi ham qo'yiladi — bu hujjatdagi ma'lumotlar kadrlar hujjatlariga mos ekanini tasdiqlaydi.</p><p>Ta'lim muassasasida dekan, direktor yoki o'quv ishlari bo'yicha o'rinbosari imzolaydi, ikkinchi imzo esa shaxsni bevosita biladigan kurator yoki sinf rahbariniki bo'ladi.</p><p>Muhr — hujjatni rasmiy qiladigan asosiy element. Muhrsiz tavsifnoma ko'p tashkilotlarda qabul qilinmaydi, ayniqsa bank va sud kabi rasmiy talab qo'yadigan joylarda. Muhr odatda imzo yoniga qo'yiladi va generatorda uning o'rni belgilab qo'yilgan.</p><p>Tavsifnoma tashkilot blankasida chop etilsa yaxshi bo'ladi: blankada tashkilot nomi, manzili va rekvizitlari bo'ladi, bu esa hujjatning ishonchliligini oshiradi. Generator matnni tayyorlaydi, uni blankaga ko'chirish yoki Word faylini blankaga moslashtirish sizning ixtiyoringizda.</p><h2>Sud yoki bank uchun tavsifnoma qanday farq qiladi?</h2><p>Mazmun bir xil qoladi, lekin urg'u o'zgaradi va oxirgi jumlada hujjat qayerga berilayotgani aniq ko'rsatiladi. Bu muhim: «taqdim etish joyi bo'yicha» degan umumiy ibora ba'zi tashkilotlarda qabul qilinmaydi va aniq manzil talab etiladi.</p><p><b>Bank uchun</b> tavsifnomada barqarorlikka urg'u beriladi: qancha vaqtdan beri ishlayotgani, lavozimi va mehnat intizomi. Bank uchun asosiy savol — bu odam barqaror daromadga egami va ishonchlimi.</p><p><b>Sud uchun</b> tavsifnomada shaxsning xulq-atvori va jamoadagi obro'siga urg'u beriladi. Intizomiy jazolar bo'lgan yoki bo'lmagani ham ko'rsatiladi, chunki sud uchun bu ahamiyatli ma'lumot.</p><p><b>Harbiy komissariat uchun</b> odatda intizom, jismoniy tayyorgarlik va jamoadagi munosabat qiziqtiradi. <b>Yangi ish joyi uchun</b> esa kasbiy malaka va bajargan vazifalari birinchi o'ringa chiqadi.</p><p>Generatorda oluvchini tugma bilan tanlaysiz va hujjatning oxirgi jumlasi shunga qarab avtomatik o'zgaradi; ro'yxatda bo'lmagan holat uchun «boshqa» variantini tanlab, o'zingiz yozasiz.</p><h2>Tavsifnoma berishdan bosh tortish mumkinmi?</h2><p>Amalda xodim yozma murojaat qilsa, ish beruvchi unga o'z mehnat faoliyatiga oid hujjatlarni berishi kutiladi. Tavsifnoma ham shu qatorga kiradi, garchi uning mazmuni ish beruvchining bahosi bo'lgani uchun uni majburan ijobiy qilib bo'lmaydi.</p><p>Agar tavsifnoma berilmasa yoki javob berilmasa, avval yozma ariza topshiring va ikkinchi nusxaga qabul qilingani haqidagi belgini oldiring. Bu keyingi bosqichlar uchun asosiy dalil bo'ladi.</p><p>Tavsifnoma mazmuni bilan rozi bo'lmasangiz, unga e'tiroz bildirishingiz mumkin. Undagi ma'lumot haqiqatga to'g'ri kelmasa — masalan, aslida bo'lmagan intizomiy jazo ko'rsatilgan bo'lsa — buni tuzatishni yozma so'rash mumkin.</p><p>Ta'lim muassasalarida tavsifnoma odatda talabaning arizasi asosida beriladi va uni dekanat yoki o'quv bo'limi tayyorlaydi.</p><h2>Tipik xatolar</h2><p>Birinchi xato — faqat umumiy iboralar yozish. «Yaxshi xodim», «intizomli» degan so'zlar hech qanday aniq ma'lumot bermaydi. Har bir baho aniq jumla bilan ochib berilishi kerak.</p><p>Ikkinchi xato — ish stajini yoki lavozimni noto'g'ri ko'rsatish. Bu ma'lumotlar kadrlar hujjatlaridagi yozuvlarga mos kelishi shart, aks holda tavsifnomaning ishonchliligi shubha ostida qoladi. Generator ishga kirgan sanadan stajni o'zi hisoblaydi.</p><p>Uchinchi xato — hujjat qayerga berilayotganini ko'rsatmaslik. Ko'p tashkilotlar aniq manzil talab qiladi va umumiy ibora bilan berilgan tavsifnomani qaytarib yuboradi.</p><p>To'rtinchi xato — sana va muhrni unutish. Sanasiz tavsifnoma qachon berilgani noma'lum bo'lgan hujjatga aylanadi, muhrsiz esa rasmiy hisoblanmaydi.</p><p>Beshinchi xato — shaxsiy ma'lumotlarni ortiqcha yozish. Tavsifnomada faqat so'ralgan maqsad uchun zarur ma'lumot bo'lishi kerak; oilaviy ahvol, sog'liq yoki boshqa shaxsiy tafsilotlar zarurat bo'lmasa yozilmaydi.</p><p>Oltinchi xato — intizomiy jazolar haqidagi savolni ochiq qoldirish. Ular bor yoki yo'qligini aniq yozish kerak; ayniqsa sud va harbiy komissariat uchun bu ma'lumot ahamiyatli.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Tavsifnomani kim yozadi — xodimning o'zimi yoki tashkilotmi?</h2><p>Rasman uni tashkilot beradi va rahbar imzolaydi. Amalda esa loyihasini ko'pincha xodimning bevosita rahbari yoki kadrlar bo'limi tayyorlaydi, ba'zan xodimning o'ziga ham dastlabki variantni yozish taklif qilinadi. Bunday holatda generatordan foydalanib matnni tayyorlab, tasdiqlashga topshirasiz — yakuniy mazmun baribir tashkilotning bahosi bo'lib qoladi.</p><h2>Tavsifnoma muhrsiz ham yaroqlimi?</h2><p>Ko'p tashkilotlarda yo'q. Muhr hujjatni rasmiy qiladigan asosiy element bo'lib, bank va sud kabi rasmiy talab qo'yadigan joylarda muhrsiz tavsifnoma qabul qilinmasligi mumkin. Shuning uchun hujjatni tashkilot blankasida chop etib, rahbar imzosi va muhri bilan rasmiylashtiring — generatorda muhr o'rni belgilab qo'yilgan.</p><h2>Intizomiy jazolar haqida yozish shartmi?</h2><p>Sud va harbiy komissariat uchun beriladigan tavsifnomalarda bu ma'lumot odatda kutiladi va uni tushirib qoldirish hujjatning ishonchliligiga putur yetkazadi. Boshqa holatlarda ham savolni ochiq qoldirmagan ma'qul. Generatorda ikkita variant bor: jazolar yo'qligi haqidagi band yoki ularni tavsiflash maydoni.</p><h2>Ish stajini qanday hisoblash kerak?</h2><p>Ishga qabul qilingan sanadan tavsifnoma berilayotgan sanagacha. Generatorda ishga kirgan sanani kiritsangiz, staj yil va oyda avtomatik hisoblanadi va matnga yoziladi. Agar xodim tashkilotda uzilishlar bilan ishlagan bo'lsa, buni matnda alohida izohlash to'g'riroq bo'ladi — hisob esa uzluksiz davrga qaraladi.</p><h2>Talaba tavsifnomasini kim imzolaydi?</h2><p>Odatda ikki imzo bo'ladi: dekan, direktor yoki o'quv ishlari bo'yicha o'rinbosari va shaxsni bevosita biladigan kurator yoki sinf rahbari. Ikkinchi imzo muhim, chunki aynan u talabaning kundalik faoliyati va xulq-atvorini biladi. Generatorda ikkala imzolovchining lavozimi va F.I.Sh. maydonlari bor.</p><h2>Tavsifnomada salbiy baho yozish mumkinmi?</h2><p>Ha, tavsifnoma ijobiy bo'lishi shart emas — u tashkilotning haqqoniy bahosi. Lekin baho asoslangan va haqiqatga mos bo'lishi kerak: aslida bo'lmagan jazoni yoki isbotlanmagan ayblovni yozish keyinchalik e'tirozga sabab bo'ladi. Shaxs tavsifnoma mazmuni bilan rozi bo'lmasa, uni tuzatishni yozma so'rashi mumkin.</p><h2>Bitta tavsifnomani bir necha joyga ishlatsa bo'ladimi?</h2><p>Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Oxirgi jumlada hujjat qayerga berilayotgani ko'rsatiladi, ko'p tashkilotlar esa aynan o'z nomiga yozilgan hujjatni talab qiladi. Generatorda oluvchini tugma bilan almashtirib, har bir joy uchun alohida nusxa tayyorlash bir necha soniya vaqt oladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Bog'liq hujjat namunalari" data-artt-ru="Связанные образцы документов">Bog'liq hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📋</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat shartnomasi" data-art-ru="Трудовой договор">Mehnat shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📝</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ishdan bo'shash arizasi" data-art-ru="Заявление об увольнении">Ishdan bo'shash arizasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📨</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Umumiy ariza" data-art-ru="Заявление (общее)">Umumiy ariza</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📨</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Umumiy ariza" data-rel-ru="Заявление (общее)">Umumiy ariza</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ishdan bo'shash arizasi" data-rel-ru="Заявление об увольнении">Ishdan bo'shash arizasi</span></a><a href="hujjatlar" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Hujjatlar generatori" data-rel-ru="Генератор документов">Hujjatlar generatori</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Tavsifnoma namunasi ma'lumot uchun. Talablar hujjat so'ralayotgan tashkilotga qarab farq qilishi mumkin.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">7.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+
+/* Ishga kirgan sanadan bugungi kungacha bo'lgan staj. */
+function stajOf(from){
+  var d=KD.parseDate(from);
+  if(!d)return null;
+  var n=new Date();
+  var m=(n.getFullYear()-d.getFullYear())*12+(n.getMonth()-d.getMonth());
+  if(n.getDate()<d.getDate())m--;
+  if(m<0)return null;
+  return {y:Math.floor(m/12),m:m%12};
+}
+/* Ruscha son-son moslashuvi: 3 года, 5 лет */
+function ruPl(n,a,b,c){
+  var n10=n%10,n100=n%100;
+  if(n10===1&&n100!==11)return a;
+  if(n10>=2&&n10<=4&&(n100<10||n100>=20))return b;
+  return c;
+}
+function stajText(s,lang){
+  if(!s)return '';
+  var ru=lang==='ru',out=[];
+  if(s.y)out.push(s.y+' '+(ru?ruPl(s.y,'год','года','лет'):'yil'));
+  if(s.m)out.push(s.m+' '+(ru?ruPl(s.m,'месяц','месяца','месяцев'):'oy'));
+  if(!out.length)out.push(ru?'менее месяца':"bir oydan kam");
+  return out.join(' ');
+}
+
+/* Tanlangan baholar bitta tabiiy paragrafga birlashtiriladi — ro'yxat emas.
+   Hech biri tanlanmasa bo'sh satr qaytadi va paragraf umuman chiqmaydi. */
+function joinPhrases(arr,lang){
+  if(!arr||!arr.length)return '';
+  var ru=lang==='ru',s;
+  if(arr.length===1)s=arr[0];
+  else if(arr.length===2)s=arr[0]+(ru?' и ':' va ')+arr[1];
+  else s=arr.slice(0,-1).join(', ')+(ru?', а также ':' hamda ')+arr[arr.length-1];
+  return s.charAt(0).toUpperCase()+s.slice(1)+'.';
+}
+
+/* ---------- interfeys matnlari ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Tavsifnoma namunasi",
+  sub:"Xodim yoki talaba uchun tavsifnoma tayyorlang. Rejimni tanlang — forma ham, hujjat matni ham to'liq o'zgaradi.",
+  intro:"<b>Tavsifnoma</b> — tashkilot yoki ta'lim muassasasi beradigan, shaxsning faoliyati va sifatlarini bayon etadigan rasmiy hujjat. Uni bank, sud, harbiy komissariat yoki yangi ish joyi so'rashi mumkin. Rejimni tanlang, maydonlarni to'ldiring — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.",
+  prevTitle:"Tavsifnoma matni",
+  jump:"Tavsifnomani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTxt:"Tavsifnomani <b>tashkilot blankasida</b> chop eting va rahbar imzosi hamda muhr bilan rasmiylashtiring — muhrsiz hujjat bank va sud kabi joylarda qabul qilinmasligi mumkin. Baholarni umumiy so'z bilan emas, aniq jumla bilan yozing.",
+  foot:"Tavsifnoma namunasi ma'lumot uchun. Talablar hujjat so'ralayotgan tashkilotga qarab farq qilishi mumkin.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Tavsifnoma nima va qachon so'raladi?</h2><p>Tavsifnoma — tashkilot yoki ta'lim muassasasi tomonidan beriladigan, shaxsning ish yoki o'qish faoliyati, kasbiy sifatlari va xulq-atvorini bayon etadigan rasmiy hujjat. U shaxsning o'zi haqidagi fikri emas, balki uni bilgan tashkilotning yozma bahosi.</p><p>Ko'p hollarda uni boshqa tashkilot so'raydi. Yangi ish joyi nomzodning oldingi ish beruvchisi qanday baholaganini bilishni xohlaydi, bank kredit berishdan oldin qarz oluvchining barqaror ishlayotganiga ishonch hosil qilmoqchi bo'ladi, sud esa ish ko'rib chiqishda shaxsni tavsiflovchi ma'lumotni so'raydi.</p><p>Talabalar uchun tavsifnoma amaliyot, stipendiya, grant, yotoqxona yoki boshqa muassasaga o'tish masalalarida kerak bo'ladi. Harbiy komissariat ham chaqiruvga bog'liq masalalarda tavsifnoma so'rashi mumkin.</p><p>Hujjatning kuchi uni kim berganiga bog'liq: tavsifnoma tashkilot blankasida, rahbar imzosi va muhri bilan rasmiylashtirilsa, u rasmiy hujjat sifatida qabul qilinadi.</p><h2>Xodim va talaba tavsifnomasi farqi</h2><p>Ikkala hujjat ham bir maqsadga xizmat qiladi, lekin mazmuni butunlay boshqacha. <b>Xodim tavsifnomasi</b> mehnat faoliyatiga qaratiladi: lavozim, ish staji, bajarilgan vazifalar, kasbiy malaka, mehnat intizomi, rag'batlar va agar bo'lsa, intizomiy jazolar.</p><p><b>Talaba tavsifnomasi</b> esa o'quv faoliyatini bayon etadi: kurs yoki sinf, yo'nalish, o'zlashtirish darajasi, ilmiy va ijtimoiy faollik, sport va tanlovlardagi ishtirok hamda jamoadagi xulq-atvori.</p><p>Imzolovchilar ham farq qiladi. Xodim tavsifnomasini odatda tashkilot rahbari imzolaydi, ko'pincha kadrlar bo'limi boshlig'i ham qo'shimcha imzo qo'yadi. Talaba tavsifnomasini esa dekan yoki direktor imzolaydi, ikkinchi imzo kurator yoki sinf rahbariniki bo'ladi.</p><p>Generatorda bu ikki rejim yuqoridagi tugmalar bilan almashtiriladi: forma maydonlari ham, tayyor matn ham to'liq o'zgaradi, shuning uchun keraksiz maydonlarni o'chirib o'tirishga hojat yo'q.</p><h2>Tavsifnomada nimalar yozilishi kerak?</h2><p>Tavsifnoma odatda uch qismdan iborat bo'ladi. Birinchi qism — shaxsning ma'lumotlari: F.I.Sh., tug'ilgan yili, ma'lumoti, lavozimi yoki o'qish joyi. Bu qism hujjat kimga tegishli ekanini aniq belgilaydi.</p><p>Ikkinchi qism — faoliyat bayoni. Xodim uchun bu ish staji, egallagan lavozimlari va bajaradigan vazifalari; talaba uchun o'zlashtirish darajasi va o'quv faoliyati. Bu yerda aniq ma'lumotlar keltirilishi kerak, umumiy iboralar emas.</p><p>Uchinchi qism — baho. Aynan shu qism tavsifnomani ma'lumotnomadan ajratib turadi: bu yerda tashkilot shaxsning sifatlari haqidagi fikrini bildiradi. Mas'uliyat, intizom, jamoadagi munosabat, tashabbuskorlik — bularning har biri alohida jumla bo'lib yoziladi.</p><p>Generatorda baholar belgilash orqali tanlanadi va tanlanganlari bitta tabiiy paragrafga birlashtiriladi — ro'yxat ko'rinishida emas, o'qiladigan matn shaklida. Hech biri tanlanmasa, o'sha paragraf hujjatda umuman chiqmaydi.</p><p>Oxirida tavsifnoma qayerga berilayotgani ko'rsatiladi, so'ng sana, imzolar va muhr o'rni keladi.</p><h2>Kim imzolaydi va muhr shartmi?</h2><p>Xodim tavsifnomasini tashkilot rahbari imzolaydi. Katta tashkilotlarda kadrlar bo'limi boshlig'ining imzosi ham qo'yiladi — bu hujjatdagi ma'lumotlar kadrlar hujjatlariga mos ekanini tasdiqlaydi.</p><p>Ta'lim muassasasida dekan, direktor yoki o'quv ishlari bo'yicha o'rinbosari imzolaydi, ikkinchi imzo esa shaxsni bevosita biladigan kurator yoki sinf rahbariniki bo'ladi.</p><p>Muhr — hujjatni rasmiy qiladigan asosiy element. Muhrsiz tavsifnoma ko'p tashkilotlarda qabul qilinmaydi, ayniqsa bank va sud kabi rasmiy talab qo'yadigan joylarda. Muhr odatda imzo yoniga qo'yiladi va generatorda uning o'rni belgilab qo'yilgan.</p><p>Tavsifnoma tashkilot blankasida chop etilsa yaxshi bo'ladi: blankada tashkilot nomi, manzili va rekvizitlari bo'ladi, bu esa hujjatning ishonchliligini oshiradi. Generator matnni tayyorlaydi, uni blankaga ko'chirish yoki Word faylini blankaga moslashtirish sizning ixtiyoringizda.</p><h2>Sud yoki bank uchun tavsifnoma qanday farq qiladi?</h2><p>Mazmun bir xil qoladi, lekin urg'u o'zgaradi va oxirgi jumlada hujjat qayerga berilayotgani aniq ko'rsatiladi. Bu muhim: «taqdim etish joyi bo'yicha» degan umumiy ibora ba'zi tashkilotlarda qabul qilinmaydi va aniq manzil talab etiladi.</p><p><b>Bank uchun</b> tavsifnomada barqarorlikka urg'u beriladi: qancha vaqtdan beri ishlayotgani, lavozimi va mehnat intizomi. Bank uchun asosiy savol — bu odam barqaror daromadga egami va ishonchlimi.</p><p><b>Sud uchun</b> tavsifnomada shaxsning xulq-atvori va jamoadagi obro'siga urg'u beriladi. Intizomiy jazolar bo'lgan yoki bo'lmagani ham ko'rsatiladi, chunki sud uchun bu ahamiyatli ma'lumot.</p><p><b>Harbiy komissariat uchun</b> odatda intizom, jismoniy tayyorgarlik va jamoadagi munosabat qiziqtiradi. <b>Yangi ish joyi uchun</b> esa kasbiy malaka va bajargan vazifalari birinchi o'ringa chiqadi.</p><p>Generatorda oluvchini tugma bilan tanlaysiz va hujjatning oxirgi jumlasi shunga qarab avtomatik o'zgaradi; ro'yxatda bo'lmagan holat uchun «boshqa» variantini tanlab, o'zingiz yozasiz.</p><h2>Tavsifnoma berishdan bosh tortish mumkinmi?</h2><p>Amalda xodim yozma murojaat qilsa, ish beruvchi unga o'z mehnat faoliyatiga oid hujjatlarni berishi kutiladi. Tavsifnoma ham shu qatorga kiradi, garchi uning mazmuni ish beruvchining bahosi bo'lgani uchun uni majburan ijobiy qilib bo'lmaydi.</p><p>Agar tavsifnoma berilmasa yoki javob berilmasa, avval yozma ariza topshiring va ikkinchi nusxaga qabul qilingani haqidagi belgini oldiring. Bu keyingi bosqichlar uchun asosiy dalil bo'ladi.</p><p>Tavsifnoma mazmuni bilan rozi bo'lmasangiz, unga e'tiroz bildirishingiz mumkin. Undagi ma'lumot haqiqatga to'g'ri kelmasa — masalan, aslida bo'lmagan intizomiy jazo ko'rsatilgan bo'lsa — buni tuzatishni yozma so'rash mumkin.</p><p>Ta'lim muassasalarida tavsifnoma odatda talabaning arizasi asosida beriladi va uni dekanat yoki o'quv bo'limi tayyorlaydi.</p><h2>Tipik xatolar</h2><p>Birinchi xato — faqat umumiy iboralar yozish. «Yaxshi xodim», «intizomli» degan so'zlar hech qanday aniq ma'lumot bermaydi. Har bir baho aniq jumla bilan ochib berilishi kerak.</p><p>Ikkinchi xato — ish stajini yoki lavozimni noto'g'ri ko'rsatish. Bu ma'lumotlar kadrlar hujjatlaridagi yozuvlarga mos kelishi shart, aks holda tavsifnomaning ishonchliligi shubha ostida qoladi. Generator ishga kirgan sanadan stajni o'zi hisoblaydi.</p><p>Uchinchi xato — hujjat qayerga berilayotganini ko'rsatmaslik. Ko'p tashkilotlar aniq manzil talab qiladi va umumiy ibora bilan berilgan tavsifnomani qaytarib yuboradi.</p><p>To'rtinchi xato — sana va muhrni unutish. Sanasiz tavsifnoma qachon berilgani noma'lum bo'lgan hujjatga aylanadi, muhrsiz esa rasmiy hisoblanmaydi.</p><p>Beshinchi xato — shaxsiy ma'lumotlarni ortiqcha yozish. Tavsifnomada faqat so'ralgan maqsad uchun zarur ma'lumot bo'lishi kerak; oilaviy ahvol, sog'liq yoki boshqa shaxsiy tafsilotlar zarurat bo'lmasa yozilmaydi.</p><p>Oltinchi xato — intizomiy jazolar haqidagi savolni ochiq qoldirish. Ular bor yoki yo'qligini aniq yozish kerak; ayniqsa sud va harbiy komissariat uchun bu ma'lumot ahamiyatli.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец характеристики",
+  sub:"Подготовьте характеристику на работника или студента. Выберите режим — форма и текст документа меняются полностью.",
+  intro:"<b>Характеристика</b> — официальный документ организации или учебного заведения, излагающий деятельность и качества человека. Её могут запросить банк, суд, военный комиссариат или новое место работы. Выберите режим, заполните поля — текст сформируется справа в реальном времени. Введённые данные не отправляются на сервер.",
+  prevTitle:"Текст характеристики",
+  jump:"Посмотреть характеристику ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTxt:"Печатайте характеристику <b>на бланке организации</b> и оформляйте подписью руководителя с печатью — без печати документ могут не принять в банке или суде. Оценки излагайте конкретными предложениями, а не общими словами.",
+  foot:"Образец характеристики носит справочный характер. Требования могут различаться в зависимости от запрашивающей организации.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Что такое характеристика и когда её запрашивают?</h2><p>Характеристика — официальный документ, выдаваемый организацией или учебным заведением, в котором излагаются трудовая или учебная деятельность человека, его профессиональные качества и поведение. Это не мнение человека о себе, а письменная оценка знающей его организации.</p><p>Чаще всего её запрашивает другая организация. Новое место работы хочет знать, как оценивал кандидата прежний работодатель; банк перед выдачей кредита стремится убедиться в стабильной занятости заёмщика; суд при рассмотрении дела запрашивает сведения, характеризующие личность.</p><p>Студентам характеристика нужна для практики, стипендии, гранта, общежития или перевода в другое учебное заведение. Военный комиссариат также может запросить её по вопросам, связанным с призывом.</p><p>Сила документа зависит от того, кто его выдал: если характеристика оформлена на бланке организации, с подписью руководителя и печатью, она принимается как официальный документ.</p><h2>Чем отличаются характеристики на работника и на студента?</h2><p>Оба документа служат одной цели, но их содержание совершенно различно. <b>Характеристика на работника</b> посвящена трудовой деятельности: должность, стаж, выполняемые обязанности, профессиональная квалификация, трудовая дисциплина, поощрения и, если они есть, дисциплинарные взыскания.</p><p><b>Характеристика на студента</b> излагает учебную деятельность: курс или класс, направление, уровень успеваемости, научная и общественная активность, участие в спорте и конкурсах, а также поведение в коллективе.</p><p>Различаются и подписанты. Характеристику на работника обычно подписывает руководитель организации, часто дополнительную подпись ставит начальник отдела кадров. Характеристику на студента подписывает декан или директор, вторая подпись — куратора или классного руководителя.</p><p>В генераторе эти два режима переключаются кнопками сверху: меняются и поля формы, и готовый текст целиком, поэтому удалять лишние поля вручную не нужно.</p><h2>Что должно быть в характеристике?</h2><p>Характеристика обычно состоит из трёх частей. Первая — данные человека: Ф.И.О., год рождения, образование, должность или место учёбы. Эта часть однозначно определяет, к кому относится документ.</p><p>Вторая часть — изложение деятельности. Для работника это стаж, занимаемые должности и выполняемые обязанности; для студента — уровень успеваемости и учебная деятельность. Здесь нужны конкретные сведения, а не общие фразы.</p><p>Третья часть — оценка. Именно она отличает характеристику от справки: здесь организация высказывает своё мнение о качествах человека. Ответственность, дисциплина, отношения в коллективе, инициативность — каждое из этих качеств излагается отдельным предложением.</p><p>В генераторе оценки выбираются отметками, а выбранные объединяются в один естественный абзац — не списком, а читаемым текстом. Если не выбрано ни одной, этот абзац в документе не появляется вовсе.</p><p>В конце указывается, куда выдаётся характеристика, затем следуют дата, подписи и место печати.</p><h2>Кто подписывает и обязательна ли печать?</h2><p>Характеристику на работника подписывает руководитель организации. В крупных организациях ставится и подпись начальника отдела кадров — она подтверждает, что сведения соответствуют кадровым документам.</p><p>В учебном заведении подписывает декан, директор или заместитель по учебной работе, а вторая подпись принадлежит куратору или классному руководителю, который знает человека непосредственно.</p><p>Печать — основной элемент, придающий документу официальный характер. Без печати характеристику во многих организациях не принимают, особенно там, где требования формальны, — в банках и судах. Печать обычно ставится рядом с подписью, и в генераторе для неё предусмотрено место.</p><p>Характеристику лучше печатать на бланке организации: на бланке указаны наименование, адрес и реквизиты, что повышает доверие к документу. Генератор готовит текст, а перенести его на бланк или адаптировать файл Word — на ваше усмотрение.</p><h2>Чем отличается характеристика для суда или банка?</h2><p>Содержание остаётся тем же, но смещается акцент, и в последней фразе прямо указывается, куда выдаётся документ. Это важно: общая формулировка «по месту требования» в некоторых организациях не принимается, и требуется конкретный адресат.</p><p><b>Для банка</b> в характеристике подчёркивается стабильность: как долго человек работает, его должность и трудовая дисциплина. Основной вопрос банка — устойчив ли доход и надёжен ли заёмщик.</p><p><b>Для суда</b> акцент делается на поведении человека и его репутации в коллективе. Указывается также наличие или отсутствие дисциплинарных взысканий — для суда это значимая информация.</p><p><b>Для военного комиссариата</b> обычно интересны дисциплина, физическая подготовка и отношения в коллективе. <b>Для нового места работы</b> на первый план выходят профессиональная квалификация и выполнявшиеся обязанности.</p><p>В генераторе адресат выбирается кнопкой, и последняя фраза документа меняется автоматически; для случая, которого нет в списке, выберите вариант «другое» и впишите его сами.</p><h2>Можно ли отказать в выдаче характеристики?</h2><p>На практике при письменном обращении работника ожидается, что работодатель выдаст ему документы, связанные с его трудовой деятельностью. Характеристика относится к их числу, хотя её содержание является оценкой работодателя, и сделать её принудительно положительной нельзя.</p><p>Если характеристику не выдают или не отвечают, сначала подайте письменное заявление и получите отметку о приёме на втором экземпляре. Это станет основным доказательством для последующих шагов.</p><p>Если вы не согласны с содержанием, его можно оспорить. Когда сведения не соответствуют действительности — например, указано взыскание, которого не было, — можно письменно потребовать исправления.</p><p>В учебных заведениях характеристика обычно выдаётся по заявлению студента, а готовит её деканат или учебная часть.</p><h2>Типичные ошибки</h2><p>Первая ошибка — писать только общими фразами. Слова «хороший работник», «дисциплинирован» не несут конкретной информации. Каждая оценка должна раскрываться отдельным предложением.</p><p>Вторая ошибка — неверно указать стаж или должность. Эти сведения обязаны совпадать с записями в кадровых документах, иначе достоверность характеристики ставится под сомнение. Генератор рассчитывает стаж от даты приёма на работу сам.</p><p>Третья ошибка — не указать, куда выдаётся документ. Многие организации требуют конкретного адресата и возвращают характеристику с общей формулировкой.</p><p>Четвёртая ошибка — забыть дату и печать. Без даты неясно, когда документ выдан, а без печати он не считается официальным.</p><p>Пятая ошибка — излишние персональные данные. В характеристике должны быть только сведения, необходимые для заявленной цели; семейное положение, здоровье и прочие личные детали без необходимости не указываются.</p><p>Шестая ошибка — оставить открытым вопрос о дисциплинарных взысканиях. Следует прямо указать, есть они или нет; особенно значима эта информация для суда и военного комиссариата.</p>"
+ }
+};
+
+var isX=function(s){return (s.mode||'xodim')==='xodim'};
+var isT=function(s){return s.mode==='talaba'};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'tavsifnoma',
+ file:'tavsifnoma',
+ sections:[
+  {id:'mode',title:{uz:'Kim uchun',ru:'На кого'},fields:[
+    {id:'mode',t:'seg',def:'xodim',label:{uz:'Tavsifnoma turi',ru:'Тип характеристики'},
+     opts:[
+      {v:'xodim',label:{uz:'Xodim uchun',ru:'На работника'}},
+      {v:'talaba',label:{uz:"Talaba / o'quvchi uchun",ru:'На студента / ученика'}}
+     ],
+     hint:{uz:"Rejim almashganda forma maydonlari ham, hujjat matni ham to'liq o'zgaradi.",ru:'При смене режима меняются и поля формы, и текст документа.'}}
+  ]},
+  {id:'org',title:{uz:'Tashkilot',ru:'Организация'},fields:[
+    {id:'orgName',t:'text',showIf:isX,label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Anor Savdo" MChJ',ru:'ООО "Anor Savdo"'}},
+    {id:'orgAddr',t:'text',showIf:isX,label:{uz:'Tashkilot manzili',ru:'Адрес организации'},ph:{uz:'Toshkent sh., Chilonzor t., 5-uy',ru:'г. Ташкент, Чиланзарский р-н, д.5'}},
+    {id:'eduOrg',t:'text',showIf:isT,label:{uz:"Ta'lim muassasasi nomi",ru:'Название учебного заведения'},ph:{uz:'Toshkent davlat iqtisodiyot universiteti',ru:'Ташкентский государственный экономический университет'}}
+  ]},
+  {id:'person',title:{uz:'Shaxs',ru:'Лицо'},fields:[
+    {id:'fio',t:'text',label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:'birthYear',t:'num',half:true,label:{uz:"Tug'ilgan yili",ru:'Год рождения'},ph:{uz:'1995',ru:'1995'}},
+    {id:'education',t:'text',showIf:isX,label:{uz:"Ma'lumoti",ru:'Образование'},ph:{uz:'oliy, Toshkent davlat iqtisodiyot universiteti',ru:'высшее, ТГЭУ'}}
+  ]},
+  {id:'work',title:{uz:'Mehnat faoliyati',ru:'Трудовая деятельность'},fields:[
+    {id:'position',t:'text',showIf:isX,half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'sotuv menejeri',ru:'менеджер по продажам'}},
+    {id:'dept',t:'text',showIf:isX,half:true,label:{uz:"Bo'limi",ru:'Отдел'},ph:{uz:"savdo bo'limi",ru:'отдел продаж'}},
+    {id:'hireDate',t:'date',showIf:isX,half:true,label:{uz:'Ishga kirgan sanasi',ru:'Дата приёма на работу'},
+     hint:{uz:'Staj shu sanadan avtomatik hisoblanadi.',ru:'Стаж рассчитывается от этой даты автоматически.'}},
+    {id:'prevPosts',t:'list',showIf:isX,label:{uz:'Oldingi lavozimlari (ixtiyoriy)',ru:'Прежние должности (необязательно)'},
+     ph:{uz:'2020-2023 — sotuv bo\'limi mutaxassisi',ru:'2020-2023 — специалист отдела продаж'},
+     addLabel:{uz:"+ Lavozim qo'shish",ru:'+ Добавить должность'},
+     hint:{uz:"Bitta ham qo'shmasangiz, bu band hujjatda chiqmaydi.",ru:'Если ничего не добавить, этот пункт в документе не появится.'}}
+  ]},
+  {id:'study',title:{uz:"O'quv faoliyati",ru:'Учебная деятельность'},fields:[
+    {id:'course',t:'text',showIf:isT,half:true,label:{uz:'Kurs / sinf',ru:'Курс / класс'},ph:{uz:'3-kurs',ru:'3 курс'}},
+    {id:'faculty',t:'text',showIf:isT,half:true,label:{uz:"Yo'nalish / fakultet",ru:'Направление / факультет'},ph:{uz:'Buxgalteriya hisobi va audit',ru:'Бухгалтерский учёт и аудит'}},
+    {id:'studyForm',t:'seg',def:'kunduzgi',showIf:isT,label:{uz:"O'qish shakli",ru:'Форма обучения'},
+     opts:[
+      {v:'kunduzgi',label:{uz:'Kunduzgi',ru:'Очная'}},
+      {v:'sirtqi',label:{uz:'Sirtqi',ru:'Заочная'}},
+      {v:'kechki',label:{uz:'Kechki',ru:'Вечерняя'}}
+     ]},
+    {id:'performance',t:'seg',def:'yaxshi',showIf:isT,label:{uz:"O'zlashtirish darajasi",ru:'Уровень успеваемости'},
+     opts:[
+      {v:'alo',label:{uz:"A'lo",ru:'Отличная'}},
+      {v:'yaxshi',label:{uz:'Yaxshi',ru:'Хорошая'}},
+      {v:'qoniqarli',label:{uz:'Qoniqarli',ru:'Удовлетворительная'}}
+     ]}
+  ]},
+  {id:'eval',title:{uz:'Baholar',ru:'Оценки'},fields:[
+    {id:'quality',t:'checks',showIf:isX,label:{uz:'Ish sifati baholari',ru:'Оценка качеств работника'},
+     hint:{uz:"Tanlanganlari bitta tabiiy paragrafga birlashtiriladi. Hech biri tanlanmasa, paragraf chiqmaydi.",ru:'Выбранные объединяются в один абзац. Если не выбрано ничего, абзац не появится.'},
+     opts:[
+      {v:'masul',label:{uz:"Mas'uliyatli",ru:'Ответственный'}},
+      {v:'vaqt',label:{uz:"O'z vaqtida bajaradi",ru:'Выполняет в срок'}},
+      {v:'jamoa',label:{uz:'Jamoada yaxshi ishlaydi',ru:'Хорошо работает в коллективе'}},
+      {v:'tashabbus',label:{uz:'Tashabbuskor',ru:'Инициативный'}},
+      {v:'malaka',label:{uz:'Malakasini oshirib boradi',ru:'Повышает квалификацию'}},
+      {v:'intizom',label:{uz:'Intizomli',ru:'Дисциплинированный'}}
+     ]},
+    {id:'activity',t:'checks',showIf:isT,label:{uz:'Faolligi',ru:'Активность'},
+     hint:{uz:"Tanlanganlari bitta tabiiy paragrafga birlashtiriladi.",ru:'Выбранные объединяются в один абзац.'},
+     opts:[
+      {v:'ilmiy',label:{uz:"Ilmiy to'garaklarda",ru:'В научных кружках'}},
+      {v:'sport',label:{uz:'Sportda',ru:'В спорте'}},
+      {v:'ijtimoiy',label:{uz:'Ijtimoiy ishlarda',ru:'В общественной работе'}},
+      {v:'olimpiada',label:{uz:'Olimpiadalarda',ru:'В олимпиадах'}}
+     ]},
+    {id:'rewards',t:'area',rows:2,showIf:isX,label:{uz:"Rag'batlar (ixtiyoriy)",ru:'Поощрения (необязательно)'},
+     ph:{uz:"2024-yilda «Yilning eng yaxshi xodimi» ko'krak nishoni bilan taqdirlangan",ru:'В 2024 году награждён нагрудным знаком «Лучший работник года»'}},
+    {id:'behavior',t:'area',rows:3,showIf:isT,label:{uz:'Xulq-atvor tavsifi',ru:'Описание поведения'},
+     ph:{uz:"O'qituvchilar va guruhdoshlari bilan muomalada odobli, intizomga rioya qiladi...",ru:'Вежлив в общении с преподавателями и однокурсниками, соблюдает дисциплину...'}},
+    {id:'discipline',t:'seg',def:'yoq',showIf:isX,label:{uz:'Intizomiy jazolar',ru:'Дисциплинарные взыскания'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'bor',label:{uz:'Bor',ru:'Есть'}}]},
+    {id:'disciplineTxt',t:'area',rows:2,label:{uz:'Intizomiy jazolar tavsifi',ru:'Описание взысканий'},
+     ph:{uz:'sanasi, turi va sababini yozing',ru:'укажите дату, вид и причину'},
+     showIf:function(s){return isX(s)&&s.discipline==='bor'}}
+  ]},
+  {id:'to',title:{uz:'Kimga beriladi',ru:'Кому выдаётся'},fields:[
+    {id:'recipient',t:'seg',def:'joy',label:{uz:'Taqdim etish joyi',ru:'Место предъявления'},
+     opts:[
+      {v:'joy',label:{uz:'Taqdim etish joyi bo\'yicha',ru:'По месту требования'}},
+      {v:'bank',label:{uz:'Bankka',ru:'В банк'}},
+      {v:'sud',label:{uz:'Sudga',ru:'В суд'}},
+      {v:'harbiy',label:{uz:'Harbiy komissariatga',ru:'В военкомат'}},
+      {v:'ish',label:{uz:'Yangi ish joyiga',ru:'На новое место работы'}},
+      {v:'boshqa',label:{uz:'Boshqa',ru:'Другое'}}
+     ]},
+    {id:'recipientTxt',t:'text',label:{uz:'Qayerga beriladi',ru:'Куда выдаётся'},
+     ph:{uz:'notarial idoraga taqdim etish',ru:'предъявления в нотариальную контору'},
+     showIf:function(s){return s.recipient==='boshqa'}},
+    {id:'docDate',t:'date',half:true,def:today(),label:{uz:'Sana',ru:'Дата'}}
+  ]},
+  {id:'sign',title:{uz:'Imzolovchilar',ru:'Подписанты'},fields:[
+    {id:'sign1Post',t:'text',half:true,label:{uz:'1-imzolovchi lavozimi',ru:'Должность 1-го подписанта'},ph:{uz:'Direktor',ru:'Директор'}},
+    {id:'sign1Fio',t:'text',half:true,label:{uz:'1-imzolovchi F.I.Sh.',ru:'Ф.И.О. 1-го подписанта'},ph:{uz:'Aliyev A. A.',ru:'Алиев А. А.'}},
+    {id:'sign2Post',t:'text',half:true,label:{uz:'2-imzolovchi lavozimi',ru:'Должность 2-го подписанта'},ph:{uz:"Kadrlar bo'limi boshlig'i",ru:'Начальник отдела кадров'}},
+    {id:'sign2Fio',t:'text',half:true,label:{uz:'2-imzolovchi F.I.Sh.',ru:'Ф.И.О. 2-го подписанта'},ph:{uz:'Sobirova M. R.',ru:'Собирова М. Р.'},
+     hint:{uz:"Ikkinchi imzo ixtiyoriy: bo'sh qoldirsangiz hujjatda chiqmaydi. Talaba tavsifnomasida odatda kurator yoki sinf rahbari imzolaydi.",ru:'Вторая подпись необязательна: если оставить поля пустыми, она не появится. В характеристике на студента обычно подписывает куратор или классный руководитель.'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var ru=lang==='ru';
+   var mode=v.mode||'xodim';
+   var s=stajOf(v.hireDate);
+
+   var QF={
+     masul:{uz:"o'z ishiga mas'uliyat bilan yondashadi",ru:'ответственно относится к своей работе'},
+     vaqt:{uz:'topshirilgan vazifalarni belgilangan muddatda bajaradi',ru:'выполняет порученные задачи в установленные сроки'},
+     jamoa:{uz:'jamoada hamkasblari bilan yaxshi munosabatda bo\'ladi',ru:'поддерживает хорошие отношения с коллегами в коллективе'},
+     tashabbus:{uz:'ish jarayonini yaxshilash bo\'yicha tashabbus ko\'rsatadi',ru:'проявляет инициативу в улучшении рабочих процессов'},
+     malaka:{uz:'kasbiy malakasini muntazam oshirib boradi',ru:'регулярно повышает профессиональную квалификацию'},
+     intizom:{uz:'mehnat intizomiga qat\'iy rioya qiladi',ru:'строго соблюдает трудовую дисциплину'}
+   };
+   var AF={
+     ilmiy:{uz:'ilmiy to\'garaklar faoliyatida faol qatnashadi',ru:'активно участвует в работе научных кружков'},
+     sport:{uz:'sport tadbirlarida muntazam ishtirok etadi',ru:'регулярно участвует в спортивных мероприятиях'},
+     ijtimoiy:{uz:'guruh va muassasaning ijtimoiy ishlarida faol',ru:'активен в общественной работе группы и учебного заведения'},
+     // Ibora boshqa bandlar bilan takrorlanmasin: paragraf bir nechta band
+     // birlashganda ham ravon o'qilishi kerak ("qatnashadi ... qatnashadi" bo'lmasin).
+     olimpiada:{uz:'fan olimpiadalari va tanlovlarda o\'z bilimini namoyish etadi',ru:'проявляет себя в предметных олимпиадах и конкурсах'}
+   };
+
+   function phrases(src,sel){
+     var out=[];
+     if(!Array.isArray(sel))return out;
+     for(var i=0;i<sel.length;i++){
+       var f=src[sel[i]];
+       if(f)out.push(ru?f.ru:f.uz);
+     }
+     return out;
+   }
+
+   return {
+     mode:mode,
+     staj:s,
+     stajTxt:stajText(s,lang),
+     evalPara:(mode==='xodim')
+       ?joinPhrases(phrases(QF,v.quality),lang)
+       :joinPhrases(phrases(AF,v.activity),lang),
+     prev:Array.isArray(v.prevPosts)?v.prevPosts.filter(function(x){return String(x||'').trim()}):[]
+   };
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+   var xodim=(c.mode==='xodim');
+
+   b.push({k:'title',text:ru?'ХАРАКТЕРИСТИКА':'TAVSIFNOMA'});
+
+   /* kirish jumlasi */
+   var by=KD.num(v.birthYear);
+   var byTxt=by?String(by):B(6);
+   if(xodim){
+     b.push({k:'p',text:ru
+       ?KD.v(v.fio,30)+', '+byTxt+' года рождения, работает в организации '+KD.v(v.orgName,28)+(String(v.orgAddr||'').trim()?' (адрес: '+v.orgAddr+')':'')+'.'
+       :KD.v(v.fio,30)+', '+byTxt+'-yilda tug\'ilgan, '+KD.v(v.orgName,28)+(String(v.orgAddr||'').trim()?' ('+v.orgAddr+')':'')+' tashkilotida ishlaydi.'});
+     if(String(v.education||'').trim()){
+       b.push({k:'p',text:(ru?'Образование: ':'Ma\'lumoti: ')+v.education+'.'});
+     }
+   } else {
+     b.push({k:'p',text:ru
+       ?KD.v(v.fio,30)+', '+byTxt+' года рождения, обучается в '+KD.v(v.eduOrg,32)+'.'
+       :KD.v(v.fio,30)+', '+byTxt+'-yilda tug\'ilgan, '+KD.v(v.eduOrg,32)+'da tahsil oladi.'});
+   }
+
+   if(xodim){
+     /* lavozim va staj */
+     var pos=KD.v(v.position,24);
+     var dept=String(v.dept||'').trim();
+     var hire=v.hireDate?KD.fmtDate(v.hireDate,lang):B(20);
+     b.push({k:'p',text:ru
+       ?'С '+hire+' занимает должность «'+pos+'»'+(dept?' в подразделении «'+dept+'»':'')+'.'
+       :hire+'dan boshlab «'+pos+'» lavozimida'+(dept?' («'+dept+'»)':'')+' ishlab kelmoqda.'});
+     if(c.staj){
+       b.push({k:'p',text:ru
+         ?'Общий стаж работы в организации составляет '+c.stajTxt+'.'
+         :'Tashkilotdagi umumiy mehnat staji '+c.stajTxt+'ni tashkil etadi.'});
+     }
+     if(c.prev.length){
+       b.push({k:'p',text:(ru?'Ранее занимал следующие должности: ':'Ilgari quyidagi lavozimlarda ishlagan: ')
+         +c.prev.join('; ')+'.'});
+     }
+   } else {
+     /* kurs, yo'nalish, shakl */
+     var sf={kunduzgi:{uz:'kunduzgi',ru:'очной'},sirtqi:{uz:'sirtqi',ru:'заочной'},kechki:{uz:'kechki',ru:'вечерней'}}[v.studyForm||'kunduzgi'];
+     b.push({k:'p',text:ru
+       ?'В настоящее время обучается на '+KD.v(v.course,10)+' по направлению «'+KD.v(v.faculty,26)+'», '+sf.ru+' формы обучения.'
+       :'Hozirda '+KD.v(v.course,10)+'da «'+KD.v(v.faculty,26)+'» yo\'nalishi bo\'yicha '+sf.uz+' ta\'lim shaklida o\'qimoqda.'});
+     var pf={alo:{uz:'a\'lo',ru:'отличная'},yaxshi:{uz:'yaxshi',ru:'хорошая'},qoniqarli:{uz:'qoniqarli',ru:'удовлетворительная'}}[v.performance||'yaxshi'];
+     b.push({k:'p',text:ru
+       ?'Успеваемость — '+pf.ru+'.'
+       :'O\'zlashtirish darajasi — '+pf.uz+'.'});
+   }
+
+   /* baholar paragrafi — hech biri tanlanmasa umuman chiqmaydi */
+   if(c.evalPara) b.push({k:'p',text:c.evalPara});
+
+   if(xodim){
+     if(String(v.rewards||'').trim()){
+       b.push({k:'p',text:(ru?'Поощрения: ':'Rag\'batlar: ')+v.rewards+'.'});
+     }
+     if(v.discipline==='bor'){
+       b.push({k:'p',text:(ru?'Дисциплинарные взыскания: ':'Intizomiy jazolar: ')+KD.v(String(v.disciplineTxt||'').trim(),34)+'.'});
+     } else {
+       b.push({k:'p',text:ru
+         ?'Дисциплинарных взысканий не имеет.'
+         :'Intizomiy jazolarga ega emas.'});
+     }
+   } else if(String(v.behavior||'').trim()){
+     b.push({k:'p',text:v.behavior+(/[.!?]$/.test(v.behavior.trim())?'':'.')});
+   }
+
+   /* kimga beriladi */
+   var R={
+     joy:{uz:'taqdim etish joyi bo\'yicha berildi',ru:'выдана по месту требования'},
+     bank:{uz:'bankka taqdim etish uchun berildi',ru:'выдана для представления в банк'},
+     sud:{uz:'sudga taqdim etish uchun berildi',ru:'выдана для представления в суд'},
+     harbiy:{uz:'harbiy komissariatga taqdim etish uchun berildi',ru:'выдана для представления в военный комиссариат'},
+     ish:{uz:'yangi ish joyiga taqdim etish uchun berildi',ru:'выдана для представления на новое место работы'}
+   };
+   var rec=R[v.recipient];
+   var recTxt=rec?(ru?rec.ru:rec.uz)
+     :((ru?'выдана для ':'')+KD.v(String(v.recipientTxt||'').trim(),26)+(ru?'':' uchun berildi'));
+   b.push({k:'gap'});
+   b.push({k:'p',text:(ru?'Характеристика ':'Tavsifnoma ')+recTxt+'.'});
+
+   /* sana, imzolar, muhr */
+   var dt=v.docDate?KD.fmtDate(v.docDate,lang):B(22);
+   var left=[dt,''];
+   var s1p=String(v.sign1Post||'').trim(), s1f=String(v.sign1Fio||'').trim();
+   left.push((s1p||B(18))+'  _______________  '+(s1f||B(18)));
+   var s2p=String(v.sign2Post||'').trim(), s2f=String(v.sign2Fio||'').trim();
+   if(s2p||s2f) left.push((s2p||B(18))+'  _______________  '+(s2f||B(18)));
+   b.push({k:'sig',left:left,right:[(ru?'М.П.':"M.O'.")]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Характеристику печатают на бланке организации и заверяют подписью и печатью.'
+     :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Tavsifnoma tashkilot blankasida chop etilib, imzo va muhr bilan tasdiqlanadi."});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[["Tavsifnomani kim yozadi — xodimning o'zimi yoki tashkilotmi?","Rasman uni tashkilot beradi va rahbar imzolaydi. Amalda esa loyihasini ko'pincha xodimning bevosita rahbari yoki kadrlar bo'limi tayyorlaydi, ba'zan xodimning o'ziga ham dastlabki variantni yozish taklif qilinadi. Bunday holatda generatordan foydalanib matnni tayyorlab, tasdiqlashga topshirasiz — yakuniy mazmun baribir tashkilotning bahosi bo'lib qoladi."],["Tavsifnoma muhrsiz ham yaroqlimi?","Ko'p tashkilotlarda yo'q. Muhr hujjatni rasmiy qiladigan asosiy element bo'lib, bank va sud kabi rasmiy talab qo'yadigan joylarda muhrsiz tavsifnoma qabul qilinmasligi mumkin. Shuning uchun hujjatni tashkilot blankasida chop etib, rahbar imzosi va muhri bilan rasmiylashtiring — generatorda muhr o'rni belgilab qo'yilgan."],["Intizomiy jazolar haqida yozish shartmi?","Sud va harbiy komissariat uchun beriladigan tavsifnomalarda bu ma'lumot odatda kutiladi va uni tushirib qoldirish hujjatning ishonchliligiga putur yetkazadi. Boshqa holatlarda ham savolni ochiq qoldirmagan ma'qul. Generatorda ikkita variant bor: jazolar yo'qligi haqidagi band yoki ularni tavsiflash maydoni."],["Ish stajini qanday hisoblash kerak?","Ishga qabul qilingan sanadan tavsifnoma berilayotgan sanagacha. Generatorda ishga kirgan sanani kiritsangiz, staj yil va oyda avtomatik hisoblanadi va matnga yoziladi. Agar xodim tashkilotda uzilishlar bilan ishlagan bo'lsa, buni matnda alohida izohlash to'g'riroq bo'ladi — hisob esa uzluksiz davrga qaraladi."],["Talaba tavsifnomasini kim imzolaydi?","Odatda ikki imzo bo'ladi: dekan, direktor yoki o'quv ishlari bo'yicha o'rinbosari va shaxsni bevosita biladigan kurator yoki sinf rahbari. Ikkinchi imzo muhim, chunki aynan u talabaning kundalik faoliyati va xulq-atvorini biladi. Generatorda ikkala imzolovchining lavozimi va F.I.Sh. maydonlari bor."],["Tavsifnomada salbiy baho yozish mumkinmi?","Ha, tavsifnoma ijobiy bo'lishi shart emas — u tashkilotning haqqoniy bahosi. Lekin baho asoslangan va haqiqatga mos bo'lishi kerak: aslida bo'lmagan jazoni yoki isbotlanmagan ayblovni yozish keyinchalik e'tirozga sabab bo'ladi. Shaxs tavsifnoma mazmuni bilan rozi bo'lmasa, uni tuzatishni yozma so'rashi mumkin."],["Bitta tavsifnomani bir necha joyga ishlatsa bo'ladimi?","Texnik jihatdan mumkin, lekin tavsiya etilmaydi. Oxirgi jumlada hujjat qayerga berilayotgani ko'rsatiladi, ko'p tashkilotlar esa aynan o'z nomiga yozilgan hujjatni talab qiladi. Generatorda oluvchini tugma bilan almashtirib, har bir joy uchun alohida nusxa tayyorlash bir necha soniya vaqt oladi."]],
+ ru:[["Кто пишет характеристику — сам работник или организация?","Формально её выдаёт организация, а подписывает руководитель. На практике проект чаще готовит непосредственный руководитель работника или отдел кадров, иногда написать первоначальный вариант предлагают самому работнику. В таком случае вы готовите текст в генераторе и передаёте на утверждение — итоговое содержание в любом случае остаётся оценкой организации."],["Действительна ли характеристика без печати?","Во многих организациях нет. Печать — основной элемент, придающий документу официальный характер, и там, где требования формальны (банки, суды), характеристику без печати могут не принять. Поэтому распечатайте документ на бланке организации и оформите подписью руководителя с печатью — место для неё в генераторе предусмотрено."],["Обязательно ли писать о дисциплинарных взысканиях?","В характеристиках для суда и военного комиссариата эти сведения обычно ожидаются, и их пропуск снижает доверие к документу. В остальных случаях также лучше не оставлять вопрос открытым. В генераторе есть два варианта: пункт об отсутствии взысканий либо поле для их описания."],["Как считать трудовой стаж?","От даты приёма на работу до даты выдачи характеристики. Если указать в генераторе дату приёма, стаж рассчитается в годах и месяцах автоматически и попадёт в текст. Если работник трудился в организации с перерывами, это правильнее пояснить в тексте отдельно — расчёт же ведётся по непрерывному периоду."],["Кто подписывает характеристику на студента?","Обычно ставятся две подписи: декана, директора или заместителя по учебной работе и куратора либо классного руководителя, знающего человека непосредственно. Вторая подпись важна, поскольку именно этот человек знает повседневную деятельность и поведение студента. В генераторе есть поля должности и Ф.И.О. для обоих подписантов."],["Можно ли дать отрицательную оценку в характеристике?","Да, характеристика не обязана быть положительной — это правдивая оценка организации. Но оценка должна быть обоснованной и соответствовать действительности: указание несуществующего взыскания или недоказанного обвинения впоследствии станет поводом для оспаривания. Если человек не согласен с содержанием, он вправе письменно потребовать исправления."],["Можно ли использовать одну характеристику в нескольких местах?","Технически можно, но не рекомендуется. В последней фразе указывается, куда выдаётся документ, а многие организации требуют документ, выписанный именно на их имя. В генераторе достаточно переключить адресата кнопкой, и подготовка отдельного экземпляра для каждого места занимает несколько секунд."]]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Tavsifnoma namunasi — onlayn to'ldirib, Word yuklab oling",
+    ru:'Образец характеристики — заполнить онлайн и скачать Word'
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  // O'lchov: PDF haqiqatan yasalgandagina yuboriladi.
+  // gtag bo'lmasa jimgina o'tkazamiz — o'lchov yuklab olishni hech qachon buzmasin.
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='datanote')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+</body></html>

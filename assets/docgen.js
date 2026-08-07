@@ -320,6 +320,21 @@
       inner = '<div class="dg-list">' + rows
         + '<button type="button" class="dg-ladd" data-ladd="' + attrEsc(f.id) + '">'
         + escHtml(L(f.addLabel, lang) || (lang === 'ru' ? '+ Добавить' : "+ Qo'shish")) + '</button></div>';
+    } else if (f.t === 'checks') {
+      // Ko'p tanlovli belgilash (tavsifnomadagi baho to'plami).
+      // Qiymat — tanlangan kalitlar massivi. 'seg' dan farqi: bir nechtasi
+      // bir vaqtda yoqilishi mumkin va har biri alohida qator egallamaydi.
+      var sel = Array.isArray(val) ? val : [];
+      var chips = '';
+      for (var k = 0; k < f.opts.length; k++) {
+        var op2 = f.opts[k];
+        var on = sel.indexOf(op2.v) > -1;
+        chips += '<button type="button" class="dg-chk' + (on ? ' on' : '') + '"'
+          + ' data-chk="' + attrEsc(f.id) + '" data-val="' + attrEsc(op2.v) + '"'
+          + ' aria-pressed="' + (on ? 'true' : 'false') + '">'
+          + escHtml(L(op2.label, lang)) + '</button>';
+      }
+      inner = '<div class="dg-checks">' + chips + '</div>';
     } else if (f.t === 'table') {
       // Ko'p ustunli dinamik qatorlar (dalolatnomadagi mol-mulk jadvali).
       // Qiymat — obyektlar massivi: [{name:'',unit:'',qty:''}, ...].
@@ -418,6 +433,20 @@
         });
       })(lis[L1]);
     }
+    // ko'p tanlovli belgilar
+    var chks = host.querySelectorAll('[data-chk]');
+    for (var C1 = 0; C1 < chks.length; C1++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-chk'), v = btn.getAttribute('data-val');
+          if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
+          var at = ctx.state[id].indexOf(v);
+          if (at > -1) ctx.state[id].splice(at, 1); else ctx.state[id].push(v);
+          ctx.onChange(true);   // belgining 'on' holati ham yangilanishi kerak
+        });
+      })(chks[C1]);
+    }
+
     // jadval katakchalari: qiymat o'zgarsa qayta chizmaymiz — fokus yo'qolmasin
     var tbs = host.querySelectorAll('[data-tb]');
     for (var T1 = 0; T1 < tbs.length; T1++) {
