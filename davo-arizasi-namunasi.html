@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Da'vo arizasi namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Da'vo arizasi namunasi: pul qarzi, mehnat nizosi yoki ijara nizosi uchun. Da'vo qiymati avtomatik, talablar raqamlanadi. Word yoki PDF. Образец искового заявления онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/davo-arizasi-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-checks{display:flex;flex-wrap:wrap;gap:7px}
+.dg-chk{border:1.5px solid var(--line);background:#FBFCFB;font:inherit;font-size:13.5px;font-weight:700;color:var(--muted);padding:9px 13px;border-radius:99px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s,color .15s}
+.dg-chk:hover{border-color:var(--cat)}
+.dg-chk.on{background:var(--cat);border-color:var(--cat);color:#fff}
+.dg-chk.on::before{content:"✓ ";font-weight:800}
+.law-warn{margin-top:12px;padding:14px 16px;background:#FCECEA;border:1.5px solid #D9A79F;border-left:5px solid #B04A3A;border-radius:12px;font-size:13.5px;line-height:1.55;font-weight:700;color:#6E2A1E}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://kalki.uz/og-image.png">
+<meta property="og:title" content="Da'vo arizasi namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Da'vo arizasi namunasi: pul qarzi, mehnat nizosi yoki ijara nizosi uchun. Da'vo qiymati avtomatik, talablar raqamlanadi. Word yoki PDF. Образец искового заявления онлайн.">
+<meta property="og:url" content="https://kalki.uz/davo-arizasi-namunasi">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Da'vo arizasi namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Da'vo arizasi namunasi: pul qarzi, mehnat nizosi yoki ijara nizosi uchun. Da'vo qiymati avtomatik, talablar raqamlanadi. Word yoki PDF. Образец искового заявления онлайн.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+}
+@media (max-width:420px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Da'vo arizasi namunasi","item":"https://kalki.uz/davo-arizasi-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Da'vo arizasi namunasi","description":"Da'vo arizasi namunasi: pul qarzi, mehnat nizosi yoki ijara nizosi uchun. Da'vo qiymati avtomatik, talablar raqamlanadi. Word yoki PDF. Образец искового заявления онлайн.","url":"https://kalki.uz/davo-arizasi-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Da'vo arizasini yuristsiz o'zim yozsam bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Qonun buni taqiqlamaydi va oddiy ishlarda odamlar o'zlari yozadi. Lekin da'vo arizasi protsessual hujjat: shakl talablari buzilsa, sud uni qaytarishi yoki harakatsiz qoldirishi mumkin, bu esa vaqt yo'qotishga olib keladi. Bu generator tuzilishni to'g'ri shakllantirishga yordam beradi, ammo u yuridik maslahat o'rnini bosmaydi — sudga topshirishdan oldin matnni yurist bilan tekshirib oling."}},{"@type":"Question","name":"Da'vo qiymatini qanday hisoblash kerak?","acceptedAnswer":{"@type":"Answer","text":"Bu sizning pul talabingizning umumiy miqdori: asosiy qarz va agar talab qilinayotgan bo'lsa, qo'shimcha summalar qo'shiladi. Generator uni siz kiritgan summalardan avtomatik hisoblab, hujjatning yuqori qismiga yozadi. Pul bilan bog'liq bo'lmagan talablar — masalan joyni bo'shatish — da'vo qiymatiga kirmaydi, lekin ular ham talablar ro'yxatida ko'rsatiladi."}},{"@type":"Question","name":"Davlat boji qancha bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Generator boj summasini hisoblamaydi va uni siz kiritasiz. Sabab: boj stavkalari vaqti-vaqti bilan o'zgaradi, da'vo turiga qarab farq qiladi va ayrim da'vogarlar imtiyozga ega bo'lishi mumkin. Aniq summani sud yoki rasmiy manbadan aniqlang. Ayrim toifadagi da'volar bojdan ozod qilinishi ham mumkin, shuning uchun to'lashdan oldin buni tekshiring."}},{"@type":"Question","name":"Talabnoma yubormasdan to'g'ridan-to'g'ri sudga bersa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ayrim toifadagi nizolarda sudgacha tartibga rioya qilish majburiy bo'lishi mumkin va u bajarilmasa ariza qaytariladi. Majburiy bo'lmagan hollarda ham talabnoma yuborish foydali: ko'p nizolar shu bosqichda hal bo'ladi. Talabnomani xabarnomali buyurtma xat bilan yuboring va kvitansiyani saqlang — generatorda uni belgilaganingizda matnga alohida band qo'shiladi."}},{"@type":"Question","name":"Javobgarning manzilini bilmasam nima qilish kerak?","acceptedAnswer":{"@type":"Answer","text":"Manzilsiz sud chaqiruv qog'ozini yubora olmaydi, shuning uchun uni imkon qadar aniqlash kerak. Ma'lum bo'lgan ma'lumotlarni — telefon, ish joyi, oxirgi ma'lum manzil — arizada ko'rsating. Ayrim holatlarda sud tomonidan ma'lumot so'rash imkoniyati ham bo'ladi; bu masalani sud kotibiyati yoki yurist bilan aniqlashtiring."}},{"@type":"Question","name":"Guvohlarning ko'rsatuvi yetarli dalil bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Guvoh ko'rsatuvi dalil sifatida qo'llaniladi, lekin yozma hujjatdan kuchsizroq hisoblanadi va ayrim holatlarda pul munosabatlarini isbotlash uchun yetarli bo'lmasligi mumkin. Shuning uchun pul berayotganda har doim tilxat rasmiylashtirish tavsiya etiladi. Agar yozma hujjat bo'lmasa, boshqa dalillarni — o'tkazmalar, yozishmalar, xabarlar — imkon qadar ko'proq to'plang."}},{"@type":"Question","name":"Sud da'voni qaytarsa, qayta murojaat qilsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ko'p hollarda ha. Agar ariza shakl talablari sababli qaytarilgan bo'lsa, kamchiliklarni tuzatib qayta topshirish mumkin. Harakatsiz qoldirilgan holatda esa sud tuzatish uchun muddat beradi va shu muddatda kamchilik bartaraf etilsa, ariza dastlabki topshirilgan sanadan kuchga kiradi. Qaytarish sababini sud ajrimidan aniq o'qib chiqing — unda nima tuzatilishi kerakligi yozilgan bo'ladi."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1060px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Da'vo arizasi namunasi</h1>
+    <p class="sub" data-i="sub">Sudga da'vo arizasi tuzing: pul qarzi, mehnat nizosi yoki ijara nizosi. Turini tanlang — matn butunlay o'zgaradi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Da'vo arizasi namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Da'vo arizasi</b> — buzilgan huquqni tiklash uchun sudga beriladigan yozma murojaat. Bu generator eng ko'p uchraydigan uchta nizoni qamrab oladi: pul qarzini undirish, mehnat nizosi va ijara nizosi. Turini tanlang, sanalar va summalarni kiriting — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Sud</div><div class="dg-rows"><div class="dg-field" data-fw="courtName"><label>Sud nomi</label><div class="dg-shell"><input type="text" data-f="courtName" value="" placeholder="Toshkent shahar Chilonzor tumanlararo fuqarolik ishlari bo'yicha sudi"></div><div class="dg-hint">Qaysi sud kerakligi ishning holatiga bog'liq — sud sayti orqali yoki yuristdan aniqlang.</div></div><div class="dg-field" data-fw="courtAddr"><label>Sud manzili</label><div class="dg-shell"><input type="text" data-f="courtAddr" value="" placeholder="Toshkent sh., Chilonzor t., ..."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Da'vogar</div><div class="dg-rows"><div class="dg-field" data-fw="pType"><label>Kim sifatida</label><div class="dg-seg"><button type="button" data-seg="pType" data-val="jismoniy" class="on">Jismoniy shaxs</button><button type="button" data-seg="pType" data-val="yuridik">Yuridik shaxs</button></div></div><div class="dg-field" data-fw="pFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="pFio" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field dg-half" data-fw="pJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="pJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field" data-fw="pAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="pAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div><div class="dg-field dg-half" data-fw="pPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="pPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Javobgar</div><div class="dg-rows"><div class="dg-field" data-fw="dType"><label>Kim sifatida</label><div class="dg-seg"><button type="button" data-seg="dType" data-val="jismoniy" class="on">Jismoniy shaxs</button><button type="button" data-seg="dType" data-val="yuridik">Yuridik shaxs</button></div></div><div class="dg-field" data-fw="dFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="dFio" value="" placeholder="Aliyev Alisher Alimovich"></div></div><div class="dg-field dg-half" data-fw="dJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="dJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field" data-fw="dAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="dAddr" value="" placeholder="Toshkent sh., Chilonzor t., 5-kvartal, 12-uy"></div></div><div class="dg-field dg-half" data-fw="dPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="dPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Da'vo turi</div><div class="dg-rows"><div class="dg-field" data-fw="ctype"><label>Nizo turi</label><div class="dg-seg"><button type="button" data-seg="ctype" data-val="qarz" class="on">Pul qarzi</button><button type="button" data-seg="ctype" data-val="mehnat">Mehnat nizosi</button><button type="button" data-seg="ctype" data-val="ijara">Ijara nizosi</button></div><div class="dg-hint">Bu generator eng keng tarqalgan uchta nizoni qamrab oladi. Boshqa toifadagi nizolar o'z xususiyatlariga ega.</div></div><div class="dg-field dg-half" data-fw="debtSum"><label>Qarz summasi</label><div class="dg-shell"><input type="text" data-f="debtSum" inputmode="numeric" value="" placeholder="20000000"><span class="dg-unit">so'm</span></div></div><div class="dg-field" data-fw="basisDoc"><label>Asos hujjat</label><div class="dg-seg"><button type="button" data-seg="basisDoc" data-val="tilxat" class="on">Tilxat</button><button type="button" data-seg="basisDoc" data-val="shartnoma">Shartnoma</button></div></div><div class="dg-field dg-half" data-fw="basisNum"><label>Hujjat raqami (bo'lsa)</label><div class="dg-shell"><input type="text" data-f="basisNum" value="" placeholder="3"></div></div><div class="dg-field dg-half" data-fw="givenDate"><label>Berilgan sana</label><div class="dg-shell"><input type="date" data-f="givenDate" value="" placeholder=""></div></div><div class="dg-field dg-half" data-fw="returnDate"><label>Qaytarish sanasi</label><div class="dg-shell"><input type="date" data-f="returnDate" value="" placeholder=""></div><div class="dg-hint">Kechikish muddati shu sanadan avtomatik hisoblanadi.</div></div><div class="dg-field" data-fw="hasInterest"><label>Foiz yoki qo'shimcha summa talab qilinadimi</label><div class="dg-seg"><button type="button" data-seg="hasInterest" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="hasInterest" data-val="ha">Ha</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Da'vo qiymati va boj</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="stateFee"><label>Davlat boji summasi</label><div class="dg-shell"><input type="text" data-f="stateFee" inputmode="numeric" value="" placeholder=""><span class="dg-unit">so'm</span></div><div class="dg-hint">Generator bojni hisoblamaydi: stavkalar o'zgaradi, da'vo turiga qarab farq qiladi va imtiyozlar bo'lishi mumkin. Miqdorini sud yoki rasmiy manbadan aniqlang.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Sudgacha talabnoma</div><div class="dg-rows"><div class="dg-field" data-fw="hasClaim"><label>Talabnoma yuborilganmi</label><div class="dg-seg"><button type="button" data-seg="hasClaim" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="hasClaim" data-val="ha">Ha</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ilovalar</div><div class="dg-rows"><div class="dg-field" data-fw="attachChecks"><label>Ilova qilinadigan hujjatlar</label><div class="dg-checks"><button type="button" class="dg-chk" data-chk="attachChecks" data-val="asos" aria-pressed="false">Tilxat / shartnoma nusxasi</button><button type="button" class="dg-chk" data-chk="attachChecks" data-val="tolov" aria-pressed="false">To'lov hujjatlari</button><button type="button" class="dg-chk" data-chk="attachChecks" data-val="talabnoma" aria-pressed="false">Talabnoma va yuborish dalili</button><button type="button" class="dg-chk" data-chk="attachChecks" data-val="boj" aria-pressed="false">Boj to'langani haqidagi hujjat</button><button type="button" class="dg-chk" data-chk="attachChecks" data-val="pasport" aria-pressed="false">Pasport nusxasi</button><button type="button" class="dg-chk" data-chk="attachChecks" data-val="guvoh" aria-pressed="false">Guvohlar ro'yxati</button></div></div><div class="dg-field" data-fw="attachExtra"><label>Boshqa ilovalar</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="attachExtra">+ Ilova qo'shish</button></div></div><div class="dg-field dg-half" data-fw="docDate"><label>Ariza sanasi</label><div class="dg-shell"><input type="date" data-f="docDate" value="2026-08-07" placeholder=""></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Arizani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Da'vo arizasi matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 11</span></div>
+        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div></div><div>Da'vogar:</div><div><span class="ph">__________________________</span></div><div>manzil: <span class="ph">__________________________</span></div><div></div><div>Javobgar:</div><div><span class="ph">__________________________</span></div><div>manzil: <span class="ph">__________________________</span></div><div></div><div>Da'vo qiymati: <span class="ph">__________________</span></div><div>Davlat boji: <span class="ph">__________________</span></div></div><div class="dg-title">DA'VO ARIZASI</div><div class="dg-p"><span class="ph">____________________</span>da men javobgar <span class="ph">______________________</span>ga tilxat asosida <span class="ph">__________________</span> miqdorida pul mablag'i berdim.</div><div class="dg-p">Javobgar ushbu summani <span class="ph">____________________</span>gacha qaytarish majburiyatini olgan.</div><div class="dg-p">Belgilangan muddatda summa qaytarilmadi. Hozirgi kunga qadar qarz to'lanmagan.</div><div class="dg-p">Bayon etilgan holatlar ushbu arizaga ilova qilingan hujjatlar bilan tasdiqlanadi.</div><div class="dg-gap"></div><div class="dg-p">YUQORIDAGILAR ASOSIDA SO'RAYMAN:</div><div class="dg-p">1. Javobgar <span class="ph">______________________</span>dan mening foydamga <span class="ph">__________________</span> miqdoridagi asosiy qarz summasini undirishni.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>«7» avgust 2026 yil</div></div><div><div>_______________ (imzo)</div><div><span class="ph">______________________</span></div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Da'vo arizasi protsessual hujjat; sudga topshirishdan oldin uni yurist bilan tekshirib olish lozim.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div id="lawWarn" class="law-warn noprint" role="note">Da'vo arizasi — jiddiy protsessual hujjat. Bu namuna umumiy tuzilishni ko'rsatadi. Sud da'voni shakl talablariga muvofiq emasligi sababli qaytarishi mumkin. Sudga murojaat qilishdan oldin arizani yurist bilan tekshirib oling. Kalki.uz sud jarayoni natijasi uchun javobgar emas.</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Holatlar bayonini <b>hissiyotsiz, faqat faktlar bilan</b> yozing: qachon, kim bilan, qanday hujjat asosida, qancha summada. Talab aniq va o'lchanadigan bo'lishi kerak — «adolat tiklansin» emas, «falon summa undirilsin». Hujjatlarni nusxada topshiring, asl nusxalarni o'zingizda saqlang.</div>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Da'vo arizasi nima va qachon beriladi?</h2><p>Da'vo arizasi — buzilgan huquqni tiklash uchun sudga beriladigan yozma murojaat. Unda kim, kimga nisbatan, nima sababdan va nima talab qilayotgani bayon etiladi. Sud ishni aynan shu hujjat asosida qabul qiladi, shuning uchun uning mazmuni va shakli ishning taqdirini ko'p jihatdan belgilaydi.</p><p>Da'vo odatda muzokaralar natija bermagach beriladi. Amalda ketma-ketlik shunday bo'ladi: avval og'zaki kelishuvga urinish, so'ng yozma talabnoma, javob bo'lmasa yoki rad etilsa — sudga murojaat.</p><p>Bu generator eng ko'p uchraydigan uchta nizoni qamrab oladi: pul qarzini undirish, mehnat nizosi va ijara nizosi. Boshqa turdagi nizolar — oila, meros, ko'chmas mulk bo'linishi, ma'muriy ishlar — o'z xususiyatlariga ega va ular uchun alohida yondashuv kerak bo'ladi.</p><p>Muhim ogohlantirish: da'vo arizasi protsessual hujjat. Uning shakliga qo'yiladigan talablar buzilgan bo'lsa, sud arizani qaytarishi yoki harakatsiz qoldirishi mumkin. Shuning uchun tayyor matnni sudga topshirishdan oldin yurist bilan tekshirib olish tavsiya etiladi.</p><h2>Qaysi sudga murojaat qilinadi?</h2><p>Umumiy tamoyil shundan iboratki, da'vo javobgarning yashash joyi yoki tashkilotning joylashgan manzili bo'yicha sudga beriladi. Bu qoidaning maqsadi — javobgarga o'zini himoya qilish imkonini berish.</p><p>Bu tamoyildan istisnolar bor. Ayrim toifadagi nizolarda da'vogarga tanlash huquqi beriladi yoki ish faqat muayyan sudda ko'riladi. Masalan, ko'chmas mulk bilan bog'liq nizolar odatda mulk joylashgan joy bo'yicha ko'rib chiqiladi.</p><p>Sudlarning turi ham ahamiyatli: jismoniy shaxslar o'rtasidagi nizolar bilan tadbirkorlik faoliyatiga oid nizolar turli sudlar tomonidan ko'riladi. Tomonlardan biri yuridik shaxs bo'lsa, ishning qaysi sudga tegishliligi o'zgarishi mumkin.</p><p>Generator sudning nomini va manzilini siz kiritadigan maydon sifatida qoldiradi va qaysi sud kerakligini o'zi hal qilmaydi — bu masala har bir ishning holatiga bog'liq. Aniq sudni sud sayti orqali yoki yuristdan aniqlang: noto'g'ri sudga berilgan ariza qaytariladi va vaqt yo'qotiladi.</p><h2>Da'vo arizasida nimalar bo'lishi shart?</h2><p>Hujjatning tuzilishi ancha qat'iy. Yuqori qismda sudning nomi, da'vogar va javobgarning to'liq ma'lumotlari — F.I.Sh. yoki tashkilot nomi, manzil, telefon va identifikatsiya raqami ko'rsatiladi. Aloqa ma'lumotlari muhim: sud chaqiruv qog'ozini shu manzilga yuboradi.</p><p>Shu yerda da'vo qiymati va to'langan davlat boji summasi ham ko'rsatiladi. Da'vo qiymati — talab qilinayotgan pul summasi; generator uni siz kiritgan asosiy summalardan avtomatik hisoblaydi.</p><p>Asosiy qism — holatlar bayoni. Bu yerda nima bo'lgani xronologik tartibda, sanalar va summalar bilan yoziladi. Hissiyot va baholarsiz, faqat faktlar: qachon, kim bilan, qanday hujjat asosida, qancha summada. Sud uchun aynan shu qism eng muhim.</p><p>Keyin dalillar keltiriladi — qaysi hujjat qaysi holatni tasdiqlaydi. So'ng «yuqoridagilar asosida so'rayman» degan iboradan keyin talablar raqamlangan ro'yxat shaklida yoziladi. Talab aniq va o'lchanadigan bo'lishi kerak: «adolat tiklansin» emas, «falon summani undirilsin».</p><p>Oxirida ilova qilingan hujjatlar ro'yxati, sana va imzo bo'ladi. Ilovalar ro'yxati muhim: sud nima topshirilganini shu ro'yxat bo'yicha tekshiradi.</p><h2>Dalillar: qaysi hujjatlar kuchli hisoblanadi?</h2><p>Eng kuchli dalil — tomonlar imzolagan yozma hujjat. Qarz nizolarida bu tilxat yoki shartnoma; mehnat nizolarida mehnat shartnomasi, buyruqlar va ish haqi to'g'risidagi hujjatlar; ijara nizolarida ijara shartnomasi va topshirish-qabul dalolatnomasi.</p><p>Ikkinchi o'rinda pul harakatini tasdiqlovchi hujjatlar turadi: bank ko'chirmalari, to'lov topshiriqnomalari, kvitansiyalar. Ular summaning haqiqatan o'tkazilgani yoki o'tkazilmaganini ko'rsatadi va og'zaki bahsni to'xtatadi.</p><p>Yozishmalar ham dalil bo'la oladi: talabnoma va uni yuborilgani haqidagi pochta hujjati, xabarnoma, elektron xat. Ular javobgar holatdan xabardor bo'lganini isbotlaydi — bu ko'p ishlarda hal qiluvchi ahamiyatga ega.</p><p>Guvohlar ko'rsatuvi ham qo'llaniladi, lekin u yozma hujjatdan kuchsizroq hisoblanadi va ayrim holatlarda pul munosabatlarini isbotlash uchun yetarli bo'lmasligi mumkin. Shuning uchun pul berayotganda har doim yozma tilxat rasmiylashtirish tavsiya etiladi.</p><p>Hujjatlarni sudga nusxada topshiring, asl nusxalarni o'zingizda saqlang va faqat sud so'raganda taqqoslash uchun ko'rsating.</p><h2>Da'vo qiymati va davlat boji nima?</h2><p>Da'vo qiymati — sizning pul talabingizning umumiy miqdori. Agar bir nechta pul talabi bo'lsa, ular qo'shiladi. Bu raqam ikki narsani belgilaydi: davlat boji miqdorini va ba'zan ishning qaysi sudda ko'rilishini.</p><p>Davlat boji — sudga murojaat qilganlik uchun to'lanadigan yig'im. Uning miqdori da'vo qiymatiga bog'liq va odatda ma'lum bir foiz yoki belgilangan miqdor sifatida hisoblanadi. Boj to'langani haqidagi hujjat arizaga ilova qilinadi; bojsiz ariza harakatsiz qoldirilishi mumkin.</p><p>Bu generator boj summasini o'zi hisoblamaydi va uni maydonga siz kiritasiz. Sabab oddiy: boj stavkalari vaqti-vaqti bilan o'zgaradi, da'vo turiga qarab farq qiladi va ayrim toifadagi da'vogarlar imtiyozga ega bo'lishi mumkin. Kodga yozib qo'yilgan raqam esa eskirib, foydalanuvchini noto'g'ri summaga olib kelardi.</p><p>Aniq summani sud yoki rasmiy manbadan aniqlang. Ayrim toifadagi da'volar — masalan mehnat huquqlari bilan bog'liq ayrim talablar — bojdan ozod qilinishi mumkin, shuning uchun to'lashdan oldin bu masalani ham tekshirib ko'ring.</p><p>Ish yutilsa, to'langan boj odatda javobgardan undiriladi — shuning uchun uni talablar ro'yxatiga kiritish mantiqiy.</p><h2>Sudgacha talabnoma yuborish nega foydali?</h2><p>Talabnoma — javobgarga sudga murojaat qilishdan oldin yuboriladigan yozma talab. Unda muammo bayon etiladi, aniq talab qo'yiladi va javob berish uchun muddat beriladi.</p><p>Ayrim toifadagi nizolarda sudgacha tartibga rioya qilish majburiy bo'lishi mumkin va u bajarilmasa, sud arizani qaytaradi. Majburiy bo'lmagan hollarda ham talabnoma foydali: ko'p nizolar aynan shu bosqichda hal bo'ladi, chunki javobgar sud xarajatlarini ko'rib, to'lashni afzal ko'radi.</p><p>Talabnomani xabarnomali buyurtma xat bilan yuboring va yuborilganlik haqidagi kvitansiyani saqlang. Aynan shu hujjat sudda «men urinib ko'rdim» degan gapingizni isbotlaydi.</p><p>Generatorda talabnoma yuborilgani va uning sanasini belgilash mumkin — bu holat da'vo matniga alohida band bo'lib qo'shiladi va sizning pozitsiyangizni kuchaytiradi.</p><h2>Da'vo qaytarilishining eng ko'p uchraydigan sabablari</h2><p>Birinchi sabab — noto'g'ri sudga murojaat qilish. Ariza mazmunan to'g'ri bo'lsa ham, sud o'z vakolatiga kirmaydigan ishni ko'rmaydi va arizani qaytaradi.</p><p>Ikkinchi sabab — davlat boji to'lanmagani yoki to'liq to'lanmagani. Boj to'langani haqidagi hujjat ilova qilinmasa, ariza harakatsiz qoldiriladi va tuzatish uchun muddat beriladi.</p><p>Uchinchi sabab — talabning noaniqligi. «Huquqim tiklansin» degan umumiy ibora talab hisoblanmaydi: sud aniq nima qilishi kerakligini bilishi lozim — qancha summa undirilsin, kim nima qilsin.</p><p>To'rtinchi sabab — javobgar ma'lumotlarining yetishmasligi. Manzil noto'g'ri bo'lsa, sud chaqiruv qog'ozini yuborolmaydi va ish cho'zilib ketadi.</p><p>Beshinchi sabab — ilovalarning yetishmasligi. Da'voda tilga olingan hujjat ilova qilinmasa, u dalil sifatida ko'rilmaydi.</p><p>Oltinchi sabab — muddat o'tkazib yuborilishi. Huquqni sud orqali himoya qilish uchun belgilangan muddatlar mavjud va ular nizo turiga qarab farq qiladi. Muddat o'tgan bo'lsa ham murojaat qilish mumkin, lekin javobgar bu haqda ariza bersa, sud talabni rad etishi mumkin — shuning uchun kechiktirmang va o'zingizga tegishli muddatni oldindan aniqlang.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Da'vo arizasini yuristsiz o'zim yozsam bo'ladimi?</h2><p>Qonun buni taqiqlamaydi va oddiy ishlarda odamlar o'zlari yozadi. Lekin da'vo arizasi protsessual hujjat: shakl talablari buzilsa, sud uni qaytarishi yoki harakatsiz qoldirishi mumkin, bu esa vaqt yo'qotishga olib keladi. Bu generator tuzilishni to'g'ri shakllantirishga yordam beradi, ammo u yuridik maslahat o'rnini bosmaydi — sudga topshirishdan oldin matnni yurist bilan tekshirib oling.</p><h2>Da'vo qiymatini qanday hisoblash kerak?</h2><p>Bu sizning pul talabingizning umumiy miqdori: asosiy qarz va agar talab qilinayotgan bo'lsa, qo'shimcha summalar qo'shiladi. Generator uni siz kiritgan summalardan avtomatik hisoblab, hujjatning yuqori qismiga yozadi. Pul bilan bog'liq bo'lmagan talablar — masalan joyni bo'shatish — da'vo qiymatiga kirmaydi, lekin ular ham talablar ro'yxatida ko'rsatiladi.</p><h2>Davlat boji qancha bo'ladi?</h2><p>Generator boj summasini hisoblamaydi va uni siz kiritasiz. Sabab: boj stavkalari vaqti-vaqti bilan o'zgaradi, da'vo turiga qarab farq qiladi va ayrim da'vogarlar imtiyozga ega bo'lishi mumkin. Aniq summani sud yoki rasmiy manbadan aniqlang. Ayrim toifadagi da'volar bojdan ozod qilinishi ham mumkin, shuning uchun to'lashdan oldin buni tekshiring.</p><h2>Talabnoma yubormasdan to'g'ridan-to'g'ri sudga bersa bo'ladimi?</h2><p>Ayrim toifadagi nizolarda sudgacha tartibga rioya qilish majburiy bo'lishi mumkin va u bajarilmasa ariza qaytariladi. Majburiy bo'lmagan hollarda ham talabnoma yuborish foydali: ko'p nizolar shu bosqichda hal bo'ladi. Talabnomani xabarnomali buyurtma xat bilan yuboring va kvitansiyani saqlang — generatorda uni belgilaganingizda matnga alohida band qo'shiladi.</p><h2>Javobgarning manzilini bilmasam nima qilish kerak?</h2><p>Manzilsiz sud chaqiruv qog'ozini yubora olmaydi, shuning uchun uni imkon qadar aniqlash kerak. Ma'lum bo'lgan ma'lumotlarni — telefon, ish joyi, oxirgi ma'lum manzil — arizada ko'rsating. Ayrim holatlarda sud tomonidan ma'lumot so'rash imkoniyati ham bo'ladi; bu masalani sud kotibiyati yoki yurist bilan aniqlashtiring.</p><h2>Guvohlarning ko'rsatuvi yetarli dalil bo'ladimi?</h2><p>Guvoh ko'rsatuvi dalil sifatida qo'llaniladi, lekin yozma hujjatdan kuchsizroq hisoblanadi va ayrim holatlarda pul munosabatlarini isbotlash uchun yetarli bo'lmasligi mumkin. Shuning uchun pul berayotganda har doim tilxat rasmiylashtirish tavsiya etiladi. Agar yozma hujjat bo'lmasa, boshqa dalillarni — o'tkazmalar, yozishmalar, xabarlar — imkon qadar ko'proq to'plang.</p><h2>Sud da'voni qaytarsa, qayta murojaat qilsa bo'ladimi?</h2><p>Ko'p hollarda ha. Agar ariza shakl talablari sababli qaytarilgan bo'lsa, kamchiliklarni tuzatib qayta topshirish mumkin. Harakatsiz qoldirilgan holatda esa sud tuzatish uchun muddat beradi va shu muddatda kamchilik bartaraf etilsa, ariza dastlabki topshirilgan sanadan kuchga kiradi. Qaytarish sababini sud ajrimidan aniq o'qib chiqing — unda nima tuzatilishi kerakligi yozilgan bo'ladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Da'voga asos bo'ladigan hujjatlar" data-artt-ru="Документы, на которых строится иск">Da'voga asos bo'ladigan hujjatlar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="tilxat-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">💰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Tilxat (qarz olish)" data-art-ru="Расписка о займе">Tilxat (qarz olish)</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🏠</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ijara shartnomasi" data-art-ru="Договор аренды жилья">Ijara shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📋</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat shartnomasi" data-art-ru="Трудовой договор">Mehnat shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="tilxat-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">💰</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Tilxat namunasi" data-rel-ru="Образец расписки">Tilxat namunasi</span></a><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">🏠</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ijara shartnomasi" data-rel-ru="Договор аренды">Ijara shartnomasi</span></a><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📨</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Umumiy ariza" data-rel-ru="Заявление (общее)">Umumiy ariza</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Universitet kontrakti / Контракт вуза</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;white-space:nowrap">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Da'vo arizasi namunasi ma'lumot uchun. Protsessual talablar va muddatlar nizo turiga qarab farq qiladi — sudga murojaat qilishdan oldin yurist bilan maslahatlashing.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">7.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+
+/* Kuchaytirilgan ogohlantirish natija blokidan darrov keyin turadi.
+   Element HTML'da statik, faqat matni tilga qarab yangilanadi. */
+function setLawWarn(lang){
+  var el=document.getElementById('lawWarn');
+  if(!el)return;
+  el.textContent=(lang==='ru')
+    ?'Исковое заявление — серьёзный процессуальный документ. Этот образец показывает лишь общую структуру. Суд может вернуть иск из-за несоответствия требованиям к форме. Перед обращением в суд проверьте заявление с юристом. Kalki.uz не несёт ответственности за результат судебного разбирательства.'
+    :"Da'vo arizasi — jiddiy protsessual hujjat. Bu namuna umumiy tuzilishni ko'rsatadi. Sud da'voni shakl talablariga muvofiq emasligi sababli qaytarishi mumkin. Sudga murojaat qilishdan oldin arizani yurist bilan tekshirib oling. Kalki.uz sud jarayoni natijasi uchun javobgar emas.";
+}
+
+/* ---------- interfeys matnlari ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Da'vo arizasi namunasi",
+  sub:"Sudga da'vo arizasi tuzing: pul qarzi, mehnat nizosi yoki ijara nizosi. Turini tanlang — matn butunlay o'zgaradi.",
+  intro:"<b>Da'vo arizasi</b> — buzilgan huquqni tiklash uchun sudga beriladigan yozma murojaat. Bu generator eng ko'p uchraydigan uchta nizoni qamrab oladi: pul qarzini undirish, mehnat nizosi va ijara nizosi. Turini tanlang, sanalar va summalarni kiriting — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi.",
+  prevTitle:"Da'vo arizasi matni",
+  jump:"Arizani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTxt:"Holatlar bayonini <b>hissiyotsiz, faqat faktlar bilan</b> yozing: qachon, kim bilan, qanday hujjat asosida, qancha summada. Talab aniq va o'lchanadigan bo'lishi kerak — «adolat tiklansin» emas, «falon summa undirilsin». Hujjatlarni nusxada topshiring, asl nusxalarni o'zingizda saqlang.",
+  foot:"Da'vo arizasi namunasi ma'lumot uchun. Protsessual talablar va muddatlar nizo turiga qarab farq qiladi — sudga murojaat qilishdan oldin yurist bilan maslahatlashing.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Da'vo arizasi nima va qachon beriladi?</h2><p>Da'vo arizasi — buzilgan huquqni tiklash uchun sudga beriladigan yozma murojaat. Unda kim, kimga nisbatan, nima sababdan va nima talab qilayotgani bayon etiladi. Sud ishni aynan shu hujjat asosida qabul qiladi, shuning uchun uning mazmuni va shakli ishning taqdirini ko'p jihatdan belgilaydi.</p><p>Da'vo odatda muzokaralar natija bermagach beriladi. Amalda ketma-ketlik shunday bo'ladi: avval og'zaki kelishuvga urinish, so'ng yozma talabnoma, javob bo'lmasa yoki rad etilsa — sudga murojaat.</p><p>Bu generator eng ko'p uchraydigan uchta nizoni qamrab oladi: pul qarzini undirish, mehnat nizosi va ijara nizosi. Boshqa turdagi nizolar — oila, meros, ko'chmas mulk bo'linishi, ma'muriy ishlar — o'z xususiyatlariga ega va ular uchun alohida yondashuv kerak bo'ladi.</p><p>Muhim ogohlantirish: da'vo arizasi protsessual hujjat. Uning shakliga qo'yiladigan talablar buzilgan bo'lsa, sud arizani qaytarishi yoki harakatsiz qoldirishi mumkin. Shuning uchun tayyor matnni sudga topshirishdan oldin yurist bilan tekshirib olish tavsiya etiladi.</p><h2>Qaysi sudga murojaat qilinadi?</h2><p>Umumiy tamoyil shundan iboratki, da'vo javobgarning yashash joyi yoki tashkilotning joylashgan manzili bo'yicha sudga beriladi. Bu qoidaning maqsadi — javobgarga o'zini himoya qilish imkonini berish.</p><p>Bu tamoyildan istisnolar bor. Ayrim toifadagi nizolarda da'vogarga tanlash huquqi beriladi yoki ish faqat muayyan sudda ko'riladi. Masalan, ko'chmas mulk bilan bog'liq nizolar odatda mulk joylashgan joy bo'yicha ko'rib chiqiladi.</p><p>Sudlarning turi ham ahamiyatli: jismoniy shaxslar o'rtasidagi nizolar bilan tadbirkorlik faoliyatiga oid nizolar turli sudlar tomonidan ko'riladi. Tomonlardan biri yuridik shaxs bo'lsa, ishning qaysi sudga tegishliligi o'zgarishi mumkin.</p><p>Generator sudning nomini va manzilini siz kiritadigan maydon sifatida qoldiradi va qaysi sud kerakligini o'zi hal qilmaydi — bu masala har bir ishning holatiga bog'liq. Aniq sudni sud sayti orqali yoki yuristdan aniqlang: noto'g'ri sudga berilgan ariza qaytariladi va vaqt yo'qotiladi.</p><h2>Da'vo arizasida nimalar bo'lishi shart?</h2><p>Hujjatning tuzilishi ancha qat'iy. Yuqori qismda sudning nomi, da'vogar va javobgarning to'liq ma'lumotlari — F.I.Sh. yoki tashkilot nomi, manzil, telefon va identifikatsiya raqami ko'rsatiladi. Aloqa ma'lumotlari muhim: sud chaqiruv qog'ozini shu manzilga yuboradi.</p><p>Shu yerda da'vo qiymati va to'langan davlat boji summasi ham ko'rsatiladi. Da'vo qiymati — talab qilinayotgan pul summasi; generator uni siz kiritgan asosiy summalardan avtomatik hisoblaydi.</p><p>Asosiy qism — holatlar bayoni. Bu yerda nima bo'lgani xronologik tartibda, sanalar va summalar bilan yoziladi. Hissiyot va baholarsiz, faqat faktlar: qachon, kim bilan, qanday hujjat asosida, qancha summada. Sud uchun aynan shu qism eng muhim.</p><p>Keyin dalillar keltiriladi — qaysi hujjat qaysi holatni tasdiqlaydi. So'ng «yuqoridagilar asosida so'rayman» degan iboradan keyin talablar raqamlangan ro'yxat shaklida yoziladi. Talab aniq va o'lchanadigan bo'lishi kerak: «adolat tiklansin» emas, «falon summani undirilsin».</p><p>Oxirida ilova qilingan hujjatlar ro'yxati, sana va imzo bo'ladi. Ilovalar ro'yxati muhim: sud nima topshirilganini shu ro'yxat bo'yicha tekshiradi.</p><h2>Dalillar: qaysi hujjatlar kuchli hisoblanadi?</h2><p>Eng kuchli dalil — tomonlar imzolagan yozma hujjat. Qarz nizolarida bu tilxat yoki shartnoma; mehnat nizolarida mehnat shartnomasi, buyruqlar va ish haqi to'g'risidagi hujjatlar; ijara nizolarida ijara shartnomasi va topshirish-qabul dalolatnomasi.</p><p>Ikkinchi o'rinda pul harakatini tasdiqlovchi hujjatlar turadi: bank ko'chirmalari, to'lov topshiriqnomalari, kvitansiyalar. Ular summaning haqiqatan o'tkazilgani yoki o'tkazilmaganini ko'rsatadi va og'zaki bahsni to'xtatadi.</p><p>Yozishmalar ham dalil bo'la oladi: talabnoma va uni yuborilgani haqidagi pochta hujjati, xabarnoma, elektron xat. Ular javobgar holatdan xabardor bo'lganini isbotlaydi — bu ko'p ishlarda hal qiluvchi ahamiyatga ega.</p><p>Guvohlar ko'rsatuvi ham qo'llaniladi, lekin u yozma hujjatdan kuchsizroq hisoblanadi va ayrim holatlarda pul munosabatlarini isbotlash uchun yetarli bo'lmasligi mumkin. Shuning uchun pul berayotganda har doim yozma tilxat rasmiylashtirish tavsiya etiladi.</p><p>Hujjatlarni sudga nusxada topshiring, asl nusxalarni o'zingizda saqlang va faqat sud so'raganda taqqoslash uchun ko'rsating.</p><h2>Da'vo qiymati va davlat boji nima?</h2><p>Da'vo qiymati — sizning pul talabingizning umumiy miqdori. Agar bir nechta pul talabi bo'lsa, ular qo'shiladi. Bu raqam ikki narsani belgilaydi: davlat boji miqdorini va ba'zan ishning qaysi sudda ko'rilishini.</p><p>Davlat boji — sudga murojaat qilganlik uchun to'lanadigan yig'im. Uning miqdori da'vo qiymatiga bog'liq va odatda ma'lum bir foiz yoki belgilangan miqdor sifatida hisoblanadi. Boj to'langani haqidagi hujjat arizaga ilova qilinadi; bojsiz ariza harakatsiz qoldirilishi mumkin.</p><p>Bu generator boj summasini o'zi hisoblamaydi va uni maydonga siz kiritasiz. Sabab oddiy: boj stavkalari vaqti-vaqti bilan o'zgaradi, da'vo turiga qarab farq qiladi va ayrim toifadagi da'vogarlar imtiyozga ega bo'lishi mumkin. Kodga yozib qo'yilgan raqam esa eskirib, foydalanuvchini noto'g'ri summaga olib kelardi.</p><p>Aniq summani sud yoki rasmiy manbadan aniqlang. Ayrim toifadagi da'volar — masalan mehnat huquqlari bilan bog'liq ayrim talablar — bojdan ozod qilinishi mumkin, shuning uchun to'lashdan oldin bu masalani ham tekshirib ko'ring.</p><p>Ish yutilsa, to'langan boj odatda javobgardan undiriladi — shuning uchun uni talablar ro'yxatiga kiritish mantiqiy.</p><h2>Sudgacha talabnoma yuborish nega foydali?</h2><p>Talabnoma — javobgarga sudga murojaat qilishdan oldin yuboriladigan yozma talab. Unda muammo bayon etiladi, aniq talab qo'yiladi va javob berish uchun muddat beriladi.</p><p>Ayrim toifadagi nizolarda sudgacha tartibga rioya qilish majburiy bo'lishi mumkin va u bajarilmasa, sud arizani qaytaradi. Majburiy bo'lmagan hollarda ham talabnoma foydali: ko'p nizolar aynan shu bosqichda hal bo'ladi, chunki javobgar sud xarajatlarini ko'rib, to'lashni afzal ko'radi.</p><p>Talabnomani xabarnomali buyurtma xat bilan yuboring va yuborilganlik haqidagi kvitansiyani saqlang. Aynan shu hujjat sudda «men urinib ko'rdim» degan gapingizni isbotlaydi.</p><p>Generatorda talabnoma yuborilgani va uning sanasini belgilash mumkin — bu holat da'vo matniga alohida band bo'lib qo'shiladi va sizning pozitsiyangizni kuchaytiradi.</p><h2>Da'vo qaytarilishining eng ko'p uchraydigan sabablari</h2><p>Birinchi sabab — noto'g'ri sudga murojaat qilish. Ariza mazmunan to'g'ri bo'lsa ham, sud o'z vakolatiga kirmaydigan ishni ko'rmaydi va arizani qaytaradi.</p><p>Ikkinchi sabab — davlat boji to'lanmagani yoki to'liq to'lanmagani. Boj to'langani haqidagi hujjat ilova qilinmasa, ariza harakatsiz qoldiriladi va tuzatish uchun muddat beriladi.</p><p>Uchinchi sabab — talabning noaniqligi. «Huquqim tiklansin» degan umumiy ibora talab hisoblanmaydi: sud aniq nima qilishi kerakligini bilishi lozim — qancha summa undirilsin, kim nima qilsin.</p><p>To'rtinchi sabab — javobgar ma'lumotlarining yetishmasligi. Manzil noto'g'ri bo'lsa, sud chaqiruv qog'ozini yuborolmaydi va ish cho'zilib ketadi.</p><p>Beshinchi sabab — ilovalarning yetishmasligi. Da'voda tilga olingan hujjat ilova qilinmasa, u dalil sifatida ko'rilmaydi.</p><p>Oltinchi sabab — muddat o'tkazib yuborilishi. Huquqni sud orqali himoya qilish uchun belgilangan muddatlar mavjud va ular nizo turiga qarab farq qiladi. Muddat o'tgan bo'lsa ham murojaat qilish mumkin, lekin javobgar bu haqda ariza bersa, sud talabni rad etishi mumkin — shuning uchun kechiktirmang va o'zingizga tegishli muddatni oldindan aniqlang.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец искового заявления",
+  sub:"Составьте исковое заявление в суд: денежный долг, трудовой спор или спор по аренде. Выберите вид — текст меняется полностью.",
+  intro:"<b>Исковое заявление</b> — письменное обращение в суд для восстановления нарушенного права. Этот генератор охватывает три самых распространённых спора: взыскание денежного долга, трудовой спор и спор по аренде. Выберите вид, укажите даты и суммы — текст сформируется справа в реальном времени. Введённые данные не отправляются на сервер.",
+  prevTitle:"Текст искового заявления",
+  jump:"Посмотреть заявление ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTxt:"Излагайте обстоятельства <b>без эмоций, только фактами</b>: когда, с кем, на основании какого документа, на какую сумму. Требование должно быть конкретным и измеримым — не «восстановить справедливость», а «взыскать такую-то сумму». Документы подавайте в копиях, оригиналы храните у себя.",
+  foot:"Образец искового заявления носит справочный характер. Процессуальные требования и сроки различаются в зависимости от вида спора — перед обращением в суд проконсультируйтесь с юристом.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Что такое исковое заявление и когда его подают?</h2><p>Исковое заявление — письменное обращение в суд для восстановления нарушенного права. В нём излагается, кто, к кому, по какой причине обращается и что требует. Суд принимает дело именно на основании этого документа, поэтому его содержание и форма во многом определяют судьбу спора.</p><p>Иск обычно подают, когда переговоры не дали результата. На практике последовательность такова: сначала попытка устной договорённости, затем письменная претензия, и лишь при отсутствии ответа или отказе — обращение в суд.</p><p>Этот генератор охватывает три наиболее распространённых спора: взыскание денежного долга, трудовой спор и спор по аренде. Другие категории — семейные, наследственные, раздел недвижимости, административные дела — имеют свои особенности и требуют отдельного подхода.</p><p>Важное предупреждение: исковое заявление — процессуальный документ. При нарушении требований к его форме суд может вернуть заявление или оставить его без движения. Поэтому готовый текст перед подачей рекомендуется проверить с юристом.</p><h2>В какой суд обращаться?</h2><p>Общий принцип состоит в том, что иск подаётся в суд по месту жительства ответчика или по адресу организации. Цель этого правила — дать ответчику возможность защищаться.</p><p>Из принципа есть исключения. По отдельным категориям споров истцу предоставляется право выбора либо дело рассматривается только определённым судом. Например, споры о недвижимости обычно рассматриваются по месту нахождения имущества.</p><p>Значение имеет и вид суда: споры между физическими лицами и споры, связанные с предпринимательской деятельностью, рассматриваются разными судами. Если одна из сторон — юридическое лицо, подсудность может измениться.</p><p>Генератор оставляет наименование и адрес суда полями, которые заполняете вы, и сам не решает, какой суд нужен, — это зависит от обстоятельств конкретного дела. Уточните нужный суд на сайте суда или у юриста: заявление, поданное не в тот суд, возвращается, и время теряется.</p><h2>Что обязательно должно быть в исковом заявлении?</h2><p>Структура документа довольно строгая. В верхней части указываются наименование суда, полные данные истца и ответчика — Ф.И.О. или название организации, адрес, телефон и идентификационный номер. Контактные данные важны: суд направляет повестку именно по этому адресу.</p><p>Здесь же указываются цена иска и сумма уплаченной государственной пошлины. Цена иска — размер денежного требования; генератор рассчитывает её автоматически из введённых вами основных сумм.</p><p>Основная часть — изложение обстоятельств. Здесь в хронологическом порядке, с датами и суммами, описывается произошедшее. Без эмоций и оценок, только факты: когда, с кем, на основании какого документа, на какую сумму. Именно эта часть наиболее важна для суда.</p><p>Далее приводятся доказательства — какой документ какое обстоятельство подтверждает. Затем после фразы «на основании изложенного прошу» требования излагаются нумерованным списком. Требование должно быть конкретным и измеримым: не «восстановить справедливость», а «взыскать такую-то сумму».</p><p>В конце — перечень приложений, дата и подпись. Перечень приложений важен: суд проверяет по нему, что именно было сдано.</p><h2>Доказательства: какие документы считаются сильными?</h2><p>Самое сильное доказательство — письменный документ, подписанный сторонами. В долговых спорах это расписка или договор; в трудовых — трудовой договор, приказы и документы о заработной плате; в арендных — договор аренды и акт приёма-передачи.</p><p>На втором месте документы, подтверждающие движение денег: банковские выписки, платёжные поручения, квитанции. Они показывают, была ли сумма фактически перечислена, и прекращают устный спор.</p><p>Доказательством может быть и переписка: претензия и почтовый документ о её отправке, уведомление, электронное письмо. Они подтверждают, что ответчик был осведомлён о ситуации, — во многих делах это имеет решающее значение.</p><p>Показания свидетелей также используются, но считаются слабее письменных документов и в отдельных случаях могут быть недостаточны для подтверждения денежных отношений. Поэтому при передаче денег всегда рекомендуется оформлять письменную расписку.</p><p>Документы подавайте в суд в копиях, оригиналы храните у себя и предъявляйте для сверки только по требованию суда.</p><h2>Что такое цена иска и государственная пошлина?</h2><p>Цена иска — общий размер вашего денежного требования. Если требований несколько, они складываются. Эта цифра определяет две вещи: размер государственной пошлины и иногда то, каким судом будет рассмотрено дело.</p><p>Государственная пошлина — сбор за обращение в суд. Её размер зависит от цены иска и обычно исчисляется как определённый процент или фиксированная величина. Документ об уплате прилагается к заявлению; без пошлины заявление может быть оставлено без движения.</p><p>Этот генератор не рассчитывает пошлину сам — вы вводите её в поле. Причина проста: ставки пошлины время от времени меняются, различаются по видам исков, а отдельные категории истцов могут иметь льготы. Зашитая в код цифра устарела бы и привела пользователя к неверной сумме.</p><p>Точную сумму уточните в суде или по официальному источнику. Отдельные категории исков — например, некоторые требования, связанные с трудовыми правами, — могут освобождаться от пошлины, поэтому перед уплатой проверьте и этот вопрос.</p><p>При выигрыше дела уплаченная пошлина обычно взыскивается с ответчика — поэтому включить её в список требований логично.</p><h2>Чем полезна досудебная претензия?</h2><p>Претензия — письменное требование, направляемое ответчику до обращения в суд. В ней излагается проблема, выдвигается конкретное требование и даётся срок для ответа.</p><p>По отдельным категориям споров соблюдение досудебного порядка может быть обязательным, и при его несоблюдении суд возвращает заявление. Но и в необязательных случаях претензия полезна: многие споры разрешаются именно на этом этапе, поскольку ответчик, оценив судебные расходы, предпочитает заплатить.</p><p>Отправляйте претензию заказным письмом с уведомлением и сохраняйте квитанцию об отправке. Именно этот документ подтвердит в суде, что вы предприняли попытку урегулирования.</p><p>В генераторе можно отметить факт отправки претензии и её дату — это обстоятельство добавляется в текст иска отдельным пунктом и усиливает вашу позицию.</p><h2>Самые частые причины возврата иска</h2><p>Первая причина — обращение не в тот суд. Даже при верном содержании суд не рассматривает дело, не относящееся к его компетенции, и возвращает заявление.</p><p>Вторая причина — пошлина не уплачена или уплачена не полностью. Если документ об уплате не приложен, заявление оставляют без движения и дают срок на исправление.</p><p>Третья причина — неопределённость требования. Общая фраза «восстановить моё право» требованием не является: суд должен понимать, что именно надлежит сделать — какую сумму взыскать, кому и что совершить.</p><p>Четвёртая причина — нехватка данных об ответчике. При неверном адресе суд не сможет направить повестку, и дело затянется.</p><p>Пятая причина — отсутствие приложений. Документ, упомянутый в иске, но не приложенный к нему, доказательством не рассматривается.</p><p>Шестая причина — пропуск срока. Для судебной защиты права установлены сроки, различающиеся в зависимости от вида спора. Обратиться можно и после их истечения, но если ответчик заявит об этом, суд может отказать в требовании — поэтому не откладывайте и заранее выясните применимый к вам срок.</p>"
+ }
+};
+
+/* ---------- yordamchi: tomon maydonlari ---------- */
+function sideFields(pre,phFio,phOrg){
+  var isUr=function(v){return v[pre+'Type']==='yuridik'};
+  var isJis=function(v){return v[pre+'Type']!=='yuridik'};
+  return [
+    {id:pre+'Type',t:'seg',def:'jismoniy',label:{uz:'Kim sifatida',ru:'В качестве кого'},
+     opts:[{v:'jismoniy',label:{uz:'Jismoniy shaxs',ru:'Физлицо'}},{v:'yuridik',label:{uz:'Yuridik shaxs',ru:'Юрлицо'}}]},
+    {id:pre+'Fio',t:'text',showIf:isJis,label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:phFio,ru:phFio}},
+    {id:pre+'Jshshir',t:'text',showIf:isJis,half:true,label:{uz:'JSHSHIR',ru:'ПИНФЛ'},ph:{uz:'14 raqam',ru:'14 цифр'}},
+    {id:pre+'Org',t:'text',showIf:isUr,label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:phOrg,ru:phOrg}},
+    {id:pre+'Stir',t:'text',showIf:isUr,half:true,label:{uz:'STIR (INN)',ru:'ИНН'},ph:{uz:'123456789',ru:'123456789'}},
+    {id:pre+'Addr',t:'text',label:{uz:'Manzil',ru:'Адрес'},ph:{uz:'Toshkent sh., Chilonzor t., 5-kvartal, 12-uy',ru:'г. Ташкент, Чиланзарский р-н, 5-квартал, д.12'}},
+    {id:pre+'Phone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}}
+  ];
+}
+
+var isQarz=function(s){return (s.ctype||'qarz')==='qarz'};
+var isMehnat=function(s){return s.ctype==='mehnat'};
+var isIjara=function(s){return s.ctype==='ijara'};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'davoarizasi',
+ file:'davo-arizasi',
+ sections:[
+  {id:'court',title:{uz:'Sud',ru:'Суд'},fields:[
+    {id:'courtName',t:'text',label:{uz:'Sud nomi',ru:'Наименование суда'},ph:{uz:'Toshkent shahar Chilonzor tumanlararo fuqarolik ishlari bo\'yicha sudi',ru:'Чиланзарский межрайонный суд по гражданским делам г. Ташкента'},
+     hint:{uz:'Qaysi sud kerakligi ishning holatiga bog\'liq — sud sayti orqali yoki yuristdan aniqlang.',ru:'Какой суд нужен, зависит от обстоятельств дела — уточните на сайте суда или у юриста.'}},
+    {id:'courtAddr',t:'text',label:{uz:'Sud manzili',ru:'Адрес суда'},ph:{uz:'Toshkent sh., Chilonzor t., ...',ru:'г. Ташкент, Чиланзарский р-н, ...'}}
+  ]},
+  {id:'plaintiff',title:{uz:'Da\'vogar',ru:'Истец'},fields:sideFields('p','Karimov Bobur Sobirovich','"Nur Savdo" MChJ')},
+  {id:'defendant',title:{uz:'Javobgar',ru:'Ответчик'},fields:sideFields('d','Aliyev Alisher Alimovich','"Anor Savdo" MChJ')},
+  {id:'ctype',title:{uz:'Da\'vo turi',ru:'Вид иска'},fields:[
+    {id:'ctype',t:'seg',def:'qarz',label:{uz:'Nizo turi',ru:'Вид спора'},
+     opts:[
+      {v:'qarz',label:{uz:'Pul qarzi',ru:'Денежный долг'}},
+      {v:'mehnat',label:{uz:'Mehnat nizosi',ru:'Трудовой спор'}},
+      {v:'ijara',label:{uz:'Ijara nizosi',ru:'Спор по аренде'}}
+     ],
+     hint:{uz:'Bu generator eng keng tarqalgan uchta nizoni qamrab oladi. Boshqa toifadagi nizolar o\'z xususiyatlariga ega.',ru:'Генератор охватывает три самых распространённых спора. Другие категории имеют свои особенности.'}},
+    /* 1) pul qarzi */
+    {id:'debtSum',t:'num',showIf:isQarz,half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Qarz summasi',ru:'Сумма долга'},ph:{uz:'20000000',ru:'20000000'}},
+    {id:'basisDoc',t:'seg',def:'tilxat',showIf:isQarz,label:{uz:'Asos hujjat',ru:'Документ-основание'},
+     opts:[{v:'tilxat',label:{uz:'Tilxat',ru:'Расписка'}},{v:'shartnoma',label:{uz:'Shartnoma',ru:'Договор'}}]},
+    {id:'basisNum',t:'text',showIf:isQarz,half:true,label:{uz:'Hujjat raqami (bo\'lsa)',ru:'Номер документа (если есть)'},ph:{uz:'3',ru:'3'}},
+    {id:'givenDate',t:'date',showIf:isQarz,half:true,label:{uz:'Berilgan sana',ru:'Дата передачи'}},
+    {id:'returnDate',t:'date',showIf:isQarz,half:true,label:{uz:'Qaytarish sanasi',ru:'Дата возврата'},
+     hint:{uz:'Kechikish muddati shu sanadan avtomatik hisoblanadi.',ru:'Срок просрочки рассчитывается от этой даты автоматически.'}},
+    {id:'hasInterest',t:'seg',def:'yoq',showIf:isQarz,label:{uz:'Foiz yoki qo\'shimcha summa talab qilinadimi',ru:'Требуются ли проценты или доп. сумма'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'interestSum',t:'num',showIf:function(s){return isQarz(s)&&s.hasInterest==='ha'},half:true,unit:{uz:"so'm",ru:'сум'},
+     label:{uz:'Qo\'shimcha summa',ru:'Дополнительная сумма'},
+     hint:{uz:'Miqdorini o\'zingiz hisoblab kiriting — generator foiz stavkasini belgilamaydi.',ru:'Рассчитайте сумму самостоятельно — генератор не задаёт ставку процентов.'}},
+    /* 2) mehnat nizosi */
+    {id:'workPlace',t:'text',showIf:isMehnat,label:{uz:'Ish joyi (tashkilot)',ru:'Место работы (организация)'},ph:{uz:'"Anor Savdo" MChJ',ru:'ООО "Anor Savdo"'}},
+    {id:'workPost',t:'text',showIf:isMehnat,half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'sotuv menejeri',ru:'менеджер по продажам'}},
+    {id:'workFrom',t:'date',showIf:isMehnat,half:true,label:{uz:'Ishga kirgan sana',ru:'Дата приёма'}},
+    {id:'workTo',t:'date',showIf:isMehnat,half:true,label:{uz:'Bo\'shatilgan sana',ru:'Дата увольнения'}},
+    {id:'fireReason',t:'text',showIf:isMehnat,label:{uz:'Bo\'shatish asosi (buyruqda ko\'rsatilgan)',ru:'Основание увольнения (по приказу)'},ph:{uz:'ish beruvchi tashabbusi bilan',ru:'по инициативе работодателя'}},
+    {id:'workDemand',t:'checks',showIf:isMehnat,label:{uz:'Talablar',ru:'Требования'},
+     opts:[
+      {v:'tiklash',label:{uz:'Ishga tiklash',ru:'Восстановить на работе'}},
+      {v:'bekorlik',label:{uz:'Majburiy bekorlik uchun to\'lov',ru:'Оплата вынужденного прогула'}},
+      {v:'qarz',label:{uz:'Ish haqi qarzi',ru:'Задолженность по зарплате'}}
+     ]},
+    {id:'workSum',t:'num',showIf:isMehnat,half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Talab qilinayotgan summa',ru:'Требуемая сумма'},ph:{uz:'15000000',ru:'15000000'}},
+    /* 3) ijara nizosi */
+    {id:'rentNum',t:'text',showIf:isIjara,half:true,label:{uz:'Ijara shartnomasi raqami',ru:'Номер договора аренды'},ph:{uz:'12',ru:'12'}},
+    {id:'rentDate',t:'date',showIf:isIjara,half:true,label:{uz:'Shartnoma sanasi',ru:'Дата договора'}},
+    {id:'rentAddr',t:'text',showIf:isIjara,label:{uz:'Ob\'ekt manzili',ru:'Адрес объекта'},ph:{uz:'Toshkent sh., Yunusobod t., 7-uy, 12-xonadon',ru:'г. Ташкент, Юнусабадский р-н, д.7, кв.12'}},
+    {id:'rentDebt',t:'num',showIf:isIjara,half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Qarz summasi',ru:'Сумма задолженности'},ph:{uz:'9000000',ru:'9000000'}},
+    {id:'rentPeriod',t:'text',showIf:isIjara,half:true,label:{uz:'Qarz davri',ru:'Период задолженности'},ph:{uz:'2026-yil mart — iyun',ru:'март — июнь 2026 года'}},
+    {id:'rentDemand',t:'checks',showIf:isIjara,label:{uz:'Talablar',ru:'Требования'},
+     opts:[
+      {v:'undirish',label:{uz:'Qarzni undirish',ru:'Взыскать задолженность'}},
+      {v:'boshatish',label:{uz:'Joyni bo\'shatish',ru:'Освободить помещение'}},
+      {v:'bekor',label:{uz:'Shartnomani bekor qilish',ru:'Расторгнуть договор'}}
+     ]}
+  ]},
+  {id:'fee',title:{uz:'Da\'vo qiymati va boj',ru:'Цена иска и пошлина'},fields:[
+    {id:'stateFee',t:'num',half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Davlat boji summasi',ru:'Сумма госпошлины'},
+     hint:{uz:'Generator bojni hisoblamaydi: stavkalar o\'zgaradi, da\'vo turiga qarab farq qiladi va imtiyozlar bo\'lishi mumkin. Miqdorini sud yoki rasmiy manbadan aniqlang.',ru:'Генератор не рассчитывает пошлину: ставки меняются, различаются по видам исков, возможны льготы. Уточните размер в суде или по официальному источнику.'}}
+  ]},
+  {id:'pre',title:{uz:'Sudgacha talabnoma',ru:'Досудебная претензия'},fields:[
+    {id:'hasClaim',t:'seg',def:'yoq',label:{uz:'Talabnoma yuborilganmi',ru:'Направлялась ли претензия'},
+     opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]},
+    {id:'claimDate',t:'date',half:true,label:{uz:'Talabnoma sanasi',ru:'Дата претензии'},
+     showIf:function(s){return s.hasClaim==='ha'}}
+  ]},
+  {id:'att',title:{uz:'Ilovalar',ru:'Приложения'},fields:[
+    {id:'attachChecks',t:'checks',label:{uz:'Ilova qilinadigan hujjatlar',ru:'Прилагаемые документы'},
+     opts:[
+      {v:'asos',label:{uz:'Tilxat / shartnoma nusxasi',ru:'Копия расписки / договора'}},
+      {v:'tolov',label:{uz:'To\'lov hujjatlari',ru:'Платёжные документы'}},
+      {v:'talabnoma',label:{uz:'Talabnoma va yuborish dalili',ru:'Претензия и доказательство отправки'}},
+      {v:'boj',label:{uz:'Boj to\'langani haqidagi hujjat',ru:'Документ об уплате пошлины'}},
+      {v:'pasport',label:{uz:'Pasport nusxasi',ru:'Копия паспорта'}},
+      {v:'guvoh',label:{uz:'Guvohlar ro\'yxati',ru:'Список свидетелей'}}
+     ]},
+    {id:'attachExtra',t:'list',label:{uz:'Boshqa ilovalar',ru:'Другие приложения'},
+     ph:{uz:'Buyruq nusxasi, 1 varaq',ru:'Копия приказа, 1 лист'},
+     addLabel:{uz:"+ Ilova qo'shish",ru:'+ Добавить приложение'}},
+    {id:'docDate',t:'date',half:true,def:today(),label:{uz:'Ariza sanasi',ru:'Дата заявления'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var ctype=v.ctype||'qarz';
+   var val=0;
+   if(ctype==='qarz'){
+     val=KD.num(v.debtSum)+((v.hasInterest==='ha')?KD.num(v.interestSum):0);
+   } else if(ctype==='mehnat'){
+     val=KD.num(v.workSum);
+   } else {
+     val=KD.num(v.rentDebt);
+   }
+   /* kechikish muddati: qaytarish sanasidan bugungacha */
+   var late=0;
+   if(ctype==='qarz'&&v.returnDate){
+     var d=KD.daysBetween(v.returnDate,today());
+     if(d>0)late=d;
+   }
+   var extra=Array.isArray(v.attachExtra)?v.attachExtra.filter(function(x){return String(x||'').trim()}):[];
+   setLawWarn(lang);
+   return {ctype:ctype,claimValue:val,late:late,extra:extra};
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+
+   function side(pre){
+     var yur=v[pre+'Type']==='yuridik';
+     var name=yur?KD.v(v[pre+'Org'],26):KD.v(v[pre+'Fio'],26);
+     var id=yur
+       ?((ru?'ИНН: ':'STIR: ')+KD.v(v[pre+'Stir'],11))
+       :(String(v[pre+'Jshshir']||'').trim()?((ru?'ПИНФЛ: ':'JSHSHIR: ')+v[pre+'Jshshir']):'');
+     var out=[name];
+     out.push((ru?'адрес: ':'manzil: ')+KD.v(v[pre+'Addr'],26));
+     if(String(v[pre+'Phone']||'').trim())out.push((ru?'тел.: ':'tel.: ')+v[pre+'Phone']);
+     if(id)out.push(id);
+     return out;
+   }
+   function sideName(pre){
+     return v[pre+'Type']==='yuridik'?KD.v(v[pre+'Org'],22):KD.v(v[pre+'Fio'],22);
+   }
+
+   /* o'ng yuqori burchak */
+   var head=[KD.v(v.courtName,30)];
+   if(String(v.courtAddr||'').trim())head.push(v.courtAddr);
+   head.push('');
+   head.push(ru?'Истец:':"Da'vogar:");
+   head=head.concat(side('p'));
+   head.push('');
+   head.push(ru?'Ответчик:':'Javobgar:');
+   head=head.concat(side('d'));
+   head.push('');
+   head.push((ru?'Цена иска: ':"Da'vo qiymati: ")+(c.claimValue?KD.money(c.claimValue,lang):B(18)));
+   head.push((ru?'Госпошлина: ':'Davlat boji: ')+(KD.num(v.stateFee)?KD.money(KD.num(v.stateFee),lang):B(18)));
+   b.push({k:'right',lines:head});
+
+   b.push({k:'title',text:ru?'ИСКОВОЕ ЗАЯВЛЕНИЕ':"DA'VO ARIZASI"});
+
+   var pName=sideName('p'), dName=sideName('d');
+
+   /* ---------- holatlar bayoni ---------- */
+   if(c.ctype==='qarz'){
+     var isTilxat=(v.basisDoc||'tilxat')==='tilxat';
+     var docName=isTilxat?(ru?'расписки':'tilxat'):(ru?'договора займа':'qarz shartnomasi');
+     var num=String(v.basisNum||'').trim();
+     var gd=v.givenDate?KD.fmtDate(v.givenDate,lang):B(20);
+     var rd=v.returnDate?KD.fmtDate(v.returnDate,lang):B(20);
+     b.push({k:'p',text:ru
+       ?gd+' я передал ответчику '+dName+' денежные средства в размере '+(KD.num(v.debtSum)?KD.money(KD.num(v.debtSum),lang):B(18))+' на основании '+docName+(num?' № '+num:'')+'.'
+       :gd+'da men javobgar '+dName+'ga '+docName+(num?' № '+num:'')+' asosida '+(KD.num(v.debtSum)?KD.money(KD.num(v.debtSum),lang):B(18))+' miqdorida pul mablag\'i berdim.'});
+     // fmtDate ruschada "г." bilan tugaydi — ustiga nuqta qo'shilmaydi.
+     b.push({k:'p',text:ru
+       ?'Ответчик обязался вернуть указанную сумму в срок до '+rd+(v.returnDate?'':'.')
+       :'Javobgar ushbu summani '+rd+'gacha qaytarish majburiyatini olgan.'});
+     b.push({k:'p',text:ru
+       ?'В установленный срок сумма возвращена не была. До настоящего времени задолженность не погашена.'
+       :'Belgilangan muddatda summa qaytarilmadi. Hozirgi kunga qadar qarz to\'lanmagan.'});
+     if(c.late){
+       b.push({k:'p',text:ru
+         ?'На день подачи настоящего заявления просрочка составляет '+KD.fmtNum(c.late)+' календарных дней.'
+         :'Ushbu ariza berilayotgan kunga kechikish '+KD.fmtNum(c.late)+' kalendar kunini tashkil etadi.'});
+     }
+     if(v.hasInterest==='ha'&&KD.num(v.interestSum)){
+       b.push({k:'p',text:ru
+         ?'Помимо основного долга ответчик обязан уплатить дополнительную сумму в размере '+KD.money(KD.num(v.interestSum),lang)+'.'
+         :'Asosiy qarzdan tashqari javobgar '+KD.money(KD.num(v.interestSum),lang)+' miqdorida qo\'shimcha summani to\'lashi lozim.'});
+     }
+   } else if(c.ctype==='mehnat'){
+     var wf=v.workFrom?KD.fmtDate(v.workFrom,lang):B(20);
+     var wt=v.workTo?KD.fmtDate(v.workTo,lang):B(20);
+     b.push({k:'p',text:ru
+       ?wf+' я был принят на работу в '+KD.v(v.workPlace,26)+' на должность «'+KD.v(v.workPost,20)+'».'
+       :wf+'da men '+KD.v(v.workPlace,26)+' tashkilotiga «'+KD.v(v.workPost,20)+'» lavozimiga ishga qabul qilindim.'});
+     b.push({k:'p',text:ru
+       ?wt+' трудовые отношения были прекращены. Основание увольнения: '+KD.v(v.fireReason,26)+'.'
+       :wt+'da mehnat munosabatlari bekor qilindi. Bo\'shatish asosi: '+KD.v(v.fireReason,26)+'.'});
+     b.push({k:'p',text:ru
+       ?'Считаю действия работодателя неправомерными, поскольку установленный порядок при прекращении трудовых отношений соблюдён не был.'
+       :'Ish beruvchining harakatlarini noqonuniy deb hisoblayman, chunki mehnat munosabatlarini bekor qilishda belgilangan tartibga rioya qilinmagan.'});
+     if(KD.num(v.workSum)){
+       b.push({k:'p',text:ru
+         ?'Размер моих денежных требований составляет '+KD.money(KD.num(v.workSum),lang)+'.'
+         :'Mening pul talablarim miqdori '+KD.money(KD.num(v.workSum),lang)+'ni tashkil etadi.'});
+     }
+   } else {
+     var rn=String(v.rentNum||'').trim();
+     var rdt=v.rentDate?KD.fmtDate(v.rentDate,lang):B(20);
+     b.push({k:'p',text:ru
+       ?'Между мной и ответчиком '+rdt+' заключён договор аренды'+(rn?' № '+rn:'')+' в отношении помещения по адресу: '+KD.v(v.rentAddr,28)+'.'
+       :'Men bilan javobgar o\'rtasida '+rdt+'da '+KD.v(v.rentAddr,28)+' manzilidagi joyga nisbatan ijara shartnomasi'+(rn?' № '+rn:'')+' tuzilgan.'});
+     b.push({k:'p',text:ru
+       ?'Ответчик не исполняет обязательства по договору: за период '+KD.v(v.rentPeriod,20)+' образовалась задолженность в размере '+(KD.num(v.rentDebt)?KD.money(KD.num(v.rentDebt),lang):B(18))+'.'
+       :'Javobgar shartnoma bo\'yicha majburiyatlarini bajarmayapti: '+KD.v(v.rentPeriod,20)+' davri uchun '+(KD.num(v.rentDebt)?KD.money(KD.num(v.rentDebt),lang):B(18))+' miqdorida qarz yuzaga kelgan.'});
+     b.push({k:'p',text:ru
+       ?'Требования об исполнении обязательств оставлены ответчиком без удовлетворения.'
+       :'Majburiyatlarni bajarish haqidagi talablar javobgar tomonidan qanoatlantirilmagan.'});
+   }
+
+   if(v.hasClaim==='ha'){
+     var cd=v.claimDate?KD.fmtDate(v.claimDate,lang):B(20);
+     b.push({k:'p',text:ru
+       ?cd+' в адрес ответчика была направлена письменная претензия с требованием урегулировать спор в добровольном порядке. Ответа на претензию не получено.'
+       :cd+'da javobgar manziliga nizoni ixtiyoriy tartibda hal qilish talabi bilan yozma talabnoma yuborilgan. Talabnomaga javob olinmadi.'});
+   }
+
+   b.push({k:'p',text:ru
+     ?'Изложенные обстоятельства подтверждаются приложенными к настоящему заявлению документами.'
+     :'Bayon etilgan holatlar ushbu arizaga ilova qilingan hujjatlar bilan tasdiqlanadi.'});
+
+   /* ---------- talablar ---------- */
+   b.push({k:'gap'});
+   b.push({k:'p',text:ru?'На основании изложенного ПРОШУ:':"YUQORIDAGILAR ASOSIDA SO'RAYMAN:"});
+
+   var dem=[];
+   if(c.ctype==='qarz'){
+     dem.push(ru
+       ?'Взыскать с ответчика '+dName+' в мою пользу сумму основного долга в размере '+(KD.num(v.debtSum)?KD.money(KD.num(v.debtSum),lang):B(18))+'.'
+       :'Javobgar '+dName+'dan mening foydamga '+(KD.num(v.debtSum)?KD.money(KD.num(v.debtSum),lang):B(18))+' miqdoridagi asosiy qarz summasini undirishni.');
+     if(v.hasInterest==='ha'&&KD.num(v.interestSum)){
+       dem.push(ru
+         ?'Взыскать с ответчика дополнительную сумму в размере '+KD.money(KD.num(v.interestSum),lang)+'.'
+         :'Javobgardan '+KD.money(KD.num(v.interestSum),lang)+' miqdoridagi qo\'shimcha summani undirishni.');
+     }
+   } else if(c.ctype==='mehnat'){
+     var wd=Array.isArray(v.workDemand)?v.workDemand:[];
+     if(wd.indexOf('tiklash')>-1){
+       dem.push(ru
+         ?'Восстановить меня на работе в '+KD.v(v.workPlace,22)+' в должности «'+KD.v(v.workPost,18)+'».'
+         :'Meni '+KD.v(v.workPlace,22)+' tashkilotidagi «'+KD.v(v.workPost,18)+'» lavozimiga tiklashni.');
+     }
+     if(wd.indexOf('bekorlik')>-1){
+       dem.push(ru
+         ?'Взыскать с ответчика оплату за время вынужденного прогула.'
+         :'Javobgardan majburiy bekorlik vaqti uchun to\'lovni undirishni.');
+     }
+     if(wd.indexOf('qarz')>-1){
+       dem.push(ru
+         ?'Взыскать с ответчика задолженность по заработной плате.'
+         :'Javobgardan ish haqi bo\'yicha qarzni undirishni.');
+     }
+     // Talablar umumiy summasi bu yerda takrorlanmaydi: u talab emas, bayonot —
+     // holatlar qismida allaqachon aytilgan va sarlavha blokidagi da'vo qiymati
+     // bilan bir xil. Raqamlangan ro'yxatda faqat sud bajaradigan talablar turadi.
+   } else {
+     var rdm=Array.isArray(v.rentDemand)?v.rentDemand:[];
+     if(rdm.indexOf('undirish')>-1){
+       dem.push(ru
+         ?'Взыскать с ответчика '+dName+' задолженность по арендной плате в размере '+(KD.num(v.rentDebt)?KD.money(KD.num(v.rentDebt),lang):B(18))+'.'
+         :'Javobgar '+dName+'dan '+(KD.num(v.rentDebt)?KD.money(KD.num(v.rentDebt),lang):B(18))+' miqdoridagi ijara haqi qarzini undirishni.');
+     }
+     if(rdm.indexOf('boshatish')>-1){
+       dem.push(ru
+         ?'Обязать ответчика освободить помещение по адресу: '+KD.v(v.rentAddr,24)+'.'
+         :'Javobgarni '+KD.v(v.rentAddr,24)+' manzilidagi joyni bo\'shatishga majbur qilishni.');
+     }
+     if(rdm.indexOf('bekor')>-1){
+       dem.push(ru
+         ?'Расторгнуть договор аренды, заключённый между сторонами.'
+         :'Tomonlar o\'rtasida tuzilgan ijara shartnomasini bekor qilishni.');
+     }
+   }
+   if(!dem.length)dem.push(B(46));
+   if(KD.num(v.stateFee)){
+     dem.push(ru
+       ?'Взыскать с ответчика расходы по уплате государственной пошлины в размере '+KD.money(KD.num(v.stateFee),lang)+'.'
+       :'Javobgardan '+KD.money(KD.num(v.stateFee),lang)+' miqdorida to\'langan davlat boji xarajatlarini undirishni.');
+   }
+   for(var i=0;i<dem.length;i++) b.push({k:'p',text:(i+1)+'. '+dem[i]});
+
+   /* ---------- ilovalar ---------- */
+   var AT={
+     asos:{uz:'Tilxat / shartnoma nusxasi',ru:'Копия расписки / договора'},
+     tolov:{uz:"To'lov hujjatlari",ru:'Платёжные документы'},
+     talabnoma:{uz:'Talabnoma va uni yuborilganligi haqidagi hujjat',ru:'Претензия и документ о её отправке'},
+     boj:{uz:"Davlat boji to'langani haqidagi hujjat",ru:'Документ об уплате государственной пошлины'},
+     pasport:{uz:'Pasport nusxasi',ru:'Копия паспорта'},
+     guvoh:{uz:"Guvohlar ro'yxati",ru:'Список свидетелей'}
+   };
+   var att=[];
+   var sel=Array.isArray(v.attachChecks)?v.attachChecks:[];
+   for(var a=0;a<sel.length;a++){ var f=AT[sel[a]]; if(f)att.push(ru?f.ru:f.uz); }
+   att=att.concat(c.extra);
+   if(att.length){
+     b.push({k:'gap'});
+     b.push({k:'p',text:ru?'Приложение:':'Ilova:'});
+     for(var j=0;j<att.length;j++) b.push({k:'p',text:(j+1)+'. '+att[j]+';'});
+   }
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[(v.docDate?KD.fmtDate(v.docDate,lang):B(22))],
+     right:['_______________ '+(ru?'(подпись)':'(imzo)'),pName]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Исковое заявление — процессуальный документ; перед подачей в суд его следует проверить с юристом.'
+     :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Da'vo arizasi protsessual hujjat; sudga topshirishdan oldin uni yurist bilan tekshirib olish lozim."});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[["Da'vo arizasini yuristsiz o'zim yozsam bo'ladimi?","Qonun buni taqiqlamaydi va oddiy ishlarda odamlar o'zlari yozadi. Lekin da'vo arizasi protsessual hujjat: shakl talablari buzilsa, sud uni qaytarishi yoki harakatsiz qoldirishi mumkin, bu esa vaqt yo'qotishga olib keladi. Bu generator tuzilishni to'g'ri shakllantirishga yordam beradi, ammo u yuridik maslahat o'rnini bosmaydi — sudga topshirishdan oldin matnni yurist bilan tekshirib oling."],["Da'vo qiymatini qanday hisoblash kerak?","Bu sizning pul talabingizning umumiy miqdori: asosiy qarz va agar talab qilinayotgan bo'lsa, qo'shimcha summalar qo'shiladi. Generator uni siz kiritgan summalardan avtomatik hisoblab, hujjatning yuqori qismiga yozadi. Pul bilan bog'liq bo'lmagan talablar — masalan joyni bo'shatish — da'vo qiymatiga kirmaydi, lekin ular ham talablar ro'yxatida ko'rsatiladi."],["Davlat boji qancha bo'ladi?","Generator boj summasini hisoblamaydi va uni siz kiritasiz. Sabab: boj stavkalari vaqti-vaqti bilan o'zgaradi, da'vo turiga qarab farq qiladi va ayrim da'vogarlar imtiyozga ega bo'lishi mumkin. Aniq summani sud yoki rasmiy manbadan aniqlang. Ayrim toifadagi da'volar bojdan ozod qilinishi ham mumkin, shuning uchun to'lashdan oldin buni tekshiring."],["Talabnoma yubormasdan to'g'ridan-to'g'ri sudga bersa bo'ladimi?","Ayrim toifadagi nizolarda sudgacha tartibga rioya qilish majburiy bo'lishi mumkin va u bajarilmasa ariza qaytariladi. Majburiy bo'lmagan hollarda ham talabnoma yuborish foydali: ko'p nizolar shu bosqichda hal bo'ladi. Talabnomani xabarnomali buyurtma xat bilan yuboring va kvitansiyani saqlang — generatorda uni belgilaganingizda matnga alohida band qo'shiladi."],["Javobgarning manzilini bilmasam nima qilish kerak?","Manzilsiz sud chaqiruv qog'ozini yubora olmaydi, shuning uchun uni imkon qadar aniqlash kerak. Ma'lum bo'lgan ma'lumotlarni — telefon, ish joyi, oxirgi ma'lum manzil — arizada ko'rsating. Ayrim holatlarda sud tomonidan ma'lumot so'rash imkoniyati ham bo'ladi; bu masalani sud kotibiyati yoki yurist bilan aniqlashtiring."],["Guvohlarning ko'rsatuvi yetarli dalil bo'ladimi?","Guvoh ko'rsatuvi dalil sifatida qo'llaniladi, lekin yozma hujjatdan kuchsizroq hisoblanadi va ayrim holatlarda pul munosabatlarini isbotlash uchun yetarli bo'lmasligi mumkin. Shuning uchun pul berayotganda har doim tilxat rasmiylashtirish tavsiya etiladi. Agar yozma hujjat bo'lmasa, boshqa dalillarni — o'tkazmalar, yozishmalar, xabarlar — imkon qadar ko'proq to'plang."],["Sud da'voni qaytarsa, qayta murojaat qilsa bo'ladimi?","Ko'p hollarda ha. Agar ariza shakl talablari sababli qaytarilgan bo'lsa, kamchiliklarni tuzatib qayta topshirish mumkin. Harakatsiz qoldirilgan holatda esa sud tuzatish uchun muddat beradi va shu muddatda kamchilik bartaraf etilsa, ariza dastlabki topshirilgan sanadan kuchga kiradi. Qaytarish sababini sud ajrimidan aniq o'qib chiqing — unda nima tuzatilishi kerakligi yozilgan bo'ladi."]],
+ ru:[["Можно ли написать исковое заявление самому, без юриста?","Закон этого не запрещает, и в простых делах люди пишут сами. Но исковое заявление — процессуальный документ: при нарушении требований к форме суд может вернуть его или оставить без движения, что ведёт к потере времени. Этот генератор помогает верно выстроить структуру, но не заменяет юридическую консультацию — перед подачей проверьте текст с юристом."],["Как рассчитать цену иска?","Это общий размер вашего денежного требования: основной долг плюс дополнительные суммы, если они заявляются. Генератор рассчитывает её из введённых вами сумм автоматически и указывает в верхней части документа. Неденежные требования — например, освобождение помещения — в цену иска не входят, но также указываются в перечне требований."],["Сколько составит государственная пошлина?","Генератор не рассчитывает пошлину — вы вводите её сами. Причина: ставки время от времени меняются, различаются по видам исков, а отдельные истцы могут иметь льготы. Точную сумму уточните в суде или по официальному источнику. Некоторые категории исков могут освобождаться от пошлины, поэтому проверьте и это перед уплатой."],["Можно ли обратиться в суд, не направляя претензию?","По отдельным категориям споров досудебный порядок может быть обязательным, и при его несоблюдении заявление возвращается. Но и в остальных случаях претензию направить полезно: многие споры разрешаются на этом этапе. Отправляйте её заказным письмом с уведомлением и сохраняйте квитанцию — при отметке в генераторе в текст добавляется отдельный пункт."],["Что делать, если не знаю адреса ответчика?","Без адреса суд не сможет направить повестку, поэтому его нужно установить по возможности. Укажите в заявлении известные сведения — телефон, место работы, последний известный адрес. В отдельных случаях есть возможность запроса сведений через суд; уточните этот вопрос в канцелярии суда или у юриста."],["Достаточно ли показаний свидетелей?","Показания свидетелей используются как доказательство, но считаются слабее письменных документов и в отдельных случаях могут быть недостаточны для подтверждения денежных отношений. Поэтому при передаче денег всегда рекомендуется оформлять расписку. Если письменного документа нет, соберите как можно больше иных доказательств — переводы, переписку, сообщения."],["Если суд вернул иск, можно ли обратиться повторно?","В большинстве случаев да. Если заявление возвращено из-за нарушения формы, недостатки можно устранить и подать заново. При оставлении без движения суд даёт срок на исправление, и если недостаток устранён в этот срок, заявление считается поданным с первоначальной даты. Внимательно прочитайте определение суда — в нём указано, что именно требуется исправить."]]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Da'vo arizasi namunasi — onlayn to'ldirib, Word yuklab oling",
+    ru:'Образец искового заявления — заполнить онлайн и скачать Word'
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  // O'lchov: PDF haqiqatan yasalgandagina yuboriladi.
+  // gtag bo'lmasa jimgina o'tkazamiz — o'lchov yuklab olishni hech qachon buzmasin.
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='lawWarn'||id==='datanote')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+</body></html>
