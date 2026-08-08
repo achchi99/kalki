@@ -20,7 +20,14 @@ if (names[0] === '--all') {
 if (!names.length) { console.log('foydalanish: node tools/prerender-twice.js <fayl.html> ... | --all'); process.exit(1); }
 
 function run(list) {
-  execFileSync(process.execPath, [path.join(__dirname, 'prerender.js')].concat(list), { cwd: ROOT, stdio: 'ignore' });
+  // prerender sahifada JS xatosi bo'lsa 1 qaytaradi. Bu yerda u istisno
+  // tashlamasin: bizning vazifamiz — solishtirish natijasini ko'rsatish,
+  // xato kodi sababli yarim yo'lda to'xtash emas.
+  try {
+    execFileSync(process.execPath, [path.join(__dirname, 'prerender.js')].concat(list), { cwd: ROOT, stdio: 'ignore' });
+  } catch (e) {
+    console.log('! prerender xato kodi bilan tugadi — batafsili: node tools/prerender.js --all');
+  }
 }
 
 run(names);
