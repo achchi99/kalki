@@ -1,9 +1,10 @@
-const CACHE='kalki-v57';
+const CACHE='kalki-v58';
 const ASSETS=[
   '/',
   '/assets/docgen.js',
   '/assets/lang.js',
   '/assets/datanote.js',
+  '/assets/partners.js',
   '/ishonchnoma-namunasi',
   '/mehnat-shartnomasi-namunasi',
   '/ijara-shartnomasi-namunasi',
@@ -24,6 +25,7 @@ const ASSETS=[
   '/avto-xarajat-kalkulyator',
   '/beton-kalkulyator',
   '/biz-haqimizda',
+  '/hamkorlik',
   '/blog',
   '/bojxona-kalkulyator',
   '/bola-puli-kalkulyator',
