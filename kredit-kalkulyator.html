@@ -18,6 +18,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 </style>
 <script src="assets/lang.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/partners.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kredit kalkulyatori — oylik to'lovni onlayn hisoblash</title>
 <link rel="canonical" href="https://kalki.uz/kredit-kalkulyator">
@@ -162,6 +163,25 @@ input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3
 .ep-line.accent{color:var(--cat)}
 
 .sched{margin-top:26px;display:none}
+/* hamkor bloki — natijadan keyin, hech qachon undan yuqorida turmaydi */
+#partners-slot{margin-top:28px}
+#partners-slot[hidden]{display:none}
+.pt-h{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px;color:var(--ink)}
+.pt-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.pt-list{grid-template-columns:1fr 1fr}}
+.pt-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.pt-card:hover{border-color:var(--cat);transform:translateY(-2px)}
+.pt-logo{flex:none;width:48px;height:48px;border-radius:12px;display:block}
+.pt-logo-blank{background:#EEF2EF}
+.pt-body{flex:1;min-width:0}
+.pt-name{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.pt-note{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.4}
+.pt-ad{flex:none;align-self:flex-start;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:5px;padding:2px 6px}
+.pt-go{flex:none;font-size:12.5px;font-weight:800;color:var(--cat);white-space:nowrap}
+@media (max-width:420px){.pt-go{display:none}}
+.pt-extra,.pt-disc,.pt-checked{font-size:12px;line-height:1.5;font-weight:600;color:var(--muted);margin-top:10px}
+.pt-disc{padding-top:10px;border-top:1px solid var(--line)}
+.pt-checked{margin-top:4px;color:#93A099}
 .sched.show{display:block}
 .sched h2{font-size:17px;font-weight:800;margin-bottom:12px}
 .tbl-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
@@ -348,6 +368,8 @@ img,svg{height:auto}
     </div>
   </section>
 
+  <div id="partners-slot" data-nosnippet="" data-prerender="skip" hidden=""></div>
+
   
   
   
@@ -433,6 +455,7 @@ img,svg{height:auto}
     $('typeHint').textContent=type==='ann'?t('hintAnn'):t('hintDiff');
     $('seoBlock').innerHTML=t('seo');
     $('langUz').classList.toggle('on',lang==='uz');
+    if(typeof showPartners==='function')showPartners();
     (function(){
       var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
       var _t=document.getElementById('relTitle');
@@ -496,6 +519,21 @@ img,svg{height:auto}
     $('extraSlider').max=maxExtra;
     $('extraSlider').value=0;
     updateEarlyPayoff();
+    showPartners();
+  }
+
+  /* Hamkor bloki FAQAT hisob bajarilgandan keyin ko'rinadi va hech qachon
+     natijadan yuqorida turmaydi — aks holda sayt reklama sahifasiga o'xshab qoladi. */
+  function showPartners(){
+    if(!window.Partners||!calcData)return;
+    window.Partners.render({
+      slot:"#partners-slot",
+      category:"kredit",
+      lang:lang,
+      context:{product:"iste'mol",amount:calcData.P,term:calcData.n},
+      title:{uz:"Shunga o'xshash shartlarda kredit beradigan banklar",ru:"Банки с похожими условиями кредитования"},
+      footNote:{uz:"Aniq shartlar bank saytida e'lon qilinadi va o'zgarishi mumkin.",ru:"Точные условия публикуются на сайте банка и могут измениться."}
+    });
   }
 
   function simulateEarly(extra){
@@ -580,7 +618,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">5.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">8.8.2026</div>
 </div>
 <script>
 (function(){
@@ -946,7 +984,4 @@ img,svg{height:auto}
     });
   },240);
 })();
-</script>
-
-
-</body></html>
+</script></body></html>
