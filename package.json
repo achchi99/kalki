@@ -1,0 +1,14 @@
+{
+  "name": "kalki-uz-tools",
+  "private": true,
+  "description": "kalki.uz build va tekshiruv vositalari (tools/). Sayt statik — bu paketlar faqat build uchun.",
+  "scripts": {
+    "prerender": "node tools/prerender.js",
+    "check-partners": "node tools/check-partners.js",
+    "og": "node tools/og-images.js"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "jsdom": "^30.0.1"
+  }
+}
