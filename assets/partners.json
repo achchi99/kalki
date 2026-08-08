@@ -1,0 +1,199 @@
+{
+  "updated": "2026-08-08",
+  "note": "Yagona manba. Havolalar sahifa HTML'iga qo'lda yozilmaydi. 'note' matni faqat bank saytidan tekshirilgandan keyin to'ldiriladi va note_verified true qilinadi — o'ylab topilgan mahsulot tavsifi yozilmaydi. Tekshirish: node tools/check-partners.js",
+  "fallback": {
+    "kredit": {
+      "url": "https://cbu.uz/oz/credit-organizations/banks/",
+      "label": {
+        "uz": "O'zbekiston banklarining rasmiy ro'yxati (Markaziy bank)",
+        "ru": "Официальный перечень банков Узбекистана (Центральный банк)"
+      }
+    },
+    "ipoteka": {
+      "url": "https://cbu.uz/oz/credit-organizations/banks/",
+      "label": {
+        "uz": "O'zbekiston banklarining rasmiy ro'yxati (Markaziy bank)",
+        "ru": "Официальный перечень банков Узбекистана (Центральный банк)"
+      }
+    }
+  },
+  "partners": [
+    {
+      "id": "ipoteka-bank",
+      "name": {
+        "uz": "Ipoteka Bank",
+        "ru": "Ипотека Банк"
+      },
+      "logo": "assets/partners/ipoteka-bank.svg",
+      "url": "https://www.ipotekabank.uz/",
+      "type": "organic",
+      "categories": [
+        "kredit",
+        "ipoteka"
+      ],
+      "match": {
+        "amount_min": 5000000,
+        "amount_max": 2000000000,
+        "term_min": 6,
+        "term_max": 240
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": true,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    },
+    {
+      "id": "hamkorbank",
+      "name": {
+        "uz": "Hamkorbank",
+        "ru": "Хамкорбанк"
+      },
+      "logo": "assets/partners/hamkorbank.svg",
+      "url": "https://hamkorbank.uz/",
+      "type": "organic",
+      "categories": [
+        "kredit"
+      ],
+      "match": {
+        "amount_min": 3000000,
+        "amount_max": 300000000,
+        "term_min": 6,
+        "term_max": 60
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": true,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    },
+    {
+      "id": "kapitalbank",
+      "name": {
+        "uz": "Kapitalbank",
+        "ru": "Капиталбанк"
+      },
+      "logo": "assets/partners/kapitalbank.svg",
+      "url": "https://kapitalbank.uz/",
+      "type": "organic",
+      "categories": [
+        "kredit"
+      ],
+      "match": {
+        "amount_min": 3000000,
+        "amount_max": 500000000,
+        "term_min": 3,
+        "term_max": 84
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": false,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    },
+    {
+      "id": "sqb",
+      "name": {
+        "uz": "SQB (Sanoat qurilish bank)",
+        "ru": "SQB (Промстройбанк)"
+      },
+      "logo": "assets/partners/sqb.svg",
+      "url": "https://sqb.uz/",
+      "type": "organic",
+      "categories": [
+        "kredit",
+        "ipoteka"
+      ],
+      "match": {
+        "amount_min": 10000000,
+        "amount_max": 2000000000,
+        "term_min": 12,
+        "term_max": 240
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": true,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    },
+    {
+      "id": "xalq-banki",
+      "name": {
+        "uz": "Xalq banki",
+        "ru": "Народный банк"
+      },
+      "logo": "assets/partners/xalq-banki.svg",
+      "url": "https://xb.uz/",
+      "type": "organic",
+      "categories": [
+        "ipoteka"
+      ],
+      "match": {
+        "amount_min": 50000000,
+        "amount_max": 2000000000,
+        "term_min": 36,
+        "term_max": 240
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": true,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    },
+    {
+      "id": "agrobank",
+      "name": {
+        "uz": "Agrobank",
+        "ru": "Агробанк"
+      },
+      "logo": "assets/partners/agrobank.svg",
+      "url": "https://agrobank.uz/",
+      "type": "organic",
+      "categories": [
+        "kredit",
+        "ipoteka"
+      ],
+      "match": {
+        "amount_min": 5000000,
+        "amount_max": 1000000000,
+        "term_min": 6,
+        "term_max": 180
+      },
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": false,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-08-08",
+      "note_verified": false
+    }
+  ]
+}
