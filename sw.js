@@ -1,4 +1,4 @@
-const CACHE='kalki-v58';
+const CACHE='kalki-v59';
 const ASSETS=[
   '/',
   '/assets/docgen.js',
@@ -80,6 +80,19 @@ self.addEventListener('fetch',e=>{
         if(cacheable(r)){const cl=r.clone();caches.open(CACHE).then(c=>c.put(url.pathname,cl))}
         return r;
       }).catch(()=>caches.match(url.pathname).then(m=>m||caches.match('/')))
+    );
+    return;
+  }
+  // partners.json TARMOQDAN OLDIN olinadi. Qolgan resurslar cache-first, lekin
+  // bu fayl uchun u to'g'ri kelmaydi: hamkor ro'yxati yangilanganda barcha
+  // sahifalarda darhol ko'rinishi kerak, aks holda muddati tugagan taklif
+  // keshda qolib ketardi. Tarmoq ishlamasa keshdagi nusxa beriladi.
+  if(url.pathname.indexOf('/assets/partners.json')===0){
+    e.respondWith(
+      fetch(e.request).then(r=>{
+        if(cacheable(r)){const cl=r.clone();caches.open(CACHE).then(c=>c.put(e.request,cl))}
+        return r;
+      }).catch(()=>caches.match(e.request))
     );
     return;
   }
