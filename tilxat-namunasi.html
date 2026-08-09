@@ -216,7 +216,7 @@ img,svg{height:auto}
 
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">9.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">10.8.2026</div>
 </div>
 
 <script src="assets/docgen.js"></script>
@@ -482,7 +482,7 @@ if(jb)jb.onclick=function(){
 </script>
 <script>
 (function(){
-  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});var __swReloaded=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(__swReloaded)return;__swReloaded=true;location.reload()})}
   var d=new Date();
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();

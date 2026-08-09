@@ -199,9 +199,9 @@ img,svg{height:auto}
         <div class="lbl" id="lblMainEl" data-i="lblEdd">Taxminiy tug'ilish sanasi</div>
       </div>
       <div class="receipt-rows" id="rowsHomila">
-        <div class="rrow"><span class="k" data-i="kWeek">Hozirgi muddat</span><span class="v accent" id="rWeek">8 hafta 0 kun</span></div>
+        <div class="rrow"><span class="k" data-i="kWeek">Hozirgi muddat</span><span class="v accent" id="rWeek">8 hafta 1 kun</span></div>
         <div class="rrow"><span class="k" data-i="kTrim">Trimestr</span><span class="v" id="rTrim">I trimestr</span></div>
-        <div class="rrow"><span class="k" data-i="kLeft">Tug'ilishgacha qoldi</span><span class="v" id="rLeft">32 hafta 0 kun</span></div>
+        <div class="rrow"><span class="k" data-i="kLeft">Tug'ilishgacha qoldi</span><span class="v" id="rLeft">31 hafta 6 kun</span></div>
         <div class="rrow"><span class="k" data-i="kConc">Taxminiy homila bo'lish sanasi</span><span class="v" id="rConc">28-iyun, 2026</span></div>
       </div>
       <div class="receipt-rows" id="rowsOvul" style="display:none">
@@ -446,11 +446,11 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">9.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">10.8.2026</div>
 </div>
 <script>
 (function(){
-  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});var __swReloaded=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(__swReloaded)return;__swReloaded=true;location.reload()})}
   var d=new Date();
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();

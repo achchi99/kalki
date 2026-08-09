@@ -3,9 +3,14 @@
   "private": true,
   "description": "kalki.uz build va tekshiruv vositalari (tools/). Sayt statik — bu paketlar faqat build uchun.",
   "scripts": {
-    "prerender": "node tools/prerender.js",
+    "sw-version": "node tools/sw-version.js",
+    "prerender": "node tools/sw-version.js && node tools/prerender.js",
+    "prerender:all": "node tools/sw-version.js && node tools/prerender.js --all",
+    "og": "node tools/og-images.js && node tools/og-tags.js",
     "check-partners": "node tools/check-partners.js",
-    "og": "node tools/og-images.js"
+    "verify-sw": "node tools/verify-sw.js",
+    "verify": "node tools/verify-all.js",
+    "ship": "node tools/sw-version.js && node tools/prerender.js --all && node tools/verify-all.js"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",

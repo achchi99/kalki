@@ -408,7 +408,7 @@ img,svg{height:auto}
 })();
 </script>
 <script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});var __swReloaded=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(__swReloaded)return;__swReloaded=true;location.reload()})}
 </script>
 <script id="hashjump">
 (function(){
