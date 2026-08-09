@@ -171,7 +171,10 @@
   function cardHtml(p, i, category, lang, t) {
     var paid = (p.type === 'paid' || p.type === 'affiliate');
     var rel = paid ? 'sponsored noopener' : 'nofollow noopener';
-    var note = L(p.note, lang);
+    // Tekshirilmagan tavsif KO'RSATILMAYDI. checker ham ogohlantiradi, lekin
+    // himoya kodda ham turishi kerak: kelasi oy kimdir shoshib matn yozadi-yu,
+    // note_verified bayrog'ini qo'yishni unutadi.
+    var note = (p.note_verified === true) ? L(p.note, lang) : '';
     var logo = p.logo
       ? '<img class="pt-logo" src="' + esc(p.logo) + '" alt="" width="48" height="48" loading="lazy" decoding="async">'
       : '<span class="pt-logo pt-logo-blank" aria-hidden="true"></span>';

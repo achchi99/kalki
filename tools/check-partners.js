@@ -79,7 +79,11 @@ list.forEach((p, i) => {
   // Tavsif tekshirilganmi
   const hasNote = p.note && (p.note.uz || '').trim();
   if (!hasNote) warnings.push(tag + ': note bo\'sh — bank saytidan tekshirib to\'ldiring (o\'ylab topilgan tavsif yozilmaydi)');
-  else if (p.note_verified === false) warnings.push(tag + ': note yozilgan, lekin note_verified=false');
+  else if (p.note_verified !== true) {
+    // XATO, ogohlantirish emas: renderer bunday tavsifni ko'rsatmaydi, ya'ni
+    // yozilgan matn jimgina yo'qoladi. Manba faylning o'zi ham toza tursin.
+    errors.push(tag + ': note yozilgan, lekin note_verified !== true — bunday tavsif render qilinmaydi');
+  }
 
   // Muddatlar
   if (p.valid_until) {
@@ -97,6 +101,43 @@ list.forEach((p, i) => {
   } else {
     warnings.push(tag + ': checked sanasi yo\'q');
   }
+});
+
+/* ---------- Fallback qamrovi ----------
+   Yangi kategoriya qo'shilganda fallback yozish unutilsa, mos hamkor
+   bo'lmagan holatda blok UMUMAN chiqmaydi va buni hech kim sezmaydi.
+   Shuning uchun sahifalardan so'ralayotgan kategoriyalar yig'iladi va
+   har biri uchun faol hamkor YOKI fallback borligi tekshiriladi.
+   Bu OGOHLANTIRISH emas, XATO: ogohlantirish o'qilmay qoladi. */
+const asked = {};   // kategoriya -> qaysi sahifalar so'raydi
+fs.readdirSync(ROOT).filter((f) => f.endsWith('.html')).forEach((f) => {
+  const s = fs.readFileSync(path.join(ROOT, f), 'utf8');
+  // Partners.render({... category:'kredit' ...}) — bitta chaqiruvda bitta kategoriya
+  const re = /Partners\s*\.\s*render\s*\(\{[\s\S]{0,400}?category\s*:\s*['"]([a-z0-9_-]+)['"]/g;
+  let m;
+  while ((m = re.exec(s))) (asked[m[1]] = asked[m[1]] || []).push(f);
+});
+
+const liveByCat = {};
+list.forEach((p) => {
+  if (p.active === false) return;
+  if (p.valid_until && String(p.valid_until) < new Date().toISOString().slice(0, 10)) return;
+  (p.categories || []).forEach((c) => { liveByCat[c] = (liveByCat[c] || 0) + 1; });
+});
+const fbCats = Object.keys(data.fallback || {});
+
+Object.keys(asked).forEach((c) => {
+  if (liveByCat[c] || fbCats.indexOf(c) > -1) return;
+  errors.push('"' + c + '" kategoriyasi so\'ralmoqda (' + [...new Set(asked[c])].join(', ')
+    + '), lekin faol hamkor ham, fallback ham yo\'q — blok umuman chiqmaydi');
+});
+
+// Teskari tekshiruv: JSON'da bor, lekin hech bir sahifa so'ramaydi — chalkashlik belgisi
+Object.keys(liveByCat).concat(fbCats).forEach((c) => {
+  if (asked[c]) return;
+  if (warnings.some((w) => w.indexOf('"' + c + '" kategoriyasini') === 0)) return;
+  warnings.push('"' + c + '" kategoriyasini hech bir sahifa so\'ramaydi (hamkor: '
+    + (liveByCat[c] || 0) + ', fallback: ' + (fbCats.indexOf(c) > -1 ? 'bor' : 'yo\'q') + ')');
 });
 
 /* Fallback havolalari ham tekshiriladi — ular mos hamkor bo'lmaganda
