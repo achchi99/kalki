@@ -87,15 +87,43 @@ Yo'qolmasa: network-first buzilgan.
 
 ---
 
-## 7. Yangi worker ochiq sahifani egallaganda
+## 7. Yangi worker ochiq sahifani egallaganda (TOZA sahifa)
 
-1. Sahifani ochiq qoldiring.
-2. Boshqa oynadan deploy qiling (`sw.js` versiyasi o'zgaradi).
+1. Sahifani oching va **hech qaysi maydonga tegmang**.
+2. Boshqa oynadan deploy qiling (`sw.js` o'zgaradi).
 3. Ochiq sahifa **bir marta o'zi qayta yuklanishi** kerak.
 
 Qayta yuklanmasa — eski HTML yangi JS bilan ishlab qolishi mumkin.
-Ikki va undan ko'p marta qayta yuklansa — `__swReloaded` bayrog'i ishlamayapti,
-bu cheksiz sikl demak, darhol tuzatish kerak.
+Ikki va undan ko'p marta qayta yuklansa — `assets/sw-boot.js` dagi
+`reloaded` bayrog'i ishlamayapti, bu cheksiz sikl demak.
+
+## 7b. O'sha holat, lekin FOYDALANUVCHI ISH USTIDA
+
+1. `mehnat-shartnomasi-namunasi` ni oching va bir nechta maydonni
+   **klaviaturadan** to'ldiring.
+2. Deploy qiling.
+3. Sahifa **qayta yuklanmasligi** va kiritilgan matn **joyida qolishi**
+   kerak. Pastda chiziq chiqadi: "Sayt yangilandi. Qulay paytda sahifani
+   yangilang."
+4. Chiziqni yoping — sessiya davomida qaytmasligi kerak.
+
+Qayta yuklansa — `isTrusted` tekshiruvi yoki `userTouched` buzilgan,
+bu odamning yarim soatlik ishini yo'q qiladi.
+
+Teskari tomoni ham muhim: `?p=...` havolasi bilan ochilgan sahifa
+(URL'dan holat tiklangan, lekin odam hech narsaga tegmagan) **qayta
+yuklanishi** kerak. Yuklanmasa — sun'iy `change` hodisasi bayroqni
+yoqib qo'ygan va himoya o'z maqsadini yo'qotgan.
+
+---
+
+## 8. Oflayn sahifa
+
+1. DevTools → Network → **Offline**.
+2. Hech qachon ochilmagan sahifaga o'ting (masalan `/qqs-2026`).
+3. `offline.html` chiqishi kerak — bosh sahifa EMAS. Manzil qatorida
+   so'ralgan yo'l qolishi kerak.
+4. Ilgari ochilgan sahifaga o'ting — u keshdan o'zi ochilishi kerak.
 
 ---
 
