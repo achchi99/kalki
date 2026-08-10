@@ -13,8 +13,11 @@ const KEEP = [STATIC, RUNTIME];
 
 /* Precache — birinchi ochishda oflayn ishlashi uchun. Ro'yxatdagi har bir
    yo'l haqiqatan mavjudligini tools/verify-sw.js tekshiradi. */
+const OFFLINE = '/offline.html';
+
 const ASSETS = [
   '/',
+  OFFLINE,
   '/assets/docgen.js',
   '/assets/lang.js',
   '/assets/datanote.js',
@@ -145,13 +148,20 @@ self.addEventListener('fetch', (e) => {
 
   const p = url.pathname;
 
-  // HTML sahifalar — network-first, oflaynda keshdan, oxirgi chora sifatida '/'
+  // HTML sahifalar — network-first, oflaynda keshdan.
+  //
+  // Oxirgi chora ILGARI '/' edi: odam so'ragan sahifa o'rniga bosh sahifani
+  // ko'rar va nima bo'lganini tushunmasdi ("bosdim, boshqa joyga tushdim").
+  // Endi aniq oflayn sahifasi qaytariladi — u tarmoq yo'qligini aytadi va
+  // "Qayta urinish" tugmasini beradi.
   if (e.request.mode === 'navigate') {
     e.respondWith(
       fetch(e.request).then((r) => {
         if (cacheable(r)) { const cl = r.clone(); caches.open(STATIC).then((c) => c.put(p, cl)); }
         return r;
-      }).catch(() => caches.match(p).then((m) => m || caches.match('/')))
+      }).catch(() => caches.match(p)
+        .then((m) => m || caches.match(OFFLINE))
+        .then((m) => m || Response.error()))   // undefined qaytarilmasin
     );
     return;
   }

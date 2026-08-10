@@ -16,7 +16,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { load, loadHtml, ROOT } = require('./render');
+const { load, loadHtml, sitePages, ROOT } = require('./render');
 
 /* Bir sahifaning prerender natijasini QAYTARADI (yozmaydi).
    htmlIn berilsa diskdan emas, o'sha matndan yuklanadi — prerender
@@ -63,10 +63,7 @@ async function renderOne(name, htmlIn) {
   return { out, errors };
 }
 
-function pages() {
-  return fs.readdirSync(ROOT)
-    .filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html').sort();
-}
+const pages = sitePages;
 
 async function main() {
   const args = process.argv.slice(2);

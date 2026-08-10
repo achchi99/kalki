@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { Resvg } = require('@resvg/resvg-js');
+const { sitePages } = require('./render');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'assets', 'og');
@@ -170,9 +171,7 @@ function svgFor(title, cat, sub) {
 
 /* ---------- sahifalar ---------- */
 function pages() {
-  return fs.readdirSync(ROOT)
-    .filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html')
-    .sort()
+  return sitePages()
     .map((f) => {
       const s = fs.readFileSync(path.join(ROOT, f), 'utf8');
       const m = s.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);

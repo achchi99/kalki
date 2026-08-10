@@ -13,6 +13,20 @@ const { JSDOM, VirtualConsole, requestInterceptor } = require('jsdom');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://kalki.uz/';
+
+/* Oddiy sayt sahifasi BO'LMAGAN HTML fayllar. Ular sitemap'ga kirmaydi,
+   prerender qilinmaydi, og:image olmaydi va footer talab qilinmaydi —
+   lekin matn tozaligi tekshiruvidan o'tadi.
+   Ro'yxat AYNAN shu yerda: "unutildi" bilan "ataylab" farqlanishi uchun. */
+const SPECIAL_PAGES = [
+  'yandex_5489ebe17687cac1.html',   // Yandex Webmaster tasdiq fayli
+  'offline.html',                   // faqat service worker qaytaradi, noindex
+];
+
+function sitePages() {
+  return fs.readdirSync(ROOT)
+    .filter((f) => f.endsWith('.html') && SPECIAL_PAGES.indexOf(f) === -1).sort();
+}
 const BLOCK = [/\/ga\.js(\?|$)/, /googletagmanager/, /html2canvas/, /jspdf/, /docx\.umd/];
 
 const MIME = {
@@ -103,4 +117,4 @@ function load(file, opts) {
   return loadHtml(fs.readFileSync(file, 'utf8'), path.basename(file), opts);
 }
 
-module.exports = { load, loadHtml, installShims, ROOT, ORIGIN };
+module.exports = { load, loadHtml, installShims, sitePages, SPECIAL_PAGES, ROOT, ORIGIN };

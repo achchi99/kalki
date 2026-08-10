@@ -43,6 +43,17 @@ Yozuvchi rejimlar **faqat bitta joyda** chaqiriladi: `npm run ship`.
 `--check` eski nom sifatida hamma joyda qabul qilinadi va standart holat
 bilan bir xil ishlaydi.
 
+## SPECIAL_PAGES
+
+`tools/render.js` da oddiy sayt sahifasi bo'lmagan HTML fayllar sanab
+o'tilgan (`yandex_...`, `offline.html`). Ular sitemap'ga kirmaydi,
+prerender qilinmaydi, og:image olmaydi va footer talab qilinmaydi —
+lekin matn tozaligi tekshiruvidan o'tadi.
+
+Ro'yxat aynan shu yerda turishi muhim: `verify-sw.js` sitemap va precache
+qamrovini XATO darajasida tekshiradi, ya'ni "unutildi" bilan "ataylab"
+faqat shu ro'yxat orqali farqlanadi.
+
 ## Diqqat
 
 - `prerender-twice.js` **diskka umuman tegmaydi**: ikkinchi yugurish

@@ -58,7 +58,17 @@ T(/url\.origin !== self\.location\.origin\)\s*return/.test(src), '10. tashqi dom
 
 /* 11. Precache ro'yxatidagi har bir fayl mavjud */
 const listSrc = src.slice(src.indexOf('const ASSETS = ['), src.indexOf('];', src.indexOf('const ASSETS = [')));
-const list = (listSrc.match(/'([^']+)'/g) || []).map((x) => x.slice(1, -1));
+// Ro'yxatda satrlar bilan bir qatorda konstanta nomi ham bo'lishi mumkin
+// (masalan OFFLINE) — ularni e'londan qidirib topamiz, aks holda tekshiruv
+// "precache da yo'q" deb yolg'on gapirardi.
+const consts = {};
+[...src.matchAll(/^const ([A-Z_][A-Z0-9_]*) = '([^']*)';/gm)].forEach((m) => { consts[m[1]] = m[2]; });
+const list = listSrc.split('\n').slice(1).map((ln) => {
+  const q = ln.match(/'([^']+)'/);
+  if (q) return q[1];
+  const id = ln.match(/^\s*([A-Z_][A-Z0-9_]*)\s*,\s*$/);
+  return id && consts[id[1]] ? consts[id[1]] : null;
+}).filter(Boolean);
 const missing = [];
 list.forEach((u) => {
   if (u === '/') { if (!fs.existsSync(path.join(ROOT, 'index.html'))) missing.push(u); return; }
@@ -69,12 +79,49 @@ list.forEach((u) => {
 T(missing.length === 0, '11. precache ro\'yxatidagi barcha fayllar mavjud (' + list.length + ' ta)',
   missing.length ? 'YO\'Q: ' + missing.join(', ') : '');
 
-/* 12. Precache va haqiqiy sahifalar orasidagi farq — ogohlantirish */
-const pages = fs.readdirSync(ROOT)
-  .filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html')
-  .map((f) => (f === 'index.html' ? '/' : '/' + f.replace(/\.html$/, '')));
-const notPre = pages.filter((p) => list.indexOf(p) === -1);
-if (notPre.length) warns.push('precache da yo\'q sahifalar (' + notPre.length + '): ' + notPre.join(', '));
+/* 12. sitemap.xml <-> precache qamrovi.
+   Bu OGOHLANTIRISH emas, XATO. Ilgari ogohlantirish edi va shu sababdan
+   uch sahifa (elektr-xarajat, maktab, marosim) uzoq vaqt precache'siz
+   qolib ketgan — hech kim ogohlantirishni o'qimaydi.
+   Ataylab tashqarida qoladigan sahifalar render.js dagi SPECIAL_PAGES da
+   sanab o'tilgan, shunda "unutildi" va "ataylab" farqlanadi. */
+const { SPECIAL_PAGES } = require('./render');
+
+const smPath = path.join(ROOT, 'sitemap.xml');
+const sm = fs.existsSync(smPath) ? fs.readFileSync(smPath, 'utf8') : '';
+const smPaths = [...sm.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map((m) => {
+  try { return new URL(m[1]).pathname; } catch (e) { return m[1]; }
+});
+T(smPaths.length > 0, '12. sitemap.xml o\'qildi', smPaths.length + ' URL');
+
+const smNotPre = smPaths.filter((p) => list.indexOf(p) === -1);
+T(smNotPre.length === 0, '12b. sitemap.xml dagi har bir sahifa precache\'da',
+  smNotPre.length ? 'YO\'Q: ' + smNotPre.join(', ') : '');
+
+// Teskari yo'nalish: diskda bor, lekin sitemap'da ham, istisnoda ham yo'q
+const htmlFiles = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'));
+const toPath = (f) => (f === 'index.html' ? '/' : '/' + f.replace(/\.html$/, ''));
+const notInSitemap = htmlFiles
+  .filter((f) => SPECIAL_PAGES.indexOf(f) === -1)
+  .filter((f) => smPaths.indexOf(toPath(f)) === -1);
+T(notInSitemap.length === 0, '12c. har bir sahifa sitemap.xml da (yoki SPECIAL_PAGES da)',
+  notInSitemap.join(', '));
+
+// SPECIAL_PAGES sitemap'ga TUSHMASLIGI kerak
+const specialInSitemap = SPECIAL_PAGES.filter((f) => smPaths.indexOf(toPath(f)) > -1
+  || smPaths.indexOf('/' + f) > -1);
+T(specialInSitemap.length === 0, '12d. SPECIAL_PAGES sitemap.xml ga kirmagan', specialInSitemap.join(', '));
+
+/* 12e. offline.html — navigatsiya uzilganda qaytariladigan sahifa */
+const off = path.join(ROOT, 'offline.html');
+const offSrc = fs.existsSync(off) ? fs.readFileSync(off, 'utf8') : '';
+T(!!offSrc, '12e. offline.html mavjud');
+T(list.indexOf('/offline.html') > -1, '12f. offline.html precache\'da');
+T(/<meta name="robots" content="[^"]*noindex/.test(offSrc), '12g. offline.html noindex');
+T(/caches\.match\(OFFLINE\)/.test(src) && !/\|\| caches\.match\('\/'\)/.test(src),
+  '12h. navigatsiya uzilganda offline.html qaytariladi ("/" emas)');
+T(!/https?:\/\/(?!kalki\.uz)/.test(offSrc.replace(/<!--[\s\S]*?-->/g, '')),
+  '12i. offline.html tashqi resurs so\'ramaydi');
 
 /* 13. SW ro'yxatdan o'tkazish YAGONA joyda: assets/sw-boot.js */
 const html = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'));

@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
-const { load, loadHtml } = require('./render');
+const { load, loadHtml, sitePages, SPECIAL_PAGES } = require('./render');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAST = process.argv.indexOf('--fast') > -1;
@@ -49,10 +49,7 @@ function fpDiff(a, b) {
   return changed;
 }
 
-function pages() {
-  return fs.readdirSync(ROOT)
-    .filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html').sort();
-}
+const pages = sitePages;
 function runTool(args) {
   try {
     const out = execFileSync(process.execPath, args.map((a) => (a.endsWith('.js') ? path.join(__dirname, a) : a)),
@@ -70,7 +67,9 @@ function runTool(args) {
   /* ---------- 1. Matn tozaligi ---------- */
   {
     const esc = [], mixed = [];
-    for (const f of list.concat(['yandex_5489ebe17687cac1.html'])) {
+    // Matn tozaligi SPECIAL_PAGES ga ham tegishli: ular ham foydalanuvchiga
+    // ko'rinadi, faqat sayt navigatsiyasidan tashqarida turadi.
+    for (const f of list.concat(SPECIAL_PAGES)) {
       const p = path.join(ROOT, f);
       if (!fs.existsSync(p)) continue;
       const src = fs.readFileSync(p, 'utf8');
