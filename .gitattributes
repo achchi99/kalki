@@ -1,0 +1,7 @@
+# Git hech qanday qator oxiri konvertatsiyasi qilmasin.
+#
+# Windows'da core.autocrlf=true bo'lgani uchun `git checkout` barcha HTML'ni
+# CRLF ga o'girib qo'yardi. Prerender natijasi esa har doim LF bilan yoziladi,
+# ya'ni toza klondan keyin 55 sahifaning hammasi "prerenderdan farq qiladi"
+# deb ko'rinardi va `npm run check` sababsiz yiqilardi.
+* -text
