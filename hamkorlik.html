@@ -20,6 +20,11 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 .stat-row:last-of-type{border-bottom:0}
 .stat-row b{font-size:19px;font-weight:800}
 .stat-upd{padding:10px 0 12px;font-size:12.5px;color:#8A968F;font-weight:600;border-top:1px solid #EEF2EF}
+.stat-head b{display:none}
+.stat-head span{font-weight:800}
+.stat-sub{font-size:13px;color:#5C6B63}
+.stat-sub b{font-size:14px}
+.stat-stale{color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:9px;padding:9px 12px;margin-top:10px}
 .note{font-size:13px;color:#5C6B63;font-weight:600}
 #content ul{margin:10px 0 10px 20px}
 #content li{margin-bottom:7px}
@@ -72,12 +77,12 @@ footer a{color:var(--muted)}
 <meta property="og:title" content="Hamkorlik — Kalki.uz">
 <meta property="og:description" content="Kalki.uz bilan hamkorlik: kalkulyator natijasi ostidagi blok, kategoriya sahifasi va hujjat generatori. Oylik ko’rsatkichlar, formatlar va shartlar.">
 <meta property="og:url" content="https://kalki.uz/hamkorlik">
-<meta property="og:image" content="https://kalki.uz/assets/og/hamkorlik.png?v=2">
+<meta property="og:image" content="https://kalki.uz/assets/og/biz-haqimizda.png?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Hamkorlik">
+<meta property="og:image:alt" content="Biz haqimizda">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kalki.uz/assets/og/hamkorlik.png?v=2">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/biz-haqimizda.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
 <meta name="twitter:title" content="Hamkorlik — Kalki.uz">
@@ -119,31 +124,84 @@ footer a{color:var(--muted)}
   </div>
 </header>
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><span class="cur">Hamkorlik</span></nav></div>
-<main class="wrap" id="content"><h2>Kalki.uz nima qiladi</h2><p>Kalki.uz — O’zbekiston sharoitiga moslangan bepul onlayn kalkulyatorlar va hujjat generatorlari to’plami. Odam kredit to’lovini hisoblaydi, uy qurishga qancha g’isht kerakligini biladi, mehnat shartnomasi yoki da’vo arizasini to’ldirib Word va PDF holida yuklab oladi.</p><p>Foydalanuvchi ro’yxatdan o’tmaydi, hech narsa to’lamaydi va kiritgan ma’lumoti serverga yuborilmaydi — barcha hisob brauzerda bajariladi.</p><h2>Oylik ko’rsatkichlar</h2><div class="stat-box" id="metrics"><div class="stat-row"><span>Sahifa ko’rish</span><b data-m="views">—</b></div><div class="stat-row"><span>Foydalanuvchi</span><b data-m="users">—</b></div><div class="stat-row"><span>Eng ko’p ochiladigan bo’lim</span><b data-m="top">—</b></div><div class="stat-upd">Yangilangan: <b data-m="upd">hali kiritilmagan</b></div></div><p class="note">Raqamlar qo’lda kiritiladi va oyda bir marta yangilanadi. Batafsil kesim (sahifa bo’yicha, qurilma bo’yicha) so’rov bo’yicha beriladi.</p><h2>Mavjud formatlar</h2><p><b>1. Kalkulyator natijasi ostidagi blok.</b> Foydalanuvchi hisobni bajargandan keyin, natijadan pastda ko’rinadi. Kiritilgan summa va muddatga qarab moslashadi — masalan 50 million so’m, 36 oy so’ragan odamga aynan shu oraliqda ishlaydigan tashkilotlar ko’rsatiladi.</p><p><b>2. Kategoriya sahifasi.</b> Bo’lim ichidagi barcha kalkulyatorlarda bir xil blok.</p><p><b>3. Hujjat generatori.</b> Shartnoma yoki ariza to’ldirilgandan keyin — masalan notarius, sug’urta yoki ekspertiza xizmatlari.</p><p>Har uch formatda ko’rsatish soni cheklangan: bir blokda to’rttadan ko’p tashkilot chiqmaydi.</p><h2>Nimalarni qilmaymiz</h2><p>Bu ro’yxat cheklov emas — bu ishlash tartibimiz:</p><ul><li>Qalqib chiquvchi reklama va avtomatik ochiladigan oyna yo’q.</li><li>Foydalanuvchi ma’lumoti uchinchi tomonga berilmaydi. Formaga kiritilgan summa, F.I.Sh. yoki pasport ma’lumoti serverga umuman yuborilmaydi.</li><li>Zakot va xayriya bo’limida to’lovli joylashtirish yo’q. Diniy majburiyat ustidan komissiya olinmaydi — bu qoida kod darajasida mustahkamlangan.</li><li>Foiz stavkasi va tarif saytda ko’rsatilmaydi. Ular tez o’zgaradi va eskirgan raqam foydalanuvchini adashtiradi; biz faqat rasmiy sahifaga havola beramiz.</li><li>To’lovli joylashtirish har doim «Reklama» deb belgilanadi va havolaga sponsored belgisi qo’yiladi.</li></ul><h2>Qanday o’lchaymiz</h2><p>Har bir blok uchun uchta ko’rsatkich yozib boriladi: blok ekranda haqiqatan ko’ringan holatlar soni, bosishlar soni va o’rin bo’yicha taqsimot. Bosishlar beacon usuli bilan yuboriladi — bu tashqi havolaga o’tishda hodisaning yo’qolib ketishining oldini oladi.</p><p>Hisobot summalar oralig’i kesimida beriladi (masalan 50–100 million so’m), aniq summalar hech qachon uzatilmaydi.</p><h2>Bog’lanish</h2><p>Telegram: <a href="https://t.me/kalki_uz" rel="noopener" target="_blank">@kalki_uz</a><br>E-pochta: <a href="mailto:info@kalki.uz">info@kalki.uz</a></p><p>Xatga sohangizni va qaysi bo’limga qiziqayotganingizni yozsangiz, o’sha bo’lim bo’yicha aniq raqamlarni javobda yuboramiz.</p></main>
-<footer class="wrap" style="margin-top:40px;padding-top:18px;border-top:1px solid #DDE5E0;font-size:13px;color:#5C6B63"><a href="./" style="color:#33403A;font-weight:700;text-decoration:none">Bosh sahifa</a> · <a href="hamkorlik" style="color:#33403A;font-weight:700;text-decoration:none">Hamkorlik</a> · <a href="maxfiylik" style="color:#33403A;font-weight:700;text-decoration:none">Maxfiylik</a> · <a href="shartlar" style="color:#33403A;font-weight:700;text-decoration:none">Foydalanish shartlari</a> · <a href="mailto:info@kalki.uz" style="color:#33403A;font-weight:700;text-decoration:none">info@kalki.uz</a></footer>
+<main class="wrap" id="content"><h2>Kalki.uz nima qiladi</h2><p>Kalki.uz — O’zbekiston sharoitiga moslangan bepul onlayn kalkulyatorlar va hujjat generatorlari to’plami. Odam kredit to’lovini hisoblaydi, uy qurishga qancha g’isht kerakligini biladi, mehnat shartnomasi yoki da’vo arizasini to’ldirib Word va PDF holida yuklab oladi.</p><p>Foydalanuvchi ro’yxatdan o’tmaydi, hech narsa to’lamaydi va kiritgan ma’lumoti serverga yuborilmaydi — barcha hisob brauzerda bajariladi.</p><h2>Oylik ko’rsatkichlar</h2><div id="metricsSlot"></div><p class="note">Raqamlar qo’lda kiritiladi va oyda bir marta yangilanadi. Batafsil kesim (sahifa bo’yicha, qurilma bo’yicha) so’rov bo’yicha beriladi.</p><h2>Mavjud formatlar</h2><p><b>1. Kalkulyator natijasi ostidagi blok.</b> Foydalanuvchi hisobni bajargandan keyin, natijadan pastda ko’rinadi. Kiritilgan summa va muddatga qarab moslashadi — masalan 50 million so’m, 36 oy so’ragan odamga aynan shu oraliqda ishlaydigan tashkilotlar ko’rsatiladi.</p><p><b>2. Kategoriya sahifasi.</b> Bo’lim ichidagi barcha kalkulyatorlarda bir xil blok.</p><p><b>3. Hujjat generatori.</b> Shartnoma yoki ariza to’ldirilgandan keyin — masalan notarius, sug’urta yoki ekspertiza xizmatlari.</p><p>Har uch formatda ko’rsatish soni cheklangan: bir blokda to’rttadan ko’p tashkilot chiqmaydi.</p><h2>Nimalarni qilmaymiz</h2><p>Bu ro’yxat cheklov emas — bu ishlash tartibimiz:</p><ul><li>Qalqib chiquvchi reklama va avtomatik ochiladigan oyna yo’q.</li><li>Foydalanuvchi ma’lumoti uchinchi tomonga berilmaydi. Formaga kiritilgan summa, F.I.Sh. yoki pasport ma’lumoti serverga umuman yuborilmaydi.</li><li>Zakot va xayriya bo’limida to’lovli joylashtirish yo’q. Diniy majburiyat ustidan komissiya olinmaydi — bu qoida kod darajasida mustahkamlangan.</li><li>Foiz stavkasi va tarif saytda ko’rsatilmaydi. Ular tez o’zgaradi va eskirgan raqam foydalanuvchini adashtiradi; biz faqat rasmiy sahifaga havola beramiz.</li><li>To’lovli joylashtirish har doim «Reklama» deb belgilanadi va havolaga sponsored belgisi qo’yiladi.</li></ul><h2>Qanday o’lchaymiz</h2><p>Har bir blok uchun uchta ko’rsatkich yozib boriladi: blok ekranda haqiqatan ko’ringan holatlar soni, bosishlar soni va o’rin bo’yicha taqsimot. Bosishlar beacon usuli bilan yuboriladi — bu tashqi havolaga o’tishda hodisaning yo’qolib ketishining oldini oladi.</p><p>Hisobot summalar oralig’i kesimida beriladi (masalan 50–100 million so’m), aniq summalar hech qachon uzatilmaydi.</p><h2>Bog’lanish</h2><p>Telegram: <a href="https://t.me/kalki_uz" rel="noopener" target="_blank">@kalki_uz</a><br>E-pochta: <a href="mailto:info@kalki.uz">info@kalki.uz</a></p><p>Xatga sohangizni va qaysi bo’limga qiziqayotganingizni yozsangiz, o’sha bo’lim bo’yicha aniq raqamlarni javobda yuboramiz.</p></main>
+<footer class="wrap" style="margin-top:40px;padding-top:18px;border-top:1px solid #DDE5E0;font-size:13px;color:#5C6B63"><a href="./" style="color:#33403A;font-weight:700;text-decoration:none">Bosh sahifa</a> · <a href="maxfiylik" style="color:#33403A;font-weight:700;text-decoration:none">Maxfiylik</a> · <a href="shartlar" style="color:#33403A;font-weight:700;text-decoration:none">Foydalanish shartlari</a> · <a href="mailto:info@kalki.uz" style="color:#33403A;font-weight:700;text-decoration:none">info@kalki.uz</a><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div></footer>
 
 <script>
 (function(){
-  /* Oylik ko'rsatkichlar QO'LDA yangilanadi. Avtomatlashtirilmagan: GA
-     hisobotini saytga ulash ortiqcha bog'liqlik va xavf, bu yerda esa
-     oyiga bir marta uchta raqamni yangilash yetarli. */
-  var METRICS={
-    views:'—',
-    users:'—',
-    top:'—',
-    upd:'hali kiritilmagan'
+  /* ==================== OYLIK KO’RSATKICHLAR ====================
+     Bu yerni QO’LDA to’ldiring. Avtomatlashtirilmagan: GA hisobotini
+     saytga ulash ortiqcha bog’liqlik va xavf.
+
+     Qiymat null bo’lsa — o’sha qator sahifada UMUMAN ko’rsatilmaydi.
+     Hammasi null bo’lsa — butun blok yashiriladi: «—» chiqarib qo’yish
+     yaxshi taassurot bermaydi.
+     =============================================================== */
+  var METRICS = {
+    period: null,        // "2026-07-01 — 2026-07-31" — qaysi davr
+    users: null,         // foydalanuvchi soni, masalan 12400
+    pageviews: null,     // sahifa ko’rishlari, masalan 38200
+    mobileShare: null,   // mobil ulushi, foizda: 87
+    topPages: [],        // [{path:"/kredit-kalkulyator", views:5200}] — 5 tagacha
+    updated: null        // "2026-08-09" — raqamlar qachon olingani
   };
+
+  var ML = {
+    uz: { users:'Foydalanuvchi', pv:'Sahifa ko’rishlari', mob:'Mobil ulushi',
+          top:'Eng ko’p ochiladigan sahifalar',
+          foot:'Ma’lumotlar {p} davri uchun, {u} da yangilangan.',
+          old:'Raqamlar ikki oydan ko’proq vaqt oldin yangilangan — dolzarb ma’lumotni Telegram orqali so’rang.' },
+    ru: { users:'Пользователи', pv:'Просмотры страниц', mob:'Доля мобильных',
+          top:'Самые посещаемые страницы',
+          foot:'Данные за период {p}, обновлены {u}.',
+          old:'Цифры обновлялись более двух месяцев назад — актуальные данные запросите в Telegram.' }
+  };
+
+  function mNum(n){ var t=String(n),o='',c=0; for(var i=t.length-1;i>=0;i--){ o=t.charAt(i)+o; if(++c%3===0&&i>0)o=' '+o; } return o; }
+
+  /* Bo’sh qator chizilmaydi, hammasi bo’sh bo’lsa blok umuman chiqmaydi. */
+  function metricsHtml(lang){
+    var L = ML[lang] || ML.uz, M = METRICS, rows = '';
+    function row(a,b){ return '<div class="stat-row"><span>'+a+'</span><b>'+b+'</b></div>'; }
+    if(M.users != null) rows += row(L.users, mNum(M.users));
+    if(M.pageviews != null) rows += row(L.pv, mNum(M.pageviews));
+    if(M.mobileShare != null) rows += row(L.mob, M.mobileShare+'%');
+
+    var top = '';
+    if(M.topPages && M.topPages.length){
+      top = '<div class="stat-row stat-head"><span>'+L.top+'</span><b></b></div>';
+      for(var i=0;i<Math.min(5,M.topPages.length);i++){
+        var t = M.topPages[i];
+        top += '<div class="stat-row stat-sub"><span>'+(i+1)+'. '+t.path+'</span><b>'
+             + (t.views != null ? mNum(t.views) : '')+'</b></div>';
+      }
+    }
+    if(!rows && !top) return '';
+
+    var foot = '';
+    if(M.period || M.updated){
+      foot = '<div class="stat-upd">'
+           + L.foot.replace('{p}', M.period || '—').replace('{u}', M.updated || '—')+'</div>';
+    }
+    var stale = '';
+    if(M.updated){
+      var age = Math.round((Date.now() - new Date(M.updated).getTime())/86400000);
+      // Eskirgan raqam ko’rsatishdan ko’ra sanasini ochiq aytish yaxshiroq.
+      if(age > 60) stale = '<p class="note stat-stale">'+L.old+'</p>';
+    }
+    return '<div class="stat-box">'+rows+top+foot+'</div>'+stale;
+  }
 
   var I={
     uz:{
       h1:"Hamkorlik",
       tagline:"Kalki.uz bilan to’g’ridan-to’g’ri hamkorlik: formatlar, ko’rsatkichlar va shartlar.",
-      body:"<h2>Kalki.uz nima qiladi</h2><p>Kalki.uz — O’zbekiston sharoitiga moslangan bepul onlayn kalkulyatorlar va hujjat generatorlari to’plami. Odam kredit to’lovini hisoblaydi, uy qurishga qancha g’isht kerakligini biladi, mehnat shartnomasi yoki da’vo arizasini to’ldirib Word va PDF holida yuklab oladi.</p><p>Foydalanuvchi ro’yxatdan o’tmaydi, hech narsa to’lamaydi va kiritgan ma’lumoti serverga yuborilmaydi — barcha hisob brauzerda bajariladi.</p><h2>Oylik ko’rsatkichlar</h2><div class=\"stat-box\" id=\"metrics\"><div class=\"stat-row\"><span>Sahifa ko’rish</span><b data-m=\"views\">—</b></div><div class=\"stat-row\"><span>Foydalanuvchi</span><b data-m=\"users\">—</b></div><div class=\"stat-row\"><span>Eng ko’p ochiladigan bo’lim</span><b data-m=\"top\">—</b></div><div class=\"stat-upd\">Yangilangan: <b data-m=\"upd\">—</b></div></div><p class=\"note\">Raqamlar qo’lda kiritiladi va oyda bir marta yangilanadi. Batafsil kesim (sahifa bo’yicha, qurilma bo’yicha) so’rov bo’yicha beriladi.</p><h2>Mavjud formatlar</h2><p><b>1. Kalkulyator natijasi ostidagi blok.</b> Foydalanuvchi hisobni bajargandan keyin, natijadan pastda ko’rinadi. Kiritilgan summa va muddatga qarab moslashadi — masalan 50 million so’m, 36 oy so’ragan odamga aynan shu oraliqda ishlaydigan tashkilotlar ko’rsatiladi.</p><p><b>2. Kategoriya sahifasi.</b> Bo’lim ichidagi barcha kalkulyatorlarda bir xil blok.</p><p><b>3. Hujjat generatori.</b> Shartnoma yoki ariza to’ldirilgandan keyin — masalan notarius, sug’urta yoki ekspertiza xizmatlari.</p><p>Har uch formatda ko’rsatish soni cheklangan: bir blokda to’rttadan ko’p tashkilot chiqmaydi.</p><h2>Nimalarni qilmaymiz</h2><p>Bu ro’yxat cheklov emas — bu ishlash tartibimiz:</p><ul><li>Qalqib chiquvchi reklama va avtomatik ochiladigan oyna yo’q.</li><li>Foydalanuvchi ma’lumoti uchinchi tomonga berilmaydi. Formaga kiritilgan summa, F.I.Sh. yoki pasport ma’lumoti serverga umuman yuborilmaydi.</li><li>Zakot va xayriya bo’limida to’lovli joylashtirish yo’q. Diniy majburiyat ustidan komissiya olinmaydi — bu qoida kod darajasida mustahkamlangan.</li><li>Foiz stavkasi va tarif saytda ko’rsatilmaydi. Ular tez o’zgaradi va eskirgan raqam foydalanuvchini adashtiradi; biz faqat rasmiy sahifaga havola beramiz.</li><li>To’lovli joylashtirish har doim «Reklama» deb belgilanadi va havolaga sponsored belgisi qo’yiladi.</li></ul><h2>Qanday o’lchaymiz</h2><p>Har bir blok uchun uchta ko’rsatkich yozib boriladi: blok ekranda haqiqatan ko’ringan holatlar soni, bosishlar soni va o’rin bo’yicha taqsimot. Bosishlar beacon usuli bilan yuboriladi — bu tashqi havolaga o’tishda hodisaning yo’qolib ketishining oldini oladi.</p><p>Hisobot summalar oralig’i kesimida beriladi (masalan 50–100 million so’m), aniq summalar hech qachon uzatilmaydi.</p><h2>Bog’lanish</h2><p>Telegram: <a href=\"https://t.me/kalki_uz\" rel=\"noopener\" target=\"_blank\">@kalki_uz</a><br>E-pochta: <a href=\"mailto:info@kalki.uz\">info@kalki.uz</a></p><p>Xatga sohangizni va qaysi bo’limga qiziqayotganingizni yozsangiz, o’sha bo’lim bo’yicha aniq raqamlarni javobda yuboramiz.</p>"
+      body:"<h2>Kalki.uz nima qiladi</h2><p>Kalki.uz — O’zbekiston sharoitiga moslangan bepul onlayn kalkulyatorlar va hujjat generatorlari to’plami. Odam kredit to’lovini hisoblaydi, uy qurishga qancha g’isht kerakligini biladi, mehnat shartnomasi yoki da’vo arizasini to’ldirib Word va PDF holida yuklab oladi.</p><p>Foydalanuvchi ro’yxatdan o’tmaydi, hech narsa to’lamaydi va kiritgan ma’lumoti serverga yuborilmaydi — barcha hisob brauzerda bajariladi.</p><h2>Oylik ko’rsatkichlar</h2><div id=\"metricsSlot\"></div><p class=\"note\">Raqamlar qo’lda kiritiladi va oyda bir marta yangilanadi. Batafsil kesim (sahifa bo’yicha, qurilma bo’yicha) so’rov bo’yicha beriladi.</p><h2>Mavjud formatlar</h2><p><b>1. Kalkulyator natijasi ostidagi blok.</b> Foydalanuvchi hisobni bajargandan keyin, natijadan pastda ko’rinadi. Kiritilgan summa va muddatga qarab moslashadi — masalan 50 million so’m, 36 oy so’ragan odamga aynan shu oraliqda ishlaydigan tashkilotlar ko’rsatiladi.</p><p><b>2. Kategoriya sahifasi.</b> Bo’lim ichidagi barcha kalkulyatorlarda bir xil blok.</p><p><b>3. Hujjat generatori.</b> Shartnoma yoki ariza to’ldirilgandan keyin — masalan notarius, sug’urta yoki ekspertiza xizmatlari.</p><p>Har uch formatda ko’rsatish soni cheklangan: bir blokda to’rttadan ko’p tashkilot chiqmaydi.</p><h2>Nimalarni qilmaymiz</h2><p>Bu ro’yxat cheklov emas — bu ishlash tartibimiz:</p><ul><li>Qalqib chiquvchi reklama va avtomatik ochiladigan oyna yo’q.</li><li>Foydalanuvchi ma’lumoti uchinchi tomonga berilmaydi. Formaga kiritilgan summa, F.I.Sh. yoki pasport ma’lumoti serverga umuman yuborilmaydi.</li><li>Zakot va xayriya bo’limida to’lovli joylashtirish yo’q. Diniy majburiyat ustidan komissiya olinmaydi — bu qoida kod darajasida mustahkamlangan.</li><li>Foiz stavkasi va tarif saytda ko’rsatilmaydi. Ular tez o’zgaradi va eskirgan raqam foydalanuvchini adashtiradi; biz faqat rasmiy sahifaga havola beramiz.</li><li>To’lovli joylashtirish har doim «Reklama» deb belgilanadi va havolaga sponsored belgisi qo’yiladi.</li></ul><h2>Qanday o’lchaymiz</h2><p>Har bir blok uchun uchta ko’rsatkich yozib boriladi: blok ekranda haqiqatan ko’ringan holatlar soni, bosishlar soni va o’rin bo’yicha taqsimot. Bosishlar beacon usuli bilan yuboriladi — bu tashqi havolaga o’tishda hodisaning yo’qolib ketishining oldini oladi.</p><p>Hisobot summalar oralig’i kesimida beriladi (masalan 50–100 million so’m), aniq summalar hech qachon uzatilmaydi.</p><h2>Bog’lanish</h2><p>Telegram: <a href=\"https://t.me/kalki_uz\" rel=\"noopener\" target=\"_blank\">@kalki_uz</a><br>E-pochta: <a href=\"mailto:info@kalki.uz\">info@kalki.uz</a></p><p>Xatga sohangizni va qaysi bo’limga qiziqayotganingizni yozsangiz, o’sha bo’lim bo’yicha aniq raqamlarni javobda yuboramiz.</p>"
     },
     ru:{
       h1:"Партнёрство",
       tagline:"Прямое сотрудничество с Kalki.uz: форматы, показатели и условия.",
-      body:"<h2>Что делает Kalki.uz</h2><p>Kalki.uz — набор бесплатных онлайн-калькуляторов и генераторов документов, адаптированных к условиям Узбекистана. Человек рассчитывает платёж по кредиту, узнаёт, сколько кирпича нужно на дом, заполняет трудовой договор или исковое заявление и скачивает его в Word и PDF.</p><p>Пользователь не регистрируется, ничего не платит, а введённые данные не отправляются на сервер — все расчёты выполняются в браузере.</p><h2>Ежемесячные показатели</h2><div class=\"stat-box\" id=\"metricsRu\"><div class=\"stat-row\"><span>Просмотры страниц</span><b data-m=\"views\">—</b></div><div class=\"stat-row\"><span>Пользователи</span><b data-m=\"users\">—</b></div><div class=\"stat-row\"><span>Самый посещаемый раздел</span><b data-m=\"top\">—</b></div><div class=\"stat-upd\">Обновлено: <b data-m=\"upd\">—</b></div></div><p class=\"note\">Цифры вносятся вручную и обновляются раз в месяц. Подробный разрез (по страницам, по устройствам) предоставляется по запросу.</p><h2>Доступные форматы</h2><p><b>1. Блок под результатом калькулятора.</b> Появляется после выполнения расчёта, ниже результата. Подстраивается под введённые сумму и срок — например, тому, кто запросил 50 млн сум на 36 месяцев, показываются организации, работающие именно в этом диапазоне.</p><p><b>2. Страница категории.</b> Один и тот же блок во всех калькуляторах раздела.</p><p><b>3. Генератор документов.</b> После заполнения договора или заявления — например, нотариус, страхование или экспертиза.</p><p>Во всех трёх форматах количество ограничено: в одном блоке показывается не более четырёх организаций.</p><h2>Чего мы не делаем</h2><p>Это не ограничение, а порядок работы:</p><ul><li>Нет всплывающей рекламы и автоматически открывающихся окон.</li><li>Данные пользователя не передаются третьим лицам. Введённые в форму суммы, Ф.И.О. и паспортные данные вообще не отправляются на сервер.</li><li>В разделе закята и благотворительности нет платного размещения. Комиссия с религиозной обязанности не берётся — это правило закреплено на уровне кода.</li><li>Процентные ставки и тарифы на сайте не публикуются. Они быстро меняются, а устаревшая цифра вводит пользователя в заблуждение; мы даём только ссылку на официальную страницу.</li><li>Платное размещение всегда помечается словом «Реклама», а ссылка получает атрибут sponsored.</li></ul><h2>Как мы измеряем</h2><p>По каждому блоку ведутся три показателя: сколько раз блок действительно был виден на экране, количество кликов и распределение по позициям. Клики отправляются методом beacon — это предотвращает потерю события при переходе по внешней ссылке.</p><p>Отчёт даётся в разрезе диапазонов сумм (например, 50–100 млн сум), точные суммы никогда не передаются.</p><h2>Контакты</h2><p>Telegram: <a href=\"https://t.me/kalki_uz\" rel=\"noopener\" target=\"_blank\">@kalki_uz</a><br>E-mail: <a href=\"mailto:info@kalki.uz\">info@kalki.uz</a></p><p>Укажите в письме вашу сферу и интересующий раздел — в ответ пришлём точные цифры по этому разделу.</p>"
+      body:"<h2>Что делает Kalki.uz</h2><p>Kalki.uz — набор бесплатных онлайн-калькуляторов и генераторов документов, адаптированных к условиям Узбекистана. Человек рассчитывает платёж по кредиту, узнаёт, сколько кирпича нужно на дом, заполняет трудовой договор или исковое заявление и скачивает его в Word и PDF.</p><p>Пользователь не регистрируется, ничего не платит, а введённые данные не отправляются на сервер — все расчёты выполняются в браузере.</p><h2>Ежемесячные показатели</h2><div id=\"metricsSlot\"></div><p class=\"note\">Цифры вносятся вручную и обновляются раз в месяц. Подробный разрез (по страницам, по устройствам) предоставляется по запросу.</p><h2>Доступные форматы</h2><p><b>1. Блок под результатом калькулятора.</b> Появляется после выполнения расчёта, ниже результата. Подстраивается под введённые сумму и срок — например, тому, кто запросил 50 млн сум на 36 месяцев, показываются организации, работающие именно в этом диапазоне.</p><p><b>2. Страница категории.</b> Один и тот же блок во всех калькуляторах раздела.</p><p><b>3. Генератор документов.</b> После заполнения договора или заявления — например, нотариус, страхование или экспертиза.</p><p>Во всех трёх форматах количество ограничено: в одном блоке показывается не более четырёх организаций.</p><h2>Чего мы не делаем</h2><p>Это не ограничение, а порядок работы:</p><ul><li>Нет всплывающей рекламы и автоматически открывающихся окон.</li><li>Данные пользователя не передаются третьим лицам. Введённые в форму суммы, Ф.И.О. и паспортные данные вообще не отправляются на сервер.</li><li>В разделе закята и благотворительности нет платного размещения. Комиссия с религиозной обязанности не берётся — это правило закреплено на уровне кода.</li><li>Процентные ставки и тарифы на сайте не публикуются. Они быстро меняются, а устаревшая цифра вводит пользователя в заблуждение; мы даём только ссылку на официальную страницу.</li><li>Платное размещение всегда помечается словом «Реклама», а ссылка получает атрибут sponsored.</li></ul><h2>Как мы измеряем</h2><p>По каждому блоку ведутся три показателя: сколько раз блок действительно был виден на экране, количество кликов и распределение по позициям. Клики отправляются методом beacon — это предотвращает потерю события при переходе по внешней ссылке.</p><p>Отчёт даётся в разрезе диапазонов сумм (например, 50–100 млн сум), точные суммы никогда не передаются.</p><h2>Контакты</h2><p>Telegram: <a href=\"https://t.me/kalki_uz\" rel=\"noopener\" target=\"_blank\">@kalki_uz</a><br>E-mail: <a href=\"mailto:info@kalki.uz\">info@kalki.uz</a></p><p>Укажите в письме вашу сферу и интересующий раздел — в ответ пришлём точные цифры по этому разделу.</p>"
     }
   };
 
@@ -154,15 +212,9 @@ footer a{color:var(--muted)}
     document.getElementById('pageTitle').textContent=t.h1;
     document.getElementById('pageTagline').textContent=t.tagline;
     document.getElementById('content').innerHTML=t.body;
-    // Ko'rsatkichlar har render'dan keyin qayta qo'yiladi (blok qayta chizilgan).
-    var box=document.getElementById(lang==='ru'?'metricsRu':'metrics');
-    if(box){
-      var els=box.querySelectorAll('[data-m]');
-      for(var i=0;i<els.length;i++){
-        var k=els[i].getAttribute('data-m');
-        if(METRICS[k]!=null)els[i].textContent=METRICS[k];
-      }
-    }
+    // Blok har render'dan keyin qayta quriladi (content innerHTML almashadi).
+    var slot=document.getElementById('metricsSlot');
+    if(slot)slot.innerHTML=metricsHtml(lang);
     document.getElementById('langUz').classList.toggle('on',lang==='uz');
     document.getElementById('langRu').classList.toggle('on',lang==='ru');
     document.title=lang==='ru'?'Партнёрство — Kalki.uz':'Hamkorlik — Kalki.uz';
