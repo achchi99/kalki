@@ -6,7 +6,8 @@
  *
  * Idempotent: qayta ishga tushirilsa dublikat teg qo'shmaydi, borini yangilaydi.
  *
- *   node tools/og-tags.js
+ *   node tools/og-tags.js           # tekshiradi, YOZMAYDI (farq bo'lsa kod 1)
+ *   node tools/og-tags.js --write   # yozadi (npm run ship)
  */
 'use strict';
 const fs = require('fs');
@@ -15,6 +16,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const MANIFEST = path.join(__dirname, 'og-manifest.json');
 const BASE = 'https://kalki.uz/';
+const WRITE = process.argv.indexOf('--write') > -1;
 
 if (!fs.existsSync(MANIFEST)) {
   console.error('og-manifest.json yo\'q — avval: node tools/og-images.js');
@@ -71,9 +73,16 @@ for (const slug of slugs) {
     continue;
   }
 
-  if (s !== before) { fs.writeFileSync(file, s, 'utf8'); changed++; }
+  if (s !== before) {
+    changed++;
+    if (WRITE) fs.writeFileSync(file, s, 'utf8');
+  }
 }
 
-console.log('sahifalar: ' + slugs.length + ' | teglari yangilandi: ' + changed);
+console.log('sahifalar: ' + slugs.length + ' | teglari '
+  + (WRITE ? 'yangilandi: ' : 'eskirgan: ') + changed);
 if (missing.length) console.log('HTML topilmadi: ' + missing.join(', '));
 if (noHead.length) console.log('</head> topilmadi: ' + noHead.join(', '));
+if (!WRITE && changed) console.log('og teglari eskirgan — npm run ship');
+
+process.exit((missing.length + noHead.length + (WRITE ? 0 : changed)) ? 1 : 0);

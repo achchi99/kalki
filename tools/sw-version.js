@@ -11,8 +11,10 @@
  * HTML hash'ga KIRMAYDI: prerender HTML'ni qayta yozadi, ya'ni hash HTML'ga
  * bog'lansa har prerenderda versiya o'zgarib, cheksiz aylanish hosil bo'lardi.
  *
- *   node tools/sw-version.js          # yozadi
- *   node tools/sw-version.js --check  # yozmaydi, mos-nomosligini aytadi
+ *   node tools/sw-version.js          # tekshiradi, YOZMAYDI (nomos bo'lsa kod 1)
+ *   node tools/sw-version.js --write  # yozadi (npm run ship)
+ *
+ * --check eski nom sifatida qabul qilinadi, standart holat bilan bir xil.
  */
 'use strict';
 const fs = require('fs');
@@ -22,7 +24,7 @@ const crypto = require('crypto');
 const ROOT = path.resolve(__dirname, '..');
 const SW = path.join(ROOT, 'sw.js');
 const ASSETS_DIR = path.join(ROOT, 'assets');
-const CHECK = process.argv.indexOf('--check') > -1;
+const WRITE = process.argv.indexOf('--write') > -1;
 
 // Katta uchinchi tomon kutubxonalari hisobga olinmaydi: ular o'zgarmaydi va
 // hash'ni behuda beqaror qiladi.
@@ -58,8 +60,8 @@ if (have === want) {
   console.log('sw versiyasi o\'zgarmadi: ' + want);
   process.exit(0);
 }
-if (CHECK) {
-  console.log('sw versiyasi ESKI: ' + have + ' -> ' + want + '  (node tools/sw-version.js)');
+if (!WRITE) {
+  console.log('sw versiyasi ESKI: ' + have + ' -> ' + want + '  (npm run ship)');
   process.exit(1);
 }
 fs.writeFileSync(SW, src.replace(RE, '$1' + want + '$3'), 'utf8');

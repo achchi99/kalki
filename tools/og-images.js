@@ -6,9 +6,11 @@
  * SVG shablon -> PNG (@resvg/resvg-js). Puppeteer ishlatilmaydi: og'ir, sekin
  * va CI'da beqaror.
  *
- *   node tools/og-images.js            # o'zgarganlarini yasaydi
- *   node tools/og-images.js --force    # hammasini qayta yasaydi
- *   node tools/og-images.js --check    # hech nima yozmaydi, faqat hisobot
+ *   node tools/og-images.js            # tekshiradi, HECH NARSA YOZMAYDI
+ *   node tools/og-images.js --write    # o'zgarganlarini yasaydi (npm run ship)
+ *   node tools/og-images.js --write --force   # hammasini qayta yasaydi
+ *
+ * --check eski nom sifatida qabul qilinadi, standart holat bilan bir xil.
  */
 'use strict';
 const fs = require('fs');
@@ -26,7 +28,7 @@ const MAX_BYTES = 300 * 1024;
 const TPL_VERSION = 1;
 
 const FORCE = process.argv.indexOf('--force') > -1;
-const CHECK = process.argv.indexOf('--check') > -1;
+const CHECK = process.argv.indexOf('--write') === -1;
 
 /* ---------- shrift ----------
    Tizim shriftiga TAYANMAYMIZ: serverda o'sha shrift bo'lmasa harflar
@@ -225,3 +227,9 @@ console.log('sahifalar: ' + list.length + ' | yasaldi: ' + made + ' | o\'zgarmag
 if (noTitle.length) console.log('h1 yo\'q: ' + noTitle.join(', '));
 if (tooBig.length) console.log('!! 300 KB dan katta: ' + tooBig.join(', '));
 else if (!CHECK) console.log('hammasi 300 KB ichida');
+
+// Muammo topilsa chiqish kodi 1 — CI va odam uchun aniq signal.
+// Tekshiruv rejimida "yasalishi kerak" ham muammo: demak repodagi rasmlar eskirgan.
+const problems = noTitle.length + tooBig.length + (CHECK ? made : 0);
+if (CHECK && made) console.log(made + ' ta rasm eskirgan yoki yo\'q — npm run ship');
+process.exit(problems ? 1 : 0);

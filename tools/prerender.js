@@ -1,23 +1,34 @@
 /* kalki.uz — prerender.
  *
  * Sahifani jsdom'da yuklaydi, ~950 ms kutadi va JS ishlagandan keyingi DOM'ni
- * faylga qaytarib yozadi. Maqsad: Googlebot sahifani statik holda ko'rsin.
+ * qaytaradi. Maqsad: Googlebot sahifani statik holda ko'rsin.
  *
- * Foydalanish:
- *   node tools/prerender.js kredit-kalkulyator.html ipoteka-kalkulyator.html
- *   node tools/prerender.js --all
+ * STANDART HOLATDA HECH NARSA YOZILMAYDI — natija diskdagi fayl bilan
+ * solishtiriladi va farq bo'lsa chiqish kodi 1 bo'ladi. Sababi: o'zi
+ * tekshirayotgan narsani tuzatib qo'yadigan vosita yolg'on xotirjamlik
+ * beradi (ilgari verify-all shu sababdan "yiqildi, keyin o'zi tuzatdi"
+ * holatiga tushgan). Yozish faqat aniq bayroq bilan.
+ *
+ *   node tools/prerender.js --all              # tekshiradi, yozmaydi
+ *   node tools/prerender.js --all --write      # yozadi (npm run ship)
+ *   node tools/prerender.js kredit-kalkulyator.html --write
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { load, ROOT } = require('./render');
+const { load, loadHtml, ROOT } = require('./render');
 
-async function prerender(name) {
+/* Bir sahifaning prerender natijasini QAYTARADI (yozmaydi).
+   htmlIn berilsa diskdan emas, o'sha matndan yuklanadi — prerender
+   barqarorligini faylga tegmasdan tekshirish uchun. */
+async function renderOne(name, htmlIn) {
   const file = path.join(ROOT, name);
   // shim bilan yuklaymiz: hamkor bloki haqiqatan to'ladi, so'ng quyidagi
   // data-prerender="skip" mantiqi uni bo'shatadi — ya'ni tozalash haqiqiy
   // sharoitda sinaladi, "fetch yo'q edi" degan tasodif hisobiga emas.
-  const { dom, errors } = await load(file, { shims: true });
+  const { dom, errors } = htmlIn == null
+    ? await load(file, { shims: true })
+    : await loadHtml(htmlIn, name, { shims: true });
   const doc = dom.window.document;
 
   // Prerender paytida qo'shilib qolishi mumkin bo'lgan GA teglari olib tashlanadi.
@@ -48,25 +59,51 @@ async function prerender(name) {
   }
 
   const out = '<!doctype html>\n' + doc.documentElement.outerHTML + '\n';
-  fs.writeFileSync(file, out, 'utf8');
   dom.window.close();
-  return { errors, bytes: out.length };
+  return { out, errors };
 }
 
-(async () => {
-  let names = process.argv.slice(2);
-  if (names[0] === '--all') {
-    names = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html').sort();
+function pages() {
+  return fs.readdirSync(ROOT)
+    .filter((f) => f.endsWith('.html') && f !== 'yandex_5489ebe17687cac1.html').sort();
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const WRITE = args.indexOf('--write') > -1;
+  let names = args.filter((a) => a.charAt(0) !== '-');
+  if (args.indexOf('--all') > -1) names = pages();
+  if (!names.length) {
+    console.log('foydalanish: node tools/prerender.js <fayl.html> ... | --all  [--write]');
+    return 1;
   }
-  if (!names.length) { console.log('foydalanish: node tools/prerender.js <fayl.html> ... | --all'); return; }
-  let bad = 0;
+
+  let bad = 0, stale = 0;
   for (const n of names) {
+    const file = path.join(ROOT, n);
     try {
-      const r = await prerender(n);
+      const r = await renderOne(n);
       if (r.errors.length) bad++;
-      console.log((r.errors.length ? 'ERR ' : 'OK  ') + n + ' (' + r.bytes + ')'
+      const cur = fs.readFileSync(file, 'utf8');
+      const same = cur === r.out;
+      if (!same) {
+        stale++;
+        if (WRITE) fs.writeFileSync(file, r.out, 'utf8');
+      }
+      const tag = r.errors.length ? 'ERR ' : (same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
+      console.log(tag + n + ' (' + r.out.length + ')'
         + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
     } catch (e) { bad++; console.log('FAIL ' + n + ' ' + e.message); }
   }
-  process.exit(bad ? 1 : 0);
-})();
+
+  if (!WRITE && stale) {
+    console.log('\n' + stale + ' fayl prerender natijasidan farq qiladi — npm run ship');
+  }
+  return (bad || (!WRITE && stale)) ? 1 : 0;
+}
+
+if (require.main === module) {
+  main().then((code) => process.exit(code)).catch((e) => { console.error(e); process.exit(1); });
+}
+
+module.exports = { renderOne, pages };

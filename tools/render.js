@@ -73,8 +73,12 @@ function installShims(dom, { ioAuto = true } = {}) {
   }
 }
 
-function load(file, { wait = 950, quiet = true, shims = false, ioAuto = true } = {}) {
-  const html = fs.readFileSync(file, 'utf8');
+/* Diskdagi fayl emas, XOTIRADAGI HTML ustida ishlash. Kerak, chunki
+   tekshiruv vositalari repoga yozmasligi kerak: prerender barqarorligini
+   solishtirish ham, hamkorlik.html dagi METRICS holatlarini sinash ham
+   ilgari faylni vaqtincha o'zgartirib turardi. Jarayon yarim yo'lda uzilsa
+   fayl o'zgargan holda qolib ketardi. */
+function loadHtml(html, basename, { wait = 950, quiet = true, shims = false, ioAuto = true } = {}) {
   const vc = new VirtualConsole();
   const errors = [];
   // Tashqi shrift/AdSense yuklanmasligi kutilgan holat — sahifa xatosi emas.
@@ -85,7 +89,7 @@ function load(file, { wait = 950, quiet = true, shims = false, ioAuto = true } =
   });
   if (!quiet) vc.sendTo(console);
   const dom = new JSDOM(html, {
-    url: ORIGIN + path.basename(file).replace(/\.html$/, ''),
+    url: ORIGIN + String(basename).replace(/\.html$/, ''),
     runScripts: 'dangerously',
     pretendToBeVisual: true,
     virtualConsole: vc,
@@ -95,4 +99,8 @@ function load(file, { wait = 950, quiet = true, shims = false, ioAuto = true } =
   return new Promise((res) => setTimeout(() => res({ dom, errors }), wait));
 }
 
-module.exports = { load, installShims, ROOT, ORIGIN };
+function load(file, opts) {
+  return loadHtml(fs.readFileSync(file, 'utf8'), path.basename(file), opts);
+}
+
+module.exports = { load, loadHtml, installShims, ROOT, ORIGIN };

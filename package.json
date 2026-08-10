@@ -3,14 +3,12 @@
   "private": true,
   "description": "kalki.uz build va tekshiruv vositalari (tools/). Sayt statik — bu paketlar faqat build uchun.",
   "scripts": {
-    "sw-version": "node tools/sw-version.js",
-    "prerender": "node tools/sw-version.js && node tools/prerender.js",
-    "prerender:all": "node tools/sw-version.js && node tools/prerender.js --all",
-    "og": "node tools/og-images.js && node tools/og-tags.js",
-    "check-partners": "node tools/check-partners.js",
-    "verify-sw": "node tools/verify-sw.js",
-    "verify": "node tools/verify-all.js",
-    "ship": "node tools/sw-version.js && node tools/prerender.js --all && node tools/verify-all.js"
+    "check": "node tools/verify-all.js",
+    "check:fast": "node tools/verify-all.js --fast",
+    "ship": "node tools/og-images.js --write && node tools/og-tags.js --write && node tools/sw-version.js --write && node tools/prerender.js --all --write && node tools/verify-all.js",
+    "check:sw": "node tools/verify-sw.js",
+    "check:partners": "node tools/check-partners.js",
+    "check:prerender": "node tools/prerender-twice.js --all"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",

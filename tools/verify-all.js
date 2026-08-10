@@ -1,15 +1,23 @@
 /* kalki.uz — yakuniy tekshiruv.
  *
+ * HECH NARSA YOZMAYDI. Bu shunchaki xushmuomalalik emas: ilgari 6-band
+ * yiqilgach 7-band sw-version.js ni yozish rejimida chaqirib faylni
+ * tuzatib qo'ygan va ikkinchi yugurishda "hammasi OK" chiqargan — ya'ni
+ * tekshiruv o'z natijasini yashirgan. O'z natijasini yashiradigan tekshiruv
+ * tekshiruv emas. Buni band 16 ning o'zi ham sinab ko'radi.
+ *
  *   node tools/verify-all.js          # hammasi
  *   node tools/verify-all.js --fast   # prerender barqarorligisiz (tez)
  *
+ * --check eski nom sifatida qabul qilinadi, standart holat bilan bir xil.
  * Chiqish kodi 0 — hammasi joyida, 1 — muammo bor.
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execFileSync } = require('child_process');
-const { load } = require('./render');
+const { load, loadHtml } = require('./render');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAST = process.argv.indexOf('--fast') > -1;
@@ -17,6 +25,29 @@ const LAT = /[a-zA-Z]/, CYR = /[Ѐ-ӿ]/;
 
 const results = [];
 const add = (okv, name, extra) => results.push({ ok: !!okv, name, extra: extra || '' });
+
+/* Repo holatining barmoq izi — band 16 shu bilan "hech nima yozilmadi" ni
+   isbotlaydi. .git va node_modules hisobga olinmaydi. */
+function fingerprint() {
+  const out = {};
+  const walk = (dir, rel) => {
+    for (const name of fs.readdirSync(dir).sort()) {
+      if (name === '.git' || name === 'node_modules') continue;
+      const full = path.join(dir, name);
+      const st = fs.statSync(full);
+      if (st.isDirectory()) { walk(full, rel + name + '/'); continue; }
+      out[rel + name] = crypto.createHash('sha1').update(fs.readFileSync(full)).digest('hex');
+    }
+  };
+  walk(ROOT, '');
+  return out;
+}
+function fpDiff(a, b) {
+  const changed = [];
+  Object.keys(b).forEach((k) => { if (a[k] !== b[k]) changed.push(a[k] ? k : k + ' (yangi)'); });
+  Object.keys(a).forEach((k) => { if (!(k in b)) changed.push(k + ' (o\'chdi)'); });
+  return changed;
+}
 
 function pages() {
   return fs.readdirSync(ROOT)
@@ -34,6 +65,7 @@ function runTool(args) {
 
 (async () => {
   const list = pages();
+  const fpBefore = fingerprint();
 
   /* ---------- 1. Matn tozaligi ---------- */
   {
@@ -83,18 +115,15 @@ function runTool(args) {
     add(r.code === 0, '6. sw.js statik tahlili', fails.join(' | '));
   }
 
-  /* ---------- 5. sw versiyasi avtomatik va barqaror ----------
-     Tekshiruv repoga O'ZGARTIRISH KIRITMAYDI: --check rejimi faqat
-     mos-nomosligini aytadi. Aks holda "yiqildi, keyin o'zi tuzatdi"
-     degan chalkash holat yuzaga kelardi. */
+  /* ---------- 5. sw versiyasi avtomatik va barqaror ---------- */
   {
     const before = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
-    const r1 = runTool(['sw-version.js', '--check']);
-    const r2 = runTool(['sw-version.js', '--check']);
+    const r1 = runTool(['sw-version.js']);
+    const r2 = runTool(['sw-version.js']);
     const after = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
     add(r1.code === 0 && r2.code === 0 && before === after,
       '7. sw versiyasi assets bilan mos va barqaror (hash)',
-      before !== after ? 'tekshiruv faylni o\'zgartirdi' : (r1.code ? 'npm run sw-version kerak' : ''));
+      before !== after ? 'tekshiruv faylni o\'zgartirdi' : (r1.code ? 'npm run ship kerak' : ''));
   }
 
   /* ---------- 6. Hamkorlar ---------- */
@@ -130,40 +159,65 @@ function runTool(args) {
     add(!bad.length, '11. diskdagi HTML\'da hamkor havolasi yo\'q', bad.join(', '));
   }
 
-  /* ---------- 9. METRICS holatlari ---------- */
+  /* ---------- 9. METRICS holatlari ----------
+     Ilgari bu band hamkorlik.html ni vaqtincha qayta yozib, keyin
+     tiklardi. Jarayon yarim yo'lda uzilsa fayl o'zgargan holda qolib
+     ketardi. Endi barcha holatlar XOTIRADA render qilinadi. */
   {
     const f = path.join(ROOT, 'hamkorlik.html');
     const orig = fs.readFileSync(f, 'utf8');
-    const setM = (body) => fs.writeFileSync(f, orig.replace(/var METRICS = \{[\s\S]*?\n  \};/, body), 'utf8');
-    try {
-      const { dom: d1 } = await load(f, { shims: true });
-      add(!d1.window.document.querySelector('.stat-box'),
-        '12. METRICS to\'liq null -> blok yashiriladi');
-      d1.window.close();
+    const withM = (body) => orig.replace(/var METRICS = \{[\s\S]*?\n  \};/, body);
 
-      setM('var METRICS = {\n    period: "2026-07",\n    users: 12400,\n    pageviews: null,\n    mobileShare: 87,\n    topPages: [],\n    updated: "' + new Date().toISOString().slice(0, 10) + '"\n  };');
-      const { dom: d2 } = await load(f, { shims: true });
-      const rows = [...d2.window.document.querySelectorAll('.stat-row')];
-      add(rows.length === 2 && !rows.some((r) => /ko’rishlari|Просмотр/.test(r.textContent)),
-        '13. qisman to\'ldirilgan -> faqat mavjud qatorlar', rows.length + ' qator');
-      d2.window.close();
+    const { dom: d1 } = await loadHtml(orig, 'hamkorlik.html', { shims: true });
+    add(!d1.window.document.querySelector('.stat-box'),
+      '12. METRICS to\'liq null -> blok yashiriladi');
+    d1.window.close();
 
-      setM('var METRICS = {\n    period: "2026-04",\n    users: 100,\n    pageviews: null,\n    mobileShare: null,\n    topPages: [],\n    updated: "2026-04-01"\n  };');
-      const { dom: d3 } = await load(f, { shims: true });
-      add(!!d3.window.document.querySelector('.stat-stale'), '14. updated 60 kundan eski -> eslatma chiqadi');
-      d3.window.close();
-    } finally {
-      fs.writeFileSync(f, orig, 'utf8');
-    }
+    const partial = withM('var METRICS = {\n    period: "2026-07",\n    users: 12400,\n    pageviews: null,\n    mobileShare: 87,\n    topPages: [],\n    updated: "' + new Date().toISOString().slice(0, 10) + '"\n  };');
+    const { dom: d2 } = await loadHtml(partial, 'hamkorlik.html', { shims: true });
+    const rows = [...d2.window.document.querySelectorAll('.stat-row')];
+    add(rows.length === 2 && !rows.some((r) => /ko’rishlari|Просмотр/.test(r.textContent)),
+      '13. qisman to\'ldirilgan -> faqat mavjud qatorlar', rows.length + ' qator');
+    d2.window.close();
+
+    const stale = withM('var METRICS = {\n    period: "2026-04",\n    users: 100,\n    pageviews: null,\n    mobileShare: null,\n    topPages: [],\n    updated: "2026-04-01"\n  };');
+    const { dom: d3 } = await loadHtml(stale, 'hamkorlik.html', { shims: true });
+    add(!!d3.window.document.querySelector('.stat-stale'), '14. updated 60 kundan eski -> eslatma chiqadi');
+    d3.window.close();
   }
 
-  /* ---------- 10. Prerender barqarorligi ---------- */
+  /* ---------- 10. Prerender barqarorligi va diskdagi holat ---------- */
   if (!FAST) {
     const r = runTool(['prerender-twice.js', '--all']);
     add(r.code === 0 && /barqaror/.test(r.out), '15. prerender ikki yugurishda bayt-bayt bir xil',
       (r.out.match(/^FARQ .*/gm) || []).join(' | '));
+
+    const p = runTool(['prerender.js', '--all']);
+    add(p.code === 0, '15b. diskdagi HTML prerender natijasiga mos',
+      (p.out.match(/^ESKI .*/gm) || []).map((x) => x.slice(5).split(' ')[0]).join(', '));
   } else {
     results.push({ ok: true, name: '15. prerender barqarorligi (--fast: o\'tkazildi)', extra: '' });
+    results.push({ ok: true, name: '15b. diskdagi HTML prerenderga mos (--fast: o\'tkazildi)', extra: '' });
+  }
+
+  /* ---------- 11. og teglari va rasmlari ---------- */
+  {
+    const t = runTool(['og-tags.js']);
+    add(t.code === 0, '16. og teglari sahifalarda dolzarb', (t.out.match(/eskirgan: [1-9]\d*/) || [''])[0]);
+    const i = runTool(['og-images.js']);
+    add(i.code === 0, '17. og rasmlari dolzarb va 300 KB ichida',
+      (i.out.match(/^.*(eskirgan|katta).*$/gm) || []).join(' | '));
+  }
+
+  /* ---------- 12. tools/ hech nima yozmadi ----------
+     Yuqoridagi bandlarning HAMMASI shu oynada bajarildi: prerender,
+     prerender-twice, sw-version, og-tags, og-images, check-partners,
+     verify-sw va hamkorlik.html METRICS holatlari. Agar ulardan biri
+     bayroqsiz holda diskka tegsa — shu yerda ko'rinadi. */
+  {
+    const changed = fpDiff(fpBefore, fingerprint());
+    add(changed.length === 0, '18. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
+      changed.slice(0, 8).join(', '));
   }
 
   /* ---------- hisobot ---------- */
