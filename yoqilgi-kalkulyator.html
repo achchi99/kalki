@@ -17,6 +17,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
 <script src="assets/lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Yoqilg'i kalkulyatori — benzin sarfi va metanga o'tish hisobi</title>
@@ -453,7 +454,6 @@ img,svg{height:auto}
 </div>
 <script>
 (function(){
-  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});var __swReloaded=false;navigator.serviceWorker.addEventListener('controllerchange',function(){if(__swReloaded)return;__swReloaded=true;location.reload()})}
   var d=new Date();
   var pd=document.getElementById('pdfdate');
   if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();

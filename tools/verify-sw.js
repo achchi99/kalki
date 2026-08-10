@@ -76,12 +76,28 @@ const pages = fs.readdirSync(ROOT)
 const notPre = pages.filter((p) => list.indexOf(p) === -1);
 if (notPre.length) warns.push('precache da yo\'q sahifalar (' + notPre.length + '): ' + notPre.join(', '));
 
-/* 13. controllerchange himoyasi sahifalarda */
+/* 13. SW ro'yxatdan o'tkazish YAGONA joyda: assets/sw-boot.js */
 const html = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'));
-const withSw = html.filter((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').includes("'serviceWorker' in navigator"));
-const withCc = withSw.filter((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').includes('controllerchange'));
-T(withSw.length > 0 && withSw.length === withCc.length,
-  '13. SW ro\'yxatga oluvchi sahifalarda controllerchange himoyasi', withCc.length + '/' + withSw.length);
+const inline = html.filter((f) => {
+  const s = fs.readFileSync(path.join(ROOT, f), 'utf8');
+  return /serviceWorker\.register/.test(s) || /addEventListener\('controllerchange'/.test(s);
+});
+T(inline.length === 0, '13. sahifalarda inline SW kodi yo\'q', inline.join(', '));
+
+const bootPath = path.join(ROOT, 'assets', 'sw-boot.js');
+const boot = fs.existsSync(bootPath) ? fs.readFileSync(bootPath, 'utf8') : '';
+const withBoot = html.filter((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').includes('assets/sw-boot.js'));
+T(!!boot && withBoot.length > 0, '13b. assets/sw-boot.js mavjud va sahifalarga ulangan', withBoot.length + ' sahifa');
+
+/* 13c. Iflos holat himoyasi. Deploy foydalanuvchi maydonlarni to'ldirgan
+   paytga to'g'ri kelsa, avtomatik qayta yuklash kiritilgan ma'lumotni
+   yo'q qiladi — bu versiya nomuvofiqligidan og'irroq zarar. */
+T(/addEventListener\('controllerchange'/.test(boot), '13c. sw-boot.js controllerchange ni tinglaydi');
+T(/isTrusted/.test(boot),
+  '13d. bayroq faqat HAQIQIY foydalanuvchi hodisasidan yoqiladi (isTrusted)');
+T(/if \(reloaded\) return;/.test(boot), '13e. qayta yuklash guard\'i (cheksiz sikl yo\'q)');
+T(/userTouched \|\| holds > 0/.test(boot), '13f. iflos holatda qayta yuklash o\'rniga chiziq');
+T(/sw_update_deferred/.test(boot), '13g. kechiktirilgan yangilanish GA ga yoziladi');
 
 /* 14. Versiya assets bilan mos */
 const { execFileSync } = require('child_process');
