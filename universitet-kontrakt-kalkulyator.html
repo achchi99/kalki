@@ -19,6 +19,8 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/partners.js" defer=""></script>
+<script src="assets/tgcta.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Universitet kontrakt kalkulyatori — o'qish davri uchun jami xarajat</title>
 <meta name="description" content="Universitet kontrakt kalkulyatori: yillik summani kiriting — butun o'qish davri uchun jami xarajat, yashash xarajati, to'lov grafigi va ta'lim krediti bo'yicha oylik to'lov chiqadi. Калькулятор контракта в вузе.">
@@ -119,6 +121,30 @@ table.cmp td.lose{color:#B04A3A;font-weight:800}
 .receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
 .receipt-actions button{flex:1;min-width:90px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer}
 .receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+#partners-slot{margin-top:28px}
+#partners-slot[hidden]{display:none}
+.pt-h{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px;color:var(--ink)}
+.pt-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.pt-list{grid-template-columns:1fr 1fr}}
+/* flex-wrap: 320 px da RU matni ("Смотреть на официальном сайте →")
+   kartochkaga sig'may sahifani yonga surib yuborardi — endi o'z qatoriga tushadi */
+.pt-card{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.pt-card:hover{border-color:var(--cat);transform:translateY(-2px)}
+.pt-logo{flex:none;width:48px;height:48px;border-radius:12px;display:block}
+.pt-logo-blank{background:#EEF2EF}
+.pt-body{flex:1;min-width:0}
+.pt-name{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.pt-note{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.4}
+.pt-ad{flex:none;align-self:flex-start;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:5px;padding:2px 6px}
+.pt-go{flex:none;font-size:12.5px;font-weight:800;color:var(--cat)}
+.pt-extra,.pt-disc,.pt-checked{font-size:12px;line-height:1.5;font-weight:600;color:var(--muted);margin-top:10px}
+.pt-disc{padding-top:10px;border-top:1px solid var(--line)}
+.pt-checked{margin-top:4px;color:#93A099}
+.leadbox{margin-top:22px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:17px 17px;display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.leadbox .lt{flex:1;min-width:190px}
+.leadbox .lt b{display:block;font-size:15px;font-weight:800;color:#fff}
+.leadbox .lt span{display:block;font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px;line-height:1.45}
+.leadbtn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none}
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
@@ -203,6 +229,12 @@ img,svg{height:auto}
 <main class="wrap">
   <section class="card">
     <div class="step" data-i="step1">1-qadam — Asosiy ma'lumot</div>
+    <div class="field"><label data-i="lMode">Nimadan boshlaymiz</label>
+      <div class="seg wrap" id="segMode">
+        <button type="button" data-seg="mode" data-v="fwd" class="on" data-i="mFwd">Kontrakt summasini bilaman</button>
+        <button type="button" data-seg="mode" data-v="rev" data-i="mRev">Byudjetimdan kelib chiqaman</button>
+      </div>
+      <p class="hint" id="modeHint">Kontrakt summasini bilmasangiz — ikkinchi rejimni tanlang.</p></div>
     <div class="field"><label data-i="lLevel">Bosqich</label>
       <div class="seg" id="segLevel">
         <button type="button" data-seg="level" data-v="bak" class="on" data-i="levBak">Bakalavr</button>
@@ -211,8 +243,16 @@ img,svg{height:auto}
     <div class="row2">
       <div class="field"><label for="years" data-i="lYears">O'qish muddati</label>
         <div class="input-shell"><input type="text" id="years" class="int" inputmode="numeric" value="4"><span class="unit" data-i="uYil">yil</span></div></div>
-      <div class="field"><label for="fee" data-i="lFee">Yillik kontrakt</label>
+      <div class="field" id="feeField" style="display: block;"><label for="fee" data-i="lFee">Yillik kontrakt</label>
         <div class="input-shell"><input type="text" id="fee" class="money" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSom">so'm</span></div></div>
+      <div class="field" id="revMonthlyField" style="display:none"><label for="revMonthly" data-i="lRevMonthly">Oyiga ajrata olasiz</label>
+        <div class="input-shell"><input type="text" id="revMonthly" class="money" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSomOyR">so'm/oy</span></div></div>
+    </div>
+    <div class="row2" id="revRow2" style="display:none">
+      <div class="field"><label for="revSavings" data-i="lRevSavings">Mavjud jamg'arma</label>
+        <div class="input-shell"><input type="text" id="revSavings" class="money" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSomR">so'm</span></div></div>
+      <div class="field"><label for="revMonths" data-i="lRevMonths">Yiliga necha oy to'lanadi</label>
+        <div class="input-shell"><input type="text" id="revMonths" class="int" inputmode="numeric" value="9"><span class="unit" data-i="uOyR">oy</span></div></div>
     </div>
     <div class="field" style="margin-bottom:0"><label data-i="lForm">Ta'lim shakli</label>
       <div class="seg wrap" id="segForm">
@@ -221,7 +261,7 @@ img,svg{height:auto}
         <button type="button" data-seg="form" data-v="kechki" data-i="fKechki">Kechki</button>
         <button type="button" data-seg="form" data-v="masofaviy" data-i="fMasofaviy">Masofaviy</button>
       </div></div>
-    <p class="hint" data-i="hFee">Kontrakt summasini o'zingiz kiritasiz — kalkulyator hech qanday OTM narxini o'zi belgilamaydi.</p>
+    <p class="hint" id="feeHint">Kontrakt summasini o'zingiz kiritasiz — kalkulyator hech qanday OTM narxini o'zi belgilamaydi.</p>
   </section>
 
   <section class="card">
@@ -257,7 +297,7 @@ img,svg{height:auto}
       </div>
     </div></details>
 
-    <details id="dSched"><summary><span data-i="sSched">To'lov grafigi</span></summary><div class="sec-body">
+    <details id="dSched" style="display: block;"><summary><span data-i="sSched">To'lov grafigi</span></summary><div class="sec-body">
       <div class="field" style="margin-bottom:0"><label data-i="lParts">To'lov necha qismga bo'linadi</label>
         <div class="seg" id="segParts">
           <button type="button" data-seg="parts" data-v="1" data-i="p1">1 qism</button>
@@ -269,9 +309,12 @@ img,svg{height:auto}
     </div></details>
 
     <details id="dCredit"><summary><span data-i="sCredit">Ta'lim krediti</span></summary><div class="sec-body">
-      <div class="field"><label for="credAmt" data-i="lCredAmt">Kredit summasi</label>
+      <div class="field" id="credAmtField" style="display: block;"><label for="credAmt" data-i="lCredAmt">Kredit summasi</label>
         <div class="input-shell"><input type="text" id="credAmt" class="money" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSomC">so'm</span></div>
         <p class="hint" id="credHint">Bo'sh qoldirsangiz — butun davr kontrakt summasi olinadi.</p></div>
+      <div class="field" id="revPayField" style="display:none"><label for="revPay" data-i="lRevPay">Bitiruvdan keyin oyiga to'lay olasiz</label>
+        <div class="input-shell"><input type="text" id="revPay" class="money" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSomOyP">so'm/oy</span></div>
+        <p class="hint" id="revPayHint">Shu to'lovga qancha kredit sig'ishini hisoblaymiz.</p></div>
       <div class="row2">
         <div class="field"><label for="rate" data-i="lRate">Yillik foiz stavkasi</label>
           <div class="input-shell"><input type="text" id="rate" class="dec" inputmode="decimal" placeholder="0" value=""><span class="unit" data-i="uFoiz">%</span></div></div>
@@ -284,7 +327,7 @@ img,svg{height:auto}
       <p class="hint" data-i="hCredit">Stavkani o'zingiz kiritasiz. Imtiyozli davrda foiz hisoblanadi va asosiy qarzga qo'shiladi.</p>
     </div></details>
 
-    <details id="dDisc"><summary><span data-i="sDisc">Chegirma yoki imtiyoz</span></summary><div class="sec-body">
+    <details id="dDisc" style="display: block;"><summary><span data-i="sDisc">Chegirma yoki imtiyoz</span></summary><div class="sec-body">
       <div class="field"><label data-i="lDiscMode">Chegirma turi</label>
         <div class="seg" id="segDisc">
           <button type="button" data-seg="disc" data-v="pct" class="on" data-i="dPct">Foiz (%)</button>
@@ -297,7 +340,7 @@ img,svg{height:auto}
       <p class="hint" data-i="hDisc">Chegirma yillik kontrakt summasidan ayriladi.</p>
     </div></details>
 
-    <details id="dCmp"><summary><span data-i="sCmp">Taqqoslash rejimi</span></summary><div class="sec-body">
+    <details id="dCmp" style="display: block;"><summary><span data-i="sCmp">Taqqoslash rejimi</span></summary><div class="sec-body">
       <div class="field"><label data-i="lCmpN">Nechta variant</label>
         <div class="seg" id="segCmpN">
           <button type="button" data-seg="cmpn" data-v="2" class="on" data-i="cmp2">2 variant</button>
@@ -336,7 +379,7 @@ img,svg{height:auto}
       <p class="hint" data-i="hCmp">Butun davr uchun hisob yuqoridagi o'qish muddati bo'yicha olinadi.</p>
     </div></details>
 
-    <details id="dSave"><summary><span data-i="sSave">Jamg'arma rejasi</span></summary><div class="sec-body">
+    <details id="dSave" style="display: block;"><summary><span data-i="sSave">Jamg'arma rejasi</span></summary><div class="sec-body">
       <div class="row2" style="margin-bottom:0">
         <div class="field" style="margin-bottom:0"><label for="saveDate" data-i="lSaveDate">Nishon sana</label>
           <div class="input-shell"><input type="date" id="saveDate" value=""></div></div>
@@ -349,15 +392,20 @@ img,svg{height:auto}
 
   <section class="receipt" id="receipt" aria-live="polite">
     <div class="receipt-body">
-      <div class="receipt-tag" data-i="rTag">O'qish xarajati</div>
+      <div class="receipt-tag" id="rTagBox">O'qish xarajati</div>
       <div class="big-figure">
         <div class="num" id="mainNum">-</div>
         <div class="lbl" id="mainLbl">Butun o'qish davri uchun jami</div>
       </div>
       <div class="mini2">
-        <div class="mini"><div class="n" id="yearNum">-</div><div class="l" data-i="lblYear">Yiliga</div></div>
-        <div class="mini"><div class="n" id="monthNum">-</div><div class="l" data-i="lblMonth">Oyiga ekvivalenti</div></div>
+        <div class="mini"><div class="n" id="yearNum">-</div><div class="l" id="lblYearBox">Yiliga</div></div>
+        <div class="mini"><div class="n" id="monthNum">-</div><div class="l" id="lblMonthBox">Oyiga ekvivalenti</div></div>
       </div>
+      <div class="mini2" id="revCmpBox" style="display:none">
+        <div class="mini"><div class="n" id="revNoCredNum">-</div><div class="l" id="lblNoCred">Kreditsiz</div></div>
+        <div class="mini" style="background:#FBF3E9"><div class="n" id="revCredNum">-</div><div class="l" id="lblWithCred">Kredit bilan</div></div>
+      </div>
+      <div class="note" id="revWarn" style="display:none;margin-top:14px"></div>
       <div class="credbox" id="credBox" style="display:none">
         <div class="n" id="credNum">-</div>
         <div class="l" data-i="lblCred">Bitiruvdan keyingi oylik to'lov</div>
@@ -373,6 +421,11 @@ img,svg{height:auto}
     </div>
     <div class="receipt-edge"></div>
   </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+  <div id="partners-slot" data-nosnippet="" data-prerender="skip" hidden=""></div>
+  <div class="leadbox noprint" id="leadBox">
+    <div class="lt"><b id="leadTitle">Universitetlardan taklif olish</b><span id="leadSub">Kontrakt, chegirma va ta'lim krediti bo'yicha takliflarni Telegram kanalimizda e'lon qilamiz.</span></div>
+    <a class="leadbtn" id="leadBtn" href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram">✈️ Telegram'ga yozish</a>
+  </div>
 
 
 
@@ -381,7 +434,7 @@ img,svg{height:auto}
 
   
   
-<section class="seo" id="seoBlock"><h2>Universitet kontrakti qanday to'lanadi?</h2><p>Ko'pchilik OTM kontrakt summasini bir yo'la emas, bir necha qismga bo'lib oladi: birinchi qism o'quv yili boshida, qolgani semestr boshlarida. Qism soni va sanalar har bir universitetning o'z qarorida, shuning uchun kalkulyatorda buni siz tanlaysiz. Eng muhim raqam — sentyabrgacha kamida qancha pul kerakligi, chunki birinchi to'lov qilinmasa talaba buyrug'i rasmiylashtirilmaydi.</p><h2>Ta'lim krediti shartlari qanday?</h2><p>Ta'lim krediti — bu kontrakt to'lovini qoplash uchun bank beradigan maqsadli kredit. Odatda o'qish davomida imtiyozli davr beriladi: shu muddat ichida asosiy qarz to'lanmaydi, to'lov bitirgandan keyin boshlanadi. Foiz stavkasi, muddat va imtiyozli davr bank hamda talaba toifasiga qarab farq qiladi, ba'zi toifalar uchun stavka davlat tomonidan qoplanishi mumkin. Shuning uchun kalkulyator foizni o'zi belgilamaydi — siz shartnomangizdagi aniq stavkani kiritasiz.</p><h2>Sirtqi va kunduzgi kontrakt farqi nimada?</h2><p>Kunduzgi ta'limda dars soati eng ko'p va kontrakt odatda eng qimmat bo'ladi. Sirtqi, kechki va masofaviy shakllarda auditoriya soati kamroq, shuning uchun kontrakt ham arzonroq belgilanadi. Lekin haqiqiy farq faqat kontraktda emas: sirtqi yoki masofaviy o'qiyotgan talaba ijara va kunlik transport xarajatidan qutuladi, ishlab yurishi ham mumkin. Shuning uchun taqqoslashda kontrakt bilan yashash xarajatini birga hisoblash to'g'riroq.</p><h2>Chegirmalar kimga beriladi?</h2><p>Kontrakt chegirmasi ko'pincha ijtimoiy himoyaga muhtoj toifalar, nogironligi bo'lgan talabalar, ota-onasidan ayrilganlar, ko'p bolali oila farzandlari hamda a'lo o'qiydigan va olimpiada g'oliblari uchun beriladi. Ba'zi OTM o'z hisobidan qo'shimcha imtiyoz e'lon qiladi. Chegirma foiz ko'rinishida ham, aniq summa ko'rinishida ham bo'lishi mumkin — kalkulyatorda ikkala usul ham qo'llab-quvvatlanadi.</p><h2>Kontrakt narxi qachon e'lon qilinadi?</h2><p>Yangi o'quv yili uchun kontrakt summasi odatda yoz oxirida, qabul yakunlanishiga yaqin OTM buyrug'i bilan tasdiqlanadi va universitet rasmiy saytida e'lon qilinadi. Summa har yili qayta ko'rib chiqiladi, shuning uchun o'tgan yilgi raqamga tayanib reja tuzish xato. Aynan shu sabab bu kalkulyatorga hech qanday OTM narxi yozilmagan — siz rasmiy raqamni kiritasiz, kalkulyator faqat hisoblaydi.</p><h2>Grantdan kontraktga o'tib qolsa nima bo'ladi?</h2><p>Grant o'rni har yili qayta taqsimlanmaydi, lekin akademik qarzdorlik yoki reyting pasayishi natijasida talaba grantdan kontraktga o'tkazilishi mumkin. Bunday holatda oila kutilmaganda butun bir yillik summani topishi kerak bo'ladi. Shuning uchun grantda o'qiyotgan bo'lsangiz ham kontrakt summasini bir marta hisoblab ko'rish va jamg'arma rejasini tuzish foydali.</p><h2>Nega kalkulyatorga narxlar yozib qo'yilmagan?</h2><p>Statik saytga yozilgan narx bir necha oyda eskiradi va noto'g'ri qaror sababi bo'ladi. Kontrakt summasi, bank foizi va ijara narxi doimo o'zgarib turadi. Shu sababli kalkulyator hech qanday summa taklif qilmaydi: barcha raqamlarni siz kiritasiz, kalkulyator esa faqat butun davr uchun jami xarajat, oylik yuk va kredit bo'yicha qarzni hisoblab beradi.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="dtm-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="DTM 2026: ball va grant qo'llanmasi" data-art-ru="ДТМ 2026: балл и грант">DTM 2026: ball va grant qo'llanmasi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💳</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit kalkulyatori" data-rel-ru="Кредитный калькулятор">Kredit kalkulyatori</span></a><a href="shablonlar" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #D99A2B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ijara shartnomasi shabloni" data-rel-ru="Шаблон договора аренды">Ijara shartnomasi shabloni</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Hisob taxminiy. Kontrakt summasi, chegirma va kredit shartlarini universitet hamda bankdan tasdiqlang.</footer></main>
+<section class="seo" id="seoBlock"><h2>Universitet kontrakti qanday to'lanadi?</h2><p>Ko'pchilik OTM kontrakt summasini bir yo'la emas, bir necha qismga bo'lib oladi: birinchi qism o'quv yili boshida, qolgani semestr boshlarida. Qism soni va sanalar har bir universitetning o'z qarorida, shuning uchun kalkulyatorda buni siz tanlaysiz. Eng muhim raqam — sentyabrgacha kamida qancha pul kerakligi, chunki birinchi to'lov qilinmasa talaba buyrug'i rasmiylashtirilmaydi.</p><h2>Ta'lim krediti shartlari qanday?</h2><p>Ta'lim krediti — bu kontrakt to'lovini qoplash uchun bank beradigan maqsadli kredit. Odatda o'qish davomida imtiyozli davr beriladi: shu muddat ichida asosiy qarz to'lanmaydi, to'lov bitirgandan keyin boshlanadi. Foiz stavkasi, muddat va imtiyozli davr bank hamda talaba toifasiga qarab farq qiladi, ba'zi toifalar uchun stavka davlat tomonidan qoplanishi mumkin. Shuning uchun kalkulyator foizni o'zi belgilamaydi — siz shartnomangizdagi aniq stavkani kiritasiz.</p><h2>Sirtqi va kunduzgi kontrakt farqi nimada?</h2><p>Kunduzgi ta'limda dars soati eng ko'p va kontrakt odatda eng qimmat bo'ladi. Sirtqi, kechki va masofaviy shakllarda auditoriya soati kamroq, shuning uchun kontrakt ham arzonroq belgilanadi. Lekin haqiqiy farq faqat kontraktda emas: sirtqi yoki masofaviy o'qiyotgan talaba ijara va kunlik transport xarajatidan qutuladi, ishlab yurishi ham mumkin. Shuning uchun taqqoslashda kontrakt bilan yashash xarajatini birga hisoblash to'g'riroq.</p><h2>Chegirmalar kimga beriladi?</h2><p>Kontrakt chegirmasi ko'pincha ijtimoiy himoyaga muhtoj toifalar, nogironligi bo'lgan talabalar, ota-onasidan ayrilganlar, ko'p bolali oila farzandlari hamda a'lo o'qiydigan va olimpiada g'oliblari uchun beriladi. Ba'zi OTM o'z hisobidan qo'shimcha imtiyoz e'lon qiladi. Chegirma foiz ko'rinishida ham, aniq summa ko'rinishida ham bo'lishi mumkin — kalkulyatorda ikkala usul ham qo'llab-quvvatlanadi.</p><h2>Kontrakt narxi qachon e'lon qilinadi?</h2><p>Yangi o'quv yili uchun kontrakt summasi odatda yoz oxirida, qabul yakunlanishiga yaqin OTM buyrug'i bilan tasdiqlanadi va universitet rasmiy saytida e'lon qilinadi. Summa har yili qayta ko'rib chiqiladi, shuning uchun o'tgan yilgi raqamga tayanib reja tuzish xato. Aynan shu sabab bu kalkulyatorga hech qanday OTM narxi yozilmagan — siz rasmiy raqamni kiritasiz, kalkulyator faqat hisoblaydi.</p><h2>Grantdan kontraktga o'tib qolsa nima bo'ladi?</h2><p>Grant o'rni har yili qayta taqsimlanmaydi, lekin akademik qarzdorlik yoki reyting pasayishi natijasida talaba grantdan kontraktga o'tkazilishi mumkin. Bunday holatda oila kutilmaganda butun bir yillik summani topishi kerak bo'ladi. Shuning uchun grantda o'qiyotgan bo'lsangiz ham kontrakt summasini bir marta hisoblab ko'rish va jamg'arma rejasini tuzish foydali.</p><h2>Nega kalkulyatorga narxlar yozib qo'yilmagan?</h2><p>Statik saytga yozilgan narx bir necha oyda eskiradi va noto'g'ri qaror sababi bo'ladi. Kontrakt summasi, bank foizi va ijara narxi doimo o'zgarib turadi. Shu sababli kalkulyator hech qanday summa taklif qilmaydi: barcha raqamlarni siz kiritasiz, kalkulyator esa faqat butun davr uchun jami xarajat, oylik yuk va kredit bo'yicha qarzni hisoblab beradi.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="dtm-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="DTM 2026: ball va grant qo'llanmasi" data-art-ru="ДТМ 2026: балл и грант">DTM 2026: ball va grant qo'llanmasi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💳</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit kalkulyatori" data-rel-ru="Кредитный калькулятор">Kredit kalkulyatori</span></a><a href="shablonlar" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #D99A2B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ijara shartnomasi shabloni" data-rel-ru="Шаблон договора аренды">Ijara shartnomasi shabloni</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Hisob taxminiy. Kontrakt summasi, chegirma va kredit shartlarini universitet hamda bankdan tasdiqlang.</footer></main>
 
 <script>
 (function(){
@@ -400,6 +453,30 @@ var I={
  uz:{cat:"Kundalik hayot",h1:"Universitet kontrakti",
   sub:"Yillik summani kiriting — butun o'qish davri uchun jami xarajat va oylik yuk darrov chiqadi.",
   step1:"1-qadam — Asosiy ma'lumot",step2:"2-qadam — Ixtiyoriy aniqlik",
+  lMode:"Nimadan boshlaymiz",
+  mFwd:"Kontrakt summasini bilaman",mRev:"Byudjetimdan kelib chiqaman",
+  modeHint:"Kontrakt summasini bilmasangiz — ikkinchi rejimni tanlang.",
+  lRevMonthly:"Oyiga ajrata olasiz",uSomOyR:"so'm/oy",
+  lRevSavings:"Mavjud jamg'arma",uSomR:"so'm",
+  lRevMonths:"Yiliga necha oy to'lanadi",uOyR:"oy",
+  lRevPay:"Bitiruvdan keyin oyiga to'lay olasiz",uSomOyP:"so'm/oy",
+  revPayHint:"Shu to'lovga qancha kredit sig'ishini hisoblaymiz.",
+  hRev:"Faqat oylik summani kiriting — qolgani ixtiyoriy. Hech qanday OTM narxi kalkulyatorga yozilmagan.",
+  revTag:"Taxminiy imkoniyat",
+  revMainLbl:"Ko'tara oladigan yillik kontrakt (taxminiy)",
+  revLblPeriod:"{y} yil uchun jami imkoniyat",
+  revLblMonthly:"Hisobga olingan oylik summa",
+  revNoCred:"Kreditsiz — yiliga",revWithCred:"Kredit bilan — yiliga",
+  revWarnNoLive:"Bu raqamga yashash xarajati (yotoqxona, ovqat, transport) KIRMAGAN. Uni hisobga olish uchun \"Yashash xarajati\" blokini oching. Barcha raqamlar taxminiy.",
+  revWarnLive:"Yashash xarajati ({s}) oylik summadan ayirildi. Barcha raqamlar taxminiy — kontrakt summasini OTM dan tasdiqlang.",
+  revGrp:"Byudjet hisobi",
+  revRowMonthly:"Oyiga ajratiladi",revRowLive:"Yashash xarajati",revRowNet:"Ta'limga qoladi",
+  revRowMonths:"Yiliga to'lov oylari",revRowSavings:"Jamg'armadan yiliga",
+  revRowYear:"Yillik imkoniyat (kreditsiz)",
+  revRowPay:"Bitiruvdan keyin oyiga",revRowMaxCred:"Maksimal kredit summasi",
+  revRowCredYear:"Kreditdan yiliga to'g'ri keladi",
+  leadTitle:"Universitetlardan taklif olish",
+  leadSub:"Kontrakt, chegirma va ta'lim krediti bo'yicha takliflarni Telegram kanalimizda e'lon qilamiz.",
   lLevel:"Bosqich",levBak:"Bakalavr",levMag:"Magistr",
   lYears:"O'qish muddati",uYil:"yil",uYil2:"yil",
   lFee:"Yillik kontrakt",uSom:"so'm",uSomC:"so'm",uSomD:"so'm/yil",uSomS:"so'm",
@@ -463,6 +540,30 @@ var I={
  ru:{cat:"Жизнь",h1:"Контракт в вузе",
   sub:"Введите сумму за год — общий расход за весь срок обучения и месячная нагрузка появятся сразу.",
   step1:"Шаг 1 — Основные данные",step2:"Шаг 2 — Уточнения по желанию",
+  lMode:"С чего начнём",
+  mFwd:"Знаю сумму контракта",mRev:"Исхожу из своего бюджета",
+  modeHint:"Не знаете сумму контракта — выберите второй режим.",
+  lRevMonthly:"Можете выделять в месяц",uSomOyR:"сум/мес.",
+  lRevSavings:"Имеющиеся накопления",uSomR:"сум",
+  lRevMonths:"Сколько месяцев в году платите",uOyR:"мес.",
+  lRevPay:"Сможете платить в месяц после выпуска",uSomOyP:"сум/мес.",
+  revPayHint:"Посчитаем, какая сумма кредита укладывается в этот платёж.",
+  hRev:"Достаточно ввести сумму в месяц — остальное по желанию. Ни одна цена вуза в калькулятор не вписана.",
+  revTag:"Примерная возможность",
+  revMainLbl:"Посильный контракт за год (примерно)",
+  revLblPeriod:"Всего возможностей за {y} лет",
+  revLblMonthly:"Учтённая сумма в месяц",
+  revNoCred:"Без кредита — в год",revWithCred:"С кредитом — в год",
+  revWarnNoLive:"В эту цифру НЕ входят расходы на проживание (общежитие, питание, транспорт). Чтобы их учесть, откройте блок «Расходы на проживание». Все цифры примерные.",
+  revWarnLive:"Расходы на проживание ({s}) вычтены из месячной суммы. Все цифры примерные — сумму контракта уточните в вузе.",
+  revGrp:"Расчёт по бюджету",
+  revRowMonthly:"Выделяется в месяц",revRowLive:"Расходы на проживание",revRowNet:"Остаётся на учёбу",
+  revRowMonths:"Месяцев оплаты в году",revRowSavings:"Из накоплений за год",
+  revRowYear:"Возможность за год (без кредита)",
+  revRowPay:"После выпуска в месяц",revRowMaxCred:"Максимальная сумма кредита",
+  revRowCredYear:"Из кредита приходится на год",
+  leadTitle:"Получать предложения от вузов",
+  leadSub:"Предложения по контракту, скидкам и образовательному кредиту публикуем в нашем Telegram-канале.",
   lLevel:"Ступень",levBak:"Бакалавр",levMag:"Магистратура",
   lYears:"Срок обучения",uYil:"лет",uYil2:"лет",
   lFee:"Контракт за год",uSom:"сум",uSomC:"сум",uSomD:"сум/год",uSomS:"сум",
@@ -525,8 +626,8 @@ var I={
   seo:"<h2>Как оплачивается контракт в вузе?</h2><p>Большинство вузов принимает сумму контракта не сразу, а частями: первая часть в начале учебного года, остальные к началу семестров. Количество частей и даты каждый университет определяет сам, поэтому в калькуляторе это выбираете вы. Самая важная цифра — сколько минимум нужно к сентябрю, потому что без первого платежа приказ о зачислении не оформляется.</p><h2>Какие условия у образовательного кредита?</h2><p>Образовательный кредит — это целевой банковский кредит на оплату контракта. Обычно на время учёбы даётся льготный период: основной долг в этот срок не гасится, выплаты начинаются после выпуска. Ставка, срок и льготный период отличаются у разных банков и категорий студентов, для некоторых категорий часть ставки может покрывать государство. Поэтому калькулятор не задаёт процент — вы вводите точную ставку из своего договора.</p><h2>Чем отличается заочный контракт от очного?</h2><p>На очной форме больше всего аудиторных часов, и контракт обычно самый дорогой. На заочной, вечерней и дистанционной формах часов меньше, поэтому и контракт устанавливается ниже. Но настоящая разница не только в контракте: студент заочной или дистанционной формы экономит на аренде и ежедневном транспорте и может работать. Поэтому при сравнении правильнее считать контракт вместе с расходами на проживание.</p><h2>Кому дают скидки?</h2><p>Скидка по контракту чаще всего предусмотрена для социально уязвимых категорий, студентов с инвалидностью, потерявших родителей, детей из многодетных семей, а также отличников и победителей олимпиад. Некоторые вузы объявляют дополнительные льготы за свой счёт. Скидка может быть как в процентах, так и фиксированной суммой — калькулятор поддерживает оба варианта.</p><h2>Когда объявляют сумму контракта?</h2><p>Сумма контракта на новый учебный год обычно утверждается приказом вуза в конце лета, ближе к завершению приёма, и публикуется на официальном сайте университета. Сумма пересматривается ежегодно, поэтому планировать по прошлогодней цифре ошибочно. Именно по этой причине в калькулятор не вписана ни одна цена вуза — официальную цифру вводите вы, а калькулятор только считает.</p><h2>Что если перевели с гранта на контракт?</h2><p>Грантовые места не перераспределяются каждый год, но из-за академической задолженности или падения рейтинга студента могут перевести с гранта на контракт. В такой ситуации семье неожиданно нужно найти сумму за целый год. Поэтому даже при обучении на гранте полезно один раз посчитать контракт и составить план накоплений.</p><h2>Почему в калькуляторе нет готовых цен?</h2><p>Цена, вписанная в статический сайт, устаревает за несколько месяцев и становится причиной неверного решения. Сумма контракта, банковский процент и цена аренды постоянно меняются. Поэтому калькулятор ничего не подставляет: все цифры вводите вы, а он считает общий расход за весь срок, месячную нагрузку и долг по кредиту.</p>"}
 };
 
-var MONEY_IDS=['fee','rent','food','transport','comm','books','clothes','credAmt','discSum','cmpFee1','cmpLive1','cmpFee2','cmpLive2','cmpFee3','cmpLive3','saveCur'];
-var SEGS=[['segLevel','level'],['segForm','form'],['segHouse','house'],['segParts','parts'],['segDisc','disc'],['segCmpN','cmpn']];
+var MONEY_IDS=['fee','rent','food','transport','comm','books','clothes','credAmt','discSum','cmpFee1','cmpLive1','cmpFee2','cmpLive2','cmpFee3','cmpLive3','saveCur','revMonthly','revSavings','revPay'];
+var SEGS=[['segMode','mode'],['segLevel','level'],['segForm','form'],['segHouse','house'],['segParts','parts'],['segDisc','disc'],['segCmpN','cmpn']];
 var DETS=['dLive','dSched','dCredit','dDisc','dCmp','dSave'];
 
 function segVal(id){var b=document.querySelector('#'+id+' button.on');return b?b.getAttribute('data-v'):''}
@@ -566,6 +667,72 @@ function annuity(P,i,n){
   if(i<=0)return P/n;
   var k=Math.pow(1+i,-n);
   return P*i/(1-k);
+}
+
+/* Teskari annuitet (PV): berilgan oylik to'lovga qancha qarz sig'adi.
+   Alohida formula YOZILMAYDI — yuqoridagi annuity() ning o'zi ishlatiladi:
+   1 so'mlik qarzning oylik to'lovini hisoblab, to'lovni shunga bo'lamiz.
+   Shu sabab i === 0 holati ham alohida shoxsiz to'g'ri chiqadi
+   (annuity(1,0,n) = 1/n  ->  maxKredit = pay * n) va kelajakda annuity
+   o'zgarsa ikki joyda ikkita mantiq bo'lib qolmaydi. */
+function maxPrincipal(pay,i,n){
+  if(n<=0||pay<=0)return 0;
+  var per1=annuity(1,i,n);
+  return per1>0?pay/per1:0;
+}
+
+function mode(){return segVal('segMode')==='rev'?'rev':'fwd'}
+
+/* Teskari rejim: odam kontrakt summasini bilmaydi, byudjetini biladi.
+   Bitta maydon (oylik summa) to'ldirilsa ham natija chiqadi — qolgani
+   ixtiyoriy aniqlik. */
+function computeReverse(){
+  var monthly=Math.max(0,val('revMonthly'));
+  if(monthly<=0)return null;
+
+  var years=Math.max(1,Math.round(val('years'))||0);
+  var payMonths=Math.max(1,Math.round(val('revMonths'))||0);
+  var savings=Math.max(0,val('revSavings'));
+
+  // Yashash bloki to'ldirilgan bo'lsa, oylik imkoniyatdan AYIRAMIZ:
+  // aks holda odam yashash puliga kontrakt to'laydi degan natija chiqardi.
+  var liveMonth=0;
+  if($('dLive').open){
+    var house=segVal('segHouse');
+    var rent=house==='oz'?0:Math.max(0,val('rent'));
+    liveMonth=rent+Math.max(0,val('food'))+Math.max(0,val('transport'))
+             +Math.max(0,val('comm'))+Math.max(0,val('books'))+Math.max(0,val('clothes'));
+  }
+  var netMonthly=Math.max(0,monthly-liveMonth);
+
+  var perYear=netMonthly*payMonths+savings/years;
+  var perPeriod=perYear*years;
+
+  // Kredit bloki ochiq va stavka hamda bitiruvdan keyingi to'lov kiritilgan
+  // bo'lsa — shu to'lovga qancha kredit sig'ishini hisoblaymiz.
+  var credit=null;
+  if($('dCredit').open&&filled('rate')&&filled('revPay')){
+    var pay=Math.max(0,val('revPay'));
+    var rate=Math.max(0,val('rate'));
+    var termY=Math.max(0,Math.round(val('term'))||0);
+    var n=termY*12;
+    var g=filled('grace')?Math.max(0,Math.round(val('grace'))):years*12;
+    if(pay>0&&n>0){
+      var i=rate/100/12;
+      // To'lov boshlanishidagi qarz -> bugungi kredit summasi.
+      // To'g'ri rejimda Pstart = P*(1+i)^g edi, bu yerda teskarisi.
+      var startDebt=maxPrincipal(pay,i,n);
+      var principal=i>0?startDebt/Math.pow(1+i,g):startDebt;
+      credit={pay:pay,rate:rate,months:n,grace:g,start:startDebt,principal:principal};
+    }
+  }
+
+  var credYear=credit?credit.principal/years:0;
+  return {rev:true,years:years,payMonths:payMonths,monthly:monthly,liveMonth:liveMonth,
+          netMonthly:netMonthly,savings:savings,
+          perYear:perYear,perPeriod:perPeriod,
+          credit:credit,credYear:credYear,
+          perYearCred:perYear+credYear,perPeriodCred:perPeriod+(credit?credit.principal:0)};
 }
 
 function compute(){
@@ -675,9 +842,69 @@ function donut(parts,total){
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
+function renderReverse(){
+  var d=calcData, sum=' '+som();
+  var money=function(n){return fmt(n)+sum};
+
+  $('mainNum').textContent=money(d.credit?d.perYearCred:d.perYear);
+  $('mainLbl').textContent=t('revMainLbl');
+  $('yearNum').textContent=money(d.credit?d.perPeriodCred:d.perPeriod);
+  $('lblYearBox').textContent=t('revLblPeriod').replace('{y}',d.years);
+  $('monthNum').textContent=money(d.netMonthly);
+  $('lblMonthBox').textContent=t('revLblMonthly');
+
+  if(d.credit){
+    $('revCmpBox').style.display='grid';
+    $('revNoCredNum').textContent=money(d.perYear);
+    $('revCredNum').textContent=money(d.perYearCred);
+    $('lblNoCred').textContent=t('revNoCred');
+    $('lblWithCred').textContent=t('revWithCred');
+  }else $('revCmpBox').style.display='none';
+
+  $('credBox').style.display='none';
+  $('planBox').style.display='none';
+  $('chartBox').innerHTML='';
+  $('legendBox').innerHTML='';
+
+  $('revWarn').style.display='block';
+  $('revWarn').textContent=d.liveMonth>0
+    ? t('revWarnLive').replace('{s}',money(d.liveMonth))
+    : t('revWarnNoLive');
+
+  var h='<div class="grp"><h3>'+t('revGrp')+'</h3>';
+  h+='<div class="lrow"><span class="lk">'+t('revRowMonthly')+'</span><span class="lq">'+money(d.monthly)+'</span></div>';
+  if(d.liveMonth>0){
+    h+='<div class="lrow"><span class="lk">'+t('revRowLive')+'</span><span class="lq">-'+money(d.liveMonth)+'</span></div>';
+    h+='<div class="lrow"><span class="lk">'+t('revRowNet')+'</span><span class="lq">'+money(d.netMonthly)+'</span></div>';
+  }
+  h+='<div class="lrow"><span class="lk">'+t('revRowMonths')+'</span><span class="lq">'+d.payMonths+' '+t('uOyQ')+'</span></div>';
+  if(d.savings>0)
+    h+='<div class="lrow"><span class="lk">'+t('revRowSavings')+'</span><span class="lq">'+money(d.savings)+'</span></div>';
+  h+='<div class="lrow strong"><span class="lk">'+t('revRowYear')+'</span><span class="lq">'+money(d.perYear)+'</span></div></div>';
+
+  if(d.credit){
+    var C=d.credit;
+    h+='<div class="grp"><h3>'+t('gKredit')+'</h3>';
+    h+='<div class="lrow"><span class="lk">'+t('revRowPay')+'</span><span class="lq">'+money(C.pay)+'</span></div>';
+    h+='<div class="lrow"><span class="lk">'+t('rCredMonths')+'</span><span class="lq">'+C.months+' '+t('uOyQ')+'</span></div>';
+    if(C.start>C.principal)
+      h+='<div class="lrow"><span class="lk">'+t('rCredStart')+'</span><span class="lq">'+money(C.start)+'</span></div>';
+    h+='<div class="lrow strong"><span class="lk">'+t('revRowMaxCred')+'</span><span class="lq">'+money(C.principal)+'</span></div>';
+    h+='<div class="lrow"><span class="lk">'+t('revRowCredYear')+'</span><span class="lq">'+money(d.credYear)+'</span></div></div>';
+  }
+
+  $('detailOut').innerHTML=h;
+  $('grandTotal').textContent=money(d.credit?d.perPeriodCred:d.perPeriod);
+  $('mainLbl').textContent=t('revMainLbl');
+}
+
 function render(){
   var d=calcData, sum=' '+som();
   var money=function(n){return fmt(n)+sum};
+  $('revCmpBox').style.display='none';
+  $('revWarn').style.display='none';
+  $('lblYearBox').textContent=t('lblYear');
+  $('lblMonthBox').textContent=t('lblMonth');
   $('mainNum').textContent=money(d.grand);
   $('mainLbl').textContent=t('lblMainFmt').replace('{y}',d.years);
   $('yearNum').textContent=money(d.perYear);
@@ -786,6 +1013,22 @@ function render(){
 }
 
 function renderControls(){
+  var rev=mode()==='rev';
+  $('feeField').style.display=rev?'none':'block';
+  $('revMonthlyField').style.display=rev?'block':'none';
+  $('revRow2').style.display=rev?'grid':'none';
+  $('credAmtField').style.display=rev?'none':'block';
+  $('revPayField').style.display=rev?'block':'none';
+  $('modeHint').textContent=t('modeHint');
+  $('feeHint').textContent=rev?t('hRev'):t('hFee');
+  $('rTagBox').textContent=rev?t('revTag'):t('rTag');
+  $('revPayHint').textContent=t('revPayHint');
+  // Taqqoslash va jamg'arma bloklari kontrakt summasiga tayanadi —
+  // teskari rejimda ular ma'noga ega emas, shuning uchun yashiriladi.
+  $('dCmp').style.display=rev?'none':'block';
+  $('dSave').style.display=rev?'none':'block';
+  $('dSched').style.display=rev?'none':'block';
+  $('dDisc').style.display=rev?'none':'block';
   var house=segVal('segHouse');
   $('rentField').style.display=house==='oz'?'none':'block';
   $('lblRent').textContent=house==='ijara'?t('rentIjara'):t('rentYotoq');
@@ -800,10 +1043,46 @@ function renderControls(){
   for(var c=1;c<=3;c++){var e=$('cmpName'+c);if(e)e.placeholder=t('cmpPh')}
 }
 
+function ga(name,params){
+  try{if(typeof window.gtag==='function')window.gtag('event',name,params||{})}catch(e){}
+}
+
+/* Hamkor bloki FAQAT hisob bajarilgandan keyin ko'rinadi va hech qachon
+   natijadan yuqorida turmaydi. Ta'lim yo'nalishida hozircha hamkor yo'q —
+   partners.json dagi 'talim' fallback'i neytral blok chiqaradi va
+   partner_empty hodisasi talab bor-yo'qligini o'lchaydi. */
+/* recalc() har bosilgan harfda ishlaydi. Blokni har safar qayta chizish
+   partner_empty hodisasini o'nlab marta yuborardi va o'lchovni buzardi
+   ("7 harf = 7 hodisa"), shuning uchun chaqiruv kechiktiriladi. */
+var ptTimer=null;
+function showPartners(){
+  if(!window.Partners||!calcData)return;
+  if(ptTimer)clearTimeout(ptTimer);
+  ptTimer=setTimeout(renderPartners,700);
+}
+
+function renderPartners(){
+  ptTimer=null;
+  if(!window.Partners||!calcData)return;
+  var amount=calcData.rev?calcData.perYear:calcData.feeYear;
+  window.Partners.render({
+    slot:"#partners-slot",
+    category:"talim",
+    lang:lang,
+    context:{product:"talim",amount:amount,term:calcData.years*12},
+    title:{uz:"Ta'lim bo'yicha rasmiy manbalar",ru:"Официальные источники по образованию"},
+    footNote:{uz:"Kontrakt summasi va kredit shartlari OTM hamda bank tomonidan e'lon qilinadi.",ru:"Сумму контракта и условия кредита публикуют вуз и банк."}
+  });
+}
+
 function recalc(){
   renderControls();
-  calcData=compute();
-  if(calcData){render();$('receipt').classList.add('show')}
+  calcData=mode()==='rev'?computeReverse():compute();
+  if(calcData){
+    if(calcData.rev)renderReverse();else render();
+    $('receipt').classList.add('show');
+    showPartners();
+  }
   else $('receipt').classList.remove('show');
 }
 
@@ -818,6 +1097,8 @@ function applyLang(){
   for(var j=0;j<rl.length;j++)rl[j].textContent=rl[j].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz');
   $('langUz').classList.toggle('on',lang==='uz');
   $('langRu').classList.toggle('on',lang==='ru');
+  $('leadTitle').textContent=t('leadTitle');
+  $('leadSub').textContent=t('leadSub');
   recalc();
 }
 
@@ -855,6 +1136,9 @@ for(var b=0;b<SEGS.length;b++){
       // Yil sonini faqat bosqich haqiqatan almashganda qayta to'ldiramiz —
       // aks holda URL/localStorage tiklaganda qo'lda kiritilgan yil o'chib ketadi
       if(key==='level'&&changed)$('years').value=v==='mag'?'2':'4';
+      // Teskari rejim yoqilganini o'lchaymiz: bu sahifa kirish nuqtasi
+      // sifatida ishlayaptimi degan savolga javob beradi.
+      if(key==='mode'&&changed&&v==='rev')ga('reverse_mode_used',{page:'universitet-kontrakt-kalkulyator'});
       recalc();save();
     };
   })(SEGS[b][0],SEGS[b][1]);
@@ -877,8 +1161,38 @@ $('shareBtn').onclick=function(){
 $('langUz').onclick=function(){lang='uz';applyLang()};
 $('langRu').onclick=function(){lang='ru';applyLang()};
 
+// Tashqi havola bosilganda brauzer sahifani darhol tark etadi va oddiy
+// usulda yuborilgan hodisa yo'lda uzilib qoladi — beacon shart.
+$('leadBtn').addEventListener('click',function(){
+  ga('talim_lead_click',{page:'universitet-kontrakt-kalkulyator',mode:mode(),transport_type:'beacon'});
+});
+
+/* Boshqa sahifadan kelgan oddiy parametrlar: ?form=sirtqi&years=4&mode=rev
+   (?p=base64 to'liq holatdan farqli — bu qisqa va o'qiladigan havola,
+   /grant-ololmadim kartochkalari shuni ishlatadi).
+   Qiymatlar OQ RO'YXAT bo'yicha tekshiriladi: URL'dan kelgan satr
+   to'g'ridan-to'g'ri selektorga qo'yilmaydi. */
+function applyQueryPrefill(){
+  var qs;
+  try{qs=new URLSearchParams(location.search||'')}catch(e){return}
+  var FORMS=['kunduzgi','sirtqi','kechki','masofaviy'];
+  var f=qs.get('form');
+  if(f&&FORMS.indexOf(f)>-1)segSet('segForm',f);
+  var lv=qs.get('level');
+  if(lv==='bak'||lv==='mag')segSet('segLevel',lv);
+  var y=parseInt(qs.get('years'),10);
+  if(y>0&&y<=10)$('years').value=String(y);
+  var m=qs.get('mode');
+  if(m==='rev'||m==='fwd')segSet('segMode',m);
+  // Oylik byudjet — faqat raqam. Bu narx emas, foydalanuvchining o'z
+  // raqami: /grant-ololmadim sahifasida uni foydalanuvchi kiritgan.
+  var b=String(qs.get('budget')||'').replace(/[^\d]/g,'');
+  if(b&&b.length<=12&&!filled('revMonthly'))$('revMonthly').value=fmt(parseInt(b,10));
+}
+
 (function init(){
   load();
+  applyQueryPrefill();
   if(!raw('saveDate')){
     var now=new Date(), y=now.getFullYear();
     if(now.getMonth()>7)y++;
@@ -892,7 +1206,7 @@ $('langRu').onclick=function(){lang='ru';applyLang()};
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">10.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">11.8.2026</div>
 </div>
 <script>
 (function(){
