@@ -208,14 +208,53 @@ function runTool(args) {
       (i.out.match(/^.*(eskirgan|katta).*$/gm) || []).join(' | '));
   }
 
-  /* ---------- 12. tools/ hech nima yozmadi ----------
+  /* ---------- 12. Sarlavha (header) kanonik variant bilan bir xil ----------
+     tools/site-chrome.js kanonik #topmenu, #sitebar va footer'ni bitta
+     manbadan yozadi. Bu band uni --check rejimida (yozmasdan) qayta
+     ishga tushiradi: har qanday sahifa kanonikdan farq qilsa — masalan
+     birov qo'lda header'ga tegib qo'ysa — shu yerda ushlanadi. Aynan shu
+     naqsh (og-tags.js) allaqachon 16-bandda ishlatilgan. */
+  {
+    const r = runTool(['site-chrome.js']);
+    add(r.code === 0, '19. barcha sahifada sarlavha kanonik variant bilan bir xil',
+      (r.out.match(/^ESKI .*/gm) || []).concat(r.out.match(/^  .*/gm) || []).slice(0, 6).join(' | '));
+  }
+
+  /* ---------- 13. RU rejimda tarjimasiz qolgan matn yo'q ----------
+     Umumiy naqsh: data-lf-uz / data-lf-ru (footer-lang.js). RU tanlangach
+     har bir shunday elementning matni AYNAN data-lf-ru qiymatiga teng
+     bo'lishi, UZ tanlangach esa data-lf-uz ga teng bo'lishi kerak.
+     Bitta elementning ham eskirib qolishi footerda "Maqolalar" kabi
+     o'zbekcha so'z RU sahifada turib qolishiga olib kelardi. */
+  {
+    const bad = [];
+    for (const f of list) {
+      const { dom } = await load(path.join(ROOT, f), { shims: true });
+      const w = dom.window, d = w.document;
+      const els = [...d.querySelectorAll('[data-lf-uz]')];
+      if (els.length) {
+        const wait = (ms) => new Promise((res) => w.setTimeout(res, ms));
+        const ru = d.getElementById('langRu');
+        if (ru) { ru.click(); await wait(500); }
+        els.forEach((e) => {
+          const want = e.getAttribute('data-lf-ru');
+          if (want && e.textContent.trim() !== want.trim()) bad.push(f + ': "' + e.textContent.trim().slice(0, 24) + '"');
+        });
+      }
+      dom.window.close();
+    }
+    add(!bad.length, '20. RU rejimda footer/legal matni tarjima qilingan (' + list.length + ' sahifa)',
+      bad.slice(0, 6).join(' | '));
+  }
+
+  /* ---------- 14. tools/ hech nima yozmadi ----------
      Yuqoridagi bandlarning HAMMASI shu oynada bajarildi: prerender,
      prerender-twice, sw-version, og-tags, og-images, check-partners,
      verify-sw va hamkorlik.html METRICS holatlari. Agar ulardan biri
      bayroqsiz holda diskka tegsa — shu yerda ko'rinadi. */
   {
     const changed = fpDiff(fpBefore, fingerprint());
-    add(changed.length === 0, '18. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
+    add(changed.length === 0, '21. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
       changed.slice(0, 8).join(', '));
   }
 

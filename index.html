@@ -17,6 +17,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
 <script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kalki.uz — O'zbekiston uchun onlayn kalkulyatorlar va hujjat namunalari</title>
@@ -38,7 +39,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
-:root{
+:root{--wrap-max:1120px;
   --paper:#F5F7F5;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DFE6E1;--radius:16px;
   --moliya:#0E3B2E;--moliya-soft:#EAF3EE;
   --qurilish:#8C3B2A;--qurilish-soft:#F6EDE8;
@@ -49,7 +50,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 20px}
 
 /* HERO */
 header{
@@ -164,34 +165,42 @@ img,svg{height:auto}
 <meta name="twitter:description" content="Kredit, ipoteka, ish haqi, g'isht, DTM va yana 30+ bepul kalkulyator. Shartnoma, ariza va ishonchnoma namunalarini onlayn to'ldirib, Word yoki PDF yuklab oling.">
 <script type="application/ld+json" id="site-ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kalki.uz/#website","name":"Kalki.uz","alternateName":"Kalki","url":"https://kalki.uz/","description":"Kredit, ipoteka, ish haqi, g'isht, DTM va yana 30+ bepul kalkulyator. Shartnoma, ariza va ishonchnoma namunalarini onlayn to'ldirib, Word yoki PDF yuklab oling.","inLanguage":["uz","ru"],"publisher":{"@id":"https://kalki.uz/#org"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kalki.uz/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://kalki.uz/#org","name":"Kalki.uz","url":"https://kalki.uz/","email":"info@kalki.uz","description":"Kredit, ipoteka, ish haqi, g'isht, DTM va yana 30+ bepul kalkulyator. Shartnoma, ariza va ishonchnoma namunalarini onlayn to'ldirib, Word yoki PDF yuklab oling.","logo":{"@type":"ImageObject","url":"https://kalki.uz/apple-touch-icon.png"},"sameAs":["https://t.me/kalki_uz"]}]}</script>
 <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
-<style id="tmcss">
-#topmenu{background:#0B120E}
-#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
 #topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
 #topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
 #topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
 @media (max-width:640px){
-  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
   #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
 }
 @media (max-width:420px){
-  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  :root{--nav-pad:9px}
   #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
 </head>
 <body>
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:1120px"><a href="./" class="tm-on" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" class="tm-on" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
 
 <header>
   <div class="wrap">
-    <div class="topbar">
-      <a class="logo" href="./">Kalki<span class="dot">.uz</span></a>
-      <div class="lang-seg" role="group" aria-label="Til / Язык">
-        <button type="button" id="langUz" class="on">UZ</button>
-        <button type="button" id="langRu">RU</button>
-      </div>
-    </div>
+    
     <div class="hero">
       <span class="hero-badge" data-i="badge">O'zbekiston uchun</span>
       <h1 data-i="h1">Hammasini bir joyda hisoblang</h1>
@@ -201,7 +210,7 @@ img,svg{height:auto}
         <input type="text" id="search" autocomplete="off" placeholder="Kalkulyator qidirish...">
       </div>
       <div class="stats">
-        <div class="stat"><b id="statCount">31+</b><span data-i="stCalc">kalkulyator</span></div>
+        <div class="stat"><b id="statCount">30+</b><span data-i="stCalc">kalkulyator</span></div>
         <div class="stat"><b>2</b><span data-i="stLang">til</span></div>
         <div class="stat"><b>100%</b><span data-i="stFree">bepul</span></div>
       </div>
@@ -215,10 +224,10 @@ img,svg{height:auto}
   <section class="about" id="aboutBlock"><h2>Kalki.uz nima?</h2><p>Kalki.uz — O‘zbekiston sharoitiga moslashtirilgan bepul onlayn kalkulyatorlar to‘plami. Soliq stavkalari, bank foizlari, bojxona qoidalari — hammasi mahalliy qonunchilik asosida va muntazam yangilanadi.</p><h2>Nega aynan Kalki?</h2><p>Har bir kalkulyator o‘zbek va rus tillarida, telefonga ham, kompyuterga ham mos, tez ochiladi va ro‘yxatdan o‘tishni talab qilmaydi. Natijani bir tugma bilan Telegram’da ulashish mumkin.</p></section>
   <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div>
   <footer>
-    <span>© 2026 Kalki.uz — Achchi loyihasi</span>
+    <span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi" data-lf-ru="© 2026 Kalki.uz — проект Achchi">© 2026 Kalki.uz — Achchi loyihasi</span>
     <span data-i="footTxt">Barcha hisob-kitoblar ma'lumot uchun</span>
   </footer>
-  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="hujjatlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hujjatlar generatori</a><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div>
+  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div>
 </main>
 
 <script>
@@ -262,15 +271,18 @@ img,svg{height:auto}
     {cat:'hayot', href:'maktab-kalkulyator', icon:'🎒', id:'maktab'},
     {cat:'hayot', href:'alkogol-kalkulyator', icon:'⚠️', id:'alkogol'}
   ];
-  // Matnlarda kalkulyator soni "30+" ko'rinishida yoziladi (aniq raqam emas) —
-  // shunda yangi kalkulyator qo'shilganda tavsif, meta va OG matnlari eskirmaydi.
-  // Hero'dagi statCount ham xuddi shunday "+" bilan chiqadi: aniq son ko'rsatilsa,
-  // katalog o'sganda raqam sayt matnlaridagi "30+" bilan ziddiyatga tushardi.
+  /* Kalkulyator soni BITTA joydan — CALCS ro'yxatidan olinadi.
+     Ilgari tavsif matnida "30+", statistika blokida esa CALCS.length+"+"
+     ya'ni "31+" chiqardi: ikkita manba bir-biriga zid edi. Endi ikkalasi
+     ham shu funksiyadan oladi. Raqam o'nlikka yaxlitlanadi ("30+"), chunki
+     aniq son ko'rsatilsa har yangi kalkulyatorda meta va OG matnlari
+     eskirardi — ular statik HTML'da turadi va JS ularni yangilamaydi. */
+  function calcCountLabel(){ return (Math.floor(CALCS.length/10)*10)+'+'; }
   var I={
     uz:{
       badge:"O'zbekiston uchun",
       h1:"Hammasini bir joyda hisoblang",
-      sub:"Kredit va ish haqidan tortib g'isht, bojxona va DTM ballgacha — 30+ bepul kalkulyator, mahalliy qonunchilik asosida. Shartnoma, ariza va ishonchnoma namunalarini esa onlayn to'ldirib, Word yoki PDF yuklab olasiz.",
+      sub:"Kredit va ish haqidan tortib g'isht, bojxona va DTM ballgacha — {n} bepul kalkulyator, mahalliy qonunchilik asosida. Shartnoma, ariza va ishonchnoma namunalarini esa onlayn to'ldirib, Word yoki PDF yuklab olasiz.",
       searchPh:"Kalkulyator qidirish...",
       docsTitle:"📝 Hujjat generatorlari",docsSub:"Formani to'ldiring — tayyor Word yoki PDF fayl chiqadi",docsAll:"Barcha hujjatlar →",d_ijara:"Ijara shartnomasi",d_mehnat:"Mehnat shartnomasi",d_avto:"Avto oldi-sotdi",d_ishonchnoma:"Ishonchnoma",d_tilxat:"Tilxat",d_ariza:"Ariza",stCalc:"kalkulyator",stLang:"til",stFree:"bepul",
       noRes:"Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.",
@@ -314,7 +326,7 @@ img,svg{height:auto}
     ru:{
       badge:"Для Узбекистана",
       h1:"Считайте всё в одном месте",
-      sub:"От кредита и зарплаты до кирпича, растаможки и баллов DTM — 30+ бесплатных калькуляторов по местному законодательству. А образцы договоров, заявлений и доверенностей можно заполнить онлайн и скачать в Word или PDF.",
+      sub:"От кредита и зарплаты до кирпича, растаможки и баллов DTM — {n} бесплатных калькуляторов по местному законодательству. А образцы договоров, заявлений и доверенностей можно заполнить онлайн и скачать в Word или PDF.",
       searchPh:"Поиск калькулятора...",
       docsTitle:"📝 Генераторы документов",docsSub:"Заполните форму — получится готовый Word или PDF",docsAll:"Все документы →",d_ijara:"Договор аренды",d_mehnat:"Трудовой договор",d_avto:"Купля-продажа авто",d_ishonchnoma:"Доверенность",d_tilxat:"Расписка",d_ariza:"Заявление",stCalc:"калькуляторов",stLang:"языка",stFree:"бесплатно",
       noRes:"Ничего не найдено. Попробуйте другое слово.",
@@ -391,13 +403,17 @@ img,svg{height:auto}
     $('catalog').innerHTML=html;
     $('noResults').textContent=t('noRes');
     $('noResults').style.display=shown?'none':'block';
-    $('statCount').textContent=CALCS.length+'+';
+    $('statCount').textContent=calcCountLabel();
   }
 
   function applyLang(){
     document.documentElement.lang=lang;
     var els=document.querySelectorAll('[data-i]');
     for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    // Tavsifdagi kalkulyator soni ham CALCS dan — statistika bloki bilan
+    // bitta manbadan olinsin, aks holda ikkita raqam bir-biriga zid bo'ladi.
+    var subEl=document.querySelector('[data-i="sub"]');
+    if(subEl)subEl.textContent=t('sub').replace('{n}',calcCountLabel());
     $('search').placeholder=t('searchPh');
     $('aboutBlock').innerHTML=t('aboutHtml');
     $('langUz').classList.toggle('on',lang==='uz');

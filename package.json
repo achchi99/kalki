@@ -5,10 +5,11 @@
   "scripts": {
     "check": "node tools/verify-all.js",
     "check:fast": "node tools/verify-all.js --fast",
-    "ship": "node tools/og-images.js --write && node tools/og-tags.js --write && node tools/sw-version.js --write && node tools/prerender.js --all --write && node tools/verify-all.js",
+    "ship": "node tools/site-chrome.js --write && node tools/og-images.js --write && node tools/og-tags.js --write && node tools/sw-version.js --write && node tools/prerender.js --all --write && node tools/verify-all.js",
     "check:sw": "node tools/verify-sw.js",
     "check:partners": "node tools/check-partners.js",
-    "check:prerender": "node tools/prerender-twice.js --all"
+    "check:prerender": "node tools/prerender-twice.js --all",
+    "check:chrome": "node tools/site-chrome.js"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",

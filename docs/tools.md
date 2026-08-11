@@ -19,7 +19,7 @@ Yozuvchi rejimlar **faqat bitta joyda** chaqiriladi: `npm run ship`.
 
 | Buyruq | Nima qiladi | Yozadimi |
 |---|---|---|
-| `npm run check` | To'liq tekshiruv (18 band) | yo'q |
+| `npm run check` | To'liq tekshiruv (21 band) | yo'q |
 | `npm run check:fast` | O'shaning prerender bandlarisiz varianti | yo'q |
 | `npm run check:sw` | Faqat `sw.js` statik tahlili | yo'q |
 | `npm run check:partners` | Hamkor havolalari va qoidalari (tarmoq bilan) | yo'q |
@@ -30,7 +30,7 @@ Yozuvchi rejimlar **faqat bitta joyda** chaqiriladi: `npm run ship`.
 
 | Skript | Bayroqsiz | `--write` bilan | Boshqa bayroqlar |
 |---|---|---|---|
-| `verify-all.js` | 18 bandni tekshiradi | — | `--fast` (prerender bandlarisiz) |
+| `verify-all.js` | 21 bandni tekshiradi | — | `--fast` (prerender bandlarisiz) |
 | `verify-sw.js` | `sw.js` naqshlarini tekshiradi | — | — |
 | `check-partners.js` | `partners.json` qoidalari va havolalar | — | `--no-net` (tarmoqsiz) |
 | `prerender.js` | Natijani diskdagi fayl bilan solishtiradi | HTML yozadi | `--all`, `<fayl.html>` |
@@ -38,6 +38,7 @@ Yozuvchi rejimlar **faqat bitta joyda** chaqiriladi: `npm run ship`.
 | `sw-version.js` | Versiya `assets/` hash'iga mosligini aytadi | `sw.js` ga versiya yozadi | — |
 | `og-images.js` | Qaysi rasm eskirganini aytadi | PNG va manifest yozadi | `--force` |
 | `og-tags.js` | Qaysi sahifada teg eskirganini aytadi | HTML ga teg yozadi | — |
+| `site-chrome.js` | Sarlavha (`#topmenu`, `#sitebar`) va footer (`#legal-links`, mualliflik qatori) kanonik variant bilan bir xilligini aytadi | HTML ga yozadi | — |
 | `render.js` | Modul (CLI emas) — jsdom harness | — | — |
 
 `--check` eski nom sifatida hamma joyda qabul qilinadi va standart holat
