@@ -15,6 +15,13 @@
         "uz": "O'zbekiston banklarining rasmiy ro'yxati (Markaziy bank)",
         "ru": "Официальный перечень банков Узбекистана (Центральный банк)"
       }
+    },
+    "talim": {
+      "url": "https://kalki.uz/hamkorlik",
+      "label": {
+        "uz": "Ta'lim yo'nalishida hozircha hamkor yo'q — OTM yoki o'quv markazi bo'lsangiz, hamkorlik shartlari bilan tanishing",
+        "ru": "В образовательном направлении партнёров пока нет — если вы вуз или учебный центр, посмотрите условия партнёрства"
+      }
     }
   },
   "partners": [

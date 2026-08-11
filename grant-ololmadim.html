@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/partners.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Grant ololmadim — endi nima qilaman? — variantlar va xarajat hisobi</title>
+<meta name="description" content="Grant ololmadingizmi? Byudjetingiz va talablaringizga qarab 7 ta real variantni solishtiring va har birining xarajatini o'z raqamlaringiz bilan hisoblang. Не прошли на грант — что делать дальше.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/grant-ololmadim">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452C4C;--accent:#C89BD4;--cat-soft:#F2EBF4;--cat-text:#D9C6E0}
+:root{--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:44ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 15px 18px;margin-top:14px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.step{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.field{margin-bottom:12px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden;min-width:0}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:11px 12px;min-width:0}
+.unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3;overflow-wrap:anywhere}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:8px;min-height:44px;background:#EEF2EF;border:1.5px solid transparent;border-radius:10px;padding:8px 12px;font-size:13.5px;font-weight:700;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;flex:none;max-width:100%}
+.chip input{width:17px;height:17px;flex:none;accent-color:var(--cat)}
+.chip.on{background:var(--cat-soft);border-color:var(--cat);color:var(--cat-deep)}
+.opts{margin-top:22px}
+.optshead{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.optslbl{font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:12px}
+details.opt{border:1.5px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--card);overflow:hidden}
+details.opt[open]{border-color:var(--cat)}
+details.opt summary{padding:14px 14px;font-size:15px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;-webkit-tap-highlight-color:transparent;line-height:1.35}
+details.opt summary::-webkit-details-marker{display:none}
+details.opt summary::after{content:"+";font-size:20px;font-weight:800;color:var(--accent);flex:none}
+details.opt[open] summary::after{content:"−"}
+.obody{padding:0 14px 14px}
+.odesc{font-size:14px;line-height:1.55;color:#33403A;margin-bottom:12px}
+.orow{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px dashed var(--line)}
+.orow .ok{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.orow .ov{font-size:13.5px;font-weight:600;color:#33403A;line-height:1.5}
+.oacts{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
+.ocalc,.osrc{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:44px;flex:1 1 44%;max-width:100%;border-radius:10px;font-size:13.5px;font-weight:800;text-decoration:none;padding:11px 13px;text-align:center;line-height:1.3}
+.ocalc{background:var(--cat);color:#fff}
+.osrc{background:#fff;border:1.5px solid var(--line);color:var(--cat)}
+.odone{display:flex;align-items:center;gap:9px;min-height:44px;margin-top:11px;font-size:13.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.odone input{width:18px;height:18px;flex:none;accent-color:var(--cat)}
+.ballnote{margin-top:14px;background:var(--cat-soft);border-radius:10px;padding:12px 14px;font-size:13px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.warnbox{margin-top:14px;background:#FBF3E9;border:1px solid #EDD9BE;border-radius:12px;padding:13px 14px}
+.warnbox b{display:block;font-size:13.5px;font-weight:800;color:#8C5A1E;margin-bottom:3px}
+.warnbox span{display:block;font-size:12.5px;font-weight:600;color:#8A7355;line-height:1.5}
+.warnbox a{display:inline-block;margin-top:7px;font-size:12.5px;font-weight:800;color:#8C6318;text-decoration:none;min-height:24px}
+#partners-slot{margin-top:28px}
+#partners-slot[hidden]{display:none}
+.pt-h{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px;color:var(--ink)}
+.pt-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.pt-list{grid-template-columns:1fr 1fr}}
+/* flex-wrap: 320 px da uzun RU matni kartochkaga sig'may sahifani yonga surardi */
+.pt-card{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.pt-logo{flex:none;width:48px;height:48px;border-radius:12px;display:block}
+.pt-logo-blank{background:#EEF2EF}
+.pt-body{flex:1;min-width:0}
+.pt-name{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.pt-note{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.4}
+.pt-ad{flex:none;align-self:flex-start;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:5px;padding:2px 6px}
+.pt-go{flex:none;font-size:12.5px;font-weight:800;color:var(--cat)}
+.pt-extra,.pt-disc,.pt-checked{font-size:12px;line-height:1.5;font-weight:600;color:var(--muted);margin-top:10px}
+.pt-disc{padding-top:10px;border-top:1px solid var(--line)}
+.pt-checked{margin-top:4px;color:#93A099}
+.leadbox{margin-top:22px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:17px 17px;display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.leadbox .lt{flex:1;min-width:190px}
+.leadbox .lt b{display:block;font-size:15px;font-weight:800;color:#fff}
+.leadbox .lt span{display:block;font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px;line-height:1.45}
+.leadbtn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none}
+.note{margin-top:16px;background:#EEF2EF;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  #printArea,#printArea *{visibility:visible!important}
+  #printArea{position:absolute;top:90px;left:0;right:0}
+  .acts,.oacts{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Grant ololmadim — endi nima qilaman?">
+<meta property="og:description" content="Grant ololmadingizmi? Byudjetingiz va talablaringizga qarab 7 ta real variantni solishtiring va har birining xarajatini o'z raqamlaringiz bilan hisoblang. Не прошли на грант — что делать дальше.">
+<meta property="og:url" content="https://kalki.uz/grant-ololmadim">
+<meta property="og:image" content="https://kalki.uz/assets/og/grant-ololmadim.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Grant ololmadim — endi nima qilaman?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/grant-ololmadim.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Grant ololmadim — endi nima qilaman?">
+<meta name="twitter:description" content="Grant ololmadingizmi? Byudjetingiz va talablaringizga qarab 7 ta real variantni solishtiring va har birining xarajatini o'z raqamlaringiz bilan hisoblang. Не прошли на грант — что делать дальше.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="tmcss">
+#topmenu{background:#0B120E}
+#topmenu .tm-in{margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:8px 14px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+@media (max-width:640px){
+  #topmenu .tm-in{gap:3px;padding:7px 9px}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+}
+@media (max-width:420px){
+  #topmenu .tm-in{gap:3px;padding:6px 7px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Grant ololmadim — bu yo'lning oxirimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. Grant — davlat tomonidan ajratiladigan cheklangan sondagi o'rin, va u har yili yo'nalishlar bo'yicha qayta taqsimlanadi. Grantga o'tmaslik bilim darajasi haqidagi yakuniy hukm emas: ko'p hollarda farq bir necha ballga, ba'zan bitta savolga bog'liq bo'ladi. Shu sababli birinchi qadam — hissiyot bilan emas, raqam bilan ish ko'rish. Qo'lingizda ikkita raqam bo'lishi kerak: to'plagan ballingiz va oilangiz ta'limga oyiga real ajrata oladigan summa. Birinchisi keyingi yil qayta urinish mantiqli yoki yo'qligini ko'rsatadi, ikkinchisi esa qaysi variantlar umuman ko'tarilishini. Bu sahifadagi variantlar ro'yxati aynan shu ikki raqamdan boshlanadi va hech bir variant sizdan yashirilmaydi — tartib faqat sizning talablaringizga qarab o'zgaradi."}},{"@type":"Question","name":"Xususiy OTM diplomi davlat OTM diplomidan farq qiladimi?","acceptedAnswer":{"@type":"Answer","text":"Diplomning yuridik kuchi ta'lim muassasasining litsenziyasi va davlat akkreditatsiyasiga bog'liq. Akkreditatsiyadan o'tgan muassasa bergan diplom davlat namunasidagi hujjat hisoblanadi va u bilan magistraturaga hujjat topshirish ham, davlat xizmatiga kirish ham mumkin. Shuning uchun tanlashda muassasa nomiga emas, uning rasmiy holatiga qaraladi: litsenziyasi amaldami, qaysi yo'nalishlar bo'yicha akkreditatsiya olingan, muddati qachon tugaydi. Bu ma'lumotlarni faqat rasmiy reyestrdan tekshirish kerak — universitetning o'z saytidagi e'lon manba emas, u reklama matni bo'lishi mumkin. Kalki.uz hech qaysi OTM haqida hukm chiqarmaydi va reyting tuzmaydi: bu sahifa faqat qayerdan tekshirish kerakligini ko'rsatadi."}},{"@type":"Question","name":"Sirtqi va masofaviy o'qish nima bilan farq qiladi?","acceptedAnswer":{"@type":"Answer","text":"Sirtqi shaklda o'quv yili sessiyalarga bo'linadi: yil davomida mustaqil o'qiysiz, sessiya davrida esa auditoriyaga kelib topshirasiz. Masofaviy shaklda esa darslarning asosiy qismi onlayn platforma orqali o'tadi va jismoniy kelish talabi minimal bo'ladi. Kechki shakl uchinchi variant: darslar ish kunidan keyin, kechqurun o'tkaziladi. Uchala shaklda ham auditoriya soati kunduzgidan kam, shuning uchun kontrakt summasi ham odatda boshqacha belgilanadi — lekin aniq summani faqat OTM e'lon qiladi. Amaliy jihatdan eng muhim savol boshqa: sessiya qachon va necha kun davom etadi, ish beruvchingiz shu kunlarga ta'til beradimi, va sessiyaga borish yo'l xarajati qancha turadi. Bu uch savolga javob topilmasa, arzonroq ko'ringan shakl amalda qimmatga tushishi mumkin: har sessiyaga yo'l, turar joy va ishdan qolgan kunlar ham xarajat. Shuning uchun taqqoslashda kontrakt summasini yolg'iz emas, sessiyaga bog'liq xarajatlar bilan birga hisoblang."}},{"@type":"Question","name":"Kollejga borish OTM ga yo'lni yopadimi?","acceptedAnswer":{"@type":"Answer","text":"Aksincha, ko'p yo'nalishda kollej yoki texnikum diplomi OTM ga kirishda qo'shimcha imkoniyat beradi: ayrim yo'nalishlarda o'rta maxsus ta'lim bazasida qisqartirilgan muddatda o'qish ko'zda tutilgan. Bunday imkoniyat bor-yo'qligi va qanday shartlar qo'yilishi har yili qabul tartibida belgilanadi, shuning uchun uni rasmiy manbadan tekshirish kerak. Kollejning asosiy afzalligi — muddat qisqa va tayyorgarlik amaliy, ya'ni bitiruvdan keyin ishga kirish yo'li tez ochiladi. Kamchiligi ham shundan kelib chiqadi: agar oxirgi maqsad aniq bir OTM yo'nalishi bo'lsa, kollej orqali yurish umumiy vaqtni uzaytirishi mumkin. Qaror qabul qilishdan oldin ikkita narsani aniqlang: tanlagan kasbingiz bo'yicha kollej diplomi bilan qanday ish o'rinlari ochiladi, va o'sha yo'nalishda OTM ga qisqartirilgan dastur haqiqatan mavjudmi. Ikkalasi ham rasmiy hujjat bilan tasdiqlanishi kerak, tanish-bilishning gapi bilan emas."}},{"@type":"Question","name":"Harbiy xizmatga chaqiruv qanday hisobga olinadi?","acceptedAnswer":{"@type":"Answer","text":"Chaqiruvni kechiktirish qoidalari ta'lim shakliga, muassasaning maqomiga va ta'lim bosqichiga bog'liq holda belgilanadi. Bu qoidalar o'zgarib turadi va noto'g'ri tushunilgan bitta jumla real zarar keltirishi mumkin — masalan, o'qishga kirgandan keyin kechiktirish avtomatik deb o'ylab, hujjatni vaqtida rasmiylashtirmaslik. Shuning uchun bu sahifada hech qanday aniq qoida yozilmagan. To'g'ri yo'l bitta: tanlagan ta'lim shaklingiz va muassasangiz uchun amaldagi tartibni Mudofaa vazirligi hamda qonunchilik bazasidagi joriy hujjatdan tekshirish, va shubha bo'lsa yashash joyingizdagi mudofaa ishlari bo'limiga murojaat qilish."}},{"@type":"Question","name":"Ta'lim krediti olish kerakmi?","acceptedAnswer":{"@type":"Answer","text":"Ta'lim krediti kontrakt to'lovini bugun yopadi, lekin qarzni bitiruvdan keyingi o'zingizga o'tkazadi. Qaror qabul qilishdan oldin bitta raqamni bilish kerak: bitiruvdan keyin oyiga qancha to'lay olasiz. Shu raqamdan kelib chiqib, kredit qancha bo'lishi mumkinligi teskari hisoblanadi — universitet kontrakt kalkulyatorining teskari rejimi aynan shuni qiladi. Foiz stavkasi, muddat va imtiyozli davr bank hamda talaba toifasiga qarab farq qiladi, ayrim toifalar uchun stavkaning bir qismi davlat tomonidan qoplanishi mumkin. Shuning uchun kalkulyatorga hech qanday stavka yozilmagan: shartnomangizdagi aniq raqamni siz kiritasiz."}},{"@type":"Question","name":"Qaysi variantni tanlashni qanday hal qilaman?","acceptedAnswer":{"@type":"Answer","text":"Ro'yxatdagi variantlarni ketma-ket taqqoslash o'rniga, har birini bitta savol bilan filtrlang: shu variant sizning ikkita cheklovingizga — vaqt va pulga — sig'adimi. Vaqt cheklovi: kunduzgi jadval bilan ishlay olasizmi, sessiyaga necha kun ajrata olasiz. Pul cheklovi: oilangiz oyiga ajrata oladigan summa yiliga qanchaga aylanadi va shu summa kontraktni ko'taradimi. Ikkinchi savolga taxmin bilan javob bermaslik uchun har bir kartochkadagi \"Xarajatini hisoblash\" tugmasini bosing: kalkulyator sizning raqamlaringiz bilan yillik imkoniyatni chiqaradi. Uchtadan ortiq variantni bir vaqtda ko'rib chiqmang — ro'yxatdan ikki-uchtasini belgilab, faqat ular bo'yicha rasmiy ma'lumot yig'ing."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Grant ololmadim — endi nima qilaman?","item":"https://kalki.uz/grant-ololmadim"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Grant ololmadim — endi nima qilaman?","description":"Grant ololmadingizmi? Byudjetingiz va talablaringizga qarab 7 ta real variantni solishtiring va har birining xarajatini o'z raqamlaringiz bilan hisoblang. Не прошли на грант — что делать дальше.","url":"https://kalki.uz/grant-ololmadim","applicationCategory":"EducationApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
+<body data-cat="hayot">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in" style="max-width:560px"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav>
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="brand-dot"></span>Kalki.uz</a>
+      <div class="lang-seg"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div>
+    </div>
+    <span class="cat-badge" data-i="cat">Kundalik hayot</span>
+    <h1 data-i="h1">Grant ololmadim — endi nima qilaman?</h1>
+    <p class="sub" data-i="sub">Uchta savolga javob bering — byudjetingizga mos variantlar tartiblanadi va har birining xarajatini o'z raqamlaringiz bilan hisoblaysiz.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-hayot">Kundalik hayot</a><span class="sep">›</span><span class="cur">Grant ololmadim — endi nima qilaman?</span></nav></div>
+
+<main class="wrap">
+  <section class="card">
+    <div class="step" data-i="step1">1-qadam — Uch savol</div>
+    <div class="field"><label for="ball" data-i="lBall">To'plagan ballingiz</label>
+      <div class="input-shell"><input type="text" id="ball" inputmode="decimal" placeholder="0" value=""><span class="unit" data-i="uBall">ball</span></div>
+      <p class="hint" data-i="hBall">Ixtiyoriy. Ball kiritsangiz, uni rasmiy manbadagi o'tish balllari bilan solishtirish eslatmasi chiqadi.</p></div>
+    <div class="field"><label for="budget" data-i="lBudget">Oilangiz ta'limga oyiga qancha ajrata oladi</label>
+      <div class="input-shell"><input type="text" id="budget" inputmode="numeric" placeholder="0" value=""><span class="unit" data-i="uSomOy">so'm/oy</span></div>
+      <p class="hint" data-i="hBudget">Bu raqam hech qayerga yuborilmaydi — u faqat kalkulyatorga uzatiladi.</p></div>
+    <div class="field" style="margin-bottom:0"><label data-i="lPri">Sizga qaysilari muhim</label>
+      <div class="chips">
+        <label class="chip"><input type="checkbox" id="pKunduzgi"><span data-i="pKunduzgi">Kunduzgi o'qish</span></label>
+        <label class="chip"><input type="checkbox" id="pIshlab"><span data-i="pIshlab">Ishlab o'qish</span></label>
+        <label class="chip"><input type="checkbox" id="pToshkent"><span data-i="pToshkent">Toshkentda qolish</span></label>
+        <label class="chip"><input type="checkbox" id="pDavlat"><span data-i="pDavlat">Diplom davlat OTM darajasida</span></label>
+      </div>
+      <p class="hint" data-i="hPri">Belgilaganlaringizga qarab variantlar tartibi o'zgaradi. Hech bir variant ro'yxatdan o'chirilmaydi.</p></div>
+  </section>
+
+  <section class="opts receipt" id="printArea">
+    <div class="optshead" data-i="optsTag">Variantlar</div>
+    <div class="optslbl" data-i="optsLbl">Sizning javoblaringizga ko'ra tartiblandi</div>
+    <div class="ballnote" id="ballNote" style="display:none"></div>
+    <div id="optsList">
+
+
+
+
+
+
+
+    <details class="opt" id="opt-nodavlat-kunduzgi" data-opt="nodavlat-kunduzgi"><summary><span class="onm" data-onm="nodavlat-kunduzgi">Nodavlat (xususiy) OTM — kunduzgi</span></summary><div class="obody"><p class="odesc" data-odesc="nodavlat-kunduzgi">Litsenziyalangan xususiy universitetda kunduzgi ta'lim. Qabul davlat grantidan alohida o'tkaziladi va ko'p hollarda o'z test yoki suhbat bosqichi bo'ladi. Talabalik hayoti, amaliyot va kunduzgi jadval davlat OTM dagi bilan bir xil tartibda quriladi.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="nodavlat-kunduzgi">Kunduzgi o'qishni xohlaydigan va qabul shartlarini alohida topshirishga tayyor abituriyentga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="nodavlat-kunduzgi">Litsenziya va akkreditatsiya holati; kontrakt qanday qismlarga bo'linishi; chegirma va imtiyoz shartlari.</span></div><div class="oacts"><a class="ocalc" data-ocalc="nodavlat-kunduzgi" href="universitet-kontrakt-kalkulyator?form=kunduzgi&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://license.gov.uz/registry" target="_blank" rel="noopener" data-osrc="nodavlat-kunduzgi" title="Litsenziya va ruxsatnomalar reyestri">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="nodavlat-kunduzgi"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-nodavlat-sirtqi" data-opt="nodavlat-sirtqi"><summary><span class="onm" data-onm="nodavlat-sirtqi">Nodavlat OTM — sirtqi, kechki yoki masofaviy</span></summary><div class="obody"><p class="odesc" data-odesc="nodavlat-sirtqi">Xususiy universitetning auditoriya soati kamroq bo'lgan shakllari. Darslar sessiya davrida yoki kechqurun, masofaviyda esa asosan onlayn o'tadi. Ishlab yurish va o'z shahringizda qolish imkoni saqlanadi.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="nodavlat-sirtqi">Ishlayotgan yoki oilaviy sabablarga ko'ra har kuni auditoriyada bo'la olmaydigan abituriyentga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="nodavlat-sirtqi">Diplomda ta'lim shakli qanday yoziladi; sessiya jadvali va unga yo'l xarajati; masofaviy shaklga qo'yiladigan talablar.</span></div><div class="oacts"><a class="ocalc" data-ocalc="nodavlat-sirtqi" href="universitet-kontrakt-kalkulyator?form=sirtqi&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://license.gov.uz/registry" target="_blank" rel="noopener" data-osrc="nodavlat-sirtqi" title="Litsenziya va ruxsatnomalar reyestri">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="nodavlat-sirtqi"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-davlat-sirtqi" data-opt="davlat-sirtqi"><summary><span class="onm" data-onm="davlat-sirtqi">Davlat OTM — sirtqi, kechki yoki masofaviy</span></summary><div class="obody"><p class="odesc" data-odesc="davlat-sirtqi">Davlat universitetining kunduzgidan tashqari shakllari. Qabul davlat qabul tartibi bo'yicha o'tadi, diplom esa o'sha OTM nomidan beriladi. Bu shakllarga qabul kvotasi va shartlari har yili alohida e'lon qilinadi.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="davlat-sirtqi">Davlat OTM diplomi muhim bo'lgan va ayni paytda ishlab yurmoqchi bo'lgan abituriyentga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="davlat-sirtqi">Shu yil uchun sirtqi qabul e'lon qilinganmi; yo'nalish ro'yxati; sessiya davri va unga ajratiladigan mehnat ta'tili.</span></div><div class="oacts"><a class="ocalc" data-ocalc="davlat-sirtqi" href="universitet-kontrakt-kalkulyator?form=sirtqi&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://gov.uz/oz/edu" target="_blank" rel="noopener" data-osrc="davlat-sirtqi" title="Oliy ta'lim, fan va innovatsiyalar vazirligi">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="davlat-sirtqi"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-xorijiy-filial" data-opt="xorijiy-filial"><summary><span class="onm" data-onm="xorijiy-filial">Xorijiy OTM filiali</span></summary><div class="obody"><p class="odesc" data-odesc="xorijiy-filial">O'zbekistonda faoliyat yuritadigan xorijiy universitet filiali. O'quv dasturi bosh universitet dasturiga tayanadi, ba'zi filiallarda o'qish chet tilida olib boriladi. Diplomni kim berishi — filial yoki bosh universitet — har bir filialda alohida belgilanadi.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="xorijiy-filial">Chet tilida o'qishga tayyor va xalqaro dasturga qiziqadigan abituriyentga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="xorijiy-filial">Diplomni aynan kim beradi; til darajasi talabi; filialning litsenziyasi va akkreditatsiyasi.</span></div><div class="oacts"><a class="ocalc" data-ocalc="xorijiy-filial" href="universitet-kontrakt-kalkulyator?form=kunduzgi&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://license.gov.uz/registry" target="_blank" rel="noopener" data-osrc="xorijiy-filial" title="Litsenziya va ruxsatnomalar reyestri">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="xorijiy-filial"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-kollej" data-opt="kollej"><summary><span class="onm" data-onm="kollej">Kollej yoki texnikum</span></summary><div class="obody"><p class="odesc" data-odesc="kollej">O'rta maxsus ta'lim muassasasi: kasb bo'yicha amaliy tayyorgarlik va qisqaroq muddat. Bitirgandan keyin ishga kirish yoki OTM ga o'qishni davom ettirish yo'li ochiq. Ayrim yo'nalishlarda OTM ga qisqartirilgan muddatda kirish imkoni ko'zda tutilgan.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="kollej">Tez kasb egallashni va shu bilan birga o'qishni keyin davom ettirish imkonini qoldirishni xohlaydiganlarga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="kollej">Kasb yo'nalishi mehnat bozorida qanchalik kerak; OTM ga o'tish qoidalari; amaliyot qayerda o'tkaziladi.</span></div><div class="oacts"><a class="ocalc" data-ocalc="kollej" href="universitet-kontrakt-kalkulyator?form=kunduzgi&amp;years=3&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://gov.uz/oz/edu" target="_blank" rel="noopener" data-osrc="kollej" title="Oliy ta'lim, fan va innovatsiyalar vazirligi">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="kollej"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-keyingi-yil" data-opt="keyingi-yil"><summary><span class="onm" data-onm="keyingi-yil">Kelasi yilga tayyorgarlik</span></summary><div class="obody"><p class="odesc" data-odesc="keyingi-yil">Bir yil tanaffus qilib, ishlab yoki kurslarda o'qib, kelasi qabulga qayta tayyorlanish. Bu yo'l bo'sh o'tgan yil emas: ish tajribasi ham, jamg'arma ham to'planadi. Shu davrda qaysi fanlardan qancha ball yetmaganini aniq tahlil qilish muhim.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="keyingi-yil">Ballini sezilarli oshira oladigan va bir yil kutishga tayyor abituriyentga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="keyingi-yil">Harbiy xizmatga chaqiruv masalasi; kelasi yil qabul shartlari o'zgarishi mumkinligi; tayyorgarlik xarajati.</span></div><div class="oacts"><a class="ocalc" data-ocalc="keyingi-yil" href="universitet-kontrakt-kalkulyator?form=kunduzgi&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://gov.uz/oz/uzbmb" target="_blank" rel="noopener" data-osrc="keyingi-yil" title="Ta'lim sifatini baholash bo'yicha milliy markaz">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="keyingi-yil"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details><details class="opt" id="opt-ish-masofaviy" data-opt="ish-masofaviy"><summary><span class="onm" data-onm="ish-masofaviy">Ishga kirish + masofaviy o'qish</span></summary><div class="obody"><p class="odesc" data-odesc="ish-masofaviy">Avval ishga joylashib, keyin masofaviy shaklda o'qishni boshlash. Daromad o'qish xarajatini o'zi qoplaydi va ish tajribasi diplom bilan bir vaqtda to'planadi. Yuk og'ir: ish va o'qishni birga olib borish uchun aniq kunlik reja kerak.</p><div class="orow"><span class="ok" data-lfit="1">Kimga mos</span><span class="ov" data-ofit="ish-masofaviy">Mustaqil ishlay oladigan va o'qishni o'z hisobidan olib bormoqchi bo'lganlarga.</span></div><div class="orow"><span class="ok" data-lwatch="1">Nimaga e'tibor berish kerak</span><span class="ov" data-owatch="ish-masofaviy">Ish beruvchi sessiya davriga ta'til beradimi; masofaviy shakl diplomda qanday ko'rsatiladi; haqiqiy bo'sh vaqt.</span></div><div class="oacts"><a class="ocalc" data-ocalc="ish-masofaviy" href="universitet-kontrakt-kalkulyator?form=masofaviy&amp;years=4&amp;level=bak&amp;mode=rev">Xarajatini hisoblash</a><a class="osrc" href="https://gov.uz/oz/mehnat" target="_blank" rel="noopener" data-osrc="ish-masofaviy" title="Bandlik va kambag'allikni qisqartirish vazirligi">Rasmiy manba</a></div><label class="odone"><input type="checkbox" class="odchk" data-done="ish-masofaviy"><span data-ldone="1">Ko'rib chiqdim</span></label></div></details></div>
+    <div class="warnbox"><b data-i="milTitle">Harbiy xizmatga chaqiruv</b><span data-i="milTxt">Chaqiruvni kechiktirish ta'lim shakliga va muassasa maqomiga bog'liq — bu sahifada aniq qoida yozilmagan, uni rasmiy manbadan tekshiring.</span><a href="https://gov.uz/oz/mudofaa" target="_blank" rel="noopener">Mudofaa vazirligi →</a> <a href="https://lex.uz/uz/search" target="_blank" rel="noopener">lex.uz →</a></div>
+    <div class="warnbox"><b data-i="licTitle">Litsenziya va akkreditatsiya</b><span data-i="licTxt">OTM ni tanlashdan oldin litsenziya va akkreditatsiya holatini rasmiy reyestrdan tekshiring. Kalki.uz hech qaysi OTM haqida hukm chiqarmaydi.</span><a href="https://license.gov.uz/registry" target="_blank" rel="noopener">Litsenziya va ruxsatnomalar reyestri →</a></div>
+    <div class="note" data-i="noteTxt">Bu sahifa hech qanday narx, reyting yoki universitet nomini baholamaydi. Xarajat faqat kalkulyator orqali, sizning raqamlaringiz bilan hisoblanadi. Belgilaganlaringiz faqat shu brauzerda saqlanadi.</div>
+    <div class="receipt-actions noprint">
+      <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
+      <button type="button" class="pdfbtn">PDF</button>
+    </div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+  <div id="partners-slot" data-nosnippet="" data-prerender="skip" hidden=""></div>
+  <div class="leadbox noprint" id="leadBox">
+    <div class="lt"><b id="leadTitle" data-i="leadTitle">Universitetlardan taklif olish</b><span id="leadSub" data-i="leadSub">Kontrakt, chegirma va ta'lim krediti bo'yicha takliflarni Telegram kanalimizda e'lon qilamiz.</span></div>
+    <a class="leadbtn" id="leadBtn" href="https://t.me/kalki_uz" data-i="leadBtn">✈️ Telegram'ga yozish</a>
+  </div>
+<section class="seo" id="seoBlock"><h2>Grant ololmadim — bu yo'lning oxirimi?</h2><p>Yo'q. Grant — davlat tomonidan ajratiladigan cheklangan sondagi o'rin, va u har yili yo'nalishlar bo'yicha qayta taqsimlanadi. Grantga o'tmaslik bilim darajasi haqidagi yakuniy hukm emas: ko'p hollarda farq bir necha ballga, ba'zan bitta savolga bog'liq bo'ladi. Shu sababli birinchi qadam — hissiyot bilan emas, raqam bilan ish ko'rish. Qo'lingizda ikkita raqam bo'lishi kerak: to'plagan ballingiz va oilangiz ta'limga oyiga real ajrata oladigan summa. Birinchisi keyingi yil qayta urinish mantiqli yoki yo'qligini ko'rsatadi, ikkinchisi esa qaysi variantlar umuman ko'tarilishini. Bu sahifadagi variantlar ro'yxati aynan shu ikki raqamdan boshlanadi va hech bir variant sizdan yashirilmaydi — tartib faqat sizning talablaringizga qarab o'zgaradi.</p><h2>Xususiy OTM diplomi davlat OTM diplomidan farq qiladimi?</h2><p>Diplomning yuridik kuchi ta'lim muassasasining litsenziyasi va davlat akkreditatsiyasiga bog'liq. Akkreditatsiyadan o'tgan muassasa bergan diplom davlat namunasidagi hujjat hisoblanadi va u bilan magistraturaga hujjat topshirish ham, davlat xizmatiga kirish ham mumkin. Shuning uchun tanlashda muassasa nomiga emas, uning rasmiy holatiga qaraladi: litsenziyasi amaldami, qaysi yo'nalishlar bo'yicha akkreditatsiya olingan, muddati qachon tugaydi. Bu ma'lumotlarni faqat rasmiy reyestrdan tekshirish kerak — universitetning o'z saytidagi e'lon manba emas, u reklama matni bo'lishi mumkin. Kalki.uz hech qaysi OTM haqida hukm chiqarmaydi va reyting tuzmaydi: bu sahifa faqat qayerdan tekshirish kerakligini ko'rsatadi.</p><h2>Sirtqi va masofaviy o'qish nima bilan farq qiladi?</h2><p>Sirtqi shaklda o'quv yili sessiyalarga bo'linadi: yil davomida mustaqil o'qiysiz, sessiya davrida esa auditoriyaga kelib topshirasiz. Masofaviy shaklda esa darslarning asosiy qismi onlayn platforma orqali o'tadi va jismoniy kelish talabi minimal bo'ladi. Kechki shakl uchinchi variant: darslar ish kunidan keyin, kechqurun o'tkaziladi. Uchala shaklda ham auditoriya soati kunduzgidan kam, shuning uchun kontrakt summasi ham odatda boshqacha belgilanadi — lekin aniq summani faqat OTM e'lon qiladi. Amaliy jihatdan eng muhim savol boshqa: sessiya qachon va necha kun davom etadi, ish beruvchingiz shu kunlarga ta'til beradimi, va sessiyaga borish yo'l xarajati qancha turadi. Bu uch savolga javob topilmasa, arzonroq ko'ringan shakl amalda qimmatga tushishi mumkin: har sessiyaga yo'l, turar joy va ishdan qolgan kunlar ham xarajat. Shuning uchun taqqoslashda kontrakt summasini yolg'iz emas, sessiyaga bog'liq xarajatlar bilan birga hisoblang.</p><h2>Kollejga borish OTM ga yo'lni yopadimi?</h2><p>Aksincha, ko'p yo'nalishda kollej yoki texnikum diplomi OTM ga kirishda qo'shimcha imkoniyat beradi: ayrim yo'nalishlarda o'rta maxsus ta'lim bazasida qisqartirilgan muddatda o'qish ko'zda tutilgan. Bunday imkoniyat bor-yo'qligi va qanday shartlar qo'yilishi har yili qabul tartibida belgilanadi, shuning uchun uni rasmiy manbadan tekshirish kerak. Kollejning asosiy afzalligi — muddat qisqa va tayyorgarlik amaliy, ya'ni bitiruvdan keyin ishga kirish yo'li tez ochiladi. Kamchiligi ham shundan kelib chiqadi: agar oxirgi maqsad aniq bir OTM yo'nalishi bo'lsa, kollej orqali yurish umumiy vaqtni uzaytirishi mumkin. Qaror qabul qilishdan oldin ikkita narsani aniqlang: tanlagan kasbingiz bo'yicha kollej diplomi bilan qanday ish o'rinlari ochiladi, va o'sha yo'nalishda OTM ga qisqartirilgan dastur haqiqatan mavjudmi. Ikkalasi ham rasmiy hujjat bilan tasdiqlanishi kerak, tanish-bilishning gapi bilan emas.</p><h2>Harbiy xizmatga chaqiruv qanday hisobga olinadi?</h2><p>Chaqiruvni kechiktirish qoidalari ta'lim shakliga, muassasaning maqomiga va ta'lim bosqichiga bog'liq holda belgilanadi. Bu qoidalar o'zgarib turadi va noto'g'ri tushunilgan bitta jumla real zarar keltirishi mumkin — masalan, o'qishga kirgandan keyin kechiktirish avtomatik deb o'ylab, hujjatni vaqtida rasmiylashtirmaslik. Shuning uchun bu sahifada hech qanday aniq qoida yozilmagan. To'g'ri yo'l bitta: tanlagan ta'lim shaklingiz va muassasangiz uchun amaldagi tartibni Mudofaa vazirligi hamda qonunchilik bazasidagi joriy hujjatdan tekshirish, va shubha bo'lsa yashash joyingizdagi mudofaa ishlari bo'limiga murojaat qilish.</p><h2>Ta'lim krediti olish kerakmi?</h2><p>Ta'lim krediti kontrakt to'lovini bugun yopadi, lekin qarzni bitiruvdan keyingi o'zingizga o'tkazadi. Qaror qabul qilishdan oldin bitta raqamni bilish kerak: bitiruvdan keyin oyiga qancha to'lay olasiz. Shu raqamdan kelib chiqib, kredit qancha bo'lishi mumkinligi teskari hisoblanadi — universitet kontrakt kalkulyatorining teskari rejimi aynan shuni qiladi. Foiz stavkasi, muddat va imtiyozli davr bank hamda talaba toifasiga qarab farq qiladi, ayrim toifalar uchun stavkaning bir qismi davlat tomonidan qoplanishi mumkin. Shuning uchun kalkulyatorga hech qanday stavka yozilmagan: shartnomangizdagi aniq raqamni siz kiritasiz.</p><h2>Qaysi variantni tanlashni qanday hal qilaman?</h2><p>Ro'yxatdagi variantlarni ketma-ket taqqoslash o'rniga, har birini bitta savol bilan filtrlang: shu variant sizning ikkita cheklovingizga — vaqt va pulga — sig'adimi. Vaqt cheklovi: kunduzgi jadval bilan ishlay olasizmi, sessiyaga necha kun ajrata olasiz. Pul cheklovi: oilangiz oyiga ajrata oladigan summa yiliga qanchaga aylanadi va shu summa kontraktni ko'taradimi. Ikkinchi savolga taxmin bilan javob bermaslik uchun har bir kartochkadagi "Xarajatini hisoblash" tugmasini bosing: kalkulyator sizning raqamlaringiz bilan yillik imkoniyatni chiqaradi. Uchtadan ortiq variantni bir vaqtda ko'rib chiqmang — ro'yxatdan ikki-uchtasini belgilab, faqat ular bo'yicha rasmiy ma'lumot yig'ing.</p></section><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-i="relTitle">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="universitet-kontrakt-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Universitet kontrakti" data-rel-ru="Контракт в вузе">Universitet kontrakti</span></a><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📊</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">👪</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💳</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit kalkulyatori" data-rel-ru="Кредитный калькулятор">Kredit kalkulyatori</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">© 2026 Kalki.uz — Achchi loyihasi · Проект Achchi. Barcha huquqlar himoyalangan.</div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap">info@kalki.uz</a></div><footer data-i="foot">Qaror sizniki. Qabul shartlari, litsenziya va harbiy xizmat qoidalarini rasmiy manbadan tasdiqlang.</footer></main>
+
+<script>
+(function(){
+var NB=String.fromCharCode(160);
+var NBRE=new RegExp(NB,'g');
+var lang='uz';
+var $=function(id){return document.getElementById(id)};
+var t=function(k){return I[lang][k]};
+var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,NB)};
+var num=function(s){return parseFloat(String(s).replace(NBRE,'').replace(/\s/g,'').replace(',','.'))||0};
+var LS='kalki_grantololmadim1';
+var PRIS=['pKunduzgi','pIshlab','pToshkent','pDavlat'];
+var seen={};
+/* LocalStorage'dan ochiq holatda tiklangan kartochka ham 'toggle' hodisasini
+   beradi. U foydalanuvchining ayni paytdagi harakati EMAS — hisobga olinsa
+   talim_option_view soni sun'iy oshib ketardi va hamkor bilan gaplashishda
+   yolg'on dalil bo'lardi. Shuning uchun yuklanish davrida hodisa yuborilmaydi. */
+var booting=true;
+
+var I={"uz":{"cat":"Kundalik hayot","h1":"Grant ololmadim — endi nima qilaman?","sub":"Uchta savolga javob bering — byudjetingizga mos variantlar tartiblanadi va har birining xarajatini o'z raqamlaringiz bilan hisoblaysiz.","step1":"1-qadam — Uch savol","step2":"2-qadam — Variantlar","lBall":"To'plagan ballingiz","uBall":"ball","hBall":"Ixtiyoriy. Ball kiritsangiz, uni rasmiy manbadagi o'tish balllari bilan solishtirish eslatmasi chiqadi.","lBudget":"Oilangiz ta'limga oyiga qancha ajrata oladi","uSomOy":"so'm/oy","hBudget":"Bu raqam hech qayerga yuborilmaydi — u faqat kalkulyatorga uzatiladi.","lPri":"Sizga qaysilari muhim","pKunduzgi":"Kunduzgi o'qish","pIshlab":"Ishlab o'qish","pToshkent":"Toshkentda qolish","pDavlat":"Diplom davlat OTM darajasida","hPri":"Belgilaganlaringizga qarab variantlar tartibi o'zgaradi. Hech bir variant ro'yxatdan o'chirilmaydi.","optsTag":"Variantlar","optsLbl":"Sizning javoblaringizga ko'ra tartiblandi","fit":"Kimga mos","watch":"Nimaga e'tibor berish kerak","calcBtn":"Xarajatini hisoblash","srcBtn":"Rasmiy manba","done":"Ko'rib chiqdim","ballNote":"Ballingiz — {b}. Uni o'tgan yilgi o'tish balllari bilan rasmiy manbadan solishtiring: ball bilan bog'liq qarorni faqat joriy yil ma'lumoti bilan qabul qiling.","milTitle":"Harbiy xizmatga chaqiruv","milTxt":"Chaqiruvni kechiktirish ta'lim shakliga va muassasa maqomiga bog'liq — bu sahifada aniq qoida yozilmagan, uni rasmiy manbadan tekshiring.","licTitle":"Litsenziya va akkreditatsiya","licTxt":"OTM ni tanlashdan oldin litsenziya va akkreditatsiya holatini rasmiy reyestrdan tekshiring. Kalki.uz hech qaysi OTM haqida hukm chiqarmaydi.","leadTitle":"Universitetlardan taklif olish","leadSub":"Kontrakt, chegirma va ta'lim krediti bo'yicha takliflarni Telegram kanalimizda e'lon qilamiz.","leadBtn":"✈️ Telegram'ga yozish","btnShare":"Ulashish","copied":"Nusxalandi","noteTxt":"Bu sahifa hech qanday narx, reyting yoki universitet nomini baholamaydi. Xarajat faqat kalkulyator orqali, sizning raqamlaringiz bilan hisoblanadi. Belgilaganlaringiz faqat shu brauzerda saqlanadi.","relTitle":"Bulardan ham foydalanishingiz mumkin","foot":"Qaror sizniki. Qabul shartlari, litsenziya va harbiy xizmat qoidalarini rasmiy manbadan tasdiqlang.","seo":"<h2>Grant ololmadim — bu yo'lning oxirimi?</h2><p>Yo'q. Grant — davlat tomonidan ajratiladigan cheklangan sondagi o'rin, va u har yili yo'nalishlar bo'yicha qayta taqsimlanadi. Grantga o'tmaslik bilim darajasi haqidagi yakuniy hukm emas: ko'p hollarda farq bir necha ballga, ba'zan bitta savolga bog'liq bo'ladi. Shu sababli birinchi qadam — hissiyot bilan emas, raqam bilan ish ko'rish. Qo'lingizda ikkita raqam bo'lishi kerak: to'plagan ballingiz va oilangiz ta'limga oyiga real ajrata oladigan summa. Birinchisi keyingi yil qayta urinish mantiqli yoki yo'qligini ko'rsatadi, ikkinchisi esa qaysi variantlar umuman ko'tarilishini. Bu sahifadagi variantlar ro'yxati aynan shu ikki raqamdan boshlanadi va hech bir variant sizdan yashirilmaydi — tartib faqat sizning talablaringizga qarab o'zgaradi.</p><h2>Xususiy OTM diplomi davlat OTM diplomidan farq qiladimi?</h2><p>Diplomning yuridik kuchi ta'lim muassasasining litsenziyasi va davlat akkreditatsiyasiga bog'liq. Akkreditatsiyadan o'tgan muassasa bergan diplom davlat namunasidagi hujjat hisoblanadi va u bilan magistraturaga hujjat topshirish ham, davlat xizmatiga kirish ham mumkin. Shuning uchun tanlashda muassasa nomiga emas, uning rasmiy holatiga qaraladi: litsenziyasi amaldami, qaysi yo'nalishlar bo'yicha akkreditatsiya olingan, muddati qachon tugaydi. Bu ma'lumotlarni faqat rasmiy reyestrdan tekshirish kerak — universitetning o'z saytidagi e'lon manba emas, u reklama matni bo'lishi mumkin. Kalki.uz hech qaysi OTM haqida hukm chiqarmaydi va reyting tuzmaydi: bu sahifa faqat qayerdan tekshirish kerakligini ko'rsatadi.</p><h2>Sirtqi va masofaviy o'qish nima bilan farq qiladi?</h2><p>Sirtqi shaklda o'quv yili sessiyalarga bo'linadi: yil davomida mustaqil o'qiysiz, sessiya davrida esa auditoriyaga kelib topshirasiz. Masofaviy shaklda esa darslarning asosiy qismi onlayn platforma orqali o'tadi va jismoniy kelish talabi minimal bo'ladi. Kechki shakl uchinchi variant: darslar ish kunidan keyin, kechqurun o'tkaziladi. Uchala shaklda ham auditoriya soati kunduzgidan kam, shuning uchun kontrakt summasi ham odatda boshqacha belgilanadi — lekin aniq summani faqat OTM e'lon qiladi. Amaliy jihatdan eng muhim savol boshqa: sessiya qachon va necha kun davom etadi, ish beruvchingiz shu kunlarga ta'til beradimi, va sessiyaga borish yo'l xarajati qancha turadi. Bu uch savolga javob topilmasa, arzonroq ko'ringan shakl amalda qimmatga tushishi mumkin: har sessiyaga yo'l, turar joy va ishdan qolgan kunlar ham xarajat. Shuning uchun taqqoslashda kontrakt summasini yolg'iz emas, sessiyaga bog'liq xarajatlar bilan birga hisoblang.</p><h2>Kollejga borish OTM ga yo'lni yopadimi?</h2><p>Aksincha, ko'p yo'nalishda kollej yoki texnikum diplomi OTM ga kirishda qo'shimcha imkoniyat beradi: ayrim yo'nalishlarda o'rta maxsus ta'lim bazasida qisqartirilgan muddatda o'qish ko'zda tutilgan. Bunday imkoniyat bor-yo'qligi va qanday shartlar qo'yilishi har yili qabul tartibida belgilanadi, shuning uchun uni rasmiy manbadan tekshirish kerak. Kollejning asosiy afzalligi — muddat qisqa va tayyorgarlik amaliy, ya'ni bitiruvdan keyin ishga kirish yo'li tez ochiladi. Kamchiligi ham shundan kelib chiqadi: agar oxirgi maqsad aniq bir OTM yo'nalishi bo'lsa, kollej orqali yurish umumiy vaqtni uzaytirishi mumkin. Qaror qabul qilishdan oldin ikkita narsani aniqlang: tanlagan kasbingiz bo'yicha kollej diplomi bilan qanday ish o'rinlari ochiladi, va o'sha yo'nalishda OTM ga qisqartirilgan dastur haqiqatan mavjudmi. Ikkalasi ham rasmiy hujjat bilan tasdiqlanishi kerak, tanish-bilishning gapi bilan emas.</p><h2>Harbiy xizmatga chaqiruv qanday hisobga olinadi?</h2><p>Chaqiruvni kechiktirish qoidalari ta'lim shakliga, muassasaning maqomiga va ta'lim bosqichiga bog'liq holda belgilanadi. Bu qoidalar o'zgarib turadi va noto'g'ri tushunilgan bitta jumla real zarar keltirishi mumkin — masalan, o'qishga kirgandan keyin kechiktirish avtomatik deb o'ylab, hujjatni vaqtida rasmiylashtirmaslik. Shuning uchun bu sahifada hech qanday aniq qoida yozilmagan. To'g'ri yo'l bitta: tanlagan ta'lim shaklingiz va muassasangiz uchun amaldagi tartibni Mudofaa vazirligi hamda qonunchilik bazasidagi joriy hujjatdan tekshirish, va shubha bo'lsa yashash joyingizdagi mudofaa ishlari bo'limiga murojaat qilish.</p><h2>Ta'lim krediti olish kerakmi?</h2><p>Ta'lim krediti kontrakt to'lovini bugun yopadi, lekin qarzni bitiruvdan keyingi o'zingizga o'tkazadi. Qaror qabul qilishdan oldin bitta raqamni bilish kerak: bitiruvdan keyin oyiga qancha to'lay olasiz. Shu raqamdan kelib chiqib, kredit qancha bo'lishi mumkinligi teskari hisoblanadi — universitet kontrakt kalkulyatorining teskari rejimi aynan shuni qiladi. Foiz stavkasi, muddat va imtiyozli davr bank hamda talaba toifasiga qarab farq qiladi, ayrim toifalar uchun stavkaning bir qismi davlat tomonidan qoplanishi mumkin. Shuning uchun kalkulyatorga hech qanday stavka yozilmagan: shartnomangizdagi aniq raqamni siz kiritasiz.</p><h2>Qaysi variantni tanlashni qanday hal qilaman?</h2><p>Ro'yxatdagi variantlarni ketma-ket taqqoslash o'rniga, har birini bitta savol bilan filtrlang: shu variant sizning ikkita cheklovingizga — vaqt va pulga — sig'adimi. Vaqt cheklovi: kunduzgi jadval bilan ishlay olasizmi, sessiyaga necha kun ajrata olasiz. Pul cheklovi: oilangiz oyiga ajrata oladigan summa yiliga qanchaga aylanadi va shu summa kontraktni ko'taradimi. Ikkinchi savolga taxmin bilan javob bermaslik uchun har bir kartochkadagi &quot;Xarajatini hisoblash&quot; tugmasini bosing: kalkulyator sizning raqamlaringiz bilan yillik imkoniyatni chiqaradi. Uchtadan ortiq variantni bir vaqtda ko'rib chiqmang — ro'yxatdan ikki-uchtasini belgilab, faqat ular bo'yicha rasmiy ma'lumot yig'ing.</p>"},"ru":{"cat":"Жизнь","h1":"Не прошёл на грант — что делать?","sub":"Ответьте на три вопроса — варианты выстроятся под ваш бюджет, а расходы по каждому вы посчитаете своими цифрами.","step1":"Шаг 1 — Три вопроса","step2":"Шаг 2 — Варианты","lBall":"Набранный балл","uBall":"балл","hBall":"По желанию. Если ввести балл, появится напоминание сравнить его с проходными баллами из официального источника.","lBudget":"Сколько семья может выделять на образование в месяц","uSomOy":"сум/мес.","hBudget":"Эта цифра никуда не отправляется — она только передаётся в калькулятор.","lPri":"Что для вас важно","pKunduzgi":"Очное обучение","pIshlab":"Учиться и работать","pToshkent":"Остаться в Ташкенте","pDavlat":"Диплом уровня государственного вуза","hPri":"Порядок вариантов меняется по вашим отметкам. Ни один вариант из списка не удаляется.","optsTag":"Варианты","optsLbl":"Отсортировано по вашим ответам","fit":"Кому подходит","watch":"На что обратить внимание","calcBtn":"Посчитать расходы","srcBtn":"Официальный источник","done":"Рассмотрел","ballNote":"Ваш балл — {b}. Сравните его с проходными баллами прошлого года в официальном источнике: решение по баллу принимайте только по данным текущего года.","milTitle":"Призыв на военную службу","milTxt":"Отсрочка зависит от формы обучения и статуса заведения — на этой странице конкретных правил нет, проверьте их в официальном источнике.","licTitle":"Лицензия и аккредитация","licTxt":"Перед выбором вуза проверьте статус лицензии и аккредитации в официальном реестре. Kalki.uz не выносит суждений ни об одном вузе.","leadTitle":"Получать предложения от вузов","leadSub":"Предложения по контракту, скидкам и образовательному кредиту публикуем в нашем Telegram-канале.","leadBtn":"✈️ Написать в Telegram","btnShare":"Поделиться","copied":"Скопировано","noteTxt":"Эта страница не оценивает ни цены, ни рейтинги, ни названия университетов. Расходы считаются только в калькуляторе и только по вашим цифрам. Ваши отметки хранятся только в этом браузере.","relTitle":"Вам также может пригодиться","foot":"Решение за вами. Условия приёма, лицензию и правила военной службы подтвердите в официальном источнике.","seo":"<h2>Не прошёл на грант — это конец пути?</h2><p>Нет. Грант — это ограниченное число мест, выделяемых государством, и оно ежегодно перераспределяется по направлениям. Не пройти на грант — не окончательный приговор уровню знаний: часто разница составляет несколько баллов, иногда один вопрос. Поэтому первый шаг — работать не эмоциями, а цифрами. На руках должны быть две цифры: набранный балл и сумма, которую семья реально может выделять на образование в месяц. Первая показывает, есть ли смысл пробовать снова через год, вторая — какие варианты вообще потянет бюджет. Список вариантов на этой странице начинается именно с этих двух цифр, и ни один вариант от вас не скрывается — меняется только порядок, в зависимости от ваших требований.</p><h2>Отличается ли диплом частного вуза от государственного?</h2><p>Юридическая сила диплома зависит от лицензии учебного заведения и государственной аккредитации. Диплом аккредитованного заведения считается документом государственного образца: с ним можно подавать в магистратуру и поступать на государственную службу. Поэтому при выборе смотрят не на название заведения, а на его официальный статус: действует ли лицензия, по каким направлениям получена аккредитация, когда истекает срок. Эти данные нужно проверять только в официальном реестре — объявление на сайте самого университета источником не является, это может быть рекламный текст. Kalki.uz не выносит суждений ни об одном вузе и не составляет рейтингов: страница лишь показывает, где проверять.</p><h2>Чем заочная форма отличается от дистанционной?</h2><p>На заочной форме учебный год разбит на сессии: в течение года вы занимаетесь самостоятельно, а в период сессии приезжаете и сдаёте. На дистанционной форме основная часть занятий проходит через онлайн-платформу, и требование физически присутствовать минимально. Вечерняя форма — третий вариант: занятия проводятся после рабочего дня. На всех трёх формах аудиторных часов меньше, чем на очной, поэтому и сумма контракта обычно устанавливается иначе — но точную сумму объявляет только вуз. Практически же важнее другой вопрос: когда и сколько дней длится сессия, даёт ли работодатель отпуск на эти дни и сколько стоит дорога на сессию.</p><h2>Закрывает ли колледж дорогу в вуз?</h2><p>Наоборот, по многим направлениям диплом колледжа или техникума даёт дополнительную возможность при поступлении: по ряду направлений на базе среднего специального образования предусмотрено обучение по сокращённой программе. Есть ли такая возможность и какие условия ставятся, определяется порядком приёма каждый год, поэтому это нужно проверять в официальном источнике. Главное преимущество колледжа — короткий срок и практическая подготовка, то есть путь к работе открывается быстрее. Отсюда же и минус: если конечная цель — конкретное направление в вузе, путь через колледж может удлинить общее время.</p><h2>Как учитывается призыв на военную службу?</h2><p>Правила отсрочки определяются в зависимости от формы обучения, статуса учебного заведения и ступени образования. Эти правила меняются, и одна неверно понятая фраза может привести к реальному ущербу — например, посчитать отсрочку автоматической после зачисления и вовремя не оформить документ. Поэтому на этой странице не приводится ни одного конкретного правила. Правильный путь один: проверить действующий порядок для выбранной вами формы обучения и заведения в Министерстве обороны и в действующем документе базы законодательства, а при сомнениях обратиться в отдел по делам обороны по месту жительства.</p><h2>Стоит ли брать образовательный кредит?</h2><p>Образовательный кредит закрывает оплату контракта сегодня, но переносит долг на вас после выпуска. До решения нужно знать одну цифру: сколько вы сможете платить в месяц после выпуска. Отталкиваясь от неё, сумма кредита считается в обратную сторону — именно это делает обратный режим калькулятора контракта. Ставка, срок и льготный период отличаются у разных банков и категорий студентов, для некоторых категорий часть ставки может покрывать государство. Поэтому в калькулятор не вписана ни одна ставка: точную цифру из своего договора вводите вы.</p><h2>Как решить, какой вариант выбрать?</h2><p>Вместо того чтобы сравнивать варианты подряд, отфильтруйте каждый одним вопросом: помещается ли он в два ваших ограничения — время и деньги. Ограничение по времени: сможете ли вы работать при дневном расписании, сколько дней сможете выделить на сессию. Ограничение по деньгам: во что превращается за год сумма, которую семья выделяет в месяц, и потянет ли она контракт. Чтобы не отвечать на второй вопрос наугад, нажмите в каждой карточке кнопку «Посчитать расходы»: калькулятор посчитает годовую возможность по вашим цифрам. Не рассматривайте больше трёх вариантов одновременно — отметьте в списке два-три и собирайте официальную информацию только по ним.</p>"}};
+var OPTS=[{"id":"nodavlat-kunduzgi","q":"form=kunduzgi&years=4&level=bak","s":{"kunduzgi":3,"ishlab":-3,"toshkent":1,"davlat":0},"uz":{"n":"Nodavlat (xususiy) OTM — kunduzgi","d":"Litsenziyalangan xususiy universitetda kunduzgi ta'lim. Qabul davlat grantidan alohida o'tkaziladi va ko'p hollarda o'z test yoki suhbat bosqichi bo'ladi. Talabalik hayoti, amaliyot va kunduzgi jadval davlat OTM dagi bilan bir xil tartibda quriladi.","f":"Kunduzgi o'qishni xohlaydigan va qabul shartlarini alohida topshirishga tayyor abituriyentga.","w":"Litsenziya va akkreditatsiya holati; kontrakt qanday qismlarga bo'linishi; chegirma va imtiyoz shartlari."},"ru":{"n":"Негосударственный (частный) вуз — очно","d":"Очное обучение в лицензированном частном университете. Приём проводится отдельно от государственного гранта, часто со своим тестом или собеседованием. Студенческая жизнь, практика и дневное расписание строятся так же, как в государственном вузе.","f":"Тем, кто хочет учиться очно и готов отдельно пройти приёмные испытания.","w":"Статус лицензии и аккредитации; на какие части делится контракт; условия скидок и льгот."},"src":{"u":"https://license.gov.uz/registry","uz":"Litsenziya va ruxsatnomalar reyestri","ru":"Реестр лицензий и разрешений"}},{"id":"nodavlat-sirtqi","q":"form=sirtqi&years=4&level=bak","s":{"kunduzgi":-3,"ishlab":3,"toshkent":2,"davlat":0},"uz":{"n":"Nodavlat OTM — sirtqi, kechki yoki masofaviy","d":"Xususiy universitetning auditoriya soati kamroq bo'lgan shakllari. Darslar sessiya davrida yoki kechqurun, masofaviyda esa asosan onlayn o'tadi. Ishlab yurish va o'z shahringizda qolish imkoni saqlanadi.","f":"Ishlayotgan yoki oilaviy sabablarga ko'ra har kuni auditoriyada bo'la olmaydigan abituriyentga.","w":"Diplomda ta'lim shakli qanday yoziladi; sessiya jadvali va unga yo'l xarajati; masofaviy shaklga qo'yiladigan talablar."},"ru":{"n":"Негосударственный вуз — заочно, вечерне или дистанционно","d":"Формы частного вуза с меньшим числом аудиторных часов. Занятия проходят в период сессии или вечером, а на дистанционной форме — в основном онлайн. Сохраняется возможность работать и жить в своём городе.","f":"Тем, кто работает или по семейным обстоятельствам не может быть в аудитории каждый день.","w":"Как форма обучения указывается в дипломе; график сессий и дорога на них; требования к дистанционной форме."},"src":{"u":"https://license.gov.uz/registry","uz":"Litsenziya va ruxsatnomalar reyestri","ru":"Реестр лицензий и разрешений"}},{"id":"davlat-sirtqi","q":"form=sirtqi&years=4&level=bak","s":{"kunduzgi":-3,"ishlab":3,"toshkent":2,"davlat":4},"uz":{"n":"Davlat OTM — sirtqi, kechki yoki masofaviy","d":"Davlat universitetining kunduzgidan tashqari shakllari. Qabul davlat qabul tartibi bo'yicha o'tadi, diplom esa o'sha OTM nomidan beriladi. Bu shakllarga qabul kvotasi va shartlari har yili alohida e'lon qilinadi.","f":"Davlat OTM diplomi muhim bo'lgan va ayni paytda ishlab yurmoqchi bo'lgan abituriyentga.","w":"Shu yil uchun sirtqi qabul e'lon qilinganmi; yo'nalish ro'yxati; sessiya davri va unga ajratiladigan mehnat ta'tili."},"ru":{"n":"Государственный вуз — заочно, вечерне или дистанционно","d":"Формы государственного университета помимо очной. Приём идёт в рамках государственного порядка приёма, а диплом выдаётся от имени того же вуза. Квоты и условия по этим формам объявляются отдельно каждый год.","f":"Тем, кому важен диплом государственного вуза и кто одновременно хочет работать.","w":"Объявлен ли в этом году заочный приём; список направлений; период сессии и учебный отпуск на него."},"src":{"u":"https://gov.uz/oz/edu","uz":"Oliy ta'lim, fan va innovatsiyalar vazirligi","ru":"Министерство высшего образования, науки и инноваций"}},{"id":"xorijiy-filial","q":"form=kunduzgi&years=4&level=bak","s":{"kunduzgi":3,"ishlab":-2,"toshkent":1,"davlat":1},"uz":{"n":"Xorijiy OTM filiali","d":"O'zbekistonda faoliyat yuritadigan xorijiy universitet filiali. O'quv dasturi bosh universitet dasturiga tayanadi, ba'zi filiallarda o'qish chet tilida olib boriladi. Diplomni kim berishi — filial yoki bosh universitet — har bir filialda alohida belgilanadi.","f":"Chet tilida o'qishga tayyor va xalqaro dasturga qiziqadigan abituriyentga.","w":"Diplomni aynan kim beradi; til darajasi talabi; filialning litsenziyasi va akkreditatsiyasi."},"ru":{"n":"Филиал зарубежного вуза","d":"Филиал иностранного университета, работающий в Узбекистане. Учебная программа опирается на программу головного вуза, в части филиалов обучение ведётся на иностранном языке. Кто выдаёт диплом — филиал или головной вуз — определяется в каждом филиале отдельно.","f":"Тем, кто готов учиться на иностранном языке и хочет международную программу.","w":"Кто именно выдаёт диплом; требования к уровню языка; лицензия и аккредитация филиала."},"src":{"u":"https://license.gov.uz/registry","uz":"Litsenziya va ruxsatnomalar reyestri","ru":"Реестр лицензий и разрешений"}},{"id":"kollej","q":"form=kunduzgi&years=3&level=bak","s":{"kunduzgi":2,"ishlab":0,"toshkent":0,"davlat":0},"uz":{"n":"Kollej yoki texnikum","d":"O'rta maxsus ta'lim muassasasi: kasb bo'yicha amaliy tayyorgarlik va qisqaroq muddat. Bitirgandan keyin ishga kirish yoki OTM ga o'qishni davom ettirish yo'li ochiq. Ayrim yo'nalishlarda OTM ga qisqartirilgan muddatda kirish imkoni ko'zda tutilgan.","f":"Tez kasb egallashni va shu bilan birga o'qishni keyin davom ettirish imkonini qoldirishni xohlaydiganlarga.","w":"Kasb yo'nalishi mehnat bozorida qanchalik kerak; OTM ga o'tish qoidalari; amaliyot qayerda o'tkaziladi."},"ru":{"n":"Колледж или техникум","d":"Учреждение среднего специального образования: практическая подготовка по профессии и более короткий срок. После выпуска открыт путь и на работу, и на продолжение учёбы в вузе. По ряду направлений предусмотрено поступление в вуз по сокращённой программе.","f":"Тем, кто хочет быстро получить профессию и при этом оставить возможность продолжить учёбу.","w":"Насколько профессия востребована на рынке труда; правила перехода в вуз; где проходит практика."},"src":{"u":"https://gov.uz/oz/edu","uz":"Oliy ta'lim, fan va innovatsiyalar vazirligi","ru":"Министерство высшего образования, науки и инноваций"}},{"id":"keyingi-yil","q":"form=kunduzgi&years=4&level=bak","s":{"kunduzgi":1,"ishlab":2,"toshkent":1,"davlat":3},"uz":{"n":"Kelasi yilga tayyorgarlik","d":"Bir yil tanaffus qilib, ishlab yoki kurslarda o'qib, kelasi qabulga qayta tayyorlanish. Bu yo'l bo'sh o'tgan yil emas: ish tajribasi ham, jamg'arma ham to'planadi. Shu davrda qaysi fanlardan qancha ball yetmaganini aniq tahlil qilish muhim.","f":"Ballini sezilarli oshira oladigan va bir yil kutishga tayyor abituriyentga.","w":"Harbiy xizmatga chaqiruv masalasi; kelasi yil qabul shartlari o'zgarishi mumkinligi; tayyorgarlik xarajati."},"ru":{"n":"Подготовка к следующему году","d":"Взять год, поработать или походить на курсы и заново подготовиться к следующему приёму. Это не потерянный год: накапливаются и опыт работы, и сбережения. За это время важно точно разобрать, по каким предметам не хватило баллов.","f":"Тем, кто может заметно поднять балл и готов подождать год.","w":"Вопрос призыва на военную службу; условия приёма следующего года могут измениться; стоимость подготовки."},"src":{"u":"https://gov.uz/oz/uzbmb","uz":"Ta'lim sifatini baholash bo'yicha milliy markaz","ru":"Национальный центр оценки качества образования"}},{"id":"ish-masofaviy","q":"form=masofaviy&years=4&level=bak","s":{"kunduzgi":-3,"ishlab":4,"toshkent":2,"davlat":0},"uz":{"n":"Ishga kirish + masofaviy o'qish","d":"Avval ishga joylashib, keyin masofaviy shaklda o'qishni boshlash. Daromad o'qish xarajatini o'zi qoplaydi va ish tajribasi diplom bilan bir vaqtda to'planadi. Yuk og'ir: ish va o'qishni birga olib borish uchun aniq kunlik reja kerak.","f":"Mustaqil ishlay oladigan va o'qishni o'z hisobidan olib bormoqchi bo'lganlarga.","w":"Ish beruvchi sessiya davriga ta'til beradimi; masofaviy shakl diplomda qanday ko'rsatiladi; haqiqiy bo'sh vaqt."},"ru":{"n":"Работа + дистанционное обучение","d":"Сначала устроиться на работу, затем начать учиться дистанционно. Доход сам покрывает расходы на учёбу, а опыт работы копится одновременно с дипломом. Нагрузка высокая: чтобы совмещать, нужен чёткий распорядок дня.","f":"Тем, кто может работать самостоятельно и хочет оплачивать учёбу сам.","w":"Даёт ли работодатель отпуск на сессию; как дистанционная форма отражается в дипломе; реальный запас свободного времени."},"src":{"u":"https://gov.uz/oz/mehnat","uz":"Bandlik va kambag'allikni qisqartirish vazirligi","ru":"Министерство занятости и сокращения бедности"}}];
+
+function ga(name,params){
+  try{if(typeof window.gtag==='function')window.gtag('event',name,params||{})}catch(e){}
+}
+
+function raw(id){var e=$(id);return e?e.value:''}
+function val(id){return num(raw(id))}
+function pri(k){var e=$(k);return !!(e&&e.checked)}
+
+function save(){
+  try{
+    var o={ball:raw('ball'),budget:raw('budget'),p:{},done:{},open:{}};
+    for(var i=0;i<PRIS.length;i++)o.p[PRIS[i]]=pri(PRIS[i]);
+    var cs=document.querySelectorAll('.odchk');
+    for(var j=0;j<cs.length;j++)o.done[cs[j].getAttribute('data-done')]=cs[j].checked;
+    var ds=document.querySelectorAll('details.opt');
+    for(var k=0;k<ds.length;k++)o.open[ds[k].getAttribute('data-opt')]=ds[k].open;
+    localStorage.setItem(LS,JSON.stringify(o));
+  }catch(e){}
+}
+function load(){
+  try{
+    var s=localStorage.getItem(LS);
+    if(!s)return;
+    var o=JSON.parse(s);
+    if(!o)return;
+    if(o.ball!=null)$('ball').value=o.ball;
+    if(o.budget!=null)$('budget').value=o.budget;
+    if(o.p)for(var i=0;i<PRIS.length;i++){var e=$(PRIS[i]);if(e)e.checked=!!o.p[PRIS[i]]}
+    if(o.done)for(var id in o.done){var c=document.querySelector('.odchk[data-done="'+id+'"]');if(c)c.checked=!!o.done[id]}
+    if(o.open)for(var oid in o.open){var d=document.querySelector('details.opt[data-opt="'+oid+'"]');if(d)d.open=!!o.open[oid]}
+  }catch(e){}
+}
+
+/* Moslik bali — FAQAT foydalanuvchi belgilagan talablardan chiqadi.
+   Ball va byudjet tartibga ta'sir qilmaydi: ular bo'yicha hukm chiqarish
+   uchun saytda narx yoki o'tish bali bo'lishi kerak bo'lardi, ular esa
+   eskiradigan ma'lumot. Byudjet o'rniga kalkulyatorga uzatiladi. */
+function score(o){
+  var s=0;
+  if(pri('pKunduzgi'))s+=o.s.kunduzgi;
+  if(pri('pIshlab'))s+=o.s.ishlab;
+  if(pri('pToshkent'))s+=o.s.toshkent;
+  if(pri('pDavlat'))s+=o.s.davlat;
+  return s;
+}
+
+function calcHref(o){
+  var q=o.q+'&mode=rev';
+  var b=String(raw('budget')).replace(/[^\d]/g,'');
+  if(b)q+='&budget='+b;
+  return 'universitet-kontrakt-kalkulyator?'+q;
+}
+
+function renderOpts(){
+  var box=$('optsList');
+  // Tartib: moslik bo'yicha, teng bo'lsa e'lon tartibi saqlanadi.
+  var order=OPTS.map(function(o,i){return{o:o,i:i,s:score(o)}});
+  order.sort(function(a,b){return b.s-a.s||a.i-b.i});
+  for(var k=0;k<order.length;k++){
+    var o=order[k].o;
+    var el=document.querySelector('details.opt[data-opt="'+o.id+'"]');
+    if(!el)continue;
+    box.appendChild(el);                       // ko'chirish — qayta yaratish emas
+    var L=o[lang]||o.uz;
+    el.querySelector('[data-onm]').textContent=L.n;
+    el.querySelector('[data-odesc]').textContent=L.d;
+    el.querySelector('[data-ofit]').textContent=L.f;
+    el.querySelector('[data-owatch]').textContent=L.w;
+    el.querySelector('[data-lfit]').textContent=t('fit');
+    el.querySelector('[data-lwatch]').textContent=t('watch');
+    el.querySelector('[data-ldone]').textContent=t('done');
+    var c=el.querySelector('[data-ocalc]');
+    c.textContent=t('calcBtn');
+    c.setAttribute('href',calcHref(o));
+    var sr=el.querySelector('[data-osrc]');
+    sr.textContent=t('srcBtn');
+    sr.setAttribute('href',o.src.u);
+    sr.setAttribute('title',o.src[lang]||o.src.uz);
+  }
+  var b=val('ball');
+  if(b>0){
+    $('ballNote').style.display='block';
+    $('ballNote').textContent=t('ballNote').replace('{b}',fmt(b));
+  }else $('ballNote').style.display='none';
+}
+
+/* Chip'ning ko'rinishi checkbox holatiga ergashadi. Alohida funksiya
+   kerak: hodisa bog'lash sahifa yuklanganda, LocalStorage'dan tiklash esa
+   undan KEYIN bo'ladi — tiklangan belgilar aks holda belgilanmagandek
+   ko'rinib turardi. */
+function syncChips(){
+  for(var i=0;i<PRIS.length;i++){
+    var e=$(PRIS[i]);
+    if(!e)continue;
+    var lab=e.closest('label');
+    if(lab)lab.classList.toggle('on',e.checked);
+  }
+}
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  var els=document.querySelectorAll('[data-i]');
+  for(var i=0;i<els.length;i++)els[i].textContent=t(els[i].getAttribute('data-i'));
+  $('seoBlock').innerHTML=t('seo');
+  $('langUz').classList.toggle('on',lang==='uz');
+  $('langRu').classList.toggle('on',lang==='ru');
+  var rl=document.querySelectorAll('[data-rel-uz]');
+  for(var j=0;j<rl.length;j++)rl[j].textContent=rl[j].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz');
+  syncChips();
+  renderOpts();
+  showPartners();
+}
+
+/* applyLang() til qo'llanganda bir necha marta chaqiriladi (lang.js RU ni
+   360 va 900 ms da qayta qo'llaydi). Blokni har safar qayta chizish
+   partner_empty hodisasini takrorlab yuborardi — chaqiruv kechiktiriladi. */
+var ptTimer=null;
+function showPartners(){
+  if(!window.Partners)return;
+  if(ptTimer)clearTimeout(ptTimer);
+  ptTimer=setTimeout(renderPartners,700);
+}
+
+function renderPartners(){
+  ptTimer=null;
+  if(!window.Partners)return;
+  window.Partners.render({
+    slot:"#partners-slot",
+    category:"talim",
+    lang:lang,
+    context:{product:"talim"},
+    title:{uz:"Ta'lim bo'yicha rasmiy manbalar",ru:"Официальные источники по образованию"},
+    footNote:{uz:"Bu sahifa hech qaysi OTM ni tavsiya qilmaydi va reyting tuzmaydi.",ru:"Эта страница не рекомендует ни один вуз и не составляет рейтингов."}
+  });
+}
+
+// ---- wiring ----
+$('ball').addEventListener('input',function(){
+  this.value=this.value.replace(/[^\d.]/g,'').replace(/(\..*)\./g,'$1');
+  renderOpts();save();
+});
+$('budget').addEventListener('input',function(){
+  var v=this.value.replace(/[^\d]/g,'');
+  this.value=v?fmt(parseInt(v,10)):'';
+  renderOpts();save();
+});
+for(var p=0;p<PRIS.length;p++){
+  (function(id){
+    var e=$(id);
+    if(!e)return;
+    e.addEventListener('change',function(){syncChips();renderOpts();save()});
+  })(PRIS[p]);
+}
+
+/* Guard FAQAT yaratishni o'tkazib yuborishi mumkin — hodisa bog'lash
+   har doim bajariladi. Kartochkalar HTML'da statik turadi. */
+var ds=document.querySelectorAll('details.opt');
+for(var q=0;q<ds.length;q++){
+  (function(el){
+    var id=el.getAttribute('data-opt');
+    el.addEventListener('toggle',function(){
+      if(el.open&&!seen[id]&&!booting){
+        seen[id]=1;
+        ga('talim_option_view',{option:id,page:'grant-ololmadim'});
+      }
+      if(!booting)save();
+    });
+    var c=el.querySelector('.odchk');
+    if(c)c.addEventListener('change',save);
+    var cb=el.querySelector('[data-ocalc]');
+    if(cb)cb.addEventListener('click',function(){
+      ga('talim_option_calc',{option:id,page:'grant-ololmadim',transport_type:'beacon'});
+    });
+  })(ds[q]);
+}
+
+$('leadBtn').addEventListener('click',function(){
+  ga('talim_lead_click',{page:'grant-ololmadim',transport_type:'beacon'});
+});
+
+$('shareBtn').onclick=function(){
+  var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+  var bb=this;
+  if(navigator.share){navigator.share({title:t('h1'),text:t('h1'),url:url}).catch(function(){})}
+  else if(navigator.clipboard){navigator.clipboard.writeText(t('h1')+String.fromCharCode(10)+url);bb.textContent=t('copied');setTimeout(function(){bb.textContent=t('btnShare')},1500)}
+};
+
+$('langUz').onclick=function(){lang='uz';applyLang()};
+$('langRu').onclick=function(){lang='ru';applyLang()};
+
+(function init(){
+  load();
+  applyLang();
+  setTimeout(function(){renderOpts()},350);
+  // Tiklash tugagach hodisalar yana yoqiladi (lang.js RU ni 360/900 ms da
+  // qo'llaydi, shuning uchun undan keyinroq).
+  setTimeout(function(){booting=false},1000);
+})();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">11.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+
+</script>
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text va date input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // ochilgan details bloklari
+      if(data.o){
+        for(var m=0;m<data.o.length;m++){
+          var dt=document.getElementById(data.o[m]);
+          if(dt){dt.open=true;restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],o:[]};
+    var inputs=document.querySelectorAll('input[type="text"],input[type="date"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg tugmalari (on class + data-seg atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-seg]');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0&&attrs[x].name!=='data-i'){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // ochilgan details bloklari
+    var dts=document.querySelectorAll('details[id]');
+    for(var d=0;d<dts.length;d++){if(dts[d].open)data.o.push(dts[d].id)}
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='EducationApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script></body></html>

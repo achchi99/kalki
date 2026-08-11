@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '6771dc53';   /* sw-version:auto */
+const SW_VERSION = 'cf2bee8f';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -44,6 +44,7 @@ const ASSETS = [
   '/dtm-kalkulyator',
   '/elektr-xarajat-kalkulyator',
   '/gisht-kalkulyator',
+  '/grant-ololmadim',
   '/hamkorlik',
   '/homiladorlik-kalkulyator',
   '/hujjatlar',
