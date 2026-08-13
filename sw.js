@@ -78,6 +78,7 @@ const ASSETS = [
   '/toy-byudjeti-2026',
   '/toy-kalkulyator',
   '/universitet-kontrakt-kalkulyator',
+  '/uy-oldi-sotdi-shartnomasi',
   '/uy-qurish-kalkulyator',
   '/xizmat-korsatish-shartnomasi-namunasi',
   '/yer-konvertor',
