@@ -404,5 +404,19 @@
     "hash": "97ce216496ba",
     "tpl": 1,
     "v": 1
+  },
+  "talabnoma-namunasi": {
+    "title": "Talabnoma namunasi",
+    "cat": "hujjat",
+    "hash": "4748c39007ea",
+    "tpl": 1,
+    "v": 1
+  },
+  "qurilish-pudrat-shartnomasi-namunasi": {
+    "title": "Qurilish pudrat shartnomasi namunasi",
+    "cat": "hujjat",
+    "hash": "3c50d0b42c9f",
+    "tpl": 1,
+    "v": 1
   }
 }
