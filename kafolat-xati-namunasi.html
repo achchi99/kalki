@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kafolat xati namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Mahsulot, xizmat yoki qurilish ishlariga kafolat xati. Kafolat muddati va qamrov jadvali jamisi avtomatik hisoblanadi, Word/PDF bepul.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/kafolat-xati-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+.dg-trow{display:grid;grid-template-columns:16px repeat(var(--dgc),1fr) 34px;align-items:center;gap:7px}
+.dg-thead{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase}
+.dg-th{padding:0 2px}
+.dg-table{display:flex;flex-direction:column;gap:7px}
+.dg-table input{border:1.5px solid var(--line);border-radius:8px;background:#FBFCFB;font:inherit;font-size:13px;padding:8px 8px;min-width:0}
+.dg-table input[data-narrow]{text-align:center}
+.dg-ladd{margin-top:2px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13px;font-weight:800;padding:9px;border-radius:9px;cursor:pointer;width:100%}
+.dg-ldel{flex:none;width:30px;height:30px;border:0;background:#FBEAE8;color:#B3261E;border-radius:8px;font-size:16px;cursor:pointer}
+.dg-lnum{font-size:12.5px;font-weight:700;color:var(--muted)}
+
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Kafolat xati namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Mahsulot, xizmat yoki qurilish ishlariga kafolat xati. Kafolat muddati va qamrov jadvali jamisi avtomatik hisoblanadi, Word/PDF bepul.">
+<meta property="og:url" content="https://kalki.uz/kafolat-xati-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/kafolat-xati-namunasi.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kafolat xati namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/kafolat-xati-namunasi.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Kafolat xati namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Mahsulot, xizmat yoki qurilish ishlariga kafolat xati. Kafolat muddati va qamrov jadvali jamisi avtomatik hisoblanadi, Word/PDF bepul.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Kafolat xati namunasi","item":"https://kalki.uz/kafolat-xati-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Kafolat xati namunasi","description":"Mahsulot, xizmat yoki qurilish ishlariga kafolat xati. Kafolat muddati va qamrov jadvali jamisi avtomatik hisoblanadi, Word/PDF bepul.","url":"https://kalki.uz/kafolat-xati-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kafolat xati nima uchun kerak?","acceptedAnswer":{"@type":"Answer","text":"Sotuvchi yoki pudratchining muayyan muddat davomida javobgarlikni o'z zimmasiga olganini yozma tasdiqlaydi va bepul tuzatish huquqini beradi."}},{"@type":"Question","name":"Kafolat qanday turlarga bo'linadi?","acceptedAnswer":{"@type":"Answer","text":"To'rtta: mahsulot, xizmat, qurilish-ta'mirlash va boshqa. Har biri uchun matn moslashadi."}},{"@type":"Question","name":"Kafolat muddati qancha bo'lishi kerak?","acceptedAnswer":{"@type":"Answer","text":"Qat'iy me'yor yo'q, mahsulot turiga qarab bir necha oydan bir necha yilgacha bo'lishi mumkin."}},{"@type":"Question","name":"Qamrov jadvali nima uchun kerak?","acceptedAnswer":{"@type":"Answer","text":"Kafolat bir nechta qismni qamrab olsa, ularni alohida ko'rsatish aniqlikni oshiradi, yig'indi avtomatik hisoblanadi."}},{"@type":"Question","name":"Kamchilik topilsa nima qilish kerak?","acceptedAnswer":{"@type":"Answer","text":"Kafolat beruvchiga murojaat qilinadi, kamchilik ko'rib chiqiladi va bartaraf etish muddati kelishiladi."}},{"@type":"Question","name":"Kafolat xati shartnoma o'rnini bosadimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q, u asosiy shartnomaga qo'shimcha hujjat hisoblanadi."}},{"@type":"Question","name":"Bu hujjatni kim beradi?","acceptedAnswer":{"@type":"Answer","text":"Sotuvchi, ishlab chiqaruvchi yoki xizmat/ish bajaruvchi tashkilot yoxud shaxs."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Kafolat xati namunasi</h1>
+    <p class="sub" data-i="sub">Mahsulot, xizmat yoki qurilish ishlariga kafolat xatini to'ldiring.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Kafolat xati namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Kafolat xati</b> — sotuvchi yoki pudratchi tomonidan mijozga beriladigan, mahsulot, xizmat yoki bajarilgan ishlarga kafolat muddatini tasdiqlovchi hujjat. Kafolat qamrov jadvali summasi avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Xat haqida</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="num"><label>Chiqish raqami</label><div class="dg-shell"><input type="text" data-f="num" value="" placeholder="9"></div></div><div class="dg-field dg-half" data-fw="city"><label>Shahar</label><div class="dg-shell"><input type="text" data-f="city" value="" placeholder="Toshkent"></div></div><div class="dg-field" data-fw="signDate"><label>Berilgan sana</label><div class="dg-shell"><input type="date" data-f="signDate" value="2026-08-15" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kafolat beruvchi</div><div class="dg-rows"><div class="dg-field" data-fw="issuerName"><label>Nomi (tashkilot yoki F.I.Sh.)</label><div class="dg-shell"><input type="text" data-f="issuerName" value="" placeholder="&quot;Kalki Servis&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="issuerAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="issuerAddr" value="" placeholder="Toshkent sh., Yakkasaroy t."></div></div><div class="dg-field dg-half" data-fw="issuerPhone"><label>Telefon</label><div class="dg-shell"><input type="text" data-f="issuerPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kafolat oluvchi</div><div class="dg-rows"><div class="dg-field" data-fw="recName"><label>Nomi (mijoz yoki F.I.Sh.)</label><div class="dg-shell"><input type="text" data-f="recName" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field" data-fw="recAddr"><label>Manzil (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="recAddr" value="" placeholder="Toshkent sh., Chilonzor t."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kafolat mavzusi</div><div class="dg-rows"><div class="dg-field" data-fw="mavzusi"><label>Kafolat nimaga beriladi</label><div class="dg-seg"><button type="button" data-seg="mavzusi" data-val="mahsulot" class="on">Mahsulot</button><button type="button" data-seg="mavzusi" data-val="xizmat">Xizmat</button><button type="button" data-seg="mavzusi" data-val="qurilish">Qurilish-ta'mirlash</button><button type="button" data-seg="mavzusi" data-val="boshqa">Boshqa</button></div></div><div class="dg-field" data-fw="mahsulotNomi"><label>Mahsulot nomi</label><div class="dg-shell"><input type="text" data-f="mahsulotNomi" value="" placeholder="Konditsioner LG 12000 BTU"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kafolat muddati</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="boshlanishSana"><label>Boshlanish sanasi</label><div class="dg-shell"><input type="date" data-f="boshlanishSana" value="2026-08-15" placeholder=""></div></div><div class="dg-field dg-half" data-fw="muddatOy"><label>Kafolat muddati</label><div class="dg-shell"><input type="text" data-f="muddatOy" value="" placeholder="12"><span class="dg-unit">oy</span></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qamrov jadvali (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="items"><label>Qamrov qatorlari</label><div class="dg-table" style="--dgc:2"><button type="button" class="dg-ladd" data-tadd="items">+ Qator qo'shish</button></div><div class="dg-hint">Narx ustuni ixtiyoriy — to'ldirilsa, jami summa avtomatik hisoblanadi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qo'shimcha shart (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="qamrovNote"><label>Kafolat nimalarni qamrab oladi (ixtiyoriy)</label><div class="dg-shell"><textarea data-f="qamrovNote" rows="2" placeholder="masalan: faqat zavod nuqsonlari, mexanik shikastlanish kirmaydi"></textarea></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Kafolat xatini ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Kafolat xati matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 4</span></div>
+        <div id="docBody"><div class="dg-title">KAFOLAT XATI</div><div class="dg-sub">№ <span class="ph">____</span>          «15» avgust 2026 yil, <span class="ph">______________</span></div><div class="dg-gap"></div><div class="dg-p"><span class="ph">__________________________</span> (keyingi o'rinlarda — «Kafolat beruvchi») ushbu xat bilan <span class="ph">__________________________</span>ga (keyingi o'rinlarda — «Kafolat oluvchi») "<span class="ph">________________________</span>" mahsulotiga kafolat berilishini tasdiqlaydi.</div><div class="dg-p">Kafolat muddati <span class="ph">______</span> oy etib belgilanadi.</div><div class="dg-p">Kafolat muddati davomida Kafolat beruvchi Kafolat oluvchining murojaatidan so'ng oqilona muddatda aniqlangan kamchiliklarni bepul bartaraf etish majburiyatini oladi.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>Kafolat beruvchi:</div><div><span class="ph">______________________</span></div><div>_______________ (imzo)</div></div><div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Berishdan oldin hujjatni yurist bilan tekshiring.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Muhim bitimlarda hujjatni yurist bilan tekshirib oling. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.</div>
+
+<section class="seo" id="seoBlock"><h2>Kafolat xati nima uchun kerak?</h2><p>Kafolat xati sotuvchi yoki pudratchining mahsulot, xizmat yoki bajarilgan ishlar bo'yicha muayyan muddat davomida javobgarlikni o'z zimmasiga olganini yozma tasdiqlaydi. Bu hujjat mijozga kafolat davrida aniqlangan kamchiliklarni bepul bartaraf etilishini talab qilish huquqini beradi.</p><h2>Kafolat qanday turlarga bo'linadi?</h2><p>Ushbu generatorda to'rtta yo'nalish mavjud: mahsulotga, xizmatga, qurilish-ta'mirlash ishlariga va boshqa turdagi kafolat. Har biri uchun tegishli maydonlar va matn avtomatik moslashadi.</p><h2>Kafolat muddati qancha bo'lishi kerak?</h2><p>Qat'iy umumiy me'yor yo'q, amaliyotda mahsulot turiga qarab bir necha oydan bir necha yilgacha bo'lishi mumkin. Ishlab chiqaruvchi yoki qonunchilik tomonidan belgilangan minimal kafolat muddati mavjud bo'lsa, undan kam muddat ko'rsatish tavsiya etilmaydi.</p><h2>Qamrov jadvali nima uchun kerak?</h2><p>Agar kafolat bir nechta qism yoki xizmat turini qamrab olsa, ularni alohida qatorlarda ko'rsatish aniqlikni oshiradi. Jadval qatorlari yig'indisi umumiy summani tashkil etadi va avtomatik hisoblanadi.</p><h2>Kafolat davrida kamchilik topilsa nima qilish kerak?</h2><p>Odatda mijoz kafolat beruvchiga yozma yoki og'zaki murojaat qiladi, kamchilik birgalikda ko'rib chiqiladi va bartaraf etish muddati kelishiladi. Bu tartib kafolat xatida oldindan belgilab qo'yilishi tavsiya etiladi.</p><h2>Kafolat xati shartnoma o'rnini bosadimi?</h2><p>Yo'q. Kafolat xati asosiy oldi-sotdi yoki xizmat shartnomasiga qo'shimcha hujjat hisoblanadi va uning bir qismi sifatida ko'rib chiqiladi. U asosiy shartnoma shartlarini bekor qilmaydi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Kafolat mavzusini tanlaysiz, kafolat beruvchi va oluvchi ma'lumotlarini kiritasiz — matn o'ng tarafda real vaqtda shakllanadi. Qamrov jadvali summasi avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Kafolat xati nima uchun kerak?</h2><p>Sotuvchi yoki pudratchining muayyan muddat davomida javobgarlikni o'z zimmasiga olganini yozma tasdiqlaydi va bepul tuzatish huquqini beradi.</p><h2>Kafolat qanday turlarga bo'linadi?</h2><p>To'rtta: mahsulot, xizmat, qurilish-ta'mirlash va boshqa. Har biri uchun matn moslashadi.</p><h2>Kafolat muddati qancha bo'lishi kerak?</h2><p>Qat'iy me'yor yo'q, mahsulot turiga qarab bir necha oydan bir necha yilgacha bo'lishi mumkin.</p><h2>Qamrov jadvali nima uchun kerak?</h2><p>Kafolat bir nechta qismni qamrab olsa, ularni alohida ko'rsatish aniqlikni oshiradi, yig'indi avtomatik hisoblanadi.</p><h2>Kamchilik topilsa nima qilish kerak?</h2><p>Kafolat beruvchiga murojaat qilinadi, kamchilik ko'rib chiqiladi va bartaraf etish muddati kelishiladi.</p><h2>Kafolat xati shartnoma o'rnini bosadimi?</h2><p>Yo'q, u asosiy shartnomaga qo'shimcha hujjat hisoblanadi.</p><h2>Bu hujjatni kim beradi?</h2><p>Sotuvchi, ishlab chiqaruvchi yoki xizmat/ish bajaruvchi tashkilot yoxud shaxs.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Boshqa hujjat namunalari" data-artt-ru="Другие образцы документов">Boshqa hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="xizmat-korsatish-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🤝</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Xizmat ko'rsatish shartnomasi" data-art-ru="Договор оказания услуг">Xizmat ko'rsatish shartnomasi</span><span style="font-size:17px;color:#1D4E6B;flex:none">→</span></a><a href="qurilish-pudrat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🏗️</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Qurilish pudrat shartnomasi" data-art-ru="Договор строительного подряда">Qurilish pudrat shartnomasi</span><span style="font-size:17px;color:#1D4E6B;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="xizmat-korsatish-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🤝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Xizmat ko'rsatish shartnomasi" data-rel-ru="Договор оказания услуг">Xizmat ko'rsatish shartnomasi</span></a><a href="qurilish-pudrat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🏗️</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Qurilish pudrat shartnomasi" data-rel-ru="Договор строительного подряда">Qurilish pudrat shartnomasi</span></a><a href="topshirish-qabul-dalolatnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📦</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Topshirish-qabul dalolatnomasi" data-rel-ru="Акт приёма-передачи">Topshirish-qabul dalolatnomasi</span></a><a href="talabnoma-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Talabnoma" data-rel-ru="Претензия">Talabnoma</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hujjat namunasi ma'lumot uchun. Kafolat shartlari fuqarolik qonunchiligiga zid bo'lmasligi kerak.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">15.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+function addMonths(dateStr,months){
+  var d=new Date(dateStr+'T00:00:00');
+  d.setMonth(d.getMonth()+months);
+  return iso(d);
+}
+
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Kafolat xati namunasi",
+  sub:"Mahsulot, xizmat yoki qurilish ishlariga kafolat xatini to'ldiring.",
+  intro:"<b>Kafolat xati</b> — sotuvchi yoki pudratchi tomonidan mijozga beriladigan, mahsulot, xizmat yoki bajarilgan ishlarga kafolat muddatini tasdiqlovchi hujjat. Kafolat qamrov jadvali summasi avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.",
+  prevTitle:"Kafolat xati matni",
+  jump:"Kafolat xatini ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Muhim bitimlarda hujjatni yurist bilan tekshirib oling. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.",
+  foot:"Hujjat namunasi ma'lumot uchun. Kafolat shartlari fuqarolik qonunchiligiga zid bo'lmasligi kerak.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Kafolat xati nima uchun kerak?</h2><p>Kafolat xati sotuvchi yoki pudratchining mahsulot, xizmat yoki bajarilgan ishlar bo'yicha muayyan muddat davomida javobgarlikni o'z zimmasiga olganini yozma tasdiqlaydi. Bu hujjat mijozga kafolat davrida aniqlangan kamchiliklarni bepul bartaraf etilishini talab qilish huquqini beradi.</p><h2>Kafolat qanday turlarga bo'linadi?</h2><p>Ushbu generatorda to'rtta yo'nalish mavjud: mahsulotga, xizmatga, qurilish-ta'mirlash ishlariga va boshqa turdagi kafolat. Har biri uchun tegishli maydonlar va matn avtomatik moslashadi.</p><h2>Kafolat muddati qancha bo'lishi kerak?</h2><p>Qat'iy umumiy me'yor yo'q, amaliyotda mahsulot turiga qarab bir necha oydan bir necha yilgacha bo'lishi mumkin. Ishlab chiqaruvchi yoki qonunchilik tomonidan belgilangan minimal kafolat muddati mavjud bo'lsa, undan kam muddat ko'rsatish tavsiya etilmaydi.</p><h2>Qamrov jadvali nima uchun kerak?</h2><p>Agar kafolat bir nechta qism yoki xizmat turini qamrab olsa, ularni alohida qatorlarda ko'rsatish aniqlikni oshiradi. Jadval qatorlari yig'indisi umumiy summani tashkil etadi va avtomatik hisoblanadi.</p><h2>Kafolat davrida kamchilik topilsa nima qilish kerak?</h2><p>Odatda mijoz kafolat beruvchiga yozma yoki og'zaki murojaat qiladi, kamchilik birgalikda ko'rib chiqiladi va bartaraf etish muddati kelishiladi. Bu tartib kafolat xatida oldindan belgilab qo'yilishi tavsiya etiladi.</p><h2>Kafolat xati shartnoma o'rnini bosadimi?</h2><p>Yo'q. Kafolat xati asosiy oldi-sotdi yoki xizmat shartnomasiga qo'shimcha hujjat hisoblanadi va uning bir qismi sifatida ko'rib chiqiladi. U asosiy shartnoma shartlarini bekor qilmaydi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Kafolat mavzusini tanlaysiz, kafolat beruvchi va oluvchi ma'lumotlarini kiritasiz — matn o'ng tarafda real vaqtda shakllanadi. Qamrov jadvali summasi avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец гарантийного письма",
+  sub:"Заполните гарантийное письмо на товар, услугу или строительные работы.",
+  intro:"<b>Гарантийное письмо</b> — документ, которым продавец или подрядчик подтверждает клиенту гарантийный срок на товар, услугу или выполненные работы. Сумма по графику гарантийного покрытия считается автоматически. Данные хранятся только в этом браузере.",
+  prevTitle:"Текст гарантийного письма",
+  jump:"Посмотреть письмо ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  warnTxt:"<b>Внимание.</b> Документ готовится как образец и не является юридической консультацией. При важных сделках проверьте документ с юристом. Kalki.uz не несёт ответственности за последствия использования документа.",
+  foot:"Образец документа носит справочный характер. Условия гарантии не должны противоречить гражданскому законодательству.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Зачем нужно гарантийное письмо?</h2><p>Гарантийное письмо письменно подтверждает, что продавец или подрядчик берёт на себя ответственность за товар, услугу или выполненные работы в течение определённого срока. Документ даёт клиенту право требовать бесплатного устранения выявленных в гарантийный период недостатков.</p><h2>На какие виды делится гарантия?</h2><p>В этом генераторе четыре направления: на товар, на услугу, на строительно-ремонтные работы и на прочее. Для каждого автоматически подстраиваются соответствующие поля и текст.</p><h2>Каким должен быть гарантийный срок?</h2><p>Строгой общей нормы нет, на практике срок варьируется от нескольких месяцев до нескольких лет в зависимости от вида товара. Если производителем или законодательством установлен минимальный гарантийный срок, указывать меньший срок не рекомендуется.</p><h2>Зачем нужен график покрытия?</h2><p>Если гарантия охватывает несколько частей или видов услуг, их указание отдельными строками повышает точность. Сумма по строкам графика формирует общий итог и считается автоматически.</p><h2>Что делать, если в гарантийный период обнаружен недостаток?</h2><p>Обычно клиент обращается к гаранту письменно или устно, недостаток рассматривается совместно, согласовывается срок устранения. Такой порядок рекомендуется заранее прописать в гарантийном письме.</p><h2>Заменяет ли гарантийное письмо договор?</h2><p>Нет. Гарантийное письмо — дополнительный документ к основному договору купли-продажи или оказания услуг и рассматривается как его часть. Оно не отменяет условия основного договора.</p><h2>Как работает генератор?</h2><p>Вы выбираете предмет гарантии, вводите данные гаранта и получателя — текст формируется справа в реальном времени. Сумма по графику покрытия считается автоматически. Готовый документ скачивается в Word (.docx) или PDF.</p>"
+ }
+};
+
+var FAQ={
+ uz:[
+  ["Kafolat xati nima uchun kerak?","Sotuvchi yoki pudratchining muayyan muddat davomida javobgarlikni o'z zimmasiga olganini yozma tasdiqlaydi va bepul tuzatish huquqini beradi."],
+  ["Kafolat qanday turlarga bo'linadi?","To'rtta: mahsulot, xizmat, qurilish-ta'mirlash va boshqa. Har biri uchun matn moslashadi."],
+  ["Kafolat muddati qancha bo'lishi kerak?","Qat'iy me'yor yo'q, mahsulot turiga qarab bir necha oydan bir necha yilgacha bo'lishi mumkin."],
+  ["Qamrov jadvali nima uchun kerak?","Kafolat bir nechta qismni qamrab olsa, ularni alohida ko'rsatish aniqlikni oshiradi, yig'indi avtomatik hisoblanadi."],
+  ["Kamchilik topilsa nima qilish kerak?","Kafolat beruvchiga murojaat qilinadi, kamchilik ko'rib chiqiladi va bartaraf etish muddati kelishiladi."],
+  ["Kafolat xati shartnoma o'rnini bosadimi?","Yo'q, u asosiy shartnomaga qo'shimcha hujjat hisoblanadi."],
+  ["Bu hujjatni kim beradi?","Sotuvchi, ishlab chiqaruvchi yoki xizmat/ish bajaruvchi tashkilot yoxud shaxs."]
+ ],
+ ru:[
+  ["Зачем нужно гарантийное письмо?","Письменно подтверждает ответственность продавца или подрядчика в течение срока и даёт право на бесплатное устранение недостатков."],
+  ["На какие виды делится гарантия?","Четыре: товар, услуга, строительно-ремонтные работы и прочее. Текст подстраивается под каждый вид."],
+  ["Каким должен быть гарантийный срок?","Строгой нормы нет, срок зависит от вида товара — от нескольких месяцев до нескольких лет."],
+  ["Зачем нужен график покрытия?","Если гарантия охватывает несколько частей, их отдельное указание повышает точность, сумма считается автоматически."],
+  ["Что делать при обнаружении недостатка?","Клиент обращается к гаранту, недостаток рассматривается совместно, согласовывается срок устранения."],
+  ["Заменяет ли письмо договор?","Нет, это дополнительный документ к основному договору."],
+  ["Кто выдаёт этот документ?","Продавец, производитель или организация/лицо, оказавшее услугу или выполнившее работу."]
+ ]
+};
+
+var isMahsulot=function(v){return (v.mavzusi||'mahsulot')==='mahsulot'};
+var isXizmat=function(v){return v.mavzusi==='xizmat'};
+var isQurilish=function(v){return v.mavzusi==='qurilish'};
+var isBoshqaMavzu=function(v){return v.mavzusi==='boshqa'};
+
+var CFG={
+ id:'kafolat',
+ file:'kafolat-xati',
+ blank:{uz:'shablonlar',ru:'shablonlar'},
+ sections:[
+  {id:'gen',title:{uz:'Xat haqida',ru:'О письме'},fields:[
+    {id:'num',t:'text',half:true,label:{uz:'Chiqish raqami',ru:'Исходящий номер'},ph:{uz:'9',ru:'9'}},
+    {id:'city',t:'text',half:true,label:{uz:'Shahar',ru:'Город'},ph:{uz:'Toshkent',ru:'Ташкент'}},
+    {id:'signDate',t:'date',def:today(),label:{uz:'Berilgan sana',ru:'Дата выдачи'}}
+  ]},
+  {id:'issuer',title:{uz:'Kafolat beruvchi',ru:'Гарант'},fields:[
+    {id:'issuerName',t:'text',label:{uz:'Nomi (tashkilot yoki F.I.Sh.)',ru:'Название (организация или Ф.И.О.)'},ph:{uz:'"Kalki Servis" MChJ',ru:'ООО "Kalki Servis"'}},
+    {id:'issuerAddr',t:'text',half:true,label:{uz:'Manzil',ru:'Адрес'},ph:{uz:'Toshkent sh., Yakkasaroy t.',ru:'г. Ташкент, Яккасарайский р-н'}},
+    {id:'issuerPhone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}}
+  ]},
+  {id:'rec',title:{uz:'Kafolat oluvchi',ru:'Получатель'},fields:[
+    {id:'recName',t:'text',label:{uz:'Nomi (mijoz yoki F.I.Sh.)',ru:'Название (клиент или Ф.И.О.)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:'recAddr',t:'text',label:{uz:'Manzil (ixtiyoriy)',ru:'Адрес (не обязательно)'},ph:{uz:'Toshkent sh., Chilonzor t.',ru:'г. Ташкент, Чиланзарский р-н'}}
+  ]},
+  {id:'subj',title:{uz:'Kafolat mavzusi',ru:'Предмет гарантии'},fields:[
+    {id:'mavzusi',t:'seg',def:'mahsulot',label:{uz:'Kafolat nimaga beriladi',ru:'На что даётся гарантия'},
+     opts:[{v:'mahsulot',label:{uz:'Mahsulot',ru:'Товар'}},{v:'xizmat',label:{uz:'Xizmat',ru:'Услуга'}},{v:'qurilish',label:{uz:'Qurilish-ta\'mirlash',ru:'Стройка/ремонт'}},{v:'boshqa',label:{uz:'Boshqa',ru:'Другое'}}]},
+    {id:'mahsulotNomi',t:'text',showIf:isMahsulot,label:{uz:'Mahsulot nomi',ru:'Наименование товара'},ph:{uz:'Konditsioner LG 12000 BTU',ru:'Кондиционер LG 12000 BTU'}},
+    {id:'xizmatNomi',t:'text',showIf:isXizmat,label:{uz:'Xizmat nomi',ru:'Наименование услуги'},ph:{uz:'Kompyuter tarmog\'ini o\'rnatish',ru:'Установка компьютерной сети'}},
+    {id:'obyektManzili',t:'text',showIf:isQurilish,label:{uz:"Ob'ekt manzili",ru:'Адрес объекта'},ph:{uz:'Toshkent sh., Sergeli t., 12-uy',ru:'г. Ташкент, Сергелийский р-н, д.12'}},
+    {id:'boshqaNote',t:'text',showIf:isBoshqaMavzu,label:{uz:'Tavsif',ru:'Описание'},ph:{uz:'masalan: mebel yig\'ish xizmati',ru:'например: услуга сборки мебели'}}
+  ]},
+  {id:'term',title:{uz:'Kafolat muddati',ru:'Гарантийный срок'},fields:[
+    {id:'boshlanishSana',t:'date',def:today(),half:true,label:{uz:'Boshlanish sanasi',ru:'Дата начала'}},
+    {id:'muddatOy',t:'text',half:true,unit:{uz:'oy',ru:'мес.'},label:{uz:'Kafolat muddati',ru:'Срок гарантии'},ph:{uz:'12',ru:'12'}}
+  ]},
+  {id:'cover',title:{uz:'Qamrov jadvali (ixtiyoriy)',ru:'График покрытия (не обязательно)'},fields:[
+    {id:'items',t:'table',label:{uz:'Qamrov qatorlari',ru:'Строки покрытия'},addLabel:{uz:"+ Qator qo'shish",ru:'+ Добавить строку'},
+     hint:{uz:'Narx ustuni ixtiyoriy — to\'ldirilsa, jami summa avtomatik hisoblanadi.',ru:'Графа суммы необязательна — при заполнении итог считается автоматически.'},
+     cols:[
+      {id:'nom',label:{uz:'Nomi',ru:'Наименование'},ph:{uz:'Kompressor',ru:'Компрессор'}},
+      {id:'summa',narrow:true,num:true,label:{uz:'Summa',ru:'Сумма'},ph:{uz:'500000',ru:'500000'}}
+     ]}
+  ]},
+  {id:'extra',title:{uz:"Qo'shimcha shart (ixtiyoriy)",ru:'Дополнительное условие (не обязательно)'},fields:[
+    {id:'qamrovNote',t:'area',rows:2,label:{uz:'Kafolat nimalarni qamrab oladi (ixtiyoriy)',ru:'Что покрывает гарантия (не обязательно)'},
+     ph:{uz:'masalan: faqat zavod nuqsonlari, mexanik shikastlanish kirmaydi',ru:'например: только заводской брак, механические повреждения не входят'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+  var rows=Array.isArray(v.items)?v.items.filter(function(r){return r&&typeof r==='object'&&String(r.nom||'').trim()}):[];
+  var sum=0,any=false;
+  for(var i=0;i<rows.length;i++){
+   var s=KD.num(rows[i].summa);
+   if(!s)continue;
+   sum+=s;
+   any=true;
+  }
+  var tugashSana='';
+  if(v.boshlanishSana&&KD.num(v.muddatOy)){
+   tugashSana=addMonths(v.boshlanishSana,KD.num(v.muddatOy));
+  }
+  return {rows:rows,sum:any?sum:0,hasSum:any,tugashSana:tugashSana};
+ },
+
+ doc:function(v,c,lang){
+  var ru=lang==='ru', B=KD.blank;
+
+  var subjText;
+  if(v.mavzusi==='xizmat'){
+   subjText={uz:'"'+KD.v(v.xizmatNomi,24)+'" xizmatiga',ru:'на услугу "'+KD.v(v.xizmatNomi,24)+'"'};
+  }else if(v.mavzusi==='qurilish'){
+   subjText={uz:KD.v(v.obyektManzili,28)+' manzilida bajarilgan qurilish-ta\'mirlash ishlariga',ru:'на строительно-ремонтные работы по адресу '+KD.v(v.obyektManzili,28)};
+  }else if(v.mavzusi==='boshqa'){
+   subjText={uz:KD.v(v.boshqaNote,26)+'ga',ru:'на '+KD.v(v.boshqaNote,26)};
+  }else{
+   subjText={uz:'"'+KD.v(v.mahsulotNomi,24)+'" mahsulotiga',ru:'на товар "'+KD.v(v.mahsulotNomi,24)+'"'};
+  }
+
+  var b=[];
+  b.push({k:'title',text:ru?'ГАРАНТИЙНОЕ ПИСЬМО':'KAFOLAT XATI'});
+  b.push({k:'sub',text:'№ '+KD.v(v.num,4)+'          '+(v.signDate?KD.fmtDate(v.signDate,lang):B(24))+', '+KD.v(v.city,14)});
+  b.push({k:'gap'});
+
+  b.push({k:'p',text:ru
+    ?KD.v(v.issuerName,26)+' (далее — «Гарант») настоящим письмом подтверждает предоставление гарантии '+KD.v(v.recName,26)+' (далее — «Получатель») '+subjText.ru+'.'
+    :KD.v(v.issuerName,26)+" (keyingi o'rinlarda — «Kafolat beruvchi») ushbu xat bilan "+KD.v(v.recName,26)+"ga (keyingi o'rinlarda — «Kafolat oluvchi») "+subjText.uz+" kafolat berilishini tasdiqlaydi."});
+
+  if(v.boshlanishSana&&v.muddatOy){
+   b.push({k:'p',text:ru
+     ?'Гарантийный срок составляет '+v.muddatOy+' мес., с '+KD.fmtDate(v.boshlanishSana,lang)+' по '+(c.tugashSana?KD.fmtDate(c.tugashSana,lang):B(20))+'.'
+     :'Kafolat muddati '+v.muddatOy+' oy etib, '+KD.fmtDate(v.boshlanishSana,lang)+' dan '+(c.tugashSana?KD.fmtDate(c.tugashSana,lang):B(20))+' gacha belgilanadi.'});
+  }else{
+   b.push({k:'p',text:ru
+     ?'Гарантийный срок составляет '+B(6)+' мес.'
+     :'Kafolat muddati '+B(6)+' oy etib belgilanadi.'});
+  }
+
+  if(c.rows.length){
+   b.push({k:'p',text:ru?'Гарантия распространяется на следующие позиции:':'Kafolat quyidagi qatorlarni qamrab oladi:'});
+   for(var ri=0;ri<c.rows.length;ri++){
+    var r=c.rows[ri];
+    var line=(ri+1)+'. '+KD.v(r.nom,26);
+    if(KD.num(r.summa))line+=' — '+KD.fmtNum(KD.num(r.summa))+' '+KD.currency(lang);
+    b.push({k:'p',text:line});
+   }
+   if(c.hasSum){
+    b.push({k:'p',text:ru?'Итого: '+KD.money(c.sum,lang)+'.':'Jami: '+KD.money(c.sum,lang)+'.'});
+   }
+  }
+
+  if(v.qamrovNote){
+   b.push({k:'p',text:ru
+     ?'Гарантийные условия: '+KD.v(v.qamrovNote,60)+'.'
+     :'Kafolat shartlari: '+KD.v(v.qamrovNote,60)+'.'});
+  }
+
+  b.push({k:'p',text:ru
+    ?'В течение гарантийного срока Гарант обязуется безвозмездно устранить выявленные недостатки в разумный срок после обращения Получателя.'
+    :'Kafolat muddati davomida Kafolat beruvchi Kafolat oluvchining murojaatidan so\'ng oqilona muddatda aniqlangan kamchiliklarni bepul bartaraf etish majburiyatini oladi.'});
+
+  b.push({k:'gap'});
+  b.push({k:'sig',
+    left:[(ru?'Гарант:':'Kafolat beruvchi:'),KD.v(v.issuerName,22),(v.issuerPhone?(ru?'тел.: ':'tel.: ')+v.issuerPhone:''),'_______________ '+(ru?'(подпись)':'(imzo)')].filter(Boolean),
+    right:[]});
+
+  b.push({k:'note',text:ru
+    ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Перед выдачей проверьте документ с юристом.'
+    :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Berishdan oldin hujjatni yurist bilan tekshiring."});
+  return b;
+ }
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Kafolat xati namunasi — onlayn to'ldirib, Word yuklab oling",
+    ru:"Образец гарантийного письма — заполнить онлайн"
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
