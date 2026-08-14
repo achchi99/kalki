@@ -247,6 +247,34 @@ function runTool(args) {
       bad.slice(0, 6).join(' | '));
   }
 
+  /* ---------- CTR: title/description uzunligi va noyobligi ----------
+     2026-08 CTR ishidan keyingi doimiy band. Google 50-65 belgidan
+     uzun title'ni "…" bilan kesadi, description 120-165 oralig'ida eng
+     yaxshi ko'rinadi. Takrorlanuvchi title/description ikkita sahifani
+     qidiruv natijasida bir-biridan ajratib bo'lmay qoladi — Google
+     ko'pincha ulardan birini indeksdan chetlab qo'yadi. index.html
+     brend bosh sahifa sifatida chegaradan ozroq chiqishi mumkin, shu
+     sabab uzunlik tekshiruvidan chetlanadi (lekin noyoblikka kiradi). */
+  {
+    const bad = [];
+    const titles = new Map(), descs = new Map();
+    for (const f of list) {
+      const html = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      const tm = html.match(/<title>([^<]*)<\/title>/);
+      const dm = html.match(/<meta name="description" content="([^"]*)"/);
+      if (!tm || !dm) { bad.push(f + ': title/description topilmadi'); continue; }
+      const t = tm[1], d = dm[1];
+      if (f !== 'index.html') {
+        if (t.length < 30 || t.length > 65) bad.push(f + ': title ' + t.length + ' belgi');
+        if (d.length < 120 || d.length > 165) bad.push(f + ': description ' + d.length + ' belgi');
+      }
+      if (titles.has(t)) bad.push(f + ': title takror (' + titles.get(t) + ' bilan)'); else titles.set(t, f);
+      if (descs.has(d)) bad.push(f + ': description takror (' + descs.get(d) + ' bilan)'); else descs.set(d, f);
+    }
+    add(!bad.length, '22. title/description uzunligi va noyobligi (' + list.length + ' sahifa)',
+      bad.slice(0, 8).join(' | '));
+  }
+
   /* ---------- 14. tools/ hech nima yozmadi ----------
      Yuqoridagi bandlarning HAMMASI shu oynada bajarildi: prerender,
      prerender-twice, sw-version, og-tags, og-images, check-partners,
@@ -254,7 +282,7 @@ function runTool(args) {
      bayroqsiz holda diskka tegsa — shu yerda ko'rinadi. */
   {
     const changed = fpDiff(fpBefore, fingerprint());
-    add(changed.length === 0, '21. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
+    add(changed.length === 0, '23. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
       changed.slice(0, 8).join(', '));
   }
 
