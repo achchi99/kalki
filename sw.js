@@ -71,6 +71,7 @@ const ASSETS = [
   '/remont-kalkulyator',
   '/shablonlar',
   '/shartlar',
+  '/staj-kalkulyator',
   '/tavsifnoma-namunasi',
   '/tilxat-namunasi',
   '/tom-kalkulyator',
