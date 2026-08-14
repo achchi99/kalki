@@ -425,5 +425,19 @@
     "hash": "6f2cd85895e5",
     "tpl": 1,
     "v": 1
+  },
+  "ish-haqi-malumotnomasi-namunasi": {
+    "title": "Ish haqi ma'lumotnomasi namunasi",
+    "cat": "hujjat",
+    "hash": "ead91105fa45",
+    "tpl": 1,
+    "v": 1
+  },
+  "kafolat-xati-namunasi": {
+    "title": "Kafolat xati namunasi",
+    "cat": "hujjat",
+    "hash": "05ca52483a67",
+    "tpl": 1,
+    "v": 1
   }
 }

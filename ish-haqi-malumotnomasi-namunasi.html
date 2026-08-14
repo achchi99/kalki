@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ish haqi ma'lumotnomasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Viza, bank krediti yoki sud uchun ish haqi ma'lumotnomasi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi, Word/PDF bepul.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/ish-haqi-malumotnomasi-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+.dg-trow{display:grid;grid-template-columns:16px repeat(var(--dgc),1fr) 34px;align-items:center;gap:7px}
+.dg-thead{font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase}
+.dg-th{padding:0 2px}
+.dg-table{display:flex;flex-direction:column;gap:7px}
+.dg-table input{border:1.5px solid var(--line);border-radius:8px;background:#FBFCFB;font:inherit;font-size:13px;padding:8px 8px;min-width:0}
+.dg-table input[data-narrow]{text-align:center}
+.dg-ladd{margin-top:2px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13px;font-weight:800;padding:9px;border-radius:9px;cursor:pointer;width:100%}
+.dg-ldel{flex:none;width:30px;height:30px;border:0;background:#FBEAE8;color:#B3261E;border-radius:8px;font-size:16px;cursor:pointer}
+.dg-lnum{font-size:12.5px;font-weight:700;color:var(--muted)}
+
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Ish haqi ma'lumotnomasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Viza, bank krediti yoki sud uchun ish haqi ma'lumotnomasi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi, Word/PDF bepul.">
+<meta property="og:url" content="https://kalki.uz/ish-haqi-malumotnomasi-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/ish-haqi-malumotnomasi-namunasi.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ish haqi ma'lumotnomasi namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/ish-haqi-malumotnomasi-namunasi.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Ish haqi ma'lumotnomasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Viza, bank krediti yoki sud uchun ish haqi ma'lumotnomasi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi, Word/PDF bepul.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Ish haqi ma'lumotnomasi namunasi","item":"https://kalki.uz/ish-haqi-malumotnomasi-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Ish haqi ma'lumotnomasi namunasi","description":"Viza, bank krediti yoki sud uchun ish haqi ma'lumotnomasi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi, Word/PDF bepul.","url":"https://kalki.uz/ish-haqi-malumotnomasi-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ish haqi ma'lumotnomasi nima uchun kerak?","acceptedAnswer":{"@type":"Answer","text":"Xodimning tashkilotda ishlashi, ish staji va daromadini rasmiy tasdiqlaydi. Viza, bank krediti yoki sud uchun talab qilinadi."}},{"@type":"Question","name":"Ma'lumotnoma qancha muddatga amal qiladi?","acceptedAnswer":{"@type":"Answer","text":"Qat'iy muddat belgilanmagan, lekin ko'pchilik tashkilot 30 kundan oshmagan ma'lumotnomani qabul qiladi."}},{"@type":"Question","name":"Ish staji qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Ishga kirgan sanadan bugungi kungacha yillar va oylarga bo'lib hisoblanadi."}},{"@type":"Question","name":"Necha oylik maosh ko'rsatiladi?","acceptedAnswer":{"@type":"Answer","text":"Odatda oxirgi 3-6 oylik o'rtacha maosh. Bu generatorda oxirgi 6 oy uchun qatorlar mavjud."}},{"@type":"Question","name":"Ma'lumotnomani kim imzolaydi?","acceptedAnswer":{"@type":"Answer","text":"Odatda rahbar va bosh buxgalter, tashkilot muhri bilan."}},{"@type":"Question","name":"Oylik o'zgaruvchan bo'lsa nima qilish kerak?","acceptedAnswer":{"@type":"Answer","text":"O'rtacha qiymat ko'rsatiladi, zarur bo'lsa qo'shimcha izoh qo'shiladi."}},{"@type":"Question","name":"Bu ariza mehnat daftarchasi o'rnini bosadimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q, ular alohida hujjatlar — mehnat daftarchasi asosiy manba hisoblanadi."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Ish haqi ma'lumotnomasi namunasi</h1>
+    <p class="sub" data-i="sub">Viza, bank krediti yoki sud uchun. Ish staji va o'rtacha oylik maosh avtomatik hisoblanadi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Ish haqi ma'lumotnomasi namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Ish haqi ma'lumotnomasi</b> — xodimning tashkilotda ishlashi, ish staji va oylik maoshini tasdiqlovchi hujjat. Viza rasmiylashtirish, bank krediti olish yoki sudga taqdim etish uchun ishlatiladi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Ma'lumotnoma haqida</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="num"><label>Chiqish raqami</label><div class="dg-shell"><input type="text" data-f="num" value="" placeholder="27"></div></div><div class="dg-field dg-half" data-fw="city"><label>Shahar</label><div class="dg-shell"><input type="text" data-f="city" value="" placeholder="Toshkent"></div></div><div class="dg-field" data-fw="signDate"><label>Berilgan sana</label><div class="dg-shell"><input type="date" data-f="signDate" value="2026-08-15" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Tashkilot</div><div class="dg-rows"><div class="dg-field" data-fw="orgName"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="orgName" value="" placeholder="&quot;Kalki Tex&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="orgStir"><label>STIR (INN)</label><div class="dg-shell"><input type="text" data-f="orgStir" value="" placeholder="123456789"></div></div><div class="dg-field dg-half" data-fw="orgAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="orgAddr" value="" placeholder="Toshkent sh., Mirzo Ulug'bek t."></div></div><div class="dg-field" data-fw="orgDir"><label>Rahbar F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="orgDir" value="" placeholder="Rahimov Shuhrat Anvarovich"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Xodim</div><div class="dg-rows"><div class="dg-field" data-fw="empFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="empFio" value="" placeholder="Yusupova Nodira Baxtiyorovna"></div></div><div class="dg-field dg-half" data-fw="empJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="empJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field dg-half" data-fw="lavozim"><label>Lavozim</label><div class="dg-shell"><input type="text" data-f="lavozim" value="" placeholder="Buxgalter"></div></div><div class="dg-field" data-fw="hireDate"><label>Ishga kirgan sana</label><div class="dg-shell"><input type="date" data-f="hireDate" value="" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Maqsad</div><div class="dg-rows"><div class="dg-field" data-fw="maqsad"><label>Ma'lumotnoma qayerga taqdim etiladi</label><div class="dg-shell"><select data-f="maqsad"><option value="viza" selected="">Viza rasmiylashtirish</option><option value="bank">Bank krediti</option><option value="sud">Sudga taqdim etish</option><option value="boshqa">Boshqa maqsad</option></select></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Oxirgi 6 oylik maosh</div><div class="dg-rows"><div class="dg-field" data-fw="rows"><label>Oylik summalar</label><div class="dg-table" style="--dgc:2"><div class="dg-trow dg-thead"><span class="dg-lnum"></span><span class="dg-th">Oy</span><span class="dg-th" data-narrow="1">Summa</span><span></span></div><div class="dg-trow"><span class="dg-lnum">1.</span><input type="text" data-tb="rows" data-idx="0" data-col="oy" value="mart 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="0" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="0" aria-label="O'chirish">×</button></div><div class="dg-trow"><span class="dg-lnum">2.</span><input type="text" data-tb="rows" data-idx="1" data-col="oy" value="aprel 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="1" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="1" aria-label="O'chirish">×</button></div><div class="dg-trow"><span class="dg-lnum">3.</span><input type="text" data-tb="rows" data-idx="2" data-col="oy" value="may 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="2" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="2" aria-label="O'chirish">×</button></div><div class="dg-trow"><span class="dg-lnum">4.</span><input type="text" data-tb="rows" data-idx="3" data-col="oy" value="iyun 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="3" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="3" aria-label="O'chirish">×</button></div><div class="dg-trow"><span class="dg-lnum">5.</span><input type="text" data-tb="rows" data-idx="4" data-col="oy" value="iyul 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="4" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="4" aria-label="O'chirish">×</button></div><div class="dg-trow"><span class="dg-lnum">6.</span><input type="text" data-tb="rows" data-idx="5" data-col="oy" value="avgust 2026" placeholder="avgust 2026" aria-label="Oy"><input type="text" data-tb="rows" data-idx="5" data-col="summa" data-narrow="1" inputmode="numeric" value="" placeholder="4500000" aria-label="Summa"><button type="button" class="dg-ldel" data-tdel="rows" data-idx="5" aria-label="O'chirish">×</button></div><button type="button" class="dg-ladd" data-tadd="rows">+ Qator qo'shish</button></div><div class="dg-hint">Summa kiritilmagan oy o'rtacha hisobiga kiritilmaydi.</div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Ma'lumotnomani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Ma'lumotnoma matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 5</span></div>
+        <div id="docBody"><div class="dg-title">MA'LUMOTNOMA</div><div class="dg-sub">№ <span class="ph">____</span>          «15» avgust 2026 yil, <span class="ph">______________</span></div><div class="dg-gap"></div><div class="dg-p">Ushbu ma'lumotnoma <span class="ph">__________________________</span>ga berildiki, u haqiqatan <span class="ph">__________________________</span>da <span class="ph">____________________</span> lavozimida ishlab kelmoqda.</div><div class="dg-p">Xodim tashkilotda <span class="ph">________________</span> sanadan buyon ishlab kelmoqda.</div><div class="dg-p">O'rtacha oylik ish haqi: <span class="ph">________________</span>.</div><div class="dg-p">Ma'lumotnoma viza rasmiylashtirish uchun berildi va talab qilingan joyga taqdim etish uchun amal qiladi.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>Rahbar:</div><div><span class="ph">______________________</span></div><div>_______________ (imzo)</div></div><div><div>Bosh buxgalter:</div><div>_______________ (imzo)</div><div>M.O'.</div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi. Rasmiy ma'lumotnoma tashkilot blankida, imzo va muhr bilan rasmiylashtiriladi.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Ma'lumotnomani rasmiy tashkilot blankida, rahbar va buxgalter imzosi hamda muhr bilan rasmiylashtiring. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.</div>
+
+<section class="seo" id="seoBlock"><h2>Ish haqi ma'lumotnomasi nima uchun kerak?</h2><p>Bu hujjat xodimning muayyan tashkilotda ishlayotganini, ish stajini va oylik daromadini rasmiy tasdiqlaydi. Ko'pincha viza rasmiylashtirish, bank krediti olish yoki sud jarayonida daromadni isbotlash uchun talab qilinadi.</p><h2>Ma'lumotnoma qancha muddatga amal qiladi?</h2><p>Qat'iy muddat qonunda belgilanmagan, lekin ko'pchilik tashkilotlar (banklar, elchixonalar) 30 kundan oshmagan ma'lumotnomani qabul qiladi. Talab qilingan joyning shartini oldindan aniqlashtirish tavsiya etiladi.</p><h2>Ish staji qanday hisoblanadi?</h2><p>Ishga kirgan sanadan bugungi kungacha bo'lgan davr yillar va oylarga bo'lib hisoblanadi. Agar xodim boshqa tashkilotlarda ham ishlagan bo'lsa, umumiy staj hisobida bu davrlar alohida hisobga olinishi mumkin — bu holatda mehnat daftarchasi asosiy manba hisoblanadi.</p><h2>Necha oylik maosh ko'rsatilishi kerak?</h2><p>Ko'pincha oxirgi 3-6 oylik o'rtacha oylik ish haqi talab qilinadi — bu maoshning barqarorligini ko'rsatadi. Ushbu generatorda oxirgi 6 oy uchun alohida qatorlar mavjud, o'rtacha qiymat avtomatik hisoblanadi.</p><h2>Ma'lumotnomani kim imzolaydi?</h2><p>Odatda tashkilot rahbari va bosh buxgalter (yoki kadrlar bo'limi mas'uli) imzolaydi, tashkilot muhri bosiladi. Elektron shaklda tayyorlangan hujjat qog'ozga chiqarilib, rasmiy imzo va muhr bilan tasdiqlanishi kerak.</p><h2>Agar oylik maosh o'zgaruvchan bo'lsa nima qilish kerak?</h2><p>Bunday holda o'rtacha qiymat ko'rsatiladi va, agar zarur bo'lsa, qo'shimcha izoh (masalan, bonus yoki mukofot mavjudligi) qo'shilishi mumkin. Talab qilingan tashkilotning aniq shartlarini oldindan so'rab olish tavsiya etiladi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Tashkilot va xodim ma'lumotlarini, ishga kirgan sanani va oxirgi 6 oylik maoshni kiritasiz — staj va o'rtacha maosh avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Ish haqi ma'lumotnomasi nima uchun kerak?</h2><p>Xodimning tashkilotda ishlashi, ish staji va daromadini rasmiy tasdiqlaydi. Viza, bank krediti yoki sud uchun talab qilinadi.</p><h2>Ma'lumotnoma qancha muddatga amal qiladi?</h2><p>Qat'iy muddat belgilanmagan, lekin ko'pchilik tashkilot 30 kundan oshmagan ma'lumotnomani qabul qiladi.</p><h2>Ish staji qanday hisoblanadi?</h2><p>Ishga kirgan sanadan bugungi kungacha yillar va oylarga bo'lib hisoblanadi.</p><h2>Necha oylik maosh ko'rsatiladi?</h2><p>Odatda oxirgi 3-6 oylik o'rtacha maosh. Bu generatorda oxirgi 6 oy uchun qatorlar mavjud.</p><h2>Ma'lumotnomani kim imzolaydi?</h2><p>Odatda rahbar va bosh buxgalter, tashkilot muhri bilan.</p><h2>Oylik o'zgaruvchan bo'lsa nima qilish kerak?</h2><p>O'rtacha qiymat ko'rsatiladi, zarur bo'lsa qo'shimcha izoh qo'shiladi.</p><h2>Bu ariza mehnat daftarchasi o'rnini bosadimi?</h2><p>Yo'q, ular alohida hujjatlar — mehnat daftarchasi asosiy manba hisoblanadi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Boshqa hujjat namunalari" data-artt-ru="Другие образцы документов">Boshqa hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📋</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat shartnomasi" data-art-ru="Трудовой договор">Mehnat shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="kadr-buyruqlari-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🗂️</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Kadr buyrug'i" data-art-ru="Кадровый приказ">Kadr buyrug'i</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="staj-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📅</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish staji kalkulyatori" data-rel-ru="Калькулятор стажа">Ish staji kalkulyatori</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💵</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oylik soliq kalkulyatori" data-rel-ru="Калькулятор налога с зарплаты">Oylik soliq kalkulyatori</span></a><a href="tavsifnoma-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Tavsifnoma" data-rel-ru="Характеристика">Tavsifnoma</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hujjat namunasi ma'lumot uchun. Rasmiy ma'lumotnoma tashkilot blankida, imzo va muhr bilan rasmiylashtirilishi kerak.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">15.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+
+var MON_UZ=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'];
+var MON_RU=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+function last6Months(){
+  var rows=[];
+  var d=new Date();
+  for(var i=5;i>=0;i--){
+   var m=new Date(d.getFullYear(),d.getMonth()-i,1);
+   rows.push({oy:MON_UZ[m.getMonth()]+' '+m.getFullYear(),summa:''});
+  }
+  return rows;
+}
+
+function stajText(hireDate,lang){
+  if(!hireDate)return null;
+  var h=new Date(hireDate+'T00:00:00');
+  var now=new Date();
+  if(h>now)return null;
+  var y=now.getFullYear()-h.getFullYear();
+  var m=now.getMonth()-h.getMonth();
+  if(now.getDate()<h.getDate()){m--;}
+  if(m<0){y--;m+=12;}
+  return {years:y,months:m};
+}
+
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Ish haqi ma'lumotnomasi namunasi",
+  sub:"Viza, bank krediti yoki sud uchun. Ish staji va o'rtacha oylik maosh avtomatik hisoblanadi.",
+  intro:"<b>Ish haqi ma'lumotnomasi</b> — xodimning tashkilotda ishlashi, ish staji va oylik maoshini tasdiqlovchi hujjat. Viza rasmiylashtirish, bank krediti olish yoki sudga taqdim etish uchun ishlatiladi. Ish staji va oxirgi 6 oylik o'rtacha maosh avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.",
+  prevTitle:"Ma'lumotnoma matni",
+  jump:"Ma'lumotnomani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Ma'lumotnomani rasmiy tashkilot blankida, rahbar va buxgalter imzosi hamda muhr bilan rasmiylashtiring. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.",
+  foot:"Hujjat namunasi ma'lumot uchun. Rasmiy ma'lumotnoma tashkilot blankida, imzo va muhr bilan rasmiylashtirilishi kerak.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Ish haqi ma'lumotnomasi nima uchun kerak?</h2><p>Bu hujjat xodimning muayyan tashkilotda ishlayotganini, ish stajini va oylik daromadini rasmiy tasdiqlaydi. Ko'pincha viza rasmiylashtirish, bank krediti olish yoki sud jarayonida daromadni isbotlash uchun talab qilinadi.</p><h2>Ma'lumotnoma qancha muddatga amal qiladi?</h2><p>Qat'iy muddat qonunda belgilanmagan, lekin ko'pchilik tashkilotlar (banklar, elchixonalar) 30 kundan oshmagan ma'lumotnomani qabul qiladi. Talab qilingan joyning shartini oldindan aniqlashtirish tavsiya etiladi.</p><h2>Ish staji qanday hisoblanadi?</h2><p>Ishga kirgan sanadan bugungi kungacha bo'lgan davr yillar va oylarga bo'lib hisoblanadi. Agar xodim boshqa tashkilotlarda ham ishlagan bo'lsa, umumiy staj hisobida bu davrlar alohida hisobga olinishi mumkin — bu holatda mehnat daftarchasi asosiy manba hisoblanadi.</p><h2>Necha oylik maosh ko'rsatilishi kerak?</h2><p>Ko'pincha oxirgi 3-6 oylik o'rtacha oylik ish haqi talab qilinadi — bu maoshning barqarorligini ko'rsatadi. Ushbu generatorda oxirgi 6 oy uchun alohida qatorlar mavjud, o'rtacha qiymat avtomatik hisoblanadi.</p><h2>Ma'lumotnomani kim imzolaydi?</h2><p>Odatda tashkilot rahbari va bosh buxgalter (yoki kadrlar bo'limi mas'uli) imzolaydi, tashkilot muhri bosiladi. Elektron shaklda tayyorlangan hujjat qog'ozga chiqarilib, rasmiy imzo va muhr bilan tasdiqlanishi kerak.</p><h2>Agar oylik maosh o'zgaruvchan bo'lsa nima qilish kerak?</h2><p>Bunday holda o'rtacha qiymat ko'rsatiladi va, agar zarur bo'lsa, qo'shimcha izoh (masalan, bonus yoki mukofot mavjudligi) qo'shilishi mumkin. Talab qilingan tashkilotning aniq shartlarini oldindan so'rab olish tavsiya etiladi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Tashkilot va xodim ma'lumotlarini, ishga kirgan sanani va oxirgi 6 oylik maoshni kiritasiz — staj va o'rtacha maosh avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец справки о заработной плате",
+  sub:"Для визы, банковского кредита или суда. Стаж и средняя зарплата считаются автоматически.",
+  intro:"<b>Справка о заработной плате</b> — документ, подтверждающий трудоустройство, стаж и оклад работника. Используется для оформления визы, получения банковского кредита или предоставления в суд. Стаж и средняя зарплата за последние 6 месяцев считаются автоматически. Данные хранятся только в этом браузере.",
+  prevTitle:"Текст справки",
+  jump:"Посмотреть справку ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  warnTxt:"<b>Внимание.</b> Документ готовится как образец и не является юридической консультацией. Оформляйте справку на официальном бланке организации с подписью руководителя, бухгалтера и печатью. Kalki.uz не несёт ответственности за последствия использования документа.",
+  foot:"Образец документа носит справочный характер. Официальная справка оформляется на бланке организации с подписью и печатью.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Зачем нужна справка о заработной плате?</h2><p>Документ официально подтверждает трудоустройство, стаж и доход работника в конкретной организации. Часто требуется для оформления визы, получения банковского кредита или подтверждения дохода в суде.</p><h2>Сколько действует справка?</h2><p>Строгий срок законом не установлен, но большинство организаций (банки, посольства) принимают справку не старше 30 дней. Рекомендуется заранее уточнить требование той организации, куда справка предоставляется.</p><h2>Как считается стаж?</h2><p>Период от даты приёма на работу до сегодняшнего дня переводится в годы и месяцы. Если работник трудился и в других организациях, эти периоды могут учитываться отдельно в общем стаже — в этом случае основным источником служит трудовая книжка.</p><h2>За сколько месяцев указывается зарплата?</h2><p>Чаще всего требуется средняя зарплата за последние 3-6 месяцев — это показывает стабильность дохода. В этом генераторе есть отдельные строки для последних 6 месяцев, среднее значение считается автоматически.</p><h2>Кто подписывает справку?</h2><p>Обычно руководитель организации и главный бухгалтер (или ответственный за кадры), ставится печать организации. Документ, подготовленный в электронном виде, нужно распечатать и заверить официальной подписью и печатью.</p><h2>Что делать, если зарплата непостоянна?</h2><p>В таком случае указывается среднее значение и, при необходимости, добавляется пояснение (например, о наличии премий). Рекомендуется заранее уточнить точные требования запрашивающей организации.</p><h2>Как работает генератор?</h2><p>Вы вводите данные организации и работника, дату приёма на работу и зарплату за последние 6 месяцев — стаж и средний доход считаются автоматически. Готовый документ скачивается в Word (.docx) или PDF.</p>"
+ }
+};
+
+var FAQ={
+ uz:[
+  ["Ish haqi ma'lumotnomasi nima uchun kerak?","Xodimning tashkilotda ishlashi, ish staji va daromadini rasmiy tasdiqlaydi. Viza, bank krediti yoki sud uchun talab qilinadi."],
+  ["Ma'lumotnoma qancha muddatga amal qiladi?","Qat'iy muddat belgilanmagan, lekin ko'pchilik tashkilot 30 kundan oshmagan ma'lumotnomani qabul qiladi."],
+  ["Ish staji qanday hisoblanadi?","Ishga kirgan sanadan bugungi kungacha yillar va oylarga bo'lib hisoblanadi."],
+  ["Necha oylik maosh ko'rsatiladi?","Odatda oxirgi 3-6 oylik o'rtacha maosh. Bu generatorda oxirgi 6 oy uchun qatorlar mavjud."],
+  ["Ma'lumotnomani kim imzolaydi?","Odatda rahbar va bosh buxgalter, tashkilot muhri bilan."],
+  ["Oylik o'zgaruvchan bo'lsa nima qilish kerak?","O'rtacha qiymat ko'rsatiladi, zarur bo'lsa qo'shimcha izoh qo'shiladi."],
+  ["Bu ariza mehnat daftarchasi o'rnini bosadimi?","Yo'q, ular alohida hujjatlar — mehnat daftarchasi asosiy manba hisoblanadi."]
+ ],
+ ru:[
+  ["Зачем нужна справка о зарплате?","Официально подтверждает трудоустройство, стаж и доход. Требуется для визы, кредита или суда."],
+  ["Сколько действует справка?","Строгий срок не установлен, но обычно принимают справку не старше 30 дней."],
+  ["Как считается стаж?","От даты приёма на работу до сегодняшнего дня, в годах и месяцах."],
+  ["За сколько месяцев указывается зарплата?","Обычно за последние 3-6 месяцев. В генераторе есть строки для последних 6 месяцев."],
+  ["Кто подписывает справку?","Обычно руководитель и главный бухгалтер, с печатью организации."],
+  ["Что если зарплата непостоянна?","Указывается среднее значение, при необходимости добавляется пояснение."],
+  ["Заменяет ли справка трудовую книжку?","Нет, это отдельные документы — трудовая книжка остаётся основным источником."]
+ ]
+};
+
+var showMaqsadNote=function(v){return v.maqsad==='boshqa'};
+
+var CFG={
+ id:'malumotnoma',
+ file:'ish-haqi-malumotnomasi',
+ blank:{uz:'shablonlar',ru:'shablonlar'},
+ sections:[
+  {id:'gen',title:{uz:'Ma\'lumotnoma haqida',ru:'О справке'},fields:[
+    {id:'num',t:'text',half:true,label:{uz:'Chiqish raqami',ru:'Исходящий номер'},ph:{uz:'27',ru:'27'}},
+    {id:'city',t:'text',half:true,label:{uz:'Shahar',ru:'Город'},ph:{uz:'Toshkent',ru:'Ташкент'}},
+    {id:'signDate',t:'date',def:today(),label:{uz:'Berilgan sana',ru:'Дата выдачи'}}
+  ]},
+  {id:'org',title:{uz:'Tashkilot',ru:'Организация'},fields:[
+    {id:'orgName',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Kalki Tex" MChJ',ru:'ООО "Kalki Tex"'}},
+    {id:'orgStir',t:'text',half:true,label:{uz:'STIR (INN)',ru:'ИНН'},ph:{uz:'123456789',ru:'123456789'}},
+    {id:'orgAddr',t:'text',half:true,label:{uz:'Manzil',ru:'Адрес'},ph:{uz:'Toshkent sh., Mirzo Ulug\'bek t.',ru:'г. Ташкент, Мирзо-Улугбекский р-н'}},
+    {id:'orgDir',t:'text',label:{uz:'Rahbar F.I.Sh.',ru:'Ф.И.О. руководителя'},ph:{uz:'Rahimov Shuhrat Anvarovich',ru:'Рахимов Шухрат Анварович'}}
+  ]},
+  {id:'emp',title:{uz:'Xodim',ru:'Работник'},fields:[
+    {id:'empFio',t:'text',label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Yusupova Nodira Baxtiyorovna',ru:'Юсупова Нодира Бахтияровна'}},
+    {id:'empJshshir',t:'text',half:true,label:{uz:'JSHSHIR',ru:'ПИНФЛ'},ph:{uz:'14 raqam',ru:'14 цифр'}},
+    {id:'lavozim',t:'text',half:true,label:{uz:'Lavozim',ru:'Должность'},ph:{uz:'Buxgalter',ru:'Бухгалтер'}},
+    {id:'hireDate',t:'date',label:{uz:'Ishga kirgan sana',ru:'Дата приёма на работу'}}
+  ]},
+  {id:'purpose',title:{uz:'Maqsad',ru:'Цель'},fields:[
+    {id:'maqsad',t:'sel',def:'viza',label:{uz:'Ma\'lumotnoma qayerga taqdim etiladi',ru:'Куда предоставляется справка'},
+     opts:[{v:'viza',label:{uz:'Viza rasmiylashtirish',ru:'Оформление визы'}},{v:'bank',label:{uz:'Bank krediti',ru:'Банковский кредит'}},{v:'sud',label:{uz:'Sudga taqdim etish',ru:'Предоставление в суд'}},{v:'boshqa',label:{uz:'Boshqa maqsad',ru:'Другая цель'}}]},
+    {id:'maqsadNote',t:'text',showIf:showMaqsadNote,label:{uz:'Maqsadni ko\'rsating',ru:'Укажите цель'},ph:{uz:'masalan: ijara shartnomasi uchun',ru:'например: для договора аренды'}}
+  ]},
+  {id:'salary',title:{uz:'Oxirgi 6 oylik maosh',ru:'Зарплата за последние 6 месяцев'},fields:[
+    {id:'rows',t:'table',def:last6Months(),label:{uz:'Oylik summalar',ru:'Суммы по месяцам'},
+     hint:{uz:'Summa kiritilmagan oy o\'rtacha hisobiga kiritilmaydi.',ru:'Месяц без суммы не учитывается в среднем.'},
+     cols:[
+      {id:'oy',label:{uz:'Oy',ru:'Месяц'},ph:{uz:'avgust 2026',ru:'август 2026'}},
+      {id:'summa',narrow:true,num:true,label:{uz:'Summa',ru:'Сумма'},ph:{uz:'4500000',ru:'4500000'}}
+     ]}
+  ]}
+ ],
+
+ compute:function(v,lang){
+  var staj=stajText(v.hireDate,lang);
+  var rows=Array.isArray(v.rows)?v.rows:[];
+  var sum=0,cnt=0;
+  for(var i=0;i<rows.length;i++){
+   var s=KD.num(rows[i]&&rows[i].summa);
+   if(s>0){sum+=s;cnt++;}
+  }
+  var avg=cnt?Math.round(sum/cnt):0;
+  return {staj:staj,avg:avg,cnt:cnt};
+ },
+
+ doc:function(v,c,lang){
+  var ru=lang==='ru', B=KD.blank;
+
+  var b=[];
+  b.push({k:'title',text:ru?'СПРАВКА':"MA'LUMOTNOMA"});
+  b.push({k:'sub',text:'№ '+KD.v(v.num,4)+'          '+(v.signDate?KD.fmtDate(v.signDate,lang):B(24))+', '+KD.v(v.city,14)});
+  b.push({k:'gap'});
+
+  b.push({k:'p',text:ru
+    ?'Настоящая справка выдана '+KD.v(v.empFio,26)+' в том, что она (он) действительно работает в '+KD.v(v.orgName,26)+' в должности '+KD.v(v.lavozim,20)+'.'
+    :"Ushbu ma'lumotnoma "+KD.v(v.empFio,26)+"ga berildiki, u haqiqatan "+KD.v(v.orgName,26)+"da "+KD.v(v.lavozim,20)+" lavozimida ishlab kelmoqda."});
+
+  if(v.hireDate){
+   var stajStr;
+   if(c.staj){
+    stajStr=ru
+      ?(c.staj.years+' лет '+c.staj.months+' мес.')
+      :(c.staj.years+' yil '+c.staj.months+' oy');
+   }else{
+    stajStr=B(10);
+   }
+   b.push({k:'p',text:ru
+     ?'Работник трудится в организации с '+KD.fmtDate(v.hireDate,lang)+', общий стаж работы в организации составляет '+stajStr+'.'
+     :'Xodim tashkilotda '+KD.fmtDate(v.hireDate,lang)+' sanadan buyon ishlab kelmoqda, tashkilotdagi umumiy ish staji '+stajStr+'ni tashkil etadi.'});
+  }else{
+   b.push({k:'p',text:ru
+     ?'Работник трудится в организации с '+B(16)+'.'
+     :'Xodim tashkilotda '+B(16)+' sanadan buyon ishlab kelmoqda.'});
+  }
+
+  if(c.cnt>0){
+   b.push({k:'p',text:ru
+     ?'Средняя заработная плата за последние '+c.cnt+' мес. составляет '+KD.money(c.avg,lang)+'.'
+     :'Oxirgi '+c.cnt+' oylik o\'rtacha oylik ish haqi '+KD.money(c.avg,lang)+'ni tashkil etadi.'});
+  }else{
+   b.push({k:'p',text:ru
+     ?'Средняя заработная плата: '+B(16)+'.'
+     :'O\'rtacha oylik ish haqi: '+B(16)+'.'});
+  }
+
+  var maqsadText={
+   viza:{uz:'viza rasmiylashtirish',ru:'оформления визы'},
+   bank:{uz:'bank krediti olish',ru:'получения банковского кредита'},
+   sud:{uz:'sudga taqdim etish',ru:'предоставления в суд'},
+   boshqa:{uz:KD.v(v.maqsadNote,20),ru:KD.v(v.maqsadNote,20)}
+  };
+  var mt=maqsadText[v.maqsad]||maqsadText.viza;
+  b.push({k:'p',text:ru
+    ?'Справка выдана для '+mt.ru+' и действительна при предъявлении по месту требования.'
+    :"Ma'lumotnoma "+mt.uz+" uchun berildi va talab qilingan joyga taqdim etish uchun amal qiladi."});
+
+  b.push({k:'gap'});
+  b.push({k:'sig',
+    left:[(ru?'Руководитель:':'Rahbar:'),KD.v(v.orgDir,22),'_______________ '+(ru?'(подпись)':'(imzo)')],
+    right:[(ru?'Главный бухгалтер:':'Bosh buxgalter:'),'_______________ '+(ru?'(подпись)':'(imzo)'),(ru?'М.П.':'M.O\'.')]});
+
+  b.push({k:'note',text:ru
+    ?'Документ подготовлен на Kalki.uz как общий образец. Официальная справка оформляется на бланке организации, с подписью и печатью.'
+    :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi. Rasmiy ma'lumotnoma tashkilot blankida, imzo va muhr bilan rasmiylashtiriladi."});
+  return b;
+ }
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Ish haqi ma'lumotnomasi — onlayn to'ldirib, Word yuklab oling",
+    ru:"Образец справки о заработной плате — заполнить онлайн"
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
