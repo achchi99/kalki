@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kadr buyrug'i namunasi — onlayn to'ldirib, Word yuklab oling</title>
+<meta name="description" content="Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring. Sinov muddati avtomatik hisoblanadi, Word/PDF bepul.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/kadr-buyruqlari-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Kadr buyrug'i namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:description" content="Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring. Sinov muddati avtomatik hisoblanadi, Word/PDF bepul.">
+<meta property="og:url" content="https://kalki.uz/kadr-buyruqlari-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/kadr-buyruqlari-namunasi.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kadr buyrug'i namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/kadr-buyruqlari-namunasi.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Kadr buyrug'i namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:description" content="Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring. Sinov muddati avtomatik hisoblanadi, Word/PDF bepul.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Kadr buyrug'i namunasi","item":"https://kalki.uz/kadr-buyruqlari-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Kadr buyrug'i namunasi","description":"Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring. Sinov muddati avtomatik hisoblanadi, Word/PDF bepul.","url":"https://kalki.uz/kadr-buyruqlari-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kadr buyrug'i nima uchun kerak?","acceptedAnswer":{"@type":"Answer","text":"Xodimning huquqiy holatidagi o'zgarishni (qabul, bo'shatish, o'tkazish) rasmiylashtiradigan ichki hujjat. Kadrlar hisobi va mehnat daftarchasiga yozuv uchun asos bo'ladi."}},{"@type":"Question","name":"Nechta buyruq turi mavjud?","acceptedAnswer":{"@type":"Answer","text":"Uchta: ishga qabul qilish, ishdan bo'shatish va lavozimga o'tkazish. Turni tanlaganda tashkilot va xodim ma'lumotlari saqlanib qoladi."}},{"@type":"Question","name":"Sinov muddati qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Boshlanish sanasidan tanlangan oy sonicha, tugash sanasi avtomatik ko'rsatiladi. Odatda 3 oydan oshmaydi."}},{"@type":"Question","name":"Ishdan bo'shatish qanday asoslarga ko'ra bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Eng ko'p uchraydigani: o'z xohishi, tomonlar kelishuvi yoki shartnoma muddati tugashi. Har biri uchun tegishli asos ko'rsatiladi."}},{"@type":"Question","name":"Lavozimga o'tkazish uchun rozilik kerakmi?","acceptedAnswer":{"@type":"Answer","text":"Ha, odatda doimiy o'tkazish xodimning yozma roziligisiz amalga oshirilmaydi."}},{"@type":"Question","name":"Buyruq mehnat daftarchasi o'rnini bosadimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q, u faqat asos hujjat. Daftarchaga yozuv alohida amalga oshiriladi."}},{"@type":"Question","name":"Buyruqni kim imzolaydi?","acceptedAnswer":{"@type":"Answer","text":"Odatda tashkilot rahbari (direktor) yoki unga vakolat berilgan shaxs."}}]}</script></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Kadr buyrug'i namunasi</h1>
+    <p class="sub" data-i="sub">Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Kadr buyrug'i namunasi</span></nav></div>
+
+<main class="wrap">
+  <div class="intro" data-i-html="intro"><b>Kadr buyrug'i</b> — xodimni ishga qabul qilish, ishdan bo'shatish yoki boshqa lavozimga o'tkazish to'g'risidagi buyuq. Yuqoridagi tugmalardan buyruq turini tanlang. Sinov muddati tugash sanasi avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Buyruq turi</div><div class="dg-rows"><div class="dg-field" data-fw="buyruqType"><label>Buyruq turini tanlang</label><div class="dg-seg"><button type="button" data-seg="buyruqType" data-val="qabul" class="on">Ishga qabul</button><button type="button" data-seg="buyruqType" data-val="botash">Ishdan bo'shatish</button><button type="button" data-seg="buyruqType" data-val="otkazish">Lavozimga o'tkazish</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Buyruq haqida</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="num"><label>Buyruq raqami</label><div class="dg-shell"><input type="text" data-f="num" value="" placeholder="14-k"></div></div><div class="dg-field dg-half" data-fw="city"><label>Shahar</label><div class="dg-shell"><input type="text" data-f="city" value="" placeholder="Toshkent"></div></div><div class="dg-field" data-fw="signDate"><label>Buyruq sanasi</label><div class="dg-shell"><input type="date" data-f="signDate" value="2026-08-15" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Tashkilot</div><div class="dg-rows"><div class="dg-field" data-fw="orgName"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="orgName" value="" placeholder="&quot;Kalki Tex&quot; MChJ"></div></div><div class="dg-field" data-fw="orgDir"><label>Rahbar F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="orgDir" value="" placeholder="Rahimov Shuhrat Anvarovich"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Xodim</div><div class="dg-rows"><div class="dg-field" data-fw="empFio"><label>F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="empFio" value="" placeholder="Yusupova Nodira Baxtiyorovna"></div></div><div class="dg-field dg-half" data-fw="empJshshir"><label>JSHSHIR</label><div class="dg-shell"><input type="text" data-f="empJshshir" value="" placeholder="14 raqam"></div></div><div class="dg-field dg-half" data-fw="empAddr"><label>Manzil</label><div class="dg-shell"><input type="text" data-f="empAddr" value="" placeholder="Toshkent sh., Yunusobod t."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ishga qabul tafsilotlari</div><div class="dg-rows"><div class="dg-field" data-fw="lavozim"><label>Lavozim</label><div class="dg-shell"><input type="text" data-f="lavozim" value="" placeholder="Buxgalter"></div></div><div class="dg-field dg-half" data-fw="bolim"><label>Bo'lim (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="bolim" value="" placeholder="Moliya bo'limi"></div></div><div class="dg-field dg-half" data-fw="startDate"><label>Ishga kirish sanasi</label><div class="dg-shell"><input type="date" data-f="startDate" value="" placeholder=""></div></div><div class="dg-field dg-half" data-fw="maosh"><label>Oylik ish haqi (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="maosh" value="" placeholder="4500000"><span class="dg-unit">so'm</span></div></div><div class="dg-field dg-half" data-fw="sinov"><label>Sinov muddati</label><div class="dg-shell"><select data-f="sinov"><option value="yoq" selected="">Belgilanmaydi</option><option value="1">1 oy</option><option value="2">2 oy</option><option value="3">3 oy</option></select></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Bo'shatish tafsilotlari</div><div class="dg-rows"><div class="dg-field" data-fw="botashLavozim"><label>Lavozim</label><div class="dg-shell"><input type="text" data-f="botashLavozim" value="" placeholder="Buxgalter"></div></div><div class="dg-field dg-half" data-fw="oxirgiKun"><label>Oxirgi ish kuni</label><div class="dg-shell"><input type="date" data-f="oxirgiKun" value="" placeholder=""></div></div><div class="dg-field dg-half" data-fw="asos"><label>Bo'shatish asosi</label><div class="dg-shell"><select data-f="asos"><option value="oz-xohishi" selected="">O'z xohishi</option><option value="kelishuv">Tomonlar kelishuvi</option><option value="muddat">Shartnoma muddati tugashi</option><option value="boshqa">Boshqa asos</option></select></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">O'tkazish tafsilotlari</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="eskiLavozim"><label>Eski lavozim</label><div class="dg-shell"><input type="text" data-f="eskiLavozim" value="" placeholder="Kassir"></div></div><div class="dg-field dg-half" data-fw="yangiLavozim"><label>Yangi lavozim</label><div class="dg-shell"><input type="text" data-f="yangiLavozim" value="" placeholder="Katta kassir"></div></div><div class="dg-field" data-fw="otkazishSana"><label>O'tkazish sanasi</label><div class="dg-shell"><input type="date" data-f="otkazishSana" value="" placeholder=""></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Buyruqni ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Buyruq matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 5</span></div>
+        <div id="docBody"><div class="dg-title">BUYRUQ — ISHGA QABUL QILISH TO'G'RISIDA</div><div class="dg-sub"><span class="ph">__________________________</span></div><div class="dg-sub">№ <span class="ph">______</span>          «15» avgust 2026 yil, <span class="ph">______________</span></div><div class="dg-gap"></div><div class="dg-p">1. <span class="ph">__________________________</span> <span class="ph">____________________</span> sanadan <span class="ph">______________________</span> lavozimiga ishga qabul qilinsin.</div><div class="dg-p">4. Asos: mehnat shartnomasi va xodimning arizasi.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>Rahbar:</div><div><span class="ph">______________________</span></div><div>_______________ (imzo)</div></div><div><div>Buyruq bilan tanishdim:</div><div><span class="ph">______________________</span></div><div>_______________ (imzo)</div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Kadrlar bo'yicha rasmiylashtirishda mehnat qonunchiligiga amal qiling.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Kadrlar bo'yicha rasmiylashtirishda mehnat qonunchiligiga va ichki tartib qoidalarga rioya qiling. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.</div>
+
+<section class="seo" id="seoBlock"><h2>Kadr buyrug'i nima uchun kerak?</h2><p>Kadr buyrug'i — ish beruvchi tomonidan chiqariladigan, xodimning huquqiy holatidagi o'zgarishni (ishga qabul, ishdan bo'shatish, lavozim o'zgarishi) rasmiylashtiradigan ichki hujjat. U mehnat shartnomasi yoki xodim arizasi asosida chiqariladi va kadrlar hisobi hamda mehnat daftarchasiga yozuv kiritish uchun asos bo'ladi.</p><h2>Ushbu generatorda nechta buyruq turi bor?</h2><p>Uchta: ishga qabul qilish, ishdan bo'shatish va boshqa lavozimga o'tkazish. Yuqoridagi tugmalar orqali turni tanlaysiz — tashkilot va xodim ma'lumotlari saqlanib qoladi, faqat turga xos maydonlar almashadi.</p><h2>Sinov muddati qanday hisoblanadi?</h2><p>Ishga qabul qilish buyrug'ida sinov muddati boshlanish sanasidan boshlab tanlangan oy sonicha davom etadi va tugash sanasi avtomatik ko'rsatiladi. Amaliyotda sinov muddati odatda 3 oydan oshmaydi, ayrim toifadagi xodimlar uchun umuman belgilanmaydi.</p><h2>Ishdan bo'shatish qanday asoslarga ko'ra bo'ladi?</h2><p>Eng ko'p uchraydigan asoslar: xodimning o'z xohishi, tomonlar kelishuvi yoki mehnat shartnomasi muddatining tugashi. Har bir holatda tegishli asos ko'rsatilishi va, agar zarur bo'lsa, xodimning yozma arizasi ilova qilinishi kerak.</p><h2>Lavozimga o'tkazish uchun xodimning roziligi kerakmi?</h2><p>Umumiy qoidaga ko'ra, boshqa lavozimga doimiy o'tkazish xodimning yozma roziligisiz amalga oshirilmaydi. Rozilik odatda ariza yoki mehnat shartnomasiga qo'shimcha kelishuv shaklida rasmiylashtiriladi.</p><h2>Buyruq mehnat daftarchasiga yozuv o'rnini bosadimi?</h2><p>Yo'q. Buyruq — ichki asos hujjat, mehnat daftarchasiga (yoki elektron mehnat kitobchasiga) tegishli yozuv alohida amalga oshiriladi. Buyruq shu yozuv uchun rasmiy asos bo'lib xizmat qiladi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Buyruq turini tanlaysiz, tashkilot va xodim ma'lumotlarini kiritasiz — matn o'ng tarafda real vaqtda shakllanadi. Sinov muddati kabi sanalar avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Kadr buyrug'i nima uchun kerak?</h2><p>Xodimning huquqiy holatidagi o'zgarishni (qabul, bo'shatish, o'tkazish) rasmiylashtiradigan ichki hujjat. Kadrlar hisobi va mehnat daftarchasiga yozuv uchun asos bo'ladi.</p><h2>Nechta buyruq turi mavjud?</h2><p>Uchta: ishga qabul qilish, ishdan bo'shatish va lavozimga o'tkazish. Turni tanlaganda tashkilot va xodim ma'lumotlari saqlanib qoladi.</p><h2>Sinov muddati qanday hisoblanadi?</h2><p>Boshlanish sanasidan tanlangan oy sonicha, tugash sanasi avtomatik ko'rsatiladi. Odatda 3 oydan oshmaydi.</p><h2>Ishdan bo'shatish qanday asoslarga ko'ra bo'ladi?</h2><p>Eng ko'p uchraydigani: o'z xohishi, tomonlar kelishuvi yoki shartnoma muddati tugashi. Har biri uchun tegishli asos ko'rsatiladi.</p><h2>Lavozimga o'tkazish uchun rozilik kerakmi?</h2><p>Ha, odatda doimiy o'tkazish xodimning yozma roziligisiz amalga oshirilmaydi.</p><h2>Buyruq mehnat daftarchasi o'rnini bosadimi?</h2><p>Yo'q, u faqat asos hujjat. Daftarchaga yozuv alohida amalga oshiriladi.</p><h2>Buyruqni kim imzolaydi?</h2><p>Odatda tashkilot rahbari (direktor) yoki unga vakolat berilgan shaxs.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Boshqa hujjat namunalari" data-artt-ru="Другие образцы документов">Boshqa hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📋</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat shartnomasi" data-art-ru="Трудовой договор">Mehnat shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📝</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ishdan bo'shash arizasi" data-art-ru="Заявление об увольнении">Ishdan bo'shash arizasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="mehnat-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat shartnomasi" data-rel-ru="Трудовой договор">Mehnat shartnomasi</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ishdan bo'shash arizasi" data-rel-ru="Заявление об увольнении">Ishdan bo'shash arizasi</span></a><a href="tavsifnoma-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Tavsifnoma" data-rel-ru="Характеристика">Tavsifnoma</span></a><a href="ish-haqi-malumotnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💰</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi ma'lumotnomasi" data-rel-ru="Справка о зарплате">Ish haqi ma'lumotnomasi</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hujjat namunasi ma'lumot uchun. Kadrlar bo'yicha rasmiylashtirish mehnat qonunchiligiga muvofiq amalga oshirilishi kerak.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">15.8.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+function addMonthsMinusDay(dateStr,months){
+  var d=new Date(dateStr+'T00:00:00');
+  d.setMonth(d.getMonth()+months);
+  d.setDate(d.getDate()-1);
+  return iso(d);
+}
+
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Kadr buyrug'i namunasi",
+  sub:"Ishga qabul qilish, ishdan bo'shatish yoki lavozimga o'tkazish buyrug'ini tanlang va to'ldiring.",
+  intro:"<b>Kadr buyrug'i</b> — xodimni ishga qabul qilish, ishdan bo'shatish yoki boshqa lavozimga o'tkazish to'g'risidagi buyuq. Yuqoridagi tugmalardan buyruq turini tanlang. Sinov muddati tugash sanasi avtomatik hisoblanadi. Ma'lumot faqat shu brauzerda saqlanadi.",
+  prevTitle:"Buyruq matni",
+  jump:"Buyruqni ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Kadrlar bo'yicha rasmiylashtirishda mehnat qonunchiligiga va ichki tartib qoidalarga rioya qiling. Kalki.uz hujjatdan foydalanish oqibatlari uchun javobgar emas.",
+  foot:"Hujjat namunasi ma'lumot uchun. Kadrlar bo'yicha rasmiylashtirish mehnat qonunchiligiga muvofiq amalga oshirilishi kerak.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>Kadr buyrug'i nima uchun kerak?</h2><p>Kadr buyrug'i — ish beruvchi tomonidan chiqariladigan, xodimning huquqiy holatidagi o'zgarishni (ishga qabul, ishdan bo'shatish, lavozim o'zgarishi) rasmiylashtiradigan ichki hujjat. U mehnat shartnomasi yoki xodim arizasi asosida chiqariladi va kadrlar hisobi hamda mehnat daftarchasiga yozuv kiritish uchun asos bo'ladi.</p><h2>Ushbu generatorda nechta buyruq turi bor?</h2><p>Uchta: ishga qabul qilish, ishdan bo'shatish va boshqa lavozimga o'tkazish. Yuqoridagi tugmalar orqali turni tanlaysiz — tashkilot va xodim ma'lumotlari saqlanib qoladi, faqat turga xos maydonlar almashadi.</p><h2>Sinov muddati qanday hisoblanadi?</h2><p>Ishga qabul qilish buyrug'ida sinov muddati boshlanish sanasidan boshlab tanlangan oy sonicha davom etadi va tugash sanasi avtomatik ko'rsatiladi. Amaliyotda sinov muddati odatda 3 oydan oshmaydi, ayrim toifadagi xodimlar uchun umuman belgilanmaydi.</p><h2>Ishdan bo'shatish qanday asoslarga ko'ra bo'ladi?</h2><p>Eng ko'p uchraydigan asoslar: xodimning o'z xohishi, tomonlar kelishuvi yoki mehnat shartnomasi muddatining tugashi. Har bir holatda tegishli asos ko'rsatilishi va, agar zarur bo'lsa, xodimning yozma arizasi ilova qilinishi kerak.</p><h2>Lavozimga o'tkazish uchun xodimning roziligi kerakmi?</h2><p>Umumiy qoidaga ko'ra, boshqa lavozimga doimiy o'tkazish xodimning yozma roziligisiz amalga oshirilmaydi. Rozilik odatda ariza yoki mehnat shartnomasiga qo'shimcha kelishuv shaklida rasmiylashtiriladi.</p><h2>Buyruq mehnat daftarchasiga yozuv o'rnini bosadimi?</h2><p>Yo'q. Buyruq — ichki asos hujjat, mehnat daftarchasiga (yoki elektron mehnat kitobchasiga) tegishli yozuv alohida amalga oshiriladi. Buyruq shu yozuv uchun rasmiy asos bo'lib xizmat qiladi.</p><h2>Bu generator qanday ishlaydi?</h2><p>Buyruq turini tanlaysiz, tashkilot va xodim ma'lumotlarini kiritasiz — matn o'ng tarafda real vaqtda shakllanadi. Sinov muddati kabi sanalar avtomatik hisoblanadi. Tayyor hujjatni Word (.docx) yoki PDF sifatida yuklab olasiz.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец кадрового приказа",
+  sub:"Выберите приказ о приёме, увольнении или переводе и заполните его.",
+  intro:"<b>Кадровый приказ</b> — документ о приёме на работу, увольнении или переводе на другую должность. Выберите тип приказа кнопками выше. Дата окончания испытательного срока считается автоматически. Данные хранятся только в этом браузере.",
+  prevTitle:"Текст приказа",
+  jump:"Посмотреть приказ ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  warnTxt:"<b>Внимание.</b> Документ готовится как образец и не является юридической консультацией. При кадровом оформлении соблюдайте трудовое законодательство и внутренние правила. Kalki.uz не несёт ответственности за последствия использования документа.",
+  foot:"Образец документа носит справочный характер. Кадровое оформление должно соответствовать трудовому законодательству.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Зачем нужен кадровый приказ?</h2><p>Кадровый приказ — внутренний документ работодателя, оформляющий изменение правового статуса работника (приём, увольнение, изменение должности). Он издаётся на основании трудового договора или заявления работника и служит основанием для кадрового учёта и записи в трудовую книжку.</p><h2>Сколько типов приказа в этом генераторе?</h2><p>Три: о приёме на работу, об увольнении и о переводе на другую должность. Тип выбирается кнопками выше — данные организации и работника сохраняются, меняются только специфичные для типа поля.</p><h2>Как считается испытательный срок?</h2><p>В приказе о приёме испытательный срок отсчитывается от даты начала работы на выбранное число месяцев, дата окончания указывается автоматически. На практике испытательный срок обычно не превышает 3 месяцев, для отдельных категорий работников не устанавливается вовсе.</p><h2>По каким основаниям бывает увольнение?</h2><p>Наиболее частые основания: собственное желание работника, соглашение сторон или истечение срока трудового договора. В каждом случае указывается соответствующее основание и, при необходимости, прилагается письменное заявление работника.</p><h2>Нужно ли согласие работника на перевод?</h2><p>По общему правилу, постоянный перевод на другую должность не производится без письменного согласия работника. Согласие обычно оформляется заявлением или дополнительным соглашением к трудовому договору.</p><h2>Заменяет ли приказ запись в трудовой книжке?</h2><p>Нет. Приказ — внутренний документ-основание, запись в трудовую книжку (или электронную трудовую книжку) вносится отдельно. Приказ служит официальным основанием для этой записи.</p><h2>Как работает генератор?</h2><p>Вы выбираете тип приказа, вводите данные организации и работника — текст формируется справа в реальном времени. Даты, такие как окончание испытательного срока, считаются автоматически. Готовый документ скачивается в Word (.docx) или PDF.</p>"
+ }
+};
+
+var FAQ={
+ uz:[
+  ["Kadr buyrug'i nima uchun kerak?","Xodimning huquqiy holatidagi o'zgarishni (qabul, bo'shatish, o'tkazish) rasmiylashtiradigan ichki hujjat. Kadrlar hisobi va mehnat daftarchasiga yozuv uchun asos bo'ladi."],
+  ["Nechta buyruq turi mavjud?","Uchta: ishga qabul qilish, ishdan bo'shatish va lavozimga o'tkazish. Turni tanlaganda tashkilot va xodim ma'lumotlari saqlanib qoladi."],
+  ["Sinov muddati qanday hisoblanadi?","Boshlanish sanasidan tanlangan oy sonicha, tugash sanasi avtomatik ko'rsatiladi. Odatda 3 oydan oshmaydi."],
+  ["Ishdan bo'shatish qanday asoslarga ko'ra bo'ladi?","Eng ko'p uchraydigani: o'z xohishi, tomonlar kelishuvi yoki shartnoma muddati tugashi. Har biri uchun tegishli asos ko'rsatiladi."],
+  ["Lavozimga o'tkazish uchun rozilik kerakmi?","Ha, odatda doimiy o'tkazish xodimning yozma roziligisiz amalga oshirilmaydi."],
+  ["Buyruq mehnat daftarchasi o'rnini bosadimi?","Yo'q, u faqat asos hujjat. Daftarchaga yozuv alohida amalga oshiriladi."],
+  ["Buyruqni kim imzolaydi?","Odatda tashkilot rahbari (direktor) yoki unga vakolat berilgan shaxs."]
+ ],
+ ru:[
+  ["Зачем нужен кадровый приказ?","Внутренний документ об изменении статуса работника (приём, увольнение, перевод). Основание для кадрового учёта и записи в трудовую книжку."],
+  ["Сколько типов приказа доступно?","Три: о приёме, об увольнении и о переводе. При выборе типа данные организации и работника сохраняются."],
+  ["Как считается испытательный срок?","От даты начала работы на выбранное число месяцев, дата окончания — автоматически. Обычно не более 3 месяцев."],
+  ["По каким основаниям увольняют?","Чаще всего: собственное желание, соглашение сторон или истечение срока договора. Указывается соответствующее основание."],
+  ["Нужно ли согласие на перевод?","Да, обычно постоянный перевод не производится без письменного согласия работника."],
+  ["Заменяет ли приказ трудовую книжку?","Нет, это документ-основание. Запись в книжку вносится отдельно."],
+  ["Кто подписывает приказ?","Обычно руководитель организации или уполномоченное им лицо."]
+ ]
+};
+
+var isQabul=function(v){return (v.buyruqType||'qabul')==='qabul'};
+var isBotash=function(v){return v.buyruqType==='botash'};
+var isOtkazish=function(v){return v.buyruqType==='otkazish'};
+var hasSinov=function(v){return isQabul(v)&&v.sinov&&v.sinov!=='yoq'};
+var boshatishBoshqa=function(v){return isBotash(v)&&v.asos==='boshqa'};
+
+var CFG={
+ id:'buyruq',
+ file:'kadr-buyruqi',
+ blank:{uz:'shablonlar',ru:'shablonlar'},
+ sections:[
+  {id:'type',title:{uz:'Buyruq turi',ru:'Тип приказа'},fields:[
+    {id:'buyruqType',t:'seg',def:'qabul',label:{uz:'Buyruq turini tanlang',ru:'Выберите тип приказа'},
+     opts:[{v:'qabul',label:{uz:'Ishga qabul',ru:'Приём на работу'}},{v:'botash',label:{uz:"Ishdan bo'shatish",ru:'Увольнение'}},{v:'otkazish',label:{uz:"Lavozimga o'tkazish",ru:'Перевод'}}]}
+  ]},
+  {id:'gen',title:{uz:'Buyruq haqida',ru:'О приказе'},fields:[
+    {id:'num',t:'text',half:true,label:{uz:'Buyruq raqami',ru:'Номер приказа'},ph:{uz:'14-k',ru:'14-к'}},
+    {id:'city',t:'text',half:true,label:{uz:'Shahar',ru:'Город'},ph:{uz:'Toshkent',ru:'Ташкент'}},
+    {id:'signDate',t:'date',def:today(),label:{uz:'Buyruq sanasi',ru:'Дата приказа'}}
+  ]},
+  {id:'org',title:{uz:'Tashkilot',ru:'Организация'},fields:[
+    {id:'orgName',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Kalki Tex" MChJ',ru:'ООО "Kalki Tex"'}},
+    {id:'orgDir',t:'text',label:{uz:'Rahbar F.I.Sh.',ru:'Ф.И.О. руководителя'},ph:{uz:'Rahimov Shuhrat Anvarovich',ru:'Рахимов Шухрат Анварович'}}
+  ]},
+  {id:'emp',title:{uz:'Xodim',ru:'Работник'},fields:[
+    {id:'empFio',t:'text',label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Yusupova Nodira Baxtiyorovna',ru:'Юсупова Нодира Бахтияровна'}},
+    {id:'empJshshir',t:'text',half:true,label:{uz:'JSHSHIR',ru:'ПИНФЛ'},ph:{uz:'14 raqam',ru:'14 цифр'}},
+    {id:'empAddr',t:'text',half:true,label:{uz:'Manzil',ru:'Адрес'},ph:{uz:'Toshkent sh., Yunusobod t.',ru:'г. Ташкент, Юнусабадский р-н'}}
+  ]},
+  {id:'qabul',title:{uz:'Ishga qabul tafsilotlari',ru:'Детали приёма'},showIf:isQabul,fields:[
+    {id:'lavozim',t:'text',label:{uz:'Lavozim',ru:'Должность'},ph:{uz:'Buxgalter',ru:'Бухгалтер'}},
+    {id:'bolim',t:'text',half:true,label:{uz:"Bo'lim (ixtiyoriy)",ru:'Отдел (не обязательно)'},ph:{uz:'Moliya bo\'limi',ru:'Финансовый отдел'}},
+    {id:'startDate',t:'date',half:true,label:{uz:'Ishga kirish sanasi',ru:'Дата начала работы'}},
+    {id:'maosh',t:'text',half:true,unit:{uz:"so'm",ru:'сум'},label:{uz:'Oylik ish haqi (ixtiyoriy)',ru:'Оклад (не обязательно)'},ph:{uz:'4500000',ru:'4500000'}},
+    {id:'sinov',t:'sel',def:'yoq',half:true,label:{uz:'Sinov muddati',ru:'Испытательный срок'},
+     opts:[{v:'yoq',label:{uz:"Belgilanmaydi",ru:'Не устанавливается'}},{v:'1',label:{uz:'1 oy',ru:'1 месяц'}},{v:'2',label:{uz:'2 oy',ru:'2 месяца'}},{v:'3',label:{uz:'3 oy',ru:'3 месяца'}}]}
+  ]},
+  {id:'botash',title:{uz:"Bo'shatish tafsilotlari",ru:'Детали увольнения'},showIf:isBotash,fields:[
+    {id:'botashLavozim',t:'text',label:{uz:'Lavozim',ru:'Должность'},ph:{uz:'Buxgalter',ru:'Бухгалтер'}},
+    {id:'oxirgiKun',t:'date',half:true,label:{uz:'Oxirgi ish kuni',ru:'Последний рабочий день'}},
+    {id:'asos',t:'sel',def:'oz-xohishi',half:true,label:{uz:'Bo\'shatish asosi',ru:'Основание увольнения'},
+     opts:[{v:'oz-xohishi',label:{uz:"O'z xohishi",ru:'Собственное желание'}},{v:'kelishuv',label:{uz:'Tomonlar kelishuvi',ru:'Соглашение сторон'}},{v:'muddat',label:{uz:'Shartnoma muddati tugashi',ru:'Истечение срока договора'}},{v:'boshqa',label:{uz:'Boshqa asos',ru:'Другое основание'}}]},
+    {id:'asosNote',t:'text',showIf:boshatishBoshqa,label:{uz:'Asosni ko\'rsating',ru:'Укажите основание'},ph:{uz:'masalan: intizomiy jazo',ru:'например: дисциплинарное взыскание'}}
+  ]},
+  {id:'otkazish',title:{uz:"O'tkazish tafsilotlari",ru:'Детали перевода'},showIf:isOtkazish,fields:[
+    {id:'eskiLavozim',t:'text',half:true,label:{uz:'Eski lavozim',ru:'Прежняя должность'},ph:{uz:'Kassir',ru:'Кассир'}},
+    {id:'yangiLavozim',t:'text',half:true,label:{uz:'Yangi lavozim',ru:'Новая должность'},ph:{uz:'Katta kassir',ru:'Старший кассир'}},
+    {id:'otkazishSana',t:'date',label:{uz:"O'tkazish sanasi",ru:'Дата перевода'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+  var sinovEnd='';
+  if(hasSinov(v)&&v.startDate){
+   sinovEnd=addMonthsMinusDay(v.startDate,KD.num(v.sinov));
+  }
+  return {sinovEnd:sinovEnd};
+ },
+
+ doc:function(v,c,lang){
+  var ru=lang==='ru', B=KD.blank;
+  var type=v.buyruqType||'qabul';
+
+  var titles={
+   qabul:{uz:'BUYRUQ — ISHGA QABUL QILISH TO\'G\'RISIDA',ru:'ПРИКАЗ О ПРИЁМЕ НА РАБОТУ'},
+   botash:{uz:'BUYRUQ — ISHDAN BO\'SHATISH TO\'G\'RISIDA',ru:'ПРИКАЗ ОБ УВОЛЬНЕНИИ'},
+   otkazish:{uz:'BUYRUQ — LAVOZIMGA O\'TKAZISH TO\'G\'RISIDA',ru:'ПРИКАЗ О ПЕРЕВОДЕ НА ДРУГУЮ ДОЛЖНОСТЬ'}
+  };
+  var T=titles[type]||titles.qabul;
+
+  var b=[];
+  b.push({k:'title',text:ru?T.ru:T.uz});
+  b.push({k:'sub',text:KD.v(v.orgName,26)});
+  b.push({k:'sub',text:'№ '+KD.v(v.num,6)+'          '+(v.signDate?KD.fmtDate(v.signDate,lang):B(24))+', '+KD.v(v.city,14)});
+  b.push({k:'gap'});
+
+  if(type==='qabul'){
+   b.push({k:'p',text:ru
+     ?'1. Принять '+KD.v(v.empFio,26)+' на должность '+KD.v(v.lavozim,22)+' с '+(v.startDate?KD.fmtDate(v.startDate,lang):B(20))+(v.bolim?' в '+KD.v(v.bolim,20):'')+'.'
+     :'1. '+KD.v(v.empFio,26)+' '+(v.startDate?KD.fmtDate(v.startDate,lang):B(20))+' sanadan '+KD.v(v.lavozim,22)+' lavozimiga ishga qabul qilinsin'+(v.bolim?', '+KD.v(v.bolim,20):'')+'.'});
+   if(v.maosh){
+    b.push({k:'p',text:ru
+      ?'2. Установить должностной оклад в размере '+KD.money(v.maosh,lang)+'.'
+      :'2. Oylik ish haqi '+KD.money(v.maosh,lang)+' miqdorida belgilansin.'});
+   }
+   if(hasSinov(v)){
+    b.push({k:'p',text:ru
+      ?'3. Установить испытательный срок '+v.sinov+' мес., с '+(v.startDate?KD.fmtDate(v.startDate,lang):B(20))+' по '+(c.sinovEnd?KD.fmtDate(c.sinovEnd,lang):B(20))+'.'
+      :'3. Sinov muddati '+v.sinov+' oy etib, '+(v.startDate?KD.fmtDate(v.startDate,lang):B(20))+' dan '+(c.sinovEnd?KD.fmtDate(c.sinovEnd,lang):B(20))+' gacha belgilansin.'});
+   }
+   b.push({k:'p',text:ru
+     ?'4. Основание: трудовой договор и заявление работника.'
+     :'4. Asos: mehnat shartnomasi va xodimning arizasi.'});
+  }else if(type==='botash'){
+   b.push({k:'p',text:ru
+     ?'1. Уволить '+KD.v(v.empFio,26)+(v.botashLavozim?' с должности '+KD.v(v.botashLavozim,22):'')+' с '+(v.oxirgiKun?KD.fmtDate(v.oxirgiKun,lang):B(20))+'.'
+     :'1. '+KD.v(v.empFio,26)+(v.botashLavozim?' '+KD.v(v.botashLavozim,22)+' lavozimidan':'')+' '+(v.oxirgiKun?KD.fmtDate(v.oxirgiKun,lang):B(20))+' sanasidan boshlab ishdan bo\'shatilsin.'});
+   var asosText={
+    'oz-xohishi':{uz:"xodimning o'z xohishi",ru:'собственное желание работника'},
+    'kelishuv':{uz:'tomonlar kelishuvi',ru:'соглашение сторон'},
+    'muddat':{uz:'mehnat shartnomasi muddatining tugashi',ru:'истечение срока трудового договора'},
+    'boshqa':{uz:KD.v(v.asosNote,20),ru:KD.v(v.asosNote,20)}
+   };
+   var at=asosText[v.asos]||asosText['oz-xohishi'];
+   b.push({k:'p',text:ru
+     ?'2. Основание увольнения: '+at.ru+'.'
+     :'2. Bo\'shatish asosi: '+at.uz+'.'});
+   b.push({k:'p',text:ru
+     ?'3. Бухгалтерии произвести окончательный расчёт с работником.'
+     :'3. Buxgalteriya xodim bilan yakuniy hisob-kitobni amalga oshirsin.'});
+  }else{
+   b.push({k:'p',text:ru
+     ?'1. Перевести '+KD.v(v.empFio,26)+' с должности '+KD.v(v.eskiLavozim,20)+' на должность '+KD.v(v.yangiLavozim,20)+' с '+(v.otkazishSana?KD.fmtDate(v.otkazishSana,lang):B(20))+'.'
+     :'1. '+KD.v(v.empFio,26)+' '+KD.v(v.eskiLavozim,20)+' lavozimidan '+KD.v(v.yangiLavozim,20)+' lavozimiga '+(v.otkazishSana?KD.fmtDate(v.otkazishSana,lang):B(20))+' sanadan o\'tkazilsin.'});
+   b.push({k:'p',text:ru
+     ?'2. Основание: согласие работника и дополнительное соглашение к трудовому договору.'
+     :'2. Asos: xodimning roziligi va mehnat shartnomasiga qo\'shimcha kelishuv.'});
+  }
+
+  b.push({k:'gap'});
+  b.push({k:'sig',
+    left:[(ru?'Руководитель:':'Rahbar:'),KD.v(v.orgDir,22),'_______________ '+(ru?'(подпись)':'(imzo)')],
+    right:[(ru?'С приказом ознакомлен(а):':'Buyruq bilan tanishdim:'),KD.v(v.empFio,22),'_______________ '+(ru?'(подпись)':'(imzo)')]});
+
+  b.push({k:'note',text:ru
+    ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. При кадровом оформлении руководствуйтесь трудовым законодательством.'
+    :'Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma\'lumot uchun mo\'ljallangan. Kadrlar bo\'yicha rasmiylashtirishda mehnat qonunchiligiga amal qiling.'});
+  return b;
+ }
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Kadr buyrug'i namunasi — onlayn to'ldirib, Word yuklab oling",
+    ru:"Образец кадрового приказа — заполнить онлайн"
+  }
+});
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

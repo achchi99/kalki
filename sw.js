@@ -54,6 +54,7 @@ const ASSETS = [
   '/ipoteka-kalkulyator',
   '/ishdan-boshash-arizasi-namunasi',
   '/ishonchnoma-namunasi',
+  '/kadr-buyruqlari-namunasi',
   '/kaloriya-kalkulyator',
   '/konditsioner-kalkulyator',
   '/kredit-kalkulyator',

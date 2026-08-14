@@ -418,5 +418,12 @@
     "hash": "3c50d0b42c9f",
     "tpl": 1,
     "v": 1
+  },
+  "kadr-buyruqlari-namunasi": {
+    "title": "Kadr buyrug'i namunasi",
+    "cat": "hujjat",
+    "hash": "6f2cd85895e5",
+    "tpl": 1,
+    "v": 1
   }
 }
