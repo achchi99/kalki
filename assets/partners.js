@@ -29,14 +29,28 @@
       go: 'Bank saytida ko\'rish →',
       goGeneric: 'Rasmiy saytda ko\'rish →',
       disclaimer: 'Kalki.uz vositachi emas va foydalanuvchidan hech qanday to\'lov olmaydi. Shartlarni tashkilot rasmiy saytidan tekshiring.',
-      checked: 'Ro\'yxat oxirgi marta {d} da tekshirilgan.'
+      checked: 'Ro\'yxat oxirgi marta {d} da tekshirilgan.',
+      tipsTitle: 'Kredit olishdan oldin',
+      tips: [
+        'Turli banklarda shartlar har xil — kamida uchta banknig taklifini solishtiring.',
+        'E\'lon qilingan foizdan tashqari komissiya, sug\'urta va boshqa to\'lovlarni ham so\'rang — haqiqiy yillik qiymat shulardan iborat.',
+        'Oylik to\'lov daromadingizning 35 foizidan oshmagani ma\'qul.'
+      ],
+      partnerNote: 'Bu bo\'limda hamkor bo\'lish uchun: info@kalki.uz'
     },
     ru: {
       ad: 'Реклама',
       go: 'Смотреть на сайте банка →',
       goGeneric: 'Смотреть на официальном сайте →',
       disclaimer: 'Kalki.uz не является посредником и не берёт с пользователя никакой платы. Условия проверяйте на официальном сайте организации.',
-      checked: 'Список последний раз проверен {d}.'
+      checked: 'Список последний раз проверен {d}.',
+      tipsTitle: 'Перед оформлением кредита',
+      tips: [
+        'Условия в банках различаются — сравните предложения минимум трёх банков.',
+        'Кроме заявленной ставки уточните комиссии, страховку и прочие платежи — реальная стоимость складывается из них.',
+        'Ежемесячный платёж желательно не выше 35% дохода.'
+      ],
+      partnerNote: 'По вопросам партнёрства: info@kalki.uz'
     }
   };
 
@@ -200,6 +214,24 @@
       + '</a>';
   }
 
+  /* Faol hamkor topilmaganda ba'zi kategoriyalarda (masalan kredit, ipoteka)
+     bitta havolali kartochka o'rniga foydali qisqa maslahat bloki ko'rsatiladi
+     — bo'sh reklama joyi emas, saytning o'z bilimi. Hamkor paydo bo'lganda
+     (partners.json'da active:true) bu blok avtomatik ravishda kartochkaga
+     bo'shab beradi, hech qanday kod o'zgarmaydi. */
+  function richFallbackHtml(fb, lang, t) {
+    var tipsHtml = '<ul class="pt-tips">'
+      + t.tips.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('')
+      + '</ul>';
+    var linkHtml = (fb && fb.url)
+      ? '<a class="pt-tips-link" href="' + esc(fb.url) + '" target="_blank" rel="nofollow noopener">' + esc(L(fb.label, lang)) + '</a>'
+      : '';
+    return '<h2 class="pt-h">' + esc(t.tipsTitle) + '</h2>'
+      + tipsHtml
+      + linkHtml
+      + '<div class="pt-partner-note">' + esc(t.partnerNote) + '</div>';
+  }
+
   /* ---------- o'lchov ---------- */
   var io = null;
   function observer() {
@@ -273,8 +305,17 @@
       } else {
         // Bo'sh blok saytni tashlandiq ko'rsatadi — kategoriya fallback'i qo'yiladi.
         var fb = (data.fallback || {})[category];
-        body = fallbackHtml(fb, lang, t);
         ga('partner_empty', { page: page, category: category });
+        // Ba'zi sahifalarda (kredit, ipoteka) bitta havola o'rniga foydali
+        // maslahat bloki ko'rsatiladi — pastdagi umumiy sarlavha/ro'yxat
+        // qobig'i emas, o'z qobig'iga ega bo'lgani uchun bu yerda chiqib ketadi.
+        if (opts.richFallback) {
+          slot.innerHTML = richFallbackHtml(fb, lang, t);
+          slot.hidden = false;
+          slot.style.display = '';
+          return;
+        }
+        body = fallbackHtml(fb, lang, t);
         if (!body) { hide(slot); return; }
       }
 

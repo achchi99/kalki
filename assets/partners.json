@@ -50,7 +50,7 @@
       },
       "append_utm": true,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
@@ -79,7 +79,7 @@
       },
       "append_utm": true,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
@@ -108,7 +108,7 @@
       },
       "append_utm": false,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
@@ -138,7 +138,7 @@
       },
       "append_utm": true,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
@@ -167,7 +167,7 @@
       },
       "append_utm": true,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
@@ -197,7 +197,7 @@
       },
       "append_utm": false,
       "priority": 0,
-      "active": true,
+      "active": false,
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
