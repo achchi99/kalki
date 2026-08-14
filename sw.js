@@ -67,6 +67,7 @@ const ASSETS = [
   '/pensiya-kalkulyator',
   '/qqs-2026',
   '/qqs-kalkulyator',
+  '/qurilish-pudrat-shartnomasi-namunasi',
   '/quyosh-panel-kalkulyator',
   '/remont-kalkulyator',
   '/shablonlar',
