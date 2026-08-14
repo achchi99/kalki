@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mehnat staji kalkulyatori — pensiya uchun stajni hisoblang</title>
+<link rel="canonical" href="https://kalki.uz/staj-kalkulyator">
+<meta name="description" content="Ish davrlarini kiriting — umumiy mehnat staji yil, oy va kun bilan chiqadi. Harbiy xizmat, o'qish va bola parvarishi ham hisobga olinadi. Bepul.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.prow{border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:#FBFCFB}
+.prow.err{border-color:#D64545;background:#FCEEEE}
+.prow-err-msg{font-size:12px;font-weight:700;color:#B3261E;margin-top:6px}
+.prow-warn{font-size:12px;font-weight:700;color:#8A6A20;margin-top:6px}
+.chk{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer}
+.chk input{width:17px;height:17px;accent-color:var(--cat);flex:none}
+.p-remove{margin-top:10px;background:none;border:0;color:#B3261E;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:4px 0;-webkit-tap-highlight-color:transparent}
+.p-org{margin-top:10px}
+.add-row-btn{width:100%;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:11px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.add-row-btn:active{background:var(--cat-soft)}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.extra-note{font-size:12.5px;font-weight:600;color:var(--muted);background:#F2F5F3;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.pbar{margin-top:14px;background:#EEF2EF;border-radius:99px;height:10px;overflow:hidden}
+.pbar .fill{height:100%;background:var(--cat);border-radius:99px;transition:width .3s ease}
+.pbar-lbl{font-size:12px;font-weight:700;color:var(--muted);margin-top:6px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.plist{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.plist-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;font-weight:600;color:var(--ink);padding:5px 0;border-bottom:1px solid #F0F3F1}
+.plist-row:last-child{border-bottom:0}
+.plist-row .dur{color:var(--muted);white-space:nowrap}
+.overlap-note{font-size:12px;font-weight:700;color:#8A6A20;background:#FBF3E9;border-radius:8px;padding:8px 10px;margin-top:10px}
+.mygov-note{margin-top:14px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:600;background:#F2F5F3;border-radius:10px;padding:11px 12px}
+.mygov-note a{color:var(--cat);font-weight:800;text-decoration:none}
+.mygov-note a:hover{text-decoration:underline}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Mehnat staji kalkulyatori — pensiya uchun stajni hisoblang">
+<meta property="og:description" content="Ish davrlarini kiriting — umumiy mehnat staji yil, oy va kun bilan chiqadi. Harbiy xizmat, o'qish va bola parvarishi ham hisobga olinadi. Bepul.">
+<meta property="og:url" content="https://kalki.uz/staj-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/staj-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mehnat staji kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/staj-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Mehnat staji kalkulyatori — pensiya uchun stajni hisoblang">
+<meta name="twitter:description" content="Ish davrlarini kiriting — umumiy mehnat staji yil, oy va kun bilan chiqadi. Harbiy xizmat, o'qish va bola parvarishi ham hisobga olinadi. Bepul.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Pensiya uchun qancha staj kerak?","acceptedAnswer":{"@type":"Answer","text":"To'liq yoshga doir pensiya uchun erkaklar 60 yoshda kamida 25 yil, ayollar 55 yoshda kamida 20 yil staj kerak. Kamida 7 yil staj bo'lsa, to'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam staj bo'lsa, pensiya emas, yoshga doir nafaqa tayinlanadi (erkaklar 65, ayollar 60 yoshda)."}},{"@type":"Question","name":"Stajga qanday davrlar kiradi?","acceptedAnswer":{"@type":"Answer","text":"Asosiy guruhga rasmiy ishlagan, ish haqi hisoblangan davrlar, shuningdek ijtimoiy soliq to'langan bo'lsa yakka tartibdagi tadbirkorlik, o'zini o'zi band qilish va xorijda ishlash davrlari kiradi. Bulardan tashqari harbiy xizmat, kunduzgi oliy ta'limda o'qish, bolani parvarishlash ta'tili va ba'zi parvarish davrlari qo'shimcha guruhga kiradi."}},{"@type":"Question","name":"Harbiy xizmat va o'qish stajga kiradimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, lekin faqat asosiy guruh bo'yicha kamida 7 yil staj bo'lgandagina. Bu shart nogironligi bo'lgan shaxslarga qo'llanmaydi. Agar asosiy stajingiz 7 yildan kam bo'lsa, harbiy xizmat va o'qish davri hozircha hisobga kiritilmaydi — staj asosiy guruh bilan yetganda qayta hisoblang."}},{"@type":"Question","name":"Bolani parvarishlash ta'tili qancha hisobga olinadi?","acceptedAnswer":{"@type":"Answer","text":"Har bir bola uch yoshga to'lgunga qadar bo'lgan davr hisobga olinadi, jami esa (barcha bolalar bo'yicha) 6 yildan oshmaydi. 2024-yilgi qonun o'zgarishiga qadar bu chegara 3 yil edi — ba'zi eski manbalarda hali ham 3 yil deb yozilgan, shuning uchun aniq holatni Pensiya jamg'armasidan tasdiqlashni tavsiya qilamiz."}},{"@type":"Question","name":"Staj yetmasa nima bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"7 yildan ko'p, lekin talab qilingan stajdan kam bo'lsa — to'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam bo'lsa — pensiya emas, yoshga doir nafaqa (erkaklar 65, ayollar 60 yoshda) tayinlanadi. Ishlashni davom ettirish stajni oshiraveradi."}},{"@type":"Question","name":"O'zini o'zi band shaxs stajni qanday to'playdi?","acceptedAnswer":{"@type":"Answer","text":"Yakka tartibdagi tadbirkor yoki o'zini o'zi band qilgan shaxs yiliga kamida 1 BHM miqdorida ijtimoiy soliq to'lasa, o'sha yil to'liq staj sifatida yoziladi. BHM miqdori har yili o'zgaradi, shuning uchun aniq summani soliq idorasidan yoki rasmiy manbadan tekshiring."}},{"@type":"Question","name":"Rasmiy stajimni qayerdan bilaman?","acceptedAnswer":{"@type":"Answer","text":"Eng ishonchli manba — my.gov.uz portalidagi shaxsiy kabinet, u yerda rasmiy stajingiz Pensiya jamg'armasi ma'lumotlari asosida ko'rsatiladi. 2005-yil 1-yanvargacha bo'lgan davrlar mehnat daftarchasi yozuvlari asosida, qo'shimcha hujjatsiz hisoblanadi."}},{"@type":"Question","name":"Pensiya yoshi oshiriladimi?","acceptedAnswer":{"@type":"Answer","text":"2027–2029-yillarga mo'ljallangan Fiskal strategiyada pensiya yoshini (erkaklar 60→63, ayollar 55→58) va minimal stajni oshirish taklif qilinmoqda. Bu hali qonun emas, taklif muhokama bosqichida. Bu kalkulyator amaldagi (hozirgi) qoidalar bo'yicha hisoblaydi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Mehnat staji kalkulyatori","item":"https://kalki.uz/staj-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Mehnat staji kalkulyatori","description":"Ish davrlarini kiriting — umumiy mehnat staji yil, oy va kun bilan chiqadi. Harbiy xizmat, o'qish va bola parvarishi ham hisobga olinadi. Bepul.","url":"https://kalki.uz/staj-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script></head>
+<body data-cat="hayot">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Hayotiy</span>
+    <h1 data-i="h1">Mehnat staji kalkulyatori</h1>
+    <p class="sub" data-i="sub">Ish davrlaringizni kiriting — umumiy mehnat staji darrov chiqadi.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-hayot">Kundalik hayot</a><span class="sep">›</span><span class="cur">Mehnat staji kalkulyatori</span></nav>
+  <section class="form-card">
+    <div class="field">
+      <label data-i="lGender">Jins</label>
+      <div class="seg">
+        <button type="button" id="gM" class="on" data-i="segM">Erkak</button>
+        <button type="button" id="gF" data-i="segF">Ayol</button>
+      </div>
+      <p class="hint" id="genderHint">Pensiya yoshi 60, minimal staj 25 yil.</p>
+    </div>
+
+    <div class="field">
+      <label data-i="lPeriods">Ish davrlari</label>
+      <div id="periodsHost"><div class="prow" data-idx="1"><div class="field p-org" style="margin-bottom:10px"><label data-i="lOrg">Tashkilot nomi (ixtiyoriy)</label><div class="input-shell"><input type="text" class="p-org-inp" placeholder=""></div></div><div class="row2"><div class="field" style="margin-bottom:0"><label data-i="lStart">Boshlanish</label><div class="input-shell"><input type="date" class="p-start"></div></div><div class="field" style="margin-bottom:0"><label data-i="lEnd">Tugash</label><div class="input-shell"><input type="date" class="p-end"></div></div></div><label class="chk"><input type="checkbox" class="p-now"><span data-i="lNow">Hozir ham ishlayapman</span></label><div class="prow-msg"></div><button type="button" class="p-remove" data-i="btnRemove" style="display:none">Olib tashlash</button></div></div>
+      <button type="button" class="add-row-btn" id="addPeriod" data-i="btnAddPeriod">+ Davr qo'shish</button>
+    </div>
+
+    <details id="dExtra"><summary><span data-i="sExtra">Qo'shimcha davrlar</span></summary><div class="sec-body">
+      <p class="extra-note" data-i="extraNote">Bu davrlar asosiy staj kamida 7 yil bo'lgandagina qo'shiladi.</p>
+      <div class="field">
+        <label data-i="lMil">Harbiy xizmat</label>
+        <div class="row2">
+          <div class="input-shell"><input type="date" id="milStart"></div>
+          <div class="input-shell"><input type="date" id="milEnd"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i="lStudy">Kunduzgi oliy ta'lim</label>
+        <div class="row2">
+          <div class="input-shell"><input type="date" id="stStart"></div>
+          <div class="input-shell"><input type="date" id="stEnd"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label data-i="lChild">Bolani parvarishlash ta'tili</label>
+        <div id="childHost"></div>
+        <button type="button" class="add-row-btn" id="addChild" data-i="btnAddChild">+ Bola qo'shish</button>
+        <p class="hint" data-i="hChild">Jami eng ko'pi bilan 6 yilgacha hisobga olinadi.</p>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lCare">Parvarish (I guruh nogironlik / nogiron bola / 80+ qariya)</label>
+        <div class="row2">
+          <div class="input-shell"><input type="date" id="careStart"></div>
+          <div class="input-shell"><input type="date" id="careEnd"></div>
+        </div>
+      </div>
+    </div></details>
+
+    <details id="dBirth"><summary><span data-i="sBirth">Tug'ilgan sana (ixtiyoriy)</span></summary><div class="sec-body">
+      <div class="field" style="margin-bottom:0">
+        <label for="birthDate" data-i="lBirth">Tug'ilgan sana</label>
+        <div class="input-shell"><input type="date" id="birthDate"></div>
+        <p class="hint" data-i="hBirth">Kiritsangiz, pensiya yoshigacha qolgan vaqt va prognoz staj ham hisoblanadi.</p>
+      </div>
+    </div></details>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">-</div>
+        <div class="lbl" data-i="lblMain">Jami mehnat staji</div>
+      </div>
+      <div class="pbar"><div class="fill" id="pbarFill" style="width:0%"></div></div>
+      <div class="pbar-lbl" id="pbarLbl">-</div>
+      <div class="status-box" id="statusBox">-</div>
+      <div id="overlapNote" class="overlap-note" style="display:none"></div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kBasic">Asosiy staj</span><span class="v" id="rBasic">-</span></div>
+        <div class="rrow"><span class="k" data-i="kExtra">Qo'shimcha staj</span><span class="v" id="rExtra">-</span></div>
+        <div class="rrow"><span class="k" data-i="kNeed">Talab qilinadigan staj</span><span class="v" id="rNeed">-</span></div>
+        <div class="rrow"><span class="k" data-i="kLeft">Qancha qolgani</span><span class="v accent" id="rLeft">-</span></div>
+      </div>
+      <div id="birthBlock" class="receipt-rows" style="display:none">
+        <div class="rrow"><span class="k" data-i="kToAge">Pensiya yoshigacha</span><span class="v" id="rToAge">-</span></div>
+        <div class="rrow"><span class="k" data-i="kForecast">Prognoz staj (pensiya yoshida)</span><span class="v" id="rForecast">-</span></div>
+        <div class="rrow"><span class="k" data-i="kVerdict">Yetadimi</span><span class="v" id="rVerdict">-</span></div>
+      </div>
+      <div class="plist" id="plist"></div>
+      <div class="mygov-note" data-i="mygovNote">Bu hisob taxminiy va ma'lumot uchun. Rasmiy staj Pensiya jamg'armasi tomonidan aniqlanadi. O'z stajingizni <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a> portalidan tekshirishingiz mumkin.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
+      <button type="button" class="pdfbtn">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Telegram'ga yozish</a></div>
+<section class="seo" id="seoBlock"><h2>Pensiya uchun qancha staj kerak?</h2><p>To'liq yoshga doir pensiya uchun erkaklar 60 yoshda kamida 25 yil, ayollar 55 yoshda kamida 20 yil staj kerak. Kamida 7 yil staj bo'lsa, to'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam staj bo'lsa, pensiya emas, yoshga doir nafaqa tayinlanadi (erkaklar 65, ayollar 60 yoshda).</p><h2>Stajga qanday davrlar kiradi?</h2><p>Asosiy guruhga rasmiy ishlagan, ish haqi hisoblangan davrlar, shuningdek ijtimoiy soliq to'langan bo'lsa yakka tartibdagi tadbirkorlik, o'zini o'zi band qilish va xorijda ishlash davrlari kiradi. Bulardan tashqari harbiy xizmat, kunduzgi oliy ta'limda o'qish, bolani parvarishlash ta'tili va ba'zi parvarish davrlari qo'shimcha guruhga kiradi.</p><h2>Harbiy xizmat va o'qish stajga kiradimi?</h2><p>Ha, lekin faqat asosiy guruh bo'yicha kamida 7 yil staj bo'lgandagina. Bu shart nogironligi bo'lgan shaxslarga qo'llanmaydi. Agar asosiy stajingiz 7 yildan kam bo'lsa, harbiy xizmat va o'qish davri hozircha hisobga kiritilmaydi — staj asosiy guruh bilan yetganda qayta hisoblang.</p><h2>Bolani parvarishlash ta'tili qancha hisobga olinadi?</h2><p>Har bir bola uch yoshga to'lgunga qadar bo'lgan davr hisobga olinadi, jami esa (barcha bolalar bo'yicha) 6 yildan oshmaydi. 2024-yilgi qonun o'zgarishiga qadar bu chegara 3 yil edi — ba'zi eski manbalarda hali ham 3 yil deb yozilgan, shuning uchun aniq holatni Pensiya jamg'armasidan tasdiqlashni tavsiya qilamiz.</p><h2>Staj yetmasa nima bo'ladi?</h2><p>7 yildan ko'p, lekin talab qilingan stajdan kam bo'lsa — to'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam bo'lsa — pensiya emas, yoshga doir nafaqa (erkaklar 65, ayollar 60 yoshda) tayinlanadi. Ishlashni davom ettirish stajni oshiraveradi.</p><h2>O'zini o'zi band shaxs stajni qanday to'playdi?</h2><p>Yakka tartibdagi tadbirkor yoki o'zini o'zi band qilgan shaxs yiliga kamida 1 BHM miqdorida ijtimoiy soliq to'lasa, o'sha yil to'liq staj sifatida yoziladi. BHM miqdori har yili o'zgaradi, shuning uchun aniq summani soliq idorasidan yoki rasmiy manbadan tekshiring.</p><h2>Rasmiy stajimni qayerdan bilaman?</h2><p>Eng ishonchli manba — my.gov.uz portalidagi shaxsiy kabinet, u yerda rasmiy stajingiz Pensiya jamg'armasi ma'lumotlari asosida ko'rsatiladi. 2005-yil 1-yanvargacha bo'lgan davrlar mehnat daftarchasi yozuvlari asosida, qo'shimcha hujjatsiz hisoblanadi.</p><h2>Pensiya yoshi oshiriladimi?</h2><p>2027–2029-yillarga mo'ljallangan Fiskal strategiyada pensiya yoshini (erkaklar 60→63, ayollar 55→58) va minimal stajni oshirish taklif qilinmoqda. Bu hali qonun emas, taklif muhokama bosqichida. Bu kalkulyator amaldagi (hozirgi) qoidalar bo'yicha hisoblaydi.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="pensiya-kalkulyator" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Pensiya qanday hisoblanadi" data-art-ru="Как рассчитывается пенсия">Pensiya qanday hisoblanadi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="pensiya-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Pensiya" data-rel-ru="Пенсия">Pensiya</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Ish haqi</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hisob taxminiy. Rasmiy stajni Pensiya jamg'armasi hujjatlar asosida aniqlaydi.</footer></main>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var lang='uz', gender='m', calcData=null;
+
+  /* ---------- sana matematikasi ---------- */
+  function parseDate(s){
+    if(!s)return null;
+    var p=String(s).split('-');
+    if(p.length!==3)return null;
+    var d=new Date(+p[0],+p[1]-1,+p[2]);
+    return isNaN(d.getTime())?null:d;
+  }
+  function addDays(d,n){var r=new Date(d.getTime());r.setDate(r.getDate()+n);return r}
+  function todayDate(){var n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate())}
+  function fmtDate(d){return d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear()}
+
+  /* Ikki sana orasidagi kalendar farqi (yil/oy/kun). `end` INKLYUZIV —
+     ya'ni tugash sanasining o'zi ham ishlangan kun sifatida hisoblanadi
+     (mehnat daftarchasi yozuvi shunday o'qiladi). Kabisa yillari va turli
+     uzunlikdagi oylar bu yerda avtomatik to'g'ri chiqadi, chunki hisob
+     kalendar sanalar orasidagi haqiqiy farq bo'yicha olinadi — kunlarni
+     365 ga bo'lish emas. */
+  function ymdDiffInclusive(start,end){
+    var s=start, e=addDays(end,1);
+    var y=e.getFullYear()-s.getFullYear();
+    var m=e.getMonth()-s.getMonth();
+    var d=e.getDate()-s.getDate();
+    if(d<0){m-=1;var pm=new Date(e.getFullYear(),e.getMonth(),0).getDate();d+=pm}
+    if(m<0){y-=1;m+=12}
+    return {y:y,m:m,d:d};
+  }
+
+  /* Kesishgan davrlarni birlashtirish (o'rindoshlik yoki xato kiritilgan
+     sanalar ikki marta sanalmasin). `end` har bir davrda inklyuziv deb
+     qabul qilinadi, shu sabab ichkarida +1 kunlik eksklyuziv chegaraga
+     o'tkaziladi. */
+  function mergeIntervals(periods){
+    var arr=periods
+      .filter(function(p){return p.start&&p.end&&p.end.getTime()>=p.start.getTime()})
+      .map(function(p){return {s:p.start.getTime(), e:addDays(p.end,1).getTime()}})
+      .sort(function(a,b){return a.s-b.s});
+    var merged=[], overlap=false;
+    for(var i=0;i<arr.length;i++){
+      if(!merged.length){merged.push(arr[i]);continue}
+      var last=merged[merged.length-1];
+      if(arr[i].s<last.e){overlap=true;if(arr[i].e>last.e)last.e=arr[i].e}
+      else if(arr[i].s===last.e){last.e=arr[i].e}
+      else merged.push(arr[i]);
+    }
+    return {merged:merged, overlap:overlap};
+  }
+
+  function sumYmd(mergedMs){
+    var Y=0,M=0,D=0;
+    mergedMs.forEach(function(iv){
+      var s=new Date(iv.s), e=new Date(iv.e-1);
+      var dd=ymdDiffInclusive(s,e);
+      Y+=dd.y;M+=dd.m;D+=dd.d;
+    });
+    M+=Math.floor(D/30);D=D%30;
+    Y+=Math.floor(M/12);M=M%12;
+    return {y:Y,m:M,d:D};
+  }
+  function totalDays(mergedMs){
+    return mergedMs.reduce(function(s,iv){return s+(iv.e-iv.s)},0)/86400000;
+  }
+  function ymdToMonths(ymd){return ymd.y*12+ymd.m+ymd.d/30}
+  function addYmd(a,b){
+    var Y=a.y+b.y,M=a.m+b.m,D=a.d+b.d;
+    M+=Math.floor(D/30);D=D%30;
+    Y+=Math.floor(M/12);M=M%12;
+    return {y:Y,m:M,d:D};
+  }
+  function monthsToYmd(totalMonths){
+    totalMonths=Math.max(0,totalMonths);
+    var y=Math.floor(totalMonths/12);
+    var remM=totalMonths-y*12;
+    var m=Math.floor(remM);
+    var d=Math.round((remM-m)*30);
+    if(d>=30){d-=30;m+=1}
+    if(m>=12){m-=12;y+=1}
+    return {y:y,m:m,d:d};
+  }
+
+  /* ---------- ish davrlari qatorlari ---------- */
+  var periodCount=0;
+  function periodRowHtml(idx){
+    return '<div class="prow" data-idx="'+idx+'">'
+      +'<div class="field p-org" style="margin-bottom:10px"><label data-i="lOrg">Tashkilot nomi (ixtiyoriy)</label>'
+      +'<div class="input-shell"><input type="text" class="p-org-inp" placeholder=""></div></div>'
+      +'<div class="row2">'
+      +'<div class="field" style="margin-bottom:0"><label data-i="lStart">Boshlanish</label><div class="input-shell"><input type="date" class="p-start"></div></div>'
+      +'<div class="field" style="margin-bottom:0"><label data-i="lEnd">Tugash</label><div class="input-shell"><input type="date" class="p-end"></div></div>'
+      +'</div>'
+      +'<label class="chk"><input type="checkbox" class="p-now"><span data-i="lNow">Hozir ham ishlayapman</span></label>'
+      +'<div class="prow-msg"></div>'
+      +'<button type="button" class="p-remove" data-i="btnRemove" style="display:none">Olib tashlash</button>'
+      +'</div>';
+  }
+  function addPeriodRow(){
+    periodCount++;
+    var host=$('periodsHost');
+    var wrap=document.createElement('div');
+    wrap.innerHTML=periodRowHtml(periodCount);
+    var row=wrap.firstChild;
+    host.appendChild(row);
+    wireRow(row);
+    updateRemoveButtons();
+    applyLang();
+  }
+  function updateRemoveButtons(){
+    var rows=$('periodsHost').querySelectorAll('.prow');
+    for(var i=0;i<rows.length;i++){
+      var btn=rows[i].querySelector('.p-remove');
+      btn.style.display=rows.length>1?'block':'none';
+    }
+  }
+  function wireRow(row){
+    var startEl=row.querySelector('.p-start'), endEl=row.querySelector('.p-end'), nowEl=row.querySelector('.p-now'), rmBtn=row.querySelector('.p-remove');
+    startEl.addEventListener('change',function(){recalc();save()});
+    endEl.addEventListener('change',function(){recalc();save()});
+    row.querySelector('.p-org-inp').addEventListener('input',function(){save()});
+    nowEl.addEventListener('change',function(){
+      endEl.disabled=nowEl.checked;
+      if(nowEl.checked)endEl.value='';
+      recalc();save();
+    });
+    rmBtn.addEventListener('click',function(){
+      row.parentNode.removeChild(row);
+      updateRemoveButtons();
+      recalc();save();
+    });
+  }
+
+  var childCount=0;
+  function childRowHtml(idx){
+    return '<div class="prow" data-idx="'+idx+'">'
+      +'<div class="row2">'
+      +'<div class="field" style="margin-bottom:0"><label data-i="lStart">Boshlanish</label><div class="input-shell"><input type="date" class="c-start"></div></div>'
+      +'<div class="field" style="margin-bottom:0"><label data-i="lEnd">Tugash</label><div class="input-shell"><input type="date" class="c-end"></div></div>'
+      +'</div>'
+      +'<button type="button" class="p-remove" data-i="btnRemove">Olib tashlash</button>'
+      +'</div>';
+  }
+  function addChildRow(){
+    childCount++;
+    var host=$('childHost');
+    var wrap=document.createElement('div');
+    wrap.innerHTML=childRowHtml(childCount);
+    var row=wrap.firstChild;
+    host.appendChild(row);
+    row.querySelector('.c-start').addEventListener('change',function(){recalc();save()});
+    row.querySelector('.c-end').addEventListener('change',function(){recalc();save()});
+    row.querySelector('.p-remove').addEventListener('click',function(){
+      row.parentNode.removeChild(row);
+      recalc();save();
+    });
+    applyLang();
+  }
+
+  /* ---------- asosiy hisob mantig'i ---------- */
+  var CHILD_CAP_MONTHS=72; // 6 yil, jami — 2024-yilgi tuzatishga ko'ra (avval 3 yil edi)
+
+  function collectPeriods(){
+    var rows=$('periodsHost').querySelectorAll('.prow');
+    var out=[], invalidCount=0, futureCount=0;
+    for(var i=0;i<rows.length;i++){
+      var row=rows[i];
+      var startEl=row.querySelector('.p-start'), endEl=row.querySelector('.p-end'), nowEl=row.querySelector('.p-now');
+      var msg=row.querySelector('.prow-msg');
+      msg.innerHTML='';
+      row.classList.remove('err');
+      var s=parseDate(startEl.value);
+      var e=nowEl.checked?todayDate():parseDate(endEl.value);
+      if(!s||!e)continue;
+      if(e.getTime()<s.getTime()){
+        row.classList.add('err');
+        msg.innerHTML='<div class="prow-err-msg" data-i="errOrder">Tugash sanasi boshlanishdan oldin bo\'lishi mumkin emas — bu davr hisobga kiritilmadi.</div>';
+        invalidCount++;
+        continue;
+      }
+      if(e.getTime()>todayDate().getTime()&&!nowEl.checked){
+        msg.innerHTML='<div class="prow-warn" data-i="warnFuture">Tugash sanasi kelajakda.</div>';
+        futureCount++;
+      }
+      out.push({start:s,end:e});
+    }
+    return {periods:out, invalidCount:invalidCount, futureCount:futureCount};
+  }
+
+  function collectSimple(startId,endId){
+    var s=parseDate($(startId).value), e=parseDate($(endId).value);
+    if(!s||!e||e.getTime()<s.getTime())return [];
+    return [{start:s,end:e}];
+  }
+
+  function collectChildren(){
+    var rows=$('childHost').querySelectorAll('.prow');
+    var out=[];
+    for(var i=0;i<rows.length;i++){
+      var s=parseDate(rows[i].querySelector('.c-start').value);
+      var e=parseDate(rows[i].querySelector('.c-end').value);
+      if(s&&e&&e.getTime()>=s.getTime())out.push({start:s,end:e});
+    }
+    return out;
+  }
+
+  function compute(){
+    var pr=collectPeriods();
+    var primaryPeriods=pr.periods;
+    if(!primaryPeriods.length)return null;
+
+    var primMerge=mergeIntervals(primaryPeriods);
+    var primYmd=sumYmd(primMerge.merged);
+    var primMonths=primYmd.y*12+primYmd.m; // 7 yil shartini tekshirishda kunlar hisobga olinmaydi
+
+    var qualifies7=primMonths>=84;
+
+    var extraSources=[];
+    var mil=collectSimple('milStart','milEnd');
+    var study=collectSimple('stStart','stEnd');
+    var care=collectSimple('careStart','careEnd');
+    var children=collectChildren();
+
+    var extraYmd={y:0,m:0,d:0};
+    var childCappedApplied=false;
+    if(qualifies7){
+      if(mil.length){extraYmd=addYmd(extraYmd,sumYmd(mergeIntervals(mil).merged))}
+      if(study.length){extraYmd=addYmd(extraYmd,sumYmd(mergeIntervals(study).merged))}
+      if(care.length){extraYmd=addYmd(extraYmd,sumYmd(mergeIntervals(care).merged))}
+      if(children.length){
+        var childMerge=mergeIntervals(children);
+        var childDays=totalDays(childMerge.merged);
+        var childMonths=childDays/30;
+        if(childMonths>CHILD_CAP_MONTHS+1e-9){childCappedApplied=true;childMonths=CHILD_CAP_MONTHS}
+        extraYmd=addYmd(extraYmd,monthsToYmd(childMonths));
+      }
+    }
+
+    var grandYmd=addYmd(primYmd,extraYmd);
+    var grandMonths=ymdToMonths(grandYmd);
+    var reqYears=gender==='m'?25:20;
+    var reqMonths=reqYears*12;
+    var sevenReqMonths=84;
+
+    var category; // 'full' | 'partial' | 'benefit'
+    if(grandYmd.y*12+grandYmd.m>=reqMonths)category='full';
+    else if(grandYmd.y*12+grandYmd.m>=sevenReqMonths)category='partial';
+    else category='benefit';
+
+    var pct=Math.min(100,Math.round(grandMonths/reqMonths*100));
+    var leftMonths=Math.max(0,reqMonths-grandMonths);
+    var leftYmd=monthsToYmd(leftMonths);
+
+    var birthDate=parseDate($('birthDate').value);
+    var birthInfo=null;
+    if(birthDate){
+      var pensionAge=gender==='m'?60:55;
+      var pensionDate=new Date(birthDate.getFullYear()+pensionAge,birthDate.getMonth(),birthDate.getDate());
+      var today=todayDate();
+      var toAgeYmd, forecastYmd, willReach;
+      if(pensionDate.getTime()>today.getTime()){
+        toAgeYmd=ymdDiffInclusive(today,addDays(pensionDate,-1));
+        var remainingMonths=ymdToMonths(toAgeYmd);
+        forecastYmd=monthsToYmd(grandMonths+remainingMonths);
+      }else{
+        toAgeYmd={y:0,m:0,d:0};
+        forecastYmd=grandYmd;
+      }
+      willReach=(forecastYmd.y*12+forecastYmd.m)>=reqMonths;
+      birthInfo={toAgeYmd:toAgeYmd,forecastYmd:forecastYmd,willReach:willReach,pensionDate:pensionDate};
+    }
+
+    var allPeriodsList=primaryPeriods.map(function(p){return {label:'work',start:p.start,end:p.end}});
+    if(qualifies7){
+      mil.forEach(function(p){allPeriodsList.push({label:'mil',start:p.start,end:p.end})});
+      study.forEach(function(p){allPeriodsList.push({label:'study',start:p.start,end:p.end})});
+      care.forEach(function(p){allPeriodsList.push({label:'care',start:p.start,end:p.end})});
+      children.forEach(function(p){allPeriodsList.push({label:'child',start:p.start,end:p.end})});
+    }
+
+    return {
+      primYmd:primYmd, extraYmd:extraYmd, grandYmd:grandYmd,
+      qualifies7:qualifies7, category:category, pct:pct, leftYmd:leftYmd,
+      reqYears:reqYears, overlap:primMerge.overlap, invalidCount:pr.invalidCount,
+      childCappedApplied:childCappedApplied, birthInfo:birthInfo,
+      periodsList:allPeriodsList
+    };
+  }
+
+  /* ---------- I18N ---------- */
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Hayotiy",
+      h1:"Mehnat staji kalkulyatori",
+      sub:"Ish davrlaringizni kiriting — umumiy mehnat staji darrov chiqadi.",
+      lGender:"Jins",segM:"Erkak",segF:"Ayol",
+      hintM:"Pensiya yoshi 60, minimal staj 25 yil.",
+      hintF:"Pensiya yoshi 55, minimal staj 20 yil.",
+      lPeriods:"Ish davrlari",btnAddPeriod:"+ Davr qo'shish",
+      lOrg:"Tashkilot nomi (ixtiyoriy)",lStart:"Boshlanish",lEnd:"Tugash",lNow:"Hozir ham ishlayapman",
+      btnRemove:"Olib tashlash",
+      errOrder:"Tugash sanasi boshlanishdan oldin bo'lishi mumkin emas — bu davr hisobga kiritilmadi.",
+      warnFuture:"Tugash sanasi kelajakda.",
+      sExtra:"Qo'shimcha davrlar",
+      extraNote:"Bu davrlar asosiy staj kamida 7 yil bo'lgandagina qo'shiladi.",
+      lMil:"Harbiy xizmat",lStudy:"Kunduzgi oliy ta'lim",
+      lChild:"Bolani parvarishlash ta'tili",btnAddChild:"+ Bola qo'shish",
+      hChild:"Jami eng ko'pi bilan 6 yilgacha hisobga olinadi.",
+      lCare:"Parvarish (I guruh nogironlik / nogiron bola / 80+ qariya)",
+      sBirth:"Tug'ilgan sana (ixtiyoriy)",lBirth:"Tug'ilgan sana",
+      hBirth:"Kiritsangiz, pensiya yoshigacha qolgan vaqt va prognoz staj ham hisoblanadi.",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Jami mehnat staji",
+      kBasic:"Asosiy staj",kExtra:"Qo'shimcha staj",kNeed:"Talab qilinadigan staj",kLeft:"Qancha qolgani",
+      kToAge:"Pensiya yoshigacha",kForecast:"Prognoz staj (pensiya yoshida)",kVerdict:"Yetadimi",
+      verdictYes:"Ha, yetadi",verdictNo:"Yo'q, yetmaydi",
+      statusFull:"Hozirgi staj bo'yicha to'liq pensiyaga yetadi.",
+      statusPartial:"Hozirgi staj bo'yicha to'liqsiz pensiya toifasiga kirasiz. Yana {left} staj to'liq pensiyaga yetkazadi.",
+      statusBenefit:"Asosiy staj 7 yildan kam — hozircha yoshga doir nafaqa toifasiga kirasiz (erkaklar 65, ayollar 60 yoshda). Yana {left} kerak.",
+      extraSkipped:"Asosiy staj 7 yildan kam bo'lgani uchun harbiy xizmat, o'qish va parvarish davrlari hisobga olinmadi.",
+      childCapNote:"Bolani parvarishlash davri jami 6 yilgacha cheklandi (2024-yilgi tuzatishga ko'ra).",
+      overlapNote1:"davr kesishyapti — kesishgan qism bir marta hisoblandi.",
+      pbarLbl:"{pct}% ({need} yildan)",
+      lblYil:"yil",lblOy:"oy",lblKun:"kun",
+      plOrg:"davr",plWork:"Ish davri",plMil:"Harbiy xizmat",plStudy:"Kunduzgi o'qish",plCare:"Parvarish",plChild:"Bola parvarishi",
+      mygovNote:'Bu hisob taxminiy va ma\'lumot uchun. Rasmiy staj Pensiya jamg\'armasi tomonidan aniqlanadi. O\'z stajingizni <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a> portalidan tekshirishingiz mumkin.',
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",shareTitle:"Mehnat staji hisobi",
+      foot:"Hisob taxminiy. Rasmiy stajni Pensiya jamg'armasi hujjatlar asosida aniqlaydi.",
+      seo:'<h2>Pensiya uchun qancha staj kerak?</h2><p>To\'liq yoshga doir pensiya uchun erkaklar 60 yoshda kamida 25 yil, ayollar 55 yoshda kamida 20 yil staj kerak. Kamida 7 yil staj bo\'lsa, to\'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam staj bo\'lsa, pensiya emas, yoshga doir nafaqa tayinlanadi (erkaklar 65, ayollar 60 yoshda).</p><h2>Stajga qanday davrlar kiradi?</h2><p>Asosiy guruhga rasmiy ishlagan, ish haqi hisoblangan davrlar, shuningdek ijtimoiy soliq to\'langan bo\'lsa yakka tartibdagi tadbirkorlik, o\'zini o\'zi band qilish va xorijda ishlash davrlari kiradi. Bulardan tashqari harbiy xizmat, kunduzgi oliy ta\'limda o\'qish, bolani parvarishlash ta\'tili va ba\'zi parvarish davrlari qo\'shimcha guruhga kiradi.</p><h2>Harbiy xizmat va o\'qish stajga kiradimi?</h2><p>Ha, lekin faqat asosiy guruh bo\'yicha kamida 7 yil staj bo\'lgandagina. Bu shart nogironligi bo\'lgan shaxslarga qo\'llanmaydi. Agar asosiy stajingiz 7 yildan kam bo\'lsa, harbiy xizmat va o\'qish davri hozircha hisobga kiritilmaydi — staj asosiy guruh bilan yetganda qayta hisoblang.</p><h2>Bolani parvarishlash ta\'tili qancha hisobga olinadi?</h2><p>Har bir bola uch yoshga to\'lgunga qadar bo\'lgan davr hisobga olinadi, jami esa (barcha bolalar bo\'yicha) 6 yildan oshmaydi. 2024-yilgi qonun o\'zgarishiga qadar bu chegara 3 yil edi — ba\'zi eski manbalarda hali ham 3 yil deb yozilgan, shuning uchun aniq holatni Pensiya jamg\'armasidan tasdiqlashni tavsiya qilamiz.</p><h2>Staj yetmasa nima bo\'ladi?</h2><p>7 yildan ko\'p, lekin talab qilingan stajdan kam bo\'lsa — to\'liqsiz pensiya mavjud stajga mutanosib tayinlanadi. 7 yildan kam bo\'lsa — pensiya emas, yoshga doir nafaqa (erkaklar 65, ayollar 60 yoshda) tayinlanadi. Ishlashni davom ettirish stajni oshiraveradi.</p><h2>O\'zini o\'zi band shaxs stajni qanday to\'playdi?</h2><p>Yakka tartibdagi tadbirkor yoki o\'zini o\'zi band qilgan shaxs yiliga kamida 1 BHM miqdorida ijtimoiy soliq to\'lasa, o\'sha yil to\'liq staj sifatida yoziladi. BHM miqdori har yili o\'zgaradi, shuning uchun aniq summani soliq idorasidan yoki rasmiy manbadan tekshiring.</p><h2>Rasmiy stajimni qayerdan bilaman?</h2><p>Eng ishonchli manba — my.gov.uz portalidagi shaxsiy kabinet, u yerda rasmiy stajingiz Pensiya jamg\'armasi ma\'lumotlari asosida ko\'rsatiladi. 2005-yil 1-yanvargacha bo\'lgan davrlar mehnat daftarchasi yozuvlari asosida, qo\'shimcha hujjatsiz hisoblanadi.</p><h2>Pensiya yoshi oshiriladimi?</h2><p>2027–2029-yillarga mo\'ljallangan Fiskal strategiyada pensiya yoshini (erkaklar 60→63, ayollar 55→58) va minimal stajni oshirish taklif qilinmoqda. Bu hali qonun emas, taklif muhokama bosqichida. Bu kalkulyator amaldagi (hozirgi) qoidalar bo\'yicha hisoblaydi.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Жизнь",
+      h1:"Калькулятор трудового стажа",
+      sub:"Введите периоды работы — общий трудовой стаж посчитается сразу.",
+      lGender:"Пол",segM:"Мужчина",segF:"Женщина",
+      hintM:"Пенсионный возраст 60, минимальный стаж 25 лет.",
+      hintF:"Пенсионный возраст 55, минимальный стаж 20 лет.",
+      lPeriods:"Периоды работы",btnAddPeriod:"+ Добавить период",
+      lOrg:"Название организации (не обязательно)",lStart:"Начало",lEnd:"Окончание",lNow:"Работаю сейчас",
+      btnRemove:"Удалить",
+      errOrder:"Дата окончания не может быть раньше начала — этот период не учтён.",
+      warnFuture:"Дата окончания в будущем.",
+      sExtra:"Дополнительные периоды",
+      extraNote:"Эти периоды добавляются только если основной стаж не менее 7 лет.",
+      lMil:"Военная служба",lStudy:"Очное высшее образование",
+      lChild:"Отпуск по уходу за ребёнком",btnAddChild:"+ Добавить ребёнка",
+      hChild:"Всего засчитывается не более 6 лет.",
+      lCare:"Уход (инвалид I группы / ребёнок-инвалид / старше 80 лет)",
+      sBirth:"Дата рождения (не обязательно)",lBirth:"Дата рождения",
+      hBirth:"Если указать, посчитаются время до пенсионного возраста и прогнозный стаж.",
+      btnCalc:"Вычислить",rTag:"Результат расчёта",
+      lblMain:"Общий трудовой стаж",
+      kBasic:"Основной стаж",kExtra:"Дополнительный стаж",kNeed:"Требуемый стаж",kLeft:"Сколько осталось",
+      kToAge:"До пенсионного возраста",kForecast:"Прогнозный стаж (в пенсионном возрасте)",kVerdict:"Хватит ли",
+      verdictYes:"Да, хватит",verdictNo:"Нет, не хватит",
+      statusFull:"По текущему стажу вы имеете право на полную пенсию.",
+      statusPartial:"По текущему стажу вы относитесь к категории неполной пенсии. Ещё {left} стажа доведёт до полной пенсии.",
+      statusBenefit:"Основной стаж меньше 7 лет — пока вы относитесь к категории пособия по возрасту (мужчины в 65, женщины в 60 лет). Нужно ещё {left}.",
+      extraSkipped:"Основной стаж меньше 7 лет, поэтому военная служба, учёба и уход не учтены.",
+      childCapNote:"Период ухода за ребёнком ограничен 6 годами в сумме (по поправке 2024 года).",
+      overlapNote1:"период(ов) пересекаются — пересечение учтено один раз.",
+      pbarLbl:"{pct}% (из {need} лет)",
+      lblYil:"лет",lblOy:"мес.",lblKun:"дн.",
+      plOrg:"период",plWork:"Период работы",plMil:"Военная служба",plStudy:"Очная учёба",plCare:"Уход",plChild:"Уход за ребёнком",
+      mygovNote:'Этот расчёт приблизительный и информационный. Официальный стаж определяет Пенсионный фонд. Проверить свой стаж можно на портале <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a>.',
+      btnShare:"Поделиться",copied:"Скопировано ✓",shareTitle:"Расчёт трудового стажа",
+      foot:"Расчёт приблизительный. Официальный стаж определяет Пенсионный фонд по документам.",
+      seo:'<h2>Сколько стажа нужно для пенсии?</h2><p>Для полной пенсии по возрасту мужчинам нужно 25 лет стажа в 60 лет, женщинам — 20 лет в 55 лет. При стаже не менее 7 лет назначается неполная пенсия пропорционально имеющемуся стажу. Если стажа меньше 7 лет, назначается не пенсия, а пособие по возрасту (мужчины в 65, женщины в 60 лет).</p><h2>Какие периоды входят в стаж?</h2><p>В основную группу входят периоды официальной работы с начислением зарплаты, а также — при уплате социального налога — периоды индивидуального предпринимательства, самозанятости и работы за рубежом. Дополнительно в стаж входят военная служба, очная учёба в вузе, отпуск по уходу за ребёнком и некоторые периоды ухода.</p><h2>Военная служба и учёба входят в стаж?</h2><p>Да, но только если основной стаж составляет не менее 7 лет. Это условие не применяется к людям с инвалидностью. Если основного стажа меньше 7 лет, период военной службы и учёбы пока не учитывается — пересчитайте, когда основной стаж достигнет нормы.</p><h2>Сколько засчитывается отпуск по уходу за ребёнком?</h2><p>По каждому ребёнку засчитывается период до достижения им трёх лет, а в сумме по всем детям — не более 6 лет. До поправки 2024 года ограничение составляло 3 года — в некоторых старых источниках это ещё не обновлено, поэтому точную цифру советуем уточнить в Пенсионном фонде.</p><h2>Что если стажа не хватает?</h2><p>Если стажа больше 7 лет, но меньше требуемого — назначается неполная пенсия пропорционально имеющемуся стажу. Если меньше 7 лет — назначается не пенсия, а пособие по возрасту (мужчины в 65, женщины в 60 лет). Продолжение работы увеличивает стаж.</p><h2>Как копит стаж самозанятый?</h2><p>Индивидуальный предприниматель или самозанятый, уплативший за год социальный налог в размере не менее 1 БРВ, получает этот год как полный стаж. Размер БРВ меняется каждый год, поэтому точную сумму уточняйте в налоговом органе или официальном источнике.</p><h2>Где узнать официальный стаж?</h2><p>Самый надёжный источник — личный кабинет на портале my.gov.uz, где официальный стаж отображается по данным Пенсионного фонда. Периоды до 1 января 2005 года учитываются по записям трудовой книжки без дополнительных документов.</p><h2>Пенсионный возраст повысят?</h2><p>В Фискальной стратегии на 2027–2029 годы предлагается повышение пенсионного возраста (мужчины 60→63, женщины 55→58) и минимального стажа. Это пока не закон, предложение находится на стадии обсуждения. Этот калькулятор считает по действующим (текущим) правилам.</p>'
+    }
+  };
+
+  var t=function(k){return I[lang][k]};
+  var fmtNum=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+
+  function fmtYmd(ymd){
+    var parts=[];
+    if(ymd.y)parts.push(ymd.y+' '+t('lblYil'));
+    if(ymd.m)parts.push(ymd.m+' '+t('lblOy'));
+    if(ymd.d||!parts.length)parts.push(ymd.d+' '+t('lblKun'));
+    return parts.join(' ');
+  }
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('genderHint').textContent=gender==='m'?t('hintM'):t('hintF');
+    $('seoBlock').innerHTML=t('seo');
+    var rt=$('relTitle');
+    if(rt)rt.textContent=lang==='ru'?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+    var rl=document.querySelectorAll('[data-rel-uz]');
+    for(var j=0;j<rl.length;j++)rl[j].textContent=rl[j].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    var mg=document.querySelector('.mygov-note');
+    if(mg)mg.innerHTML=t('mygovNote');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  $('gM').onclick=function(){gender='m';$('genderHint').textContent=t('hintM');setSeg(this,$('gF'));recalc();save()};
+  $('gF').onclick=function(){gender='f';$('genderHint').textContent=t('hintF');setSeg(this,$('gM'));recalc();save()};
+
+  $('addPeriod').onclick=function(){addPeriodRow();save()};
+  $('addChild').onclick=function(){addChildRow();save()};
+  ['milStart','milEnd','stStart','stEnd','careStart','careEnd','birthDate'].forEach(function(id){
+    $(id).addEventListener('change',function(){recalc();save()});
+  });
+
+  function renderResult(){
+    var d=calcData;
+    $('mainNum').textContent=fmtYmd(d.grandYmd);
+    $('rBasic').textContent=fmtYmd(d.primYmd);
+    $('rExtra').textContent=fmtYmd(d.extraYmd);
+    $('rNeed').textContent=d.reqYears+' '+t('lblYil');
+    $('rLeft').textContent=(d.category==='full')?('0 '+t('lblYil')):fmtYmd(d.leftYmd);
+
+    $('pbarFill').style.width=d.pct+'%';
+    $('pbarLbl').textContent=t('pbarLbl').replace('{pct}',d.pct).replace('{need}',d.reqYears);
+
+    var statusText;
+    if(d.category==='full')statusText=t('statusFull');
+    else if(d.category==='partial')statusText=t('statusPartial').replace('{left}',fmtYmd(d.leftYmd));
+    else statusText=t('statusBenefit').replace('{left}',fmtYmd(d.leftYmd));
+    $('statusBox').textContent=statusText;
+
+    var notes=[];
+    if(d.overlap)notes.push('2+ '+t('overlapNote1'));
+    if(!d.qualifies7)notes.push(t('extraSkipped'));
+    if(d.childCappedApplied)notes.push(t('childCapNote'));
+    var on=$('overlapNote');
+    if(notes.length){on.style.display='block';on.textContent=notes.join(' ')}
+    else on.style.display='none';
+
+    var bb=$('birthBlock');
+    if(d.birthInfo){
+      bb.style.display='block';
+      $('rToAge').textContent=fmtYmd(d.birthInfo.toAgeYmd);
+      $('rForecast').textContent=fmtYmd(d.birthInfo.forecastYmd);
+      $('rVerdict').textContent=d.birthInfo.willReach?t('verdictYes'):t('verdictNo');
+    }else{
+      bb.style.display='none';
+    }
+
+    var labelMap={work:t('plWork'),mil:t('plMil'),study:t('plStudy'),care:t('plCare'),child:t('plChild')};
+    var plHtml='';
+    d.periodsList.forEach(function(p){
+      var dur=fmtYmd(sumYmd(mergeIntervals([p]).merged));
+      plHtml+='<div class="plist-row"><span>'+labelMap[p.label]+' — '+fmtDate(p.start)+'–'+fmtDate(p.end)+'</span><span class="dur">'+dur+'</span></div>';
+    });
+    $('plist').innerHTML=plHtml;
+  }
+
+  function recalc(){
+    var d=compute();
+    if(!d){calcData=null;$('receipt').classList.remove('show');return}
+    calcData=d;
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  $('calcBtn').onclick=function(){
+    recalc();
+    var r=$('receipt');
+    if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  $('shareBtn').onclick=function(){
+    if(!calcData)return;
+    var txt=t('shareTitle')+': '+fmtYmd(calcData.grandYmd);
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  /* ---------- saqlash (localStorage) ---------- */
+  var LS='kalki_staj_v1';
+  function collectStateForSave(){
+    var o={gender:gender,periods:[],children:[],mil:{s:$('milStart').value,e:$('milEnd').value},
+      study:{s:$('stStart').value,e:$('stEnd').value},care:{s:$('careStart').value,e:$('careEnd').value},
+      birth:$('birthDate').value};
+    var rows=$('periodsHost').querySelectorAll('.prow');
+    for(var i=0;i<rows.length;i++){
+      var r=rows[i];
+      o.periods.push({org:r.querySelector('.p-org-inp').value,s:r.querySelector('.p-start').value,e:r.querySelector('.p-end').value,now:r.querySelector('.p-now').checked});
+    }
+    var crows=$('childHost').querySelectorAll('.prow');
+    for(var j=0;j<crows.length;j++){
+      o.children.push({s:crows[j].querySelector('.c-start').value,e:crows[j].querySelector('.c-end').value});
+    }
+    return o;
+  }
+  function save(){
+    try{localStorage.setItem(LS,JSON.stringify(collectStateForSave()))}catch(e){}
+  }
+  function restoreState(o){
+    if(!o)return false;
+    gender=o.gender==='f'?'f':'m';
+    if(gender==='f'){setSeg($('gF'),$('gM'));$('genderHint').textContent=t('hintF')}
+    else{setSeg($('gM'),$('gF'));$('genderHint').textContent=t('hintM')}
+    $('periodsHost').innerHTML='';periodCount=0;
+    if(o.periods&&o.periods.length){
+      o.periods.forEach(function(p){
+        addPeriodRow();
+        var row=$('periodsHost').querySelector('.prow[data-idx="'+periodCount+'"]');
+        row.querySelector('.p-org-inp').value=p.org||'';
+        row.querySelector('.p-start').value=p.s||'';
+        row.querySelector('.p-now').checked=!!p.now;
+        row.querySelector('.p-end').value=p.now?'':(p.e||'');
+        row.querySelector('.p-end').disabled=!!p.now;
+      });
+    }else addPeriodRow();
+    $('childHost').innerHTML='';childCount=0;
+    if(o.children)o.children.forEach(function(c){
+      addChildRow();
+      var row=$('childHost').querySelector('.prow[data-idx="'+childCount+'"]');
+      row.querySelector('.c-start').value=c.s||'';
+      row.querySelector('.c-end').value=c.e||'';
+    });
+    if(o.mil){$('milStart').value=o.mil.s||'';$('milEnd').value=o.mil.e||''}
+    if(o.study){$('stStart').value=o.study.s||'';$('stEnd').value=o.study.e||''}
+    if(o.care){$('careStart').value=o.care.s||'';$('careEnd').value=o.care.e||''}
+    if(o.birth)$('birthDate').value=o.birth;
+    updateRemoveButtons();
+    return true;
+  }
+  function loadFromLS(){
+    try{
+      var raw=localStorage.getItem(LS);
+      if(!raw)return false;
+      return restoreState(JSON.parse(raw));
+    }catch(e){return false}
+  }
+
+  /* ---------- URL orqali ulashish (?p=) ---------- */
+  window.__buildShareUrl=function(){
+    var o=collectStateForSave();
+    var json=JSON.stringify(o);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var json=decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/'))));
+      var o=JSON.parse(json);
+      return restoreState(o);
+    }catch(e){return false}
+  }
+
+  /* Sahifa prerender qilinganda #periodsHost ichida allaqachon statik
+     qator bo'lishi mumkin. Guard shu qatorni qayta yaratishni
+     o'tkazib yuboradi, lekin hodisa bog'lash (wireRow) HAR DOIM
+     bajariladi — aks holda statik qatordagi inputlar ishlamay qoladi. */
+  function wireExistingPeriodRows(){
+    var rows=$('periodsHost').querySelectorAll('.prow');
+    for(var i=0;i<rows.length;i++){
+      var idx=parseInt(rows[i].getAttribute('data-idx'),10)||0;
+      if(idx>periodCount)periodCount=idx;
+      wireRow(rows[i]);
+    }
+    updateRemoveButtons();
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  applyLang();
+  var restored=restoreFromUrl();
+  if(!restored)restored=loadFromLS();
+  if(!restored){
+    if($('periodsHost').querySelector('.prow'))wireExistingPeriodRows();
+    else addPeriodRow();
+  }
+  applyLang();
+  recalc();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">14.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

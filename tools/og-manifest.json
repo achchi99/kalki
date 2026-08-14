@@ -397,5 +397,12 @@
     "hash": "a3a8111ed3a3",
     "tpl": 1,
     "v": 1
+  },
+  "staj-kalkulyator": {
+    "title": "Mehnat staji kalkulyatori",
+    "cat": "hayot",
+    "hash": "97ce216496ba",
+    "tpl": 1,
+    "v": 1
   }
 }
