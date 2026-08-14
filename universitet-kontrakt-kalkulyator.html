@@ -146,6 +146,8 @@ table.cmp td.lose{color:#B04A3A;font-weight:800}
 .leadbox .lt b{display:block;font-size:15px;font-weight:800;color:#fff}
 .leadbox .lt span{display:block;font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px;line-height:1.45}
 .leadbtn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
@@ -545,6 +547,7 @@ var I={
   saveNowTxt:"Nishon sanasi o'tib ketgan yoki juda yaqin — summa bir yo'la kerak.",
   rSaveTarget:"Nishon summa",rSaveCur:"Joriy jamg'arma",rSaveGap:"Yetishmayapti",
   noteTxt:"Kalkulyator hech qanday OTM kontrakt narxini va kredit foizini o'zi belgilamaydi — barcha summalarni siz kiritasiz. Narxlar har yili OTM buyrug'i bilan o'zgaradi, shuning uchun rasmiy raqamni universitetdan tekshiring. Ma'lumotlaringiz faqat shu brauzerda saqlanadi.",
+  btnCalc:"Hisoblash",
   btnShare:"Ulashish",copied:"Nusxalandi",
   relTitle:"Bulardan ham foydalanishingiz mumkin",
   foot:"Hisob taxminiy. Kontrakt summasi, chegirma va kredit shartlarini universitet hamda bankdan tasdiqlang.",
@@ -632,6 +635,7 @@ var I={
   saveNowTxt:"Целевая дата прошла или слишком близко — сумма нужна сразу.",
   rSaveTarget:"Целевая сумма",rSaveCur:"Текущие накопления",rSaveGap:"Не хватает",
   noteTxt:"Калькулятор не задаёт ни цен вузов, ни процентов по кредиту — все суммы вводите вы. Цены пересматриваются каждый год приказом вуза, поэтому официальную цифру уточняйте в университете. Ваши данные хранятся только в этом браузере.",
+  btnCalc:"Вычислить",
   btnShare:"Поделиться",copied:"Скопировано",
   relTitle:"Вам также может пригодиться",
   foot:"Расчёт примерный. Сумму контракта, скидку и условия кредита уточните в вузе и банке.",
@@ -1163,6 +1167,11 @@ for(var c2=0;c2<DETS.length;c2++){
   })(DETS[c2]);
 }
 
+$('calcBtn').onclick=function(){
+  recalc();
+  var r=$('receipt');
+  if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+};
 $('shareBtn').onclick=function(){
   if(!calcData)return;
   var txt=t('h1')+': '+fmt(calcData.grand)+' '+som();
