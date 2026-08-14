@@ -85,6 +85,10 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 </style>
 <link rel="manifest" href="manifest.json">
@@ -211,7 +215,7 @@ img,svg{height:auto}
         <div class="rrow"><span class="k" data-i="kFuel">Kerakli yoqilg'i</span><span class="v" id="rFuel">—</span></div>
         <div class="rrow"><span class="k" data-i="kPerKm">1 km narxi</span><span class="v" id="rPerKm">—</span></div>
       </div>
-      <div class="receipt-actions"><button type="button" class="pdfbtn">PDF</button><button id="urlShareBtn" type="button">Ulashish</button></div>
+      <div class="receipt-actions"><button type="button" id="shareBtn">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
     </div>
     <div class="receipt-edge"></div>
   </section>
@@ -459,7 +463,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">13.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">14.8.2026</div>
 </div>
 <script>
 (function(){
@@ -629,13 +633,20 @@ img,svg{height:auto}
 
 <script id="sharebtn">
 (function(){
-  function addShareBtn(){
+  // Guard faqat yaratishni o'tkazib yuboradi — hodisa bog'lash (onclick)
+  // har chaqiruvda qayta bajariladi, aks holda prerender qilingan statik
+  // tugma hech qachon bosilmaydigan bo'lib qoladi.
+  function bindShareBtn(){
     var actions=document.querySelector('.receipt-actions');
-    if(!actions||document.getElementById('urlShareBtn'))return;
+    if(!actions)return;
     var isRu=document.documentElement.lang==='ru';
-    var btn=document.createElement('button');
-    btn.id='urlShareBtn';
-    btn.type='button';
+    var btn=document.getElementById('shareBtn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='shareBtn';
+      btn.type='button';
+      actions.insertBefore(btn,actions.firstChild);
+    }
     btn.textContent=isRu?'Поделиться':'Ulashish';
     btn.onclick=function(){
       var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
@@ -643,19 +654,14 @@ img,svg{height:auto}
       if(navigator.share){navigator.share({title:title,url:url}).catch(function(){})}
       else if(navigator.clipboard){navigator.clipboard.writeText(url);var o=btn.textContent;btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';setTimeout(function(){btn.textContent=o},1500)}
     };
-    actions.appendChild(btn);
   }
-  // til almashganda tugma matnini yangilash uchun ham
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(addShareBtn,150)})}
-  else{setTimeout(addShareBtn,150)}
-  // langUz/langRu bosilganda matnni yangilash
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(bindShareBtn,150)})}
+  else{setTimeout(bindShareBtn,150)}
+  // langUz/langRu bosilganda matn va hodisa qayta yangilanadi
   setTimeout(function(){
     ['langUz','langRu'].forEach(function(id){
       var el=document.getElementById(id);
-      if(el){var orig=el.onclick;el.addEventListener('click',function(){setTimeout(function(){
-        var b=document.getElementById('urlShareBtn');
-        if(b)b.textContent=document.documentElement.lang==='ru'?'Поделиться':'Ulashish';
-      },50)})}
+      if(el){el.addEventListener('click',function(){setTimeout(bindShareBtn,50)})}
     });
   },200);
 })();
