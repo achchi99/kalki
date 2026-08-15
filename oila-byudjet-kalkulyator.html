@@ -181,6 +181,66 @@ details.opt[open]>summary::after{content:"−"}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .receipt-actions button:active{background:var(--cat-soft)}
 .receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+/* --- 1-QATLAM: hero --- */
+.hero-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:.03em;padding:5px 12px;border-radius:99px}
+.hero-status.st-ok{background:var(--ok-soft);color:var(--ok)}
+.hero-status.st-mid{background:var(--mid-soft);color:var(--mid)}
+.hero-status.st-neg{background:var(--warn-soft);color:var(--warn)}
+.hero-status .hs-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.hero-figure{margin-top:13px}
+.hero-num{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.15;word-break:break-word;color:var(--ink)}
+.hero-num.neg{color:var(--warn)}
+.hero-sub{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:4px}
+.trend-chip{display:none;align-items:center;gap:6px;margin-top:11px;font-size:12.5px;font-weight:700;background:#F2F5F3;color:var(--muted);border-radius:99px;padding:6px 12px}
+.trend-chip.show{display:inline-flex}
+.trend-chip.up{background:var(--ok-soft);color:var(--ok)}
+.trend-chip.down{background:var(--warn-soft);color:var(--warn)}
+/* --- 2-QATLAM: flow bar --- */
+.flow-wrap{margin-top:19px}
+.flow-income{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.flow-income b{color:var(--ink);font-weight:800}
+.flowbar{position:relative;height:20px;border-radius:99px;background:#EEF2EF;overflow:hidden;display:flex}
+.flowbar .fseg{height:100%}
+.flow-marker{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink);opacity:.5}
+.flow-marker .fm-lbl{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:800;color:var(--muted);white-space:nowrap}
+.flow-legend{display:flex;flex-wrap:wrap;gap:12px 16px;margin-top:22px;font-size:12px;font-weight:700;color:var(--muted)}
+.flow-legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;background:var(--lc)}
+.flow-legend b{color:var(--ink)}
+/* --- 4-QATLAM: accordion --- */
+details.acc{border:1.5px solid var(--line);border-radius:12px;margin-top:10px;background:#FBFCFB;overflow:hidden}
+details.acc[open]{background:var(--card)}
+details.acc>summary{padding:13px 14px;font-size:14px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
+details.acc[open]>summary::after{content:"−"}
+.acc-body{padding:2px 14px 15px}
+details.acc.acc-hidden{display:none}
+.spendrow{margin-bottom:11px}
+.spendrow:last-child{margin-bottom:0}
+.spendrow .sr-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.spendrow .sr-top span:last-child{color:var(--muted);font-weight:800}
+.spendrow .sr-track{height:8px;border-radius:99px;background:#E9EFEA;overflow:hidden}
+.spendrow .sr-track i{display:block;height:100%;border-radius:99px}
+.gauge-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.gauge-svg{width:132px;height:74px;flex:none}
+.gauge-num{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.gauge-of{font-size:13px;font-weight:700;color:var(--muted)}
+.subscores{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+@media (max-width:380px){.subscores{grid-template-columns:1fr}}
+.subscore-card{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--card)}
+.subscore-card .sc-lbl{font-size:11px;font-weight:700;color:var(--muted)}
+.subscore-card .sc-val{font-size:15px;font-weight:800;margin-top:2px}
+.subscore-card .sc-track{height:5px;border-radius:99px;background:#E9EFEA;overflow:hidden;margin-top:6px}
+.subscore-card .sc-track i{display:block;height:100%;border-radius:99px;background:var(--cat)}
+/* --- 5-QATLAM: aniqlashtirish CTA --- */
+.cta-refine{margin-top:16px;background:var(--card);border:1.5px dashed var(--line);border-radius:var(--radius);padding:15px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cta-refine .ct-text{flex:1;min-width:180px}
+.cta-refine .ct-text b{display:block;font-size:14.5px;font-weight:800;color:var(--ink)}
+.cta-refine .ct-text span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.cta-refine button{flex:none;background:var(--cat);color:#fff;border:0;border-radius:10px;font:inherit;font-size:13.5px;font-weight:800;padding:11px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cta-refine.hidden{display:none}
+#cardOpt{display:none}
+#cardOpt.show{display:block}
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
@@ -321,64 +381,74 @@ img,svg{height:auto}
   <section class="receipt show" id="receipt" aria-live="polite">
     <div class="receipt-body">
       <div class="receipt-tag" data-i="rTag">Oila byudjeti</div>
-      <div class="cmp" id="cmpBox" style="display:none"></div>
-      <div class="big-figure">
-        <div class="num" id="mainNum">3&nbsp;800&nbsp;000 so'm (48%)</div>
-        <div class="lbl" id="mainLbl">Oyiga jamg'arma imkoniyati</div>
-      </div>
-      <div class="pct-bar" id="pctBar"><div class="seg-x" style="width:22.5%;background:#1D4E6B"></div><div class="seg-x" style="width:23.75%;background:#8C3B2A"></div><div class="seg-x" style="width:6.25%;background:#C77"></div><div class="seg-x" style="width:47.5%;background:#D99A2B"></div></div>
-      <div class="pct-legend">
-        <span style="--lc:#1D4E6B" data-i="legFood">Oziq-ovqat</span>
-        <span style="--lc:#5B3A63" data-i="legEdu">Ta'lim</span>
-        <span style="--lc:#8C3B2A" data-i="legFixed">Doimiy</span>
-        <span style="--lc:#D99A2B" data-i="legSave">Jamg'arma</span>
-      </div>
-      <div class="receipt-rows">
-        <div class="rrow"><span class="k" data-i="kIncome">Jami daromad</span><span class="v" id="rIncome">8&nbsp;000&nbsp;000 so'm</span></div>
-        <div class="rrow"><span class="k" data-i="kFood">Oziq-ovqat savati</span><span class="v" id="rFood">1&nbsp;800&nbsp;000 so'm</span></div>
-        <div class="rrow"><span class="k" data-i="kEdu">Ta'lim</span><span class="v" id="rEdu">—</span></div>
-        <div class="rrow"><span class="k" data-i="kFixed">Doimiy xarajatlar</span><span class="v" id="rFixed">1&nbsp;600&nbsp;000 so'm</span></div>
-        <div class="rrow"><span class="k" data-i="kHealth">Dori va salomatlik</span><span class="v" id="rHealth">300&nbsp;000 so'm</span></div>
-        <div class="rrow"><span class="k" data-i="kFun">Ko'ngilochar</span><span class="v" id="rFun">500&nbsp;000 so'm</span></div>
-        <div class="rrow sep"><span class="k" data-i="kSpend">Jami xarajat</span><span class="v" id="rSpend">4&nbsp;200&nbsp;000 so'm</span></div>
-        <div class="rrow" id="rCreditRow" style="display:none"><span class="k" data-i="kCredit">Kredit to'lovlari</span><span class="v" id="rCredit">—</span></div>
-        <div class="rrow"><span class="k" data-i="kSpendPct">Xarajat / daromad</span><span class="v" id="rSpendPct">53%</span></div>
-        <div class="rrow"><span class="k" data-i="kSave">Jamg'armaga qoladi</span><span class="v ok" id="rSave">3&nbsp;800&nbsp;000 so'm</span></div>
-      </div>
 
-      <div class="debt" id="debtBox" style="display:none">
-        <div class="score-ttl" data-i="dTitle">Qarz yuki</div>
-        <div class="debt-top"><span class="debt-pct" id="debtPct">—</span><span class="debt-lvl" id="debtLvl"></span></div>
-        <div class="debt-bar"><i id="debtBar"></i></div>
-        <div class="status s-neg" id="debtWarn" style="display:none;margin-top:11px"></div>
-        <div class="debt-facts">
-          <div><span data-i="dFree">Qarzsiz bo'lish sanasi</span><b id="debtFree">—</b></div>
-          <div><span data-i="dLeft">Qolgan to'lovlar summasi</span><b id="debtLeft">—</b></div>
-          <div><span data-i="dMonth">Jami oylik to'lov</span><b id="debtMonth">—</b></div>
-        </div>
-        <div class="pay1" id="payFirst"></div>
+      <!-- 1-QATLAM: HERO -->
+      <div class="hero-status st-ok" id="heroStatus"><span class="hs-dot"></span><span id="heroStatusText" data-i="hsOk">Sog'lom byudjet</span></div>
+      <div class="hero-figure">
+        <div class="hero-num" id="mainNum">3&nbsp;800&nbsp;000 so'm</div>
+        <div class="hero-sub" id="mainSub">daromadning 48% i — jamg'arma imkoniyati</div>
       </div>
-      <div class="score" id="scoreBox">
-        <div class="score-ttl" data-i="scTitle">Moliyaviy salomatlik balli</div>
-        <div class="score-head"><span class="score-num" id="scoreNum">35</span><span class="score-of">/ 100</span></div>
-        <div id="scoreEmpty" class="opt-note" data-i="scEmpty" style="display:none">Hisoblash uchun daromadni kiriting.</div>
-        <div class="sbars" id="scoreBars"><div class="sbar" data-sk="cmpSave" data-sv="0"><div class="sl"><span>Jamg'arma ulushi</span><b>0 / 25</b></div><div class="st"><i style="width:0%"></i></div></div><div class="sbar" data-sk="cmpDebt" data-sv="25"><div class="sl"><span>Qarz yuki</span><b>25 / 25</b></div><div class="st"><i style="width:100%"></i></div></div><div class="sbar" data-sk="cmpFund" data-sv="0"><div class="sl"><span>Zaxira fondi</span><b>0 / 25</b></div><div class="st"><i style="width:0%"></i></div></div><div class="sbar" data-sk="cmpSrc" data-sv="10"><div class="sl"><span>Daromad manbalari</span><b>10 / 25</b></div><div class="st"><i style="width:40%"></i></div></div></div>
-        <div class="focus" id="scoreFocus"><div class="ft">Eng ko'p ta'sir qiladigan 2 ta joy:</div><div class="fi" data-fk="cmpSave"><span class="fd"></span><span class="fb"><b>Jamg'arma ulushi</b><span>Daromadning 10 foizini avtomatik chetga qo'yish eng oson boshlanish.</span></span></div><div class="fi" data-fk="cmpFund"><span class="fd"></span><span class="fb"><b>Zaxira fondi</b><span>Kamida bir oylik xarajatga teng zaxira — kutilmagan holat uchun birinchi qadam.</span></span></div></div>
-        <div class="score-note" data-i="scNote">Bu ball — o'zini o'zi baholash vositasi, moliyaviy maslahat emas.</div>
-      </div>
-      <div class="basket" id="basket">
-        <div class="basket-head" id="basketHead"><span data-i="bTitle">Oziq-ovqat savati tafsiloti (bosing)</span><span class="tog">▾</span></div>
-        <div class="basket-list" id="basketList"><div class="brow"><span><span class="bn">Un</span> <span class="bq">16 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Guruch</span> <span class="bq">6 kg</span></span><span class="bv">90&nbsp;000</span></div><div class="brow"><span><span class="bn">Go'sht (mol/qo'y)</span> <span class="bq">6 kg</span></span><span class="bv">750&nbsp;000</span></div><div class="brow"><span><span class="bn">Tovuq go'shti</span> <span class="bq">4 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">O'simlik yog'i</span> <span class="bq">3 l</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Shakar</span> <span class="bq">4 kg</span></span><span class="bv">52&nbsp;000</span></div><div class="brow"><span><span class="bn">Kartoshka</span> <span class="bq">12 kg</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Sabzavotlar</span> <span class="bq">20 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">Meva</span> <span class="bq">8 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Sut-qatiq</span> <span class="bq">8 l</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Tuxum</span> <span class="bq">30 dona</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Choy, tuz, mayda-chuyda</span></span><span class="bv">120&nbsp;000</span></div><div class="brow" style="border-top:1.5px dashed var(--line)"><span class="bn">Oziq-ovqat savati</span><span class="bv">1&nbsp;800&nbsp;000 so'm</span></div><div style="font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 0 2px">2 kishilik oila uchun, viloyat markazi narxlarida</div></div>
-      </div>
+      <div class="trend-chip" id="trendChip"></div>
 
       <div class="status s-ok" id="statusBox">Ajoyib! Daromadning 48% ini jamg'aryapsiz — moliyaviy sog'lom oila (maqsad: kamida 20%). Bu pulni omonatga qo'yib ko'paytirishingiz mumkin — Omonat kalkulyatorida hisoblang.</div>
       <div class="status s-ok" id="funBox" style="display: block; margin-top: 10px;">✅ Ko'ngilochar xarajat me'yorda (6%). Dam olishga ham, byudjetga ham zarar yo'q — balans yaxshi.</div>
+
+      <!-- 2-QATLAM: FLOW BAR -->
+      <div class="flow-wrap">
+        <div class="flow-income" id="flowIncome" data-i="kIncome">Jami daromad: <b>8&nbsp;000&nbsp;000 so'm</b></div>
+        <div class="flowbar" id="flowBar"><div class="fseg" style="width:52.5%;background:#8C3B2A"></div><div class="fseg" style="width:47.5%;background:#D99A2B"></div><div class="flow-marker" style="left:20%"><span class="fm-lbl">tavsiya: 20%</span></div></div>
+        <div class="flow-legend" id="flowLegend">
+          <span style="--lc:#8C3B2A" id="flowLegSpend">Xarajat 4&nbsp;200&nbsp;000 so'm</span>
+          <span style="--lc:#B04A3A;display:none" id="flowLegDebt">Qarz —</span>
+          <span style="--lc:#D99A2B" id="flowLegSave">Jamg'arma 3&nbsp;800&nbsp;000 so'm</span>
+        </div>
+      </div>
+
+      <!-- 4-QATLAM: qolgan hammasi (yopiq) -->
+      <details class="acc" id="accSpend"><summary data-i="accSpendT">Xarajatlar qayerga ketyapti?</summary><div class="acc-body" id="spendBreakdown"><div class="spendrow"><div class="sr-top"><span>Oziq-ovqat savati</span><span>1&nbsp;800&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:100%;background:#1D4E6B"></i></div></div><div class="spendrow"><div class="sr-top"><span>Doimiy xarajatlar</span><span>1&nbsp;600&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:88.88888888888889%;background:#8C3B2A"></i></div></div><div class="spendrow"><div class="sr-top"><span>Dori va salomatlik</span><span>300&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:16.666666666666664%;background:#C77"></i></div></div><div class="spendrow"><div class="sr-top"><span>Ko'ngilochar</span><span>500&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:27.77777777777778%;background:#D99A2B"></i></div></div></div></details>
+      <details class="acc acc-hidden" id="accDebt"><summary data-i="dTitle">Qarz yuki</summary><div class="acc-body">
+        <div class="debt" id="debtBox">
+          <div class="debt-top"><span class="debt-pct" id="debtPct">—</span><span class="debt-lvl" id="debtLvl"></span></div>
+          <div class="debt-bar"><i id="debtBar"></i></div>
+          <div class="status s-neg" id="debtWarn" style="display:none;margin-top:11px"></div>
+          <div class="debt-facts">
+            <div><span data-i="dFree">Qarzsiz bo'lish sanasi</span><b id="debtFree">—</b></div>
+            <div><span data-i="dLeft">Qolgan to'lovlar summasi</span><b id="debtLeft">—</b></div>
+            <div><span data-i="dMonth">Jami oylik to'lov</span><b id="debtMonth">—</b></div>
+          </div>
+          <div class="pay1" id="payFirst"></div>
+        </div>
+      </div></details>
+      <details class="acc" id="accScore"><summary data-i="scTitle">Moliyaviy salomatlik balli</summary><div class="acc-body">
+        <div class="score" id="scoreBox">
+          <div class="gauge-wrap">
+            <svg class="gauge-svg" viewBox="0 0 200 110" aria-hidden="true">
+              <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#E9EFEA" stroke-width="14" stroke-linecap="round"></path>
+              <path id="gaugeArc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#B3261E" stroke-width="14" stroke-linecap="round" stroke-dasharray="87.9655 251.33"></path>
+            </svg>
+            <div><div class="gauge-num" id="scoreNum">35</div><div class="gauge-of">/ 100</div></div>
+          </div>
+          <div id="scoreEmpty" class="opt-note" data-i="scEmpty" style="display:none">Hisoblash uchun daromadni kiriting.</div>
+          <div class="subscores" id="scoreBars"><div class="subscore-card" data-sk="cmpSave"><div class="sc-lbl">Jamg'arma ulushi</div><div class="sc-val">0 / 25</div><div class="sc-track"><i style="width:0%"></i></div></div><div class="subscore-card" data-sk="cmpDebt"><div class="sc-lbl">Qarz yuki</div><div class="sc-val">25 / 25</div><div class="sc-track"><i style="width:100%"></i></div></div><div class="subscore-card" data-sk="cmpFund"><div class="sc-lbl">Zaxira fondi</div><div class="sc-val">0 / 25</div><div class="sc-track"><i style="width:0%"></i></div></div><div class="subscore-card" data-sk="cmpSrc"><div class="sc-lbl">Daromad manbalari</div><div class="sc-val">10 / 25</div><div class="sc-track"><i style="width:40%"></i></div></div></div>
+          <div class="focus" id="scoreFocus"><div class="ft">Eng ko'p ta'sir qiladigan 2 ta joy:</div><div class="fi" data-fk="cmpSave"><span class="fd"></span><span class="fb"><b>Jamg'arma ulushi</b><span>Daromadning 10 foizini avtomatik chetga qo'yish eng oson boshlanish.</span></span></div><div class="fi" data-fk="cmpFund"><span class="fd"></span><span class="fb"><b>Zaxira fondi</b><span>Kamida bir oylik xarajatga teng zaxira — kutilmagan holat uchun birinchi qadam.</span></span></div></div>
+          <div class="score-note" data-i="scNote">Bu ball — o'zini o'zi baholash vositasi, moliyaviy maslahat emas.</div>
+        </div>
+      </div></details>
+      <details class="acc" id="accBasket"><summary data-i="bTitle">Oziq-ovqat savati tafsiloti</summary><div class="acc-body">
+        <div class="basket-list" id="basketList"><div class="brow"><span><span class="bn">Un</span> <span class="bq">16 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Guruch</span> <span class="bq">6 kg</span></span><span class="bv">90&nbsp;000</span></div><div class="brow"><span><span class="bn">Go'sht (mol/qo'y)</span> <span class="bq">6 kg</span></span><span class="bv">750&nbsp;000</span></div><div class="brow"><span><span class="bn">Tovuq go'shti</span> <span class="bq">4 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">O'simlik yog'i</span> <span class="bq">3 l</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Shakar</span> <span class="bq">4 kg</span></span><span class="bv">52&nbsp;000</span></div><div class="brow"><span><span class="bn">Kartoshka</span> <span class="bq">12 kg</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Sabzavotlar</span> <span class="bq">20 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">Meva</span> <span class="bq">8 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Sut-qatiq</span> <span class="bq">8 l</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Tuxum</span> <span class="bq">30 dona</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Choy, tuz, mayda-chuyda</span></span><span class="bv">120&nbsp;000</span></div><div class="brow" style="border-top:1.5px dashed var(--line)"><span class="bn">Oziq-ovqat savati</span><span class="bv">1&nbsp;800&nbsp;000 so'm</span></div><div style="font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 0 2px">2 kishilik oila uchun, viloyat markazi narxlarida</div></div>
+      </div></details>
+
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
       <button type="button" class="pdfbtn">PDF</button></div>
     </div>
     <div class="receipt-edge"></div>
   </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+
+  <div class="cta-refine" id="ctaRefine">
+    <div class="ct-text"><b data-i="ctaT">Natijani aniqroq qiling</b><span data-i="ctaS">Yashash joyi, ta'lim, doimiy xarajatlar va kreditlarni kiritib, natijani aniqlashtiring</span></div>
+    <button type="button" id="ctaRefineBtn" data-i="ctaBtn">Ochish</button>
+  </div>
 
   <section class="form-card" id="cardOpt">
     <div class="step" data-i="step2">2-qadam — Aniqlashtirish (ixtiyoriy)</div>
@@ -572,9 +642,16 @@ img,svg{height:auto}
       btnCalc:"Byudjetni hisoblash",rTag:"Oila byudjeti",
       lblSave:"Oyiga jamg'arma imkoniyati",lblDef:"Byudjet taqchilligi (yetishmayapti)",
       legFood:"Oziq-ovqat",legEdu:"Ta'lim",legFixed:"Doimiy",legSave:"Jamg'arma",
+      legSpendAll:"Xarajat",legDebt:"Qarz",
+      hsOk:"Sog'lom byudjet",hsMid:"E'tiborga olish kerak",hsNeg:"Xavfli",
+      subSave:"daromadning {p}% i — jamg'arma imkoniyati",subDef:"xarajat daromaddan oshib ketmoqda",
+      flowTarget:"tavsiya: 20%",
+      trendLead:"o'tgan oyga nisbatan",trendUp:"ko'proq jamg'ardingiz",trendDown:"kamroq jamg'ardingiz",
+      accSpendT:"Xarajatlar qayerga ketyapti?",
+      ctaT:"Natijani aniqroq qiling",ctaS:"Yashash joyi, ta'lim, doimiy xarajatlar va kreditlarni kiritib, natijani aniqlashtiring",ctaBtn:"Ochish",
       kIncome:"Jami daromad",kFood:"Oziq-ovqat savati",kEdu:"Ta'lim",kFixed:"Doimiy xarajatlar",kHealth:"Dori va salomatlik",kFun:"Ko'ngilochar",
       kSpend:"Jami xarajat",kSpendPct:"Xarajat / daromad",kSave:"Jamg'armaga qoladi",
-      bTitle:"Oziq-ovqat savati tafsiloti (bosing)",
+      bTitle:"Oziq-ovqat savati tafsiloti",
       foodNames:{un:"Un",guruch:"Guruch",gosht:"Go'sht (mol/qo'y)",tovuq:"Tovuq go'shti",yog:"O'simlik yog'i",shakar:"Shakar",kartoshka:"Kartoshka",sabzavot:"Sabzavotlar",meva:"Meva",sut:"Sut-qatiq",tuxum:"Tuxum",mayda:"Choy, tuz, mayda-chuyda"},
       stOk:"Ajoyib! Daromadning {p}% ini jamg'aryapsiz — moliyaviy sog'lom oila (maqsad: kamida 20%). Bu pulni omonatga qo'yib ko'paytirishingiz mumkin — Omonat kalkulyatorida hisoblang.",
       stMid:"Yaxshi boshlanish: {p}% jamg'arma. 20% ga yetkazish uchun 'Boshqa xarajatlar'ni ko'rib chiqing — odatda eng katta tejash o'sha yerda.",
@@ -647,9 +724,16 @@ img,svg{height:auto}
       btnCalc:"Рассчитать бюджет",rTag:"Семейный бюджет",
       lblSave:"Возможность накоплений в месяц",lblDef:"Дефицит бюджета (не хватает)",
       legFood:"Продукты",legEdu:"Обучение",legFixed:"Постоянные",legSave:"Накопления",
+      legSpendAll:"Расходы",legDebt:"Долг",
+      hsOk:"Здоровый бюджет",hsMid:"Нужно обратить внимание",hsNeg:"Опасно",
+      subSave:"{p}% дохода — возможность накоплений",subDef:"расходы превышают доход",
+      flowTarget:"цель: 20%",
+      trendLead:"по сравнению с прошлым месяцем",trendUp:"больше отложили",trendDown:"меньше отложили",
+      accSpendT:"Куда уходят расходы?",
+      ctaT:"Уточните результат",ctaS:"Укажите место проживания, обучение, постоянные расходы и кредиты для точного расчёта",ctaBtn:"Открыть",
       kIncome:"Общий доход",kFood:"Продуктовая корзина",kEdu:"Обучение",kFixed:"Постоянные расходы",kHealth:"Лекарства и здоровье",kFun:"Досуг",
       kSpend:"Всего расходов",kSpendPct:"Расходы / доход",kSave:"Остаётся на накопления",
-      bTitle:"Состав продуктовой корзины (нажмите)",
+      bTitle:"Состав продуктовой корзины",
       foodNames:{un:"Мука",guruch:"Рис",gosht:"Мясо (гов/бар)",tovuq:"Куриное мясо",yog:"Растительное масло",shakar:"Сахар",kartoshka:"Картофель",sabzavot:"Овощи",meva:"Фрукты",sut:"Молочные",tuxum:"Яйца",mayda:"Чай, соль, мелочи"},
       stOk:"Отлично! Вы откладываете {p}% дохода — финансово здоровая семья (цель: минимум 20%). Эти деньги можно приумножить на депозите — посчитайте в Депозитном калькуляторе.",
       stMid:"Хорошее начало: {p}% накоплений. Чтобы дойти до 20%, пересмотрите 'Прочие расходы' — обычно главная экономия там.",
@@ -826,7 +910,13 @@ img,svg{height:auto}
       if(st.last.src)setSrc(st.last.src,true);
       if(st.last.credits&&st.last.credits.length){
         renderCredits(st.last.credits);
-        if(readCredits().length)$('dCredit').open=true;
+        if(readCredits().length){
+          $('dCredit').open=true;
+          // Foydalanuvchi ilgari kredit kiritgan bo'lsa, 2-qadam formasi
+          // yopiq CTA orqasida qolib ketmasin — darhol ochiq ko'rinsin.
+          $('cardOpt').classList.add('show');
+          $('ctaRefine').classList.add('hidden');
+        }
       }
     }catch(e){}
     restoring=false;
@@ -885,47 +975,119 @@ img,svg{height:auto}
     if(score&&score.total!==gaScore){gaScore=score.total;ga('budget_score',{score:score.total});}
   }
 
+  /* Hero raqamini 0 dan yakuniy qiymatgacha animatsiya bilan chiqarish.
+     prefers-reduced-motion yoqilgan bo'lsa — to'g'ridan-to'g'ri, animatsiyasiz. */
+  var heroRAF=null, heroLast=null;
+  function reducedMotion(){
+    try{return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}
+  }
+  function animateHero(el,to,neg,suffix){
+    if(heroRAF)cancelAnimationFrame(heroRAF);
+    if(reducedMotion()||heroLast==null){
+      el.textContent=(neg?'−':'')+fmt(to)+suffix;
+      heroLast=to;
+      return;
+    }
+    var from=0, dur=650, t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min(1,(ts-t0)/dur);
+      var ease=1-Math.pow(1-p,3);
+      var v=Math.round(from+(to-from)*ease);
+      el.textContent=(neg?'−':'')+fmt(v)+suffix;
+      if(p<1)heroRAF=requestAnimationFrame(step);else heroLast=to;
+    }
+    heroRAF=requestAnimationFrame(step);
+  }
+
+  /* Status pill: xarajat/daromad va qarz yuki nisbatiga asoslanadi — bu
+     har doim (ixtiyoriy maydonlarsiz ham) hisoblanadi. 0-100 ball esa
+     ixtiyoriy o'zini-o'zi baholash maydonlariga bog'liq bo'lgani uchun
+     asosiy pill rangi uchun ishlatilmaydi (aks holda daromadning 48%
+     ini jamg'arayotgan, lekin "oyiga chetga qo'yayotgan pul" maydonini
+     to'ldirmagan kishi ham noto'g'ri "qizil" ko'rinardi).
+     Manfiy qoldiq yoki qarz yuki xavfli bo'lsa — har doim qizil. */
+  function statusLevel(d){
+    if(d.save<0||d.debt.lvl===4)return 'neg';
+    var savePct=d.income?(d.save/d.income*100):0;
+    if(savePct>=20&&d.debt.lvl<=2)return 'ok';
+    return 'mid';
+  }
+
   function renderResult(){
     var d=calcData, sum=' '+som();
     var savePct=d.income?Math.round(d.save/d.income*100):0;
 
+    // 1-qatlam: HERO
+    var lvl=statusLevel(d);
+    var hs=$('heroStatus');
+    hs.className='hero-status st-'+lvl;
+    $('heroStatusText').textContent=t(lvl==='ok'?'hsOk':(lvl==='neg'?'hsNeg':'hsMid'));
+
     var mn=$('mainNum');
     if(d.save>=0){
-      mn.textContent=fmt(d.save)+sum+' ('+savePct+'%)';
-      mn.className='num';
-      $('mainLbl').textContent=t('lblSave');
+      mn.className='hero-num';
+      animateHero(mn,d.save,false,sum);
+      $('mainSub').textContent=t('subSave').replace('{p}',savePct);
     }else{
-      mn.textContent='−'+fmt(Math.abs(d.save))+sum;
-      mn.className='num neg';
-      $('mainLbl').textContent=t('lblDef');
+      mn.className='hero-num neg';
+      animateHero(mn,Math.abs(d.save),true,sum);
+      $('mainSub').textContent=t('subDef');
     }
 
-    // Foiz chizig'i
-    var segs=[
-      ['#1D4E6B',d.food],['#5B3A63',d.edu],['#8C3B2A',d.fixed+d.health],['#C77',d.fun],
-      ['#B04A3A',d.debt.monthly],['#D99A2B',Math.max(0,d.save)]
+    // Holat — 1 gaplik sharh, hero ostida darhol
+    var st=$('statusBox');
+    var savePctAbs=savePct;
+    if(d.save<0){st.className='status s-neg';st.textContent=t('stNeg').replace('{s}',fmt(Math.abs(d.save)))}
+    else if(savePctAbs>=20){st.className='status s-ok';st.textContent=t('stOk').replace('{p}',savePctAbs)}
+    else if(savePctAbs>=10){st.className='status s-mid';st.textContent=t('stMid').replace('{p}',savePctAbs)}
+    else{st.className='status s-mid';st.textContent=t('stTight').replace('{p}',savePctAbs)}
+
+    // Ko'ngilochar norma ogohlantirishi
+    var funPct=d.income?(d.fun/d.income*100):0;
+    var fb=$('funBox');
+    if(d.fun>0){
+      fb.style.display='block';
+      if(funPct>15){fb.className='status s-neg';fb.textContent=t('funHigh').replace('{p}',Math.round(funPct))}
+      else if(funPct<3){fb.className='status s-ok';fb.textContent=t('funLow').replace('{p}',Math.round(funPct))}
+      else{fb.className='status s-ok';fb.textContent=t('funOk').replace('{p}',Math.round(funPct))}
+    }else{fb.style.display='none'}
+
+    // 2-qatlam: FLOW BAR — xarajat / qarz / jamg'arma, bitta chiziqda
+    $('flowIncome').innerHTML=t('kIncome')+': <b>'+fmt(d.income)+sum+'</b>';
+    var spendAll=d.spend, debtM=d.debt.monthly, saveP=Math.max(0,d.save);
+    var barTotal=spendAll+debtM+saveP;
+    var fh='';
+    if(barTotal>0){
+      if(spendAll>0)fh+='<div class="fseg" style="width:'+(spendAll/barTotal*100)+'%;background:#8C3B2A"></div>';
+      if(debtM>0)fh+='<div class="fseg" style="width:'+(debtM/barTotal*100)+'%;background:#B04A3A"></div>';
+      if(saveP>0)fh+='<div class="fseg" style="width:'+(saveP/barTotal*100)+'%;background:#D99A2B"></div>';
+    }
+    var markerPct=barTotal>0&&d.income>0?Math.min(96,(0.20*d.income/barTotal*100)):20;
+    fh+='<div class="flow-marker" style="left:'+markerPct+'%"><span class="fm-lbl">'+t('flowTarget')+'</span></div>';
+    $('flowBar').innerHTML=fh;
+    $('flowLegSpend').textContent=t('legSpendAll')+' '+fmt(spendAll)+sum;
+    var legDebt=$('flowLegDebt');
+    if(debtM>0){legDebt.style.display='';legDebt.textContent=t('legDebt')+' '+fmt(debtM)+sum;}
+    else{legDebt.style.display='none';}
+    $('flowLegSave').textContent=t('legSave')+' '+fmt(Math.max(0,d.save))+sum;
+
+    // 4-qatlam: Xarajatlar qayerga ketyapti (bo'sh moddalar ko'rsatilmaydi)
+    var cats=[
+      ['kFood',d.food,'#1D4E6B'],['kEdu',d.edu,'#5B3A63'],['kFixed',d.fixed,'#8C3B2A'],
+      ['kHealth',d.health,'#C77'],['kFun',d.fun,'#D99A2B']
     ];
-    var total=d.food+d.edu+d.fixed+d.health+d.fun+d.debt.monthly+Math.max(0,d.save);
-    var bar='';
-    for(var i=0;i<segs.length;i++){
-      var w=total?(segs[i][1]/total*100):0;
-      if(w>0)bar+='<div class="seg-x" style="width:'+w+'%;background:'+segs[i][0]+'"></div>';
+    var maxCat=0;
+    for(var ci=0;ci<cats.length;ci++)if(cats[ci][1]>maxCat)maxCat=cats[ci][1];
+    var sh='';
+    for(var cj=0;cj<cats.length;cj++){
+      var c=cats[cj];
+      if(!(c[1]>0))continue;
+      var w=maxCat?(c[1]/maxCat*100):0;
+      sh+='<div class="spendrow"><div class="sr-top"><span>'+t(c[0])+'</span><span>'+fmt(c[1])+sum+'</span></div>'
+        +'<div class="sr-track"><i style="width:'+w+'%;background:'+c[2]+'"></i></div></div>';
     }
-    $('pctBar').innerHTML=bar;
-
-    $('rIncome').textContent=fmt(d.income)+sum;
-    $('rFood').textContent=fmt(d.food)+sum;
-    $('rEdu').textContent=d.edu?fmt(d.edu)+sum:'—';
-    $('rFixed').textContent=fmt(d.fixed)+sum;
-    $('rHealth').textContent=d.health?fmt(d.health)+sum:'—';
-    $('rFun').textContent=d.fun?fmt(d.fun)+sum:'—';
-    $('rSpend').textContent=fmt(d.spend)+sum;
-    $('rCreditRow').style.display=d.debt.monthly>0?'':'none';
-    $('rCredit').textContent=d.debt.monthly>0?fmt(d.debt.monthly)+sum:'—';
-    $('rSpendPct').textContent=d.income?Math.round((d.spend+d.debt.monthly)/d.income*100)+'%':'—';
-    var rs=$('rSave');
-    rs.textContent=(d.save>=0?'':'−')+fmt(Math.abs(d.save))+sum;
-    rs.className='v '+(d.save>=0?'ok':'neg');
+    $('spendBreakdown').innerHTML=sh;
 
     // Savat
     var bl='';
@@ -938,33 +1100,15 @@ img,svg{height:auto}
     bl+='<div style="font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 0 2px">'+t('basketNote').replace('{n}',d.people).replace('{loc}',t('locNames')[loc])+'</div>';
     $('basketList').innerHTML=bl;
 
-    // Holat
-    var st=$('statusBox');
-    var savePctAbs=savePct;
-    if(d.save<0){st.className='status s-neg';st.textContent=t('stNeg').replace('{s}',fmt(Math.abs(d.save)))}
-    else if(savePctAbs>=20){st.className='status s-ok';st.textContent=t('stOk').replace('{p}',savePctAbs)}
-    else if(savePctAbs>=10){st.className='status s-mid';st.textContent=t('stMid').replace('{p}',savePctAbs)}
-    else{st.className='status s-mid';st.textContent=t('stTight').replace('{p}',savePctAbs)}
-
     renderDebt(d);
     renderScore(d);
     renderCompare(d);
-
-    // Ko'ngilochar norma ogohlantirishi
-    var funPct=d.income?(d.fun/d.income*100):0;
-    var fb=$('funBox');
-    if(d.fun>0){
-      fb.style.display='block';
-      if(funPct>15){fb.className='status s-neg';fb.textContent=t('funHigh').replace('{p}',Math.round(funPct))}
-      else if(funPct<3){fb.className='status s-ok';fb.textContent=t('funLow').replace('{p}',Math.round(funPct))}
-      else{fb.className='status s-ok';fb.textContent=t('funOk').replace('{p}',Math.round(funPct))}
-    }else{fb.style.display='none'}
   }
 
   function renderDebt(d){
-    var box=$('debtBox'), sum=' '+som();
-    if(!d.debt.count){box.style.display='none';return}
-    box.style.display='block';
+    var acc=$('accDebt'), sum=' '+som();
+    if(!d.debt.count){acc.classList.add('acc-hidden');acc.open=false;return}
+    acc.classList.remove('acc-hidden');
     var pct=Math.round(d.debt.pct*10)/10;
     $('debtPct').textContent=String(pct).replace('.',',')+'%';
     var lv=$('debtLvl');
@@ -996,23 +1140,29 @@ img,svg{height:auto}
     $('payFirst').innerHTML=h;
   }
 
+  var GAUGE_C=251.33;
   function renderScore(d){
     var sc=d.score;
+    var arc=$('gaugeArc');
     if(!sc){
       $('scoreNum').textContent='—';
       $('scoreEmpty').style.display='block';
       $('scoreBars').innerHTML='';
       $('scoreFocus').innerHTML='';
+      arc.setAttribute('stroke-dasharray','0 '+GAUGE_C);
       return;
     }
     $('scoreEmpty').style.display='none';
     $('scoreNum').textContent=sc.total;
+    var gcolor=sc.total>=70?'#1E6B45':(sc.total>=40?'#D99A2B':'#B3261E');
+    arc.setAttribute('stroke',gcolor);
+    arc.setAttribute('stroke-dasharray',(sc.total/100*GAUGE_C)+' '+GAUGE_C);
     var h='';
     for(var i=0;i<sc.parts.length;i++){
       var p=sc.parts[i], v=Math.round(p.v*10)/10;
-      h+='<div class="sbar" data-sk="'+p.k+'" data-sv="'+v+'"><div class="sl"><span>'+t(p.k)
-        +'</span><b>'+String(v).replace('.',',')+' / 25</b></div>'
-        +'<div class="st"><i style="width:'+(p.v/25*100)+'%"></i></div></div>';
+      h+='<div class="subscore-card" data-sk="'+p.k+'"><div class="sc-lbl">'+t(p.k)
+        +'</div><div class="sc-val">'+String(v).replace('.',',')+' / 25</div>'
+        +'<div class="sc-track"><i style="width:'+(p.v/25*100)+'%"></i></div></div>';
     }
     $('scoreBars').innerHTML=h;
     // Eng past ikkita komponent — baho emas, qayerga qarash kerakligi
@@ -1026,23 +1176,24 @@ img,svg{height:auto}
   }
 
   function renderCompare(d){
-    var box=$('cmpBox'), prev=prevSnap();
-    if(!prev){box.style.display='none';return}
-    var parts=[];
-    function chunk(label,diff,isMoney){
-      var cls=diff>0?'up':(diff<0?'down':'flat');
-      var sign=diff>0?'+':(diff<0?'−':'');
-      var val=isMoney?fmt(Math.abs(diff))+' '+som():Math.abs(diff);
-      parts.push('<span class="'+cls+'">'+label+' <b>'+(diff===0?'0':sign+val)+'</b></span>');
+    var box=$('trendChip'), prev=prevSnap();
+    if(!prev||prev.save==null){box.classList.remove('show','up','down');return}
+    var diff=Math.round(d.save-prev.save);
+    if(diff===0){box.classList.remove('show','up','down');return}
+    var up=diff>0;
+    var arrow=up?'↑':'↓';
+    var verb=up?t('trendUp'):t('trendDown');
+    var text;
+    if(prev.save&&prev.save>0){
+      var pct=Math.round(Math.abs(diff)/Math.abs(prev.save)*100);
+      text=arrow+' '+t('trendLead')+' '+pct+'% '+verb;
+    }else{
+      text=arrow+' '+t('trendLead')+' '+fmt(Math.abs(diff))+' '+som()+' '+verb;
     }
-    if(d.score&&prev.score!=null)chunk(t('cmpBall'),d.score.total-prev.score,false);
-    if(prev.save!=null)chunk(t('cmpQoldiq'),Math.round(d.save-prev.save),true);
-    if(!parts.length){box.style.display='none';return}
-    box.style.display='flex';
-    box.innerHTML='<span>'+t('cmpLead')+'</span>'+parts.join('');
+    box.textContent=text;
+    box.className='trend-chip show '+(up?'up':'down');
   }
 
-  $('basketHead').onclick=function(){$('basket').classList.toggle('open')};
   $('calcBtn').onclick=calc;
   // Kredit qatorlari: qiymat o'zgarsa darhol qayta hisoblanadi
   $('creditList').addEventListener('input',function(e){
@@ -1077,7 +1228,15 @@ img,svg{height:auto}
   }
   $('clearHist').onclick=function(){
     try{localStorage.removeItem(LS)}catch(e){}
-    $('cmpBox').style.display='none';
+    $('trendChip').classList.remove('show','up','down');
+  };
+  // 5-qatlam: "Natijani aniqroq qiling" CTA — 2-qadam formasi shu tugma
+  // bosilgandagina ochiladi, sahifa yuklanganda ko'rinmaydi.
+  $('ctaRefineBtn').onclick=function(){
+    var card=$('cardOpt');
+    card.classList.add('show');
+    $('ctaRefine').classList.add('hidden');
+    card.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});
   };
   $('shareBtn').onclick=function(){
     if(!calcData)return;
@@ -1122,7 +1281,7 @@ img,svg{height:auto}
   window.__budgetExtra=function(){return {c:rawCredits(),src:srcCount}};
   window.__budgetRestoreExtra=function(o){
     if(!o)return;
-    if(o.c&&o.c.length){renderCredits(o.c);if(readCredits().length)$('dCredit').open=true;}
+    if(o.c&&o.c.length){renderCredits(o.c);if(readCredits().length){$('dCredit').open=true;$('cardOpt').classList.add('show');$('ctaRefine').classList.add('hidden');}}
     if(o.src)setSrc(o.src,true);
   };
   // URL orqali holat tiklangach qayta hisoblash uchun
