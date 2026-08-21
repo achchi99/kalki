@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Oilaviy byudjet kalkulyatori — daromad va xarajatni hisoblang</title>
 <link rel="canonical" href="https://kalki.uz/oila-byudjet-kalkulyator">
@@ -1465,6 +1466,9 @@ img,svg{height:auto}
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
   }else{setTimeout(restoreFromUrl,100);}
+  // Boshqa sahifadan (ijara yoki omonat) qiymat kelgan bo'lsa, "qayerdan
+  // olindi" izohi restoreFromUrl tugagach chiqarilsin.
+  setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight(['incX','savePool']);},220);
 })();
 </script>
 

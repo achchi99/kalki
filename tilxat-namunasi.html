@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Tilxat namunasi — onlayn to'ldirib, Word yuklab oling</title>
 <meta name="description" content="Qarz summasi, muddati va foiz shartlarini kiriting — tayyor tilxatni Word yoki PDF holida yuklab oling. Bepul, ro'yxatdan o'tmasdan.">
@@ -493,6 +494,49 @@ if(jb)jb.onclick=function(){
 })();
 
 </script>
+<script id="xlinksrc">
+(function(){
+  var TARGET='kredit-kalkulyator';
+  function amountVal(){
+    var el=document.querySelector('[data-f="amount"]');
+    return el?el.value.replace(/[^\d]/g,''):'';
+  }
+  // Qarz muddatini kredit-kalkulyator kutgan "oy soni" ga aylantiradi.
+  // Bu yangi ko'rgazma hisob-kitobi — mavjud tilxat/kredit formulalariga
+  // tegilmaydi, faqat ikkala sahifa orasidagi qiymatni moslashtiradi.
+  function termMonths(){
+    var el=document.querySelector('[data-f="returnDate"]');
+    if(!el||!el.value)return null;
+    var d1=new Date();d1.setHours(0,0,0,0);
+    var d2=new Date(el.value+'T00:00:00');
+    if(isNaN(d2.getTime())||d2<=d1)return null;
+    var m=(d2.getFullYear()-d1.getFullYear())*12+(d2.getMonth()-d1.getMonth());
+    if(d2.getDate()<d1.getDate())m--;
+    return Math.max(1,m);
+  }
+  function update(){
+    if(!window.KalkiCross)return;
+    var v=amountVal(), m=termMonths();
+    var acts=document.querySelector('.receipt-actions');
+    if(!acts||!acts.parentNode)return;
+    if(v&&parseInt(v,10)>0&&m){
+      window.KalkiCross.renderCard({
+        container:acts.parentNode,
+        targetSlug:TARGET,targetPath:TARGET,
+        fields:{amount:v,term:String(m)},fromSlug:'tilxat-namunasi',
+        icon:'🏦',
+        uz:'Shu summani bankdan olsangiz, oylik to\'lov qancha bo\'lardi?',
+        ru:'Сколько был бы ежемесячный платёж, если взять эту сумму в банке?'
+      });
+    }else{
+      window.KalkiCross.removeCard(TARGET);
+    }
+  }
+  var fh=document.getElementById('formHost');
+  if(fh)fh.addEventListener('input',function(){setTimeout(update,30)});
+  setTimeout(update,300);
+})();
+</script>
 <script>
 (function(){
   var d=new Date();
@@ -528,7 +572,7 @@ if(jb)jb.onclick=function(){
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
        ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
-    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1||cls.indexOf('xlink')>-1;
   }
   function kMakePdf(btn){
     var card=kFindReceipt(btn);

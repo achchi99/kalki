@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ijara shartnomasi namunasi — to'ldirib, Word yuklab oling</title>
 <meta name="description" content="Turar joy ijarasi shartnomasini onlayn to'ldiring va tayyor Word yoki PDF faylni yuklab oling. Ro'yxatdan o'tmasdan, bepul.">
@@ -507,6 +508,36 @@ KD.page({
 });
 })();
 </script>
+<script id="xlinksrc">
+(function(){
+  var TARGET='oila-byudjet-kalkulyator';
+  function val(){
+    var el=document.querySelector('[data-f="rent"]');
+    return el?el.value.replace(/[^\d]/g,''):'';
+  }
+  function update(){
+    if(!window.KalkiCross)return;
+    var v=val();
+    var acts=document.querySelector('.receipt-actions');
+    if(!acts||!acts.parentNode)return;
+    if(v&&parseInt(v,10)>0){
+      window.KalkiCross.renderCard({
+        container:acts.parentNode,
+        targetSlug:TARGET,targetPath:TARGET,
+        fields:{incX:v},fromSlug:'ijara-shartnomasi-namunasi',
+        icon:'👪',
+        uz:"Bu ijara daromadini oilaviy byudjetga qo'shib ko'ring",
+        ru:'Добавьте этот доход от аренды в семейный бюджет'
+      });
+    }else{
+      window.KalkiCross.removeCard(TARGET);
+    }
+  }
+  var fh=document.getElementById('formHost');
+  if(fh)fh.addEventListener('input',function(){setTimeout(update,30)});
+  setTimeout(update,300);
+})();
+</script>
 <script>
 (function(){
   var d=new Date();
@@ -542,7 +573,7 @@ KD.page({
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
        ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
-    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1||cls.indexOf('xlink')>-1;
   }
   function kMakePdf(btn){
     var card=kFindReceipt(btn);

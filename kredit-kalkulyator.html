@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <script src="assets/tgcta.js" defer=""></script>
 <script src="assets/partners.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -744,7 +745,10 @@ img,svg{height:auto}
       if(data.i){
         for(var id in data.i){
           var el=document.getElementById(id);
-          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+          if(el&&el.tagName==='INPUT'){
+            el.value=data.i[id];restored=true;
+            el.dispatchEvent(new Event('input',{bubbles:true}));
+          }
         }
       }
       // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
@@ -766,6 +770,12 @@ img,svg{height:auto}
             restored=true;}
         }
       }
+      // Bu sahifada natija faqat "Hisoblash" tugmasi bosilganda qayta
+      // hisoblanadi (input hodisasi faqat matn formatini to'g'irlaydi).
+      // calc() shu skriptning o'z doirasida ko'rinmaydi (u boshqa IIFE
+      // ichida) — shuning uchun tugmani bevosita bosamiz, aks holda
+      // maydon to'ldiriladi-yu, natija eskirgan holda qolib ketadi.
+      if(restored){var cb=document.getElementById('calcBtn');if(cb)cb.click();}
       return restored;
     }catch(e){return false;}
   }
@@ -798,6 +808,9 @@ img,svg{height:auto}
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
   }else{setTimeout(restoreFromUrl,100);}
+  // Boshqa sahifadan (masalan tilxatdan) qiymat kelgan bo'lsa, "qayerdan
+  // olindi" izohi restoreFromUrl tugagach chiqarilsin.
+  setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight(['amount','term']);},220);
 })();
 </script>
 

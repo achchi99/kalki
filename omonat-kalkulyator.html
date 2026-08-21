@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <script src="assets/tgcta.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Omonat kalkulyatori — foiz daromadini hisoblang</title>
@@ -409,6 +410,24 @@ img,svg{height:auto}
     $('rYield').textContent=d.effYield.toFixed(1)+'% '+(lang==='uz'?'yillik':'годовых');
     $('rTerm').textContent=d.n+' '+t('months');
     updateRealProfit();
+    updateXlink();
+  }
+
+  // Boshqa sahifaga o'tish kartochkasi — natija chiqqandan keyingina.
+  function updateXlink(){
+    if(!window.KalkiCross||!calcData)return;
+    var TARGET='oila-byudjet-kalkulyator';
+    var acts=document.querySelector('.receipt-actions');
+    if(!acts||!acts.parentNode)return;
+    var v=String(Math.round(calcData.finalSum));
+    window.KalkiCross.renderCard({
+      container:acts.parentNode,
+      targetSlug:TARGET,targetPath:TARGET,
+      fields:{savePool:v},fromSlug:'omonat-kalkulyator',
+      icon:'👪',
+      uz:'Bu pul oilaviy byudjetingizga qanday ta\'sir qiladi?',
+      ru:'Как эти деньги повлияют на семейный бюджет?'
+    });
   }
 
   function updateRealProfit(){
@@ -485,7 +504,7 @@ img,svg{height:auto}
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
        ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
-    return cls.indexOf('receipt-actions')>-1;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('xlink')>-1;
   }
   function kMakePdf(btn){
     var card=kFindReceipt(btn);
