@@ -10,6 +10,10 @@
  * YECHIM. Sarlavhaning UMUMIY qismi — #topmenu, logotip va til tugmasi —
  * shu fayldan yoziladi. Sahifaga xos qism (kategoriya nishoni, sarlavha,
  * tavsif, breadcrumb) tegilmaydi: u ichki sahifaning o'z mazmuni.
+ * Xuddi shu sabab bilan #xnav ("Boshqa kalkulyatorlar" footer bloki, 50
+ * sahifada) ham shu yerdan generatsiya qilinadi — u ham qo'lda 50 marta
+ * ko'chirilgan va yangi kalkulyator qo'shilganda unutilib qolardi
+ * (masalan staj-kalkulyator hech qayerning footerida yo'q edi).
  *
  * Naqsh tools/og-tags.js dan olingan: bitta manba -> barcha sahifaga
  * yoziladi, idempotent, standart holatda HECH NARSA YOZMAYDI.
@@ -111,6 +115,65 @@ const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:12px;colo
   + '<span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan."'
   + ' data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">'
   + '© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div>';
+
+/* ---------------- Kanonik "Boshqa kalkulyatorlar" footer ----------------
+   MUAMMO. Bu blok har sahifada QO'LDA ko'chirilgan edi (50 ta sahifada).
+   Vaqt o'tib bir-biridan uzoqlashadi: masalan yangi staj-kalkulyator.html
+   qo'shilganda uni HAMMA joyga qo'lda qo'shish unutilgan edi. Endi bitta
+   ro'yxatdan — CALCS bilan bir xil tarkib (index.html dagi CALCS massivi
+   qo'lda bu yerda ham saqlanadi, chunki u brauzer-JS massivi va build
+   vaqtida import qilib bo'lmaydi) — barcha sahifaga yoziladi, joriy
+   sahifaning o'zi ro'yxatdan chiqarib tashlanadi. */
+const XNAV_LINKS = [
+  ['oila-byudjet-kalkulyator', 'Oila byudjeti / Семейный бюджет'],
+  ['kredit-kalkulyator', 'Kredit / Кредит'],
+  ['ipoteka-kalkulyator', 'Ipoteka / Ипотека'],
+  ['omonat-kalkulyator', 'Omonat / Депозит'],
+  ['oylik-soliq-kalkulyator', 'Ish haqi / Зарплата'],
+  ['qqs-kalkulyator', 'QQS / НДС'],
+  ['bojxona-kalkulyator', 'Bojxona / Растаможка'],
+  ['uy-qurish-kalkulyator', 'Uy qurish / Стройка дома'],
+  ['gisht-kalkulyator', 'G\'isht / Кирпич'],
+  ['beton-kalkulyator', 'Beton / Бетон'],
+  ['tom-kalkulyator', 'Tom materiali / Кровля'],
+  ['remont-kalkulyator', 'Remont / Ремонт'],
+  ['yer-konvertor', 'Yer / Земля'],
+  ['chorva-kalkulyator', 'Chorvachilik / Откорм скота'],
+  ['konditsioner-kalkulyator', 'Konditsioner / Кондиционер'],
+  ['yoqilgi-kalkulyator', 'Yoqilg\'i / Топливо'],
+  ['quyosh-panel-kalkulyator', 'Quyosh paneli / Солнечные панели'],
+  ['avto-xarajat-kalkulyator', 'Avto saqlash / Содержание авто'],
+  ['elektr-xarajat-kalkulyator', 'Elektr xarajati / Электроэнергия'],
+  ['dtm-kalkulyator', 'DTM ball / Балл ДТМ'],
+  ['universitet-kontrakt-kalkulyator', 'Universitet kontrakti / Контракт вуза'],
+  ['grant-ololmadim', 'Grant ololmadim / Не прошёл на грант'],
+  ['bola-puli-kalkulyator', 'Bola puli / Детское пособие'],
+  ['kaloriya-kalkulyator', 'Kaloriya / Калории'],
+  ['homiladorlik-kalkulyator', 'Homiladorlik / Беременность'],
+  ['pensiya-kalkulyator', 'Pensiya / Пенсия'],
+  ['staj-kalkulyator', 'Mehnat staji / Трудовой стаж'],
+  ['zakot-qurbonlik-kalkulyator', 'Zakot va Qurbonlik / Закят и Курбан'],
+  ['toy-kalkulyator', 'To\'y / Свадьба'],
+  ['marosim-kalkulyator', 'Marosim / Мероприятие'],
+  ['maktab-kalkulyator', 'Maktab / Школа'],
+  ['alkogol-kalkulyator', 'Alkogol / Алкоголь'],
+  ['hujjatlar', '📝 Hujjatlar generatori / Генератор документов'],
+  ['shablonlar', '📄 Shablonlar'],
+  ['blog', '📰 Maqolalar / Статьи'],
+];
+const XNAV_TITLE = '<div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div>';
+const XNAV_HOME_A = '<a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a>';
+const XNAV_A_STYLE = 'font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%';
+
+function xnavHtml(selfSlug) {
+  const pills = XNAV_LINKS
+    .filter(([href]) => href !== selfSlug)
+    .map(([href, label]) => '<a href="' + href + '" style="' + XNAV_A_STYLE + '">' + label + '</a>')
+    .join('');
+  const home = selfSlug === '' ? '' : XNAV_HOME_A;
+  return '<nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0">'
+    + XNAV_TITLE + '<div style="display:flex;flex-wrap:wrap;gap:8px">' + home + pills + '</div></nav>';
+}
 
 /* ---------------- Yordamchilar ---------------- */
 function block(s, startTag, endTag) {
@@ -230,6 +293,15 @@ function rebuild(f, src) {
     else notes.push('lang.js tegi topilmadi');
   }
 
+  /* 7. "Boshqa kalkulyatorlar" footer — faqat oldin ham bo'lgan sahifada
+        almashtiriladi (bo'lmagan sahifaga qo'shilmaydi, masalan blog
+        maqolalari va huquqiy sahifalarda bu blok ataylab yo'q). */
+  const xn = block(s, '<nav id="xnav"', '</nav>');
+  if (xn) {
+    const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
+    s = s.slice(0, xn.i) + xnavHtml(selfSlug) + s.slice(xn.j);
+  }
+
   return { s, notes };
 }
 
@@ -264,4 +336,4 @@ function main() {
 
 if (require.main === module) process.exit(main());
 
-module.exports = { CHROME_CSS, SITEBAR, navHtml, LEGAL_HTML, COPY_HTML, rebuild, main };
+module.exports = { CHROME_CSS, SITEBAR, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };
