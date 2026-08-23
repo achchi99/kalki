@@ -242,6 +242,30 @@ details.acc.acc-hidden{display:none}
 .cta-refine.hidden{display:none}
 #cardOpt{display:none}
 #cardOpt.show{display:block}
+/* --- taxmin/tasdiqlangan izohi (crosslink.js banner uslubiga mos: --mid=kutilmoqda, --ok=tasdiqlangan) --- */
+.sr-note{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:600;margin-top:3px;color:var(--mid)}
+.sr-note.confirmed{color:var(--ok)}
+.sr-note button{border:0;background:transparent;color:inherit;font:inherit;font-size:11px;font-weight:800;text-decoration:underline;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+.estimate-notice{margin-top:11px;background:var(--mid-soft);color:var(--mid);border-radius:10px;padding:10px 13px;font-size:12.5px;font-weight:700;line-height:1.5;display:none}
+.estimate-notice.show{display:block}
+/* --- moliyaviy salomatlik: hali o'lchanmagan qism-ball --- */
+.subscore-card.sc-unmeasured .sc-val{color:var(--muted);font-weight:700}
+.subscore-card.sc-unmeasured .sc-track{opacity:.4}
+.score-cta{margin-top:16px;background:var(--card);border:1.5px dashed var(--line);border-radius:var(--radius);padding:15px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.score-cta .sct-text{flex:1;min-width:180px}
+.score-cta .sct-text b{display:block;font-size:14px;font-weight:800;color:var(--ink)}
+.score-cta .sct-text span{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:3px}
+.score-cta button{flex:none;background:var(--cat);color:#fff;border:0;border-radius:10px;font:inherit;font-size:13px;font-weight:800;padding:10px 15px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+/* --- 2-qadamdagi sticky mini-natija paneli --- */
+.sticky-panel{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom, 0px));background:var(--card);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);padding:12px 14px;display:none;align-items:center;gap:10px;cursor:pointer;z-index:40;-webkit-tap-highlight-color:transparent}
+.sticky-panel.show{display:flex}
+.sticky-panel .sp-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.sticky-panel .sp-dot.st-ok{background:var(--ok)}
+.sticky-panel .sp-dot.st-mid{background:var(--mid)}
+.sticky-panel .sp-dot.st-neg{background:var(--warn)}
+.sticky-panel .sp-text{flex:1;min-width:0;font-size:14px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sticky-panel .sp-arrow{flex:none;font-size:15px;color:var(--muted)}
+@media (min-width:900px){.sticky-panel{left:auto;right:24px;bottom:24px;max-width:300px}}
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
@@ -341,14 +365,15 @@ img,svg{height:auto}
     <div class="sect-title" data-i="sIncome">Oila daromadi (oyiga)</div>
     <div class="row2">
       <div class="field">
-        <label for="incH" data-i="lIncH">Er oyligi</label>
+        <label for="incH" data-i="lIncH">1-daromad</label>
         <div class="input-shell"><input type="text" id="incH" inputmode="numeric" value="5 000 000"><span class="unit" data-i="u1">so'm</span></div>
       </div>
       <div class="field">
-        <label for="incW" data-i="lIncW">Xotin oyligi</label>
+        <label for="incW" data-i="lIncW">2-daromad</label>
         <div class="input-shell"><input type="text" id="incW" inputmode="numeric" value="3 000 000"><span class="unit" data-i="u2">so'm</span></div>
       </div>
     </div>
+    <p class="hint" style="margin-top:-6px" data-i="hIncMain">Masalan: er, xotin, ota-ona va h.k.</p>
     <div class="field">
       <label for="incX" data-i="lIncX">Qo'shimcha daromad</label>
       <div class="input-shell"><input type="text" id="incX" inputmode="numeric" value="0"><span class="unit" data-i="u3">so'm</span></div>
@@ -390,6 +415,7 @@ img,svg{height:auto}
         <div class="hero-sub" id="mainSub">daromadning 48% i — jamg'arma imkoniyati</div>
       </div>
       <div class="trend-chip" id="trendChip"></div>
+      <div class="estimate-notice show" id="estimateNotice">Xarajatlar hozircha o'rtacha me'yorlar bo'yicha taxmin qilindi. Aniq raqamlaringizni kiritsangiz, natija haqiqiy holatingizni ko'rsatadi.</div>
 
       <div class="status s-ok" id="statusBox">Ajoyib! Daromadning 48% ini jamg'aryapsiz — moliyaviy sog'lom oila (maqsad: kamida 20%). Bu pulni omonatga qo'yib ko'paytirishingiz mumkin — Omonat kalkulyatorida hisoblang.</div>
       <div class="status s-ok" id="funBox" style="display: block; margin-top: 10px;">✅ Ko'ngilochar xarajat me'yorda (6%). Dam olishga ham, byudjetga ham zarar yo'q — balans yaxshi.</div>
@@ -397,16 +423,16 @@ img,svg{height:auto}
       <!-- 2-QATLAM: FLOW BAR -->
       <div class="flow-wrap">
         <div class="flow-income" id="flowIncome" data-i="kIncome">Jami daromad: <b>8&nbsp;000&nbsp;000 so'm</b></div>
-        <div class="flowbar" id="flowBar"><div class="fseg" style="width:52.5%;background:#8C3B2A"></div><div class="fseg" style="width:47.5%;background:#D99A2B"></div><div class="flow-marker" style="left:20%"><span class="fm-lbl">tavsiya: 20%</span></div></div>
+        <div class="flowbar" id="flowBar"><div class="fseg" style="width:52.5%;background:#5C6B72"></div><div class="fseg" style="width:47.5%;background:#1E6B45"></div><div class="flow-marker" style="left:20%"><span class="fm-lbl">tavsiya: 20%</span></div></div>
         <div class="flow-legend" id="flowLegend">
-          <span style="--lc:#8C3B2A" id="flowLegSpend">Xarajat 4&nbsp;200&nbsp;000 so'm</span>
+          <span style="--lc:#5C6B72" id="flowLegSpend">Xarajat 4&nbsp;200&nbsp;000 so'm</span>
           <span style="--lc:#B04A3A;display:none" id="flowLegDebt">Qarz —</span>
-          <span style="--lc:#D99A2B" id="flowLegSave">Jamg'arma 3&nbsp;800&nbsp;000 so'm</span>
+          <span style="--lc:#1E6B45" id="flowLegSave">Ortib qoladi 3&nbsp;800&nbsp;000 so'm</span>
         </div>
       </div>
 
       <!-- 4-QATLAM: qolgan hammasi (yopiq) -->
-      <details class="acc" id="accSpend"><summary data-i="accSpendT">Xarajatlar qayerga ketyapti?</summary><div class="acc-body" id="spendBreakdown"><div class="spendrow"><div class="sr-top"><span>Oziq-ovqat savati</span><span>1&nbsp;800&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:100%;background:#1D4E6B"></i></div></div><div class="spendrow"><div class="sr-top"><span>Doimiy xarajatlar</span><span>1&nbsp;600&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:88.88888888888889%;background:#8C3B2A"></i></div></div><div class="spendrow"><div class="sr-top"><span>Dori va salomatlik</span><span>300&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:16.666666666666664%;background:#C77"></i></div></div><div class="spendrow"><div class="sr-top"><span>Ko'ngilochar</span><span>500&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:27.77777777777778%;background:#D99A2B"></i></div></div></div></details>
+      <details class="acc" id="accSpend" open=""><summary data-i="accSpendT">Xarajatlar qayerga ketyapti?</summary><div class="acc-body" id="spendBreakdown"><div class="spendrow"><div class="sr-top"><span>Oziq-ovqat savati</span><span>1&nbsp;800&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:100%;background:#1D4E6B"></i></div><div class="sr-note"><span>Bizning taxminimiz: 2 kishi × viloyat markazi narxlari</span><button type="button" class="sr-change" data-cat="food">O'zgartirish</button></div></div><div class="spendrow"><div class="sr-top"><span>Doimiy xarajatlar</span><span>1&nbsp;600&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:88.88888888888889%;background:#8C3B2A"></i></div><div class="sr-note"><span>Bizning taxminimiz: daromadning ~20% i</span><button type="button" class="sr-change" data-cat="fixed">O'zgartirish</button></div></div><div class="spendrow"><div class="sr-top"><span>Dori va salomatlik</span><span>300&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:16.666666666666664%;background:#C77"></i></div><div class="sr-note"><span>Bizning taxminimiz: daromadning ~4% i</span><button type="button" class="sr-change" data-cat="health">O'zgartirish</button></div></div><div class="spendrow"><div class="sr-top"><span>Ko'ngilochar</span><span>500&nbsp;000 so'm</span></div><div class="sr-track"><i style="width:27.77777777777778%;background:#D99A2B"></i></div><div class="sr-note"><span>Bizning taxminimiz: daromadning ~6% i</span><button type="button" class="sr-change" data-cat="fun">O'zgartirish</button></div></div></div></details>
       <details class="acc acc-hidden" id="accDebt"><summary data-i="dTitle">Qarz yuki</summary><div class="acc-body">
         <div class="debt" id="debtBox">
           <div class="debt-top"><span class="debt-pct" id="debtPct">—</span><span class="debt-lvl" id="debtLvl"></span></div>
@@ -420,7 +446,7 @@ img,svg{height:auto}
           <div class="pay1" id="payFirst"></div>
         </div>
       </div></details>
-      <details class="acc" id="accScore"><summary data-i="scTitle">Moliyaviy salomatlik balli</summary><div class="acc-body">
+      <details class="acc acc-hidden" id="accScore"><summary data-i="scTitle">Moliyaviy salomatlik balli</summary><div class="acc-body">
         <div class="score" id="scoreBox">
           <div class="gauge-wrap">
             <svg class="gauge-svg" viewBox="0 0 200 110" aria-hidden="true">
@@ -435,6 +461,10 @@ img,svg{height:auto}
           <div class="score-note" data-i="scNote">Bu ball — o'zini o'zi baholash vositasi, moliyaviy maslahat emas.</div>
         </div>
       </div></details>
+      <div class="score-cta" id="scoreCta" style="display: flex;">
+        <div class="sct-text"><b data-i="scCtaT">3 ta savolga javob bering</b><span data-i="scCtaS">Moliyaviy salomatlik ballingizni ko'rish uchun</span></div>
+        <button type="button" id="scoreCtaBtn" data-i="scCtaBtn">Ko'rish</button>
+      </div>
       <details class="acc" id="accBasket"><summary data-i="bTitle">Oziq-ovqat savati tafsiloti</summary><div class="acc-body">
         <div class="basket-list" id="basketList"><div class="brow"><span><span class="bn">Un</span> <span class="bq">16 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Guruch</span> <span class="bq">6 kg</span></span><span class="bv">90&nbsp;000</span></div><div class="brow"><span><span class="bn">Go'sht (mol/qo'y)</span> <span class="bq">6 kg</span></span><span class="bv">750&nbsp;000</span></div><div class="brow"><span><span class="bn">Tovuq go'shti</span> <span class="bq">4 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">O'simlik yog'i</span> <span class="bq">3 l</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Shakar</span> <span class="bq">4 kg</span></span><span class="bv">52&nbsp;000</span></div><div class="brow"><span><span class="bn">Kartoshka</span> <span class="bq">12 kg</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Sabzavotlar</span> <span class="bq">20 kg</span></span><span class="bv">160&nbsp;000</span></div><div class="brow"><span><span class="bn">Meva</span> <span class="bq">8 kg</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Sut-qatiq</span> <span class="bq">8 l</span></span><span class="bv">96&nbsp;000</span></div><div class="brow"><span><span class="bn">Tuxum</span> <span class="bq">30 dona</span></span><span class="bv">60&nbsp;000</span></div><div class="brow"><span><span class="bn">Choy, tuz, mayda-chuyda</span></span><span class="bv">120&nbsp;000</span></div><div class="brow" style="border-top:1.5px dashed var(--line)"><span class="bn">Oziq-ovqat savati</span><span class="bv">1&nbsp;800&nbsp;000 so'm</span></div><div style="font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 0 2px">2 kishilik oila uchun, viloyat markazi narxlarida</div></div>
       </div></details>
@@ -450,6 +480,8 @@ img,svg{height:auto}
     <div class="ct-text"><b data-i="ctaT">Natijani aniqroq qiling</b><span data-i="ctaS">Yashash joyi, ta'lim, doimiy xarajatlar va kreditlarni kiritib, natijani aniqlashtiring</span></div>
     <button type="button" id="ctaRefineBtn" data-i="ctaBtn">Ochish</button>
   </div>
+
+  <div class="sticky-panel noprint" id="stickyPanel"><span class="sp-dot st-ok"></span><span class="sp-text">Ortib qoladi: 3&nbsp;800&nbsp;000 so'm</span><span class="sp-arrow">↑</span></div>
 
   <section class="form-card" id="cardOpt">
     <div class="step" data-i="step2">2-qadam — Aniqlashtirish (ixtiyoriy)</div>
@@ -590,7 +622,7 @@ img,svg{height:auto}
       h1:"Oilaviy byudjet kalkulyatori",
       sub:"Daromad va oila a'zolari sonini kiriting — xarajat, kredit yuki va moliyaviy salomatlik balli darhol chiqadi.",
       sIncome:"Oila daromadi (oyiga)",
-      lIncH:"Er oyligi",lIncW:"Xotin oyligi",lIncX:"Qo'shimcha daromad",
+      lIncH:"1-daromad",lIncW:"2-daromad",lIncX:"Qo'shimcha daromad",
       hIncX:"Ijara, pensiya, tomorqa, qo'shimcha ish — bo'lmasa 0 qoldiring.",
       sFamily:"Oila tarkibi",
       lAdults:"Kattalar",lKidsG:"Bog'cha",lKidsM:"Maktab",lKidsU:"Talaba",
@@ -642,8 +674,18 @@ img,svg{height:auto}
       dateFmt:"{y}-yil {m}",
       btnCalc:"Byudjetni hisoblash",rTag:"Oila byudjeti",
       lblSave:"Oyiga jamg'arma imkoniyati",lblDef:"Byudjet taqchilligi (yetishmayapti)",
-      legFood:"Oziq-ovqat",legEdu:"Ta'lim",legFixed:"Doimiy",legSave:"Jamg'arma",
+      legFood:"Oziq-ovqat",legEdu:"Ta'lim",legFixed:"Doimiy",legSave:"Ortib qoladi",
       legSpendAll:"Xarajat",legDebt:"Qarz",
+      hIncMain:"Masalan: er, xotin, ota-ona va h.k.",
+      estAllNote:"Xarajatlar hozircha o'rtacha me'yorlar bo'yicha taxmin qilindi. Aniq raqamlaringizni kiritsangiz, natija haqiqiy holatingizni ko'rsatadi.",
+      estSomeNote:"Ba'zi raqamlar hali taxmin.",
+      estFoodOurs:"Bizning taxminimiz: {n} kishi × {loc} narxlari",
+      estPctOurs:"Bizning taxminimiz: daromadning ~{p}% i",
+      estYours:"Siz kiritdingiz",
+      changeLink:"O'zgartirish",
+      scCtaT:"3 ta savolga javob bering",scCtaS:"Moliyaviy salomatlik ballingizni ko'rish uchun",scCtaBtn:"Ko'rish",
+      scUnmeasured:"to'ldirilmagan",
+      stickyLbl:"Ortib qoladi",
       hsOk:"Sog'lom byudjet",hsMid:"E'tiborga olish kerak",hsNeg:"Xavfli",
       subSave:"daromadning {p}% i — jamg'arma imkoniyati",subDef:"xarajat daromaddan oshib ketmoqda",
       flowTarget:"tavsiya: 20%",
@@ -651,7 +693,7 @@ img,svg{height:auto}
       accSpendT:"Xarajatlar qayerga ketyapti?",
       ctaT:"Natijani aniqroq qiling",ctaS:"Yashash joyi, ta'lim, doimiy xarajatlar va kreditlarni kiritib, natijani aniqlashtiring",ctaBtn:"Ochish",
       kIncome:"Jami daromad",kFood:"Oziq-ovqat savati",kEdu:"Ta'lim",kFixed:"Doimiy xarajatlar",kHealth:"Dori va salomatlik",kFun:"Ko'ngilochar",
-      kSpend:"Jami xarajat",kSpendPct:"Xarajat / daromad",kSave:"Jamg'armaga qoladi",
+      kSpend:"Jami xarajat",kSpendPct:"Xarajat / daromad",kSave:"Ortib qoladi",
       bTitle:"Oziq-ovqat savati tafsiloti",
       foodNames:{un:"Un",guruch:"Guruch",gosht:"Go'sht (mol/qo'y)",tovuq:"Tovuq go'shti",yog:"O'simlik yog'i",shakar:"Shakar",kartoshka:"Kartoshka",sabzavot:"Sabzavotlar",meva:"Meva",sut:"Sut-qatiq",tuxum:"Tuxum",mayda:"Choy, tuz, mayda-chuyda"},
       stOk:"Ajoyib! Daromadning {p}% ini jamg'aryapsiz — moliyaviy sog'lom oila (maqsad: kamida 20%). Bu pulni omonatga qo'yib ko'paytirishingiz mumkin — Omonat kalkulyatorida hisoblang.",
@@ -672,7 +714,7 @@ img,svg{height:auto}
       h1:"Калькулятор семейного бюджета",
       sub:"Введите доход и число членов семьи — расходы, долговая нагрузка и показатель финансового здоровья появятся сразу.",
       sIncome:"Доход семьи (в месяц)",
-      lIncH:"Зарплата мужа",lIncW:"Зарплата жены",lIncX:"Доп. доход",
+      lIncH:"Доход 1",lIncW:"Доход 2",lIncX:"Доп. доход",
       hIncX:"Аренда, пенсия, огород, подработка — если нет, оставьте 0.",
       sFamily:"Состав семьи",
       lAdults:"Взрослые",lKidsG:"Детсад",lKidsM:"Школа",lKidsU:"Студент",
@@ -724,8 +766,18 @@ img,svg{height:auto}
       dateFmt:"{m} {y}",
       btnCalc:"Рассчитать бюджет",rTag:"Семейный бюджет",
       lblSave:"Возможность накоплений в месяц",lblDef:"Дефицит бюджета (не хватает)",
-      legFood:"Продукты",legEdu:"Обучение",legFixed:"Постоянные",legSave:"Накопления",
+      legFood:"Продукты",legEdu:"Обучение",legFixed:"Постоянные",legSave:"Остаётся",
       legSpendAll:"Расходы",legDebt:"Долг",
+      hIncMain:"Например: муж, жена, родители и т.д.",
+      estAllNote:"Расходы пока рассчитаны по средним нормам. Введите свои точные цифры — результат покажет вашу реальную ситуацию.",
+      estSomeNote:"Некоторые цифры пока приблизительные.",
+      estFoodOurs:"Наша оценка: {n} чел. × цены ({loc})",
+      estPctOurs:"Наша оценка: ~{p}% дохода",
+      estYours:"Вы указали",
+      changeLink:"Изменить",
+      scCtaT:"Ответьте на 3 вопроса",scCtaS:"Чтобы увидеть показатель финансового здоровья",scCtaBtn:"Показать",
+      scUnmeasured:"не заполнено",
+      stickyLbl:"Остаётся",
       hsOk:"Здоровый бюджет",hsMid:"Нужно обратить внимание",hsNeg:"Опасно",
       subSave:"{p}% дохода — возможность накоплений",subDef:"расходы превышают доход",
       flowTarget:"цель: 20%",
@@ -733,7 +785,7 @@ img,svg{height:auto}
       accSpendT:"Куда уходят расходы?",
       ctaT:"Уточните результат",ctaS:"Укажите место проживания, обучение, постоянные расходы и кредиты для точного расчёта",ctaBtn:"Открыть",
       kIncome:"Общий доход",kFood:"Продуктовая корзина",kEdu:"Обучение",kFixed:"Постоянные расходы",kHealth:"Лекарства и здоровье",kFun:"Досуг",
-      kSpend:"Всего расходов",kSpendPct:"Расходы / доход",kSave:"Остаётся на накопления",
+      kSpend:"Всего расходов",kSpendPct:"Расходы / доход",kSave:"Остаётся",
       bTitle:"Состав продуктовой корзины",
       foodNames:{un:"Мука",guruch:"Рис",gosht:"Мясо (гов/бар)",tovuq:"Куриное мясо",yog:"Растительное масло",shakar:"Сахар",kartoshka:"Картофель",sabzavot:"Овощи",meva:"Фрукты",sut:"Молочные",tuxum:"Яйца",mayda:"Чай, соль, мелочи"},
       stOk:"Отлично! Вы откладываете {p}% дохода — финансово здоровая семья (цель: минимум 20%). Эти деньги можно приумножить на депозите — посчитайте в Депозитном калькуляторе.",
@@ -752,6 +804,14 @@ img,svg{height:auto}
   };
 
   var lang='uz', loc='vil', calcData=null;
+  /* Qaysi maydonlarni foydalanuvchi O'ZI to'ldirgan (yoki crosslink orqali
+     tasdiqlangan) — standart HTML qiymatlari (masalan komm=500000) real
+     kiritilgan ma'lumot emas, taxmin, shuning uchun buni alohida kuzatib
+     borish kerak (Muammo 1 va 3 shu yerga bog'liq). */
+  var touched={food:false,edu:false,fixed:false,health:false,fun:false,saveMonth:false,savePool:false,src:false};
+  var FIELD_CAT={costG:'edu',costM:'edu',costU:'edu',komm:'fixed',rent:'fixed',trans:'fixed',conn:'fixed',other:'fixed',health:'health',fun:'fun',saveMonth:'saveMonth',savePool:'savePool'};
+  function scoreAnyTouched(){return touched.saveMonth||touched.savePool||touched.src}
+  function scoreAllTouched(){return touched.saveMonth&&touched.savePool&&touched.src}
   var LS='kalki_byudjet';
   var srcCount=1, gaScore=null, gaReturn=false, restoring=false;
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
@@ -766,14 +826,20 @@ img,svg{height:auto}
     $(id).addEventListener('input',function(){
       var v=this.value.replace(/[^\d]/g,'');
       this.value=v?fmt(parseInt(v,10)):'0';
+      if(FIELD_CAT[id])touched[FIELD_CAT[id]]=true;
       calc();
     });
   });
+  // urlshare.js (boshqa <script> doirasida) crosslink orqali maydonni
+  // to'g'ridan-to'g'ri to'ldiradi, 'input' hodisasisiz — shu sabab uni
+  // "tasdiqlangan" deb belgilash uchun alohida ilgak kerak.
+  window.__budgetMarkTouched=function(id){if(FIELD_CAT[id])touched[FIELD_CAT[id]]=true};
 
   var locBtns=document.querySelectorAll('[data-loc]');
   for(var b=0;b<locBtns.length;b++){
     locBtns[b].onclick=function(){
       loc=this.getAttribute('data-loc');
+      touched.food=true;
       for(var j=0;j<locBtns.length;j++)locBtns[j].classList.remove('on');
       this.classList.add('on');
       if(calcData)calc();
@@ -886,7 +952,7 @@ img,svg{height:auto}
            komm:$('komm').value,rent:$('rent').value,trans:$('trans').value,conn:$('conn').value,
            health:$('health').value,fun:$('fun').value,other:$('other').value,
            saveMonth:$('saveMonth').value,savePool:$('savePool').value},
-        loc:loc,src:srcCount,credits:rawCredits()
+        loc:loc,src:srcCount,credits:rawCredits(),touched:touched
       };
       localStorage.setItem(LS,JSON.stringify(st));
     }catch(e){}
@@ -915,9 +981,16 @@ img,svg{height:auto}
           $('dCredit').open=true;
           // Foydalanuvchi ilgari kredit kiritgan bo'lsa, 2-qadam formasi
           // yopiq CTA orqasida qolib ketmasin — darhol ochiq ko'rinsin.
-          $('cardOpt').classList.add('show');
-          $('ctaRefine').classList.add('hidden');
+          revealStep2();
         }
+      }
+      // "Tasdiqlangan" holat ham saqlangan bo'lishi kerak — aks holda
+      // hech qachon o'zgartirilmagan standart qiymatlar keyingi safar
+      // noto'g'ri "siz kiritdingiz" deb ko'rinib qolardi. setSrc(...,true)
+      // yuqorida touched.src ni ehtiyot chorasi sifatida true qildi —
+      // haqiqiy saqlangan holat bo'lsa, shu yerda ustidan yoziladi.
+      if(st.last.touched){
+        for(var tk in touched){if(Object.prototype.hasOwnProperty.call(st.last.touched,tk))touched[tk]=!!st.last.touched[tk];}
       }
     }catch(e){}
     restoring=false;
@@ -925,6 +998,7 @@ img,svg{height:auto}
   }
   function setSrc(n,quiet){
     srcCount=n;
+    touched.src=true;
     var b=$('srcSeg').querySelectorAll('button');
     for(var i=0;i<b.length;i++)b[i].classList.toggle('on',b[i].getAttribute('data-src')===String(n));
     if(!quiet){calc();persist();}
@@ -1008,11 +1082,25 @@ img,svg{height:auto}
      ini jamg'arayotgan, lekin "oyiga chetga qo'yayotgan pul" maydonini
      to'ldirmagan kishi ham noto'g'ri "qizil" ko'rinardi).
      Manfiy qoldiq yoki qarz yuki xavfli bo'lsa — har doim qizil. */
-  function statusLevel(d){
-    if(d.save<0||d.debt.lvl===4)return 'neg';
-    var savePct=d.income?(d.save/d.income*100):0;
-    if(savePct>=20&&d.debt.lvl<=2)return 'ok';
-    return 'mid';
+  var LEVEL_RANK={ok:0,mid:1,neg:2};
+  /* scoreKnown=true FAQAT uchala ixtiyoriy maydon ham to'ldirilganda —
+     shundagina 0-100 ball haqiqiy, to'liq signal hisoblanadi va hero
+     pill bilan birlashtirilishi mumkin (Muammo 3: ikkalasi bir xil
+     mantiqdan kelib chiqishi kerak — biri "ajoyib", biri "juda past"
+     deb bir vaqtda aytmasin). Qisman to'ldirilgan ball hali chala,
+     shuning uchun hero'ga ta'sir qilmaydi. */
+  function statusLevel(d,scoreKnown){
+    var lvl;
+    if(d.save<0||d.debt.lvl===4)lvl='neg';
+    else{
+      var savePct=d.income?(d.save/d.income*100):0;
+      lvl=(savePct>=20&&d.debt.lvl<=2)?'ok':'mid';
+    }
+    if(scoreKnown&&d.score){
+      var slvl=d.score.total>=70?'ok':(d.score.total>=40?'mid':'neg');
+      if(LEVEL_RANK[slvl]>LEVEL_RANK[lvl])lvl=slvl;
+    }
+    return lvl;
   }
 
   function renderResult(){
@@ -1020,7 +1108,7 @@ img,svg{height:auto}
     var savePct=d.income?Math.round(d.save/d.income*100):0;
 
     // 1-qatlam: HERO
-    var lvl=statusLevel(d);
+    var lvl=statusLevel(d,scoreAllTouched());
     var hs=$('heroStatus');
     hs.className='hero-status st-'+lvl;
     $('heroStatusText').textContent=t(lvl==='ok'?'hsOk':(lvl==='neg'?'hsNeg':'hsMid'));
@@ -1034,6 +1122,17 @@ img,svg{height:auto}
       mn.className='hero-num neg';
       animateHero(mn,Math.abs(d.save),true,sum);
       $('mainSub').textContent=t('subDef');
+    }
+
+    // Eng tepadagi taxmin-ogohlantirish (Muammo 1): to'rtta xarajat
+    // moddasidan nechtasi hali standart qiymatda qolganiga qarab.
+    var estKeys=['food','fixed','health','fun'];
+    var estUntouched=estKeys.filter(function(k){return !touched[k]}).length;
+    var en=$('estimateNotice');
+    if(estUntouched===0){en.classList.remove('show');}
+    else{
+      en.textContent=(estUntouched===estKeys.length)?t('estAllNote'):t('estSomeNote');
+      en.classList.add('show');
     }
 
     // Holat — 1 gaplik sharh, hero ostida darhol
@@ -1060,23 +1159,39 @@ img,svg{height:auto}
     var barTotal=spendAll+debtM+saveP;
     var fh='';
     if(barTotal>0){
-      if(spendAll>0)fh+='<div class="fseg" style="width:'+(spendAll/barTotal*100)+'%;background:#8C3B2A"></div>';
-      if(debtM>0)fh+='<div class="fseg" style="width:'+(debtM/barTotal*100)+'%;background:#B04A3A"></div>';
-      if(saveP>0)fh+='<div class="fseg" style="width:'+(saveP/barTotal*100)+'%;background:#D99A2B"></div>';
+      /* Rang mantiqi (Muammo 5): xarajat — oddiy holat, ogohlantirish
+         rangi emas, neytral kulrang. Ortib qolgan pul — ijobiy, yashil.
+         Qarz — o'zining og'irlik darajasiga qarab (yengildan xavfligacha),
+         "qarz borligining o'zi" hali muammo emas. Qizil FAQAT haqiqiy
+         xavf uchun (bu yerda: qarz yuki 50%+, dl-4). */
+      var debtColors={1:'#2E7D5B',2:'#D99A2B',3:'#8C3B2A',4:'#B04A3A'};
+      if(spendAll>0)fh+='<div class="fseg" style="width:'+(spendAll/barTotal*100)+'%;background:#5C6B72"></div>';
+      if(debtM>0)fh+='<div class="fseg" style="width:'+(debtM/barTotal*100)+'%;background:'+debtColors[d.debt.lvl||1]+'"></div>';
+      if(saveP>0)fh+='<div class="fseg" style="width:'+(saveP/barTotal*100)+'%;background:#1E6B45"></div>';
     }
     var markerPct=barTotal>0&&d.income>0?Math.min(96,(0.20*d.income/barTotal*100)):20;
     fh+='<div class="flow-marker" style="left:'+markerPct+'%"><span class="fm-lbl">'+t('flowTarget')+'</span></div>';
     $('flowBar').innerHTML=fh;
-    $('flowLegSpend').textContent=t('legSpendAll')+' '+fmt(spendAll)+sum;
+    var legSpend=$('flowLegSpend');
+    legSpend.style.setProperty('--lc','#5C6B72');
+    legSpend.textContent=t('legSpendAll')+' '+fmt(spendAll)+sum;
     var legDebt=$('flowLegDebt');
-    if(debtM>0){legDebt.style.display='';legDebt.textContent=t('legDebt')+' '+fmt(debtM)+sum;}
-    else{legDebt.style.display='none';}
-    $('flowLegSave').textContent=t('legSave')+' '+fmt(Math.max(0,d.save))+sum;
+    if(debtM>0){
+      legDebt.style.display='';
+      legDebt.style.setProperty('--lc',debtColors[d.debt.lvl||1]);
+      legDebt.textContent=t('legDebt')+' '+fmt(debtM)+sum;
+    }else{legDebt.style.display='none';}
+    var legSave=$('flowLegSave');
+    legSave.style.setProperty('--lc','#1E6B45');
+    legSave.textContent=t('legSave')+' '+fmt(Math.max(0,d.save))+sum;
 
     // 4-qatlam: Xarajatlar qayerga ketyapti (bo'sh moddalar ko'rsatilmaydi)
+    // Har modda touched-kaliti bilan bog'langan (Muammo 1): standart
+    // qiymatda qolgan bo'lsa "Bizning taxminimiz" + O'zgartirish havolasi,
+    // foydalanuvchi tahrirlagach "Siz kiritdingiz" ga almashadi.
     var cats=[
-      ['kFood',d.food,'#1D4E6B'],['kEdu',d.edu,'#5B3A63'],['kFixed',d.fixed,'#8C3B2A'],
-      ['kHealth',d.health,'#C77'],['kFun',d.fun,'#D99A2B']
+      ['kFood',d.food,'#1D4E6B','food'],['kEdu',d.edu,'#5B3A63','edu'],['kFixed',d.fixed,'#8C3B2A','fixed'],
+      ['kHealth',d.health,'#C77','health'],['kFun',d.fun,'#D99A2B','fun']
     ];
     var maxCat=0;
     for(var ci=0;ci<cats.length;ci++)if(cats[ci][1]>maxCat)maxCat=cats[ci][1];
@@ -1085,8 +1200,18 @@ img,svg{height:auto}
       var c=cats[cj];
       if(!(c[1]>0))continue;
       var w=maxCat?(c[1]/maxCat*100):0;
+      var catKey=c[3], isOk=touched[catKey];
+      var noteTxt;
+      if(catKey==='food'){
+        noteTxt=isOk?t('estYours'):t('estFoodOurs').replace('{n}',d.people).replace('{loc}',t('locNames')[loc]);
+      }else{
+        var pct=d.income?Math.round(c[1]/d.income*100):0;
+        noteTxt=isOk?t('estYours'):t('estPctOurs').replace('{p}',pct);
+      }
+      var note='<div class="sr-note'+(isOk?' confirmed':'')+'"><span>'+noteTxt+'</span>'
+        +(isOk?'':'<button type="button" class="sr-change" data-cat="'+catKey+'">'+t('changeLink')+'</button>')+'</div>';
       sh+='<div class="spendrow"><div class="sr-top"><span>'+t(c[0])+'</span><span>'+fmt(c[1])+sum+'</span></div>'
-        +'<div class="sr-track"><i style="width:'+w+'%;background:'+c[2]+'"></i></div></div>';
+        +'<div class="sr-track"><i style="width:'+w+'%;background:'+c[2]+'"></i></div>'+note+'</div>';
     }
     $('spendBreakdown').innerHTML=sh;
 
@@ -1104,6 +1229,7 @@ img,svg{height:auto}
     renderDebt(d);
     renderScore(d);
     renderCompare(d);
+    updateStickyPanel();
   }
 
   function renderDebt(d){
@@ -1142,9 +1268,21 @@ img,svg{height:auto}
   }
 
   var GAUGE_C=251.33;
+  var SCORE_FIELD={cmpSave:'saveMonth',cmpFund:'savePool',cmpSrc:'src'};
   function renderScore(d){
-    var sc=d.score;
-    var arc=$('gaugeArc');
+    var acc=$('accScore'), cta=$('scoreCta'), arc=$('gaugeArc'), sc=d.score;
+    /* Muammo 3: uch ixtiyoriy maydondan birortasi ham to'ldirilmagan
+       bo'lsa, ball butunlay yashiriladi — 0 bilan to'ldirilgan bo'sh
+       maydonlar asosida hisoblangan past ball chalkash, zid signal
+       berardi (hero yashil, ball qizil). O'rniga taklif kartochkasi. */
+    if(!scoreAnyTouched()){
+      acc.classList.add('acc-hidden');
+      acc.open=false;
+      cta.style.display='flex';
+      return;
+    }
+    cta.style.display='none';
+    acc.classList.remove('acc-hidden');
     if(!sc){
       $('scoreNum').textContent='—';
       $('scoreEmpty').style.display='block';
@@ -1158,16 +1296,27 @@ img,svg{height:auto}
     var gcolor=sc.total>=70?'#1E6B45':(sc.total>=40?'#D99A2B':'#B3261E');
     arc.setAttribute('stroke',gcolor);
     arc.setAttribute('stroke-dasharray',(sc.total/100*GAUGE_C)+' '+GAUGE_C);
-    var h='';
+    var h='', measured=[];
     for(var i=0;i<sc.parts.length;i++){
       var p=sc.parts[i], v=Math.round(p.v*10)/10;
-      h+='<div class="subscore-card" data-sk="'+p.k+'"><div class="sc-lbl">'+t(p.k)
-        +'</div><div class="sc-val">'+String(v).replace('.',',')+' / 25</div>'
-        +'<div class="sc-track"><i style="width:'+(p.v/25*100)+'%"></i></div></div>';
+      var fkey=SCORE_FIELD[p.k];
+      var isUnmeasured=fkey&&!touched[fkey];
+      if(isUnmeasured){
+        h+='<div class="subscore-card sc-unmeasured" data-sk="'+p.k+'"><div class="sc-lbl">'+t(p.k)
+          +'</div><div class="sc-val">'+t('scUnmeasured')+'</div>'
+          +'<div class="sc-track"><i style="width:0%"></i></div></div>';
+      }else{
+        h+='<div class="subscore-card" data-sk="'+p.k+'"><div class="sc-lbl">'+t(p.k)
+          +'</div><div class="sc-val">'+String(v).replace('.',',')+' / 25</div>'
+          +'<div class="sc-track"><i style="width:'+(p.v/25*100)+'%"></i></div></div>';
+        measured.push(p);
+      }
     }
     $('scoreBars').innerHTML=h;
-    // Eng past ikkita komponent — baho emas, qayerga qarash kerakligi
-    var sorted=sc.parts.slice().sort(function(a,b){return a.v-b.v}).slice(0,2);
+    // Eng past ikkita komponent — FAQAT o'lchangan (to'ldirilgan) qismlar
+    // orasidan, aks holda "to'ldirilmagan" moddalar 0 sifatida hisoblanib
+    // doim "eng past" bo'lib chiqib, noto'g'ri maslahat berardi.
+    var sorted=measured.slice().sort(function(a,b){return a.v-b.v}).slice(0,2);
     var f='<div class="ft">'+t('focusTitle')+'</div>';
     for(var j=0;j<sorted.length;j++){
       f+='<div class="fi" data-fk="'+sorted[j].k+'"><span class="fd"></span><span class="fb"><b>'
@@ -1194,6 +1343,77 @@ img,svg{height:auto}
     box.textContent=text;
     box.className='trend-chip show '+(up?'up':'down');
   }
+
+  /* "O'zgartirish" havolasi (Muammo 1): 2-qadamni ochadi, tegishli
+     bo'limni yoyadi va aynan shu maydonga scroll+fokus qiladi — butun
+     2-qadamni ochish emas, aynan kerakli maydonni. Kontent har renderda
+     qayta chizilgani uchun delegatsiya orqali (bitta marta bog'lanadi). */
+  function revealStep2(){
+    $('cardOpt').classList.add('show');
+    $('ctaRefine').classList.add('hidden');
+    initStickyObserver();
+  }
+  /* ===== Muammo 6: 2-qadam uchun sticky mini-natija paneli =====
+     Natija sahifa pastiga surilmaydi (asosiy tamoyil buzilmaydi) —
+     buning o'rniga 2-qadam ochilib, asosiy natija ekrandan chiqib
+     ketganda kichik doim ko'rinadigan panel paydo bo'ladi. */
+  var stickyObs=null;
+  function updateStickyPanel(){
+    var panel=$('stickyPanel');
+    if(!panel||!calcData)return;
+    var lvl=statusLevel(calcData,scoreAllTouched());
+    var dot=panel.querySelector('.sp-dot');
+    dot.className='sp-dot st-'+lvl;
+    var sum=' '+som();
+    var val=calcData.save>=0?fmt(calcData.save):('−'+fmt(Math.abs(calcData.save)));
+    panel.querySelector('.sp-text').textContent=t('stickyLbl')+': '+val+sum;
+  }
+  function initStickyObserver(){
+    if(stickyObs||!('IntersectionObserver' in window))return;
+    var receipt=$('receipt');
+    if(!receipt)return;
+    stickyObs=new IntersectionObserver(function(entries){
+      var e=entries[0], panel=$('stickyPanel');
+      var step2Open=$('cardOpt').classList.contains('show');
+      panel.classList.toggle('show',step2Open&&!e.isIntersecting);
+    },{threshold:0});
+    stickyObs.observe(receipt);
+  }
+  $('stickyPanel').onclick=function(){
+    $('receipt').scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});
+  };
+  function focusField(el,detailsId){
+    if(!el)return;
+    revealStep2();
+    var det=detailsId?$(detailsId):el.closest('details');
+    if(det)det.open=true;
+    setTimeout(function(){
+      el.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'center'});
+      el.focus();
+    },60);
+  }
+  function goToCategory(cat){
+    if(cat==='food'){
+      var btn=document.querySelector('[data-loc].on')||document.querySelector('[data-loc]');
+      focusField(btn,'dLoc');
+    }else if(cat==='edu'){
+      var kg=num($('kidsG').value),km=num($('kidsM').value);
+      var target=kg>0?'costG':(km>0?'costM':'costU');
+      focusField($(target),'dLoc');
+    }else if(cat==='fixed'){
+      focusField($('komm'),'dFixed');
+    }else if(cat==='health'){
+      focusField($('health'),'dFixed');
+    }else if(cat==='fun'){
+      focusField($('fun'),'dFixed');
+    }
+  }
+  $('spendBreakdown').addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.sr-change'):null;
+    if(!b)return;
+    goToCategory(b.getAttribute('data-cat'));
+  });
+  $('scoreCtaBtn').onclick=function(){focusField($('saveMonth'),'dScore')};
 
   $('calcBtn').onclick=calc;
   // Kredit qatorlari: qiymat o'zgarsa darhol qayta hisoblanadi
@@ -1234,10 +1454,8 @@ img,svg{height:auto}
   // 5-qatlam: "Natijani aniqroq qiling" CTA — 2-qadam formasi shu tugma
   // bosilgandagina ochiladi, sahifa yuklanganda ko'rinmaydi.
   $('ctaRefineBtn').onclick=function(){
-    var card=$('cardOpt');
-    card.classList.add('show');
-    $('ctaRefine').classList.add('hidden');
-    card.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});
+    revealStep2();
+    $('cardOpt').scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'});
   };
   $('shareBtn').onclick=function(){
     if(!calcData)return;
@@ -1282,7 +1500,7 @@ img,svg{height:auto}
   window.__budgetExtra=function(){return {c:rawCredits(),src:srcCount}};
   window.__budgetRestoreExtra=function(o){
     if(!o)return;
-    if(o.c&&o.c.length){renderCredits(o.c);if(readCredits().length){$('dCredit').open=true;$('cardOpt').classList.add('show');$('ctaRefine').classList.add('hidden');}}
+    if(o.c&&o.c.length){renderCredits(o.c);if(readCredits().length){$('dCredit').open=true;revealStep2();}}
     if(o.src)setSrc(o.src,true);
   };
   // URL orqali holat tiklangach qayta hisoblash uchun
@@ -1326,8 +1544,9 @@ img,svg{height:auto}
   function kSkip(node){
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
-       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
-    return cls.indexOf('receipt-actions')>-1;
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='stickyPanel'||id==='scoreCta')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('sticky-panel')>-1||cls.indexOf('score-cta')>-1;
   }
   function kMakePdf(btn){
     var card=kFindReceipt(btn);
@@ -1407,7 +1626,10 @@ img,svg{height:auto}
       if(data.i){
         for(var id in data.i){
           var el=document.getElementById(id);
-          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+          if(el&&el.tagName==='INPUT'){
+            el.value=data.i[id];restored=true;
+            if(window.__budgetMarkTouched)window.__budgetMarkTouched(id);
+          }
         }
       }
       // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
