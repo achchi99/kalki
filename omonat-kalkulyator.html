@@ -21,6 +21,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
 <script src="assets/crosslink.js" defer=""></script>
+<script src="assets/csvexport.js" defer=""></script>
 <script src="assets/tgcta.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Omonat kalkulyatori — foiz daromadini hisoblang</title>
@@ -103,6 +104,28 @@ tbody tr:nth-child(even){background:#FAFBFA}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* ===== Ssenariylarni solishtirish ===== */
+.scen-add{width:100%;margin-top:14px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scen-add:disabled{opacity:.5;cursor:default}
+.scen-add:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scen-limit-note{display:none;font-size:12px;color:var(--muted);margin-top:6px;text-align:center}
+.scen-limit-note.show{display:block}
+.scen-wrap{margin-top:26px;display:none}
+.scen-wrap.show{display:block}
+.scen-wrap h2{font-size:17px;font-weight:800;margin-bottom:12px}
+.scen-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.scen-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scen-table{border-collapse:collapse;font-size:13px;width:100%}
+.scen-table th,.scen-table td{padding:10px 13px;text-align:right;border-top:1px solid #EFF3F0;white-space:nowrap;font-weight:600}
+.scen-table thead th{border-top:0}
+.scen-table th:first-child,.scen-table td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:700;color:var(--muted)}
+.scen-table thead th{background:var(--cat-soft);color:var(--cat);font-weight:800;font-size:11.5px;text-transform:uppercase}
+.scen-table thead th:first-child{background:var(--cat-soft)}
+.scen-lbl{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.scen-del{border:0;background:#FBEAE8;color:#B3261E;width:20px;height:20px;border-radius:50%;font-size:13px;line-height:1;cursor:pointer;flex:none;-webkit-tap-highlight-color:transparent}
+.scen-best{color:#1E6B45!important;font-weight:800}
+.scen-best::after{content:" ✓"}
 </style>
 <link rel="manifest" href="manifest.json">
 <style id="printcss">
@@ -260,10 +283,17 @@ img,svg{height:auto}
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
         <button type="button" id="schedBtn" data-i="btnSched">Oylik jadval</button>
-      <button type="button" class="pdfbtn">PDF</button></div>
+      <button type="button" class="pdfbtn">PDF</button><button type="button" class="csvbtn">Excel (CSV)</button></div>
+      <button type="button" class="scen-add" id="scenAddBtn" data-i="btnSaveScenario">Bu variantni saqlab, boshqasini hisoblang</button>
+      <p class="scen-limit-note" id="scenLimitNote" data-i="scenLimitNote">Maksimum 3 ta ssenariy. Birini o'chirib, keyin qo'shing.</p>
     </div>
     <div class="receipt-edge"></div>
   </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+
+  <section class="scen-wrap noprint" id="scenWrap">
+    <h2 data-i="scenH">Ssenariylarni solishtirish</h2>
+    <div class="scen-shell"><div class="scen-scroll"><table class="scen-table" id="scenTable"></table></div></div>
+  </section>
 
   <section class="sched" id="sched">
     <h2 data-i="schedH">Omonat o'sish jadvali</h2>
@@ -306,6 +336,15 @@ img,svg{height:auto}
       thN:"Oy",thStart:"Boshida",thInt:"Foiz",thAdd:"Qo'shildi",thEnd:"Oxirida",
       moreShow:"Barchasini ko'rsatish",moreHide:"Yig'ish",
       shareTitle:"Omonat hisobi",
+      btnSaveScenario:"Bu variantni saqlab, boshqasini hisoblang",
+      scenLimitNote:"Maksimum 3 ta ssenariy. Birini o'chirib, keyin qo'shing.",
+      scenH:"Ssenariylarni solishtirish",scenDel:"O'chirish",
+      scenAmount:"Summa",scenRate:"Stavka",scenTerm:"Muddat",scenCap:"Kapitalizatsiya",
+      scenFinal:"Muddat oxiridagi jami",scenEarned:"Sof daromad",
+      csvBtn:"Excel (CSV)",
+      csvKAmount:"Omonat summasi",csvKRate:"Yillik foiz stavkasi (%)",csvKTerm:"Muddat (oy)",
+      csvKMonthly:"Oylik qo'shib borish",csvKCap:"Kapitalizatsiya",
+      csvTotal:"Jami",
       foot:"Hisob-kitob ma'lumot uchun. Aniq shartlarni bankdan oling.",
       seo:'<h2>Omonat kalkulyatori nimani hisoblaydi?</h2><p>Qo\'ygan summangiz, foiz stavkasi va muddat asosida muddat oxirida qancha pul olishingizni, sof foiz daromadingizni va samarali yillik daromadlilikni hisoblaydi.</p><h2>Kapitalizatsiya nima va nega muhim?</h2><p>Kapitalizatsiyada har oy hisoblangan foiz omonatga qo\'shiladi va keyingi oy o\'zi ham foiz keltiradi ("foizga foiz"). Uzoq muddatda bu sezilarli farq beradi — ikkala rejimni solishtirib ko\'ring.</p><h2>Qaysi omonat foydaliroq?</h2><p>Faqat stavkaga qaramang: kapitalizatsiya bor-yo\'qligi, to\'ldirish imkoniyati va muddatidan oldin yechish shartlari ham muhim. Kalkulyatorda turli banklar shartlarini kiritib, yakuniy summani solishtiring.</p>'
     },
@@ -332,6 +371,15 @@ img,svg{height:auto}
       thN:"Мес.",thStart:"В начале",thInt:"Проценты",thAdd:"Пополнение",thEnd:"В конце",
       moreShow:"Показать все",moreHide:"Свернуть",
       shareTitle:"Расчёт вклада",
+      btnSaveScenario:"Сохранить вариант и рассчитать другой",
+      scenLimitNote:"Максимум 3 варианта. Удалите один, чтобы добавить новый.",
+      scenH:"Сравнение вариантов",scenDel:"Удалить",
+      scenAmount:"Сумма",scenRate:"Ставка",scenTerm:"Срок",scenCap:"Капитализация",
+      scenFinal:"Итог в конце срока",scenEarned:"Чистый доход",
+      csvBtn:"Excel (CSV)",
+      csvKAmount:"Сумма вклада",csvKRate:"Годовая ставка (%)",csvKTerm:"Срок (мес.)",
+      csvKMonthly:"Ежемесячное пополнение",csvKCap:"Капитализация",
+      csvTotal:"Итого",
       foot:"Расчёт носит справочный характер. Точные условия уточняйте в банке.",
       seo:'<h2>Что рассчитывает депозитный калькулятор?</h2><p>По сумме вклада, ставке и сроку калькулятор определяет итоговую сумму, чистый процентный доход и эффективную годовую доходность.</p><h2>Что такое капитализация и почему это важно?</h2><p>При капитализации начисленные проценты ежемесячно прибавляются к вкладу и в следующем месяце сами приносят доход («проценты на проценты»). На длинном сроке разница заметна — сравните оба режима.</p><h2>Какой вклад выгоднее?</h2><p>Смотрите не только на ставку: важны капитализация, возможность пополнения и условия досрочного снятия. Введите условия разных банков и сравните итоговые суммы.</p>'
     }
@@ -342,6 +390,8 @@ img,svg{height:auto}
   var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
+  var escHtml=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
+  function ga(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
 
   function applyLang(){
     document.documentElement.lang=lang;
@@ -362,6 +412,8 @@ img,svg{height:auto}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
     if(calcData){renderResult();renderRows()}
+    if(scenarios.length)renderScenarios();
+    addCsvButtons();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
@@ -395,11 +447,12 @@ img,svg{height:auto}
     var finalSum=cap?bal:bal+0; // without cap, interest paid out separately
     var totalFinal=cap?bal:(bal+earned);
     var effYield=earned/deposited*(12/n)*100;
-    calcData={deposited:deposited,earned:earned,finalSum:totalFinal,n:n,effYield:effYield};
+    calcData={P:P,deposited:deposited,earned:earned,finalSum:totalFinal,n:n,effYield:effYield};
     expanded=false;
     renderResult();renderRows();
     $('receipt').classList.add('show');
     $('sched').classList.remove('show');
+    addCsvButtons();
   }
 
   function renderResult(){
@@ -454,6 +507,113 @@ img,svg{height:auto}
     $('moreBtn').textContent=expanded?t('moreHide'):t('moreShow')+' ('+rows.length+')';
   }
 
+  /* ===== Ssenariylarni solishtirish =====
+     LocalStorage'da SAQLANMAYDI — ataylab: eski ssenariylar keyingi safar
+     "bu qayerdan chiqdi?" chalkashligini takrorlaydi. Sahifa yopilsa yo'qoladi. */
+  var scenarios=[];
+  function updateScenBtn(){
+    var btn=$('scenAddBtn'), note=$('scenLimitNote');
+    if(!btn)return;
+    var full=scenarios.length>=3;
+    btn.disabled=full;
+    note.classList.toggle('show',full);
+  }
+  function renderScenarios(){
+    var wrap=$('scenWrap');
+    if(!scenarios.length){wrap.classList.remove('show');return}
+    wrap.classList.add('show');
+    var sum=' '+t('uSum');
+    var bestFinal=-1,maxFinal=-Infinity, bestEarned=-1,maxEarned=-Infinity;
+    for(var bi=0;bi<scenarios.length;bi++){
+      if(scenarios[bi].finalSum>maxFinal){maxFinal=scenarios[bi].finalSum;bestFinal=bi}
+      if(scenarios[bi].earned>maxEarned){maxEarned=scenarios[bi].earned;bestEarned=bi}
+    }
+    var head='<thead><tr><th></th>';
+    for(var hi=0;hi<scenarios.length;hi++){
+      head+='<th><span class="scen-lbl">'+escHtml(scenarios[hi].label)
+        +'<button type="button" class="scen-del" data-idx="'+hi+'" aria-label="'+escHtml(t('scenDel'))+'">×</button></span></th>';
+    }
+    head+='</tr></thead>';
+    function row(labelKey,fn,highlightIdx){
+      var h='<tr><td>'+escHtml(t(labelKey))+'</td>';
+      for(var i2=0;i2<scenarios.length;i2++){
+        var cls=(scenarios.length>1&&i2===highlightIdx)?' class="scen-best"':'';
+        h+='<td'+cls+'>'+fn(scenarios[i2])+'</td>';
+      }
+      return h+'</tr>';
+    }
+    var body='<tbody>';
+    body+=row('scenAmount',function(s){return fmt(s.amount)+sum});
+    body+=row('scenRate',function(s){return s.rateVal+'%'});
+    body+=row('scenTerm',function(s){return s.term+' '+t('months')});
+    body+=row('scenCap',function(s){return s.capLabel});
+    body+=row('scenFinal',function(s){return fmt(s.finalSum)+sum},bestFinal);
+    body+=row('scenEarned',function(s){return '+'+fmt(s.earned)+sum},bestEarned);
+    body+='</tbody>';
+    $('scenTable').innerHTML=head+body;
+    updateScenBtn();
+  }
+  $('scenAddBtn').onclick=function(){
+    if(!calcData||scenarios.length>=3)return;
+    scenarios.push({
+      label:$('rate').value+'% · '+$('term').value+' '+t('uMonths'),
+      rateVal:$('rate').value,
+      amount:calcData.P,term:calcData.n,
+      capLabel:cap?t('segCapYes'):t('segCapNo'),
+      finalSum:calcData.finalSum,earned:calcData.earned
+    });
+    ga('scenario_add',{calc:'omonat',n:scenarios.length});
+    renderScenarios();
+    $('scenWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  $('scenTable').addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.scen-del'):null;
+    if(!b)return;
+    scenarios.splice(parseInt(b.getAttribute('data-idx'),10),1);
+    renderScenarios();
+  });
+
+  /* ===== Excel (CSV) eksport ===== */
+  function csvFilename(){
+    var d=new Date();
+    var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    return 'kalki-omonat-jadval-'+iso+'.csv';
+  }
+  function buildCsvRows(){
+    var out=[];
+    out.push([t('csvKAmount'),Math.round(calcData.P)]);
+    out.push([t('csvKRate'),$('rate').value]);
+    out.push([t('csvKTerm'),calcData.n]);
+    out.push([t('csvKMonthly'),Math.round(num($('monthly').value))]);
+    out.push([t('csvKCap'),cap?t('segCapYes'):t('segCapNo')]);
+    out.push([]);
+    out.push([t('thN'),t('thStart'),t('thInt'),t('thAdd'),t('thEnd')]);
+    var sInt=0,sAdd=0,lastEnd=0;
+    for(var ci=0;ci<rows.length;ci++){
+      var r=rows[ci];
+      out.push([r[0],Math.round(r[1]),Math.round(r[2]),Math.round(r[3]),Math.round(r[4])]);
+      sInt+=r[2];sAdd+=r[3];lastEnd=r[4];
+    }
+    out.push([t('csvTotal'),'',Math.round(sInt),Math.round(sAdd),Math.round(lastEnd)]);
+    return out;
+  }
+  /* Yaratishni o'tkazib yuborish mumkin, lekin hodisa bog'lashni EMAS —
+     aks holda til almashganda tugma o'lik qoladi (.pdfbtn'dagi ilgarigi xato). */
+  function addCsvButtons(){
+    var acts=document.querySelectorAll('.receipt-actions');
+    for(var ai=0;ai<acts.length;ai++){
+      var ex=acts[ai].querySelector('.csvbtn');
+      var b=ex||document.createElement('button');
+      if(!ex){b.type='button';b.className='csvbtn';acts[ai].appendChild(b);}
+      b.textContent=t('csvBtn');
+      b.onclick=function(){
+        if(!calcData||!window.KalkiCSV)return;
+        window.KalkiCSV.download(csvFilename(),buildCsvRows());
+        ga('csv_download',{calc:'omonat'});
+      };
+    }
+  }
+
   $('moreBtn').onclick=function(){expanded=!expanded;renderRows()};
   $('calcBtn').onclick=calc;
   $('schedBtn').onclick=function(){
@@ -504,7 +664,8 @@ img,svg{height:auto}
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
        ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint')return true;
-    return cls.indexOf('receipt-actions')>-1||cls.indexOf('xlink')>-1;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('xlink')>-1
+      ||cls.indexOf('scen-add')>-1||cls.indexOf('scen-limit-note')>-1;
   }
   function kMakePdf(btn){
     var card=kFindReceipt(btn);
