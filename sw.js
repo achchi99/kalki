@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '3546b7ac';   /* sw-version:auto */
+const SW_VERSION = '8365d773';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -17,6 +17,7 @@ const OFFLINE = '/offline.html';
 
 const ASSETS = [
   '/',
+  '/ru/',
   OFFLINE,
   '/assets/docgen.js',
   '/assets/lang.js',
@@ -52,6 +53,7 @@ const ASSETS = [
   '/ijara-shartnomasi-namunasi',
   '/ipoteka-2026',
   '/ipoteka-kalkulyator',
+  '/ru/ipoteka-kalkulyator',
   '/ishdan-boshash-arizasi-namunasi',
   '/ish-haqi-malumotnomasi-namunasi',
   '/ishonchnoma-namunasi',
@@ -60,6 +62,7 @@ const ASSETS = [
   '/kaloriya-kalkulyator',
   '/konditsioner-kalkulyator',
   '/kredit-kalkulyator',
+  '/ru/kredit-kalkulyator',
   '/maktab-kalkulyator',
   '/marosim-kalkulyator',
   '/maxfiylik',
@@ -67,6 +70,7 @@ const ASSETS = [
   '/oila-byudjet-kalkulyator',
   '/omonat-kalkulyator',
   '/oylik-soliq-kalkulyator',
+  '/ru/oylik-soliq-kalkulyator',
   '/pensiya-kalkulyator',
   '/qqs-2026',
   '/qqs-kalkulyator',

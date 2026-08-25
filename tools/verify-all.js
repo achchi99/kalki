@@ -18,6 +18,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { load, loadHtml, sitePages, SPECIAL_PAGES } = require('./render');
+const { RU_PAGES } = require('./prerender');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAST = process.argv.indexOf('--fast') > -1;
@@ -229,13 +230,25 @@ function runTool(args) {
   {
     const bad = [];
     for (const f of list) {
-      const { dom } = await load(path.join(ROOT, f), { shims: true });
+      // RU_PAGES'dagi sahifalarda til-tugma endi joyida bosmaydi, /ru/...ga
+      // navigatsiya qiladi (Variant A) — RU holati allaqachon ru/<f> fayliga
+      // build vaqtida yozilgan, shuni to'g'ridan-to'g'ri tekshiramiz.
+      const ruMigrated = RU_PAGES.indexOf(f) > -1;
+      // ru/<f> haqiqiy joylashuvi 'ru/'+f — load() esa path.basename() ishlatib
+      // buni yo'qotib qo'yardi, natijada lang.js location.pathname'ni UZ deb
+      // o'ylab, markHtml('uz') orqali RU holatini o'zi qaytarib qo'yardi
+      // (production'da haqiqiy /ru/... manzilda bu muammo yo'q).
+      const { dom } = ruMigrated
+        ? await loadHtml(fs.readFileSync(path.join(ROOT, 'ru', f), 'utf8'), 'ru/' + f, { shims: true })
+        : await load(path.join(ROOT, f), { shims: true });
       const w = dom.window, d = w.document;
       const els = [...d.querySelectorAll('[data-lf-uz]')];
       if (els.length) {
-        const wait = (ms) => new Promise((res) => w.setTimeout(res, ms));
-        const ru = d.getElementById('langRu');
-        if (ru) { ru.click(); await wait(500); }
+        if (!ruMigrated) {
+          const wait = (ms) => new Promise((res) => w.setTimeout(res, ms));
+          const ru = d.getElementById('langRu');
+          if (ru) { ru.click(); await wait(500); }
+        }
         els.forEach((e) => {
           const want = e.getAttribute('data-lf-ru');
           if (want && e.textContent.trim() !== want.trim()) bad.push(f + ': "' + e.textContent.trim().slice(0, 24) + '"');
@@ -245,6 +258,37 @@ function runTool(args) {
     }
     add(!bad.length, '20. RU rejimda footer/legal matni tarjima qilingan (' + list.length + ' sahifa)',
       bad.slice(0, 6).join(' | '));
+  }
+
+  /* ---------- 21. RU_PAGES: canonical/hreflang/data-ru-page izchilligi ----------
+     Variant A migratsiyasi (/ru/... alohida URL). Har bir RU_PAGES a'zosi
+     uchun: (a) ru/<f> fayli diskda mavjud, (b) uz manbada va ru chiqishida
+     hreflang(uz/ru/x-default) va data-ru-page="1" bor, (c) ru chiqishida
+     canonical/og:url /ru/... ga, uz manbada o'ziga ishora qiladi. */
+  {
+    const bad = [];
+    for (const f of RU_PAGES) {
+      const ruFile = path.join(ROOT, 'ru', f);
+      if (!fs.existsSync(ruFile)) { bad.push(f + ': ru/' + f + ' yo\'q'); continue; }
+      const uzHtml = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      const ruHtml = fs.readFileSync(ruFile, 'utf8');
+      const slug = f.replace(/\.html$/, '') === 'index' ? '' : f.replace(/\.html$/, '');
+      const uzUrl = 'https://kalki.uz/' + slug;
+      const ruUrl = 'https://kalki.uz/ru/' + slug;
+      if (!uzHtml.includes('data-ru-page="1"')) bad.push(f + ': uz manbada data-ru-page yo\'q');
+      if (!ruHtml.includes('data-ru-page="1"')) bad.push(f + ': ru chiqishida data-ru-page yo\'q');
+      if (!ruHtml.includes('lang="ru"')) bad.push(f + ': ru chiqishida <html lang="ru"> yo\'q');
+      [uzHtml, ruHtml].forEach((h, i) => {
+        const tag = i === 0 ? 'uz' : 'ru';
+        ['hreflang="uz"', 'hreflang="ru"', 'hreflang="x-default"'].forEach((hl) => {
+          if (!h.includes(hl)) bad.push(f + ' (' + tag + '): ' + hl + ' yo\'q');
+        });
+      });
+      if (!ruHtml.includes('href="' + ruUrl + '"')) bad.push(f + ': ru canonical /ru/... ga emas');
+      if (!uzHtml.includes('href="' + uzUrl + '"')) bad.push(f + ': uz canonical o\'ziga emas');
+    }
+    add(!bad.length, '21. RU_PAGES: canonical/hreflang/data-ru-page izchilligi (' + RU_PAGES.length + ' sahifa)',
+      bad.slice(0, 10).join(' | '));
   }
 
   /* ---------- CTR: title/description uzunligi va noyobligi ----------

@@ -18,7 +18,10 @@
   'use strict';
   if (w.Partners) return;
 
-  var JSON_URL = 'assets/partners.json';
+  // Ildizga nisbatan MUTLAQ: /ru/... kabi quyi katalogdagi sahifalarda ham
+  // to'g'ri manzilga so'rov yuborilishi uchun (nisbiy 'assets/...' bo'lsa
+  // /ru/assets/partners.json'ga urinib, 404 qaytarardi).
+  var JSON_URL = '/assets/partners.json';
   var UTM = 'utm_source=kalki.uz&utm_medium=referral';
   var MAX = 4;                 // 4 tadan ko'pi qaror qabul qilishni qiyinlashtiradi
   var SEEN_PREFIX = 'kalki_pi_';

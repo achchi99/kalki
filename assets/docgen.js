@@ -548,7 +548,7 @@
     if (libLoading) return libLoading;
     libLoading = new Promise(function (res, rej) {
       var s = document.createElement('script');
-      s.src = 'assets/docx.umd.min.js';
+      s.src = '/assets/docx.umd.min.js';   // ildizga nisbatan mutlaq — /ru/... sahifalarda ham to'g'ri yuklansin
       s.async = true;
       s.onload = function () { res(root.docx); };
       s.onerror = function () { libLoading = null; rej(new Error('docx')); };
