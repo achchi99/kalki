@@ -74,6 +74,10 @@
   // uni statik HTML'ga UZ holatida allaqachon yozib qo'ygan bo'lsa),
   // matn ma'lumoti shu SKRIPT ISHGA TUSHISHIDA hali o'qilmagan bo'ladi;
   // "element bor" degani "matn allaqachon yuklangan" degani emas.
+  //
+  // QOIDA (kelajakdagi DOM-injecting skriptlar uchun): ma'lumot parse
+  // qilish element-yaratish shartiga bog'lab qo'yilmasin (2026-08,
+  // answerbox.js bug'idan saboq).
   function ensureBox() {
     if (!boxData) {
       var dataEl = d.getElementById('answerbox-data');
