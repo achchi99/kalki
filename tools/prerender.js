@@ -50,6 +50,22 @@ const RU_PAGES = [
   // ishonchnoma-namunasi'ning RU breadcrumb'i /ru/hujjatlar'ga ishora
   // qilardi, bu sahifa hali RU_PAGES'da yo'q edi (404).
   'hujjatlar.html',
+  // 3-bosqich: GSC Страницы.csv navbatida 12-o'rindan keyingi eng ko'p
+  // ko'rsatilgan 14 sahifa.
+  'homiladorlik-kalkulyator.html',
+  'elektr-xarajat-kalkulyator.html',
+  'bola-puli-kalkulyator.html',
+  'zakot-qurbonlik-kalkulyator.html',
+  'toy-kalkulyator.html',
+  'kaloriya-kalkulyator.html',
+  'konditsioner-kalkulyator.html',
+  'tom-kalkulyator.html',
+  'talabnoma-namunasi.html',
+  'chorva-kalkulyator.html',
+  'maktab-kalkulyator.html',
+  'marosim-kalkulyator.html',
+  'staj-kalkulyator.html',
+  'avto-xarajat-kalkulyator.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.
