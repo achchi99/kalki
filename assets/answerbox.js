@@ -2,8 +2,15 @@
  *
  * MAQSAD. Google featured snippet — savolga to'g'ridan-to'g'ri, qisqa
  * javobni sahifa boshida beradi. H1'dan keyin, forma ichidan OLDIN
- * joylashadi (crosslink.js'dagi banner bilan bir xil o'rin: main.wrap
- * ichidagi birinchi element).
+ * joylashadi — lekin main.wrap ICHIGA emas: ko'p sahifada .form-card
+ * (yoki shunga o'xshash birinchi karta) margin-top:-Npx bilan header
+ * fonining pastki bufer-paddingiga qasddan chiqib turadi (dizayn
+ * effekti). Agar answerbox shu kartaning bevosita "aka-uka"si sifatida
+ * main.wrap ichiga qo'yilsa, ikkalasining margini qo'shni sifatida
+ * qo'shiladi (CSS margin-collapse) va manfiy margin answerbox matnini
+ * bosib qo'yadi. Shuning uchun blok header'ning o'z .wrap konteyneri
+ * ICHIGA, oxirgi element sifatida qo'yiladi — bufer-padding bilan
+ * to'qnashmaydi, chunki main.wrap'ga umuman qo'shni emas.
  *
  * MATN MANBAI. Har sahifa o'zining <script type="application/json"
  * id="answerbox-data"> blokida uz/ru matnini beradi — bu fayl faqat
@@ -16,7 +23,7 @@
 (function (w, d) {
   'use strict';
 
-  var CSS = '.answerbox{margin:0 0 18px;padding:14px 16px;background:#F1F7F3;'
+  var CSS = '.answerbox{margin:14px 0 0;padding:14px 16px;background:#F1F7F3;'
     + 'border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;'
     + 'max-width:100%;box-sizing:border-box}'
     + '.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;'
@@ -62,22 +69,27 @@
     box.innerHTML = html;
   }
 
-  // Guard faqat DOM elementini (va matn ma'lumotini) yaratishni o'tkazib
-  // yuboradi — hodisa bog'lash (bindLangListeners) bundan mustaqil.
+  // Guard faqat DOM elementini yaratishni o'tkazib yuboradi. boxData esa
+  // ALOHIDA — element allaqachon mavjud bo'lsa ham (masalan, prerender
+  // uni statik HTML'ga UZ holatida allaqachon yozib qo'ygan bo'lsa),
+  // matn ma'lumoti shu SKRIPT ISHGA TUSHISHIDA hali o'qilmagan bo'ladi;
+  // "element bor" degani "matn allaqachon yuklangan" degani emas.
   function ensureBox() {
+    if (!boxData) {
+      var dataEl = d.getElementById('answerbox-data');
+      if (!dataEl) return false;
+      try { boxData = JSON.parse(dataEl.textContent); } catch (e) { return false; }
+    }
     var existing = d.getElementById('answerbox');
     if (existing) { box = existing; return true; }
-    var dataEl = d.getElementById('answerbox-data');
-    if (!dataEl) return false;
-    try { boxData = JSON.parse(dataEl.textContent); } catch (e) { return false; }
     var h1 = d.querySelector('h1');
-    var host = d.querySelector('main.wrap');
-    if (!h1 || !host) return false;
+    var headerWrap = d.querySelector('header > .wrap') || d.querySelector('header');
+    if (!h1 || !headerWrap) return false;
     ensureCss();
     box = d.createElement('div');
     box.className = 'answerbox noprint';
     box.id = 'answerbox';
-    host.insertBefore(box, host.firstChild);
+    headerWrap.appendChild(box);
     return true;
   }
 
