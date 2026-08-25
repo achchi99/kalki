@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '8365d773';   /* sw-version:auto */
+const SW_VERSION = 'f7c26985';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -30,14 +30,18 @@ const ASSETS = [
   '/manifest.json',
   '/ga.js',
   '/alkogol-kalkulyator',
+  '/ru/alkogol-kalkulyator',
   '/ariza-namunasi',
+  '/ru/ariza-namunasi',
   '/avto-bojxona-2026',
   '/avto-oldi-sotdi-shartnomasi-namunasi',
   '/avto-xarajat-kalkulyator',
   '/beton-kalkulyator',
+  '/ru/beton-kalkulyator',
   '/biz-haqimizda',
   '/blog',
   '/bojxona-kalkulyator',
+  '/ru/bojxona-kalkulyator',
   '/bola-puli-kalkulyator',
   '/bolalar-nafaqasi-2026',
   '/chorva-kalkulyator',
@@ -46,6 +50,7 @@ const ASSETS = [
   '/dtm-kalkulyator',
   '/elektr-xarajat-kalkulyator',
   '/gisht-kalkulyator',
+  '/ru/gisht-kalkulyator',
   '/grant-ololmadim',
   '/hamkorlik',
   '/homiladorlik-kalkulyator',
@@ -57,6 +62,7 @@ const ASSETS = [
   '/ishdan-boshash-arizasi-namunasi',
   '/ish-haqi-malumotnomasi-namunasi',
   '/ishonchnoma-namunasi',
+  '/ru/ishonchnoma-namunasi',
   '/kadr-buyruqlari-namunasi',
   '/kafolat-xati-namunasi',
   '/kaloriya-kalkulyator',
@@ -69,14 +75,18 @@ const ASSETS = [
   '/mehnat-shartnomasi-namunasi',
   '/oila-byudjet-kalkulyator',
   '/omonat-kalkulyator',
+  '/ru/omonat-kalkulyator',
   '/oylik-soliq-kalkulyator',
   '/ru/oylik-soliq-kalkulyator',
   '/pensiya-kalkulyator',
+  '/ru/pensiya-kalkulyator',
   '/qqs-2026',
   '/qqs-kalkulyator',
   '/qurilish-pudrat-shartnomasi-namunasi',
   '/quyosh-panel-kalkulyator',
+  '/ru/quyosh-panel-kalkulyator',
   '/remont-kalkulyator',
+  '/ru/remont-kalkulyator',
   '/shablonlar',
   '/shartlar',
   '/staj-kalkulyator',
@@ -90,8 +100,10 @@ const ASSETS = [
   '/universitet-kontrakt-kalkulyator',
   '/uy-oldi-sotdi-shartnomasi',
   '/uy-qurish-kalkulyator',
+  '/ru/uy-qurish-kalkulyator',
   '/xizmat-korsatish-shartnomasi-namunasi',
   '/yer-konvertor',
+  '/ru/yer-konvertor',
   '/yoqilgi-kalkulyator',
   '/zakot-qurbonlik-kalkulyator'
 ];

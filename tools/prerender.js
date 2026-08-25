@@ -25,12 +25,27 @@ const { load, loadHtml, sitePages, ROOT } = require('./render');
    (avto-bojxona-2026 va sh.k.) hali RU tarjimasiga ega emas (data-i="" == 0,
    faqat nav/footer tarjima qilingan) — ularga RU sahifa yasash Google'ga
    noto'g'ri til signali beradi. Bu — alohida kontent-tarjima vazifasi.
-   1-bosqich (pilot): 4 sahifa. */
+   1-bosqich (pilot): 4 sahifa. 2-bosqich: GSC eksporti (Страницы.csv,
+   2026-08-25) bo'yicha eng ko'p ko'rsatilgan (impressions) va past
+   pozitsiyadagi 12 sahifa qo'shildi — bu yerda RU URL qo'shilishi eng
+   tez natija berish ehtimoli yuqori. */
 const RU_PAGES = [
   'index.html',
   'kredit-kalkulyator.html',
   'ipoteka-kalkulyator.html',
   'oylik-soliq-kalkulyator.html',
+  'ariza-namunasi.html',
+  'uy-qurish-kalkulyator.html',
+  'beton-kalkulyator.html',
+  'gisht-kalkulyator.html',
+  'alkogol-kalkulyator.html',
+  'yer-konvertor.html',
+  'quyosh-panel-kalkulyator.html',
+  'ishonchnoma-namunasi.html',
+  'remont-kalkulyator.html',
+  'omonat-kalkulyator.html',
+  'pensiya-kalkulyator.html',
+  'bojxona-kalkulyator.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.

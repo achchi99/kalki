@@ -888,6 +888,13 @@
       if (lu) lu.classList.toggle('on', lang === 'uz');
       if (lr) lr.classList.toggle('on', lang === 'ru');
       if (opts.titles && opts.titles[lang]) document.title = opts.titles[lang];
+      if (opts.descriptions && opts.descriptions[lang]) {
+        var md = opts.descriptions[lang];
+        ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]'].forEach(function (sel) {
+          var m = document.querySelector(sel);
+          if (m) m.setAttribute('content', md);
+        });
+      }
       // bo'sh shablon havolasi tilga qarab
       var bl = $('blankLink');
       if (bl && CFG.blank) bl.setAttribute('href', CFG.blank[lang] || CFG.blank.uz);
