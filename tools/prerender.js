@@ -16,7 +16,45 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { load, loadHtml, sitePages, ROOT } = require('./render');
+const { execFileSync } = require('child_process');
+const { loadHtml, sitePages, ROOT } = require('./render');
+
+/* FAZA 1.1: "Qisqacha javob" bloki (assets/answerbox.js) o'zining
+   "Yangilangan: YYYY-MM-DD" sanasini qo'lda emas, shu faylning oxirgi
+   git commit sanasidan oladi. Bu yerda hisoblanadi (build vaqti),
+   sahifaning <script id="answerbox-data"> JSON'iga "updated" maydoni
+   sifatida yoziladi. Sahifada bunday blok yo'q bo'lsa — hech narsa
+   o'zgarmaydi (no-op). */
+function gitLastModified(name) {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cd', '--date=format:%Y-%m-%d', '--', name], { cwd: ROOT }).toString().trim();
+    return out || null;
+  } catch (e) { return null; }
+}
+// answerbox-data'ning "updated" maydoni JS ishga tushishidan OLDIN, xom HTML
+// matnida turishi kerak — assets/answerbox.js sahifa yuklanganda uni bir
+// marta o'qib chizadi.
+function injectAnswerboxDate(html, name) {
+  const m = html.match(/(<script type="application\/json" id="answerbox-data">)([\s\S]*?)(<\/script>)/);
+  if (!m) return html;
+  let data;
+  try { data = JSON.parse(m[2]); } catch (e) { return html; }
+  data.updated = gitLastModified(name);
+  return html.replace(m[0], m[1] + JSON.stringify(data) + m[3]);
+}
+// app-ld/coll-ld esa sahifaning o'z JS'i tomonidan HAR DOIM qayta quriladi
+// (appschema, tilga qarab) — shuning uchun dateModified DOM'ga JS
+// ishlagandan KEYIN qo'shiladi, aks holda qayta qurish uni yo'qotadi.
+// Dublikat schema yaratilmaydi — mavjudini kengaytiradi.
+function injectDateModified(doc, name) {
+  if (!doc.getElementById('answerbox-data')) return; // faqat FAZA 1.1 pilot sahifalarida
+  const el = doc.getElementById('app-ld') || doc.getElementById('coll-ld');
+  if (!el) return;
+  let data;
+  try { data = JSON.parse(el.textContent); } catch (e) { return; }
+  data.dateModified = gitLastModified(name);
+  el.textContent = JSON.stringify(data);
+}
 
 /* Variant A: RU uchun alohida URL (/ru/<nom>). Bosqichma-bosqich ko'chiriladi —
    bu ro'yxatda YO'Q sahifa uchun ru/ fayl generatsiya qilinmaydi va eski
@@ -137,10 +175,13 @@ async function renderOne(name, htmlIn) {
   // shim bilan yuklaymiz: hamkor bloki haqiqatan to'ladi, so'ng quyidagi
   // data-prerender="skip" mantiqi uni bo'shatadi — ya'ni tozalash haqiqiy
   // sharoitda sinaladi, "fetch yo'q edi" degan tasodif hisobiga emas.
-  const { dom, errors } = htmlIn == null
-    ? await load(file, { shims: true })
-    : await loadHtml(htmlIn, name, { shims: true });
+  // answerbox-data'ga "updated" sanasi JS ishga tushishidan OLDIN
+  // yozilishi kerak (assets/answerbox.js uni sahifa yuklanganda o'qiydi).
+  const raw = htmlIn == null ? fs.readFileSync(file, 'utf8') : htmlIn;
+  const html = injectAnswerboxDate(raw, name);
+  const { dom, errors } = await loadHtml(html, name, { shims: true });
   const doc = dom.window.document;
+  injectDateModified(doc, name);
 
   // Prerender paytida qo'shilib qolishi mumkin bo'lgan GA teglari olib tashlanadi.
   doc.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]').forEach((s) => s.remove());
@@ -190,7 +231,7 @@ async function renderOne(name, htmlIn) {
    /ru/... manzil faqat shunda chiqadi. */
 async function renderOneRu(name) {
   const file = path.join(ROOT, name);
-  const html = rewriteAssetPaths(fs.readFileSync(file, 'utf8'));
+  const html = injectAnswerboxDate(rewriteAssetPaths(fs.readFileSync(file, 'utf8')), name);
   const { dom, errors } = await loadHtml(html, 'ru/' + name, { shims: true });
   const doc = dom.window.document;
   const w = dom.window;
@@ -200,6 +241,7 @@ async function renderOneRu(name) {
   // ulangan (load() 950ms kutgan) — qo'shimcha kutish faqat repaint ichidagi
   // sinxron ishlarni yakunlash uchun ehtiyot chorasi.
   await new Promise((res) => w.setTimeout(res, 350));
+  injectDateModified(doc, name);
 
   doc.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]').forEach((s) => s.remove());
   doc.querySelectorAll('[data-prerender="skip"]').forEach((el) => {

@@ -1,0 +1,4 @@
+{
+  "_readme": "kalki.uz huquqiy/rasmiy konstantalar reyestri. Claude bu yerga o'zi o'ylab topgan raqam yozmaydi — har yozuv manba tasdiqlangunga qadar 'holat':'TASDIQLASH KERAK' bilan qoladi. 'qiymat':null bo'lgan konstantadan foydalanadigan sahifada natija o'rniga 'Ma'lumot yangilanmoqda' chiqishi kerak. Hozircha bu fayl faqat assets/answerbox.js'ning manba-havola (manba_url) mexanizmi uchun infratuzilma sifatida yaratildi (FAZA 1.1) — hali hisob-kitob kodi bu fayldan o'qimaydi, chunki mavjud kalkulyatorlar formulasiga tegilmaydi (0.1-band).",
+  "constants": []
+}
