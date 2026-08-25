@@ -46,6 +46,10 @@ const RU_PAGES = [
   'omonat-kalkulyator.html',
   'pensiya-kalkulyator.html',
   'bojxona-kalkulyator.html',
+  // 2-bosqichdan keyin shoshilinch qo'shildi: ariza-namunasi va
+  // ishonchnoma-namunasi'ning RU breadcrumb'i /ru/hujjatlar'ga ishora
+  // qilardi, bu sahifa hali RU_PAGES'da yo'q edi (404).
+  'hujjatlar.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.
@@ -80,6 +84,18 @@ function injectSeoLinks(doc, name, forLang) {
     if (canon) canon.setAttribute('href', ruUrl);
     var ogUrl = doc.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', ruUrl);
+    // Ba'zi JSON-LD bloklari (masalan hujjatlar.html'dagi CollectionPage)
+    // "url"ni JS orqali emas, statik holda o'ziga ishora qiladi — app-ld
+    // kabi JS-hisoblab yozadigan bloklar buni allaqachon to'g'ri yozgan
+    // (qayta yozish shunchaki bir xil qiymatni tasdiqlaydi, zararsiz).
+    doc.querySelectorAll('script[type="application/ld+json"]').forEach((s) => {
+      var data;
+      try { data = JSON.parse(s.textContent); } catch (e) { return; }
+      if (data && data.url === uzUrl) {
+        data.url = ruUrl;
+        s.textContent = JSON.stringify(data);
+      }
+    });
   }
   doc.querySelectorAll('link[data-hreflang-gen]').forEach((el) => el.remove());
   var head = doc.head;

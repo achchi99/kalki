@@ -55,6 +55,7 @@ const ASSETS = [
   '/hamkorlik',
   '/homiladorlik-kalkulyator',
   '/hujjatlar',
+  '/ru/hujjatlar',
   '/ijara-shartnomasi-namunasi',
   '/ipoteka-2026',
   '/ipoteka-kalkulyator',
