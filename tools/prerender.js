@@ -122,6 +122,13 @@ const RU_PAGES = [
   'marosim-kalkulyator.html',
   'staj-kalkulyator.html',
   'avto-xarajat-kalkulyator.html',
+  // FAZA 2: top-5 hujjat sahifasidan RU_PAGES'da hali yo'q bo'lgan 3 tasi
+  // (ariza-namunasi va ishonchnoma-namunasi allaqachon yuqorida bor) —
+  // bular endi eng ko'p SEO qiymati olayotgan sahifalar, RU'da ham
+  // bo'lishi kerak.
+  'mehnat-shartnomasi-namunasi.html',
+  'ijara-shartnomasi-namunasi.html',
+  'tilxat-namunasi.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.
