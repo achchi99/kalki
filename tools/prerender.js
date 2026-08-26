@@ -25,10 +25,28 @@ const { loadHtml, sitePages, ROOT } = require('./render');
    sahifaning <script id="answerbox-data"> JSON'iga "updated" maydoni
    sifatida yoziladi. Sahifada bunday blok yo'q bo'lsa — hech narsa
    o'zgarmaydi (no-op). */
+/* "Kunlik prerender yangilanishi" commit'lari faylni texnik jihatdan
+   o'zgartiradi (masalan pdfdate), lekin mazmunan hech narsa o'zgarmaydi.
+   Shu commit'lar hisobga olinsa, "Yangilangan" sanasi bilan har kun
+   avtomatik yangilanib, mazmuniy o'zgarish signalini yo'qotardi (bu
+   2026-08 bilan haqiqiy sinovda payqaldi — 1-tarqatish guruhidan keyingi
+   kunlik commit alkogol-kalkulyator.html kabi tegmagan sahifalarni ham
+   "yangilangan" qilib ko'rsatgan edi). Shu sababli bu naqshga mos
+   commit'lar o'tkazib yuboriladi — birinchi mazmuniy commit topilguncha.
+   Agar HAMMASI cascade bo'lsa (kutilmagan holat) — faylning eng birinchi
+   commit sanasiga tushiladi, "sana yo'q" holatiga hech qachon qolinmaydi. */
+const CASCADE_COMMIT_RE = /^Kunlik prerender yangilanishi/;
 function gitLastModified(name) {
   try {
-    const out = execFileSync('git', ['log', '-1', '--format=%cd', '--date=format:%Y-%m-%d', '--', name], { cwd: ROOT }).toString().trim();
-    return out || null;
+    const out = execFileSync('git', ['log', '--format=%cd%x1f%s', '--date=format:%Y-%m-%d', '--', name], { cwd: ROOT }).toString();
+    const lines = out.split('\n').filter(Boolean).map((l) => {
+      const i = l.indexOf('\x1f');
+      return { date: l.slice(0, i), subject: l.slice(i + 1) };
+    });
+    if (!lines.length) return null;
+    const meaningful = lines.find((l) => !CASCADE_COMMIT_RE.test(l.subject));
+    if (meaningful) return meaningful.date;
+    return lines[lines.length - 1].date;
   } catch (e) { return null; }
 }
 // answerbox-data'ning "updated" maydoni JS ishga tushishidan OLDIN, xom HTML
