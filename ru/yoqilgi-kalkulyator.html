@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yoqilg'i kalkulyatori — benzin sarfi va metan hisobi</title>
+<link rel="canonical" href="https://kalki.uz/ru/yoqilgi-kalkulyator">
+<meta name="description" content="Masofa va yoqilg'i sarfini kiriting — yo'l xarajati yoki metanga o'tishning necha oyda o'zini qoplashi 2026-yil narxlari asosida hisoblanadi.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45;--ok-soft:#E7F3EC}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.mode-tabs{display:flex;background:rgba(255,255,255,.14);border-radius:11px;padding:4px;gap:4px;margin-top:16px}
+.mode-tabs button{flex:1;border:0;background:transparent;font:inherit;font-size:14.5px;font-weight:800;color:var(--cat-text);padding:11px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mode-tabs button.on{background:#fff;color:var(--cat)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+.unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:20px 0 12px;display:flex;align-items:center;gap:8px}
+.sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.2;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.rrow.sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:11px}
+.status-ok{margin-top:14px;background:var(--ok-soft);border-radius:10px;padding:11px 13px;font-size:13.5px;font-weight:700;color:var(--ok)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Yoqilg'i kalkulyatori — benzin sarfi va metan hisobi">
+<meta property="og:description" content="Masofa va yoqilg'i sarfini kiriting — yo'l xarajati yoki metanga o'tishning necha oyda o'zini qoplashi 2026-yil narxlari asosida hisoblanadi.">
+<meta property="og:url" content="https://kalki.uz/ru/yoqilgi-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/yoqilgi-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yoqilg'i kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/yoqilgi-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Yoqilg'i kalkulyatori — benzin sarfi va metan hisobi">
+<meta name="twitter:description" content="Masofa va yoqilg'i sarfini kiriting — yo'l xarajati yoki metanga o'tishning necha oyda o'zini qoplashi 2026-yil narxlari asosida hisoblanadi.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Yoqilg'i kalkulyatori — masofa va sarf ma'lumotlarini kiriting, yo'l xarajati yoki metanga o'tishning o'zini qoplash muddati hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор топлива — введите расстояние и расход, рассчитается стоимость поездки или срок окупаемости перехода на метан.","sources":[]},"updated":"2026-08-26"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Когда выгоден переход на метан?","acceptedAnswer":{"@type":"Answer","text":"Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами."}},{"@type":"Question","name":"Есть ли минусы у метана?","acceptedAnswer":{"@type":"Answer","text":"Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону."}},{"@type":"Question","name":"Метан или пропан — что лучше?","acceptedAnswer":{"@type":"Answer","text":"Метан (CNG) дешевле и экологичнее, но баллон тяжёлый и большой, мощность падает сильнее, заправок мало. Пропан (LPG, автогаз) чуть дороже, но баллон лёгкий и компактный, мощность падает меньше, заправок много. Для много ездящих (такси) выгоднее метан; для средних пробегов удобнее пропан. Сравните оба в калькуляторе."}},{"@type":"Question","name":"Как узнать точный расход?","acceptedAnswer":{"@type":"Answer","text":"Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Коммуналка и авто","item":"https://kalki.uz/#cat-kommunal"},{"@type":"ListItem","position":3,"name":"Топливный калькулятор","item":"https://kalki.uz/ru/yoqilgi-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Топливный калькулятор","description":"Masofa va yoqilg'i sarfini kiriting — yo'l xarajati yoki metanga o'tishning necha oyda o'zini qoplashi 2026-yil narxlari asosida hisoblanadi.","url":"https://kalki.uz/ru/yoqilgi-kalkulyator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-08-26"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/yoqilgi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/yoqilgi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/yoqilgi-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="kommunal">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" class="tm-on" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    
+    <span class="cat-badge" data-i="cat">Коммуналка</span>
+    <h1 data-i="h1">Топливный калькулятор</h1>
+    <p class="sub" data-i="sub">Рассчитайте расходы на поездку или узнайте, за сколько окупится переход на метан.</p>
+    <div class="mode-tabs">
+      <button type="button" id="tabTrip" class="on" data-i="tabTrip">Расходы на поездку</button>
+      <button type="button" id="tabGbo" data-i="tabGbo">Переход на метан</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-kommunal">Коммуналка и авто</a><span class="sep">›</span><span class="cur">Топливный калькулятор</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор топлива — введите расстояние и расход, рассчитается стоимость поездки или срок окупаемости перехода на метан.</p><div class="ab-meta">Обновлено: 2026-08-26</div></div>
+  <!-- TRIP -->
+  <section class="form-card" id="tripCard">
+    <div class="field">
+      <label for="dist" data-i="lDist">Расстояние</label>
+      <div class="input-shell"><input type="text" id="dist" inputmode="numeric" value="450"><span class="unit">km</span></div>
+      <p class="hint" data-i="hDist">Например, Карши–Ташкент ≈ 450 км.</p>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="cons" data-i="lCons">Расход</label>
+        <div class="input-shell"><input type="text" id="cons" inputmode="decimal" value="8"><span class="unit" data-i="uCons">л/100км</span></div>
+      </div>
+      <div class="field">
+        <label for="fprice" data-i="lFprice">Цена топлива</label>
+        <div class="input-shell"><input type="text" id="fprice" inputmode="numeric" value="13 000"><span class="unit" data-i="uFprice">сум/л</span></div>
+      </div>
+    </div>
+    <button type="button" class="calc-btn" id="calcTrip" data-i="btnCalc">Рассчитать</button>
+  </section>
+
+  <section class="receipt" id="tripReceipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num" id="tripNum">—</div>
+        <div class="lbl" data-i="lblTrip">Расход топлива на поездку</div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kFuel">Нужно топлива</span><span class="v" id="rFuel">—</span></div>
+        <div class="rrow"><span class="k" data-i="kPerKm">Цена 1 км</span><span class="v" id="rPerKm">—</span></div>
+      </div>
+      <div class="receipt-actions"><button type="button" id="shareBtn">Поделиться</button><button type="button" class="pdfbtn">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section>
+
+  <!-- GBO -->
+  <section class="form-card" id="gboCard" style="display:none">
+    <div class="sect-title" data-i="sBenzin">Бензин</div>
+    <div class="row2">
+      <div class="field">
+        <label for="bCons" data-i="lBCons">Расход бензина</label>
+        <div class="input-shell"><input type="text" id="bCons" inputmode="decimal" value="8"><span class="unit">l/100km</span></div>
+      </div>
+      <div class="field">
+        <label for="bPrice" data-i="lBPrice">Цена бензина</label>
+        <div class="input-shell"><input type="text" id="bPrice" inputmode="numeric" value="13 000"><span class="unit" data-i="uSomL">сум/л</span></div>
+      </div>
+    </div>
+    <div class="sect-title" data-i="sMetan">Газ (метан или пропан)</div>
+    <div class="seg" id="gasTypeSeg" style="margin-bottom:12px">
+      <button type="button" data-gas="metan" class="on" data-i="gMetan">Метан (m³)</button>
+      <button type="button" data-gas="propan" data-i="gPropan">Пропан (литр)</button>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="mCons" data-i="lMCons">Расход метана</label>
+        <div class="input-shell"><input type="text" id="mCons" inputmode="decimal" value="9"><span class="unit" id="mConsUnit">m³/100km</span></div>
+      </div>
+      <div class="field">
+        <label for="mPrice" data-i="lMPrice">Цена метана</label>
+        <div class="input-shell"><input type="text" id="mPrice" inputmode="numeric" value="5 000"><span class="unit" id="mPriceUnit" data-i="uSomM3">сум/m³</span></div>
+      </div>
+    </div>
+    <div class="sect-title" data-i="sGbo">ГБО и пробег</div>
+    <div class="row2">
+      <div class="field">
+        <label for="gboCost" data-i="lGboCost">Стоимость установки ГБО</label>
+        <div class="input-shell"><input type="text" id="gboCost" inputmode="numeric" value="9 000 000"><span class="unit" data-i="uSom">сум</span></div>
+      </div>
+      <div class="field">
+        <label for="monthKm" data-i="lMonthKm">Пробег в месяц</label>
+        <div class="input-shell"><input type="text" id="monthKm" inputmode="numeric" value="2 000"><span class="unit">km</span></div>
+      </div>
+    </div>
+    <p class="hint" data-i="hGbo">Расход метана обычно на ~10–15% выше бензинового (в м³) — учитывайте это.</p>
+    <button type="button" class="calc-btn" id="calcGbo" data-i="btnCalc">Рассчитать</button>
+  </section>
+
+  <section class="receipt" id="gboReceipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num" id="gboNum">—</div>
+        <div class="lbl" data-i="lblPayback">Срок окупаемости ГБО</div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kB100">Бензин: 100 км</span><span class="v" id="rB100">—</span></div>
+        <div class="rrow"><span class="k" data-i="kM100">Метан: 100 км</span><span class="v" id="rM100">—</span></div>
+        <div class="rrow"><span class="k" data-i="kSave100">Экономия на 100 км</span><span class="v accent" id="rSave100">—</span></div>
+        <div class="rrow sep"><span class="k" data-i="kSaveMonth">Экономия в месяц</span><span class="v" id="rSaveMonth">—</span></div>
+        <div class="rrow"><span class="k" data-i="kSaveYear">Экономия в год</span><span class="v" id="rSaveYear">—</span></div>
+      </div>
+      <div class="status-ok" id="gboVerdict"></div>
+      <div class="receipt-actions"><button type="button" class="pdfbtn">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Метан или пропан — что лучше?</h2><p>Метан (CNG) дешевле и экологичнее, но баллон тяжёлый и большой, мощность падает сильнее, заправок мало. Пропан (LPG, автогаз) чуть дороже, но баллон лёгкий и компактный, мощность падает меньше, заправок много. Для много ездящих (такси) выгоднее метан; для средних пробегов удобнее пропан. Сравните оба в калькуляторе.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="avto-bojxona-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Avto import: 2026 bojxona to'lovlari" data-art-ru="Импорт авто: растаможка 2026">Импорт авто: растаможка 2026</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">НДС 2026: как считается и кто платит</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="bojxona-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bojxona" data-rel-ru="Растаможка">Растаможка</span></a><a href="konditsioner-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1D4E6B;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Konditsioner" data-rel-ru="Кондиционер">Кондиционер</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Семейный бюджет</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Кредит</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Цены меняются — вводите актуальные с заправки. Расчёт носит справочный характер.</footer></main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      cat:"Kommunal",
+      h1:"Yoqilg'i kalkulyatori",
+      sub:"Yo'l xarajatini hisoblang yoki metanga o'tish qancha vaqtda o'zini oqlashini bilib oling.",
+      tabTrip:"Yo'l xarajati",tabGbo:"Metanga o'tish",
+      lDist:"Masofa",hDist:"Masalan, Qarshi–Toshkent ≈ 450 km.",
+      lCons:"Sarf",uCons:"l/100km",
+      lFprice:"Yoqilg'i narxi",uFprice:"so'm/l",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblTrip:"Yo'l uchun yoqilg'i xarajati",
+      kFuel:"Kerakli yoqilg'i",kPerKm:"1 km narxi",
+      sBenzin:"Benzin",sMetan:"Gaz (metan yoki propan)",sGbo:"GBO va yurish",
+      gMetan:"Metan (m³)",gPropan:"Propan (litr)",
+      lBCons:"Benzin sarfi",lBPrice:"Benzin narxi",uSomL:"so'm/l",
+      lMCons:"Metan sarfi",lMPrice:"Metan narxi",uSomM3:"so'm/m³",
+      lGboCost:"GBO o'rnatish narxi",uSom:"so'm",
+      lMonthKm:"Oylik yurish",
+      hGbo:"Metan sarfi odatda benzin sarfidan ~10–15% yuqori (m³ hisobida) — buni hisobga olib kiriting.",
+      lblPayback:"GBO o'zini oqlash muddati",
+      kB100:"Benzin: 100 km xarajati",kM100:"Metan: 100 km xarajati",kSave100:"100 km da tejash",
+      kSaveMonth:"Oylik tejash",kSaveYear:"Yillik tejash",
+      months:"oy",
+      verdictFmt:"{m} oydan keyin GBO o'zini to'liq oqlaydi va har yili ≈ {y} so'm cho'ntagingizda qoladi.",
+      verdictNo:"Bu ko'rsatkichlarda metan tejamli emas — narxlar va sarfni qayta tekshiring.",
+      foot:"Narxlar o'zgarib turadi — joriy zapravka narxlarini kiriting. Hisob-kitob ma'lumot uchun.",
+      seo:'<h2>Metanga o\'tish qachon foydali?</h2><p>Asosiy omil — oylik yurish. Kuniga 60–70 km dan ko\'p yuradiganlar uchun GBO odatda 6–12 oyda o\'zini oqlaydi. Kam yuradiganlarga (oyiga 500 km dan kam) o\'tish yillar davomida oqlanmasligi mumkin.</p><h2>Metanning kamchiliklari bormi?</h2><p>Bor: ballon yukxonadan joy oladi, quvvat 5–10% pasayadi, zapravkalarda navbat bo\'lishi mumkin, ballonni davriy attestatsiyadan o\'tkazish kerak. Bularni ham hisobga oling — kalkulyator faqat moliyaviy tomonini ko\'rsatadi.</p><h2>Metan yoki propan — qaysi biri yaxshi?</h2><p>Metan (CNG) arzonroq va ekologik toza, lekin ballon og\'ir va katta, quvvat ko\'proq pasayadi, zapravkalar kam. Propan (LPG, avtogaz) biroz qimmatroq, lekin ballon yengil va ixcham, quvvat kam pasayadi, zapravkalar ko\'p. Ko\'p yuradiganlar (taksi) uchun metan tejamliroq; kam-o\'rta yuradiganlar uchun propan qulayroq. Kalkulyatorda ikkalasini solishtiring.</p><h2>Sarfni qanday aniq bilaman?</h2><p>Bakni to\'ldirib, masofa o\'lchagichni nolga tushiring, keyingi to\'ldirishda quyilgan hajmni bosib o\'tilgan km ga bo\'lib 100 ga ko\'paytiring — bu sizning real sarfingiz.</p>'
+    },
+    ru:{
+      cat:"Коммуналка",
+      h1:"Топливный калькулятор",
+      sub:"Рассчитайте расходы на поездку или узнайте, за сколько окупится переход на метан.",
+      tabTrip:"Расходы на поездку",tabGbo:"Переход на метан",
+      lDist:"Расстояние",hDist:"Например, Карши–Ташкент ≈ 450 км.",
+      lCons:"Расход",uCons:"л/100км",
+      lFprice:"Цена топлива",uFprice:"сум/л",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",
+      lblTrip:"Расход топлива на поездку",
+      kFuel:"Нужно топлива",kPerKm:"Цена 1 км",
+      sBenzin:"Бензин",sMetan:"Газ (метан или пропан)",sGbo:"ГБО и пробег",
+      gMetan:"Метан (m³)",gPropan:"Пропан (литр)",
+      lBCons:"Расход бензина",lBPrice:"Цена бензина",uSomL:"сум/л",
+      lMCons:"Расход метана",lMPrice:"Цена метана",uSomM3:"сум/м³",
+      lGboCost:"Стоимость установки ГБО",uSom:"сум",
+      lMonthKm:"Пробег в месяц",
+      hGbo:"Расход метана обычно на ~10–15% выше бензинового (в м³) — учитывайте это.",
+      lblPayback:"Срок окупаемости ГБО",
+      kB100:"Бензин: 100 км",kM100:"Метан: 100 км",kSave100:"Экономия на 100 км",
+      kSaveMonth:"Экономия в месяц",kSaveYear:"Экономия в год",
+      months:"мес.",
+      verdictFmt:"Через {m} мес. ГБО полностью окупится, и каждый год ≈ {y} сум останется в кармане.",
+      verdictNo:"При этих показателях метан не выгоден — перепроверьте цены и расход.",
+      foot:"Цены меняются — вводите актуальные с заправки. Расчёт носит справочный характер.",
+      seo:'<h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Метан или пропан — что лучше?</h2><p>Метан (CNG) дешевле и экологичнее, но баллон тяжёлый и большой, мощность падает сильнее, заправок мало. Пропан (LPG, автогаз) чуть дороже, но баллон лёгкий и компактный, мощность падает меньше, заправок много. Для много ездящих (такси) выгоднее метан; для средних пробегов удобнее пропан. Сравните оба в калькуляторе.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p>'
+    }
+  };
+  var lang='uz', gasType='metan', tripData=null, gboData=null;
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+  var num=function(s){return parseFloat(String(s).replace(/ /g,'').replace(/\s/g,'').replace(',','.'))||0};
+  var som=function(){return lang==='uz'?"so'm":'сум'};
+
+  ['fprice','bPrice','mPrice','gboCost','monthKm','dist'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+    });
+  });
+
+  function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  $('tabTrip').onclick=function(){
+    setSeg(this,$('tabGbo'));
+    $('tripCard').style.display='block';$('gboCard').style.display='none';
+    $('gboReceipt').classList.remove('show');
+    if(tripData)$('tripReceipt').classList.add('show');
+  };
+  $('tabGbo').onclick=function(){
+    setSeg(this,$('tabTrip'));
+    $('tripCard').style.display='none';$('gboCard').style.display='block';
+    $('tripReceipt').classList.remove('show');
+    if(gboData)$('gboReceipt').classList.add('show');
+  };
+
+  $('calcTrip').onclick=function(){
+    var d=num($('dist').value), c=num($('cons').value), p=num($('fprice').value);
+    if(!d||!c||!p)return;
+    var liters=d*c/100, cost=liters*p;
+    tripData={liters:liters,cost:cost,perKm:cost/d};
+    $('tripNum').textContent=fmt(tripData.cost)+' '+som();
+    $('rFuel').textContent=tripData.liters.toFixed(1).replace('.',',')+' l';
+    $('rPerKm').textContent=fmt(tripData.perKm)+' '+som();
+    $('tripReceipt').classList.add('show');
+  };
+
+
+  // Gaz turi (metan/propan) almashtirish
+  var GAS={metan:{cons:9,price:5000,unitCons:'m³/100km',unitPrice:{uz:"so'm/m³",ru:'сум/m³'}},
+           propan:{cons:11,price:6500,unitCons:'l/100km',unitPrice:{uz:"so'm/l",ru:'сум/л'}}};
+  function setGasUnits(){
+    var g=GAS[gasType];
+    var cu=document.getElementById('mConsUnit'); if(cu)cu.textContent=g.unitCons;
+    var pu=document.getElementById('mPriceUnit'); if(pu)pu.textContent=g.unitPrice[lang]||g.unitPrice.uz;
+  }
+  var gasBtns=document.querySelectorAll('[data-gas]');
+  for(var gi=0;gi<gasBtns.length;gi++){
+    gasBtns[gi].onclick=function(){
+      gasType=this.getAttribute('data-gas');
+      for(var j=0;j<gasBtns.length;j++)gasBtns[j].classList.remove('on');
+      this.classList.add('on');
+      var g=GAS[gasType];
+      document.getElementById('mCons').value=g.cons;
+      document.getElementById('mPrice').value=fmt(g.price);
+      setGasUnits();
+    };
+  }
+  
+  $('calcGbo').onclick=function(){
+    var bc=num($('bCons').value), bp=num($('bPrice').value);
+    var mc=num($('mCons').value), mp=num($('mPrice').value);
+    var gbo=num($('gboCost').value), km=num($('monthKm').value);
+    if(!bc||!bp||!mc||!mp||!gbo||!km)return;
+    var b100=bc*bp, m100=mc*mp, save100=b100-m100;
+    var saveMonth=save100*km/100, saveYear=saveMonth*12;
+    gboData={b100:b100,m100:m100,save100:save100,saveMonth:saveMonth,saveYear:saveYear,payback:save100>0?gbo/saveMonth:0};
+    $('rB100').textContent=fmt(b100)+' '+som();
+    $('rM100').textContent=fmt(m100)+' '+som();
+    $('rSave100').textContent=(save100>0?'−':'+')+fmt(Math.abs(save100))+' '+som();
+    $('rSaveMonth').textContent=fmt(saveMonth)+' '+som();
+    $('rSaveYear').textContent=fmt(saveYear)+' '+som();
+    if(save100>0){
+      var months=Math.ceil(gboData.payback);
+      $('gboNum').textContent='≈ '+months+' '+t('months');
+      $('gboVerdict').textContent=t('verdictFmt').replace('{m}',months).replace('{y}',fmt(saveYear));
+    }else{
+      $('gboNum').textContent='—';
+      $('gboVerdict').textContent=t('verdictNo');
+    }
+    $('gboReceipt').classList.add('show');
+  };
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    (function(){
+      var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+      var _t=document.getElementById('relTitle');
+      if(_t)_t.textContent=_rt[lang]||_rt.uz;
+      var _rl=document.querySelectorAll('[data-rel-uz]');
+      var _al=document.querySelector('[data-art-uz]');
+      if(_al)_al.textContent=_al.getAttribute(lang==='ru'?'data-art-ru':'data-art-uz');
+      var _albl=document.querySelector('[data-art-label]');
+      if(_albl)_albl.textContent=(lang==='ru'?'Полезная статья':'Foydali maqola');
+      for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+    })();
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(typeof setGasUnits==='function')setGasUnits();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  applyLang();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-mat],.seg button.on[data-roof],.seg button.on[data-region],.seg button.on[data-loc],.seg button.on[data-an],.seg button.on[data-slope],[data-loc].on');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+
+
+<script id="sharebtn">
+(function(){
+  // Guard faqat yaratishni o'tkazib yuboradi — hodisa bog'lash (onclick)
+  // har chaqiruvda qayta bajariladi, aks holda prerender qilingan statik
+  // tugma hech qachon bosilmaydigan bo'lib qoladi.
+  function bindShareBtn(){
+    var actions=document.querySelector('.receipt-actions');
+    if(!actions)return;
+    var isRu=document.documentElement.lang==='ru';
+    var btn=document.getElementById('shareBtn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='shareBtn';
+      btn.type='button';
+      actions.insertBefore(btn,actions.firstChild);
+    }
+    btn.textContent=isRu?'Поделиться':'Ulashish';
+    btn.onclick=function(){
+      var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+      var title=document.querySelector('h1')?document.querySelector('h1').textContent:'Kalki.uz';
+      if(navigator.share){navigator.share({title:title,url:url}).catch(function(){})}
+      else if(navigator.clipboard){navigator.clipboard.writeText(url);var o=btn.textContent;btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';setTimeout(function(){btn.textContent=o},1500)}
+    };
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(bindShareBtn,150)})}
+  else{setTimeout(bindShareBtn,150)}
+  // langUz/langRu bosilganda matn va hodisa qayta yangilanadi
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){el.addEventListener('click',function(){setTimeout(bindShareBtn,50)})}
+    });
+  },200);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='kommunal';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='UtilitiesApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

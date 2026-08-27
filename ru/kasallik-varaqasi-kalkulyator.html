@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Калькулятор оплаты больничного листа — расчёт онлайн</title>
+<link rel="canonical" href="https://kalki.uz/ru/kasallik-varaqasi-kalkulyator">
+<meta name="description" content="Рассчитайте оплату больничного листа: укажите оклад, количество дней больничного и трудовой стаж. Бесплатный онлайн-калькулятор для Узбекистана.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="huquqiy"]{--cat:#2C3E66;--cat-deep:#1F2C4A;--accent:#C9A227;--cat-soft:#EAEDF5;--cat-text:#B9C4DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],input[type=number],input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.extra-note{font-size:12.5px;font-weight:600;color:var(--muted);background:#F2F5F3;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:24px;font-weight:800;letter-spacing:-.01em;color:var(--cat);line-height:1.25;word-break:break-word}
+.big-figure .num.pending{color:#8A6A20}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.mygov-note{margin-top:14px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:600;background:#F2F5F3;border-radius:10px;padding:11px 12px}
+.mygov-note a{color:var(--cat);font-weight:800;text-decoration:none}
+.mygov-note a:hover{text-decoration:underline}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button[disabled]{opacity:.45;cursor:not-allowed;color:var(--muted)}
+.receipt-actions button[disabled]:active{background:var(--card)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Kasallik varaqasi to'lovi kalkulyatori — onlayn hisoblash">
+<meta property="og:description" content="Рассчитайте оплату больничного листа: укажите оклад, количество дней больничного и трудовой стаж. Бесплатный онлайн-калькулятор для Узбекистана.">
+<meta property="og:url" content="https://kalki.uz/ru/kasallik-varaqasi-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/kasallik-varaqasi-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kasallik varaqasi to'lovi kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/kasallik-varaqasi-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Kasallik varaqasi to'lovi kalkulyatori — onlayn hisoblash">
+<meta name="twitter:description" content="Рассчитайте оплату больничного листа: укажите оклад, количество дней больничного и трудовой стаж. Бесплатный онлайн-калькулятор для Узбекистана.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Kasallik varaqasi to'lovi kalkulyatori — oylik ish haqi, kasallik varaqasi kunlari sonini va ish stajini kiriting; to'lov miqdori ish stajiga bog'liq holda O'zbekiston Mehnat kodeksi va ijtimoiy sug'urta qonunchiligiga muvofiq belgilanadi.","sources":[]},"ru":{"text":"Калькулятор оплаты больничного листа — введите оклад, количество дней больничного и трудовой стаж; размер оплаты зависит от стажа и определяется в соответствии с Трудовым кодексом и законодательством о социальном страховании Узбекистана.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="legalconst-data">{"kasallik_foiz_jadvali":{"id":"kasallik_foiz_jadvali","sahifa":"kasallik-varaqasi-kalkulyator","izoh":"Ish staji bo'yicha kasallik varaqasi to'lovi foizi jadvali","qiymat":null,"holat":"TASDIQLASH KERAK","manba_url":null},"kasallik_bhm_chegara":{"id":"kasallik_bhm_chegara","sahifa":"kasallik-varaqasi-kalkulyator","izoh":"Kasallik varaqasi to'lovining yuqori chegarasi (BHM birligida)","qiymat":null,"holat":"TASDIQLASH KERAK","manba_url":null}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается оплата больничного листа?","acceptedAnswer":{"@type":"Answer","text":"Размер оплаты рассчитывается исходя из среднего дневного заработка, количества дней больничного и общего трудового стажа сотрудника. Чем больше стаж, тем выше процент оплаты."}},{"@type":"Question","name":"Кому выплачивается оплата больничного листа?","acceptedAnswer":{"@type":"Answer","text":"Оплата выплачивается сотрудникам, официально работающим по трудовому договору и за которых уплачиваются взносы социального страхования, на основании больничного листа, оформленного врачом."}},{"@type":"Question","name":"Как трудовой стаж влияет на размер оплаты?","acceptedAnswer":{"@type":"Answer","text":"Законодательством предусмотрены ступенчатые проценты оплаты больничного в зависимости от стажа — чем дольше стаж, тем выше процент от среднего заработка."}},{"@type":"Question","name":"Есть ли верхняя граница выплаты?","acceptedAnswer":{"@type":"Answer","text":"Да, законодательством установлена верхняя граница выплаты, привязанная к базовой расчётной величине (БРВ) — сумма оплаты не может её превышать."}},{"@type":"Question","name":"Как рассчитывается средний дневной заработок?","acceptedAnswer":{"@type":"Answer","text":"Обычно берётся фактический заработок за последние месяцы (часть, с которой уплачен социальный налог), который переводится в среднемесячный или среднедневной показатель."}},{"@type":"Question","name":"На какой срок выдаётся больничный лист?","acceptedAnswer":{"@type":"Answer","text":"Срок зависит от тяжести заболевания и рекомендаций врача — точный срок определяет лечащий врач или врачебно-трудовая экспертная комиссия."}},{"@type":"Question","name":"Больничный по уходу за ребёнком оплачивается так же?","acceptedAnswer":{"@type":"Answer","text":"Больничный лист по уходу за больным ребёнком оплачивается в целом по схожему порядку, но в некоторых случаях действуют отдельные условия — уточните конкретную ситуацию у работодателя или в органе соцстрахования."}},{"@type":"Question","name":"Кто оплачивает больничный лист?","acceptedAnswer":{"@type":"Answer","text":"Выплата производится через работодателя и систему социального страхования в порядке, установленном законодательством."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Юридические","item":"https://kalki.uz/ru/#cat-huquqiy"},{"@type":"ListItem","position":3,"name":"Калькулятор оплаты больничного листа","item":"https://kalki.uz/ru/kasallik-varaqasi-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор оплаты больничного листа","description":"Рассчитайте оплату больничного листа: укажите оклад, количество дней больничного и трудовой стаж. Бесплатный онлайн-калькулятор для Узбекистана.","url":"https://kalki.uz/ru/kasallik-varaqasi-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kasallik-varaqasi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kasallik-varaqasi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kasallik-varaqasi-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="huquqiy">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Юридические</span>
+    <h1 data-i="h1">Калькулятор оплаты больничного листа</h1>
+    <p class="sub" data-i="sub">Укажите оклад и количество дней больничного — узнайте условия оплаты.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-huquqiy">Юридические</a><span class="sep">›</span><span class="cur">Калькулятор оплаты больничного листа</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор оплаты больничного листа — введите оклад, количество дней больничного и трудовой стаж; размер оплаты зависит от стажа и определяется в соответствии с Трудовым кодексом и законодательством о социальном страховании Узбекистана.</p></div>
+  <section class="form-card">
+    <div class="field">
+      <label data-i="lWage">Средний месячный оклад</label>
+      <div class="input-shell"><input type="number" inputmode="numeric" id="wage" min="0" step="1"><span class="unit" data-i="uSum">сум</span></div>
+    </div>
+
+    <div class="field" style="margin-bottom:0">
+      <label data-i="lDays">Количество дней больничного</label>
+      <div class="input-shell"><input type="number" inputmode="numeric" id="days" min="0" step="1"><span class="unit" data-i="uKun">дн.</span></div>
+    </div>
+
+    <details id="dExtra"><summary><span data-i="sExtra">Дополнительная информация</span></summary><div class="sec-body">
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lStaj">Общий трудовой стаж (лет)</label>
+        <div class="input-shell"><input type="number" inputmode="numeric" id="staj" min="0" step="1"><span class="unit" data-i="uYil">лет</span></div>
+        <p class="hint" data-i="hStaj">Процент оплаты зависит от трудового стажа — это поле нужно для определения этого процента.</p>
+      </div>
+    </div></details>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Вычислить</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num pending" id="mainNum">Информация обновляется</div>
+        <div class="lbl" data-i="lblMain">Оплата больничного листа</div>
+      </div>
+      <div class="status-box" id="statusBox" data-i="statusPending">Процент оплаты и верхняя граница пока уточняются по официальному источнику. После подтверждения калькулятор автоматически обновится и покажет точную сумму.</div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kWage">Месячный оклад</span><span class="v" id="rWage">-</span></div>
+        <div class="rrow"><span class="k" data-i="kDays">Дни больничного</span><span class="v" id="rDays">-</span></div>
+        <div class="rrow"><span class="k" data-i="kStaj">Трудовой стаж</span><span class="v" id="rStaj">-</span></div>
+      </div>
+      <div class="mygov-note" data-i="mygovNote">Этот раздел носит информационный характер. Точную сумму оплаты больничного рассчитывает работодатель или орган социального страхования.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare" disabled="" title="Hozircha mavjud emas — ma'lumot yangilanmoqda">Поделиться</button>
+      <button type="button" class="pdfbtn" disabled="" title="Hozircha mavjud emas — ma'lumot yangilanmoqda">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div>
+<section class="seo" id="seoBlock"><h2>Как рассчитывается оплата больничного листа?</h2><p>Размер оплаты рассчитывается исходя из среднего дневного заработка, количества дней больничного и общего трудового стажа сотрудника. Чем больше стаж, тем выше процент оплаты.</p><h2>Кому выплачивается оплата больничного листа?</h2><p>Оплата выплачивается сотрудникам, официально работающим по трудовому договору и за которых уплачиваются взносы социального страхования, на основании больничного листа, оформленного врачом.</p><h2>Как трудовой стаж влияет на размер оплаты?</h2><p>Законодательством предусмотрены ступенчатые проценты оплаты больничного в зависимости от стажа — чем дольше стаж, тем выше процент от среднего заработка.</p><h2>Есть ли верхняя граница выплаты?</h2><p>Да, законодательством установлена верхняя граница выплаты, привязанная к базовой расчётной величине (БРВ) — сумма оплаты не может её превышать.</p><h2>Как рассчитывается средний дневной заработок?</h2><p>Обычно берётся фактический заработок за последние месяцы (часть, с которой уплачен социальный налог), который переводится в среднемесячный или среднедневной показатель.</p><h2>На какой срок выдаётся больничный лист?</h2><p>Срок зависит от тяжести заболевания и рекомендаций врача — точный срок определяет лечащий врач или врачебно-трудовая экспертная комиссия.</p><h2>Больничный по уходу за ребёнком оплачивается так же?</h2><p>Больничный лист по уходу за больным ребёнком оплачивается в целом по схожему порядку, но в некоторых случаях действуют отдельные условия — уточните конкретную ситуацию у работодателя или в органе соцстрахования.</p><h2>Кто оплачивает больничный лист?</h2><p>Выплата производится через работодателя и систему социального страхования в порядке, установленном законодательством.</p></section><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Расчёт приблизительный и информационный. Официальную сумму рассчитывает работодатель и орган социального страхования.</footer></main>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var lang='uz', calcData=null;
+
+  /* ---------- huquqiy konstantalar (legalconst-data) ---------- */
+  var LEGALCONST={};
+  try{
+    var lcEl=document.getElementById('legalconst-data');
+    if(lcEl)LEGALCONST=JSON.parse(lcEl.textContent||'{}');
+  }catch(e){LEGALCONST={}}
+
+  var fmtNum=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+
+  /* Staj (yil) bo'yicha to'lov foizini aniqlaydi. `kasallik_foiz_jadvali.qiymat`
+     tasdiqlangach, u yerga masalan [{min_yil:0,foiz:60},{min_yil:8,foiz:80},...]
+     kabi bosqichlar massivi kelishi kutiladi — shu holatda quyidagi tsikl
+     to'g'ri ishlaydi va hech narsani o'zgartirish shart emas. */
+  function resolvePercent(stajYears){
+    var tbl=LEGALCONST.kasallik_foiz_jadvali;
+    if(!tbl||tbl.qiymat==null)return null;
+    var tiers=tbl.qiymat;
+    if(!Array.isArray(tiers)||!tiers.length)return null;
+    var pct=null;
+    for(var i=0;i<tiers.length;i++){
+      if(stajYears>=(tiers[i].min_yil||0))pct=tiers[i].foiz;
+    }
+    return pct;
+  }
+
+  /* To'lovning yuqori chegarasini qaytaradi (so'mda), yoki chegara
+     mavjud/tasdiqlanmagan bo'lsa null. */
+  function resolveCap(){
+    var tbl=LEGALCONST.kasallik_bhm_chegara;
+    if(!tbl||tbl.qiymat==null)return null;
+    return tbl.qiymat;
+  }
+
+  /* ---------- asosiy hisob mantig'i ---------- */
+  function compute(){
+    var wage=parseFloat($('wage').value);
+    var days=parseFloat($('days').value);
+    var staj=parseFloat($('staj').value);
+    if(!isFinite(staj)||staj<0)staj=0;
+    if(!isFinite(wage)||wage<=0||!isFinite(days)||days<=0)return null;
+
+    var foizTbl=LEGALCONST.kasallik_foiz_jadvali;
+    var capTbl=LEGALCONST.kasallik_bhm_chegara;
+
+    /* MUHIM QOIDA: foiz jadvali tasdiqlanmagan (qiymat===null) ekan,
+       hech qanday summa hisoblanmaydi va ko'rsatilmaydi — faqat
+       "Ma'lumot yangilanmoqda" chiqadi. */
+    if(!foizTbl||foizTbl.qiymat==null){
+      return {pending:true, wage:wage, days:days, staj:staj};
+    }
+    var pct=resolvePercent(staj);
+    if(pct==null){
+      return {pending:true, wage:wage, days:days, staj:staj};
+    }
+    /* Chegara ham tasdiqlanmagan bo'lsa, yakuniy summani cheklab
+       bo'lmaydi — shuning uchun bu holatda ham natija chiqarilmaydi. */
+    if(!capTbl||capTbl.qiymat==null){
+      return {pending:true, wage:wage, days:days, staj:staj};
+    }
+
+    var avgDaily=wage/30;
+    var payout=avgDaily*(pct/100)*days;
+    var cap=capTbl.qiymat;
+    if(cap!=null&&payout>cap)payout=cap;
+
+    return {pending:false, wage:wage, days:days, staj:staj, pct:pct, payout:payout};
+  }
+
+  /* ---------- I18N ---------- */
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Huquqiy",
+      h1:"Kasallik varaqasi to'lovi kalkulyatori",
+      sub:"Oylik ish haqi va kasallik kunlarini kiriting — to'lov shartlari haqida ma'lumot oling.",
+      lWage:"O'rtacha oylik ish haqi",uSum:"so'm",
+      lDays:"Kasallik varaqasi kunlari soni",uKun:"kun",
+      sExtra:"Qo'shimcha ma'lumot",
+      lStaj:"Umumiy ish staji (yil)",uYil:"yil",
+      hStaj:"To'lov foizi ish stajiga bog'liq — bu maydon shu foizni aniqlash uchun ma'lumot sifatida so'raladi.",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Kasallik varaqasi to'lovi",
+      pendingNum:"Ma'lumot yangilanmoqda",
+      statusPending:"To'lov foizi va yuqori chegara ko'rsatkichlari hozircha rasmiy manbadan tasdiqlanmoqda. Tasdiqlangach, bu kalkulyator avtomatik yangilanadi va aniq summa ko'rsatiladi.",
+      kWage:"Oylik ish haqi",kDays:"Kasallik kunlari",kStaj:"Ish staji",
+      mygovNote:"Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi.",
+      btnShare:"Ulashish",shareTitle:"Kasallik varaqasi to'lovi hisobi",
+      errFields:"Iltimos, oylik ish haqi va kasallik kunlari sonini to'g'ri kiriting.",
+      foot:"Hisob taxminiy va ma'lumot uchun. Rasmiy to'lovni ish beruvchi va ijtimoiy sug'urta organi hisoblab beradi.",
+      seo:'<h2>Kasallik varaqasi to\'lovi qanday hisoblanadi?</h2><p>To\'lov miqdori o\'rtacha kunlik ish haqi, kasallik varaqasi kunlari soni va xodimning umumiy ish stajiga bog\'liq foiz asosida hisoblanadi. Staj qancha ko\'p bo\'lsa, to\'lov foizi ham shuncha yuqori bo\'ladi.</p><h2>Kasallik varaqasi to\'lovi kimga to\'lanadi?</h2><p>Rasmiy mehnat shartnomasi asosida ishlayotgan va ijtimoiy sug\'urta badali to\'lanadigan xodimlarga, shifokor tomonidan rasmiylashtirilgan kasallik varaqasi asosida to\'lanadi.</p><h2>To\'lov miqdoriga ish staji qanday ta\'sir qiladi?</h2><p>Qonunchilikda kasallik varaqasi to\'lovi ish staji bo\'yicha bosqichma-bosqich foizlarda belgilanadi — staj qancha uzoq bo\'lsa, o\'rtacha ish haqidan hisoblanadigan foiz shuncha yuqori bo\'ladi.</p><h2>To\'lovning yuqori chegarasi bormi?</h2><p>Ha, qonunchilikda kasallik varaqasi to\'lovi uchun bazaviy hisoblash miqdori (BHM)ga bog\'liq yuqori chegara belgilangan — to\'lov shu chegaradan oshmaydi.</p><h2>O\'rtacha kunlik ish haqi qanday hisoblanadi?</h2><p>Odatda so\'nggi oylardagi haqiqiy ish haqi (ijtimoiy soliq to\'langan qism) asos qilib olinib, o\'rtacha oylik yoki kunlik ko\'rsatkichga aylantiriladi.</p><h2>Kasallik varaqasi qancha muddatga beriladi?</h2><p>Muddat kasallik holatining og\'irligiga va shifokor tavsiyasiga bog\'liq — aniq muddatni davolovchi shifokor yoki tibbiy-mehnat ekspert komissiyasi belgilaydi.</p><h2>Bola parvarishi bo\'yicha kasallik varaqasi ham shu tartibdami?</h2><p>Bola kasal bo\'lganda ochiladigan kasallik varaqasi ham shunga o\'xshash umumiy tartibda, lekin ba\'zi holatlarda alohida shartlar bilan to\'lanadi — aniq holatni ish beruvchi yoki ijtimoiy sug\'urta organidan tekshiring.</p><h2>Kasallik varaqasi to\'lovini kim to\'laydi?</h2><p>To\'lov ish beruvchi va ijtimoiy sug\'urta tizimi orqali, qonunchilikda belgilangan tartibda amalga oshiriladi.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Юридические",
+      h1:"Калькулятор оплаты больничного листа",
+      sub:"Укажите оклад и количество дней больничного — узнайте условия оплаты.",
+      lWage:"Средний месячный оклад",uSum:"сум",
+      lDays:"Количество дней больничного",uKun:"дн.",
+      sExtra:"Дополнительная информация",
+      lStaj:"Общий трудовой стаж (лет)",uYil:"лет",
+      hStaj:"Процент оплаты зависит от трудового стажа — это поле нужно для определения этого процента.",
+      btnCalc:"Вычислить",rTag:"Результат расчёта",
+      lblMain:"Оплата больничного листа",
+      pendingNum:"Информация обновляется",
+      statusPending:"Процент оплаты и верхняя граница пока уточняются по официальному источнику. После подтверждения калькулятор автоматически обновится и покажет точную сумму.",
+      kWage:"Месячный оклад",kDays:"Дни больничного",kStaj:"Трудовой стаж",
+      mygovNote:"Этот раздел носит информационный характер. Точную сумму оплаты больничного рассчитывает работодатель или орган социального страхования.",
+      btnShare:"Поделиться",shareTitle:"Расчёт оплаты больничного листа",
+      errFields:"Пожалуйста, корректно укажите оклад и количество дней больничного.",
+      foot:"Расчёт приблизительный и информационный. Официальную сумму рассчитывает работодатель и орган социального страхования.",
+      seo:'<h2>Как рассчитывается оплата больничного листа?</h2><p>Размер оплаты рассчитывается исходя из среднего дневного заработка, количества дней больничного и общего трудового стажа сотрудника. Чем больше стаж, тем выше процент оплаты.</p><h2>Кому выплачивается оплата больничного листа?</h2><p>Оплата выплачивается сотрудникам, официально работающим по трудовому договору и за которых уплачиваются взносы социального страхования, на основании больничного листа, оформленного врачом.</p><h2>Как трудовой стаж влияет на размер оплаты?</h2><p>Законодательством предусмотрены ступенчатые проценты оплаты больничного в зависимости от стажа — чем дольше стаж, тем выше процент от среднего заработка.</p><h2>Есть ли верхняя граница выплаты?</h2><p>Да, законодательством установлена верхняя граница выплаты, привязанная к базовой расчётной величине (БРВ) — сумма оплаты не может её превышать.</p><h2>Как рассчитывается средний дневной заработок?</h2><p>Обычно берётся фактический заработок за последние месяцы (часть, с которой уплачен социальный налог), который переводится в среднемесячный или среднедневной показатель.</p><h2>На какой срок выдаётся больничный лист?</h2><p>Срок зависит от тяжести заболевания и рекомендаций врача — точный срок определяет лечащий врач или врачебно-трудовая экспертная комиссия.</p><h2>Больничный по уходу за ребёнком оплачивается так же?</h2><p>Больничный лист по уходу за больным ребёнком оплачивается в целом по схожему порядку, но в некоторых случаях действуют отдельные условия — уточните конкретную ситуацию у работодателя или в органе соцстрахования.</p><h2>Кто оплачивает больничный лист?</h2><p>Выплата производится через работодателя и систему социального страхования в порядке, установленном законодательством.</p>'
+    }
+  };
+
+  var t=function(k){return I[lang][k]};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Калькулятор оплаты больничного листа — расчёт онлайн'
+      : "Kasallik varaqasi to'lovi kalkulyatori — onlayn hisoblash";
+    var metaDesc=lang==='ru'
+      ? 'Рассчитайте оплату больничного листа: укажите оклад, количество дней больничного и трудовой стаж. Бесплатный онлайн-калькулятор для Узбекистана.'
+      : "Kasallik varaqasi bo'yicha to'lovni hisoblang: oylik ish haqi, kasallik kunlari va ish stajini kiriting. Bepul, oddiy va tez onlayn kalkulyator.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    var mg=document.querySelector('.mygov-note');
+    if(mg)mg.textContent=t('mygovNote');
+    if(calcData)renderResult();
+    else{
+      $('mainNum').textContent=t('pendingNum');
+      $('statusBox').textContent=t('statusPending');
+    }
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  function renderResult(){
+    var d=calcData;
+    $('rWage').textContent=fmtNum(d.wage)+' '+t('uSum');
+    $('rDays').textContent=fmtNum(d.days)+' '+t('uKun');
+    $('rStaj').textContent=(d.staj?fmtNum(d.staj):'0')+' '+t('uYil');
+
+    /* GUARD: qiymat hali tasdiqlanmagan bo'lsa (d.pending===true),
+       hech qanday summa ko'rsatilmaydi — faqat pending matni. Bu
+       shart aynan shu yerda "so'nggi chiziq" bo'lib turadi, chunki
+       compute() ham xuddi shu holatni allaqachon aniqlagan. */
+    if(d.pending){
+      $('mainNum').textContent=t('pendingNum');
+      $('mainNum').classList.add('pending');
+      $('statusBox').textContent=t('statusPending');
+      return;
+    }
+    $('mainNum').classList.remove('pending');
+    $('mainNum').textContent=fmtNum(d.payout)+' '+t('uSum');
+    $('statusBox').textContent='';
+  }
+
+  function recalc(){
+    var d=compute();
+    if(!d){calcData=null;$('receipt').classList.remove('show');return}
+    calcData=d;
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  $('calcBtn').onclick=function(){
+    recalc();
+    var r=$('receipt');
+    if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  ['wage','days','staj'].forEach(function(id){
+    $(id).addEventListener('input',function(){save()});
+  });
+
+  /* shareBtn hozircha disabled atributi bilan bloklangan (qiymat
+     tasdiqlanmagani uchun), lekin funksiya kelajakda ishlashi uchun
+     to'liq yozilgan. */
+  $('shareBtn').onclick=function(){
+    if(!calcData||calcData.pending)return;
+    var txt=t('shareTitle')+': '+fmtNum(calcData.payout)+' '+t('uSum');
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href))}
+  };
+
+  /* ---------- saqlash (localStorage) ---------- */
+  var LS='kalki_kasallik_v1';
+  function collectStateForSave(){
+    return {wage:$('wage').value,days:$('days').value,staj:$('staj').value};
+  }
+  function save(){
+    try{localStorage.setItem(LS,JSON.stringify(collectStateForSave()))}catch(e){}
+  }
+  function restoreState(o){
+    if(!o)return false;
+    $('wage').value=o.wage||'';
+    $('days').value=o.days||'';
+    $('staj').value=o.staj||'';
+    return true;
+  }
+  function loadFromLS(){
+    try{
+      var raw=localStorage.getItem(LS);
+      if(!raw)return false;
+      return restoreState(JSON.parse(raw));
+    }catch(e){return false}
+  }
+
+  /* ---------- URL orqali ulashish (?p=) ---------- */
+  window.__buildShareUrl=function(){
+    var o=collectStateForSave();
+    var json=JSON.stringify(o);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var json=decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/'))));
+      var o=JSON.parse(json);
+      return restoreState(o);
+    }catch(e){return false}
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  applyLang();
+  var restored=restoreFromUrl();
+  if(!restored)restored=loadFromLS();
+  applyLang();
+  if(restored)recalc();
+  else{
+    $('mainNum').textContent=t('pendingNum');
+    $('mainNum').classList.add('pending');
+    $('statusBox').textContent=t('statusPending');
+  }
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    if(btn.disabled)return;
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var b=acts[i].querySelector('.pdfbtn');
+    if(b)b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='huquqiy';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',huquqiy:'Huquqiy',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',huquqiy:'Юридические',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

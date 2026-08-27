@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<script src="assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>YHXX jarimalari kalkulyatori — yo'l harakati jarimalari 2026</title>
+<link rel="canonical" href="https://kalki.uz/yhxx-jarima-kalkulyator">
+<meta name="description" content="YHXX jarimasini bilish uchun qoidabuzarlik turini tanlang: tezlik, kamar, telefon, mast holat, guvohnoma yoki svetofor. Jarima BHM asosida hisoblanadi, bepul.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="huquqiy"]{--cat:#2C3E66;--cat-deep:#1F2C4A;--accent:#C9A227;--cat-soft:#EAEDF5;--cat-text:#B9C4DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0}
+select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0;-webkit-appearance:none;appearance:none}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.25;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.mygov-note{margin-top:14px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:600;background:#F2F5F3;border-radius:10px;padding:11px 12px}
+.mygov-note a{color:var(--cat);font-weight:800;text-decoration:none}
+.mygov-note a:hover{text-decoration:underline}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:disabled{opacity:.45;cursor:not-allowed}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="YHXX jarimalari kalkulyatori — yo'l harakati jarimalari 2026">
+<meta property="og:description" content="YHXX jarimasini bilish uchun qoidabuzarlik turini tanlang: tezlik, kamar, telefon, mast holat, guvohnoma yoki svetofor. Jarima BHM asosida hisoblanadi, bepul.">
+<meta property="og:url" content="https://kalki.uz/yhxx-jarima-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/yhxx-jarima-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="YHXX jarimalari kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/yhxx-jarima-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="YHXX jarimalari kalkulyatori — yo'l harakati jarimalari 2026">
+<meta name="twitter:description" content="YHXX jarimasini bilish uchun qoidabuzarlik turini tanlang: tezlik, kamar, telefon, mast holat, guvohnoma yoki svetofor. Jarima BHM asosida hisoblanadi, bepul.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"YHXX jarimalari kalkulyatori — qoidabuzarlik turini tanlang, jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan, O'zbekiston Ma'muriy javobgarlik to'g'risidagi kodeksga muvofiq hisoblanadi. Aniq koeffitsientlar hozircha tasdiqlanish jarayonida.","sources":[]},"ru":{"text":"Калькулятор штрафов ПДД — выберите вид нарушения, сумма штрафа рассчитывается на основе базовой расчётной величины (БРВ) согласно Кодексу об административной ответственности Узбекистана. Точные коэффициенты пока уточняются.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="legalconst-data">{"bhm_qiymati":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_tezlik":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_kamar":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_telefon":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_mast":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_guvohnoma":{"qiymat":null,"holat":"TASDIQLASH KERAK"},"yhxx_jarima_svetofor":{"qiymat":null,"holat":"TASDIQLASH KERAK"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"YHXX jarimasi qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan belgilanadi va qoidabuzarlik turiga qarab farqlanadi. Aniq koeffitsientlar rasmiy manbadan tasdiqlanish jarayonida."}},{"@type":"Question","name":"BHM nima?","acceptedAnswer":{"@type":"Answer","text":"Bazaviy hisoblash miqdori (BHM) — davlat tomonidan belgilanadigan va har yili o'zgarishi mumkin bo'lgan bazaviy summa. Jarima, aliment va boshqa ko'plab to'lovlar shu summaga nisbatan hisoblanadi."}},{"@type":"Question","name":"Jarimani qanday va qayerda to'lash mumkin?","acceptedAnswer":{"@type":"Answer","text":"Jarimani bank ilovalari, to'lov terminallari yoki my.gov.uz portali orqali, protokolda ko'rsatilgan raqam bo'yicha to'lash mumkin."}},{"@type":"Question","name":"Jarimani muddatidan oldin to'lasam chegirma bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ba'zi holatlarda belgilangan muddat ichida to'langan jarimaga chegirma qo'llanilishi mumkin. Aniq shart va foiz amaldagi qonunchilikka bog'liq, shuning uchun protokoldagi yoki rasmiy manbadagi ko'rsatmani tekshiring."}},{"@type":"Question","name":"Jarima o'z vaqtida to'lanmasa nima bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Belgilangan muddatda to'lanmagan jarima bo'yicha qo'shimcha choralar (masalan, ijro ishi ochilishi) qo'llanilishi mumkin. Muddat va tartib rasmiy hujjatda ko'rsatiladi."}},{"@type":"Question","name":"Bir yo'lda bir necha qoidabuzarlik aniqlansa, jarimalar qo'shiladimi?","acceptedAnswer":{"@type":"Answer","text":"Odatda har bir qoidabuzarlik alohida hisoblanadi va alohida jarima tayinlanadi — ular yig'indi holda to'lanishi kerak bo'lishi mumkin."}},{"@type":"Question","name":"Jarima miqdori barcha qoidabuzarliklar uchun bir xilmi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. Jarima miqdori qoidabuzarlik turiga (tezlik, kamar, telefon, mast holat, guvohnoma, svetofor) qarab farqlanadi — har biri uchun alohida BHM koeffitsienti belgilanadi."}},{"@type":"Question","name":"Bu kalkulyator rasmiy jarima summasini ko'rsatadimi?","acceptedAnswer":{"@type":"Answer","text":"Hozircha yo'q. BHM koeffitsientlari rasmiy manbadan tasdiqlanmaguncha kalkulyator raqam o'rniga \"Ma'lumot yangilanmoqda\" deb ko'rsatadi. Tasdiqlangach, kalkulyator avtomatik ishlay boshlaydi."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Huquqiy","item":"https://kalki.uz/#cat-huquqiy"},{"@type":"ListItem","position":3,"name":"YHXX jarimalari kalkulyatori","item":"https://kalki.uz/yhxx-jarima-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"YHXX jarimalari kalkulyatori","description":"YHXX jarimasini bilish uchun qoidabuzarlik turini tanlang: tezlik, kamar, telefon, mast holat, guvohnoma yoki svetofor. Jarima BHM asosida hisoblanadi, bepul.","url":"https://kalki.uz/yhxx-jarima-kalkulyator","applicationCategory":"GovernmentApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/yhxx-jarima-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/yhxx-jarima-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/yhxx-jarima-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="huquqiy">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">🚫 Huquqiy</span>
+    <h1 data-i="h1">YHXX jarimalari kalkulyatori</h1>
+    <p class="sub" data-i="sub">Qoidabuzarlik turini tanlang — jarima BHM asosida hisoblanadi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-huquqiy">Huquqiy</a><span class="sep">›</span><span class="cur">YHXX jarimalari kalkulyatori</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">YHXX jarimalari kalkulyatori — qoidabuzarlik turini tanlang, jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan, O'zbekiston Ma'muriy javobgarlik to'g'risidagi kodeksga muvofiq hisoblanadi. Aniq koeffitsientlar hozircha tasdiqlanish jarayonida.</p></div>
+  <section class="form-card">
+    <div class="field" style="margin-bottom:0">
+      <label data-i="lViol">Qoidabuzarlik turi</label>
+      <div class="input-shell">
+        <select id="violSelect">
+          <option value="tezlik" data-i="oTezlik">Tezlikni oshirish</option>
+          <option value="kamar" data-i="oKamar">Xavfsizlik kamarini taqmaslik</option>
+          <option value="telefon" data-i="oTelefon">Rulda telefondan foydalanish</option>
+          <option value="mast" data-i="oMast">Mast holda haydash</option>
+          <option value="guvohnoma" data-i="oGuvohnoma">Haydovchilik guvohnomasisiz haydash</option>
+          <option value="svetofor" data-i="oSvetofor">Svetofor/yo'l belgisi qoidasini buzish</option>
+        </select>
+      </div>
+      <p class="hint" data-i="hViol">Jarima miqdori qoidabuzarlik turiga qarab farqlanadi.</p>
+    </div>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
+  </section>
+
+  <section class="receipt show" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">Ma'lumot yangilanmoqda</div>
+        <div class="lbl" data-i="lblMain">Jarima miqdori</div>
+      </div>
+      <div class="status-box" id="statusBox">Ushbu qoidabuzarlik uchun BHM koeffitsienti va joriy BHM qiymati hali rasmiy manbadan tasdiqlanmagan. Tasdiqlangach, jarima summasi shu yerda avtomatik chiqadi.</div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kViol">Tanlangan qoidabuzarlik</span><span class="v" id="rViol">Tezlikni oshirish</span></div>
+        <div class="rrow"><span class="k" data-i="kCoeff">BHM koeffitsienti</span><span class="v" id="rCoeff">—</span></div>
+        <div class="rrow"><span class="k" data-i="kBhm">BHM qiymati</span><span class="v" id="rBhm">—</span></div>
+      </div>
+      <div class="mygov-note" data-i="mygovNote">Bu kalkulyator ma'lumot uchun. Aniq jarima summasi va to'lov tartibi YHXX protokolida ko'rsatiladi. Jarimani <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a> portali orqali tekshirishingiz va to'lashingiz mumkin.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare" disabled="">Ulashish</button>
+      <button type="button" class="pdfbtn" disabled="">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Telegram'ga yozish</a></div>
+<section class="seo" id="seoBlock"><h2>YHXX jarimasi qanday hisoblanadi?</h2><p>Jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan belgilanadi va qoidabuzarlik turiga qarab farqlanadi. Aniq koeffitsientlar rasmiy manbadan tasdiqlanish jarayonida.</p><h2>BHM nima?</h2><p>Bazaviy hisoblash miqdori (BHM) — davlat tomonidan belgilanadigan va har yili o'zgarishi mumkin bo'lgan bazaviy summa. Jarima, aliment va boshqa ko'plab to'lovlar shu summaga nisbatan hisoblanadi.</p><h2>Jarimani qanday va qayerda to'lash mumkin?</h2><p>Jarimani bank ilovalari, to'lov terminallari yoki my.gov.uz portali orqali, protokolda ko'rsatilgan raqam bo'yicha to'lash mumkin.</p><h2>Jarimani muddatidan oldin to'lasam chegirma bo'ladimi?</h2><p>Ba'zi holatlarda belgilangan muddat ichida to'langan jarimaga chegirma qo'llanilishi mumkin. Aniq shart va foiz amaldagi qonunchilikka bog'liq, shuning uchun protokoldagi yoki rasmiy manbadagi ko'rsatmani tekshiring.</p><h2>Jarima o'z vaqtida to'lanmasa nima bo'ladi?</h2><p>Belgilangan muddatda to'lanmagan jarima bo'yicha qo'shimcha choralar (masalan, ijro ishi ochilishi) qo'llanilishi mumkin. Muddat va tartib rasmiy hujjatda ko'rsatiladi.</p><h2>Bir yo'lda bir necha qoidabuzarlik aniqlansa, jarimalar qo'shiladimi?</h2><p>Odatda har bir qoidabuzarlik alohida hisoblanadi va alohida jarima tayinlanadi — ular yig'indi holda to'lanishi kerak bo'lishi mumkin.</p><h2>Jarima miqdori barcha qoidabuzarliklar uchun bir xilmi?</h2><p>Yo'q. Jarima miqdori qoidabuzarlik turiga (tezlik, kamar, telefon, mast holat, guvohnoma, svetofor) qarab farqlanadi — har biri uchun alohida BHM koeffitsienti belgilanadi.</p><h2>Bu kalkulyator rasmiy jarima summasini ko'rsatadimi?</h2><p>Hozircha yo'q. BHM koeffitsientlari rasmiy manbadan tasdiqlanmaguncha kalkulyator raqam o'rniga "Ma'lumot yangilanmoqda" deb ko'rsatadi. Tasdiqlangach, kalkulyator avtomatik ishlay boshlaydi.</p></section><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hisob taxminiy. Rasmiy jarima summasini YHXX protokoli belgilaydi.</footer></main>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var lang='uz', calcData=null;
+
+  /* ---------- huquqiy konstantalar (BHM asosidagi jarimalar) ----------
+     Har bir qiymat hozircha null — legal-constants.json'dagi rasmiy
+     manba tasdiqlanmagunicha. Natija ekrani shu sababli har doim
+     "Ma'lumot yangilanmoqda" deb chiqadi (raqam emas). Asror bu
+     qiymatlarni to'ldirgach, kod o'zgarishisiz avtomatik ishga tushadi —
+     har bir raqam chiqarilishidan oldin null tekshiruvi bor. */
+  var LEGAL=(function(){
+    try{return JSON.parse(document.getElementById('legalconst-data').textContent)}catch(e){return {}}
+  })();
+
+  var VIOLATIONS={
+    tezlik:{key:'yhxx_jarima_tezlik',uz:"Tezlikni oshirish",ru:"Превышение скорости"},
+    kamar:{key:'yhxx_jarima_kamar',uz:"Xavfsizlik kamarini taqmaslik",ru:"Непристёгнутый ремень безопасности"},
+    telefon:{key:'yhxx_jarima_telefon',uz:"Rulda telefondan foydalanish",ru:"Использование телефона за рулём"},
+    mast:{key:'yhxx_jarima_mast',uz:"Mast holda haydash",ru:"Управление в нетрезвом состоянии"},
+    guvohnoma:{key:'yhxx_jarima_guvohnoma',uz:"Haydovchilik guvohnomasisiz haydash",ru:"Управление без водительского удостоверения"},
+    svetofor:{key:'yhxx_jarima_svetofor',uz:"Svetofor/yo'l belgisi qoidasini buzish",ru:"Нарушение сигнала светофора/знака"}
+  };
+
+  /* ---------- hisob-kitob (compliance gate) ----------
+     `ok` faqat ikkala qiymat ham raqam bo'lganda true bo'ladi. Hozircha
+     bhm_qiymati va barcha yhxx_jarima_* qiymatlari null, shuning uchun
+     `ok` doim false va raqam HECH QACHON chiqmaydi. */
+  function compute(){
+    var sel=$('violSelect').value;
+    var v=VIOLATIONS[sel];
+    if(!v)return null;
+    var coeffEntry=LEGAL[v.key];
+    var bhmEntry=LEGAL.bhm_qiymati;
+    var coeff=coeffEntry?coeffEntry.qiymat:null;
+    var bhm=bhmEntry?bhmEntry.qiymat:null;
+    var ok=(typeof coeff==='number')&&(typeof bhm==='number');
+    return {
+      violKey:sel, viol:v,
+      coeff:coeff, bhm:bhm,
+      ok:ok,
+      amount: ok ? (coeff*bhm) : null
+    };
+  }
+
+  /* ---------- I18N ---------- */
+  var I={
+    uz:{
+      cat:"🚫 Huquqiy",
+      h1:"YHXX jarimalari kalkulyatori",
+      sub:"Qoidabuzarlik turini tanlang — jarima BHM asosida hisoblanadi.",
+      lViol:"Qoidabuzarlik turi",hViol:"Jarima miqdori qoidabuzarlik turiga qarab farqlanadi.",
+      oTezlik:"Tezlikni oshirish",oKamar:"Xavfsizlik kamarini taqmaslik",oTelefon:"Rulda telefondan foydalanish",
+      oMast:"Mast holda haydash",oGuvohnoma:"Haydovchilik guvohnomasisiz haydash",oSvetofor:"Svetofor/yo'l belgisi qoidasini buzish",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",lblMain:"Jarima miqdori",
+      kViol:"Tanlangan qoidabuzarlik",kCoeff:"BHM koeffitsienti",kBhm:"BHM qiymati",
+      pending:"Ma'lumot yangilanmoqda",naShort:"—",
+      statusPending:"Ushbu qoidabuzarlik uchun BHM koeffitsienti va joriy BHM qiymati hali rasmiy manbadan tasdiqlanmagan. Tasdiqlangach, jarima summasi shu yerda avtomatik chiqadi.",
+      mygovNote:'Bu kalkulyator ma\'lumot uchun. Aniq jarima summasi va to\'lov tartibi YHXX protokolida ko\'rsatiladi. Jarimani <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a> portali orqali tekshirishingiz va to\'lashingiz mumkin.',
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",shareTitle:"YHXX jarimasi hisobi",
+      foot:"Hisob taxminiy. Rasmiy jarima summasini YHXX protokoli belgilaydi.",
+      seo:'<h2>YHXX jarimasi qanday hisoblanadi?</h2><p>Jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan belgilanadi va qoidabuzarlik turiga qarab farqlanadi. Aniq koeffitsientlar rasmiy manbadan tasdiqlanish jarayonida.</p><h2>BHM nima?</h2><p>Bazaviy hisoblash miqdori (BHM) — davlat tomonidan belgilanadigan va har yili o\'zgarishi mumkin bo\'lgan bazaviy summa. Jarima, aliment va boshqa ko\'plab to\'lovlar shu summaga nisbatan hisoblanadi.</p><h2>Jarimani qanday va qayerda to\'lash mumkin?</h2><p>Jarimani bank ilovalari, to\'lov terminallari yoki my.gov.uz portali orqali, protokolda ko\'rsatilgan raqam bo\'yicha to\'lash mumkin.</p><h2>Jarimani muddatidan oldin to\'lasam chegirma bo\'ladimi?</h2><p>Ba\'zi holatlarda belgilangan muddat ichida to\'langan jarimaga chegirma qo\'llanilishi mumkin. Aniq shart va foiz amaldagi qonunchilikka bog\'liq, shuning uchun protokoldagi yoki rasmiy manbadagi ko\'rsatmani tekshiring.</p><h2>Jarima o\'z vaqtida to\'lanmasa nima bo\'ladi?</h2><p>Belgilangan muddatda to\'lanmagan jarima bo\'yicha qo\'shimcha choralar (masalan, ijro ishi ochilishi) qo\'llanilishi mumkin. Muddat va tartib rasmiy hujjatda ko\'rsatiladi.</p><h2>Bir yo\'lda bir necha qoidabuzarlik aniqlansa, jarimalar qo\'shiladimi?</h2><p>Odatda har bir qoidabuzarlik alohida hisoblanadi va alohida jarima tayinlanadi — ular yig\'indi holda to\'lanishi kerak bo\'lishi mumkin.</p><h2>Jarima miqdori barcha qoidabuzarliklar uchun bir xilmi?</h2><p>Yo\'q. Jarima miqdori qoidabuzarlik turiga (tezlik, kamar, telefon, mast holat, guvohnoma, svetofor) qarab farqlanadi — har biri uchun alohida BHM koeffitsienti belgilanadi.</p><h2>Bu kalkulyator rasmiy jarima summasini ko\'rsatadimi?</h2><p>Hozircha yo\'q. BHM koeffitsientlari rasmiy manbadan tasdiqlanmaguncha kalkulyator raqam o\'rniga "Ma\'lumot yangilanmoqda" deb ko\'rsatadi. Tasdiqlangach, kalkulyator avtomatik ishlay boshlaydi.</p>'
+    },
+    ru:{
+      cat:"🚫 Юридические",
+      h1:"Калькулятор штрафов ПДД",
+      sub:"Выберите вид нарушения — сумма штрафа рассчитывается на основе БРВ.",
+      lViol:"Вид нарушения",hViol:"Сумма штрафа зависит от вида нарушения.",
+      oTezlik:"Превышение скорости",oKamar:"Непристёгнутый ремень безопасности",oTelefon:"Использование телефона за рулём",
+      oMast:"Управление в нетрезвом состоянии",oGuvohnoma:"Управление без водительского удостоверения",oSvetofor:"Нарушение сигнала светофора/знака",
+      btnCalc:"Вычислить",rTag:"Результат расчёта",lblMain:"Сумма штрафа",
+      kViol:"Выбранное нарушение",kCoeff:"Коэффициент БРВ",kBhm:"Значение БРВ",
+      pending:"Информация обновляется",naShort:"—",
+      statusPending:"Коэффициент БРВ и текущее значение БРВ для этого нарушения пока не подтверждены официальным источником. После подтверждения сумма штрафа появится здесь автоматически.",
+      mygovNote:'Этот калькулятор носит информационный характер. Точная сумма штрафа и порядок оплаты указаны в протоколе ГУБДД. Проверить и оплатить штраф можно на портале <a href="https://my.gov.uz" target="_blank" rel="nofollow noopener">my.gov.uz</a>.',
+      btnShare:"Поделиться",copied:"Скопировано ✓",shareTitle:"Расчёт штрафа ПДД",
+      foot:"Расчёт приблизительный. Точную сумму штрафа определяет протокол ГУБДД.",
+      seo:'<h2>Как рассчитывается штраф ПДД?</h2><p>Сумма штрафа устанавливается на основе базовой расчётной величины (БРВ) и различается в зависимости от вида нарушения. Точные коэффициенты уточняются по официальному источнику.</p><h2>Что такое БРВ?</h2><p>Базовая расчётная величина (БРВ) — базовая сумма, устанавливаемая государством и меняющаяся каждый год. К ней привязаны штрафы, алименты и многие другие выплаты.</p><h2>Где и как оплатить штраф?</h2><p>Штраф можно оплатить через банковские приложения, платёжные терминалы или портал my.gov.uz — по номеру, указанному в протоколе.</p><h2>Есть ли скидка при досрочной оплате штрафа?</h2><p>В некоторых случаях при оплате штрафа в установленный срок может применяться скидка. Точное условие и процент зависят от действующего законодательства, поэтому уточняйте указание в протоколе или официальном источнике.</p><h2>Что будет, если не оплатить штраф вовремя?</h2><p>За неоплаченный в срок штраф могут применяться дополнительные меры (например, открытие исполнительного производства). Срок и порядок указываются в официальном документе.</p><h2>Если за один раз выявлено несколько нарушений, штрафы суммируются?</h2><p>Обычно каждое нарушение рассчитывается отдельно и назначается отдельный штраф — их может потребоваться оплатить в сумме.</p><h2>Сумма штрафа одинакова для всех нарушений?</h2><p>Нет. Сумма штрафа различается в зависимости от вида нарушения (скорость, ремень, телефон, опьянение, удостоверение, светофор) — для каждого установлен свой коэффициент БРВ.</p><h2>Показывает ли калькулятор официальную сумму штрафа?</h2><p>Пока нет. Пока коэффициенты БРВ не подтверждены официальным источником, вместо суммы калькулятор показывает «Информация обновляется». После подтверждения калькулятор заработает автоматически.</p>'
+    }
+  };
+
+  var t=function(k){return I[lang][k]};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Калькулятор штрафов ПДД — дорожные нарушения 2026'
+      : "YHXX jarimalari kalkulyatori — yo'l harakati jarimalari 2026";
+    var metaDesc=lang==='ru'
+      ? 'Чтобы узнать штраф ПДД, выберите вид нарушения: скорость, ремень, телефон, опьянение, удостоверение или светофор. Расчёт на основе БРВ, бесплатно.'
+      : "YHXX jarimasini bilish uchun qoidabuzarlik turini tanlang: tezlik, kamar, telefon, mast holat, guvohnoma yoki svetofor. Jarima BHM asosida hisoblanadi, bepul.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    var mg=document.querySelector('.mygov-note');
+    if(mg)mg.innerHTML=t('mygovNote');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  $('violSelect').addEventListener('change',function(){recalc()});
+
+  /* ---------- natijani chizish ----------
+     GATE: `d.ok` false bo'lguncha (ya'ni har doim, hozircha) mainNum,
+     rCoeff va rBhm HECH QACHON raqam ko'rsatmaydi — faqat "pending"
+     matni yoki "—". PDF va Ulashish tugmalari ham shu shart bo'yicha
+     disabled qilinadi, shunday qilib gated raqam hech qanday yo'l bilan
+     (ekran, PDF, ulashish matni) chiqib keta olmaydi. */
+  function renderResult(){
+    var d=calcData;
+    $('rViol').textContent=lang==='ru'?d.viol.ru:d.viol.uz;
+
+    var pdfBtn=document.querySelector('.pdfbtn');
+    var shareBtn=$('shareBtn');
+
+    if(!d.ok){
+      $('mainNum').textContent=t('pending');
+      $('rCoeff').textContent=t('naShort');
+      $('rBhm').textContent=t('naShort');
+      $('statusBox').textContent=t('statusPending');
+      if(pdfBtn)pdfBtn.disabled=true;
+      if(shareBtn)shareBtn.disabled=true;
+    }else{
+      // Bu tarmoq faqat ikkala qiymat ham raqam bo'lgandagina ishga
+      // tushadi (yuqoridagi compute()dagi `ok` tekshiruviga qarang).
+      var sum=Math.round(d.amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+      $('mainNum').textContent=sum+" so'm";
+      $('rCoeff').textContent=d.coeff+' BHM';
+      $('rBhm').textContent=d.bhm+" so'm";
+      $('statusBox').textContent='';
+      if(pdfBtn)pdfBtn.disabled=false;
+      if(shareBtn)shareBtn.disabled=false;
+    }
+  }
+
+  function recalc(){
+    var d=compute();
+    if(!d){calcData=null;$('receipt').classList.remove('show');return}
+    calcData=d;
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  $('calcBtn').onclick=function(){
+    recalc();
+    var r=$('receipt');
+    if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  $('shareBtn').onclick=function(){
+    if(!calcData||!calcData.ok)return; // gate: raqam tasdiqlanmaguncha ulashib bo'lmaydi
+    var txt=t('shareTitle')+': '+$('mainNum').textContent;
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  /* ---------- saqlash (localStorage) ---------- */
+  var LS='kalki_yhxx_jarima_v1';
+  function collectStateForSave(){
+    return {viol:$('violSelect').value};
+  }
+  function save(){
+    try{localStorage.setItem(LS,JSON.stringify(collectStateForSave()))}catch(e){}
+  }
+  function restoreState(o){
+    if(!o||!o.viol||!VIOLATIONS[o.viol])return false;
+    $('violSelect').value=o.viol;
+    return true;
+  }
+  function loadFromLS(){
+    try{
+      var raw=localStorage.getItem(LS);
+      if(!raw)return false;
+      return restoreState(JSON.parse(raw));
+    }catch(e){return false}
+  }
+  $('violSelect').addEventListener('change',save);
+
+  /* ---------- URL orqali ulashish (?p=) ---------- */
+  window.__buildShareUrl=function(){
+    var o=collectStateForSave();
+    var json=JSON.stringify(o);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var json=decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/'))));
+      var o=JSON.parse(json);
+      return restoreState(o);
+    }catch(e){return false}
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  applyLang();
+  var restored=restoreFromUrl();
+  if(!restored)restored=loadFromLS();
+  applyLang();
+  recalc();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    if(btn.disabled)return; // gate: raqam tasdiqlanmaguncha PDF yaratilmaydi
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='huquqiy';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',huquqiy:'Huquqiy',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',huquqiy:'Юридические',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='GovernmentApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

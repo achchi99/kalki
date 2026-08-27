@@ -1,4 +1,149 @@
 {
   "_readme": "kalki.uz huquqiy/rasmiy konstantalar reyestri. Claude bu yerga o'zi o'ylab topgan raqam yozmaydi — har yozuv manba tasdiqlangunga qadar 'holat':'TASDIQLASH KERAK' bilan qoladi. 'qiymat':null bo'lgan konstantadan foydalanadigan sahifada natija o'rniga 'Ma'lumot yangilanmoqda' chiqishi kerak. Hozircha bu fayl faqat assets/answerbox.js'ning manba-havola (manba_url) mexanizmi uchun infratuzilma sifatida yaratildi (FAZA 1.1) — hali hisob-kitob kodi bu fayldan o'qimaydi, chunki mavjud kalkulyatorlar formulasiga tegilmaydi (0.1-band).",
-  "constants": []
+  "constants": [
+    {
+      "id": "tatil_kunlik_koeff",
+      "sahifa": "tatil-puli-kalkulyator",
+      "izoh": "O'rtacha kunlik ish haqini hisoblashda oyning o'rtacha kun soni koeffitsiyenti",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "tatil_minimal_kunlar",
+      "sahifa": "tatil-puli-kalkulyator",
+      "izoh": "Mehnat kodeksi bo'yicha yillik asosiy ta'tilning minimal kunlar soni",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "kasallik_foiz_jadvali",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "izoh": "Ish staji bo'yicha kasallik varaqasi to'lovi foizi jadvali",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "kasallik_bhm_chegara",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "izoh": "Kasallik varaqasi to'lovining yuqori chegarasi (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "dekret_foiz",
+      "sahifa": "dekret-puli-kalkulyator",
+      "izoh": "Homiladorlik va tug'ish bo'yicha nafaqa — o'rtacha ish haqidan foiz",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "dekret_kunlar",
+      "sahifa": "dekret-puli-kalkulyator",
+      "izoh": "Dekret ta'tili davomiyligi (kunlarda, oddiy va murakkab tug'ish holatlari)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "boshatish_oylik_soni",
+      "sahifa": "ishdan-boshatish-kompensatsiyasi-kalkulyator",
+      "izoh": "Shtat qisqarishi/tugatishda to'lanadigan kompensatsiya — o'rtacha oylik ish haqiga ko'paytiriladigan oy soni",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "boshatish_bhm_minimal",
+      "sahifa": "ishdan-boshatish-kompensatsiyasi-kalkulyator",
+      "izoh": "Kompensatsiyaning BHM asosidagi minimal miqdori (agar belgilangan bo'lsa)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "aliment_foiz_1bola",
+      "sahifa": "aliment-kalkulyator",
+      "izoh": "1 bolaga aliment — daromaddan ushlanadigan foiz",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "aliment_foiz_2bola",
+      "sahifa": "aliment-kalkulyator",
+      "izoh": "2 bolaga aliment — daromaddan ushlanadigan foiz",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "aliment_foiz_3plus",
+      "sahifa": "aliment-kalkulyator",
+      "izoh": "3 va undan ortiq bolaga aliment — daromaddan ushlanadigan foiz",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "bhm_qiymati",
+      "sahifa": "umumiy",
+      "izoh": "Joriy bazaviy hisoblash miqdori (BHM), so'mda — aliment, jarima va kompensatsiya hisoblarida umumiy ishlatiladi",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_tezlik",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Tezlik chegarasini oshirish uchun jarima (BHM birligida, oshirish darajasiga qarab)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_kamar",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Xavfsizlik kamarini taqmaslik uchun jarima (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_telefon",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Rulda telefondan foydalanish uchun jarima (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_mast",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Mast holda transport vositasini boshqarish uchun jarima (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_guvohnoma",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Haydovchilik guvohnomasisiz boshqarish uchun jarima (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    },
+    {
+      "id": "yhxx_jarima_svetofor",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "izoh": "Svetofor/yo'l belgisi taqiqiga rioya qilmaslik uchun jarima (BHM birligida)",
+      "qiymat": null,
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null
+    }
+  ]
 }

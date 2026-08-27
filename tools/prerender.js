@@ -129,6 +129,24 @@ const RU_PAGES = [
   'mehnat-shartnomasi-namunasi.html',
   'ijara-shartnomasi-namunasi.html',
   'tilxat-namunasi.html',
+  // 4-bosqich: qolgan hujjat generatorlari va kalkulyatorlar — RU
+  // tarjimasi (I.ru) allaqachon mavjud, faqat /ru/ manzili yo'q edi.
+  'oila-byudjet-kalkulyator.html',
+  'dtm-kalkulyator.html',
+  'qqs-kalkulyator.html',
+  'yoqilgi-kalkulyator.html',
+  'universitet-kontrakt-kalkulyator.html',
+  'grant-ololmadim.html',
+  'ish-haqi-malumotnomasi-namunasi.html',
+  'ishdan-boshash-arizasi-namunasi.html',
+  'kadr-buyruqlari-namunasi.html',
+  // FAZA 3: huquqiy klaster — I.ru allaqachon har bir sahifada mavjud.
+  'tatil-puli-kalkulyator.html',
+  'kasallik-varaqasi-kalkulyator.html',
+  'dekret-puli-kalkulyator.html',
+  'ishdan-boshatish-kompensatsiyasi-kalkulyator.html',
+  'aliment-kalkulyator.html',
+  'yhxx-jarima-kalkulyator.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.

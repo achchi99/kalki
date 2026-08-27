@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/crosslink.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Калькулятор компенсации при увольнении — онлайн расчёт</title>
+<link rel="canonical" href="https://kalki.uz/ru/ishdan-boshatish-kompensatsiyasi-kalkulyator">
+<meta name="description" content="Введите среднемесячную зарплату и основание увольнения — рассчитайте компенсацию при увольнении. Для сокращения штата и ликвидации организации. Бесплатно.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="huquqiy"]{--cat:#2C3E66;--cat-deep:#1F2C4A;--accent:#C9A227;--cat-soft:#EAEDF5;--cat-text:#B9C4DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],input[type=number],input[type=date],select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0;appearance:none;-webkit-appearance:none}
+select{cursor:pointer}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.calc-btn:disabled{opacity:.6;cursor:not-allowed}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--cat);line-height:1.25;word-break:break-word}
+.big-figure .num.pending{font-size:18px;color:var(--muted)}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.status-box.pending{background:#FBF3E9;color:#8A6A20}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.mygov-note{margin-top:14px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:600;background:#F2F5F3;border-radius:10px;padding:11px 12px}
+.mygov-note a{color:var(--cat);font-weight:800;text-decoration:none}
+.mygov-note a:hover{text-decoration:underline}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:disabled{opacity:.5;cursor:not-allowed;background:#F2F5F3}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Ishdan bo'shatish kompensatsiyasi kalkulyatori — onlayn hisoblash">
+<meta property="og:description" content="Введите среднемесячную зарплату и основание увольнения — рассчитайте компенсацию при увольнении. Для сокращения штата и ликвидации организации. Бесплатно.">
+<meta property="og:url" content="https://kalki.uz/ru/ishdan-boshatish-kompensatsiyasi-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/ishdan-boshatish-kompensatsiyasi-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="📤 Ishdan bo'shatish kompensatsiyasi kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/ishdan-boshatish-kompensatsiyasi-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Ishdan bo'shatish kompensatsiyasi kalkulyatori — onlayn hisoblash">
+<meta name="twitter:description" content="Введите среднемесячную зарплату и основание увольнения — рассчитайте компенсацию при увольнении. Для сокращения штата и ликвидации организации. Бесплатно.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Ishdan bo'shatish kompensatsiyasi — shtat qisqarishi yoki tashkilot tugatilishi sababli bo'shatilgan xodimga to'lanadigan bir martalik to'lov, o'rtacha oylik ish haqiga bog'liq. Aniq koeffitsient O'zbekiston Mehnat kodeksiga muvofiq belgilanadi.","sources":[]},"ru":{"text":"Компенсация при увольнении — единовременная выплата работнику, уволенному по сокращению штата или ликвидации организации, зависящая от среднемесячной зарплаты. Точный коэффициент определяется в соответствии с Трудовым кодексом Узбекистана.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="legalconst-data">{"boshatish_oylik_soni":{"qiymat":null,"holat":"TASDIQLASH KERAK","izoh":"Shtat qisqarishi/tugatishda to'lanadigan kompensatsiya — o'rtacha oylik ish haqiga ko'paytiriladigan oy soni"},"boshatish_bhm_minimal":{"qiymat":null,"holat":"TASDIQLASH KERAK","izoh":"Kompensatsiyaning BHM asosidagi minimal miqdori (agar belgilangan bo'lsa)"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Кому выплачивается компенсация при увольнении?","acceptedAnswer":{"@type":"Answer","text":"Компенсация обычно выплачивается работникам, уволенным по инициативе работодателя — например, при сокращении штата или полной ликвидации организации. При увольнении по собственному желанию такая компенсация обычно не применяется."}},{"@type":"Question","name":"От чего зависит размер компенсации?","acceptedAnswer":{"@type":"Answer","text":"Основной критерий — среднемесячная зарплата работника. Компенсация рассчитывается умножением этого показателя на коэффициент, установленный законом. Точный коэффициент и возможный минимальный порог определяются Трудовым кодексом и соответствующими нормативными актами Узбекистана."}},{"@type":"Question","name":"Получу ли я компенсацию, если увольняюсь сам?","acceptedAnswer":{"@type":"Answer","text":"Обычно нет — компенсация при увольнении предусмотрена для случаев увольнения по инициативе работодателя (сокращение штата, ликвидация и т.п.). При увольнении по собственному желанию выплачиваются только компенсация за неиспользованный отпуск и зарплата за последний месяц."}},{"@type":"Question","name":"Когда должна быть выплачена компенсация?","acceptedAnswer":{"@type":"Answer","text":"По общему правилу все расчёты с работником должны быть произведены в день увольнения — включая компенсацию, зарплату за последний месяц и компенсацию за неиспользованный отпуск."}},{"@type":"Question","name":"Влияет ли трудовой стаж на размер компенсации?","acceptedAnswer":{"@type":"Answer","text":"В некоторых случаях стаж может влиять на дополнительные условия (например, пособие по безработице или другие социальные выплаты), но основной критерий расчёта компенсации при увольнении — среднемесячная зарплата."}},{"@type":"Question","name":"Облагается ли компенсация налогом?","acceptedAnswer":{"@type":"Answer","text":"Налоговые правила в отношении зарплаты и различных выплат могут отличаться. Для точного порядка налогообложения компенсации рекомендуется проконсультироваться с налоговым органом или бухгалтерией."}},{"@type":"Question","name":"Что делать, если компенсацию не выплачивают?","acceptedAnswer":{"@type":"Answer","text":"Сначала обратитесь к работодателю письменно и запросите расчётные документы. Если договориться не удаётся, есть право обратиться в государственную инспекцию труда или в суд по трудовым спорам."}},{"@type":"Question","name":"Результат этого калькулятора — официальный расчёт?","acceptedAnswer":{"@type":"Answer","text":"Нет. Точный коэффициент для расчёта компенсации пока не подтверждён в этом калькуляторе, поэтому числовой результат пока не показывается. Официальный расчёт проверяйте через бухгалтерию работодателя или инспекцию труда."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Право","item":"https://kalki.uz/ru/#cat-huquqiy"},{"@type":"ListItem","position":3,"name":"📤 Калькулятор компенсации при увольнении","item":"https://kalki.uz/ru/ishdan-boshatish-kompensatsiyasi-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"📤 Калькулятор компенсации при увольнении","description":"Введите среднемесячную зарплату и основание увольнения — рассчитайте компенсацию при увольнении. Для сокращения штата и ликвидации организации. Бесплатно.","url":"https://kalki.uz/ru/ishdan-boshatish-kompensatsiyasi-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/ishdan-boshatish-kompensatsiyasi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/ishdan-boshatish-kompensatsiyasi-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/ishdan-boshatish-kompensatsiyasi-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="huquqiy">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Право</span>
+    <h1 data-i="h1">📤 Калькулятор компенсации при увольнении</h1>
+    <p class="sub" data-i="sub">Введите среднемесячную зарплату и основание увольнения.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-huquqiy">Право</a><span class="sep">›</span><span class="cur">📤 Калькулятор компенсации при увольнении</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Компенсация при увольнении — единовременная выплата работнику, уволенному по сокращению штата или ликвидации организации, зависящая от среднемесячной зарплаты. Точный коэффициент определяется в соответствии с Трудовым кодексом Узбекистана.</p></div>
+  <section class="form-card">
+    <div class="field">
+      <label for="wageInput" data-i="lWage">Среднемесячная зарплата</label>
+      <div class="input-shell"><input type="number" id="wageInput" inputmode="numeric" min="0" step="1"><span class="unit" data-i="unitSom">сум</span></div>
+    </div>
+
+    <div class="field">
+      <label for="reasonSelect" data-i="lReason">Основание увольнения</label>
+      <div class="input-shell"><select id="reasonSelect">
+        <option value="shtat" data-i="optShtat">Сокращение штата</option>
+        <option value="tugatish" data-i="optTugatish">Ликвидация организации</option>
+        <option value="boshqa" data-i="optBoshqa">Другое основание</option>
+      </select></div>
+    </div>
+
+    <details id="dExtra"><summary><span data-i="sExtra">Дополнительно (не обязательно)</span></summary><div class="sec-body">
+      <div class="field" style="margin-bottom:0">
+        <label for="stajInput" data-i="lStaj">Трудовой стаж (лет)</label>
+        <div class="input-shell"><input type="number" id="stajInput" inputmode="numeric" min="0" step="1"><span class="unit" data-i="unitYil">лет</span></div>
+        <p class="hint" data-i="hStaj">Для контекста — может дополнительно влиять на расчёт.</p>
+      </div>
+    </div></details>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Вычислить</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">-</div>
+        <div class="lbl" data-i="lblMain">Компенсация при увольнении</div>
+      </div>
+      <div class="status-box" id="statusBox">-</div>
+      <div class="receipt-rows" id="detailRows" style="display:none">
+        <div class="rrow"><span class="k" data-i="kWage">Среднемесячная зарплата</span><span class="v" id="rWage">-</span></div>
+        <div class="rrow"><span class="k" data-i="kReason">Основание увольнения</span><span class="v" id="rReason">-</span></div>
+      </div>
+      <div class="mygov-note" data-i="mygovNote">Этот расчёт приблизительный и информационный. Официальный коэффициент для расчёта компенсации определяется в соответствии с Трудовым кодексом Узбекистана — до его подтверждения калькулятор не показывает числовой результат.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare" disabled="">Поделиться</button>
+      <button type="button" class="pdfbtn" disabled="">PDF</button></div>
+      <div id="xlinkHost"></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div>
+<section class="seo" id="seoBlock"><h2>Кому выплачивается компенсация при увольнении?</h2><p>Компенсация обычно выплачивается работникам, уволенным по инициативе работодателя — например, при сокращении штата или полной ликвидации организации. При увольнении по собственному желанию такая компенсация обычно не применяется.</p><h2>От чего зависит размер компенсации?</h2><p>Основной критерий — среднемесячная зарплата работника. Компенсация рассчитывается умножением этого показателя на коэффициент, установленный законом. Точный коэффициент и возможный минимальный порог определяются Трудовым кодексом и соответствующими нормативными актами Узбекистана.</p><h2>Получу ли я компенсацию, если увольняюсь сам?</h2><p>Обычно нет — компенсация при увольнении предусмотрена для случаев увольнения по инициативе работодателя (сокращение штата, ликвидация и т.п.). При увольнении по собственному желанию выплачиваются только компенсация за неиспользованный отпуск и зарплата за последний месяц.</p><h2>Когда должна быть выплачена компенсация?</h2><p>По общему правилу все расчёты с работником должны быть произведены в день увольнения — включая компенсацию, зарплату за последний месяц и компенсацию за неиспользованный отпуск.</p><h2>Влияет ли трудовой стаж на размер компенсации?</h2><p>В некоторых случаях стаж может влиять на дополнительные условия (например, пособие по безработице или другие социальные выплаты), но основной критерий расчёта компенсации при увольнении — среднемесячная зарплата.</p><h2>Облагается ли компенсация налогом?</h2><p>Налоговые правила в отношении зарплаты и различных выплат могут отличаться. Для точного порядка налогообложения компенсации рекомендуется проконсультироваться с налоговым органом или бухгалтерией.</p><h2>Что делать, если компенсацию не выплачивают?</h2><p>Сначала обратитесь к работодателю письменно и запросите расчётные документы. Если договориться не удаётся, есть право обратиться в государственную инспекцию труда или в суд по трудовым спорам.</p><h2>Результат этого калькулятора — официальный расчёт?</h2><p>Нет. Точный коэффициент для расчёта компенсации пока не подтверждён в этом калькуляторе, поэтому числовой результат пока не показывается. Официальный расчёт проверяйте через бухгалтерию работодателя или инспекцию труда.</p></section><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="staj-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat staji" data-rel-ru="Трудовой стаж">Трудовой стаж</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Зарплата</span></a><a href="aliment-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Aliment" data-rel-ru="Алименты">Алименты</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Bo'shash arizasi" data-rel-ru="Заявление об увольнении">Заявление об увольнении</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Расчёт приблизительный. После подтверждения официального коэффициента калькулятор обновится точной цифрой.</footer></main>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var lang='uz', calcData=null;
+
+  /* ---------- huquqiy konstantalar (legalconst-data) ----------
+     boshatish_oylik_soni.qiymat va boshatish_bhm_minimal.qiymat
+     hozircha null — manba tasdiqlanmagan. Har bir raqam chiqadigan
+     joy shu null tekshiruvi orqasida turadi, shu sababli qiymat
+     to'ldirilgan zahoti kalkulyator qo'shimcha kod o'zgarishisiz
+     ishga tushadi. */
+  var LC=(function(){
+    try{return JSON.parse(document.getElementById('legalconst-data').textContent)}catch(e){return {}}
+  })();
+  function legalConstsReady(){
+    return LC && LC.boshatish_oylik_soni && LC.boshatish_oylik_soni.qiymat!=null
+      && LC.boshatish_bhm_minimal && LC.boshatish_bhm_minimal.qiymat!=null;
+  }
+
+  function parseNum(v){
+    var n=parseFloat(String(v||'').replace(/[^\d.-]/g,''));
+    return isNaN(n)?null:n;
+  }
+  var fmtNum=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+
+  function compute(){
+    var wage=parseNum($('wageInput').value);
+    if(!wage||wage<=0)return null;
+    var reason=$('reasonSelect').value;
+    var staj=parseNum($('stajInput').value);
+    return {wage:wage, reason:reason, staj:staj};
+  }
+
+  /* ---------- I18N ---------- */
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Huquqiy",
+      h1:"📤 Ishdan bo'shatish kompensatsiyasi kalkulyatori",
+      sub:"O'rtacha oylik ish haqingiz va bo'shatish asosini kiriting.",
+      lWage:"O'rtacha oylik ish haqi",unitSom:"so'm",
+      lReason:"Ishdan bo'shatish asosi",
+      optShtat:"Shtat qisqarishi",optTugatish:"Tashkilot tugatilishi",optBoshqa:"Boshqa asos",
+      sExtra:"Qo'shimcha (ixtiyoriy)",
+      lStaj:"Ish staji (yil)",unitYil:"yil",
+      hStaj:"Kontekst uchun — hisobga qo'shimcha ta'sir ko'rsatishi mumkin.",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Ishdan bo'shatish kompensatsiyasi",
+      pending:"Ma'lumot yangilanmoqda",
+      statusPending:"Kompensatsiyani hisoblash uchun rasmiy koeffitsient hozircha tasdiqlanmagan, shu sabab aniq summa ko'rsatilmayapti. Tasdiqlangach, bu kalkulyator avtomatik yangilanadi.",
+      kWage:"O'rtacha oylik ish haqi",kReason:"Bo'shatish asosi",
+      reasonShtat:"Shtat qisqarishi",reasonTugatish:"Tashkilot tugatilishi",reasonBoshqa:"Boshqa asos",
+      mygovNote:"Bu hisob taxminiy va ma'lumot uchun. Kompensatsiya miqdori bo'yicha rasmiy koeffitsient O'zbekiston Mehnat kodeksiga muvofiq belgilanadi — tasdiqlangunga qadar bu kalkulyator raqamli natija ko'rsatmaydi.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",shareTitle:"Ishdan bo'shatish kompensatsiyasi hisobi",
+      foot:"Hisob taxminiy. Rasmiy koeffitsient tasdiqlangach kalkulyator aniq raqam bilan yangilanadi.",
+      seo:'<h2>Ishdan bo\'shatish kompensatsiyasi kimga to\'lanadi?</h2><p>Kompensatsiya odatda ish beruvchi tashabbusi bilan bo\'shatilgan xodimlarga to\'lanadi — masalan shtat qisqarilganda yoki tashkilot to\'liq tugatilganda. O\'z xohishi bilan ariza yozib ketishda bu turdagi kompensatsiya odatda qo\'llanilmaydi.</p><h2>Kompensatsiya miqdori nimaga bog\'liq?</h2><p>Asosiy mezon — xodimning o\'rtacha oylik ish haqi. Kompensatsiya shu ko\'rsatkichga qonunda belgilangan koeffitsientni ko\'paytirish orqali hisoblanadi. Aniq koeffitsient va mumkin bo\'lgan minimal chegara O\'zbekiston Mehnat kodeksi va tegishli me\'yoriy hujjatlarda belgilanadi.</p><h2>O\'z xohishi bilan ketsam kompensatsiya olamanmi?</h2><p>Odatda yo\'q — ishdan bo\'shatish kompensatsiyasi ish beruvchi tashabbusi bilan (shtat qisqarishi, tugatish kabi) bo\'shatilgan hollar uchun nazarda tutilgan. O\'z xohishi bilan ketishda faqat ishlatilmagan ta\'til kunlari uchun pul va oxirgi oy maoshi to\'lanadi.</p><h2>Kompensatsiya qachon to\'lanishi kerak?</h2><p>Umumiy qoidaga ko\'ra, ish beruvchi bilan barcha hisob-kitoblar xodim ishdan bo\'shatilgan kuni amalga oshirilishi kerak — shu jumladan kompensatsiya, oxirgi oy maoshi va ishlatilmagan ta\'til kompensatsiyasi.</p><h2>Ish staji kompensatsiya miqdoriga ta\'sir qiladimi?</h2><p>Ba\'zi holatlarda ish staji qo\'shimcha shartlarga (masalan ishsizlik nafaqasi yoki boshqa ijtimoiy to\'lovlarga) ta\'sir qilishi mumkin, lekin ishdan bo\'shatish kompensatsiyasining asosiy hisob mezoni — o\'rtacha oylik ish haqi.</p><h2>Kompensatsiyadan soliq ushlanadimi?</h2><p>Ish haqi va turli to\'lovlarga nisbatan soliq qoidalari farqlanishi mumkin. Kompensatsiyaning soliqqa tortilish tartibini aniq bilish uchun soliq idorasi yoki buxgalteriya bilan maslahatlashish tavsiya etiladi.</p><h2>Kompensatsiya to\'lanmasa nima qilish kerak?</h2><p>Avval ish beruvchiga yozma murojaat qiling va hisob-kitob hujjatlarini so\'rang. Kelishuvga erishilmasa, mehnat nizolari bo\'yicha davlat mehnat inspeksiyasiga yoki sudga murojaat qilish huquqi mavjud.</p><h2>Bu kalkulyator natijasi rasmiy hisobmi?</h2><p>Yo\'q. Kompensatsiyani hisoblash uchun ishlatiladigan aniq koeffitsient hozircha ushbu kalkulyatorda tasdiqlanmagan holatda turibdi, shuning uchun raqamli natija hozircha ko\'rsatilmaydi. Rasmiy hisob-kitobni ish beruvchi buxgalteriyasi yoki mehnat inspeksiyasi orqali tekshiring.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Право",
+      h1:"📤 Калькулятор компенсации при увольнении",
+      sub:"Введите среднемесячную зарплату и основание увольнения.",
+      lWage:"Среднемесячная зарплата",unitSom:"сум",
+      lReason:"Основание увольнения",
+      optShtat:"Сокращение штата",optTugatish:"Ликвидация организации",optBoshqa:"Другое основание",
+      sExtra:"Дополнительно (не обязательно)",
+      lStaj:"Трудовой стаж (лет)",unitYil:"лет",
+      hStaj:"Для контекста — может дополнительно влиять на расчёт.",
+      btnCalc:"Вычислить",rTag:"Результат расчёта",
+      lblMain:"Компенсация при увольнении",
+      pending:"Информация обновляется",
+      statusPending:"Официальный коэффициент для расчёта компенсации пока не подтверждён, поэтому точная сумма не показывается. После подтверждения калькулятор обновится автоматически.",
+      kWage:"Среднемесячная зарплата",kReason:"Основание увольнения",
+      reasonShtat:"Сокращение штата",reasonTugatish:"Ликвидация организации",reasonBoshqa:"Другое основание",
+      mygovNote:"Этот расчёт приблизительный и информационный. Официальный коэффициент для расчёта компенсации определяется в соответствии с Трудовым кодексом Узбекистана — до его подтверждения калькулятор не показывает числовой результат.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",shareTitle:"Расчёт компенсации при увольнении",
+      foot:"Расчёт приблизительный. После подтверждения официального коэффициента калькулятор обновится точной цифрой.",
+      seo:'<h2>Кому выплачивается компенсация при увольнении?</h2><p>Компенсация обычно выплачивается работникам, уволенным по инициативе работодателя — например, при сокращении штата или полной ликвидации организации. При увольнении по собственному желанию такая компенсация обычно не применяется.</p><h2>От чего зависит размер компенсации?</h2><p>Основной критерий — среднемесячная зарплата работника. Компенсация рассчитывается умножением этого показателя на коэффициент, установленный законом. Точный коэффициент и возможный минимальный порог определяются Трудовым кодексом и соответствующими нормативными актами Узбекистана.</p><h2>Получу ли я компенсацию, если увольняюсь сам?</h2><p>Обычно нет — компенсация при увольнении предусмотрена для случаев увольнения по инициативе работодателя (сокращение штата, ликвидация и т.п.). При увольнении по собственному желанию выплачиваются только компенсация за неиспользованный отпуск и зарплата за последний месяц.</p><h2>Когда должна быть выплачена компенсация?</h2><p>По общему правилу все расчёты с работником должны быть произведены в день увольнения — включая компенсацию, зарплату за последний месяц и компенсацию за неиспользованный отпуск.</p><h2>Влияет ли трудовой стаж на размер компенсации?</h2><p>В некоторых случаях стаж может влиять на дополнительные условия (например, пособие по безработице или другие социальные выплаты), но основной критерий расчёта компенсации при увольнении — среднемесячная зарплата.</p><h2>Облагается ли компенсация налогом?</h2><p>Налоговые правила в отношении зарплаты и различных выплат могут отличаться. Для точного порядка налогообложения компенсации рекомендуется проконсультироваться с налоговым органом или бухгалтерией.</p><h2>Что делать, если компенсацию не выплачивают?</h2><p>Сначала обратитесь к работодателю письменно и запросите расчётные документы. Если договориться не удаётся, есть право обратиться в государственную инспекцию труда или в суд по трудовым спорам.</p><h2>Результат этого калькулятора — официальный расчёт?</h2><p>Нет. Точный коэффициент для расчёта компенсации пока не подтверждён в этом калькуляторе, поэтому числовой результат пока не показывается. Официальный расчёт проверяйте через бухгалтерию работодателя или инспекцию труда.</p>'
+    }
+  };
+
+  var t=function(k){return I[lang][k]};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Калькулятор компенсации при увольнении — онлайн расчёт'
+      : "Ishdan bo'shatish kompensatsiyasi kalkulyatori — onlayn hisoblash";
+    var metaDesc=lang==='ru'
+      ? 'Введите среднемесячную зарплату и основание увольнения — рассчитайте компенсацию при увольнении. Для сокращения штата и ликвидации организации. Бесплатно.'
+      : "O'rtacha oylik ish haqingiz va bo'shatish asosini kiriting — ishdan bo'shatish kompensatsiyasini hisoblang. Shtat qisqarishi, tashkilot tugatilishi holatlari uchun.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    var rt=$('relTitle');
+    if(rt)rt.textContent=lang==='ru'?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+    var rl=document.querySelectorAll('[data-rel-uz]');
+    for(var j=0;j<rl.length;j++)rl[j].textContent=rl[j].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    var mg=document.querySelector('.mygov-note');
+    if(mg)mg.textContent=t('mygovNote');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  function reasonLabel(r){
+    if(r==='shtat')return t('reasonShtat');
+    if(r==='tugatish')return t('reasonTugatish');
+    return t('reasonBoshqa');
+  }
+
+  /* ---------- natijani chizish ----------
+     GATE: LC (legalconst-data) dan olingan ikkala qiymat ham
+     null bo'lguncha raqam HECH QAYERDA chiqmaydi — mainNum
+     doim "Ma'lumot yangilanmoqda" / "Информация обновляется"
+     matnini ko'rsatadi, PDF/Ulashish tugmalari disabled qoladi. */
+  function renderResult(){
+    var d=calcData;
+    var numEl=$('mainNum'), statusEl=$('statusBox');
+    var shareBtn=$('shareBtn'), acts=document.querySelector('.receipt-actions');
+    var pdfBtn=acts?acts.querySelector('.pdfbtn'):null;
+
+    if(!legalConstsReady()){
+      numEl.textContent=t('pending');
+      numEl.classList.add('pending');
+      statusEl.textContent=t('statusPending');
+      statusEl.classList.add('pending');
+      if(shareBtn)shareBtn.disabled=true;
+      if(pdfBtn)pdfBtn.disabled=true;
+      $('detailRows').style.display='block';
+      $('rWage').textContent=fmtNum(d.wage)+' '+t('unitSom');
+      $('rReason').textContent=reasonLabel(d.reason);
+      if(window.KalkiCross)window.KalkiCross.removeCard('ishdan-boshash-arizasi-namunasi');
+      return;
+    }
+
+    /* Quyidagi filial LC.qiymat lar to'ldirilgach ishga tushadi —
+       hozircha o'lik kod emas, faqat hech qachon bajarilmaydi. */
+    numEl.classList.remove('pending');
+    statusEl.classList.remove('pending');
+    var monthly=LC.boshatish_oylik_soni.qiymat;
+    var bhmFloor=LC.boshatish_bhm_minimal.qiymat;
+    var amount=d.wage*monthly;
+    if(bhmFloor!=null)amount=Math.max(amount,bhmFloor);
+    numEl.textContent=fmtNum(amount)+' '+t('unitSom');
+    statusEl.textContent='';
+    if(shareBtn)shareBtn.disabled=false;
+    if(pdfBtn)pdfBtn.disabled=false;
+    $('detailRows').style.display='block';
+    $('rWage').textContent=fmtNum(d.wage)+' '+t('unitSom');
+    $('rReason').textContent=reasonLabel(d.reason);
+
+    if(window.KalkiCross){
+      window.KalkiCross.renderCard({
+        container:$('xlinkHost'),
+        targetSlug:'ishdan-boshash-arizasi-namunasi',targetPath:'ishdan-boshash-arizasi-namunasi',
+        fields:{},fromSlug:'ishdan-boshatish-kompensatsiyasi-kalkulyator',
+        icon:'📝',
+        uz:"Ishdan bo'shash arizasini to'ldirish",
+        ru:'Заполнить заявление об увольнении'
+      });
+    }
+  }
+
+  function recalc(){
+    var d=compute();
+    if(!d){calcData=null;$('receipt').classList.remove('show');if(window.KalkiCross)window.KalkiCross.removeCard('ishdan-boshash-arizasi-namunasi');return}
+    calcData=d;
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  $('calcBtn').onclick=function(){
+    recalc();
+    var r=$('receipt');
+    if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  ['wageInput','reasonSelect','stajInput'].forEach(function(id){
+    $(id).addEventListener('change',function(){if(calcData)recalc();save()});
+    $(id).addEventListener('input',function(){save()});
+  });
+
+  $('shareBtn').onclick=function(){
+    if(!calcData||!legalConstsReady())return;
+    var txt=t('shareTitle')+': '+$('mainNum').textContent;
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  /* ---------- saqlash (localStorage) ---------- */
+  var LS='kalki_boshatish_v1';
+  function collectStateForSave(){
+    return {wage:$('wageInput').value,reason:$('reasonSelect').value,staj:$('stajInput').value};
+  }
+  function save(){
+    try{localStorage.setItem(LS,JSON.stringify(collectStateForSave()))}catch(e){}
+  }
+  function restoreState(o){
+    if(!o)return false;
+    if(o.wage!=null)$('wageInput').value=o.wage;
+    if(o.reason)$('reasonSelect').value=o.reason;
+    if(o.staj!=null)$('stajInput').value=o.staj;
+    return true;
+  }
+  function loadFromLS(){
+    try{
+      var raw=localStorage.getItem(LS);
+      if(!raw)return false;
+      return restoreState(JSON.parse(raw));
+    }catch(e){return false}
+  }
+
+  /* ---------- URL orqali ulashish (?p=) ---------- */
+  window.__buildShareUrl=function(){
+    var o=collectStateForSave();
+    var json=JSON.stringify(o);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var json=decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/'))));
+      var o=JSON.parse(json);
+      return restoreState(o);
+    }catch(e){return false}
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  applyLang();
+  var restored=restoreFromUrl();
+  if(!restored)restored=loadFromLS();
+  applyLang();
+  if(restored)recalc();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    if(btn.disabled)return;
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='huquqiy';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',huquqiy:'Huquqiy',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',huquqiy:'Право',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

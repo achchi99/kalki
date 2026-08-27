@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<script src="/assets/crosslink.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Калькулятор компенсации за отпуск — расчёт онлайн</title>
+<link rel="canonical" href="https://kalki.uz/ru/tatil-puli-kalkulyator">
+<meta name="description" content="Рассчитайте компенсацию за неиспользованный отпуск по среднемесячной зарплате и числу дней отпуска. Согласно Трудовому кодексу Узбекистана. Бесплатно.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="huquqiy"]{--cat:#2C3E66;--cat-deep:#1F2C4A;--accent:#C9A227;--cat-soft:#EAEDF5;--cat-text:#B9C4DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.extra-note{font-size:12.5px;font-weight:600;color:var(--muted);background:#F2F5F3;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.2;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:disabled{opacity:.45;cursor:not-allowed;color:var(--muted)}
+.receipt-actions button:disabled:active{background:var(--card)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Ta'til puli (kompensatsiya) kalkulyatori — onlayn hisoblash">
+<meta property="og:description" content="Рассчитайте компенсацию за неиспользованный отпуск по среднемесячной зарплате и числу дней отпуска. Согласно Трудовому кодексу Узбекистана. Бесплатно.">
+<meta property="og:url" content="https://kalki.uz/ru/tatil-puli-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/tatil-puli-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ta'til puli kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/tatil-puli-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Ta'til puli (kompensatsiya) kalkulyatori — onlayn hisoblash">
+<meta name="twitter:description" content="Рассчитайте компенсацию за неиспользованный отпуск по среднемесячной зарплате и числу дней отпуска. Согласно Трудовому кодексу Узбекистана. Бесплатно.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Ta'til puli (kompensatsiya) kalkulyatori — o'rtacha oylik ish haqi va ishlatilmagan ta'til kunlari sonini kiriting, kompensatsiya miqdorini hisoblab beradi. O'zbekiston Mehnat kodeksiga muvofiq.","sources":[]},"ru":{"text":"Калькулятор компенсации за неиспользованный отпуск — введите среднемесячную зарплату и число неиспользованных дней отпуска, получите сумму компенсации. Согласно Трудовому кодексу Узбекистана.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="legalconst-data">{"tatil_kunlik_koeff":{"id":"tatil_kunlik_koeff","qiymat":null,"holat":"TASDIQLASH KERAK"},"tatil_minimal_kunlar":{"id":"tatil_minimal_kunlar","qiymat":null,"holat":"TASDIQLASH KERAK"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что такое компенсация за отпуск?","acceptedAnswer":{"@type":"Answer","text":"Компенсация за отпуск — это денежная выплата за дни ежегодного трудового отпуска, которые сотрудник не успел использовать. Чаще всего она выплачивается при увольнении, а иногда — при замене части отпуска деньгами в процессе работы."}},{"@type":"Question","name":"Кто может получить компенсацию за неиспользованный отпуск?","acceptedAnswer":{"@type":"Answer","text":"Любой увольняющийся сотрудник, у которого остались неиспользованные дни отпуска, имеет право на денежную компенсацию за эти дни. Возможность замены части отпуска деньгами в процессе работы регулируется отдельными условиями Трудового кодекса."}},{"@type":"Question","name":"Как рассчитывается компенсация за отпуск?","acceptedAnswer":{"@type":"Answer","text":"По общему принципу сначала определяется среднедневная зарплата (среднемесячная зарплата делится на среднее число дней в месяце), затем эта сумма умножается на число неиспользованных дней отпуска. Сколько дней отпуска не использовано, за столько дней и выплачивается компенсация."}},{"@type":"Question","name":"Выплачивается ли компенсация при увольнении?","acceptedAnswer":{"@type":"Answer","text":"Да. Согласно Трудовому кодексу, увольняющемуся сотруднику обязательно выплачивается денежная компенсация за все неиспользованные дни отпуска — это обязательная часть окончательного расчёта."}},{"@type":"Question","name":"Сколько дней неиспользованного отпуска оплачивается?","acceptedAnswer":{"@type":"Answer","text":"Точное число дней неиспользованного отпуска определяется по трудовой книжке или учёту организации — оно индивидуально и зависит от стажа работы. Это число вы вводите в калькулятор напрямую."}},{"@type":"Question","name":"Как определяется среднемесячная зарплата?","acceptedAnswer":{"@type":"Answer","text":"Среднемесячная зарплата обычно рассчитывается на основе дохода за последние несколько месяцев (может учитываться оклад, премии и другие постоянные выплаты). Точный метод расчёта рекомендуется уточнить в бухгалтерии или по соответствующей норме Трудового кодекса."}},{"@type":"Question","name":"Облагается ли компенсация за отпуск налогом?","acceptedAnswer":{"@type":"Answer","text":"Компенсация за отпуск, как и зарплата, считается доходом, и к ней могут применяться действующие налоги и социальные отчисления. Точный размер удержаний уточните в бухгалтерии вашей организации."}},{"@type":"Question","name":"Насколько точен результат калькулятора?","acceptedAnswer":{"@type":"Answer","text":"Калькулятор применяет общую формулу к введённым вами цифрам и предназначен только для приблизительной оценки. Официальный расчёт всегда выполняется бухгалтерией организации согласно действующим нормам Трудового кодекса."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Юридические","item":"https://kalki.uz/ru/#cat-huquqiy"},{"@type":"ListItem","position":3,"name":"Калькулятор компенсации за отпуск","item":"https://kalki.uz/ru/tatil-puli-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор компенсации за отпуск","description":"Рассчитайте компенсацию за неиспользованный отпуск по среднемесячной зарплате и числу дней отпуска. Согласно Трудовому кодексу Узбекистана. Бесплатно.","url":"https://kalki.uz/ru/tatil-puli-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/tatil-puli-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/tatil-puli-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/tatil-puli-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="huquqiy">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">🏖️ Юридические</span>
+    <h1 data-i="h1">Калькулятор компенсации за отпуск</h1>
+    <p class="sub" data-i="sub">Введите среднемесячную зарплату и число неиспользованных дней отпуска — рассчитаем сумму компенсации.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-huquqiy">Юридические</a><span class="sep">›</span><span class="cur">Калькулятор компенсации за отпуск</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор компенсации за неиспользованный отпуск — введите среднемесячную зарплату и число неиспользованных дней отпуска, получите сумму компенсации. Согласно Трудовому кодексу Узбекистана.</p></div>
+  <section class="form-card">
+    <div class="field">
+      <label for="wage" data-i="lWage">Среднемесячная зарплата</label>
+      <div class="input-shell">
+        <input type="text" id="wage" inputmode="numeric" autocomplete="off" placeholder="3 000 000">
+        <span class="unit" data-i="uSum">сум</span>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="days" data-i="lDays">Число неиспользованных дней отпуска</label>
+      <div class="input-shell">
+        <input type="text" id="days" inputmode="numeric" autocomplete="off" placeholder="12">
+        <span class="unit" data-i="uKun">дн.</span>
+      </div>
+    </div>
+
+    <details id="dExtra"><summary><span data-i="sExtra">Дополнительно (не обязательно)</span></summary><div class="sec-body">
+      <p class="extra-note" data-i="extraNote">Это поле только информационное — на формулу расчёта не влияет.</p>
+      <div class="field" style="margin-bottom:0">
+        <label for="stajYears" data-i="lStaj">Общий трудовой стаж (лет)</label>
+        <div class="input-shell">
+          <input type="text" id="stajYears" inputmode="numeric" autocomplete="off" placeholder="5">
+          <span class="unit" data-i="uYil">лет</span>
+        </div>
+      </div>
+    </div></details>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Вычислить</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">-</div>
+        <div class="lbl" data-i="lblMain">Компенсация за отпуск</div>
+      </div>
+      <div class="status-box" id="statusBox">-</div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kWage">Среднемесячная зарплата</span><span class="v" id="rWage">-</span></div>
+        <div class="rrow"><span class="k" data-i="kDays">Неиспользованные дни отпуска</span><span class="v" id="rDays">-</span></div>
+        <div class="rrow"><span class="k" data-i="kDaily">Среднедневная зарплата</span><span class="v" id="rDaily">-</span></div>
+        <div class="rrow" id="stajRow" style="display:none"><span class="k" data-i="kStaj">Общий трудовой стаж</span><span class="v" id="rStaj">-</span></div>
+      </div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare">Поделиться</button>
+      <button type="button" class="pdfbtn">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div>
+<section class="seo" id="seoBlock"><h2>Что такое компенсация за отпуск?</h2><p>Компенсация за отпуск — это денежная выплата за дни ежегодного трудового отпуска, которые сотрудник не успел использовать. Чаще всего она выплачивается при увольнении, а иногда — при замене части отпуска деньгами в процессе работы.</p><h2>Кто может получить компенсацию за неиспользованный отпуск?</h2><p>Любой увольняющийся сотрудник, у которого остались неиспользованные дни отпуска, имеет право на денежную компенсацию за эти дни. Возможность замены части отпуска деньгами в процессе работы регулируется отдельными условиями Трудового кодекса.</p><h2>Как рассчитывается компенсация за отпуск?</h2><p>По общему принципу сначала определяется среднедневная зарплата (среднемесячная зарплата делится на среднее число дней в месяце), затем эта сумма умножается на число неиспользованных дней отпуска. Сколько дней отпуска не использовано, за столько дней и выплачивается компенсация.</p><h2>Выплачивается ли компенсация при увольнении?</h2><p>Да. Согласно Трудовому кодексу, увольняющемуся сотруднику обязательно выплачивается денежная компенсация за все неиспользованные дни отпуска — это обязательная часть окончательного расчёта.</p><h2>Сколько дней неиспользованного отпуска оплачивается?</h2><p>Точное число дней неиспользованного отпуска определяется по трудовой книжке или учёту организации — оно индивидуально и зависит от стажа работы. Это число вы вводите в калькулятор напрямую.</p><h2>Как определяется среднемесячная зарплата?</h2><p>Среднемесячная зарплата обычно рассчитывается на основе дохода за последние несколько месяцев (может учитываться оклад, премии и другие постоянные выплаты). Точный метод расчёта рекомендуется уточнить в бухгалтерии или по соответствующей норме Трудового кодекса.</p><h2>Облагается ли компенсация за отпуск налогом?</h2><p>Компенсация за отпуск, как и зарплата, считается доходом, и к ней могут применяться действующие налоги и социальные отчисления. Точный размер удержаний уточните в бухгалтерии вашей организации.</p><h2>Насколько точен результат калькулятора?</h2><p>Калькулятор применяет общую формулу к введённым вами цифрам и предназначен только для приблизительной оценки. Официальный расчёт всегда выполняется бухгалтерией организации согласно действующим нормам Трудового кодекса.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="staj-kalkulyator" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Mehnat staji qanday hisoblanadi" data-art-ru="Как рассчитывается трудовой стаж">Как рассчитывается трудовой стаж</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #2C3E66;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Зарплата</span></a><a href="staj-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #2C3E66;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat staji" data-rel-ru="Трудовой стаж">Трудовой стаж</span></a><a href="pensiya-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #2C3E66;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Pensiya" data-rel-ru="Пенсия">Пенсия</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #2C3E66;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ariza namunasi" data-rel-ru="Образец заявления">Образец заявления</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Расчёт приблизительный и информационный. Официальный расчёт выполняет бухгалтерия организации согласно действующему Трудовому кодексу.</footer></main>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var lang='uz', calcData=null;
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+
+  var LEGAL=(function(){
+    try{
+      var el=document.getElementById('legalconst-data');
+      return el?JSON.parse(el.textContent):{};
+    }catch(e){return {}}
+  })();
+
+  function isGated(){
+    var c=LEGAL.tatil_kunlik_koeff;
+    if(!c)return true;
+    var v=c.qiymat;
+    return v===null||v===undefined||v===''||isNaN(parseFloat(v));
+  }
+
+  function compute(){
+    var wage=num($('wage').value);
+    var days=num($('days').value);
+    var staj=num($('stajYears').value);
+    if(!wage||!days)return null;
+    var gated=isGated();
+    var dailyRate=null,total=null;
+    if(!gated){
+      var koeff=parseFloat(LEGAL.tatil_kunlik_koeff.qiymat);
+      dailyRate=wage/koeff;
+      total=dailyRate*days;
+    }
+    return {wage:wage,days:days,staj:staj,gated:gated,dailyRate:dailyRate,total:total};
+  }
+
+  /* ---------- I18N ---------- */
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"🏖️ Huquqiy",
+      h1:"Ta'til puli kalkulyatori",
+      sub:"O'rtacha oylik ish haqi va ishlatilmagan ta'til kunlarini kiriting — kompensatsiya miqdori hisoblanadi.",
+      lWage:"O'rtacha oylik ish haqi",uSum:"so'm",
+      lDays:"Ishlatilmagan ta'til kunlari soni",uKun:"kun",
+      sExtra:"Qo'shimcha ma'lumot (ixtiyoriy)",
+      extraNote:"Bu maydon faqat ma'lumot uchun — hisob-kitob formulasiga ta'sir qilmaydi.",
+      lStaj:"Umumiy ish staji (yil)",uYil:"yil",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Ta'til puli (kompensatsiya)",
+      kWage:"O'rtacha oylik ish haqi",kDays:"Ishlatilmagan ta'til kunlari",kDaily:"O'rtacha kunlik ish haqi",kStaj:"Umumiy ish staji",
+      gated:"Ma'lumot yangilanmoqda",
+      statusGated:"Hisob-kitob uchun zarur bo'lgan rasmiy koeffitsiyent hozircha manbadan tasdiqlanmoqda. Tasdiqlangach, natija shu yerda avtomatik ko'rinadi.",
+      statusOk:"Natija siz kiritgan o'rtacha oylik ish haqi va ishlatilmagan ta'til kunlari asosida hisoblandi. Bu taxminiy hisob — rasmiy summani buxgalteriyangizdan tekshiring.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",shareTitle:"Ta'til puli hisobi",
+      foot:"Hisob taxminiy va ma'lumot uchun. Rasmiy hisob-kitob tashkilotingiz buxgalteriyasi va amaldagi Mehnat kodeksi normalariga muvofiq amalga oshiriladi.",
+      seo:'<h2>Ta\'til puli (kompensatsiya) nima?</h2><p>Ta\'til puli — bu xodim ishlatib ulgurmagan yillik mehnat ta\'tili kunlari uchun to\'lanadigan pul kompensatsiyasi. U asosan ishdan bo\'shatilganda, ba\'zan esa ish davomida ta\'tilning bir qismini pulga almashtirish tartibida to\'lanadi.</p><h2>Kim ishlatilmagan ta\'til uchun kompensatsiya olishi mumkin?</h2><p>Ishdan bo\'shayotgan har qanday xodim, agar unda ishlatilmagan ta\'til kunlari qolgan bo\'lsa, shu kunlar uchun pul kompensatsiyasi olish huquqiga ega. Ish davomida ta\'tilning ma\'lum qismini pulga almashtirish imkoniyati Mehnat kodeksida alohida shartlar bilan belgilanadi.</p><h2>Ta\'til puli qanday hisoblanadi?</h2><p>Umumiy tamoyil bo\'yicha avval o\'rtacha kunlik ish haqi aniqlanadi (o\'rtacha oylik ish haqi oyning o\'rtacha kun soniga bo\'linadi), so\'ng bu summa ishlatilmagan ta\'til kunlari soniga ko\'paytiriladi. Necha kunlik ishlatilmagan ta\'til bo\'lsa, shuncha kun uchun to\'lanadi.</p><h2>Ishdan bo\'shaganda ta\'til kompensatsiyasi to\'lanadimi?</h2><p>Ha. Mehnat kodeksiga muvofiq, ishdan bo\'shatilayotgan xodimga ishlatilmagan barcha ta\'til kunlari uchun pul kompensatsiyasi to\'lanishi shart — bu yakuniy hisob-kitobning majburiy qismi hisoblanadi.</p><h2>Necha kunlik ishlatilmagan ta\'til uchun pul to\'lanadi?</h2><p>Xodimning aynan qancha kun ta\'tili ishlatilmay qolgani mehnat kitobchasi yoki tashkilot hisobvarag\'i bo\'yicha aniqlanadi — bu shaxsga va ish stajiga qarab farq qiladi. Kalkulyatorga shu sonni to\'g\'ridan-to\'g\'ri kiritasiz.</p><h2>O\'rtacha oylik ish haqi qanday aniqlanadi?</h2><p>O\'rtacha oylik ish haqi odatda oxirgi bir necha oylik daromad asosida hisoblanadi (asosiy oylik, mukofot va boshqa doimiy to\'lovlar hisobga olinishi mumkin). Aniq hisob usulini buxgalteriya yoki Mehnat kodeksining tegishli qoidasi bo\'yicha tekshirish tavsiya etiladi.</p><h2>Ta\'til puli soliqqa tortiladimi?</h2><p>Ta\'til puli, xuddi ish haqi kabi, daromad hisoblanadi va unga nisbatan amaldagi soliq va ijtimoiy ajratmalar qo\'llanilishi mumkin. Aniq ushlanma miqdorini tashkilotingiz buxgalteriyasidan so\'rang.</p><h2>Kalkulyator natijasi qanchalik aniq?</h2><p>Kalkulyator siz kiritgan raqamlar asosida umumiy formulani qo\'llaydi va faqat taxminiy/ma\'lumot uchun mo\'ljallangan. Rasmiy hisob-kitob har doim tashkilotingiz buxgalteriyasi va amaldagi Mehnat kodeksi normalariga muvofiq amalga oshiriladi.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"🏖️ Юридические",
+      h1:"Калькулятор компенсации за отпуск",
+      sub:"Введите среднемесячную зарплату и число неиспользованных дней отпуска — рассчитаем сумму компенсации.",
+      lWage:"Среднемесячная зарплата",uSum:"сум",
+      lDays:"Число неиспользованных дней отпуска",uKun:"дн.",
+      sExtra:"Дополнительно (не обязательно)",
+      extraNote:"Это поле только информационное — на формулу расчёта не влияет.",
+      lStaj:"Общий трудовой стаж (лет)",uYil:"лет",
+      btnCalc:"Вычислить",rTag:"Результат расчёта",
+      lblMain:"Компенсация за отпуск",
+      kWage:"Среднемесячная зарплата",kDays:"Неиспользованные дни отпуска",kDaily:"Среднедневная зарплата",kStaj:"Общий трудовой стаж",
+      gated:"Информация обновляется",
+      statusGated:"Официальный коэффициент, необходимый для расчёта, пока подтверждается по источнику. После подтверждения результат появится здесь автоматически.",
+      statusOk:"Результат рассчитан по введённым вами среднемесячной зарплате и числу неиспользованных дней отпуска. Это приблизительный расчёт — точную сумму уточните в бухгалтерии.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",shareTitle:"Расчёт компенсации за отпуск",
+      foot:"Расчёт приблизительный и информационный. Официальный расчёт выполняет бухгалтерия организации согласно действующему Трудовому кодексу.",
+      seo:'<h2>Что такое компенсация за отпуск?</h2><p>Компенсация за отпуск — это денежная выплата за дни ежегодного трудового отпуска, которые сотрудник не успел использовать. Чаще всего она выплачивается при увольнении, а иногда — при замене части отпуска деньгами в процессе работы.</p><h2>Кто может получить компенсацию за неиспользованный отпуск?</h2><p>Любой увольняющийся сотрудник, у которого остались неиспользованные дни отпуска, имеет право на денежную компенсацию за эти дни. Возможность замены части отпуска деньгами в процессе работы регулируется отдельными условиями Трудового кодекса.</p><h2>Как рассчитывается компенсация за отпуск?</h2><p>По общему принципу сначала определяется среднедневная зарплата (среднемесячная зарплата делится на среднее число дней в месяце), затем эта сумма умножается на число неиспользованных дней отпуска. Сколько дней отпуска не использовано, за столько дней и выплачивается компенсация.</p><h2>Выплачивается ли компенсация при увольнении?</h2><p>Да. Согласно Трудовому кодексу, увольняющемуся сотруднику обязательно выплачивается денежная компенсация за все неиспользованные дни отпуска — это обязательная часть окончательного расчёта.</p><h2>Сколько дней неиспользованного отпуска оплачивается?</h2><p>Точное число дней неиспользованного отпуска определяется по трудовой книжке или учёту организации — оно индивидуально и зависит от стажа работы. Это число вы вводите в калькулятор напрямую.</p><h2>Как определяется среднемесячная зарплата?</h2><p>Среднемесячная зарплата обычно рассчитывается на основе дохода за последние несколько месяцев (может учитываться оклад, премии и другие постоянные выплаты). Точный метод расчёта рекомендуется уточнить в бухгалтерии или по соответствующей норме Трудового кодекса.</p><h2>Облагается ли компенсация за отпуск налогом?</h2><p>Компенсация за отпуск, как и зарплата, считается доходом, и к ней могут применяться действующие налоги и социальные отчисления. Точный размер удержаний уточните в бухгалтерии вашей организации.</p><h2>Насколько точен результат калькулятора?</h2><p>Калькулятор применяет общую формулу к введённым вами цифрам и предназначен только для приблизительной оценки. Официальный расчёт всегда выполняется бухгалтерией организации согласно действующим нормам Трудового кодекса.</p>'
+    }
+  };
+
+  var t=function(k){return I[lang][k]};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Калькулятор компенсации за отпуск — расчёт онлайн'
+      : "Ta'til puli (kompensatsiya) kalkulyatori — onlayn hisoblash";
+    var metaDesc=lang==='ru'
+      ? 'Рассчитайте компенсацию за неиспользованный отпуск по среднемесячной зарплате и числу дней отпуска. Согласно Трудовому кодексу Узбекистана. Бесплатно.'
+      : "O'rtacha oylik ish haqi va ishlatilmagan ta'til kunlari asosida ta'til puli (kompensatsiya) miqdorini bepul hisoblang. Manba: Mehnat kodeksi.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    var rt=$('relTitle');
+    if(rt)rt.textContent=lang==='ru'?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+    var rl=document.querySelectorAll('[data-rel-uz]');
+    for(var j=0;j<rl.length;j++)rl[j].textContent=rl[j].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(calcData)renderResult();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  $('wage').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmt(parseInt(v,10)):'';
+    save();
+  });
+  $('days').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v;
+    save();
+  });
+  $('stajYears').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v;
+    save();
+  });
+
+  function renderResult(){
+    var d=calcData;
+    $('rWage').textContent=fmt(d.wage)+' '+t('uSum');
+    $('rDays').textContent=d.days+' '+t('uKun');
+    if(d.gated){
+      $('mainNum').textContent=t('gated');
+      $('rDaily').textContent=t('gated');
+    }else{
+      $('mainNum').textContent=fmt(d.total)+' '+t('uSum');
+      $('rDaily').textContent=fmt(d.dailyRate)+' '+t('uSum');
+    }
+    var stajRow=$('stajRow');
+    if(d.staj){
+      stajRow.style.display='flex';
+      $('rStaj').textContent=d.staj+' '+t('uYil');
+    }else{
+      stajRow.style.display='none';
+    }
+    $('statusBox').textContent=d.gated?t('statusGated'):t('statusOk');
+    var shareBtn=$('shareBtn'), pdfBtn=document.querySelector('#receipt .pdfbtn');
+    shareBtn.disabled=!!d.gated;
+    if(pdfBtn)pdfBtn.disabled=!!d.gated;
+  }
+
+  function crossUpdate(){
+    if(!window.KalkiCross)return;
+    var acts=document.querySelector('.receipt-actions');
+    if(!acts||!acts.parentNode)return;
+    var v=(calcData&&!calcData.gated)?Math.round(calcData.total):0;
+    if(v&&v>0){
+      window.KalkiCross.renderCard({
+        container:acts.parentNode,
+        targetSlug:'ariza-namunasi',targetPath:'ariza-namunasi',
+        fields:{amount:v},
+        fromSlug:'tatil-puli-kalkulyator',
+        icon:'📄',
+        uz:"Ariza namunasini to'ldirish",
+        ru:"Заполнить образец заявления"
+      });
+    }else{
+      window.KalkiCross.removeCard('ariza-namunasi');
+    }
+  }
+
+  function recalc(){
+    var d=compute();
+    if(!d){
+      calcData=null;
+      $('receipt').classList.remove('show');
+      crossUpdate();
+      return;
+    }
+    calcData=d;
+    renderResult();
+    $('receipt').classList.add('show');
+    crossUpdate();
+  }
+
+  $('calcBtn').onclick=function(){
+    recalc();
+    var r=$('receipt');
+    if(r&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  $('shareBtn').onclick=function(){
+    if(!calcData||calcData.gated)return;
+    var txt=t('shareTitle')+': '+fmt(calcData.total)+' '+t('uSum');
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  /* ---------- saqlash (localStorage) ---------- */
+  var LS='kalki_tatilpuli_v1';
+  function collectStateForSave(){
+    return {wage:$('wage').value,days:$('days').value,staj:$('stajYears').value};
+  }
+  function save(){
+    try{localStorage.setItem(LS,JSON.stringify(collectStateForSave()))}catch(e){}
+  }
+  function restoreState(o){
+    if(!o)return false;
+    if(o.wage)$('wage').value=o.wage;
+    if(o.days)$('days').value=o.days;
+    if(o.staj)$('stajYears').value=o.staj;
+    return true;
+  }
+  function loadFromLS(){
+    try{
+      var raw=localStorage.getItem(LS);
+      if(!raw)return false;
+      return restoreState(JSON.parse(raw));
+    }catch(e){return false}
+  }
+
+  /* ---------- URL orqali ulashish (?p=) ---------- */
+  window.__buildShareUrl=function(){
+    var o=collectStateForSave();
+    var json=JSON.stringify(o);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var json=decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/'))));
+      var o=JSON.parse(json);
+      return restoreState(o);
+    }catch(e){return false}
+  }
+
+  /* ---------- ishga tushirish ---------- */
+  applyLang();
+  var restored=restoreFromUrl();
+  if(!restored)restored=loadFromLS();
+  applyLang();
+  if(restored)recalc();
+  setTimeout(crossUpdate,300);
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    if(btn.disabled)return;
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='huquqiy';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',huquqiy:'Huquqiy',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',huquqiy:'Юридические',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

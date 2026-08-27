@@ -100,7 +100,11 @@
     'mehnat-shartnomasi-namunasi': { uz: 'Mehnat shartnomasi', ru: 'Трудовой договор' },
     'ijara-shartnomasi-namunasi': { uz: 'Ijara shartnomasi', ru: 'Договор аренды' },
     'tilxat-namunasi': { uz: 'Tilxat', ru: 'Расписка' },
-    'omonat-kalkulyator': { uz: 'Omonat kalkulyatori', ru: 'Депозитный калькулятор' }
+    'omonat-kalkulyator': { uz: 'Omonat kalkulyatori', ru: 'Депозитный калькулятор' },
+    'tatil-puli-kalkulyator': { uz: "Ta'til puli kalkulyatori", ru: 'Калькулятор компенсации за отпуск' },
+    'dekret-puli-kalkulyator': { uz: 'Dekret puli kalkulyatori', ru: 'Калькулятор декретных выплат' },
+    'ishdan-boshatish-kompensatsiyasi-kalkulyator': { uz: "Ishdan bo'shatish kompensatsiyasi", ru: 'Калькулятор компенсации при увольнении' },
+    'aliment-kalkulyator': { uz: 'Aliment kalkulyatori', ru: 'Калькулятор алиментов' }
   };
 
   /* Maqsad sahifada chaqiriladi: ?xfrom= bo'lsa, ko'rsatilgan

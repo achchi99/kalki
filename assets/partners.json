@@ -16,6 +16,13 @@
         "ru": "Официальный перечень банков Узбекистана (Центральный банк)"
       }
     },
+    "huquqiy": {
+      "url": "https://lex.uz/",
+      "label": {
+        "uz": "O'zbekiston qonunchilik ma'lumotlari milliy bazasi (lex.uz)",
+        "ru": "Национальная база данных законодательства Узбекистана (lex.uz)"
+      }
+    },
     "talim": {
       "url": "https://kalki.uz/hamkorlik",
       "label": {

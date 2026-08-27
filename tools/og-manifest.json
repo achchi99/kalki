@@ -439,5 +439,47 @@
     "hash": "05ca52483a67",
     "tpl": 1,
     "v": 1
+  },
+  "aliment-kalkulyator": {
+    "title": "👨‍👧 Aliment kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "6e8ee6afb2c4",
+    "tpl": 1,
+    "v": 1
+  },
+  "dekret-puli-kalkulyator": {
+    "title": "Dekret to'lovi kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "9a530243f462",
+    "tpl": 1,
+    "v": 1
+  },
+  "ishdan-boshatish-kompensatsiyasi-kalkulyator": {
+    "title": "📤 Ishdan bo'shatish kompensatsiyasi kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "f2ebcbf9109f",
+    "tpl": 1,
+    "v": 1
+  },
+  "kasallik-varaqasi-kalkulyator": {
+    "title": "Kasallik varaqasi to'lovi kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "f758abe9e2b9",
+    "tpl": 1,
+    "v": 1
+  },
+  "tatil-puli-kalkulyator": {
+    "title": "Ta'til puli kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "9a4d3006abe6",
+    "tpl": 1,
+    "v": 1
+  },
+  "yhxx-jarima-kalkulyator": {
+    "title": "YHXX jarimalari kalkulyatori",
+    "cat": "huquqiy",
+    "hash": "274b55ba5c5c",
+    "tpl": 1,
+    "v": 1
   }
 }

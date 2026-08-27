@@ -20,6 +20,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
 <script src="assets/answerbox.js" defer=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ariza namunasi — onlayn to'ldirib, Word yuklab oling</title>
@@ -241,7 +242,7 @@ img,svg{height:auto}
 
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">26.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
 </div>
 
 <script src="assets/docgen.js"></script>
@@ -474,6 +475,7 @@ document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};
 
 applyLang();
 KD.init(CFG);
+setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight([]);},220);
 
 var jb=document.getElementById('jumpBtn');
 if(jb)jb.onclick=function(){

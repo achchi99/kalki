@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DTM ball kalkulyatori — abituriyent balini hisoblash</title>
+<link rel="canonical" href="https://kalki.uz/ru/dtm-kalkulyator">
+<meta name="description" content="DTM ball kalkulyatori: to'g'ri javoblar bo'yicha 3,1 / 2,1 / 1,1 koeffitsiyentlarda umumiy balni hisoblang. Kalkulyator ballov DTM.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+.cert-toggle{display:flex;align-items:center;gap:8px;margin-top:10px;padding:9px 11px;background:var(--cat-soft);border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cert-toggle input{width:18px;height:18px;accent-color:var(--cat);flex-shrink:0}
+.cert-toggle label{font-size:12.5px;font-weight:700;color:var(--cat);cursor:pointer;line-height:1.35}
+.cert-level{display:none;margin-top:8px}
+.cert-level.show{display:block}
+.cert-level .seg{display:flex;background:#EEF2EF;border-radius:9px;padding:4px;gap:4px}
+.cert-level .seg button{flex:1;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cert-level .seg button.on{background:var(--cat);color:#fff}
+.counter.dim{opacity:.4;pointer-events:none}
+.cert-score{display:none;margin-top:8px}
+.cert-score.show{display:block}
+.cert-score .cs-shell{display:flex;align-items:center;border:1.5px solid var(--cat);border-radius:9px;background:#fff;overflow:hidden}
+.cert-score .cs-shell input{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:800;color:var(--ink);padding:10px 12px;min-width:0}
+.cert-score .cs-unit{font-size:12px;font-weight:700;color:var(--muted);padding:0 11px;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.cert-grade{font-size:12px;font-weight:800;margin-top:6px}
+.cert-grade.g-max{color:#1E6B45}
+.cert-grade.g-prop{color:#8A6D1F}
+.cert-grade.g-low{color:#B3261E}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.subject{border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;background:#FBFCFB}
+.subj-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.subj-name{font-size:14.5px;font-weight:800}
+.subj-coef{font-size:12px;font-weight:800;color:var(--cat);background:var(--cat-soft);border-radius:99px;padding:3px 10px}
+.counter{display:flex;align-items:center;gap:12px}
+.cnt-btn{width:44px;height:44px;border:1.5px solid var(--line);background:#fff;border-radius:11px;font-size:20px;font-weight:800;color:var(--cat);cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.cnt-btn:active{background:var(--cat-soft)}
+.cnt-val{flex:1;text-align:center}
+.cnt-val input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:24px;font-weight:800;color:var(--ink);text-align:center}
+.cnt-max{font-size:11.5px;color:var(--muted);font-weight:700;text-align:center}
+.subj-pts{font-size:12.5px;color:var(--muted);font-weight:700;text-align:right;margin-top:8px}
+.subj-pts b{color:var(--cat);font-size:14px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.norm-banner{margin-top:20px;background:var(--cat);color:#fff;border-radius:var(--radius);padding:18px 20px;box-shadow:0 8px 22px rgba(0,0,0,.15)}
+.norm-banner .nb-lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cat-text)}
+.norm-banner .nb-num{font-size:36px;font-weight:800;margin-top:4px}
+.norm-banner .nb-num small{font-size:16px;font-weight:700;color:var(--cat-text)}
+.progress{margin-top:12px;background:rgba(255,255,255,.18);border-radius:99px;height:10px;overflow:hidden}
+.progress .bar{height:100%;background:var(--accent);border-radius:99px;transition:width .3s ease}
+.nb-pct{margin-top:8px;font-size:13px;font-weight:700;color:var(--cat-text)}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="DTM ball kalkulyatori — abituriyent balini hisoblash">
+<meta property="og:description" content="DTM ball kalkulyatori: to'g'ri javoblar bo'yicha 3,1 / 2,1 / 1,1 koeffitsiyentlarda umumiy balni hisoblang. Kalkulyator ballov DTM.">
+<meta property="og:url" content="https://kalki.uz/ru/dtm-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/dtm-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DTM ball kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/dtm-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="DTM ball kalkulyatori — abituriyent balini hisoblash">
+<meta name="twitter:description" content="DTM ball kalkulyatori: to'g'ri javoblar bo'yicha 3,1 / 2,1 / 1,1 koeffitsiyentlarda umumiy balni hisoblang. Kalkulyator ballov DTM.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"DTM ball kalkulyatori — har fan bo'yicha to'g'ri javoblar sonini kiriting, umumiy ball tegishli koeffitsiyentlar bilan avtomatik hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор баллов ДТМ — введите количество правильных ответов по каждому предмету, общий балл рассчитается автоматически с учётом коэффициентов.","sources":[]},"updated":"2026-08-26"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как считается балл ДТМ?","acceptedAnswer":{"@type":"Answer","text":"На экзамене ДТМ каждый блок предметов имеет свой коэффициент: 1-й блок (профильный) — 3.1, 2-й — 2.1, 3-й (обязательные) — 1.1. Каждый правильный ответ умножается на коэффициент. Введите число верных ответов по блокам, и калькулятор посчитает общий балл."}},{"@type":"Question","name":"Какой максимальный балл?","acceptedAnswer":{"@type":"Answer","text":"Максимум — 189: из 1-го блока 93 (30 вопросов × 3.1), из 2-го 63 (30 × 2.1), из 3-го 33 (30 × 1.1). Для гранта обычно нужно 150+, но это зависит от направления и вуза."}},{"@type":"Question","name":"Как сертификат влияет на балл?","acceptedAnswer":{"@type":"Answer","text":"При наличии языкового (IELTS, CEFR) или национального сертификата по соответствующему предмету даётся максимальный или частичный балл. Например, сертификат B2+ по английскому даёт 100% по английскому. Включите «есть сертификат» в калькуляторе, и он это учтёт."}},{"@type":"Question","name":"Пройду ли на грант?","acceptedAnswer":{"@type":"Answer","text":"Для гранта нужен достаточный балл и наличие свободного грантового места по направлению. Посмотрите проходные баллы прошлого года и сравните. Калькулятор точно считает балл, но приём зависит от конкурса этого года."}},{"@type":"Question","name":"Сколько баллов нужно на контракт?","acceptedAnswer":{"@type":"Answer","text":"Для контракта (платного) обычно хватает меньше, чем на грант — часто 90–130 баллов. Но на популярных направлениях контрактный балл тоже может быть высоким. Проверьте порог по данным вуза за прошлый год."}},{"@type":"Question","name":"Как повысить балл?","acceptedAnswer":{"@type":"Answer","text":"Наибольший вес — 1-й блок (коэффициент 3.1), поэтому уделите профильному предмету больше внимания: один верный ответ — 3.1 балла. Языковой или национальный сертификат тоже сильно помогает. Пробуйте разные сценарии в калькуляторе."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Жизнь","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор баллов DTM","item":"https://kalki.uz/ru/dtm-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор баллов DTM","description":"DTM ball kalkulyatori: to'g'ri javoblar bo'yicha 3,1 / 2,1 / 1,1 koeffitsiyentlarda umumiy balni hisoblang. Kalkulyator ballov DTM.","url":"https://kalki.uz/ru/dtm-kalkulyator","applicationCategory":"EducationApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-08-26"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/dtm-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/dtm-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/dtm-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="hayot">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    
+    <span class="cat-badge" data-i="cat">Жизнь</span>
+    <h1 data-i="h1">Калькулятор баллов DTM</h1>
+    <p class="sub" data-i="sub">Введите число правильных ответов по каждому предмету — общий балл с коэффициентами рассчитается мгновенно.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-hayot">Жизнь</a><span class="sep">›</span><span class="cur">Калькулятор баллов DTM</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор баллов ДТМ — введите количество правильных ответов по каждому предмету, общий балл рассчитается автоматически с учётом коэффициентов.</p><div class="ab-meta">Обновлено: 2026-08-26</div></div>
+  <section class="form-card">
+    <div class="subject">
+      <div class="subj-head"><span class="subj-name" data-i="s1n">1-й основной предмет</span><span class="subj-coef">× 3,1</span></div>
+      <div class="counter" id="cnt1">
+        <button type="button" class="cnt-btn" data-t="f1" data-d="-1">−</button>
+        <div class="cnt-val"><input type="text" id="f1" inputmode="numeric" value="20"><div class="cnt-max" data-i="max30">0–30 вопросов</div></div>
+        <button type="button" class="cnt-btn" data-t="f1" data-d="1">+</button>
+      </div>
+      <div class="cert-toggle"><input type="checkbox" id="cert1"><label for="cert1" data-i="certLbl">Есть сертификат по этому предмету (баллы вместо теста)</label></div>
+      <div class="cert-mode" id="certMode1" style="display:none">
+        <div class="seg" style="margin-top:8px"><button type="button" data-cm="1" data-m="lang" class="on" data-i="mLang">Сертификат по языку</button><button type="button" data-cm="1" data-m="milliy" data-i="mMilliy">Нац. сертификат</button></div>
+        <div class="cert-level show" id="certLvl1" style="margin-top:8px"><div class="seg"><button type="button" data-cl="1" data-lv="100" class="on" data-i="lvFull">B2+ / полный (100%)</button><button type="button" data-cl="1" data-lv="75" data-i="lvB1">B1 (75%)</button></div></div>
+        <div class="cert-score" id="certScore1"><div class="cs-shell"><input type="text" id="cs1" inputmode="numeric" value="75" placeholder="46-100"><span class="cs-unit" data-i="csUnit">балл сертификата</span></div><div class="cert-grade" id="grade1"></div></div>
+      </div>
+      <div class="subj-pts"><span data-i="pts">Баллы:</span> <b id="p1">62,0</b></div>
+    </div>
+
+    <div class="subject">
+      <div class="subj-head"><span class="subj-name" data-i="s2n">2-й основной предмет</span><span class="subj-coef">× 2,1</span></div>
+      <div class="counter" id="cnt2">
+        <button type="button" class="cnt-btn" data-t="f2" data-d="-1">−</button>
+        <div class="cnt-val"><input type="text" id="f2" inputmode="numeric" value="20"><div class="cnt-max" data-i="max30">0–30 вопросов</div></div>
+        <button type="button" class="cnt-btn" data-t="f2" data-d="1">+</button>
+      </div>
+      <div class="cert-toggle"><input type="checkbox" id="cert2"><label for="cert2" data-i="certLbl">Есть сертификат по этому предмету (баллы вместо теста)</label></div>
+      <div class="cert-mode" id="certMode2" style="display:none">
+        <div class="seg" style="margin-top:8px"><button type="button" data-cm="2" data-m="lang" class="on" data-i="mLang">Сертификат по языку</button><button type="button" data-cm="2" data-m="milliy" data-i="mMilliy">Нац. сертификат</button></div>
+        <div class="cert-level show" id="certLvl2" style="margin-top:8px"><div class="seg"><button type="button" data-cl="2" data-lv="100" class="on" data-i="lvFull">B2+ / полный (100%)</button><button type="button" data-cl="2" data-lv="75" data-i="lvB1">B1 (75%)</button></div></div>
+        <div class="cert-score" id="certScore2"><div class="cs-shell"><input type="text" id="cs2" inputmode="numeric" value="75" placeholder="46-100"><span class="cs-unit" data-i="csUnit">балл сертификата</span></div><div class="cert-grade" id="grade2"></div></div>
+      </div>
+      <div class="subj-pts"><span data-i="pts">Баллы:</span> <b id="p2">42,0</b></div>
+    </div>
+
+    <div class="subject" style="margin-bottom:0">
+      <div class="subj-head"><span class="subj-name" data-i="s3n">Обязательные предметы (всего)</span><span class="subj-coef">× 1,1</span></div>
+      <div class="counter" id="cnt3">
+        <button type="button" class="cnt-btn" data-t="f3" data-d="-1">−</button>
+        <div class="cnt-val"><input type="text" id="f3" inputmode="numeric" value="20"><div class="cnt-max" data-i="max30">0–30 вопросов</div></div>
+        <button type="button" class="cnt-btn" data-t="f3" data-d="1">+</button>
+      </div>
+      <div class="cert-toggle"><input type="checkbox" id="cert3"><label for="cert3" data-i="certLbl3">Есть нац. сертификат по обязательному предмету (макс. балл)</label></div>
+      <div class="subj-pts"><span data-i="pts">Баллы:</span> <b id="p3">22,0</b></div>
+      <p class="hint" data-i="h3">Родной язык, математика и история Узбекистана — по 10 вопросов, всего 30.</p>
+    </div>
+  </section>
+
+  <section class="norm-banner" aria-live="polite">
+    <div class="nb-lbl" data-i="nbLbl">Ваш общий балл DTM</div>
+    <div class="nb-num"><span id="totalPts">126,0</span> <small>/ 189,0</small></div>
+    <div class="progress"><div class="bar" id="bar" style="width: 67%;"></div></div>
+    <div class="nb-pct" id="pctTxt">Это 67% от максимума</div>
+  </section>
+
+  <div class="receipt-actions"><button type="button" id="shareBtn">Поделиться</button><button type="button" class="pdfbtn">PDF</button></div>
+
+<div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div><section class="seo" id="seoBlock"><h2>Как считается балл ДТМ?</h2><p>На экзамене ДТМ каждый блок предметов имеет свой коэффициент: 1-й блок (профильный) — 3.1, 2-й — 2.1, 3-й (обязательные) — 1.1. Каждый правильный ответ умножается на коэффициент. Введите число верных ответов по блокам, и калькулятор посчитает общий балл.</p><h2>Какой максимальный балл?</h2><p>Максимум — 189: из 1-го блока 93 (30 вопросов × 3.1), из 2-го 63 (30 × 2.1), из 3-го 33 (30 × 1.1). Для гранта обычно нужно 150+, но это зависит от направления и вуза.</p><h2>Как сертификат влияет на балл?</h2><p>При наличии языкового (IELTS, CEFR) или национального сертификата по соответствующему предмету даётся максимальный или частичный балл. Например, сертификат B2+ по английскому даёт 100% по английскому. Включите «есть сертификат» в калькуляторе, и он это учтёт.</p><h2>Пройду ли на грант?</h2><p>Для гранта нужен достаточный балл и наличие свободного грантового места по направлению. Посмотрите проходные баллы прошлого года и сравните. Калькулятор точно считает балл, но приём зависит от конкурса этого года.</p><h2>Сколько баллов нужно на контракт?</h2><p>Для контракта (платного) обычно хватает меньше, чем на грант — часто 90–130 баллов. Но на популярных направлениях контрактный балл тоже может быть высоким. Проверьте порог по данным вуза за прошлый год.</p><h2>Как повысить балл?</h2><p>Наибольший вес — 1-й блок (коэффициент 3.1), поэтому уделите профильному предмету больше внимания: один верный ответ — 3.1 балла. Языковой или национальный сертификат тоже сильно помогает. Пробуйте разные сценарии в калькуляторе.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="dtm-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="DTM 2026: ball va grant qo'llanmasi" data-art-ru="ДТМ 2026: балл и грант">ДТМ 2026: балл и грант</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Детское пособие 2026: новые размеры</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="pensiya-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Pensiya" data-rel-ru="Пенсия">Пенсия</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Семейный бюджет</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Кредит</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Коэффициенты: 3,1 / 2,1 / 1,1. Максимум 189,0 баллов. Сертификат: B2+ полный балл, B1 по языку 75%. Проходной на грант зависит от направления и года.</footer></main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      cat:"Hayotiy",
+      h1:"DTM ball kalkulyatori",
+      sub:"Har fandagi to'g'ri javoblar sonini kiriting — umumiy balingiz koeffitsiyentlar bilan darhol hisoblanadi.",
+      s1n:"1-asosiy fan",s2n:"2-asosiy fan",s3n:"Majburiy fanlar (jami)",
+      max30:"0–30 savol",
+      certLbl:"Bu fandan sertifikatim bor (test o'rniga ball)",
+      certLbl3:"Majburiy fandan milliy sertifikatim bor (maksimal ball)",
+      lvFull:"B2+ / to'liq (100%)",lvB1:"B1 (75%)",
+      mLang:"Chet tili sertifikati",mMilliy:"Milliy sertifikat",
+      csUnit:"sertifikat bali",
+      gradeMax:"{g} daraja → maksimal ball (100%)",
+      gradeProp:"{g} daraja → proporsional: {p}% ball",
+      gradeLow:"46 balldan kam — daraja berilmaydi",
+      pts:"Ball:",
+      h3:"Ona tili, matematika va O'zbekiston tarixi — har biri 10 tadan, jami 30 savol.",
+      nbLbl:"Umumiy DTM balingiz",
+      pctFmt:"Bu maksimal balning {p}% i",
+      foot:"Koeffitsiyentlar: 3,1 / 2,1 / 1,1. Maksimal 189,0 ball. Sertifikat: B2+ to'liq ball, B1 chet tilida 75%. Grant chegarasi yo'nalish va yilga qarab farq qiladi.",
+      seo:'<h2>DTM balli qanday hisoblanadi?</h2><p>DTM (Davlat test markazi) imtihonida har fan bloki alohida koeffitsiyentga ega: 1-blok (asosiy fan) 3.1, 2-blok 2.1, 3-blok (majburiy fanlar) 1.1. Har to’g’ri javob shu koeffitsiyentga ko’paytiriladi. Kalkulyator har blokdagi to’g’ri javoblaringizni kiritsangiz, umumiy ballni avtomatik hisoblaydi.</p><h2>Maksimal ball necha?</h2><p>Maksimal ball 189 — bu 1-blokdan 93 (30 savol × 3.1), 2-blokdan 63 (30 × 2.1), 3-blokdan 33 (30 × 1.1) yig’indisi. Grantga kirish uchun odatda 150+ ball kerak, lekin bu yo’nalish va universitetga qarab farq qiladi.</p><h2>Sertifikat ballga qanday ta’sir qiladi?</h2><p>Til sertifikati (IELTS, CEFR) yoki milliy sertifikat bo’lsa, tegishli fandan maksimal yoki qisman ball beriladi. Masalan B2+ ingliz tili sertifikati ingliz tili fanidan 100% ball beradi. Kalkulyatorda “sertifikatim bor” belgisini yoqsangiz, buni hisobga oladi.</p><h2>Grantga kira olamanmi?</h2><p>Grant (davlat hisobidan o’qish) uchun ball yetarli bo’lishi va o’sha yo’nalishda bo’sh grant o’rni bo’lishi kerak. O’tgan yilgi o’tish balllarini ko’rib, o’zingizni solishtiring. Bu kalkulyator ballni aniq hisoblaydi, lekin qabul o’sha yilgi raqobatga bog’liq.</p><h2>Kontrakt uchun qancha ball kerak?</h2><p>Kontrakt (pullik o’qish) uchun odatda grantdan past ball yetadi — ko’pincha 90–130 ball. Lekin ba’zi mashhur yo’nalishlarda kontrakt balli ham yuqori bo’lishi mumkin. Ball chegarasini universitetning o’tgan yilgi ma’lumotlaridan tekshiring.</p><h2>Ballni qanday oshiraman?</h2><p>Eng katta ta’sir — 1-blok (koeffitsiyent 3.1), shuning uchun asosiy fanga ko’proq e’tibor bering: bitta to’g’ri javob 3.1 ball. Til yoki milliy sertifikat olsangiz ham katta yordam beradi. Kalkulyatorda turli stsenariylarni sinab, qaysi blok ko’proq ball berishini ko’ring.</p>'
+    },
+    ru:{
+      cat:"Жизнь",
+      h1:"Калькулятор баллов DTM",
+      sub:"Введите число правильных ответов по каждому предмету — общий балл с коэффициентами рассчитается мгновенно.",
+      s1n:"1-й основной предмет",s2n:"2-й основной предмет",s3n:"Обязательные предметы (всего)",
+      max30:"0–30 вопросов",
+      certLbl:"Есть сертификат по этому предмету (баллы вместо теста)",
+      certLbl3:"Есть нац. сертификат по обязательному предмету (макс. балл)",
+      lvFull:"B2+ / полный (100%)",lvB1:"B1 (75%)",
+      mLang:"Сертификат по языку",mMilliy:"Нац. сертификат",
+      csUnit:"балл сертификата",
+      gradeMax:"Уровень {g} → макс. балл (100%)",
+      gradeProp:"Уровень {g} → пропорционально: {p}% балла",
+      gradeLow:"Меньше 46 — уровень не присваивается",
+      pts:"Баллы:",
+      h3:"Родной язык, математика и история Узбекистана — по 10 вопросов, всего 30.",
+      nbLbl:"Ваш общий балл DTM",
+      pctFmt:"Это {p}% от максимума",
+      foot:"Коэффициенты: 3,1 / 2,1 / 1,1. Максимум 189,0 баллов. Сертификат: B2+ полный балл, B1 по языку 75%. Проходной на грант зависит от направления и года.",
+      seo:'<h2>Как считается балл ДТМ?</h2><p>На экзамене ДТМ каждый блок предметов имеет свой коэффициент: 1-й блок (профильный) — 3.1, 2-й — 2.1, 3-й (обязательные) — 1.1. Каждый правильный ответ умножается на коэффициент. Введите число верных ответов по блокам, и калькулятор посчитает общий балл.</p><h2>Какой максимальный балл?</h2><p>Максимум — 189: из 1-го блока 93 (30 вопросов × 3.1), из 2-го 63 (30 × 2.1), из 3-го 33 (30 × 1.1). Для гранта обычно нужно 150+, но это зависит от направления и вуза.</p><h2>Как сертификат влияет на балл?</h2><p>При наличии языкового (IELTS, CEFR) или национального сертификата по соответствующему предмету даётся максимальный или частичный балл. Например, сертификат B2+ по английскому даёт 100% по английскому. Включите «есть сертификат» в калькуляторе, и он это учтёт.</p><h2>Пройду ли на грант?</h2><p>Для гранта нужен достаточный балл и наличие свободного грантового места по направлению. Посмотрите проходные баллы прошлого года и сравните. Калькулятор точно считает балл, но приём зависит от конкурса этого года.</p><h2>Сколько баллов нужно на контракт?</h2><p>Для контракта (платного) обычно хватает меньше, чем на грант — часто 90–130 баллов. Но на популярных направлениях контрактный балл тоже может быть высоким. Проверьте порог по данным вуза за прошлый год.</p><h2>Как повысить балл?</h2><p>Наибольший вес — 1-й блок (коэффициент 3.1), поэтому уделите профильному предмету больше внимания: один верный ответ — 3.1 балла. Языковой или национальный сертификат тоже сильно помогает. Пробуйте разные сценарии в калькуляторе.</p>'
+    }
+  };
+  var lang='uz';
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  var num=function(s){return parseInt(String(s).replace(/[^\d]/g,''),10)||0};
+
+  function clamp(v){return Math.max(0,Math.min(30,v))}
+
+  var MAXP={1:93.0, 2:63.0, 3:33.0};
+  var certLv={1:100, 2:100, 3:100};
+  var certMode={1:'lang', 2:'lang'};
+  // Milliy sertifikat: ball -> [daraja, foiz]. A+/A=100%, B+/B/C+/C=proporsional(ballning o'zi %)
+  function gradeInfo(score){
+    if(score>=65)return {g:(score>=70?'A+':'A'), pct:100};
+    if(score>=60)return {g:'B+', pct:score};
+    if(score>=55)return {g:'B', pct:score};
+    if(score>=50)return {g:'C+', pct:score};
+    if(score>=46)return {g:'C', pct:score};
+    return {g:null, pct:0};
+  }
+  function blockPts(n,coef){
+    if($('cert'+n).checked){
+      if(n===3)return MAXP[3];
+      if(certMode[n]==='milliy'){
+        var gi=gradeInfo(num($('cs'+n).value));
+        return MAXP[n]*gi.pct/100;
+      }
+      return MAXP[n]*certLv[n]/100;
+    }
+    return clamp(num($('f'+n).value))*coef;
+  }
+  function calc(){
+    // sertifikat belgilangan bloklarda hisoblagichni "o'chirilgan" ko'rsatish
+    [1,2,3].forEach(function(n){
+      var on=$('cert'+n).checked;
+      $('cnt'+n).classList.toggle('dim',on);
+      if(n!==3){
+        var mode=$('certMode'+n);
+        if(mode)mode.style.display=on?'block':'none';
+        var isMilliy=certMode[n]==='milliy';
+        $('certLvl'+n).classList.toggle('show',!isMilliy);
+        $('certScore'+n).classList.toggle('show',isMilliy);
+        if(isMilliy){
+          var gi=gradeInfo(num($('cs'+n).value)), ge=$('grade'+n);
+          if(!gi.g){ge.className='cert-grade g-low';ge.textContent=t('gradeLow')}
+          else if(gi.pct>=100){ge.className='cert-grade g-max';ge.textContent=t('gradeMax').replace('{g}',gi.g)}
+          else{ge.className='cert-grade g-prop';ge.textContent=t('gradeProp').replace('{g}',gi.g).replace('{p}',Math.round(gi.pct))}
+        }
+      }
+    });
+    var f1=clamp(num($('f1').value)), f2=clamp(num($('f2').value)), f3=clamp(num($('f3').value));
+    $('f1').value=f1;$('f2').value=f2;$('f3').value=f3;
+    var p1=blockPts(1,3.1), p2=blockPts(2,2.1), p3=blockPts(3,1.1);
+    var total=p1+p2+p3;
+    var fx=function(n){return n.toFixed(1).replace('.',',')};
+    $('p1').textContent=fx(p1);$('p2').textContent=fx(p2);$('p3').textContent=fx(p3);
+    $('totalPts').textContent=fx(total);
+    var pct=Math.round(total/189*100);
+    $('bar').style.width=Math.min(100,pct)+'%';
+    $('pctTxt').textContent=t('pctFmt').replace('{p}',pct);
+  }
+
+  var btns=document.querySelectorAll('.cnt-btn');
+  for(var b=0;b<btns.length;b++){
+    btns[b].onclick=function(){
+      var el=$(this.getAttribute('data-t'));
+      el.value=clamp(num(el.value)+parseInt(this.getAttribute('data-d'),10));
+      calc();
+    };
+  }
+  ['f1','f2','f3'].forEach(function(id){$(id).addEventListener('input',calc)});
+  [1,2,3].forEach(function(n){$('cert'+n).addEventListener('change',calc)});
+  ['cs1','cs2'].forEach(function(id){$(id).addEventListener('input',calc)});
+  var clBtns=document.querySelectorAll('[data-cl]');
+  for(var c=0;c<clBtns.length;c++){
+    clBtns[c].onclick=function(){
+      var blk=this.getAttribute('data-cl'), lv=parseInt(this.getAttribute('data-lv'),10);
+      certLv[blk]=lv;
+      var sibs=document.querySelectorAll('[data-cl="'+blk+'"]');
+      for(var k=0;k<sibs.length;k++)sibs[k].classList.remove('on');
+      this.classList.add('on');calc();
+    };
+  }
+  var cmBtns=document.querySelectorAll('[data-cm]');
+  for(var m=0;m<cmBtns.length;m++){
+    cmBtns[m].onclick=function(){
+      var blk=this.getAttribute('data-cm'), md=this.getAttribute('data-m');
+      certMode[blk]=md;
+      var sibs=document.querySelectorAll('[data-cm="'+blk+'"]');
+      for(var k=0;k<sibs.length;k++)sibs[k].classList.remove('on');
+      this.classList.add('on');calc();
+    };
+  }
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    (function(){
+      var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+      var _t=document.getElementById('relTitle');
+      if(_t)_t.textContent=_rt[lang]||_rt.uz;
+      var _rl=document.querySelectorAll('[data-rel-uz]');
+      var _al=document.querySelector('[data-art-uz]');
+      if(_al)_al.textContent=_al.getAttribute(lang==='ru'?'data-art-ru':'data-art-uz');
+      var _albl=document.querySelector('[data-art-label]');
+      if(_albl)_albl.textContent=(lang==='ru'?'Полезная статья':'Foydali maqola');
+      for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+    })();
+    $('langRu').classList.toggle('on',lang==='ru');
+    calc();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+  applyLang();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.8.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-mat],.seg button.on[data-roof],.seg button.on[data-region],.seg button.on[data-loc],.seg button.on[data-an],.seg button.on[data-slope],[data-loc].on');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+
+
+<script id="sharebtn">
+(function(){
+  // Guard faqat yaratishni o'tkazib yuboradi — hodisa bog'lash (onclick)
+  // har chaqiruvda qayta bajariladi, aks holda prerender qilingan statik
+  // tugma hech qachon bosilmaydigan bo'lib qoladi.
+  function bindShareBtn(){
+    var actions=document.querySelector('.receipt-actions');
+    if(!actions)return;
+    var isRu=document.documentElement.lang==='ru';
+    var btn=document.getElementById('shareBtn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='shareBtn';
+      btn.type='button';
+      actions.insertBefore(btn,actions.firstChild);
+    }
+    btn.textContent=isRu?'Поделиться':'Ulashish';
+    btn.onclick=function(){
+      var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+      var title=document.querySelector('h1')?document.querySelector('h1').textContent:'Kalki.uz';
+      if(navigator.share){navigator.share({title:title,url:url}).catch(function(){})}
+      else if(navigator.clipboard){navigator.clipboard.writeText(url);var o=btn.textContent;btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';setTimeout(function(){btn.textContent=o},1500)}
+    };
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(bindShareBtn,150)})}
+  else{setTimeout(bindShareBtn,150)}
+  // langUz/langRu bosilganda matn va hodisa qayta yangilanadi
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){el.addEventListener('click',function(){setTimeout(bindShareBtn,50)})}
+    });
+  },200);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='EducationApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
