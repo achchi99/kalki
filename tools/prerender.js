@@ -281,9 +281,17 @@ async function renderOneRu(name) {
 
   w.KalkiLang.setLang('ru', { silent: false });
   // Kechikib bog'lanadigan tinglovchilar (bcjs, faqschema va h.k.) allaqachon
-  // ulangan (load() 950ms kutgan) — qo'shimcha kutish faqat repaint ichidagi
-  // sinxron ishlarni yakunlash uchun ehtiyot chorasi.
-  await new Promise((res) => w.setTimeout(res, 350));
+  // ulangan (load() 950ms kutgan) — qo'shimcha kutish repaint ichidagi
+  // sinxron ishlarni yakunlash uchun VA setLang qayta hisoblash natijasida
+  // requestAnimationFrame orqali ishga tushishi mumkin bo'lgan raqam
+  // animatsiyasi (masalan oila-byudjet-kalkulyator.html'dagi animateHero,
+  // 650ms) to'liq tugashi uchun kerak. 350ms yetarli emas edi: animatsiya
+  // hali yarim yo'lda turganda serializatsiya qilinardi, natijada
+  // real vaqt sinxronlashuviga bog'liq bo'lgan beqaror raqam diskka
+  // yozilardi (band 15b — prerender har safar boshqacha "eski" deb
+  // topardi). 800ms har qanday 650ms'gача animatsiyani ehtiyot bilan
+  // qamrab oladi.
+  await new Promise((res) => w.setTimeout(res, 800));
   injectDateModified(doc, name);
 
   doc.querySelectorAll('script[src*="googletagmanager.com/gtag/js"]').forEach((s) => s.remove());
