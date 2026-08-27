@@ -1,149 +1,373 @@
 {
-  "_readme": "kalki.uz huquqiy/rasmiy konstantalar reyestri. Claude bu yerga o'zi o'ylab topgan raqam yozmaydi — har yozuv manba tasdiqlangunga qadar 'holat':'TASDIQLASH KERAK' bilan qoladi. 'qiymat':null bo'lgan konstantadan foydalanadigan sahifada natija o'rniga 'Ma'lumot yangilanmoqda' chiqishi kerak. Hozircha bu fayl faqat assets/answerbox.js'ning manba-havola (manba_url) mexanizmi uchun infratuzilma sifatida yaratildi (FAZA 1.1) — hali hisob-kitob kodi bu fayldan o'qimaydi, chunki mavjud kalkulyatorlar formulasiga tegilmaydi (0.1-band).",
+  "_readme": "kalki.uz huquqiy/rasmiy konstantalar reyestri. Claude bu yerga o'zi o'ylab topgan raqam yozmaydi — har yozuv manba tasdiqlangunga qadar 'holat':'TASDIQLASH KERAK' bilan qoladi. 'qiymat':null bo'lgan konstantadan foydalanadigan sahifada natija o'rniga 'Ma'lumot yangilanmoqda' chiqishi kerak. FAZA 1 (2026-08) da tuzilma to'g'irlandi: 'tur' maydoni ('son'|'jadval'|'obyekt') qiymat shaklini bildiradi, jadvallar 'bandlar' massivi bilan (min/max sonli chegaralar, 'shart' emas — kodda eval qilinmaydi), har yozuvda 'amal_qiladi'/'izoh_uz'/'izoh_ru'/'manba_nomi' maydonlari bor. Har kalkulyator sahifasi bu faylni bevosita o'qimaydi — o'zining ichiga o'rnatilgan (legalconst-data) nusxasini oladi; FAZA 2'da qiymat to'ldirilganda IKKALA joy ham yangilanishi kerak (docs/legal-constants-audit.md, 0.C-bandiga qarang).",
   "constants": [
     {
       "id": "tatil_kunlik_koeff",
       "sahifa": "tatil-puli-kalkulyator",
+      "tur": "son",
       "izoh": "O'rtacha kunlik ish haqini hisoblashda oyning o'rtacha kun soni koeffitsiyenti",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "tatil_minimal_kunlar",
       "sahifa": "tatil-puli-kalkulyator",
-      "izoh": "Mehnat kodeksi bo'yicha yillik asosiy ta'tilning minimal kunlar soni",
+      "tur": "son",
+      "izoh": "Mehnat kodeksi bo'yicha yillik asosiy ta'tilning minimal kunlar soni (kalendar kunda)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "kasallik_foiz_jadvali",
       "sahifa": "kasallik-varaqasi-kalkulyator",
-      "izoh": "Ish staji bo'yicha kasallik varaqasi to'lovi foizi jadvali",
-      "qiymat": null,
+      "tur": "jadval",
+      "izoh": "Sug'urta staji bo'yicha kasallik varaqasi to'lovi foizi (bandlar staj-oyda), + kamaytirish/oshirish tuzatishlari",
+      "bandlar": [
+        { "shart": "6 oy - 8 yil (96 oy)", "min_oy": 6, "max_oy": 96, "foiz": null },
+        { "shart": "8 yildan ortiq", "min_oy": 96, "max_oy": null, "foiz": null }
+      ],
+      "tuzatish_kamaytirish_foiz_bandi": null,
+      "tuzatish_kamaytirish_izoh": "Yil davomida layoqatsizlik kunlari kasallik_koeff_kamayish_kun dan oshsa, foizdan shuncha foiz bandi ayiriladi",
+      "tuzatish_oshirish_foiz_bandi": null,
+      "tuzatish_oshirish_izoh": "I-II guruh nogironligi / 18 yoshgacha 4+ farzand / nogironligi bor farzand bo'lsa, foizga shuncha foiz bandi qo'shiladi",
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
-      "id": "kasallik_bhm_chegara",
+      "id": "kasallik_mhtekm_chegara",
       "sahifa": "kasallik-varaqasi-kalkulyator",
-      "izoh": "Kasallik varaqasi to'lovining yuqori chegarasi (BHM birligida)",
+      "tur": "son",
+      "izoh": "Kasallik varaqasi to'lovining yuqori chegarasi — MHTEKM ko'paytmasi sifatida (BHM emas — FAZA 0 auditida aniqlangan nom xatosi tuzatildi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "kasallik_min_staj_oy",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "tur": "son",
+      "izoh": "Minimal sug'urta staji (oyda) — bundan kam bo'lsa nafaqa tayinlanmaydi",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "kasallik_yillik_limit_kun",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "tur": "son",
+      "izoh": "Bir yil ichida to'lanadigan kasallik varaqasi kunlarining yuqori chegarasi",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "kasallik_ish_beruvchi_kun",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "tur": "son",
+      "izoh": "Dastlabki necha kun ish beruvchi hisobidan to'lanadi, qolgani Davlat ijtimoiy sug'urta jamg'armasidan",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "kasallik_koeff_kamayish_kun",
+      "sahifa": "kasallik-varaqasi-kalkulyator",
+      "tur": "son",
+      "izoh": "Yil davomida shuncha kundan oshgan layoqatsizlik uchun foiz kamaytirish tuzatishi qo'llanadi (kasallik_foiz_jadvali.tuzatish_kamaytirish_foiz_bandi bilan birga ishlatiladi)",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "dekret_foiz",
       "sahifa": "dekret-puli-kalkulyator",
-      "izoh": "Homiladorlik va tug'ish bo'yicha nafaqa — o'rtacha ish haqidan foiz",
-      "qiymat": null,
+      "tur": "jadval",
+      "izoh": "Sug'urta staji bo'yicha dekret nafaqasi foizi (bandlar staj-oyda)",
+      "bandlar": [
+        { "shart": "10 - 24 oy", "min_oy": 10, "max_oy": 25, "foiz": null },
+        { "shart": "25 - 60 oy", "min_oy": 25, "max_oy": 61, "foiz": null },
+        { "shart": "61 oydan ortiq", "min_oy": 61, "max_oy": null, "foiz": null }
+      ],
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "dekret_kunlar",
       "sahifa": "dekret-puli-kalkulyator",
-      "izoh": "Dekret ta'tili davomiyligi (kunlarda, oddiy va murakkab tug'ish holatlari)",
-      "qiymat": null,
+      "tur": "obyekt",
+      "izoh": "Dekret ta'tili davomiyligi (kalendar kunda): oddiy tug'ruq va murakkab/ko'p qorinli tug'ruq",
+      "qiymat": { "oddiy": null, "murakkab": null },
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
-      "id": "boshatish_oylik_soni",
-      "sahifa": "ishdan-boshatish-kompensatsiyasi-kalkulyator",
-      "izoh": "Shtat qisqarishi/tugatishda to'lanadigan kompensatsiya — o'rtacha oylik ish haqiga ko'paytiriladigan oy soni",
+      "id": "dekret_min_staj_oy",
+      "sahifa": "dekret-puli-kalkulyator",
+      "tur": "son",
+      "izoh": "Minimal sug'urta staji (oyda) — bundan kam bo'lsa nafaqa tayinlanmaydi",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
-      "id": "boshatish_bhm_minimal",
+      "id": "boshatish_foiz_jadvali",
       "sahifa": "ishdan-boshatish-kompensatsiyasi-kalkulyator",
-      "izoh": "Kompensatsiyaning BHM asosidagi minimal miqdori (agar belgilangan bo'lsa)",
-      "qiymat": null,
+      "tur": "jadval",
+      "izoh": "Shu ish beruvchidagi staj bo'yicha ishdan bo'shatish kompensatsiyasi — o'rtacha oylik ish haqidan necha foiz (bandlar staj-yilda). Eski 'boshatish_oylik_soni' (flat ko'paytiruvchi) va 'boshatish_bhm_minimal' (huquqiy asosi yo'q edi) FAZA 0 auditi asosida bu jadval bilan almashtirildi.",
+      "bandlar": [
+        { "shart": "3 yilgacha", "min_yil": 0, "max_yil": 3, "foiz": null },
+        { "shart": "3 - 5 yil", "min_yil": 3, "max_yil": 5, "foiz": null },
+        { "shart": "5 - 10 yil", "min_yil": 5, "max_yil": 10, "foiz": null },
+        { "shart": "10 - 15 yil", "min_yil": 10, "max_yil": 15, "foiz": null },
+        { "shart": "15 yildan ortiq", "min_yil": 15, "max_yil": null, "foiz": null }
+      ],
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "aliment_foiz_1bola",
       "sahifa": "aliment-kalkulyator",
+      "tur": "son",
       "izoh": "1 bolaga aliment — daromaddan ushlanadigan foiz",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "aliment_foiz_2bola",
       "sahifa": "aliment-kalkulyator",
+      "tur": "son",
       "izoh": "2 bolaga aliment — daromaddan ushlanadigan foiz",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "aliment_foiz_3plus",
       "sahifa": "aliment-kalkulyator",
+      "tur": "son",
       "izoh": "3 va undan ortiq bolaga aliment — daromaddan ushlanadigan foiz",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "aliment_min_foiz_mhtekm",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "son",
+      "izoh": "Har bir bolaga aliment MHTEKMning shuncha foizidan kam bo'lmasligi kerak (minimal chegara)",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "bhm_qiymati",
       "sahifa": "umumiy",
-      "izoh": "Joriy bazaviy hisoblash miqdori (BHM), so'mda — aliment, jarima va kompensatsiya hisoblarida umumiy ishlatiladi",
+      "tur": "son",
+      "izoh": "Joriy bazaviy hisoblash miqdori (BHM), so'mda — yhxx jarimalari hisobida ishlatiladi",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "mhtekm_qiymati",
+      "sahifa": "umumiy",
+      "tur": "son",
+      "izoh": "Mehnatga haq to'lashning eng kam miqdori (MHTEKM), so'mda — kasallik va aliment hisoblarida ishlatiladi",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_tezlik",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Tezlik chegarasini oshirish uchun jarima (BHM birligida, oshirish darajasiga qarab)",
+      "tur": "son",
+      "izoh": "Tezlik chegarasini oshirish uchun jarima (BHM ko'paytmasi, oshirish darajasiga qarab)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_kamar",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Xavfsizlik kamarini taqmaslik uchun jarima (BHM birligida)",
+      "tur": "son",
+      "izoh": "Xavfsizlik kamarini taqmaslik uchun jarima (BHM ko'paytmasi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_telefon",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Rulda telefondan foydalanish uchun jarima (BHM birligida)",
+      "tur": "son",
+      "izoh": "Rulda telefondan foydalanish uchun jarima (BHM ko'paytmasi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_mast",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Mast holda transport vositasini boshqarish uchun jarima (BHM birligida)",
+      "tur": "son",
+      "izoh": "Mast holda transport vositasini boshqarish uchun jarima (BHM ko'paytmasi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_guvohnoma",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Haydovchilik guvohnomasisiz boshqarish uchun jarima (BHM birligida)",
+      "tur": "son",
+      "izoh": "Haydovchilik guvohnomasisiz boshqarish uchun jarima (BHM ko'paytmasi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
     },
     {
       "id": "yhxx_jarima_svetofor",
       "sahifa": "yhxx-jarima-kalkulyator",
-      "izoh": "Svetofor/yo'l belgisi taqiqiga rioya qilmaslik uchun jarima (BHM birligida)",
+      "tur": "son",
+      "izoh": "Svetofor/yo'l belgisi taqiqiga rioya qilmaslik uchun jarima (BHM ko'paytmasi)",
       "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
       "holat": "TASDIQLASH KERAK",
-      "manba_url": null
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "yhxx_chegirma_kun",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "tur": "son",
+      "izoh": "Shuncha kun ichida to'lansa jarimaga chegirma qo'llanadi",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "yhxx_chegirma_foiz",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "tur": "son",
+      "izoh": "Muddatidan oldin to'langanda qo'llanadigan chegirma foizi (0-1 oralig'ida ulush)",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
+    },
+    {
+      "id": "yhxx_radar_dopusk_kmh",
+      "sahifa": "yhxx-jarima-kalkulyator",
+      "tur": "son",
+      "izoh": "Radar qayd etgan tezlikdan chegiriladigan texnik dopusk (km/soat)",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": null
     }
   ]
 }

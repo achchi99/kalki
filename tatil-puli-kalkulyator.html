@@ -216,15 +216,18 @@ img,svg{height:auto}
       <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
       <div class="big-figure">
         <div class="num" id="mainNum">-</div>
-        <div class="lbl" data-i="lblMain">Ta'til puli (kompensatsiya)</div>
+        <div class="lbl" data-i="lblMain">Rasmiy hisob (kalendar kun bo'yicha)</div>
       </div>
       <div class="status-box" id="statusBox">-</div>
       <div class="receipt-rows">
         <div class="rrow"><span class="k" data-i="kWage">O'rtacha oylik ish haqi</span><span class="v" id="rWage">-</span></div>
         <div class="rrow"><span class="k" data-i="kDays">Ishlatilmagan ta'til kunlari</span><span class="v" id="rDays">-</span></div>
         <div class="rrow"><span class="k" data-i="kDaily">O'rtacha kunlik ish haqi</span><span class="v" id="rDaily">-</span></div>
+        <div class="rrow" id="workRow" style="display:none"><span class="k" data-i="kWorkTotal">Amaliy hisob (ish kuni bo'yicha, taxminiy)</span><span class="v" id="rWorkTotal">-</span></div>
         <div class="rrow" id="stajRow" style="display:none"><span class="k" data-i="kStaj">Umumiy ish staji</span><span class="v" id="rStaj">-</span></div>
       </div>
+      <div id="dualNote" style="display:none;margin-top:12px;font-size:12.5px;line-height:1.5;color:#5C6B63;font-weight:600"></div>
+      <div id="minKunlarNote" style="display:none;margin-top:8px;font-size:12.5px;line-height:1.5;color:#5C6B63;font-weight:600"></div>
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
       <button type="button" class="pdfbtn">PDF</button></div>
@@ -262,13 +265,20 @@ img,svg{height:auto}
     var staj=num($('stajYears').value);
     if(!wage||!days)return null;
     var gated=isGated();
-    var dailyRate=null,total=null;
+    var dailyRate=null,total=null,workDays=null,totalWorkBasis=null;
     if(!gated){
       var koeff=parseFloat(LEGAL.tatil_kunlik_koeff.qiymat);
       dailyRate=wage/koeff;
       total=dailyRate*days;
+      /* Ikkinchi, amaliy hisob: ish kuni ekvivalenti (6 kunlik hafta
+         taxminida, yakshanbalar chegiriladi) — rasmiy (kalendar kun)
+         hisobdan farqli, lekin ba'zi buxgalteriya amaliyotida
+         qo'llaniladigan usul. Ikkalasi ham ko'rsatiladi, chunki bu
+         ikkilik qonunchilikda to'liq hal qilinmagan. */
+      workDays=Math.round(days*6/7);
+      totalWorkBasis=dailyRate*workDays;
     }
-    return {wage:wage,days:days,staj:staj,gated:gated,dailyRate:dailyRate,total:total};
+    return {wage:wage,days:days,staj:staj,gated:gated,dailyRate:dailyRate,total:total,workDays:workDays,totalWorkBasis:totalWorkBasis};
   }
 
   /* ---------- I18N ---------- */
@@ -283,8 +293,10 @@ img,svg{height:auto}
       extraNote:"Bu maydon faqat ma'lumot uchun — hisob-kitob formulasiga ta'sir qilmaydi.",
       lStaj:"Umumiy ish staji (yil)",uYil:"yil",
       btnCalc:"Hisoblash",rTag:"Hisob natijasi",
-      lblMain:"Ta'til puli (kompensatsiya)",
+      lblMain:"Rasmiy hisob (kalendar kun bo'yicha)",
       kWage:"O'rtacha oylik ish haqi",kDays:"Ishlatilmagan ta'til kunlari",kDaily:"O'rtacha kunlik ish haqi",kStaj:"Umumiy ish staji",
+      kWorkTotal:"Amaliy hisob (ish kuni bo'yicha, taxminiy)",
+      dualNote:"Ta'til kalendar kunda beriladi, lekin ba'zi buxgalteriya amaliyotida to'lov ish kunlariga hisoblanadi — bu ikkilik qonunchilikda to'liq hal qilinmagan, shuning uchun ikkala natija ham ko'rsatilgan.",
       gated:"Ma'lumot yangilanmoqda",
       statusGated:"Hisob-kitob uchun zarur bo'lgan rasmiy koeffitsiyent hozircha manbadan tasdiqlanmoqda. Tasdiqlangach, natija shu yerda avtomatik ko'rinadi.",
       statusOk:"Natija siz kiritgan o'rtacha oylik ish haqi va ishlatilmagan ta'til kunlari asosida hisoblandi. Bu taxminiy hisob — rasmiy summani buxgalteriyangizdan tekshiring.",
@@ -302,8 +314,10 @@ img,svg{height:auto}
       extraNote:"Это поле только информационное — на формулу расчёта не влияет.",
       lStaj:"Общий трудовой стаж (лет)",uYil:"лет",
       btnCalc:"Вычислить",rTag:"Результат расчёта",
-      lblMain:"Компенсация за отпуск",
+      lblMain:"Официальный расчёт (по календарным дням)",
       kWage:"Среднемесячная зарплата",kDays:"Неиспользованные дни отпуска",kDaily:"Среднедневная зарплата",kStaj:"Общий трудовой стаж",
+      kWorkTotal:"Расчёт на практике (по рабочим дням, ориентировочно)",
+      dualNote:"Отпуск предоставляется в календарных днях, но в некоторых бухгалтерских практиках оплата рассчитывается по рабочим дням — этот вопрос не полностью урегулирован законом, поэтому показаны оба результата.",
       gated:"Информация обновляется",
       statusGated:"Официальный коэффициент, необходимый для расчёта, пока подтверждается по источнику. После подтверждения результат появится здесь автоматически.",
       statusOk:"Результат рассчитан по введённым вами среднемесячной зарплате и числу неиспользованных дней отпуска. Это приблизительный расчёт — точную сумму уточните в бухгалтерии.",
@@ -337,6 +351,7 @@ img,svg{height:auto}
     $('langUz').classList.toggle('on',lang==='uz');
     $('langRu').classList.toggle('on',lang==='ru');
     if(calcData)renderResult();
+    else renderMinKunlarNote();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
@@ -357,17 +372,38 @@ img,svg{height:auto}
     save();
   });
 
+  /* "1 mhtekm ..." kabi — faqat tatil_minimal_kunlar.qiymat tasdiqlangach
+     ko'rinadi, aks holda hech narsa ko'rsatilmaydi. */
+  function renderMinKunlarNote(){
+    var el=$('minKunlarNote');
+    if(!el)return;
+    var c=LEGAL.tatil_minimal_kunlar;
+    if(!c||c.qiymat==null){el.style.display='none';return;}
+    el.style.display='';
+    el.textContent=lang==='ru'
+      ? ('По закону минимальный ежегодный основной отпуск — не менее '+c.qiymat+' календарных дней.')
+      : ('Qonun bo\'yicha yillik asosiy ta\'til kamida '+c.qiymat+' kalendar kun.');
+  }
+
   function renderResult(){
     var d=calcData;
     $('rWage').textContent=fmt(d.wage)+' '+t('uSum');
     $('rDays').textContent=d.days+' '+t('uKun');
+    var workRow=$('workRow'), dualNote=$('dualNote');
     if(d.gated){
       $('mainNum').textContent=t('gated');
       $('rDaily').textContent=t('gated');
+      workRow.style.display='none';
+      dualNote.style.display='none';
     }else{
       $('mainNum').textContent=fmt(d.total)+' '+t('uSum');
       $('rDaily').textContent=fmt(d.dailyRate)+' '+t('uSum');
+      workRow.style.display='';
+      $('rWorkTotal').textContent=fmt(d.totalWorkBasis)+' '+t('uSum')+' ('+d.workDays+' '+t('uKun')+')';
+      dualNote.style.display='';
+      dualNote.textContent=t('dualNote');
     }
+    renderMinKunlarNote();
     var stajRow=$('stajRow');
     if(d.staj){
       stajRow.style.display='flex';
