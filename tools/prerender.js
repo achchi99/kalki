@@ -147,6 +147,24 @@ const RU_PAGES = [
   'ishdan-boshatish-kompensatsiyasi-kalkulyator.html',
   'aliment-kalkulyator.html',
   'yhxx-jarima-kalkulyator.html',
+  // RU migratsiya, 4-bosqich: GSC ma'lumoti mavjud emas (foydalanuvchi
+  // tasdiqlagan holda), shuning uchun sahifa turi bo'yicha ustuvorlik —
+  // avval hujjat generatorlari (kalkulyatorlarga o'xshash qidiruv
+  // salohiyati bor), keyin statik/info sahifalar.
+  'avto-oldi-sotdi-shartnomasi-namunasi.html',
+  'davo-arizasi-namunasi.html',
+  'kafolat-xati-namunasi.html',
+  'qurilish-pudrat-shartnomasi-namunasi.html',
+  'tavsifnoma-namunasi.html',
+  'topshirish-qabul-dalolatnomasi-namunasi.html',
+  'uy-oldi-sotdi-shartnomasi.html',
+  'xizmat-korsatish-shartnomasi-namunasi.html',
+  'biz-haqimizda.html',
+  'blog.html',
+  'hamkorlik.html',
+  'maxfiylik.html',
+  'shablonlar.html',
+  'shartlar.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.
