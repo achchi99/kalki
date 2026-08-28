@@ -860,7 +860,7 @@
   */
   KD.page = function (opts) {
     var I = opts.I, FAQ = opts.FAQ, CFG = opts.CFG;
-    var lang = 'uz';
+    var lang = document.documentElement.lang === 'ru' ? 'ru' : 'uz';
 
     function applyLang() {
       document.documentElement.lang = lang;

@@ -291,6 +291,43 @@ function runTool(args) {
       bad.slice(0, 10).join(' | '));
   }
 
+  /* ---------- 22. RU sahifada JS ishga tushgandan keyin ham asosiy
+     kontent rus tilida qoladi ----------
+     2026-08'da topilgan bug: har sahifaning o'z inline skripti
+     `var lang='uz'` deb qattiq yozilgan edi (yoki assets/docgen.js'dagi
+     umumiy KD.page() shunday edi) — prerender /ru/... faylga to'g'ri
+     lang="ru" yozib qo'ysa ham, sahifa brauzerda qayta ishga tushganda
+     bu skript document.documentElement.lang'ni "uz"ga qaytarib, asosiy
+     kontentni o'zbekchaga almashtirib qo'yardi. Band 20 buni ushlamadi,
+     chunki u FAQAT footer'dagi [data-lf-uz] elementlarni tekshiradi
+     (alohida footer-lang.js orqali boshqariladi, sahifaning o'z tilini
+     boshqaruvchi asosiy skriptdan mustaqil) — shu sabab bug 4 hafta
+     davomida sezilmay qoldi. Bu band esa JS to'liq ishga tushgandan
+     keyingi holatni ikki yo'l bilan tekshiradi: (a) <html lang> ru'da
+     qolganmi, (b) <h1>/<main>dagi matnda kamida bitta kirill harfi bormi
+     (o'zbekcha lotin yozuvida kirill umuman bo'lmaydi). */
+  {
+    const bad = [];
+    for (const f of RU_PAGES) {
+      const ruFile = path.join(ROOT, 'ru', f);
+      if (!fs.existsSync(ruFile)) continue; // band 21 buni allaqachon ushlaydi
+      const { dom } = await loadHtml(fs.readFileSync(ruFile, 'utf8'), 'ru/' + f, { shims: true });
+      const w = dom.window, d = w.document;
+      if (d.documentElement.lang !== 'ru') {
+        bad.push(f + ': JSdan keyin <html lang> = "' + d.documentElement.lang + '"');
+      } else {
+        const sampleEl = d.querySelector('h1') || d.querySelector('main');
+        const sample = (sampleEl && sampleEl.textContent || '').trim();
+        if (sample && !CYR.test(sample)) {
+          bad.push(f + ': asosiy matnda kirill yo\'q — "' + sample.slice(0, 30) + '"');
+        }
+      }
+      dom.window.close();
+    }
+    add(!bad.length, '22. RU sahifada JS ishga tushgandan keyin ham asosiy kontent rus tilida (' + RU_PAGES.length + ' sahifa)',
+      bad.slice(0, 8).join(' | '));
+  }
+
   /* ---------- CTR: title/description uzunligi va noyobligi ----------
      2026-08 CTR ishidan keyingi doimiy band. Google 50-65 belgidan
      uzun title'ni "…" bilan kesadi, description 120-165 oralig'ida eng
@@ -315,7 +352,7 @@ function runTool(args) {
       if (titles.has(t)) bad.push(f + ': title takror (' + titles.get(t) + ' bilan)'); else titles.set(t, f);
       if (descs.has(d)) bad.push(f + ': description takror (' + descs.get(d) + ' bilan)'); else descs.set(d, f);
     }
-    add(!bad.length, '22. title/description uzunligi va noyobligi (' + list.length + ' sahifa)',
+    add(!bad.length, '23. title/description uzunligi va noyobligi (' + list.length + ' sahifa)',
       bad.slice(0, 8).join(' | '));
   }
 
@@ -326,7 +363,7 @@ function runTool(args) {
      bayroqsiz holda diskka tegsa — shu yerda ko'rinadi. */
   {
     const changed = fpDiff(fpBefore, fingerprint());
-    add(changed.length === 0, '23. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
+    add(changed.length === 0, '24. bayroqsiz chaqirilgan tools/ skriptlari hech nima yozmadi',
       changed.slice(0, 8).join(', '));
   }
 
