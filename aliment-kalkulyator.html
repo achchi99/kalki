@@ -208,7 +208,7 @@ img,svg{height:auto}
 </header>
 
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-huquqiy">Huquqiy</a><span class="sep">›</span><span class="cur">👨‍👧 Aliment kalkulyatori</span></nav></div>
-<main class="wrap"><div id="mhtekmNote" class="noprint" style="margin: 0px 0px 14px; font-size: 12px; line-height: 1.5; color: rgb(138, 150, 143); font-weight: 600; word-wrap: break-word; overflow-wrap: break-word;">1 MHTEKM = 1 360 000 so'm (2026-09-01 holatiga)</div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Aliment kalkulyatori — oylik daromad va bolalar sonini kiriting, aliment miqdori O'zbekiston Oila kodeksiga muvofiq foiz asosida hisoblanadi.</p><div class="ab-meta">Yangilangan: 2026-08-28</div></div>
+<main class="wrap"><div id="mhtekmNote" class="noprint" style="margin: 0px 0px 14px; font-size: 12px; line-height: 1.5; color: rgb(138, 150, 143); font-weight: 600; word-wrap: break-word; overflow-wrap: break-word;">1 MHTEKM = 1 360 000 so'm (2026-yil 1-sentyabrdan amal qiladi)</div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Aliment kalkulyatori — oylik daromad va bolalar sonini kiriting, aliment miqdori O'zbekiston Oila kodeksiga muvofiq foiz asosida hisoblanadi.</p><div class="ab-meta">Yangilangan: 2026-08-28</div></div>
   <section class="form-card">
     <div class="field">
       <label data-i="lIncome">Oylik daromad</label>
@@ -419,9 +419,11 @@ img,svg{height:auto}
     var c=LEGALCONST.mhtekm_qiymati;
     if(!c||c.qiymat==null){el.style.display='none';return;}
     el.style.display='';
+    var izoh=lang==='ru'?c.izoh_ru:c.izoh_uz;
+    var extra=izoh?(izoh.charAt(0).toLowerCase()+izoh.slice(1)):'';
     el.textContent=lang==='ru'
-      ? ('1 МРОТ = '+fmt(c.qiymat)+' сум'+(c.amal_qiladi?' (по состоянию на '+c.amal_qiladi+')':''))
-      : ('1 MHTEKM = '+fmt(c.qiymat)+" so'm"+(c.amal_qiladi?' ('+c.amal_qiladi+' holatiga)':''));
+      ? ('1 МРОТ = '+fmt(c.qiymat)+' сум'+(extra?' ('+extra+')':''))
+      : ('1 MHTEKM = '+fmt(c.qiymat)+" so'm"+(extra?' ('+extra+')':''));
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};

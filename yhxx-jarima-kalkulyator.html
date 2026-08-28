@@ -175,7 +175,7 @@ img,svg{height:auto}
   </div>
 </header>
 
-<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-huquqiy">Huquqiy</a><span class="sep">›</span><span class="cur">YHXX jarimalari kalkulyatori</span></nav><div id="bhmNote" class="noprint" style="font-size:11.5px;color:var(--muted);margin:0 0 10px;overflow-wrap:break-word">1 BHM = 440 000 so'm (2026-09-01 holatiga)</div></div>
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-huquqiy">Huquqiy</a><span class="sep">›</span><span class="cur">YHXX jarimalari kalkulyatori</span></nav><div id="bhmNote" class="noprint" style="font-size:11.5px;color:var(--muted);margin:0 0 10px;overflow-wrap:break-word">1 BHM = 440 000 so'm (2026-yil 1-sentyabrdan amal qiladi)</div></div>
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">YHXX jarimalari kalkulyatori — 23 xil qoidabuzarlik turidan birini tanlang, jarima miqdori bazaviy hisoblash miqdori (BHM)ga nisbatan, O'zbekiston Ma'muriy javobgarlik to'g'risidagi kodeksga muvofiq hisoblanadi. Tezlik uchun radar dopuski, ba'zi bandlar uchun ogohlantirish-yoki-jarima holati, to'lov chegirmalari va jarima ballari ham hisobga olinadi.</p><div class="ab-meta">Yangilangan: 2026-08-28</div></div>
   <section class="form-card">
     <div class="field">
@@ -334,6 +334,12 @@ img,svg{height:auto}
     return lang==='ru'?v.ru:v.uz;
   }
   function fmt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function curr(){return lang==='ru'?'сум':"so'm"}
+  function bhmLabel(){return lang==='ru'?'БРВ':'BHM'}
+  /* {izoh_ru}/{izoh_uz} matni odatda "Действует с ..."/"... amal qiladi" kabi
+     mustaqil gap sifatida yozilgan — qavs ichiga qo'yilganda bosh harfni
+     kichraytiramiz, shunda "(действует с 1 sentyabrdan)" kabi tabiiy o'qiladi. */
+  function lowerFirst(s){return s?s.charAt(0).toLowerCase()+s.slice(1):s}
 
   /* ---------- tezlik: radar ko'rsatkichidan dopusk ayirib, pog'ona aniqlash ----------
      Bandlar "N km/soatgacha" tarzida o'qiladi (128-3-modda qismlari), shu
@@ -517,9 +523,8 @@ img,svg{height:auto}
     var c=LEGAL.bhm_qiymati;
     if(!c||c.qiymat==null){el.textContent='';return;}
     var fq=fmt(c.qiymat);
-    el.textContent=lang==='ru'
-      ? ('1 БРВ = '+fq+' сум'+(c.amal_qiladi?' (по состоянию на '+c.amal_qiladi+')':''))
-      : ('1 BHM = '+fq+" so'm"+(c.amal_qiladi?' ('+c.amal_qiladi+' holatiga)':''));
+    var extra=lowerFirst(lang==='ru'?c.izoh_ru:c.izoh_uz);
+    el.textContent='1 '+bhmLabel()+' = '+fq+' '+curr()+(extra?' ('+extra+')':'');
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
@@ -562,9 +567,9 @@ img,svg{height:auto}
     statusBox.style.display='none';
     $('rViol').textContent=violLabel(d.kod);
     $('rModda').textContent=entry.modda;
-    $('rCoeff').textContent=d.effBhm+' BHM'+(d.useRepeat?(' ('+t('takrorLabel')+')'):'');
-    $('rBhm').textContent=fmt(d.bhmVal)+" so'm";
-    $('mainNum').textContent=fmt(d.amount)+" so'm";
+    $('rCoeff').textContent=d.effBhm+' '+bhmLabel()+(d.useRepeat?(' ('+t('takrorLabel')+')'):'');
+    $('rBhm').textContent=fmt(d.bhmVal)+' '+curr();
+    $('mainNum').textContent=fmt(d.amount)+' '+curr();
 
     if(entry.qoshimcha){
       rQRow.style.display='';
@@ -575,9 +580,9 @@ img,svg{height:auto}
 
     if(d.discountAllowed&&d.amt15!=null&&d.amt30!=null){
       discBlock.style.display='';
-      $('rDisc15').textContent=fmt(d.amt15)+" so'm";
-      $('rDisc30').textContent=fmt(d.amt30)+" so'm";
-      $('rDiscFull').textContent=fmt(d.amount)+" so'm";
+      $('rDisc15').textContent=fmt(d.amt15)+' '+curr();
+      $('rDisc30').textContent=fmt(d.amt30)+' '+curr();
+      $('rDiscFull').textContent=fmt(d.amount)+' '+curr();
     }else discBlock.style.display='none';
 
     var ballBox=$('ballBox');
