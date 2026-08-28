@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -352,7 +353,7 @@ img,svg{height:auto}
       seo:'<h2>Когда выгоден переход на метан?</h2><p>Главный фактор — пробег. Тем, кто ездит больше 60–70 км в день, ГБО обычно окупается за 6–12 месяцев. При малом пробеге (меньше 500 км/мес) переход может не окупиться годами.</p><h2>Есть ли минусы у метана?</h2><p>Есть: баллон занимает багажник, мощность падает на 5–10%, на заправках бывают очереди, баллон нужно периодически аттестовать. Калькулятор показывает только финансовую сторону.</p><h2>Метан или пропан — что лучше?</h2><p>Метан (CNG) дешевле и экологичнее, но баллон тяжёлый и большой, мощность падает сильнее, заправок мало. Пропан (LPG, автогаз) чуть дороже, но баллон лёгкий и компактный, мощность падает меньше, заправок много. Для много ездящих (такси) выгоднее метан; для средних пробегов удобнее пропан. Сравните оба в калькуляторе.</p><h2>Как узнать точный расход?</h2><p>Залейте полный бак, обнулите счётчик, при следующей заправке разделите залитый объём на пройденные км и умножьте на 100 — это ваш реальный расход.</p>'
     }
   };
-  var lang='uz', gasType='metan', tripData=null, gboData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', gasType='metan', tripData=null, gboData=null;
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};

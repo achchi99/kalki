@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -456,7 +457,7 @@ img,svg{height:auto}
 (function(){
 var NB=String.fromCharCode(160);
 var NBRE=new RegExp(NB,'g');
-var lang='uz', calcData=null;
+var lang=document.documentElement.lang==='ru'?'ru':'uz', calcData=null;
 var COLORS={kontrakt:'#5B3A63',yashash:'#1D4E6B',kredit:'#8C3B2A'};
 var $=function(id){return document.getElementById(id)};
 var t=function(k){return I[lang][k]};

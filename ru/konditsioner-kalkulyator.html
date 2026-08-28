@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -301,7 +302,7 @@ img,svg{height:auto}
       seo:'<h2>Что такое BTU и классы?</h2><p>BTU/час — единица холодопроизводительности. Классы «7», «9», «12» означают тысячи BTU: «девятка» ≈ 2,6 кВт и обычно подходит для 20–25 м². Слишком слабый кондиционер работает без остановки, ест много электричества и быстро изнашивается.</p><h2>На что смотреть узбекским летом?</h2><p>При +40° и выше для солнечных комнат берите класс с запасом. Инверторные модели экономят 30–40% электричества — разница в цене окупается за 2–3 сезона.</p><h2>Хватит ли одного мощного кондиционера на весь дом?</h2><p>Нет — холодный воздух не проходит сквозь стены. На каждую закрытую комнату нужен свой внутренний блок либо канальная/мульти-сплит система.</p><h2>Сколько электричества ест кондиционер летом?</h2><p>Потребление примерно равно трети холодопроизводительности (например «девятка» 2,6 кВт тянет ~0,9 кВт). Инверторная модель ест в среднем на 30% меньше. Введите часы работы, цену электричества и наличие инвертора — калькулятор покажет расходы за месяц и за 3 летних месяца.</p>'
     }
   };
-  var lang='uz', calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', calcData=null;
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};

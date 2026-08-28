@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -250,7 +251,7 @@ img,svg{height:auto}
 (function(){
   'use strict';
   var $=function(id){return document.getElementById(id)};
-  var lang='uz', birthType='normal', calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', birthType='normal', calcData=null;
 
   /* ---------- huquqiy konstantalar (data/legal-constants.json bilan bir xil yozuv) ----------
      qiymat:null bo'lsa, bu sahifa hech qanday raqam CHIQARMAYDI — faqat

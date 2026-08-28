@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -313,7 +314,7 @@ var QCATS=[
  {k:'elektron',cats:['elektron']}
 ];
 var COLORS={kiyim:'#5B3A63',sumka:'#1D4E6B',kitob:'#8C3B2A',tolov:'#0E3B2E',elektron:'#B08A2E',boshqa:'#8A968F'};
-var lang='uz', calcData=null, checked={};
+var lang=document.documentElement.lang==='ru'?'ru':'uz', calcData=null, checked={};
 var state={children:[newChild()],active:0,months:2,mode:'tez'};
 function newChild(){return {grade:1,gender:'m',school:'davlat',items:{},custom:[],quick:{kiyim:0,sumka:0,kitob:0,tolov:0,elektron:0,boshqa:0}}}
 var $=function(id){return document.getElementById(id)};

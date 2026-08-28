@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -348,7 +349,7 @@ img,svg{height:auto}
       seo:'<h2>Как считается прибыль откорма?</h2><p>Чистая прибыль = цена продажи − (покупка + корма + прочие расходы). Самая большая статья — корм: дневной рацион, умноженный на дни откорма, часто дороже самого животного. Поэтому при росте цен на корм многие хозяйства работают в убыток, не зная об этом.</p><h2>Когда откорм выгоден?</h2><p>Простое правило: месячный прирост стоимости животного должен быть больше дневного расхода × 30. Калькулятор сравнивает это автоматически и показывает цену безубыточности — минимальную цену продажи одной головы.</p><h2>Как снизить расходы?</h2><p>Оптовая закупка корма в сезон, дешёвые наполнители (шелуха, отруби), своя люцерна — могут снизить дневной расход на 20–30%. Проверяйте каждое изменение в калькуляторе.</p>'
     }
   };
-  var lang='uz', animal='buqa', calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', animal='buqa', calcData=null;
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/ /g,'').replace(/\s/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};

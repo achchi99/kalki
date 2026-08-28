@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -310,7 +311,7 @@ var EVENTS={
   boshqa:{dish:'boshqa',dish2:'',salads:[],on:[]}
 };
 var LSKEY='kalki_marosim';
-var lang='uz', calcData=null, customItems=[];
+var lang=document.documentElement.lang==='ru'?'ru':'uz', calcData=null, customItems=[];
 var evType='', detailOpen=false, dirty=false, restoring=false, gaSig='';
 var $=function(id){return document.getElementById(id)};
 var t=function(k){return I[lang][k]};

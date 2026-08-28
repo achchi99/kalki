@@ -5,6 +5,7 @@
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];
   document.documentElement.setAttribute('data-lang',l);
@@ -804,7 +805,7 @@ img,svg{height:auto}
     }
   };
 
-  var lang='uz', loc='vil', calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', loc='vil', calcData=null;
   /* Qaysi maydonlarni foydalanuvchi O'ZI to'ldirgan (yoki crosslink orqali
      tasdiqlangan) — standart HTML qiymatlari (masalan komm=500000) real
      kiritilgan ma'lumot emas, taxmin, shuning uchun buni alohida kuzatib
