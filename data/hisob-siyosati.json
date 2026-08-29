@@ -1,0 +1,965 @@
+{
+  "versiya": "0.1-skeleton",
+  "sana": "2026-08-28",
+  "bandlar": [
+    {
+      "id": "bup_buxgalteriya_shakli",
+      "hujjat": "BUP",
+      "bolim": "I. Umumiy qoidalar",
+      "sarlavha_uz": "Buxgalteriya hisobini yuritish shakli",
+      "sarlavha_ru": "Форма ведения бухгалтерского учёта",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "avtomatlashtirilgan",
+          "nom_uz": "Avtomatlashtirilgan (dastur asosida)",
+          "nom_ru": "Автоматизированная (на основе программы)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "jurnal_order",
+          "nom_uz": "Jurnal-order shakli",
+          "nom_ru": "Журнально-ордерная форма",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "memorial_order",
+          "nom_uz": "Memorial-order shakli",
+          "nom_ru": "Мемориально-ордерная форма",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun, NSBU №1 \"Moliyaviy hisobotni taqdim etish va hisob siyosati\" — buyruq №130, 14.06.2024, MYU 3544 (06.08.2024)",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_masul_shaxslar",
+      "hujjat": "BUP",
+      "bolim": "I. Umumiy qoidalar",
+      "sarlavha_uz": "Moliyaviy hisobot yuritish uchun mas'ul shaxslar",
+      "sarlavha_ru": "Ответственные лица за ведение финансовой отчётности",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "rahbar_va_buxgalter",
+          "nom_uz": "Rahbar va bosh buxgalter (standart taqsimot)",
+          "nom_ru": "Руководитель и главный бухгалтер (стандартное распределение)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_amortizatsiya_usuli",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Asosiy vositalar amortizatsiyasi usuli",
+      "sarlavha_ru": "Метод амортизации основных средств",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "chiziqli",
+          "nom_uz": "Teng me'yorli (chiziqli) usul",
+          "nom_ru": "Равномерный (линейный) метод",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "kamaytiruvchi_qoldiq",
+          "nom_uz": "Kamayuvchi qoldiq usuli",
+          "nom_ru": "Метод уменьшаемого остатка",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "ishlab_chiqarish_hajmiga_proporsional",
+          "nom_uz": "Ishlab chiqarish hajmiga proporsional usul",
+          "nom_ru": "Метод пропорционально объёму продукции",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_av_qiymat_chegarasi",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Asosiy vosita sifatida tan olish uchun qiymat chegarasi",
+      "sarlavha_ru": "Стоимостной лимит признания основным средством",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "korxona_belgilaydi",
+          "nom_uz": "Korxona o'zi belgilaydi (qonun doirasida)",
+          "nom_ru": "Устанавливается предприятием (в рамках закона)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_av_qayta_baholash",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Asosiy vositalarni qayta baholash siyosati",
+      "sarlavha_ru": "Политика переоценки основных средств",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "tannarxda_saqlanadi",
+          "nom_uz": "Dastlabki tannarxda saqlanadi (qayta baholanmaydi)",
+          "nom_ru": "Учитывается по первоначальной стоимости (без переоценки)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "davriy_qayta_baholash",
+          "nom_uz": "Davriy ravishda qayta baholanadi",
+          "nom_ru": "Периодически переоценивается",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_nomoddiy_aktivlar_amortizatsiya",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Nomoddiy aktivlar amortizatsiyasi",
+      "sarlavha_ru": "Амортизация нематериальных активов",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "chiziqli",
+          "nom_uz": "Teng me'yorli (chiziqli) usul",
+          "nom_ru": "Равномерный (линейный) метод",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Tegishli NSBU (nomoddiy aktivlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_tmz_baholash_usuli",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Tovar-moddiy zaxiralarni baholash usuli",
+      "sarlavha_ru": "Метод оценки товарно-материальных запасов",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "fifo",
+          "nom_uz": "FIFO (birinchi kirim — birinchi chiqim)",
+          "nom_ru": "ФИФО (первым пришёл — первым ушёл)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P1",
+            "P2"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "ortacha_tannarx",
+          "nom_uz": "O'rtacha tannarx usuli",
+          "nom_ru": "Метод средней стоимости",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "aniqlashtirilgan_tannarx",
+          "nom_uz": "Har birining aniqlashtirilgan tannarxi",
+          "nom_ru": "Метод специфической идентификации",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №4 \"Tovar-moddiy zaxiralar\"",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_daromadni_tan_olish",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Daromadni tan olish tartibi",
+      "sarlavha_ru": "Порядок признания дохода",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "yetkazib_berish_vaqtida",
+          "nom_uz": "Mahsulot/xizmat yetkazib berilgan vaqtda",
+          "nom_ru": "В момент передачи товара/услуги",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P1",
+            "P2",
+            "P5",
+            "P6"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "bajarish_darajasiga_qarab",
+          "nom_uz": "Uzoq muddatli shartnoma bajarilish darajasiga qarab",
+          "nom_ru": "По степени выполнения долгосрочного договора",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Tegishli NSBU (daromadlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_zaxiralar",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Kutilayotgan majburiyatlar (zaxiralar)ni shakllantirish",
+      "sarlavha_ru": "Формирование резервов предстоящих обязательств",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "shakllantiriladi",
+          "nom_uz": "Zaxiralar shakllantiriladi",
+          "nom_ru": "Резервы формируются",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "shakllantirilmaydi",
+          "nom_uz": "Zaxiralar shakllantirilmaydi",
+          "nom_ru": "Резервы не формируются",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Tegishli NSBU (majburiyatlar/zaxiralar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_valyuta_kurs_farqlari",
+      "hujjat": "BUP",
+      "bolim": "II. Usuliy qism",
+      "sarlavha_uz": "Chet el valyutasidagi operatsiyalar bo'yicha kurs farqlarini hisobga olish",
+      "sarlavha_ru": "Учёт курсовых разниц по операциям в иностранной валюте",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "joriy_moliyaviy_natija",
+          "nom_uz": "Joriy davr moliyaviy natijasiga kiritiladi",
+          "nom_ru": "Включается в финансовый результат текущего периода",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Tegishli NSBU (valyuta kurs farqlari bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_hujjat_aylanishi",
+      "hujjat": "BUP",
+      "bolim": "III. Tashkiliy qism",
+      "sarlavha_uz": "Hujjat aylanish tartibi",
+      "sarlavha_ru": "Порядок документооборота",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart hujjat aylanish jadvali",
+          "nom_ru": "Стандартный график документооборота",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_inventarizatsiya",
+      "hujjat": "BUP",
+      "bolim": "III. Tashkiliy qism",
+      "sarlavha_uz": "Inventarizatsiya o'tkazish tartibi",
+      "sarlavha_ru": "Порядок проведения инвентаризации",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "yillik_standart",
+          "nom_uz": "Yiliga kamida bir marta, standart tartibda",
+          "nom_ru": "Не реже одного раза в год, в стандартном порядке",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_ichki_nazorat",
+      "hujjat": "BUP",
+      "bolim": "III. Tashkiliy qism",
+      "sarlavha_uz": "Ichki nazorat tizimi",
+      "sarlavha_ru": "Система внутреннего контроля",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart ichki nazorat tartibi",
+          "nom_ru": "Стандартный порядок внутреннего контроля",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_schyotlar_rejasi",
+      "hujjat": "BUP",
+      "bolim": "IV. Ish schyotlari rejasi",
+      "sarlavha_uz": "Ishchi schyotlar rejasi",
+      "sarlavha_ru": "Рабочий план счетов",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart_reja",
+          "nom_uz": "NSBU №21 standart rejasi to'liq holda",
+          "nom_ru": "Полный стандартный план по НСБУ №21",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "moslashtirilgan_reja",
+          "nom_uz": "NSBU №21 asosida, qo'shimcha subschyotlar bilan moslashtirilgan",
+          "nom_ru": "На основе НСБУ №21, адаптированный с доп. субсчетами",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №21 \"Xo'jalik yurituvchi subyektlarning moliya-xo'jalik faoliyatini hisobga olish uchun schyotlar rejasi\"",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_kuchga_kirish_sanasi",
+      "hujjat": "BUP",
+      "bolim": "V. Yakuniy qoidalar",
+      "sarlavha_uz": "Kuchga kirish sanasi",
+      "sarlavha_ru": "Дата вступления в силу",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart matn (foydalanuvchi kiritgan sanaga bog'liq)",
+          "nom_ru": "Стандартный текст (в зависимости от введённой даты)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "\"Buxgalteriya hisobi to'g'risida\"gi Qonun",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "bup_ozgartirish_tartibi",
+      "hujjat": "BUP",
+      "bolim": "V. Yakuniy qoidalar",
+      "sarlavha_uz": "Hisob siyosatini o'zgartirish tartibi",
+      "sarlavha_ru": "Порядок изменения учётной политики",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart matn",
+          "nom_ru": "Стандартный текст",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "NSBU №1 \"Moliyaviy hisobotni taqdim etish va hisob siyosati\" — buyruq №130, 14.06.2024, MYU 3544 (06.08.2024)",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_soliq_rejimi",
+      "hujjat": "NUP",
+      "bolim": "I. Umumiy qoidalar",
+      "sarlavha_uz": "Qo'llaniladigan soliq rejimi",
+      "sarlavha_ru": "Применяемый налоговый режим",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "umumbelgilangan",
+          "nom_uz": "Umumbelgilangan soliq rejimi",
+          "nom_ru": "Общеустановленный налоговый режим",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "soddalashtirilgan",
+          "nom_uz": "Soddalashtirilgan soliq rejimi (aylanma solig'i)",
+          "nom_ru": "Упрощённый налоговый режим (налог с оборота)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 77-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_soliq_turlari",
+      "hujjat": "NUP",
+      "bolim": "I. Umumiy qoidalar",
+      "sarlavha_uz": "To'lanadigan soliq va majburiy to'lovlar ro'yxati",
+      "sarlavha_ru": "Перечень уплачиваемых налогов и обязательных платежей",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "qqs_bilan",
+          "nom_uz": "QQS to'lovchi profil uchun ro'yxat",
+          "nom_ru": "Перечень для плательщика НДС",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P2",
+            "P4",
+            "P6"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "qqssiz",
+          "nom_uz": "QQS to'lovchi bo'lmagan profil uchun ro'yxat",
+          "nom_ru": "Перечень для неплательщика НДС",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": [
+            "P1",
+            "P3",
+            "P5"
+          ],
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 77-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_ajratilgan_hisob",
+      "hujjat": "NUP",
+      "bolim": "II. Ajratilgan hisob tartibi",
+      "sarlavha_uz": "Ajratilgan hisob yuritish tartibi",
+      "sarlavha_ru": "Порядок ведения раздельного учёта",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "talab_qilinadi",
+          "nom_uz": "Ajratilgan hisob yuritiladi (bir nechta faoliyat/rejim aralash bo'lganda)",
+          "nom_ru": "Ведётся раздельный учёт (при совмещении видов деятельности/режимов)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        },
+        {
+          "kod": "talab_qilinmaydi",
+          "nom_uz": "Ajratilgan hisob talab qilinmaydi (bitta faoliyat turi/rejim)",
+          "nom_ru": "Раздельный учёт не требуется (один вид деятельности/режим)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 80-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_foyda_soligi_xarajat_tan_olish",
+      "hujjat": "NUP",
+      "bolim": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "sarlavha_uz": "Xarajatlarni tan olish usuli",
+      "sarlavha_ru": "Метод признания расходов",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "hisoblash_usuli",
+          "nom_uz": "Hisoblash usuli (metod nachisleniya)",
+          "nom_ru": "Метод начисления",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_foyda_soligi_amortizatsiya",
+      "hujjat": "NUP",
+      "bolim": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "sarlavha_uz": "Asosiy vositalar amortizatsiyasi (soliq maqsadida)",
+      "sarlavha_ru": "Амортизация основных средств (в налоговых целях)",
+      "tanlov_erkinligi": "qatiy",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "chiziqli_meyoriy",
+          "nom_uz": "Teng me'yorli usul, guruh bo'yicha chegaraviy me'yorlar (tanlov yo'q)",
+          "nom_ru": "Равномерный метод, предельные нормы по группам (без выбора)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 306-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_qqs_hisob_tartibi",
+      "hujjat": "NUP",
+      "bolim": "IV. QQS hisobga olish tartibi",
+      "sarlavha_uz": "QQS hisobini yuritish tartibi",
+      "sarlavha_ru": "Порядок ведения учёта НДС",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart hisob-kitob tartibi",
+          "nom_ru": "Стандартный порядок расчёта",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_qqs_ajratilgan_hisob",
+      "hujjat": "NUP",
+      "bolim": "IV. QQS hisobga olish tartibi",
+      "sarlavha_uz": "QQS'siz va QQS'li operatsiyalar aralash bo'lganda kiruvchi QQS'ni taqsimlash",
+      "sarlavha_ru": "Распределение входящего НДС при совмещении облагаемых и необлагаемых операций",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "aylanmaga_proporsional",
+          "nom_uz": "Umumiy aylanmadagi ulushiga proporsional taqsimlash",
+          "nom_ru": "Пропорционально доле в общем обороте",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_amortizatsiya_meyorlari_guruhlar",
+      "hujjat": "NUP",
+      "bolim": "V. Amortizatsiya me'yorlari",
+      "sarlavha_uz": "Asosiy vositalar guruhlari bo'yicha chegaraviy amortizatsiya me'yorlari",
+      "sarlavha_ru": "Предельные нормы амортизации по группам основных средств",
+      "tanlov_erkinligi": "qatiy",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "sk306_jadvali",
+          "nom_uz": "SK 306-moddadagi guruh-me'yor jadvali (tanlov yo'q) — FAZA 3'da guruhlar soni va aniq foizlar huquqshunos tomonidan tasdiqlanishi shart",
+          "nom_ru": "Таблица группа-норма по ст. 306 НК (без выбора) — количество групп и точные проценты подлежат подтверждению юристом в ФАЗЕ 3",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 306-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_qollash_muddati",
+      "hujjat": "NUP",
+      "bolim": "VI. Yakuniy qoidalar",
+      "sarlavha_uz": "Qo'llash muddati",
+      "sarlavha_ru": "Срок применения",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart matn — tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi",
+          "nom_ru": "Стандартный текст — применяется с 1 января года, следующего за годом утверждения",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 77-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    },
+    {
+      "id": "nup_ozgartirish_sabablari",
+      "hujjat": "NUP",
+      "bolim": "VI. Yakuniy qoidalar",
+      "sarlavha_uz": "Hisob siyosatini yangilash sabablari",
+      "sarlavha_ru": "Основания для обновления учётной политики",
+      "tanlov_erkinligi": "erkin",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "standart",
+          "nom_uz": "Standart izoh (soliq rejimi/faoliyat turi o'zgarganda yangilash tavsiyasi)",
+          "nom_ru": "Стандартное примечание (рекомендация обновления при смене режима/вида деятельности)",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi 77-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
+    }
+  ]
+}
