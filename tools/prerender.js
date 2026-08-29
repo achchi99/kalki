@@ -165,6 +165,7 @@ const RU_PAGES = [
   'maxfiylik.html',
   'shablonlar.html',
   'shartlar.html',
+  'hisob-siyosati-generatori.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.

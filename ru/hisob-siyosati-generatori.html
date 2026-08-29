@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hisob siyosati generatori — buxgalteriya va soliq hisob siyosati</title>
+<meta name="description" content="Ikkita hisob siyosati kerak — buxgalteriya va soliq uchun alohida. Faoliyat turi va QQS holatini tanlang, ikkala hujjat skeleti tayyor bo'ladi, Word'da yuklab oling.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/ru/hisob-siyosati-generatori">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1080px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:56ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+.profile-badge{margin-top:2px;font-size:12.5px;font-weight:800;color:var(--cat-deep);background:var(--cat-soft);display:inline-block;padding:6px 12px;border-radius:99px}
+.doc-tabs{display:flex;gap:4px;padding:4px;background:#EEF2EF}
+.doc-tabs button{flex:1;border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:var(--muted);padding:10px 8px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.doc-tabs button.on{background:var(--cat);color:#fff}
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14px;line-height:1.6;color:#16211C;max-height:64vh;overflow-y:auto}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:13.5px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:5px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:#8A6D1F;background:#FFF8E8;padding:5px 8px;border-radius:6px;margin-bottom:10px}
+.dg-gap{height:10px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.band-choice{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.band-choice select{border:1.5px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit;font-size:12.5px;font-weight:700;color:var(--ink);background:#FBFCFB}
+.two-doc-note{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.two-doc-note b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:20px;left:0;right:0}
+  .receipt-actions,.noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Hisob siyosati generatori — buxgalteriya va soliq hisob siyosati">
+<meta property="og:description" content="Ikkita hisob siyosati kerak — buxgalteriya va soliq uchun alohida. Faoliyat turi va QQS holatini tanlang, ikkala hujjat skeleti tayyor bo'ladi, Word'da yuklab oling.">
+<meta property="og:url" content="https://kalki.uz/ru/hisob-siyosati-generatori">
+<meta property="og:image" content="https://kalki.uz/assets/og/hisob-siyosati-generatori.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hisob siyosati generatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/hisob-siyosati-generatori.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Hisob siyosati generatori — buxgalteriya va soliq hisob siyosati">
+<meta name="twitter:description" content="Ikkita hisob siyosati kerak — buxgalteriya va soliq uchun alohida. Faoliyat turi va QQS holatini tanlang, ikkala hujjat skeleti tayyor bo'ladi, Word'da yuklab oling.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Hisob siyosati generatori — O'zbekistonda korxonaga ikkita alohida hujjat kerak: buxgalteriya hisob siyosati (NSBU asosida) va soliq hisob siyosati (Soliq kodeksi 77-modda asosida). Faoliyat turi va QQS holatini tanlang, ikkala hujjat skeleti ko'rinadi.","sources":[]},"ru":{"text":"Генератор учётной политики — узбекскому предприятию нужны два отдельных документа: бухгалтерская учётная политика (на основе НСБУ) и налоговая учётная политика (ст. 77 Налогового кодекса). Выберите вид деятельности и статус НДС — появятся оба документа.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Hisob siyosati generatori","item":"https://kalki.uz/hisob-siyosati-generatori"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Hisob siyosati generatori","description":"Ikkita hisob siyosati kerak — buxgalteriya va soliq uchun alohida. Faoliyat turi va QQS holatini tanlang, ikkala hujjat skeleti tayyor bo'ladi, Word'da yuklab oling.","url":"https://kalki.uz/ru/hisob-siyosati-generatori","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Nega ikkita hisob siyosati kerak, bittasi yetmaydimi?","acceptedAnswer":{"@type":"Answer","text":"Buxgalteriya hisob siyosati NSBU va \"Buxgalteriya hisobi to'g'risida\"gi Qonun asosida, soliq hisob siyosati esa Soliq kodeksi 77-moddasi asosida tuziladi — bu ikki mustaqil hujjat. Ko'p korxonada faqat birinchisi bor, ikkinchisi umuman yo'q. Soliq hisob siyosati yo'qligi kameral tekshiruvda darhol aniqlanadi va jarima solinishi mumkin."}},{"@type":"Question","name":"Bandlar nega bo'sh — \"buxgalter to'ldiradi\" deb yozilgan?","acceptedAnswer":{"@type":"Answer","text":"Amortizatsiya usuli, TMZ baholash usuli kabi bandlar — professional buxgalterlik qarori, korxonaning haqiqiy holatiga qarab tanlanadi. Bu generator noto'g'ri taxmin bilan tayyor matn yozib bermaydi, chunki noto'g'ri usul (masalan soliq hisobida amortizatsiya usulini \"tanlash\" imkonini berish) to'g'ridan-to'g'ri qonunbuzarlik hujjati yaratadi. Bunday bandlar buxgalter tomonidan to'ldirilishi kerak."}},{"@type":"Question","name":"Soliq hisob siyosatida nega ba'zi bandlarda tanlov yo'q?","acceptedAnswer":{"@type":"Answer","text":"Soliq kodeksida ba'zi usullar qat'iy belgilangan — masalan amortizatsiya faqat teng me'yorli (chiziqli) usulda hisoblanadi (306-modda). Bunday bandlarda generator foydalanuvchiga soxta tanlov ko'rsatmaydi, chunki bu qonunga zid hujjat yaratishga olib kelardi."}},{"@type":"Question","name":"Hisob siyosati qachondan amal qiladi?","acceptedAnswer":{"@type":"Answer","text":"Soliq kodeksi 77-moddasiga ko'ra, tanlangan usullar tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi. Ya'ni 2026-yilda tasdiqlangan hisob siyosati 2027-yildan ishlaydi — hujjatni olgan kuni emas."}},{"@type":"Question","name":"Bu hujjatlar bepulmi?","acceptedAnswer":{"@type":"Answer","text":"Ha, hozircha to'liq bepul. To'lov tizimi hali ulanmagan."}},{"@type":"Question","name":"Generator natijasi to'liq tayyor hujjatmi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. Bu — ikkala hujjatning to'liq bo'limli skeleti, universal bandlar bilan. Metodologik tanlov talab qiladigan bandlar (amortizatsiya, TMZ baholash va h.k.) hozircha bo'sh — ular buxgalter tomonidan professional qaror sifatida to'ldirilishi kerak."}}]}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/hisob-siyosati-generatori" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/hisob-siyosati-generatori" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/hisob-siyosati-generatori" data-hreflang-gen="1"></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Генератор документов</span>
+    <h1 data-i="h1">Генератор учётной политики</h1>
+    <p class="sub" data-i="sub">Бухгалтерская и налоговая учётная политика — два отдельных документа. Выберите вид деятельности и статус НДС.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Hisob siyosati generatori</span></nav></div>
+
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Генератор учётной политики — узбекскому предприятию нужны два отдельных документа: бухгалтерская учётная политика (на основе НСБУ) и налоговая учётная политика (ст. 77 Налогового кодекса). Выберите вид деятельности и статус НДС — появятся оба документа.</p></div>
+  <div class="intro" data-i-html="intro"><b>Почему нужны два?</b> Большинство знает только про бухгалтерскую учётную политику. Налоговая учётная политика — отдельный документ (ст. 77 Налогового кодекса), и её отсутствие считается серьёзным нарушением, часто требуется уже при первой камеральной проверке. Этот генератор даёт оба документа.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <section class="dg-sec">
+        <div class="dg-sec-t" data-i="secProfil">Профиль</div>
+        <div class="dg-rows">
+          <div class="dg-field">
+            <label data-i="lFaoliyat">Вид деятельности</label>
+            <div class="dg-seg" id="segFaoliyat">
+              <button type="button" data-val="savdo" class="on" data-i="oSavdo">Торговля</button>
+              <button type="button" data-val="ishlab_chiqarish" data-i="oIshlabChiqarish">Производство</button>
+              <button type="button" data-val="xizmat" data-i="oXizmat">Услуги</button>
+            </div>
+          </div>
+          <div class="dg-field">
+            <label data-i="lQqs">Вы плательщик НДС?</label>
+            <div class="dg-seg" id="segQqs">
+              <button type="button" data-val="yoq" class="on" data-i="oQqsYoq">Нет</button>
+              <button type="button" data-val="ha" data-i="oQqsHa">Да</button>
+            </div>
+          </div>
+          <div class="dg-field"><span class="profile-badge" id="profileBadge">P1 — Торговля (без НДС)</span></div>
+        </div>
+      </section>
+
+      <section class="dg-sec">
+        <div class="dg-sec-t" data-i="secRekvizit">Реквизиты</div>
+        <div class="dg-rows">
+          <div class="dg-field" data-fw="orgName"><label data-i="lOrgName">Название организации</label><div class="dg-shell"><input type="text" id="orgName" placeholder="Masalan: &quot;Nur Savdo&quot; MCHJ"></div></div>
+          <div class="dg-field dg-half" data-fw="stir"><label data-i="lStir">ИНН</label><div class="dg-shell"><input type="text" id="stir" inputmode="numeric" placeholder="9 raqam"></div></div>
+          <div class="dg-field dg-half" data-fw="moliyaviyYil"><label data-i="lYil">Финансовый год</label><div class="dg-shell"><input type="text" id="moliyaviyYil" inputmode="numeric" placeholder="2026"></div></div>
+          <div class="dg-field" data-fw="manzil"><label data-i="lManzil">Юридический адрес</label><div class="dg-shell"><input type="text" id="manzil" placeholder="Toshkent sh., ..."></div></div>
+          <div class="dg-field dg-half" data-fw="rahbar"><label data-i="lRahbar">Ф.И.О. руководителя</label><div class="dg-shell"><input type="text" id="rahbar" placeholder="Karimov Bobur Sobirovich"></div></div>
+          <div class="dg-field dg-half" data-fw="buxgalter"><label data-i="lBuxgalter">Ф.И.О. главного бухгалтера</label><div class="dg-shell"><input type="text" id="buxgalter" placeholder=""></div></div>
+          <div class="dg-field" data-fw="dastur"><label data-i="lDastur">Программа бухучёта</label><div class="dg-shell"><input type="text" id="dastur" placeholder="1C, Excel va h.k."></div></div>
+        </div>
+      </section>
+
+      <div class="two-doc-note" data-i-html="qollashMuddati"><b>Срок применения:</b> согласно ст. 77 Налогового кодекса, выбранные методы применяются с 1 января года, следующего за годом утверждения.</div>
+      <div class="warn" data-i-html="warnBlocked"><b>Внимание:</b> ниже многие пункты отмечены как "[заполняется бухгалтером]". Это пункты, требующие методологического выбора — заполняйте их вместе с бухгалтером или налоговым консультантом: неверный выбор (например, в налоговой амортизации) создаёт документ с нарушением закона.</div>
+    </div>
+
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="doc-tabs" role="tablist">
+          <button type="button" id="tabBup" class="on" data-i="tabBup">Бухгалтерская (BUP)</button>
+          <button type="button" id="tabNup" data-i="tabNup">Налоговая (NUP)</button>
+        </div>
+        <div class="dg-head"><span class="t" id="docHeadTitle" data-i="tBupHead">Бухгалтерская учётная политика</span></div>
+        <div id="docBody"><div class="dg-title">БУХГАЛТЕРСКАЯ УЧЁТНАЯ ПОЛИТИКА</div><div class="dg-h">I. Umumiy qoidalar</div><div class="dg-h" style="font-size:13.5px">Форма ведения бухгалтерского учёта</div><div class="band-choice"><select data-band="bup_buxgalteriya_shakli"><option value="avtomatlashtirilgan" selected="">Автоматизированная (на основе программы)</option><option value="jurnal_order">Журнально-ордерная форма</option><option value="memorial_order">Мемориально-ордерная форма</option></select></div><div class="dg-p">Выбранный вариант: Автоматизированная (на основе программы)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Ответственные лица за ведение финансовой отчётности</div><div class="dg-p">Руководитель и главный бухгалтер (стандартное распределение)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h">II. Usuliy qism</div><div class="dg-h" style="font-size:13.5px">Метод амортизации основных средств</div><div class="band-choice"><select data-band="bup_amortizatsiya_usuli"><option value="chiziqli" selected="">Равномерный (линейный) метод</option><option value="kamaytiruvchi_qoldiq">Метод уменьшаемого остатка</option><option value="ishlab_chiqarish_hajmiga_proporsional">Метод пропорционально объёму продукции</option></select></div><div class="dg-p">Выбранный вариант: Равномерный (линейный) метод</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Стоимостной лимит признания основным средством</div><div class="dg-p">Устанавливается предприятием (в рамках закона)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Политика переоценки основных средств</div><div class="band-choice"><select data-band="bup_av_qayta_baholash"><option value="tannarxda_saqlanadi" selected="">Учитывается по первоначальной стоимости (без переоценки)</option><option value="davriy_qayta_baholash">Периодически переоценивается</option></select></div><div class="dg-p">Выбранный вариант: Учитывается по первоначальной стоимости (без переоценки)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Амортизация нематериальных активов</div><div class="dg-p">Равномерный (линейный) метод</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Метод оценки товарно-материальных запасов</div><div class="band-choice"><select data-band="bup_tmz_baholash_usuli"><option value="fifo" selected="">ФИФО (первым пришёл — первым ушёл)</option><option value="ortacha_tannarx">Метод средней стоимости</option><option value="aniqlashtirilgan_tannarx">Метод специфической идентификации</option></select></div><div class="dg-p">Выбранный вариант: ФИФО (первым пришёл — первым ушёл)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Порядок признания дохода</div><div class="band-choice"><select data-band="bup_daromadni_tan_olish"><option value="yetkazib_berish_vaqtida" selected="">В момент передачи товара/услуги</option><option value="bajarish_darajasiga_qarab">По степени выполнения долгосрочного договора</option></select></div><div class="dg-p">Выбранный вариант: В момент передачи товара/услуги</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Формирование резервов предстоящих обязательств</div><div class="band-choice"><select data-band="bup_zaxiralar"><option value="shakllantiriladi" selected="">Резервы формируются</option><option value="shakllantirilmaydi">Резервы не формируются</option></select></div><div class="dg-p">Выбранный вариант: Резервы формируются</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Учёт курсовых разниц по операциям в иностранной валюте</div><div class="dg-p">Включается в финансовый результат текущего периода</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h">III. Tashkiliy qism</div><div class="dg-h" style="font-size:13.5px">Порядок документооборота</div><div class="dg-p">Стандартный график документооборота</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Порядок проведения инвентаризации</div><div class="dg-p">Не реже одного раза в год, в стандартном порядке</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Система внутреннего контроля</div><div class="dg-p">Стандартный порядок внутреннего контроля</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h">IV. Ish schyotlari rejasi</div><div class="dg-h" style="font-size:13.5px">Рабочий план счетов</div><div class="band-choice"><select data-band="bup_schyotlar_rejasi"><option value="standart_reja" selected="">Полный стандартный план по НСБУ №21</option><option value="moslashtirilgan_reja">На основе НСБУ №21, адаптированный с доп. субсчетами</option></select></div><div class="dg-p">Выбранный вариант: Полный стандартный план по НСБУ №21</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h">V. Yakuniy qoidalar</div><div class="dg-h" style="font-size:13.5px">Дата вступления в силу</div><div class="dg-p">Стандартный текст (в зависимости от введённой даты)</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div><div class="dg-h" style="font-size:13.5px">Порядок изменения учётной политики</div><div class="dg-p">Стандартный текст</div><div class="dg-note">[Этот пункт заполняется бухгалтером]</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBupBtn" data-i="btnWordBup">BUP — Word</button>
+          <button type="button" class="primary" id="wordNupBtn" data-i="btnWordNup">NUP — Word</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+    </div>
+  </div>
+
+<section class="seo" id="seoBlock"><h2>Buxgalteriya va soliq hisob siyosati — nima farqi bor?</h2><p>Buxgalteriya hisob siyosati (BUP) NSBU va "Buxgalteriya hisobi to'g'risida"gi Qonun asosida tuziladi — bu yerda korxona ko'p bandlarda usulni o'zi tanlaydi (amortizatsiya, TMZ baholash va h.k.). Soliq hisob siyosati (NUP) esa Soliq kodeksi 77-moddasi asosida tuziladi va tanlov erkinligi ancha cheklangan — ko'p bandlar qonun bilan qat'iy belgilangan.</p><p>Ko'pchilik korxona faqat birinchisini biladi. Soliq hisob siyosati alohida hujjat va uning yo'qligi jiddiy buzilish hisoblanadi — ko'pincha birinchi kameral tekshiruvdayoq so'raladi.</p><h2>Nega ba'zi bandlarda tanlov yo'q?</h2><p>Soliq kodeksi 306-moddasiga ko'ra, soliq maqsadida amortizatsiya faqat teng me'yorli (chiziqli) usulda hisoblanadi, guruh bo'yicha chegaraviy me'yorlar bilan. Agar generator bu yerda foydalanuvchiga "usulni tanlang" deb uchta variant bersa, bu to'g'ridan-to'g'ri qonunbuzarlik hujjatini yaratardi. Shuning uchun bunday bandlarda tanlov ko'rsatilmaydi, faqat izoh bilan tushuntiriladi.</p><h2>Nega ko'p bandlar bo'sh ko'rinadi?</h2><p>Amortizatsiya usuli, TMZ baholash usuli, daromadni tan olish tartibi kabi bandlar — professional buxgalterlik qarori. Har bir korxonaning haqiqiy holati (faoliyat xususiyati, aylanma hajmi, aktivlar tarkibi) turlicha bo'lgani uchun bu bandlarni avtomatik to'ldirib bo'lmaydi. Bunday bandlar "[buxgalter tomonidan to'ldiriladi]" deb ko'rsatiladi — bo'sh joy emas, balki professional qaror kutilayotgani haqidagi ochiq belgi.</p><h2>Hisob siyosati qachondan amal qiladi?</h2><p>Soliq kodeksi 77-moddasiga ko'ra, tanlangan usullar tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi. Masalan, 2026-yilda tasdiqlangan hisob siyosati 2027-yildan ishlaydi. Bu — ko'p korxona bilmaydigan muhim nuance: hujjatni olgan kuni u darhol amalda deb hisoblab bo'lmaydi.</p><h2>Hujjat yo'qligi uchun qanday jarima bor?</h2><p>Hisob siyosati hujjati bo'lmasa, mansabdor shaxsga 5–10 bazaviy hisoblash miqdori (BHM) miqdorida jarima, takroriy tekshiruvda yana topilsa 10–20 BHM miqdorida jarima solinishi mumkin. Jarima to'lash hujjatni tuzish majburiyatidan ozod qilmaydi.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Вопросы и ответы</div><div id="faqBlock"><h2>Почему нужны две учётные политики, разве одной не хватит?</h2><p>Бухгалтерская учётная политика составляется на основе НСБУ и Закона "О бухгалтерском учёте", а налоговая — на основе статьи 77 Налогового кодекса — это два независимых документа. У многих предприятий есть только первый, второго нет вовсе. Отсутствие налоговой учётной политики сразу выявляется при камеральной проверке и может повлечь штраф.</p><h2>Почему пункты пустые — написано "заполняет бухгалтер"?</h2><p>Метод амортизации, метод оценки ТМЗ и подобные пункты — это профессиональное бухгалтерское решение, зависящее от реального положения предприятия. Генератор не пишет готовый текст на основе догадки, потому что неверный метод (например, предоставление выбора метода налоговой амортизации) создаёт документ с прямым нарушением закона. Такие пункты должен заполнить бухгалтер.</p><h2>Почему в налоговой учётной политике нет выбора для некоторых пунктов?</h2><p>В Налоговом кодексе некоторые методы жёстко определены — например, амортизация в налоговых целях рассчитывается только равномерным (линейным) методом (ст. 306). В таких пунктах генератор не показывает пользователю искусственный выбор, поскольку это привело бы к созданию документа, противоречащего закону.</p><h2>С какого момента действует учётная политика?</h2><p>Согласно ст. 77 Налогового кодекса, выбранные методы применяются с 1 января года, следующего за годом утверждения. То есть учётная политика, утверждённая в 2026 году, начнёт действовать с 2027 года — не с момента получения документа.</p><h2>Эти документы бесплатны?</h2><p>Да, пока полностью бесплатно. Платёжная система ещё не подключена.</p><h2>Результат генератора — это полностью готовый документ?</h2><p>Нет. Это полный каркас с разделами для обоих документов и заполненными универсальными пунктами. Пункты, требующие методологического выбора (амортизация, оценка ТМЗ и т.д.), пока пусты — их должен заполнить бухгалтер как профессиональное решение.</p></div></section><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Этот генератор даёт ориентировочный каркас. Методологические пункты заполняйте вместе с бухгалтером или налоговым консультантом.</footer></main>
+
+<script type="application/json" id="hisobsiyosati-data">{"versiya":"0.1-skeleton","sana":"2026-08-28","bandlar":[{"id":"bup_buxgalteriya_shakli","hujjat":"BUP","bolim":"I. Umumiy qoidalar","sarlavha_uz":"Buxgalteriya hisobini yuritish shakli","sarlavha_ru":"Форма ведения бухгалтерского учёта","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"avtomatlashtirilgan","nom_uz":"Avtomatlashtirilgan (dastur asosida)","nom_ru":"Автоматизированная (на основе программы)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"jurnal_order","nom_uz":"Jurnal-order shakli","nom_ru":"Журнально-ордерная форма","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"memorial_order","nom_uz":"Memorial-order shakli","nom_ru":"Мемориально-ордерная форма","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun, NSBU №1 \"Moliyaviy hisobotni taqdim etish va hisob siyosati\" — buyruq №130, 14.06.2024, MYU 3544 (06.08.2024)","izoh_uz":"","izoh_ru":""},{"id":"bup_masul_shaxslar","hujjat":"BUP","bolim":"I. Umumiy qoidalar","sarlavha_uz":"Moliyaviy hisobot yuritish uchun mas'ul shaxslar","sarlavha_ru":"Ответственные лица за ведение финансовой отчётности","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"rahbar_va_buxgalter","nom_uz":"Rahbar va bosh buxgalter (standart taqsimot)","nom_ru":"Руководитель и главный бухгалтер (стандартное распределение)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun","izoh_uz":"","izoh_ru":""},{"id":"bup_amortizatsiya_usuli","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Asosiy vositalar amortizatsiyasi usuli","sarlavha_ru":"Метод амортизации основных средств","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"chiziqli","nom_uz":"Teng me'yorli (chiziqli) usul","nom_ru":"Равномерный (линейный) метод","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P1","P2","P3","P4","P5","P6"],"holat":"TASDIQLASH KERAK"},{"kod":"kamaytiruvchi_qoldiq","nom_uz":"Kamayuvchi qoldiq usuli","nom_ru":"Метод уменьшаемого остатка","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P3","P4"],"holat":"TASDIQLASH KERAK"},{"kod":"ishlab_chiqarish_hajmiga_proporsional","nom_uz":"Ishlab chiqarish hajmiga proporsional usul","nom_ru":"Метод пропорционально объёму продукции","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P3","P4"],"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №5 \"Asosiy vositalar\"","izoh_uz":"","izoh_ru":""},{"id":"bup_av_qiymat_chegarasi","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Asosiy vosita sifatida tan olish uchun qiymat chegarasi","sarlavha_ru":"Стоимостной лимит признания основным средством","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"korxona_belgilaydi","nom_uz":"Korxona o'zi belgilaydi (qonun doirasida)","nom_ru":"Устанавливается предприятием (в рамках закона)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №5 \"Asosiy vositalar\"","izoh_uz":"","izoh_ru":""},{"id":"bup_av_qayta_baholash","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Asosiy vositalarni qayta baholash siyosati","sarlavha_ru":"Политика переоценки основных средств","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"tannarxda_saqlanadi","nom_uz":"Dastlabki tannarxda saqlanadi (qayta baholanmaydi)","nom_ru":"Учитывается по первоначальной стоимости (без переоценки)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"davriy_qayta_baholash","nom_uz":"Davriy ravishda qayta baholanadi","nom_ru":"Периодически переоценивается","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №5 \"Asosiy vositalar\"","izoh_uz":"","izoh_ru":""},{"id":"bup_nomoddiy_aktivlar_amortizatsiya","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Nomoddiy aktivlar amortizatsiyasi","sarlavha_ru":"Амортизация нематериальных активов","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"chiziqli","nom_uz":"Teng me'yorli (chiziqli) usul","nom_ru":"Равномерный (линейный) метод","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Tegishli NSBU (nomoddiy aktivlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart","izoh_uz":"","izoh_ru":""},{"id":"bup_tmz_baholash_usuli","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Tovar-moddiy zaxiralarni baholash usuli","sarlavha_ru":"Метод оценки товарно-материальных запасов","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"fifo","nom_uz":"FIFO (birinchi kirim — birinchi chiqim)","nom_ru":"ФИФО (первым пришёл — первым ушёл)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P1","P2"],"holat":"TASDIQLASH KERAK"},{"kod":"ortacha_tannarx","nom_uz":"O'rtacha tannarx usuli","nom_ru":"Метод средней стоимости","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P1","P2","P3","P4","P5","P6"],"holat":"TASDIQLASH KERAK"},{"kod":"aniqlashtirilgan_tannarx","nom_uz":"Har birining aniqlashtirilgan tannarxi","nom_ru":"Метод специфической идентификации","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P3","P4"],"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №4 \"Tovar-moddiy zaxiralar\"","izoh_uz":"","izoh_ru":""},{"id":"bup_daromadni_tan_olish","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Daromadni tan olish tartibi","sarlavha_ru":"Порядок признания дохода","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"yetkazib_berish_vaqtida","nom_uz":"Mahsulot/xizmat yetkazib berilgan vaqtda","nom_ru":"В момент передачи товара/услуги","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P1","P2","P5","P6"],"holat":"TASDIQLASH KERAK"},{"kod":"bajarish_darajasiga_qarab","nom_uz":"Uzoq muddatli shartnoma bajarilish darajasiga qarab","nom_ru":"По степени выполнения долгосрочного договора","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P3","P4"],"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Tegishli NSBU (daromadlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart","izoh_uz":"","izoh_ru":""},{"id":"bup_zaxiralar","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Kutilayotgan majburiyatlar (zaxiralar)ni shakllantirish","sarlavha_ru":"Формирование резервов предстоящих обязательств","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"shakllantiriladi","nom_uz":"Zaxiralar shakllantiriladi","nom_ru":"Резервы формируются","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"shakllantirilmaydi","nom_uz":"Zaxiralar shakllantirilmaydi","nom_ru":"Резервы не формируются","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Tegishli NSBU (majburiyatlar/zaxiralar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart","izoh_uz":"","izoh_ru":""},{"id":"bup_valyuta_kurs_farqlari","hujjat":"BUP","bolim":"II. Usuliy qism","sarlavha_uz":"Chet el valyutasidagi operatsiyalar bo'yicha kurs farqlarini hisobga olish","sarlavha_ru":"Учёт курсовых разниц по операциям в иностранной валюте","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"joriy_moliyaviy_natija","nom_uz":"Joriy davr moliyaviy natijasiga kiritiladi","nom_ru":"Включается в финансовый результат текущего периода","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Tegishli NSBU (valyuta kurs farqlari bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart","izoh_uz":"","izoh_ru":""},{"id":"bup_hujjat_aylanishi","hujjat":"BUP","bolim":"III. Tashkiliy qism","sarlavha_uz":"Hujjat aylanish tartibi","sarlavha_ru":"Порядок документооборота","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart hujjat aylanish jadvali","nom_ru":"Стандартный график документооборота","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun","izoh_uz":"","izoh_ru":""},{"id":"bup_inventarizatsiya","hujjat":"BUP","bolim":"III. Tashkiliy qism","sarlavha_uz":"Inventarizatsiya o'tkazish tartibi","sarlavha_ru":"Порядок проведения инвентаризации","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"yillik_standart","nom_uz":"Yiliga kamida bir marta, standart tartibda","nom_ru":"Не реже одного раза в год, в стандартном порядке","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun","izoh_uz":"","izoh_ru":""},{"id":"bup_ichki_nazorat","hujjat":"BUP","bolim":"III. Tashkiliy qism","sarlavha_uz":"Ichki nazorat tizimi","sarlavha_ru":"Система внутреннего контроля","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart ichki nazorat tartibi","nom_ru":"Стандартный порядок внутреннего контроля","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun","izoh_uz":"","izoh_ru":""},{"id":"bup_schyotlar_rejasi","hujjat":"BUP","bolim":"IV. Ish schyotlari rejasi","sarlavha_uz":"Ishchi schyotlar rejasi","sarlavha_ru":"Рабочий план счетов","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart_reja","nom_uz":"NSBU №21 standart rejasi to'liq holda","nom_ru":"Полный стандартный план по НСБУ №21","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"moslashtirilgan_reja","nom_uz":"NSBU №21 asosida, qo'shimcha subschyotlar bilan moslashtirilgan","nom_ru":"На основе НСБУ №21, адаптированный с доп. субсчетами","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №21 \"Xo'jalik yurituvchi subyektlarning moliya-xo'jalik faoliyatini hisobga olish uchun schyotlar rejasi\"","izoh_uz":"","izoh_ru":""},{"id":"bup_kuchga_kirish_sanasi","hujjat":"BUP","bolim":"V. Yakuniy qoidalar","sarlavha_uz":"Kuchga kirish sanasi","sarlavha_ru":"Дата вступления в силу","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart matn (foydalanuvchi kiritgan sanaga bog'liq)","nom_ru":"Стандартный текст (в зависимости от введённой даты)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"\"Buxgalteriya hisobi to'g'risida\"gi Qonun","izoh_uz":"","izoh_ru":""},{"id":"bup_ozgartirish_tartibi","hujjat":"BUP","bolim":"V. Yakuniy qoidalar","sarlavha_uz":"Hisob siyosatini o'zgartirish tartibi","sarlavha_ru":"Порядок изменения учётной политики","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart matn","nom_ru":"Стандартный текст","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"NSBU №1 \"Moliyaviy hisobotni taqdim etish va hisob siyosati\" — buyruq №130, 14.06.2024, MYU 3544 (06.08.2024)","izoh_uz":"","izoh_ru":""},{"id":"nup_soliq_rejimi","hujjat":"NUP","bolim":"I. Umumiy qoidalar","sarlavha_uz":"Qo'llaniladigan soliq rejimi","sarlavha_ru":"Применяемый налоговый режим","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"umumbelgilangan","nom_uz":"Umumbelgilangan soliq rejimi","nom_ru":"Общеустановленный налоговый режим","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"soddalashtirilgan","nom_uz":"Soddalashtirilgan soliq rejimi (aylanma solig'i)","nom_ru":"Упрощённый налоговый режим (налог с оборота)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 77-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_soliq_turlari","hujjat":"NUP","bolim":"I. Umumiy qoidalar","sarlavha_uz":"To'lanadigan soliq va majburiy to'lovlar ro'yxati","sarlavha_ru":"Перечень уплачиваемых налогов и обязательных платежей","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"qqs_bilan","nom_uz":"QQS to'lovchi profil uchun ro'yxat","nom_ru":"Перечень для плательщика НДС","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P2","P4","P6"],"holat":"TASDIQLASH KERAK"},{"kod":"qqssiz","nom_uz":"QQS to'lovchi bo'lmagan profil uchun ro'yxat","nom_ru":"Перечень для неплательщика НДС","matn_uz":null,"matn_ru":null,"tavsiya_profillar":["P1","P3","P5"],"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 77-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_ajratilgan_hisob","hujjat":"NUP","bolim":"II. Ajratilgan hisob tartibi","sarlavha_uz":"Ajratilgan hisob yuritish tartibi","sarlavha_ru":"Порядок ведения раздельного учёта","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"talab_qilinadi","nom_uz":"Ajratilgan hisob yuritiladi (bir nechta faoliyat/rejim aralash bo'lganda)","nom_ru":"Ведётся раздельный учёт (при совмещении видов деятельности/режимов)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"},{"kod":"talab_qilinmaydi","nom_uz":"Ajratilgan hisob talab qilinmaydi (bitta faoliyat turi/rejim)","nom_ru":"Раздельный учёт не требуется (один вид деятельности/режим)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 80-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_foyda_soligi_xarajat_tan_olish","hujjat":"NUP","bolim":"III. Foyda solig'i uchun xarajatlarni tan olish","sarlavha_uz":"Xarajatlarni tan olish usuli","sarlavha_ru":"Метод признания расходов","tanlov_erkinligi":"shartli","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"hisoblash_usuli","nom_uz":"Hisoblash usuli (metod nachisleniya)","nom_ru":"Метод начисления","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)","izoh_uz":"","izoh_ru":""},{"id":"nup_foyda_soligi_amortizatsiya","hujjat":"NUP","bolim":"III. Foyda solig'i uchun xarajatlarni tan olish","sarlavha_uz":"Asosiy vositalar amortizatsiyasi (soliq maqsadida)","sarlavha_ru":"Амортизация основных средств (в налоговых целях)","tanlov_erkinligi":"qatiy","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"chiziqli_meyoriy","nom_uz":"Teng me'yorli usul, guruh bo'yicha chegaraviy me'yorlar (tanlov yo'q)","nom_ru":"Равномерный метод, предельные нормы по группам (без выбора)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 306-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_qqs_hisob_tartibi","hujjat":"NUP","bolim":"IV. QQS hisobga olish tartibi","sarlavha_uz":"QQS hisobini yuritish tartibi","sarlavha_ru":"Порядок ведения учёта НДС","tanlov_erkinligi":"shartli","profillar":["P2","P4","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart hisob-kitob tartibi","nom_ru":"Стандартный порядок расчёта","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)","izoh_uz":"","izoh_ru":""},{"id":"nup_qqs_ajratilgan_hisob","hujjat":"NUP","bolim":"IV. QQS hisobga olish tartibi","sarlavha_uz":"QQS'siz va QQS'li operatsiyalar aralash bo'lganda kiruvchi QQS'ni taqsimlash","sarlavha_ru":"Распределение входящего НДС при совмещении облагаемых и необлагаемых операций","tanlov_erkinligi":"shartli","profillar":["P2","P4","P6"],"variantlar":[{"kod":"aylanmaga_proporsional","nom_uz":"Umumiy aylanmadagi ulushiga proporsional taqsimlash","nom_ru":"Пропорционально доле в общем обороте","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)","izoh_uz":"","izoh_ru":""},{"id":"nup_amortizatsiya_meyorlari_guruhlar","hujjat":"NUP","bolim":"V. Amortizatsiya me'yorlari","sarlavha_uz":"Asosiy vositalar guruhlari bo'yicha chegaraviy amortizatsiya me'yorlari","sarlavha_ru":"Предельные нормы амортизации по группам основных средств","tanlov_erkinligi":"qatiy","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"sk306_jadvali","nom_uz":"SK 306-moddadagi guruh-me'yor jadvali (tanlov yo'q) — FAZA 3'da guruhlar soni va aniq foizlar huquqshunos tomonidan tasdiqlanishi shart","nom_ru":"Таблица группа-норма по ст. 306 НК (без выбора) — количество групп и точные проценты подлежат подтверждению юристом в ФАЗЕ 3","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 306-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_qollash_muddati","hujjat":"NUP","bolim":"VI. Yakuniy qoidalar","sarlavha_uz":"Qo'llash muddati","sarlavha_ru":"Срок применения","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart matn — tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi","nom_ru":"Стандартный текст — применяется с 1 января года, следующего за годом утверждения","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 77-modda","izoh_uz":"","izoh_ru":""},{"id":"nup_ozgartirish_sabablari","hujjat":"NUP","bolim":"VI. Yakuniy qoidalar","sarlavha_uz":"Hisob siyosatini yangilash sabablari","sarlavha_ru":"Основания для обновления учётной политики","tanlov_erkinligi":"erkin","profillar":["P1","P2","P3","P4","P5","P6"],"variantlar":[{"kod":"standart","nom_uz":"Standart izoh (soliq rejimi/faoliyat turi o'zgarganda yangilash tavsiyasi)","nom_ru":"Стандартное примечание (рекомендация обновления при смене режима/вида деятельности)","matn_uz":null,"matn_ru":null,"tavsiya_profillar":null,"holat":"TASDIQLASH KERAK"}],"asos_url":"","asos_nomi":"Soliq kodeksi 77-modda","izoh_uz":"","izoh_ru":""}]}</script>
+
+<script src="/assets/docgen.js"></script>
+<script src="/assets/hisobsiyosati.js"></script>
+<script>
+(function(){
+'use strict';
+var KD=window.KalkiDoc, HS=window.KalkiHS;
+var $=function(id){return document.getElementById(id)};
+var lang=document.documentElement.lang==='ru'?'ru':'uz';
+var DATA=(function(){try{return JSON.parse($('hisobsiyosati-data').textContent)}catch(e){return {bandlar:[]}}})();
+
+var state={faoliyat:'savdo', qqs:'yoq', tab:'BUP', variants:{}};
+var LS='kalki_hisobsiyosati_v1';
+
+function profile(){return HS.resolveProfile(state.faoliyat, state.qqs)}
+
+var I={
+  uz:{
+    cat:"Hujjat generatori", h1:"Hisob siyosati generatori",
+    sub:"Buxgalteriya va soliq hisob siyosati — ikkita alohida hujjat. Faoliyat turi va QQS holatini tanlang.",
+    intro:"<b>Nega ikkitasi kerak?</b> Ko'pchilik faqat buxgalteriya hisob siyosatini biladi. Soliq hisob siyosati — alohida hujjat (Soliq kodeksi 77-modda) va uning yo'qligi jiddiy buzilish hisoblanadi, ko'pincha birinchi kameral tekshiruvda so'raladi. Bu generator ikkalasini ham beradi.",
+    secProfil:"Profil", lFaoliyat:"Faoliyat turi", oSavdo:"Savdo", oIshlabChiqarish:"Ishlab chiqarish", oXizmat:"Xizmat ko'rsatish",
+    lQqs:"QQS to'lovchimisiz?", oQqsYoq:"Yo'q", oQqsHa:"Ha",
+    secRekvizit:"Rekvizitlar", lOrgName:"Tashkilot nomi", lStir:"STIR", lYil:"Moliyaviy yil", lManzil:"Yuridik manzil",
+    lRahbar:"Rahbar F.I.Sh.", lBuxgalter:"Bosh buxgalter F.I.Sh.", lDastur:"Buxgalteriya hisob dasturi",
+    qollashMuddati:"<b>Qo'llash muddati:</b> Soliq kodeksi 77-moddasiga ko'ra, hisob siyosatida tanlangan usullar tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi.",
+    warnBlocked:"<b>Diqqat:</b> quyida ko'p bandlar \"[buxgalter tomonidan to'ldiriladi]\" deb ko'rinadi. Bu — metodologik tanlov talab qiladigan bandlar; ularni buxgalter yoki soliq maslahatchisi bilan birga to'ldiring, noto'g'ri tanlov (masalan soliq amortizatsiyasida) qonunbuzarlik hujjatini yaratishi mumkin.",
+    tabBup:"Buxgalteriya (BUP)", tabNup:"Soliq (NUP)",
+    tBupHead:"Buxgalteriya hisob siyosati", tNupHead:"Soliq hisob siyosati",
+    btnWordBup:"BUP — Word", btnWordNup:"NUP — Word",
+    faqTitle:"Savol-javob",
+    docTitleBup:"BUXGALTERIYA HISOB SIYOSATI", docTitleNup:"SOLIQ HISOB SIYOSATI",
+    foot:"Bu generator taxminiy skelet beradi. Metodologik bandlarni buxgalter yoki soliq maslahatchisi bilan birga to'ldiring.",
+    faq:[
+      ["Nega ikkita hisob siyosati kerak, bittasi yetmaydimi?","Buxgalteriya hisob siyosati NSBU va \"Buxgalteriya hisobi to'g'risida\"gi Qonun asosida, soliq hisob siyosati esa Soliq kodeksi 77-moddasi asosida tuziladi — bu ikki mustaqil hujjat. Ko'p korxonada faqat birinchisi bor, ikkinchisi umuman yo'q. Soliq hisob siyosati yo'qligi kameral tekshiruvda darhol aniqlanadi va jarima solinishi mumkin."],
+      ["Bandlar nega bo'sh — \"buxgalter to'ldiradi\" deb yozilgan?","Amortizatsiya usuli, TMZ baholash usuli kabi bandlar — professional buxgalterlik qarori, korxonaning haqiqiy holatiga qarab tanlanadi. Bu generator noto'g'ri taxmin bilan tayyor matn yozib bermaydi, chunki noto'g'ri usul (masalan soliq hisobida amortizatsiya usulini \"tanlash\" imkonini berish) to'g'ridan-to'g'ri qonunbuzarlik hujjati yaratadi. Bunday bandlar buxgalter tomonidan to'ldirilishi kerak."],
+      ["Soliq hisob siyosatida nega ba'zi bandlarda tanlov yo'q?","Soliq kodeksida ba'zi usullar qat'iy belgilangan — masalan amortizatsiya faqat teng me'yorli (chiziqli) usulda hisoblanadi (306-modda). Bunday bandlarda generator foydalanuvchiga soxta tanlov ko'rsatmaydi, chunki bu qonunga zid hujjat yaratishga olib kelardi."],
+      ["Hisob siyosati qachondan amal qiladi?","Soliq kodeksi 77-moddasiga ko'ra, tanlangan usullar tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi. Ya'ni 2026-yilda tasdiqlangan hisob siyosati 2027-yildan ishlaydi — hujjatni olgan kuni emas."],
+      ["Bu hujjatlar bepulmi?","Ha, hozircha to'liq bepul. To'lov tizimi hali ulanmagan."],
+      ["Generator natijasi to'liq tayyor hujjatmi?","Yo'q. Bu — ikkala hujjatning to'liq bo'limli skeleti, universal bandlar bilan. Metodologik tanlov talab qiladigan bandlar (amortizatsiya, TMZ baholash va h.k.) hozircha bo'sh — ular buxgalter tomonidan professional qaror sifatida to'ldirilishi kerak."]
+    ]
+  },
+  ru:{
+    cat:"Генератор документов", h1:"Генератор учётной политики",
+    sub:"Бухгалтерская и налоговая учётная политика — два отдельных документа. Выберите вид деятельности и статус НДС.",
+    intro:"<b>Почему нужны два?</b> Большинство знает только про бухгалтерскую учётную политику. Налоговая учётная политика — отдельный документ (ст. 77 Налогового кодекса), и её отсутствие считается серьёзным нарушением, часто требуется уже при первой камеральной проверке. Этот генератор даёт оба документа.",
+    secProfil:"Профиль", lFaoliyat:"Вид деятельности", oSavdo:"Торговля", oIshlabChiqarish:"Производство", oXizmat:"Услуги",
+    lQqs:"Вы плательщик НДС?", oQqsYoq:"Нет", oQqsHa:"Да",
+    secRekvizit:"Реквизиты", lOrgName:"Название организации", lStir:"ИНН", lYil:"Финансовый год", lManzil:"Юридический адрес",
+    lRahbar:"Ф.И.О. руководителя", lBuxgalter:"Ф.И.О. главного бухгалтера", lDastur:"Программа бухучёта",
+    qollashMuddati:"<b>Срок применения:</b> согласно ст. 77 Налогового кодекса, выбранные методы применяются с 1 января года, следующего за годом утверждения.",
+    warnBlocked:"<b>Внимание:</b> ниже многие пункты отмечены как \"[заполняется бухгалтером]\". Это пункты, требующие методологического выбора — заполняйте их вместе с бухгалтером или налоговым консультантом: неверный выбор (например, в налоговой амортизации) создаёт документ с нарушением закона.",
+    tabBup:"Бухгалтерская (BUP)", tabNup:"Налоговая (NUP)",
+    tBupHead:"Бухгалтерская учётная политика", tNupHead:"Налоговая учётная политика",
+    btnWordBup:"BUP — Word", btnWordNup:"NUP — Word",
+    faqTitle:"Вопросы и ответы",
+    docTitleBup:"БУХГАЛТЕРСКАЯ УЧЁТНАЯ ПОЛИТИКА", docTitleNup:"НАЛОГОВАЯ УЧЁТНАЯ ПОЛИТИКА",
+    foot:"Этот генератор даёт ориентировочный каркас. Методологические пункты заполняйте вместе с бухгалтером или налоговым консультантом.",
+    faq:[
+      ["Почему нужны две учётные политики, разве одной не хватит?","Бухгалтерская учётная политика составляется на основе НСБУ и Закона \"О бухгалтерском учёте\", а налоговая — на основе статьи 77 Налогового кодекса — это два независимых документа. У многих предприятий есть только первый, второго нет вовсе. Отсутствие налоговой учётной политики сразу выявляется при камеральной проверке и может повлечь штраф."],
+      ["Почему пункты пустые — написано \"заполняет бухгалтер\"?","Метод амортизации, метод оценки ТМЗ и подобные пункты — это профессиональное бухгалтерское решение, зависящее от реального положения предприятия. Генератор не пишет готовый текст на основе догадки, потому что неверный метод (например, предоставление выбора метода налоговой амортизации) создаёт документ с прямым нарушением закона. Такие пункты должен заполнить бухгалтер."],
+      ["Почему в налоговой учётной политике нет выбора для некоторых пунктов?","В Налоговом кодексе некоторые методы жёстко определены — например, амортизация в налоговых целях рассчитывается только равномерным (линейным) методом (ст. 306). В таких пунктах генератор не показывает пользователю искусственный выбор, поскольку это привело бы к созданию документа, противоречащего закону."],
+      ["С какого момента действует учётная политика?","Согласно ст. 77 Налогового кодекса, выбранные методы применяются с 1 января года, следующего за годом утверждения. То есть учётная политика, утверждённая в 2026 году, начнёт действовать с 2027 года — не с момента получения документа."],
+      ["Эти документы бесплатны?","Да, пока полностью бесплатно. Платёжная система ещё не подключена."],
+      ["Результат генератора — это полностью готовый документ?","Нет. Это полный каркас с разделами для обоих документов и заполненными универсальными пунктами. Пункты, требующие методологического выбора (амортизация, оценка ТМЗ и т.д.), пока пусты — их должен заполнить бухгалтер как профессиональное решение."]
+    ]
+  }
+};
+var t=function(k){return I[lang][k]};
+
+/* ---------- rekvizit qatorlari (band emas — forma ma'lumoti) ---------- */
+function reqLines(){
+  var ids=['orgName','stir','moliyaviyYil','manzil','rahbar','buxgalter','dastur'];
+  var labels=lang==='ru'
+    ?['Организация','ИНН','Финансовый год','Адрес','Руководитель','Гл. бухгалтер','Программа учёта']
+    :['Tashkilot','STIR','Moliyaviy yil','Manzil','Rahbar',"Bosh buxgalter",'Hisob dasturi'];
+  var out=[];
+  ids.forEach(function(id,i){
+    var v=($(id)&&$(id).value||'').trim();
+    if(v)out.push(labels[i]+': '+v);
+  });
+  return out;
+}
+
+/* ---------- band bo'yicha variant tanlov select'i (agar bir nechta variant bo'lsa) ---------- */
+function bandChoiceHtml(b){
+  var vlist=b.variantlar||[];
+  if(b.tanlov_erkinligi==='qatiy'||vlist.length<=1)return '';
+  var chosen=HS.pickVariant(b,profile(),state.variants[b.id]);
+  var opts=vlist.map(function(v){
+    var nm=lang==='ru'?(v.nom_ru||v.nom_uz):v.nom_uz;
+    return '<option value="'+v.kod+'"'+(chosen&&chosen.kod===v.kod?' selected':'')+'>'+nm.replace(/</g,'&lt;')+'</option>';
+  }).join('');
+  return '<div class="band-choice"><select data-band="'+b.id+'">'+opts+'</select></div>';
+}
+
+/* ---------- jonli ko'rinish (HTML) — bandlarni o'zimiz chizamiz, chunki
+   har bandda variant-tanlov select'i ham ko'rsatiladi (KD.blocksToHtml
+   buni bilmaydi, u faqat statik matn bloklarini biladi). ---------- */
+function renderPreviewHtml(hujjat){
+  var profil=profile();
+  var groups=HS.byBolim(HS.bandsFor(DATA,hujjat,profil));
+  var html='';
+  html+='<div class="dg-title">'+(hujjat==='BUP'?t('docTitleBup'):t('docTitleNup'))+'</div>';
+  var rl=reqLines();
+  if(rl.length){
+    html+='<div class="dg-h">'+(lang==='ru'?'Реквизиты':'Rekvizitlar')+'</div>';
+    rl.forEach(function(line){html+='<div class="dg-p">'+line.replace(/</g,'&lt;')+'</div>'});
+    html+='<div class="dg-gap"></div>';
+  }
+  groups.forEach(function(g){
+    html+='<div class="dg-h">'+g.bolim.replace(/</g,'&lt;')+'</div>';
+    g.items.forEach(function(b){
+      var title=lang==='ru'?(b.sarlavha_ru||b.sarlavha_uz):b.sarlavha_uz;
+      html+='<div class="dg-h" style="font-size:13.5px">'+title.replace(/</g,'&lt;')+'</div>';
+      html+=bandChoiceHtml(b);
+      var blocks=HS.bandToBlocks(b,lang,profil,state.variants[b.id]);
+      // birinchi 'h' blokini takrorlamaymiz (yuqorida allaqachon chizdik)
+      blocks.slice(1).forEach(function(bl){
+        if(bl.k==='note')html+='<div class="dg-note">'+bl.text.replace(/</g,'&lt;')+'</div>';
+        else if(bl.k==='p')html+='<div class="dg-p">'+bl.text.replace(/</g,'&lt;')+'</div>';
+      });
+    });
+  });
+  return html;
+}
+
+function updateProfileBadge(){
+  var p=profile();
+  var names={
+    P1:{uz:'P1 — Savdo (QQSsiz)',ru:'P1 — Торговля (без НДС)'},
+    P2:{uz:'P2 — Savdo (QQS bilan)',ru:'P2 — Торговля (с НДС)'},
+    P3:{uz:'P3 — Ishlab chiqarish (QQSsiz)',ru:'P3 — Производство (без НДС)'},
+    P4:{uz:'P4 — Ishlab chiqarish (QQS bilan)',ru:'P4 — Производство (с НДС)'},
+    P5:{uz:'P5 — Xizmat ko\'rsatish (QQSsiz)',ru:'P5 — Услуги (без НДС)'},
+    P6:{uz:'P6 — Xizmat ko\'rsatish (QQS bilan)',ru:'P6 — Услуги (с НДС)'}
+  };
+  $('profileBadge').textContent=names[p][lang];
+}
+
+function wireBandSelects(){
+  document.querySelectorAll('[data-band]').forEach(function(sel){
+    sel.addEventListener('change',function(){
+      state.variants[sel.getAttribute('data-band')]=sel.value;
+      save();
+      render();
+    });
+  });
+}
+
+function render(){
+  updateProfileBadge();
+  $('docHeadTitle').textContent=state.tab==='BUP'?t('tBupHead'):t('tNupHead');
+  $('docBody').innerHTML=renderPreviewHtml(state.tab);
+  wireBandSelects();
+}
+
+/* ---------- til/forma boshqaruvi ---------- */
+function applyLang(){
+  document.documentElement.lang=lang;
+  var els=document.querySelectorAll('[data-i]');
+  for(var i=0;i<els.length;i++){var v=t(els[i].getAttribute('data-i'));if(v!=null)els[i].textContent=v}
+  var hs=document.querySelectorAll('[data-i-html]');
+  for(var j=0;j<hs.length;j++){var v2=t(hs[j].getAttribute('data-i-html'));if(v2!=null)hs[j].innerHTML=v2}
+  $('seoBlock');
+  var fb=$('faqBlock');
+  if(fb){
+    var fh='';
+    t('faq').forEach(function(f){fh+='<h2>'+f[0]+'</h2><p>'+f[1]+'</p>'});
+    fb.innerHTML=fh;
+  }
+  $('langUz').classList.toggle('on',lang==='uz');
+  $('langRu').classList.toggle('on',lang==='ru');
+  render();
+}
+$('langUz').onclick=function(){lang='uz';applyLang()};
+$('langRu').onclick=function(){lang='ru';applyLang()};
+
+/* ---------- profil tanlovi ---------- */
+function wireSeg(hostId,key){
+  var host=$(hostId);
+  host.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      host.querySelectorAll('button').forEach(function(b){b.classList.remove('on')});
+      btn.classList.add('on');
+      state[key]=btn.getAttribute('data-val');
+      save();render();
+    });
+  });
+}
+wireSeg('segFaoliyat','faoliyat');
+wireSeg('segQqs','qqs');
+
+/* ---------- tab (BUP/NUP) ---------- */
+$('tabBup').onclick=function(){state.tab='BUP';$('tabBup').classList.add('on');$('tabNup').classList.remove('on');save();render()};
+$('tabNup').onclick=function(){state.tab='NUP';$('tabNup').classList.add('on');$('tabBup').classList.remove('on');save();render()};
+
+/* ---------- rekvizit maydonlari ---------- */
+['orgName','stir','moliyaviyYil','manzil','rahbar','buxgalter','dastur'].forEach(function(id){
+  var el=$(id);
+  el.addEventListener('input',function(){save();render()});
+});
+
+/* ---------- saqlash ---------- */
+function collectFields(){
+  var o={};
+  ['orgName','stir','moliyaviyYil','manzil','rahbar','buxgalter','dastur'].forEach(function(id){o[id]=$(id).value});
+  return o;
+}
+function save(){
+  try{
+    localStorage.setItem(LS,JSON.stringify({state:state,fields:collectFields()}));
+  }catch(e){}
+}
+function load(){
+  try{
+    var raw=localStorage.getItem(LS);
+    if(!raw)return;
+    var o=JSON.parse(raw);
+    if(o.state){
+      state.faoliyat=o.state.faoliyat||'savdo';
+      state.qqs=o.state.qqs||'yoq';
+      state.tab=o.state.tab||'BUP';
+      state.variants=o.state.variants||{};
+    }
+    if(o.fields){
+      Object.keys(o.fields).forEach(function(id){if($(id))$(id).value=o.fields[id]||''});
+    }
+    document.querySelectorAll('#segFaoliyat button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-val')===state.faoliyat)});
+    document.querySelectorAll('#segQqs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-val')===state.qqs)});
+    $('tabBup').classList.toggle('on',state.tab==='BUP');
+    $('tabNup').classList.toggle('on',state.tab==='NUP');
+  }catch(e){}
+}
+
+/* ---------- Word eksport (ikkita alohida hujjat) ---------- */
+function exportWord(hujjat,btn){
+  if(!KD||!KD.loadDocx){alert('docx module topilmadi');return}
+  var orig=btn.textContent;
+  btn.disabled=true;
+  btn.textContent=lang==='ru'?'Готовим...':'Tayyorlanmoqda...';
+  var done=function(){btn.disabled=false;btn.textContent=orig};
+  var title=hujjat==='BUP'?t('docTitleBup'):t('docTitleNup');
+  var blocks=HS.buildDocBlocks({
+    data:DATA, hujjat:hujjat, profil:profile(), lang:lang,
+    variants:state.variants, reqLines:reqLines(), title:title
+  });
+  KD.loadDocx().then(function(D){
+    return D.Packer.toBlob(KD.buildDocx(D,blocks)).then(function(blob){
+      var name=(hujjat==='BUP'?'buxgalteriya-hisob-siyosati':'soliq-hisob-siyosati')+'-'+KD.todayStamp()+'.docx';
+      KD.saveBlob(blob,name);
+      KD.ga('doc_download',{doc:'hisob-siyosati-generatori',format:'word-'+hujjat.toLowerCase()});
+      done();
+    });
+  })['catch'](function(){
+    done();
+    alert(lang==='ru'?'Не удалось создать Word-файл. Попробуйте ещё раз.':"Word faylini yasab bo'lmadi. Qayta urinib ko'ring.");
+  });
+}
+$('wordBupBtn').onclick=function(){exportWord('BUP',this)};
+$('wordNupBtn').onclick=function(){exportWord('NUP',this)};
+
+/* ---------- ishga tushirish ---------- */
+load();
+applyLang();
+})();
+</script></body></html>

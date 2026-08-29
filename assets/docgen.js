@@ -917,6 +917,17 @@
     };
   };
 
+  /* Hisob siyosati generatori kabi ikkita alohida hujjat yig'adigan
+     sahifalar uchun — mavjud tugmalar/holat mexanizmini (KD.init) qayta
+     yozmasdan, docx qurish bosqichini alohida chaqira olish uchun ochib
+     qo'yiladi. Xatti-harakati o'zgarmaydi, faqat KD.* ga chiqariladi. */
+  KD.loadDocx = loadDocx;
+  KD.buildDocx = buildDocx;
+  KD.blocksToDocx = blocksToDocx;
+  KD.blocksToHtml = blocksToHtml;
+  KD.saveBlob = saveBlob;
+  KD.todayStamp = todayStamp;
+
   root.KalkiDoc = KD;
 })(typeof window !== 'undefined' ? window : this);
 

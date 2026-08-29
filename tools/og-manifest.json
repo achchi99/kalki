@@ -481,5 +481,12 @@
     "hash": "274b55ba5c5c",
     "tpl": 1,
     "v": 1
+  },
+  "hisob-siyosati-generatori": {
+    "title": "Hisob siyosati generatori",
+    "cat": "hujjat",
+    "hash": "08ed52cde90c",
+    "tpl": 1,
+    "v": 1
   }
 }
