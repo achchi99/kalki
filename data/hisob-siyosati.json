@@ -23,28 +23,28 @@
           "kod": "avtomatlashtirilgan",
           "nom_uz": "Avtomatlashtirilgan (dastur asosida)",
           "nom_ru": "Автоматизированная (на основе программы)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilotda buxgalteriya hisobi avtomatlashtirilgan shaklda, buxgalteriya hisob dasturi yordamida yuritiladi. Barcha xo'jalik operatsiyalari birlamchi hujjatlar asosida dasturga kiritiladi, hisob registrlarini shakllantirish va moliyaviy hisobotni tayyorlash dastur vositasida amalga oshiriladi.",
+          "matn_ru": "Бухгалтерский учёт в организации ведётся в автоматизированной форме с использованием программы бухгалтерского учёта. Все хозяйственные операции вносятся в программу на основании первичных документов, формирование регистров учёта и подготовка финансовой отчётности осуществляется программным способом.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "jurnal_order",
           "nom_uz": "Jurnal-order shakli",
           "nom_ru": "Журнально-ордерная форма",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilotda buxgalteriya hisobi jurnal-order shaklida yuritiladi. Xo'jalik operatsiyalari xronologik va tizimli tartibda jurnal-orderlarda aks ettiriladi, ular asosida Bosh kitob shakllantiriladi.",
+          "matn_ru": "Бухгалтерский учёт в организации ведётся в журнально-ордерной форме. Хозяйственные операции отражаются в хронологическом и систематическом порядке в журналах-ордерах, на основании которых формируется Главная книга.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "memorial_order",
           "nom_uz": "Memorial-order shakli",
           "nom_ru": "Мемориально-ордерная форма",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilotda buxgalteriya hisobi memorial-order shaklida yuritiladi. Har bir xo'jalik operatsiyasi memorial order asosida rasmiylashtiriladi va tegishli hisob registrlariga kiritiladi.",
+          "matn_ru": "Бухгалтерский учёт в организации ведётся в мемориально-ордерной форме. Каждая хозяйственная операция оформляется мемориальным ордером и вносится в соответствующие регистры учёта.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -73,10 +73,10 @@
           "kod": "rahbar_va_buxgalter",
           "nom_uz": "Rahbar va bosh buxgalter (standart taqsimot)",
           "nom_ru": "Руководитель и главный бухгалтер (стандартное распределение)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Moliyaviy hisobotning tayyorlanishi va taqdim etilishi uchun javobgarlik tashkilot rahbariga yuklatiladi. Buxgalteriya hisobini yuritish, hisob siyosatini amalga oshirish va birlamchi hujjatlarning to'g'ri rasmiylashtirilishi uchun bosh buxgalter javobgar hisoblanadi.",
+          "matn_ru": "Ответственность за составление и представление финансовой отчётности возлагается на руководителя организации. За ведение бухгалтерского учёта, реализацию учётной политики и правильное оформление первичных документов отвечает главный бухгалтер.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -458,10 +458,10 @@
           "kod": "standart",
           "nom_uz": "Standart hujjat aylanish jadvali",
           "nom_ru": "Стандартный график документооборота",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilotda hujjat aylanishi ichki hujjat aylanish jadvali asosida amalga oshiriladi. Birlamchi hujjatlar xo'jalik operatsiyasi amalga oshirilgan kunda yoki undan keyingi kunda rasmiylashtiriladi, tegishli mas'ul xodimlar tomonidan imzolanadi va belgilangan muddatlarda buxgalteriyaga topshiriladi. Hujjatlarning qabul qilinishi, qayta ishlanishi va arxivga topshirilishi tartibi ichki nizom bilan belgilanadi.",
+          "matn_ru": "Документооборот в организации осуществляется на основании внутреннего графика документооборота. Первичные документы оформляются в день совершения хозяйственной операции или на следующий день, подписываются соответствующими ответственными лицами и передаются в бухгалтерию в установленные сроки. Порядок приёма, обработки и сдачи документов в архив определяется внутренним положением.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -490,10 +490,10 @@
           "kod": "yillik_standart",
           "nom_uz": "Yiliga kamida bir marta, standart tartibda",
           "nom_ru": "Не реже одного раза в год, в стандартном порядке",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Aktivlar va majburiyatlarning inventarizatsiyasi yiliga kamida bir marta, yillik moliyaviy hisobot tayyorlanishidan oldin o'tkaziladi. Inventarizatsiya rahbarning buyrug'i bilan tuzilgan komissiya tomonidan amalga oshiriladi, natijalari inventarizatsiya varaqalari va taqqoslash bayonnomalarida rasmiylashtiriladi. Aniqlangan farqlar qonunchilikda belgilangan tartibda hisobga olinadi.",
+          "matn_ru": "Инвентаризация активов и обязательств проводится не реже одного раза в год, перед составлением годовой финансовой отчётности. Инвентаризация осуществляется комиссией, назначенной приказом руководителя, результаты оформляются инвентаризационными описями и сличительными ведомостями. Выявленные расхождения отражаются в учёте в порядке, установленном законодательством.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -522,10 +522,10 @@
           "kod": "standart",
           "nom_uz": "Standart ichki nazorat tartibi",
           "nom_ru": "Стандартный порядок внутреннего контроля",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilotda moliyaviy-xo'jalik faoliyatining qonuniyligi, aktivlarning saqlanishi va moliyaviy hisobotning ishonchliligini ta'minlash maqsadida ichki nazorat tizimi joriy etiladi. Ichki nazorat rahbariyat, bosh buxgalter va tegishli mas'ul xodimlar tomonidan o'z vakolatlari doirasida amalga oshiriladi.",
+          "matn_ru": "В целях обеспечения законности финансово-хозяйственной деятельности, сохранности активов и достоверности финансовой отчётности в организации внедряется система внутреннего контроля. Внутренний контроль осуществляется руководством, главным бухгалтером и соответствующими ответственными лицами в пределах своих полномочий.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -595,10 +595,10 @@
           "kod": "standart",
           "nom_uz": "Standart matn (foydalanuvchi kiritgan sanaga bog'liq)",
           "nom_ru": "Стандартный текст (в зависимости от введённой даты)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Ushbu hisob siyosati tasdiqlangan sanadan e'tiboran kuchga kiradi va keyingi hisob siyosati tasdiqlanguncha yoki unga o'zgartirish kiritilguncha amal qiladi.",
+          "matn_ru": "Настоящая учётная политика вступает в силу с даты утверждения и действует до утверждения новой учётной политики или внесения в неё изменений.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -627,10 +627,10 @@
           "kod": "standart",
           "nom_uz": "Standart matn",
           "nom_ru": "Стандартный текст",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Hisob siyosatiga o'zgartirish quyidagi hollarda kiritiladi: qonunchilik yoki NSBU talablari o'zgarganda, tashkilotning moliyaviy hisobotni tayyorlash shartlari yoki faoliyat xususiyati muhim darajada o'zgarganda, yoki yangi hisob usuli qo'llanilishi moliyaviy hisobot ishonchliligini oshirishga xizmat qilganda. O'zgartirishlar rahbarning buyrug'i bilan tasdiqlanadi.",
+          "matn_ru": "Изменения в учётную политику вносятся в следующих случаях: при изменении требований законодательства или НСБУ, при существенном изменении условий подготовки финансовой отчётности или характера деятельности организации, либо когда применение нового метода учёта способствует повышению достоверности финансовой отчётности. Изменения утверждаются приказом руководителя.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -659,19 +659,19 @@
           "kod": "umumbelgilangan",
           "nom_uz": "Umumbelgilangan soliq rejimi",
           "nom_ru": "Общеустановленный налоговый режим",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilot umumbelgilangan soliq rejimini qo'llaydi va foyda solig'i, qo'shilgan qiymat solig'i (agar QQS to'lovchi bo'lsa) hamda boshqa qonunchilikda belgilangan soliq va majburiy to'lovlarni to'laydi.",
+          "matn_ru": "Организация применяет общеустановленный налоговый режим и уплачивает налог на прибыль, налог на добавленную стоимость (при наличии статуса плательщика НДС), а также иные налоги и обязательные платежи, установленные законодательством.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "soddalashtirilgan",
           "nom_uz": "Soddalashtirilgan soliq rejimi (aylanma solig'i)",
           "nom_ru": "Упрощённый налоговый режим (налог с оборота)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilot soddalashtirilgan soliq rejimini (aylanmadan olinadigan soliq) qo'llaydi va qonunchilikda belgilangan tartibda aylanma solig'ini to'laydi.",
+          "matn_ru": "Организация применяет упрощённый налоговый режим (налог с оборота) и уплачивает налог с оборота в порядке, установленном законодательством.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -700,27 +700,27 @@
           "kod": "qqs_bilan",
           "nom_uz": "QQS to'lovchi profil uchun ro'yxat",
           "nom_ru": "Перечень для плательщика НДС",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilot quyidagi soliq va majburiy to'lovlarni to'laydi: foyda solig'i (yoki aylanma solig'i, tanlangan rejimga qarab), qo'shilgan qiymat solig'i (QQS), yagona ijtimoiy to'lov, jismoniy shaxslardan olinadigan daromad solig'i (ish haqidan ushlab qolinadigan), shuningdek faoliyat xususiyatiga qarab boshqa qonunchilikda belgilangan soliqlar.",
+          "matn_ru": "Организация уплачивает следующие налоги и обязательные платежи: налог на прибыль (или налог с оборота, в зависимости от выбранного режима), налог на добавленную стоимость (НДС), единый социальный платёж, налог на доходы физических лиц (удерживаемый из заработной платы), а также иные налоги, установленные законодательством в зависимости от характера деятельности.",
           "tavsiya_profillar": [
             "P2",
             "P4",
             "P6"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "qqssiz",
           "nom_uz": "QQS to'lovchi bo'lmagan profil uchun ro'yxat",
           "nom_ru": "Перечень для неплательщика НДС",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tashkilot quyidagi soliq va majburiy to'lovlarni to'laydi: foyda solig'i (yoki aylanma solig'i, tanlangan rejimga qarab), yagona ijtimoiy to'lov, jismoniy shaxslardan olinadigan daromad solig'i (ish haqidan ushlab qolinadigan), shuningdek faoliyat xususiyatiga qarab boshqa qonunchilikda belgilangan soliqlar. Tashkilot QQS to'lovchisi hisoblanmaydi.",
+          "matn_ru": "Организация уплачивает следующие налоги и обязательные платежи: налог на прибыль (или налог с оборота, в зависимости от выбранного режима), единый социальный платёж, налог на доходы физических лиц (удерживаемый из заработной платы), а также иные налоги, установленные законодательством в зависимости от характера деятельности. Организация не является плательщиком НДС.",
           "tavsiya_profillar": [
             "P1",
             "P3",
             "P5"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -944,10 +944,10 @@
           "kod": "standart",
           "nom_uz": "Standart matn — tasdiqlangan yildan keyingi yilning 1-yanvaridan qo'llaniladi",
           "nom_ru": "Стандартный текст — применяется с 1 января года, следующего за годом утверждения",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Soliq kodeksining 77-moddasiga muvofiq, ushbu soliq hisob siyosatida tanlangan usullar hisob siyosati tasdiqlangan yildan keyingi yilning 1-yanvaridan boshlab qo'llaniladi.",
+          "matn_ru": "В соответствии со статьёй 77 Налогового кодекса, методы, выбранные в настоящей налоговой учётной политике, применяются с 1 января года, следующего за годом утверждения учётной политики.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
@@ -976,10 +976,10 @@
           "kod": "standart",
           "nom_uz": "Standart izoh (soliq rejimi/faoliyat turi o'zgarganda yangilash tavsiyasi)",
           "nom_ru": "Стандартное примечание (рекомендация обновления при смене режима/вида деятельности)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Soliq hisob siyosati soliq rejimi o'zgarganda, yangi faoliyat turi paydo bo'lganda yoki qonunchilikda tegishli o'zgarishlar kiritilganda yangilanishi tavsiya etiladi. Yangilangan hisob siyosati Soliq kodeksi 77-moddasida belgilangan tartibda qo'llaniladi.",
+          "matn_ru": "Рекомендуется обновлять налоговую учётную политику при изменении налогового режима, появлении нового вида деятельности или внесении соответствующих изменений в законодательство. Обновлённая учётная политика применяется в порядке, установленном статьёй 77 Налогового кодекса.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
