@@ -255,7 +255,7 @@
       "izoh_ru": ""
     },
     {
-      "id": "bup_nomoddiy_aktivlar_amortizatsiya",
+      "id": "bup_nma_amortizatsiya",
       "hujjat": "BUP",
       "bolim_uz": "II. Usuliy qism",
       "bolim_ru": "II. Методологическая часть",
@@ -275,16 +275,81 @@
           "kod": "chiziqli",
           "nom_uz": "Teng me'yorli (chiziqli) usul",
           "nom_ru": "Равномерный (линейный) метод",
-          "matn_uz": null,
-          "matn_ru": null,
-          "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "matn_uz": "Nomoddiy aktivlar amortizatsiyasi teng me'yorli (chiziqli) usulda, foydali xizmat muddati davomida teng ulushlarda hisoblanadi.",
+          "matn_ru": "Амортизация нематериальных активов начисляется равномерным (прямолинейным) методом, равными долями в течение срока полезной службы.",
+          "tushuntirish_uz": "Har yili bir xil summa hisobdan chiqariladi.",
+          "tushuntirish_ru": "Каждый год списывается одинаковая сумма.",
+          "qachon_mos_uz": "Aksariyat nomoddiy aktivlar uchun mos: dasturiy ta'minot litsenziyasi, patent, ruxsatnoma. Iqtisodiy foyda qanday taqsimlanishini aniq bilib bo'lmasa — bu usul majburiy.",
+          "qachon_mos_ru": "Подходит для большинства НМА: лицензии на ПО, патенты, разрешения. Если распределение экономической выгоды достоверно определить нельзя — этот метод обязателен.",
+          "tavsiya_profillar": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+          ],
+          "qonuniy_holat": "cheklangan",
+          "holat": "TASDIQLANGAN"
+        },
+        {
+          "kod": "ishlab_chiqarish",
+          "nom_uz": "Ishlab chiqarish hajmiga proporsional usul",
+          "nom_ru": "Производственный метод",
+          "matn_uz": "Nomoddiy aktivlar amortizatsiyasi ishlab chiqarish hajmiga proporsional usulda hisoblanadi.",
+          "matn_ru": "Амортизация нематериальных активов начисляется производственным методом, пропорционально объёму выполненных работ.",
+          "tushuntirish_uz": "Aktiv qancha ishlatilsa, shuncha amortizatsiya hisoblanadi.",
+          "tushuntirish_ru": "Амортизация начисляется пропорционально фактическому использованию актива.",
+          "qachon_mos_uz": "Foydalanish hajmi aniq o'lchanadigan aktivlar uchun — masalan chegaralangan sonli foydalanishga mo'ljallangan litsenziya.",
+          "qachon_mos_ru": "Для активов с измеримым объёмом использования — например лицензия с ограниченным числом применений.",
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "qonuniy_holat": "cheklangan",
+          "holat": "TASDIQLANGAN"
+        },
+        {
+          "kod": "kamayuvchi_qoldiq",
+          "nom_uz": "Kamayuvchi qoldiq usuli (ikkilangan me'yor)",
+          "nom_ru": "Метод уменьшаемого остатка (с удвоенной нормой)",
+          "matn_uz": "Nomoddiy aktivlar amortizatsiyasi kamayuvchi qoldiq (ikkilangan me'yor) usulida hisoblanadi: amortizatsiya summasi aktivning davr boshidagi qoldiq (amortizatsiyalanmagan) qiymatiga nisbatan, teng me'yorli usuldagi me'yorning ikki barobari qo'llanilgan holda aniqlanadi.",
+          "matn_ru": "Амортизация нематериальных активов начисляется методом уменьшаемого остатка (с удвоенной нормой): сумма амортизации определяется от остаточной стоимости актива на начало периода с применением нормы, вдвое превышающей норму линейного метода.",
+          "tushuntirish_uz": "Dastlabki yillarda ko'proq amortizatsiya hisoblanadi — tezlashtirilgan usul.",
+          "tushuntirish_ru": "В первые годы начисляется больше амортизации — ускоренный метод.",
+          "qachon_mos_uz": "Tez eskiruvchi raqamli aktivlar (dasturiy ta'minot versiyalari) uchun; dastlabki yillarda xarajatni ko'proq ko'rsatadi.",
+          "qachon_mos_ru": "Для быстро устаревающих цифровых активов (версий программного обеспечения); в первые годы показывает больше расходов.",
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "qonuniy_holat": "cheklangan",
+          "holat": "TASDIQLANGAN"
+        },
+        {
+          "kod": "yillar_yigindisi",
+          "nom_uz": "Yillar yig'indisi usuli (kumulyativ)",
+          "nom_ru": "Метод суммы чисел лет (кумулятивный)",
+          "matn_uz": "Nomoddiy aktivlar amortizatsiyasi yillar yig'indisi (kumulyativ) usulida hisoblanadi: amortizatsiya summasi aktivning foydali xizmat muddati yillari sonlarining yig'indisiga nisbatan kamayib boruvchi kasr koeffitsienti qo'llanilgan holda aniqlanadi.",
+          "matn_ru": "Амортизация нематериальных активов начисляется методом суммы чисел лет (кумулятивным методом): сумма амортизации определяется с применением убывающего дробного коэффициента, рассчитанного от суммы чисел лет срока полезного использования актива.",
+          "tushuntirish_uz": "Dastlabki yillarda ko'proq amortizatsiya hisoblanadi — tezlashtirilgan usul.",
+          "tushuntirish_ru": "В первые годы начисляется больше амортизации — ускоренный метод.",
+          "qachon_mos_uz": "Tez eskiruvchi raqamli aktivlar (dasturiy ta'minot versiyalari) uchun; dastlabki yillarda xarajatni ko'proq ko'rsatadi.",
+          "qachon_mos_ru": "Для быстро устаревающих цифровых активов (версий программного обеспечения); в первые годы показывает больше расходов.",
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "qonuniy_holat": "cheklangan",
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Tegishli NSBU (nomoddiy aktivlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "asos_nomi": "NSBU №7 \"Nomoddiy aktivlar\" (buyruq №134, 14.06.2024, MYU 3547)",
       "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_ru": "",
+      "qoidalar_uz": "Foydali xizmat muddati aniqlanmagan (cheksiz) nomoddiy aktivlar amortizatsiya qilinmaydi. Ular har hisobot davri oxirida qiymatsizlanishga tekshiriladi. Kelajakdagi iqtisodiy foydaning iste'mol qilinish tartibini ishonchli aniqlab bo'lmasa, teng me'yorli (chiziqli) usul qo'llaniladi.",
+      "qoidalar_ru": "Нематериальные активы с неопределённым сроком полезной службы не амортизируются. Они проверяются на обесценение на конец каждого отчётного периода. Если порядок потребления будущих экономических выгод достоверно определить невозможно, применяется равномерный (прямолинейный) метод."
     },
     {
       "id": "bup_tmz_baholash_usuli",
@@ -367,13 +432,13 @@
       "qoidalar_ru": "Для сырья и готовой продукции могут применяться разные методы оценки — это отдельно указывается в учётной политике."
     },
     {
-      "id": "bup_daromadni_tan_olish",
+      "id": "bup_daromad_tan_olish",
       "hujjat": "BUP",
       "bolim_uz": "II. Usuliy qism",
       "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Daromadni tan olish tartibi",
       "sarlavha_ru": "Порядок признания дохода",
-      "tanlov_erkinligi": "shartli",
+      "tanlov_erkinligi": "qatiy",
       "profillar": [
         "P1",
         "P2",
@@ -384,36 +449,30 @@
       ],
       "variantlar": [
         {
-          "kod": "yetkazib_berish_vaqtida",
-          "nom_uz": "Mahsulot/xizmat yetkazib berilgan vaqtda",
-          "nom_ru": "В момент передачи товара/услуги",
-          "matn_uz": null,
-          "matn_ru": null,
-          "tavsiya_profillar": [
-            "P1",
-            "P2",
-            "P5",
-            "P6"
-          ],
-          "holat": "TASDIQLASH KERAK"
-        },
-        {
-          "kod": "bajarish_darajasiga_qarab",
-          "nom_uz": "Uzoq muddatli shartnoma bajarilish darajasiga qarab",
-          "nom_ru": "По степени выполнения долгосрочного договора",
-          "matn_uz": null,
-          "matn_ru": null,
-          "tavsiya_profillar": [
-            "P3",
-            "P4"
-          ],
-          "holat": "TASDIQLASH KERAK"
+          "kod": "umumiy_mezon",
+          "nom_uz": "Umumiy tan olish mezoni",
+          "nom_ru": "Общий критерий признания",
+          "matn_uz": "Asosiy xo'jalik faoliyatidan daromad kelajakda iqtisodiy foyda kelib tushishi ehtimoli mavjud bo'lgan va uning miqdorini ishonchli o'lchash mumkin bo'lgan paytda tan olinadi. Tovarlarni sotishdan daromad tovar xaridorga topshirilgan va mulk huquqi o'tgan paytda, xizmat ko'rsatishdan daromad esa xizmat ko'rsatilgan paytda tan olinadi.",
+          "matn_ru": "Доход от основной хозяйственной деятельности признаётся в момент, когда существует вероятность поступления экономических выгод в будущем и их величина может быть надёжно измерена. Доход от реализации товаров признаётся в момент передачи товара покупателю и перехода права собственности, доход от оказания услуг — в момент оказания услуги.",
+          "tushuntirish_uz": "Daromad pul kelib tushgan paytda emas, tovar topshirilgan yoki xizmat ko'rsatilgan paytda hisobga olinadi.",
+          "tushuntirish_ru": "Доход учитывается не в момент поступления денег, а в момент передачи товара или оказания услуги.",
+          "qachon_mos_uz": "Bu — barcha korxonalar uchun umumiy mezon, tanlov emas.",
+          "qachon_mos_ru": "Это общий критерий для всех организаций, а не выбор.",
+          "tavsiya_profillar": null,
+          "qonuniy_holat": "cheklangan",
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Tegishli NSBU (daromadlar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
-      "izoh_uz": "",
-      "izoh_ru": ""
+      "asos_nomi": "NSBU №2 \"Asosiy xo'jalik faoliyatidan daromadlar\" (buyruq №132, 14.06.2024, MYU 3542)",
+      "izoh_uz": "Bu — korxonaning tanlovi emas, barcha faoliyat turlari uchun umumiy tan olish mezoni.",
+      "izoh_ru": "Это не выбор организации, а общий критерий признания для всех видов деятельности.",
+      "qoidalar_uz": "Kapital qurilish shartnomalari bo'yicha daromad va xarajatlar alohida standart — NSBU №17 asosida hisobga olinadi. Agar korxona shunday shartnomalar bo'yicha ishlasa, hisob siyosatiga tegishli bo'lim qo'shilishi kerak.",
+      "qoidalar_ru": "Доходы и расходы по контрактам капитального строительства учитываются в соответствии с отдельным стандартом — НСБУ №17. Если организация работает по таким контрактам, в учётную политику необходимо добавить соответствующий раздел.",
+      "qoidalar_profillar": [
+        "P3",
+        "P4"
+      ]
     },
     {
       "id": "bup_zaxiralar",

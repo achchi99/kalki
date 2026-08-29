@@ -110,7 +110,11 @@
     // Band darajasidagi "muhim qoidalar" — hujjat matniga kiritilishi shart
     // (masalan guruh bo'yicha usul, kalendar yil ichida o'zgartirmaslik).
     // Bu tushuntirish/qachon_mos'dan farqli — rasmiy hujjat qismi.
-    if (band.qoidalar_uz || band.qoidalar_ru) {
+    // qoidalar_profillar bo'lsa — faqat shu profillarda chiqadi (masalan
+    // NSBU №17 qurilish shartnomasi eslatmasi faqat ishlab chiqarish
+    // profillariga tegishli, savdo/xizmatga aloqasi yo'q).
+    var qoidalarOk = !band.qoidalar_profillar || band.qoidalar_profillar.indexOf(profil) > -1;
+    if ((band.qoidalar_uz || band.qoidalar_ru) && qoidalarOk) {
       out.push({ k: 'p', text: L(band.qoidalar_uz, band.qoidalar_ru, lang) });
     }
     return out;
