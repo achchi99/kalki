@@ -534,7 +534,7 @@
         h += '<div class="dg-right">' + b.lines.map(function (t) { return '<div>' + KD.blanksToHtml(t) + '</div>'; }).join('') + '</div>';
         continue;
       }
-      var cls = b.k === 'title' ? 'dg-title' : b.k === 'sub' ? 'dg-sub' : b.k === 'h' ? 'dg-h' : b.k === 'note' ? 'dg-note' : 'dg-p';
+      var cls = b.k === 'title' ? 'dg-title' : b.k === 'sub' ? 'dg-sub' : b.k === 'h' ? 'dg-h' : b.k === 'note' ? 'dg-note' : b.k === 'warn' ? 'dg-warn' : 'dg-p';
       h += '<div class="' + cls + '">' + KD.blanksToHtml(b.text) + '</div>';
     }
     return h;
@@ -566,7 +566,7 @@
           : (o.right ? D.AlignmentType.RIGHT
             : (o.left ? D.AlignmentType.LEFT : D.AlignmentType.JUSTIFIED)),
         spacing: { after: o.after == null ? 120 : o.after, line: 276 },
-        children: [new D.TextRun({ text: KD.blanksToText(text), bold: !!o.bold, italics: !!o.italic, size: o.size })]
+        children: [new D.TextRun({ text: KD.blanksToText(text), bold: !!o.bold, italics: !!o.italic, size: o.size, color: o.color })]
       });
     }
     var noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
@@ -577,6 +577,7 @@
       else if (b.k === 'sub') out.push(para(b.text, { center: true, after: 240 }));
       else if (b.k === 'h') out.push(para(b.text, { bold: true, left: true, after: 100 }));
       else if (b.k === 'note') out.push(para(b.text, { italic: true, size: 20, after: 100 }));
+      else if (b.k === 'warn') out.push(para(b.text, { italic: true, bold: true, color: 'B04A3A', after: 220 }));
       else if (b.k === 'gap') out.push(para('', { after: 160 }));
       else if (b.k === 'right') {
         for (var ri = 0; ri < b.lines.length; ri++) out.push(para(b.lines[ri], { right: true, after: 40 }));

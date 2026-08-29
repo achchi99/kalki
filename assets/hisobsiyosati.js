@@ -112,6 +112,7 @@
     var data = opts.data, hujjat = opts.hujjat, profil = opts.profil,
       lang = opts.lang, variants = opts.variants || {}, reqLines = opts.reqLines || [];
     var blocks = [];
+    if (opts.intro) blocks.push({ k: 'warn', text: opts.intro });
     blocks.push({ k: 'title', text: opts.title });
     if (opts.subtitle) blocks.push({ k: 'sub', text: opts.subtitle });
     if (reqLines.length) {
