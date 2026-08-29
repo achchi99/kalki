@@ -105,8 +105,12 @@
           "kod": "chiziqli",
           "nom_uz": "Teng me'yorli (chiziqli) usul",
           "nom_ru": "Равномерный (линейный) метод",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Asosiy vositalar amortizatsiyasi teng me'yorli (chiziqli) usulda hisoblanadi: har bir hisobot yilida amortizatsiya summasi bir xil bo'ladi va aktivning foydali xizmat muddati davomida teng taqsimlanadi.",
+          "matn_ru": "Амортизация основных средств начисляется равномерным (линейным) методом: сумма амортизации одинакова в каждом отчётном году и равномерно распределяется в течение срока полезного использования актива.",
+          "tushuntirish_uz": "Har yili bir xil summa hisoblanadi.",
+          "tushuntirish_ru": "Каждый год начисляется одинаковая сумма.",
+          "qachon_mos_uz": "Ofis jihozlari, binolar, ma'muriy maqsaddagi vositalar uchun mos keladi — eng sodda usul, soliq hisobi bilan farq kam bo'ladi.",
+          "qachon_mos_ru": "Подходит для офисного оборудования, зданий, административных средств — самый простой метод, разница с налоговым учётом минимальна.",
           "tavsiya_profillar": [
             "P1",
             "P2",
@@ -115,37 +119,67 @@
             "P5",
             "P6"
           ],
-          "holat": "TASDIQLASH KERAK"
-        },
-        {
-          "kod": "kamaytiruvchi_qoldiq",
-          "nom_uz": "Kamayuvchi qoldiq usuli",
-          "nom_ru": "Метод уменьшаемого остатка",
-          "matn_uz": null,
-          "matn_ru": null,
-          "tavsiya_profillar": [
-            "P3",
-            "P4"
-          ],
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "ishlab_chiqarish_hajmiga_proporsional",
           "nom_uz": "Ishlab chiqarish hajmiga proporsional usul",
           "nom_ru": "Метод пропорционально объёму продукции",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Asosiy vositalar amortizatsiyasi ishlab chiqarish hajmiga proporsional usulda hisoblanadi: amortizatsiya summasi aktivning joriy davrdagi haqiqiy ishlatilish (ishlab chiqarilgan mahsulot yoki bajarilgan ish) hajmiga mutanosib ravishda aniqlanadi.",
+          "matn_ru": "Амортизация основных средств начисляется методом, пропорциональным объёму продукции: сумма амортизации определяется пропорционально фактическому использованию актива (объёму произведённой продукции или выполненных работ) в текущем периоде.",
+          "tushuntirish_uz": "Uskuna qancha ishlasa, shuncha amortizatsiya hisoblanadi.",
+          "tushuntirish_ru": "Чем больше работает оборудование, тем больше амортизации начисляется.",
+          "qachon_mos_uz": "Dastgohlar, transport vositalari uchun mos keladi — foydalanish notekis bo'lganda amortizatsiya haqiqiy yuklamaga mos keladi.",
+          "qachon_mos_ru": "Подходит для станков, транспортных средств — когда использование неравномерно, амортизация соответствует реальной нагрузке.",
           "tavsiya_profillar": [
             "P3",
             "P4"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
+        },
+        {
+          "kod": "kamaytiruvchi_qoldiq",
+          "nom_uz": "Kamayuvchi qoldiq usuli (ikkilangan me'yor)",
+          "nom_ru": "Метод уменьшаемого остатка (с удвоенной нормой)",
+          "matn_uz": "Asosiy vositalar amortizatsiyasi kamayuvchi qoldiq (ikkilangan me'yor) usulida hisoblanadi: amortizatsiya summasi aktivning davr boshidagi qoldiq (amortizatsiyalanmagan) qiymatiga nisbatan, teng me'yorli usuldagi me'yorning ikki barobari qo'llanilgan holda aniqlanadi.",
+          "matn_ru": "Амортизация основных средств начисляется методом уменьшаемого остатка (с удвоенной нормой): сумма амортизации определяется от остаточной стоимости актива на начало периода с применением нормы, вдвое превышающей норму линейного метода.",
+          "tushuntirish_uz": "Dastlabki yillarda ko'proq amortizatsiya hisoblanadi — tezlashtirilgan usul.",
+          "tushuntirish_ru": "В первые годы начисляется больше амортизации — ускоренный метод.",
+          "qachon_mos_uz": "Jadal eskiruvchi texnika (kompyuter, IT uskunalari) uchun mos keladi — dastlabki yillarda foydani kamaytiradi, lekin aktivning haqiqiy qiymat pasayishiga yaqinroq aks ettiradi.",
+          "qachon_mos_ru": "Подходит для быстро устаревающей техники (компьютеры, IT-оборудование) — уменьшает прибыль в первые годы, но точнее отражает реальное снижение стоимости актива.",
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
+        },
+        {
+          "kod": "yillar_yigindisi",
+          "nom_uz": "Yillar yig'indisi usuli (kumulyativ)",
+          "nom_ru": "Метод суммы чисел лет (кумулятивный)",
+          "matn_uz": "Asosiy vositalar amortizatsiyasi yillar yig'indisi (kumulyativ) usulida hisoblanadi: amortizatsiya summasi aktivning foydali xizmat muddati yillari sonlarining yig'indisiga nisbatan kamayib boruvchi kasr koeffitsienti qo'llanilgan holda aniqlanadi.",
+          "matn_ru": "Амортизация основных средств начисляется методом суммы чисел лет (кумулятивным методом): сумма амортизации определяется с применением убывающего дробного коэффициента, рассчитанного от суммы чисел лет срока полезного использования актива.",
+          "tushuntirish_uz": "Dastlabki yillarda ko'proq amortizatsiya hisoblanadi — tezlashtirilgan usul.",
+          "tushuntirish_ru": "В первые годы начисляется больше амортизации — ускоренный метод.",
+          "qachon_mos_uz": "Jadal eskiruvchi texnika uchun mos keladi, kamayuvchi qoldiq usuliga muqobil — farqi shundaki, amortizatsiya davr oxirida nolga yaqinlashadi (qoldiq qiymatsiz).",
+          "qachon_mos_ru": "Подходит для быстро устаревающей техники, альтернатива методу уменьшаемого остатка — отличие в том, что амортизация к концу срока приближается к нулю (без остаточной стоимости).",
+          "tavsiya_profillar": [
+            "P3",
+            "P4"
+          ],
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\" — MYU 3546 (09.08.2024), 2025-yil 1-yanvardan amal qiladi",
       "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_ru": "",
+      "qoidalar_uz": "Turli asosiy vosita guruhlari uchun turli amortizatsiya usuli qo'llanilishi mumkin, lekin bir xil turdagi obyektlar guruhi ichida faqat bitta usul qo'llanadi (NSBU №5, 44-band). Tanlangan usul kalendar yil davomida o'zgartirilmaydi. Amortizatsiya oyiga yillik summaning 1/12 qismida hisoblanadi, bundan ishlab chiqarish hajmiga proporsional usul mustasno.",
+      "qoidalar_ru": "Для разных групп основных средств может применяться разный метод амортизации, но внутри одной группы однотипных объектов применяется только один метод (НСБУ №5, п. 44). Выбранный метод не изменяется в течение календарного года. Амортизация начисляется ежемесячно в размере 1/12 годовой суммы, за исключением метода, пропорционального объёму продукции."
     },
     {
       "id": "bup_av_qiymat_chegarasi",
@@ -175,7 +209,7 @@
         }
       ],
       "asos_url": "",
-      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\" — MYU 3546 (09.08.2024), 2025-yil 1-yanvardan amal qiladi",
       "izoh_uz": "",
       "izoh_ru": ""
     },
@@ -216,7 +250,7 @@
         }
       ],
       "asos_url": "",
-      "asos_nomi": "NSBU №5 \"Asosiy vositalar\"",
+      "asos_nomi": "NSBU №5 \"Asosiy vositalar\" — MYU 3546 (09.08.2024), 2025-yil 1-yanvardan amal qiladi",
       "izoh_uz": "",
       "izoh_ru": ""
     },
@@ -271,22 +305,31 @@
       "variantlar": [
         {
           "kod": "fifo",
-          "nom_uz": "FIFO (birinchi kirim — birinchi chiqim)",
-          "nom_ru": "ФИФО (первым пришёл — первым ушёл)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "nom_uz": "FIFO (birinchi kelgan — birinchi chiqadi)",
+          "nom_ru": "ФИФО (первое поступление — первое выбытие)",
+          "matn_uz": "Tovar-moddiy zaxiralar FIFO (birinchi kelgan — birinchi chiqadi) usulida baholanadi: ombordan chiqarilayotgan zaxiralar birinchi bo'lib kirim qilingan partiya tannarxi bo'yicha hisobdan chiqariladi.",
+          "matn_ru": "Товарно-материальные запасы оцениваются методом ФИФО (первое поступление — первое выбытие): запасы, выбывающие со склада, списываются по себестоимости партии, поступившей первой.",
+          "tushuntirish_uz": "Omborga birinchi kelgan tovar birinchi bo'lib hisobdan chiqariladi.",
+          "tushuntirish_ru": "Товар, поступивший на склад первым, списывается первым.",
+          "qachon_mos_uz": "Muddati chegaralangan tovarlar (oziq-ovqat, dori, kimyo) uchun tabiiy tanlov; narxlar oshib borayotgan bo'lsa, tannarxni pastroq, foydani yuqoriroq ko'rsatadi.",
+          "qachon_mos_ru": "Естественный выбор для товаров с ограниченным сроком годности (продукты, лекарства, химия); при росте цен показывает более низкую себестоимость и более высокую прибыль.",
           "tavsiya_profillar": [
             "P1",
             "P2"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "ortacha_tannarx",
-          "nom_uz": "O'rtacha tannarx usuli",
-          "nom_ru": "Метод средней стоимости",
-          "matn_uz": null,
-          "matn_ru": null,
+          "nom_uz": "O'rtacha tortilgan qiymat usuli (AVECO)",
+          "nom_ru": "Метод средневзвешенной стоимости (АВЕКО)",
+          "matn_uz": "Tovar-moddiy zaxiralar o'rtacha tortilgan qiymat (AVECO) usulida baholanadi: har bir zaxira turi bo'yicha davr boshidagi qoldiq va davr davomida kirim qilingan partiyalar qiymatining o'rtacha tortilgan ko'rsatkichi hisoblanadi.",
+          "matn_ru": "Товарно-материальные запасы оцениваются методом средневзвешенной стоимости (АВЕКО): по каждому виду запасов рассчитывается средневзвешенный показатель стоимости остатка на начало периода и поступивших в течение периода партий.",
+          "tushuntirish_uz": "Barcha partiyalarning o'rtachasi hisoblanadi.",
+          "tushuntirish_ru": "Рассчитывается среднее значение по всем партиям.",
+          "qachon_mos_uz": "Bir xil turdagi, ko'p miqdordagi tovarlar (xomashyo, yoqilg'i, qurilish materiallari) uchun mos keladi — hisob-kitob sodda va partiyalarni alohida kuzatish shart emas.",
+          "qachon_mos_ru": "Подходит для однотипных товаров в больших количествах (сырьё, топливо, стройматериалы) — расчёт простой, отдельный учёт партий не требуется.",
           "tavsiya_profillar": [
             "P1",
             "P2",
@@ -295,25 +338,33 @@
             "P5",
             "P6"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         },
         {
           "kod": "aniqlashtirilgan_tannarx",
-          "nom_uz": "Har birining aniqlashtirilgan tannarxi",
+          "nom_uz": "Aniqlangan tannarx bo'yicha (identifikatsiya usuli)",
           "nom_ru": "Метод специфической идентификации",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Tovar-moddiy zaxiralar aniqlangan tannarx (identifikatsiya) usulida baholanadi: odatda bir-biridan ajratib bo'lmaydigan, o'zaro almashtirib bo'lmaydigan tovarlar yoki maxsus buyurtma bo'yicha ishlab chiqarilgan/xarid qilingan tovarlar uchun har bir birlikning haqiqiy tannarxi alohida hisobga olinadi.",
+          "matn_ru": "Товарно-материальные запасы оцениваются методом специфической идентификации: для товаров, обычно не являющихся взаимозаменяемыми, а также товаров, произведённых или приобретённых по специальному заказу, фактическая себестоимость каждой единицы учитывается отдельно.",
+          "tushuntirish_uz": "Har bir birlik alohida hisobga olinadi.",
+          "tushuntirish_ru": "Каждая единица учитывается отдельно.",
+          "qachon_mos_uz": "Noyob, qimmat, seriya raqamli tovarlar (avtomobil, uskuna, zargarlik buyumlari) uchun mos keladi — har bir birlikning o'ziga xos tannarxini aniq kuzatish imkonini beradi.",
+          "qachon_mos_ru": "Подходит для уникальных, дорогостоящих товаров с серийными номерами (автомобили, оборудование, ювелирные изделия) — позволяет точно отслеживать индивидуальную себестоимость каждой единицы.",
           "tavsiya_profillar": [
             "P3",
             "P4"
           ],
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "NSBU №4 \"Tovar-moddiy zaxiralar\"",
+      "asos_nomi": "NSBU №4 \"Tovar-moddiy zaxiralar\" — buyruq №24, 28.05.2020, MYU 3259 (30.06.2020)",
       "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_ru": "",
+      "qoidalar_uz": "Xomashyo va tayyor mahsulot uchun turli baholash usullari qo'llanilishi mumkin — bu holat hisob siyosatida alohida ko'rsatiladi.",
+      "qoidalar_ru": "Для сырья и готовой продукции могут применяться разные методы оценки — это отдельно указывается в учётной политике."
     },
     {
       "id": "bup_daromadni_tan_olish",
@@ -822,16 +873,21 @@
           "kod": "chiziqli_meyoriy",
           "nom_uz": "Teng me'yorli usul, guruh bo'yicha chegaraviy me'yorlar (tanlov yo'q)",
           "nom_ru": "Равномерный метод, предельные нормы по группам (без выбора)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Soliq maqsadida asosiy vositalar amortizatsiyasi Soliq kodeksining 306-moddasiga muvofiq faqat teng me'yorli usulda, har bir asosiy vosita guruhi uchun belgilangan chegaraviy me'yorlar doirasida hisoblanadi.",
+          "matn_ru": "В налоговых целях амортизация основных средств начисляется в соответствии со статьёй 306 Налогового кодекса только равномерным методом, в пределах предельных норм, установленных для каждой группы основных средств.",
+          "tushuntirish_uz": "Qonun boshqa usulni qo'llashga yo'l qo'ymaydi.",
+          "tushuntirish_ru": "Закон не допускает применения иного метода.",
+          "qachon_mos_uz": null,
+          "qachon_mos_ru": null,
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "qonuniy_holat": "yagona_ruxsat_etilgan",
+          "holat": "TASDIQLANGAN"
         }
       ],
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 306-modda",
-      "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_uz": "Soliq hisobida amortizatsiya faqat teng me'yorli usulda hisoblanadi (Soliq kodeksi 306-modda). Buxgalteriya hisobidagi usuldan farq qilishi mumkin — bu normal holat, ikkala hisob alohida yuritiladi.",
+      "izoh_ru": "В налоговом учёте амортизация начисляется только равномерным методом (статья 306 Налогового кодекса). Она может отличаться от метода в бухгалтерском учёте — это нормальная ситуация, оба учёта ведутся раздельно."
     },
     {
       "id": "nup_qqs_hisob_tartibi",

@@ -94,7 +94,11 @@
 
     if (isQatiy) {
       if (chosen) out.push({ k: 'p', text: L(chosen.nom_uz, chosen.nom_ru, lang) });
-      out.push({ k: 'note', text: L(TXT.qatiyNote.uz, TXT.qatiyNote.ru, lang) });
+      // Band'ning o'z izohi bo'lsa (masalan BUP/NUP amortizatsiyasi farq
+      // qilishi haqidagi tushuntirish) — umumiy QATIY_NOTE o'rniga shuni
+      // ko'rsatamiz, chunki u aynan shu bandga tegishli, kontekstga boy.
+      var hasOwnIzoh = band.izoh_uz || band.izoh_ru;
+      out.push({ k: 'note', text: hasOwnIzoh ? L(band.izoh_uz, band.izoh_ru, lang) : L(TXT.qatiyNote.uz, TXT.qatiyNote.ru, lang) });
     } else if (vlist.length > 1 && chosen) {
       out.push({ k: 'p', text: L(TXT.tanlangan.uz, TXT.tanlangan.ru, lang) + L(chosen.nom_uz, chosen.nom_ru, lang) });
     } else if (chosen) {
@@ -103,7 +107,59 @@
 
     var matn = chosen ? L(chosen.matn_uz, chosen.matn_ru, lang) : null;
     out.push({ k: 'note', text: matn || L(TXT.placeholder.uz, TXT.placeholder.ru, lang) });
+    // Band darajasidagi "muhim qoidalar" — hujjat matniga kiritilishi shart
+    // (masalan guruh bo'yicha usul, kalendar yil ichida o'zgartirmaslik).
+    // Bu tushuntirish/qachon_mos'dan farqli — rasmiy hujjat qismi.
+    if (band.qoidalar_uz || band.qoidalar_ru) {
+      out.push({ k: 'p', text: L(band.qoidalar_uz, band.qoidalar_ru, lang) });
+    }
     return out;
+  };
+
+  /* ---------- rahbar buyrug'i namunasi (0.F: javobgarlik mijozda) ----------
+     Har ikkala hujjat oxiriga qo'shiladi — direktor imzosi bilan
+     javobgarlik rasman o'tishining hujjatli shakli. */
+  HS.buildOrderBlocks = function (hujjat, lang) {
+    var isBup = hujjat === 'BUP';
+    if (lang === 'ru') {
+      var docRuAcc = isBup ? 'бухгалтерскую учётную политику' : 'налоговую учётную политику';
+      var docRuGen = isBup ? 'бухгалтерской учётной политики' : 'налоговой учётной политики';
+      var basisRu = isBup
+        ? 'В соответствии с Законом "О бухгалтерском учёте" и НСБУ №1,'
+        : 'В соответствии со статьёй 77 Налогового кодекса,';
+      return [
+        { k: 'gap' },
+        { k: 'h', text: 'ОБРАЗЕЦ ПРИКАЗА' },
+        { k: 'p', text: '«' + KD.blank(2) + '» ' + KD.blank(15) + ' 20' + KD.blank(2) + ' г.    № ' + KD.blank(6) },
+        { k: 'p', text: 'Об утверждении ' + docRuGen },
+        { k: 'gap' },
+        { k: 'p', text: basisRu },
+        { k: 'p', text: 'ПРИКАЗЫВАЮ:' },
+        { k: 'p', text: '1. Утвердить настоящую ' + docRuAcc + '.' },
+        { k: 'p', text: '2. Применять учётную политику с даты утверждения.' },
+        { k: 'p', text: '3. Контроль за исполнением настоящего приказа оставляю за собой.' },
+        { k: 'gap' },
+        { k: 'sig', left: ['Руководитель:'], right: ['_______________ (подпись)', 'Ф.И.О.: ' + KD.blank(25)] },
+      ];
+    }
+    var docUz = isBup ? 'buxgalteriya hisob siyosati' : 'soliq hisob siyosati';
+    var basisUz = isBup
+      ? '"Buxgalteriya hisobi to\'g\'risida"gi Qonun va NSBU №1\'ga muvofiq,'
+      : 'Soliq kodeksining 77-moddasiga muvofiq,';
+    return [
+      { k: 'gap' },
+      { k: 'h', text: 'BUYRUQ NAMUNASI' },
+      { k: 'p', text: '«' + KD.blank(2) + '» ' + KD.blank(15) + ' 20' + KD.blank(2) + '-yil    № ' + KD.blank(6) },
+      { k: 'p', text: 'Ushbu ' + docUz + 'ni tasdiqlash to\'g\'risida' },
+      { k: 'gap' },
+      { k: 'p', text: basisUz },
+      { k: 'p', text: 'BUYURAMAN:' },
+      { k: 'p', text: '1. Ushbu ' + docUz + ' tasdiqlansin.' },
+      { k: 'p', text: '2. Hisob siyosati tasdiqlangan sanadan e\'tiboran qo\'llanilsin.' },
+      { k: 'p', text: '3. Ushbu buyruqning bajarilishini nazorat qilishni o\'z zimmamda qoldiraman.' },
+      { k: 'gap' },
+      { k: 'sig', left: ['Rahbar:'], right: ['_______________ (imzo)', 'F.I.Sh.: ' + KD.blank(25)] },
+    ];
   };
 
   // Butun hujjat (BUP yoki NUP) uchun to'liq blok ro'yxati.
@@ -126,6 +182,8 @@
         blocks = blocks.concat(HS.bandToBlocks(b, lang, profil, variants[b.id]));
       });
     });
+    // Rahbar buyrug'i namunasi — har doim oxirida (0.F: javobgarlik mijozda).
+    blocks = blocks.concat(HS.buildOrderBlocks(hujjat, lang));
     return blocks;
   };
 
