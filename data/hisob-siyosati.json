@@ -5,7 +5,8 @@
     {
       "id": "bup_buxgalteriya_shakli",
       "hujjat": "BUP",
-      "bolim": "I. Umumiy qoidalar",
+      "bolim_uz": "I. Umumiy qoidalar",
+      "bolim_ru": "I. Общие положения",
       "sarlavha_uz": "Buxgalteriya hisobini yuritish shakli",
       "sarlavha_ru": "Форма ведения бухгалтерского учёта",
       "tanlov_erkinligi": "erkin",
@@ -54,7 +55,8 @@
     {
       "id": "bup_masul_shaxslar",
       "hujjat": "BUP",
-      "bolim": "I. Umumiy qoidalar",
+      "bolim_uz": "I. Umumiy qoidalar",
+      "bolim_ru": "I. Общие положения",
       "sarlavha_uz": "Moliyaviy hisobot yuritish uchun mas'ul shaxslar",
       "sarlavha_ru": "Ответственные лица за ведение финансовой отчётности",
       "tanlov_erkinligi": "erkin",
@@ -85,7 +87,8 @@
     {
       "id": "bup_amortizatsiya_usuli",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Asosiy vositalar amortizatsiyasi usuli",
       "sarlavha_ru": "Метод амортизации основных средств",
       "tanlov_erkinligi": "erkin",
@@ -147,7 +150,8 @@
     {
       "id": "bup_av_qiymat_chegarasi",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Asosiy vosita sifatida tan olish uchun qiymat chegarasi",
       "sarlavha_ru": "Стоимостной лимит признания основным средством",
       "tanlov_erkinligi": "erkin",
@@ -178,7 +182,8 @@
     {
       "id": "bup_av_qayta_baholash",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Asosiy vositalarni qayta baholash siyosati",
       "sarlavha_ru": "Политика переоценки основных средств",
       "tanlov_erkinligi": "erkin",
@@ -218,7 +223,8 @@
     {
       "id": "bup_nomoddiy_aktivlar_amortizatsiya",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Nomoddiy aktivlar amortizatsiyasi",
       "sarlavha_ru": "Амортизация нематериальных активов",
       "tanlov_erkinligi": "erkin",
@@ -249,7 +255,8 @@
     {
       "id": "bup_tmz_baholash_usuli",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Tovar-moddiy zaxiralarni baholash usuli",
       "sarlavha_ru": "Метод оценки товарно-материальных запасов",
       "tanlov_erkinligi": "erkin",
@@ -311,7 +318,8 @@
     {
       "id": "bup_daromadni_tan_olish",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Daromadni tan olish tartibi",
       "sarlavha_ru": "Порядок признания дохода",
       "tanlov_erkinligi": "shartli",
@@ -359,7 +367,8 @@
     {
       "id": "bup_zaxiralar",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Kutilayotgan majburiyatlar (zaxiralar)ni shakllantirish",
       "sarlavha_ru": "Формирование резервов предстоящих обязательств",
       "tanlov_erkinligi": "shartli",
@@ -399,7 +408,8 @@
     {
       "id": "bup_valyuta_kurs_farqlari",
       "hujjat": "BUP",
-      "bolim": "II. Usuliy qism",
+      "bolim_uz": "II. Usuliy qism",
+      "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Chet el valyutasidagi operatsiyalar bo'yicha kurs farqlarini hisobga olish",
       "sarlavha_ru": "Учёт курсовых разниц по операциям в иностранной валюте",
       "tanlov_erkinligi": "shartli",
@@ -430,7 +440,8 @@
     {
       "id": "bup_hujjat_aylanishi",
       "hujjat": "BUP",
-      "bolim": "III. Tashkiliy qism",
+      "bolim_uz": "III. Tashkiliy qism",
+      "bolim_ru": "III. Организационная часть",
       "sarlavha_uz": "Hujjat aylanish tartibi",
       "sarlavha_ru": "Порядок документооборота",
       "tanlov_erkinligi": "erkin",
@@ -461,7 +472,8 @@
     {
       "id": "bup_inventarizatsiya",
       "hujjat": "BUP",
-      "bolim": "III. Tashkiliy qism",
+      "bolim_uz": "III. Tashkiliy qism",
+      "bolim_ru": "III. Организационная часть",
       "sarlavha_uz": "Inventarizatsiya o'tkazish tartibi",
       "sarlavha_ru": "Порядок проведения инвентаризации",
       "tanlov_erkinligi": "erkin",
@@ -492,7 +504,8 @@
     {
       "id": "bup_ichki_nazorat",
       "hujjat": "BUP",
-      "bolim": "III. Tashkiliy qism",
+      "bolim_uz": "III. Tashkiliy qism",
+      "bolim_ru": "III. Организационная часть",
       "sarlavha_uz": "Ichki nazorat tizimi",
       "sarlavha_ru": "Система внутреннего контроля",
       "tanlov_erkinligi": "erkin",
@@ -523,7 +536,8 @@
     {
       "id": "bup_schyotlar_rejasi",
       "hujjat": "BUP",
-      "bolim": "IV. Ish schyotlari rejasi",
+      "bolim_uz": "IV. Ish schyotlari rejasi",
+      "bolim_ru": "IV. Рабочий план счетов",
       "sarlavha_uz": "Ishchi schyotlar rejasi",
       "sarlavha_ru": "Рабочий план счетов",
       "tanlov_erkinligi": "erkin",
@@ -563,7 +577,8 @@
     {
       "id": "bup_kuchga_kirish_sanasi",
       "hujjat": "BUP",
-      "bolim": "V. Yakuniy qoidalar",
+      "bolim_uz": "V. Yakuniy qoidalar",
+      "bolim_ru": "V. Заключительные положения",
       "sarlavha_uz": "Kuchga kirish sanasi",
       "sarlavha_ru": "Дата вступления в силу",
       "tanlov_erkinligi": "erkin",
@@ -594,7 +609,8 @@
     {
       "id": "bup_ozgartirish_tartibi",
       "hujjat": "BUP",
-      "bolim": "V. Yakuniy qoidalar",
+      "bolim_uz": "V. Yakuniy qoidalar",
+      "bolim_ru": "V. Заключительные положения",
       "sarlavha_uz": "Hisob siyosatini o'zgartirish tartibi",
       "sarlavha_ru": "Порядок изменения учётной политики",
       "tanlov_erkinligi": "erkin",
@@ -625,7 +641,8 @@
     {
       "id": "nup_soliq_rejimi",
       "hujjat": "NUP",
-      "bolim": "I. Umumiy qoidalar",
+      "bolim_uz": "I. Umumiy qoidalar",
+      "bolim_ru": "I. Общие положения",
       "sarlavha_uz": "Qo'llaniladigan soliq rejimi",
       "sarlavha_ru": "Применяемый налоговый режим",
       "tanlov_erkinligi": "erkin",
@@ -665,7 +682,8 @@
     {
       "id": "nup_soliq_turlari",
       "hujjat": "NUP",
-      "bolim": "I. Umumiy qoidalar",
+      "bolim_uz": "I. Umumiy qoidalar",
+      "bolim_ru": "I. Общие положения",
       "sarlavha_uz": "To'lanadigan soliq va majburiy to'lovlar ro'yxati",
       "sarlavha_ru": "Перечень уплачиваемых налогов и обязательных платежей",
       "tanlov_erkinligi": "shartli",
@@ -713,7 +731,8 @@
     {
       "id": "nup_ajratilgan_hisob",
       "hujjat": "NUP",
-      "bolim": "II. Ajratilgan hisob tartibi",
+      "bolim_uz": "II. Ajratilgan hisob tartibi",
+      "bolim_ru": "II. Порядок ведения раздельного учёта",
       "sarlavha_uz": "Ajratilgan hisob yuritish tartibi",
       "sarlavha_ru": "Порядок ведения раздельного учёта",
       "tanlov_erkinligi": "shartli",
@@ -753,7 +772,8 @@
     {
       "id": "nup_foyda_soligi_xarajat_tan_olish",
       "hujjat": "NUP",
-      "bolim": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "bolim_uz": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "bolim_ru": "III. Признание расходов для налога на прибыль",
       "sarlavha_uz": "Xarajatlarni tan olish usuli",
       "sarlavha_ru": "Метод признания расходов",
       "tanlov_erkinligi": "shartli",
@@ -784,7 +804,8 @@
     {
       "id": "nup_foyda_soligi_amortizatsiya",
       "hujjat": "NUP",
-      "bolim": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "bolim_uz": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "bolim_ru": "III. Признание расходов для налога на прибыль",
       "sarlavha_uz": "Asosiy vositalar amortizatsiyasi (soliq maqsadida)",
       "sarlavha_ru": "Амортизация основных средств (в налоговых целях)",
       "tanlov_erkinligi": "qatiy",
@@ -815,7 +836,8 @@
     {
       "id": "nup_qqs_hisob_tartibi",
       "hujjat": "NUP",
-      "bolim": "IV. QQS hisobga olish tartibi",
+      "bolim_uz": "IV. QQS hisobga olish tartibi",
+      "bolim_ru": "IV. Порядок учёта НДС",
       "sarlavha_uz": "QQS hisobini yuritish tartibi",
       "sarlavha_ru": "Порядок ведения учёта НДС",
       "tanlov_erkinligi": "shartli",
@@ -843,7 +865,8 @@
     {
       "id": "nup_qqs_ajratilgan_hisob",
       "hujjat": "NUP",
-      "bolim": "IV. QQS hisobga olish tartibi",
+      "bolim_uz": "IV. QQS hisobga olish tartibi",
+      "bolim_ru": "IV. Порядок учёта НДС",
       "sarlavha_uz": "QQS'siz va QQS'li operatsiyalar aralash bo'lganda kiruvchi QQS'ni taqsimlash",
       "sarlavha_ru": "Распределение входящего НДС при совмещении облагаемых и необлагаемых операций",
       "tanlov_erkinligi": "shartli",
@@ -871,7 +894,8 @@
     {
       "id": "nup_amortizatsiya_meyorlari_guruhlar",
       "hujjat": "NUP",
-      "bolim": "V. Amortizatsiya me'yorlari",
+      "bolim_uz": "V. Amortizatsiya me'yorlari",
+      "bolim_ru": "V. Нормы амортизации",
       "sarlavha_uz": "Asosiy vositalar guruhlari bo'yicha chegaraviy amortizatsiya me'yorlari",
       "sarlavha_ru": "Предельные нормы амортизации по группам основных средств",
       "tanlov_erkinligi": "qatiy",
@@ -902,7 +926,8 @@
     {
       "id": "nup_qollash_muddati",
       "hujjat": "NUP",
-      "bolim": "VI. Yakuniy qoidalar",
+      "bolim_uz": "VI. Yakuniy qoidalar",
+      "bolim_ru": "VI. Заключительные положения",
       "sarlavha_uz": "Qo'llash muddati",
       "sarlavha_ru": "Срок применения",
       "tanlov_erkinligi": "erkin",
@@ -933,7 +958,8 @@
     {
       "id": "nup_ozgartirish_sabablari",
       "hujjat": "NUP",
-      "bolim": "VI. Yakuniy qoidalar",
+      "bolim_uz": "VI. Yakuniy qoidalar",
+      "bolim_ru": "VI. Заключительные положения",
       "sarlavha_uz": "Hisob siyosatini yangilash sabablari",
       "sarlavha_ru": "Основания для обновления учётной политики",
       "tanlov_erkinligi": "erkin",

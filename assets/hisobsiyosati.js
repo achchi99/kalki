@@ -42,13 +42,16 @@
 
   // Bo'lim tartibi — bandlar massividagi birinchi uchrashuv tartibi bo'yicha
   // (data/hisob-siyosati.json'da bandlar allaqachon bo'lim tartibida yozilgan).
-  HS.byBolim = function (bands) {
-    var order = [], map = {};
+  // Guruhlash kaliti sifatida bolim_uz ishlatiladi (til o'zgarganda ham bir
+  // xil guruh chegaralari qolishi uchun), lekin chiqishdagi `bolim` matni
+  // `lang`ga qarab tanlanadi.
+  HS.byBolim = function (bands, lang) {
+    var order = [], map = {}, label = {};
     bands.forEach(function (b) {
-      if (!map[b.bolim]) { map[b.bolim] = []; order.push(b.bolim); }
-      map[b.bolim].push(b);
+      if (!map[b.bolim_uz]) { map[b.bolim_uz] = []; order.push(b.bolim_uz); label[b.bolim_uz] = L(b.bolim_uz, b.bolim_ru, lang); }
+      map[b.bolim_uz].push(b);
     });
-    return order.map(function (bo) { return { bolim: bo, items: map[bo] }; });
+    return order.map(function (bo) { return { bolim: label[bo], items: map[bo] }; });
   };
 
   function L(uz, ru, lang) { return lang === 'ru' ? (ru || uz) : uz; }
@@ -116,7 +119,7 @@
       reqLines.forEach(function (t) { blocks.push({ k: 'p', text: t }); });
       blocks.push({ k: 'gap' });
     }
-    HS.byBolim(HS.bandsFor(data, hujjat, profil)).forEach(function (g) {
+    HS.byBolim(HS.bandsFor(data, hujjat, profil), lang).forEach(function (g) {
       blocks.push({ k: 'h', text: g.bolim });
       g.items.forEach(function (b) {
         blocks = blocks.concat(HS.bandToBlocks(b, lang, profil, variants[b.id]));
