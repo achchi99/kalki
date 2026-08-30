@@ -130,3 +130,12 @@ FAZA 1'ga o'tishga tayyor: sahifa qurish + yig'ish mantig'i. Ikkita
 texnik qaror allaqachon FAZA 0'da hal qilindi (docx kutubxonasi,
 bandlar/forma-maydonlari chegarasi) — FAZA 1 shu asosda davom etishi
 mumkin, qo'shimcha tadqiqot kerak emas.
+
+## 6. FAZA 3, Batch 3 — qamrovdan chiqarilgan (2026-08-30)
+
+Zaxiralar bandlari (shubhali qarzlar zaxirasi, ta'til zaxirasi)
+qamrovdan chiqarildi: Moliya vazirligining MHMS rejasiga ko'ra
+tegishli standartlar (№33 "Debitorlik va kreditorlik qarzlari", №35
+"Zaxiralar, shartli majburiyatlar va shartli aktivlar", №42
+"Xodimlarga beriladigan to'lovlar") hali loyiha holatida, bajarilish
+muddati 2026–2027. Standart chiqqach qayta ko'rib chiqilsin.
