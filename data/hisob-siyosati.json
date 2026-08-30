@@ -522,7 +522,7 @@
       "bolim_ru": "II. Методологическая часть",
       "sarlavha_uz": "Chet el valyutasidagi operatsiyalar bo'yicha kurs farqlarini hisobga olish",
       "sarlavha_ru": "Учёт курсовых разниц по операциям в иностранной валюте",
-      "tanlov_erkinligi": "shartli",
+      "tanlov_erkinligi": "qatiy",
       "profillar": [
         "P1",
         "P2",
@@ -533,19 +533,26 @@
       ],
       "variantlar": [
         {
-          "kod": "joriy_moliyaviy_natija",
-          "nom_uz": "Joriy davr moliyaviy natijasiga kiritiladi",
-          "nom_ru": "Включается в финансовый результат текущего периода",
-          "matn_uz": null,
-          "matn_ru": null,
+          "kod": "umumiy_qoida",
+          "nom_uz": "Markaziy bank kursi bo'yicha hisob, kurs farqi joriy davr natijasiga",
+          "nom_ru": "Учёт по курсу ЦБ, курсовая разница — в результат текущего периода",
+          "matn_uz": "Chet el valyutasida ifodalangan operatsiyalar amalga oshirilgan kundagi Markaziy bank kursi bo'yicha hisobga olinadi. Pul (monetar) moddalar har oy oxirida Markaziy bank kursi bo'yicha qayta baholanadi; nomonetar moddalar qayta baholanmaydi. Kurs farqlari joriy davr moliyaviy natijasida (moliyaviy faoliyatdan daromad yoki xarajat sifatida) tan olinadi. Kurs farqlarini jamg'arish yo'li bilan hisobga olishga yo'l qo'yilmaydi.",
+          "matn_ru": "Операции в иностранной валюте учитываются по курсу Центрального банка на день совершения операции. Денежные (монетарные) статьи переоцениваются по курсу ЦБ на конец каждого месяца; неденежные статьи переоценке не подлежат. Курсовые разницы признаются в составе финансового результата текущего периода (как доход или расход от финансовой деятельности). Накопление курсовых разниц не допускается.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN",
+          "tushuntirish_uz": "Valyuta kursi o'zgarishidan kelib chiqadigan farq darhol shu oyning moliyaviy natijasiga yoziladi — keyingi davrga o'tkazib bo'lmaydi.",
+          "tushuntirish_ru": "Разница от изменения валютного курса сразу относится на финансовый результат текущего месяца — переносить на будущие периоды нельзя.",
+          "qachon_mos_uz": "Bu — barcha korxonalar uchun majburiy qoida, tanlov emas. Chet el valyutasida hisob-kitob qiladigan (import/eksport, xorijiy kredit, valyutadagi bank hisobi) har qanday korxonaga tegishli.",
+          "qachon_mos_ru": "Это обязательное правило для всех организаций, а не выбор. Применяется к любой организации, ведущей расчёты в иностранной валюте (импорт/экспорт, валютный кредит, валютный банковский счёт).",
+          "qonuniy_holat": "yagona_ruxsat_etilgan"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Tegishli NSBU (valyuta kurs farqlari bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
+      "asos_nomi": "NSBU №22 \"Chet el valyutasida ifodalangan aktivlar va majburiyatlarning hisobi\" (buyruq №3587, 19.12.2024)",
       "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_ru": "",
+      "qoidalar_uz": "Pul (monetar) moddalar — kassadagi/hisobdagi valyuta, debitor/kreditor qarzlar — har oy oxirida qayta baholanadi. Nomonetar moddalar — asosiy vositalar, zaxiralar kabi — qayta baholanmaydi. Kurs farqlarini kelajakka o'tkazib, to'plab hisobga olish taqiqlangan (NSBU №22, 14-modda) — har oyning farqi o'sha oyda tan olinadi.",
+      "qoidalar_ru": "Денежные статьи — валюта в кассе/на счетах, дебиторская/кредиторская задолженность — переоцениваются на конец каждого месяца. Неденежные статьи — основные средства, запасы — переоценке не подлежат. Перенос и накопление курсовых разниц на будущие периоды запрещён (НСБУ №22, ст. 14) — разница каждого месяца признаётся в том же месяце."
     },
     {
       "id": "bup_hujjat_aylanishi",
@@ -1101,6 +1108,38 @@
       "asos_nomi": "Soliq kodeksi 77-modda",
       "izoh_uz": "",
       "izoh_ru": ""
+    },
+    {
+      "id": "nup_valyuta_kurs_soliq",
+      "hujjat": "NUP",
+      "bolim_uz": "III. Foyda solig'i uchun xarajatlarni tan olish",
+      "bolim_ru": "III. Признание расходов для налога на прибыль",
+      "sarlavha_uz": "Kurs farqlarining soliq bazasiga ta'siri",
+      "sarlavha_ru": "Влияние курсовых разниц на налоговую базу",
+      "tanlov_erkinligi": "shartli",
+      "profillar": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6"
+      ],
+      "variantlar": [
+        {
+          "kod": "umumiy_qoida",
+          "nom_uz": "Soliq kodeksi bo'yicha tartib",
+          "nom_ru": "Порядок согласно Налоговому кодексу",
+          "matn_uz": null,
+          "matn_ru": null,
+          "tavsiya_profillar": null,
+          "holat": "TASDIQLASH KERAK"
+        }
+      ],
+      "asos_url": "",
+      "asos_nomi": "Soliq kodeksi (tegishli modda — Batch 4.1'da aniqlanishi shart)",
+      "izoh_uz": "Soliq bazasiga ta'siri alohida tekshirilishi kerak — Batch 4.1.",
+      "izoh_ru": "Влияние на налоговую базу требует отдельной проверки — Batch 4.1."
     }
   ]
 }
