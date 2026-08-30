@@ -866,10 +866,15 @@
           "kod": "talab_qilinadi",
           "nom_uz": "Ajratilgan hisob yuritiladi (bir nechta faoliyat/rejim aralash bo'lganda)",
           "nom_ru": "Ведётся раздельный учёт (при совмещении видов деятельности/режимов)",
-          "matn_uz": null,
-          "matn_ru": null,
+          "matn_uz": "Turli soliq rejimlari yoki stavkalari birlashgan faoliyat yuritilganda, har bir soliq turi bo'yicha daromad va xarajatlar alohida-alohida hisobga olinadi (Soliq kodeksi 80-modda). Ajratilgan hisob yuritish usuli har bir soliq turi uchun mustaqil belgilanadi va soliq hisob siyosatida aks ettiriladi.",
+          "matn_ru": "При совмещении различных налоговых режимов или ставок, доходы и расходы по каждому виду налога учитываются раздельно (статья 80 Налогового кодекса). Метод ведения раздельного учёта устанавливается самостоятельно по каждому виду налога и отражается в налоговой учётной политике.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN",
+          "tushuntirish_uz": "Agar korxonada bir vaqtda turli stavkali yoki turli rejimli faoliyat bo'lsa (masalan asosiy faoliyat + patent), ularning daromad-xarajati aralashtirib yuborilmasligi kerak.",
+          "tushuntirish_ru": "Если у организации одновременно есть деятельность с разными ставками или режимами (например, основная деятельность + патент), их доходы и расходы нельзя смешивать.",
+          "qachon_mos_uz": "Faqat bitta soliq rejimida ishlaydigan korxonalarga bu band tegishli emas — amalda kam uchraydi, chunki ko'p korxonalar yagona rejimda ishlaydi.",
+          "qachon_mos_ru": "Не относится к организациям, работающим только в одном налоговом режиме — на практике встречается редко, так как большинство организаций работает в едином режиме.",
+          "qonuniy_holat": "cheklangan"
         },
         {
           "kod": "talab_qilinmaydi",
@@ -882,7 +887,7 @@
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Soliq kodeksi 80-modda",
+      "asos_nomi": "Soliq kodeksi 80-modda \"Alohida-alohida hisob va uni yuritish qoidalari\"",
       "izoh_uz": "",
       "izoh_ru": ""
     },
@@ -915,8 +920,8 @@
       ],
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
-      "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_uz": "Modda raqami tasdiqlanmadi — Soliq kodeksi hajmi tufayli (WebFetch mundarijadan tashqarisini yuklay olmadi). Tasdiqlangach to'ldiriladi.",
+      "izoh_ru": "Номер статьи не подтверждён — из-за объёма Налогового кодекса (WebFetch не смог загрузить текст статей, только оглавление). Будет заполнено после подтверждения."
     },
     {
       "id": "nup_foyda_soligi_amortizatsiya",
@@ -981,8 +986,8 @@
       ],
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
-      "izoh_uz": "",
-      "izoh_ru": ""
+      "izoh_uz": "Modda raqami tasdiqlanmadi — Soliq kodeksi hajmi tufayli (WebFetch mundarijadan tashqarisini yuklay olmadi). Tasdiqlangach to'ldiriladi.",
+      "izoh_ru": "Номер статьи не подтверждён — из-за объёма Налогового кодекса (WebFetch не смог загрузить текст статей, только оглавление). Будет заполнено после подтверждения."
     },
     {
       "id": "nup_qqs_ajratilgan_hisob",
