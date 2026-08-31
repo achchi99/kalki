@@ -110,3 +110,21 @@ Foydalanuvchi promptida sanab o'tilgan turlardan, mavjud generator/kalkulyator i
 FAQ schema kengaytirish (2.3) foydali, lekin tezkor CTR ta'siri kutilmasin — hozircha rich result ko'rinishi yo'q.
 
 **1.1'dan qo'shimcha topilma:** `kredit-kalkulyator` va `omonat-kalkulyator`dagi keskin pozitsiya pasayishi FAZA 4 qamroviga kirmaydi, lekin alohida qayd etildi — kelajakda tekshirilishi tavsiya etiladi.
+
+---
+
+## FAZA 4.2 — 0%-CTR guruhi diagnostikasi (`alkogol`, `tom`, `yer-konvertor`)
+
+`oylik-soliq-kalkulyator`da qo'llangan diagnostika naqshi (title/description'ni buzuq fragment yoki asosiy kalit so'z yo'qligiga tekshirish) bu uchta sahifaga ham qo'llanildi. **Natija — boshqacha:**
+
+| Sahifa | Title/description holati |
+|---|---|
+| `alkogol-kalkulyator` | Toza. Title'da hatto tabiiy "haydash mumkinmi?" savoli bor — bu odatda CTR'ni oshiruvchi naqsh. |
+| `tom-kalkulyator` | Toza. Aniq, mahsulot nomlari (profnastil, cherepitsa) ko'rsatilgan. |
+| `yer-konvertor` | Toza. Birlik nomlari sanab o'tilgan, aniq. |
+
+**Uchalasida ham oylik-soliq-kalkulyatordagi kabi buzuq fragment yoki kalit so'z yo'qligi topilmadi.** Bu — muhim farq: bu safar diagnostika "tuzatish kerak bo'lgan aniq nuqson"ni emas, "nuqson yo'qligi"ni tasdiqladi.
+
+**Statistik izoh:** bu uchta sahifaning impressiya hajmi past (28-33) — `ariza-namunasi` (418) yoki `oylik-soliq-kalkulyator` (75) bilan solishtirganda ancha kichik. Agar bu sahifalar odatiy 8-12% CTR kutilsa (pozitsiya 3.75-5.07 uchun tipik), 28-33 impressiyada 0 klik kuzatish ehtimoli past, lekin imkonsiz emas (Puasson taqsimotida ~5% ehtimol) — ya'ni **bu balki shunchaki tasodifiy noise, tuzatilishi kerak bo'lgan real nuqson emas**.
+
+**Tavsiya:** ushbu uchta sahifada title/description'ni **o'zgartirmaslik** — chunki hech qanday aniq nuqson topilmadi va o'zgartirish spekulyativ bo'lardi (Batch 3'da rad etilgan "ehtimol to'g'ri, lekin ehtimol yetarli emas" mantig'iga o'xshaydi). Buning o'rniga: keyingi GSC eksportida (masalan 1-2 hafta keyin, impressiya hajmi oshgach) bu uchta sahifani qayta tekshirish — agar o'sha paytda ham 0% CTR davom etsa, bu haqiqiy signal bo'ladi va harakat qilinadi.
