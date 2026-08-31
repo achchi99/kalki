@@ -128,3 +128,31 @@ FAQ schema kengaytirish (2.3) foydali, lekin tezkor CTR ta'siri kutilmasin — h
 **Statistik izoh:** bu uchta sahifaning impressiya hajmi past (28-33) — `ariza-namunasi` (418) yoki `oylik-soliq-kalkulyator` (75) bilan solishtirganda ancha kichik. Agar bu sahifalar odatiy 8-12% CTR kutilsa (pozitsiya 3.75-5.07 uchun tipik), 28-33 impressiyada 0 klik kuzatish ehtimoli past, lekin imkonsiz emas (Puasson taqsimotida ~5% ehtimol) — ya'ni **bu balki shunchaki tasodifiy noise, tuzatilishi kerak bo'lgan real nuqson emas**.
 
 **Tavsiya:** ushbu uchta sahifada title/description'ni **o'zgartirmaslik** — chunki hech qanday aniq nuqson topilmadi va o'zgartirish spekulyativ bo'lardi (Batch 3'da rad etilgan "ehtimol to'g'ri, lekin ehtimol yetarli emas" mantig'iga o'xshaydi). Buning o'rniga: keyingi GSC eksportida (masalan 1-2 hafta keyin, impressiya hajmi oshgach) bu uchta sahifani qayta tekshirish — agar o'sha paytda ham 0% CTR davom etsa, bu haqiqiy signal bo'ladi va harakat qilinadi.
+
+---
+
+## FAZA 4.4 — ichki bog'lanish tizimi
+
+### 1. Bir tomonlama havola (4.1.3 topilmasi) — TUZATILDI
+
+`ariza-namunasi.html`ga `ishdan-boshash-arizasi-namunasi.html`ga havola qo'shildi (`#articleLink` bloki). Endi ikki tomonlama.
+
+### 2. Huquqiy klaster va hisob-siyosati bog'lanishi — TUZATILDI
+
+Tekshiruv shuni ko'rsatdi: 6 ta huquqiy klaster sahifasi (`aliment-kalkulyator` va h.k.) allaqachon `tools/site-chrome.js`ning umumiy `#xnav` footer bloki orqali har biri **56 sahifadan** havola olar edi — bu qism qo'shimcha ishlov talab qilmadi.
+
+Lekin `hisob-siyosati-generatori.html` shu ro'yxatda **yo'q edi** — u faqat `hujjatlar.html`dan (1 ta sahifadan) havola olardi. Sabab: bu hujjat-generator turi, `XNAV_LINKS` esa asosan kalkulyatorlar uchun tuzilgan, yangi generator qo'shilganda uni bu ro'yxatga kiritish unutilgan (xuddi shu faylning o'z izohida ogohlantirilgan aynan shunday xato turi: "yangi staj-kalkulyator.html qo'shilganda uni HAMMA joyga qo'lda qo'shish unutilgan edi").
+
+Tuzatildi: `XNAV_LINKS`ga qo'shildi (56 sahifadan havola oladigan bo'ldi) + 3 ta mavzuan yaqin sahifaga (`oylik-soliq-kalkulyator`, `qqs-kalkulyator`, `mehnat-shartnomasi-namunasi`) maqsadli `#related` havolasi qo'shildi + o'zining `#related` bloki yaratildi (avval sahifada birorta ham chiquvchi ichki havola yo'q edi).
+
+**Yon topilma:** `hisob-siyosati-generatori.html`ning `applyLang()`i `data-rel-uz/ru` juftligini almashtirmas edi (bu boshqa sahifalarda alohida `<script id="artlang">` moduli orqali ishlaydi, lekin bu sahifada u yo'q edi — chunki avval `#related` bloki umuman bo'lmagan). Shu skript qo'shildi.
+
+### 3. RU sahifalar RU sahifalarga bog'lanishi — TEKSHIRILDI, MUAMMO TOPILMADI
+
+Foydalanuvchining gipotezasi: bu — pozitsiya 28,4'ning sabablaridan biri bo'lishi mumkin. **Natija — gipoteza tasdiqlanmadi.**
+
+Barcha 64 ta `ru/*.html` sahifa jsdom orqali dasturiy tekshirildi: har sahifadagi barcha ichki (`kalki.uz` domenidagi) havolalar yig'ildi va ularning `resolved` (brauzer hisoblagan to'liq) URL manzili `/ru/` prefiksini o'z ichiga oladimi tekshirildi. **Natija: 0 ta xato havola.** Sabab — havolalar nisbiy (`href="kredit-kalkulyator"`, mutlaq yo'l emas) va HTML nisbiy-URL qoidasiga ko'ra `/ru/ariza-namunasi`dan chiqqan nisbiy havola avtomatik `/ru/kredit-kalkulyator`ga aylanadi, UZ'ga emas. Bu — 4 xil sahifa turida (`ariza-namunasi`, `aliment-kalkulyator`, `hisob-siyosati-generatori`, `hujjatlar`) real brauzerda ham qo'lda tasdiqlangan, keyin barcha 64 sahifa dasturiy tekshirildi.
+
+**Xulosa:** pozitsiya 28,4'ning sababi RU→RU ichki bog'lanish emas. Ehtimoliy sabablar: RU sahifalar hali yosh (bir hafta oldin 0/0 edi — Google hali indekslash/baholash bosqichida) yoki boshqa omil (hreflang, kontent hajmi — bular FAZA 4.5 qamrovida).
+
+**Yon topilma (bu ishga aloqasi yo'q, alohida qayd etildi):** `qqs-kalkulyator.html`da `document.documentElement.lang==='ru'` bo'lgan holatda ham `<title>` UZ holicha qolib ketishi kuzatildi — sahifaning applyLang() bu holatda title'ni yangilamayapti. Bu FAZA 4.5'da (RU title/description ko'rib chiqilganda) tekshirilishi tavsiya etiladi.
