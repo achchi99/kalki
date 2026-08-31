@@ -164,6 +164,7 @@ const XNAV_LINKS = [
   ['ishdan-boshatish-kompensatsiyasi-kalkulyator', 'Ishdan bo\'shatish komp. / Компенсация при увольнении'],
   ['aliment-kalkulyator', 'Aliment / Алименты'],
   ['yhxx-jarima-kalkulyator', 'YHXX jarimalari / Штрафы ПДД'],
+  ['hisob-siyosati-generatori', 'Hisob siyosati / Учётная политика'],
   ['hujjatlar', '📝 Hujjatlar generatori / Генератор документов'],
   ['shablonlar', '📄 Shablonlar'],
   ['blog', '📰 Maqolalar / Статьи'],
