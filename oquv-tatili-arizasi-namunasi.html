@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>O'quv ta'tili arizasi — onlayn to'ldirib yuklab oling</title>
+<meta name="description" content="O'quv ta'tili (sessiya) arizasini onlayn to'ldiring — ta'lim muassasasi va sanalarni kiriting, ariza matni avtomatik tayyor bo'ladi.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/oquv-tatili-arizasi-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.calc-note{padding:0 14px 12px;font-size:12px;line-height:1.5;color:var(--muted);font-weight:600}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="O'quv ta'tili arizasi — onlayn to'ldirib yuklab oling">
+<meta property="og:description" content="O'quv ta'tili (sessiya) arizasini onlayn to'ldiring — ta'lim muassasasi va sanalarni kiriting, ariza matni avtomatik tayyor bo'ladi.">
+<meta property="og:url" content="https://kalki.uz/oquv-tatili-arizasi-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/oquv-tatili-arizasi-namunasi.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="O'quv ta'tili arizasi namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/oquv-tatili-arizasi-namunasi.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="O'quv ta'tili arizasi — onlayn to'ldirib yuklab oling">
+<meta name="twitter:description" content="O'quv ta'tili (sessiya) arizasini onlayn to'ldiring — ta'lim muassasasi va sanalarni kiriting, ariza matni avtomatik tayyor bo'ladi.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"O'quv ta'tili arizasi generatori — ta'lim muassasasi va sessiya sanalarini kiriting, tayyor ariza matni avtomatik shakllanadi.","sources":[]},"ru":{"text":"Генератор заявления на учебный отпуск — укажите учебное заведение и даты сессии, готовый текст заявления сформируется автоматически.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"O'quv ta'tili arizasi namunasi","item":"https://kalki.uz/oquv-tatili-arizasi-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"O'quv ta'tili arizasi namunasi","description":"O'quv ta'tili (sessiya) arizasini onlayn to'ldiring — ta'lim muassasasi va sanalarni kiriting, ariza matni avtomatik tayyor bo'ladi.","url":"https://kalki.uz/oquv-tatili-arizasi-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O'quv ta'tili kimga beriladi?","acceptedAnswer":{"@type":"Answer","text":"O'quv ta'tili, odatda, akkreditatsiyadan o'tgan ta'lim muassasasida (kechki, sirtqi yoki masofaviy shaklda) tahsil olayotgan va ishlab o'qiyotgan xodimlarga beriladi. Aniq shartlar Mehnat kodeksiga muvofiq belgilanadi va ta'lim shakli, kursi hamda muassasa turiga qarab farqlanishi mumkin."}},{"@type":"Question","name":"Ma'lumotnoma-chaqiruv (spravka-vyzov) shartmi?","acceptedAnswer":{"@type":"Answer","text":"Ko'p hollarda ha — ta'lim muassasasi tomonidan berilgan ma'lumotnoma-chaqiruv sessiya yoki attestatsiya sanalarini tasdiqlaydi va kadrlar bo'limi uchun asosiy hujjat hisoblanadi. Uni oldindan olib, arizaga ilova qilish tavsiya etiladi."}},{"@type":"Question","name":"O'quv ta'tili to'lovlimi yoki to'lovsizmi?","acceptedAnswer":{"@type":"Answer","text":"Bu ta'lim shakli, muassasa turi va aniq holatga bog'liq — ba'zi holatlarda to'lovli, ba'zilarida to'lovsiz bo'lishi mumkin. Aniq tartib Mehnat kodeksiga muvofiq belgilanadi, generator esa buni siz tanlagan holatga qarab arizada qayd etadi."}},{"@type":"Question","name":"Har safar sessiya bo'lganda alohida ariza yozish kerakmi?","acceptedAnswer":{"@type":"Answer","text":"Ha, har bir sessiya yoki attestatsiya davri uchun alohida ariza va unga mos ma'lumotnoma-chaqiruv taqdim etiladi, chunki sanalar va davomiylik har safar farq qilishi mumkin."}},{"@type":"Question","name":"Ish beruvchi o'quv ta'tilini rad etishi mumkinmi?","acceptedAnswer":{"@type":"Answer","text":"Agar barcha shartlar (akkreditatsiya, ma'lumotnoma-chaqiruv va boshqalar) bajarilgan bo'lsa, ish beruvchi qonun bilan belgilangan o'quv ta'tilini asossiz rad eta olmaydi. Shartlar bajarilmagan holatlarda esa masala kelishuv yo'li bilan hal qilinadi."}},{"@type":"Question","name":"O'quv ta'tili yillik mehnat ta'tili bilan bir xilmi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q, bular ikki xil tushuncha. Yillik mehnat ta'tili barcha xodimlarga dam olish uchun beriladi, o'quv ta'tili esa faqat o'qiyotgan xodimlarga, sessiya yoki attestatsiya davri uchun beriladi. Ikkalasini alohida ariza bilan rasmiylashtirish kerak."}},{"@type":"Question","name":"Kechki va sirtqi ta'lim uchun shartlar farqlanadimi?","acceptedAnswer":{"@type":"Answer","text":"Ha, ta'lim shakliga (kunduzgi, kechki, sirtqi, masofaviy) qarab o'quv ta'tilining davomiyligi va shartlari farq qilishi mumkin. Aniq ma'lumotni ta'lim muassasasi bergan ma'lumotnoma-chaqiruv va tegishli qonunchilikdan tekshirib olish tavsiya etiladi."}}]}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/oquv-tatili-arizasi-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/oquv-tatili-arizasi-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/oquv-tatili-arizasi-namunasi" data-hreflang-gen="1"></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">O'quv ta'tili arizasi namunasi</h1>
+    <p class="sub" data-i="sub">O'quv ta'tili (sessiya) arizasini onlayn to'ldiring. Ta'lim muassasasi va sanalarni kiriting — matn avtomatik shakllanadi.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">O'quv ta'tili arizasi namunasi</span></nav></div>
+
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">O'quv ta'tili arizasi generatori — ta'lim muassasasi va sessiya sanalarini kiriting, tayyor ariza matni avtomatik shakllanadi.</p></div>
+  <div class="intro" data-i-html="intro"><b>O'quv ta'tili arizasi</b> — akkreditatsiyadan o'tgan ta'lim muassasasida ishlab o'qiyotgan xodimning sessiya yoki attestatsiya davriga ta'til so'rab yozgan hujjati. Odatda ta'lim muassasasi bergan ma'lumotnoma-chaqiruv (spravka-vyzov) bilan birga taqdim etiladi. Ta'lim muassasasi va sanalarni kiriting — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi, faqat shu brauzerda qoladi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Kimga</div><div class="dg-rows"><div class="dg-field" data-fw="toOrg"><label>Tashkilot nomi</label><div class="dg-shell"><input type="text" data-f="toOrg" value="" placeholder="&quot;Anor Savdo&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="toPost"><label>Rahbar lavozimi</label><div class="dg-shell"><input type="text" data-f="toPost" value="" placeholder="direktoriga"></div></div><div class="dg-field dg-half" data-fw="toFio"><label>Rahbar F.I.Sh.</label><div class="dg-shell"><input type="text" data-f="toFio" value="" placeholder="Aliyev A. A."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kimdan</div><div class="dg-rows"><div class="dg-field" data-fw="frFio"><label>Xodim F.I.Sh. (to'liq)</label><div class="dg-shell"><input type="text" data-f="frFio" value="" placeholder="Karimov Bobur Sobirovich"></div></div><div class="dg-field dg-half" data-fw="frPost"><label>Lavozimi</label><div class="dg-shell"><input type="text" data-f="frPost" value="" placeholder="sotuv menejeri"></div></div><div class="dg-field dg-half" data-fw="frDept"><label>Bo'limi</label><div class="dg-shell"><input type="text" data-f="frDept" value="" placeholder="savdo bo'limi"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ta'lim muassasasi</div><div class="dg-rows"><div class="dg-field" data-fw="institution"><label>Ta'lim muassasasi nomi</label><div class="dg-shell"><input type="text" data-f="institution" value="" placeholder="Toshkent Davlat Iqtisodiyot Universiteti"></div></div><div class="dg-field" data-fw="sessionType"><label>Ta'til turi</label><div class="dg-seg"><button type="button" data-seg="sessionType" data-val="sessiya" class="on">Sessiya / imtihon</button><button type="button" data-seg="sessionType" data-val="attestatsiya">Yakuniy attestatsiya</button><button type="button" data-seg="sessionType" data-val="diplom">Diplom ishi himoyasi</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Sanalar</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="startDate"><label>Boshlanish sanasi</label><div class="dg-shell"><input type="date" data-f="startDate" value="2026-09-01" placeholder=""></div></div><div class="dg-field dg-half" data-fw="daysCount"><label>Davomiyligi</label><div class="dg-shell"><input type="text" data-f="daysCount" inputmode="numeric" value="10" placeholder=""><span class="dg-unit">kun</span></div><div class="dg-hint">Ma'lumotnoma-chaqiruvda ko'rsatilgan sanalarga mos yozing.</div></div><div class="dg-field" data-fw="paidMode"><label>To'lovmi</label><div class="dg-seg"><button type="button" data-seg="paidMode" data-val="tolovli" class="on">To'lovli</button><button type="button" data-seg="paidMode" data-val="tolovsiz">To'lovsiz</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qo'shimcha (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="proofDoc"><label>Ma'lumotnoma-chaqiruv ilova qilinganmi</label><div class="dg-seg"><button type="button" data-seg="proofDoc" data-val="ha" class="on">Ha</button><button type="button" data-seg="proofDoc" data-val="yoq">Yo'q</button></div></div><div class="dg-field" data-fw="extraTxt"><label>Erkin qo'shimcha matn</label><div class="dg-shell"><textarea data-f="extraTxt" rows="2" placeholder="Kerak bo'lsa qo'shimcha izoh yozing..."></textarea></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Arizani ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Ariza matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 6</span></div>
+        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div><span class="ph">____________________________</span>dan</div><div><span class="ph">________________________</span></div></div><div class="dg-title">ARIZA</div><div class="dg-p"><span class="ph">______________________________</span>da tahsil olayotganligim sababli, sessiya (imtihon)larni topshirish uchun «1» sentabr 2026 yildan boshlab 10 kun davomida to'lovli o'quv ta'tili berishingizni so'rayman.</div><div class="dg-p">O'quv ta'tili tugash sanasi — «10» sentabr 2026 yil.</div><div class="dg-p">Arizaga ta'lim muassasasi bergan, o'quv sanalarini tasdiqlovchi ma'lumotnoma-chaqiruvni ilova qilaman.</div><div class="dg-gap"></div><div class="dg-sig"><div><div>«1» sentabr 2026 yil</div></div><div><div>_______________ (imzo)</div><div><span class="ph">________________________</span></div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. O'quv ta'tili shartlari mehnat qonunchiligi va ta'lim muassasasi hujjatlariga muvofiq belgilanadi.</div></div>
+        <div id="calcNote" class="calc-note noprint">O'quv ta'tili: «1» sentabr 2026 yil + 10 kun = tugash sanasi «10» sentabr 2026 yil.</div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="tip" data-i-html="tipTxt">Ta'lim muassasasi bergan ma'lumotnoma-chaqiruvni (spravka-vyzov) oldindan olib, arizaga ilova qiling — bu sessiya sanalarini tasdiqlovchi asosiy hujjat hisoblanadi.</div>
+
+
+
+<section class="seo" id="seoBlock"><h2>O'quv ta'tili arizasi nima uchun kerak?</h2><p>O'quv ta'tili arizasi — ishlab o'qiyotgan xodimning sessiya, imtihon yoki yakuniy davlat attestatsiyasi davriga ta'til so'rab yozgan hujjati. Bu ta'til yillik mehnat ta'tilidan farq qiladi: u faqat o'qish jarayoni bilan bog'liq holatlar uchun, odatda ta'lim muassasasi bergan ma'lumotnoma-chaqiruv (spravka-vyzov) asosida beriladi.</p><p>Ariza kadrlar bo'limi uchun zarur: uning va ma'lumotnoma-chaqiruvning asosida o'quv ta'tili buyrug'i chiqariladi, ish jadvali shunga moslashtiriladi. Ma'lumotnoma-chaqiruv bo'lmasa, ariza ko'rib chiqilmasligi yoki oddiy mehnat ta'tili sifatida rasmiylashtirilishi mumkin.</p><p>Arizada aniq bo'lishi kerak bo'lgan narsalar: qaysi ta'lim muassasasida o'qiyotgani, ta'til turi (sessiya, attestatsiya, diplom ishi himoyasi), sanalari va bu to'lovli yoki to'lovsizligi. Generator shu ma'lumotlarni so'raydi va tugash sanasini avtomatik hisoblab, matnni shakllantiradi.</p><h2>Ma'lumotnoma-chaqiruv (spravka-vyzov) nima uchun kerak?</h2><p>Ma'lumotnoma-chaqiruv — ta'lim muassasasi tomonidan beriladigan, xodimning shu muassasada haqiqatan o'qiyotganini va sessiya yoki attestatsiya sanalarini tasdiqlovchi rasmiy hujjat. Kadrlar bo'limi uchun bu — o'quv ta'tili berish asosini tekshirishning asosiy vositasi.</p><p>Ushbu hujjatsiz ariza faqat xodimning so'zlariga asoslangan bo'lib qoladi, bu esa kadrlar bo'limi tomonidan rad etilishi yoki qo'shimcha tasdiq talab qilinishiga olib kelishi mumkin. Shuning uchun ma'lumotnoma-chaqiruvni sessiya boshlanishidan oldin olib, arizaga ilova qilish tavsiya etiladi.</p><h2>O'quv ta'tili to'lovlimi yoki to'lovsizmi?</h2><p>Bu ta'lim shakli (kunduzgi, kechki, sirtqi, masofaviy), muassasa turi va aniq holatga bog'liq — ba'zi holatlarda to'lovli, ba'zilarida to'lovsiz bo'lishi mumkin. Aniq tartib Mehnat kodeksiga muvofiq belgilanadi, shuning uchun generator bu masalada qat'iy javob bermaydi — siz tanlagan holat («to'lovli» yoki «to'lovsiz») arizada shunchaki qayd etiladi, aniq huquqiy asosni kadrlar bo'limi yoki tegishli qonunchilikdan tekshirib olish tavsiya etiladi.</p><h2>Sessiya bir necha marta bo'lsa, har safar ariza yozish kerakmi?</h2><p>Ha. Har bir sessiya yoki attestatsiya davri uchun alohida ariza va unga mos ma'lumotnoma-chaqiruv taqdim etilishi kerak, chunki sanalar va davomiylik har safar farq qilishi mumkin. Bir marta berilgan ariza keyingi sessiyalar uchun amal qilmaydi.</p><h2>Ish beruvchi o'quv ta'tilini rad etishi mumkinmi?</h2><p>Agar ta'lim muassasasi akkreditatsiyadan o'tgan bo'lsa va barcha zarur hujjatlar (ma'lumotnoma-chaqiruv va boshqalar) taqdim etilgan bo'lsa, ish beruvchi qonun bilan belgilangan o'quv ta'tilini asossiz rad eta olmaydi. Hujjatlar to'liq bo'lmasa yoki shartlar bajarilmagan bo'lsa, masala kelishuv yo'li bilan hal qilinadi — bu holatda ariza yozishdan oldin kadrlar bo'limi bilan maslahatlashish tavsiya etiladi.</p><h2>O'quv ta'tili yillik mehnat ta'tili bilan farqi</h2><p>Ikkalasi ham «ta'til» deb ataladi, biroq ular butunlay boshqa tushunchalar. Yillik mehnat ta'tili barcha xodimlarga dam olish uchun beriladi va ta'til jadvaliga bog'liq. O'quv ta'tili esa faqat o'qiyotgan xodimlarga, sessiya yoki attestatsiya davri uchun beriladi va ta'lim muassasasi bergan hujjatga asoslanadi. Ikkalasini almashtirib bo'lmaydi — har biri o'ziga xos ariza va asoslash talab qiladi. Yillik ta'til uchun saytdagi alohida ta'til arizasi generatoridan foydalanishingiz mumkin.</p><h2>Tipik xatolar</h2><p>Eng ko'p uchraydigan xato — ma'lumotnoma-chaqiruvsiz ariza berish. Bu hujjat bo'lmasa, so'rov asossiz ko'rinadi va rad etilishi mumkin.</p><p>Ikkinchi xato — to'lovli/to'lovsiz masalasini oldindan aniqlashtirmaslik. Bu masala har doim ham oddiy bo'lmaydi, shuning uchun kadrlar bo'limi bilan oldindan gaplashib olish tavsiya etiladi.</p><p>Uchinchi xato — arizani sessiya boshlanishiga juda yaqin kunlarda topshirish. Bu kadrlar bo'limiga hujjatlarni ko'rib chiqish va buyruq chiqarish uchun vaqt qoldirmaydi.</p><p>To'rtinchi xato — bir marta yozilgan arizani keyingi sessiyalar uchun ham amal qiladi deb hisoblash. Har bir sessiya uchun yangi ariza va yangi ma'lumotnoma-chaqiruv kerak.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>O'quv ta'tili kimga beriladi?</h2><p>O'quv ta'tili, odatda, akkreditatsiyadan o'tgan ta'lim muassasasida (kechki, sirtqi yoki masofaviy shaklda) tahsil olayotgan va ishlab o'qiyotgan xodimlarga beriladi. Aniq shartlar Mehnat kodeksiga muvofiq belgilanadi va ta'lim shakli, kursi hamda muassasa turiga qarab farqlanishi mumkin.</p><h2>Ma'lumotnoma-chaqiruv (spravka-vyzov) shartmi?</h2><p>Ko'p hollarda ha — ta'lim muassasasi tomonidan berilgan ma'lumotnoma-chaqiruv sessiya yoki attestatsiya sanalarini tasdiqlaydi va kadrlar bo'limi uchun asosiy hujjat hisoblanadi. Uni oldindan olib, arizaga ilova qilish tavsiya etiladi.</p><h2>O'quv ta'tili to'lovlimi yoki to'lovsizmi?</h2><p>Bu ta'lim shakli, muassasa turi va aniq holatga bog'liq — ba'zi holatlarda to'lovli, ba'zilarida to'lovsiz bo'lishi mumkin. Aniq tartib Mehnat kodeksiga muvofiq belgilanadi, generator esa buni siz tanlagan holatga qarab arizada qayd etadi.</p><h2>Har safar sessiya bo'lganda alohida ariza yozish kerakmi?</h2><p>Ha, har bir sessiya yoki attestatsiya davri uchun alohida ariza va unga mos ma'lumotnoma-chaqiruv taqdim etiladi, chunki sanalar va davomiylik har safar farq qilishi mumkin.</p><h2>Ish beruvchi o'quv ta'tilini rad etishi mumkinmi?</h2><p>Agar barcha shartlar (akkreditatsiya, ma'lumotnoma-chaqiruv va boshqalar) bajarilgan bo'lsa, ish beruvchi qonun bilan belgilangan o'quv ta'tilini asossiz rad eta olmaydi. Shartlar bajarilmagan holatlarda esa masala kelishuv yo'li bilan hal qilinadi.</p><h2>O'quv ta'tili yillik mehnat ta'tili bilan bir xilmi?</h2><p>Yo'q, bular ikki xil tushuncha. Yillik mehnat ta'tili barcha xodimlarga dam olish uchun beriladi, o'quv ta'tili esa faqat o'qiyotgan xodimlarga, sessiya yoki attestatsiya davri uchun beriladi. Ikkalasini alohida ariza bilan rasmiylashtirish kerak.</p><h2>Kechki va sirtqi ta'lim uchun shartlar farqlanadimi?</h2><p>Ha, ta'lim shakliga (kunduzgi, kechki, sirtqi, masofaviy) qarab o'quv ta'tilining davomiyligi va shartlari farq qilishi mumkin. Aniq ma'lumotni ta'lim muassasasi bergan ma'lumotnoma-chaqiruv va tegishli qonunchilikdan tekshirib olish tavsiya etiladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Bog'liq hujjat namunalari" data-artt-ru="Связанные образцы документов">Bog'liq hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="tatil-arizasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🏖️</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ta'til arizasi" data-art-ru="Заявление на отпуск">Ta'til arizasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ishdan-boshash-arizasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📨</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ishdan bo'shash arizasi" data-art-ru="Заявление об увольнении">Ishdan bo'shash arizasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="moddiy-yordam-arizasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🤝</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Moddiy yordam arizasi" data-art-ru="Заявление на материальную помощь">Moddiy yordam arizasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📨</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Umumiy ariza" data-art-ru="Заявление (общее)">Umumiy ariza</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="universitet-kontrakt-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">🎓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Universitet kontrakti" data-rel-ru="Контракт вуза">Universitet kontrakti</span></a><a href="dtm-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📚</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="DTM ball" data-rel-ru="Балл ДТМ">DTM ball</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📨</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Umumiy ariza" data-rel-ru="Заявление (общее)">Umumiy ariza</span></a><a href="hujjatlar" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Barcha hujjat namunalari" data-rel-ru="Все образцы документов">Barcha hujjat namunalari</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Ariza namunasi ma'lumot uchun. O'quv ta'tili shartlari mehnat qonunchiligi va ta'lim muassasasi taqdim etgan hujjatlarga muvofiq belgilanadi.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">1.9.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+
+function addDays(s,n){
+  var d=KD.parseDate(s);
+  if(!d||!n)return '';
+  d.setDate(d.getDate()+n);
+  return iso(d);
+}
+
+function setCalcNote(c,lang){
+  var el=document.getElementById('calcNote');
+  if(!el)return;
+  var ru=lang==='ru';
+  var t;
+  if(c.end){
+    t=ru
+      ? 'Учебный отпуск: '+KD.fmtDate(c.start,lang)+' + '+c.days+' дней = окончание '+KD.fmtDate(c.end,lang)
+      : "O'quv ta'tili: "+KD.fmtDate(c.start,lang)+" + "+c.days+" kun = tugash sanasi "+KD.fmtDate(c.end,lang)+'.';
+  } else {
+    t=ru
+      ? 'Чтобы рассчитать дату окончания, укажите дату начала и количество дней.'
+      : "Tugash sanasini hisoblash uchun boshlanish sanasi va kunlar sonini kiriting.";
+  }
+  el.textContent=t;
+}
+
+/* ---------- interfeys matnlari ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"O'quv ta'tili arizasi namunasi",
+  sub:"O'quv ta'tili (sessiya) arizasini onlayn to'ldiring. Ta'lim muassasasi va sanalarni kiriting — matn avtomatik shakllanadi.",
+  intro:"<b>O'quv ta'tili arizasi</b> — akkreditatsiyadan o'tgan ta'lim muassasasida ishlab o'qiyotgan xodimning sessiya yoki attestatsiya davriga ta'til so'rab yozgan hujjati. Odatda ta'lim muassasasi bergan ma'lumotnoma-chaqiruv (spravka-vyzov) bilan birga taqdim etiladi. Ta'lim muassasasi va sanalarni kiriting — matn o'ng tarafda real vaqtda shakllanadi. Kiritilgan ma'lumot serverga yuborilmaydi, faqat shu brauzerda qoladi.",
+  prevTitle:"Ariza matni",
+  jump:"Arizani ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTxt:"Ta'lim muassasasi bergan ma'lumotnoma-chaqiruvni (spravka-vyzov) oldindan olib, arizaga ilova qiling — bu sessiya sanalarini tasdiqlovchi asosiy hujjat hisoblanadi.",
+  foot:"Ariza namunasi ma'lumot uchun. O'quv ta'tili shartlari mehnat qonunchiligi va ta'lim muassasasi taqdim etgan hujjatlarga muvofiq belgilanadi.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>O'quv ta'tili arizasi nima uchun kerak?</h2><p>O'quv ta'tili arizasi — ishlab o'qiyotgan xodimning sessiya, imtihon yoki yakuniy davlat attestatsiyasi davriga ta'til so'rab yozgan hujjati. Bu ta'til yillik mehnat ta'tilidan farq qiladi: u faqat o'qish jarayoni bilan bog'liq holatlar uchun, odatda ta'lim muassasasi bergan ma'lumotnoma-chaqiruv (spravka-vyzov) asosida beriladi.</p><p>Ariza kadrlar bo'limi uchun zarur: uning va ma'lumotnoma-chaqiruvning asosida o'quv ta'tili buyrug'i chiqariladi, ish jadvali shunga moslashtiriladi. Ma'lumotnoma-chaqiruv bo'lmasa, ariza ko'rib chiqilmasligi yoki oddiy mehnat ta'tili sifatida rasmiylashtirilishi mumkin.</p><p>Arizada aniq bo'lishi kerak bo'lgan narsalar: qaysi ta'lim muassasasida o'qiyotgani, ta'til turi (sessiya, attestatsiya, diplom ishi himoyasi), sanalari va bu to'lovli yoki to'lovsizligi. Generator shu ma'lumotlarni so'raydi va tugash sanasini avtomatik hisoblab, matnni shakllantiradi.</p><h2>Ma'lumotnoma-chaqiruv (spravka-vyzov) nima uchun kerak?</h2><p>Ma'lumotnoma-chaqiruv — ta'lim muassasasi tomonidan beriladigan, xodimning shu muassasada haqiqatan o'qiyotganini va sessiya yoki attestatsiya sanalarini tasdiqlovchi rasmiy hujjat. Kadrlar bo'limi uchun bu — o'quv ta'tili berish asosini tekshirishning asosiy vositasi.</p><p>Ushbu hujjatsiz ariza faqat xodimning so'zlariga asoslangan bo'lib qoladi, bu esa kadrlar bo'limi tomonidan rad etilishi yoki qo'shimcha tasdiq talab qilinishiga olib kelishi mumkin. Shuning uchun ma'lumotnoma-chaqiruvni sessiya boshlanishidan oldin olib, arizaga ilova qilish tavsiya etiladi.</p><h2>O'quv ta'tili to'lovlimi yoki to'lovsizmi?</h2><p>Bu ta'lim shakli (kunduzgi, kechki, sirtqi, masofaviy), muassasa turi va aniq holatga bog'liq — ba'zi holatlarda to'lovli, ba'zilarida to'lovsiz bo'lishi mumkin. Aniq tartib Mehnat kodeksiga muvofiq belgilanadi, shuning uchun generator bu masalada qat'iy javob bermaydi — siz tanlagan holat («to'lovli» yoki «to'lovsiz») arizada shunchaki qayd etiladi, aniq huquqiy asosni kadrlar bo'limi yoki tegishli qonunchilikdan tekshirib olish tavsiya etiladi.</p><h2>Sessiya bir necha marta bo'lsa, har safar ariza yozish kerakmi?</h2><p>Ha. Har bir sessiya yoki attestatsiya davri uchun alohida ariza va unga mos ma'lumotnoma-chaqiruv taqdim etilishi kerak, chunki sanalar va davomiylik har safar farq qilishi mumkin. Bir marta berilgan ariza keyingi sessiyalar uchun amal qilmaydi.</p><h2>Ish beruvchi o'quv ta'tilini rad etishi mumkinmi?</h2><p>Agar ta'lim muassasasi akkreditatsiyadan o'tgan bo'lsa va barcha zarur hujjatlar (ma'lumotnoma-chaqiruv va boshqalar) taqdim etilgan bo'lsa, ish beruvchi qonun bilan belgilangan o'quv ta'tilini asossiz rad eta olmaydi. Hujjatlar to'liq bo'lmasa yoki shartlar bajarilmagan bo'lsa, masala kelishuv yo'li bilan hal qilinadi — bu holatda ariza yozishdan oldin kadrlar bo'limi bilan maslahatlashish tavsiya etiladi.</p><h2>O'quv ta'tili yillik mehnat ta'tili bilan farqi</h2><p>Ikkalasi ham «ta'til» deb ataladi, biroq ular butunlay boshqa tushunchalar. Yillik mehnat ta'tili barcha xodimlarga dam olish uchun beriladi va ta'til jadvaliga bog'liq. O'quv ta'tili esa faqat o'qiyotgan xodimlarga, sessiya yoki attestatsiya davri uchun beriladi va ta'lim muassasasi bergan hujjatga asoslanadi. Ikkalasini almashtirib bo'lmaydi — har biri o'ziga xos ariza va asoslash talab qiladi. Yillik ta'til uchun saytdagi alohida ta'til arizasi generatoridan foydalanishingiz mumkin.</p><h2>Tipik xatolar</h2><p>Eng ko'p uchraydigan xato — ma'lumotnoma-chaqiruvsiz ariza berish. Bu hujjat bo'lmasa, so'rov asossiz ko'rinadi va rad etilishi mumkin.</p><p>Ikkinchi xato — to'lovli/to'lovsiz masalasini oldindan aniqlashtirmaslik. Bu masala har doim ham oddiy bo'lmaydi, shuning uchun kadrlar bo'limi bilan oldindan gaplashib olish tavsiya etiladi.</p><p>Uchinchi xato — arizani sessiya boshlanishiga juda yaqin kunlarda topshirish. Bu kadrlar bo'limiga hujjatlarni ko'rib chiqish va buyruq chiqarish uchun vaqt qoldirmaydi.</p><p>To'rtinchi xato — bir marta yozilgan arizani keyingi sessiyalar uchun ham amal qiladi deb hisoblash. Har bir sessiya uchun yangi ariza va yangi ma'lumotnoma-chaqiruv kerak.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец заявления на учебный отпуск",
+  sub:"Заполните заявление на учебный отпуск (сессию) онлайн. Укажите учебное заведение и даты — текст сформируется автоматически.",
+  intro:"<b>Заявление на учебный отпуск</b> — документ, которым работающий и одновременно обучающийся сотрудник просит отпуск на период сессии или аттестации в аккредитованном учебном заведении. Обычно подаётся вместе со справкой-вызовом от учебного заведения. Укажите учебное заведение и даты — текст сформируется справа в реальном времени. Введённые данные не отправляются на сервер и остаются только в этом браузере.",
+  prevTitle:"Текст заявления",
+  jump:"Посмотреть заявление ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTxt:"Заранее получите справку-вызов от учебного заведения и приложите её к заявлению — это основной документ, подтверждающий даты сессии.",
+  foot:"Образец заявления носит справочный характер. Условия учебного отпуска определяются трудовым законодательством и документами, предоставленными учебным заведением.",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Зачем нужно заявление на учебный отпуск?</h2><p>Заявление на учебный отпуск — документ, которым работающий и одновременно обучающийся сотрудник просит отпуск на период сессии, экзаменов или итоговой государственной аттестации. Этот отпуск отличается от ежегодного трудового: он предоставляется только в связи с учебным процессом, как правило, на основании справки-вызова от учебного заведения.</p><p>Заявление необходимо отделу кадров: на его основании и на основании справки-вызова издаётся приказ об учебном отпуске, под него подстраивается рабочий график. Без справки-вызова заявление может быть не рассмотрено или оформлено как обычный трудовой отпуск.</p><p>В заявлении должно быть ясно указано: в каком учебном заведении учится работник, тип отпуска (сессия, аттестация, защита диплома), даты и является ли отпуск оплачиваемым. Генератор запрашивает эти данные, автоматически рассчитывает дату окончания и формирует текст.</p><h2>Зачем нужна справка-вызов?</h2><p>Справка-вызов — официальный документ учебного заведения, подтверждающий, что работник действительно учится в этом заведении, и указывающий даты сессии или аттестации. Для отдела кадров это основной инструмент проверки основания для предоставления отпуска.</p><p>Без этого документа заявление опирается только на слова работника, что может привести к отказу или требованию дополнительного подтверждения. Поэтому справку-вызов рекомендуется получить заранее и приложить к заявлению.</p><h2>Учебный отпуск оплачиваемый или нет?</h2><p>Это зависит от формы обучения (дневная, вечерняя, заочная, дистанционная), типа учебного заведения и конкретной ситуации — в одних случаях отпуск оплачивается, в других нет. Точный порядок определяется трудовым законодательством, поэтому генератор не даёт однозначного ответа на этот вопрос — выбранный вами вариант («оплачиваемый» или «неоплачиваемый») просто отражается в тексте заявления, а точную правовую основу рекомендуется уточнить в отделе кадров или в соответствующем законодательстве.</p><h2>Нужно ли подавать отдельное заявление на каждую сессию?</h2><p>Да. На каждый период сессии или аттестации подаётся отдельное заявление и соответствующая справка-вызов, поскольку даты и продолжительность каждый раз могут отличаться. Заявление, поданное однажды, не действует на последующие сессии.</p><h2>Может ли работодатель отказать в учебном отпуске?</h2><p>Если учебное заведение аккредитовано и все необходимые документы (справка-вызов и другие) предоставлены, работодатель не может немотивированно отказать в учебном отпуске, установленном законодательством. Если документы неполные или условия не соблюдены, вопрос решается по согласованию сторон — в этом случае рекомендуется заранее проконсультироваться с отделом кадров.</p><h2>Чем учебный отпуск отличается от ежегодного трудового?</h2><p>Оба называются «отпуском», но это совершенно разные понятия. Ежегодный трудовой отпуск предоставляется всем работникам для отдыха и привязан к графику отпусков. Учебный отпуск предоставляется только обучающимся работникам на период сессии или аттестации и основывается на документе от учебного заведения. Заменить одно другим нельзя — каждое требует своего заявления и своего обоснования. Для ежегодного отпуска на сайте есть отдельный генератор заявления на отпуск.</p><h2>Типичные ошибки</h2><p>Самая частая ошибка — подача заявления без справки-вызова. Без этого документа просьба выглядит необоснованной и может быть отклонена.</p><p>Вторая ошибка — не уточнить заранее вопрос оплаты отпуска. Этот вопрос не всегда прост, поэтому стоит заранее обсудить его с отделом кадров.</p><p>Третья ошибка — подавать заявление слишком близко к началу сессии. Это не оставляет отделу кадров времени на рассмотрение документов и издание приказа.</p><p>Четвёртая ошибка — считать, что однажды поданное заявление действует и на последующие сессии. Для каждой сессии нужны новое заявление и новая справка-вызов.</p>"
+ }
+};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'oquvtatili',
+ file:'oquv-tatili-arizasi',
+ sections:[
+  {id:'to',title:{uz:'Kimga',ru:'Кому'},fields:[
+    {id:'toOrg',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Anor Savdo" MChJ',ru:'ООО "Anor Savdo"'}},
+    {id:'toPost',t:'text',half:true,label:{uz:'Rahbar lavozimi',ru:'Должность руководителя'},ph:{uz:'direktoriga',ru:'директору'}},
+    {id:'toFio',t:'text',half:true,label:{uz:"Rahbar F.I.Sh.",ru:'Ф.И.О. руководителя'},ph:{uz:'Aliyev A. A.',ru:'Алиев А. А.'}}
+  ]},
+  {id:'from',title:{uz:'Kimdan',ru:'От кого'},fields:[
+    {id:'frFio',t:'text',label:{uz:"Xodim F.I.Sh. (to'liq)",ru:'Ф.И.О. работника (полностью)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:'frPost',t:'text',half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'sotuv menejeri',ru:'менеджер по продажам'}},
+    {id:'frDept',t:'text',half:true,label:{uz:"Bo'limi",ru:'Отдел'},ph:{uz:"savdo bo'limi",ru:'отдел продаж'}}
+  ]},
+  {id:'edu',title:{uz:"Ta'lim muassasasi",ru:'Учебное заведение'},fields:[
+    {id:'institution',t:'text',label:{uz:"Ta'lim muassasasi nomi",ru:'Название учебного заведения'},
+     ph:{uz:'Toshkent Davlat Iqtisodiyot Universiteti',ru:'Ташкентский государственный экономический университет'}},
+    {id:'sessionType',t:'seg',def:'sessiya',label:{uz:"Ta'til turi",ru:'Тип отпуска'},
+     opts:[
+      {v:'sessiya',label:{uz:'Sessiya / imtihon',ru:'Сессия / экзамены'}},
+      {v:'attestatsiya',label:{uz:'Yakuniy attestatsiya',ru:'Итоговая аттестация'}},
+      {v:'diplom',label:{uz:'Diplom ishi himoyasi',ru:'Защита диплома'}}
+     ]}
+  ]},
+  {id:'dates',title:{uz:'Sanalar',ru:'Даты'},fields:[
+    {id:'startDate',t:'date',half:true,def:today(),label:{uz:'Boshlanish sanasi',ru:'Дата начала'}},
+    {id:'daysCount',t:'num',half:true,def:'10',unit:{uz:'kun',ru:'дней'},
+     label:{uz:'Davomiyligi',ru:'Продолжительность'},
+     hint:{uz:"Ma'lumotnoma-chaqiruvda ko'rsatilgan sanalarga mos yozing.",ru:'Укажите в соответствии со справкой-вызовом.'}},
+    {id:'paidMode',t:'seg',def:'tolovli',label:{uz:"To'lovmi",ru:'Оплата'},
+     opts:[
+      {v:'tolovli',label:{uz:"To'lovli",ru:'Оплачиваемый'}},
+      {v:'tolovsiz',label:{uz:"To'lovsiz",ru:'Неоплачиваемый'}}
+     ]}
+  ]},
+  {id:'extra',title:{uz:"Qo'shimcha (ixtiyoriy)",ru:'Дополнительно (необязательно)'},fields:[
+    {id:'proofDoc',t:'seg',def:'ha',label:{uz:"Ma'lumotnoma-chaqiruv ilova qilinganmi",ru:'Приложена справка-вызов'},
+     opts:[{v:'ha',label:{uz:'Ha',ru:'Да'}},{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}}]},
+    {id:'extraTxt',t:'area',rows:2,label:{uz:"Erkin qo'shimcha matn",ru:'Свободный дополнительный текст'},
+     ph:{uz:"Kerak bo'lsa qo'shimcha izoh yozing...",ru:'При необходимости впишите дополнительный комментарий...'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var days=KD.num(v.daysCount);
+   var end=v.startDate&&days?addDays(v.startDate,days-1):'';
+   var c={start:v.startDate||'',days:days,end:end,type:v.sessionType||'sessiya',paid:v.paidMode||'tolovli'};
+   setCalcNote(c,lang);
+   return c;
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+
+   var head=[];
+   head.push(KD.v(v.toOrg,30));
+   var post=String(v.toPost||'').trim(), fio=String(v.toFio||'').trim();
+   head.push((post||fio)?((post?post:'')+(post&&fio?' ':'')+(fio?fio:'')):B(24));
+   head.push('');
+   head.push((ru?'от ':'')+KD.v(v.frFio,28)+(ru?'':'dan'));
+   var jobLine=[String(v.frPost||'').trim(),String(v.frDept||'').trim()].filter(Boolean).join(', ');
+   head.push(jobLine||B(24));
+   b.push({k:'right',lines:head});
+
+   b.push({k:'title',text:ru?'ЗАЯВЛЕНИЕ':'ARIZA'});
+
+   var inst=String(v.institution||'').trim()?v.institution:B(30);
+   var typeTxt=ru
+     ?(c.type==='sessiya'?'прохождения экзаменационной сессии':(c.type==='attestatsiya'?'прохождения итоговой государственной аттестации':'защиты дипломной работы'))
+     :(c.type==='sessiya'?"sessiya (imtihon)larni topshirish":(c.type==='attestatsiya'?"yakuniy davlat attestatsiyasidan o'tish":"diplom ishini himoya qilish"));
+   var startRaw=c.start?KD.fmtDate(c.start,lang):B(20);
+   var startFrom=ru?startRaw:(startRaw+(c.start?'dan':' dan'));
+   var daysTxt=c.days?String(c.days):B(4);
+   var endRaw=c.end?KD.fmtDate(c.end,lang):B(20);
+   var paidTxt=ru?(c.paid==='tolovli'?'оплачиваемый':'неоплачиваемый'):(c.paid==='tolovli'?"to'lovli":"to'lovsiz");
+
+   b.push({k:'p',text:ru
+     ?'В связи с обучением в '+inst+' прошу предоставить мне '+paidTxt+' учебный отпуск для '+typeTxt+' сроком с '+startFrom+' продолжительностью '+daysTxt+' дней.'
+     :inst+"da tahsil olayotganligim sababli, "+typeTxt+" uchun "+startFrom+" boshlab "+daysTxt+" kun davomida "+paidTxt+" o'quv ta'tili berishingizni so'rayman."});
+   b.push({k:'p',text:ru
+     ?"Дата окончания учебного отпуска — "+endRaw+"."
+     :"O'quv ta'tili tugash sanasi — "+endRaw+"."});
+
+   if(v.proofDoc==='ha'){
+     b.push({k:'p',text:ru
+       ?'К заявлению прилагаю справку-вызов учебного заведения, подтверждающую даты обучения.'
+       :"Arizaga ta'lim muassasasi bergan, o'quv sanalarini tasdiqlovchi ma'lumotnoma-chaqiruvni ilova qilaman."});
+   }
+
+   var extra=String(v.extraTxt||'').trim();
+   if(extra){
+     var paras=extra.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
+     for(var i=0;i<paras.length;i++) b.push({k:'p',text:paras[i]});
+   }
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[KD.fmtDate(today(),lang)],
+     right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.frFio,24)]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Условия учебного отпуска определяются трудовым законодательством и документами учебного заведения.'
+     :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. O'quv ta'tili shartlari mehnat qonunchiligi va ta'lim muassasasi hujjatlariga muvofiq belgilanadi."});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[
+  ["O'quv ta'tili kimga beriladi?","O'quv ta'tili, odatda, akkreditatsiyadan o'tgan ta'lim muassasasida (kechki, sirtqi yoki masofaviy shaklda) tahsil olayotgan va ishlab o'qiyotgan xodimlarga beriladi. Aniq shartlar Mehnat kodeksiga muvofiq belgilanadi va ta'lim shakli, kursi hamda muassasa turiga qarab farqlanishi mumkin."],
+  ["Ma'lumotnoma-chaqiruv (spravka-vyzov) shartmi?","Ko'p hollarda ha — ta'lim muassasasi tomonidan berilgan ma'lumotnoma-chaqiruv sessiya yoki attestatsiya sanalarini tasdiqlaydi va kadrlar bo'limi uchun asosiy hujjat hisoblanadi. Uni oldindan olib, arizaga ilova qilish tavsiya etiladi."],
+  ["O'quv ta'tili to'lovlimi yoki to'lovsizmi?","Bu ta'lim shakli, muassasa turi va aniq holatga bog'liq — ba'zi holatlarda to'lovli, ba'zilarida to'lovsiz bo'lishi mumkin. Aniq tartib Mehnat kodeksiga muvofiq belgilanadi, generator esa buni siz tanlagan holatga qarab arizada qayd etadi."],
+  ["Har safar sessiya bo'lganda alohida ariza yozish kerakmi?","Ha, har bir sessiya yoki attestatsiya davri uchun alohida ariza va unga mos ma'lumotnoma-chaqiruv taqdim etiladi, chunki sanalar va davomiylik har safar farq qilishi mumkin."],
+  ["Ish beruvchi o'quv ta'tilini rad etishi mumkinmi?","Agar barcha shartlar (akkreditatsiya, ma'lumotnoma-chaqiruv va boshqalar) bajarilgan bo'lsa, ish beruvchi qonun bilan belgilangan o'quv ta'tilini asossiz rad eta olmaydi. Shartlar bajarilmagan holatlarda esa masala kelishuv yo'li bilan hal qilinadi."],
+  ["O'quv ta'tili yillik mehnat ta'tili bilan bir xilmi?","Yo'q, bular ikki xil tushuncha. Yillik mehnat ta'tili barcha xodimlarga dam olish uchun beriladi, o'quv ta'tili esa faqat o'qiyotgan xodimlarga, sessiya yoki attestatsiya davri uchun beriladi. Ikkalasini alohida ariza bilan rasmiylashtirish kerak."],
+  ["Kechki va sirtqi ta'lim uchun shartlar farqlanadimi?","Ha, ta'lim shakliga (kunduzgi, kechki, sirtqi, masofaviy) qarab o'quv ta'tilining davomiyligi va shartlari farq qilishi mumkin. Aniq ma'lumotni ta'lim muassasasi bergan ma'lumotnoma-chaqiruv va tegishli qonunchilikdan tekshirib olish tavsiya etiladi."]
+ ],
+ ru:[
+  ["Кому предоставляется учебный отпуск?","Учебный отпуск обычно предоставляется работникам, обучающимся в аккредитованном учебном заведении (по вечерней, заочной или дистанционной форме) и одновременно работающим. Точные условия определяются трудовым законодательством и могут различаться в зависимости от формы обучения, курса и типа заведения."],
+  ["Обязательна ли справка-вызов?","В большинстве случаев да — справка-вызов, выданная учебным заведением, подтверждает даты сессии или аттестации и является основным документом для отдела кадров. Рекомендуется получить её заранее и приложить к заявлению."],
+  ["Учебный отпуск оплачиваемый или нет?","Это зависит от формы обучения, типа учебного заведения и конкретной ситуации — в одних случаях он оплачивается, в других нет. Точный порядок определяется трудовым законодательством, а генератор лишь отражает выбранный вами вариант в тексте заявления."],
+  ["Нужно ли подавать отдельное заявление на каждую сессию?","Да, на каждый период сессии или аттестации подаётся отдельное заявление и соответствующая справка-вызов, поскольку даты и продолжительность каждый раз могут отличаться."],
+  ["Может ли работодатель отказать в учебном отпуске?","Если все условия соблюдены (аккредитация, справка-вызов и другие документы), работодатель не может немотивированно отказать в учебном отпуске, установленном законодательством. Если условия не соблюдены, вопрос решается по согласованию сторон."],
+  ["Учебный отпуск и ежегодный трудовой отпуск — это одно и то же?","Нет, это разные понятия. Ежегодный трудовой отпуск предоставляется всем работникам для отдыха и привязан к графику отпусков. Учебный отпуск предоставляется только обучающимся работникам на период сессии или аттестации и оформляется отдельным заявлением."],
+  ["Отличаются ли условия для вечерней и заочной формы обучения?","Да, продолжительность и условия учебного отпуска могут различаться в зависимости от формы обучения (дневная, вечерняя, заочная, дистанционная). Точную информацию рекомендуется уточнить по справке-вызову учебного заведения и соответствующему законодательству."]
+ ]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"O'quv ta'tili arizasi — onlayn to'ldirib yuklab oling",
+    ru:'Образец заявления на учебный отпуск — заполнить онлайн и скачать Word'
+  },
+  descriptions:{
+    uz:"O'quv ta'tili (sessiya) arizasini onlayn to'ldiring — ta'lim muassasasi va sanalarni kiriting, ariza matni avtomatik tayyor bo'ladi.",
+    ru:'Заполните заявление на учебный отпуск (сессию) онлайн — укажите учебное заведение и даты, текст заявления будет готов автоматически.'
+  }
+});
+setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight([]);},220);
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='calcNote'||id==='datanote'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
