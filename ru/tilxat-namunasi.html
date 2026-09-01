@@ -141,7 +141,7 @@ img,svg{height:auto}
 #breadcrumb .cur{color:#6B7A72}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Tilxat namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta property="og:title" content="Образец расписки о займе — заполнить онлайн и скачать Word">
 <meta property="og:description" content="Введите сумму долга, срок и условия процента — скачайте готовую расписку в Word или PDF. Бесплатно, без регистрации.">
 <meta property="og:url" content="https://kalki.uz/ru/tilxat-namunasi">
 <meta property="og:image" content="https://kalki.uz/assets/og/tilxat-namunasi.png?v=1">
@@ -152,7 +152,7 @@ img,svg{height:auto}
 <meta name="twitter:image" content="https://kalki.uz/assets/og/tilxat-namunasi.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Tilxat namunasi — onlayn to'ldirib, Word yuklab oling">
+<meta name="twitter:title" content="Образец расписки о займе — заполнить онлайн и скачать Word">
 <meta name="twitter:description" content="Введите сумму долга, срок и условия процента — скачайте готовую расписку в Word или PDF. Бесплатно, без регистрации.">
 <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
 
@@ -232,7 +232,7 @@ img,svg{height:auto}
 
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">31.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">1.9.2026</div>
 </div>
 
 <script src="/assets/docgen.js"></script>
@@ -488,6 +488,7 @@ function applyLang(){
     var m=document.querySelector(sel);
     if(m)m.setAttribute('content',metaDesc);
   });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
 }
 document.getElementById('langUz').onclick=function(){lang='uz';applyLang()};
 document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};

@@ -81,7 +81,7 @@ img,svg{height:auto}
 .form-card,.card2{contain:layout}
 </style>
 <script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="Shablonlar — Kalki.uz | Word va Excel namunalari">
+<meta property="og:title" content="Shablonlar — Word va Excel namunalari | Kalki.uz">
 <meta property="og:description" content="Bepul Word va Excel shablonlari: ijara shartnomasi, qurilish smetasi, ish vaqti tabeli, hisob-faktura, oilaviy byudjet va kassa daftari. Formulalar tayyor.">
 <meta property="og:url" content="https://kalki.uz/shablonlar">
 <meta property="og:image" content="https://kalki.uz/assets/og/shablonlar.png?v=1">
@@ -92,7 +92,7 @@ img,svg{height:auto}
 <meta name="twitter:image" content="https://kalki.uz/assets/og/shablonlar.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Shablonlar — Kalki.uz | Word va Excel namunalari">
+<meta name="twitter:title" content="Shablonlar — Word va Excel namunalari | Kalki.uz">
 <meta name="twitter:description" content="Bepul Word va Excel shablonlari: ijara shartnomasi, qurilish smetasi, ish vaqti tabeli, hisob-faktura, oilaviy byudjet va kassa daftari. Formulalar tayyor.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
@@ -253,6 +253,7 @@ img,svg{height:auto}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',DESCS[lang]);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',TITLES[lang]);});
     render();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};

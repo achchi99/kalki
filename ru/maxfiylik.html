@@ -51,7 +51,7 @@ main li{margin-bottom:6px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Maxfiylik siyosati — ma'lumotlaringiz qanday ishlatiladi">
+<meta property="og:title" content="Политика конфиденциальности — как используются ваши данные">
 <meta property="og:description" content="Политика конфиденциальности Kalki.uz: какие данные собираются и как они используются на сайте бесплатных онлайн-калькуляторов.">
 <meta property="og:url" content="https://kalki.uz/ru/maxfiylik">
 <meta property="og:image" content="https://kalki.uz/assets/og/maxfiylik.png?v=1">
@@ -62,7 +62,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 <meta name="twitter:image" content="https://kalki.uz/assets/og/maxfiylik.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Maxfiylik siyosati — ma'lumotlaringiz qanday ishlatiladi">
+<meta name="twitter:title" content="Политика конфиденциальности — как используются ваши данные">
 <meta name="twitter:description" content="Политика конфиденциальности Kalki.uz: какие данные собираются и как они используются на сайте бесплатных онлайн-калькуляторов.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
@@ -153,6 +153,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',DESCS[lang]);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',TITLES[lang]);});
   }
   document.getElementById('langUz').onclick=function(){lang='uz';apply()};
   document.getElementById('langRu').onclick=function(){lang='ru';apply()};

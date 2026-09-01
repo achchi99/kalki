@@ -231,7 +231,7 @@ img,svg{height:auto}
 
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">31.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">1.9.2026</div>
 </div>
 
 <script src="assets/docgen.js"></script>
@@ -514,6 +514,7 @@ function applyLang(){
     var m=document.querySelector(sel);
     if(m)m.setAttribute('content',metaDesc);
   });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
 }
 document.getElementById('langUz').onclick=function(){lang='uz';applyLang()};
 document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};

@@ -76,7 +76,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 footer a{color:var(--muted)}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Hamkorlik shartlari — sahifalarda reklama formatlari">
+<meta property="og:title" content="Партнёрство — Kalki.uz">
 <meta property="og:description" content="Узнайте условия размещения блока под результатом калькулятора, на странице категории или после генератора документов. С ежемесячными показателями.">
 <meta property="og:url" content="https://kalki.uz/ru/hamkorlik">
 <meta property="og:image" content="https://kalki.uz/assets/og/hamkorlik.png?v=2">
@@ -87,7 +87,7 @@ footer a{color:var(--muted)}
 <meta name="twitter:image" content="https://kalki.uz/assets/og/hamkorlik.png?v=2">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Hamkorlik shartlari — sahifalarda reklama formatlari">
+<meta name="twitter:title" content="Партнёрство — Kalki.uz">
 <meta name="twitter:description" content="Узнайте условия размещения блока под результатом калькулятора, на странице категории или после генератора документов. С ежемесячными показателями.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
@@ -238,6 +238,7 @@ footer a{color:var(--muted)}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',metaDesc);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
   }
   document.getElementById('langUz').onclick=function(){lang='uz';apply()};
   document.getElementById('langRu').onclick=function(){lang='ru';apply()};

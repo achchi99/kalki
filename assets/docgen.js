@@ -888,7 +888,13 @@
       var lu = $('langUz'), lr = $('langRu');
       if (lu) lu.classList.toggle('on', lang === 'uz');
       if (lr) lr.classList.toggle('on', lang === 'ru');
-      if (opts.titles && opts.titles[lang]) document.title = opts.titles[lang];
+      if (opts.titles && opts.titles[lang]) {
+        document.title = opts.titles[lang];
+        ['meta[property="og:title"]', 'meta[name="twitter:title"]'].forEach(function (sel) {
+          var m = document.querySelector(sel);
+          if (m) m.setAttribute('content', opts.titles[lang]);
+        });
+      }
       if (opts.descriptions && opts.descriptions[lang]) {
         var md = opts.descriptions[lang];
         ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]'].forEach(function (sel) {

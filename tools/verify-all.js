@@ -367,6 +367,91 @@ function runTool(args) {
       changed.slice(0, 8).join(', '));
   }
 
+  /* ---------- 25. RU sahifada UZ matn qoldig'i (title/meta/JSON-LD/statik blok) ----------
+     2026-08'da topilgan bug: bir nechta sahifaning applyLang()'i title/meta
+     description'ni yangilasa ham, og:title/twitter:title'ni yangilamasdi
+     (deyarli sayt bo'ylab, 63/64 sahifa) — bundan tashqari bir nechta
+     sahifada document.title umuman yangilanmasdi, ba'zi sahifalarda esa
+     ko'rinadigan kontent (seoBlock, FAQ JSON-LD, related havolalar) UZ
+     holicha qolib ketardi. Band 20/22 buni ushlamaydi, chunki ular faqat
+     asosiy kontent/footer'ni tekshiradi, meta teglar va JSON-LD'ni emas.
+     Bu band JS ijro etmasdan (band 22'dan farqli — bu yerga JS shart emas,
+     chunki tekshirilayotgan qiymatlar allaqachon prerender vaqtida diskka
+     yozilgan) statik HTML'ni o'qiydi va RU sahifadagi title/meta/JSON-LD/
+     seoBlock/faqBlock/related/articleLink matnlarida kamida bitta kirill
+     harfi bor-yo'qligini tekshiradi — agar yo'q bo'lsa va matn UZ-safe
+     ro'yxatidan (brend nomi, PDF/Word/Excel, raqamlar) tashqari bo'lsa,
+     bu UZ matn qoldig'i hisoblanadi. */
+  {
+    const { JSDOM: JSDOM25 } = require('jsdom');
+    function isUzSafe(s) {
+      if (!s) return true;
+      const stripped = s
+        .replace(/Kalki\.uz/gi, '')
+        .replace(/\bPDF\b/gi, '')
+        .replace(/\bWord\b/gi, '')
+        .replace(/\bExcel\b/gi, '')
+        .replace(/\bNSBU\s*№?\s*\d*/gi, '')
+        .replace(/\bUZS\b/gi, '')
+        .replace(/[0-9\s.,%\-–—:;()«»"'/№+@]/g, '');
+      return stripped.trim().length === 0;
+    }
+    function textNoEmoji(s) {
+      return String(s || '').replace(/\p{Extended_Pictographic}/gu, '').replace(/→/g, '').trim();
+    }
+    const bad = [];
+    for (const f of RU_PAGES) {
+      const ruFile = path.join(ROOT, 'ru', f);
+      if (!fs.existsSync(ruFile)) continue; // band 21 buni allaqachon ushlaydi
+      const doc = new JSDOM25(fs.readFileSync(ruFile, 'utf8')).window.document;
+      const found = [];
+      function check(label, text) {
+        if (text == null) return;
+        text = String(text).trim();
+        if (!text) return;
+        if (!CYR.test(text) && !isUzSafe(text)) found.push(label + ': "' + text.slice(0, 50) + '"');
+      }
+      check('title', doc.title);
+      ['description', 'og:title', 'og:description', 'twitter:title', 'twitter:description'].forEach((k) => {
+        const sel = k.indexOf('og:') === 0 ? 'meta[property="' + k + '"]' : 'meta[name="' + k + '"]';
+        const m = doc.querySelector(sel);
+        check('meta[' + k + ']', m && m.getAttribute('content'));
+      });
+      doc.querySelectorAll('script[type="application/ld+json"]').forEach((sc) => {
+        let data;
+        try { data = JSON.parse(sc.textContent); } catch (e) { return; }
+        const id = sc.id || data['@type'] || 'ld+json';
+        (function walk(obj, pfx) {
+          if (obj == null) return;
+          if (typeof obj === 'string') { check(pfx, obj); return; }
+          if (Array.isArray(obj)) { obj.forEach((v, i) => walk(v, pfx + '[' + i + ']')); return; }
+          if (typeof obj === 'object') {
+            for (const k of ['name', 'text', 'description', 'headline']) if (obj[k] != null) check(pfx + '.' + k, obj[k]);
+            if (obj.mainEntity) walk(obj.mainEntity, pfx + '.mainEntity');
+            if (obj.acceptedAnswer) walk(obj.acceptedAnswer, pfx + '.acceptedAnswer');
+            if (obj.step) walk(obj.step, pfx + '.step');
+            if (obj.itemListElement) walk(obj.itemListElement, pfx + '.itemListElement');
+          }
+        })(data, id);
+      });
+      const ab = doc.querySelector('.ab-text');
+      check('answerbox', ab && ab.textContent);
+      ['seoBlock', 'faqBlock'].forEach((id) => {
+        const el = doc.getElementById(id);
+        if (!el) return;
+        el.querySelectorAll('h2, p').forEach((n, i) => check(id + '[' + i + ']', n.textContent));
+      });
+      ['related', 'articleLink'].forEach((id) => {
+        const el = doc.getElementById(id);
+        if (!el) return;
+        el.querySelectorAll('a').forEach((a, i) => check(id + ' a[' + i + ']', textNoEmoji(a.textContent)));
+      });
+      if (found.length) bad.push(f + ' — ' + found.slice(0, 3).join(', '));
+    }
+    add(!bad.length, '25. RU sahifada UZ matn qoldig\'i yo\'q (title/meta/JSON-LD/statik blok, ' + RU_PAGES.length + ' sahifa)',
+      bad.slice(0, 6).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

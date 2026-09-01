@@ -194,6 +194,7 @@ footer a{color:var(--muted)}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',DESCS[lang]);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',TITLES[lang]);});
   }
   document.getElementById('langUz').onclick=function(){lang='uz';apply()};
   document.getElementById('langRu').onclick=function(){lang='ru';apply()};

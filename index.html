@@ -450,6 +450,7 @@ img,svg{height:auto}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',metaDesc);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
     var els=document.querySelectorAll('[data-i]');
     for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
     // Tavsifdagi kalkulyator soni ham CALCS dan — statistika bloki bilan

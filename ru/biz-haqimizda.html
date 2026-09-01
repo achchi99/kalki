@@ -63,7 +63,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 footer a{color:var(--muted)}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Loyiha haqida — nega bepul va qanday yangilanadi">
+<meta property="og:title" content="О проекте — почему бесплатно и как обновляется">
 <meta property="og:description" content="Как работает проект бесплатных онлайн-калькуляторов для Узбекистана — наша цель, источники данных и политика обновления.">
 <meta property="og:url" content="https://kalki.uz/ru/biz-haqimizda">
 <meta property="og:image" content="https://kalki.uz/assets/og/biz-haqimizda.png?v=1">
@@ -74,7 +74,7 @@ footer a{color:var(--muted)}
 <meta name="twitter:image" content="https://kalki.uz/assets/og/biz-haqimizda.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Loyiha haqida — nega bepul va qanday yangilanadi">
+<meta name="twitter:title" content="О проекте — почему бесплатно и как обновляется">
 <meta name="twitter:description" content="Как работает проект бесплатных онлайн-калькуляторов для Узбекистана — наша цель, источники данных и политика обновления.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
@@ -194,6 +194,7 @@ footer a{color:var(--muted)}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',DESCS[lang]);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',TITLES[lang]);});
   }
   document.getElementById('langUz').onclick=function(){lang='uz';apply()};
   document.getElementById('langRu').onclick=function(){lang='ru';apply()};

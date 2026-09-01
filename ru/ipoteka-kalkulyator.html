@@ -160,7 +160,7 @@ img,svg{height:auto}
 .form-card,.card2{contain:layout}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Ipoteka kalkulyatori — oylik to'lovni onlayn hisoblash">
+<meta property="og:title" content="Ипотечный калькулятор — расчёт ежемесячного платежа онлайн">
 <meta property="og:description" content="Ипотечный калькулятор: рассчитайте ежемесячный платёж по цене жилья и первоначальному взносу. С графиком платежей, бесплатно.">
 <meta property="og:url" content="https://kalki.uz/ru/ipoteka-kalkulyator">
 <meta property="og:image" content="https://kalki.uz/assets/og/ipoteka-kalkulyator.png?v=1">
@@ -171,7 +171,7 @@ img,svg{height:auto}
 <meta name="twitter:image" content="https://kalki.uz/assets/og/ipoteka-kalkulyator.png?v=1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
-<meta name="twitter:title" content="Ipoteka kalkulyatori — oylik to'lovni onlayn hisoblash">
+<meta name="twitter:title" content="Ипотечный калькулятор — расчёт ежемесячного платежа онлайн">
 <meta name="twitter:description" content="Ипотечный калькулятор: рассчитайте ежемесячный платёж по цене жилья и первоначальному взносу. С графиком платежей, бесплатно.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
@@ -377,6 +377,7 @@ img,svg{height:auto}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',metaDesc);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
     var els=document.querySelectorAll('[data-i]');
     for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
     $('seoBlock').innerHTML=t('seo');
@@ -514,7 +515,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">31.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">1.9.2026</div>
 </div>
 <script>
 (function(){

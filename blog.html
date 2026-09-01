@@ -169,6 +169,7 @@ footer a{color:var(--muted);text-decoration:none}
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',DESCS[lang]);
     });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',TITLES[lang]);});
     var html='';
     for(var i=0;i<POSTS.length;i++){
       var p=POSTS[i];

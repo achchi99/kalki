@@ -1469,6 +1469,17 @@ img,svg{height:auto}
 
   function applyLang(){
     document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Калькулятор семейного бюджета — расчёт доходов и расходов'
+      : "Oilaviy byudjet kalkulyatori — daromad-xarajat hisobi";
+    var metaDesc=lang==='ru'
+      ? 'Введите доход и число членов семьи — распределение расходов, кредитная нагрузка и индекс финансового здоровья по 100-балльной шкале рассчитаются мгновенно.'
+      : "Daromad va oila a'zolari sonini kiriting — xarajatlar taqsimoti, kredit yuki va 100 balllik moliyaviy salomatlik ko'rsatkichi darhol hisoblanadi.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
     var els=document.querySelectorAll('[data-i]');
     for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
     $('seoBlock').innerHTML=t('seo');
@@ -1517,7 +1528,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">31.8.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">1.9.2026</div>
 </div>
 <script>
 (function(){
