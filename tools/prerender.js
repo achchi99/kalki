@@ -166,6 +166,10 @@ const RU_PAGES = [
   'shablonlar.html',
   'shartlar.html',
   'hisob-siyosati-generatori.html',
+  // FAZA 4.3: ariza klasteri pilot bosqichi — 3 sahifa.
+  'tatil-arizasi-namunasi.html',
+  'moddiy-yordam-arizasi-namunasi.html',
+  'oquv-tatili-arizasi-namunasi.html',
 ];
 
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.

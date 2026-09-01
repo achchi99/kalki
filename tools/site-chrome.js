@@ -165,6 +165,10 @@ const XNAV_LINKS = [
   ['aliment-kalkulyator', 'Aliment / Алименты'],
   ['yhxx-jarima-kalkulyator', 'YHXX jarimalari / Штрафы ПДД'],
   ['hisob-siyosati-generatori', 'Hisob siyosati / Учётная политика'],
+  // FAZA 4.3: ariza klasteri pilot bosqichi — 3 ta yangi hujjat namunasi.
+  ['tatil-arizasi-namunasi', 'Ta\'til arizasi / Заявление на отпуск'],
+  ['moddiy-yordam-arizasi-namunasi', 'Moddiy yordam arizasi / Заявление на матпомощь'],
+  ['oquv-tatili-arizasi-namunasi', 'O\'quv ta\'tili arizasi / Заявление на учебный отпуск'],
   ['hujjatlar', '📝 Hujjatlar generatori / Генератор документов'],
   ['shablonlar', '📄 Shablonlar'],
   ['blog', '📰 Maqolalar / Статьи'],

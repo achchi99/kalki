@@ -488,5 +488,26 @@
     "hash": "08ed52cde90c",
     "tpl": 1,
     "v": 1
+  },
+  "moddiy-yordam-arizasi-namunasi": {
+    "title": "Moddiy yordam arizasi namunasi",
+    "cat": "hujjat",
+    "hash": "626174158c29",
+    "tpl": 1,
+    "v": 1
+  },
+  "oquv-tatili-arizasi-namunasi": {
+    "title": "O'quv ta'tili arizasi namunasi",
+    "cat": "hujjat",
+    "hash": "f7e9b50194f6",
+    "tpl": 1,
+    "v": 1
+  },
+  "tatil-arizasi-namunasi": {
+    "title": "Ta'til arizasi namunasi",
+    "cat": "hujjat",
+    "hash": "e112211ecae9",
+    "tpl": 1,
+    "v": 1
   }
 }
