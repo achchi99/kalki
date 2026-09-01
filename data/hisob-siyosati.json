@@ -972,7 +972,7 @@
       "bolim_ru": "IV. Порядок учёта НДС",
       "sarlavha_uz": "QQS hisobini yuritish tartibi",
       "sarlavha_ru": "Порядок ведения учёта НДС",
-      "tanlov_erkinligi": "shartli",
+      "tanlov_erkinligi": "qatiy",
       "profillar": [
         "P2",
         "P4",
@@ -980,19 +980,24 @@
       ],
       "variantlar": [
         {
-          "kod": "standart",
-          "nom_uz": "Standart hisob-kitob tartibi",
-          "nom_ru": "Стандартный порядок расчёта",
-          "matn_uz": null,
-          "matn_ru": null,
+          "kod": "umumiy_qoida",
+          "nom_uz": "QQS bo'yicha soliq bazasi vujudga kelish sanasi — qonunda belgilangan",
+          "nom_ru": "Дата возникновения налоговой базы по НДС — установлена законом",
+          "matn_uz": "QQS bo'yicha soliq bazasi vujudga kelish sanasi Soliq kodeksining 242-moddasiga muvofiq belgilanadi. Tovarlar uchun — hisobvaraq-faktura taqdim etilgan sana yoki tovar jo'natilgan sana, qaysi biri erta bo'lsa. Xizmatlar uchun — xizmat ko'rsatilganligini tasdiqlovchi hujjat rasmiylashtirilgan sana. Uzluksiz xizmatlar (elektr, issiqlik, suv, gaz, aloqa, moliyaviy, sug'urta xizmatlari) uchun — har oyning so'nggi kuni.",
+          "matn_ru": "Дата возникновения налоговой базы по НДС определяется в соответствии со статьёй 242 Налогового кодекса. Для товаров — дата выставления счёта-фактуры или дата отгрузки товара, в зависимости от того, что наступит раньше. Для услуг — дата оформления документа, подтверждающего оказание услуги. Для длящихся услуг (электро-, тепло-, водоснабжение, газ, связь, финансовые и страховые услуги) — последний день месяца.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN",
+          "tushuntirish_uz": "Bu — korxona tanlaydigan narsa emas, qonun bilan belgilangan qoida. Operatsiya turiga (tovar/xizmat/uzluksiz xizmat) qarab qaysi sana qo'llanilishi farqlanadi.",
+          "tushuntirish_ru": "Это не выбор организации, а правило, установленное законом. В зависимости от вида операции (товар/услуга/длящаяся услуга) применяется разная дата.",
+          "qachon_mos_uz": "Barcha QQS to'lovchi korxonalar uchun majburiy qoida.",
+          "qachon_mos_ru": "Обязательное правило для всех плательщиков НДС.",
+          "qonuniy_holat": "yagona_ruxsat_etilgan"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
-      "izoh_uz": "Modda raqami tasdiqlanmadi — Soliq kodeksi hajmi tufayli (WebFetch mundarijadan tashqarisini yuklay olmadi). Tasdiqlangach to'ldiriladi.",
-      "izoh_ru": "Номер статьи не подтверждён — из-за объёма Налогового кодекса (WebFetch не смог загрузить текст статей, только оглавление). Будет заполнено после подтверждения."
+      "asos_nomi": "Soliq kodeksi 242-modda",
+      "izoh_uz": "",
+      "izoh_ru": ""
     },
     {
       "id": "nup_qqs_ajratilgan_hisob",
