@@ -156,3 +156,44 @@ Barcha 64 ta `ru/*.html` sahifa jsdom orqali dasturiy tekshirildi: har sahifadag
 **Xulosa:** pozitsiya 28,4'ning sababi RU→RU ichki bog'lanish emas. Ehtimoliy sabablar: RU sahifalar hali yosh (bir hafta oldin 0/0 edi — Google hali indekslash/baholash bosqichida) yoki boshqa omil (hreflang, kontent hajmi — bular FAZA 4.5 qamrovida).
 
 **Yon topilma (bu ishga aloqasi yo'q, alohida qayd etildi):** `qqs-kalkulyator.html`da `document.documentElement.lang==='ru'` bo'lgan holatda ham `<title>` UZ holicha qolib ketishi kuzatildi — sahifaning applyLang() bu holatda title'ni yangilamayapti. Bu FAZA 4.5'da (RU title/description ko'rib chiqilganda) tekshirilishi tavsiya etiladi.
+
+---
+
+## FAZA 4.5 — RU sahifalarni tezlashtirish
+
+### 1. Aralash til qoldig'i (4.4'dagi ikkita yon topilmaning tizimli davomi)
+
+Barcha 64 RU sahifa dasturiy skanerlandi — title, meta (description/og/twitter), JSON-LD (app-ld, faq-ld, bc-ld, coll-ld), statik bloklar (seoBlock, faqBlock, related, articleLink). **64/64 sahifada kamida bitta muammo topildi**, eng katta topilma:
+
+- **og:title/twitter:title (63/64 sahifa)** — deyarli universal bug. `applyLang()` description'ni yangilardi, title metateglarini yo'q. `assets/docgen.js` (umumiy dvigatel) + ~44 mustaqil sahifa + 5 ta statik sahifa (`biz-haqimizda`, `blog`, `maxfiylik`, `shablonlar`, `shartlar`, boshqa naqsh bilan) — bulk-skriptlar bilan tuzatildi.
+- **To'liq title/desc almashtirish yo'q edi** (6 sahifa: `dtm-`, `grant-ololmadim`, `oila-byudjet-`, `universitet-kontrakt-`, `yoqilgi-`, `qqs-kalkulyator`) — eski, soddaroq shablon. Har biriga real UZ/RU matn yozildi.
+- **`descriptions` konfiguratsiyasi berilmagan** (3 "namunasi" sahifa) — qo'shildi.
+- **`hisob-siyosati-generatori.html`** — eng chuqur topilma: `$('seoBlock');` no-op qator edi (hech narsa qilmasdi), faq-ld/app-ld.name/bc-ld hech qachon yangilanmasdi. To'liq RU tarjima (5 bo'lim) yozildi, dinamik JSON-LD qayta qurish qo'shildi.
+- **`maktab-kalkulyator.html`** — `#artlang` moduli `data-rel-uz/ru` juftini o'tkazib yuborgan.
+- **`hujjatlar.html`** — description va `coll-ld` (CollectionPage) yangilanmasdi.
+
+Barcha tuzatishlardan keyin qayta skanerlash: **64/64 sahifa toza**. `tools/verify-all.js`ga **25-band** qo'shildi — bu regressiya sinfi endi doimiy nazoratda.
+
+### 2. hreflang ikki tomonlamaligi — TEKSHIRILDI, MUAMMO YO'Q
+
+Band 21 allaqachon hreflang teglari mavjudligini tekshirar edi, lekin `href` qiymatlarining TO'G'RI juftga ishora qilishini alohida tasdiqlash kerak edi. Dasturiy tekshiruv: 64/64 sahifada UZ sahifaning `hreflang="ru"` havolasi aynan mos RU sahifaga, RU sahifaning `hreflang="uz"` havolasi aynan mos UZ sahifaga ishora qiladi. **Muammo topilmadi.**
+
+### 3. RU sitemap to'liqligi — MUAMMO TOPILDI VA TUZATILDI
+
+**14 ta RU sahifa sitemap.xml'da umuman yo'q edi** — asosan yangiroq "namunasi" hujjatlari (`avto-oldi-sotdi-shartnomasi-namunasi`, `davo-arizasi-namunasi`, `kafolat-xati-namunasi`, `qurilish-pudrat-shartnomasi-namunasi`, `tavsifnoma-namunasi`, `topshirish-qabul-dalolatnomasi-namunasi`, `uy-oldi-sotdi-shartnomasi`, `xizmat-korsatish-shartnomasi-namunasi`) va statik sahifalar (`biz-haqimizda`, `blog`, `hamkorlik`, `maxfiylik`, `shablonlar`, `shartlar`). Bu — **Google RU sahifalarni sitemap orqali kashf qila olmagan** degani, GSC'dagi "RU sahifalar hali yosh" hodisasining ehtimoliy sababi.
+
+Qo'shildi (120 → 134 URL), shu jarayonda **sw.js precache ro'yxatida ham xuddi shu 14 sahifa yo'qligi** ochildi — u ham tuzatildi. `tools/verify-all.js`ga **26-band** qo'shildi (sitemap to'liqligi, doimiy nazorat).
+
+### 4. RU title/description'ni RU so'rovlariga moslashtirish — MA'LUMOT YETARLI EMAS
+
+RU sahifalar bo'yicha sahifa-maxsus so'rov statistikasi (GSC "Sahifalar" filtri bilan "Запросы") hozircha yo'q — mavjud `Запросы.csv` sayt bo'ylab umumiy, deyarli to'liq UZ so'rovlar bilan to'la (RU sahifalar atigi 79 ta umumiy impressiyaga ega, ko'pi 1 tadan). Bu bandni bajarish uchun taxmin qilinmadi — RU trafik hajmi oshgach (masalan sitemap tuzatilgandan keyin, Google RU sahifalarni ko'proq kashf qilgach), qayta ko'rib chiqilishi tavsiya etiladi.
+
+### 5. RU kontent hajmi UZ bilan solishtiruv — TEKSHIRILDI, MUAMMO YO'Q
+
+Barcha 64 sahifada noyob so'z soni (boilerplate: menyu/footer/related va h.k. chiqarib tashlangan holda) hisoblandi. **Eng past nisbat — 98%** (`ijara-shartnomasi-namunasi`, `maxfiylik`, `shartlar`), ko'pchilik 99-100%. Tarjima qisqartirilmagan — **muammo topilmadi**.
+
+## FAZA 4.5 yakuniy xulosa
+
+5 tekshiruv bandidan 3 tasida haqiqiy nuqson topildi va tuzatildi (aralash til, sitemap/precache), 2 tasida esa (hreflang, kontent hajmi) tekshiruv "muammo yo'q" natijasini berdi — bu ham qimmatli, chunki FAZA 4.4'dagi RU→RU bog'lanish kabi noto'g'ri gipotezalarni rad etadi. RU title/description so'rov-moslashtirish yetarli ma'lumot yo'qligi sababli ochiq qoldirildi.
+
+**Eng katta kutilayotgan ta'sir:** sitemap tuzatilishi — bu Google'ga 14 ta yangi RU URL'ni topish imkonini beradi va umuman RU domenning kashf etilishini tezlashtirishi mumkin, bu esa pozitsiya 28,4'ga eng to'g'ridan-to'g'ri ta'sir qiladigan tuzatish edi.
