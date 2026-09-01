@@ -898,7 +898,7 @@
       "bolim_ru": "III. Признание расходов для налога на прибыль",
       "sarlavha_uz": "Xarajatlarni tan olish usuli",
       "sarlavha_ru": "Метод признания расходов",
-      "tanlov_erkinligi": "shartli",
+      "tanlov_erkinligi": "qatiy",
       "profillar": [
         "P1",
         "P2",
@@ -909,19 +909,24 @@
       ],
       "variantlar": [
         {
-          "kod": "hisoblash_usuli",
-          "nom_uz": "Hisoblash usuli (metod nachisleniya)",
-          "nom_ru": "Метод начисления",
-          "matn_uz": null,
-          "matn_ru": null,
+          "kod": "umumiy_qoida",
+          "nom_uz": "Buxgalteriya hisobi qoidalariga muvofiq tan olinadi",
+          "nom_ru": "Признаётся по правилам бухгалтерского учёта",
+          "matn_uz": "Soliq maqsadida daromad va xarajatlarni tan olish, agar Soliq kodeksida boshqacha qoida nazarda tutilmagan bo'lsa, buxgalteriya hisobi to'g'risidagi qonunchilik talablariga muvofiq belgilanadi (Soliq kodeksi 297, 305-moddalar). Xarajatlar haqiqatda amalga oshirilgan hisobot davrida, hujjat bilan tasdiqlangan va iqtisodiy jihatdan asoslangan bo'lgan holda tan olinadi.",
+          "matn_ru": "Признание доходов и расходов для целей налогообложения, если иное не предусмотрено Налоговым кодексом, определяется в соответствии с требованиями законодательства о бухгалтерском учёте (статьи 297, 305 Налогового кодекса). Расходы признаются в том отчётном периоде, в котором они фактически понесены, документально подтверждены и экономически обоснованы.",
           "tavsiya_profillar": null,
-          "holat": "TASDIQLASH KERAK"
+          "holat": "TASDIQLANGAN",
+          "tushuntirish_uz": "Bu — korxona tanlaydigan narsa emas. Soliq hisobi, alohida ko'rsatilgan istisnolardan tashqari, buxgalteriya hisobidagi (hisoblash usuli, NSBU №2) tartibga ergashadi.",
+          "tushuntirish_ru": "Это не выбор организации. Налоговый учёт, за исключением отдельно оговорённых исключений, следует порядку бухгалтерского учёта (метод начисления, НСБУ №2).",
+          "qachon_mos_uz": "Barcha korxonalar uchun umumiy qoida.",
+          "qachon_mos_ru": "Общее правило для всех организаций.",
+          "qonuniy_holat": "yagona_ruxsat_etilgan"
         }
       ],
       "asos_url": "",
-      "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
-      "izoh_uz": "Modda raqami tasdiqlanmadi — Soliq kodeksi hajmi tufayli (WebFetch mundarijadan tashqarisini yuklay olmadi). Tasdiqlangach to'ldiriladi.",
-      "izoh_ru": "Номер статьи не подтверждён — из-за объёма Налогового кодекса (WebFetch не смог загрузить текст статей, только оглавление). Будет заполнено после подтверждения."
+      "asos_nomi": "Soliq kodeksi 297-modda (daromad), 305-modda (xarajat)",
+      "izoh_uz": "",
+      "izoh_ru": ""
     },
     {
       "id": "nup_foyda_soligi_amortizatsiya",
