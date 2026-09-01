@@ -146,7 +146,21 @@ const ASSETS = [
   '/yoqilgi-kalkulyator',
   '/ru/yoqilgi-kalkulyator',
   '/zakot-qurbonlik-kalkulyator',
-  '/ru/zakot-qurbonlik-kalkulyator'
+  '/ru/zakot-qurbonlik-kalkulyator',
+  '/ru/avto-oldi-sotdi-shartnomasi-namunasi',
+  '/ru/davo-arizasi-namunasi',
+  '/ru/kafolat-xati-namunasi',
+  '/ru/qurilish-pudrat-shartnomasi-namunasi',
+  '/ru/tavsifnoma-namunasi',
+  '/ru/topshirish-qabul-dalolatnomasi-namunasi',
+  '/ru/uy-oldi-sotdi-shartnomasi',
+  '/ru/xizmat-korsatish-shartnomasi-namunasi',
+  '/ru/biz-haqimizda',
+  '/ru/blog',
+  '/ru/hamkorlik',
+  '/ru/maxfiylik',
+  '/ru/shablonlar',
+  '/ru/shartlar'
 ];
 
 self.addEventListener('install', (e) => {

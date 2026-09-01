@@ -452,6 +452,31 @@ function runTool(args) {
       bad.slice(0, 6).join(' | '));
   }
 
+  /* ---------- 26. sitemap.xml to'liqligi (UZ va RU juftlari) ----------
+     2026-08'da topilgan: sitemap.xml qo'lda saqlanadi (avtomatik
+     generator yo'q — bu bilib turilgan holat, FAZA 4 alohida band
+     sifatida qoldirilgan), va vaqt o'tishi bilan 14 ta RU sahifa
+     (asosan yangiroq "namunasi" hujjatlari va statik sahifalar)
+     sitemap'ga qo'shilishni unutib qolgan edi. Bu band har bir joriy
+     UZ sahifa (sitePages()) va har bir RU_PAGES a'zosining RU jufti
+     sitemap.xml'da <loc> sifatida bor-yo'qligini tekshiradi. */
+  {
+    const sitemapPath = path.join(ROOT, 'sitemap.xml');
+    const sm = fs.readFileSync(sitemapPath, 'utf8');
+    const urls = new Set([...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]));
+    const bad = [];
+    for (const f of pages()) {
+      const slug = f.replace(/\.html$/, '') === 'index' ? '' : f.replace(/\.html$/, '');
+      if (!urls.has('https://kalki.uz/' + slug)) bad.push('uz: ' + f);
+    }
+    for (const f of RU_PAGES) {
+      const slug = f.replace(/\.html$/, '') === 'index' ? '' : f.replace(/\.html$/, '');
+      if (!urls.has('https://kalki.uz/ru/' + slug)) bad.push('ru: ' + f);
+    }
+    add(!bad.length, '26. sitemap.xml to\'liqligi (UZ va RU juftlari)',
+      bad.slice(0, 8).join(', '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

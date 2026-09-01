@@ -10,10 +10,13 @@
   <url><loc>https://kalki.uz/beton-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/beton-kalkulyator</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/hamkorlik</loc><lastmod>2026-08-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kalki.uz/ru/hamkorlik</loc><lastmod>2026-08-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://kalki.uz/hisob-siyosati-generatori</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/hisob-siyosati-generatori</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/biz-haqimizda</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/biz-haqimizda</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/blog</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kalki.uz/ru/blog</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://kalki.uz/bojxona-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/bojxona-kalkulyator</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/bola-puli-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -44,6 +47,7 @@
   <url><loc>https://kalki.uz/marosim-kalkulyator</loc><lastmod>2026-08-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/marosim-kalkulyator</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/maxfiylik</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/maxfiylik</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/oila-byudjet-kalkulyator</loc><lastmod>2026-08-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/oila-byudjet-kalkulyator</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/omonat-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -62,7 +66,9 @@
   <url><loc>https://kalki.uz/remont-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/remont-kalkulyator</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/shablonlar</loc><lastmod>2026-08-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/shablonlar</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/shartlar</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/shartlar</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/tom-kalkulyator</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/tom-kalkulyator</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/toy-byudjeti-2026</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -93,21 +99,29 @@
   <url><loc>https://kalki.uz/talabnoma-namunasi</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/talabnoma-namunasi</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/qurilish-pudrat-shartnomasi-namunasi</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/qurilish-pudrat-shartnomasi-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/kadr-buyruqlari-namunasi</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/kadr-buyruqlari-namunasi</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ish-haqi-malumotnomasi-namunasi</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/ish-haqi-malumotnomasi-namunasi</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/kafolat-xati-namunasi</loc><lastmod>2026-08-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/kafolat-xati-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ariza-namunasi</loc><lastmod>2026-08-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/ariza-namunasi</loc><lastmod>2026-08-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/avto-oldi-sotdi-shartnomasi-namunasi</loc><lastmod>2026-08-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/avto-oldi-sotdi-shartnomasi-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/uy-oldi-sotdi-shartnomasi</loc><lastmod>2026-08-13</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/uy-oldi-sotdi-shartnomasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ishdan-boshash-arizasi-namunasi</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/ishdan-boshash-arizasi-namunasi</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/topshirish-qabul-dalolatnomasi-namunasi</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/topshirish-qabul-dalolatnomasi-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/xizmat-korsatish-shartnomasi-namunasi</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/xizmat-korsatish-shartnomasi-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/tavsifnoma-namunasi</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/tavsifnoma-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/davo-arizasi-namunasi</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kalki.uz/ru/davo-arizasi-namunasi</loc><lastmod>2026-08-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/tatil-puli-kalkulyator</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/ru/tatil-puli-kalkulyator</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://kalki.uz/kasallik-varaqasi-kalkulyator</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
