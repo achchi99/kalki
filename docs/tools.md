@@ -40,9 +40,44 @@ Yozuvchi rejimlar **faqat bitta joyda** chaqiriladi: `npm run ship`.
 | `og-tags.js` | Qaysi sahifada teg eskirganini aytadi | HTML ga teg yozadi | — |
 | `site-chrome.js` | Sarlavha (`#topmenu`, `#sitebar`) va footer (`#legal-links`, mualliflik qatori) kanonik variant bilan bir xilligini aytadi | HTML ga yozadi | — |
 | `render.js` | Modul (CLI emas) — jsdom harness | — | — |
+| `visual-check.js` | Real brauzerda (Playwright/Chromium) overflow, landmark overlap, konsol xatosi tekshiradi | `docs/screenshots/` ga PNG yozadi | `--lang`, `--viewport` |
 
 `--check` eski nom sifatida hamma joyda qabul qilinadi va standart holat
 bilan bir xil ishlaydi.
+
+## visual-check.js
+
+`verify-all.js` jsdom bilan ishlaydi — DOM va matnni ko'radi, lekin real
+CSS layout'ni (overlap, overflow) ko'rmaydi. Ayni shu turdagi buglar
+(vizual overlap, RU `lang` xatosi) faqat real brauzerda topilgan edi.
+`visual-check.js` shu tekshiruvni Playwright/Chromium orqali
+avtomatlashtiradi.
+
+**Diqqat: `verify-all`/`ship` ga QO'SHILMAGAN** — brauzer testlari sekin,
+va bu vositani har `ship`ga qo'shish pipeline'ni og'irlashtiradi. Faqat
+qo'lda ishga tushiriladi.
+
+Talab: `npm i` (Playwright'ni o'zi Chromium'ni yuklab oladi) va tizimda
+Chromium'ning kutubxonalari (`npx playwright install-deps chromium`,
+sudo talab qiladi).
+
+Buyruq:
+```
+node tools/visual-check.js <sahifa> [<sahifa2> ...] [--lang=uz,ru] [--viewport=desktop,mobile]
+```
+Masalan: `node tools/visual-check.js kredit-kalkulyator --lang=uz,ru --viewport=desktop,mobile`
+
+Har bir `<sahifa>-<lang>-<viewport>` kombinatsiyasi uchun: lokal HTTP
+server orqali (fayl:// emas — `ru/` sahifalarining ildiz-nisbiy yo'llari
+uchun kerak) sahifa ochiladi, `document.documentElement.scrollWidth`
+orqali gorizontal overflow, landmark elementlar
+(`header/nav/main/footer/.answerbox/.form-card/.premium-badge`) orasidagi
+overlap va konsol xatolari tekshiriladi, skrinshot
+`docs/screenshots/<sahifa>-<lang>-<viewport>.png` ga saqlanadi. Natija —
+strukturalangan JSON stdout'ga.
+
+`docs/screenshots/` git'ga tushmaydi (`.gitignore`) — faqat lokal
+tekshiruv uchun.
 
 ## SPECIAL_PAGES
 
