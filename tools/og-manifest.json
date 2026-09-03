@@ -2,512 +2,512 @@
   "alkogol-kalkulyator": {
     "title": "Alkogol kalkulyatori",
     "cat": "hayot",
-    "hash": "a58218f52f67",
+    "hash": "5275ce9c5c6d",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ariza-namunasi": {
     "title": "Ariza namunasi",
     "cat": "hujjat",
-    "hash": "ae0a94f44fc8",
+    "hash": "84d1f7bd3584",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "avto-bojxona-2026": {
     "title": "Avtomobil import qilish: 2026-yil bojxona to’lovlari",
     "cat": "moliya",
-    "hash": "f1328d69894a",
+    "hash": "af60f13d0ed9",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "avto-oldi-sotdi-shartnomasi-namunasi": {
     "title": "Avtomobil oldi-sotdi shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "7ca5c2131375",
+    "hash": "8be6a1cbaf32",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "avto-xarajat-kalkulyator": {
     "title": "Avtomobil saqlash xarajati",
     "cat": "kommunal",
-    "hash": "30daceef0de4",
+    "hash": "37442646af01",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "beton-kalkulyator": {
     "title": "Beton kalkulyatori",
     "cat": "qurilish",
-    "hash": "6a829ca2b12f",
+    "hash": "2d3267ea2069",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "biz-haqimizda": {
     "title": "Biz haqimizda",
     "cat": "umumiy",
-    "hash": "0e2b6a0a44b2",
+    "hash": "fc4b770e5854",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "blog": {
     "title": "Maqolalar",
     "cat": "umumiy",
-    "hash": "c489ea4fd45d",
+    "hash": "f03cbdfcd724",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "bojxona-kalkulyator": {
     "title": "Bojxona kalkulyatori",
     "cat": "moliya",
-    "hash": "cf5b76b2fb5a",
+    "hash": "b5145e8b722f",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "bola-puli-kalkulyator": {
     "title": "Bola puli kalkulyatori",
     "cat": "hayot",
-    "hash": "d65258b5f2c8",
+    "hash": "cf0e82545ff7",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "bolalar-nafaqasi-2026": {
     "title": "Bolalar nafaqasi 2026: yangi miqdorlar va kim ola oladi",
     "cat": "hayot",
-    "hash": "6c87011b200a",
+    "hash": "5dc148714ec2",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "chorva-kalkulyator": {
     "title": "Chorvachilik kalkulyatori",
     "cat": "qurilish",
-    "hash": "e1a606a7d8f8",
+    "hash": "75997e2479b3",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "davo-arizasi-namunasi": {
     "title": "Da'vo arizasi namunasi",
     "cat": "hujjat",
-    "hash": "958afa6c4b43",
+    "hash": "bb16ce7e4a6f",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "dtm-2026": {
     "title": "DTM 2026: ball qanday hisoblanadi va grantga qancha kerak",
     "cat": "hayot",
-    "hash": "2c3739a98721",
+    "hash": "6ddf6d308545",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "dtm-kalkulyator": {
     "title": "DTM ball kalkulyatori",
     "cat": "hayot",
-    "hash": "158d48dd46dc",
+    "hash": "ec1fb321c3d0",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "elektr-xarajat-kalkulyator": {
     "title": "Elektr energiyasi xarajati",
     "cat": "kommunal",
-    "hash": "7e70d37fabb5",
+    "hash": "866bc7a90d08",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "gisht-kalkulyator": {
     "title": "G'isht kalkulyatori",
     "cat": "qurilish",
-    "hash": "58949814cb34",
+    "hash": "0c3fbd8fbfeb",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "homiladorlik-kalkulyator": {
     "title": "Homiladorlik va ovulyatsiya kalkulyatori",
     "cat": "hayot",
-    "hash": "dd01908298a7",
+    "hash": "37a6fdf6906c",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "hujjatlar": {
     "title": "Hujjatni onlayn to'ldiring va yuklab oling",
     "cat": "hujjat",
-    "hash": "5066d0534a55",
+    "hash": "f82e57f517fd",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ijara-shartnomasi-namunasi": {
     "title": "Ijara shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "fe2a672bacba",
+    "hash": "0c22e4c6d1fe",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "index": {
     "title": "Hammasini bir joyda hisoblang",
     "cat": "umumiy",
-    "hash": "b6eca23ca82c",
+    "hash": "3de40e98ae40",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ipoteka-2026": {
     "title": "2026-yilda ipoteka: stavkalar, imtiyozlar va hisob-kitob",
     "cat": "moliya",
-    "hash": "7b6d4bc86c16",
+    "hash": "001c6a171f5d",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ipoteka-kalkulyator": {
     "title": "Ipoteka kalkulyatori",
     "cat": "moliya",
-    "hash": "874638d3f4bb",
+    "hash": "e44b8a0c03a2",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ishdan-boshash-arizasi-namunasi": {
     "title": "Ishdan bo'shash arizasi namunasi",
     "cat": "hujjat",
-    "hash": "fc4eb651dbd4",
+    "hash": "14c2ffcba8b8",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ishonchnoma-namunasi": {
     "title": "Ishonchnoma namunasi",
     "cat": "hujjat",
-    "hash": "acd9dc0b242a",
+    "hash": "a43afdf1d5c5",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "kaloriya-kalkulyator": {
     "title": "Kaloriya kalkulyatori",
     "cat": "hayot",
-    "hash": "dd7400ca0697",
+    "hash": "3312deeee037",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "konditsioner-kalkulyator": {
     "title": "Konditsioner kalkulyatori",
     "cat": "kommunal",
-    "hash": "4a0acdbfb725",
+    "hash": "d6870b9d7b0f",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "kredit-kalkulyator": {
     "title": "Kredit kalkulyatori",
     "cat": "moliya",
-    "hash": "37c628a955b7",
+    "hash": "df649ddccb70",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "maktab-kalkulyator": {
     "title": "Maktabga tayyorgarlik",
     "cat": "hayot",
-    "hash": "a6263f6aec55",
+    "hash": "6f6fbe0aa530",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "marosim-kalkulyator": {
     "title": "Marosim xarajatlari",
     "cat": "hayot",
-    "hash": "41eb33566c04",
+    "hash": "3c31e32bbb86",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "maxfiylik": {
     "title": "Maxfiylik siyosati",
     "cat": "umumiy",
-    "hash": "05f9b9682ab9",
+    "hash": "b891cde85503",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "mehnat-shartnomasi-namunasi": {
     "title": "Mehnat shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "5ffab7894941",
+    "hash": "0ee5dd6a203b",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "oila-byudjet-kalkulyator": {
     "title": "Oilaviy byudjet kalkulyatori",
     "cat": "moliya",
-    "hash": "1cafae78536a",
+    "hash": "693a088147d3",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "omonat-kalkulyator": {
     "title": "Omonat kalkulyatori",
     "cat": "moliya",
-    "hash": "2e51da7b87aa",
+    "hash": "50ec16d1a0ff",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "oylik-soliq-kalkulyator": {
     "title": "Ish haqi kalkulyatori",
     "cat": "moliya",
-    "hash": "04fa3e7b5dcf",
+    "hash": "c63fc13c2933",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "pensiya-kalkulyator": {
     "title": "Pensiya kalkulyatori",
     "cat": "hayot",
-    "hash": "5f7cf2846e2f",
+    "hash": "8aa8050f2249",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "qqs-2026": {
     "title": "QQS 2026: qanday hisoblanadi va kim to'laydi",
     "cat": "moliya",
-    "hash": "f8e68c322f17",
+    "hash": "f647f387f73a",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "qqs-kalkulyator": {
     "title": "QQS kalkulyatori",
     "cat": "moliya",
-    "hash": "89e8a62ee51c",
+    "hash": "1231d31d1f65",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "quyosh-panel-kalkulyator": {
     "title": "Quyosh paneli kalkulyatori",
     "cat": "kommunal",
-    "hash": "affff594d5bc",
+    "hash": "3ab63f8c5c88",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "remont-kalkulyator": {
     "title": "Remont kalkulyatori",
     "cat": "qurilish",
-    "hash": "5570949c1301",
+    "hash": "5e7cbaa3c1b9",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "shablonlar": {
     "title": "Tayyor shablonlar",
     "cat": "hujjat",
-    "hash": "fcd2337f6fc0",
+    "hash": "78857ee76af9",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "shartlar": {
     "title": "Foydalanish shartlari",
     "cat": "umumiy",
-    "hash": "f0f1fc9f6fa5",
+    "hash": "928386498768",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "tavsifnoma-namunasi": {
     "title": "Tavsifnoma namunasi",
     "cat": "hujjat",
-    "hash": "5798ca66f390",
+    "hash": "a58399b2d714",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "tilxat-namunasi": {
     "title": "Tilxat namunasi",
     "cat": "hujjat",
-    "hash": "16dfab881dc3",
+    "hash": "71444633e205",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "tom-kalkulyator": {
     "title": "Tom materiali kalkulyatori",
     "cat": "qurilish",
-    "hash": "50e687c6ca20",
+    "hash": "bea6174b008e",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "topshirish-qabul-dalolatnomasi-namunasi": {
     "title": "Topshirish-qabul dalolatnomasi namunasi",
     "cat": "hujjat",
-    "hash": "3c483c9311d6",
+    "hash": "0d3e1b79ecd8",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "toy-byudjeti-2026": {
     "title": "To'y byudjeti 2026: Toshkent va viloyat narxlari",
     "cat": "hayot",
-    "hash": "208388276dc0",
+    "hash": "ea44c5386181",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "toy-kalkulyator": {
     "title": "To'y xarajatlari kalkulyatori",
     "cat": "hayot",
-    "hash": "6a433f3ab68e",
+    "hash": "ec9b284b8a99",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "universitet-kontrakt-kalkulyator": {
     "title": "Universitet kontrakti",
     "cat": "hayot",
-    "hash": "a86f0f0aabc9",
+    "hash": "279634e8b07b",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "uy-qurish-kalkulyator": {
     "title": "Uy qurish kalkulyatori",
     "cat": "qurilish",
-    "hash": "791e93790e12",
+    "hash": "deabeac0a7a2",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "xizmat-korsatish-shartnomasi-namunasi": {
     "title": "Xizmat ko'rsatish shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "811523948af3",
+    "hash": "6a879ef3ade8",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "yer-konvertor": {
     "title": "Yer maydoni konvertori",
     "cat": "qurilish",
-    "hash": "a8e87e3c1e2b",
+    "hash": "ffee9b3219a6",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "yoqilgi-kalkulyator": {
     "title": "Yoqilg'i kalkulyatori",
     "cat": "kommunal",
-    "hash": "7c8d66062b29",
+    "hash": "41349fb4d9c7",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "zakot-qurbonlik-kalkulyator": {
     "title": "Zakot va Qurbonlik kalkulyatori",
     "cat": "hayot",
-    "hash": "0c4c5e6b550e",
+    "hash": "2f83a34ae959",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "hamkorlik": {
     "title": "Hamkorlik",
     "cat": "umumiy",
-    "hash": "c82b180d9c14",
+    "hash": "fc963ff2fbf2",
     "tpl": 1,
-    "v": 2
+    "v": 3
   },
   "grant-ololmadim": {
     "title": "Grant ololmadim — endi nima qilaman?",
     "cat": "hayot",
-    "hash": "e9180728f22b",
+    "hash": "03c772331021",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "uy-oldi-sotdi-shartnomasi": {
     "title": "Uy oldi-sotdi shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "a3a8111ed3a3",
+    "hash": "e6ede30e34f6",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "staj-kalkulyator": {
     "title": "Mehnat staji kalkulyatori",
     "cat": "hayot",
-    "hash": "97ce216496ba",
+    "hash": "154ccea23425",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "talabnoma-namunasi": {
     "title": "Talabnoma namunasi",
     "cat": "hujjat",
-    "hash": "4748c39007ea",
+    "hash": "52c76bcfcf22",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "qurilish-pudrat-shartnomasi-namunasi": {
     "title": "Qurilish pudrat shartnomasi namunasi",
     "cat": "hujjat",
-    "hash": "3c50d0b42c9f",
+    "hash": "31b19104c3e1",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "kadr-buyruqlari-namunasi": {
     "title": "Kadr buyrug'i namunasi",
     "cat": "hujjat",
-    "hash": "6f2cd85895e5",
+    "hash": "a3f220c9e0cc",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ish-haqi-malumotnomasi-namunasi": {
     "title": "Ish haqi ma'lumotnomasi namunasi",
     "cat": "hujjat",
-    "hash": "ead91105fa45",
+    "hash": "4a051647861f",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "kafolat-xati-namunasi": {
     "title": "Kafolat xati namunasi",
     "cat": "hujjat",
-    "hash": "05ca52483a67",
+    "hash": "eab9d414141f",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "aliment-kalkulyator": {
     "title": "👨‍👧 Aliment kalkulyatori",
     "cat": "huquqiy",
-    "hash": "6e8ee6afb2c4",
+    "hash": "c8b77e3f6cde",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "dekret-puli-kalkulyator": {
     "title": "Dekret to'lovi kalkulyatori",
     "cat": "huquqiy",
-    "hash": "9a530243f462",
+    "hash": "09c042999219",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "ishdan-boshatish-kompensatsiyasi-kalkulyator": {
     "title": "📤 Ishdan bo'shatish kompensatsiyasi kalkulyatori",
     "cat": "huquqiy",
-    "hash": "f2ebcbf9109f",
+    "hash": "afdfe5c36725",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "kasallik-varaqasi-kalkulyator": {
     "title": "Kasallik varaqasi to'lovi kalkulyatori",
     "cat": "huquqiy",
-    "hash": "f758abe9e2b9",
+    "hash": "6d564d0b492e",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "tatil-puli-kalkulyator": {
     "title": "Ta'til puli kalkulyatori",
     "cat": "huquqiy",
-    "hash": "9a4d3006abe6",
+    "hash": "7f790b3bf1fe",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "yhxx-jarima-kalkulyator": {
     "title": "YHXX jarimalari kalkulyatori",
     "cat": "huquqiy",
-    "hash": "274b55ba5c5c",
+    "hash": "b20838d37471",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "hisob-siyosati-generatori": {
     "title": "Hisob siyosati generatori",
     "cat": "hujjat",
-    "hash": "08ed52cde90c",
+    "hash": "3f229a613243",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "moddiy-yordam-arizasi-namunasi": {
     "title": "Moddiy yordam arizasi namunasi",
     "cat": "hujjat",
-    "hash": "626174158c29",
+    "hash": "069c6ec910e9",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "oquv-tatili-arizasi-namunasi": {
     "title": "O'quv ta'tili arizasi namunasi",
     "cat": "hujjat",
-    "hash": "f7e9b50194f6",
+    "hash": "16eb29602b62",
     "tpl": 1,
-    "v": 1
+    "v": 2
   },
   "tatil-arizasi-namunasi": {
     "title": "Ta'til arizasi namunasi",
     "cat": "hujjat",
-    "hash": "e112211ecae9",
+    "hash": "2738980db4e4",
     "tpl": 1,
-    "v": 1
+    "v": 2
   }
 }
