@@ -136,7 +136,7 @@
 
   if (!('serviceWorker' in w.navigator)) return;
 
-  w.navigator.serviceWorker.register('sw.js')['catch'](function () {});
+  w.navigator.serviceWorker.register('/sw.js')['catch'](function () {});
 
   w.navigator.serviceWorker.addEventListener('controllerchange', function () {
     if (reloaded) return;                 // cheksiz sikl bo'lmasin
