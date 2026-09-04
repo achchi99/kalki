@@ -5,9 +5,15 @@
    tanlov_erkinligi filtrlash mantiqi boshqa hech qanday hujjat
    generatorida yo'q (docs/hisob-siyosati-audit.md, FAZA 0, 1.2-band).
 
-   To'lov qatlami hali ulanmagan (arxitektura-siyosati.md, 1.5-band):
-   PREMIUM.yoqilgan har doim false turadi FAZA 1-2-3 davomida. Bu obyekt
-   orqali BARCHA "pullik" mantiq o'tadi — hozircha hech narsa emas.
+   To'lov qatlami (docs/premium-reja.md). PREMIUM — BARCHA "pullik"
+   mantiq shu obyekt orqali o'tadi:
+     - narx: bitta joyda (bu yerda) — modal, qulf matni, bepul .docx
+       oxiridagi sahifa, RU tarjimasi hammasi shu qiymatdan o'qiydi.
+     - kodlar: joriy amaldagi ochish kodlari (B1 — oyiga bir marta
+       qo'lda yangilanadi, docs/premium-reja.md 3-band). Bo'sh massiv —
+       hali hech qanday kod chiqarilmagan (bot/QR ulanmaguncha).
+     - Kod BRAUZER TOMONIDA tekshiriladi — DevTools orqali chetlab
+       o'tish mumkin, bu ochiq qabul qilingan (docs/premium-reja.md).
 */
 (function (root) {
   'use strict';
@@ -15,9 +21,32 @@
   var KD = root.KalkiDoc;
   var HS = {};
 
+  var SS_KEY = 'kalki_hs_unlock';
+
   var PREMIUM = {
-    yoqilgan: false,
-    ochish: function () { return false; }
+    yoqilgan: true,
+    // Narx o'zgarsa: hisob-siyosati-generatori.html'dagi app-ld JSON-LD
+    // "offers":{"price":...} qo'lda mos qilinsin (bu yerdan avtomatik
+    // o'qilmaydi — statik prerender snapshot).
+    narx: 50000,
+    // TODO(Asror): bot/QR ulanganda joriy oy kodi shu yerga qo'shiladi,
+    // masalan: kodlar: ['KALKI-2026-09']
+    kodlar: [],
+    // TODO(Asror): haqiqiy to'lov bot havolasi bilan almashtirilsin
+    botHavola: 'https://t.me/kalki_uz',
+
+    tekshir: function (kod) {
+      kod = String(kod || '').trim().toUpperCase();
+      return !!kod && PREMIUM.kodlar.indexOf(kod) > -1;
+    },
+    ochish: function (kod) {
+      if (!PREMIUM.tekshir(kod)) return false;
+      try { sessionStorage.setItem(SS_KEY, '1'); } catch (e) {}
+      return true;
+    },
+    ochiqmi: function () {
+      try { return sessionStorage.getItem(SS_KEY) === '1'; } catch (e) { return false; }
+    }
   };
   HS.PREMIUM = PREMIUM;
 
@@ -63,7 +92,20 @@
       ru: 'Выбор не предоставляется — по закону применяется только этот метод.'
     },
     tanlangan: { uz: 'Tanlangan variant: ', ru: 'Выбранный вариант: ' },
-    rekvizitlar: { uz: 'Rekvizitlar', ru: 'Реквизиты' }
+    rekvizitlar: { uz: 'Rekvizitlar', ru: 'Реквизиты' },
+    qulf: {
+      uz: "Bu band to'liq versiyada mavjud.",
+      ru: 'Этот пункт доступен в полной версии.'
+    },
+    upgradeH: { uz: "To'liq versiyada yana:", ru: 'В полной версии также:' },
+    upgradeFooter: {
+      uz: 'Narx: ',
+      ru: 'Цена: '
+    },
+    upgradeCta: {
+      uz: 'kalki.uz/hisob-siyosati-generatori — saytda "Toʻliq versiyani olish" tugmasi orqali.',
+      ru: 'kalki.uz/hisob-siyosati-generatori — кнопка «Получить полную версию» на сайте.'
+    }
   };
 
   // Band uchun "hozir tanlangan" variant kodini aniqlaydi: foydalanuvchi
@@ -166,11 +208,33 @@
     ];
   };
 
+  /* ---------- pullik bandlar o'rniga: nima yopiqligi ro'yxati ----------
+     `items` — {sarlavha_uz, sarlavha_ru} qatnashgan obyektlar (haqiqiy band
+     yoki "Buyruq namunasi" kabi sintetik yozuv). Bo'sh bo'lsa hech narsa
+     qo'shilmaydi (unlocked yoki umuman pullik band yo'q holat). */
+  HS.buildUpgradeBlocks = function (items, lang) {
+    if (!items || !items.length) return [];
+    var out = [{ k: 'gap' }, { k: 'h', text: L(TXT.upgradeH.uz, TXT.upgradeH.ru, lang) }];
+    items.forEach(function (it) {
+      out.push({ k: 'p', text: '— ' + L(it.sarlavha_uz, it.sarlavha_ru, lang) });
+    });
+    out.push({
+      k: 'warn',
+      text: L(TXT.upgradeFooter.uz, TXT.upgradeFooter.ru, lang) + KD.fmtNum(PREMIUM.narx) + ' ' + KD.currency(lang)
+    });
+    out.push({ k: 'note', text: L(TXT.upgradeCta.uz, TXT.upgradeCta.ru, lang) });
+    return out;
+  };
+
   // Butun hujjat (BUP yoki NUP) uchun to'liq blok ro'yxati.
   // reqLines — rekvizit qatorlari (forma maydonlaridan tayyorlangan matn massivi).
+  // opts.unlocked — false/undefined bo'lsa pullik bandlar (band.pullik===true)
+  // chiqarib tashlanadi va o'rniga upgrade ro'yxati qo'shiladi; buyruq namunasi
+  // ham (0.3-jadval bo'yicha pullik) faqat unlocked holatda kiritiladi.
   HS.buildDocBlocks = function (opts) {
     var data = opts.data, hujjat = opts.hujjat, profil = opts.profil,
-      lang = opts.lang, variants = opts.variants || {}, reqLines = opts.reqLines || [];
+      lang = opts.lang, variants = opts.variants || {}, reqLines = opts.reqLines || [],
+      unlocked = !!opts.unlocked;
     var blocks = [];
     if (opts.intro) blocks.push({ k: 'warn', text: opts.intro });
     blocks.push({ k: 'title', text: opts.title });
@@ -180,14 +244,29 @@
       reqLines.forEach(function (t) { blocks.push({ k: 'p', text: t }); });
       blocks.push({ k: 'gap' });
     }
-    HS.byBolim(HS.bandsFor(data, hujjat, profil), lang).forEach(function (g) {
+
+    var allBands = HS.bandsFor(data, hujjat, profil);
+    var shown = allBands.filter(function (b) { return !b.pullik || unlocked; });
+    var locked = allBands.filter(function (b) { return b.pullik && !unlocked; });
+
+    HS.byBolim(shown, lang).forEach(function (g) {
       blocks.push({ k: 'h', text: g.bolim });
       g.items.forEach(function (b) {
         blocks = blocks.concat(HS.bandToBlocks(b, lang, profil, variants[b.id]));
       });
     });
-    // Rahbar buyrug'i namunasi — har doim oxirida (0.F: javobgarlik mijozda).
-    blocks = blocks.concat(HS.buildOrderBlocks(hujjat, lang));
+
+    var upgradeItems = locked.map(function (b) {
+      return { sarlavha_uz: b.sarlavha_uz, sarlavha_ru: b.sarlavha_ru };
+    });
+    if (!unlocked) {
+      upgradeItems.push({ sarlavha_uz: 'Buyruq namunasi', sarlavha_ru: 'Образец приказа' });
+    }
+    blocks = blocks.concat(HS.buildUpgradeBlocks(upgradeItems, lang));
+
+    // Rahbar buyrug'i namunasi — faqat to'liq (unlocked) hujjatda (0.3-jadval:
+    // "Buyruq namunasi" pullik qatoridir).
+    if (unlocked) blocks = blocks.concat(HS.buildOrderBlocks(hujjat, lang));
     return blocks;
   };
 
