@@ -33,6 +33,11 @@
     // masalan: kodlar: ['KALKI-2026-09']
     kodlar: ["KALKI-AV7X-001"],
     botHavola: 'https://t.me/kalkiuz_oplata_bot',
+    // Paynet "universal link" — QR bilan bir xil to'lov, lekin telefon
+    // o'zining ekranidagi QR'ni o'zi skanerlashi shart emas. Ilova
+    // o'rnatilgan qurilmada to'g'ridan-to'g'ri to'lov oynasini ochadi,
+    // aks holda app.paynet.uz bosh sahifasiga tushadi (kutilgan holat).
+    payUrl: "https://app.paynet.uz/qr-online/00020101021140440012qr-online.uz01186r2CDAPQYmvC2BMPsQ0202115204531153038605802UZ5910AO'PAYNET'6008Tashkent610610002164280002uz0106PAYNET0208Toshkent80520012qr-online.uz03097120207070419marketing@paynet.uz63043889",
 
     tekshir: function (kod) {
       kod = String(kod || '').trim().toUpperCase();

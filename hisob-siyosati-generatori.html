@@ -108,6 +108,8 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .premium-modal-x{position:absolute;top:10px;right:10px;border:0;background:transparent;font-size:16px;color:var(--muted);cursor:pointer;padding:8px;line-height:1}
 .premium-modal-title{font-size:18px;font-weight:800;color:var(--ink);padding-right:24px;margin-bottom:6px}
 .premium-modal-price{font-size:27px;font-weight:800;color:var(--ink);margin-bottom:14px}
+.premium-modal-pay-btn{display:block;text-align:center;background:#D99A2B;color:#16211C;font-size:15px;font-weight:800;padding:13px;border-radius:10px;text-decoration:none;margin-bottom:8px}
+.premium-modal-or{text-align:center;font-size:12px;color:var(--muted);margin-bottom:10px}
 .premium-modal-qr{display:block;width:220px;max-width:100%;margin:0 auto 14px;border-radius:10px;border:1px solid var(--line)}
 .premium-modal-qr-fallback{text-align:center;font-size:13px;color:var(--muted);background:#FBF3E6;border:1px solid #EFDCBB;border-radius:10px;padding:14px;margin-bottom:14px}
 .premium-modal-steps{font-size:13px;color:#33403A;line-height:1.6;margin-bottom:14px;display:flex;flex-direction:column;gap:4px}
@@ -272,9 +274,11 @@ img,svg{height:auto}
   <div id="premiumModal" class="premium-modal noprint" hidden="" role="dialog" aria-modal="true" aria-labelledby="premiumModalTitle">
     <div class="premium-modal-backdrop" id="premiumModalBackdrop"></div>
     <div class="premium-modal-card">
-      <button type="button" class="premium-modal-x" id="premiumModalCloseX" data-i="premiumModalClose" aria-label="Yopish">Yopish</button>
+      <button type="button" class="premium-modal-x" id="premiumModalCloseX" aria-label="Yopish">✕</button>
       <div class="premium-modal-title" data-i="premiumModalTitle">To'liq versiyani oching</div>
       <div class="premium-modal-price" id="premiumModalPrice">50&nbsp;000 so'm</div>
+      <a id="premiumPayBtn" class="premium-modal-pay-btn" href="https://app.paynet.uz/qr-online/00020101021140440012qr-online.uz01186r2CDAPQYmvC2BMPsQ0202115204531153038605802UZ5910AO'PAYNET'6008Tashkent610610002164280002uz0106PAYNET0208Toshkent80520012qr-online.uz03097120207070419marketing@paynet.uz63043889" target="_blank" rel="noopener" data-i="premiumPayBtn">💳 Bosib to'lash</a>
+      <div class="premium-modal-or" data-i="premiumModalOr">yoki QR orqali (boshqa qurilmadan skanerlab):</div>
       <img id="premiumQr" class="premium-modal-qr" alt="To'lov QR kodi" src="assets/premium-qr.png" onerror="this.hidden=true;document.getElementById('premiumQrFallback').hidden=false">
       <div id="premiumQrFallback" class="premium-modal-qr-fallback" data-i="premiumQrFallback" hidden="">QR kod tez orada qo'shiladi — hozircha Telegram bot orqali murojaat qiling.</div>
       <div class="premium-modal-steps">
@@ -331,6 +335,8 @@ var I={
     premiumModalStep1:"1. QR kodni istalgan bank ilovasi bilan skanerlab, ko'rsatilgan summani to'lang.",
     premiumModalStep2:"2. Telegram botga o'ting va to'lov chekini yuboring.",
     premiumModalStep3:"3. Admin tasdiqlagach, botdan kalit kod keladi — shu kodni pastga kiriting.",
+    premiumPayBtn:"💳 Bosib to'lash",
+    premiumModalOr:"yoki QR orqali (boshqa qurilmadan skanerlab):",
     premiumBotBtn:"Telegram botga o'tish",
     premiumQrFallback:"QR kod tez orada qo'shiladi — hozircha Telegram bot orqali murojaat qiling.",
     premiumCodeLabel:"Kalit kod", premiumCodePlaceholder:"Kodni kiriting",
@@ -372,6 +378,8 @@ var I={
     premiumModalStep1:"1. Отсканируйте QR-код любым банковским приложением и оплатите указанную сумму.",
     premiumModalStep2:"2. Перейдите в Telegram-бот и отправьте чек оплаты.",
     premiumModalStep3:"3. После подтверждения админом бот пришлёт код доступа — введите его ниже.",
+    premiumPayBtn:"💳 Оплатить",
+    premiumModalOr:"или по QR (с другого устройства):",
     premiumBotBtn:"Перейти в Telegram-бот",
     premiumQrFallback:"QR-код скоро будет добавлен — пока обращайтесь через Telegram-бот.",
     premiumCodeLabel:"Код доступа", premiumCodePlaceholder:"Введите код",
@@ -569,6 +577,8 @@ function applyLang(){
   if($('premiumCodeInput'))$('premiumCodeInput').placeholder=t('premiumCodePlaceholder');
   if($('premiumModalPrice'))$('premiumModalPrice').textContent=KD.fmtNum(HS.PREMIUM.narx)+' '+KD.currency(lang);
   if($('premiumBotLink'))$('premiumBotLink').href=HS.PREMIUM.botHavola;
+  if($('premiumPayBtn'))$('premiumPayBtn').href=HS.PREMIUM.payUrl;
+  if($('premiumModalCloseX'))$('premiumModalCloseX').setAttribute('aria-label',t('premiumModalClose'));
   render();
 }
 $('langUz').onclick=function(){lang='uz';applyLang()};
