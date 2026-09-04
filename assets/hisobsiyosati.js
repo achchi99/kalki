@@ -32,8 +32,7 @@
     // TODO(Asror): bot/QR ulanganda joriy oy kodi shu yerga qo'shiladi,
     // masalan: kodlar: ['KALKI-2026-09']
     kodlar: [],
-    // TODO(Asror): haqiqiy to'lov bot havolasi bilan almashtirilsin
-    botHavola: 'https://t.me/kalki_uz',
+    botHavola: 'https://t.me/kalkiuz_oplata_bot',
 
     tekshir: function (kod) {
       kod = String(kod || '').trim().toUpperCase();
