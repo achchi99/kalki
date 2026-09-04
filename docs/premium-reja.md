@@ -153,6 +153,10 @@ maydoni + "Ochish" tugmasi. Ranglar yangi token kiritmaydi — mavjud
 
 ## Xulosa — FAZA 1 boshlashdan oldin ochiq savollar
 
-1. BUP IV-bo'lim (Ish schyotlari rejasi) — bepul deb qabul qilinsinmi?
-2. NUP'ning barcha bo'limlari (jumladan I. Umumiy qoidalar) pullikmi?
-3. B1 (oylik yagona kod) tasdiqlanadimi, yoki boshqa variant xohlaysizmi?
+1. ~~BUP IV-bo'lim (Ish schyotlari rejasi) — bepul deb qabul qilinsinmi?~~ ✅ Bepul (Asror tasdiqladi)
+2. ~~NUP'ning barcha bo'limlari (jumladan I. Umumiy qoidalar) pullikmi?~~ ✅ NUP I bepul, II–VI pullik
+3. ~~B1 (oylik yagona kod) tasdiqlanadimi?~~ ✅ Tasdiqlandi
+
+FAZA 1 (sayt tomoni) va FAZA 2 (bot) yakunlandi. Bot ↔ sayt kod
+sinxronizatsiyasi uchun [docs/premium-bot-sync.md](premium-bot-sync.md)ga
+qarang.
