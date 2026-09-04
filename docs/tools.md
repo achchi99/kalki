@@ -101,3 +101,27 @@ faqat shu ro'yxat orqali farqlanadi.
   o'zgargan holda qolib ketardi.
 - `og-images.js` uchun `tools/fonts/` da lotin va kirill qo'llab-quvvatlaydigan
   `.ttf` bo'lishi kerak; topilmasa skript to'xtaydi (kod `2`).
+- **RU'ni jsdom'da `langRu` tugmasini `.click()` bilan sinamang — noto'g'ri
+  natija beradi, xato yashiringan holda "yashil" chiqadi.** `assets/lang.js`da
+  capture-phase listener bor (`data-ru-page` bo'lgan sahifalarda): bosilganda
+  ichki matnni qayta chizish o'rniga **haqiqiy navigatsiya** qiladi
+  (`location.href = /ru/...`) va `stopImmediatePropagation()` bilan sahifaning
+  o'z `applyLang()`ini ishga tushirishga yo'l qo'ymaydi. Real brauzerda bu
+  to'g'ri ishlaydi (yangi `/ru/...` fayl yuklanadi), lekin jsdom navigatsiyani
+  bajara olmaydi — natijada `.click()`dan keyin DOM hamon UZ holatida qoladi,
+  konsolda faqat "Not implemented: navigation to another Document" ogohlantirishi
+  chiqadi, va xato tashlanmagani uchun tekshiruv "muvaffaqiyatli" ko'rinadi,
+  aslida hech narsa tekshirilmagan bo'ladi.
+
+  **To'g'ri usul:** `tools/prerender.js`dan `renderOneRu(name)`ni chaqiring —
+  bu aynan `prerender.js --write` qanday RU faylni hosil qilsa, xuddi
+  shundan render qiladi:
+  ```js
+  const { renderOneRu } = require('./tools/prerender.js');
+  const r = await renderOneRu('sahifa.html');
+  // r.out — haqiqiy RU HTML, r.errors — jsdom xatolari
+  ```
+  Yoki `npm run ship`dan keyin diskdagi `ru/sahifa.html`ni to'g'ridan-to'g'ri
+  tekshiring. (Bu saboq 2026-09 SEO/CTR sessiyasida ikkinchi marta
+  chiqdi — birinchisi jonli production'dan noto'g'ri xulosaga olib kelgan
+  edi, shuning uchun bu yerga yozilmoqda.)
