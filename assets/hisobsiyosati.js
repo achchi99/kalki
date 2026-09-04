@@ -31,7 +31,7 @@
     narx: 50000,
     // TODO(Asror): bot/QR ulanganda joriy oy kodi shu yerga qo'shiladi,
     // masalan: kodlar: ['KALKI-2026-09']
-    kodlar: [],
+    kodlar: ["KALKI-AV7X-001"],
     botHavola: 'https://t.me/kalkiuz_oplata_bot',
 
     tekshir: function (kod) {
