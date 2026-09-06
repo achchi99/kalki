@@ -125,3 +125,33 @@ faqat shu ro'yxat orqali farqlanadi.
   tekshiring. (Bu saboq 2026-09 SEO/CTR sessiyasida ikkinchi marta
   chiqdi — birinchisi jonli production'dan noto'g'ri xulosaga olib kelgan
   edi, shuning uchun bu yerga yozilmoqda.)
+
+- **Band 25 ("RU sahifada UZ matn qoldig'i yo'q") qamrovi to'liq emas —
+  kelajakdagi ish.** 2026-09'da `ipoteka-yoki-ijara-kalkulyator.html`ni
+  tekshirishda topildi: har bir RU sahifaning inline `<script>`ida til
+  almashtirish uchun **ikkala** lug'at ham saqlanadi — `I={uz:{...},
+  ru:{...}}`. Bu ataylab shunday (mijoz tomonida til tugmasi bosilganda
+  qayta render qilish uchun kerak) va sayt bo'ylab barcha RU sahifalarda
+  bir xil — `ru/ipoteka-kalkulyator.html`, `ru/kredit-limit-kalkulyator.html`
+  va h.k. da ham xuddi shunday `uz:{...}` bloki bor. Xuddi shunday,
+  `#topmenu` navigatsiyasidagi `data-tm-uz="..."` atributlari ham har bir
+  RU sahifada bor (ko'rinadigan matn emas, faqat JS uchun manba qiymati).
+
+  Band 25 hozircha faqat title/meta/JSON-LD/seoBlock/faqBlock/related/
+  articleLink'ni tekshiradi — bular render qilingan/ko'rinadigan joylar.
+  JS manba kodidagi `uz:{...}` obyekt literali va `data-*-uz` atributlari
+  band 25 tomonidan UMUMAN tekshirilmaydi (va tekshirilishi ham shart
+  emas — ular foydalanuvchiga ko'rinmaydi, faqat kod darajasida mavjud).
+
+  Bu — xato emas, lekin band 25'ning "UZ matn qoldig'i yo'qligini"
+  TO'LIQ tasdiqlamasligini bildiradi: agar kimdir kelajakda haqiqatan
+  ko'rinadigan biror joyni (masalan yangi qo'shilgan `data-i`/`data-i-html`
+  elementini) RU tarjimasiz qoldirsa-yu, u seoBlock/faqBlock/related/
+  articleLink/meta/JSON-LD doirasidan tashqarida bo'lsa, band 25 buni
+  ushlamaydi (band 20/22 asosiy kontent/footer'ni tekshiradi, lekin har
+  bir maxsus blokni emas). Kelajakda band 25'ni kengaytirish kerak bo'lsa:
+  butun `<body>`ni (ichidagi `<script>` teglarisiz) skanerlab, faqat
+  ko'rinadigan (visibility/display bekor qilinmagan) elementlar matnini
+  tekshirish — bu hozirgi ro'yxat-asosidan ko'ra ancha kengroq qamrov
+  beradi, lekin false-positive xavfi ham oshadi (masalan `alt`/`title`
+  atributlari, izohlar).
