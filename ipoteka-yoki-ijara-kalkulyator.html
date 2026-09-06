@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<script src="assets/csvexport.js" defer=""></script>
+<script src="assets/tgcta.js" defer=""></script>
+<script src="assets/partners.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ipoteka yoki ijara — qaysi biri foydali?</title>
+<link rel="canonical" href="https://kalki.uz/ipoteka-yoki-ijara-kalkulyator">
+<meta name="description" content="Uy narxi, ipoteka shartlari va ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring. Bepul, onlayn.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== Kategoriya rang tizimi =====
+   body[data-cat] atributi sahifa kategoriyasini belgilaydi.
+   Yangi kalkulyator = shu atributni almashtirish, xolos. */
+body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
+body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+
+:root{--wrap-max:560px;
+  --paper:#F7F8F6;--card:#FFFFFF;
+  --ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh;
+}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--cat-text);
+}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{
+  border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;
+  color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;letter-spacing:.04em;
+}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.lang-seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cat-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.13);color:#fff;
+  padding:5px 11px;border-radius:99px;margin-bottom:12px;
+}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+
+.form-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 18px 22px;margin-top:-44px;
+  box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative;
+}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{
+  display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;
+  background:#FBFCFB;transition:border-color .15s;overflow:hidden;
+}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{
+  flex:1;border:0;outline:0;background:transparent;
+  font:inherit;font-size:19px;font-weight:700;color:var(--ink);
+  padding:13px 14px;min-width:0;
+}
+.unit{
+  font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;
+  border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;
+  background:#F2F5F3;
+}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{
+  flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;
+  color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;
+  transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent;
+}
+.seg button.on{background:var(--cat);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+details.acc{border:1.5px solid var(--line);border-radius:12px;margin-top:14px;background:#FBFCFB;overflow:hidden}
+details.acc[open]{background:var(--card)}
+details.acc>summary{padding:13px 14px;font-size:14px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
+details.acc[open]>summary::after{content:"−"}
+.acc-body{padding:2px 14px 15px}
+.assume-hint{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5}
+.scen-shell{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);overflow-x:auto}
+.scen-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:420px}
+.scen-table th,.scen-table td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line)}
+.scen-table th:first-child,.scen-table td:first-child{text-align:left;font-weight:700;color:var(--muted);padding-right:10px}
+.scen-table thead th{font-weight:800;color:var(--ink);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+.scen-table thead th.base-col{color:var(--cat)}
+.scen-table tr.net-row td{font-weight:800;color:var(--cat);border-top:2px solid var(--line);border-bottom:none}
+.cross-note{margin-top:16px;background:var(--cat-soft);border-radius:12px;padding:14px 15px;font-size:14px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.chart-wrap{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.chart-head{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chart-legend{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--muted)}
+.chart-legend span{display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.limit-note{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.55}
+.limit-note b{color:var(--ink)}
+.honesty{margin-top:16px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:12.5px;color:#5A4820;line-height:1.6}
+.zero-note{margin-top:14px;background:#FBEAE8;border:1px solid #F3C9C4;border-left:4px solid #B3261E;border-radius:12px;padding:13px 15px;font-size:13px;color:#7A241D;line-height:1.6}
+.calc-btn{
+  width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;
+  font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;
+  transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent;
+}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.calc-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{
+  font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:8px;
+}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{
+  height:10px;
+  background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);
+  background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x;
+}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{
+  flex:1;border:1.5px solid var(--line);background:var(--card);
+  font:inherit;font-size:14px;font-weight:700;color:var(--cat);
+  padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.early-payoff{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.ep-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
+.ep-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.ep-row label{margin:0;font-size:13px;font-weight:700;color:var(--muted)}
+.ep-val{font-size:15px;font-weight:800;color:var(--cat);white-space:nowrap}
+input[type=range]{width:100%;height:6px;border-radius:99px;background:#EEF2EF;outline:0;-webkit-appearance:none;appearance:none;cursor:pointer;margin:6px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:#EEF2EF}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ep-results{margin-top:12px;background:var(--cat-soft);border-radius:10px;padding:12px 14px}
+.ep-results .hint{margin:0}
+.ep-line{font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.6}
+.ep-line.accent{color:var(--cat)}
+
+.sched{margin-top:26px;display:none}
+/* hamkor bloki — natijadan keyin, hech qachon undan yuqorida turmaydi */
+#partners-slot{margin-top:28px}
+#partners-slot[hidden]{display:none}
+.pt-h{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px;color:var(--ink)}
+.pt-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.pt-list{grid-template-columns:1fr 1fr}}
+.pt-card{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.pt-card:hover{border-color:var(--cat);transform:translateY(-2px)}
+.pt-logo{flex:none;width:48px;height:48px;border-radius:12px;display:block}
+.pt-logo-blank{background:#EEF2EF}
+.pt-body{flex:1;min-width:0}
+.pt-name{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.pt-note{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.4}
+.pt-ad{flex:none;align-self:flex-start;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:5px;padding:2px 6px}
+.pt-go{flex:none;font-size:12.5px;font-weight:800;color:var(--cat)}
+.pt-extra,.pt-disc,.pt-checked{font-size:12px;line-height:1.5;font-weight:600;color:var(--muted);margin-top:10px}
+.pt-disc{padding-top:10px;border-top:1px solid var(--line)}
+.pt-checked{margin-top:4px;color:#93A099}
+.pt-tips{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+.pt-tips li{position:relative;padding-left:18px;font-size:13.5px;line-height:1.5;color:#33403A}
+.pt-tips li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--cat)}
+.pt-tips-link{display:inline-block;font-size:13px;font-weight:800;color:var(--cat);text-decoration:none}
+.pt-tips-link:hover{text-decoration:underline}
+.pt-partner-note{margin-top:12px;font-size:11.5px;color:#93A099;font-weight:600}
+.sched.show{display:block}
+.sched h2{font-size:17px;font-weight:800;margin-bottom:12px}
+.tbl-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{
+  background:var(--cat-soft);color:var(--cat);
+  font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:10px 8px;text-align:right;
+}
+thead th:first-child{text-align:center;width:44px}
+tbody td{padding:9px 8px;text-align:right;border-top:1px solid #EFF3F0;font-weight:600;font-variant-numeric:tabular-nums}
+tbody td:first-child{text-align:center;color:var(--muted);font-weight:700}
+tbody tr:nth-child(even){background:#FAFBFA}
+.more-btn{
+  width:100%;border:0;background:var(--cat-soft);color:var(--cat);
+  font:inherit;font-size:14px;font-weight:800;padding:13px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* ===== To'lov taqsimoti grafigi (foiz/asosiy qarz) ===== */
+.paychart{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.pc-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
+.pc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pc-svg{display:block;min-width:280px}
+.pc-principal{fill:var(--cat)}
+.pc-interest{fill:var(--accent)}
+.pc-axis{font-size:9.5px;font-weight:700;fill:var(--muted)}
+.pc-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;font-size:12px;font-weight:700;color:var(--muted)}
+.pc-legend span{display:inline-flex;align-items:center;gap:6px}
+.pc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.pc-legend .lg-principal{background:var(--cat)}
+.pc-legend .lg-interest{background:var(--accent)}
+.pc-summary{margin-top:10px;font-size:13px;font-weight:700;color:var(--cat-deep);background:var(--cat-soft);border-radius:9px;padding:10px 12px;line-height:1.5}
+
+/* ===== Ssenariylarni solishtirish ===== */
+.scen-add{width:100%;margin-top:14px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scen-add:disabled{opacity:.5;cursor:default}
+.scen-add:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scen-limit-note{display:none;font-size:12px;color:var(--muted);margin-top:6px;text-align:center}
+.scen-limit-note.show{display:block}
+.scen-wrap{margin-top:26px;display:none}
+.scen-wrap.show{display:block}
+.scen-wrap h2{font-size:17px;font-weight:800;margin-bottom:12px}
+.scen-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.scen-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scen-table{border-collapse:collapse;font-size:13px;width:100%}
+.scen-table th,.scen-table td{padding:10px 13px;text-align:right;border-top:1px solid #EFF3F0;white-space:nowrap;font-weight:600}
+.scen-table thead th{border-top:0}
+.scen-table th:first-child,.scen-table td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:700;color:var(--muted)}
+.scen-table thead th{background:var(--cat-soft);color:var(--cat);font-weight:800;font-size:11.5px;text-transform:uppercase}
+.scen-table thead th:first-child{background:var(--cat-soft)}
+.scen-lbl{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.scen-del{border:0;background:#FBEAE8;color:#B3261E;width:20px;height:20px;border-radius:50%;font-size:13px;line-height:1;cursor:pointer;flex:none;-webkit-tap-highlight-color:transparent}
+.scen-best{color:#1E6B45!important;font-weight:800}
+.scen-best::after{content:" ✓"}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Ipoteka yoki ijara — qaysi biri foydali?">
+<meta property="og:description" content="Uy narxi, ipoteka shartlari va ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring. Bepul, onlayn.">
+<meta property="og:url" content="https://kalki.uz/ipoteka-yoki-ijara-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/ipoteka-yoki-ijara-kalkulyator.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ipoteka yoki ijara — qaysi biri foydali?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/ipoteka-yoki-ijara-kalkulyator.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Ipoteka yoki ijara — qaysi biri foydali?">
+<meta name="twitter:description" content="Uy narxi, ipoteka shartlari va ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring. Bepul, onlayn.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Ipoteka yoki ijara — qaysi biri foydali? Uy narxi, ipoteka shartlari va hozirgi ijara narxini kiriting — uch stsenariyda (ehtiyotkor/asosiy/optimistik) qaysi biri uzoq muddatda foydaliroq ekanini ko'rasiz.","sources":[]},"ru":{"text":"Ипотека или аренда — что выгоднее? Введите цену жилья, условия ипотеки и текущую аренду — в трёх сценариях (осторожном/базовом/оптимистичном) увидите, что выгоднее в долгосрочной перспективе.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="taxminconst-data">{"ijara_osishi_yillik":{"id":"ijara_osishi_yillik","sahifa":"ipoteka-yoki-ijara-kalkulyator","tur":"taxmin","izoh":"Ijara narxining yillik o'sish taxmini. FORMAT: 0-1 oralig'idagi ulush (masalan 0.05 = 5%), 0-100 emas.","standart_taxmin":0.05,"izoh_uz":"Bu — TAXMIN, fakt emas. Markaziy bankning o'rta muddatli inflyatsiya maqsadi (5%, 2027-yil ikkinchi yarmigacha erishish rejalashtirilgan) asos qilib olindi — ijara narxi uzoq muddatda umumiy narxlar bilan birga o'sadi degan taxminga tayanadi. 2026-yil uchun MBning o'zi qisqa muddatli prognozi 6,5% edi (yanvar 2026). Foydalanuvchi bu qiymatni albatta o'zgartirishi mumkin va kerak.","izoh_ru":"Это ПРЕДПОЛОЖЕНИЕ, не факт. За основу взята среднесрочная цель ЦБ по инфляции (5%, планируется достичь ко второй половине 2027 года) — рост арендной платы предположительно следует за общей инфляцией. Краткосрочный прогноз ЦБ на 2026 год составлял 6,5% (январь 2026). Пользователь обязательно может и должен изменить это значение.","manba_url":"https://cbu.uz/uz/monetary-policy/publications/press-releases/2950143/","manba_nomi":"MB o'rta muddatli inflyatsiya maqsadi (5%) — Pul-kredit siyosati asosiy yo'nalishlari, 2026","sana":"2026-09"},"uy_narxi_osishi_yillik":{"id":"uy_narxi_osishi_yillik","sahifa":"ipoteka-yoki-ijara-kalkulyator","tur":"taxmin","izoh":"Ko'chmas mulk narxining yillik o'sish taxmini (konservativ stsenariy). FORMAT: 0-1 oralig'idagi ulush.","standart_taxmin":0.05,"izoh_uz":"Bu — TAXMIN, fakt emas. Ko'chmas mulk narxi uchun O'zbekistonda alohida rasmiy indeks/statistika topilmadi (Markaziy bank bu ko'rsatkichni yuritmaydi). Konservativ taxmin sifatida umumiy inflyatsiya darajasi (5%) bilan tenglashtirildi — ya'ni uy narxi 'real' o'smaydi, faqat umumiy narxlar bilan barobar boradi, deb faraz qilinadi. Bu eng past (konservativ) stsenariy uchun mo'ljallangan — real bozorda ko'p yillar bu ko'rsatkichdan yuqori yoki past bo'lishi mumkin.","izoh_ru":"Это ПРЕДПОЛОЖЕНИЕ, не факт. Отдельного официального индекса цен на недвижимость в Узбекистане не найдено (Центральный банк такой показатель не ведёт). В качестве консервативного допущения приравнено к общему уровню инфляции (5%) — то есть предполагается, что недвижимость не дорожает в реальном выражении. Это самый осторожный сценарий — на практике рынок может отклоняться в любую сторону.","manba_url":null,"manba_nomi":"Rasmiy indeks topilmadi — konservativ taxmin sifatida inflyatsiya maqsadiga tenglashtirildi","sana":"2026-09"},"jamgarma_daromad_yillik":{"id":"jamgarma_daromad_yillik","sahifa":"ipoteka-yoki-ijara-kalkulyator","tur":"taxmin","izoh":"Boshlang'ich to'lov summasi omonatda saqlansa, undan olinadigan yillik daromad taxmini. FORMAT: 0-1 oralig'idagi ulush.","standart_taxmin":0.199,"izoh_uz":"Bu — TAXMIN, fakt emas. Markaziy bankning rasmiy statistikasiga ko'ra, jismoniy shaxslarning milliy valyutadagi muddatli omonatlari bo'yicha o'rtacha stavka 2026-yil aprel holatiga 19,9% ni tashkil etgan. Bu ko'rsatkich oydan-oyga o'zgarib turadi (2026-yilda 19,9%–22,1% oralig'ida bo'lgan) — foydalanuvchi o'zining aniq bank shartlariga qarab o'zgartirishi kerak.","izoh_ru":"Это ПРЕДПОЛОЖЕНИЕ, не факт. По официальной статистике Центрального банка, средняя ставка по срочным вкладам физических лиц в национальной валюте на апрель 2026 года составила 19,9%. Этот показатель меняется от месяца к месяцу (в 2026 году был в диапазоне 19,9–22,1%) — пользователю следует скорректировать значение под условия своего банка.","manba_url":"https://cbu.uz/uz/statistics/rates/","manba_nomi":"MB rasmiy statistikasi — jismoniy shaxslar muddatli depozitlari o'rtacha stavkasi, 2026-yil aprel","sana":"2026-09"}}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ipoteka yoki ijara solishtiruvi qanday ishlaydi?","acceptedAnswer":{"@type":"Answer","text":"Kalkulyator uy narxi, ipoteka shartlari va hozirgi ijara narxingiz asosida oyma-oy simulyatsiya qiladi: ipoteka olsangiz uy qiymati va qarz qoldig'i qanday o'zgarishini, ijarada qolib bo'sh pulni jamg'armaga qo'ysangiz jamg'armangiz qanday o'sishini hisoblaydi. Natija uch stsenariyda (ehtiyotkor/asosiy/optimistik) ko'rsatiladi."}},{"@type":"Question","name":"Qaysi taxminlarni o'zgartirish mumkin?","acceptedAnswer":{"@type":"Answer","text":"\"Taxminlarni o'zgartirish\" bo'limida uch ko'rsatkichni sozlashingiz mumkin: ijara narxining yillik o'sishi, uy narxining yillik o'sishi va jamg'arma/omonat yillik daromadi. Har birining yonida qaysi manbaga asoslangani va nima uchun taxmin ekani yozilgan."}},{"@type":"Question","name":"Nega javob \"har doim ipoteka foydali\" yoki \"har doim ijara foydali\" emas?","acceptedAnswer":{"@type":"Answer","text":"Chunki natija to'liq sizning kiritgan taxminlaringizga bog'liq — uy narxi qanchalik tez o'sishi, omonat qancha daromad berishi hech kim aniq bilmaydi. Shuning uchun kalkulyator shartli javob beradi: \"sizning taxminlaringizga ko'ra\" qaysi biri foydaliroq ekanini ko'rsatadi, kafolat bermaydi."}},{"@type":"Question","name":"Nega O'zbekistonda ko'chmas mulk narxi bo'yicha rasmiy indeks yo'q?","acceptedAnswer":{"@type":"Answer","text":"Markaziy bank inflyatsiya va bank stavkalarini kuzatadi, lekin ko'chmas mulk narxining alohida rasmiy statistikasini/indeksini yuritmaydi. Shuning uchun \"uy narxi o'sishi\" taxmini konservativ tarzda umumiy inflyatsiya darajasiga tenglashtirilgan — bu aniq bashorat emas, faqat boshlang'ich nuqta."}},{"@type":"Question","name":"Kesishish nuqtasi (crossover) nima?","acceptedAnswer":{"@type":"Answer","text":"Bu — vaqt o'tishi bilan ipotekaning sof qiymati (uy narxi minus qarz qoldig'i) ijaraning sof qiymatidan (jamg'arma) katta bo'lib qoladigan oy. Ba'zi stsenariylarda bu ko'rsatilgan muddat ichida umuman yuz bermasligi mumkin — kalkulyator buni ham ochiq ko'rsatadi, soxta kesishish nuqtasi o'ylab topmaydi."}},{"@type":"Question","name":"Qanday xarajatlar hisobga OLINMAGAN?","acceptedAnswer":{"@type":"Answer","text":"Soliqlar (mulk solig'i, sotishda soliq), ta'mirlash va kommunal xarajatlar farqi, notarial va ro'yxatdan o'tkazish xarajatlari, sug'urta, brokerlik komissiyasi — bularning hech biri hisobga olinmagan. Bular real hayotda natijaga sezilarli ta'sir qilishi mumkin."}},{"@type":"Question","name":"Bu hisob mutaxassis maslahatini almashtiradimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. Bu — faqat taxminiy simulyatsiya, moliyaviy yoki huquqiy maslahat emas. Katta miqdordagi qarorlar (uy sotib olish yoki ijarada qolish) oldidan albatta mustaqil moliyaviy maslahatchi yoki bank mutaxassisi bilan gaplashing."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Moliya","item":"https://kalki.uz/#cat-moliya"},{"@type":"ListItem","position":3,"name":"Ipoteka yoki ijara — qaysi biri foydali?","item":"https://kalki.uz/ipoteka-yoki-ijara-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Ipoteka yoki ijara — qaysi biri foydali?","description":"Uy narxi, ipoteka shartlari va ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring. Bepul, onlayn.","url":"https://kalki.uz/ipoteka-yoki-ijara-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/ipoteka-yoki-ijara-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/ipoteka-yoki-ijara-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/ipoteka-yoki-ijara-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="moliya">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" class="tm-on" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    
+    <span class="cat-badge" data-i="cat">Moliya</span>
+    <h1 data-i="h1">Ipoteka yoki ijara — qaysi biri foydali?</h1>
+    <p class="sub" data-i="sub">Uy narxi, ipoteka shartlari va hozirgi ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-moliya">Moliya</a><span class="sep">›</span><span class="cur">Ipoteka yoki ijara — qaysi biri foydali?</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Ipoteka yoki ijara — qaysi biri foydali? Uy narxi, ipoteka shartlari va hozirgi ijara narxini kiriting — uch stsenariyda (ehtiyotkor/asosiy/optimistik) qaysi biri uzoq muddatda foydaliroq ekanini ko'rasiz.</p></div>
+  <section class="form-card">
+    <div class="field">
+      <label for="price" data-i="lPrice">Uy narxi</label>
+      <div class="input-shell">
+        <input type="text" id="price" inputmode="numeric" value="400 000 000" autocomplete="off">
+        <span class="unit" data-i="uSum">so'm</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="down" data-i="lDown">Boshlang'ich to'lov</label>
+      <div class="input-shell">
+        <input type="text" id="down" inputmode="decimal" value="25" autocomplete="off">
+        <span class="unit" data-i="uPct">%</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="rate" data-i="lRate">Ipoteka stavkasi (yillik)</label>
+      <div class="input-shell">
+        <input type="text" id="rate" inputmode="decimal" value="17" autocomplete="off">
+        <span class="unit" data-i="uRate">% yillik</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="term" data-i="lTerm">Muddat</label>
+      <div class="input-shell">
+        <input type="text" id="term" inputmode="decimal" value="15" autocomplete="off">
+        <span class="unit" data-i="uYearShort">yil</span>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="rent" data-i="lRent">Hozirgi ijara narxi (oyiga)</label>
+      <div class="input-shell">
+        <input type="text" id="rent" inputmode="numeric" value="2 500 000" autocomplete="off">
+        <span class="unit" data-i="uSum">so'm</span>
+      </div>
+    </div>
+    <details class="acc" id="accAdv">
+      <summary data-i="advTitle">Taxminlarni o'zgartirish (o'sish, daromad)</summary>
+      <div class="acc-body">
+        <div class="field">
+          <label for="rentGrowth" data-i="lRentGrowth">Ijara narxi yillik o'sishi</label>
+          <div class="input-shell">
+            <input type="text" id="rentGrowth" inputmode="decimal" value="5" autocomplete="off">
+            <span class="unit" data-i="uPct">%</span>
+          </div>
+          <p class="assume-hint" data-i="hRentGrowth">Bu — taxmin, fakt emas. Markaziy bankning o'rta muddatli inflyatsiya maqsadi (5%) asos qilindi. O'zgartirishingiz mumkin va kerak.</p>
+        </div>
+        <div class="field">
+          <label for="homeGrowth" data-i="lHomeGrowth">Uy narxi yillik o'sishi</label>
+          <div class="input-shell">
+            <input type="text" id="homeGrowth" inputmode="decimal" value="5" autocomplete="off">
+            <span class="unit" data-i="uPct">%</span>
+          </div>
+          <p class="assume-hint" data-i="hHomeGrowth">Bu — taxmin, fakt emas. O'zbekistonda ko'chmas mulk narxi uchun rasmiy indeks yo'q — bu qiymat konservativ taxmin sifatida umumiy inflyatsiya darajasiga tenglashtirildi. Real bozor yuqori yoki past bo'lishi mumkin.</p>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label for="savingsReturn" data-i="lSavingsReturn">Jamg'arma/omonat yillik daromadi</label>
+          <div class="input-shell">
+            <input type="text" id="savingsReturn" inputmode="decimal" value="19.9" autocomplete="off">
+            <span class="unit" data-i="uPct">%</span>
+          </div>
+          <p class="assume-hint" data-i="hSavingsReturn">Bu — taxmin, fakt emas. MB rasmiy statistikasiga ko'ra o'rtacha muddatli omonat stavkasi (2026-yil aprel, 19,9%) asos qilindi — oyma-oy o'zgaradi, o'z bankingiz shartiga moslang.</p>
+        </div>
+      </div>
+    </details>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
+  </section>
+
+  <section class="receipt show" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">−2 124 504 930 so'm</div>
+        <div class="lbl" id="mainLbl" data-i="lblMain">Ijara + jamg'arma bunchaga foydaliroq (asosiy stsenariy)</div>
+      </div>
+      <div id="cashNote" class="zero-note" data-i="cashNote" style="display:none">Boshlang'ich to'lov uy narxiga teng yoki undan katta — bu holda ipoteka kerak emas, siz uyni butunlay naqd sotib olasiz. Jadval va grafikda "ipoteka" ustuni shunchaki naqd xarid stsenariysini bildiradi (kredit foizi yo'q).</div>
+      <div class="scen-shell">
+        <table class="scen-table">
+          <thead><tr><th data-i="colMetric">Ko'rsatkich</th><th data-i="colCons">Ehtiyotkor</th><th class="base-col" data-i="colBase">Asosiy</th><th data-i="colOpt">Optimistik</th></tr></thead>
+          <tbody>
+            <tr><td data-i="rowRentPaid">Ijarada jami to'lov</td><td id="rentPaidCons">725 465 080 so'm</td><td id="rentPaidBase">647 356 908 so'm</td><td id="rentPaidOpt">578 870 426 so'm</td></tr>
+            <tr><td data-i="rowMortPaid">Ipotekada jami to'lov</td><td id="mortPaidCons">931 062 316 so'm</td><td id="mortPaidBase">931 062 316 so'm</td><td id="mortPaidOpt">931 062 316 so'm</td></tr>
+            <tr><td data-i="rowHomeNet">Ipotekada uy qiymati (qarzdan keyin)</td><td id="homeNetCons">670 139 532 so'm</td><td id="homeNetBase">831 571 272 so'm</td><td id="homeNetOpt">1 028 736 403 so'm</td></tr>
+            <tr><td data-i="rowSavings">Ijarada natijada jamg'arma</td><td id="savingsCons">5 505 412 477 so'm</td><td id="savingsBase">2 956 076 202 so'm</td><td id="savingsOpt">1 623 875 462 so'm</td></tr>
+            <tr class="net-row"><td data-i="rowNet">Sof farq (ipoteka − ijara)</td><td id="netCons">−4 835 272 944 so'm</td><td id="netBase">−2 124 504 930 so'm</td><td id="netOpt">−595 139 060 so'm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cross-note" id="crossNote">Ko'rsatilgan 15 yillik muddat ichida, taxminlaringizga ko'ra, ipoteka ijara+jamg'armani sof qiymat bo'yicha o'zib keta olmaydi.</div>
+      <div class="chart-wrap">
+        <div class="chart-head" data-i="chartHead">Uy qiymati vs jamg'arma — asosiy stsenariy</div>
+        <div class="pc-scroll"><svg id="lineChart" class="pc-svg" viewBox="0 0 320 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ipoteka va ijara solishtiruv grafigi"><line x1="40" y1="148.0" x2="310" y2="148.0" stroke="#DDE5E0" stroke-width="1"></line><text x="40.0" y="164" class="pc-axis" text-anchor="middle">0</text><text x="94.0" y="164" class="pc-axis" text-anchor="middle">3</text><text x="148.0" y="164" class="pc-axis" text-anchor="middle">6</text><text x="202.0" y="164" class="pc-axis" text-anchor="middle">9</text><text x="256.0" y="164" class="pc-axis" text-anchor="middle">12</text><text x="310.0" y="164" class="pc-axis" text-anchor="middle">15</text><path d="M40.0,143.4 L46.0,143.0 L52.0,142.6 L58.0,142.3 L64.0,141.9 L70.0,141.5 L76.0,141.0 L82.0,140.6 L88.0,140.2 L94.0,139.7 L100.0,139.2 L106.0,138.8 L112.0,138.3 L118.0,137.8 L124.0,137.3 L130.0,136.7 L136.0,136.2 L142.0,135.6 L148.0,135.1 L154.0,134.5 L160.0,133.8 L166.0,133.2 L172.0,132.6 L178.0,131.9 L184.0,131.2 L190.0,130.5 L196.0,129.8 L202.0,129.0 L208.0,128.2 L214.0,127.4 L220.0,126.6 L226.0,125.7 L232.0,124.8 L238.0,123.9 L244.0,122.9 L250.0,121.9 L256.0,120.9 L262.0,119.8 L268.0,118.7 L274.0,117.6 L280.0,116.4 L286.0,115.2 L292.0,113.9 L298.0,112.6 L304.0,111.2 L310.0,109.7" fill="none" stroke="var(--cat)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path><path d="M40.0,143.4 L46.0,142.7 L52.0,142.0 L58.0,141.2 L64.0,140.4 L70.0,139.6 L76.0,138.7 L82.0,137.7 L88.0,136.7 L94.0,135.7 L100.0,134.6 L106.0,133.4 L112.0,132.2 L118.0,130.9 L124.0,129.6 L130.0,128.1 L136.0,126.6 L142.0,125.0 L148.0,123.3 L154.0,121.5 L160.0,119.6 L166.0,117.6 L172.0,115.5 L178.0,113.3 L184.0,110.9 L190.0,108.4 L196.0,105.8 L202.0,103.0 L208.0,100.0 L214.0,96.9 L220.0,93.6 L226.0,90.1 L232.0,86.4 L238.0,82.4 L244.0,78.3 L250.0,73.9 L256.0,69.2 L262.0,64.2 L268.0,59.0 L274.0,53.4 L280.0,47.5 L286.0,41.2 L292.0,34.6 L298.0,27.5 L304.0,20.0 L310.0,12.0" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path></svg></div>
+        <div class="chart-legend">
+          <span><i style="background:var(--cat)"></i><span data-i="legMortgage">Ipoteka (uy qiymati − qarz qoldig'i)</span></span>
+          <span><i style="background:var(--accent)"></i><span data-i="legRent">Ijara (jamg'arma)</span></span>
+        </div>
+      </div>
+      <div class="honesty" data-i-html="honesty"><b>Muhim:</b> bu — sizning kiritgan taxminlaringizga asoslangan simulyatsiya, kafolatlangan prognoz emas. O'zbekistonda ko'chmas mulk narxi bo'yicha rasmiy indeks yo'q. Real bozor sharoiti sezilarli farq qilishi mumkin. Hisobga soliqlar, ta'mirlash va bitim xarajatlari (notarial, ro'yxatdan o'tkazish, brokerlik) KIRITILMAGAN. Qaror qabul qilishdan oldin mutaxassis bilan maslahatlashing.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
+      <button type="button" class="pdfbtn">PDF</button><button type="button" class="csvbtn">Excel (CSV)</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+
+  <div id="partners-slot" data-nosnippet="" data-prerender="skip" hidden=""></div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Telegram’ga yozish</a></div>
+<section class="seo" id="seoBlock"><h2>Ipoteka yoki ijara solishtiruvi qanday ishlaydi?</h2><p>Kalkulyator uy narxi, ipoteka shartlari va hozirgi ijara narxingiz asosida oyma-oy simulyatsiya qiladi: ipoteka olsangiz uy qiymati va qarz qoldig'i qanday o'zgarishini, ijarada qolib bo'sh pulni jamg'armaga qo'ysangiz jamg'armangiz qanday o'sishini hisoblaydi. Natija uch stsenariyda (ehtiyotkor/asosiy/optimistik) ko'rsatiladi.</p><h2>Qaysi taxminlarni o'zgartirish mumkin?</h2><p>"Taxminlarni o'zgartirish" bo'limida uch ko'rsatkichni sozlashingiz mumkin: ijara narxining yillik o'sishi, uy narxining yillik o'sishi va jamg'arma/omonat yillik daromadi. Har birining yonida qaysi manbaga asoslangani va nima uchun taxmin ekani yozilgan.</p><h2>Nega javob "har doim ipoteka foydali" yoki "har doim ijara foydali" emas?</h2><p>Chunki natija to'liq sizning kiritgan taxminlaringizga bog'liq — uy narxi qanchalik tez o'sishi, omonat qancha daromad berishi hech kim aniq bilmaydi. Shuning uchun kalkulyator shartli javob beradi: "sizning taxminlaringizga ko'ra" qaysi biri foydaliroq ekanini ko'rsatadi, kafolat bermaydi.</p><h2>Nega O'zbekistonda ko'chmas mulk narxi bo'yicha rasmiy indeks yo'q?</h2><p>Markaziy bank inflyatsiya va bank stavkalarini kuzatadi, lekin ko'chmas mulk narxining alohida rasmiy statistikasini/indeksini yuritmaydi. Shuning uchun "uy narxi o'sishi" taxmini konservativ tarzda umumiy inflyatsiya darajasiga tenglashtirilgan — bu aniq bashorat emas, faqat boshlang'ich nuqta.</p><h2>Kesishish nuqtasi (crossover) nima?</h2><p>Bu — vaqt o'tishi bilan ipotekaning sof qiymati (uy narxi minus qarz qoldig'i) ijaraning sof qiymatidan (jamg'arma) katta bo'lib qoladigan oy. Ba'zi stsenariylarda bu ko'rsatilgan muddat ichida umuman yuz bermasligi mumkin — kalkulyator buni ham ochiq ko'rsatadi, soxta kesishish nuqtasi o'ylab topmaydi.</p><h2>Qanday xarajatlar hisobga OLINMAGAN?</h2><p>Soliqlar (mulk solig'i, sotishda soliq), ta'mirlash va kommunal xarajatlar farqi, notarial va ro'yxatdan o'tkazish xarajatlari, sug'urta, brokerlik komissiyasi — bularning hech biri hisobga olinmagan. Bular real hayotda natijaga sezilarli ta'sir qilishi mumkin.</p><h2>Bu hisob mutaxassis maslahatini almashtiradimi?</h2><p>Yo'q. Bu — faqat taxminiy simulyatsiya, moliyaviy yoki huquqiy maslahat emas. Katta miqdordagi qarorlar (uy sotib olish yoki ijarada qolish) oldidan albatta mustaqil moliyaviy maslahatchi yoki bank mutaxassisi bilan gaplashing.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">QQS 2026: qanday hisoblanadi va kim to'laydi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="ipoteka-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ipoteka to'lovi" data-rel-ru="Ипотечный платёж">Ipoteka to'lovi</span></a><a href="omonat-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Omonat" data-rel-ru="Депозит">Omonat</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Ish haqi</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Oilaviy byudjet</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hisob-kitob ma'lumot uchun. Aniq shartlarni bankdan/moliyaviy maslahatchidan oling.</footer></main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Moliya",
+      h1:"Ipoteka yoki ijara — qaysi biri foydali?",
+      sub:"Uy narxi, ipoteka shartlari va hozirgi ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring.",
+      lPrice:"Uy narxi",uSum:"so'm",uPct:"%",
+      lDown:"Boshlang'ich to'lov",
+      lRate:"Ipoteka stavkasi (yillik)",uRate:"% yillik",
+      lTerm:"Muddat",uYearShort:"yil",
+      lRent:"Hozirgi ijara narxi (oyiga)",
+      advTitle:"Taxminlarni o'zgartirish (o'sish, daromad)",
+      lRentGrowth:"Ijara narxi yillik o'sishi",
+      hRentGrowth:"Bu — taxmin, fakt emas. Markaziy bankning o'rta muddatli inflyatsiya maqsadi (5%) asos qilindi. O'zgartirishingiz mumkin va kerak.",
+      lHomeGrowth:"Uy narxi yillik o'sishi",
+      hHomeGrowth:"Bu — taxmin, fakt emas. O'zbekistonda ko'chmas mulk narxi uchun rasmiy indeks yo'q — bu qiymat konservativ taxmin sifatida umumiy inflyatsiya darajasiga tenglashtirildi. Real bozor yuqori yoki past bo'lishi mumkin.",
+      lSavingsReturn:"Jamg'arma/omonat yillik daromadi",
+      hSavingsReturn:"Bu — taxmin, fakt emas. MB rasmiy statistikasiga ko'ra o'rtacha muddatli omonat stavkasi (2026-yil aprel, 19,9%) asos qilindi — oyma-oy o'zgaradi, o'z bankingiz shartiga moslang.",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Asosiy stsenariyda farq",
+      lblMainMortgage:"Ipoteka bunchaga foydaliroq (asosiy stsenariy)",
+      lblMainRent:"Ijara + jamg'arma bunchaga foydaliroq (asosiy stsenariy)",
+      lblMainCash:"Naqd xarid — ipoteka kerak emas",
+      cashNote:"Boshlang'ich to'lov uy narxiga teng yoki undan katta — bu holda ipoteka kerak emas, siz uyni butunlay naqd sotib olasiz. Jadval va grafikda \"ipoteka\" ustuni shunchaki naqd xarid stsenariysini bildiradi (kredit foizi yo'q).",
+      colMetric:"Ko'rsatkich",colCons:"Ehtiyotkor",colBase:"Asosiy",colOpt:"Optimistik",
+      rowRentPaid:"Ijarada jami to'lov",rowMortPaid:"Ipotekada jami to'lov",
+      rowHomeNet:"Ipotekada uy qiymati (qarzdan keyin)",rowSavings:"Ijarada natijada jamg'arma",
+      rowNet:"Sof farq (ipoteka − ijara)",
+      chartHead:"Uy qiymati vs jamg'arma — asosiy stsenariy",
+      legMortgage:"Ipoteka (uy qiymati − qarz qoldig'i)",legRent:"Ijara (jamg'arma)",
+      crossYes:"Sizning taxminlaringizga ko'ra, {n}-yildan (~{m}-oy) boshlab ipoteka sof qiymat bo'yicha ijara+jamg'armadan foydaliroq bo'ladi.",
+      crossNo:"Ko'rsatilgan {y} yillik muddat ichida, taxminlaringizga ko'ra, ipoteka ijara+jamg'armani sof qiymat bo'yicha o'zib keta olmaydi.",
+      crossCash:"Bu — naqd xarid stsenariysi, qarz yo'q, shuning uchun kesishish nuqtasi hisoblanmaydi.",
+      honesty:"<b>Muhim:</b> bu — sizning kiritgan taxminlaringizga asoslangan simulyatsiya, kafolatlangan prognoz emas. O'zbekistonda ko'chmas mulk narxi bo'yicha rasmiy indeks yo'q. Real bozor sharoiti sezilarli farq qilishi mumkin. Hisobga soliqlar, ta'mirlash va bitim xarajatlari (notarial, ro'yxatdan o'tkazish, brokerlik) KIRITILMAGAN. Qaror qabul qilishdan oldin mutaxassis bilan maslahatlashing.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      csvBtn:"Excel (CSV)",
+      csvKPrice:"Uy narxi",csvKDown:"Boshlang'ich to'lov (%)",csvKRate:"Ipoteka stavkasi (% yillik)",
+      csvKTerm:"Muddat (yil)",csvKRent:"Hozirgi ijara (oyiga)",
+      csvKRentGrowth:"Ijara o'sishi (% yillik)",csvKHomeGrowth:"Uy narxi o'sishi (% yillik)",csvKSavingsReturn:"Jamg'arma daromadi (% yillik)",
+      csvKScenario:"Stsenariy",csvKRentPaid:"Ijarada jami to'lov",csvKMortPaid:"Ipotekada jami to'lov",
+      csvKHomeNet:"Uy qiymati (qarzdan keyin)",csvKSavings:"Jamg'arma",csvKNet:"Sof farq",
+      shareTitle:"Ipoteka yoki ijara hisobi",
+      foot:"Hisob-kitob ma'lumot uchun. Aniq shartlarni bankdan/moliyaviy maslahatchidan oling.",
+      seo:'<h2>Ipoteka yoki ijara solishtiruvi qanday ishlaydi?</h2><p>Kalkulyator uy narxi, ipoteka shartlari va hozirgi ijara narxingiz asosida oyma-oy simulyatsiya qiladi: ipoteka olsangiz uy qiymati va qarz qoldig\'i qanday o\'zgarishini, ijarada qolib bo\'sh pulni jamg\'armaga qo\'ysangiz jamg\'armangiz qanday o\'sishini hisoblaydi. Natija uch stsenariyda (ehtiyotkor/asosiy/optimistik) ko\'rsatiladi.</p><h2>Qaysi taxminlarni o\'zgartirish mumkin?</h2><p>"Taxminlarni o\'zgartirish" bo\'limida uch ko\'rsatkichni sozlashingiz mumkin: ijara narxining yillik o\'sishi, uy narxining yillik o\'sishi va jamg\'arma/omonat yillik daromadi. Har birining yonida qaysi manbaga asoslangani va nima uchun taxmin ekani yozilgan.</p><h2>Nega javob "har doim ipoteka foydali" yoki "har doim ijara foydali" emas?</h2><p>Chunki natija to\'liq sizning kiritgan taxminlaringizga bog\'liq — uy narxi qanchalik tez o\'sishi, omonat qancha daromad berishi hech kim aniq bilmaydi. Shuning uchun kalkulyator shartli javob beradi: "sizning taxminlaringizga ko\'ra" qaysi biri foydaliroq ekanini ko\'rsatadi, kafolat bermaydi.</p><h2>Nega O\'zbekistonda ko\'chmas mulk narxi bo\'yicha rasmiy indeks yo\'q?</h2><p>Markaziy bank inflyatsiya va bank stavkalarini kuzatadi, lekin ko\'chmas mulk narxining alohida rasmiy statistikasini/indeksini yuritmaydi. Shuning uchun "uy narxi o\'sishi" taxmini konservativ tarzda umumiy inflyatsiya darajasiga tenglashtirilgan — bu aniq bashorat emas, faqat boshlang\'ich nuqta.</p><h2>Kesishish nuqtasi (crossover) nima?</h2><p>Bu — vaqt o\'tishi bilan ipotekaning sof qiymati (uy narxi minus qarz qoldig\'i) ijaraning sof qiymatidan (jamg\'arma) katta bo\'lib qoladigan oy. Ba\'zi stsenariylarda bu ko\'rsatilgan muddat ichida umuman yuz bermasligi mumkin — kalkulyator buni ham ochiq ko\'rsatadi, soxta kesishish nuqtasi o\'ylab topmaydi.</p><h2>Qanday xarajatlar hisobga OLINMAGAN?</h2><p>Soliqlar (mulk solig\'i, sotishda soliq), ta\'mirlash va kommunal xarajatlar farqi, notarial va ro\'yxatdan o\'tkazish xarajatlari, sug\'urta, brokerlik komissiyasi — bularning hech biri hisobga olinmagan. Bular real hayotda natijaga sezilarli ta\'sir qilishi mumkin.</p><h2>Bu hisob mutaxassis maslahatini almashtiradimi?</h2><p>Yo\'q. Bu — faqat taxminiy simulyatsiya, moliyaviy yoki huquqiy maslahat emas. Katta miqdordagi qarorlar (uy sotib olish yoki ijarada qolish) oldidan albatta mustaqil moliyaviy maslahatchi yoki bank mutaxassisi bilan gaplashing.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Финансы",
+      h1:"Ипотека или аренда — что выгоднее?",
+      sub:"Введите цену жилья, условия ипотеки и текущую аренду — узнайте в трёх сценариях, что выгоднее в долгосрочной перспективе.",
+      lPrice:"Цена жилья",uSum:"сум",uPct:"%",
+      lDown:"Первоначальный взнос",
+      lRate:"Ставка по ипотеке (годовая)",uRate:"% годовых",
+      lTerm:"Срок",uYearShort:"лет",
+      lRent:"Текущая аренда (в месяц)",
+      advTitle:"Изменить предположения (рост, доходность)",
+      lRentGrowth:"Годовой рост аренды",
+      hRentGrowth:"Это — ПРЕДПОЛОЖЕНИЕ, не факт. За основу взята среднесрочная цель ЦБ по инфляции (5%). Вы можете и должны изменить это значение.",
+      lHomeGrowth:"Годовой рост цены жилья",
+      hHomeGrowth:"Это — ПРЕДПОЛОЖЕНИЕ, не факт. В Узбекистане нет официального индекса цен на недвижимость — значение приравнено к общему уровню инфляции как консервативное допущение. Реальный рынок может отклоняться в любую сторону.",
+      lSavingsReturn:"Годовая доходность вклада/накоплений",
+      hSavingsReturn:"Это — ПРЕДПОЛОЖЕНИЕ, не факт. За основу взята средняя ставка по срочным вкладам по данным ЦБ (апрель 2026, 19,9%) — меняется от месяца к месяцу, скорректируйте под условия своего банка.",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",
+      lblMain:"Разница по базовому сценарию",
+      lblMainMortgage:"Ипотека выгоднее на эту сумму (базовый сценарий)",
+      lblMainRent:"Аренда + накопления выгоднее на эту сумму (базовый сценарий)",
+      lblMainCash:"Покупка за наличные — ипотека не нужна",
+      cashNote:"Первоначальный взнос равен или превышает цену жилья — ипотека не нужна, вы покупаете жильё полностью за наличные. В таблице и на графике колонка «ипотека» означает сценарий покупки без кредита (без процентов).",
+      colMetric:"Показатель",colCons:"Осторожный",colBase:"Базовый",colOpt:"Оптимистичный",
+      rowRentPaid:"Всего заплачено за аренду",rowMortPaid:"Всего заплачено по ипотеке",
+      rowHomeNet:"Стоимость жилья по ипотеке (за вычетом долга)",rowSavings:"Накопления при аренде",
+      rowNet:"Чистая разница (ипотека − аренда)",
+      chartHead:"Стоимость жилья vs накопления — базовый сценарий",
+      legMortgage:"Ипотека (стоимость жилья − остаток долга)",legRent:"Аренда (накопления)",
+      crossYes:"По вашим предположениям, начиная примерно с {n}-го года (~{m}-й месяц), ипотека становится выгоднее аренды+накоплений по чистой стоимости.",
+      crossNo:"В пределах указанного срока ({y} лет), по вашим предположениям, ипотека не успевает обогнать аренду+накопления по чистой стоимости.",
+      crossCash:"Это сценарий покупки за наличные, долга нет, поэтому точка пересечения не рассчитывается.",
+      honesty:"<b>Важно:</b> это симуляция на основе введённых вами предположений, а не гарантированный прогноз. В Узбекистане нет официального индекса цен на недвижимость. Реальные рыночные условия могут существенно отличаться. В расчёт НЕ включены налоги, расходы на ремонт и издержки сделки (нотариус, регистрация, риелтор). Перед принятием решения проконсультируйтесь со специалистом.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      csvBtn:"Excel (CSV)",
+      csvKPrice:"Цена жилья",csvKDown:"Первоначальный взнос (%)",csvKRate:"Ставка по ипотеке (% годовых)",
+      csvKTerm:"Срок (лет)",csvKRent:"Текущая аренда (в месяц)",
+      csvKRentGrowth:"Рост аренды (% годовых)",csvKHomeGrowth:"Рост цены жилья (% годовых)",csvKSavingsReturn:"Доходность накоплений (% годовых)",
+      csvKScenario:"Сценарий",csvKRentPaid:"Всего за аренду",csvKMortPaid:"Всего по ипотеке",
+      csvKHomeNet:"Стоимость жилья (за вычетом долга)",csvKSavings:"Накопления",csvKNet:"Чистая разница",
+      shareTitle:"Расчёт ипотека или аренда",
+      foot:"Расчёт носит справочный характер. Точные условия уточняйте в банке/у финансового консультанта.",
+      seo:'<h2>Как работает сравнение ипотеки и аренды?</h2><p>Калькулятор помесячно моделирует два пути: при ипотеке — как меняется стоимость жилья и остаток долга; при аренде — как растут накопления, если разницу между платежом по ипотеке и арендой откладывать на вклад. Результат показывается в трёх сценариях (осторожном/базовом/оптимистичном).</p><h2>Какие предположения можно изменить?</h2><p>В разделе «Изменить предположения» можно настроить три параметра: годовой рост аренды, годовой рост цены жилья и годовую доходность вклада/накоплений. Рядом с каждым указано, на чём основано предположение.</p><h2>Почему ответ не «ипотека всегда выгоднее» или «аренда всегда выгоднее»?</h2><p>Потому что результат полностью зависит от введённых вами предположений — никто точно не знает, как быстро вырастет цена жилья или какую доходность даст вклад. Поэтому калькулятор даёт условный ответ: что выгоднее «по вашим предположениям», без гарантий.</p><h2>Почему в Узбекистане нет официального индекса цен на недвижимость?</h2><p>Центральный банк отслеживает инфляцию и банковские ставки, но не ведёт отдельную официальную статистику/индекс цен на недвижимость. Поэтому предположение «рост цены жилья» консервативно приравнено к общему уровню инфляции — это не точный прогноз, а лишь отправная точка.</p><h2>Что такое точка пересечения (кроссовер)?</h2><p>Это месяц, начиная с которого чистая стоимость по ипотеке (цена жилья минус остаток долга) становится больше чистой стоимости по аренде (накопления). В некоторых сценариях этого может вообще не произойти в пределах указанного срока — калькулятор честно это показывает, не придумывая пересечение.</p><h2>Какие расходы НЕ учтены?</h2><p>Налоги (на имущество, при продаже), ремонт и разница в коммунальных расходах, расходы на нотариуса и регистрацию, страхование, комиссия риелтора — ничего из этого не учтено. В реальной жизни это может существенно повлиять на результат.</p><h2>Заменяет ли этот расчёт консультацию специалиста?</h2><p>Нет. Это лишь приблизительная симуляция, а не финансовая или юридическая консультация. Перед крупным решением (покупка жилья или аренда) обязательно проконсультируйтесь с независимым финансовым консультантом или специалистом банка.</p>'
+    }
+  };
+
+  var lang=document.documentElement.lang==='ru'?'ru':'uz';
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+  var fmtSigned=function(n){return (n<0?'−':'')+fmt(Math.abs(n))};
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  function ga(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Ипотека или аренда — что выгоднее?'
+      : "Ipoteka yoki ijara — qaysi biri foydali?";
+    var metaDesc=lang==='ru'
+      ? 'Введите цену жилья, условия ипотеки и аренду — узнайте в трёх сценариях, что выгоднее в долгосрочной перспективе. Бесплатно, онлайн.'
+      : "Uy narxi, ipoteka shartlari va ijara narxini kiriting — uch stsenariyda qaysi biri uzoq muddatda foydaliroq ekanini ko'ring. Bepul, onlayn.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    var hs=document.querySelectorAll('[data-i-html]');
+    for(var j=0;j<hs.length;j++){hs[j].innerHTML=t(hs[j].getAttribute('data-i-html'))}
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(typeof showPartners==='function')showPartners();
+    (function(){
+      var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+      var _t=document.getElementById('relTitle');
+      if(_t)_t.textContent=_rt[lang]||_rt.uz;
+      var _rl=document.querySelectorAll('[data-rel-uz]');
+      var _al=document.querySelector('[data-art-uz]');
+      if(_al)_al.textContent=_al.getAttribute(lang==='ru'?'data-art-ru':'data-art-uz');
+      for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+    })();
+    if(calcData)renderResult(calcData);
+    addCsvButtons();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  ['price','rent'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+    });
+  });
+
+  var calcData=null;
+
+  /* ===== Moliyaviy model: oyma-oy simulyatsiya =====
+     Ipoteka: annuitet formula (ipoteka-kalkulyator.html'dagi kabi),
+     M = P*i*(1+i)^n/((1+i)^n-1), i===0 bo'lsa M=P/n.
+     Ijara: (ipoteka to'lovi - ijara) musbat bo'lsa jamg'armaga qo'shiladi,
+     jamg'arma o'zi ham yillik daromad bilan o'sadi. */
+  function simulate(price, downPct, rateAnnual, termYears, rent0, rentGrowth, homeGrowth, savingsReturn){
+    var down = price*downPct/100;
+    var loan = Math.max(0, price - down);
+    var i = rateAnnual/100/12;
+    var nTotal = Math.max(0, Math.round(termYears*12));
+    var M = 0;
+    if(loan>0 && nTotal>0){
+      M = i===0 ? loan/nTotal : loan*i*Math.pow(1+i,nTotal)/(Math.pow(1+i,nTotal)-1);
+    }
+    var homeGrowthMonthly = Math.pow(1+homeGrowth,1/12)-1;
+    var savingsMonthly = Math.pow(1+savingsReturn,1/12)-1;
+    var balance=loan, homeValue=price, savings=down, rent=rent0;
+    var mortgagePaidTotal=down, rentPaidTotal=0, crossMonth=null;
+    var trajectory=[{month:0,ipotekaNet:price-loan,ijaraNet:down}];
+    var step=Math.max(1,Math.round(nTotal/48)||1);
+    for(var m=1;m<=nTotal;m++){
+      homeValue*=(1+homeGrowthMonthly);
+      var interestPortion=balance*i;
+      var principalPortion=Math.min(balance,M-interestPortion);
+      balance=Math.max(0,balance-principalPortion);
+      mortgagePaidTotal+=M;
+      if(m>1 && (m-1)%12===0) rent*=(1+rentGrowth);
+      rentPaidTotal+=rent;
+      savings*=(1+savingsMonthly);
+      var diff=M-rent;
+      if(diff>0) savings+=diff;
+      var ipotekaNet=homeValue-balance, ijaraNet=savings;
+      if(crossMonth===null && ipotekaNet>ijaraNet) crossMonth=m;
+      if(m%step===0||m===nTotal) trajectory.push({month:m,ipotekaNet:ipotekaNet,ijaraNet:ijaraNet});
+    }
+    return {
+      mortgagePaidTotal:mortgagePaidTotal, rentPaidTotal:rentPaidTotal,
+      finalHomeValue:homeValue, finalSavings:savings, balance:balance,
+      homeNet:homeValue-balance,
+      netDiff:(homeValue-balance)-savings,
+      crossMonth:crossMonth, months:nTotal, trajectory:trajectory
+    };
+  }
+
+  function scenarioAssume(rentGrowthPct,homeGrowthPct,savingsPct,kind){
+    if(kind==='cons') return {rentGrowth:rentGrowthPct*1.3, homeGrowth:homeGrowthPct*0.7, savings:savingsPct*1.3};
+    if(kind==='opt')  return {rentGrowth:rentGrowthPct*0.7, homeGrowth:homeGrowthPct*1.3, savings:savingsPct*0.7};
+    return {rentGrowth:rentGrowthPct, homeGrowth:homeGrowthPct, savings:savingsPct};
+  }
+
+  function calc(){
+    var price=num($('price').value);
+    var downPct=num($('down').value);
+    var rate=num($('rate').value);
+    var term=num($('term').value);
+    var rent0=num($('rent').value);
+    var rentGrowthPct=num($('rentGrowth').value);
+    var homeGrowthPct=num($('homeGrowth').value);
+    var savingsPct=num($('savingsReturn').value);
+
+    if(!(price>0)||isNaN(downPct)||downPct<0||downPct>100||isNaN(rate)||rate<0||!(term>0)||isNaN(rent0)||rent0<0){
+      $('receipt').classList.remove('show');
+      return;
+    }
+
+    var scens={};
+    ['cons','base','opt'].forEach(function(kind){
+      var a=scenarioAssume(rentGrowthPct,homeGrowthPct,savingsPct,kind);
+      scens[kind]=simulate(price,downPct,rate,term,rent0,a.rentGrowth/100,a.homeGrowth/100,a.savings/100);
+    });
+
+    var down=price*downPct/100;
+    var isCash=down>=price;
+
+    calcData={
+      price:price,downPct:downPct,rate:rate,term:term,rent0:rent0,
+      rentGrowthPct:rentGrowthPct,homeGrowthPct:homeGrowthPct,savingsPct:savingsPct,
+      scens:scens,isCash:isCash,down:down
+    };
+    renderResult(calcData);
+    $('receipt').classList.add('show');
+    showPartners();
+    addCsvButtons();
+  }
+
+  function buildChartSvg(traj,crossMonth,months){
+    var w=320,h=170,padL=40,padR=10,padT=12,padB=22;
+    var maxY=1;
+    traj.forEach(function(p){maxY=Math.max(maxY,p.ipotekaNet,p.ijaraNet)});
+    var minY=0;
+    traj.forEach(function(p){minY=Math.min(minY,p.ipotekaNet,p.ijaraNet)});
+    var innerW=w-padL-padR, innerH=h-padT-padB;
+    var x=function(m){return padL+(months>0?innerW*(m/months):0)};
+    var y=function(v){return padT+innerH-(innerH*((v-minY)/(maxY-minY||1)))};
+    function pathFor(key){
+      return traj.map(function(p,idx){return (idx===0?'M':'L')+x(p.month).toFixed(1)+','+y(p[key]).toFixed(1)}).join(' ');
+    }
+    var svg='';
+    // gorizontal asos chizig'i (0 darajasi)
+    svg+='<line x1="'+padL+'" y1="'+y(0).toFixed(1)+'" x2="'+(w-padR)+'" y2="'+y(0).toFixed(1)+'" stroke="#DDE5E0" stroke-width="1"/>';
+    // x o'qi label'lari (yillar)
+    var yrs=Math.round(months/12);
+    var tickCount=Math.min(5,Math.max(2,yrs));
+    for(var k=0;k<=tickCount;k++){
+      var yr=Math.round(yrs*k/tickCount);
+      var mm=yr*12;
+      svg+='<text x="'+x(mm).toFixed(1)+'" y="'+(h-6)+'" class="pc-axis" text-anchor="middle">'+yr+'</text>';
+    }
+    svg+='<path d="'+pathFor('ipotekaNet')+'" fill="none" stroke="var(--cat)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';
+    svg+='<path d="'+pathFor('ijaraNet')+'" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>';
+    if(crossMonth!=null){
+      var cp=null;
+      for(var ci=0;ci<traj.length;ci++){ if(traj[ci].month>=crossMonth){cp=traj[ci];break;} }
+      if(!cp) cp=traj[traj.length-1];
+      var cx=x(cp.month), cy=y(cp.ipotekaNet);
+      svg+='<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="4" fill="var(--cat-deep)" stroke="#fff" stroke-width="1.5"/>';
+    }
+    return svg;
+  }
+
+  function scenRow(prefix,scens,fn){
+    ['cons','base','opt'].forEach(function(kind){
+      var el=$(prefix+(kind==='cons'?'Cons':kind==='base'?'Base':'Opt'));
+      if(el)el.textContent=fn(scens[kind]);
+    });
+  }
+
+  function renderResult(d){
+    var sum=' '+t('uSum');
+    var base=d.scens.base;
+
+    $('cashNote').style.display=d.isCash?'block':'none';
+
+    $('mainNum').textContent=fmtSigned(base.netDiff)+sum;
+    if(d.isCash){
+      $('mainLbl').textContent=t('lblMainCash');
+    }else if(base.netDiff>=0){
+      $('mainLbl').textContent=t('lblMainMortgage');
+    }else{
+      $('mainLbl').textContent=t('lblMainRent');
+    }
+
+    scenRow('rentPaid',d.scens,function(s){return fmt(s.rentPaidTotal)+sum});
+    scenRow('mortPaid',d.scens,function(s){return fmt(s.mortgagePaidTotal)+sum});
+    scenRow('homeNet',d.scens,function(s){return fmt(s.homeNet)+sum});
+    scenRow('savings',d.scens,function(s){return fmt(s.finalSavings)+sum});
+    scenRow('net',d.scens,function(s){return fmtSigned(s.netDiff)+sum});
+
+    var crossEl=$('crossNote');
+    if(d.isCash){
+      crossEl.textContent=t('crossCash');
+    }else if(base.crossMonth!=null){
+      var yr=Math.ceil(base.crossMonth/12);
+      crossEl.textContent=t('crossYes').replace('{n}',yr).replace('{m}',base.crossMonth);
+    }else{
+      crossEl.textContent=t('crossNo').replace('{y}',d.term);
+    }
+
+    var svgEl=$('lineChart');
+    if(svgEl) svgEl.innerHTML=buildChartSvg(base.trajectory,d.isCash?null:base.crossMonth,base.months||1);
+  }
+
+  /* Hamkor bloki FAQAT hisob bajarilgandan keyin ko'rinadi va hech qachon
+     natijadan yuqorida turmaydi — aks holda sayt reklama sahifasiga o'xshab qoladi. */
+  function showPartners(){
+    if(!window.Partners||!calcData)return;
+    window.Partners.render({
+      slot:"#partners-slot",
+      category:"ipoteka",
+      lang:lang,
+      context:{product:"ipoteka",amount:Math.max(0,calcData.price-calcData.down),term:Math.round(calcData.term*12)},
+      title:{uz:"Shunga o'xshash shartlarda ipoteka beradigan banklar",ru:"Банки с похожими условиями ипотеки"},
+      footNote:{uz:"Aniq shartlar bank saytida e'lon qilinadi va o'zgarishi mumkin.",ru:"Точные условия публикуются на сайте банка и могут измениться."},
+      richFallback:true
+    });
+  }
+
+  /* ===== Excel (CSV) eksport ===== */
+  function csvFilename(){
+    var d=new Date();
+    var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    return 'kalki-ipoteka-yoki-ijara-'+iso+'.csv';
+  }
+  function buildCsvRows(){
+    var out=[];
+    out.push([t('csvKPrice'),Math.round(calcData.price)]);
+    out.push([t('csvKDown'),calcData.downPct]);
+    out.push([t('csvKRate'),calcData.rate]);
+    out.push([t('csvKTerm'),calcData.term]);
+    out.push([t('csvKRent'),Math.round(calcData.rent0)]);
+    out.push([t('csvKRentGrowth'),calcData.rentGrowthPct]);
+    out.push([t('csvKHomeGrowth'),calcData.homeGrowthPct]);
+    out.push([t('csvKSavingsReturn'),calcData.savingsPct]);
+    out.push([]);
+    out.push([t('csvKScenario'),t('colCons'),t('colBase'),t('colOpt')]);
+    var rows=[
+      [t('csvKRentPaid'),'rentPaidTotal'],
+      [t('csvKMortPaid'),'mortgagePaidTotal'],
+      [t('csvKHomeNet'),'homeNet'],
+      [t('csvKSavings'),'finalSavings'],
+      [t('csvKNet'),'netDiff']
+    ];
+    rows.forEach(function(r){
+      out.push([r[0],Math.round(calcData.scens.cons[r[1]]),Math.round(calcData.scens.base[r[1]]),Math.round(calcData.scens.opt[r[1]])]);
+    });
+    return out;
+  }
+  function addCsvButtons(){
+    var acts=document.querySelectorAll('.receipt-actions');
+    for(var ai=0;ai<acts.length;ai++){
+      var ex=acts[ai].querySelector('.csvbtn');
+      var b=ex||document.createElement('button');
+      if(!ex){b.type='button';b.className='csvbtn';acts[ai].appendChild(b);}
+      b.textContent=t('csvBtn');
+      b.onclick=function(){
+        if(!calcData||!window.KalkiCSV)return;
+        window.KalkiCSV.download(csvFilename(),buildCsvRows());
+        ga('csv_download',{calc:'ipoteka-yoki-ijara'});
+      };
+    }
+  }
+
+  $('calcBtn').onclick=calc;
+  $('shareBtn').onclick=function(){
+    var txt=t('shareTitle')+': '+$('price').value+' '+t('uSum')+' → '+$('mainNum').textContent;
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  applyLang();
+  calc();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">6.9.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    // paychart (to'lov taqsimoti grafigi) PDF'ga KIRISHI kerak — shuning
+    // uchun bu yerda skip qilinmaydi. scen-add/scen-limit-note esa
+    // interaktiv boshqaruv (receipt-actions kabi), hisob ma'lumoti emas.
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('scen-add')>-1||cls.indexOf('scen-limit-note')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){
+            el.value=data.i[id];restored=true;
+            el.dispatchEvent(new Event('input',{bubbles:true}));
+          }
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      // Bu sahifada natija faqat "Hisoblash" tugmasi bosilganda qayta
+      // hisoblanadi (input hodisasi faqat matn formatini to'g'irlaydi).
+      // calc() shu skriptning o'z doirasida ko'rinmaydi (u boshqa IIFE
+      // ichida) — shuning uchun tugmani bevosita bosamiz, aks holda
+      // maydon to'ldiriladi-yu, natija eskirgan holda qolib ketadi.
+      if(restored){var cb=document.getElementById('calcBtn');if(cb)cb.click();}
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-inc]');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+  // Boshqa sahifadan (masalan tilxatdan) qiymat kelgan bo'lsa, "qayerdan
+  // olindi" izohi restoreFromUrl tugagach chiqarilsin.
+  setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight(['price','rent']);},220);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='moliya';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

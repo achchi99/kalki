@@ -74,6 +74,8 @@ const ASSETS = [
   '/ipoteka-2026',
   '/ipoteka-kalkulyator',
   '/ru/ipoteka-kalkulyator',
+  '/ipoteka-yoki-ijara-kalkulyator',
+  '/ru/ipoteka-yoki-ijara-kalkulyator',
   '/ishdan-boshash-arizasi-namunasi',
   '/ru/ishdan-boshash-arizasi-namunasi',
   '/ishdan-boshatish-kompensatsiyasi-kalkulyator',
