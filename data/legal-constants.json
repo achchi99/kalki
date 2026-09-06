@@ -776,6 +776,45 @@
       "holat": "TASDIQLANGAN",
       "manba_url": null,
       "manba_nomi": "Ma'muriy javobgarlik to'g'risidagi kodeks 131, 132, 136, 140-moddalar"
+    },
+    {
+      "id": "dsti_maksimal",
+      "sahifa": "kredit-limit-kalkulyator",
+      "tur": "son",
+      "izoh": "Qarz yuki ko'rsatkichi (DSTI) — barcha kredit/mikroqarz oylik to'lovlarining o'rtacha oylik daromadga nisbati. FORMAT: 0-1 oralig'idagi ulush (masalan 0.50 = 50%), 0-100 emas.",
+      "qiymat": 0.5,
+      "amal_qiladi": "2025-07-24",
+      "izoh_uz": "Bank tomonidan kredit berilishida qarz yuki ko'rsatkichi 50%dan oshmasligi lozim. Istisno: bank portfelining ko'pi bilan 15%ida DSTI 100%gacha ruxsat etiladi; yangi (6 oydan kam) o'zini band qilgan shaxslar uchun hisobga olinmasligi mumkin.",
+      "izoh_ru": "При выдаче кредита показатель долговой нагрузки не должен превышать 50%. Исключение: не более чем для 15% портфеля банка допускается ПДН до 100%; для впервые зарегистрированных (менее 6 месяцев) самозанятых показатель может не учитываться.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/-7491592",
+      "manba_nomi": "MB Boshqaruvining 08.04.2025-y. 7/3-son qarori (ro'yxat 3618, 22.04.2025), 2-bob, 1-§, 3-band"
+    },
+    {
+      "id": "qarz_daromad_nisbati_rasmiy",
+      "sahifa": "kredit-limit-kalkulyator",
+      "tur": "son",
+      "izoh": "Qarz oluvchining rasmiy hujjat bilan tasdiqlangan o'rtacha oylik daromadi asosida ruxsat etilgan maksimal umumiy qarz (barcha kredit/mikroqarz limitlari yig'indisi) — daromadning necha barobari.",
+      "qiymat": 8,
+      "amal_qiladi": "2026-03-01",
+      "izoh_uz": "Rasmiy tasdiqlangan daromad asosida umumiy qarz daromadning 8 barobaridan oshmasligi kerak. O'zini o'zi band qilgan shaxslar uchun bu qoida (244-band) qo'llanmaydi — ular alohida, doimo 8 barobar oladi (245-band).",
+      "izoh_ru": "При наличии подтверждённого официального дохода общая сумма долга не должна превышать 8-кратный размер дохода. Для самозанятых лиц это правило (п. 244) не применяется — для них отдельно всегда действует 8-кратный лимит (п. 245).",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://cbu.uz/uz/financial-stability/macroprudential-policy-tools/debt-to-income/",
+      "manba_nomi": "MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"
+    },
+    {
+      "id": "qarz_daromad_nisbati_norasmiy",
+      "sahifa": "kredit-limit-kalkulyator",
+      "tur": "son",
+      "izoh": "Qarz oluvchining o'rtacha oylik daromadini rasmiy hujjat bilan aniqlash imkoni bo'lmasa qo'llanadigan, ruxsat etilgan maksimal umumiy qarz — daromadning necha barobari.",
+      "qiymat": 5,
+      "amal_qiladi": "2026-03-01",
+      "izoh_uz": "Daromadni rasmiy hujjat bilan tasdiqlash imkoni bo'lmasa, umumiy qarz daromadning 5 barobaridan oshmasligi kerak.",
+      "izoh_ru": "Если доход нельзя подтвердить официальными документами, общая сумма долга не должна превышать 5-кратный размер дохода.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://cbu.uz/uz/financial-stability/macroprudential-policy-tools/debt-to-income/",
+      "manba_nomi": "MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"
     }
   ]
 }
