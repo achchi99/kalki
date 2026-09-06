@@ -1,0 +1,41 @@
+{
+  "_readme": "kalki.uz TAXMIN reyestri — data/legal-constants.json BILAN ALMASHTIRILMAYDI. Bu yerdagi yozuvlar QONUN EMAS, kelajak haqidagi taxmin (inflyatsiya, ko'chmas mulk narxi, bank stavkasi) — hech qachon 'TASDIQLANGAN' huquqiy holat sifatida belgilanmaydi va hech qachon o'zgarmas 'to'g'ri javob' sifatida ko'rsatilmaydi. Har yozuvda 'qiymat' o'rniga 'standart_taxmin' maydoni bor — bu ataylab boshqa nom, chunki kelajakda kimdir uni legal-constants.json'dagi kabi qonuniy norma deb aralashtirib yubormasligi kerak. Sahifada bu qiymat foydalanuvchiga ALBATTA o'zgartiriladigan boshlang'ich nuqta sifatida ko'rsatiladi, izohi bilan birga ('bu taxmin, fakt emas'). 'holat' maydoni yo'q qasddan — TASDIQLANGAN/TASDIQLASH KERAK ikkilik bu yerga tegishli emas, chunki hech qanday tekshiruv uni 'qonun' qilib qo'ymaydi. FAZA 2 (docs/kredit-limit-reja.md, 4-band) uchun 2026-09 da CBU rasmiy sahifalaridan olindi.",
+  "taxminlar": [
+    {
+      "id": "ijara_osishi_yillik",
+      "sahifa": "ipoteka-yoki-ijara-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Ijara narxining yillik o'sish taxmini. FORMAT: 0-1 oralig'idagi ulush (masalan 0.05 = 5%), 0-100 emas.",
+      "standart_taxmin": 0.05,
+      "izoh_uz": "Bu — TAXMIN, fakt emas. Markaziy bankning o'rta muddatli inflyatsiya maqsadi (5%, 2027-yil ikkinchi yarmigacha erishish rejalashtirilgan) asos qilib olindi — ijara narxi uzoq muddatda umumiy narxlar bilan birga o'sadi degan taxminga tayanadi. 2026-yil uchun MBning o'zi qisqa muddatli prognozi 6,5% edi (yanvar 2026). Foydalanuvchi bu qiymatni albatta o'zgartirishi mumkin va kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт. За основу взята среднесрочная цель ЦБ по инфляции (5%, планируется достичь ко второй половине 2027 года) — рост арендной платы предположительно следует за общей инфляцией. Краткосрочный прогноз ЦБ на 2026 год составлял 6,5% (январь 2026). Пользователь обязательно может и должен изменить это значение.",
+      "manba_url": "https://cbu.uz/uz/monetary-policy/publications/press-releases/2950143/",
+      "manba_nomi": "MB o'rta muddatli inflyatsiya maqsadi (5%) — Pul-kredit siyosati asosiy yo'nalishlari, 2026",
+      "sana": "2026-09"
+    },
+    {
+      "id": "uy_narxi_osishi_yillik",
+      "sahifa": "ipoteka-yoki-ijara-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Ko'chmas mulk narxining yillik o'sish taxmini (konservativ stsenariy). FORMAT: 0-1 oralig'idagi ulush.",
+      "standart_taxmin": 0.05,
+      "izoh_uz": "Bu — TAXMIN, fakt emas. Ko'chmas mulk narxi uchun O'zbekistonda alohida rasmiy indeks/statistika topilmadi (Markaziy bank bu ko'rsatkichni yuritmaydi). Konservativ taxmin sifatida umumiy inflyatsiya darajasi (5%) bilan tenglashtirildi — ya'ni uy narxi 'real' o'smaydi, faqat umumiy narxlar bilan barobar boradi, deb faraz qilinadi. Bu eng past (konservativ) stsenariy uchun mo'ljallangan — real bozorda ko'p yillar bu ko'rsatkichdan yuqori yoki past bo'lishi mumkin.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт. Отдельного официального индекса цен на недвижимость в Узбекистане не найдено (Центральный банк такой показатель не ведёт). В качестве консервативного допущения приравнено к общему уровню инфляции (5%) — то есть предполагается, что недвижимость не дорожает в реальном выражении. Это самый осторожный сценарий — на практике рынок может отклоняться в любую сторону.",
+      "manba_url": null,
+      "manba_nomi": "Rasmiy indeks topilmadi — konservativ taxmin sifatida inflyatsiya maqsadiga tenglashtirildi",
+      "sana": "2026-09"
+    },
+    {
+      "id": "jamgarma_daromad_yillik",
+      "sahifa": "ipoteka-yoki-ijara-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Boshlang'ich to'lov summasi omonatda saqlansa, undan olinadigan yillik daromad taxmini. FORMAT: 0-1 oralig'idagi ulush.",
+      "standart_taxmin": 0.199,
+      "izoh_uz": "Bu — TAXMIN, fakt emas. Markaziy bankning rasmiy statistikasiga ko'ra, jismoniy shaxslarning milliy valyutadagi muddatli omonatlari bo'yicha o'rtacha stavka 2026-yil aprel holatiga 19,9% ni tashkil etgan. Bu ko'rsatkich oydan-oyga o'zgarib turadi (2026-yilda 19,9%–22,1% oralig'ida bo'lgan) — foydalanuvchi o'zining aniq bank shartlariga qarab o'zgartirishi kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт. По официальной статистике Центрального банка, средняя ставка по срочным вкладам физических лиц в национальной валюте на апрель 2026 года составила 19,9%. Этот показатель меняется от месяца к месяцу (в 2026 году был в диапазоне 19,9–22,1%) — пользователю следует скорректировать значение под условия своего банка.",
+      "manba_url": "https://cbu.uz/uz/statistics/rates/",
+      "manba_nomi": "MB rasmiy statistikasi — jismoniy shaxslar muddatli depozitlari o'rtacha stavkasi, 2026-yil aprel",
+      "sana": "2026-09"
+    }
+  ]
+}
