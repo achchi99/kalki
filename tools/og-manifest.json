@@ -509,5 +509,12 @@
     "hash": "2738980db4e4",
     "tpl": 1,
     "v": 2
+  },
+  "kredit-limit-kalkulyator": {
+    "title": "Bank menga qancha kredit beradi?",
+    "cat": "moliya",
+    "hash": "5668872b94aa",
+    "tpl": 1,
+    "v": 2
   }
 }
