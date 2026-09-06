@@ -93,6 +93,8 @@ const ASSETS = [
   '/ru/konditsioner-kalkulyator',
   '/kredit-kalkulyator',
   '/ru/kredit-kalkulyator',
+  '/kredit-limit-kalkulyator',
+  '/ru/kredit-limit-kalkulyator',
   '/maktab-kalkulyator',
   '/ru/maktab-kalkulyator',
   '/marosim-kalkulyator',

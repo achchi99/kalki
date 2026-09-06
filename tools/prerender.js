@@ -88,6 +88,7 @@ function injectDateModified(doc, name) {
 const RU_PAGES = [
   'index.html',
   'kredit-kalkulyator.html',
+  'kredit-limit-kalkulyator.html',
   'ipoteka-kalkulyator.html',
   'oylik-soliq-kalkulyator.html',
   'ariza-namunasi.html',

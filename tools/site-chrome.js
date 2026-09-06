@@ -128,6 +128,7 @@ const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:12px;colo
 const XNAV_LINKS = [
   ['oila-byudjet-kalkulyator', 'Oila byudjeti / Семейный бюджет'],
   ['kredit-kalkulyator', 'Kredit / Кредит'],
+  ['kredit-limit-kalkulyator', 'Kredit limit / Кредитный лимит'],
   ['ipoteka-kalkulyator', 'Ipoteka / Ипотека'],
   ['omonat-kalkulyator', 'Omonat / Депозит'],
   ['oylik-soliq-kalkulyator', 'Ish haqi / Зарплата'],

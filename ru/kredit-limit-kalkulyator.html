@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/crosslink.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/csvexport.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<script src="/assets/partners.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Сколько кредита даст банк? — калькулятор лимита</title>
+<link rel="canonical" href="https://kalki.uz/ru/kredit-limit-kalkulyator">
+<meta name="description" content="Введите доход и текущие платежи — узнайте по нормативам ЦБ, сколько кредита банк может предложить. Бесплатно, онлайн.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== Kategoriya rang tizimi =====
+   body[data-cat] atributi sahifa kategoriyasini belgilaydi.
+   Yangi kalkulyator = shu atributni almashtirish, xolos. */
+body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
+body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+
+:root{--wrap-max:560px;
+  --paper:#F7F8F6;--card:#FFFFFF;
+  --ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh;
+}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--cat-text);
+}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{
+  border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;
+  color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;letter-spacing:.04em;
+}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.lang-seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cat-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.13);color:#fff;
+  padding:5px 11px;border-radius:99px;margin-bottom:12px;
+}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+
+.form-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 18px 22px;margin-top:-44px;
+  box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative;
+}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{
+  display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;
+  background:#FBFCFB;transition:border-color .15s;overflow:hidden;
+}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{
+  flex:1;border:0;outline:0;background:transparent;
+  font:inherit;font-size:19px;font-weight:700;color:var(--ink);
+  padding:13px 14px;min-width:0;
+}
+.unit{
+  font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;
+  border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;
+  background:#F2F5F3;
+}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{
+  flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;
+  color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;
+  transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent;
+}
+.seg button.on{background:var(--cat);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+details.acc{border:1.5px solid var(--line);border-radius:12px;margin-top:14px;background:#FBFCFB;overflow:hidden}
+details.acc[open]{background:var(--card)}
+details.acc>summary{padding:13px 14px;font-size:14px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";font-size:19px;font-weight:800;color:var(--accent)}
+details.acc[open]>summary::after{content:"−"}
+.acc-body{padding:2px 14px 15px}
+.dsti-box{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.dsti-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.dsti-pct{font-size:19px;font-weight:800}
+.dsti-badge{font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em}
+.dsti-ok{color:#1E6B45;background:#E7F3EC}
+.dsti-mid{color:#8A6D1F;background:#FBF3DD}
+.dsti-bad{color:#B3261E;background:#FBEAE8}
+.dsti-bar{height:8px;border-radius:99px;background:#EEF2EF;overflow:hidden}
+.dsti-bar i{display:block;height:100%;border-radius:99px;transition:width .3s}
+.dsti-msg{font-size:13px;color:#33403A;margin-top:10px;line-height:1.55}
+.dsti-social{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;padding:9px 11px;background:#F7F8F6;border-radius:9px}
+.limit-note{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.55}
+.limit-note b{color:var(--ink)}
+.honesty{margin-top:16px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:12.5px;color:#5A4820;line-height:1.6}
+.zero-note{margin-top:14px;background:#FBEAE8;border:1px solid #F3C9C4;border-left:4px solid #B3261E;border-radius:12px;padding:13px 15px;font-size:13px;color:#7A241D;line-height:1.6}
+.calc-btn{
+  width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;
+  font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;
+  transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent;
+}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.calc-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{
+  font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:8px;
+}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{
+  height:10px;
+  background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);
+  background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x;
+}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{
+  flex:1;border:1.5px solid var(--line);background:var(--card);
+  font:inherit;font-size:14px;font-weight:700;color:var(--cat);
+  padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.early-payoff{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.ep-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
+.ep-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.ep-row label{margin:0;font-size:13px;font-weight:700;color:var(--muted)}
+.ep-val{font-size:15px;font-weight:800;color:var(--cat);white-space:nowrap}
+input[type=range]{width:100%;height:6px;border-radius:99px;background:#EEF2EF;outline:0;-webkit-appearance:none;appearance:none;cursor:pointer;margin:6px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--cat);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);cursor:pointer}
+input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:#EEF2EF}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ep-results{margin-top:12px;background:var(--cat-soft);border-radius:10px;padding:12px 14px}
+.ep-results .hint{margin:0}
+.ep-line{font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.6}
+.ep-line.accent{color:var(--cat)}
+
+.sched{margin-top:26px;display:none}
+/* hamkor bloki — natijadan keyin, hech qachon undan yuqorida turmaydi */
+#partners-slot{margin-top:28px}
+#partners-slot[hidden]{display:none}
+.pt-h{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px;color:var(--ink)}
+.pt-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:640px){.pt-list{grid-template-columns:1fr 1fr}}
+.pt-card{display:flex;align-items:center;gap:12px;min-width:0;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
+.pt-card:hover{border-color:var(--cat);transform:translateY(-2px)}
+.pt-logo{flex:none;width:48px;height:48px;border-radius:12px;display:block}
+.pt-logo-blank{background:#EEF2EF}
+.pt-body{flex:1;min-width:0}
+.pt-name{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.pt-note{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.4}
+.pt-ad{flex:none;align-self:flex-start;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#8A6A20;background:#FBF0D8;border:1px solid #E8D3A0;border-radius:5px;padding:2px 6px}
+.pt-go{flex:none;font-size:12.5px;font-weight:800;color:var(--cat)}
+.pt-extra,.pt-disc,.pt-checked{font-size:12px;line-height:1.5;font-weight:600;color:var(--muted);margin-top:10px}
+.pt-disc{padding-top:10px;border-top:1px solid var(--line)}
+.pt-checked{margin-top:4px;color:#93A099}
+.pt-tips{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0 0 12px}
+.pt-tips li{position:relative;padding-left:18px;font-size:13.5px;line-height:1.5;color:#33403A}
+.pt-tips li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--cat)}
+.pt-tips-link{display:inline-block;font-size:13px;font-weight:800;color:var(--cat);text-decoration:none}
+.pt-tips-link:hover{text-decoration:underline}
+.pt-partner-note{margin-top:12px;font-size:11.5px;color:#93A099;font-weight:600}
+.sched.show{display:block}
+.sched h2{font-size:17px;font-weight:800;margin-bottom:12px}
+.tbl-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{
+  background:var(--cat-soft);color:var(--cat);
+  font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:10px 8px;text-align:right;
+}
+thead th:first-child{text-align:center;width:44px}
+tbody td{padding:9px 8px;text-align:right;border-top:1px solid #EFF3F0;font-weight:600;font-variant-numeric:tabular-nums}
+tbody td:first-child{text-align:center;color:var(--muted);font-weight:700}
+tbody tr:nth-child(even){background:#FAFBFA}
+.more-btn{
+  width:100%;border:0;background:var(--cat-soft);color:var(--cat);
+  font:inherit;font-size:14px;font-weight:800;padding:13px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* ===== To'lov taqsimoti grafigi (foiz/asosiy qarz) ===== */
+.paychart{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.pc-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
+.pc-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pc-svg{display:block;min-width:280px}
+.pc-principal{fill:var(--cat)}
+.pc-interest{fill:var(--accent)}
+.pc-axis{font-size:9.5px;font-weight:700;fill:var(--muted)}
+.pc-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;font-size:12px;font-weight:700;color:var(--muted)}
+.pc-legend span{display:inline-flex;align-items:center;gap:6px}
+.pc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.pc-legend .lg-principal{background:var(--cat)}
+.pc-legend .lg-interest{background:var(--accent)}
+.pc-summary{margin-top:10px;font-size:13px;font-weight:700;color:var(--cat-deep);background:var(--cat-soft);border-radius:9px;padding:10px 12px;line-height:1.5}
+
+/* ===== Ssenariylarni solishtirish ===== */
+.scen-add{width:100%;margin-top:14px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scen-add:disabled{opacity:.5;cursor:default}
+.scen-add:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.scen-limit-note{display:none;font-size:12px;color:var(--muted);margin-top:6px;text-align:center}
+.scen-limit-note.show{display:block}
+.scen-wrap{margin-top:26px;display:none}
+.scen-wrap.show{display:block}
+.scen-wrap h2{font-size:17px;font-weight:800;margin-bottom:12px}
+.scen-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.scen-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scen-table{border-collapse:collapse;font-size:13px;width:100%}
+.scen-table th,.scen-table td{padding:10px 13px;text-align:right;border-top:1px solid #EFF3F0;white-space:nowrap;font-weight:600}
+.scen-table thead th{border-top:0}
+.scen-table th:first-child,.scen-table td:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:1;font-weight:700;color:var(--muted)}
+.scen-table thead th{background:var(--cat-soft);color:var(--cat);font-weight:800;font-size:11.5px;text-transform:uppercase}
+.scen-table thead th:first-child{background:var(--cat-soft)}
+.scen-lbl{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.scen-del{border:0;background:#FBEAE8;color:#B3261E;width:20px;height:20px;border-radius:50%;font-size:13px;line-height:1;cursor:pointer;flex:none;-webkit-tap-highlight-color:transparent}
+.scen-best{color:#1E6B45!important;font-weight:800}
+.scen-best::after{content:" ✓"}
+</style>
+<link rel="manifest" href="/manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Сколько кредита даст банк? — калькулятор лимита">
+<meta property="og:description" content="Введите доход и текущие платежи — узнайте по нормативам ЦБ, сколько кредита банк может предложить. Бесплатно, онлайн.">
+<meta property="og:url" content="https://kalki.uz/ru/kredit-limit-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/kredit-limit-kalkulyator.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bank menga qancha kredit beradi?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/kredit-limit-kalkulyator.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Сколько кредита даст банк? — калькулятор лимита">
+<meta name="twitter:description" content="Введите доход и текущие платежи — узнайте по нормативам ЦБ, сколько кредита банк может предложить. Бесплатно, онлайн.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Bank menga qancha kredit beradi? Oylik daromadingiz, daromad turi va mavjud to'lovlaringizni kiriting — Markaziy bank normativlari (qarz yuki 50%, daromad nisbati 8x/5x) asosida bank taklif qilishi mumkin bo'lgan maksimal kredit summasi hisoblanadi.","sources":[]},"ru":{"text":"Сколько кредита даст банк? Введите ежемесячный доход, тип дохода и текущие платежи — рассчитаем максимальную сумму кредита по нормативам Центробанка (долговая нагрузка 50%, соотношение долг/доход 8x/5x).","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/json" id="legalconst-data">{"dsti_maksimal":{"id":"dsti_maksimal","sahifa":"kredit-limit-kalkulyator","tur":"son","izoh":"Qarz yuki ko'rsatkichi (DSTI) — barcha kredit/mikroqarz oylik to'lovlarining o'rtacha oylik daromadga nisbati. FORMAT: 0-1 oralig'idagi ulush (masalan 0.50 = 50%), 0-100 emas.","qiymat":0.5,"amal_qiladi":"2025-07-24","izoh_uz":"Bank tomonidan kredit berilishida qarz yuki ko'rsatkichi 50%dan oshmasligi lozim. Istisno: bank portfelining ko'pi bilan 15%ida DSTI 100%gacha ruxsat etiladi; yangi (6 oydan kam) o'zini band qilgan shaxslar uchun hisobga olinmasligi mumkin.","izoh_ru":"При выдаче кредита показатель долговой нагрузки не должен превышать 50%. Исключение: не более чем для 15% портфеля банка допускается ПДН до 100%; для впервые зарегистрированных (менее 6 месяцев) самозанятых показатель может не учитываться.","holat":"TASDIQLANGAN","manba_url":"https://lex.uz/docs/-7491592","manba_nomi":"MB Boshqaruvining 08.04.2025-y. 7/3-son qarori (ro'yxat 3618, 22.04.2025), 2-bob, 1-§, 3-band"},"qarz_daromad_nisbati_rasmiy":{"id":"qarz_daromad_nisbati_rasmiy","sahifa":"kredit-limit-kalkulyator","tur":"son","izoh":"Qarz oluvchining rasmiy hujjat bilan tasdiqlangan o'rtacha oylik daromadi asosida ruxsat etilgan maksimal umumiy qarz (barcha kredit/mikroqarz limitlari yig'indisi) — daromadning necha barobari.","qiymat":8,"amal_qiladi":"2026-03-01","izoh_uz":"Rasmiy tasdiqlangan daromad asosida umumiy qarz daromadning 8 barobaridan oshmasligi kerak. O'zini o'zi band qilgan shaxslar uchun bu qoida (244-band) qo'llanmaydi — ular alohida, doimo 8 barobar oladi (245-band).","izoh_ru":"При наличии подтверждённого официального дохода общая сумма долга не должна превышать 8-кратный размер дохода. Для самозанятых лиц это правило (п. 244) не применяется — для них отдельно всегда действует 8-кратный лимит (п. 245).","holat":"TASDIQLANGAN","manba_url":"https://cbu.uz/uz/financial-stability/macroprudential-policy-tools/debt-to-income/","manba_nomi":"MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"},"qarz_daromad_nisbati_norasmiy":{"id":"qarz_daromad_nisbati_norasmiy","sahifa":"kredit-limit-kalkulyator","tur":"son","izoh":"Qarz oluvchining o'rtacha oylik daromadini rasmiy hujjat bilan aniqlash imkoni bo'lmasa qo'llanadigan, ruxsat etilgan maksimal umumiy qarz — daromadning necha barobari.","qiymat":5,"amal_qiladi":"2026-03-01","izoh_uz":"Daromadni rasmiy hujjat bilan tasdiqlash imkoni bo'lmasa, umumiy qarz daromadning 5 barobaridan oshmasligi kerak.","izoh_ru":"Если доход нельзя подтвердить официальными документами, общая сумма долга не должна превышать 5-кратный размер дохода.","holat":"TASDIQLANGAN","manba_url":"https://cbu.uz/uz/financial-stability/macroprudential-policy-tools/debt-to-income/","manba_nomi":"MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"}}
+</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается, сколько кредита даст банк?","acceptedAnswer":{"@type":"Answer","text":"Рассчитываются два независимых ограничения: (1) соотношение доход/долг — 8-кратный доход для официально подтверждённого дохода, 5-кратный для неофициального; (2) долговая нагрузка (DSTI) — все ежемесячные платежи по кредитам (текущие + новый) не должны превышать 50% дохода. Показывается меньшее из двух значений."}},{"@type":"Question","name":"Что такое DSTI (долговая нагрузка)?","acceptedAnswer":{"@type":"Answer","text":"DSTI — отношение всех ежемесячных платежей по кредитам и микрозаймам к ежемесячному доходу. По нормативу Центрального банка этот показатель не должен превышать 50% (с некоторыми исключениями)."}},{"@type":"Question","name":"Почему важна разница между официальным и неофициальным доходом?","acceptedAnswer":{"@type":"Answer","text":"При официально подтверждённом доходе (справка о зарплате, банковская выписка) банк может выдать кредит до 8-кратного размера дохода. При неофициальном — только до 5-кратного, поскольку банк не может полностью доверять доходу без документов."}},{"@type":"Question","name":"Результат совпадёт с реальным предложением банка?","acceptedAnswer":{"@type":"Answer","text":"Нет. Это приблизительный расчёт на основе нормативов Центрального банка. Банк дополнительно проверяет кредитную историю, стаж работы и собственный скоринг, поэтому реальное предложение может отличаться."}},{"@type":"Question","name":"Если у меня уже есть кредиты, уменьшится ли моя возможность взять новый?","acceptedAnswer":{"@type":"Answer","text":"Да. Текущие ежемесячные платежи вычитаются из «допустимого ежемесячного платежа» (50% дохода минус текущие платежи) — то есть возможность для нового кредита снижается."}},{"@type":"Question","name":"Как ставка и срок влияют на результат?","acceptedAnswer":{"@type":"Answer","text":"Низкая ставка или длинный срок позволяют получить больше кредита при том же ежемесячном платеже. Высокая ставка или короткий срок, наоборот, уменьшают максимальную сумму кредита — поскольку лимит по ежемесячному платежу (DSTI) не меняется."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Финансы","item":"https://kalki.uz/ru/#cat-moliya"},{"@type":"ListItem","position":3,"name":"Сколько кредита даст мне банк?","item":"https://kalki.uz/ru/kredit-limit-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Сколько кредита даст мне банк?","description":"Введите доход и текущие платежи — узнайте по нормативам ЦБ, сколько кредита банк может предложить. Бесплатно, онлайн.","url":"https://kalki.uz/ru/kredit-limit-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kredit-limit-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kredit-limit-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kredit-limit-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="moliya">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" class="tm-on" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
+
+<header>
+  <div class="wrap">
+    
+    <span class="cat-badge" data-i="cat">Финансы</span>
+    <h1 data-i="h1">Сколько кредита даст мне банк?</h1>
+    <p class="sub" data-i="sub">На основе вашего дохода и текущих платежей — узнайте максимальную сумму кредита по нормативам Центрального банка.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-moliya">Финансы</a><span class="sep">›</span><span class="cur">Сколько кредита даст мне банк?</span></nav></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Сколько кредита даст банк? Введите ежемесячный доход, тип дохода и текущие платежи — рассчитаем максимальную сумму кредита по нормативам Центробанка (долговая нагрузка 50%, соотношение долг/доход 8x/5x).</p></div>
+  <section class="form-card">
+    <div class="field">
+      <label for="income" data-i="lIncome">Ежемесячный доход</label>
+      <div class="input-shell">
+        <input type="text" id="income" inputmode="numeric" value="8 000 000" autocomplete="off">
+        <span class="unit" data-i="uSum">сум</span>
+      </div>
+    </div>
+    <div class="field">
+      <label data-i="lIncType">Тип дохода</label>
+      <div class="seg">
+        <button type="button" id="incOfficial" class="on" data-inc="rasmiy" data-i="segOfficial">Официально подтверждённый</button>
+        <button type="button" id="incUnofficial" data-inc="norasmiy" data-i="segUnofficial">Неофициальный</button>
+      </div>
+      <p class="hint" data-i="hIncType">Официальный — доход, подтверждённый документами (справка о зарплате, банковская выписка).</p>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label for="existing" data-i="lExisting">Текущие ежемесячные платежи по кредитам</label>
+      <div class="input-shell">
+        <input type="text" id="existing" inputmode="numeric" value="0" autocomplete="off">
+        <span class="unit" data-i="uSum">сум</span>
+      </div>
+      <p class="hint" data-i="hExisting">Сумма, которую вы сейчас платите по другим кредитам/микрозаймам в месяц. Если нет — 0.</p>
+    </div>
+    <details class="acc" id="accAdv">
+      <summary data-i="advTitle">Подробные настройки (ставка, срок)</summary>
+      <div class="acc-body">
+        <div class="field">
+          <label for="rate" data-i="lRate">Ожидаемая годовая ставка</label>
+          <div class="input-shell">
+            <input type="text" id="rate" inputmode="decimal" value="23" autocomplete="off">
+            <span class="unit" data-i="uRate">% годовых</span>
+          </div>
+          <p class="hint" data-i="hRate">В Узбекистане потребительские кредиты обычно 20–28% годовых.</p>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label for="term" data-i="lTerm">Срок кредита</label>
+          <div class="input-shell">
+            <input type="text" id="term" inputmode="numeric" value="36" autocomplete="off">
+            <span class="unit" id="termUnit">мес.</span>
+          </div>
+          <div class="seg" style="margin-top:8px">
+            <button type="button" id="uMonth" class="on" data-i="segMonth">В месяцах</button>
+            <button type="button" id="uYear" data-i="segYear">В годах</button>
+          </div>
+        </div>
+      </div>
+    </details>
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Рассчитать</button>
+  </section>
+
+  <section class="receipt show" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">64 000 000 сум</div>
+        <div class="lbl" data-i="lblMain">Банк может предложить примерно столько кредита</div>
+      </div>
+      <div class="receipt-rows">
+        <div class="rrow"><span class="k" data-i="kLimitBy">Ограничивающий фактор</span><span class="v" id="rLimitBy">Соотношение доход/долг</span></div>
+        <div class="rrow"><span class="k" data-i="kAllowedMonthly">Допустимый ежемесячный платёж</span><span class="v" id="rAllowedMonthly">4 000 000 сум</span></div>
+        <div class="rrow"><span class="k" data-i="kRatioLimit">Лимит по соотношению доход/долг</span><span class="v" id="rRatioLimit">64 000 000 сум (8×)</span></div>
+      </div>
+      <div id="zeroNote" class="zero-note" data-i="zeroNote" style="display:none">Ваши текущие платежи уже превышают допустимую долговую нагрузку (50% дохода) — по нормативам банк не должен выдавать новый кредит.</div>
+      <div class="dsti-box" id="dstiBox">
+        <div class="dsti-head">
+          <span data-i="dstiTitle">Ваша текущая долговая нагрузка (до нового кредита)</span>
+          <span class="dsti-badge dsti-ok" id="dstiBadge">Зелёная</span>
+        </div>
+        <div class="dsti-pct" id="dstiPct">0%</div>
+        <div class="dsti-bar"><i id="dstiBarFill" style="width:0%;background:#1E6B45"></i></div>
+        <div class="dsti-msg" id="dstiMsg">Ваша долговая нагрузка на безопасном уровне.</div>
+        <div class="dsti-social" id="dstiSocial" style="display:none" data-i="dstiSocial">В Узбекистане 47% заёмщиков находятся именно в этой — выше 50% — зоне. 61% из них испытывают трудности с платежами. (Источник: обзор финансовой стабильности ЦБ, 2025)</div>
+      </div>
+      <div class="limit-note" id="selfEmployedNote" data-i-html="selfEmployedNote"><b>Внимание:</b> этот расчёт для наёмных работников. Для самозанятых действует другое правило (всегда 8×) — отдельный расчёт будет добавлен позже.</div>
+      <div class="honesty" data-i-html="honesty"><b>Важно:</b> это — приблизительный расчёт на основе нормативов Центрального банка. Банк проведёт собственную проверку: кредитная история, внутренний скоринг, стаж работы и другие факторы. Окончательное решение — за банком.</div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare">Поделиться</button>
+      <button type="button" class="pdfbtn">PDF</button><button type="button" class="csvbtn">Excel (CSV)</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
+
+  <div id="partners-slot" data-nosnippet="" data-prerender="skip" hidden=""></div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div>
+<section class="seo" id="seoBlock"><h2>Как рассчитывается, сколько кредита даст банк?</h2><p>Рассчитываются два независимых ограничения: (1) соотношение доход/долг — 8-кратный доход для официально подтверждённого дохода, 5-кратный для неофициального; (2) долговая нагрузка (DSTI) — все ежемесячные платежи по кредитам (текущие + новый) не должны превышать 50% дохода. Показывается меньшее из двух значений.</p><h2>Что такое DSTI (долговая нагрузка)?</h2><p>DSTI — отношение всех ежемесячных платежей по кредитам и микрозаймам к ежемесячному доходу. По нормативу Центрального банка этот показатель не должен превышать 50% (с некоторыми исключениями).</p><h2>Почему важна разница между официальным и неофициальным доходом?</h2><p>При официально подтверждённом доходе (справка о зарплате, банковская выписка) банк может выдать кредит до 8-кратного размера дохода. При неофициальном — только до 5-кратного, поскольку банк не может полностью доверять доходу без документов.</p><h2>Результат совпадёт с реальным предложением банка?</h2><p>Нет. Это приблизительный расчёт на основе нормативов Центрального банка. Банк дополнительно проверяет кредитную историю, стаж работы и собственный скоринг, поэтому реальное предложение может отличаться.</p><h2>Если у меня уже есть кредиты, уменьшится ли моя возможность взять новый?</h2><p>Да. Текущие ежемесячные платежи вычитаются из «допустимого ежемесячного платежа» (50% дохода минус текущие платежи) — то есть возможность для нового кредита снижается.</p><h2>Как ставка и срок влияют на результат?</h2><p>Низкая ставка или длинный срок позволяют получить больше кредита при том же ежемесячном платеже. Высокая ставка или короткий срок, наоборот, уменьшают максимальную сумму кредита — поскольку лимит по ежемесячному платежу (DSTI) не меняется.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ипотека 2026: ставки и льготы</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">НДС 2026: как считается и кто платит</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit to'lovi" data-rel-ru="Платёж по кредиту">Платёж по кредиту</span></a><a href="omonat-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Omonat" data-rel-ru="Депозит">Депозит</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Зарплата</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Семейный бюджет</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Расчёт носит справочный характер. Точные условия уточняйте в банке.</footer></main>
+
+<script>
+(function(){
+  var I={
+    uz:{
+      brand:"Kalki.uz",cat:"Moliya",
+      h1:"Bank menga qancha kredit beradi?",
+      sub:"Oylik daromadingiz va mavjud to'lovlaringiz asosida — Markaziy bank normativlariga ko'ra bank taklif qilishi mumkin bo'lgan maksimal kredit summasini biling.",
+      lIncome:"Oylik daromad",uSum:"so'm",
+      lIncType:"Daromad turi",segOfficial:"Rasmiy tasdiqlangan",segUnofficial:"Norasmiy",
+      hIncType:"Rasmiy — ish haqi qaydnomasi, bank ma'lumotnomasi kabi hujjat bilan tasdiqlangan daromad.",
+      lExisting:"Mavjud oylik kredit to'lovlari",
+      hExisting:"Boshqa kredit/mikroqarzlar bo'yicha hozir to'layotgan oylik summa. Yo'q bo'lsa — 0.",
+      advTitle:"Batafsil sozlamalar (foiz, muddat)",
+      lRate:"Kutilayotgan yillik foiz stavkasi",uRate:"% yillik",
+      hRate:"O'zbekistonda iste'mol kreditlari odatda 20–28% oralig'ida.",
+      lTerm:"Kredit muddati",segMonth:"Oylarda",segYear:"Yillarda",uMonth:"oy",uYear:"yil",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",
+      lblMain:"Bank taxminan shuncha kredit berishi mumkin",
+      kLimitBy:"Cheklovchi omil",kAllowedMonthly:"Ruxsat etilgan oylik to'lov",kRatioLimit:"Daromad nisbati chegarasi",
+      limitByDsti:"Qarz yuki (DSTI)",limitByRatio:"Daromad/qarz nisbati",limitByEqual:"Ikkala mezon ham teng",
+      zeroNote:"Joriy to'lovlaringiz allaqachon ruxsat etilgan qarz yukidan (daromadning 50%) oshib ketgan — bank normativlariga ko'ra yangi kredit berilmasligi kerak.",
+      dstiTitle:"Joriy qarz yukingiz (yangi kreditgacha)",
+      dstiOk:"Yashil",dstiMid:"Sariq",dstiBad:"Qizil",
+      dstiMsgOk:"Qarz yukingiz xavfsiz darajada.",
+      dstiMsgMid:"Chegaraga yaqinsiz — yangi kredit ehtiyotkorlik talab qiladi.",
+      dstiMsgBad:"Markaziy bank normativi oshib ketgan.",
+      dstiSocial:"O'zbekistonda qarz oluvchilarning 47%i xuddi shu — 50% dan yuqori — zonada. Ularning 61%i to'lovda qiynalmoqda. (Manba: MB moliyaviy barqarorlik sharhi, 2025)",
+      selfEmployedNote:"<b>Diqqat:</b> bu hisob yollanma xodimlar uchun. O'z-o'zini band qilganlar uchun qoida boshqacha (har doim 8×) — alohida hisoblash tez orada qo'shiladi.",
+      honesty:"<b>Muhim:</b> bu — Markaziy bank normativlari asosidagi taxminiy hisob. Bank o'z tekshiruvini o'tkazadi: kredit tarixi, ichki skoring, ish staji va boshqa omillar hisobga olinadi. Yakuniy qaror bankka tegishli.",
+      btnShare:"Ulashish",copied:"Nusxalandi ✓",
+      csvBtn:"Excel (CSV)",
+      csvKIncome:"Oylik daromad",csvKIncType:"Daromad turi",csvKExisting:"Mavjud oylik to'lovlar",
+      csvKRate:"Yillik foiz stavkasi (%)",csvKTerm:"Muddat (oy)",
+      csvKMax:"Maksimal kredit",csvKLimitBy:"Cheklovchi omil",csvKAllowedMonthly:"Ruxsat etilgan oylik to'lov",csvKRatioLimit:"Daromad nisbati chegarasi",csvKDstiPct:"Joriy qarz yuki (%)",
+      shareTitle:"Kredit limit hisobi",
+      foot:"Hisob-kitob ma'lumot uchun. Aniq shartlarni bankdan oling.",
+      seo:'<h2>Bank menga qancha kredit beradi, qanday hisoblanadi?</h2><p>Ikki mustaqil cheklov hisoblanadi: (1) daromad/qarz nisbati — rasmiy tasdiqlangan daromad uchun 8 barobar, norasmiy uchun 5 barobar; (2) qarz yuki (DSTI) — barcha oylik kredit to’lovlari (mavjud + yangi) daromadning 50%idan oshmasligi kerak. Ikkalasidan qaysi biri kichikroq natija bersa, o’sha ko’rsatiladi.</p><h2>DSTI (qarz yuki) nima?</h2><p>DSTI — barcha kredit va mikroqarz oylik to’lovlarining oylik daromadga nisbati. Markaziy bank normativiga ko’ra bu ko’rsatkich 50%dan oshmasligi kerak (ba’zi istisnolar bilan).</p><h2>Rasmiy va norasmiy daromad orasidagi farq nima uchun muhim?</h2><p>Rasmiy tasdiqlangan daromad (ish haqi qaydnomasi, bank ma’lumotnomasi) bo’yicha bank ko’proq — daromadning 8 barobarigacha — kredit berishi mumkin. Norasmiy daromadda esa faqat 5 barobargacha, chunki bank hujjatsiz daromadni to’liq ishonchli deb hisoblamaydi.</p><h2>Natija aniq bank taklifi bilan bir xil bo’ladimi?</h2><p>Yo’q. Bu — Markaziy bank normativlari asosidagi taxminiy hisob. Bank qo’shimcha ravishda kredit tarixi, ish staji va o’z ichki skoringini tekshiradi, shuning uchun aniq taklif farq qilishi mumkin.</p><h2>Mavjud kreditlarim bo’lsa, yangi kredit olish imkoniyatim kamayadimi?</h2><p>Ha. Mavjud oylik to’lovlar “ruxsat etilgan oylik to’lov” (daromadning 50%idan mavjud to’lovlar ayirilgan qism) hisobidan kamaytiriladi — demak yangi kredit uchun imkoniyat pasayadi.</p><h2>Foiz stavkasi va muddat natijaga qanday ta’sir qiladi?</h2><p>Past stavka yoki uzun muddat bir xil oylik to’lov evaziga ko’proq kredit olish imkonini beradi. Yuqori stavka yoki qisqa muddat, aksincha, maksimal kredit summasini kamaytiradi — chunki oylik to’lov chegarasi (DSTI) o’zgarmaydi.</p>'
+    },
+    ru:{
+      brand:"Kalki.uz",cat:"Финансы",
+      h1:"Сколько кредита даст мне банк?",
+      sub:"На основе вашего дохода и текущих платежей — узнайте максимальную сумму кредита по нормативам Центрального банка.",
+      lIncome:"Ежемесячный доход",uSum:"сум",
+      lIncType:"Тип дохода",segOfficial:"Официально подтверждённый",segUnofficial:"Неофициальный",
+      hIncType:"Официальный — доход, подтверждённый документами (справка о зарплате, банковская выписка).",
+      lExisting:"Текущие ежемесячные платежи по кредитам",
+      hExisting:"Сумма, которую вы сейчас платите по другим кредитам/микрозаймам в месяц. Если нет — 0.",
+      advTitle:"Подробные настройки (ставка, срок)",
+      lRate:"Ожидаемая годовая ставка",uRate:"% годовых",
+      hRate:"В Узбекистане потребительские кредиты обычно 20–28% годовых.",
+      lTerm:"Срок кредита",segMonth:"В месяцах",segYear:"В годах",uMonth:"мес.",uYear:"лет",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",
+      lblMain:"Банк может предложить примерно столько кредита",
+      kLimitBy:"Ограничивающий фактор",kAllowedMonthly:"Допустимый ежемесячный платёж",kRatioLimit:"Лимит по соотношению доход/долг",
+      limitByDsti:"Долговая нагрузка (DSTI)",limitByRatio:"Соотношение доход/долг",limitByEqual:"Оба критерия равны",
+      zeroNote:"Ваши текущие платежи уже превышают допустимую долговую нагрузку (50% дохода) — по нормативам банк не должен выдавать новый кредит.",
+      dstiTitle:"Ваша текущая долговая нагрузка (до нового кредита)",
+      dstiOk:"Зелёная",dstiMid:"Жёлтая",dstiBad:"Красная",
+      dstiMsgOk:"Ваша долговая нагрузка на безопасном уровне.",
+      dstiMsgMid:"Вы близки к пределу — новый кредит требует осторожности.",
+      dstiMsgBad:"Норматив Центрального банка превышен.",
+      dstiSocial:"В Узбекистане 47% заёмщиков находятся именно в этой — выше 50% — зоне. 61% из них испытывают трудности с платежами. (Источник: обзор финансовой стабильности ЦБ, 2025)",
+      selfEmployedNote:"<b>Внимание:</b> этот расчёт для наёмных работников. Для самозанятых действует другое правило (всегда 8×) — отдельный расчёт будет добавлен позже.",
+      honesty:"<b>Важно:</b> это — приблизительный расчёт на основе нормативов Центрального банка. Банк проведёт собственную проверку: кредитная история, внутренний скоринг, стаж работы и другие факторы. Окончательное решение — за банком.",
+      btnShare:"Поделиться",copied:"Скопировано ✓",
+      csvBtn:"Excel (CSV)",
+      csvKIncome:"Ежемесячный доход",csvKIncType:"Тип дохода",csvKExisting:"Текущие ежемесячные платежи",
+      csvKRate:"Годовая ставка (%)",csvKTerm:"Срок (мес.)",
+      csvKMax:"Максимальный кредит",csvKLimitBy:"Ограничивающий фактор",csvKAllowedMonthly:"Допустимый ежемесячный платёж",csvKRatioLimit:"Лимит по соотношению доход/долг",csvKDstiPct:"Текущая долговая нагрузка (%)",
+      shareTitle:"Расчёт кредитного лимита",
+      foot:"Расчёт носит справочный характер. Точные условия уточняйте в банке.",
+      seo:'<h2>Как рассчитывается, сколько кредита даст банк?</h2><p>Рассчитываются два независимых ограничения: (1) соотношение доход/долг — 8-кратный доход для официально подтверждённого дохода, 5-кратный для неофициального; (2) долговая нагрузка (DSTI) — все ежемесячные платежи по кредитам (текущие + новый) не должны превышать 50% дохода. Показывается меньшее из двух значений.</p><h2>Что такое DSTI (долговая нагрузка)?</h2><p>DSTI — отношение всех ежемесячных платежей по кредитам и микрозаймам к ежемесячному доходу. По нормативу Центрального банка этот показатель не должен превышать 50% (с некоторыми исключениями).</p><h2>Почему важна разница между официальным и неофициальным доходом?</h2><p>При официально подтверждённом доходе (справка о зарплате, банковская выписка) банк может выдать кредит до 8-кратного размера дохода. При неофициальном — только до 5-кратного, поскольку банк не может полностью доверять доходу без документов.</p><h2>Результат совпадёт с реальным предложением банка?</h2><p>Нет. Это приблизительный расчёт на основе нормативов Центрального банка. Банк дополнительно проверяет кредитную историю, стаж работы и собственный скоринг, поэтому реальное предложение может отличаться.</p><h2>Если у меня уже есть кредиты, уменьшится ли моя возможность взять новый?</h2><p>Да. Текущие ежемесячные платежи вычитаются из «допустимого ежемесячного платежа» (50% дохода минус текущие платежи) — то есть возможность для нового кредита снижается.</p><h2>Как ставка и срок влияют на результат?</h2><p>Низкая ставка или длинный срок позволяют получить больше кредита при том же ежемесячном платеже. Высокая ставка или короткий срок, наоборот, уменьшают максимальную сумму кредита — поскольку лимит по ежемесячному платежу (DSTI) не меняется.</p>'
+    }
+  };
+
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', unit='month', incType='rasmiy';
+  var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return I[lang][k]};
+  function ga(name,params){try{if(typeof gtag==='function')gtag('event',name,params||{});}catch(e){}}
+
+  var LEGALCONST={};
+  try{LEGALCONST=JSON.parse($('legalconst-data').textContent)}catch(e){LEGALCONST={}}
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=lang==='ru'
+      ? 'Сколько кредита даст банк? — калькулятор лимита'
+      : "Bank menga qancha kredit beradi? — limit kalkulyatori";
+    var metaDesc=lang==='ru'
+      ? 'Введите доход и текущие платежи — узнайте по нормативам ЦБ, сколько кредита банк может предложить. Бесплатно, онлайн.'
+      : "Oylik daromad va mavjud to'lovlarni kiriting — Markaziy bank normativi asosida bank qancha kredit berishi mumkinligini hisoblang. Bepul, onlayn.";
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
+      var m=document.querySelector(sel);
+      if(m)m.setAttribute('content',metaDesc);
+    });
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',document.title);});
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){els[i].textContent=t(els[i].getAttribute('data-i'))}
+    var hs=document.querySelectorAll('[data-i-html]');
+    for(var j=0;j<hs.length;j++){hs[j].innerHTML=t(hs[j].getAttribute('data-i-html'))}
+    $('termUnit').textContent=unit==='month'?t('uMonth'):t('uYear');
+    $('seoBlock').innerHTML=t('seo');
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(typeof showPartners==='function')showPartners();
+    (function(){
+      var _rt={uz:"Bulardan ham foydalanishingiz mumkin",ru:"Вам также может пригодиться"};
+      var _t=document.getElementById('relTitle');
+      if(_t)_t.textContent=_rt[lang]||_rt.uz;
+      var _rl=document.querySelectorAll('[data-rel-uz]');
+      var _al=document.querySelector('[data-art-uz]');
+      if(_al)_al.textContent=_al.getAttribute(lang==='ru'?'data-art-ru':'data-art-uz');
+      for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
+    })();
+    if(calcData)renderResult(calcData);
+    addCsvButtons();
+  }
+  $('langUz').onclick=function(){lang='uz';applyLang()};
+  $('langRu').onclick=function(){lang='ru';applyLang()};
+
+  $('income').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmt(parseInt(v,10)):'';
+  });
+  $('existing').addEventListener('input',function(){
+    var v=this.value.replace(/[^\d]/g,'');
+    this.value=v?fmt(parseInt(v,10)):'';
+  });
+
+  function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  $('uMonth').onclick=function(){unit='month';$('termUnit').textContent=t('uMonth');setSeg(this,$('uYear'))};
+  $('uYear').onclick=function(){unit='year';$('termUnit').textContent=t('uYear');setSeg(this,$('uMonth'))};
+  $('incOfficial').onclick=function(){incType='rasmiy';setSeg(this,$('incUnofficial'))};
+  $('incUnofficial').onclick=function(){incType='norasmiy';setSeg(this,$('incOfficial'))};
+
+  var calcData=null;
+
+  /* Ikki mustaqil cheklov — kichigi qo'llanadi (docs/kredit-limit-reja.md, 3-band):
+     A) daromad/qarz nisbati: daromad * (rasmiy?8:5)
+     B) DSTI: (daromad*0.50 - mavjud_tolovlar) ni annuitet formulasi TESKARI
+        yo'nalishda yechib, maksimal asosiy qarzni topamiz. */
+  function calc(){
+    var income=num($('income').value);
+    var existing=num($('existing').value)||0;
+    var yr=num($('rate').value), tm=num($('term').value);
+    if(!(income>0)||isNaN(yr)||yr<0||!(tm>0)){$('receipt').classList.remove('show');return}
+
+    var dstiEntry=LEGALCONST['dsti_maksimal'];
+    var ratioEntry=LEGALCONST[incType==='rasmiy'?'qarz_daromad_nisbati_rasmiy':'qarz_daromad_nisbati_norasmiy'];
+    if(!dstiEntry||dstiEntry.qiymat==null||!ratioEntry||ratioEntry.qiymat==null){
+      $('receipt').classList.remove('show');
+      return;
+    }
+    var dstiMax=dstiEntry.qiymat, ratio=ratioEntry.qiymat;
+
+    var n=unit==='year'?Math.round(tm*12):Math.round(tm), i=yr/100/12;
+    var maxByRatio=income*ratio;
+    var allowedMonthly=income*dstiMax-existing;
+    var maxByDsti;
+    if(allowedMonthly<=0){
+      maxByDsti=0;
+    }else if(i===0){
+      maxByDsti=allowedMonthly*n;
+    }else{
+      maxByDsti=allowedMonthly*(Math.pow(1+i,n)-1)/(i*Math.pow(1+i,n));
+    }
+    var maxLoan=Math.min(maxByRatio,maxByDsti);
+    var limitBy=maxByDsti<maxByRatio?'dsti':(maxByRatio<maxByDsti?'ratio':'equal');
+
+    var existingDstiPct=income>0?(existing/income*100):0;
+    var zone=existingDstiPct<=30?'ok':(existingDstiPct<=50?'mid':'bad');
+
+    calcData={
+      income:income,existing:existing,incType:incType,rate:yr,n:n,
+      maxLoan:Math.max(0,maxLoan),allowedMonthly:Math.max(0,allowedMonthly),
+      maxByRatio:maxByRatio,ratio:ratio,limitBy:limitBy,
+      existingDstiPct:existingDstiPct,zone:zone
+    };
+    renderResult(calcData);
+    $('receipt').classList.add('show');
+    showPartners();
+    addCsvButtons();
+  }
+
+  function renderResult(d){
+    var sum=' '+t('uSum');
+    $('mainNum').textContent=fmt(d.maxLoan)+sum;
+    var limitLbl=d.limitBy==='dsti'?t('limitByDsti'):(d.limitBy==='ratio'?t('limitByRatio'):t('limitByEqual'));
+    $('rLimitBy').textContent=limitLbl;
+    $('rAllowedMonthly').textContent=fmt(d.allowedMonthly)+sum;
+    $('rRatioLimit').textContent=fmt(d.maxByRatio)+sum+' ('+d.ratio+'×)';
+    $('zeroNote').style.display=d.maxLoan<=0?'block':'none';
+
+    var pct=Math.round(d.existingDstiPct*10)/10;
+    $('dstiPct').textContent=String(pct).replace('.',',')+'%';
+    var badge=$('dstiBadge'), bar=$('dstiBarFill'), msg=$('dstiMsg'), social=$('dstiSocial');
+    var colors={ok:'#1E6B45',mid:'#D99A2B',bad:'#B3261E'};
+    badge.className='dsti-badge dsti-'+d.zone;
+    badge.textContent=d.zone==='ok'?t('dstiOk'):(d.zone==='mid'?t('dstiMid'):t('dstiBad'));
+    bar.style.width=Math.min(100,d.existingDstiPct)+'%';
+    bar.style.background=colors[d.zone];
+    msg.textContent=d.zone==='ok'?t('dstiMsgOk'):(d.zone==='mid'?t('dstiMsgMid'):t('dstiMsgBad'));
+    social.style.display=d.zone==='bad'?'block':'none';
+  }
+
+  /* Hamkor bloki FAQAT hisob bajarilgandan keyin ko'rinadi va hech qachon
+     natijadan yuqorida turmaydi — aks holda sayt reklama sahifasiga o'xshab qoladi. */
+  function showPartners(){
+    if(!window.Partners||!calcData)return;
+    window.Partners.render({
+      slot:"#partners-slot",
+      category:"kredit",
+      lang:lang,
+      context:{product:"iste'mol",amount:calcData.maxLoan,term:calcData.n},
+      title:{uz:"Shunga o'xshash shartlarda kredit beradigan banklar",ru:"Банки с похожими условиями кредитования"},
+      footNote:{uz:"Aniq shartlar bank saytida e'lon qilinadi va o'zgarishi mumkin.",ru:"Точные условия публикуются на сайте банка и могут измениться."},
+      richFallback:true
+    });
+  }
+
+  /* ===== Excel (CSV) eksport =====
+     SheetJS kabi og'ir kutubxona yo'q — assets/csvexport.js BOM+Blob
+     orqali oddiy CSV yasaydi, Excel uni to'g'ridan-to'g'ri ochadi. */
+  function csvFilename(){
+    var d=new Date();
+    var iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    return 'kalki-kredit-limit-'+iso+'.csv';
+  }
+  function buildCsvRows(){
+    var out=[];
+    out.push([t('csvKIncome'),Math.round(calcData.income)]);
+    out.push([t('csvKIncType'),calcData.incType==='rasmiy'?t('segOfficial'):t('segUnofficial')]);
+    out.push([t('csvKExisting'),Math.round(calcData.existing)]);
+    out.push([t('csvKRate'),calcData.rate]);
+    out.push([t('csvKTerm'),calcData.n]);
+    out.push([]);
+    out.push([t('csvKMax'),Math.round(calcData.maxLoan)]);
+    out.push([t('csvKLimitBy'),calcData.limitBy]);
+    out.push([t('csvKAllowedMonthly'),Math.round(calcData.allowedMonthly)]);
+    out.push([t('csvKRatioLimit'),Math.round(calcData.maxByRatio)]);
+    out.push([t('csvKDstiPct'),Math.round(calcData.existingDstiPct*10)/10]);
+    return out;
+  }
+  /* Yaratishni o'tkazib yuborish mumkin, lekin hodisa bog'lashni EMAS —
+     aks holda til almashganda yoki qayta chaqirilganda tugma o'lik qoladi. */
+  function addCsvButtons(){
+    var acts=document.querySelectorAll('.receipt-actions');
+    for(var ai=0;ai<acts.length;ai++){
+      var ex=acts[ai].querySelector('.csvbtn');
+      var b=ex||document.createElement('button');
+      if(!ex){b.type='button';b.className='csvbtn';acts[ai].appendChild(b);}
+      b.textContent=t('csvBtn');
+      b.onclick=function(){
+        if(!calcData||!window.KalkiCSV)return;
+        window.KalkiCSV.download(csvFilename(),buildCsvRows());
+        ga('csv_download',{calc:'kredit-limit'});
+      };
+    }
+  }
+
+  $('calcBtn').onclick=calc;
+  $('shareBtn').onclick=function(){
+    var txt=t('shareTitle')+': '+$('income').value+' '+t('uSum')+' → '+$('mainNum').textContent;
+    var b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  applyLang();
+  calc();
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">6.9.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    // paychart (to'lov taqsimoti grafigi) PDF'ga KIRISHI kerak — shuning
+    // uchun bu yerda skip qilinmaydi. scen-add/scen-limit-note esa
+    // interaktiv boshqaruv (receipt-actions kabi), hisob ma'lumoti emas.
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('scen-add')>-1||cls.indexOf('scen-limit-note')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:13.5px;border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){
+            el.value=data.i[id];restored=true;
+            el.dispatchEvent(new Event('input',{bubbles:true}));
+          }
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      // Bu sahifada natija faqat "Hisoblash" tugmasi bosilganda qayta
+      // hisoblanadi (input hodisasi faqat matn formatini to'g'irlaydi).
+      // calc() shu skriptning o'z doirasida ko'rinmaydi (u boshqa IIFE
+      // ichida) — shuning uchun tugmani bevosita bosamiz, aks holda
+      // maydon to'ldiriladi-yu, natija eskirgan holda qolib ketadi.
+      if(restored){var cb=document.getElementById('calcBtn');if(cb)cb.click();}
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-inc]');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+  // Boshqa sahifadan (masalan tilxatdan) qiymat kelgan bo'lsa, "qayerdan
+  // olindi" izohi restoreFromUrl tugagach chiqarilsin.
+  setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight(['income','existing']);},220);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');
+    if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='moliya';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');
+    if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');
+    if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
