@@ -36,6 +36,18 @@
       "manba_url": "https://cbu.uz/uz/statistics/rates/",
       "manba_nomi": "MB rasmiy statistikasi — jismoniy shaxslar muddatli depozitlari o'rtacha stavkasi, 2026-yil aprel",
       "sana": "2026-09"
+    },
+    {
+      "id": "piyoda_yurish_met",
+      "sahifa": "kaloriya-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "O'rtacha tezlikdagi piyoda yurish uchun MET (Metabolic Equivalent of Task) qiymati. Energiya sarfi (kkal/daqiqa) = MET x 3.5 x vazn(kg) / 200 formulasi bilan hisoblanadi.",
+      "standart_taxmin": 3.5,
+      "izoh_uz": "Bu — TAXMIN, fakt emas. Qiymat jismoniy faollik sohasida keng qo'llaniladigan xalqaro MET jadvalidan (o'rtacha tezlikdagi, tekis yerdagi piyoda yurish, ~5 km/soat) olingan — bu shaxsiy tibbiy o'lchov emas, umumiy fiziologik o'rtacha. Haqiqiy sarf yurish tezligi, relyef va shaxsiy metabolizmga qarab sezilarli farq qilishi mumkin.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт. Значение взято из общепринятой международной таблицы MET (средний темп ходьбы по ровной поверхности, ~5 км/ч) — это не персональное медицинское измерение, а общий физиологический ориентир. Реальный расход зависит от темпа, рельефа и индивидуального метаболизма.",
+      "manba_url": "https://sites.google.com/site/compendiumofphysicalactivities/",
+      "manba_nomi": "Compendium of Physical Activities — piyoda yurish (o'rtacha tezlik) MET jadvali",
+      "sana": "2026-09"
     }
   ]
 }
