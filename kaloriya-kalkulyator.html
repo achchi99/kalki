@@ -553,6 +553,18 @@ img,svg{height:auto}
   // Hech biri mos kelmasa — hech narsa ko'rsatilmaydi (yasama kombinatsiya YO'Q).
   var COMBO_KCAL={osh:735,manti:176,somsa:313.5,shashlik:375}; // 1 porsiya kaloriyasi (k*porsiya/100)
   var COMBO_TEMPLATES=[['osh'],['osh','somsa'],['manti','shashlik']];
+  // RU son+ot kelishigi: "1 тарелка" / "2 тарелки" / "5 тарелок" kabi. Faqat
+  // COMBO'da ishlatiladigan 3 porsiya oti uchun (yangi tasdiqlangan taom
+  // qo'shilsa shu jadvalga ham qo'shilishi kerak).
+  var RU_PORTION_FORMS={'тарелка':['тарелка','тарелки','тарелок'],'шампур':['шампур','шампура','шампуров'],'шт.':['шт.','шт.','шт.']};
+  function ruPortionForm(count,nomRu){
+    var forms=RU_PORTION_FORMS[nomRu];
+    if(!forms)return nomRu;
+    var m10=count%10, m100=count%100;
+    if(m10===1&&m100!==11)return forms[0];
+    if(m10>=2&&m10<=4&&(m100<12||m100>14))return forms[1];
+    return forms[2];
+  }
   function findCombo(){
     if(!norm)return null;
     var max=6;
@@ -588,7 +600,7 @@ img,svg{height:auto}
       var c=combo.counts[i];
       if(!c)continue;
       var f=findFood(combo.ids[i]);
-      var nm=lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi;
+      var nm=lang==='ru'?ruPortionForm(c,f.porsiyaNomiRu):f.porsiyaNomi;
       parts.push(c+' '+nm+' '+words[combo.ids[i]]);
     }
     if(!parts.length){el.textContent='';return;}
