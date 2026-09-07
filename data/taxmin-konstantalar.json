@@ -48,6 +48,18 @@
       "manba_url": "https://sites.google.com/site/compendiumofphysicalactivities/",
       "manba_nomi": "Compendium of Physical Activities — piyoda yurish (o'rtacha tezlik) MET jadvali",
       "sana": "2026-09"
+    },
+    {
+      "id": "usd_kurs_bojxona",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "AQSh dollari kursi (so'mda), bojxona hisob-kitobi uchun boshlang'ich qiymat. Foydalanuvchi har doim o'zgartirishi mumkin va kerak — kurs har kuni o'zgaradi.",
+      "standart_taxmin": 12000,
+      "izoh_uz": "Bu — TAXMIN, fakt emas, va kunlik yangilanadigan qiymat. Markaziy bankning rasmiy kursi 2026-yil iyul holatiga 12 019 so'm atrofida bo'lgan — 12 000 shunga yaqin, yaxlitlangan boshlang'ich nuqta sifatida tanlangan. Bu qiymat bir necha kundan keyingi eskiradi, shuning uchun foydalanuvchi ALBATTA joriy kursni tekshirib, maydonni o'zgartirishi kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт, и ежедневно меняющееся значение. Официальный курс ЦБ на июль 2026 года составлял около 12 019 сум — 12 000 выбрано как округлённая отправная точка. Значение устареет уже через несколько дней, поэтому пользователю следует проверить актуальный курс и изменить поле.",
+      "manba_url": "https://cbu.uz/uz/arkhiv-kursov-valyut/",
+      "manba_nomi": "MB rasmiy valyuta kursi arxivi, 2026-yil iyul holatiga",
+      "sana": "2026-09"
     }
   ]
 }
