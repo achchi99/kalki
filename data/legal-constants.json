@@ -804,6 +804,24 @@
       "manba_nomi": "MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"
     },
     {
+      "id": "bojxona_sertifikatsiz_qoshimcha_boj",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "jadval",
+      "izoh": "Kelib chiqish sertifikati bo'lmagan (yoki shubhali) yoxud eng qulay rejim mamlakatiga tegishli bo'lmagan tovarlar uchun bazaviy bojxona boji stavkasiga QO'SHILADIGAN (2 barobar QILINMAYDIGAN) qo'shimcha foiz. Bandlar bazaviy adval stavka (%) oralig'i bo'yicha. FORMAT: 'min_pct'/'max_pct' — bazaviy stavka foiz sifatida (0-100, masalan 30 = 30%), 'qoshimcha_pct' — 0-1 oralig'idagi ulush (masalan 0.20 = +20 foiz bandi).",
+      "bandlar": [
+        {"shart": "10% gacha", "min_pct": 0, "max_pct": 10, "qoshimcha_pct": 0.05},
+        {"shart": "10-20%", "min_pct": 10, "max_pct": 20, "qoshimcha_pct": 0.10},
+        {"shart": "20-30%", "min_pct": 20, "max_pct": 30, "qoshimcha_pct": 0.15},
+        {"shart": "30% va undan yuqori", "min_pct": 30, "max_pct": null, "qoshimcha_pct": 0.20}
+      ],
+      "amal_qiladi": "2026-02-28",
+      "izoh_uz": "Bojxona kodeksiga ЗРУ-1097-son qonun (27.11.2025) bilan qo'shilgan 300¹-modda. 28.02.2026'gacha amalda bo'lgan ESKI qoida (boj 2 barobar) shu sana bilan bosqichli qo'shimcha foiz jadvaliga ALMASHTIRILDI — ya'ni 2 barobar qilish endi noto'g'ri. Qonun matnida tovar turi bo'yicha cheklov ko'rsatilmagan (avtomobilga xos alohida istisno topilmadi), lekin bu qoidaning aynan avtomobil importiga tatbiq etilishi alohida rasmiy manbada aniq tasdiqlanmagan — umumiy bojxona qonuni sifatida ehtimoli yuqori deb baholanadi.",
+      "izoh_ru": "Статья 300¹ Таможенного кодекса, введена законом №ЗРУ-1097 от 27.11.2025. СТАРОЕ правило (удвоение пошлины), действовавшее до 28.02.2026, с этой даты ЗАМЕНЕНО на ступенчатую дополнительную пошлину — то есть удвоение больше не применяется. В тексте закона не указаны отраслевые исключения (специального исключения для автомобилей не найдено), но применимость именно к импорту автомобилей отдельно официально не подтверждена — оценивается как весьма вероятная в рамках общего таможенного закона.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/7865594",
+      "manba_nomi": "ЗРУ-1097-son qonun, 27.11.2025 — Bojxona kodeksi 300¹-modda"
+    },
+    {
       "id": "qarz_daromad_nisbati_norasmiy",
       "sahifa": "kredit-limit-kalkulyator",
       "tur": "son",
