@@ -264,6 +264,7 @@ img,svg{height:auto}
   <section class="norm-banner" id="normBanner" aria-live="polite">
     <div class="nb-lbl" data-i="nbLbl">Sizning kunlik me'yoringiz</div>
     <div class="nb-num" id="nbNum">—</div>
+    <div class="nb-item" id="nbCombo" style="margin-top:4px"></div>
     <details class="acc">
       <summary data-i="accHow">Bu qanday hisoblanadi?</summary>
       <div class="acc-body">
@@ -282,11 +283,12 @@ img,svg{height:auto}
     <div class="row2">
       <div class="field">
         <label data-i="lDish">Taom</label>
-        <div class="input-shell"><select id="dishSel"><option value="osh">Osh (palov) — 210 kkal/100g</option><option value="lagmon">Lag'mon — 105 kkal/100g</option><option value="manti">Manti (1 dona ≈80 g) — 220 kkal/100g</option><option value="somsa">Somsa (1 dona ≈110 g) — 285 kkal/100g</option><option value="shashlik">Shashlik (1 six ≈150 g) — 250 kkal/100g</option><option value="shorva">Sho'rva — 55 kkal/100g</option><option value="mastava">Mastava — 65 kkal/100g</option><option value="chuchvara">Chuchvara — 195 kkal/100g</option><option value="dimlama">Dimlama — 90 kkal/100g</option><option value="norin">Norin — 175 kkal/100g</option><option value="non">Obi non — 260 kkal/100g</option><option value="patir">Patir — 300 kkal/100g</option><option value="qazi">Qazi — 380 kkal/100g</option><option value="achichuq">Achichuq salat — 40 kkal/100g</option><option value="halva">Halva — 520 kkal/100g</option></select></div>
+        <div class="input-shell"><select id="dishSel"><option value="osh">Osh (palov) — 210 kkal/100g</option><option value="lagmon">Lag'mon — 105 kkal/100g</option><option value="manti">Manti (1 dona ≈80 g) — 220 kkal/100g</option><option value="somsa">Somsa (1 dona ≈110 g) — 285 kkal/100g</option><option value="shashlik">Shashlik (1 six ≈150 g) — 250 kkal/100g</option><option value="shorva">Sho'rva — 55 kkal/100g</option><option value="mastava">Mastava — 65 kkal/100g</option><option value="chuchvara">Chuchvara — 195 kkal/100g</option><option value="dimlama">Dimlama — 90 kkal/100g</option><option value="norin">Norin — 175 kkal/100g</option><option value="non">Obi non — 260 kkal/100g</option><option value="patir">Patir — 300 kkal/100g</option><option value="qazi">Qazi — 380 kkal/100g</option><option value="achichuq">Achichuq salat — 40 kkal/100g</option><option value="halva">Halva — 520 kkal/100g</option><option value="choy">Shirin choy — 27 kkal/100g (taxminiy)</option></select></div>
       </div>
       <div class="field">
         <label for="grams" data-i="lGrams">Miqdor</label>
-        <div class="input-shell"><input type="text" id="grams" inputmode="numeric" value="350"><span class="unit">g</span></div>
+        <div class="seg" id="qtyModeSeg" style="display: flex; margin-bottom: 8px;"><button type="button" class="qm-btn on" id="qmPortion">1 likop</button><button type="button" class="qm-btn" id="qmGram" data-i="qtyGram">gramm</button></div>
+        <div class="input-shell"><input type="text" id="grams" inputmode="numeric" value="350"><span class="unit" id="gramsUnit">likop</span></div>
       </div>
     </div>
     <button type="button" class="add-btn" id="addFood" data-i="btnAdd">+ Ro'yxatga qo'shish</button>
@@ -306,22 +308,28 @@ img,svg{height:auto}
 <script>
 (function(){
   // kkal/100g, standart porsiya (g), 1 dona og'irligi (g, 0 = donada emas)
+  // porsiya/porsiyaNomi/porsiyaNomiRu: egasi tasdiqlagan "1 porsiya" og'irligi va nomi (null = tasdiqlanmagan)
+  // holat: 'TASDIQLANGAN' yoki 'TASDIQLASH KERAK' — legal-constants.json'dagi qiymat:null+holat naqshiga o'xshash intizom
   var FOODS=[
-    {id:'osh',    k:210, p:350, d:0},
-    {id:'lagmon', k:105, p:450, d:0},
-    {id:'manti',  k:220, p:240, d:80},
-    {id:'somsa',  k:285, p:110, d:110},
-    {id:'shashlik',k:250,p:150, d:150},
-    {id:'shorva', k:55,  p:400, d:0},
-    {id:'mastava',k:65,  p:400, d:0},
-    {id:'chuchvara',k:195,p:300,d:0},
-    {id:'dimlama',k:90,  p:350, d:0},
-    {id:'norin',  k:175, p:250, d:0},
-    {id:'non',    k:260, p:100, d:0},
-    {id:'patir',  k:300, p:100, d:0},
-    {id:'qazi',   k:380, p:100, d:0},
-    {id:'achichuq',k:40, p:150, d:0},
-    {id:'halva',  k:520, p:50,  d:0}
+    {id:'osh',    k:210, p:350, d:0,   porsiya:350, porsiyaNomi:'likop', porsiyaNomiRu:'тарелка', holat:'TASDIQLANGAN'},
+    {id:'lagmon', k:105, p:450, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'manti',  k:220, p:240, d:80,  porsiya:80,  porsiyaNomi:'dona', porsiyaNomiRu:'шт.', holat:'TASDIQLANGAN'},
+    {id:'somsa',  k:285, p:110, d:110, porsiya:110, porsiyaNomi:'dona', porsiyaNomiRu:'шт.', holat:'TASDIQLANGAN'},
+    {id:'shashlik',k:250,p:150, d:150, porsiya:150, porsiyaNomi:'six', porsiyaNomiRu:'шампур', holat:'TASDIQLANGAN'},
+    {id:'shorva', k:55,  p:400, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'mastava',k:65,  p:400, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'chuchvara',k:195,p:300,d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'dimlama',k:90,  p:350, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'norin',  k:175, p:250, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'non',    k:260, p:100, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'patir',  k:300, p:100, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'qazi',   k:380, p:100, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'achichuq',k:40, p:150, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    {id:'halva',  k:520, p:50,  d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'},
+    // Shirin choy: hatto kkal/100g bazasi ham egasi tomonidan tasdiqlanmagan — bu yerdagi k:27,p:150
+    // faqat UI'ni buzmaslik uchun standart nashr etilgan qiymat (2 choy qoshiq shakar ~150ml choy) asosida
+    // taxminiy baho, ~TASDIQLANGAN emas~. Dropdown'da "(taxminiy)" belgisi bilan ko'rsatiladi.
+    {id:'choy',   k:27,  p:150, d:0,   porsiya:null, porsiyaNomi:null, porsiyaNomiRu:null, holat:'TASDIQLASH KERAK'}
   ];
   var I={
     uz:{
@@ -347,7 +355,10 @@ img,svg{height:auto}
       fTitle:"O'zbek taomlari — kunlik me'yorga ta'siri",
       fSub:"Taom va miqdorni tanlang — kaloriyasi va me'yoringizdagi ulushi hisoblanadi.",
       lDish:"Taom",lGrams:"Miqdor",btnAdd:"+ Ro'yxatga qo'shish",
-      dishNames:{osh:"Osh (palov)",lagmon:"Lag'mon",manti:"Manti (1 dona ≈80 g)",somsa:"Somsa (1 dona ≈110 g)",shashlik:"Shashlik (1 six ≈150 g)",shorva:"Sho'rva",mastava:"Mastava",chuchvara:"Chuchvara",dimlama:"Dimlama",norin:"Norin",non:"Obi non",patir:"Patir",qazi:"Qazi",achichuq:"Achichuq salat",halva:"Halva"},
+      dishNames:{osh:"Osh (palov)",lagmon:"Lag'mon",manti:"Manti (1 dona ≈80 g)",somsa:"Somsa (1 dona ≈110 g)",shashlik:"Shashlik (1 six ≈150 g)",shorva:"Sho'rva",mastava:"Mastava",chuchvara:"Chuchvara",dimlama:"Dimlama",norin:"Norin",non:"Obi non",patir:"Patir",qazi:"Qazi",achichuq:"Achichuq salat",halva:"Halva",choy:"Shirin choy"},
+      comboWords:{osh:"osh",manti:"manti",somsa:"somsa",shashlik:"shashlik"},
+      comboPrefix:"Bu taxminan:",
+      qtyGram:"gramm",estMark:" (taxminiy)",
       per100:"100 g = ",
       dsEaten:"Iste'mol qilindi",dsLeft:"Me'yordan qoldi",dsOver:"Me'yordan oshdi",
       foot:"Mifflin-San Jeor formulasi. Sog'liq muammolari bo'lsa, ratsionni shifokor bilan kelishing.",
@@ -376,7 +387,10 @@ img,svg{height:auto}
       fTitle:"Узбекские блюда — влияние на дневную норму",
       fSub:"Выберите блюдо и количество — калории и доля от нормы рассчитаются.",
       lDish:"Блюдо",lGrams:"Количество",btnAdd:"+ Добавить в список",
-      dishNames:{osh:"Плов",lagmon:"Лагман",manti:"Манты (1 шт ≈80 г)",somsa:"Самса (1 шт ≈110 г)",shashlik:"Шашлык (1 шампур ≈150 г)",shorva:"Шурпа",mastava:"Мастава",chuchvara:"Чучвара",dimlama:"Димлама",norin:"Норин",non:"Оби нон",patir:"Патыр",qazi:"Казы",achichuq:"Салат аччик-чучук",halva:"Халва"},
+      dishNames:{osh:"Плов",lagmon:"Лагман",manti:"Манты (1 шт ≈80 г)",somsa:"Самса (1 шт ≈110 г)",shashlik:"Шашлык (1 шампур ≈150 г)",shorva:"Шурпа",mastava:"Мастава",chuchvara:"Чучвара",dimlama:"Димлама",norin:"Норин",non:"Оби нон",patir:"Патыр",qazi:"Казы",achichuq:"Салат аччик-чучук",halva:"Халва",choy:"Сладкий чай"},
+      comboWords:{osh:"плова",manti:"манты",somsa:"самсы",shashlik:"шашлыка"},
+      comboPrefix:"Это примерно:",
+      qtyGram:"грамм",estMark:" (примерно)",
       per100:"100 г = ",
       dsEaten:"Съедено",dsLeft:"Осталось от нормы",dsOver:"Превышение нормы",
       foot:"Формула Миффлина-Сан Жеора. При проблемах со здоровьем согласуйте рацион с врачом.",
@@ -392,12 +406,55 @@ img,svg{height:auto}
   function fillDishes(){
     var html='';
     for(var i=0;i<FOODS.length;i++){
-      html+='<option value="'+FOODS[i].id+'">'+t('dishNames')[FOODS[i].id]+' — '+FOODS[i].k+' '+t('kcal')+'/100g</option>';
+      var mark=FOODS[i].id==='choy'?t('estMark'):'';
+      html+='<option value="'+FOODS[i].id+'">'+t('dishNames')[FOODS[i].id]+' — '+FOODS[i].k+' '+t('kcal')+'/100g'+mark+'</option>';
     }
     var cur=$('dishSel').value;
     $('dishSel').innerHTML=html;
     if(cur)$('dishSel').value=cur;
   }
+
+  function findFood(id){
+    for(var q=0;q<FOODS.length;q++){if(FOODS[q].id===id)return FOODS[q]}
+  }
+
+  // Porsiya/gramm rejimi — faqat holat==='TASDIQLANGAN' taomlar uchun
+  var qtyMode='portion';
+  function updateQtyUI(){
+    var f=findFood($('dishSel').value);
+    if(!f)return;
+    var seg=$('qtyModeSeg');
+    if(f.holat==='TASDIQLANGAN'){
+      seg.style.display='flex';
+      qtyMode='portion';
+      $('qmPortion').textContent='1 '+(lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi);
+      $('qmPortion').classList.add('on');
+      $('qmGram').classList.remove('on');
+      $('grams').value=1;
+      $('gramsUnit').textContent=lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi;
+    }else{
+      seg.style.display='none';
+      qtyMode='gram';
+      $('grams').value=f.p;
+      $('gramsUnit').textContent=lang==='ru'?'г':'g';
+    }
+  }
+  $('qmPortion').onclick=function(){
+    var f=findFood($('dishSel').value);
+    if(!f||f.holat!=='TASDIQLANGAN')return;
+    qtyMode='portion';
+    this.classList.add('on');$('qmGram').classList.remove('on');
+    $('grams').value=1;
+    $('gramsUnit').textContent=lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi;
+  };
+  $('qmGram').onclick=function(){
+    var f=findFood($('dishSel').value);
+    if(!f)return;
+    qtyMode='gram';
+    this.classList.add('on');$('qmPortion').classList.remove('on');
+    $('grams').value=f.p;
+    $('gramsUnit').textContent=lang==='ru'?'г':'g';
+  };
 
   function applyLang(){
     document.documentElement.lang=lang;
@@ -427,6 +484,7 @@ img,svg{height:auto}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
     fillDishes();
+    updateQtyUI();
     if(norm)renderNorm();
     renderFoods();
   }
@@ -465,11 +523,7 @@ img,svg{height:auto}
   $('detailToggle').onclick=function(){setDetail(!detailOpen)};
   $('detailHint').onclick=function(){setDetail(true)};
 
-  $('dishSel').addEventListener('change',function(){
-    var f=FOODS.filter(function(x){return x.id===this.value},this)[0];
-    for(var q=0;q<FOODS.length;q++){if(FOODS[q].id===this.value)f=FOODS[q]}
-    if(f)$('grams').value=f.p;
-  });
+  $('dishSel').addEventListener('change',updateQtyUI);
 
   function calcNorm(){
     var a=num($('age').value), h=num($('height').value), w=num($('weight').value);
@@ -489,13 +543,71 @@ img,svg{height:auto}
     $('nbNum').textContent=norm+' '+t('kcal');
     $('nbBmrV').textContent=(window._bmr||'—')+' '+t('kcal');
     $('nbTdeeV').textContent=(window._tdee||'—')+' '+t('kcal');
+    renderCombo();
+  }
+
+  // 2.2 — kunlik me'yorni FAQAT 4ta TASDIQLANGAN taom bo'yicha misol shaklida ko'rsatish.
+  // Faqat quyidagi shablonlar qo'llaniladi (tartib bo'yicha birinchi mos kelgani tanlanadi):
+  //   1) osh yolg'iz  2) osh+somsa  3) manti+shashlik
+  // Har birida 0..6 oralig'ida butun sonlar qidiriladi, ±10% ichida bo'lgani qabul qilinadi.
+  // Hech biri mos kelmasa — hech narsa ko'rsatilmaydi (yasama kombinatsiya YO'Q).
+  var COMBO_KCAL={osh:735,manti:176,somsa:313.5,shashlik:375}; // 1 porsiya kaloriyasi (k*porsiya/100)
+  var COMBO_TEMPLATES=[['osh'],['osh','somsa'],['manti','shashlik']];
+  function findCombo(){
+    if(!norm)return null;
+    var max=6;
+    for(var ti=0;ti<COMBO_TEMPLATES.length;ti++){
+      var ids=COMBO_TEMPLATES[ti], best=null;
+      if(ids.length===1){
+        for(var c=1;c<=max;c++){
+          var total=c*COMBO_KCAL[ids[0]];
+          var diff=Math.abs(total-norm)/norm;
+          if(diff<=0.10&&(!best||diff<best.diff))best={counts:[c],diff:diff};
+        }
+      }else{
+        for(var c1=0;c1<=max;c1++){
+          for(var c2=0;c2<=max;c2++){
+            if(c1===0&&c2===0)continue;
+            var t2=c1*COMBO_KCAL[ids[0]]+c2*COMBO_KCAL[ids[1]];
+            var diff2=Math.abs(t2-norm)/norm;
+            if(diff2<=0.10&&(!best||diff2<best.diff))best={counts:[c1,c2],diff:diff2};
+          }
+        }
+      }
+      if(best)return {ids:ids,counts:best.counts};
+    }
+    return null;
+  }
+  function renderCombo(){
+    var el=$('nbCombo');
+    if(!el)return;
+    var combo=findCombo();
+    if(!combo){el.textContent='';return;}
+    var words=t('comboWords'), parts=[];
+    for(var i=0;i<combo.ids.length;i++){
+      var c=combo.counts[i];
+      if(!c)continue;
+      var f=findFood(combo.ids[i]);
+      var nm=lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi;
+      parts.push(c+' '+nm+' '+words[combo.ids[i]]);
+    }
+    if(!parts.length){el.textContent='';return;}
+    el.textContent=t('comboPrefix')+' '+parts.join(' + ');
   }
 
   $('addFood').onclick=function(){
     var id=$('dishSel').value||FOODS[0].id;
-    var g=num($('grams').value);
-    if(!g)return;
-    var f;for(var q=0;q<FOODS.length;q++){if(FOODS[q].id===id)f=FOODS[q]}
+    var f=findFood(id);
+    if(!f)return;
+    var g;
+    if(f.holat==='TASDIQLANGAN'&&qtyMode==='portion'){
+      var count=num($('grams').value);
+      if(!count)return;
+      g=count*f.porsiya;
+    }else{
+      g=num($('grams').value);
+      if(!g)return;
+    }
     eaten.push({id:id,g:g,kcal:Math.round(f.k*g/100)});
     renderFoods();
   };
