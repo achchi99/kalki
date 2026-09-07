@@ -155,3 +155,26 @@ faqat shu ro'yxat orqali farqlanadi.
   tekshirish — bu hozirgi ro'yxat-asosidan ko'ra ancha kengroq qamrov
   beradi, lekin false-positive xavfi ham oshadi (masalan `alt`/`title`
   atributlari, izohlar).
+
+- **Fon jarayonida `npm run ship` tugashini kutish uchun
+  `pgrep -f "npm run ship"` ISHLATILMASIN.** 2026-09'da 4 ta abadiy
+  osilib qolgan kutish-tsikli topildi (soatlab CPU'da bekorga aylanib
+  turgan), garchi haqiqiy `ship` allaqachon tugagan bo'lsa ham. Sabab:
+  `until ! pgrep -f "npm run ship" > /dev/null; do sleep N; done` —
+  bu tsiklning O'ZINING buyruq qatorida ham so'zma-so'z `"npm run ship"`
+  matni bor (pgrep argumenti sifatida). `pgrep -f` esa BARCHA jarayonlar
+  orasidan shu matnga mos keladiganini qidiradi — shu jumladan o'zini va
+  bir-birini. Natijada tsikl hech qachon "ship tugadi" holatiga
+  o'tolmaydi, chunki har safar o'zini "hali ishlab turgan ship" deb
+  aniqlaydi.
+
+  **To'g'ri usul:** jarayonni ishga tushirishda PID'ni saqlang (`$!`),
+  keyin aynan shu PID'ni tekshiring:
+  ```bash
+  npm run ship > /tmp/ship.log 2>&1 &
+  SHIP_PID=$!
+  while kill -0 "$SHIP_PID" 2>/dev/null; do sleep 15; done
+  echo "ship finished"; tail -50 /tmp/ship.log
+  ```
+  `kill -0 $PID` faqat shu aniq PID hali tirikligini tekshiradi — matn
+  qidirmaydi, shuning uchun o'z-o'ziga mos kelish xavfi yo'q.
