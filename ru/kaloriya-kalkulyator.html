@@ -100,6 +100,22 @@ h2.sect{font-size:17px;font-weight:800;margin-bottom:6px}
 .receipt-actions button:active{background:var(--cat-soft)}
 .receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.detail-toggle{width:100%;background:#EEF2EF;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:15px;font-weight:800;padding:14px;cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;gap:8px}
+.detail-toggle:active{transform:scale(.99)}
+.detail-toggle::after{content:"▾";font-size:13px;color:var(--accent)}
+.detail-toggle.open::after{content:"▴"}
+.seg .act-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 6px;text-align:center}
+.seg .act-btn .am{font-size:13.5px;font-weight:800}
+.seg .act-btn .as{font-size:10.5px;font-weight:600;opacity:.75;line-height:1.25}
+.seg .act-btn.on .as{opacity:.92}
+.detail-hint{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--cat-text);text-decoration:underline;cursor:pointer;-webkit-tap-highlight-color:transparent;background:none;border:0;font-family:inherit;padding:0}
+details.acc{border:1.5px solid rgba(255,255,255,.25);border-radius:12px;margin-top:14px;background:rgba(255,255,255,.08);overflow:hidden}
+details.acc[open]{background:rgba(255,255,255,.12)}
+details.acc>summary{padding:12px 14px;font-size:13px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent;color:#fff}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"+";font-size:17px;font-weight:800}
+details.acc[open]>summary::after{content:"−"}
+.acc-body{padding:2px 14px 13px}
 </style>
 <link rel="manifest" href="/manifest.json">
 <style id="printcss">
@@ -175,7 +191,7 @@ img,svg{height:auto}
   #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
-<script type="application/json" id="answerbox-data">{"uz":{"text":"Kaloriya kalkulyatori — bo'yingiz, vazningiz, yoshingiz va faollik darajangizni kiriting, kunlik kaloriya me'yori (Mifflin-San Jeor formulasi) hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор калорий — введите рост, вес, возраст и уровень активности, рассчитается суточная норма калорий (формула Mifflin-San Jeor).","sources":[]},"updated":"2026-09-06"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается дневная норма?","acceptedAnswer":{"@type":"Answer","text":"Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью."}},{"@type":"Question","name":"Откуда калорийность узбекских блюд?","acceptedAnswer":{"@type":"Answer","text":"Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир."}},{"@type":"Question","name":"Как пользоваться результатом?","acceptedAnswer":{"@type":"Answer","text":"Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Жизнь","item":"https://kalki.uz/ru/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор калорий","item":"https://kalki.uz/ru/kaloriya-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор калорий","description":"Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.","url":"https://kalki.uz/ru/kaloriya-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-09-06"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"></head>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Kaloriya kalkulyatori — jinsingiz, vazningiz va faollik darajangizni kiriting, kunlik kaloriya me'yoringiz bir zumda hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор калорий — введите пол, вес и уровень активности, рассчитается суточная норма калорий.","sources":[]},"updated":"2026-09-07"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается дневная норма?","acceptedAnswer":{"@type":"Answer","text":"Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью."}},{"@type":"Question","name":"Откуда калорийность узбекских блюд?","acceptedAnswer":{"@type":"Answer","text":"Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир."}},{"@type":"Question","name":"Как пользоваться результатом?","acceptedAnswer":{"@type":"Answer","text":"Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Жизнь","item":"https://kalki.uz/ru/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор калорий","item":"https://kalki.uz/ru/kaloriya-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор калорий","description":"Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.","url":"https://kalki.uz/ru/kaloriya-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-09-07"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"></head>
 <body data-cat="hayot">
 <nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
 
@@ -189,7 +205,7 @@ img,svg{height:auto}
 </header>
 
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-hayot">Жизнь</a><span class="sep">›</span><span class="cur">Калькулятор калорий</span></nav></div>
-<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор калорий — введите рост, вес, возраст и уровень активности, рассчитается суточная норма калорий (формула Mifflin-San Jeor).</p><div class="ab-meta">Обновлено: 2026-09-06</div></div>
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор калорий — введите пол, вес и уровень активности, рассчитается суточная норма калорий.</p><div class="ab-meta">Обновлено: 2026-09-07</div></div>
   <section class="form-card">
     <div class="field">
       <label data-i="lGender">Пол</label>
@@ -198,29 +214,17 @@ img,svg{height:auto}
         <button type="button" id="gF" data-i="segF">Женщина</button>
       </div>
     </div>
-    <div class="row2">
-      <div class="field">
-        <label for="age" data-i="lAge">Возраст</label>
-        <div class="input-shell"><input type="text" id="age" inputmode="numeric" value="30"><span class="unit" data-i="uAge">лет</span></div>
-      </div>
-      <div class="field">
-        <label for="height" data-i="lHeight">Рост</label>
-        <div class="input-shell"><input type="text" id="height" inputmode="numeric" value="175"><span class="unit">sm</span></div>
-      </div>
-    </div>
     <div class="field">
       <label for="weight" data-i="lWeight">Вес</label>
       <div class="input-shell"><input type="text" id="weight" inputmode="decimal" value="75"><span class="unit">kg</span></div>
     </div>
     <div class="field">
       <label data-i="lAct">Уровень активности</label>
-      <div class="input-shell"><select id="activity">
-        <option value="1.2" data-i-opt="a1">Минимальный (сидячая работа)</option>
-        <option value="1.375" data-i-opt="a2">Лёгкий (1–3 тренировки в неделю)</option>
-        <option value="1.55" selected="" data-i-opt="a3">Средний (3–5 тренировок)</option>
-        <option value="1.725" data-i-opt="a4">Высокий (6–7 тренировок)</option>
-        <option value="1.9" data-i-opt="a5">Очень высокий (тяжёлый физический труд)</option>
-      </select></div>
+      <div class="seg" id="actQuick">
+        <button type="button" class="act-btn" data-act="1.2"><span class="am" data-i="actLowL">Мало</span><span class="as" data-i="actLowS">весь день сижу на работе</span></button>
+        <button type="button" class="act-btn on" data-act="1.55"><span class="am" data-i="actMidL">Средне</span><span class="as" data-i="actMidS">хожу пешком, иногда спорт</span></button>
+        <button type="button" class="act-btn" data-act="1.9"><span class="am" data-i="actHighL">Много</span><span class="as" data-i="actHighS">регулярный спорт или физический труд</span></button>
+      </div>
     </div>
     <div class="field" style="margin-bottom:0">
       <label data-i="lGoal">Цель</label>
@@ -231,16 +235,45 @@ img,svg{height:auto}
       </div>
       <p class="hint" data-i="hGoal">Для похудения −15%, для набора +12% от нормы.</p>
     </div>
+    <button type="button" class="detail-toggle" id="detailToggle" data-i="btnDetail" style="margin-top:16px">Указать возраст, рост и точнее активность</button>
+    <div id="detailPanel" style="display:none;margin-top:16px">
+      <div class="row2">
+        <div class="field">
+          <label for="age" data-i="lAge">Возраст</label>
+          <div class="input-shell"><input type="text" id="age" inputmode="numeric" value="30"><span class="unit" data-i="uAge">лет</span></div>
+        </div>
+        <div class="field">
+          <label for="height" data-i="lHeight">Рост</label>
+          <div class="input-shell"><input type="text" id="height" inputmode="numeric" value="175"><span class="unit">sm</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lActDetail">Уровень активности (точнее)</label>
+        <div class="input-shell"><select id="activity">
+          <option value="1.2" data-i-opt="a1">Минимальный (сидячая работа)</option>
+          <option value="1.375" data-i-opt="a2">Лёгкий (1–3 тренировки в неделю)</option>
+          <option value="1.55" selected="" data-i-opt="a3">Средний (3–5 тренировок)</option>
+          <option value="1.725" data-i-opt="a4">Высокий (6–7 тренировок)</option>
+          <option value="1.9" data-i-opt="a5">Очень высокий (тяжёлый физический труд)</option>
+        </select></div>
+      </div>
+    </div>
     <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Рассчитать норму</button>
   </section>
 
   <section class="norm-banner" id="normBanner" aria-live="polite">
     <div class="nb-lbl" data-i="nbLbl">Ваша дневная норма</div>
     <div class="nb-num" id="nbNum">—</div>
-    <div class="nb-rows">
-      <div class="nb-item"><span data-i="nbBmr">Базальный обмен (BMR)</span><b id="nbBmrV">—</b></div>
-      <div class="nb-item"><span data-i="nbTdee">Общий расход (TDEE)</span><b id="nbTdeeV">—</b></div>
-    </div>
+    <details class="acc">
+      <summary data-i="accHow">Как это рассчитывается?</summary>
+      <div class="acc-body">
+        <div class="nb-rows">
+          <div class="nb-item"><span data-i="nbBmr">Базальный обмен (BMR)</span><b id="nbBmrV">—</b></div>
+          <div class="nb-item"><span data-i="nbTdee">Общий расход (TDEE)</span><b id="nbTdeeV">—</b></div>
+        </div>
+      </div>
+    </details>
+    <button type="button" class="detail-hint" id="detailHint" data-i="hDetail">Для точного расчёта укажите возраст и рост →</button>
   </section>
 
   <section class="card2" id="foodCard" style="display:none">
@@ -297,12 +330,18 @@ img,svg{height:auto}
       sub:"Kunlik me'yoringizni aniq hisoblang va o'zbek taomlarining unga ta'sirini raqamlarda ko'ring.",
       lGender:"Jins",segM:"Erkak",segF:"Ayol",
       lAge:"Yosh",uAge:"yosh",lHeight:"Bo'y",lWeight:"Vazn",
-      lAct:"Faollik darajasi",
+      lAct:"Faollik darajasi",lActDetail:"Faollik darajasi (aniqroq)",
       a1:"Minimal (o'tirib ishlash)",a2:"Yengil (haftada 1–3 mashq)",a3:"O'rtacha (haftada 3–5 mashq)",a4:"Yuqori (haftada 6–7 mashq)",a5:"Juda yuqori (og'ir jismoniy mehnat)",
+      actLowL:"Kam",actLowS:"kun bo'yi o'tirib ishlayman",
+      actMidL:"O'rtacha",actMidS:"piyoda yuraman, ba'zan sport",
+      actHighL:"Ko'p",actHighS:"muntazam sport yoki jismoniy mehnat",
       lGoal:"Maqsad",gLose:"Vazn kamaytirish",gKeep:"Saqlash",gGain:"Vazn olish",
       hGoal:"Kamaytirishda −15%, olishda +12% me'yorga nisbatan.",
+      btnDetail:"Yosh, bo'y va aniqroq faollikni kiritish",
       btnCalc:"Me'yorni hisoblash",
       nbLbl:"Sizning kunlik me'yoringiz",
+      accHow:"Bu qanday hisoblanadi?",
+      hDetail:"Aniqroq hisoblash uchun yosh va bo'yingizni kiriting →",
       nbBmr:"Bazal almashinuv (BMR)",nbTdee:"Umumiy sarf (TDEE)",
       kcal:"kkal",
       fTitle:"O'zbek taomlari — kunlik me'yorga ta'siri",
@@ -312,7 +351,7 @@ img,svg{height:auto}
       per100:"100 g = ",
       dsEaten:"Iste'mol qilindi",dsLeft:"Me'yordan qoldi",dsOver:"Me'yordan oshdi",
       foot:"Mifflin-San Jeor formulasi. Sog'liq muammolari bo'lsa, ratsionni shifokor bilan kelishing.",
-      seo:'<h2>Kunlik me\'yor qanday hisoblanadi?</h2><p>Eng aniq hisoblangan Mifflin-San Jeor formulasi qo\'llaniladi: bazal almashinuv (organizm tinch holatda sarflaydigan energiya) hisoblanib, faollik koeffitsiyentiga ko\'paytiriladi. Maqsadga qarab kamaytirish uchun mo\'tadil −15%, vazn olish uchun +12% qo\'llanadi — keskin cheklovlar sog\'liqqa zarar.</p><h2>O\'zbek taomlari kaloriyasi qayerdan olingan?</h2><p>Qiymatlar o\'rtacha retseptlar bo\'yicha: masalan, bir laylik osh (~350 g) taxminan 700–750 kkal — bu o\'rtacha me\'yorning uchdan biri. Yog\' miqdori oshsa kaloriya sezilarli oshadi, shuning uchun raqamlar mo\'ljal sifatida qaralsin.</p><h2>Natijani qanday ishlatish kerak?</h2><p>Kun davomida yegan taomlaringizni qo\'shib boring — me\'yordan qancha qolgani ko\'rinadi. Muhimi mukammal aniqlik emas, umumiy muvozanat: haftalik o\'rtacha ko\'rsatkich kunlik tebranishlardan muhimroq.</p>'
+      seo:'<h2>Kunlik me\'yor qanday hisoblanadi?</h2><p>Eng aniq hisoblangan Mifflin-San Jeor formulasi qo\'llaniladi: bazal almashinuv (organizm tinch holatda sarflaydigan energiya) hisoblanib, faollik koeffitsiyentiga ko\'paytiriladi. Maqsadga qarab kamaytirish uchun mo\'tadil −15%, vazn olish uchun +12% qo\'llanadi — keskin cheklovlar sog\'liqqa zarar.</p><h2>O\'zbek taomlari kaloriyasi qayerdan olingan?</h2><p>Qiymatlar o\'rtacha retseptlar bo\'yicha: masalan, bir likop osh (~350 g) taxminan 700–750 kkal — bu o\'rtacha me\'yorning uchdan biri. Yog\' miqdori oshsa kaloriya sezilarli oshadi, shuning uchun raqamlar mo\'ljal sifatida qaralsin.</p><h2>Natijani qanday ishlatish kerak?</h2><p>Kun davomida yegan taomlaringizni qo\'shib boring — me\'yordan qancha qolgani ko\'rinadi. Muhimi mukammal aniqlik emas, umumiy muvozanat: haftalik o\'rtacha ko\'rsatkich kunlik tebranishlardan muhimroq.</p>'
     },
     ru:{
       brand:"Kalki.uz",cat:"Жизнь",
@@ -320,12 +359,18 @@ img,svg{height:auto}
       sub:"Точно рассчитайте дневную норму и увидьте влияние узбекских блюд в цифрах.",
       lGender:"Пол",segM:"Мужчина",segF:"Женщина",
       lAge:"Возраст",uAge:"лет",lHeight:"Рост",lWeight:"Вес",
-      lAct:"Уровень активности",
+      lAct:"Уровень активности",lActDetail:"Уровень активности (точнее)",
       a1:"Минимальный (сидячая работа)",a2:"Лёгкий (1–3 тренировки в неделю)",a3:"Средний (3–5 тренировок)",a4:"Высокий (6–7 тренировок)",a5:"Очень высокий (тяжёлый физический труд)",
+      actLowL:"Мало",actLowS:"весь день сижу на работе",
+      actMidL:"Средне",actMidS:"хожу пешком, иногда спорт",
+      actHighL:"Много",actHighS:"регулярный спорт или физический труд",
       lGoal:"Цель",gLose:"Похудение",gKeep:"Поддержание",gGain:"Набор массы",
       hGoal:"Для похудения −15%, для набора +12% от нормы.",
+      btnDetail:"Указать возраст, рост и точнее активность",
       btnCalc:"Рассчитать норму",
       nbLbl:"Ваша дневная норма",
+      accHow:"Как это рассчитывается?",
+      hDetail:"Для точного расчёта укажите возраст и рост →",
       nbBmr:"Базальный обмен (BMR)",nbTdee:"Общий расход (TDEE)",
       kcal:"ккал",
       fTitle:"Узбекские блюда — влияние на дневную норму",
@@ -399,6 +444,26 @@ img,svg{height:auto}
       this.classList.add('on');
     };
   }
+
+  // Faollik — tez tanlov (3 tugma), asosiy #activity select'ini yangilaydi
+  var actBtns=document.querySelectorAll('#actQuick .act-btn');
+  for(var ab=0;ab<actBtns.length;ab++){
+    actBtns[ab].onclick=function(){
+      $('activity').value=this.getAttribute('data-act');
+      for(var k=0;k<actBtns.length;k++)actBtns[k].classList.remove('on');
+      this.classList.add('on');
+    };
+  }
+
+  // Batafsil panel (yosh/bo'y/aniqroq faollik) — yashirin/ko'rsatilgan
+  var detailOpen=false;
+  function setDetail(open){
+    detailOpen=!!open;
+    $('detailPanel').style.display=detailOpen?'block':'none';
+    $('detailToggle').classList.toggle('open',detailOpen);
+  }
+  $('detailToggle').onclick=function(){setDetail(!detailOpen)};
+  $('detailHint').onclick=function(){setDetail(true)};
 
   $('dishSel').addEventListener('change',function(){
     var f=FOODS.filter(function(x){return x.id===this.value},this)[0];
