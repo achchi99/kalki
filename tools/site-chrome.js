@@ -131,6 +131,7 @@ const XNAV_LINKS = [
   ['kredit-limit-kalkulyator', 'Kredit limit / Кредитный лимит'],
   ['ipoteka-kalkulyator', 'Ipoteka / Ипотека'],
   ['ipoteka-yoki-ijara-kalkulyator', "Ipoteka yoki ijara / Ипотека или аренда"],
+  ['ijara-stavkalari', "Ijara stavkalari / Ставки аренды"],
   ['omonat-kalkulyator', 'Omonat / Депозит'],
   ['oylik-soliq-kalkulyator', 'Ish haqi / Зарплата'],
   ['qqs-kalkulyator', 'QQS / НДС'],

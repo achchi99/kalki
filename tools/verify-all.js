@@ -477,6 +477,54 @@ function runTool(args) {
       bad.slice(0, 8).join(', '));
   }
 
+  /* ---------- 27. ijara-stavkalari.json: baza x koeff = manba stavka ----------
+     2026-09'da qo'shildi (ijara-stavkalari.html uchun). Foydalanuvchi
+     talabi: keyingi yillarda hokimiyat qarorlari yangilanganda, agar
+     "yakuniy stavka = bazaviy stavka x koeffitsient" formulasi buzilsa
+     (masalan hisoblash usuli o'zgarsa), bu jimgina noto'g'ri raqam
+     ko'rsatishning oldini olish uchun shu yerda ushlanadi. Tolerantlik
+     5.5 so'm — manba ba'zi hududlarda "ming so'm"da 2 xonagacha
+     yaxlitlangan (masalan Toshkent viloyati jadvali), aniq ko'paytma
+     shundan bir necha so'm farq qiladi — bu xato emas, manbaning o'z
+     yaxlitlashi. manba_turar_stavka/manba_noturar_stavka null bo'lgan
+     qatorlar (manba faqat koeffitsient bergan, yakuniy qiymat bermagan)
+     o'tkazib yuboriladi — solishtiradigan narsa yo'q. */
+  {
+    const ijaraPath = path.join(ROOT, 'data', 'ijara-stavkalari.json');
+    const bad = [];
+    if (!fs.existsSync(ijaraPath)) {
+      add(false, '27. ijara-stavkalari.json: baza x koeff = manba stavka', 'fayl topilmadi');
+    } else {
+      const data = JSON.parse(fs.readFileSync(ijaraPath, 'utf8'));
+      const TOL = 5.5;
+      const check = (label, calc, manba) => {
+        if (manba == null) return;
+        if (Math.abs(calc - manba) > TOL) bad.push(label + ': hisob=' + calc + ' manba=' + manba);
+      };
+      for (const h of data.hududlar || []) {
+        if (h.tur === 'toshkent_shahar') {
+          const b = data.baza_stavka.toshkent_shahar;
+          for (const z of h.zonalar || []) {
+            check(h.id + '/zona' + z.zona + '/turar', Math.round(b.turar * z.turar_koeff * 100) / 100, z.manba_turar_stavka);
+            for (const k of Object.keys(z.noturar_koeff || {})) {
+              check(h.id + '/zona' + z.zona + '/' + k,
+                Math.round(b.noturar * z.noturar_koeff[k] * 100) / 100,
+                (z.manba_noturar_stavka || {})[k]);
+            }
+          }
+        } else {
+          for (const t of h.tumanlar || []) {
+            const b = t.markaziy ? data.baza_stavka.viloyat_markazi : data.baza_stavka.boshqa;
+            check(h.id + '/' + t.nomi + '/turar', Math.round(b.turar * t.turar_koeff * 100) / 100, t.manba_turar_stavka);
+            check(h.id + '/' + t.nomi + '/noturar', Math.round(b.noturar * t.noturar_koeff * 100) / 100, t.manba_noturar_stavka);
+          }
+        }
+      }
+      add(!bad.length, '27. ijara-stavkalari.json: baza x koeff = manba stavka',
+        bad.slice(0, 8).join(' | '));
+    }
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

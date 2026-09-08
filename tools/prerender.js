@@ -91,6 +91,7 @@ const RU_PAGES = [
   'kredit-limit-kalkulyator.html',
   'ipoteka-kalkulyator.html',
   'ipoteka-yoki-ijara-kalkulyator.html',
+  'ijara-stavkalari.html',
   'oylik-soliq-kalkulyator.html',
   'ariza-namunasi.html',
   'uy-qurish-kalkulyator.html',

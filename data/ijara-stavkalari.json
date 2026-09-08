@@ -1,0 +1,1854 @@
+{
+  "_readme": "kalki.uz ijara-stavkalari.html uchun manba ma'lumotlar. Hech bir raqam bu yerda hisoblanmagan/taxmin qilinmagan -- barchasi ijara_stavkalari.md/qanday_topiladi.md fayllaridan (Asror tomonidan yig'ilgan, 08.09.2026) olingan. 'markaziy':true bayrog'i -- Claude tomonidan barcha mavjud 'manba_turar_stavka'/'manba_noturar_stavka' qiymatlarini bazaviy stavka jadvali bilan o'zaro solishtirib chiqarilgan xulosa (2026-09-08, 8+ misolda tasdiqlangan, Asror tomonidan tasdiqlangan): faqat viloyat markazi (yoki Toshkent viloyati uchun Nurafshon shahri) 'viloyat_markazi' bazaviy pog'onadan (14500/28400 so'm) foydalanadi, qolgan barcha tuman/shahar 'boshqa' pog'onadan (5900/11800 so'm) foydalanadi -- bu qoida manba faylida so'zma-so'z yozilmagan. Ba'zi hududlarda manba fayl faqat koeffitsientni beradi, yakuniy stavkani bermaydi -- bunday joyda manba_turar_stavka/manba_noturar_stavka null (taxmin qilib to'ldirilmagan). tools/verify-all.js'dagi yangi band manba mavjud bo'lgan har bir qatorda baza*koeff==manba ekanini tekshiradi.",
+  "sana": "2026-09-08",
+  "yil": 2026,
+  "baza_qonun": {
+    "nomi": "ZRU-1105 (2026-yil Davlat byudjeti to'g'risidagi qonun)",
+    "sana": "2025-12-25",
+    "ilova": "8-ilova",
+    "manba_url": null
+  },
+  "baza_stavka": {
+    "toshkent_shahar": {
+      "turar": 30000,
+      "noturar": 48000
+    },
+    "viloyat_markazi": {
+      "turar": 14500,
+      "noturar": 28400
+    },
+    "boshqa": {
+      "turar": 5900,
+      "noturar": 11800
+    }
+  },
+  "baza_transport": {
+    "yengil_avtomobil": 918000,
+    "yuk_avtobus_mikroavtobus": 1824000
+  },
+  "hududlar": [
+    {
+      "id": "andijon",
+      "nomi_uz": "Andijon viloyati",
+      "nomi_ru": "Андижанская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-15-297-1-0-K/25",
+        "sana": "2025-12-26",
+        "ilova": "12-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/218150"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Andijon shahar",
+          "markaziy": true,
+          "turar_koeff": 1.5,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 21750,
+          "manba_noturar_stavka": 42600
+        },
+        {
+          "nomi": "Xonobod shahar",
+          "markaziy": false,
+          "turar_koeff": 1.4,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 8260,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Oltinko'l tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Andijon tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Baliqchi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Bo'ston tumani",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": 5900,
+          "manba_noturar_stavka": 11800
+        },
+        {
+          "nomi": "Buloqboshi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Jalaquduq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Izboskan tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Ulug'nor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": 5900,
+          "manba_noturar_stavka": 11800
+        },
+        {
+          "nomi": "Qo'rg'ontepa tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Asaka tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Marhamat tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Shahrixon tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Paxtaobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Xo'jaobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        }
+      ]
+    },
+    {
+      "id": "buxoro",
+      "nomi_uz": "Buxoro viloyati",
+      "nomi_ru": "Бухарская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-21-113-2-0-K/25",
+        "sana": "2025-12-30",
+        "ilova": "5-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/222364"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Buxoro sh.",
+          "markaziy": true,
+          "turar_koeff": 1.5,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Kogon sh.",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Olot t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Buxoro t.",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Vobkent t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "G'ijduvon t.",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Jondor t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Kogon t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Qorako'l t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Peshku t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Romitan t.",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Shofirkon t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Q-bozor t.",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        }
+      ]
+    },
+    {
+      "id": "fargona",
+      "nomi_uz": "Farg'ona viloyati",
+      "nomi_ru": "Ферганская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-15-160-11-0-K/25",
+        "sana": "2025-12-29",
+        "ilova": "10-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/218131"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Farg'ona shahar",
+          "markaziy": true,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 17400,
+          "manba_noturar_stavka": 34080
+        },
+        {
+          "nomi": "Qo'qon shahar",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": 6785,
+          "manba_noturar_stavka": 13570
+        },
+        {
+          "nomi": "Quvasoy shahar",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Marg'ilon shahar",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Oltiariq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Bog'dod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Buvayda tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Beshariq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Quva tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Uchko'prik tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Rishton tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "So'x tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Toshloq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "O'zbekiston tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Farg'ona tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Dang'ara tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Furqat tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Yozyovon tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        },
+        {
+          "nomi": "Qo'shtepa tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.05,
+          "manba_turar_stavka": 6195,
+          "manba_noturar_stavka": 12390
+        }
+      ]
+    },
+    {
+      "id": "jizzax",
+      "nomi_uz": "Jizzax viloyati",
+      "nomi_ru": "Джизакская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-23-351-3-0-K/25",
+        "sana": "2025-12-30",
+        "ilova": "7-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/223291"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Arnasoy tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Baxmal tumani",
+          "markaziy": false,
+          "turar_koeff": 1.25,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "G'allaorol tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.35,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Sh.Rashidov tumani",
+          "markaziy": false,
+          "turar_koeff": 1.45,
+          "noturar_koeff": 1.45,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Do'stlik tumani",
+          "markaziy": false,
+          "turar_koeff": 1.25,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Zarbdor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.25,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Zomin tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.35,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Zafarobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Mirzacho'l tumani",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Paxtakor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.35,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Forish tumani",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.25,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Jizzax shahar",
+          "markaziy": true,
+          "turar_koeff": 1.65,
+          "noturar_koeff": 1.65,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Yangiobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        }
+      ]
+    },
+    {
+      "id": "namangan",
+      "nomi_uz": "Namangan viloyati",
+      "nomi_ru": "Наманганская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-17-165-6-0-K/25",
+        "sana": "2025-12-29",
+        "ilova": "11-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/218126"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Namangan shahar",
+          "markaziy": true,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 2.0,
+          "manba_turar_stavka": 19575,
+          "manba_noturar_stavka": 56800
+        },
+        {
+          "nomi": "Mingbuloq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Kosonsoy tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Namangan tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Pop tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "To'raqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Uychi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Chortoq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Yangiqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Norin tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Uchqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "Chust tumani",
+          "markaziy": false,
+          "turar_koeff": 1.35,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 7965,
+          "manba_noturar_stavka": 17700
+        }
+      ]
+    },
+    {
+      "id": "navoiy",
+      "nomi_uz": "Navoiy viloyati",
+      "nomi_ru": "Навоийская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-23-1-5-0-K/26",
+        "sana": "2026-01-09",
+        "ilova": "4-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/226738"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Navoiy shahar",
+          "markaziy": true,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Zarafshon shahar",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Uchquduq tuman",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Konimex tuman",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Qiziltepa tuman",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Tomdi tuman",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Navbahor tuman",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Xatirchi tuman",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Nurota tuman",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Karmana tuman",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "G'ozg'on shahar",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        }
+      ]
+    },
+    {
+      "id": "qashqadaryo",
+      "nomi_uz": "Qashqadaryo viloyati",
+      "nomi_ru": "Кашкадарьинская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-20-218-4-0-K/25",
+        "sana": "2025-12-29",
+        "ilova": "10-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/218151"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Qarshi shahar",
+          "markaziy": true,
+          "turar_koeff": 1.5,
+          "noturar_koeff": 1.6,
+          "manba_turar_stavka": 21750,
+          "manba_noturar_stavka": 45440
+        },
+        {
+          "nomi": "Shahrisabz shahar",
+          "markaziy": false,
+          "turar_koeff": 1.4,
+          "noturar_koeff": 1.5,
+          "manba_turar_stavka": 8260,
+          "manba_noturar_stavka": 17700
+        },
+        {
+          "nomi": "G'uzor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Dehqonobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": 5900,
+          "manba_noturar_stavka": 11800
+        },
+        {
+          "nomi": "Qamashi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Qarshi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Koson tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Kitob tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Muborak tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Nishon tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Kasbi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Chiroqchi tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Shahrisabz tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Yakkabog' tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 16520
+        },
+        {
+          "nomi": "Mirishkor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Ko'kdala tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 15340
+        }
+      ]
+    },
+    {
+      "id": "samarqand",
+      "nomi_uz": "Samarqand viloyati",
+      "nomi_ru": "Самаркандская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-24-194-7-0-K/25",
+        "sana": "2025-12-30",
+        "ilova": "3-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/222395"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Samarqand shahar",
+          "markaziy": true,
+          "turar_koeff": 1.17,
+          "noturar_koeff": 1.17,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Toyloq tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Kattaqo'rg'on shahar",
+          "markaziy": false,
+          "turar_koeff": 1.17,
+          "noturar_koeff": 1.17,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Oqdaryo tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Bulung'ur tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Jomboy tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Ishtixon tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Kattaqo'rg'on tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Qo'shrabot tuman",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Narpay tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Payariq tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Pastdarg'om tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Paxtachi tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Samarqand tuman",
+          "markaziy": false,
+          "turar_koeff": 1.17,
+          "noturar_koeff": 1.17,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Nurobod tuman",
+          "markaziy": false,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Urgut tuman",
+          "markaziy": false,
+          "turar_koeff": 1.15,
+          "noturar_koeff": 1.15,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        }
+      ]
+    },
+    {
+      "id": "sirdaryo",
+      "nomi_uz": "Sirdaryo viloyati",
+      "nomi_ru": "Сырдарьинская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-28-1-9-0-K/26",
+        "sana": "2026-01-12",
+        "ilova": "6-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/225747"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Oqoltin tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Boyovut tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Guliston tumani",
+          "markaziy": false,
+          "turar_koeff": 1.2,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 7080,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Mirzaobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Sayxunobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Sirdaryo tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Xovos tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Sardoba tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Guliston shahri",
+          "markaziy": true,
+          "turar_koeff": 1.4,
+          "noturar_koeff": 1.4,
+          "manba_turar_stavka": 20300,
+          "manba_noturar_stavka": 39760
+        },
+        {
+          "nomi": "Shirin shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Yangiyer shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        }
+      ]
+    },
+    {
+      "id": "surxondaryo",
+      "nomi_uz": "Surxondaryo viloyati",
+      "nomi_ru": "Сурхандарьинская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-17-18-8-0-K/26",
+        "sana": "2026-02-09",
+        "ilova": "1-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/227833"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Termiz shahar",
+          "markaziy": true,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 14500.0,
+          "manba_noturar_stavka": 28400.0
+        },
+        {
+          "nomi": "Angor tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Oltinsoy tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Boysun tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Muzrabot tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Denov tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Jarqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Qumqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Qiziriq tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Sariosiyo tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Termiz tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Sherobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Sho'rchi tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Uzun tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        },
+        {
+          "nomi": "Bandixon tumani",
+          "markaziy": false,
+          "turar_koeff": 1,
+          "noturar_koeff": 1,
+          "manba_turar_stavka": 5900.0,
+          "manba_noturar_stavka": 11800.0
+        }
+      ]
+    },
+    {
+      "id": "toshkent_viloyat",
+      "nomi_uz": "Toshkent viloyati",
+      "nomi_ru": "Ташкентская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-26-162-10-0-K/25",
+        "sana": "2025-12-29",
+        "ilova": "14-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/223812"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Olmaliq shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Angren shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Ohangaron shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Bekobod shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Chirchiq shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Yangiyo'l shahri",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Ohangaron tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Bekobod tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Oqqo'rg'on tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Bo'stonliq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Bo'ka tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Yuqori Chirchiq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Quyichirchiq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Zangiota tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Qibray tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Parkent tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Pskent tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "O'rta Chirchiq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Toshkent tumani",
+          "markaziy": false,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 7670,
+          "manba_noturar_stavka": 15340
+        },
+        {
+          "nomi": "Chinoz tumani",
+          "markaziy": false,
+          "turar_koeff": 1.1,
+          "noturar_koeff": 1.1,
+          "manba_turar_stavka": 6490,
+          "manba_noturar_stavka": 12980
+        },
+        {
+          "nomi": "Yangiyo'l tumani",
+          "markaziy": false,
+          "turar_koeff": 1.05,
+          "noturar_koeff": 1.2,
+          "manba_turar_stavka": 6200,
+          "manba_noturar_stavka": 14160
+        },
+        {
+          "nomi": "Nurafshon shahri",
+          "markaziy": true,
+          "turar_koeff": 1.3,
+          "noturar_koeff": 1.3,
+          "manba_turar_stavka": 18850,
+          "manba_noturar_stavka": 36920
+        }
+      ]
+    },
+    {
+      "id": "xorazm",
+      "nomi_uz": "Xorazm viloyati",
+      "nomi_ru": "Хорезмская область",
+      "tur": "viloyat",
+      "qaror": {
+        "raqam": "VII-16-153-12-0-K/25",
+        "sana": "2025-12-30",
+        "ilova": "6-ilova",
+        "manba_url": "https://kengash.gov.uz/doc/222609"
+      },
+      "tumanlar": [
+        {
+          "nomi": "Urganch shahri",
+          "markaziy": true,
+          "turar_koeff": 1.0,
+          "noturar_koeff": 1.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Xiva shahri",
+          "markaziy": false,
+          "turar_koeff": 2.0,
+          "noturar_koeff": 2.0,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Urganch tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Xiva tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Hazorasp tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Gurlan tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Shovot tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Yangiariq tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Qo'shko'pir tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Bog'ot tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Xonqa tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Yangibozor tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        },
+        {
+          "nomi": "Tuproqqal'a tumani",
+          "markaziy": false,
+          "turar_koeff": 1.27,
+          "noturar_koeff": 1.27,
+          "manba_turar_stavka": null,
+          "manba_noturar_stavka": null
+        }
+      ]
+    },
+    {
+      "id": "toshkent_shahar",
+      "nomi_uz": "Toshkent shahri",
+      "nomi_ru": "город Ташкент",
+      "tur": "toshkent_shahar",
+      "qaror": {
+        "raqam": "VII-18-207-14-0-K/25",
+        "sana": "2025-12-27",
+        "ilova": "6, 7, 8-ilovalar",
+        "manba_url": "https://kengash.gov.uz/doc/227815"
+      },
+      "zonalar": [
+        {
+          "zona": 1,
+          "turar_koeff": 1.9,
+          "manba_turar_stavka": 57000,
+          "noturar_koeff": {
+            "omborxona": 1.5,
+            "ishlab_chiqarish": 1.4,
+            "hunarmand": 1.4,
+            "xizmat_korsatish": 1.9,
+            "umumiy_ovqatlanish": 1.9,
+            "boshqalar": 1.9,
+            "savdo": 1.9,
+            "ofis": 1.9
+          },
+          "manba_noturar_stavka": {
+            "omborxona": 72000,
+            "ishlab_chiqarish": 67200,
+            "hunarmand": 67200,
+            "xizmat_korsatish": 91200,
+            "umumiy_ovqatlanish": 91200,
+            "boshqalar": 91200,
+            "savdo": 91200,
+            "ofis": 91200
+          }
+        },
+        {
+          "zona": 2,
+          "turar_koeff": 1.9,
+          "manba_turar_stavka": 57000,
+          "noturar_koeff": {
+            "omborxona": 1.4,
+            "ishlab_chiqarish": 1.3,
+            "hunarmand": 1.3,
+            "xizmat_korsatish": 1.9,
+            "umumiy_ovqatlanish": 1.8,
+            "boshqalar": 1.9,
+            "savdo": 1.9,
+            "ofis": 1.9
+          },
+          "manba_noturar_stavka": {
+            "omborxona": 67200,
+            "ishlab_chiqarish": 62400,
+            "hunarmand": 62400,
+            "xizmat_korsatish": 91200,
+            "umumiy_ovqatlanish": 86400,
+            "boshqalar": 91200,
+            "savdo": 91200,
+            "ofis": 91200
+          }
+        },
+        {
+          "zona": 3,
+          "turar_koeff": 1.9,
+          "manba_turar_stavka": 57000,
+          "noturar_koeff": {
+            "omborxona": 1.3,
+            "ishlab_chiqarish": 1.2,
+            "hunarmand": 1.2,
+            "xizmat_korsatish": 1.6,
+            "umumiy_ovqatlanish": 1.6,
+            "boshqalar": 1.7,
+            "savdo": 1.9,
+            "ofis": 1.9
+          },
+          "manba_noturar_stavka": {
+            "omborxona": 62400,
+            "ishlab_chiqarish": 57600,
+            "hunarmand": 57600,
+            "xizmat_korsatish": 76800,
+            "umumiy_ovqatlanish": 76800,
+            "boshqalar": 81600,
+            "savdo": 91200,
+            "ofis": 91200
+          }
+        },
+        {
+          "zona": 4,
+          "turar_koeff": 1.8,
+          "manba_turar_stavka": 54000,
+          "noturar_koeff": {
+            "omborxona": 1.2,
+            "ishlab_chiqarish": 1.1,
+            "hunarmand": 1.1,
+            "xizmat_korsatish": 1.5,
+            "umumiy_ovqatlanish": 1.4,
+            "boshqalar": 1.5,
+            "savdo": 1.8,
+            "ofis": 1.7
+          },
+          "manba_noturar_stavka": {
+            "omborxona": 57600,
+            "ishlab_chiqarish": 52800,
+            "hunarmand": 52800,
+            "xizmat_korsatish": 72000,
+            "umumiy_ovqatlanish": 67200,
+            "boshqalar": 72000,
+            "savdo": 86400,
+            "ofis": 81600
+          }
+        },
+        {
+          "zona": 5,
+          "turar_koeff": 1.7,
+          "manba_turar_stavka": 51000,
+          "noturar_koeff": {
+            "omborxona": 1.1,
+            "ishlab_chiqarish": 1.0,
+            "hunarmand": 1.0,
+            "xizmat_korsatish": 1.4,
+            "umumiy_ovqatlanish": 1.3,
+            "boshqalar": 1.3,
+            "savdo": 1.7,
+            "ofis": 1.4
+          },
+          "manba_noturar_stavka": {
+            "omborxona": 52800,
+            "ishlab_chiqarish": 48000,
+            "hunarmand": 48000,
+            "xizmat_korsatish": 67200,
+            "umumiy_ovqatlanish": 62400,
+            "boshqalar": 62400,
+            "savdo": 81600,
+            "ofis": 67200
+          }
+        }
+      ]
+    }
+  ],
+  "hudud_topilmagan": {
+    "id": "qoraqalpogiston",
+    "nomi_uz": "Qoraqalpog'iston Respublikasi",
+    "nomi_ru": "Республика Каракалпакстан",
+    "izoh_uz": "kengash.gov.uz portali Qoraqalpog'iston Respublikasi Jo'qorg'i Kengesi uchun jami 9 ta hujjat saqlaydi (barchasi yer uchastkalari haqida) -- byudjet yoki koeffitsient qarori yo'q. Bu 'qaror yo'q' degani emas, 'portal bu hududning haqiqiy hujjat arxivini saqlamaydi' degani -- qaror boshqa portalda bo'lishi mumkin.",
+    "izoh_ru": "Портал kengash.gov.uz хранит для Жокаргы Кенеса Республики Каракалпакстан всего 9 документов (все о земельных участках) -- решения о бюджете или коэффициентах нет. Это не означает 'решения не существует', это означает, что портал не хранит настоящий архив документов по этому региону -- решение может находиться на другом портале."
+  },
+  "manbalar": [
+    {
+      "hudud": "Andijon viloyati",
+      "raqam": "VII-15-297-1-0-K/25",
+      "sana": "2025-12-26",
+      "ilova": "12-ilova",
+      "url": "https://kengash.gov.uz/doc/218150"
+    },
+    {
+      "hudud": "Buxoro viloyati",
+      "raqam": "VII-21-113-2-0-K/25",
+      "sana": "2025-12-30",
+      "ilova": "5-ilova",
+      "url": "https://kengash.gov.uz/doc/222364"
+    },
+    {
+      "hudud": "Farg'ona viloyati",
+      "raqam": "VII-15-160-11-0-K/25",
+      "sana": "2025-12-29",
+      "ilova": "10-ilova",
+      "url": "https://kengash.gov.uz/doc/218131"
+    },
+    {
+      "hudud": "Jizzax viloyati",
+      "raqam": "VII-23-351-3-0-K/25",
+      "sana": "2025-12-30",
+      "ilova": "7-ilova",
+      "url": "https://kengash.gov.uz/doc/223291"
+    },
+    {
+      "hudud": "Namangan viloyati",
+      "raqam": "VII-17-165-6-0-K/25",
+      "sana": "2025-12-29",
+      "ilova": "11-ilova",
+      "url": "https://kengash.gov.uz/doc/218126"
+    },
+    {
+      "hudud": "Navoiy viloyati",
+      "raqam": "VII-23-1-5-0-K/26",
+      "sana": "2026-01-09",
+      "ilova": "4-ilova",
+      "url": "https://kengash.gov.uz/doc/226738"
+    },
+    {
+      "hudud": "Qashqadaryo viloyati",
+      "raqam": "VII-20-218-4-0-K/25",
+      "sana": "2025-12-29",
+      "ilova": "10-ilova",
+      "url": "https://kengash.gov.uz/doc/218151"
+    },
+    {
+      "hudud": "Samarqand viloyati",
+      "raqam": "VII-24-194-7-0-K/25",
+      "sana": "2025-12-30",
+      "ilova": "3-ilova",
+      "url": "https://kengash.gov.uz/doc/222395"
+    },
+    {
+      "hudud": "Sirdaryo viloyati",
+      "raqam": "VII-28-1-9-0-K/26",
+      "sana": "2026-01-12",
+      "ilova": "6-ilova",
+      "url": "https://kengash.gov.uz/doc/225747"
+    },
+    {
+      "hudud": "Surxondaryo viloyati",
+      "raqam": "VII-17-18-8-0-K/26",
+      "sana": "2026-02-09",
+      "ilova": "1-ilova",
+      "url": "https://kengash.gov.uz/doc/227833"
+    },
+    {
+      "hudud": "Toshkent viloyati",
+      "raqam": "VII-26-162-10-0-K/25",
+      "sana": "2025-12-29",
+      "ilova": "14-ilova",
+      "url": "https://kengash.gov.uz/doc/223812"
+    },
+    {
+      "hudud": "Xorazm viloyati",
+      "raqam": "VII-16-153-12-0-K/25",
+      "sana": "2025-12-30",
+      "ilova": "6-ilova",
+      "url": "https://kengash.gov.uz/doc/222609"
+    },
+    {
+      "hudud": "Toshkent shahri",
+      "raqam": "VII-18-207-14-0-K/25",
+      "sana": "2025-12-27",
+      "ilova": "6, 7, 8-ilovalar",
+      "url": "https://kengash.gov.uz/doc/227815"
+    }
+  ]
+}
