@@ -40,11 +40,6 @@
     var m = /[?&]lang=(uz|ru)\b/.exec(w.location.search || '');
     return m ? m[1] : null;
   }
-  function fromBrowser() {
-    var n = (w.navigator && (w.navigator.language || w.navigator.userLanguage)) || '';
-    return String(n).slice(0, 2).toLowerCase() === 'ru' ? 'ru' : 'uz';
-  }
-
   // /ru/... yo'li — alohida RU URL'ga ega sahifalar uchun (Variant A).
   // Faqat "/ru/" ostida bo'lsa RU qaytaradi; aks holda null — bu boshqa
   // barcha sahifalarning eski (localStorage'ga asoslangan) xatti-harakatini
@@ -72,7 +67,11 @@
     return target + (w.location.search || '') + (w.location.hash || '');
   }
 
-  // ?lang= > /ru/ yo'li > saqlangan qiymat > brauzer tili > uz
+  // ?lang= > /ru/ yo'li > saqlangan qiymat > uz (birinchi tashrifda hech qachon
+  // brauzer/qurilma tiliga qarab avtomatik RU tanlanmaydi — 2026-09'da real
+  // foydalanuvchi buni bug sifatida xabar qilgan: yangi brauzerdan kalki.uz'ga
+  // kirilganda ham, Google orqali kirilganda ham standart RU ochilib qolgan
+  // edi. Standart til FAQAT foydalanuvchi o'zi til tugmasini bosgach o'zgaradi.)
   function decide() {
     var u = fromUrl();
     if (u) { write(u); return u; }
@@ -81,7 +80,7 @@
     migrate();
     var s = read();
     if (valid(s)) return s;
-    return fromBrowser();
+    return 'uz';
   }
 
   function markHtml(l) {
@@ -109,7 +108,7 @@
   var API = {
     getLang: function () {
       var s = read();
-      return valid(s) ? s : fromBrowser();
+      return valid(s) ? s : 'uz';
     },
     setLang: function (l, opts) {
       if (!valid(l)) return;

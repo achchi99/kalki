@@ -4,7 +4,7 @@
 <script id="langboot">
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
-  var l=(s==='ru'||s==='uz')?s:(((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz');
+  var l=(s==='ru'||s==='uz')?s:'uz';
   if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
   if(q)l=q[1];

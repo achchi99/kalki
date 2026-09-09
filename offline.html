@@ -74,7 +74,7 @@ button{background:#D99A2B;color:#16211C;border:0}
       var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
       if(s==='ru'||s==='uz')return s;
     }catch(e){}
-    return ((navigator.language||'').slice(0,2).toLowerCase()==='ru')?'ru':'uz';
+    return 'uz';
   }
   function pick(l){
     try{localStorage.setItem('kalki_lang',l)}catch(e){}
