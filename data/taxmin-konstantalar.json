@@ -60,6 +60,18 @@
       "manba_url": "https://cbu.uz/uz/arkhiv-kursov-valyut/",
       "manba_nomi": "MB rasmiy valyuta kursi arxivi, 2026-yil iyul holatiga",
       "sana": "2026-09"
+    },
+    {
+      "id": "respublika_ortacha_ish_haqi",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "To'lovchi ma'lum oyda ishlamagan yoki daromadini tasdiqlovchi hujjat taqdim etmagan bo'lsa, o'sha oy uchun aliment qarzini hisoblashda ishlatiladigan bazaviy summa — respublika bo'yicha o'rtacha oylik ish haqi. Foydalanuvchi o'zgartira oladigan maydon. MHTEKM'dan farqli, alohida statistik ko'rsatkich (davriy yangilanadi, qonun emas) — shuning uchun legal-constants.json'da emas, shu yerda saqlanadi.",
+      "standart_taxmin": null,
+      "izoh_uz": "Bu — TAXMIN, fakt emas, va davriy yangilanadigan statistik ko'rsatkich (Statistika agentligi). Hozircha standart qiymat tasdiqlanmagan — Asror tomonidan alohida topib beriladi. Shu qiymat kiritilgunga qadar B rejimida (aliment qarzdorligi) 'ishlamagan davr' varianti sahifada ko'rsatilmaydi.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не факт, и периодически обновляемый статистический показатель (Агентство статистики). Пока стандартное значение не подтверждено — будет предоставлено Асрором отдельно. До появления этого значения вариант 'неотработанный период' в режиме B (задолженность по алиментам) на странице не отображается.",
+      "manba_url": null,
+      "manba_nomi": "TASDIQLANMAGAN — Statistika agentligining oxirgi ma'lumoti kutilmoqda",
+      "sana": null
     }
   ]
 }

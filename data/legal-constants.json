@@ -861,30 +861,17 @@
       "manba_nomi": "Mehnat kodeksi (28.10.2022), 269-modda 2-qism"
     },
     {
-      "id": "aliment_penya_kunlik_foiz",
+      "id": "aliment_penya_kunlik",
       "sahifa": "aliment-kalkulyator",
       "tur": "son",
-      "izoh": "Sud qarori asosida undirilayotgan alimentni o'z vaqtida to'lamaganlik uchun kunlik penya (neustoyka) stavkasi. FORMAT: 0-1 oralig'idagi ulush (masalan 0.001 = kuniga 0,1%).",
-      "qiymat": null,
+      "izoh": "Sud qarori asosida undirilayotgan alimentni o'z vaqtida to'lamaganlik uchun kunlik penya (neustoyka) stavkasi. FORMAT: 0-1 oralig'idagi ulush (0.001 = kuniga 0,1%) — 0.1 EMAS (ba'zi ikkilamchi manbalarda '10%' deb noto'g'ri yozilgan xato bilan adashtirilmasin).",
+      "qiymat": 0.001,
       "amal_qiladi": null,
-      "izoh_uz": "TASDIQLASH KERAK. Oila kodeksining 142-moddasi ('Alimentni o'z vaqtida to'lamaganlik uchun javobgarlik') mavjudligi va bu javobgarlik sud qarori asosida undirilayotgan alimentga nisbatan qo'llanishi bir nechta ikkilamchi manbada tasdiqlandi, lekin kunlik foiz stavkasining aniq raqami (masalan 0,1%) hech qaysi qidiruvda topilmadi — faqat moddaning nomi va mavjudligi haqida ma'lumot bor. Aniq stavka lex.uz'dan Asror tomonidan qo'lda tekshirilishi kerak. Shu tasdiqlangunga qadar B rejimi (qarzdorlik) penyasiz, faqat asosiy qarz bilan ishlaydi, va sahifada bu ochiq ko'rsatiladi.",
-      "izoh_ru": "ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ. Существование статьи 142 Семейного кодекса ('Ответственность за несвоевременную уплату алиментов') и её применимость к алиментам, взыскиваемым по решению суда, подтверждены несколькими вторичными источниками, но точная дневная процентная ставка (например 0,1%) не найдена ни в одном поиске — есть только название и факт существования статьи. Точную ставку нужно проверить вручную на lex.uz. До подтверждения режим B (задолженность) работает без пени, только с основным долгом, и это открыто указывается на странице.",
-      "holat": "TASDIQLASH KERAK",
-      "manba_url": null,
-      "manba_nomi": "Oila kodeksi 142-modda (nomi tasdiqlangan, aniq stavka tasdiqlanmagan)"
-    },
-    {
-      "id": "aliment_ishlamagan_davr_baza",
-      "sahifa": "aliment-kalkulyator",
-      "tur": "son",
-      "izoh": "To'lovchi ma'lum davrda ishlamagan yoki daromadini tasdiqlovchi hujjat taqdim etmagan bo'lsa, o'sha davr uchun aliment qarzini hisoblashda ishlatiladigan bazaviy summa — respublika bo'yicha o'rtacha oylik ish haqi (qarz undirilayotgan vaqtdagi qiymati bo'yicha).",
-      "qiymat": null,
-      "amal_qiladi": null,
-      "izoh_uz": "TASDIQLASH KERAK. Ikkilamchi manbada topilgan qoida: agar to'lovchi davr ichida ishlamagan yoki daromad hujjati taqdim etmagan bo'lsa, qarz 'respublika bo'yicha o'rtacha oylik ish haqi' asosida hisoblanadi (MHTEKM emas — bu ikkalasi turli ko'rsatkich). Lekin: (1) aniq modda raqami (Oila kodeksi yoki Fuqarolik protsessual kodeksi) tasdiqlanmagan, (2) 'respublika bo'yicha o'rtacha oylik ish haqi'ning joriy rasmiy qiymati (stat.uz'dan, davriy yangilanadi) alohida tekshirilishi kerak. Shu tasdiqlangunga qadar B rejimida 'to'lovchi ishlagan/ishlamagan' farqlanishi qo'shilmaydi — barcha oylar uchun foydalanuvchi kiritgan bitta daromad qiymati ishlatiladi, va bu cheklov sahifada ochiq ko'rsatiladi.",
-      "izoh_ru": "ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ. Правило, найденное во вторичном источнике: если плательщик не работал или не предоставил документы о доходах за период, задолженность рассчитывается исходя из 'средней месячной заработной платы по республике' (это НЕ МРОТ — разные показатели). Но: (1) точный номер статьи (Семейный или Гражданский процессуальный кодекс) не подтверждён, (2) текущее официальное значение 'средней зарплаты по республике' (от stat.uz, периодически обновляется) нужно проверить отдельно. До подтверждения режим B не различает 'работал/не работал' — для всех месяцев используется одно введённое пользователем значение дохода, и это ограничение открыто указывается на странице.",
-      "holat": "TASDIQLASH KERAK",
-      "manba_url": null,
-      "manba_nomi": "Ikkilamchi manba — aniq modda va joriy qiymat tasdiqlanmagan"
+      "izoh_uz": "Kechiktirilgan har bir kun uchun to'lanmagan summaning 0,1%i. Faqat sud qarori bo'yicha undirilganda va to'lovchining aybi bilan qarz vujudga kelganda qo'llanadi.",
+      "izoh_ru": "За каждый день просрочки — 0,1% от неуплаченной суммы. Применяется только если алименты взыскиваются по решению суда и задолженность возникла по вине плательщика.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://sirdaryo.adliya.uz/uz/news/detail.php?ID=45845",
+      "manba_nomi": "Oila kodeksi 142-modda"
     }
   ]
 }
