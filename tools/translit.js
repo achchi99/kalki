@@ -86,8 +86,8 @@ var DIGRAPH = [
   ['y', 'a', 'я']  // ya -> ya (cyrillic ya)
 ];
 
-var E_START = 'э'; // cyrillic e (used word-initial)
-var E_MID = 'е';   // cyrillic ie (used mid-word)
+var E_START = 'э'; // cyrillic e -- faqat yakka "e" so'z boshida (masalan eshik)
+var E_MID = 'е';   // cyrillic ie -- "ye" digrafida (har doim) va yakka "e" so'z ichida
 var TUTUQ = 'ъ';   // cyrillic hard sign (tutuq belgisi)
 var OG_APOS = { o: 'ў', g: 'ғ' }; // o' -> o with breve equivalent (uzbek), g' -> g with stroke (uzbek)
 
@@ -135,9 +135,16 @@ function translitWord(word) {
       continue;
     }
 
-    // 3) "ye" -- so'z boshida cyrillic-e, so'z ichida cyrillic-ie
+    // 3) "ye" -- HAR DOIM cyrillic-ie (e), pozitsiyadan qat'i nazar.
+    // Tuzatildi (2026-09): dastlabki qoida teskari edi ("ye so'z
+    // boshida -> cyrillic-e" deb yozilgan edi). Haqiqiy qoida: o'zbek
+    // kirill yozuvida cyrillic-ie harfi (е) ALLAQACHON "ye" tovushini
+    // ifodalaydi (yer -> yer-e, yetti -> yet-t-i, yengil -> yen-g-i-l),
+    // cyrillic-e (э) esa faqat SOF "e" tovushi uchun (so'z boshidagi
+    // yakka "e", masalan eshik -> e-sh-i-k). Shuning uchun "ye" digrafi
+    // pozitsiyasidan qat'i nazar doim bitta natija beradi.
     if (lower === 'y' && i + 1 < n && word[i + 1].toLowerCase() === 'e') {
-      out += applyCase(atStart ? E_START : E_MID, ch);
+      out += applyCase(E_MID, ch);
       i += 2;
       continue;
     }

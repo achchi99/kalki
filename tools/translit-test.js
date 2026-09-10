@@ -45,15 +45,34 @@ var CASES = [
   // ---- tutuq belgisi (o'/g' bo'lmagan apostrof) -> ъ ----
   ['ma' + APOS_ASCII + 'lumot', 'маълумот', 'tutuq belgisi -> ъ (ASCII)'],
   ['ma' + APOS_CURLY + 'lumot', 'маълумот', 'tutuq belgisi -> ъ (jingalak)'],
-  ['e' + APOS_ASCII + 'lon', 'эълон', 'so’z boshidagi e + tutuq belgisi'],
 
   // ---- so'z boshi/ichi farqi: e/ye ----
-  ['element', 'элемент', 'e so’z boshida -> э, ichida -> е'],
+  // TUZATILDI (2026-09): dastlabki qoida teskari edi. To'g'ri qoida:
+  // yakka "e" so'z boshida -> cyrillic-e (E_START), so'z ichida ->
+  // cyrillic-ie (E_MID). "ye" digrafi esa POZITSIYADAN QAT'I NAZAR
+  // har doim cyrillic-ie (E_MID) -- chunki cyrillic-ie harfi
+  // allaqachon "ye" tovushini ifodalaydi.
+  ['element', 'элемент', 'e so’z boshida -> cyrillic-e, ichida -> cyrillic-ie'],
   ['sanoat', 'саноат', 'so’zda "e" umuman yo’q -- nazorat holati'],
-  ['ekran', 'экран', 'e so’z boshida -> э'],
-  ['ye', 'э', 'ye so’z boshida -> э'],
-  ['tuye', 'туе', 'ye so’z ichida -> е'],
-  ['yelka', 'элка', 'ye so’z boshida -> э (butun so’z)'],
+  ['ekran', 'экран', 'e so’z boshida -> cyrillic-e'],
+  ['ye', 'е', 'ye (yakka digraf) -> cyrillic-ie'],
+  ['tuye', 'туе', 'ye so’z ichida -> cyrillic-ie'],
+  ['yelka', 'елка', 'ye so’z boshida -> cyrillic-ie (TUZATILDI, avval xato edi)'],
+  ['yer', 'ер', 'yer -> ер (asosiy tuzatilgan misol)'],
+  ['yetti', 'етти', 'yetti -> етти'],
+  ['yengil', 'енгил', 'yengil -> енгил'],
+  ['yetkazish', 'етказиш', 'yetkazish -> етказиш'],
+  ['eshik', 'эшик', 'eshik -> эшик (yakka e, so’z boshida)'],
+  ['ertaga', 'эртага', 'ertaga -> эртага (yakka e, so’z boshida)'],
+  ['elektr', 'электр', 'elektr -> электр (yakka e, so’z boshida)'],
+  ['e' + APOS_ASCII + 'lon', 'эълон', 'e’lon -> эълон (yakka e boshida + tutuq belgisi)'],
+  ['kelmoq', 'келмоқ', 'kelmoq -> келмоқ (yakka e, so’z ichida)'],
+  ['tekshirish', 'текшириш', 'tekshirish -> текшириш (yakka e, so’z ichida)'],
+  [
+    'Yer solig' + APOS_ASCII + 'i',
+    'Ер солиғи',
+    'Yer solig’i -> Ер солиғи (foydalanuvchi topgan asl misol, endi to’g’ri)'
+  ],
 
   // ---- qisqartmalar saqlanishi ----
   ['MHTEKM', 'MHTEKM', 'qisqartma o’zgarishsiz qoladi'],
