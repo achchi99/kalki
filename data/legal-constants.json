@@ -833,6 +833,58 @@
       "holat": "TASDIQLANGAN",
       "manba_url": "https://cbu.uz/uz/financial-stability/macroprudential-policy-tools/debt-to-income/",
       "manba_nomi": "MB Boshqaruvining 05.12.2025-y. 31/9-son qarori (ro'yxat 3618-1, 18.12.2025), 21-bob, 244-band"
+    },
+    {
+      "id": "aliment_ushlab_qolish_odatiy",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "son",
+      "izoh": "Ish haqidan ushlab qolinadigan mablag'larning odatiy (aliment qarzdorligisiz) yuqori chegarasi — har bir to'lov chog'ida. FORMAT: 0-1 oralig'idagi ulush (masalan 0.50 = 50%), 0-100 emas.",
+      "qiymat": 0.50,
+      "amal_qiladi": "2023-04-30",
+      "izoh_uz": "Har bir to'lov chog'ida ushlab qolinadigan mablag'lar xodimga haqiqatda hisoblangan ish haqining 50%idan oshmasligi kerak.",
+      "izoh_ru": "Удерживаемые при каждой выплате средства не должны превышать 50% фактически начисленной работнику заработной платы.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/-6257288",
+      "manba_nomi": "Mehnat kodeksi (28.10.2022), 269-modda 2-qism"
+    },
+    {
+      "id": "aliment_ushlab_qolish_qarzdorlikda",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "son",
+      "izoh": "Aliment MAJBURIYATLARI BO'YICHA QARZDORLIKNI undirishda qo'llanadigan yuqoriroq ushlab qolish chegarasi (odatiy 50% chegarasining istisnosi). FORMAT: 0-1 oralig'idagi ulush.",
+      "qiymat": 0.70,
+      "amal_qiladi": "2023-04-30",
+      "izoh_uz": "Aliment majburiyatlari bo'yicha qarzdorlikni ushlab qolish miqdori xodimga haqiqatda hisoblangan ish haqining 70%idan oshishi mumkin emas — bu chegara axloq tuzatish ishlari tarzida jazo o'tayotgan-o'tamayotganidan qat'i nazar qo'llanadi. E'tibor: bu 70% — JORIY aliment emas, aynan QARZDORLIKNI undirish uchun.",
+      "izoh_ru": "Размер удержания задолженности по алиментным обязательствам не может превышать 70% фактически начисленной работнику заработной платы — независимо от того, отбывает ли работник исправительные работы. Внимание: эти 70% — именно для взыскания ЗАДОЛЖЕННОСТИ, не текущих алиментов.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/-6257288",
+      "manba_nomi": "Mehnat kodeksi (28.10.2022), 269-modda 2-qism"
+    },
+    {
+      "id": "aliment_penya_kunlik_foiz",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "son",
+      "izoh": "Sud qarori asosida undirilayotgan alimentni o'z vaqtida to'lamaganlik uchun kunlik penya (neustoyka) stavkasi. FORMAT: 0-1 oralig'idagi ulush (masalan 0.001 = kuniga 0,1%).",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "TASDIQLASH KERAK. Oila kodeksining 142-moddasi ('Alimentni o'z vaqtida to'lamaganlik uchun javobgarlik') mavjudligi va bu javobgarlik sud qarori asosida undirilayotgan alimentga nisbatan qo'llanishi bir nechta ikkilamchi manbada tasdiqlandi, lekin kunlik foiz stavkasining aniq raqami (masalan 0,1%) hech qaysi qidiruvda topilmadi — faqat moddaning nomi va mavjudligi haqida ma'lumot bor. Aniq stavka lex.uz'dan Asror tomonidan qo'lda tekshirilishi kerak. Shu tasdiqlangunga qadar B rejimi (qarzdorlik) penyasiz, faqat asosiy qarz bilan ishlaydi, va sahifada bu ochiq ko'rsatiladi.",
+      "izoh_ru": "ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ. Существование статьи 142 Семейного кодекса ('Ответственность за несвоевременную уплату алиментов') и её применимость к алиментам, взыскиваемым по решению суда, подтверждены несколькими вторичными источниками, но точная дневная процентная ставка (например 0,1%) не найдена ни в одном поиске — есть только название и факт существования статьи. Точную ставку нужно проверить вручную на lex.uz. До подтверждения режим B (задолженность) работает без пени, только с основным долгом, и это открыто указывается на странице.",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": "Oila kodeksi 142-modda (nomi tasdiqlangan, aniq stavka tasdiqlanmagan)"
+    },
+    {
+      "id": "aliment_ishlamagan_davr_baza",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "son",
+      "izoh": "To'lovchi ma'lum davrda ishlamagan yoki daromadini tasdiqlovchi hujjat taqdim etmagan bo'lsa, o'sha davr uchun aliment qarzini hisoblashda ishlatiladigan bazaviy summa — respublika bo'yicha o'rtacha oylik ish haqi (qarz undirilayotgan vaqtdagi qiymati bo'yicha).",
+      "qiymat": null,
+      "amal_qiladi": null,
+      "izoh_uz": "TASDIQLASH KERAK. Ikkilamchi manbada topilgan qoida: agar to'lovchi davr ichida ishlamagan yoki daromad hujjati taqdim etmagan bo'lsa, qarz 'respublika bo'yicha o'rtacha oylik ish haqi' asosida hisoblanadi (MHTEKM emas — bu ikkalasi turli ko'rsatkich). Lekin: (1) aniq modda raqami (Oila kodeksi yoki Fuqarolik protsessual kodeksi) tasdiqlanmagan, (2) 'respublika bo'yicha o'rtacha oylik ish haqi'ning joriy rasmiy qiymati (stat.uz'dan, davriy yangilanadi) alohida tekshirilishi kerak. Shu tasdiqlangunga qadar B rejimida 'to'lovchi ishlagan/ishlamagan' farqlanishi qo'shilmaydi — barcha oylar uchun foydalanuvchi kiritgan bitta daromad qiymati ishlatiladi, va bu cheklov sahifada ochiq ko'rsatiladi.",
+      "izoh_ru": "ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ. Правило, найденное во вторичном источнике: если плательщик не работал или не предоставил документы о доходах за период, задолженность рассчитывается исходя из 'средней месячной заработной платы по республике' (это НЕ МРОТ — разные показатели). Но: (1) точный номер статьи (Семейный или Гражданский процессуальный кодекс) не подтверждён, (2) текущее официальное значение 'средней зарплаты по республике' (от stat.uz, периодически обновляется) нужно проверить отдельно. До подтверждения режим B не различает 'работал/не работал' — для всех месяцев используется одно введённое пользователем значение дохода, и это ограничение открыто указывается на странице.",
+      "holat": "TASDIQLASH KERAK",
+      "manba_url": null,
+      "manba_nomi": "Ikkilamchi manba — aniq modda va joriy qiymat tasdiqlanmagan"
     }
   ]
 }
