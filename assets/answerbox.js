@@ -41,6 +41,16 @@
     // (spetsifiklik 0,2,0 > 0,1,0 — cascade tartibidan qat'iy nazar g'alaba
     // qiladi). Boshqa "birinchi karta" nomlari uchraса, shu yerga qo'shiladi.
     + '.answerbox + .form-card{margin-top:16px}'
+    // 2026-09'da topilgan xato (aliment-kalkulyator, rejim tugmalari):
+    // ba'zi sahifalarda answerbox va .form-card orasida yana bitta blok
+    // bor (masalan #modeSegField — A/B/C rejim tugmalari). Shu holda
+    // .form-card endi .answerbox ning EMAS, o'sha blokning bevosita
+    // "aka-uka"si bo'ladi va yuqoridagi qo'shni-selektor ishlamay qoladi —
+    // manfiy margin rejim tugmalari ustiga chiqib, matnni bosib qo'yadi
+    // (skrinshot bilan tasdiqlangan, desktop va mobil). ID o'ziga xos
+    // bo'lgani uchun bu qoida faqat shu blok mavjud sahifada ishlaydi,
+    // boshqa sahifalarda hech narsaga ta'sir qilmaydi.
+    + '#modeSegField + .form-card{margin-top:16px}'
     + '@media print{.answerbox{display:none}}';
 
   // Guard faqat <style> elementini yaratishni o'tkazib yuboradi.
