@@ -95,7 +95,8 @@ h1{font-size:34px;font-weight:800;line-height:1.18;letter-spacing:-.02em}
 #docs-cta .dc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
 @media (min-width:980px){#docs-cta .dc-grid{grid-template-columns:1fr 1fr 1fr}}
 @media (max-width:420px){#docs-cta .dc-grid a{font-size:13px;padding:10px 11px;gap:7px}}
-#docs-cta .dc-grid a{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:11px;padding:11px 13px;color:#fff;text-decoration:none;font-size:14px;font-weight:700;transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent}
+#docs-cta .dc-grid a{display:flex;align-items:center;gap:9px;min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:11px;padding:11px 13px;color:#fff;text-decoration:none;font-size:14px;font-weight:700;transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent}
+#docs-cta .dc-grid a span:not(.dc-ic){min-width:0;overflow-wrap:break-word}
 #docs-cta .dc-grid a:hover{background:rgba(255,255,255,.15);border-color:rgba(217,154,43,.55)}
 #docs-cta .dc-ic{font-size:17px;flex:none}
 #docs-cta .dc-all{display:inline-block;margin-top:15px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:10px 18px;border-radius:10px;text-decoration:none}
