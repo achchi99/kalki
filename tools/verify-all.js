@@ -18,7 +18,8 @@ const path = require('path');
 const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 const { load, loadHtml, sitePages, SPECIAL_PAGES } = require('./render');
-const { RU_PAGES } = require('./prerender');
+const { RU_PAGES, CYR_PAGES } = require('./prerender');
+const { DEFAULT_ABBR } = require('./translit');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAST = process.argv.indexOf('--fast') > -1;
@@ -79,8 +80,37 @@ function runTool(args) {
       const bad = [...new Set(words.filter((w) => LAT.test(w) && CYR.test(w)))];
       if (bad.length) mixed.push(f + ': ' + bad.slice(0, 4).join(' '));
     }
+    // cyr/<f>: KIRILL pilot sahifalar — bu yerda "aralash alifbo" boshqacha
+    // ma'no anglatadi. Band 2 yuqorida FAQAT lotin sahifalarni tekshiradi
+    // (list — sitePages(), ildizdagi .html'lar, cyr/ ichiga kirmaydi), shu
+    // sababli o'sha tsikl cyr sahifalarga tegmaydi va ularda hech qachon
+    // yolg'on-musbat bermaydi. Lekin translit qisqartmalarni (masalan
+    // "MHTEKM") ataylab lotincha qoldiradi — o'zbek tilida qo'shimcha
+    // to'g'ridan-to'g'ri ularga yopishadi ("MHTEKMning" -> "MHTEKMнинг"),
+    // bu ATAYLAB aralash so'z, xato emas. Shu sabab cyr sahifalar uchun
+    // ALOHIDA, qisqartmani hisobga oluvchi tekshiruv qilinadi — aks holda
+    // pastdagi umumiy tekshiruv (band 2ning o'zi kabi) ularni noto'g'ri
+    // "xato" deb belgilardi.
+    function isAllowedCyrMixed(word) {
+      for (const a of DEFAULT_ABBR) {
+        if (word.indexOf(a) === 0 && !LAT.test(word.slice(a.length))) return true;
+      }
+      return false;
+    }
+    const cyrMixed = [];
+    for (const f of CYR_PAGES) {
+      const p = path.join(ROOT, 'cyr', f);
+      if (!fs.existsSync(p)) continue;
+      const src = fs.readFileSync(p, 'utf8');
+      const words = src.match(/[\p{L}’']{2,}/gu) || [];
+      const bad = [...new Set(words.filter((w) => LAT.test(w) && CYR.test(w) && !isAllowedCyrMixed(w)))];
+      if (bad.length) cyrMixed.push('cyr/' + f + ': ' + bad.slice(0, 4).join(' '));
+    }
+
     add(!esc.length, '1. 0 ta buzuq \\uXXXX escape', esc.join(', '));
     add(!mixed.length, '2. 0 ta aralash alifboli so\'z', mixed.join(' | '));
+    add(!cyrMixed.length, '2b. cyr/ sahifalarda kutilmagan aralash alifboli so\'z yo\'q (qisqartma istisno)',
+      cyrMixed.join(' | '));
   }
 
   /* ---------- 2. GA teglari, h1, footer ---------- */
@@ -264,7 +294,12 @@ function runTool(args) {
      Variant A migratsiyasi (/ru/... alohida URL). Har bir RU_PAGES a'zosi
      uchun: (a) ru/<f> fayli diskda mavjud, (b) uz manbada va ru chiqishida
      hreflang(uz/ru/x-default) va data-ru-page="1" bor, (c) ru chiqishida
-     canonical/og:url /ru/... ga, uz manbada o'ziga ishora qiladi. */
+     canonical/og:url /ru/... ga, uz manbada o'ziga ishora qiladi.
+     CYR_PAGES a'zolari (kirill pilot) BU YERDA "hreflang=uz" tekshiruvidan
+     chetlanadi — ular oddiy "uz" o'rniga aniqroq "uz-Latn" tegini oladi
+     (uz-Cyrl juftligi bilan birga, band 28'da to'liq tekshiriladi). Qolgan
+     tekshiruvlar (data-ru-page, ru lang, hreflang=ru/x-default, canonical)
+     ular uchun ham to'g'ri qoladi, shu sababli chetlanmaydi. */
   {
     const bad = [];
     for (const f of RU_PAGES) {
@@ -275,12 +310,16 @@ function runTool(args) {
       const slug = f.replace(/\.html$/, '') === 'index' ? '' : f.replace(/\.html$/, '');
       const uzUrl = 'https://kalki.uz/' + slug;
       const ruUrl = 'https://kalki.uz/ru/' + slug;
+      const isCyr = CYR_PAGES.indexOf(f) > -1;
       if (!uzHtml.includes('data-ru-page="1"')) bad.push(f + ': uz manbada data-ru-page yo\'q');
       if (!ruHtml.includes('data-ru-page="1"')) bad.push(f + ': ru chiqishida data-ru-page yo\'q');
       if (!ruHtml.includes('lang="ru"')) bad.push(f + ': ru chiqishida <html lang="ru"> yo\'q');
       [uzHtml, ruHtml].forEach((h, i) => {
         const tag = i === 0 ? 'uz' : 'ru';
-        ['hreflang="uz"', 'hreflang="ru"', 'hreflang="x-default"'].forEach((hl) => {
+        const hreflangs = isCyr
+          ? ['hreflang="ru"', 'hreflang="x-default"']
+          : ['hreflang="uz"', 'hreflang="ru"', 'hreflang="x-default"'];
+        hreflangs.forEach((hl) => {
           if (!h.includes(hl)) bad.push(f + ' (' + tag + '): ' + hl + ' yo\'q');
         });
       });
@@ -473,7 +512,11 @@ function runTool(args) {
       const slug = f.replace(/\.html$/, '') === 'index' ? '' : f.replace(/\.html$/, '');
       if (!urls.has('https://kalki.uz/ru/' + slug)) bad.push('ru: ' + f);
     }
-    add(!bad.length, '26. sitemap.xml to\'liqligi (UZ va RU juftlari)',
+    for (const f of CYR_PAGES) {
+      const slug = f.replace(/\.html$/, '');
+      if (!urls.has('https://kalki.uz/cyr/' + slug)) bad.push('cyr: ' + f);
+    }
+    add(!bad.length, '26. sitemap.xml to\'liqligi (UZ, RU va kirill pilot juftlari)',
       bad.slice(0, 8).join(', '));
   }
 
@@ -523,6 +566,72 @@ function runTool(args) {
       add(!bad.length, '27. ijara-stavkalari.json: baza x koeff = manba stavka',
         bad.slice(0, 8).join(' | '));
     }
+  }
+
+  /* ---------- 28. CYR_PAGES (kirill pilot): canonical o'z-o'ziga ishora
+     qilishi, x-default lotin qolishi, 4 ta hreflang tegi ----------
+     2026-09'da qo'shildi (uz-Cyrl pilot, FAZA 1). Foydalanuvchi ataylab
+     ta'kidlagan ikkita muhim shart: (1) cyr chiqishida canonical
+     HECH QACHON lotin URL'ga ishora qilmasin (bu — eng ko'p uchraydigan
+     xato, aks holda Google kirill sahifani indekslamaydi); (2) x-default
+     UCHALA versiyada ham (uz/ru/cyr) doim lotin UZ URL'ga ishora qilsin —
+     hozirgi (yaqinda tuzatilgan) standart til xatti-harakati buzilmasin.
+     Band 21ning kirill-pilot uchun analogi: har bir CYR_PAGES a'zosi
+     uchun uz manba, ru chiqish va cyr chiqishning barchasida hreflang
+     to'plami bir xil (uz-Latn/uz-Cyrl/ru/x-default, 3 emas — 4 teg) va
+     canonical/data-cyr-page izchilligini tekshiradi. */
+  {
+    const bad = [];
+    for (const f of CYR_PAGES) {
+      const cyrFile = path.join(ROOT, 'cyr', f);
+      if (!fs.existsSync(cyrFile)) { bad.push(f + ': cyr/' + f + ' yo\'q'); continue; }
+      const uzHtml = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      const ruHtml = fs.readFileSync(path.join(ROOT, 'ru', f), 'utf8');
+      const cyrHtml = fs.readFileSync(cyrFile, 'utf8');
+      const slug = f.replace(/\.html$/, '');
+      const uzUrl = 'https://kalki.uz/' + slug;
+      const ruUrl = 'https://kalki.uz/ru/' + slug;
+      const cyrUrl = 'https://kalki.uz/cyr/' + slug;
+
+      // canonical: har biri O'ZIGA ishora qilsin, boshqasiga EMAS.
+      if (!uzHtml.includes('href="' + uzUrl + '"')) bad.push(f + ': uz canonical o\'ziga emas');
+      if (!ruHtml.includes('href="' + ruUrl + '"')) bad.push(f + ': ru canonical o\'ziga emas');
+      if (!cyrHtml.includes('href="' + cyrUrl + '"')) bad.push(f + ': cyr canonical o\'ziga emas (KRITIK)');
+      if (cyrHtml.includes('rel="canonical" href="' + uzUrl + '"')) {
+        bad.push(f + ': cyr canonical LOTINGA ishora qiladi (KRITIK xato)');
+      }
+
+      // hreflang: barcha 3 versiyada bir xil 4 ta teg, x-default doim lotin.
+      [['uz', uzHtml], ['ru', ruHtml], ['cyr', cyrHtml]].forEach(([tag, h]) => {
+        [
+          'hreflang="uz-Latn" href="' + uzUrl + '"',
+          'hreflang="uz-Cyrl" href="' + cyrUrl + '"',
+          'hreflang="ru" href="' + ruUrl + '"',
+          'hreflang="x-default" href="' + uzUrl + '"',
+        ].forEach((hl) => {
+          if (!h.includes(hl)) bad.push(f + ' (' + tag + '): ' + hl + ' yo\'q');
+        });
+        // eski 3-tegli (oddiy "uz") shakli sizib qolmasin
+        if (h.includes('hreflang="uz"')) bad.push(f + ' (' + tag + '): eskirgan hreflang="uz" hali bor');
+      });
+
+      // belgilar: uz manba va ru chiqishda data-cyr-page, cyr chiqishda ham.
+      if (!uzHtml.includes('data-cyr-page="1"')) bad.push(f + ': uz manbada data-cyr-page yo\'q');
+      if (!ruHtml.includes('data-cyr-page="1"')) bad.push(f + ': ru chiqishida data-cyr-page yo\'q');
+      if (!cyrHtml.includes('data-cyr-page="1"')) bad.push(f + ': cyr chiqishida data-cyr-page yo\'q');
+      if (!cyrHtml.includes('lang="uz-Cyrl"')) bad.push(f + ': cyr chiqishida <html lang="uz-Cyrl"> yo\'q');
+
+      // cyr chiqishida JS ishga tushmasligi kerak (kritik yengillashtirish) —
+      // faqat JSON ma'lumot bloklari qolishi kerak, ijro etiladigan skript yo'q.
+      const scriptTags = [...cyrHtml.matchAll(/<script\b([^>]*)>/g)];
+      const execScripts = scriptTags.filter(([, attrs]) =>
+        !/type="application\/(ld\+json|json)"/.test(attrs));
+      if (execScripts.length) {
+        bad.push(f + ': cyr chiqishida ' + execScripts.length + ' ta ijro etiladigan <script> qoldi (KRITIK)');
+      }
+    }
+    add(!bad.length, '28. CYR_PAGES: canonical o\'z-o\'ziga, x-default lotin, 4 ta hreflang, JS yo\'q ('
+      + CYR_PAGES.length + ' sahifa)', bad.slice(0, 12).join(' | '));
   }
 
   /* ---------- hisobot ---------- */

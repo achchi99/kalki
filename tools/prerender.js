@@ -17,7 +17,9 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const { JSDOM } = require('jsdom');
 const { loadHtml, sitePages, ROOT } = require('./render');
+const { translit } = require('./translit');
 
 /* FAZA 1.1: "Qisqacha javob" bloki (assets/answerbox.js) o'zining
    "Yangilangan: YYYY-MM-DD" sanasini qo'lda emas, shu faylning oxirgi
@@ -175,6 +177,27 @@ const RU_PAGES = [
   'oquv-tatili-arizasi-namunasi.html',
 ];
 
+/* Kirill (uz-Cyrl) pilot — FAZA 1 (2026-09). Mexanik lotin->kirill
+   transliteratsiya (tools/translit.js), QO'LDA TARJIMA EMAS. Sabab:
+   Google o'zbek lotin/kirill so'rovlarini bir xil deb hisoblamaydi —
+   kalki.uz kirill so'rovlarda (masalan "алимент ҳисоблаш") ko'rinmaydi,
+   garchi lotin ekvivalentida yuqori turgan bo'lsa ham; raqobatchilar
+   (mib.uz, advice.uz, bss.uz, lex.uz, gov.uz, adliya.uz) kirillda ham
+   ko'rinadi. Pilot — 4 sahifa, 3-4 haftalik GSC kuzatuvidan keyin
+   to'liq tarqatish (75 sahifa) haqida qaror qabul qilinadi (2-bosqich,
+   bu ro'yxatda emas). Ro'yxat RU_PAGES'ning QISM to'plami bo'lishi
+   shart — har bir CYR_PAGES a'zosi RU_PAGES'da ham bo'lishi kerak,
+   chunki hreflang(uz-Latn/uz-Cyrl/ru/x-default) ru versiyani talab qiladi. */
+const CYR_PAGES = [
+  'aliment-kalkulyator.html',
+  'ariza-namunasi.html',
+  'kredit-kalkulyator.html',
+  'beton-kalkulyator.html',
+];
+CYR_PAGES.forEach(function (n) {
+  if (RU_PAGES.indexOf(n) === -1) throw new Error('CYR_PAGES: ' + n + ' RU_PAGES da yo\'q');
+});
+
 /* ru/<nom>.html /ru/... manzilida joylashadi — bir bosqich chuqurroq katalog.
    Manba sahifadagi nisbiy asset havolalari (masalan src="assets/lang.js")
    shu holicha qolsa, brauzer ularni /ru/assets/lang.js deb noto'g'ri hal
@@ -192,21 +215,34 @@ function rewriteAssetPaths(html) {
 function urlFor(name, lang) {
   var slug = name.replace(/\.html$/, '');
   if (slug === 'index') slug = '';
-  return lang === 'ru' ? 'https://kalki.uz/ru/' + slug : 'https://kalki.uz/' + slug;
+  if (lang === 'ru') return 'https://kalki.uz/ru/' + slug;
+  if (lang === 'cyr') return 'https://kalki.uz/cyr/' + slug;
+  return 'https://kalki.uz/' + slug;
 }
 
-/* canonical/og:url'ni RU manziliga qayta yozadi (faqat RU chiqishida),
-   hreflang(uz/ru/x-default) qo'shadi va data-ru-page belgisini qo'yadi —
-   bu belgi orqali assets/lang.js tugma navigatsiya qilish kerakligini biladi.
-   Ikkala tomonda (uz manba va ru chiqish) ham chaqiriladi. */
+/* canonical/og:url'ni RU/kirill manziliga qayta yozadi (faqat shu chiqishda),
+   hreflang qo'shadi va data-ru-page (hamda kirill pilot sahifalarida
+   data-cyr-page) belgisini qo'yadi — bu belgi orqali assets/lang.js tugma
+   navigatsiya qilish kerakligini biladi. Barcha tomonlarda (uz manba, ru
+   chiqish, kirill pilotida — cyr chiqish) ham chaqiriladi.
+
+   MUHIM (kirill pilot): CYR_PAGES a'zosi uchun hreflang to'plami 3 emas,
+   4 ta teg — uz-Latn/uz-Cyrl/ru/x-default (BCP-47 skript subtag'lari bilan,
+   sayt bo'ylab ishlatiladigan oddiy "uz" tegidan aniqroq). canonical esa
+   HAR BIR versiyada (uz/ru/cyr) FAQAT O'ZIGA ishora qiladi — eng ko'p
+   uchraydigan xato shu yerda canonical boshqa versiyaga ishora qilib
+   qolishi, natijada Google kirill sahifani indekslamay qo'yadi. */
 function injectSeoLinks(doc, name, forLang) {
+  var isCyr = CYR_PAGES.indexOf(name) > -1;
   var uzUrl = urlFor(name, 'uz');
   var ruUrl = urlFor(name, 'ru');
-  if (forLang === 'ru') {
+  var cyrUrl = isCyr ? urlFor(name, 'cyr') : null;
+  if (forLang === 'ru' || forLang === 'cyr') {
+    var targetUrl = forLang === 'ru' ? ruUrl : cyrUrl;
     var canon = doc.querySelector('link[rel="canonical"]');
-    if (canon) canon.setAttribute('href', ruUrl);
+    if (canon) canon.setAttribute('href', targetUrl);
     var ogUrl = doc.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute('content', ruUrl);
+    if (ogUrl) ogUrl.setAttribute('content', targetUrl);
     // Ba'zi JSON-LD bloklari (masalan hujjatlar.html'dagi CollectionPage)
     // "url"ni JS orqali emas, statik holda o'ziga ishora qiladi — app-ld
     // kabi JS-hisoblab yozadigan bloklar buni allaqachon to'g'ri yozgan
@@ -215,7 +251,7 @@ function injectSeoLinks(doc, name, forLang) {
       var data;
       try { data = JSON.parse(s.textContent); } catch (e) { return; }
       if (data && data.url === uzUrl) {
-        data.url = ruUrl;
+        data.url = targetUrl;
         s.textContent = JSON.stringify(data);
       }
     });
@@ -230,10 +266,18 @@ function injectSeoLinks(doc, name, forLang) {
     l.setAttribute('data-hreflang-gen', '1');
     head.appendChild(l);
   }
-  addAlt('uz', uzUrl);
-  addAlt('ru', ruUrl);
-  addAlt('x-default', uzUrl);
+  if (isCyr) {
+    addAlt('uz-Latn', uzUrl);
+    addAlt('uz-Cyrl', cyrUrl);
+    addAlt('ru', ruUrl);
+    addAlt('x-default', uzUrl);
+  } else {
+    addAlt('uz', uzUrl);
+    addAlt('ru', ruUrl);
+    addAlt('x-default', uzUrl);
+  }
   doc.documentElement.setAttribute('data-ru-page', '1');
+  if (isCyr) doc.documentElement.setAttribute('data-cyr-page', '1');
 }
 
 /* Bir sahifaning prerender natijasini QAYTARADI (yozmaydi).
@@ -342,6 +386,145 @@ async function renderOneRu(name) {
   return { out, errors };
 }
 
+/* Matn tugunlari bo'ylab yuradi (SCRIPT/STYLE ichiga kirmaydi). */
+function walkTextNodes(node, fn) {
+  var child = node.firstChild;
+  while (child) {
+    if (child.nodeType === 3) fn(child);
+    else if (child.nodeType === 1 && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+      walkTextNodes(child, fn);
+    }
+    child = child.nextSibling;
+  }
+}
+
+/* JSON-LD obyekti ichidagi matn maydonlarini translit qiladi — band 25'da
+   ishlatilgan naqshning o'zi (name/text/description/headline, so'ng
+   mainEntity/acceptedAnswer/step/itemListElement ichiga rekursiya). */
+var JSONLD_TEXT_KEYS = ['name', 'text', 'description', 'headline'];
+var JSONLD_RECURSE_KEYS = ['mainEntity', 'acceptedAnswer', 'step', 'itemListElement'];
+function translitJsonLd(v) {
+  if (typeof v === 'string') return translit(v);
+  if (Array.isArray(v)) return v.map(translitJsonLd);
+  if (v && typeof v === 'object') {
+    var out = {};
+    Object.keys(v).forEach(function (k) {
+      if (JSONLD_TEXT_KEYS.indexOf(k) > -1 && typeof v[k] === 'string') out[k] = translit(v[k]);
+      else if (JSONLD_RECURSE_KEYS.indexOf(k) > -1) out[k] = translitJsonLd(v[k]);
+      else out[k] = v[k];
+    });
+    return out;
+  }
+  return v;
+}
+
+/* Kirill (uz-Cyrl) pilot chiqishining prerender natijasini QAYTARADI
+   (yozmaydi). renderOneRu'dan farqli — bu YERDA HECH QANDAY JS ISHGA
+   TUSHMAYDI: manba — diskdagi (allaqachon to'liq qurilgan) UZ HTML fayli,
+   ustida sof DOM parse-va-o'zgartirish qilinadi. Sabab: sahifaning o'z
+   til-chizuvchi skripti (masalan $('langUz').onclick orqali applyLang())
+   ishga tushib qolsa, u transliteratsiya qilingan matnni yana lotincha
+   holatga QAYTARIB QO'YADI — bu Googlebot kabi JS ishlatuvchi qidiruv
+   botlari uchun ko'rinmas bo'lib, butun pilot ishini behuda qiladi. Shu
+   sabab BARCHA <script> teglari (JSON ma'lumot bloklaridan tashqari)
+   butunlay OLIB TASHLANADI, interaktiv kalkulyator o'rniga lotin
+   versiyasiga ishora qiluvchi statik xabar qo'yiladi. */
+async function renderOneCyr(name) {
+  var raw = fs.readFileSync(path.join(ROOT, name), 'utf8');
+  var slug = name.replace(/\.html$/, '');
+  var latinPath = '/' + (slug === 'index' ? '' : slug);
+  var ruPath = '/ru/' + slug;
+  var cyrPath = '/cyr/' + slug;
+
+  var dom = new JSDOM(raw, { url: urlFor(name, 'uz') });
+  var doc = dom.window.document;
+
+  // 1) ko'rinadigan matn tugunlari
+  walkTextNodes(doc.body, function (tn) {
+    if (tn.data && /[a-zA-Z]/.test(tn.data)) tn.data = translit(tn.data);
+  });
+
+  // 2) <title> va meta teglar (title/description/og:*/twitter:*)
+  if (doc.title) doc.title = translit(doc.title);
+  [
+    'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]',
+    'meta[name="twitter:title"]', 'meta[name="twitter:description"]',
+  ].forEach(function (sel) {
+    var el = doc.querySelector(sel);
+    if (el) el.setAttribute('content', translit(el.getAttribute('content') || ''));
+  });
+
+  // 3) JSON-LD matn maydonlari
+  doc.querySelectorAll('script[type="application/ld+json"]').forEach(function (s) {
+    var data;
+    try { data = JSON.parse(s.textContent); } catch (e) { return; }
+    s.textContent = JSON.stringify(translitJsonLd(data));
+  });
+
+  // 4) UZ/RU uch-tugmali til-almashtirgichni STATIK havolalarga almashtirish
+  //    (JS yo'q — bu havolalar shunchaki <a href>, bosilganda haqiqiy
+  //    sahifaga o'tadi, KalkiLang'ga hech qanday bog'liqligi yo'q).
+  var seg = doc.querySelector('.lang-seg');
+  if (seg) {
+    seg.innerHTML = '';
+    seg.classList.add('lang-seg-3');
+    function addSegLink(id, href, label, on) {
+      var a = doc.createElement('a');
+      a.id = id;
+      a.href = href;
+      if (on) a.className = 'on';
+      a.textContent = label;
+      seg.appendChild(a);
+    }
+    addSegLink('langUz', latinPath, 'UZ', false);
+    addSegLink('langCyr', cyrPath, 'ЎЗ', true);
+    addSegLink('langRu', ruPath, 'RU', false);
+  }
+
+  // 5) interaktiv boshqaruv elementlari (JS yo'q — funksional emas, shuning
+  //    uchun ko'rinishda ham o'chirilgan holatda bo'lishi kerak, aks holda
+  //    bosilsa hech narsa bo'lmaydigan tugma foydalanuvchini chalkashtiradi)
+  var main = doc.querySelector('main');
+  if (main) {
+    main.querySelectorAll('button, input, select, textarea').forEach(function (el) {
+      el.setAttribute('disabled', '');
+    });
+    var notice = doc.createElement('div');
+    notice.id = 'cyrNotice';
+    notice.setAttribute('style', 'margin:0 0 14px;padding:12px 14px;border-radius:10px;'
+      + 'background:#FFF6E5;border:1px solid #F0D9A0;font-size:14px;line-height:1.5');
+    var a = doc.createElement('a');
+    a.href = latinPath;
+    a.style.fontWeight = '700';
+    a.textContent = translit('Interaktiv hisoblash uchun lotin versiyasini oching') + ' →';
+    notice.appendChild(a);
+    main.insertBefore(notice, main.firstChild);
+  }
+
+  // 6) barcha ijro etiladigan skriptlar olib tashlanadi — JSON ma'lumot
+  //    bloklari (application/ld+json, application/json) qoladi.
+  doc.querySelectorAll('script').forEach(function (s) {
+    var type = s.getAttribute('type') || '';
+    if (type === 'application/ld+json' || type === 'application/json') return;
+    s.remove();
+  });
+
+  // 7) lang/hreflang/canonical
+  doc.documentElement.setAttribute('lang', 'uz-Cyrl');
+  doc.documentElement.setAttribute('data-lang', 'cyr');
+  doc.documentElement.removeAttribute('data-lang-ready');
+  injectSeoLinks(doc, name, 'cyr');
+
+  var body = doc.body;
+  while (body && body.lastChild && body.lastChild.nodeType === 3 && !body.lastChild.data.trim()) {
+    body.removeChild(body.lastChild);
+  }
+
+  var out = '<!doctype html>\n' + doc.documentElement.outerHTML + '\n';
+  dom.window.close();
+  return { out: out, errors: [] };
+}
+
 const pages = sitePages;
 
 async function main() {
@@ -396,6 +579,32 @@ async function main() {
     }
   }
 
+  // Kirill (uz-Cyrl) pilot: faqat CYR_PAGES ro'yxatidagi va shu chaqiriqda
+  // so'ralgan sahifalar uchun, natija cyr/<nom> fayliga yoziladi. RU
+  // qatoridan KEYIN ishlaydi — --write bo'lsa, manba UZ fayl allaqachon
+  // yangilangan bo'ladi (renderOneRu ham xuddi shu tartibga tayanadi).
+  const cyrNames = names.filter((n) => CYR_PAGES.indexOf(n) > -1);
+  if (cyrNames.length) {
+    const cyrDir = path.join(ROOT, 'cyr');
+    if (WRITE && !fs.existsSync(cyrDir)) fs.mkdirSync(cyrDir, { recursive: true });
+    for (const n of cyrNames) {
+      const outFile = path.join(cyrDir, n);
+      try {
+        const r = await renderOneCyr(n);
+        if (r.errors.length) bad++;
+        const cur = fs.existsSync(outFile) ? fs.readFileSync(outFile, 'utf8') : null;
+        const same = cur === r.out;
+        if (!same) {
+          stale++;
+          if (WRITE) fs.writeFileSync(outFile, r.out, 'utf8');
+        }
+        const tag = r.errors.length ? 'ERR ' : (same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
+        console.log(tag + 'cyr/' + n + ' (' + r.out.length + ')'
+          + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
+      } catch (e) { bad++; console.log('FAIL cyr/' + n + ' ' + e.message); }
+    }
+  }
+
   if (!WRITE && stale) {
     console.log('\n' + stale + ' fayl prerender natijasidan farq qiladi — npm run ship');
   }
@@ -406,4 +615,4 @@ if (require.main === module) {
   main().then((code) => process.exit(code)).catch((e) => { console.error(e); process.exit(1); });
 }
 
-module.exports = { renderOne, renderOneRu, pages, RU_PAGES, urlFor };
+module.exports = { renderOne, renderOneRu, renderOneCyr, pages, RU_PAGES, CYR_PAGES, urlFor };

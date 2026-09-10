@@ -25,6 +25,7 @@
 const fs = require('fs');
 const path = require('path');
 const { sitePages, ROOT } = require('./render');
+const { CYR_PAGES } = require('./prerender');
 
 const WRITE = process.argv.indexOf('--write') > -1;
 
@@ -52,12 +53,23 @@ function navHtml(active) {
    #topmenu dan keyin, <header> dan OLDIN turadi va sahifa konteyneriga
    BOG'LIQ EMAS — talab shu: nav va logotip qatori sahifa kengligidan
    qat'i nazar bir xil max-width va padding olsin. */
-const SITEBAR = '<div id="sitebar"><div class="topbar">'
-  + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
-  + '<div class="lang-seg" role="group" aria-label="Til / Язык">'
-  + '<button type="button" id="langUz" class="on">UZ</button>'
-  + '<button type="button" id="langRu">RU</button>'
-  + '</div></div></div>';
+/* Kirill (uz-Cyrl) pilot (2026-09, FAZA 1): CYR_PAGES a'zolarida uchinchi,
+   "ЎЗ" havolasi qo'shiladi — /cyr/<slug> ga ishora qiluvchi oddiy <a>
+   (KalkiLang bilan bog'liq emas, chunki kirill pilot sahifasida JS umuman
+   yo'q — tools/prerender.js'dagi renderOneCyr izohiga qarang). Boshqa 71+
+   sahifada bu havola yo'q, ularning 2-tugmali xatti-harakati o'zgarmaydi. */
+function sitebarHtml(f) {
+  var isCyr = CYR_PAGES.indexOf(f) > -1;
+  var slug = f.replace(/\.html$/, '');
+  var langSeg = '<div class="lang-seg' + (isCyr ? ' lang-seg-3' : '') + '" role="group" aria-label="Til / Язык">'
+    + '<button type="button" id="langUz" class="on">UZ</button>'
+    + '<button type="button" id="langRu">RU</button>'
+    + (isCyr ? '<a id="langCyr" href="/cyr/' + slug + '">ЎЗ</a>' : '')
+    + '</div>';
+  return '<div id="sitebar"><div class="topbar">'
+    + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
+    + langSeg + '</div></div>';
+}
 
 /* ---------------- Kanonik CSS ---------------- */
 const CHROME_CSS = `<style id="chromecss">
@@ -77,6 +89,10 @@ const CHROME_CSS = `<style id="chromecss">
 #sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
 #sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
 #sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
 @media (max-width:640px){
   :root{--nav-pad:12px}
   #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
@@ -246,7 +262,7 @@ function rebuild(f, src) {
   const nav = block(s, '<nav id="topmenu"', '</nav>');
   if (!nav) return { s, notes: ['topmenu yo\'q'] };
   const active = activeHref(nav.text);
-  s = s.slice(0, nav.i) + navHtml(active) + SITEBAR + s.slice(nav.j);
+  s = s.slice(0, nav.i) + navHtml(active) + sitebarHtml(f) + s.slice(nav.j);
 
   /* 3. CSS bloki: eski tmcss o'rniga kanonik chromecss */
   const tm = block(s, '<style id="tmcss">', '</style>');
@@ -351,4 +367,4 @@ function main() {
 
 if (require.main === module) process.exit(main());
 
-module.exports = { CHROME_CSS, SITEBAR, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };
+module.exports = { CHROME_CSS, sitebarHtml, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };

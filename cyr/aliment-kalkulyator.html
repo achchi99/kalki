@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="uz-Cyrl" data-lang="cyr" data-ru-page="1" data-cyr-page="1"><head>
+<meta charset="UTF-8">
+
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Алимент миқдори калкулятори — онлайн ҳисоблаш 2026</title>
+<link rel="canonical" href="https://kalki.uz/cyr/aliment-kalkulyator">
+<meta name="description" content="Алимент миқдори ҳисоблаш: 1 бола — 1/4, 2 бола — 1/3, 3+ бола — 1/2 улуш. MHTEKM 26,5% минимал чегара ҳисобга олинади. Бепул ва тез, онлайн.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="huquqiy"]{--cat:#2C3E66;--cat-deep:#1F2C4A;--accent:#C9A227;--cat-soft:#EAEDF5;--cat-text:#B9C4DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text)}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text],input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink);padding:12px 14px;min-width:0}
+.unit{font-size:13px;font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:20px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:17px;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.prow{border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;background:#FBFCFB}
+.prow.err{border-color:#D64545;background:#FCEEEE}
+.prow-err-msg{font-size:12px;font-weight:700;color:#B3261E;margin-top:6px}
+.prow-warn{font-size:12px;font-weight:700;color:#8A6A20;margin-top:6px}
+.chk{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer}
+.chk input{width:17px;height:17px;accent-color:var(--cat);flex:none}
+.p-remove{margin-top:10px;background:none;border:0;color:#B3261E;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:4px 0;-webkit-tap-highlight-color:transparent}
+.p-org{margin-top:10px}
+.add-row-btn{width:100%;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:11px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.add-row-btn:active{background:var(--cat-soft)}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.extra-note{font-size:12.5px;font-weight:600;color:var(--muted);background:#F2F5F3;border-radius:10px;padding:10px 12px;margin-bottom:14px;line-height:1.5}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .num.pending{font-size:22px;color:var(--muted)}
+.big-figure .lbl{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:3px}
+.pbar{margin-top:14px;background:#EEF2EF;border-radius:99px;height:10px;overflow:hidden}
+.pbar .fill{height:100%;background:var(--cat);border-radius:99px;transition:width .3s ease}
+.pbar-lbl{font-size:12px;font-weight:700;color:var(--muted);margin-top:6px}
+.status-box{margin-top:14px;background:var(--cat-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.5}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.plist{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.plist-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;font-weight:600;color:var(--ink);padding:5px 0;border-bottom:1px solid #F0F3F1}
+.plist-row:last-child{border-bottom:0}
+.plist-row .dur{color:var(--muted);white-space:nowrap}
+.overlap-note{font-size:12px;font-weight:700;color:#8A6A20;background:#FBF3E9;border-radius:8px;padding:8px 10px;margin-top:10px}
+.mygov-note{margin-top:14px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:600;background:#F2F5F3;border-radius:10px;padding:11px 12px}
+.mygov-note a{color:var(--cat);font-weight:800;text-decoration:none}
+.mygov-note a:hover{text-decoration:underline}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button[disabled]{opacity:.45;cursor:not-allowed}
+.receipt-actions button[disabled]:active{background:var(--card)}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<link rel="manifest" href="manifest.json">
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt.show,.receipt.show *{visibility:visible!important}
+  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Алимент миқдори калкулятори — онлайн ҳисоблаш 2026">
+<meta property="og:description" content="Алимент миқдори ҳисоблаш: 1 бола — 1/4, 2 бола — 1/3, 3+ бола — 1/2 улуш. MHTEKM 26,5% минимал чегара ҳисобга олинади. Бепул ва тез, онлайн.">
+<meta property="og:url" content="https://kalki.uz/cyr/aliment-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/aliment-kalkulyator.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="👨‍👧 Aliment kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/aliment-kalkulyator.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Алимент миқдори калкулятори — онлайн ҳисоблаш 2026">
+<meta name="twitter:description" content="Алимент миқдори ҳисоблаш: 1 бола — 1/4, 2 бола — 1/3, 3+ бола — 1/2 улуш. MHTEKM 26,5% минимал чегара ҳисобга олинади. Бепул ва тез, онлайн.">
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Aliment kalkulyatori — oylik daromad va bolalar sonini kiriting, aliment miqdori O'zbekiston Oila kodeksiga muvofiq foiz asosida hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор алиментов — введите месячный доход и количество детей, размер алиментов рассчитывается в процентах согласно Семейному кодексу Узбекистана.","sources":[]},"updated":"2026-09-10"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Алимент неча фоиз қилиб ҳисобланади?","acceptedAnswer":{"@type":"Answer","text":"Алимент миқдори болалар сонига қараб фоиз фарқланади ва ойлик даромаддан ушлаб қолинади. Аниқ фоиз кўрсаткичлари Ўзбекистон Оила кодексида белгиланган; расмий манба тасдиқлангач бу саҳифадаги ҳисоб автоматик янгиланади."}},{"@type":"Question","name":"Алимент кимнинг даромадидан ҳисобланади?","acceptedAnswer":{"@type":"Answer","text":"Одатда алимент тўловчи ота ёки онанинг асосий иш жойидаги иш ҳақи ва бошқа расмий даромад турларидан ҳисобланади. Ҳисобга киритиладиган аниқ даромад турлари рўйхати қонунчиликда белгиланган."}},{"@type":"Question","name":"Болалар сони кўп бўлса, фоиз қандай ўзгаради?","acceptedAnswer":{"@type":"Answer","text":"Болалар сонига қараб фоиз фарқланади — битта, иккита ёки учта ва ундан ортиқ бола учун турли даражалар қўлланилади. Аниқ кўрсаткичлар расмий манбадан тасдиқлангач шу калкуляторда кўрсатилади."}},{"@type":"Question","name":"Алимент судсиз тўланса бўладими?","acceptedAnswer":{"@type":"Answer","text":"Ҳа, ота-оналар ўзаро келишиб, нотариал тасдиқланган алимент тўғрисидаги келишув тузишлари мумкин. Келишувга эришилмаса, масала суд тартибида ҳал қилинади."}},{"@type":"Question","name":"Алимент қачонгача тўланади?","acceptedAnswer":{"@type":"Answer","text":"Одатда бола вояга етгунча (18 ёшгача) тўланади. Баъзи ҳолатларда, масалан меҳнатга лаёқациз вояга етган фарзанд учун, тўлов муддати узайиши мумкин."}},{"@type":"Question","name":"Алимент тўланмаса нима бўлади?","acceptedAnswer":{"@type":"Answer","text":"Алимент тўламаслик ижро ишлари орқали мажбурий ундиришга, кечиктирилган кунлар учун қўшимча ҳисоб-китобга ва маъмурий ёки жиноий жавобгарликка олиб келиши мумкин."}},{"@type":"Question","name":"Алимент қатъий пул суммасида белгиланиши мумкинми?","acceptedAnswer":{"@type":"Answer","text":"Ҳа, даромад беқарор ёки норасмий бўлган ҳолатларда суд алимент миқдорини фоиз ўрнига қатъий пул суммасида белгилаши мумкин."}},{"@type":"Question","name":"Бу калкулятор натижаси расмий ҳисобланадими?","acceptedAnswer":{"@type":"Answer","text":"Ёъқ, бу фақат тахминий ҳисоб-китоб воситаси. Алимент миқдорини расмий равишда суд қарори ёки нотариал келишув белгилайди."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Асосий","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Ҳуқуқий","item":"https://kalki.uz/#cat-huquqiy"},{"@type":"ListItem","position":3,"name":"👨‍👧 Алимент калкулятори","item":"https://kalki.uz/aliment-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"👨‍👧 Алимент калкулятори","description":"Алимент миқдори ҳисоблаш: 1 бола — 1/4, 2 бола — 1/3, 3+ бола — 1/2 улуш. MHTEKM 26,5% минимал чегара ҳисобга олинади. Бепул ва тез, онлайн.","url":"https://kalki.uz/cyr/aliment-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-09-10"}</script><link rel="alternate" hreflang="uz-Latn" href="https://kalki.uz/aliment-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="uz-Cyrl" href="https://kalki.uz/cyr/aliment-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/aliment-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/aliment-kalkulyator" data-hreflang-gen="1"></head>
+<body data-cat="huquqiy">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Асосий</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Молия</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Қурилиш</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммунал</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Ҳаётий</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Ҳуқуқий</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Ҳужжатлар генератори</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблонлар</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Мақолалар</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Калки<span class="dot">.уз</span></a><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык"><a id="langUz" href="/aliment-kalkulyator">UZ</a><a id="langCyr" href="/cyr/aliment-kalkulyator" class="on">ЎЗ</a><a id="langRu" href="/ru/aliment-kalkulyator">RU</a></div></div></div>
+
+<header>
+  <div class="wrap">
+    <span class="cat-badge" data-i="cat">Ҳуқуқий</span>
+    <h1 data-i="h1">👨‍👧 Алимент калкулятори</h1>
+    <p class="sub" data-i="sub">Ойлик даромад ва болалар сонини киритинг — алимент миқдорини билиб олинг.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Асосий</a><span class="sep">›</span><a href="./#cat-huquqiy">Ҳуқуқий</a><span class="sep">›</span><span class="cur">👨‍👧 Алимент калкулятори</span></nav></div>
+<main class="wrap"><div id="cyrNotice" style="margin:0 0 14px;padding:12px 14px;border-radius:10px;background:#FFF6E5;border:1px solid #F0D9A0;font-size:14px;line-height:1.5"><a href="/aliment-kalkulyator" style="font-weight: 700;">Интерактив ҳисоблаш учун лотин версиясини очинг →</a></div><div id="mhtekmNote" class="noprint" style="margin: 0px 0px 14px; font-size: 12px; line-height: 1.5; color: rgb(138, 150, 143); font-weight: 600; word-wrap: break-word; overflow-wrap: break-word;">1 MHTEKM = 1 360 000 сўм (2026-йил 1-сентябрдан амал қилади)</div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Алимент калкулятори — ойлик даромад ва болалар сонини киритинг, алимент миқдори Ўзбекистон Оила кодексига мувофиқ фоиз асосида ҳисобланади.</p><div class="ab-meta">Янгиланган: 2026-09-10</div></div>
+  <div class="field" id="modeSegField">
+    <div class="seg" id="modeSeg">
+      <button type="button" id="modeABtn" class="on" data-i="modeABtnLbl" disabled="">Алимент қанча бўлади?</button>
+      <button type="button" id="modeBBtn" data-i="modeBBtnLbl" disabled="">Қанча қарз тўпланган?</button>
+      <button type="button" id="modeCBtn" data-i="modeCBtnLbl" disabled="">Менга қанча қолади?</button>
+    </div>
+  </div>
+
+  <section class="form-card">
+    <section id="modeA">
+    <div class="field">
+      <label data-i="lIncome">Ойлик даромад</label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="incomeInp" placeholder="0" autocomplete="off" disabled=""><span class="unit" data-i="unitSom">сўм</span></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lChildren">Болалар сони</label>
+      <div class="seg">
+        <button type="button" id="c1" class="on" disabled="">1</button>
+        <button type="button" id="c2" disabled="">2</button>
+        <button type="button" id="c3" data-i="seg3" disabled="">3 ва ундан ортиқ</button>
+      </div>
+    </div>
+
+    <div class="field" id="childCountField" style="display:none">
+      <label data-i="lChildCount"></label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="childCountInp" placeholder="3" autocomplete="off" disabled=""></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lIncomeType">Даромад тури</label>
+      <div class="seg" id="incomeTypeSeg">
+        <button type="button" id="itOfficial" class="on" data-i="itOfficialLbl" disabled="">Расмий иш ҳақи</button>
+        <button type="button" id="itNone" data-i="itNoneLbl" disabled="">Расмий даромад ёъқ</button>
+      </div>
+    </div>
+
+    <details id="dNote"><summary><span data-i="sNote">Қўшимча изоҳ (ихтиёрий)</span></summary><div class="sec-body">
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lNote">Изоҳ</label>
+        <div class="input-shell"><input type="text" id="noteInp" placeholder="" autocomplete="off" disabled=""></div>
+        <p class="hint" data-i="hNote">Бу изоҳ фақат сизга эслатма сифатида сақланади, ҳисоб-китобга таъсир қилмайди.</p>
+      </div>
+    </div></details>
+    </section>
+
+    <section id="modeB" style="display:none">
+    <div class="field">
+      <label data-i="lBIncome">Ойлик даромад (тўловчининг)</label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="bIncomeInp" placeholder="0" autocomplete="off" disabled=""><span class="unit" data-i="unitSom">сўм</span></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lChildren">Болалар сони</label>
+      <div class="seg">
+        <button type="button" id="bc1" class="on" disabled="">1</button>
+        <button type="button" id="bc2" disabled="">2</button>
+        <button type="button" id="bc3" data-i="seg3" disabled="">3 ва ундан ортиқ</button>
+      </div>
+    </div>
+
+    <div class="field" id="bChildCountField" style="display:none">
+      <label data-i="lChildCount"></label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="bChildCountInp" placeholder="3" autocomplete="off" disabled=""></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lUnpaidMonths">Тўланмаган ойлар сони</label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="bUnpaidMonths" placeholder="0" autocomplete="off" disabled=""></div>
+    </div>
+
+    <label class="chk" for="bCourtOrder">
+      <input type="checkbox" id="bCourtOrder" disabled="">
+      <span data-i="lCourtOrder">Алимент суд қарори билан белгиланганми?</span>
+    </label>
+
+    <details id="dPartial"><summary><span data-i="sPartial">Қисман тўланган сумма (ихтиёрий)</span></summary><div class="sec-body">
+      <div class="field" style="margin-bottom:0">
+        <label data-i="lPartial">Жами тўланган сумма</label>
+        <div class="input-shell"><input type="text" inputmode="numeric" id="bPartialPaid" placeholder="0" autocomplete="off" disabled=""><span class="unit" data-i="unitSom">сўм</span></div>
+        <p class="hint" data-i="hPartial">Баъзи ойларда қисман тўлаган бўлсангиз, жами тўланган суммани киритинг.</p>
+      </div>
+    </div></details>
+    </section>
+
+    <section id="modeC" style="display:none">
+    <div class="field">
+      <label data-i="lCIncome">Ойлик даромад (қўлга тегадиган)</label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="cIncomeInp" placeholder="0" autocomplete="off" disabled=""><span class="unit" data-i="unitSom">сўм</span></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lChildren">Болалар сони</label>
+      <div class="seg">
+        <button type="button" id="cc1" class="on" disabled="">1</button>
+        <button type="button" id="cc2" disabled="">2</button>
+        <button type="button" id="cc3" data-i="seg3" disabled="">3 ва ундан ортиқ</button>
+      </div>
+    </div>
+
+    <div class="field" id="cChildCountField" style="display:none">
+      <label data-i="lChildCount"></label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="cChildCountInp" placeholder="3" autocomplete="off" disabled=""></div>
+    </div>
+
+    <div class="field">
+      <label data-i="lOtherDed">Бошқа ушлаб қолишлар борми? (ихтиёрий)</label>
+      <div class="input-shell"><input type="text" inputmode="numeric" id="cOtherDeductions" placeholder="0" autocomplete="off" disabled=""><span class="unit" data-i="unitSom">сўм</span></div>
+    </div>
+    </section>
+
+    <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc" disabled="">Ҳисоблаш</button>
+  </section>
+
+  <section class="receipt" id="receipt" aria-live="polite">
+    <div class="receipt-body">
+      <div class="receipt-tag" data-i="rTag">Ҳисоб натижаси</div>
+      <div class="big-figure">
+        <div class="num" id="mainNum">-</div>
+        <div class="lbl" id="lblMain" data-i="lblMain">Ойлик алимент миқдори</div>
+      </div>
+      <div class="status-box" id="statusBox">-</div>
+      <div class="prow-warn" id="floorNote" style="display:none"></div>
+      <div class="receipt-rows" id="rowsA">
+        <div class="rrow"><span class="k" data-i="kIncome">Ойлик даромад</span><span class="v" id="rIncome">-</span></div>
+        <div class="rrow"><span class="k" data-i="kChildren">Болалар сони</span><span class="v" id="rChildren">-</span></div>
+        <div class="rrow"><span class="k" id="rPctLbl" data-i="kPct">Ушлаб қолинадиган фоиз</span><span class="v accent" id="rPct">-</span></div>
+      </div>
+      <div class="receipt-rows" id="rowsB" style="display:none">
+        <div class="rrow"><span class="k" data-i="kMonthly">Ойига қанча тўланиши керак эди</span><span class="v" id="bMonthly">-</span></div>
+        <div class="rrow"><span class="k" data-i="kMonths">Неча ой тўланмаган</span><span class="v" id="bMonths">-</span></div>
+        <div class="rrow"><span class="k" data-i="kAsosiyQarz">Асосий қарз</span><span class="v" id="bAsosiyQarz">-</span></div>
+        <div class="rrow"><span class="k" data-i="kPenya">Пеня (кечикиш жаримаси)</span><span class="v accent" id="bPenya">-</span></div>
+      </div>
+      <div class="prow-warn" id="bPenyaNote" style="display:none"></div>
+      <div class="receipt-rows" id="rowsC" style="display:none">
+        <div class="rrow"><span class="k" data-i="kAlimentSum">Алимент суммаси</span><span class="v" id="cAliment">-</span></div>
+        <div class="rrow"><span class="k" data-i="kWithheldPct">Ушлаб қолиш фоизи</span><span class="v accent" id="cPct">-</span></div>
+      </div>
+      <div class="prow-warn" id="cCapWarn" style="display:none"></div>
+      <div class="mygov-note" data-i="mygovNote">Бу ҳисоб тахминий ва маълумот учун. Алимент миқдорини расмий равишда суд ёки нотариал келишув белгилайди. Қонун матнини <a href="https://lex.uz" target="_blank" rel="nofollow noopener">лех.уз</a> порталидан текширишингиз мумкин.</div>
+      <div class="status-box" id="bSteps" style="display:none"><b>Қарзни ундириш учун нима қилиш керак?</b><ol style="margin:8px 0 0 18px;padding:0"><li style="margin-bottom:4px">Судга мурожаат қилинг — алимент қарздорлигини ундириш тўғрисида ариза беринг.</li><li style="margin-bottom:4px">Суд қарори қонуний кучга киргач, ижро варақасини олинг.</li><li>Ижро варақаси билан Давлат ижро бюросига мурожаат қилинг.</li></ol></div>
+      <div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare" disabled="">Улашиш</button>
+      <button type="button" class="pdfbtn" data-i="btnPdf" disabled="">PDF</button></div>
+    </div>
+    <div class="receipt-edge"></div>
+  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Маълумот 2026-йил август ҳолатига кўра</div>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram'ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Телеграмъга ёзиш</a></div>
+<section class="seo" id="seoBlock"><h2>Алимент неча фоиз қилиб ҳисобланади?</h2><p>Алимент миқдори болалар сонига қараб фоиз фарқланади ва ойлик даромаддан ушлаб қолинади. Аниқ фоиз кўрсаткичлари Ўзбекистон Оила кодексида белгиланган; расмий манба тасдиқлангач бу саҳифадаги ҳисоб автоматик янгиланади.</p><h2>Алимент кимнинг даромадидан ҳисобланади?</h2><p>Одатда алимент тўловчи ота ёки онанинг асосий иш жойидаги иш ҳақи ва бошқа расмий даромад турларидан ҳисобланади. Ҳисобга киритиладиган аниқ даромад турлари рўйхати қонунчиликда белгиланган.</p><h2>Болалар сони кўп бўлса, фоиз қандай ўзгаради?</h2><p>Болалар сонига қараб фоиз фарқланади — битта, иккита ёки учта ва ундан ортиқ бола учун турли даражалар қўлланилади. Аниқ кўрсаткичлар расмий манбадан тасдиқлангач шу калкуляторда кўрсатилади.</p><h2>Алимент судсиз тўланса бўладими?</h2><p>Ҳа, ота-оналар ўзаро келишиб, нотариал тасдиқланган алимент тўғрисидаги келишув тузишлари мумкин. Келишувга эришилмаса, масала суд тартибида ҳал қилинади.</p><h2>Алимент қачонгача тўланади?</h2><p>Одатда бола вояга етгунча (18 ёшгача) тўланади. Баъзи ҳолатларда, масалан меҳнатга лаёқациз вояга етган фарзанд учун, тўлов муддати узайиши мумкин.</p><h2>Алимент тўланмаса нима бўлади?</h2><p>Алимент тўламаслик ижро ишлари орқали мажбурий ундиришга, кечиктирилган кунлар учун қўшимча ҳисоб-китобга ва маъмурий ёки жиноий жавобгарликка олиб келиши мумкин.</p><h2>Алимент қатъий пул суммасида белгиланиши мумкинми?</h2><p>Ҳа, даромад беқарор ёки норасмий бўлган ҳолатларда суд алимент миқдорини фоиз ўрнига қатъий пул суммасида белгилаши мумкин.</p><h2>Бу калкулятор натижаси расмий ҳисобланадими?</h2><p>Ёъқ, бу фақат тахминий ҳисоб-китоб воситаси. Алимент миқдорини расмий равишда суд қарори ёки нотариал келишув белгилайди.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Фойдали мақолалар</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="blog" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Oila-huquqiy maqolalar" data-art-ru="Статьи по семейному праву">Оила-ҳуқуқий мақолалар</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Барча мақолалар →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Булардан ҳам фойдаланишингиз мумкин</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi" data-rel-ru="Зарплата">Иш ҳақи</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Оилавий бюджет</span></a><a href="staj-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Mehnat staji" data-rel-ru="Трудовой стаж">Меҳнат стажи</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Калкулятор ёки шаблон керакми?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Янги калкулятор, ҳужжат шаблони ёки хато — ёзинг, тез тайёрлаймиз. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Телеграм</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Бошқа калкуляторлар · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Оила бюджети / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Кредит / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Кредит лимит / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ипотека / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ипотека ёки ижара / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ижара ставкалари / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Омонат / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Иш ҳақи / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Божхона / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Уй қуриш / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ғишт / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Бетон / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Том материали / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ремонт / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ер / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Чорвачилик / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Кондиционер / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ёқилғи / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Қуёш панели / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Авто сақлаш / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Электр харажати / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM балл / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Университет контракти / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Грант ололмадим / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Бола пули / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Калория / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ҳомиладорлик / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Пенсия / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Меҳнат стажи / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Закот ва Қурбонлик / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Тўй / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Маросим / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Мактаб / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Алкогол / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Таътил пули / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Касаллик варақаси / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Декрет пули / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ишдан бўшатиш комп. / Компенсация при увольнении</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX жарималари / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ҳисоб сиёсати / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Таътил аризаси / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Моддий ёрдам аризаси / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ўқув таътили аризаси / Заявление на учебный отпуск</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Ҳужжатлар генератори / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Шаблонлар</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Мақолалар / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Аччи лойиҳаси. Барча ҳуқуқлар ҳимояланган.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Мақолалар</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Биз ҳақимизда</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Махфийлик</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Фойдаланиш шартлари</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Алоқа</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Ҳамкорлик</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Ҳисоб тахминий. Алимент миқдорини расмий равишда суд ёки нотариал келишув белгилайди.</footer></main>
+
+<script type="application/json" id="legalconst-data">{"aliment_foiz_1bola":{"id":"aliment_foiz_1bola","sahifa":"aliment-kalkulyator","tur":"son","izoh":"1 bolaga aliment — daromaddan ushlanadigan foiz. FORMAT: 0-1 oralig'idagi ulush (masalan 0.25 = 25%), 0-100 emas.","qiymat":0.25,"amal_qiladi":null,"izoh_uz":"1/4 ulush","izoh_ru":"1/4 доля","holat":"TASDIQLANGAN","manba_url":null,"manba_nomi":"Oila kodeksi 99-modda"},"aliment_foiz_2bola":{"id":"aliment_foiz_2bola","sahifa":"aliment-kalkulyator","tur":"son","izoh":"2 bolaga aliment — daromaddan ushlanadigan foiz. FORMAT: 0-1 oralig'idagi ulush (masalan 0.3333 = 33,33%), 0-100 emas.","qiymat":0.3333,"amal_qiladi":null,"izoh_uz":"1/3 ulush","izoh_ru":"1/3 доля","holat":"TASDIQLANGAN","manba_url":null,"manba_nomi":"Oila kodeksi 99-modda"},"aliment_foiz_3plus":{"id":"aliment_foiz_3plus","sahifa":"aliment-kalkulyator","tur":"son","izoh":"3 va undan ortiq bolaga aliment — daromaddan ushlanadigan foiz. FORMAT: 0-1 oralig'idagi ulush (masalan 0.5 = 50%), 0-100 emas.","qiymat":0.5,"amal_qiladi":null,"izoh_uz":"1/2 ulush","izoh_ru":"1/2 доля","holat":"TASDIQLANGAN","manba_url":null,"manba_nomi":"Oila kodeksi 99-modda"},"aliment_min_foiz_mhtekm":{"id":"aliment_min_foiz_mhtekm","sahifa":"aliment-kalkulyator","tur":"son","izoh":"Har bir bolaga aliment MHTEKMning shuncha foizidan kam bo'lmasligi kerak (minimal chegara). FORMAT: 0-1 oralig'idagi ulush (masalan 0.265 = 26,5%), 0-100 emas.","qiymat":0.265,"amal_qiladi":null,"izoh_uz":"Har bir bola uchun MHTEKMning 26,5%idan kam bo'lmasligi kerak","izoh_ru":"На каждого ребёнка — не менее 26,5% от МРОТ","holat":"TASDIQLANGAN","manba_url":null,"manba_nomi":"Oila kodeksi 99-modda"},"mhtekm_qiymati":{"id":"mhtekm_qiymati","sahifa":"umumiy","tur":"son","izoh":"Mehnatga haq to'lashning eng kam miqdori (MHTEKM), so'mda — kasallik va aliment hisoblarida ishlatiladi","qiymat":1360000,"amal_qiladi":"2026-09-01","izoh_uz":"2026-yil 1-sentyabrdan amal qiladi","izoh_ru":"Действует с 1 сентября 2026 года","holat":"TASDIQLANGAN","manba_url":"https://lex.uz/bhm","manba_nomi":"Prezident farmoni PF-115, 23.06.2026"},"aliment_ushlab_qolish_odatiy":{"id":"aliment_ushlab_qolish_odatiy","sahifa":"aliment-kalkulyator","tur":"son","izoh":"Ish haqidan ushlab qolinadigan mablag'larning odatiy (aliment qarzdorligisiz) yuqori chegarasi — har bir to'lov chog'ida. FORMAT: 0-1 oralig'idagi ulush (masalan 0.50 = 50%), 0-100 emas.","qiymat":0.50,"amal_qiladi":"2023-04-30","izoh_uz":"Har bir to'lov chog'ida ushlab qolinadigan mablag'lar xodimga haqiqatda hisoblangan ish haqining 50%idan oshmasligi kerak.","izoh_ru":"Удерживаемые при каждой выплате средства не должны превышать 50% фактически начисленной работнику заработной платы.","holat":"TASDIQLANGAN","manba_url":"https://lex.uz/docs/-6257288","manba_nomi":"Mehnat kodeksi (28.10.2022), 269-modda 2-qism"},"aliment_ushlab_qolish_qarzdorlikda":{"id":"aliment_ushlab_qolish_qarzdorlikda","sahifa":"aliment-kalkulyator","tur":"son","izoh":"Aliment MAJBURIYATLARI BO'YICHA QARZDORLIKNI undirishda qo'llanadigan yuqoriroq ushlab qolish chegarasi (odatiy 50% chegarasining istisnosi). FORMAT: 0-1 oralig'idagi ulush.","qiymat":0.70,"amal_qiladi":"2023-04-30","izoh_uz":"Aliment majburiyatlari bo'yicha qarzdorlikni ushlab qolish miqdori xodimga haqiqatda hisoblangan ish haqining 70%idan oshishi mumkin emas — bu chegara axloq tuzatish ishlari tarzida jazo o'tayotgan-o'tamayotganidan qat'i nazar qo'llanadi. E'tibor: bu 70% — JORIY aliment emas, aynan QARZDORLIKNI undirish uchun.","izoh_ru":"Размер удержания задолженности по алиментным обязательствам не может превышать 70% фактически начисленной работнику заработной платы — независимо от того, отбывает ли работник исправительные работы. Внимание: эти 70% — именно для взыскания ЗАДОЛЖЕННОСТИ, не текущих алиментов.","holat":"TASDIQLANGAN","manba_url":"https://lex.uz/docs/-6257288","manba_nomi":"Mehnat kodeksi (28.10.2022), 269-modda 2-qism"},"aliment_penya_kunlik":{"id":"aliment_penya_kunlik","sahifa":"aliment-kalkulyator","tur":"son","izoh":"Sud qarori asosida undirilayotgan alimentni o'z vaqtida to'lamaganlik uchun kunlik penya (neustoyka) stavkasi. FORMAT: 0-1 oralig'idagi ulush (0.001 = kuniga 0,1%) — 0.1 EMAS.","qiymat":0.001,"amal_qiladi":null,"izoh_uz":"Kechiktirilgan har bir kun uchun to'lanmagan summaning 0,1%i. Faqat sud qarori bo'yicha undirilganda va to'lovchining aybi bilan qarz vujudga kelganda qo'llanadi.","izoh_ru":"За каждый день просрочки — 0,1% от неуплаченной суммы. Применяется только если алименты взыскиваются по решению суда и задолженность возникла по вине плательщика.","holat":"TASDIQLANGAN","manba_url":"https://sirdaryo.adliya.uz/uz/news/detail.php?ID=45845","manba_nomi":"Oila kodeksi 142-modda"}}</script>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Калки<span style="color:#D99A2B">.уз</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">10.9.2026</div>
+</div></body></html>
