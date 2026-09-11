@@ -194,48 +194,99 @@ img,svg{height:auto}
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-qurilish">Qurilish va yer</a><span class="sep">›</span><span class="cur">Uy qurish kalkulyatori</span></nav></div>
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Uy qurish kalkulyatori — uyning maydonini kiriting, poydevor, devor, tom va boshqa asosiy qurilish bosqichlari uchun kerakli material va taxminiy umumiy smeta bir zumda hisoblanadi.</p><div class="ab-meta">Yangilangan: 2026-09-11</div></div>
   <section class="form-card">
-    <div class="sect-title" data-i="sHouse">Uy o'lchami</div>
-    <div class="row2">
+    <div class="field">
+      <div class="seg" id="calcModeSeg">
+        <button type="button" data-cm="fwd" class="on" data-i="cmFwd">Qurilish qancha turadi?</button>
+        <button type="button" data-cm="rev" data-i="cmRev">Byudjetimga qanday uy chiqadi?</button>
+      </div>
+    </div>
+
+    <div id="fwdFields">
+      <div class="sect-title" data-i="sHouse">Uy o'lchami</div>
       <div class="field">
+        <div class="seg" id="dimModeSeg">
+          <button type="button" data-dm="dims" class="on" data-i="dmDims">O'lchamlarni bilaman</button>
+          <button type="button" data-dm="area" data-i="dmArea">Faqat maydonni bilaman</button>
+        </div>
+      </div>
+      <div class="row2" id="dimsRow">
+        <div class="field">
+          <label for="lenX" data-i="lLenX">Uzunligi</label>
+          <div class="input-shell"><input type="text" id="lenX" inputmode="decimal" value="12"><span class="unit">m</span></div>
+        </div>
+        <div class="field">
+          <label for="widY" data-i="lWidY">Eni</label>
+          <div class="input-shell"><input type="text" id="widY" inputmode="decimal" value="9"><span class="unit">m</span></div>
+        </div>
+      </div>
+      <div class="field" id="dimsPreview" style="margin-top:-6px">Maydon: 108 m² · Perimetr: 42 m</div>
+      <div class="field" id="areaRow" style="display:none">
         <label for="area" data-i="lArea">Bir qavat maydoni</label>
         <div class="input-shell"><input type="text" id="area" inputmode="numeric" value="100"><span class="unit">m²</span></div>
       </div>
+      <div class="row2">
+        <div class="field">
+          <label for="floors" data-i="lFloors">Qavatlar soni</label>
+          <div class="input-shell"><input type="text" id="floors" inputmode="numeric" value="1"><span class="unit" data-i="uFloor">qavat</span></div>
+        </div>
+        <div class="field">
+          <label for="height" data-i="lHeight">Shift balandligi</label>
+          <div class="input-shell"><input type="text" id="height" inputmode="decimal" value="3"><span class="unit">m</span></div>
+        </div>
+      </div>
+      <p class="hint" data-i="hHeight" style="margin-top:-8px">Bir qavatning balandligi (odatda 2,8–3,2 m).</p>
+
+      <div class="sect-title" data-i="sWall">Devor materiali</div>
       <div class="field">
-        <label for="floors" data-i="lFloors">Qavatlar soni</label>
-        <div class="input-shell"><input type="text" id="floors" inputmode="numeric" value="1"><span class="unit" data-i="uFloor">qavat</span></div>
+        <div class="seg" id="wallSeg">
+          <button type="button" data-wall="gisht" class="on" data-i="wGisht">G'isht</button>
+          <button type="button" data-wall="gazoblok" data-i="wGazo">Gazoblok</button>
+          <button type="button" data-wall="penoblok" data-i="wPeno">Penoblok</button>
+        </div>
+        <p class="hint" data-i="hWall">Gazoblok yengil va issiq saqlaydi, g'isht mustahkam. Narxga ta'sir qiladi.</p>
       </div>
-    </div>
-    <div class="field">
-      <label for="height" data-i="lHeight">Shift balandligi</label>
-      <div class="input-shell"><input type="text" id="height" inputmode="decimal" value="3"><span class="unit">m</span></div>
-      <p class="hint" data-i="hHeight">Bir qavatning balandligi (odatda 2,8–3,2 m).</p>
-    </div>
 
-    <div class="sect-title" data-i="sWall">Devor materiali</div>
-    <div class="field">
-      <div class="seg" id="wallSeg">
-        <button type="button" data-wall="gisht" class="on" data-i="wGisht">G'isht</button>
-        <button type="button" data-wall="gazoblok" data-i="wGazo">Gazoblok</button>
-        <button type="button" data-wall="penoblok" data-i="wPeno">Penoblok</button>
+      <div class="sect-title" data-i="sRoofType">Tom qoplamasi</div>
+      <div class="field">
+        <div class="seg" id="roofSeg">
+          <button type="button" data-roof="profnastil" class="on" data-i="rProf">Profnastil</button>
+          <button type="button" data-roof="shifer" data-i="rShif">Shifer</button>
+          <button type="button" data-roof="cherepitsa" data-i="rCher">Cherepitsa</button>
+        </div>
       </div>
-      <p class="hint" data-i="hWall">Gazoblok yengil va issiq saqlaydi, g'isht mustahkam. Narxga ta'sir qiladi.</p>
-    </div>
 
-    <div class="sect-title" data-i="sRoofType">Tom qoplamasi</div>
-    <div class="field">
-      <div class="seg" id="roofSeg">
-        <button type="button" data-roof="profnastil" class="on" data-i="rProf">Profnastil</button>
-        <button type="button" data-roof="shifer" data-i="rShif">Shifer</button>
-        <button type="button" data-roof="cherepitsa" data-i="rCher">Cherepitsa</button>
+      <div class="sect-title" data-i="sPrices">Narx (ixtiyoriy)</div>
+      <p class="hint" style="margin-top:-4px;margin-bottom:12px" data-i="hPrices">Aniqroq natija uchun o'z hududingiz «kalitli» qurilish narxini kiriting. Bilmasangiz 0 qoldiring — o'rtacha narx ishlatiladi.</p>
+      <div class="field" style="margin-bottom:0">
+        <label for="m2price" data-i="lM2price">1 m² qurilish narxi (kalitli)</label>
+        <div class="input-shell"><input type="text" id="m2price" inputmode="numeric" value="0"><span class="unit" data-i="uM2price">so'm/m²</span></div>
+        <p class="hint" data-i="hM2price">«Kalitli» — материал + ish, to'liq tayyor uy. O'zbekistonda ~3,5–6 mln so'm/m². 0 qoldirsangiz, tarkibiy qismlardan hisoblanadi.</p>
       </div>
     </div>
 
-    <div class="sect-title" data-i="sPrices">Narx (ixtiyoriy)</div>
-    <p class="hint" style="margin-top:-4px;margin-bottom:12px" data-i="hPrices">Aniqroq natija uchun o'z hududingiz «kalitli» qurilish narxini kiriting. Bilmasangiz 0 qoldiring — o'rtacha narx ishlatiladi.</p>
-    <div class="field" style="margin-bottom:0">
-      <label for="m2price" data-i="lM2price">1 m² qurilish narxi (kalitli)</label>
-      <div class="input-shell"><input type="text" id="m2price" inputmode="numeric" value="0"><span class="unit" data-i="uM2price">so'm/m²</span></div>
-      <p class="hint" data-i="hM2price">«Kalitli» — материал + ish, to'liq tayyor uy. O'zbekistonda ~3,5–6 mln so'm/m². 0 qoldirsangiz, tarkibiy qismlardan hisoblanadi.</p>
+    <div id="revFields" style="display:none">
+      <div class="sect-title" data-i="sBudget">Byudjet</div>
+      <div class="field">
+        <label for="budget" data-i="lBudget">Qurilishga ajratilgan byudjet</label>
+        <div class="input-shell"><input type="text" id="budget" inputmode="numeric" value="500 000 000"><span class="unit" data-i="uSom">so'm</span></div>
+      </div>
+      <div class="field">
+        <label for="floorsRev" data-i="lFloors">Qavatlar soni</label>
+        <div class="input-shell"><input type="text" id="floorsRev" inputmode="numeric" value="1"><span class="unit" data-i="uFloor">qavat</span></div>
+      </div>
+      <div class="sect-title" data-i="sWall">Devor materiali</div>
+      <div class="field">
+        <div class="seg" id="wallSegRev">
+          <button type="button" data-wallrev="gisht" class="on" data-i="wGisht">G'isht</button>
+          <button type="button" data-wallrev="gazoblok" data-i="wGazo">Gazoblok</button>
+          <button type="button" data-wallrev="penoblok" data-i="wPeno">Penoblok</button>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="m2priceRev" data-i="lM2priceRev">1 m² qurilish narxi (kalitli)</label>
+        <div class="input-shell"><input type="text" id="m2priceRev" inputmode="numeric" value="4 500 000"><span class="unit" data-i="uM2price">so'm/m²</span></div>
+        <p class="hint" data-i="hM2priceRev">O'z hududingizdagi taxminiy «kalitli» narx (material + ish). O'zbekistonda ~3,5–6 mln so'm/m².</p>
+      </div>
     </div>
 
     <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Uyni hisoblash</button>
@@ -244,9 +295,10 @@ img,svg{height:auto}
   <section class="receipt" id="receipt" aria-live="polite">
     <div class="receipt-body">
       <div class="receipt-tag" data-i="rTag">Uy qurish smetasi</div>
+      <div id="revIntro" style="display:none;font-size:13px;font-weight:700;color:var(--muted);margin-top:10px"></div>
       <div class="big-figure">
         <div class="num" id="mainNum">—</div>
-        <div class="lbl" data-i="lblMain">Umumiy qurilish maydoni</div>
+        <div class="lbl" id="lblMain" data-i="lblMain">Umumiy qurilish maydoni</div>
       </div>
       <div id="stages"></div>
       <div class="big-total">
@@ -289,6 +341,18 @@ img,svg{height:auto}
       cat:"Qurilish",
       h1:"Uy qurish kalkulyatori",
       sub:"Uy maydonini kiriting — poydevor, devor, tom va umumiy taxminiy smetani bir joyda hisoblab beradi.",
+      cmFwd:"Qurilish qancha turadi?",cmRev:"Byudjetimga qanday uy chiqadi?",
+      dmDims:"O'lchamlarni bilaman",dmArea:"Faqat maydonni bilaman",
+      lLenX:"Uzunligi",lWidY:"Eni",
+      dimsPreviewFmt:"Maydon: {a} m² · Perimetr: {p} m",
+      sBudget:"Byudjet",lBudget:"Qurilishga ajratilgan byudjet",uSom:"so'm",
+      lM2priceRev:"1 m² qurilish narxi (kalitli)",
+      hM2priceRev:"O'z hududingizdagi taxminiy «kalitli» narx (material + ish). O'zbekistonda ~3,5–6 mln so'm/m².",
+      revBudgetFmt:"{b} so'm byudjet bilan:",
+      revAreaFmt:"Taxminan {a} m² uy qurishingiz mumkin",
+      revShapeFmt:"(masalan {l} × {w} m)",
+      wallLineLbl:"Tashqi devor",wallLineFmt:"{p} m × {h} m = {a} m²",
+      gishtLinkTxt:"G'isht kalkulyatorida aniqroq hisoblash →",
       sHouse:"Uy o'lchami",
       lArea:"Bir qavat maydoni",lFloors:"Qavatlar soni",uFloor:"qavat",
       lHeight:"Shift balandligi",hHeight:"Bir qavatning balandligi (odatda 2,8–3,2 m).",
@@ -317,6 +381,18 @@ img,svg{height:auto}
       cat:"Стройка",
       h1:"Калькулятор строительства дома",
       sub:"Введите площадь дома — посчитает фундамент, стены, крышу и общую примерную смету в одном месте.",
+      cmFwd:"Сколько стоит строительство?",cmRev:"Какой дом на мой бюджет?",
+      dmDims:"Знаю размеры",dmArea:"Знаю только площадь",
+      lLenX:"Длина",lWidY:"Ширина",
+      dimsPreviewFmt:"Площадь: {a} м² · Периметр: {p} м",
+      sBudget:"Бюджет",lBudget:"Бюджет на строительство",uSom:"сум",
+      lM2priceRev:"Цена 1 м² «под ключ»",
+      hM2priceRev:"Примерная цена «под ключ» (материал + работа) в вашем регионе. В Узбекистане ~3,5–6 млн сум/м².",
+      revBudgetFmt:"При бюджете {b} сум:",
+      revAreaFmt:"Сможете построить примерно {a} м²",
+      revShapeFmt:"(например {l} × {w} м)",
+      wallLineLbl:"Внешние стены",wallLineFmt:"{p} м × {h} м = {a} м²",
+      gishtLinkTxt:"Точнее посчитать в калькуляторе кирпича →",
       sHouse:"Размер дома",
       lArea:"Площадь одного этажа",lFloors:"Число этажей",uFloor:"этаж",
       lHeight:"Высота потолка",hHeight:"Высота одного этажа (обычно 2,8–3,2 м).",
@@ -343,19 +419,40 @@ img,svg{height:auto}
     }
   };
   var lang=document.documentElement.lang==='ru'?'ru':'uz', wall='gisht', roof='profnastil', calcData=null;
+  var calcMode='fwd', dimMode='dims';
   var AVG_M2=4500000; // o'rtacha kalitli narx
+  // Teskari rejimda taklif qilinadigan shakl nisbati (uzunlik:eni) -- 1:1
+  // dan 1:1,5 gacha oraliqning o'rtasi, spec talabi boyicha.
+  var REV_SHAPE_RATIO=1.2;
+  var fmt1=function(n){return (Math.round(n*10)/10).toString().replace('.',',')};
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/ /g,'').replace(/\s/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var som=function(){return lang==='uz'?"so'm":'сум'};
 
-  ['area','m2price'].forEach(function(id){
+  function clearResult(){
+    calcData=null;
+    $('receipt').classList.remove('show');
+  }
+
+  ['area','m2price','budget','m2priceRev'].forEach(function(id){
     $(id).addEventListener('input',function(){
       var v=this.value.replace(/[^\d]/g,'');
       this.value=v?fmt(parseInt(v,10)):'0';
     });
   });
+
+  function updateDimsPreview(){
+    var l=num($('lenX').value), w=num($('widY').value);
+    var pv=$('dimsPreview');
+    if(!l||!w){pv.textContent='';return}
+    pv.textContent=t('dimsPreviewFmt').replace('{a}',fmt(l*w)).replace('{p}',fmt1(2*(l+w)));
+  }
+  ['lenX','widY'].forEach(function(id){
+    $(id).addEventListener('input',updateDimsPreview);
+  });
+  updateDimsPreview();
 
   function segInit(attr,setter){
     var btns=document.querySelectorAll('['+attr+']');
@@ -368,12 +465,97 @@ img,svg{height:auto}
       };
     }
   }
-  segInit('data-wall',function(v){wall=v});
+  // Devor materiali -- ikkita seg guruhi (oldinga/teskari rejim) BIR XIL
+  // holatni ko'rsatadi, shu sababli ikkalasi ham birga yangilanadi --
+  // rejim almashtirilganda tanlov yo'qolib qolmaydi.
+  function setWall(v){
+    wall=v;
+    var btns=document.querySelectorAll('[data-wall],[data-wallrev]');
+    for(var i=0;i<btns.length;i++){
+      var b=btns[i];
+      var on=(b.getAttribute('data-wall')===v)||(b.getAttribute('data-wallrev')===v);
+      b.classList.toggle('on',on);
+    }
+  }
+  (function(){
+    var btns=document.querySelectorAll('[data-wall],[data-wallrev]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].onclick=function(){
+        setWall(this.getAttribute('data-wall')||this.getAttribute('data-wallrev'));
+        if(calcData)calc();
+      };
+    }
+  })();
   segInit('data-roof',function(v){roof=v});
 
+  function applyCalcMode(){
+    $('fwdFields').style.display=calcMode==='fwd'?'':'none';
+    $('revFields').style.display=calcMode==='rev'?'':'none';
+  }
+  (function(){
+    var btns=document.querySelectorAll('[data-cm]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].onclick=function(){
+        calcMode=this.getAttribute('data-cm');
+        for(var j=0;j<btns.length;j++)btns[j].classList.remove('on');
+        this.classList.add('on');
+        applyCalcMode();
+        clearResult();
+      };
+    }
+  })();
+
+  function applyDimMode(){
+    $('dimsRow').style.display=dimMode==='dims'?'':'none';
+    $('dimsPreview').style.display=dimMode==='dims'?'':'none';
+    $('areaRow').style.display=dimMode==='area'?'':'none';
+  }
+  (function(){
+    var btns=document.querySelectorAll('[data-dm]');
+    for(var i=0;i<btns.length;i++){
+      btns[i].onclick=function(){
+        dimMode=this.getAttribute('data-dm');
+        for(var j=0;j<btns.length;j++)btns[j].classList.remove('on');
+        this.classList.add('on');
+        applyDimMode();
+        clearResult();
+      };
+    }
+  })();
+
+  var STAGES=[
+    {id:'stFound', pct:0.15},
+    {id:'stWall',  pct:0.25},
+    {id:'stRoof',  pct:0.12},
+    {id:'stFinish',pct:0.33},
+    {id:'stOther', pct:0.15}
+  ];
+  function matsFor(wallArea,roofArea,area){
+    return {
+      gisht: wall==='gisht'?Math.round(wallArea*52):0, // ~52 dona/m² (yarim g'isht devor emas, to'liq)
+      blok: wall!=='gisht'?Math.round(wallArea*(wall==='gazoblok'?6.7:13.9)):0,
+      beton: Math.round(area*0.35*10)/10, // poydevor+ pol uchun ~0.35 m³/m²
+      roofSheets: Math.ceil(roofArea/(1.1*6))
+    };
+  }
+
   function calc(){
-    var area=num($('area').value), floors=num($('floors').value)||1, height=num($('height').value)||3;
-    if(!area){$('receipt').classList.remove('show');return}
+    if(calcMode==='rev'){calcReverse();return}
+    calcForward();
+  }
+
+  function calcForward(){
+    var area, perim=null;
+    if(dimMode==='dims'){
+      var lx=num($('lenX').value), wy=num($('widY').value);
+      if(!lx||!wy){$('receipt').classList.remove('show');return}
+      area=lx*wy;
+      perim=2*(lx+wy);
+    }else{
+      area=num($('area').value);
+      if(!area){$('receipt').classList.remove('show');return}
+    }
+    var floors=num($('floors').value)||1, height=num($('height').value)||3;
     var totalArea=area*floors;
     var m2price=num($('m2price').value);
     var useCustom=m2price>0;
@@ -385,33 +567,68 @@ img,svg{height:auto}
     var adjustedM2=basePrice*(useCustom?1:(wallAdj*roofAdj));
     var grand=totalArea*adjustedM2;
 
-    // Bosqichlarga ajratish (tipik ulushlar, «kalitli» qurilishda)
-    var stages=[
-      {id:'stFound', pct:0.15},
-      {id:'stWall',  pct:0.25},
-      {id:'stRoof',  pct:0.12},
-      {id:'stFinish',pct:0.33},
-      {id:'stOther', pct:0.15}
-    ];
-    // Material miqdorlari (mo'ljal): devor maydoni ~ perimetr × balandlik × qavat
-    var perim=Math.sqrt(area)*4*1.1; // taxminiy perimetr
-    var wallArea=perim*height*floors;
+    // Material miqdorlari (mo'ljal): devor maydoni ~ perimetr × balandlik × qavat.
+    // Agar foydalanuvchi haqiqiy o'lchamlarni kiritgan bo'lsa (dimMode==='dims'),
+    // ANIQ perimetr ishlatiladi -- aks holda eski taxminiy formula (kvadratsimon
+    // uy faraz qilib) zaxira sifatida qoladi.
+    var perimUsed = perim!=null ? perim : Math.sqrt(area)*4*1.1;
+    var wallArea=perimUsed*height*floors;
     var roofArea=area*1.25; // nishab bilan
-    var mats={
-      gisht: wall==='gisht'?Math.round(wallArea*52):0, // ~52 dona/m² (yarim g'isht devor emas, to'liq)
-      blok: wall!=='gisht'?Math.round(wallArea*(wall==='gazoblok'?6.7:13.9)):0,
-      beton: Math.round(area*0.35*10)/10, // poydevor+ pol uchun ~0.35 m³/m²
-      roofSheets: Math.ceil(roofArea/(1.1*6))
-    };
-    calcData={totalArea:totalArea,area:area,floors:floors,grand:grand,adjustedM2:adjustedM2,
-      stages:stages,wallArea:wallArea,roofArea:roofArea,mats:mats,useCustom:useCustom};
+    var mats=matsFor(wallArea,roofArea,area);
+    calcData={mode:'fwd',totalArea:totalArea,area:area,floors:floors,grand:grand,adjustedM2:adjustedM2,
+      stages:STAGES,wallArea:wallArea,roofArea:roofArea,mats:mats,useCustom:useCustom,
+      perim:perim,perimUsed:perimUsed,height:height};
     renderResult();
     $('receipt').classList.add('show');
   }
 
+  function calcReverse(){
+    var budget=num($('budget').value), floors=num($('floorsRev').value)||1;
+    var m2price=num($('m2priceRev').value);
+    if(!budget||!m2price){$('receipt').classList.remove('show');return}
+    var totalArea=budget/m2price;
+    var area=totalArea/floors;
+    // Shakl taklifi: maydonga yaqin, 1:REV_SHAPE_RATIO nisbatdagi o'lcham,
+    // 0,5 m'gacha yaxlitlab (amaliy, o'qish oson raqam uchun).
+    var wSug=Math.sqrt(area/REV_SHAPE_RATIO);
+    var lSug=area/(wSug||1);
+    wSug=Math.round(wSug*2)/2; lSug=Math.round(lSug*2)/2;
+    if(!wSug)wSug=1;
+    if(!lSug)lSug=area||1;
+    var height=3; // teskari rejimda foydalanuvchidan so'ralmaydi (spec: 4 maydon)
+    var perim=2*(lSug+wSug);
+    var wallArea=perim*height*floors;
+    var roofArea=area*1.25;
+    var mats=matsFor(wallArea,roofArea,area);
+    calcData={mode:'rev',budget:budget,totalArea:totalArea,area:area,floors:floors,
+      grand:budget,adjustedM2:m2price,
+      stages:STAGES,wallArea:wallArea,roofArea:roofArea,mats:mats,useCustom:true,
+      perim:perim,perimUsed:perim,height:height,lSug:lSug,wSug:wSug};
+    renderResult();
+    $('receipt').classList.add('show');
+  }
+
+  function buildGishtLink(perim,height){
+    var data={i:{wlen:fmt1(perim),wh:fmt1(height)}};
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return 'gisht-kalkulyator?p='+b64;
+  }
+
   function renderResult(){
     var d=calcData, sum=' '+som();
-    $('mainNum').textContent=fmt(d.totalArea)+' m²'+(d.floors>1?' ('+d.floors+'×'+fmt(d.area)+')':'');
+    var ri=$('revIntro');
+    if(d.mode==='rev'){
+      ri.style.display='';
+      ri.textContent=t('revBudgetFmt').replace('{b}',fmt(d.budget));
+      $('mainNum').textContent=t('revAreaFmt').replace('{a}',fmt(d.area));
+      $('lblMain').textContent=t('revShapeFmt').replace('{l}',fmt1(d.lSug)).replace('{w}',fmt1(d.wSug));
+    }else{
+      ri.style.display='none';
+      ri.textContent='';
+      $('mainNum').textContent=fmt(d.totalArea)+' m²'+(d.floors>1?' ('+d.floors+'×'+fmt(d.area)+')':'');
+      $('lblMain').textContent=t('lblMain');
+    }
     var html='';
     for(var i=0;i<d.stages.length;i++){
       var st=d.stages[i], cost=d.grand*st.pct;
@@ -419,7 +636,12 @@ img,svg{height:auto}
       if(st.id==='stWall'){
         if(wall==='gisht')detail='<div class="srow"><span class="sk">'+(lang==='uz'?"G'isht (taxminan)":'Кирпич (примерно)')+'</span><span class="sv">'+fmt(d.mats.gisht)+' '+(lang==='uz'?'dona':'шт')+'</span></div>';
         else detail='<div class="srow"><span class="sk">'+(wall==='gazoblok'?(lang==='uz'?'Gazoblok':'Газоблок'):(lang==='uz'?'Penoblok':'Пеноблок'))+'</span><span class="sv">'+fmt(d.mats.blok)+' '+(lang==='uz'?'dona':'шт')+'</span></div>';
-        detail+='<div class="srow"><span class="sk">'+(lang==='uz'?'Devor maydoni':'Площадь стен')+'</span><span class="sv">'+fmt(d.wallArea)+' m²</span></div>';
+        if(d.perim!=null||d.mode==='rev'){
+          detail+='<div class="srow"><span class="sk">'+t('wallLineLbl')+'</span><span class="sv">'+t('wallLineFmt').replace('{p}',fmt1(d.perimUsed)).replace('{h}',fmt1(d.height)).replace('{a}',fmt(d.wallArea))+'</span></div>';
+          detail+='<div class="srow"><a href="'+buildGishtLink(d.perimUsed,d.height)+'" style="font-size:12.5px;font-weight:700;color:var(--accent);text-decoration:none">'+t('gishtLinkTxt')+'</a></div>';
+        }else{
+          detail+='<div class="srow"><span class="sk">'+(lang==='uz'?'Devor maydoni':'Площадь стен')+'</span><span class="sv">'+fmt(d.wallArea)+' m²</span></div>';
+        }
       }else if(st.id==='stRoof'){
         detail='<div class="srow"><span class="sk">'+(lang==='uz'?'Tom maydoni':'Площадь крыши')+'</span><span class="sv">'+fmt(d.roofArea)+' m²</span></div>';
         detail+='<div class="srow"><span class="sk">'+(lang==='uz'?'Material':'Материал')+' ('+roof+')</span><span class="sv">'+d.mats.roofSheets+' '+(lang==='uz'?'list':'листов')+'</span></div>';
