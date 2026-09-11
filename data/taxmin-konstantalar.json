@@ -72,6 +72,42 @@
       "manba_url": null,
       "manba_nomi": "TASDIQLANMAGAN — Statistika agentligining oxirgi ma'lumoti kutilmoqda",
       "sana": null
+    },
+    {
+      "id": "chorva_risk_yem_oshish",
+      "sahifa": "chorva-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Risk-simulyator ssenariysi: yem narxi necha % oshsa, foyda qanday o'zgarishini ko'rsatish uchun ishlatiladigan stress-testi foizi. FORMAT: 0-1 oralig'idagi ulush.",
+      "standart_taxmin": 0.1,
+      "izoh_uz": "Bu — TAXMIN, aniq statistik ko'rsatkich emas. Chorvachilikda yem narxi mavsum/import sharoitiga qarab tez o'zgaradi — 10% yumaloq (round-number) stress darajasi sifatida tanlangan, real bozor tadqiqotidan olinmagan. Foydalanuvchiga sozlash imkoni ATAYLAB berilmagan (FAZA 1 spec talabi: soddalikni buzmaslik) — kelajakda o'zgartirish kerak bo'lsa, shu yozuv orqali.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не точный статистический показатель. Цена корма в животноводстве быстро меняется в зависимости от сезона/импорта — 10% выбрано как круглое стресс-значение, не из рыночного исследования. Пользователю намеренно не дана возможность изменить это значение (требование FAZA 1: не усложнять) — при необходимости менять через эту запись.",
+      "manba_url": null,
+      "manba_nomi": "Mahsulot qarori (spec, 2026-09) — yumaloq stress-taxmin, tashqi manbadan olinmagan",
+      "sana": "2026-09"
+    },
+    {
+      "id": "chorva_risk_sotish_pasayishi",
+      "sahifa": "chorva-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Risk-simulyator ssenariysi: sotish narxi necha % pasaysa, foyda qanday o'zgarishini ko'rsatish uchun ishlatiladigan stress-testi foizi. FORMAT: 0-1 oralig'idagi ulush.",
+      "standart_taxmin": 0.1,
+      "izoh_uz": "Bu — TAXMIN, aniq statistik ko'rsatkich emas. Chorva mahsuloti bozor narxi mavsum/bayram/eksport sharoitiga qarab tez o'zgaradi — 10% yumaloq stress darajasi sifatida tanlangan. Foydalanuvchiga sozlash imkoni ATAYLAB berilmagan (soddalikni buzmaslik uchun).",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не точный статистический показатель. Рыночная цена скота быстро меняется в зависимости от сезона/праздников/экспорта — 10% выбрано как круглое стресс-значение. Пользователю намеренно не дана возможность изменить это значение.",
+      "manba_url": null,
+      "manba_nomi": "Mahsulot qarori (spec, 2026-09) — yumaloq stress-taxmin, tashqi manbadan olinmagan",
+      "sana": "2026-09"
+    },
+    {
+      "id": "chorva_risk_boqish_uzayishi",
+      "sahifa": "chorva-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "Risk-simulyator ssenariysi: boqish muddati necha kun cho'zilsa, foyda qanday o'zgarishini ko'rsatish uchun ishlatiladigan stress-testi qiymati. FORMAT: KUNLAR SONI (0-1 ulush emas — boshqa yozuvlardan farqli).",
+      "standart_taxmin": 30,
+      "izoh_uz": "Bu — TAXMIN, aniq statistik ko'rsatkich emas. 30 kun (~1 oy) chorvachilikda kasallik/ob-havo sababli boqish rejadan chetga chiqishining odatiy uchrashi sifatida tanlangan, real tadqiqotdan olinmagan. Bu ssenariyda faqat qo'shimcha yem va oylik xarajat hisoblanadi — uzoqroq boqish natijasida qo'shimcha vazn qo'shilishi HISOBGA OLINMAYDI (buni bashorat qilib bo'lmaydi, shu sabab natija konservativ/yomonroq chiqadi, ataylab). Foydalanuvchiga sozlash imkoni ATAYLAB berilmagan.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не точный статистический показатель. 30 дней (~1 месяц) выбрано как типичное отклонение срока откорма из-за болезни/погоды, не из исследования. В этом сценарии учитываются только дополнительные корм и месячные расходы — дополнительный набор веса за более длительный откорм НЕ учитывается (его нельзя предсказать, поэтому результат намеренно консервативный/хуже реального). Пользователю намеренно не дана возможность изменить это значение.",
+      "manba_url": null,
+      "manba_nomi": "Mahsulot qarori (spec, 2026-09) — yumaloq stress-taxmin, tashqi manbadan olinmagan",
+      "sana": "2026-09"
     }
   ]
 }

@@ -89,6 +89,22 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .status{margin-top:14px;border-radius:10px;padding:12px 14px;font-size:13.5px;font-weight:700}
 .status.s-ok{background:var(--ok-soft);color:var(--ok)}
 .status.s-neg{background:var(--warn-soft);color:var(--warn)}
+.risk-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.risk-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.risk-verdict{border-radius:10px;padding:12px 14px;font-size:13.5px;font-weight:700;margin-bottom:12px}
+.risk-verdict.r-safe{background:var(--ok-soft);color:var(--ok)}
+.risk-verdict.r-mid{background:#FBF1E0;color:#8A5B10}
+.risk-verdict.r-risky{background:var(--warn-soft);color:var(--warn)}
+.risk-rows{border-top:1px dashed var(--line);padding-top:6px}
+.risk-row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;padding:8px 0;border-bottom:1px solid #F5F7F5}
+.risk-row:last-child{border-bottom:0}
+.risk-row .k{color:var(--ink);font-weight:600;display:flex;align-items:center;gap:7px}
+.risk-row .k .dot{font-size:12px;flex:none}
+.risk-row .v{font-weight:800;white-space:nowrap}
+.risk-row .v.ok{color:var(--ok)}
+.risk-row .v.mid{color:#8A5B10}
+.risk-row .v.neg{color:var(--warn)}
+.risk-break{margin-top:12px;background:#EEF2EF;border-radius:10px;padding:11px 13px;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5}
 .receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
@@ -278,6 +294,14 @@ img,svg{height:auto}
         <div class="rrow"><span class="k" data-i="kBreak">Цена безубыточности (1 голова)</span><span class="v accent" id="rBreak">—</span></div>
       </div>
       <div class="status" id="statusBox"></div>
+
+      <div id="riskBlock" style="display:none">
+        <div class="risk-title" data-i="riskTitle">Что если я потеряю деньги?</div>
+        <div class="risk-verdict" id="riskVerdict"></div>
+        <div class="risk-rows" id="riskRows"></div>
+        <div class="risk-break" id="riskBreakNote"></div>
+      </div>
+
       <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Поделиться</button><button type="button" class="pdfbtn">PDF</button></div>
     </div>
     <div class="receipt-edge"></div>
@@ -319,6 +343,18 @@ img,svg{height:auto}
       kBreak:"Zararsizlik narxi (1 bosh)",
       stOk:"Foyda bor: har oy o'rtacha {m} so'm. 1 boshni kamida {b} so'mga sotsangiz, zararga tushmaysiz — bundan qimmatiga sotilgan har so'm sof foyda.",
       stNeg:"Diqqat: bu ko'rsatkichlarda {z} so'm zarar chiqadi — kunlik yem xarajati kutilayotgan o'sishdan qimmat. Yechimlar: arzonroq yem manbai toping, muddatni qisqartiring yoki sotish narxi {b} so'mdan yuqori bo'lishini kuting.",
+      riskTitle:"Nima bo'lsa zarar qilaman?",
+      riskScenario:{
+        base:"Hozirgi hisob",
+        feedUp:"Yem narxi +10%",
+        saleDown:"Sotish narxi −10%",
+        extend:"Boqish 30 kun cho'zilsa",
+        combo:"Yem +10% va sotish −10%"
+      },
+      riskVerdictSafe:"🟢 Xavfsiz — salbiy holatlarda ham foyda qoladi",
+      riskVerdictMid:"🟡 Chegarada — yem yoki narx o'zgarsa, foyda yo'qolishi mumkin",
+      riskVerdictRisky:"🔴 Yuqori risk — ko'p holatda zarar chiqadi, hisobni qayta ko'rib chiqing",
+      riskBreakNote:"Zararsizlik narxi: sotish narxi {b} so'm/boshdan past bo'lsa, zarar chiqadi. \"Boqish cho'zilsa\" ssenariysi qo'shimcha vazn qo'shilishini hisobga olmaydi — faqat qo'shimcha yem/oylik xarajat.",
       btnShare:"Ulashish",copied:"Nusxalandi ✓",
       foot:"Hisobda oy 30 kun deb olinadi. Narxlar bozorga qarab o'zgaradi — o'z hududingiz narxlarini kiriting. Ma'lumot uchun.",
       seo:'<h2>Bo\'rdoqichilikda foyda qanday hisoblanadi?</h2><p>Sof foyda = sotish narxi − (olish narxi + yem-xashak + boshqa xarajatlar). Eng katta modda — yem: kunlik ratsion narxini boqish kunlariga ko\'paytirsangiz, ko\'pincha molning o\'zidan qimmat summa chiqadi. Shu sababli yem narxi oshgan davrda ko\'p xo\'jaliklar bilmagan holda zararga ishlaydi.</p><h2>Qachon boqish foydali?</h2><p>Oddiy qoida: molning oylik qiymat o\'sishi (sotish − olish narxi bo\'lingan oylar soni) kunlik xarajat × 30 dan katta bo\'lishi kerak. Kalkulyator buni avtomatik solishtiradi va zararsizlik narxini — 1 boshni eng kamida necha pulga sotish kerakligini ko\'rsatadi.</p><h2>Xarajatni qanday kamaytirish mumkin?</h2><p>Yemni ulgurji yoki mavsumida g\'amlash, sheluha-kepak kabi arzon to\'ldiruvchilardan foydalanish, bedani o\'zi yetishtirish — kunlik xarajatni 20–30% kamaytirishi mumkin. Har o\'zgarishni kalkulyatorda sinab ko\'ring.</p>'
@@ -348,6 +384,18 @@ img,svg{height:auto}
       kBreak:"Цена безубыточности (1 голова)",
       stOk:"Прибыль есть: в среднем {m} сум в месяц. Продавайте голову минимум за {b} сум — всё, что дороже, чистая прибыль.",
       stNeg:"Внимание: при этих показателях убыток {z} сум — дневной корм дороже ожидаемого прироста. Решения: найдите корм дешевле, сократите срок или дождитесь цены продажи выше {b} сум.",
+      riskTitle:"Что если я потеряю деньги?",
+      riskScenario:{
+        base:"Текущий расчёт",
+        feedUp:"Корм дороже на 10%",
+        saleDown:"Цена продажи ниже на 10%",
+        extend:"Откорм дольше на 30 дней",
+        combo:"Корм +10% и продажа −10%"
+      },
+      riskVerdictSafe:"🟢 Безопасно — прибыль сохраняется даже в неблагоприятных случаях",
+      riskVerdictMid:"🟡 На грани — при изменении цены корма или продажи прибыль может исчезнуть",
+      riskVerdictRisky:"🔴 Высокий риск — в большинстве случаев убыток, пересмотрите расчёт",
+      riskBreakNote:"Цена безубыточности: если цена продажи ниже {b} сум/голова, будет убыток. Сценарий \"откорм дольше\" не учитывает набор веса за доп. время — только дополнительный корм/месячные расходы.",
       btnShare:"Поделиться",copied:"Скопировано ✓",
       foot:"Месяц принят за 30 дней. Цены меняются — вводите цены вашего региона. Справочно.",
       seo:'<h2>Как считается прибыль откорма?</h2><p>Чистая прибыль = цена продажи − (покупка + корма + прочие расходы). Самая большая статья — корм: дневной рацион, умноженный на дни откорма, часто дороже самого животного. Поэтому при росте цен на корм многие хозяйства работают в убыток, не зная об этом.</p><h2>Когда откорм выгоден?</h2><p>Простое правило: месячный прирост стоимости животного должен быть больше дневного расхода × 30. Калькулятор сравнивает это автоматически и показывает цену безубыточности — минимальную цену продажи одной головы.</p><h2>Как снизить расходы?</h2><p>Оптовая закупка корма в сезон, дешёвые наполнители (шелуха, отруби), своя люцерна — могут снизить дневной расход на 20–30%. Проверяйте каждое изменение в калькуляторе.</p>'
@@ -386,6 +434,13 @@ img,svg{height:auto}
     };
   }
 
+  /* Risk-simulyator stress-foizlari — manba: data/taxmin-konstantalar.json
+     (chorva_risk_yem_oshish, chorva_risk_sotish_pasayishi,
+     chorva_risk_boqish_uzayishi). Bular TAXMIN — aniq statistika emas,
+     shuning uchun foydalanuvchiga sozlash imkoni ATAYLAB berilmagan
+     (soddalikni saqlash uchun, FAZA 1 spec talabi). */
+  var RISK_FEED_UP=0.10, RISK_SALE_DOWN=0.10, RISK_EXTEND_DAYS=30;
+
   function calc(){
     var heads=num($('heads').value), buy=num($('buyPrice').value), months=num($('months').value);
     var sale=num($('salePrice').value);
@@ -393,18 +448,59 @@ img,svg{height:auto}
     var dailyFeed=num($('yemKg').value)*num($('yemP').value)
                  +num($('shelKg').value)*num($('shelP').value)
                  +num($('bedaKg').value)*num($('bedaP').value);
+    var otherM=num($('otherM').value);
     var days=months*30;
-    var dailyPerHead=dailyFeed+num($('otherM').value)/30;
+    var dailyPerHead=dailyFeed+otherM/30;
     var feedTotal=dailyFeed*days*heads;
-    var otherTotal=num($('otherM').value)*months*heads;
+    var otherTotal=otherM*months*heads;
     var buyTotal=buy*heads;
     var total=buyTotal+feedTotal+otherTotal;
     var revenue=sale*heads;
     var profit=revenue-total;
     var breakEven=total/heads;
+
+    // Risk ssenariylari: har biri xuddi shu formula ustida, faqat yem
+    // narxi/sotish narxi/muddat o'zgartirilib qayta hisoblanadi. "Boqish
+    // cho'zilsa" — qo'shimcha kunlar UCHUN yem VA oylik xarajat ikkalasi
+    // ham davom etadi (ikkalasi ham vaqtga bog'liq); qo'shimcha vazn
+    // HISOBGA OLINMAYDI (bashorat qilib bo'lmaydi — natija ataylab
+    // konservativ/yomonroq chiqadi, izoh riskBreakNote'da ko'rsatiladi).
+    function scenarioProfit(feedMult, saleMult, extraDays){
+      var extraDays2=extraDays||0;
+      var d2=days+extraDays2;
+      var feedTotal2=dailyFeed*feedMult*d2*heads;
+      var otherTotal2=otherM*(months+extraDays2/30)*heads;
+      var total2=buyTotal+feedTotal2+otherTotal2;
+      var revenue2=sale*saleMult*heads;
+      return revenue2-total2;
+    }
+    var scenarioIds=['base','feedUp','saleDown','extend','combo'];
+    var scenarioProfits=[
+      profit, // 'base' — asl profit bilan bir xil bo'lishi kerak (scenarioProfit(1,1,0) ham xuddi shuni beradi)
+      scenarioProfit(1+RISK_FEED_UP,1,0),
+      scenarioProfit(1,1-RISK_SALE_DOWN,0),
+      scenarioProfit(1,1,RISK_EXTEND_DAYS),
+      scenarioProfit(1+RISK_FEED_UP,1-RISK_SALE_DOWN,0)
+    ];
+    // Rang chegarasi: baza ijobiy bo'lsa, "sariq" chegarasi baza*50%.
+    // Baza o'zi manfiy (yoki 0) bo'lsa, "sariq" mantiqsiz (nolga
+    // nisbatan hisoblanadi) — shu holda chegara 0ga tushadi, ya'ni
+    // faqat ijobiy/manfiy (yashil/qizil) qoladi, sariq zonasi yo'qoladi.
+    var midThreshold=profit>0?profit*0.5:0;
+    var scenarios=[];
+    var redCount=0;
+    for(var si=0;si<scenarioIds.length;si++){
+      var p=scenarioProfits[si];
+      var color=p<0?'neg':(p>=midThreshold?'ok':'mid');
+      if(color==='neg')redCount++;
+      scenarios.push({id:scenarioIds[si],profit:p,color:color});
+    }
+    var verdict=redCount===0?'safe':(redCount<=2?'mid':'risky');
+
     calcData={heads:heads,months:months,buyTotal:buyTotal,feedTotal:feedTotal,otherTotal:otherTotal,
       total:total,dailyPerHead:dailyPerHead,revenue:revenue,profit:profit,
-      monthly:profit/months,roi:profit/total*100,breakEven:breakEven};
+      monthly:profit/months,roi:profit/total*100,breakEven:breakEven,
+      risk:{scenarios:scenarios,verdict:verdict}};
     renderResult();
     $('receipt').classList.add('show');
   }
@@ -435,6 +531,33 @@ img,svg{height:auto}
     var st=$('statusBox');
     if(d.profit>=0){st.className='status s-ok';st.textContent=t('stOk').replace('{m}',fmt(d.monthly)).replace('{b}',fmt(d.breakEven))}
     else{st.className='status s-neg';st.textContent=t('stNeg').replace('{z}',fmt(Math.abs(d.profit))).replace('{b}',fmt(d.breakEven))}
+    renderRisk();
+  }
+
+  // Xom holatda (til'ga bog'liq bo'lmagan) calcData.risk'dan chiziladi —
+  // shunda til almashtirilganda (calc() qayta chaqirilmasa ham) matn
+  // to'g'ri tilda qayta chiziladi (remont-kalkulyator'da o'rganilgan saboq).
+  function renderRisk(){
+    var d=calcData, sum=' '+som();
+    var host=$('riskBlock');
+    if(!d.risk){host.style.display='none';return}
+    var names=t('riskScenario');
+    var html='';
+    var dotByColor={ok:'🟢',mid:'🟡',neg:'🔴'};
+    for(var i=0;i<d.risk.scenarios.length;i++){
+      var s=d.risk.scenarios[i];
+      var sign=s.profit>=0?'+':'−';
+      html+='<div class="risk-row"><span class="k"><span class="dot">'+dotByColor[s.color]+'</span>'+names[s.id]+'</span>'
+        +'<span class="v '+s.color+'">'+sign+fmt(Math.abs(s.profit))+sum+'</span></div>';
+    }
+    $('riskRows').innerHTML=html;
+    var vEl=$('riskVerdict');
+    var verdictClass={safe:'r-safe',mid:'r-mid',risky:'r-risky'}[d.risk.verdict];
+    var verdictKey={safe:'riskVerdictSafe',mid:'riskVerdictMid',risky:'riskVerdictRisky'}[d.risk.verdict];
+    vEl.className='risk-verdict '+verdictClass;
+    vEl.textContent=t(verdictKey);
+    $('riskBreakNote').textContent=t('riskBreakNote').replace('{b}',fmt(d.breakEven));
+    host.style.display='';
   }
 
   $('calcBtn').onclick=calc;
