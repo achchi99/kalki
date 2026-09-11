@@ -462,7 +462,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">10.9.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">11.9.2026</div>
 </div>
 <script>
 (function(){
@@ -649,8 +649,7 @@ img,svg{height:auto}
       if(q&&a)faqs.push({q:q,a:a});
     }
     if(!faqs.length)return;
-    var old=document.getElementById('faq-ld');
-    if(old)old.remove();
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
     var schema={
       "@context":"https://schema.org",
       "@type":"FAQPage",
@@ -663,7 +662,7 @@ img,svg{height:auto}
     sc.type='application/ld+json';
     sc.id='faq-ld';
     sc.textContent=JSON.stringify(schema);
-    document.head.appendChild(sc);
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
   }
   // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
   function initSchema(){setTimeout(buildFaqSchema,120);}
@@ -704,8 +703,7 @@ img,svg{height:auto}
       +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
       +'<span class="sep">›</span>'
       +'<span class="cur">'+name+'</span>';
-    var old=document.getElementById('bc-ld');
-    if(old)old.remove();
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
     var isRu=/^\/ru(\/|$)/.test(location.pathname);
     var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
     var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
@@ -720,7 +718,7 @@ img,svg{height:auto}
         {"@type":"ListItem","position":3,"name":name,"item":base+page}
       ]
     });
-    document.head.appendChild(sc);
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
   }
   function init(){setTimeout(build,140);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
@@ -743,8 +741,7 @@ img,svg{height:auto}
     var d=document.querySelector('meta[name="description"]');
     var desc=d?d.getAttribute('content'):'';
     var lang=document.documentElement.lang==='ru'?'ru':'uz';
-    var old=document.getElementById('app-ld');
-    if(old)old.remove();
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
     var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';
@@ -763,7 +760,7 @@ img,svg{height:auto}
       "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
       "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
     });
-    document.head.appendChild(sc);
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
   }
   function init(){setTimeout(build,150);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
