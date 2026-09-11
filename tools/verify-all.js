@@ -126,14 +126,44 @@ function runTool(args) {
     add(!noFoot.length, '4. barcha sahifada footer bloki (' + list.length + ')', noFoot.join(', '));
   }
 
+  /* ---------- Umumiy render keshi (band 5, 20, 22 uchun) ----------
+     2026-09'da qo'shildi (ship optimizatsiyasi). Bu uchta band bir xil
+     sahifalarni (UZ va/yoki ru/<f>) MUSTAQIL ravishda 3 marta qayta
+     render qilardi — har biri ~950ms kutish bilan, 76-70 sahifa uchun
+     bu yolg'iz shu uchta bandda ~3-4 daqiqa edi. Ularning HAMMASI
+     content'ni O'QIYDI (h1, footer matni, JS-keyingi til) — hech biri
+     natijani diskdagi holat bilan solishtirmaydi va hech biri "qayta
+     render qilib bir xil chiqishini isbotlash"ga tayanmaydi — shuning
+     uchun bitta render natijasini xavfsiz baham ko'rishlari mumkin.
+
+     MUHIM CHEGARA: bu kesh band 10 (Prerender barqarorligi — pastda,
+     "prerender-twice.js" va "prerender.js --all" ni ALOHIDA chaqiradi)
+     UCHUN ISHLATILMAYDI VA ISHLATILMASLIGI SHART. O'sha bandning butun
+     maqsadi — mustaqil ravishda QAYTA HISOBLAB, natija bayt-bayt bir
+     xil chiqishini va diskdagi holatga mosligini ISBOTLASH. Agar u shu
+     keshdan o'qisa, u hech narsani tekshirmagan, faqat o'zi bilan
+     o'zini solishtirgan bo'lardi — bu tekshiruvni butunlay o'ldiradi. */
+  const renderCache = new Map();
+  async function getUzRender(f) {
+    const key = 'uz:' + f;
+    if (!renderCache.has(key)) renderCache.set(key, await load(path.join(ROOT, f), { shims: true }));
+    return renderCache.get(key);
+  }
+  async function getRuRender(f) {
+    const key = 'ru:' + f;
+    if (!renderCache.has(key)) {
+      renderCache.set(key, await loadHtml(fs.readFileSync(path.join(ROOT, 'ru', f), 'utf8'), 'ru/' + f, { shims: true }));
+    }
+    return renderCache.get(key);
+  }
+
   /* ---------- 3. Bo'sh h1 (render qilingan holatda) ---------- */
   {
     const bad = [];
     for (const f of list) {
-      const { dom } = await load(path.join(ROOT, f), { shims: true });
+      const { dom } = await getUzRender(f);
       const hs = [...dom.window.document.querySelectorAll('h1')];
       if (!hs.length || hs.some((h) => !(h.textContent || '').trim())) bad.push(f);
-      dom.window.close();
     }
     add(!bad.length, '5. bo\'sh h1 yo\'q (' + list.length + ' sahifa render qilindi)', bad.join(', '));
   }
@@ -268,9 +298,7 @@ function runTool(args) {
       // buni yo'qotib qo'yardi, natijada lang.js location.pathname'ni UZ deb
       // o'ylab, markHtml('uz') orqali RU holatini o'zi qaytarib qo'yardi
       // (production'da haqiqiy /ru/... manzilda bu muammo yo'q).
-      const { dom } = ruMigrated
-        ? await loadHtml(fs.readFileSync(path.join(ROOT, 'ru', f), 'utf8'), 'ru/' + f, { shims: true })
-        : await load(path.join(ROOT, f), { shims: true });
+      const { dom } = ruMigrated ? await getRuRender(f) : await getUzRender(f);
       const w = dom.window, d = w.document;
       const els = [...d.querySelectorAll('[data-lf-uz]')];
       if (els.length) {
@@ -284,7 +312,6 @@ function runTool(args) {
           if (want && e.textContent.trim() !== want.trim()) bad.push(f + ': "' + e.textContent.trim().slice(0, 24) + '"');
         });
       }
-      dom.window.close();
     }
     add(!bad.length, '20. RU rejimda footer/legal matni tarjima qilingan (' + list.length + ' sahifa)',
       bad.slice(0, 6).join(' | '));
@@ -350,7 +377,7 @@ function runTool(args) {
     for (const f of RU_PAGES) {
       const ruFile = path.join(ROOT, 'ru', f);
       if (!fs.existsSync(ruFile)) continue; // band 21 buni allaqachon ushlaydi
-      const { dom } = await loadHtml(fs.readFileSync(ruFile, 'utf8'), 'ru/' + f, { shims: true });
+      const { dom } = await getRuRender(f);
       const w = dom.window, d = w.document;
       if (d.documentElement.lang !== 'ru') {
         bad.push(f + ': JSdan keyin <html lang> = "' + d.documentElement.lang + '"');
@@ -361,11 +388,15 @@ function runTool(args) {
           bad.push(f + ': asosiy matnda kirill yo\'q — "' + sample.slice(0, 30) + '"');
         }
       }
-      dom.window.close();
     }
     add(!bad.length, '22. RU sahifada JS ishga tushgandan keyin ham asosiy kontent rus tilida (' + RU_PAGES.length + ' sahifa)',
       bad.slice(0, 8).join(' | '));
   }
+
+  // renderCache'ning oxirgi iste'molchisi shu yerda tugadi -- barcha
+  // ochiq jsdom oynalarini yopamiz (xotira sizib chiqmasin).
+  for (const { dom } of renderCache.values()) dom.window.close();
+  renderCache.clear();
 
   /* ---------- CTR: title/description uzunligi va noyobligi ----------
      2026-08 CTR ishidan keyingi doimiy band. Google 50-65 belgidan
