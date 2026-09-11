@@ -108,6 +108,42 @@
       "manba_url": null,
       "manba_nomi": "Mahsulot qarori (spec, 2026-09) — yumaloq stress-taxmin, tashqi manbadan olinmagan",
       "sana": "2026-09"
+    },
+    {
+      "id": "gisht_ozblokim_uzunlik_mm",
+      "sahifa": "gisht-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "\"O'z blokim\" (foydalanuvchi o'z blokini kiritadigan) rejimi uchun oldindan to'ldirilgan standart uzunlik. FORMAT: mm.",
+      "standart_taxmin": 600,
+      "izoh_uz": "Bu — TAXMIN, aniq statistik ko'rsatkich emas. 600 mm — O'zbekiston bozorida eng keng tarqalgan gazoblok/penoblok uzunligi sifatida tanlangan (umumiy bozor bilimi, rasmiy statistika emas). Foydalanuvchi albatta o'zgartirishi mumkin va kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ, не точный статистический показатель. 600 мм выбрано как самая распространённая длина газоблока/пеноблока на рынке Узбекистана (общее знание рынка, не официальная статистика). Пользователь обязательно может и должен изменить это значение.",
+      "manba_url": null,
+      "manba_nomi": "Umumiy bozor amaliyoti (gazoblok/penoblok standart o'lchami) — rasmiy statistika topilmadi",
+      "sana": "2026-09"
+    },
+    {
+      "id": "gisht_ozblokim_balandlik_mm",
+      "sahifa": "gisht-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "\"O'z blokim\" rejimi uchun oldindan to'ldirilgan standart balandlik (yotqizishda ko'rinadigan yuz balandligi). FORMAT: mm.",
+      "standart_taxmin": 250,
+      "izoh_uz": "Bu — TAXMIN. 250 mm — keng tarqalgan gazoblok balandligi. Foydalanuvchi albatta o'zgartirishi mumkin va kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ. 250 мм — распространённая высота газоблока. Пользователь обязательно может и должен изменить это значение.",
+      "manba_url": null,
+      "manba_nomi": "Umumiy bozor amaliyoti — rasmiy statistika topilmadi",
+      "sana": "2026-09"
+    },
+    {
+      "id": "gisht_ozblokim_qalinlik_mm",
+      "sahifa": "gisht-kalkulyator",
+      "tur": "taxmin",
+      "izoh": "\"O'z blokim\" rejimi uchun oldindan to'ldirilgan standart qalinlik (devor qalinligi = blok eni). FORMAT: mm.",
+      "standart_taxmin": 300,
+      "izoh_uz": "Bu — TAXMIN. 300 mm — O'zbekistonda tashqi devor uchun keng ishlatiladigan gazoblok qalinligi. Foydalanuvchi albatta o'zgartirishi mumkin va kerak.",
+      "izoh_ru": "Это ПРЕДПОЛОЖЕНИЕ. 300 мм — часто используемая толщина газоблока для наружных стен в Узбекистане. Пользователь обязательно может и должен изменить это значение.",
+      "manba_url": null,
+      "manba_nomi": "Umumiy bozor amaliyoti — rasmiy statistika topilmadi",
+      "sana": "2026-09"
     }
   ]
 }

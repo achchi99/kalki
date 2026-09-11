@@ -205,17 +205,32 @@ img,svg{height:auto}
   <section class="form-card">
     <div class="field">
       <label data-i="lMat">Material turi</label>
-      <div class="mat-list" id="matList"><div class="mat-item on" data-mat="std" role="button" tabindex="0"><span class="mn">Standart pishiq g'isht</span><span class="md">250×120×65</span></div><div class="mat-item" data-mat="polu" role="button" tabindex="0"><span class="mn">Bir yarimta (poltora) pishiq g'isht</span><span class="md">250×120×88</span></div><div class="mat-item" data-mat="shlak" role="button" tabindex="0"><span class="mn">Shlakoblok</span><span class="md">390×190×188</span></div><div class="mat-item" data-mat="peno" role="button" tabindex="0"><span class="mn">Penoblok</span><span class="md">200×250×600</span></div><div class="mat-item" data-mat="gazo" role="button" tabindex="0"><span class="mn">Gazoblok</span><span class="md">200×300×600</span></div></div>
+      <div class="mat-list" id="matList"><div class="mat-item on" data-mat="std" role="button" tabindex="0"><span class="mn">Standart pishiq g'isht</span><span class="md">250×120×65</span></div><div class="mat-item" data-mat="polu" role="button" tabindex="0"><span class="mn">Bir yarimta (poltora) pishiq g'isht</span><span class="md">250×120×88</span></div><div class="mat-item" data-mat="shlak" role="button" tabindex="0"><span class="mn">Shlakoblok</span><span class="md">390×190×188</span></div><div class="mat-item" data-mat="peno" role="button" tabindex="0"><span class="mn">Penoblok</span><span class="md">200×250×600</span></div><div class="mat-item" data-mat="gazo" role="button" tabindex="0"><span class="mn">Gazoblok</span><span class="md">200×300×600</span></div><div class="mat-item" data-mat="custom" role="button" tabindex="0"><span class="mn">O'z blokim</span><span class="md">600×250×300</span></div></div>
     </div>
 
     <div class="field" id="thickField" style="display: block;">
       <label data-i="lThick">Devor qalinligi</label>
-      <div class="seg">
-        <button type="button" data-th="0.5" class="on" data-i="th05">Yarim g'isht</button>
-        <button type="button" data-th="1" data-i="th1">Bir g'isht</button>
-        <button type="button" data-th="1.5" data-i="th15">Bir yarim</button>
-      </div>
+      <div class="seg" id="thickSeg"><button type="button" data-th="0.5" class="on">Yarim g'isht</button><button type="button" data-th="1">Bir g'isht</button><button type="button" data-th="1.5">Bir yarim</button></div>
       <p class="hint" id="thickHint">12 sm — to'siq devorlar uchun.</p>
+    </div>
+
+    <div class="field" id="customDimsField" style="display:none">
+      <label data-i="customTitle">O'z blokim o'lchami (mm)</label>
+      <div class="row2">
+        <div class="half">
+          <label for="cLen" data-i="cLen">Uzunligi</label>
+          <div class="input-shell"><input type="text" id="cLen" inputmode="numeric" value="600" autocomplete="off"><span class="unit">mm</span></div>
+        </div>
+        <div class="half">
+          <label for="cHeight" data-i="cHeight">Balandligi</label>
+          <div class="input-shell"><input type="text" id="cHeight" inputmode="numeric" value="250" autocomplete="off"><span class="unit">mm</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:10px;margin-bottom:0">
+        <label for="cWidth" data-i="cWidth">Qalinligi</label>
+        <div class="input-shell"><input type="text" id="cWidth" inputmode="numeric" value="300" autocomplete="off"><span class="unit">mm</span></div>
+      </div>
+      <p class="hint" data-i="customHint">Blokingiz qadog'idagi o'lchamlarni kiriting — standart qiymatlar oldindan to'ldirilgan.</p>
     </div>
 
     <div class="field">
@@ -288,11 +303,12 @@ img,svg{height:auto}
 (function(){
   // Materiallar: [uzunlik, balandlik(yotqizishda ko'rinadigan), qalinlik] mm, chok mm
   var MATS={
-    std:  {dims:'250×120×65', L:250,H:65, W:120, joint:10, brick:true},
-    polu: {dims:'250×120×88', L:250,H:88, W:120, joint:10, brick:true},
-    shlak:{dims:'390×190×188',L:390,H:188,W:190, joint:10, brick:false},
-    peno: {dims:'200×250×600',L:600,H:250,W:200, joint:10, brick:false},
-    gazo: {dims:'200×300×600',L:600,H:300,W:200, joint:3,  brick:false}
+    std:  {dims:'250×120×65', L:250,H:65, W:120, joint:10, brick:true, thickCat:'brick'},
+    polu: {dims:'250×120×88', L:250,H:88, W:120, joint:10, brick:true, thickCat:'brick'},
+    shlak:{dims:'390×190×188',L:390,H:188,W:190, joint:10, brick:false, thickCat:'block'},
+    peno: {dims:'200×250×600',L:600,H:250,W:200, joint:10, brick:false, thickCat:'block'},
+    gazo: {dims:'200×300×600',L:600,H:300,W:200, joint:3,  brick:false, thickCat:'block'},
+    custom:{dims:'600×250×300',L:600,H:250,W:300, joint:5,  brick:false, thickCat:'custom'}
   };
   var I={
     uz:{
@@ -300,11 +316,15 @@ img,svg{height:auto}
       h1:"G'isht kalkulyatori",
       sub:"Devor uchun g'isht yoki blok sonini va umumiy narxini hisoblang — chok hisobga olingan.",
       lMat:"Material turi",
-      matNames:{std:"Standart pishiq g'isht",polu:"Bir yarimta (poltora) pishiq g'isht",shlak:"Shlakoblok",peno:"Penoblok",gazo:"Gazoblok"},
+      matNames:{std:"Standart pishiq g'isht",polu:"Bir yarimta (poltora) pishiq g'isht",shlak:"Shlakoblok",peno:"Penoblok",gazo:"Gazoblok",custom:"O'z blokim"},
       lThick:"Devor qalinligi",
       th05:"Yarim g'isht",th1:"Bir g'isht",th15:"Bir yarim",
       thickHints:{"0.5":"12 sm — to'siq devorlar uchun.","1":"25 sm — tashqi va yuk ko'taruvchi devorlar.","1.5":"38 sm — qalin tashqi devorlar."},
       blockThick:"Devor qalinligi = blok eni",
+      blockThickOptFmt:"{n} mm",blockThickHintFmt:"Tanlangan blok qalinligi: {n} mm.",
+      customTitle:"O'z blokim o'lchami (mm)",
+      cLen:"Uzunligi",cHeight:"Balandligi",cWidth:"Qalinligi",
+      customHint:"Blokingiz qadog'idagi o'lchamlarni kiriting — standart qiymatlar oldindan to'ldirilgan.",
       lLen:"Devor uzunligi",lHeight:"Balandligi",
       hLen:"Bir nechta devor bo'lsa, uzunliklarini qo'shib kiriting.",
       lOpen:"Eshik va derazalar maydoni",
@@ -324,11 +344,15 @@ img,svg{height:auto}
       h1:"Калькулятор кирпича",
       sub:"Рассчитайте количество кирпича или блоков и общую стоимость — с учётом шва.",
       lMat:"Тип материала",
-      matNames:{std:"Стандартный кирпич",polu:"Полуторный кирпич",shlak:"Шлакоблок",peno:"Пеноблок",gazo:"Газоблок"},
+      matNames:{std:"Стандартный кирпич",polu:"Полуторный кирпич",shlak:"Шлакоблок",peno:"Пеноблок",gazo:"Газоблок",custom:"Мой блок"},
       lThick:"Толщина стены",
       th05:"Полкирпича",th1:"В кирпич",th15:"Полтора",
       thickHints:{"0.5":"12 см — для перегородок.","1":"25 см — наружные и несущие стены.","1.5":"38 см — толстые наружные стены."},
       blockThick:"Толщина стены = ширина блока",
+      blockThickOptFmt:"{n} мм",blockThickHintFmt:"Выбранная толщина блока: {n} мм.",
+      customTitle:"Размер моего блока (мм)",
+      cLen:"Длина",cHeight:"Высота",cWidth:"Толщина",
+      customHint:"Введите размеры с упаковки вашего блока — стандартные значения уже заполнены.",
       lLen:"Длина стены",lHeight:"Высота",
       hLen:"Если стен несколько — сложите их длины.",
       lOpen:"Площадь дверей и окон",
@@ -345,7 +369,7 @@ img,svg{height:auto}
     }
   };
 
-  var lang=document.documentElement.lang==='ru'?'ru':'uz', mat='std', thick=0.5, calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', mat='std', thick=0.5, blockThick=200, calcData=null;
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
@@ -365,11 +389,66 @@ img,svg{height:auto}
     }
   }
 
-  function updateThickUI(){
-    var isBrick=MATS[mat].brick;
-    $('thickField').style.display=isBrick?'block':'none';
-    if(isBrick){$('thickHint').textContent=I[lang].thickHints[String(thick)]}
+  function buildThickUI(){
+    var cat=MATS[mat].thickCat;
+    var seg=$('thickSeg');
+    if(cat==='brick'){
+      seg.innerHTML='<button type="button" data-th="0.5">'+I[lang].th05+'</button>'
+        +'<button type="button" data-th="1">'+I[lang].th1+'</button>'
+        +'<button type="button" data-th="1.5">'+I[lang].th15+'</button>';
+      var btns=seg.querySelectorAll('button');
+      for(var i=0;i<btns.length;i++){
+        if(parseFloat(btns[i].getAttribute('data-th'))===thick)btns[i].classList.add('on');
+        btns[i].onclick=function(){
+          thick=parseFloat(this.getAttribute('data-th'));
+          var all=seg.querySelectorAll('button');
+          for(var j=0;j<all.length;j++)all[j].classList.remove('on');
+          this.classList.add('on');
+          $('thickHint').textContent=I[lang].thickHints[String(thick)];
+        };
+      }
+    }else if(cat==='block'){
+      var opts=[100,200,300,400];
+      var html='';
+      for(var k=0;k<opts.length;k++){
+        html+='<button type="button" data-thb="'+opts[k]+'"'+(opts[k]===blockThick?' class="on"':'')+'>'+I[lang].blockThickOptFmt.replace('{n}',opts[k])+'</button>';
+      }
+      seg.innerHTML=html;
+      var bbtns=seg.querySelectorAll('button');
+      for(var b=0;b<bbtns.length;b++){
+        bbtns[b].onclick=function(){
+          blockThick=parseFloat(this.getAttribute('data-thb'));
+          var all=seg.querySelectorAll('button');
+          for(var j=0;j<all.length;j++)all[j].classList.remove('on');
+          this.classList.add('on');
+          $('thickHint').textContent=I[lang].blockThickHintFmt.replace('{n}',blockThick);
+        };
+      }
+    }
   }
+
+  function updateThickUI(){
+    var cat=MATS[mat].thickCat;
+    $('thickField').style.display=(cat==='brick'||cat==='block')?'block':'none';
+    $('customDimsField').style.display=cat==='custom'?'block':'none';
+    if(cat==='custom')readCustomDims();
+    buildThickUI();
+    if(cat==='brick'){$('thickHint').textContent=I[lang].thickHints[String(thick)]}
+    else if(cat==='block'){$('thickHint').textContent=I[lang].blockThickHintFmt.replace('{n}',blockThick)}
+  }
+
+  function readCustomDims(){
+    MATS.custom.L=num($('cLen').value)||600;
+    MATS.custom.H=num($('cHeight').value)||250;
+    MATS.custom.W=num($('cWidth').value)||300;
+    MATS.custom.dims=fmt(MATS.custom.L)+'×'+fmt(MATS.custom.H)+'×'+fmt(MATS.custom.W);
+  }
+  ['cLen','cHeight','cWidth'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?v:'';
+    });
+  });
 
   function applyLang(){
     document.documentElement.lang=lang;
@@ -413,19 +492,10 @@ img,svg{height:auto}
     this.value=v?fmt(parseInt(v,10)):'';
   });
 
-  var thBtns=document.querySelectorAll('#thickField .seg button');
-  for(var b=0;b<thBtns.length;b++){
-    thBtns[b].onclick=function(){
-      thick=parseFloat(this.getAttribute('data-th'));
-      for(var j=0;j<thBtns.length;j++)thBtns[j].classList.remove('on');
-      this.classList.add('on');
-      $('thickHint').textContent=I[lang].thickHints[String(thick)];
-    };
-  }
-
   function calc(){
     var len=num($('wlen').value), h=num($('wh').value), open=num($('openings').value), price=num($('price').value);
     if(!len||!h){$('receipt').classList.remove('show');return}
+    if(mat==='custom')readCustomDims(); // eng so'nggi qiymatlar, tugma bosilmagan bo'lsa ham
     var area=Math.max(0,len*h-open);
     var m=MATS[mat];
     var cellL=(m.L+m.joint)/1000, cellH=(m.H+m.joint)/1000;
@@ -433,7 +503,8 @@ img,svg{height:auto}
     if(m.brick){perM2=perM2*(thick/0.5)}
     var total=area*perM2;
     var withRes=Math.ceil(total*1.05);
-    calcData={area:area,perM2:perM2,total:Math.ceil(total),withRes:withRes,cost:price?withRes*price:0};
+    calcData={area:area,perM2:perM2,total:Math.ceil(total),withRes:withRes,cost:price?withRes*price:0,
+      mat:mat,matDims:m.dims,blockThick:blockThick};
     renderResult();
     $('receipt').classList.add('show');
   }
@@ -441,7 +512,9 @@ img,svg{height:auto}
   function renderResult(){
     var d=calcData;
     $('mainNum').textContent=fmt(d.withRes)+' '+t('dona');
-    $('rMat').textContent=I[lang].matNames[mat]+' ('+MATS[mat].dims+')';
+    var matLabel=I[lang].matNames[d.mat]+' ('+d.matDims+')';
+    if(MATS[d.mat].thickCat==='block')matLabel+=', '+I[lang].blockThickOptFmt.replace('{n}',d.blockThick);
+    $('rMat').textContent=matLabel;
     $('rArea').textContent=d.area.toFixed(1).replace('.',',')+' m²';
     $('rPerM2').textContent=(Math.round(d.perM2*10)/10).toString().replace('.',',')+' '+t('dona');
     $('rNoRes').textContent=fmt(d.total)+' '+t('dona');
