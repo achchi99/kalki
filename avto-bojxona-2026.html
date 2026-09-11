@@ -166,19 +166,19 @@ footer a{color:var(--muted);text-decoration:none}
     buildSchema();
   }
   function buildSchema(){
-    var old=document.getElementById('art-ld');if(old)old.remove();
+    var old=document.getElementById('art-ld');var oldNext=old?old.nextSibling:null;if(old)old.remove();
     var s=document.createElement('script');s.type='application/ld+json';s.id='art-ld';
     s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article",
       "headline":DATA[lang].title,"datePublished":"2026-07-15","inLanguage":lang,
       "author":{"@type":"Organization","name":"Kalki.uz"},
       "publisher":{"@type":"Organization","name":"Kalki.uz"}});
-    document.head.appendChild(s);
+    if(oldNext)document.head.insertBefore(s,oldNext);else document.head.appendChild(s);
     var fq2=DATA[lang].faq||[];
     if(fq2.length){
-      var oldF=document.getElementById('art-faq-ld');if(oldF)oldF.remove();
+      var oldF=document.getElementById('art-faq-ld');var oldFNext=oldF?oldF.nextSibling:null;if(oldF)oldF.remove();
       var sf=document.createElement('script');sf.type='application/ld+json';sf.id='art-faq-ld';
       sf.textContent=JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":fq2.map(function(x){return{"@type":"Question","name":x.q,"acceptedAnswer":{"@type":"Answer","text":x.a}};})});
-      document.head.appendChild(sf);
+      if(oldFNext)document.head.insertBefore(sf,oldFNext);else document.head.appendChild(sf);
     }
   }
   document.getElementById('langUz').onclick=function(){lang='uz';render()};
@@ -201,7 +201,7 @@ footer a{color:var(--muted);text-decoration:none}
     el.innerHTML='<a href="./">'+L.home+'</a><span class="sep">›</span>'
       +'<a href="blog">'+L.blog+'</a><span class="sep">›</span>'
       +'<span class="cur">'+short+'</span>';
-    var old=document.getElementById('bc-ld');if(old)old.remove();
+    var old=document.getElementById('bc-ld');var oldNext=old?old.nextSibling:null;if(old)old.remove();
     var base='https://kalki.uz/';
     var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
     var sc=document.createElement('script');sc.type='application/ld+json';sc.id='bc-ld';
@@ -211,7 +211,7 @@ footer a{color:var(--muted);text-decoration:none}
         {"@type":"ListItem","position":2,"name":L.blog,"item":base+'blog'},
         {"@type":"ListItem","position":3,"name":name,"item":base+page}
       ]});
-    document.head.appendChild(sc);
+    if(oldNext)document.head.insertBefore(sc,oldNext);else document.head.appendChild(sc);
   }
   function init(){setTimeout(build,140);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
