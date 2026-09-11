@@ -77,6 +77,12 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .receipt-actions button:active{background:var(--cat-soft)}
 .receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+details{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14px;font-weight:800;color:var(--cat);display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.fence-body{margin-top:14px}
 </style>
 <link rel="manifest" href="/manifest.json">
 <style id="printcss">
@@ -203,6 +209,39 @@ img,svg{height:auto}
     <div class="derived"><span data-i="dPlotArea">Площадь:</span><span class="dv" id="plotAreaV">2&nbsp;500 m² = 25 соток</span></div>
     <div class="derived"><span data-i="dPerimeter">Периметр (забор):</span><span class="dv" id="perimeterV">200 m</span></div>
     <p class="hint" data-i="hPerimeter">Используйте периметр для расчёта материала забора.</p>
+    <details id="fenceBox">
+      <summary data-i="lFenceToggle">Расчёт ограждения →</summary>
+      <div class="fence-body">
+        <div class="row2">
+          <div class="field">
+            <label for="fenceGap" data-i="lFenceGap">Расстояние между столбами</label>
+            <div class="input-shell"><input type="text" id="fenceGap" inputmode="decimal" value="2,5"><span class="unit">m</span></div>
+          </div>
+          <div class="field">
+            <label for="fenceGateW" data-i="lFenceGateW">Ширина ворот</label>
+            <div class="input-shell"><input type="text" id="fenceGateW" inputmode="decimal" value="4"><span class="unit">m</span></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field" style="margin-bottom:0">
+            <label for="fenceH" data-i="lFenceH">Высота ограждения</label>
+            <div class="input-shell"><input type="text" id="fenceH" inputmode="decimal" value="2"><span class="unit">m</span></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="fenceDepth" data-i="lFenceDepth">Глубина бетонирования</label>
+            <div class="input-shell"><input type="text" id="fenceDepth" inputmode="decimal" value="0,8"><span class="unit">m</span></div>
+          </div>
+        </div>
+        <div class="field" style="margin-top:14px;margin-bottom:0">
+          <label for="fenceDiam" data-i="lFenceDiam">Диаметр лунки</label>
+          <div class="input-shell"><input type="text" id="fenceDiam" inputmode="decimal" value="0,3"><span class="unit">m</span></div>
+        </div>
+        <div class="derived" style="margin-top:14px"><span data-i="dFenceCols">Количество столбов:</span><span class="dv" id="fenceColsV">80 шт</span></div>
+        <div class="derived"><span data-i="dFenceSheet">Профлист/сетка:</span><span class="dv" id="fenceSheetV">196 m (392 m²)</span></div>
+        <div class="derived"><span data-i="dFenceConcrete">Объём бетона:</span><span class="dv" id="fenceConcreteV">4,52 m³</span></div>
+        <p class="hint" data-i="hFence">Количество столбов = (периметр − ворота) / расстояние + 1, округлено вверх. Объём бетона — по объёму цилиндра для каждой лунки столба. Цена не указана — при необходимости рассчитайте сами.</p>
+      </div>
+    </details>
   </section>
 
   <section class="card2">
@@ -239,6 +278,12 @@ img,svg{height:auto}
       lPlotL:"Uzunligi",lPlotW:"Kengligi",
       dPlotArea:"Maydon:",dPerimeter:"Perimetr (panjara):",
       hPerimeter:"Panjara/devor materialini hisoblashda perimetrdan foydalaning.",
+      lFenceToggle:"Panjara hisoblash →",
+      lFenceGap:"Ustun oralig'i",lFenceGateW:"Darvoza kengligi",lFenceH:"Panjara balandligi",
+      lFenceDepth:"Beton chuqurligi",lFenceDiam:"Ustun teshigi diametri",
+      dFenceCols:"Ustunlar soni:",dFenceSheet:"Profnastil/setka:",dFenceConcrete:"Beton hajmi:",
+      uDona:"dona",
+      hFence:"Ustunlar soni = (perimetr − darvoza) / oralig'i + 1, yuqoriga yaxlitlangan. Beton hajmi — har bir ustun teshigi uchun silindr hajmi bo'yicha. Narx kiritilmagan — kerak bo'lsa o'zingiz hisoblang.",
       s3:"Yer narxi hisobi",
       s3sub:"Yuqoridagi konvertordagi maydon uchun hisoblanadi.",
       lPriceSotix:"1 sotix narxi",uSomSotix:"so'm",
@@ -262,6 +307,12 @@ img,svg{height:auto}
       lPlotL:"Длина",lPlotW:"Ширина",
       dPlotArea:"Площадь:",dPerimeter:"Периметр (забор):",
       hPerimeter:"Используйте периметр для расчёта материала забора.",
+      lFenceToggle:"Расчёт ограждения →",
+      lFenceGap:"Расстояние между столбами",lFenceGateW:"Ширина ворот",lFenceH:"Высота ограждения",
+      lFenceDepth:"Глубина бетонирования",lFenceDiam:"Диаметр лунки",
+      dFenceCols:"Количество столбов:",dFenceSheet:"Профлист/сетка:",dFenceConcrete:"Объём бетона:",
+      uDona:"шт",
+      hFence:"Количество столбов = (периметр − ворота) / расстояние + 1, округлено вверх. Объём бетона — по объёму цилиндра для каждой лунки столба. Цена не указана — при необходимости рассчитайте сами.",
       s3:"Расчёт цены земли",
       s3sub:"Считается для площади из конвертера выше.",
       lPriceSotix:"Цена за 1 сотку",uSomSotix:"сум",
@@ -334,9 +385,37 @@ img,svg{height:auto}
     }else{
       $('plotAreaV').textContent='—';$('perimeterV').textContent='—';
     }
+    renderFence();
   }
   $('plotL').addEventListener('input',renderPlot);
   $('plotW').addEventListener('input',renderPlot);
+
+  function renderFence(){
+    var L=num($('plotL').value), W=num($('plotW').value);
+    var perim=(L&&W)?2*(L+W):0;
+    var gap=num($('fenceGap').value);
+    var gateW=num($('fenceGateW').value);
+    var h=num($('fenceH').value);
+    var depth=num($('fenceDepth').value);
+    var diam=num($('fenceDiam').value);
+    var usable=perim-gateW;
+    if(!perim||gap<=0||usable<=0){
+      $('fenceColsV').textContent='—';
+      $('fenceSheetV').textContent='—';
+      $('fenceConcreteV').textContent='—';
+      return;
+    }
+    var cols=Math.ceil(usable/gap)+1;
+    $('fenceColsV').textContent=fmtI(cols)+' '+t('uDona');
+    var sheetTxt=fmtN(usable,1)+' m';
+    if(h>0)sheetTxt+=' ('+fmtN(usable*h,1)+' m²)';
+    $('fenceSheetV').textContent=sheetTxt;
+    var vol=depth>0&&diam>0?Math.PI*Math.pow(diam/2,2)*depth*cols:0;
+    $('fenceConcreteV').textContent=fmtN(vol,2)+' m³';
+  }
+  ['fenceGap','fenceGateW','fenceH','fenceDepth','fenceDiam'].forEach(function(id){
+    $(id).addEventListener('input',renderFence);
+  });
 
   function renderPrice(){
     var ps=num($('pricePerSotix').value);
