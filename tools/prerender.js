@@ -20,6 +20,17 @@ const { execFileSync } = require('child_process');
 const { JSDOM } = require('jsdom');
 const { loadHtml, sitePages, ROOT } = require('./render');
 const { translit } = require('./translit');
+const { runInChunks } = require('./chunked');
+
+/* Bo'lak hajmi: 8 (server xotirasiga qarab kamaytiring — KALKI_CHUNK
+   muhit o'zgaruvchisi orqali, masalan KALKI_CHUNK=4 npm run ship).
+   UZ -> RU -> CYR qatorlari orasidagi TARTIB saqlanadi (RU/CYR manba
+   UZ faylni diskdan o'qiydi, --write bo'lsa UZ qatori TO'LIQ tugab,
+   yozib bo'lgandan keyin boshlanishi shart) — faqat HAR QATORNING
+   O'ZI ICHIDA, sahifalar orasida parallellashtiriladi.
+   DIQQAT: xavfsizligi sahifalarning o'z JSON-LD skript tartibi
+   tuzatilganiga bog'liq — docs/tools.md "JSON-LD skript tartibi". */
+const CHUNK = Number(process.env.KALKI_CHUNK) || 8;
 
 /* FAZA 1.1: "Qisqacha javob" bloki (assets/answerbox.js) o'zining
    "Yangilangan: YYYY-MM-DD" sanasini qo'lda emas, shu faylning oxirgi
@@ -538,44 +549,56 @@ async function main() {
   }
 
   let bad = 0, stale = 0;
-  for (const n of names) {
+
+  // Har element MUSTAQIL: o'zining faylini o'qiydi/render qiladi/yozadi,
+  // boshqa elementga hech qanday bog'liqligi yo'q — shuning uchun
+  // sahifalar orasida CHUNK tadan parallel bajarish xavfsiz. Faqat
+  // konsolga chiqarish shu yerda, natija hisoblangandan keyin — shunda
+  // qaysi bo'lakda qanday tugagani muhim emas.
+  async function processUz(n) {
     const file = path.join(ROOT, n);
     try {
       const r = await renderOne(n);
-      if (r.errors.length) bad++;
       const cur = fs.readFileSync(file, 'utf8');
       const same = cur === r.out;
-      if (!same) {
-        stale++;
-        if (WRITE) fs.writeFileSync(file, r.out, 'utf8');
-      }
-      const tag = r.errors.length ? 'ERR ' : (same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
-      console.log(tag + n + ' (' + r.out.length + ')'
-        + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
-    } catch (e) { bad++; console.log('FAIL ' + n + ' ' + e.message); }
+      if (!same && WRITE) fs.writeFileSync(file, r.out, 'utf8');
+      return { n, out: n, len: r.out.length, errors: r.errors, same };
+    } catch (e) { return { n, out: n, error: e.message }; }
+  }
+  const uzResults = await runInChunks(names, CHUNK, processUz);
+  for (const r of uzResults) {
+    if (r.error) { bad++; console.log('FAIL ' + r.out + ' ' + r.error); continue; }
+    if (r.errors.length) bad++;
+    if (!r.same) stale++;
+    const tag = r.errors.length ? 'ERR ' : (r.same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
+    console.log(tag + r.out + ' (' + r.len + ')' + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
   }
 
   // RU (Variant A): faqat RU_PAGES ro'yxatidagi va shu chaqiriqda so'ralgan
-  // sahifalar uchun, natija ru/<nom> fayliga yoziladi.
+  // sahifalar uchun, natija ru/<nom> fayliga yoziladi. UZ qatori TO'LIQ
+  // tugagandan (yuqoridagi await) keyin boshlanadi — renderOneRu manba
+  // UZ faylni diskdan o'qiydi, --write bo'lsa yangilangan holatda kerak.
   const ruNames = names.filter((n) => RU_PAGES.indexOf(n) > -1);
   if (ruNames.length) {
     const ruDir = path.join(ROOT, 'ru');
     if (WRITE && !fs.existsSync(ruDir)) fs.mkdirSync(ruDir, { recursive: true });
-    for (const n of ruNames) {
+    async function processRu(n) {
       const outFile = path.join(ruDir, n);
       try {
         const r = await renderOneRu(n);
-        if (r.errors.length) bad++;
         const cur = fs.existsSync(outFile) ? fs.readFileSync(outFile, 'utf8') : null;
         const same = cur === r.out;
-        if (!same) {
-          stale++;
-          if (WRITE) fs.writeFileSync(outFile, r.out, 'utf8');
-        }
-        const tag = r.errors.length ? 'ERR ' : (same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
-        console.log(tag + 'ru/' + n + ' (' + r.out.length + ')'
-          + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
-      } catch (e) { bad++; console.log('FAIL ru/' + n + ' ' + e.message); }
+        if (!same && WRITE) fs.writeFileSync(outFile, r.out, 'utf8');
+        return { n, out: 'ru/' + n, len: r.out.length, errors: r.errors, same };
+      } catch (e) { return { n, out: 'ru/' + n, error: e.message }; }
+    }
+    const ruResults = await runInChunks(ruNames, CHUNK, processRu);
+    for (const r of ruResults) {
+      if (r.error) { bad++; console.log('FAIL ' + r.out + ' ' + r.error); continue; }
+      if (r.errors.length) bad++;
+      if (!r.same) stale++;
+      const tag = r.errors.length ? 'ERR ' : (r.same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
+      console.log(tag + r.out + ' (' + r.len + ')' + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
     }
   }
 
@@ -587,21 +610,23 @@ async function main() {
   if (cyrNames.length) {
     const cyrDir = path.join(ROOT, 'cyr');
     if (WRITE && !fs.existsSync(cyrDir)) fs.mkdirSync(cyrDir, { recursive: true });
-    for (const n of cyrNames) {
+    async function processCyr(n) {
       const outFile = path.join(cyrDir, n);
       try {
         const r = await renderOneCyr(n);
-        if (r.errors.length) bad++;
         const cur = fs.existsSync(outFile) ? fs.readFileSync(outFile, 'utf8') : null;
         const same = cur === r.out;
-        if (!same) {
-          stale++;
-          if (WRITE) fs.writeFileSync(outFile, r.out, 'utf8');
-        }
-        const tag = r.errors.length ? 'ERR ' : (same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
-        console.log(tag + 'cyr/' + n + ' (' + r.out.length + ')'
-          + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
-      } catch (e) { bad++; console.log('FAIL cyr/' + n + ' ' + e.message); }
+        if (!same && WRITE) fs.writeFileSync(outFile, r.out, 'utf8');
+        return { n, out: 'cyr/' + n, len: r.out.length, errors: r.errors, same };
+      } catch (e) { return { n, out: 'cyr/' + n, error: e.message }; }
+    }
+    const cyrResults = await runInChunks(cyrNames, CHUNK, processCyr);
+    for (const r of cyrResults) {
+      if (r.error) { bad++; console.log('FAIL ' + r.out + ' ' + r.error); continue; }
+      if (r.errors.length) bad++;
+      if (!r.same) stale++;
+      const tag = r.errors.length ? 'ERR ' : (r.same ? 'OK  ' : (WRITE ? 'YOZ ' : 'ESKI'));
+      console.log(tag + r.out + ' (' + r.len + ')' + (r.errors.length ? ' ' + JSON.stringify(r.errors.slice(0, 2)) : ''));
     }
   }
 

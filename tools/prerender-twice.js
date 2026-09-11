@@ -14,6 +14,35 @@
  */
 'use strict';
 const { renderOne, pages } = require('./prerender');
+const { runInChunks } = require('./chunked');
+
+/* Bo'lak hajmi: 8 (server xotirasiga qarab kamaytiring — KALKI_CHUNK
+   muhit o'zgaruvchisi orqali, masalan KALKI_CHUNK=4 npm run ship).
+   HAR BIR sahifaning ikkala renderi ('a' va 'b') O'ZINING chaqiruvi
+   ICHIDA, ketma-ket, bitta yopiq funksiyada bajariladi — faqat
+   SAHIFALAR ORASIDA parallellashtiriladi. Bu band 15ning butun
+   maqsadini saqlaydi: har sahifa hali ham MUSTAQIL ikki marta
+   qayta render qilinadi va natija bayt-bayt solishtiriladi — faqat
+   qaysi sahifa qachon boshlanishi endi ketma-ket emas. Umumiy holat
+   yo'q: har chaqiruv o'zining a/b o'zgaruvchilarini yopadi, boshqa
+   sahifaning renderiga hech qanday bog'liqligi yo'q.
+
+   DIQQAT: bu parallellashtirish faqat sahifalarning o'z ichki JS'idagi
+   dinamik JSON-LD skript tartibi TUZATILGANDAN keyin xavfsiz (qarang:
+   docs/tools.md "JSON-LD skript tartibi"). Tuzatishdan oldin xuddi shu
+   parallellashtirish 28 sahifada yolg'on "beqaror" signal bergan edi. */
+const CHUNK = Number(process.env.KALKI_CHUNK) || 8;
+
+async function checkOne(n) {
+  let a, b;
+  try {
+    a = (await renderOne(n)).out;
+    b = (await renderOne(n, a)).out;      // ikkinchi yugurish birinchisi ustida
+  } catch (e) {
+    return { n, error: e.message };
+  }
+  return { n, a, b, same: a === b };
+}
 
 async function main() {
   const args = process.argv.slice(2);
@@ -24,18 +53,15 @@ async function main() {
     return 1;
   }
 
+  const results = await runInChunks(names, CHUNK, checkOne);
+
   let bad = 0;
-  for (const n of names) {
-    let a, b;
-    try {
-      a = (await renderOne(n)).out;
-      b = (await renderOne(n, a)).out;      // ikkinchi yugurish birinchisi ustida
-    } catch (e) {
-      bad++; console.log('FAIL ' + n + ' ' + e.message); continue;
-    }
-    if (a === b) continue;
+  for (const r of results) {
+    if (r.error) { bad++; console.log('FAIL ' + r.n + ' ' + r.error); continue; }
+    if (r.same) continue;
     bad++;
-    console.log('FARQ ' + n + ' — ' + a.length + ' vs ' + b.length);
+    const a = r.a, b = r.b;
+    console.log('FARQ ' + r.n + ' — ' + a.length + ' vs ' + b.length);
     for (let k = 0; k < Math.max(a.length, b.length); k++) {
       if (a[k] !== b[k]) {
         console.log('     birinchi farq @ ' + k);

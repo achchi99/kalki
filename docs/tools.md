@@ -178,3 +178,61 @@ faqat shu ro'yxat orqali farqlanadi.
   ```
   `kill -0 $PID` faqat shu aniq PID hali tirikligini tekshiradi — matn
   qidirmaydi, shuning uchun o'z-o'ziga mos kelish xavfi yo'q.
+
+- **JSON-LD skript tartibi — nega `appendChild` emas, `insertBefore`
+  (2026-09, ship parallelizatsiyasi paytida topilgan).** Ko'p sahifada
+  bir nechta mustaqil ichki skript bor (`bcjs` — `bc-ld` breadcrumb,
+  "faqschema" — `faq-ld`, "appschema" — `app-ld`, ba'zi maqola-sahifalarda
+  — `art-ld`/`art-faq-ld`). Har biri sahifa yuklanganda (`setTimeout`,
+  odatda 120-180ms kechikish bilan) eski `<script type="application/
+  ld+json" id="...">` elementini topib o'chiradi va yangisini yaratadi.
+
+  Dastlab yangi element **doim `document.head.appendChild(...)` bilan
+  HEAD OXIRIGA** qo'shilardi. Ketma-ket (bitta sahifa, boshqa hech narsa
+  CPU band qilmagan holda) render qilinganda bu har doim bir xil yakuniy
+  tartib berardi — qaysi skriptning `setTimeout`i oldin tugasa, o'shani
+  oxirida ko'rinardi, va bu doim BIR XIL edi (raqobat yo'q). Shuning
+  uchun `prerender-twice.js` (band 15, "bayt-bayt bir xil") doim OK
+  chiqardi — muammo YASHIRIN edi.
+
+  `tools/prerender.js`/`tools/prerender-twice.js` sahifalarni PARALLEL
+  (bir nechtasini bir vaqtda) render qila boshlagach, muammo ko'rindi:
+  4 CPU yadrosi 8 tagacha sahifani baravar band qilganda, ikkita bir
+  xil (yoki yaqin) `setTimeout` kechikishi orasidagi HAQIQIY navbat
+  siljib ketardi — bitta sahifaning ikki mustaqil renderi orasida
+  `<head>`dagi skriptlar TARTIBI farq qilardi (mazmuni emas, faqat
+  tartibi). 69 ta sahifada shu naqsh (2+ mustaqil head-mutatsiya
+  qiluvchi skript) topildi va tuzatildi.
+
+  **Bu faqat test muammosi emas — production xavfi ham edi**: real
+  brauzer/qurilma/tarmoq yuklamasi ham xuddi shunday taymerlar
+  navbatini siljitishi mumkin edi.
+
+  **Tuzatish:** eski elementni o'chirishdan OLDIN uning `nextSibling`i
+  (ya'ni ANIQ POZITSIYASI) yozib olinadi, yangisi `head.appendChild`
+  o'rniga o'sha pozitsiyaga `insertBefore` bilan qaytariladi:
+  ```js
+  var old = document.getElementById('bc-ld');
+  var oldNext = old ? old.nextSibling : null;
+  if (old) old.remove();
+  // ... yangi elementni yaratish ...
+  if (oldNext) document.head.insertBefore(sc, oldNext);
+  else document.head.appendChild(sc);
+  ```
+  Nega vaqtga asoslangan yechim (masalan kechikishlarni farqlash)
+  EMAS: taymer kechikishlarini farqlash ("bittasi 140ms, ikkinchisi
+  145ms qilib qo'yish") ham ishlagan bo'lardi, lekin bu hamon VAQTGA
+  tayanadi — qanchalik katta bo'lmasin, farq yetarli emasligi mumkin
+  (aynan shu sabab 140ms va sinxron chaqiruv orasidagi katta farq ham
+  yetarli emas edi, sabab: `execFileSync('git', ...)` kabi sinxron
+  bloklovchi chaqiriqlar butun Node event loop'ini to'xtatib qo'yishi
+  mumkin). `nextSibling`/`insertBefore` yechimi esa VAQTGA UMUMAN
+  BOG'LIQ EMAS — natija DOIM boshlang'ich shablon tartibiga "langlangan"
+  bo'ladi, qaysi skript qachon tugashidan qat'i nazar.
+
+  **Kelajakda yangi shunday skript qo'shsangiz** (eski JSON-LD elementini
+  o'chirib, yangisini qo'yadigan), xuddi shu naqshni ishlating — oddiy
+  `appendChild` qaytarib qo'ymang, aks holda bu muammo boshqa sahifada
+  yana chiqishi mumkin. `tools/prerender.js`/`tools/prerender-twice.js`
+  parallel ishlaydi (`KALKI_CHUNK`, standart 8) — bu tekshiruv shu
+  sababdan alohida muhim.
