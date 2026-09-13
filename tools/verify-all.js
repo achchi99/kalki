@@ -788,8 +788,13 @@ function runTool(args) {
           // sifatida ishlatilmaydi, shu sabab e'tiborga olinmaydi.
           let am = null, label = containerId;
           if (containerId) {
-            const anchorRe = new RegExp('[\'"#]?' + containerId + '[\'"]?\\s*\\)?\\s*\\.querySelectorAll');
-            am = anchorRe.exec(src);
+            // Ikkala haqiqiy naqsh qidiriladi: "$('id').querySelectorAll(...)"
+            // (id .querySelectorAll'dan OLDIN) va — bu kodda ancha ko'proq
+            // uchraydigan — "document.querySelectorAll('#id ...')" (id
+            // .querySelectorAll'ning ICHIDA, CSS selektor sifatida).
+            const anchorReBefore = new RegExp('[\'"#]?' + containerId + '[\'"]?\\s*\\)?\\s*\\.querySelectorAll');
+            const anchorReInside = new RegExp('\\.querySelectorAll\\([\'"]#' + containerId + '\\b');
+            am = anchorReBefore.exec(src) || anchorReInside.exec(src);
           }
           if (!am) {
             const dataAttrMs = [...inner.matchAll(/<button\b[^>]*\s(data-[\w-]+)=/g)]
