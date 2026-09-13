@@ -851,6 +851,42 @@
       "manba_nomi": "Vazirlar Mahkamasi qarori 52-son, 31.01.2025 (gibrid istisnosi) + docs/bojxona-gibrid-tekshiruv.md (ICE jadvaliga yo'naltirish xulosasi)"
     },
     {
+      "id": "bojxona_rasmiylashtirish_yigimi",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "jadval",
+      "izoh": "Bojxona rasmiylashtirish yig'imi — bojxona qiymatiga (USD) qarab BHM ko'paytmasi sifatida, pog'onali. FORMAT: 'min_usd' qatiy emas (band pastki chegaradan KATTA qiymatlarga tegishli), 'max_usd' esa QAMRAB OLADI ('...gacha' — masalan aynan 20000 hali 10000-20000 bandiga tushadi, 20000-40000ga emas). Oxirgi band uchun max_usd=null (cheksiz).",
+      "bandlar": [
+        {"shart": "10 000 AQSH dollarigacha", "min_usd": 0, "max_usd": 10000, "bhm_koeff": 1},
+        {"shart": "10 000 dan 20 000 AQSH dollarigacha", "min_usd": 10000, "max_usd": 20000, "bhm_koeff": 1.5},
+        {"shart": "20 000 dan 40 000 AQSH dollarigacha", "min_usd": 20000, "max_usd": 40000, "bhm_koeff": 2.5},
+        {"shart": "40 000 dan 60 000 AQSH dollarigacha", "min_usd": 40000, "max_usd": 60000, "bhm_koeff": 4},
+        {"shart": "60 000 dan 100 000 AQSH dollarigacha", "min_usd": 60000, "max_usd": 100000, "bhm_koeff": 7},
+        {"shart": "100 000 dan 200 000 AQSH dollarigacha", "min_usd": 100000, "max_usd": 200000, "bhm_koeff": 10},
+        {"shart": "200 000 dan 500 000 AQSH dollarigacha", "min_usd": 200000, "max_usd": 500000, "bhm_koeff": 15},
+        {"shart": "500 000 dan 1 000 000 AQSH dollarigacha", "min_usd": 500000, "max_usd": 1000000, "bhm_koeff": 20},
+        {"shart": "1 000 000 dan yuqori", "min_usd": 1000000, "max_usd": null, "bhm_koeff": 25}
+      ],
+      "amal_qiladi": "2025-01-31",
+      "izoh_uz": "Avvalgi kod bojxona qiymatining ~1%i sifatida hisoblardi — bu butunlay boshqa (noto'g'ri) model edi. To'g'ri model BHM ko'paytmasi, bojxona qiymati oralig'iga qarab pog'onali. Chegara qiymati (masalan aynan 20 000) pastki bandga tushadi — qonun matni '...gacha' (inklyuziv yuqori chegara) shaklida yozilgan.",
+      "izoh_ru": "Прежний код считал ~1% от таможенной стоимости — это была совершенно другая (неверная) модель. Правильная модель — кратность БРВ, ступенчато по диапазону таможенной стоимости. Граничное значение (например ровно 20 000) попадает в НИЖНИЙ диапазон — в тексте закона формулировка '...до' (включительно по верхней границе).",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/-7357270",
+      "manba_nomi": "Vazirlar Mahkamasi qarori 55-son, 31.01.2025, 1-ilova, 1-band \"a\""
+    },
+    {
+      "id": "bojxona_dastlabki_deklaratsiya_chegirma",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "son",
+      "izoh": "Tovarlar bo'yicha dastlabki deklaratsiyalash amalga oshirilganda bojxona rasmiylashtirish yig'imiga beriladigan chegirma ulushi.",
+      "qiymat": 0.2,
+      "amal_qiladi": "2025-01-31",
+      "izoh_uz": "Xuddi shu qaror izoh qismida: 'Tovarlar bo'yicha dastlabki deklaratsiyalash amalga oshirilganda bojxona yig'imining 20% miqdorida chegirma taqdim etiladi.'",
+      "izoh_ru": "В том же постановлении: 'При предварительном декларировании товаров предоставляется скидка в размере 20% от суммы таможенного сбора.'",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/-7357270",
+      "manba_nomi": "Vazirlar Mahkamasi qarori 55-son, 31.01.2025, 1-ilova izohi"
+    },
+    {
       "id": "qarz_daromad_nisbati_norasmiy",
       "sahifa": "kredit-limit-kalkulyator",
       "tur": "son",
