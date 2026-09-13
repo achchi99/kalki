@@ -822,6 +822,35 @@
       "manba_nomi": "ЗРУ-1097-son qonun, 27.11.2025 — Bojxona kodeksi 300¹-modda"
     },
     {
+      "id": "bojxona_elektromobil_utilizatsiya_yosh_uchun",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "jadval",
+      "izoh": "Elektromobil (TIF TN 8703 80) uchun utilizatsiya yig'imi, avtomobil yoshiga qarab (BHM koeffitsienti).",
+      "bandlar": [
+        {"shart": "3 yilgacha", "yosh": "3_yilgacha", "bhm_koeff": 120},
+        {"shart": "3 yildan ortiq", "yosh": "3_yildan_ortiq", "bhm_koeff": 210}
+      ],
+      "amal_qiladi": "2025-05-01",
+      "izoh_uz": "Vazirlar Mahkamasining 52-son qarori (31.01.2025, 01.05.2025 kuchga kirgan) bilan belgilangan — avvalgi 30/90 BHM stavkalari 120/210 BHM'ga oshirildi. Qaror matnida aniq yozilgan: 'Elektrodvigatelga ega bo'lgan transport vositalari, gibrid quvvatli transport vositalari bundan mustasno' — ya'ni bu stavka FAQAT to'liq elektromobillarga tegishli.",
+      "izoh_ru": "Установлено Постановлением Кабинета Министров №52 от 31.01.2025 (вступило в силу 01.05.2025) — прежние ставки 30/90 БРВ повышены до 120/210 БРВ. В тексте постановления прямо указано: транспортные средства с электродвигателем, ЗА ИСКЛЮЧЕНИЕМ гибридных — то есть ставка касается только полностью электрических автомобилей.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/-7361559",
+      "manba_nomi": "Vazirlar Mahkamasi qarori 52-son, 31.01.2025 (01.05.2025 kuchga kirgan)"
+    },
+    {
+      "id": "bojxona_gibrid_utilizatsiya_tartibi",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "obyekt",
+      "izoh": "Gibrid avtomobillar uchun utilizatsiya yig'imi qaysi tartibda hisoblanishi — elektromobil rejimidan ozod, ICE (dvigatel hajmiga asoslangan umumiy) jadvaliga yo'naltiriladi.",
+      "qiymat": "ice_jadvaliga_yonaltiriladi",
+      "amal_qiladi": "2025-05-01",
+      "izoh_uz": "Gibridlar elektromobil rejimidan ozod ekani rasmiy manbada tasdiqlangan. ICE jadvaliga tushishi esa to'g'ridan-to'g'ri qonun matnida yozilmagan — ikkita mustaqil faktdan chiqarilgan mantiqiy xulosa (tafsilot: docs/bojxona-gibrid-tekshiruv.md).",
+      "izoh_ru": "То, что гибриды освобождены от режима электромобилей, подтверждено официальным источником. А что именно они попадают в ICE-таблицу — прямо в тексте закона не написано, это логический вывод из двух независимых фактов (подробности: docs/bojxona-gibrid-tekshiruv.md).",
+      "holat": "TASDIQLANGAN_XULOSA",
+      "manba_url": "https://lex.uz/docs/-7361559",
+      "manba_nomi": "Vazirlar Mahkamasi qarori 52-son, 31.01.2025 (gibrid istisnosi) + docs/bojxona-gibrid-tekshiruv.md (ICE jadvaliga yo'naltirish xulosasi)"
+    },
+    {
       "id": "qarz_daromad_nisbati_norasmiy",
       "sahifa": "kredit-limit-kalkulyator",
       "tur": "son",
