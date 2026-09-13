@@ -277,7 +277,7 @@ img,svg{height:auto}
       <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
       <div class="big-figure">
         <div class="num" id="mainNum">24&nbsp;387&nbsp;822 so'm</div>
-        <div class="lbl" data-i="lblFinal">Muddat oxiridagi jami summa</div>
+        <div class="lbl" id="lblFinal" data-i="lblFinal">Muddat oxiridagi jami summa</div>
       </div>
       <div class="receipt-rows">
         <div class="rrow"><span class="k" data-i="kDeposited">Jami qo'yilgan pul</span><span class="v" id="rDeposited">20&nbsp;000&nbsp;000 so'm</span></div>
@@ -335,8 +335,9 @@ img,svg{height:auto}
       hintCapNo:"Foizlar har oy alohida to'lanadi, omonat o'zgarmaydi.",
       lInflation:"Kutilayotgan yillik inflyatsiya (%)",
       hInflation:"O'zbekistonda rasmiy prognoz odatda 8–12% atrofida. Real foyda shu inflyatsiya hisobga olingan holda ko'rsatiladi.",
-      btnCalc:"Hisoblash",rTag:"Hisob natijasi",lblFinal:"Muddat oxiridagi jami summa",
+      btnCalc:"Hisoblash",rTag:"Hisob natijasi",lblFinal:"Muddat oxiridagi jami summa",lblBalance:"Omonat qoldig'i",
       kDeposited:"Jami qo'yilgan pul",kEarned:"Foiz daromadi",kRealEarned:"Real xarid qobiliyatidagi foydangiz",kYield:"Samarali daromadlilik",kTerm:"Muddat",
+      yieldTopUpNote:"Oylik to'ldirish bilan aniqlanmaydi (har kiritma muddati boshqacha)",
       months:"oy",btnShare:"Ulashish",btnSched:"Oylik jadval",copied:"Nusxalandi ✓",
       schedH:"Omonat o'sish jadvali",
       thN:"Oy",thStart:"Boshida",thInt:"Foiz",thAdd:"Qo'shildi",thEnd:"Oxirida",
@@ -370,8 +371,9 @@ img,svg{height:auto}
       hintCapNo:"Проценты выплачиваются отдельно каждый месяц, вклад не растёт.",
       lInflation:"Ожидаемая годовая инфляция (%)",
       hInflation:"Официальный прогноз в Узбекистане обычно 8–12%. Реальный доход показан с учётом этой инфляции.",
-      btnCalc:"Рассчитать",rTag:"Результат расчёта",lblFinal:"Итоговая сумма в конце срока",
+      btnCalc:"Рассчитать",rTag:"Результат расчёта",lblFinal:"Итоговая сумма в конце срока",lblBalance:"Остаток депозита",
       kDeposited:"Всего вложено",kEarned:"Доход по процентам",kRealEarned:"Доход в реальной покупательной способности",kYield:"Эффективная доходность",kTerm:"Срок",
+      yieldTopUpNote:"Не определяется при ежемесячном пополнении (у каждого взноса свой срок)",
       months:"мес.",btnShare:"Поделиться",btnSched:"Помесячный график",copied:"Скопировано ✓",
       schedH:"График роста вклада",
       thN:"Мес.",thStart:"В начале",thInt:"Проценты",thAdd:"Пополнение",thEnd:"В конце",
@@ -458,10 +460,16 @@ img,svg{height:auto}
       deposited+=added;
       rows.push([k,start,fo,added,cap?bal:bal]); 
     }
-    var finalSum=cap?bal:bal+0; // without cap, interest paid out separately
     var totalFinal=cap?bal:(bal+earned);
-    var effYield=earned/deposited*(12/n)*100;
-    calcData={P:P,deposited:deposited,earned:earned,finalSum:totalFinal,n:n,effYield:effYield};
+    var effYield;
+    if(add>0){
+      effYield=null; // oylik to'ldirish bilan samarali stavka IRR talab qiladi — ko'rsatilmaydi
+    }else if(cap){
+      effYield=(Math.pow(1+i,12)-1)*100; // samarali yillik = (1+oylik)^12-1, muddatga bog'liq emas
+    }else{
+      effYield=yr; // kapitalizatsiyasiz — murakkab foiz yo'q, samarali = nominal
+    }
+    calcData={P:P,deposited:deposited,earned:earned,finalSum:totalFinal,balEnd:bal,cap:cap,n:n,effYield:effYield};
     expanded=false;
     renderResult();renderRows();
     $('receipt').classList.add('show');
@@ -471,10 +479,18 @@ img,svg{height:auto}
 
   function renderResult(){
     var d=calcData, sum=' '+t('uSum');
-    $('mainNum').textContent=fmt(d.finalSum)+sum;
+    if(d.cap){
+      $('mainNum').textContent=fmt(d.finalSum)+sum;
+      $('lblFinal').textContent=t('lblFinal');
+    }else{
+      // Kapitalizatsiyasiz: "jami summa" yorlig'i chalg'ituvchi edi — foiz
+      // har oy alohida yechib olinadi, omonatda faqat asosiy summa qoladi.
+      $('mainNum').textContent=fmt(d.balEnd)+sum;
+      $('lblFinal').textContent=t('lblBalance');
+    }
     $('rDeposited').textContent=fmt(d.deposited)+sum;
     $('rEarned').textContent='+'+fmt(d.earned)+sum;
-    $('rYield').textContent=d.effYield.toFixed(1)+'% '+(lang==='uz'?'yillik':'годовых');
+    $('rYield').textContent=d.effYield===null?t('yieldTopUpNote'):(d.effYield.toFixed(1)+'% '+(lang==='uz'?'yillik':'годовых'));
     $('rTerm').textContent=d.n+' '+t('months');
     updateRealProfit();
     updateXlink();
@@ -501,7 +517,7 @@ img,svg{height:auto}
     if(!calcData)return;
     var d=calcData, sum=' '+t('uSum');
     var infl=num($('inflation').value);
-    var divisor=1+(infl/100)*(d.n/12);
+    var divisor=Math.pow(1+infl/100,d.n/12); // murakkab inflyatsiya, kasrli yillar ham to'g'ri
     var realFinal=d.finalSum/divisor;
     var realEarned=realFinal-d.deposited;
     var realYield=d.deposited?realEarned/d.deposited*(12/d.n)*100:0;
@@ -539,7 +555,8 @@ img,svg{height:auto}
     var sum=' '+t('uSum');
     var bestFinal=-1,maxFinal=-Infinity, bestEarned=-1,maxEarned=-Infinity;
     for(var bi=0;bi<scenarios.length;bi++){
-      if(scenarios[bi].finalSum>maxFinal){maxFinal=scenarios[bi].finalSum;bestFinal=bi}
+      var sFinal=scenarios[bi].cap?scenarios[bi].finalSum:scenarios[bi].balEnd;
+      if(sFinal>maxFinal){maxFinal=sFinal;bestFinal=bi}
       if(scenarios[bi].earned>maxEarned){maxEarned=scenarios[bi].earned;bestEarned=bi}
     }
     var head='<thead><tr><th></th>';
@@ -561,7 +578,7 @@ img,svg{height:auto}
     body+=row('scenRate',function(s){return s.rateVal+'%'});
     body+=row('scenTerm',function(s){return s.term+' '+t('months')});
     body+=row('scenCap',function(s){return s.capLabel});
-    body+=row('scenFinal',function(s){return fmt(s.finalSum)+sum},bestFinal);
+    body+=row('scenFinal',function(s){return fmt(s.cap?s.finalSum:s.balEnd)+sum},bestFinal);
     body+=row('scenEarned',function(s){return '+'+fmt(s.earned)+sum},bestEarned);
     body+='</tbody>';
     $('scenTable').innerHTML=head+body;
@@ -573,8 +590,8 @@ img,svg{height:auto}
       label:$('rate').value+'% · '+$('term').value+' '+t('uMonths'),
       rateVal:$('rate').value,
       amount:calcData.P,term:calcData.n,
-      capLabel:cap?t('segCapYes'):t('segCapNo'),
-      finalSum:calcData.finalSum,earned:calcData.earned
+      capLabel:cap?t('segCapYes'):t('segCapNo'),cap:calcData.cap,
+      finalSum:calcData.finalSum,balEnd:calcData.balEnd,earned:calcData.earned
     });
     ga('scenario_add',{calc:'omonat',n:scenarios.length});
     renderScenarios();
@@ -636,7 +653,9 @@ img,svg{height:auto}
   };
   $('shareBtn').onclick=function(){
     if(!calcData)return;
-    var txt=t('shareTitle')+': '+$('amount').value+' '+t('uSum')+', '+$('rate').value+'%, '+$('term').value+' '+t('uMonths')+'. '+t('lblFinal')+': '+fmt(calcData.finalSum)+' '+t('uSum')+' (+'+fmt(calcData.earned)+')';
+    var shareLbl=calcData.cap?t('lblFinal'):t('lblBalance');
+    var shareVal=calcData.cap?calcData.finalSum:calcData.balEnd;
+    var txt=t('shareTitle')+': '+$('amount').value+' '+t('uSum')+', '+$('rate').value+'%, '+$('term').value+' '+t('uMonths')+'. '+shareLbl+': '+fmt(shareVal)+' '+t('uSum')+' (+'+fmt(calcData.earned)+')';
     var b=this;
     if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
     else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
@@ -648,7 +667,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">11.9.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">13.9.2026</div>
 </div>
 <script>
 (function(){
