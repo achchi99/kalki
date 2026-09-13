@@ -224,7 +224,21 @@ img,svg{height:auto}
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Депозитный калькулятор — введите сумму, срок и годовую ставку депозита, и вы узнаете месячный и годовой доход, а также итоговую сумму с учётом капитализации. Точные условия уточняйте в банке.</p><div class="ab-meta">Обновлено: 2026-09-13</div></div>
   <section class="form-card">
     <div class="field">
-      <label for="amount" data-i="lAmount">Сумма вклада</label>
+      <label data-i="lOmMode">Что хотите узнать?</label>
+      <div class="seg" id="omModeSeg">
+        <button type="button" data-om="fwd" class="on" data-i="omModeFwd">Сколько накопится?</button>
+        <button type="button" data-om="rev" data-i="omModeRev">Когда достигну цели?</button>
+      </div>
+    </div>
+    <div class="field" id="targetField" style="display:none">
+      <label for="target" data-i="lTarget">Целевая сумма</label>
+      <div class="input-shell">
+        <input type="text" id="target" inputmode="numeric" value="50 000 000" autocomplete="off">
+        <span class="unit" data-i="uSum">сум</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="amount" id="amountLabel" data-i="lAmount">Сумма вклада</label>
       <div class="input-shell">
         <input type="text" id="amount" inputmode="numeric" value="20 000 000" autocomplete="off">
         <span class="unit" data-i="uSum">сум</span>
@@ -238,7 +252,7 @@ img,svg{height:auto}
       </div>
       <p class="hint" data-i="hRate">Вклады в сумах обычно под 18–24% годовых.</p>
     </div>
-    <div class="field">
+    <div class="field" id="termField" style="display: block;">
       <label for="term" data-i="lTerm">Срок</label>
       <div class="input-shell">
         <input type="text" id="term" inputmode="numeric" value="12" autocomplete="off">
@@ -261,7 +275,7 @@ img,svg{height:auto}
       </div>
       <p class="hint" id="capHint">Проценты ежемесячно прибавляются к вкладу и сами приносят доход — итог больше.</p>
     </div>
-    <div class="field" style="margin-bottom:0">
+    <div class="field" id="inflationField" style="margin-bottom: 0px; display: block;">
       <label for="inflation" data-i="lInflation">Ожидаемая годовая инфляция (%)</label>
       <div class="input-shell">
         <input type="text" id="inflation" inputmode="decimal" value="10" autocomplete="off">
@@ -275,6 +289,7 @@ img,svg{height:auto}
   <section class="receipt show" id="receipt" aria-live="polite">
     <div class="receipt-body">
       <div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+      <div class="lbl" id="revIntro" style="display:none;margin-bottom:4px"></div>
       <div class="big-figure">
         <div class="num" id="mainNum">24&nbsp;387&nbsp;822 сум</div>
         <div class="lbl" id="lblFinal" data-i="lblFinal">Итоговая сумма в конце срока</div>
@@ -282,9 +297,9 @@ img,svg{height:auto}
       <div class="receipt-rows">
         <div class="rrow"><span class="k" data-i="kDeposited">Всего вложено</span><span class="v" id="rDeposited">20&nbsp;000&nbsp;000 сум</span></div>
         <div class="rrow"><span class="k" data-i="kEarned">Доход по процентам</span><span class="v accent" id="rEarned">+4&nbsp;387&nbsp;822 сум</span></div>
-        <div class="rrow"><span class="k" data-i="kRealEarned">Доход в реальной покупательной способности</span><span class="v accent" id="rRealEarned">+2&nbsp;170&nbsp;747 сум (10.9%)</span></div>
-        <div class="rrow"><span class="k" data-i="kYield">Эффективная доходность</span><span class="v" id="rYield">21.9% годовых</span></div>
-        <div class="rrow"><span class="k" data-i="kTerm">Срок</span><span class="v" id="rTerm">12 мес.</span></div>
+        <div class="rrow" id="realEarnedRow"><span class="k" data-i="kRealEarned">Доход в реальной покупательной способности</span><span class="v accent" id="rRealEarned">+2&nbsp;170&nbsp;747 сум (10.9%)</span></div>
+        <div class="rrow" id="yieldRow"><span class="k" data-i="kYield">Эффективная доходность</span><span class="v" id="rYield">21.9% годовых</span></div>
+        <div class="rrow"><span class="k" id="termLbl" data-i="kTerm">Срок</span><span class="v" id="rTerm">12 мес.</span></div>
       </div>
       <div class="receipt-actions">
         <button type="button" id="shareBtn" data-i="btnShare">Поделиться</button>
@@ -323,7 +338,9 @@ img,svg{height:auto}
       brand:"Kalki.uz",cat:"Moliya",
       h1:"Omonat kalkulyatori",
       sub:"Omonatingiz qancha daromad keltirishini hisoblang — kapitalizatsiya va oylik to'ldirish bilan.",
-      lAmount:"Omonat summasi",uSum:"so'm",uSum2:"so'm/oy",
+      lOmMode:"Nima bilmoqchisiz?",omModeFwd:"Qancha yig'iladi?",omModeRev:"Maqsadga qachon yetaman?",
+      lTarget:"Maqsad summa",lInitial:"Boshlang'ich summa",
+      lAmount:"Omonat summasi",uSum:"so'm",uSum2:"so'm/oy",uYear:"yil",
       lRate:"Yillik foiz stavkasi",uRate:"% yillik",
       hRate:"So'mdagi omonatlar odatda 18–24% yillik atrofida.",
       lTerm:"Muddat",uMonths:"oy",
@@ -336,6 +353,12 @@ img,svg{height:auto}
       lInflation:"Kutilayotgan yillik inflyatsiya (%)",
       hInflation:"O'zbekistonda rasmiy prognoz odatda 8–12% atrofida. Real foyda shu inflyatsiya hisobga olingan holda ko'rsatiladi.",
       btnCalc:"Hisoblash",rTag:"Hisob natijasi",lblFinal:"Muddat oxiridagi jami summa",lblBalance:"Omonat qoldig'i",
+      lblRevReady:"kerak bo'ladi",
+      revIntroFmt:"{target} so'm yig'ish uchun:",
+      kTermRev:"Jami muddat",
+      revAlreadyMsg:"Siz allaqachon maqsadga yetgansiz — boshlang'ich summa maqsaddan katta yoki teng.",
+      revNeverMsg:"Bu shartlarda maqsadga hech qachon yetib bo'lmaydi — foiz stavkasi (kapitalizatsiya bilan) yoki oylik qo'shimcha kerak.",
+      revTooLongMsg:"Bu shartlarda maqsadga yetish juda uzoq vaqt oladi (100 yildan ortiq) — stavka yoki oylik qo'shimchani oshirib ko'ring.",
       kDeposited:"Jami qo'yilgan pul",kEarned:"Foiz daromadi",kRealEarned:"Real xarid qobiliyatidagi foydangiz",kYield:"Samarali daromadlilik",kTerm:"Muddat",
       yieldTopUpNote:"Oylik to'ldirish bilan aniqlanmaydi (har kiritma muddati boshqacha)",
       months:"oy",btnShare:"Ulashish",btnSched:"Oylik jadval",copied:"Nusxalandi ✓",
@@ -359,7 +382,9 @@ img,svg{height:auto}
       brand:"Kalki.uz",cat:"Финансы",
       h1:"Депозитный калькулятор",
       sub:"Рассчитайте доход по вкладу — с капитализацией и ежемесячным пополнением.",
-      lAmount:"Сумма вклада",uSum:"сум",uSum2:"сум/мес",
+      lOmMode:"Что хотите узнать?",omModeFwd:"Сколько накопится?",omModeRev:"Когда достигну цели?",
+      lTarget:"Целевая сумма",lInitial:"Начальная сумма",
+      lAmount:"Сумма вклада",uSum:"сум",uSum2:"сум/мес",uYear:"г.",
       lRate:"Годовая ставка",uRate:"% годовых",
       hRate:"Вклады в сумах обычно под 18–24% годовых.",
       lTerm:"Срок",uMonths:"мес.",
@@ -372,6 +397,12 @@ img,svg{height:auto}
       lInflation:"Ожидаемая годовая инфляция (%)",
       hInflation:"Официальный прогноз в Узбекистане обычно 8–12%. Реальный доход показан с учётом этой инфляции.",
       btnCalc:"Рассчитать",rTag:"Результат расчёта",lblFinal:"Итоговая сумма в конце срока",lblBalance:"Остаток депозита",
+      lblRevReady:"потребуется",
+      revIntroFmt:"Чтобы накопить {target} сум:",
+      kTermRev:"Общий срок",
+      revAlreadyMsg:"Вы уже достигли цели — начальная сумма больше или равна целевой.",
+      revNeverMsg:"При таких условиях цель никогда не будет достигнута — нужна ставка (с капитализацией) или ежемесячное пополнение.",
+      revTooLongMsg:"При таких условиях достижение цели займёт слишком много времени (более 100 лет) — увеличьте ставку или пополнение.",
       kDeposited:"Всего вложено",kEarned:"Доход по процентам",kRealEarned:"Доход в реальной покупательной способности",kYield:"Эффективная доходность",kTerm:"Срок",
       yieldTopUpNote:"Не определяется при ежемесячном пополнении (у каждого взноса свой срок)",
       months:"мес.",btnShare:"Поделиться",btnSched:"Помесячный график",copied:"Скопировано ✓",
@@ -393,7 +424,7 @@ img,svg{height:auto}
     }
   };
 
-  var lang=document.documentElement.lang==='ru'?'ru':'uz', cap=true, rows=[], expanded=false, calcData=null;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', cap=true, rows=[], expanded=false, calcData=null, omMode='fwd';
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
@@ -427,6 +458,7 @@ img,svg{height:auto}
       for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
+    applyOmMode(); // data-i bloki #amountLabel'ni ham qayta yozadi — rejimga mos yorliqni tiklaymiz
     if(calcData){renderResult();renderRows()}
     if(scenarios.length)renderScenarios();
     addCsvButtons();
@@ -448,7 +480,42 @@ img,svg{height:auto}
   $('capYes').onclick=function(){cap=true;$('capHint').textContent=t('hintCapYes');setSeg(this,$('capNo'));if(calcData)calc()};
   $('capNo').onclick=function(){cap=false;$('capHint').textContent=t('hintCapNo');setSeg(this,$('capYes'));if(calcData)calc()};
 
+  /* ===== Rejim: "qancha yig'iladi" (fwd) vs "maqsadga qachon yetaman" (rev) =====
+     Yangi kiritish maydoni faqat bittasi — "Maqsad summa" (#target).
+     Boshqa barcha maydonlar (boshlang'ich summa, stavka, kapitalizatsiya,
+     oylik qo'shimcha) fwd rejimdagi bilan bir xil, faqat #amount'ning
+     yorlig'i almashtiriladi. #term va #inflation rev rejimda yashiriladi —
+     muddat endi NATIJA, inflyatsiya bu funksiya doirasidan tashqarida. */
+  function applyOmMode(){
+    $('targetField').style.display=omMode==='rev'?'block':'none';
+    $('termField').style.display=omMode==='rev'?'none':'block';
+    $('inflationField').style.display=omMode==='rev'?'none':'block';
+    $('amountLabel').textContent=omMode==='rev'?t('lInitial'):t('lAmount');
+  }
+  // Rejimlar butunlay boshqa natija shaklini talab qiladi (summa vs
+  // muddat) — eski natija qolib ketmasligi uchun tozalanadi.
+  function clearOmResult(){
+    calcData=null;
+    $('receipt').classList.remove('show');
+    $('sched').classList.remove('show');
+  }
+  var omBtns=document.querySelectorAll('#omModeSeg button');
+  for(var omi=0;omi<omBtns.length;omi++){
+    omBtns[omi].onclick=function(){
+      omMode=this.getAttribute('data-om');
+      for(var j=0;j<omBtns.length;j++)omBtns[j].classList.remove('on');
+      this.classList.add('on');
+      applyOmMode();
+      clearOmResult();
+    };
+  }
+  applyOmMode();
+
   function calc(){
+    if(omMode==='rev')calcReverse();else calcForward();
+  }
+
+  function calcForward(){
     var P=num($('amount').value), yr=num($('rate').value), n=Math.round(num($('term').value)), add=num($('monthly').value);
     if(!P||!yr||!n){$('receipt').classList.remove('show');$('sched').classList.remove('show');return}
     var i=yr/100/12, bal=P, earned=0, deposited=P;
@@ -460,7 +527,7 @@ img,svg{height:auto}
       var added=(k<n)?add:0; // last month: no top-up
       if(cap){bal=bal+fo+added}else{bal=bal+added}
       deposited+=added;
-      rows.push([k,start,fo,added,cap?bal:bal]); 
+      rows.push([k,start,fo,added,cap?bal:bal]);
     }
     var totalFinal=cap?bal:(bal+earned);
     var effYield;
@@ -471,7 +538,7 @@ img,svg{height:auto}
     }else{
       effYield=yr; // kapitalizatsiyasiz — murakkab foiz yo'q, samarali = nominal
     }
-    calcData={P:P,deposited:deposited,earned:earned,finalSum:totalFinal,balEnd:bal,cap:cap,n:n,effYield:effYield};
+    calcData={mode:'fwd',P:P,deposited:deposited,earned:earned,finalSum:totalFinal,balEnd:bal,cap:cap,n:n,effYield:effYield};
     expanded=false;
     renderResult();renderRows();
     $('receipt').classList.add('show');
@@ -479,8 +546,72 @@ img,svg{height:auto}
     addCsvButtons();
   }
 
+  /* ===== Teskari hisob: maqsadga necha oyda yetiladi =====
+     Yopiq (analitik) formula o'rniga oy-ma-oy simulyatsiya ishlatiladi —
+     forward calcForward() bilan AYNAN bir xil o'sish mexanikasi (cap
+     bo'lsa foiz+qo'shimcha, bo'lmasa faqat qo'shimcha qo'shiladi), shu
+     sabab ikkala rejim orasida formulalar mos kelmasligi xavfi yo'q. */
+  var REV_MAX_MONTHS=1200; // 100 yil — undan uzoq "juda uzoq" deb belgilanadi
+  function simulateToGoal(initial,target,yr,capOn,addPerMonth){
+    if(target<=initial)return {status:'already'};
+    var i=yr/100/12;
+    var growsAtAll=addPerMonth>0||(capOn&&i>0&&initial>0);
+    if(!growsAtAll)return {status:'never'};
+    var bal=initial, months=0, deposited=initial, earned=0;
+    rows=[];
+    while(bal<target){
+      months++;
+      var start=bal;
+      var fo=bal*i;
+      earned+=fo;
+      if(capOn){bal=bal+fo+addPerMonth}else{bal=bal+addPerMonth}
+      deposited+=addPerMonth;
+      rows.push([months,start,fo,addPerMonth,bal]);
+      if(months>=REV_MAX_MONTHS)return {status:'toolong'};
+    }
+    return {status:'ok',months:months,deposited:deposited,earned:earned};
+  }
+  function calcReverse(){
+    var target=num($('target').value), initial=num($('amount').value), yr=num($('rate').value), add=num($('monthly').value);
+    if(!target){$('receipt').classList.remove('show');$('sched').classList.remove('show');return}
+    var r=simulateToGoal(initial,target,yr,cap,add);
+    calcData={mode:'rev',target:target,initial:initial,status:r.status,months:r.months,deposited:r.deposited,earned:r.earned,cap:cap};
+    expanded=false;
+    renderResult();
+    if(r.status==='ok')renderRows();
+    $('receipt').classList.add('show');
+    $('sched').classList.remove('show');
+    addCsvButtons();
+  }
+
+  function fmtDuration(months){
+    var y=Math.floor(months/12), m=months%12;
+    if(y<=0)return m+' '+t('uMonths');
+    if(m===0)return y+' '+t('uYear');
+    return y+' '+t('uYear')+' '+m+' '+t('uMonths');
+  }
+
   function renderResult(){
+    var d=calcData;
+    var revActionEls=[$('schedBtn'),$('scenAddBtn'),$('scenLimitNote')];
+    var csvBtns=document.querySelectorAll('.csvbtn');
+    if(d.mode==='rev'){
+      for(var rai=0;rai<revActionEls.length;rai++)if(revActionEls[rai])revActionEls[rai].style.display='none';
+      for(var rci=0;rci<csvBtns.length;rci++)csvBtns[rci].style.display='none';
+      renderReverseResult();
+    }else{
+      for(var fai=0;fai<revActionEls.length;fai++)if(revActionEls[fai])revActionEls[fai].style.display='';
+      for(var fci=0;fci<csvBtns.length;fci++)csvBtns[fci].style.display='';
+      renderForwardResult();
+    }
+  }
+
+  function renderForwardResult(){
     var d=calcData, sum=' '+t('uSum');
+    $('revIntro').style.display='none';
+    $('realEarnedRow').style.display='';
+    $('yieldRow').style.display='';
+    $('termLbl').textContent=t('kTerm');
     if(d.cap){
       $('mainNum').textContent=fmt(d.finalSum)+sum;
       $('lblFinal').textContent=t('lblFinal');
@@ -496,6 +627,29 @@ img,svg{height:auto}
     $('rTerm').textContent=d.n+' '+t('months');
     updateRealProfit();
     updateXlink();
+  }
+
+  function renderReverseResult(){
+    var d=calcData, sum=' '+t('uSum');
+    $('realEarnedRow').style.display='none';
+    $('yieldRow').style.display='none';
+    $('termLbl').textContent=t('kTermRev');
+    if(d.status!=='ok'){
+      $('revIntro').style.display='none';
+      $('mainNum').textContent='—';
+      $('lblFinal').textContent=t(d.status==='already'?'revAlreadyMsg':(d.status==='never'?'revNeverMsg':'revTooLongMsg'));
+      $('rDeposited').textContent='—';
+      $('rEarned').textContent='—';
+      $('rTerm').textContent='—';
+      return;
+    }
+    $('revIntro').style.display='block';
+    $('revIntro').textContent=t('revIntroFmt').replace('{target}',fmt(d.target));
+    $('mainNum').textContent=fmtDuration(d.months);
+    $('lblFinal').textContent=t('lblRevReady');
+    $('rDeposited').textContent=fmt(d.deposited)+sum;
+    $('rEarned').textContent='+'+fmt(d.earned)+sum;
+    $('rTerm').textContent=d.months+' '+t('uMonths');
   }
 
   // Boshqa sahifaga o'tish kartochkasi — natija chiqqandan keyingina.
@@ -516,7 +670,7 @@ img,svg{height:auto}
   }
 
   function updateRealProfit(){
-    if(!calcData)return;
+    if(!calcData||calcData.mode==='rev')return;
     var d=calcData, sum=' '+t('uSum');
     var infl=num($('inflation').value);
     var divisor=Math.pow(1+infl/100,d.n/12); // murakkab inflyatsiya, kasrli yillar ham to'g'ri
@@ -655,9 +809,15 @@ img,svg{height:auto}
   };
   $('shareBtn').onclick=function(){
     if(!calcData)return;
-    var shareLbl=calcData.cap?t('lblFinal'):t('lblBalance');
-    var shareVal=calcData.cap?calcData.finalSum:calcData.balEnd;
-    var txt=t('shareTitle')+': '+$('amount').value+' '+t('uSum')+', '+$('rate').value+'%, '+$('term').value+' '+t('uMonths')+'. '+shareLbl+': '+fmt(shareVal)+' '+t('uSum')+' (+'+fmt(calcData.earned)+')';
+    var txt;
+    if(calcData.mode==='rev'){
+      if(calcData.status!=='ok'){txt=t('shareTitle')+': '+t('revIntroFmt').replace('{target}',fmt(calcData.target))+' '+t('lblRevReady')}
+      else{txt=t('shareTitle')+': '+t('revIntroFmt').replace('{target}',fmt(calcData.target))+' '+fmtDuration(calcData.months)+' '+t('lblRevReady')}
+    }else{
+      var shareLbl=calcData.cap?t('lblFinal'):t('lblBalance');
+      var shareVal=calcData.cap?calcData.finalSum:calcData.balEnd;
+      txt=t('shareTitle')+': '+$('amount').value+' '+t('uSum')+', '+$('rate').value+'%, '+$('term').value+' '+t('uMonths')+'. '+shareLbl+': '+fmt(shareVal)+' '+t('uSum')+' (+'+fmt(calcData.earned)+')';
+    }
     var b=this;
     if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
     else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+(window.__buildShareUrl?window.__buildShareUrl():location.href));b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
