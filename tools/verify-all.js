@@ -665,6 +665,154 @@ function runTool(args) {
       + CYR_PAGES.length + ' sahifa)', bad.slice(0, 12).join(' | '));
   }
 
+  /* ---------- 29. Tanlov (.seg) tugmalari calc()ni chaqiradi ----------
+     2026-09'da qo'shildi: pensiya/beton/omonat va h.k. 12 sahifada bir xil
+     bug topildi — mode/tanlov tugmasi (masalan jins, marka, kapitalizatsiya)
+     bosilganda faqat vizual ".on" holat va hint matni yangilanardi, lekin
+     ALLAQACHON KO'RSATILGAN natija eski formulaga asoslanib qolib ketardi.
+     Foydalanuvchi "Hisoblash"ni qayta bosmaguncha noto'g'ri raqamni ko'rardi.
+     Bu band shu naqshni STATIK matn tahlili orqali avtomatik qidiradi: har
+     bir ".seg" klassidagi tugmalar guruhi uchun, ularning onclick tanasi
+     biror "calc...(" chaqiruvini (yoki .click() orqali bosh hisoblash
+     tugmasini bosishni) o'z ichiga olishi kerak. Aks holda — mumkin bo'lgan
+     eski-natija xatosi sifatida belgilanadi.
+
+     Bu — TO'LIQ JS parser emas, oddiy matn evristikasi: ba'zi haqiqiy
+     xavfsiz holatlar (masalan hisoblanadigan natijaga umuman ta'sir
+     qilmaydigan tugma) qo'lda ko'rib chiqilib EXEMPT ro'yxatiga qo'shiladi
+     (pastda, sababi bilan). Yangi sahifa qo'shilganda bu band SHU turdagi
+     bug'ni ushlab qolish uchun mo'ljallangan — "band bo'lmasa, 13-chisi ham
+     paydo bo'ladi" tamoyili bilan. */
+  {
+    // Ikkala tan olingan tuzatish naqshi: (A) qayta hisoblash (calc...(),
+    // .click() orqali bosh tugmani bosish) YOKI (B) natijani ataylab
+    // tozalash (hideResult/clearResult/resetResult — masalan aliment va
+    // uy-qurish-kalkulyator'da qo'llanilgan, chunki rejimlar butunlay
+    // boshqa maydonlar to'plamini talab qiladi).
+    const CALC_CALL_RE = /calc\w*\s*\(|\.click\(\)|\b(?:hide|clear|reset)\w*result\w*\s*\(/i;
+    // Til almashtirish alohida mexanizm (band 20-22 tekshiradi) va hisob
+    // formulasiga umuman ta'sir qilmaydi.
+    const EXEMPT_BTN_IDS = new Set(['langUz', 'langRu']);
+    // Qo'lda ko'rib chiqilgan, chindan ham xavfsiz istisnolar: bu tugmalar
+    // hali ko'rsatilmagan "keyingi qo'shish" amaliga tegishli input-rejimini
+    // tanlaydi (masalan taom porsiya/gramm birligini) — allaqachon
+    // ko'rsatilgan natijaga hech qanday ta'sir qilmaydi.
+    const EXEMPT_PAIRS = new Set([
+      'kaloriya-kalkulyator.html:qmPortion',
+      'kaloriya-kalkulyator.html:qmGram',
+    ]);
+
+    function extractBalanced(src, openIdx) {
+      let depth = 0, inStr = null;
+      for (let i = openIdx; i < src.length; i++) {
+        const c = src[i];
+        if (inStr) { if (c === '\\') { i++; continue; } if (c === inStr) inStr = null; continue; }
+        if (c === "'" || c === '"') { inStr = c; continue; }
+        if (c === '{') depth++;
+        else if (c === '}') { depth--; if (depth === 0) return src.slice(openIdx, i + 1); }
+      }
+      return null;
+    }
+    function onclickBodyAfter(src, fromIdx, maxWindow) {
+      const windowEnd = Math.min(src.length, fromIdx + (maxWindow || 4000));
+      const seg = src.slice(fromIdx, windowEnd);
+      const m = seg.match(/\.onclick\s*=\s*function\s*\([^)]*\)\s*\{/);
+      if (!m) return null;
+      const openIdx = fromIdx + m.index + m[0].length - 1;
+      return extractBalanced(src, openIdx);
+    }
+    function findFunctionBody(src, name) {
+      let re = new RegExp('function\\s+' + name + '\\s*\\([^)]*\\)\\s*\\{');
+      let m = re.exec(src);
+      if (!m) {
+        re = new RegExp('\\b' + name + '\\s*=\\s*function\\s*\\([^)]*\\)\\s*\\{');
+        m = re.exec(src);
+      }
+      if (!m) return null;
+      return extractBalanced(src, m.index + m[0].length - 1);
+    }
+    const NON_FUNC_CALLS = new Set(['if', 'for', 'while', 'function', 'typeof', 'new', 'return', 'switch', 'catch']);
+    // Ba'zi handler'lar to'g'ridan-to'g'ri calc()ni emas, balki o'zining
+    // holat-o'rnatuvchi funksiyasini chaqiradi (masalan setMode(), u esa ICHKARIDA
+    // hideResult()ni chaqiradi). Bitta bosqich chuqurlikda shu holatlarni ham
+    // to'g'ri aniqlash uchun rekursiv qidiruv.
+    function bodyCallsCalc(src, body, depth) {
+      if (CALC_CALL_RE.test(body)) return true;
+      if (depth <= 0) return false;
+      const names = [...new Set([...body.matchAll(/\b([A-Za-z_$][\w$]*)\s*\(/g)].map((m2) => m2[1]))];
+      for (const name of names) {
+        if (NON_FUNC_CALLS.has(name)) continue;
+        const fnBody = findFunctionBody(src, name);
+        if (fnBody && bodyCallsCalc(src, fnBody, depth - 1)) return true;
+      }
+      return false;
+    }
+
+    const findings = [];
+    for (const f of list) {
+      const full = path.join(ROOT, f);
+      const src = fs.readFileSync(full, 'utf8');
+      if (!/calc\w*\s*\(/i.test(src)) continue; // "calc" tushunchasi yo'q sahifa
+
+      const divRe = /<div\s+([^>]*)>/g;
+      let dm;
+      while ((dm = divRe.exec(src))) {
+        const attrs = dm[1];
+        const clsM = attrs.match(/class="([^"]*)"/);
+        if (!clsM || clsM[1].split(/\s+/).indexOf('seg') === -1) continue;
+        const idM = attrs.match(/\bid="([^"]*)"/);
+        const containerId = idM ? idM[1] : null;
+        const openEnd = dm.index + dm[0].length;
+        const closeIdx = src.indexOf('</div>', openEnd);
+        if (closeIdx === -1) continue;
+        const inner = src.slice(openEnd, closeIdx);
+        const btnIds = [...inner.matchAll(/<button\b[^>]*\bid="([^"]+)"/g)].map((m2) => m2[1]);
+
+        if (btnIds.length) {
+          for (const bid of btnIds) {
+            if (EXEMPT_BTN_IDS.has(bid) || EXEMPT_PAIRS.has(f + ':' + bid)) continue;
+            const re = new RegExp('\\$\\([\'"]' + bid + '[\'"]\\)\\.onclick\\s*=\\s*function\\s*\\([^)]*\\)\\s*\\{');
+            const m2 = re.exec(src);
+            if (!m2) continue; // ulanish topilmadi — inconclusive, o'tkazib yuboriladi
+            const openIdx = m2.index + m2[0].length - 1;
+            const body = extractBalanced(src, openIdx);
+            if (body && !bodyCallsCalc(src, body, 1)) {
+              findings.push(f + ' — #' + bid + ' calc() chaqirmaydi');
+            }
+          }
+        } else {
+          // Tugmalarda id yo'q — konteyner ID (Strategiya 2) yoki umumiy
+          // data-* atribut nomi (Strategiya 3, masalan
+          // querySelectorAll('[data-cm]')) orqali ulanish qidiriladi.
+          // data-i — faqat tarjima kaliti, hech qachon funksional selektor
+          // sifatida ishlatilmaydi, shu sabab e'tiborga olinmaydi.
+          let am = null, label = containerId;
+          if (containerId) {
+            const anchorRe = new RegExp('[\'"#]?' + containerId + '[\'"]?\\s*\\)?\\s*\\.querySelectorAll');
+            am = anchorRe.exec(src);
+          }
+          if (!am) {
+            const dataAttrMs = [...inner.matchAll(/<button\b[^>]*\s(data-[\w-]+)=/g)]
+              .map((m3) => m3[1]).filter((n) => n !== 'data-i');
+            for (const attrName of dataAttrMs) {
+              const anchorRe2 = new RegExp('querySelectorAll\\([\'"]\\[' + attrName + '\\]');
+              const am2 = anchorRe2.exec(src);
+              if (am2) { am = am2; label = '[' + attrName + ']'; break; }
+            }
+          }
+          if (am) {
+            const body = onclickBodyAfter(src, am.index + am[0].length, 3000);
+            if (body && !bodyCallsCalc(src, body, 1)) {
+              findings.push(f + ' — ' + label + ' guruhi calc() chaqirmaydi');
+            }
+          }
+        }
+      }
+    }
+    add(!findings.length, '29. tanlov (.seg) tugmalari calc()ni chaqiradi (' + list.length + ' sahifa)',
+      findings.slice(0, 15).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

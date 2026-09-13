@@ -414,10 +414,12 @@ img,svg{height:auto}
   $('langRu').onclick=function(){lang='ru';applyLang()};
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('gM').onclick=function(){gender='m';setSeg(this,$('gF'))};
-  $('gF').onclick=function(){gender='f';setSeg(this,$('gM'))};
-  $('stEmpty').onclick=function(){stomach='empty';setSeg(this,$('stFull'))};
-  $('stFull').onclick=function(){stomach='full';setSeg(this,$('stEmpty'))};
+  // Jins va oshqozon holati promillega bevosita ta'sir qiladi — almashtirilganda
+  // ko'rsatilgan natija darhol qayta hisoblanadi.
+  $('gM').onclick=function(){gender='m';setSeg(this,$('gF'));calc()};
+  $('gF').onclick=function(){gender='f';setSeg(this,$('gM'));calc()};
+  $('stEmpty').onclick=function(){stomach='empty';setSeg(this,$('stFull'));calc()};
+  $('stFull').onclick=function(){stomach='full';setSeg(this,$('stEmpty'));calc()};
   $('addDrink').onclick=function(){addDrinkRow()};
 
   function calc(){

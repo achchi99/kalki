@@ -735,15 +735,22 @@ function applyLang(){
   if(calcData)calc();
 }
 $('grade').onchange=function(){ch().grade=parseInt(this.value,10);applyRec(ch());recPreview();if(state.mode==='batafsil')renderSections();save()};
+// Bola jinsi/maktab turi tavsiya narxlariga (applyRec) va shu orqali
+// calc()'ning umumiy summasiga ta'sir qiladi — natija ko'rsatilgan bo'lsa
+// darhol qayta hisoblanadi.
 var gbs=$('genderSeg').querySelectorAll('[data-gender]');
-for(var a=0;a<gbs.length;a++)gbs[a].onclick=function(){ch().gender=this.getAttribute('data-gender');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();save()};
+for(var a=0;a<gbs.length;a++)gbs[a].onclick=function(){ch().gender=this.getAttribute('data-gender');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();if(calcData)calc();save()};
 var sbs=$('schoolSeg').querySelectorAll('[data-school]');
-for(var b=0;b<sbs.length;b++)sbs[b].onclick=function(){ch().school=this.getAttribute('data-school');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();save()};
+for(var b=0;b<sbs.length;b++)sbs[b].onclick=function(){ch().school=this.getAttribute('data-school');applyRec(ch());renderControls();recPreview();if(state.mode==='batafsil')renderSections();if(calcData)calc();save()};
 var mbs=$('modeSeg').querySelectorAll('[data-mode]');
 for(var e=0;e<mbs.length;e++)mbs[e].onclick=function(){
+  // Tez/batafsil rejimi grandTotal manbasini butunlay almashtiradi
+  // (state.quick vs c.items) — allaqachon ko'rsatilgan natija bo'lsa
+  // darhol qayta hisoblanadi.
   state.mode=this.getAttribute('data-mode');
   renderControls();
   if(state.mode==='batafsil')renderSections();else renderQuick();
+  if(calcData)calc();
   save();
 };
 $('months').oninput=function(){this.value=this.value.replace(/[^\d]/g,'');state.months=num(this.value);save()};

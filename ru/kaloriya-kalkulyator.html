@@ -506,14 +506,19 @@ img,svg{height:auto}
   $('langRu').onclick=function(){lang='ru';applyLang()};
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('gM').onclick=function(){gender='m';setSeg(this,$('gF'))};
-  $('gF').onclick=function(){gender='f';setSeg(this,$('gM'))};
+  // Jins, maqsad va faollik — uchalasi ham calcNorm() formulasiga bevosita
+  // ta'sir qiladi (BMR, TDEE ko'paytiruvchisi, maqsad koeffitsienti).
+  // Almashtirilganda ko'rsatilgan kunlik me'yor darhol qayta hisoblanadi —
+  // calcNorm() o'zi hali kiritilmagan maydonlar bo'lsa hech narsa qilmaydi.
+  $('gM').onclick=function(){gender='m';setSeg(this,$('gF'));calcNorm()};
+  $('gF').onclick=function(){gender='f';setSeg(this,$('gM'));calcNorm()};
   var gBtns=document.querySelectorAll('[data-g]');
   for(var b=0;b<gBtns.length;b++){
     gBtns[b].onclick=function(){
       goal=this.getAttribute('data-g');
       for(var j=0;j<gBtns.length;j++)gBtns[j].classList.remove('on');
       this.classList.add('on');
+      calcNorm();
     };
   }
 
@@ -524,6 +529,7 @@ img,svg{height:auto}
       $('activity').value=this.getAttribute('data-act');
       for(var k=0;k<actBtns.length;k++)actBtns[k].classList.remove('on');
       this.classList.add('on');
+      calcNorm();
     };
   }
 
@@ -538,6 +544,9 @@ img,svg{height:auto}
   $('detailHint').onclick=function(){setDetail(true)};
 
   $('dishSel').addEventListener('change',updateQtyUI);
+  // Batafsil paneldagi aniqroq faollik select'i ham TDEE'ga ta'sir qiladi —
+  // qo'lda tanlanganda ham natija darhol qayta hisoblansin.
+  $('activity').addEventListener('change',calcNorm);
 
   function calcNorm(){
     var a=num($('age').value), h=num($('height').value), w=num($('weight').value);

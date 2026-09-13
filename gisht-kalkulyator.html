@@ -385,7 +385,7 @@ img,svg{height:auto}
     $('matList').innerHTML=html;
     var items=$('matList').querySelectorAll('.mat-item');
     for(var i=0;i<items.length;i++){
-      items[i].onclick=function(){mat=this.getAttribute('data-mat');buildMatList();updateThickUI()};
+      items[i].onclick=function(){mat=this.getAttribute('data-mat');buildMatList();updateThickUI();if(calcData)calc()};
     }
   }
 
@@ -405,6 +405,7 @@ img,svg{height:auto}
           for(var j=0;j<all.length;j++)all[j].classList.remove('on');
           this.classList.add('on');
           $('thickHint').textContent=I[lang].thickHints[String(thick)];
+          if(calcData)calc(); // g'isht qalinligi dona sonini o'zgartiradi
         };
       }
     }else if(cat==='block'){
@@ -422,6 +423,9 @@ img,svg{height:auto}
           for(var j=0;j<all.length;j++)all[j].classList.remove('on');
           this.classList.add('on');
           $('thickHint').textContent=I[lang].blockThickHintFmt.replace('{n}',blockThick);
+          // Dona soniga ta'sir qilmaydi (ataylab), lekin rMat'dagi mm
+          // yorlig'i eskirmasin deb qayta chizamiz.
+          if(calcData)calc();
         };
       }
     }

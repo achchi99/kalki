@@ -486,8 +486,11 @@ img,svg{height:auto}
   }
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('mGold').onclick=function(){metal='gold';setSeg(this,$('mSilver'));updateNisab()};
-  $('mSilver').onclick=function(){metal='silver';setSeg(this,$('mGold'));updateNisab()};
+  // Metall nisobga (va shu orqali vojiblik/zakot miqdoriga) ta'sir qiladi —
+  // almashtirilganda, agar natija allaqachon ko'rsatilgan bo'lsa, darhol
+  // qayta hisoblanadi.
+  $('mGold').onclick=function(){metal='gold';setSeg(this,$('mSilver'));updateNisab();if(zData)doCalcZakot()};
+  $('mSilver').onclick=function(){metal='silver';setSeg(this,$('mGold'));updateNisab();if(zData)doCalcZakot()};
 
   $('tabZakot').onclick=function(){
     mode='zakot';setSeg(this,$('tabQurbon'));
@@ -502,7 +505,7 @@ img,svg{height:auto}
     if(qData)$('qurbonReceipt').classList.add('show');
   };
 
-  $('calcZakot').onclick=function(){
+  function doCalcZakot(){
     var n=nisab();
     if(!n){return}
     var assets=num($('cash').value)+num($('goldVal').value)+num($('goods').value)+num($('securities').value)+num($('receivable').value);
@@ -511,7 +514,8 @@ img,svg{height:auto}
     zData={assets:assets,debt:debt,net:net,nisab:n,due:net>=n?net*0.025:0};
     renderZakot();
     $('zakotReceipt').classList.add('show');
-  };
+  }
+  $('calcZakot').onclick=doCalcZakot;
 
   function renderZakot(){
     var d=zData, sum=' '+(lang==='uz'?"so'm":'сум');

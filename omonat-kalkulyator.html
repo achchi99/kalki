@@ -443,8 +443,10 @@ img,svg{height:auto}
   liveFmt($('amount'));liveFmt($('monthly'));
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('capYes').onclick=function(){cap=true;$('capHint').textContent=t('hintCapYes');setSeg(this,$('capNo'))};
-  $('capNo').onclick=function(){cap=false;$('capHint').textContent=t('hintCapNo');setSeg(this,$('capYes'))};
+  // Kapitalizatsiya rejimi hisob formulasiga bevosita ta'sir qiladi —
+  // almashtirilganda ko'rsatilgan natija darhol qayta hisoblanadi.
+  $('capYes').onclick=function(){cap=true;$('capHint').textContent=t('hintCapYes');setSeg(this,$('capNo'));if(calcData)calc()};
+  $('capNo').onclick=function(){cap=false;$('capHint').textContent=t('hintCapNo');setSeg(this,$('capYes'));if(calcData)calc()};
 
   function calc(){
     var P=num($('amount').value), yr=num($('rate').value), n=Math.round(num($('term').value)), add=num($('monthly').value);

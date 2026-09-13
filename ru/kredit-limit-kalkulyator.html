@@ -590,10 +590,12 @@ img,svg{height:auto}
   });
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('uMonth').onclick=function(){unit='month';$('termUnit').textContent=t('uMonth');setSeg(this,$('uYear'))};
-  $('uYear').onclick=function(){unit='year';$('termUnit').textContent=t('uYear');setSeg(this,$('uMonth'))};
-  $('incOfficial').onclick=function(){incType='rasmiy';setSeg(this,$('incUnofficial'))};
-  $('incUnofficial').onclick=function(){incType='norasmiy';setSeg(this,$('incOfficial'))};
+  // Muddat birligi va daromad turi (rasmiy/norasmiy nisbat) formulaga
+  // bevosita ta'sir qiladi — almashtirilganda darhol qayta hisoblanadi.
+  $('uMonth').onclick=function(){unit='month';$('termUnit').textContent=t('uMonth');setSeg(this,$('uYear'));calc()};
+  $('uYear').onclick=function(){unit='year';$('termUnit').textContent=t('uYear');setSeg(this,$('uMonth'));calc()};
+  $('incOfficial').onclick=function(){incType='rasmiy';setSeg(this,$('incUnofficial'));calc()};
+  $('incUnofficial').onclick=function(){incType='norasmiy';setSeg(this,$('incOfficial'));calc()};
 
   var calcData=null;
 

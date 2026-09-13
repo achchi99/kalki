@@ -428,17 +428,21 @@ img,svg{height:auto}
     [$('c1'),$('c2'),$('c3')].forEach(function(b){b.classList.remove('on')});
     on.classList.add('on');
   }
-  $('c1').onclick=function(){childTier=1;setSeg3(this);toggleChildCountField();save()};
-  $('c2').onclick=function(){childTier=2;setSeg3(this);toggleChildCountField();save()};
-  $('c3').onclick=function(){childTier=3;setSeg3(this);toggleChildCountField();save()};
+  // Bolalar soni foizni (legalPctFloor) belgilaydi — allaqachon ko'rsatilgan
+  // natija bo'lsa darhol qayta hisoblanadi.
+  $('c1').onclick=function(){childTier=1;setSeg3(this);toggleChildCountField();if(calcData)recalc();save()};
+  $('c2').onclick=function(){childTier=2;setSeg3(this);toggleChildCountField();if(calcData)recalc();save()};
+  $('c3').onclick=function(){childTier=3;setSeg3(this);toggleChildCountField();if(calcData)recalc();save()};
 
   /* ---------- daromad turi tugmasi (A rejim, FAZA 1 qo'shimchasi) ---------- */
   function setIncomeType(on){
     [$('itOfficial'),$('itNone')].forEach(function(b){b.classList.remove('on')});
     on.classList.add('on');
   }
-  $('itOfficial').onclick=function(){incomeType='official';setIncomeType(this)};
-  $('itNone').onclick=function(){incomeType='none';setIncomeType(this)};
+  // Daromad turi mode-A formulasini butunlay almashtiradi (MHTEKM asosidagi
+  // qat'iy summami yoki foizli hisobmi) — darhol qayta hisoblanadi.
+  $('itOfficial').onclick=function(){incomeType='official';setIncomeType(this);if(calcData)recalc()};
+  $('itNone').onclick=function(){incomeType='none';setIncomeType(this);if(calcData)recalc()};
 
   /* ---------- B/C rejim maydonlari: bolalar soni seg guruhlari ---------- */
   function genericNumericFormat(el){

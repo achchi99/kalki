@@ -591,10 +591,12 @@ img,svg{height:auto}
   });
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('uMonth').onclick=function(){unit='month';$('termUnit').textContent=t('uMonth');setSeg(this,$('uYear'))};
-  $('uYear').onclick=function(){unit='year';$('termUnit').textContent=t('uYear');setSeg(this,$('uMonth'))};
-  $('tAnn').onclick=function(){type='ann';$('typeHint').textContent=t('hintAnn');setSeg(this,$('tDiff'))};
-  $('tDiff').onclick=function(){type='diff';$('typeHint').textContent=t('hintDiff');setSeg(this,$('tAnn'))};
+  // Muddat birligi va kredit turi hisob formulasiga bevosita ta'sir qiladi —
+  // almashtirilganda ko'rsatilgan to'lov jadvali darhol qayta hisoblanadi.
+  $('uMonth').onclick=function(){unit='month';$('termUnit').textContent=t('uMonth');setSeg(this,$('uYear'));calc()};
+  $('uYear').onclick=function(){unit='year';$('termUnit').textContent=t('uYear');setSeg(this,$('uMonth'));calc()};
+  $('tAnn').onclick=function(){type='ann';$('typeHint').textContent=t('hintAnn');setSeg(this,$('tDiff'));calc()};
+  $('tDiff').onclick=function(){type='diff';$('typeHint').textContent=t('hintDiff');setSeg(this,$('tAnn'));calc()};
 
   var calcData=null;
   function calc(){

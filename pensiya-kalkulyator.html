@@ -322,8 +322,11 @@ img,svg{height:auto}
   });
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('gM').onclick=function(){gender='m';$('genderHint').textContent=t('hintM');setSeg(this,$('gF'))};
-  $('gF').onclick=function(){gender='f';$('genderHint').textContent=t('hintF');setSeg(this,$('gM'))};
+  // Jins minStaj'ga ta'sir qiladi — almashtirilganda ko'rsatilgan natija
+  // darhol qayta hisoblanadi, aks holda eski jinsga mos noto'g'ri summa
+  // ekranda qolib ketardi.
+  $('gM').onclick=function(){gender='m';$('genderHint').textContent=t('hintM');setSeg(this,$('gF'));calc()};
+  $('gF').onclick=function(){gender='f';$('genderHint').textContent=t('hintF');setSeg(this,$('gM'));calc()};
 
   function calc(){
     var sal=num($('salary').value), staj=num($('staj').value);

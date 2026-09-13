@@ -389,12 +389,13 @@ img,svg{height:auto}
       for(var j=0;j<mBtns.length;j++)mBtns[j].classList.remove('on');
       this.classList.add('on');
       $('markaHint').textContent=HINTS[lang][marka];
+      if(calcData)calc(); // marka aralashma nisbatlarini o'zgartiradi
     };
   }
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
-  $('mVol').onclick=function(){mode='vol';$('volField').style.display='block';$('dimsField').style.display='none';setSeg(this,$('mDims'))};
-  $('mDims').onclick=function(){mode='dims';$('volField').style.display='none';$('dimsField').style.display='block';setSeg(this,$('mVol'))};
+  $('mVol').onclick=function(){mode='vol';$('volField').style.display='block';$('dimsField').style.display='none';setSeg(this,$('mDims'));if(calcData)calc()};
+  $('mDims').onclick=function(){mode='dims';$('volField').style.display='none';$('dimsField').style.display='block';setSeg(this,$('mVol'));if(calcData)calc()};
 
   function calc(){
     var V;

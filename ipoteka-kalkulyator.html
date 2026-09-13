@@ -417,15 +417,19 @@ img,svg{height:auto}
   $('rate').addEventListener('input',function(){});
 
   function setSeg(a,b){a.classList.add('on');b.classList.remove('on')}
+  // downMode kredit summasiga (getLoan()) bevosita ta'sir qiladi — bu faqat
+  // #loanVal kichik preview'ni emas, balki to'liq calcData'ni ham eskirtiradi.
   $('dPct').onclick=function(){
     downMode='pct';$('downUnit').textContent='%';
     $('down').value='25';setSeg(this,$('dSum'));updateLoanPreview();
+    if(calcData)calc();
   };
   $('dSum').onclick=function(){
     downMode='sum';$('downUnit').textContent=t('uSum');
     var P=num($('price').value);
     $('down').value=P?fmt(P*0.25):'';
     setSeg(this,$('dPct'));updateLoanPreview();
+    if(calcData)calc();
   };
 
   function getLoan(){
