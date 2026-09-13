@@ -95,6 +95,19 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.card2{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:20px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+h2.sect{font-size:17px;font-weight:800;margin-bottom:4px}
+.sect-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+@media (max-width:380px){.row2{grid-template-columns:1fr}}
+.cmp-shell{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp-table{border-collapse:collapse;font-size:13px;width:100%}
+.cmp-table th,.cmp-table td{padding:10px 13px;text-align:right;border-top:1px solid #EFF3F0;white-space:nowrap;font-weight:600}
+.cmp-table thead th{border-top:0;background:var(--cat-soft);color:var(--cat);font-weight:800;font-size:11.5px;text-transform:uppercase}
+.cmp-table th:first-child,.cmp-table td:first-child{text-align:left;position:sticky;left:0;background:var(--card);font-weight:700;color:var(--muted)}
+.cmp-table thead th:first-child{background:var(--cat-soft)}
+.cmp-verdict{margin-top:12px;padding:12px 14px;background:var(--cat-soft);border-radius:10px;font-size:14px;font-weight:800;color:var(--cat);text-align:center}
 </style>
 <link rel="manifest" href="manifest.json">
 <style id="printcss">
@@ -236,7 +249,42 @@ img,svg{height:auto}
       <button type="button" class="pdfbtn">PDF</button></div>
     </div>
     <div class="receipt-edge"></div>
-  </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+  </section>
+
+  <section class="card2">
+    <h2 class="sect" data-i="cmpTitle">Ikki taklifni solishtirish</h2>
+    <p class="sect-sub" data-i="cmpSub">Ikkita ish taklifini bir xil o'lchovga keltirib solishtiring.</p>
+    <div class="row2">
+      <div class="field">
+        <label for="cmpAmtA" data-i="cmpLblA">Taklif A</label>
+        <div class="input-shell"><input type="text" id="cmpAmtA" inputmode="numeric" autocomplete="off"><span class="unit" data-i="uSum">so'm</span></div>
+        <div class="seg" id="cmpTypeA" style="margin-top:8px">
+          <button type="button" data-type="net" class="on" data-i="cmpTypeNet">Qo'lga</button>
+          <button type="button" data-type="gross" data-i="cmpTypeGross">Soliqdan oldin</button>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="cmpAmtB" data-i="cmpLblB">Taklif B</label>
+        <div class="input-shell"><input type="text" id="cmpAmtB" inputmode="numeric" autocomplete="off"><span class="unit" data-i="uSum">so'm</span></div>
+        <div class="seg" id="cmpTypeB" style="margin-top:8px">
+          <button type="button" data-type="net" class="on" data-i="cmpTypeNet">Qo'lga</button>
+          <button type="button" data-type="gross" data-i="cmpTypeGross">Soliqdan oldin</button>
+        </div>
+      </div>
+    </div>
+    <div id="cmpResult" style="display:none">
+      <div class="cmp-shell"><div class="cmp-scroll"><table class="cmp-table">
+        <thead><tr><th></th><th data-i="cmpColA">Taklif A</th><th data-i="cmpColB">Taklif B</th></tr></thead>
+        <tbody>
+          <tr><td data-i="cmpRowGross">Soliqdan oldin</td><td id="cmpGrossA"></td><td id="cmpGrossB"></td></tr>
+          <tr><td data-i="cmpRowNet">Qo'lga</td><td id="cmpNetA"></td><td id="cmpNetB"></td></tr>
+        </tbody>
+      </table></div></div>
+      <p class="cmp-verdict" id="cmpVerdict"></p>
+    </div>
+  </section>
+
+  <div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
   <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Telegram’ga yozish</a></div>
 <section class="seo" id="seoBlock"><h2>Oylikdan qanday soliqlar ushlanadi?</h2><p>O’zbekistonda oylikdan jismoniy shaxs daromad solig’i (JShDS) 12% ushlanadi — bu yagona asosiy ushlanma, INPS ham shu 12% ichida hisobga olinadi, alohida qo’shilmaydi. Kalkulyator brutto (qo’lga tegishdan oldingi) oylikni kiritsangiz, ushlanmalarni va netto (qo’lga tegadigan) summani hisoblaydi. 2026-yil me’yorlari.</p><h2>JShDS 12% hammaga bir xilmi?</h2><p>Ha, O’zbekistonda jismoniy shaxs daromad solig’i yagona 12% stavkada (2019-yildan beri). Avval progressiv shkala bor edi, hozir bir xil. Ba’zi daromad turlari (dividend va h.k.) boshqacha soliqlanadi, lekin oddiy ish haqi uchun 12%.</p><h2>Netto va brutto farqi nimada?</h2><p>Brutto — shartnomada yozilgan to’liq oylik, undan soliq ushlanmagan. Netto — soliqlar ushlangandan keyin qo’lingizga tegadigan pul. Masalan 10 mln brutto oylikdan 12% JShDS (INPS shu ichida) ushlanib, 8,8 mln netto qoladi. Ish beruvchi bilan qaysi summani gaplashayotganingizni aniqlang.</p><h2>INPS (pensiya jamg’armasi) nima?</h2><p>INPS — sizning shaxsiy pensiya jamg’armangiz, umumiy 12% daromad solig’i tarkibida hisobga olinadi (alohida qo’shimcha ushlanma emas). Kalkulyator standart 0,1% stavkani ishlatadi. Bu “yo’qotilgan” pul emas — o’z hisobingizga yig’iladi.</p><h2>Ish beruvchi ham soliq to’laydimi?</h2><p>Ha, ish beruvchi sizning oyligingizdan tashqari ijtimoiy soliq (hozir 12%) to’laydi — bu davlat pensiya tizimiga ketadi. Bu sizning netto oyligingizga ta’sir qilmaydi, lekin kompaniya uchun qo’shimcha xarajat. Kalkulyator xodim ushlanmasini ko’rsatadi.</p><h2>Natija aniqmi?</h2><p>Kalkulyator standart 12% JShDS bilan hisoblaydi (INPS shu ichida, alohida ko’rsatiladi). Ba’zi imtiyozlar (nogironlik, ma’lum toifalar) yoki qo’shimcha ushlanmalar bo’lsa, aniq raqam farq qilishi mumkin. Rasmiy hisob uchun buxgalteriyaga murojaat qiling.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Foydali maqolalar</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="qqs-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS 2026: qanday hisoblanadi va kim to'laydi" data-art-ru="НДС 2026: как считается и кто платит">QQS 2026: qanday hisoblanadi va kim to'laydi</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="ipoteka-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ipoteka 2026: stavkalar va imtiyozlar" data-art-ru="Ипотека 2026: ставки и льготы">Ipoteka 2026: stavkalar va imtiyozlar</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Barcha maqolalar →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="qqs-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="QQS" data-rel-ru="НДС">QQS</span></a><a href="hisob-siyosati-generatori" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Hisob siyosati" data-rel-ru="Учётная политика">Hisob siyosati</span></a><a href="pensiya-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Pensiya" data-rel-ru="Пенсия">Pensiya</span></a><a href="kredit-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Kredit" data-rel-ru="Кредит">Kredit</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka yoki ijara / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ijara stavkalari / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">2026-yil stavkalari: NDFL 12%, INPS 0,1% (soliq ichidan). Hisob-kitob ma'lumot uchun.</footer></main>
 
@@ -260,6 +308,15 @@ img,svg{height:auto}
       kGross:"Qog'ozdagi oylik (gross)",kNdfl:"Daromad solig'i (12%)",
       kInps:"— shundan INPS (0,1%)",kNet:"Qo'lga tegadi (net)",
       kSoc:"Ijtimoiy soliq (ish beruvchi)",kCost:"Ish beruvchining jami xarajati",
+      cmpTitle:"Ikki taklifni solishtirish",
+      cmpSub:"Ikkita ish taklifini bir xil o'lchovga keltirib solishtiring.",
+      cmpLblA:"Taklif A",cmpLblB:"Taklif B",
+      cmpTypeNet:"Qo'lga",cmpTypeGross:"Soliqdan oldin",
+      cmpColA:"Taklif A",cmpColB:"Taklif B",
+      cmpRowGross:"Soliqdan oldin",cmpRowNet:"Qo'lga",
+      cmpWinAFmt:"Taklif A qo'lga {diff} so'm ko'p beradi (+{pct}%)",
+      cmpWinBFmt:"Taklif B qo'lga {diff} so'm ko'p beradi (+{pct}%)",
+      cmpEqual:"Ikkala taklif qo'lga bir xil summa beradi",
       btnShare:"Ulashish",copied:"Nusxalandi ✓",
       shareTitle:"Ish haqi hisobi",
       foot:"2026-yil stavkalari: NDFL 12%, INPS 0,1% (soliq ichidan). Hisob-kitob ma'lumot uchun.",
@@ -282,6 +339,15 @@ img,svg{height:auto}
       kGross:"Оклад (gross)",kNdfl:"НДФЛ (12%)",
       kInps:"— из них ИНПС (0,1%)",kNet:"На руки (net)",
       kSoc:"Соцналог (работодатель)",kCost:"Общие расходы работодателя",
+      cmpTitle:"Сравнение двух предложений",
+      cmpSub:"Приведите два предложения о работе к одному знаменателю.",
+      cmpLblA:"Предложение А",cmpLblB:"Предложение Б",
+      cmpTypeNet:"На руки",cmpTypeGross:"До вычета",
+      cmpColA:"Предложение А",cmpColB:"Предложение Б",
+      cmpRowGross:"До вычета",cmpRowNet:"На руки",
+      cmpWinAFmt:"Предложение А даёт на {diff} сум больше на руки (+{pct}%)",
+      cmpWinBFmt:"Предложение Б даёт на {diff} сум больше на руки (+{pct}%)",
+      cmpEqual:"Оба предложения дают одинаковую сумму на руки",
       btnShare:"Поделиться",copied:"Скопировано ✓",
       shareTitle:"Расчёт зарплаты",
       foot:"Ставки 2026: НДФЛ 12%, ИНПС 0,1% (внутри налога). Расчёт носит справочный характер.",
@@ -324,6 +390,7 @@ img,svg{height:auto}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
     if(calcData)renderResult();
+    cmpCalc();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
   $('langRu').onclick=function(){lang='ru';applyLang()};
@@ -341,6 +408,62 @@ img,svg{height:auto}
   $('mNet').onclick=function(){mode='net';setSeg(this,$('mGross'));$('modeHint').textContent=t('hintNet');$('salaryLabel').textContent=t('lNet');calc()};
   $('s12').onclick=function(){soc=0.12;setSeg(this,$('s25'));calc()};
   $('s25').onclick=function(){soc=0.25;setSeg(this,$('s12'));calc()};
+
+  /* ===== Ikki taklifni solishtirish =====
+     Mavjud NDFL konstantasidan foydalanadi, yangi stavka/konstanta yo'q.
+     "Qo'lga" <-> "Soliqdan oldin" konvertatsiyasi mavjud calc() formulasi
+     bilan bir xil: net = gross*(1-NDFL). */
+  var cmpTypeA='net', cmpTypeB='net';
+  function cmpOffer(amt,type){
+    if(type==='net')return {net:amt,gross:amt/(1-NDFL)};
+    return {net:amt*(1-NDFL),gross:amt};
+  }
+  function cmpCalc(){
+    var vA=num($('cmpAmtA').value), vB=num($('cmpAmtB').value);
+    if(!vA||!vB){$('cmpResult').style.display='none';return}
+    var a=cmpOffer(vA,cmpTypeA), b=cmpOffer(vB,cmpTypeB), sum=' '+t('uSum');
+    $('cmpGrossA').textContent=fmt(a.gross)+sum;
+    $('cmpGrossB').textContent=fmt(b.gross)+sum;
+    $('cmpNetA').textContent=fmt(a.net)+sum;
+    $('cmpNetB').textContent=fmt(b.net)+sum;
+    var diff=b.net-a.net;
+    var verdict;
+    if(Math.round(Math.abs(diff))===0){
+      verdict=t('cmpEqual');
+    }else{
+      var loserNet=diff>0?a.net:b.net;
+      var pct=loserNet?Math.abs(diff)/loserNet*100:0;
+      var fmtKey=diff>0?'cmpWinBFmt':'cmpWinAFmt';
+      verdict=t(fmtKey).replace('{diff}',fmt(Math.abs(diff))).replace('{pct}',pct.toFixed(1).replace('.',','));
+    }
+    $('cmpVerdict').textContent=verdict;
+    $('cmpResult').style.display='block';
+  }
+  ['cmpAmtA','cmpAmtB'].forEach(function(id){
+    $(id).addEventListener('input',function(){
+      var v=this.value.replace(/[^\d]/g,'');
+      this.value=v?fmt(parseInt(v,10)):'';
+      cmpCalc();
+    });
+  });
+  var cmpBtnsA=document.querySelectorAll('#cmpTypeA button');
+  for(var cai=0;cai<cmpBtnsA.length;cai++){
+    cmpBtnsA[cai].onclick=function(){
+      cmpTypeA=this.getAttribute('data-type');
+      for(var j=0;j<cmpBtnsA.length;j++)cmpBtnsA[j].classList.remove('on');
+      this.classList.add('on');
+      cmpCalc();
+    };
+  }
+  var cmpBtnsB=document.querySelectorAll('#cmpTypeB button');
+  for(var cbi=0;cbi<cmpBtnsB.length;cbi++){
+    cmpBtnsB[cbi].onclick=function(){
+      cmpTypeB=this.getAttribute('data-type');
+      for(var j=0;j<cmpBtnsB.length;j++)cmpBtnsB[j].classList.remove('on');
+      this.classList.add('on');
+      cmpCalc();
+    };
+  }
 
   function calc(){
     var v=num($('salary').value);
