@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>To'lov uchun hisob — onlayn to'ldirib yuklab oling</title>
+<meta name="description" content="Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing — bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi. Word yoki PDF holida yuklab oling.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/tolov-hisobi-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-list{display:flex;flex-direction:column;gap:7px}
+.dg-lrow{display:flex;align-items:center;gap:7px}
+.dg-lnum{font-size:13px;font-weight:800;color:var(--muted);flex:none;min-width:16px}
+.dg-lrow input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px}
+.dg-lrow input:focus{outline:0;border-color:var(--cat)}
+.dg-ldel{flex:none;width:34px;height:34px;border:1.5px solid var(--line);background:#fff;color:#B04A3A;font-size:19px;line-height:1;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ldel:hover{border-color:#B04A3A;background:#FBEAE8}
+.dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-ladd:hover{background:var(--cat-soft)}
+.dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
+.dg-right > div{min-height:1em}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.calc-note{padding:0 14px 12px;font-size:12px;line-height:1.5;color:var(--muted);font-weight:600}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
+.tip b{color:#16303C}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="To'lov uchun hisob — onlayn to'ldirib yuklab oling">
+<meta property="og:description" content="Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing — bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi. Word yoki PDF holida yuklab oling.">
+<meta property="og:url" content="https://kalki.uz/tolov-hisobi-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/tolov-hisobi-namunasi.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="To'lov uchun hisob namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/tolov-hisobi-namunasi.png?v=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="To'lov uchun hisob — onlayn to'ldirib yuklab oling">
+<meta name="twitter:description" content="Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing — bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi. Word yoki PDF holida yuklab oling.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"To'lov uchun hisob generatori — tovar/xizmat ro'yxati va narxlarini kiriting, jami summa avtomatik hisoblanadi. Bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi hujjati.","sources":[]},"ru":{"text":"Генератор счёта на оплату — укажите список товаров/услуг и цены, итоговая сумма считается автоматически. Это не счёт-фактура НДС, а неофициальный документ-запрос на оплату.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"To'lov uchun hisob namunasi","item":"https://kalki.uz/tolov-hisobi-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"To'lov uchun hisob namunasi","description":"Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing — bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi. Word yoki PDF holida yuklab oling.","url":"https://kalki.uz/tolov-hisobi-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bu hujjat QQS hisob-fakturasi o'rnini bosadimi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi (Soliq kodeksi 47-modda, VM 522-son qarori). Ushbu generator yasagan hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas."}},{"@type":"Question","name":"Qachon shu hujjatdan foydalanish mumkin?","acceptedAnswer":{"@type":"Answer","text":"QQS'ga aloqasi bo'lmagan holatlarda: QQS to'lovchisi bo'lmagan tadbirkor xizmat ko'rsatganda, norasmiy bitimda yoki mijozga to'lov summasi va rekvizitlarini tartibli yetkazish kerak bo'lganda."}},{"@type":"Question","name":"Men QQS to'lovchisiman, nima qilishim kerak?","acceptedAnswer":{"@type":"Answer","text":"Xaridor QQS summasini hisobga olishi kerak bo'lsa, ushbu hujjat yetarli emas — rasmiy hisob-fakturani davlat EHF tizimi (soliq.uz) orqali rasmiylashtirish shart."}},{"@type":"Question","name":"Jami summa qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Har bir qatorda miqdor va narxni kiriting — qator summasi (miqdor × narx) va umumiy jami avtomatik hisoblanadi hamda so'z bilan yoziladi. Narxsiz qatorlar jamiga qo'shilmaydi."}},{"@type":"Question","name":"Hujjatni kimga va qanday yuborsam bo'ladi?","acceptedAnswer":{"@type":"Answer","text":"Word yoki PDF holida yuklab oling va xaridorga elektron pochta, messenjer yoki bosma nusxada yuboring. Rasmiy QQS hisobotiga kirmaydi — faqat ikki tomon o'rtasidagi to'lov so'rovi sifatida."}},{"@type":"Question","name":"Bu hujjat huquqiy kuchga egami?","acceptedAnswer":{"@type":"Answer","text":"Rasmiy soliq hujjati sifatida yo'q, lekin ikki tomon o'rtasidagi to'lov shartlarini yozma tasdiqlaydigan oddiy hujjat sifatida amaliy ahamiyatga ega — kelishmovchilik chiqsa, yozma dalil bo'lishi mumkin."}}]}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/tolov-hisobi-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/tolov-hisobi-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/tolov-hisobi-namunasi" data-hreflang-gen="1"></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">To'lov uchun hisob namunasi</h1>
+    <p class="sub" data-i="sub">Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing. Bu — QQS hisob-fakturasi emas, oddiy to'lov so'rovi hujjati.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">To'lov uchun hisob namunasi</span></nav></div>
+
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">To'lov uchun hisob generatori — tovar/xizmat ro'yxati va narxlarini kiriting, jami summa avtomatik hisoblanadi. Bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi hujjati.</p></div>
+  <div class="intro" data-i-html="intro"><b>To'lov uchun hisob</b> — sotuvchi tomonidan xaridorga tovar yoki xizmat uchun qancha va qanday to'lash kerakligini bildiruvchi oddiy moliyaviy hujjat. <b>Bu — rasmiy QQS hisob-fakturasi emas</b>: 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi, xaridor faqat shu tizim orqali o'tgan hujjat bo'yicha QQS'ni hisobga oladi. Ushbu hujjat — norasmiy to'lov so'rovi: tovar yoki xizmat ro'yxati, summasi va to'lov rekvizitlarini o'z ichiga oladi, lekin QQS hisobotiga tegishli emas. Tovar/xizmat nomi, miqdori va narxini kiriting — jami summa o'ng tarafda avtomatik hisoblanadi. Kiritilgan ma'lumot serverga yuborilmaydi, faqat shu brauzerda qoladi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Hisob ma'lumotlari</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="invNum"><label>Hisob raqami</label><div class="dg-shell"><input type="text" data-f="invNum" value="" placeholder="12"></div></div><div class="dg-field dg-half" data-fw="invDate"><label>Sana</label><div class="dg-shell"><input type="date" data-f="invDate" value="2026-09-18" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Sotuvchi</div><div class="dg-rows"><div class="dg-field" data-fw="sellerName"><label>Nomi (kompaniya yoki F.I.Sh.)</label><div class="dg-shell"><input type="text" data-f="sellerName" value="" placeholder="&quot;Anor Savdo&quot; MChJ"></div></div><div class="dg-field dg-half" data-fw="sellerAddr"><label>Manzil / telefon</label><div class="dg-shell"><input type="text" data-f="sellerAddr" value="" placeholder="Toshkent sh., +998 90 123 45 67"></div></div><div class="dg-field dg-half" data-fw="sellerReq"><label>STIR yoki boshqa rekvizit (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="sellerReq" value="" placeholder="301234567"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Xaridor</div><div class="dg-rows"><div class="dg-field" data-fw="buyerName"><label>Nomi</label><div class="dg-shell"><input type="text" data-f="buyerName" value="" placeholder="Karimov Bobur"></div></div><div class="dg-field" data-fw="buyerAddr"><label>Manzil / telefon (ixtiyoriy)</label><div class="dg-shell"><input type="text" data-f="buyerAddr" value="" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Tovar yoki xizmatlar</div><div class="dg-rows"><div class="dg-field" data-fw="items"><label>Ro'yxat</label><div class="dg-table" style="--dgc:3"><button type="button" class="dg-ladd" data-tadd="items">+ Qator qo'shish</button></div><div class="dg-hint">Narx va miqdor to'ldirilsa, jami summa avtomatik hisoblanadi.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">To'lov rekvizitlari</div><div class="dg-rows"><div class="dg-field" data-fw="payAcc"><label>Hisob raqami (r/s yoki karta)</label><div class="dg-shell"><input type="text" data-f="payAcc" value="" placeholder="2020 0000 1234 5678"></div></div><div class="dg-field dg-half" data-fw="payBank"><label>Bank nomi / MFO</label><div class="dg-shell"><input type="text" data-f="payBank" value="" placeholder="&quot;Ipoteka-bank&quot; ATB, MFO 00445"></div></div><div class="dg-field dg-half" data-fw="payDue"><label>To'lov muddati (ixtiyoriy)</label><div class="dg-shell"><input type="date" data-f="payDue" value="" placeholder=""></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Qo'shimcha (ixtiyoriy)</div><div class="dg-rows"><div class="dg-field" data-fw="extraTxt"><label>Erkin qo'shimcha matn</label><div class="dg-shell"><textarea data-f="extraTxt" rows="3" placeholder="Masalan: to'lov shartlari, izoh..."></textarea></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Hisobni ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Hisob matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 6</span></div>
+        <div id="docBody"><div class="dg-title">TO'LOV UCHUN HISOB</div><div class="dg-sub">№ <span class="ph">______</span>      «18» sentabr 2026 yil</div><div class="dg-warn">Bu — QQS hisob-fakturasi emas. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi. Ushbu hujjat — norasmiy to'lov so'rovi va QQS hisobotiga tegishli emas.</div><div class="dg-h">1. Sotuvchi</div><div class="dg-p"><span class="ph">______________________________</span></div><div class="dg-h">2. Xaridor</div><div class="dg-p"><span class="ph">______________________________</span></div><div class="dg-h">3. Tovar / xizmatlar</div><div class="dg-p">1. <span class="ph">________________________________________</span>;</div><div class="dg-h">4. To'lov rekvizitlari</div><div class="dg-p"><span class="ph">____________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div>«18» sentabr 2026 yil</div></div><div><div>_______________ (imzo / muhr)</div><div><span class="ph">________________________</span></div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Bu QQS hisob-fakturasi emas.</div></div>
+        <div id="calcNote" class="calc-note noprint">Jami summani ko'rish uchun kamida bitta tovar yoki xizmat narxini kiriting.</div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div id="tipBox" class="warn" data-i-html="tipTxt"><b>Diqqat:</b> bu hujjat QQS hisob-fakturasi emas. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi. Ushbu hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas.</div>
+
+
+
+<section class="seo" id="seoBlock"><h2>To'lov uchun hisob nima uchun kerak?</h2><p>To'lov uchun hisob — sotuvchi tomonidan xaridorga yuboriladigan, tovar yoki xizmat uchun qancha to'lash kerakligini va qayerga to'lash kerakligini ko'rsatuvchi oddiy moliyaviy hujjat. Bu — buyurtma yoki kelishuvni rasmiylashtiruvchi, to'lovni so'rovchi amaliy hujjat, xolos.</p><p>Ko'plab kichik tadbirkorlar va jismoniy shaxslar mijozlariga aynan shunday hisob yuboradi — bank o'tkazmasi yoki naqd to'lov uchun aniq summa va rekvizitlarni bildirish uchun. Generator tovar/xizmat ro'yxatini, narxlarini va to'lov rekvizitlarini kiritish imkonini beradi, jami summani esa avtomatik hisoblaydi.</p><h2>Bu hujjat QQS hisob-fakturasi bilan bir xilmi?</h2><p><b>Yo'q, bular boshqa-boshqa hujjatlar.</b> O'zbekiston Soliq kodeksining 47-moddasiga hamda Vazirlar Mahkamasining 2019-yil 25-iyundagi 522-son qaroriga ko'ra, 2020-yil 1-yanvardan boshlab QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali, elektron shaklda rasmiylashtiriladi. Xaridor faqat shu tizim orqali o'tgan hujjat bo'yicha QQS summasini hisobga olish huquqiga ega bo'ladi.</p><p>Oddiy veb-formada tuzilgan, Word yoki PDF holida yuklab olinadigan hisob — rasman QQS hisob-fakturasi bo'la olmaydi, chunki u davlat tizimidan o'tmagan. Shu sababli ushbu generator hujjatni ataylab "QQS hisob-fakturasi" emas, "to'lov uchun hisob" deb ataydi — bu chalkashlikning oldini olish uchun muhim.</p><h2>Qachon shu hujjatdan foydalanish mumkin?</h2><p>Bu hujjat QQS'ga aloqasi bo'lmagan holatlarda — masalan, QQS to'lovchisi bo'lmagan yakka tartibdagi tadbirkor yoki jismoniy shaxs xizmat ko'rsatganda, do'stona yoki norasmiy bitimda, yoki oddiygina mijozga to'lov summasi va rekvizitlarini aniq va tartibli tarzda yetkazish kerak bo'lganda foydali bo'ladi.</p><p>Agar siz QQS to'lovchisi bo'lsangiz va xaridor QQS summasini hisobga olishi kerak bo'lsa, ushbu hujjat yetarli emas — bunday holatda rasmiy hisob-fakturani davlat EHF tizimi (soliq.uz) orqali rasmiylashtirish shart.</p><h2>Summasi qanday hisoblanadi?</h2><p>Har bir tovar yoki xizmat qatorida miqdor va narxni kiriting — qator summasi (miqdor × narx) va umumiy jami summa avtomatik hisoblanadi hamda so'z bilan ham yoziladi. Narx kiritilmagan qatorlar jami summaga qo'shilmaydi.</p><h2>Hujjatni qanday yuborsam bo'ladi?</h2><p>Word yoki PDF tugmasi orqali hujjatni yuklab oling va uni xaridorga elektron pochta, messenjer yoki bosma nusxada yuboring. "Havola" tugmasi orqali kiritilgan ma'lumotlar bilan havola yaratib, uni boshqa qurilmada ochish yoki hamkasbga yuborish ham mumkin.</p><h2>Tipik xatolar</h2><p>Eng ko'p uchraydigan xato — bu hujjatni rasmiy QQS hisob-fakturasi o'rnida ishlatish. QQS to'lovchi tomon uchun bu hujjat yetarli emas — EHF tizimidan o'tgan rasmiy hisob-faktura kerak bo'ladi.</p><p>Ikkinchi xato — to'lov rekvizitlarini (hisob raqami, bank) to'liq ko'rsatmaslik. Bu xaridorning to'lovni amalga oshirishini qiyinlashtiradi yoki kechiktiradi.</p><p>Uchinchi xato — tovar yoki xizmat nomini juda umumiy yozish (masalan, "xizmat"). Aniq va tushunarli nom yozish kelishmovchiliklarning oldini oladi.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Bu hujjat QQS hisob-fakturasi o'rnini bosadimi?</h2><p>Yo'q. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi (Soliq kodeksi 47-modda, VM 522-son qarori). Ushbu generator yasagan hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas.</p><h2>Qachon shu hujjatdan foydalanish mumkin?</h2><p>QQS'ga aloqasi bo'lmagan holatlarda: QQS to'lovchisi bo'lmagan tadbirkor xizmat ko'rsatganda, norasmiy bitimda yoki mijozga to'lov summasi va rekvizitlarini tartibli yetkazish kerak bo'lganda.</p><h2>Men QQS to'lovchisiman, nima qilishim kerak?</h2><p>Xaridor QQS summasini hisobga olishi kerak bo'lsa, ushbu hujjat yetarli emas — rasmiy hisob-fakturani davlat EHF tizimi (soliq.uz) orqali rasmiylashtirish shart.</p><h2>Jami summa qanday hisoblanadi?</h2><p>Har bir qatorda miqdor va narxni kiriting — qator summasi (miqdor × narx) va umumiy jami avtomatik hisoblanadi hamda so'z bilan yoziladi. Narxsiz qatorlar jamiga qo'shilmaydi.</p><h2>Hujjatni kimga va qanday yuborsam bo'ladi?</h2><p>Word yoki PDF holida yuklab oling va xaridorga elektron pochta, messenjer yoki bosma nusxada yuboring. Rasmiy QQS hisobotiga kirmaydi — faqat ikki tomon o'rtasidagi to'lov so'rovi sifatida.</p><h2>Bu hujjat huquqiy kuchga egami?</h2><p>Rasmiy soliq hujjati sifatida yo'q, lekin ikki tomon o'rtasidagi to'lov shartlarini yozma tasdiqlaydigan oddiy hujjat sifatida amaliy ahamiyatga ega — kelishmovchilik chiqsa, yozma dalil bo'lishi mumkin.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Bog'liq hujjat namunalari" data-artt-ru="Связанные образцы документов">Bog'liq hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="shablonlar" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🧾</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Rasmiy QQS hisob-fakturasi shabloni (Excel)" data-art-ru="Официальный шаблон счёта-фактуры НДС (Excel)">Rasmiy QQS hisob-fakturasi shabloni (Excel)</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="qqs-kalkulyator" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🧮</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="QQS kalkulyatorida hisoblang" data-art-ru="Рассчитайте НДС">QQS kalkulyatorida hisoblang</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="xizmat-korsatish-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🤝</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Xizmat ko'rsatish shartnomasi" data-art-ru="Договор оказания услуг">Xizmat ko'rsatish shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="tilxat-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">💰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Tilxat (qarz olish)" data-art-ru="Расписка о займе">Tilxat (qarz olish)</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="qqs-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="QQS" data-rel-ru="НДС">QQS</span></a><a href="shablonlar" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📄</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Shablonlar" data-rel-ru="Шаблоны">Shablonlar</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📨</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Umumiy ariza" data-rel-ru="Заявление (общее)">Umumiy ariza</span></a><a href="hujjatlar" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px;flex:none">📝</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Barcha hujjat namunalari" data-rel-ru="Все образцы документов">Barcha hujjat namunalari</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka yoki ijara / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ijara stavkalari / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hisob namunasi ma'lumot uchun. Rasmiy QQS hisob-fakturasi kerak bo'lsa, davlat EHF tizimidan (soliq.uz) foydalaning.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">18.9.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function today(){return iso(new Date());}
+
+function setLiveNote(rows,total,hasTotal,lang){
+  var el=document.getElementById('calcNote');
+  if(!el)return;
+  var ru=lang==='ru';
+  var t;
+  if(hasTotal){
+    t=ru
+      ? ('Итого к оплате: '+KD.fmtNum(total)+' сум ('+rows.length+' стр.)')
+      : ('Jami to\'lov: '+KD.fmtNum(total)+" so'm ("+rows.length+" qator)");
+  } else {
+    t=ru
+      ? 'Чтобы увидеть итоговую сумму, укажите цену хотя бы одного товара или услуги.'
+      : "Jami summani ko'rish uchun kamida bitta tovar yoki xizmat narxini kiriting.";
+  }
+  el.textContent=t;
+}
+
+/* ---------- interfeys matnlari ---------- */
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"To'lov uchun hisob namunasi",
+  sub:"Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing. Bu — QQS hisob-fakturasi emas, oddiy to'lov so'rovi hujjati.",
+  intro:"<b>To'lov uchun hisob</b> — sotuvchi tomonidan xaridorga tovar yoki xizmat uchun qancha va qanday to'lash kerakligini bildiruvchi oddiy moliyaviy hujjat. <b>Bu — rasmiy QQS hisob-fakturasi emas</b>: 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi, xaridor faqat shu tizim orqali o'tgan hujjat bo'yicha QQS'ni hisobga oladi. Ushbu hujjat — norasmiy to'lov so'rovi: tovar yoki xizmat ro'yxati, summasi va to'lov rekvizitlarini o'z ichiga oladi, lekin QQS hisobotiga tegishli emas. Tovar/xizmat nomi, miqdori va narxini kiriting — jami summa o'ng tarafda avtomatik hisoblanadi. Kiritilgan ma'lumot serverga yuborilmaydi, faqat shu brauzerda qoladi.",
+  prevTitle:"Hisob matni",
+  jump:"Hisobni ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  tipTxt:"<b>Diqqat:</b> bu hujjat QQS hisob-fakturasi emas. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi. Ushbu hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas.",
+  foot:"Hisob namunasi ma'lumot uchun. Rasmiy QQS hisob-fakturasi kerak bo'lsa, davlat EHF tizimidan (soliq.uz) foydalaning.",
+  faqTitle:"Savol-javob",
+  seo:"<h2>To'lov uchun hisob nima uchun kerak?</h2><p>To'lov uchun hisob — sotuvchi tomonidan xaridorga yuboriladigan, tovar yoki xizmat uchun qancha to'lash kerakligini va qayerga to'lash kerakligini ko'rsatuvchi oddiy moliyaviy hujjat. Bu — buyurtma yoki kelishuvni rasmiylashtiruvchi, to'lovni so'rovchi amaliy hujjat, xolos.</p><p>Ko'plab kichik tadbirkorlar va jismoniy shaxslar mijozlariga aynan shunday hisob yuboradi — bank o'tkazmasi yoki naqd to'lov uchun aniq summa va rekvizitlarni bildirish uchun. Generator tovar/xizmat ro'yxatini, narxlarini va to'lov rekvizitlarini kiritish imkonini beradi, jami summani esa avtomatik hisoblaydi.</p><h2>Bu hujjat QQS hisob-fakturasi bilan bir xilmi?</h2><p><b>Yo'q, bular boshqa-boshqa hujjatlar.</b> O'zbekiston Soliq kodeksining 47-moddasiga hamda Vazirlar Mahkamasining 2019-yil 25-iyundagi 522-son qaroriga ko'ra, 2020-yil 1-yanvardan boshlab QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali, elektron shaklda rasmiylashtiriladi. Xaridor faqat shu tizim orqali o'tgan hujjat bo'yicha QQS summasini hisobga olish huquqiga ega bo'ladi.</p><p>Oddiy veb-formada tuzilgan, Word yoki PDF holida yuklab olinadigan hisob — rasman QQS hisob-fakturasi bo'la olmaydi, chunki u davlat tizimidan o'tmagan. Shu sababli ushbu generator hujjatni ataylab \"QQS hisob-fakturasi\" emas, \"to'lov uchun hisob\" deb ataydi — bu chalkashlikning oldini olish uchun muhim.</p><h2>Qachon shu hujjatdan foydalanish mumkin?</h2><p>Bu hujjat QQS'ga aloqasi bo'lmagan holatlarda — masalan, QQS to'lovchisi bo'lmagan yakka tartibdagi tadbirkor yoki jismoniy shaxs xizmat ko'rsatganda, do'stona yoki norasmiy bitimda, yoki oddiygina mijozga to'lov summasi va rekvizitlarini aniq va tartibli tarzda yetkazish kerak bo'lganda foydali bo'ladi.</p><p>Agar siz QQS to'lovchisi bo'lsangiz va xaridor QQS summasini hisobga olishi kerak bo'lsa, ushbu hujjat yetarli emas — bunday holatda rasmiy hisob-fakturani davlat EHF tizimi (soliq.uz) orqali rasmiylashtirish shart.</p><h2>Summasi qanday hisoblanadi?</h2><p>Har bir tovar yoki xizmat qatorida miqdor va narxni kiriting — qator summasi (miqdor × narx) va umumiy jami summa avtomatik hisoblanadi hamda so'z bilan ham yoziladi. Narx kiritilmagan qatorlar jami summaga qo'shilmaydi.</p><h2>Hujjatni qanday yuborsam bo'ladi?</h2><p>Word yoki PDF tugmasi orqali hujjatni yuklab oling va uni xaridorga elektron pochta, messenjer yoki bosma nusxada yuboring. \"Havola\" tugmasi orqali kiritilgan ma'lumotlar bilan havola yaratib, uni boshqa qurilmada ochish yoki hamkasbga yuborish ham mumkin.</p><h2>Tipik xatolar</h2><p>Eng ko'p uchraydigan xato — bu hujjatni rasmiy QQS hisob-fakturasi o'rnida ishlatish. QQS to'lovchi tomon uchun bu hujjat yetarli emas — EHF tizimidan o'tgan rasmiy hisob-faktura kerak bo'ladi.</p><p>Ikkinchi xato — to'lov rekvizitlarini (hisob raqami, bank) to'liq ko'rsatmaslik. Bu xaridorning to'lovni amalga oshirishini qiyinlashtiradi yoki kechiktiradi.</p><p>Uchinchi xato — tovar yoki xizmat nomini juda umumiy yozish (masalan, \"xizmat\"). Aniq va tushunarli nom yozish kelishmovchiliklarning oldini oladi.</p>"
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец счёта на оплату",
+  sub:"Оформите счёт на оплату товара или услуги онлайн. Это не счёт-фактура НДС — обычный документ-запрос на оплату.",
+  intro:"<b>Счёт на оплату</b> — простой финансовый документ, которым продавец сообщает покупателю, сколько и как нужно заплатить за товар или услугу. <b>Это не официальный счёт-фактура НДС</b>: с 2020 года в Узбекистане счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур (ЭСФ), и покупатель может принять НДС к зачёту только по документу, прошедшему через эту систему. Данный документ — неофициальный запрос на оплату: он содержит список товаров/услуг, сумму и реквизиты для оплаты, но не относится к отчётности по НДС. Укажите наименование, количество и цену — итоговая сумма справа рассчитается автоматически. Введённые данные не отправляются на сервер и остаются только в этом браузере.",
+  prevTitle:"Текст счёта",
+  jump:"Посмотреть счёт ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  tipTxt:"<b>Внимание:</b> этот документ не является счётом-фактурой НДС. С 2020 года в Узбекистане счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур (ЭСФ). Данный документ — неофициальный запрос на оплату, не относится к отчётности по НДС.",
+  foot:"Образец счёта носит справочный характер. Если нужна официальная счёт-фактура НДС, используйте государственную систему ЭСФ (soliq.uz).",
+  faqTitle:"Вопросы и ответы",
+  seo:"<h2>Зачем нужен счёт на оплату?</h2><p>Счёт на оплату — простой финансовый документ, который продавец отправляет покупателю, указывая, сколько нужно заплатить за товар или услугу и куда именно. Это практический документ, оформляющий заказ или договорённость и запрашивающий оплату, не более того.</p><p>Многие малые предприниматели и физические лица отправляют клиентам именно такой счёт — чтобы сообщить точную сумму и реквизиты для банковского перевода или наличной оплаты. Генератор позволяет указать список товаров/услуг, цены и реквизиты для оплаты, а итоговую сумму рассчитывает автоматически.</p><h2>Это то же самое, что счёт-фактура НДС?</h2><p><b>Нет, это разные документы.</b> Согласно статье 47 Налогового кодекса Узбекистана и постановлению Кабинета Министров № 522 от 25 июня 2019 года, с 1 января 2020 года счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур (ЭСФ), в электронном виде. Покупатель может принять сумму НДС к зачёту только по документу, прошедшему через эту систему.</p><p>Обычный счёт, составленный в веб-форме и скачанный в формате Word или PDF, не может официально считаться счётом-фактурой НДС, поскольку он не проходит через государственную систему. Поэтому данный генератор намеренно называет документ не \"счёт-фактура НДС\", а \"счёт на оплату\" — это важно для избежания путаницы.</p><h2>Когда можно использовать этот документ?</h2><p>Документ полезен в ситуациях, не связанных с НДС, — например, когда индивидуальный предприниматель или физическое лицо, не являющееся плательщиком НДС, оказывает услугу, при неформальной договорённости, или когда просто нужно ясно и структурированно сообщить клиенту сумму и реквизиты для оплаты.</p><p>Если вы являетесь плательщиком НДС и покупателю нужно принять сумму НДС к зачёту, этого документа недостаточно — в таком случае необходимо оформить официальную счёт-фактуру через государственную систему ЭСФ (soliq.uz).</p><h2>Как считается сумма?</h2><p>Укажите количество и цену для каждого товара или услуги — сумма по строке (количество × цена) и общий итог рассчитываются автоматически и указываются прописью. Строки без указанной цены не включаются в итоговую сумму.</p><h2>Как отправить документ?</h2><p>Скачайте документ через кнопку Word или PDF и отправьте его покупателю по электронной почте, в мессенджере или в бумажном виде. Кнопка \"Ссылка\" позволяет создать ссылку с введёнными данными, чтобы открыть её на другом устройстве или отправить коллеге.</p><h2>Типичные ошибки</h2><p>Самая частая ошибка — использование этого документа вместо официальной счёт-фактуры НДС. Для стороны — плательщика НДС этого документа недостаточно, нужна официальная счёт-фактура через систему ЭСФ.</p><p>Вторая ошибка — неполное указание реквизитов для оплаты (номер счёта, банк). Это затрудняет или задерживает оплату покупателем.</p><p>Третья ошибка — слишком общее наименование товара или услуги (например, просто \"услуга\"). Чёткое и понятное наименование предотвращает разногласия.</p>"
+ }
+};
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'tolovhisob',
+ file:'tolov-hisobi',
+ sections:[
+  {id:'inv',title:{uz:"Hisob ma'lumotlari",ru:'Данные счёта'},fields:[
+    {id:'invNum',t:'text',half:true,label:{uz:'Hisob raqami',ru:'Номер счёта'},ph:{uz:'12',ru:'12'}},
+    {id:'invDate',t:'date',half:true,def:today(),label:{uz:'Sana',ru:'Дата'}}
+  ]},
+  {id:'seller',title:{uz:'Sotuvchi',ru:'Продавец'},fields:[
+    {id:'sellerName',t:'text',label:{uz:'Nomi (kompaniya yoki F.I.Sh.)',ru:'Наименование (компания или Ф.И.О.)'},ph:{uz:'"Anor Savdo" MChJ',ru:'ООО "Anor Savdo"'}},
+    {id:'sellerAddr',t:'text',half:true,label:{uz:'Manzil / telefon',ru:'Адрес / телефон'},ph:{uz:'Toshkent sh., +998 90 123 45 67',ru:'г. Ташкент, +998 90 123 45 67'}},
+    {id:'sellerReq',t:'text',half:true,label:{uz:'STIR yoki boshqa rekvizit (ixtiyoriy)',ru:'ИНН или др. реквизит (необязательно)'},ph:{uz:'301234567',ru:'301234567'}}
+  ]},
+  {id:'buyer',title:{uz:'Xaridor',ru:'Покупатель'},fields:[
+    {id:'buyerName',t:'text',label:{uz:'Nomi',ru:'Наименование'},ph:{uz:'Karimov Bobur',ru:'Каримов Бобур'}},
+    {id:'buyerAddr',t:'text',label:{uz:'Manzil / telefon (ixtiyoriy)',ru:'Адрес / телефон (необязательно)'},ph:{uz:'',ru:''}}
+  ]},
+  {id:'itemsSec',title:{uz:'Tovar yoki xizmatlar',ru:'Товары или услуги'},fields:[
+    {id:'items',t:'table',label:{uz:"Ro'yxat",ru:'Список'},
+     addLabel:{uz:"+ Qator qo'shish",ru:'+ Добавить строку'},
+     hint:{uz:"Narx va miqdor to'ldirilsa, jami summa avtomatik hisoblanadi.",ru:'При заполнении цены и количества итог считается автоматически.'},
+     cols:[
+      {id:'name',label:{uz:'Nomi',ru:'Наименование'},ph:{uz:'Konsalting xizmati',ru:'Консалтинговая услуга'}},
+      {id:'qty',narrow:true,num:true,label:{uz:'Miqdori',ru:'Кол-во'},ph:{uz:'1',ru:'1'}},
+      {id:'price',narrow:true,num:true,label:{uz:'Narxi',ru:'Цена'},ph:{uz:'500000',ru:'500000'}}
+     ]}
+  ]},
+  {id:'pay',title:{uz:"To'lov rekvizitlari",ru:'Реквизиты для оплаты'},fields:[
+    {id:'payAcc',t:'text',label:{uz:'Hisob raqami (r/s yoki karta)',ru:'Номер счёта (р/с или карта)'},ph:{uz:'2020 0000 1234 5678',ru:'2020 0000 1234 5678'}},
+    {id:'payBank',t:'text',half:true,label:{uz:'Bank nomi / MFO',ru:'Банк / МФО'},ph:{uz:'"Ipoteka-bank" ATB, MFO 00445',ru:'АКИБ "Ипотека-банк", МФО 00445'}},
+    {id:'payDue',t:'date',half:true,label:{uz:"To'lov muddati (ixtiyoriy)",ru:'Срок оплаты (необязательно)'}}
+  ]},
+  {id:'extra',title:{uz:"Qo'shimcha (ixtiyoriy)",ru:'Дополнительно (необязательно)'},fields:[
+    {id:'extraTxt',t:'area',rows:3,label:{uz:"Erkin qo'shimcha matn",ru:'Свободный дополнительный текст'},
+     ph:{uz:"Masalan: to'lov shartlari, izoh...",ru:'Например: условия оплаты, примечание...'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   var rows=(Array.isArray(v.items)?v.items:[]).filter(function(r){
+     return r&&typeof r==='object'&&String(r.name||'').trim();
+   });
+   var total=0,hasTotal=false,out=[];
+   for(var i=0;i<rows.length;i++){
+     var r=rows[i];
+     var qty=KD.num(r.qty); if(!qty)qty=1;
+     var price=KD.num(r.price);
+     var sum=price?qty*price:0;
+     if(price)hasTotal=true;
+     total+=sum;
+     out.push({name:r.name,qty:qty,price:price,sum:sum});
+   }
+   setLiveNote(out,total,hasTotal,lang);
+   return {rows:out,total:total,hasTotal:hasTotal};
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+
+   b.push({k:'title',text:ru?'СЧЁТ НА ОПЛАТУ':"TO'LOV UCHUN HISOB"});
+   b.push({k:'sub',text:'№ '+KD.v(v.invNum,6)+'      '+(v.invDate?KD.fmtDate(v.invDate,lang):B(20))});
+   b.push({k:'warn',text:ru
+     ?'Это не счёт-фактура НДС. С 2020 года счёт-фактура НДС в Узбекистане оформляется только через государственную систему электронных счетов-фактур (ЭСФ). Данный документ — неофициальный запрос на оплату и не относится к отчётности по НДС.'
+     :"Bu — QQS hisob-fakturasi emas. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi. Ushbu hujjat — norasmiy to'lov so'rovi va QQS hisobotiga tegishli emas."});
+
+   b.push({k:'h',text:'1. '+(ru?'Продавец':'Sotuvchi')});
+   var sellerLine=KD.v(v.sellerName,30)+(String(v.sellerAddr||'').trim()?(', '+v.sellerAddr):'')+(String(v.sellerReq||'').trim()?(', '+(ru?'реквизит: ':'rekvizit: ')+v.sellerReq):'');
+   b.push({k:'p',text:sellerLine});
+
+   b.push({k:'h',text:'2. '+(ru?'Покупатель':'Xaridor')});
+   var buyerLine=KD.v(v.buyerName,30)+(String(v.buyerAddr||'').trim()?(', '+v.buyerAddr):'');
+   b.push({k:'p',text:buyerLine});
+
+   b.push({k:'h',text:'3. '+(ru?'Товары / услуги':'Tovar / xizmatlar')});
+   if(c.rows.length){
+     for(var i=0;i<c.rows.length;i++){
+       var r=c.rows[i];
+       var parts=[String(r.name||'').trim()];
+       parts.push(r.qty+(ru?' шт.':' dona'));
+       if(r.price) parts.push(KD.fmtNum(r.price)+' '+KD.currency(lang));
+       if(r.sum) parts.push((ru?'сумма: ':'summa: ')+KD.fmtNum(r.sum)+' '+KD.currency(lang));
+       b.push({k:'p',text:(i+1)+'. '+parts.join(' — ')+';'});
+     }
+   } else {
+     b.push({k:'p',text:'1. '+B(40)+';'});
+   }
+   if(c.hasTotal){
+     b.push({k:'p',text:(ru?'ИТОГО К ОПЛАТЕ: ':"JAMI TO'LOV SUMMASI: ")+KD.money(c.total,lang)+'.'});
+   }
+
+   b.push({k:'h',text:'4. '+(ru?'Реквизиты для оплаты':"To'lov rekvizitlari")});
+   var accTxt=String(v.payAcc||'').trim();
+   var payLine=(accTxt?((ru?'счёт: ':'hisob raqami: ')+accTxt):B(20))+(String(v.payBank||'').trim()?(', '+v.payBank):'');
+   b.push({k:'p',text:payLine});
+   if(v.payDue){
+     b.push({k:'p',text:(ru?'Срок оплаты — ':"To'lov muddati — ")+KD.fmtDate(v.payDue,lang)+'.'});
+   }
+
+   var extra=String(v.extraTxt||'').trim();
+   if(extra){
+     var paras=extra.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
+     for(var pi=0;pi<paras.length;pi++) b.push({k:'p',text:paras[pi]});
+   }
+
+   b.push({k:'gap'});
+   b.push({k:'sig',
+     left:[KD.fmtDate(v.invDate||today(),lang)],
+     right:['_______________ '+(ru?'(подпись / печать)':'(imzo / muhr)'),KD.v(v.sellerName,24)]});
+
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Это не счёт-фактура НДС.'
+     :"Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan. Bu QQS hisob-fakturasi emas."});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[
+  ["Bu hujjat QQS hisob-fakturasi o'rnini bosadimi?","Yo'q. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi (Soliq kodeksi 47-modda, VM 522-son qarori). Ushbu generator yasagan hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas."],
+  ["Qachon shu hujjatdan foydalanish mumkin?","QQS'ga aloqasi bo'lmagan holatlarda: QQS to'lovchisi bo'lmagan tadbirkor xizmat ko'rsatganda, norasmiy bitimda yoki mijozga to'lov summasi va rekvizitlarini tartibli yetkazish kerak bo'lganda."],
+  ["Men QQS to'lovchisiman, nima qilishim kerak?","Xaridor QQS summasini hisobga olishi kerak bo'lsa, ushbu hujjat yetarli emas — rasmiy hisob-fakturani davlat EHF tizimi (soliq.uz) orqali rasmiylashtirish shart."],
+  ["Jami summa qanday hisoblanadi?","Har bir qatorda miqdor va narxni kiriting — qator summasi (miqdor × narx) va umumiy jami avtomatik hisoblanadi hamda so'z bilan yoziladi. Narxsiz qatorlar jamiga qo'shilmaydi."],
+  ["Hujjatni kimga va qanday yuborsam bo'ladi?","Word yoki PDF holida yuklab oling va xaridorga elektron pochta, messenjer yoki bosma nusxada yuboring. Rasmiy QQS hisobotiga kirmaydi — faqat ikki tomon o'rtasidagi to'lov so'rovi sifatida."],
+  ["Bu hujjat huquqiy kuchga egami?","Rasmiy soliq hujjati sifatida yo'q, lekin ikki tomon o'rtasidagi to'lov shartlarini yozma tasdiqlaydigan oddiy hujjat sifatida amaliy ahamiyatga ega — kelishmovchilik chiqsa, yozma dalil bo'lishi mumkin."]
+ ],
+ ru:[
+  ["Заменяет ли этот документ счёт-фактуру НДС?","Нет. С 2020 года в Узбекистане счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур — ЭСФ (ст. 47 НК, постановление КМ № 522). Документ, созданный этим генератором, — неофициальный запрос на оплату, не относится к отчётности по НДС."],
+  ["Когда можно использовать этот документ?","В ситуациях, не связанных с НДС: когда предприниматель — не плательщик НДС — оказывает услугу, при неформальной сделке, или когда нужно чётко сообщить клиенту сумму и реквизиты для оплаты."],
+  ["Я плательщик НДС, что мне делать?","Если покупателю нужно принять сумму НДС к зачёту, этого документа недостаточно — необходимо оформить официальную счёт-фактуру через государственную систему ЭСФ (soliq.uz)."],
+  ["Как считается итоговая сумма?","Укажите количество и цену в каждой строке — сумма по строке (количество × цена) и общий итог считаются автоматически и указываются прописью. Строки без цены не включаются в итог."],
+  ["Как и кому отправить документ?","Скачайте в формате Word или PDF и отправьте покупателю по почте, в мессенджере или в бумажном виде. В официальную отчётность по НДС документ не входит — это запрос на оплату между сторонами."],
+  ["Имеет ли этот документ юридическую силу?","Как официальный налоговый документ — нет, но как письменное подтверждение условий оплаты между сторонами он имеет практическое значение и может служить письменным доказательством при споре."]
+ ]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"To'lov uchun hisob — onlayn to'ldirib yuklab oling",
+    ru:'Счёт на оплату — заполнить онлайн и скачать Word'
+  },
+  descriptions:{
+    uz:"Tovar yoki xizmat uchun to'lov hisobini onlayn tuzing — bu QQS hisob-fakturasi emas, norasmiy to'lov so'rovi. Word yoki PDF holida yuklab oling.",
+    ru:'Оформите счёт на оплату товара или услуги онлайн — это не счёт-фактура НДС, а неофициальный запрос на оплату. Скачайте в формате Word или PDF.'
+  }
+});
+setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight([]);},220);
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'
+       ||id==='calcNote'||id==='datanote'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('/html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

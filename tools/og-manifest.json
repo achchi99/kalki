@@ -530,5 +530,12 @@
     "hash": "e0a4763aca09",
     "tpl": 1,
     "v": 1
+  },
+  "tolov-hisobi-namunasi": {
+    "title": "To'lov uchun hisob namunasi",
+    "cat": "hujjat",
+    "hash": "169d7a3b893f",
+    "tpl": 1,
+    "v": 1
   }
 }

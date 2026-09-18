@@ -112,6 +112,8 @@ const ASSETS = [
   '/ru/mehnat-shartnomasi-namunasi',
   '/moddiy-yordam-arizasi-namunasi',
   '/ru/moddiy-yordam-arizasi-namunasi',
+  '/tolov-hisobi-namunasi',
+  '/ru/tolov-hisobi-namunasi',
   '/oila-byudjet-kalkulyator',
   '/ru/oila-byudjet-kalkulyator',
   '/omonat-kalkulyator',

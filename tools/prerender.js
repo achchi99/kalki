@@ -186,6 +186,8 @@ const RU_PAGES = [
   'tatil-arizasi-namunasi.html',
   'moddiy-yordam-arizasi-namunasi.html',
   'oquv-tatili-arizasi-namunasi.html',
+  // FAZA 1-B (2026-09): "TEZ ORADA" hisob-faktura kartasi o'rniga.
+  'tolov-hisobi-namunasi.html',
 ];
 
 /* Kirill (uz-Cyrl) pilot — FAZA 1 (2026-09). Mexanik lotin->kirill

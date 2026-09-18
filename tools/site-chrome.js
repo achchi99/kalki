@@ -188,6 +188,7 @@ const XNAV_LINKS = [
   ['tatil-arizasi-namunasi', 'Ta\'til arizasi / Заявление на отпуск'],
   ['moddiy-yordam-arizasi-namunasi', 'Moddiy yordam arizasi / Заявление на матпомощь'],
   ['oquv-tatili-arizasi-namunasi', 'O\'quv ta\'tili arizasi / Заявление на учебный отпуск'],
+  ['tolov-hisobi-namunasi', 'To\'lov uchun hisob / Счёт на оплату'],
   ['hujjatlar', '📝 Hujjatlar generatori / Генератор документов'],
   ['shablonlar', '📄 Shablonlar'],
   ['blog', '📰 Maqolalar / Статьи'],
