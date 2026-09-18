@@ -745,8 +745,8 @@ img,svg{height:auto}
     btn.disabled=true;
     var done=function(){btn.textContent=orig;btn.disabled=false};
     var chain=Promise.resolve();
-    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('html2canvas.min.js')});
-    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('jspdf.umd.min.js')});
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('/html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
     chain.then(function(){
       var pf=card.style.filter;card.style.filter='none';
       return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
