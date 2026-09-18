@@ -61,6 +61,17 @@ input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;f
 .seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;margin-bottom:16px}
 .seg button{flex:1;border:0;background:transparent;font:inherit;font-size:14px;font-weight:800;color:var(--muted);padding:11px 4px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .seg button.on{background:var(--cat);color:#fff}
+.seg.mini{display:inline-flex;width:auto;margin-bottom:0;flex:none}
+.seg.mini button{flex:none;padding:9px 12px;font-size:12.5px}
+.dur-row{display:flex;gap:8px;align-items:stretch}
+.dur-row .input-shell{flex:1;min-width:0}
+details{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+summary{list-style:none;cursor:pointer;font-size:14.5px;font-weight:800;color:var(--cat);display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:19px;font-weight:700;color:var(--cat);flex:none;margin-left:10px}
+details[open] summary::after{content:"−"}
+.sec-body{margin-top:14px}
+.werr{font-size:13px;font-weight:700;color:#B04A3A;background:#FBEAE8;border-radius:10px;padding:10px 12px;margin-top:10px}
 .sect-title{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
 .sect-title::after{content:"";flex:1;height:1px;background:var(--line)}
 .hint{font-size:12.5px;color:var(--muted);margin-top:6px}
@@ -207,15 +218,24 @@ img,svg{height:auto}
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-qurilish">Qurilish va yer</a><span class="sep">›</span><span class="cur">Chorvachilik kalkulyatori</span></nav></div>
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Chorvachilik kalkulyatori — hayvon turi, boshlang'ich vazni va boqish muddatini kiriting, kunlik yem xarajati va bo'rdoqiga boqishdan kutilayotgan foyda hisoblanadi.</p><div class="ab-meta">Yangilangan: 2026-09-18</div></div>
   <section class="form-card">
+    <div class="seg" id="calcModeSeg">
+      <button type="button" data-mode="forward" class="on" data-i="segForward">Foyda qancha bo'ladi?</button>
+      <button type="button" data-mode="reverse" data-i="segReverse">Necha bosh olsam bo'ladi?</button>
+    </div>
+
     <div class="seg">
       <button type="button" data-an="buqa" class="on" data-i="segBuqa">🐂 Buqa (mol)</button>
       <button type="button" data-an="qoy" data-i="segQoy">🐏 Qo'y</button>
     </div>
 
     <div class="row2">
-      <div class="field">
+      <div class="field" id="headsField">
         <label for="heads" data-i="lHeads">Bosh soni</label>
         <div class="input-shell"><input type="text" id="heads" inputmode="numeric" value="2"><span class="unit" data-i="uHeads">bosh</span></div>
+      </div>
+      <div class="field" id="budgetField" style="display:none">
+        <label for="budget" data-i="lBudget">Mavjud pul</label>
+        <div class="input-shell"><input type="text" id="budget" inputmode="numeric" value="100 000 000"><span class="unit" data-i="uSomH">so'm</span></div>
       </div>
       <div class="field">
         <label for="buyPrice" data-i="lBuy">1 bosh olingan narxi</label>
@@ -224,7 +244,13 @@ img,svg{height:auto}
     </div>
     <div class="field">
       <label for="months" data-i="lMonths">Boqish muddati</label>
-      <div class="input-shell"><input type="text" id="months" inputmode="numeric" value="8"><span class="unit" data-i="uOy">oy</span></div>
+      <div class="dur-row">
+        <div class="input-shell"><input type="text" id="months" inputmode="numeric" value="8"></div>
+        <div class="seg mini" id="durSeg">
+          <button type="button" data-dur="kun" data-i="segKun">kun</button>
+          <button type="button" data-dur="oy" class="on" data-i="segOy">oy</button>
+        </div>
+      </div>
     </div>
 
     <div class="sect-title" data-i="sFeed">Kunlik yem-xashak (1 boshga)</div>
@@ -265,24 +291,56 @@ img,svg{height:auto}
       <p class="hint" data-i="hOther">Veterinar, dori, suv-elektr, tuz va boshqalar.</p>
     </div>
 
-    <div class="sect-title" data-i="sSale">Sotish</div>
-    <div class="field" style="margin-bottom:0">
-      <label for="salePrice" data-i="lSale">Kutilayotgan sotish narxi (1 bosh)</label>
-      <div class="input-shell"><input type="text" id="salePrice" inputmode="numeric" value="22 000 000"><span class="unit" data-i="uSomH2">so'm</span></div>
-      <p class="hint" data-i="hSale">Boqish muddati oxirida bozorda sotmoqchi bo'lgan narxingiz.</p>
+    <div id="saleSection">
+      <div class="sect-title" data-i="sSale">Sotish</div>
+      <div class="seg mini" id="saleModeSeg" style="margin-bottom:12px">
+        <button type="button" data-salemode="head" class="on" data-i="segSaleHead">1 boshga</button>
+        <button type="button" data-salemode="kg" data-i="segSaleKg">1 kg tirik vaznga</button>
+      </div>
+      <div class="field" id="saleHeadWrap" style="margin-bottom:0">
+        <label for="salePrice" data-i="lSale">Kutilayotgan sotish narxi (1 bosh)</label>
+        <div class="input-shell"><input type="text" id="salePrice" inputmode="numeric" value="22 000 000"><span class="unit" data-i="uSomH2">so'm</span></div>
+        <p class="hint" data-i="hSale">Boqish muddati oxirida bozorda sotmoqchi bo'lgan narxingiz.</p>
+      </div>
+      <div class="row2" id="saleKgWrap" style="display:none">
+        <div class="field" style="margin:0">
+          <label for="salePriceKg" data-i="lSaleKg">Narxi (1 kg tirik vazn)</label>
+          <div class="input-shell"><input type="text" id="salePriceKg" inputmode="numeric" value="35 000"><span class="unit" data-i="uSomKgSale">so'm</span></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="saleWeight" data-i="lSaleWeight">Sotish vazni</label>
+          <div class="input-shell"><input type="text" id="saleWeight" inputmode="numeric" value="420"><span class="unit">kg</span></div>
+        </div>
+      </div>
     </div>
+
+    <details id="weightPanel">
+      <summary data-i="wPanelTitle">Vazn bo'yicha aniqroq hisoblash</summary>
+      <div class="sec-body">
+        <div class="row2">
+          <div class="field" style="margin:0">
+            <label for="startWeight" data-i="lStartW">Boshlang'ich vazn</label>
+            <div class="input-shell"><input type="text" id="startWeight" inputmode="numeric" value=""><span class="unit">kg</span></div>
+          </div>
+          <div class="field" style="margin:0">
+            <label for="targetWeight" data-i="lTargetW">Maqsad vazn</label>
+            <div class="input-shell"><input type="text" id="targetWeight" inputmode="numeric" value=""><span class="unit">kg</span></div>
+          </div>
+        </div>
+      </div>
+    </details>
 
     <button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Foydani hisoblash</button>
   </section>
 
   <section class="receipt" id="receipt" aria-live="polite">
     <div class="receipt-body">
-      <div class="receipt-tag" data-i="rTag">Rentabellik hisobi</div>
+      <div class="receipt-tag" id="receiptTag" data-i="rTag">Rentabellik hisobi</div>
       <div class="big-figure">
         <div class="num" id="mainNum">—</div>
         <div class="lbl" id="mainLbl"></div>
       </div>
-      <div class="receipt-rows">
+      <div class="receipt-rows" id="forwardRows">
         <div class="rrow"><span class="k" data-i="kBuy">Mol olishga ketgan</span><span class="v" id="rBuy">—</span></div>
         <div class="rrow"><span class="k" data-i="kFeed">Yem-xashak jami</span><span class="v" id="rFeed">—</span></div>
         <div class="rrow"><span class="k" data-i="kOther">Boshqa xarajatlar</span><span class="v" id="rOther">—</span></div>
@@ -293,6 +351,10 @@ img,svg{height:auto}
         <div class="rrow"><span class="k" data-i="kRoi">Rentabellik</span><span class="v" id="rRoi">—</span></div>
         <div class="rrow"><span class="k" data-i="kBreak">Zararsizlik narxi (1 bosh)</span><span class="v accent" id="rBreak">—</span></div>
       </div>
+      <div class="receipt-rows" id="reverseRows" style="display:none">
+        <div class="rrow"><span class="k" data-i="rkPerHead">1 boshga jami xarajat</span><span class="v accent" id="rrPerHead">—</span></div>
+        <div class="rrow"><span class="k" data-i="rkNext">Keyingi bosh uchun kerak</span><span class="v" id="rrNext">—</span></div>
+      </div>
       <div class="status" id="statusBox"></div>
 
       <div id="riskBlock" style="display:none">
@@ -300,6 +362,17 @@ img,svg{height:auto}
         <div class="risk-verdict" id="riskVerdict"></div>
         <div class="risk-rows" id="riskRows"></div>
         <div class="risk-break" id="riskBreakNote"></div>
+      </div>
+
+      <div id="weightResult" style="display:none">
+        <div class="risk-title" data-i="wResultTitle">Vazn bo'yicha hisob</div>
+        <div class="receipt-rows" id="weightRows">
+          <div class="rrow"><span class="k" data-i="wkGain">Vazn o'sishi</span><span class="v" id="wGain">—</span></div>
+          <div class="rrow"><span class="k" data-i="wkAdg">Kunlik o'rtacha o'sish (ADG)</span><span class="v" id="wAdg">—</span></div>
+          <div class="rrow"><span class="k" data-i="wkCostGain">1 kg qo'shimcha vazn tannarxi</span><span class="v accent" id="wCostGain">—</span></div>
+          <div class="rrow"><span class="k" data-i="wkBreakKg">1 kg vaznning zararsizlik narxi</span><span class="v accent" id="wBreakKg">—</span></div>
+        </div>
+        <div class="werr" id="weightErrorMsg" style="display:none"></div>
       </div>
 
       <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
@@ -322,10 +395,12 @@ img,svg{height:auto}
       cat:"Qurilish",
       h1:"Chorvachilik kalkulyatori",
       sub:"Buqa yoki qo'y bo'rdoqiga boqish qancha foyda berishini — yoki kunlik yem xarajati foydani yeb ketayotganini aniq bilib oling.",
+      segForward:"Foyda qancha bo'ladi?",segReverse:"Necha bosh olsam bo'ladi?",
       segBuqa:"🐂 Buqa (mol)",segQoy:"🐏 Qo'y",
       lHeads:"Bosh soni",uHeads:"bosh",
+      lBudget:"Mavjud pul",
       lBuy:"1 bosh olingan narxi",uSomH:"so'm",
-      lMonths:"Boqish muddati",uOy:"oy",
+      lMonths:"Boqish muddati",uOy:"oy",segKun:"kun",segOy:"oy",
       sFeed:"Kunlik yem-xashak (1 boshga)",
       hFeed:"Har kuni bitta mol yeydigan miqdor va bozor narxini kiriting:",
       lYem:"Omixta yem",lShel:"Sheluha / kepak",lBeda:"Beda / xashak",lNarx:"Narxi (kg)",
@@ -333,14 +408,26 @@ img,svg{height:auto}
       lOther:"Boshqa oylik xarajat (1 boshga)",uSomOy:"so'm/oy",
       hOther:"Veterinar, dori, suv-elektr, tuz va boshqalar.",
       sSale:"Sotish",
+      segSaleHead:"1 boshga",segSaleKg:"1 kg tirik vaznga",
       lSale:"Kutilayotgan sotish narxi (1 bosh)",uSomH2:"so'm",
       hSale:"Boqish muddati oxirida bozorda sotmoqchi bo'lgan narxingiz.",
-      btnCalc:"Foydani hisoblash",rTag:"Rentabellik hisobi",
+      lSaleKg:"Narxi (1 kg tirik vazn)",uSomKgSale:"so'm",lSaleWeight:"Sotish vazni",
+      wPanelTitle:"Vazn bo'yicha aniqroq hisoblash",
+      lStartW:"Boshlang'ich vazn",lTargetW:"Maqsad vazn",
+      wResultTitle:"Vazn bo'yicha hisob",
+      wkGain:"Vazn o'sishi",wkAdg:"Kunlik o'rtacha o'sish (ADG)",
+      wkCostGain:"1 kg qo'shimcha vazn tannarxi",wkBreakKg:"1 kg vaznning zararsizlik narxi",
+      wErrTarget:"Maqsad vazn boshlang'ich vazndan katta bo'lishi kerak — hisob chiqarilmadi.",
+      btnCalc:"Foydani hisoblash",btnCalcReverse:"Necha bosh olishimni hisoblash",rTag:"Rentabellik hisobi",rTagReverse:"Necha bosh olsam bo'ladi",
       lblProfit:"Sof foyda ({m} oyda, {h} bosh)",lblLoss:"Zarar ({m} oyda, {h} bosh)",
+      lblHeadsOk:"Xavfsiz ravishda olish mumkin",lblHeadsZero:"Hozirgi shartlarda yetarli emas",
       kBuy:"Mol olishga ketgan",kFeed:"Yem-xashak jami",kOther:"Boshqa xarajatlar",
       kTotal:"Jami xarajat",kDaily:"Kunlik xarajat (1 bosh)",
       kRevenue:"Sotishdan tushum",kMonthly:"Oylik o'rtacha foyda",kRoi:"Rentabellik",
       kBreak:"Zararsizlik narxi (1 bosh)",
+      rkPerHead:"1 boshga jami xarajat",rkNext:"Keyingi bosh uchun kerak",
+      stHeadsOk:"{n} bosh olish mumkin (1 boshga taxminan {c} so'm). {n2}-boshni qo'shish uchun yana taxminan {d} so'm kerak bo'ladi.",
+      stHeadsZero:"Hozirgi shartlarda 1 bosh uchun ham yetarli emas — yana taxminan {d} so'm kerak.",
       stOk:"Foyda bor: har oy o'rtacha {m} so'm. 1 boshni kamida {b} so'mga sotsangiz, zararga tushmaysiz — bundan qimmatiga sotilgan har so'm sof foyda.",
       stNeg:"Diqqat: bu ko'rsatkichlarda {z} so'm zarar chiqadi — kunlik yem xarajati kutilayotgan o'sishdan qimmat. Yechimlar: arzonroq yem manbai toping, muddatni qisqartiring yoki sotish narxi {b} so'mdan yuqori bo'lishini kuting.",
       riskTitle:"Nima bo'lsa zarar qilaman?",
@@ -363,10 +450,12 @@ img,svg{height:auto}
       cat:"Стройка",
       h1:"Калькулятор откорма скота",
       sub:"Узнайте точно, сколько прибыли даст откорм бычка или барана — или дневные расходы на корм съедают прибыль.",
+      segForward:"Сколько будет прибыли?",segReverse:"Сколько голов я могу купить?",
       segBuqa:"🐂 Бычок (КРС)",segQoy:"🐏 Баран",
       lHeads:"Поголовье",uHeads:"гол.",
+      lBudget:"Доступные средства",
       lBuy:"Цена покупки (1 голова)",uSomH:"сум",
-      lMonths:"Срок откорма",uOy:"мес.",
+      lMonths:"Срок откорма",uOy:"мес.",segKun:"дн.",segOy:"мес.",
       sFeed:"Дневной рацион (на 1 голову)",
       hFeed:"Сколько съедает одно животное в день и цена на рынке:",
       lYem:"Комбикорм",lShel:"Шелуха / отруби",lBeda:"Люцерна / сено",lNarx:"Цена (кг)",
@@ -374,14 +463,26 @@ img,svg{height:auto}
       lOther:"Прочие расходы в месяц (на 1 голову)",uSomOy:"сум/мес",
       hOther:"Ветеринар, лекарства, вода-свет, соль и прочее.",
       sSale:"Продажа",
+      segSaleHead:"За голову",segSaleKg:"За 1 кг живого веса",
       lSale:"Ожидаемая цена продажи (1 голова)",uSomH2:"сум",
       hSale:"Цена, по которой планируете продать в конце откорма.",
-      btnCalc:"Рассчитать прибыль",rTag:"Расчёт рентабельности",
+      lSaleKg:"Цена (1 кг живого веса)",uSomKgSale:"сум",lSaleWeight:"Вес продажи",
+      wPanelTitle:"Точный расчёт по весу",
+      lStartW:"Начальный вес",lTargetW:"Целевой вес",
+      wResultTitle:"Расчёт по весу",
+      wkGain:"Прирост веса",wkAdg:"Средний суточный прирост (ADG)",
+      wkCostGain:"Себестоимость 1 кг прироста",wkBreakKg:"Цена безубыточности 1 кг",
+      wErrTarget:"Целевой вес должен быть больше начального — расчёт не выполнен.",
+      btnCalc:"Рассчитать прибыль",btnCalcReverse:"Рассчитать сколько голов",rTag:"Расчёт рентабельности",rTagReverse:"Сколько голов можно купить",
       lblProfit:"Чистая прибыль (за {m} мес., {h} гол.)",lblLoss:"Убыток (за {m} мес., {h} гол.)",
+      lblHeadsOk:"Безопасно можно купить",lblHeadsZero:"При текущих условиях недостаточно",
       kBuy:"Покупка скота",kFeed:"Корма всего",kOther:"Прочие расходы",
       kTotal:"Всего расходов",kDaily:"Дневной расход (1 голова)",
       kRevenue:"Выручка от продажи",kMonthly:"Средняя прибыль в месяц",kRoi:"Рентабельность",
       kBreak:"Цена безубыточности (1 голова)",
+      rkPerHead:"Всего расходов на 1 голову",rkNext:"Нужно ещё для следующей головы",
+      stHeadsOk:"Можно купить {n} голов (примерно {c} сум за голову). Чтобы добавить {n2}-ю голову, нужно ещё примерно {d} сум.",
+      stHeadsZero:"При текущих условиях недостаточно средств даже на 1 голову — нужно ещё примерно {d} сум.",
       stOk:"Прибыль есть: в среднем {m} сум в месяц. Продавайте голову минимум за {b} сум — всё, что дороже, чистая прибыль.",
       stNeg:"Внимание: при этих показателях убыток {z} сум — дневной корм дороже ожидаемого прироста. Решения: найдите корм дешевле, сократите срок или дождитесь цены продажи выше {b} сум.",
       riskTitle:"Что если я потеряю деньги?",
@@ -402,18 +503,30 @@ img,svg{height:auto}
     }
   };
   var lang=document.documentElement.lang==='ru'?'ru':'uz', animal='buqa', calcData=null;
+  var calcMode='forward', durUnit='oy', saleMode='head';
   var fmt=function(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var num=function(s){return parseFloat(String(s).replace(/ /g,'').replace(/\s/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
   var som=function(){return lang==='uz'?"so'm":'сум'};
 
-  ['buyPrice','yemP','shelP','bedaP','otherM','salePrice'].forEach(function(id){
+  ['buyPrice','yemP','shelP','bedaP','otherM','salePrice','budget','salePriceKg'].forEach(function(id){
     $(id).addEventListener('input',function(){
       var v=this.value.replace(/[^\d]/g,'');
       this.value=v?fmt(parseInt(v,10)):'0';
     });
   });
+
+  function getDays(){
+    var v=num($('months').value);
+    return durUnit==='kun'?v:v*30;
+  }
+  function getMonthsEquiv(){
+    return getDays()/30;
+  }
+  function getSalePerHead(){
+    return saleMode==='head'?num($('salePrice').value):num($('salePriceKg').value)*num($('saleWeight').value);
+  }
 
   function setDefaults(){
     var d=DEF[animal];
@@ -434,6 +547,54 @@ img,svg{height:auto}
     };
   }
 
+  function updateModeUi(){
+    var rev=calcMode==='reverse';
+    $('headsField').style.display=rev?'none':'';
+    $('budgetField').style.display=rev?'':'none';
+    $('saleSection').style.display=rev?'none':'';
+    $('weightPanel').style.display=rev?'none':'';
+    if(rev)$('weightResult').style.display='none';
+    $('calcBtn').textContent=rev?t('btnCalcReverse'):t('btnCalc');
+  }
+  var modeBtns=document.querySelectorAll('[data-mode]');
+  for(var mb=0;mb<modeBtns.length;mb++){
+    modeBtns[mb].onclick=function(){
+      calcMode=this.getAttribute('data-mode');
+      for(var j=0;j<modeBtns.length;j++)modeBtns[j].classList.remove('on');
+      this.classList.add('on');
+      updateModeUi();
+      if(calcData)calc();
+    };
+  }
+
+  var durBtns=document.querySelectorAll('[data-dur]');
+  for(var db=0;db<durBtns.length;db++){
+    durBtns[db].onclick=function(){
+      var newUnit=this.getAttribute('data-dur');
+      if(newUnit!==durUnit){
+        var cur=num($('months').value);
+        var converted=newUnit==='kun'?cur*30:cur/30;
+        $('months').value=(Math.round(converted*100)/100).toString().replace('.',',');
+      }
+      durUnit=newUnit;
+      for(var j=0;j<durBtns.length;j++)durBtns[j].classList.remove('on');
+      this.classList.add('on');
+      if(calcData)calc();
+    };
+  }
+
+  var saleModeBtns=document.querySelectorAll('[data-salemode]');
+  for(var sb=0;sb<saleModeBtns.length;sb++){
+    saleModeBtns[sb].onclick=function(){
+      saleMode=this.getAttribute('data-salemode');
+      for(var j=0;j<saleModeBtns.length;j++)saleModeBtns[j].classList.remove('on');
+      this.classList.add('on');
+      $('saleHeadWrap').style.display=saleMode==='head'?'':'none';
+      $('saleKgWrap').style.display=saleMode==='kg'?'':'none';
+      if(calcData)calc();
+    };
+  }
+
   /* Risk-simulyator stress-foizlari — manba: data/taxmin-konstantalar.json
      (chorva_risk_yem_oshish, chorva_risk_sotish_pasayishi,
      chorva_risk_boqish_uzayishi). Bular TAXMIN — aniq statistika emas,
@@ -442,17 +603,18 @@ img,svg{height:auto}
   var RISK_FEED_UP=0.10, RISK_SALE_DOWN=0.10, RISK_EXTEND_DAYS=30;
 
   function calc(){
-    var heads=num($('heads').value), buy=num($('buyPrice').value), months=num($('months').value);
-    var sale=num($('salePrice').value);
-    if(!heads||!buy||!months||!sale){$('receipt').classList.remove('show');return}
+    if(calcMode==='reverse'){calcReverse();return}
+    var heads=num($('heads').value), buy=num($('buyPrice').value);
+    var days=getDays(), monthsEquiv=getMonthsEquiv();
+    var sale=getSalePerHead();
+    if(!heads||!buy||!days||!sale){$('receipt').classList.remove('show');return}
     var dailyFeed=num($('yemKg').value)*num($('yemP').value)
                  +num($('shelKg').value)*num($('shelP').value)
                  +num($('bedaKg').value)*num($('bedaP').value);
     var otherM=num($('otherM').value);
-    var days=months*30;
     var dailyPerHead=dailyFeed+otherM/30;
     var feedTotal=dailyFeed*days*heads;
-    var otherTotal=otherM*months*heads;
+    var otherTotal=otherM*monthsEquiv*heads;
     var buyTotal=buy*heads;
     var total=buyTotal+feedTotal+otherTotal;
     var revenue=sale*heads;
@@ -469,7 +631,7 @@ img,svg{height:auto}
       var extraDays2=extraDays||0;
       var d2=days+extraDays2;
       var feedTotal2=dailyFeed*feedMult*d2*heads;
-      var otherTotal2=otherM*(months+extraDays2/30)*heads;
+      var otherTotal2=otherM*(monthsEquiv+extraDays2/30)*heads;
       var total2=buyTotal+feedTotal2+otherTotal2;
       var revenue2=sale*saleMult*heads;
       return revenue2-total2;
@@ -497,23 +659,105 @@ img,svg{height:auto}
     }
     var verdict=redCount===0?'safe':(redCount<=2?'mid':'risky');
 
-    calcData={heads:heads,months:months,buyTotal:buyTotal,feedTotal:feedTotal,otherTotal:otherTotal,
+    calcData={heads:heads,months:monthsEquiv,buyTotal:buyTotal,feedTotal:feedTotal,otherTotal:otherTotal,
       total:total,dailyPerHead:dailyPerHead,revenue:revenue,profit:profit,
-      monthly:profit/months,roi:profit/total*100,breakEven:breakEven,
+      monthly:profit/monthsEquiv,roi:profit/total*100,breakEven:breakEven,
       risk:{scenarios:scenarios,verdict:verdict}};
+    renderResult();
+    calcWeight(buy,dailyFeed,otherM,days,monthsEquiv);
+    $('receipt').classList.add('show');
+  }
+
+  // FAZA 4: teskari rejim — "Menda X pul bor, necha bosh olsam bo'ladi?"
+  // Xarid narxi + boqish davridagi yem/boshqa xarajat asosida 1 boshga
+  // JAMI xarajat hisoblanadi, mavjud pul shunga bo'linib PASTGA yaxlitlanadi
+  // (FLOOR) — mablag' yetmay qolmasligi uchun yuqoriga yaxlitlanmaydi.
+  function calcReverse(){
+    var buy=num($('buyPrice').value), budget=num($('budget').value);
+    var days=getDays(), monthsEquiv=getMonthsEquiv();
+    if(!buy||!days||!budget){$('receipt').classList.remove('show');return}
+    var dailyFeed=num($('yemKg').value)*num($('yemP').value)
+                 +num($('shelKg').value)*num($('shelP').value)
+                 +num($('bedaKg').value)*num($('bedaP').value);
+    var otherM=num($('otherM').value);
+    var costPerHead=buy+dailyFeed*days+otherM*monthsEquiv;
+    if(!costPerHead){$('receipt').classList.remove('show');return}
+    var heads=Math.floor(budget/costPerHead);
+    var nextCost=costPerHead*(heads+1)-budget;
+    calcData={reverse:true,costPerHead:costPerHead,heads:heads,budget:budget,nextCost:nextCost};
     renderResult();
     $('receipt').classList.add('show');
   }
 
+  // FAZA 3: vazn bo'yicha aniqroq hisob. Faqat ikkala vazn maydoni
+  // to'ldirilganda ishlaydi — bo'lmasa blok umuman ko'rinmaydi. Mol
+  // sotib olish narxi (buy) ADG/1kg-tannarx formulasiga QO'SHILMAYDI
+  // (faqat boqish davridagi xarajat) — zararsizlik narxiga esa qo'shiladi.
+  function calcWeight(buy,dailyFeed,otherM,days,monthsEquiv){
+    var host=$('weightResult');
+    var swRaw=$('startWeight').value.trim(), twRaw=$('targetWeight').value.trim();
+    if(!swRaw||!twRaw){host.style.display='none';return}
+    var startW=num(swRaw), targetW=num(twRaw);
+    host.style.display='';
+    if(targetW<=startW){
+      $('weightRows').style.display='none';
+      var em=$('weightErrorMsg');
+      em.style.display='';em.textContent=t('wErrTarget');
+      return;
+    }
+    $('weightRows').style.display='';
+    $('weightErrorMsg').style.display='none';
+    var gain=targetW-startW;
+    var feedPerHead=dailyFeed*days;
+    var otherPerHead=otherM*monthsEquiv;
+    var costPerKgGain=(feedPerHead+otherPerHead)/gain;
+    var breakKg=targetW>0?(buy+feedPerHead+otherPerHead)/targetW:0;
+    var sum=' '+som();
+    $('wGain').textContent='+'+fmt(gain)+' kg';
+    $('wAdg').textContent=days>0?(fmt(gain*1000/days)+' g/'+(lang==='uz'?'kun':'дн.')):'—';
+    $('wCostGain').textContent=fmt(costPerKgGain)+sum;
+    $('wBreakKg').textContent=fmt(breakKg)+sum;
+  }
+
   function renderResult(){
     var d=calcData, sum=' '+som();
+    var rt=$('receiptTag');
+    if(d.reverse){
+      $('forwardRows').style.display='none';
+      $('reverseRows').style.display='';
+      $('riskBlock').style.display='none';
+      if(rt)rt.textContent=t('rTagReverse');
+      var mn2=$('mainNum');
+      if(d.heads>0){
+        mn2.textContent=fmt(d.heads)+' '+t('uHeads');mn2.className='num';
+        $('mainLbl').textContent=t('lblHeadsOk');
+      }else{
+        mn2.textContent='0 '+t('uHeads');mn2.className='num neg';
+        $('mainLbl').textContent=t('lblHeadsZero');
+      }
+      $('rrPerHead').textContent=fmt(d.costPerHead)+sum;
+      $('rrNext').textContent=fmt(d.nextCost)+sum;
+      var st2=$('statusBox');
+      if(d.heads>0){
+        st2.className='status s-ok';
+        st2.textContent=t('stHeadsOk').replace('{n}',d.heads).replace('{c}',fmt(d.costPerHead)).replace('{n2}',d.heads+1).replace('{d}',fmt(d.nextCost));
+      }else{
+        st2.className='status s-neg';
+        st2.textContent=t('stHeadsZero').replace('{d}',fmt(d.nextCost));
+      }
+      return;
+    }
+    $('forwardRows').style.display='';
+    $('reverseRows').style.display='none';
+    if(rt)rt.textContent=t('rTag');
+    var monthsTxt=(Math.round(d.months*10)/10).toString().replace('.',',');
     var mn=$('mainNum');
     if(d.profit>=0){
       mn.textContent='+'+fmt(d.profit)+sum;mn.className='num';
-      $('mainLbl').textContent=t('lblProfit').replace('{m}',d.months).replace('{h}',d.heads);
+      $('mainLbl').textContent=t('lblProfit').replace('{m}',monthsTxt).replace('{h}',d.heads);
     }else{
       mn.textContent='−'+fmt(Math.abs(d.profit))+sum;mn.className='num neg';
-      $('mainLbl').textContent=t('lblLoss').replace('{m}',d.months).replace('{h}',d.heads);
+      $('mainLbl').textContent=t('lblLoss').replace('{m}',monthsTxt).replace('{h}',d.heads);
     }
     $('rBuy').textContent=fmt(d.buyTotal)+sum;
     $('rFeed').textContent=fmt(d.feedTotal)+sum;
@@ -594,6 +838,7 @@ img,svg{height:auto}
       for(var _i=0;_i<_rl.length;_i++){_rl[_i].textContent=_rl[_i].getAttribute(lang==='ru'?'data-rel-ru':'data-rel-uz')}
     })();
     $('langRu').classList.toggle('on',lang==='ru');
+    updateModeUi();
     if(calcData)renderResult();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
