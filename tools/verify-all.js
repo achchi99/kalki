@@ -818,6 +818,65 @@ function runTool(args) {
       findings.slice(0, 15).join(' | '));
   }
 
+  /* ---------- 30. hujjat generatorlarida "Havola" shaxsiy ma'lumot
+     sizdirmaydi (mutatsiya testi) ----------
+     2026-09'da topilgan muammo (docs/ariza-audit.md, 0.C): shareBtn
+     butun ctx.state'ni (F.I.Sh., manzil, telefon, JSHSHIR, erkin matn)
+     shifrlanmagan base64'da URL'ga yozardi. Tuzatish — cfg.personal=true
+     bo'lgan sahifalarda faqat "xavfsiz" turdagi maydonlar (seg/sel/checks,
+     ya'ni oldindan belgilangan qiymatlar to'plami) ulashiladi.
+     Bu band REAL brauzer DOM'ida (jsdom, sahifaning o'z skripti bilan)
+     mutatsiya sinovini o'tkazadi: har bir erkin matn maydonini (data-f
+     bo'lgan input/textarea) noyob belgi bilan to'ldiradi, "Havola"ni
+     bosadi, hosil bo'lgan ?p= ni dekodlaydi va belgi u yerda YO'Qligini
+     tasdiqlaydi. Shunday qilib tekshiruv statik matnni emas — haqiqiy
+     ishlaydigan xatti-harakatni tekshiradi, va kimdir shareState() ni
+     olib tashlasa yoki yangi shaxsiy maydon cfg.personal sahifaga
+     share:true bilan qo'shsa, band buni ushlaydi. */
+  {
+    const personalPages = pages().filter((f) => {
+      if (!fs.existsSync(path.join(ROOT, f))) return false;
+      const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      return /\bpersonal\s*:\s*true\b/.test(src) && /id="shareBtn"/.test(src);
+    });
+    const bad = [];
+    const MARK = 'MUTATSIYA_' + Date.now();
+    for (const f of personalPages) {
+      let dom;
+      try {
+        const res = await load(path.join(ROOT, f), { wait: 400, shims: true });
+        dom = res.dom;
+        const w = dom.window, d = w.document;
+        const fields = [...d.querySelectorAll('#formHost [data-f]')]
+          .filter((el) => el.tagName === 'INPUT' || el.tagName === 'TEXTAREA');
+        if (!fields.length) { bad.push(f + ': data-f maydon topilmadi (inconclusive)'); continue; }
+        for (const el of fields) {
+          el.value = MARK + '_' + el.getAttribute('data-f');
+          el.dispatchEvent(new w.Event('input', { bubbles: true }));
+        }
+        w.navigator.clipboard = { writeText: (u) => { w.__shareUrl = u; return Promise.resolve(); } };
+        const shareBtn = d.getElementById('shareBtn');
+        if (!shareBtn) { bad.push(f + ': #shareBtn topilmadi'); continue; }
+        shareBtn.click();
+        await new Promise((r) => w.setTimeout(r, 150));
+        const url = w.__shareUrl;
+        if (!url) { bad.push(f + ': havola hosil bo\'lmadi'); continue; }
+        const raw = new URL(url).searchParams.get('p');
+        if (!raw) { bad.push(f + ': ?p= topilmadi'); continue; }
+        const decoded = JSON.parse(Buffer.from(raw.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'));
+        if (JSON.stringify(decoded).indexOf(MARK) > -1) {
+          bad.push(f + ': havolada erkin matn maydoni bor — ' + JSON.stringify(decoded).slice(0, 120));
+        }
+      } catch (e) {
+        bad.push(f + ': xato — ' + String(e && e.message || e));
+      } finally {
+        if (dom) dom.window.close();
+      }
+    }
+    add(!bad.length, '30. hujjat generatorlarida "Havola" shaxsiy ma\'lumot sizdirmaydi (' + personalPages.length + ' sahifa, mutatsiya testi)',
+      bad.slice(0, 8).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

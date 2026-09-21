@@ -647,6 +647,24 @@
     return JSON.parse(decodeURIComponent(escape(atob(String(s).replace(/-/g, '+').replace(/_/g, '/')))));
   }
 
+  // cfg.personal=true bo'lgan hujjatlarda (F.I.Sh., manzil, telefon, erkin
+  // matn kabi shaxsiy ma'lumot bo'lishi mumkin) ulashish havolasiga faqat
+  // tur/rejim tanlovlari (seg/sel/checks — oldindan belgilangan qiymatlar
+  // to'plamidan, hech qachon erkin matn emas) kiradi. cfg.personal bo'lmasa
+  // (kalkulyatorlar — erkin matn maydoni yo'q) holat o'zgarishsiz ulashiladi.
+  var SHARE_SAFE_T = { seg: 1, sel: 1, checks: 1 };
+  function shareState(cfg, state) {
+    if (!cfg.personal) return state;
+    var out = {};
+    for (var s = 0; s < cfg.sections.length; s++)
+      for (var i = 0; i < cfg.sections[s].fields.length; i++) {
+        var f = cfg.sections[s].fields[i];
+        var safe = f.share === true || (SHARE_SAFE_T[f.t] && f.share !== false);
+        if (safe && state[f.id] != null) out[f.id] = state[f.id];
+      }
+    return out;
+  }
+
   /* ============================ INIT ============================ */
 
   KD.init = function (cfg) {
@@ -812,11 +830,13 @@
     var shareBtn = $('shareBtn');
     if (shareBtn) {
       shareBtn.onclick = function () {
-        var warn = ctx.lang === 'ru'
-          ? 'В ссылке будут указанные вами данные (Ф.И.О., паспорт, суммы). Отправляйте только тому, кому доверяете. Продолжить?'
-          : "Havolada siz kiritgan ma'lumotlar (F.I.Sh., pasport, summalar) bo'ladi. Faqat ishonchli odamga yuboring. Davom etamizmi?";
-        if (!confirm(warn)) return;
-        var url = location.origin + location.pathname + '?p=' + b64encode(ctx.state);
+        if (!cfg.personal) {
+          var warn = ctx.lang === 'ru'
+            ? 'В ссылке будут указанные вами данные (Ф.И.О., паспорт, суммы). Отправляйте только тому, кому доверяете. Продолжить?'
+            : "Havolada siz kiritgan ma'lumotlar (F.I.Sh., pasport, summalar) bo'ladi. Faqat ishonchli odamga yuboring. Davom etamizmi?";
+          if (!confirm(warn)) return;
+        }
+        var url = location.origin + location.pathname + '?p=' + b64encode(shareState(cfg, ctx.state));
         KD.ga('doc_share_link', { doc: KD.slug(cfg.id) });
         var btn = this, orig = btn.textContent;
         if (navigator.share) {
