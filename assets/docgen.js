@@ -304,12 +304,15 @@
     return !f.showIf || !!f.showIf(state);
   }
 
-  function fieldHtml(f, state, lang) {
+  function fieldHtml(f, state, lang, sharedFields) {
     var val = state[f.id] == null ? '' : state[f.id];
     var lab = L(f.label, lang);
     var ph = attrEsc(L(f.ph, lang));
     var hint = f.hint ? '<div class="dg-hint">' + escHtml(L(f.hint, lang)) + '</div>' : '';
     var cls = 'dg-field' + (f.half ? ' dg-half' : '');
+    var sharedBadge = sharedFields && sharedFields[f.id]
+      ? '<span class="kd-shared-badge">' + (lang === 'ru' ? 'Взято из предыдущего документа' : 'Avvalgi hujjatdan olindi') + '</span>'
+      : '';
     var inner;
 
     if (f.t === 'seg') {
@@ -403,7 +406,7 @@
     // "for" semantik jihatdan noto'g'ri bo'lardi — ular bitta inputga emas.
     var SINGLE_CONTROL_T = { sel: 1, area: 1, date: 1, num: 1, text: 1 };
     var labelFor = SINGLE_CONTROL_T[f.t] || !f.t ? ' for="dgf-' + attrEsc(f.id) + '"' : '';
-    return '<div class="' + cls + '" data-fw="' + attrEsc(f.id) + '"><label' + labelFor + '>' + escHtml(lab) + '</label>' + inner + hint + '</div>';
+    return '<div class="' + cls + '" data-fw="' + attrEsc(f.id) + '"><label' + labelFor + '>' + escHtml(lab) + '</label>' + sharedBadge + inner + hint + '</div>';
   }
 
   function renderForm(ctx) {
@@ -413,7 +416,7 @@
       for (var i = 0; i < sec.fields.length; i++) {
         var f = sec.fields[i];
         if (!visible(f, state)) continue;
-        body += fieldHtml(f, state, lang);
+        body += fieldHtml(f, state, lang, ctx.sharedFields);
         shown++;
       }
       if (!shown) continue;
@@ -726,6 +729,74 @@
     });
   }
 
+  /* ============================ HUJJAT PAKETLARI ============================
+     Bog'liq hujjatlar orasida umumiy ma'lumotni (ism, sana, manzil...)
+     uzatish — FAQAT shu brauzer tabida (sessionStorage), tab yopilganda
+     avtomatik tozalanadi. Bu 0.C (Havola maxfiyligi) BILAN BIR XIL EMAS:
+     bu yerda hech narsa boshqa odamga yuborilmaydi, URL'ga yozilmaydi,
+     tarmoqqa chiqmaydi — faqat bitta foydalanuvchining o'zida, bir
+     hujjatdan ikkinchisiga.
+
+     cfg.share (ixtiyoriy):
+       send: ['fieldId', ...]            — shu maydonlar har o'zgarishda
+                                            umumiy joyga yoziladi
+       next: {url, label:{uz,ru}}        — "Keyingi qadam" havolasi
+       receive: {srcId:'dstId', ...}     — boshqa hujjatdan qabul qilish
+                                            xaritasi
+       deriveOnReceive: function(shared, state, prefilled) — qo'shimcha
+         hosila qiymatlar (masalan rejim-maydonlarni to'g'ri holatga
+         o'rnatish); prefilled'ga qo'shilgan kalitlar ham "avvalgi
+         hujjatdan olindi" belgisini oladi */
+  var SHARE_KEY = 'kalki_shared_fields';
+
+  function shareSave(cfg, state) {
+    if (!cfg.share || !cfg.share.send) return;
+    var out = {};
+    for (var i = 0; i < cfg.share.send.length; i++) {
+      var id = cfg.share.send[i];
+      if (state[id] != null && state[id] !== '') out[id] = state[id];
+    }
+    try { sessionStorage.setItem(SHARE_KEY, JSON.stringify(out)); } catch (e) {}
+  }
+
+  function shareReceive(cfg, state) {
+    var prefilled = {};
+    if (!cfg.share || !cfg.share.receive) return prefilled;
+    var raw;
+    try { raw = sessionStorage.getItem(SHARE_KEY); } catch (e) { return prefilled; }
+    if (!raw) return prefilled;
+    var shared;
+    try { shared = JSON.parse(raw); } catch (e) { return prefilled; }
+    if (!shared || typeof shared !== 'object') return prefilled;
+    var map = cfg.share.receive;
+    for (var srcId in map) {
+      var dstId = map[srcId];
+      if (shared[srcId] == null || shared[srcId] === '') continue;
+      if (state[dstId]) continue; // mavjud qiymatni bosib yozmaydi
+      state[dstId] = shared[srcId];
+      prefilled[dstId] = true;
+    }
+    if (cfg.share.deriveOnReceive) {
+      try { cfg.share.deriveOnReceive(shared, state, prefilled); } catch (e) {}
+    }
+    return prefilled;
+  }
+
+  // "Keyingi qadam" havolasi — sahifada #nextDocLink joy-belgisi bo'lsa
+  // shunga to'ldiradi, bo'lmasa jimgina o'tkazib yuboriladi (boshqa
+  // sahifalarga hech narsa qo'shilmaydi).
+  function wireNextDocLink(cfg, ctx) {
+    if (!cfg.share || !cfg.share.next) return;
+    var el = $('nextDocLink');
+    if (!el) return;
+    var next = cfg.share.next;
+    el.innerHTML = '<a class="next-doc-btn" href="' + attrEsc(next.url) + '">'
+      + escHtml(L(next.label, ctx.lang)) + ' →</a>';
+    el.style.display = '';
+    var a = el.querySelector('a');
+    if (a) a.addEventListener('click', function () { shareSave(cfg, ctx.state); });
+  }
+
   KD.init = function (cfg) {
     KD.clickToEdit = !!cfg.clickToEdit;
     var ctx = {
@@ -750,6 +821,7 @@
 
     function save() {
       try { localStorage.setItem(KEY, JSON.stringify(ctx.state)); } catch (e) {}
+      shareSave(cfg, ctx.state);
     }
     function load() {
       try {
@@ -921,6 +993,8 @@
       }
     } catch (e) {}
     if (!restored) load();
+    ctx.sharedFields = shareReceive(cfg, ctx.state);
+    wireNextDocLink(cfg, ctx);
 
     lastVisible = visibleKey();
     renderForm(ctx);

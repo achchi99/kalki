@@ -97,6 +97,10 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
 .receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
 .receipt-actions button:disabled{opacity:.6;cursor:default}
+#nextDocLink{padding:0 14px 14px}
+.next-doc-btn{display:block;text-align:center;background:var(--cat-soft);color:var(--cat-deep);font:inherit;font-size:13.5px;font-weight:800;padding:11px;border-radius:10px;text-decoration:none}
+.next-doc-btn:hover{background:var(--accent);color:#fff}
+.kd-shared-badge{display:block;font-size:11px;font-weight:700;color:#1E6B45;background:#E4F3EA;border-radius:6px;padding:2px 7px;margin:2px 0 4px;width:fit-content}
 .dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
 .dg-blank a{color:var(--cat);font-weight:700}
 .dg-jump{display:none}
@@ -220,6 +224,7 @@ img,svg{height:auto}
           <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
           <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
         </div>
+        <div id="nextDocLink" class="noprint" style="display:none"></div>
       </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
       <div class="dg-blank" data-i-html="blankTxt">Shartnomani qo'lda to'ldirmoqchimisiz? <a href="shablon-ijara-shartnoma.docx" id="blankLink" download="">Bo'sh shablonni yuklab oling</a>.</div>
     </div>
@@ -307,6 +312,14 @@ var CFG={
  file:'ijara-shartnomasi',
  personal:true,
  blank:{uz:'shablon-ijara-shartnoma.docx',ru:'shablon-ijara-shartnoma-ru.docx'},
+ /* docs/hujjat-paketlari-reja.md — pilot: Ijara -> Topshirish-qabul
+    dalolatnomasi. Faqat shu tabda (sessionStorage), tarmoqqa chiqmaydi. */
+ share:{
+  send:['llType','llFio','llPasSer','llPasNum','llPasBy','llPasDate','llJshshir','llOrg','llStir','llMfo','llBank','llAcc','llDir','llAddr','llPhone',
+        'tnType','tnFio','tnPasSer','tnPasNum','tnPasBy','tnPasDate','tnJshshir','tnOrg','tnStir','tnMfo','tnBank','tnAcc','tnDir','tnAddr','tnPhone',
+        'city','num','signDate','objAddr'],
+  next:{url:'topshirish-qabul-dalolatnomasi-namunasi',label:{uz:'Topshirish-qabul dalolatnomasi tayyorlang',ru:'Подготовить акт приёма-передачи'}}
+ },
  sections:[
   {id:'gen',title:{uz:'Shartnoma haqida',ru:'О договоре'},fields:[
     {id:'num',t:'text',half:true,label:{uz:'Shartnoma raqami',ru:'Номер договора'},ph:{uz:'1',ru:'1'}},
@@ -583,7 +596,8 @@ KD.page({
   function kSkip(node){
     var id=node.id||'', cls=String(node.className||'');
     if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
-       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox'
+       ||id==='nextDocLink')return true;
     return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1||cls.indexOf('xlink')>-1;
   }
   function kMakePdf(btn){
