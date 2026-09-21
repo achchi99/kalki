@@ -306,9 +306,9 @@
         os += '<option value="' + attrEsc(op.v) + '"' + (String(val) === String(op.v) ? ' selected' : '') + '>'
           + escHtml(L(op.label, lang)) + '</option>';
       }
-      inner = '<div class="dg-shell"><select data-f="' + attrEsc(f.id) + '">' + os + '</select></div>';
+      inner = '<div class="dg-shell"><select id="dgf-' + attrEsc(f.id) + '" data-f="' + attrEsc(f.id) + '">' + os + '</select></div>';
     } else if (f.t === 'area') {
-      inner = '<div class="dg-shell"><textarea data-f="' + attrEsc(f.id) + '" rows="' + (f.rows || 2) + '" placeholder="' + ph + '">'
+      inner = '<div class="dg-shell"><textarea id="dgf-' + attrEsc(f.id) + '" data-f="' + attrEsc(f.id) + '" rows="' + (f.rows || 2) + '" placeholder="' + ph + '">'
         + escHtml(val) + '</textarea></div>';
     } else if (f.t === 'list') {
       // Dinamik qatorlar (masalan, ariza ilovalari). Qiymat — massiv.
@@ -374,10 +374,15 @@
       var type = f.t === 'date' ? 'date' : 'text';
       var im = f.t === 'num' ? ' inputmode="numeric"' : '';
       var unit = f.unit ? '<span class="dg-unit">' + escHtml(L(f.unit, lang)) + '</span>' : '';
-      inner = '<div class="dg-shell"><input type="' + type + '" data-f="' + attrEsc(f.id) + '"' + im
+      inner = '<div class="dg-shell"><input id="dgf-' + attrEsc(f.id) + '" type="' + type + '" data-f="' + attrEsc(f.id) + '"' + im
         + ' value="' + attrEsc(val) + '" placeholder="' + ph + '">' + unit + '</div>';
     }
-    return '<div class="' + cls + '" data-fw="' + attrEsc(f.id) + '"><label>' + escHtml(lab) + '</label>' + inner + hint + '</div>';
+    // Bitta boshqaruv elementiga bog'langan turlarda <label for> qo'yiladi
+    // (qulaylik, ekran o'quvchi). Guruh turlarida (seg/list/checks/table)
+    // "for" semantik jihatdan noto'g'ri bo'lardi — ular bitta inputga emas.
+    var SINGLE_CONTROL_T = { sel: 1, area: 1, date: 1, num: 1, text: 1 };
+    var labelFor = SINGLE_CONTROL_T[f.t] || !f.t ? ' for="dgf-' + attrEsc(f.id) + '"' : '';
+    return '<div class="' + cls + '" data-fw="' + attrEsc(f.id) + '"><label' + labelFor + '>' + escHtml(lab) + '</label>' + inner + hint + '</div>';
   }
 
   function renderForm(ctx) {
