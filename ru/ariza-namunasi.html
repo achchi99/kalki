@@ -108,11 +108,16 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
 .receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
 .receipt-actions button:disabled{opacity:.6;cursor:default}
+.receipt-actions #clearBtn{flex:none;margin-left:auto;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:12.5px;padding:8px 6px;text-decoration:underline}
 .dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
 .dg-blank a{color:var(--cat);font-weight:700}
-.dg-jump{display:none}
+.dg-viewSeg{display:none}
 @media (max-width:899px){
-  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+  .dg-viewSeg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;margin-top:14px;position:sticky;top:8px;z-index:5}
+  .dg-viewSeg button{flex:1;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:800;color:var(--muted);padding:10px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .dg-viewSeg button.on{background:var(--cat);color:#fff}
+  .dg-grid[data-view="preview"] .dg-col:not(.dg-preview-col){display:none}
+  .dg-grid:not([data-view="preview"]) .dg-preview-col{display:none}
 }
 .tip{margin-top:14px;background:#E8F1F6;border:1px solid #C3DBE8;border-left:4px solid #1D4E6B;border-radius:12px;padding:13px 15px;font-size:13px;color:#22414F;line-height:1.6}
 .tip b{color:#16303C}
@@ -232,19 +237,19 @@ img,svg{height:auto}
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Заявление — письменное обращение в организацию или к должностному лицу. Выберите нужный тип заявления, готовый шаблон заполнится автоматически, отредактируйте под себя и скачайте в Word или PDF. 8 видов заявлений, регистрация не требуется.</p><div class="ab-meta">Обновлено: 2026-09-21</div></div>
   <div class="intro" data-i-html="intro"><b>Заявление</b> — письменное обращение в организацию или к должностному лицу. Его форма почти всегда одинакова: в правом верхнем углу кому и от кого, по центру заголовок, далее текст обращения, в конце дата и подпись. При выборе типа шаблон текста заполняется автоматически — вы правите его под себя. Введённые данные остаются только в вашем браузере.</div>
 
-  <div class="dg-grid">
+  <div class="dg-viewSeg noprint" id="viewSeg" role="group"><button type="button" data-view="form" class="on" data-i="viewFormBtn">Заполнить</button><button type="button" data-view="preview" data-i="viewPreviewBtn">Посмотреть заявление</button></div>
+  <div class="dg-grid" id="dgGrid">
     <div class="dg-col">
-      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Кому</div><div class="dg-rows"><div class="dg-field" data-fw="toOrg"><label>Название организации</label><div class="dg-shell"><input type="text" data-f="toOrg" value="" placeholder="ГДОУ &quot;Детский сад Чиланзарского района&quot;"></div></div><div class="dg-field dg-half" data-fw="toPost"><label>Должность</label><div class="dg-shell"><input type="text" data-f="toPost" value="" placeholder="директору"></div></div><div class="dg-field dg-half" data-fw="toFio"><label>Ф.И.О. (если известно)</label><div class="dg-shell"><input type="text" data-f="toFio" value="" placeholder="Алиев А. А."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">От кого</div><div class="dg-rows"><div class="dg-field" data-fw="frFio"><label>Ф.И.О. (полностью)</label><div class="dg-shell"><input type="text" data-f="frFio" value="" placeholder="Каримов Бобур Собирович"></div></div><div class="dg-field" data-fw="frAddr"><label>Адрес проживания</label><div class="dg-shell"><input type="text" data-f="frAddr" value="" placeholder="г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12"></div></div><div class="dg-field dg-half" data-fw="frPhone"><label>Телефон</label><div class="dg-shell"><input type="text" data-f="frPhone" value="" placeholder="+998 90 123 45 67"></div></div><div class="dg-field dg-half" data-fw="frJshshir"><label>ПИНФЛ (необязательно)</label><div class="dg-shell"><input type="text" data-f="frJshshir" value="" placeholder="14 цифр"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Текст заявления</div><div class="dg-rows"><div class="dg-field" data-fw="atype"><label>Тип заявления</label><div class="dg-shell"><select data-f="atype"><option value="" selected="">— выберите —</option><option value="malumotnoma">Просьба выдать справку</option><option value="nusxa">Просьба выдать копию документа</option><option value="ruxsat">Просьба о разрешении</option><option value="yordam">Просьба о материальной помощи</option><option value="qabul">Приём ребёнка в сад/школу</option><option value="qayta">Просьба пересмотреть решение</option><option value="shikoyat">Жалоба / обращение</option><option value="erkin">Свободный текст (пусто)</option></select></div><div class="dg-hint">Выберите тип — появятся поля именно для него.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Приложения (необязательно)</div><div class="dg-rows"><div class="dg-field" data-fw="attach"><label>Прилагаемые документы</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="attach">+ Добавить приложение</button></div><div class="dg-hint">Если не добавить ни одного, пункт «Приложение:» в заявлении не появится.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Дата</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="signDate"><label>Дата заявления</label><div class="dg-shell"><input type="date" data-f="signDate" value="" placeholder=""></div></div></div></section></div>
-      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Посмотреть заявление ↓</button>
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Для чего нужно заявление?</div><div class="dg-rows"><div class="dg-field" data-fw="atype"><label for="dgf-atype">Тип заявления</label><div class="dg-shell"><select id="dgf-atype" data-f="atype"><option value="" selected="">— выберите —</option><option value="malumotnoma">Просьба выдать справку</option><option value="nusxa">Просьба выдать копию документа</option><option value="ruxsat">Просьба о разрешении</option><option value="yordam">Просьба о материальной помощи</option><option value="qabul">Приём ребёнка в сад/школу</option><option value="qayta">Просьба пересмотреть решение</option><option value="shikoyat">Жалоба / обращение</option><option value="erkin">Свободный текст (пусто)</option></select></div><div class="dg-hint">Выберите тип — появятся поля именно для него.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Кому</div><div class="dg-rows"><div class="dg-field" data-fw="toOrg"><label for="dgf-toOrg">Название организации</label><div class="dg-shell"><input id="dgf-toOrg" type="text" data-f="toOrg" value="" placeholder="ГДОУ &quot;Детский сад Чиланзарского района&quot;"></div></div><div class="dg-field dg-half" data-fw="toPost"><label for="dgf-toPost">Должность</label><div class="dg-shell"><input id="dgf-toPost" type="text" data-f="toPost" value="" placeholder="директору"></div></div><div class="dg-field dg-half" data-fw="toFio"><label for="dgf-toFio">Ф.И.О. (если известно)</label><div class="dg-shell"><input id="dgf-toFio" type="text" data-f="toFio" value="" placeholder="Алиев А. А."></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">От кого</div><div class="dg-rows"><div class="dg-field" data-fw="frFio"><label for="dgf-frFio">Ф.И.О. (полностью)</label><div class="dg-shell"><input id="dgf-frFio" type="text" data-f="frFio" value="" placeholder="Каримов Бобур Собирович"></div></div><div class="dg-field" data-fw="frAddr"><label for="dgf-frAddr">Адрес проживания</label><div class="dg-shell"><input id="dgf-frAddr" type="text" data-f="frAddr" value="" placeholder="г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12"></div></div><div class="dg-field dg-half" data-fw="frPhone"><label for="dgf-frPhone">Телефон</label><div class="dg-shell"><input id="dgf-frPhone" type="text" data-f="frPhone" value="" placeholder="+998 90 123 45 67"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Приложения (необязательно)</div><div class="dg-rows"><div class="dg-field" data-fw="attach"><label>Прилагаемые документы</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="attach">+ Добавить приложение</button></div><div class="dg-hint">Если не добавить ни одного, пункт «Приложение:» в заявлении не появится.</div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Дата</div><div class="dg-rows"><div class="dg-field dg-half" data-fw="signDate"><label for="dgf-signDate">Дата заявления</label><div class="dg-shell"><input id="dgf-signDate" type="date" data-f="signDate" value="" placeholder=""></div></div></div></section></div>
     </div>
     <div class="dg-col dg-preview-col">
       <section class="receipt" id="docPreview">
         <div class="dg-head"><span class="t" data-i="prevTitle">Текст заявления</span><span class="dg-left" id="dgLeft">Осталось заполнить: 7</span></div>
-        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div>от <span class="ph">____________________________</span></div><div><span class="ph">______________________________</span></div></div><div class="dg-title">ЗАЯВЛЕНИЕ</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (подпись)</div><div><span class="ph">________________________</span></div></div></div><div class="dg-note">Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Заявление подаётся в двух экземплярах.</div></div>
+        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div>от <span class="ph">____________________________</span></div><div><span class="ph">______________________________</span></div></div><div class="dg-title">ЗАЯВЛЕНИЕ</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (подпись)</div><div><span class="ph">________________________</span></div></div></div></div>
         <div class="receipt-actions">
           <button type="button" class="primary" id="wordBtn" data-i="btnWord">Скачать Word</button>
           <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
-          <button type="button" id="shareBtn" data-i="btnShare">Ссылка</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Поделиться пустым образцом</button>
           <button type="button" id="clearBtn" data-i="btnClear">Очистить</button>
         </div>
       </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
@@ -424,8 +429,8 @@ var I={
   sub:"Tashkilotga ariza yozing. Turini tanlang — matn shabloni to'ladi, keyin uni o'zingizga moslab tahrirlaysiz.",
   intro:"<b>Ariza</b> — tashkilot yoki mansabdor shaxsga yozma murojaat. Uning shakli deyarli har doim bir xil: o'ng yuqori burchakda kimga va kimdan, o'rtada sarlavha, so'ng murojaat matni, oxirida sana va imzo. Turini tanlasangiz matn shabloni avtomatik to'ladi — uni o'zingizga moslab o'zgartirasiz. Kiritilgan ma'lumot faqat shu brauzerda saqlanadi.",
   prevTitle:"Ariza matni",
-  jump:"Arizani ko'rish ↓",
-  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  viewFormBtn:"To'ldirish",viewPreviewBtn:"Hujjatni ko'rish",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Bo'sh namunani ulashish",btnClear:"Tozalash",
   blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
   tipTitle:"Maslahat",
   tipTxt:"Ariza <b>ikki nusxada</b> tayyorlanadi. Bir nusxasini topshirasiz, ikkinchisiga qabul qilgan xodim sana qo'yib, imzo chekadi va u sizda qoladi — bu arizangiz topshirilganini tasdiqlaydigan eng ishonchli dalil. Pochta orqali yuborsangiz, xabarnomali buyurtma xat ham dalil bo'ladi.",
@@ -446,8 +451,8 @@ var I={
   sub:"Напишите заявление в организацию. Выберите тип — шаблон текста заполнится, затем отредактируйте под себя.",
   intro:"<b>Заявление</b> — письменное обращение в организацию или к должностному лицу. Его форма почти всегда одинакова: в правом верхнем углу кому и от кого, по центру заголовок, далее текст обращения, в конце дата и подпись. При выборе типа шаблон текста заполняется автоматически — вы правите его под себя. Введённые данные остаются только в вашем браузере.",
   prevTitle:"Текст заявления",
-  jump:"Посмотреть заявление ↓",
-  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  viewFormBtn:"Заполнить",viewPreviewBtn:"Посмотреть заявление",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Поделиться пустым образцом",btnClear:"Очистить",
   blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
   tipTitle:"Совет",
   tipTxt:"Заявление готовится <b>в двух экземплярах</b>. Один вы сдаёте, на втором принявший сотрудник ставит дату и подпись, и он остаётся у вас — это самое надёжное доказательство того, что заявление подано. При отправке почтой заказное письмо с уведомлением тоже служит доказательством.",
@@ -470,18 +475,7 @@ var CFG={
  file:'ariza',
  personal:true,
  sections:[
-  {id:'to',title:{uz:'Kimga',ru:'Кому'},fields:[
-    {id:'toOrg',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Chilonzor tuman bolalar bog\'chasi" DMTT',ru:'ГДОУ "Детский сад Чиланзарского района"'}},
-    {id:'toPost',t:'text',half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'direktoriga',ru:'директору'}},
-    {id:'toFio',t:'text',half:true,label:{uz:'F.I.Sh. (ma\'lum bo\'lsa)',ru:'Ф.И.О. (если известно)'},ph:{uz:'Aliyev A. A.',ru:'Алиев А. А.'}}
-  ]},
-  {id:'from',title:{uz:'Kimdan',ru:'От кого'},fields:[
-    {id:'frFio',t:'text',label:{uz:'F.I.Sh. (to\'liq)',ru:'Ф.И.О. (полностью)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
-    {id:'frAddr',t:'text',label:{uz:'Yashash manzili',ru:'Адрес проживания'},ph:{uz:'Toshkent sh., Yunusobod t., 4-kvartal, 7-uy, 12-xonadon',ru:'г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12'}},
-    {id:'frPhone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}},
-    {id:'frJshshir',t:'text',half:true,label:{uz:'JSHSHIR (ixtiyoriy)',ru:'ПИНФЛ (необязательно)'},ph:{uz:'14 raqam',ru:'14 цифр'}}
-  ]},
-  {id:'body',title:{uz:'Ariza matni',ru:'Текст заявления'},fields:[
+  {id:'type',title:{uz:'Nima uchun ariza kerak?',ru:'Для чего нужно заявление?'},fields:[
     {id:'atype',t:'sel',def:'',label:{uz:'Ariza turi',ru:'Тип заявления'},
      hint:{uz:'Turni tanlang — shu turga xos maydonlar paydo bo\'ladi.',ru:'Выберите тип — появятся поля именно для него.'},
      opts:[
@@ -495,7 +489,20 @@ var CFG={
       {v:'shikoyat',label:{uz:'Shikoyat / murojaat',ru:'Жалоба / обращение'}},
       {v:'erkin',label:{uz:'Erkin matn (bo\'sh)',ru:'Свободный текст (пусто)'}}
      ]}
-   ].concat(TPL_FIELDS)},
+  ]},
+  {id:'body',title:{uz:'Shu vaziyatga tegishli savollar',ru:'Вопросы по вашей ситуации'},fields:TPL_FIELDS},
+  {id:'to',title:{uz:'Kimga',ru:'Кому'},fields:[
+    {id:'toOrg',t:'text',label:{uz:'Tashkilot nomi',ru:'Название организации'},ph:{uz:'"Chilonzor tuman bolalar bog\'chasi" DMTT',ru:'ГДОУ "Детский сад Чиланзарского района"'}},
+    {id:'toPost',t:'text',half:true,label:{uz:'Lavozimi',ru:'Должность'},ph:{uz:'direktoriga',ru:'директору'}},
+    {id:'toFio',t:'text',half:true,label:{uz:'F.I.Sh. (ma\'lum bo\'lsa)',ru:'Ф.И.О. (если известно)'},ph:{uz:'Aliyev A. A.',ru:'Алиев А. А.'}}
+  ]},
+  {id:'from',title:{uz:'Kimdan',ru:'От кого'},fields:[
+    {id:'frFio',t:'text',label:{uz:'F.I.Sh. (to\'liq)',ru:'Ф.И.О. (полностью)'},ph:{uz:'Karimov Bobur Sobirovich',ru:'Каримов Бобур Собирович'}},
+    {id:'frAddr',t:'text',label:{uz:'Yashash manzili',ru:'Адрес проживания'},ph:{uz:'Toshkent sh., Yunusobod t., 4-kvartal, 7-uy, 12-xonadon',ru:'г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12'}},
+    {id:'frPhone',t:'text',half:true,label:{uz:'Telefon',ru:'Телефон'},ph:{uz:'+998 90 123 45 67',ru:'+998 90 123 45 67'}},
+    {id:'frJshshir',t:'text',half:true,label:{uz:'JSHSHIR (ixtiyoriy)',ru:'ПИНФЛ (необязательно)'},ph:{uz:'14 raqam',ru:'14 цифр'},
+     showIf:function(s){return s.atype==='qabul';}}
+  ]},
   {id:'att',title:{uz:'Ilovalar (ixtiyoriy)',ru:'Приложения (необязательно)'},fields:[
     {id:'attach',t:'list',label:{uz:'Ilova qilinadigan hujjatlar',ru:'Прилагаемые документы'},
      ph:{uz:'Pasport nusxasi, 1 varaq',ru:'Копия паспорта, 1 лист'},
@@ -559,9 +566,6 @@ var CFG={
      left:[(v.signDate?KD.fmtDate(v.signDate,lang):B(22))],
      right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.frFio,24)]});
 
-   b.push({k:'note',text:ru
-     ?'Документ подготовлен на Kalki.uz как общий образец и носит справочный характер. Заявление подаётся в двух экземплярах.'
-     :'Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma\'lumot uchun mo\'ljallangan. Ariza ikki nusxada topshiriladi.'});
    return b;
  }
 };
@@ -674,11 +678,24 @@ applyLang();
 KD.init(CFG);
 setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight([]);},220);
 
-var jb=document.getElementById('jumpBtn');
-if(jb)jb.onclick=function(){
-  var el=document.getElementById('docPreview');
-  if(el&&el.scrollIntoView)try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){el.scrollIntoView()}
-};
+/* Telefonda "To'ldirish / Hujjatni ko'rish" almashtirgichi — desktopda
+   ikkala ustun yonma-yon ko'rinadi (CSS media so'rovi), shuning uchun
+   bu faqat tor ekranda ko'rinadi va ishlaydi. */
+var viewSeg=document.getElementById('viewSeg'), dgGrid=document.getElementById('dgGrid');
+if(viewSeg&&dgGrid){
+  viewSeg.addEventListener('click',function(e){
+    var btn=e.target.closest&&e.target.closest('button[data-view]');
+    if(!btn)return;
+    var v=btn.getAttribute('data-view');
+    dgGrid.setAttribute('data-view',v);
+    var btns=viewSeg.querySelectorAll('button');
+    for(var i=0;i<btns.length;i++)btns[i].classList.toggle('on',btns[i]===btn);
+    if(v==='preview'){
+      var el=document.getElementById('docPreview');
+      if(el&&el.scrollIntoView)try{el.scrollIntoView({behavior:'smooth',block:'start'})}catch(e2){el.scrollIntoView()}
+    }
+  });
+}
 })();
 
 </script>
