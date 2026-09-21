@@ -220,15 +220,32 @@
   KD.blank = function (n) { return '{{_' + (n || 14) + '}}'; };
 
   // Qiymat bo'lsa o'zini, bo'lmasa bo'sh joy belgisini qaytaradi.
-  KD.v = function (val, width) {
+  // Uchinchi argument (fieldId) — "joyni bosib tuzatish" (click-to-edit)
+  // uchun ixtiyoriy: cfg.clickToEdit=true bo'lgan sahifada qiymat maxsus
+  // belgi bilan o'raladi (pastga q.), aks holda xatti-harakat eskisidek.
+  KD.v = function (val, width, fieldId) {
     val = (val == null ? '' : String(val)).trim();
-    return val ? val : KD.blank(width);
+    if (!val) return KD.blank(width);
+    return fieldId && KD.clickToEdit ? KD.clickWrap(fieldId, val) : val;
   };
 
   var BLANK_RE = /\{\{_(\d+)\}\}/g;
 
+  /* ============================ "JOYNI BOSIB TUZATISH" BELGISI ============
+     Xuddi blank belgisi kabi — matnda fieldqiymat shaklida
+     qoladi (boshqaruv belgilari — haqiqiy hujjat matnida uchramaydi, escHtml
+     ularga tegmaydi). Faqat KD.clickToEdit=true bo'lgan sahifada ishlatiladi
+     — boshqa hamma sahifada KD.v() eskisidek, hech narsa o'zgarmaydi. */
+  KD.clickToEdit = false;
+  var CLICK_RE = /([^]*)([\s\S]*?)/g;
+  KD.clickWrap = function (fieldId, val) {
+    return '' + fieldId + '' + val + '';
+  };
+
   KD.blanksToText = function (s) {
-    return String(s).replace(BLANK_RE, function (_, n) { return new Array(+n + 1).join('_'); });
+    return String(s)
+      .replace(CLICK_RE, function (_, id, v) { return v; })
+      .replace(BLANK_RE, function (_, n) { return new Array(+n + 1).join('_'); });
   };
 
   function escHtml(s) {
@@ -236,7 +253,11 @@
   }
 
   KD.blanksToHtml = function (s) {
-    return escHtml(s).replace(BLANK_RE, function (_, n) {
+    var esc = escHtml(s);
+    esc = esc.replace(CLICK_RE, function (_, id, v) {
+      return '<span class="kd-editable" data-field="' + id + '">' + v + '</span>';
+    });
+    return esc.replace(BLANK_RE, function (_, n) {
       return '<span class="ph">' + new Array(+n + 1).join('_') + '</span>';
     });
   };
@@ -675,7 +696,38 @@
 
   /* ============================ INIT ============================ */
 
+  /* "Joyni bosib tuzatish": preview'dagi kd-editable qiymat bosilganda —
+     tegishli forma maydoniga scroll + fokus. Mobilda "To'ldirish/Ko'rish"
+     almashtirgichi bo'lsa (ariza-namunasi'dagi kabi, #dgGrid/#viewSeg),
+     avval formani ko'rsatadi — boshqa sahifalarda bunday element yo'q,
+     shunchaki e'tiborga olinmaydi. */
+  function wireClickToEdit() {
+    var body = $('docBody');
+    if (!body || body.getAttribute('data-cte-wired')) return;
+    body.setAttribute('data-cte-wired', '1');
+    body.addEventListener('click', function (e) {
+      var el = e.target.closest && e.target.closest('.kd-editable');
+      if (!el) return;
+      var fieldId = el.getAttribute('data-field');
+      var target = document.querySelector('[data-f="' + fieldId + '"]');
+      if (!target) return;
+      var grid = $('dgGrid'), viewSeg = $('viewSeg');
+      if (grid && grid.getAttribute('data-view') === 'preview') {
+        grid.setAttribute('data-view', 'form');
+        if (viewSeg) {
+          var btns = viewSeg.querySelectorAll('button');
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.toggle('on', btns[i].getAttribute('data-view') === 'form');
+          }
+        }
+      }
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.focus();
+    });
+  }
+
   KD.init = function (cfg) {
+    KD.clickToEdit = !!cfg.clickToEdit;
     var ctx = {
       cfg: cfg,
       state: {},
@@ -684,6 +736,8 @@
       byId: {}
     };
     if (!ctx.host) return;
+
+    if (cfg.clickToEdit) wireClickToEdit();
 
     for (var s = 0; s < cfg.sections.length; s++)
       for (var i = 0; i < cfg.sections[s].fields.length; i++) {
