@@ -80,6 +80,9 @@
     if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return forms[1];
     return forms[2];
   }
+  // Sahifalar RU sonlarni to'g'ri turlash uchun (masalan "5 человек" vs
+  // "2 человека") — forms = [1 uchun, 2-4 uchun, 5+ uchun].
+  KD.ruPlural = ruPlural;
 
   function ruUnder1000(n, fem) {
     var out = [];

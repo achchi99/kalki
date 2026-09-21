@@ -301,14 +301,6 @@ var TPL={
    uz:function(g){return "Menga "+g('ruxsatIsh',25)+" ni amalga oshirishga ruxsat berishingizni so'rayman. Sabab: "+g('ruxsatSabab',25)+".";},
    ru:function(g){return "Прошу разрешить мне "+g('ruxsatIsh',25)+". Причина: "+g('ruxsatSabab',25)+".";}
  },
- yordam:{
-   fields:[
-    {id:'yordamSabab',label:{uz:"Yordam so'rash sababi",ru:'Причина обращения за помощью'},ph:{uz:'davolanish xarajatlari',ru:'расходы на лечение'}},
-    {id:'yordamOila',t:'num',half:true,label:{uz:'Oiladagi shaxslar soni',ru:'Число человек в семье'},ph:{uz:'5',ru:'5'}}
-   ],
-   uz:function(g){return "Og'ir moddiy ahvolim sababli menga moddiy yordam ko'rsatishingizni so'rayman. Ahvolimning sababi: "+g('yordamSabab',25)+". Oilamda "+g('yordamOila',3)+" nafar shaxs bor.";},
-   ru:function(g){return "В связи с тяжёлым материальным положением прошу оказать мне материальную помощь. Причина: "+g('yordamSabab',25)+". В моей семье "+g('yordamOila',3)+" человек.";}
- },
  qabul:{
    fields:[
     {id:'qabulFarzand',label:{uz:'Farzand F.I.Sh.',ru:'Ф.И.О. ребёнка'},ph:{uz:'Karimov Sardor Boburovich',ru:'Каримов Сардор Бобурович'}},
@@ -355,7 +347,6 @@ var TPL_FIELDS=[]
  .concat(tplFieldsFor('malumotnoma'))
  .concat(tplFieldsFor('nusxa'))
  .concat(tplFieldsFor('ruxsat'))
- .concat(tplFieldsFor('yordam'))
  .concat(tplFieldsFor('qabul'))
  .concat(tplFieldsFor('qayta'))
  .concat(tplFieldsFor('shikoyat'));
@@ -363,6 +354,67 @@ TPL_FIELDS.push({id:'erkinMatn',t:'area',rows:6,def:'',label:{uz:'Matn',ru:'Те
  ph:{uz:'Arizangiz matnini shu yerga yozing...',ru:'Напишите здесь текст заявления...'},
  hint:{uz:'Erkin matn — istagan mazmunda yozishingiz mumkin.',ru:'Свободный текст — пишите в любой форме.'},
  showIf:function(s){return s.atype==='erkin';}});
+
+/* ---------- "moddiy yordam" — savol-javob rejimi ----------
+   docs/ariza-savol-javob-reja.md: yagona tur, GSC+mavjud sahifa+tezkor
+   nusxa bloki bilan tasdiqlangan. AI ishlatilmaydi — savol-javob faqat
+   oldindan yozilgan qolipga (composeYordamMatn) qiymat qo'yadi.
+   yordamMatn — erkin tahrirlanadigan maydon: javoblar o'zgarganda faqat
+   hali qo'lda tahrirlanmagan bo'lsa qayta tuziladi (lastAutoYordamMatn
+   bilan solishtiriladi) — foydalanuvchi bir marta tahrirlasa, undan
+   keyin unga tegilmaydi. */
+var lastAutoYordamMatn='';
+function composeYordamMatn(state,lg){
+ var ru=lg==='ru', sabab=state.yordamSabab, sababText;
+ if(sabab==='sogliq') sababText=ru?"в связи с ухудшением состояния здоровья":"sog'liq holatim yomonlashgani sababli";
+ else if(sabab==='oilaviy') sababText=ru?'в связи с семейными обстоятельствами':'oilaviy vaziyatim sababli';
+ else if(sabab==='boshqa'){
+   var m=String(state.yordamSababMatn||'').trim();
+   if(!m) return '';
+   sababText=ru?('в связи с '+m):(m+' sababli');
+ } else return '';
+ var oilaRaw=String(state.yordamOila||'').trim(), oilaClause='';
+ if(oilaRaw){
+   var n=parseInt(oilaRaw,10)||0;
+   oilaClause=ru
+    ?(', в семье '+oilaRaw+' '+KD.ruPlural(n,['человек','человека','человек']))
+    :(', oilamda '+oilaRaw+' kishi bor');
+ }
+ return ru
+  ?('Прошу оказать мне материальную помощь — '+sababText+oilaClause+'.')
+  :("Menga moddiy yordam ko'rsatishingizni so'rayman — "+sababText+oilaClause+'.');
+}
+function syncYordamMatn(state,lg){
+ if(state.yordamMatn===lastAutoYordamMatn){
+   lastAutoYordamMatn=composeYordamMatn(state,lg);
+   state.yordamMatn=lastAutoYordamMatn;
+ }
+}
+var YORDAM_QA_FIELDS=[
+ {id:'yordamSabab',t:'sel',def:'',label:{uz:'Yordamga ehtiyoj sababi',ru:'Причина обращения за помощью'},
+  hint:{uz:"Tanlangan sababga qarab matn pastda avtomatik tuziladi — keyin uni tahrirlashingiz mumkin.",ru:'В зависимости от причины текст ниже соберётся автоматически — потом его можно отредактировать.'},
+  opts:[
+   {v:'',label:{uz:'— tanlang —',ru:'— выберите —'}},
+   {v:'sogliq',label:{uz:"Sog'liq holati",ru:'Состояние здоровья'}},
+   {v:'oilaviy',label:{uz:'Oilaviy vaziyat',ru:'Семейные обстоятельства'}},
+   {v:'boshqa',label:{uz:'Boshqa sabab',ru:'Другая причина'}}
+  ],
+  showIf:function(s){return s.atype==='yordam';},
+  onSet:function(val,state,lg){syncYordamMatn(state,lg);}},
+ {id:'yordamSababMatn',def:'',label:{uz:'Sababni qisqacha yozing',ru:'Кратко опишите причину'},
+  ph:{uz:"masalan: uy yong'in ofatidan zarar ko'rdi",ru:'например: дом пострадал от пожара'},
+  showIf:function(s){return s.atype==='yordam' && s.yordamSabab==='boshqa';},
+  onSet:function(val,state,lg){syncYordamMatn(state,lg);}},
+ {id:'yordamOila',t:'num',half:true,def:'',label:{uz:'Oiladagi shaxslar soni (ixtiyoriy)',ru:'Число человек в семье (необязательно)'},
+  ph:{uz:'5',ru:'5'},
+  showIf:function(s){return s.atype==='yordam';},
+  onSet:function(val,state,lg){syncYordamMatn(state,lg);}},
+ {id:'yordamMatn',t:'area',rows:4,def:'',label:{uz:'Ariza matni (avtomatik tuziladi, tahrirlash mumkin)',ru:'Текст заявления (собирается автоматически, можно отредактировать)'},
+  ph:{uz:'Savollarga javob bering — matn shu yerda tuziladi...',ru:'Ответьте на вопросы — текст соберётся здесь...'},
+  hint:{uz:"O'zingizga moslab erkin tahrirlashingiz mumkin.",ru:'Можно свободно отредактировать под себя.'},
+  showIf:function(s){return s.atype==='yordam';}}
+];
+TPL_FIELDS=TPL_FIELDS.concat(YORDAM_QA_FIELDS);
 
 /* ---------- tarjimalar ---------- */
 var I={
@@ -482,6 +534,8 @@ var CFG={
    var body='';
    if(v.atype==='erkin'){
      body=String(v.erkinMatn||'').trim();
+   } else if(v.atype==='yordam'){
+     body=String(v.yordamMatn||'').trim();
    } else {
      var t=TPL[v.atype];
      if(t && t[lang]) body=t[lang](function(id,w){return KD.v(v[id],w);});
