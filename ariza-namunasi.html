@@ -272,39 +272,97 @@ var KD=window.KalkiDoc;
 var lang=document.documentElement.lang==='ru'?'ru':'uz';
 
 /* ---------- ariza turlari: matn shablonlari ----------
-   Shablon matnni oldindan to'ldiradi, foydalanuvchi keyin tahrirlay oladi.
-   Hech qanday summa, muddat yoki stavka yozilmaydi — bo'sh joy qoldiriladi. */
+   Har bir turning o'z bo'sh joylari ALOHIDA maydon — erkin matnga
+   yashirin qolib ketmaydi (docs/ariza-audit.md 0.A). Shablon matni shu
+   maydonlar orqali KD.v() bilan quriladi, shuning uchun tayyorlik
+   tekshiruvi (hasBlanks) to'ldirilmagan joyni har doim topadi. */
 var TPL={
  malumotnoma:{
-   uz:"Menga ______________________ maqsadi uchun ish/o'qish joyimdan ma'lumotnoma berishingizni so'rayman. Ma'lumotnoma ______________________ tashkilotiga taqdim etiladi.",
-   ru:"Прошу выдать мне справку с места работы/учёбы для ______________________. Справка будет представлена в ______________________."
+   fields:[
+    {id:'malMaqsad',label:{uz:"Qanday maqsad uchun",ru:'Для какой цели'},ph:{uz:"bank kreditiga hujjat topshirish",ru:'подачи документов на кредит'}},
+    {id:'malTashkilot',label:{uz:'Qaysi tashkilotga taqdim etiladi',ru:'В какую организацию будет представлена'},ph:{uz:'"Ipoteka Bank" ATB',ru:'АКБ «Ипотека Банк»'}}
+   ],
+   uz:function(g){return "Menga "+g('malMaqsad',25)+" maqsadi uchun ish/o'qish joyimdan ma'lumotnoma berishingizni so'rayman. Ma'lumotnoma "+g('malTashkilot',25)+" tashkilotiga taqdim etiladi.";},
+   ru:function(g){return "Прошу выдать мне справку с места работы/учёбы для "+g('malMaqsad',25)+". Справка будет представлена в "+g('malTashkilot',25)+".";}
  },
  nusxa:{
-   uz:"Menga ______________________ hujjatining tasdiqlangan nusxasini berishingizni so'rayman. Nusxa ______________________ maqsadi uchun zarur.",
-   ru:"Прошу выдать мне заверенную копию документа ______________________. Копия необходима для ______________________."
+   fields:[
+    {id:'nusxaHujjat',label:{uz:'Qaysi hujjatning nusxasi kerak',ru:'Копия какого документа нужна'},ph:{uz:'mehnat daftarchasi',ru:'трудовая книжка'}},
+    {id:'nusxaMaqsad',label:{uz:'Nusxa nima maqsadda kerak',ru:'Для какой цели нужна копия'},ph:{uz:'yangi ish joyiga topshirish',ru:'предоставления по новому месту работы'}}
+   ],
+   uz:function(g){return "Menga "+g('nusxaHujjat',25)+" hujjatining tasdiqlangan nusxasini berishingizni so'rayman. Nusxa "+g('nusxaMaqsad',25)+" maqsadi uchun zarur.";},
+   ru:function(g){return "Прошу выдать мне заверенную копию документа "+g('nusxaHujjat',25)+". Копия необходима для "+g('nusxaMaqsad',25)+".";}
  },
  ruxsat:{
-   uz:"Menga ______________________ ni amalga oshirishga ruxsat berishingizni so'rayman. Sabab: ______________________.",
-   ru:"Прошу разрешить мне ______________________. Причина: ______________________."
+   fields:[
+    {id:'ruxsatIsh',label:{uz:"Nimaga ruxsat so'ralyapti",ru:'На что запрашивается разрешение'},ph:{uz:"bir kunlik mehnat ta'tilidan foydalanish",ru:'использование однодневного отпуска'}},
+    {id:'ruxsatSabab',label:{uz:'Sababi',ru:'Причина'},ph:{uz:'shifokor qabuliga borish',ru:'посещение врача'}}
+   ],
+   uz:function(g){return "Menga "+g('ruxsatIsh',25)+" ni amalga oshirishga ruxsat berishingizni so'rayman. Sabab: "+g('ruxsatSabab',25)+".";},
+   ru:function(g){return "Прошу разрешить мне "+g('ruxsatIsh',25)+". Причина: "+g('ruxsatSabab',25)+".";}
  },
  yordam:{
-   uz:"Og'ir moddiy ahvolim sababli menga moddiy yordam ko'rsatishingizni so'rayman. Ahvolimning sababi: ______________________. Oilamda ______ nafar shaxs bor.",
-   ru:"В связи с тяжёлым материальным положением прошу оказать мне материальную помощь. Причина: ______________________. В моей семье ______ человек."
+   fields:[
+    {id:'yordamSabab',label:{uz:"Yordam so'rash sababi",ru:'Причина обращения за помощью'},ph:{uz:'davolanish xarajatlari',ru:'расходы на лечение'}},
+    {id:'yordamOila',t:'num',half:true,label:{uz:'Oiladagi shaxslar soni',ru:'Число человек в семье'},ph:{uz:'5',ru:'5'}}
+   ],
+   uz:function(g){return "Og'ir moddiy ahvolim sababli menga moddiy yordam ko'rsatishingizni so'rayman. Ahvolimning sababi: "+g('yordamSabab',25)+". Oilamda "+g('yordamOila',3)+" nafar shaxs bor.";},
+   ru:function(g){return "В связи с тяжёлым материальным положением прошу оказать мне материальную помощь. Причина: "+g('yordamSabab',25)+". В моей семье "+g('yordamOila',3)+" человек.";}
  },
  qabul:{
-   uz:"Farzandim ______________________ ni (tug'ilgan sanasi: ______________________) ______________________ ga qabul qilishingizni so'rayman.",
-   ru:"Прошу принять моего ребёнка ______________________ (дата рождения: ______________________) в ______________________."
+   fields:[
+    {id:'qabulFarzand',label:{uz:'Farzand F.I.Sh.',ru:'Ф.И.О. ребёнка'},ph:{uz:'Karimov Sardor Boburovich',ru:'Каримов Сардор Бобурович'}},
+    {id:'qabulSana',t:'date',half:true,label:{uz:"Tug'ilgan sanasi",ru:'Дата рождения'}},
+    {id:'qabulJoy',half:true,label:{uz:"Bog'cha/maktab nomi",ru:'Название сада/школы'},ph:{uz:'25-son maktab',ru:'школа №25'}}
+   ],
+   uz:function(g){return "Farzandim "+g('qabulFarzand',25)+" ni (tug'ilgan sanasi: "+g('qabulSana',14)+") "+g('qabulJoy',20)+" ga qabul qilishingizni so'rayman.";},
+   ru:function(g){return "Прошу принять моего ребёнка "+g('qabulFarzand',25)+" (дата рождения: "+g('qabulSana',14)+") в "+g('qabulJoy',20)+".";}
  },
  qayta:{
-   uz:"______________________ sanasidagi ______________________ qarorini qayta ko'rib chiqishingizni so'rayman. Sabab: ______________________.",
-   ru:"Прошу пересмотреть решение ______________________ от ______________________. Основание: ______________________."
+   fields:[
+    {id:'qaytaSana',t:'date',half:true,label:{uz:'Qaror sanasi',ru:'Дата решения'}},
+    {id:'qaytaQaror',half:true,label:{uz:'Qaror/hujjat nomi',ru:'Название решения/документа'},ph:{uz:'ish haqi hisob-kitobi',ru:'расчёт заработной платы'}},
+    {id:'qaytaSabab',label:{uz:"Qayta ko'rib chiqish sababi",ru:'Причина пересмотра'},ph:{uz:'hisoblashda xatolik bor',ru:'в расчёте допущена ошибка'}}
+   ],
+   uz:function(g){return g('qaytaSana',14)+" sanasidagi "+g('qaytaQaror',25)+" qarorini qayta ko'rib chiqishingizni so'rayman. Sabab: "+g('qaytaSabab',25)+".";},
+   ru:function(g){return "Прошу пересмотреть решение "+g('qaytaQaror',25)+" от "+g('qaytaSana',14)+". Основание: "+g('qaytaSabab',25)+".";}
  },
  shikoyat:{
-   uz:"______________________ holati yuzasidan murojaat qilaman. Holat quyidagicha: ______________________. Choralar ko'rishingizni va natijasi haqida menga xabar berishingizni so'rayman.",
-   ru:"Обращаюсь по факту ______________________. Обстоятельства: ______________________. Прошу принять меры и сообщить мне о результате."
+   fields:[
+    {id:'shikoyatMavzu',label:{uz:'Shikoyat mavzusi',ru:'Тема жалобы'},ph:{uz:'kommunal xizmat sifatsizligi',ru:'некачественная коммунальная услуга'}},
+    {id:'shikoyatTafsilot',t:'area',rows:3,label:{uz:'Holat tafsiloti',ru:'Подробности ситуации'},ph:{uz:"Nima sodir bo'lgani, qachon va qanday...",ru:'Что произошло, когда и как...'}}
+   ],
+   uz:function(g){return g('shikoyatMavzu',25)+" holati yuzasidan murojaat qilaman. Holat quyidagicha: "+g('shikoyatTafsilot',60)+". Choralar ko'rishingizni va natijasi haqida menga xabar berishingizni so'rayman.";},
+   ru:function(g){return "Обращаюсь по факту "+g('shikoyatMavzu',25)+". Обстоятельства: "+g('shikoyatTafsilot',60)+". Прошу принять меры и сообщить мне о результате.";}
  },
- erkin:{uz:"",ru:""}
+ erkin:{fields:[]}
 };
+
+/* TPL.fields'dan CFG maydonlarini quradi — har biri faqat o'z turi
+   tanlanganda ko'rinadi (showIf). Yagona manba TPL — ikki joyda
+   qo'lda takrorlash yo'q. */
+function tplFieldsFor(atype){
+ var src=TPL[atype].fields, out=[];
+ for(var i=0;i<src.length;i++){
+   var f=src[i], nf={};
+   for(var k in f) nf[k]=f[k];
+   nf.showIf=(function(a){return function(s){return s.atype===a;};})(atype);
+   out.push(nf);
+ }
+ return out;
+}
+var TPL_FIELDS=[]
+ .concat(tplFieldsFor('malumotnoma'))
+ .concat(tplFieldsFor('nusxa'))
+ .concat(tplFieldsFor('ruxsat'))
+ .concat(tplFieldsFor('yordam'))
+ .concat(tplFieldsFor('qabul'))
+ .concat(tplFieldsFor('qayta'))
+ .concat(tplFieldsFor('shikoyat'));
+TPL_FIELDS.push({id:'erkinMatn',t:'area',rows:6,def:'',label:{uz:'Matn',ru:'Текст'},
+ ph:{uz:'Arizangiz matnini shu yerga yozing...',ru:'Напишите здесь текст заявления...'},
+ hint:{uz:'Erkin matn — istagan mazmunda yozishingiz mumkin.',ru:'Свободный текст — пишите в любой форме.'},
+ showIf:function(s){return s.atype==='erkin';}});
 
 /* ---------- tarjimalar ---------- */
 var I={
@@ -373,7 +431,7 @@ var CFG={
   ]},
   {id:'body',title:{uz:'Ariza matni',ru:'Текст заявления'},fields:[
     {id:'atype',t:'sel',def:'',label:{uz:'Ariza turi',ru:'Тип заявления'},
-     hint:{uz:'Turni tanlaganda matn shabloni to\'ladi — keyin uni tahrirlang.',ru:'При выборе типа заполняется шаблон текста — затем отредактируйте его.'},
+     hint:{uz:'Turni tanlang — shu turga xos maydonlar paydo bo\'ladi.',ru:'Выберите тип — появятся поля именно для него.'},
      opts:[
       {v:'',label:{uz:'— tanlang —',ru:'— выберите —'}},
       {v:'malumotnoma',label:{uz:'Ma\'lumotnoma berish so\'rovi',ru:'Просьба выдать справку'}},
@@ -384,12 +442,8 @@ var CFG={
       {v:'qayta',label:{uz:'Qarorni qayta ko\'rib chiqish so\'rovi',ru:'Просьба пересмотреть решение'}},
       {v:'shikoyat',label:{uz:'Shikoyat / murojaat',ru:'Жалоба / обращение'}},
       {v:'erkin',label:{uz:'Erkin matn (bo\'sh)',ru:'Свободный текст (пусто)'}}
-     ],
-     onSet:function(val,state,lg){ var t=TPL[val]; if(t) state.body = t[lg]||t.uz; }},
-    {id:'body',t:'area',rows:6,def:'',label:{uz:'Matn',ru:'Текст'},
-     ph:{uz:'Arizangiz matnini shu yerga yozing...',ru:'Напишите здесь текст заявления...'},
-     hint:{uz:'Shablonni o\'zingizga moslab tahrirlang. Bo\'sh chiziqlar o\'rniga o\'z ma\'lumotlaringizni yozing.',ru:'Отредактируйте шаблон под себя. Вместо прочерков впишите свои данные.'}}
-  ]},
+     ]}
+   ].concat(TPL_FIELDS)},
   {id:'att',title:{uz:'Ilovalar (ixtiyoriy)',ru:'Приложения (необязательно)'},fields:[
     {id:'attach',t:'list',label:{uz:'Ilova qilinadigan hujjatlar',ru:'Прилагаемые документы'},
      ph:{uz:'Pasport nusxasi, 1 varaq',ru:'Копия паспорта, 1 лист'},
@@ -425,7 +479,13 @@ var CFG={
 
    b.push({k:'title',text:ru?'ЗАЯВЛЕНИЕ':'ARIZA'});
 
-   var body=String(v.body||'').trim();
+   var body='';
+   if(v.atype==='erkin'){
+     body=String(v.erkinMatn||'').trim();
+   } else {
+     var t=TPL[v.atype];
+     if(t && t[lang]) body=t[lang](function(id,w){return KD.v(v[id],w);});
+   }
    if(body){
      var paras=body.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
      for(var i=0;i<paras.length;i++) b.push({k:'p',text:paras[i]});
