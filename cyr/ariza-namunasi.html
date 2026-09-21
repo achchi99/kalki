@@ -94,6 +94,9 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .dg-gap{height:10px}
 .dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
 .ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.kd-editable{cursor:pointer;border-bottom:1px dashed #B9C2BC;padding:9px 2px;margin:-9px -2px;display:inline-block;transition:border-color .15s,background-color .15s}
+.kd-editable:hover,.kd-editable:focus-visible{border-bottom-color:var(--cat);background:var(--cat-soft);outline:0}
+.kd-pdf-plain .kd-editable{cursor:inherit;border-bottom-color:transparent;background:none;padding:0;margin:0;display:inline;transition:none}
 .receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
 .receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
@@ -143,6 +146,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   .noprint,.noprint *{display:none!important;visibility:hidden!important}
   #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
   #topmenu,header,nav{display:none!important}
+  .kd-editable{cursor:auto!important;border-bottom:none!important;background:none!important;padding:0!important;margin:0!important;display:inline!important}
 }
 </style>
 <style id="clsfix">
@@ -235,7 +239,7 @@ img,svg{height:auto}
     <div class="dg-col dg-preview-col">
       <section class="receipt" id="docPreview">
         <div class="dg-head"><span class="t" data-i="prevTitle">Ариза матни</span><span class="dg-left" id="dgLeft">Тўлдирилмаган жойлар: 7</span></div>
-        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div><span class="ph">____________________________</span>дан</div><div><span class="ph">______________________________</span></div></div><div class="dg-title">АРИЗА</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (имзо)</div><div><span class="ph">________________________</span></div></div></div></div>
+        <div id="docBody" data-cte-wired="1"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div><span class="ph">____________________________</span>дан</div><div><span class="ph">______________________________</span></div></div><div class="dg-title">АРИЗА</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (имзо)</div><div><span class="ph">________________________</span></div></div></div></div>
         <div class="receipt-actions">
           <button type="button" class="primary" id="wordBtn" data-i="btnWord" disabled="">Word юклаб олиш</button>
           <button type="button" class="pdfbtn" data-i="btnPdf" disabled="">PDF</button>

@@ -104,6 +104,9 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .dg-gap{height:10px}
 .dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
 .ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.kd-editable{cursor:pointer;border-bottom:1px dashed #B9C2BC;padding:9px 2px;margin:-9px -2px;display:inline-block;transition:border-color .15s,background-color .15s}
+.kd-editable:hover,.kd-editable:focus-visible{border-bottom-color:var(--cat);background:var(--cat-soft);outline:0}
+.kd-pdf-plain .kd-editable{cursor:inherit;border-bottom-color:transparent;background:none;padding:0;margin:0;display:inline;transition:none}
 .receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
 .receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
 .receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
@@ -153,6 +156,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   .noprint,.noprint *{display:none!important;visibility:hidden!important}
   #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
   #topmenu,header,nav{display:none!important}
+  .kd-editable{cursor:auto!important;border-bottom:none!important;background:none!important;padding:0!important;margin:0!important;display:inline!important}
 }
 </style>
 <style id="clsfix">
@@ -245,7 +249,7 @@ img,svg{height:auto}
     <div class="dg-col dg-preview-col">
       <section class="receipt" id="docPreview">
         <div class="dg-head"><span class="t" data-i="prevTitle">Текст заявления</span><span class="dg-left" id="dgLeft">Осталось заполнить: 7</span></div>
-        <div id="docBody"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div>от <span class="ph">____________________________</span></div><div><span class="ph">______________________________</span></div></div><div class="dg-title">ЗАЯВЛЕНИЕ</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (подпись)</div><div><span class="ph">________________________</span></div></div></div></div>
+        <div id="docBody" data-cte-wired="1"><div class="dg-right"><div><span class="ph">______________________________</span></div><div><span class="ph">________________________</span></div><div></div><div>от <span class="ph">____________________________</span></div><div><span class="ph">______________________________</span></div></div><div class="dg-title">ЗАЯВЛЕНИЕ</div><div class="dg-p"><span class="ph">____________________________________________________________</span></div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="ph">______________________</span></div></div><div><div>_______________ (подпись)</div><div><span class="ph">________________________</span></div></div></div></div>
         <div class="receipt-actions">
           <button type="button" class="primary" id="wordBtn" data-i="btnWord">Скачать Word</button>
           <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
@@ -474,6 +478,7 @@ var CFG={
  id:'ariza',
  file:'ariza',
  personal:true,
+ clickToEdit:true,
  sections:[
   {id:'type',title:{uz:'Nima uchun ariza kerak?',ru:'Для чего нужно заявление?'},fields:[
     {id:'atype',t:'sel',def:'',label:{uz:'Ariza turi',ru:'Тип заявления'},
@@ -525,13 +530,13 @@ var CFG={
 
    // o'ng yuqori burchak: kimga / kimdan
    var head=[];
-   head.push(KD.v(v.toOrg,30));
+   head.push(KD.v(v.toOrg,30,'toOrg'));
    var post=String(v.toPost||'').trim(), fio=String(v.toFio||'').trim();
    if(post||fio) head.push((post?post:'')+(post&&fio?' ':'')+(fio?fio:''));
    else head.push(B(24));
    head.push('');
-   head.push((ru?'от ':'')+KD.v(v.frFio,28)+(ru?'':'dan'));
-   head.push(KD.v(v.frAddr,30));
+   head.push((ru?'от ':'')+KD.v(v.frFio,28,'frFio')+(ru?'':'dan'));
+   head.push(KD.v(v.frAddr,30,'frAddr'));
    if(v.frPhone) head.push((ru?'тел.: ':'tel.: ')+v.frPhone);
    if(v.frJshshir) head.push((ru?'ПИНФЛ: ':'JSHSHIR: ')+v.frJshshir);
    b.push({k:'right',lines:head});
@@ -545,7 +550,7 @@ var CFG={
      body=String(v.yordamMatn||'').trim();
    } else {
      var t=TPL[v.atype];
-     if(t && t[lang]) body=t[lang](function(id,w){return KD.v(v[id],w);});
+     if(t && t[lang]) body=t[lang](function(id,w){return KD.v(v[id],w,id);});
    }
    if(body){
      var paras=body.split(/\n{1,}/).map(function(x){return x.trim()}).filter(Boolean);
@@ -563,8 +568,8 @@ var CFG={
 
    b.push({k:'gap'});
    b.push({k:'sig',
-     left:[(v.signDate?KD.fmtDate(v.signDate,lang):B(22))],
-     right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.frFio,24)]});
+     left:[(v.signDate?KD.clickWrap('signDate',KD.fmtDate(v.signDate,lang)):B(22))],
+     right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.frFio,24,'frFio')]});
 
    return b;
  }
@@ -749,8 +754,10 @@ if(viewSeg&&dgGrid){
     if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
     chain.then(function(){
       var pf=card.style.filter;card.style.filter='none';
+      card.classList.add('kd-pdf-plain');
       return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
         card.style.filter=pf;
+        card.classList.remove('kd-pdf-plain');
         var img=cv.toDataURL('image/jpeg',0.94);
         var pdf=new window.jspdf.jsPDF('p','mm','a4');
         var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
@@ -765,7 +772,7 @@ if(viewSeg&&dgGrid){
         kPdfGa();
         done();
       });
-    })['catch'](function(){done();try{window.print()}catch(e){}});
+    })['catch'](function(){card.classList.remove('kd-pdf-plain');done();try{window.print()}catch(e){}});
   }
   var acts=document.querySelectorAll('.receipt-actions');
   for(var i=0;i<acts.length;i++){
