@@ -877,6 +877,67 @@ function runTool(args) {
       bad.slice(0, 8).join(' | '));
   }
 
+  /* ---------- 31. Avtomobil rasmiylashtirish — dvigatel, konstanta
+     sinxronligi, taqiqlangan summalar ---------- */
+  {
+    const bad = [];
+
+    // (a) tools/test-avto.js barcha fixture'lar
+    const t = runTool(['test-avto.js']);
+    if (t.code !== 0) bad.push('test-avto.js yiqildi: ' + t.out.split('\n').filter((l) => l.indexOf('FAIL') === 0).slice(0, 3).join(' | '));
+
+    const AVTO_PAGE = path.join(ROOT, 'avto-rasmiylashtirish.html');
+    if (fs.existsSync(AVTO_PAGE)) {
+      const pageSrc = fs.readFileSync(AVTO_PAGE, 'utf8');
+
+      // (b) JSON va sahifadagi legalconst-data bir xilligi (avto_*/notarius_*/eskrou_*/qoida_* + bhm_qiymati)
+      const legal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'legal-constants.json'), 'utf8'));
+      const wanted = {};
+      for (const cst of legal.constants) {
+        if (/^(avto_|notarius_|eskrou_|qoida_)/.test(cst.id) || cst.id === 'bhm_qiymati') wanted[cst.id] = cst;
+      }
+      const m = pageSrc.match(/<script type="application\/json" id="legalconst-data">([\s\S]*?)<\/script>/);
+      if (!m) {
+        bad.push('avto-rasmiylashtirish.html: #legalconst-data topilmadi');
+      } else {
+        let onPage;
+        try { onPage = JSON.parse(m[1]); } catch (e) { onPage = null; bad.push('legalconst-data JSON xato: ' + e.message); }
+        if (onPage) {
+          for (const id in wanted) {
+            if (!onPage[id]) { bad.push('legalconst-data\'da yo\'q: ' + id); continue; }
+            if (JSON.stringify(onPage[id]) !== JSON.stringify(wanted[id])) bad.push('mos emas: ' + id);
+          }
+          for (const id in onPage) {
+            if (/^(avto_|notarius_|eskrou_|qoida_)/.test(id) && !wanted[id]) bad.push('legalconst-data\'da ortiqcha: ' + id);
+          }
+        }
+      }
+
+      // (c) ZIDDIYAT/BLOKLANGAN kalitlar sahifa/dvigatel kodida ishlatilmagan
+      const forbidden = legal.constants.filter((cst) => cst.holat === 'ZIDDIYAT' || cst.holat === 'BLOKLANGAN').map((cst) => cst.id);
+      const engineSrc = fs.readFileSync(path.join(ROOT, 'assets', 'avto-rasm.js'), 'utf8');
+      // page skriptining o'z qismi (legalconst-data blokidan tashqari) — shu yerda kalit satr sifatida ishlatilmasligi kerak
+      const pageWithoutData = pageSrc.replace(/<script type="application\/json" id="legalconst-data">[\s\S]*?<\/script>/, '');
+      for (const id of forbidden) {
+        const re = new RegExp('[\'"]' + id + '[\'"]');
+        if (re.test(engineSrc)) bad.push('avto-rasm.js ZIDDIYAT/BLOKLANGAN kalitni ishlatadi: ' + id);
+        if (re.test(pageWithoutData)) bad.push('avto-rasmiylashtirish.html (kod qismi) ZIDDIYAT/BLOKLANGAN kalitni ishlatadi: ' + id);
+      }
+
+      // (d) taqiqlangan (odamlar/video aytgan) summalar statik matnda yo'q
+      const TAQIQLANGAN_SUMMA = ['8 mln', '4 mln', '8 000 000', '4 000 000', '1 628 000', '374 000', '79 200', '396 000', '792 000'];
+      for (const s of TAQIQLANGAN_SUMMA) {
+        if (pageWithoutData.indexOf(s) > -1) bad.push('taqiqlangan summa statik matnda topildi: "' + s + '"');
+      }
+    } else {
+      bad.push('avto-rasmiylashtirish.html hali yo\'q — b/c/d tekshiruvlari o\'tkazib yuborildi (inconclusive)');
+    }
+
+    const realBad = bad.filter((b) => b.indexOf('inconclusive') === -1);
+    add(!realBad.length, '31. avtomobil rasmiylashtirish — dvigatel/konstanta/matn tekshiruvi',
+      bad.slice(0, 8).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));
