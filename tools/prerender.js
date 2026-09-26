@@ -188,6 +188,9 @@ const RU_PAGES = [
   'oquv-tatili-arizasi-namunasi.html',
   // FAZA 1-B (2026-09): "TEZ ORADA" hisob-faktura kartasi o'rniga.
   'tolov-hisobi-namunasi.html',
+  // Avto rasmiylashtirish kalkulyatori, 2-FAZA (2026-09): I.uz/I.ru
+  // to'liq qurilgandan keyin qo'shildi.
+  'avto-rasmiylashtirish.html',
 ];
 
 /* Kirill (uz-Cyrl) pilot — FAZA 1 (2026-09). Mexanik lotin->kirill

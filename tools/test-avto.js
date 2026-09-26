@@ -307,6 +307,35 @@ function check(label, cond, details) {
   check('A6) bayroqsiz — boji=1320000', boj && boj.summa === 1320000, 'chiqdi ' + (boj && boj.summa));
 })();
 
+// ---------- R1 (2-FAZA: lang='ru' — summalar bir xil, matn ruscha) ----------
+(function () {
+  var nUz = KalkiAvto.hisobla(baza({}), C, 'uz');
+  var nRu = KalkiAvto.hisobla(baza({}), C, 'ru');
+  check('R1) uz/ru jami bir xil', jamiOf(nUz) === jamiOf(nRu), 'uz=' + jamiOf(nUz) + ' ru=' + jamiOf(nRu));
+  check('R1) ru qatorida lotin harflari (ozbekcha) yoq', !nRu.qatorlar.some(function (q) { return /[o'g'sh]{3,}/.test(q.nomi) && /Davlat|royxat/i.test(q.nomi); }));
+  check('R1) ru qator nomi kutilgan matnni ichiga oladi', nRu.qatorlar.some(function (q) { return q.kalit === 'avto_royxat_oddiy' && /регистрация/i.test(q.nomi); }));
+})();
+
+// ---------- R2 (2-FAZA: lang='ru' — qarindosh+kredit omil matni) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true, kredit: true }), C, 'ru');
+  var boj = topQator(n, 'notarius_avto_oldisotdi');
+  check('R2) ru — boji=6600', boj && boj.summa === 6600, 'chiqdi ' + (boj && boj.summa));
+  check('R2) ru — nomida "родственник" bor', boj && /родственник/i.test(boj.nomi), 'nomi=' + (boj && boj.nomi));
+})();
+
+// ---------- R3 (2-FAZA: lang='ru' — halokat, qoldiq_foiz=null kiritilmagan) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ halokat: true, qoldiq_foiz: null }), C, 'ru');
+  check('R3) ru — kiritilmagan nomi ruscha', n.kiritilmagan.some(function (k) { return /процент/i.test(k.nomi); }));
+})();
+
+// ---------- R4 (2-FAZA: lang berilmasa standart 'uz') ----------
+(function () {
+  var n = KalkiAvto.hisobla(baza({}), C);
+  check('R4) lang berilmasa uz standart', n.qatorlar[0].nomi.indexOf("ro'yxatidan") > -1, 'nomi=' + n.qatorlar[0].nomi);
+})();
+
 console.log('');
 console.log('BHM (joriy, testda ishlatilgan): ' + BHM);
 console.log(pass + ' ta o‘tdi, ' + fail + ' ta yiqildi (jami ' + (pass + fail) + ')');
