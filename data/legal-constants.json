@@ -1118,8 +1118,8 @@
       "izoh": "Qayta ro'yxatdan o'tkazish (familiya, manzil, rang, agregat almashtirish, hujjat yo'qolishi va sh.k. — egasi ALMASHMAGAN holatlar), BHM ko'paytmasi",
       "qiymat": 0.1,
       "amal_qiladi": null,
-      "izoh_uz": "1-fazada UI'da ishlatilmaydi — faqat 683-son qaror 1-ilova 50-banddagi holatlarga tegishli, egasi almashishiga qo'llanmaydi (qarang: qoida_egasi_almashganda).",
-      "izoh_ru": "В 1-й фазе не используется в UI — относится только к случаям из приложения 1 постановления №683 (п.50), не применяется при смене владельца.",
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi — faqat 683-son qaror 1-ilova 50-banddagi holatlarga tegishli, egasi almashishiga qo'llanmaydi (qarang: qoida_egasi_almashganda). MUHIM YANGILANISH (2026-09-26): 2303-5-son buyruq (31.03.2024) bilan kiritilgan 7¹-band aynan 'ro'yxatdan o'tkazish VA qayta ro'yxatdan o'tkazish' ikkalasini bitta 6,84 BHM stavkasiga birlashtiradi. Bu shuni bildirishi mumkinki, 2024-yildan buyon oddiy avtomobil uchun bu 0,1 BHM stavka endi qo'llanmasligi mumkin (2024-yilgacha shu band 0,1 BHM edi). Bu konstanta hamon ISHLATILMAYDI (1-fazadan beri UI'da hech qachon chaqirilmagan) — shuning uchun kodga ta'sir yo'q. lex.uz'ning 23.12.2024-dagi so'nggi tahriri hali to'liq tekshirilmagan (avto-tasdiqlash.md 16-savol).",
+      "izoh_ru": "В 1-й фазе не используется в UI — относится только к случаям из приложения 1 постановления №683 (п.50), не применяется при смене владельца. ВАЖНОЕ ОБНОВЛЕНИЕ (26.09.2026): приказ №2303-5 (31.03.2024) объединяет пункт 7¹ 'регистрация И перерегистрация' в одну ставку 6,84 БРВ. Это может означать, что для обычного автомобиля ставка 0,1 БРВ больше не применяется с 2024 года (до этого пункт был именно 0,1 БРВ). Эта константа по-прежнему НЕ ИСПОЛЬЗУЕТСЯ в UI — код не затронут. Последняя редакция lex.uz от 23.12.2024 пока не проверена полностью (см. вопрос 16 в avto-tasdiqlash.md).",
       "holat": "TASDIQLANGAN",
       "manba_url": "https://my.gov.uz/uz/service/985",
       "manba_nomi": "2303-son buyruq 7²-band; my.gov.uz 985-xizmat"
@@ -1300,11 +1300,11 @@
       "izoh": "Egasi almashganda qayta ro'yxat (avto_qayta_royxat, 0,1 BHM) EMAS, davlat ro'yxatidan o'tkazish stavkasi (avto_royxat_oddiy / avto_royxat_ev_gibrid) qo'llanadi",
       "qiymat": true,
       "amal_qiladi": null,
-      "izoh_uz": "Egasi almashganda avtomobil yangi egaga davlat ro'yxatidan o'tkaziladi (683-son qaror, 1-ilova, 12-band), shuning uchun ro'yxat stavkasi (6,84 BHM; elektromobil/gibrid — 1,5 BHM) qo'llanadi. 0,1 BHMlik qayta ro'yxatdan o'tkazish egasi o'zgarmaydigan holatlar uchun (familiya, manzil, rang va h.k.). Adliya vazirligi maslahat sahifasida bu holat uchun 0,1 BHM ko'rsatilgan; aniq summani YHXX invoysida tekshiring. Real invoys bilan hali tasdiqlanmagan (docs/avto-tasdiqlash.md, 1-savol) — huquqshunos X. Xudoyberdiyevning ochiq Telegram izohi xuddi shu xulosani beradi, lekin bu YHXXning rasmiy javobi emas.",
-      "izoh_ru": "При смене владельца автомобиль регистрируется на нового владельца заново (пост. №683, прил.1, п.12), поэтому применяется ставка регистрации (6,84 БРВ; электро/гибрид — 1,5 БРВ). Ставка 0,1 БРВ — для случаев без смены владельца (ФИО, адрес, цвет и т.п.). Точную сумму уточняйте в инвойсе ГУБДД.",
-      "holat": "NORMATIV_TALQIN",
-      "manba_url": "https://lex.uz/docs/1918264",
-      "manba_nomi": "683-son VMQ 1-ilova 12-band 'v' va 50-band; 2303-son buyruq 7¹/7²-band"
+      "izoh_uz": "683-son VMQ, 1-ilova, 12-band 'v' (egasi o'zgarsa — davlat ro'yxatidan o'tkaziladi) + 2303-son tarif, 2303-5-son buyruq bilan kiritilgan 7¹-band (31.03.2024, 01.04.2024 dan kuchda): 'boshqa barcha avtotransport vositalarini ro'yxatdan o'tkazish va qayta ro'yxatdan o'tkazish uchun — 6,84 BHM'. Manba: https://lex.uz/docs/6858813. Qo'shimcha tasdiq: gov.uz rasmiy advice sahifasi (gov.uz/oz/advice/73/document/152) xuddi shu buyruqni keltiradi.",
+      "izoh_ru": "Пост. №683, прил.1, п.12 'в' (при смене владельца — регистрация заново) + тариф №2303, п.7¹, введённый приказом №2303-5 (31.03.2024, действует с 01.04.2024): 'для регистрации и перерегистрации всех прочих автотранспортных средств — 6,84 БРВ'. Источник: https://lex.uz/docs/6858813. Дополнительное подтверждение: официальная страница-справка gov.uz (gov.uz/oz/advice/73/document/152) ссылается на тот же приказ.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/6858813",
+      "manba_nomi": "2303-5-son IIV buyrug'i, 31.03.2024 ro'yxatdan o'tgan, 01.04.2024 dan kuchda, 7¹-band; 683-son VMQ 1-ilova 12-band 'v'"
     },
     {
       "id": "notarius_avto_oldisotdi",

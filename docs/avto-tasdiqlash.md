@@ -3,6 +3,22 @@
 **1- va 4-savolni bitta real YHXX invoysi (ishlatilgan avto, qatorma-qator) hal qiladi;
 5, 7, 8-savollarni e-notarius KALKULYATORI (xizmat tavsifi emas) natijalari hal qiladi.**
 
+## 2303-5 topilmasi (2026-09-26)
+
+Aniq manba topildi: 2303-5-son IIV buyrug'i, 31.03.2024 ro'yxatdan o'tgan, 01.04.2024 dan
+kuchda (https://lex.uz/docs/6858813). Bu buyruq 2303-son tarif hujjatining 7-bandini qayta
+yozadi (endi elektromobil/mototransport/tirkamalarga tegishli, 1,5 BHM) va yangi 7¹-bandni
+qo'shadi ("boshqa barcha avtotransport vositalarini ro'yxatdan o'tkazish va qayta ro'yxatdan
+o'tkazish uchun — 6,84 BHM"). Qo'shimcha tasdiq: gov.uz rasmiy advice sahifasi
+(gov.uz/oz/advice/73/document/152) xuddi shu buyruqni keltiradi.
+
+Natija: **1-savol HAL BO'LDI** — `qoida_egasi_almashganda` holati `NORMATIV_TALQIN`dan
+`TASDIQLANGAN`ga o'tkazildi. Lekin yangi nuance ochildi: 7¹-band "ro'yxatdan o'tkazish VA
+qayta ro'yxatdan o'tkazish"ni BITTA 6,84 BHM stavkasiga birlashtiradi — bu `avto_qayta_royxat`
+(0,1 BHM, egasi o'zgarmaydigan holatlar uchun) konstantasi 2024-yildan buyon eskirgan bo'lishi
+mumkinligini anglatadi. Bu hali to'liq tasdiqlanmagan (16-savol) va konstanta hamon UI'da
+ishlatilmagani uchun kodga ta'sir qilmaydi.
+
 ## 2-FAZA yangilanishi (2026-09-26)
 
 Asror e-notarius rasmiy kalkulyatorida ikkita qo'shimcha sinov o'tkazdi (skrinshotlar:
@@ -27,14 +43,15 @@ Hamkorbankning yozma eskrou tarifini topdi.
   amaliyotchisining shaxsiy tavsifi bo'lishi mumkin, rasmiy manba bilan tasdiqlanmagan holda
   sahifaga kiritilmaydi.
 
-**Hali ochiq qoladigan savollar (o'zgarishsiz yoki aniqlashtirilgan):** 1, 2, 3, 5 (kichik
-qismi), 9, 10, 11, 12, 13, 14, 15 — quyidagi jadvalda batafsil. Muhimi: raqam
+**Hali ochiq qoladigan savollar (o'zgarishsiz yoki aniqlashtirilgan):** 2, 3, 5 (kichik
+qismi), 9, 10, 11, 12, 13, 14, 15, 16, 17 — quyidagi jadvalda batafsil (1-savol 2303-5
+topilmasi bilan yopildi, qarang yuqoridagi bo'lim). Muhimi: raqam
 almashtirish/yo'qolgan/tranzit/saqlash stavkalari (13-savol) hamon ZIDDIYAT holatida —
 shuning uchun "Faqat raqam" stsenariysi 2-fazada ham qurilmadi.
 
 | # | Savol | Hozirgi holat | Qanday tekshiriladi | Javob |
 |---|---|---|---|---|
-| 1 | Egasi almashganda 6,84 BHM qo'llanishi | ◐ Normativ asos (683-son 12 "v" va 50-band; 2303-son 7¹/7²-band) va huquqshunos X. Xudoyberdiyevning mustaqil izohi bir xil xulosada. Ishlab chiqishni TO'XTATMAYDI — `qoida_egasi_almashganda` holati `NORMATIV_TALQIN`, sahifada "talqin" belgisi bilan | Real YHXX invoysi yoki my.gov'dagi ishlatilgan avto xizmati sahifasi | — |
+| 1 | Egasi almashganda 6,84 BHM qo'llanishi | ✅ **HAL BO'LDI (2026-09-26).** Aniq manba: 2303-5-son IIV buyrug'i, 31.03.2024 ro'yxatdan o'tgan, 01.04.2024 dan kuchda, 7¹-band (https://lex.uz/docs/6858813). Buyruq matni to'g'ridan-to'g'ri o'qildi va tasdiqlandi. Qo'shimcha: gov.uz rasmiy advice sahifasi xuddi shu buyruqni keltiradi (gov.uz/oz/advice/73/document/152) | Real YHXX invoysi (ixtiyoriy, qo'shimcha tasdiq uchun) | `qoida_egasi_almashganda` holati `TASDIQLANGAN`ga o'tkazildi |
 | 2 | Davlat raqami 9 BHM ni belgilagan normativ hujjat | ✅ my.gov 985-xizmatida 9 BHM tasdiqlangan. OCHIQ: qaysi hujjat (2303-sonning keyingi tahriri yoki Uzavtomotobelgi tarifi) 2026-yildagi 562-son VMQ'dan keyingi yangi qiymatni belgilagan | lex.uz'da 562-son VMQ yoki uning ijrosidagi tarif hujjatini qidirish | — |
 | 3 | Texpasport 1,4 BHM normativ asosi | ✅ my.gov 985-xizmatida tasdiqlangan. OCHIQ: normativ asosi (2303-son eski tahririda 0,7 BHM edi) | lex.uz'da tegishli hujjatni qidirish | — |
 | 4 | Videodagi "ariza — 44 000 so'm" (= 0,1 BHM) | ✅ Kun.uz (2025-yil aprel) onlayn ro'yxatdan o'tkazish to'lovlari ichida "texnik ko'rik — 0,1 BHM"ni sanagan; Kursiv hisobida ham 0,1 BHMlik qator bor. my.gov 985 matnida bunday qator yo'q | Real YHXX invoysida bormi, nomi nima? | **Rad etildi (2-FAZA) — qo'shilmaydi.** Na portal invoysida, na 2303-son tarifda "ariza" nomli alohida band topilmadi. |
@@ -49,6 +66,8 @@ shuning uchun "Faqat raqam" stsenariysi 2-fazada ham qurilmadi.
 | 13 | Raqam almashtirish/yo'qolgan/tranzit/saqlash stavkalari | my.gov'dagi tegishli xizmatlar sahifalaridagi amaldagi stavkalar kerak (2-faza uchun) | my.gov.uz tegishli xizmat sahifalari | — |
 | 14 | Texpasport dublikati stavkasi | Amaldagi stavka hali topilmadi | my.gov.uz | — |
 | 15 | Naqd to'lov chegarasi (PF-246, 2-band "d", PF-175 tahriri 27.08.2026) 400 BHM avto oldi-sotdisiga qo'llanadimi | Noaniq — javob kelguncha sahifa 10 yildan eski avtolar uchun naqd/naqdsiz haqida da'vo qilmaydi | lex.uz'da PF-175/PF-246 to'liq matni | — |
+| 16 | ⚠️ MUHIM: "Qayta ro'yxatdan o'tkazish" (familiya, manzil, rang o'zgarishi va h.k.) oddiy avtomobil uchun HALI HAM 0,1 BHMmi, yoki 2303-5-son buyruq (7¹-band, "ro'yxatdan o'tkazish VA qayta ro'yxatdan o'tkazish" — ikkalasi 6,84 BHM) buni ham 6,84 BHMga ko'targanmi? 2011–2023 yillarda bu ikkisi (ro'yxat + qayta ro'yxat) bitta bandda, bitta past stavkada (0,1 BHM) edi. 2024-yildagi tuzatish ularni bitta YUQORI stavkaga (6,84 BHM) birlashtirgan ko'rinadi. Bu konstanta (`avto_qayta_royxat`) hozircha kodda ishlatilmagani uchun shoshilinch emas, lekin sahifadagi tushuntirish matnini yozishda e'tiborga olinishi kerak | lex.uz/docs/1918264 sahifasini brauzerda ochib, "Joriy versiya" tugmasini bosib, band 7/7¹ matnini o'qish (avtomatlashtirilgan tekshiruv vositasi sana parametridan qat'i nazar eski keshlangan nusxani qaytardi, shuning uchun bu qo'lda tekshirilishi kerak) | — |
+| 17 | Davlat raqami (my.gov.uz'da 9 BHM) va texpasport (my.gov.uz'da 1,4 BHM) — lex.uz'ning oxirgi tekshirilgan versiyalarida (01.11.2023 holatiga ko'ra) band 1 hamon 3,5 BHM, band 8 hamon 0,7 BHM ko'rsatgan — ya'ni portal va lex.uz o'rtasida ikki baravar farq bor (texpasportda aniq 2x, raqamda 2,57x). Bu farq ehtimol 23.12.2024-dagi keyingi tuzatish (2303-7-son) bilan izohlanadi, lekin bu hali TO'LIQ TEKSHIRILMAGAN — avtomatlashtirilgan vosita ushbu sanadagi to'liq matnni ololmadi | lex.uz/docs/1918264, "Joriy versiya", band 1 va band 8 (qo'lda tekshirish) | — |
 
 ## Amaliy ma'lumotlar (saytga chiqmaydi)
 
