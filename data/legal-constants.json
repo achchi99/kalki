@@ -879,6 +879,80 @@
       "manba_nomi": "Vazirlar Mahkamasi qarori 52-son, 31.01.2025 (gibrid istisnosi) + docs/bojxona-gibrid-tekshiruv.md (ICE jadvaliga yo'naltirish xulosasi)"
     },
     {
+      "id": "bojxona_ice_utilizatsiya_yosh_uchun",
+      "sahifa": "bojxona-kalkulyator",
+      "tur": "jadval",
+      "izoh": "Benzin/dizel (va ICE jadvaliga yo'naltirilgan gibrid — qarang bojxona_gibrid_utilizatsiya_tartibi) avtomobillar uchun utilizatsiya yig'imi, avtomobil yoshi (3 yilgacha / 3 yildan ortiq) va dvigatel hajmiga qarab (BHM koeffitsienti).",
+      "bandlar": [
+        {
+          "shart": "3 yilgacha, dvigatel hajmi 1000 sm³gacha",
+          "yosh": "3_yilgacha",
+          "hajm_max": 1000,
+          "bhm_koeff": 30
+        },
+        {
+          "shart": "3 yilgacha, 1000–2000 sm³",
+          "yosh": "3_yilgacha",
+          "hajm_max": 2000,
+          "bhm_koeff": 120
+        },
+        {
+          "shart": "3 yilgacha, 2000–3000 sm³",
+          "yosh": "3_yilgacha",
+          "hajm_max": 3000,
+          "bhm_koeff": 180
+        },
+        {
+          "shart": "3 yilgacha, 3000–3500 sm³",
+          "yosh": "3_yilgacha",
+          "hajm_max": 3500,
+          "bhm_koeff": 180
+        },
+        {
+          "shart": "3 yilgacha, 3500 sm³dan yuqori",
+          "yosh": "3_yilgacha",
+          "hajm_max": null,
+          "bhm_koeff": 300
+        },
+        {
+          "shart": "3 yildan ortiq, dvigatel hajmi 1000 sm³gacha",
+          "yosh": "3_yildan_ortiq",
+          "hajm_max": 1000,
+          "bhm_koeff": 90
+        },
+        {
+          "shart": "3 yildan ortiq, 1000–2000 sm³",
+          "yosh": "3_yildan_ortiq",
+          "hajm_max": 2000,
+          "bhm_koeff": 210
+        },
+        {
+          "shart": "3 yildan ortiq, 2000–3000 sm³",
+          "yosh": "3_yildan_ortiq",
+          "hajm_max": 3000,
+          "bhm_koeff": 330
+        },
+        {
+          "shart": "3 yildan ortiq, 3000–3500 sm³",
+          "yosh": "3_yildan_ortiq",
+          "hajm_max": 3500,
+          "bhm_koeff": 390
+        },
+        {
+          "shart": "3 yildan ortiq, 3500 sm³dan yuqori",
+          "yosh": "3_yildan_ortiq",
+          "hajm_max": null,
+          "bhm_koeff": 480
+        }
+      ],
+      "amal_qiladi": "2020-08-01",
+      "izoh_uz": "Bu jadval avvaldan kalki.uz kodida (bojxona-kalkulyator.html, UTIL.newer/UTIL.older massivi sifatida) manbasiz qattiq yozilgan edi — bu yozuv uni legal-constants.json'ga ko'chiradi, RAQAMLARNI O'ZGARTIRMAY. Birinchi band (1000 sm³ → 30 BHM) 2020-yil 1-avgustda utilizatsiya yig'imi birinchi joriy etilgandagi boshlang'ich stavka bilan mos keladi (manba: xabardor.uz). QOLGAN BANDLAR (2000/3000/3500+ sm³ oraliqlari va '3 yildan ortiq' jadvalining barchasi) birlamchi huquqiy manba bilan bu sessiyada qayta tasdiqlanmadi — tafsilot: docs/bojxona-gibrid-tekshiruv.md. Shu sabab holat NORMATIV_TALQIN: hisobda ishlatiladi, lekin Asror tomonidan lex.uz'dagi joriy qarordan tekshirilishi tavsiya etiladi.",
+      "izoh_ru": "Эта таблица ранее была зашита в коде kalki.uz (bojxona-kalkulyator.html, массивы UTIL.newer/UTIL.older) без указания источника — данная запись переносит её в legal-constants.json БЕЗ ИЗМЕНЕНИЯ ЦИФР. Первая ступень (1000 см³ → 30 БРВ) совпадает с начальной ставкой при введении утильсбора 1 августа 2020 года (источник: xabardor.uz). ОСТАЛЬНЫЕ СТУПЕНИ (диапазоны 2000/3000/3500+ см³ и вся таблица 'старше 3 лет') не были повторно подтверждены первичным источником в рамках этой сессии — подробности: docs/bojxona-gibrid-tekshiruv.md. Поэтому статус NORMATIV_TALQIN: используется в расчёте, но рекомендуется проверка Асрором по действующему постановлению на lex.uz.",
+      "holat": "NORMATIV_TALQIN",
+      "manba_url": "https://xabardor.uz/uz/x/468648",
+      "manba_nomi": "xabardor.uz (2020-yil 1-avgust, boshlang'ich stavka, faqat 1-band uchun to'g'ridan-to'g'ri tasdiq) + docs/bojxona-gibrid-tekshiruv.md (jadval tarixi va ishonch darajasi tahlili)"
+    },
+    {
       "id": "bojxona_rasmiylashtirish_yigimi",
       "sahifa": "bojxona-kalkulyator",
       "tur": "jadval",

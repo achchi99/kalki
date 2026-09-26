@@ -51,3 +51,11 @@ Birinchi band (1000 sm³ → 30 BHM) 2020-yilgi boshlang'ich stavka bilan **bitt
 ## Tavsiya
 
 FAZA 1da: gibrid avtomobillar EV utilizatsiya jadvalidan olib tashlanadi va ICE (`t` massivi)ga yo'naltiriladi. `legal-constants.json`dagi yozuvda bu xulosa va uning ishonch darajasi/cheklovi `izoh_uz`/`izoh_ru` maydonlarida ochiq yozib qo'yiladi (masalan `bojxona_sertifikatsiz_qoshimcha_boj` yozuvidagi kabi — "ehtimoli yuqori deb baholanadi" uslubida), `holat` esa **TASDIQLANGAN** deb belgilanadi, chunki asosiy da'vo (gibrid ≠ EV stavkasi) mustahkam tasdiqlangan va ICE-jadvalga yo'naltirish amaldagi eng oqilona, kod bilan izchil yechim.
+
+## Yangilanish — ICE jadvalining o'zi legal-constants.json'ga ko'chirildi (1-faza audit, QISM B)
+
+Yuqoridagi tavsiya `bojxona_gibrid_utilizatsiya_tartibi` (qaysi jadvalga yo'naltirilishi haqidagi) yozuviga tegishli edi va bajarilgan. Alohida audit topilmasi sifatida: **ICE jadvalining o'zi** (`newer.t`/`older.t` massivlari, ya'ni har bir dvigatel hajmi bandiga mos BHM koeffitsientlari) hamon manbasiz, `legal-constants.json`da rasmiylashtirilmagan holda qattiq yozilgan edi — elektromobil jadvalidan farqli o'laroq.
+
+Bu endi `bojxona_ice_utilizatsiya_yosh_uchun` nomi bilan `legal-constants.json`ga ko'chirildi, **raqamlar o'zgartirilmadi**. Ishonch darajasi shu hujjatning yuqoridagi tahliliga mos: faqat birinchi band (1000 sm³ → 30 BHM) 2020-yil 1-avgustdagi boshlang'ich stavka bilan tashqi manba (xabardor.uz) orqali mos kelishi tasdiqlangan; qolgan bandlar (2000/3000/3500+ sm³ oraliqlari va "3 yildan ortiq" jadvalining barchasi) birlamchi huquqiy manba bilan qayta tekshirilmagan. Shu sabab `holat: "NORMATIV_TALQIN"` qo'yildi (`TASDIQLANGAN` emas — bu haqiqatdan ortiqroq ishonch bildirar edi).
+
+**Ochiq savol:** to'liq jadval (barcha 10 band) lex.uz'dagi joriy amaldagi qarorda tasdiqlansin.
