@@ -30,7 +30,10 @@ function baza(overrides) {
     sayyor: null,
     sayyor_masofa_km: null,
     ishlab_chiqarilgan_yil: null,
-    bitim: 'begona',
+    qarindosh: false,
+    kredit: false,
+    halokat: false,
+    qoldiq_foiz: null,
     notarius_sorovnoma_soni: 0,
     gerbli_blank: true,
     notarius_boshqa: null,
@@ -45,7 +48,6 @@ function ishlatilganBaza(overrides) {
   var o = baza({
     stsenariy: 'ishlatilgan',
     yoqilgi: 'oddiy',
-    bitim: 'begona',
     ishlab_chiqarilgan_yil: 2026 - 15,
     raqam: 'oddiy'
   });
@@ -115,7 +117,7 @@ function check(label, cond, details) {
 
 // ---------- 6 ----------
 (function () {
-  var n = KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'qarindosh' }), C);
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true }), C);
   var boj = topQator(n, 'notarius_avto_oldisotdi');
   check('6) notarius boji=66000', boj && boj.summa === 66000, 'chiqdi ' + (boj && boj.summa));
   check('6) jami=7959600', jamiOf(n) === 7959600, 'chiqdi ' + jamiOf(n));
@@ -123,7 +125,7 @@ function check(label, cond, details) {
 
 // ---------- 7 ----------
 (function () {
-  var n = KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'kredit' }), C);
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ kredit: true }), C);
   var boj = topQator(n, 'notarius_avto_oldisotdi');
   check('7) notarius boji=132000', boj && boj.summa === 132000, 'chiqdi ' + (boj && boj.summa));
   check('7) jami=8025600', jamiOf(n) === 8025600, 'chiqdi ' + jamiOf(n));
@@ -150,7 +152,7 @@ function check(label, cond, details) {
 
 // ---------- 11 ----------
 (function () {
-  var n = KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'kredit', notarius_sorovnoma_soni: 1 }), C);
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ kredit: true, notarius_sorovnoma_soni: 1 }), C);
   var notariusQismi = 0;
   n.qatorlar.forEach(function (q) {
     if (q.kalit === 'notarius_avto_oldisotdi' || q.guruh === 'notarius_xizmat') notariusQismi += q.summa;
@@ -202,8 +204,8 @@ function check(label, cond, details) {
   var barchaFixtureNatija = [
     KalkiAvto.hisobla(baza({}), C),
     KalkiAvto.hisobla(ishlatilganBaza({}), C),
-    KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'qarindosh' }), C),
-    KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'kredit' }), C)
+    KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true }), C),
+    KalkiAvto.hisobla(ishlatilganBaza({ kredit: true }), C)
   ];
   var topilgan = null;
   barchaFixtureNatija.forEach(function (n) {
@@ -242,7 +244,7 @@ function check(label, cond, details) {
 
 // ---------- 19 ----------
 (function () {
-  var n = KalkiAvto.hisobla(ishlatilganBaza({ bitim: 'qarindosh' }), C);
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true }), C);
   var notariusQismi = 0;
   n.qatorlar.forEach(function (q) {
     if (q.kalit === 'notarius_avto_oldisotdi' || q.guruh === 'notarius_xizmat') notariusQismi += q.summa;
@@ -262,6 +264,47 @@ function check(label, cond, details) {
   check('21) gerbli_blank=false — jami=9169600', jamiOf(n) === 9169600, 'chiqdi ' + jamiOf(n));
   check('21) gerb qatori yo‘q', !topQator(n, 'notarius_gerb_yigimi'));
   check('21) kiritilmagan ro‘yxatida gerb yo‘q', !topKiritilmagan(n, 'gerb') && !topKiritilmagan(n, 'Gerb'));
+})();
+
+// ---------- A1 (2-FAZA: qarindosh+kredit ko'paytiriladi) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true, kredit: true }), C);
+  var boj = topQator(n, 'notarius_avto_oldisotdi');
+  check('A1) qarindosh+kredit — boji=6600', boj && boj.summa === 6600, 'chiqdi ' + (boj && boj.summa));
+})();
+
+// ---------- A2 (2-FAZA: begona + halokat qoldiq 10%) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ halokat: true, qoldiq_foiz: 10 }), C);
+  var boj = topQator(n, 'notarius_avto_oldisotdi');
+  check('A2) begona+halokat(10%) — boji=132000', boj && boj.summa === 132000, 'chiqdi ' + (boj && boj.summa));
+})();
+
+// ---------- A3 (2-FAZA: qarindosh+kredit+halokat qoldiq 10%) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true, kredit: true, halokat: true, qoldiq_foiz: 10 }), C);
+  var boj = topQator(n, 'notarius_avto_oldisotdi');
+  check('A3) qarindosh+kredit+halokat(10%) — boji=660', boj && boj.summa === 660, 'chiqdi ' + (boj && boj.summa));
+})();
+
+// ---------- A4 (2-FAZA: halokat=true, qoldiq_foiz=null -> kiritilmagan) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ halokat: true, qoldiq_foiz: null }), C);
+  check('A4) halokat, qoldiq_foiz=null — notarius boji kiritilmagan', topKiritilmagan(n, 'Amal qilish qoldiq foizi'));
+  check('A4) notarius boji qatori yo‘q', !topQator(n, 'notarius_avto_oldisotdi'));
+})();
+
+// ---------- A5 (2-FAZA: qoldiq_foiz oralig'idan tashqari -> ogohlantirish) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ halokat: true, qoldiq_foiz: 150 }), C);
+  check('A5) qoldiq_foiz=150 — ogohlantirish bor', n.ogohlantirishlar.some(function (o) { return o.indexOf('0-100 oralig') > -1; }));
+})();
+
+// ---------- A6 (2-FAZA: bayroqsiz — 1-faza fixture 5 bilan bir xil) ----------
+(function () {
+  var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: false, kredit: false, halokat: false }), C);
+  var boj = topQator(n, 'notarius_avto_oldisotdi');
+  check('A6) bayroqsiz — boji=1320000', boj && boj.summa === 1320000, 'chiqdi ' + (boj && boj.summa));
 })();
 
 console.log('');

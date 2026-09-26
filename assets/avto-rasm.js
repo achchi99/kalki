@@ -131,12 +131,46 @@
     // ---------- notarius (faqat "ishlatilgan") ----------
     if (stsenariy === 'ishlatilgan') {
       var bojStavka = readConst(C, 'notarius_avto_oldisotdi');
-      var imtiyozKalit = null;
-      if (kirish.bitim === 'qarindosh') imtiyozKalit = 'notarius_avto_imtiyoz_qarindosh';
-      else if (kirish.bitim === 'kredit') imtiyozKalit = 'notarius_avto_imtiyoz_kredit';
-      var effektivBoj = imtiyozKalit ? bojStavka * readConst(C, imtiyozKalit) : bojStavka;
-      stavkaQator('notarius_avto_oldisotdi', "Notarius davlat boji" + (imtiyozKalit ? ' (imtiyozli)' : ''),
-        effektivBoj, 'davlat', 'Notarius');
+      var qarindosh = !!kirish.qarindosh;
+      var kredit = !!kirish.kredit;
+      var halokat = !!kirish.halokat;
+      var qoldiqFoiz = kirish.qoldiq_foiz;
+
+      // Qarindosh va kredit imtiyozlari birga tanlanganda KO'PAYTIRILADI,
+      // halokatda qoldiq foiz omili ham shu ko'paytmaga qo'shiladi —
+      // e-notarius rasmiy kalkulyatorida tasdiqlangan (2-FAZA, 2.1/2.2).
+      var koeff = 1;
+      var omillar = [];
+      if (qarindosh) {
+        koeff *= readConst(C, 'notarius_avto_imtiyoz_qarindosh');
+        omillar.push('qarindosh ×0,05');
+      }
+      if (kredit) {
+        koeff *= readConst(C, 'notarius_avto_imtiyoz_kredit');
+        omillar.push('kredit ×0,10');
+      }
+      if (qarindosh && kredit) readConst(C, 'qoida_notarius_imtiyoz_kombinatsiya');
+
+      var bojKiritilmagan = false;
+      if (halokat) {
+        if (qoldiqFoiz == null || qoldiqFoiz === '') {
+          bojKiritilmagan = true;
+        } else {
+          readConst(C, 'qoida_notarius_halokat_qoldiq_foiz');
+          if (qoldiqFoiz < 0 || qoldiqFoiz > 100) {
+            ogohlantirishlar.push("Qoldiq foiz 0-100 oralig'ida bo'lishi kerak");
+          }
+          koeff *= qoldiqFoiz / 100;
+          omillar.push('halokat qoldiq ×' + qoldiqFoiz + '%');
+        }
+      }
+
+      if (bojKiritilmagan) {
+        kiritilmagan.push({ nomi: 'Amal qilish qoldiq foizi', sabab: 'Notarius davlat boji hisoblanishi uchun zarur (halokat belgilangan)', maydon: 'qoldiq_foiz' });
+      } else {
+        var bojNomi = 'Notarius davlat boji' + (omillar.length ? ' (' + omillar.join(' × ') + ')' : '');
+        stavkaQator('notarius_avto_oldisotdi', bojNomi, bojStavka * koeff, 'davlat', 'Notarius');
+      }
 
       var gerbliBlank = kirish.gerbli_blank !== false; // standart true
       if (gerbliBlank) {
@@ -163,7 +197,7 @@
         kiritilganQator('Boshqa notarial xizmatlar', kirish.notarius_boshqa, 'Notarius');
       }
 
-      ogohlantirishlar.push('Notarius summasi notarial idorada, halokatsiz avto va jismoniy shaxslar uchun hisoblangan');
+      ogohlantirishlar.push('Notarius summasi notarial idorada va jismoniy shaxslar uchun hisoblangan');
       ogohlantirishlar.push('Egasi almashganda ro‘yxat stavkasi — normativ talqin, real invoys bilan tasdiqlanmagan');
 
       // ---------- eskrou ----------
