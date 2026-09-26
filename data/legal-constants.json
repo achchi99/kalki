@@ -809,10 +809,30 @@
       "tur": "jadval",
       "izoh": "Kelib chiqish sertifikati bo'lmagan (yoki shubhali) yoxud eng qulay rejim mamlakatiga tegishli bo'lmagan tovarlar uchun bazaviy bojxona boji stavkasiga QO'SHILADIGAN (2 barobar QILINMAYDIGAN) qo'shimcha foiz. Bandlar bazaviy adval stavka (%) oralig'i bo'yicha. FORMAT: 'min_pct'/'max_pct' — bazaviy stavka foiz sifatida (0-100, masalan 30 = 30%), 'qoshimcha_pct' — 0-1 oralig'idagi ulush (masalan 0.20 = +20 foiz bandi).",
       "bandlar": [
-        {"shart": "10% gacha", "min_pct": 0, "max_pct": 10, "qoshimcha_pct": 0.05},
-        {"shart": "10-20%", "min_pct": 10, "max_pct": 20, "qoshimcha_pct": 0.10},
-        {"shart": "20-30%", "min_pct": 20, "max_pct": 30, "qoshimcha_pct": 0.15},
-        {"shart": "30% va undan yuqori", "min_pct": 30, "max_pct": null, "qoshimcha_pct": 0.20}
+        {
+          "shart": "10% gacha",
+          "min_pct": 0,
+          "max_pct": 10,
+          "qoshimcha_pct": 0.05
+        },
+        {
+          "shart": "10-20%",
+          "min_pct": 10,
+          "max_pct": 20,
+          "qoshimcha_pct": 0.1
+        },
+        {
+          "shart": "20-30%",
+          "min_pct": 20,
+          "max_pct": 30,
+          "qoshimcha_pct": 0.15
+        },
+        {
+          "shart": "30% va undan yuqori",
+          "min_pct": 30,
+          "max_pct": null,
+          "qoshimcha_pct": 0.2
+        }
       ],
       "amal_qiladi": "2026-02-28",
       "izoh_uz": "Bojxona kodeksiga ЗРУ-1097-son qonun (27.11.2025) bilan qo'shilgan 300¹-modda. 28.02.2026'gacha amalda bo'lgan ESKI qoida (boj 2 barobar) shu sana bilan bosqichli qo'shimcha foiz jadvaliga ALMASHTIRILDI — ya'ni 2 barobar qilish endi noto'g'ri. Qonun matnida tovar turi bo'yicha cheklov ko'rsatilmagan (avtomobilga xos alohida istisno topilmadi), lekin bu qoidaning aynan avtomobil importiga tatbiq etilishi alohida rasmiy manbada aniq tasdiqlanmagan — umumiy bojxona qonuni sifatida ehtimoli yuqori deb baholanadi.",
@@ -827,8 +847,16 @@
       "tur": "jadval",
       "izoh": "Elektromobil (TIF TN 8703 80) uchun utilizatsiya yig'imi, avtomobil yoshiga qarab (BHM koeffitsienti).",
       "bandlar": [
-        {"shart": "3 yilgacha", "yosh": "3_yilgacha", "bhm_koeff": 120},
-        {"shart": "3 yildan ortiq", "yosh": "3_yildan_ortiq", "bhm_koeff": 210}
+        {
+          "shart": "3 yilgacha",
+          "yosh": "3_yilgacha",
+          "bhm_koeff": 120
+        },
+        {
+          "shart": "3 yildan ortiq",
+          "yosh": "3_yildan_ortiq",
+          "bhm_koeff": 210
+        }
       ],
       "amal_qiladi": "2025-05-01",
       "izoh_uz": "Vazirlar Mahkamasining 52-son qarori (31.01.2025, 01.05.2025 kuchga kirgan) bilan belgilangan — avvalgi 30/90 BHM stavkalari 120/210 BHM'ga oshirildi. Qaror matnida aniq yozilgan: 'Elektrodvigatelga ega bo'lgan transport vositalari, gibrid quvvatli transport vositalari bundan mustasno' — ya'ni bu stavka FAQAT to'liq elektromobillarga tegishli.",
@@ -856,15 +884,60 @@
       "tur": "jadval",
       "izoh": "Bojxona rasmiylashtirish yig'imi — bojxona qiymatiga (USD) qarab BHM ko'paytmasi sifatida, pog'onali. FORMAT: 'min_usd' qatiy emas (band pastki chegaradan KATTA qiymatlarga tegishli), 'max_usd' esa QAMRAB OLADI ('...gacha' — masalan aynan 20000 hali 10000-20000 bandiga tushadi, 20000-40000ga emas). Oxirgi band uchun max_usd=null (cheksiz).",
       "bandlar": [
-        {"shart": "10 000 AQSH dollarigacha", "min_usd": 0, "max_usd": 10000, "bhm_koeff": 1},
-        {"shart": "10 000 dan 20 000 AQSH dollarigacha", "min_usd": 10000, "max_usd": 20000, "bhm_koeff": 1.5},
-        {"shart": "20 000 dan 40 000 AQSH dollarigacha", "min_usd": 20000, "max_usd": 40000, "bhm_koeff": 2.5},
-        {"shart": "40 000 dan 60 000 AQSH dollarigacha", "min_usd": 40000, "max_usd": 60000, "bhm_koeff": 4},
-        {"shart": "60 000 dan 100 000 AQSH dollarigacha", "min_usd": 60000, "max_usd": 100000, "bhm_koeff": 7},
-        {"shart": "100 000 dan 200 000 AQSH dollarigacha", "min_usd": 100000, "max_usd": 200000, "bhm_koeff": 10},
-        {"shart": "200 000 dan 500 000 AQSH dollarigacha", "min_usd": 200000, "max_usd": 500000, "bhm_koeff": 15},
-        {"shart": "500 000 dan 1 000 000 AQSH dollarigacha", "min_usd": 500000, "max_usd": 1000000, "bhm_koeff": 20},
-        {"shart": "1 000 000 dan yuqori", "min_usd": 1000000, "max_usd": null, "bhm_koeff": 25}
+        {
+          "shart": "10 000 AQSH dollarigacha",
+          "min_usd": 0,
+          "max_usd": 10000,
+          "bhm_koeff": 1
+        },
+        {
+          "shart": "10 000 dan 20 000 AQSH dollarigacha",
+          "min_usd": 10000,
+          "max_usd": 20000,
+          "bhm_koeff": 1.5
+        },
+        {
+          "shart": "20 000 dan 40 000 AQSH dollarigacha",
+          "min_usd": 20000,
+          "max_usd": 40000,
+          "bhm_koeff": 2.5
+        },
+        {
+          "shart": "40 000 dan 60 000 AQSH dollarigacha",
+          "min_usd": 40000,
+          "max_usd": 60000,
+          "bhm_koeff": 4
+        },
+        {
+          "shart": "60 000 dan 100 000 AQSH dollarigacha",
+          "min_usd": 60000,
+          "max_usd": 100000,
+          "bhm_koeff": 7
+        },
+        {
+          "shart": "100 000 dan 200 000 AQSH dollarigacha",
+          "min_usd": 100000,
+          "max_usd": 200000,
+          "bhm_koeff": 10
+        },
+        {
+          "shart": "200 000 dan 500 000 AQSH dollarigacha",
+          "min_usd": 200000,
+          "max_usd": 500000,
+          "bhm_koeff": 15
+        },
+        {
+          "shart": "500 000 dan 1 000 000 AQSH dollarigacha",
+          "min_usd": 500000,
+          "max_usd": 1000000,
+          "bhm_koeff": 20
+        },
+        {
+          "shart": "1 000 000 dan yuqori",
+          "min_usd": 1000000,
+          "max_usd": null,
+          "bhm_koeff": 25
+        }
       ],
       "amal_qiladi": "2025-01-31",
       "izoh_uz": "Avvalgi kod bojxona qiymatining ~1%i sifatida hisoblardi — bu butunlay boshqa (noto'g'ri) model edi. To'g'ri model BHM ko'paytmasi, bojxona qiymati oralig'iga qarab pog'onali. Chegara qiymati (masalan aynan 20 000) pastki bandga tushadi — qonun matni '...gacha' (inklyuziv yuqori chegara) shaklida yozilgan.",
@@ -904,7 +977,7 @@
       "sahifa": "aliment-kalkulyator",
       "tur": "son",
       "izoh": "Ish haqidan ushlab qolinadigan mablag'larning odatiy (aliment qarzdorligisiz) yuqori chegarasi — har bir to'lov chog'ida. FORMAT: 0-1 oralig'idagi ulush (masalan 0.50 = 50%), 0-100 emas.",
-      "qiymat": 0.50,
+      "qiymat": 0.5,
       "amal_qiladi": "2023-04-30",
       "izoh_uz": "Har bir to'lov chog'ida ushlab qolinadigan mablag'lar xodimga haqiqatda hisoblangan ish haqining 50%idan oshmasligi kerak.",
       "izoh_ru": "Удерживаемые при каждой выплате средства не должны превышать 50% фактически начисленной работнику заработной платы.",
@@ -917,7 +990,7 @@
       "sahifa": "aliment-kalkulyator",
       "tur": "son",
       "izoh": "Aliment MAJBURIYATLARI BO'YICHA QARZDORLIKNI undirishda qo'llanadigan yuqoriroq ushlab qolish chegarasi (odatiy 50% chegarasining istisnosi). FORMAT: 0-1 oralig'idagi ulush.",
-      "qiymat": 0.70,
+      "qiymat": 0.7,
       "amal_qiladi": "2023-04-30",
       "izoh_uz": "Aliment majburiyatlari bo'yicha qarzdorlikni ushlab qolish miqdori xodimga haqiqatda hisoblangan ish haqining 70%idan oshishi mumkin emas — bu chegara axloq tuzatish ishlari tarzida jazo o'tayotgan-o'tamayotganidan qat'i nazar qo'llanadi. E'tibor: bu 70% — JORIY aliment emas, aynan QARZDORLIKNI undirish uchun.",
       "izoh_ru": "Размер удержания задолженности по алиментным обязательствам не может превышать 70% фактически начисленной работнику заработной платы — независимо от того, отбывает ли работник исправительные работы. Внимание: эти 70% — именно для взыскания ЗАДОЛЖЕННОСТИ, не текущих алиментов.",
@@ -937,6 +1010,455 @@
       "holat": "TASDIQLANGAN",
       "manba_url": "https://sirdaryo.adliya.uz/uz/news/detail.php?ID=45845",
       "manba_nomi": "Oila kodeksi 142-modda"
+    },
+    {
+      "id": "avto_royxat_oddiy",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Yangi/ishlatilgan avtomobilni davlat ro'yxatidan o'tkazish (odatiy yoqilg'i turi), BHM ko'paytmasi",
+      "qiymat": 6.84,
+      "amal_qiladi": null,
+      "izoh_uz": "985-xizmat (my.gov.uz) va 2303-son buyruqning amaldagi tahririda bir xil qiymat.",
+      "izoh_ru": "Совпадает в 985-услуге (my.gov.uz) и действующей редакции приказа №2303.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "2303-son buyruq (IIV, 23.12.2024 tahriri) 7¹-band; my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_royxat_ev_gibrid",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Elektromobil, gibrid, motorlar va tirkamalarni davlat ro'yxatidan o'tkazish, BHM ko'paytmasi",
+      "qiymat": 1.5,
+      "amal_qiladi": null,
+      "izoh_uz": "Elektromobil/gibrid uchun imtiyozli stavka — oddiy avtoning 6,84 BHM o'rniga 1,5 BHM.",
+      "izoh_ru": "Льготная ставка для электромобилей/гибридов — 1,5 БРВ вместо 6,84 БРВ для обычного авто.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "2303-son buyruq 7-band; my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_qayta_royxat",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Qayta ro'yxatdan o'tkazish (familiya, manzil, rang, agregat almashtirish, hujjat yo'qolishi va sh.k. — egasi ALMASHMAGAN holatlar), BHM ko'paytmasi",
+      "qiymat": 0.1,
+      "amal_qiladi": null,
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi — faqat 683-son qaror 1-ilova 50-banddagi holatlarga tegishli, egasi almashishiga qo'llanmaydi (qarang: qoida_egasi_almashganda).",
+      "izoh_ru": "В 1-й фазе не используется в UI — относится только к случаям из приложения 1 постановления №683 (п.50), не применяется при смене владельца.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "2303-son buyruq 7²-band; my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_texpasport",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Ro'yxatdan o'tkazilganlik to'g'risidagi guvohnoma (texnik pasport) berish, BHM ko'paytmasi",
+      "qiymat": 1.4,
+      "amal_qiladi": null,
+      "izoh_uz": "2303-son buyruqning 23.12.2024 tahririda 0,7 BHM ko'rsatilgan — sayt my.gov.uz'dagi amaldagi qiymatdan foydalanadi (docs/avto-tasdiqlash.md, 3-savol: normativ asosi hali aniqlanmoqda).",
+      "izoh_ru": "В редакции приказа №2303 от 23.12.2024 указано 0,7 БРВ — сайт использует действующее значение с my.gov.uz.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_raqam_oddiy_juft",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Oddiy (tasodifiy, Random) davlat raqam belgisi jufti berish, BHM ko'paytmasi",
+      "qiymat": 9,
+      "amal_qiladi": null,
+      "izoh_uz": "2303-son buyruqning 23.12.2024 tahririda 3,5 BHM ko'rsatilgan. 2026-yildan raqam berish tartibi 562-son VMQ bilan o'zgargan — yangi qiymatni belgilagan normativ hujjat hali aniqlanmagan (docs/avto-tasdiqlash.md, 2-savol). Sayt my.gov.uz'dagi amaldagi qiymatdan foydalanadi.",
+      "izoh_ru": "В редакции приказа №2303 от 23.12.2024 указано 3,5 БРВ. С 2026 года порядок выдачи номеров изменён постановлением №562 — нормативный акт для нового значения пока не найден. Сайт использует действующее значение с my.gov.uz.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_sayyor_1kun",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "YHXX xodimi tashrif buyurgan holda xizmat ko'rsatishi (sayyor xizmat), 1 kun ichida, BHM ko'paytmasi — faqat yangi avto (985-xizmat)",
+      "qiymat": 4,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_sayyor_3kun",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "YHXX sayyor xizmati, 3 kun ichida, BHM ko'paytmasi — faqat yangi avto (985-xizmat)",
+      "qiymat": 3,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_sayyor_5kun",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "YHXX sayyor xizmati, 5 kun ichida, BHM ko'paytmasi — faqat yangi avto (985-xizmat)",
+      "qiymat": 2,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_sayyor_km",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Yetkazib berish manzili bepul masofadan (avto_sayyor_bepul_km) oshgan har bir qo'shimcha km uchun, BHM ko'paytmasi",
+      "qiymat": 0.05,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_sayyor_bepul_km",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "km",
+      "izoh": "Sayyor xizmatda qo'shimcha to'lovsiz masofa chegarasi, km",
+      "qiymat": 10,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "my.gov.uz 985-xizmat"
+    },
+    {
+      "id": "avto_vaqtinchalik_guvohnoma",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Vaqtinchalik guvohnoma berish, BHM ko'paytmasi",
+      "qiymat": 0.2,
+      "amal_qiladi": null,
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi.",
+      "izoh_ru": "В 1-й фазе не используется в UI.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 8¹-band"
+    },
+    {
+      "id": "avto_raqam_almashtirish_juft",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Davlat raqam belgisi juftini almashtirish, BHM ko'paytmasi",
+      "qiymat": 3.5,
+      "amal_qiladi": null,
+      "izoh_uz": "2026-yildan raqam tartibi 562-son VMQ bilan o'zgargan, bu stavka yangilanmagan bo'lishi mumkin — tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
+      "izoh_ru": "С 2026 года порядок номеров изменён постановлением №562, ставка может быть устаревшей — в расчёте НЕ используется до подтверждения (2-я фаза).",
+      "holat": "ZIDDIYAT",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 4-band"
+    },
+    {
+      "id": "avto_raqam_almashtirish_bitta",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Davlat raqam belgisining bittasini almashtirish, BHM ko'paytmasi",
+      "qiymat": 1.5,
+      "amal_qiladi": null,
+      "izoh_uz": "Yuqoridagi bilan bir xil sabab — tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
+      "izoh_ru": "По той же причине — в расчёте НЕ используется до подтверждения (2-я фаза).",
+      "holat": "ZIDDIYAT",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 5-band"
+    },
+    {
+      "id": "avto_raqam_yoqolgan",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Yo'qolgan davlat raqam belgisi o'rniga yangisini berish, BHM ko'paytmasi",
+      "qiymat": 3.5,
+      "amal_qiladi": null,
+      "izoh_uz": "Tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
+      "izoh_ru": "В расчёте НЕ используется до подтверждения (2-я фаза).",
+      "holat": "ZIDDIYAT",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 1-band izohi"
+    },
+    {
+      "id": "avto_raqam_tranzit",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Tranzit davlat raqam belgisi berish, BHM ko'paytmasi",
+      "qiymat": 0.25,
+      "amal_qiladi": null,
+      "izoh_uz": "Tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
+      "izoh_ru": "В расчёте НЕ используется до подтверждения (2-я фаза).",
+      "holat": "ZIDDIYAT",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 3-band"
+    },
+    {
+      "id": "avto_raqam_saqlash_yillik",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Davlat raqam belgisini saqlash (yillik), BHM ko'paytmasi",
+      "qiymat": 1,
+      "amal_qiladi": null,
+      "izoh_uz": "Tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
+      "izoh_ru": "В расчёте НЕ используется до подтверждения (2-я фаза).",
+      "holat": "ZIDDIYAT",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "2303-son buyruq 1-band izohi"
+    },
+    {
+      "id": "qoida_egasi_almashganda",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "mantiqiy",
+      "izoh": "Egasi almashganda qayta ro'yxat (avto_qayta_royxat, 0,1 BHM) EMAS, davlat ro'yxatidan o'tkazish stavkasi (avto_royxat_oddiy / avto_royxat_ev_gibrid) qo'llanadi",
+      "qiymat": true,
+      "amal_qiladi": null,
+      "izoh_uz": "Egasi almashganda avtomobil yangi egaga davlat ro'yxatidan o'tkaziladi (683-son qaror, 1-ilova, 12-band), shuning uchun ro'yxat stavkasi (6,84 BHM; elektromobil/gibrid — 1,5 BHM) qo'llanadi. 0,1 BHMlik qayta ro'yxatdan o'tkazish egasi o'zgarmaydigan holatlar uchun (familiya, manzil, rang va h.k.). Adliya vazirligi maslahat sahifasida bu holat uchun 0,1 BHM ko'rsatilgan; aniq summani YHXX invoysida tekshiring. Real invoys bilan hali tasdiqlanmagan (docs/avto-tasdiqlash.md, 1-savol) — huquqshunos X. Xudoyberdiyevning ochiq Telegram izohi xuddi shu xulosani beradi, lekin bu YHXXning rasmiy javobi emas.",
+      "izoh_ru": "При смене владельца автомобиль регистрируется на нового владельца заново (пост. №683, прил.1, п.12), поэтому применяется ставка регистрации (6,84 БРВ; электро/гибрид — 1,5 БРВ). Ставка 0,1 БРВ — для случаев без смены владельца (ФИО, адрес, цвет и т.п.). Точную сумму уточняйте в инвойсе ГУБДД.",
+      "holat": "NORMATIV_TALQIN",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "683-son VMQ 1-ilova 12-band 'v' va 50-band; 2303-son buyruq 7¹/7²-band"
+    },
+    {
+      "id": "notarius_avto_oldisotdi",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Avtomototransport vositasi oldi-sotdi shartnomasini notarial tasdiqlash uchun davlat boji, BHM ko'paytmasi",
+      "qiymat": 3,
+      "amal_qiladi": null,
+      "izoh_uz": "Band raqami docs/avto-tasdiqlash.md da ochiq savol (5-band).",
+      "izoh_ru": "Номер пункта — открытый вопрос в docs/avto-tasdiqlash.md (п.5).",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi"
+    },
+    {
+      "id": "notarius_avto_imtiyoz_qarindosh",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Yaqin qarindoshlar orasidagi oldi-sotdida davlat boji ulushi (notarius_avto_oldisotdi stavkasining 5%i)",
+      "qiymat": 0.05,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi"
+    },
+    {
+      "id": "notarius_avto_imtiyoz_kredit",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Bank krediti hisobiga olingan avtoning oldi-sotdisida davlat boji ulushi (notarius_avto_oldisotdi stavkasining 10%i)",
+      "qiymat": 0.1,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi"
+    },
+    {
+      "id": "notarius_ishonchnoma_qarindosh",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Yaqin qarindoshga ishonchnoma berish uchun davlat boji, BHM ko'paytmasi",
+      "qiymat": 0.5,
+      "amal_qiladi": null,
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi.",
+      "izoh_ru": "В 1-й фазе не используется в UI.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi 4-band 'p'"
+    },
+    {
+      "id": "notarius_ishonchnoma_boshqa",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Boshqa shaxsga ishonchnoma berish uchun davlat boji, BHM ko'paytmasi",
+      "qiymat": 2,
+      "amal_qiladi": null,
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi. Amaliyotdan zid ma'lumot bor — docs/avto-tasdiqlash.md 9-savol.",
+      "izoh_ru": "В 1-й фазе не используется в UI. Есть противоречащие данные из практики — см. вопрос 9 в docs/avto-tasdiqlash.md.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi 4-band 'p'"
+    },
+    {
+      "id": "notarius_meros_avto",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Avtomobilga meros huquqi guvohnomasi uchun davlat boji (har bir avto uchun), BHM ko'paytmasi",
+      "qiymat": 0.5,
+      "amal_qiladi": null,
+      "izoh_uz": "1-fazada UI'da ishlatilmaydi.",
+      "izoh_ru": "В 1-й фазе не используется в UI.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/4680944",
+      "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi 4-band 'm'"
+    },
+    {
+      "id": "notarius_qarindoshlar_royxati_oldisotdi",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "royxat",
+      "izoh": "Avtomototransport oldi-sotdisida imtiyozli davlat boji qo'llanadigan yaqin qarindoshlar ro'yxati (mulkdorga nisbatan). Qarindoshlikni tasdiqlovchi hujjatlar taqdim etiladi. Ishonchnoma ro'yxati bilan bir xil EMAS (u yerda jiyanlar ham bor).",
+      "qiymat": [
+        "xotini (eri)",
+        "mulkdorning va xotinining (erining) ota-onasi",
+        "bolalari va ularning er-xotinlari",
+        "nabiralari",
+        "buvilari, buvalari",
+        "aka-ukalari va opa-singillari"
+      ],
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/13000",
+      "manba_nomi": "e-notarius.uz — «Avtomototransport vositasini oldi-sotdi shartnomasi» xizmati, jismoniy shaxslar uchun hujjatlar, 8-band"
+    },
+    {
+      "id": "notarius_gerb_yigimi",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Gerbli blankada rasmiylashtirish uchun gerb yig'imi (har bir blank), BHM ko'paytmasi — faqat bitim gerbli blankada rasmiylashtirilsa, tomonlar xohishiga ko'ra",
+      "qiymat": 0.1,
+      "amal_qiladi": null,
+      "izoh_uz": "726-son VMQ 2-ilova 31-band 16-xatboshi (821-son qaror tahriri, 24.12.2025) va 37-band: gerbli blank ISHLATISH tomonlar xohishiga ko'ra — tanlanmasa gerb yig'imi olinmaydi. 3235-son tarifdagi miqdor; e-notarius kalkulyatori shu miqdorda hisoblaydi.",
+      "izoh_ru": "Использование гербового бланка — по желанию сторон; если не выбрано, сбор не взимается.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_gerb_blank_soni",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Gerbli blank soni (standart), e-notarius kalkulyatori natijasidagi son",
+      "qiymat": 1,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_xizmat_loyiha_avto",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Notarial tasdiqlanadigan hujjat (shartnoma) loyihasini tuzish, BHM ko'paytmasi",
+      "qiymat": 0.2,
+      "amal_qiladi": null,
+      "izoh_uz": "3235-son tarifdagi miqdor; e-notarius kalkulyatori (26.09.2026 tekshirilgan, begona/avtotransport/halokatsiz/bank krediti bilan/yuridik shaxssiz/so'rovnoma bilan/notarial idorada stsenariysida) shu miqdorda hisoblaydi.",
+      "izoh_ru": "Величина из тарифа №3235; официальный калькулятор e-notarius.uz (проверено 26.09.2026) рассчитывает именно так.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_xizmat_tushuntirish_avto",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Notarial harakatlarni amalga oshirishga doir masalalar yuzasidan tushuntirish berish, BHM ko'paytmasi",
+      "qiymat": 0.15,
+      "amal_qiladi": null,
+      "izoh_uz": "3235-son tarifdagi miqdor; e-notarius kalkulyatori (26.09.2026 tekshirilgan, begona/avtotransport/halokatsiz/bank krediti bilan/yuridik shaxssiz/so'rovnoma bilan/notarial idorada stsenariysida) shu miqdorda hisoblaydi.",
+      "izoh_ru": "Величина из тарифа №3235; официальный калькулятор e-notarius.uz (проверено 26.09.2026) рассчитывает именно так.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_xizmat_taqiq_tekshiruv",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "'Notarius' AAT orqali avtomototransport vositani boshqa shaxsga o'tkazish taqiqlanmaganligi va xatlanmaganligini tekshirish (har bir mulk uchun), BHM ko'paytmasi",
+      "qiymat": 0.15,
+      "amal_qiladi": null,
+      "izoh_uz": "3235-son tarifdagi miqdor; e-notarius kalkulyatori (26.09.2026 tekshirilgan, begona/avtotransport/halokatsiz/bank krediti bilan/yuridik shaxssiz/so'rovnoma bilan/notarial idorada stsenariysida) shu miqdorda hisoblaydi.",
+      "izoh_ru": "Величина из тарифа №3235; официальный калькулятор e-notarius.uz (проверено 26.09.2026) рассчитывает именно так.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_xizmat_ijro_qarz_tekshiruv",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "'Notarius' AAT orqali ijro hujjatlari bo'yicha qarzdorlik mavjud yoki yo'qligini tekshirish (Majburiy ijro byurosi bazasi orqali), BHM ko'paytmasi",
+      "qiymat": 0.1,
+      "amal_qiladi": null,
+      "izoh_uz": "3235-son tarifdagi miqdor; e-notarius kalkulyatori (26.09.2026 tekshirilgan, begona/avtotransport/halokatsiz/bank krediti bilan/yuridik shaxssiz/so'rovnoma bilan/notarial idorada stsenariysida) shu miqdorda hisoblaydi.",
+      "izoh_ru": "Величина из тарифа №3235; официальный калькулятор e-notarius.uz (проверено 26.09.2026) рассчитывает именно так.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "notarius_xizmat_sorovnoma",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Boshqa tashkilotlarga yuboriladigan har bir so'rovnoma uchun, BHM ko'paytmasi — faqat kerak bo'lganda",
+      "qiymat": 0.05,
+      "amal_qiladi": null,
+      "izoh_uz": "3235-son tarifdagi miqdor; e-notarius kalkulyatori (26.09.2026 tekshirilgan, begona/avtotransport/halokatsiz/bank krediti bilan/yuridik shaxssiz/so'rovnoma bilan/notarial idorada stsenariysida) shu miqdorda hisoblaydi.",
+      "izoh_ru": "Величина из тарифа №3235; официальный калькулятор e-notarius.uz (проверено 26.09.2026) рассчитывает именно так.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://e-notarius.uz/na_details/calc/13000",
+      "manba_nomi": "Adliya vazirligi 112-mx-son buyrug'i ilovasi (ro'yxat raqami 3235); e-notarius.uz rasmiy kalkulyatori"
+    },
+    {
+      "id": "eskrou_yosh_chegarasi_yil",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "yil",
+      "izoh": "Ishlab chiqarilganidan beri shu yildan oshmagan (M, N, O, G toifa) avtomobillar oldi-sotdisida hisob-kitob eskrou orqali amalga oshiriladi",
+      "qiymat": 10,
+      "amal_qiladi": "2026-04-01",
+      "izoh_uz": "2026-yil 1-apreldan amal qiladi.",
+      "izoh_ru": "Действует с 1 апреля 2026 года.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/-8087150",
+      "manba_nomi": "3790-son nizom (Adliya vazirligi va Markaziy bank qo'shma qarori, 16.03.2026 ro'yxatga olingan, 01.04.2026 kuchga kirgan)"
+    },
+    {
+      "id": "eskrou_komissiya_davlat_bank_max",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Davlat ulushi bor banklarda avtomobil bo'yicha eskrou komissiyasining yuqori chegarasi, BHM ko'paytmasi",
+      "qiymat": 0.25,
+      "amal_qiladi": null,
+      "izoh_uz": "FAQAT ma'lumot matni uchun — davlat ulushi bor banklarda shu miqdordan oshmaydi, boshqa banklar o'z tarifini belgilaydi. Standart qiymat sifatida ISHLATILMAYDI (foydalanuvchi o'zi kiritadi).",
+      "izoh_ru": "Только для информационного текста — не используется как значение по умолчанию, пользователь вводит сам.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/-8087150",
+      "manba_nomi": "3790-son nizom; Markaziy bank tushuntirishi"
+    },
+    {
+      "id": "avto_royxat_muddat_kun",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "kun",
+      "izoh": "Mulk huquqi (yangi avto) yoki notarial tasdiqlash (ishlatilgan avto) o'tgan kundan YHXXda ro'yxatdan o'tkazish muddati, kunlarda",
+      "qiymat": 10,
+      "amal_qiladi": null,
+      "izoh_uz": "",
+      "izoh_ru": "",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/docs/1918264",
+      "manba_nomi": "726-son VMQ 2-ilova 31-band"
     }
   ]
 }
