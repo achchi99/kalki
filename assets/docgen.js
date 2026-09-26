@@ -308,7 +308,12 @@
     var val = state[f.id] == null ? '' : state[f.id];
     var lab = L(f.label, lang);
     var ph = attrEsc(L(f.ph, lang));
-    var hint = f.hint ? '<div class="dg-hint">' + escHtml(L(f.hint, lang)) + '</div>' : '';
+    // hint va sel maydonining opts massivi holatga qarab o'zgarishi mumkin
+    // (masalan, avtomobil yoshiga qarab to'lov turlari ro'yxati) — shu
+    // uchun ular funksiya sifatida ham berilishi mumkin, statik massiv/
+    // obyekt bo'lgan barcha eski maydonlar o'zgarishsiz ishlayveradi.
+    var hintVal = typeof f.hint === 'function' ? f.hint(state) : f.hint;
+    var hint = hintVal ? '<div class="dg-hint">' + escHtml(L(hintVal, lang)) + '</div>' : '';
     var cls = 'dg-field' + (f.half ? ' dg-half' : '');
     var sharedBadge = sharedFields && sharedFields[f.id]
       ? '<span class="kd-shared-badge">' + (lang === 'ru' ? 'Взято из предыдущего документа' : 'Avvalgi hujjatdan olindi') + '</span>'
@@ -325,8 +330,9 @@
       inner = '<div class="dg-seg">' + bs + '</div>';
     } else if (f.t === 'sel') {
       var os = '';
-      for (var j = 0; j < f.opts.length; j++) {
-        var op = f.opts[j];
+      var selOpts = typeof f.opts === 'function' ? f.opts(state) : f.opts;
+      for (var j = 0; j < selOpts.length; j++) {
+        var op = selOpts[j];
         os += '<option value="' + attrEsc(op.v) + '"' + (String(val) === String(op.v) ? ' selected' : '') + '>'
           + escHtml(L(op.label, lang)) + '</option>';
       }
