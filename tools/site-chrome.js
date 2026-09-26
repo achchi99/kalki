@@ -183,6 +183,7 @@ const XNAV_LINKS = [
   ['ishdan-boshatish-kompensatsiyasi-kalkulyator', 'Ishdan bo\'shatish komp. / Компенсация при увольнении'],
   ['aliment-kalkulyator', 'Aliment / Алименты'],
   ['yhxx-jarima-kalkulyator', 'YHXX jarimalari / Штрафы ПДД'],
+  ['avto-rasmiylashtirish', 'Avtomobil rasmiylashtirish'],
   ['hisob-siyosati-generatori', 'Hisob siyosati / Учётная политика'],
   // FAZA 4.3: ariza klasteri pilot bosqichi — 3 ta yangi hujjat namunasi.
   ['tatil-arizasi-namunasi', 'Ta\'til arizasi / Заявление на отпуск'],
