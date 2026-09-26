@@ -1346,6 +1346,32 @@
       "manba_nomi": "«Davlat boji to'g'risida»gi qonun ilovasi"
     },
     {
+      "id": "qoida_notarius_imtiyoz_kombinatsiya",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "mantiqiy",
+      "izoh": "Qarindosh (notarius_avto_imtiyoz_qarindosh, 0,05) va kredit (notarius_avto_imtiyoz_kredit, 0,10) imtiyozlari birga qo'llanganda KO'PAYTIRILADI (qo'shilmaydi): notarius_avto_oldisotdi x 0,05 x 0,10.",
+      "qiymat": true,
+      "amal_qiladi": null,
+      "izoh_uz": "e-notarius.uz rasmiy kalkulyatorida sinov o'tkazildi (2026-09-26, Asror tomonidan): qarindosh + kredit (halokatsiz) tanlanganda davlat boji 6 600 so'm chiqdi (BHM 440 000). Formula: 3 BHM x 0,05 x 0,10 = 0,015 BHM = 6 600 so'm. Natija skrinshot bilan tasdiqlangan (notarius-qarindosh-kredit-2026-09-26.jpg). Qonun matnining o'zida bu ko'paytirish aniq yozilmagan — rasmiy davlat tizimining amaldagi hisobidan olingan (xuddi shu ishonch darajasi 1-fazada notarius gerb/xizmat stavkalari uchun ham qo'llanilgan).",
+      "izoh_ru": "Проверено на официальном калькуляторе e-notarius.uz (26.09.2026, Асрором): при одновременном выборе 'родственник' + 'кредит' (без ДТП) госпошлина составила 6 600 сум (БРВ 440 000). Формула: 3 БРВ x 0,05 x 0,10 = 6 600 сум, подтверждено скриншотом. В тексте закона это перемножение прямо не прописано — взято из фактического расчёта официальной госсистемы.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": null,
+      "manba_nomi": "e-notarius.uz rasmiy kalkulyatori, sinov 2026-09-26 (skrinshot: notarius-qarindosh-kredit-2026-09-26.jpg)"
+    },
+    {
+      "id": "qoida_notarius_halokat_qoldiq_foiz",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "mantiqiy",
+      "izoh": "Avtomobil halokatda shikastlangan bo'lsa (amal qilish qoldiq foizini ko'rsatuvchi dalolatnoma bilan), notarius davlat boji boshqa imtiyozlar bilan BIRGA qoldiq foizga mutanosib ko'paytiriladi: notarius_avto_oldisotdi x (qarindosh/kredit koeffitsientlari) x (qoldiq_foiz/100).",
+      "qiymat": true,
+      "amal_qiladi": null,
+      "izoh_uz": "e-notarius.uz rasmiy kalkulyatorida ikkita sinov o'tkazildi (2026-09-26, Asror tomonidan). 1) begona + halokat (qoldiq 10%), kreditsiz: boj 132 000 so'm = 3 BHM x 10% (BHM 440 000). 2) qarindosh + kredit + halokat (qoldiq 10%): boj 660 so'm = 3 BHM x 0,05 x 0,10 x 10%. Demak qoldiq foiz omili boshqa imtiyozlarni ALMASHTIRMAYDI, ular bilan birga ko'paytiriladi. Skrinshot: notarius-halokat-10-2026-09-26.jpg. Qoldiq foizni notarius emas, baholovchi tashkilot dalolatnomasi bilan aniqlaydi — bu foydalanuvchi kiritadigan qiymat, standart yo'q.",
+      "izoh_ru": "Проверено на официальном калькуляторе e-notarius.uz двумя тестами (26.09.2026, Асрором). 1) без льгот + ДТП (остаток 10%), без кредита: пошлина 132 000 сум = 3 БРВ x 10% (БРВ 440 000). 2) родственник + кредит + ДТП (остаток 10%): пошлина 660 сум = 3 БРВ x 0,05 x 0,10 x 10%. Коэффициент остаточного процента не заменяет другие льготы, а умножается вместе с ними. Остаточный процент определяется актом оценочной организации, не нотариусом — значение по умолчанию отсутствует.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": null,
+      "manba_nomi": "e-notarius.uz rasmiy kalkulyatori, sinov 2026-09-26 (skrinshot: notarius-halokat-10-2026-09-26.jpg)"
+    },
+    {
       "id": "notarius_ishonchnoma_qarindosh",
       "sahifa": "avto-rasmiylashtirish",
       "tur": "son",
@@ -1515,8 +1541,8 @@
       "izoh": "Davlat ulushi bor banklarda avtomobil bo'yicha eskrou komissiyasining yuqori chegarasi, BHM ko'paytmasi",
       "qiymat": 0.25,
       "amal_qiladi": null,
-      "izoh_uz": "FAQAT ma'lumot matni uchun — davlat ulushi bor banklarda shu miqdordan oshmaydi, boshqa banklar o'z tarifini belgilaydi. Standart qiymat sifatida ISHLATILMAYDI (foydalanuvchi o'zi kiritadi).",
-      "izoh_ru": "Только для информационного текста — не используется как значение по умолчанию, пользователь вводит сам.",
+      "izoh_uz": "FAQAT ma'lumot matni uchun — davlat ulushi bor banklarda shu miqdordan oshmaydi, boshqa banklar o'z tarifini belgilaydi. Standart qiymat sifatida ISHLATILMAYDI (foydalanuvchi o'zi kiritadi). MUHIM: bu 0,25 FOIZ emas, 0,25 BHM (joriy BHM 440 000 so'mda — 110 000 so'm) — ilgari boshqa manbada bu ikkisi chalkashtirilgan, shu xatoni takrorlama. Misol: Hamkorbankning 2026-yil 11-iyundan amal qiluvchi tarifi (12-bo'lim) — eskrou hisobini ochish bepul, avtomobil xaridi uchun mablag' kiritish 0,25 BHM (110 000 so'm), Hamkorbank kassasidan olish bepul. Xaridor va sotuvchi turli banklarda bo'lsa, har biri belgilangan komissiyaning yarmidan oshmagan qismini to'laydi. Boshqa banklar o'z tarifini belgilaydi — bu yagona standart emas, faqat misol.",
+      "izoh_ru": "Только для информационного текста — не используется как значение по умолчанию, пользователь вводит сам. ВАЖНО: это не 0,25 ПРОЦЕНТА, а 0,25 БРВ (при текущем БРВ 440 000 сум — это 110 000 сум) — ранее в другом источнике эти два понятия путались, не повторять эту ошибку. Пример: тариф Hamkorbank, действующий с 11 июня 2026 года (раздел 12) — открытие эскроу-счёта бесплатно, внесение средств на покупку автомобиля — 0,25 БРВ (110 000 сум), снятие в кассе Hamkorbank — бесплатно. Если покупатель и продавец обслуживаются в разных банках, каждый оплачивает не более половины установленной комиссии. Другие банки устанавливают свой тариф — это не единый стандарт, а лишь пример.",
       "holat": "TASDIQLANGAN",
       "manba_url": "https://lex.uz/uz/docs/-8087150",
       "manba_nomi": "3790-son nizom; Markaziy bank tushuntirishi"
