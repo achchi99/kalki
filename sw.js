@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '0bbb5b22';   /* sw-version:auto */
+const SW_VERSION = '3c5db769';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -39,6 +39,7 @@ const ASSETS = [
   '/cyr/ariza-namunasi',
   '/avto-bojxona-2026',
   '/avto-oldi-sotdi-shartnomasi-namunasi',
+  '/avto-rasmiylashtirish',
   '/avto-xarajat-kalkulyator',
   '/ru/avto-xarajat-kalkulyator',
   '/beton-kalkulyator',

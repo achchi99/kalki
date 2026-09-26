@@ -537,5 +537,12 @@
     "hash": "169d7a3b893f",
     "tpl": 1,
     "v": 1
+  },
+  "avto-rasmiylashtirish": {
+    "title": "Avtomobil rasmiylashtirish narxi",
+    "cat": "huquqiy",
+    "hash": "c25517de884c",
+    "tpl": 1,
+    "v": 1
   }
 }
