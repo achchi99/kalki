@@ -1246,26 +1246,26 @@
       "sahifa": "avto-rasmiylashtirish",
       "tur": "son",
       "izoh": "Davlat raqam belgisi juftini almashtirish, BHM ko'paytmasi",
-      "qiymat": 3.5,
+      "qiymat": 4.5,
       "amal_qiladi": null,
-      "izoh_uz": "2026-yildan raqam tartibi 562-son VMQ bilan o'zgargan, bu stavka yangilanmagan bo'lishi mumkin — tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
-      "izoh_ru": "С 2026 года порядок номеров изменён постановлением №562, ставка может быть устаревшей — в расчёте НЕ используется до подтверждения (2-я фаза).",
-      "holat": "ZIDDIYAT",
-      "manba_url": "https://lex.uz/docs/1918264",
-      "manba_nomi": "2303-son buyruq 4-band"
+      "izoh_uz": "my.gov.uz'dagi 'Shikast yetgan avtotransport vositasining davlat raqami belgisini tiklash' xizmati (2026-yil aprelidan). To'rtta mustaqil sanali manba tasdiqlaydi (rasmiy Telegram, Gazeta.uz 14.04.2026, Aniq.uz 15.04.2026, Yuz.uz 2026-09). 2303-son hujjatning eski tahriridagi 3,5/1,5 BHM eskirgan.",
+      "izoh_ru": "Услуга 'Восстановление госномера повреждённого автотранспортного средства' на my.gov.uz (с апреля 2026). Подтверждено четырьмя независимыми датированными источниками (официальный Telegram, Gazeta.uz 14.04.2026, Aniq.uz 15.04.2026, Yuz.uz 09.2026). Старые ставки 3,5/1,5 БРВ из прежней редакции приказа №2303 устарели.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://t.me/s/mygovuz",
+      "manba_nomi": "my.gov.uz, 'Shikast yetgan avtotransport vositasining davlat raqami belgisini tiklash' xizmati (2026-04)"
     },
     {
       "id": "avto_raqam_almashtirish_bitta",
       "sahifa": "avto-rasmiylashtirish",
       "tur": "son",
       "izoh": "Davlat raqam belgisining bittasini almashtirish, BHM ko'paytmasi",
-      "qiymat": 1.5,
+      "qiymat": 2.25,
       "amal_qiladi": null,
-      "izoh_uz": "Yuqoridagi bilan bir xil sabab — tasdiqlanguncha hisobda ISHLATILMAYDI (2-faza).",
-      "izoh_ru": "По той же причине — в расчёте НЕ используется до подтверждения (2-я фаза).",
-      "holat": "ZIDDIYAT",
-      "manba_url": "https://lex.uz/docs/1918264",
-      "manba_nomi": "2303-son buyruq 5-band"
+      "izoh_uz": "my.gov.uz'dagi 'Shikast yetgan avtotransport vositasining davlat raqami belgisini tiklash' xizmati (2026-yil aprelidan). To'rtta mustaqil sanali manba tasdiqlaydi (rasmiy Telegram, Gazeta.uz 14.04.2026, Aniq.uz 15.04.2026, Yuz.uz 2026-09). 2303-son hujjatning eski tahriridagi 3,5/1,5 BHM eskirgan.",
+      "izoh_ru": "Услуга 'Восстановление госномера повреждённого автотранспортного средства' на my.gov.uz (с апреля 2026). Подтверждено четырьмя независимыми датированными источниками (официальный Telegram, Gazeta.uz 14.04.2026, Aniq.uz 15.04.2026, Yuz.uz 09.2026). Старые ставки 3,5/1,5 БРВ из прежней редакции приказа №2303 устарели.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://t.me/s/mygovuz",
+      "manba_nomi": "my.gov.uz, 'Shikast yetgan avtotransport vositasining davlat raqami belgisini tiklash' xizmati (2026-04)"
     },
     {
       "id": "avto_raqam_yoqolgan",

@@ -189,7 +189,7 @@ function check(label, cond, details) {
 (function () {
   var threw = false;
   try {
-    KalkiAvto.readConst(C, 'avto_raqam_almashtirish_juft');
+    KalkiAvto.readConst(C, 'avto_raqam_yoqolgan');
   } catch (e) {
     threw = true;
   }
