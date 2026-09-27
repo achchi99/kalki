@@ -27,19 +27,15 @@ kamchiligi edi — tuzatildi, formula o'zgarmadi.
 
 ## Ochiq savol
 
-**1. Aliment hisobiga kiritiladigan daromad turlari ro'yxati** — sahifadagi FAQ
-("Aliment kimning daromadidan hisoblanadi?") "Hisobga kiritiladigan aniq daromad turlari
-ro'yxati qonunchilikda belgilangan" deb umumiy aytadi, lekin `legal-constants.json`da bu
-ro'yxat uchun konstanta YO'Q — kod ham bunday ro'yxatni ishlatmaydi (foydalanuvchi faqat
-"asosiy ish joyidagi daromad" deb umumiy kiritadi). Bu **o'ylab topilmadi**, chunki aniq
-ro'yxat (masalan qaysi mukofot/nafaqa turlari kiritiladi, qaysilari kiritilmaydi) hali
-tekshirilmagan.
+**1. Aliment hisobiga kiritiladigan daromad turlari ro'yxati** — manba TOPILDI: Oila
+kodeksi, **104-modda** (https://lex.uz/uz/docs/104720#159234). Moddaning to'liq matni hali
+o'qilmagan/tasdiqlanmagan — Asror havolani ochib, ro'yxatni ko'chirib bersa, konstanta
+sifatida qo'shish mumkin bo'ladi. HECH QANDAY daromad turi hozircha kodga yoki matnga
+qo'shilmasin — bu faqat manba ko'rsatkichi, kontent emas.
 
-- **Qanday tekshiriladi:** Vazirlar Mahkamasining aliment ushlab qolinadigan daromad turlari
-  ro'yxatini belgilaydigan qarori (odatda alohida ilova sifatida chiqadi — "Ish haqi va
-  boshqa daromadlardan aliment ushlab qolish tartibi to'g'risida"gi Nizom kabi nomlanadi),
-  yoki Oila kodeksining tegishli moddasi.
-- **Javob:** — (hali yo'q)
+- **Qanday tekshiriladi:** Oila kodeksi 104-moddasining to'liq matnini o'qib, ro'yxatni
+  shu yerga ko'chirish.
+- **Javob:** — (hali yo'q, manba topildi lekin o'qilmagan)
 
 Agar kelajakda bu ro'yxat tasdiqlansa, `aliment_daromad_turlari` (tur: `royxat`) nomli yangi
 konstanta qo'shilishi va shu savol yopilishi tavsiya etiladi.
