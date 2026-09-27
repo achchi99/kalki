@@ -228,7 +228,8 @@ function runTool(args) {
     const orig = fs.readFileSync(f, 'utf8');
     const withM = (body) => orig.replace(/var METRICS = \{[\s\S]*?\n  \};/, body);
 
-    const { dom: d1 } = await loadHtml(orig, 'hamkorlik.html', { shims: true });
+    const empty = withM('var METRICS = {\n    period: null,\n    users: null,\n    pageviews: null,\n    mobileShare: null,\n    topPages: [],\n    updated: null\n  };');
+    const { dom: d1 } = await loadHtml(empty, 'hamkorlik.html', { shims: true });
     add(!d1.window.document.querySelector('.stat-box'),
       '12. METRICS to\'liq null -> blok yashiriladi');
     d1.window.close();
