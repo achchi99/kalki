@@ -25,17 +25,13 @@ tasdiqlangan qiymatlarga zid, eskirgan matn edi — kalkulyator o'zi allaqachon 
 bilan hisoblab turgan, faqat matn buni aks ettirmagan. Bu KOD BUGI emas, TAQDIMOT (matn)
 kamchiligi edi — tuzatildi, formula o'zgarmadi.
 
-## Ochiq savol
+## Yopilgan savollar
 
-**1. Aliment hisobiga kiritiladigan daromad turlari ro'yxati** — manba TOPILDI: Oila
-kodeksi, **104-modda** (https://lex.uz/uz/docs/104720#159234). Moddaning to'liq matni hali
-o'qilmagan/tasdiqlanmagan — Asror havolani ochib, ro'yxatni ko'chirib bersa, konstanta
-sifatida qo'shish mumkin bo'ladi. HECH QANDAY daromad turi hozircha kodga yoki matnga
-qo'shilmasin — bu faqat manba ko'rsatkichi, kontent emas.
+**✅ Aliment hisobiga kiritiladigan daromadlar — HAL BO'LDI (2026-09-27).** Oila kodeksi,
+104-modda: aliment O'zbekiston hududida va tashqarisida, pul yoki natura tarzida olingan
+barcha turdagi daromaddan ushlab qolinadi — aniq ro'yxat yo'q, istisno yo'q. Chet el
+valyutasidagi daromad undirish kunidagi MB rasmiy kursi bo'yicha so'mga aylantiriladi.
+Manba: https://lex.uz/uz/docs/104720#159234
 
-- **Qanday tekshiriladi:** Oila kodeksi 104-moddasining to'liq matnini o'qib, ro'yxatni
-  shu yerga ko'chirish.
-- **Javob:** — (hali yo'q, manba topildi lekin o'qilmagan)
-
-Agar kelajakda bu ro'yxat tasdiqlansa, `aliment_daromad_turlari` (tur: `royxat`) nomli yangi
-konstanta qo'shilishi va shu savol yopilishi tavsiya etiladi.
+Konstanta sifatida qo'shildi: `aliment_daromad_qamrovi` (`data/legal-constants.json`,
+`holat: TASDIQLANGAN`).

@@ -1086,6 +1086,19 @@
       "manba_nomi": "Oila kodeksi 142-modda"
     },
     {
+      "id": "aliment_daromad_qamrovi",
+      "sahifa": "aliment-kalkulyator",
+      "tur": "mantiqiy",
+      "izoh": "Aliment O'zbekiston hududida va uning tashqarisida pul yoki natura tarzida olingan BARCHA turdagi daromaddan ushlab qolinadi — aniq daromad turlari ro'yxati yo'q, istisno yo'q. Chet el valyutasidagi daromad undirish kunidagi O'zbekiston Respublikasi Markaziy bankining rasmiy kursi bo'yicha so'mga aylantiriladi.",
+      "qiymat": true,
+      "amal_qiladi": null,
+      "izoh_uz": "Oila kodeksi, 104-modda: \"Aliment O'zbekiston Respublikasi hududida va uning tashqarisida pul yoki natura tarzida olingan barcha turdagi daromadlardan ushlab qolinadi. Chet el valyutasida olinadigan daromadlar aliment undiriladigan kunda amalda bo'lgan O'zbekiston Respublikasi Markaziy bankining rasmiy kursi bo'yicha so'mlarda hisoblanadi.\" Moddada aniq daromad turlari ro'yxati yo'q — qonun istisnosiz \"barcha turdagi daromad\" deb belgilagan.",
+      "izoh_ru": "Семейный кодекс, статья 104: алименты удерживаются со всех видов доходов, полученных в денежной или натуральной форме на территории Узбекистана и за его пределами, без ограничений и исключений. Доходы в иностранной валюте пересчитываются в сумы по официальному курсу Центрального банка на день взыскания.",
+      "holat": "TASDIQLANGAN",
+      "manba_url": "https://lex.uz/uz/docs/104720#159234",
+      "manba_nomi": "Oila kodeksi, 104-modda"
+    },
+    {
       "id": "avto_royxat_oddiy",
       "sahifa": "avto-rasmiylashtirish",
       "tur": "son",
