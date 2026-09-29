@@ -173,6 +173,7 @@ const RU_PAGES = [
   'qurilish-pudrat-shartnomasi-namunasi.html',
   'tavsifnoma-namunasi.html',
   'topshirish-qabul-dalolatnomasi-namunasi.html',
+  'tushuntirish-xati-namunasi.html',
   'uy-oldi-sotdi-shartnomasi.html',
   'xizmat-korsatish-shartnomasi-namunasi.html',
   'biz-haqimizda.html',

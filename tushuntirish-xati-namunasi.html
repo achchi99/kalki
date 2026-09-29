@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.lang=l;
+}catch(e){}})();
+</script>
+<style id="langcss">
+html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/crosslink.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tushuntirish xati namunasi — Word yuklab oling</title>
+<meta name="description" content="Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xatini onlayn tuzing — rasmiy, neytral uslubda. Bepul, Word yoki PDF.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://kalki.uz/tushuntirish-xati-namunasi">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body[data-cat="hujjat"]{--cat:#155E63;--cat-deep:#0F4A4E;--accent:#5FBDB0;--cat-soft:#E6F2F1;--cat-text:#B8D8D4}
+:root{--wrap-max:1060px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+header{background:var(--cat);color:#fff;padding:22px 16px 20px;min-height:150px}
+header .wrap{padding-bottom:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
+.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lang-seg button.on{background:#fff;color:var(--cat)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
+.sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:52ch}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:14px;font-size:14px;color:#33403A;line-height:1.6}
+.intro b{color:var(--ink)}
+
+/* ikki ustunli maket */
+.dg-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media (min-width:900px){.dg-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:start}
+  .dg-preview-col{position:sticky;top:12px}}
+.dg-col{min-width:0}
+
+/* forma */
+.dg-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 16px;margin-bottom:12px}
+.dg-sec-t{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.dg-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dg-field{grid-column:span 2;min-width:0}
+.dg-field.dg-half{grid-column:span 1}
+@media (max-width:520px){.dg-field.dg-half{grid-column:span 2}}
+.dg-field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.dg-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;overflow:hidden}
+.dg-shell:focus-within{border-color:var(--cat)}
+.dg-shell input,.dg-shell select,.dg-shell textarea{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:15px;font-weight:600;color:var(--ink);padding:10px 11px;min-width:0;width:100%;resize:vertical}
+.dg-shell select{-webkit-appearance:none;appearance:none;cursor:pointer;font-weight:700}
+.dg-unit{font-size:11.5px;font-weight:700;color:var(--muted);padding:0 10px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.dg-hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.dg-seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+.dg-seg button{flex:1;min-width:96px;border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--muted);padding:9px 6px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dg-seg button.on{background:var(--cat);color:#fff}
+
+/* jonli ko'rinish */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.dg-head{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--cat-soft);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dg-head .t{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cat-deep)}
+.dg-left{margin-left:auto;font-size:11.5px;font-weight:800;color:#8A6D1F;background:#FFF4D9;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.dg-left.done{color:#1E6B45;background:#E4F3EA}
+#docBody{padding:18px 18px 8px;font-family:'Times New Roman',Georgia,serif;font-size:14.5px;line-height:1.65;color:#16211C;max-height:none}
+.dg-title{text-align:center;font-weight:700;font-size:16px;margin-bottom:8px;text-transform:uppercase}
+.dg-sub{text-align:center;margin-bottom:14px;font-size:14px}
+.dg-h{font-weight:700;margin:14px 0 5px}
+.dg-p{margin-bottom:7px;text-align:justify}
+.dg-note{font-size:12.5px;font-style:italic;color:var(--muted);margin-top:12px}
+.dg-gap{height:10px}
+.dg-sig{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;font-size:14px}
+.ph{background:#FFF4D9;color:#8A6D1F;border-radius:3px;letter-spacing:.5px}
+.receipt-actions{display:flex;gap:9px;padding:12px 14px 14px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:700;color:var(--cat);padding:11px;border-radius:10px;cursor:pointer}
+.receipt-actions button.primary{background:var(--cat);color:#fff;border-color:var(--cat)}
+.receipt-actions button:disabled{opacity:.6;cursor:default}
+.dg-blank{margin-top:10px;font-size:13px;color:var(--muted);font-weight:600}
+.dg-blank a{color:var(--cat);font-weight:700}
+.dg-jump{display:none}
+@media (max-width:899px){
+  .dg-jump{display:block;position:sticky;bottom:12px;margin-top:12px;width:100%;background:var(--cat);color:#fff;border:0;border-radius:12px;padding:14px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.22);z-index:5}
+}
+.warn{margin-top:14px;background:#FBF3E6;border:1px solid #EFDCBB;border-left:4px solid #D99A2B;border-radius:12px;padding:13px 15px;font-size:13px;color:#5A4820;line-height:1.6}
+.warn b{color:#3E3212}
+.seo{margin-top:36px;font-size:15px;color:#33403A}
+.seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
+.seo p{margin-bottom:10px}.seo table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-size:14px}.seo table th,.seo table td{border:1px solid #DDE5E0;padding:8px 10px;text-align:left;vertical-align:top}.seo table th{background:#F2F5F2;font-weight:800;width:32%}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.ready-h{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:10px}
+.ready-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:640px){.ready-grid{grid-template-columns:1fr 1fr}}
+.ready-card{background:#FBFCFB;border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.ready-card-h{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.ready-excerpt{font-size:13px;color:#33403A;line-height:1.55;font-family:'Times New Roman',Georgia,serif;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 10px;margin-bottom:9px}
+.ready-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ready-actions a{font-size:12.5px;font-weight:700;color:var(--cat);text-decoration:none}
+.copy-btn{border:1.5px solid var(--cat);background:#fff;color:var(--cat);font:inherit;font-size:12.5px;font-weight:700;padding:7px 11px;border-radius:8px;cursor:pointer}
+.copy-btn.copied{background:var(--cat);color:#fff}
+</style>
+<style id="printcss">
+@media print{
+  body *{visibility:hidden!important}
+  #pdfhead,#pdfhead *{visibility:visible!important}
+  .receipt,.receipt *{visibility:visible!important}
+  .receipt{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+  .receipt-actions{display:none!important}
+  .noprint,.noprint *{display:none!important;visibility:hidden!important}
+  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+  #topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+</style>
+<style id="bccss">
+#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:#6B7A72}
+</style>
+<script src="ga.js"></script><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Tushuntirish xati namunasi — Word yuklab oling">
+<meta property="og:description" content="Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xatini onlayn tuzing — rasmiy, neytral uslubda. Bepul, Word yoki PDF.">
+<meta property="og:url" content="https://kalki.uz/tushuntirish-xati-namunasi">
+<meta property="og:image" content="https://kalki.uz/assets/og/tushuntirish-xati-namunasi.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tushuntirish xati namunasi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/tushuntirish-xati-namunasi.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Tushuntirish xati namunasi — Word yuklab oling">
+<meta name="twitter:description" content="Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xatini onlayn tuzing — rasmiy, neytral uslubda. Bepul, Word yoki PDF.">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+
+<style id="chromecss">
+/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
+   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
+:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
+#topmenu{background:var(--nav-bg)}
+#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
+#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
+#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
+#sitebar{background:var(--nav-bg)}
+#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
+#sitebar .logo .dot{color:#D99A2B}
+#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
+#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
+#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
+#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
+#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
+@media (max-width:640px){
+  :root{--nav-pad:12px}
+  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
+  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
+  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
+  #sitebar .logo{font-size:21px}
+}
+@media (max-width:420px){
+  :root{--nav-pad:9px}
+  #topmenu a{font-size:11px;padding:4px 7px}
+}
+</style>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Tushuntirish xati generatori — kimga, kimdan, holat turi va sababni kiriting, tayyor xat matni avtomatik shakllanadi va Word yoki PDF holida yuklab olinadi. Hisob-kitob brauzeringizda bajariladi, ma'lumot serverga yuborilmaydi.","sources":[]},"ru":{"text":"Генератор объяснительной записки — укажите кому, от кого, тип ситуации и причину, готовый текст записки сформируется автоматически для скачивания в Word или PDF. Всё происходит в браузере, данные никуда не отправляются.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Hujjatlar generatori","item":"https://kalki.uz/hujjatlar"},{"@type":"ListItem","position":3,"name":"Tushuntirish xati namunasi","item":"https://kalki.uz/tushuntirish-xati-namunasi"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Tushuntirish xati namunasi","description":"Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xatini onlayn tuzing — rasmiy, neytral uslubda. Bepul, Word yoki PDF.","url":"https://kalki.uz/tushuntirish-xati-namunasi","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script><script type="application/ld+json" id="howto-ld">{"@context":"https://schema.org","@type":"HowTo","name":"Tushuntirish xati namunasi","step":[{"@type":"HowToStep","name":"Ish beruvchi turini tanlang","text":"Yuridik shaxs yoki yakka tartibdagi tadbirkor ekanligingizni belgilang — maydonlar shunga qarab moslashadi."},{"@type":"HowToStep","name":"Tomonlar va shartnoma ma'lumotlarini kiriting","text":"Xodim va ish beruvchi ma'lumotlarini, lavozim, ish haqi, sinov muddati va boshqa shartlarni to'ldiring."},{"@type":"HowToStep","name":"Matnni ko'rib chiqing","text":"Shartnoma matni o'ng tarafda real vaqtda shakllanadi, to'ldirilmagan joylar sariq rangda ko'rinadi."},{"@type":"HowToStep","name":"Word yoki PDF holida yuklab oling","text":"Tayyor hujjatni yuklab oling, Word faylini keyin o'zingizga moslab tahrirlashingiz mumkin."}]}</script><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Tushuntirish xatini kim so'rashi mumkin?","acceptedAnswer":{"@type":"Answer","text":"Odatda bevosita rahbar, kadrlar bo'limi, sinf rahbari yoki o'qituvchi. Ish joyida bu ko'pincha intizomiy chora qo'llashdan oldingi bosqich, o'quv joyida esa davomat nazorati bilan bog'liq."}},{"@type":"Question","name":"Uzr so'rash jumlasi majburiymi?","acceptedAnswer":{"@type":"Answer","text":"Yo'q. Generatorda bu jumla standart o'chirilgan — faqat siz ixtiyoriy ravishda yoqsangiz qo'shiladi. Ko'p hollarda faktlarni neytral bayon qilish yetarli."}},{"@type":"Question","name":"Tasdiqlovchi hujjat bo'lmasa ham yozsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Ilova maydoni ixtiyoriy — hech narsa qo'shmasangiz, hujjatda ilova haqida band umuman chiqmaydi."}},{"@type":"Question","name":"Xat qanday oqibatga olib kelishi mumkin?","acceptedAnswer":{"@type":"Answer","text":"Bu generator huquqiy oqibat haqida da'vo qilmaydi — qaror qabul qilish rahbariyat yoki o'qituvchining vakolatida. Xat shunchaki holatni rasman qayd etadi."}},{"@type":"Question","name":"Bir nechta holat uchun bitta xat yozsa bo'ladimi?","acceptedAnswer":{"@type":"Answer","text":"Texnik jihatdan mumkin, lekin tavsiya etilmaydi — har bir holat (kechikish, kelmaslik va h.k.) alohida sabab va sanaga ega, shuning uchun alohida xat aniqroq bo'ladi."}}]}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/tushuntirish-xati-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/tushuntirish-xati-namunasi" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/tushuntirish-xati-namunasi" data-hreflang-gen="1"></head>
+<body data-cat="hujjat">
+<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Asosiy</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a><a href="hujjatlar" class="tm-on" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Hujjatlar generatori</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Shablonlar</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Maqolalar</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button></div></div></div>
+<header>
+  <div class="wrap">
+    
+    <span class="cat-badge" data-i="cat">Hujjat generatori</span>
+    <h1 data-i="h1">Tushuntirish xati namunasi</h1>
+    <p class="sub" data-i="sub">Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xati — shakllantiring va Word yoki PDF yuklab oling.</p>
+  </div>
+</header>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="hujjatlar">Hujjatlar generatori</a><span class="sep">›</span><span class="cur">Tushuntirish xati namunasi</span></nav></div>
+
+<main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Tushuntirish xati generatori — kimga, kimdan, holat turi va sababni kiriting, tayyor xat matni avtomatik shakllanadi va Word yoki PDF holida yuklab olinadi. Hisob-kitob brauzeringizda bajariladi, ma'lumot serverga yuborilmaydi.</p></div>
+  <div class="intro" data-i-html="intro"><b>Tushuntirish xati</b> — ish yoki o'quv joyida yuz bergan holat (kechikish, kelmaslik, topshiriqni kechiktirish va h.k.) yuzasidan rahbariyatga yoziladigan qisqa, rasmiy tushuntirish. Formani to'ldiring — matn o'ng tarafda darrov shakllanadi. Ma'lumot faqat shu brauzerda saqlanadi, serverga yuborilmaydi.</div>
+
+  <div class="dg-grid">
+    <div class="dg-col">
+      <div id="formHost"><section class="dg-sec"><div class="dg-sec-t">Kimga</div><div class="dg-rows"><div class="dg-field" data-fw="toRole"><label for="dgf-toRole">Kimga (lavozimi)</label><div class="dg-shell"><input id="dgf-toRole" type="text" data-f="toRole" value="" placeholder="sinf rahbariga"></div></div><div class="dg-field" data-fw="toFio"><label for="dgf-toFio">F.I.Sh. (ma'lum bo'lsa)</label><div class="dg-shell"><input id="dgf-toFio" type="text" data-f="toFio" value="" placeholder="Karimova Gulnora Ravshanovna"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Kimdan</div><div class="dg-rows"><div class="dg-field" data-fw="fromFio"><label for="dgf-fromFio">F.I.Sh. (to'liq)</label><div class="dg-shell"><input id="dgf-fromFio" type="text" data-f="fromFio" value="" placeholder="Aliyev Sardor Baxtiyorovich"></div></div><div class="dg-field" data-fw="fromRole"><label for="dgf-fromRole">Lavozimi / guruhi</label><div class="dg-shell"><input id="dgf-fromRole" type="text" data-f="fromRole" value="" placeholder="3-«A» sinf o'quvchisi / sotuv bo'limi menejeri"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Holat</div><div class="dg-rows"><div class="dg-field" data-fw="reason"><label>Holat turi</label><div class="dg-seg"><button type="button" data-seg="reason" data-val="kechikish" class="on">Ishga kechikish</button><button type="button" data-seg="reason" data-val="kelmaslik">Ishga kelmaslik</button><button type="button" data-seg="reason" data-val="dars">Darsni qoldirish</button><button type="button" data-seg="reason" data-val="topshiriq">Topshiriqni kechiktirish</button><button type="button" data-seg="reason" data-val="boshqa">Boshqa</button></div></div><div class="dg-field dg-half" data-fw="eventDate"><label for="dgf-eventDate">Sana</label><div class="dg-shell"><input id="dgf-eventDate" type="date" data-f="eventDate" value="2026-09-29" placeholder=""></div></div><div class="dg-field dg-half" data-fw="timeRange"><label for="dgf-timeRange">Vaqt oralig'i (ixtiyoriy)</label><div class="dg-shell"><input id="dgf-timeRange" type="text" data-f="timeRange" value="" placeholder="9:00–11:00"></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Bayonot</div><div class="dg-rows"><div class="dg-field" data-fw="whatHappened"><label for="dgf-whatHappened">Nima bo'ldi (qisqa bayon)</label><div class="dg-shell"><textarea id="dgf-whatHappened" data-f="whatHappened" rows="3" placeholder="masalan: transport harakatida uzilish yuz berdi"></textarea></div></div><div class="dg-field" data-fw="reasonText"><label for="dgf-reasonText">Sabab</label><div class="dg-shell"><textarea id="dgf-reasonText" data-f="reasonText" rows="3" placeholder="masalan: uy yaqinidagi yo'l ta'mirlanayotgani sababli avtobus qatnovi kechikdi"></textarea></div></div><div class="dg-field" data-fw="apologize"><label>Uzr so'rash jumlasini qo'shish</label><div class="dg-seg"><button type="button" data-seg="apologize" data-val="yoq" class="on">Yo'q</button><button type="button" data-seg="apologize" data-val="ha">Ha</button></div></div></div></section><section class="dg-sec"><div class="dg-sec-t">Ilova va sana</div><div class="dg-rows"><div class="dg-field" data-fw="attach"><label>Ilova qilinadigan hujjatlar (ixtiyoriy)</label><div class="dg-list"><button type="button" class="dg-ladd" data-ladd="attach">+ Ilova qo'shish</button></div><div class="dg-hint">Bitta ham qo'shmasangiz, «Ilova:» bandi hujjatda chiqmaydi.</div></div><div class="dg-field dg-half" data-fw="signDate"><label for="dgf-signDate">Xat sanasi</label><div class="dg-shell"><input id="dgf-signDate" type="date" data-f="signDate" value="2026-09-29" placeholder=""></div></div></div></section></div>
+      <button type="button" class="dg-jump" id="jumpBtn" data-i="jump">Xatni ko'rish ↓</button>
+    </div>
+    <div class="dg-col dg-preview-col">
+      <section class="receipt" id="docPreview">
+        <div class="dg-head"><span class="t" data-i="prevTitle">Xat matni</span><span class="dg-left" id="dgLeft">To'ldirilmagan joylar: 6</span></div>
+        <div id="docBody"><div class="dg-title">TUSHUNTIRISH XATI</div><div class="dg-right"><div>Kimga: <span class="ph">__________________________</span></div><div>Kimdan: <span class="ph">__________________________</span></div></div><div class="dg-p">Men, <span class="ph">__________________________</span>, «29» sentabr 2026 yil kuni ishga/darsga kechikkanligim yuzasidan quyidagi tushuntirishni beraman.</div><div class="dg-p">Nima bo'ldi: <span class="ph">________________________________________</span>.</div><div class="dg-p">Sabab: <span class="ph">________________________________________</span>.</div><div class="dg-gap"></div><div class="dg-sig"><div><div><span class="kd-editable" data-field="signDate">«29» sentabr 2026 yil</span></div></div><div><div>_______________ (imzo)</div><div><span class="ph">________________________</span></div></div></div><div class="dg-note">Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma'lumot uchun mo'ljallangan.</div></div>
+        <div class="receipt-actions">
+          <button type="button" class="primary" id="wordBtn" data-i="btnWord">Word yuklab olish</button>
+          <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
+          <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
+          <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
+        </div>
+      </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+      <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
+    </div>
+  </div>
+
+  <div class="warn" data-i-html="warnTxt"><b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Muhim holatlarda tashkilotingiz ichki tartibiga rioya qiling.</div>
+
+  <section class="dg-sec" id="readySection"><h2 class="ready-h" data-i="readyTitle">Tayyor namunani ko'rish</h2><div id="readyBlock" data-i-html="readyBlock"><div class="ready-grid"><div class="ready-card"><div class="ready-card-h">⏰ Ishga/darsga kechikish</div><div class="ready-excerpt">Men, _____________ (F.I.Sh.), «___» __________ 20__ kuni ish/darsga taxminan ___ soat ___ daqiqa kechikdim. Sababi: ______________________________. Yuzaga kelgan noqulaylik uchun uzr so'rayman.</div><div class="ready-actions"><button type="button" class="copy-btn">Nusxa olish</button><a href="#formHost">Shu sahifada to'ldirish ↓</a></div></div><div class="ready-card"><div class="ready-card-h">🚫 Darsni/ishni qoldirish</div><div class="ready-excerpt">Men, _____________ (F.I.Sh.), «___» __________ 20__ kuni dars/ish kuniga kelmadim. Sababi: ______________________________. Tasdiqlovchi hujjat (agar bo'lsa) ilova etiladi.</div><div class="ready-actions"><button type="button" class="copy-btn">Nusxa olish</button><a href="#formHost">Shu sahifada to'ldirish ↓</a></div></div><div class="ready-card"><div class="ready-card-h">📎 Topshiriqni kechiktirish</div><div class="ready-excerpt">Men, _____________ (F.I.Sh.), «___» __________ 20__ sanasigacha topshirilishi kerak bo'lgan topshiriqni belgilangan muddatda topshira olmadim. Sababi: ______________________________. Topshiriqni «___» __________ 20__ sanasigacha taqdim etishga so'z beraman.</div><div class="ready-actions"><button type="button" class="copy-btn">Nusxa olish</button><a href="#formHost">Shu sahifada to'ldirish ↓</a></div></div></div></div></section>
+
+  
+  
+  
+<section class="seo" id="seoBlock"><h2>Tushuntirish xati nima va qachon yoziladi?</h2><p>Tushuntirish xati — xodim yoki o'quvchi/talaba tomonidan yuz bergan holat (kechikish, kelmaslik, topshiriqni o'z vaqtida bajarmaslik) yuzasidan rahbariyat yoki o'qituvchiga yoziladigan qisqa yozma hujjat. U voqeani rasman qayd etadi va ko'pincha intizomiy chora qo'llashdan oldin so'raladi.</p><p>Ish joyida bu odatda ichki tartib qoidabuzarligi (kechikish, sababsiz kelmaslik) yuzasidan so'raladi. O'quv joyida esa o'qituvchi yoki sinf rahbari dars qoldirilgani yoki topshiriq kechiktirilgani sabab so'rashi mumkin. Ikkala holatda ham maqsad bir xil — nima bo'lganini qisqa va aniq bayon qilish.</p><h2>Tushuntirish xatida qanday uslub tanlanadi?</h2><p>Uslub neytral va rasmiy bo'lishi kerak. Aybni tan olish yoki kechirim so'rash jumlasi avtomatik qo'shilmaydi — bu ixtiyoriy, alohida belgi bilan yoqiladi. Xat haqiqatda nima bo'lganini bayon qiladi, huquqiy oqibat haqida da'vo qilmaydi va qaror qabul qilish rahbariyat yoki o'qituvchining vakolatida qoladi.</p><p>Umumiy so'zlar («uzr, unutib qo'ydim») o'rniga aniq holat va sababni yozish tavsiya etiladi: qachon, nima uchun, qanday holatda. Bu xatning ishonchliligini oshiradi.</p><h2>Ilova qilish kerakmi?</h2><p>Agar sababni tasdiqlovchi hujjat bo'lsa (tibbiy ma'lumotnoma, transport bekor qilingani haqida xabar va h.k.), uni ilova sifatida ko'rsatish tavsiya etiladi — bu xatning ishonchliligini oshiradi. Ilova bo'lmasa, generatorda bu band umuman hujjatga chiqmaydi.</p><h2>Tushuntirish xati va ariza orasidagi farq</h2><p>Ariza — biror narsa so'rash yoki taklif kiritish uchun yoziladi. Tushuntirish xati esa allaqachon yuz bergan holatni izohlash uchun yoziladi — u so'rov emas, hisobot xarakteriga ega. Ba'zan ikkalasi birga qo'llanadi: masalan, kechikish sababi tushuntirilgandan keyin, agar zarur bo'lsa, alohida ariza ham yozilishi mumkin.</p></section><section class="seo" id="faqWrap"><div class="faq-t" data-i="faqTitle">Savol-javob</div><div id="faqBlock"><h2>Tushuntirish xatini kim so'rashi mumkin?</h2><p>Odatda bevosita rahbar, kadrlar bo'limi, sinf rahbari yoki o'qituvchi. Ish joyida bu ko'pincha intizomiy chora qo'llashdan oldingi bosqich, o'quv joyida esa davomat nazorati bilan bog'liq.</p><h2>Uzr so'rash jumlasi majburiymi?</h2><p>Yo'q. Generatorda bu jumla standart o'chirilgan — faqat siz ixtiyoriy ravishda yoqsangiz qo'shiladi. Ko'p hollarda faktlarni neytral bayon qilish yetarli.</p><h2>Tasdiqlovchi hujjat bo'lmasa ham yozsa bo'ladimi?</h2><p>Ha. Ilova maydoni ixtiyoriy — hech narsa qo'shmasangiz, hujjatda ilova haqida band umuman chiqmaydi.</p><h2>Xat qanday oqibatga olib kelishi mumkin?</h2><p>Bu generator huquqiy oqibat haqida da'vo qilmaydi — qaror qabul qilish rahbariyat yoki o'qituvchining vakolatida. Xat shunchaki holatni rasman qayd etadi.</p><h2>Bir nechta holat uchun bitta xat yozsa bo'ladimi?</h2><p>Texnik jihatdan mumkin, lekin tavsiya etilmaydi — har bir holat (kechikish, kelmaslik va h.k.) alohida sabab va sanaga ega, shuning uchun alohida xat aniqroq bo'ladi.</p></div></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Boshqa hujjat namunalari" data-artt-ru="Другие образцы документов">Boshqa hujjat namunalari</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="ish-haqi-malumotnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">💰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ish haqi ma'lumotnomasi kerakmi?" data-art-ru="Нужна справка о зарплате?">Ish haqi ma'lumotnomasi kerakmi?</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="kadr-buyruqlari-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🗂️</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Kadr buyrug'ini rasmiylashtiring" data-art-ru="Оформите кадровый приказ">Kadr buyrug'ini rasmiylashtiring</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ariza-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📨</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Umumiy ariza" data-art-ru="Заявление (общее)">Umumiy ariza</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ishonchnoma-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">✍️</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ishonchnoma" data-art-ru="Доверенность">Ishonchnoma</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="tilxat-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">💰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Tilxat (qarz olish)" data-art-ru="Расписка о займе">Tilxat (qarz olish)</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">🏠</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Ijara shartnomasi" data-art-ru="Договор аренды жилья">Ijara shartnomasi</span><span style="font-size:17px;color:#0E3B2E;flex:none">→</span></a></div><a href="hujjatlar" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#0E3B2E;text-decoration:none" data-arta-uz="Barcha hujjat namunalari →" data-arta-ru="Все образцы документов →">Barcha hujjat namunalari →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Bulardan ham foydalanishingiz mumkin</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="ijara-shartnomasi-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🏠</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ijara shartnomasi" data-rel-ru="Договор аренды">Ijara shartnomasi</span></a><a href="ishonchnoma-namunasi" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #155E63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">✍️</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ishonchnoma" data-rel-ru="Доверенность">Ishonchnoma</span></a><a href="oylik-soliq-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">💵</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish haqi kalkulyatori" data-rel-ru="Зарплатный калькулятор">Ish haqi kalkulyatori</span></a><a href="hisob-siyosati-generatori" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">📋</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Hisob siyosati" data-rel-ru="Учётная политика">Hisob siyosati</span></a><a href="shablon-ish-vaqti-tabeli.xlsx" download="" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #1E6B45;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🗓</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Ish vaqti tabeli (Excel)" data-rel-ru="Табель рабочего времени (Excel)">Ish vaqti tabeli (Excel)</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka yoki ijara / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ijara stavkalari / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="kaloriya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kaloriya / Калории</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="avto-rasmiylashtirish" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avtomobil rasmiylashtirish</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="tolov-hisobi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'lov uchun hisob / Счёт на оплату</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Hujjat namunasi ma'lumot uchun. Aybni tan olish yoki kechirim jumlasi avtomatik qo'shilmaydi.</footer></main>
+
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">29.9.2026</div>
+</div>
+
+<script src="assets/docgen.js"></script>
+<script>
+(function(){
+var KD=window.KalkiDoc;
+
+var I={
+ uz:{
+  cat:"Hujjat generatori",
+  h1:"Tushuntirish xati namunasi",
+  sub:"Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xati — shakllantiring va Word yoki PDF yuklab oling.",
+  intro:"<b>Tushuntirish xati</b> — ish yoki o'quv joyida yuz bergan holat (kechikish, kelmaslik, topshiriqni kechiktirish va h.k.) yuzasidan rahbariyatga yoziladigan qisqa, rasmiy tushuntirish. Formani to'ldiring — matn o'ng tarafda darrov shakllanadi. Ma'lumot faqat shu brauzerda saqlanadi, serverga yuborilmaydi.",
+  prevTitle:"Xat matni",
+  jump:"Xatni ko'rish ↓",
+  btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
+  warnTxt:"<b>Diqqat.</b> Ushbu hujjat namuna sifatida tayyorlanadi va yuridik maslahat hisoblanmaydi. Muhim holatlarda tashkilotingiz ichki tartibiga rioya qiling.",
+  foot:"Hujjat namunasi ma'lumot uchun. Aybni tan olish yoki kechirim jumlasi avtomatik qo'shilmaydi.",
+  faqTitle:"Savol-javob",
+  readyTitle:"Tayyor namunani ko'rish",
+  copyLabel:"Nusxa olish",copiedLabel:"Nusxalandi ✓",
+  ownLabel:"O'zim tayyorlash ↓",
+  readyBlock:"<div class=\"ready-grid\"><div class=\"ready-card\"><div class=\"ready-card-h\">⏰ Ishga/darsga kechikish</div><div class=\"ready-excerpt\">Men, _____________ (F.I.Sh.), «___» __________ 20__ kuni ish/darsga taxminan ___ soat ___ daqiqa kechikdim. Sababi: ______________________________. Yuzaga kelgan noqulaylik uchun uzr so'rayman.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Nusxa olish</button><a href=\"#formHost\">Shu sahifada to'ldirish ↓</a></div></div><div class=\"ready-card\"><div class=\"ready-card-h\">🚫 Darsni/ishni qoldirish</div><div class=\"ready-excerpt\">Men, _____________ (F.I.Sh.), «___» __________ 20__ kuni dars/ish kuniga kelmadim. Sababi: ______________________________. Tasdiqlovchi hujjat (agar bo'lsa) ilova etiladi.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Nusxa olish</button><a href=\"#formHost\">Shu sahifada to'ldirish ↓</a></div></div><div class=\"ready-card\"><div class=\"ready-card-h\">📎 Topshiriqni kechiktirish</div><div class=\"ready-excerpt\">Men, _____________ (F.I.Sh.), «___» __________ 20__ sanasigacha topshirilishi kerak bo'lgan topshiriqni belgilangan muddatda topshira olmadim. Sababi: ______________________________. Topshiriqni «___» __________ 20__ sanasigacha taqdim etishga so'z beraman.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Nusxa olish</button><a href=\"#formHost\">Shu sahifada to'ldirish ↓</a></div></div></div>",
+  seo:"<h2>Tushuntirish xati nima va qachon yoziladi?</h2><p>Tushuntirish xati — xodim yoki o'quvchi/talaba tomonidan yuz bergan holat (kechikish, kelmaslik, topshiriqni o'z vaqtida bajarmaslik) yuzasidan rahbariyat yoki o'qituvchiga yoziladigan qisqa yozma hujjat. U voqeani rasman qayd etadi va ko'pincha intizomiy chora qo'llashdan oldin so'raladi.</p><p>Ish joyida bu odatda ichki tartib qoidabuzarligi (kechikish, sababsiz kelmaslik) yuzasidan so'raladi. O'quv joyida esa o'qituvchi yoki sinf rahbari dars qoldirilgani yoki topshiriq kechiktirilgani sabab so'rashi mumkin. Ikkala holatda ham maqsad bir xil — nima bo'lganini qisqa va aniq bayon qilish.</p><h2>Tushuntirish xatida qanday uslub tanlanadi?</h2><p>Uslub neytral va rasmiy bo'lishi kerak. Aybni tan olish yoki kechirim so'rash jumlasi avtomatik qo'shilmaydi — bu ixtiyoriy, alohida belgi bilan yoqiladi. Xat haqiqatda nima bo'lganini bayon qiladi, huquqiy oqibat haqida da'vo qilmaydi va qaror qabul qilish rahbariyat yoki o'qituvchining vakolatida qoladi.</p><p>Umumiy so'zlar («uzr, unutib qo'ydim») o'rniga aniq holat va sababni yozish tavsiya etiladi: qachon, nima uchun, qanday holatda. Bu xatning ishonchliligini oshiradi.</p><h2>Ilova qilish kerakmi?</h2><p>Agar sababni tasdiqlovchi hujjat bo'lsa (tibbiy ma'lumotnoma, transport bekor qilingani haqida xabar va h.k.), uni ilova sifatida ko'rsatish tavsiya etiladi — bu xatning ishonchliligini oshiradi. Ilova bo'lmasa, generatorda bu band umuman hujjatga chiqmaydi.</p><h2>Tushuntirish xati va ariza orasidagi farq</h2><p>Ariza — biror narsa so'rash yoki taklif kiritish uchun yoziladi. Tushuntirish xati esa allaqachon yuz bergan holatni izohlash uchun yoziladi — u so'rov emas, hisobot xarakteriga ega. Ba'zan ikkalasi birga qo'llanadi: masalan, kechikish sababi tushuntirilgandan keyin, agar zarur bo'lsa, alohida ariza ham yozilishi mumkin.</p>",
+ },
+ ru:{
+  cat:"Генератор документов",
+  h1:"Образец объяснительной записки",
+  sub:"Объяснительная записка об опоздании, отсутствии, пропуске занятия или задержке задания — заполните и скачайте в Word или PDF.",
+  intro:"<b>Объяснительная записка</b> — короткое официальное объяснение, которое пишется руководству или преподавателю по поводу случившегося (опоздание, отсутствие, задержка задания и т.д.). Заполните форму — текст справа формируется сразу. Данные сохраняются только в этом браузере и никуда не отправляются.",
+  prevTitle:"Текст записки",
+  jump:"Посмотреть записку ↓",
+  btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
+  warnTxt:"<b>Внимание.</b> Документ подготовлен как образец и не является юридической консультацией. В важных случаях соблюдайте внутренний порядок вашей организации.",
+  foot:"Образец документа для информации. Фраза о признании вины или извинении не добавляется автоматически.",
+  faqTitle:"Вопросы и ответы",
+  readyTitle:"Готовые тексты записок",
+  copyLabel:"Скопировать",copiedLabel:"Скопировано ✓",
+  ownLabel:"Заполнить самому ↓",
+  readyBlock:"<div class=\"ready-grid\"><div class=\"ready-card\"><div class=\"ready-card-h\">⏰ Опоздание на работу/занятие</div><div class=\"ready-excerpt\">Я, _____________ (Ф.И.О.), «___» __________ 20__ года опоздал(а) на работу/занятие примерно на ___ ч. ___ мин. Причина: ______________________________. Приношу извинения за возникшее неудобство.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Скопировать</button><a href=\"#formHost\">Заполнить на этой странице ↓</a></div></div><div class=\"ready-card\"><div class=\"ready-card-h\">🚫 Пропуск занятия/работы</div><div class=\"ready-excerpt\">Я, _____________ (Ф.И.О.), «___» __________ 20__ года отсутствовал(а) на занятии/работе. Причина: ______________________________. Подтверждающий документ (если имеется) прилагается.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Скопировать</button><a href=\"#formHost\">Заполнить на этой странице ↓</a></div></div><div class=\"ready-card\"><div class=\"ready-card-h\">📎 Задержка задания</div><div class=\"ready-excerpt\">Я, _____________ (Ф.И.О.), не смог(ла) сдать задание к установленному сроку — «___» __________ 20__ года. Причина: ______________________________. Обязуюсь сдать задание до «___» __________ 20__ года.</div><div class=\"ready-actions\"><button type=\"button\" class=\"copy-btn\">Скопировать</button><a href=\"#formHost\">Заполнить на этой странице ↓</a></div></div></div>",
+  seo:"<h2>Что такое объяснительная записка и когда она пишется?</h2><p>Объяснительная записка — короткий письменный документ, который работник или учащийся/студент пишет руководству либо преподавателю по поводу случившегося (опоздание, отсутствие, несвоевременное выполнение задания). Она официально фиксирует событие и часто запрашивается перед применением дисциплинарной меры.</p><p>На работе её обычно запрашивают при нарушении внутреннего распорядка (опоздание, отсутствие без уважительной причины). В учебном заведении преподаватель или классный руководитель может попросить объяснить пропуск занятия или задержку задания. В обоих случаях цель одна — кратко и чётко изложить, что произошло.</p><h2>Какой стиль выбрать в объяснительной записке?</h2><p>Стиль должен быть нейтральным и официальным. Фраза о признании вины или извинении не добавляется автоматически — она необязательна и включается отдельным переключателем. Записка излагает факты, не содержит юридических утверждений, а решение остаётся за руководством или преподавателем.</p><p>Вместо общих слов («извините, забыл») рекомендуется указывать конкретную ситуацию и причину: когда, почему, при каких обстоятельствах. Это повышает доверие к записке.</p><h2>Нужно ли прикладывать документы?</h2><p>Если причина подтверждается документом (медицинская справка, уведомление об отмене транспорта и т.п.), его стоит указать как приложение — это повышает доверие к записке. Если приложений нет, этот пункт в генераторе вообще не появится в документе.</p><h2>Чем объяснительная записка отличается от заявления?</h2><p>Заявление пишется, чтобы что-то попросить или внести предложение. Объяснительная записка пишется, чтобы объяснить уже случившееся — это не просьба, а своего рода отчёт. Иногда оба документа используются вместе: например, после объяснения причины опоздания может дополнительно понадобиться отдельное заявление.</p>",
+ }
+};
+
+function today(){return new Date().toISOString().slice(0,10);}
+
+var REASON_OPTS=[
+ {v:'kechikish',label:{uz:'Ishga kechikish',ru:'Опоздание на работу'}},
+ {v:'kelmaslik',label:{uz:'Ishga kelmaslik',ru:'Отсутствие на работе'}},
+ {v:'dars',label:{uz:'Darsni qoldirish',ru:'Пропуск занятия'}},
+ {v:'topshiriq',label:{uz:'Topshiriqni kechiktirish',ru:'Задержка задания'}},
+ {v:'boshqa',label:{uz:'Boshqa',ru:'Другое'}}
+];
+
+/* ---------- konfiguratsiya ---------- */
+var CFG={
+ id:'tushuntirishxati',
+ file:'tushuntirish-xati',
+ personal:true,
+ sections:[
+  {id:'to',title:{uz:'Kimga',ru:'Кому'},fields:[
+   {id:'toRole',t:'text',label:{uz:'Kimga (lavozimi)',ru:'Кому (должность)'},ph:{uz:'sinf rahbariga',ru:'классному руководителю'}},
+   {id:'toFio',t:'text',label:{uz:"F.I.Sh. (ma'lum bo'lsa)",ru:'Ф.И.О. (если известно)'},ph:{uz:'Karimova Gulnora Ravshanovna',ru:'Каримова Гульнора Равшановна'}}
+  ]},
+  {id:'from',title:{uz:'Kimdan',ru:'От кого'},fields:[
+   {id:'fromFio',t:'text',label:{uz:"F.I.Sh. (to'liq)",ru:'Ф.И.О. (полностью)'},ph:{uz:'Aliyev Sardor Baxtiyorovich',ru:'Алиев Сардор Бахтиёрович'}},
+   {id:'fromRole',t:'text',label:{uz:'Lavozimi / guruhi',ru:'Должность / группа'},ph:{uz:"3-«A» sinf o'quvchisi / sotuv bo'limi menejeri",ru:'ученик 3-«А» класса / менеджер отдела продаж'}}
+  ]},
+  {id:'holat',title:{uz:'Holat',ru:'Ситуация'},fields:[
+   {id:'reason',t:'seg',def:'kechikish',label:{uz:'Holat turi',ru:'Тип ситуации'},opts:REASON_OPTS},
+   {id:'eventDate',t:'date',half:true,def:today(),label:{uz:'Sana',ru:'Дата'}},
+   {id:'timeRange',t:'text',half:true,label:{uz:'Vaqt oralig\'i (ixtiyoriy)',ru:'Временной промежуток (необязательно)'},ph:{uz:'9:00–11:00',ru:'9:00–11:00'}}
+  ]},
+  {id:'bayon',title:{uz:'Bayonot',ru:'Изложение'},fields:[
+   {id:'whatHappened',t:'area',rows:3,label:{uz:"Nima bo'ldi (qisqa bayon)",ru:'Что произошло (кратко)'},
+    ph:{uz:'masalan: transport harakatida uzilish yuz berdi',ru:'например: произошёл сбой в движении транспорта'}},
+   {id:'reasonText',t:'area',rows:3,label:{uz:'Sabab',ru:'Причина'},
+    ph:{uz:'masalan: uy yaqinidagi yo\'l ta\'mirlanayotgani sababli avtobus qatnovi kechikdi',ru:'например: автобус задержался из-за ремонта дороги рядом с домом'}},
+   {id:'apologize',t:'seg',def:'yoq',label:{uz:"Uzr so'rash jumlasini qo'shish",ru:'Добавить фразу с извинением'},
+    opts:[{v:'yoq',label:{uz:"Yo'q",ru:'Нет'}},{v:'ha',label:{uz:'Ha',ru:'Да'}}]}
+  ]},
+  {id:'ilova',title:{uz:'Ilova va sana',ru:'Приложение и дата'},fields:[
+   {id:'attach',t:'list',label:{uz:'Ilova qilinadigan hujjatlar (ixtiyoriy)',ru:'Прилагаемые документы (необязательно)'},
+    ph:{uz:'Tibbiy ma\'lumotnoma',ru:'Медицинская справка'},
+    addLabel:{uz:"+ Ilova qo'shish",ru:'+ Добавить приложение'},
+    hint:{uz:'Bitta ham qo\'shmasangiz, «Ilova:» bandi hujjatda chiqmaydi.',ru:'Если ничего не добавить, пункт «Приложение:» в документе не появится.'}},
+   {id:'signDate',t:'date',half:true,def:today(),label:{uz:'Xat sanasi',ru:'Дата записки'}}
+  ]}
+ ],
+
+ compute:function(v,lang){
+   return {reason:v.reason||'kechikish'};
+ },
+
+ doc:function(v,c,lang){
+   var ru=lang==='ru', B=KD.blank;
+   var b=[];
+   b.push({k:'title',text:ru?'ОБЪЯСНИТЕЛЬНАЯ ЗАПИСКА':'TUSHUNTIRISH XATI'});
+
+   var head=[];
+   head.push((ru?'Кому: ':'Kimga: ')+KD.v(v.toRole,26,'toRole')+(v.toFio?(ru?', ':', ')+KD.v(v.toFio,26,'toFio'):''));
+   head.push((ru?'От: ':'Kimdan: ')+KD.v(v.fromFio,26,'fromFio')+(v.fromRole?(ru?', ':', ')+KD.v(v.fromRole,26,'fromRole'):''));
+   b.push({k:'right',lines:head});
+
+   var REASON_TXT={
+     kechikish:{
+       uz:function(v){return (ru?'':'')+'Men, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' kuni'
+         +(v.timeRange?' (taxminan '+KD.v(v.timeRange,10,'timeRange')+')':'')+' ishga/darsga kechikkanligim yuzasidan quyidagi tushuntirishni beraman.'},
+       ru:function(v){return 'Я, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' года'
+         +(v.timeRange?' (примерно '+KD.v(v.timeRange,10,'timeRange')+')':'')+' опоздал(а) на работу/занятие, в связи с чем даю следующее объяснение.'}
+     },
+     kelmaslik:{
+       uz:function(v){return 'Men, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' kuni ishga/darsga kelmaganligim yuzasidan quyidagi tushuntirishni beraman.'},
+       ru:function(v){return 'Я, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' года отсутствовал(а) на работе/занятии, в связи с чем даю следующее объяснение.'}
+     },
+     dars:{
+       uz:function(v){return 'Men, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' kuni darsni qoldirganligim yuzasidan quyidagi tushuntirishni beraman.'},
+       ru:function(v){return 'Я, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' года пропустил(а) занятие, в связи с чем даю следующее объяснение.'}
+     },
+     topshiriq:{
+       uz:function(v){return 'Men, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' sanasigacha topshirilishi kerak bo\'lgan topshiriqni belgilangan muddatda topshira olmaganligim yuzasidan quyidagi tushuntirishni beraman.'},
+       ru:function(v){return 'Я, '+KD.v(v.fromFio,26,'fromFio')+', не смог(ла) сдать задание к установленному сроку — '+KD.fmtDate(v.eventDate,lang)+' года, в связи с чем даю следующее объяснение.'}
+     },
+     boshqa:{
+       uz:function(v){return 'Men, '+KD.v(v.fromFio,26,'fromFio')+', '+KD.fmtDate(v.eventDate,lang)+' kuni yuz bergan quyidagi holat yuzasidan tushuntirish beraman.'},
+       ru:function(v){return 'Я, '+KD.v(v.fromFio,26,'fromFio')+', в связи со следующей ситуацией, произошедшей '+KD.fmtDate(v.eventDate,lang)+' года, даю следующее объяснение.'}
+     }
+   };
+   var t=REASON_TXT[c.reason]||REASON_TXT.kechikish;
+   b.push({k:'p',text:(ru?t.ru(v):t.uz(v))});
+
+   b.push({k:'p',text:(ru?'Что произошло: ':'Nima bo\'ldi: ')+KD.v(String(v.whatHappened||'').trim(),40)+'.'});
+   b.push({k:'p',text:(ru?'Причина: ':'Sabab: ')+KD.v(String(v.reasonText||'').trim(),40)+'.'});
+
+   if(v.apologize==='ha'){
+     b.push({k:'p',text:ru?'За возникшее неудобство приношу свои извинения.':'Yuzaga kelgan noqulaylik uchun uzr so\'rayman.'});
+   }
+
+   var att=Array.isArray(v.attach)?v.attach.filter(function(s){return String(s||'').trim()}):[];
+   if(att.length){
+     b.push({k:'p',text:ru?'Приложение:':'Ilova:'});
+     for(var i=0;i<att.length;i++) b.push({k:'p',text:(i+1)+'. '+KD.v(att[i],30)+'.'});
+   }
+
+   b.push({k:'gap'});
+   b.push({k:'sig',left:[(v.signDate?KD.clickWrap('signDate',KD.fmtDate(v.signDate,lang)):B(22))],
+     right:['_______________ '+(ru?'(подпись)':'(imzo)'),KD.v(v.fromFio,24,'fromFio')]});
+   b.push({k:'note',text:ru
+     ?'Документ подготовлен на Kalki.uz как общий образец и предназначен для информации.'
+     :'Hujjat Kalki.uz da umumiy namuna sifatida tayyorlandi va ma\'lumot uchun mo\'ljallangan.'});
+   return b;
+ }
+};
+
+/* ---------- FAQ ---------- */
+var FAQ={
+ uz:[["Tushuntirish xatini kim so'rashi mumkin?","Odatda bevosita rahbar, kadrlar bo'limi, sinf rahbari yoki o'qituvchi. Ish joyida bu ko'pincha intizomiy chora qo'llashdan oldingi bosqich, o'quv joyida esa davomat nazorati bilan bog'liq."],["Uzr so'rash jumlasi majburiymi?","Yo'q. Generatorda bu jumla standart o'chirilgan — faqat siz ixtiyoriy ravishda yoqsangiz qo'shiladi. Ko'p hollarda faktlarni neytral bayon qilish yetarli."],["Tasdiqlovchi hujjat bo'lmasa ham yozsa bo'ladimi?","Ha. Ilova maydoni ixtiyoriy — hech narsa qo'shmasangiz, hujjatda ilova haqida band umuman chiqmaydi."],["Xat qanday oqibatga olib kelishi mumkin?","Bu generator huquqiy oqibat haqida da'vo qilmaydi — qaror qabul qilish rahbariyat yoki o'qituvchining vakolatida. Xat shunchaki holatni rasman qayd etadi."],["Bir nechta holat uchun bitta xat yozsa bo'ladimi?","Texnik jihatdan mumkin, lekin tavsiya etilmaydi — har bir holat (kechikish, kelmaslik va h.k.) alohida sabab va sanaga ega, shuning uchun alohida xat aniqroq bo'ladi."]],
+ ru:[["Кто может потребовать объяснительную записку?","Обычно непосредственный руководитель, отдел кадров, классный руководитель или преподаватель. На работе это часто этап перед дисциплинарной мерой, в учебном заведении — связано с контролем посещаемости."],["Обязательна ли фраза с извинением?","Нет. В генераторе она по умолчанию отключена — добавляется только если вы сами её включите. В большинстве случаев достаточно нейтрального изложения фактов."],["Можно ли написать без подтверждающего документа?","Да. Поле приложения необязательное — если ничего не добавить, пункт о приложении в документе вообще не появится."],["К каким последствиям может привести записка?","Этот генератор не содержит юридических утверждений о последствиях — решение остаётся за руководством или преподавателем. Записка лишь официально фиксирует ситуацию."],["Можно ли написать одну записку на несколько случаев?","Технически можно, но не рекомендуется — у каждого случая (опоздание, отсутствие и т.д.) своя причина и дата, поэтому отдельная записка получается точнее."]]
+};
+
+KD.page({
+  I:I, FAQ:FAQ, CFG:CFG,
+  titles:{
+    uz:"Tushuntirish xati namunasi — Word yuklab oling",
+    ru:'Образец объяснительной записки — заполнить онлайн и скачать Word'
+  },
+  descriptions:{
+    uz:"Kechikish, kelmaslik, dars qoldirish yoki topshiriqni kechiktirish yuzasidan tushuntirish xatini onlayn tuzing — rasmiy, neytral uslubda. Bepul, Word yoki PDF.",
+    ru:'Составьте объяснительную записку об опоздании, отсутствии, пропуске занятия или задержке задания онлайн — в официальном, нейтральном стиле. Бесплатно, Word или PDF.'
+  }
+});
+})();
+</script>
+<script id="readycopy">
+(function(){
+  // "Tayyor namunani ko'rish" kartalaridagi "Nusxa olish" tugmasi — ariza-namunasi
+  // sahifasidagi bir xil naqsh, faqat shu sahifaga moslab qo'shilgan.
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest&&e.target.closest('.copy-btn');
+    if(!btn)return;
+    var card=btn.closest('.ready-card');
+    var excerpt=card&&card.querySelector('.ready-excerpt');
+    if(!excerpt||!navigator.clipboard)return;
+    var isRu=document.documentElement.lang==='ru';
+    navigator.clipboard.writeText(excerpt.textContent).then(function(){
+      var orig=btn.textContent;
+      btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';
+      btn.classList.add('copied');
+      setTimeout(function(){btn.textContent=orig;btn.classList.remove('copied')},1500);
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  // O'lchov: PDF haqiqatan yasalgandagina yuboriladi.
+  // gtag bo'lmasa jimgina o'tkazamiz — o'lchov yuklab olishni hech qachon buzmasin.
+  function kPdfGa(){
+    try{
+      if(typeof gtag!=='function')return;
+      var slug=kPdfName().slice(6,-4)||'hujjat';
+      gtag('event','doc_download',{doc:slug,format:'pdf'});
+    }catch(e){}
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hujjat')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    return document.querySelector('.receipt')||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1||cls.indexOf('dg-head')>-1||cls.indexOf('xlink')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('/html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        kPdfGa();
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+})();
+</script>
+<script id="bcjs">
+(function(){
+  var NAMES={
+    uz:{home:'Asosiy',hujjat:'Hujjatlar generatori'},
+    ru:{home:'Главная',hujjat:'Генератор документов'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()];
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="hujjatlar">'+L.hujjat+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L.hujjat,"item":base+'hujjatlar'},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='BusinessApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"WebApplication",
+      "name":name,"description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+<script id="howtoschema">
+(function(){
+  var STEPS={
+    uz:[
+      ["Ish beruvchi turini tanlang","Yuridik shaxs yoki yakka tartibdagi tadbirkor ekanligingizni belgilang — maydonlar shunga qarab moslashadi."],
+      ["Tomonlar va shartnoma ma'lumotlarini kiriting","Xodim va ish beruvchi ma'lumotlarini, lavozim, ish haqi, sinov muddati va boshqa shartlarni to'ldiring."],
+      ["Matnni ko'rib chiqing","Shartnoma matni o'ng tarafda real vaqtda shakllanadi, to'ldirilmagan joylar sariq rangda ko'rinadi."],
+      ["Word yoki PDF holida yuklab oling","Tayyor hujjatni yuklab oling, Word faylini keyin o'zingizga moslab tahrirlashingiz mumkin."]
+    ],
+    ru:[
+      ["Выберите вид работодателя","Укажите юридическое лицо или ИП — поля подстроятся автоматически."],
+      ["Введите данные сторон и условия договора","Заполните данные работника и работодателя, должность, зарплату, испытательный срок и другие условия."],
+      ["Проверьте текст","Текст договора формируется в реальном времени справа, незаполненные места выделены жёлтым."],
+      ["Скачайте в Word или PDF","Скачайте готовый документ, файл Word можно затем отредактировать под себя."]
+    ]
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var old=document.getElementById('howto-ld');var __kalkiPos_howto_ld=old?old.nextSibling:null;if(old)old.remove();
+    var l=curLang();
+    var steps=STEPS[l];
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='howto-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"HowTo",
+      "name":name,
+      "step":steps.map(function(s){return {"@type":"HowToStep","name":s[0],"text":s[1]};})
+    });
+    if(__kalkiPos_howto_ld)document.head.insertBefore(sc,__kalkiPos_howto_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,160);});
+    });
+  },240);
+})();
+</script>
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('faqBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';sc.id='faq-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    });
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  function initSchema(){setTimeout(buildFaqSchema,180);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,180)});
+    });
+  },200);
+})();
+</script>
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru'],['data-rel-uz','data-rel-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+    var rt=document.getElementById('relTitle');
+    if(rt)rt.textContent=ru?'Вам также может пригодиться':'Bulardan ham foydalanishingiz mumkin';
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
