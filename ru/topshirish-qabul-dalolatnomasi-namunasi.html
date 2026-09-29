@@ -139,6 +139,16 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.chain-actions{padding:0 14px 14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.chaincheck{align-self:flex-start;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:13px;font-weight:700;color:var(--cat);padding:8px 13px;border-radius:9px;cursor:pointer}
+.check-result{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:10px;line-height:1.6}
+.check-result.clean{background:#E4F3EA;color:#1E6B45}
+.check-result.dirty{background:#FBEAE8;color:#8A2E22}
+.check-result ul{margin:6px 0 0 18px;font-weight:600}
+.check-result a{color:inherit;text-decoration:underline}
+.handoff-banner{margin-bottom:14px;background:#EAF3EE;border:1px solid #BFDBC9;border-left:4px solid #1E6B45;border-radius:12px;padding:12px 14px;font-size:13px;color:#16211C;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.handoff-banner button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:700;color:#8A2E22;text-decoration:underline;cursor:pointer;padding:0}
+.dg-tcheck{margin:0 auto;width:18px;height:18px;cursor:pointer}
 </style>
 <style id="printcss">
 @media print{
@@ -232,6 +242,7 @@ img,svg{height:auto}
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="hujjatlar">Генератор документов</a><span class="sep">›</span><span class="cur">Образец акта приёма-передачи</span></nav></div>
 
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Генератор акта приёма-передачи — выберите вид предмета (имущество, работа, услуга, аренда), готовый текст акта сформируется автоматически.</p><div class="ab-meta">Обновлено: 2026-09-29</div></div>
+  <div class="handoff-banner noprint" id="handoffBanner" style="display:none"><span data-i="handoffMsg">Данные получены из предыдущего документа — проверьте их.</span><button type="button" id="handoffClear" data-i="handoffClearBtn">Очистить</button></div>
   <div class="intro" data-i-html="intro"><b>Акт приёма-передачи</b> — документ, фиксирующий, что одна сторона передала, а другая приняла. Договор описывает, что должно быть сделано, а акт подтверждает, что это выполнено. Выберите предмет, заполните стороны — текст сформируется справа в реальном времени. Введённые данные не отправляются на сервер.</div>
 
   <div class="dg-grid">
@@ -248,6 +259,10 @@ img,svg{height:auto}
           <button type="button" class="pdfbtn" data-i="btnPdf">PDF</button>
           <button type="button" id="shareBtn" data-i="btnShare">Ссылка</button>
           <button type="button" id="clearBtn" data-i="btnClear">Очистить</button>
+        </div>
+        <div class="chain-actions noprint" id="chainActions">
+          <button type="button" id="checkBtn" class="chaincheck" data-i="btnCheck">🔍 Проверить</button>
+          <div id="checkResult" class="check-result" style="display:none"></div>
         </div>
       </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
       <div id="rentCta" class="rent-cta noprint" style="display:none"></div>
@@ -267,6 +282,52 @@ img,svg{height:auto}
   <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">29.9.2026</div>
 </div>
 
+<script src="/assets/doc-handoff.js"></script>
+<script src="/assets/doc-checks.js"></script>
+<script id="handoffin">
+(function(){
+  // 4.1/4.2 — ikki manbadan biri: to'g'ridan-to'g'ri xizmat-shartnomadan
+  // ("Bajarilgan xizmatlar dalolatnomasini tayyorlash") yoki to'lov
+  // hisobidan ("Dalolatnoma tayyorlash"). Manbaga qarab boshqacha
+  // to'ldiriladi — hisobda shaxs turi (yuridik/jismoniy) ma'lum emas,
+  // shuning uchun bu holatda taxmin qilinmaydi.
+  if(!window.KalkiHandoff)return;
+  var pkg=window.KalkiHandoff.read();
+  if(!pkg)return;
+  var state=null, from=null;
+  if(pkg.srvName!=null||pkg.exOrg!=null||pkg.exFio!=null){
+    from='xizmat';
+    state={
+      gvType:pkg.exType,gvOrg:pkg.exOrg,gvFio:pkg.exFio,gvStir:pkg.exStir,gvMfo:pkg.exMfo,
+      gvBank:pkg.exBank,gvAcc:pkg.exAcc,gvDir:pkg.exDir,gvAddr:pkg.exAddr,gvPhone:pkg.exPhone,
+      tkType:pkg.csType,tkOrg:pkg.csOrg,tkFio:pkg.csFio,tkStir:pkg.csStir,tkMfo:pkg.csMfo,
+      tkBank:pkg.csBank,tkAcc:pkg.csAcc,tkDir:pkg.csDir,tkAddr:pkg.csAddr,tkPhone:pkg.csPhone,
+      subject:'xizmat',
+      srvName:pkg.srvName,
+      srvCost:pkg.grand!=null?String(pkg.grand):'',
+      city:pkg.city,
+      hasContract:pkg.ctrNum?'ha':'yoq',
+      ctrNum:pkg.ctrNum,ctrDate:pkg.ctrDate
+    };
+  }else if(Array.isArray(pkg.items)){
+    from='hisob';
+    // To'lov hisobida shaxs turi (yuridik/jismoniy) so'ralmaydi — shu
+    // sabab bu yerda ham taxmin qilinmaydi, standart tur (jismoniy)
+    // bo'yicha ko'rinadigan F.I.Sh. maydoniga qo'yiladi.
+    state={
+      gvFio:pkg.sellerName,
+      tkFio:pkg.buyerName,
+      subject:'xizmat',
+      svcItems:pkg.items.map(function(it){return {name:it.name,done:false}})
+    };
+  }
+  if(!state)return;
+  try{
+    localStorage.setItem('kalki_doc_topshirishqabul',JSON.stringify(state));
+    sessionStorage.setItem('kalki_handoff_from',from);
+  }catch(e){}
+})();
+</script>
 <script src="/assets/docgen.js"></script>
 <script>
 (function(){
@@ -298,6 +359,8 @@ var I={
   prevTitle:"Dalolatnoma matni",
   jump:"Dalolatnomani ko'rish ↓",
   btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  btnCheck:"🔍 Tekshirish",
+  handoffMsg:"Ma'lumotlar oldingi hujjatdan olindi — tekshiring.",handoffClearBtn:"Tozalash",
   blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
   tipTxt:"Dalolatnoma <b>har bir tomon uchun bittadan</b> nusxada tuziladi va har biri imzolanadi. Mulk topshirayotgan bo'lsangiz, holat ustunini iloji boricha batafsil to'ldiring — «yaxshi» degan bir so'z keyinchalik nuqson kimning aybi bilan paydo bo'lganini aniqlashga yetmaydi.",
   foot:"Dalolatnoma namunasi ma'lumot uchun. Muhim va katta summali bitimlarda hujjatni yurist bilan tekshirib oling.",
@@ -312,6 +375,8 @@ var I={
   prevTitle:"Текст акта",
   jump:"Посмотреть акт ↓",
   btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  btnCheck:"🔍 Проверить",
+  handoffMsg:"Данные получены из предыдущего документа — проверьте их.",handoffClearBtn:"Очистить",
   blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
   tipTxt:"Акт составляется <b>по одному экземпляру на каждую сторону</b>, и каждый подписывается. Если передаёте имущество, заполняйте графу состояния как можно подробнее — одного слова «хорошее» недостаточно, чтобы позже определить, по чьей вине появился дефект.",
   foot:"Образец акта носит справочный характер. При важных сделках на крупные суммы проверьте документ с юристом.",
@@ -416,6 +481,13 @@ var CFG={
     {id:'srvFrom',t:'date',showIf:isXizmat,half:true,label:{uz:'Davr boshi',ru:'Начало периода'}},
     {id:'srvTo',t:'date',showIf:isXizmat,half:true,label:{uz:'Davr oxiri',ru:'Конец периода'}},
     {id:'srvCost',t:'num',showIf:isXizmat,half:true,label:{uz:'Qiymati',ru:'Стоимость'},unit:{uz:"so'm",ru:'сум'},ph:{uz:'3000000',ru:'3000000'}},
+    {id:'svcItems',t:'table',showIf:isXizmat,label:{uz:'Xizmatlar ro\'yxati (bir nechta bo\'lsa)',ru:'Список услуг (если их несколько)'},
+     addLabel:{uz:"+ Xizmat qo'shish",ru:'+ Добавить услугу'},
+     hint:{uz:"Ixtiyoriy — hisobdan bir nechta xizmat o'tkazilganda foydali. Har biri uchun haqiqatan bajarilganini o'zingiz belgilang (standart belgilanmagan).",ru:'Необязательно — полезно, когда из счёта перенесено несколько услуг. Отметьте сами, какие услуги действительно выполнены (по умолчанию не отмечено).'},
+     cols:[
+      {id:'name',label:{uz:'Xizmat nomi',ru:'Наименование услуги'},ph:{uz:'Konsalting xizmati',ru:'Консалтинговая услуга'}},
+      {id:'done',checkbox:true,label:{uz:'Bajarildi',ru:'Выполнено'}}
+     ]},
     /* d) ijara ob'ekti */
     {id:'rentAddr',t:'text',showIf:isIjara,label:{uz:"Ob'ekt manzili",ru:'Адрес объекта'},ph:{uz:'Toshkent sh., Yunusobod t., 4-kvartal, 7-uy, 12-xonadon',ru:'г. Ташкент, Юнусабадский р-н, 4-квартал, д.7, кв.12'}},
     {id:'rentArea',t:'num',showIf:isIjara,half:true,label:{uz:'Maydoni',ru:'Площадь'},unit:{uz:'m2',ru:'м2'},ph:{uz:'54',ru:'54'}},
@@ -463,7 +535,10 @@ var CFG={
    }
    var att=Array.isArray(v.attach)?v.attach.filter(function(x){return String(x||'').trim()}):[];
    setRentCta((v.subject==='ijara'),lang);
-   return {rows:rows,sum:any?sum:0,hasSum:any,attach:att};
+   var c={rows:rows,sum:any?sum:0,hasSum:any,attach:att};
+   // 4.4 — "Tekshirish" tugmasi shu joyni o'qiydi (faqat shu oynada).
+   window.__kalkiChainState={v:v,c:c};
+   return c;
  },
 
  doc:function(v,c,lang){
@@ -563,6 +638,15 @@ var CFG={
      if(KD.num(v.srvCost)){
        b.push({k:'p',text:(ru?'1.3. Стоимость услуги: ':'1.3. Xizmat qiymati: ')+KD.money(KD.num(v.srvCost),lang)+'.'});
      }
+     var svc=(Array.isArray(v.svcItems)?v.svcItems:[]).filter(function(r){return r&&String(r.name||'').trim()});
+     if(svc.length){
+       b.push({k:'p',text:ru?'1.4. Перечень услуг и их выполнение:':'1.4. Xizmatlar ro\'yxati va bajarilishi:'});
+       for(var si=0;si<svc.length;si++){
+         var done=!!svc[si].done;
+         b.push({k:'p',text:(si+1)+'. '+KD.v(svc[si].name,30)+' — '
+           +(done?(ru?'выполнено':'bajarildi'):(ru?'не выполнено':'bajarilmagan'))+'.'});
+       }
+     }
    } else {
      b.push({k:'p',text:ru
        ?'1.1. Передающая сторона передала, а Принимающая сторона приняла помещение по адресу: '+KD.v(v.rentAddr,34)+'.'
@@ -654,6 +738,51 @@ KD.page({
     ru:'Составьте акт приёма-передачи имущества, работ, услуг или объекта аренды — таблица и итоговая сумма прописью формируются автоматически. Word или PDF.'
   }
 });
+})();
+</script>
+<script id="docchain">
+(function(){
+  function $(id){return document.getElementById(id)}
+  function isRu(){return document.documentElement.lang==='ru'}
+  function ga(name,params){if(window.gtag){try{gtag('event',name,params||{})}catch(e){}}}
+
+  function showBannerIfNeeded(){
+    var from;
+    try{from=sessionStorage.getItem('kalki_handoff_from')}catch(e){from=null}
+    if(from!=='xizmat'&&from!=='hisob')return;
+    var b=$('handoffBanner');
+    if(b)b.style.display='flex';
+  }
+  var clearBtn=$('handoffClear');
+  if(clearBtn)clearBtn.addEventListener('click',function(){
+    try{sessionStorage.removeItem('kalki_handoff_from')}catch(e){}
+    var b=$('handoffBanner');
+    if(b)b.style.display='none';
+  });
+  setTimeout(showBannerIfNeeded,150);
+
+  function runCheck(){
+    var st=window.__kalkiChainState;
+    var el=$('checkResult');
+    if(!st||!window.KalkiDocChecks){el.style.display='none';return;}
+    var v=st.v;
+    var items=Array.isArray(v.svcItems)?v.svcItems.filter(function(r){return r&&String(r.name||'').trim()}).map(function(r){return {done:!!r.done}}):null;
+    var issues=window.KalkiDocChecks.checkAct({defect:v.defect,defectTxt:v.defectTxt,items:items&&items.length?items:null});
+    el.style.display='block';
+    var bucket=issues.length===0?'0':(issues.length<=2?'1-2':'3+');
+    ga('doc_check_run',{doc:'topshirish-qabul-dalolatnomasi',issues_count:bucket});
+    if(!issues.length){
+      el.className='check-result clean';
+      el.textContent=isRu()?'Нарушений не найдено.':'Nomuvofiqlik topilmadi.';
+      return;
+    }
+    el.className='check-result dirty';
+    var head=(isRu()?issues.length+' несоответствие(й) найдено:':issues.length+" ta nomuvofiqlik topildi:");
+    var itemsHtml=issues.map(function(i){return '<li>'+(isRu()?i.msg.ru:i.msg.uz)+'</li>'}).join('');
+    el.innerHTML=head+'<ul>'+itemsHtml+'</ul>';
+  }
+  var checkBtn=$('checkBtn');
+  if(checkBtn)checkBtn.addEventListener('click',runCheck);
 })();
 </script>
 <script>

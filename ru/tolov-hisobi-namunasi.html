@@ -124,6 +124,16 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
 .faq-t{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:30px 0 4px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.chain-actions{padding:0 14px 14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.chaincheck{align-self:flex-start;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:13px;font-weight:700;color:var(--cat);padding:8px 13px;border-radius:9px;cursor:pointer}
+.check-result{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:10px;line-height:1.6}
+.check-result.clean{background:#E4F3EA;color:#1E6B45}
+.check-result.dirty{background:#FBEAE8;color:#8A2E22}
+.check-result ul{margin:6px 0 0 18px;font-weight:600}
+.check-result a{color:inherit;text-decoration:underline}
+.chainbtn{border:1.5px solid var(--cat);background:#fff;color:var(--cat);font:inherit;font-size:13.5px;font-weight:700;padding:10px 13px;border-radius:10px;cursor:pointer;text-align:left}
+.handoff-banner{margin-bottom:14px;background:#EAF3EE;border:1px solid #BFDBC9;border-left:4px solid #1E6B45;border-radius:12px;padding:12px 14px;font-size:13px;color:#16211C;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.handoff-banner button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:700;color:#8A2E22;text-decoration:underline;cursor:pointer;padding:0}
 </style>
 <style id="printcss">
 @media print{
@@ -217,6 +227,7 @@ img,svg{height:auto}
 <div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="hujjatlar">Генератор документов</a><span class="sep">›</span><span class="cur">Образец счёта на оплату</span></nav></div>
 
 <main class="wrap"><div class="answerbox noprint" id="answerbox"><p class="ab-text">Генератор счёта на оплату — укажите список товаров/услуг и цены, итоговая сумма считается автоматически. Это не счёт-фактура НДС, а неофициальный документ-запрос на оплату.</p><div class="ab-meta">Обновлено: 2026-09-29</div></div>
+  <div class="handoff-banner noprint" id="handoffBanner" style="display:none"><span data-i="handoffMsg">Данные получены из договора — проверьте их.</span><button type="button" id="handoffClear" data-i="handoffClearBtn">Очистить</button></div>
   <div class="intro" data-i-html="intro"><b>Счёт на оплату</b> — простой финансовый документ, которым продавец сообщает покупателю, сколько и как нужно заплатить за товар или услугу. <b>Это не официальный счёт-фактура НДС</b>: с 2020 года в Узбекистане счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур (ЭСФ), и покупатель может принять НДС к зачёту только по документу, прошедшему через эту систему. Данный документ — неофициальный запрос на оплату: он содержит список товаров/услуг, сумму и реквизиты для оплаты, но не относится к отчётности по НДС. Укажите наименование, количество и цену — итоговая сумма справа рассчитается автоматически. Введённые данные не отправляются на сервер и остаются только в этом браузере.</div>
 
   <div class="dg-grid">
@@ -235,6 +246,11 @@ img,svg{height:auto}
           <button type="button" id="shareBtn" data-i="btnShare">Ссылка</button>
           <button type="button" id="clearBtn" data-i="btnClear">Очистить</button>
         </div>
+        <div class="chain-actions noprint" id="chainActions">
+          <button type="button" id="checkBtn" class="chaincheck" data-i="btnCheck">🔍 Проверить</button>
+          <div id="checkResult" class="check-result" style="display:none"></div>
+          <button type="button" id="toActBtn" class="chainbtn" data-i="btnToAct">Подготовить акт →</button>
+        </div>
       </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
       <div class="dg-blank" data-i-html="blankTxt">Нужен другой документ? <a href="shablonlar" id="blankLink">Раздел пустых шаблонов</a>.</div>
     </div>
@@ -251,6 +267,35 @@ img,svg{height:auto}
   <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">29.9.2026</div>
 </div>
 
+<script src="/assets/doc-handoff.js"></script>
+<script src="/assets/doc-checks.js"></script>
+<script id="handoffin">
+(function(){
+  // 4.1 — xizmat-korsatish-shartnomasi'dan kelgan paketni KD.page() o'zi
+  // localStorage'dan o'qishidan OLDIN 'kalki_doc_tolovhisob' kalitiga
+  // yozib qo'yamiz — shunda mavjud load() mexanizmi buni tabiiy ravishda
+  // formaga to'ldiradi, alohida DOM-tiklash yozish shart emas.
+  if(!window.KalkiHandoff)return;
+  var pkg=window.KalkiHandoff.read('xizmat');
+  if(!pkg)return;
+  // Format tanlovi (huquqiy emas) — docs/hujjat-paketlari-reja.md:
+  // qaysi nom (Org/Fio) va Addr+Phone qanday birlashishi shaxs turi
+  // foydalanuvchi tanlagan holatdan o'qiladi, taxmin qilinmaydi.
+  var state={
+    sellerName:window.KalkiHandoff.partyName(pkg.exType,pkg.exOrg,pkg.exFio),
+    sellerAddr:window.KalkiHandoff.combineAddrPhone(pkg.exAddr,pkg.exPhone),
+    sellerReq:pkg.exStir||'',
+    buyerName:window.KalkiHandoff.partyName(pkg.csType,pkg.csOrg,pkg.csFio),
+    buyerAddr:window.KalkiHandoff.combineAddrPhone(pkg.csAddr,pkg.csPhone),
+    items:[{name:pkg.srvName||'',qty:'1',price:String(pkg.grand||'')}]
+  };
+  try{
+    localStorage.setItem('kalki_doc_tolovhisob',JSON.stringify(state));
+    sessionStorage.setItem('kalki_handoff_from','xizmat');
+    sessionStorage.setItem('kalki_handoff_ref',JSON.stringify({grand:pkg.grand,vatMode:pkg.vatMode}));
+  }catch(e){}
+})();
+</script>
 <script src="/assets/docgen.js"></script>
 <script>
 (function(){
@@ -286,6 +331,8 @@ var I={
   prevTitle:"Hisob matni",
   jump:"Hisobni ko'rish ↓",
   btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  btnCheck:"🔍 Tekshirish",btnToAct:"Dalolatnoma tayyorlash →",
+  handoffMsg:"Ma'lumotlar shartnomadan olindi — tekshiring.",handoffClearBtn:"Tozalash",
   blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
   tipTxt:"<b>Diqqat:</b> bu hujjat QQS hisob-fakturasi emas. 2020-yildan O'zbekistonda QQS hisob-fakturasi faqat davlat elektron hisob-faktura (EHF) tizimi orqali rasmiylashadi. Ushbu hujjat — norasmiy to'lov so'rovi, QQS hisobotiga tegishli emas.",
   foot:"Hisob namunasi ma'lumot uchun. Rasmiy QQS hisob-fakturasi kerak bo'lsa, davlat EHF tizimidan (soliq.uz) foydalaning.",
@@ -300,6 +347,8 @@ var I={
   prevTitle:"Текст счёта",
   jump:"Посмотреть счёт ↓",
   btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  btnCheck:"🔍 Проверить",btnToAct:"Подготовить акт →",
+  handoffMsg:"Данные получены из договора — проверьте их.",handoffClearBtn:"Очистить",
   blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
   tipTxt:"<b>Внимание:</b> этот документ не является счётом-фактурой НДС. С 2020 года в Узбекистане счёт-фактура НДС оформляется только через государственную систему электронных счетов-фактур (ЭСФ). Данный документ — неофициальный запрос на оплату, не относится к отчётности по НДС.",
   foot:"Образец счёта носит справочный характер. Если нужна официальная счёт-фактура НДС, используйте государственную систему ЭСФ (soliq.uz).",
@@ -363,7 +412,11 @@ var CFG={
      out.push({name:r.name,qty:qty,price:price,sum:sum});
    }
    setLiveNote(out,total,hasTotal,lang);
-   return {rows:out,total:total,hasTotal:hasTotal};
+   var c={rows:out,total:total,hasTotal:hasTotal};
+   // 4.1/4.4 — hujjatlar zanjiri: "Dalolatnoma tayyorlash" va "Tekshirish"
+   // tugmalari shu joyni o'qiydi (faqat shu oynada, hech qayerga yuborilmaydi).
+   window.__kalkiChainState={v:v,c:c};
+   return c;
  },
 
  doc:function(v,c,lang){
@@ -459,6 +512,73 @@ KD.page({
   }
 });
 setTimeout(function(){if(window.KalkiCross)KalkiCross.initTargetHighlight([]);},220);
+})();
+</script>
+<script id="docchain">
+(function(){
+  function $(id){return document.getElementById(id)}
+  function isRu(){return document.documentElement.lang==='ru'}
+  function ga(name,params){if(window.gtag){try{gtag('event',name,params||{})}catch(e){}}}
+
+  // banner — faqat shu sessiyada handoff'dan kelib to'ldirilgan bo'lsa ko'rinadi
+  function showBannerIfNeeded(){
+    var from;
+    try{from=sessionStorage.getItem('kalki_handoff_from')}catch(e){from=null}
+    if(from!=='xizmat')return;
+    var b=$('handoffBanner');
+    if(b)b.style.display='flex';
+  }
+  var clearBtn=$('handoffClear');
+  if(clearBtn)clearBtn.addEventListener('click',function(){
+    try{sessionStorage.removeItem('kalki_handoff_from');sessionStorage.removeItem('kalki_handoff_ref')}catch(e){}
+    var b=$('handoffBanner');
+    if(b)b.style.display='none';
+  });
+  setTimeout(showBannerIfNeeded,150);
+
+  function getRef(){
+    try{
+      var raw=sessionStorage.getItem('kalki_handoff_ref');
+      return raw?JSON.parse(raw):null;
+    }catch(e){return null}
+  }
+
+  function runCheck(){
+    var st=window.__kalkiChainState;
+    var el=$('checkResult');
+    if(!st||!window.KalkiDocChecks){el.style.display='none';return;}
+    var ref=getRef();
+    var issues=window.KalkiDocChecks.checkInvoice({total:st.c.total},ref);
+    el.style.display='block';
+    var bucket=issues.length===0?'0':(issues.length<=2?'1-2':'3+');
+    ga('doc_check_run',{doc:'tolov-hisobi',issues_count:bucket});
+    if(!issues.length){
+      el.className='check-result clean';
+      el.textContent=isRu()?'Нарушений не найдено.':'Nomuvofiqlik topilmadi.';
+      return;
+    }
+    el.className='check-result dirty';
+    var head=(isRu()?issues.length+' несоответствие(й) найдено:':issues.length+" ta nomuvofiqlik topildi:");
+    var items=issues.map(function(i){
+      return '<li>'+(isRu()?i.msg.ru:i.msg.uz)+'</li>';
+    }).join('');
+    el.innerHTML=head+'<ul>'+items+'</ul>';
+  }
+  var checkBtn=$('checkBtn');
+  if(checkBtn)checkBtn.addEventListener('click',runCheck);
+
+  var toActBtn=$('toActBtn');
+  if(toActBtn)toActBtn.addEventListener('click',function(){
+    var st=window.__kalkiChainState;
+    if(!st)return;
+    var items=(st.c.rows||[]).map(function(r){return {name:r.name,qty:r.qty,price:r.price,done:false}});
+    window.KalkiHandoff.save('hisob',{
+      sellerName:st.v.sellerName,buyerName:st.v.buyerName,
+      items:items,total:st.c.total
+    });
+    ga('doc_chain_click',{from:'tolov-hisobi',to:'topshirish-qabul-dalolatnomasi'});
+    location.href='topshirish-qabul-dalolatnomasi-namunasi';
+  });
 })();
 </script>
 <script>

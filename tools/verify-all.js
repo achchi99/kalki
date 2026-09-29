@@ -939,6 +939,16 @@ function runTool(args) {
       bad.slice(0, 8).join(' | '));
   }
 
+  /* ---------- 32. Hujjatlar zanjiri — ziddiyat qoidalari (sof funksiyalar) ---------- */
+  {
+    const t = runTool(['test-doc-checks.js']);
+    add(t.code === 0, '32. assets/doc-checks.js — ziddiyat qoidalari testlari',
+      t.code === 0 ? '' : t.out.split('\n').filter((l) => l.indexOf('FAIL') === 0).slice(0, 6).join(' | '));
+    const th = runTool(['test-doc-handoff.js']);
+    add(th.code === 0, '33. assets/doc-handoff.js — format tanlovi testlari',
+      th.code === 0 ? '' : th.out.split('\n').filter((l) => l.indexOf('FAIL') === 0).slice(0, 6).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

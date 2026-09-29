@@ -384,12 +384,20 @@
         var cells = '';
         for (var ci = 0; ci < f.cols.length; ci++) {
           var col = f.cols[ci];
-          cells += '<input type="text" data-tb="' + attrEsc(f.id) + '" data-idx="' + tr + '"'
-            + ' data-col="' + attrEsc(col.id) + '"' + (col.narrow ? ' data-narrow="1"' : '')
-            + (col.num ? ' inputmode="numeric"' : '')
-            + ' value="' + attrEsc(row[col.id] == null ? '' : row[col.id]) + '"'
-            + ' placeholder="' + attrEsc(L(col.ph, lang)) + '"'
-            + ' aria-label="' + attrEsc(L(col.label, lang)) + '">';
+          if (col.checkbox) {
+            // 4.3 — "bajarildimi" kabi ustunlar: standart belgilanmagan,
+            // qiymat true/false (matn emas).
+            cells += '<input type="checkbox" class="dg-tcheck" data-tb="' + attrEsc(f.id) + '" data-idx="' + tr + '"'
+              + ' data-col="' + attrEsc(col.id) + '"' + (row[col.id] ? ' checked' : '')
+              + ' aria-label="' + attrEsc(L(col.label, lang)) + '">';
+          } else {
+            cells += '<input type="text" data-tb="' + attrEsc(f.id) + '" data-idx="' + tr + '"'
+              + ' data-col="' + attrEsc(col.id) + '"' + (col.narrow ? ' data-narrow="1"' : '')
+              + (col.num ? ' inputmode="numeric"' : '')
+              + ' value="' + attrEsc(row[col.id] == null ? '' : row[col.id]) + '"'
+              + ' placeholder="' + attrEsc(L(col.ph, lang)) + '"'
+              + ' aria-label="' + attrEsc(L(col.label, lang)) + '">';
+          }
         }
         trows += '<div class="dg-trow"><span class="dg-lnum">' + (tr + 1) + '.</span>' + cells
           + '<button type="button" class="dg-ldel" data-tdel="' + attrEsc(f.id) + '" data-idx="' + tr + '" aria-label="'
@@ -490,10 +498,11 @@
     for (var T1 = 0; T1 < tbs.length; T1++) {
       (function (el) {
         var id = el.getAttribute('data-tb'), idx = +el.getAttribute('data-idx'), col = el.getAttribute('data-col');
-        el.addEventListener('input', function () {
+        var isCheck = el.type === 'checkbox';
+        el.addEventListener(isCheck ? 'change' : 'input', function () {
           if (!Array.isArray(ctx.state[id])) ctx.state[id] = [];
           if (!ctx.state[id][idx] || typeof ctx.state[id][idx] !== 'object') ctx.state[id][idx] = {};
-          ctx.state[id][idx][col] = el.value;
+          ctx.state[id][idx][col] = isCheck ? el.checked : el.value;
           ctx.onChange(false);
         });
       })(tbs[T1]);

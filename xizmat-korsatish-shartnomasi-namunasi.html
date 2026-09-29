@@ -106,6 +106,16 @@ h1{font-size:25px;font-weight:800;line-height:1.2;min-height:1.2em}
   .dg-thead{display:none}
 }
 .stage-warn{margin-top:10px;padding:11px 13px;background:#FDF4E3;border:1px solid #EBD3A0;border-radius:11px;font-size:12.5px;line-height:1.5;font-weight:600;color:#6B5220}
+.chain-actions{padding:0 14px 14px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.chaincheck{align-self:flex-start;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:13px;font-weight:700;color:var(--cat);padding:8px 13px;border-radius:9px;cursor:pointer}
+.check-result{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:10px;line-height:1.6}
+.check-result.clean{background:#E4F3EA;color:#1E6B45}
+.check-result.dirty{background:#FBEAE8;color:#8A2E22}
+.check-result ul{margin:6px 0 0 18px;font-weight:600}
+.check-result a{color:inherit;text-decoration:underline}
+.chainbtn{border:1.5px solid var(--cat);background:#fff;color:var(--cat);font:inherit;font-size:13.5px;font-weight:700;padding:10px 13px;border-radius:10px;cursor:pointer;text-align:left}
+.handoff-banner{margin-bottom:14px;background:#EAF3EE;border:1px solid #BFDBC9;border-left:4px solid #1E6B45;border-radius:12px;padding:12px 14px;font-size:13px;color:#16211C;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.handoff-banner button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:700;color:#8A2E22;text-decoration:underline;cursor:pointer;padding:0}
 .dg-ladd{align-self:flex-start;border:1.5px dashed var(--cat);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:8px 14px;border-radius:9px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .dg-ladd:hover{background:var(--cat-soft)}
 .dg-right{text-align:right;margin-bottom:16px;line-height:1.5}
@@ -247,6 +257,12 @@ img,svg{height:auto}
           <button type="button" id="shareBtn" data-i="btnShare">Havola</button>
           <button type="button" id="clearBtn" data-i="btnClear">Tozalash</button>
         </div>
+        <div class="chain-actions noprint" id="chainActions">
+          <button type="button" id="checkBtn" class="chaincheck" data-i="btnCheck">🔍 Tekshirish</button>
+          <div id="checkResult" class="check-result" style="display:none"></div>
+          <button type="button" id="toInvoiceBtn" class="chainbtn" data-i="btnToInvoice">Shu shartnoma bo'yicha hisob yaratish →</button>
+          <button type="button" id="toActBtn" class="chainbtn" data-i="btnToAct">Bajarilgan xizmatlar dalolatnomasini tayyorlash →</button>
+        </div>
       </section><div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
       <div id="stageWarn" class="stage-warn noprint" style="display:none"></div>
       <div class="dg-blank" data-i-html="blankTxt">Boshqa hujjat kerakmi? <a href="shablonlar" id="blankLink">Bo'sh shablonlar bo'limi</a>.</div>
@@ -266,6 +282,8 @@ img,svg{height:auto}
 </div>
 
 <script src="assets/docgen.js"></script>
+<script src="assets/doc-handoff.js"></script>
+<script src="assets/doc-checks.js"></script>
 <script>
 (function(){
 var KD=window.KalkiDoc;
@@ -309,6 +327,9 @@ var I={
   prevTitle:"Shartnoma matni",
   jump:"Shartnomani ko'rish ↓",
   btnWord:"Word yuklab olish",btnPdf:"PDF",btnShare:"Havola",btnClear:"Tozalash",
+  btnCheck:"🔍 Tekshirish",
+  btnToInvoice:"Shu shartnoma bo'yicha hisob yaratish →",
+  btnToAct:"Bajarilgan xizmatlar dalolatnomasini tayyorlash →",
   blankTxt:"Boshqa hujjat kerakmi? <a href=\"shablonlar\" id=\"blankLink\">Bo'sh shablonlar bo'limi</a>.",
   tipTxt:"Shartnomaning eng muhim bandi — <b>predmet</b>. «Konsalting xizmatlari» degan yozuv nizoda hech narsani himoya qilmaydi. Nima qilinishi, natija qanday ko'rinishda topshirilishi va uni qanday tekshirish mumkinligini batafsil yozing.",
   foot:"Shartnoma namunasi ma'lumot uchun. Soliq stavkalari va majburiy talablarni amaldagi qonunchilikdan tekshiring.",
@@ -323,6 +344,9 @@ var I={
   prevTitle:"Текст договора",
   jump:"Посмотреть договор ↓",
   btnWord:"Скачать Word",btnPdf:"PDF",btnShare:"Ссылка",btnClear:"Очистить",
+  btnCheck:"🔍 Проверить",
+  btnToInvoice:"Создать счёт по этому договору →",
+  btnToAct:"Подготовить акт выполненных услуг →",
   blankTxt:"Нужен другой документ? <a href=\"shablonlar\" id=\"blankLink\">Раздел пустых шаблонов</a>.",
   tipTxt:"Важнейший пункт договора — <b>предмет</b>. Запись «консалтинговые услуги» не защищает в споре ни от чего. Опишите подробно, что делается, в каком виде сдаётся результат и как его проверить.",
   foot:"Образец договора носит справочный характер. Налоговые ставки и обязательные требования проверьте по действующему законодательству.",
@@ -501,6 +525,11 @@ var CFG={
      months:months,monthlySum:monthlySum,monthlyTotal:monthlySum*months
    };
    setStageWarn(c,lang);
+   // 4.1 — hujjatlar zanjiri: "hisob yaratish"/"dalolatnoma tayyorlash"
+   // tugmalari shu joriy holatni o'qiydi (DOM'dan emas, buzilmagan
+   // hisoblangan qiymatlardan). Faqat shu oynada (window) — hech qanday
+   // tarmoqqa yuborilmaydi.
+   window.__kalkiChainState={v:v,c:c};
    return c;
  },
 
@@ -735,6 +764,76 @@ KD.page({
     ru:'Составьте договор оказания услуг с четырьмя вариантами оплаты, выделением НДС, пунктами о гарантии и пене. Сумма прописью, Word или PDF.'
   }
 });
+})();
+</script>
+<script id="docchain">
+(function(){
+  function $(id){return document.getElementById(id)}
+  function fieldVal(id){var el=document.querySelector('[data-f="'+id+'"]');return el?el.value:''}
+  function isRu(){return document.documentElement.lang==='ru'}
+
+  // 4.5 — GA: shaxsiy ma'lumotsiz, faqat sahifa turlari va bucket
+  function ga(name,params){
+    if(window.gtag){try{gtag('event',name,params||{})}catch(e){}}
+  }
+
+  function buildPackage(){
+    var st=window.__kalkiChainState;
+    if(!st)return null;
+    var v=st.v, c=st.c;
+    return {
+      ctrNum:v.ctrNum,ctrDate:v.ctrDate,city:v.city,
+      csType:v.csType,csOrg:v.csOrg,csFio:v.csFio,csStir:v.csStir,csMfo:v.csMfo,csBank:v.csBank,csAcc:v.csAcc,csDir:v.csDir,csAddr:v.csAddr,csPhone:v.csPhone,
+      exType:v.exType,exOrg:v.exOrg,exFio:v.exFio,exStir:v.exStir,exMfo:v.exMfo,exBank:v.exBank,exAcc:v.exAcc,exDir:v.exDir,exAddr:v.exAddr,exPhone:v.exPhone,
+      srvName:v.srvName,srvDesc:v.srvDesc,
+      vatMode:c.vatMode,rate:c.rate,base:c.base,vatSum:c.vatSum,grand:c.grand
+    };
+  }
+
+  function runCheck(){
+    var st=window.__kalkiChainState;
+    var el=$('checkResult');
+    if(!st||!window.KalkiDocChecks){el.style.display='none';return;}
+    var issues=window.KalkiDocChecks.checkContract(st.c);
+    el.style.display='block';
+    var bucket=issues.length===0?'0':(issues.length<=2?'1-2':'3+');
+    ga('doc_check_run',{doc:'xizmat-shartnoma',issues_count:bucket});
+    if(!issues.length){
+      el.className='check-result clean';
+      el.textContent=isRu()?'Нарушений не найдено.':'Nomuvofiqlik topilmadi.';
+      return;
+    }
+    el.className='check-result dirty';
+    var head=(isRu()?issues.length+' несоответствие(й) найдено:':issues.length+" ta nomuvofiqlik topildi:");
+    var items=issues.map(function(i){
+      var lbl=(isRu()?i.msg.ru:i.msg.uz);
+      return '<li><a href="#dgf-'+i.field+'" data-jump="'+i.field+'">'+lbl+'</a></li>';
+    }).join('');
+    el.innerHTML=head+'<ul>'+items+'</ul>';
+  }
+  $('checkResult').addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-jump]');
+    if(!a)return;
+    e.preventDefault();
+    var target=document.querySelector('[data-f="'+a.getAttribute('data-jump')+'"]');
+    if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.focus()}
+  });
+  $('checkBtn').addEventListener('click',runCheck);
+
+  $('toInvoiceBtn').addEventListener('click',function(){
+    var pkg=buildPackage();
+    if(!pkg)return;
+    window.KalkiHandoff.save('xizmat',pkg);
+    ga('doc_chain_click',{from:'xizmat-shartnoma',to:'tolov-hisobi'});
+    location.href='tolov-hisobi-namunasi';
+  });
+  $('toActBtn').addEventListener('click',function(){
+    var pkg=buildPackage();
+    if(!pkg)return;
+    window.KalkiHandoff.save('xizmat',pkg);
+    ga('doc_chain_click',{from:'xizmat-shartnoma',to:'topshirish-qabul-dalolatnomasi'});
+    location.href='topshirish-qabul-dalolatnomasi-namunasi';
+  });
 })();
 </script>
 <script>

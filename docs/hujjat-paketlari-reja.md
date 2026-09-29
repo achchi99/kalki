@@ -107,6 +107,25 @@ qoldiriladi — uni amalga oshirish uchun avval alohida qarorlar kerak
 "Addr+Phone qanday formatda birlashtiriladi") — bular hozircha
 tasdiqlanmagan taxminlar bo'lardi.
 
-## Keyingi qadam
+## Keyingi qadam (2026-09-29 — bajarildi)
 
-FAZA 1 — foydalanuvchi tasdiqlagandan keyin boshlanadi.
+Juftlik 2 (Xizmat ko'rsatish shartnomasi ↔ To'lov hisobi) — 4-FAZA
+("Hujjatlar zanjiri") doirasida qurildi. Yuqorida qayd etilgan ikkita
+noaniqlik Asror bilan aniq kelishildi (taxmin qilinmadi):
+
+- **Org yoki Fio:** `exType`/`csType` foydalanuvchining o'zi xizmat
+  shartnomasida tanlagan qiymati — `assets/doc-handoff.js`dagi
+  `partyName(type, org, fio)` shu tanlovga mos nomni o'qiydi
+  (`yuridik`→Org, `jismoniy`→Fio). Tur aniqlanmagan yoki bo'sh bo'lsa —
+  BO'SH qaytariladi, Org'ga standart qilinmaydi. **Bu format tanlovi,
+  huquqiy yoki faktik qaror emas** — shaxsning o'zi qaysi turni
+  tanlagani allaqachon ma'lum, faqat qaysi maydonni ko'rsatish
+  tanlanadi.
+- **Addr+Phone birlashtirish:** `combineAddrPhone(addr, phone)` — ikkalasi
+  ham bor bo'lsa `"Addr, tel: Phone"`, faqat bittasi bo'lsa o'shani,
+  ikkalasi ham yo'q bo'lsa bo'sh qaytaradi. **Bu ham format tanlovi** —
+  ikkala qiymat ham manba hujjatda mavjud, faqat bitta matn maydoniga
+  qanday joylashtirish tanlanadi.
+
+Ikkalasi ham `tools/test-doc-handoff.js`da uchta holat (yuridik,
+jismoniy, tur yo'q) bo'yicha sinaladi va `npm run check`ga ulangan.
