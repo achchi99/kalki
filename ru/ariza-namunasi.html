@@ -665,19 +665,44 @@ function applyLang(){
 document.getElementById('langUz').onclick=function(){lang='uz';applyLang()};
 document.getElementById('langRu').onclick=function(){lang='ru';applyLang()};
 
-/* ---------- "nusxa olish" — Blok B qisqa matnlari uchun ---------- */
+/* ---------- "nusxa olish" — Blok B qisqa matnlari uchun ----------
+   navigator.clipboard ba'zi kontekstlarda yo'q yoki rad etiladi (masalan
+   Telegram/eski ilova brauzerlari) — bunday holda avval jim hech narsa
+   qilmasdi. Endi execCommand('copy') fallback bilan ishlaydi. */
 document.addEventListener('click',function(e){
   var btn=e.target.closest&&e.target.closest('.copy-btn');
   if(!btn)return;
   var card=btn.closest('.ready-card');
   var excerpt=card&&card.querySelector('.ready-excerpt');
-  if(!excerpt||!navigator.clipboard)return;
-  navigator.clipboard.writeText(excerpt.textContent).then(function(){
+  if(!excerpt)return;
+  var text=excerpt.textContent;
+  function showCopied(){
     var orig=btn.textContent;
     btn.textContent=I[lang].copiedLabel;
     btn.classList.add('copied');
     setTimeout(function(){btn.textContent=orig;btn.classList.remove('copied')},1500);
-  });
+  }
+  function fallbackCopy(){
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=text;
+      ta.setAttribute('readonly','');
+      ta.style.position='fixed';
+      ta.style.left='-9999px';
+      ta.style.top='0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok=document.execCommand('copy');
+      document.body.removeChild(ta);
+      if(ok)showCopied();
+    }catch(e){}
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(showCopied)['catch'](fallbackCopy);
+  }else{
+    fallbackCopy();
+  }
 });
 
 applyLang();
