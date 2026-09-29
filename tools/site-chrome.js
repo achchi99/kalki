@@ -118,11 +118,15 @@ const LEGAL = [
   ['https://t.me/kalki_uz', 'Aloqa', 'Контакты'],
   ['hamkorlik', 'Hamkorlik', 'Партнёрство'],
   ['mailto:info@kalki.uz', 'info@kalki.uz', 'info@kalki.uz'],
+  // Shaxsiy aloqa qatori — Asror tasdiqlashi bilan qo'shildi (2026-09-29).
+  // t.me/kalki_uz (yuqorida, "Aloqa") kanal havolasi — bunga tegilmagan.
+  ['https://t.me/achchi90', 'Aloqa uchun: Telegram @achchi90', 'Связь: Telegram @achchi90', ' target="_blank" rel="noopener" style="' + 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%' + '"'],
 ];
 const LEGAL_A = 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap';
 
 const LEGAL_HTML = '<div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">'
-  + LEGAL.map(([href, uz, ru]) => '<a href="' + href + '" style="' + LEGAL_A + '"'
+  + LEGAL.map(([href, uz, ru, extra]) => '<a href="' + href + '"'
+    + (extra ? extra : ' style="' + LEGAL_A + '"')
     + ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '">' + uz + '</a>').join('')
   + '</div>';
 
