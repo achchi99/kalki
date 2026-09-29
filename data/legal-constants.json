@@ -1580,11 +1580,11 @@
       "izoh": "QQS (NDS) asosiy stavkasi, 0-1 oralig'idagi ulush sifatida (0.12 = 12%)",
       "qiymat": 0.12,
       "amal_qiladi": null,
-      "izoh_uz": "qqs-kalkulyator.html sahifasida saytda allaqachon ochiq e'lon qilingan qiymat bilan bir xil (2026-yil holatiga). Bu yozuv o'sha qiymatni rasmiy reyestrga ko'chiradi — lekin Soliq kodeksining aniq modda raqami va rasmiy manba havolasi hali tasdiqlanmagan, shuning uchun holat TASDIQLANGAN emas. Qarang: docs/qqs-tasdiqlash.md.",
-      "izoh_ru": "Совпадает со значением, уже опубликованным на странице qqs-kalkulyator.html (по состоянию на 2026 год). Эта запись переносит то же значение в реестр, но точный номер статьи Налогового кодекса и официальная ссылка пока не подтверждены. См. docs/qqs-tasdiqlash.md.",
-      "holat": "NORMATIV_TALQIN",
+      "izoh_uz": "QQS stavkasi 12% — Soliq kodeksi (yangi tahrir), 258-modda. Soliq davri bir oy — 259-modda. 0% stavka faqat 36-bob operatsiyalariga (260-modda: eksport va tenglashtirilgan operatsiyalar) qo'llanadi. qqs-kalkulyator.html sahifasida ham shu qiymat ishlatiladi.",
+      "izoh_ru": "Ставка НДС 12% — Налоговый кодекс (новая редакция), статья 258. Налоговый период — один месяц (статья 259). Ставка 0% применяется только к операциям главы 36 (статья 260: экспорт и приравненные операции). На странице qqs-kalkulyator.html используется то же значение.",
+      "holat": "TASDIQLANGAN",
       "manba_url": null,
-      "manba_nomi": "Sayt bo'ylab ishlatiluvchi qiymat (qqs-kalkulyator.html); aniq modda/manba hali tasdiqlanmagan"
+      "manba_nomi": "Soliq kodeksi (yangi tahrir), 258/259/260-moddalar — buxgalterPRO nusxasi; lex.uz'dan qayta tekshirish ixtiyoriy"
     }
   ]
 }
