@@ -26,7 +26,7 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Калькулятор калорий — расчёт суточной нормы</title>
 <link rel="canonical" href="https://kalki.uz/ru/kaloriya-kalkulyator">
-<meta name="description" content="Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
+<meta name="description" content="Рассчитайте ориентировочно суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -110,6 +110,30 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 .seg .act-btn .as{font-size:10.5px;font-weight:600;opacity:.75;line-height:1.25}
 .seg .act-btn.on .as{opacity:.92}
 .detail-hint{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--cat-text);text-decoration:underline;cursor:pointer;-webkit-tap-highlight-color:transparent;background:none;border:0;font-family:inherit;padding:0}
+.field-err{display:none;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--warn)}
+.field-err.show{display:block}
+.nb-assumed{display:none;margin-top:8px}
+.nb-assumed.show{display:block}
+.nb-assumed button{background:none;border:0;font:inherit;font-size:12.5px;font-weight:700;color:var(--cat-text);text-decoration:underline;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+.nb-stale{display:none;margin-top:8px;font-size:12.5px;font-weight:700;color:#FFD9A0;background:rgba(0,0,0,.15);padding:8px 10px;border-radius:8px}
+.nb-stale.show{display:block}
+.nb-sub{display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.2)}
+.nb-sub.show{display:block}
+.nb-sub .ds-row{color:#fff;font-size:13.5px;padding:3px 0}
+.nb-sub .ds-row span:last-child{font-weight:800}
+.under18-msg{display:none;margin-top:10px;background:rgba(255,255,255,.14);border-radius:10px;padding:11px 13px;font-size:13px;font-weight:600;line-height:1.5}
+.under18-msg.show{display:block}
+.walkd{display:inline-block;margin-top:2px}
+.walkd summary{font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent}
+.walkd summary::-webkit-details-marker{display:none}
+.walkd[open] summary{color:var(--cat)}
+.walkd .wd-body{font-size:11px;color:var(--muted);margin-top:2px}
+.grams-equiv{font-size:12px;color:var(--muted);margin-top:6px}
+.list-note{font-size:12px;color:var(--muted);margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.list-note button{border:0;background:none;font:inherit;font-size:12px;font-weight:700;color:var(--warn);text-decoration:underline;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+.undo-toast{display:none;margin-top:8px;background:#EEF2EF;border-radius:9px;padding:9px 11px;font-size:12.5px;font-weight:700;align-items:center;justify-content:space-between;gap:10px}
+.undo-toast.show{display:flex}
+.undo-toast button{border:0;background:none;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat);cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
 details.acc{border:1.5px solid rgba(255,255,255,.25);border-radius:12px;margin-top:14px;background:rgba(255,255,255,.08);overflow:hidden}
 details.acc[open]{background:rgba(255,255,255,.12)}
 details.acc>summary{padding:12px 14px;font-size:13px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;-webkit-tap-highlight-color:transparent;color:#fff}
@@ -143,7 +167,7 @@ img,svg{height:auto}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="Калькулятор калорий — расчёт суточной нормы">
-<meta property="og:description" content="Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
+<meta property="og:description" content="Рассчитайте ориентировочно суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
 <meta property="og:url" content="https://kalki.uz/ru/kaloriya-kalkulyator">
 <meta property="og:image" content="https://kalki.uz/assets/og/kaloriya-kalkulyator.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -154,7 +178,7 @@ img,svg{height:auto}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kalki.uz">
 <meta name="twitter:title" content="Калькулятор калорий — расчёт суточной нормы">
-<meta name="twitter:description" content="Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
+<meta name="twitter:description" content="Рассчитайте ориентировочно суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.">
 <style id="bccss">
 #breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
 #breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
@@ -196,7 +220,7 @@ img,svg{height:auto}
   #topmenu a{font-size:11px;padding:4px 7px}
 }
 </style>
-<script type="application/json" id="answerbox-data">{"uz":{"text":"Kaloriya kalkulyatori — jinsingiz, vazningiz va faollik darajangizni kiriting, kunlik kaloriya me'yoringiz bir zumda hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор калорий — введите пол, вес и уровень активности, рассчитается суточная норма калорий.","sources":[]},"updated":"2026-09-27"}</script><script type="application/json" id="taxminconst-data">{"id":"piyoda_yurish_met","standart_taxmin":3.5,"izoh_uz":"Bu — TAXMIN, fakt emas. Qiymat jismoniy faollik sohasida keng qo'llaniladigan xalqaro MET jadvalidan (o'rtacha tezlikdagi, tekis yerdagi piyoda yurish, ~5 km/soat) olingan — bu shaxsiy tibbiy o'lchov emas, umumiy fiziologik o'rtacha. Haqiqiy sarf yurish tezligi, relyef va shaxsiy metabolizmga qarab sezilarli farq qilishi mumkin.","izoh_ru":"Это ПРЕДПОЛОЖЕНИЕ, не факт. Значение взято из общепринятой международной таблицы MET (средний темп ходьбы по ровной поверхности, ~5 км/ч) — это не персональное медицинское измерение, а общий физиологический ориентир. Реальный расход зависит от темпа, рельефа и индивидуального метаболизма.","manba_nomi":"Compendium of Physical Activities — piyoda yurish (o'rtacha tezlik) MET jadvali"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается дневная норма?","acceptedAnswer":{"@type":"Answer","text":"Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью."}},{"@type":"Question","name":"Откуда калорийность узбекских блюд?","acceptedAnswer":{"@type":"Answer","text":"Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир."}},{"@type":"Question","name":"Как пользоваться результатом?","acceptedAnswer":{"@type":"Answer","text":"Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Жизнь","item":"https://kalki.uz/ru/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор калорий","item":"https://kalki.uz/ru/kaloriya-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор калорий","description":"Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.","url":"https://kalki.uz/ru/kaloriya-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-09-27"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"></head>
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Kaloriya kalkulyatori — jinsingiz, vazningiz va faollik darajangizni kiriting, kunlik kaloriya me'yoringiz bir zumda hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор калорий — введите пол, вес и уровень активности, рассчитается суточная норма калорий.","sources":[]},"updated":"2026-09-27"}</script><script type="application/json" id="taxminconst-data">{"id":"piyoda_yurish_met","standart_taxmin":3.5,"izoh_uz":"Bu — TAXMIN, fakt emas. Qiymat jismoniy faollik sohasida keng qo'llaniladigan xalqaro MET jadvalidan (o'rtacha tezlikdagi, tekis yerdagi piyoda yurish, ~5 km/soat) olingan — bu shaxsiy tibbiy o'lchov emas, umumiy fiziologik o'rtacha. Haqiqiy sarf yurish tezligi, relyef va shaxsiy metabolizmga qarab sezilarli farq qilishi mumkin.","izoh_ru":"Это ПРЕДПОЛОЖЕНИЕ, не факт. Значение взято из общепринятой международной таблицы MET (средний темп ходьбы по ровной поверхности, ~5 км/ч) — это не персональное медицинское измерение, а общий физиологический ориентир. Реальный расход зависит от темпа, рельефа и индивидуального метаболизма.","manba_nomi":"Compendium of Physical Activities — piyoda yurish (o'rtacha tezlik) MET jadvali"}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается дневная норма?","acceptedAnswer":{"@type":"Answer","text":"Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью."}},{"@type":"Question","name":"Откуда калорийность узбекских блюд?","acceptedAnswer":{"@type":"Answer","text":"Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир."}},{"@type":"Question","name":"Как пользоваться результатом?","acceptedAnswer":{"@type":"Answer","text":"Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний."}},{"@type":"Question","name":"Считается ли ходьба каждый день активностью?","acceptedAnswer":{"@type":"Answer","text":"Зависит от темпа. Быстрая ходьба (примерно 5–6 км/ч, 1–2 часа в день) — это регулярная нагрузка, выбирайте уровень \"Средне\". При медленной, спокойной ходьбе выбирайте уровень ниже. Понаблюдайте 2–3 недели и скорректируйте уровень по результату."}},{"@type":"Question","name":"Кому не подходит этот расчёт?","acceptedAnswer":{"@type":"Answer","text":"Этот расчёт рассчитан на взрослых (от 18 лет) — для детей и подростков нужна консультация педиатра. Также калькулятор не предназначен для беременных и кормящих женщин — их потребность в энергии рассчитывается иначе."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Жизнь","item":"https://kalki.uz/ru/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор калорий","item":"https://kalki.uz/ru/kaloriya-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор калорий","description":"Рассчитайте ориентировочно суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.","url":"https://kalki.uz/ru/kaloriya-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":"2026-09-27"}</script><link rel="alternate" hreflang="uz" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/kaloriya-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/kaloriya-kalkulyator" data-hreflang-gen="1"></head>
 <body data-cat="hayot">
 <nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" class="tm-on" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
 
@@ -205,7 +229,7 @@ img,svg{height:auto}
     
     <span class="cat-badge" data-i="cat">Жизнь</span>
     <h1 data-i="h1">Калькулятор калорий</h1>
-    <p class="sub" data-i="sub">Точно рассчитайте дневную норму и увидьте влияние узбекских блюд в цифрах.</p>
+    <p class="sub" data-i="sub">Рассчитайте ориентировочно дневную норму и увидьте влияние узбекских блюд в цифрах.</p>
   </div>
 </header>
 
@@ -222,14 +246,16 @@ img,svg{height:auto}
     <div class="field">
       <label for="weight" data-i="lWeight">Вес</label>
       <div class="input-shell"><input type="text" id="weight" inputmode="decimal" value="75"><span class="unit">kg</span></div>
+      <div class="field-err" id="weightErr"></div>
     </div>
     <div class="field">
       <label data-i="lAct">Уровень активности</label>
       <div class="seg" id="actQuick">
-        <button type="button" class="act-btn" data-act="1.2"><span class="am" data-i="actLowL">Мало</span><span class="as" data-i="actLowS">весь день сижу на работе</span></button>
-        <button type="button" class="act-btn on" data-act="1.55"><span class="am" data-i="actMidL">Средне</span><span class="as" data-i="actMidS">хожу пешком, иногда спорт</span></button>
-        <button type="button" class="act-btn" data-act="1.9"><span class="am" data-i="actHighL">Много</span><span class="as" data-i="actHighS">регулярный спорт или физический труд</span></button>
+        <button type="button" class="act-btn" data-act="1.2"><span class="am" data-i="actLowL">Мало</span><span class="as" data-i="actLowS">весь день сижу на работе, почти не хожу</span></button>
+        <button type="button" class="act-btn on" data-act="1.55"><span class="am" data-i="actMidL">Средне</span><span class="as" data-i="actMidS">3–5 тренировок в неделю или быстрая ходьба</span></button>
+        <button type="button" class="act-btn" data-act="1.9"><span class="am" data-i="actHighL">Много</span><span class="as" data-i="actHighS">6+ тренировок в неделю или тяжёлый труд</span></button>
       </div>
+      <p class="hint" data-i="hAct">Быстрая ходьба (~5–6 км/ч, 1–2 часа в день) — тоже регулярная нагрузка, выбирайте «Средне». При медленной ходьбе — уровень ниже. Тяжёлый физический труд тоже учитывается.</p>
     </div>
     <div class="field" style="margin-bottom:0">
       <label data-i="lGoal">Цель</label>
@@ -246,10 +272,12 @@ img,svg{height:auto}
         <div class="field">
           <label for="age" data-i="lAge">Возраст</label>
           <div class="input-shell"><input type="text" id="age" inputmode="numeric" value="30"><span class="unit" data-i="uAge">лет</span></div>
+          <div class="field-err" id="ageErr"></div>
         </div>
         <div class="field">
           <label for="height" data-i="lHeight">Рост</label>
           <div class="input-shell"><input type="text" id="height" inputmode="numeric" value="175"><span class="unit">sm</span></div>
+          <div class="field-err" id="heightErr"></div>
         </div>
       </div>
       <div class="field" style="margin-bottom:0">
@@ -267,9 +295,15 @@ img,svg{height:auto}
   </section>
 
   <section class="norm-banner" id="normBanner" aria-live="polite">
-    <div class="nb-lbl" data-i="nbLbl">Ваша дневная норма</div>
+    <div class="nb-lbl" id="nbLbl" data-i="nbLbl">Ваша дневная норма</div>
     <div class="nb-num" id="nbNum">—</div>
-    <div class="nb-item" id="nbCombo" style="margin-top:4px"></div>
+    <div class="under18-msg" id="under18Msg" data-i="under18Msg">Этот расчёт рассчитан на взрослых (от 18 лет). По питанию детей и подростков проконсультируйтесь с педиатром.</div>
+    <div class="nb-sub" id="nbSub">
+      <div class="ds-row"><span data-i="nbKeepLbl">Для поддержания веса</span><span id="nbKeepV">—</span></div>
+      <div class="ds-row" id="nbGoalRow"><span data-i="nbGoalLbl">Для выбранной цели</span><span id="nbGoalV">—</span></div>
+    </div>
+    <div class="nb-assumed" id="nbAssumed"><button type="button" id="assumedBtn"></button></div>
+    <div class="nb-stale" id="nbStale" data-i="nbStaleMsg">Прежний расчёт — не обновлён. Проверьте поля.</div>
     <details class="acc">
       <summary data-i="accHow">Как это рассчитывается?</summary>
       <div class="acc-body">
@@ -277,12 +311,13 @@ img,svg{height:auto}
           <div class="nb-item"><span data-i="nbBmr">Базальный обмен (BMR)</span><b id="nbBmrV">—</b></div>
           <div class="nb-item"><span data-i="nbTdee">Общий расход (TDEE)</span><b id="nbTdeeV">—</b></div>
         </div>
+        <div class="nb-item" id="nbCombo" style="margin-top:10px"></div>
       </div>
     </details>
     <button type="button" class="detail-hint" id="detailHint" data-i="hDetail">Для точного расчёта укажите возраст и рост →</button>
   </section>
 
-  <section class="card2" id="foodCard" style="display:none">
+  <section class="card2" id="foodCard">
     <h2 class="sect" data-i="fTitle">Узбекские блюда — влияние на дневную норму</h2>
     <p class="sect-sub" data-i="fSub">Выберите блюдо и количество — калории и доля от нормы рассчитаются.</p>
     <div class="row2">
@@ -294,21 +329,25 @@ img,svg{height:auto}
         <label for="grams" data-i="lGrams">Количество</label>
         <div class="seg" id="qtyModeSeg" style="display: flex; margin-bottom: 8px;"><button type="button" class="qm-btn on" id="qmPortion">1 тарелка</button><button type="button" class="qm-btn" id="qmGram" data-i="qtyGram">грамм</button></div>
         <div class="input-shell"><input type="text" id="grams" inputmode="numeric" value="350"><span class="unit" id="gramsUnit">тарелка</span></div>
+        <div class="grams-equiv" id="gramsEquivHint">1 тарелка ≈ 350 г</div>
+        <div class="field-err" id="gramsErr"></div>
       </div>
     </div>
     <button type="button" class="add-btn" id="addFood" data-i="btnAdd">+ Добавить в список</button>
     <div id="foodList" style="margin-top:10px"></div>
+    <div class="undo-toast" id="undoToast"><span id="undoMsg"></span><button type="button" id="undoBtn"></button></div>
     <div class="day-summary" id="daySummary" style="display:none">
       <div class="ds-row"><span data-i="dsEaten">Съедено</span><span class="v" id="dsEatenV">—</span></div>
       <div class="ds-row"><span data-i="dsLeft">Осталось от нормы</span><span class="v ok" id="dsLeftV">—</span></div>
       <div class="progress"><div class="bar" id="dsBar" style="width:0%"></div></div>
     </div>
+    <div class="list-note" id="listNote" style="display: none;"><span data-i="listNoteText">Список сохраняется только на этом устройстве.</span><button type="button" id="clearListBtn" data-i="listNoteClear">Очистить сегодняшний список</button></div>
   </section>
 
   <div class="receipt-actions"><button type="button" id="shareBtn">Поделиться</button><button type="button" class="pdfbtn">PDF</button></div>
 
 <div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Данные по состоянию на август 2026 года</div>
-  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div><section class="seo" id="seoBlock"><h2>Как рассчитывается дневная норма?</h2><p>Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью.</p><h2>Откуда калорийность узбекских блюд?</h2><p>Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир.</p><h2>Как пользоваться результатом?</h2><p>Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Детское пособие 2026: новые размеры</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="toy-byudjeti-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="To'y byudjeti 2026: Toshkent va viloyat narxlari" data-art-ru="Бюджет свадьбы 2026: цены Ташкента и регионов">Бюджет свадьбы 2026: цены Ташкента и регионов</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="homiladorlik-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Homiladorlik" data-rel-ru="Беременность">Беременность</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Семейный бюджет</span></a><a href="alkogol-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Alkogol" data-rel-ru="Алкоголь">Алкоголь</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka yoki ijara / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ijara stavkalari / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="avto-rasmiylashtirish" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avtomobil rasmiylashtirish</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="tolov-hisobi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'lov uchun hisob / Счёт на оплату</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Формула Миффлина-Сан Жеора. При проблемах со здоровьем согласуйте рацион с врачом.</footer></main>
+  <div id="tgcta" class="tgcta noprint" style="margin-top:18px"><a href="https://t.me/kalki_uz" data-tg-uz="✈️ Telegram’ga yozish" data-tg-ru="✈️ Написать в Telegram" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:48px;gap:8px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;line-height:1.3;text-align:center;padding:13px 18px;border-radius:10px;text-decoration:none">✈️ Написать в Telegram</a></div><section class="seo" id="seoBlock"><h2>Как рассчитывается дневная норма?</h2><p>Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью.</p><h2>Откуда калорийность узбекских блюд?</h2><p>Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир.</p><h2>Как пользоваться результатом?</h2><p>Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний.</p><h2>Считается ли ходьба каждый день активностью?</h2><p>Зависит от темпа. Быстрая ходьба (примерно 5–6 км/ч, 1–2 часа в день) — это регулярная нагрузка, выбирайте уровень "Средне". При медленной, спокойной ходьбе выбирайте уровень ниже. Понаблюдайте 2–3 недели и скорректируйте уровень по результату.</p><h2>Кому не подходит этот расчёт?</h2><p>Этот расчёт рассчитан на взрослых (от 18 лет) — для детей и подростков нужна консультация педиатра. Также калькулятор не предназначен для беременных и кормящих женщин — их потребность в энергии рассчитывается иначе.</p></section><div id="articleLink" style="margin-top:32px"><div style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C" data-artt-uz="Foydali maqolalar" data-artt-ru="Полезные статьи">Полезные статьи</div><div style="display:grid;grid-template-columns:1fr;gap:10px"><a href="bolalar-nafaqasi-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="Bolalar nafaqasi 2026: yangi miqdorlar" data-art-ru="Детское пособие 2026: новые размеры">Детское пособие 2026: новые размеры</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a><a href="toy-byudjeti-2026" style="display:flex;align-items:center;gap:11px;background:#FFF8EC;border:1px solid #F0DFC0;border-left:4px solid #D99A2B;border-radius:11px;padding:12px 14px;text-decoration:none;color:#16211C"><span style="font-size:19px;flex:none">📰</span><span style="flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35" data-art-uz="To'y byudjeti 2026: Toshkent va viloyat narxlari" data-art-ru="Бюджет свадьбы 2026: цены Ташкента и регионов">Бюджет свадьбы 2026: цены Ташкента и регионов</span><span style="font-size:17px;color:#D99A2B;flex:none">→</span></a></div><a href="blog" style="display:inline-block;margin-top:10px;font-size:13.5px;font-weight:800;color:#8C6318;text-decoration:none" data-arta-uz="Barcha maqolalar →" data-arta-ru="Все статьи →">Все статьи →</a></div><div id="related" style="margin-top:32px"><div id="relTitle" style="font-size:15px;font-weight:800;margin-bottom:12px;color:#16211C">Вам также может пригодиться</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><a href="homiladorlik-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Homiladorlik" data-rel-ru="Беременность">Беременность</span></a><a href="oila-byudjet-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #0E3B2E;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Oilaviy byudjet" data-rel-ru="Семейный бюджет">Семейный бюджет</span></a><a href="alkogol-kalkulyator" style="display:flex;align-items:center;gap:9px;min-width:0;background:#fff;border:1px solid #E3E9E4;border-left:4px solid #5B3A63;border-radius:10px;padding:11px 13px;text-decoration:none;color:#16211C"><span style="font-size:16px">🧮</span><span style="font-size:13.5px;font-weight:700" data-rel-uz="Alkogol" data-rel-ru="Алкоголь">Алкоголь</span></a></div></div><div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div><nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0"><div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div><div style="display:flex;flex-wrap:wrap;gap:8px"><a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a><a href="oila-byudjet-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Oila byudjeti / Семейный бюджет</a><a href="kredit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit / Кредит</a><a href="kredit-limit-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kredit limit / Кредитный лимит</a><a href="ipoteka-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka / Ипотека</a><a href="ipoteka-yoki-ijara-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ipoteka yoki ijara / Ипотека или аренда</a><a href="ijara-stavkalari" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ijara stavkalari / Ставки аренды</a><a href="omonat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Omonat / Депозит</a><a href="oylik-soliq-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ish haqi / Зарплата</a><a href="qqs-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">QQS / НДС</a><a href="bojxona-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bojxona / Растаможка</a><a href="uy-qurish-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Uy qurish / Стройка дома</a><a href="gisht-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">G'isht / Кирпич</a><a href="beton-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Beton / Бетон</a><a href="tom-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Tom materiali / Кровля</a><a href="remont-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Remont / Ремонт</a><a href="yer-konvertor" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yer / Земля</a><a href="chorva-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Chorvachilik / Откорм скота</a><a href="konditsioner-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Konditsioner / Кондиционер</a><a href="yoqilgi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Yoqilg'i / Топливо</a><a href="quyosh-panel-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Quyosh paneli / Солнечные панели</a><a href="avto-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avto saqlash / Содержание авто</a><a href="elektr-xarajat-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Elektr xarajati / Электроэнергия</a><a href="dtm-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">DTM ball / Балл ДТМ</a><a href="universitet-kontrakt-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Universitet kontrakti / Контракт вуза</a><a href="grant-ololmadim" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Grant ololmadim / Не прошёл на грант</a><a href="bola-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Bola puli / Детское пособие</a><a href="homiladorlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Homiladorlik / Беременность</a><a href="pensiya-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Pensiya / Пенсия</a><a href="staj-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Mehnat staji / Трудовой стаж</a><a href="zakot-qurbonlik-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Zakot va Qurbonlik / Закят и Курбан</a><a href="toy-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'y / Свадьба</a><a href="marosim-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Marosim / Мероприятие</a><a href="maktab-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Maktab / Школа</a><a href="alkogol-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Alkogol / Алкоголь</a><a href="tatil-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til puli / Компенсация за отпуск</a><a href="kasallik-varaqasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Kasallik varaqasi / Больничный лист</a><a href="dekret-puli-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Dekret puli / Декретные выплаты</a><a href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ishdan bo'shatish komp. / Компенсация при увольнении</a><a href="aliment-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Aliment / Алименты</a><a href="yhxx-jarima-kalkulyator" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">YHXX jarimalari / Штрафы ПДД</a><a href="avto-rasmiylashtirish" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Avtomobil rasmiylashtirish</a><a href="hisob-siyosati-generatori" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Hisob siyosati / Учётная политика</a><a href="tatil-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Ta'til arizasi / Заявление на отпуск</a><a href="moddiy-yordam-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">Moddiy yordam arizasi / Заявление на матпомощь</a><a href="oquv-tatili-arizasi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">O'quv ta'tili arizasi / Заявление на учебный отпуск</a><a href="tolov-hisobi-namunasi" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">To'lov uchun hisob / Счёт на оплату</a><a href="hujjatlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📝 Hujjatlar generatori / Генератор документов</a><a href="shablonlar" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📄 Shablonlar</a><a href="blog" style="font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">📰 Maqolalar / Статьи</a></div></nav><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a></div><footer data-i="foot">Формула Миффлина-Сан Жеора. При проблемах со здоровьем согласуйте рацион с врачом.</footer></main>
 
 <script>
 (function(){
@@ -347,23 +386,29 @@ img,svg{height:auto}
     uz:{
       brand:"Kalki.uz",cat:"Hayotiy",
       h1:"Kaloriya kalkulyatori",
-      sub:"Kunlik me'yoringizni aniq hisoblang va o'zbek taomlarining unga ta'sirini raqamlarda ko'ring.",
+      sub:"Kunlik me'yoringizni taxminan hisoblang va o'zbek taomlarining unga ta'sirini raqamlarda ko'ring.",
       lGender:"Jins",segM:"Erkak",segF:"Ayol",
       lAge:"Yosh",uAge:"yosh",lHeight:"Bo'y",lWeight:"Vazn",
       lAct:"Faollik darajasi",lActDetail:"Faollik darajasi (aniqroq)",
       a1:"Minimal (o'tirib ishlash)",a2:"Yengil (haftada 1–3 mashq)",a3:"O'rtacha (haftada 3–5 mashq)",a4:"Yuqori (haftada 6–7 mashq)",a5:"Juda yuqori (og'ir jismoniy mehnat)",
-      actLowL:"Kam",actLowS:"kun bo'yi o'tirib ishlayman",
-      actMidL:"O'rtacha",actMidS:"piyoda yuraman, ba'zan sport",
-      actHighL:"Ko'p",actHighS:"muntazam sport yoki jismoniy mehnat",
+      actLowL:"Kam",actLowS:"kun bo'yi o'tirib ishlayman, deyarli yurmayman",
+      actMidL:"O'rtacha",actMidS:"haftada 3–5 marta mashq yoki tez yurish",
+      actHighL:"Ko'p",actHighS:"haftada 6+ mashq yoki og'ir jismoniy ish",
+      hAct:"Tez yurish (soatiga ~5–6 km, kuniga 1–2 soat) ham muntazam mashg'ulot hisoblanadi — \"O'rtacha\"ni tanlang. Sekin yurishda bir pog'ona pastini tanlang. Og'ir jismoniy ish kunlari ham hisobga olinadi.",
       lGoal:"Maqsad",gLose:"Vazn kamaytirish",gKeep:"Saqlash",gGain:"Vazn olish",
       hGoal:"Kamaytirishda −15%, olishda +12% me'yorga nisbatan.",
       btnDetail:"Yosh, bo'y va aniqroq faollikni kiritish",
       btnCalc:"Me'yorni hisoblash",
       nbLbl:"Sizning kunlik me'yoringiz",
+      nbLblAssumed:"Boshlang'ich hisob (taxminan)",
       accHow:"Bu qanday hisoblanadi?",
       hDetail:"Aniqroq hisoblash uchun yosh va bo'yingizni kiriting →",
       nbBmr:"Bazal almashinuv (BMR)",nbTdee:"Umumiy sarf (TDEE)",
-      kcal:"kkal",
+      nbKeepLbl:"Vaznni saqlash uchun",nbGoalLbl:"Tanlangan maqsad uchun",
+      nbStaleMsg:"Oldingi hisob — yangilanmadi. Maydonlarni tekshiring.",
+      under18Msg:"Bu hisob kattalar (18 yosh va undan katta) uchun mo'ljallangan. Bolalar va o'smirlar ovqatlanishi bo'yicha pediatr bilan maslahatlashing.",
+      assumedNote:"Hisobda taxmin qilindi: 30 yosh, 175 sm — o'zgartirish",
+      kcal:"kkal",kcalDay:"kkal/kun",
       fTitle:"O'zbek taomlari — kunlik me'yorga ta'siri",
       fSub:"Taom va miqdorni tanlang — kaloriyasi va me'yoringizdagi ulushi hisoblanadi.",
       lDish:"Taom",lGrams:"Miqdor",btnAdd:"+ Ro'yxatga qo'shish",
@@ -374,29 +419,44 @@ img,svg{height:auto}
       per100:"100 g = ",
       dsEaten:"Iste'mol qilindi",dsLeft:"Me'yordan qoldi",dsOver:"Me'yordan oshdi",
       walkHint:"🚶 ≈ {n} daqiqa piyoda yurish",
+      walkLbl:"Yoqish uchun taxminan",
+      gramsEquiv:"1 {nom} ≈ {g} g",
+      errWeight:"Vazn "+20+"–"+300+" kg oralig'ida bo'lishi kerak.",
+      errAge:"Yosh 1–120 oralig'ida bo'lishi kerak.",
+      errHeight:"Bo'y 100–250 sm oralig'ida bo'lishi kerak.",
+      errGrams:"Miqdor musbat son bo'lishi kerak.",
+      listNoteText:"Ro'yxat faqat shu qurilmada saqlanadi.",
+      listNoteClear:"Bugungi ro'yxatni tozalash",
+      undoMsg:"O'chirildi.",undoBtn:"Qaytarish",
       foot:"Mifflin-San Jeor formulasi. Sog'liq muammolari bo'lsa, ratsionni shifokor bilan kelishing.",
-      seo:'<h2>Kunlik me\'yor qanday hisoblanadi?</h2><p>Eng aniq hisoblangan Mifflin-San Jeor formulasi qo\'llaniladi: bazal almashinuv (organizm tinch holatda sarflaydigan energiya) hisoblanib, faollik koeffitsiyentiga ko\'paytiriladi. Maqsadga qarab kamaytirish uchun mo\'tadil −15%, vazn olish uchun +12% qo\'llanadi — keskin cheklovlar sog\'liqqa zarar.</p><h2>O\'zbek taomlari kaloriyasi qayerdan olingan?</h2><p>Qiymatlar o\'rtacha retseptlar bo\'yicha: masalan, bir likop osh (~350 g) taxminan 700–750 kkal — bu o\'rtacha me\'yorning uchdan biri. Yog\' miqdori oshsa kaloriya sezilarli oshadi, shuning uchun raqamlar mo\'ljal sifatida qaralsin.</p><h2>Natijani qanday ishlatish kerak?</h2><p>Kun davomida yegan taomlaringizni qo\'shib boring — me\'yordan qancha qolgani ko\'rinadi. Muhimi mukammal aniqlik emas, umumiy muvozanat: haftalik o\'rtacha ko\'rsatkich kunlik tebranishlardan muhimroq.</p>'
+      seo:'<h2>Kunlik me\'yor qanday hisoblanadi?</h2><p>Eng aniq hisoblangan Mifflin-San Jeor formulasi qo\'llaniladi: bazal almashinuv (organizm tinch holatda sarflaydigan energiya) hisoblanib, faollik koeffitsiyentiga ko\'paytiriladi. Maqsadga qarab kamaytirish uchun mo\'tadil −15%, vazn olish uchun +12% qo\'llanadi — keskin cheklovlar sog\'liqqa zarar.</p><h2>O\'zbek taomlari kaloriyasi qayerdan olingan?</h2><p>Qiymatlar o\'rtacha retseptlar bo\'yicha: masalan, bir likop osh (~350 g) taxminan 700–750 kkal — bu o\'rtacha me\'yorning uchdan biri. Yog\' miqdori oshsa kaloriya sezilarli oshadi, shuning uchun raqamlar mo\'ljal sifatida qaralsin.</p><h2>Natijani qanday ishlatish kerak?</h2><p>Kun davomida yegan taomlaringizni qo\'shib boring — me\'yordan qancha qolgani ko\'rinadi. Muhimi mukammal aniqlik emas, umumiy muvozanat: haftalik o\'rtacha ko\'rsatkich kunlik tebranishlardan muhimroq.</p><h2>Har kuni yurish faollik hisoblanadimi?</h2><p>Tezlikka bog\'liq. Tez yurish (soatiga taxminan 5–6 km, kuniga 1–2 soat) muntazam mashg\'ulot hisoblanadi — "O\'rtacha" darajani tanlang. Sekin, bosiq yurish bo\'lsa, bir pog\'ona pastini tanlagan ma\'qul. 2–3 hafta kuzatib, natijaga qarab darajani moslashtirsangiz bo\'ladi.</p><h2>Bu hisob kimlar uchun emas?</h2><p>Bu hisob kattalar (18 yosh va undan katta) uchun mo\'ljallangan — bolalar va o\'smirlar uchun pediatr bilan maslahatlashish kerak. Shuningdek, bu kalkulyator homilador va emizikli ayollar uchun mo\'ljallanmagan — ularning energiya ehtiyoji boshqacha hisoblanadi.</p>'
     },
     ru:{
       brand:"Kalki.uz",cat:"Жизнь",
       h1:"Калькулятор калорий",
-      sub:"Точно рассчитайте дневную норму и увидьте влияние узбекских блюд в цифрах.",
+      sub:"Рассчитайте ориентировочно дневную норму и увидьте влияние узбекских блюд в цифрах.",
       lGender:"Пол",segM:"Мужчина",segF:"Женщина",
       lAge:"Возраст",uAge:"лет",lHeight:"Рост",lWeight:"Вес",
       lAct:"Уровень активности",lActDetail:"Уровень активности (точнее)",
       a1:"Минимальный (сидячая работа)",a2:"Лёгкий (1–3 тренировки в неделю)",a3:"Средний (3–5 тренировок)",a4:"Высокий (6–7 тренировок)",a5:"Очень высокий (тяжёлый физический труд)",
-      actLowL:"Мало",actLowS:"весь день сижу на работе",
-      actMidL:"Средне",actMidS:"хожу пешком, иногда спорт",
-      actHighL:"Много",actHighS:"регулярный спорт или физический труд",
+      actLowL:"Мало",actLowS:"весь день сижу на работе, почти не хожу",
+      actMidL:"Средне",actMidS:"3–5 тренировок в неделю или быстрая ходьба",
+      actHighL:"Много",actHighS:"6+ тренировок в неделю или тяжёлый труд",
+      hAct:"Быстрая ходьба (~5–6 км/ч, 1–2 часа в день) — тоже регулярная нагрузка, выбирайте «Средне». При медленной ходьбе — уровень ниже. Тяжёлый физический труд тоже учитывается.",
       lGoal:"Цель",gLose:"Похудение",gKeep:"Поддержание",gGain:"Набор массы",
       hGoal:"Для похудения −15%, для набора +12% от нормы.",
       btnDetail:"Указать возраст, рост и точнее активность",
       btnCalc:"Рассчитать норму",
       nbLbl:"Ваша дневная норма",
+      nbLblAssumed:"Предварительный расчёт (ориентировочно)",
       accHow:"Как это рассчитывается?",
       hDetail:"Для точного расчёта укажите возраст и рост →",
       nbBmr:"Базальный обмен (BMR)",nbTdee:"Общий расход (TDEE)",
-      kcal:"ккал",
+      nbKeepLbl:"Для поддержания веса",nbGoalLbl:"Для выбранной цели",
+      nbStaleMsg:"Прежний расчёт — не обновлён. Проверьте поля.",
+      under18Msg:"Этот расчёт рассчитан на взрослых (от 18 лет). По питанию детей и подростков проконсультируйтесь с педиатром.",
+      assumedNote:"Использовано предположение: 30 лет, 175 см — изменить",
+      kcal:"ккал",kcalDay:"ккал/день",
       fTitle:"Узбекские блюда — влияние на дневную норму",
       fSub:"Выберите блюдо и количество — калории и доля от нормы рассчитаются.",
       lDish:"Блюдо",lGrams:"Количество",btnAdd:"+ Добавить в список",
@@ -407,15 +467,67 @@ img,svg{height:auto}
       per100:"100 г = ",
       dsEaten:"Съедено",dsLeft:"Осталось от нормы",dsOver:"Превышение нормы",
       walkHint:"🚶 ≈ {n} минут ходьбы",
+      walkLbl:"Чтобы сжечь, нужно примерно",
+      gramsEquiv:"1 {nom} ≈ {g} г",
+      errWeight:"Вес должен быть в диапазоне 20–300 кг.",
+      errAge:"Возраст должен быть в диапазоне 1–120 лет.",
+      errHeight:"Рост должен быть в диапазоне 100–250 см.",
+      errGrams:"Количество должно быть положительным числом.",
+      listNoteText:"Список сохраняется только на этом устройстве.",
+      listNoteClear:"Очистить сегодняшний список",
+      undoMsg:"Удалено.",undoBtn:"Отменить",
       foot:"Формула Миффлина-Сан Жеора. При проблемах со здоровьем согласуйте рацион с врачом.",
-      seo:'<h2>Как рассчитывается дневная норма?</h2><p>Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью.</p><h2>Откуда калорийность узбекских блюд?</h2><p>Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир.</p><h2>Как пользоваться результатом?</h2><p>Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний.</p>'
+      seo:'<h2>Как рассчитывается дневная норма?</h2><p>Используется наиболее точная формула Миффлина-Сан Жеора: базальный обмен умножается на коэффициент активности. Для похудения применяется умеренные −15%, для набора +12% — резкие ограничения вредят здоровью.</p><h2>Откуда калорийность узбекских блюд?</h2><p>Значения по средним рецептам: например, тарелка плова (~350 г) — примерно 700–750 ккал, треть средней дневной нормы. С увеличением жирности калорийность заметно растёт, поэтому цифры — ориентир.</p><h2>Как пользоваться результатом?</h2><p>Добавляйте съеденные блюда в течение дня — видно, сколько осталось от нормы. Важна не идеальная точность, а общий баланс: средненедельный показатель важнее дневных колебаний.</p><h2>Считается ли ходьба каждый день активностью?</h2><p>Зависит от темпа. Быстрая ходьба (примерно 5–6 км/ч, 1–2 часа в день) — это регулярная нагрузка, выбирайте уровень "Средне". При медленной, спокойной ходьбе выбирайте уровень ниже. Понаблюдайте 2–3 недели и скорректируйте уровень по результату.</p><h2>Кому не подходит этот расчёт?</h2><p>Этот расчёт рассчитан на взрослых (от 18 лет) — для детей и подростков нужна консультация педиатра. Также калькулятор не предназначен для беременных и кормящих женщин — их потребность в энергии рассчитывается иначе.</p>'
     }
   };
 
-  var lang=document.documentElement.lang==='ru'?'ru':'uz', gender='m', goal='keep', norm=0, eaten=[];
-  var num=function(s){return parseFloat(String(s).replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  // 1.1 — kiritish xatosini ushlash chegaralari. Bular TIBBIY NORMA emas,
+  // shunchaki "bu qiymat inson uchun real emas" chegarasi.
+  var LIMITS={weight:{min:20,max:300},height:{min:100,max:250},age:{min:1,max:120}};
+  var ADULT_AGE=18; // 1.4 — shu yoshdan kichik bo'lsa maqsad (lose/gain) qo'llanmaydi
+  var QUICK_AGE=30, QUICK_HEIGHT=175; // 1.3 — tez rejimda ishlatiladigan ochiq taxminlar
+  var LS_PREFIX='kalki_kaloriya_';
+
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', gender='m', goal='keep', eaten=[];
+  // 1.2 — hisobla() natijasi: asosiy karta, izoh va ovqat ulushi FAQAT shundan o'qiydi
+  var lastCalc=null;
+  // Minus belgisi ENDI olib tashlanmaydi — manfiy son to'g'ri aniqlanib rad etilishi uchun
+  var num=function(s){return parseFloat(String(s).replace(/[^\d.,\-]/g,'').replace(',','.'))||0};
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
+  function curNorm(){return lastCalc?lastCalc.target:0}
+
+  function showFieldError(id,msg){
+    var el=$(id+'Err');
+    if(!el)return;
+    el.textContent=msg;
+    el.classList.add('show');
+  }
+  function clearFieldError(id){
+    var el=$(id+'Err');
+    if(!el)return;
+    el.textContent='';
+    el.classList.remove('show');
+  }
+
+  function todayKey(){
+    var d=new Date();
+    return LS_PREFIX+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  }
+  function saveTodayList(){
+    try{localStorage.setItem(todayKey(),JSON.stringify(eaten))}catch(e){}
+  }
+  function loadTodayList(){
+    try{
+      var raw=localStorage.getItem(todayKey());
+      if(raw){var arr=JSON.parse(raw);if(Array.isArray(arr))eaten=arr;}
+    }catch(e){}
+  }
+  function clearTodayList(){
+    eaten=[];
+    try{localStorage.removeItem(todayKey())}catch(e){}
+    renderFoods();
+  }
 
   function fillDishes(){
     var html='';
@@ -452,6 +564,18 @@ img,svg{height:auto}
       $('grams').value=f.p;
       $('gramsUnit').textContent=lang==='ru'?'г':'g';
     }
+    updateGramsEquiv(f);
+    clearFieldError('grams');
+  }
+  // 1.6 — porsiya birligi yonida gramm ekvivalenti (bazadagi qiymatdan)
+  function updateGramsEquiv(f){
+    var el=$('gramsEquivHint');
+    if(!el)return;
+    if(qtyMode==='portion'&&f&&f.porsiya){
+      el.textContent=t('gramsEquiv').replace('{nom}',lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi).replace('{g}',f.porsiya);
+    }else{
+      el.textContent='';
+    }
   }
   $('qmPortion').onclick=function(){
     var f=findFood($('dishSel').value);
@@ -460,6 +584,8 @@ img,svg{height:auto}
     this.classList.add('on');$('qmGram').classList.remove('on');
     $('grams').value=1;
     $('gramsUnit').textContent=lang==='ru'?f.porsiyaNomiRu:f.porsiyaNomi;
+    updateGramsEquiv(f);
+    clearFieldError('grams');
   };
   $('qmGram').onclick=function(){
     var f=findFood($('dishSel').value);
@@ -468,6 +594,8 @@ img,svg{height:auto}
     this.classList.add('on');$('qmPortion').classList.remove('on');
     $('grams').value=f.p;
     $('gramsUnit').textContent=lang==='ru'?'г':'g';
+    updateGramsEquiv(f);
+    clearFieldError('grams');
   };
 
   function applyLang(){
@@ -476,8 +604,8 @@ img,svg{height:auto}
       ? 'Калькулятор калорий — расчёт суточной нормы'
       : "Kaloriya kalkulyatori — kunlik me'yorni hisoblang";
     var metaDesc=lang==='ru'
-      ? 'Точно рассчитайте суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.'
-      : "Kunlik kaloriya me'yorini aniq hisoblang (Mifflin-San Jeor) va o'zbek milliy taomlari — osh, lag'mon, somsa, manti kaloriyasini kunlik me'yorga solishtiring.";
+      ? 'Рассчитайте ориентировочно суточную норму калорий (Mifflin-San Jeor) и сравните калорийность плова, лагмана, самсы, манты с нормой.'
+      : "Kunlik kaloriya me'yorini taxminan hisoblang (Mifflin-San Jeor) va o'zbek milliy taomlari — osh, lag'mon, somsa, manti kaloriyasini kunlik me'yorga solishtiring.";
     ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){
       var m=document.querySelector(sel);
       if(m)m.setAttribute('content',metaDesc);
@@ -499,7 +627,7 @@ img,svg{height:auto}
     $('langRu').classList.toggle('on',lang==='ru');
     fillDishes();
     updateQtyUI();
-    if(norm)renderNorm();
+    if(lastCalc)renderNorm();
     renderFoods();
   }
   $('langUz').onclick=function(){lang='uz';applyLang()};
@@ -539,33 +667,98 @@ img,svg{height:auto}
     detailOpen=!!open;
     $('detailPanel').style.display=detailOpen?'block':'none';
     $('detailToggle').classList.toggle('open',detailOpen);
+    calcNorm();
   }
   $('detailToggle').onclick=function(){setDetail(!detailOpen)};
   $('detailHint').onclick=function(){setDetail(true)};
+  $('assumedBtn').onclick=function(){setDetail(true)};
 
   $('dishSel').addEventListener('change',updateQtyUI);
   // Batafsil paneldagi aniqroq faollik select'i ham TDEE'ga ta'sir qiladi —
   // qo'lda tanlanganda ham natija darhol qayta hisoblansin.
   $('activity').addEventListener('change',calcNorm);
+  // 1.2 — maydonga to'g'ridan-to'g'ri kiritilganda ham natija darhol yangilanadi
+  $('weight').addEventListener('input',calcNorm);
+  $('age').addEventListener('input',calcNorm);
+  $('height').addEventListener('input',calcNorm);
+  $('grams').addEventListener('input',function(){clearFieldError('grams')});
+
+  // 1.2 — TOZA funksiya: bir xil kirishdan bir xil natija, DOM'ga tegmaydi.
+  // Formula O'ZGARMAYDI (Mifflin-San Jeor, koeffitsientlar bir xil).
+  function hisobla(w,a,h,gender,activityCoef,goal){
+    var bmr=10*w+6.25*h-5*a+(gender==='m'?5:-161);
+    var tdee=bmr*activityCoef;
+    var under18=a<ADULT_AGE;
+    var keepTarget=Math.round(tdee);
+    // 1.4 — 18 yoshgacha maqsad (lose/gain) qo'llanmaydi, faqat TDEE ko'rsatiladi
+    var goalTarget=under18?keepTarget:Math.round(goal==='lose'?tdee*0.85:(goal==='gain'?tdee*1.12:tdee));
+    return {
+      bmr:Math.round(bmr), tdee:keepTarget, keepTarget:keepTarget, goalTarget:goalTarget,
+      target:goalTarget, goal:goal, under18:under18,
+      weight:w, age:a, height:h, gender:gender, activityCoef:activityCoef
+    };
+  }
 
   function calcNorm(){
-    var a=num($('age').value), h=num($('height').value), w=num($('weight').value);
-    if(!a||!h||!w)return;
-    var bmr=10*w+6.25*h-5*a+(gender==='m'?5:-161);
-    var tdee=bmr*parseFloat($('activity').value);
-    var target=goal==='lose'?tdee*0.85:(goal==='gain'?tdee*1.12:tdee);
-    norm=Math.round(target);
+    var w=num($('weight').value);
+    var wOk=w>=LIMITS.weight.min&&w<=LIMITS.weight.max;
+    if(wOk)clearFieldError('weight');else showFieldError('weight',t('errWeight'));
+
+    var assumed=!detailOpen, a, h, aOk=true, hOk=true;
+    if(assumed){
+      a=QUICK_AGE; h=QUICK_HEIGHT;
+      clearFieldError('age');clearFieldError('height');
+    }else{
+      a=num($('age').value); h=num($('height').value);
+      aOk=a>=LIMITS.age.min&&a<=LIMITS.age.max;
+      hOk=h>=LIMITS.height.min&&h<=LIMITS.height.max;
+      if(aOk)clearFieldError('age');else showFieldError('age',t('errAge'));
+      if(hOk)clearFieldError('height');else showFieldError('height',t('errHeight'));
+    }
+
+    if(!wOk||!aOk||!hOk){
+      // 1.1 — eski natija o'chirilmaydi, faqat "yangilanmadi" deb belgilanadi
+      if(lastCalc)$('nbStale').classList.add('show');
+      return;
+    }
+    $('nbStale').classList.remove('show');
+
+    var activityCoef=parseFloat($('activity').value);
+    lastCalc=hisobla(w,a,h,gender,activityCoef,goal);
+    lastCalc.assumed=assumed;
     renderNorm();
     $('normBanner').classList.add('show');
-    $('foodCard').style.display='block';
     renderFoods();
-    window._bmr=Math.round(bmr);window._tdee=Math.round(tdee);
   }
 
   function renderNorm(){
-    $('nbNum').textContent=norm+' '+t('kcal');
-    $('nbBmrV').textContent=(window._bmr||'—')+' '+t('kcal');
-    $('nbTdeeV').textContent=(window._tdee||'—')+' '+t('kcal');
+    if(!lastCalc)return;
+    var c=lastCalc;
+    $('nbLbl').textContent=c.assumed?t('nbLblAssumed'):t('nbLbl');
+    $('nbNum').textContent=c.assumed?(c.target+' '+t('kcalDay')):(c.target+' '+t('kcal'));
+    $('nbBmrV').textContent=c.bmr+' '+t('kcal');
+    $('nbTdeeV').textContent=c.tdee+' '+t('kcal');
+
+    if(c.under18){
+      $('under18Msg').classList.add('show');
+      $('nbSub').classList.remove('show');
+    }else{
+      $('under18Msg').classList.remove('show');
+      if(c.goal!=='keep'){
+        $('nbSub').classList.add('show');
+        $('nbKeepV').textContent=c.keepTarget+' '+t('kcal');
+        $('nbGoalV').textContent=c.goalTarget+' '+t('kcal');
+      }else{
+        $('nbSub').classList.remove('show');
+      }
+    }
+
+    if(c.assumed){
+      $('nbAssumed').classList.add('show');
+      $('assumedBtn').textContent=t('assumedNote');
+    }else{
+      $('nbAssumed').classList.remove('show');
+    }
     renderCombo();
   }
 
@@ -589,6 +782,7 @@ img,svg{height:auto}
     return forms[2];
   }
   function findCombo(){
+    var norm=curNorm();
     if(!norm)return null;
     var max=6;
     for(var ti=0;ti<COMBO_TEMPLATES.length;ti++){
@@ -630,26 +824,32 @@ img,svg{height:auto}
     el.textContent=t('comboPrefix')+' '+parts.join(' + ');
   }
 
+  // 1.1 — manfiy/nol/bo'sh miqdor rad etiladi (avval −100 g "100 g" deb qo'shilardi)
   $('addFood').onclick=function(){
     var id=$('dishSel').value||FOODS[0].id;
     var f=findFood(id);
     if(!f)return;
+    var raw=num($('grams').value);
+    if(!(raw>0)){
+      showFieldError('grams',t('errGrams'));
+      return;
+    }
+    clearFieldError('grams');
     var g;
     if(f.holat==='TASDIQLANGAN'&&qtyMode==='portion'){
-      var count=num($('grams').value);
-      if(!count)return;
-      g=count*f.porsiya;
+      g=raw*f.porsiya;
     }else{
-      g=num($('grams').value);
-      if(!g)return;
+      g=raw;
     }
     eaten.push({id:id,g:g,kcal:Math.round(f.k*g/100)});
+    saveTodayList();
     renderFoods();
+    if(window.gtag){try{gtag('event','kaloriya_food_add',{food_id:id})}catch(e){}}
   };
 
   // FAZA 3 — bitta taom kaloriyasini yoqish uchun taxminiy piyoda yurish
-  // daqiqasi. Neytral, ma'lumot beruvchi shakl — hech qanday majburiyat
-  // yoki ogohlantirish ohangisiz (spetsifikatsiya 3.2 talabi).
+  // daqiqasi. 1.6 — asosiy qatordan olinib, ixtiyoriy (yig'ilgan) <details>
+  // ichiga ko'chirildi, neytral shaklda, majburiyat ohangisiz.
   function walkMinutesHtml(kcal){
     var weightKg=num($('weight').value);
     if(!weightKg)return '';
@@ -657,28 +857,59 @@ img,svg{height:auto}
     if(!kcalPerMinute||!isFinite(kcalPerMinute))return '';
     var minutes=Math.round(kcal/kcalPerMinute);
     if(!isFinite(minutes))return '';
-    return '<span class="fw">'+t('walkHint').replace('{n}',minutes)+'</span>';
+    return '<details class="walkd"><summary>🚶</summary><div class="wd-body">'+t('walkHint').replace('{n}',minutes)+'</div></details>';
+  }
+
+  var undoTimer=null;
+  function showUndo(item,idx){
+    if(!item)return;
+    var toast=$('undoToast');
+    if(!toast)return;
+    $('undoMsg').textContent=t('undoMsg');
+    $('undoBtn').textContent=t('undoBtn');
+    toast.classList.add('show');
+    if(undoTimer)clearTimeout(undoTimer);
+    $('undoBtn').onclick=function(){
+      eaten.splice(idx,0,item);
+      saveTodayList();
+      renderFoods();
+      toast.classList.remove('show');
+      if(undoTimer)clearTimeout(undoTimer);
+    };
+    undoTimer=setTimeout(function(){toast.classList.remove('show')},5000);
+  }
+
+  function renderListNote(){
+    var note=$('listNote');
+    if(note)note.style.display=eaten.length?'flex':'none';
   }
 
   function renderFoods(){
-    var box=$('foodList'), html='', total=0;
+    var box=$('foodList'), html='', total=0, nrm=curNorm();
     for(var i=0;i<eaten.length;i++){
       var e=eaten[i];
       total+=e.kcal;
-      var pct=norm?Math.round(e.kcal/norm*100):0;
+      var pct=nrm?Math.round(e.kcal/nrm*100):0;
       html+='<div class="food-row"><div><span class="fn">'+t('dishNames')[e.id]+'</span><span class="fm"> · '+e.g+' g</span>'+walkMinutesHtml(e.kcal)+'</div>'
-        +'<div style="display:flex;align-items:center;gap:8px"><span class="fk">'+e.kcal+' '+t('kcal')+(norm?'<span class="fp">'+pct+'% '+(lang==='uz'?"me'yordan":'от нормы')+'</span>':'')+'</span>'
+        +'<div style="display:flex;align-items:center;gap:8px"><span class="fk">'+e.kcal+' '+t('kcal')+(nrm?'<span class="fp">'+pct+'% '+(lang==='uz'?"me'yordan":'от нормы')+'</span>':'')+'</span>'
         +'<button type="button" class="food-del" data-idx="'+i+'">×</button></div></div>';
     }
     box.innerHTML=html;
     var dels=box.querySelectorAll('.food-del');
     for(var d=0;d<dels.length;d++){
-      dels[d].onclick=function(){eaten.splice(parseInt(this.getAttribute('data-idx'),10),1);renderFoods()};
+      dels[d].onclick=function(){
+        var idx=parseInt(this.getAttribute('data-idx'),10);
+        var removed=eaten[idx];
+        eaten.splice(idx,1);
+        saveTodayList();
+        renderFoods();
+        showUndo(removed,idx);
+      };
     }
-    if(eaten.length&&norm){
+    if(eaten.length&&nrm){
       $('daySummary').style.display='block';
-      $('dsEatenV').textContent=total+' '+t('kcal')+' ('+Math.round(total/norm*100)+'%)';
-      var left=norm-total;
+      $('dsEatenV').textContent=total+' '+t('kcal')+' ('+Math.round(total/nrm*100)+'%)';
+      var left=nrm-total;
       var leftEl=$('dsLeftV');
       var lbl=leftEl.previousElementSibling;
       if(left>=0){
@@ -690,21 +921,24 @@ img,svg{height:auto}
         leftEl.textContent='+'+Math.abs(left)+' '+t('kcal');
         leftEl.className='v over';
       }
-      var pctBar=Math.min(100,total/norm*100);
+      var pctBar=Math.min(100,total/nrm*100);
       $('dsBar').style.width=pctBar+'%';
       $('dsBar').className='bar'+(left<0?' over':'');
     }else{
       $('daySummary').style.display='none';
     }
+    renderListNote();
   }
 
+  $('clearListBtn').onclick=function(){clearTodayList()};
   $('calcBtn').onclick=calcNorm;
+  loadTodayList();
   applyLang();
 })();
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">27.9.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">29.9.2026</div>
 </div>
 <script>
 (function(){
