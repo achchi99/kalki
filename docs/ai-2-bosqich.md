@@ -268,3 +268,30 @@ Menyu nomlari taxminiy (interfeys o'zgargan bo'lishi mumkin):
 2. Pages loyihasi → Settings → Variables and Secrets → Add: nom `ANTHROPIC_API_KEY`, turi **Secret (Encrypt)**, qiymat — Anthropic kaliti; **Production va Preview** uchun.
 3. Preview deploy'ni qayta ishga tushirish: Deployments → `ai-ariza` branch deploy'si → Retry deployment (taxminan). Branch umuman ko'rinmasa: Settings → Builds (Branch control) → "Preview branches: All non-production branches" (taxminan) va loyiha GitHub repo'ga ulanganini tekshiring.
 4. Ixtiyoriy: WAF rate limiting qoidasi — Security → WAF → Rate limiting rules → `URI Path equals /api/ariza`, 1 daqiqada bitta IP'dan 5 so'rov, harakat Block.
+
+## 10. 3-bosqich: Origin tuzatish va preview'da jonli sinov
+
+**O'zgarishlar.** Haqiqiy Pages loyihasi `kalki-10y.pages.dev`. `functions/api/ariza.js` da `kalki.pages.dev` va `*.kalki.pages.dev` OLIB TASHLANDI; qo'shildi: `https://kalki-10y.pages.dev` va `https://<subdomen>.kalki-10y.pages.dev` (kamida bitta subdomen, nuqta bilan). Birlik testlari (9/9) endi quyidagilarni rad etadi: `evil-kalki-10y.pages.dev`, `evilkalki-10y.pages.dev`, `kalki-10y.pages.dev.evil.com`, `kalki-10y.pages.dev@evil.com`, `…:8443`, `http://…`, `https://.kalki-10y.pages.dev`, eski `kalki.pages.dev` va `ai-ariza.kalki.pages.dev`. Commit `0d804b6`.
+
+**Deploy.** Push 17:09:56, 17:10:43 da preview yangi kodni ko'rsatdi (to'g'ri Origin → 400; eski kodda 403 edi), ya'ni deploy ~45 s. Eski deploy emas.
+
+| # | sinov (preview: `https://ai-ariza.kalki-10y.pages.dev`) | natija |
+|---|---|---|
+| 1 | haqiqiy vaziyat "bolam 3 kun kasal…" → 200+matn | **O'TMADI: 503** |
+| 2 | "ishdan 2 kunga javob…" → 200 | **O'TMADI: 503** |
+| 3 | ariza emas → `{rad:true}` | **O'TMADI: 503** |
+| 4 | telefon niqobi | **O'TMADI: 503** (tekshirib bo'lmadi) |
+| 5 | Origin `https://evil.example` va `https://evil-kalki-10y.pages.dev` → 403 | o'tdi |
+| 6 | Origin sarlavhasiz → 403 | o'tdi |
+| 7 | buzuq JSON va qisqa vaziyat → 400 | o'tdi (400/400) |
+| 8 | KV: 429 chiqquncha | **o'tkazilmadi** (503 sabab) |
+| 9 | brauzer: UZ'da blok ko'rinadi, RU'da yo'q, 320px'da toshmaydi | o'tdi (skrinshotlar `out/live-*.png`); haqiqiy so'rov va "Nusxa olish" **tekshirilmadi** (503) |
+| 10 | production: blok yo'q, endpoint yo'q | o'tdi (quyida) |
+| — | `Cache-Control: no-store` | o'tdi |
+
+**503 sababi.** Kod `ANTHROPIC_API_KEY` yoki `KALKI_AI_KV` yo'qligida 503 qaytaradi va ikkalasi uchun xabar bir xil (ataylab: tashqariga konfiguratsiya sirini bermaslik). Shuning uchun qaysi biri yetishmayotganini tashqaridan ajratib bo'lmaydi. Anthropic API xatosi bo'lganda 502 bo'lardi, 503 emas. Eng ehtimoliy: bog'lashlar **Preview** muhitida yo'q yoki nomi farq qiladi (aniq `KALKI_AI_KV`, `ANTHROPIC_API_KEY`), yoki bog'lash qo'shilgandan keyin deploy qayta qilinmagan (bog'lashlar faqat yangi deploy'dan boshlab kuchga kiradi; bizning 17:09 deploy'imiz qo'shilgandan keyin bo'lgan-bo'lmagani noma'lum).
+Qoidaga ko'ra kutilmagan holatda to'xtadim; Haiku'ga bitta ham so'rov ketmadi (503 limit va API'dan oldin qaytadi).
+
+**Production (faqat o'qish).** `https://kalki.uz/ariza-namunasi` HTML'ida `ai-ariza` yo'q (0). `https://kalki.uz/api/ariza`: POST → 405, GET → bosh sahifa HTML'i. Eslatma: kalki.uz ma'lum bo'lmagan har qanday yo'lga (masalan `/nonexistent-xyz-123`, `/assets/ai-ariza.js`) 404 emas, **200 va bosh sahifa HTML'ini** qaytaradi (Pages SPA fallback); shuning uchun "404" emas, "endpoint yo'q" deb o'qing — POST 405 va JSON emas HTML qaytishi buni tasdiqlaydi. main'ga hech narsa chiqmagan.
+
+**Xarajat.** Haiku'ga 0 so'rov, ≈ $0,00.
