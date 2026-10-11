@@ -255,3 +255,16 @@ Taxminan **$0,01** (≈ 55 ta Haiku so'rovi: 14 holat × 2 yurish, limit/UI sino
 - KV hisobi atomik emas (get→put): bir vaqtdagi so'rovlarda limit 1–2 ga oshib ketishi mumkin. KV xatosi bo'lsa 503 (limitsiz ishlamaydi). KV'ning bitta kalitga 1 yozuv/soniya chegarasi sayt kalitida (300/kun) amalda muammo emas, lekin yuklama oshsa sinov kerak.
 - Foydalanuvchi matni hech qayerda loglanmaydi; serverda faqat Anthropic status kodi/xato nomi `console.error` ga yoziladi. Natija matni mavjud forma mexanizmi bo'yicha (brauzer ichida) saqlanishi mumkin — bu oldingi generator xatti-harakati.
 - Birinchi AI matn ko'rsatilgandan keyin sahifadagi mavjud "Nusxa olish" tugmalariga tegilmadi.
+
+## 8. Preview deploy
+
+Commit `0bdd762` 16:16 da `origin/ai-ariza` ga push qilindi. 16:22:44 gacha (6+ daqiqa) `https://ai-ariza.kalki.pages.dev/ariza-namunasi` **404** (Cloudflare'ning "deployment topilmadi" sahifasi) qaytardi. Xulosa: **Pages GitHub'dan branch'ni avtomatik deploy qilmayapti** (mumkin sabablar: loyiha Git'ga ulanmagan va to'g'ridan-to'g'ri yuklash bilan ishlaydi; yoki "Branch control"da preview branch'lar o'chirilgan/faqat `main`; yoki build hali navbatda). Serverdan aniq sababni ko'rib bo'lmaydi — Cloudflare dashboard'dagi Deployments ro'yxati javob beradi.
+
+## 9. Cloudflare dashboard'da qilinadigan qadamlar
+
+Menyu nomlari taxminiy (interfeys o'zgargan bo'lishi mumkin):
+
+1. KV namespace yaratish: Workers & Pages → KV (taxminan) → Create namespace → nomi `kalki-ai`. So'ng Pages loyihasi (kalki) → Settings → Bindings (yoki Functions → KV namespace bindings) → Add → KV namespace, **Variable name: `KALKI_AI_KV`**, namespace: `kalki-ai`; **Production va Preview** ikkalasi uchun.
+2. Pages loyihasi → Settings → Variables and Secrets → Add: nom `ANTHROPIC_API_KEY`, turi **Secret (Encrypt)**, qiymat — Anthropic kaliti; **Production va Preview** uchun.
+3. Preview deploy'ni qayta ishga tushirish: Deployments → `ai-ariza` branch deploy'si → Retry deployment (taxminan). Branch umuman ko'rinmasa: Settings → Builds (Branch control) → "Preview branches: All non-production branches" (taxminan) va loyiha GitHub repo'ga ulanganini tekshiring.
+4. Ixtiyoriy: WAF rate limiting qoidasi — Security → WAF → Rate limiting rules → `URI Path equals /api/ariza`, 1 daqiqada bitta IP'dan 5 so'rov, harakat Block.
