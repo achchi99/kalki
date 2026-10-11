@@ -1,3 +1,6 @@
 node_modules/
 .claude/scheduled_tasks.lock
 docs/screenshots/
+
+# AI sinov xom natijalari (kalitlarsiz, lekin commit qilinmaydi)
+tools/ai-sinov/out/
