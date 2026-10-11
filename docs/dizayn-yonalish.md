@@ -64,3 +64,53 @@ Skrinshotlar: `docs/dizayn-skrinshot/oldin-*.jpg` va `yangi-*.jpg` (to'liq sahif
 3. Maqola, hujjat generatorlari (`/hujjatlar`, `ariza-namunasi` va h.k.) va huquqiy sahifalar.
 4. Mobil bosh sahifa uzunligini kamaytirish (katalogni kategoriya bo'yicha yig'iladigan qilish) — SEO havolalarini saqlagan holda.
 5. Chrome generatorida eski variantni olib tashlash (hamma sahifa o'tgach).
+
+---
+
+# 1b-bosqich: o'ziga xoslik, ishonch, sayqal
+
+## 1b — tanqid (1-bosqich natijasi, `docs/dizayn-skrinshot/1a-*.jpg`; har sahifada 5 ta eng zaif joy)
+Baholangan majburiy nuqtalar: kategoriya rangi (yo'q edi, hammasi bir xil yashil/oq), natija kartasi (oq, forma bilan teng og'irlikda), hero (tekis, o'ng yarmi bo'sh), ishonch belgilari (yo'q), sahifa pastidagi havola uyumi, fon/karta kontrasti, forma maydonlari.
+
+| # | sahifa | zaif joy (aniq joy → sabab) | holat |
+|---|---|---|---|
+| 1 | `/` | Hero, 1280px: matn va qidiruv chapda, o'ng yarmi bo'sh tekis yashil → "tayyor shablon" taassuroti, o'ziga xoslik yo'q | **tuzatildi** — nozik girih-panjara (SVG, 7% shaffoflik, chapga so'nadigan maska, ~0,4 KB inline) |
+| 2 | `/` | Kategoriya kartalari va 42 ta kalkulyator kartasi bir xil (oq, bir xil yashil ikonka) → 5 bo'limni bir-biridan ajratib bo'lmaydi | **tuzatildi** — 5 sokin rang, kartaning yuqori 3px chizig'i + 44px tint plitka (rang ~11%) |
+| 3 | `/` | "Barcha kalkulyatorlar" 42 ta karta ketma-ket → mobilda 12 463px, "mashhur" bilan takrorlanadi | **tuzatildi** — `<details>` (yopiq); mobil 6 779px |
+| 4 | `/` | Bo'limlar bir xil ritmda, sarlavhalar yassi → qayerda nima borligi skanerlashda bilinmaydi | **tuzatildi** — kichik oltin overline + H2 (4 bo'lim) |
+| 5 | `/` | Fon #F6F8F6 va oq karta deyarli bir xil → kartalar "suzmaydi", butun sahifa yuvilgan | **tuzatildi** — fon #F1F2EE, karta oq + `0 1px 2px` soya, hover'da 2px ko'tarilish |
+| 6 | `/shablonlar` | Har kartada 3 ta harakat (to'ldirilgan "UZ", chegarali "RU", havola) + "(UZ)/(RU)" texnik yorliqlar → tiqilinch | **qisman** — "Yuklash:" + "O'zbekcha / Ruscha" (til nomi bilan), lekin 3 harakat saqlandi (funksiya) |
+| 7 | `/shablonlar` | "Generatorlar" kartasi 3 ustunli gridda yolg'iz ostki qatorda, "Tez kunda" ham yolg'iz → o'ngda bo'sh joy | **tuzatildi** — Generatorlar kartasi gorizontal, butun kenglikdagi qator |
+| 8 | `/shablonlar` | Kartalardan keyin ~2500px SEO matn va FAQ (7 + 9 ta h2) bir xil og'irlikda → "matn devori" | **tuzatilmadi (ataylab)** — SEO matn va FAQ JSON-LD'i o'zgarmasligi shart; yig'ilmadi |
+| 9 | `/shablonlar` | Ishonch belgisi yo'q ("bepul", "makrossiz", formula tekshirilgani) kartalar tepasida ko'rinmaydi | **tuzatilmadi** — topshiriqda faqat kalkulyatorlar uchun; keyingi bosqichga |
+| 10 | `/shablonlar` | Footer eslatmasida mualliflik takrori ("© 2026 Kalki.uz…" ikki marta), Telegram bloki ikki tilli matn bilan | **tuzatildi** — © olib tashlandi; Telegram bloki faqat joriy tilda (chrome generatori) |
+| 11 | `/gisht-kalkulyator` | Natija kartasi oq va forma bilan teng og'irlikda; 34px raqam ko'zga tashlanmaydi | **tuzatildi** — to'q `--ink` karta, 40px `tabular-nums`, nozik qatorlar, Ulashish/PDF kichik tugmalar |
+| 12 | `/gisht-kalkulyator` | Pastda 50 ta pill ("Kredit / Кредит" — UZ/RU aralash) + 3 ta maqola + 4 ta "tegishli" + Telegram → havola uyumi | **tuzatildi** — 5 ta tegishli karta (qurilish) + "Barcha kalkulyatorlar" `<details>` (6 guruh, 50 havola) |
+| 13 | `/gisht-kalkulyator` | H1 ostida usul/manba yo'q; izoh ("Chok: …") sahifa tagida yolg'iz → ishonch va aniqlik yetishmaydi | **tuzatildi** — "Hisob usuli" qatori; izoh va "Ma'lumot … holatiga ko'ra" "Qanday hisoblandi?" ichida |
+| 14 | `/gisht-kalkulyator` | Birlik ("m", "so'm") alohida kulrang katakda, maydon ~48px → forma "jadval" kabi | **tuzatildi** — birlik maydon ichida o'ngda, 56px, fokusda brend halqa |
+| 15 | `/gisht-kalkulyator` | Kategoriya (qurilish) ko'rinmaydi: belgi, breadcrumb va kartalar neytral yashil | **tuzatildi** — belgi, breadcrumb'dagi kategoriya va tegishli kartalar terrakota |
+
+**Natija: 15 tadan 12 tasi tuzatildi, 1 tasi qisman (#6), 2 tasi tuzatilmadi (#8 SEO sababli, #9 doiradan tashqari).**
+
+## Qilinganlar (1b)
+- **Kategoriya tokenlari** (`tokens.css`): `--cat-moliya #1E6B45` (brend), `--cat-qurilish #B4532E` (terrakota), `--cat-kommunal #45687C` (ko'k-kulrang), `--cat-hayot #9A680A` (oltin), `--cat-huquqiy #5A4E8C` (siyoh-binafsha), `--tint:11%`. Tint `color-mix` bilan. Ishlatilishi: karta yuqori 3px chizig'i, 44px/10px radius plitka (22px ikonka), kalkulyator sahifasida `body[data-cat]` → `--cc`: belgi, breadcrumb'dagi kategoriya, "tegishli" kartalar, `xnav` guruh sarlavhalari.
+- **Natija kartasi** (to'q `--ink`): PDF yaratishda sahifa JS'iga **bitta** qo'shimcha — `html2canvas` paytida vaqtincha `pdf-light` sinfi (PDF yorug' qoladi; test: fayl yaratildi, sinf olindi).
+- **Hero:** inline SVG naqsh (400 bayt) `::before` da, 7% shaffoflik.
+- **Ishonch:** `Hisob usuli` qatori (gisht); `Qanday hisoblandi?` (4 qadam: devor maydoni, 1 m² ga soni, +5% zaxira, narx). SEO bloki (`#seoBlock`, FAQ JSON-LD manbai) **ko'chirilmadi** — ko'chirilsa FAQPage JSON-LD o'zgarar edi; tushuntirish `how` ichida qisqa yangi matn. Footer'da yagona qator: "Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." (eski sahifa eslatmalari — "Barcha hisob-kitoblar ma'lumot uchun", "Hisob-kitob ma'lumot uchun" — olib tashlandi).
+- **Sana:** `data/legal-constants.json` da tasdiqlangan **sana** maydoni YO'Q (82 yozuv: faqat `manba_nomi`, `holat`; gisht uchun yozuv umuman yo'q) → "Yangilangan: …" qatori o'ylab topilmadi; faqat usul chiqadi. Manbali kalkulyatorlar (qqs, aliment, bojxona, kasallik varaqasi va h.k.) migratsiyasida `manba_nomi` ("Asos: …") ishlatilishi mumkin; sana uchun reestrga `tasdiq_sana` maydoni qo'shish kerak (alohida qaror). `prerender` ning git-sanasi ("Yangilangan: 2026-09-29" answerbox'da) dizayn commit'lari tufayli siljimasin deb `tools/prerender.js` da `design:` prefiksli commit'lar "kaskad" sifatida o'tkazib yuboriladi (SEO'dagi `dateModified` ham o'zgarmaydi).
+- **Til tozaligi:** `Kredit / Кредит` ko'rinishidagi aralash yorliqlar V2 sahifalarda yo'q (`xnav`, `fbcall`, "tegishli" — `data-lf-uz/ru`); sinov: UZ sahifada kirill harf yo'q, RU sahifada o'zbekcha so'z yo'q.
+- **"Nusxa olish":** natija kartasida bunday funksiya yo'q (faqat "Ulashish" va "PDF") — qo'shilmadi (topshiriq: "mavjud bo'lsa").
+- **Forma:** birlik ichkarida, 56px, minglik ajratgich mavjud JS'da qoldi.
+
+## Oldin → keyin (1b)
+| ko'rsatkich | 1a (oldin) | 1b (keyin) |
+|---|---|---|
+| mobil bosh sahifa balandligi | 12 463px | **6 779px** |
+| desktop bosh sahifa | 6 166px | 3 797px |
+| mobil gisht / desktop gisht | 8 210 / 4 476px | 5 875 / 3 736px |
+| matnning <14px ulushi | 2% / 2% / 6% | 1% / 1% / 0% |
+| kalkulyator natijasi | oq karta, 34px | to'q karta, 40px |
+| kategoriya rangi | yo'q | 5 ta (karta, plitka, belgi, breadcrumb) |
+
+Skrinshotlar: oldin `docs/dizayn-skrinshot/1a-*.jpg`, keyin `1b-*.jpg` (to'liq sahifa), `1b-*-ekran.jpg` (birinchi ekran), `1b-gisht-390-natija.jpg`, `1b-index-390-mashhur.jpg`.
+SEO: `node tools/dizayn/seo-diff.mjs main` — title, H1, description, canonical, hreflang, OG, **barcha JSON-LD** (dateModified ham) asl `main` bilan bir xil; ichki havolalar kamaymagan (xnav: 50 → 50).

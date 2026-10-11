@@ -10,12 +10,16 @@
   --brand-soft:#E8F2EC;
   --gold:#D99A2B;         /* urg'u: logodagi "uz", kichik aksentlar */
   --gold-soft:#FBF1DC;
-  --bg:#F6F8F6;           /* och fon */
+  --gold-ink:#855807;     /* oltin MATN (overline) uchun to'qroq variant, kontrast >= 4.5:1 */
+  --bg:#F1F2EE;           /* iliq-kulrang fon: oq kartalar undan aniq ajralib turadi */
   --surface:#FFFFFF;      /* karta */
   --line:#DDE5E0;         /* nozik chiziq */
   --line-strong:#C6D2CB;
   --muted:#526459;        /* ikkinchi darajali matn (kontrast >= 4.5:1) */
-  /* kategoriya aksentlari (faqat ikonka chipi uchun) */
+  /* kategoriya aksentlari (1b): sokin, brend yashiliga uyg'un; tint = rangning ~11% i oq ustida */
+  --cat-moliya:#1E6B45; --cat-qurilish:#B4532E; --cat-kommunal:#45687C; --cat-hayot:#9A680A; --cat-huquqiy:#5A4E8C;
+  --tint:11%;
+  /* eski kategoriya aksentlari (hali ko'chirilmagan sahifalar uchun) */
   --moliya:#0E3B2E;  --moliya-soft:#E8F2EC;
   --qurilish:#8C3B2A; --qurilish-soft:#F6ECE7;
   --kommunal:#1D4E6B; --kommunal-soft:#E6F0F6;
@@ -29,8 +33,9 @@
   --sec:48px;             /* bo'limlar orasi: mobil 40–56 */
   --wrap:1120px; --gutter:20px; --hdr:64px;
   --r:12px; --r-sm:10px;
+  --shadow-card:0 1px 2px rgba(0,0,0,.04);
   --shadow-hover:0 8px 24px rgba(14,59,46,.10);
-  --ease:160ms ease;
+  --ease:150ms ease;
 }
 @media (min-width:900px){
   :root{--fs-body:17px;--fs-h1:40px;--fs-h2:28px;--fs-h3:20px;--sec:80px}

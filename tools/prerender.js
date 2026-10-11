@@ -48,7 +48,8 @@ const CHUNK = Number(process.env.KALKI_CHUNK) || 8;
    commit'lar o'tkazib yuboriladi — birinchi mazmuniy commit topilguncha.
    Agar HAMMASI cascade bo'lsa (kutilmagan holat) — faylning eng birinchi
    commit sanasiga tushiladi, "sana yo'q" holatiga hech qachon qolinmaydi. */
-const CASCADE_COMMIT_RE = /^Kunlik prerender yangilanishi/;
+// "design:" commit'lari faqat ko'rinishni o'zgartiradi — "Yangilangan" sanasi va dateModified ni siljitmasin
+const CASCADE_COMMIT_RE = /^(Kunlik prerender yangilanishi|design:)/;
 function gitLastModified(name) {
   try {
     const out = execFileSync('git', ['log', '--format=%cd%x1f%s', '--date=format:%Y-%m-%d', '--', name], { cwd: ROOT }).toString();

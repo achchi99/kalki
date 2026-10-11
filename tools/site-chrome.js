@@ -252,6 +252,38 @@ function headerV2Html(f) {
     + '<button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button>'
     + '</div></div>';
 }
+/* "Barcha kalkulyatorlar": yig'iladigan <details>, kategoriyalar bo'yicha guruhlangan oddiy ro'yxat.
+   Havolalar soni XNAV_LINKS bilan bir xil (SEO uchun hech biri kamaymaydi); UZ/RU yorliqlar aralash emas —
+   har havolada data-lf-uz/ru (matnni assets/footer-lang.js joriy tilga qo'yadi). */
+const XN_GROUPS = [
+  ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
+  ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
+  ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
+  ['Kundalik hayot', 'Жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
+  ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
+  ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],
+];
+const EMOJI_V2 = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]\s?/gu;
+function xnavV2Html(selfSlug) {
+  const label = {};
+  XNAV_LINKS.forEach(([h, l]) => { const parts = l.replace(EMOJI_V2, '').split(' / '); label[h] = [parts[0].trim(), (parts[1] || parts[0]).trim()]; });
+  const seen = new Set();
+  const groups = XN_GROUPS.map(([uz, ru, cc, slugs], gi) => {
+    const lis = slugs.filter((h) => h !== selfSlug && label[h]).map((h) => { seen.add(h); const [u, r] = label[h];
+      return '<li><a href="' + h + '"' + lf(u, r) + '>' + u + '</a></li>'; }).join('');
+    const home = gi === XN_GROUPS.length - 1 && selfSlug !== '' ? '<li><a href="./"' + lf('Bosh sahifa', 'Главная') + '>Bosh sahifa</a></li>' : '';
+    return '<div style="--cc:' + cc + '"><div class="xn-t"' + lf(uz, ru) + '>' + uz + '</div><ul>' + home + lis + '</ul></div>';
+  }).join('');
+  const missing = XNAV_LINKS.map(([h]) => h).filter((h) => h !== selfSlug && !seen.has(h));
+  if (missing.length) throw new Error('xnav V2: guruhsiz havola: ' + missing.join(', '));
+  return '<details id="xnav" class="allcalc"><summary><span' + lf('Barcha kalkulyatorlar', 'Все калькуляторы') + '>Barcha kalkulyatorlar</span></summary>'
+    + '<div class="ac-body"><div class="xn-groups">' + groups + '</div></div></details>';
+}
+const FBCALL_V2 = '<div id="fbcall" class="cta-tg"><div class="cta-tx">'
+  + '<div class="cta-h"' + lf('Kalkulyator yoki shablon kerakmi?', 'Нужен калькулятор или шаблон?') + '>Kalkulyator yoki shablon kerakmi?</div>'
+  + '<div class="cta-d"' + lf('Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.', 'Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.') + '>Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.</div></div>'
+  + '<a class="btn btn-gold" href="https://t.me/kalki_uz">Telegram</a></div>';
+
 const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>';
 function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
 function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
@@ -270,6 +302,7 @@ const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
   + '<li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li>'
   + fLink('hamkorlik', 'Hamkorlik', 'Партнёрство') + '</ul></div>'
   + '</div>'
+  + '<p class="sf2-note"' + lf("Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.", 'Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.') + ">Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.</p>"
   + '@@LEGAL@@@@COPY@@'
   + '</div></footer>';
 
@@ -358,12 +391,21 @@ function rebuildV2(f, src) {
     if (s.indexOf(LANGTAG) > -1) s = s.replace(LANGTAG, LANGTAG + FLTAG);
     else notes.push('lang.js tegi topilmadi');
   }
-  // "Boshqa kalkulyatorlar" (bor bo'lsa)
-  const xn = block(s, '<nav id="xnav"', '</nav>');
-  if (xn) {
-    const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
-    s = s.slice(0, xn.i) + xnavHtml(selfSlug, true) + s.slice(xn.j);
+  // "Barcha kalkulyatorlar" (<details>): eski <nav id="xnav"> yoki yangi <details id="xnav"> o'rniga
+  const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
+  const xn = block(s, '<nav id="xnav"', '</nav>') || block(s, '<details id="xnav"', '</details>');
+  if (xn) s = s.slice(0, xn.i) + xnavV2Html(selfSlug) + s.slice(xn.j);
+  // Telegram chaqiruvi: eski inline #fbcall o'rniga yagona V2 blok (</main> dan oldin, foot-note'dan oldin)
+  for (let i = s.indexOf('<div id="fbcall"'); i > -1; i = s.indexOf('<div id="fbcall"')) {
+    let end = matchDiv(s, i);
+    if (end < 0) break;
+    if (s[end] === '\n') end++;      // bizning qo'shgan yangi qatorimiz: idempotentlik uchun birga olinadi
+    s = s.slice(0, i) + s.slice(end);
   }
+  const fn = s.indexOf('<p class="foot-note"');
+  const mend = s.indexOf('</main>');
+  const at = fn > -1 && fn < mend ? fn : mend;
+  if (at > -1) s = s.slice(0, at) + FBCALL_V2 + '\n' + s.slice(at);
   return { s, notes };
 }
 

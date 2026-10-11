@@ -59,26 +59,58 @@ for (const u of PAGES) { const p = await pg(1280, 800); await go(p, u); await p.
   assert.ok(await p.evaluate(() => document.documentElement.lang === 'ru')); }
 log('RU: menyu (Калькуляторы | Документы | Статьи) uchala sahifada tarjima qilinadi');
 
-// 6. bosh sahifa: render, qidiruv, bo'limlar
+// 6. bosh sahifa: render, qidiruv, yig'iladigan katalog, kategoriya ranglari
 { const p = await pg(1280, 900); await go(p, '/');
   assert.equal(await p.locator('#catGrid .k-card').count(), 5); assert.equal(await p.locator('#popGrid .k-card').count(), 8); assert.equal(await p.locator('#catalog .k-card').count(), 42);
   assert.equal(await p.locator('h1').count(), 1);
-  assert.equal(await p.evaluate(() => document.querySelectorAll('.search-shell, #heroChips a').length), 6);
+  assert.equal(await p.evaluate(() => document.getElementById('allcalc').open), false, 'katalog yopiq bo\'lishi kerak');
   assert.equal(await p.evaluate(() => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText)), false, 'sahifada emoji bor');
-  await p.fill('#search', 'kredit'); await p.waitForTimeout(150);
-  assert.equal(await p.isVisible('#popSec, #mashhur'), false); const n = await p.locator('#catalog .k-card').count(); assert.ok(n >= 2 && n < 10);
+  const colors = await p.evaluate(() => [...document.querySelectorAll('#catGrid .k-card')].map((c) => getComputedStyle(c).borderTopColor));
+  assert.equal(new Set(colors).size, 5, 'kategoriya ranglari: ' + colors.join(' | '));
+  assert.equal(colors[1], 'rgb(180, 83, 46)');
+  const ico = await p.evaluate(() => { const e = document.querySelector('#catGrid .k-ico'); const r = e.getBoundingClientRect(), s = e.querySelector('svg').getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height), Math.round(s.width), getComputedStyle(e).borderTopLeftRadius]; });
+  assert.deepEqual(ico, [44, 44, 22, '10px']);
+  await p.evaluate(() => { location.hash = '#cat-qurilish'; }); await p.waitForTimeout(500);
+  assert.equal(await p.evaluate(() => document.getElementById('allcalc').open), true, '#cat- havola katalogni ochishi kerak');
+  await go(p, '/'); await p.fill('#search', 'kredit'); await p.waitForTimeout(200);
+  assert.equal(await p.evaluate(() => document.getElementById('allcalc').open), true, 'qidiruv katalogni ochadi');
+  assert.equal(await p.isVisible('#mashhur'), false); const n = await p.locator('#catalog .k-card:visible').count(); assert.ok(n >= 2 && n < 10);
   await p.fill('#search', 'zzzz'); assert.equal(await p.isVisible('#noResults'), true);
-  log('bosh sahifa: 5 kategoriya, 8 mashhur, 42 katalog kartasi, 1 ta H1, emoji yo\'q, qidiruv filtri (' + n + ' natija) va "topilmadi" holati'); }
+  log('bosh sahifa: 5 kategoriya (5 xil rang, 44px plitka/22px ikonka/10px radius), 8 mashhur, 42 katalog kartasi <details> da (yopiq; #cat- va qidiruv ochadi), 1 ta H1, emoji yo\'q, qidiruv (' + n + ' natija)'); }
+{ const p = await pg(390, 844); await go(p, '/'); const h = await p.evaluate(() => document.documentElement.scrollHeight); assert.ok(h < 8000, 'mobil bosh sahifa balandligi ' + h); log('mobil bosh sahifa balandligi: ' + h + 'px (oldin 12338px)'); }
 
-// 7. kalkulyator mantiqi o'zgarmagan + 2 ustunli maket
+// 7. kalkulyator: maket, to'q natija kartasi, mantiq, ishonch qatori, "Qanday hisoblandi?", tegishli, xnav, PDF
 { const p = await pg(1280, 900); await go(p, '/gisht-kalkulyator');
   const before = await p.textContent('.big-figure .num');
-  const lay = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { sameRow: Math.abs(f.top - r.top) < 40, receiptRight: r.left > f.right - 10, pos: getComputedStyle(document.querySelector('.receipt')).position }; });
+  const lay = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { sameRow: Math.abs(f.top - r.top) < 40, receiptRight: r.left > f.right - 10, pos: getComputedStyle(document.querySelector('.res-col')).position }; });
   assert.deepEqual(lay, { sameRow: true, receiptRight: true, pos: 'sticky' });
+  const card = await p.evaluate(() => { const b = getComputedStyle(document.querySelector('.receipt-body')), n = getComputedStyle(document.querySelector('.big-figure .num')); return { bg: b.backgroundColor, color: n.color, size: parseFloat(n.fontSize), tab: n.fontVariantNumeric }; });
+  assert.equal(card.bg, 'rgb(14, 59, 46)'); assert.equal(card.color, 'rgb(255, 255, 255)'); assert.ok(card.size >= 36 && card.size <= 40, 'natija shrifti ' + card.size); assert.match(card.tab, /tabular-nums/);
+  const unit = await p.evaluate(() => { const shell = [...document.querySelectorAll('.input-shell')].find((e) => e.getBoundingClientRect().height > 0 && e.querySelector('.unit')); const u = getComputedStyle(shell.querySelector('.unit')); return { bl: u.borderLeftWidth, bg: u.backgroundColor, h: Math.round(shell.getBoundingClientRect().height) }; });
+  assert.equal(unit.bl, '0px'); assert.equal(unit.bg, 'rgba(0, 0, 0, 0)'); assert.ok(unit.h >= 52, 'maydon balandligi ' + unit.h);
   const ins = p.locator('input[type=text]:visible'); await ins.nth(0).fill('20'); await p.click('.calc-btn'); await p.waitForTimeout(300);
-  const after = await p.textContent('.big-figure .num'); assert.notEqual(after, before);
-  assert.match(after, /dona|шт/);
-  log('gisht: natija forma yonida yopishqoq; uzunlik 10 → 20 m: "' + before.trim() + '" → "' + after.trim() + '"'); }
+  const after = await p.textContent('.big-figure .num'); assert.notEqual(after, before); assert.match(after, /dona|шт/);
+  log('gisht: natija to\'q kartada (40px? ' + card.size + 'px, tabular-nums), forma yonida yopishqoq; maydon ' + unit.h + 'px, birlik ichkarida; 10 → 20 m: "' + before.trim() + '" → "' + after.trim() + '"');
+  assert.match(await p.textContent('.meta-line'), /Hisob usuli:/); assert.equal(await p.locator('.meta-line').count(), 1);
+  assert.equal(await p.evaluate(() => /Yangilangan: 2026-09-29/.test(document.getElementById('answerbox').innerText)), true, 'answerbox sanasi 2026-09-29 bo\'lib qolishi kerak');
+  assert.equal(await p.evaluate(() => document.getElementById('how').open), false); await p.click('#how summary'); assert.equal(await p.evaluate(() => document.getElementById('how').open), true);
+  assert.equal(await p.locator('#how li').count(), 4);
+  log('ishonch qatori "Hisob usuli", answerbox sanasi o\'zgarmagan (2026-09-29); "Qanday hisoblandi?" yig\'iladi/ochiladi (4 qadam)');
+  assert.equal(await p.locator('#related .k-card').count(), 5);
+  const xn = await p.evaluate(() => ({ open: document.getElementById('xnav').open, links: document.querySelectorAll('#xnav a').length, groups: document.querySelectorAll('#xnav .xn-t').length }));
+  assert.equal(xn.open, false); assert.equal(xn.groups, 6); assert.equal(xn.links, 50, 'xnav havolalar soni ' + xn.links);
+  log('tegishli kalkulyatorlar: 5 karta; "Barcha kalkulyatorlar" <details>: ' + xn.links + ' havola, ' + xn.groups + ' guruh (yopiq)');
+  assert.equal(await p.evaluate(() => /[\u0400-\u04FF]/.test(document.body.innerText)), false, 'UZ sahifada kirill harf bor');
+  assert.equal(await p.evaluate(() => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText)), false);
+  await p.evaluate(() => { window.__pl = []; new MutationObserver(() => { var r = document.querySelector('.receipt'); if (r && r.classList.contains('pdf-light')) window.__pl.push(1); }).observe(document.querySelector('.receipt'), { attributes: true, attributeFilter: ['class'] }); });
+  const dl = p.waitForEvent('download', { timeout: 20000 }).catch(() => null); await p.click('.receipt-actions .pdfbtn'); const d = await dl;
+  const pl = await p.evaluate(() => window.__pl.length); assert.ok(pl >= 1, 'PDF paytida yorug\' holat qo\'yilmadi'); assert.equal(await p.evaluate(() => document.querySelector('.receipt').classList.contains('pdf-light')), false, 'yorug\' holat olinmadi');
+  log('PDF: yaratish paytida yorug\' holat vaqtincha qo\'yiladi va olinadi' + (d ? ' (fayl: ' + d.suggestedFilename() + ')' : ' (yuklab olish hodisasi kutilmadi)')); }
+{ const p = await pg(1280, 900); await go(p, '/ru/gisht-kalkulyator');
+  const t = await p.evaluate(() => document.body.innerText);
+  assert.equal(/[a-z]+['\u2019\u02bb\u2018][a-z]+/i.test(t), false, 'RU sahifada o\'zbekcha so\'z: ' + (t.match(/[a-z]+['\u2019\u02bb\u2018][a-z]+/i) || [''])[0]);
+  assert.equal(/ \/ [А-Я]/.test(t), false, 'aralash "UZ / RU" yorliq');
+  log('RU gisht: o\'zbekcha so\'z va aralash "Kredit / Кредит" yorliqlar yo\'q'); }
 { const p = await pg(390, 800); await go(p, '/gisht-kalkulyator');
   const o = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { stacked: r.top > f.bottom - 5 }; }); assert.equal(o.stacked, true); log('mobil: forma tepada, natija ostida (bir ustun)'); }
 
