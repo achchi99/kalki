@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '109cb0ef';   /* sw-version:auto */
+const SW_VERSION = '004f07b1';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -188,7 +188,9 @@ const ASSETS = [
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(STATIC)
-      .then((c) => Promise.allSettled(ASSETS.map((u) => c.add(u))))
+      // cache:'reload' — brauzer HTTP keshini aylanib o'tadi (Cloudflare statik fayllarni 4 soat beradi;
+      // aks holda yangi versiyaning keshiga eski nusxa tushib qoladi)
+      .then((c) => Promise.allSettled(ASSETS.map((u) => c.add(new Request(u, { cache: 'reload' })))))
       .then(() => self.skipWaiting())
   );
 });
@@ -208,7 +210,7 @@ function isImage(p) { return /\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf|otf)$/.te
 
 /* network-first: kontent va tuzatilgan buglar darhol yetib borsin */
 function networkFirst(req, cacheName, fallbackPath) {
-  return fetch(req).then((r) => {
+  return fetch(req, { cache: 'no-cache' }).then((r) => {
     if (cacheable(r)) { const cl = r.clone(); caches.open(cacheName).then((c) => c.put(req, cl)); }
     return r;
   }).catch(() => caches.match(req).then((m) => {
@@ -221,7 +223,7 @@ function networkFirst(req, cacheName, fallbackPath) {
 /* stale-while-revalidate: tez ochiladi, fonda albatta yangilanadi */
 function staleWhileRevalidate(req, cacheName) {
   return caches.match(req).then((cached) => {
-    const net = fetch(req).then((r) => {
+    const net = fetch(req, { cache: 'no-cache' }).then((r) => {   // HTTP keshni tekshirib (ETag) oladi
       if (cacheable(r)) { const cl = r.clone(); caches.open(cacheName).then((c) => c.put(req, cl)); }
       return r;
     }).catch(() => cached || Response.error());

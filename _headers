@@ -1,0 +1,4 @@
+# Cloudflare Pages sarlavhalari.
+# sw.js hech qachon CDN/brauzer keshida turmasin: yangi versiya darhol topilsin.
+/sw.js
+  Cache-Control: no-cache, max-age=0

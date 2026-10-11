@@ -136,7 +136,19 @@
 
   if (!('serviceWorker' in w.navigator)) return;
 
-  w.navigator.serviceWorker.register('/sw.js')['catch'](function () {});
+  /* Yangilanishni tez topish: sahifa ochilganda (register o'zi tekshiradi) va ilovaga/
+     tabga qaytganda reg.update() — sw.js 304 bilan arzon. 60 soniyadan tez-tez emas. */
+  var lastUpd = 0;
+  w.navigator.serviceWorker.register('/sw.js').then(function (reg) {
+    function upd() {
+      var now = Date.now();
+      if (now - lastUpd < 60000) return;
+      lastUpd = now;
+      try { reg.update()['catch'](function () {}); } catch (e) {}
+    }
+    upd();
+    d.addEventListener('visibilitychange', function () { if (d.visibilityState === 'visible') upd(); });
+  })['catch'](function () {});
 
   w.navigator.serviceWorker.addEventListener('controllerchange', function () {
     if (reloaded) return;                 // cheksiz sikl bo'lmasin
