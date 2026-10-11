@@ -36,3 +36,14 @@ SW ning ichki `fetch()` chaqiruvlari brauzer **HTTP keshi**dan o'tadi. Cloudflar
 
 Maydonga tegilgan bo'lsa avto-reload bo'lmaydi (mavjud himoya): chiziq chiqadi, keyingi tashrifda yangi versiya ko'rinadi.
 Oflayn (`context.setOffline`): avval ochilgan `/ariza-namunasi`, `/kredit-kalkulyator`, `/hujjatlar` tarmoqsiz ochiladi (eski va yangi build'da bir xil).
+
+## Chiqarish va production (2026-10-11, merge `ea53533`)
+Push 18:29:34 UTC, production `sw.js` 18:29:57 da `004f07b1` (tuzatishli) ga o'tdi. Production'da AI so'rovisiz tekshiruv: `sw.js` ichida `cache: 'reload'` va `cache: 'no-cache'` bor; `/`, `/ariza-namunasi`, `/kredit-kalkulyator`, `/hujjatlar`, RU va CYR ariza sahifalari 200; AI bloki 390px'da ko'rinadi, 320px'da toshmaydi.
+
+**Topilma (foydalanuvchi qadami talab qilinadi, ixtiyoriy).** `_headers` faqat `*.pages.dev` da qo'llanadi (`sw.js` → `no-cache, max-age=0`). `kalki.uz` (maxsus domen) da esa Cloudflare zonasi statik fayllarning sarlavhasini `max-age=14400` ga qayta yozadi (query bilan sinash ham shunday; HTML bundan mustasno). Ehtimoliy sabab: zona sozlamasi **Caching → Configuration → Browser Cache TTL = 4 hours** (taxminiy menyu nomi). Uni **"Respect Existing Headers"** ga o'zgartirish `_headers` ni `kalki.uz` da ham ishlatadi va `assets/*` uchun ham to'g'ri TTL berish imkonini beradi. Bu SW tuzatishini bekor qilmaydi: brauzer `sw.js` skriptini (`updateViaCache: 'imports'`) HTTP keshga qaramay tarmoqdan tekshiradi — simulyatsiya aynan `max-age=14400` bilan o'tkazilgan (faqat `/sw.js` uchun no-cache bilan ham, bunisiz ham yangilanish topiladi).
+
+## Xavflar
+- Tuzatish faqat YANGI `sw.js` o'rnatilgandan keyin ishlaydi. Eski SW'li brauzer (hozirgi telefon) uchun: yangi `sw.js` topiladi (brauzer uni keshsiz tekshiradi), o'rnatiladi, faollashadi va (maydonga tegilmagan bo'lsa) sahifa bir marta o'zi qayta yuklanadi. Hozir telefonda eski `ai-ariza.js` bo'lsa, birinchi tashrifdan keyin yangilanishi kerak (4 soat kutish endi shart emas).
+- Maydonga tegilgan bo'lsa avto-reload yo'q (mavjud himoya) — "Yangilash" chizig'i yoki keyingi tashrif.
+- `no-cache` bilan SWR har asset uchun shartli (ETag) so'rov yuboradi: 304 arzon, lekin so'rovlar soni bir oz oshadi.
+- `cache: 'reload'` precache o'rnatishda ~230 ta URL ni HTTP keshsiz yuklaydi (avval ham yuklanardi, faqat keshdan bo'lishi mumkin edi): o'rnatish trafigi ozgina oshishi mumkin.
