@@ -534,3 +534,20 @@ Farzandimning hozirgi maktabdagi o'qish ma'lumotlari hamda yangi yashash manzili
 **Kuzatuv:** matn sifati barqaror emas — 3-javobda model ko'pincha bir xil tuzilma/namunaviy jumlalarni takrorlaydi; kirill matnlarda "сизнинг ташкилотингизда" kabi foydalanuvchi aytmagan ibora uchrashi mumkin (4-javob).
 
 **Xarajat (6-bosqich lokal):** ~28 ta Haiku so'rovi (6+6 vaziyat, 6 limit, 2×2 UI, diagnostika) ≈ $0,006.
+
+### 6-bosqich: chiqarish va production (AI so'rovisiz)
+
+Branch `ai-ariza-2` → preview `https://ai-ariza-2.kalki-10y.pages.dev` (yangi commit push, Retry ishlatilmadi; deploy ~30 s, tarqalish paytida `/api/ariza` qisqa muddat Cloudflare "Deployment Not Found" 404 berdi, ~1 daqiqadan keyin 400/403 normal). Preview: noto'g'ri/yo'q/`evil-kalki-10y` Origin → 403, buzuq JSON va qisqa vaziyat → 400, GET → 405; brauzer sinovlari (`test-ui6.mjs --noai`) to'liq o'tdi. So'ng main'ga `--no-ff` merge (`98a6c4e`; main o'zgarmagan edi, daraxt `npm run check` o'tkazilgan daraxt bilan bir xil: 33 OK + eski 15b), push 18:09:34 UTC, production ~30 s da yangilandi.
+
+Production (`kalki.uz`), AI so'rovisiz:
+
+| tekshiruv | natija |
+|---|---|
+| UZ ariza sahifasida blok: 390px/320px, chiplar, yozuv almashtirgich, "Batafsil", `#ai` fokus | o'tdi |
+| bosh sahifa va hujjatlar'da e'lon kartasi (320/1280 toshmaydi), havola `ariza-namunasi#ai` → fokus | o'tdi |
+| RU va CYR: AI bloki ham, e'lon kartasi ham yo'q | o'tdi |
+| noto'g'ri Origin 403; Origin yo'q 403; buzuq JSON 400; qisqa vaziyat 400 (endpoint jonli); GET 405 | o'tdi |
+| meta description'da "AI yordamida", title o'zgarmagan | o'tdi |
+| kredit, oylik-soliq, ipoteka, pensiya kalkulyatorlari: 200, AI skripti yo'q | o'tdi |
+
+Production'ga AI so'rovi yuborilmadi (haqiqiy kirill/lotin javobi production'da birinchi foydalanuvchi so'rovida ko'riladi). Xarajat (6-bosqich jami) ≈ $0,006.
