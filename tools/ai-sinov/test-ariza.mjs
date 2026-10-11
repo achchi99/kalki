@@ -1,6 +1,6 @@
 // functions/api/ariza.js toza funksiyalari uchun testlar: node tools/ai-sinov/test-ariza.mjs
 import assert from 'node:assert/strict';
-import { hasLawRef, cleanText, validate, maskPII, originOk } from '../../functions/api/ariza.js';
+import { hasLawRef, cleanText, validate, maskPII, originOk, toCyrillic, stripScriptRequest } from '../../functions/api/ariza.js';
 let n = 0;
 const t = (name, fn) => { fn(); n++; console.log('OK  ' + name); };
 
@@ -97,5 +97,27 @@ t('origin', () => {
   for (const o of ['', null, 'http://kalki.uz', 'https://evil.com', 'https://kalki.uz.evil.com', 'https://evil-kalki-10y.pages.dev', 'https://evilkalki-10y.pages.dev', 'https://kalki-10y.pages.dev.evil.com', 'https://kalki.pages.dev', 'https://ai-ariza.kalki.pages.dev', 'http://kalki-10y.pages.dev', 'https://.kalki-10y.pages.dev', 'https://kalki-10y.pages.dev:8443', 'https://kalki-10y.pages.dev@evil.com', 'http://localhost:8788'])
     assert.equal(originOk(o, {}), false, String(o));
   assert.equal(originOk('http://localhost:8788', { ALLOW_LOCAL_ORIGIN: '1' }), true);
+});
+t('kirill o\'girish: apostroflar, ye/ts/sh/ch, raqamlar, qavslar', () => {
+  const eq = (a, b) => assert.equal(toCyrillic(a), b, a);
+  eq("o'quvchi", 'ўқувчи'); eq("g'oya", 'ғоя'); eq('o‘g‘il', 'ўғил'); eq('o’g’il', 'ўғил'); eq('oʻg‘il', 'ўғил');
+  eq('ma’lumot', 'маълумот'); eq("ma'lumot", 'маълумот'); eq('Yevropa', 'Европа'); eq('yer', 'ер'); eq("yo'q", 'йўқ'); eq('yil', 'йил');
+  eq('tsement', 'цемент'); eq('shahar chorshanba', 'шаҳар чоршанба');
+  eq('2 (ikki) kun, 15 000 so\'m', '2 (икки) кун, 15 000 сўм');
+  eq('[F.I.Sh.]', '[Ф.И.Ш.]'); eq('[sana]dan [sana]gacha', '[сана]дан [сана]гача'); eq('[__]', '[__]');
+  eq('[tashkilot nomi]da', '[ташкилот номи]да'); eq('Ilova: [hujjat nomi]', 'Илова: [ҳужжат номи]');
+  const para = "Men, [F.I.Sh.], [manzil]dagi uyni ijaraga olib turganman. Farzandim [sinf] sinf o'quvchisi, [sana]dan [sana]gacha kasal bo'lgani sababli darslarga qatnasha olmadi. Iltimosimni qanoatlantirishingizni so'rayman.";
+  assert.ok(!/[A-Za-z]/.test(toCyrillic(para)), 'lotin harfi qolmasligi kerak: ' + toCyrillic(para));
+});
+t('tozalash: "... bo\'yicha." sarlavha qatori', () => {
+  assert.equal(cleanText("[yangi maktab nomi] bo'yicha.\n\nMen, [F.I.Sh.], ota-onasiman."), 'Men, [F.I.Sh.], ota-onasiman.');
+  const keep = "Ish haqi hisobi bo'yicha xatolik aniqlandi va shu sababli murojaat qilaman.";
+  assert.equal(cleanText(keep), keep);
+});
+t('yozuv so\'rovi modelga yuborilmaydi', () => {
+  assert.equal(stripScriptRequest("kirillcha yozib ber: ishga kirmoqchiman, haydovchi lavozimiga"), 'ishga kirmoqchiman, haydovchi lavozimiga');
+  assert.equal(stripScriptRequest('ишга кирмоқчиман, кириллча ёзиб бер'), 'ишга кирмоқчиман,');
+  assert.equal(stripScriptRequest("bolam kasal bo'ldi, maktabga yozishim kerak"), "bolam kasal bo'ldi, maktabga yozishim kerak");
+  assert.equal(stripScriptRequest('kirillcha yozing'), 'kirillcha yozing'); // qolgan matn juda qisqa — o'zgarmaydi
 });
 console.log(n + ' ta test o\'tdi');

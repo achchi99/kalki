@@ -26,7 +26,9 @@ await page.goto(BASE + '/ariza-namunasi', { waitUntil: 'networkidle' });
 
 // 1. blok ko'rinadi, izoh aynan shu matn
 await page.waitForSelector('#aiAriza', { state: 'visible' });
+await page.click('#aizMore');
 assert.equal((await page.textContent('#aizNote')).trim(), NOTE);
+assert.equal(await page.isVisible('#aizNote'), true);
 assert.equal(await page.getAttribute('#aizIn', 'maxlength'), '500');
 log('blok ko\'rinadi, izoh matni aynan to\'g\'ri, maxlength=500');
 await shot(page, 'ui-desktop-1.png');
@@ -39,11 +41,11 @@ log('belgi hisoblagichi');
 // 3. yuborish: "Yozilmoqda..." holati va qayta bosish bloklanadi
 const respP = page.waitForResponse('**/api/ariza');
 await page.click('#aizGo');
-assert.equal((await page.textContent('#aizGo')).trim(), 'Yozilmoqda...');
+assert.equal((await page.textContent('#aizGo')).trim(), 'Yozilmoqda…');
 assert.equal(await page.isDisabled('#aizGo'), true);
 const resp = await respP;
 assert.equal(resp.status(), 200);
-await page.waitForFunction(() => document.getElementById('aizGo').textContent === 'Matnni yozish');
+await page.waitForFunction(() => document.getElementById('aizGo').textContent === 'Ariza matnini yozish');
 const f1 = await page.inputValue('#dgf-erkinMatn');
 assert.equal(await page.inputValue('#dgf-atype'), 'erkin');
 assert.ok(f1.split(/\s+/).length >= 25, 'natija maydonga tushdi');
