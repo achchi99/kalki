@@ -125,6 +125,9 @@ function translitWord(word) {
     for (var d = 0; d < DIGRAPH.length; d++) {
       var first = DIGRAPH[d][0], second = DIGRAPH[d][1];
       if (i + 1 < n && lower === first && word[i + 1].toLowerCase() === second) {
+        // "yo'" (yo'q, yo'l) -- bu "ё" emas, "й" + "ў": apostrofli "o'" keyingi
+        // bosqichda ("ў") alohida ishlanadi (tuzatildi 2026-10: oldin "ёъқ" chiqardi).
+        if (first === 'y' && second === 'o' && i + 2 < n && isApos(word[i + 2])) continue;
         matched = DIGRAPH[d][2];
         break;
       }

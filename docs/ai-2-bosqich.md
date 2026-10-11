@@ -454,3 +454,83 @@ AI so'rovisiz tekshiruvlar (IP limiti bugun tugagan, Haiku'ga so'rov yuborilmadi
 | 3 ta kalkulyator (kredit, oylik-soliq, ipoteka): 200, blok yo'q, JS xatosiz | o'tdi |
 
 Xarajat (5-bosqich jami): ≈ $0,001 (7 ta lokal Haiku so'rovi); production'ga AI so'rovi yuborilmadi. `tools/ai-sinov/test-prod-ui.mjs` shu tekshiruvlarni takrorlaydi. Production'da haqiqiy AI javobi birinchi marta Toshkent kuni yangilangach (19:00 UTC dan keyin) tekshirilishi mumkin.
+
+
+## 14. 6-bosqich: kirill yozuvi, ko'rinish, e'lon (branch `ai-ariza-2`)
+
+### Muhim: /cyr/ariza-namunasi da blok YOQILMADI
+`/cyr/` sahifalar ataylab **JS'siz va statik** (verify-all 28-band: "cyr chiqishida ijro etiladigan `<script>` qolmasligi kerak (KRITIK)"), unda ishlaydigan generator yo'q — forma prerender qilingan inert HTML. Blokni yoqish uchun cyr sahifaga ijro etiladigan skript qo'shish kerak bo'lardi: bu 28-bandni yiqitadi va kirill pilotning ataylab yengillashtirilgan dizayniga zid. Shuning uchun 1-bandning "cyr sahifada blok" qismi bajarilmadi; unga bog'liq "CYR sahifalarda kirillcha e'lon kartasi" ham yo'q (cyr/index va cyr/hujjatlar sahifalari mavjud emas). **Qaror kerak:** cyr sahifaga blokni qo'shish uchun 28-bandni va dizaynni qayta ko'rib chiqish yoki UZ sahifadagi "Кириллча" almashtirgichiga tayanish (hozirgi holat: kirill foydalanuvchi UZ sahifada kirillcha matn oladi).
+
+### O'zgarishlar
+- **Server (`functions/api/ariza.js`):** so'rovga `yozuv` (`lotin`|`kirill`) va `mijoz_id` (UUID) maydonlari. Model HAR DOIM lotincha yozadi; tekshiruvdan keyin `yozuv=kirill` bo'lsa matn mavjud o'girgich (`tools/translit.js`, `/cyr/` sahifalar ishlatadigani) bilan kirillga o'giriladi, joy qoldiruvchilar ham ([F.I.Sh.] → [Ф.И.Ш.], [sana]dan → [сана]дан). Kirill vaziyat modelga kirillcha yuboriladi. "kirillcha yozib ber" kabi yozuv so'rovi modelga yuborilmaydi (model unga bo'ysunib kirillcha yozib, validatsiyadan o'tmay qolgan edi: lokal sinovda 502) va promptga "DOIM lotin" qoidasi qo'shildi.
+- **O'girgich xatosi (tuzatildi):** `tools/translit.js` "yo'q"ni "ёъқ" deb o'girardi (to'g'risi "йўқ"). Faqat "yo" + apostrof holati tuzatildi (3 qator); `tools/translit-test.js` 51/51. Eslatma: `cyr/ariza-namunasi` va `cyr/aliment-kalkulyator` da eski "ёъқ" bor — ular keyingi `npm run ship` da tuzaladi (hozir qayta yozilmadi).
+- **Prompt:** standart rasmiy iboralar ro'yxati, "Ilova" qoidasi, joy qoldiruvchiga qo'shimcha grammatikasi. `cleanText`: "... bo'yicha." kabi qisqa sarlavha qatori ham olib tashlanadi.
+- **Limitlar:** IP — kuniga **30** (env `AI_IP_LIMIT`), mijoz ID (xeshlangan, KV) — kuniga **10** (env `AI_CLIENT_LIMIT`), sayt — 300. Tekshiruv tartibi: sayt → mijoz → IP. 429 javobida `sabab`: "mijoz" → "Bugun 10 ta matn yozdingiz. Ertaga yana urinib ko'ring."; "sayt" → "Bugun xizmat band. Ertaga urinib ko'ring."; "ip" → eski "Bugungi limit tugadi…". ID bo'lmasa yoki UUID formatida bo'lmasa faqat IP limiti ishlaydi.
+- **UI (`assets/ai-ariza.js`):** "✨ AI ariza yozib beradi" + "Yangi" belgisi; qisqa qator; 4 ta misol-chip (to'ldiradi, yubormaydi); Lotincha | Кириллча almashtirgichi (avto: kirill harflari >50% yoki "kirill/кирилл" so'zi; qo'lda tanlov ustun); to'liq kenglikdagi katta tugma; "Yozilmoqda…" animatsiyasi; natijadan keyin Matn maydoniga silliq aylanish, 2 soniyalik ajratib ko'rsatish, "Hujjatni ko'rish" tugmasi (mobil: ko'rik tabi; desktop: ko'rik bo'limiga aylanish); maxfiylik — bitta qisqa qator + "Batafsil" (to'liq matn o'zgarmagan); `#ai` havolasi blokka aylantiradi va textarea'ga fokus qo'yadi; `localStorage`da faqat anonim UUID (`kalki_ai_mid`). Qorong'i rejim: saytda qorong'i rejim yo'q (`prefers-color-scheme` ishlatilmaydi), shuning uchun alohida stil qo'shilmadi.
+- **E'lon (`assets/ai-promo.js`, bosh sahifa va hujjatlar ro'yxati):** "✨ Yangi: AI ariza matnini yozib beradi" kartasi → `ariza-namunasi#ai`. Karta brauzerda yaratiladi (faqat `lang="uz"`), prerender/RU/CYR HTML'ga tushmaydi — shuning uchun RU sahifalardagi "UZ matn qoldig'i" tekshiruvlariga tegmaydi (lekin havola Google uchun faqat JS render qilingandan keyin ko'rinadi). O'chirish: `AI_PROMO_YOQILGAN = false`.
+- **SEO:** `ariza-namunasi` meta description'ga "AI yordamida" qo'shildi (138 belgi; title va H1 o'zgarmagan). Prerender faqat shu 3+2 sahifa uchun yozildi (UZ/RU/CYR ariza-namunasi, RU index/hujjatlar); `pdfdate` shovqini qo'lda qaytarildi; `answerbox` "updated" sanasi prerender tomonidan yangilandi.
+
+### Sinov natijalari (lokal, `wrangler pages dev`)
+- Birlik testlari **15/15** (o', g', ʻ/’/‘ variantlari, "ye", "ts", "sh/ch", "yo'q", raqamlar va qavslar, joy qoldiruvchilar; kirill matnda lotin harfi qolmaydi; yozuv so'rovini kesish; sarlavha qatori).
+- 6 ta jonli vaziyat: **6/6 o'tdi** (3 lotin: kirill harfi yo'q; 3 kirill: lotin harfi 0 — joy qoldiruvchilar ichida ham; "Hurmatli/Хурматли" yo'q; 25–150 so'z).
+- Limit: `AI_CLIENT_LIMIT=2` bilan bir ID'dan 3-so'rov → 429 `sabab: mijoz` ("Bugun 2 ta matn yozdingiz…"); boshqa ID → 200; formati noto'g'ri ID (va hex bo'lmagan "xxxxxxxx-…") → e'tiborsiz, faqat IP → 200. `AI_SITE_LIMIT=1` → 429 `sabab: sayt` ("Bugun xizmat band…").
+- Playwright (390 va 320px): blok elementlari, chiplar, avto/qo'lda yozuv, "Batafsil", haqiqiy so'rov → natija maydonga tushdi, aylanish, ajratib ko'rsatish (2 s), "Hujjatni ko'rish" mobil tabni ochdi, kirill natija to'liq kirillcha, "Nusxa olish" kirill matnni nusxaladi, UUID `localStorage`da; `#ai` fokusi; e'lon kartalari (320/1280 toshmaydi, havola `#ai` ga olib boradi); RU/CYR sahifalarda blok ham, karta ham yo'q; JS xatosiz. Skrinshotlar: `tools/ai-sinov/out/ui6-*.png`.
+- `npm run check`: 33 band OK, faqat eski 15b.
+
+### 6 ta AI javobi (lokal sinov)
+
+**1 [lotin] — kvartira ijarasini muddatidan oldin bekor qilmoqchiman, uy egasiga yozishim kerak**
+
+```text
+Men, [F.I.Sh.], [sana]da imzolangan ijara shartnomasiga muvofiq [manzil] manzilidagi kvartirani ijaraga olib turganman. Shaxsiy sabablarga ko'ra ijara shartnomasini [sana]dan boshlab muddatidan oldin bekor qilishingizni so'rayman.
+
+Shartnomada nazarda tutilgan oldindan xabar berish muddatiga rioya qilaman. Kvartirani ijara shartnomasida belgilangan holatda topshirishga va so'nggi hisob-kitobni o'z vaqtida amalga oshirishga tayyorman.
+```
+
+**2 [lotin] — gaz hisobimda xato bor, ko'p yozib qo'yishgan, qayta hisoblashni so'rayman**
+
+```text
+Men, [F.I.Sh.], [manzil] manzilida yashovchi abonent sifatida, [hisob raqami] shaxsiy hisob raqamim bo'yicha [oy, yil] oyi uchun gaz iste'moli hisobida xatolik borligini aniqladim. Hisoblangan summa mening haqiqiy iste'molimga mos kelmaydi, shu sababli u ortiqcha yozilgan deb hisoblayman.
+
+Shu munosabat bilan hisob-kitobni qayta tekshirib, xatoni tuzatishingizni va natijasi haqida yozma ma'lumot berishingizni so'rayman. Zarur bo'lsa, oldingi oylardagi ko'rsatkichlar va to'lov kvitansiyalarini taqdim etishga tayyorman.
+
+Ilova: to'lov kvitansiyalari nusxasi, [qo'shimcha hujjat]
+```
+
+**3 [lotin] — farzandimni boshqa maktabga o'tkazmoqchiman, ko'chib o'tdik**
+
+```text
+Men, [F.I.Sh.], ko'chib o'tganimiz sababli farzandim [F.I.Sh.]ni [sinf] sinfida o'qishni davom ettirishi uchun [maktab raqami yoki nomi]ga o'tkazishingizni so'rayman.
+
+Farzandimning hozirgi maktabdagi o'qish ma'lumotlari hamda yangi yashash manzilimga oid hujjatlar talab etilgan taqdirda, ularni taqdim etishga tayyorman.
+```
+
+**4 [kirill] — Ишга кириш ҳақида ариза**
+
+```text
+Мен [Ф.И.Ш.] сизнинг ташкилотингизда [лавозим] лавозимига ишга қабул қилинишни сўрайман. Мен [маълумот]га эгаман ва ушбу лавозим талабларига жавоб бераман.
+
+Меҳнат фаолиятимга тегишли ҳужжатларим ва маълумотларим илова қилинган. Ишга қабул қилиш масаласини кўриб чиқишингизни ва натижаси ҳақида хабар беришингизни сўрайман.
+```
+
+**5 [kirill] — Ишга 3 кун бора олмайман, иш ҳақим ҳисобланмаган ҳолда**
+
+```text
+Мен, [Ф.И.Ш.], [сана]дан [сана]гача шахсий сабабларга кўра ишга чиқа олмайман.
+
+Шу муносабат билан менга иш ҳақи сақланмаган ҳолда 3 (уч) кунлик таътил беришингизни сўрайман. Ишдаги муҳим вазифаларимни олдиндан ҳамкасбим [Ф.И.Ш.]га топшириб қўяман.
+```
+
+**6 [kirill (so'rovda "kirillcha yozib ber")] — kirillcha yozib ber: ishga kirmoqchiman, haydovchi lavozimiga**
+
+```text
+Мен, [Ф.И.Ш.], ҳайдовчилик гувоҳномаси ва [йиллар] йиллик ҳайдовчилик тажрибасига эгаман. Ҳайдовчи лавозимида ишлашни хоҳлайман.
+
+Шу муносабат билан мени [ташкилот номи]да ҳайдовчи лавозимига ишга қабул қилишингизни сўрайман. Ҳужжатларим ва малака маълумотларим билан танишиб чиқишингизни илтимос қиламан.
+
+Илова: ҳайдовчилик гувоҳномаси нусхаси, шахсий ҳужжат нусхаси, маълумотнома
+```
+
+**Kuzatuv:** matn sifati barqaror emas — 3-javobda model ko'pincha bir xil tuzilma/namunaviy jumlalarni takrorlaydi; kirill matnlarda "сизнинг ташкилотингизда" kabi foydalanuvchi aytmagan ibora uchrashi mumkin (4-javob).
+
+**Xarajat (6-bosqich lokal):** ~28 ta Haiku so'rovi (6+6 vaziyat, 6 limit, 2×2 UI, diagnostika) ≈ $0,006.
