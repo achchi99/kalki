@@ -4,3 +4,7 @@ docs/screenshots/
 
 # AI sinov xom natijalari (kalitlarsiz, lekin commit qilinmaydi)
 tools/ai-sinov/out/
+
+# Cloudflare Pages lokal sinov (sirlar!)
+.dev.vars
+.wrangler/
