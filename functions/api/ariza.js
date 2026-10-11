@@ -46,10 +46,12 @@ Qoidalar:
 5. Matn 40–120 so'z, 1–3 xatboshi. Murojaat qatori (Hurmatli ..., Assalomu
    alaykum va h.k.) YOZMA. Matn to'g'ridan-to'g'ri vaziyat bayonidan boshlansin.
    Birinchi jumla ichida ham murojaat bo'lmasin ("Hurmatli uy egasi, men ..."
-   deb boshlama). O'zing haqingda kimligingni va qayerda ishlashingni yozma —
-   "Men, [F.I.Sh.], [lavozim] lavozimida ishlayman" kabi tanishtiruv jumlasi
-   YOZMA — bu ma'lumot rekvizitlarda bor. Foydalanuvchi aytmagan lavozim, muassasa yoki shaxsni
-   (direktor, rahbar, hokim va h.k.) taxmin qilma.
+   deb boshlama). "Men, [F.I.Sh.], ..." bilan boshlash mumkin. Foydalanuvchi
+   aytmagan aniq lavozim yoki muassasa NOMINI o'ylab topma; kerak bo'lsa
+   [lavozim], [tashkilot nomi] kabi joy qoldir.
+   Matndan oldin yoki keyin izoh, sarlavha yoki tushuntirish yozma (masalan
+   "Ariza matni:", "quyidagi matnni tavsiya etaman:"). Javob faqat ariza
+   tanasidan iborat bo'lsin.
    "so'rayman" so'zini matnda bir martadan ortiq ishlatma. Yakuniy
    "Iltimosimni qanoatlantirishingizni so'rayman." iborasini faqat matnda boshqa
    iltimos jumlasi bo'lmasa qo'sh.
@@ -131,13 +133,28 @@ export function cleanText(raw) {
     const m = lines[0].match(/^\s*(?:hurmatli|assalomu\s+alaykum)\b[^,!:.\n]{0,40}[,!:]\s*(.+)$/i);
     if (m && m[1]) lines[0] = m[1].charAt(0).toLocaleUpperCase('uz') + m[1].slice(1);
   }
+  // ":" bilan tugaydigan kirish qatori (ro'yxat boshlanishi bo'lmasa)
+  if (lines.length > 1 && /:$/.test(lines[0].trim()) && !/^\s*(?:\d+[.)]|[-•*])\s/.test(lines.slice(1).find((x) => x.trim()) || '')) {
+    lines.shift();
+    while (lines.length && !lines[0].trim()) lines.shift();
+  }
   const isTail = (l) => {
     const s = l.trim();
     return !s || /^(sana|imzo)\s*:/i.test(s) || /hurmat\s+bilan/i.test(s) || /_{3,}/.test(s) ||
       /^\(?imzo\)?$/i.test(s) || /^\[[^\]]{1,30}\]$/.test(s);
   };
   while (lines.length && isTail(lines[lines.length - 1])) lines.pop();
-  return lines.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  let out = lines.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  // joy qoldiruvchi va qo'shimcha: "[sana] dan" -> "[sana]dan"
+  out = out.replace(/(\[[^\]\n]+\])[ \t]+(da|dan|ga|ni|ning|dagi|gacha)(?![\p{L}'‘’])/gu, '$1$2');
+  // "so'rayman" 2+ marta bo'lsa, oxirgi umumiy yakunni ("Iltimosimni ... so'rayman.") olib tashla
+  if ((out.match(/so['’‘ʻ]rayman/gi) || []).length >= 2) {
+    const re = /[ \t]*Iltimosimni[^.!?\n]*so['’‘ʻ]rayman[.!]?/gi;
+    let last = null, m;
+    while ((m = re.exec(out))) last = m;
+    if (last) out = (out.slice(0, last.index) + out.slice(last.index + last[0].length)).replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+  return out;
 }
 
 // null = yaroqli, aks holda sabab (loglanmaydi)

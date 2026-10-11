@@ -365,3 +365,74 @@ Aniq mezonlar (Hurmatli, so'rayman ≤1, taxminiy muassasa, qonun/kirill, 25–1
 **Mumkin keyingi qadamlar (qilinmadi):** (a) `validate` ga qattiq qoidalar: "so'rayman" ≤ 1 va "… lavozimida ishlayman" tanishtiruv jumlasi → rad (qayta urinish, so'ng 502); (b) `cleanText` ga: bo'sh qator oldidagi ":" bilan tugaydigan birinchi qatorni olib tashlash; (c) namunalarda "so'rayman" ni yanada kamaytirish. (a) 502 ulushini oshirishi mumkin.
 
 **Xarajat (4-bosqich):** ~14 ta Haiku so'rovi (diagnostika + 2 yurish) ≈ $0,003.
+
+
+## 13. 5-bosqich: tozalashni kuchaytirish (lokal sinov o'tdi)
+
+**O'zgarishlar.** Prompt: "o'zingni tanishtirma" qoidasi OLIB TASHLANDI ("Men, [F.I.Sh.], ..." mumkin; faqat aniq lavozim/muassasa NOMINI o'ylab topish taqiqlangan, [lavozim] kabi joy qoldiriladi); qo'shildi: matn oldidan/keyin izoh, sarlavha yoki tushuntirish yozilmasin. `cleanText` (rad etmasdan): (1) ":" bilan tugaydigan birinchi qator olib tashlanadi — **istisno:** undan keyin ro'yxat (`1.`, `-`, `•`) boshlansa saqlanadi, chunki bu haqiqiy kirish jumlasi bo'lishi mumkin; (2) "so'rayman" 2+ marta bo'lsa, oxirgi umumiy "Iltimosimni … so'rayman." gapi olib tashlanadi, shundan keyin ham 2+ bo'lsa javob QABUL qilinadi; (3) "[eski maktab nomi] da" → "[eski maktab nomi]da" (da, dan, ga, ni, ning, dagi, gacha). `validate` ga yangi rad qoidasi qo'shilmadi. Birlik testlari (4-bosqichdagi 1, 2, 3, 4-javoblarning xom matni bilan): 12/12.
+
+**Lokal sinov** (`wrangler pages dev`, har so'rovga alohida soxta IP, jonli Haiku). O'tish sharti: 7/7 da 200, "Hurmatli" yo'q, matn oldida izoh qatori yo'q, qonun havolasi/kirill yo'q → **7/7 o'tdi**.
+
+Qayd etiladigan kuzatuvlar (rad etilmaydi): #3 va #4 da "so'rayman" 2 marta (yakun gap olib tashlangach ham); #3 da "Men, [F.I.Sh.], [lavozim] lavozimida [tashkilot nomi]da ishlab kelmoqdaman" — endi ruxsat etilgan uslub; #6 va #7 javoblari namunalarning deyarli so'zma-so'z nusxasi (model namunalarga kuchli tayanadi).
+
+### 7 ta javob (tozalangan)
+
+**1 — kvartira ijarasini muddatidan oldin bekor qilmoqchiman, uy egasiga yozishim kerak**
+
+```text
+Men, [F.I.Sh.], [manzil]dagi uyni ijaraga olib turganman. Shartnomaga muvofiq, ijara muddati [sana]gacha bo'lib, men uni [sana]dan e'tiboran muddatidan oldin bekor qilish niyatidaman.
+
+Shu munosabat bilan ijara shartnomasini o'zaro kelishuv asosida bekor qilishingizni va ijara to'lovi hamda depozit bo'yicha hisob-kitobni [sana]gacha amalga oshirishingizni so'rayman. Barcha kommunal to'lovlar bo'yicha qarzdorlik yo'qligini tasdiqlovchi ma'lumotlarni va uy-joyni topshirish dalolatnomasini birgalikda rasmiylashtirishni taklif etaman.
+```
+
+**2 — farzandimni boshqa maktabga o'tkazmoqchiman, ko'chib o'tdik**
+
+```text
+Farzandimning ko'chib o'tishimiz munosabati bilan [sana]dan boshlab [sinf] sinf o'quvchisi [F.I.Sh.]ni boshqa maktabga o'tkazishingizni so'rayman.
+
+Yangi yashash joyimizga yaqin bo'lgan maktabda o'qishni davom ettirish uchun barcha zarur hujjatlarni taqdim etishga tayyorman. Ilova: [hujjat nomi]
+```
+
+**3 — o'z xohishim bilan ishdan bo'shamoqchiman**
+
+```text
+Men, [F.I.Sh.], [lavozim] lavozimida [tashkilot nomi]da ishlab kelmoqdaman. Shaxsiy sabablarga ko'ra o'z xohishim bilan ishdan bo'shashimni so'rayman.
+
+Ishdan bo'shash sanasi sifatida [sana]ni belgilashingizni so'rayman. Ushbu muddat davomida menga yuklatilgan ishlarni topshirishga va hamkasblarimga kerakli yordamni berishga tayyorman.
+```
+
+**4 — gaz hisobimda xato bor, ko'p yozib qo'yishgan, qayta hisoblashni so'rayman**
+
+```text
+Men, [F.I.Sh.], [manzil] manzilidagi xonadon egasiman. Hisobvaraq raqamim [hisobvaraq raqami]. Oxirgi hisob-kitobda gaz iste'moli bo'yicha to'lov miqdori haqiqatdan ortiq ko'rsatilgan deb hisoblayman. Bu [sana] sanasidagi hisob-kitob bo'yicha [summa] so'mlik farqni tekshirishingizni so'rayman.
+
+Iltimos, gaz hisoblagichi ko'rsatkichlarini qayta tekshirib, hisob-kitobni qayta hisoblashingizni va natijani menga yozma ravishda ma'lum qilishingizni so'rayman. Zarur bo'lsa, hisoblagichning joriy ko'rsatkichini suratga olib ilova qilishim mumkin.
+
+Ilova: [hisoblagich ko'rsatkichi surati], [to'lov kvitansiyasi nusxasi]
+```
+
+**5 — bolalar bog'chasiga joy so'rab ariza**
+
+```text
+Men, [F.I.Sh.], [manzil] manzilida istiqomat qiluvchi farzandim [bolaning F.I.Sh.], [tug'ilgan sana] tug'ilgan, shu yil [yil]da [bog'cha raqami]-sonli bolalar bog'chasiga qabul qilinishini so'rayman.
+
+Farzandim bolalar bog'chasida tarbiya va ta'lim olishga tayyor. Bog'chaga qabul qilinishi uchun zarur bo'lgan barcha hujjatlarni taqdim etishga tayyorman.
+```
+
+**6 — bolam 3 kun kasal bo'ldi, maktabda dars qoldirdi**
+
+```text
+Farzandim, [sinf] sinf o'quvchisi [F.I.Sh.], [sana]dan [sana]gacha kasal bo'lgani sababli darslarga qatnasha olmadi.
+
+Shu munosabat bilan uning dars qoldirgan kunlarini uzrli deb hisoblashingizni so'rayman. Zarur bo'lsa, shifokor ma'lumotnomasini taqdim etaman.
+```
+
+**7 — ishdan 2 kunga javob so'ramoqchiman, to'yim bor**
+
+```text
+Oilaviy marosim munosabati bilan menga [sana]dan [sana]gacha 2 (ikki) kun ishga chiqmaslikka ruxsat berishingizni so'rayman.
+
+Shu kunlarda bajarilishi lozim bo'lgan ishlarimni oldindan hamkasbim [F.I.Sh.]ga topshirib qo'yaman.
+```
+
+**Xarajat (5-bosqich lokal sinov):** 7 ta Haiku so'rovi ≈ $0,001.

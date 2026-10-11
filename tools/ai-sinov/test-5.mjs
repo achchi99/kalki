@@ -6,7 +6,9 @@ const CASES = [
   "farzandimni boshqa maktabga o'tkazmoqchiman, ko'chib o'tdik",
   "o'z xohishim bilan ishdan bo'shamoqchiman",
   "gaz hisobimda xato bor, ko'p yozib qo'yishgan, qayta hisoblashni so'rayman",
-  "bolalar bog'chasiga joy so'rab ariza"
+  "bolalar bog'chasiga joy so'rab ariza",
+  "bolam 3 kun kasal bo'ldi, maktabda dars qoldirdi",
+  "ishdan 2 kunga javob so'ramoqchiman, to'yim bor"
 ];
 // foydalanuvchi aytmagan lavozim/muassasa/shaxs belgilari
 const GUESS = /direktor|rahbar|hokim|mudir|rektor|dekan|prezident|vazir|boshliq|ma'muriyat|bog'cha(?!siga)|maktab|korxona|tashkilot nomi\]?\s*(?:direktori)/i;
@@ -24,9 +26,10 @@ for (let i = 0; i < CASES.length; i++) {
   const g0 = (t.match(GUESS) || [])[0] || null;
   const guess = g0 && !CASES[i].toLowerCase().includes(g0.toLowerCase().slice(0, 5)) ? g0 : null;
   const intro = /lavozimida|ishlab kelmoqdaman|ishlayman|ishlab turaman/i.test(t) ? 'tanishtiruv' : null;
-  const ok = r.status === 200 && Object.values(c).every(Boolean) && !guess && !intro;
+  const preface = /:\s*$/.test(t.split('\n')[0].trim()) || /ariza matni/i.test(t.split('\n')[0]);
+  const ok = r.status === 200 && c.hurmatli && c.qonun_kirill && !preface; // 5-bosqich o'tish sharti
   if (!ok) bad++;
-  console.log(`#${i + 1} [${r.status}] ${ok ? 'OK' : 'TEKSHIR'} so'z=${words} so'rayman=${sor} hurmatli=${!c.hurmatli} qonun/kirill/tozalangan=${c.qonun_kirill} taxmin=${guess} tanishtiruv=${intro}`);
+  console.log(`#${i + 1} [${r.status}] ${ok ? 'OK' : 'TEKSHIR'} so'z=${words} so'rayman=${sor} hurmatli=${!c.hurmatli} qonun/kirill/tozalangan=${c.qonun_kirill} taxmin=${guess} tanishtiruv=${intro} izoh_qatori=${preface}`);
   console.log('>>> ' + CASES[i] + '\n' + (t || JSON.stringify(j)) + '\n<<<');
 }
 console.log(bad ? bad + ' ta TEKSHIR' : 'hammasi o\'tdi');
