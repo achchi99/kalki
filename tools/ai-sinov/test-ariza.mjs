@@ -18,10 +18,13 @@ t('tozalash: bosh va oxirgi rekvizitlar', () => {
   const raw = 'Maktab direktoriga\n\n[F.I.Sh.] ning ota-onasi [F.I.Sh.] dan\n\nARIZA\n\nFarzandim kasal bo\'ldi.\n\nIltimosimni qanoatlantirishingizni so\'rayman.\n\nSana: [sana]\nImzo: ____________';
   assert.equal(cleanText(raw), 'Farzandim kasal bo\'ldi.\n\nIltimosimni qanoatlantirishingizni so\'rayman.');
 });
-t('tozalash: oddiy matn o\'zgarmaydi, "Hurmatli" qoladi', () => {
-  const s = 'Hurmatli direktor!\n\nFarzandim kasal bo\'ldi.\n\nIltimosimni qanoatlantirishingizni so\'rayman.';
-  assert.equal(cleanText(s), s);
-  assert.equal(cleanText('Men ish haqi ma\'lumotnomasini berishingizni so\'rayman'), 'Men ish haqi ma\'lumotnomasini berishingizni so\'rayman');
+t('tozalash: murojaat qatori doim olib tashlanadi', () => {
+  const body = 'Farzandim kasal bo\'ldi.\n\nIltimosimni qanoatlantirishingizni so\'rayman.';
+  for (const g of ['Hurmatli direktor,', 'Hurmatli direktor [F.I.Sh.],', 'Hurmatli [lavozim], [F.I.Sh.]!', 'Hurmatli rahbariyat!', 'Assalomu alaykum,', 'Hurmatli direktor:'])
+    assert.equal(cleanText(g + '\n\n' + body), body, g);
+  assert.equal(cleanText(body), body);
+  assert.equal(cleanText('Hurmatli uy egasi, men [sana]dan kvartirani olganman.\n\nIkkinchi.'), 'Men [sana]dan kvartirani olganman.\n\nIkkinchi.');
+  assert.equal(validate('Hurmatli direktor, ' + Array(40).fill('so\'z').join(' ')), 'murojaat');
 });
 t('tozalash: Hurmat bilan va imzo nomi', () => {
   assert.equal(cleanText('Matn shu yerda.\n\nHurmat bilan,\n[F.I.Sh.]\nImzo: [imzo]'), 'Matn shu yerda.');

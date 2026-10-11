@@ -341,3 +341,27 @@ Shu kunlarda bajarilishi lozim bo'lgan ishlarimni oldindan hamkasbim [F.I.Sh.]ga
 
 **Xarajat.** 10 ta Haiku so'rovi ≈ $0,002 (1 100 kirish / ~120 chiqish token, $0,10/$0,50).
 **Xulosa:** texnik jihatdan main'ga chiqarishga to'siq yo'q (endpoint, origin, niqoblash, limit, KV, UI preview'da ishladi). Sifat bo'yicha qaror sizniki (murojaat qatori, 2-javobdagi kirish jumlasi).
+
+## 12. 4-bosqich: matn sifatini tuzatish (TO'XTATILDI — saytga chiqarilmadi)
+
+**Qilingan o'zgarishlar** (`ai-ariza`, main'ga tegilmadi): system promptga murojaat qatori taqiqi, "o'zingni tanishtirma", "lavozim/muassasa/shaxsni taxmin qilma", "so'rayman" ko'pi bilan 1 marta va yakuniy iborani faqat boshqa iltimos bo'lmasa qo'shish qoidalari; namunalarda murojaat yo'q. `cleanText`: matn boshidagi "Hurmatli …,/!" va "Assalomu alaykum" qatori doim olib tashlanadi, jumla ichidagi "Hurmatli uy egasi, men …" prefiksi kesiladi ("Men …" bo'ladi); `validate` boshida "Hurmatli" qolsa rad etadi (qayta urinish). Birlik testlari 9/9.
+
+**Preview'da sinab bo'lmadi.** Mening IP'im 3-bosqichdagi sinovda kunlik 10 ta limitni ishlatib bo'lgan (Toshkent kuni 19:00 UTC da yangilanadi, 17:22 UTC da 429 tasdiqlandi). Limit env orqali oshirilmadi. Shu sababli 5 vaziyat **lokal** `wrangler pages dev` da, aynan shu kod va jonli Haiku bilan, har so'rovga alohida IP sarlavhasi bilan sinaldi (preview'dagi natija emas).
+
+**Topilma 1 (tuzatishdan oldin).** 1-vaziyat 502 berdi: model "Hurmatli uy egasi, men …" deb murojaatni birinchi jumla ichiga yozgan, tozalash ushlamagan, tekshiruv rad etgan (3/3 urinishda). Prefiks kesish qo'shilgach 200 bo'ldi.
+
+**Sinov natijasi (tuzatishdan keyin, lokal):**
+
+| # | vaziyat | holat | "Hurmatli" | "so'rayman" | taxminiy lavozim/muassasa | qonun/kirill | so'z | izoh |
+|---|---|---|---|---|---|---|---|---|
+| 1 | ijara bekor qilish | 200 | yo'q | 1 | yo'q | yo'q | 70 | matn oldida kirish qatori: "Uy egasi bilan … ariza matni (faqat asosiy qism):" |
+| 2 | maktabni almashtirish | 200 | yo'q | **2** | yo'q | yo'q | 48 | **o'tmadi** (so'rayman 2 marta) |
+| 3 | ishdan bo'shash | 200 | yo'q | 1 | yo'q | yo'q | 33 | "Men, [F.I.Sh.], [lavozim] lavozimida ishlab kelmoqdaman." — tanishtiruv jumlasi (promt taqiqlagan) |
+| 4 | gaz hisobi | 200 | yo'q | 1 | yo'q | yo'q | 68 | matn oldida kirish qatori: "Gaz xizmati … tavsiya etaman:" |
+| 5 | bog'cha | 200 | yo'q | 1 | yo'q | yo'q | 46 | o'tdi |
+
+Aniq mezonlar (Hurmatli, so'rayman ≤1, taxminiy muassasa, qonun/kirill, 25–150 so'z) bo'yicha 4/5 o'tdi; #2 yiqildi. Qo'shimcha sifat kamchiliklari (mezonlarda yo'q): #3 tanishtiruv jumlasi; #1 va #4 da model matn oldidan izoh qatori qo'shgan (":" bilan tugaydi, bo'sh qatordan keyin asosiy matn). Qoida bo'yicha bitta tuzatish urinishi qilindi; qayta sinovda ham o'tmagani uchun **to'xtadim**: main'ga merge qilinmadi, production'ga chiqarilmadi.
+
+**Mumkin keyingi qadamlar (qilinmadi):** (a) `validate` ga qattiq qoidalar: "so'rayman" ≤ 1 va "… lavozimida ishlayman" tanishtiruv jumlasi → rad (qayta urinish, so'ng 502); (b) `cleanText` ga: bo'sh qator oldidagi ":" bilan tugaydigan birinchi qatorni olib tashlash; (c) namunalarda "so'rayman" ni yanada kamaytirish. (a) 502 ulushini oshirishi mumkin.
+
+**Xarajat (4-bosqich):** ~14 ta Haiku so'rovi (diagnostika + 2 yurish) ≈ $0,003.

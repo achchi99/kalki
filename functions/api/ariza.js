@@ -43,8 +43,16 @@ Qoidalar:
    ismini yozgan bo'lsa ham, uni matnga KIRITMA — bo'sh joy qoldir.
 4. Qonun, modda, qaror raqami, summa, foiz, muddat O'YLAB TOPMA. Foydalanuvchi
    aniq aytmagan sana yoki son kerak bo'lsa, [__] bo'sh joy qoldir.
-5. Matn 40–120 so'z. 1–3 xatboshi. Oxiri "Iltimosimni qanoatlantirishingizni
-   so'rayman." yoki shunga o'xshash odatiy rasmiy jumla bilan tugasin.
+5. Matn 40–120 so'z, 1–3 xatboshi. Murojaat qatori (Hurmatli ..., Assalomu
+   alaykum va h.k.) YOZMA. Matn to'g'ridan-to'g'ri vaziyat bayonidan boshlansin.
+   Birinchi jumla ichida ham murojaat bo'lmasin ("Hurmatli uy egasi, men ..."
+   deb boshlama). O'zing haqingda kimligingni va qayerda ishlashingni yozma —
+   "Men, [F.I.Sh.], [lavozim] lavozimida ishlayman" kabi tanishtiruv jumlasi
+   YOZMA — bu ma'lumot rekvizitlarda bor. Foydalanuvchi aytmagan lavozim, muassasa yoki shaxsni
+   (direktor, rahbar, hokim va h.k.) taxmin qilma.
+   "so'rayman" so'zini matnda bir martadan ortiq ishlatma. Yakuniy
+   "Iltimosimni qanoatlantirishingizni so'rayman." iborasini faqat matnda boshqa
+   iltimos jumlasi bo'lmasa qo'sh.
 6. Foydalanuvchi aytmagan faktni (kasallik tashxisi, sabab, hujjat, pul
    to'lanadimi-yo'qmi, muddat, summa va h.k.) qo'shma — kerak bo'lsa [qavs ichida
    joy qoldir]. Ilova kerak bo'lishi aniq bo'lsa, "Ilova: [hujjat nomi]" deb yoz.
@@ -113,10 +121,16 @@ export function cleanText(raw) {
     if (!s) return true;
     if (/^ariza:?$/i.test(s)) return true;
     if (/^(kimga|kimdan)\s*:/i.test(s)) return true;
+    if (/^(hurmatli|assalomu\s+alaykum)\b[^?]*[,!:]$/i.test(s) && s.split(/\s+/).length <= 10) return true; // murojaat qatori
     if (s.split(/\s+/).length <= 10 && /(?:^|\s)(?:ariza\s+)?matni?\s*:$/i.test(s)) return true; // "... ariza matni:" kirish qatori
     return s.split(/\s+/).length <= 8 && s.length <= 70 && !/[.!?]$/.test(s) && SHORT_HEAD.test(s.replace(/[:,]$/, ''));
   };
   while (lines.length && isHead(lines[0])) lines.shift();
+  // birinchi jumla ichidagi murojaat prefiksi: "Hurmatli uy egasi, men ..." -> "Men ..."
+  if (lines.length) {
+    const m = lines[0].match(/^\s*(?:hurmatli|assalomu\s+alaykum)\b[^,!:.\n]{0,40}[,!:]\s*(.+)$/i);
+    if (m && m[1]) lines[0] = m[1].charAt(0).toLocaleUpperCase('uz') + m[1].slice(1);
+  }
   const isTail = (l) => {
     const s = l.trim();
     return !s || /^(sana|imzo)\s*:/i.test(s) || /hurmat\s+bilan/i.test(s) || /_{3,}/.test(s) ||
@@ -131,6 +145,7 @@ export function validate(t) {
   if (!t) return 'bosh';
   if (/[Ѐ-ӿ]/.test(t)) return 'kirill';
   if (hasLawRef(t)) return 'qonun';
+  if (/^\s*(hurmatli|assalomu\s+alaykum)/i.test(t)) return 'murojaat';
   const w = wordCount(t);
   if (w < 25 || w > 150) return 'soz';
   return null;
