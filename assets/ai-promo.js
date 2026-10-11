@@ -13,9 +13,9 @@
   function init() {
     if (document.getElementById('aiPromo')) return;
     var anchor, place;
-    var cta = document.getElementById('docs-cta');
+    var cta = document.getElementById('docs-cta') || document.getElementById('docs');
     var cat = document.getElementById('dcat-ariza');
-    if (cta) { anchor = cta.querySelector('.dc-grid'); place = 'cta'; }
+    if (cta) { anchor = cta.querySelector('.dgrid') || cta.querySelector('.dc-grid'); place = 'cta'; }
     else if (cat) { anchor = cat.querySelector('.dcat-head'); place = 'cat'; }
     if (!anchor) return;
 
@@ -25,6 +25,7 @@
       '.aip-t{flex:1;min-width:0;overflow-wrap:anywhere}.aip-t b{font-weight:800}.aip-go{flex:none;font-weight:800}' +
       '.aip-n{flex:none;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#D99A2B;color:#2A1D00;border-radius:99px;padding:2px 8px}' +
       '#docs-cta .aip{background:rgba(217,154,43,.16);border:1px solid rgba(217,154,43,.55);color:#fff}' +
+      'body.v2 .aip{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);color:var(--text);margin:var(--s2) 0 0;font-size:16px;padding:14px 18px;border-radius:var(--r)}body.v2 .aip:hover{box-shadow:var(--shadow-hover)}body.v2 .aip .aip-i{width:20px;height:20px;flex:none;fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--gold)}body.v2 .aip-n{background:var(--gold-soft);color:#7A4F05}' +
       '#dcat-ariza .aip{background:#FFF7E3;border:1.5px solid #E6C275;color:#4A3305;margin:0 0 14px}';
     document.head.appendChild(st);
 
@@ -32,7 +33,7 @@
     a.id = 'aiPromo';
     a.className = 'aip';
     a.href = 'ariza-namunasi#ai';
-    a.innerHTML = '<span class="aip-n">Yangi</span><span class="aip-t"><b>✨ AI ariza matnini yozib beradi</b> — vaziyatingizni yozing, tayyor matn oling</span><span class="aip-go">→</span>';
+    a.innerHTML = '<span class="aip-n">Yangi</span><svg class="aip-i" aria-hidden="true" width="20" height="20"><use href="/assets/icons.svg#i-sparkles"></use></svg><span class="aip-t"><b>AI ariza matnini yozib beradi</b> — vaziyatingizni yozing, tayyor matn oling</span><span class="aip-go">→</span>';
     if (place === 'cta') anchor.parentNode.insertBefore(a, anchor.nextSibling);
     else anchor.parentNode.insertBefore(a, anchor.nextSibling);
   }

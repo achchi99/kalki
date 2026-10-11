@@ -202,15 +202,76 @@ const XNAV_TITLE = '<div style="font-size:12px;font-weight:800;letter-spacing:.1
 const XNAV_HOME_A = '<a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a>';
 const XNAV_A_STYLE = 'font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%';
 
-function xnavHtml(selfSlug) {
+const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]\s?/gu;
+function xnavHtml(selfSlug, plain) {
   const pills = XNAV_LINKS
     .filter(([href]) => href !== selfSlug)
     .map(([href, label]) => '<a href="' + href + '" style="' + XNAV_A_STYLE + '">' + label + '</a>')
     .join('');
   const home = selfSlug === '' ? '' : XNAV_HOME_A;
-  return '<nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0">'
+  const out = '<nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0">'
     + XNAV_TITLE + '<div style="display:flex;flex-wrap:wrap;gap:8px">' + home + pills + '</div></nav>';
+  return plain ? out.replace(EMOJI_RE, '') : out;
 }
+
+/* ---------------- V2 (dizayn-2026): yangi sarlavha va footer ----------------
+   Faqat V2_PAGES ro'yxatidagi sahifalar. Qolganlari eski kanonik variantda qoladi.
+   Sarlavha bitta qator (logo | menyu | til | burger); #topmenu va #sitebar identifikatorlari
+   saqlangan, shuning uchun sahifalarning o'z til skriptlari (#topmenu a[data-tm-uz]) ishlayveradi. */
+const V2_PAGES = ['index.html', 'shablonlar.html', 'gisht-kalkulyator.html'];
+const V2_ACTIVE = { 'index.html': '', 'shablonlar.html': 'hujjatlar', 'gisht-kalkulyator.html': './#kategoriyalar' };
+const V2_LINKS = [
+  ['./#kategoriyalar', 'Kalkulyatorlar', 'Калькуляторы', [
+    ['./#cat-moliya', 'Moliya', 'Финансы'], ['./#cat-qurilish', 'Qurilish', 'Стройка'], ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
+    ['./#cat-hayot', 'Hayotiy', 'Жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
+  ['hujjatlar', 'Hujjatlar', 'Документы', [
+    ['hujjatlar', 'Hujjat generatorlari', 'Генератор документов'], ['shablonlar', 'Shablonlar', 'Шаблоны']]],
+  ['blog', 'Maqolalar', 'Статьи', null],
+];
+const CHEV = '<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg>';
+function v2A(href, uz, ru, active) {
+  return '<a href="' + href + '"' + (href === active ? ' class="tm-on" aria-current="page"' : '') + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>';
+}
+function headerV2Html(f) {
+  const active = V2_ACTIVE[f] || '';
+  const isCyr = CYR_PAGES.indexOf(f) > -1;
+  const slug = f.replace(/\.html$/, '');
+  const items = V2_LINKS.map(([href, uz, ru, sub]) => {
+    if (!sub) return '<li>' + v2A(href, uz, ru, active) + '</li>';
+    return '<li class="has-sub">' + v2A(href, uz, ru, active)
+      + '<button type="button" class="tm2-chev" aria-expanded="false" aria-label="' + uz + '">' + CHEV + '</button>'
+      + '<ul class="tm2-sub">' + sub.map(([h, u, r]) => '<li>' + v2A(h, u, r, '') + '</li>').join('') + '</ul></li>';
+  }).join('');
+  const langSeg = '<div class="lang-seg' + (isCyr ? ' lang-seg-3' : '') + '" role="group" aria-label="Til / Язык">'
+    + '<button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button>'
+    + (isCyr ? '<a id="langCyr" href="/cyr/' + slug + '">ЎЗ</a>' : '') + '</div>';
+  return '<div id="sitebar" class="sb2"><div class="sb2-in">'
+    + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
+    + '<nav id="topmenu" aria-label="Bo\'limlar"><ul class="tm2">' + items + '</ul></nav>'
+    + langSeg
+    + '<button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button>'
+    + '</div></div>';
+}
+const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>';
+function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
+function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
+const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
+  + '<div class="sf2-brand">Kalki<span class="dot">.uz</span></div>'
+  + '<p' + lf("O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.", 'Бесплатные калькуляторы и образцы документов для Узбекистана.') + ">O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.</p>"
+  + '<div class="sf2-cols" style="margin-top:32px">'
+  + '<div><div class="sf2-t"' + lf('Kategoriyalar', 'Категории') + '>Kategoriyalar</div><ul>'
+  + fLink('./#cat-moliya', 'Moliya', 'Финансы') + fLink('./#cat-qurilish', 'Qurilish va yer', 'Стройка и земля') + fLink('./#cat-kommunal', 'Kommunal va avto', 'Коммуналка и авто')
+  + fLink('./#cat-hayot', 'Kundalik hayot', 'Жизнь') + fLink('./#cat-huquqiy', 'Huquqiy', 'Юридические') + '</ul></div>'
+  + '<div><div class="sf2-t"' + lf('Hujjatlar', 'Документы') + '>Hujjatlar</div><ul>'
+  + fLink('hujjatlar', 'Hujjat generatorlari', 'Генератор документов') + fLink('shablonlar', 'Shablonlar', 'Шаблоны')
+  + fLink('ariza-namunasi', 'Ariza yozish', 'Написать заявление') + fLink('blog', 'Maqolalar', 'Статьи') + '</ul></div>'
+  + '<div><div class="sf2-t"' + lf('Aloqa', 'Связь') + '>Aloqa</div><ul>'
+  + '<li><a href="https://t.me/kalki_uz"' + lf('Telegram kanali', 'Telegram-канал') + '>Telegram kanali</a></li>'
+  + '<li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li>'
+  + fLink('hamkorlik', 'Hamkorlik', 'Партнёрство') + '</ul></div>'
+  + '</div>'
+  + '@@LEGAL@@@@COPY@@'
+  + '</div></footer>';
 
 /* ---------------- Yordamchilar ---------------- */
 function block(s, startTag, endTag) {
@@ -254,7 +315,60 @@ function cutDiv(s, marker) {
 }
 
 /* ---------------- Sahifani qayta yig'ish ---------------- */
+function rebuildV2(f, src) {
+  let s = src;
+  const notes = [];
+  const nav0 = s.indexOf('<nav id="topmenu"'), sb0 = s.indexOf('<div id="sitebar"');
+  const anchor = Math.min(...[nav0, sb0].filter((x) => x >= 0));
+  if (!isFinite(anchor)) return { s, notes: ['topmenu/sitebar yo\'q'] };
+  s = cutDiv(s, 'id="sitebar"');
+  const nav = block(s, '<nav id="topmenu"', '</nav>');
+  if (nav) s = s.slice(0, nav.i) + s.slice(nav.j);
+  s = s.slice(0, anchor) + headerV2Html(f) + s.slice(anchor);
+
+  // CSS va nav.js: eski chromecss o'rniga tokens.css + site.css
+  const ch = block(s, '<style id="chromecss">', '</style>');
+  if (ch) s = s.slice(0, ch.i) + s.slice(ch.j);
+  if (s.indexOf(V2_LINKS_TAGS) < 0) {
+    s = s.replace(/<link rel="stylesheet" href="\/assets\/css\/tokens\.css" id="v2tokens">/, '')
+         .replace(/<link rel="stylesheet" href="\/assets\/css\/site\.css" id="v2site">/, '')
+         .replace(/<script src="\/assets\/nav\.js" defer="" id="v2nav"><\/script>/, '');
+    // prerender hreflang teglarini oxirida qo'shadi — bizning teglar ulardan OLDIN turadi
+    const hl = s.indexOf('<link rel="alternate" hreflang');
+    const hd = hl > -1 ? hl : s.indexOf('</head>');
+    s = s.slice(0, hd) + V2_LINKS_TAGS + '\n' + s.slice(hd);
+  }
+
+  // <body class="v2">
+  s = s.replace(/<body([^>]*)>/, (m, a) => /class="[^"]*\bv2\b/.test(a) ? m
+    : (/class="/.test(a) ? '<body' + a.replace(/class="/, 'class="v2 ') + '>' : '<body class="v2"' + a + '>'));
+
+  // footer: eski legal-links, copyline va <footer> olib tashlanadi, yangi #sf2 </main> dan keyin
+  while (s.indexOf('<div id="legal-links"') > -1) s = cutDiv(s, 'id="legal-links"');
+  s = s.replace(/<div (?:id="copyline" )?style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">[\s\S]*?<\/div>/, '');
+  s = s.replace(/<footer id="sf2">[\s\S]*?<\/footer>/, '').replace(/<footer>[\s\S]*?<\/footer>/, '');
+  const me = s.indexOf('</main>');
+  if (me < 0) notes.push('</main> yo\'q');
+  else s = s.slice(0, me + 7) + FOOTER_V2.replace('@@LEGAL@@', LEGAL_HTML).replace('@@COPY@@', COPY_HTML) + s.slice(me + 7);
+
+  // footer-lang.js
+  const LANGTAG = '<script src="assets/lang.js" defer=""></script>\n';
+  const FLTAG = '<script src="assets/footer-lang.js" defer=""></script>\n';
+  if (s.indexOf('assets/footer-lang.js') < 0) {
+    if (s.indexOf(LANGTAG) > -1) s = s.replace(LANGTAG, LANGTAG + FLTAG);
+    else notes.push('lang.js tegi topilmadi');
+  }
+  // "Boshqa kalkulyatorlar" (bor bo'lsa)
+  const xn = block(s, '<nav id="xnav"', '</nav>');
+  if (xn) {
+    const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
+    s = s.slice(0, xn.i) + xnavHtml(selfSlug, true) + s.slice(xn.j);
+  }
+  return { s, notes };
+}
+
 function rebuild(f, src) {
+  if (V2_PAGES.indexOf(f) > -1) return rebuildV2(f, src);
   let s = src;
   const notes = [];
 
@@ -373,4 +487,4 @@ function main() {
 
 if (require.main === module) process.exit(main());
 
-module.exports = { CHROME_CSS, sitebarHtml, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };
+module.exports = { V2_PAGES, CHROME_CSS, sitebarHtml, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };

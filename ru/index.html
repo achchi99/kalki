@@ -39,133 +39,57 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&amp;display=swap" rel="stylesheet">
 <style>
-:root{--wrap-max:1120px;
-  --paper:#F5F7F5;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DFE6E1;--radius:16px;
-  --moliya:#0E3B2E;--moliya-soft:#EAF3EE;
-  --qurilish:#8C3B2A;--qurilish-soft:#F6EDE8;
-  --kommunal:#1D4E6B;--kommunal-soft:#E8F1F6;
-  --hayot:#5B3A63;--hayot-soft:#F3EDF5;
-  --huquqiy:#2C3E66;--huquqiy-soft:#EAEDF5;
-  --gold:#D99A2B;
-}
+:root{--wrap-max:1120px}
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
-.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 20px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
 
-/* HERO */
-header{
-  background:
-    radial-gradient(1000px 500px at 85% -10%, rgba(217,154,43,.22), transparent 60%),
-    radial-gradient(800px 460px at -5% 110%, rgba(91,58,99,.5), transparent 55%),
-    linear-gradient(150deg,#0E3B2E 0%,#122E26 60%,#1A2B33 100%);
-  color:#fff;padding:26px 0 46px;
-}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
-.logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none}
-.logo .dot{color:var(--gold)}
-.lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px}
-.lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-.lang-seg button.on{background:#fff;color:#0E3B2E}
-.hero{max-width:680px}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  background:rgba(217,154,43,.15);color:#EFC272;border:1px solid rgba(217,154,43,.35);
-  padding:6px 14px;border-radius:99px;margin-bottom:16px;
-}
-h1{font-size:34px;font-weight:800;line-height:1.18;letter-spacing:-.02em}
-.sub{margin-top:12px;font-size:16px;color:#C4D3CA;max-width:52ch}
-.search-shell{
-  margin-top:26px;display:flex;align-items:center;gap:12px;max-width:560px;
-  background:#fff;border-radius:14px;padding:0 18px;
-  box-shadow:0 12px 32px rgba(0,0,0,.25);
-}
-.search-shell svg{flex-shrink:0;opacity:.4}
-.search-shell input{flex:1;border:0;outline:0;font:inherit;font-size:16px;font-weight:600;color:var(--ink);padding:17px 0;background:transparent;min-width:0}
-.stats{display:flex;gap:34px;margin-top:26px;flex-wrap:wrap}
-.stat{font-size:13px;font-weight:700;color:#93AA9F}
-.stat b{display:block;font-size:24px;color:#fff;font-weight:800}
+/* HERO: tekis to'q yashil, gradientsiz */
+.hero2{background:var(--ink);color:#fff;padding:var(--s5) 0 var(--s5)}
+.hero2 h1,body.v2 .hero2 h1{color:#fff;max-width:20ch}
+.hero2 .sub{margin-top:var(--s2);font-size:18px;line-height:1.55;color:#C7D6CD;max-width:62ch}
+.search-shell{margin-top:var(--s4);display:flex;align-items:center;gap:12px;max-width:640px;background:#fff;border-radius:var(--r);padding:0 18px;height:56px}
+.search-shell svg{flex:none;color:var(--muted)}
+.search-shell input{flex:1;border:0;outline:0;font:inherit;font-size:17px;font-weight:500;color:var(--text);background:transparent;min-width:0;height:100%}
+.search-shell:focus-within{box-shadow:0 0 0 3px rgba(217,154,43,.55)}
+.hchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s3)}
+.hchips a,body.v2 .hchips a{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:99px;border:1px solid rgba(255,255,255,.28);color:#fff;text-decoration:none;font-size:15px;font-weight:500;transition:background var(--ease),border-color var(--ease)}
+.hchips a:hover,body.v2 .hchips a:hover{background:rgba(255,255,255,.12);border-color:#fff}
+@media (max-width:640px){.hero2{padding:var(--s4) 0 var(--s4)}.hero2 .sub{font-size:16px}.search-shell{height:52px}}
 
-/* Hujjat generatorlari bloki — katalog ustida, statik HTML da */
-#docs-cta{margin-top:26px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:var(--radius);padding:20px 20px 18px;color:#fff}
-#docs-cta .dc-t{display:block;font-size:19px;font-weight:800;letter-spacing:-.01em}
-#docs-cta .dc-s{display:block;font-size:13.5px;font-weight:600;color:#C9D6CE;margin-top:4px;max-width:60ch}
-#docs-cta .dc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
-@media (min-width:980px){#docs-cta .dc-grid{grid-template-columns:1fr 1fr 1fr}}
-@media (max-width:420px){#docs-cta .dc-grid a{font-size:13px;padding:10px 11px;gap:7px}}
-#docs-cta .dc-grid a{display:flex;align-items:center;gap:9px;min-width:0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:11px;padding:11px 13px;color:#fff;text-decoration:none;font-size:14px;font-weight:700;transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent}
-#docs-cta .dc-grid a span:not(.dc-ic){min-width:0;overflow-wrap:break-word}
-#docs-cta .dc-grid a:hover{background:rgba(255,255,255,.15);border-color:rgba(217,154,43,.55)}
-#docs-cta .dc-ic{font-size:17px;flex:none}
-#docs-cta .dc-all{display:inline-block;margin-top:15px;background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:10px 18px;border-radius:10px;text-decoration:none}
-#docs-cta .dc-all:hover{background:#E8AC42}
-#docs-cta .dc-more{display:none}
-#docs-cta .dc-more.show{display:grid}
-#docs-cta .dc-toggle{display:inline-block;margin-top:15px;margin-right:10px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22);font:inherit;font-size:14px;font-weight:800;padding:10px 16px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-#docs-cta .dc-toggle:hover{background:rgba(255,255,255,.16)}
+main.wrap{padding-bottom:0}
+.lead{margin:-8px 0 var(--s3);color:var(--muted);font-size:var(--fs-body)}
+.cat-sect{margin-top:var(--s5);scroll-margin-top:76px}
+.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:var(--s2)}
+.cat-title{font-size:22px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.cat-count{font-size:14px;font-weight:600;color:var(--muted);background:#E9EFEA;border-radius:99px;padding:2px 12px}
+.no-results{display:none;text-align:center;color:var(--muted);font-weight:600;padding:var(--s5) 0}
+.searching #kategoriyalar,.searching #mashhur,.searching #docs,.searching #maqolalar,.searching #aboutBlock{display:none}
 
-/* CATALOG */
-main{padding:12px 0 56px}
-.cat-sect{margin-top:34px;scroll-margin-top:64px}
-.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.cat-dot{width:14px;height:14px;border-radius:5px}
-.cat-title{font-size:20px;font-weight:800;letter-spacing:-.01em}
-.cat-count{font-size:12.5px;font-weight:800;color:var(--muted);background:#E9EFEA;border-radius:99px;padding:4px 12px}
-.cards{display:grid;grid-template-columns:1fr;gap:12px}
-@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
-@media (min-width:980px){.cards{grid-template-columns:1fr 1fr 1fr}}
-a.calc-card{
-  display:flex;align-items:flex-start;gap:14px;
-  background:var(--card);border:1px solid var(--line);
-  border-radius:var(--radius);padding:18px;
-  text-decoration:none;color:var(--ink);position:relative;overflow:hidden;
-  transition:transform .15s,box-shadow .2s,border-color .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-a.calc-card::before{
-  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cc);
-  transition:width .2s;
-}
-a.calc-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(22,33,28,.12);border-color:transparent}
-a.calc-card:hover::before{width:6px}
-a.calc-card:active{transform:scale(.985)}
-.cc-icon{
-  width:48px;height:48px;border-radius:13px;background:var(--ccs);
-  display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;
-}
-.cc-body{min-width:0;flex:1}
-.cc-name{font-size:16px;font-weight:800;line-height:1.3}
-.cc-desc{font-size:13px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.45}
-.cc-arrow{color:var(--cc);font-size:20px;font-weight:800;flex-shrink:0;align-self:center;opacity:.7}
-.no-results{display:none;text-align:center;color:var(--muted);font-weight:700;padding:44px 0}
+/* hujjat generatorlari */
+.d-tile,body.v2 .d-tile{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--ink);font-size:16px;font-weight:600;min-width:0;transition:box-shadow var(--ease),border-color var(--ease)}
+.d-tile:hover{box-shadow:var(--shadow-hover);border-color:var(--line-strong)}
+.d-tile .k-ico{width:40px;height:40px}
+.d-tile span:not(.k-ico){min-width:0;overflow-wrap:anywhere;line-height:1.3}
+.dc-more{display:none;margin-top:var(--s2)}
+.dc-more.show{display:grid}
+#dcToggle{margin-top:var(--s2)}
 
-/* ABOUT + FOOTER */
-.about{margin-top:52px;max-width:720px;font-size:15px;color:#33403A}
-.about h2{font-size:19px;font-weight:800;color:var(--ink);margin:22px 0 8px}
-.about p{margin-bottom:10px}
-footer{margin-top:48px;padding:22px 0 34px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+/* maqolalar */
+.a-card,body.v2 .a-card{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-decoration:none;color:var(--ink);height:100%;transition:box-shadow var(--ease),border-color var(--ease)}
+.a-card:hover{box-shadow:var(--shadow-hover);border-color:var(--line-strong)}
+.a-card .tag{font-size:14px;font-weight:600;color:var(--brand)}
+.a-card .t{font-size:18px;font-weight:700;line-height:1.3}
 
-@media (max-width:600px){
-  h1{font-size:27px}
-  header{padding:22px 0 38px}
-  .stats{gap:24px}
-  .stat b{font-size:20px}
-}
+.about{margin-top:var(--sec)}
 </style>
 <link rel="manifest" href="/manifest.json">
 <style id="clsfix">
-/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
-header{min-height:340px}
-.hero{min-height:250px}
-h1{min-height:1.2em}
+/* CLS barqarorlashtirish */
+.hero2 .sub[data-i]{min-height:3em;display:block}
 [data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
-.sub[data-i]{min-height:1.4em;display:block}
-.brand,.cat-badge{min-height:1em}
 img,svg{height:auto}
-.form-card,.card2{contain:layout}
 </style>
 <script src="/ga.js"></script><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:site_name" content="Kalki.uz">
@@ -173,127 +97,85 @@ img,svg{height:auto}
 <meta name="twitter:description" content="Кредит, ипотека, зарплата, кирпич, ДТМ и ещё 30+ бесплатных калькуляторов. Заполните договор, заявление или доверенность онлайн и скачайте в Word или PDF.">
 <script type="application/ld+json" id="site-ld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kalki.uz/#website","name":"Kalki.uz","alternateName":"Kalki","url":"https://kalki.uz/","description":"Kredit, ipoteka, ish haqi, g'isht, DTM va yana 30+ bepul kalkulyator. Shartnoma, ariza va ishonchnoma namunalarini onlayn to'ldirib, Word yoki PDF yuklab oling.","inLanguage":["uz","ru"],"publisher":{"@id":"https://kalki.uz/#org"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kalki.uz/?q={search_term_string}"},"query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"https://kalki.uz/#org","name":"Kalki.uz","url":"https://kalki.uz/","email":"info@kalki.uz","description":"Kredit, ipoteka, ish haqi, g'isht, DTM va yana 30+ bepul kalkulyator. Shartnoma, ariza va ishonchnoma namunalarini onlayn to'ldirib, Word yoki PDF yuklab oling.","logo":{"@type":"ImageObject","url":"https://kalki.uz/apple-touch-icon.png"},"sameAs":["https://t.me/kalki_uz"]}]}</script>
 <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
-<style id="chromecss">
-/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
-   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
-:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
-#topmenu{background:var(--nav-bg)}
-#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
-#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
-#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
-#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#sitebar{background:var(--nav-bg)}
-#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
-#sitebar .logo .dot{color:#D99A2B}
-#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
-#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
-#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
-#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
-#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
-#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
-@media (max-width:640px){
-  :root{--nav-pad:12px}
-  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
-  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
-  #sitebar .logo{font-size:21px}
-}
-@media (max-width:420px){
-  :root{--nav-pad:9px}
-  #topmenu a{font-size:11px;padding:4px 7px}
-}
-</style>
-<link rel="alternate" hreflang="uz" href="https://kalki.uz/" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/" data-hreflang-gen="1"></head>
-<body>
-<nav id="topmenu" aria-label="Bo'limlar"><div class="tm-in"><a href="./" class="tm-on" data-tm-uz="🏠 Asosiy" data-tm-ru="🏠 Главная">🏠 Главная</a><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a><a href="hujjatlar" data-tm-uz="📝 Hujjatlar generatori" data-tm-ru="📝 Генератор документов">📝 Генератор документов</a><a href="shablonlar" data-tm-uz="📄 Shablonlar" data-tm-ru="📄 Шаблоны">📄 Шаблоны</a><a href="blog" data-tm-uz="📰 Maqolalar" data-tm-ru="📰 Статьи">📰 Статьи</a></div></nav><div id="sitebar"><div class="topbar"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div></div></div>
 
-<header>
+
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>
+<link rel="alternate" hreflang="uz" href="https://kalki.uz/" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/" data-hreflang-gen="1"></head>
+<body class="v2">
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="./">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="./#kategoriyalar" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Калькуляторы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a></li><li><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a></li><li><a href="./#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Жизнь</a></li><li><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a></li></ul></li><li class="has-sub"><a href="hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Документы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Шаблоны</a></li></ul></li><li><a href="blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Статьи</a></li></ul></nav><div class="lang-seg" role="group" aria-label="Til / Язык"><button type="button" id="langUz" class="">UZ</button><button type="button" id="langRu" class="on">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+
+<header class="hero2">
   <div class="wrap">
-    
-    <div class="hero">
-      <span class="hero-badge" data-i="badge">Для Узбекистана</span>
-      <h1 data-i="h1">Считайте всё в одном месте</h1>
-      <p class="sub" data-i="sub">От кредита и зарплаты до кирпича, растаможки и баллов DTM — 40+ бесплатных калькуляторов по местному законодательству. А образцы договоров, заявлений и доверенностей можно заполнить онлайн и скачать в Word или PDF.</p>
-      <div class="search-shell">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#16211C" stroke-width="2.4"></circle><path d="M20 20l-3.5-3.5" stroke="#16211C" stroke-width="2.4" stroke-linecap="round"></path></svg>
-        <input type="text" id="search" autocomplete="off" placeholder="Поиск калькулятора...">
-      </div>
-      <div class="stats">
-        <div class="stat"><b id="statCount">40+</b><span data-i="stCalc">калькуляторов</span></div>
-        <div class="stat"><b>2</b><span data-i="stLang">языка</span></div>
-        <div class="stat"><b>100%</b><span data-i="stFree">бесплатно</span></div>
-      </div>
+    <h1 data-i="h1">Считайте всё в одном месте</h1>
+    <p class="sub" data-i="sub">От кредита и зарплаты до кирпича, растаможки и баллов DTM — 40+ бесплатных калькуляторов по местному законодательству. А образцы договоров, заявлений и доверенностей можно заполнить онлайн и скачать в Word или PDF.</p>
+    <div class="search-shell">
+      <svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-search"></use></svg>
+      <input type="text" id="search" autocomplete="off" placeholder="Поиск калькулятора..." aria-label="Kalkulyator qidirish">
     </div>
+    <div class="hchips" id="heroChips"><a href="#cat-moliya">Финансы</a><a href="#cat-qurilish">Стройка и земля</a><a href="#cat-kommunal">Коммуналка и авто</a><a href="#cat-hayot">Жизнь</a><a href="#cat-huquqiy">Юридические</a></div>
   </div>
 </header>
 
-<main class="wrap">
-  <section id="docs-cta"><span class="dc-t" data-i="docsTitle">📝 Генераторы документов</span><span class="dc-s" data-i="docsSub">Заполните форму — получится готовый Word или PDF</span><div class="dc-grid"><a href="ijara-shartnomasi-namunasi"><span class="dc-ic">🏠</span><span data-i="d_ijara">Договор аренды</span></a><a href="mehnat-shartnomasi-namunasi"><span class="dc-ic">💼</span><span data-i="d_mehnat">Трудовой договор</span></a><a href="avto-oldi-sotdi-shartnomasi-namunasi"><span class="dc-ic">🚗</span><span data-i="d_avto">Купля-продажа авто</span></a><a href="ishonchnoma-namunasi"><span class="dc-ic">📝</span><span data-i="d_ishonchnoma">Доверенность</span></a><a href="tilxat-namunasi"><span class="dc-ic">💰</span><span data-i="d_tilxat">Расписка</span></a><a href="ariza-namunasi"><span class="dc-ic">📄</span><span data-i="d_ariza">Заявление</span></a></div><div class="dc-grid dc-more" id="dcMore"><a href="ishdan-boshash-arizasi-namunasi"><span class="dc-ic">📝</span><span data-i="d_ishdan">Заявление об увольнении</span></a><a href="topshirish-qabul-dalolatnomasi-namunasi"><span class="dc-ic">📦</span><span data-i="d_topshirish">Акт приёма-передачи</span></a><a href="xizmat-korsatish-shartnomasi-namunasi"><span class="dc-ic">🤝</span><span data-i="d_xizmat">Договор оказания услуг</span></a><a href="davo-arizasi-namunasi"><span class="dc-ic">⚖️</span><span data-i="d_davo">Исковое заявление</span></a><a href="tavsifnoma-namunasi"><span class="dc-ic">📑</span><span data-i="d_tavsif">Характеристика</span></a><a href="uy-oldi-sotdi-shartnomasi"><span class="dc-ic">🔑</span><span data-i="d_uyoldi">Договор купли-продажи дома</span></a><a href="talabnoma-namunasi"><span class="dc-ic">📮</span><span data-i="d_talab">Претензия</span></a><a href="qurilish-pudrat-shartnomasi-namunasi"><span class="dc-ic">🏗️</span><span data-i="d_pudrat">Договор строительного подряда</span></a><a href="kadr-buyruqlari-namunasi"><span class="dc-ic">🗂️</span><span data-i="d_kadr">Кадровый приказ</span></a><a href="ish-haqi-malumotnomasi-namunasi"><span class="dc-ic">💰</span><span data-i="d_ishhaqi">Справка о зарплате</span></a><a href="kafolat-xati-namunasi"><span class="dc-ic">🛡️</span><span data-i="d_kafolat">Гарантийное письмо</span></a></div><button type="button" class="dc-toggle" id="dcToggle">Ещё 11 →</button><a class="dc-all" href="hujjatlar" data-i="docsAll">Все документы →</a></section><div id="catalog"><section class="cat-sect" id="cat-moliya"><div class="cat-head"><span class="cat-dot" style="background:var(--moliya)"></span><span class="cat-title">Финансы</span><span class="cat-count">10</span></div><div class="cards"><a class="calc-card" href="oila-byudjet-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">👪</span><span class="cc-body"><span class="cc-name">Семейный бюджет</span><br><span class="cc-desc">Доходы, дети, продуктовая корзина и накопления</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="kredit-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">💳</span><span class="cc-body"><span class="cc-name">Кредитный калькулятор</span><br><span class="cc-desc">Ежемесячный платёж, аннуитет и график</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="ipoteka-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">🏠</span><span class="cc-body"><span class="cc-name">Ипотечный калькулятор</span><br><span class="cc-desc">Взнос, платёж, рекомендуемый доход</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="omonat-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">🏦</span><span class="cc-body"><span class="cc-name">Депозитный калькулятор</span><br><span class="cc-desc">Доход, капитализация, пополнение</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="kredit-limit-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">📊</span><span class="cc-body"><span class="cc-name">Кредитный лимит</span><br><span class="cc-desc">Сколько кредита даст банк — по вашему доходу</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="ipoteka-yoki-ijara-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">🏘️</span><span class="cc-body"><span class="cc-name">Ипотека или аренда?</span><br><span class="cc-desc">Что выгоднее — сравнение в трёх сценариях</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="ijara-stavkalari" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">📋</span><span class="cc-body"><span class="cc-name">Ставки арендной платы</span><br><span class="cc-desc">Минимальная ставка и коэффициент — по регионам, со ссылкой на решение</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="oylik-soliq-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">💵</span><span class="cc-body"><span class="cc-name">Зарплатный калькулятор</span><br><span class="cc-desc">Сумма на руки, налоги 2026</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="qqs-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">🧾</span><span class="cc-body"><span class="cc-name">Калькулятор НДС</span><br><span class="cc-desc">Начислить и выделить 12% НДС</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="bojxona-kalkulyator" style="--cc:var(--moliya);--ccs:var(--moliya-soft)"><span class="cc-icon">🚗</span><span class="cc-body"><span class="cc-name">Калькулятор растаможки</span><br><span class="cc-desc">Пошлины, электромобили, 2026</span></span><span class="cc-arrow">›</span></a></div></section><section class="cat-sect" id="cat-qurilish"><div class="cat-head"><span class="cat-dot" style="background:var(--qurilish)"></span><span class="cat-title">Стройка и земля</span><span class="cat-count">7</span></div><div class="cards"><a class="calc-card" href="uy-qurish-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🏗️</span><span class="cc-body"><span class="cc-name">Калькулятор строительства дома</span><br><span class="cc-desc">Кирпич, бетон, кровля и смета вместе</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="gisht-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🧱</span><span class="cc-body"><span class="cc-name">Калькулятор кирпича</span><br><span class="cc-desc">Кирпич, шлакоблок, пеноблок, газоблок</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="beton-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🏗️</span><span class="cc-body"><span class="cc-name">Калькулятор бетона</span><br><span class="cc-desc">М100–М300: цемент, песок, щебень</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="tom-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🏠</span><span class="cc-body"><span class="cc-name">Калькулятор кровли</span><br><span class="cc-desc">Профнастил, черепица, брус и саморезы</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="remont-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🔨</span><span class="cc-body"><span class="cc-name">Калькулятор ремонта</span><br><span class="cc-desc">Ламинат, обои, краска и бюджет по комнате</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="yer-konvertor" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🌾</span><span class="cc-body"><span class="cc-name">Конвертер площади</span><br><span class="cc-desc">Гектар, сотка, таноб, цена земли</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="chorva-kalkulyator" style="--cc:var(--qurilish);--ccs:var(--qurilish-soft)"><span class="cc-icon">🐂</span><span class="cc-body"><span class="cc-name">Откорм скота</span><br><span class="cc-desc">Реальная прибыль от откорма КРС и баранов</span></span><span class="cc-arrow">›</span></a></div></section><section class="cat-sect" id="cat-kommunal"><div class="cat-head"><span class="cat-dot" style="background:var(--kommunal)"></span><span class="cat-title">Коммуналка и авто</span><span class="cat-count">6</span></div><div class="cards"><a class="calc-card" href="konditsioner-kalkulyator" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">❄️</span><span class="cc-body"><span class="cc-name">Калькулятор кондиционера</span><br><span class="cc-desc">Подбор класса BTU для комнаты</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="yoqilgi-kalkulyator" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">⛽</span><span class="cc-body"><span class="cc-name">Топливный калькулятор</span><br><span class="cc-desc">Расходы на поездку и окупаемость ГБО</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="quyosh-panel-kalkulyator" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">☀️</span><span class="cc-body"><span class="cc-name">Калькулятор солнечных панелей</span><br><span class="cc-desc">Сколько панелей, цена и окупаемость</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="avto-xarajat-kalkulyator" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">🚗</span><span class="cc-body"><span class="cc-name">Стоимость содержания авто</span><br><span class="cc-desc">Бензин, страховка, ТО — годовой расход</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="avto-rasmiylashtirish" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">🪪</span><span class="cc-body"><span class="cc-name">Оформление автомобиля</span><br><span class="cc-desc">Регистрация, номер, техпаспорт — для нового и подержанного авто</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="elektr-xarajat-kalkulyator" style="--cc:var(--kommunal);--ccs:var(--kommunal-soft)"><span class="cc-icon">⚡</span><span class="cc-body"><span class="cc-name">Расход электроэнергии</span><br><span class="cc-desc">Сколько тратят приборы в месяц</span></span><span class="cc-arrow">›</span></a></div></section><section class="cat-sect" id="cat-hayot"><div class="cat-head"><span class="cat-dot" style="background:var(--hayot)"></span><span class="cat-title">Жизнь</span><span class="cat-count">13</span></div><div class="cards"><a class="calc-card" href="dtm-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🎓</span><span class="cc-body"><span class="cc-name">Калькулятор баллов DTM</span><br><span class="cc-desc">Общий балл с коэффициентами 3,1/2,1/1,1</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="universitet-kontrakt-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🏛️</span><span class="cc-body"><span class="cc-name">Контракт в вузе</span><br><span class="cc-desc">Расход за весь срок учёбы, кредит и накопления</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="grant-ololmadim" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🧭</span><span class="cc-body"><span class="cc-name">Не прошёл на грант</span><br><span class="cc-desc">Следующий шаг: 7 вариантов и расход по каждому</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="bola-puli-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🍼</span><span class="cc-body"><span class="cc-name">Детское пособие</span><br><span class="cc-desc">Вероятность назначения, критерии 2026</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="kaloriya-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🍚</span><span class="cc-body"><span class="cc-name">Калькулятор калорий</span><br><span class="cc-desc">Дневная норма + дневник узбекских блюд</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="homiladorlik-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">👶</span><span class="cc-body"><span class="cc-name">Беременность и овуляция</span><br><span class="cc-desc">Дата родов, неделя, триместр и благоприятные дни</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="pensiya-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">👵</span><span class="cc-body"><span class="cc-name">Пенсионный калькулятор</span><br><span class="cc-desc">Примерная пенсия по стажу и зарплате</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="staj-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">📅</span><span class="cc-body"><span class="cc-name">Калькулятор трудового стажа</span><br><span class="cc-desc">Общий стаж по периодам работы: годы, месяцы, дни</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="zakot-qurbonlik-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🕌</span><span class="cc-body"><span class="cc-name">Закят и Курбан</span><br><span class="cc-desc">Нисаб, закят 2,5%, доли курбана</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="toy-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">💍</span><span class="cc-body"><span class="cc-name">Расходы на свадьбу</span><br><span class="cc-desc">Зал, плов, артист, сарпо — весь бюджет</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="marosim-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🍽️</span><span class="cc-body"><span class="cc-name">Расходы на мероприятие</span><br><span class="cc-desc">Продукты и смета для плова, ифтара</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="maktab-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">🎒</span><span class="cc-body"><span class="cc-name">Подготовка к школе</span><br><span class="cc-desc">Форма, тетради, книги и платежи</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="alkogol-kalkulyator" style="--cc:var(--hayot);--ccs:var(--hayot-soft)"><span class="cc-icon">⚠️</span><span class="cc-body"><span class="cc-name">Алкогольный калькулятор</span><br><span class="cc-desc">Промилле и время выведения (справочно)</span></span><span class="cc-arrow">›</span></a></div></section><section class="cat-sect" id="cat-huquqiy"><div class="cat-head"><span class="cat-dot" style="background:var(--huquqiy)"></span><span class="cat-title">Юридические</span><span class="cat-count">6</span></div><div class="cards"><a class="calc-card" href="tatil-puli-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">🏖️</span><span class="cc-body"><span class="cc-name">Компенсация за отпуск</span><br><span class="cc-desc">Расчёт компенсации за неиспользованный отпуск</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="kasallik-varaqasi-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">🤒</span><span class="cc-body"><span class="cc-name">Оплата больничного листа</span><br><span class="cc-desc">Пособие по временной нетрудоспособности</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="dekret-puli-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">🤰</span><span class="cc-body"><span class="cc-name">Декретные выплаты</span><br><span class="cc-desc">Пособие по беременности и родам</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">📤</span><span class="cc-body"><span class="cc-name">Компенсация при увольнении</span><br><span class="cc-desc">Выплата при сокращении штата</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="aliment-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">👨‍👧</span><span class="cc-body"><span class="cc-name">Калькулятор алиментов</span><br><span class="cc-desc">Расчёт суммы алиментов на детей</span></span><span class="cc-arrow">›</span></a><a class="calc-card" href="yhxx-jarima-kalkulyator" style="--cc:var(--huquqiy);--ccs:var(--huquqiy-soft)"><span class="cc-icon">🚫</span><span class="cc-body"><span class="cc-name">Штрафы ПДД</span><br><span class="cc-desc">Размер штрафа за нарушение ПДД</span></span><span class="cc-arrow">›</span></a></div></section></div>
-  <div class="no-results" id="noResults" style="display: none;">Ничего не найдено. Попробуйте другое слово.</div>
-  <section class="about" id="aboutBlock"><h2>Что такое Kalki.uz?</h2><p>Kalki.uz — коллекция бесплатных онлайн-калькуляторов, адаптированных под Узбекистан. Налоговые ставки, банковские проценты, таможенные правила — всё по местному законодательству и регулярно обновляется.</p><h2>Почему именно Kalki?</h2><p>Каждый калькулятор на узбекском и русском, работает и на телефоне, и на компьютере, быстро открывается и не требует регистрации. Результат можно отправить в Telegram одной кнопкой.</p></section>
-  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">✈️ Telegram</a></div>
-  <footer>
-    <span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi" data-lf-ru="© 2026 Kalki.uz — проект Achchi">© 2026 Kalki.uz — проект Achchi</span>
-    <span data-i="footTxt">Все расчёты носят справочный характер</span>
-  </footer>
-  <div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Связь: Telegram @achchi90</a></div>
-</main>
+<main class="wrap" id="main">
+  <section class="section" id="kategoriyalar"><div class="section-h"><h2 data-i="catsTitle">Категории</h2></div><div class="grid g5" id="catGrid"><a class="k-card cat" href="#cat-moliya" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-wallet"></use></svg></span><span class="k-name">Финансы</span><span class="k-count">10 калькуляторов</span></a><a class="k-card cat" href="#cat-qurilish" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-hammer"></use></svg></span><span class="k-name">Стройка и земля</span><span class="k-count">7 калькуляторов</span></a><a class="k-card cat" href="#cat-kommunal" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-plug"></use></svg></span><span class="k-name">Коммуналка и авто</span><span class="k-count">6 калькуляторов</span></a><a class="k-card cat" href="#cat-hayot" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-heart"></use></svg></span><span class="k-name">Жизнь</span><span class="k-count">13 калькуляторов</span></a><a class="k-card cat" href="#cat-huquqiy" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-scale"></use></svg></span><span class="k-name">Юридические</span><span class="k-count">6 калькуляторов</span></a></div></section><section class="section" id="mashhur"><div class="section-h"><h2 data-i="popTitle">Самые популярные калькуляторы</h2></div><div class="grid g4" id="popGrid"><a class="k-card" href="kredit-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-credit-card"></use></svg></span><span class="k-body"><span class="k-name">Кредитный калькулятор</span><span class="k-desc">Ежемесячный платёж, аннуитет и график</span></span></a><a class="k-card" href="ipoteka-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span class="k-body"><span class="k-name">Ипотечный калькулятор</span><span class="k-desc">Взнос, платёж, рекомендуемый доход</span></span></a><a class="k-card" href="oylik-soliq-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-banknote"></use></svg></span><span class="k-body"><span class="k-name">Зарплатный калькулятор</span><span class="k-desc">Сумма на руки, налоги 2026</span></span></a><a class="k-card" href="aliment-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-users"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор алиментов</span><span class="k-desc">Расчёт суммы алиментов на детей</span></span></a><a class="k-card" href="gisht-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-brick"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор кирпича</span><span class="k-desc">Кирпич, шлакоблок, пеноблок, газоблок</span></span></a><a class="k-card" href="beton-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-layers"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор бетона</span><span class="k-desc">М100–М300: цемент, песок, щебень</span></span></a><a class="k-card" href="qqs-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-receipt"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор НДС</span><span class="k-desc">Начислить и выделить 12% НДС</span></span></a><a class="k-card" href="bojxona-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-car"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор растаможки</span><span class="k-desc">Пошлины, электромобили, 2026</span></span></a></div></section><section class="section" id="docs"><div class="section-h"><h2 data-i="docsTitle">Генераторы документов</h2><a href="hujjatlar" data-i="docsAll">Все документы →</a></div><p class="lead" data-i="docsSub">Заполните форму — получится готовый Word или PDF</p><div class="grid g3 dgrid"><a class="d-tile" href="ijara-shartnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span data-i="d_ijara">Договор аренды</span></a><a class="d-tile" href="mehnat-shartnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-briefcase"></use></svg></span><span data-i="d_mehnat">Трудовой договор</span></a><a class="d-tile" href="avto-oldi-sotdi-shartnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-car"></use></svg></span><span data-i="d_avto">Купля-продажа авто</span></a><a class="d-tile" href="ishonchnoma-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-pen"></use></svg></span><span data-i="d_ishonchnoma">Доверенность</span></a><a class="d-tile" href="tilxat-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-banknote"></use></svg></span><span data-i="d_tilxat">Расписка</span></a><a class="d-tile" href="ariza-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-file-text"></use></svg></span><span data-i="d_ariza">Заявление</span></a></div><div class="grid g3 dgrid dc-more" id="dcMore"><a class="d-tile" href="ishdan-boshash-arizasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-log-out"></use></svg></span><span data-i="d_ishdan">Заявление об увольнении</span></a><a class="d-tile" href="topshirish-qabul-dalolatnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-layers"></use></svg></span><span data-i="d_topshirish">Акт приёма-передачи</span></a><a class="d-tile" href="xizmat-korsatish-shartnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-users"></use></svg></span><span data-i="d_xizmat">Договор оказания услуг</span></a><a class="d-tile" href="davo-arizasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-scale"></use></svg></span><span data-i="d_davo">Исковое заявление</span></a><a class="d-tile" href="tavsifnoma-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-file-text"></use></svg></span><span data-i="d_tavsif">Характеристика</span></a><a class="d-tile" href="uy-oldi-sotdi-shartnomasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span data-i="d_uyoldi">Договор купли-продажи дома</span></a><a class="d-tile" href="talabnoma-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-mail"></use></svg></span><span data-i="d_talab">Претензия</span></a><a class="d-tile" href="qurilish-pudrat-shartnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-building"></use></svg></span><span data-i="d_pudrat">Договор строительного подряда</span></a><a class="d-tile" href="kadr-buyruqlari-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-clipboard-list"></use></svg></span><span data-i="d_kadr">Кадровый приказ</span></a><a class="d-tile" href="ish-haqi-malumotnomasi-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-banknote"></use></svg></span><span data-i="d_ishhaqi">Справка о зарплате</span></a><a class="d-tile" href="kafolat-xati-namunasi"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-check"></use></svg></span><span data-i="d_kafolat">Гарантийное письмо</span></a></div><button type="button" class="btn btn-ghost" id="dcToggle">Ещё 11 →</button></section><section class="section" id="maqolalar"><div class="section-h"><h2 data-i="artTitle">Последние статьи</h2><a href="blog" data-i="artAll">Все статьи →</a></div><div class="grid g3"><a class="a-card" href="bolalar-nafaqasi-2026"><span class="tag" data-i="a1g">Жизнь</span><span class="t" data-i="a1t">Детское пособие 2026: новые размеры и кто может получить</span></a><a class="a-card" href="qqs-2026"><span class="tag" data-i="a2g">Бизнес</span><span class="t" data-i="a2t">НДС 2026: как считается и кто платит</span></a><a class="a-card" href="ipoteka-2026"><span class="tag" data-i="a3g">Финансы</span><span class="t" data-i="a3t">Ипотека в 2026: ставки, льготы и расчёт</span></a></div></section><section class="section" id="barchasi"><div class="section-h"><h2 data-i="allTitle">Все калькуляторы</h2></div><div id="catalog"><section class="cat-sect" id="cat-moliya"><div class="cat-head"><h3 class="cat-title">Финансы</h3><span class="cat-count">10</span></div><div class="grid g3"><a class="k-card" href="oila-byudjet-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-wallet"></use></svg></span><span class="k-body"><span class="k-name">Семейный бюджет</span><span class="k-desc">Доходы, дети, продуктовая корзина и накопления</span></span></a><a class="k-card" href="kredit-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-credit-card"></use></svg></span><span class="k-body"><span class="k-name">Кредитный калькулятор</span><span class="k-desc">Ежемесячный платёж, аннуитет и график</span></span></a><a class="k-card" href="ipoteka-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span class="k-body"><span class="k-name">Ипотечный калькулятор</span><span class="k-desc">Взнос, платёж, рекомендуемый доход</span></span></a><a class="k-card" href="omonat-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-landmark"></use></svg></span><span class="k-body"><span class="k-name">Депозитный калькулятор</span><span class="k-desc">Доход, капитализация, пополнение</span></span></a><a class="k-card" href="kredit-limit-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-bar-chart"></use></svg></span><span class="k-body"><span class="k-name">Кредитный лимит</span><span class="k-desc">Сколько кредита даст банк — по вашему доходу</span></span></a><a class="k-card" href="ipoteka-yoki-ijara-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-scale"></use></svg></span><span class="k-body"><span class="k-name">Ипотека или аренда?</span><span class="k-desc">Что выгоднее — сравнение в трёх сценариях</span></span></a><a class="k-card" href="ijara-stavkalari" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-clipboard-list"></use></svg></span><span class="k-body"><span class="k-name">Ставки арендной платы</span><span class="k-desc">Минимальная ставка и коэффициент — по регионам, со ссылкой на решение</span></span></a><a class="k-card" href="oylik-soliq-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-banknote"></use></svg></span><span class="k-body"><span class="k-name">Зарплатный калькулятор</span><span class="k-desc">Сумма на руки, налоги 2026</span></span></a><a class="k-card" href="qqs-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-receipt"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор НДС</span><span class="k-desc">Начислить и выделить 12% НДС</span></span></a><a class="k-card" href="bojxona-kalkulyator" style="--cc:var(--moliya);--cs:var(--moliya-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-car"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор растаможки</span><span class="k-desc">Пошлины, электромобили, 2026</span></span></a></div></section><section class="cat-sect" id="cat-qurilish"><div class="cat-head"><h3 class="cat-title">Стройка и земля</h3><span class="cat-count">7</span></div><div class="grid g3"><a class="k-card" href="uy-qurish-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-building"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор строительства дома</span><span class="k-desc">Кирпич, бетон, кровля и смета вместе</span></span></a><a class="k-card" href="gisht-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-brick"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор кирпича</span><span class="k-desc">Кирпич, шлакоблок, пеноблок, газоблок</span></span></a><a class="k-card" href="beton-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-layers"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор бетона</span><span class="k-desc">М100–М300: цемент, песок, щебень</span></span></a><a class="k-card" href="tom-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор кровли</span><span class="k-desc">Профнастил, черепица, брус и саморезы</span></span></a><a class="k-card" href="remont-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-hammer"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор ремонта</span><span class="k-desc">Ламинат, обои, краска и бюджет по комнате</span></span></a><a class="k-card" href="yer-konvertor" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-map"></use></svg></span><span class="k-body"><span class="k-name">Конвертер площади</span><span class="k-desc">Гектар, сотка, таноб, цена земли</span></span></a><a class="k-card" href="chorva-kalkulyator" style="--cc:var(--qurilish);--cs:var(--qurilish-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-leaf"></use></svg></span><span class="k-body"><span class="k-name">Откорм скота</span><span class="k-desc">Реальная прибыль от откорма КРС и баранов</span></span></a></div></section><section class="cat-sect" id="cat-kommunal"><div class="cat-head"><h3 class="cat-title">Коммуналка и авто</h3><span class="cat-count">6</span></div><div class="grid g3"><a class="k-card" href="konditsioner-kalkulyator" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-snowflake"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор кондиционера</span><span class="k-desc">Подбор класса BTU для комнаты</span></span></a><a class="k-card" href="yoqilgi-kalkulyator" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-fuel"></use></svg></span><span class="k-body"><span class="k-name">Топливный калькулятор</span><span class="k-desc">Расходы на поездку и окупаемость ГБО</span></span></a><a class="k-card" href="quyosh-panel-kalkulyator" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-sun"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор солнечных панелей</span><span class="k-desc">Сколько панелей, цена и окупаемость</span></span></a><a class="k-card" href="avto-xarajat-kalkulyator" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-car"></use></svg></span><span class="k-body"><span class="k-name">Стоимость содержания авто</span><span class="k-desc">Бензин, страховка, ТО — годовой расход</span></span></a><a class="k-card" href="avto-rasmiylashtirish" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-file-text"></use></svg></span><span class="k-body"><span class="k-name">Оформление автомобиля</span><span class="k-desc">Регистрация, номер, техпаспорт — для нового и подержанного авто</span></span></a><a class="k-card" href="elektr-xarajat-kalkulyator" style="--cc:var(--kommunal);--cs:var(--kommunal-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-zap"></use></svg></span><span class="k-body"><span class="k-name">Расход электроэнергии</span><span class="k-desc">Сколько тратят приборы в месяц</span></span></a></div></section><section class="cat-sect" id="cat-hayot"><div class="cat-head"><h3 class="cat-title">Жизнь</h3><span class="cat-count">13</span></div><div class="grid g3"><a class="k-card" href="dtm-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-graduation"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор баллов DTM</span><span class="k-desc">Общий балл с коэффициентами 3,1/2,1/1,1</span></span></a><a class="k-card" href="universitet-kontrakt-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-landmark"></use></svg></span><span class="k-body"><span class="k-name">Контракт в вузе</span><span class="k-desc">Расход за весь срок учёбы, кредит и накопления</span></span></a><a class="k-card" href="grant-ololmadim" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-compass"></use></svg></span><span class="k-body"><span class="k-name">Не прошёл на грант</span><span class="k-desc">Следующий шаг: 7 вариантов и расход по каждому</span></span></a><a class="k-card" href="bola-puli-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-heart"></use></svg></span><span class="k-body"><span class="k-name">Детское пособие</span><span class="k-desc">Вероятность назначения, критерии 2026</span></span></a><a class="k-card" href="kaloriya-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-flame"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор калорий</span><span class="k-desc">Дневная норма + дневник узбекских блюд</span></span></a><a class="k-card" href="homiladorlik-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-heart-pulse"></use></svg></span><span class="k-body"><span class="k-name">Беременность и овуляция</span><span class="k-desc">Дата родов, неделя, триместр и благоприятные дни</span></span></a><a class="k-card" href="pensiya-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-hourglass"></use></svg></span><span class="k-body"><span class="k-name">Пенсионный калькулятор</span><span class="k-desc">Примерная пенсия по стажу и зарплате</span></span></a><a class="k-card" href="staj-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-calendar"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор трудового стажа</span><span class="k-desc">Общий стаж по периодам работы: годы, месяцы, дни</span></span></a><a class="k-card" href="zakot-qurbonlik-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-moon"></use></svg></span><span class="k-body"><span class="k-name">Закят и Курбан</span><span class="k-desc">Нисаб, закят 2,5%, доли курбана</span></span></a><a class="k-card" href="toy-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-gem"></use></svg></span><span class="k-body"><span class="k-name">Расходы на свадьбу</span><span class="k-desc">Зал, плов, артист, сарпо — весь бюджет</span></span></a><a class="k-card" href="marosim-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-users"></use></svg></span><span class="k-body"><span class="k-name">Расходы на мероприятие</span><span class="k-desc">Продукты и смета для плова, ифтара</span></span></a><a class="k-card" href="maktab-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-book-open"></use></svg></span><span class="k-body"><span class="k-name">Подготовка к школе</span><span class="k-desc">Форма, тетради, книги и платежи</span></span></a><a class="k-card" href="alkogol-kalkulyator" style="--cc:var(--hayot);--cs:var(--hayot-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-alert"></use></svg></span><span class="k-body"><span class="k-name">Алкогольный калькулятор</span><span class="k-desc">Промилле и время выведения (справочно)</span></span></a></div></section><section class="cat-sect" id="cat-huquqiy"><div class="cat-head"><h3 class="cat-title">Юридические</h3><span class="cat-count">6</span></div><div class="grid g3"><a class="k-card" href="tatil-puli-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-umbrella"></use></svg></span><span class="k-body"><span class="k-name">Компенсация за отпуск</span><span class="k-desc">Расчёт компенсации за неиспользованный отпуск</span></span></a><a class="k-card" href="kasallik-varaqasi-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-thermometer"></use></svg></span><span class="k-body"><span class="k-name">Оплата больничного листа</span><span class="k-desc">Пособие по временной нетрудоспособности</span></span></a><a class="k-card" href="dekret-puli-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-heart-pulse"></use></svg></span><span class="k-body"><span class="k-name">Декретные выплаты</span><span class="k-desc">Пособие по беременности и родам</span></span></a><a class="k-card" href="ishdan-boshatish-kompensatsiyasi-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-log-out"></use></svg></span><span class="k-body"><span class="k-name">Компенсация при увольнении</span><span class="k-desc">Выплата при сокращении штата</span></span></a><a class="k-card" href="aliment-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-users"></use></svg></span><span class="k-body"><span class="k-name">Калькулятор алиментов</span><span class="k-desc">Расчёт суммы алиментов на детей</span></span></a><a class="k-card" href="yhxx-jarima-kalkulyator" style="--cc:var(--huquqiy);--cs:var(--huquqiy-soft)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-ban"></use></svg></span><span class="k-body"><span class="k-name">Штрафы ПДД</span><span class="k-desc">Размер штрафа за нарушение ПДД</span></span></a></div></section></div><div class="no-results" id="noResults" style="display: none;">Ничего не найдено. Попробуйте другое слово.</div></section><section class="about" id="aboutBlock"><h2>Что такое Kalki.uz?</h2><p>Kalki.uz — коллекция бесплатных онлайн-калькуляторов, адаптированных под Узбекистан. Налоговые ставки, банковские проценты, таможенные правила — всё по местному законодательству и регулярно обновляется.</p><h2>Почему именно Kalki?</h2><p>Каждый калькулятор на узбекском и русском, работает и на телефоне, и на компьютере, быстро открывается и не требует регистрации. Результат можно отправить в Telegram одной кнопкой.</p></section>
+  <div id="fbcall" style="margin-top:32px;background:linear-gradient(135deg,#1A2B24,#452B4B);border-radius:14px;padding:18px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:200px"><div style="font-size:15px;font-weight:800;color:#fff">Kalkulyator yoki shablon kerakmi?</div><div style="font-size:12.5px;font-weight:600;color:#C9D6CE;margin-top:3px">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz. / Нужен калькулятор или шаблон? Напишите — быстро сделаем.</div></div><a href="https://t.me/kalki_uz" style="background:#D99A2B;color:#16211C;font-size:14px;font-weight:800;padding:11px 18px;border-radius:10px;text-decoration:none;white-space:nowrap">Telegram</a></div>
+  
+  
+<p class="foot-note" data-i="footTxt">Все расчёты носят справочный характер</p>
+</main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">Бесплатные калькуляторы и образцы документов для Узбекистана.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Категории</div><ul><li><a href="./#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Стройка и земля</a></li><li><a href="./#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Коммуналка и авто</a></li><li><a href="./#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Жизнь">Жизнь</a></li><li><a href="./#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Юридические</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Документы</div><ul><li><a href="hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Шаблоны</a></li><li><a href="ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Написать заявление</a></li><li><a href="blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Связь</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram-канал</a></li><li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li><li><a href="hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a></li></ul></div></div><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Контакты</a><a href="hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Связь: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div></div></footer>
 
 <script>
 (function(){
   var CATS=[
-    {id:'moliya', color:'var(--moliya)', soft:'var(--moliya-soft)'},
-    {id:'qurilish', color:'var(--qurilish)', soft:'var(--qurilish-soft)'},
-    {id:'kommunal', color:'var(--kommunal)', soft:'var(--kommunal-soft)'},
-    {id:'hayot', color:'var(--hayot)', soft:'var(--hayot-soft)'},
-    {id:'huquqiy', color:'var(--huquqiy)', soft:'var(--huquqiy-soft)'}
+    {id:'moliya', ic:'wallet', color:'var(--moliya)', soft:'var(--moliya-soft)'},
+    {id:'qurilish', ic:'hammer', color:'var(--qurilish)', soft:'var(--qurilish-soft)'},
+    {id:'kommunal', ic:'plug', color:'var(--kommunal)', soft:'var(--kommunal-soft)'},
+    {id:'hayot', ic:'heart', color:'var(--hayot)', soft:'var(--hayot-soft)'},
+    {id:'huquqiy', ic:'scale', color:'var(--huquqiy)', soft:'var(--huquqiy-soft)'}
   ];
   var CALCS=[
-    {cat:'moliya', href:'oila-byudjet-kalkulyator', icon:'👪', id:'oila'},
-    {cat:'moliya', href:'kredit-kalkulyator', icon:'💳', id:'kredit'},
-    {cat:'moliya', href:'ipoteka-kalkulyator', icon:'🏠', id:'ipoteka'},
-    {cat:'moliya', href:'omonat-kalkulyator', icon:'🏦', id:'omonat'},
-    {cat:'moliya', href:'kredit-limit-kalkulyator', icon:'📊', id:'kreditlimit'},
-    {cat:'moliya', href:'ipoteka-yoki-ijara-kalkulyator', icon:'🏘️', id:'ipotekaijara'},
-    {cat:'moliya', href:'ijara-stavkalari', icon:'📋', id:'ijarastavka'},
-    {cat:'moliya', href:'oylik-soliq-kalkulyator', icon:'💵', id:'oylik'},
-    {cat:'moliya', href:'qqs-kalkulyator', icon:'🧾', id:'qqs'},
-    {cat:'moliya', href:'bojxona-kalkulyator', icon:'🚗', id:'bojxona'},
-    {cat:'qurilish', href:'uy-qurish-kalkulyator', icon:'🏗️', id:'uyqurish'},
-    {cat:'qurilish', href:'gisht-kalkulyator', icon:'🧱', id:'gisht'},
-    {cat:'qurilish', href:'beton-kalkulyator', icon:'🏗️', id:'beton'},
-    {cat:'qurilish', href:'tom-kalkulyator', icon:'🏠', id:'tom'},
-    {cat:'qurilish', href:'remont-kalkulyator', icon:'🔨', id:'remont'},
-    {cat:'qurilish', href:'yer-konvertor', icon:'🌾', id:'yer'},
-    {cat:'qurilish', href:'chorva-kalkulyator', icon:'🐂', id:'chorva'},
-    {cat:'kommunal', href:'konditsioner-kalkulyator', icon:'❄️', id:'konditsioner'},
-    {cat:'kommunal', href:'yoqilgi-kalkulyator', icon:'⛽', id:'yoqilgi'},
-    {cat:'kommunal', href:'quyosh-panel-kalkulyator', icon:'☀️', id:'quyosh'},
-    {cat:'kommunal', href:'avto-xarajat-kalkulyator', icon:'🚗', id:'avto'},
-    {cat:'kommunal', href:'avto-rasmiylashtirish', icon:'🪪', id:'avtorasm'},
-    {cat:'kommunal', href:'elektr-xarajat-kalkulyator', icon:'⚡', id:'elektr'},
-    {cat:'hayot', href:'dtm-kalkulyator', icon:'🎓', id:'dtm'},
-    {cat:'hayot', href:'universitet-kontrakt-kalkulyator', icon:'🏛️', id:'univkontrakt'},
-    {cat:'hayot', href:'grant-ololmadim', icon:'🧭', id:'grantyoq'},
-    {cat:'hayot', href:'bola-puli-kalkulyator', icon:'🍼', id:'bolapuli'},
-    {cat:'hayot', href:'kaloriya-kalkulyator', icon:'🍚', id:'kaloriya'},
-    {cat:'hayot', href:'homiladorlik-kalkulyator', icon:'👶', id:'homila'},
-    {cat:'hayot', href:'pensiya-kalkulyator', icon:'👵', id:'pensiya'},
-    {cat:'hayot', href:'staj-kalkulyator', icon:'📅', id:'staj'},
-    {cat:'hayot', href:'zakot-qurbonlik-kalkulyator', icon:'🕌', id:'zakot'},
-    {cat:'hayot', href:'toy-kalkulyator', icon:'💍', id:'toy'},
-    {cat:'hayot', href:'marosim-kalkulyator', icon:'🍽️', id:'marosim'},
-    {cat:'hayot', href:'maktab-kalkulyator', icon:'🎒', id:'maktab'},
-    {cat:'hayot', href:'alkogol-kalkulyator', icon:'⚠️', id:'alkogol'},
-    {cat:'huquqiy', href:'tatil-puli-kalkulyator', icon:'🏖️', id:'tatilpuli'},
-    {cat:'huquqiy', href:'kasallik-varaqasi-kalkulyator', icon:'🤒', id:'kasallik'},
-    {cat:'huquqiy', href:'dekret-puli-kalkulyator', icon:'🤰', id:'dekret'},
-    {cat:'huquqiy', href:'ishdan-boshatish-kompensatsiyasi-kalkulyator', icon:'📤', id:'boshatishkomp'},
-    {cat:'huquqiy', href:'aliment-kalkulyator', icon:'👨‍👧', id:'aliment'},
-    {cat:'huquqiy', href:'yhxx-jarima-kalkulyator', icon:'🚫', id:'yhxxjarima'}
+    {cat:'moliya', href:'oila-byudjet-kalkulyator', ic:'wallet', id:'oila'},
+    {cat:'moliya', href:'kredit-kalkulyator', ic:'credit-card', id:'kredit'},
+    {cat:'moliya', href:'ipoteka-kalkulyator', ic:'home', id:'ipoteka'},
+    {cat:'moliya', href:'omonat-kalkulyator', ic:'landmark', id:'omonat'},
+    {cat:'moliya', href:'kredit-limit-kalkulyator', ic:'bar-chart', id:'kreditlimit'},
+    {cat:'moliya', href:'ipoteka-yoki-ijara-kalkulyator', ic:'scale', id:'ipotekaijara'},
+    {cat:'moliya', href:'ijara-stavkalari', ic:'clipboard-list', id:'ijarastavka'},
+    {cat:'moliya', href:'oylik-soliq-kalkulyator', ic:'banknote', id:'oylik'},
+    {cat:'moliya', href:'qqs-kalkulyator', ic:'receipt', id:'qqs'},
+    {cat:'moliya', href:'bojxona-kalkulyator', ic:'car', id:'bojxona'},
+    {cat:'qurilish', href:'uy-qurish-kalkulyator', ic:'building', id:'uyqurish'},
+    {cat:'qurilish', href:'gisht-kalkulyator', ic:'brick', id:'gisht'},
+    {cat:'qurilish', href:'beton-kalkulyator', ic:'layers', id:'beton'},
+    {cat:'qurilish', href:'tom-kalkulyator', ic:'home', id:'tom'},
+    {cat:'qurilish', href:'remont-kalkulyator', ic:'hammer', id:'remont'},
+    {cat:'qurilish', href:'yer-konvertor', ic:'map', id:'yer'},
+    {cat:'qurilish', href:'chorva-kalkulyator', ic:'leaf', id:'chorva'},
+    {cat:'kommunal', href:'konditsioner-kalkulyator', ic:'snowflake', id:'konditsioner'},
+    {cat:'kommunal', href:'yoqilgi-kalkulyator', ic:'fuel', id:'yoqilgi'},
+    {cat:'kommunal', href:'quyosh-panel-kalkulyator', ic:'sun', id:'quyosh'},
+    {cat:'kommunal', href:'avto-xarajat-kalkulyator', ic:'car', id:'avto'},
+    {cat:'kommunal', href:'avto-rasmiylashtirish', ic:'file-text', id:'avtorasm'},
+    {cat:'kommunal', href:'elektr-xarajat-kalkulyator', ic:'zap', id:'elektr'},
+    {cat:'hayot', href:'dtm-kalkulyator', ic:'graduation', id:'dtm'},
+    {cat:'hayot', href:'universitet-kontrakt-kalkulyator', ic:'landmark', id:'univkontrakt'},
+    {cat:'hayot', href:'grant-ololmadim', ic:'compass', id:'grantyoq'},
+    {cat:'hayot', href:'bola-puli-kalkulyator', ic:'heart', id:'bolapuli'},
+    {cat:'hayot', href:'kaloriya-kalkulyator', ic:'flame', id:'kaloriya'},
+    {cat:'hayot', href:'homiladorlik-kalkulyator', ic:'heart-pulse', id:'homila'},
+    {cat:'hayot', href:'pensiya-kalkulyator', ic:'hourglass', id:'pensiya'},
+    {cat:'hayot', href:'staj-kalkulyator', ic:'calendar', id:'staj'},
+    {cat:'hayot', href:'zakot-qurbonlik-kalkulyator', ic:'moon', id:'zakot'},
+    {cat:'hayot', href:'toy-kalkulyator', ic:'gem', id:'toy'},
+    {cat:'hayot', href:'marosim-kalkulyator', ic:'users', id:'marosim'},
+    {cat:'hayot', href:'maktab-kalkulyator', ic:'book-open', id:'maktab'},
+    {cat:'hayot', href:'alkogol-kalkulyator', ic:'alert', id:'alkogol'},
+    {cat:'huquqiy', href:'tatil-puli-kalkulyator', ic:'umbrella', id:'tatilpuli'},
+    {cat:'huquqiy', href:'kasallik-varaqasi-kalkulyator', ic:'thermometer', id:'kasallik'},
+    {cat:'huquqiy', href:'dekret-puli-kalkulyator', ic:'heart-pulse', id:'dekret'},
+    {cat:'huquqiy', href:'ishdan-boshatish-kompensatsiyasi-kalkulyator', ic:'log-out', id:'boshatishkomp'},
+    {cat:'huquqiy', href:'aliment-kalkulyator', ic:'users', id:'aliment'},
+    {cat:'huquqiy', href:'yhxx-jarima-kalkulyator', ic:'ban', id:'yhxxjarima'}
   ];
   /* Kalkulyator soni BITTA joydan — CALCS ro'yxatidan olinadi.
      Ilgari tavsif matnida "30+", statistika blokida esa CALCS.length+"+"
@@ -308,7 +190,9 @@ img,svg{height:auto}
       h1:"Hammasini bir joyda hisoblang",
       sub:"Kredit va ish haqidan tortib g'isht, bojxona va DTM ballgacha — {n} bepul kalkulyator, mahalliy qonunchilik asosida. Shartnoma, ariza va ishonchnoma namunalarini esa onlayn to'ldirib, Word yoki PDF yuklab olasiz.",
       searchPh:"Kalkulyator qidirish...",
-      docsTitle:"📝 Hujjat generatorlari",docsSub:"Formani to'ldiring — tayyor Word yoki PDF fayl chiqadi",docsAll:"Barcha hujjatlar →",d_ijara:"Ijara shartnomasi",d_mehnat:"Mehnat shartnomasi",d_avto:"Avto oldi-sotdi",d_ishonchnoma:"Ishonchnoma",d_tilxat:"Tilxat",d_ariza:"Ariza",
+      catsTitle:"Kategoriyalar",popTitle:"Eng ko'p ishlatiladigan kalkulyatorlar",allTitle:"Barcha kalkulyatorlar",artTitle:"So'nggi maqolalar",artAll:"Barcha maqolalar →",cntWord:"ta kalkulyator",
+      a1g:"Hayot",a1t:"Bolalar nafaqasi 2026: yangi miqdorlar va kim ola oladi",a2g:"Biznes",a2t:"QQS 2026: qanday hisoblanadi va kim to’laydi",a3g:"Moliya",a3t:"2026-yilda ipoteka: stavkalar, imtiyozlar va hisob-kitob",
+      docsTitle:"Hujjat generatorlari",docsSub:"Formani to'ldiring — tayyor Word yoki PDF fayl chiqadi",docsAll:"Barcha hujjatlar →",d_ijara:"Ijara shartnomasi",d_mehnat:"Mehnat shartnomasi",d_avto:"Avto oldi-sotdi",d_ishonchnoma:"Ishonchnoma",d_tilxat:"Tilxat",d_ariza:"Ariza",
       d_ishdan:"Ishdan bo'shash arizasi",d_topshirish:"Topshirish-qabul dalolatnomasi",d_xizmat:"Xizmat ko'rsatish shartnomasi",d_davo:"Da'vo arizasi",d_tavsif:"Tavsifnoma",d_uyoldi:"Uy oldi-sotdi shartnomasi",d_talab:"Talabnoma",d_pudrat:"Qurilish pudrat shartnomasi",d_kadr:"Kadr buyrug'i",d_ishhaqi:"Ish haqi ma'lumotnomasi",d_kafolat:"Kafolat xati",docsMore:"Yana {n} ta →",
       stCalc:"kalkulyator",stLang:"til",stFree:"bepul",
       noRes:"Hech narsa topilmadi. Boshqa so'z bilan qidirib ko'ring.",
@@ -365,7 +249,9 @@ img,svg{height:auto}
       h1:"Считайте всё в одном месте",
       sub:"От кредита и зарплаты до кирпича, растаможки и баллов DTM — {n} бесплатных калькуляторов по местному законодательству. А образцы договоров, заявлений и доверенностей можно заполнить онлайн и скачать в Word или PDF.",
       searchPh:"Поиск калькулятора...",
-      docsTitle:"📝 Генераторы документов",docsSub:"Заполните форму — получится готовый Word или PDF",docsAll:"Все документы →",d_ijara:"Договор аренды",d_mehnat:"Трудовой договор",d_avto:"Купля-продажа авто",d_ishonchnoma:"Доверенность",d_tilxat:"Расписка",d_ariza:"Заявление",
+      catsTitle:"Категории",popTitle:"Самые популярные калькуляторы",allTitle:"Все калькуляторы",artTitle:"Последние статьи",artAll:"Все статьи →",cntWord:"калькуляторов",
+      a1g:"Жизнь",a1t:"Детское пособие 2026: новые размеры и кто может получить",a2g:"Бизнес",a2t:"НДС 2026: как считается и кто платит",a3g:"Финансы",a3t:"Ипотека в 2026: ставки, льготы и расчёт",
+      docsTitle:"Генераторы документов",docsSub:"Заполните форму — получится готовый Word или PDF",docsAll:"Все документы →",d_ijara:"Договор аренды",d_mehnat:"Трудовой договор",d_avto:"Купля-продажа авто",d_ishonchnoma:"Доверенность",d_tilxat:"Расписка",d_ariza:"Заявление",
       d_ishdan:"Заявление об увольнении",d_topshirish:"Акт приёма-передачи",d_xizmat:"Договор оказания услуг",d_davo:"Исковое заявление",d_tavsif:"Характеристика",d_uyoldi:"Договор купли-продажи дома",d_talab:"Претензия",d_pudrat:"Договор строительного подряда",d_kadr:"Кадровый приказ",d_ishhaqi:"Справка о зарплате",d_kafolat:"Гарантийное письмо",docsMore:"Ещё {n} →",
       stCalc:"калькуляторов",stLang:"языка",stFree:"бесплатно",
       noRes:"Ничего не найдено. Попробуйте другое слово.",
@@ -425,35 +311,53 @@ img,svg{height:auto}
   var $=function(id){return document.getElementById(id)};
   var t=function(k){return I[lang][k]};
 
+  var POPULAR=['kredit','ipoteka','oylik','aliment','gisht','beton','qqs','bojxona'];
+  function svg(id){return '<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-'+id+'"></use></svg>';}
+  function card(calc,cat,n){
+    return '<a class="k-card" href="'+calc.href+'" style="--cc:'+cat.color+';--cs:'+cat.soft+'">'
+      +'<span class="k-ico">'+svg(calc.ic)+'</span>'
+      +'<span class="k-body"><span class="k-name">'+n[0]+'</span><span class="k-desc">'+n[1]+'</span></span></a>';
+  }
+  function catOf(id){for(var c=0;c<CATS.length;c++)if(CATS[c].id===id)return CATS[c];}
   function render(filter){
     var q=(filter||'').toLowerCase().trim();
-    var html='', shown=0;
+    var html='', shown=0, cats='', chips='';
     for(var c=0;c<CATS.length;c++){
-      var cat=CATS[c], items='', catCount=0;
+      var cat=CATS[c], items='', catCount=0, total=0;
       for(var i=0;i<CALCS.length;i++){
         var calc=CALCS[i];
         if(calc.cat!==cat.id)continue;
         var n=t('names')[calc.id];
         if(!n)continue;
+        total++;
         if(q && (n[0]+' '+n[1]).toLowerCase().indexOf(q)===-1)continue;
-        items+='<a class="calc-card" href="'+calc.href+'" style="--cc:'+cat.color+';--ccs:'+cat.soft+'">'
-          +'<span class="cc-icon">'+calc.icon+'</span>'
-          +'<span class="cc-body"><span class="cc-name">'+n[0]+'</span><br><span class="cc-desc">'+n[1]+'</span></span>'
-          +'<span class="cc-arrow">›</span></a>';
+        items+=card(calc,cat,n);
         catCount++;shown++;
       }
+      cats+='<a class="k-card cat" href="#cat-'+cat.id+'" style="--cc:'+cat.color+';--cs:'+cat.soft+'"><span class="k-ico">'+svg(cat.ic)+'</span>'
+        +'<span class="k-name">'+t('catNames')[cat.id]+'</span><span class="k-count">'+total+' '+t('cntWord')+'</span></a>';
+      chips+='<a href="#cat-'+cat.id+'">'+t('catNames')[cat.id]+'</a>';
       if(catCount){
         html+='<section class="cat-sect" id="cat-'+cat.id+'"><div class="cat-head">'
-          +'<span class="cat-dot" style="background:'+cat.color+'"></span>'
-          +'<span class="cat-title">'+t('catNames')[cat.id]+'</span>'
+          +'<h3 class="cat-title">'+t('catNames')[cat.id]+'</h3>'
           +'<span class="cat-count">'+catCount+'</span></div>'
-          +'<div class="cards">'+items+'</div></section>';
+          +'<div class="grid g3">'+items+'</div></section>';
+      }
+    }
+    var pop='';
+    for(var p=0;p<POPULAR.length;p++){
+      for(var j=0;j<CALCS.length;j++){
+        if(CALCS[j].id!==POPULAR[p])continue;
+        pop+=card(CALCS[j],catOf(CALCS[j].cat),t('names')[CALCS[j].id]);
       }
     }
     $('catalog').innerHTML=html;
+    $('catGrid').innerHTML=cats;
+    $('popGrid').innerHTML=pop;
+    $('heroChips').innerHTML=chips;
+    document.body.classList.toggle('searching',!!q);
     $('noResults').textContent=t('noRes');
     $('noResults').style.display=shown?'none':'block';
-    $('statCount').textContent=calcCountLabel();
   }
 
   function applyLang(){
