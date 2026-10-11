@@ -110,8 +110,7 @@ const hiddenBlock = (p) => p.evaluate(() => { const e = document.getElementById(
 {
   const { page } = await mk(390, 844);
   await page.goto(BASE + '/ariza-namunasi#ai', { waitUntil: 'networkidle' });
-  await page.waitForTimeout(1200);
-  assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'aizIn');
+  await page.waitForFunction(() => document.activeElement && document.activeElement.id === 'aizIn', null, { timeout: 8000 });
   assert.equal(await page.evaluate(() => { const r = document.getElementById('aiAriza').getBoundingClientRect(); return r.top >= -2 && r.top < innerHeight / 2; }), true);
   log('#ai: blokka aylandi, textarea\'ga fokus');
 }
@@ -130,8 +129,7 @@ for (const [u, sel] of [['/', '#docs-cta'], ['/hujjatlar', '#dcat-ariza']]) {
 {
   const { page } = await mk(390, 800);
   await page.goto(BASE + '/hujjatlar', { waitUntil: 'networkidle' });
-  await page.click('#aiPromo'); await page.waitForURL(/ariza-namunasi#ai/); await page.waitForTimeout(1200);
-  assert.equal(await page.evaluate(() => document.activeElement && document.activeElement.id), 'aizIn');
+  await page.click('#aiPromo'); await page.waitForURL(/ariza-namunasi#ai/); await page.waitForFunction(() => document.activeElement && document.activeElement.id === 'aizIn', null, { timeout: 8000 });
   log('e\'lon kartalari: bosh sahifa va hujjatlar (320/1280 toshmaydi), havola #ai ga olib boradi va fokus qo\'yadi');
 }
 // ---- 4. RU / CYR
