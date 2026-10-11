@@ -436,3 +436,21 @@ Shu kunlarda bajarilishi lozim bo'lgan ishlarimni oldindan hamkasbim [F.I.Sh.]ga
 ```
 
 **Xarajat (5-bosqich lokal sinov):** 7 ta Haiku so'rovi ≈ $0,001.
+
+### 5-bosqich: saytga chiqarish (production)
+
+`ai-ariza` main'ga `--no-ff` bilan merge qilindi (konfliktsiz; merge commit `eb13867`; unga lokal main'dagi push qilinmagan 1-bosqich commit'i `109c6cb` ham kirdi). `npm run check`: 33 band OK, faqat eski 15b (yangi yiqilgan band yo'q); birlik testlari 12/12. Push 17:38:16 UTC, production yangi kodni ~30 s da ko'rsatdi (17:38:47). Retry deployment ishlatilmadi.
+
+AI so'rovisiz tekshiruvlar (IP limiti bugun tugagan, Haiku'ga so'rov yuborilmadi):
+
+| tekshiruv | natija |
+|---|---|
+| `kalki.uz/ariza-namunasi`: skript yuklangan, blok ko'rinadi (Playwright) | o'tdi |
+| 320px'da toshmaydi | o'tdi |
+| RU va CYR sahifalar: blok ko'rinmaydi (skript tegi bor, lekin `lang !== 'uz'` bo'lgani uchun yashirin) | o'tdi |
+| noto'g'ri Origin → 403; Origin yo'q → 403 | o'tdi |
+| buzuq JSON → 400; GET → 405 | o'tdi |
+| `Origin: https://kalki.uz` va `https://www.kalki.uz` bilan to'g'ri so'rov → 429 ("Bugungi limit tugadi") — KV limiti ishlayapti, endpoint jonli | o'tdi |
+| 3 ta kalkulyator (kredit, oylik-soliq, ipoteka): 200, blok yo'q, JS xatosiz | o'tdi |
+
+Xarajat (5-bosqich jami): ≈ $0,001 (7 ta lokal Haiku so'rovi); production'ga AI so'rovi yuborilmadi. `tools/ai-sinov/test-prod-ui.mjs` shu tekshiruvlarni takrorlaydi. Production'da haqiqiy AI javobi birinchi marta Toshkent kuni yangilangach (19:00 UTC dan keyin) tekshirilishi mumkin.
