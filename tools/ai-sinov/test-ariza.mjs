@@ -54,9 +54,9 @@ t('niqoblash', () => {
   assert.ok(!/901234567/.test(maskPII('Men Karimov Aziz, telefonim 901234567')));
 });
 t('origin', () => {
-  for (const o of ['https://kalki.uz', 'https://www.kalki.uz', 'https://kalki.pages.dev', 'https://ai-ariza.kalki.pages.dev'])
+  for (const o of ['https://kalki.uz', 'https://www.kalki.uz', 'https://kalki-10y.pages.dev', 'https://ai-ariza.kalki-10y.pages.dev', 'https://a.b.kalki-10y.pages.dev'])
     assert.equal(originOk(o, {}), true, o);
-  for (const o of ['', null, 'http://kalki.uz', 'https://evil.com', 'https://kalki.uz.evil.com', 'https://evilkalki.pages.dev', 'http://localhost:8788'])
+  for (const o of ['', null, 'http://kalki.uz', 'https://evil.com', 'https://kalki.uz.evil.com', 'https://evil-kalki-10y.pages.dev', 'https://evilkalki-10y.pages.dev', 'https://kalki-10y.pages.dev.evil.com', 'https://kalki.pages.dev', 'https://ai-ariza.kalki.pages.dev', 'http://kalki-10y.pages.dev', 'https://.kalki-10y.pages.dev', 'https://kalki-10y.pages.dev:8443', 'https://kalki-10y.pages.dev@evil.com', 'http://localhost:8788'])
     assert.equal(originOk(o, {}), false, String(o));
   assert.equal(originOk('http://localhost:8788', { ALLOW_LOCAL_ORIGIN: '1' }), true);
 });

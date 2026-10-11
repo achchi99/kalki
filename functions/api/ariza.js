@@ -73,7 +73,8 @@ Shu kunlarda bajarilishi lozim bo'lgan ishlarimni oldindan hamkasbim [F.I.Sh.]ga
 export function originOk(origin, env) {
   if (!origin) return false;
   if (origin === 'https://kalki.uz' || origin === 'https://www.kalki.uz') return true;
-  if (/^https:\/\/([a-z0-9-]+\.)*kalki\.pages\.dev$/.test(origin)) return true;
+  if (origin === 'https://kalki-10y.pages.dev') return true;
+  if (/^https:\/\/([a-z0-9-]+\.)+kalki-10y\.pages\.dev$/.test(origin)) return true; // preview: <branch>.kalki-10y.pages.dev
   // Faqat lokal sinov uchun (.dev.vars): ALLOW_LOCAL_ORIGIN=1
   if (env && env.ALLOW_LOCAL_ORIGIN === '1' && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
   return false;

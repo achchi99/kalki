@@ -258,7 +258,7 @@ Taxminan **$0,01** (≈ 55 ta Haiku so'rovi: 14 holat × 2 yurish, limit/UI sino
 
 ## 8. Preview deploy
 
-Commit `0bdd762` 16:16 da `origin/ai-ariza` ga push qilindi. 16:22:44 gacha (6+ daqiqa) `https://ai-ariza.kalki.pages.dev/ariza-namunasi` **404** (Cloudflare'ning "deployment topilmadi" sahifasi) qaytardi. Xulosa: **Pages GitHub'dan branch'ni avtomatik deploy qilmayapti** (mumkin sabablar: loyiha Git'ga ulanmagan va to'g'ridan-to'g'ri yuklash bilan ishlaydi; yoki "Branch control"da preview branch'lar o'chirilgan/faqat `main`; yoki build hali navbatda). Serverdan aniq sababni ko'rib bo'lmaydi — Cloudflare dashboard'dagi Deployments ro'yxati javob beradi.
+Commit `0bdd762` 16:16 da `origin/ai-ariza` ga push qilindi. 16:22:44 gacha (6+ daqiqa) `https://ai-ariza.kalki.pages.dev/ariza-namunasi` (xato manzil — haqiqiy loyiha `kalki-10y.pages.dev`, 3-bosqichga qarang) `` **404** (Cloudflare'ning "deployment topilmadi" sahifasi) qaytardi. Xulosa: **Pages GitHub'dan branch'ni avtomatik deploy qilmayapti** (mumkin sabablar: loyiha Git'ga ulanmagan va to'g'ridan-to'g'ri yuklash bilan ishlaydi; yoki "Branch control"da preview branch'lar o'chirilgan/faqat `main`; yoki build hali navbatda). Serverdan aniq sababni ko'rib bo'lmaydi — Cloudflare dashboard'dagi Deployments ro'yxati javob beradi.
 
 ## 9. Cloudflare dashboard'da qilinadigan qadamlar
 
