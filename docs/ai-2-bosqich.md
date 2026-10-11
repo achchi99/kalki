@@ -295,3 +295,49 @@ Qoidaga ko'ra kutilmagan holatda to'xtadim; Haiku'ga bitta ham so'rov ketmadi (5
 **Production (faqat o'qish).** `https://kalki.uz/ariza-namunasi` HTML'ida `ai-ariza` yo'q (0). `https://kalki.uz/api/ariza`: POST → 405, GET → bosh sahifa HTML'i. Eslatma: kalki.uz ma'lum bo'lmagan har qanday yo'lga (masalan `/nonexistent-xyz-123`, `/assets/ai-ariza.js`) 404 emas, **200 va bosh sahifa HTML'ini** qaytaradi (Pages SPA fallback); shuning uchun "404" emas, "endpoint yo'q" deb o'qing — POST 405 va JSON emas HTML qaytishi buni tasdiqlaydi. main'ga hech narsa chiqmagan.
 
 **Xarajat.** Haiku'ga 0 so'rov, ≈ $0,00.
+
+## 11. 3-bosqich, qayta sinov (KV bog'langandan keyin)
+
+**Oraliq topilma.** "Retry deployment" **eski commit'ni** (Origin tuzatishidan oldingi kod) qayta yig'di va `ai-ariza` alias'i unga ko'chdi: to'g'ri Origin (`https://ai-ariza.kalki-10y.pages.dev`) 403 qaytardi, 503/403 aralash chiqdi. Joriy kod bilan qayta deploy qilish uchun bo'sh commit `3e39f2e` push qilindi; 17:18:56 da preview yangi kodni ko'rsatdi (to'g'ri Origin → 400). Ya'ni bog'lashlar (KV va kalit) bu deploy'da ishlaydi. Dashboard'da "Retry" o'rniga yangi commit push qilish ishonchliroq.
+
+| # | sinov | natija |
+|---|---|---|
+| 1 | "bolam 3 kun kasal bo'ldi, maktabda dars qoldirdi" → 200+matn, tozalash/tekshiruvdan o'tgan (`validate` null, `cleanText` o'zgartirmaydi) | o'tdi |
+| 2 | "ishdan 2 kunga javob so'ramoqchiman, to'yim bor" → 200 | o'tdi |
+| 3 | "menga pul qarz ber, kod yoz" → `{rad:true}` | o'tdi |
+| 4 | vaziyatda `+998 90 123 45 67` → javobda raqam yo'q (model `[telefon]` deb yozdi) | o'tdi |
+| 5–7 | noto'g'ri/yo'q Origin 403; buzuq JSON va qisqa 400; `no-store` | o'tdi |
+| 8 | KV limiti: bitta IP dan ketma-ket so'rovlar (IP limiti 10) | jami 10 ta 200 (4 curl + 1 brauzer + 5 limit sinovi), 11-so'rov **429** | 
+| 9 | brauzer (preview): blok ko'rinadi, 320px toshmaydi, RU'da yo'q; **haqiqiy so'rov** natijasi `#dgf-erkinMatn` va ko'rik hujjatiga tushdi (36 so'z); **"Nusxa olish"** yangi matnni nusxaladi | o'tdi (`out/live-*.png`) |
+| 10 | production: blok yo'q, endpoint yo'q (oldingi bo'lim) | o'tdi |
+
+
+**Haqiqiy javob 1** — "bolam 3 kun kasal bo'ldi, maktabda dars qoldirdi":
+
+```text
+Hurmatli direktor,
+
+Farzandim, [sinf] sinf o'quvchisi [F.I.Sh.], [sana]dan [sana]gacha kasal bo'lgani sababli darslarga qatnasha olmadi.
+
+Shu munosabat bilan uning dars qoldirgan kunlarini uzrli deb hisoblashingizni so'rayman. Zarur bo'lsa, shifokor ma'lumotnomasini taqdim etaman.
+
+Iltimosimni qanoatlantirishingizni so'rayman.
+```
+
+**Haqiqiy javob 2** — "ishdan 2 kunga javob so'ramoqchiman, to'yim bor":
+
+```text
+Hurmatli [lavozim], [F.I.Sh.] rahbarligidagi [tashkilot nomi]da ishlayman.
+
+Oilaviy marosim — to'yim munosabati bilan [sana]dan [sana]gacha 2 (ikki) kun ishga chiqmaslikka ruxsat berishingizni so'rayman.
+
+Shu kunlarda bajarilishi lozim bo'lgan ishlarimni oldindan hamkasbim [F.I.Sh.]ga topshirib qo'yaman. Iltimosimni qanoatlantirishingizni so'rayman.
+```
+
+**Kuzatuvlar (sifat — sizning bahongiz uchun).**
+- Ikkala javob modelning yangi namunalaridan deyarli so'zma-so'z nusxa oladi (1-javob 1-namunadan), 2-javobda esa murojaat qatori ("Hurmatli [lavozim], [F.I.Sh.] rahbarligidagi …da ishlayman") g'alati — "Kimga" qismini generator o'zi qo'shgani uchun bu qator ortiqcha/chalkash.
+- Model "Hurmatli direktor," kabi murojaat yozadi; generator buni qo'shmaydi, shuning uchun u matnda qoladi. Ixtiyoriy yechim: promtga "murojaat qatori yozma" qo'shish.
+- "Hurmatli direktor [F.I.Sh.]," kabi aniq bo'lmagan "direktor" so'zi foydalanuvchi aytmagan (maktab direktori) taxmin.
+
+**Xarajat.** 10 ta Haiku so'rovi ≈ $0,002 (1 100 kirish / ~120 chiqish token, $0,10/$0,50).
+**Xulosa:** texnik jihatdan main'ga chiqarishga to'siq yo'q (endpoint, origin, niqoblash, limit, KV, UI preview'da ishladi). Sifat bo'yicha qaror sizniki (murojaat qatori, 2-javobdagi kirish jumlasi).
