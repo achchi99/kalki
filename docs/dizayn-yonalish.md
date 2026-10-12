@@ -213,3 +213,11 @@ Faqat `tokens.css` + `site.css` komponentlari; emoji yo'q (sprite ikonkalari); s
 - Skeletdagi id'siz elementlar `data-skel-src` bilan asl elementdan matn oladi (`calc-v2.js`).
 - Testlar uchun umumiy "hisoblash" yordamchisi: `tools/dizayn/hisobla.mjs` (details ochadi, tanlov/sana/son maydonlarni to'ldiradi). Testlarni parallel yurgizsangiz 5–6 tadan oshirmang (ortiq yuklama oltin testda tasodifiy farq beradi).
 - grant-ololmadim, yer-konvertor: natija kartasi yo'q (jonli ro'yxat/konvertor) — grid qo'llanmadi, faqat sarlavha/palitra/kontrast.
+
+## Yakuniy bosqich (3–5-partiya, tozalash, yakuniy tekshiruvlar)
+
+- Barcha 79 sahifa (UZ+RU, /cyr/ 4 ta) V2; `tools/site-chrome.js` da eski sarlavha/footer yo'li olib tashlandi (`v2-pages.json` da bo'lmagan sahifa — xato). `tokens.css` dagi eski kategoriya aksentlari o'chirildi.
+- Sahifalarning inline `<style>` idagi eski sarlavha/topbar/til-tugmasi qoidalari `tools/dizayn/cleanup-css.py` bilan olib tashlandi (−63 KB); piksel-hash (`shot-hash.mjs`) 158 skrinshotdan 57 tasida faqat til tugmasi (UZ/RU) yonidagi harf oralig'i/fokus ramkasi o'zgardi, qolgani baytma-bayt bir xil.
+- /cyr/: JS yo'q, mobil menyu CSS-only (`input.nav-chk`), ochilmalar desktopda :hover/:focus-within, mobilda doim ochiq (`prerender.js` 5b).
+- Testlar (har partiyada majburiy): `oltin.mjs compare`, `seo-diff.mjs main`, `test-pages.mjs`, `test-sticky.mjs`, `test-kontrast.mjs`, `test-cyr.mjs`, `test-hisob-siyosati.mjs <main-worktree>`, `test-sw.mjs`, `npm run check`. Parallel yurgizsangiz 5–6 jarayondan oshirmang.
+- Lighthouse (mobil, lokal, tashqi shrift/reklama resurslari yo'q muhit): ishlash ko'rsatkichlari main bilan bir xil (index 42 / 42, kredit 40 / 39, qqs-2026 71 / 71, hujjatlar 40 / 37); Accessibility 95 → 100; Best Practices 100, SEO 100.

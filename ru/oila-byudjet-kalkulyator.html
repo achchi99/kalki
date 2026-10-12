@@ -12,8 +12,7 @@
   document.documentElement.lang=l;
 }catch(e){}})();
 </script>
-<style id="langcss">
-html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+<style id="langcss">html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
 html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
@@ -32,21 +31,12 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<style>
-body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
+<style>body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
 :root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--ok:#1E6B45;--ok-soft:#E7F3EC;--warn:#B3261E;--warn-soft:#FBEAE8;--mid:#8A6D1F;--mid-soft:#FBF3DD}
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
 .wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
-header{background:var(--cat);color:#fff;padding:22px 16px 20px;position:relative;min-height:150px}
-header .wrap{padding-bottom:0}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cat-text);text-decoration:none}
-.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
-.lang-seg button{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-.lang-seg button.on{background:#fff;color:var(--cat)}
 .cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
 .cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em;min-height:1.2em}
@@ -124,12 +114,11 @@ details.opt[open]>summary::after{content:"−"}
 .crow input{border:1px solid var(--line);border-radius:8px;padding:9px 7px;font:inherit;font-size:13px;font-weight:700;background:#fff;min-width:0;width:100%}
 .crow .cdel{background:none;border:0;color:#B04A3A;font-size:18px;cursor:pointer;padding:0;line-height:1}
 .crowhead{display:grid;grid-template-columns:1fr 92px 66px 58px 26px;gap:6px;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);margin-bottom:5px}
-@media (max-width:520px){
-  .crow,.crowhead{grid-template-columns:1fr 1fr;gap:5px}
-  .crowhead{display:none}
-  .crow{border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;margin-bottom:9px}
-  .crow input{border-color:#E3E9E4}
-  .crow .cdel{grid-column:2;justify-self:end}
+@media (max-width:520px){.crow,.crowhead{grid-template-columns:1fr 1fr;gap:5px}
+.crowhead{display:none}
+.crow{border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;margin-bottom:9px}
+.crow input{border-color:#E3E9E4}
+.crow .cdel{grid-column:2;justify-self:end}
 }
 .cadd{margin-top:4px;background:var(--cat-soft);color:var(--cat);border:0;border-radius:9px;padding:10px 14px;font:inherit;font-size:13.5px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .linkrow{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
@@ -275,20 +264,17 @@ details.acc.acc-hidden{display:none}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
 </style>
 <link rel="manifest" href="/manifest.json">
-<style id="printcss">
-@media print{
-  body *{visibility:hidden!important}
-  #pdfhead,#pdfhead *{visibility:visible!important}
-  .receipt.show,.receipt.show *{visibility:visible!important}
-  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
-  .receipt-actions{display:none!important}
-  .noprint,.noprint *{display:none!important;visibility:hidden!important}
-  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
-  #topmenu,header,nav{display:none!important}
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
 }
 </style>
-<style id="clsfix">
-/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
 header{min-height:150px}
 h1{min-height:1.2em}
 [data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
@@ -311,8 +297,7 @@ img,svg{height:auto}
 <meta property="og:site_name" content="Kalki.uz">
 <meta name="twitter:title" content="Калькулятор семейного бюджета — расчёт доходов и расходов">
 <meta name="twitter:description" content="Введите доход и число членов семьи — распределение расходов, кредитная нагрузка и индекс финансового здоровья по 100-балльной шкале рассчитаются мгновенно.">
-<style id="bccss">
-#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
 #breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
 #breadcrumb a:hover{text-decoration:underline}
 #breadcrumb .sep{color:#B9C2BC;font-weight:700}

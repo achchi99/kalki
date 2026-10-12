@@ -12,8 +12,7 @@
   document.documentElement.lang=l;
 }catch(e){}})();
 </script>
-<style id="langcss">
-html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+<style id="langcss">html[data-lang="ru"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
 html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
@@ -35,15 +34,13 @@ html[data-lang="ru"][data-lang-ready] body{visibility:visible;animation:none}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<style>
-/* ===== Kategoriya rang tizimi =====
+<style>/* ===== Kategoriya rang tizimi =====
    body[data-cat] atributi sahifa kategoriyasini belgilaydi.
    Yangi kalkulyator = shu atributni almashtirish, xolos. */
 body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
 body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
 body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
 body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
-
 :root{--wrap-max:560px;
   --paper:#F7F8F6;--card:#FFFFFF;
   --ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;
@@ -56,24 +53,6 @@ body{
   background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh;
 }
 .wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
-
-header{background:var(--cat);color:#fff;padding:22px 16px 68px;position:relative}
-header .wrap{padding-bottom:0}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.brand{
-  display:flex;align-items:center;gap:8px;
-  font-size:13px;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--cat-text);
-}
-.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.lang-seg{display:flex;background:rgba(255,255,255,.14);border-radius:9px;padding:3px;gap:3px}
-.lang-seg button{
-  border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:800;
-  color:var(--cat-text);padding:6px 12px;border-radius:7px;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;letter-spacing:.04em;
-}
-.lang-seg button.on{background:#fff;color:var(--cat)}
-.lang-seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .cat-badge{
   display:inline-flex;align-items:center;gap:6px;
   font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
@@ -83,7 +62,6 @@ header .wrap{padding-bottom:0}
 .cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 h1{font-size:26px;font-weight:800;line-height:1.2;letter-spacing:-.01em}
 .sub{margin-top:8px;font-size:14.5px;color:var(--cat-text);max-width:42ch}
-
 .form-card{
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
   padding:20px 18px 22px;margin-top:-44px;
@@ -122,7 +100,6 @@ input[type=text]{
 }
 .calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
 .calc-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-
 .receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
 .receipt.show{display:block;animation:rise .35s ease}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -154,7 +131,6 @@ input[type=text]{
 }
 .receipt-actions button:active{background:var(--cat-soft)}
 .receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
 .early-payoff{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
 .ep-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
 .ep-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
@@ -169,7 +145,6 @@ input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3
 .ep-results .hint{margin:0}
 .ep-line{font-size:13.5px;font-weight:700;color:var(--cat-deep);line-height:1.6}
 .ep-line.accent{color:var(--cat)}
-
 .sched{margin-top:26px;display:none}
 /* hamkor bloki — natijadan keyin, hech qachon undan yuqorida turmaydi */
 #partners-slot{margin-top:28px}
@@ -213,12 +188,10 @@ tbody tr:nth-child(even){background:#FAFBFA}
   font:inherit;font-size:14px;font-weight:800;padding:13px;cursor:pointer;
   -webkit-tap-highlight-color:transparent;
 }
-
 .seo{margin-top:36px;font-size:15px;color:#33403A}
 .seo h2{font-size:18px;font-weight:800;color:var(--ink);margin:22px 0 8px}
 .seo p{margin-bottom:10px}
 footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
-
 /* ===== To'lov taqsimoti grafigi (foiz/asosiy qarz) ===== */
 .paychart{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
 .pc-head{font-size:14.5px;font-weight:800;margin-bottom:12px}
@@ -233,7 +206,6 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 .pc-legend .lg-principal{background:var(--cat)}
 .pc-legend .lg-interest{background:var(--accent)}
 .pc-summary{margin-top:10px;font-size:13px;font-weight:700;color:var(--cat-deep);background:var(--cat-soft);border-radius:9px;padding:10px 12px;line-height:1.5}
-
 /* ===== Ssenariylarni solishtirish ===== */
 .scen-add{width:100%;margin-top:14px;border:1.5px dashed var(--line);background:transparent;color:var(--cat);font:inherit;font-size:13.5px;font-weight:800;padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .scen-add:disabled{opacity:.5;cursor:default}
@@ -257,20 +229,17 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 .scen-best::after{content:" ✓"}
 </style>
 <link rel="manifest" href="/manifest.json">
-<style id="printcss">
-@media print{
-  body *{visibility:hidden!important}
-  #pdfhead,#pdfhead *{visibility:visible!important}
-  .receipt.show,.receipt.show *{visibility:visible!important}
-  .receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
-  .receipt-actions{display:none!important}
-  .noprint,.noprint *{display:none!important;visibility:hidden!important}
-  #pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
-  #topmenu,header,nav{display:none!important}
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
 }
 </style>
-<style id="clsfix">
-/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
 header{min-height:150px}
 h1{min-height:1.2em}
 [data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
@@ -293,8 +262,7 @@ img,svg{height:auto}
 <meta property="og:site_name" content="Kalki.uz">
 <meta name="twitter:title" content="Кредитный калькулятор — 2 схемы платежа, любой банк, бесплатно">
 <meta name="twitter:description" content="Введите сумму, срок и ставку — сравните аннуитетный и дифференцированный платёж, узнайте ежемесячную сумму и график. Для любого банка, бесплатно.">
-<style id="bccss">
-#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12.5px;font-weight:600;color:#6B7A72;margin:14px 0 2px;line-height:1.5}
 #breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
 #breadcrumb a:hover{text-decoration:underline}
 #breadcrumb .sep{color:#B9C2BC;font-weight:700}

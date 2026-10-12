@@ -40,5 +40,5 @@ for (const f of PAGES) {
   console.log((rows.length ? 'FARQ ' : 'OK   ') + f + ' — ichki havolalar ' + a.hrefs.size + ' → ' + b.hrefs.size + (added.length ? ' (+' + added.length + ': ' + added.slice(0, 6).join(', ') + ')' : ''));
   rows.forEach((r) => console.log('   ' + r));
 }
-if (allowed) console.log('Ruxsat etilgan H1-emoji farqlari: ' + allowed);
+if (allowed) console.log('Ruxsat etilgan farqlar (H1-emoji, og rasm versiyasi, sana-drift): ' + allowed);
 console.log(bad ? bad + ' ta farq' : 'SEO invariantlari o\'zgarmagan');
