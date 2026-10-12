@@ -1,6 +1,6 @@
 // functions/api/ariza.js RU funksiyalari uchun birlik testlari: node tools/ai-sinov/test-ariza-ru.mjs
 import assert from 'node:assert/strict';
-import { cleanTextRu, validateRu, hasLawRefRu, cleanText, validate } from '../../functions/api/ariza.js';
+import { cleanTextRu, validateRu, hasLawRefRu, cleanText, validate, genderNeutral, factOkRu, yearOkRu, stripInventedYear } from '../../functions/api/ariza.js';
 let n = 0; const t = (name, fn) => { fn(); n++; console.log('OK  ' + name); };
 const BODY = 'Прошу предоставить мне отпуск без сохранения заработной платы на 3 дня, с [дата] по [дата]. Дела, которые необходимо выполнить в этот период, я заранее передам коллеге [Ф.И.О.].';
 t('RU tozalash: shapka, sarlavha va murojaat qatorlari olib tashlanadi', () => {
@@ -49,5 +49,28 @@ t('RU tekshiruv: murojaat va so\'z soni', () => {
 t('UZ funksiyalari o\'zgarmagan (regressiya)', () => {
   assert.equal(validate('Hurmatli direktor, ' + Array(40).fill("so'z").join(' ')), 'murojaat');
   assert.equal(cleanText('Hurmatli direktor,\n\nFarzandim kasal bo\'ldi.'), "Farzandim kasal bo'ldi.");
+});
+t('RU: fakt to\'qimasin (отпуск turi aytilmagan bo\'lsa «без сохранения» yaroqsiz)', () => {
+  assert.equal(factOkRu('Прошу предоставить отпуск без сохранения заработной платы.', 'Прошу отпуск с 1 по 14 ноября, ухаживать за мамой'), false);
+  assert.equal(factOkRu('Прошу предоставить мне очередной отпуск.', 'нужен отпуск'), false);
+  assert.equal(factOkRu('Прошу предоставить мне отпуск с [дата] по [дата].', 'Прошу отпуск с 1 по 14 ноября, ухаживать за мамой'), true);
+  assert.equal(factOkRu('Прошу предоставить отпуск без сохранения заработной платы.', 'хочу отпуск за свой счёт'), true);
+});
+t('RU: jinssiz shakl — «готов», «согласен» ga (а)/(на) qo\'shiladi', () => {
+  assert.equal(genderNeutral('Готов предоставить документы. Согласен на условия. Уведомлён о сроках.'), 'Готов(а) предоставить документы. Согласен(на) на условия. Уведомлён(а) о сроках.');
+  assert.equal(genderNeutral('Готов(а) и готова, готовность'), 'Готов(а) и готова, готовность');
+  assert.equal(cleanTextRu('Прошу отпуск на 3 дня. Готов предоставить документы.').includes('Готов(а)'), true);
+});
+t('RU: yil — faqat joriy/keyingi yil yoki foydalanuvchi yozgan yil', () => {
+  assert.equal(yearOkRu('с 1 по 14 ноября 2026 г.', 'с 1 ноября', '2026-10-12'), true);
+  assert.equal(yearOkRu('с 1 ноября 2025 г.', 'с 1 ноября', '2026-10-12'), false);
+  assert.equal(yearOkRu('с 1 ноября [год]', 'с 1 ноября', '2026-10-12'), true);
+  assert.equal(yearOkRu('в 2024 году', 'в 2024 году болел', '2026-10-12'), true);
+  assert.equal(yearOkRu('с [__] по [__] октября 2026 г.', 'нужен отпуск на 3 дня', '2026-10-12'), false);   // sana aytilmagan — yil qo\'shilmasin
+});
+t('RU: sana aytilmagan bo\'lsa "[дата] 2026 г." dan yil olib tashlanadi', () => {
+  assert.equal(stripInventedYear('с [дата] по [дата] 2026 г. сроком 5 дней', 'отпуск на 5 дней'), 'с [дата] по [дата] сроком 5 дней');
+  assert.equal(stripInventedYear('с 1 по 14 ноября 2026 г.', 'с 1 ноября'), 'с 1 по 14 ноября 2026 г.');
+  assert.equal(stripInventedYear('по [__] октября 2026 г.', 'отпуск на 3 дня'), 'по [__] октября 2026 г.');   // oy yozilgan — yilOk rad etadi
 });
 console.log(n + ' ta test o\'tdi');
