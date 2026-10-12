@@ -7,6 +7,18 @@
  */
 (function (w, d) {
   'use strict';
+  /* skelet: id'siz nusxalar (data-skel-src) matnini asl element bilan sinxron saqlaydi (til almashganda ham) */
+  function syncSkel() {
+    var els = d.querySelectorAll('[data-skel-src]');
+    Array.prototype.forEach.call(els, function (el) {
+      var src = d.getElementById(el.getAttribute('data-skel-src'));
+      if (!src) return;
+      var put = function () { if (el.textContent !== src.textContent) el.textContent = src.textContent; };
+      put();
+      if (w.MutationObserver) new w.MutationObserver(put).observe(src, { childList: true, characterData: true, subtree: true });
+    });
+  }
+  syncSkel();
   var col = d.querySelector('.calc-grid .res-col');
   var card = col && col.querySelector('.receipt');
   if (!col || !card || !w.matchMedia) return;

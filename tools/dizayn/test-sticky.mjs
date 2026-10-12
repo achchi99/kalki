@@ -2,6 +2,7 @@
 // node tools/dizayn/test-sticky.mjs
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
+import { hisobla } from './hisobla.mjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
@@ -23,17 +24,12 @@ async function open(w, h, url) {
 const inter = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
 for (const slug of CALCS) for (const [w, h] of SIZES) {
   const p = await open(w, h, '/' + slug);
+  if (!(await p.locator('.calc-grid .res-col .receipt').count())) { console.log(`--   ${slug}: natija .receipt emas (norm-banner) — yopishqoq ishlatilmaydi, o'tkazildi`); await p.context().close(); break; }
   if (!(await p.locator('.calc-grid .res-col').count())) { console.log(`--   ${slug}: .calc-grid yo'q (grid qo'llanmagan sahifa) — o'tkazildi`); await p.context().close(); break; }
-  const vis = await p.evaluate(() => document.querySelector('.res-col .receipt').offsetHeight > 0);
-  if (!vis) {
-    const btn = p.locator('main .calc-btn:visible').first(); if (await btn.count()) await btn.click().catch(() => {}); await p.waitForTimeout(400);
-    if (!(await p.evaluate(() => document.querySelector('.res-col .receipt').offsetHeight > 0))) {   // kirish kerak: ko'rinadigan matn maydonlarini to'ldiramiz
-      const ins = p.locator('main input[type=text]:visible'); const n = await ins.count(); for (let i = 0; i < n; i++) await ins.nth(i).fill(i === 0 ? '5000000' : '2').catch(() => {});
-      if (await btn.count()) await btn.click().catch(() => {}); await p.waitForTimeout(500);
-    }
-  }
-  if (!(await p.evaluate(() => document.querySelector('.res-col .receipt').offsetHeight > 0))) { console.log(`--   ${slug}: natija kartasi ko'rinmadi (kirish talab qiladi) — kesishish tekshirilmadi`); await p.context().close(); break; }
-  const info = await p.evaluate(() => ({ cardH: Math.round(document.querySelector('.receipt').offsetHeight), sticky: document.querySelector('.res-col').classList.contains('is-sticky'), pos: getComputedStyle(document.querySelector('.receipt')).position, docH: document.documentElement.scrollHeight }));
+  const vis = await p.evaluate(() => document.querySelector('.res-col .receipt, .res-col .norm-banner').offsetHeight > 0);
+  if (!vis) await hisobla(p);
+  if (!(await p.evaluate(() => document.querySelector('.res-col .receipt, .res-col .norm-banner').offsetHeight > 0))) { console.log(`--   ${slug}: natija kartasi ko'rinmadi (kirish talab qiladi) — kesishish tekshirilmadi`); await p.context().close(); break; }
+  const info = await p.evaluate(() => ({ cardH: Math.round(document.querySelector('.receipt, .norm-banner').offsetHeight), sticky: document.querySelector('.res-col').classList.contains('is-sticky'), pos: getComputedStyle(document.querySelector('.receipt, .norm-banner')).position, docH: document.documentElement.scrollHeight }));
   const expect = w >= 1024 && info.cardH <= h - 64 - 32;
   assert.equal(info.sticky, expect, `${slug} ${w}x${h}: is-sticky=${info.sticky}, kutilgan ${expect} (karta ${info.cardH}px)`);
   assert.equal(info.pos, expect ? 'sticky' : 'static');
@@ -58,7 +54,7 @@ for (const slug of CALCS) for (const [w, h] of SIZES) {
 console.log(`OK   sticky kesishish testi: ${CALCS.length} sahifa × ${SIZES.length} o'lcham × 10 pozitsiya — kesishish 0`);
 // past ekran: sticky bo'lmasligi kerak
 { const p = await open(1280, 520, '/gisht-kalkulyator');
-  const info = await p.evaluate(() => ({ cardH: Math.round(document.querySelector('.receipt').offsetHeight), sticky: document.querySelector('.res-col').classList.contains('is-sticky'), pos: getComputedStyle(document.querySelector('.receipt')).position }));
+  const info = await p.evaluate(() => ({ cardH: Math.round(document.querySelector('.receipt, .norm-banner').offsetHeight), sticky: document.querySelector('.res-col').classList.contains('is-sticky'), pos: getComputedStyle(document.querySelector('.receipt, .norm-banner')).position }));
   assert.ok(info.cardH > 520 - 96, 'karta bu sinov uchun yetarlicha baland emas'); assert.equal(info.sticky, false); assert.equal(info.pos, 'static');
   console.log(`OK   1280×520: karta ${info.cardH}px > ${520 - 96}px → sticky EMAS (statik)`);
   await p.setViewportSize({ width: 1280, height: 900 }); await p.waitForTimeout(250);
@@ -74,7 +70,7 @@ console.log(`OK   sticky kesishish testi: ${CALCS.length} sahifa × ${SIZES.leng
 // mobil
 for (const [w, h] of [[390, 844], [320, 640]]) { const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); const p = await c.newPage();
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await p.goto('http://localhost:8797/gisht-kalkulyator', { waitUntil: 'networkidle' });
-  const m = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(), s = document.getElementById('smeta-cta').getBoundingClientRect(); return { sw: document.documentElement.scrollWidth, iw: innerWidth, order: f.bottom <= r.top + 1 && r.bottom <= s.top + 1, pos: getComputedStyle(document.querySelector('.receipt')).position, sticky: document.querySelector('.res-col').classList.contains('is-sticky') }; });
+  const m = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(), s = document.getElementById('smeta-cta').getBoundingClientRect(); return { sw: document.documentElement.scrollWidth, iw: innerWidth, order: f.bottom <= r.top + 1 && r.bottom <= s.top + 1, pos: getComputedStyle(document.querySelector('.receipt, .norm-banner')).position, sticky: document.querySelector('.res-col').classList.contains('is-sticky') }; });
   assert.ok(m.sw <= m.iw); assert.ok(m.order); assert.equal(m.pos, 'static'); assert.equal(m.sticky, false); console.log(`OK   ${w}px: toshmaydi, forma → natija → smeta ketma-ket, statik`); }
 await b.close(); srv.close();
 console.log('--- 1d natijasi ---\n' + results.join('\n'));

@@ -23,39 +23,39 @@ Manba: `tools/dizayn/pages.json` (inventar: tur, kategoriya, GSC kliklari, parti
 | quyosh-panel-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 1 | ha | — | 13 | V2 | OK | OK | OK | OK |
 | uy-qurish-kalkulyator | kalkulyator | Qurilish (--cat-qurilish) | 1 | ha | — | 13 | V2 | OK | OK | OK | OK |
 | omonat-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 1 | ha | — | 12 | V2 | OK | OK | OK | OK |
-| alkogol-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 11 | eski | — | — | — | — |
-| bojxona-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 10 | eski | — | — | — | — |
-| staj-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 10 | eski | — | — | — | — |
-| toy-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 10 | eski | — | — | — | — |
-| pensiya-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 9 | eski | — | — | — | — |
-| bola-puli-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 8 | eski | — | — | — | — |
-| konditsioner-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 7 | eski | — | — | — | — |
-| oylik-soliq-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 6 | eski | — | — | — | — |
-| dekret-puli-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 5 | eski | — | — | — | — |
-| remont-kalkulyator | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 5 | eski | — | — | — | — |
-| marosim-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 4 | eski | — | — | — | — |
-| elektr-xarajat-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 3 | eski | — | — | — | — |
-| homiladorlik-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 2 | eski | — | — | — | — |
-| ipoteka-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 2 | eski | — | — | — | — |
-| ishdan-boshatish-kompensatsiyasi-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 2 | eski | — | — | — | — |
-| tom-kalkulyator | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 2 | eski | — | — | — | — |
-| kaloriya-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | eski | — | — | — | — |
-| universitet-kontrakt-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | eski | — | — | — | — |
-| yhxx-jarima-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 1 | eski | — | — | — | — |
-| zakot-qurbonlik-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | eski | — | — | — | — |
-| avto-rasmiylashtirish | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | eski | — | — | — | — |
-| avto-xarajat-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 0 | eski | — | — | — | — |
-| dtm-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | eski | — | — | — | — |
-| grant-ololmadim | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | eski | — | — | — | — |
-| ipoteka-yoki-ijara-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | eski | — | — | — | — |
-| kasallik-varaqasi-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | eski | — | — | — | — |
-| kredit-limit-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | eski | — | — | — | — |
-| maktab-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | eski | — | — | — | — |
-| oila-byudjet-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | eski | — | — | — | — |
-| qqs-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | eski | — | — | — | — |
-| tatil-puli-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | eski | — | — | — | — |
-| yer-konvertor | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 0 | eski | — | — | — | — |
-| yoqilgi-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 0 | eski | — | — | — | — |
+| alkogol-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 11 | V2 | OK | OK | OK | OK |
+| bojxona-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 10 | V2 | OK | OK | OK | OK |
+| staj-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 10 | V2 | OK | OK | OK | OK |
+| toy-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 10 | V2 | OK | OK | OK | OK |
+| pensiya-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 9 | V2 | OK | OK | OK | OK |
+| bola-puli-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 8 | V2 | OK | OK | OK | OK |
+| konditsioner-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 7 | V2 | OK | OK | OK | OK |
+| oylik-soliq-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 6 | V2 | OK | OK | OK | OK |
+| dekret-puli-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 5 | V2 | OK | OK | OK | OK |
+| remont-kalkulyator | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 5 | V2 | OK | OK | OK | OK |
+| marosim-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 4 | V2 | OK | OK | OK | OK |
+| elektr-xarajat-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 3 | V2 | OK | OK | OK | OK |
+| homiladorlik-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 2 | V2 | OK | OK | OK | OK |
+| ipoteka-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 2 | V2 | OK | OK | OK | OK |
+| ishdan-boshatish-kompensatsiyasi-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 2 | V2 | OK | OK | OK | OK |
+| tom-kalkulyator | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 2 | V2 | OK | OK | OK | OK |
+| kaloriya-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | V2 | OK | OK | OK | yopishqoq yo'q (natija .receipt emas) |
+| universitet-kontrakt-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | V2 | OK | OK | OK | OK |
+| yhxx-jarima-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 1 | V2 | OK | OK | OK | OK |
+| zakot-qurbonlik-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 1 | V2 | OK | OK | OK | OK |
+| avto-rasmiylashtirish | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| avto-xarajat-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| dtm-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | V2 | OK | OK | OK | yopishqoq yo'q (natija .receipt emas) |
+| grant-ololmadim | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | V2 | OK | OK | OK | yopishqoq yo'q (natija .receipt emas) |
+| ipoteka-yoki-ijara-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| kasallik-varaqasi-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| kredit-limit-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| maktab-kalkulyator | kalkulyator | Hayotiy (--cat-hayot) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| oila-byudjet-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | V2 | ND (oldingi main ham deterministik emas) | OK | OK | OK |
+| qqs-kalkulyator | kalkulyator | Moliya (--cat-moliya) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| tatil-puli-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
+| yer-konvertor | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 0 | V2 | OK | OK | OK | yopishqoq yo'q (natija .receipt emas) |
+| yoqilgi-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
 | talabnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 9 | eski | — | — | — | — |
 | tavsifnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 5 | eski | — | — | — | — |
 | hisob-siyosati-generatori | generator | Hujjat (brend) | 3 | ha | — | 1 | eski | — | — | — | — |
@@ -91,7 +91,7 @@ Manba: `tools/dizayn/pages.json` (inventar: tur, kategoriya, GSC kliklari, parti
 | qqs-2026 | maqola | — | 4 | — | — | 0 | eski | — | — | — | — |
 | shartlar | huquqiy | — | 4 | ha | — | 0 | eski | — | — | — | — |
 
-Jami: 80 sahifa (UZ), V2: 13, qolgan: 67.
+Jami: 80 sahifa (UZ), V2: 46, qolgan: 34.
 
 
 ## 1-partiya (hisobot: 2026-10-12)

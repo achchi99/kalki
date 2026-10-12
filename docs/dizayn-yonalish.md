@@ -204,3 +204,12 @@ Faqat `tokens.css` + `site.css` komponentlari; emoji yo'q (sprite ikonkalari); s
 - **Ranglar**: asosiy qarz = brend yashil, foiz = `--gold-chart` (oq fonda ≥3:1), o'q yozuvlari `--muted`. To'q fondagi barcha matn ≥4.5:1; to'q qoidalar faqat `.receipt-body` ichida.
 - **Majburiy kontrast testi** (har partiyada): `node tools/dizayn/test-kontrast.mjs [slug,...]` — axe-core `color-contrast`, UZ+RU, 390/1280, 2 holat (boshlang'ich / hisoblangan), diagramma seriyalari ≥3:1. Nolta xato bo'lmaguncha partiya topshirilmaydi.
 - H1 emoji olib tashlandi (aliment; ishdan-boshatish — o'z partiyasida). `seo-diff.mjs` faqat shu farqni "ruxsat etilgan" deb alohida hisoblaydi.
+
+## 2-partiya (qolgan 33 kalkulyator): qo'shimcha andozalar
+
+- `.norm-banner` natija bannerli sahifalar (dtm, kaloriya): banner `aside.res-col` ga o'tadi, to'q karta sifatida bo'yaladi; yopishqoq faqat `.receipt` uchun.
+- Kalkulyator bo'lmagan eski "related" havolalar (generator, .xlsx) yangi kartalar qatorida saqlanadi (SEO: ichki havolalar kamaymaydi).
+- Eski per-sahifa palitra (`--accent`, `--cat-text` — to'q sarlavha uchun yorqin) V2 da `body.v2[data-cat]` orqali o'qiladigan qiymatga almashtirilgan.
+- Skeletdagi id'siz elementlar `data-skel-src` bilan asl elementdan matn oladi (`calc-v2.js`).
+- Testlar uchun umumiy "hisoblash" yordamchisi: `tools/dizayn/hisobla.mjs` (details ochadi, tanlov/sana/son maydonlarni to'ldiradi). Testlarni parallel yurgizsangiz 5–6 tadan oshirmang (ortiq yuklama oltin testda tasodifiy farq beradi).
+- grant-ololmadim, yer-konvertor: natija kartasi yo'q (jonli ro'yxat/konvertor) — grid qo'llanmadi, faqat sarlavha/palitra/kontrast.

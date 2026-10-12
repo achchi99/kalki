@@ -35,6 +35,14 @@ ICON_BY_EMOJI = {'📝': 'pen', '📰': 'newspaper', '🧮': 'bar-chart', '📊'
 
 def svg(i): return '<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-%s"></use></svg>' % i
 
+def skid(h):
+    # skeletdagi id lar dublikat bo'lmasligi uchun olib tashlanadi; data-i yo'q bo'lsa tarjima uchun asl elementga havola (data-skel-src) qoladi
+    def f(m):
+        tag = m.group(0)
+        if 'data-i=' in tag: return re.sub(r' id="[^"]*"', '', tag)
+        return re.sub(r' id="([^"]*)"', r' data-skel-src="\1"', tag)
+    return re.sub(r'<[a-z0-9]+ [^>]*\bid="[^"]*"[^>]*>', f, h)
+
 def kcard(href, icon, uz, ru, du=None, dr=None, plain=False, lf=True, extra_attr=''):
     cls = 'k-card plain' if plain else 'k-card'
     if lf:
@@ -77,10 +85,16 @@ def convert_calc(slug, log, kind='calc'):
     # 5. grid
     if kind == 'calc':
         ri = s.find('<section class="receipt', mend_open)
+        nb = False
+        if ri < 0:
+            ri = s.find('<section class="norm-banner', mend_open); nb = ri >= 0   # dtm/kaloriya: natija bannerda (norm-banner)
         if ri < 0:
             log.append('receipt <section> yo\'q — grid qo\'llanmadi (faqat sarlavha/bloklar)')
         else:
             re_end = bal(s, ri, 'section')
+            if nb:
+                acts = re.match(r'\s*<div class="receipt-actions">', s[re_end:])
+                if acts: re_end += acts.start() + (bal(s[re_end + acts.start():], 0))
             edge = re.match(r'\s*<div class="receipt-edge"></div>', s[re_end:])
             if edge: re_end += edge.end()
             receipt = s[ri:re_end]; form = s[mend_open:ri].strip()
@@ -120,6 +134,15 @@ def convert_calc(slug, log, kind='calc'):
             pick = order[:5]
             if len(pick) < 3 or not me: log.append('related: kategoriya ro\'yxati kam (%d)' % len(pick))
             cards = ''.join(kcard(c['slug'], c['ic'], c['uz'][0], c['ru'][0], c['uz'][1], c['ru'][1]) for c in pick)
+            # kalkulyator bo'lmagan eski havolalar (hujjat generatori, shablon fayl) yo'qolmasin (SEO: ichki havolalar kamaymasligi kerak)
+            slugs_ = set(cat_by_slug)
+            for m in re.finditer(r'<a href="([^"]+)"([^>]*)><span[^>]*>([^<]*)</span><span([^>]*)>([^<]*)</span></a>', blk):
+                href, aattr, emo, attrs, txt = m.groups()
+                if href in slugs_: continue
+                ic_ = ICON_BY_EMOJI.get(emo.strip(), 'file-text')
+                card_ = kcard(href, ic_, txt, txt, plain=True, lf=False, extra_attr=attrs.strip())
+                if 'download' in aattr: card_ = card_.replace('<a class=', '<a download="" class=', 1)
+                cards += card_
         else:
             cards = ''
             for m in re.finditer(r'<a href="([^"]+)"[^>]*><span[^>]*>([^<]*)</span><span([^>]*)>([^<]*)</span></a>', blk):
@@ -169,7 +192,9 @@ def refine_calc(slug, log):
     if 'class="calc-grid"' not in s: log.append('calc-grid yo\'q'); return False
     if 'class="res-extras"' in s or 'class="res-skel"' in s: log.append('allaqachon tozalangan'); return False
     ga = s.index('<div class="calc-grid">'); ge = bal(s, ga)
-    ra = s.index('<section class="receipt', ga); re_ = bal(s, ra, 'section')
+    ra = s.find('<section class="receipt', ga)
+    if ra < 0 or 'class="receipt-body"' not in s[ra:ra + 4000]: log.append('refine: receipt-body yo\'q (norm-banner) — o\'tkazildi'); return False
+    re_ = bal(s, ra, 'section')
     receipt = s[ra:re_]
     ba = receipt.index('<div class="receipt-body">'); be = bal(receipt, ba)
     inner_a = ba + len('<div class="receipt-body">'); inner_e = be - 6
@@ -189,12 +214,13 @@ def refine_calc(slug, log):
         tag = re.search(r'<div class="receipt-tag"[^>]*>.*?</div>', receipt, re.S)
         lbl = re.search(r'<div class="lbl"[^>]*>.*?</div>', receipt, re.S)
         rows = re.findall(r'<div class="rrow"[^>]*>\s*(<span class="k"[^>]*>.*?</span>)', receipt, re.S)[:5]
+        if slug == 'universitet-kontrakt-kalkulyator': lbl = None   # yorliq faqat hisoblashda JS bilan o'rnatiladi (RU da UZ qolib ketadi)
         uz, ru = SKEL_UNIT.get(slug, ("0 so'm", '0 сум'))
         rows_html = ''.join('<div class="rrow">' + re.sub(r'\s+', ' ', r_) + '<span class="v">—</span></div>' for r_ in rows)
         skel = ('<div class="res-skel" aria-label="Natija"><div class="receipt-body">%s'
                 '<div class="skel-hint" data-lf-uz="Ma\'lumot kiriting — natija darhol hisoblanadi" data-lf-ru="Введите данные — результат посчитается сразу">Ma\'lumot kiriting — natija darhol hisoblanadi</div>'
                 '<div class="big-figure"><div class="num" data-lf-uz="%s" data-lf-ru="%s">%s</div>%s</div>'
-                '<div class="receipt-rows">%s</div></div></div>') % (re.sub(r' id="[^"]*"', '', tag.group(0)) if tag else '', uz, ru, uz, re.sub(r' id="[^"]*"', '', lbl.group(0)) if lbl else '', re.sub(r' id="[^"]*"', '', rows_html))
+                '<div class="receipt-rows">%s</div></div></div>') % (skid(tag.group(0)) if tag else '', uz, ru, uz, skid(lbl.group(0)) if lbl else '', skid(rows_html))
         if not rows: log.append('skelet: qator yorliqlari topilmadi')
     grid = s[ga:ge]; grid = grid.replace(receipt, receipt2 + skel, 1)
     ex = ''
@@ -226,7 +252,7 @@ def convert_ijara(log):
     open(f, 'w').write(s); log.append('grid qurildi: %d qator' % len(rows)); return True
 
 # ---- emoji ikonkalarni olib tashlash (H1 va <title> dagi emoji SEO uchun o'zgarmaydi)
-EMOJI = re.compile(r'[\U0001F300-\U0001FAFF☀-⛿✀-➿⭐⬆]️?(?:‍[\U0001F300-\U0001FAFF☀-➿]️?)*')
+EMOJI = re.compile(r'[\U0001F100-\U0001F2FF\U0001F300-\U0001FAFF☀-⛿✀-➿⭐⬆]️?(?:‍[\U0001F300-\U0001FAFF☀-➿]️?)*')
 KEEP_CHARS = '✓✔→←↑↓•·—–×÷±≈≤≥'
 def strip_emoji(s, log=None):
     out = []; last = 0; n = 0

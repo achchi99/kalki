@@ -76,5 +76,203 @@
   "seo": "OK",
   "test": "OK",
   "sticky": "OK"
+ },
+ "alkogol-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "avto-rasmiylashtirish": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "avto-xarajat-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "bojxona-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "bola-puli-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "dekret-puli-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "dtm-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "yopishqoq yo'q (natija .receipt emas)"
+ },
+ "elektr-xarajat-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "grant-ololmadim": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "yopishqoq yo'q (natija .receipt emas)"
+ },
+ "homiladorlik-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ipoteka-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ipoteka-yoki-ijara-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ishdan-boshatish-kompensatsiyasi-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "kaloriya-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "yopishqoq yo'q (natija .receipt emas)"
+ },
+ "kasallik-varaqasi-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "konditsioner-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "kredit-limit-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "maktab-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "marosim-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "oila-byudjet-kalkulyator": {
+  "oltin": "ND (oldingi main ham deterministik emas)",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "oylik-soliq-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "pensiya-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "qqs-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "remont-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "staj-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "tatil-puli-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "tom-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "toy-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "universitet-kontrakt-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "yer-konvertor": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "yopishqoq yo'q (natija .receipt emas)"
+ },
+ "yhxx-jarima-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "yoqilgi-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "zakot-qurbonlik-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
  }
 }

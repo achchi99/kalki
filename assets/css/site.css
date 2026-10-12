@@ -281,6 +281,8 @@ body.v2 .xn-groups a{display:block;padding:7px 0;font-size:16px;color:var(--text
 body.v2 .xn-groups a:hover{color:var(--brand);text-decoration:underline}
 body.v2 .meta-line{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:12px;font-size:14px;line-height:1.5;color:var(--muted)}
 body.v2 .meta-line b{font-weight:600;color:var(--text)}
+/* eski per-sahifa palitra (--accent/--cat-text yorqin, to'q sarlavha uchun edi) — V2 da yorug' fonda o'qiladigan variant */
+body.v2[data-cat]{--accent:color-mix(in srgb,var(--cc,var(--brand)) 88%,#000);--cat-text:var(--muted)}
 body.v2[data-cat="moliya"]{--cc:var(--cat-moliya)}body.v2[data-cat="qurilish"]{--cc:var(--cat-qurilish)}body.v2[data-cat="kommunal"]{--cc:var(--cat-kommunal)}body.v2[data-cat="hayot"]{--cc:var(--cat-hayot)}body.v2[data-cat="huquqiy"]{--cc:var(--cat-huquqiy)}
 body.v2[data-cat] .pagehead .cat-badge{color:var(--cc);background:color-mix(in srgb,var(--cc) var(--tint),#fff)}
 body.v2[data-cat] #breadcrumb a[href*="#cat-"]{color:var(--cc);font-weight:600}
@@ -344,3 +346,26 @@ body.v2 .srow>a{color:var(--brand)!important}
 body.v2 .cta-smeta a{color:#fff}
 body.v2 #soonList .tpl{opacity:1!important}
 body.v2 .calc-grid:has(.receipt:not(.show))+.res-extras{display:none}
+body.v2 .rrow .k small{color:var(--muted)}
+body.v2 .receipt-body .rrow .k small,body.v2 .receipt-body .k .pct,body.v2 .receipt-body small{color:#B9D0C3}
+body.v2 .receipt-body #rAmount,body.v2 .receipt-body #btuClass{color:#fff!important}
+body.v2 .receipt-body #rExtraHint{color:#D2E0D8}
+body.v2 #leadBtn{color:var(--ink)}
+body.v2 [data-i="milTxt"],body.v2 [data-i="licTxt"]{color:#6B5638!important}
+/* norm-banner (dtm, kaloriya): natija bannerlari — asosiy natija kartasi sifatida to'q karta */
+body.v2 .res-col .norm-banner{background:var(--ink);color:#fff;border:0;border-radius:var(--r);box-shadow:0 8px 24px rgba(14,59,46,.18);margin:0}
+body.v2 .norm-banner :where(.nb-lbl,.nb-sub,small,.nb-pct,#detailHint,.nb-assumed,.nb-stale,.ds-row,.cnt-max,.under18-msg){color:#D2E0D8}
+body.v2 .norm-banner :where(.nb-num){color:#fff}
+body.v2 .norm-banner #assumedBtn{color:#fff}
+body.v2 .norm-banner .progress{background:rgba(255,255,255,.2)}
+body.v2 .norm-banner .bar{background:var(--gold)}
+body.v2 .res-col>.norm-banner:has(+.receipt-actions){border-radius:var(--r) var(--r) 0 0;box-shadow:none}
+body.v2 .res-col>.norm-banner+.receipt-actions{background:var(--ink);margin:0;padding:0 var(--s3) var(--s3);border-radius:0 0 var(--r) var(--r);box-shadow:0 8px 24px rgba(14,59,46,.18)}
+body.v2 .norm-banner *{color:#D2E0D8}
+body.v2 .norm-banner .nb-num,body.v2 .norm-banner .nb-num *{color:#fff}
+body.v2 .norm-banner a{color:#F2C46B}
+body.v2 .opts{background:var(--ink)}
+body.v2 .opts a[data-ocalc]{color:#F2C46B}
+body.v2 .pt-checked{color:var(--muted)}
+body.v2 .opts .optshead{color:#F2C46B}
+body.v2 .opts .optslbl{color:#D2E0D8}
