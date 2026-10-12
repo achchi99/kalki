@@ -274,5 +274,131 @@
   "seo": "OK",
   "test": "OK",
   "sticky": "OK"
+ },
+ "avto-oldi-sotdi-shartnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "davo-arizasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "hisob-siyosati-generatori": {
+  "oltin": "OK (test-hisob-siyosati.mjs)",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "ijara-shartnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "ish-haqi-malumotnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "ishdan-boshash-arizasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "kadr-buyruqlari-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "kafolat-xati-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "mehnat-shartnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "moddiy-yordam-arizasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "oquv-tatili-arizasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "qurilish-pudrat-shartnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "talabnoma-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "tatil-arizasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "tavsifnoma-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "tilxat-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "tolov-hisobi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "topshirish-qabul-dalolatnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "tushuntirish-xati-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "uy-oldi-sotdi-shartnomasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "xizmat-korsatish-shartnomasi-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
  }
 }

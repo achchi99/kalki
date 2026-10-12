@@ -21,6 +21,7 @@ function facts(html) {
     ogtitle: q('meta[property="og:title"]', 'content'), ogimg: q('meta[property="og:image"]', 'content'), ld, abText, abMeta, abData, order, hrefs };
 }
 let bad = 0, allowed = 0;
+const DRIFT = new Set(['hisob-siyosati-generatori.html', 'ru/hisob-siyosati-generatori.html']);
 const H1EMOJI = /(?:👨‍👧|📤) ?/g;   // foydalanuvchi ruxsat bergan yagona farq: H1 (+ breadcrumb, JSON-LD name) dagi emoji olib tashlanishi
 
 for (const f of PAGES) {
@@ -29,6 +30,8 @@ for (const f of PAGES) {
   for (const k of ['title', 'desc', 'h1', 'canonical', 'hreflang', 'robots', 'ogtitle', 'ogimg', 'ld', 'abText', 'abMeta', 'abData', 'order']) {
     let same = JSON.stringify(a[k]) === JSON.stringify(b[k]);
     if (!same && (k === 'h1' || k === 'ld') && JSON.stringify(a[k]).replace(H1EMOJI, '') === JSON.stringify(b[k])) { same = true; allowed++; console.log('   (ruxsat etilgan) ' + f + ': ' + k + ' — emoji olib tashlandi'); }
+    // main dagi nusxa prerender'dan keyin qayta yozilmagan (sana-drift: footer commit'i 2026-09-29) — faqat sana farqi bo'lsa ruxsat
+    if (!same && DRIFT.has(f) && ['ld', 'abMeta', 'abData'].includes(k) && JSON.stringify(a[k]).replace(/\d{4}-\d{2}-\d{2}/g, 'D') === JSON.stringify(b[k]).replace(/\d{4}-\d{2}-\d{2}/g, 'D')) { same = true; allowed++; console.log('   (ruxsat etilgan) ' + f + ': ' + k + ' — faqat sana (main nusxasi prerender\'dan eskirgan)'); }
     if (!same && k === 'ogimg' && String(a[k]).replace(/\?v=\d+$/, '') === String(b[k]).replace(/\?v=\d+$/, '')) { same = true; allowed++; console.log('   (ruxsat etilgan) ' + f + ': og rasm kesh versiyasi (?v=) — H1 o\'zgargani uchun rasm qayta chizildi'); }
     if (!same) { bad++; rows.push(k + ': FARQ\n   eski=' + JSON.stringify(a[k]).slice(0, 160) + '\n   yangi=' + JSON.stringify(b[k]).slice(0, 160)); }
   }

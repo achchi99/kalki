@@ -56,27 +56,27 @@ Manba: `tools/dizayn/pages.json` (inventar: tur, kategoriya, GSC kliklari, parti
 | tatil-puli-kalkulyator | kalkulyator | Huquqiy (--cat-huquqiy) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
 | yer-konvertor | kalkulyator | Qurilish (--cat-qurilish) | 2 | ha | — | 0 | V2 | OK | OK | OK | yopishqoq yo'q (natija .receipt emas) |
 | yoqilgi-kalkulyator | kalkulyator | Kommunal (--cat-kommunal) | 2 | ha | — | 0 | V2 | OK | OK | OK | OK |
-| talabnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 9 | eski | — | — | — | — |
-| tavsifnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 5 | eski | — | — | — | — |
-| hisob-siyosati-generatori | generator | Hujjat (brend) | 3 | ha | — | 1 | eski | — | — | — | — |
-| ish-haqi-malumotnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 1 | eski | — | — | — | — |
-| avto-oldi-sotdi-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| davo-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| ijara-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| ishdan-boshash-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| kadr-buyruqlari-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| kafolat-xati-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| mehnat-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| moddiy-yordam-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| oquv-tatili-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| qurilish-pudrat-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| tatil-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| tilxat-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| tolov-hisobi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| topshirish-qabul-dalolatnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| tushuntirish-xati-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| uy-oldi-sotdi-shartnomasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
-| xizmat-korsatish-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | eski | — | — | — | — |
+| talabnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 9 | V2 | OK | OK | OK | n/a |
+| tavsifnoma-namunasi | generator | Hujjat (brend) | 3 | ha | — | 5 | V2 | OK | OK | OK | n/a |
+| hisob-siyosati-generatori | generator | Hujjat (brend) | 3 | ha | — | 1 | V2 | OK (test-hisob-siyosati.mjs) | OK | OK | n/a |
+| ish-haqi-malumotnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 1 | V2 | OK | OK | OK | n/a |
+| avto-oldi-sotdi-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| davo-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| ijara-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| ishdan-boshash-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| kadr-buyruqlari-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| kafolat-xati-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| mehnat-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| moddiy-yordam-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| oquv-tatili-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| qurilish-pudrat-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| tatil-arizasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| tilxat-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| tolov-hisobi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| topshirish-qabul-dalolatnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| tushuntirish-xati-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| uy-oldi-sotdi-shartnomasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
+| xizmat-korsatish-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
 | hujjatlar | hub | — | 4 | ha | — | 9 | eski | — | — | — | — |
 | avto-bojxona-2026 | maqola | — | 4 | — | — | 6 | eski | — | — | — | — |
 | bolalar-nafaqasi-2026 | maqola | — | 4 | — | — | 5 | eski | — | — | — | — |
@@ -91,7 +91,7 @@ Manba: `tools/dizayn/pages.json` (inventar: tur, kategoriya, GSC kliklari, parti
 | qqs-2026 | maqola | — | 4 | — | — | 0 | eski | — | — | — | — |
 | shartlar | huquqiy | — | 4 | ha | — | 0 | eski | — | — | — | — |
 
-Jami: 80 sahifa (UZ), V2: 46, qolgan: 34.
+Jami: 80 sahifa (UZ), V2: 67, qolgan: 13.
 
 
 ## 1-partiya (hisobot: 2026-10-12)
