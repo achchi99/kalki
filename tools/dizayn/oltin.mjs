@@ -26,7 +26,7 @@ async function newPage(extraRoutes) {
   if (extraRoutes) await extraRoutes(page); return page;
 }
 // ---------- kalkulyator ----------
-const EXCL = ['.answerbox', '.ab-card', '.seo', '#seoBlock', '#articleLink', '#related', '#fbcall', '#xnav', '#datanote', '.cta-tg', '.how', '#smeta-cta', '#tgcta', '.tgcta', '#partners-slot', '[id^="partners"]', '.partners', '#breadcrumb', 'script', 'style', 'noscript', 'svg', '.foot-note', '.aiz', '#sf2', 'footer', '#legal-links', '#copyline', '.noprint-skip', '.calc-top-skip', '.aip', '#aiPromo'];
+const EXCL = ['.res-skel', '.answerbox', '.ab-card', '.seo', '#seoBlock', '#articleLink', '#related', '#fbcall', '#xnav', '#datanote', '.cta-tg', '.how', '#smeta-cta', '#tgcta', '.tgcta', '#partners-slot', '[id^="partners"]', '.partners', '#breadcrumb', 'script', 'style', 'noscript', 'svg', '.foot-note', '.aiz', '#sf2', 'footer', '#legal-links', '#copyline', '.noprint-skip', '.calc-top-skip', '.aip', '#aiPromo'];
 async function snapshot(page) {
   return page.evaluate((excl) => {
     const m = document.querySelector('main') || document.body; const c = m.cloneNode(true);
@@ -127,7 +127,9 @@ for (const p of targets) {
       if (!fs.existsSync(f)) { console.log('YO\'Q', p.slug, lang); bad++; continue; }
       const g = JSON.parse(fs.readFileSync(f, 'utf8')); const diffs = [];
       const EM = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE0F}\u{200D}]\s?/gu; // emoji ikonkalar olib tashlandi — solishtiruvda e'tiborsiz
-      const cmp = (a, b, k) => { const sa0 = (JSON.stringify(a) || '').replace(EM, ''), sb0 = (JSON.stringify(b) || '').replace(EM, ''); if (sa0 !== sb0) { const sa = sa0, sb = sb0; let i = 0; while (sa[i] === sb[i]) i++; diffs.push(k + ' @' + i + ' eski=' + sa.slice(Math.max(0, i - 40), i + 70) + ' | yangi=' + sb.slice(Math.max(0, i - 40), i + 70)); } };
+      const tokSort = (x) => (typeof x === 'string' ? x.split(/\s+/).filter(Boolean).sort().join(' ') : x);   // matn: so'zlar to'plami (qo'shimcha bloklar gridning pastiga ko'chgan — tartib farqi hisobga olinmaydi)
+      const cmp = (a, b, k) => { if (/\.matn$/.test(k)) { a = tokSort(typeof a === 'string' ? a.replace(EM, '') : a); b = tokSort(typeof b === 'string' ? b.replace(EM, '') : b); } const sa0 = (JSON.stringify(a) || '').replace(EM, ''), sb0 = (JSON.stringify(b) || '').replace(EM, ''); if (sa0 !== sb0) { const sa = sa0, sb = sb0; let i = 0; while (sa[i] === sb[i]) i++; if (/\.matn$/.test(k)) { const cnt = (t) => t.split(' ').reduce((m, w) => (m.set(w, (m.get(w) || 0) + 1), m), new Map()); const ca = cnt(sa), cb = cnt(sb), d = []; for (const w of new Set([...ca.keys(), ...cb.keys()])) { const x = (cb.get(w) || 0) - (ca.get(w) || 0); if (x) d.push((x > 0 ? '+' : '') + x + ' ' + w); } diffs.push(k + ' so\'z farqi: ' + d.slice(0, 15).join(' | ')); return; }
+        diffs.push(k + ' @' + i + ' eski=' + sa.slice(Math.max(0, i - 40), i + 70) + ' | yangi=' + sb.slice(Math.max(0, i - 40), i + 70)); } };
       if (p.tur === 'kalkulyator') for (const s of ['odatiy', 'chegara', 'katta']) { cmp(g[s]?.text, res[s]?.text, s + '.matn'); cmp(g[s]?.inputs, res[s]?.inputs, s + '.kirish'); }
       else for (const k of Object.keys(g.variantlar || {})) { const a = g.variantlar[k], b = (res.variantlar || {})[k] || {}; cmp(a.hujjat, b.hujjat, k + '.hujjat'); cmp(a.qolgan, b.qolgan, k + '.qolgan'); if (a.word) { cmp(a.word.text, b.word?.text, k + '.word-matn'); } if (a.pdf) { cmp(a.pdf.sahifa, b.pdf?.sahifa, k + '.pdf-sahifa'); if (!b.pdf || Math.abs(a.pdf.kib - b.pdf.kib) > Math.max(15, a.pdf.kib * 0.35)) diffs.push(k + '.pdf-hajm eski=' + a.pdf.kib + 'KB yangi=' + b.pdf?.kib + 'KB'); } }
       if ((res.xato || []).length > (g.xato || []).length) diffs.push('yangi JS xato: ' + res.xato.join(' | '));

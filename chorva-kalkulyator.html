@@ -310,12 +310,12 @@ img,svg{height:auto}
 </div>
 <aside class="res-col" aria-label="Natija"><section class="receipt" id="receipt" aria-live="polite">
     <div class="receipt-body">
-      <div class="receipt-tag" id="receiptTag" data-i="rTag">Rentabellik hisobi</div>
-      <div class="big-figure">
+<div class="receipt-tag" id="receiptTag" data-i="rTag">Rentabellik hisobi</div>
+<div class="big-figure">
         <div class="num" id="mainNum">—</div>
         <div class="lbl" id="mainLbl"></div>
       </div>
-      <div class="receipt-rows" id="forwardRows">
+<div class="receipt-rows" id="forwardRows">
         <div class="rrow"><span class="k" data-i="kBuy">Mol olishga ketgan</span><span class="v" id="rBuy">—</span></div>
         <div class="rrow"><span class="k" data-i="kFeed">Yem-xashak jami</span><span class="v" id="rFeed">—</span></div>
         <div class="rrow"><span class="k" data-i="kOther">Boshqa xarajatlar</span><span class="v" id="rOther">—</span></div>
@@ -326,20 +326,24 @@ img,svg{height:auto}
         <div class="rrow"><span class="k" data-i="kRoi">Rentabellik</span><span class="v" id="rRoi">—</span></div>
         <div class="rrow"><span class="k" data-i="kBreak">Zararsizlik narxi (1 bosh)</span><span class="v accent" id="rBreak">—</span></div>
       </div>
-      <div class="receipt-rows" id="reverseRows" style="display:none">
+<div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
+</div>
+    <div class="receipt-edge"></div>
+  </section><div class="res-skel" aria-label="Natija"><div class="receipt-body"><div class="receipt-tag" data-i="rTag">Rentabellik hisobi</div><div class="skel-hint" data-lf-uz="Ma'lumot kiriting — natija darhol hisoblanadi" data-lf-ru="Введите данные — результат посчитается сразу">Ma'lumot kiriting — natija darhol hisoblanadi</div><div class="big-figure"><div class="num" data-lf-uz="0 so'm" data-lf-ru="0 сум">0 so'm</div><div class="lbl"></div></div><div class="receipt-rows"><div class="rrow"><span class="k" data-i="kBuy">Mol olishga ketgan</span><span class="v">—</span></div><div class="rrow"><span class="k" data-i="kFeed">Yem-xashak jami</span><span class="v">—</span></div><div class="rrow"><span class="k" data-i="kOther">Boshqa xarajatlar</span><span class="v">—</span></div><div class="rrow"><span class="k" data-i="kDaily">Kunlik xarajat (1 bosh)</span><span class="v">—</span></div><div class="rrow"><span class="k" data-i="kMonthly">Oylik o'rtacha foyda</span><span class="v">—</span></div></div></div></div></aside></div>
+
+<div class="res-extras">
+<div class="receipt-rows" id="reverseRows" style="display:none">
         <div class="rrow"><span class="k" data-i="rkPerHead">1 boshga jami xarajat</span><span class="v accent" id="rrPerHead">—</span></div>
         <div class="rrow"><span class="k" data-i="rkNext">Keyingi bosh uchun kerak</span><span class="v" id="rrNext">—</span></div>
       </div>
-      <div class="status" id="statusBox"></div>
-
-      <div id="riskBlock" style="display:none">
+<div class="status" id="statusBox"></div>
+<div id="riskBlock" style="display:none">
         <div class="risk-title" data-i="riskTitle">Nima bo'lsa zarar qilaman?</div>
         <div class="risk-verdict" id="riskVerdict"></div>
         <div class="risk-rows" id="riskRows"></div>
         <div class="risk-break" id="riskBreakNote"></div>
       </div>
-
-      <div id="weightResult" style="display:none">
+<div id="weightResult" style="display:none">
         <div class="risk-title" data-i="wResultTitle">Vazn bo'yicha hisob</div>
         <div class="receipt-rows" id="weightRows">
           <div class="rrow"><span class="k" data-i="wkGain">Vazn o'sishi</span><span class="v" id="wGain">—</span></div>
@@ -349,12 +353,8 @@ img,svg{height:auto}
         </div>
         <div class="werr" id="weightErrorMsg" style="display:none"></div>
       </div>
-
-      <div class="receipt-actions"><button type="button" id="shareBtn" data-i="btnShare">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
-    </div>
-    <div class="receipt-edge"></div>
-  </section></aside>
 </div>
+
 <div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
 
   

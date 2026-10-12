@@ -20,12 +20,15 @@ function facts(html) {
     hreflang: [...d.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) => l.getAttribute('hreflang') + '=' + l.getAttribute('href')).sort(), robots: q('meta[name="robots"]', 'content'),
     ogtitle: q('meta[property="og:title"]', 'content'), ogimg: q('meta[property="og:image"]', 'content'), ld, abText, abMeta, abData, order, hrefs };
 }
-let bad = 0;
+let bad = 0, allowed = 0;
+const H1EMOJI = /(?:👨‍👧|📤) ?/g;   // foydalanuvchi ruxsat bergan yagona farq: H1 (+ breadcrumb, JSON-LD name) dagi emoji olib tashlanishi
+
 for (const f of PAGES) {
   const a = facts(get(f, REF)), b = facts(get(f));
   const rows = [];
   for (const k of ['title', 'desc', 'h1', 'canonical', 'hreflang', 'robots', 'ogtitle', 'ogimg', 'ld', 'abText', 'abMeta', 'abData', 'order']) {
-    const same = JSON.stringify(a[k]) === JSON.stringify(b[k]);
+    let same = JSON.stringify(a[k]) === JSON.stringify(b[k]);
+    if (!same && (k === 'h1' || k === 'ld') && JSON.stringify(a[k]).replace(H1EMOJI, '') === JSON.stringify(b[k])) { same = true; allowed++; console.log('   (ruxsat etilgan) ' + f + ': ' + k + ' — emoji olib tashlandi'); }
     if (!same) { bad++; rows.push(k + ': FARQ\n   eski=' + JSON.stringify(a[k]).slice(0, 160) + '\n   yangi=' + JSON.stringify(b[k]).slice(0, 160)); }
   }
   const lost = [...a.hrefs].filter((h) => !b.hrefs.has(h)), added = [...b.hrefs].filter((h) => !a.hrefs.has(h));
@@ -33,4 +36,5 @@ for (const f of PAGES) {
   console.log((rows.length ? 'FARQ ' : 'OK   ') + f + ' — ichki havolalar ' + a.hrefs.size + ' → ' + b.hrefs.size + (added.length ? ' (+' + added.length + ': ' + added.slice(0, 6).join(', ') + ')' : ''));
   rows.forEach((r) => console.log('   ' + r));
 }
+if (allowed) console.log('Ruxsat etilgan H1-emoji farqlari: ' + allowed);
 console.log(bad ? bad + ' ta farq' : 'SEO invariantlari o\'zgarmagan');

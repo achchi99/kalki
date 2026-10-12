@@ -144,7 +144,86 @@ def convert_calc(slug, log, kind='calc'):
     s, ne = strip_emoji(s)
     if ne: log.append('emoji olib tashlandi: %d' % ne)
     open(f, 'w').write(s)
+    if kind == 'calc' and 'class="calc-grid"' in s: refine_calc(slug, log)
     return True
+
+# ---- natija kartasi qoidasi: to'q karta FAQAT asosiy natija (tag + raqam + 1-qatorlar guruhi + tugmalar);
+#      diagramma, simulyator, izoh, jadval kartadan CHIQARILADI -> calc-grid ostida .res-extras (oq kartalar)
+SKEL_UNIT = {'aliment-kalkulyator': ("0 so'm", '0 сум'), 'uy-qurish-kalkulyator': ("0 m²", '0 м²'), 'chorva-kalkulyator': ("0 so'm", '0 сум'), 'quyosh-panel-kalkulyator': ('0', '0')}
+MAIN_CLS = ('receipt-tag', 'big-figure', 'receipt-actions')
+
+def children(s, start, end):
+    """s[start:end] ichidagi birinchi daraja elementlar: [(a, b, tag, class)]"""
+    out = []; i = start
+    while True:
+        m = re.compile(r'<(div|button|p|a|details|table|section|ul|span)\b([^>]*)>').search(s, i, end)
+        if not m: return out
+        tag = m.group(1)
+        try: e = bal(s, m.start(), tag)
+        except ValueError: return out
+        cm = re.search(r'class="([^"]*)"', m.group(2))
+        out.append((m.start(), e, tag, cm.group(1) if cm else '')); i = e
+
+def refine_calc(slug, log):
+    f = R + slug + '.html'; s = open(f).read()
+    if 'class="calc-grid"' not in s: log.append('calc-grid yo\'q'); return False
+    if 'class="res-extras"' in s or 'class="res-skel"' in s: log.append('allaqachon tozalangan'); return False
+    ga = s.index('<div class="calc-grid">'); ge = bal(s, ga)
+    ra = s.index('<section class="receipt', ga); re_ = bal(s, ra, 'section')
+    receipt = s[ra:re_]
+    ba = receipt.index('<div class="receipt-body">'); be = bal(receipt, ba)
+    inner_a = ba + len('<div class="receipt-body">'); inner_e = be - 6
+    kids = children(receipt, inner_a, inner_e)
+    main, extras = [], []; rows_seen = False
+    for a, b, tag, cls in kids:
+        c = cls.split()
+        if any(x in c for x in MAIN_CLS): main.append(receipt[a:b]); continue
+        if 'receipt-rows' in c and not rows_seen: rows_seen = True; main.append(receipt[a:b]); continue
+        if tag == 'button' and 'pdfbtn' in c: main.append(receipt[a:b]); continue
+        extras.append(receipt[a:b])
+    new_body = '<div class="receipt-body">\n' + '\n'.join(main) + '\n</div>'
+    receipt2 = receipt[:ba] + new_body + receipt[be:]
+    # skelet (natija yashirin bo'lsa)
+    skel = ''
+    if 'class="receipt show"' not in receipt[:60] and ' show' not in re.match(r'<section class="([^"]*)"', receipt).group(1):
+        tag = re.search(r'<div class="receipt-tag"[^>]*>.*?</div>', receipt, re.S)
+        lbl = re.search(r'<div class="lbl"[^>]*>.*?</div>', receipt, re.S)
+        rows = re.findall(r'<div class="rrow"[^>]*>\s*(<span class="k"[^>]*>.*?</span>)', receipt, re.S)[:5]
+        uz, ru = SKEL_UNIT.get(slug, ("0 so'm", '0 сум'))
+        rows_html = ''.join('<div class="rrow">' + re.sub(r'\s+', ' ', r_) + '<span class="v">—</span></div>' for r_ in rows)
+        skel = ('<div class="res-skel" aria-label="Natija"><div class="receipt-body">%s'
+                '<div class="skel-hint" data-lf-uz="Ma\'lumot kiriting — natija darhol hisoblanadi" data-lf-ru="Введите данные — результат посчитается сразу">Ma\'lumot kiriting — natija darhol hisoblanadi</div>'
+                '<div class="big-figure"><div class="num" data-lf-uz="%s" data-lf-ru="%s">%s</div>%s</div>'
+                '<div class="receipt-rows">%s</div></div></div>') % (re.sub(r' id="[^"]*"', '', tag.group(0)) if tag else '', uz, ru, uz, re.sub(r' id="[^"]*"', '', lbl.group(0)) if lbl else '', re.sub(r' id="[^"]*"', '', rows_html))
+        if not rows: log.append('skelet: qator yorliqlari topilmadi')
+    grid = s[ga:ge]; grid = grid.replace(receipt, receipt2 + skel, 1)
+    ex = ''
+    if extras: ex = '\n<div class="res-extras">\n' + '\n'.join(extras) + '\n</div>\n'
+    s = s[:ga] + grid + ex + s[ge:]
+    open(f, 'w').write(s)
+    log.append('extras=%d skelet=%s' % (len(extras), 'ha' if skel else 'yo\'q'))
+    return True
+
+def convert_ijara(log):
+    f = R + 'ijara-stavkalari.html'; s = open(f).read()
+    if 'class="calc-grid"' in s: log.append('allaqachon grid'); return False
+    fa = s.index('<section class="form-card">'); fe = bal(s, fa, 'section')
+    form = s[fa:fe]
+    ra = form.index('<div class="receipt show" id="receipt">'); re_ = bal(form, ra)
+    rc = form[ra:re_]; form_only = form[:ra] + form[re_:]
+    lbl = re.search(r'<div class="rmain-lbl"([^>]*)>(.*?)</div>', rc, re.S)
+    main = re.search(r'<div class="rmain"([^>]*)>(.*?)</div>', rc, re.S)
+    rows = re.findall(r'<div class="rrow">.*?</div>', rc, re.S)
+    src = rc[rc.index('<div class="rsrc"'):]; src = src[:bal(src, 0)]
+    if not (lbl and main and rows and src): raise ValueError('ijara natija tarkibi kutilgandek emas')
+    receipt = ('<section class="receipt show" id="receipt" aria-live="polite"><div class="receipt-body">\n'
+               '<div class="receipt-tag"%s>%s</div>\n<div class="big-figure"><div class="num"%s>%s</div></div>\n'
+               '<div class="receipt-rows">\n%s\n</div>\n%s\n</div></section>') % (lbl.group(1), lbl.group(2), main.group(1), main.group(2), '\n'.join(rows), src)
+    grid = '<div class="calc-grid">\n<div class="calc-form">\n%s\n</div>\n<aside class="res-col" aria-label="Natija">%s</aside>\n</div>' % (form_only, receipt)
+    s = s[:fa] + grid + s[fe:]
+    if 'assets/calc-v2.js' not in s: s = s.replace('<script src="assets/answerbox.js" defer=""></script>', '<script src="assets/answerbox.js" defer=""></script>\n<script src="assets/calc-v2.js" defer=""></script>', 1)
+    s = s.replace('<main class="wrap calc-main">', '<main class="wrap calc-main">', 1)
+    open(f, 'w').write(s); log.append('grid qurildi: %d qator' % len(rows)); return True
 
 # ---- emoji ikonkalarni olib tashlash (H1 va <title> dagi emoji SEO uchun o'zgarmaydi)
 EMOJI = re.compile(r'[\U0001F300-\U0001FAFF☀-⛿✀-➿⭐⬆]️?(?:‍[\U0001F300-\U0001FAFF☀-➿]️?)*')
@@ -174,7 +253,11 @@ if __name__ == '__main__':
     for slug in sys.argv[2:]:
         log = []
         try:
-            if kind == 'strip':
+            if kind == 'ijara':
+                r = convert_ijara(log)
+            elif kind == 'refine':
+                r = refine_calc(slug, log)
+            elif kind == 'strip':
                 t = open(R + slug + '.html').read(); t, n_ = strip_emoji(t); open(R + slug + '.html', 'w').write(t); log.append('emoji: %d' % n_); r = True
             else:
                 r = convert_calc(slug, log, kind) if kind in ('calc', 'gen') else None

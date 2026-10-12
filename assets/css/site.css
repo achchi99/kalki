@@ -14,7 +14,7 @@ body.v2 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0
 body.v2 #sitebar.sb2{position:sticky;top:0;z-index:60;background:var(--surface);border-bottom:1px solid var(--line);height:var(--hdr)}
 body.v2 .sb2-in{max-width:var(--wrap);height:100%;margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;gap:var(--s3)}
 body.v2 .sb2 .logo{font-size:23px;font-weight:800;letter-spacing:-.02em;color:var(--ink);text-decoration:none;white-space:nowrap;line-height:1}
-body.v2 .sb2 .logo .dot{color:var(--gold)}
+body.v2 .sb2 .logo .dot{color:var(--gold-ink)}
 body.v2 .sb2 #topmenu{flex:1;min-width:0;background:transparent}
 body.v2 .tm2{list-style:none;display:flex;align-items:center;gap:4px;margin:0;padding:0}
 body.v2 .tm2 li{position:relative;display:flex;align-items:center}
@@ -172,11 +172,6 @@ body.v2 .calc-grid>*{min-width:0}
   body.v2 .calc-grid>.how{grid-column:1;grid-row:3}
 }
 body.v2 .res-col.is-sticky .receipt{position:sticky;top:88px}
-/* natija hali ko'rsatilmagan (receipt yashirin) — ustun bo'sh qolmasin: sokin joy egasi (til html[lang] bo'yicha) */
-@media (min-width:960px){
-  body.v2 .res-col:has(.receipt:not(.show))::before{content:"Natija shu yerda ko'rinadi";display:flex;align-items:center;justify-content:center;min-height:220px;padding:var(--s3);border:1.5px dashed var(--line-strong);border-radius:var(--r);color:var(--muted);font-size:16px;font-weight:500;text-align:center}
-  html[lang="ru"] body.v2 .res-col:has(.receipt:not(.show))::before{content:"Результат появится здесь"}
-}
 body.v2 .calc-form>[id$="Note"],body.v2 .calc-form>.note{font-size:14px;line-height:1.5;color:var(--muted)}
 body.v2 .calc-form .sect-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
 body.v2 .calc-form .hint{font-size:14px}
@@ -200,29 +195,51 @@ body.v2 .seg button.on{background:var(--ink);color:#fff}
 body.v2 .calc-btn{margin-top:var(--s3);min-height:52px;padding:14px;background:var(--brand);border-radius:var(--r-sm);font-size:17px;font-weight:600}
 body.v2 .calc-btn:hover,body.v2 .calc-btn:active{background:var(--brand-hover)}
 body.v2 .receipt{margin-top:0;filter:none}
-body.v2 .receipt-body{background:var(--ink);color:#fff;border:0;border-radius:var(--r);padding:var(--s3);box-shadow:0 8px 24px rgba(14,59,46,.18)}
+body.v2 .receipt-body,body.v2 .res-skel .receipt-body{background:var(--ink);color:#fff;border:0;border-radius:var(--r);padding:var(--s3);box-shadow:0 8px 24px rgba(14,59,46,.18)}
 body.v2 .receipt-edge{display:none}
-body.v2 .receipt-tag{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:#AFC8BA}
-body.v2 .receipt-tag::after{display:none}
-body.v2 .big-figure .num{font-size:40px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;line-height:1.1}
-body.v2 .big-figure .lbl{font-size:15px;font-weight:500;color:#C7D6CD;margin-top:6px}
-body.v2 .receipt-rows{margin-top:var(--s3);border-top:1px solid rgba(255,255,255,.16);padding-top:8px}
-body.v2 .rrow{font-size:16px;padding:9px 0;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(255,255,255,.10)}
-body.v2 .rrow:last-child{border-bottom:0}
-body.v2 .rrow .k{font-weight:500;color:#AFC8BA}
-body.v2 .rrow .v{font-weight:700;color:#fff}
-body.v2 .rrow .v.accent{color:#F2C46B}
-body.v2 .rrow.sep{border-top:1px solid rgba(255,255,255,.16);margin-top:4px;padding-top:12px}
+/* to'q fon: BARCHA matn >= 4.5:1 (ikkinchi darajali yozuvlar ham) */
+body.v2 .receipt-body .receipt-tag{font-size:14px;font-weight:600;letter-spacing:0;text-transform:none;color:#B9D0C3;opacity:1}
+body.v2 .receipt-body .receipt-tag::after{display:none}
+body.v2 .receipt-body .big-figure .num{font-size:40px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;line-height:1.1}
+body.v2 .receipt-body .big-figure .lbl{font-size:15px;font-weight:500;color:#D2E0D8;margin-top:6px}
+body.v2 .receipt-body .receipt-rows{margin-top:var(--s3);border-top:1px solid rgba(255,255,255,.16);padding-top:8px}
+body.v2 .receipt-body .rrow{display:flex;justify-content:space-between;gap:12px;font-size:16px;padding:9px 0;font-variant-numeric:tabular-nums;border-bottom:1px solid rgba(255,255,255,.10)}
+body.v2 .receipt-body .rrow:last-child{border-bottom:0}
+body.v2 .receipt-body .rrow .k{font-weight:500;color:#B9D0C3}
+body.v2 .receipt-body .rrow .v{font-weight:700;color:#fff;text-align:right}
+body.v2 .receipt-body .rrow .v.accent{color:#F2C46B}
+body.v2 .receipt-body .rrow.sep{border-top:1px solid rgba(255,255,255,.16);margin-top:4px;padding-top:12px}
+body.v2 .receipt-body .rsrc{margin-top:var(--s2);padding-top:var(--s2);border-top:1px solid rgba(255,255,255,.16);font-size:14px;line-height:1.55;color:#D2E0D8}
+body.v2 .receipt-body .rsrc a{color:#F2C46B;font-weight:600}
+body.v2 .receipt-body .skel-hint{font-size:14px;line-height:1.45;color:#D2E0D8;margin:6px 0 var(--s2)}
 body.v2 .receipt-actions{gap:10px;margin-top:var(--s2)}
-body.v2 .res-col .receipt-actions button{min-height:44px;font-size:15px;font-weight:600;border-radius:var(--r-sm);border:1.5px solid rgba(255,255,255,.28);color:#fff;background:transparent;transition:background var(--ease),border-color var(--ease)}
+body.v2 .res-col .receipt-actions button{min-height:44px;font-size:15px;font-weight:600;border-radius:var(--r-sm);border:1.5px solid rgba(255,255,255,.34);color:#fff;background:transparent;transition:background var(--ease),border-color var(--ease)}
 body.v2 .res-col .receipt-actions button:hover{background:rgba(255,255,255,.12);border-color:#fff}
+/* natija hali yo'q: skelet (haqiqiy kartaning o'zi, 0 va "—" bilan); natija chiqqach (.receipt.show) yashirinadi */
+body.v2 .res-skel{display:block}
+body.v2 .receipt.show+.res-skel{display:none}
+/* qo'shimcha natija bloklari (diagramma, simulyator, izohlar, jadvallar): to'q kartadan tashqarida, oq kartalarda */
+body.v2 .res-extras{display:grid;grid-template-columns:1fr;gap:var(--s2);margin-top:var(--s3)}
+@media (min-width:760px){body.v2 .res-extras{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}}
+body.v2 .res-extras>*{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-card);padding:20px;margin:0;color:var(--text);min-width:0}
+body.v2 .res-extras>.status-box{background:var(--surface)}
+body.v2 .res-extras .paychart,body.v2 .res-extras .early-payoff{border-top:0;padding-top:20px;margin-top:0}
+body.v2 .res-extras .pc-head,body.v2 .res-extras .ep-head{font-size:17px;font-weight:700;color:var(--ink)}
+body.v2 .res-extras .ep-row label,body.v2 .res-extras .pc-legend{font-size:14px;color:var(--muted)}
+body.v2 .res-extras .ep-val{font-size:16px;color:var(--ink)}
+body.v2 .res-extras .ep-line,body.v2 .res-extras .pc-summary{font-size:15px}
+body.v2 .res-extras .pc-principal{fill:var(--brand)}
+body.v2 .res-extras .pc-interest{fill:var(--gold-chart)}
+body.v2 .res-extras .pc-axis{font-size:11px;fill:var(--muted)}
+body.v2 .res-extras .pc-legend .lg-principal{background:var(--brand)}
+body.v2 .res-extras .pc-legend .lg-interest{background:var(--gold-chart)}
 /* PDF uchun yorug' holat (html2canvas shu sinfni vaqtincha qo'yadi) */
 body.v2 .receipt.pdf-light .receipt-body{background:#fff;color:var(--text);box-shadow:none}
-body.v2 .receipt.pdf-light .big-figure .num{color:var(--ink)}
-body.v2 .receipt.pdf-light .big-figure .lbl,body.v2 .receipt.pdf-light .receipt-tag,body.v2 .receipt.pdf-light .rrow .k{color:var(--muted)}
-body.v2 .receipt.pdf-light .rrow .v{color:var(--text)}
-body.v2 .receipt.pdf-light .rrow,body.v2 .receipt.pdf-light .receipt-rows,body.v2 .receipt.pdf-light .rrow.sep{border-color:var(--line)}
-body.v2 .receipt.pdf-light .rrow .v.accent{color:var(--brand)}
+body.v2 .receipt.pdf-light .receipt-body .big-figure .num{color:var(--ink)}
+body.v2 .receipt.pdf-light .receipt-body .big-figure .lbl,body.v2 .receipt.pdf-light .receipt-body .receipt-tag,body.v2 .receipt.pdf-light .receipt-body .rrow .k,body.v2 .receipt.pdf-light .receipt-body .rsrc{color:var(--muted)}
+body.v2 .receipt.pdf-light .receipt-body .rrow .v{color:var(--text)}
+body.v2 .receipt.pdf-light .receipt-body .rrow,body.v2 .receipt.pdf-light .receipt-body .receipt-rows,body.v2 .receipt.pdf-light .receipt-body .rrow.sep,body.v2 .receipt.pdf-light .receipt-body .rsrc{border-color:var(--line)}
+body.v2 .receipt.pdf-light .receipt-body .rrow .v.accent,body.v2 .receipt.pdf-light .receipt-body .rsrc a{color:var(--brand)}
 body.v2 .how{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-card)}
 body.v2 .how>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-size:16px;font-weight:600;color:var(--ink)}
 body.v2 .how>summary::-webkit-details-marker{display:none}
@@ -312,3 +329,18 @@ body.v2 .copy-btn{min-height:40px;font-size:15px;font-weight:600;border-radius:v
 body.v2 .ready-card a{font-size:15px;font-weight:600}
 body.v2 #viewSeg{top:calc(var(--hdr) + 8px)}
 @media print{body.v2 #sitebar,body.v2 #sf2{display:none!important}}
+
+/* ===== kontrast tuzatishlari (test-kontrast.mjs): sahifa ichki CSS/inline ranglarini V2 da >= 4.5:1 ga keltirish ===== */
+body.v2 .faq-t{color:var(--gold-ink)}
+body.v2 #dgLeft{color:#6F5815}
+body.v2 .badge.soon,body.v2 .soon{color:var(--muted)}
+body.v2 .tpl-desc{color:var(--muted)}
+body.v2 .tpl-meta .badge.doc{color:#4B6877}
+body.v2 .receipt-body small{color:#B9D0C3}
+body.v2 #mhtekmNote,body.v2 #alimentFoizNote{color:var(--muted)!important}
+body.v2 .pt-partner-note{color:var(--muted)}
+body.v2 .risk-title{color:var(--gold-ink)}
+body.v2 .srow>a{color:var(--brand)!important}
+body.v2 .cta-smeta a{color:#fff}
+body.v2 #soonList .tpl{opacity:1!important}
+body.v2 .calc-grid:has(.receipt:not(.show))+.res-extras{display:none}

@@ -363,18 +363,27 @@ img,svg{height:auto}
 </div>
 <aside class="res-col" aria-label="Natija"><section class="receipt show" id="receipt" aria-live="polite">
     <div class="receipt-body">
-      <div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
-      <div class="big-figure">
+<div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
+<div class="big-figure">
         <div class="num" id="mainNum">1&nbsp;935&nbsp;486 so'm</div>
         <div class="lbl" id="mainLbl">Oylik to'lov</div>
       </div>
-      <div class="receipt-rows">
+<div class="receipt-rows">
         <div class="rrow"><span class="k" data-i="kAmount">Kredit summasi</span><span class="v" id="rAmount">50&nbsp;000&nbsp;000 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kTotal">Umumiy to'lov</span><span class="v" id="rTotal">69&nbsp;677&nbsp;499 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kInterest">Foizlar (ustama)</span><span class="v accent" id="rInterest">+19&nbsp;677&nbsp;499 so'm</span></div>
         <div class="rrow"><span class="k" data-i="kTerm">Muddat</span><span class="v" id="rTerm">36 oy</span></div>
       </div>
-      <div class="early-payoff" id="earlyPayoff">
+<div class="receipt-actions">
+        <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
+        <button type="button" id="schedBtn" data-i="btnSched">To'lov jadvali</button>
+      <button type="button" class="pdfbtn">PDF</button><button type="button" class="csvbtn">Excel (CSV)</button></div>
+</div>
+    <div class="receipt-edge"></div>
+  </section></aside>
+</div>
+<div class="res-extras">
+<div class="early-payoff" id="earlyPayoff">
         <div class="ep-head" data-i="epTitle">Kreditni erta yopish simulyatori</div>
         <div class="ep-row">
           <label for="extraSlider" data-i="epLabel">Oyiga qo'shimcha qancha to'lay olaman?</label>
@@ -387,7 +396,7 @@ img,svg{height:auto}
           <div class="ep-line accent" id="epSaved" style="display:none"></div>
         </div>
       </div>
-      <div class="paychart" id="paychart">
+<div class="paychart" id="paychart">
         <div class="pc-head" data-i="pcHead">To'lov qanday taqsimlanadi</div>
         <div class="pc-scroll"><svg class="pc-svg" id="pcSvg" viewBox="0 0 280 170" preserveAspectRatio="xMinYMin meet" role="img" aria-label="To'lov qanday taqsimlanadi" style="min-width: 280px;"><rect class="pc-principal" x="17.733333333333334" y="68.24797708940552" width="57.86666666666666" height="79.75202291059448"></rect><rect class="pc-interest" x="17.733333333333334" y="6.000000000000007" width="57.86666666666666" height="62.247977089405516"></rect><text class="pc-axis" x="46.666666666666664" y="164" text-anchor="middle">1</text><rect class="pc-principal" x="111.06666666666666" y="47.84232382781806" width="57.86666666666666" height="100.15767617218194"></rect><rect class="pc-interest" x="111.06666666666666" y="6.000000000000007" width="57.86666666666666" height="41.842323827818056"></rect><text class="pc-axis" x="140" y="164" text-anchor="middle">2</text><rect class="pc-principal" x="204.39999999999998" y="22.21560318968359" width="57.86666666666666" height="125.78439681031641"></rect><rect class="pc-interest" x="204.39999999999998" y="6.000000000000014" width="57.86666666666666" height="16.215603189683577"></rect><text class="pc-axis" x="233.33333333333331" y="164" text-anchor="middle">3</text></svg></div>
         <div class="pc-legend">
@@ -396,16 +405,10 @@ img,svg{height:auto}
         </div>
         <div class="pc-summary" id="pcSummary">Birinchi yilda to'lovlaringizning 44% i foizga ketadi.</div>
       </div>
-      <div class="receipt-actions">
-        <button type="button" id="shareBtn" data-i="btnShare">Ulashish</button>
-        <button type="button" id="schedBtn" data-i="btnSched">To'lov jadvali</button>
-      <button type="button" class="pdfbtn">PDF</button><button type="button" class="csvbtn">Excel (CSV)</button></div>
-      <button type="button" class="scen-add" id="scenAddBtn" data-i="btnSaveScenario">Bu variantni saqlab, boshqasini hisoblang</button>
-      <p class="scen-limit-note" id="scenLimitNote" data-i="scenLimitNote">Maksimum 3 ta ssenariy. Birini o'chirib, keyin qo'shing.</p>
-    </div>
-    <div class="receipt-edge"></div>
-  </section></aside>
+<button type="button" class="scen-add" id="scenAddBtn" data-i="btnSaveScenario">Bu variantni saqlab, boshqasini hisoblang</button>
+<p class="scen-limit-note" id="scenLimitNote" data-i="scenLimitNote">Maksimum 3 ta ssenariy. Birini o'chirib, keyin qo'shing.</p>
 </div>
+
 <div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
 
   <section class="scen-wrap noprint" id="scenWrap">

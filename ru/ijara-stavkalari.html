@@ -172,7 +172,9 @@ img,svg{height:auto}
 
 <main class="wrap calc-main">
 
-  <section class="form-card">
+  <div class="calc-grid">
+<div class="calc-form">
+<section class="form-card">
     <h2 class="sect" data-i="s1">Калькулятор</h2>
     <p class="sect-sub" data-i="s1sub">Введите регион, тип имущества и площадь.</p>
     <div class="field">
@@ -213,19 +215,22 @@ img,svg{height:auto}
       <label for="maydon" data-i="lMaydon">Площадь</label>
       <div class="input-shell"><input type="text" id="maydon" inputmode="decimal" value="50"><span class="unit" data-i="uM2">м²</span></div>
     </div>
-    <div class="receipt show" id="receipt">
-      <div class="rbox">
-        <div class="rmain-lbl" data-i="rMainLbl">Минимальная сумма в месяц</div>
-        <div class="rmain" id="rMain">2 850 000 сум</div>
-        <div class="rrow"><span class="k" data-i="rBaza">Базовая ставка</span><span class="v" id="rBaza">30 000 сум/m²</span></div>
-        <div class="rrow"><span class="k" data-i="rKoeff">Повышающий коэффициент</span><span class="v" id="rKoeff">1,9</span></div>
-        <div class="rrow"><span class="k" data-i="rYakuniy">Итоговая ставка (за 1 м²)</span><span class="v" id="rYakuniy">57 000 сум/m²</span></div>
-        <div class="rrow"><span class="k" data-i="rNdfl">НДФЛ 12%</span><span class="v" id="rNdfl">342 000 сум</span></div>
-        <div class="rrow"><span class="k" data-i="rQoladi">Остаётся арендодателю</span><span class="v" id="rQoladi">2 508 000 сум</span></div>
-        <div class="rsrc" id="rSrc">Решение: № VII-18-207-14-0-K/25 (2025-12-27, 6, 7, 8-ilovalar) - <a href="https://kengash.gov.uz/doc/227815" target="_blank" rel="noopener">Открыть решение →</a></div>
-      </div>
-    </div>
+    
   </section>
+</div>
+<aside class="res-col" aria-label="Natija"><section class="receipt show" id="receipt" aria-live="polite"><div class="receipt-body">
+<div class="receipt-tag" data-i="rMainLbl">Минимальная сумма в месяц</div>
+<div class="big-figure"><div class="num" id="rMain">2 850 000 сум</div></div>
+<div class="receipt-rows">
+<div class="rrow"><span class="k" data-i="rBaza">Базовая ставка</span><span class="v" id="rBaza">30 000 сум/m²</span></div>
+<div class="rrow"><span class="k" data-i="rKoeff">Повышающий коэффициент</span><span class="v" id="rKoeff">1,9</span></div>
+<div class="rrow"><span class="k" data-i="rYakuniy">Итоговая ставка (за 1 м²)</span><span class="v" id="rYakuniy">57 000 сум/m²</span></div>
+<div class="rrow"><span class="k" data-i="rNdfl">НДФЛ 12%</span><span class="v" id="rNdfl">342 000 сум</span></div>
+<div class="rrow"><span class="k" data-i="rQoladi">Остаётся арендодателю</span><span class="v" id="rQoladi">2 508 000 сум</span></div>
+</div>
+<div class="rsrc" id="rSrc">Решение: № VII-18-207-14-0-K/25 (2025-12-27, 6, 7, 8-ilovalar) - <a href="https://kengash.gov.uz/doc/227815" target="_blank" rel="noopener">Открыть решение →</a></div>
+</div></section></aside>
+</div>
 
   <section class="card2">
     <h2 class="sect" data-i="s2">Базовые ставки (ЗРУ-1105, приложение 8)</h2>

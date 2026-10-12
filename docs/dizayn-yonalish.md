@@ -196,3 +196,11 @@ Maqola uslubidagi sokin matn sahifasi (tor ustun, 17px, bo'sh band: tint o'rniga
 
 ## Umumiy qoidalar
 Faqat `tokens.css` + `site.css` komponentlari; emoji yo'q (sprite ikonkalari); sahifa ichidagi eski rangli sarlavha/hero CSS'i `body.v2` qoidalari bilan ustidan yoziladi (4-qismda — tozalash bosqichida — o'chiriladi). `/cyr/` sahifalar JS'siz qoladi: ular UZ manbadan prerender qilinadi, shuning uchun V2 UZ sahifa o'tkazilganda `cyr/` nusxalar **qayta yozilmaydi** (5-partiyagacha eski holatda).
+
+## 1-partiya tuzatishlari: natija kartasi qoidalari va kontrast testi
+
+- **To'q karta faqat asosiy natija uchun**: asosiy raqam + 3–6 qator + Ulashish/PDF (+ manba qatori). Diagramma, slayder/simulyator, jadval, izoh bloklari kartadan chiqarilib, grid ostidagi alohida oq kartalarga (`.res-extras`) o'tadi (`convert.py refine`).
+- **Skelet**: natija yo'q paytda haqiqiy karta ("0 so'm", qatorlar "—", "Ma'lumot kiriting — natija darhol hisoblanadi"), punktir ramka yo'q; `.receipt.show + .res-skel{display:none}`. Skeletdagi elementlarda `id` bo'lmaydi.
+- **Ranglar**: asosiy qarz = brend yashil, foiz = `--gold-chart` (oq fonda ≥3:1), o'q yozuvlari `--muted`. To'q fondagi barcha matn ≥4.5:1; to'q qoidalar faqat `.receipt-body` ichida.
+- **Majburiy kontrast testi** (har partiyada): `node tools/dizayn/test-kontrast.mjs [slug,...]` — axe-core `color-contrast`, UZ+RU, 390/1280, 2 holat (boshlang'ich / hisoblangan), diagramma seriyalari ≥3:1. Nolta xato bo'lmaguncha partiya topshirilmaydi.
+- H1 emoji olib tashlandi (aliment; ishdan-boshatish — o'z partiyasida). `seo-diff.mjs` faqat shu farqni "ruxsat etilgan" deb alohida hisoblaydi.

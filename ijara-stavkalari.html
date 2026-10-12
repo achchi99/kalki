@@ -172,7 +172,9 @@ img,svg{height:auto}
 
 <main class="wrap calc-main">
 
-  <section class="form-card">
+  <div class="calc-grid">
+<div class="calc-form">
+<section class="form-card">
     <h2 class="sect" data-i="s1">Hisoblagich</h2>
     <p class="sect-sub" data-i="s1sub">Hudud, mol-mulk turi va maydonni kiriting.</p>
     <div class="field">
@@ -213,19 +215,22 @@ img,svg{height:auto}
       <label for="maydon" data-i="lMaydon">Maydon</label>
       <div class="input-shell"><input type="text" id="maydon" inputmode="decimal" value="50"><span class="unit" data-i="uM2">m²</span></div>
     </div>
-    <div class="receipt show" id="receipt">
-      <div class="rbox">
-        <div class="rmain-lbl" data-i="rMainLbl">Oylik eng kam summa</div>
-        <div class="rmain" id="rMain">2 850 000 so'm</div>
-        <div class="rrow"><span class="k" data-i="rBaza">Bazaviy stavka</span><span class="v" id="rBaza">30 000 so'm/m²</span></div>
-        <div class="rrow"><span class="k" data-i="rKoeff">Koeffitsient</span><span class="v" id="rKoeff">1,9</span></div>
-        <div class="rrow"><span class="k" data-i="rYakuniy">Yakuniy stavka (1 m² uchun)</span><span class="v" id="rYakuniy">57 000 so'm/m²</span></div>
-        <div class="rrow"><span class="k" data-i="rNdfl">NDFL 12%</span><span class="v" id="rNdfl">342 000 so'm</span></div>
-        <div class="rrow"><span class="k" data-i="rQoladi">Arendodatorga qoladi</span><span class="v" id="rQoladi">2 508 000 so'm</span></div>
-        <div class="rsrc" id="rSrc">Qaror: № VII-18-207-14-0-K/25 (2025-12-27, 6, 7, 8-ilovalar) - <a href="https://kengash.gov.uz/doc/227815" target="_blank" rel="noopener">Qarorni ko'rish →</a></div>
-      </div>
-    </div>
+    
   </section>
+</div>
+<aside class="res-col" aria-label="Natija"><section class="receipt show" id="receipt" aria-live="polite"><div class="receipt-body">
+<div class="receipt-tag" data-i="rMainLbl">Oylik eng kam summa</div>
+<div class="big-figure"><div class="num" id="rMain">2 850 000 so'm</div></div>
+<div class="receipt-rows">
+<div class="rrow"><span class="k" data-i="rBaza">Bazaviy stavka</span><span class="v" id="rBaza">30 000 so'm/m²</span></div>
+<div class="rrow"><span class="k" data-i="rKoeff">Koeffitsient</span><span class="v" id="rKoeff">1,9</span></div>
+<div class="rrow"><span class="k" data-i="rYakuniy">Yakuniy stavka (1 m² uchun)</span><span class="v" id="rYakuniy">57 000 so'm/m²</span></div>
+<div class="rrow"><span class="k" data-i="rNdfl">NDFL 12%</span><span class="v" id="rNdfl">342 000 so'm</span></div>
+<div class="rrow"><span class="k" data-i="rQoladi">Arendodatorga qoladi</span><span class="v" id="rQoladi">2 508 000 so'm</span></div>
+</div>
+<div class="rsrc" id="rSrc">Qaror: № VII-18-207-14-0-K/25 (2025-12-27, 6, 7, 8-ilovalar) - <a href="https://kengash.gov.uz/doc/227815" target="_blank" rel="noopener">Qarorni ko'rish →</a></div>
+</div></section></aside>
+</div>
 
   <section class="card2">
     <h2 class="sect" data-i="s2">Bazaviy stavkalar (ZRU-1105, 8-ilova)</h2>

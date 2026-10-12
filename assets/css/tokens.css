@@ -10,6 +10,7 @@
   --brand-soft:#E8F2EC;
   --gold:#D99A2B;         /* urg'u: logodagi "uz", kichik aksentlar */
   --gold-soft:#FBF1DC;
+  --gold-chart:#B97A12;   /* diagrammada 'foiz' seriyasi: oq fonda >= 3:1 */
   --gold-ink:#855807;     /* oltin MATN (overline) uchun to'qroq variant, kontrast >= 4.5:1 */
   --bg:#F1F2EE;           /* iliq-kulrang fon: oq kartalar undan aniq ajralib turadi */
   --surface:#FFFFFF;      /* karta */
@@ -17,7 +18,7 @@
   --line-strong:#C6D2CB;
   --muted:#526459;        /* ikkinchi darajali matn (kontrast >= 4.5:1) */
   /* kategoriya aksentlari (1b): sokin, brend yashiliga uyg'un; tint = rangning ~11% i oq ustida */
-  --cat-moliya:#1E6B45; --cat-qurilish:#B4532E; --cat-kommunal:#45687C; --cat-hayot:#9A680A; --cat-huquqiy:#5A4E8C;
+  --cat-moliya:#1E6B45; --cat-qurilish:#A4482A; --cat-kommunal:#45687C; --cat-hayot:#9A680A; --cat-huquqiy:#5A4E8C;
   --tint:11%;
   /* eski kategoriya aksentlari (hali ko'chirilmagan sahifalar uchun) */
   --moliya:#0E3B2E;  --moliya-soft:#E8F2EC;
