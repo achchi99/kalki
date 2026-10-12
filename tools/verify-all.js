@@ -26,7 +26,7 @@ const FAST = process.argv.indexOf('--fast') > -1;
 const LAT = /[a-zA-Z]/, CYR = /[Ѐ-ӿ]/;
 
 const results = [];
-const add = (okv, name, extra) => results.push({ ok: !!okv, name, extra: extra || '' });
+const add = (okv, name, extra, warn) => results.push({ ok: !!okv, name, extra: extra || '', warn: !!warn });   // warn=true: yiqilsa OGOHLANTIRISH (chiqish kodiga ta'sir qilmaydi)
 
 /* Repo holatining barmoq izi — band 16 shu bilan "hech nima yozilmadi" ni
    isbotlaydi. .git va node_modules hisobga olinmaydi. */
@@ -949,10 +949,22 @@ function runTool(args) {
       th.code === 0 ? '' : th.out.split('\n').filter((l) => l.indexOf('FAIL') === 0).slice(0, 6).join(' | '));
   }
 
+  /* ---------- 34. Matn tozaligi (OGOHLANTIRISH): lotin/kirill aralashmasi, /cyr/ translit qoldiqlari ----------
+     tools/matn-skaner.mjs; istisnolar tools/matn-istisno.json da. Kritik emas — yiqilsa faqat OGOH chiqadi. */
+  {
+    const t = runTool([path.join(__dirname, 'matn-skaner.mjs'), '--json']);
+    let rows = null; try { rows = JSON.parse(t.out); } catch (e) { /* skaner o'zi yiqildi */ }
+    const pages = rows ? [...new Set(rows.map((r) => r.sahifa))] : [];
+    add(rows && rows.length === 0, '34. matn tozaligi: aralash yozuv va translit qoldiqlari yo\'q (ogohlantirish)',
+      rows ? rows.length + ' topilma: ' + rows.slice(0, 4).map((r) => r.sahifa + ' «' + r.topilgan + '»').join(', ') + (pages.length > 4 ? '…' : '') + ' — node tools/matn-skaner.mjs' : 'skaner ishlamadi', true);
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
-  results.forEach((r) => console.log((r.ok ? 'OK   ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));
-  const bad = results.filter((r) => !r.ok).length;
+  results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));
+  const warns = results.filter((r) => !r.ok && r.warn).length;
+  const bad = results.filter((r) => !r.ok && !r.warn).length;
+  if (warns) console.log('\n' + warns + ' ta ogohlantirish (kritik emas)');
   console.log('\n' + (bad ? bad + ' ta band yiqildi' : results.length + ' band: hammasi o\'tdi'));
   process.exit(bad ? 1 : 0);
 })();
