@@ -412,3 +412,14 @@ body.v2 .stat-upd{color:var(--muted)}
 body.v2 .content-head .stat>b,body.v2 .content-head #docCount{color:var(--ink)}
 body.v2 .content-head .stat span{color:var(--muted)}
 body.v2 .content-head .hero-stats,body.v2 .content-head .stats{margin-top:var(--s2)}
+
+/* ===== 5-partiya: /cyr/ sahifalar — JS yo'q: mobil menyu CSS-only (checkbox), ochilmalar hover/focus, mobilda doim ochiq ===== */
+body.v2 .nav-chk{-webkit-appearance:none;appearance:none;margin:0;cursor:pointer;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E3B2E' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 7h16M4 12h16M4 17h16'/%3E%3C/svg%3E") center/22px no-repeat}
+body.v2 .nav-chk:checked{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230E3B2E' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E")}
+@media (max-width:899px){
+  body.v2:has(.nav-chk:checked){overflow:hidden}
+  body.v2:has(.nav-chk:checked) .sb2 #topmenu{display:block}
+  html[data-cyr-page] body.v2 .tm2-sub{display:block}
+}
+body.v2 .cyr-notice{margin:0 0 var(--s2);padding:12px 16px;border-radius:var(--r-sm);background:var(--gold-soft);border:1px solid #F0D9A0;font-size:15px;line-height:1.5}
+body.v2 .cyr-notice a{font-weight:700;color:var(--gold-ink)}
