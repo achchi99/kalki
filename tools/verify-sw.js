@@ -116,7 +116,13 @@ T(specialInSitemap.length === 0, '12d. SPECIAL_PAGES sitemap.xml ga kirmagan', s
 const off = path.join(ROOT, 'offline.html');
 const offSrc = fs.existsSync(off) ? fs.readFileSync(off, 'utf8') : '';
 T(!!offSrc, '12e. offline.html mavjud');
-T(list.indexOf('/offline.html') > -1, '12f. offline.html precache\'da');
+T(list.indexOf('/offline') > -1, '12f. offline sahifa precache\'da (/offline, .html siz)');
+/* 12j. Cloudflare Pages '.html' yo'llarini 308 bilan yo'naltiradi — redirected javob
+   navigatsiyada rad etiladi (iOS bosh ekran ilovasida qora ekran). */
+const htmlInList = list.filter((u) => /\.html$/.test(u));
+T(htmlInList.length === 0, '12j. precache\'da .html bilan tugaydigan yo\'l yo\'q (308 redirect)', htmlInList.join(', '));
+T(/function unredirect\(/.test(src) && /return unredirect\(r\)/.test(nav) && /unredirect\(m\)/.test(nav),
+  '12k. navigatsiya javobi redirected bo\'lsa qayta o\'raladi');
 T(/<meta name="robots" content="[^"]*noindex/.test(offSrc), '12g. offline.html noindex');
 T(/caches\.match\(OFFLINE\)/.test(src) && !/\|\| caches\.match\('\/'\)/.test(src),
   '12h. navigatsiya uzilganda offline.html qaytariladi ("/" emas)');

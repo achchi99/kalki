@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '55d4c503';   /* sw-version:auto */
+const SW_VERSION = '2ebb8c31';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -13,7 +13,10 @@ const KEEP = [STATIC, RUNTIME];
 
 /* Precache — birinchi ochishda oflayn ishlashi uchun. Ro'yxatdagi har bir
    yo'l haqiqatan mavjudligini tools/verify-sw.js tekshiradi. */
-const OFFLINE = '/offline.html';
+/* '/offline' — '.html' SIZ. Cloudflare Pages '/offline.html' ni 308 bilan '/offline' ga
+   yo'naltiradi; keshga redirected:true javob tushadi va brauzer uni navigatsiyada
+   rad etadi (iOS standalone'da — qora ekran). Ro'yxatga faqat 200 beradigan yo'l. */
+const OFFLINE = '/offline';
 
 const ASSETS = [
   '/',
@@ -202,7 +205,12 @@ self.addEventListener('install', (e) => {
     caches.open(STATIC)
       // cache:'reload' — brauzer HTTP keshini aylanib o'tadi (Cloudflare statik fayllarni 4 soat beradi;
       // aks holda yangi versiyaning keshiga eski nusxa tushib qoladi)
-      .then((c) => Promise.allSettled(ASSETS.map((u) => c.add(new Request(u, { cache: 'reload' })))))
+      // c.add() o'rniga fetch+put: yo'naltirilgan javob ham "toza" holda saqlansin
+      .then((c) => Promise.allSettled(ASSETS.map((u) =>
+        fetch(new Request(u, { cache: 'reload' })).then((r) => {
+          if (!r.ok) throw new Error(u + ' ' + r.status);
+          return c.put(u, unredirect(r));
+        }))))
       .then(() => self.skipWaiting())
   );
 });
@@ -216,6 +224,24 @@ self.addEventListener('activate', (e) => {
 });
 
 function cacheable(r) { return r && r.ok && !r.redirected; }
+
+/* Navigatsiyaga redirected:true javob BERILMAYDI: Safari (ayniqsa bosh ekrandan
+   ochilgan standalone ilova) va Chrome uni rad etadi — sahifa o'rniga bo'sh/qora
+   ekran. Bunday javob tanasi va sarlavhalari bilan yangi Response'ga o'raladi. */
+function unredirect(r) {
+  if (!r || !r.redirected) return r;
+  return r.blob().then((b) => new Response(b, { status: r.status, statusText: r.statusText, headers: r.headers }));
+}
+
+/* Hech narsa topilmasa ham navigatsiyaga HTML qaytadi: Response.error() iOS
+   standalone'da qora ekran bo'lib ko'rinadi (brauzer xato sahifasi yo'q). */
+function lastResort() {
+  return new Response('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    + '<title>Kalki.uz</title><body style="font:16px system-ui,sans-serif;background:#F1F2EE;color:#16211C;padding:40px 20px;text-align:center">'
+    + '<p>Internet aloqasi yo\'q. / Нет подключения к интернету.</p>'
+    + '<p><button onclick="location.reload()" style="font:inherit;padding:10px 18px">Qayta urinish / Повторить</button></p>',
+    { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+}
 
 function isAsset(p) { return /^\/assets\/.*\.(js|css)$/.test(p); }
 function isImage(p) { return /\.(png|jpe?g|gif|webp|svg|ico|woff2?|ttf|otf)$/.test(p); }
@@ -274,10 +300,10 @@ self.addEventListener('fetch', (e) => {
     e.respondWith(
       fetch(e.request).then((r) => {
         if (cacheable(r)) { const cl = r.clone(); caches.open(STATIC).then((c) => c.put(p, cl)); }
-        return r;
+        return unredirect(r);
       }).catch(() => caches.match(p)
         .then((m) => m || caches.match(OFFLINE))
-        .then((m) => m || Response.error()))   // undefined qaytarilmasin
+        .then((m) => (m ? unredirect(m) : lastResort())))   // undefined/Response.error() qaytarilmasin
     );
     return;
   }

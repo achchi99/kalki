@@ -43,12 +43,16 @@ function hashAssets() {
     });
   };
   walk(ASSETS_DIR, '');
+  // sw.js ning o'z kodi ham (versiya qatorisiz — aks holda hash o'zini o'zi
+  // o'zgartirardi): fetch/precache mantig'i o'zgarsa kesh nomi ham yangilansin,
+  // eski keshdagi buzuq yozuvlar (masalan redirected javob) activate'da o'chsin.
+  h.update('sw.js').update(fs.readFileSync(SW, 'utf8').replace(RE, '$1$3'));
   return h.digest('hex').slice(0, 8);
 }
 
+const RE = /(const SW_VERSION = ')([^']*)(';\s*\/\* sw-version:auto \*\/)/;
 const want = hashAssets();
 const src = fs.readFileSync(SW, 'utf8');
-const RE = /(const SW_VERSION = ')([^']*)(';\s*\/\* sw-version:auto \*\/)/;
 const m = src.match(RE);
 if (!m) {
   console.error('sw.js da "const SW_VERSION = \'...\'; /* sw-version:auto */" qatori topilmadi');
