@@ -1,0 +1,53 @@
+// functions/api/ariza.js RU funksiyalari uchun birlik testlari: node tools/ai-sinov/test-ariza-ru.mjs
+import assert from 'node:assert/strict';
+import { cleanTextRu, validateRu, hasLawRefRu, cleanText, validate } from '../../functions/api/ariza.js';
+let n = 0; const t = (name, fn) => { fn(); n++; console.log('OK  ' + name); };
+const BODY = 'Прошу предоставить мне отпуск без сохранения заработной платы на 3 дня, с [дата] по [дата]. Дела, которые необходимо выполнить в этот период, я заранее передам коллеге [Ф.И.О.].';
+t('RU tozalash: shapka, sarlavha va murojaat qatorlari olib tashlanadi', () => {
+  const raw = 'Директору ООО «Ромашка»\n\nот [Ф.И.О.]\n\nЗаявление\n\nУважаемый директор,\n\n' + BODY;
+  assert.equal(cleanTextRu(raw), BODY);
+  assert.equal(cleanTextRu('Кому: директору школы\nОт кого: [Ф.И.О.]\n\n' + BODY), BODY);
+});
+t('RU tozalash: kirish qatori ":" bilan tugasa olib tashlanadi', () => {
+  assert.equal(cleanTextRu('Текст заявления:\n\n' + BODY), BODY);
+  assert.equal(cleanTextRu('Вот текст для вас:\n' + BODY), BODY);
+});
+t('RU tozalash: birinchi jumla ichidagi murojaat', () => {
+  assert.equal(cleanTextRu('Уважаемый директор, я прошу отпуск на три дня.\n\nВторой абзац.'), 'Я прошу отпуск на три дня.\n\nВторой абзац.');
+});
+t('RU tozalash: yakuniy qatorlar (С уважением, Дата, Подпись)', () => {
+  assert.equal(cleanTextRu(BODY + '\n\nС уважением,\n[Ф.И.О.]\nДата: [дата]\nПодпись: ____'), BODY);
+});
+t('RU tozalash: takroriy yakuniy jumla ("прошу" 2+ marta)', () => {
+  const a = 'Прошу уволить меня по собственному желанию с [дата].\n\nПрошу удовлетворить мою просьбу.';
+  assert.equal(cleanTextRu(a), 'Прошу уволить меня по собственному желанию с [дата].');
+  const b = 'Прошу выдать справку.\n\nПрошу также подготовить копию приказа.';
+  assert.equal(cleanTextRu(b), b);   // umumiy yakun emas — tegilmaydi
+  assert.equal(cleanTextRu('Прошу выдать справку с места работы.\n\nПрошу удовлетворить мою просьбу.'), 'Прошу выдать справку с места работы.');
+});
+t('RU tozalash: markdown belgilari', () => {
+  assert.equal(cleanTextRu('**Текст**\n' + BODY).includes('**'), false);
+});
+t('RU tekshiruv: lotin harfi qolsa yaroqsiz', () => {
+  assert.equal(validateRu(BODY), null);
+  assert.equal(validateRu(BODY + ' Word'), 'lotin');
+  assert.equal(validateRu(BODY.replace('отпуск', 'otпуск')), 'lotin');
+});
+t('RU tekshiruv: qonun havolasi', () => {
+  for (const s of ['согласно статье 12 Трудового кодекса', 'ст. 99', 'Закон Республики Узбекистан', 'закон об алиментах', 'закон «О труде»', 'постановление № 45', 'приказ 12', 'Кодекс'])
+    assert.equal(hasLawRefRu(s), true, s);
+  for (const s of ['законный представитель', 'в установленном законом порядке', 'в соответствии с законом', 'прошу предоставить отпуск', 'решение вопроса', 'номер телефона'])
+    assert.equal(hasLawRefRu(s), false, s);
+  assert.equal(validateRu(BODY + ' Согласно статье 5 закона.'), 'qonun');
+});
+t('RU tekshiruv: murojaat va so\'z soni', () => {
+  assert.equal(validateRu('Уважаемый директор, ' + Array(40).fill('слово').join(' ')), 'murojaat');
+  assert.equal(validateRu('Прошу отпуск.'), 'soz');
+  assert.equal(validateRu(Array(160).fill('слово').join(' ')), 'soz');
+  assert.equal(validateRu(''), 'bosh');
+});
+t('UZ funksiyalari o\'zgarmagan (regressiya)', () => {
+  assert.equal(validate('Hurmatli direktor, ' + Array(40).fill("so'z").join(' ')), 'murojaat');
+  assert.equal(cleanText('Hurmatli direktor,\n\nFarzandim kasal bo\'ldi.'), "Farzandim kasal bo'ldi.");
+});
+console.log(n + ' ta test o\'tdi');
