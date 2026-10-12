@@ -25,7 +25,7 @@
   function write(l) {
     ls(function () { localStorage.setItem(KEY, l); });
   }
-  function valid(l) { return l === 'ru' || l === 'uz'; }
+  function valid(l) { return l === 'ru' || l === 'uz' || l === 'cyr'; }
 
   // Eski kalitlardan bir martalik ko'chirish: hozirgi foydalanuvchi tanlovini yo'qotmasin.
   function migrate() {
@@ -37,7 +37,7 @@
   }
 
   function fromUrl() {
-    var m = /[?&]lang=(uz|ru)\b/.exec(w.location.search || '');
+    var m = /[?&]lang=(uz|ru|cyr)\b/.exec(w.location.search || '');
     return m ? m[1] : null;
   }
   // /ru/... yo'li — alohida RU URL'ga ega sahifalar uchun (Variant A).
@@ -58,13 +58,42 @@
   }
   // Joriy sahifaning BOSHQA til URL'i (yo'l almashtiriladi, query/hash saqlanadi —
   // masalan kalkulyator holatini uzatuvchi ?p= tilga bog'liq emas).
+  function stripLangParam(search) {
+    var q = (search || '').replace(/^\?/, '').split('&').filter(function (x) { return x && !/^lang=/.test(x); });
+    return q;
+  }
+  // ЎЗ rejimi: shu sahifaning o'zi, ?lang=cyr bilan (yangi sahifa YO'Q).
+  // ЎЗ'dan chiqishda tanlov URL'da aniq yoziladi (localStorage bloklangan bo'lsa ham to'g'ri o'tadi).
   function crossLangUrl(targetLang) {
     var p = w.location.pathname;
     var isRu = fromPath() === 'ru';
     var rest = isRu ? p.replace(/^\/ru/, '') : p;
     if (!rest) rest = '/';
-    var target = targetLang === 'ru' ? ('/ru' + rest) : rest;
-    return target + (w.location.search || '') + (w.location.hash || '');
+    var ruPath = targetLang === 'ru' && (isRu || hasRuPair());   // RU juftligi bo'lmasa /ru/ 404 bo'lardi
+    var target = ruPath ? ('/ru' + rest) : rest;
+    var q = stripLangParam(w.location.search);
+    if (targetLang === 'cyr' || (isCyr() && !ruPath)) q.push('lang=' + targetLang);
+    return target + (q.length ? '?' + q.join('&') : '') + (w.location.hash || '');
+  }
+  function cleanUrl() {
+    if (!fromUrl()) return;
+    try {
+      var q = stripLangParam(w.location.search);
+      w.history.replaceState(null, '', w.location.pathname + (q.length ? '?' + q.join('&') : '') + (w.location.hash || ''));
+    } catch (e) {}
+  }
+  // Hozir ЎЗ rejimi yoqilganmi (head'dagi langboot yoki ready() qo'ygan belgi)
+  function isCyr() { return d.documentElement.getAttribute('data-script') === 'cyr'; }
+  var cyrLoading = false;
+  function loadCyr() {
+    if (cyrLoading || w.KalkiCyr) return;
+    cyrLoading = true;
+    ['/assets/translit.js', '/assets/cyr.js'].forEach(function (src) {
+      var sc = d.createElement('script');
+      sc.src = src;
+      sc.async = false;                     // tartib: translit.js, keyin cyr.js
+      d.head.appendChild(sc);
+    });
   }
 
   // ?lang= > /ru/ yo'li > saqlangan qiymat > uz (birinchi tashrifda hech qachon
@@ -85,7 +114,14 @@
 
   function markHtml(l) {
     var h = d.documentElement;
+    if (l === 'cyr') {                      // sahifaning ichki tili — uz; faqat yozuv kirill
+      h.setAttribute('data-lang', 'uz');
+      h.setAttribute('data-script', 'cyr');
+      h.lang = 'uz';        // atayin 'uz-Cyrl' EMAS: sahifa modullari (masalan AI ariza yordamchisi) lang==='uz' ni kutadi
+      return;
+    }
     h.setAttribute('data-lang', l);
+    h.removeAttribute('data-script');
     h.lang = l;
   }
 
@@ -96,7 +132,7 @@
   // Sahifaning o'z renderini ishga tushiramiz. Tugma .onclick bilan bog'langan
   // (49/49 sahifada), shuning uchun bosish — universal va xavfsiz yo'l.
   function paint(l) {
-    var b = d.getElementById(l === 'ru' ? 'langRu' : 'langUz');
+    var b = d.getElementById(l === 'ru' ? 'langRu' : 'langUz');   // 'cyr' ham ichki uz
     if (!b || !b.click) return false;
     programmatic = true;
     try { b.click(); } finally { programmatic = false; }
@@ -114,6 +150,15 @@
       if (!valid(l)) return;
       opts = opts || {};
       write(l);
+      if (l === 'cyr' || isCyr()) {
+        if (opts.user) {
+          userChose = true;
+          try { if (typeof gtag === 'function') gtag('event', 'lang_switch', { lang: l }); } catch (e00) {}
+        }
+        if (l === 'cyr' && isCyr() && fromPath() !== 'ru') return;
+        w.location.href = crossLangUrl(l);
+        return;
+      }
       // Alohida RU URL'ga ega sahifada boshqa tilga o'tish — repaint emas,
       // haqiqiy navigatsiya (Variant A: /ru/... mustaqil indekslanadigan URL).
       if (hasRuPair() && l !== diskLang()) {
@@ -144,8 +189,20 @@
     if (programmatic) return;                 // avtomatik tiklanish — bu tanlov emas
     var t = e.target;
     if (!t || !t.id) return;
-    if (t.id !== 'langUz' && t.id !== 'langRu') return;
-    var l = t.id === 'langRu' ? 'ru' : 'uz';
+    if (t.id !== 'langUz' && t.id !== 'langRu' && t.id !== 'langCyr') return;
+    var l = t.id === 'langRu' ? 'ru' : t.id === 'langCyr' ? 'cyr' : 'uz';
+    // ЎЗ: oddiy <a href> (JS'siz ham ishlaydi); bu yerda faqat tanlovni saqlab, holat (?p=) ni olib o'tamiz.
+    // ЎЗ'dan UZ/RU ga o'tish — qayta yuklash: o'girilgan matn lotinga qaytishi uchun.
+    if (l === 'cyr' || isCyr()) {
+      if (l === 'cyr' && isCyr() && fromPath() !== 'ru') { e.preventDefault(); return; }
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      userChose = true;
+      write(l);
+      try { if (typeof gtag === 'function') gtag('event', 'lang_switch', { lang: l }); } catch (e4) {}
+      w.location.href = crossLangUrl(l);
+      return;
+    }
     if (hasRuPair() && l !== diskLang()) {
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -158,15 +215,20 @@
     userChose = true;
     write(l);
     markHtml(l);
+    cleanUrl();     // joyida almashganda eski ?lang= qolib, qayta yuklashda tanlovni buzmasin
     try { if (typeof gtag === 'function') gtag('event', 'lang_switch', { lang: l }); } catch (e2) {}
   }, true);   // capture: sahifa handleridan oldin saqlaymiz
 
   function ready() {
     var l = decide();
-    markHtml(l);
     var disk = diskLang();
+    // /ru/... sahifada ?lang=cyr: lotin juftiga o'tib, ЎЗ rejimini yoqamiz
+    if (l === 'cyr' && disk === 'ru') { w.location.replace(crossLangUrl('cyr')); return; }
+    markHtml(l);
+    if (l === 'cyr') loadCyr();
+    var pl = l === 'cyr' ? 'uz' : l;
     // Diskdagi holat allaqachon shu tilda bo'lsa, hech narsa qilish shart emas.
-    if (l !== disk) paint(l);
+    if (pl !== disk) paint(pl);
     d.documentElement.setAttribute('data-lang-ready', '1');
 
     // Sahifalarda bir qism tinglovchilar kechikib bog'lanadi
@@ -178,6 +240,7 @@
       w.setTimeout(function () {
         if (userChose) return;
         var cur = API.getLang();
+        if (cur === 'cyr') cur = 'uz';
         if (cur === disk) return;
         paint(cur);
       }, ms);

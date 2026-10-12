@@ -32,6 +32,14 @@ body.v2 li.has-sub:hover>.tm2-sub,body.v2 li.has-sub:focus-within>.tm2-sub,body.
 body.v2 .sb2 .lang-seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:3px;gap:2px;margin-left:auto;flex:none}
 body.v2 .sb2 .lang-seg button,body.v2 .sb2 .lang-seg a{border:0;background:transparent;font:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;text-decoration:none;line-height:1.2}
 body.v2 .sb2 .lang-seg button.on,body.v2 .sb2 .lang-seg a.on{background:var(--ink);color:#fff}
+/* UZ | ЎЗ | RU: bosish maydoni >=44px, 360px ekranda logo + 3 segment + burger sig'adi */
+body.v2 .sb2 .lang-seg button,body.v2 .sb2 .lang-seg a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
+body.v2 .sb2 .lang-seg{padding:2px;gap:0}
+@media (max-width:480px){
+  body.v2 .sb2-in{gap:8px}
+  body.v2 .sb2 .logo{font-size:20px}
+  body.v2 .sb2 .lang-seg button,body.v2 .sb2 .lang-seg a{padding:6px 8px;font-size:13px}
+}
 body.v2 .sb2-burger{display:none;width:44px;height:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:var(--r-sm);cursor:pointer;align-items:center;justify-content:center;flex:none}
 @media (max-width:899px){
   body.v2{--hdr:60px}

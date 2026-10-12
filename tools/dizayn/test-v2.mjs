@@ -67,7 +67,7 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
   assert.equal(await p.evaluate(() => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText)), false, 'sahifada emoji bor');
   const colors = await p.evaluate(() => [...document.querySelectorAll('#catGrid .k-card')].map((c) => getComputedStyle(c).borderTopColor));
   assert.equal(new Set(colors).size, 5, 'kategoriya ranglari: ' + colors.join(' | '));
-  assert.equal(colors[1], 'rgb(180, 83, 46)');
+  assert.equal(colors[1], 'rgb(164, 72, 42)');
   const ico = await p.evaluate(() => { const e = document.querySelector('#catGrid .k-ico'); const r = e.getBoundingClientRect(), s = e.querySelector('svg').getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height), Math.round(s.width), getComputedStyle(e).borderTopLeftRadius]; });
   assert.deepEqual(ico, [44, 44, 22, '10px']);
   await p.evaluate(() => { location.hash = '#cat-qurilish'; }); await p.waitForTimeout(500);
@@ -102,7 +102,8 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
   const xn = await p.evaluate(() => ({ open: document.getElementById('xnav').open, links: document.querySelectorAll('#xnav a').length, groups: document.querySelectorAll('#xnav .xn-t').length }));
   assert.equal(xn.open, false); assert.equal(xn.groups, 6); assert.equal(xn.links, 50, 'xnav havolalar soni ' + xn.links);
   log('tegishli kalkulyatorlar: 5 karta; "Barcha kalkulyatorlar" <details>: ' + xn.links + ' havola, ' + xn.groups + ' guruh (yopiq)');
-  assert.equal(await p.evaluate(() => /[\u0400-\u04FF]/.test(document.body.innerText)), false, 'UZ sahifada kirill harf bor');
+  // #langCyr (ЎЗ tugmasi) — yagona ruxsat etilgan kirill belgi
+  assert.equal(await p.evaluate(() => /[\u0400-\u04FF]/.test(document.body.innerText.replace(document.getElementById('langCyr').innerText, ''))), false, 'UZ sahifada kirill harf bor');
   assert.equal(await p.evaluate(() => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText)), false);
   await p.evaluate(() => { window.__pl = []; new MutationObserver(() => { var r = document.querySelector('.receipt'); if (r && r.classList.contains('pdf-light')) window.__pl.push(1); }).observe(document.querySelector('.receipt'), { attributes: true, attributeFilter: ['class'] }); });
   const dl = p.waitForEvent('download', { timeout: 20000 }).catch(() => null); await p.click('.receipt-actions .pdfbtn'); const d = await dl;

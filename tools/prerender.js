@@ -409,7 +409,7 @@ function walkTextNodes(node, fn) {
   var child = node.firstChild;
   while (child) {
     if (child.nodeType === 3) fn(child);
-    else if (child.nodeType === 1 && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+    else if (child.nodeType === 1 && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE' && child.getAttribute('data-cyr') !== 'skip') {   // data-cyr=skip: brend (logotip) lotincha qoladi
       walkTextNodes(child, fn);
     }
     child = child.nextSibling;
@@ -494,7 +494,8 @@ async function renderOneCyr(name) {
       a.textContent = label;
       seg.appendChild(a);
     }
-    addSegLink('langUz', latinPath, 'UZ', false);
+    addSegLink('langUz', latinPath + '?lang=uz', 'UZ', false);   // ?lang=uz: ЎЗ tanlovi saqlangan bo'lsa ham lotin ochilsin
+    seg.querySelector('#langUz').setAttribute('rel', 'nofollow');
     addSegLink('langCyr', cyrPath, 'ЎЗ', true);
     addSegLink('langRu', ruPath, 'RU', false);
   }
@@ -511,8 +512,9 @@ async function renderOneCyr(name) {
     notice.id = 'cyrNotice';
     notice.setAttribute('class', 'cyr-notice');
     var a = doc.createElement('a');
-    a.href = latinPath;
-    a.textContent = translit('Interaktiv hisoblash uchun lotin versiyasini oching') + ' →';
+    a.href = latinPath + '?lang=cyr';
+    a.setAttribute('rel', 'nofollow');
+    a.textContent = translit('Interaktiv hisoblash uchun kirill rejimini oching') + ' →';
     notice.appendChild(a);
     main.insertBefore(notice, main.firstChild);
   }

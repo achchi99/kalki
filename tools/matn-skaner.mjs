@@ -11,6 +11,8 @@ const require = createRequire(import.meta.url); const { JSDOM } = require('jsdom
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const ARGS = process.argv.slice(2);
 const BRAND = new Set(['Word', 'Excel', 'PDF', 'CSV', 'Kalki', 'Telegram', 'Google', 'Cloudflare', 'Analytics', 'AdSense', 'Web', 'cookie']);
+// /cyr/ va ЎЗ rejimida lotincha qolishi MUMKIN bo'lgan YAGONA so'zlar: brend, fayl formati, til belgisi (assets/translit.js DEFAULT_ABBR bilan mos)
+const CYR_OK = new Set(['Kalki', 'kalki', 'uz', 'info', 'Word', 'Excel', 'PDF', 'CSV', 'Telegram', 'UZ', 'RU']);
 const EXC = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/matn-istisno.json'), 'utf8'));
 
 const LAT = 'A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F', CYR = '\u0400-\u04FF\u0492\u0493\u049A\u049B\u04B2\u04B3\u04E2\u04E3\u040E\u045E';
@@ -76,7 +78,7 @@ for (const page of files) {
     } else {
       // 3-qoida: /cyr/ — kirill ustun satrda lotin so'z va translit izlari
       if (nc >= nl) for (const w of words) {
-        if (hasLat(w) && !hasCyr(w) && !/^[A-Za-z]$/.test(w)) { const key = '3a|' + w; if (seen.has(key)) continue; seen.add(key); add(page, 3, s.kind, w, ctxOf(s.text, w), 'kirillga o\'giring yoki istisnoga'); }
+        if (hasLat(w) && !hasCyr(w) && !/^[A-Za-z]$/.test(w) && !CYR_OK.has(w)) { const key = '3a|' + w; if (seen.has(key)) continue; seen.add(key); add(page, 3, s.kind, w, ctxOf(s.text, w), 'kirillga o\'giring yoki istisnoga'); }
         if (hasCyr(w)) {
           const bad = [[/[ёЁ][ъЪ]/, 'ёъ → йў'], [/[оО][ъЪ](?!\w*\b[а-я]*[аиуэ])/, 'оъ → ў'], [/[гГ][ъЪ]/, 'гъ → ғ'], [/^[ъЪ]/, 'so\'z boshida ъ'], [new RegExp(`[${CYR}][${APOS}]|[${APOS}][${CYR}]`), 'qolgan apostrof']];
           for (const [re, why] of bad) if (re.test(w)) { const key = '3b|' + w + why; if (seen.has(key)) continue; seen.add(key); add(page, 3, s.kind, w, ctxOf(s.text, w), why); }

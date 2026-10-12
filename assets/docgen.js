@@ -613,7 +613,8 @@
           : (o.right ? D.AlignmentType.RIGHT
             : (o.left ? D.AlignmentType.LEFT : D.AlignmentType.JUSTIFIED)),
         spacing: { after: o.after == null ? 120 : o.after, line: 276 },
-        children: [new D.TextRun({ text: KD.blanksToText(text), bold: !!o.bold, italics: !!o.italic, size: o.size, color: o.color })]
+        // ЎЗ rejimida Word fayli ham ekrandagi ko'rinish bilan bir xil (kirill) bo'lsin
+        children: [new D.TextRun({ text: (root.KalkiCyr ? root.KalkiCyr.translit(KD.blanksToText(text)) : KD.blanksToText(text)), bold: !!o.bold, italics: !!o.italic, size: o.size, color: o.color })]
       });
     }
     var noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };

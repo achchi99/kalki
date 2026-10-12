@@ -74,28 +74,34 @@ var CASES = [
     'Yer solig’i -> Ер солиғи (foydalanuvchi topgan asl misol, endi to’g’ri)'
   ],
 
-  // ---- qisqartmalar saqlanishi ----
-  ['MHTEKM', 'MHTEKM', 'qisqartma o’zgarishsiz qoladi'],
-  ['QQS', 'QQS', 'qisqartma o’zgarishsiz qoladi'],
-  ['PDF', 'PDF', 'qisqartma o’zgarishsiz qoladi'],
+  // ---- brend va fayl formatlari lotincha qoladi; o'zbekcha qisqartmalar kirillga o'giriladi ----
+  ['MHTEKM', 'МҲТЕКМ', 'o’zbekcha qisqartma harfma-harf kirillga o’giriladi'],
+  ['QQS', 'ҚҚС', 'QQS -> ҚҚС'],
+  ['DTM', 'ДТМ', 'DTM -> ДТМ'],
+  ['YHXX', 'ЙҲХХ', 'YHXX -> ЙҲХХ'],
+  ['MCHJ', 'МЧЖ', 'katta harfli digraflar (CH -> Ч, J -> Ж)'],
+  ['ST-1', 'СТ-1', 'chiziqcha bilan qisqartma ham o’giriladi'],
+  ['PDF', 'PDF', 'fayl formati o’zgarishsiz qoladi'],
   ['Kalki.uz', 'Kalki.uz', 'brend nomi o’zgarishsiz qoladi'],
-  ['ST-1', 'ST-1', 'chiziqcha bilan qisqartma o’zgarishsiz qoladi'],
+  ['Telegram', 'Telegram', 'brend nomi o’zgarishsiz qoladi'],
+  ['PDFga', 'PDF-га', 'brend + qo’shimcha: aralash so’z emas, defis bilan'],
+  ['Wordda', 'Word-да', 'brend + qo’shimcha: defis bilan'],
 
   // ---- aralash matn: qisqartma + o'zbek matn ----
   [
     'MHTEKMning 26,5%idan kam bo' + APOS_ASCII + 'lmasligi kerak',
-    'MHTEKMнинг 26,5%идан кам бўлмаслиги керак',
-    'qisqartma + qo’shimchali so’z aralash'
+    'МҲТЕКМнинг 26,5%идан кам бўлмаслиги керак',
+    'qisqartma + qo’shimchali so’z'
   ],
   [
     '1 MHTEKM = 1 360 000 so' + APOS_ASCII + 'm',
-    '1 MHTEKM = 1 360 000 сўм',
+    '1 МҲТЕКМ = 1 360 000 сўм',
     'qisqartma + raqam + o’zbek so’z'
   ],
   [
     'PDF va CSV formatda',
     'PDF ва CSV форматда',
-    'ikkita qisqartma bitta jumlada'
+    'ikkita fayl formati bitta jumlada'
   ],
 
   // ---- raqam/valyuta/formulalar o'zgarishsiz ----

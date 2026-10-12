@@ -14,7 +14,7 @@ await p.goto(BASE + '/', { waitUntil: 'networkidle' });
 await p.evaluate(() => navigator.serviceWorker.ready); await p.waitForTimeout(6000);   // precache tugashi
 const keys = await p.evaluate(async () => (await caches.keys()).join(','));
 T(/kalki-static-/.test(keys), 'SW o\'rnatildi, kesh yaratildi', keys);
-const cached = await p.evaluate(async () => { const k = (await caches.keys()).find((x) => x.startsWith('kalki-static-')); const ca = await caches.open(k); return Promise.all(['/assets/css/site.css', '/assets/css/tokens.css', '/assets/icons.svg', '/assets/nav.js', '/kredit-kalkulyator', '/offline.html'].map(async (u) => [u, !!(await ca.match(u))])); });
+const cached = await p.evaluate(async () => { const k = (await caches.keys()).find((x) => x.startsWith('kalki-static-')); const ca = await caches.open(k); return Promise.all(['/assets/css/site.css', '/assets/css/tokens.css', '/assets/icons.svg', '/assets/nav.js', '/kredit-kalkulyator', '/offline'].map(async (u) => [u, !!(await ca.match(u))])); });
 cached.forEach(([u, ok]) => T(ok, 'precache: ' + u));
 await c.setOffline(true);
 for (const u of ['/kredit-kalkulyator', '/ru/hujjatlar', '/cyr/kredit-kalkulyator', '/qqs-2026']) {

@@ -25,7 +25,6 @@
 const fs = require('fs');
 const path = require('path');
 const { sitePages, ROOT } = require('./render');
-const { CYR_PAGES } = require('./prerender');
 
 const WRITE = process.argv.indexOf('--write') > -1;
 
@@ -149,7 +148,6 @@ function v2A(href, uz, ru, active) {
 }
 function headerV2Html(f) {
   const active = v2Active(f);
-  const isCyr = CYR_PAGES.indexOf(f) > -1;
   const slug = f.replace(/\.html$/, '');
   const items = V2_LINKS.map(([href, uz, ru, sub]) => {
     if (!sub) return '<li>' + v2A(href, uz, ru, active) + '</li>';
@@ -157,11 +155,14 @@ function headerV2Html(f) {
       + '<button type="button" class="tm2-chev" aria-expanded="false" aria-label="' + uz + '">' + CHEV + '</button>'
       + '<ul class="tm2-sub">' + sub.map(([h, u, r]) => '<li>' + v2A(h, u, r, '') + '</li>').join('') + '</ul></li>';
   }).join('');
-  const langSeg = '<div class="lang-seg' + (isCyr ? ' lang-seg-3' : '') + '" role="group" aria-label="Til / Язык">'
-    + '<button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button>'
-    + (isCyr ? '<a id="langCyr" href="/cyr/' + slug + '">ЎЗ</a>' : '') + '</div>';
+  // UZ | ЎЗ | RU — uchala segment HAR sahifada. ЎЗ oddiy <a href> (JS'siz ham ochiladi, rel=nofollow:
+  // bot ?lang=cyr nusxalarini kezmasin); assets/lang.js uni bosishda holatni (?p=) saqlab o'tkazadi.
+  const langSeg = '<div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык">'
+    + '<button type="button" id="langUz" class="on">UZ</button>'
+    + '<a id="langCyr" href="/' + (slug === 'index' ? '' : slug) + '?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a>'
+    + '<button type="button" id="langRu">RU</button></div>';
   return '<div id="sitebar" class="sb2"><div class="sb2-in">'
-    + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
+    + '<a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a>'
     + '<nav id="topmenu" aria-label="Bo\'limlar"><ul class="tm2">' + items + '</ul></nav>'
     + langSeg
     + '<button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button>'
@@ -199,6 +200,26 @@ const FBCALL_V2 = '<div id="fbcall" class="cta-tg"><div class="cta-tx">'
   + '<div class="cta-d"' + lf('Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.', 'Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.') + '>Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.</div></div>'
   + '<a class="btn btn-gold" href="https://t.me/kalki_uz">Telegram</a></div>';
 
+/* Til yuklagichi (<head>, render-blok EMAS, juda qisqa): saqlangan/URL tilini <html> ga darrov yozadi.
+   ЎЗ (cyr) rejimida sahifaning ichki tili uz, yozuvi kirill: lang.js tayyor bo'lguncha lotin
+   miltillamasligi uchun tana yashiriladi (RU bilan bir xil usul, 0.9 s dan keyin baribir ochiladi). */
+const LANGBOOT = String.raw`<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>`;
+
 // PWA (assets/pwa-install.js faqat tugma/ko'rsatma yaratadi; /cyr/ da prerender skriptni olib tashlaydi — faqat <link> qoladi)
 const PWA_HEAD = '<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon">'
   + '<meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>';
@@ -206,7 +227,7 @@ const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="
 function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
 function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
 const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
-  + '<div class="sf2-brand">Kalki<span class="dot">.uz</span></div>'
+  + '<div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div>'
   + '<p' + lf("O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.", 'Бесплатные калькуляторы и образцы документов для Узбекистана.') + ">O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.</p>"
   + '<div class="sf2-cols" style="margin-top:32px">'
   + '<div><div class="sf2-t"' + lf('Kategoriyalar', 'Категории') + '>Kategoriyalar</div><ul>'
@@ -276,6 +297,13 @@ function rebuildV2(f, src) {
   const nav = block(s, '<nav id="topmenu"', '</nav>');
   if (nav) s = s.slice(0, nav.i) + s.slice(nav.j);
   s = s.slice(0, anchor) + headerV2Html(f) + s.slice(anchor);
+
+  // til yuklagichi (langboot + langcss): bitta kanonik nusxa
+  const lb = block(s, '<script id="langboot">', '</script>');
+  const lc = block(s, '<style id="langcss">', '</style>');
+  if (lb && lc && lc.i > lb.i) s = s.slice(0, lb.i) + LANGBOOT + s.slice(lc.j);
+  else if (lb && !lc) s = s.slice(0, lb.i) + LANGBOOT + s.slice(lb.j);     // langcss'siz sahifa (avto-rasmiylashtirish)
+  else notes.push('langboot topilmadi');
 
   // CSS va nav.js: eski chromecss o'rniga tokens.css + site.css
   const ch = block(s, '<style id="chromecss">', '</style>');
