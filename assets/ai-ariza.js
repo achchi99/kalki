@@ -1,33 +1,64 @@
-/* kalki.uz — "AI ariza yozib beradi" bloki (faqat UZ ariza-namunasi; RU/CYR da ko'rinmaydi).
+/* kalki.uz — "AI ariza yozib beradi" bloki (ariza-namunasi: UZ va RU; CYR da ko'rinmaydi).
  *
  * Blok brauzerda ishga tushganda yaratiladi (HTML'ga statik yozilmaydi), shuning
  * uchun prerender natijasi o'zgarmaydi. Foydalanuvchi matni hech qayerda
  * saqlanmaydi (localStorage, cookie, GA) — faqat POST /api/ariza ga ketadi.
  * localStorage'da faqat tasodifiy anonim mijoz ID (limit uchun) va yozuv tanlovi saqlanadi.
  *
- * O'chirish: quyidagi AI_ARIZA_YOQILGAN ni false qiling (yoki shu <script> tegini oling).
+ * RU: html lang="ru" bo'lganda matnlar ruscha, so'rovga til:'ru' qo'shiladi, Lotin/Kirill tugmasi ko'rinmaydi.
+ * O'chirish: quyidagi AI_ARIZA_YOQILGAN ni false qiling (yoki shu <script> tegini oling) — ikkala tilga ham ta'sir qiladi.
  */
 (function () {
   'use strict';
   var AI_ARIZA_YOQILGAN = true;
 
-  var NOTE = "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'lumotini yozmang — ular kerak emas. Kalki matningizni saqlamaydi; u faqat ariza matnini tayyorlash uchun AI xizmatiga yuboriladi. AI qonun moddalari va raqamlarni qo'shmaydi — tayyor matnni o'qib, tekshirib chiqing.";
-  var E502 = "Hozircha matn tayyorlab bo'lmadi. Birozdan so'ng urinib ko'ring.";
-  var E400 = "Vaziyatni 10–500 belgi oralig'ida yozing.";
-  var REJECT = "Bu yordamchi faqat ariza matnini yozadi. Vaziyatingizni boshqacha tasvirlab ko'ring.";
-  var CHIPS = [
-    ['Bola kasal bo\'ldi', "bolam kasal bo'lib maktabga bormadi, dars qoldirgan kunlari uchun yozishim kerak"],
-    ['Ishdan 2 kunga javob', "ishdan 2 kunga javob so'ramoqchiman, oilaviy ishim bor"],
-    ['Ishdan bo\'shash', "o'z xohishim bilan ishdan bo'shamoqchiman"],
-    ['Gaz hisobida xato', "gaz hisobimda xato bor, ko'p yozib qo'yishgan, qayta hisoblashni so'rayman"]
-  ];
+  var TX = {
+    uz: {
+      note: "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'lumotini yozmang — ular kerak emas. Kalki matningizni saqlamaydi; u faqat ariza matnini tayyorlash uchun AI xizmatiga yuboriladi. AI qonun moddalari va raqamlarni qo'shmaydi — tayyor matnni o'qib, tekshirib chiqing.",
+      e502: "Hozircha matn tayyorlab bo'lmadi. Birozdan so'ng urinib ko'ring.",
+      e400: "Vaziyatni 10–500 belgi oralig'ida yozing.",
+      reject: "Bu yordamchi faqat ariza matnini yozadi. Vaziyatingizni boshqacha tasvirlab ko'ring.",
+      chips: [
+        ['Bola kasal bo\'ldi', "bolam kasal bo'lib maktabga bormadi, dars qoldirgan kunlari uchun yozishim kerak"],
+        ['Ishdan 2 kunga javob', "ishdan 2 kunga javob so'ramoqchiman, oilaviy ishim bor"],
+        ['Ishdan bo\'shash', "o'z xohishim bilan ishdan bo'shamoqchiman"],
+        ['Gaz hisobida xato', "gaz hisobimda xato bor, ko'p yozib qo'yishgan, qayta hisoblashni so'rayman"]
+      ],
+      title: 'AI ariza yozib beradi', badge: 'Yangi', sub: "Vaziyatingizni oddiy so'z bilan yozing — tayyor ariza matni 5 soniyada.",
+      label: 'Vaziyatingizni yozing', ph: "Masalan: bolam 3 kun kasal bo'ldi, maktabga yozishim kerak",
+      script: 'Yozuv:', scriptAria: 'Ariza yozuvi', go: 'Ariza matnini yozish', busy: 'Yozilmoqda…',
+      ask: 'Joriy matn almashtirilsinmi?', yes: 'Ha', no: "Yo'q", view: "Hujjatni ko'rish", again: 'Boshqa variant', copy: 'Nusxa olish', copied: 'Nusxalandi',
+      priv: 'Ism, telefon, pasport yozmang. Matningiz saqlanmaydi.', more: 'Batafsil', less: 'Yopish',
+      ok: "Matn tayyor. Uni o'qib, tekshirib chiqing; bo'sh joylarni [qavs] ichida to'ldiring.", kept: 'Joriy matn saqlab qolindi.'
+    },
+    ru: {
+      note: 'Опишите ситуацию простыми словами. Не указывайте имя, телефон и паспортные данные — они не нужны. Kalki не сохраняет ваш текст; он отправляется в AI-сервис только для подготовки текста заявления. AI не добавляет статьи законов и цифры — прочитайте готовый текст и проверьте его.',
+      e502: 'Пока не удалось подготовить текст. Попробуйте чуть позже.',
+      e400: 'Опишите ситуацию в пределах от 10 до 500 символов.',
+      reject: 'Этот помощник пишет только текст заявления. Попробуйте описать ситуацию иначе.',
+      chips: [
+        ['Ребёнок заболел', 'ребёнок заболел и не ходил в школу, нужно написать заявление за пропущенные дни'],
+        ['Отпуск на 2 дня', 'хочу отпроситься с работы на 2 дня, есть семейные дела'],
+        ['Увольнение', 'хочу уволиться по собственному желанию'],
+        ['Ошибка в счёте за газ', 'в счёте за газ ошибка, начислили слишком много, прошу пересчитать']
+      ],
+      title: 'AI напишет заявление', badge: 'Новое', sub: 'Опишите ситуацию простыми словами — готовый текст заявления за 5 секунд.',
+      label: 'Опишите ситуацию', ph: 'Например: ребёнок болел 3 дня, нужно написать в школу',
+      script: '', scriptAria: '', go: 'Написать текст заявления', busy: 'Пишем…',
+      ask: 'Заменить текущий текст?', yes: 'Да', no: 'Нет', view: 'Посмотреть документ', again: 'Другой вариант', copy: 'Скопировать', copied: 'Скопировано',
+      priv: 'Не указывайте имя, телефон, паспорт. Ваш текст не сохраняется.', more: 'Подробнее', less: 'Закрыть',
+      ok: 'Текст готов. Прочитайте и проверьте его; пустые места в [скобках] заполните.', kept: 'Текущий текст сохранён.'
+    }
+  };
+  function isRu() { return document.documentElement.lang === 'ru'; }
+  function L() { return isRu() ? TX.ru : TX.uz; }
 
   if (!AI_ARIZA_YOQILGAN) return;
   if (/jsdom/i.test(navigator.userAgent || '')) return; // prerender DOM'ga kirmasin
 
   function ga(name, p) { try { if (typeof gtag === 'function') gtag('event', name, p || {}); } catch (e) {} }
   function $(id) { return document.getElementById(id); }
-  function curUz() { return document.documentElement.lang === 'uz'; }
+  function langOk() { var l = document.documentElement.lang; return l === 'uz' || l === 'ru'; }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; }
   function clientId() {
     var id = store('kalki_ai_mid');
@@ -54,6 +85,7 @@
     '.aiz-chip{border:1.5px solid var(--line,#DDE5E0);background:#fff;color:var(--cat-deep,#0E3B2E);font:inherit;font-size:13px;font-weight:700;padding:7px 12px;border-radius:99px;cursor:pointer;-webkit-tap-highlight-color:transparent}' +
     '.aiz-chip:hover,.aiz-chip:focus-visible{border-color:var(--cat,#155E63);background:var(--cat-soft,#E3F1EF);outline:0}' +
     '.aiz-ctl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}' +
+    '.aiz-ctl[hidden]{display:none}' +
     '.aiz-ctl-l{font-size:12.5px;font-weight:700;color:var(--muted,#5C6B63)}' +
     '.aiz-seg{display:inline-flex;background:#EEF2EF;border-radius:10px;padding:3px;gap:3px}' +
     '.aiz-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:var(--muted,#5C6B63);padding:7px 13px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}' +
@@ -86,7 +118,7 @@
     var sec = document.createElement('section');
     sec.className = 'aiz noprint';
     sec.id = 'aiAriza';
-    var chips = CHIPS.map(function (c, i) { return '<button type="button" class="aiz-chip" data-i="' + i + '"></button>'; }).join('');
+    var chips = TX.uz.chips.map(function (c, i) { return '<button type="button" class="aiz-chip" data-i="' + i + '"></button>'; }).join('');
     sec.innerHTML =
       '<div class="aiz-head"><span class="aiz-title"><svg class="ic" aria-hidden="true" width="22" height="22" style="vertical-align:-4px;margin-right:6px;color:var(--gold-ink,#855807)"><use href="/assets/icons.svg#i-sparkles"></use></svg>AI ariza yozib beradi</span><span class="aiz-badge">Yangi</span></div>' +
       '<p class="aiz-sub">Vaziyatingizni oddiy so\'z bilan yozing — tayyor ariza matni 5 soniyada.</p>' +
@@ -108,10 +140,29 @@
       '<button type="button" class="aiz-link" id="aizMore" aria-expanded="false" aria-controls="aizNote">Batafsil</button></div>' +
       '<p class="aiz-note" id="aizNote" hidden></p>';
     host.parentNode.insertBefore(sec, host);
-    $('aizNote').textContent = NOTE;
-    var cs = sec.querySelectorAll('.aiz-chip');
-    for (var i = 0; i < cs.length; i++) cs[i].textContent = CHIPS[i][0];
     return sec;
+  }
+
+  // barcha ko'rinadigan matnlarni joriy tilga o'tkazadi (sahifa tili o'zgarganda ham chaqiriladi)
+  function labels(sec, st) {
+    var t = L(), ru = isRu();
+    function set(id, v) { var e = $(id); if (e) e.textContent = v; }
+    var ti = sec.querySelector('.aiz-title'); if (ti) ti.lastChild.nodeValue = t.title;
+    var bd = sec.querySelector('.aiz-badge'); if (bd) bd.textContent = t.badge;
+    var sub = sec.querySelector('.aiz-sub'); if (sub) sub.textContent = t.sub;
+    var lb = sec.querySelector('label.aiz-sr'); if (lb) lb.textContent = t.label;
+    var ta = $('aizIn'); if (ta) ta.setAttribute('placeholder', t.ph);
+    var ctl = sec.querySelector('.aiz-ctl'); if (ctl) ctl.hidden = ru;   // RU: Lotin/Kirill tanlovi yo'q
+    var cl = sec.querySelector('.aiz-ctl-l'); if (cl) cl.textContent = t.script;
+    var sg = sec.querySelector('.aiz-seg'); if (sg) sg.setAttribute('aria-label', t.scriptAria);
+    if (!st.busy) set('aizGo', t.go);
+    var ak = sec.querySelector('#aizAsk > span'); if (ak) ak.textContent = t.ask;
+    set('aizYes', t.yes); set('aizNo', t.no); set('aizView', t.view); set('aizAgain', t.again);
+    if (!st.copied) set('aizCopy', t.copy);
+    var pv = sec.querySelector('.aiz-priv > span'); if (pv) pv.textContent = t.priv;
+    var mo = $('aizMore'); if (mo) mo.textContent = mo.getAttribute('aria-expanded') === 'true' ? t.less : t.more;
+    set('aizNote', t.note);
+    var cs = sec.querySelectorAll('.aiz-chip'); for (var i = 0; i < cs.length; i++) cs[i].textContent = t.chips[i][0];
   }
 
   function init() {
@@ -120,7 +171,8 @@
     var sec = build(host);
     var inp = $('aizIn'), cnt = $('aizCnt'), go = $('aizGo'), again = $('aizAgain'), copy = $('aizCopy'), view = $('aizView');
     var ask = $('aizAsk'), msg = $('aizMsg');
-    var busy = false, lastAI = '', pending = '', script = 'lotin', userChose = false, lastBody = null;
+    var busy = false, lastAI = '', pending = '', script = 'lotin', userChose = false, lastBody = null, copied = false;
+    function relabel() { labels(sec, { busy: busy, copied: copied }); }
 
     function show(text, cls) {
       msg.hidden = !text;
@@ -131,7 +183,7 @@
       busy = b;
       go.disabled = b; again.disabled = b;
       go.classList.toggle('busy', b);
-      go.textContent = b ? 'Yozilmoqda…' : 'Ariza matnini yozish';
+      go.textContent = b ? L().busy : L().go;
     }
     function curField() { var ta = $('dgf-erkinMatn'); return ta ? ta.value : ''; }
     function atype() { var s = $('dgf-atype'); return s ? s.value : ''; }
@@ -142,7 +194,7 @@
       for (var i = 0; i < bs.length; i++) bs[i].classList.toggle('on', bs[i].getAttribute('data-s') === s);
     }
     function autoScript() {
-      if (userChose) return;
+      if (userChose || isRu()) return;
       var v = inp.value;
       var letters = (v.match(/[A-Za-zЀ-ӿĀ-˿]/g) || []).length;
       var cyr = (v.match(/[Ѐ-ӿ]/g) || []).length;
@@ -152,7 +204,7 @@
 
     function put(text) {
       var sel = $('dgf-atype');
-      if (!sel) { show(E502, 'err'); return; }
+      if (!sel) { show(L().e502, 'err'); return; }
       if (sel.value !== 'erkin') {
         sel.value = 'erkin';
         var ev = document.createEvent('HTMLEvents');
@@ -160,14 +212,14 @@
         sel.dispatchEvent(ev);
       }
       var ta = $('dgf-erkinMatn');
-      if (!ta) { show(E502, 'err'); return; }
+      if (!ta) { show(L().e502, 'err'); return; }
       ta.value = text;
       var ev2 = document.createEvent('HTMLEvents');
       ev2.initEvent('input', true, false);
       ta.dispatchEvent(ev2);
       lastAI = text;
       again.hidden = false; copy.hidden = false; view.hidden = false;
-      show('Matn tayyor. Uni o\'qib, tekshirib chiqing; bo\'sh joylarni [qavs] ichida to\'ldiring.', 'ok');
+      show(L().ok, 'ok');
       // silliq aylantirish va 2 soniyalik ajratib ko'rsatish
       var box = (ta.closest && ta.closest('.dg-shell')) || ta;
       try { box.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) { box.scrollIntoView(); }
@@ -185,11 +237,11 @@
       if (busy) return;
       var v = inp.value.trim();
       ask.hidden = true;
-      if (v.length < 10 || v.length > 500) { show(E400, 'err'); ga('ai_ariza_xato', { status: 400 }); return; }
+      if (v.length < 10 || v.length > 500) { show(L().e400, 'err'); ga('ai_ariza_xato', { status: 400 }); return; }
       setBusy(true); show('', '');
       ga('ai_ariza_yuborildi');
       var turi = atype();
-      var body = { vaziyat: v, yozuv: script };
+      var body = isRu() ? { vaziyat: v, til: 'ru' } : { vaziyat: v, yozuv: script };
       if (turi && turi !== 'erkin') body.turi = turi;
       var cid = clientId();
       if (cid) body.mijoz_id = cid;
@@ -197,19 +249,19 @@
         .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); })
         .then(function (o) {
           setBusy(false);
-          if (o.s === 200 && o.j && o.j.rad) { show(REJECT, 'err'); ga('ai_ariza_rad'); return; }
+          if (o.s === 200 && o.j && o.j.rad) { show(L().reject, 'err'); ga('ai_ariza_rad'); return; }
           if (o.s === 200 && o.j && typeof o.j.matn === 'string' && o.j.matn) { ga('ai_ariza_tayyor'); deliver(o.j.matn); return; }
-          show((o.j && o.j.xato) || E502, 'err');
+          show(isRu() ? (o.s === 429 && o.j && o.j.xato ? o.j.xato : L().e502) : ((o.j && o.j.xato) || L().e502), 'err');
           ga('ai_ariza_xato', { status: o.s });
         })
-        .catch(function () { setBusy(false); show(E502, 'err'); ga('ai_ariza_xato', { status: 502 }); });
+        .catch(function () { setBusy(false); show(L().e502, 'err'); ga('ai_ariza_xato', { status: 502 }); });
     }
 
     inp.addEventListener('input', function () { cnt.textContent = inp.value.length + ' / 500'; autoScript(); });
     $('aizChips').addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('.aiz-chip');
       if (!b) return;
-      inp.value = CHIPS[+b.getAttribute('data-i')][1];
+      inp.value = L().chips[+b.getAttribute('data-i')][1];
       cnt.textContent = inp.value.length + ' / 500';
       autoScript();
       inp.focus({ preventScroll: true });
@@ -226,10 +278,10 @@
       var n = $('aizNote'), open = n.hidden;
       n.hidden = !open;
       this.setAttribute('aria-expanded', open ? 'true' : 'false');
-      this.textContent = open ? 'Yopish' : 'Batafsil';
+      this.textContent = open ? L().less : L().more;
     });
     $('aizYes').addEventListener('click', function () { ask.hidden = true; put(pending); pending = ''; });
-    $('aizNo').addEventListener('click', function () { ask.hidden = true; pending = ''; show('Joriy matn saqlab qolindi.', ''); });
+    $('aizNo').addEventListener('click', function () { ask.hidden = true; pending = ''; show(L().kept, ''); });
     view.addEventListener('click', function () {
       var seg = $('viewSeg');
       if (seg && seg.offsetParent !== null) {
@@ -243,7 +295,7 @@
     });
     copy.addEventListener('click', function () {
       var text = curField() || lastAI;
-      function done() { var o = 'Nusxa olish'; copy.textContent = 'Nusxalandi'; setTimeout(function () { copy.textContent = o; }, 1500); }
+      function done() { copied = true; copy.textContent = L().copied; setTimeout(function () { copied = false; copy.textContent = L().copy; }, 1500); }
       function fb() {
         try {
           var ta = document.createElement('textarea');
@@ -262,7 +314,7 @@
       try { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { sec.scrollIntoView(); }
       setTimeout(function () { try { inp.focus({ preventScroll: true }); } catch (e) { inp.focus(); } }, 450);
     }
-    function sync() { sec.hidden = !curUz(); }
+    function sync() { sec.hidden = !langOk(); relabel(); }
     sync();
     new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     window.addEventListener('hashchange', openFromHash);
