@@ -48,7 +48,8 @@ const CHUNK = Number(process.env.KALKI_CHUNK) || 8;
    commit'lar o'tkazib yuboriladi — birinchi mazmuniy commit topilguncha.
    Agar HAMMASI cascade bo'lsa (kutilmagan holat) — faylning eng birinchi
    commit sanasiga tushiladi, "sana yo'q" holatiga hech qachon qolinmaydi. */
-const CASCADE_COMMIT_RE = /^Kunlik prerender yangilanishi/;
+// "design:" commit'lari faqat ko'rinishni o'zgartiradi — "Yangilangan" sanasi va dateModified ni siljitmasin
+const CASCADE_COMMIT_RE = /^(Kunlik prerender yangilanishi|design:)/;
 function gitLastModified(name) {
   try {
     const out = execFileSync('git', ['log', '--format=%cd%x1f%s', '--date=format:%Y-%m-%d', '--', name], { cwd: ROOT }).toString();
@@ -508,14 +509,23 @@ async function renderOneCyr(name) {
     });
     var notice = doc.createElement('div');
     notice.id = 'cyrNotice';
-    notice.setAttribute('style', 'margin:0 0 14px;padding:12px 14px;border-radius:10px;'
-      + 'background:#FFF6E5;border:1px solid #F0D9A0;font-size:14px;line-height:1.5');
+    notice.setAttribute('class', 'cyr-notice');
     var a = doc.createElement('a');
     a.href = latinPath;
-    a.style.fontWeight = '700';
     a.textContent = translit('Interaktiv hisoblash uchun lotin versiyasini oching') + ' →';
     notice.appendChild(a);
     main.insertBefore(notice, main.firstChild);
+  }
+
+  // 5b) V2 sarlavha: nav.js ishlamaydi (skript yo'q) — mobil menyu CSS-only checkbox'ga almashtiriladi,
+  //     chevron tugmalari olib tashlanadi (ochilmalar desktopda :hover/:focus-within, mobilda doim ochiq)
+  var burger = doc.querySelector('.sb2-burger');
+  if (burger) {
+    var chk = doc.createElement('input');
+    chk.type = 'checkbox'; chk.id = 'navtoggle'; chk.className = 'sb2-burger nav-chk';
+    chk.setAttribute('aria-label', 'Меню'); chk.setAttribute('aria-controls', 'topmenu');
+    burger.parentNode.replaceChild(chk, burger);
+    doc.querySelectorAll('.tm2-chev').forEach(function (e) { e.remove(); });
   }
 
   // 6) barcha ijro etiladigan skriptlar olib tashlanadi — JSON ma'lumot

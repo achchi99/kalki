@@ -1,0 +1,37 @@
+/* kalki.uz — dizayn tokenlari (2026-10, dizayn-2026). Qiymatlar mavjud palitradan olingan:
+   to'q yashil + oltin-sariq + och fon. Yangi dizaynda faqat shu o'zgaruvchilar ishlatiladi. */
+:root{
+  /* ranglar */
+  --ink:#0E3B2E;          /* to'q yashil: sarlavha, hero/footer foni */
+  --ink-2:#164A3A;        /* ink ustidagi hover */
+  --text:#1A2822;         /* asosiy matn */
+  --brand:#1E6B45;        /* birlamchi tugma, havola */
+  --brand-hover:#17583A;
+  --brand-soft:#E8F2EC;
+  --gold:#D99A2B;         /* urg'u: logodagi "uz", kichik aksentlar */
+  --gold-soft:#FBF1DC;
+  --gold-chart:#B97A12;   /* diagrammada 'foiz' seriyasi: oq fonda >= 3:1 */
+  --gold-ink:#855807;     /* oltin MATN (overline) uchun to'qroq variant, kontrast >= 4.5:1 */
+  --bg:#F1F2EE;           /* iliq-kulrang fon: oq kartalar undan aniq ajralib turadi */
+  --surface:#FFFFFF;      /* karta */
+  --line:#DDE5E0;         /* nozik chiziq */
+  --line-strong:#C6D2CB;
+  --muted:#526459;        /* ikkinchi darajali matn (kontrast >= 4.5:1) */
+  /* kategoriya aksentlari (1b): sokin, brend yashiliga uyg'un; tint = rangning ~11% i oq ustida */
+  --cat-moliya:#1E6B45; --cat-qurilish:#A4482A; --cat-kommunal:#45687C; --cat-hayot:#8A5A08; --cat-huquqiy:#5A4E8C;
+  --tint:11%;
+  /* tipografika */
+  --font:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --fs-body:16px; --fs-small:14px; --fs-h1:32px; --fs-h2:24px; --fs-h3:18px; --lh:1.6;
+  /* bo'shliqlar (8px shkalasi) */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:80px;
+  --sec:48px;             /* bo'limlar orasi: mobil 40–56 */
+  --wrap:1120px; --gutter:20px; --hdr:64px;
+  --r:12px; --r-sm:10px;
+  --shadow-card:0 1px 2px rgba(0,0,0,.04);
+  --shadow-hover:0 8px 24px rgba(14,59,46,.10);
+  --ease:150ms ease;
+}
+@media (min-width:900px){
+  :root{--fs-body:17px;--fs-h1:40px;--fs-h2:28px;--fs-h3:20px;--sec:80px}
+}

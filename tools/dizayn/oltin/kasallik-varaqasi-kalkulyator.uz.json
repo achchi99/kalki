@@ -1,0 +1,27 @@
+{
+ "odatiy": {
+  "text": "O'rtacha oylik ish haqi so'm Kasallik varaqasi kunlari soni kun Umumiy ish staji (yil) yil To'lov foizi va nafaqa huquqi ish stajiga bog'liq — masalan 6 oy uchun 0.5 kiriting. Qo'shimcha ma'lumot Imtiyozli toifalar (agar mavjud bo'lsa) I–II guruh nogironligi 18 yoshgacha 4 va undan ortiq farzand Nogironligi bo'lgan farzand bor Hisoblash Hisob natijasi Ma'lumot yangilanmoqda Kasallik varaqasi to'lovi To'lov foizi va yuqori chegara ko'rsatkichlari hozircha rasmiy manbadan tasdiqlanmoqda. Tasdiqlangach, bu kalkulyator avtomatik yangilanadi va aniq summa ko'rsatiladi. Oylik ish haqi- Kasallik kunlari- Ish staji- Ish beruvchi hisobidan- Jamg'aradan- Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi. Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi. Ulashish PDF",
+  "inputs": [
+   "wage=",
+   "days=",
+   "staj="
+  ]
+ },
+ "chegara": {
+  "text": "O'rtacha oylik ish haqi so'm Kasallik varaqasi kunlari soni kun Umumiy ish staji (yil) yil To'lov foizi va nafaqa huquqi ish stajiga bog'liq — masalan 6 oy uchun 0.5 kiriting. Qo'shimcha ma'lumot Imtiyozli toifalar (agar mavjud bo'lsa) I–II guruh nogironligi 18 yoshgacha 4 va undan ortiq farzand Nogironligi bo'lgan farzand bor Hisoblash Hisob natijasi Ma'lumot yangilanmoqda Kasallik varaqasi to'lovi To'lov foizi va yuqori chegara ko'rsatkichlari hozircha rasmiy manbadan tasdiqlanmoqda. Tasdiqlangach, bu kalkulyator avtomatik yangilanadi va aniq summa ko'rsatiladi. Oylik ish haqi- Kasallik kunlari- Ish staji- Ish beruvchi hisobidan- Jamg'aradan- Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi. Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi. Ulashish PDF",
+  "inputs": [
+   "wage=0",
+   "days=0",
+   "staj=0"
+  ]
+ },
+ "katta": {
+  "text": "O'rtacha oylik ish haqi so'm Kasallik varaqasi kunlari soni kun Umumiy ish staji (yil) yil To'lov foizi va nafaqa huquqi ish stajiga bog'liq — masalan 6 oy uchun 0.5 kiriting. Qo'shimcha ma'lumot Imtiyozli toifalar (agar mavjud bo'lsa) I–II guruh nogironligi 18 yoshgacha 4 va undan ortiq farzand Nogironligi bo'lgan farzand bor Hisoblash Hisob natijasi 4 246 667 so'm Kasallik varaqasi to'lovi Oylik ish haqi1 000 000 so'm Kasallik kunlari1 000 000 kun Ish staji1 000 000 yil Ish beruvchi hisobidan5 kun Jamg'aradan999 995 kun Diqqat: kiritilgan kunlar soni yillik to'lov chegarasidan oshadi — chegaradan oshgan kunlar hisobga olinmaydi. Bu bo'lim faqat ma'lumot uchun. Kasallik varaqasi to'lovi miqdorini ish beruvchingiz yoki ijtimoiy sug'urta organi rasmiy hisoblab beradi. Ulashish PDF",
+  "inputs": [
+   "wage=1000000",
+   "days=1000000",
+   "staj=1000000"
+  ]
+ },
+ "xato": []
+}

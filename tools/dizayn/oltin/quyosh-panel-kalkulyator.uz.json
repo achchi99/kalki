@@ -1,0 +1,30 @@
+{
+ "odatiy": {
+  "text": "Elektr iste'moli Oylik elektr sarfi kWt/oy Elektr hisobingizga qarang (o'rtacha oylik kVt·soat). Bilmasangiz, hisob summasini tarifga bo'ling. Elektr narxi (1 kWt) so'm Hozirgi tarif. Ko'p sarflasangiz, yuqori pog'ona narxini kiriting (900–1100 so'm). Hududingiz Janub (Qashqadaryo, Buxoro...) Markaz (Toshkent, Farg'ona...) Janubiy viloyatlarda quyosh ko'proq — panel ko'proq elektr beradi. Panel va narx Bitta panel quvvati Vt Hozirgi panellar odatda 450–600 Vt. Bilmasangiz 550 qoldiring. 1 kWt tizim narxi (o'rnatilgan) so'm/kWt Panel + invertor + o'rnatish, «kalitli» narx. O'zbekistonda ~8–10 mln so'm/kWt. Hisoblash Quyosh tizimi hisobi 6 panel kerak Tizim quvvati: 3,3 kWt Invertor quvvati3 kW Kerakli joy (tom)≈ 14 m² Yillik ishlab chiqarish5 610 kWt Taxminiy umumiy narx29 700 000 so'm Yiliga elektrda tejash3 120 000 so'm 9,5 yil da o'zini qoplaydi Hisob o'rtacha sharoit uchun. Aniq natija tom yo'nalishi, soya, panel sifati va o'rnatuvchiga bog'liq. Bir necha o'rnatuvchidan narx so'rang. UlashishPDF",
+  "inputs": [
+   "monthKwh=400",
+   "tariff=650",
+   "panelW=550",
+   "kwpPrice=9 000 000"
+  ]
+ },
+ "chegara": {
+  "text": "Elektr iste'moli Oylik elektr sarfi kWt/oy Elektr hisobingizga qarang (o'rtacha oylik kVt·soat). Bilmasangiz, hisob summasini tarifga bo'ling. Elektr narxi (1 kWt) so'm Hozirgi tarif. Ko'p sarflasangiz, yuqori pog'ona narxini kiriting (900–1100 so'm). Hududingiz Janub (Qashqadaryo, Buxoro...) Markaz (Toshkent, Farg'ona...) Janubiy viloyatlarda quyosh ko'proq — panel ko'proq elektr beradi. Panel va narx Bitta panel quvvati Vt Hozirgi panellar odatda 450–600 Vt. Bilmasangiz 550 qoldiring. 1 kWt tizim narxi (o'rnatilgan) so'm/kWt Panel + invertor + o'rnatish, «kalitli» narx. O'zbekistonda ~8–10 mln so'm/kWt. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Quyosh tizimi hisobi — panel kerak — Invertor quvvati— Kerakli joy (tom)— Yillik ishlab chiqarish— Taxminiy umumiy narx— Yiliga elektrda tejash— — da o'zini qoplaydi Hisob o'rtacha sharoit uchun. Aniq natija tom yo'nalishi, soya, panel sifati va o'rnatuvchiga bog'liq. Bir necha o'rnatuvchidan narx so'rang. UlashishPDF",
+  "inputs": [
+   "monthKwh=0",
+   "tariff=0",
+   "panelW=0",
+   "kwpPrice=0"
+  ]
+ },
+ "katta": {
+  "text": "Elektr iste'moli Oylik elektr sarfi kWt/oy Elektr hisobingizga qarang (o'rtacha oylik kVt·soat). Bilmasangiz, hisob summasini tarifga bo'ling. Elektr narxi (1 kWt) so'm Hozirgi tarif. Ko'p sarflasangiz, yuqori pog'ona narxini kiriting (900–1100 so'm). Hududingiz Janub (Qashqadaryo, Buxoro...) Markaz (Toshkent, Farg'ona...) Janubiy viloyatlarda quyosh ko'proq — panel ko'proq elektr beradi. Panel va narx Bitta panel quvvati Vt Hozirgi panellar odatda 450–600 Vt. Bilmasangiz 550 qoldiring. 1 kWt tizim narxi (o'rnatilgan) so'm/kWt Panel + invertor + o'rnatish, «kalitli» narx. O'zbekistonda ~8–10 mln so'm/kWt. Hisoblash Quyosh tizimi hisobi 6 panel kerak Tizim quvvati: 33 kWt Invertor quvvati29,7 kW Kerakli joy (tom)≈ 14 m² Yillik ishlab chiqarish49 500 kWt Taxminiy umumiy narx2 970 000 000 so'm Yiliga elektrda tejash312 000 000 so'm 9,5 yil da o'zini qoplaydi Hisob o'rtacha sharoit uchun. Aniq natija tom yo'nalishi, soya, panel sifati va o'rnatuvchiga bog'liq. Bir necha o'rnatuvchidan narx so'rang. UlashishPDF",
+  "inputs": [
+   "monthKwh=4 000",
+   "tariff=6 500",
+   "panelW=5500",
+   "kwpPrice=90 000 000"
+  ]
+ },
+ "xato": []
+}

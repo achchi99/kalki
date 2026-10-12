@@ -1,0 +1,48 @@
+{
+ "odatiy": {
+  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 220 050 so'm Jami oyiga to'laysiz Konditsioner81 000 so'mElektr isitgich81 000 so'mMuzlatgich48 600 so'mKir yuvish mashinasi9 450 so'm Jami (oyiga)220 050 so'm UlashishPDF",
+  "inputs": [
+   "tarif=450",
+   "h_kondi=5",
+   "h_isit=3",
+   "h_muzlatgich=24",
+   "h_kir=1",
+   "h_tv=4",
+   "h_komp=4",
+   "h_mikro=0.5",
+   "h_lamp=6",
+   "h_suvisitgich=2"
+  ]
+ },
+ "chegara": {
+  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Oylik elektr xarajati — Jami oyiga to'laysiz Jami (oyiga)— UlashishPDF",
+  "inputs": [
+   "tarif=0",
+   "h_kondi=0",
+   "h_isit=0",
+   "h_muzlatgich=0",
+   "h_kir=0",
+   "h_tv=0",
+   "h_komp=0",
+   "h_mikro=0",
+   "h_lamp=0",
+   "h_suvisitgich=0"
+  ]
+ },
+ "katta": {
+  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 28 836 000 so'm Jami oyiga to'laysiz Konditsioner8 100 000 so'mElektr isitgich8 100 000 so'mMuzlatgich4 860 000 so'mKir yuvish mashinasi945 000 so'mTelevizor540 000 so'mKompyuter1 080 000 so'mMikroto'lqinli pech675 000 so'mYoritish (uy bo'ylab)486 000 so'mSuv isitgich (boyler)4 050 000 so'm Jami (oyiga)28 836 000 so'm UlashishPDF",
+  "inputs": [
+   "tarif=4 500",
+   "h_kondi=50",
+   "h_isit=30",
+   "h_muzlatgich=240",
+   "h_kir=10",
+   "h_tv=40",
+   "h_komp=40",
+   "h_mikro=5",
+   "h_lamp=60",
+   "h_suvisitgich=20"
+  ]
+ },
+ "xato": []
+}

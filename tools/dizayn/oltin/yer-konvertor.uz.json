@@ -1,0 +1,58 @@
+{
+ "odatiy": {
+  "text": "Birliklar konvertori Istalgan maydonchaga qiymat yozing — qolganlari avtomatik yangilanadi. m² sotix tanob gektar akr 1 tanob necha m²? (sozlanadi) m² Tanob hududga qarab farq qiladi: odatda 1500–3000 m². O'z hududingiz qiymatini kiriting. ⚽ Bu maydon ≈ 0,4 ta futbol maydoni (har biri 105×68 m) O'lchamlardan maydon Uchastka bo'yi va enini kiriting — maydoni va panjara uzunligi chiqadi. Uzunligi m Kengligi m Maydon:2 500 m² = 25 sotix Perimetr (panjara):200 m Panjara/devor materialini hisoblashda perimetrdan foydalaning. Panjara hisoblash → Ustun oralig'i m Darvoza kengligi m Panjara balandligi m Beton chuqurligi m Ustun teshigi diametri m Ustunlar soni:80 dona Profnastil/setka:196 m (392 m²) Beton hajmi:4,52 m³ Ustunlar soni = (perimetr − darvoza) / oralig'i + 1, yuqoriga yaxlitlangan. Beton hajmi — har bir ustun teshigi uchun silindr hajmi bo'yicha. Narx kiritilmagan — kerak bo'lsa o'zingiz hisoblang. Yer narxi hisobi Yuqoridagi konvertordagi maydon uchun hisoblanadi. 1 sotix narxi so'm Umumiy narx:750 000 000 so'm 1 m² narxi:300 000 so'm UlashishPDF",
+  "inputs": [
+   "m2=2 500",
+   "sotix=25",
+   "tanob=1",
+   "gektar=0,25",
+   "akr=0,6178",
+   "tanobSize=2 500",
+   "plotL=50",
+   "plotW=50",
+   "fenceGap=2,5",
+   "fenceGateW=4",
+   "fenceH=2",
+   "fenceDepth=0,8",
+   "fenceDiam=0,3",
+   "pricePerSotix=30 000 000"
+  ]
+ },
+ "chegara": {
+  "text": "Birliklar konvertori Istalgan maydonchaga qiymat yozing — qolganlari avtomatik yangilanadi. m² sotix tanob gektar akr 1 tanob necha m²? (sozlanadi) m² Tanob hududga qarab farq qiladi: odatda 1500–3000 m². O'z hududingiz qiymatini kiriting. ⚽ Bu maydon ≈ 0 ta futbol maydoni (har biri 105×68 m) O'lchamlardan maydon Uchastka bo'yi va enini kiriting — maydoni va panjara uzunligi chiqadi. Uzunligi m Kengligi m Maydon:— Perimetr (panjara):— Panjara/devor materialini hisoblashda perimetrdan foydalaning. Panjara hisoblash → Ustun oralig'i m Darvoza kengligi m Panjara balandligi m Beton chuqurligi m Ustun teshigi diametri m Ustunlar soni:— Profnastil/setka:— Beton hajmi:— Ustunlar soni = (perimetr − darvoza) / oralig'i + 1, yuqoriga yaxlitlangan. Beton hajmi — har bir ustun teshigi uchun silindr hajmi bo'yicha. Narx kiritilmagan — kerak bo'lsa o'zingiz hisoblang. Yer narxi hisobi Yuqoridagi konvertordagi maydon uchun hisoblanadi. 1 sotix narxi so'm Umumiy narx:— 1 m² narxi:— UlashishPDF",
+  "inputs": [
+   "m2=0",
+   "sotix=0",
+   "tanob=0",
+   "gektar=0",
+   "akr=0",
+   "tanobSize=0",
+   "plotL=0",
+   "plotW=0",
+   "fenceGateW=4",
+   "fenceH=2",
+   "fenceDepth=0,8",
+   "fenceDiam=0,3",
+   "pricePerSotix=0"
+  ]
+ },
+ "katta": {
+  "text": "Birliklar konvertori Istalgan maydonchaga qiymat yozing — qolganlari avtomatik yangilanadi. m² sotix tanob gektar akr 1 tanob necha m²? (sozlanadi) m² Tanob hududga qarab farq qiladi: odatda 1500–3000 m². O'z hududingiz qiymatini kiriting. ⚽ Bu maydon ≈ 350 140 057,4 ta futbol maydoni (har biri 105×68 m) O'lchamlardan maydon Uchastka bo'yi va enini kiriting — maydoni va panjara uzunligi chiqadi. Uzunligi m Kengligi m Maydon:250 000 m² = 2 500 sotix Perimetr (panjara):2 000 m Panjara/devor materialini hisoblashda perimetrdan foydalaning. Panjara hisoblash → Ustun oralig'i m Darvoza kengligi m Panjara balandligi m Beton chuqurligi m Ustun teshigi diametri m Ustunlar soni:800 dona Profnastil/setka:1 996 m (3 992 m²) Beton hajmi:45,24 m³ Ustunlar soni = (perimetr − darvoza) / oralig'i + 1, yuqoriga yaxlitlangan. Beton hajmi — har bir ustun teshigi uchun silindr hajmi bo'yicha. Narx kiritilmagan — kerak bo'lsa o'zingiz hisoblang. Yer narxi hisobi Yuqoridagi konvertordagi maydon uchun hisoblanadi. 1 sotix narxi so'm Umumiy narx:7 500 000 029 887 800 000 so'm 1 m² narxi:3 000 000 so'm UlashishPDF",
+  "inputs": [
+   "m2=2 500 000 009 963",
+   "sotix=25 000 000 099,626",
+   "tanob=100 000 000,399",
+   "gektar=250 000 000,9963",
+   "akr=617 762 910",
+   "tanobSize=25 000",
+   "plotL=500",
+   "plotW=500",
+   "fenceGateW=4",
+   "fenceH=2",
+   "fenceDepth=0,8",
+   "fenceDiam=0,3",
+   "pricePerSotix=300 000 000"
+  ]
+ },
+ "xato": []
+}

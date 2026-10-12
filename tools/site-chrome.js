@@ -29,83 +29,6 @@ const { CYR_PAGES } = require('./prerender');
 
 const WRITE = process.argv.indexOf('--write') > -1;
 
-/* ---------------- Kanonik nav ---------------- */
-const NAV_LINKS = [
-  ['./', '🏠 Asosiy', '🏠 Главная'],
-  ['./#cat-moliya', 'Moliya', 'Финансы'],
-  ['./#cat-qurilish', 'Qurilish', 'Стройка'],
-  ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
-  ['./#cat-hayot', 'Hayotiy', 'Жизнь'],
-  ['./#cat-huquqiy', 'Huquqiy', 'Юридические'],
-  ['hujjatlar', '📝 Hujjatlar generatori', '📝 Генератор документов'],
-  ['shablonlar', '📄 Shablonlar', '📄 Шаблоны'],
-  ['blog', '📰 Maqolalar', '📰 Статьи'],
-];
-
-function navHtml(active) {
-  const items = NAV_LINKS.map(([href, uz, ru]) => '<a href="' + href + '"'
-    + (href === active ? ' class="tm-on"' : '')
-    + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>').join('');
-  return '<nav id="topmenu" aria-label="Bo\'limlar"><div class="tm-in">' + items + '</div></nav>';
-}
-
-/* ---------------- Kanonik logotip qatori ----------------
-   #topmenu dan keyin, <header> dan OLDIN turadi va sahifa konteyneriga
-   BOG'LIQ EMAS — talab shu: nav va logotip qatori sahifa kengligidan
-   qat'i nazar bir xil max-width va padding olsin. */
-/* Kirill (uz-Cyrl) pilot (2026-09, FAZA 1): CYR_PAGES a'zolarida uchinchi,
-   "ЎЗ" havolasi qo'shiladi — /cyr/<slug> ga ishora qiluvchi oddiy <a>
-   (KalkiLang bilan bog'liq emas, chunki kirill pilot sahifasida JS umuman
-   yo'q — tools/prerender.js'dagi renderOneCyr izohiga qarang). Boshqa 71+
-   sahifada bu havola yo'q, ularning 2-tugmali xatti-harakati o'zgarmaydi. */
-function sitebarHtml(f) {
-  var isCyr = CYR_PAGES.indexOf(f) > -1;
-  var slug = f.replace(/\.html$/, '');
-  var langSeg = '<div class="lang-seg' + (isCyr ? ' lang-seg-3' : '') + '" role="group" aria-label="Til / Язык">'
-    + '<button type="button" id="langUz" class="on">UZ</button>'
-    + '<button type="button" id="langRu">RU</button>'
-    + (isCyr ? '<a id="langCyr" href="/cyr/' + slug + '">ЎЗ</a>' : '')
-    + '</div>';
-  return '<div id="sitebar"><div class="topbar">'
-    + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
-    + langSeg + '</div></div>';
-}
-
-/* ---------------- Kanonik CSS ---------------- */
-const CHROME_CSS = `<style id="chromecss">
-/* Sarlavhaning umumiy qismi — barcha sahifada AYNAN bir xil.
-   tools/site-chrome.js dan yoziladi, qo'lda tahrirlanmaydi. */
-:root{--nav-max:1120px;--nav-bg:#0B120E;--nav-pad:20px}
-#topmenu{background:var(--nav-bg)}
-#topmenu .tm-in{max-width:var(--nav-max);margin:0 auto;padding:8px var(--nav-pad);display:flex;flex-wrap:wrap;align-items:center;gap:4px}
-#topmenu a{display:inline-block;color:#CBD5CE;font-size:13px;font-weight:800;line-height:1.25;text-decoration:none;padding:6px 11px;border-radius:8px;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s}
-#topmenu a:hover{background:rgba(255,255,255,.09);color:#fff}
-#topmenu a.tm-on{background:rgba(255,255,255,.14);color:#fff}
-#sitebar{background:var(--nav-bg)}
-#sitebar .topbar{max-width:var(--nav-max);margin:0 auto;padding:14px var(--nav-pad) 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-#sitebar .logo{font-size:24px;font-weight:800;letter-spacing:-.01em;color:#fff;text-decoration:none;white-space:nowrap;line-height:1.2}
-#sitebar .logo .dot{color:#D99A2B}
-#sitebar .lang-seg{display:flex;background:rgba(255,255,255,.13);border-radius:10px;padding:3px;gap:3px;flex:none}
-#sitebar .lang-seg button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-#sitebar .lang-seg button.on{background:#fff;color:#0E3B2E}
-#sitebar .lang-seg button:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
-#sitebar .lang-seg a{border:0;background:transparent;font:inherit;font-size:13px;font-weight:800;color:#BFD3C9;padding:7px 14px;border-radius:8px;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;letter-spacing:.04em}
-#sitebar .lang-seg a.on{background:#fff;color:#0E3B2E}
-#sitebar .lang-seg a:focus-visible{outline:2px solid #D99A2B;outline-offset:2px}
-#sitebar .lang-seg.lang-seg-3 button,#sitebar .lang-seg.lang-seg-3 a{padding:6px 7px;font-size:11px}
-@media (max-width:640px){
-  :root{--nav-pad:12px}
-  #topmenu .tm-in{gap:3px;padding:7px var(--nav-pad)}
-  #topmenu a{font-size:12px;padding:5px 9px;border-radius:7px}
-  #sitebar .topbar{padding:12px var(--nav-pad) 14px}
-  #sitebar .logo{font-size:21px}
-}
-@media (max-width:420px){
-  :root{--nav-pad:9px}
-  #topmenu a{font-size:11px;padding:4px 7px}
-}
-</style>`;
-
 /* ---------------- Kanonik footer ----------------
    Har havolada data-lf-uz / data-lf-ru bor: ilgari bu blokda hech qanday
    i18n atributi YO'Q edi, shuning uchun RU rejimda o'zbekcha qolib ketardi.
@@ -198,19 +121,105 @@ const XNAV_LINKS = [
   ['shablonlar', '📄 Shablonlar'],
   ['blog', '📰 Maqolalar / Статьи'],
 ];
-const XNAV_TITLE = '<div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#5C6B63;margin-bottom:12px">Boshqa kalkulyatorlar · Другие калькуляторы</div>';
-const XNAV_HOME_A = '<a href="./" style="font-size:13px;font-weight:800;color:#fff;background:#16211C;border:1px solid #16211C;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%">🏠 Kalki.uz</a>';
-const XNAV_A_STYLE = 'font-size:13px;font-weight:700;color:#16211C;background:#fff;border:1px solid #DDE5E0;border-radius:99px;padding:7px 13px;text-decoration:none;flex:none;max-width:100%';
-
-function xnavHtml(selfSlug) {
-  const pills = XNAV_LINKS
-    .filter(([href]) => href !== selfSlug)
-    .map(([href, label]) => '<a href="' + href + '" style="' + XNAV_A_STYLE + '">' + label + '</a>')
-    .join('');
-  const home = selfSlug === '' ? '' : XNAV_HOME_A;
-  return '<nav id="xnav" style="margin-top:36px;padding-top:18px;border-top:1px solid #DDE5E0">'
-    + XNAV_TITLE + '<div style="display:flex;flex-wrap:wrap;gap:8px">' + home + pills + '</div></nav>';
+/* ---------------- V2 (dizayn-2026): yangi sarlavha va footer ----------------
+   Barcha sahifalar (tools/dizayn/v2-pages.json) — eski kanonik variant olib tashlangan (cleanup, 2026-10).
+   Sarlavha bitta qator (logo | menyu | til | burger); #topmenu va #sitebar identifikatorlari
+   saqlangan, shuning uchun sahifalarning o'z til skriptlari (#topmenu a[data-tm-uz]) ishlayveradi. */
+// V2 sahifalar ro'yxati tools/dizayn/v2-pages.json da (partiyalab to'ldiriladi); sahifa turi — tools/dizayn/pages.json
+const V2_PAGES = JSON.parse(fs.readFileSync(path.join(__dirname, 'dizayn', 'v2-pages.json'), 'utf8'));
+const PAGE_TYPES = JSON.parse(fs.readFileSync(path.join(__dirname, 'dizayn', 'pages.json'), 'utf8'));
+function v2Active(f) {
+  const t = (PAGE_TYPES.find((p) => p.file === f) || {}).tur;
+  if (f === 'blog.html' || t === 'maqola') return 'blog';
+  if (f === 'shablonlar.html' || f === 'hujjatlar.html' || t === 'generator') return 'hujjatlar';
+  if (t === 'kalkulyator') return './#kategoriyalar';
+  return '';
 }
+const V2_LINKS = [
+  ['./#kategoriyalar', 'Kalkulyatorlar', 'Калькуляторы', [
+    ['./#cat-moliya', 'Moliya', 'Финансы'], ['./#cat-qurilish', 'Qurilish', 'Стройка'], ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
+    ['./#cat-hayot', 'Hayotiy', 'Жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
+  ['hujjatlar', 'Hujjatlar', 'Документы', [
+    ['hujjatlar', 'Hujjat generatorlari', 'Генератор документов'], ['shablonlar', 'Shablonlar', 'Шаблоны']]],
+  ['blog', 'Maqolalar', 'Статьи', null],
+];
+const CHEV = '<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg>';
+function v2A(href, uz, ru, active) {
+  return '<a href="' + href + '"' + (href === active ? ' class="tm-on" aria-current="page"' : '') + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>';
+}
+function headerV2Html(f) {
+  const active = v2Active(f);
+  const isCyr = CYR_PAGES.indexOf(f) > -1;
+  const slug = f.replace(/\.html$/, '');
+  const items = V2_LINKS.map(([href, uz, ru, sub]) => {
+    if (!sub) return '<li>' + v2A(href, uz, ru, active) + '</li>';
+    return '<li class="has-sub">' + v2A(href, uz, ru, active)
+      + '<button type="button" class="tm2-chev" aria-expanded="false" aria-label="' + uz + '">' + CHEV + '</button>'
+      + '<ul class="tm2-sub">' + sub.map(([h, u, r]) => '<li>' + v2A(h, u, r, '') + '</li>').join('') + '</ul></li>';
+  }).join('');
+  const langSeg = '<div class="lang-seg' + (isCyr ? ' lang-seg-3' : '') + '" role="group" aria-label="Til / Язык">'
+    + '<button type="button" id="langUz" class="on">UZ</button><button type="button" id="langRu">RU</button>'
+    + (isCyr ? '<a id="langCyr" href="/cyr/' + slug + '">ЎЗ</a>' : '') + '</div>';
+  return '<div id="sitebar" class="sb2"><div class="sb2-in">'
+    + '<a class="logo" href="./">Kalki<span class="dot">.uz</span></a>'
+    + '<nav id="topmenu" aria-label="Bo\'limlar"><ul class="tm2">' + items + '</ul></nav>'
+    + langSeg
+    + '<button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button>'
+    + '</div></div>';
+}
+/* "Barcha kalkulyatorlar": yig'iladigan <details>, kategoriyalar bo'yicha guruhlangan oddiy ro'yxat.
+   Havolalar soni XNAV_LINKS bilan bir xil (SEO uchun hech biri kamaymaydi); UZ/RU yorliqlar aralash emas —
+   har havolada data-lf-uz/ru (matnni assets/footer-lang.js joriy tilga qo'yadi). */
+const XN_GROUPS = [
+  ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
+  ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
+  ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
+  ['Kundalik hayot', 'Жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
+  ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
+  ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],
+];
+const EMOJI_V2 = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]\s?/gu;
+function xnavV2Html(selfSlug) {
+  const label = {};
+  XNAV_LINKS.forEach(([h, l]) => { const parts = l.replace(EMOJI_V2, '').split(' / '); label[h] = [parts[0].trim(), (parts[1] || parts[0]).trim()]; });
+  const seen = new Set();
+  const groups = XN_GROUPS.map(([uz, ru, cc, slugs], gi) => {
+    const lis = slugs.filter((h) => h !== selfSlug && label[h]).map((h) => { seen.add(h); const [u, r] = label[h];
+      return '<li><a href="' + h + '"' + lf(u, r) + '>' + u + '</a></li>'; }).join('');
+    const home = gi === XN_GROUPS.length - 1 && selfSlug !== '' ? '<li><a href="./"' + lf('Bosh sahifa', 'Главная') + '>Bosh sahifa</a></li>' : '';
+    return '<div style="--cc:' + cc + '"><div class="xn-t"' + lf(uz, ru) + '>' + uz + '</div><ul>' + home + lis + '</ul></div>';
+  }).join('');
+  const missing = XNAV_LINKS.map(([h]) => h).filter((h) => h !== selfSlug && !seen.has(h));
+  if (missing.length) throw new Error('xnav V2: guruhsiz havola: ' + missing.join(', '));
+  return '<details id="xnav" class="allcalc"><summary><span' + lf('Barcha kalkulyatorlar', 'Все калькуляторы') + '>Barcha kalkulyatorlar</span></summary>'
+    + '<div class="ac-body"><div class="xn-groups">' + groups + '</div></div></details>';
+}
+const FBCALL_V2 = '<div id="fbcall" class="cta-tg"><div class="cta-tx">'
+  + '<div class="cta-h"' + lf('Kalkulyator yoki shablon kerakmi?', 'Нужен калькулятор или шаблон?') + '>Kalkulyator yoki shablon kerakmi?</div>'
+  + '<div class="cta-d"' + lf('Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.', 'Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.') + '>Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.</div></div>'
+  + '<a class="btn btn-gold" href="https://t.me/kalki_uz">Telegram</a></div>';
+
+const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>';
+function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
+function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
+const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
+  + '<div class="sf2-brand">Kalki<span class="dot">.uz</span></div>'
+  + '<p' + lf("O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.", 'Бесплатные калькуляторы и образцы документов для Узбекистана.') + ">O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.</p>"
+  + '<div class="sf2-cols" style="margin-top:32px">'
+  + '<div><div class="sf2-t"' + lf('Kategoriyalar', 'Категории') + '>Kategoriyalar</div><ul>'
+  + fLink('./#cat-moliya', 'Moliya', 'Финансы') + fLink('./#cat-qurilish', 'Qurilish va yer', 'Стройка и земля') + fLink('./#cat-kommunal', 'Kommunal va avto', 'Коммуналка и авто')
+  + fLink('./#cat-hayot', 'Kundalik hayot', 'Жизнь') + fLink('./#cat-huquqiy', 'Huquqiy', 'Юридические') + '</ul></div>'
+  + '<div><div class="sf2-t"' + lf('Hujjatlar', 'Документы') + '>Hujjatlar</div><ul>'
+  + fLink('hujjatlar', 'Hujjat generatorlari', 'Генератор документов') + fLink('shablonlar', 'Shablonlar', 'Шаблоны')
+  + fLink('ariza-namunasi', 'Ariza yozish', 'Написать заявление') + fLink('blog', 'Maqolalar', 'Статьи') + '</ul></div>'
+  + '<div><div class="sf2-t"' + lf('Aloqa', 'Связь') + '>Aloqa</div><ul>'
+  + '<li><a href="https://t.me/kalki_uz"' + lf('Telegram kanali', 'Telegram-канал') + '>Telegram kanali</a></li>'
+  + '<li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li>'
+  + fLink('hamkorlik', 'Hamkorlik', 'Партнёрство') + '</ul></div>'
+  + '</div>'
+  + '<p class="sf2-note"' + lf("Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.", 'Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.') + ">Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.</p>"
+  + '@@LEGAL@@@@COPY@@'
+  + '</div></footer>';
 
 /* ---------------- Yordamchilar ---------------- */
 function block(s, startTag, endTag) {
@@ -254,98 +263,74 @@ function cutDiv(s, marker) {
 }
 
 /* ---------------- Sahifani qayta yig'ish ---------------- */
-function rebuild(f, src) {
+function rebuildV2(f, src) {
   let s = src;
   const notes = [];
-
-  /* 1. Avvalgi yugurishning natijasini butunlay olib tashlaymiz, so'ng
-        toza holatdan qayta yozamiz — shunda amal IDEMPOTENT bo'ladi. */
-  s = cutDiv(s, 'id="sitebar"');       // migratsiya qilingan holat
-  s = cutDiv(s, 'class="topbar"');     // eski holat: <header> ichida
-  if (s.indexOf('class="topbar"') > -1) return { s, notes: ['ortiqcha .topbar qoldi'] };
-
-  /* 2. nav o'rniga kanonik nav + logotip qatori */
+  const nav0 = s.indexOf('<nav id="topmenu"'), sb0 = s.indexOf('<div id="sitebar"');
+  const anchor = Math.min(...[nav0, sb0].filter((x) => x >= 0));
+  if (!isFinite(anchor)) return { s, notes: ['topmenu/sitebar yo\'q'] };
+  s = cutDiv(s, 'id="sitebar"');
   const nav = block(s, '<nav id="topmenu"', '</nav>');
-  if (!nav) return { s, notes: ['topmenu yo\'q'] };
-  const active = activeHref(nav.text);
-  s = s.slice(0, nav.i) + navHtml(active) + sitebarHtml(f) + s.slice(nav.j);
+  if (nav) s = s.slice(0, nav.i) + s.slice(nav.j);
+  s = s.slice(0, anchor) + headerV2Html(f) + s.slice(anchor);
 
-  /* 3. CSS bloki: eski tmcss o'rniga kanonik chromecss */
-  const tm = block(s, '<style id="tmcss">', '</style>');
-  if (tm) s = s.slice(0, tm.i) + CHROME_CSS + s.slice(tm.j);
-  else {
-    const ch = block(s, '<style id="chromecss">', '</style>');
-    if (ch) s = s.slice(0, ch.i) + CHROME_CSS + s.slice(ch.j);
-    else {
-      const hd = s.indexOf('</head>');
-      s = s.slice(0, hd) + CHROME_CSS + '\n' + s.slice(hd);
-    }
+  // CSS va nav.js: eski chromecss o'rniga tokens.css + site.css
+  const ch = block(s, '<style id="chromecss">', '</style>');
+  if (ch) s = s.slice(0, ch.i) + s.slice(ch.j);
+  if (s.indexOf(V2_LINKS_TAGS) < 0) {
+    s = s.replace(/<link rel="stylesheet" href="\/assets\/css\/tokens\.css" id="v2tokens">/, '')
+         .replace(/<link rel="stylesheet" href="\/assets\/css\/site\.css" id="v2site">/, '')
+         .replace(/<script src="\/assets\/nav\.js" defer="" id="v2nav"><\/script>/, '');
+    // prerender hreflang teglarini oxirida qo'shadi — bizning teglar ulardan OLDIN turadi
+    const hl = s.indexOf('<link rel="alternate" hreflang');
+    const hd = hl > -1 ? hl : s.indexOf('</head>');
+    s = s.slice(0, hd) + V2_LINKS_TAGS + '\n' + s.slice(hd);
   }
 
-  /* 4. .wrap max-width -> CSS o'zgaruvchisi */
-  const wm = s.match(/\.wrap\{max-width:(\d+px);/);
-  if (wm) {
-    s = s.replace(/\.wrap\{max-width:\d+px;/, '.wrap{max-width:var(--wrap-max);');
-    // qiymat sahifaning o'z :root ida bir marta e'lon qilinadi
-    if (s.indexOf('--wrap-max:') < 0) {
-      const r = s.match(/:root\{/);
-      if (r) s = s.replace(':root{', ':root{--wrap-max:' + wm[1] + ';');
-      else notes.push(':root topilmadi, --wrap-max qo\'yilmadi');
-    }
-  }
+  // <body class="v2">
+  s = s.replace(/<body([^>]*)>/, (m, a) => /class="[^"]*\bv2\b/.test(a) ? m
+    : (/class="/.test(a) ? '<body' + a.replace(/class="/, 'class="v2 ') + '>' : '<body class="v2"' + a + '>'));
 
-  /* 5. footer — barcha legal-links bloklari olib tashlanadi, so'ng
-        bittasi birinchisining o'rniga qo'yiladi. "Barchasi", chunki
-        blog.html da ikkita nusxa bor edi va bitta nusxani almashtirish
-        har yugurishda boshqa natija berardi. */
-  const firstAt = s.indexOf('<div id="legal-links"');
-  if (firstAt < 0) notes.push('legal-links yo\'q');
-  else {
-    let n = 0;
-    while (s.indexOf('<div id="legal-links"') > -1) { s = cutDiv(s, 'id="legal-links"'); n++; }
-    if (n > 1) notes.push(n + ' ta legal-links bor edi, bittaga keltirildi');
-    s = s.slice(0, firstAt) + LEGAL_HTML + s.slice(firstAt);
-  }
+  // footer: eski legal-links, copyline va <footer> olib tashlanadi, yangi #sf2 </main> dan keyin
+  while (s.indexOf('<div id="legal-links"') > -1) s = cutDiv(s, 'id="legal-links"');
+  s = s.replace(/<div (?:id="copyline" )?style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">[\s\S]*?<\/div>/, '');
+  s = s.replace(/<footer id="sf2">[\s\S]*?<\/footer>/, '').replace(/<footer>[\s\S]*?<\/footer>/, '');
+  const me = s.indexOf('</main>');
+  if (me < 0) notes.push('</main> yo\'q');
+  else s = s.slice(0, me + 7) + FOOTER_V2.replace('@@LEGAL@@', LEGAL_HTML).replace('@@COPY@@', COPY_HTML) + s.slice(me + 7);
 
-  /* Mualliflik qatori ikki ko'rinishda uchraydi:
-     a) 44 sahifada alohida <div> — to'liq almashtiriladi;
-     b) index.html da <footer> ichidagi <span> — unga i18n atributi qo'yiladi.
-     Qolgan 12 sahifada u umuman yo'q (maqola va huquqiy sahifalar) — bu
-     xato emas, shuning uchun ogohlantirish ham berilmaydi. */
-  const cp = s.match(/<div (?:id="copyline" )?style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">[\s\S]*?<\/div>/);
-  if (cp) s = s.replace(cp[0], COPY_HTML);
-  else {
-    const SPAN = '<span>© 2026 Kalki.uz — Achchi loyihasi</span>';
-    if (s.indexOf(SPAN) > -1) {
-      s = s.replace(SPAN, '<span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi"'
-        + ' data-lf-ru="© 2026 Kalki.uz — проект Achchi">© 2026 Kalki.uz — Achchi loyihasi</span>');
-    }
-  }
-
-  /* 6. footer-lang.js skripti */
+  // footer-lang.js
   const LANGTAG = '<script src="assets/lang.js" defer=""></script>\n';
   const FLTAG = '<script src="assets/footer-lang.js" defer=""></script>\n';
   if (s.indexOf('assets/footer-lang.js') < 0) {
     if (s.indexOf(LANGTAG) > -1) s = s.replace(LANGTAG, LANGTAG + FLTAG);
     else notes.push('lang.js tegi topilmadi');
   }
-
-  /* 7. "Boshqa kalkulyatorlar" footer — faqat oldin ham bo'lgan sahifada
-        almashtiriladi (bo'lmagan sahifaga qo'shilmaydi, masalan blog
-        maqolalari va huquqiy sahifalarda bu blok ataylab yo'q). */
-  const xn = block(s, '<nav id="xnav"', '</nav>');
-  if (xn) {
-    const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
-    s = s.slice(0, xn.i) + xnavHtml(selfSlug) + s.slice(xn.j);
+  // "Barcha kalkulyatorlar" (<details>): eski <nav id="xnav"> yoki yangi <details id="xnav"> o'rniga
+  const selfSlug = f === 'index.html' ? '' : f.replace(/\.html$/, '');
+  const xn = block(s, '<nav id="xnav"', '</nav>') || block(s, '<details id="xnav"', '</details>');
+  if (xn) s = s.slice(0, xn.i) + xnavV2Html(selfSlug) + s.slice(xn.j);
+  // Telegram chaqiruvi: eski inline #fbcall o'rniga yagona V2 blok (</main> dan oldin, foot-note'dan oldin)
+  for (let i = s.indexOf('<div id="fbcall"'); i > -1; i = s.indexOf('<div id="fbcall"')) {
+    let end = matchDiv(s, i);
+    if (end < 0) break;
+    if (s[end] === '\n') end++;      // bizning qo'shgan yangi qatorimiz: idempotentlik uchun birga olinadi
+    s = s.slice(0, i) + s.slice(end);
   }
-
+  // foot-note <details> ichida bo'lsa (masalan "Qanday hisoblandi?"), Telegram bloki uning ICHIGA tushmasin
+  const mend = s.indexOf('</main>');
+  const fn = s.lastIndexOf('<p class="foot-note"', mend);
+  const topLevel = fn > -1 && s.slice(fn, mend).indexOf('</details>') < 0;
+  const at = topLevel ? fn : mend;
+  if (at > -1) s = s.slice(0, at) + FBCALL_V2 + '\n' + s.slice(at);
   return { s, notes };
 }
 
-/* ---------------- Asosiy ----------------
-   require.main tekshiruvi bilan himoyalangan: verify-all.js bu faylni
-   modul sifatida (CLI'ni ishga tushirmasdan) require qiladi — kanonik
-   sarlavha bilan bir xillikni tekshirish uchun rebuild() ni chaqiradi. */
+function rebuild(f, src) {
+  if (V2_PAGES.indexOf(f) < 0) throw new Error('tools/dizayn/v2-pages.json da yo\'q (barcha sahifalar V2 bo\'lishi kerak)');
+  return rebuildV2(f, src);
+}
+
 function main() {
   const list = sitePages();
   let changed = 0;
@@ -373,4 +358,4 @@ function main() {
 
 if (require.main === module) process.exit(main());
 
-module.exports = { CHROME_CSS, sitebarHtml, navHtml, LEGAL_HTML, COPY_HTML, XNAV_LINKS, xnavHtml, rebuild, main };
+module.exports = { V2_PAGES, LEGAL_HTML, COPY_HTML, XNAV_LINKS, rebuild, main };

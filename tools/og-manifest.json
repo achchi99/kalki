@@ -441,11 +441,11 @@
     "v": 2
   },
   "aliment-kalkulyator": {
-    "title": "👨‍👧 Aliment kalkulyatori",
+    "title": "Aliment kalkulyatori",
     "cat": "huquqiy",
-    "hash": "c8b77e3f6cde",
+    "hash": "84b430e6af98",
     "tpl": 1,
-    "v": 2
+    "v": 3
   },
   "dekret-puli-kalkulyator": {
     "title": "Dekret to'lovi kalkulyatori",
@@ -455,11 +455,11 @@
     "v": 2
   },
   "ishdan-boshatish-kompensatsiyasi-kalkulyator": {
-    "title": "📤 Ishdan bo'shatish kompensatsiyasi kalkulyatori",
+    "title": "Ishdan bo'shatish kompensatsiyasi kalkulyatori",
     "cat": "huquqiy",
-    "hash": "afdfe5c36725",
+    "hash": "4a3ed01d80e9",
     "tpl": 1,
-    "v": 2
+    "v": 3
   },
   "kasallik-varaqasi-kalkulyator": {
     "title": "Kasallik varaqasi to'lovi kalkulyatori",

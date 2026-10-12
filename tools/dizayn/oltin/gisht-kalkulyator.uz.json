@@ -1,0 +1,33 @@
+{
+ "odatiy": {
+  "text": "Material turi Standart pishiq g'isht250×120×65Bir yarimta (poltora) pishiq g'isht250×120×88Shlakoblok390×190×188Penoblok200×250×600Gazoblok200×300×600O'z blokim600×250×300 Devor qalinligi Yarim g'ishtBir g'ishtBir yarim 12 sm — to'siq devorlar uchun. O'z blokim o'lchami (mm) Uzunligi mm Balandligi mm Qalinligi mm Blokingiz qadog'idagi o'lchamlarni kiriting — standart qiymatlar oldindan to'ldirilgan. Devor uzunligi m Balandligi m Bir nechta devor bo'lsa, uzunliklarini qo'shib kiriting. Eshik va derazalar maydoni m² Umumiy maydondan ayiriladi. Yo'q bo'lsa 0 qoldiring. Bir dona narxi (ixtiyoriy) so'm Kiritsangiz, umumiy summani ham hisoblaymiz. Hisoblash Hisob natijasi 1 616 dona Kerak bo'ladi (5% zaxira bilan) MaterialStandart pishiq g'isht (250×120×65) Devor maydoni (sof)30,0 m² 1 m² uchun51,3 dona Zaxirasiz1 539 dona 5% zaxira bilan1 616 dona Umumiy narx— Ulashish PDF",
+  "inputs": [
+   "wlen=10",
+   "wh=3",
+   "openings=0",
+   "price="
+  ]
+ },
+ "chegara": {
+  "text": "Material turi Standart pishiq g'isht250×120×65Bir yarimta (poltora) pishiq g'isht250×120×88Shlakoblok390×190×188Penoblok200×250×600Gazoblok200×300×600O'z blokim600×250×300 Devor qalinligi Yarim g'ishtBir g'ishtBir yarim 12 sm — to'siq devorlar uchun. O'z blokim o'lchami (mm) Uzunligi mm Balandligi mm Qalinligi mm Blokingiz qadog'idagi o'lchamlarni kiriting — standart qiymatlar oldindan to'ldirilgan. Devor uzunligi m Balandligi m Bir nechta devor bo'lsa, uzunliklarini qo'shib kiriting. Eshik va derazalar maydoni m² Umumiy maydondan ayiriladi. Yo'q bo'lsa 0 qoldiring. Bir dona narxi (ixtiyoriy) so'm Kiritsangiz, umumiy summani ham hisoblaymiz. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 1 616 dona Kerak bo'ladi (5% zaxira bilan) MaterialStandart pishiq g'isht (250×120×65) Devor maydoni (sof)30,0 m² 1 m² uchun51,3 dona Zaxirasiz1 539 dona 5% zaxira bilan1 616 dona Umumiy narx— Ulashish PDF",
+  "inputs": [
+   "wlen=0",
+   "wh=0",
+   "openings=0",
+   "price=0"
+  ]
+ },
+ "katta": {
+  "text": "Material turi Standart pishiq g'isht250×120×65Bir yarimta (poltora) pishiq g'isht250×120×88Shlakoblok390×190×188Penoblok200×250×600Gazoblok200×300×600O'z blokim600×250×300 Devor qalinligi Yarim g'ishtBir g'ishtBir yarim 38 sm — qalin tashqi devorlar. O'z blokim o'lchami (mm) Uzunligi mm Balandligi mm Qalinligi mm Blokingiz qadog'idagi o'lchamlarni kiriting — standart qiymatlar oldindan to'ldirilgan. Devor uzunligi m Balandligi m Bir nechta devor bo'lsa, uzunliklarini qo'shib kiriting. Eshik va derazalar maydoni m² Umumiy maydondan ayiriladi. Yo'q bo'lsa 0 qoldiring. Bir dona narxi (ixtiyoriy) so'm Kiritsangiz, umumiy summani ham hisoblaymiz. Hisoblash Hisob natijasi 0 dona Kerak bo'ladi (5% zaxira bilan) MaterialO'z blokim (6 000×2 500×3 000) Devor maydoni (sof)0,0 m² 1 m² uchun0,1 dona Zaxirasiz0 dona 5% zaxira bilan0 dona Umumiy narx— Ulashish PDF",
+  "inputs": [
+   "cLen=6000",
+   "cHeight=2500",
+   "cWidth=3000",
+   "wlen=100",
+   "wh=30",
+   "openings=1000000",
+   "price=1 000 000"
+  ]
+ },
+ "xato": []
+}

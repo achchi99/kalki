@@ -1,0 +1,24 @@
+{
+ "odatiy": {
+  "text": "Jins Erkak Ayol Pensiya yoshi 60, minimal staj 25 yil. O'rtacha oylik so'm Oxirgi 10 yildagi eng yuqori 5 ketma-ket yil bo'yicha o'rtacha oylik. Umumiy ish staji yil Rasmiy (daftarchaga yozilgan) staj. Stajingizni hisoblang → Hisoblash Hisob natijasi ≈ 3 000 000 so'm Taxminiy oylik pensiya Bazaviy qism (55%)2 750 000 so'm Qo'shimcha staj uchun+250 000 so'm Jami foiz60% Hisobga olingan oylik5 000 000 so'm Ulashish PDF",
+  "inputs": [
+   "salary=5 000 000",
+   "staj=30"
+  ]
+ },
+ "chegara": {
+  "text": "Jins Erkak Ayol Pensiya yoshi 60, minimal staj 25 yil. O'rtacha oylik so'm Oxirgi 10 yildagi eng yuqori 5 ketma-ket yil bo'yicha o'rtacha oylik. Umumiy ish staji yil Rasmiy (daftarchaga yozilgan) staj. Stajingizni hisoblang → HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi ≈ 3 000 000 so'm Taxminiy oylik pensiya Bazaviy qism (55%)2 750 000 so'm Qo'shimcha staj uchun+250 000 so'm Jami foiz60% Hisobga olingan oylik5 000 000 so'm Ulashish PDF",
+  "inputs": [
+   "salary=0",
+   "staj=0"
+  ]
+ },
+ "katta": {
+  "text": "Jins Erkak Ayol Pensiya yoshi 55, minimal staj 20 yil. O'rtacha oylik so'm Oxirgi 10 yildagi eng yuqori 5 ketma-ket yil bo'yicha o'rtacha oylik. Umumiy ish staji yil Rasmiy (daftarchaga yozilgan) staj. Stajingizni hisoblang → Hisoblash Hisob natijasi ≈ 4 239 000 so'm Taxminiy oylik pensiya Bazaviy qism (55%)3 108 600 so'm Qo'shimcha staj uchun+1 130 400 so'm Jami foiz75% Hisobga olingan oylik5 652 000 so'm (cheklov qo'llandi) Ulashish PDF",
+  "inputs": [
+   "salary=50 000 000",
+   "staj=300"
+  ]
+ },
+ "xato": []
+}

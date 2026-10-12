@@ -1,0 +1,42 @@
+{
+ "odatiy": {
+  "text": "Yurish Oyiga qancha yurasiz km/oy O'rtacha oylik masofa. Kuniga 50 km ≈ oyiga 1500 km. Yoqilg'i Benzin Metan Propan Gibrid Elektro Sarfi (100 km ga) L/100 Yoqilg'i narxi so'm/L Boshqa yillik xarajatlar Sug'urta (OSAGO) so'm/yil Texxizmat + moy so'm/yil Shina (yillik ulush) so'm/yil Parkovka / saqlash so'm/oy Boshqa (jarima, yuvish...) so'm/yil Yuvish, jarima, mayda ta'mir — yiliga o'rtacha. Xarajatni hisoblash Yillik saqlash xarajati 20 600 000 so'm Mashina yiliga shuncha turadi Oyiga o'rtacha: 1 716 667 so'm Yoqilg'i Texxizmat Sug'urta va boshqa ⛽Yoqilg'i16 200 000 so'm 🛡️Sug'urta400 000 so'm 🔧Texxizmat + moy2 000 000 so'm 🛞Shina1 500 000 so'm 🅿️Parkovka— 📋Boshqa500 000 so'm Jami (yiliga)20 600 000 so'm 1 km sizga taxminan 1 144 so'mga tushadi. Bu benzin, texxizmat va boshqa hamma narsani hisobga olganda. UlashishPDF",
+  "inputs": [
+   "kmMonth=1 500",
+   "consumption=10",
+   "fuelPrice=9 000",
+   "insurance=400 000",
+   "service=2 000 000",
+   "tires=1 500 000",
+   "parking=0",
+   "other=500 000"
+  ]
+ },
+ "chegara": {
+  "text": "Yurish Oyiga qancha yurasiz km/oy O'rtacha oylik masofa. Kuniga 50 km ≈ oyiga 1500 km. Yoqilg'i Benzin Metan Propan Gibrid Elektro Sarfi (100 km ga) L/100 Yoqilg'i narxi so'm/L Boshqa yillik xarajatlar Sug'urta (OSAGO) so'm/yil Texxizmat + moy so'm/yil Shina (yillik ulush) so'm/yil Parkovka / saqlash so'm/oy Boshqa (jarima, yuvish...) so'm/yil Yuvish, jarima, mayda ta'mir — yiliga o'rtacha. Xarajatni hisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Yillik saqlash xarajati — Mashina yiliga shuncha turadi — Yoqilg'i Texxizmat Sug'urta va boshqa ⛽Yoqilg'i— 🛡️Sug'urta— 🔧Texxizmat + moy— 🛞Shina— 🅿️Parkovka— 📋Boshqa— Jami (yiliga)— UlashishPDF",
+  "inputs": [
+   "kmMonth=0",
+   "consumption=0",
+   "fuelPrice=0",
+   "insurance=0",
+   "service=0",
+   "tires=0",
+   "parking=0",
+   "other=0"
+  ]
+ },
+ "katta": {
+  "text": "Yurish Oyiga qancha yurasiz km/oy O'rtacha oylik masofa. Kuniga 50 km ≈ oyiga 1500 km. Yoqilg'i Benzin Metan Propan Gibrid Elektro Sarfi (100 km ga) kWt/100 Yoqilg'i narxi so'm/kWt Boshqa yillik xarajatlar Sug'urta (OSAGO) so'm/yil Texxizmat + moy so'm/yil Shina (yillik ulush) so'm/yil Parkovka / saqlash so'm/oy Boshqa (jarima, yuvish...) so'm/yil Yuvish, jarima, mayda ta'mir — yiliga o'rtacha. Xarajatni hisoblash Yillik saqlash xarajati 1 514 000 000 so'm Mashina yiliga shuncha turadi Oyiga o'rtacha: 126 166 667 so'm Yoqilg'i Texxizmat Sug'urta va boshqa ⛽Yoqilg'i1 458 000 000 so'm 🛡️Sug'urta4 000 000 so'm 🔧Texxizmat + moy20 000 000 so'm 🛞Shina15 000 000 so'm 🅿️Parkovka12 000 000 so'm 📋Boshqa5 000 000 so'm Jami (yiliga)1 514 000 000 so'm 1 km sizga taxminan 8 411 so'mga tushadi. Bu benzin, texxizmat va boshqa hamma narsani hisobga olganda. UlashishPDF",
+  "inputs": [
+   "kmMonth=15 000",
+   "consumption=180",
+   "fuelPrice=4 500",
+   "insurance=4 000 000",
+   "service=20 000 000",
+   "tires=15 000 000",
+   "parking=1 000 000",
+   "other=5 000 000"
+  ]
+ },
+ "xato": []
+}

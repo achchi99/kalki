@@ -1,0 +1,20 @@
+{
+ "variantlar": {
+  "malumotnoma": {
+   "atype": "malumotnoma",
+   "hujjat": "Namuna toOrgNamuna toPost Namuna toFioот Namuna frFioNamuna frAddrтел.: Namuna frPhoneЗАЯВЛЕНИЕПрошу выдать мне справку с места работы/учёбы для Namuna malMaqsad. Справка будет представлена в Namuna malTashkilot.«15» марта 2026 г._______________ (подпись)Namuna frFio",
+   "qolgan": "Все поля заполнены"
+  },
+  "nusxa": {
+   "atype": "nusxa",
+   "hujjat": "Namuna toOrgNamuna toPost Namuna toFioот Namuna frFioNamuna frAddrтел.: Namuna frPhoneЗАЯВЛЕНИЕПрошу выдать мне заверенную копию документа Namuna nusxaHujjat. Копия необходима для Namuna nusxaMaqsad.«15» марта 2026 г._______________ (подпись)Namuna frFio",
+   "qolgan": "Все поля заполнены"
+  },
+  "ruxsat": {
+   "atype": "ruxsat",
+   "hujjat": "Namuna toOrgNamuna toPost Namuna toFioот Namuna frFioNamuna frAddrтел.: Namuna frPhoneЗАЯВЛЕНИЕПрошу разрешить мне Namuna ruxsatIsh. Причина: Namuna ruxsatSabab.«15» марта 2026 г._______________ (подпись)Namuna frFio",
+   "qolgan": "Все поля заполнены"
+  }
+ },
+ "xato": []
+}

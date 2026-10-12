@@ -1,0 +1,39 @@
+{
+ "odatiy": {
+  "text": "Avtomobil turi Benzin / Dizel Elektromobil Gibrid Boj + utilizatsiya + QQS to'liq qo'llanadi. Avtomobil narxi USD Yetkazish xarajati USD Bojxona narxni shartnoma yoki xalqaro katalog bo'yicha belgilaydi — real bozor narxini kiriting. Dvigatel hajmi sm³ Avtomobil yoshi 1 yoshgacha 1–3 yosh 3 yoshdan katta ST-1 sertifikati bor (EOZ davlati: Rossiya, Qozog'iston...) Erkin savdo zonasi davlatida 50%+ lokalizatsiya bilan ishlab chiqarilgan bo'lsa, boj olinmaydi. Sertifikatsiz: 28.02.2026'dan boshlab (Bojxona kodeksi 300¹-modda) boj 2 barobar EMAS — bazaviy stavkaga bosqichli qo'shimcha (10-20%li stavkaga +10%, 30%+ stavkaga +20% va h.k.) qo'llanadi. Dastlabki deklaratsiyalash qilinganmi? Tovar bojxona chegarasidan o'tishidan oldin deklaratsiya topshirilsa, rasmiylashtirish yig'imidan 20% chegirma beriladi. Dollar kursi so'm Markaziy bank kursi — o'zgartirishingiz mumkin. BRV (BHM) so'm Joriy qiymatlarni tekshirib kiriting — kurs va BRV o'zgarib turadi. Hisoblash Rastamojka hisobi $23 163 ≈ 277 956 000 so'm Jami bojxona to'lovlari Bojxona qiymati (narx+yetkazish)$11 500 Bojxona boji$9 400 Qo'shimcha boj (sertifikatsiz)$2 300 Bu qo'shimcha stavka umumiy bojxona qoidasidan hisoblangan — avtomobil importiga alohida tatbiqi rasmiy ravishda alohida tasdiqlanmagan. Aniq summani bojxona organida tekshiring. Utilizatsiya yig'imi$7 700210 BRV = 92 400 000 so'm QQS (12%)$3 708 Rasmiylashtirish yig'imi$551.5 BHM = 660 000 so'm Jami to'lovlar$23 163 Mashina + barcha to'lovlar$34 663 To'lovlar / mashina narxi232% Diqqat: 3 yoshdan katta oddiy avtolarda rastamojka ko'pincha mashina narxidan qimmat chiqadi. Ulashish PDF Mahalliy narx bilan solishtirish O'zbekistonda xarid narxi bilan solishtiring. O'zbekistonda shu mashina qancha turadi? so'm Qo'shimcha xarajatlar (ixtiyoriy) Ro'yxatdan o'tkazish so'm Boshqa so'm Olib kelish Mahalliy xarid Bu hisobda bojxona to'lovlari, mashina narxi va (kiritilgan bo'lsa) yetkazib berish, ro'yxatdan o'tkazish hamda qo'shimcha xarajatlar hisobga olingan. Sug'urta, sertifikatlash va kutish vaqti kabi boshqa xarajatlar kiritilmagan — ular olib kelish narxini yanada oshirishi mumkin.",
+  "inputs": [
+   "price=10 000",
+   "delivery=1 500",
+   "cc=1600",
+   "usdRate=12 000",
+   "brv=440 000",
+   "localPrice=",
+   "extraReg=0",
+   "extraOther=0"
+  ]
+ },
+ "chegara": {
+  "text": "Avtomobil turi Benzin / Dizel Elektromobil Gibrid Boj + utilizatsiya + QQS to'liq qo'llanadi. Avtomobil narxi USD Yetkazish xarajati USD Bojxona narxni shartnoma yoki xalqaro katalog bo'yicha belgilaydi — real bozor narxini kiriting. Dvigatel hajmi sm³ Avtomobil yoshi 1 yoshgacha 1–3 yosh 3 yoshdan katta ST-1 sertifikati bor (EOZ davlati: Rossiya, Qozog'iston...) Erkin savdo zonasi davlatida 50%+ lokalizatsiya bilan ishlab chiqarilgan bo'lsa, boj olinmaydi. Sertifikatsiz: 28.02.2026'dan boshlab (Bojxona kodeksi 300¹-modda) boj 2 barobar EMAS — bazaviy stavkaga bosqichli qo'shimcha (10-20%li stavkaga +10%, 30%+ stavkaga +20% va h.k.) qo'llanadi. Dastlabki deklaratsiyalash qilinganmi? Tovar bojxona chegarasidan o'tishidan oldin deklaratsiya topshirilsa, rasmiylashtirish yig'imidan 20% chegirma beriladi. Dollar kursi so'm Markaziy bank kursi — o'zgartirishingiz mumkin. BRV (BHM) so'm Joriy qiymatlarni tekshirib kiriting — kurs va BRV o'zgarib turadi. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Rastamojka hisobi — Jami bojxona to'lovlari Bojxona qiymati (narx+yetkazish)— Bojxona boji— Qo'shimcha boj (sertifikatsiz)— Bu qo'shimcha stavka umumiy bojxona qoidasidan hisoblangan — avtomobil importiga alohida tatbiqi rasmiy ravishda alohida tasdiqlanmagan. Aniq summani bojxona organida tekshiring. Utilizatsiya yig'imi— QQS (12%)— Rasmiylashtirish yig'imi— Jami to'lovlar— Mashina + barcha to'lovlar— To'lovlar / mashina narxi— Ulashish PDF Mahalliy narx bilan solishtirish O'zbekistonda xarid narxi bilan solishtiring. O'zbekistonda shu mashina qancha turadi? so'm Qo'shimcha xarajatlar (ixtiyoriy) Ro'yxatdan o'tkazish so'm Boshqa so'm Olib kelish Mahalliy xarid Bu hisobda bojxona to'lovlari, mashina narxi va (kiritilgan bo'lsa) yetkazib berish, ro'yxatdan o'tkazish hamda qo'shimcha xarajatlar hisobga olingan. Sug'urta, sertifikatlash va kutish vaqti kabi boshqa xarajatlar kiritilmagan — ular olib kelish narxini yanada oshirishi mumkin.",
+  "inputs": [
+   "price=0",
+   "delivery=0",
+   "cc=0",
+   "usdRate=0",
+   "brv=0"
+  ]
+ },
+ "katta": {
+  "text": "Avtomobil turi Benzin / Dizel Elektromobil Gibrid Gibridlarga imtiyoz yo'q: boj oddiy avto kabi, utilizatsiya 120 BRV. Avtomobil narxi USD Yetkazish xarajati USD Bojxona narxni shartnoma yoki xalqaro katalog bo'yicha belgilaydi — real bozor narxini kiriting. Dvigatel hajmi sm³ Avtomobil yoshi 1 yoshgacha 1–3 yosh 3 yoshdan katta ST-1 sertifikati bor (EOZ davlati: Rossiya, Qozog'iston...) Erkin savdo zonasi davlatida 50%+ lokalizatsiya bilan ishlab chiqarilgan bo'lsa, boj olinmaydi. Sertifikatsiz: 28.02.2026'dan boshlab (Bojxona kodeksi 300¹-modda) boj 2 barobar EMAS — bazaviy stavkaga bosqichli qo'shimcha (10-20%li stavkaga +10%, 30%+ stavkaga +20% va h.k.) qo'llanadi. Dastlabki deklaratsiyalash qilinganmi? Tovar bojxona chegarasidan o'tishidan oldin deklaratsiya topshirilsa, rasmiylashtirish yig'imidan 20% chegirma beriladi. Dollar kursi so'm Markaziy bank kursi — o'zgartirishingiz mumkin. BRV (BHM) so'm Joriy qiymatlarni tekshirib kiriting — kurs va BRV o'zgarib turadi. Hisoblash Rastamojka hisobi $164 919 ≈ 19 790 240 000 so'm Jami bojxona to'lovlari Bojxona qiymati (narx+yetkazish)$115 000 Bojxona boji$94 000 Qo'shimcha boj (sertifikatsiz)$23 000 Bu qo'shimcha stavka umumiy bojxona qoidasidan hisoblangan — avtomobil importiga alohida tatbiqi rasmiy ravishda alohida tasdiqlanmagan. Aniq summani bojxona organida tekshiring. Utilizatsiya yig'imi$17 600480 BRV = 2 112 000 000 so'm QQS (12%)$29 952 Rasmiylashtirish yig'imi$36710 BHM = 44 000 000 so'm Jami to'lovlar$164 919 Mashina + barcha to'lovlar$279 919 To'lovlar / mashina narxi165% Diqqat: 3 yoshdan katta oddiy avtolarda rastamojka ko'pincha mashina narxidan qimmat chiqadi.Gibrid avtomobillar uchun utilizatsiya — ichki yonuv dvigateli asosidagi umumiy tartibga muvofiq hisoblangan. Aniq stavka sizning holatingizda bojxona idorasida tasdiqlanishi tavsiya etiladi. Ulashish PDF Mahalliy narx bilan solishtirish O'zbekistonda xarid narxi bilan solishtiring. O'zbekistonda shu mashina qancha turadi? so'm Qo'shimcha xarajatlar (ixtiyoriy) Ro'yxatdan o'tkazish so'm Boshqa so'm Olib kelish Mahalliy xarid Bu hisobda bojxona to'lovlari, mashina narxi va (kiritilgan bo'lsa) yetkazib berish, ro'yxatdan o'tkazish hamda qo'shimcha xarajatlar hisobga olingan. Sug'urta, sertifikatlash va kutish vaqti kabi boshqa xarajatlar kiritilmagan — ular olib kelish narxini yanada oshirishi mumkin.",
+  "inputs": [
+   "price=100 000",
+   "delivery=15 000",
+   "cc=16 000",
+   "usdRate=120 000",
+   "brv=4 400 000",
+   "localPrice=",
+   "extraReg=0",
+   "extraOther=0"
+  ]
+ },
+ "xato": []
+}

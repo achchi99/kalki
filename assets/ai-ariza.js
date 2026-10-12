@@ -88,7 +88,7 @@
     sec.id = 'aiAriza';
     var chips = CHIPS.map(function (c, i) { return '<button type="button" class="aiz-chip" data-i="' + i + '"></button>'; }).join('');
     sec.innerHTML =
-      '<div class="aiz-head"><span class="aiz-title">✨ AI ariza yozib beradi</span><span class="aiz-badge">Yangi</span></div>' +
+      '<div class="aiz-head"><span class="aiz-title"><svg class="ic" aria-hidden="true" width="22" height="22" style="vertical-align:-4px;margin-right:6px;color:var(--gold-ink,#855807)"><use href="/assets/icons.svg#i-sparkles"></use></svg>AI ariza yozib beradi</span><span class="aiz-badge">Yangi</span></div>' +
       '<p class="aiz-sub">Vaziyatingizni oddiy so\'z bilan yozing — tayyor ariza matni 5 soniyada.</p>' +
       '<label for="aizIn" class="aiz-sr">Vaziyatingizni yozing</label>' +
       '<textarea id="aizIn" maxlength="500" rows="3" placeholder="Masalan: bolam 3 kun kasal bo\'ldi, maktabga yozishim kerak"></textarea>' +
