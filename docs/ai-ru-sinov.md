@@ -80,3 +80,4 @@ Natija: 8/8 → 200; «без сохранения» faqat foydalanuvchi aytgand
 Birlik testlari: `test-ariza-ru.mjs` 14/14 (3 yangi qoida uchun 5 ta yangi test). Regressiya: avvalgi 8 RU holat + rad + PII + 3 UZ holat qayta yurgizildi — 13/13 → 200 (rad to'g'ri).
 
 Topilma: tekshiruvlar qattiqlashgani uchun RU da 2 → 3 urinish; birinchi urinishda model ba'zan «ежегодный» yoki «[дата] 2026 г.» yozadi va u rad etiladi (kuzatuvda ~1/3 holat); javob vaqti odatda 1.5–2.2 s, ba'zan 4 s gacha.
+- RU minimal so'z soni 25 → 15: fakt to'qimaslik qoidasidan keyin to'g'ri matnlar qisqaroq bo'ldi (24 so'zli matn rad etilib 502 bergan; 8 urinishdan 6 ta). UZ minimal (25) o'zgarmagan.

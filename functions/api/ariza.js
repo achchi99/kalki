@@ -337,7 +337,7 @@ export function validateRu(t) {
   if (hasLawRefRu(t)) return 'qonun';
   if (/^\s*(уважаем|здравствуйте|добрый\s+(?:день|вечер))/i.test(t)) return 'murojaat';
   const w = wordCount(t);
-  if (w < 25 || w > 150) return 'soz';
+  if (w < 15 || w > 150) return 'soz';   // RU: qisqa lekin to'g'ri matnlar (fakt to'qimasligi tufayli) rad etilmasin
   return null;
 }
 
