@@ -77,21 +77,21 @@ Manba: `tools/dizayn/pages.json` (inventar: tur, kategoriya, GSC kliklari, parti
 | tushuntirish-xati-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
 | uy-oldi-sotdi-shartnomasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
 | xizmat-korsatish-shartnomasi-namunasi | generator | Hujjat (brend) | 3 | ha | — | 0 | V2 | OK | OK | OK | n/a |
-| hujjatlar | hub | — | 4 | ha | — | 9 | eski | — | — | — | — |
-| avto-bojxona-2026 | maqola | — | 4 | — | — | 6 | eski | — | — | — | — |
-| bolalar-nafaqasi-2026 | maqola | — | 4 | — | — | 5 | eski | — | — | — | — |
-| maxfiylik | huquqiy | — | 4 | ha | — | 2 | eski | — | — | — | — |
-| toy-byudjeti-2026 | maqola | — | 4 | — | — | 2 | eski | — | — | — | — |
-| dtm-2026 | maqola | — | 4 | — | — | 1 | eski | — | — | — | — |
-| biz-haqimizda | huquqiy | — | 4 | ha | — | 0 | eski | — | — | — | — |
-| blog | hub | — | 4 | ha | — | 0 | eski | — | — | — | — |
-| hamkorlik | huquqiy | — | 4 | ha | — | 0 | eski | — | — | — | — |
-| ipoteka-2026 | maqola | — | 4 | — | — | 0 | eski | — | — | — | — |
-| offline | boshqa | — | 4 | — | — | 0 | eski | — | — | — | — |
-| qqs-2026 | maqola | — | 4 | — | — | 0 | eski | — | — | — | — |
-| shartlar | huquqiy | — | 4 | ha | — | 0 | eski | — | — | — | — |
+| hujjatlar | hub | — | 4 | ha | — | 9 | V2 | n/a | OK | OK | n/a |
+| avto-bojxona-2026 | maqola | — | 4 | — | — | 6 | V2 | n/a | OK | OK | n/a |
+| bolalar-nafaqasi-2026 | maqola | — | 4 | — | — | 5 | V2 | n/a | OK | OK | n/a |
+| maxfiylik | huquqiy | — | 4 | ha | — | 2 | V2 | n/a | OK | OK | n/a |
+| toy-byudjeti-2026 | maqola | — | 4 | — | — | 2 | V2 | n/a | OK | OK | n/a |
+| dtm-2026 | maqola | — | 4 | — | — | 1 | V2 | n/a | OK | OK | n/a |
+| biz-haqimizda | huquqiy | — | 4 | ha | — | 0 | V2 | n/a | OK | OK | n/a |
+| blog | hub | — | 4 | ha | — | 0 | V2 | n/a | OK | OK | n/a |
+| hamkorlik | huquqiy | — | 4 | ha | — | 0 | V2 | n/a | OK | OK | n/a |
+| ipoteka-2026 | maqola | — | 4 | — | — | 0 | V2 | n/a | OK | OK | n/a |
+| offline | boshqa | — | 4 | — | — | 0 | eski | n/a | n/a (noindex) | qo'lda ko'rildi | n/a |
+| qqs-2026 | maqola | — | 4 | — | — | 0 | V2 | n/a | OK | OK | n/a |
+| shartlar | huquqiy | — | 4 | ha | — | 0 | V2 | n/a | OK | OK | n/a |
 
-Jami: 80 sahifa (UZ), V2: 67, qolgan: 13.
+Jami: 80 sahifa (UZ), V2: 79, qolgan: 1.
 
 
 ## 1-partiya (hisobot: 2026-10-12)

@@ -30,7 +30,7 @@ async function calculate(p) {
 }
 const NATIJASIZ = new Set();
 let bad = 0; const table = []; const uniq = new Map();
-for (const slug of SLUGS) for (const lang of ['uz', 'ru']) {
+for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) {
   const url = (lang === 'ru' ? '/ru/' : '/') + slug; const row = { sahifa: (lang === 'ru' ? 'ru/' : '') + slug, xato: 0, tafsilot: [] };
   for (const w of [390, 1280]) for (const state of ['boshlang\'ich', 'hisoblangan']) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, serviceWorkers: 'block', locale: lang === 'ru' ? 'ru' : 'uz' }); const p = await ctx.newPage();

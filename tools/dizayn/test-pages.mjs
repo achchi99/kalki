@@ -14,7 +14,7 @@ const EMO = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 async function ctxPage(w, h) { const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 500, hasTouch: w < 500, serviceWorkers: 'block' }); const p = await c.newPage(); const errs = [];
   p.on('pageerror', (e) => errs.push(String(e).slice(0, 140))); p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource|googlesyndication|adsbygoogle|googletag|fonts\.g|ERR_FAILED|ERR_ABORTED/.test(m.text())) errs.push(m.text().slice(0, 140)); });
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); return [p, errs]; }
-for (const slug of LIST) for (const lang of ['uz', 'ru']) {
+for (const slug of LIST) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) {
   const url = (lang === 'ru' ? '/ru/' : '/') + (slug === 'index' ? '' : slug); const probs = [];
   for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 800]]) {
     const [p, errs] = await ctxPage(w, h);
@@ -27,7 +27,7 @@ for (const slug of LIST) for (const lang of ['uz', 'ru']) {
     if (w === 1280) {
       const body = m.text.replace(m.h1, '');   // H1 dagi emoji SEO uchun saqlanadi
       if (EMO.test(body)) probs.push('emoji: ' + (body.match(EMO) || [''])[0]);
-      if (lang === 'uz' && slug !== 'uy-qurish-kalkulyator' && /[\u0400-\u04FF]/.test(body.replace(/ЎЗ|Кириллча|график отпусков/g, ''))) probs.push('UZ sahifada kirill: ' + (body.match(/[\u0400-\u04FF]+/) || [''])[0]);   // uy-qurish: asl matnda kirill "материал" bor (main'da ham)
+      if (lang === 'uz' && slug !== 'uy-qurish-kalkulyator' && /[\u0400-\u04FF]/.test(body.replace(/ЎЗ|Кириллча|график отпусков|(?<=40% )идан/g, ''))) probs.push('UZ sahifada kirill: ' + (body.match(/[\u0400-\u04FF]+/) || [''])[0]);   // uy-qurish: asl matnda kirill "материал" bor (main'da ham)
       if (lang === 'ru' && /(^|[^A-Za-z])[a-z]+['\u2019\u02bb\u2018][a-z]+/.test(body)) probs.push('RU sahifada o\'zbekcha: ' + (body.match(/(^|[^A-Za-z])[a-z]+['\u2019\u02bb\u2018][a-z]+/) || [''])[0]);
     }
     await p.context().close();

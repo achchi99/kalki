@@ -170,6 +170,57 @@ def convert_calc(slug, log, kind='calc'):
     if kind == 'calc' and 'class="calc-grid"' in s: refine_calc(slug, log)
     return True
 
+
+# ---- 4-partiya: maqola / huquqiy / hub sahifalar (kontent sahifalar) — DOM minimal o'zgaradi (JS id lari saqlanadi)
+MAIN_CLS_CONTENT = {'artBody': 'wrap prose-main', 'content': 'wrap prose-main', 'postList': 'wrap post-main'}
+
+
+def move_backlinks(s):
+    """Sahifaning eski <footer class="wrap"> (orqaga havolalar) — maqola oxiriga p.back-links sifatida; footer tepada yagona sf2 bo'ladi."""
+    m = re.search(r'<footer class="wrap"[^>]*>(.*?)</footer>', s, re.S)
+    if not m or 'sf2' in m.group(0)[:40]: return s, False
+    inner = re.sub(r' style="[^"]*"', '', m.group(1)).strip(); inner = re.sub(r'</?div>', '', inner).strip()
+    s = s.replace(m.group(0), '', 1)
+    mm = re.search(r'<main class="(wrap (?:prose|post)-main)" id="(\w+)">', s)
+    mend = s.index('</main>', mm.end())
+    s = s[:mm.start()] + '<main class="%s"><div id="%s">%s</div><p class="back-links">%s</p>' % (mm.group(1), mm.group(2), s[mm.end():mend], inner) + s[mend:]
+    return s, True
+
+def convert_content(slug, log, kind='maqola'):
+    f = R + slug + '.html'; s = open(f).read()
+    if 'class="pagehead band"' in s: log.append('allaqachon V2'); return None
+    ha = s.index('<header>'); hb = s.index('</header>', ha) + 9
+    hdr = s[ha:hb]; wa = hdr.index('<div class="wrap">'); we = bal(hdr, wa)
+    inner = hdr[wa + len('<div class="wrap">'):we - 6].strip()
+    if inner.startswith('<div class="hero">'):
+        hh = bal(inner, 0); inner = inner[len('<div class="hero">'):hh - 6].strip()
+    # nishon (badge): span.tag / span.hero-badge -> cat-badge; sub: .meta/.tagline/p.sub -> sub
+    inner = re.sub(r'<span class="(tag|hero-badge)"', lambda m: '<span class="%s cat-badge"' % m.group(1), inner, 1)
+    inner = re.sub(r'<(div|p) class="(meta|tagline|sub)"', lambda m: '<%s class="%s sub"' % (m.group(1), m.group(2)) if m.group(2) != 'sub' else m.group(0), inner, 1)
+    bc = re.search(r'<div class="wrap"><nav id="breadcrumb".*?</nav></div>', s, re.S)
+    bc_html = bc.group(0) if bc else ''
+    if bc: s = s.replace(bc_html, '', 1)
+    ha = s.index('<header>'); hb = s.index('</header>', ha) + 9
+    band = '<header class="pagehead band content-head">\n  <div class="wrap ct-in">\n    <div class="ct-l">\n      %s\n    </div>\n  </div>\n</header>' % inner
+    s = s[:ha] + bc_html + '\n' + band + s[hb:]
+    for idv, cls in MAIN_CLS_CONTENT.items():
+        s = s.replace('<main class="wrap" id="%s">' % idv, '<main class="%s" id="%s">' % (cls, idv), 1)
+    if kind == 'maqola':
+        cat_by_slug = {c['slug']: c for c in catalog()}
+        def card(m):
+            href, name = m.group(1), m.group(2); c = cat_by_slug.get(href)
+            return kcard(href, c['ic'] if c else 'bar-chart', name, name, plain=True, lf=False)
+        s, n = re.subn(r'<a href="([^"]+)"><span>[^<]*</span><span>([^<]*)</span></a>', card, s)
+        s = s.replace('<div class="row">' + '<a class="k-card', '<div class="row grid g3"><a class="k-card', 1) if False else s
+        if not n: log.append('endcalcs: kartalar topilmadi')
+        s = s.replace('<div class="endcalcs"><div class="lbl">', '<div class="endcalcs"><div class="lbl">', 1)
+    s, mv = move_backlinks(s)
+    if not mv: log.append('orqaga havolalar footer topilmadi')
+    s = re.sub(r'<footer data-i="foot">(.*?)</footer>', r'<p class="foot-note" data-i="foot">\1</p>', s, flags=re.S)
+    s, ne = strip_emoji(s)
+    if ne: log.append('emoji olib tashlandi: %d' % ne)
+    open(f, 'w').write(s); return True
+
 # ---- natija kartasi qoidasi: to'q karta FAQAT asosiy natija (tag + raqam + 1-qatorlar guruhi + tugmalar);
 #      diagramma, simulyator, izoh, jadval kartadan CHIQARILADI -> calc-grid ostida .res-extras (oq kartalar)
 SKEL_UNIT = {'aliment-kalkulyator': ("0 so'm", '0 сум'), 'uy-qurish-kalkulyator': ("0 m²", '0 м²'), 'chorva-kalkulyator': ("0 so'm", '0 сум'), 'quyosh-panel-kalkulyator': ('0', '0')}
@@ -279,6 +330,9 @@ if __name__ == '__main__':
     for slug in sys.argv[2:]:
         log = []
         try:
+            if kind in ('maqola', 'huquqiy', 'hub'):
+                r_ = convert_content(slug, log, kind)
+                print(('OK   ' if r_ is not None else 'SKIP ') + slug + ' — ' + '; '.join(log)); continue
             if kind == 'ijara':
                 r = convert_ijara(log)
             elif kind == 'refine':

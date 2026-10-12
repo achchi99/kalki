@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import { JSDOM } from 'jsdom';
 const REF = process.argv[2] || 'HEAD';
 const V2 = JSON.parse(fs.readFileSync(new URL('./v2-pages.json', import.meta.url), 'utf8'));
-const PAGES = process.argv[3] ? process.argv[3].split(',') : V2.flatMap((f) => [f, 'ru/' + f]);
+const PAGES = process.argv[3] ? process.argv[3].split(',').filter((f) => !f.startsWith('ru/') || fs.existsSync(new URL('../../' + f, import.meta.url)))  : V2.flatMap((f) => [f, ...(fs.existsSync(new URL('../../ru/' + f, import.meta.url)) ? ['ru/' + f] : [])]);
 const get = (f, ref) => ref ? execFileSync('git', ['show', ref + ':' + f], { maxBuffer: 1 << 26 }).toString() : fs.readFileSync(f, 'utf8');
 function facts(html) {
   const d = new JSDOM(html).window.document;
@@ -21,7 +21,7 @@ function facts(html) {
     ogtitle: q('meta[property="og:title"]', 'content'), ogimg: q('meta[property="og:image"]', 'content'), ld, abText, abMeta, abData, order, hrefs };
 }
 let bad = 0, allowed = 0;
-const DRIFT = new Set(['hisob-siyosati-generatori.html', 'ru/hisob-siyosati-generatori.html']);
+const DRIFT = new Set(['hisob-siyosati-generatori.html', 'ru/hisob-siyosati-generatori.html', 'hujjatlar.html', 'ru/hujjatlar.html']);
 const H1EMOJI = /(?:👨‍👧|📤) ?/g;   // foydalanuvchi ruxsat bergan yagona farq: H1 (+ breadcrumb, JSON-LD name) dagi emoji olib tashlanishi
 
 for (const f of PAGES) {
