@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '12c1e260';   /* sw-version:auto */
+const SW_VERSION = '6b47fac0';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa

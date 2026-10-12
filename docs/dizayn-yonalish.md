@@ -114,3 +114,22 @@ Baholangan majburiy nuqtalar: kategoriya rangi (yo'q edi, hammasi bir xil yashil
 
 Skrinshotlar: oldin `docs/dizayn-skrinshot/1a-*.jpg`, keyin `1b-*.jpg` (to'liq sahifa), `1b-*-ekran.jpg` (birinchi ekran), `1b-gisht-390-natija.jpg`, `1b-index-390-mashhur.jpg`.
 SEO: `node tools/dizayn/seo-diff.mjs main` — title, H1, description, canonical, hreflang, OG, **barcha JSON-LD** (dateModified ham) asl `main` bilan bir xil; ichki havolalar kamaymagan (xnav: 50 → 50).
+
+---
+
+# 1c-bosqich: kalkulyator sahifasi "sahifa boshi" bandi (`/gisht-kalkulyator` + RU)
+
+**Muammo:** forma oldidan 3 ta o'xshash sokin blok (subtitle, "Hisob usuli", och yashil answerbox) ketma-ket; mobilda 3 blok forma oldidan ~290px joy egallaydi (forma sarlavhasi 1b da ~y=650px).
+
+**Yechim:** kategoriya yorlig'i, H1, subtitle, answerbox va meta qatorlari bitta to'liq kenglikdagi bandga birlashtirildi (breadcrumb band ustida).
+- **Band:** `header.pagehead.band` — fon kategoriya rangining ~6% tinti (`color-mix(var(--cc) 6%, var(--bg))`, qurilish uchun terrakota), pastida nozik chiziq. Yangi kalkulyator sahifalariga shu sinf bilan o'tadi (kategoriya `body[data-cat]` dan).
+- **Desktop (≥960px):** ikki ustun — chapda yorliq/H1/subtitle (subtitle 18px, ikkinchi darajali rang), o'ngda answerbox kartasi. **Mobil:** ketma-ket, ixcham bo'shliqlar.
+- **Answerbox kartasi:** oq, 1px chiziq, yengil soya; yuqorida overline "QISQACHA" (RU: "КРАТКО") + `info` ikonka (sprite'ga qo'shildi); matn 17px; pastida nozik chiziq ostida bitta qatorli meta (mobilda o'raladi): [kalendar] "Yangilangan: 2026-09-29" · [hisob] "Hisob usuli: …". Alohida "Hisob usuli" paragrafi olib tashlandi (matn o'zgarmagan, shu qatorga ko'chdi).
+- **Texnik:** `answerbox.js` `#answerbox` ichini `innerHTML` bilan qayta yozadi, shuning uchun overline va "Hisob usuli" uning TASHQARISIDA, umumiy `.ab-card` ichida turadi; `#answerbox` esa `display:contents` (matn va `.ab-meta` o'sha JS yaratgani holda kartaga qo'shiladi, ikonkalar CSS mask bilan). `answerbox.js` va uning matni/sanasi o'zgarmagan.
+- **DOM:** `#answerbox` endi `<main>` ning birinchi bolasi emas, balki `<header>` ichida (band tarkibida) — hujjat tartibi esa H1 → subtitle → answerbox → forma o'sha-o'sha (SEO-diff `order` tekshiruvi o'tadi). Foydalanuvchi buni "DOM tartibi" deb o'qisa, qaror kerak: muqobil — answerbox'ni `<main>` da qoldirib bandni CSS bilan "tortish" (mo'rt).
+- **"Ko'proq" yig'ma kerak bo'lmadi:** matn to'liq sig'di.
+
+**Natija (390×844):** forma birinchi maydonining sarlavhasi **"Material turi" birinchi ekranda** (pastki chegarasi **681px** < 844px) va birinchi material varianti ham ko'rinadi. Halol taqqoslash: 1b da forma allaqachon birinchi ekranda edi (~650px); yangi band undan ~30px pastroq (karta + overline + chiziq hisobiga), lekin 3 ta o'xshash blok o'rniga bitta aniq tuzilgan band bor. Birinchi urinishda 722px edi — mobil ichki bo'shliqlar ixchamlashtirilib 681px ga tushirildi. 320px da toshmaydi. Desktop: forma va natija kartasi ~y=470px dan boshlanadi.
+
+Skrinshotlar: oldin `docs/dizayn-skrinshot/1c-oldin-gisht-390-ekran.jpg`, `1c-oldin-gisht-1280-ekran.jpg`; keyin `1c-gisht-390-ekran.jpg`, `1c-gisht-320-ekran.jpg`, `1c-gisht-1280-ekran.jpg` (+ to'liq sahifa `1c-gisht-390.jpg`, `1c-gisht-1280.jpg`).
+**Tekshiruv:** `seo-diff.mjs main` (answerbox matni, sanasi, JSON-LD, tartib qo'shildi) — o'zgarishsiz; g'isht 10→20 m: 1 616 → 3 231 dona; RU: "Кратко", "Обновлено: 2026-09-29", "Метод расчёта:"; `test-v2.mjs` to'liq o'tdi.

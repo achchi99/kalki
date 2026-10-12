@@ -130,13 +130,42 @@ body.v2 header.pagehead{background:transparent;color:var(--text);padding:var(--s
 body.v2 header.pagehead .wrap{padding-bottom:0}
 body.v2 header.pagehead h1{color:var(--ink);font-size:var(--fs-h1)}
 
+/* ---------- 1c: kalkulyator "sahifa boshi" bandi ----------
+   Kategoriya yorlig'i + H1 + subtitle (chapda) | answerbox kartasi (o'ngda; mobilda ostida).
+   #answerbox ichini answerbox.js qayta yozadi, shuning uchun overline va "Hisob usuli" uning TASHQARISIDA turadi
+   va #answerbox display:contents bilan bitta kartaga birlashtiriladi (matn va tartib o'zgarmaydi). */
+body.v2 header.pagehead.band{--bc:var(--cc,var(--brand));background:color-mix(in srgb,var(--bc) 6%,var(--bg));border-bottom:1px solid color-mix(in srgb,var(--bc) 16%,var(--line));padding:14px 0 16px;margin-top:8px}
+body.v2 .ct-in{display:grid;gap:var(--s2);grid-template-columns:minmax(0,1fr);align-items:center}
+body.v2 .ct-l .sub{margin-top:6px;font-size:18px;line-height:1.45;color:var(--muted);max-width:56ch}
+body.v2 .ct-l .cat-badge{margin-bottom:8px}
+body.v2 .ct-l h1{margin:0}
+body.v2 .ab-card{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow-card);min-width:0}
+body.v2 .ab-card #answerbox{display:contents}
+body.v2 .ab-over{order:0;flex:0 0 100%;display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bc)}
+body.v2 .ab-over svg.ic{width:18px;height:18px}
+body.v2 .ab-card .ab-text{order:1;flex:0 0 100%;margin:0!important;font-size:17px!important;line-height:1.5!important;font-weight:500!important;color:var(--text)!important}
+body.v2 .ab-card::after{content:"";order:2;flex:0 0 100%;height:1px;background:var(--line);margin:10px 0 8px}
+body.v2 .ab-card .ab-meta,body.v2 .ab-card .meta-line{order:3;margin:0!important;font-size:14px!important;line-height:1.5;color:var(--muted)!important;display:flex;align-items:baseline;gap:6px}
+body.v2 .ab-card .meta-line{flex:1 1 240px;min-width:0;flex-wrap:nowrap}
+body.v2 .ab-card .meta-line>span{min-width:0;flex:1}
+body.v2 .ab-card .meta-line::before{align-self:flex-start;margin-top:4px}
+body.v2 .ab-card .meta-line b{font-weight:600;color:var(--text)}
+body.v2 .ab-card .ab-meta::before,body.v2 .ab-card .meta-line::before{content:"";flex:none;width:16px;height:16px;align-self:center;background:var(--bc);-webkit-mask:var(--mi) center/contain no-repeat;mask:var(--mi) center/contain no-repeat}
+body.v2 .ab-card .ab-meta{--mi:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E");white-space:nowrap}
+body.v2 .ab-card .meta-line{--mi:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='4' width='14' height='17' rx='2'/%3E%3Crect x='9' y='2' width='6' height='4' rx='1'/%3E%3Cpath d='M9 12h6M9 16h6'/%3E%3C/svg%3E")}
+@media (min-width:960px){
+  body.v2 header.pagehead.band{padding:32px 0 36px;margin-top:var(--s2)}
+  body.v2 .ct-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s6)}
+}
+@media print{body.v2 .ab-card{display:none}}
+
 /* ---------- Kalkulyator sahifasi: forma | yopishqoq natija ---------- */
 body.v2 .calc-main{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s3);padding-bottom:0;padding-top:var(--s2)}
 body.v2 .calc-main>*{grid-column:1/-1;min-width:0}
 @media (min-width:960px){
   body.v2 .calc-main{grid-template-columns:minmax(0,1fr) 420px;column-gap:var(--s4);align-items:start}
-  body.v2 .calc-main>.form-card{grid-column:1;grid-row:2}
-  body.v2 .calc-main>.res-col{grid-column:2;grid-row:2;position:sticky;top:calc(var(--hdr) + 16px)}
+  body.v2 .calc-main>.form-card{grid-column:1;grid-row:1}
+  body.v2 .calc-main>.res-col{grid-column:2;grid-row:1;position:sticky;top:calc(var(--hdr) + 16px)}
 }
 body.v2 .form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);margin-top:0;box-shadow:var(--shadow-card)}
 body.v2 .res-col{display:flex;flex-direction:column;gap:var(--s2)}

@@ -114,6 +114,24 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
 { const p = await pg(390, 800); await go(p, '/gisht-kalkulyator');
   const o = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { stacked: r.top > f.bottom - 5 }; }); assert.equal(o.stacked, true); log('mobil: forma tepada, natija ostida (bir ustun)'); }
 
+// 7b. 1c: kalkulyator "sahifa boshi" bandi
+{ const p = await pg(390, 844); await go(p, '/gisht-kalkulyator');
+  const m = await p.evaluate(() => { const lab = [...document.querySelectorAll('.form-card label')].find((l) => l.getBoundingClientRect().height > 0); const r = lab.getBoundingClientRect();
+    const band = document.querySelector('header.pagehead.band'); const card = document.querySelector('.ab-card').getBoundingClientRect(); const h1 = document.querySelector('h1').getBoundingClientRect();
+    const sub = getComputedStyle(document.querySelector('.ct-l .sub')); const ab = document.getElementById('answerbox');
+    return { label: lab.textContent.trim(), bottom: Math.round(r.bottom), bandBg: getComputedStyle(band).backgroundColor, cardBelowH1: card.top > h1.bottom, subSize: sub.fontSize, subColor: sub.color, abDisplay: getComputedStyle(ab).display,
+      over: document.querySelector('.ab-over').textContent.trim(), metaRows: document.querySelectorAll('.ab-card .ab-meta, .ab-card .meta-line').length, oldMeta: document.querySelectorAll('.ct-l .meta-line').length,
+      txt: parseFloat(getComputedStyle(document.querySelector('.ab-card .ab-text')).fontSize), sw: document.documentElement.scrollWidth, iw: innerWidth }; });
+  assert.equal(m.label, 'Material turi'); assert.ok(m.bottom <= 844, 'forma 1-ekranda emas: ' + m.bottom); assert.equal(m.abDisplay, 'contents'); assert.equal(m.over, 'Qisqacha'); assert.equal(m.metaRows, 2); assert.equal(m.oldMeta, 0);
+  assert.equal(m.subSize, '18px'); assert.equal(m.txt, 17); assert.ok(m.cardBelowH1); assert.ok(m.sw <= m.iw); assert.notEqual(m.bandBg, 'rgba(0, 0, 0, 0)');
+  log('390×844: forma "Material turi" birinchi ekranda (pastki chegara ' + m.bottom + 'px < 844), band fonida tint ' + m.bandBg + ', answerbox 17px, subtitle 18px'); }
+{ const p = await pg(320, 700); await go(p, '/gisht-kalkulyator'); const o = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth })); assert.ok(o.sw <= o.iw); log('320px: toshmaydi'); }
+{ const p = await pg(1280, 800); await go(p, '/gisht-kalkulyator');
+  const r = await p.evaluate(() => { const h = document.querySelector('.ct-l h1').getBoundingClientRect(), c = document.querySelector('.ab-card').getBoundingClientRect(); return { right: c.left > h.right - 20, sameRow: Math.abs((c.top + c.bottom) / 2 - (h.top + h.bottom) / 2) < 120 }; });
+  assert.deepEqual(r, { right: true, sameRow: true }); log('1280px: chapda yorliq/H1/subtitle, o\'ngda answerbox kartasi (ikki ustun)'); }
+{ const p = await pg(390, 844); await go(p, '/ru/gisht-kalkulyator'); const t = await p.evaluate(() => ({ over: document.querySelector('.ab-over').textContent.trim(), meta: document.querySelector('.ab-card .ab-meta').textContent.trim(), method: document.querySelector('.ab-card .meta-line').textContent.trim() }));
+  assert.equal(t.over, 'Кратко'); assert.match(t.meta, /^Обновлено: 2026-09-29/); assert.match(t.method, /^Метод расчёта:/); log('RU: "Кратко" · "' + t.meta + '" · "Метод расчёта:"'); }
+
 // 8. shablonlar filtri
 { const p = await pg(1280, 900); await go(p, '/shablonlar');
   const all = await p.locator('#readyList .tpl:visible').count(); await p.click('#tabs [data-f="doc"]'); const doc = await p.locator('#readyList .tpl:visible').count();

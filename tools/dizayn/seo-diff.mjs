@@ -11,15 +11,19 @@ function facts(html) {
   const q = (s, a) => { const e = d.querySelector(s); return e ? (a ? e.getAttribute(a) : e.textContent.trim()) : null; };
   const hrefs = new Set([...d.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')).filter((h) => !/^(https?:|mailto:|tel:|#)/.test(h)).map((h) => h.replace(/^\.\//, '').replace(/#.*$/, '') || './'));
   const ld = [...d.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent.trim()).sort();
+  const abText = q('#answerbox .ab-text'), abMeta = q('#answerbox .ab-meta'), abData = q('#answerbox-data');
+  // hujjat tartibi: H1 → #answerbox → forma (o'zaro nisbiy joylashuv o'zgarmasligi kerak)
+  const order = ['h1', '#answerbox', '.form-card'].map((sel) => [sel, d.querySelector(sel)]).filter(([, e]) => e)
+    .sort((a, b) => (a[1].compareDocumentPosition(b[1]) & 4 ? -1 : 1)).map(([sel]) => sel);
   return { title: d.title, desc: q('meta[name="description"]', 'content'), h1: [...d.querySelectorAll('h1')].map((h) => h.textContent.trim()), canonical: q('link[rel="canonical"]', 'href'),
     hreflang: [...d.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) => l.getAttribute('hreflang') + '=' + l.getAttribute('href')).sort(), robots: q('meta[name="robots"]', 'content'),
-    ogtitle: q('meta[property="og:title"]', 'content'), ogimg: q('meta[property="og:image"]', 'content'), ld, hrefs };
+    ogtitle: q('meta[property="og:title"]', 'content'), ogimg: q('meta[property="og:image"]', 'content'), ld, abText, abMeta, abData, order, hrefs };
 }
 let bad = 0;
 for (const f of PAGES) {
   const a = facts(get(f, REF)), b = facts(get(f));
   const rows = [];
-  for (const k of ['title', 'desc', 'h1', 'canonical', 'hreflang', 'robots', 'ogtitle', 'ogimg', 'ld']) {
+  for (const k of ['title', 'desc', 'h1', 'canonical', 'hreflang', 'robots', 'ogtitle', 'ogimg', 'ld', 'abText', 'abMeta', 'abData', 'order']) {
     const same = JSON.stringify(a[k]) === JSON.stringify(b[k]);
     if (!same) { bad++; rows.push(k + ': FARQ\n   eski=' + JSON.stringify(a[k]).slice(0, 160) + '\n   yangi=' + JSON.stringify(b[k]).slice(0, 160)); }
   }
