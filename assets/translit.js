@@ -44,8 +44,33 @@ var PH_CLOSE = '';
  * unga qo'shiladi). Katta-kichik harf ANIQ mos kelishi kerak. */
 var DEFAULT_ABBR = [
   'Kalki.uz', 'kalki.uz', 'Telegram',
-  'PDF', 'CSV', 'Word', 'Excel'
+  'PDF', 'CSV', 'Word', 'Excel', 'AI'
 ];
+
+/* Rus tilidan o'zlashgan so'zlarda lotincha "s" kirillda "ц" bo'ladi (sement -> цемент),
+ * lekin pensiya/versiya/sessiya/konsalting/sentyabr/sertifikat "с" bilan qoladi.
+ * Buni QOIDA bilan aniqlab bo'lmaydi — shuning uchun LUG'AT: faqat shu ildizlar.
+ * Kalit — so'z BOSHIDAGI ildiz (kichik harf); qo'shimcha qismi odatiy tarzda o'giriladi
+ * (differensialni -> дифференциални, funksiyasi -> функцияси). "ts" bilan yozilganlar
+ * (inflyatsiya, kompensatsiya, litsenziya, deklaratsiya) lug'atsiz ham "ц" bo'ladi.
+ * Ro'yxat sayt matnini RU sahifalar bilan solishtirib tuzilgan (tools/matn-istisno.json izohi). */
+var TS_DICT = [
+  ['differensial', 'дифференциал'], ['funksiya', 'функция'], ['funksional', 'функционал'],
+  ['potensial', 'потенциал'], ['prinsip', 'принцип'], ['sement', 'цемент'],
+  ['sentner', 'центнер'], ['sentr', 'центр'], ['kommersiya', 'коммерция'],
+  ['sikl', 'цикл'], ['aksiya', 'акция'], ['aksiz', 'акциз'], ['auksion', 'аукцион'],
+  ['fraksiya', 'фракция'], ['kvitansiya', 'квитанция'], ['proporsional', 'пропорционал'],
+  ['sanksiya', 'санкция'], ['silindr', 'цилиндр'], ['sirkul', 'циркул'],
+  ['ssenariy', 'сценарий']
+];
+TS_DICT.sort(function (a, b) { return b[0].length - a[0].length; });   // uzunroq ildiz avval
+
+function tsLookup(lowerWord) {
+  for (var k = 0; k < TS_DICT.length; k++) {
+    if (lowerWord.indexOf(TS_DICT[k][0]) === 0) return TS_DICT[k];
+  }
+  return null;
+}
 
 // Bitta harfga to'g'ridan-to'g'ri mos keladigan oddiy harflar (kichik
 // registr). Katta registr chaqiruv vaqtida hisoblanadi (applyCase).
@@ -111,14 +136,24 @@ function isApos(ch) {
 
 /* Bitta "so'z" (faqat lotin harflari + apostrof-belgilar ketma-ketligi)
  * ustida ishlaydi. i===0 -- shu so'zning eng boshi. */
-function translitWord(word) {
+function translitWord(word, notStart) {
   var out = '';
   var i = 0;
   var n = word.length;
+  if (!notStart) {
+    var hit = tsLookup(word.toLowerCase());
+    if (hit) {
+      var stem = word.slice(0, hit[0].length);
+      var cyr = hit[1];
+      if (stem === stem.toUpperCase() && stem !== stem.toLowerCase() && (word.length > 1) && word === word.toUpperCase()) cyr = cyr.toUpperCase();
+      else if (isUpperChar(stem[0])) cyr = cyr.charAt(0).toUpperCase() + cyr.slice(1);
+      return cyr + (word.length > stem.length ? translitWord(word.slice(stem.length), true) : '');
+    }
+  }
   while (i < n) {
     var ch = word[i];
     var lower = ch.toLowerCase();
-    var atStart = (i === 0);
+    var atStart = (i === 0 && !notStart);
 
     // 1) o' / g' (uchala apostrof turi ham)
     if ((lower === 'o' || lower === 'g') && i + 1 < n && isApos(word[i + 1])) {
@@ -260,13 +295,15 @@ function translit(text, opts) {
   // Brend/format harfga yopishgan qo'shimcha bilan kelsa ("Wordga") aralash
   // alifbo hosil bo'lmasin: brend + defis + o'girilgan qo'shimcha ("Word-га").
   abbrList.forEach(function (abbr) {
-    var withSuffix = new RegExp(escapeRegExp(abbr) + '(?=[A-Za-z' + APOS_CHARS + '])', 'g');
-    text = text.replace(withSuffix, function (m) {
+    var ab = escapeRegExp(abbr);
+    var before = '(?<![A-Za-z' + APOS_CHARS + '])';   // so'z ichida emas ("MAIN" ichidagi "AI" tegilmaydi)
+    // qo'shimcha bilan: AIga / AI'ning -> "AI-га" / "AI-нинг" (apostrof yutiladi)
+    text = text.replace(new RegExp(before + ab + '[' + APOS_CHARS + ']?(?=[A-Za-z])', 'g'), function (m) {
       var idx = placeholders.length;
-      placeholders.push(m);
+      placeholders.push(abbr);
       return PH_OPEN + idx + PH_CLOSE + '-';
     });
-    protect(new RegExp(escapeRegExp(abbr), 'g'));
+    protect(new RegExp(before + ab + '(?![A-Za-z])', 'g'));
   });
 
   // 3) qolgan matnni translit qilish

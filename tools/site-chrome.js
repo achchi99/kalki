@@ -157,7 +157,7 @@ function headerV2Html(f) {
   }).join('');
   // UZ | ЎЗ | RU — uchala segment HAR sahifada. ЎЗ oddiy <a href> (JS'siz ham ochiladi, rel=nofollow:
   // bot ?lang=cyr nusxalarini kezmasin); assets/lang.js uni bosishda holatni (?p=) saqlab o'tkazadi.
-  const langSeg = '<div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык">'
+  const langSeg = '<div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip">'
     + '<button type="button" id="langUz" class="on">UZ</button>'
     + '<a id="langCyr" href="/' + (slug === 'index' ? '' : slug) + '?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a>'
     + '<button type="button" id="langRu">RU</button></div>';

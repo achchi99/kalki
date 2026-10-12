@@ -12,7 +12,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const ARGS = process.argv.slice(2);
 const BRAND = new Set(['Word', 'Excel', 'PDF', 'CSV', 'Kalki', 'Telegram', 'Google', 'Cloudflare', 'Analytics', 'AdSense', 'Web', 'cookie']);
 // /cyr/ va ЎЗ rejimida lotincha qolishi MUMKIN bo'lgan YAGONA so'zlar: brend, fayl formati, til belgisi (assets/translit.js DEFAULT_ABBR bilan mos)
-const CYR_OK = new Set(['Kalki', 'kalki', 'uz', 'info', 'Word', 'Excel', 'PDF', 'CSV', 'Telegram', 'UZ', 'RU']);
+const CYR_OK = new Set(['AI', 'Kalki', 'kalki', 'uz', 'info', 'Word', 'Excel', 'PDF', 'CSV', 'Telegram', 'UZ', 'RU']);
 const EXC = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/matn-istisno.json'), 'utf8'));
 
 const LAT = 'A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F', CYR = '\u0400-\u04FF\u0492\u0493\u049A\u049B\u04B2\u04B3\u04E2\u04E3\u040E\u045E';

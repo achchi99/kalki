@@ -72,6 +72,11 @@
       if (b && on) b.setAttribute('aria-current', 'true'); else if (b) b.removeAttribute('aria-current');
     };
     set('langUz', false); set('langRu', false); set('langCyr', true);
+    // Til tugmalari HAR DOIM "UZ | ЎЗ | RU" (translit tegmaydi; sahifaning o'z skripti o'zgartirsa ham tiklanadi)
+    [['langUz', 'UZ'], ['langCyr', 'ЎЗ'], ['langRu', 'RU']].forEach(function (p) {
+      var b = d.getElementById(p[0]);
+      if (b && b.textContent !== p[1]) b.textContent = p[1];
+    });
   }
 
   function run(fn) {
