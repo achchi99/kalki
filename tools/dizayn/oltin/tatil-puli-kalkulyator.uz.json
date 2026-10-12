@@ -1,0 +1,25 @@
+{
+ "odatiy": {
+  "text": "O'rtacha oylik ish haqi so'm Ishlatilmagan ta'til kunlari soni kun Qo'shimcha ma'lumot (ixtiyoriy) Bu maydon faqat ma'lumot uchun — hisob-kitob formulasiga ta'sir qilmaydi. Umumiy ish staji (yil) yil HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi - Rasmiy hisob (kalendar kun bo'yicha) - O'rtacha oylik ish haqi- Ishlatilmagan ta'til kunlari- O'rtacha kunlik ish haqi- Amaliy hisob (ish kuni bo'yicha, taxminiy)- Umumiy ish staji- Qonun bo'yicha yillik asosiy ta'til kamida 21 kalendar kun. Ulashish PDF",
+  "inputs": [
+   "wage=",
+   "days=",
+   "stajYears="
+  ]
+ },
+ "chegara": {
+  "text": "O'rtacha oylik ish haqi so'm Ishlatilmagan ta'til kunlari soni kun Qo'shimcha ma'lumot (ixtiyoriy) Bu maydon faqat ma'lumot uchun — hisob-kitob formulasiga ta'sir qilmaydi. Umumiy ish staji (yil) yil HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi - Rasmiy hisob (kalendar kun bo'yicha) - O'rtacha oylik ish haqi- Ishlatilmagan ta'til kunlari- O'rtacha kunlik ish haqi- Amaliy hisob (ish kuni bo'yicha, taxminiy)- Umumiy ish staji- Qonun bo'yicha yillik asosiy ta'til kamida 21 kalendar kun. Ulashish PDF",
+  "inputs": [
+   "wage=0",
+   "days=0"
+  ]
+ },
+ "katta": {
+  "text": "O'rtacha oylik ish haqi so'm Ishlatilmagan ta'til kunlari soni kun Qo'shimcha ma'lumot (ixtiyoriy) Bu maydon faqat ma'lumot uchun — hisob-kitob formulasiga ta'sir qilmaydi. Umumiy ish staji (yil) yil Hisoblash Hisob natijasi 39 525 691 700 so'm Rasmiy hisob (kalendar kun bo'yicha) Natija siz kiritgan o'rtacha oylik ish haqi va ishlatilmagan ta'til kunlari asosida hisoblandi. Bu taxminiy hisob — rasmiy summani buxgalteriyangizdan tekshiring. O'rtacha oylik ish haqi1 000 000 so'm Ishlatilmagan ta'til kunlari1000000 kun O'rtacha kunlik ish haqi39 526 so'm Amaliy hisob (ish kuni bo'yicha, taxminiy)33 879 169 960 so'm (857143 kun) Umumiy ish staji- Ta'til kalendar kunda beriladi, lekin ba'zi buxgalteriya amaliyotida to'lov ish kunlariga hisoblanadi — bu ikkilik qonunchilikda to'liq hal qilinmagan, shuning uchun ikkala natija ham ko'rsatilgan. Qonun bo'yicha yillik asosiy ta'til kamida 21 kalendar kun. Ulashish PDF 📄Ariza namunasini to'ldirish→",
+  "inputs": [
+   "wage=1 000 000",
+   "days=1000000"
+  ]
+ },
+ "xato": []
+}

@@ -1,0 +1,27 @@
+{
+ "odatiy": {
+  "text": "O'rtacha oylik ish haqi so'm Ishdan bo'shatish asosi Shtat qisqarishi Tashkilot tugatilishi Boshqa asos Shu ish beruvchidagi ish staji (yil) yil Aynan shu ish joyidagi staj — kompensatsiya foizi shunga qarab belgilanadi. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi - Ishdan bo'shatish kompensatsiyasi - O'rtacha oylik ish haqi- Bo'shatish asosi- Bu hisob taxminiy va ma'lumot uchun. Kompensatsiya miqdori bo'yicha rasmiy koeffitsient O'zbekiston Mehnat kodeksiga muvofiq belgilanadi — tasdiqlangunga qadar bu kalkulyator raqamli natija ko'rsatmaydi. Ish qidirish davrida ikki oygacha o'rtacha oylik ish haqi saqlanadi (ishdan bo'shatish nafaqasi hisobga olingan holda); agar 30 kalendar kun ichida mehnat organida ro'yxatdan o'tsangiz, uchinchi oy uchun ham to'lanishi mumkin. Agar xodim o'z xohishi bilan ishdan bo'shasa, bunday kompensatsiya to'lanmaydi. Ulashish PDF",
+  "inputs": [
+   "wageInput=",
+   "reasonSelect=shtat",
+   "stajInput="
+  ]
+ },
+ "chegara": {
+  "text": "O'rtacha oylik ish haqi so'm Ishdan bo'shatish asosi Shtat qisqarishi Tashkilot tugatilishi Boshqa asos Shu ish beruvchidagi ish staji (yil) yil Aynan shu ish joyidagi staj — kompensatsiya foizi shunga qarab belgilanadi. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi - Ishdan bo'shatish kompensatsiyasi - O'rtacha oylik ish haqi- Bo'shatish asosi- Bu hisob taxminiy va ma'lumot uchun. Kompensatsiya miqdori bo'yicha rasmiy koeffitsient O'zbekiston Mehnat kodeksiga muvofiq belgilanadi — tasdiqlangunga qadar bu kalkulyator raqamli natija ko'rsatmaydi. Ish qidirish davrida ikki oygacha o'rtacha oylik ish haqi saqlanadi (ishdan bo'shatish nafaqasi hisobga olingan holda); agar 30 kalendar kun ichida mehnat organida ro'yxatdan o'tsangiz, uchinchi oy uchun ham to'lanishi mumkin. Agar xodim o'z xohishi bilan ishdan bo'shasa, bunday kompensatsiya to'lanmaydi. Ulashish PDF",
+  "inputs": [
+   "wageInput=0",
+   "reasonSelect=shtat",
+   "stajInput=0"
+  ]
+ },
+ "katta": {
+  "text": "O'rtacha oylik ish haqi so'm Ishdan bo'shatish asosi Shtat qisqarishi Tashkilot tugatilishi Boshqa asos Shu ish beruvchidagi ish staji (yil) yil Aynan shu ish joyidagi staj — kompensatsiya foizi shunga qarab belgilanadi. Hisoblash Hisob natijasi 2 000 000 so'm Ishdan bo'shatish kompensatsiyasi O'rtacha oylik ish haqi1 000 000 so'm Bo'shatish asosiBoshqa asos Bu hisob taxminiy va ma'lumot uchun. Kompensatsiya miqdori bo'yicha rasmiy koeffitsient O'zbekiston Mehnat kodeksiga muvofiq belgilanadi — tasdiqlangunga qadar bu kalkulyator raqamli natija ko'rsatmaydi. Ish qidirish davrida ikki oygacha o'rtacha oylik ish haqi saqlanadi (ishdan bo'shatish nafaqasi hisobga olingan holda); agar 30 kalendar kun ichida mehnat organida ro'yxatdan o'tsangiz, uchinchi oy uchun ham to'lanishi mumkin. Agar xodim o'z xohishi bilan ishdan bo'shasa, bunday kompensatsiya to'lanmaydi. Ulashish PDF 📝Ishdan bo'shash arizasini to'ldirish→",
+  "inputs": [
+   "wageInput=1000000",
+   "reasonSelect=boshqa",
+   "stajInput=1000000"
+  ]
+ },
+ "xato": []
+}

@@ -1,0 +1,27 @@
+{
+ "odatiy": {
+  "text": "Hisoblash yo'nalishi Qog'ozdagi oylikdan Qo'lga tegadiganidan Shartnomadagi (gross) oylikni kiriting — qo'lga tegadiganini hisoblaymiz. Qog'ozdagi oylik (gross) so'm Ijtimoiy soliq stavkasi (ish beruvchi to'laydi) 12% 25% Ko'pchilik tashkilotlar uchun 12%, byudjet tashkilotlari uchun 25%. Hisoblash Hisob natijasi 6 160 000 so'm Qo'lga tegadigan oylik Qog'ozdagi oylik (gross)7 000 000 so'm Daromad solig'i (12%)−840 000 so'm — shundan INPS (0,1%)7 000 so'm Qo'lga tegadi (net)6 160 000 so'm Ijtimoiy soliq (ish beruvchi)+840 000 so'm Ish beruvchining jami xarajati7 840 000 so'm Ulashish PDF Ikki taklifni solishtirish Ikkita ish taklifini bir xil o'lchovga keltirib solishtiring. Taklif A so'm Qo'lga Soliqdan oldin Taklif B so'm Qo'lga Soliqdan oldin Taklif ATaklif B Soliqdan oldin Qo'lga",
+  "inputs": [
+   "salary=7 000 000",
+   "cmpAmtA=",
+   "cmpAmtB="
+  ]
+ },
+ "chegara": {
+  "text": "Hisoblash yo'nalishi Qog'ozdagi oylikdan Qo'lga tegadiganidan Shartnomadagi (gross) oylikni kiriting — qo'lga tegadiganini hisoblaymiz. Qog'ozdagi oylik (gross) so'm Ijtimoiy soliq stavkasi (ish beruvchi to'laydi) 12% 25% Ko'pchilik tashkilotlar uchun 12%, byudjet tashkilotlari uchun 25%. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 6 160 000 so'm Qo'lga tegadigan oylik Qog'ozdagi oylik (gross)7 000 000 so'm Daromad solig'i (12%)−840 000 so'm — shundan INPS (0,1%)7 000 so'm Qo'lga tegadi (net)6 160 000 so'm Ijtimoiy soliq (ish beruvchi)+840 000 so'm Ish beruvchining jami xarajati7 840 000 so'm Ulashish PDF Ikki taklifni solishtirish Ikkita ish taklifini bir xil o'lchovga keltirib solishtiring. Taklif A so'm Qo'lga Soliqdan oldin Taklif B so'm Qo'lga Soliqdan oldin Taklif ATaklif B Soliqdan oldin Qo'lga",
+  "inputs": [
+   "salary=0",
+   "cmpAmtA=0",
+   "cmpAmtB=0"
+  ]
+ },
+ "katta": {
+  "text": "Hisoblash yo'nalishi Qog'ozdagi oylikdan Qo'lga tegadiganidan Qo'lga olishni istagan summani kiriting — qog'ozdagi oylik qancha bo'lishi kerakligini hisoblaymiz. Qo'lga tegadigan oylik (net) so'm Ijtimoiy soliq stavkasi (ish beruvchi to'laydi) 12% 25% Ko'pchilik tashkilotlar uchun 12%, byudjet tashkilotlari uchun 25%. Hisoblash Hisob natijasi 79 545 455 so'm Qog'ozdagi oylik bo'lishi kerak Qog'ozdagi oylik (gross)79 545 455 so'm Daromad solig'i (12%)−9 545 455 so'm — shundan INPS (0,1%)79 545 so'm Qo'lga tegadi (net)70 000 000 so'm Ijtimoiy soliq (ish beruvchi)+19 886 364 so'm Ish beruvchining jami xarajati99 431 818 so'm Ulashish PDF Ikki taklifni solishtirish Ikkita ish taklifini bir xil o'lchovga keltirib solishtiring. Taklif A so'm Qo'lga Soliqdan oldin Taklif B so'm Qo'lga Soliqdan oldin Taklif ATaklif B Soliqdan oldin1 000 000 so'm1 000 000 so'm Qo'lga880 000 so'm880 000 so'm Ikkala taklif qo'lga bir xil summa beradi",
+  "inputs": [
+   "salary=70 000 000",
+   "cmpAmtA=1 000 000",
+   "cmpAmtB=1 000 000"
+  ]
+ },
+ "xato": []
+}

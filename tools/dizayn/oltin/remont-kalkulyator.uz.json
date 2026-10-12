@@ -1,0 +1,64 @@
+{
+ "odatiy": {
+  "text": "Xona o'lchami Uzunligi m Eni m Balandligi m Eshiklar dona Derazalar dona O'lchamlarini bilaman → Eshik Kengligi m Balandligi m Deraza Kengligi m Balandligi m Qaysi ishlar bajariladi? Kerakli ishlarni yoqing. Narxlarni o'z hududingizga moslang. Pol qoplamasi (laminat/parket) so'm/m²Devorga oboy so'm/m²Devor shpaklyovka + grunt so'm/m²Shift (potolok) so'm/m²Plintus (galtel) so'm/mKafel (pol/devor) so'm/m²Kafel maydoni: m² Byudjetni hisoblash Remont byudjeti 8 558 220 so'm Taxminiy umumiy xarajat Xona: 12 m² pol · 35,2 m² devor · 12 m² shift · 14 m perimetr Sizga kerak bo'ladi Laminat13 m² · zaxira bilan6 pachkaPodlojka12,6 m² · zaxira bilan1 rulonPlintus14,7 m · zaxira bilan6 donaOboy38,7 m² · zaxira bilan8 rulonShpaklyovkaqadoq hajmi do'konga qarab farq qiladi35,2 m²Grunt47,2 m² uchun5 litrBo'yoq2 qatlam, 12 m² uchun3 litr Nusxa olish Batafsil hisob (m²) Pol qoplamasi (laminat/parket)13,2 m² · Material+Ish haqi2 376 000Devorga oboy38,7 m² · Material+Ish haqi2 614 342Devor shpaklyovka + grunt38,7 m² · Material+Ish haqi2 033 377Shift (potolok)13,2 m² · Material+Ish haqi1 188 000Plintus (galtel)15,4 m · Material+Ish haqi346 500Materiallar jami5 705 480 so'mIsh haqi jami2 852 740 so'mUMUMIY8 558 220 so'm Ish haqi materialning ~50% i deb olindi (o'zgaruvchan). Eshik-deraza, elektr, santexnika alohida. Aniq narx uchun ustaga ko'rsating. UlashishPDF",
+  "inputs": [
+   "length=4",
+   "width=3",
+   "height=2,8",
+   "doors=1",
+   "windows=1",
+   "doorW=0,9",
+   "doorH=2,1",
+   "winW=1,5",
+   "winH=1,4",
+   "?=120 000",
+   "?=45 000",
+   "?=35 000",
+   "?=60 000",
+   "?=15 000",
+   "?=0",
+   "kafelArea=0"
+  ]
+ },
+ "chegara": {
+  "text": "Xona o'lchami Uzunligi m Eni m Balandligi m Eshiklar dona Derazalar dona O'lchamlarini bilaman → Eshik Kengligi m Balandligi m Deraza Kengligi m Balandligi m Qaysi ishlar bajariladi? Kerakli ishlarni yoqing. Narxlarni o'z hududingizga moslang. Pol qoplamasi (laminat/parket) so'm/m²Devorga oboy so'm/m²Devor shpaklyovka + grunt so'm/m²Shift (potolok) so'm/m²Plintus (galtel) so'm/mKafel (pol/devor) so'm/m²Kafel maydoni: m² Byudjetni hisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Remont byudjeti — Taxminiy umumiy xarajat Sizga kerak bo'ladi Nusxa olish Batafsil hisob (m²) Ish haqi materialning ~50% i deb olindi (o'zgaruvchan). Eshik-deraza, elektr, santexnika alohida. Aniq narx uchun ustaga ko'rsating. UlashishPDF",
+  "inputs": [
+   "length=0",
+   "width=0",
+   "height=0",
+   "doors=0",
+   "windows=0",
+   "doorH=2,1",
+   "winW=1,5",
+   "winH=1,4",
+   "?=0",
+   "?=0",
+   "?=0",
+   "?=0",
+   "?=0",
+   "?=0",
+   "kafelArea=0"
+  ]
+ },
+ "katta": {
+  "text": "Xona o'lchami Uzunligi m Eni m Balandligi m Eshiklar dona Derazalar dona O'lchamlarini bilaman → Eshik Kengligi m Balandligi m Deraza Kengligi m Balandligi m Qaysi ishlar bajariladi? Kerakli ishlarni yoqing. Narxlarni o'z hududingizga moslang. Pol qoplamasi (laminat/parket) so'm/m²Devorga oboy so'm/m²Devor shpaklyovka + grunt so'm/m²Shift (potolok) so'm/m²Plintus (galtel) so'm/mKafel (pol/devor) so'm/m²Kafel maydoni: m² Byudjetni hisoblash Remont byudjeti 55 289 982 000 so'm Taxminiy umumiy xarajat Xona: 1200 m² pol · 39160,1 m² devor · 1200 m² shift · 140 m perimetr Sizga kerak bo'ladi Laminat1296 m² · zaxira bilan590 pachkaPodlojka1260 m² · zaxira bilan84 rulonPlintus147 m · zaxira bilan59 donaOboy43076,1 m² · zaxira bilan8128 rulonShpaklyovkaqadoq hajmi do'konga qarab farq qiladi39160,1 m²Grunt40360,1 m² uchun4037 litrBo'yoq2 qatlam, 1200 m² uchun300 litr Nusxa olish Batafsil hisob (m²) Pol qoplamasi (laminat/parket)1320 m² · Material+Ish haqi2 376 000 000Devorga oboy43076,1 m² · Material+Ish haqi29 076 374 250Devor shpaklyovka + grunt43076,1 m² · Material+Ish haqi22 614 957 750Shift (potolok)1320 m² · Material+Ish haqi1 188 000 000Plintus (galtel)154 m · Material+Ish haqi34 650 000Materiallar jami36 859 988 000 so'mIsh haqi jami18 429 994 000 so'mUMUMIY55 289 982 000 so'm Ish haqi materialning ~50% i deb olindi (o'zgaruvchan). Eshik-deraza, elektr, santexnika alohida. Aniq narx uchun ustaga ko'rsating. UlashishPDF",
+  "inputs": [
+   "length=40",
+   "width=30",
+   "height=280",
+   "doors=10",
+   "windows=10",
+   "doorH=2,1",
+   "winW=1,5",
+   "winH=1,4",
+   "?=1 200 000",
+   "?=450 000",
+   "?=350 000",
+   "?=600 000",
+   "?=150 000",
+   "?=1 000 000",
+   "kafelArea=1000000"
+  ]
+ },
+ "xato": []
+}

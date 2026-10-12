@@ -1,0 +1,80 @@
+{
+ "index": {
+  "oltin": "n/a",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "shablonlar": {
+  "oltin": "n/a",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "gisht-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "beton-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ariza-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "ishonchnoma-namunasi": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "n/a"
+ },
+ "aliment-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ijara-stavkalari": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "grid yo'q"
+ },
+ "kredit-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "chorva-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "uy-qurish-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "quyosh-panel-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "omonat-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "odatiy": {
+  "text": "⚠️ O'zbekistonda mast holda haydashga mutlaqo yo'l qo'yilmaydi (nol toleranslik). Bu kalkulyator faqat ma'lumot uchun — undan rulga o'tirish mumkinligini aniqlash uchun FOYDALANMANG. Ichdingizmi — haydamang. Jins Erkak Ayol Vazn kg Qorin holati Och qoringa To'q qoringa To'q qoringa ichilganda alkogol sekinroq va kamroq so'riladi — cho'qqi ko'rsatkich ~30% past bo'ladi. Ichimliklar Pivo 5%Vino 12%Shampan 11%Aroq 40%Konyak 40%Viski 40%Boshqaml% + Ichimlik qo'shish Aralashtirib ichilgan bo'lsa, har birini alohida qator qilib qo'shing (5 tagacha). Birinchi qadahdan beri o'tgan vaqt soat Ichish boshlangan paytdan hozirgacha. Hisoblash Hisob natijasi ≈ 0,35 ‰ Qondagi taxminiy alkogol Ichimliklar soni1 Jami sof spirt20 g HolatYengil ta'sir To'liq chiqib ketishi≈ 2 soat 21 min Bu o'rtacha formula (Vidmark) bo'yicha taxmin. Haqiqiy ko'rsatkich yoshga, sog'liqqa, dori-darmonlarga qarab sezilarli farq qiladi. Hech qachon bu raqamga tayanib rulga o'tirmang. UlashishPDF",
+  "inputs": [
+   "weight=80",
+   "?=beer",
+   "?=500",
+   "?=5",
+   "hours=0"
+  ]
+ },
+ "chegara": {
+  "text": "⚠️ O'zbekistonda mast holda haydashga mutlaqo yo'l qo'yilmaydi (nol toleranslik). Bu kalkulyator faqat ma'lumot uchun — undan rulga o'tirish mumkinligini aniqlash uchun FOYDALANMANG. Ichdingizmi — haydamang. Jins Erkak Ayol Vazn kg Qorin holati Och qoringa To'q qoringa To'q qoringa ichilganda alkogol sekinroq va kamroq so'riladi — cho'qqi ko'rsatkich ~30% past bo'ladi. Ichimliklar Pivo 5%Vino 12%Shampan 11%Aroq 40%Konyak 40%Viski 40%Boshqaml% + Ichimlik qo'shish Aralashtirib ichilgan bo'lsa, har birini alohida qator qilib qo'shing (5 tagacha). Birinchi qadahdan beri o'tgan vaqt soat Ichish boshlangan paytdan hozirgacha. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi ≈ 0,35 ‰ Qondagi taxminiy alkogol Ichimliklar soni1 Jami sof spirt20 g HolatYengil ta'sir To'liq chiqib ketishi≈ 2 soat 21 min Bu o'rtacha formula (Vidmark) bo'yicha taxmin. Haqiqiy ko'rsatkich yoshga, sog'liqqa, dori-darmonlarga qarab sezilarli farq qiladi. Hech qachon bu raqamga tayanib rulga o'tirmang. UlashishPDF",
+  "inputs": [
+   "weight=0",
+   "?=beer",
+   "?=0",
+   "?=0",
+   "hours=0"
+  ]
+ },
+ "katta": {
+  "text": "⚠️ O'zbekistonda mast holda haydashga mutlaqo yo'l qo'yilmaydi (nol toleranslik). Bu kalkulyator faqat ma'lumot uchun — undan rulga o'tirish mumkinligini aniqlash uchun FOYDALANMANG. Ichdingizmi — haydamang. Jins Erkak Ayol Vazn kg Qorin holati Och qoringa To'q qoringa To'q qoringa ichilganda alkogol sekinroq va kamroq so'riladi — cho'qqi ko'rsatkich ~30% past bo'ladi. Ichimliklar Pivo 5%Vino 12%Shampan 11%Aroq 40%Konyak 40%Viski 40%Boshqaml% + Ichimlik qo'shish Aralashtirib ichilgan bo'lsa, har birini alohida qator qilib qo'shing (5 tagacha). Birinchi qadahdan beri o'tgan vaqt soat Ichish boshlangan paytdan hozirgacha. Hisoblash Hisob natijasi ≈ 0,00 ‰ Qondagi taxminiy alkogol Ichimliklar soni1 Jami sof spirt395 g HolatHushyor To'liq chiqib ketishichiqib bo'lgan Bu o'rtacha formula (Vidmark) bo'yicha taxmin. Haqiqiy ko'rsatkich yoshga, sog'liqqa, dori-darmonlarga qarab sezilarli farq qiladi. Hech qachon bu raqamga tayanib rulga o'tirmang. UlashishPDF",
+  "inputs": [
+   "weight=800",
+   "?=custom",
+   "?=1000",
+   "?=50",
+   "hours=1000000"
+  ]
+ },
+ "xato": []
+}

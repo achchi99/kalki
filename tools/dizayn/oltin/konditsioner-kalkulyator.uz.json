@@ -1,0 +1,31 @@
+{
+ "odatiy": {
+  "text": "Xona maydoni m² Ship balandligi m Doimiy odamlar soni kishi Har bir kishi ~100 W issiqlik chiqaradi. Quyoshli tomon (janub/g'arb) Oxirgi qavat (tom ostida) Televizor/kompyuter bor O'zbekiston yozi uchun quyosh omili ayniqsa muhim. Hisoblash Hisob natijasi «9» tavsiya etiladigan sinf (BTU/soat ming hisobida) Kerakli sovutish quvvati2,6 kW BTU/soatda≈ 8700 BTU Tanlangan sinf quvvati2,6 kW Elektr xarajati Kuniga necha soat soat Elektr narxi (kWt) so'm Inverter konditsioner (tok tejaydi) Kunlik elektr sarfi4,9 kWt Oyiga taxminan94 640 so'm Yozgi 3 oy uchun283 920 so'm UlashishPDF",
+  "inputs": [
+   "area=18",
+   "ceil=2,8",
+   "people=2",
+   "hours=8",
+   "tariff=650"
+  ]
+ },
+ "chegara": {
+  "text": "Xona maydoni m² Ship balandligi m Doimiy odamlar soni kishi Har bir kishi ~100 W issiqlik chiqaradi. Quyoshli tomon (janub/g'arb) Oxirgi qavat (tom ostida) Televizor/kompyuter bor O'zbekiston yozi uchun quyosh omili ayniqsa muhim. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi «9» tavsiya etiladigan sinf (BTU/soat ming hisobida) Kerakli sovutish quvvati2,6 kW BTU/soatda≈ 8700 BTU Tanlangan sinf quvvati2,6 kW Elektr xarajati Kuniga necha soat soat Elektr narxi (kWt) so'm Inverter konditsioner (tok tejaydi) Kunlik elektr sarfi0 kWt Oyiga taxminan0 so'm Yozgi 3 oy uchun0 so'm UlashishPDF",
+  "inputs": [
+   "area=0",
+   "ceil=0",
+   "people=0"
+  ]
+ },
+ "katta": {
+  "text": "Xona maydoni m² Ship balandligi m Doimiy odamlar soni kishi Har bir kishi ~100 W issiqlik chiqaradi. Quyoshli tomon (janub/g'arb) Oxirgi qavat (tom ostida) Televizor/kompyuter bor O'zbekiston yozi uchun quyosh omili ayniqsa muhim. Hisoblash Hisob natijasi «24» tavsiya etiladigan sinf (BTU/soat ming hisobida) Kerakli sovutish quvvati2162,2 kW BTU/soatda≈ 7377400 BTU Tanlangan sinf quvvati7,0 kW Elektr xarajati Kuniga necha soat soat Elektr narxi (kWt) so'm Inverter konditsioner (tok tejaydi) Kunlik elektr sarfi130,7 kWt Oyiga taxminan25 480 000 so'm Yozgi 3 oy uchun76 440 000 so'm UlashishPDF",
+  "inputs": [
+   "area=180",
+   "ceil=280",
+   "people=20",
+   "hours=80",
+   "tariff=6500"
+  ]
+ },
+ "xato": []
+}

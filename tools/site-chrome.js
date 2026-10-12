@@ -218,8 +218,16 @@ function xnavHtml(selfSlug, plain) {
    Faqat V2_PAGES ro'yxatidagi sahifalar. Qolganlari eski kanonik variantda qoladi.
    Sarlavha bitta qator (logo | menyu | til | burger); #topmenu va #sitebar identifikatorlari
    saqlangan, shuning uchun sahifalarning o'z til skriptlari (#topmenu a[data-tm-uz]) ishlayveradi. */
-const V2_PAGES = ['index.html', 'shablonlar.html', 'gisht-kalkulyator.html'];
-const V2_ACTIVE = { 'index.html': '', 'shablonlar.html': 'hujjatlar', 'gisht-kalkulyator.html': './#kategoriyalar' };
+// V2 sahifalar ro'yxati tools/dizayn/v2-pages.json da (partiyalab to'ldiriladi); sahifa turi — tools/dizayn/pages.json
+const V2_PAGES = JSON.parse(fs.readFileSync(path.join(__dirname, 'dizayn', 'v2-pages.json'), 'utf8'));
+const PAGE_TYPES = JSON.parse(fs.readFileSync(path.join(__dirname, 'dizayn', 'pages.json'), 'utf8'));
+function v2Active(f) {
+  const t = (PAGE_TYPES.find((p) => p.file === f) || {}).tur;
+  if (f === 'blog.html' || t === 'maqola') return 'blog';
+  if (f === 'shablonlar.html' || f === 'hujjatlar.html' || t === 'generator') return 'hujjatlar';
+  if (t === 'kalkulyator') return './#kategoriyalar';
+  return '';
+}
 const V2_LINKS = [
   ['./#kategoriyalar', 'Kalkulyatorlar', 'Калькуляторы', [
     ['./#cat-moliya', 'Moliya', 'Финансы'], ['./#cat-qurilish', 'Qurilish', 'Стройка'], ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
@@ -233,7 +241,7 @@ function v2A(href, uz, ru, active) {
   return '<a href="' + href + '"' + (href === active ? ' class="tm-on" aria-current="page"' : '') + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>';
 }
 function headerV2Html(f) {
-  const active = V2_ACTIVE[f] || '';
+  const active = v2Active(f);
   const isCyr = CYR_PAGES.indexOf(f) > -1;
   const slug = f.replace(/\.html$/, '');
   const items = V2_LINKS.map(([href, uz, ru, sub]) => {

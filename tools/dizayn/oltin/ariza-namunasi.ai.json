@@ -1,0 +1,29 @@
+{
+ "korinadi": true,
+ "sarlavha": "✨ AI ariza yozib beradi",
+ "chiplar": [
+  "Bola kasal bo'ldi",
+  "Ishdan 2 kunga javob",
+  "Ishdan bo'shash",
+  "Gaz hisobida xato"
+ ],
+ "maydon": "Mock ariza matni. Iltimosimni qanoatlantirishingizni so'rayman.",
+ "tugmalar": [
+  true,
+  true,
+  true
+ ],
+ "sorov": [
+  {
+   "kalitlar": [
+    "mijoz_id",
+    "vaziyat",
+    "yozuv"
+   ],
+   "yozuv": "kirill",
+   "idUuid": true,
+   "vaziyatUzunligi": 80
+  }
+ ],
+ "ruKorinadi": false
+}

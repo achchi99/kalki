@@ -162,3 +162,37 @@ Skrinshotlar: oldin `docs/dizayn-skrinshot/1c-oldin-gisht-390-ekran.jpg`, `1c-ol
 
 Skrinshotlar (har o'lchamda tepa/o'rta/past): `docs/dizayn-skrinshot/1d-gisht-{1280x720,1440x900,1650x900,1920x1080}-{tepa,orta,past}.jpg`.
 Boshqa tekshiruvlar: g'isht 10→20 m: 1 616 → 3 231; SEO diff (`seo-diff.mjs main`) o'zgarishsiz; `test-v2.mjs` to'liq o'tdi.
+
+---
+
+# 2-bosqich: butun saytga tarqatish — sahifa turi shablonlari
+
+Yangi dizayn ixtiro qilinmadi: tasdiqlangan 1a–1d sahifalaridan umumlashtirildi. O'tkazish vositasi — `tools/dizayn/convert.py` (UZ manbaning markup qobig'ini o'zgartiradi, kontent matni o'zgarmaydi), keyin `site-chrome.js --write` (sarlavha/footer/CSS) va `prerender.js --write` (UZ + RU). V2 ro'yxati — `tools/dizayn/v2-pages.json`; sahifa turi/kategoriya — `tools/dizayn/pages.json`.
+
+## Kalkulyator (`convert.py calc`) — `/gisht-kalkulyator` naqshi
+- **Sahifa boshi bandi** (`header.pagehead.band`): kategoriya yorlig'i + H1 + subtitle (chapda) | answerbox kartasi (o'ngda; mobilda ostida): overline "Qisqacha" + `info` ikonka, matn 17px, pastida meta ("Yangilangan: …" — answerbox.js yaratadi). `#answerbox` `<header>` ichida, `display:contents`. **"Hisob usuli" qatori faqat gisht'da** (matni sahifaning o'z SEO matnidan olingan); boshqa kalkulyatorlarga **qo'shilmadi** (manba yo'q — o'ylab topilmaydi). Breadcrumb band ustida.
+- **`.calc-grid`**: `[.calc-form | <aside class="res-col">]` — forma bilan birga uning oldidagi hamma narsa (rejim tablari, izohlar, ogohlantirishlar) `.calc-form` ichida, natija kartasi(lar)i aside'da. Karta faqat asosiy natija uchun (to'q `--ink`, 40px raqam); `#smeta-cta` kartadan chiqarilib forma ostida. Grid TUGAGANDAN keyin: jadval, grafik, ssenariy bloklari (`.sched`, `.scen-wrap`, hamkor bloki), `#datanote` — to'liq kenglikda, gorizontal aylanadigan (mobilda `.tbl-wrap`/`.tbl-shell` o'z `overflow`i bilan).
+- **Natija hali ko'rsatilmagan** (receipt yashirin): ustun bo'sh qolmasin deb sokin joy egasi ("Natija shu yerda ko'rinadi", CSS `:has` + `html[lang]`); natija chiqqach joy egasi yo'qoladi, joylashuv sakramaydi.
+- **Shartli sticky** (`assets/calc-v2.js`): ≥1024px va karta balandligi ≤ ekran − 96px; ustundan chiqmaydi.
+- **PDF:** `html2canvas` paytida vaqtincha `pdf-light` sinfi (sahifaning mavjud inline kodiga bitta qo'shimcha — natija PDF'i yorug' qoladi).
+- **Pastki qismi:** "Foydali maqolalar" (kartalar, ikonka plitkasi) → "Tegishli kalkulyatorlar" (shu kategoriyadan 5 tagacha karta, `index.html` dagi nomlar/tavsiflar bilan) → "Barcha kalkulyatorlar" `<details>` (`xnav`, 50 havola, 6 guruh) → Telegram bloki → footer. `tgcta` (Telegram tugmasi) olib tashlandi (`#fbcall` bilan takror).
+- **Rang:** `body[data-cat]` → `--cc` (karta yuqori chizig'i, ikonka plitkasi, yorliq, breadcrumb'dagi kategoriya).
+- **Emoji:** ikonka sifatida yo'q (UI yorliqlari va holat belgilaridan olib tashlandi); **H1 va undan olingan matnlardagi emoji (aliment) SEO uchun o'zgarmadi** — shablondan chetga chiqish.
+
+## Generator (`convert.py gen`) — `/ariza-namunasi`, `/ishonchnoma-namunasi`
+- Sahifa boshi bandi (kalkulyatordagi kabi, `ab-card` + `Qisqacha`), `<main class="gen-main">`; qolgani (To'ldirish/Hujjatni ko'rish tablari, `dg-*` forma kartalari, ko'rik `#docPreview`, "Tayyor ariza matnlari", howto, FAQ) o'z tuzilmasida; CSS: `dg-*` kartalar oq/chiziq/soya, label 15px, hint 14px, maydon 52px+, bo'lim sarlavhasi 13px; emoji → SVG plitka (`rc-ic`).
+- **`#docPreview` ko'rinishi va hujjat matni (Word/PDF/chop etish) o'zgartirilmadi**: PDF shu elementdan olinadi; faqat grid kengligi tufayli tasvir kengligi 520→541px (balandlik bir xil, sahifa soni bir xil) — mazmun va tartib bir xil.
+- **AI blok** (`assets/ai-ariza.js`): dizayn o'zgarmagan; sarlavhadagi `✨` emoji sprite'dagi `sparkles` SVG ga almashtirildi (5-qoida); so'rov formati (`vaziyat`, `yozuv`, `mijoz_id`, `turi`) o'zgarmagan (mock bilan tasdiqlangan).
+- Sticky `viewSeg` (mobil tab paneli) sarlavha ostiga (`top: hdr + 8px`).
+
+## Ro'yxat/hub (`/shablonlar`, `/hujjatlar`, `/blog`)
+`/shablonlar` naqshi: sarlavha + 1 jumla, darhol tablar/filtr, kartalar gridi (3 ustun, rang chizig'i + plitka), taklif kartalari grid oxirida kichik qator, SEO matn pastda. (`/hujjatlar`, `/blog` — 4-partiyada.)
+
+## Maqola (`*-2026`) — 4-partiya uchun belgilangan
+O'qish uchun tor ustun (max ~720px), asosiy matn 18px/1.7, H2/H3 ritmi (H2 28px, H3 20px, yuqori bo'shliq 40/32px), jadval (zebra, gorizontal aylanadi), ro'yxatlar, iqtibos bloki; oxirida "Tegishli kalkulyatorlar" kartalari; sarlavha bandi — kategoriya tinti. Kontent va JSON-LD o'zgarmaydi.
+
+## Huquqiy va boshqa (`maxfiylik`, `shartlar`, `biz-haqimizda`, `hamkorlik`, `offline`) — 4-partiya uchun belgilangan
+Maqola uslubidagi sokin matn sahifasi (tor ustun, 17px, bo'sh band: tint o'rniga neytral), kontaktlar/jadvallar mavjud tuzilmada. `offline.html` — SW keshida turadi (yangi CSS precache ro'yxatiga qo'shilishi kerak: `/assets/css/*` va `/assets/icons.svg`).
+
+## Umumiy qoidalar
+Faqat `tokens.css` + `site.css` komponentlari; emoji yo'q (sprite ikonkalari); sahifa ichidagi eski rangli sarlavha/hero CSS'i `body.v2` qoidalari bilan ustidan yoziladi (4-qismda — tozalash bosqichida — o'chiriladi). `/cyr/` sahifalar JS'siz qoladi: ular UZ manbadan prerender qilinadi, shuning uchun V2 UZ sahifa o'tkazilganda `cyr/` nusxalar **qayta yozilmaydi** (5-partiyagacha eski holatda).
