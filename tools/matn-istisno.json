@@ -1,0 +1,32 @@
+[
+ {
+  "sahifa": "bolalar-nafaqasi-2026.html",
+  "qoida": 2,
+  "soz": "*",
+  "izoh": "meta description oxirida ruscha qidiruv iborasi (SEO uchun atayin) — muallif tasdiqlashi kerak"
+ },
+ {
+  "sahifa": "ipoteka-kalkulyator.html",
+  "qoida": 2,
+  "soz": "*",
+  "izoh": "meta description oxirida ruscha qidiruv iborasi (SEO uchun atayin) — muallif tasdiqlashi kerak"
+ },
+ {
+  "sahifa": "tatil-arizasi-namunasi.html",
+  "qoida": 2,
+  "soz": "*",
+  "izoh": "qavs ichida ruscha kasbiy atama «график отпусков» (atayin)"
+ },
+ {
+  "sahifa": "cyr/*",
+  "qoida": 3,
+  "soz": "*",
+  "izoh": "translit.js DEFAULT_ABBR: MHTEKM, QQS, DTM, YHXX, PDF, Word, Excel, Kalki.uz atayin lotincha qoldiriladi"
+ },
+ {
+  "sahifa": "cyr/*",
+  "qoida": 1,
+  "soz": "MHTEKMнинг",
+  "izoh": "qisqartma + kirill qo'shimcha — tools/translit-test.js da hujjatlashtirilgan qaror (qisqartma ildizi himoyalanadi)"
+ }
+]
