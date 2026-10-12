@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = 'f10c91ff';   /* sw-version:auto */
+const SW_VERSION = '55d4c503';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -34,7 +34,12 @@ const ASSETS = [
   '/assets/footer-lang.js',
   '/assets/partners.js',
   '/favicon.svg',
-  '/manifest.json',
+  '/manifest.webmanifest',
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/icon-maskable-512.png',
+  '/assets/icons/apple-touch-icon-180.png',
+  '/assets/pwa-install.js',
   '/ga.js',
   '/aliment-kalkulyator',
   '/ru/aliment-kalkulyator',
