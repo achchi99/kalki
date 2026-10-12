@@ -133,3 +133,32 @@ SEO: `node tools/dizayn/seo-diff.mjs main` — title, H1, description, canonical
 
 Skrinshotlar: oldin `docs/dizayn-skrinshot/1c-oldin-gisht-390-ekran.jpg`, `1c-oldin-gisht-1280-ekran.jpg`; keyin `1c-gisht-390-ekran.jpg`, `1c-gisht-320-ekran.jpg`, `1c-gisht-1280-ekran.jpg` (+ to'liq sahifa `1c-gisht-390.jpg`, `1c-gisht-1280.jpg`).
 **Tekshiruv:** `seo-diff.mjs main` (answerbox matni, sanasi, JSON-LD, tartib qo'shildi) — o'zgarishsiz; g'isht 10→20 m: 1 616 → 3 231 dona; RU: "Кратко", "Обновлено: 2026-09-29", "Метод расчёта:"; `test-v2.mjs` to'liq o'tdi.
+
+---
+
+# 1d-bosqich: natija kartasi — yopishqoqlik va o'lcham (`/gisht-kalkulyator` + RU)
+
+**Muammo (desktop ~1650–1800px):** to'q natija kartasi pastga aylantirganda o'z ustunidan chiqib "Tegishli kalkulyatorlar" kartalari ustiga tushardi; karta ekrandan baland (natija + 5 qator + 2 tugma + "To'liq smeta kerakmi?") — yopishganda pastki qismi ko'rinmay "osilib" qolardi; "Qanday hisoblandi?" karta bilan bir chiziqda emasdi. `#answerbox` `<header>` ichida qoladi (foydalanuvchi qarori).
+
+**Tuzatish**
+- **Tuzilma:** `[forma | natija ustuni]` endi alohida `.calc-grid` bo'lim va **shu yerda tugaydi**. "Qanday hisoblandi?", smeta kartasi — grid ichida, forma ustunida; "Foydali maqolalar", "Tegishli kalkulyatorlar", "Barcha kalkulyatorlar", SEO matn, Telegram bloki va izohlar — `<main>` da grid'dan TASHQARIDA, to'liq kenglikda. Natija ustuni (`<aside class="res-col">`) grid qatorlarining (forma + smeta + "Qanday hisoblandi?") BUTUN balandligini egallaydi (`grid-row: 1 / span 3`, stretch), karta uning ichida yopishadi — ustundan chiqolmaydi.
+- **Karta ixchamlashdi:** "To'liq smeta kerakmi?" bloki kartadan CHIQARILDI → forma ostida alohida och karta (mobilda natijadan keyin); "Qanday hisoblandi?" — smeta ostida, forma ustuni kengligida. Karta balandligi ~478px (oldin ~670px).
+- **Shartli yopishqoqlik** (`assets/calc-v2.js`, 0,9 KB): `.res-col.is-sticky` faqat (a) ≥1024px va (b) karta balandligi ≤ ekran balandligi − 64 − 32 bo'lsa; `ResizeObserver` (natija qatorlari o'zgarganda) + `matchMedia` + `resize` bilan qayta hisoblanadi. `top: 88px`. Aks holda karta oddiy (statik). Mobilda o'zgarish yo'q.
+- **Qo'shimcha topilma (1b xatosi, tuzatildi):** chrome generatori Telegram blokini (`#fbcall`) "Qanday hisoblandi?" `<details>` ICHIGA qo'yib yuborgan edi (foot-note shu yerda bo'lgani uchun) — u yopiq blokda yashirin qolgan. Endi foot-note `<details>` ichida bo'lsa, blok `</main>` oldiga qo'yiladi (`tools/site-chrome.js`); sahifada Telegram bloki ko'rinadi.
+
+**Sinov** (`node tools/dizayn/test-sticky.mjs`, avtomatik; har o'lchamda sahifa 10 pozitsiyada aylantiriladi, karta bounding-box'i `#related`, `#xnav`, `#fbcall`, `#articleLink`, `#seoBlock`, "Qanday hisoblandi?" va smeta bloki bilan kesishmasligi hamda o'z ustunidan chiqmasligi tekshiriladi):
+
+| ekran | karta balandligi | holat | 10 pozitsiyada kesishish |
+|---|---|---|---|
+| 1280×720 | 478px (≤ 624) | sticky | **0** |
+| 1440×900 | 478px | sticky | **0** |
+| 1650×900 | 478px | sticky | **0** |
+| 1920×1080 | 478px | sticky | **0** |
+| 1280×520 | 478px > 424px | **sticky EMAS** (statik) | — |
+| balandlik 520→900 (resize) | — | sticky yoqiladi | — |
+| 1000px kenglik (<1024) | — | sticky emas | — |
+| natijaga 6 qator qo'shilsa (720px) | — | sticky'likdan chiqadi (ResizeObserver) | — |
+| 390 / 320px | — | statik, toshmaydi, forma → natija → smeta | — |
+
+Skrinshotlar (har o'lchamda tepa/o'rta/past): `docs/dizayn-skrinshot/1d-gisht-{1280x720,1440x900,1650x900,1920x1080}-{tepa,orta,past}.jpg`.
+Boshqa tekshiruvlar: g'isht 10→20 m: 1 616 → 3 231; SEO diff (`seo-diff.mjs main`) o'zgarishsiz; `test-v2.mjs` to'liq o'tdi.

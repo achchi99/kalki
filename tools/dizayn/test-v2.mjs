@@ -82,8 +82,8 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
 // 7. kalkulyator: maket, to'q natija kartasi, mantiq, ishonch qatori, "Qanday hisoblandi?", tegishli, xnav, PDF
 { const p = await pg(1280, 900); await go(p, '/gisht-kalkulyator');
   const before = await p.textContent('.big-figure .num');
-  const lay = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { sameRow: Math.abs(f.top - r.top) < 40, receiptRight: r.left > f.right - 10, pos: getComputedStyle(document.querySelector('.res-col')).position }; });
-  assert.deepEqual(lay, { sameRow: true, receiptRight: true, pos: 'sticky' });
+  const lay = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(); return { sameRow: Math.abs(f.top - r.top) < 40, receiptRight: r.left > f.right - 10, pos: getComputedStyle(document.querySelector('.receipt')).position, flag: document.querySelector('.res-col').classList.contains('is-sticky') }; });
+  assert.deepEqual(lay, { sameRow: true, receiptRight: true, pos: 'sticky', flag: true });
   const card = await p.evaluate(() => { const b = getComputedStyle(document.querySelector('.receipt-body')), n = getComputedStyle(document.querySelector('.big-figure .num')); return { bg: b.backgroundColor, color: n.color, size: parseFloat(n.fontSize), tab: n.fontVariantNumeric }; });
   assert.equal(card.bg, 'rgb(14, 59, 46)'); assert.equal(card.color, 'rgb(255, 255, 255)'); assert.ok(card.size >= 36 && card.size <= 40, 'natija shrifti ' + card.size); assert.match(card.tab, /tabular-nums/);
   const unit = await p.evaluate(() => { const shell = [...document.querySelectorAll('.input-shell')].find((e) => e.getBoundingClientRect().height > 0 && e.querySelector('.unit')); const u = getComputedStyle(shell.querySelector('.unit')); return { bl: u.borderLeftWidth, bg: u.backgroundColor, h: Math.round(shell.getBoundingClientRect().height) }; });
@@ -96,6 +96,8 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
   assert.equal(await p.evaluate(() => document.getElementById('how').open), false); await p.click('#how summary'); assert.equal(await p.evaluate(() => document.getElementById('how').open), true);
   assert.equal(await p.locator('#how li').count(), 4);
   log('ishonch qatori "Hisob usuli", answerbox sanasi o\'zgarmagan (2026-09-29); "Qanday hisoblandi?" yig\'iladi/ochiladi (4 qadam)');
+  assert.equal(await p.evaluate(() => { const e = document.getElementById('fbcall'); return !!e && !e.closest('details') && e.offsetParent !== null && e.getBoundingClientRect().height > 0; }), true, '#fbcall ko\'rinmaydi (details ichida?)');
+  assert.equal(await p.evaluate(() => !document.querySelector('.calc-grid #fbcall, .calc-grid #related, .calc-grid #xnav, .calc-grid #seoBlock')), true, 'pastki bloklar grid ichida');
   assert.equal(await p.locator('#related .k-card').count(), 5);
   const xn = await p.evaluate(() => ({ open: document.getElementById('xnav').open, links: document.querySelectorAll('#xnav a').length, groups: document.querySelectorAll('#xnav .xn-t').length }));
   assert.equal(xn.open, false); assert.equal(xn.groups, 6); assert.equal(xn.links, 50, 'xnav havolalar soni ' + xn.links);

@@ -402,9 +402,11 @@ function rebuildV2(f, src) {
     if (s[end] === '\n') end++;      // bizning qo'shgan yangi qatorimiz: idempotentlik uchun birga olinadi
     s = s.slice(0, i) + s.slice(end);
   }
-  const fn = s.indexOf('<p class="foot-note"');
+  // foot-note <details> ichida bo'lsa (masalan "Qanday hisoblandi?"), Telegram bloki uning ICHIGA tushmasin
   const mend = s.indexOf('</main>');
-  const at = fn > -1 && fn < mend ? fn : mend;
+  const fn = s.lastIndexOf('<p class="foot-note"', mend);
+  const topLevel = fn > -1 && s.slice(fn, mend).indexOf('</details>') < 0;
+  const at = topLevel ? fn : mend;
   if (at > -1) s = s.slice(0, at) + FBCALL_V2 + '\n' + s.slice(at);
   return { s, notes };
 }

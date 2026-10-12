@@ -160,15 +160,19 @@ body.v2 .ab-card .meta-line{--mi:url("data:image/svg+xml,%3Csvg xmlns='http://ww
 @media print{body.v2 .ab-card{display:none}}
 
 /* ---------- Kalkulyator sahifasi: forma | yopishqoq natija ---------- */
-body.v2 .calc-main{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s3);padding-bottom:0;padding-top:var(--s2)}
-body.v2 .calc-main>*{grid-column:1/-1;min-width:0}
+body.v2 .calc-main{padding-top:var(--s2);padding-bottom:0}
+/* [forma | natija ustuni] alohida grid va U YERDA TUGAYDI; pastki bloklar grid'dan tashqarida, to'liq kenglikda */
+body.v2 .calc-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+body.v2 .calc-grid>*{min-width:0}
 @media (min-width:960px){
-  body.v2 .calc-main{grid-template-columns:minmax(0,1fr) 420px;column-gap:var(--s4);align-items:start}
-  body.v2 .calc-main>.form-card{grid-column:1;grid-row:1}
-  body.v2 .calc-main>.res-col{grid-column:2;grid-row:1;position:sticky;top:calc(var(--hdr) + 16px)}
+  body.v2 .calc-grid{grid-template-columns:minmax(0,1fr) 420px;column-gap:var(--s4);row-gap:var(--s3);align-items:start}
+  body.v2 .calc-grid>.form-card{grid-column:1;grid-row:1}
+  body.v2 .calc-grid>.res-col{grid-column:2;grid-row:1 / span 3;align-self:stretch}
+  body.v2 .calc-grid>#smeta-cta{grid-column:1;grid-row:2}
+  body.v2 .calc-grid>.how{grid-column:1;grid-row:3}
 }
+body.v2 .res-col.is-sticky .receipt{position:sticky;top:88px}
 body.v2 .form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);margin-top:0;box-shadow:var(--shadow-card)}
-body.v2 .res-col{display:flex;flex-direction:column;gap:var(--s2)}
 body.v2 .answerbox+.form-card,body.v2 #modeSegField+.form-card{margin-top:0}
 body.v2 .field{margin-bottom:var(--s3)}
 body.v2 .form-card label{font-size:15px;font-weight:600;color:var(--text);letter-spacing:0;margin-bottom:8px}
@@ -221,7 +225,7 @@ body.v2 .how .how-b p{margin:0 0 10px}
 body.v2 .how .how-b ol{margin:0 0 10px 20px}
 body.v2 .how .how-b .foot-note,body.v2 .how .how-b #datanote{margin-top:10px;font-size:14px}
 @media print{body.v2 .how{display:none!important}}
-body.v2 #smeta-cta{background:var(--gold-soft)!important;border:1px solid #EBD6A3!important;border-radius:var(--r)!important;padding:16px!important}
+body.v2 #smeta-cta{background:var(--gold-soft)!important;border:1px solid #EBD6A3!important;border-radius:var(--r)!important;padding:16px 20px!important;margin:0!important}
 body.v2 #smeta-cta *{font-size:15px!important;color:var(--text)!important}
 body.v2 #smeta-cta a *,body.v2 #smeta-cta button *{color:#fff!important}
 body.v2 #smeta-cta a,body.v2 #smeta-cta button{background:var(--brand)!important;color:#fff!important;border-radius:var(--r-sm)!important;font-weight:600!important;padding:10px 16px!important}
