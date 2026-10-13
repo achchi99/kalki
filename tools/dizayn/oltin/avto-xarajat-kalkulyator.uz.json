@@ -30,7 +30,7 @@
   "inputs": [
    "kmMonth=15 000",
    "consumption=180",
-   "homeShare=800",
+   "homeShare=1000",
    "stationPrice=1 000 000",
    "houseKwh=3 500",
    "insurance=4 000 000",

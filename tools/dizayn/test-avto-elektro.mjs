@@ -39,10 +39,15 @@ if (!BASE) {
 BASE = BASE.replace(/\/$/, '');
 
 // [toifa, stansiya narxi, uyda kVt·soat, uy to'lovi/oy, o'rtacha narx, izoh raqamlari, stansiya raqamlari, yoqilg'i yiliga, jami yiliga, 1 km]
+// share: null = standart (100%, qo'lda tegilmaydi); son = qo'lda kiritilgan ulush. stNums null = stansiya izohi yashirin.
+// 100% (225 kVt·soat uyda): oddiy 575 kVt·soat = 130 000 + 300×900 + 75×1100 = 482 500, −265 000 = 217 500 (≈ 967), yiliga 2 610 000, jami 4 400 000 + 2 610 000 = 7 010 000, 1 km 389;
+//   plita 575 = 65 000 + 300×450 + 75×550 = 241 250, −132 500 = 108 750 (≈ 483), yiliga 1 305 000, jami 5 705 000, 1 km 317.
 const EV = [
-  ['std',   2000, 180, 168000, 933, [201, 500, 501, 1000], [45, 2000, 90000], 3096000, 7496000, 416],
-  ['stove', 2000, 180, 84000,  467, [201, 500, 501, 1000], [45, 2000, 90000], 2088000, 6488000, 360],
-  ['std',   0,    180, 168000, 933, [201, 500, 501, 1000], [45],              2016000, 6416000, 356]
+  ['std',   0,    null, 225, 217500, 967, [201, 500, 501, 1000], null, 2610000, 7010000, 389],
+  ['stove', 0,    null, 225, 108750, 483, [201, 500, 501, 1000], null, 1305000, 5705000, 317],
+  ['std',   2000, 80, 180, 168000, 933, [201, 500, 501, 1000], [45, 2000, 90000], 3096000, 7496000, 416],
+  ['stove', 2000, 80, 180, 84000,  467, [201, 500, 501, 1000], [45, 2000, 90000], 2088000, 6488000, 360],
+  ['std',   0,    80, 180, 168000, 933, [201, 500, 501, 1000], [],                2016000, 6416000, 356],
 ];
 const OTHER = [['benzin', 20600000], ['metan', 9800000], ['propan', 17270000], ['gibrid', 12500000]];
 const MODES = [
@@ -95,14 +100,14 @@ for (const mode of MODES) {
   const dated = mode.name === 'RU' ? /Тариф с 2026-06-01, дата проверки: 2026-10-13/ : mode.name === 'UZ' ? /Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13/ : /Тариф 2026-06-01 дан, текширилган сана: 2026-10-13/;
   const dc = (evInfo.body.match(new RegExp(dated.source, 'g')) || []).length;
   T(dc === 1 && dated.test(evInfo.dn), mode.name + ': elektro: "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" AYNAN BIR MARTA', 'marta: ' + dc);
-  T(evInfo.link === 'https://lex.uz/uz/docs/-8195731' && evInfo.cats === 'true,false' && evInfo.share === '80' && evInfo.house === '350' && evInfo.sp === '0', mode.name + ': elektro: manba havolasi, 2 ta toifa tugmasi, standart 80% / 350 / stansiya 0', JSON.stringify({ l: evInfo.link, c: evInfo.cats, s: evInfo.share, h: evInfo.house, p: evInfo.sp }));
+  T(evInfo.link === 'https://lex.uz/uz/docs/-8195731' && evInfo.cats === 'true,false' && evInfo.share === '100' && evInfo.house === '350' && evInfo.sp === '0', mode.name + ': elektro: manba havolasi, 2 ta toifa tugmasi, standart 100% / 350 / stansiya 0', JSON.stringify({ l: evInfo.link, c: evInfo.cats, s: evInfo.share, h: evInfo.house, p: evInfo.sp }));
   T(!/\bkW\b|\bkWt\b/.test(evInfo.body) && !(mode.name === 'ЎЗ' && /[кК]W|W[тТ]/.test(evInfo.body)) && /(kVt-soat\/100|кВт-ч\/100|кВт-соат\/100)/.test(evInfo.unit), mode.name + ': elektro: "kW/kWt" yo\'q, birlik "kVt-soat/100" / "кВт-ч/100"', evInfo.unit);
 
-  for (const [cat, sp, homeKwh, homeCost, eff, tierNums, stNums, fuelYear, totalYear, perKm] of EV) {
-    await p.evaluate(({ sp }) => {
-      document.getElementById('kmMonth').value = '1 500'; document.getElementById('consumption').value = '15'; document.getElementById('homeShare').value = '80';
+  for (const [cat, sp, share, homeKwh, homeCost, eff, tierNums, stNums, fuelYear, totalYear, perKm] of EV) {
+    await p.evaluate(({ sp, share }) => {
+      document.getElementById('kmMonth').value = '1 500'; document.getElementById('consumption').value = '15'; if (share !== null) document.getElementById('homeShare').value = String(share);
       document.getElementById('houseKwh').value = '350'; document.getElementById('stationPrice').value = String(sp);
-    }, { sp });
+    }, { sp, share });
     await p.click(cat === 'std' ? '#catStd' : '#catStove'); await p.click('#calcBtn'); await p.waitForTimeout(450);
     const g = await p.evaluate(() => ({ fuel: document.getElementById('rFuel').textContent, total: document.getElementById('rTotalYear').textContent, main: document.getElementById('mainNum').textContent,
       perKm: document.getElementById('perKmNote').textContent, home: document.getElementById('evHomeNote').textContent, st: document.getElementById('evStationNote').textContent,
@@ -113,8 +118,14 @@ for (const mode of MODES) {
     if (!nums(g.perKm).includes(perKm)) why.push('1 km ' + JSON.stringify(nums(g.perKm)) + ' kutilgan ' + perKm);
     const hn = nums(g.home); const expHome = [homeKwh, ...tierNums, 1, eff, homeCost];
     if (JSON.stringify(hn) !== JSON.stringify(expHome)) why.push('uyda izoh ' + JSON.stringify(hn) + ' kutilgan ' + JSON.stringify(expHome));
-    if (JSON.stringify(nums(g.st)) !== JSON.stringify(stNums)) why.push('stansiya izohi ' + JSON.stringify(nums(g.st)) + ' kutilgan ' + JSON.stringify(stNums));
-    if (g.stHidden) why.push('stansiya izohi yashirin');
+    if (stNums === null) { if (!g.stHidden || g.st.trim()) why.push('100% da stansiya izohi/ogohlantirish chiqmasligi kerak: ' + g.st); }
+    else {
+      if (JSON.stringify(nums(g.st)) !== JSON.stringify(stNums)) why.push('stansiya izohi ' + JSON.stringify(nums(g.st)) + ' kutilgan ' + JSON.stringify(stNums));
+      if (g.stHidden) why.push('stansiya izohi yashirin');
+      const warn = /Stansiyada zaryad narxini kiriting, aks holda u bepul hisoblanadi|Укажите цену зарядки на станции, иначе она считается бесплатной|Стансияда заряд нархини киритинг, акс ҳолда у бепул ҳисобланади/.test(g.st);
+      if (sp === 0 && !warn) why.push('ulush<100% va narx 0: ogohlantirish chiqmadi: ' + g.st);
+      if (sp > 0 && warn) why.push('narx kiritilgan, ogohlantirish chiqmasligi kerak');
+    }
     if (mode.name === 'ЎЗ' && /[A-Za-z]/.test(g.txt.replace(/Kalki|PDF/g, ''))) why.push('ЎЗ da lotin harf: ' + (g.txt.match(/[A-Za-z']+/g) || []).slice(0, 4).join(' '));
     T(!why.length, mode.name + ' · elektro · ' + (cat === 'std' ? 'oddiy' : 'elektr plitali') + ' · stansiya ' + sp + ': uyda ' + homeCost + '/oy (≈ ' + eff + '), yoqilg\'i ' + fuelYear + '/yil, jami ' + totalYear, why.join(' | '));
     table.push([mode.name, cat, 'stansiya ' + sp, homeCost, 'yil ' + fuelYear, digits(g.fuel), 'jami ' + totalYear, digits(g.total), why.length ? 'FAIL' : 'OK']);
