@@ -81,7 +81,9 @@ for (const mode of MODES) {
   T(!/450\s*[-–]\s*900|hududga qarab/.test(info.body + info.faq), mode.name + ': eski tarif ("450–900") sahifada ham, FAQ da ham yo\'q');
   T(info.link === 'https://lex.uz/uz/docs/-8195731', mode.name + ': manba havolasi lex.uz 243-son', String(info.link));
   const dated = mode.name === 'RU' ? /Тариф с 2026-06-01, дата проверки: 2026-10-13/ : mode.name === 'UZ' ? /Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13/ : /Тариф 2026-06-01 дан, текширилган сана: 2026-10-13/;
-  T(dated.test(info.dn) && dated.test(info.body), mode.name + ': "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" yozuvi', info.dn);
+  const datedG = new RegExp(dated.source, 'g');
+  const datedCount = (info.body.match(datedG) || []).length;
+  T(dated.test(info.dn) && datedCount === 1, mode.name + ': "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" yozuvi sahifada AYNAN BIR MARTA (karta ichida va tagida takrorlanmaydi)', 'marta: ' + datedCount + ' | ' + info.dn);
   T(info.cats.length === 2 && info.cats[0].endsWith('|true') && info.cats[1].endsWith('|false'), mode.name + ': 2 ta toifa tugmasi (standart: birinchisi)', info.cats.join(' / '));
   T(/650/.test(info.faq) && /243/.test(info.faq) && /178\s?000/.test(info.faq), mode.name + ': FAQ da yangi tarif va misol (650, 243-son, 178 000)');
   const metaOk = mode.name === 'RU' ? /ступенчат/ : /pog'onali|пог'?онали|поғонали/;
@@ -113,6 +115,64 @@ for (const mode of MODES) {
     if (mode.name === 'ЎЗ' && /[A-Za-z]/.test(got.txt.replace(/Kalki|PDF/g, ''))) why.push('ЎЗ da lotin harf: ' + (got.txt.match(/[A-Za-z']+/g) || []).slice(0, 4).join(' '));
     T(!why.length, mode.name + ' · uy ' + house + ' + konditsioner ' + ac + ' · ' + (cat === 'std' ? 'oddiy' : 'elektr plitali') + ': ' + expHouse + ' → ' + expTotal + ', konditsioner ' + expCost + ' (≈ ' + expEff + ' so\'m/kVt·soat)', why.join(' | '));
     table.push([mode.name, house, ac, cat, expCost, digits(got.cost), expEff, nn[nn.length - 1], why.length ? 'FAIL' : 'OK']);
+  }
+
+  // ---- sinf tanlash: kerakli quvvat = maydon(m²) / 10 kW (quyosh/oxirgi qavat/texnika o'chiq, 1 kishi, shift 2,8) ----
+  // [kerakli kW, maydon, tavsiya, jami kW, soni, ogohlantirish raqamlari, konditsioner oylik kVt·soat (5 soat, inverter yo'q)]
+  //  2,0 -> «7» 2,1 | 3,6 -> «18» 5,2 | 7,0 -> «24» 7,0 | 11,1 -> «24 + 18» 12,2 (2 ta) | 15 -> «18 + 18 + 18» 15,6 (3 ta)
+  //  oylik = jami kW / 3 × 5 soat × 30 kun: 105 | 260 | 350 | 610 | 780
+  const CLS = [
+    [2.0, 20, '«7»', '2,1', 1, null, 105],
+    [3.6, 36, '«18»', '5,2', 1, null, 260],
+    [7.0, 70, '«24»', '7,0', 1, null, 350],
+    [11.1, 111, '«24 + 18»', '12,2', 2, [11.1, 24, 7, 2, 24, 18, 12.2], 610],
+    [15, 150, '«18 + 18 + 18»', '15,6', 3, [15, 24, 7, 3, 3, 18, 15.6], 780]
+  ];
+  for (const [need, area, cls, cover, count, warnNums, monthKwh] of CLS) {
+    await p.evaluate(({ area }) => {
+      for (const id of ['sunny', 'topFloor', 'tech']) document.getElementById(id).checked = false;
+      document.getElementById('area').value = String(area); document.getElementById('ceil').value = '2,8'; document.getElementById('people').value = '1';
+      document.getElementById('inverter').checked = false; document.getElementById('hours').value = '5'; document.getElementById('houseKwh').value = '250';
+    }, { area });
+    await p.click('#catStd'); await p.click('#calcBtn'); await p.waitForTimeout(400);
+    const g = await p.evaluate(() => ({ cls: document.getElementById('btuClass').textContent, cover: document.getElementById('rCover').textContent, need: document.getElementById('rNeed').textContent,
+      warnHidden: document.getElementById('multiWarn').hidden, warn: document.getElementById('multiWarn').textContent, month: document.getElementById('rMonthKwh').textContent,
+      cost: document.getElementById('rMonth').textContent, total: document.getElementById('rTotalCost').textContent, house: document.getElementById('rHouseCost').textContent,
+      covLabel: document.querySelector('[data-i="kCover"]').textContent }));
+    const why = [];
+    const coverKw = parseFloat(g.cover.replace(',', '.'));
+    if (g.cls.replace(/\s+/g, ' ') !== cls) why.push('tavsiya ' + g.cls + ' kutilgan ' + cls);
+    if (g.cover.replace(/\s+(kVt|кВт)$/, '') !== cover) why.push('jami quvvat ' + g.cover);
+    if (!(coverKw >= need - 1e-9)) why.push('TAVSIYA KERAKLI QUVVATDAN KICHIK: ' + coverKw + ' < ' + need);
+    if (g.warnHidden !== (count === 1)) why.push('ogohlantirish ko\'rinishi: hidden=' + g.warnHidden);
+    if (warnNums && JSON.stringify(nums(g.warn)) !== JSON.stringify(warnNums)) why.push('ogohlantirish raqamlari ' + JSON.stringify(nums(g.warn)) + ' kutilgan ' + JSON.stringify(warnNums));
+    if (digits(g.month) !== monthKwh) why.push('konditsioner oylik sarfi ' + digits(g.month) + ' kutilgan ' + monthKwh);
+    if (digits(g.total) - digits(g.house) !== digits(g.cost)) why.push('jami − uy ≠ konditsioner');
+    if (mode.name === 'ЎЗ' && /[A-Za-z]/.test(g.warn)) why.push('ЎЗ ogohlantirishda lotin harf');
+    T(!why.length, mode.name + ' · kerakli ' + String(need).replace('.', ',') + ' kW → ' + cls + ' (jami ' + cover + ' kW' + (count > 1 ? ', ' + count + ' ta, ogohlantirish bor' : ', ogohlantirishsiz') + ', oylik ' + monthKwh + ' kVt·soat)', why.join(' | '));
+    table.push([mode.name, 'kerakli ' + need + ' kW', cls, cover + ' kW', count + ' ta', digits(g.month) + ' kVt·soat', why.length ? 'FAIL' : 'OK']);
+    // 11,1 kW: elektr to'lovi JAMI quvvat (12,2 kW) bo'yicha — qo'lda: uy 250 = 175 000 (oddiy) | 87 500 (plitali); +610 kVt·soat -> 860:
+    //   oddiy: 130 000 + 270 000 + 360×1100 = 796 000, farq 621 000, ≈ 1 018 | plitali: 65 000 + 135 000 + 360×550 = 398 000, farq 310 500, ≈ 509
+    if (need === 11.1) {
+      for (const [cat, expHouse, expTotal, expCost, expEff] of [['std', 175000, 796000, 621000, 1018], ['stove', 87500, 398000, 310500, 509]]) {
+        await p.click(cat === 'std' ? '#catStd' : '#catStove'); await p.waitForTimeout(300);
+        const e = await p.evaluate(() => ({ house: document.getElementById('rHouseCost').textContent, total: document.getElementById('rTotalCost').textContent,
+          cost: document.getElementById('rMonth').textContent, summer: document.getElementById('rSummer').textContent, note: document.getElementById('effNote').textContent }));
+        const ew = [];
+        if (digits(e.house) !== expHouse) ew.push('uy ' + digits(e.house));
+        if (digits(e.total) !== expTotal) ew.push('jami ' + digits(e.total));
+        if (digits(e.cost) !== expCost) ew.push('konditsioner ' + digits(e.cost));
+        if (digits(e.summer) !== expCost * 3) ew.push('yozgi ' + digits(e.summer));
+        const nn = nums(e.note); if (nn[nn.length - 1] !== expEff) ew.push('o\'rtacha narx ' + nn[nn.length - 1] + ' kutilgan ' + expEff);
+        T(!ew.length, mode.name + ' · 11,1 kW (2 ta: 24 + 18 = 12,2 kW) · uy 250 · ' + (cat === 'std' ? 'oddiy' : 'elektr plitali') + ': to\'lov JAMI quvvat bo\'yicha — uy ' + expHouse + ' → ' + expTotal + ', konditsioner ' + expCost + ' (≈ ' + expEff + ')', ew.join(' | '));
+        table.push([mode.name, '11,1 kW elektr', cat, expCost, digits(e.cost), expEff, nn[nn.length - 1], ew.length ? 'FAIL' : 'OK']);
+      }
+      await p.click('#catStd'); await p.waitForTimeout(250);
+      if (mode.name === 'UZ' && process.env.SHOT_KOND_MULTI) {
+        await p.locator('#receipt').screenshot({ path: process.env.SHOT_KOND_MULTI + '-natija.png' }).catch(() => {});
+        await p.locator('#elecBox').screenshot({ path: process.env.SHOT_KOND_MULTI + '-elektr.png' }).catch(() => {});
+      }
+    }
   }
 
   // toifani hisobdan KEYIN almashtirish natijani qayta hisoblaydi

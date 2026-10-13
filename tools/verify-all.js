@@ -1002,11 +1002,14 @@ function runTool(args) {
     const why = [];
     try { execFileSync(process.execPath, [path.join(__dirname, 'test-elektr-tarif.js')], { stdio: 'pipe' }); }
     catch (e) { why.push('tools/test-elektr-tarif.js yiqildi'); }
+    try { execFileSync(process.execPath, [path.join(__dirname, 'test-konditsioner-tanlash.js')], { stdio: 'pipe' }); }
+    catch (e) { why.push('tools/test-konditsioner-tanlash.js yiqildi (konditsioner sinfi tavsiyasi kerakli quvvatdan kichik/noto\'g\'ri)'); }
     try {
       const TD = require('../assets/elektr-tarif.js').data;
       for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'konditsioner-kalkulyator.html', 'ru/konditsioner-kalkulyator.html']) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
         if (/450\s*[-–]\s*900|hududga qarab|зависит от региона/.test(h)) why.push(f + ': eski tarif matni qolgan');
+        if (/konditsioner/.test(f) && !/<script src="\/assets\/konditsioner\.js"><\/script>/.test(h)) why.push(f + ': konditsioner.js ulanmagan');
         if (/konditsioner/.test(f) && /id="tariff"/.test(h)) why.push(f + ': tekis narx maydoni (id="tariff") qaytib kelgan; tarif assets/elektr-tarif.js dan olinadi');
         if (!/<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
         const head = h.slice(0, h.indexOf('</head>'));
@@ -1016,6 +1019,7 @@ function runTool(args) {
         if (h.indexOf(TD.url) < 0) why.push(f + ': manba havolasi (lex.uz) yo\'q');
       }
       if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/elektr-tarif.js'") < 0) why.push('sw.js precache\'da elektr-tarif.js yo\'q');
+      if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/konditsioner.js'") < 0) why.push('sw.js precache\'da konditsioner.js yo\'q');
     } catch (e) { why.push(String(e.message || e).slice(0, 90)); }
     add(!why.length, '37. pog\'onali elektr tarifi (elektr + konditsioner sahifalari): hisob qo\'lda qiymatlarga teng, eski/tekis narx yo\'q, manba/sana/meta mos', why.join(' | '));
   }

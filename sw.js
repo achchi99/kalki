@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = 'f70ebac9';   /* sw-version:auto */
+const SW_VERSION = '4be348b3';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -35,6 +35,7 @@ const ASSETS = [
   '/assets/cyr.js',
   '/assets/datanote.js',
   '/assets/elektr-tarif.js',
+  '/assets/konditsioner.js',
   '/assets/tgcta.js',
   '/assets/sw-boot.js',
   '/assets/footer-lang.js',
