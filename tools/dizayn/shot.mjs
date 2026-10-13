@@ -4,6 +4,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const PREFIX = process.argv[2] || 'x';
 const PAGES = [['index', '/'], ['shablonlar', '/shablonlar'], ['gisht', '/gisht-kalkulyator']];
@@ -16,7 +17,7 @@ const srv = http.createServer((q, r) => {
   r.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f));
 });
 await new Promise((ok) => srv.listen(8792, ok));
-const b = await chromium.launch();
+const b = track(await chromium.launch());
 for (const [vn, w, h] of VIEWS) {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: w < 500, hasTouch: w < 500 });
   const page = await ctx.newPage();

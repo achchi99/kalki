@@ -4,6 +4,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { hisobla } from './hisobla.mjs';
+import { track } from '../test-cleanup.cjs';
 const require = createRequire(import.meta.url); const AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json', '.woff2': 'font/woff2' };
@@ -14,7 +15,7 @@ await new Promise((ok) => srv.listen(0, ok)); const PORT = srv.address().port;
 const V2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/v2-pages.json'), 'utf8')).map((f) => f.replace(/\.html$/, ''));
 const only = process.argv[2] ? process.argv[2].split(',') : null;
 const SLUGS = V2.filter((s) => !only || only.includes(s));
-const b = await chromium.launch();
+const b = track(await chromium.launch());
 const lum = ([r, g, bl]) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(bl); };
 const ratio = (a, c) => { const x = lum(a), y = lum(c); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
 const rgb = (s) => (s.match(/[\d.]+/g) || []).slice(0, 3).map(Number);

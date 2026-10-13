@@ -3,13 +3,14 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { hisobla } from './hisobla.mjs';
+import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
   if (!f) { r.writeHead(404); return r.end(); }
   r.writeHead(200, { 'Content-Type': { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' }[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
 await new Promise((ok) => srv.listen(8797, ok));
-const b = await chromium.launch();
+const b = track(await chromium.launch());
 const out = (n) => path.join(ROOT, 'docs/dizayn-skrinshot', n);
 const PAGES = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/pages.json'), 'utf8'));
 const V2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/v2-pages.json'), 'utf8')).map((f) => f.replace(/\.html$/, ''));

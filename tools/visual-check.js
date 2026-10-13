@@ -23,6 +23,7 @@ const path = require('path');
 const http = require('http');
 const { chromium } = require('playwright');
 const { RU_PAGES } = require('./prerender.js');
+const { track } = require('./test-cleanup.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 const SCREEN_DIR = path.join(ROOT, 'docs', 'screenshots');
@@ -152,7 +153,7 @@ async function main() {
 
   const server = await startServer();
   const base = 'http://127.0.0.1:' + server.address().port;
-  const browser = await chromium.launch();
+  const browser = track(await chromium.launch());
 
   const results = [];
   for (const name of pages) {

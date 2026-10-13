@@ -1,6 +1,7 @@
 // Yangi dizayn brauzer sinovi (lokal statik server): node tools/dizayn/test-v2.mjs
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; if (p === '/ru/') p = '/ru/index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
@@ -8,7 +9,7 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
   r.writeHead(200, { 'Content-Type': { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' }[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
 await new Promise((ok) => srv.listen(8794, ok));
 const B = 'http://localhost:8794';
-const b = await chromium.launch();
+const b = track(await chromium.launch());
 const errors = [];
 const log = (s) => console.log('OK   ' + s);
 async function pg(w, h) { const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 500, hasTouch: w < 500, serviceWorkers: 'block' }); const p = await c.newPage();

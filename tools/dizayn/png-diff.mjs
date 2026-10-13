@@ -1,6 +1,7 @@
 // node tools/dizayn/png-diff.mjs <a.png> <b.png> [chiqish-diff.png]  — farq qutisi (bbox) va foizi; brauzer canvas orqali (qo'shimcha kutubxonasiz)
 import fs from 'node:fs'; import { chromium } from 'playwright';
-const [A, B, OUT] = process.argv.slice(2); const b = await chromium.launch(); const p = await b.newPage();
+import { track } from '../test-cleanup.cjs';
+const [A, B, OUT] = process.argv.slice(2); const b = track(await chromium.launch()); const p = await b.newPage();
 const r = await p.evaluate(async ([a, c]) => { const load = (s) => new Promise((ok) => { const i = new Image(); i.onload = () => ok(i); i.src = 'data:image/png;base64,' + s; });
   const [x, y] = await Promise.all([load(a), load(c)]); const W = Math.max(x.width, y.width), H = Math.max(x.height, y.height);
   const g = (img) => { const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const t = cv.getContext('2d'); t.fillStyle = '#f0f'; t.fillRect(0, 0, W, H); t.drawImage(img, 0, 0); return t.getImageData(0, 0, W, H).data; };

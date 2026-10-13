@@ -1,13 +1,14 @@
 // Service worker simulyatsiyasi: onlayn ochish -> oflayn qayta ochish (V2 uslubi, ikonkalar, nav) + ochilmagan sahifa -> offline.html
 // node tools/dizayn/test-sw.mjs
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json', '.png': 'image/png' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; if (p.endsWith('/')) p += 'index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile()); if (!f) { r.writeHead(404); return r.end('nf'); }
   r.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
 await new Promise((o) => srv.listen(0, o)); const BASE = 'http://localhost:' + srv.address().port;
-const b = await chromium.launch(); const c = await b.newContext({ viewport: { width: 1280, height: 800 } }); const p = await c.newPage();
+const b = track(await chromium.launch()); const c = await b.newContext({ viewport: { width: 1280, height: 800 } }); const p = await c.newPage();
 await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort());
 const out = []; const T = (ok, name, info = '') => { out.push(ok); console.log((ok ? 'OK   ' : 'YIQILDI ') + name + (info ? ' — ' + info : '')); };
 await p.goto(BASE + '/', { waitUntil: 'networkidle' });

@@ -3,6 +3,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { track } from '../test-cleanup.cjs';
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const BASE = process.argv[2] || 'http://localhost:8788';
 const shot = (p, n) => p.screenshot({ path: path.join(dir, 'out', n), fullPage: false });
@@ -10,7 +11,7 @@ const NOTE = "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'l
 let ipn = 0; const RUN = Date.now() % 100000;
 const log = (s) => console.log('OK  ' + s);
 
-const browser = await chromium.launch();
+const browser = track(await chromium.launch());
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, permissions: ['clipboard-read', 'clipboard-write'] });
 const page = await ctx.newPage();
 const errors = [];

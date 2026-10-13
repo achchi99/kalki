@@ -1,8 +1,9 @@
 // RU/UZ AI blok UI sinovi (wrangler pages dev, jonli Haiku): node tools/ai-sinov/test-ru-ui.mjs [http://localhost:8799]
 import { chromium } from 'playwright'; import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url';
+import { track } from '../test-cleanup.cjs';
 const dir = path.dirname(fileURLToPath(import.meta.url)); const BASE = process.argv[2] || 'http://localhost:8799';
 let IPN = 0;
-const b = await chromium.launch(); const res = [];
+const b = track(await chromium.launch()); const res = [];
 const T = (ok, name, info = '') => { res.push(ok); console.log((ok ? 'OK   ' : 'YIQILDI ') + name + (info ? ' — ' + info : '')); };
 async function open(url, w = 1280) { const c = await b.newContext({ viewport: { width: w, height: 900 }, serviceWorkers: 'block', extraHTTPHeaders: { 'CF-Connecting-IP': '10.99.' + (Date.now() % 250) + '.' + (++IPN) } }); const p = await c.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(700); return { c, p, errs }; }

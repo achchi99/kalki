@@ -3,6 +3,7 @@ import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { track } from '../test-cleanup.cjs';
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const BASE = process.argv.find((a) => /^https?:/.test(a)) || 'http://localhost:8788';
 const NOAI = process.argv.includes('--noai');
@@ -10,7 +11,7 @@ const shot = (p, n) => p.screenshot({ path: path.join(dir, 'out', n) });
 const NOTE = "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'lumotini yozmang — ular kerak emas. Kalki matningizni saqlamaydi; u faqat ariza matnini tayyorlash uchun AI xizmatiga yuboriladi. AI qonun moddalari va raqamlarni qo'shmaydi — tayyor matnni o'qib, tekshirib chiqing.";
 const RUN = Date.now() % 100000; let ipn = 0, reqs = 0;
 const log = (s) => console.log('OK   ' + s);
-const browser = await chromium.launch();
+const browser = track(await chromium.launch());
 const errors = [];
 async function mk(w, h) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, permissions: ['clipboard-read', 'clipboard-write'], isMobile: w < 500, hasTouch: w < 500 });

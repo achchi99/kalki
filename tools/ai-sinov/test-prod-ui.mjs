@@ -1,8 +1,9 @@
 // Production ko'rinish tekshiruvi (AI so'rovisiz): node tools/ai-sinov/test-prod-ui.mjs https://kalki.uz
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
+import { track } from '../test-cleanup.cjs';
 const P = process.argv[2];
-const b = await chromium.launch();
+const b = track(await chromium.launch());
 const page = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
 const errs = []; page.on('pageerror', (e) => errs.push(String(e)));
 const hidden = () => page.evaluate(() => { const e = document.getElementById('aiAriza'); return !e || e.hidden || e.offsetParent === null; });

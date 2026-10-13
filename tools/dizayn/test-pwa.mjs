@@ -1,6 +1,7 @@
 // PWA tekshiruvi: manifest validatsiyasi, ikonka o'lchamlari, <head> havolalari (UZ/RU/CYR), installability (CDP), o'rnatish tugmasi (Android/iOS), /cyr/ JS-siz.
 // node tools/dizayn/test-pwa.mjs
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); const res = [];
 const T = (ok, name, info = '') => { res.push(ok); console.log((ok ? 'OK   ' : 'YIQILDI ') + name + (info ? ' — ' + info : '')); };
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
@@ -24,7 +25,7 @@ for (const d of dirs) for (const f of fs.readdirSync(path.join(ROOT, d || '.')).
 T(miss.length === 0, 'manifest + apple-touch-icon barcha sahifa <head> da (bittadan)', cnt + ' sahifa' + (miss.length ? ', yo\'q: ' + miss.slice(0, 4).join(', ') : ''));
 const cy = fs.readdirSync(path.join(ROOT, 'cyr')).filter((x) => x.endsWith('.html')); T(cy.every((f) => !/<script(?![^>]*type="application\/(ld\+)?json")[^>]*>/.test(fs.readFileSync(path.join(ROOT, 'cyr', f), 'utf8'))), '/cyr/: ijro etiladigan skript yo\'q (faqat <link>)', cy.length + ' sahifa');
 // 3) installability (CDP) va tugma
-const b = await chromium.launch(); let c = await b.newContext({ viewport: { width: 390, height: 800 }, serviceWorkers: 'allow' }); let p = await c.newPage();
+const b = track(await chromium.launch()); let c = await b.newContext({ viewport: { width: 390, height: 800 }, serviceWorkers: 'allow' }); let p = await c.newPage();
 await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.evaluate(() => navigator.serviceWorker.ready); await p.waitForTimeout(1500);
 const cdp = await c.newCDPSession(p); const inst = await cdp.send('Page.getInstallabilityErrors').catch((e) => ({ installabilityErrors: [{ errorId: 'cdp:' + e.message }] }));
 T(inst.installabilityErrors.length === 0, 'installability (Chrome CDP): xato yo\'q', JSON.stringify(inst.installabilityErrors.map((e) => e.errorId)));

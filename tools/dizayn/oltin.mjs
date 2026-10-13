@@ -5,6 +5,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
 const [MODE, ROOTARG, ...ONLY] = process.argv.slice(2);
 const ROOT = path.resolve(ROOTARG);
 const HERE = path.resolve(path.dirname(new URL(import.meta.url).pathname));
@@ -16,7 +17,7 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => c.startsWith(ROOT) && fs.existsSync(c) && fs.statSync(c).isFile());
   if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port;
-const browser = await chromium.launch();
+const browser = track(await chromium.launch());
 const NONDET = new Set(['oila-byudjet-kalkulyator']);   // eski main ham o'zi bilan mos kelmaydi (tasodifiy/sanaga bog'liq qiymatlar)
 const norm = (t) => String(t || '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
 

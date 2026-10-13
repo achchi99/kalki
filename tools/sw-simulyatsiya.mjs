@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { chromium } from 'playwright';
+import { track } from './test-cleanup.cjs';
 
 const [OLD, NEW] = process.argv.slice(2, 4).map((p) => path.resolve(p));
 const HEADER_FIX = process.argv.includes('--header-fix');
@@ -41,7 +42,7 @@ const srv = http.createServer((req, res) => {
 });
 await new Promise((r) => srv.listen(8791, r));
 const BASE = 'http://localhost:8791';
-const browser = await chromium.launch();
+const browser = track(await chromium.launch());
 const ctx = await browser.newContext({ viewport: { width: 390, height: 800 }, serviceWorkers: 'allow' });
 const page = await ctx.newPage();
 let autoReloads = 0;
