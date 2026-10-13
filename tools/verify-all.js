@@ -997,6 +997,28 @@ function runTool(args) {
     }
   }
 
+  /* ---------- 37. Elektr pog'onali tarifi: hisob qo'lda qiymatlarga teng, eski tarif yo'q, meta/manba/sana mos ---------- */
+  {
+    const why = [];
+    try { execFileSync(process.execPath, [path.join(__dirname, 'test-elektr-tarif.js')], { stdio: 'pipe' }); }
+    catch (e) { why.push('tools/test-elektr-tarif.js yiqildi'); }
+    try {
+      const TD = require('../assets/elektr-tarif.js').data;
+      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html']) {
+        const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
+        if (/450\s*[-–]\s*900|hududga qarab|зависит от региона/.test(h)) why.push(f + ': eski tarif matni qolgan');
+        if (!/<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
+        const head = h.slice(0, h.indexOf('</head>'));
+        if (head.indexOf('rel="manifest"') < 0 || head.indexOf('apple-touch-icon') < 0) why.push(f + ': <head> buzilgan (manifest/ikonka head ichida emas)');
+        for (const q of ['meta name="description"', 'meta property="og:description"', 'meta name="twitter:description"']) if (h.indexOf('<' + q) < 0) why.push(f + ': <' + q + '> yo\'q');
+        if (h.indexOf('data-note-uz="Tarif ' + TD.amalda + ' dan, tekshirilgan sana: ' + TD.tekshirilgan + '"') < 0) why.push(f + ': datanote tarif sanasi mos emas');
+        if (h.indexOf(TD.url) < 0) why.push(f + ': manba havolasi (lex.uz) yo\'q');
+      }
+      if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/elektr-tarif.js'") < 0) why.push('sw.js precache\'da elektr-tarif.js yo\'q');
+    } catch (e) { why.push(String(e.message || e).slice(0, 90)); }
+    add(!why.length, '37. elektr pog\'onali tarif: hisob qo\'lda qiymatlarga teng, sahifada eski tarif yo\'q, manba/sana/meta mos', why.join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

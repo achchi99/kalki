@@ -1,8 +1,7 @@
 {
  "odatiy": {
-  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 220 050 so'm Jami oyiga to'laysiz Konditsioner81 000 so'mElektr isitgich81 000 so'mMuzlatgich48 600 so'mKir yuvish mashinasi9 450 so'm Jami (oyiga)220 050 so'm UlashishPDF",
+  "text": "Iste'molchi toifasi Boshqa xonadonlar Elektr plitali ko'p qavatli uy, yotoqxona Elektr plitali toifa — ovqat tayyorlash uchun markazlashgan elektr plitalar o'rnatilgan ko'p kvartirali uy yoki yotoqxonada yashovchi maishiy iste'molchilar. Qolgan barcha xonadonlar — «Boshqa xonadonlar». Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13. Manba: Vazirlar Mahkamasining 2026-yil 15-maydagi 243-son qarori, 1-ilova, 1.2.1 va 1.2.2-bandlar (narxlar QQS bilan). Hisob pog'onama-pog'ona: har bir pog'ona doirasidagi sarf o'z narxida. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 390 100 so'm Jami oyiga to'laysiz Qurilmalar sarfi (oyiga) Konditsioner180 kVt-soatElektr isitgich180 kVt-soatMuzlatgich108 kVt-soatKir yuvish mashinasi21 kVt-soat Pog'onalar bo'yicha to'lov 0–200 kVt-soat200 × 650 so'm130 000 so'm201–500 kVt-soat289 × 900 so'm260 100 so'm UlashishPDF Jami (oyiga)390 100 so'm Jami sarf: 489 kVt-soat/oy · boshqa xonadonlar",
   "inputs": [
-   "tarif=450",
    "h_kondi=5",
    "h_isit=3",
    "h_muzlatgich=24",
@@ -15,9 +14,8 @@
   ]
  },
  "chegara": {
-  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Oylik elektr xarajati — Jami oyiga to'laysiz Jami (oyiga)— UlashishPDF",
+  "text": "Iste'molchi toifasi Boshqa xonadonlar Elektr plitali ko'p qavatli uy, yotoqxona Elektr plitali toifa — ovqat tayyorlash uchun markazlashgan elektr plitalar o'rnatilgan ko'p kvartirali uy yoki yotoqxonada yashovchi maishiy iste'molchilar. Qolgan barcha xonadonlar — «Boshqa xonadonlar». Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13. Manba: Vazirlar Mahkamasining 2026-yil 15-maydagi 243-son qarori, 1-ilova, 1.2.1 va 1.2.2-bandlar (narxlar QQS bilan). Hisob pog'onama-pog'ona: har bir pog'ona doirasidagi sarf o'z narxida. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 0 so'm Jami oyiga to'laysiz Qurilmalar sarfi (oyiga) Pog'onalar bo'yicha to'lov UlashishPDF Jami (oyiga)0 so'm Jami sarf: 0 kVt-soat/oy · boshqa xonadonlar",
   "inputs": [
-   "tarif=0",
    "h_kondi=0",
    "h_isit=0",
    "h_muzlatgich=0",
@@ -30,9 +28,8 @@
   ]
  },
  "katta": {
-  "text": "1 kVt-soat narxi so'm/kVt-soat O'zbekistonda aholi uchun tarif taxminan 450-900 so'm/kVt-soat (hududga qarab). Kvitansiyangizdan aniq tarifni ko'ring. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 28 836 000 so'm Jami oyiga to'laysiz Konditsioner8 100 000 so'mElektr isitgich8 100 000 so'mMuzlatgich4 860 000 so'mKir yuvish mashinasi945 000 so'mTelevizor540 000 so'mKompyuter1 080 000 so'mMikroto'lqinli pech675 000 so'mYoritish (uy bo'ylab)486 000 so'mSuv isitgich (boyler)4 050 000 so'm Jami (oyiga)28 836 000 so'm UlashishPDF",
+  "text": "Iste'molchi toifasi Boshqa xonadonlar Elektr plitali ko'p qavatli uy, yotoqxona Elektr plitali toifa — ovqat tayyorlash uchun markazlashgan elektr plitalar o'rnatilgan ko'p kvartirali uy yoki yotoqxonada yashovchi maishiy iste'molchilar. Qolgan barcha xonadonlar — «Boshqa xonadonlar». Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13. Manba: Vazirlar Mahkamasining 2026-yil 15-maydagi 243-son qarori, 1-ilova, 1.2.1 va 1.2.2-bandlar (narxlar QQS bilan). Hisob pog'onama-pog'ona: har bir pog'ona doirasidagi sarf o'z narxida. Qurilmalar va ishlash vaqti Kerakli qurilmalarni belgilang, kunlik ishlash soatini o'zgartiring (sukut o'rtacha qiymat). KonditsionerElektr isitgichMuzlatgichKir yuvish mashinasiTelevizorKompyuterMikroto'lqinli pechYoritish (uy bo'ylab)Suv isitgich (boyler) Xarajatni hisoblash Oylik elektr xarajati 5 012 600 so'm Jami oyiga to'laysiz Qurilmalar sarfi (oyiga) Konditsioner1 800 kVt-soatElektr isitgich1 800 kVt-soatMuzlatgich1 080 kVt-soatKir yuvish mashinasi210 kVt-soatTelevizor120 kVt-soatKompyuter240 kVt-soatMikroto'lqinli pech150 kVt-soatYoritish (uy bo'ylab)108 kVt-soatSuv isitgich (boyler)900 kVt-soat Pog'onalar bo'yicha to'lov 0–200 kVt-soat200 × 325 so'm65 000 so'm201–500 kVt-soat300 × 450 so'm135 000 so'm501–1 000 kVt-soat500 × 550 so'm275 000 so'm1 001–5 000 kVt-soat4 000 × 800 so'm3 200 000 so'm5 001–10 000 kVt-soat1 408 × 950 so'm1 337 600 so'm UlashishPDF Jami (oyiga)5 012 600 so'm Jami sarf: 6 408 kVt-soat/oy · elektr plitali uy/yotoqxona",
   "inputs": [
-   "tarif=4 500",
    "h_kondi=50",
    "h_isit=30",
    "h_muzlatgich=240",

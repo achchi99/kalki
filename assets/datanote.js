@@ -50,7 +50,9 @@
 
   function apply() {
     var el = ensure();
-    if (el) el.textContent = DATA_DATE[lang()];
+    // Sahifa o'z izohini data-note-uz / data-note-ru bilan bera oladi (masalan elektr tarifi: tarif sanasi,
+    // umumiy "avgust holatiga" emas). Atribut bo'lmasa — hammasi avvalgidek.
+    if (el) el.textContent = el.getAttribute('data-note-' + lang()) || DATA_DATE[lang()];
   }
 
   // Til tugmasi — delegatsiya orqali, sahifaning o'z .onclick handleriga
