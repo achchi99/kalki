@@ -77,7 +77,8 @@ for (const mode of MODES) {
   T(!OLD.test(info.body) && !OLD.test(info.faq), mode.name + ': eski tarif ("450–900", "hududga qarab") sahifada ham, FAQ da ham yo\'q');
   T(info.link === 'https://lex.uz/uz/docs/-8195731', mode.name + ': manba havolasi lex.uz 243-son qarori', String(info.link));
   const dated = mode.name === 'RU' ? /Тариф с 2026-06-01, дата проверки: 2026-10-13/ : mode.name === 'UZ' ? /Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13/ : /Тариф 2026-06-01 дан, текширилган сана: 2026-10-13/;
-  T(dated.test(info.dn) && dated.test(info.body), mode.name + ': "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" yozuvi', info.dn);
+  const datedCount = (info.body.match(new RegExp(dated.source, 'g')) || []).length;
+  T(dated.test(info.dn) && datedCount === 1, mode.name + ': "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" yozuvi sahifada AYNAN BIR MARTA (karta ichida va tagida takrorlanmaydi)', 'marta: ' + datedCount + ' | ' + info.dn);
   T(info.cats.length === 2 && info.cats[0].endsWith('|true') && info.cats[1].endsWith('|false') && !info.tarifInput, mode.name + ': 2 ta toifa tugmasi (standart: birinchisi), eski narx maydoni yo\'q', info.cats.join(' / '));
   T(/650/.test(info.faq) && /2\s?200/.test(info.faq) && /243/.test(info.faq), mode.name + ': FAQ da yangi tarif (650 … 2 200, 243-son)');
   T(info.ovf <= 0, mode.name + ': 360px da gorizontal siljish yo\'q', String(info.ovf));

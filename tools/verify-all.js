@@ -1006,22 +1006,34 @@ function runTool(args) {
     catch (e) { why.push('tools/test-konditsioner-tanlash.js yiqildi (konditsioner sinfi tavsiyasi kerakli quvvatdan kichik/noto\'g\'ri)'); }
     try {
       const TD = require('../assets/elektr-tarif.js').data;
-      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'konditsioner-kalkulyator.html', 'ru/konditsioner-kalkulyator.html']) {
+      const TARIF_PAGES = ['elektr-xarajat-kalkulyator', 'konditsioner-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator'];
+      for (const f of TARIF_PAGES.reduce((a, n) => a.concat([n + '.html', 'ru/' + n + '.html']), [])) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
-        if (/450\s*[-–]\s*900|hududga qarab|зависит от региона/.test(h)) why.push(f + ': eski tarif matni qolgan');
+        if (/450\s*[-–]\s*900|(?:tarif|narx)[^<\n]{0,80}hududga qarab|(?:тариф|цен)[^<\n]{0,80}зависит от региона/i.test(h)) why.push(f + ': eski tarif matni qolgan ("450–900, hududga qarab")');
         if (/konditsioner/.test(f) && !/<script src="\/assets\/konditsioner\.js"><\/script>/.test(h)) why.push(f + ': konditsioner.js ulanmagan');
-        if (/konditsioner/.test(f) && /id="tariff"/.test(h)) why.push(f + ': tekis narx maydoni (id="tariff") qaytib kelgan; tarif assets/elektr-tarif.js dan olinadi');
+        if (/konditsioner|quyosh/.test(f) && /id="tariff"/.test(h)) why.push(f + ': tekis narx maydoni (id="tariff") qaytib kelgan; tarif assets/elektr-tarif.js dan olinadi');
+        if (/avto-xarajat/.test(f) && /price:\s*450\b|450 so'm|450 сум/.test(h)) why.push(f + ': elektromobil uchun eski tekis 450 so\'m narxi qaytib kelgan');
+        if (/\bkWt\b/.test(h) && /quyosh|avto-xarajat|konditsioner|elektr-xarajat/.test(f)) why.push(f + ': "kWt" birligi (ЎЗ rejimida "кWт" — aralash alifbo); "kVt" / "kVt-soat" ishlating');
         if (!/<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
         const head = h.slice(0, h.indexOf('</head>'));
         if (head.indexOf('rel="manifest"') < 0 || head.indexOf('apple-touch-icon') < 0) why.push(f + ': <head> buzilgan (manifest/ikonka head ichida emas)');
         for (const q of ['meta name="description"', 'meta property="og:description"', 'meta name="twitter:description"']) if (h.indexOf('<' + q) < 0) why.push(f + ': <' + q + '> yo\'q');
-        if (h.indexOf('data-note-uz="Tarif ' + TD.amalda + ' dan, tekshirilgan sana: ' + TD.tekshirilgan + '"') < 0) why.push(f + ': datanote tarif sanasi mos emas');
+        if (/avto-xarajat/.test(f)) {   // tarif sanasi FAQAT elektromobil rejimida (JS orqali), benzin va boshqalarda umumiy izoh qoladi
+          if (h.indexOf("'Tarif '+TD.amalda+' dan, tekshirilgan sana: '+TD.tekshirilgan") < 0) why.push(f + ': elektro rejimi datanote tarif sanasi (JS) yo\'q');
+        } else if (h.indexOf('data-note-uz="Tarif ' + TD.amalda + ' dan, tekshirilgan sana: ' + TD.tekshirilgan + '"') < 0) why.push(f + ': datanote tarif sanasi mos emas');
+        if (/Tarif \{amalda\} dan, tekshirilgan sana|Тариф с \{amalda\}, дата проверки/.test(h)) why.push(f + ': tarif sanasi srcNote ichida ham qolgan (natija ostida faqat BIR marta bo\'lishi kerak)');
         if (h.indexOf(TD.url) < 0) why.push(f + ': manba havolasi (lex.uz) yo\'q');
       }
       if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/elektr-tarif.js'") < 0) why.push('sw.js precache\'da elektr-tarif.js yo\'q');
       if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/konditsioner.js'") < 0) why.push('sw.js precache\'da konditsioner.js yo\'q');
+      // butun sayt: tarifdan keyin qolgan tekis elektr narxi (tarif moduli ulanmagan sahifalarda)
+      for (const f of sitePages().concat(sitePages().map((x) => 'ru/' + x).filter((x) => fs.existsSync(path.join(ROOT, x))))) {
+        const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
+        if (/elektr-tarif\.js/.test(h)) continue;
+        if (/id="tariff"[^>]*value="(?:450|600|650|900|1\s?100)"|\bprice:\s*450\b|elektr[^<]{0,60}\b(?:450|650)\s*(?:so.m|сум)/i.test(h)) why.push(f + ': eski tekis elektr narxi qolgan');
+      }
     } catch (e) { why.push(String(e.message || e).slice(0, 90)); }
-    add(!why.length, '37. pog\'onali elektr tarifi (elektr + konditsioner sahifalari): hisob qo\'lda qiymatlarga teng, eski/tekis narx yo\'q, manba/sana/meta mos', why.join(' | '));
+    add(!why.length, '37. pog\'onali elektr tarifi (elektr, konditsioner, quyosh, avto-elektro sahifalari): hisob qo\'lda qiymatlarga teng, eski/tekis narx yo\'q, manba/sana (natija ostida bir marta)/meta mos', why.join(' | '));
   }
 
   /* ---------- hisobot ---------- */

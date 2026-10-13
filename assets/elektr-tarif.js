@@ -78,5 +78,25 @@
     return { cat: b.cat, base: a.kwh, add: addKwh, baseTotal: a.total, total: b.total, cost: cost, effective: addKwh > 0 ? cost / addKwh : 0, rows: rows };
   }
 
-  return { data: DATA, tiers: tiers, incremental: incremental };
+  /* Quyosh paneli: uy sarfi (house, kVt·soat/oy) va panel ishlab chiqargani (gen, kVt·soat/oy).
+   * Panel ENG QIMMAT pog'onadagi sarfni birinchi bo'lib qoplaydi: tejash = to'lov(uy) − to'lov(uy − qoplangani).
+   *   covered = min(uy, panel); surplus = max(0, panel − uy)  (ortiqcha tejashga kirmaydi; sotish narxi qarorda YO'Q)
+   * Qaytaradi: { cat, house, gen, covered, surplus, before, after, saving, effective (so'm/kVt·soat), rows } —
+   * rows: panel qoplagan pog'onalar ([{ idx, from, to, kwh, price, cost }], pastdan yuqoriga). */
+  function saving(house, gen, cat) {
+    var H = house > 0 ? Number(house) : 0, G = gen > 0 ? Number(gen) : 0;
+    var covered = Math.min(H, G), surplus = Math.max(0, G - H);
+    var a = tiers(H, cat), b = tiers(H - covered, cat);
+    var rows = [];
+    for (var i = 0; i < a.rows.length; i++) {
+      var r = a.rows[i], left = 0;
+      for (var j = 0; j < b.rows.length; j++) if (b.rows[j].idx === r.idx) left = b.rows[j].kwh;
+      var part = r.kwh - left;
+      if (part > 1e-9) rows.push({ idx: r.idx, from: r.from, to: r.to, kwh: part, price: r.price, cost: Math.round(part * r.price) });
+    }
+    var save = a.total - b.total;
+    return { cat: a.cat, house: a.kwh, gen: G, covered: covered, surplus: surplus, before: a.total, after: b.total, saving: save, effective: covered > 0 ? save / covered : 0, rows: rows };
+  }
+
+  return { data: DATA, tiers: tiers, incremental: incremental, saving: saving };
 });

@@ -78,5 +78,36 @@ T('qurilma sarfi 0 yoki manfiy: qo\'shimcha to\'lov 0, qator yo\'q', () => [0, -
 T('uy sarfi 0: qo\'shimcha to\'lov = qurilmaning o\'z to\'lovi', () => assert.strictEqual(incremental(0, 350, 'std').cost, 265000));
 T('o\'rtacha narx: uy 400 + 180 oddiy = 178 000 / 180 = 988,9', () => assert.strictEqual(Math.round(incremental(400, 180, 'std').effective), 989));
 
+// ---- saving(): quyosh paneli — panel eng qimmat pog'onadagi sarfni birinchi qoplaydi (qo'lda hisoblangan) ----
+// [uy, panel, toifa, qoplangan, ortiqcha, to'lov oldin, keyin, tejash, [pog'ona ulushlari kVt·soat × narx]]
+//  350/150 oddiy:   350 = 130 000 + 150×900 = 265 000; qoladi 200 = 130 000; tejash 135 000 (= 150×900); pog'ona 201–500
+//  600/300 oddiy:   600 = 130 000 + 270 000 + 100×1100 = 510 000; qoladi 300 = 130 000 + 100×900 = 220 000; tejash 290 000 (= 200×900 + 100×1100)
+//  200/400 oddiy:   200 = 130 000; qoladi 0; tejash 130 000 (= 200×650); ortiqcha 200
+//  350/150 plitali: 350 = 65 000 + 150×450 = 132 500; qoladi 200 = 65 000; tejash 67 500 (= 150×450)
+//  600/300 plitali: 600 = 65 000 + 135 000 + 100×550 = 255 000; qoladi 300 = 65 000 + 100×450 = 110 000; tejash 145 000 (= 200×450 + 100×550)
+//  200/400 plitali: 200 = 65 000; qoladi 0; tejash 65 000 (= 200×325); ortiqcha 200
+const SAV = [
+  [350, 150, 'std',   150, 0,   265000, 130000, 135000, [[150, 900]]],
+  [600, 300, 'std',   300, 0,   510000, 220000, 290000, [[200, 900], [100, 1100]]],
+  [200, 400, 'std',   200, 200, 130000, 0,      130000, [[200, 650]]],
+  [350, 150, 'stove', 150, 0,   132500, 65000,  67500,  [[150, 450]]],
+  [600, 300, 'stove', 300, 0,   255000, 110000, 145000, [[200, 450], [100, 550]]],
+  [200, 400, 'stove', 200, 200, 65000,  0,      65000,  [[200, 325]]]
+];
+const { saving } = require('../assets/elektr-tarif.js');
+SAV.forEach(([h, g, c, cov, sur, before, after, save, parts]) => {
+  T('quyosh: uy ' + h + ', panel ' + g + ' (' + c + '): oldin ' + before + ', keyin ' + after + ', tejash ' + save + (sur ? ', ortiqcha ' + sur : ''), () => {
+    const r = saving(h, g, c);
+    assert.strictEqual(r.covered, cov); assert.strictEqual(r.surplus, sur); assert.strictEqual(r.before, before); assert.strictEqual(r.after, after); assert.strictEqual(r.saving, save);
+    assert.deepStrictEqual(r.rows.map((x) => [Math.round(x.kwh * 1e6) / 1e6, x.price]), parts);
+    assert.ok(Math.abs(r.effective - save / cov) < 1e-9);
+  });
+});
+T('quyosh: panel 0 yoki uy 0 — tejash 0, manfiy bo\'lmaydi', () => { [[350, 0], [0, 300], [350, -5], [-1, 100], [NaN, 100]].forEach(([h, g]) => { const r = saving(h, g, 'std'); assert.strictEqual(r.saving, 0); assert.ok(r.surplus >= 0); }); });
+T('quyosh: tejash hech qachon uy to\'lovidan ko\'p emas va panel ko\'paysa kamaymaydi', () => {
+  ['std', 'stove'].forEach((c) => [120, 350, 777, 1500].forEach((h) => { let prev = -1; for (let g = 0; g <= 2000; g += 25) { const r = saving(h, g, c); assert.ok(r.saving <= r.before && r.saving >= prev, c + ' ' + h + ' ' + g); prev = r.saving; } }));
+});
+T('quyosh: panel 1 kVt·soat o\'rtacha narxi eng qimmat pog\'ona narxidan oshmaydi', () => { const r = saving(600, 300, 'std'); assert.ok(r.effective <= 1100 && r.effective > 900); });
+
 console.log(fail ? fail + ' ta yiqildi (jami ' + (pass + fail) + ')' : 'hammasi joyida (' + pass + ' ta)');
 process.exit(fail ? 1 : 0);
