@@ -1136,12 +1136,13 @@ function runTool(args) {
       for (const f of PAGES) {
         if (!fs.existsSync(path.join(ROOT, f))) { why.push(f + ': yo\'q'); continue; }
         const h = rd(f);
-        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*<script src="\/assets\/gaz-tarif\.js"><\/script>/.test(h)) why.push(f + ': tarif-core.js + gaz-tarif.js ulanmagan');
+        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*(?:<script src="\/assets\/tier-bar\.js"><\/script>\s*)?<script src="\/assets\/gaz-tarif\.js"><\/script>/.test(h)) why.push(f + ': tarif-core.js + gaz-tarif.js ulanmagan');
         // sahifa skriptida tarif raqamlari YO'Q (faqat gaz-tarif.js da)
         const inline = [...h.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/(?:ld\+)?json")[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('\n');
         const prices = GD.prices.concat([GD.noMeter.cooking, GD.noMeter.heating]).map((n) => String(n));
         for (const n of new Set(prices)) if (new RegExp('(?<![\\d.])' + nb(n).replace(/\[\\s\\u00a0\]/g, '[\\s\\u00a0]?') + '(?![\\d])').test(inline)) why.push(f + ': sahifa skriptida tarif raqami ' + n + ' (faqat assets/gaz-tarif.js da bo\'lsin)');
         if (/id="tariff"|id="gazNarx"/.test(h)) why.push(f + ': tekis narx maydoni');
+        if (!/<script src="\/assets\/tier-bar\.js"><\/script>/.test(h) || h.indexOf('id="tierBar"') < 0) why.push(f + ': pog\'ona chizig\'i (tier-bar.js, #tierBar) ulanmagan');
         // manba va sana: natija ostida BIR marta (datanote), srcNote ichida sana yo'q
         const TDt = GD.tekshirilgan, TDa = GD.amalda;
         if (f.indexOf('ru/') === 0) { if (h.indexOf('data-note-ru="Тариф с ' + TDa + ', дата проверки: ' + TDt + '"') < 0) why.push(f + ': datanote tarif sanasi mos emas'); }
@@ -1158,11 +1159,13 @@ function runTool(args) {
         if (!/"@type":"FAQPage"/.test(h) || !/"@type":"WebApplication"/.test(h)) why.push(f + ': JSON-LD (WebApplication + FAQPage) yo\'q');
         if (/\bkWt\b|кW|кВт-соат|\bkW\b/.test(h.replace(/<script[\s\S]*?<\/script>/g, ''))) why.push(f + ': "kW" / aralash alifbo');
       }
+      // umumiy komponent tarif raqamlarini o'zida saqlamaydi (narxlar chaqiruvchidan keladi)
+      if (/\b(?:1100|1\s?100|2300|2700|3300|1550)\b/.test(rd('assets/tier-bar.js').replace(/\/\*[\s\S]*?\*\//g, ''))) why.push('assets/tier-bar.js: tarif raqami yozilgan (komponent umumiy bo\'lishi kerak)');
       // saytga ulanish
       const sm = rd('sitemap.xml');
       for (const u of ['https://kalki.uz/gaz-xarajat-kalkulyator', 'https://kalki.uz/ru/gaz-xarajat-kalkulyator']) if (sm.indexOf('<loc>' + u + '</loc>') < 0) why.push('sitemap.xml da ' + u + ' yo\'q');
       const sw = rd('sw.js');
-      for (const u of ["'/assets/gaz-tarif.js'", "'/assets/tarif-core.js'", "'/gaz-xarajat-kalkulyator'", "'/ru/gaz-xarajat-kalkulyator'"]) if (sw.indexOf(u) < 0) why.push('sw.js precache\'da ' + u + ' yo\'q');
+      for (const u of ["'/assets/gaz-tarif.js'", "'/assets/tier-bar.js'", "'/assets/tarif-core.js'", "'/gaz-xarajat-kalkulyator'", "'/ru/gaz-xarajat-kalkulyator'"]) if (sw.indexOf(u) < 0) why.push('sw.js precache\'da ' + u + ' yo\'q');
       if (rd('index.html').indexOf("href:'gaz-xarajat-kalkulyator'") < 0) why.push('index.html katalogida gaz kartochkasi yo\'q');
       for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'gaz-xarajat-kalkulyator.html', 'ru/gaz-xarajat-kalkulyator.html']) {
         const h = rd(f), rel = (h.match(/<section class="section" id="related">[\s\S]*?<\/section>/) || [''])[0];

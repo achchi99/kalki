@@ -47,6 +47,16 @@ const CASES = [
   ['use', 'other', ['3000'], 6060000, 5700000, 2020, [[100, 1100], [2400, 2000], [500, 2300]], [3, 2501, 5000, 2300, 5001, 2000, 2700]],
   ['meter', 'heat', ['12340', '12640'], 330000, 510000, 1100, [[300, 1100]], [1, 0, 500, 1100, 501, 200, 2000]]
 ];
+// pog'ona chizig'i (assets/tier-bar.js): [pog'ona raqami (1-dan), strelka x %] — QO'LDA: x = (pog'ona + pog'ona ichidagi ulush) / 5
+//  isitish 300: 300/500 = 0,6 → 0,6/5 = 12 | 800: (800−500)/2000 = 0,15 → 1,15/5 = 23 | 6000: (6000−5000)/5000 = 0,2 → 3,2/5 = 64
+//  boshqa 80: 80/100 = 0,8 → 0,8/5 = 16 | 150: (150−100)/2400 = 0,0208 → 1,0208/5 = 20,42 | 3000: (3000−2500)/2500 = 0,2 → 2,2/5 = 44
+const BAR = [[1, 12], [2, 23], [4, 64], [1, 16], [2, 20.42], [3, 44], [1, 12]];
+const BAR_COLORS = ['rgb(30, 123, 75)', 'rgb(79, 127, 18)', 'rgb(138, 101, 0)', 'rgb(181, 71, 10)', 'rgb(179, 38, 30)'];   // yashil → qizil
+const BAR_TICKS = { heat: [0, 500, 2500, 5000, 10000], other: [0, 100, 2500, 5000, 10000] };
+const BAR_PRICES = [1100, 2000, 2300, 2700, 3300];
+const lumT = ([r, g, bl]) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(bl); };
+const cr = (c1, c2) => { const x = lumT(c1), y = lumT(c2); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+const rgbOf = (s) => (s.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
 const MODES = [
   { name: 'UZ', url: '/gaz-xarajat-kalkulyator', approx: /TAXMINIY/i, less: /kichik/, inv: /raqam/, shu: /Shu sarf/ },
   { name: 'RU', url: '/ru/gaz-xarajat-kalkulyator', approx: /ОРИЕНТИРОВОЧНЫЙ/i, less: /меньше/, inv: /числами/, shu: /Если этот расход/ },
@@ -60,8 +70,8 @@ const nums = (s) => (String(s).replace(/[  ]/g, ' ').match(/\d[\d ]*(?:,\d+)?
 
 const b = track(await chromium.launch());
 const fixDate = (month) => `(() => { const R = Date, T = new R(2026, ${month - 1}, 15, 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();`;
-async function open(url, month) {
-  const ctx = await b.newContext({ viewport: { width: 360, height: 800 }, serviceWorkers: 'block' });
+async function open(url, month, width) {
+  const ctx = await b.newContext({ viewport: { width: width || 360, height: 800 }, serviceWorkers: 'block' });
   await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
   if (month) await ctx.addInitScript(fixDate(month));
   const p = await ctx.newPage(); const errs = [];
@@ -96,7 +106,7 @@ for (const mode of MODES) {
   }
 
   const o = await open(mode.url, 12); const q = o.p;
-  for (const [mrej, davr, kir, jami, boshqa, avg, rows, note] of CASES) {
+  for (const [ci, [mrej, davr, kir, jami, boshqa, avg, rows, note]] of CASES.entries()) {
     await q.click(mrej === 'use' ? '#modeUse' : '#modeMeter');
     await q.click(davr === 'heat' ? '#seasonHeat' : '#seasonOther');
     if (mrej === 'use') await setIn(q, 'm3In', kir[0]); else { await setIn(q, 'prevIn', kir[0]); await setIn(q, 'curIn', kir[1]); }
@@ -115,8 +125,43 @@ for (const mode of MODES) {
     if (otNums[otNums.length - 1] !== boshqa || !mode.shu.test(ot)) why.push('boshqa davr jami ' + otNums[otNums.length - 1] + ' kutilgan ' + boshqa + ' | ' + ot);
     if (JSON.stringify(nums(g.pos)) !== JSON.stringify(note)) why.push('izoh ' + JSON.stringify(nums(g.pos)) + ' kutilgan ' + JSON.stringify(note));
     if (mode.name === 'ЎЗ' && /[A-Za-z]/.test(g.extra.join(' ') + g.pos + g.use)) why.push('ЎЗ da lotin harf: ' + (g.pos.match(/[A-Za-z]+/g) || []).join(' '));
+    // ---- pog'ona chizig'i ----
+    const tb = await q.evaluate(() => {
+      const pl = document.querySelector('#tierBar .tb'); if (!pl) return null;
+      const segs = [...pl.querySelectorAll('.tb-seg')], val = pl.querySelector('.tb-val'), pr = pl.getBoundingClientRect(), vr = val ? val.getBoundingClientRect() : null;
+      const rc = document.getElementById('receipt').getBoundingClientRect();
+      return { n: segs.length, bg: segs.map((x) => getComputedStyle(x).backgroundColor), col: segs.map((x) => getComputedStyle(x).color), txt: segs.map((x) => x.textContent.replace(/\s/g, '')), on: segs.findIndex((x) => x.classList.contains('on')) + 1,
+        x: Number(pl.getAttribute('data-x')), tier: Number(pl.getAttribute('data-tier')), label: val ? val.textContent : '', inside: !!vr && vr.left >= pr.left - 1 && vr.right <= pr.right + 1,
+        ticks: [...pl.querySelectorAll('.tb-tick')].map((x) => x.textContent.replace(/\s/g, '')), aria: pl.getAttribute('aria-label'), role: pl.getAttribute('role'), fits: pr.left >= rc.left - 1 && pr.right <= rc.right + 1, cap: !!pl.querySelector('.tb-cap') };
+    });
+    const [btier, bx] = BAR[ci];
+    if (!tb) why.push('pog\'ona chizig\'i yo\'q');
+    else {
+      if (tb.n !== 5 || new Set(tb.bg).size !== 5 || JSON.stringify(tb.bg) !== JSON.stringify(BAR_COLORS)) why.push('ranglar ' + tb.bg.join('|'));
+      if (tb.col.some((c, i) => cr(rgbOf(c), rgbOf(tb.bg[i])) < 4.5)) why.push('pog\'ona ichidagi yozuv kontrasti < 4,5');
+      if (JSON.stringify(tb.txt.map((x) => digits(x))) !== JSON.stringify(BAR_PRICES)) why.push('narxlar ' + tb.txt.join(','));
+      if (tb.on !== btier || tb.tier !== btier) why.push('pog\'ona ' + tb.on + ' kutilgan ' + btier);
+      if (Math.abs(tb.x - bx) > 0.01) why.push('strelka x ' + tb.x + ' kutilgan ' + bx);
+      if (tb.label.replace(/\s/g, '') !== (rows.reduce((s, r) => s + r[0], 0) + 'm³').replace(/\s/g, '') && !/m³|м³/.test(tb.label)) why.push('strelka yozuvi ' + tb.label);
+      if (!tb.inside || !tb.fits) why.push('strelka yozuvi/chizig\'i kartadan chiqib ketdi');
+      if (JSON.stringify(tb.ticks.map((x) => digits(x))) !== JSON.stringify(BAR_TICKS[davr])) why.push('chegaralar ' + tb.ticks.join(','));
+      if (tb.role !== 'img' || !/\d/.test(tb.aria || '') || !tb.cap) why.push('aria/izoh yo\'q');
+    }
     T(!why.length, mode.name + ' · ' + mrej + ' · ' + davr + ' · ' + kir.join('→') + ': ' + jami + ' (boshqa davr ' + boshqa + ', ≈ ' + avg + ')', why.join(' | '));
     table.push([mode.name, mrej, davr, kir.join('→'), jami, digits(g.main), why.length ? 'FAIL' : 'OK']);
+  }
+  // ---- pog'ona chizig'i: 320 px da sig'adi, chetki qiymatlarda yozuv kartadan chiqmaydi ----
+  {
+    const w = await open(mode.url, 12, 320);
+    for (const [m3, sx] of [['1', 1], ['500', 20], ['20000', 90], ['10001', 90]]) {
+      await w.p.click('#modeUse'); await w.p.click('#seasonHeat'); await setIn(w.p, 'm3In', m3); await w.p.click('#calcBtn'); await w.p.waitForTimeout(200);
+      const g = await w.p.evaluate(() => { const pl = document.querySelector('#tierBar .tb'), v = pl.querySelector('.tb-val').getBoundingClientRect(), r = pl.getBoundingClientRect();
+        return { x: Number(pl.getAttribute('data-x')), in: v.left >= r.left - 1 && v.right <= r.right + 1, over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1, w: Math.round(r.width), segW: Math.round(pl.querySelector('.tb-seg').getBoundingClientRect().width),
+          clip: [...pl.querySelectorAll('.tb-seg, .tb-tick')].some((e) => e.scrollWidth > e.clientWidth + 1 && e.classList.contains('tb-seg')) }; });
+      T(g.in && !g.over && !g.clip && g.w > 200, mode.name + ' · 320 px · ' + m3 + ' m³: chiziq sig\'adi (kenglik ' + g.w + ', pog\'ona ' + g.segW + '), yozuv kartadan chiqmaydi, x=' + g.x, JSON.stringify(g));
+    }
+    T(w.errs.length === 0, mode.name + ' · 320 px: JS xatolari yo\'q', w.errs.join(' | '));
+    await w.ctx.close();
   }
   // ---- hisoblagich xatolari ----
   await q.click('#modeMeter'); await q.click('#seasonHeat');
