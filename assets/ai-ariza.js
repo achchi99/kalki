@@ -14,7 +14,7 @@
 
   var TX = {
     uz: {
-      note: "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'lumotini yozmang — ular kerak emas. Kalki matningizni saqlamaydi; u faqat ariza matnini tayyorlash uchun AI xizmatiga yuboriladi. AI qonun moddalari va raqamlarni qo'shmaydi — tayyor matnni o'qib, tekshirib chiqing.",
+      note: "Vaziyatni oddiy so'zlar bilan yozing. Ism, telefon va pasport ma'lumotini yozmang — ular kerak emas. Matn ariza tayyorlash uchun serverimizga, u orqali AI xizmatiga (Anthropic) yuboriladi. Kalki matningizni saqlamaydi, lekin AI xizmati uni o'z siyosatiga ko'ra qayta ishlaydi. Server telefon, karta va pasport raqamlarini avtomatik yashiradi, ammo ism va manzilni tanimaydi. Batafsil — maxfiylik siyosatida. AI qonun moddalari va raqamlarni qo'shmaydi — tayyor matnni o'qib, tekshirib chiqing.",
       e502: "Hozircha matn tayyorlab bo'lmadi. Birozdan so'ng urinib ko'ring.",
       e400: "Vaziyatni 10–500 belgi oralig'ida yozing.",
       reject: "Bu yordamchi faqat ariza matnini yozadi. Vaziyatingizni boshqacha tasvirlab ko'ring.",
@@ -28,11 +28,12 @@
       label: 'Vaziyatingizni yozing', ph: "Masalan: bolam 3 kun kasal bo'ldi, maktabga yozishim kerak",
       script: 'Yozuv:', scriptAria: 'Ariza yozuvi', go: 'Ariza matnini yozish', busy: 'Yozilmoqda…',
       ask: 'Joriy matn almashtirilsinmi?', yes: 'Ha', no: "Yo'q", view: "Hujjatni ko'rish", again: 'Boshqa variant', copy: 'Nusxa olish', copied: 'Nusxalandi',
-      priv: 'Ism, telefon, pasport yozmang. Matningiz saqlanmaydi.', more: 'Batafsil', less: 'Yopish',
+      warn: "AI yordamchi kiritgan matningizni qayta ishlash uchun serverga yuboradi. Pasport raqami, karta raqami kabi maxfiy ma'lumotlarni yozmang.",
+      priv: 'Matningiz bizning serverda saqlanmaydi.', more: 'Batafsil', less: 'Yopish',
       ok: "Matn tayyor. Uni o'qib, tekshirib chiqing; bo'sh joylarni [qavs] ichida to'ldiring.", kept: 'Joriy matn saqlab qolindi.'
     },
     ru: {
-      note: 'Опишите ситуацию простыми словами. Не указывайте имя, телефон и паспортные данные — они не нужны. Kalki не сохраняет ваш текст; он отправляется в AI-сервис только для подготовки текста заявления. AI не добавляет статьи законов и цифры — прочитайте готовый текст и проверьте его.',
+      note: 'Опишите ситуацию простыми словами. Не указывайте имя, телефон и паспортные данные — они не нужны. Текст отправляется на наш сервер и через него в AI-сервис (Anthropic) для подготовки заявления. Kalki не сохраняет ваш текст, но AI-сервис обрабатывает его по своим правилам. Сервер автоматически скрывает номера телефонов, карт и паспортов, но не распознаёт имена и адреса. Подробнее — в политике конфиденциальности. AI не добавляет статьи законов и цифры — прочитайте готовый текст и проверьте его.',
       e502: 'Пока не удалось подготовить текст. Попробуйте чуть позже.',
       e400: 'Опишите ситуацию в пределах от 10 до 500 символов.',
       reject: 'Этот помощник пишет только текст заявления. Попробуйте описать ситуацию иначе.',
@@ -46,7 +47,8 @@
       label: 'Опишите ситуацию', ph: 'Например: ребёнок болел 3 дня, нужно написать в школу',
       script: '', scriptAria: '', go: 'Написать текст заявления', busy: 'Пишем…',
       ask: 'Заменить текущий текст?', yes: 'Да', no: 'Нет', view: 'Посмотреть документ', again: 'Другой вариант', copy: 'Скопировать', copied: 'Скопировано',
-      priv: 'Не указывайте имя, телефон, паспорт. Ваш текст не сохраняется.', more: 'Подробнее', less: 'Закрыть',
+      warn: 'AI-помощник отправляет введённый вами текст на сервер для обработки. Не указывайте конфиденциальные данные, например номер паспорта или карты.',
+      priv: 'Ваш текст не сохраняется на нашем сервере.', more: 'Подробнее', less: 'Закрыть',
       ok: 'Текст готов. Прочитайте и проверьте его; пустые места в [скобках] заполните.', kept: 'Текущий текст сохранён.'
     }
   };
@@ -97,6 +99,7 @@
     '.aiz-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}' +
     '.aiz-btn{border:1.5px solid var(--cat,#155E63);background:#fff;color:var(--cat,#155E63);font:inherit;font-size:14px;font-weight:800;padding:10px 15px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}' +
     '.aiz-btn.pri{background:var(--cat,#155E63);color:#fff}.aiz-btn[disabled]{opacity:.6;cursor:default}.aiz-btn[hidden]{display:none}' +
+    '.aiz-warn{margin:10px 0 0;font-size:13px;line-height:1.5;font-weight:700;color:#7A3E00;background:#FFF4E0;border:1.5px solid #E8C37F;border-radius:10px;padding:9px 12px;overflow-wrap:anywhere}' +
     '.aiz-priv{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;margin-top:11px;font-size:12px;line-height:1.5;color:var(--muted,#5C6B63)}' +
     '.aiz-link{border:0;background:none;padding:0;font:inherit;font-size:12px;font-weight:800;color:var(--cat,#155E63);text-decoration:underline;cursor:pointer}' +
     '.aiz-note{font-size:12px;line-height:1.5;color:var(--muted,#5C6B63);margin:6px 0 0;overflow-wrap:anywhere}.aiz-note[hidden]{display:none}' +
@@ -128,6 +131,7 @@
       '<div class="aiz-chips" id="aizChips">' + chips + '</div>' +
       '<div class="aiz-ctl"><span class="aiz-ctl-l">Yozuv:</span><span class="aiz-seg" role="group" aria-label="Ariza yozuvi">' +
       '<button type="button" data-s="lotin" class="on">Lotincha</button><button type="button" data-s="kirill">Кириллча</button></span></div>' +
+      '<p class="aiz-warn" id="aizWarn" role="note"></p>' +
       '<button type="button" class="aiz-go" id="aizGo">Ariza matnini yozish</button>' +
       '<div class="aiz-ask" id="aizAsk" hidden><span>Joriy matn almashtirilsinmi?</span> ' +
       '<span class="aiz-row" style="display:inline-flex;margin:0 0 0 6px"><button type="button" class="aiz-btn pri" id="aizYes">Ha</button>' +
@@ -136,7 +140,7 @@
       '<div class="aiz-row" id="aizAct"><button type="button" class="aiz-btn pri" id="aizView" hidden>Hujjatni ko\'rish</button>' +
       '<button type="button" class="aiz-btn" id="aizAgain" hidden>Boshqa variant</button>' +
       '<button type="button" class="aiz-btn" id="aizCopy" hidden>Nusxa olish</button></div>' +
-      '<div class="aiz-priv"><span>Ism, telefon, pasport yozmang. Matningiz saqlanmaydi.</span>' +
+      '<div class="aiz-priv"><span>Matningiz bizning serverda saqlanmaydi.</span>' +
       '<button type="button" class="aiz-link" id="aizMore" aria-expanded="false" aria-controls="aizNote">Batafsil</button></div>' +
       '<p class="aiz-note" id="aizNote" hidden></p>';
     host.parentNode.insertBefore(sec, host);
@@ -161,7 +165,7 @@
     if (!st.copied) set('aizCopy', t.copy);
     var pv = sec.querySelector('.aiz-priv > span'); if (pv) pv.textContent = t.priv;
     var mo = $('aizMore'); if (mo) mo.textContent = mo.getAttribute('aria-expanded') === 'true' ? t.less : t.more;
-    set('aizNote', t.note);
+    set('aizNote', t.note); set('aizWarn', t.warn);
     var cs = sec.querySelectorAll('.aiz-chip'); for (var i = 0; i < cs.length; i++) cs[i].textContent = t.chips[i][0];
   }
 

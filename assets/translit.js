@@ -44,7 +44,8 @@ var PH_CLOSE = '';
  * unga qo'shiladi). Katta-kichik harf ANIQ mos kelishi kerak. */
 var DEFAULT_ABBR = [
   'Kalki.uz', 'kalki.uz', 'Telegram',
-  'PDF', 'CSV', 'Word', 'Excel', 'AI'
+  'PDF', 'CSV', 'Word', 'Excel', 'AI',
+  'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'Paynet', 'localStorage'
 ];
 
 /* Rus tilidan o'zlashgan so'zlarda lotincha "s" kirillda "ц" bo'ladi (sement -> цемент),
