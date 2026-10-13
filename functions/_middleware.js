@@ -8,13 +8,29 @@
  * Functions kvotasiga tushmaydi. tools/verify-all.js (band 36) ikkalasi mosligini tekshiradi. */
 const GIZLI = /^\/(tools|docs|functions)(\/|$)|^\/(CLAUDE\.md|package(-lock)?\.json|fix\.py|_routes\.json)$|^\/\.(?!well-known(\/|$))/i;   // nuqtali fayllar (.nvmrc, .gitignore...) ham yopiq; .well-known ochiq
 
+/* Yopiq yo'llarga ham saytning o'z 404 sahifasi beriladi (ASSETS dan). /404.html Pages'da /404 ga
+   yo'naltiriladi, shuning uchun 2 martagacha qo'lda kuzatamiz. Topilmasa oddiy matn. */
+async function sahifa404(ctx, url) {
+  try {
+    let res = await ctx.env.ASSETS.fetch(new URL('/404.html', url));
+    for (let i = 0; i < 2 && res.status >= 300 && res.status < 400; i++) {
+      const loc = res.headers.get('Location');
+      if (!loc) break;
+      res = await ctx.env.ASSETS.fetch(new URL(loc, url));
+    }
+    const html = await res.text();
+    if (html.indexOf('<title>Sahifa topilmadi') > -1) {
+      return new Response(html, { status: 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'X-Robots-Tag': 'noindex', 'Cache-Control': 'no-store' } });
+    }
+  } catch (e) { /* oddiy matnga tushamiz */ }
+  return new Response('Not found', {
+    status: 404,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex', 'Cache-Control': 'no-store' }
+  });
+}
+
 export async function onRequest(ctx) {
-  const p = new URL(ctx.request.url).pathname;
-  if (GIZLI.test(p)) {
-    return new Response('Not found', {
-      status: 404,
-      headers: { 'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex', 'Cache-Control': 'no-store' }
-    });
-  }
+  const url = new URL(ctx.request.url);
+  if (GIZLI.test(url.pathname)) return sahifa404(ctx, url);
   return ctx.next();
 }

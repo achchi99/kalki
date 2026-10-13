@@ -986,6 +986,17 @@ function runTool(args) {
     add(ok, '35. ichki fayllar (tools/, docs/, CLAUDE.md, package*.json, fix.py) saytdan tarqatilmaydi', why.join(' | '));
   }
 
+  /* ---------- 36. Haqiqiy 404 sahifa + sitemap URL'lari fayl topadi + ichki havolalar yechiladi ---------- */
+  {
+    try {
+      execFileSync(process.execPath, [path.join(__dirname, 'verify-404.js')], { stdio: 'pipe' });
+      add(true, '36. 404.html (noindex, absolyut yo\'llar), sitemap URL\'lari 200, noma\'lum yo\'llar 404, ichki havolalar yaxlit');
+    } catch (e) {
+      const fails = String(e.stdout || '').split('\n').filter((l) => /^FAIL/.test(l)).slice(0, 2).join(' | ');
+      add(false, '36. 404.html / sitemap / ichki havolalar yaxlitligi', fails.slice(0, 320) + ' — node tools/verify-404.js');
+    }
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

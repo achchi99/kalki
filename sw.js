@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '9dcadaaf';   /* sw-version:auto */
+const SW_VERSION = 'dd211cc2';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -225,6 +225,8 @@ self.addEventListener('activate', (e) => {
   );
 });
 
+/* Faqat 200 (ok) va yo'naltirilmagan javob keshlanadi: noma'lum manzilning 404 sahifasi (404.html)
+   hech qachon keshga tushmaydi va precache ro'yxatida ham YO'Q. */
 function cacheable(r) { return r && r.ok && !r.redirected; }
 
 /* Navigatsiyaga redirected:true javob BERILMAYDI: Safari (ayniqsa bosh ekrandan

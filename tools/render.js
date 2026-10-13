@@ -21,6 +21,7 @@ const ORIGIN = 'https://kalki.uz/';
 const SPECIAL_PAGES = [
   'yandex_5489ebe17687cac1.html',   // Yandex Webmaster tasdiq fayli
   'offline.html',                   // faqat service worker qaytaradi, noindex
+  '404.html',                       // Pages noma'lum manzilga 404 bilan beradi, noindex; sarlavha/footerni site-chrome yozadi
 ];
 
 function sitePages() {

@@ -230,6 +230,34 @@ function rewriteAssetPaths(html) {
     '$1="/$2"');
 }
 
+/* Cloudflare Pages tartibi bilan manzil haqiqiy faylga yechiladimi: p, p.html, p/index.html. */
+function pageExists(p) {
+  p = p.split('#')[0].split('?')[0];
+  const base = p.replace(/\/$/, '');
+  const cands = [p, base + '.html', base + '/index.html'];
+  if (p === '/') cands.unshift('/index.html');
+  return cands.some((c) => { const f = path.join(ROOT, c); return f.startsWith(ROOT) && fs.existsSync(f) && fs.statSync(f).isFile(); });
+}
+
+/* RU (/ru/) va kirill (/cyr/) chiqishlarida NISBIY <a href="x"> brauzerda /ru/x yoki /cyr/x ga yechiladi.
+   Shu manzilda fayl bo'lmasa (UZ-only sahifa: qqs-2026; shablon-*.xlsx; /cyr/ ning 75 sahifasi) ilgari
+   sayt bosh sahifani 200 bilan qaytarib buni yashirardi; haqiqiy 404.html bilan esa 404 bo'lardi.
+   Shuning uchun: o'sha tildagi fayl bor bo'lsa tegmaymiz, yo'qsa asl (lotin/UZ) manzilga ABSOLYUT
+   havola qilamiz. /cyr/ da sahifa havolalariga ?lang=cyr qo'shiladi (ЎЗ rejimi saqlansin). */
+function fixRelativeLinks(doc, dir) {
+  doc.querySelectorAll('a[href]').forEach((a) => {
+    const h = a.getAttribute('href');
+    if (!h || /^([a-z][a-z0-9+.\-]*:|\/|#|\?)/i.test(h)) return;
+    const m = h.match(/^([^?#]*)(\?[^#]*)?(#.*)?$/);
+    const p = m[1].replace(/^\.\//, '');
+    const q = m[2] || '', hash = m[3] || '';
+    if (pageExists('/' + dir + '/' + p)) return;          // shu tilda bor — nisbiy havola to'g'ri
+    if (!pageExists('/' + p)) return;                      // hech qayerga yechilmaydi: tegmaymiz (audit ushlaydi)
+    const isPage = p === '' || /\.html$/.test(p) || !/\.[A-Za-z0-9]{2,5}$/.test(p);
+    a.setAttribute('href', '/' + p + (dir === 'cyr' && isPage && !q ? '?lang=cyr' : q) + hash);
+  });
+}
+
 function urlFor(name, lang) {
   var slug = name.replace(/\.html$/, '');
   if (slug === 'index') slug = '';
@@ -392,6 +420,7 @@ async function renderOneRu(name) {
   doc.documentElement.setAttribute('lang', 'ru');
   doc.documentElement.setAttribute('data-lang', 'ru');
   doc.documentElement.removeAttribute('data-lang-ready');
+  fixRelativeLinks(doc, 'ru');
   injectSeoLinks(doc, name, 'ru');
 
   const body = doc.body;
@@ -448,7 +477,7 @@ function translitJsonLd(v) {
    butunlay OLIB TASHLANADI, interaktiv kalkulyator o'rniga lotin
    versiyasiga ishora qiluvchi statik xabar qo'yiladi. */
 async function renderOneCyr(name) {
-  var raw = fs.readFileSync(path.join(ROOT, name), 'utf8');
+  var raw = rewriteAssetPaths(fs.readFileSync(path.join(ROOT, name), 'utf8'));   // favicon.svg va h.k. /cyr/ da buzilmasin
   var slug = name.replace(/\.html$/, '');
   var latinPath = '/' + (slug === 'index' ? '' : slug);
   var ruPath = '/ru/' + slug;
@@ -542,6 +571,7 @@ async function renderOneCyr(name) {
   doc.documentElement.setAttribute('lang', 'uz-Cyrl');
   doc.documentElement.setAttribute('data-lang', 'cyr');
   doc.documentElement.removeAttribute('data-lang-ready');
+  fixRelativeLinks(doc, 'cyr');
   injectSeoLinks(doc, name, 'cyr');
 
   var body = doc.body;

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Sahifa topilmadi — Kalki.uz</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>
+<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon"><meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>
+</head>
+<body class="v2">
+<!--
+  404 sahifa: Cloudflare Pages ildizdagi shu fayl bilan noma'lum manzillarga HTTP 404 qaytaradi
+  (bo'lmasa bosh sahifa 200 bilan chiqib "soft 404" bo'ladi).
+  Sarlavha, footer, PWA va til yuklagichi tools/site-chrome.js tomonidan yoziladi; shu faylda faqat qobiq.
+  Sahifa ISTALGAN chuqurlikdagi manzilda ko'rsatiladi (/ru/yoq/abc), shuning uchun HAMMA yo'llar ABSOLYUT:
+  site-chrome 404.html uchun sarlavha/footer havolalarini ham absolyutga o'tkazadi.
+  Sitemap'ga, prerender'ga va SW precache'ga KIRMAYDI (tools/render.js SPECIAL_PAGES).
+-->
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="/" data-cyr="skip">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="/#kategoriyalar" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Kalkulyatorlar</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="/#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a></li><li><a href="/#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a></li><li><a href="/#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a></li><li><a href="/#cat-hayot" data-tm-uz="Hayotiy" data-tm-ru="Жизнь">Hayotiy</a></li><li><a href="/#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a></li></ul></li><li class="has-sub"><a href="/hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Hujjatlar</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="/hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Hujjat generatorlari</a></li><li><a href="/shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Shablonlar</a></li></ul></li><li><a href="/blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Maqolalar</a></li></ul></nav><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" id="langUz" class="on">UZ</button><a id="langCyr" href="?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a><button type="button" id="langRu">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+<header class="pagehead band">
+  <div class="wrap">
+    <span class="cat-badge">404</span>
+    <h1 data-lf-uz="Sahifa topilmadi" data-lf-ru="Страница не найдена">Sahifa topilmadi</h1>
+    <p class="sub" data-lf-uz="Bunday manzil yo'q yoki sahifa ko'chirilgan. Manzilni tekshiring yoki quyidagi mashhur bo'limlardan birini oching." data-lf-ru="Такого адреса нет или страница перенесена. Проверьте адрес или откройте один из популярных разделов ниже.">Bunday manzil yo'q yoki sahifa ko'chirilgan. Manzilni tekshiring yoki quyidagi mashhur bo'limlardan birini oching.</p>
+    <p style="margin-top:20px"><a class="btn btn-primary" href="/" data-lf-uz="Bosh sahifaga o'tish" data-lf-ru="Перейти на главную">Bosh sahifaga o'tish</a></p>
+  </div>
+</header>
+<main class="wrap" style="padding-top:var(--s4)">
+  <h2 style="font-size:var(--fs-h3,22px);margin:0 0 16px" data-lf-uz="Mashhur bo'limlar" data-lf-ru="Популярные разделы">Mashhur bo'limlar</h2>
+  <div class="grid g4" id="popGrid">
+    <a class="k-card" href="/kredit-kalkulyator" style="--cc:var(--cat-moliya)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-credit-card"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Kredit kalkulyatori" data-lf-ru="Кредитный калькулятор">Kredit kalkulyatori</span><span class="k-desc" data-lf-uz="Oylik to'lov, annuitet va differensial jadval" data-lf-ru="Ежемесячный платёж, аннуитет и дифференцированный график">Oylik to'lov, annuitet va differensial jadval</span></span></a>
+    <a class="k-card" href="/ipoteka-kalkulyator" style="--cc:var(--cat-moliya)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Ipoteka kalkulyatori" data-lf-ru="Ипотечный калькулятор">Ipoteka kalkulyatori</span><span class="k-desc" data-lf-uz="Boshlang'ich to'lov va oylik to'lov" data-lf-ru="Первоначальный взнос и ежемесячный платёж">Boshlang'ich to'lov va oylik to'lov</span></span></a>
+    <a class="k-card" href="/oylik-soliq-kalkulyator" style="--cc:var(--cat-moliya)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-banknote"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Oylik soliq kalkulyatori" data-lf-ru="Калькулятор налога на зарплату">Oylik soliq kalkulyatori</span><span class="k-desc" data-lf-uz="Qo'lga tegadigan oylik summasi" data-lf-ru="Сумма на руки">Qo'lga tegadigan oylik summasi</span></span></a>
+    <a class="k-card" href="/ariza-namunasi" style="--cc:var(--cat-huquqiy)"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-file-text"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Ariza yozish</span><span class="k-desc" data-lf-uz="Tayyor ariza namunasi, Word va PDF" data-lf-ru="Готовый образец заявления, Word и PDF">Tayyor ariza namunasi, Word va PDF</span></span></a>
+  </div>
+  <p style="margin:20px 0 40px"><a href="/#kategoriyalar" data-lf-uz="Barcha kalkulyatorlarni ko'rish →" data-lf-ru="Все калькуляторы →">Barcha kalkulyatorlarni ko'rish →</a></p>
+</main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Kategoriyalar</div><ul><li><a href="/#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Moliya</a></li><li><a href="/#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Qurilish va yer</a></li><li><a href="/#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Kommunal va avto</a></li><li><a href="/#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Жизнь">Kundalik hayot</a></li><li><a href="/#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Huquqiy</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Hujjatlar</div><ul><li><a href="/hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Hujjat generatorlari</a></li><li><a href="/shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Shablonlar</a></li><li><a href="/ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Ariza yozish</a></li><li><a href="/blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Aloqa</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram kanali</a></li><li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li><li><a href="/hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a></li></ul></div></div><p class="sf2-note" data-lf-uz="Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." data-lf-ru="Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.">Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.</p><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="/blog" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="/biz-haqimizda" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="/maxfiylik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="/shartlar" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="https://t.me/kalki_uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Aloqa" data-lf-ru="Контакты">Aloqa</a><a href="/hamkorlik" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="mailto:info@kalki.uz" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="info@kalki.uz" data-lf-ru="info@kalki.uz">info@kalki.uz</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Aloqa uchun: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div></div></footer>
+<script>
+/* Sarlavha (data-tm-uz/ru) va <title> tilini yangilaydi; asosiy matnni footer-lang.js almashtiradi. */
+(function (w, d) {
+  function T() {
+    var ru = d.documentElement.lang === 'ru';
+    d.querySelectorAll('[data-tm-uz]').forEach(function (a) {
+      var v = a.getAttribute(ru ? 'data-tm-ru' : 'data-tm-uz');
+      if (v) a.textContent = v;
+    });
+    d.title = ru ? 'Страница не найдена — Kalki.uz' : 'Sahifa topilmadi — Kalki.uz';
+  }
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t && (t.id === 'langUz' || t.id === 'langRu')) w.setTimeout(T, 200);
+  }, true);
+  function init() { T(); [400, 950].forEach(function (ms) { w.setTimeout(T, ms); }); }
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
+})(window, document);
+</script>
+</body></html>

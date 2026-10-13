@@ -1,6 +1,6 @@
 {
  "korinadi": true,
- "sarlavha": "✨ AI ariza yozib beradi",
+ "sarlavha": "AI ariza yozib beradi",
  "chiplar": [
   "Bola kasal bo'ldi",
   "Ishdan 2 kunga javob",
@@ -25,5 +25,5 @@
    "vaziyatUzunligi": 80
   }
  ],
- "ruKorinadi": false
+ "ruKorinadi": true
 }

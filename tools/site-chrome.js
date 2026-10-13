@@ -27,6 +27,15 @@ const path = require('path');
 const { sitePages, ROOT } = require('./render');
 
 const WRITE = process.argv.indexOf('--write') > -1;
+/* sitePages() ga kirmaydigan (sitemap/prerender'siz), lekin sarlavha va footer olishi kerak bo'lgan fayllar.
+   404.html istalgan chuqurlikdagi manzilda ko'rsatiladi, shuning uchun unda HAMMA yo'l ABSOLYUT bo'lishi shart. */
+const CHROME_EXTRA = ['404.html'];
+function absolutize(s) {
+  return s.replace(/\b(href|src)="([^"]*)"/g, (m, attr, v) => {
+    if (!v || /^([a-z][a-z0-9+.\-]*:|\/|#|\?)/i.test(v)) return m;
+    return attr + '="/' + v.replace(/^\.\//, '') + '"';
+  });
+}
 
 /* ---------------- Kanonik footer ----------------
    Har havolada data-lf-uz / data-lf-ru bor: ilgari bu blokda hech qanday
@@ -159,7 +168,7 @@ function headerV2Html(f) {
   // bot ?lang=cyr nusxalarini kezmasin); assets/lang.js uni bosishda holatni (?p=) saqlab o'tkazadi.
   const langSeg = '<div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip">'
     + '<button type="button" id="langUz" class="on">UZ</button>'
-    + '<a id="langCyr" href="/' + (slug === 'index' ? '' : slug) + '?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a>'
+    + '<a id="langCyr" href="' + (f === '404.html' ? '?lang=cyr' : '/' + (slug === 'index' ? '' : slug) + '?lang=cyr') + '" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a>'
     + '<button type="button" id="langRu">RU</button></div>';
   return '<div id="sitebar" class="sb2"><div class="sb2-in">'
     + '<a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a>'
@@ -362,17 +371,21 @@ function rebuildV2(f, src) {
   const fn = s.lastIndexOf('<p class="foot-note"', mend);
   const topLevel = fn > -1 && s.slice(fn, mend).indexOf('</details>') < 0;
   const at = topLevel ? fn : mend;
-  if (at > -1) s = s.slice(0, at) + FBCALL_V2 + '\n' + s.slice(at);
+  if (at > -1 && f !== '404.html') s = s.slice(0, at) + FBCALL_V2 + '\n' + s.slice(at);   // 404 da Telegram chaqiruvi kerak emas
   return { s, notes };
 }
 
 function rebuild(f, src) {
+  if (CHROME_EXTRA.indexOf(f) > -1) {
+    const r = rebuildV2(f, src);
+    return { s: absolutize(r.s), notes: r.notes };
+  }
   if (V2_PAGES.indexOf(f) < 0) throw new Error('tools/dizayn/v2-pages.json da yo\'q (barcha sahifalar V2 bo\'lishi kerak)');
   return rebuildV2(f, src);
 }
 
 function main() {
-  const list = sitePages();
+  const list = sitePages().concat(CHROME_EXTRA);
   let changed = 0;
   const problems = [];
 

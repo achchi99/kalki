@@ -129,6 +129,10 @@ T(/caches\.match\(OFFLINE\)/.test(src) && !/\|\| caches\.match\('\/'\)/.test(src
 T(!/https?:\/\/(?!kalki\.uz)/.test(offSrc.replace(/<!--[\s\S]*?-->/g, '')),
   '12i. offline.html tashqi resurs so\'ramaydi');
 
+/* 12l/12m. 404 sahifa precache'da yo'q va 404 javob keshlanmaydi */
+T(list.indexOf('/404') === -1 && list.indexOf('/404.html') === -1, '12l. 404 sahifa precache\'da yo\'q');
+T(/function cacheable\(r\) \{ return r && r\.ok && !r\.redirected; \}/.test(src), '12m. cacheable() faqat ok javobni qabul qiladi (404 keshga tushmaydi)');
+
 /* 13. SW ro'yxatdan o'tkazish YAGONA joyda: assets/sw-boot.js */
 const html = fs.readdirSync(ROOT).filter((f) => f.endsWith('.html'));
 const inline = html.filter((f) => {
