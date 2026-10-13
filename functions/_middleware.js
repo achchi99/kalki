@@ -6,7 +6,7 @@
  * MUHIM: yangi ichki fayl/papka qo'shilsa, ikkala joyga: GIZLI (shu fayl) va _routes.json "include".
  * _routes.json middleware'ni FAQAT shu yo'llar va /api/* uchun ishga tushiradi — oddiy sahifalar
  * Functions kvotasiga tushmaydi. tools/verify-all.js (band 36) ikkalasi mosligini tekshiradi. */
-const GIZLI = /^\/(tools|docs|functions)(\/|$)|^\/(CLAUDE\.md|package(-lock)?\.json|fix\.py|_routes\.json)$|^\/\.(?!well-known(\/|$))/i;   // nuqtali fayllar (.nvmrc, .gitignore...) ham yopiq; .well-known ochiq
+const GIZLI = /^\/(tools|docs|functions)(\/|$)|^\/(CLAUDE\.md|package(-lock)?\.json|fix\.py|_routes\.json)$|^\/404(\.html)?$|^\/\.(?!well-known(\/|$))/i;   // nuqtali fayllar (.nvmrc, .gitignore...) ham yopiq; .well-known ochiq
 
 /* Yopiq yo'llarga ham saytning o'z 404 sahifasi beriladi (ASSETS dan). /404.html Pages'da /404 ga
    yo'naltiriladi, shuning uchun 2 martagacha qo'lda kuzatamiz. Topilmasa oddiy matn. */

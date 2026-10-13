@@ -109,9 +109,8 @@ async function live(base) {
       if (u.indexOf('/assets/') !== 0) T(/<meta name="robots" content="[^"]*noindex/.test(body) && /Sahifa topilmadi/.test(body), 'b) ' + u + ' 404 sahifasida noindex va matn bor');
     } catch (e) { T(false, 'b) ' + u, e.message); }
   }
-  for (const u of ['/404', '/404.html', '/sitemap.xml']) {
-    try { const r = await get(u); const b = u === '/sitemap.xml' ? await r.text() : ''; if (u === '/sitemap.xml') T(!/\/404/.test(b), 'c) 404 sitemap.xml da yo\'q'); } catch (e) { /* e'tiborsiz */ }
-  }
+  try { const r = await get('/404'); T(r.status === 404, 'c) /404 ning o\'zi ham 404 (soft-404 emas)', 'status ' + r.status); } catch (e) { T(false, 'c) /404', e.message); }
+  try { const r = await get('/sitemap.xml'); const body = await r.text(); T(!/\/404/.test(body), 'c) 404 sitemap.xml da yo\'q'); } catch (e) { T(false, 'c) sitemap.xml', e.message); }
   return out;
 }
 

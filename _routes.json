@@ -15,7 +15,9 @@
     "/_routes.json",
     "/.nvmrc",
     "/.gitattributes",
-    "/.gitignore"
+    "/.gitignore",
+    "/404",
+    "/404.html"
   ],
   "exclude": []
 }
