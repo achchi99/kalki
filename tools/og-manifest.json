@@ -551,5 +551,12 @@
     "hash": "5aba401b2d8c",
     "tpl": 1,
     "v": 2
+  },
+  "gaz-xarajat-kalkulyator": {
+    "title": "Gaz xarajati",
+    "cat": "kommunal",
+    "hash": "7503f92a817a",
+    "tpl": 1,
+    "v": 1
   }
 }

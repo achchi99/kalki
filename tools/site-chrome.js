@@ -97,6 +97,7 @@ const XNAV_LINKS = [
   ['quyosh-panel-kalkulyator', 'Quyosh paneli / Солнечные панели'],
   ['avto-xarajat-kalkulyator', 'Avto saqlash / Содержание авто'],
   ['elektr-xarajat-kalkulyator', 'Elektr xarajati / Электроэнергия'],
+  ['gaz-xarajat-kalkulyator', 'Gaz xarajati / Расход газа'],
   ['dtm-kalkulyator', 'DTM ball / Балл ДТМ'],
   ['universitet-kontrakt-kalkulyator', 'Universitet kontrakti / Контракт вуза'],
   ['grant-ololmadim', 'Grant ololmadim / Не прошёл на грант'],
@@ -181,7 +182,7 @@ function headerV2Html(f) {
 const XN_GROUPS = [
   ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
   ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
-  ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
+  ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'gaz-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
   ['Kundalik hayot', 'Жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
   ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
   ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],

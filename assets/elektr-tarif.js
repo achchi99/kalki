@@ -16,11 +16,13 @@
  * (har bir pog'ona doirasidagi qism o'z narxida) hisoblaydi: 350 kVt·soat = 200×650 + 150×900. Rasmiy usul
  * aniqlansa, faqat tiers() ni o'zgartirish kifoya.
  *
- * Brauzerda window.KalkiElektrTarif, Node'da require() — ikkalasida bir xil. */
+ * Pog'onama-pog'ona hisob qoidasi umumiy yadroda: assets/tarif-core.js (gaz ham shundan foydalanadi).
+ *
+ * Brauzerda window.KalkiElektrTarif (oldin tarif-core.js yuklansin), Node'da require() — ikkalasida bir xil. */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.KalkiElektrTarif = factory();
-})(typeof self !== 'undefined' ? self : this, function () {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./tarif-core.js'));
+  else root.KalkiElektrTarif = factory(root.KalkiTarifCore);
+})(typeof self !== 'undefined' ? self : this, function (Core) {
   'use strict';
 
   var DATA = {
@@ -43,19 +45,11 @@
    * yig'indisi jamiga aynan teng bo'lsin). */
   function tiers(kwh, cat) {
     var prices = DATA.prices[cat] || DATA.prices.std;
-    kwh = Number(kwh);
-    var out = { cat: DATA.prices[cat] ? cat : 'std', kwh: kwh > 0 ? kwh : 0, total: 0, rows: [] };
-    if (!(kwh > 0)) return out;
-    var prev = 0;
-    for (var i = 0; i < DATA.limits.length && prev < kwh; i++) {
-      var upTo = Math.min(kwh, DATA.limits[i]);
-      var part = upTo - prev;
-      if (part > 0) {
-        var cost = Math.round(part * prices[i]);
-        out.rows.push({ idx: i, from: i === 0 ? 0 : DATA.limits[i - 1] + 1, to: DATA.limits[i], kwh: part, price: prices[i], cost: cost });
-        out.total += cost;
-      }
-      prev = DATA.limits[i];
+    var r = Core.tiers(kwh, DATA.limits, prices);
+    var out = { cat: DATA.prices[cat] ? cat : 'std', kwh: r.amount, total: r.total, rows: [] };
+    for (var i = 0; i < r.rows.length; i++) {
+      var x = r.rows[i];
+      out.rows.push({ idx: x.idx, from: x.from, to: x.to, kwh: x.qty, price: x.price, cost: x.cost });
     }
     return out;
   }

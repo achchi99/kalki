@@ -127,6 +127,7 @@ const RU_PAGES = [
   // ko'rsatilgan 14 sahifa.
   'homiladorlik-kalkulyator.html',
   'elektr-xarajat-kalkulyator.html',
+  'gaz-xarajat-kalkulyator.html',
   'bola-puli-kalkulyator.html',
   'zakot-qurbonlik-kalkulyator.html',
   'toy-kalkulyator.html',

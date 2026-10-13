@@ -58,6 +58,8 @@ async function applySet(page, set) {
 }
 async function runCalc(url) {
   const page = await newPage(); const out = {}; const errs = [];
+  // gaz kalkulyatorida boshlang'ich davr joriy oyga bog'liq (taxminiy): golden barqaror bo'lishi uchun sana qotiriladi (15-dekabr — isitish mavsumi)
+  if (/gaz-xarajat/.test(url)) await page.addInitScript("(() => { const R = Date, T = new R(2026, 11, 15, 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();");
   page.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   await page.goto(BASE + url, { waitUntil: 'networkidle' }); await page.waitForTimeout(500);
   for (const set of ['odatiy', 'chegara', 'katta']) {

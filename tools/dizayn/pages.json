@@ -266,6 +266,20 @@
   "partiya": 2
  },
  {
+  "file": "gaz-xarajat-kalkulyator.html",
+  "slug": "gaz-xarajat-kalkulyator",
+  "tur": "kalkulyator",
+  "kat": "kommunal",
+  "klik_uz": 0,
+  "klik_ru": 0,
+  "kors_uz": 0,
+  "kors_ru": 0,
+  "ru": true,
+  "cyr": false,
+  "v2": false,
+  "partiya": 2
+ },
+ {
   "file": "gisht-kalkulyator.html",
   "slug": "gisht-kalkulyator",
   "tur": "kalkulyator",
