@@ -959,6 +959,33 @@ function runTool(args) {
       rows ? rows.length + ' topilma: ' + rows.slice(0, 4).map((r) => r.sahifa + ' «' + r.topilgan + '»').join(', ') + (pages.length > 4 ? '…' : '') + ' — node tools/matn-skaner.mjs' : 'skaner ishlamadi', true);
   }
 
+  /* ---------- 35. Ichki fayllar saytdan tarqatilmaydi (Pages repo ildizini to'liq tarqatadi) ---------- */
+  {
+    let ok = true, why = [];
+    try {
+      const mw = fs.readFileSync(path.join(ROOT, 'functions', '_middleware.js'), 'utf8');
+      const m = mw.match(/const GIZLI = \/(.*)\/(\w*);/);
+      const re = m ? new RegExp(m[1], m[2]) : null;
+      const routes = JSON.parse(fs.readFileSync(path.join(ROOT, '_routes.json'), 'utf8'));
+      const covers = (p) => routes.include.some((r) => r === p || (r.endsWith('/*') && p.startsWith(r.slice(0, -1))));
+      if (!re) { ok = false; why.push('GIZLI regex topilmadi'); }
+      else {
+        const must = ['/.nvmrc', '/.gitignore', '/.gitattributes', '/CLAUDE.md', '/package.json', '/package-lock.json', '/fix.py', '/tools', '/tools/prerender.js', '/docs/', '/docs/sw-check.md', '/functions/api/ariza.js'];
+        const open = must.filter((p) => !re.test(p) || !covers(p));
+        if (open.length) { ok = false; why.push('ochiq: ' + open.join(', ')); }
+        const pub = ['/', '/kredit-kalkulyator', '/ru/kredit-kalkulyator', '/cyr/kredit-kalkulyator', '/assets/cyr.js', '/sw.js', '/manifest.webmanifest', '/api/ariza', '/sitemap.xml', '/.well-known/security.txt'];
+        const shut = pub.filter((p) => re.test(p));
+        if (shut.length) { ok = false; why.push('sayt yo\'li yopilib qolgan: ' + shut.join(', ')); }
+        // yangi ichki fayl "unutilib" ochiq qolmasin: ildizdagi har bir yo'l sayt yoki yopilganlardan biri bo'lishi shart
+        const SITE = /\.(html|xlsx|docx|png|svg|txt|xml|webmanifest)$|^(assets|cyr|ru|data)$|^(_headers|_routes\.json|ga\.js|sw\.js|html2canvas\.min\.js|jspdf\.umd\.min\.js|\.gitignore)$/;
+        const top = [...new Set(execFileSync('git', ['ls-files'], { cwd: ROOT }).toString().split('\n').filter(Boolean).map((x) => x.split('/')[0]))];
+        const unknown = top.filter((n) => !SITE.test(n) && !(re.test('/' + n) && (covers('/' + n) || covers('/' + n + '/x'))));
+        if (unknown.length) { ok = false; why.push('ildizda yangi fayl/papka (sayt yoki GIZLI+_routes.json ga qo\'shing): ' + unknown.join(', ')); }
+      }
+    } catch (e) { ok = false; why.push(String(e.message || e).slice(0, 80)); }
+    add(ok, '35. ichki fayllar (tools/, docs/, CLAUDE.md, package*.json, fix.py) saytdan tarqatilmaydi', why.join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

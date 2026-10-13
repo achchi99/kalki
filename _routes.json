@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/tools",
+    "/tools/*",
+    "/docs",
+    "/docs/*",
+    "/functions",
+    "/functions/*",
+    "/CLAUDE.md",
+    "/package.json",
+    "/package-lock.json",
+    "/fix.py",
+    "/_routes.json",
+    "/.nvmrc",
+    "/.gitattributes",
+    "/.gitignore"
+  ],
+  "exclude": []
+}
