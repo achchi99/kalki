@@ -194,8 +194,8 @@ img,svg{height:auto}
         +'<div class="tpl-body"><div class="tpl-name">'+n[0]+'</div></div></div>'
         +'<div class="tpl-desc">'+n[1]+'</div>'
         +'<div class="tpl-meta"><span class="badge '+x.type+'">'+(x.type==='xls'?'Excel':'Word')+'</span>'
-        +'<span class="dl-l">'+t('dl')+':</span><a class="btn btn-primary dl" href="'+x.uz+'" download>'+svg('download')+t('dlUz')+'</a>'
-        +'<a class="btn btn-ghost dl ru" href="'+x.ru+'" download>'+t('dlRu')+'</a>'+(x.rel?'<a class="tpl-rel" href="'+x.rel+'">'+t('relTxt')+'</a>':'')+'</div></div>';
+        +'<span class="dl-l">'+t('dl')+':</span><a class="btn btn-primary dl" href="/'+x.uz+'" download>'+svg('download')+t('dlUz')+'</a>'
+        +'<a class="btn btn-ghost dl ru" href="/'+x.ru+'" download>'+t('dlRu')+'</a>'+(x.rel?'<a class="tpl-rel" href="'+x.rel+'">'+t('relTxt')+'</a>':'')+'</div></div>';
     });
     $('readyList').innerHTML=h;
     var sb=$('seoBlock'); if(sb)sb.innerHTML=t('seo');

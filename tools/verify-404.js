@@ -39,6 +39,57 @@ function resolves(u) {
     return f.startsWith(ROOT) && fs.existsSync(f) && fs.statSync(f).isFile();
   });
 }
+/* _redirects (Cloudflare Pages): "/manba /nishon 301" qoidalari; `*` va :splat qo'llab-quvvatlanadi.
+   Faqat testlar uchun taqlid (server haqiqiy Pages'da). Qoida bo'lmasa null. */
+function redirectRules() {
+  try {
+    return fs.readFileSync(path.join(ROOT, '_redirects'), 'utf8').split('\n').map((l) => l.replace(/#.*/, '').trim()).filter(Boolean)
+      .map((l) => { const [src, dst, st] = l.split(/\s+/); return { src, dst, st: st || '302' }; });
+  } catch (e) { return []; }
+}
+function redirectTarget(p) {
+  for (const r of redirectRules()) {
+    if (r.src.indexOf('*') > -1) {
+      const re = new RegExp('^' + r.src.split('*').map((x) => x.replace(/[.+?^${}()|[\]\\]/g, '\\$&')).join('(.*)') + '$');
+      const m = p.match(re);
+      if (m) return r.dst.replace(':splat', m[1] || '');
+    } else if (r.src === p) return r.dst;
+  }
+  return null;
+}
+/* Yuklab olish havolalari: statik <a href=*.xlsx|docx|pdf|zip|csv> / <a download> (sahifaning o'z joyiga nisbatan
+   yechiladi) va skript satrlaridagi fayl nomlari (ildizga nisbatan). Brauzerda yasaladigan fayl nomlari
+   (kalki-*.csv — blob) havola emas, GENERATED. */
+const FILE_EXT = /\.(xlsx|xls|docx|doc|pdf|zip|csv|pptx)(?=$|[?#])/i;
+const GENERATED = /^\/kalki-[\w.\-]+\.csv$/i;
+const MAGIC = { xlsx: '504b0304', docx: '504b0304', pptx: '504b0304', zip: '504b0304', pdf: '25504446' };
+function downloadRefs() {
+  const refs = [];
+  const pages = [];
+  for (const d of ['', 'ru', 'cyr']) {
+    const dir = path.join(ROOT, d);
+    if (!fs.existsSync(dir)) continue;
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith('.html') && !/^(yandex|404)/.test(x))) pages.push((d ? d + '/' : '') + f);
+  }
+  for (const pg of pages) {
+    const html = fs.readFileSync(path.join(ROOT, pg), 'utf8');
+    const slug = '/' + pg.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
+    const dirUrl = slug.endsWith('/') ? slug : path.posix.dirname(slug).replace(/\/?$/, '/');
+    for (const m of html.replace(/<script[\s\S]*?<\/script>/g, '').matchAll(/<a\b[^>]*?\shref=["']([^"'#][^"']*)["'][^>]*>/g)) {
+      const u = m[1].trim();
+      if (/^(https?:|mailto:|tel:|javascript:|\/\/)/.test(u) || !(FILE_EXT.test(u) || /\sdownload\b/.test(m[0]))) continue;
+      if (!FILE_EXT.test(u)) continue;               // download atributli, lekin fayl emas (masalan sahifaga) — bu bandda emas
+      refs.push({ url: u.startsWith('/') ? u.split(/[?#]/)[0] : new URL(u, 'https://x' + dirUrl).pathname, page: pg, kind: 'a' });
+    }
+    for (const sc of html.matchAll(/<script(?![^>]*type="application\/(?:ld\+)?json")[^>]*>([\s\S]*?)<\/script>/g)) {
+      for (const m of sc[1].matchAll(/["'`]([^"'`\s<>]{3,120}\.(?:xlsx|xls|docx|pdf|zip|csv|pptx))["'`]/gi)) {
+        const u = m[1].startsWith('/') ? m[1] : '/' + m[1];
+        if (!GENERATED.test(u)) refs.push({ url: u, page: pg, kind: 'skript' });
+      }
+    }
+  }
+  return refs;
+}
 const sitemapUrls = () => [...fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>https:\/\/kalki\.uz([^<]*)<\/loc>/g)].map((m) => m[1] || '/');
 
 function local() {
@@ -74,7 +125,7 @@ function local() {
   for (const pg of pages) {
     const h = fs.readFileSync(path.join(ROOT, pg), 'utf8').replace(/<script[\s\S]*?<\/script>/g, '');
     const slug = '/' + pg.replace(/(^|\/)index\.html$/, '$1').replace(/\.html$/, '');
-    const dirUrl = slug.endsWith('/') ? slug : path.posix.dirname(slug) + '/';
+    const dirUrl = slug.endsWith('/') ? slug : path.posix.dirname(slug).replace(/\/?$/, '/');   // dirname('/x') = '/' (qo'sh '//' bo'lmasin)
     for (const m of h.matchAll(/<a\b[^>]*?\shref=["']([^"'#][^"']*)["']/g)) {
       const u = m[1].trim();
       if (/^(https?:|mailto:|tel:|data:|javascript:|\/\/|\?)/.test(u)) continue;
@@ -86,6 +137,18 @@ function local() {
   const keys = Object.keys(bad);
   T(keys.length === 0, 'd) ichki havolalar haqiqiy faylga yechiladi (' + total + ' ta, ' + pages.length + ' sahifa)',
     keys.slice(0, 4).map((k) => k + ' <- ' + [...bad[k]][0]).join(' | ') + (keys.length > 4 ? ' … jami ' + keys.length : ''));
+  // e) yuklab olish havolalari: haqiqiy fayl, to'g'ri turi (zip/pdf imzosi), HTML emas
+  const refs = downloadRefs();
+  const uniq = [...new Set(refs.map((r) => r.url))];
+  const dlBad = [];
+  for (const u of uniq) {
+    const ext = (u.match(/\.(\w+)$/) || [])[1].toLowerCase();
+    if (!resolves(u)) { dlBad.push(u + ' (fayl yo\'q)'); continue; }
+    const buf = fs.readFileSync(path.join(ROOT, u));
+    if (MAGIC[ext] && buf.slice(0, 4).toString('hex') !== MAGIC[ext]) dlBad.push(u + ' (tur mos emas / HTML)');
+    else if (buf.length < 200) dlBad.push(u + ' (juda kichik)');
+  }
+  T(dlBad.length === 0, 'e) yuklab olish havolalari haqiqiy faylga yechiladi va turi mos (' + uniq.length + ' noyob fayl, ' + refs.length + ' havola)', dlBad.slice(0, 4).join(', '));
   return out;
 }
 
@@ -109,6 +172,17 @@ async function live(base) {
       if (u.indexOf('/assets/') !== 0) T(/<meta name="robots" content="[^"]*noindex/.test(body) && /Sahifa topilmadi/.test(body), 'b) ' + u + ' 404 sahifasida noindex va matn bor');
     } catch (e) { T(false, 'b) ' + u, e.message); }
   }
+  const dlBad = [];
+  const uniq = [...new Set(downloadRefs().map((r) => r.url))];
+  for (const u of uniq) {
+    try {
+      const r = await get(u); const ct = (r.headers.get('content-type') || '').split(';')[0]; const buf = Buffer.from(await r.arrayBuffer());
+      const ext = (u.match(/\.(\w+)$/) || [])[1].toLowerCase();
+      const ok = r.status === 200 && !/text\/html/.test(ct) && buf.length > 200 && (!MAGIC[ext] || buf.slice(0, 4).toString('hex') === MAGIC[ext]);
+      if (!ok) dlBad.push(u + ' ' + r.status + ' ' + ct);
+    } catch (e) { dlBad.push(u + ' ' + e.message); }
+  }
+  T(dlBad.length === 0, 'e) yuklab olish fayllari: 200, haqiqiy tur (HTML emas), imzo mos (' + uniq.length + ' ta)', dlBad.slice(0, 4).join(' | '));
   try { const r = await get('/404'); T(r.status === 404, 'c) /404 ning o\'zi ham 404 (soft-404 emas)', 'status ' + r.status); } catch (e) { T(false, 'c) /404', e.message); }
   try { const r = await get('/sitemap.xml'); const body = await r.text(); T(!/\/404/.test(body), 'c) 404 sitemap.xml da yo\'q'); } catch (e) { T(false, 'c) sitemap.xml', e.message); }
   return out;
@@ -126,4 +200,4 @@ if (require.main === module) {
   if (arg) live(arg).then((r) => process.exit(report(r)), (e) => { console.error(e); process.exit(2); });
   else process.exit(report(local()));
 }
-module.exports = { local, live, resolves };
+module.exports = { local, live, resolves, redirectTarget, redirectRules, downloadRefs };

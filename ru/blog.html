@@ -137,7 +137,7 @@ footer a{color:var(--muted);text-decoration:none}
     for(var i=0;i<POSTS.length;i++){
       var p=POSTS[i];
       var d=new Date(p.date).toLocaleDateString(lang==='uz'?'uz-UZ':'ru-RU',{year:'numeric',month:'long',day:'numeric'});
-      html+='<a class="post-card" href="'+p.slug+'"><span class="tag">'+p.tag[lang]+'</span>'
+      html+='<a class="post-card" href="/'+p.slug+'"><span class="tag">'+p.tag[lang]+'</span>'
         +'<h2>'+p.title[lang]+'</h2><p>'+p.desc[lang]+'</p><div class="date">'+d+'</div></a>';
     }
     document.getElementById('postList').innerHTML=html;

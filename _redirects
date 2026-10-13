@@ -1,0 +1,14 @@
+# Cloudflare Pages: yo'naltirishlar (tools/verify-404.js shu fayldan "taqlid" qiladi).
+#
+# Zaxira to'r. /ru/ sahifalarida JS qurgan NISBIY havolalar /ru/<fayl> ga yechiladi; bunday fayl yo'q:
+# shablon fayllari va faqat bitta (ikki tilli) sahifasi bor *-2026 maqolalar ildizda turadi.
+# Manbadagi havolalar allaqachon absolyut; bu qoidalar eski keshdagi HTML va tashqi havolalar uchun.
+# Eslatma: 404.html bo'lgani uchun yo'naltirilmagan noma'lum manzil endi 404 beradi.
+/ru/shablon-*  /shablon-:splat  301
+/cyr/shablon-* /shablon-:splat  301
+/ru/avto-bojxona-2026     /avto-bojxona-2026     301
+/ru/bolalar-nafaqasi-2026 /bolalar-nafaqasi-2026 301
+/ru/dtm-2026              /dtm-2026              301
+/ru/ipoteka-2026          /ipoteka-2026          301
+/ru/qqs-2026              /qqs-2026              301
+/ru/toy-byudjeti-2026     /toy-byudjeti-2026     301
