@@ -45,7 +45,7 @@ var PH_CLOSE = '';
 var DEFAULT_ABBR = [
   'Kalki.uz', 'kalki.uz', 'Telegram',
   'PDF', 'CSV', 'Word', 'Excel', 'AI',
-  'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'Paynet', 'localStorage'
+  'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'localStorage'
 ];
 
 /* Rus tilidan o'zlashgan so'zlarda lotincha "s" kirillda "ц" bo'ladi (sement -> цемент),

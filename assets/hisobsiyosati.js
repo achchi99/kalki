@@ -4,16 +4,6 @@
    o'zgartirmaydi — bu alohida modul, chunki bu yerdagi band+profil+
    tanlov_erkinligi filtrlash mantiqi boshqa hech qanday hujjat
    generatorida yo'q (docs/hisob-siyosati-audit.md, FAZA 0, 1.2-band).
-
-   To'lov qatlami (docs/premium-reja.md). PREMIUM — BARCHA "pullik"
-   mantiq shu obyekt orqali o'tadi:
-     - narx: bitta joyda (bu yerda) — modal, qulf matni, bepul .docx
-       oxiridagi sahifa, RU tarjimasi hammasi shu qiymatdan o'qiydi.
-     - kodlar: joriy amaldagi ochish kodlari (B1 — oyiga bir marta
-       qo'lda yangilanadi, docs/premium-reja.md 3-band). Bo'sh massiv —
-       hali hech qanday kod chiqarilmagan (bot/QR ulanmaguncha).
-     - Kod BRAUZER TOMONIDA tekshiriladi — DevTools orqali chetlab
-       o'tish mumkin, bu ochiq qabul qilingan (docs/premium-reja.md).
 */
 (function (root) {
   'use strict';
@@ -21,39 +11,8 @@
   var KD = root.KalkiDoc;
   var HS = {};
 
-  var SS_KEY = 'kalki_hs_unlock';
-
-  var PREMIUM = {
-    yoqilgan: true,
-    // Narx o'zgarsa: hisob-siyosati-generatori.html'dagi app-ld JSON-LD
-    // "offers":{"price":...} qo'lda mos qilinsin (bu yerdan avtomatik
-    // o'qilmaydi — statik prerender snapshot).
-    narx: 50000,
-    // TODO(Asror): bot/QR ulanganda joriy oy kodi shu yerga qo'shiladi,
-    // masalan: kodlar: ['KALKI-2026-09']
-    kodlar: ["KALKI-AV7X-001"],
-    botHavola: 'https://t.me/kalkiuz_oplata_bot',
-    // 2026-09-04: app.paynet.uz/qr-online/<payload> havolasi sinaldi —
-    // ilovani ochadi, lekin to'lov oynasini emas, bosh sahifani ko'rsatadi
-    // (Paynet ilovasining o'z ulashish tugmasi ham AYNAN shu havolani
-    // beradi — bu Paynet'ning bilingan chekloui, mening qurgan link
-    // formatim xato emas edi). Shu sabab bekor qilindi — mobil oqim
-    // hozircha faqat QR + "galereyadan skanerlash" maslahati bilan.
-
-    tekshir: function (kod) {
-      kod = String(kod || '').trim().toUpperCase();
-      return !!kod && PREMIUM.kodlar.indexOf(kod) > -1;
-    },
-    ochish: function (kod) {
-      if (!PREMIUM.tekshir(kod)) return false;
-      try { sessionStorage.setItem(SS_KEY, '1'); } catch (e) {}
-      return true;
-    },
-    ochiqmi: function () {
-      try { return sessionStorage.getItem(SS_KEY) === '1'; } catch (e) { return false; }
-    }
-  };
-  HS.PREMIUM = PREMIUM;
+  // Eski versiyada kod bilan ochilgan sessiya belgisi qolgan bo'lishi mumkin — jim o'chiramiz.
+  try { sessionStorage.removeItem('kalki_hs_unlock'); } catch (e) {}
 
   /* ---------- profil aniqlash: 2 savol -> 6 profildan biri ---------- */
   var PROFILE_MAP = {
@@ -97,20 +56,7 @@
       ru: 'Выбор не предоставляется — по закону применяется только этот метод.'
     },
     tanlangan: { uz: 'Tanlangan variant: ', ru: 'Выбранный вариант: ' },
-    rekvizitlar: { uz: 'Rekvizitlar', ru: 'Реквизиты' },
-    qulf: {
-      uz: "Bu band to'liq versiyada mavjud.",
-      ru: 'Этот пункт доступен в полной версии.'
-    },
-    upgradeH: { uz: "To'liq versiyada yana:", ru: 'В полной версии также:' },
-    upgradeFooter: {
-      uz: 'Narx: ',
-      ru: 'Цена: '
-    },
-    upgradeCta: {
-      uz: 'kalki.uz/hisob-siyosati-generatori — saytda "Toʻliq versiyani olish" tugmasi orqali.',
-      ru: 'kalki.uz/hisob-siyosati-generatori — кнопка «Получить полную версию» на сайте.'
-    }
+    rekvizitlar: { uz: 'Rekvizitlar', ru: 'Реквизиты' }
   };
 
   // Band uchun "hozir tanlangan" variant kodini aniqlaydi: foydalanuvchi
@@ -213,33 +159,11 @@
     ];
   };
 
-  /* ---------- pullik bandlar o'rniga: nima yopiqligi ro'yxati ----------
-     `items` — {sarlavha_uz, sarlavha_ru} qatnashgan obyektlar (haqiqiy band
-     yoki "Buyruq namunasi" kabi sintetik yozuv). Bo'sh bo'lsa hech narsa
-     qo'shilmaydi (unlocked yoki umuman pullik band yo'q holat). */
-  HS.buildUpgradeBlocks = function (items, lang) {
-    if (!items || !items.length) return [];
-    var out = [{ k: 'gap' }, { k: 'h', text: L(TXT.upgradeH.uz, TXT.upgradeH.ru, lang) }];
-    items.forEach(function (it) {
-      out.push({ k: 'p', text: '— ' + L(it.sarlavha_uz, it.sarlavha_ru, lang) });
-    });
-    out.push({
-      k: 'warn',
-      text: L(TXT.upgradeFooter.uz, TXT.upgradeFooter.ru, lang) + KD.fmtNum(PREMIUM.narx) + ' ' + KD.currency(lang)
-    });
-    out.push({ k: 'note', text: L(TXT.upgradeCta.uz, TXT.upgradeCta.ru, lang) });
-    return out;
-  };
-
   // Butun hujjat (BUP yoki NUP) uchun to'liq blok ro'yxati.
   // reqLines — rekvizit qatorlari (forma maydonlaridan tayyorlangan matn massivi).
-  // opts.unlocked — false/undefined bo'lsa pullik bandlar (band.pullik===true)
-  // chiqarib tashlanadi va o'rniga upgrade ro'yxati qo'shiladi; buyruq namunasi
-  // ham (0.3-jadval bo'yicha pullik) faqat unlocked holatda kiritiladi.
   HS.buildDocBlocks = function (opts) {
     var data = opts.data, hujjat = opts.hujjat, profil = opts.profil,
-      lang = opts.lang, variants = opts.variants || {}, reqLines = opts.reqLines || [],
-      unlocked = !!opts.unlocked;
+      lang = opts.lang, variants = opts.variants || {}, reqLines = opts.reqLines || [];
     var blocks = [];
     if (opts.intro) blocks.push({ k: 'warn', text: opts.intro });
     blocks.push({ k: 'title', text: opts.title });
@@ -250,28 +174,15 @@
       blocks.push({ k: 'gap' });
     }
 
-    var allBands = HS.bandsFor(data, hujjat, profil);
-    var shown = allBands.filter(function (b) { return !b.pullik || unlocked; });
-    var locked = allBands.filter(function (b) { return b.pullik && !unlocked; });
-
-    HS.byBolim(shown, lang).forEach(function (g) {
+    HS.byBolim(HS.bandsFor(data, hujjat, profil), lang).forEach(function (g) {
       blocks.push({ k: 'h', text: g.bolim });
       g.items.forEach(function (b) {
         blocks = blocks.concat(HS.bandToBlocks(b, lang, profil, variants[b.id]));
       });
     });
 
-    var upgradeItems = locked.map(function (b) {
-      return { sarlavha_uz: b.sarlavha_uz, sarlavha_ru: b.sarlavha_ru };
-    });
-    if (!unlocked) {
-      upgradeItems.push({ sarlavha_uz: 'Buyruq namunasi', sarlavha_ru: 'Образец приказа' });
-    }
-    blocks = blocks.concat(HS.buildUpgradeBlocks(upgradeItems, lang));
-
-    // Rahbar buyrug'i namunasi — faqat to'liq (unlocked) hujjatda (0.3-jadval:
-    // "Buyruq namunasi" pullik qatoridir).
-    if (unlocked) blocks = blocks.concat(HS.buildOrderBlocks(hujjat, lang));
+    // Rahbar buyrug'i namunasi
+    blocks = blocks.concat(HS.buildOrderBlocks(hujjat, lang));
     return blocks;
   };
 

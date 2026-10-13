@@ -73,36 +73,52 @@ for (const [name, url, key] of [['UZ', '/ariza-namunasi', 'uz'], ['RU', '/ru/ari
   await ctx.close();
 }
 
-// 2) Katalog: har kartochkada bepul/pullik belgisi, narx, "100% bepul" yo'q
-const narx = Number((fs.readFileSync(path.join(ROOT, 'assets/hisobsiyosati.js'), 'utf8').match(/narx:\s*(\d+)/) || [])[1]);
+// 2) Katalog: hisob siyosati ham bepul — 21 kartochkaning HAMMASIDA "Bepul" belgisi, Premium izi yo'q
 for (const [name, url] of [['UZ', '/hujjatlar'], ['RU', '/ru/hujjatlar'], ['ЎЗ', '/hujjatlar?lang=cyr']]) {
   const { ctx, p, errs } = await open(url);
   const g = await p.evaluate(() => {
     const cards = [...document.querySelectorAll('a.doc-card[href]')];
-    const free = cards.filter((c) => c.querySelector('.free-tag')), prem = cards.filter((c) => c.hasAttribute('data-premium'));
-    const pc = prem[0];
-    return { n: cards.length, free: free.length, prem: prem.length, premTag: !!(pc && pc.querySelector('.premium-tag')), premTxt: pc ? pc.innerText : '', premFree: pc ? !!pc.querySelector('.free-tag') : null,
-      fc: (document.getElementById('freeCount') || {}).textContent, stats: [...document.querySelectorAll('.stat')].map((x) => x.innerText.replace(/\s+/g, ' ')).join(' | '), over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-      freeTxt: free[0] ? free[0].querySelector('.free-tag').innerText : '' };
+    return { n: cards.length, free: cards.filter((c) => c.querySelector('.free-tag')).length, hs: !!document.querySelector('a.doc-card[href^="hisob-siyosati"] .free-tag'),
+      stats: [...document.querySelectorAll('.stat')].map((x) => x.innerText.replace(/\s+/g, ' ')).join(' | '), body: document.body.innerText,
+      over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1, freeTxt: (document.querySelector('.free-tag') || {}).innerText || '' };
   });
-  T(g.n === 21 && g.free === 20 && g.prem === 1 && g.free + g.prem === g.n, name + ': 21 kartochka = 20 "bepul" + 1 Premium (hammasida aniq belgi)', JSON.stringify(g));
-  T(g.premTag && g.premFree === false, name + ': Premium kartochkada "Premium" belgisi bor, "bepul" belgisi yo\'q');
-  T(nbsp(g.premTxt).replace(/ /g, '').includes(String(narx).replace(/\B(?=(\d{3})+(?!\d))/g, '')) || nbsp(g.premTxt).replace(/\s/g, '').includes(String(narx)), name + ': Premium kartochkada narx = PREMIUM.narx (' + narx + ')', g.premTxt.replace(/\s+/g, ' '));
-  T(g.fc === '20' && !/100\s?%/.test(g.stats), name + ': statistikada "100% bepul" yo\'q, bepul soni 20', g.stats);
+  T(g.n === 21 && g.free === 21 && g.hs, name + ': 21 kartochkaning hammasida "Bepul" belgisi (hisob siyosati ham)', g.free + '/' + g.n);
+  T(/100\s?%/.test(g.stats), name + ': statistikada «100% bepul» (endi haqiqat)', g.stats);
+  T(!/Premium|Премиум|Премиум|50\s?000/i.test(g.body), name + ': katalogda Premium/narx izi yo\'q');
   T(/^(Бепул|Bepul|Бесплатно)$/i.test(g.freeTxt.trim()), name + ': bepul belgisi matni tilga mos', g.freeTxt);
   T(!g.over, name + ': 360px da gorizontal siljish yo\'q');
   T(errs.length === 0, name + ': JS xatolari yo\'q', errs.join(' | '));
   await ctx.close();
 }
 
+// 2b) Hisob siyosati: kod kiritish oynasi yo'q, hamma bandlar kodsiz ochiq, eski sessiya belgisi xato bermaydi
+for (const [name, url] of [['UZ', '/hisob-siyosati-generatori'], ['RU', '/ru/hisob-siyosati-generatori'], ['ЎЗ', '/hisob-siyosati-generatori?lang=cyr']]) {
+  const ctx = await b.newContext({ viewport: { width: 360, height: 800 }, serviceWorkers: 'block' });
+  await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
+  await ctx.addInitScript(() => { try { sessionStorage.setItem('kalki_hs_unlock', '1'); localStorage.setItem('kalki_hs_unlock', '1'); } catch (e) {} });   // eski foydalanuvchi
+  const p = await ctx.newPage(); const errs = [];
+  p.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
+  await p.goto(BASE + url, { waitUntil: 'load' }); await p.waitForTimeout(1500);
+  const g = await p.evaluate(() => ({ body: document.body.innerText, modal: !!document.querySelector('[id^="premium"], .premium-modal, input[placeholder*="od"][id*="remium"]'), cta: !!document.getElementById('premiumCtaBtn'),
+    word: !!document.getElementById('wordBupBtn') && !!document.getElementById('wordNupBtn'), ss: sessionStorage.getItem('kalki_hs_unlock'), bands: document.querySelectorAll('#docBody .dg-h').length,
+    locked: /to.liq versiyada mavjud|полной версии|Premium|Премиум|50\s?000/i.test(document.body.innerText), json: (document.documentElement.innerHTML.match(/"isAccessibleForFree":(true|false),"offers":\{"@type":"Offer","price":"(\d+)"/) || []).slice(1).join('/') }));
+  T(!g.modal && !g.cta, name + ': kod kiritish oynasi va «To\'liq versiyani olish» tugmasi yo\'q');
+  T(!g.locked, name + ': qulf yozuvlari, Premium va narx yo\'q (hamma band ochiq)');
+  T(g.word && g.bands > 15, name + ': ikkala Word tugmasi bor, bandlar to\'liq chizilgan', 'sarlavhalar: ' + g.bands);
+  T(g.ss === null, name + ': eski sessiya belgisi jim tozalandi', String(g.ss));
+  T(g.json === 'true/0', name + ': JSON-LD bepul (isAccessibleForFree true, price 0)', g.json);
+  T(errs.length === 0, name + ': eski belgi bilan JS xatosi yo\'q', errs.join(' | '));
+  await ctx.close();
+}
+
 // 3) Maxfiylik va shartlar: haqiqiy ma'lumot oqimlari (UZ, RU, ЎЗ)
-const NEED = { uz: ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Paynet', '2 kun', '10–500'], ru: ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Paynet', 'Через 2 дня', '10–500'] };
+const NEED = { uz: ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', '2 kun', '10–500'], ru: ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Через 2 дня', '10–500'] };
 for (const [name, url, key] of [['UZ', '/maxfiylik', 'uz'], ['RU', '/ru/maxfiylik', 'ru'], ['ЎЗ', '/maxfiylik?lang=cyr', 'cyr']]) {
   const { ctx, p, errs } = await open(url);
   const g = await p.evaluate(() => ({ body: document.body.innerText, over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 }));
   const nb = nbsp(g.body);
   if (key === 'cyr') {
-    for (const w of ['Anthropic', 'Google Analytics', 'AdSense', 'Paynet']) T(nb.includes(w), name + ': "' + w + '" brend nomi lotincha qolgan');
+    for (const w of ['Anthropic', 'Google Analytics', 'AdSense']) T(nb.includes(w), name + ': "' + w + '" brend nomi lotincha qolgan');
     T(/ёзган ваъзият матни|Ёзган вазият матни|вазият матни/i.test(nb) || /AI ариза ёзиб беради/.test(nb), name + ': AI bo\'limi kirillda');
     T(!/Kelajakda|Келажакда/.test(nb), name + ': "kelajakda AdSense" eskirgan da\'vo yo\'q');
   } else {
@@ -116,7 +132,7 @@ for (const [name, url, key] of [['UZ', '/maxfiylik', 'uz'], ['RU', '/ru/maxfiyli
 for (const [name, url] of [['UZ', '/shartlar'], ['RU', '/ru/shartlar']]) {
   const { ctx, p } = await open(url);
   const body = nbsp(await p.evaluate(() => document.body.innerText));
-  T(/pullik/i.test(body) || /платн/i.test(body), name + ': shartlarda pullik (Premium) funksiya aytilgan');
+  T(!/pullik|Premium|Премиум/i.test(body), name + ': shartlarda Premium/pullik izi yo\'q');
   T(/AI/.test(body) && /(serverga|на сервер)/.test(body), name + ': shartlarda AI yordamchi va serverga yuborilishi aytilgan');
   await ctx.close();
 }

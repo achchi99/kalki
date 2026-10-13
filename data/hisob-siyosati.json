@@ -179,8 +179,7 @@
       "izoh_uz": "",
       "izoh_ru": "",
       "qoidalar_uz": "Turli asosiy vosita guruhlari uchun turli amortizatsiya usuli qo'llanilishi mumkin, lekin bir xil turdagi obyektlar guruhi ichida faqat bitta usul qo'llanadi (NSBU №5, 44-band). Tanlangan usul kalendar yil davomida o'zgartirilmaydi. Amortizatsiya oyiga yillik summaning 1/12 qismida hisoblanadi, bundan ishlab chiqarish hajmiga proporsional usul mustasno.",
-      "qoidalar_ru": "Для разных групп основных средств может применяться разный метод амортизации, но внутри одной группы однотипных объектов применяется только один метод (НСБУ №5, п. 44). Выбранный метод не изменяется в течение календарного года. Амортизация начисляется ежемесячно в размере 1/12 годовой суммы, за исключением метода, пропорционального объёму продукции.",
-      "pullik": true
+      "qoidalar_ru": "Для разных групп основных средств может применяться разный метод амортизации, но внутри одной группы однотипных объектов применяется только один метод (НСБУ №5, п. 44). Выбранный метод не изменяется в течение календарного года. Амортизация начисляется ежемесячно в размере 1/12 годовой суммы, за исключением метода, пропорционального объёму продукции."
     },
     {
       "id": "bup_av_qiymat_chegarasi",
@@ -212,8 +211,7 @@
       "asos_url": "",
       "asos_nomi": "NSBU №5 \"Asosiy vositalar\" — MYU 3546 (09.08.2024), 2025-yil 1-yanvardan amal qiladi",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "bup_av_qayta_baholash",
@@ -254,8 +252,7 @@
       "asos_url": "",
       "asos_nomi": "NSBU №5 \"Asosiy vositalar\" — MYU 3546 (09.08.2024), 2025-yil 1-yanvardan amal qiladi",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "bup_nma_amortizatsiya",
@@ -352,8 +349,7 @@
       "izoh_uz": "",
       "izoh_ru": "",
       "qoidalar_uz": "Foydali xizmat muddati aniqlanmagan (cheksiz) nomoddiy aktivlar amortizatsiya qilinmaydi. Ular har hisobot davri oxirida qiymatsizlanishga tekshiriladi. Kelajakdagi iqtisodiy foydaning iste'mol qilinish tartibini ishonchli aniqlab bo'lmasa, teng me'yorli (chiziqli) usul qo'llaniladi.",
-      "qoidalar_ru": "Нематериальные активы с неопределённым сроком полезной службы не амортизируются. Они проверяются на обесценение на конец каждого отчётного периода. Если порядок потребления будущих экономических выгод достоверно определить невозможно, применяется равномерный (прямолинейный) метод.",
-      "pullik": true
+      "qoidalar_ru": "Нематериальные активы с неопределённым сроком полезной службы не амортизируются. Они проверяются на обесценение на конец каждого отчётного периода. Если порядок потребления будущих экономических выгод достоверно определить невозможно, применяется равномерный (прямолинейный) метод."
     },
     {
       "id": "bup_tmz_baholash_usuli",
@@ -433,8 +429,7 @@
       "izoh_uz": "",
       "izoh_ru": "",
       "qoidalar_uz": "Xomashyo va tayyor mahsulot uchun turli baholash usullari qo'llanilishi mumkin — bu holat hisob siyosatida alohida ko'rsatiladi.",
-      "qoidalar_ru": "Для сырья и готовой продукции могут применяться разные методы оценки — это отдельно указывается в учётной политике.",
-      "pullik": true
+      "qoidalar_ru": "Для сырья и готовой продукции могут применяться разные методы оценки — это отдельно указывается в учётной политике."
     },
     {
       "id": "bup_daromad_tan_olish",
@@ -477,8 +472,7 @@
       "qoidalar_profillar": [
         "P3",
         "P4"
-      ],
-      "pullik": true
+      ]
     },
     {
       "id": "bup_zaxiralar",
@@ -519,8 +513,7 @@
       "asos_url": "",
       "asos_nomi": "Tegishli NSBU (majburiyatlar/zaxiralar bo'yicha) — FAZA 3'da aniq raqami tasdiqlanishi shart",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "bup_valyuta_kurs_farqlari",
@@ -559,8 +552,7 @@
       "izoh_uz": "",
       "izoh_ru": "",
       "qoidalar_uz": "Pul (monetar) moddalar — kassadagi/hisobdagi valyuta, debitor/kreditor qarzlar — har oy oxirida qayta baholanadi. Nomonetar moddalar — asosiy vositalar, zaxiralar kabi — qayta baholanmaydi. Kurs farqlarini kelajakka o'tkazib, to'plab hisobga olish taqiqlangan (NSBU №22, 14-modda) — har oyning farqi o'sha oyda tan olinadi.",
-      "qoidalar_ru": "Денежные статьи — валюта в кассе/на счетах, дебиторская/кредиторская задолженность — переоцениваются на конец каждого месяца. Неденежные статьи — основные средства, запасы — переоценке не подлежат. Перенос и накопление курсовых разниц на будущие периоды запрещён (НСБУ №22, ст. 14) — разница каждого месяца признаётся в том же месяце.",
-      "pullik": true
+      "qoidalar_ru": "Денежные статьи — валюта в кассе/на счетах, дебиторская/кредиторская задолженность — переоцениваются на конец каждого месяца. Неденежные статьи — основные средства, запасы — переоценке не подлежат. Перенос и накопление курсовых разниц на будущие периоды запрещён (НСБУ №22, ст. 14) — разница каждого месяца признаётся в том же месяце."
     },
     {
       "id": "bup_hujjat_aylanishi",
@@ -897,8 +889,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 80-modda \"Alohida-alohida hisob va uni yuritish qoidalari\"",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_foyda_soligi_xarajat_tan_olish",
@@ -935,8 +926,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 297-modda (daromad), 305-modda (xarajat)",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_foyda_soligi_amortizatsiya",
@@ -973,8 +963,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 306-modda",
       "izoh_uz": "Soliq hisobida amortizatsiya faqat teng me'yorli usulda hisoblanadi (Soliq kodeksi 306-modda). Buxgalteriya hisobidagi usuldan farq qilishi mumkin — bu normal holat, ikkala hisob alohida yuritiladi.",
-      "izoh_ru": "В налоговом учёте амортизация начисляется только равномерным методом (статья 306 Налогового кодекса). Она может отличаться от метода в бухгалтерском учёте — это нормальная ситуация, оба учёта ведутся раздельно.",
-      "pullik": true
+      "izoh_ru": "В налоговом учёте амортизация начисляется только равномерным методом (статья 306 Налогового кодекса). Она может отличаться от метода в бухгалтерском учёте — это нормальная ситуация, оба учёта ведутся раздельно."
     },
     {
       "id": "nup_qqs_hisob_tartibi",
@@ -1008,8 +997,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 242-modda",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_qqs_ajratilgan_hisob",
@@ -1038,8 +1026,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi (tegishli bob — FAZA 3'da aniq modda ko'rsatilishi shart)",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_amortizatsiya_meyorlari_guruhlar",
@@ -1071,8 +1058,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 306-modda",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_qollash_muddati",
@@ -1104,8 +1090,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 77-modda",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_ozgartirish_sabablari",
@@ -1137,8 +1122,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi 77-modda",
       "izoh_uz": "",
-      "izoh_ru": "",
-      "pullik": true
+      "izoh_ru": ""
     },
     {
       "id": "nup_valyuta_kurs_soliq",
@@ -1170,8 +1154,7 @@
       "asos_url": "",
       "asos_nomi": "Soliq kodeksi (tegishli modda — Batch 4.1'da aniqlanishi shart)",
       "izoh_uz": "Soliq bazasiga ta'siri alohida tekshirilishi kerak — Batch 4.1.",
-      "izoh_ru": "Влияние на налоговую базу требует отдельной проверки — Batch 4.1.",
-      "pullik": true
+      "izoh_ru": "Влияние на налоговую базу требует отдельной проверки — Batch 4.1."
     }
   ]
 }

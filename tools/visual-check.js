@@ -48,7 +48,7 @@ const VIEWPORTS = {
 /* O'tmishda haqiqiy brauzerda topilgan overlap buglariga (b710d3e, 9b6f8c2)
    aloqador landmark'lar. Ancestor/descendant juftlar overlap hisoblanmaydi —
    faqat bir-biriga aloqasiz elementlar taqqoslanadi. */
-const LANDMARK_SELECTORS = ['header', 'nav', 'main', 'footer', '.answerbox', '.form-card', '.premium-badge'];
+const LANDMARK_SELECTORS = ['header', 'nav', 'main', 'footer', '.answerbox', '.form-card'];
 
 function startServer() {
   return new Promise((resolve) => {

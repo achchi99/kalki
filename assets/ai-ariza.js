@@ -1,12 +1,13 @@
-/* kalki.uz — "AI ariza yozib beradi" bloki (ariza-namunasi: UZ va RU; CYR da ko'rinmaydi).
+/* kalki.uz — "AI ariza yozib beradi" bloki (ariza-namunasi: UZ, RU va ЎЗ — kirill `?lang=cyr` da matn translit.js orqali o'giriladi).
  *
  * Blok brauzerda ishga tushganda yaratiladi (HTML'ga statik yozilmaydi), shuning
- * uchun prerender natijasi o'zgarmaydi. Foydalanuvchi matni hech qayerda
- * saqlanmaydi (localStorage, cookie, GA) — faqat POST /api/ariza ga ketadi.
+ * uchun prerender natijasi o'zgarmaydi. Foydalanuvchi yozgan matn bizda saqlanmaydi
+ * (localStorage, cookie, GA'ga ham tushmaydi), lekin SERVERGA YUBORILADI: POST /api/ariza,
+ * u matnni Anthropic API'ga uzatadi (functions/api/ariza.js). Shu sabab tugma yonida ogohlantirish (aizWarn) bor.
  * localStorage'da faqat tasodifiy anonim mijoz ID (limit uchun) va yozuv tanlovi saqlanadi.
  *
  * RU: html lang="ru" bo'lganda matnlar ruscha, so'rovga til:'ru' qo'shiladi, Lotin/Kirill tugmasi ko'rinmaydi.
- * O'chirish: quyidagi AI_ARIZA_YOQILGAN ni false qiling (yoki shu <script> tegini oling) — ikkala tilga ham ta'sir qiladi.
+ * O'chirish: quyidagi AI_ARIZA_YOQILGAN ni false qiling (yoki shu <script> tegini oling) — barcha tillarga ta'sir qiladi.
  */
 (function () {
   'use strict';

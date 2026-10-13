@@ -1064,8 +1064,8 @@ function runTool(args) {
       const hasAnthropic = /api\.anthropic\.com/.test(fn);
       const gaOn = /googletagmanager/.test(rd('ga.js'));
       const adsOn = rd('index.html').indexOf('adsbygoogle.js') > -1;
-      const PRIV = [['maxfiylik.html', ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Paynet', 'Telegram', ttlDays + ' kun', '10–500'], /Kelajakda saytda Google AdSense|shaxsiy ma’lumotlarni so[‘ʻ]ramaydi|Cloudflare Web Analytics/],
-                    ['ru/maxfiylik.html', ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Paynet', 'Telegram', 'Через ' + ttlDays + ' дня', '10–500'], /В будущем на сайте может использоваться реклама|не запрашивает личные данные|Cloudflare Web Analytics/]];
+      const PRIV = [['maxfiylik.html', ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', ttlDays + ' kun', '10–500'], /Kelajakda saytda Google AdSense|shaxsiy ma’lumotlarni so[‘ʻ]ramaydi|Cloudflare Web Analytics/],
+                    ['ru/maxfiylik.html', ['Anthropic', 'Google Analytics', 'AdSense', 'localStorage', 'Через ' + ttlDays + ' дня', '10–500'], /В будущем на сайте может использоваться реклама|не запрашивает личные данные|Cloudflare Web Analytics/]];
       if (!hasAnthropic) why.push('functions/api/ariza.js: api.anthropic.com yo\'q — maxfiylik matni yangilansin');
       if (!gaOn) why.push('ga.js Google Analytics\'ni yoqmaydi — maxfiylik matni yangilansin');
       if (!adsOn) why.push('index.html AdSense yuklamaydi — maxfiylik matni yangilansin');
@@ -1074,30 +1074,31 @@ function runTool(args) {
         for (const w of must) if (txt.indexOf(w) < 0) why.push(f + ': "' + w + '" yo\'q');
         if (bad.test(txt)) why.push(f + ': eskirgan/noto\'g\'ri da\'vo qolgan (' + (txt.match(bad) || [''])[0] + ')');
       }
-      // 4) Premium: katalogdagi narx = PREMIUM.narx = JSON-LD narx; "100% bepul" / "butunlay bepul" yo'q
-      const narx = (rd('assets/hisobsiyosati.js').match(/narx:\s*(\d+)/) || [])[1];
-      const premCard = (h) => (h.match(/<a class="doc-card"[^>]*data-premium="true"[\s\S]*?<\/a>/) || [''])[0];
+      // 4) Premium olib tashlangan: saytda Premium/pullik-kod/to'lov izi qolmasin, hisob siyosati hamma uchun bepul
+      const siteFiles = require('child_process').execFileSync('git', ['ls-files', '*.html', '*.js', '*.json', '*.css'], { cwd: ROOT, encoding: 'utf8' }).split('\n')
+        .filter((f) => f && !/^(tools|docs|node_modules|cyr)\//.test(f) && !/(^|\/)(html2canvas|jspdf|docx)[^/]*\.js$/.test(f) && !/package(-lock)?\.json$/.test(f));
+      const TRACE = /[Pp]remium|Премиум|PREMIUM|KALKI-[A-Z0-9]|Paynet|oplata_bot|premium-qr|premium-lock|"pullik"/;
+      for (const f of siteFiles) {
+        const h = rd(f);
+        if (f === 'assets/hisobsiyosati.js') {
+          if (/PREMIUM|kodlar|ochiqmi|premium/i.test(h.replace("sessionStorage.removeItem('kalki_hs_unlock')", ''))) why.push(f + ': PREMIUM obyekti/kod tekshiruvi qolgan');
+          if (h.indexOf("sessionStorage.removeItem('kalki_hs_unlock')") < 0) why.push(f + ': eski sessiya belgisini jim tozalash yo\'q');
+          continue;
+        }
+        const m = h.match(TRACE);
+        if (m) why.push(f + ': Premium/to\'lov izi qolgan (' + m[0] + ')');
+        if (/(?:hisob-siyosati|hujjatlar|hamkorlik|biz-haqimizda|shartlar|maxfiylik)/.test(f) && /50[\s ]?000[\s ]*(?:so.m|сум)|"price":"50000"|isAccessibleForFree":false/.test(h)) why.push(f + ': "50 000 so\'m" / pullik JSON-LD qolgan');
+      }
       for (const f of ['hujjatlar.html', 'ru/hujjatlar.html']) {
         const h = rd(f);
-        if (!/data-premium="true"/.test(h)) { why.push(f + ': Premium kartochka yo\'q'); continue; }
-        if (!/premium-tag/.test(premCard(h))) why.push(f + ': Premium kartochkada "Premium" belgisi yo\'q');
-        if (!premCard(h).replace(/\s|&nbsp;| /g, '').includes(String(narx).replace(/\B(?=(\d{3})+(?!\d))/g, ''))) {
-          const digits = premCard(h).replace(/<[^>]+>/g, ' ').replace(/(\d)[\s ]+(?=\d{3}\b)/g, '$1');
-          if (digits.indexOf(String(narx)) < 0) why.push(f + ': Premium kartochkadagi narx PREMIUM.narx (' + narx + ') ga teng emas');
-        }
-        const cards = (h.match(/<a class="doc-card"/g) || []).length, free = (h.match(/class="free-tag"/g) || []).length, prem = (h.match(/data-premium="true"/g) || []).length;
-        if (free !== cards - prem) why.push(f + ': bepul belgisi ' + free + ' ta, kutilgan ' + (cards - prem) + ' (har bir bepul kartochkada)');
-        if (/<b>100%<\/b><span[^>]*>(?:bepul|бесплатно)/.test(h)) why.push(f + ': "100% bepul" da\'vosi pullik hujjat bor sahifada');
+        const cards = (h.match(/<a class="doc-card"/g) || []).length, free = (h.match(/class="free-tag"/g) || []).length;
+        if (cards < 2 || free !== cards) why.push(f + ': har bir kartochkada "Bepul" belgisi bo\'lishi kerak (' + free + '/' + cards + ')');
       }
       const hs = rd('hisob-siyosati-generatori.html');
-      if (!new RegExp('"isAccessibleForFree":false,"offers":\\{"@type":"Offer","price":"' + narx + '"').test(hs)) why.push('hisob-siyosati-generatori.html: JSON-LD narx/isAccessibleForFree PREMIUM.narx bilan mos emas');
-      for (const f of sitePages().concat(sitePages().map((x) => 'ru/' + x)).filter((x) => fs.existsSync(path.join(ROOT, x)))) {
-        if (/(^|\/)shablonlar\.html$/.test(f)) continue;   // yuklab olinadigan .xlsx/.docx shablonlar haqiqatan butunlay bepul (pullik narsa — faqat hisob siyosati generatori)
-        const txt = stripTags(rd(f));
-        if (/Butunlay bepul|Полностью бесплатно|hech narsa to.lamaydi|ничего не платит/i.test(txt)) why.push(f + ': pullik funksiya bor, lekin "butunlay bepul"/"hech narsa to\'lamaydi" da\'vosi qolgan');
-      }
+      if (!/"isAccessibleForFree":true,"offers":\{"@type":"Offer","price":"0"/.test(hs)) why.push('hisob-siyosati-generatori.html: JSON-LD bepul (price 0, isAccessibleForFree true) emas');
+      if (/premiumCode|premiumModal/.test(hs)) why.push('hisob-siyosati-generatori.html: kod kiritish oynasi qolgan');
     } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
-    add(!why.length, '38. ishonch matnlari: AI sahifasida "faqat brauzerda" da\'vosi yo\'q, AI ogohlantirishi bor, maxfiylik koddagi haqiqatga mos (AI/Anthropic/GA/AdSense/KV muddati/Premium), katalogda bepul/pullik belgisi va narx bir manbadan', why.slice(0, 6).join(' | '));
+    add(!why.length, '38. ishonch matnlari: AI sahifasida "faqat brauzerda" da\'vosi yo\'q, AI ogohlantirishi bor, maxfiylik koddagi haqiqatga mos (AI/Anthropic/GA/AdSense/KV muddati), Premium izi yo\'q, katalogda har kartochkada «Bepul»', why.slice(0, 6).join(' | '));
   }
 
   /* ---------- hisobot ---------- */
