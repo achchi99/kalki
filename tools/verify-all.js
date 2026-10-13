@@ -1004,9 +1004,10 @@ function runTool(args) {
     catch (e) { why.push('tools/test-elektr-tarif.js yiqildi'); }
     try {
       const TD = require('../assets/elektr-tarif.js').data;
-      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html']) {
+      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'konditsioner-kalkulyator.html', 'ru/konditsioner-kalkulyator.html']) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
         if (/450\s*[-–]\s*900|hududga qarab|зависит от региона/.test(h)) why.push(f + ': eski tarif matni qolgan');
+        if (/konditsioner/.test(f) && /id="tariff"/.test(h)) why.push(f + ': tekis narx maydoni (id="tariff") qaytib kelgan; tarif assets/elektr-tarif.js dan olinadi');
         if (!/<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
         const head = h.slice(0, h.indexOf('</head>'));
         if (head.indexOf('rel="manifest"') < 0 || head.indexOf('apple-touch-icon') < 0) why.push(f + ': <head> buzilgan (manifest/ikonka head ichida emas)');
@@ -1016,7 +1017,7 @@ function runTool(args) {
       }
       if (fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8').indexOf("'/assets/elektr-tarif.js'") < 0) why.push('sw.js precache\'da elektr-tarif.js yo\'q');
     } catch (e) { why.push(String(e.message || e).slice(0, 90)); }
-    add(!why.length, '37. elektr pog\'onali tarif: hisob qo\'lda qiymatlarga teng, sahifada eski tarif yo\'q, manba/sana/meta mos', why.join(' | '));
+    add(!why.length, '37. pog\'onali elektr tarifi (elektr + konditsioner sahifalari): hisob qo\'lda qiymatlarga teng, eski/tekis narx yo\'q, manba/sana/meta mos', why.join(' | '));
   }
 
   /* ---------- hisobot ---------- */

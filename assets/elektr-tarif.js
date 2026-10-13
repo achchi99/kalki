@@ -60,5 +60,23 @@
     return out;
   }
 
-  return { data: DATA, tiers: tiers };
+  /* Mavjud iste'molga (base, kVt·soat) QO'SHILGAN qurilma (add, kVt·soat) uchun qo'shimcha to'lov:
+   *   cost = to'lov(base + add) − to'lov(base)
+   * Pog'onali tarifda qurilma uyning mavjud sarfi ustiga tushadi, shuning uchun uning 1 kVt·soati bitta narx emas.
+   * Qaytaradi: { cat, base, add, baseTotal, total, cost, effective (so'm/kVt·soat, o'rtacha), rows } —
+   * rows: qurilma sarfi tushgan pog'onalar ([{ idx, from, to, kwh, price, cost }], faqat qurilma ulushi). */
+  function incremental(base, add, cat) {
+    var a = tiers(base, cat), b = tiers(Number(base > 0 ? base : 0) + Number(add > 0 ? add : 0), cat);
+    var rows = [];
+    for (var i = 0; i < b.rows.length; i++) {
+      var r = b.rows[i], before = 0;
+      for (var j = 0; j < a.rows.length; j++) if (a.rows[j].idx === r.idx) before = a.rows[j].kwh;
+      var part = r.kwh - before;
+      if (part > 1e-9) rows.push({ idx: r.idx, from: r.from, to: r.to, kwh: part, price: r.price, cost: Math.round(part * r.price) });
+    }
+    var addKwh = add > 0 ? Number(add) : 0, cost = b.total - a.total;
+    return { cat: b.cat, base: a.kwh, add: addKwh, baseTotal: a.total, total: b.total, cost: cost, effective: addKwh > 0 ? cost / addKwh : 0, rows: rows };
+  }
+
+  return { data: DATA, tiers: tiers, incremental: incremental };
 });

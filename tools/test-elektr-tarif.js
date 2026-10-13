@@ -47,5 +47,36 @@ T('sanalar: amalda 2026-06-01, tekshirilgan 2026-10-13, manba lex.uz', () => {
   assert.strictEqual(data.amalda, '2026-06-01'); assert.strictEqual(data.tekshirilgan, '2026-10-13'); assert.ok(/^https:\/\/lex\.uz\//.test(data.url));
 });
 
+// ---- incremental(): uy sarfiga QO'SHILGAN qurilma (konditsioner) — qo'lda hisoblangan ----
+// [uy, qurilma, toifa, uy to'lovi, jami to'lov, qurilma to'lovi, qurilma pog'onalari [kVt·soat × narx]]
+//  uy 150 + 180, oddiy:   150×650 = 97 500; 330 = 200×650 + 130×900 = 247 000; farq 149 500 = 50×650 + 130×900
+//  uy 400 + 180, oddiy:   400 = 130 000 + 200×900 = 310 000; 580 = 130 000 + 300×900 + 80×1100 = 488 000; farq 178 000 = 100×900 + 80×1100
+//  uy 150 + 180, plitali: 48 750; 330 = 65 000 + 130×450 = 123 500; farq 74 750 = 50×325 + 130×450
+//  uy 400 + 180, plitali: 400 = 65 000 + 200×450 = 155 000; 580 = 65 000 + 135 000 + 80×550 = 244 000; farq 89 000 = 100×450 + 80×550
+//  uy 250 + 100, oddiy:   250 = 130 000 + 50×900 = 175 000; 350 = 265 000; farq 90 000 = 100×900 (bitta pog'ona)
+//  uy 900 + 300, oddiy:   900 = 130 000 + 270 000 + 400×1100 = 840 000; 1200 = 130 000 + 270 000 + 500×1100 + 200×1600 = 1 270 000; farq 430 000 = 100×1100 + 200×1600
+//  uy 900 + 300, plitali: 900 = 65 000 + 135 000 + 400×550 = 420 000; 1200 = 65 000 + 135 000 + 500×550 + 200×800 = 635 000; farq 215 000 = 100×550 + 200×800
+const INC = [
+  [150, 180, 'std',   97500, 247000, 149500, [[50, 650], [130, 900]]],
+  [400, 180, 'std',   310000, 488000, 178000, [[100, 900], [80, 1100]]],
+  [150, 180, 'stove', 48750, 123500, 74750, [[50, 325], [130, 450]]],
+  [400, 180, 'stove', 155000, 244000, 89000, [[100, 450], [80, 550]]],
+  [250, 100, 'std',   175000, 265000, 90000, [[100, 900]]],
+  [900, 300, 'std',   840000, 1270000, 430000, [[100, 1100], [200, 1600]]],
+  [900, 300, 'stove', 420000, 635000, 215000, [[100, 550], [200, 800]]]
+];
+const { incremental } = require('../assets/elektr-tarif.js');
+INC.forEach(([h, a, c, base, total, cost, parts]) => {
+  T('uy ' + h + ' + qurilma ' + a + ' (' + c + '): uy ' + base + ', jami ' + total + ', qo\'shimcha ' + cost, () => {
+    const r = incremental(h, a, c);
+    assert.strictEqual(r.baseTotal, base); assert.strictEqual(r.total, total); assert.strictEqual(r.cost, cost);
+    assert.deepStrictEqual(r.rows.map((x) => [Math.round(x.kwh * 1e6) / 1e6, x.price]), parts);
+    assert.ok(Math.abs(r.effective - cost / a) < 1e-9);
+  });
+});
+T('qurilma sarfi 0 yoki manfiy: qo\'shimcha to\'lov 0, qator yo\'q', () => [0, -3, NaN, undefined].forEach((a) => { const r = incremental(250, a, 'std'); assert.strictEqual(r.cost, 0); assert.strictEqual(r.rows.length, 0); assert.strictEqual(r.effective, 0); }));
+T('uy sarfi 0: qo\'shimcha to\'lov = qurilmaning o\'z to\'lovi', () => assert.strictEqual(incremental(0, 350, 'std').cost, 265000));
+T('o\'rtacha narx: uy 400 + 180 oddiy = 178 000 / 180 = 988,9', () => assert.strictEqual(Math.round(incremental(400, 180, 'std').effective), 989));
+
 console.log(fail ? fail + ' ta yiqildi (jami ' + (pass + fail) + ')' : 'hammasi joyida (' + pass + ' ta)');
 process.exit(fail ? 1 : 0);
