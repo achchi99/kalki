@@ -33,13 +33,15 @@ BASE = BASE.replace(/\/$/, '');
 const PAGES = ['/shablonlar', '/ru/shablonlar', '/ijara-shartnomasi-namunasi', '/ru/ijara-shartnomasi-namunasi', '/mehnat-shartnomasi-namunasi', '/ru/mehnat-shartnomasi-namunasi',
   '/qqs-kalkulyator', '/ru/qqs-kalkulyator', '/oila-byudjet-kalkulyator', '/ru/oila-byudjet-kalkulyator', '/tushuntirish-xati-namunasi', '/ru/tushuntirish-xati-namunasi'];
 const FILE = /\.(xlsx|docx|pdf|zip|csv)(?=$|[?#])/i;
+// jonli tarmoqda sekin bo'lishi mumkin: ONLY=/ru/ (faqat RU) yoki SKIP=/ru/ (faqat UZ) bilan bo'lib yurgizing (5 daqiqalik timeout)
+const pagesToTest = PAGES.filter((u) => (!process.env.ONLY || u.includes(process.env.ONLY)) && (!process.env.SKIP || !u.includes(process.env.SKIP)));
 
 let bad = 0, total = 0;
 const b = track(await chromium.launch());
 const ctx = await b.newContext({ viewport: { width: 390, height: 900 }, acceptDownloads: true, serviceWorkers: process.env.SW === 'allow' ? 'allow' : 'block' });
 await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
 const rows = [];
-for (const url of PAGES) {
+for (const url of pagesToTest) {
   const p = await ctx.newPage();
   await p.goto(BASE + url, { waitUntil: 'load' });
   await p.waitForTimeout(1800);                                   // sahifaning til/chizish skriptlari tugasin
