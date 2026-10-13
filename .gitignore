@@ -2,6 +2,9 @@ node_modules/
 .claude/scheduled_tasks.lock
 docs/screenshots/
 
+# Google Search Console CSV eksportlari (shaxsiy qidiruv ma'lumotlari; diskda qoladi, commit qilinmaydi)
+docs/gsc/
+
 # AI sinov xom natijalari (kalitlarsiz, lekin commit qilinmaydi)
 tools/ai-sinov/out/
 
