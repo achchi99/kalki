@@ -1094,11 +1094,22 @@ function runTool(args) {
         const cards = (h.match(/<a class="doc-card"/g) || []).length, free = (h.match(/class="free-tag"/g) || []).length;
         if (cards < 2 || free !== cards) why.push(f + ': har bir kartochkada "Bepul" belgisi bo\'lishi kerak (' + free + '/' + cards + ')');
       }
+      // 5) Aloqa: info@kalki.uz ishlamaydi — saytda qolmasin; aloqa FAQAT t.me/achchi90, kanal t.me/kalki_uz ("Telegram kanali")
+      const allHtml = require('child_process').execFileSync('git', ['ls-files', '*.html', '*.js', '*.json', '*.xml', '*.txt', '*.webmanifest'], { cwd: ROOT, encoding: 'utf8' }).split('\n')
+        .filter((f) => f && !/^(tools|docs|node_modules)\//.test(f) && !/package(-lock)?\.json$/.test(f));
+      for (const f of allHtml) {
+        const h = rd(f);
+        if (/info@kalki\.uz/i.test(h)) why.push(f + ': "info@kalki.uz" qolgan (ishlamaydi)');
+        if (!/\.html$/.test(f)) continue;
+        if (/<a[^>]*t\.me\/kalki_uz[^>]*>\s*(?:Aloqa|Контакты|Алоқа|Telegram|Telegram orqali yozish|Написать в Telegram)\s*<\/a>/.test(h)) why.push(f + ': aloqa havolasi kanalga (@kalki_uz) yo\'naltirilgan, @achchi90 bo\'lishi kerak');
+        const fb = h.match(/id="fbcall"[\s\S]*?<a class="btn btn-gold" href="([^"]+)"/);
+        if (fb && fb[1] !== 'https://t.me/achchi90') why.push(f + ': fbcall tugmasi ' + fb[1] + ' (kutilgan https://t.me/achchi90)');
+      }
       const hs = rd('hisob-siyosati-generatori.html');
       if (!/"isAccessibleForFree":true,"offers":\{"@type":"Offer","price":"0"/.test(hs)) why.push('hisob-siyosati-generatori.html: JSON-LD bepul (price 0, isAccessibleForFree true) emas');
       if (/premiumCode|premiumModal/.test(hs)) why.push('hisob-siyosati-generatori.html: kod kiritish oynasi qolgan');
     } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
-    add(!why.length, '38. ishonch matnlari: AI sahifasida "faqat brauzerda" da\'vosi yo\'q, AI ogohlantirishi bor, maxfiylik koddagi haqiqatga mos (AI/Anthropic/GA/AdSense/KV muddati), Premium izi yo\'q, katalogda har kartochkada «Bepul»', why.slice(0, 6).join(' | '));
+    add(!why.length, '38. ishonch matnlari: AI sahifasida "faqat brauzerda" da\'vosi yo\'q, AI ogohlantirishi bor, maxfiylik koddagi haqiqatga mos (AI/Anthropic/GA/AdSense/KV muddati), Premium izi yo\'q, info@kalki.uz yo\'q (aloqa — @achchi90), katalogda har kartochkada «Bepul»', why.slice(0, 6).join(' | '));
   }
 
   /* ---------- hisobot ---------- */

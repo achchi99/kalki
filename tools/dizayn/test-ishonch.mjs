@@ -125,6 +125,7 @@ for (const [name, url, key] of [['UZ', '/maxfiylik', 'uz'], ['RU', '/ru/maxfiyli
     for (const w of NEED[key]) T(nb.includes(w), name + ': maxfiylikda "' + w + '" bor');
     T(!/Kelajakda saytda|В будущем на сайте|ismingiz, telefon raqamingiz kabi shaxsiy ma.lumotlarni so.ramaydi|не запрашивает личные данные/.test(nb), name + ': eskirgan da\'volar yo\'q');
   }
+  T(!/info@kalki/i.test(nb) && nb.includes('@achchi90') && nb.includes('@kalki_uz'), name + ': aloqa — faqat @achchi90 (kanal @kalki_uz), info@kalki.uz yo\'q (ЎЗ da handle lotincha)');
   T(!g.over, name + ': 360px da gorizontal siljish yo\'q');
   T(errs.length === 0, name + ': JS xatolari yo\'q', errs.join(' | '));
   await ctx.close();

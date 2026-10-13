@@ -46,11 +46,9 @@ const LEGAL = [
   ['biz-haqimizda', 'Biz haqimizda', 'О нас'],
   ['maxfiylik', 'Maxfiylik', 'Конфиденциальность'],
   ['shartlar', 'Foydalanish shartlari', 'Условия использования'],
-  ['https://t.me/kalki_uz', 'Aloqa', 'Контакты'],
   ['hamkorlik', 'Hamkorlik', 'Партнёрство'],
-  ['mailto:info@kalki.uz', 'info@kalki.uz', 'info@kalki.uz'],
-  // Shaxsiy aloqa qatori — Asror tasdiqlashi bilan qo'shildi (2026-09-29).
-  // t.me/kalki_uz (yuqorida, "Aloqa") kanal havolasi — bunga tegilmagan.
+  // Aloqa — FAQAT Telegram @achchi90 (info@kalki.uz ishlamaydi, 2026-10-13 da olib tashlandi).
+  // Kanal @kalki_uz — alohida, "Telegram kanali" sifatida (footer ustunida).
   ['https://t.me/achchi90', 'Aloqa uchun: Telegram @achchi90', 'Связь: Telegram @achchi90', ' target="_blank" rel="noopener" style="' + 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%' + '"'],
 ];
 const LEGAL_A = 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap';
@@ -207,7 +205,7 @@ function xnavV2Html(selfSlug) {
 const FBCALL_V2 = '<div id="fbcall" class="cta-tg"><div class="cta-tx">'
   + '<div class="cta-h"' + lf('Kalkulyator yoki shablon kerakmi?', 'Нужен калькулятор или шаблон?') + '>Kalkulyator yoki shablon kerakmi?</div>'
   + '<div class="cta-d"' + lf('Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.', 'Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.') + '>Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.</div></div>'
-  + '<a class="btn btn-gold" href="https://t.me/kalki_uz">Telegram</a></div>';
+  + '<a class="btn btn-gold" href="https://t.me/achchi90">Telegram</a></div>';
 
 /* Til yuklagichi (<head>, render-blok EMAS, juda qisqa): saqlangan/URL tilini <html> ga darrov yozadi.
    ЎЗ (cyr) rejimida sahifaning ichki tili uz, yozuvi kirill: lang.js tayyor bo'lguncha lotin
@@ -247,7 +245,7 @@ const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
   + fLink('ariza-namunasi', 'Ariza yozish', 'Написать заявление') + fLink('blog', 'Maqolalar', 'Статьи') + '</ul></div>'
   + '<div><div class="sf2-t"' + lf('Aloqa', 'Связь') + '>Aloqa</div><ul>'
   + '<li><a href="https://t.me/kalki_uz"' + lf('Telegram kanali', 'Telegram-канал') + '>Telegram kanali</a></li>'
-  + '<li><a href="mailto:info@kalki.uz">info@kalki.uz</a></li>'
+  + '<li><a href="https://t.me/achchi90"' + lf('Aloqa: @achchi90', 'Связь: @achchi90') + '>Aloqa: @achchi90</a></li>'
   + fLink('hamkorlik', 'Hamkorlik', 'Партнёрство') + '</ul></div>'
   + '</div>'
   + '<p class="sf2-note"' + lf("Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.", 'Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.') + ">Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.</p>"

@@ -39,7 +39,7 @@
         'E\'lon qilingan foizdan tashqari komissiya, sug\'urta va boshqa to\'lovlarni ham so\'rang — haqiqiy yillik qiymat shulardan iborat.',
         'Oylik to\'lov daromadingizning 35 foizidan oshmagani ma\'qul.'
       ],
-      partnerNote: 'Bu bo\'limda hamkor bo\'lish uchun: info@kalki.uz'
+      partnerNote: 'Bu bo\'limda hamkor bo\'lish uchun: Telegram @achchi90'
     },
     ru: {
       ad: 'Реклама',
@@ -53,7 +53,7 @@
         'Кроме заявленной ставки уточните комиссии, страховку и прочие платежи — реальная стоимость складывается из них.',
         'Ежемесячный платёж желательно не выше 35% дохода.'
       ],
-      partnerNote: 'По вопросам партнёрства: info@kalki.uz'
+      partnerNote: 'По вопросам партнёрства: Telegram @achchi90'
     }
   };
 
