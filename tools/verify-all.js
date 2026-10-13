@@ -1105,6 +1105,17 @@ function runTool(args) {
         const fb = h.match(/id="fbcall"[\s\S]*?<a class="btn btn-gold" href="([^"]+)"/);
         if (fb && fb[1] !== 'https://t.me/achchi90') why.push(f + ': fbcall tugmasi ' + fb[1] + ' (kutilgan https://t.me/achchi90)');
       }
+      // 6) /hujjatlar: birinchi blok «Arizalar va ishonchnomalar»; filtr va JSON-LD ItemList tartibi sahifaga mos
+      for (const f of ['hujjatlar.html', 'ru/hujjatlar.html']) {
+        const h = rd(f);
+        const secs = [...h.matchAll(/<section class="dcat" id="dcat-(\w+)"/g)].map((m) => m[1]).join(',');
+        if (secs !== 'ariza,mehnat,mulk,biznes') why.push(f + ': bloklar tartibi ' + secs + ' (kutilgan ariza,mehnat,mulk,biznes)');
+        const filt = [...h.matchAll(/data-filter="(\w+)"/g)].map((m) => m[1]).join(',');
+        if (filt !== 'all,ariza,mehnat,mulk,biznes') why.push(f + ': filtr tartibi ' + filt);
+        const cards = [...h.slice(h.indexOf('<div id="catalog">')).matchAll(/<a class="doc-card" href="([^"]+)"/g)].map((m) => m[1]);
+        let ld = []; try { ld = JSON.parse(h.match(/id="coll-ld">(.*?)<\/script>/s)[1]).mainEntity.itemListElement.map((i) => i.url.split('/').pop()); } catch (e) { why.push(f + ': coll-ld o\'qilmadi'); }
+        if (JSON.stringify(ld) !== JSON.stringify(cards)) why.push(f + ': ItemList tartibi sahifa kartochkalariga teng emas');
+      }
       const hs = rd('hisob-siyosati-generatori.html');
       if (!/"isAccessibleForFree":true,"offers":\{"@type":"Offer","price":"0"/.test(hs)) why.push('hisob-siyosati-generatori.html: JSON-LD bepul (price 0, isAccessibleForFree true) emas');
       if (/premiumCode|premiumModal/.test(hs)) why.push('hisob-siyosati-generatori.html: kod kiritish oynasi qolgan');

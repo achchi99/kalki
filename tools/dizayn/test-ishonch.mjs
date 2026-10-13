@@ -86,6 +86,15 @@ for (const [name, url] of [['UZ', '/hujjatlar'], ['RU', '/ru/hujjatlar'], ['ЎЗ
   T(/100\s?%/.test(g.stats), name + ': statistikada «100% bepul» (endi haqiqat)', g.stats);
   T(!/Premium|Премиум|Премиум|50\s?000/i.test(g.body), name + ': katalogda Premium/narx izi yo\'q');
   T(/^(Бепул|Bepul|Бесплатно)$/i.test(g.freeTxt.trim()), name + ': bepul belgisi matni tilga mos', g.freeTxt);
+  const o = await p.evaluate(() => ({ secs: [...document.querySelectorAll('#catalog > section.dcat')].map((x) => x.getAttribute('data-cat')), filt: [...document.querySelectorAll('#filters [data-filter]')].map((x) => x.getAttribute('data-filter')),
+    firstCardY: Math.round(document.querySelector('#catalog a.doc-card').getBoundingClientRect().top), arizaY: Math.round(document.querySelector('#dcat-ariza').getBoundingClientRect().top), catY: Math.round(document.querySelector('#catalog').getBoundingClientRect().top),
+    ld: (() => { try { const d = JSON.parse(document.getElementById('coll-ld').textContent); return d.mainEntity.itemListElement.map((i) => i.url.split('/').pop()); } catch (e) { return null; } })(),
+    cards: [...document.querySelectorAll('#catalog a.doc-card[href]')].map((c) => c.getAttribute('href')), promo: (() => { const a = document.getElementById('aiPromo'); const sec = document.getElementById('dcat-ariza'); return a ? sec.contains(a) : null; })() }));
+  T(JSON.stringify(o.secs) === '["ariza","mehnat","mulk","biznes"]', name + ': birinchi blok «Arizalar va ishonchnomalar», qolgan tartib oldingidek', JSON.stringify(o.secs));
+  T(JSON.stringify(o.filt) === '["all","ariza","mehnat","mulk","biznes"]', name + ': filtr tugmalari tartibi katalogga mos', JSON.stringify(o.filt));
+  T(o.arizaY - o.catY < 5 && o.firstCardY > 0, name + ': «Arizalar…» bloki katalogning eng tepasida', o.arizaY + '/' + o.catY);
+  T(o.ld && JSON.stringify(o.ld) === JSON.stringify(o.cards.map((h) => h.split('/').pop())) && o.ld.length === 21, name + ': JSON-LD ItemList tartibi sahifa kartochkalariga teng (21)', o.ld ? o.ld.length + '' : 'yo\'q');
+  T(name === 'ЎЗ' || o.promo !== false, name + ': AI banneri (bor bo\'lsa) birinchi blok ichida', String(o.promo));
   T(!g.over, name + ': 360px da gorizontal siljish yo\'q');
   T(errs.length === 0, name + ': JS xatolari yo\'q', errs.join(' | '));
   await ctx.close();
@@ -128,6 +137,11 @@ for (const [name, url, key] of [['UZ', '/maxfiylik', 'uz'], ['RU', '/ru/maxfiyli
   T(!/info@kalki/i.test(nb) && nb.includes('@achchi90') && nb.includes('@kalki_uz'), name + ': aloqa — faqat @achchi90 (kanal @kalki_uz), info@kalki.uz yo\'q (ЎЗ da handle lotincha)');
   T(!g.over, name + ': 360px da gorizontal siljish yo\'q');
   T(errs.length === 0, name + ': JS xatolari yo\'q', errs.join(' | '));
+  await ctx.close();
+}
+for (const [name, url, re] of [['UZ', '/maxfiylik', /Oxirgi yangilanish: 2026-yil 13-oktabr/], ['RU', '/ru/maxfiylik', /Последнее обновление: 13 октября 2026/], ['ЎЗ', '/maxfiylik?lang=cyr', /2026-йил 13-октабр/], ['UZ', '/shartlar', /Oxirgi yangilanish: 2026-yil 13-oktabr/], ['RU', '/ru/shartlar', /Последнее обновление: 13 октября 2026/], ['ЎЗ', '/shartlar?lang=cyr', /2026-йил 13-октабр/]]) {
+  const { ctx, p } = await open(url);
+  T(re.test(nbsp(await p.evaluate(() => document.body.innerText))), name + ' ' + url + ': yangilangan sana 2026-10-13');
   await ctx.close();
 }
 for (const [name, url] of [['UZ', '/shartlar'], ['RU', '/ru/shartlar']]) {
