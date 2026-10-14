@@ -102,3 +102,19 @@ body.v2.typo2 .qadamlar li::before{content:counter(qd);flex:none;width:28px;heig
 body.v2.typo2 .mode-tip{margin:0 0 var(--sp-item);font-size:var(--t-s);line-height:var(--t-lh-text);color:var(--t-muted)}
 body.v2.typo2 .dg-ladd{font-size:var(--t-xs)}
 body.v2.typo2 .receipt-body .hint{color:var(--t-muted-dark)!important}
+
+/* ===== Mobil tuzatishlar: hujjat matni, pastga yopishgan tugma, natija amallari ===== */
+/* Hujjat matni ekranda ≤600px: chapga tekis (so'zlar orasi ochilmasin). PDF/print/Word o'zgarmaydi (faqat screen). */
+@media screen and (max-width:600px){body.v2.typo2 .dg-p{text-align:left!important}}
+/* Pastga yopishgan "Shartnomani ko'rish ↓" (.dg-jump) va oila-byudjet .sticky-panel forma maydonlarini yopmasin */
+@media (max-width:899px){
+  html{scroll-padding-bottom:96px}
+  body.v2.typo2 main:has(.dg-jump),body.v2.typo2:has(.sticky-panel) main{padding-bottom:96px}
+  body.v2.typo2 :is(input,select,textarea,summary,.dg-field,.field){scroll-margin-bottom:96px}
+}
+/* Natija kartasidagi amal tugmalari ≤480px: 2×2 to'r, matn bir qatorda */
+@media (max-width:480px){
+  body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions){display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
+  body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions)>button{min-width:0;width:100%;padding:0 2px;white-space:nowrap;font-size:var(--t-xs);letter-spacing:-.2px;line-height:1.2;overflow:hidden;text-overflow:ellipsis}
+  body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions)>button:last-child:nth-child(odd){grid-column:1/-1}
+}
