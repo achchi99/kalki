@@ -1202,9 +1202,10 @@ function runTool(args) {
       for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'gaz-xarajat-kalkulyator.html', 'ru/gaz-xarajat-kalkulyator.html']) {
         const h = rd(f);
         if (!/<script src="\/assets\/tier-bar\.js"><\/script>/.test(h) || !/<script src="\/assets\/prognoz\.js"><\/script>/.test(h)) why.push(f + ': tier-bar.js / prognoz.js ulanmagan');
-        for (const id of ['modeProg', 'progBox', 'tierBar', 'pastBox']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
+        for (const id of ['modeProg', 'progBox', 'progAfter', 'calcGrid', 'tierBar', 'pastBox']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
         const seo = (h.match(/<section class="seo" id="seoBlock">([\s\S]*?)<\/section>/) || [])[1] || '';
         if (!/Oy oxirida qancha to|Как узнать, сколько я заплачу в конце месяца/.test(seo)) why.push(f + ': FAQ\'da "Oy oxirida qancha to\'lashimni qanday bilaman?" savoli yo\'q');
+        if (!/class="ib" data-ib="srcNote"/.test(h) || !/hint hint-c/.test(h)) why.push(f + ': prognoz rejimida yig\'iladigan izohlar (ⓘ Manba, .hint-c) yo\'q');
         if (/elektr-/.test(f) && h.indexOf('id="modeDev"') < 0) why.push(f + ': "Qurilmalar bo\'yicha" rejimi (#modeDev) yo\'q');
         if (/elektr-/.test(f)) for (const id of ['modeUse', 'modeMeter', 'kwhIn', 'prevIn', 'curIn']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
         if (/id="modeDev" class="on"/.test(h) === false && /elektr-/.test(f)) why.push(f + ': standart rejim "Qurilmalar" bo\'lishi kerak');

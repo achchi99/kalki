@@ -50,7 +50,19 @@ async function open(page, lang, m, d, o = {}) {
   await p.goto(BASE + (lang === 'RU' ? '/ru' : '') + PAGES[page].url + (lang === 'ЎЗ' ? '?lang=cyr' : ''), { waitUntil: 'load' }); await p.waitForTimeout(1300);
   return { ctx, p, errs };
 }
-async function addEntry(p, d, v) { await p.fill('#pgDate', d); await p.fill('#pgVal', String(v)); await p.click('#pgSave'); await p.waitForTimeout(120); }
+// BIRINCHI KIRISH: 2 maydon (oy boshi sanasi avtomatik = davr boshi, hozirgi sana = bugun; kerak bo'lsa "sanani o'zgartirish" orqali)
+async function firstRun(p, v1, v2, o = {}) {
+  if (o.sd) { await p.click('#pgSChg'); await p.fill('#pgSD', o.sd); }
+  if (o.cd) { await p.click('#pgCChg'); await p.fill('#pgCD', o.cd); }
+  await p.fill('#pgS', String(v1)); await p.fill('#pgC', String(v2)); await p.click('#pgGo'); await p.waitForTimeout(300);
+}
+// KEYINGI KIRISH: bitta qator (sana avtomatik bugun; boshqa sana uchun "sanani o'zgartirish")
+async function update(p, d, v, today) {
+  if (d !== today && !(await p.locator('#pgDate').count())) await p.click('#pgUChg');
+  if (d !== today) await p.fill('#pgDate', d);
+  await p.fill('#pgVal', String(v)); await p.click('#pgSave'); await p.waitForTimeout(150);
+}
+const openDet = async (p, id) => { if (!(await p.evaluate((i) => document.getElementById(i).open, id))) await p.click('#' + id + ' summary'); };
 async function read(p, page) {
   return p.evaluate((rowsId) => {
     const q = (s) => document.querySelector(s), rows = [...document.querySelectorAll('#' + rowsId + ' .rrow')].map((r) => r.querySelector('.v').textContent);
@@ -80,7 +92,7 @@ for (const lang of ['UZ', 'RU', 'ЎЗ']) {
     const o = await open(page, lang, m, d);
     if (cat !== 'std' && cat !== 'heat') await o.p.click('#catStove');
     await o.p.click('#modeProg'); await o.p.waitForTimeout(200);
-    for (const [dd, v] of entries) await addEntry(o.p, dd, v);
+    await firstRun(o.p, entries[0][1], entries[1][1]);
     await o.p.waitForTimeout(250);
     const g = await read(o.p, page); const why = [];
     if (digits(g.main) !== jami) why.push('jami ' + digits(g.main) + ' kutilgan ' + jami);
@@ -107,49 +119,60 @@ for (const lang of ['UZ', 'RU', 'ЎЗ']) {
   }
 }
 
-// ---- 5) bitta yozuv; 6) kamaygan/kelajak; saqlanmaydi; yangi kundalik; o'chirish; hammasini o'chirish (sahifa ichidagi tasdiq) ----
+// ---- 5) ma'lumot yetmaydi: bo'sh qora karta YO'Q; 6) kamaygan/kelajak; yangi kundalik (tasdiq bilan); o'chirish; hammasini o'chirish ----
+const SEED_E = (entries) => ['kalki_prognoz_elektr_v1', JSON.stringify({ entries, billDay: 1 })];
 {
-  const o = await open('elektr', 'UZ', 10, 11); let dialog = false; o.p.on('dialog', (d) => { dialog = true; d.dismiss(); });
-  await o.p.click('#modeProg'); await addEntry(o.p, '2026-10-05', 10100);
-  let g = await read(o.p, 'elektr');
-  const needTxt = await o.p.evaluate(() => document.getElementById('devRows').innerText);
-  T(needTxt.includes(TXT.UZ.need) && g.main === '—', '5) bitta yozuv → "Yana bitta ko\'rsatkich kiriting", summa yo\'q', needTxt.replace(/\s+/g, ' '));
-  await addEntry(o.p, '2026-10-01', 10000); await addEntry(o.p, '2026-10-11', 10150);
+  const o = await open('elektr', 'UZ', 10, 11, { seed: SEED_E([{ d: '2026-10-05', v: 10100 }]) });
+  const g = await o.p.evaluate(() => ({ prog: document.getElementById('modeProg').classList.contains('on'), need: (document.getElementById('pgNeed') || {}).innerText || '', shown: document.getElementById('receipt').classList.contains('show'),
+    resCol: getComputedStyle(document.querySelector('.res-col')).display, skel: [...document.querySelectorAll('.res-skel')].some((e) => e.getBoundingClientRect().height > 0), main: document.getElementById('mainNum').textContent }));
+  T(g.prog && g.need.includes(TXT.UZ.need) && !g.shown && g.resCol === 'none' && !g.skel, '5) bitta yozuv: "Yana bitta ko\'rsatkich kiriting", bo\'sh qora natija kartasi ("—") KO\'RSATILMAYDI', JSON.stringify(g));
+  await o.ctx.close();
+}
+{
+  const o = await open('elektr', 'UZ', 10, 11, { seed: SEED_E([{ d: '2026-10-01', v: 10000 }, { d: '2026-10-05', v: 10100 }, { d: '2026-10-11', v: 10150 }]) }); let dialog = false; o.p.on('dialog', (d) => { dialog = true; d.dismiss(); });
+  const TD = '2026-10-11';
   const store = () => o.p.evaluate(() => JSON.parse(localStorage.getItem('kalki_prognoz_elektr_v1') || '{"entries":[]}').entries.map((e) => e.d + '=' + e.v).join(','));
-  T(await store() === '2026-10-01=10000,2026-10-05=10100,2026-10-11=10150', 'yozuvlar localStorage da tartib bilan saqlandi', await store());
-  await addEntry(o.p, '2026-10-11', 10050);
-  g = await read(o.p, 'elektr'); const st1 = await store();
-  T(TXT.UZ.less.test(g.msg) && st1.endsWith('2026-10-11=10150') && (await o.p.locator('#pgNew').count()) === 1, '6) kamaygan ko\'rsatkich → xato, SAQLANMAYDI, "Yangi kundalik boshlang" tugmasi', g.msg + ' | ' + st1);
-  await addEntry(o.p, '2026-10-12', 10200);
+  T(await store() === '2026-10-01=10000,2026-10-05=10100,2026-10-11=10150', 'yozuvlar localStorage da tartib bilan', await store());
+  await update(o.p, TD, 10050, TD);
+  let g = await read(o.p, 'elektr'); const st1 = await store();
+  T(TXT.UZ.less.test(g.msg) && st1.endsWith('2026-10-11=10150') && (await o.p.locator('#pgNew').count()) === 1, '6) kamaygan ko\'rsatkich → xato (tugma bosilgach), SAQLANMAYDI, "Yangi kundalik boshlang" tugmasi', g.msg + ' | ' + st1);
+  await update(o.p, '2026-10-12', 10200, TD);
   g = await read(o.p, 'elektr'); T(TXT.UZ.fut.test(g.msg) && !(await store()).includes('10-12'), '6) kelajak sana → xato, saqlanmaydi', g.msg);
-  await addEntry(o.p, '2026-10-05', 10120);
+  await update(o.p, '2026-10-05', 10120, TD);
   T((await store()).includes('2026-10-05=10120') && !(await store()).includes('=10100'), 'shu sanaga ikkinchi yozuv eskisini almashtiradi', await store());
-  await addEntry(o.p, '2026-10-11', 10050);
-  await o.p.click('#pgNew'); await o.p.waitForTimeout(150);
-  T(await store() === '2026-10-11=10050', '6) "Yangi kundalik boshlang": eski yozuvlar o\'chdi, yangi ko\'rsatkich boshlang\'ich', await store());
-  await addEntry(o.p, '2026-10-05', 10000); await addEntry(o.p, '2026-10-08', 10020);
-  await o.p.click('[data-del="2026-10-08"]'); await o.p.waitForTimeout(100);
-  T(!(await store()).includes('10-08'), 'bitta yozuvni o\'chirish (✕) ishlaydi', await store());
-  await o.p.click('#pgClear'); await o.p.waitForTimeout(100);
-  const conf = await o.p.locator('#pgConf').count(); T(conf === 1 && (await store()).length > 0, 'hammasini o\'chirish: avval sahifa ichidagi tasdiq (hali o\'chmagan)');
+  await update(o.p, TD, 10050, TD);
+  await o.p.click('#pgNew'); await o.p.waitForTimeout(100);
+  const conf1 = await o.p.locator('#pgNewConf').count(), still = await store();
+  T(conf1 === 1 && still.includes('2026-10-01=10000'), '5-band: "Yangi kundalik boshlang" avval sahifa ichidagi TASDIQ so\'raydi (yozuvlar hali joyida)');
+  await o.p.click('#pgNewNo'); await o.p.waitForTimeout(80);
+  T((await o.p.locator('#pgNewConf').count()) === 0 && (await store()) === still, 'tasdiqda "Bekor qilish" — hech narsa o\'chmaydi');
+  await o.p.click('#pgNew'); await o.p.click('#pgNewYes'); await o.p.waitForTimeout(150);
+  T(await store() === '2026-10-11=10050', '"Ha, boshlash": eski yozuvlar o\'chdi, yangi ko\'rsatkich boshlang\'ich', await store());
+  await update(o.p, '2026-10-05', 10000, TD); await update(o.p, '2026-10-08', 10020, TD);
+  await openDet(o.p, 'pgListDet'); await o.p.click('[data-del="2026-10-08"]'); await o.p.waitForTimeout(100);
+  T(!(await store()).includes('10-08'), 'bitta yozuvni o\'chirish (✕) ishlaydi (ro\'yxat yig\'iq, ochilgach)', await store());
+  await openDet(o.p, 'pgListDet'); await o.p.click('#pgClear'); await o.p.waitForTimeout(100);
+  T((await o.p.locator('#pgConf').count()) === 1 && (await store()).length > 0, 'hammasini o\'chirish: avval sahifa ichidagi tasdiq (hali o\'chmagan)');
   await o.p.click('#pgNo'); T((await store()).length > 0, 'tasdiqda "Bekor qilish" — yozuvlar joyida');
-  await o.p.click('#pgClear'); await o.p.click('#pgYes'); await o.p.waitForTimeout(100);
-  T(await store() === '' && !dialog, 'tasdiqdan keyin hammasi o\'chdi; alert/confirm ishlatilmadi', await store());
-  const priv = await o.p.evaluate(() => document.getElementById('pgPriv').textContent);
-  T(priv.includes(TXT.UZ.priv), 'matn: "Ko\'rsatkichlar faqat shu qurilmada saqlanadi."', priv);
+  await openDet(o.p, 'pgListDet'); await o.p.click('#pgClear'); await o.p.click('#pgYes'); await o.p.waitForTimeout(150);
+  const back = await o.p.evaluate(() => !!document.getElementById('pgGo'));
+  T(await store() === '' && !dialog && back, 'tasdiqdan keyin hammasi o\'chdi, birinchi kirish ekraniga qaytdi; alert/confirm ishlatilmadi', await store());
+  const priv = await o.p.evaluate(() => [...document.querySelectorAll('#pgPriv')].map((x) => x.textContent).join('|'));
+  T(priv.includes(TXT.UZ.priv) && (await o.p.locator('#pgPriv').count()) === 1, 'matn: "Ko\'rsatkichlar faqat shu qurilmada saqlanadi." — bir marta', priv);
   T(o.errs.length === 0, '5/6) JS xatolari yo\'q', o.errs.join(' | ')); await o.ctx.close();
 }
 // ---- 7) davr boshida yozuv yo'q: interpolyatsiya ----
 {
-  const o = await open('elektr', 'UZ', 10, 15); await o.p.click('#modeProg');
-  for (const [dd, v] of [['2026-09-25', 9900], ['2026-10-05', 10000], ['2026-10-15', 10200]]) await addEntry(o.p, dd, v);
+  const o = await open('elektr', 'UZ', 10, 15); await o.p.click('#modeProg'); const TD = '2026-10-15';
+  await firstRun(o.p, 9900, 10200, { sd: '2026-09-25' });
+  await update(o.p, '2026-10-05', 10000, TD);
   await o.p.waitForTimeout(250); const g = await read(o.p, 'elektr'); const rv = g.rows.map((x) => nums(x)[0]);
   T(rv[0] === 240 && rv[1] === 17.1 && rv[2] === 531.4 && digits(g.main) === 434571 && g.infoBlk.some((x) => /qo'shni yozuvlar/.test(x)), '7) interpolyatsiya 9 960: shu paytgacha 240, 14 kun → 17,1/kun, prognoz 531,4, summa 434 571', JSON.stringify([rv.slice(0, 3), g.main, g.infoBlk]));
   await o.ctx.close();
 }
 // ---- o'tgan davrlar, rejim avtomatik ochilishi, localStorage o'chirilgan brauzer, ulashish, PWA ----
 {
-  const seed = ['kalki_prognoz_elektr_v1', JSON.stringify({ entries: [{ d: '2026-08-01', v: 1000 }, { d: '2026-09-01', v: 1200 }, { d: '2026-10-01', v: 1500 }, { d: '2026-10-15', v: 1600 }], billDay: 1 })];
+  const seed = SEED_E([{ d: '2026-08-01', v: 1000 }, { d: '2026-09-01', v: 1200 }, { d: '2026-10-01', v: 1500 }, { d: '2026-10-15', v: 1600 }]);
   const o = await open('elektr', 'UZ', 10, 15, { seed, share: true });
   const on = await o.p.evaluate(() => document.getElementById('modeProg').classList.contains('on') && !document.getElementById('modeDev').classList.contains('on'));
   const g = await read(o.p, 'elektr');
@@ -165,7 +188,7 @@ for (const lang of ['UZ', 'RU', 'ЎЗ']) {
 }
 for (const page of ['elektr', 'gaz']) {
   const o = await open(page, 'UZ', 10, 11, { noStorage: true });
-  await o.p.click('#modeProg'); await addEntry(o.p, '2026-10-01', 10000); await addEntry(o.p, '2026-10-11', 10150);
+  await o.p.click('#modeProg'); await firstRun(o.p, 10000, 10150);
   const g = await read(o.p, page); const note = await o.p.evaluate(() => document.getElementById('pgPriv').textContent);
   T(o.errs.length === 0 && digits(g.main) > 0 && note.includes(TXT.UZ.store), '8) ' + page + ': localStorage taqiqlangan brauzerda xatosiz ishlaydi (sessiya ichida), "Bu brauzerda saqlab bo\'lmadi" deydi', o.errs.join(' | ') + ' ' + g.main);
   await o.ctx.close();
@@ -173,18 +196,17 @@ for (const page of ['elektr', 'gaz']) {
 {
   const o = await open('elektr', 'UZ', 10, 11); await o.p.click('#modeProg');
   await o.p.evaluate(() => { window.KalkiPwa = { installed: false, ios: false, canPrompt: () => true, prompt: () => { window.__pwaPrompt = 1; return true; }, iosHint: () => 'x' }; });
-  await addEntry(o.p, '2026-10-01', 10000);
-  const c1 = await o.p.locator('#pgPwaBox').count(); await addEntry(o.p, '2026-10-11', 10150);
+  const c1 = await o.p.locator('#pgPwaBox').count(); await firstRun(o.p, 10000, 10150);
   const c2 = await o.p.locator('#pgPwaBox').count();
-  T(c1 === 0 && c2 === 1, 'PWA taklifi 1-yozuvdan keyin yo\'q, 2-yozuvdan keyin chiqadi');
-  await o.p.click('#pgPwaX'); await addEntry(o.p, '2026-10-11', 10160);
+  T(c1 === 0 && c2 === 1, 'PWA taklifi 2 ta yozuv saqlangandan keyin chiqadi (oldin yo\'q)');
+  await o.p.click('#pgPwaX'); await update(o.p, '2026-10-11', 10160, '2026-10-11');
   const c3 = await o.p.locator('#pgPwaBox').count(); const ts = await o.p.evaluate(() => localStorage.getItem('kalki_prog_pwa'));
   T(c3 === 0 && !!ts, 'yopilgach qayta chiqmaydi, vaqt saqlandi (30 kun)'); await o.ctx.close();
   const day = 86400000, T0 = new Date(2026, 9, 11, 12).getTime();
   for (const [ago, want] of [[29, 0], [31, 1]]) {
     const q = await open('elektr', 'UZ', 10, 11, { seed: ['kalki_prog_pwa', String(T0 - ago * day)] }); await q.p.click('#modeProg');
     await q.p.evaluate(() => { window.KalkiPwa = { installed: false, ios: false, canPrompt: () => true, prompt: () => true, iosHint: () => 'x' }; });
-    await addEntry(q.p, '2026-10-01', 10000); await addEntry(q.p, '2026-10-11', 10150);
+    await firstRun(q.p, 10000, 10150);
     T((await q.p.locator('#pgPwaBox').count()) === want, 'PWA taklifi: oxirgi yopilishdan ' + ago + ' kun o\'tgan → ' + (want ? 'ko\'rsatiladi' : 'ko\'rsatilmaydi')); await q.ctx.close();
   }
 }
@@ -212,17 +234,91 @@ for (const page of ['elektr', 'gaz']) {
   T(o.errs.length === 0, 'elektr rejimlari: JS xatolari yo\'q', o.errs.join(' | ')); await o.ctx.close();
 }
 // ---- 320 px: prognoz kartasi sig'adi (elektr 2-holat, gaz 4-holat), kontrast ----
-for (const [page, m, d, entries, cat] of [['elektr', 10, 16, [['2026-10-01', 20000], ['2026-10-16', 20300]]], ['gaz', 11, 11, [['2026-11-01', 5000], ['2026-11-11', 5200]]]]) for (const w of [320, 390]) {
-  const o = await open(page, 'UZ', m, d, { width: w }); await o.p.click('#modeProg'); for (const [dd, v] of entries) await addEntry(o.p, dd, v); await o.p.waitForTimeout(250);
+for (const [page, m, d, entries] of [['elektr', 10, 16, [['2026-10-01', 20000], ['2026-10-16', 20300]]], ['gaz', 11, 11, [['2026-11-01', 5000], ['2026-11-11', 5200]]]]) for (const w of [320, 390]) {
+  const o = await open(page, 'UZ', m, d, { width: w }); await o.p.click('#modeProg'); await firstRun(o.p, entries[0][1], entries[1][1]); await o.p.waitForTimeout(250);
   const g = await o.p.evaluate(() => {
     const vw = document.documentElement.clientWidth, over = document.documentElement.scrollWidth > vw + 1, pl = document.querySelector('#tierBar .tb'), r = pl.getBoundingClientRect();
     const lab = document.querySelector('#tierBar .tb-nowlab').getBoundingClientRect(), val = document.querySelector('#tierBar .tb-val').getBoundingClientRect();
-    const blocks = [...document.querySelectorAll('#extraRows .pg-blk, #progBox input, #progBox button')].map((e) => e.getBoundingClientRect()).filter((x) => x.width > 0);
+    const blocks = [...document.querySelectorAll('#extraRows .pg-blk, #progAfter input, #progAfter button')].map((e) => e.getBoundingClientRect()).filter((x) => x.width > 0);
     return { over, plate: Math.round(r.width), labIn: lab.left >= r.left - 1 && lab.right <= r.right + 1, valIn: val.left >= r.left - 1 && val.right <= r.right + 1, inVp: blocks.every((x) => x.left >= -1 && x.right <= vw + 1), segClip: [...pl.querySelectorAll('.tb-seg')].some((e) => e.scrollWidth > e.clientWidth + 1) };
   });
   const ax = await axeOk(o.p);
   T(!g.over && g.plate > 200 && g.labIn && g.valIn && g.inVp && !g.segClip && !ax.length, page + ' · ' + w + ' px: prognoz kartasi sig\'adi (chiziq ' + g.plate + ' px, "hozir" va strelka yozuvi ichkarida), kontrast (axe) toza', JSON.stringify(g) + ' ' + ax.join('|').slice(0, 160));
   await o.ctx.close();
+}
+// ---- YANGI UX: birinchi kirish (2 maydon), keyingi kirish (1 qator), bo'sh holat, xato faqat tugmadan keyin, ixcham joylashuv ----
+const UXT = {
+  UZ: { go: 'Oy oxirini hisoblash', err: /Ikkala raqamni ham kiriting/, startLbl: "Oy boshidagi ko'rsatkich", curLbl: 'Hisoblagichdagi hozirgi raqam', hintTxt: /Kvitansiyadagi oxirgi ko'rsatkich yoki oy boshida yozib olgan raqamingiz/, lead: /Ikki raqam kiriting/, upd: 'Yangilash', sum: /^Yozuvlar \(2\)/, ph: /masalan/ },
+  RU: { go: 'Рассчитать конец месяца', err: /Введите оба числа/, startLbl: 'Показание на начало месяца', curLbl: 'Текущее показание счётчика', hintTxt: /Последнее показание из квитанции/, lead: /Введите два числа/, upd: 'Обновить', sum: /^Записи \(2\)/, ph: /например/ },
+  'ЎЗ': { go: 'Ой охирини ҳисоблаш', err: /Иккала рақамни ҳам киритинг/, startLbl: 'Ой бошидаги кўрсаткич', curLbl: 'Ҳисоблагичдаги ҳозирги рақам', hintTxt: /Квитанциядаги охирги кўрсаткич/, lead: /Икки рақам киритинг/, upd: 'Янгилаш', sum: /^Ёзувлар \(2\)/, ph: /масалан/ }
+};
+for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) for (const w of [320, 390]) {
+  const X = UXT[lang];
+  const o = await open(page, lang, 10, 11, { width: w }); await o.p.click('#modeProg'); await o.p.waitForTimeout(250);
+  const f = await o.p.evaluate(() => {
+    const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden'; };
+    const box = document.getElementById('progBox'), ins = [...box.querySelectorAll('input')].filter(vis);
+    return { texts: ins.filter((e) => e.type === 'text').length, dates: ins.filter((e) => e.type === 'date').length, ids: ins.map((e) => e.id).join(','), ph: ins.map((e) => e.placeholder), vals: ins.map((e) => e.value),
+      go: (document.getElementById('pgGo') || {}).textContent, lbls: [...box.querySelectorAll('label')].map((l) => l.textContent), lead: (box.querySelector('.pg-lead') || {}).textContent || '', hint: (box.querySelector('.pg-hint') || {}).textContent || '', err: (document.getElementById('pgMsg') || {}).textContent || '',
+      list: !!box.querySelector('.pg-list'), resCol: getComputedStyle(document.querySelector('.res-col')).display, shown: document.getElementById('receipt').classList.contains('show'), skel: [...document.querySelectorAll('.res-skel')].some(vis),
+      catHint: document.getElementById('catHint') ? getComputedStyle(document.getElementById('catHint')).display : null, srcNote: getComputedStyle(document.getElementById('srcNote')).display, ib: [...document.querySelectorAll('.ibrow')].some(vis), over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      seasonHint: document.getElementById('seasonHint') ? getComputedStyle(document.getElementById('seasonHint')).display : null,
+      segOk: (() => { const sg = document.getElementById('modeSeg').getBoundingClientRect(); return [...document.querySelectorAll('#modeSeg button')].every((x) => { const r = x.getBoundingClientRect(); return r.left >= sg.left - 1 && r.right <= sg.right + 1 && x.scrollWidth <= x.clientWidth + 1; }); })() };
+  });
+  const why = [];
+  if (f.texts !== 2 || f.dates !== 0 || f.ids !== 'pgS,pgC') why.push('birinchi kirishda 2 ta matn maydoni bo\'lishi kerak: ' + f.ids + ' date=' + f.dates);
+  if (f.go !== X.go) why.push('tugma "' + f.go + '"');
+  if (!f.lbls.includes(X.startLbl) || !f.lbls.includes(X.curLbl) || !X.hintTxt.test(f.hint) || !X.lead.test(f.lead)) why.push('yozuvlar: ' + JSON.stringify([f.lbls, f.hint.slice(0, 40), f.lead.slice(0, 30)]));
+  if (f.ph.some((x) => !X.ph.test(x) || /^\d+$/.test(x)) || f.vals.some((x) => x !== '')) why.push('placeholder/qiymat: ' + JSON.stringify([f.ph, f.vals]));
+  if (f.err !== '') why.push('xato oldindan chiqdi: ' + f.err);
+  if (f.list || f.resCol !== 'none' || f.shown || f.skel) why.push('bo\'sh holatda natija kartasi ko\'rinyapti: ' + JSON.stringify([f.resCol, f.shown, f.skel]));
+  if (f.srcNote !== 'none' || (f.catHint !== null && f.catHint !== 'none') || (f.seasonHint !== null && f.seasonHint !== 'none') || !f.ib) why.push('izohlar yig\'iq bo\'lishi kerak: ' + JSON.stringify([f.catHint, f.seasonHint, f.srcNote, f.ib]));
+  if (f.over) why.push('gorizontal siljish');
+  if (!f.segOk) why.push('rejim tugmalari seg ichiga sig\'madi yoki yozuvi kesildi');
+  await o.p.fill('#pgS', '1'); await o.p.waitForTimeout(80);
+  const typed = await o.p.evaluate(() => (document.getElementById('pgMsg') || {}).textContent || '');
+  if (typed !== '') why.push('maydon to\'ldirilganda xato chiqdi (tugma bosilmagan)');
+  await o.p.fill('#pgS', ''); await o.p.click('#pgGo'); await o.p.waitForTimeout(120);
+  const afterClick = await o.p.evaluate(() => { const m = document.getElementById('pgMsg'); return { t: m.textContent, role: m.getAttribute('role'), vis: m.getBoundingClientRect().height > 0 }; });
+  if (!X.err.test(afterClick.t) || afterClick.role !== 'alert' || !afterClick.vis) why.push('tugma bosilgach xato chiqishi kerak: ' + JSON.stringify(afterClick));
+  await o.p.fill('#pgS', '10000'); await o.p.waitForTimeout(80);
+  const cleared = await o.p.evaluate(() => (document.getElementById('pgMsg') || {}).textContent || '');
+  if (cleared !== '') why.push('yozishni boshlagach xato yo\'qolishi kerak');
+  T(!why.length, 'UX · ' + page + ' · ' + lang + ' · ' + w + ' px: birinchi kirish — faqat 2 maydon + katta tugma, xato faqat tugmadan keyin, bo\'sh qora karta yo\'q, izohlar yig\'iq', why.join(' | '));
+  // ikkala maydonni to'ldirib hisoblash → natija darhol, forma bitta qatorga aylanadi
+  await o.p.fill('#pgS', '10000'); await o.p.fill('#pgC', '10150'); await o.p.click('#pgGo'); await o.p.waitForTimeout(300);
+  const n = await o.p.evaluate(() => {
+    const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && (!e.checkVisibility || e.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true })); };
+    const after = document.getElementById('progAfter'), ins = [...after.querySelectorAll('input')].filter(vis), dets = [...after.querySelectorAll('details')];
+    const r = document.getElementById('receipt').getBoundingClientRect(), upd = document.getElementById('pgSave');
+    return { shown: document.getElementById('receipt').classList.contains('show') && r.height > 0, main: document.getElementById('mainNum').textContent, texts: ins.filter((e) => e.type === 'text').length, dates: ins.filter((e) => e.type === 'date').length, firstGone: !document.getElementById('pgS'),
+      updTxt: upd ? upd.textContent : null, sum0: dets[0] ? dets[0].querySelector('summary').textContent : '', open: dets.map((x) => x.open), nDet: dets.length, recAbove: upd ? r.top < upd.getBoundingClientRect().top : false, dateLink: !!document.getElementById('pgUChg'), over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1 };
+  });
+  T(n.shown && /\d/.test(n.main) && n.texts === 1 && n.dates === 0 && n.firstGone && n.updTxt === X.upd && X.sum.test(n.sum0) && n.nDet === 2 && n.open.every((x) => !x) && n.recAbove && n.dateLink && !n.over, 'UX · ' + page + ' · ' + lang + ' · ' + w + ' px: keyingi kirish — natija tepada, ostida BITTA qator [raqam][Yangilash], sana yashirin, "Yozuvlar (2)" va "Sozlamalar" yig\'iq', JSON.stringify(n));
+  T(o.errs.length === 0, 'UX · ' + page + ' · ' + lang + ' · ' + w + ': JS xatolari yo\'q', o.errs.join(' | '));
+  await o.ctx.close();
+}
+// ---- IXCHAM JOYLASHUV: 390 px da birinchi kirishda rejim tugmalari + toifa + 2 maydon + tugma bir ekranga sig'adi ----
+for (const page of ['elektr', 'gaz']) {
+  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', isMobile: true, hasTouch: true });
+  await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await ctx.addInitScript(fixDate(10, 11));
+  const p = await ctx.newPage(); await p.goto(BASE + PAGES[page].url, { waitUntil: 'load' }); await p.waitForTimeout(1200); await p.click('#modeProg'); await p.waitForTimeout(300);
+  const g = await p.evaluate(() => { const a = document.getElementById('modeSeg').getBoundingClientRect(), z = document.getElementById('pgGo').getBoundingClientRect(), y = window.scrollY; return { h: Math.round(z.bottom - a.top), top: Math.round(a.top + y), btn: Math.round(z.height), formBottom: Math.round(document.querySelector('.form-card').getBoundingClientRect().bottom + y) }; });
+  T(g.h <= 700 && g.btn >= 44, page + ' · 390x844: rejim tugmalaridan "Oy oxirini hisoblash" tugmasigacha ' + g.h + ' px (≤ 700 — bir ekranga sig\'adi), tugma balandligi ' + g.btn, JSON.stringify(g));
+  await p.evaluate((y) => window.scrollTo(0, y - 70), g.top);
+  await p.screenshot({ path: process.env.PROG_SHOT ? process.env.PROG_SHOT + '-' + page + '-first.png' : '/tmp/pg-' + page + '-first.png' });
+  await p.fill('#pgS', '10000'); await p.fill('#pgC', '10150'); await p.click('#pgGo'); await p.waitForTimeout(800);
+  await p.screenshot({ path: process.env.PROG_SHOT ? process.env.PROG_SHOT + '-' + page + '-result.png' : '/tmp/pg-' + page + '-result.png' });
+  await ctx.close();
+}
+// ---- boshqa rejimlarda izohlar OCHIQ qoladi (elektr): qurilmalar rejimi o'zgarmagan ----
+{
+  const o = await open('elektr', 'UZ', 10, 15);
+  const g = await o.p.evaluate(() => ({ cat: getComputedStyle(document.getElementById('catHint')).display, src: getComputedStyle(document.getElementById('srcNote')).display, ib: [...document.querySelectorAll('.ibrow')].some((e) => e.getBoundingClientRect().height > 0) }));
+  T(g.cat !== 'none' && g.src !== 'none' && !g.ib, 'Qurilmalar rejimida toifa izohi va manba matni ko\'rinadi, ⓘ havolalari yo\'q (faqat Prognoz rejimida yig\'iladi)', JSON.stringify(g));
+  await o.p.click('#modeProg'); await o.p.click('[data-ib="catHint"]'); await o.p.waitForTimeout(80);
+  const g2 = await o.p.evaluate(() => getComputedStyle(document.getElementById('catHint')).display);
+  T(g2 !== 'none', '"ⓘ Toifa haqida" bosilganda izoh ochiladi', g2); await o.ctx.close();
 }
 console.log('\nJadval (til · holat · sahifa · toifa · kutilgan · kalkulyator · natija):');
 table.forEach((r) => console.log('  ' + r.join(' · ')));

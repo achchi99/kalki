@@ -42,7 +42,8 @@
     + '.tb-cap{margin:4px 0 0;font-size:11px;line-height:1.35;color:#5C6B63}';
 
   function addCss() {
-    if (!root.document || root.document.getElementById('tierbarcss')) return;
+    if (!root.document || /jsdom/i.test((root.navigator || {}).userAgent || '')) return;
+    var old = root.document.getElementById('tierbarcss'); if (old) { old.textContent = CSS; return; }
     var s = root.document.createElement('style'); s.id = 'tierbarcss'; s.textContent = CSS;
     root.document.head.appendChild(s);
   }

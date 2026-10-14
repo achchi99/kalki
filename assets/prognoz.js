@@ -130,34 +130,44 @@
   var MON = { uz: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'], ru: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] };
   var TX = {
     uz: {
-      title: "Hisoblagich kundaligi", date: "Sana", val: "Ko'rsatkich", save: "Saqlash", billDay: "Hisob kuni", billHint: "Oy shu kundan boshlanadi (1–31).",
-      listTitle: "Oxirgi yozuvlar", del: "O'chirish", clearAll: "Hammasini o'chirish", sure: "Hamma ko'rsatkichlar o'chiriladi. Davom etasizmi?", yes: "Ha, o'chirish", no: "Bekor qilish",
+      lead: "Ikki raqam kiriting — oy oxirida qancha to'lashingizni va qachon qimmat pog'onaga o'tishingizni ko'rsatamiz.",
+      startLbl: "Oy boshidagi ko'rsatkich", startHint: "Kvitansiyadagi oxirgi ko'rsatkich yoki oy boshida yozib olgan raqamingiz", curLbl: "Hisoblagichdagi hozirgi raqam", ph: "masalan, 12345",
+      dateOn: "Sana: {d}", dateToday: "Sana: bugun, {d}", chg: "sanani o'zgartirish", go: "Oy oxirini hisoblash",
+      errBoth: "Ikkala raqamni ham kiriting.", errOrder: "Oy boshi sanasi hozirgi sanadan keyin bo'lishi mumkin emas.", errSame: "Ikkala raqam uchun sana bir xil — oy boshi sanasini o'zgartiring.", errLess2: "Hozirgi raqam oy boshidagi raqamdan kichik bo'lishi mumkin emas — raqamlarni tekshiring. Hisoblagich almashtirilganmi?",
+      updLbl: "Bugungi raqam", updBtn: "Yangilash", listSum: "Yozuvlar ({n})", setSum: "Sozlamalar", billDay: "Hisob kuni", billHint: "Oy shu kundan boshlanadi (1–31).", date: "Sana",
+      del: "O'chirish", clearAll: "Hammasini o'chirish", sure: "Hamma ko'rsatkichlar o'chiriladi. Davom etasizmi?", yes: "Ha, o'chirish", no: "Bekor qilish",
       privacy: "Ko'rsatkichlar faqat shu qurilmada saqlanadi.", noStore: "Bu brauzerda saqlab bo'lmadi — ko'rsatkichlar faqat shu sessiya ichida turadi.",
       errInvalid: "Sana va ko'rsatkichni to'g'ri kiriting.", errFuture: "Kelajak sanani kiritib bo'lmaydi.", errLess: "Ko'rsatkich oldingi sanadagidan kichik bo'lishi mumkin emas. Hisoblagich almashtirilganmi?", newDiary: "Yangi kundalik boshlang",
+      newSure: "Eski yozuvlar o'chiriladi, shu ko'rsatkich yangi kundalikning boshi bo'ladi. Davom etasizmi?", newYes: "Ha, boshlash",
       empty: "Hali yozuv yo'q.", saved: "Saqlandi.", replaced: "Shu sanadagi eski yozuv almashtirildi.",
       need: "Yana bitta ko'rsatkich kiriting", needSub: "Prognoz uchun hisob davrida kamida ikkita ko'rsatkich kerak (yoki davr boshidagi + bitta).",
       tag: "Oy oxiri prognozi", lbl: "Oy oxirida taxminan", approx: "taxminiy: davr boshidagi ko'rsatkich yo'q, birinchi yozuvdan hisoblandi", interp: "Davr boshidagi ko'rsatkich qo'shni yozuvlar orasidan hisoblandi.",
       kUsed: "Shu paytgacha sarf", kRate: "Kunlik o'rtacha", kProj: "Prognoz sarf", kAvg: "1 {u} o'rtacha narxi", kPeriod: "Hisob davri", kLeft: "Davr oxirigacha", days: "kun",
       warn: "{date} {price} {cur}lik pog'onaga o'tasiz", advice: "Kuniga {x} {u} kamaytirsangiz, shu pog'onada qolasiz va {y} {cur} tejaysiz.", endTier: "Bu oy {n}-pog'onada yakunlaysiz.", noCross: "Joriy sur'atda pog'onadan o'tmaysiz.",
-      tierTitle: "Prognoz pog'onalar bo'yicha", past: "O'tgan davrlar", pastRow: "{a} – {b}", vsPrev: "oldingiga nisbatan",
+      tierTitle: "Prognoz pog'onalar bo'yicha", past: "O'tgan davrlar", vsPrev: "oldingiga nisbatan",
       barCap: "Strelka — oy oxiridagi prognoz, «hozir» — shu paytgacha sarf. Rangli blokda — pog'ona narxi, pastda — chegara.", barAria: "Prognoz pog'ona chizig'i: oy oxirida taxminan {p} {u}, {n}-pog'ona; hozirgacha {used} {u}.",
-      share: "Ulashish", copied: "Nusxalandi ✓", shareTxt: "Oy oxirida taxminan {sum} {cur} ({n}-pog'ona)",
-      pwa: "Ilovani o'rnating — keyingi ko'rsatkichni bir bosishda kiritasiz", pwaBtn: "O'rnatish", pwaClose: "Yopish", cur: "so'm", per: "oy"
+      shareTxt: "Oy oxirida taxminan {sum} {cur} ({n}-pog'ona)",
+      pwa: "Ilovani o'rnating — keyingi ko'rsatkichni bir bosishda kiritasiz", pwaBtn: "O'rnatish", pwaClose: "Yopish", cur: "so'm"
     },
     ru: {
-      title: "Дневник показаний счётчика", date: "Дата", val: "Показание", save: "Сохранить", billDay: "День расчёта", billHint: "Месяц начинается с этого дня (1–31).",
-      listTitle: "Последние записи", del: "Удалить", clearAll: "Удалить всё", sure: "Все показания будут удалены. Продолжить?", yes: "Да, удалить", no: "Отмена",
+      lead: "Введите два числа — покажем, сколько вы заплатите в конце месяца и когда перейдёте на дорогую ступень.",
+      startLbl: "Показание на начало месяца", startHint: "Последнее показание из квитанции или число, записанное в начале месяца", curLbl: "Текущее показание счётчика", ph: "например, 12345",
+      dateOn: "Дата: {d}", dateToday: "Дата: сегодня, {d}", chg: "изменить дату", go: "Рассчитать конец месяца",
+      errBoth: "Введите оба числа.", errOrder: "Дата начала месяца не может быть позже текущей даты.", errSame: "Для обоих чисел дата одинакова — измените дату начала месяца.", errLess2: "Текущее показание не может быть меньше показания на начало месяца — проверьте числа. Счётчик заменили?",
+      updLbl: "Сегодняшнее показание", updBtn: "Обновить", listSum: "Записи ({n})", setSum: "Настройки", billDay: "День расчёта", billHint: "Месяц начинается с этого дня (1–31).", date: "Дата",
+      del: "Удалить", clearAll: "Удалить всё", sure: "Все показания будут удалены. Продолжить?", yes: "Да, удалить", no: "Отмена",
       privacy: "Показания хранятся только на этом устройстве.", noStore: "В этом браузере сохранить не удалось — показания хранятся только в рамках этой сессии.",
       errInvalid: "Введите дату и показание корректно.", errFuture: "Нельзя вводить будущую дату.", errLess: "Показание не может быть меньше показания за более раннюю дату. Счётчик заменили?", newDiary: "Начать новый дневник",
+      newSure: "Старые записи будут удалены, это показание станет началом нового дневника. Продолжить?", newYes: "Да, начать",
       empty: "Записей пока нет.", saved: "Сохранено.", replaced: "Прежняя запись за эту дату заменена.",
       need: "Введите ещё одно показание", needSub: "Для прогноза нужно минимум два показания в расчётном периоде (или показание на начало периода + одно).",
       tag: "Прогноз на конец месяца", lbl: "К концу месяца примерно", approx: "ориентировочно: нет показания на начало периода, расчёт от первой записи", interp: "Показание на начало периода рассчитано по соседним записям.",
       kUsed: "Расход на данный момент", kRate: "В среднем в день", kProj: "Прогноз расхода", kAvg: "Средняя цена 1 {u}", kPeriod: "Расчётный период", kLeft: "До конца периода", days: "дн.",
       warn: "{date} вы перейдёте на ступень по {price} {cur}", advice: "Если сократить на {x} {u} в день, останетесь на этой ступени и сэкономите {y} {cur}.", endTier: "В этом месяце вы закончите на {n}-й ступени.", noCross: "При текущем темпе вы не перейдёте на другую ступень.",
-      tierTitle: "Прогноз по ступеням", past: "Прошлые периоды", pastRow: "{a} – {b}", vsPrev: "к предыдущему",
+      tierTitle: "Прогноз по ступеням", past: "Прошлые периоды", vsPrev: "к предыдущему",
       barCap: "Стрелка — прогноз на конец месяца, «сейчас» — расход на данный момент. Цветной блок — цена ступени, внизу — граница.", barAria: "Шкала ступеней прогноза: к концу месяца примерно {p} {u}, {n}-я ступень; на данный момент {used} {u}.",
-      share: "Поделиться", copied: "Скопировано ✓", shareTxt: "К концу месяца примерно {sum} {cur} ({n}-я ступень)",
-      pwa: "Установите приложение — следующее показание вводится в одно касание", pwaBtn: "Установить", pwaClose: "Закрыть", cur: "сум", per: "мес"
+      shareTxt: "К концу месяца примерно {sum} {cur} ({n}-я ступень)",
+      pwa: "Установите приложение — следующее показание вводится в одно касание", pwaBtn: "Установить", pwaClose: "Закрыть", cur: "сум"
     }
   };
   var NBSP = String.fromCharCode(160);
@@ -166,19 +176,35 @@
   var esc = function (x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   function todayStr() { var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
   function lang() { return doc.documentElement.lang === 'ru' ? 'ru' : 'uz'; }
-  function dateTxt(s, ordinalUz) { var p = parse(s), L = lang(); return L === 'ru' ? p.d + ' ' + MON.ru[p.m - 1] : p.d + '-' + MON.uz[p.m - 1]; }
-  function dateLoc(s) { var p = parse(s), L = lang(); if (L === 'ru') return p.d + ' ' + MON.ru[p.m - 1]; var m = MON.uz[p.m - 1]; return p.d + '-' + m + 'da'; }
+  function dateTxt(s) { var p = parse(s), L = lang(); return L === 'ru' ? p.d + ' ' + MON.ru[p.m - 1] : p.d + '-' + MON.uz[p.m - 1]; }
+  function dateLoc(s) { var p = parse(s); if (lang() === 'ru') return p.d + ' ' + MON.ru[p.m - 1]; return p.d + '-' + MON.uz[p.m - 1] + 'da'; }
 
-  var CSS = '.pg-box{margin-top:6px}.pg-h{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#6FB3D9);margin:4px 0 12px;display:flex;align-items:center;gap:8px}.pg-h::after{content:"";flex:1;height:1px;background:var(--line,#DDE5E0)}'
-    + '.pg-row{display:flex;gap:10px;flex-wrap:wrap}.pg-row .field{flex:1 1 130px;min-width:0;margin-bottom:12px}.pg-box input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink,#16211C);padding:12px 10px;min-width:0}'
-    + '.pg-msg{font-size:12.5px;font-weight:700;margin:2px 0 10px;min-height:0}.pg-msg.err{color:#B04A3A}.pg-msg.ok{color:#1E6B45}.pg-btn{border:1.5px solid var(--cat,#1D4E6B);background:#fff;color:var(--cat,#1D4E6B);font:inherit;font-size:14px;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer;min-height:44px}'
-    + '.pg-btn.pri{background:var(--cat,#1D4E6B);color:#fff}.pg-btn.danger{border-color:#B04A3A;color:#B04A3A}.pg-list{margin:6px 0 8px;padding:0;list-style:none}.pg-list li{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line,#DDE5E0);border-radius:9px;margin-bottom:6px;font-size:14px;font-weight:700;background:#FBFCFB}'
+  var CSS = '.pg-box{margin-top:2px}.pg-lead{font-size:13.5px;line-height:1.4;color:#33403A;font-weight:600;margin:0 0 12px}'
+    + '.pg-box input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink,#16211C);padding:10px;min-width:0}'
+    + '.pg-hint{font-size:12px;line-height:1.35;color:var(--muted,#5C6B63);margin:5px 0 0}.pg-dline{font-size:12px;color:var(--muted,#5C6B63);margin:4px 0 0}'
+    + '.pg-link{border:0;background:none;padding:0;font:inherit;font-size:12px;font-weight:700;color:var(--cat,#1D4E6B);text-decoration:underline;cursor:pointer}'
+    + '.pg-msg{font-size:12.5px;font-weight:700;margin:2px 0 8px;min-height:0}.pg-msg:empty{display:none}.pg-msg.err{color:#B04A3A}.pg-msg.ok{color:#1E6B45}'
+    + '.pg-btn{border:1.5px solid var(--cat,#1D4E6B);background:#fff;color:var(--cat,#1D4E6B);font:inherit;font-size:14px;font-weight:800;padding:10px 14px;border-radius:10px;cursor:pointer;min-height:44px}.pg-btn.pri{background:var(--cat,#1D4E6B);color:#fff}.pg-btn.danger{border-color:#B04A3A;color:#B04A3A}'
+    + '.pg-upd{display:flex;gap:8px;align-items:stretch}.pg-upd .input-shell{flex:1;min-width:0}.pg-lbl{display:block;font-size:12.5px;font-weight:700;color:var(--muted,#5C6B63);margin:0 0 5px}'
+    + '.pg-det{border:1px solid var(--line,#DDE5E0);border-radius:10px;margin:8px 0;background:#FBFCFB}.pg-det>summary{cursor:pointer;font-size:13.5px;font-weight:700;color:#33403A;padding:10px 12px;list-style:none;min-height:44px;display:flex;align-items:center}.pg-det>summary::-webkit-details-marker{display:none}.pg-det>summary::after{content:"▾";margin-left:auto;color:#5C6B63}.pg-det[open]>summary::after{content:"▴"}.pg-det>div{padding:0 12px 12px}'
+    + '.pg-list{margin:0 0 8px;padding:0;list-style:none}.pg-list li{display:flex;align-items:center;gap:8px;padding:6px 4px 6px 10px;border:1px solid var(--line,#DDE5E0);border-radius:9px;margin-bottom:6px;font-size:14px;font-weight:700;background:#fff}'
     + '.pg-list .d{flex:1;color:#33403A}.pg-list .v{font-variant-numeric:tabular-nums}.pg-x{border:0;background:transparent;color:#B04A3A;font:inherit;font-size:18px;line-height:1;width:44px;height:44px;cursor:pointer;border-radius:8px}'
-    + '.pg-note{font-size:12.5px;color:var(--muted,#5C6B63);margin:6px 0}.pg-confirm{background:#FBF3E6;border:1px solid #EFDCBB;border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13.5px;font-weight:700;color:#3E3212}.pg-confirm .pg-row{margin-top:8px}'
+    + '.pg-note{font-size:11.5px;color:var(--muted,#5C6B63);margin:8px 0 0}.pg-confirm{background:#FBF3E6;border:1px solid #EFDCBB;border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13.5px;font-weight:700;color:#3E3212}.pg-confirm .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}'
+    + '.pg-set{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}.pg-set .fld{width:130px}.pg-set p{flex:1 1 140px;margin:0}'
     + '.pg-pwa{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--cat-soft,#E8F1F6);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;font-weight:700;color:var(--cat,#1D4E6B)}.pg-pwa span{flex:1 1 200px}'
-    + '.pg-blk{border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;font-weight:700;line-height:1.45}.pg-warn{background:#FFF1E0;color:#6B3200;border:1px solid #F0C48A}.pg-tip{background:#E7F3EC;color:#14452B;border:1px solid #B7DAC5}.pg-info{background:rgba(255,255,255,.08);color:#D2E0D8;font-weight:600;font-size:13px}'
-    + '.pg-past .rrow .k small{display:block;font-size:11px;opacity:.75;margin-top:2px}';
-  function addCss() { if (doc.getElementById('prognozcss')) return; var s = doc.createElement('style'); s.id = 'prognozcss'; s.textContent = CSS; doc.head.appendChild(s); }
+    + '.pg-blk{border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;font-weight:700;line-height:1.45}.pg-warn{background:#FFF1E0;color:#6B3200;border:1px solid #F0C48A}.pg-tip{background:#E7F3EC;color:#14452B;border:1px solid #B7DAC5}.pg-info{background:rgba(255,255,255,.08);color:#D2E0D8;font-weight:600;font-size:13px}.pg-need{background:#F2F5F3;color:#33403A;font-weight:600;font-size:13px;margin:0 0 10px}'
+    + '.pg-past .rrow .k small{display:block;font-size:11px;opacity:.75;margin-top:2px}'
+    // Prognoz rejimida joyni tejash: ixcham oraliqlar, izohlar yig'iq (ⓘ), bo'sh natija kartasi yo'q
+    + '.g-prog .form-card{padding:14px 14px 16px;margin-top:10px}.g-prog .field{margin-bottom:10px}.g-prog .form-card label{margin-bottom:5px}'
+    + '.g-prog .seg{padding:3px;gap:3px}.g-prog .seg button{padding:7px 4px;font-size:12.5px;line-height:1.2}.g-prog #modeSeg{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}.g-prog #modeSeg button{padding:7px 1px;font-size:11.5px;letter-spacing:-.1px;overflow-wrap:break-word;min-width:0}.g-prog #catSeg,.g-prog #seasonSeg{grid-template-columns:repeat(2,1fr)}'
+    + '.g-prog #modeLbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}'
+    + '#modeSeg{grid-template-columns:repeat(2,1fr)}@media (max-width:360px){.g-prog #modeSeg{grid-auto-flow:row;grid-template-columns:repeat(2,1fr)}}'
+    + '.g-prog .form-card label{font-size:12.5px}.g-prog .form-card .input-shell input{padding:9px 12px}.g-prog .form-card .calc-btn{padding:12px 14px;font-size:16px;margin-top:4px}.g-prog .pg-lead{font-size:13px;margin-bottom:8px}'
+    + '.g-prog .hint-c{display:none}.g-prog .hint-c.open{display:block}.ibrow{display:none;gap:16px;flex-wrap:wrap;margin-top:4px}.g-prog .ibrow{display:flex}'
+    + '.ib{border:0;background:none;color:var(--cat,#1D4E6B);font:inherit;font-size:12.5px;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px 0;min-height:32px}'
+    + '.g-prog .receipt{scroll-margin-top:72px}.calc-grid.g-nores .res-col{display:none!important}';
+  // prerender (jsdom) HTML'ga CSS yozib qo'ymasin; brauzerda mavjud <style> bo'lsa ham yangilanadi
+  function addCss() { if (/jsdom/i.test((root.navigator || {}).userAgent || '')) return; var s = doc.getElementById('prognozcss') || doc.createElement('style'); s.id = 'prognozcss'; s.textContent = CSS; if (!s.parentNode) doc.head.appendChild(s); }
 
   /* ------- Storage ------- */
   function makeStore(key) {
@@ -195,67 +221,119 @@
   }
 
   /* ------- UI ------- */
-  /* init({ key, form, result: { tag, mainNum, lbl, rows, tiers, extra, bar, box }, unit:{uz,ru}, tariff: fn() -> { tiers(q), limits, bar:[{from,to,price}], ctxNote }, onActive }) */
+  /* init({ key, form, after, grid, result:{tag,mainNum,lbl,rows,tiers,tiersTitle,extra,bar,pastBox}, unit:{uz,ru},
+   *        tariff: fn() -> { tiers(q), limits, prices, bar:[{from,to,price}] }, setShown(bool), onChange })
+   *  form  — forma kartasi ichidagi konteyner (BIRINCHI KIRISH: 2 maydon, yoki ma'lumot yetmaganda ixcham panel)
+   *  after — natija kartasi ostidagi konteyner (KEYINGI KIRISHLAR: bitta qator + yig'iq ro'yxat/sozlamalar)
+   *  grid  — .calc-grid: `g-prog` (prognoz rejimi) va `g-nores` (natija kartasi yo'q) sinflari shu yerga qo'yiladi */
   function init(o) {
     addCss();
-    var store = makeStore(o.key), st = store.get(), active = false, msg = { text: '', cls: '' }, confirmAll = false, lastErrLess = null, pwaShown = false;
-    var form = o.form, R = o.result;
+    var store = makeStore(o.key), st = store.get(), active = false, R = o.result, form = o.form;
+    var ui = { err: '', dS: false, dC: false, dU: false, confirmAll: false, confirmNew: false, lessEntry: null, pwa: false, listOpen: false, setOpen: false, info: '' };
     var unit = function () { return o.unit[lang()]; };
     var t = function (k) { return TX[lang()][k]; };
-
+    var $ = function (id) { return doc.getElementById(id); };
     function ctx() { return o.tariff(); }
     function compute() { var c = ctx(); return { c: c, f: forecast({ entries: st.entries, today: todayStr(), billDay: st.billDay, tiers: c.tiers, limits: c.limits }) }; }
+    function changed() { if (o.onChange) o.onChange(); }
+    function numIn(s) { return parseFloat(String(s).replace(new RegExp(NBSP, 'g'), '').replace(/\s/g, '').replace(',', '.')); }
+    function setErr(text) { ui.err = text; var e = $('pgMsg'); if (e) { e.textContent = text; e.className = 'pg-msg' + (text ? ' err' : ''); } }
+    function clearErrOnInput(ids) { ids.forEach(function (id) { var e = $(id); if (e) e.addEventListener('input', function () { if (ui.err) setErr(''); }); }); }
 
-    function drawForm() {
-      var L = TX[lang()], today = todayStr(), list = st.entries.slice().reverse().slice(0, 8);
-      var h = '<div class="pg-box"><div class="pg-h">' + esc(L.title) + '</div>'
-        + '<div class="pg-row"><div class="field"><label for="pgDate">' + esc(L.date) + '</label><div class="input-shell"><input type="date" id="pgDate" value="' + today + '" max="' + today + '"></div></div>'
-        + '<div class="field"><label for="pgVal">' + esc(L.val) + '</label><div class="input-shell"><input type="text" id="pgVal" inputmode="decimal" autocomplete="off" placeholder="12 345"><span class="unit">' + esc(unit()) + '</span></div></div></div>'
-        + '<div class="pg-msg ' + msg.cls + '" id="pgMsg" role="' + (msg.cls === 'err' ? 'alert' : 'status') + '">' + esc(msg.text) + '</div>'
-        + (lastErrLess ? '<button type="button" class="pg-btn danger" id="pgNew">' + esc(L.newDiary) + '</button>' : '')
-        + '<button type="button" class="pg-btn pri" id="pgSave">' + esc(L.save) + '</button>'
-        + '<div class="pg-row" style="margin-top:14px"><div class="field" style="max-width:160px"><label for="pgBill">' + esc(L.billDay) + '</label><div class="input-shell"><input type="text" id="pgBill" inputmode="numeric" value="' + st.billDay + '" autocomplete="off"></div></div><p class="pg-note" style="flex:2 1 160px;align-self:center">' + esc(L.billHint) + '</p></div>'
-        + '<div class="pg-h">' + esc(L.listTitle) + '</div>';
+    /* ---- BIRINCHI KIRISH: 2 maydon ---- */
+    function dateLine(d, isToday, key, shown) {
+      var L = TX[lang()];
+      return '<p class="pg-dline">' + esc((isToday ? L.dateToday : L.dateOn).replace('{d}', dateTxt(d))) + ' · <button type="button" class="pg-link" id="' + key + 'Chg">' + esc(L.chg) + '</button></p>'
+        + (shown ? '<div class="input-shell" style="margin-top:6px"><input type="date" id="' + key + 'D" value="' + d + '" max="' + todayStr() + '"></div>' : '');
+    }
+    function drawFirst() {
+      var L = TX[lang()], today = todayStr(), sd = ui.sDate || periodOf(today, st.billDay, 0).start, cd = ui.cDate || today;
+      form.innerHTML = '<div class="pg-box"><p class="pg-lead">' + esc(L.lead) + '</p>'
+        + '<div class="field"><label for="pgS">' + esc(L.startLbl) + '</label><div class="input-shell"><input type="text" id="pgS" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.sVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
+        + '<p class="pg-hint">' + esc(L.startHint) + '</p>' + dateLine(sd, false, 'pgS', ui.dS) + '</div>'
+        + '<div class="field"><label for="pgC">' + esc(L.curLbl) + '</label><div class="input-shell"><input type="text" id="pgC" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.cVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
+        + dateLine(cd, cd === today, 'pgC', ui.dC) + '</div>'
+        + '<div class="pg-msg' + (ui.err ? ' err' : '') + '" id="pgMsg" role="alert">' + esc(ui.err) + '</div>'
+        + '<button type="button" class="calc-btn" id="pgGo">' + esc(L.go) + '</button>'
+        + '<p class="pg-note" id="pgPriv">' + esc(L.privacy) + (store.ok() ? '' : ' ' + esc(L.noStore)) + '</p></div>';
+      after_().innerHTML = '';
+      $('pgSChg').onclick = function () { keepVals(); ui.dS = true; drawFirst(); };
+      $('pgCChg').onclick = function () { keepVals(); ui.dC = true; drawFirst(); };
+      clearErrOnInput(['pgS', 'pgC', 'pgSD', 'pgCD']);
+      var onEnter = function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pgGo').click(); } };
+      $('pgS').addEventListener('keydown', onEnter); $('pgC').addEventListener('keydown', onEnter);
+      $('pgGo').onclick = go;
+    }
+    function keepVals() { ui.sVal = $('pgS').value; ui.cVal = $('pgC').value; if ($('pgSD')) ui.sDate = $('pgSD').value; if ($('pgCD')) ui.cDate = $('pgCD').value; }
+    function go() {
+      keepVals(); var today = todayStr(), d1 = $('pgSD') ? $('pgSD').value : (ui.sDate || periodOf(today, st.billDay, 0).start), d2 = $('pgCD') ? $('pgCD').value : (ui.cDate || today);
+      var v1 = ui.sVal.trim() === '' ? NaN : numIn(ui.sVal), v2 = ui.cVal.trim() === '' ? NaN : numIn(ui.cVal);
+      if (!isFinite(v1) || !isFinite(v2) || v1 < 0 || v2 < 0) return setErr(t('errBoth'));
+      if (!parse(d1) || !parse(d2)) return setErr(t('errInvalid'));
+      if (d2 > today || d1 > today) return setErr(t('errFuture'));
+      if (d1 > d2) return setErr(t('errOrder'));
+      if (d1 === d2) { ui.dS = true; drawFirst(); return setErr(t('errSame')); }
+      if (v2 < v1) return setErr(t('errLess2'));
+      st.entries = sorted([{ d: d1, v: v1 }, { d: d2, v: v2 }]); store.save();
+      ui.err = ''; ui.sVal = ui.cVal = ''; ui.sDate = ui.cDate = null; ui.dS = ui.dC = false; maybePwa();
+      render(); changed();
+      var rc = $('receipt'); if (rc && rc.scrollIntoView) { try { rc.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { rc.scrollIntoView(); } }
+    }
+
+    /* ---- KEYINGI KIRISHLAR: bitta qator + yig'iq ro'yxat/sozlamalar ---- */
+    function drawPanel(target, f) {
+      var L = TX[lang()], today = todayStr(), list = st.entries.slice().reverse();
+      var h = '<div class="pg-box">' + (!f.ok ? '<div class="pg-blk pg-need" id="pgNeed"><b>' + esc(L.need) + '</b><br>' + esc(L.needSub) + '</div>' : '')
+        + '<label class="pg-lbl" for="pgVal">' + esc(L.updLbl) + '</label>'
+        + '<div class="pg-upd"><div class="input-shell"><input type="text" id="pgVal" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '"><span class="unit">' + esc(unit()) + '</span></div><button type="button" class="pg-btn pri" id="pgSave">' + esc(L.updBtn) + '</button></div>'
+        + '<p class="pg-dline">' + esc(L.dateToday.replace('{d}', dateTxt(today))) + ' · <button type="button" class="pg-link" id="pgUChg">' + esc(L.chg) + '</button></p>'
+        + (ui.dU ? '<div class="input-shell" style="margin:6px 0"><input type="date" id="pgDate" value="' + today + '" max="' + today + '"></div>' : '')
+        + '<div class="pg-msg' + (ui.err ? ' err' : '') + '" id="pgMsg" role="alert">' + esc(ui.err) + '</div>'
+        + (ui.lessEntry && !ui.confirmNew ? '<button type="button" class="pg-btn danger" id="pgNew">' + esc(L.newDiary) + '</button>' : '')
+        + (ui.confirmNew ? '<div class="pg-confirm" id="pgNewConf" role="alertdialog"><div>' + esc(L.newSure) + '</div><div class="row"><button type="button" class="pg-btn danger" id="pgNewYes">' + esc(L.newYes) + '</button><button type="button" class="pg-btn" id="pgNewNo">' + esc(L.no) + '</button></div></div>' : '')
+        + '<details class="pg-det" id="pgListDet"' + (ui.listOpen ? ' open' : '') + '><summary>' + esc(L.listSum.replace('{n}', st.entries.length)) + '</summary><div>';
       if (!list.length) h += '<p class="pg-note">' + esc(L.empty) + '</p>';
       else {
         h += '<ul class="pg-list" id="pgList">';
-        list.forEach(function (e) { h += '<li><span class="d">' + esc(dateTxt(e.d)) + ' <small style="color:#5C6B63;font-weight:600">' + esc(e.d) + '</small></span><span class="v">' + fmt1(e.v) + ' ' + esc(unit()) + '</span><button type="button" class="pg-x" data-del="' + esc(e.d) + '" aria-label="' + esc(L.del) + ' ' + esc(e.d) + '">✕</button></li>'; });
+        list.slice(0, 12).forEach(function (e) { h += '<li><span class="d">' + esc(dateTxt(e.d)) + ' <small style="color:#5C6B63;font-weight:600">' + esc(e.d) + '</small></span><span class="v">' + fmt1(e.v) + ' ' + esc(unit()) + '</span><button type="button" class="pg-x" data-del="' + esc(e.d) + '" aria-label="' + esc(L.del) + ' ' + esc(e.d) + '">✕</button></li>'; });
         h += '</ul>';
-        if (confirmAll) h += '<div class="pg-confirm" id="pgConf" role="alertdialog"><div>' + esc(L.sure) + '</div><div class="pg-row"><button type="button" class="pg-btn danger" id="pgYes">' + esc(L.yes) + '</button><button type="button" class="pg-btn" id="pgNo">' + esc(L.no) + '</button></div></div>';
+        if (ui.confirmAll) h += '<div class="pg-confirm" id="pgConf" role="alertdialog"><div>' + esc(L.sure) + '</div><div class="row"><button type="button" class="pg-btn danger" id="pgYes">' + esc(L.yes) + '</button><button type="button" class="pg-btn" id="pgNo">' + esc(L.no) + '</button></div></div>';
         else h += '<button type="button" class="pg-btn" id="pgClear">' + esc(L.clearAll) + '</button>';
       }
-      h += '<p class="pg-note" id="pgPriv">' + esc(L.privacy) + (store.ok() ? '' : ' ' + esc(L.noStore)) + '</p><div id="pgPwa"></div></div>';
-      form.innerHTML = h;
-      bindForm();
-      if (pwaShown) drawPwa();
+      h += '</div></details><details class="pg-det" id="pgSetDet"' + (ui.setOpen ? ' open' : '') + '><summary>' + esc(L.setSum) + '</summary><div><div class="pg-set"><div class="fld"><label for="pgBill" class="pg-lbl">' + esc(L.billDay) + '</label><div class="input-shell"><input type="text" id="pgBill" inputmode="numeric" value="' + st.billDay + '" autocomplete="off"></div></div><p class="pg-note">' + esc(L.billHint) + '</p></div></div></details>'
+        + '<p class="pg-note" id="pgPriv">' + esc(L.privacy) + (store.ok() ? '' : ' ' + esc(L.noStore)) + '</p><div id="pgPwa"></div></div>';
+      target.innerHTML = h;
+      if (target === after_()) form.innerHTML = '';
+      bindPanel();
+      if (ui.pwa) drawPwa();
     }
-
-    function setMsg(text, cls) { msg = { text: text, cls: cls || '' }; var e = doc.getElementById('pgMsg'); if (e) { e.textContent = text; e.className = 'pg-msg ' + (cls || ''); e.setAttribute('role', cls === 'err' ? 'alert' : 'status'); } }
-    function numIn(s) { return parseFloat(String(s).replace(new RegExp(NBSP, 'g'), '').replace(/\s/g, '').replace(',', '.')); }
+    function after_() { return o.after || form; }
+    function bindPanel() {
+      $('pgSave').onclick = function () { var raw = $('pgVal').value, d = $('pgDate') ? $('pgDate').value : todayStr(); add(d, raw.trim() === '' ? NaN : numIn(raw)); };
+      $('pgVal').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pgSave').click(); } });
+      clearErrOnInput(['pgVal', 'pgDate']);
+      $('pgUChg').onclick = function () { ui.dU = true; render(); };
+      $('pgBill').addEventListener('change', function () { var v = parseInt(String(this.value).replace(/\D/g, ''), 10); st.billDay = Math.min(31, Math.max(1, v || 1)); this.value = st.billDay; store.save(); render(); changed(); });
+      $('pgListDet').addEventListener('toggle', function () { ui.listOpen = this.open; });
+      $('pgSetDet').addEventListener('toggle', function () { ui.setOpen = this.open; });
+      var nb = $('pgNew'); if (nb) nb.onclick = function () { ui.confirmNew = true; render(); };
+      var ny = $('pgNewYes'); if (ny) ny.onclick = function () { var e = ui.lessEntry; st.entries = e ? [{ d: e.d, v: e.v }] : []; store.save(); ui.lessEntry = null; ui.confirmNew = false; ui.err = ''; render(); changed(); };
+      var nn = $('pgNewNo'); if (nn) nn.onclick = function () { ui.confirmNew = false; render(); };
+      var ls = $('pgList'); if (ls) ls.addEventListener('click', function (ev) { var b = ev.target.closest ? ev.target.closest('[data-del]') : null; if (!b) return; var d = b.getAttribute('data-del'); st.entries = st.entries.filter(function (e) { return e.d !== d; }); store.save(); ui.err = ''; render(); changed(); });
+      var cl = $('pgClear'); if (cl) cl.onclick = function () { ui.confirmAll = true; ui.listOpen = true; render(); };
+      var no = $('pgNo'); if (no) no.onclick = function () { ui.confirmAll = false; render(); };
+      var ye = $('pgYes'); if (ye) ye.onclick = function () { st.entries = []; store.save(); ui.confirmAll = false; ui.err = ''; ui.listOpen = false; render(); changed(); };
+    }
 
     function add(d, v) {
       var err = validate(st.entries, todayStr(), d, v);
-      if (err) { lastErrLess = err === 'less' ? { d: d, v: v } : null; drawForm(); setMsg(t(err === 'invalid' ? 'errInvalid' : err === 'future' ? 'errFuture' : 'errLess'), 'err'); return false; }
-      lastErrLess = null;
-      var had = st.entries.some(function (e) { return e.d === d; });
+      if (err) { ui.lessEntry = err === 'less' ? { d: d, v: v } : null; ui.err = t(err === 'invalid' ? 'errInvalid' : err === 'future' ? 'errFuture' : 'errLess'); render(); return false; }
+      ui.lessEntry = null; ui.err = ''; ui.dU = false;
       st.entries = sorted(st.entries.filter(function (e) { return e.d !== d; }).concat([{ d: d, v: v }]));
       store.save();
-      msg = { text: t('saved') + (had ? ' ' + t('replaced') : ''), cls: 'ok' };
       if (st.entries.length >= 2) maybePwa();
-      drawForm(); renderResult(); if (o.onChange) o.onChange();
+      render(); changed();
       return true;
-    }
-
-    function bindForm() {
-      var $ = function (id) { return doc.getElementById(id); };
-      $('pgSave').onclick = function () { var d = $('pgDate').value, v = numIn($('pgVal').value); if (!$('pgVal').value.trim()) v = NaN; add(d, v); };
-      $('pgVal').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pgSave').click(); } });
-      $('pgBill').addEventListener('change', function () { var v = parseInt(String(this.value).replace(/\D/g, ''), 10); st.billDay = Math.min(31, Math.max(1, v || 1)); this.value = st.billDay; store.save(); renderResult(); if (o.onChange) o.onChange(); });
-      var nb = $('pgNew'); if (nb) nb.onclick = function () { var e = lastErrLess; st.entries = []; store.save(); lastErrLess = null; if (e) { st.entries = [{ d: e.d, v: e.v }]; store.save(); } msg = { text: t('saved'), cls: 'ok' }; drawForm(); renderResult(); if (o.onChange) o.onChange(); };
-      var ls = $('pgList'); if (ls) ls.addEventListener('click', function (ev) { var b = ev.target.closest ? ev.target.closest('[data-del]') : null; if (!b) return; var d = b.getAttribute('data-del'); st.entries = st.entries.filter(function (e) { return e.d !== d; }); store.save(); msg = { text: '', cls: '' }; drawForm(); renderResult(); if (o.onChange) o.onChange(); });
-      var cl = $('pgClear'); if (cl) cl.onclick = function () { confirmAll = true; drawForm(); };
-      var no = $('pgNo'); if (no) no.onclick = function () { confirmAll = false; drawForm(); };
-      var ye = $('pgYes'); if (ye) ye.onclick = function () { st.entries = []; store.save(); confirmAll = false; msg = { text: '', cls: '' }; drawForm(); renderResult(); if (o.onChange) o.onChange(); };
     }
 
     /* ---- PWA yumshoq taklif: 2-yozuvdan keyin, o'rnatilmagan bo'lsa, bir marta yopilsa 30 kun ko'rsatilmaydi ---- */
@@ -265,37 +343,27 @@
       if (!(api.canPrompt() || api.ios)) return;
       var ts = 0; try { ts = parseInt(root.localStorage.getItem(PWA_KEY), 10) || 0; } catch (e) {}
       if (ts && Date.now() - ts < 30 * DAY) return;
-      pwaShown = true;
+      ui.pwa = true;
     }
     function drawPwa() {
-      var box = doc.getElementById('pgPwa'); if (!box) return; var api = root.KalkiPwa, L = TX[lang()];
+      var box = $('pgPwa'); if (!box) return; var api = root.KalkiPwa, L = TX[lang()];
       box.innerHTML = '<div class="pg-pwa" id="pgPwaBox"><span>' + esc(L.pwa) + (api && api.ios && !api.canPrompt() ? '<br><small>' + esc(api.iosHint()) + '</small>' : '') + '</span>'
         + (api && api.canPrompt() ? '<button type="button" class="pg-btn pri" id="pgPwaGo">' + esc(L.pwaBtn) + '</button>' : '') + '<button type="button" class="pg-btn" id="pgPwaX">' + esc(L.pwaClose) + '</button></div>';
-      var close = function () { pwaShown = false; try { root.localStorage.setItem(PWA_KEY, String(Date.now())); } catch (e) {} box.innerHTML = ''; };
-      doc.getElementById('pgPwaX').onclick = close;
-      var go = doc.getElementById('pgPwaGo'); if (go) go.onclick = function () { api.prompt(); close(); };
+      var close = function () { ui.pwa = false; try { root.localStorage.setItem(PWA_KEY, String(Date.now())); } catch (e) {} box.innerHTML = ''; };
+      $('pgPwaX').onclick = close;
+      var gob = $('pgPwaGo'); if (gob) gob.onclick = function () { api.prompt(); close(); };
     }
 
     /* ---- Natija ---- */
     function row(k, v, extra) { return '<div class="rrow"><span class="k">' + k + (extra || '') + '</span><span class="v">' + v + '</span></div>'; }
-    function summaryText() {
-      var s = compute(); if (!s.f.ok) return '';
-      return TX[lang()].shareTxt.replace('{sum}', fmt(s.f.total)).replace('{cur}', t('cur')).replace('{n}', s.f.tier);
-    }
-    function renderResult() {
-      if (!active) return;
-      var L = TX[lang()], s = compute(), f = s.f, cur = ' ' + L.cur, u = unit();
-      R.tag.textContent = L.tag; R.lbl.textContent = L.lbl;
-      if (!f.ok) {
-        R.mainNum.textContent = '—'; R.rows.innerHTML = '<div class="pg-blk pg-info"><b>' + esc(L.need) + '</b><br>' + esc(L.needSub) + '</div>';
-        R.tiers.innerHTML = ''; R.extra.innerHTML = ''; R.bar.innerHTML = ''; if (R.tiersTitle) R.tiersTitle.hidden = true; if (R.pastBox) R.pastBox.innerHTML = '';
-        o.setShown && o.setShown(true); return;
-      }
-      R.mainNum.textContent = fmt(f.total) + cur;
+    function summaryText() { var s = compute(); if (!s.f.ok) return ''; return TX[lang()].shareTxt.replace('{sum}', fmt(s.f.total)).replace('{cur}', t('cur')).replace('{n}', s.f.tier); }
+    function renderResult(s) {
+      var L = TX[lang()], f = s.f, cur = ' ' + L.cur, u = unit();
+      R.tag.textContent = L.tag; R.lbl.textContent = L.lbl; R.mainNum.textContent = fmt(f.total) + cur;
       var h = row(esc(L.kUsed), fmt1(f.used) + ' ' + esc(u)) + row(esc(L.kRate), fmt1(f.rate) + ' ' + esc(u)) + row(esc(L.kProj), fmt1(f.projected) + ' ' + esc(u)) + row(esc(L.kAvg.replace('{u}', u)), fmt(f.avg) + cur);
-      h += row(esc(L.kPeriod), esc(dateTxt(f.period.start) + ' – ' + dateTxt(addDays(f.period.end, -1))), '') + row(esc(L.kLeft), f.remaining + ' ' + esc(L.days));
+      h += row(esc(L.kPeriod), esc(dateTxt(f.period.start) + ' – ' + dateTxt(addDays(f.period.end, -1)))) + row(esc(L.kLeft), f.remaining + ' ' + esc(L.days));
       R.rows.innerHTML = h;
-      var th = ''; var T = s.c.tiers(f.projected);
+      var th = '', T = s.c.tiers(f.projected);
       for (var j = 0; j < T.rows.length; j++) { var r = T.rows[j]; th += '<div class="rrow"><span class="k">' + (r.to === Infinity ? fmt(r.from) + '+' : fmt(r.from) + '–' + fmt(r.to)) + ' ' + esc(u) + '<span class="fx">' + fmt1(r.qty != null ? r.qty : (r.kwh != null ? r.kwh : r.m3)) + ' × ' + fmt(r.price) + cur + '</span></span><span class="v">' + fmt(r.cost) + cur + '</span></div>'; }
       R.tiers.innerHTML = th; if (R.tiersTitle) { R.tiersTitle.hidden = false; R.tiersTitle.textContent = L.tierTitle; }
       var ex = '';
@@ -303,11 +371,9 @@
       if (f.cross) ex += '<div class="pg-blk pg-warn" id="pgWarn">' + esc(L.warn.replace('{date}', dateLoc(f.cross.date)).replace('{price}', fmt(s.c.prices ? s.c.prices[f.cross.idx] : 0)).replace('{cur}', L.cur)) + '</div>';
       if (f.advice) ex += '<div class="pg-blk pg-tip" id="pgTip">' + esc(L.advice.replace('{x}', fmt1(f.advice.cut)).replace('{u}', u).replace('{y}', fmt(f.advice.save)).replace('{cur}', L.cur)) + '</div>';
       else ex += '<div class="pg-blk pg-info" id="pgTier">' + esc(L.endTier.replace('{n}', f.tier)) + (f.cross ? '' : ' ' + esc(L.noCross)) + '</div>';
-      R.extra.innerHTML = ex;
-      R.bar.innerHTML = '';
-      if (window.KalkiTierBar && s.c.bar) window.KalkiTierBar.render(R.bar, { tiers: s.c.bar, value: f.projected, valueLabel: fmt1(f.projected) + ' ' + u, mark: { value: f.used, label: lang() === 'ru' ? 'сейчас' : 'hozir' }, caption: L.barCap,
+      R.extra.innerHTML = ex; R.bar.innerHTML = '';
+      if (root.KalkiTierBar && s.c.bar) root.KalkiTierBar.render(R.bar, { tiers: s.c.bar, value: f.projected, valueLabel: fmt1(f.projected) + ' ' + u, mark: { value: f.used, label: lang() === 'ru' ? 'сейчас' : 'hozir' }, caption: L.barCap,
         ariaLabel: L.barAria.replace('{p}', fmt1(f.projected)).replace(/\{u\}/g, u).replace('{n}', f.tier).replace('{used}', fmt1(f.used)) });
-      // o'tgan davrlar
       var pp = pastPeriods({ entries: st.entries, today: todayStr(), billDay: st.billDay, tiers: s.c.tiers }, 6), pb = '';
       if (pp.length) {
         pb = '<div class="tier-title">' + esc(L.past) + '</div><div class="receipt-rows pg-past">';
@@ -315,14 +381,24 @@
         pb += '</div>';
       }
       if (R.pastBox) R.pastBox.innerHTML = pb;
-      o.setShown && o.setShown(true);
+    }
+    function showResult(v) { if (o.grid) o.grid.classList.toggle('g-nores', !v); if (o.setShown) o.setShown(!!v); }
+
+    function render() {
+      if (!active) return;
+      var s = compute(), has = st.entries.length > 0;
+      if (!has) { drawFirst(); if (o.after) o.after.innerHTML = ''; showResult(false); return; }
+      if (s.f.ok) { showResult(true); renderResult(s); drawPanel(after_(), s.f); }
+      else { drawPanel(form, s.f); if (o.after) o.after.innerHTML = ''; showResult(false); }
     }
 
     return {
-      setActive: function (a) { active = !!a; if (active) { drawForm(); renderResult(); } },
-      refresh: function () { if (active) { drawForm(); renderResult(); } },
-      render: renderResult, summary: summaryText, hasEntries: function () { return st.entries.length > 0; }, state: function () { return st; }, storageOk: function () { return store.ok(); },
-      add: add
+      setActive: function (a) {
+        active = !!a;
+        if (o.grid) { o.grid.classList.toggle('g-prog', active); if (!active) o.grid.classList.remove('g-nores'); }
+        if (active) render(); else { form.innerHTML = ''; if (o.after) o.after.innerHTML = ''; }
+      },
+      refresh: function () { render(); }, render: render, summary: summaryText, hasEntries: function () { return st.entries.length > 0; }, state: function () { return st; }, storageOk: function () { return store.ok(); }, add: add
     };
   }
 
