@@ -9,7 +9,8 @@
  *     priceFmt: fn(price) -> string,       // pog'ona ichidagi narx yozuvi (sukut: raqam)
  *     tickFmt:  fn(limit) -> string,       // pog'ona chegarasi yozuvi (sukut: raqam)
  *     caption: "Pog'ona narxi, so'm/m³ …", // chiziq ostidagi izoh
- *     ariaLabel: "…"                       // skrinridlar uchun to'liq tavsif
+ *     ariaLabel: "…",                      // skrinridlar uchun to'liq tavsif
+ *     mark: { value: 150, label: 'hozir' } // ixtiyoriy: ikkinchi, kichik belgi (masalan, prognozda "hozirgi sarf") — chiziq tagida
  *   });
  *
  * Joylashuv: pog'onalar teng kenglikda (chegaralar 10× farq qilsa ham 320 px da o'qiladi); strelka — o'z pog'onasi
@@ -35,6 +36,9 @@
     + '.tb-ticks{position:relative;height:17px;margin-top:5px}'
     + '.tb-tick{position:absolute;top:0;transform:translateX(-50%);font-size:10.5px;font-weight:700;color:#5C6B63;white-space:nowrap}'
     + '.tb-tick:first-child{transform:none}'
+    + '.tb-nowrow{position:relative;height:25px;margin-top:1px}'
+    + '.tb-nowtri{position:absolute;top:0;width:0;height:0;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:8px solid #16211C}'
+    + '.tb-nowlab{position:absolute;top:9px;transform:translateX(-50%);font-size:10.5px;font-weight:800;color:#16211C;white-space:nowrap}'
     + '.tb-cap{margin:4px 0 0;font-size:11px;line-height:1.35;color:#5C6B63}';
 
   function addCss() {
@@ -72,10 +76,13 @@
     // strelka uchi aniq x% da, yozuv esa chetga chiqmasligi uchun clamp() bilan suriladi
     var arrow = pos ? '<div class="tb-pt" style="position:absolute;left:' + pos.x + '%;bottom:0;transform:translateX(-50%)"><div class="tb-arrow" data-x="' + pos.x + '"></div></div>' : '';
     var label = pos ? '<div class="tb-flag" style="left:clamp(34px,' + pos.x + '%,calc(100% - 34px));top:0"><span class="tb-val">' + esc(o.valueLabel || '') + '</span></div>' : '';
+    var mp = o.mark ? position(tiers, o.mark.value) : null;
+    var now = mp ? '<div class="tb-nowrow" aria-hidden="true"><i class="tb-nowtri" style="left:' + mp.x + '%"></i><span class="tb-nowlab" style="left:clamp(20px,' + mp.x + '%,calc(100% - 20px))">' + esc(o.mark.label || '') + '</span></div>' : '';
     el.innerHTML = '<div class="tb" role="img" aria-label="' + esc(o.ariaLabel || '') + '"' + (pos ? ' data-x="' + pos.x + '" data-tier="' + (pos.idx + 1) + '"' : '') + '>'
       + '<div class="tb-top" aria-hidden="true">' + label + arrow + '</div>'
       + '<div class="tb-bar" aria-hidden="true">' + segs + '</div>'
       + '<div class="tb-ticks" aria-hidden="true">' + ticks + '</div>'
+      + now
       + (o.caption ? '<p class="tb-cap">' + esc(o.caption) + '</p>' : '') + '</div>';
   }
 

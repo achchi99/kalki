@@ -2,9 +2,10 @@
 // Qaytaradi: true — natija kartasi ko'rindi.
 export async function natijaKo(p) { return p.evaluate(() => { const r = document.querySelector('.res-col .receipt, .res-col .norm-banner, #receipt'); if (!r && !document.querySelector('.res-col')) return true;   // natija kartasi yo'q sahifa (grant, yer-konvertor): natija jonli
   return !!r && r.offsetHeight > 0; }); }
+// Eslatma: rejim segment tugmalari ("Hisoblagich bo'yicha") hisoblash tugmasi emas — #calcBtn/.calc-btn birinchi tanlanadi.
 export async function hisobla(p) {
   await p.evaluate(() => document.querySelectorAll('main details').forEach((d) => { d.open = true; }));
-  const click = async () => { const b = p.locator('main #calcBtn:visible, main .calc-btn:visible, main button:visible:text-matches("Hisobla|Рассчита|Hisob-kitob", "i")').first(); if (await b.count()) await b.click({ timeout: 1500 }).catch(() => {}); await p.waitForTimeout(450); };
+  const click = async () => { let b = p.locator('main #calcBtn:visible, main .calc-btn:visible').first(); if (!(await b.count())) b = p.locator('main button:visible:not(.seg button):text-matches("Hisobla|Рассчита|Hisob-kitob", "i")').first(); if (await b.count()) await b.click({ timeout: 1500 }).catch(() => {}); await p.waitForTimeout(450); };
   await click(); if (await natijaKo(p)) return true;
   // tanlovlar: seg/mat-item/chips/select (ikkinchi variant), keyin maydonlar
   for (const sel of ['main .scen-card:visible', 'main .mat-item:visible', 'main .chip:visible', 'main .seg:visible button:not(.on)', 'main .seg:visible button']) { const l = p.locator(sel); if (await l.count()) await l.first().click({ timeout: 1000 }).catch(() => {}); }

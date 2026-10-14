@@ -1014,7 +1014,7 @@ function runTool(args) {
         if (/konditsioner|quyosh/.test(f) && /id="tariff"/.test(h)) why.push(f + ': tekis narx maydoni (id="tariff") qaytib kelgan; tarif assets/elektr-tarif.js dan olinadi');
         if (/avto-xarajat/.test(f) && /price:\s*450\b|450 so'm|450 сум/.test(h)) why.push(f + ': elektromobil uchun eski tekis 450 so\'m narxi qaytib kelgan');
         if (/\bkWt\b/.test(h) && /quyosh|avto-xarajat|konditsioner|elektr-xarajat/.test(f)) why.push(f + ': "kWt" birligi (ЎЗ rejimida "кWт" — aralash alifbo); "kVt" / "kVt-soat" ishlating');
-        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
+        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*(?:<script src="\/assets\/(?:tier-bar|prognoz)\.js"><\/script>\s*)*<script src="\/assets\/elektr-tarif\.js"><\/script>/.test(h)) why.push(f + ': elektr-tarif.js ulanmagan');
         const head = h.slice(0, h.indexOf('</head>'));
         if (head.indexOf('rel="manifest"') < 0 || head.indexOf('apple-touch-icon') < 0) why.push(f + ': <head> buzilgan (manifest/ikonka head ichida emas)');
         for (const q of ['meta name="description"', 'meta property="og:description"', 'meta name="twitter:description"']) if (h.indexOf('<' + q) < 0) why.push(f + ': <' + q + '> yo\'q');
@@ -1136,7 +1136,7 @@ function runTool(args) {
       for (const f of PAGES) {
         if (!fs.existsSync(path.join(ROOT, f))) { why.push(f + ': yo\'q'); continue; }
         const h = rd(f);
-        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*(?:<script src="\/assets\/tier-bar\.js"><\/script>\s*)?<script src="\/assets\/gaz-tarif\.js"><\/script>/.test(h)) why.push(f + ': tarif-core.js + gaz-tarif.js ulanmagan');
+        if (!/<script src="\/assets\/tarif-core\.js"><\/script>\s*(?:<script src="\/assets\/(?:tier-bar|prognoz)\.js"><\/script>\s*)*<script src="\/assets\/gaz-tarif\.js"><\/script>/.test(h)) why.push(f + ': tarif-core.js + gaz-tarif.js ulanmagan');
         // sahifa skriptida tarif raqamlari YO'Q (faqat gaz-tarif.js da)
         const inline = [...h.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/(?:ld\+)?json")[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('\n');
         const prices = GD.prices.concat([GD.noMeter.cooking, GD.noMeter.heating]).map((n) => String(n));
@@ -1180,6 +1180,38 @@ function runTool(args) {
       }
     } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
     add(!why.length, '39. gaz pog\'onali tarifi: hisob qo\'lda qiymatlarga teng, tarif raqamlari faqat gaz-tarif.js da, FAQ/SEO shundan olinadi, manba+sana bir marta, sayt/sitemap/sw/index/xnav/tegishli bloklar ulangan', why.slice(0, 6).join(' | '));
+  }
+
+  /* ---------- 40. Oy oxiri prognozi (assets/prognoz.js): tarif raqami yo'q, serverga ketmaydi, sahifalar/FAQ/maxfiylik/sw ulangan ---------- */
+  {
+    const why = [];
+    try {
+      const rd = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
+      try { execFileSync(process.execPath, [path.join(__dirname, 'test-prognoz.js')], { stdio: 'pipe' }); }
+      catch (e) { why.push('tools/test-prognoz.js yiqildi (prognoz hisobi qo\'lda qiymatlarga teng emas)'); }
+      const code = rd('assets/prognoz.js').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+      // tarif raqamlari (elektr + gaz narxlari) modulda YO'Q: ular sahifadan keladi
+      const E = require('../assets/elektr-tarif.js').data, G = require('../assets/gaz-tarif.js').data;
+      const prices = new Set([].concat(E.prices.std, E.prices.stove, G.prices, [G.noMeter.cooking, G.noMeter.heating]).map(String));
+      for (const n of prices) if (new RegExp('(?<![\\d.,])' + n.replace(/\B(?=(\d{3})+(?!\d))/g, '[ \\u00a0]?') + '(?![\\d])').test(code.replace(/\b86400000\b/g, '').replace(/font-weight:\d+/g, ''))) why.push('assets/prognoz.js: tarif raqami ' + n + ' yozilgan (narxlar faqat elektr-tarif.js / gaz-tarif.js da)');
+      // "serverga hech narsa ketmaydi": tarmoq chaqiruvlari yo'q
+      if (/\bfetch\s*\(|XMLHttpRequest|sendBeacon|gtag\s*\(|WebSocket|new Image\s*\(/.test(code)) why.push('assets/prognoz.js: tarmoq/analitika chaqiruvi bor (ko\'rsatkichlar serverga ketmasligi kerak)');
+      if (!/kalki_prognoz_|key:\s*'kalki_prognoz_/.test(rd('elektr-xarajat-kalkulyator.html')) || !/kalki_prognoz_gaz_v1/.test(rd('gaz-xarajat-kalkulyator.html')) || !/kalki_prognoz_elektr_v1/.test(rd('elektr-xarajat-kalkulyator.html'))) why.push('elektr va gaz uchun alohida localStorage kalitlari (kalki_prognoz_elektr_v1 / _gaz_v1) topilmadi');
+      const sw = rd('sw.js');
+      for (const u of ["'/assets/prognoz.js'", "'/assets/tier-bar.js'"]) if (sw.indexOf(u) < 0) why.push('sw.js precache\'da ' + u + ' yo\'q');
+      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'gaz-xarajat-kalkulyator.html', 'ru/gaz-xarajat-kalkulyator.html']) {
+        const h = rd(f);
+        if (!/<script src="\/assets\/tier-bar\.js"><\/script>/.test(h) || !/<script src="\/assets\/prognoz\.js"><\/script>/.test(h)) why.push(f + ': tier-bar.js / prognoz.js ulanmagan');
+        for (const id of ['modeProg', 'progBox', 'tierBar', 'pastBox']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
+        const seo = (h.match(/<section class="seo" id="seoBlock">([\s\S]*?)<\/section>/) || [])[1] || '';
+        if (!/Oy oxirida qancha to|Как узнать, сколько я заплачу в конце месяца/.test(seo)) why.push(f + ': FAQ\'da "Oy oxirida qancha to\'lashimni qanday bilaman?" savoli yo\'q');
+        if (/elektr-/.test(f) && h.indexOf('id="modeDev"') < 0) why.push(f + ': "Qurilmalar bo\'yicha" rejimi (#modeDev) yo\'q');
+        if (/elektr-/.test(f)) for (const id of ['modeUse', 'modeMeter', 'kwhIn', 'prevIn', 'curIn']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
+        if (/id="modeDev" class="on"/.test(h) === false && /elektr-/.test(f)) why.push(f + ': standart rejim "Qurilmalar" bo\'lishi kerak');
+      }
+      for (const [f, re] of [['maxfiylik.html', /hisoblagich ko.rsatkichlari faqat qurilmada saqlanadi/i], ['ru/maxfiylik.html', /Показания счётчика хранятся только на устройстве/]]) if (!re.test(rd(f))) why.push(f + ': hisoblagich ko\'rsatkichlari haqidagi qator yo\'q');
+    } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
+    add(!why.length, '40. oy oxiri prognozi: hisob qo\'lda qiymatlarga teng, prognoz.js da tarif raqami va tarmoq chaqiruvi yo\'q, alohida localStorage kalitlari, elektr/gaz sahifalari, FAQ, maxfiylik qatori, sw precache ulangan', why.slice(0, 6).join(' | '));
   }
 
   /* ---------- hisobot ---------- */

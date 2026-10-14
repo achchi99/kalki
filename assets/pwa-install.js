@@ -18,12 +18,22 @@
   function standalone() {
     return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
   }
+  // Boshqa modullar (assets/prognoz.js) uchun kichik ochiq interfeys: ilova o'rnatilganmi, o'rnatish oynasini ochish mumkinmi.
+  var api = window.KalkiPwa = { installed: standalone(), ios: false, canPrompt: function () { return false; }, prompt: function () { return false; }, iosHint: function () { return T[lang()].ios; } };
   if (standalone()) return;
 
   var ua = navigator.userAgent || '';
   var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var isSafariIOS = isIOS && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
   var deferred = null, box = null, btn = null, hint = null;
+  api.ios = isSafariIOS;
+  api.canPrompt = function () { return !!deferred; };
+  api.prompt = function () {
+    if (!deferred) return false;
+    var d = deferred; deferred = null; if (btn) btn.hidden = true; if (box) box.hidden = true;
+    try { d.prompt(); if (d.userChoice && d.userChoice.then) d.userChoice.then(function () {}, function () {}); } catch (e) {}
+    return true;
+  };
 
   function css() {
     if (document.getElementById('pwacss')) return;
