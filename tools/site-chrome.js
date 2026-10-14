@@ -145,7 +145,7 @@ function v2Active(f) {
 const V2_LINKS = [
   ['./#kategoriyalar', 'Kalkulyatorlar', 'Калькуляторы', [
     ['./#cat-moliya', 'Moliya', 'Финансы'], ['./#cat-qurilish', 'Qurilish', 'Стройка'], ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
-    ['./#cat-hayot', 'Hayotiy', 'Жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
+    ['./#cat-hayot', 'Kundalik hayot', 'Жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
   ['hujjatlar', 'Hujjatlar', 'Документы', [
     ['hujjatlar', 'Hujjat generatorlari', 'Генератор документов'], ['shablonlar', 'Shablonlar', 'Шаблоны']]],
   ['blog', 'Maqolalar', 'Статьи', null],

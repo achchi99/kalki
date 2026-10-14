@@ -1264,6 +1264,23 @@ function runTool(args) {
     add(!why.length, '41. tipografiya: typo2 + typo.css hamma sahifada (UZ/RU/ЎЗ), qattiq <14px shrift yo\'q, har kalkulyator/generatorda 3 qadam bloki', why.slice(0, 6).join(' | '));
   }
 
+  /* 42. kategoriya nomi bitta: ko'rinadigan matnda "Hayotiy"/"Ҳаётий" qolmasin (UZ/RU/ЎЗ, JS lug'atlari, menyu, OG rasm yorlig'i) — hamma joyda "Kundalik hayot".
+         URL/slug'dagi "hayot" (cat-hayot, data-cat="hayot") ga TEGILMAYDI (SEO). */
+  {
+    const why = [];
+    try {
+      const files = [];
+      for (const dir of ['', 'ru/', 'cyr/']) for (const f of fs.readdirSync(path.join(ROOT, dir))) if (f.endsWith('.html') && fs.statSync(path.join(ROOT, dir, f)).isFile()) files.push(dir + f);
+      for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js'))) files.push('assets/' + f);
+      files.push('tools/site-chrome.js', 'tools/og-images.js');
+      for (const f of files) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (/Hayotiy|Ҳаётий|ҳаётий/.test(h)) why.push(f); }
+      for (const f of ['ru/index.html', 'cyr/kredit-kalkulyator.html']) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (/Kundalik hayot/.test(h.replace(/data-lf-uz="[^"]*"/g, '')) && f.startsWith('ru/')) { /* RU sahifada o'zbekcha yorliq faqat data-lf-uz/lug'atda bo'lishi mumkin */ } }
+      const ru = fs.readFileSync(path.join(ROOT, 'ru/index.html'), 'utf8');
+      if (!/hayot:"Жизнь"/.test(ru)) why.push('ru/index.html: catNames.hayot "Жизнь" emas');
+    } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
+    add(!why.length, '42. kategoriya nomi bitta: ko\'rinadigan matnda "Hayotiy"/"Ҳаётий" yo\'q (RU: "Жизнь")', why.slice(0, 8).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));
