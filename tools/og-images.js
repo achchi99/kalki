@@ -68,7 +68,7 @@ const CATS = {
   moliya:    { bg: '#0E3B2E', accent: '#D99A2B', uz: 'Moliya' },
   qurilish:  { bg: '#8C3B2A', accent: '#F0C070', uz: 'Qurilish' },
   kommunal:  { bg: '#1D4E6B', accent: '#7FD1E8', uz: 'Kommunal' },
-  hayot:     { bg: '#2C3A5E', accent: '#9DB4E8', uz: 'Hayotiy' },
+  hayot:     { bg: '#2C3A5E', accent: '#9DB4E8', uz: 'Kundalik hayot' },
   hujjat:    { bg: '#5B3A63', accent: '#D9A7E8', uz: 'Hujjatlar' },
   umumiy:    { bg: '#16211C', accent: '#D99A2B', uz: 'Kalki.uz' },
 };
