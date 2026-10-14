@@ -15,7 +15,7 @@
   };
 
   var ID = 'datanote';
-  var STYLE = 'margin-top:10px;font-size:12px;line-height:1.45;color:#8A968F;font-weight:600';
+  var STYLE = 'margin-top:10px;font-size:var(--t-xs,14px);line-height:1.45;color:var(--t-muted,#3F4F46);font-weight:600';
 
   function lang() {
     return d.documentElement.lang === 'ru' ? 'ru' : 'uz';

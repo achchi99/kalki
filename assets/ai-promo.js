@@ -23,7 +23,7 @@
     st.id = 'aipcss';
     st.textContent = '.aip{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;font-weight:700;font-size:14px;line-height:1.35;border-radius:11px;padding:11px 14px;margin:10px 0 0}' +
       '.aip-t{flex:1;min-width:0;overflow-wrap:anywhere}.aip-t b{font-weight:800}.aip-go{flex:none;font-weight:800}' +
-      '.aip-n{flex:none;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#D99A2B;color:#2A1D00;border-radius:99px;padding:2px 8px}' +
+      '.aip-n{flex:none;font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#D99A2B;color:#2A1D00;border-radius:99px;padding:2px 8px}' +
       '#docs-cta .aip{background:rgba(217,154,43,.16);border:1px solid rgba(217,154,43,.55);color:#fff}' +
       'body.v2 .aip{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--gold);color:var(--text);margin:var(--s2) 0 0;font-size:16px;padding:14px 18px;border-radius:var(--r)}body.v2 .aip:hover{box-shadow:var(--shadow-hover)}body.v2 .aip .aip-i{width:20px;height:20px;flex:none;fill:none;stroke:var(--gold);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:var(--gold)}body.v2 .aip-n{background:var(--gold-soft);color:#7A4F05}' +
       '#dcat-ariza .aip{background:#FFF7E3;border:1.5px solid #E6C275;color:#4A3305;margin:0 0 14px}';

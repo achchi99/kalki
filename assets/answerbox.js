@@ -34,8 +34,8 @@
     + 'max-width:100%;box-sizing:border-box}'
     + '.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;'
     + 'margin:0;word-wrap:break-word}'
-    + '.answerbox .ab-meta{margin-top:8px;font-size:12px;color:#5C6B63;font-weight:600}'
-    + '.answerbox .ab-sources{margin-top:3px;font-size:12px;color:#5C6B63;word-wrap:break-word}'
+    + '.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}'
+    + '.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}'
     + '.answerbox .ab-sources a{color:#155E63;text-decoration:underline}'
     // .form-card{margin-top:-44px}'ni faqat shu kombinatsiyada bekor qiladi
     // (spetsifiklik 0,2,0 > 0,1,0 — cascade tartibidan qat'iy nazar g'alaba
