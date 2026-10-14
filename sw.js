@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '4b9428ed';   /* sw-version:auto */
+const SW_VERSION = '9b5fcec3';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -25,6 +25,7 @@ const ASSETS = [
   '/assets/docgen.js',
   '/assets/css/tokens.css',
   '/assets/css/site.css',
+  '/assets/css/typo.css',
   '/assets/icons.svg',
   '/assets/nav.js',
   '/assets/calc-v2.js',

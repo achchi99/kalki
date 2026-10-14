@@ -1210,6 +1210,21 @@ function runTool(args) {
         if (/elektr-/.test(f)) for (const id of ['modeUse', 'modeMeter', 'kwhIn', 'prevIn', 'curIn']) if (h.indexOf('id="' + id + '"') < 0) why.push(f + ': #' + id + ' yo\'q');
         if (/id="modeDev" class="on"/.test(h) === false && /elektr-/.test(f)) why.push(f + ': standart rejim "Qurilmalar" bo\'lishi kerak');
       }
+      // sana hisobi faqat kalendar yil/oy/kun bilan: UTC/toISOString/Date.UTC yo'q (vaqt zonasi xatosi bo'lmasin); faqat "bugun" — new Date()
+      if (/toISOString|Date\.UTC|getUTC|getTimezoneOffset|toLocaleDateString|new Date\([^)]/.test(code)) why.push('assets/prognoz.js: UTC/vaqt zonasiga bog\'liq sana chaqiruvi bor');
+      if ((code.match(/new Date\(\)/g) || []).length > 1) why.push('assets/prognoz.js: "bugun"dan boshqa joyda new Date() ishlatilgan');
+      // tipografiya (pilot: elektr, gaz): tokenlar, ulanish, minimal o'lcham
+      const typo = rd('assets/css/typo.css');
+      for (const tk of ['--t-xs:14px', '--t-s:15px', '--t-m:17px', '--t-ml:18px', '--t-l:20px', '--t-xl:24px', '--t-2xl:32px', '--t-3xl:44px', '--t-lh-text:1.5', '--t-lh-head:1.2', '--sp-tight', '--sp-block']) if (typo.indexOf(tk) < 0) why.push('assets/css/typo.css: token ' + tk + ' yo\'q');
+      for (const m of typo.matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)) if (!/--t-/.test(m.input.slice(Math.max(0, m.index - 10), m.index)) && parseFloat(m[1]) < 14 && !/^\s*:root/.test('')) why.push('assets/css/typo.css: font-size ' + m[1] + 'px < 14');
+      const tb = rd('assets/tier-bar.js').replace(/\/\*[\s\S]*?\*\//g, '');
+      for (const m of tb.matchAll(/font-size:\s*(?:var\([^,]+,\s*)?(\d+(?:\.\d+)?)px/g)) if (parseFloat(m[1]) < 14) why.push('assets/tier-bar.js: font-size ' + m[1] + 'px < 14 (chiziq yozuvlari >= 14 px)');
+      for (const f of ['elektr-xarajat-kalkulyator.html', 'ru/elektr-xarajat-kalkulyator.html', 'gaz-xarajat-kalkulyator.html', 'ru/gaz-xarajat-kalkulyator.html']) {
+        const h = rd(f);
+        if (!/<link rel="stylesheet" href="\/assets\/css\/typo\.css" id="typocss">/.test(h) || !/<body class="v2 typo2"/.test(h)) why.push(f + ': typo.css / body.typo2 ulanmagan');
+        if (!/id="modeTip"/.test(h)) why.push(f + ': rejim izohi (#modeTip) yo\'q');
+      }
+      if (sw.indexOf("'/assets/css/typo.css'") < 0) why.push('sw.js precache\'da typo.css yo\'q');
       for (const [f, re] of [['maxfiylik.html', /hisoblagich ko.rsatkichlari faqat qurilmada saqlanadi/i], ['ru/maxfiylik.html', /Показания счётчика хранятся только на устройстве/]]) if (!re.test(rd(f))) why.push(f + ': hisoblagich ko\'rsatkichlari haqidagi qator yo\'q');
     } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
     add(!why.length, '40. oy oxiri prognozi: hisob qo\'lda qiymatlarga teng, prognoz.js da tarif raqami va tarmoq chaqiruvi yo\'q, alohida localStorage kalitlari, elektr/gaz sahifalari, FAQ, maxfiylik qatori, sw precache ulangan', why.slice(0, 6).join(' | '));

@@ -25,21 +25,22 @@
   var BY_N = { 1: [0], 2: [0, 4], 3: [0, 2, 4], 4: [0, 2, 3, 4], 5: [0, 1, 2, 3, 4], 6: [0, 1, 2, 3, 4, 5] };
 
   var CSS = '.tb{background:#fff;color:#16211C;border-radius:12px;padding:10px 12px 9px;margin:0 0 14px;overflow:hidden}'
-    + '.tb-top{position:relative;height:38px}'
+    + '.tb-top{position:relative;height:46px}'
     + '.tb-flag{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none}'
-    + '.tb-val{font-size:12px;font-weight:800;line-height:1;white-space:nowrap;background:#16211C;color:#fff;border-radius:6px;padding:5px 8px}'
+    + '.tb-val{font-size:var(--t-s,15px);font-weight:700;line-height:1;white-space:nowrap;background:#16211C;color:#fff;border-radius:7px;padding:6px 9px}'
     + '.tb-arrow{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid #16211C;margin-top:-1px}'
     + '.tb-bar{display:flex;gap:2px}'
-    + '.tb-seg{flex:1 1 0;min-width:0;height:30px;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#fff;border-radius:5px;white-space:nowrap}'
+    + '.tb-seg{flex:1 1 0;min-width:0;height:38px;display:flex;align-items:center;justify-content:center;font-size:var(--t-s,15px);font-weight:700;letter-spacing:-.2px;color:#fff;border-radius:5px;white-space:nowrap}'
     + '.tb-seg:first-child{border-radius:9px 5px 5px 9px}.tb-seg:last-child{border-radius:5px 9px 9px 5px}'
     + '.tb-seg.on{box-shadow:0 0 0 2px #fff,0 0 0 4px #16211C}'
-    + '.tb-ticks{position:relative;height:17px;margin-top:5px}'
-    + '.tb-tick{position:absolute;top:0;transform:translateX(-50%);font-size:10.5px;font-weight:700;color:#5C6B63;white-space:nowrap}'
+    + '.tb-ticks{position:relative;height:22px;margin-top:6px}'
+    + '.tb-tick{position:absolute;top:0;transform:translateX(-50%);font-size:var(--t-xs,14px);font-weight:600;color:var(--t-muted,#3F4F46);white-space:nowrap}'
     + '.tb-tick:first-child{transform:none}'
-    + '.tb-nowrow{position:relative;height:25px;margin-top:1px}'
+    + '.tb-nowrow{position:relative;height:30px;margin-top:2px}'
     + '.tb-nowtri{position:absolute;top:0;width:0;height:0;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:8px solid #16211C}'
-    + '.tb-nowlab{position:absolute;top:9px;transform:translateX(-50%);font-size:10.5px;font-weight:800;color:#16211C;white-space:nowrap}'
-    + '.tb-cap{margin:4px 0 0;font-size:11px;line-height:1.35;color:#5C6B63}';
+    + '.tb-nowlab{position:absolute;top:10px;transform:translateX(-50%);font-size:var(--t-xs,14px);font-weight:700;color:#16211C;white-space:nowrap}'
+    + '@media (max-width:360px){.tb{padding:8px 8px 7px}.tb-bar{gap:1px}.tb-seg{letter-spacing:-.4px}}'
+    + '.tb-cap{margin:6px 0 0;font-size:var(--t-xs,14px);line-height:1.4;color:var(--t-muted,#3F4F46)}';
 
   function addCss() {
     if (!root.document || /jsdom/i.test((root.navigator || {}).userAgent || '')) return;
@@ -48,7 +49,8 @@
     root.document.head.appendChild(s);
   }
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  var def = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+  // Chiziqda raqamlar ming ajratgichsiz: 320 px da 6 ta pog'onaga 15 px yozuv shunda sig'adi
+  var def = function (n) { return String(Math.round(n)); };
 
   /* Strelka o'rni (0–100, %) va qaysi pog'onada: sof hisob — testda ham ishlatiladi. */
   function position(tiers, value) {
@@ -76,9 +78,9 @@
     }
     // strelka uchi aniq x% da, yozuv esa chetga chiqmasligi uchun clamp() bilan suriladi
     var arrow = pos ? '<div class="tb-pt" style="position:absolute;left:' + pos.x + '%;bottom:0;transform:translateX(-50%)"><div class="tb-arrow" data-x="' + pos.x + '"></div></div>' : '';
-    var label = pos ? '<div class="tb-flag" style="left:clamp(34px,' + pos.x + '%,calc(100% - 34px));top:0"><span class="tb-val">' + esc(o.valueLabel || '') + '</span></div>' : '';
+    var label = pos ? '<div class="tb-flag" style="left:clamp(54px,' + pos.x + '%,calc(100% - 54px));top:0"><span class="tb-val">' + esc(o.valueLabel || '') + '</span></div>' : '';
     var mp = o.mark ? position(tiers, o.mark.value) : null;
-    var now = mp ? '<div class="tb-nowrow" aria-hidden="true"><i class="tb-nowtri" style="left:' + mp.x + '%"></i><span class="tb-nowlab" style="left:clamp(20px,' + mp.x + '%,calc(100% - 20px))">' + esc(o.mark.label || '') + '</span></div>' : '';
+    var now = mp ? '<div class="tb-nowrow" aria-hidden="true"><i class="tb-nowtri" style="left:' + mp.x + '%"></i><span class="tb-nowlab" style="left:clamp(26px,' + mp.x + '%,calc(100% - 26px))">' + esc(o.mark.label || '') + '</span></div>' : '';
     el.innerHTML = '<div class="tb" role="img" aria-label="' + esc(o.ariaLabel || '') + '"' + (pos ? ' data-x="' + pos.x + '" data-tier="' + (pos.idx + 1) + '"' : '') + '>'
       + '<div class="tb-top" aria-hidden="true">' + label + arrow + '</div>'
       + '<div class="tb-bar" aria-hidden="true">' + segs + '</div>'

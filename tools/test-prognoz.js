@@ -63,6 +63,21 @@ T(near(f.startVal, 9960) && f.used === 240 && f.elapsed === 14 && f.interpolated
 // taxminiy: davr boshidan oldingi yozuv yo'q, birinchi yozuv davr ichida
 f = P.forecast(Object.assign({ entries: [{ d: '2026-10-06', v: 10100 }, { d: '2026-10-16', v: 10250 }], today: '2026-10-16', billDay: 1 }, elektr('std')));
 T(f.ok && f.approx && f.used === 150 && f.elapsed === 10 && near(f.rate, 15) && near(f.projected, 150 + 15 * (16 + 5)), '7b) boshlang\'ich = davr ichidagi birinchi yozuv ("taxminiy"): sur\'at 15, qolgan 31−15 = 16 kun + noma\'lum 5 kun → prognoz 150 + 15×21 = 465', JSON.stringify([f.approx, f.rate, f.projected]));
+// ---- TELEFONDAGI HOLAT (Asia/Tashkent): hisob kuni 1; 01.10 = 10 000, 14.10 = 10 260; bugun 14.10 (barcha vaqt zonalarida bir xil)
+// shu paytgacha 260, o'tgan 13 kun, sur'at 20, qolgan 31 − 13 = 18; prognoz 260 + 20×18 = 620; summa 130 000 + 270 000 + 120×1 100 = 532 000;
+// chegara 500: 14.10 + ceil(240/20 = 12) = 26.10; kamaytirish = 20 − 240/18 = 6,667 (≤ 10 = 50%) → tejash 532 000 − 400 000 = 132 000
+f = P.forecast(Object.assign({ entries: [{ d: '2026-10-01', v: 10000 }, { d: '2026-10-14', v: 10260 }], today: '2026-10-14', billDay: 1 }, elektr('std')));
+T(f.ok && f.period.start === '2026-10-01' && f.period.end === '2026-11-01' && f.period.len === 31 && f.used === 260 && f.elapsed === 13 && f.remaining === 18 && f.rate === 20 && near(f.projected, 620) && f.total === 532000, 'telefon: davr 1-oktabr – 31-oktabr (31 kun), 260 / 13 kun / qolgan 18 / prognoz 620 / summa 532 000', JSON.stringify([f.period, f.used, f.elapsed, f.remaining, f.total]));
+T(f.cross && f.cross.date === '2026-10-26' && f.advice && near(f.advice.cut, 6.6667, 1e-3) && f.advice.save === 132000, 'telefon: 26-oktabrda qimmat pog\'ona; kuniga 6,7 kVt-soat kamaytirsangiz 132 000 tejaysiz', JSON.stringify([f.cross, f.advice]));
+// hisob kuni 30 bo'lsa (yashirin eski sozlama) — aynan shu "30-sentabr – 29-oktabr" va 462 857 chiqadi: bu vaqt zonasi emas, hisob kuni natijasi
+f = P.forecast(Object.assign({ entries: [{ d: '2026-09-30', v: 10000 }, { d: '2026-10-14', v: 10260 }], today: '2026-10-14', billDay: 30 }, elektr('std')));
+T(f.period.start === '2026-09-30' && f.period.end === '2026-10-30' && f.period.len === 30 && f.total === 462857, 'hisob kuni 30: davr 30-sentabr – 29-oktabr (30 kun), summa 462 857 (hisob kunining natijasi)', JSON.stringify([f.period, f.total]));
+// ---- kalendar arifmetikasi (Date/UTC'siz): kunlar soni, oy oxirlari, kabisa yili, yil chegarasi
+T(P.diff('2026-10-01', '2026-11-01') === 31 && P.diff('2026-02-01', '2026-03-01') === 28 && P.diff('2028-02-01', '2028-03-01') === 29 && P.diff('2026-12-31', '2027-01-01') === 1 && P.diff('1999-12-31', '2000-03-01') === 61, 'kunlar soni: oktabr 31, fevral 28/29, yil chegarasi, 2000 (kabisa)');
+T(P.addDays('2026-10-14', 12) === '2026-10-26' && P.addDays('2026-10-31', 1) === '2026-11-01' && P.addDays('2026-03-01', -1) === '2026-02-28' && P.addDays('2028-03-01', -1) === '2028-02-29' && P.addDays('2026-01-01', -1) === '2025-12-31', 'addDays: oy/yil chegaralari');
+let rt = true; for (let n = -800; n <= 40000; n += 7) { const d = P.addDays('2000-01-01', n); if (P.diff('2000-01-01', d) !== n || !P.parse(d)) rt = false; }
+T(rt, 'addDays/diff aylanma tekshiruv (−800 … +40 000 kun, har 7 kun)');
+T(P.parse('2026-02-29') === null && P.parse('2028-02-29') !== null && P.parse('2026-13-01') === null && P.parse('2026-1-1') === null, 'sanani tekshirish: 29-fevral faqat kabisa yilida');
 // ---- hisob kuni
 let per = P.periodOf('2026-10-11', 15, 0);
 T(per.start === '2026-09-15' && per.end === '2026-10-15' && per.len === 30, 'hisob kuni 15, bugun 11.10 → davr 15.09–15.10 (30 kun)', JSON.stringify(per));

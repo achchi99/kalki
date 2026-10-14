@@ -39,7 +39,7 @@ const PAGES = { elektr: { url: '/elektr-xarajat-kalkulyator', rows: 'devRows' },
 const LANGS = { UZ: '', RU: '/ru', 'ЎЗ': '' };
 const fixDate = (m, d) => `(() => { const R = Date, T = new R(2026, ${m - 1}, ${d}, 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();`;
 async function open(page, lang, m, d, o = {}) {
-  const ctx = await b.newContext({ viewport: { width: o.width || 390, height: 900 }, serviceWorkers: 'block' });
+  const ctx = await b.newContext(Object.assign({ viewport: { width: o.width || 390, height: 900 }, serviceWorkers: 'block' }, process.env.PROG_TZ ? { timezoneId: process.env.PROG_TZ } : {}));
   await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
   await ctx.addInitScript(fixDate(m, d));
   if (o.seed) await ctx.addInitScript((s) => { try { localStorage.setItem(s[0], s[1]); } catch (e) {} }, o.seed);
@@ -248,9 +248,9 @@ for (const [page, m, d, entries] of [['elektr', 10, 16, [['2026-10-01', 20000], 
 }
 // ---- YANGI UX: birinchi kirish (2 maydon), keyingi kirish (1 qator), bo'sh holat, xato faqat tugmadan keyin, ixcham joylashuv ----
 const UXT = {
-  UZ: { go: 'Oy oxirini hisoblash', err: /Ikkala raqamni ham kiriting/, startLbl: "Oy boshidagi ko'rsatkich", curLbl: 'Hisoblagichdagi hozirgi raqam', hintTxt: /Kvitansiyadagi oxirgi ko'rsatkich yoki oy boshida yozib olgan raqamingiz/, lead: /Ikki raqam kiriting/, upd: 'Yangilash', sum: /^Yozuvlar \(2\)/, ph: /masalan/ },
-  RU: { go: 'Рассчитать конец месяца', err: /Введите оба числа/, startLbl: 'Показание на начало месяца', curLbl: 'Текущее показание счётчика', hintTxt: /Последнее показание из квитанции/, lead: /Введите два числа/, upd: 'Обновить', sum: /^Записи \(2\)/, ph: /например/ },
-  'ЎЗ': { go: 'Ой охирини ҳисоблаш', err: /Иккала рақамни ҳам киритинг/, startLbl: 'Ой бошидаги кўрсаткич', curLbl: 'Ҳисоблагичдаги ҳозирги рақам', hintTxt: /Квитанциядаги охирги кўрсаткич/, lead: /Икки рақам киритинг/, upd: 'Янгилаш', sum: /^Ёзувлар \(2\)/, ph: /масалан/ }
+  UZ: { go: 'Oy oxirini hisoblash', err: /Ikkala raqamni ham kiriting/, startLbl: "Oy boshidagi ko'rsatkich", curLbl: 'Hisoblagichdagi hozirgi raqam', steps: ["Kvitansiyadagi oxirgi ko'rsatkichni yozing.", 'Hisoblagichdagi hozirgi raqamni yozing.', "Har 5–7 kunda yangi raqam kiriting — prognoz aniqlashib boradi."], upd: 'Yangilash', sum: /^Yozuvlar \(2\)/, ph: /masalan/ },
+  RU: { go: 'Рассчитать конец месяца', err: /Введите оба числа/, startLbl: 'Показание на начало месяца', curLbl: 'Текущее показание счётчика', steps: ['Впишите последнее показание из квитанции.', 'Впишите текущее показание счётчика.', 'Раз в 5–7 дней вводите новое число — прогноз будет уточняться.'], upd: 'Обновить', sum: /^Записи \(2\)/, ph: /например/ },
+  'ЎЗ': { go: 'Ой охирини ҳисоблаш', err: /Иккала рақамни ҳам киритинг/, startLbl: 'Ой бошидаги кўрсаткич', curLbl: 'Ҳисоблагичдаги ҳозирги рақам', steps: ['Квитанциядаги охирги кўрсаткични ёзинг.', 'Ҳисоблагичдаги ҳозирги рақамни ёзинг.', 'Ҳар 5–7 кунда янги рақам киритинг — прогноз аниқлашиб боради.'], upd: 'Янгилаш', sum: /^Ёзувлар \(2\)/, ph: /масалан/ }
 };
 for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) for (const w of [320, 390]) {
   const X = UXT[lang];
@@ -259,7 +259,7 @@ for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) f
     const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden'; };
     const box = document.getElementById('progBox'), ins = [...box.querySelectorAll('input')].filter(vis);
     return { texts: ins.filter((e) => e.type === 'text').length, dates: ins.filter((e) => e.type === 'date').length, ids: ins.map((e) => e.id).join(','), ph: ins.map((e) => e.placeholder), vals: ins.map((e) => e.value),
-      go: (document.getElementById('pgGo') || {}).textContent, lbls: [...box.querySelectorAll('label')].map((l) => l.textContent), lead: (box.querySelector('.pg-lead') || {}).textContent || '', hint: (box.querySelector('.pg-hint') || {}).textContent || '', err: (document.getElementById('pgMsg') || {}).textContent || '',
+      go: (document.getElementById('pgGo') || {}).textContent, lbls: [...box.querySelectorAll('label')].map((l) => l.textContent), steps: [...box.querySelectorAll('#pgSteps li')].map((x) => x.textContent), stepsNum: getComputedStyle(box.querySelector('#pgSteps li'), '::before').content, olTag: !!box.querySelector('ol#pgSteps'), stepsVisible: box.querySelector('#pgSteps').getBoundingClientRect().height > 0, hint: (box.querySelector('.pg-hint') || {}).textContent || '', err: (document.getElementById('pgMsg') || {}).textContent || '',
       list: !!box.querySelector('.pg-list'), resCol: getComputedStyle(document.querySelector('.res-col')).display, shown: document.getElementById('receipt').classList.contains('show'), skel: [...document.querySelectorAll('.res-skel')].some(vis),
       catHint: document.getElementById('catHint') ? getComputedStyle(document.getElementById('catHint')).display : null, srcNote: getComputedStyle(document.getElementById('srcNote')).display, ib: [...document.querySelectorAll('.ibrow')].some(vis), over: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
       seasonHint: document.getElementById('seasonHint') ? getComputedStyle(document.getElementById('seasonHint')).display : null,
@@ -268,7 +268,8 @@ for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) f
   const why = [];
   if (f.texts !== 2 || f.dates !== 0 || f.ids !== 'pgS,pgC') why.push('birinchi kirishda 2 ta matn maydoni bo\'lishi kerak: ' + f.ids + ' date=' + f.dates);
   if (f.go !== X.go) why.push('tugma "' + f.go + '"');
-  if (!f.lbls.includes(X.startLbl) || !f.lbls.includes(X.curLbl) || !X.hintTxt.test(f.hint) || !X.lead.test(f.lead)) why.push('yozuvlar: ' + JSON.stringify([f.lbls, f.hint.slice(0, 40), f.lead.slice(0, 30)]));
+  if (!f.lbls.includes(X.startLbl) || !f.lbls.includes(X.curLbl)) why.push('maydon nomlari: ' + JSON.stringify(f.lbls));
+  if (JSON.stringify(f.steps) !== JSON.stringify(X.steps) || !f.olTag || !f.stepsVisible || !/counter|\d/.test(f.stepsNum) || f.hint !== '') why.push('qo\'llanma (3 qadam, raqamli, yig\'ilmaydi): ' + JSON.stringify([f.steps, f.olTag, f.stepsVisible, f.stepsNum]));
   if (f.ph.some((x) => !X.ph.test(x) || /^\d+$/.test(x)) || f.vals.some((x) => x !== '')) why.push('placeholder/qiymat: ' + JSON.stringify([f.ph, f.vals]));
   if (f.err !== '') why.push('xato oldindan chiqdi: ' + f.err);
   if (f.list || f.resCol !== 'none' || f.shown || f.skel) why.push('bo\'sh holatda natija kartasi ko\'rinyapti: ' + JSON.stringify([f.resCol, f.shown, f.skel]));
@@ -300,11 +301,12 @@ for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) f
 }
 // ---- IXCHAM JOYLASHUV: 390 px da birinchi kirishda rejim tugmalari + toifa + 2 maydon + tugma bir ekranga sig'adi ----
 for (const page of ['elektr', 'gaz']) {
-  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', isMobile: true, hasTouch: true });
+  const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', isMobile: true, hasTouch: true }, process.env.PROG_TZ ? { timezoneId: process.env.PROG_TZ } : {}));
   await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await ctx.addInitScript(fixDate(10, 11));
   const p = await ctx.newPage(); await p.goto(BASE + PAGES[page].url, { waitUntil: 'load' }); await p.waitForTimeout(1200); await p.click('#modeProg'); await p.waitForTimeout(300);
   const g = await p.evaluate(() => { const a = document.getElementById('modeSeg').getBoundingClientRect(), z = document.getElementById('pgGo').getBoundingClientRect(), y = window.scrollY; return { h: Math.round(z.bottom - a.top), top: Math.round(a.top + y), btn: Math.round(z.height), formBottom: Math.round(document.querySelector('.form-card').getBoundingClientRect().bottom + y) }; });
-  T(g.h <= 700 && g.btn >= 44, page + ' · 390x844: rejim tugmalaridan "Oy oxirini hisoblash" tugmasigacha ' + g.h + ' px (≤ 700 — bir ekranga sig\'adi), tugma balandligi ' + g.btn, JSON.stringify(g));
+  // Tipografiya (>=17 px matn, 3 qadamli qo'llanma) bilan birinchi kirish bloki endi ~1 ekran: elektr <= 900 px, gaz <= 820 px (toifa tanlovi yo'q)
+  T(g.h <= (page === 'elektr' ? 900 : 820) && g.btn >= 44, page + ' · 390x844: rejim tugmalaridan "Oy oxirini hisoblash" tugmasigacha ' + g.h + ' px (≤ ' + (page === 'elektr' ? 900 : 820) + '), tugma balandligi ' + g.btn, JSON.stringify(g));
   await p.evaluate((y) => window.scrollTo(0, y - 70), g.top);
   await p.screenshot({ path: process.env.PROG_SHOT ? process.env.PROG_SHOT + '-' + page + '-first.png' : '/tmp/pg-' + page + '-first.png' });
   await p.fill('#pgS', '10000'); await p.fill('#pgC', '10150'); await p.click('#pgGo'); await p.waitForTimeout(800);
@@ -319,6 +321,86 @@ for (const page of ['elektr', 'gaz']) {
   await o.p.click('#modeProg'); await o.p.click('[data-ib="catHint"]'); await o.p.waitForTimeout(80);
   const g2 = await o.p.evaluate(() => getComputedStyle(document.getElementById('catHint')).display);
   T(g2 !== 'none', '"ⓘ Toifa haqida" bosilganda izoh ochiladi', g2); await o.ctx.close();
+}
+// ---- VAQT ZONASI: haqiqiy soat (clock) + timezoneId; telefondagi holat barcha zonalarda bir xil; yarim tun yaqinida ham ----
+const TZS = [['Asia/Tashkent', '2026-10-14T09:00:00+05:00'], ['Asia/Tashkent', '2026-10-14T00:20:00+05:00'], ['Asia/Tashkent', '2026-10-14T23:50:00+05:00'], ['UTC', '2026-10-14T12:00:00Z'], ['America/New_York', '2026-10-14T09:00:00-04:00'], ['Pacific/Kiritimati', '2026-10-14T01:00:00+14:00']];
+for (const [tz, iso] of TZS) for (const lang of ['UZ', 'RU', 'ЎЗ']) {
+  const ctx = await b.newContext({ viewport: { width: 390, height: 900 }, timezoneId: tz, serviceWorkers: 'block' }); await ctx.clock.install({ time: new Date(iso) });
+  await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
+  const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(String(e).slice(0, 140)));
+  await p.goto(BASE + (lang === 'RU' ? '/ru' : '') + PAGES.elektr.url + (lang === 'ЎЗ' ? '?lang=cyr' : ''), { waitUntil: 'load' }); await p.waitForTimeout(900);
+  await p.click('#modeProg'); const sline = await p.evaluate(() => document.getElementById('pgSChg').parentNode.textContent.replace(/\s+/g, ' ')); await firstRun(p, 10000, 10260);
+  const g = await read(p, 'elektr'); const per = await p.evaluate(() => [...document.querySelectorAll('#devRows .rrow')].map((r) => r.innerText.replace(/\s+/g, ' ')).find((x) => /1.*31/.test(x) && /–/.test(x)) || '');
+  const rv = g.rows.map((x) => nums(x)[0]); const why = [];
+  if (digits(g.main) !== 532000) why.push('summa ' + digits(g.main));
+  if (JSON.stringify(rv.slice(0, 3)) !== JSON.stringify([260, 20, 620])) why.push('sarf/sur\'at/prognoz ' + JSON.stringify(rv.slice(0, 3)));
+  if (JSON.stringify(nums(g.warn || '')) !== JSON.stringify([26, 1100])) why.push('26-oktabr/1 100: ' + g.warn);
+  if (JSON.stringify(nums(g.tip || '')) !== JSON.stringify([6.7, 132000])) why.push('maslahat 6,7 / 132 000: ' + g.tip);
+  const nm = per.replace(/[  ]/g, ' ');
+  if (!/^.*(1-oktabr – 31-oktabr|1 октября – 31 октября|1-октабр – 31-октабр)/.test(nm)) why.push('davr: ' + nm);
+  if (!/(1-oktabr|1 октября|1-октабр)/.test(sline)) why.push('oy boshi sanasi: ' + sline);
+  T(!why.length && errs.length === 0, 'VAQT ZONASI ' + tz + ' ' + iso.slice(11, 16) + ' · ' + lang + ': davr 1–31-oktabr, 532 000, 26-oktabr, 6,7 kVt-soat, 132 000', why.join(' | ') + errs.join('|'));
+  await ctx.close();
+}
+for (const [tz, iso] of [['Asia/Tashkent', '2026-11-11T09:00:00+05:00'], ['America/New_York', '2026-11-11T09:00:00-05:00'], ['UTC', '2026-11-11T12:00:00Z']]) {
+  const ctx = await b.newContext({ viewport: { width: 390, height: 900 }, timezoneId: tz, serviceWorkers: 'block' }); await ctx.clock.install({ time: new Date(iso) });
+  await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
+  const p = await ctx.newPage(); await p.goto(BASE + PAGES.gaz.url, { waitUntil: 'load' }); await p.waitForTimeout(900); await p.click('#modeProg'); await firstRun(p, 5000, 5200);
+  const g = await read(p, 'gaz'); const nm = (await p.evaluate(() => [...document.querySelectorAll('#useRows .rrow')].map((r) => r.innerText.replace(/\s+/g, ' ')).join('|'))).replace(/[  ]/g, ' ');
+  T(digits(g.main) === 750000 && /1-noyabr – 30-noyabr/.test(nm) && JSON.stringify(nums(g.warn || '')) === JSON.stringify([26, 2000]) && JSON.stringify(nums(g.tip || '')) === JSON.stringify([5, 200000]), 'VAQT ZONASI ' + tz + ' · gaz isitish: davr 1–30-noyabr, 750 000, 26-noyabr, 200 000', g.main + ' ' + nm);
+  await ctx.close();
+}
+// ---- hisob kuni 1 dan boshqa bo'lsa birinchi kirishda KO'RINADI (yashirin eski sozlama oy boshini siljitmaydi) ----
+{
+  const o = await open('elektr', 'UZ', 10, 14, { seed: ['kalki_prognoz_elektr_v1', JSON.stringify({ entries: [], billDay: 30 })] }); await o.p.click('#modeProg');
+  const g = await o.p.evaluate(() => ({ line: (document.getElementById('pgBLine') || {}).textContent || '', sline: document.getElementById('pgSChg').parentNode.textContent }));
+  T(/Hisob kuni: 30/.test(g.line) && /30-sentabr/.test(g.sline), 'hisob kuni 30 bo\'lsa, birinchi kirishda "Hisob kuni: 30 · o\'zgartirish" ko\'rinadi va oy boshi 30-sentabr', JSON.stringify(g));
+  await o.p.click('#pgBChg'); await o.p.fill('#pgB1', '1'); await o.p.dispatchEvent('#pgB1', 'change'); await o.p.waitForTimeout(150);
+  const g2 = await o.p.evaluate(() => ({ sline: document.getElementById('pgSChg').parentNode.textContent, bline: !!document.getElementById('pgBLine') }));
+  T(/1-oktabr/.test(g2.sline) && !g2.bline, 'hisob kuni 1 ga o\'zgartirilgach oy boshi 1-oktabr, qator yo\'qoladi', JSON.stringify(g2));
+  const d0 = await open('elektr', 'UZ', 10, 14); await d0.p.click('#modeProg');
+  T((await d0.p.locator('#pgBLine').count()) === 0, 'hisob kuni 1 (standart) bo\'lsa qo\'shimcha qator ko\'rsatilmaydi'); await d0.ctx.close(); await o.ctx.close();
+}
+// ---- rejim izohlari (bitta qisqa qator) ----
+const TIPS = {
+  UZ: { elektr: { dev: "Uydagi qurilmalarni belgilang, oylik sarf va to'lov chiqadi", use: 'Kvitansiyadagi kVt-soatni yozing', meter: 'Oldingi va hozirgi raqamni yozing' }, gaz: { use: "Kvitansiyadagi m³ ni yozing", meter: 'Oldingi va hozirgi raqamni yozing' } },
+  RU: { elektr: { dev: 'Отметьте приборы дома — получите месячный расход и оплату', use: 'Впишите кВт-ч из квитанции', meter: 'Впишите предыдущее и текущее показание' }, gaz: { use: 'Впишите м³ из квитанции', meter: 'Впишите предыдущее и текущее показание' } },
+  'ЎЗ': { elektr: { dev: 'Уйдаги қурилмаларни белгиланг, ойлик сарф ва тўлов чиқади', use: 'Квитанциядаги кВт-соатни ёзинг', meter: 'Олдинги ва ҳозирги рақамни ёзинг' }, gaz: { use: 'Квитанциядаги м³ ни ёзинг', meter: 'Олдинги ва ҳозирги рақамни ёзинг' } }
+};
+for (const lang of ['UZ', 'RU', 'ЎЗ']) for (const page of ['elektr', 'gaz']) {
+  const o = await open(page, lang, 10, 14); const why = [];
+  const modes = page === 'elektr' ? [['dev', '#modeDev'], ['use', '#modeUse'], ['meter', '#modeMeter']] : [['use', '#modeUse'], ['meter', '#modeMeter']];
+  for (const [m, sel] of modes) { await o.p.click(sel); await o.p.waitForTimeout(100); const tip = await o.p.evaluate(() => { const e = document.getElementById('modeTip'); return { t: e.textContent.replace(/[  ]/g, ' '), vis: e.getBoundingClientRect().height > 0, sz: parseFloat(getComputedStyle(e).fontSize) }; });
+    if (tip.t !== TIPS[lang][page][m] || !tip.vis) why.push(m + ': "' + tip.t + '" ' + tip.vis); }
+  await o.p.click('#modeProg'); const pt = await o.p.evaluate(() => ({ tipVis: document.getElementById('modeTip').getBoundingClientRect().height > 0, steps: document.querySelectorAll('#pgSteps li').length }));
+  if (pt.tipVis || pt.steps !== 3) why.push('prognozda 1 qatorli izoh o\'rniga 3 qadam bo\'lishi kerak: ' + JSON.stringify(pt));
+  T(!why.length, 'rejim izohlari · ' + page + ' · ' + lang + ': har rejimda bitta qisqa qator, prognozda 3 qadam', why.join(' | ')); await o.ctx.close();
+}
+// ---- TIPOGRAFIYA (elektr va gaz, pilot): o'lchamlar shkala bo'yicha, matn >= 16/17 px, izoh >= 15 px va kontrast >= 4,5:1, havolalar tagi chiziqsiz ----
+const SCALE = new Set([14, 15, 17, 18, 20, 24, 32, 40, 44]);   // 40 — mavjud katta summa (o'zgarmaydi)
+for (const page of ['elektr', 'gaz']) for (const w of [390, 320]) {
+  const o = await open(page, 'UZ', 10, 14, { width: w }); await o.p.click('#modeProg'); await o.p.waitForTimeout(250);
+  const read1 = () => o.p.evaluate(() => {
+    const cs = (sel) => { const e = document.querySelector(sel); if (!e) return null; const c = getComputedStyle(e); return { fs: parseFloat(c.fontSize), fw: parseInt(c.fontWeight, 10), lh: parseFloat(c.lineHeight) / parseFloat(c.fontSize), color: c.color, td: c.textDecorationLine, bg: c.backgroundColor }; };
+    return { label: cs('#progBox label'), step: cs('#pgSteps li'), hint: cs('#pgBLine,.pg-dline'), link: cs('#pgSChg'), ib: cs('.ibrow .ib'), input: cs('#pgS'), btn: cs('#pgGo'), tip: cs('.pg-note'), seg: cs('#modeSeg button'), h1: cs('h1') };
+  });
+  const f = await read1();
+  await o.p.fill('#pgS', '10000'); await o.p.fill('#pgC', '10260'); await o.p.click('#pgGo'); await o.p.waitForTimeout(500);
+  const r = await o.p.evaluate(() => {
+    const cs = (sel) => { const e = document.querySelector(sel); if (!e) return null; const c = getComputedStyle(e); return { fs: parseFloat(c.fontSize), fw: parseInt(c.fontWeight, 10), lh: parseFloat(c.lineHeight) / parseFloat(c.fontSize), color: c.color }; };
+    return { k: cs('#devRows .rrow .k, #useRows .rrow .k'), v: cs('#devRows .rrow .v, #useRows .rrow .v'), fx: cs('#tierRows .fx'), num: cs('#mainNum'), seg: cs('.tb-seg'), tick: cs('.tb-tick'), cap: cs('.tb-cap'), val: cs('.tb-val'), lab: cs('.tb-nowlab'), blk: cs('.pg-warn, .pg-tip'), upd: cs('#pgUChg'), det: cs('.pg-det summary') };
+  });
+  const why = [];
+  const chk = (n, v, min, opt = {}) => { if (!v) { why.push(n + ' topilmadi'); return; } if (v.fs < min) why.push(n + ' ' + v.fs + 'px < ' + min); if (!opt.free && !SCALE.has(v.fs)) why.push(n + ' ' + v.fs + 'px shkalada yo\'q'); if (opt.fw && v.fw < opt.fw) why.push(n + ' og\'irlik ' + v.fw); };
+  chk('label', f.label, 17, { fw: 600 }); chk('qadam matni', f.step, 17); chk('izoh/sana qatori', f.hint, 15); chk('kiritish maydoni', f.input, 18); chk('katta tugma', f.btn, 18); chk('maxfiylik izohi', f.tip, 15); chk('segment', f.seg, 15); chk('havola-tugma', f.link, 15, { fw: 600 }); chk('ⓘ havola', f.ib, 15, { fw: 600 });
+  if (f.step.lh < 1.45) why.push('matn qator balandligi ' + f.step.lh.toFixed(2)); if (f.h1.lh > 1.25) why.push('sarlavha qator balandligi ' + f.h1.lh.toFixed(2));
+  if (f.link.td !== 'none' || f.ib.td !== 'none') why.push('havola-tugmada tagiga chiziq bor: ' + f.link.td + '/' + f.ib.td);
+  chk('natija nomi', r.k, 17); chk('natija qiymati', r.v, 18, { fw: 600 }); chk('pog\'ona izohi (m × narx)', r.fx, 15); chk('chiziq: narx', r.seg, 15); chk('chiziq: chegara', r.tick, 14); chk('chiziq: izoh', r.cap, 14); chk('chiziq: strelka yozuvi', r.val, 15); chk('chiziq: hozir', r.lab, 14); if (r.blk) chk('ogohlantirish', r.blk, 17); chk('yig\'iq sarlavha', r.det, 17, { fw: 600 });
+  if (r.num.fs !== 40 && r.num.fs !== 44) why.push('katta summa o\'zgargan: ' + r.num.fs);
+  // kontrast (axe) forma va natija: >= 4,5:1
+  await o.p.evaluate(AXE); const ax = await o.p.evaluate(async () => { const x = await axe.run(['#progAfter', '#receipt', '.form-card'], { runOnly: ['color-contrast'] }); return x.violations.map((v) => v.nodes.map((n) => n.target.join(' ')).join('; ')); });
+  if (ax.length) why.push('kontrast: ' + ax.join(' | ').slice(0, 160));
+  T(!why.length, 'TIPOGRAFIYA · ' + page + ' · ' + w + ' px: label 17/600, matn 17, izoh 15 (kontrast >= 4,5), natija nomi 17 / qiymati 18/600, chiziq raqami 15 / chegara 14, havolalar chiziqsiz, o\'lchamlar shkalada', why.join(' | ')); await o.ctx.close();
 }
 console.log('\nJadval (til · holat · sahifa · toifa · kutilgan · kalkulyator · natija):');
 table.forEach((r) => console.log('  ' + r.join(' · ')));

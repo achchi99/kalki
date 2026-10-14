@@ -18,6 +18,7 @@
  *   keyingi chegara = prognoz davomida kesib o'tiladigan birinchi pog'ona chegarasi; sana = oxirgi yozuv sanasi + ceil((chegara − shu_paytgacha) / sur'at)
  *   maslahat: kerakli kamaytirish = sur'at − (chegara − shu_paytgacha) / qolgan kun; <= 50% × sur'at bo'lsa
  *             "kuniga X kamaytirsangiz Y so'm tejaysiz" (Y = summa(prognoz) − summa(chegara)), aks holda maslahat yo'q.
+ * Sana: faqat kalendar yil/oy/kun (UTC/Date yo'q) — vaqt zonasi natijaga ta'sir qilmaydi; localStorage'da sana "YYYY-MM-DD" satri.
  * Eslatma: "bugun" o'rniga OXIRGI YOZUV sanasi olinadi (ko'rsatkich bugun kiritilgan bo'lsa ikkalasi bir xil;
  * kiritilmagan bo'lsa sur'at va qolgan kunlar eskirgan "bugun"dan emas, haqiqiy o'lchov kunidan hisoblanadi).
  *
@@ -31,12 +32,17 @@
   /* ======================= SOF HISOB (DOM va storage'siz) ======================= */
   var DAY = 86400000;
   function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function parse(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || '')); if (!m) return null; var y = +m[1], mo = +m[2], d = +m[3]; var t = Date.UTC(y, mo - 1, d); var x = new Date(t); if (x.getUTCFullYear() !== y || x.getUTCMonth() !== mo - 1 || x.getUTCDate() !== d) return null; return { y: y, m: mo, d: d, t: t }; }
-  function toDays(s) { var p = parse(s); return p ? Math.round(p.t / DAY) : NaN; }
-  function fromDays(n) { var x = new Date(n * DAY); return x.getUTCFullYear() + '-' + pad(x.getUTCMonth() + 1) + '-' + pad(x.getUTCDate()); }
+  // Sana hisobi FAQAT kalendar raqamlari (yil/oy/kun) bilan: Date obyekti, UTC va vaqt zonasi umuman ishlatilmaydi.
+  // (Faqat "bugun" brauzerning mahalliy yil/oy/kun'idan olinadi — todayStr.) Kunlar soni — Hinnant "days from civil" algoritmi.
+  function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+  function dim(y, m) { return [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1]; }   // m: 1–12
+  function parse(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || '')); if (!m) return null; var y = +m[1], mo = +m[2], d = +m[3]; if (mo < 1 || mo > 12 || d < 1 || d > dim(y, mo)) return null; return { y: y, m: mo, d: d }; }
+  function civilToDays(y, m, d) { y -= m <= 2 ? 1 : 0; var era = Math.floor(y / 400), yoe = y - era * 400, doy = Math.floor((153 * (m + (m > 2 ? -3 : 9)) + 2) / 5) + d - 1, doe = yoe * 365 + Math.floor(yoe / 4) - Math.floor(yoe / 100) + doy; return era * 146097 + doe - 719468; }
+  function daysToCivil(z) { z += 719468; var era = Math.floor(z / 146097), doe = z - era * 146097, yoe = Math.floor((doe - Math.floor(doe / 1460) + Math.floor(doe / 36524) - Math.floor(doe / 146096)) / 365), y = yoe + era * 400, doy = doe - (365 * yoe + Math.floor(yoe / 4) - Math.floor(yoe / 100)), mp = Math.floor((5 * doy + 2) / 153), d = doy - Math.floor((153 * mp + 2) / 5) + 1, m = mp + (mp < 10 ? 3 : -9); return [y + (m <= 2 ? 1 : 0), m, d]; }
+  function toDays(s) { var p = parse(s); return p ? civilToDays(p.y, p.m, p.d) : NaN; }
+  function fromDays(n) { var c = daysToCivil(n); return c[0] + '-' + pad(c[1]) + '-' + pad(c[2]); }
   function diff(a, b) { return toDays(b) - toDays(a); }                       // b − a (kun)
   function addDays(s, n) { return fromDays(toDays(s) + n); }
-  function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }       // m: 1–12
   function clampDay(y, m, bd) { return Math.min(Math.max(1, bd | 0), dim(y, m)); }
   function ymd(y, m, d) { return y + '-' + pad(m) + '-' + pad(d); }
   function shiftMonth(y, m, k) { var t = (y * 12 + (m - 1)) + k; return [Math.floor(t / 12), (t % 12 + 12) % 12 + 1]; }
@@ -130,7 +136,7 @@
   var MON = { uz: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'], ru: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] };
   var TX = {
     uz: {
-      lead: "Ikki raqam kiriting — oy oxirida qancha to'lashingizni va qachon qimmat pog'onaga o'tishingizni ko'rsatamiz.",
+      lead: "", steps: ["Kvitansiyadagi oxirgi ko'rsatkichni yozing.", "Hisoblagichdagi hozirgi raqamni yozing.", "Har 5–7 kunda yangi raqam kiriting — prognoz aniqlashib boradi."], billLine: "Hisob kuni: {n}", billChg: "o'zgartirish",
       startLbl: "Oy boshidagi ko'rsatkich", startHint: "Kvitansiyadagi oxirgi ko'rsatkich yoki oy boshida yozib olgan raqamingiz", curLbl: "Hisoblagichdagi hozirgi raqam", ph: "masalan, 12345",
       dateOn: "Sana: {d}", dateToday: "Sana: bugun, {d}", chg: "sanani o'zgartirish", go: "Oy oxirini hisoblash",
       errBoth: "Ikkala raqamni ham kiriting.", errOrder: "Oy boshi sanasi hozirgi sanadan keyin bo'lishi mumkin emas.", errSame: "Ikkala raqam uchun sana bir xil — oy boshi sanasini o'zgartiring.", errLess2: "Hozirgi raqam oy boshidagi raqamdan kichik bo'lishi mumkin emas — raqamlarni tekshiring. Hisoblagich almashtirilganmi?",
@@ -150,7 +156,7 @@
       pwa: "Ilovani o'rnating — keyingi ko'rsatkichni bir bosishda kiritasiz", pwaBtn: "O'rnatish", pwaClose: "Yopish", cur: "so'm"
     },
     ru: {
-      lead: "Введите два числа — покажем, сколько вы заплатите в конце месяца и когда перейдёте на дорогую ступень.",
+      lead: "", steps: ["Впишите последнее показание из квитанции.", "Впишите текущее показание счётчика.", "Раз в 5–7 дней вводите новое число — прогноз будет уточняться."], billLine: "День расчёта: {n}", billChg: "изменить",
       startLbl: "Показание на начало месяца", startHint: "Последнее показание из квитанции или число, записанное в начале месяца", curLbl: "Текущее показание счётчика", ph: "например, 12345",
       dateOn: "Дата: {d}", dateToday: "Дата: сегодня, {d}", chg: "изменить дату", go: "Рассчитать конец месяца",
       errBoth: "Введите оба числа.", errOrder: "Дата начала месяца не может быть позже текущей даты.", errSame: "Для обоих чисел дата одинакова — измените дату начала месяца.", errLess2: "Текущее показание не может быть меньше показания на начало месяца — проверьте числа. Счётчик заменили?",
@@ -181,6 +187,7 @@
 
   var CSS = '.pg-box{margin-top:2px}.pg-lead{font-size:13.5px;line-height:1.4;color:#33403A;font-weight:600;margin:0 0 12px}'
     + '.pg-box input[type=date]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;color:var(--ink,#16211C);padding:10px;min-width:0}'
+    + '.pg-steps{margin:0 0 14px;padding:0;list-style:none;counter-reset:pgs}.pg-steps li{counter-increment:pgs;display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.4;font-weight:600;color:#33403A;margin:0 0 8px}.pg-steps li::before{content:counter(pgs);flex:none;width:26px;height:26px;border-radius:50%;background:var(--cat,#1D4E6B);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:-1px}'
     + '.pg-hint{font-size:12px;line-height:1.35;color:var(--muted,#5C6B63);margin:5px 0 0}.pg-dline{font-size:12px;color:var(--muted,#5C6B63);margin:4px 0 0}'
     + '.pg-link{border:0;background:none;padding:0;font:inherit;font-size:12px;font-weight:700;color:var(--cat,#1D4E6B);text-decoration:underline;cursor:pointer}'
     + '.pg-msg{font-size:12.5px;font-weight:700;margin:2px 0 8px;min-height:0}.pg-msg:empty{display:none}.pg-msg.err{color:#B04A3A}.pg-msg.ok{color:#1E6B45}'
@@ -202,6 +209,7 @@
     + '.g-prog .form-card label{font-size:12.5px}.g-prog .form-card .input-shell input{padding:9px 12px}.g-prog .form-card .calc-btn{padding:12px 14px;font-size:16px;margin-top:4px}.g-prog .pg-lead{font-size:13px;margin-bottom:8px}'
     + '.g-prog .hint-c{display:none}.g-prog .hint-c.open{display:block}.ibrow{display:none;gap:16px;flex-wrap:wrap;margin-top:4px}.g-prog .ibrow{display:flex}'
     + '.ib{border:0;background:none;color:var(--cat,#1D4E6B);font:inherit;font-size:12.5px;font-weight:700;text-decoration:underline;cursor:pointer;padding:4px 0;min-height:32px}'
+    + '.mode-tip{font-size:15px;line-height:1.45;color:#46544C;margin:8px 0 0;font-weight:500}.g-prog .mode-tip{display:none}'
     + '.g-prog .receipt{scroll-margin-top:72px}.calc-grid.g-nores .res-col{display:none!important}';
   // prerender (jsdom) HTML'ga CSS yozib qo'ymasin; brauzerda mavjud <style> bo'lsa ham yangilanadi
   function addCss() { if (/jsdom/i.test((root.navigator || {}).userAgent || '')) return; var s = doc.getElementById('prognozcss') || doc.createElement('style'); s.id = 'prognozcss'; s.textContent = CSS; if (!s.parentNode) doc.head.appendChild(s); }
@@ -229,7 +237,7 @@
   function init(o) {
     addCss();
     var store = makeStore(o.key), st = store.get(), active = false, R = o.result, form = o.form;
-    var ui = { err: '', dS: false, dC: false, dU: false, confirmAll: false, confirmNew: false, lessEntry: null, pwa: false, listOpen: false, setOpen: false, info: '' };
+    var ui = { err: '', dB: false, dS: false, dC: false, dU: false, confirmAll: false, confirmNew: false, lessEntry: null, pwa: false, listOpen: false, setOpen: false, info: '' };
     var unit = function () { return o.unit[lang()]; };
     var t = function (k) { return TX[lang()][k]; };
     var $ = function (id) { return doc.getElementById(id); };
@@ -246,11 +254,19 @@
       return '<p class="pg-dline">' + esc((isToday ? L.dateToday : L.dateOn).replace('{d}', dateTxt(d))) + ' · <button type="button" class="pg-link" id="' + key + 'Chg">' + esc(L.chg) + '</button></p>'
         + (shown ? '<div class="input-shell" style="margin-top:6px"><input type="date" id="' + key + 'D" value="' + d + '" max="' + todayStr() + '"></div>' : '');
     }
+    function stepsHtml() { var L = TX[lang()]; return '<ol class="pg-steps" id="pgSteps">' + L.steps.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol>'; }
+    // Hisob kuni 1 dan boshqa bo'lsa — birinchi kirishda ham KO'RINADI (sukut bo'yicha oy boshi shunga qarab hisoblanadi)
+    function billLine() {
+      if (st.billDay === 1 && !ui.dB) return '';
+      var L = TX[lang()];
+      return '<p class="pg-dline" id="pgBLine">' + esc(L.billLine.replace('{n}', st.billDay)) + ' · <button type="button" class="pg-link" id="pgBChg">' + esc(L.billChg) + '</button></p>'
+        + (ui.dB ? '<div class="input-shell" style="margin-top:6px"><input type="text" id="pgB1" inputmode="numeric" value="' + st.billDay + '" autocomplete="off"></div>' : '');
+    }
     function drawFirst() {
       var L = TX[lang()], today = todayStr(), sd = ui.sDate || periodOf(today, st.billDay, 0).start, cd = ui.cDate || today;
-      form.innerHTML = '<div class="pg-box"><p class="pg-lead">' + esc(L.lead) + '</p>'
+      form.innerHTML = '<div class="pg-box">' + stepsHtml()
         + '<div class="field"><label for="pgS">' + esc(L.startLbl) + '</label><div class="input-shell"><input type="text" id="pgS" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.sVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
-        + '<p class="pg-hint">' + esc(L.startHint) + '</p>' + dateLine(sd, false, 'pgS', ui.dS) + '</div>'
+        + dateLine(sd, false, 'pgS', ui.dS) + billLine() + '</div>'
         + '<div class="field"><label for="pgC">' + esc(L.curLbl) + '</label><div class="input-shell"><input type="text" id="pgC" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.cVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
         + dateLine(cd, cd === today, 'pgC', ui.dC) + '</div>'
         + '<div class="pg-msg' + (ui.err ? ' err' : '') + '" id="pgMsg" role="alert">' + esc(ui.err) + '</div>'
@@ -258,6 +274,8 @@
         + '<p class="pg-note" id="pgPriv">' + esc(L.privacy) + (store.ok() ? '' : ' ' + esc(L.noStore)) + '</p></div>';
       after_().innerHTML = '';
       $('pgSChg').onclick = function () { keepVals(); ui.dS = true; drawFirst(); };
+      var bc = $('pgBChg'); if (bc) bc.onclick = function () { keepVals(); ui.dB = true; drawFirst(); };
+      var b1 = $('pgB1'); if (b1) b1.addEventListener('change', function () { keepVals(); var v = parseInt(String(this.value).replace(/\D/g, ''), 10); st.billDay = Math.min(31, Math.max(1, v || 1)); store.save(); ui.dB = false; ui.sDate = null; drawFirst(); changed(); });
       $('pgCChg').onclick = function () { keepVals(); ui.dC = true; drawFirst(); };
       clearErrOnInput(['pgS', 'pgC', 'pgSD', 'pgCD']);
       var onEnter = function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pgGo').click(); } };
@@ -283,7 +301,7 @@
     /* ---- KEYINGI KIRISHLAR: bitta qator + yig'iq ro'yxat/sozlamalar ---- */
     function drawPanel(target, f) {
       var L = TX[lang()], today = todayStr(), list = st.entries.slice().reverse();
-      var h = '<div class="pg-box">' + (!f.ok ? '<div class="pg-blk pg-need" id="pgNeed"><b>' + esc(L.need) + '</b><br>' + esc(L.needSub) + '</div>' : '')
+      var h = '<div class="pg-box">' + (!f.ok ? stepsHtml() + '<div class="pg-blk pg-need" id="pgNeed"><b>' + esc(L.need) + '</b><br>' + esc(L.needSub) + '</div>' : '')
         + '<label class="pg-lbl" for="pgVal">' + esc(L.updLbl) + '</label>'
         + '<div class="pg-upd"><div class="input-shell"><input type="text" id="pgVal" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '"><span class="unit">' + esc(unit()) + '</span></div><button type="button" class="pg-btn pri" id="pgSave">' + esc(L.updBtn) + '</button></div>'
         + '<p class="pg-dline">' + esc(L.dateToday.replace('{d}', dateTxt(today))) + ' · <button type="button" class="pg-link" id="pgUChg">' + esc(L.chg) + '</button></p>'
