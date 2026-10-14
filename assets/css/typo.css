@@ -91,3 +91,6 @@ body.v2.typo2 .g-prog .seg button{padding:8px 8px}
 body.v2.typo2 .pg-steps{margin-bottom:12px}
 body.v2.typo2 .pg-steps li{margin-bottom:6px}
 body.v2.typo2 .g-prog .ibrow{margin-top:6px}
+
+body.v2.typo2 .receipt-body .rrow .v .pg-approx{font-size:var(--t-xs);font-weight:500;color:var(--t-muted-dark)}
+body.v2.typo2 .pg-bline{margin:0 0 var(--sp-item)}

@@ -361,6 +361,57 @@ for (const [tz, iso] of [['Asia/Tashkent', '2026-11-11T09:00:00+05:00'], ['Ameri
   const d0 = await open('elektr', 'UZ', 10, 14); await d0.p.click('#modeProg');
   T((await d0.p.locator('#pgBLine').count()) === 0, 'hisob kuni 1 (standart) bo\'lsa qo\'shimcha qator ko\'rsatilmaydi'); await d0.ctx.close(); await o.ctx.close();
 }
+// ---- hisob kuni qatori: qadamlar OSTIDA (maydonlar orasida emas); "Hammasini o'chirish" hisob kunini 1 ga qaytaradi (tasdiq matnida aytilgan) ----
+for (const lang of ['UZ', 'RU', 'ЎЗ']) for (const page of ['elektr', 'gaz']) {
+  const key = page === 'elektr' ? 'kalki_prognoz_elektr_v1' : 'kalki_prognoz_gaz_v1';
+  const o = await open(page, lang, 10, 14, { seed: [key, JSON.stringify({ entries: [], billDay: 30 })] }); await o.p.click('#modeProg');
+  const pos = await o.p.evaluate(() => { const st = document.getElementById('pgSteps'), bl = document.getElementById('pgBLine'), f1 = document.getElementById('pgS'), f2 = document.getElementById('pgC'), F = Node.DOCUMENT_POSITION_FOLLOWING;
+    return { afterSteps: !!(st.compareDocumentPosition(bl) & F), beforeFields: !!(bl.compareDocumentPosition(f1) & F) && !!(bl.compareDocumentPosition(f2) & F), small: parseFloat(getComputedStyle(bl).fontSize) <= 15.5, txt: bl.textContent.replace(/\s+/g, ' ') }; });
+  T(pos.afterSteps && pos.beforeFields && pos.small && /30/.test(pos.txt), 'hisob kuni qatori ' + page + ' · ' + lang + ': qadamlar ostida, ikki maydondan oldin (orasida emas), kichik', JSON.stringify(pos));
+  await o.ctx.close();
+}
+for (const page of ['elektr', 'gaz']) {
+  const key = page === 'elektr' ? 'kalki_prognoz_elektr_v1' : 'kalki_prognoz_gaz_v1';
+  const ents = page === 'elektr' ? [{ d: '2026-10-01', v: 10000 }, { d: '2026-10-14', v: 10260 }] : [{ d: '2026-11-01', v: 5000 }, { d: '2026-11-11', v: 5200 }];
+  const [mm, dd] = page === 'elektr' ? [10, 14] : [11, 11];
+  for (const lang of ['UZ', 'RU']) {
+    const o = await open(page, lang, mm, dd, { seed: [key, JSON.stringify({ entries: ents, billDay: 30 })] });
+    await openDet(o.p, 'pgListDet'); await o.p.click('#pgClear'); await o.p.waitForTimeout(100);
+    const conf = await o.p.evaluate(() => document.getElementById('pgConf').innerText.replace(/\s+/g, ' '));
+    T(/1 ga qaytariladi/.test(conf) || /вернётся к 1/.test(conf), 'hammasini o\'chirish tasdig\'i ' + page + ' · ' + lang + ' hisob kunini 1 ga qaytarishini aytadi', conf);
+    await o.p.click('#pgNo'); const st0 = await o.p.evaluate((k) => JSON.parse(localStorage.getItem(k)).billDay, key);
+    await openDet(o.p, 'pgListDet'); await o.p.click('#pgClear'); await o.p.click('#pgYes'); await o.p.waitForTimeout(150);
+    const st1 = await o.p.evaluate((k) => { const x = JSON.parse(localStorage.getItem(k)); return x.billDay + ':' + x.entries.length; }, key);
+    const first = await o.p.evaluate(() => ({ go: !!document.getElementById('pgGo'), bline: !!document.getElementById('pgBLine'), sline: document.getElementById('pgSChg').parentNode.textContent }));
+    T(st0 === 30 && st1 === '1:0' && first.go && !first.bline, 'tasdiqdan keyin ' + page + ' · ' + lang + ': yozuvlar o\'chdi, hisob kuni 1 ga qaytdi (bekor qilganda 30 qoladi), birinchi kirish ekrani, qo\'shimcha qator yo\'q', st0 + ' ' + st1 + ' ' + JSON.stringify(first));
+    await o.ctx.close();
+  }
+}
+// ---- taxminiy sarf: davr boshida yozuv yo'q → "≈280 kVt-soat (taxminiy, ...)"; hisob kuni o'zgarsa natija DARHOL qayta hisoblanadi ----
+const APPROX = {
+  elektr: { ents: [{ d: '2026-10-01', v: 10000 }, { d: '2026-10-14', v: 10260 }], md: [10, 14], key: 'kalki_prognoz_elektr_v1', exact: [532000, 260], approx: [510000, 280], rows: 'devRows' },
+  gaz: { ents: [{ d: '2026-11-01', v: 5000 }, { d: '2026-11-11', v: 5200 }], md: [11, 11], key: 'kalki_prognoz_gaz_v1', exact: [750000, 200], approx: [790000, 240], rows: 'useRows' }
+};
+//  elektr: hisob kuni 30 → davr 30.09–30.10, 01.10 birinchi yozuv: o'lchangan 260 + 1 kun × 20 = ≈280; prognoz 280 + 20×16 = 600 → 510 000
+//  gaz (isitish): hisob kuni 30 → davr 30.10–30.11 (31 kun), 01.11 birinchi yozuv: o'lchangan 200 + 2 kun × 20 = ≈240; o'tgan 12, qolgan 19 → prognoz 240 + 20×19 = 620 → 500×1 100 + 120×2 000 = 790 000
+for (const page of ['elektr', 'gaz']) for (const lang of ['UZ', 'RU', 'ЎЗ']) {
+  const A = APPROX[page]; const o = await open(page, lang, A.md[0], A.md[1], { seed: [A.key, JSON.stringify({ entries: A.ents, billDay: 1 })] });
+  const rd = async () => o.p.evaluate((rid) => ({ main: document.getElementById('mainNum').textContent, used: document.querySelector('#' + rid + ' .rrow .v').innerText.replace(/\s+/g, ' '), approxNote: !!document.querySelector('#' + rid + ' .pg-approx'), warnBlk: !!document.querySelector('#extraRows .pg-info') }), A.rows);
+  const e = await rd();
+  await openDet(o.p, 'pgSetDet'); await o.p.fill('#pgBill', '30'); await o.p.waitForTimeout(120);
+  const a = await rd();
+  await o.p.fill('#pgBill', '1'); await o.p.waitForTimeout(120);
+  const b2 = await rd();
+  const note = await o.p.evaluate(() => 0);
+  const why = [];
+  if (digits(e.main) !== A.exact[0] || nums(e.used)[0] !== A.exact[1] || /≈/.test(e.used) || e.approxNote) why.push('aniq holat: ' + JSON.stringify(e));
+  if (digits(a.main) !== A.approx[0] || nums(a.used)[0] !== A.approx[1] || !/≈/.test(a.used) || !a.approxNote) why.push('hisob kuni 30 → darhol qayta hisoblash (taxminiy): ' + JSON.stringify(a));
+  if (lang === 'UZ' && !/\(taxminiy, davr boshida yozuv yo'q\)/.test(a.used)) why.push('UZ yozuvi: ' + a.used);
+  if (lang === 'RU' && !/\(ориентировочно, нет записи на начало периода\)/.test(a.used)) why.push('RU yozuvi: ' + a.used);
+  if (digits(b2.main) !== A.exact[0] || /≈/.test(b2.used)) why.push('hisob kuni 1 ga qaytgach aniq: ' + JSON.stringify(b2));
+  T(!why.length, 'taxminiy sarf ' + page + ' · ' + lang + ': hisob kuni 1 → ' + A.exact[0] + ' (' + A.exact[1] + '), 30 → ' + A.approx[0] + ' (≈' + A.approx[1] + ', taxminiy), 1 ga qaytgach yana aniq — yozish paytida darhol', why.join(' | '));
+  await o.ctx.close();
+}
 // ---- rejim izohlari (bitta qisqa qator) ----
 const TIPS = {
   UZ: { elektr: { dev: "Uydagi qurilmalarni belgilang, oylik sarf va to'lov chiqadi", use: 'Kvitansiyadagi kVt-soatni yozing', meter: 'Oldingi va hozirgi raqamni yozing' }, gaz: { use: "Kvitansiyadagi m³ ni yozing", meter: 'Oldingi va hozirgi raqamni yozing' } },

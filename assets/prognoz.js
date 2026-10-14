@@ -85,9 +85,11 @@
     var used = last.v - baseVal, elapsed = diff(baseDate, last.d), rate = used / elapsed;
     var sinceStart = diff(per.start, last.d), remaining = Math.max(0, per.len - sinceStart);
     var unknown = approx ? diff(per.start, baseDate) : 0;           // taxminiy: birinchi yozuvgacha o'tgan kunlar ham sur'atdan baholanadi
-    var projected = used + rate * (remaining + unknown);
+    var measured = used;
+    if (approx) used = measured + rate * unknown;                   // "shu paytgacha sarf": o'lchangan + davr boshigacha baholangan qism (≈)
+    var projected = used + rate * remaining;
     var T = opts.tiers, L = opts.limits, r = { ok: true, period: per, approx: approx, interpolated: !!(base && !base.exact), startVal: baseVal, lastVal: last.v, lastDate: last.d,
-      used: used, elapsed: elapsed, remaining: remaining, rate: rate, projected: projected, total: T(projected).total, avg: projected > 0 ? T(projected).total / projected : 0, cross: null, advice: null, tier: 1 };
+      used: used, measured: measured, unknownDays: unknown, elapsed: elapsed, remaining: remaining, rate: rate, projected: projected, total: T(projected).total, avg: projected > 0 ? T(projected).total / projected : 0, cross: null, advice: null, tier: 1 };
     for (var i = 0; i < L.length; i++) if (projected <= L[i]) { r.tier = i + 1; break; }
     if (rate > 0) {
       for (var j = 0; j < L.length - 1; j++) {
@@ -141,12 +143,13 @@
       dateOn: "Sana: {d}", dateToday: "Sana: bugun, {d}", chg: "sanani o'zgartirish", go: "Oy oxirini hisoblash",
       errBoth: "Ikkala raqamni ham kiriting.", errOrder: "Oy boshi sanasi hozirgi sanadan keyin bo'lishi mumkin emas.", errSame: "Ikkala raqam uchun sana bir xil — oy boshi sanasini o'zgartiring.", errLess2: "Hozirgi raqam oy boshidagi raqamdan kichik bo'lishi mumkin emas — raqamlarni tekshiring. Hisoblagich almashtirilganmi?",
       updLbl: "Bugungi raqam", updBtn: "Yangilash", listSum: "Yozuvlar ({n})", setSum: "Sozlamalar", billDay: "Hisob kuni", billHint: "Oy shu kundan boshlanadi (1–31).", date: "Sana",
-      del: "O'chirish", clearAll: "Hammasini o'chirish", sure: "Hamma ko'rsatkichlar o'chiriladi. Davom etasizmi?", yes: "Ha, o'chirish", no: "Bekor qilish",
+      del: "O'chirish", clearAll: "Hammasini o'chirish", sure: "Hamma ko'rsatkichlar o'chiriladi va hisob kuni 1 ga qaytariladi. Davom etasizmi?", yes: "Ha, o'chirish", no: "Bekor qilish",
       privacy: "Ko'rsatkichlar faqat shu qurilmada saqlanadi.", noStore: "Bu brauzerda saqlab bo'lmadi — ko'rsatkichlar faqat shu sessiya ichida turadi.",
       errInvalid: "Sana va ko'rsatkichni to'g'ri kiriting.", errFuture: "Kelajak sanani kiritib bo'lmaydi.", errLess: "Ko'rsatkich oldingi sanadagidan kichik bo'lishi mumkin emas. Hisoblagich almashtirilganmi?", newDiary: "Yangi kundalik boshlang",
       newSure: "Eski yozuvlar o'chiriladi, shu ko'rsatkich yangi kundalikning boshi bo'ladi. Davom etasizmi?", newYes: "Ha, boshlash",
       empty: "Hali yozuv yo'q.", saved: "Saqlandi.", replaced: "Shu sanadagi eski yozuv almashtirildi.",
       need: "Yana bitta ko'rsatkich kiriting", needSub: "Prognoz uchun hisob davrida kamida ikkita ko'rsatkich kerak (yoki davr boshidagi + bitta).",
+      approxNote: "taxminiy, davr boshida yozuv yo'q",
       tag: "Oy oxiri prognozi", lbl: "Oy oxirida taxminan", approx: "taxminiy: davr boshidagi ko'rsatkich yo'q, birinchi yozuvdan hisoblandi", interp: "Davr boshidagi ko'rsatkich qo'shni yozuvlar orasidan hisoblandi.",
       kUsed: "Shu paytgacha sarf", kRate: "Kunlik o'rtacha", kProj: "Prognoz sarf", kAvg: "1 {u} o'rtacha narxi", kPeriod: "Hisob davri", kLeft: "Davr oxirigacha", days: "kun",
       warn: "{date} {price} {cur}lik pog'onaga o'tasiz", advice: "Kuniga {x} {u} kamaytirsangiz, shu pog'onada qolasiz va {y} {cur} tejaysiz.", endTier: "Bu oy {n}-pog'onada yakunlaysiz.", noCross: "Joriy sur'atda pog'onadan o'tmaysiz.",
@@ -161,12 +164,13 @@
       dateOn: "Дата: {d}", dateToday: "Дата: сегодня, {d}", chg: "изменить дату", go: "Рассчитать конец месяца",
       errBoth: "Введите оба числа.", errOrder: "Дата начала месяца не может быть позже текущей даты.", errSame: "Для обоих чисел дата одинакова — измените дату начала месяца.", errLess2: "Текущее показание не может быть меньше показания на начало месяца — проверьте числа. Счётчик заменили?",
       updLbl: "Сегодняшнее показание", updBtn: "Обновить", listSum: "Записи ({n})", setSum: "Настройки", billDay: "День расчёта", billHint: "Месяц начинается с этого дня (1–31).", date: "Дата",
-      del: "Удалить", clearAll: "Удалить всё", sure: "Все показания будут удалены. Продолжить?", yes: "Да, удалить", no: "Отмена",
+      del: "Удалить", clearAll: "Удалить всё", sure: "Все показания будут удалены, а день расчёта вернётся к 1. Продолжить?", yes: "Да, удалить", no: "Отмена",
       privacy: "Показания хранятся только на этом устройстве.", noStore: "В этом браузере сохранить не удалось — показания хранятся только в рамках этой сессии.",
       errInvalid: "Введите дату и показание корректно.", errFuture: "Нельзя вводить будущую дату.", errLess: "Показание не может быть меньше показания за более раннюю дату. Счётчик заменили?", newDiary: "Начать новый дневник",
       newSure: "Старые записи будут удалены, это показание станет началом нового дневника. Продолжить?", newYes: "Да, начать",
       empty: "Записей пока нет.", saved: "Сохранено.", replaced: "Прежняя запись за эту дату заменена.",
       need: "Введите ещё одно показание", needSub: "Для прогноза нужно минимум два показания в расчётном периоде (или показание на начало периода + одно).",
+      approxNote: "ориентировочно, нет записи на начало периода",
       tag: "Прогноз на конец месяца", lbl: "К концу месяца примерно", approx: "ориентировочно: нет показания на начало периода, расчёт от первой записи", interp: "Показание на начало периода рассчитано по соседним записям.",
       kUsed: "Расход на данный момент", kRate: "В среднем в день", kProj: "Прогноз расхода", kAvg: "Средняя цена 1 {u}", kPeriod: "Расчётный период", kLeft: "До конца периода", days: "дн.",
       warn: "{date} вы перейдёте на ступень по {price} {cur}", advice: "Если сократить на {x} {u} в день, останетесь на этой ступени и сэкономите {y} {cur}.", endTier: "В этом месяце вы закончите на {n}-й ступени.", noCross: "При текущем темпе вы не перейдёте на другую ступень.",
@@ -200,6 +204,7 @@
     + '.pg-set{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}.pg-set .fld{width:130px}.pg-set p{flex:1 1 140px;margin:0}'
     + '.pg-pwa{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--cat-soft,#E8F1F6);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:13.5px;font-weight:700;color:var(--cat,#1D4E6B)}.pg-pwa span{flex:1 1 200px}'
     + '.pg-blk{border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;font-weight:700;line-height:1.45}.pg-warn{background:#FFF1E0;color:#6B3200;border:1px solid #F0C48A}.pg-tip{background:#E7F3EC;color:#14452B;border:1px solid #B7DAC5}.pg-info{background:rgba(255,255,255,.08);color:#D2E0D8;font-weight:600;font-size:13px}.pg-need{background:#F2F5F3;color:#33403A;font-weight:600;font-size:13px;margin:0 0 10px}'
+    + '.pg-bline{margin:-4px 0 12px}.pg-approx{display:block;font-size:13px;font-weight:500;opacity:.85;margin-top:2px}'
     + '.pg-past .rrow .k small{display:block;font-size:11px;opacity:.75;margin-top:2px}'
     // Prognoz rejimida joyni tejash: ixcham oraliqlar, izohlar yig'iq (ⓘ), bo'sh natija kartasi yo'q
     + '.g-prog .form-card{padding:14px 14px 16px;margin-top:10px}.g-prog .field{margin-bottom:10px}.g-prog .form-card label{margin-bottom:5px}'
@@ -259,14 +264,14 @@
     function billLine() {
       if (st.billDay === 1 && !ui.dB) return '';
       var L = TX[lang()];
-      return '<p class="pg-dline" id="pgBLine">' + esc(L.billLine.replace('{n}', st.billDay)) + ' · <button type="button" class="pg-link" id="pgBChg">' + esc(L.billChg) + '</button></p>'
-        + (ui.dB ? '<div class="input-shell" style="margin-top:6px"><input type="text" id="pgB1" inputmode="numeric" value="' + st.billDay + '" autocomplete="off"></div>' : '');
+      return '<p class="pg-dline pg-bline" id="pgBLine">' + esc(L.billLine.replace('{n}', st.billDay)) + ' · <button type="button" class="pg-link" id="pgBChg">' + esc(L.billChg) + '</button></p>'
+        + (ui.dB ? '<div class="input-shell" style="margin:0 0 12px;max-width:140px"><input type="text" id="pgB1" inputmode="numeric" value="' + st.billDay + '" autocomplete="off"></div>' : '');
     }
     function drawFirst() {
       var L = TX[lang()], today = todayStr(), sd = ui.sDate || periodOf(today, st.billDay, 0).start, cd = ui.cDate || today;
-      form.innerHTML = '<div class="pg-box">' + stepsHtml()
+      form.innerHTML = '<div class="pg-box">' + stepsHtml() + billLine()
         + '<div class="field"><label for="pgS">' + esc(L.startLbl) + '</label><div class="input-shell"><input type="text" id="pgS" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.sVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
-        + dateLine(sd, false, 'pgS', ui.dS) + billLine() + '</div>'
+        + dateLine(sd, false, 'pgS', ui.dS) + '</div>'
         + '<div class="field"><label for="pgC">' + esc(L.curLbl) + '</label><div class="input-shell"><input type="text" id="pgC" inputmode="decimal" autocomplete="off" placeholder="' + esc(L.ph) + '" value="' + esc(ui.cVal || '') + '"><span class="unit">' + esc(unit()) + '</span></div>'
         + dateLine(cd, cd === today, 'pgC', ui.dC) + '</div>'
         + '<div class="pg-msg' + (ui.err ? ' err' : '') + '" id="pgMsg" role="alert">' + esc(ui.err) + '</div>'
@@ -331,6 +336,7 @@
       $('pgVal').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('pgSave').click(); } });
       clearErrOnInput(['pgVal', 'pgDate']);
       $('pgUChg').onclick = function () { ui.dU = true; render(); };
+      $('pgBill').addEventListener('input', function () { var v = parseInt(String(this.value).replace(/\D/g, ''), 10); if (!(v >= 1 && v <= 31)) return; st.billDay = v; store.save(); var s2 = compute(); if (s2.f.ok) { showResult(true); renderResult(s2); } else render(); changed(); });
       $('pgBill').addEventListener('change', function () { var v = parseInt(String(this.value).replace(/\D/g, ''), 10); st.billDay = Math.min(31, Math.max(1, v || 1)); this.value = st.billDay; store.save(); render(); changed(); });
       $('pgListDet').addEventListener('toggle', function () { ui.listOpen = this.open; });
       $('pgSetDet').addEventListener('toggle', function () { ui.setOpen = this.open; });
@@ -340,7 +346,7 @@
       var ls = $('pgList'); if (ls) ls.addEventListener('click', function (ev) { var b = ev.target.closest ? ev.target.closest('[data-del]') : null; if (!b) return; var d = b.getAttribute('data-del'); st.entries = st.entries.filter(function (e) { return e.d !== d; }); store.save(); ui.err = ''; render(); changed(); });
       var cl = $('pgClear'); if (cl) cl.onclick = function () { ui.confirmAll = true; ui.listOpen = true; render(); };
       var no = $('pgNo'); if (no) no.onclick = function () { ui.confirmAll = false; render(); };
-      var ye = $('pgYes'); if (ye) ye.onclick = function () { st.entries = []; store.save(); ui.confirmAll = false; ui.err = ''; ui.listOpen = false; render(); changed(); };
+      var ye = $('pgYes'); if (ye) ye.onclick = function () { st.entries = []; st.billDay = 1; store.save(); ui.confirmAll = false; ui.err = ''; ui.listOpen = false; render(); changed(); };
     }
 
     function add(d, v) {
@@ -378,7 +384,7 @@
     function renderResult(s) {
       var L = TX[lang()], f = s.f, cur = ' ' + L.cur, u = unit();
       R.tag.textContent = L.tag; R.lbl.textContent = L.lbl; R.mainNum.textContent = fmt(f.total) + cur;
-      var h = row(esc(L.kUsed), fmt1(f.used) + ' ' + esc(u)) + row(esc(L.kRate), fmt1(f.rate) + ' ' + esc(u)) + row(esc(L.kProj), fmt1(f.projected) + ' ' + esc(u)) + row(esc(L.kAvg.replace('{u}', u)), fmt(f.avg) + cur);
+      var h = row(esc(L.kUsed), (f.approx ? '≈' : '') + fmt1(f.used) + ' ' + esc(u) + (f.approx ? '<small class="pg-approx">(' + esc(L.approxNote) + ')</small>' : '')) + row(esc(L.kRate), fmt1(f.rate) + ' ' + esc(u)) + row(esc(L.kProj), fmt1(f.projected) + ' ' + esc(u)) + row(esc(L.kAvg.replace('{u}', u)), fmt(f.avg) + cur);
       h += row(esc(L.kPeriod), esc(dateTxt(f.period.start) + ' – ' + dateTxt(addDays(f.period.end, -1)))) + row(esc(L.kLeft), f.remaining + ' ' + esc(L.days));
       R.rows.innerHTML = h;
       var th = '', T = s.c.tiers(f.projected);
