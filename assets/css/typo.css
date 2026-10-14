@@ -130,7 +130,7 @@ body.v2 .tm2-fs{display:none}
   body.v2 .tm2-fs .fs-l{font-size:var(--t-m);font-weight:600;color:var(--text,#1B2A22)}
   body.v2 .tm2-fs .fs-seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm,10px);padding:3px;gap:2px}
   body.v2 .tm2-fs .fs-seg button{border:0;background:transparent;font:inherit;font-size:var(--t-s);font-weight:600;color:var(--t-muted);padding:6px 16px;border-radius:7px;cursor:pointer;min-height:44px;min-width:44px;line-height:1.2}
-  body.v2 .tm2-fs .fs-seg button.on{background:var(--ink,#16231C);color:#fff}
+  body.v2 .tm2-fs .fs-seg button[aria-pressed="true"]{background:var(--ink,#16231C);color:#fff}
 }
 /* Katta rejimida tor ekranda (≤380px) 2×2 sig'maydigan yorliqlar uchun bitta ustun */
 @media (max-width:380px){html.fs-big body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions){grid-template-columns:1fr}}

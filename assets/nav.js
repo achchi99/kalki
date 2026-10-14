@@ -31,10 +31,11 @@
   });
   d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSubs(); if (b.classList.contains('nav-open')) { setNav(false); burger.focus(); } } });
   /* Shrift o'lchami: Oddiy | Katta (html.fs-big, localStorage 'kalki_fs'; boshlang'ich holatni langboot qo'yadi) */
+  try { if (localStorage.getItem('kalki_fs') === 'big') d.documentElement.classList.add('fs-big'); } catch (x) {}   // langboot'siz sahifalar (cyr/ statik nusxalar) uchun zaxira
   var fsBtns = d.querySelectorAll('.fs-seg button[data-fs]');
   function fsSync() {
     var big = d.documentElement.classList.contains('fs-big');
-    for (var i = 0; i < fsBtns.length; i++) { var on = (fsBtns[i].getAttribute('data-fs') === 'big') === big; fsBtns[i].setAttribute('aria-pressed', on ? 'true' : 'false'); fsBtns[i].classList.toggle('on', on); }
+    for (var i = 0; i < fsBtns.length; i++) { var on = (fsBtns[i].getAttribute('data-fs') === 'big') === big; fsBtns[i].setAttribute('aria-pressed', on ? 'true' : 'false'); }
   }
   for (var k = 0; k < fsBtns.length; k++) fsBtns[k].addEventListener('click', function (e) {
     e.stopPropagation();
