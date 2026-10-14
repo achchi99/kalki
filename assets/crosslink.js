@@ -19,14 +19,14 @@
     + 'transition:border-color .15s,background .15s}'
     + '.xlink-card:hover{background:#F2F5F3;border-color:#155E63}'
     + '.xlink-ic{font-size:19px;flex:none}'
-    + '.xlink-t{flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.35}'
+    + '.xlink-t{flex:1;min-width:0;font-size:var(--t-xs,14px);font-weight:700;line-height:1.35}'
     + '.xlink-arrow{font-size:16px;color:#155E63;flex:none}'
     + '.xlink-banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;'
-    + 'background:#FBF3DD;border:1px solid #EFDCBB;border-radius:10px;padding:10px 13px;font-size:13px;'
+    + 'background:#FBF3DD;border:1px solid #EFDCBB;border-radius:10px;padding:10px 13px;font-size:var(--t-xs,14px);'
     + 'font-weight:600;color:#5A4820}'
     + '.xlink-banner b{font-weight:800;color:#3E3212}'
     + '.xlink-banner button{margin-left:auto;border:0;background:transparent;color:#8A6D1F;font:inherit;'
-    + 'font-size:12.5px;font-weight:800;text-decoration:underline;cursor:pointer;padding:2px}'
+    + 'font-size:var(--t-xs,14px);font-weight:800;text-decoration:underline;cursor:pointer;padding:2px}'
     + '.xlink-filled{background:#FFF4D9!important;transition:background 1.2s ease 1.5s}';
 
   // Guard faqat STYLE elementini yaratishni o'tkazib yuboradi — ikkinchi

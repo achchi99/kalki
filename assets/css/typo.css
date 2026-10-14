@@ -94,3 +94,9 @@ body.v2.typo2 .g-prog .ibrow{margin-top:6px}
 
 body.v2.typo2 .receipt-body .rrow .v .pg-approx{font-size:var(--t-xs);font-weight:500;color:var(--t-muted-dark)}
 body.v2.typo2 .pg-bline{margin:0 0 var(--sp-item)}
+
+/* ===== 3 qadamli qo'llanma (tools/steps.js) va rejim izohi ===== */
+body.v2.typo2 .qadamlar{margin:0 0 var(--sp-block);padding:0;list-style:none;counter-reset:qd}
+body.v2.typo2 .qadamlar li{counter-increment:qd;display:flex;gap:12px;align-items:flex-start;font-size:var(--t-m);line-height:var(--t-lh-text);font-weight:500;color:var(--text,#1B2A22);margin:0 0 6px;overflow-wrap:anywhere}
+body.v2.typo2 .qadamlar li::before{content:counter(qd);flex:none;width:28px;height:28px;border-radius:50%;background:var(--cat,#1D4E6B);color:#fff;font-weight:800;font-size:var(--t-s);display:flex;align-items:center;justify-content:center;margin-top:0}
+body.v2.typo2 .mode-tip{margin:0 0 var(--sp-item);font-size:var(--t-s);line-height:var(--t-lh-text);color:var(--t-muted)}

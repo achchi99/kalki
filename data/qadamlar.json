@@ -1,0 +1,1112 @@
+{
+ "steps": {
+  "aliment-kalkulyator": [
+   {
+    "uz": "To'lovchining oylik daromadini yozing.",
+    "ru": "Укажите ежемесячный доход плательщика."
+   },
+   {
+    "uz": "Bolalar sonini tanlang.",
+    "ru": "Выберите количество детей."
+   },
+   {
+    "uz": "Oylik aliment miqdori va foizi chiqadi.",
+    "ru": "Увидите размер алиментов и их долю."
+   }
+  ],
+  "alkogol-kalkulyator": [
+   {
+    "uz": "Jins, vazn va qorin holatini kiriting.",
+    "ru": "Укажите пол, вес и сытость."
+   },
+   {
+    "uz": "Ichgan ichimliklar va miqdorini qo'shing.",
+    "ru": "Добавьте напитки и их объём."
+   },
+   {
+    "uz": "Promille chiqadi. Rulga o'tirishga asos emas.",
+    "ru": "Покажем промилле. Не повод садиться за руль."
+   }
+  ],
+  "avto-rasmiylashtirish": [
+   {
+    "uz": "Yoqilg'i turi, yili va raqam turini tanlang.",
+    "ru": "Выберите топливо, год и тип номера."
+   },
+   {
+    "uz": "Kerakli xizmatlarni belgilang.",
+    "ru": "Отметьте нужные услуги."
+   },
+   {
+    "uz": "Davlat boji va jami narx chiqadi.",
+    "ru": "Увидите пошлины и итоговую цену."
+   }
+  ],
+  "avto-xarajat-kalkulyator": [
+   {
+    "uz": "Yoqilg'i turi, masofa va sarfni yozing.",
+    "ru": "Укажите топливо, пробег и расход."
+   },
+   {
+    "uz": "Sug'urta va texxizmat xarajatini kiriting.",
+    "ru": "Введите страховку и обслуживание."
+   },
+   {
+    "uz": "Oylik va yillik xarajat, 1 km narxi chiqadi.",
+    "ru": "Увидите расход за месяц, год и 1 км."
+   }
+  ],
+  "beton-kalkulyator": [
+   {
+    "uz": "Beton markasini tanlang.",
+    "ru": "Выберите марку бетона."
+   },
+   {
+    "uz": "Hajm yoki o'lchamlarni kiriting.",
+    "ru": "Введите объём или размеры."
+   },
+   {
+    "uz": "Sement, qum, shag'al va suv miqdori chiqadi.",
+    "ru": "Увидите цемент, песок, щебень и воду."
+   }
+  ],
+  "bojxona-kalkulyator": [
+   {
+    "uz": "Avtomobil turi, narxi va yoshini kiriting.",
+    "ru": "Укажите тип, цену и возраст авто."
+   },
+   {
+    "uz": "Dvigatel hajmi va dollar kursini yozing.",
+    "ru": "Введите объём двигателя и курс доллара."
+   },
+   {
+    "uz": "Boj, yig'im, QQS va jami narx chiqadi.",
+    "ru": "Увидите пошлину, сборы, НДС и итог."
+   }
+  ],
+  "bola-puli-kalkulyator": [
+   {
+    "uz": "Oila a'zolari va jami daromadni yozing.",
+    "ru": "Укажите состав семьи и общий доход."
+   },
+   {
+    "uz": "Bolalar soni, mulk va avto savollariga javob bering.",
+    "ru": "Ответьте про детей, имущество и авто."
+   },
+   {
+    "uz": "Haqingiz bor-yo'qligi ko'rinadi.",
+    "ru": "Узнаете, положена ли вам помощь."
+   }
+  ],
+  "chorva-kalkulyator": [
+   {
+    "uz": "Buqa yoki qo'yni tanlang, bosh sonini yozing.",
+    "ru": "Выберите бычка или овцу, укажите поголовье."
+   },
+   {
+    "uz": "Boqish muddati va yem narxini kiriting.",
+    "ru": "Введите срок откорма и цену кормов."
+   },
+   {
+    "uz": "Foyda yoki kunlik yem xarajati chiqadi.",
+    "ru": "Увидите прибыль или затраты на корм."
+   }
+  ],
+  "dekret-puli-kalkulyator": [
+   {
+    "uz": "O'rtacha oylik ish haqingizni yozing.",
+    "ru": "Укажите среднюю зарплату."
+   },
+   {
+    "uz": "Tug'ish turi va ish stajini kiriting.",
+    "ru": "Выберите тип родов и введите стаж."
+   },
+   {
+    "uz": "Dekret nafaqasining taxminiy miqdori chiqadi.",
+    "ru": "Увидите примерный размер пособия."
+   }
+  ],
+  "dtm-kalkulyator": [
+   {
+    "uz": "Har fandagi to'g'ri javoblar sonini kiriting.",
+    "ru": "Введите число верных ответов по предметам."
+   },
+   {
+    "uz": "Sertifikat bo'lsa, tegishli fanni belgilang.",
+    "ru": "Если есть сертификат — отметьте предмет."
+   },
+   {
+    "uz": "Koeffitsiyentlar bilan umumiy ball chiqadi.",
+    "ru": "Увидите общий балл с коэффициентами."
+   }
+  ],
+  "gisht-kalkulyator": [
+   {
+    "uz": "Material turi va devor qalinligini tanlang.",
+    "ru": "Выберите материал и толщину стены."
+   },
+   {
+    "uz": "Devor o'lchami va eshik-derazani yozing.",
+    "ru": "Введите размеры стены, двери и окна."
+   },
+   {
+    "uz": "G'isht yoki blok soni va narxi chiqadi.",
+    "ru": "Увидите количество кирпича и цену."
+   }
+  ],
+  "grant-ololmadim": [
+   {
+    "uz": "To'plagan ballingizni yozing.",
+    "ru": "Укажите набранный балл."
+   },
+   {
+    "uz": "Oilangiz oyiga qancha ajratishini kiriting.",
+    "ru": "Введите, сколько семья готова тратить."
+   },
+   {
+    "uz": "Byudjetga mos variantlar tartib bilan chiqadi.",
+    "ru": "Варианты по вашему бюджету по порядку."
+   }
+  ],
+  "homiladorlik-kalkulyator": [
+   {
+    "uz": "Oxirgi hayzning birinchi kunini tanlang.",
+    "ru": "Выберите первый день последних месячных."
+   },
+   {
+    "uz": "Hayz sikli davomiyligini yozing.",
+    "ru": "Укажите длительность цикла."
+   },
+   {
+    "uz": "Tug'ilish sanasi yoki ovulyatsiya kunlari chiqadi.",
+    "ru": "Увидите дату родов или дни овуляции."
+   }
+  ],
+  "ijara-stavkalari": [
+   {
+    "uz": "Hudud va tuman yoki shaharni tanlang.",
+    "ru": "Выберите регион и район или город."
+   },
+   {
+    "uz": "Mol-mulk turi va maydonni kiriting.",
+    "ru": "Укажите тип имущества и площадь."
+   },
+   {
+    "uz": "Eng kam stavka va soliq bazasi chiqadi.",
+    "ru": "Увидите минимальную ставку и базу налога."
+   }
+  ],
+  "ipoteka-kalkulyator": [
+   {
+    "uz": "Uy narxi va boshlang'ich to'lovni yozing.",
+    "ru": "Укажите цену жилья и первый взнос."
+   },
+   {
+    "uz": "Yillik foiz va muddatni kiriting.",
+    "ru": "Введите годовую ставку и срок."
+   },
+   {
+    "uz": "Oylik to'lov va ortiqcha to'lov chiqadi.",
+    "ru": "Увидите платёж и переплату."
+   }
+  ],
+  "ipoteka-yoki-ijara-kalkulyator": [
+   {
+    "uz": "Uy narxi va ipoteka shartlarini yozing.",
+    "ru": "Укажите цену жилья и условия ипотеки."
+   },
+   {
+    "uz": "Hozirgi ijara narxi va o'sishni kiriting.",
+    "ru": "Введите аренду сейчас и рост цен."
+   },
+   {
+    "uz": "Qaysi biri foydaliroq ekani chiqadi.",
+    "ru": "Увидите, что выгоднее в долгую."
+   }
+  ],
+  "ishdan-boshatish-kompensatsiyasi-kalkulyator": [
+   {
+    "uz": "O'rtacha oylik ish haqini yozing.",
+    "ru": "Укажите среднюю зарплату."
+   },
+   {
+    "uz": "Bo'shatish asosini tanlang va ish stajini kiriting.",
+    "ru": "Выберите основание и введите стаж."
+   },
+   {
+    "uz": "Kompensatsiyaning taxminiy miqdori chiqadi.",
+    "ru": "Увидите примерный размер компенсации."
+   }
+  ],
+  "kaloriya-kalkulyator": [
+   {
+    "uz": "Jins, yosh, bo'y va vazningizni kiriting.",
+    "ru": "Укажите пол, возраст, рост и вес."
+   },
+   {
+    "uz": "Faollik darajasi va maqsadni tanlang.",
+    "ru": "Выберите активность и цель."
+   },
+   {
+    "uz": "Kunlik kaloriya me'yori chiqadi.",
+    "ru": "Увидите дневную норму калорий."
+   }
+  ],
+  "kasallik-varaqasi-kalkulyator": [
+   {
+    "uz": "O'rtacha oylik ish haqini yozing.",
+    "ru": "Укажите среднюю зарплату."
+   },
+   {
+    "uz": "Kasallik kunlari va ish stajini kiriting.",
+    "ru": "Введите дни болезни и стаж."
+   },
+   {
+    "uz": "To'lov shartlari va taxminiy summa chiqadi.",
+    "ru": "Увидите условия и примерную сумму."
+   }
+  ],
+  "konditsioner-kalkulyator": [
+   {
+    "uz": "Xona maydoni, ship balandligi va odamlar soni.",
+    "ru": "Площадь, высота потолка, число людей."
+   },
+   {
+    "uz": "Kuniga soat va uyning oylik elektr sarfini kiriting.",
+    "ru": "Часы в день и месячный расход света."
+   },
+   {
+    "uz": "Kerakli quvvat va oylik elektr xarajati chiqadi.",
+    "ru": "Нужная мощность и расход на свет в месяц."
+   }
+  ],
+  "kredit-kalkulyator": [
+   {
+    "uz": "Kredit summasi va muddatini yozing.",
+    "ru": "Укажите сумму и срок кредита."
+   },
+   {
+    "uz": "Bankdagi yillik foizni kiriting.",
+    "ru": "Введите годовую ставку банка."
+   },
+   {
+    "uz": "Oylik to'lov va jami ustama chiqadi.",
+    "ru": "Увидите платёж в месяц и переплату."
+   }
+  ],
+  "kredit-limit-kalkulyator": [
+   {
+    "uz": "Oylik daromad va uning turini kiriting.",
+    "ru": "Введите доход и его тип."
+   },
+   {
+    "uz": "Mavjud kredit to'lovlari va foizni yozing.",
+    "ru": "Укажите платежи по кредитам и ставку."
+   },
+   {
+    "uz": "Bank berishi mumkin bo'lgan kredit chiqadi.",
+    "ru": "Увидите возможную сумму кредита."
+   }
+  ],
+  "maktab-kalkulyator": [
+   {
+    "uz": "Sinf va maktab turini tanlang.",
+    "ru": "Выберите класс и тип школы."
+   },
+   {
+    "uz": "Jinsi va sentyabrgacha qolgan oylarni kiriting.",
+    "ru": "Укажите пол и месяцы до сентября."
+   },
+   {
+    "uz": "Kerakli ro'yxat va xarajat chiqadi.",
+    "ru": "Увидите список покупок и расходы."
+   }
+  ],
+  "marosim-kalkulyator": [
+   {
+    "uz": "Tadbir turini tanlang.",
+    "ru": "Выберите тип мероприятия."
+   },
+   {
+    "uz": "Mehmonlar sonini yozing, taomni belgilang.",
+    "ru": "Укажите число гостей и блюдо."
+   },
+   {
+    "uz": "Xarid ro'yxati va xarajat chiqadi.",
+    "ru": "Увидите список закупок и расходы."
+   }
+  ],
+  "oila-byudjet-kalkulyator": [
+   {
+    "uz": "Oilaviy daromadlaringizni kiriting.",
+    "ru": "Введите доходы семьи."
+   },
+   {
+    "uz": "Oila a'zolari va xarajatlarni belgilang.",
+    "ru": "Отметьте членов семьи и расходы."
+   },
+   {
+    "uz": "Xarajat, kredit yuki va salomatlik balli chiqadi.",
+    "ru": "Расходы, долговая нагрузка и балл здоровья."
+   }
+  ],
+  "omonat-kalkulyator": [
+   {
+    "uz": "Omonat summasi, foiz va muddatni yozing.",
+    "ru": "Укажите сумму, ставку и срок вклада."
+   },
+   {
+    "uz": "Oylik qo'shimcha va kapitalizatsiyani belgilang.",
+    "ru": "Отметьте пополнения и капитализацию."
+   },
+   {
+    "uz": "Yakuniy summa va foyda chiqadi.",
+    "ru": "Увидите итоговую сумму и доход."
+   }
+  ],
+  "oylik-soliq-kalkulyator": [
+   {
+    "uz": "Hisoblash yo'nalishini tanlang.",
+    "ru": "Выберите направление расчёта."
+   },
+   {
+    "uz": "Oylik summani yozing.",
+    "ru": "Введите сумму зарплаты."
+   },
+   {
+    "uz": "Soliq, INPS va qo'lga tegadigan summa chiqadi.",
+    "ru": "Налог, ИНПС и сумма на руки."
+   }
+  ],
+  "pensiya-kalkulyator": [
+   {
+    "uz": "Jinsingizni tanlang.",
+    "ru": "Выберите пол."
+   },
+   {
+    "uz": "O'rtacha oylik va ish stajini yozing.",
+    "ru": "Укажите среднюю зарплату и стаж."
+   },
+   {
+    "uz": "Pensiyaning taxminiy miqdori chiqadi.",
+    "ru": "Увидите примерный размер пенсии."
+   }
+  ],
+  "qqs-kalkulyator": [
+   {
+    "uz": "QQS qo'shish yoki ajratishni tanlang.",
+    "ru": "Выберите: добавить НДС или выделить."
+   },
+   {
+    "uz": "Summa va QQS stavkasini yozing.",
+    "ru": "Введите сумму и ставку НДС."
+   },
+   {
+    "uz": "QQS miqdori va yakuniy summa chiqadi.",
+    "ru": "Увидите НДС и итоговую сумму."
+   }
+  ],
+  "quyosh-panel-kalkulyator": [
+   {
+    "uz": "Uyning oylik elektr sarfini yozing.",
+    "ru": "Укажите месячный расход электричества."
+   },
+   {
+    "uz": "Toifa, hudud va panel quvvatini tanlang.",
+    "ru": "Выберите тариф, регион и мощность панели."
+   },
+   {
+    "uz": "Panellar soni, narxi va qoplanish chiqadi.",
+    "ru": "Число панелей, цена и окупаемость."
+   }
+  ],
+  "remont-kalkulyator": [
+   {
+    "uz": "Xona uzunligi, eni va balandligini yozing.",
+    "ru": "Укажите длину, ширину и высоту комнаты."
+   },
+   {
+    "uz": "Eshik va derazalar o'lchamini kiriting.",
+    "ru": "Введите размеры дверей и окон."
+   },
+   {
+    "uz": "Materiallar va byudjet narxi chiqadi.",
+    "ru": "Увидите материалы и бюджет."
+   }
+  ],
+  "staj-kalkulyator": [
+   {
+    "uz": "Jinsingizni tanlang.",
+    "ru": "Выберите пол."
+   },
+   {
+    "uz": "Har ish davrining sanalarini yozing.",
+    "ru": "Укажите даты каждого места работы."
+   },
+   {
+    "uz": "Umumiy mehnat staji chiqadi.",
+    "ru": "Увидите общий трудовой стаж."
+   }
+  ],
+  "tatil-puli-kalkulyator": [
+   {
+    "uz": "O'rtacha oylik ish haqini yozing.",
+    "ru": "Укажите среднюю зарплату."
+   },
+   {
+    "uz": "Ishlatilmagan ta'til kunlarini kiriting.",
+    "ru": "Введите неиспользованные дни отпуска."
+   },
+   {
+    "uz": "Ta'til puli kompensatsiyasi chiqadi.",
+    "ru": "Увидите компенсацию за отпуск."
+   }
+  ],
+  "tom-kalkulyator": [
+   {
+    "uz": "Tom materiali va shaklini tanlang.",
+    "ru": "Выберите материал и форму крыши."
+   },
+   {
+    "uz": "Bino uzunligi, eni va qiyaligini yozing.",
+    "ru": "Введите длину, ширину и уклон."
+   },
+   {
+    "uz": "Material, yog'och, vint va narx chiqadi.",
+    "ru": "Увидите материал, брус, саморезы и цену."
+   }
+  ],
+  "toy-kalkulyator": [
+   {
+    "uz": "Mehmonlar soni va bir kishilik narxni yozing.",
+    "ru": "Укажите гостей и цену на человека."
+   },
+   {
+    "uz": "Osh, san'atkor, foto, bezash xarajatini kiriting.",
+    "ru": "Введите плов, артистов, фото, декор."
+   },
+   {
+    "uz": "Batafsil xarajat va jami byudjet chiqadi.",
+    "ru": "Увидите расходы и общий бюджет."
+   }
+  ],
+  "universitet-kontrakt-kalkulyator": [
+   {
+    "uz": "Bosqich, muddat va yillik kontraktni kiriting.",
+    "ru": "Введите ступень, срок и контракт в год."
+   },
+   {
+    "uz": "Oyiga ajrata oladigan summa va jamg'armani yozing.",
+    "ru": "Укажите ежемесячную сумму и накопления."
+   },
+   {
+    "uz": "Jami xarajat va oylik yuk chiqadi.",
+    "ru": "Увидите общие расходы и нагрузку."
+   }
+  ],
+  "uy-qurish-kalkulyator": [
+   {
+    "uz": "Uy maydonini yozing.",
+    "ru": "Укажите площадь дома."
+   },
+   {
+    "uz": "Qavatlar, devor materiali va 1 m² narxini kiriting.",
+    "ru": "Этажи, материал стен и цена за м²."
+   },
+   {
+    "uz": "Poydevor, devor, tom va smeta chiqadi.",
+    "ru": "Увидите фундамент, стены, крышу и смету."
+   }
+  ],
+  "yer-konvertor": [
+   {
+    "uz": "Birlikni tanlang va qiymatni yozing.",
+    "ru": "Выберите единицу и введите значение."
+   },
+   {
+    "uz": "Kerak bo'lsa, 1 tanob necha m² ekanini sozlang.",
+    "ru": "При нужде настройте, сколько м² в танобе."
+   },
+   {
+    "uz": "Qolgan birliklar darhol chiqadi.",
+    "ru": "Остальные единицы покажем сразу."
+   }
+  ],
+  "yhxx-jarima-kalkulyator": [
+   {
+    "uz": "Qoidabuzarlik turini tanlang.",
+    "ru": "Выберите вид нарушения."
+   },
+   {
+    "uz": "Tezlik yoki takror sonini kiriting.",
+    "ru": "Введите скорость или число повторов."
+   },
+   {
+    "uz": "Jarima miqdori so'mda chiqadi.",
+    "ru": "Увидите размер штрафа в сумах."
+   }
+  ],
+  "yoqilgi-kalkulyator": [
+   {
+    "uz": "Rejimni tanlang: yo'l yoki metanga o'tish.",
+    "ru": "Выберите: поездка или переход на метан."
+   },
+   {
+    "uz": "Masofa, sarf va narxlarni kiriting.",
+    "ru": "Введите расстояние, расход и цены."
+   },
+   {
+    "uz": "Xarajat yoki qoplanish muddati chiqadi.",
+    "ru": "Увидите расходы или срок окупаемости."
+   }
+  ],
+  "zakot-qurbonlik-kalkulyator": [
+   {
+    "uz": "Zakot yoki Qurbonlik rejimini tanlang.",
+    "ru": "Выберите режим: закят или курбан."
+   },
+   {
+    "uz": "Boyligingiz va nisob o'lchovini kiriting.",
+    "ru": "Введите имущество и меру нисаба."
+   },
+   {
+    "uz": "Nisobga yetishi va zakot miqdori chiqadi.",
+    "ru": "Увидите, достигнут ли нисаб, и закят."
+   }
+  ],
+  "ariza-namunasi": [
+   {
+    "uz": "Ariza turini tanlang.",
+    "ru": "Выберите тип заявления."
+   },
+   {
+    "uz": "Tashkilot va o'zingiz haqingizda yozing.",
+    "ru": "Укажите организацию и свои данные."
+   },
+   {
+    "uz": "Matn shakllanadi — Word yoki PDF oling.",
+    "ru": "Текст сформируется — скачайте Word или PDF."
+   }
+  ],
+  "avto-oldi-sotdi-shartnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Tomonlar, avtomobil va narxni kiriting.",
+    "ru": "Введите стороны, авто и цену."
+   },
+   {
+    "uz": "Shartnoma tayyor — Word yoki PDF oling.",
+    "ru": "Договор готов — скачайте Word или PDF."
+   }
+  ],
+  "davo-arizasi-namunasi": [
+   {
+    "uz": "Da'vo turini tanlang.",
+    "ru": "Выберите тип иска."
+   },
+   {
+    "uz": "Sud, da'vogar va javobgarni kiriting.",
+    "ru": "Введите суд, истца и ответчика."
+   },
+   {
+    "uz": "Ariza tayyor — Word yoki PDF oling.",
+    "ru": "Заявление готово — скачайте Word или PDF."
+   }
+  ],
+  "hisob-siyosati-generatori": [
+   {
+    "uz": "Faoliyat turi va QQS holatini tanlang.",
+    "ru": "Выберите деятельность и статус НДС."
+   },
+   {
+    "uz": "Rekvizitlarni kiriting, variantlarni belgilang.",
+    "ru": "Введите реквизиты и отметьте варианты."
+   },
+   {
+    "uz": "Ikkala hujjat tayyor — Word yuklab oling.",
+    "ru": "Оба документа готовы — скачайте Word."
+   }
+  ],
+  "ijara-shartnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Tomonlar, mulk va to'lov shartini kiriting.",
+    "ru": "Введите стороны, объект и оплату."
+   },
+   {
+    "uz": "Shartnoma tayyor — Word yoki PDF oling.",
+    "ru": "Договор готов — скачайте Word или PDF."
+   }
+  ],
+  "ish-haqi-malumotnomasi-namunasi": [
+   {
+    "uz": "Tashkilot rekvizitlari va xodimni yozing.",
+    "ru": "Укажите реквизиты и сотрудника."
+   },
+   {
+    "uz": "Ish boshlangan sana va oylikni kiriting.",
+    "ru": "Введите дату найма и зарплату."
+   },
+   {
+    "uz": "Staj va o'rtacha oylik hisoblanadi.",
+    "ru": "Стаж и среднюю зарплату посчитаем сами."
+   }
+  ],
+  "ishdan-boshash-arizasi-namunasi": [
+   {
+    "uz": "Tashkilot, rahbar va o'zingizni yozing.",
+    "ru": "Укажите организацию, руководителя и себя."
+   },
+   {
+    "uz": "Bo'shash asosi va sanani kiriting.",
+    "ru": "Выберите основание и дату."
+   },
+   {
+    "uz": "Ariza tayyor — oxirgi ish kuni hisoblanadi.",
+    "ru": "Заявление готово, последний день посчитан."
+   }
+  ],
+  "ishonchnoma-namunasi": [
+   {
+    "uz": "Ishonch bildiruvchi va ishonchli shaxsni yozing.",
+    "ru": "Укажите доверителя и поверенного."
+   },
+   {
+    "uz": "Nima uchun va qancha muddatga ekanini kiriting.",
+    "ru": "Введите, на что и на какой срок."
+   },
+   {
+    "uz": "Ishonchnoma tayyor — Word yoki PDF oling.",
+    "ru": "Доверенность готова — Word или PDF."
+   }
+  ],
+  "kadr-buyruqlari-namunasi": [
+   {
+    "uz": "Buyruq turini tanlang.",
+    "ru": "Выберите тип приказа."
+   },
+   {
+    "uz": "Tashkilot, rahbar va xodimni kiriting.",
+    "ru": "Введите организацию, руководителя, сотрудника."
+   },
+   {
+    "uz": "Buyruq tayyor — Word yoki PDF oling.",
+    "ru": "Приказ готов — скачайте Word или PDF."
+   }
+  ],
+  "kafolat-xati-namunasi": [
+   {
+    "uz": "Xat raqami, shahar va sanani yozing.",
+    "ru": "Укажите номер письма, город и дату."
+   },
+   {
+    "uz": "Kafolat beruvchi va oluvchini kiriting.",
+    "ru": "Введите гаранта и получателя."
+   },
+   {
+    "uz": "Nimaga kafolat ekanini yozing — xat tayyor.",
+    "ru": "Опишите предмет гарантии — письмо готово."
+   }
+  ],
+  "mehnat-shartnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Ish beruvchi va xodimni kiriting.",
+    "ru": "Введите работодателя и работника."
+   },
+   {
+    "uz": "Lavozim, oylik, muddat — shartnoma tayyor.",
+    "ru": "Должность, оклад, срок — договор готов."
+   }
+  ],
+  "moddiy-yordam-arizasi-namunasi": [
+   {
+    "uz": "Tashkilot, rahbar va o'zingizni yozing.",
+    "ru": "Укажите организацию, руководителя и себя."
+   },
+   {
+    "uz": "Sabab turini tanlang, qisqa tavsiflang.",
+    "ru": "Выберите причину и кратко опишите."
+   },
+   {
+    "uz": "Ariza tayyor — Word yoki PDF oling.",
+    "ru": "Заявление готово — скачайте Word или PDF."
+   }
+  ],
+  "oquv-tatili-arizasi-namunasi": [
+   {
+    "uz": "Tashkilot, rahbar va o'zingizni yozing.",
+    "ru": "Укажите организацию, руководителя и себя."
+   },
+   {
+    "uz": "O'quv yurti, ta'til turi va sanalarni kiriting.",
+    "ru": "Введите вуз, вид отпуска и даты."
+   },
+   {
+    "uz": "Ariza tayyor — Word yoki PDF oling.",
+    "ru": "Заявление готово — скачайте Word или PDF."
+   }
+  ],
+  "qurilish-pudrat-shartnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Buyurtmachi va pudratchini kiriting.",
+    "ru": "Введите заказчика и подрядчика."
+   },
+   {
+    "uz": "Hajm, muddat, to'lovni yozing — summa hisoblanadi.",
+    "ru": "Объём, срок, оплата — сумма посчитается."
+   }
+  ],
+  "talabnoma-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Kreditor, qarzdor va qarz summasini kiriting.",
+    "ru": "Введите кредитора, должника и долг."
+   },
+   {
+    "uz": "Kechikkan kun va penya hisoblanadi.",
+    "ru": "Просрочку и пеню посчитаем сами."
+   }
+  ],
+  "tatil-arizasi-namunasi": [
+   {
+    "uz": "Tashkilot, rahbar va o'zingizni yozing.",
+    "ru": "Укажите организацию, руководителя и себя."
+   },
+   {
+    "uz": "Ta'til boshlanishi va davomiyligini kiriting.",
+    "ru": "Введите дату начала и срок отпуска."
+   },
+   {
+    "uz": "Ariza tayyor — Word yoki PDF oling.",
+    "ru": "Заявление готово — скачайте Word или PDF."
+   }
+  ],
+  "tavsifnoma-namunasi": [
+   {
+    "uz": "Tavsifnoma turini tanlang.",
+    "ru": "Выберите тип характеристики."
+   },
+   {
+    "uz": "Tashkilot va shaxs ma'lumotlarini kiriting.",
+    "ru": "Введите данные организации и человека."
+   },
+   {
+    "uz": "Tavsifnoma tayyor — Word yoki PDF oling.",
+    "ru": "Характеристика готова — Word или PDF."
+   }
+  ],
+  "tilxat-namunasi": [
+   {
+    "uz": "Shahar va sanani yozing.",
+    "ru": "Укажите город и дату."
+   },
+   {
+    "uz": "Qarz beruvchi, oluvchi, summa va muddatni kiriting.",
+    "ru": "Введите стороны, сумму и срок."
+   },
+   {
+    "uz": "Tilxat tayyor — Word yoki PDF oling.",
+    "ru": "Расписка готова — скачайте Word или PDF."
+   }
+  ],
+  "tolov-hisobi-namunasi": [
+   {
+    "uz": "Hisob raqami va sanani yozing.",
+    "ru": "Укажите номер счёта и дату."
+   },
+   {
+    "uz": "Sotuvchi va xaridor rekvizitlarini kiriting.",
+    "ru": "Введите реквизиты сторон."
+   },
+   {
+    "uz": "Tovar qo'shing — summa hisoblanadi, Word yoki PDF.",
+    "ru": "Добавьте товары — сумма посчитается."
+   }
+  ],
+  "topshirish-qabul-dalolatnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar, sana va shartnomani yozing.",
+    "ru": "Укажите номер, город, дату и договор."
+   },
+   {
+    "uz": "Tomonlarni kiriting, predmetni tanlang.",
+    "ru": "Введите стороны и выберите предмет."
+   },
+   {
+    "uz": "Dalolatnoma tayyor — Word yoki PDF oling.",
+    "ru": "Акт готов — скачайте Word или PDF."
+   }
+  ],
+  "tushuntirish-xati-namunasi": [
+   {
+    "uz": "Kimga yozilayotganini va o'zingizni kiriting.",
+    "ru": "Укажите адресата и себя."
+   },
+   {
+    "uz": "Holat turi, sana va sababni yozing.",
+    "ru": "Введите вид ситуации, дату и причину."
+   },
+   {
+    "uz": "Xat tayyor — Word yoki PDF oling.",
+    "ru": "Записка готова — скачайте Word или PDF."
+   }
+  ],
+  "uy-oldi-sotdi-shartnomasi": [
+   {
+    "uz": "Raqam, joy va sanani yozing.",
+    "ru": "Укажите номер, место и дату."
+   },
+   {
+    "uz": "Tomonlar, uy-joy va narxni kiriting.",
+    "ru": "Введите стороны, жильё и цену."
+   },
+   {
+    "uz": "Shartnoma tayyor — Word yoki PDF oling.",
+    "ru": "Договор готов — скачайте Word или PDF."
+   }
+  ],
+  "xizmat-korsatish-shartnomasi-namunasi": [
+   {
+    "uz": "Raqam, shahar va sanani yozing.",
+    "ru": "Укажите номер, город и дату."
+   },
+   {
+    "uz": "Buyurtmachi va ijrochi rekvizitlarini kiriting.",
+    "ru": "Введите реквизиты заказчика и исполнителя."
+   },
+   {
+    "uz": "To'lov tartibini tanlang — shartnoma tayyor.",
+    "ru": "Выберите порядок оплаты — договор готов."
+   }
+  ]
+ },
+ "modes": {
+  "aliment-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Daromad va bolalar sonini kiriting — oylik aliment chiqadi.",
+      "ru": "Введите доход и число детей — получите размер алиментов."
+     },
+     {
+      "uz": "To'lanmagan oylar sonini kiriting — jami qarz chiqadi.",
+      "ru": "Введите число неоплаченных месяцев — получите долг."
+     },
+     {
+      "uz": "Daromaddan aliment ushlangach qolgan summa chiqadi.",
+      "ru": "Покажем, сколько останется после алиментов."
+     }
+    ]
+   }
+  ],
+  "beton-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 1,
+    "tips": [
+     {
+      "uz": "Beton hajmini m³ da yozing.",
+      "ru": "Введите объём бетона в м³."
+     },
+     {
+      "uz": "Uzunlik, kenglik va qalinlikni kiriting — hajm o'zi hisoblanadi.",
+      "ru": "Введите длину, ширину и толщину — объём посчитается."
+     }
+    ]
+   }
+  ],
+  "chorva-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Bosh soni va xarajatlarni kiriting — sof foyda chiqadi.",
+      "ru": "Введите поголовье и затраты — получите чистую прибыль."
+     },
+     {
+      "uz": "Mavjud pulni kiriting — nechta bosh olish mumkinligi chiqadi.",
+      "ru": "Введите свободные деньги — узнаете, сколько голов купить."
+     }
+    ]
+   }
+  ],
+  "homiladorlik-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Oxirgi hayz sanasi bo'yicha taxminiy tug'ilish sanasi va hafta chiqadi.",
+      "ru": "По дате последних месячных покажем срок и неделю беременности."
+     },
+     {
+      "uz": "Sikl davomiyligi bo'yicha ovulyatsiya va qulay kunlar chiqadi.",
+      "ru": "По длине цикла покажем овуляцию и благоприятные дни."
+     }
+    ]
+   }
+  ],
+  "ipoteka-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Boshlang'ich to'lov uy narxining necha foizi ekanini yozing.",
+      "ru": "Первый взнос — какой процент от цены жилья."
+     },
+     {
+      "uz": "Boshlang'ich to'lovni aniq so'mda yozing.",
+      "ru": "Первый взнос — точная сумма в сумах."
+     }
+    ]
+   }
+  ],
+  "maktab-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 2,
+    "tips": [
+     {
+      "uz": "Sinf va maktab turi bo'yicha jami xarajat tez chiqadi.",
+      "ru": "По классу и типу школы быстро покажем общие расходы."
+     },
+     {
+      "uz": "Har bir buyum narxini o'zgartirib, aniq xarajatni ko'ring.",
+      "ru": "Меняйте цену каждой вещи — расходы станут точнее."
+     }
+    ]
+   }
+  ],
+  "omonat-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Omonat, foiz va muddat bo'yicha yakuniy summa chiqadi.",
+      "ru": "По вкладу, ставке и сроку покажем итоговую сумму."
+     },
+     {
+      "uz": "Maqsad summani kiriting — necha oyda yig'ilishi chiqadi.",
+      "ru": "Введите цель — узнаете, за сколько месяцев накопите."
+     }
+    ]
+   }
+  ],
+  "oylik-soliq-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Qog'ozdagi oylikni yozing — qo'lga tegadigan summa chiqadi.",
+      "ru": "Введите оклад — получите сумму на руки."
+     },
+     {
+      "uz": "Qo'lga tegadigan summani yozing — qog'ozdagi oylik chiqadi.",
+      "ru": "Введите сумму на руки — получите оклад."
+     }
+    ]
+   }
+  ],
+  "qqs-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "QQSsiz summani yozing — QQS bilan jami chiqadi.",
+      "ru": "Введите сумму без НДС — получите итог с НДС."
+     },
+     {
+      "uz": "QQS ichidagi summani yozing — QQS ajratiladi.",
+      "ru": "Введите сумму с НДС — НДС будет выделен."
+     }
+    ]
+   }
+  ],
+  "uy-qurish-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Uy maydoni va narxni kiriting — smeta chiqadi.",
+      "ru": "Введите площадь и цену — получите смету."
+     },
+     {
+      "uz": "Byudjetni yozing — qurish mumkin bo'lgan uy maydoni chiqadi.",
+      "ru": "Введите бюджет — узнаете, какой дом можно построить."
+     }
+    ]
+   },
+   {
+    "sel": ".seg",
+    "idx": 1,
+    "tips": [
+     {
+      "uz": "Uzunlik va enni kiriting.",
+      "ru": "Введите длину и ширину."
+     },
+     {
+      "uz": "Bir qavat maydonini kiriting.",
+      "ru": "Введите площадь одного этажа."
+     }
+    ]
+   }
+  ],
+  "yoqilgi-kalkulyator": [
+   {
+    "sel": ".mode-tabs",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Masofa, sarf va narxni kiriting — yo'l xarajati chiqadi.",
+      "ru": "Введите расстояние, расход и цену — получите стоимость поездки."
+     },
+     {
+      "uz": "Benzin va metan narxlarini kiriting — qancha vaqtda oqlashi chiqadi.",
+      "ru": "Введите цены бензина и метана — узнаете срок окупаемости."
+     }
+    ]
+   }
+  ],
+  "zakot-qurbonlik-kalkulyator": [
+   {
+    "sel": ".mode-tabs",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Boyligingizni kiriting — zakot nisobi va miqdori chiqadi.",
+      "ru": "Введите имущество — получите нисаб и сумму закята."
+     },
+     {
+      "uz": "Qurbonlik variantlarini narxlari bilan solishtiring.",
+      "ru": "Сравните варианты курбана по цене."
+     }
+    ]
+   }
+  ]
+ }
+}

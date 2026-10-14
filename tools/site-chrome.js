@@ -61,7 +61,7 @@ const LEGAL_HTML = '<div id="legal-links" style="margin-top:14px;display:flex;fl
 
 /* Mualliflik qatori ikki tilni bitta satrda saqlardi ("Achchi loyihasi ·
    Проект Achchi") — endi tilga qarab BITTASI ko'rsatiladi. */
-const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">'
+const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600">'
   + '<span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan."'
   + ' data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">'
   + '© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div>';
@@ -231,7 +231,7 @@ html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-rea
 // PWA (assets/pwa-install.js faqat tugma/ko'rsatma yaratadi; /cyr/ da prerender skriptni olib tashlaydi — faqat <link> qoladi)
 const PWA_HEAD = '<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon">'
   + '<meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>';
-const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script>';
+const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">';
 function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
 function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
 const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
@@ -319,7 +319,8 @@ function rebuildV2(f, src) {
   if (s.indexOf(V2_LINKS_TAGS) < 0) {
     s = s.replace(/<link rel="stylesheet" href="\/assets\/css\/tokens\.css" id="v2tokens">/, '')
          .replace(/<link rel="stylesheet" href="\/assets\/css\/site\.css" id="v2site">/, '')
-         .replace(/<script src="\/assets\/nav\.js" defer="" id="v2nav"><\/script>/, '');
+         .replace(/<script src="\/assets\/nav\.js" defer="" id="v2nav"><\/script>/, '')
+         .replace(/<link rel="stylesheet" href="\/assets\/css\/typo\.css" id="typocss">/, '');
     // prerender hreflang teglarini oxirida qo'shadi — bizning teglar ulardan OLDIN turadi
     const hl = s.indexOf('<link rel="alternate" hreflang');
     const hd = hl > -1 ? hl : s.indexOf('</head>');
@@ -335,13 +336,14 @@ function rebuildV2(f, src) {
     s = s.slice(0, hd2) + PWA_HEAD + '\n' + s.slice(hd2);
   }
 
-  // <body class="v2">
+  // <body class="v2 typo2">
   s = s.replace(/<body([^>]*)>/, (m, a) => /class="[^"]*\bv2\b/.test(a) ? m
     : (/class="/.test(a) ? '<body' + a.replace(/class="/, 'class="v2 ') + '>' : '<body class="v2"' + a + '>'));
+  s = s.replace(/<body([^>]*)>/, (m, a) => /class="[^"]*\btypo2\b/.test(a) ? m : '<body' + a.replace(/class="([^"]*)"/, 'class="$1 typo2"') + '>');
 
   // footer: eski legal-links, copyline va <footer> olib tashlanadi, yangi #sf2 </main> dan keyin
   while (s.indexOf('<div id="legal-links"') > -1) s = cutDiv(s, 'id="legal-links"');
-  s = s.replace(/<div (?:id="copyline" )?style="margin-top:12px;font-size:12px;color:#8A968F;font-weight:600">[\s\S]*?<\/div>/, '');
+  s = s.replace(/<div (?:id="copyline" )?style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600">[\s\S]*?<\/div>/, '');
   s = s.replace(/<footer id="sf2">[\s\S]*?<\/footer>/, '').replace(/<footer>[\s\S]*?<\/footer>/, '');
   const me = s.indexOf('</main>');
   if (me < 0) notes.push('</main> yo\'q');

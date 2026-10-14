@@ -95,7 +95,7 @@
     bar.setAttribute('style', 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;'
       + 'max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px;'
       + 'background:#16211C;color:#fff;border-radius:12px;padding:10px 10px 10px 14px;'
-      + 'box-shadow:0 8px 28px rgba(0,0,0,.28);font-size:13px;font-weight:600;line-height:1.35;'
+      + 'box-shadow:0 8px 28px rgba(0,0,0,.28);font-size:var(--t-xs,14px);font-weight:600;line-height:1.35;'
       + 'padding-bottom:calc(10px + env(safe-area-inset-bottom))');
 
     var msg = d.createElement('span');

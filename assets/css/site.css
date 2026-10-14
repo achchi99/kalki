@@ -38,7 +38,7 @@ body.v2 .sb2 .lang-seg{padding:2px;gap:0}
 @media (max-width:480px){
   body.v2 .sb2-in{gap:8px}
   body.v2 .sb2 .logo{font-size:20px}
-  body.v2 .sb2 .lang-seg button,body.v2 .sb2 .lang-seg a{padding:6px 8px;font-size:13px}
+  body.v2 .sb2 .lang-seg button,body.v2 .sb2 .lang-seg a{padding:6px 8px;font-size:var(--t-xs,14px)}
 }
 body.v2 .sb2-burger{display:none;width:44px;height:44px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:var(--r-sm);cursor:pointer;align-items:center;justify-content:center;flex:none}
 @media (max-width:899px){
@@ -149,7 +149,7 @@ body.v2 .ct-l .cat-badge{margin-bottom:8px}
 body.v2 .ct-l h1{margin:0}
 body.v2 .ab-card{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow-card);min-width:0}
 body.v2 .ab-card #answerbox{display:contents}
-body.v2 .ab-over{order:0;flex:0 0 100%;display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bc)}
+body.v2 .ab-over{order:0;flex:0 0 100%;display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:var(--t-xs,14px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bc)}
 body.v2 .ab-over svg.ic{width:18px;height:18px}
 body.v2 .ab-card .ab-text{order:1;flex:0 0 100%;margin:0!important;font-size:17px!important;line-height:1.5!important;font-weight:500!important;color:var(--text)!important}
 body.v2 .ab-card::after{content:"";order:2;flex:0 0 100%;height:1px;background:var(--line);margin:10px 0 8px}
@@ -181,7 +181,7 @@ body.v2 .calc-grid>*{min-width:0}
 }
 body.v2 .res-col.is-sticky .receipt{position:sticky;top:88px}
 body.v2 .calc-form>[id$="Note"],body.v2 .calc-form>.note{font-size:14px;line-height:1.5;color:var(--muted)}
-body.v2 .calc-form .sect-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
+body.v2 .calc-form .sect-title{font-size:var(--t-xs,14px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand)}
 body.v2 .calc-form .hint{font-size:14px}
 body.v2 .form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:var(--s3);margin-top:0;box-shadow:var(--shadow-card)}
 body.v2 .answerbox+.form-card,body.v2 #modeSegField+.form-card{margin-top:0}
@@ -238,7 +238,7 @@ body.v2 .res-extras .ep-val{font-size:16px;color:var(--ink)}
 body.v2 .res-extras .ep-line,body.v2 .res-extras .pc-summary{font-size:15px}
 body.v2 .res-extras .pc-principal{fill:var(--brand)}
 body.v2 .res-extras .pc-interest{fill:var(--gold-chart)}
-body.v2 .res-extras .pc-axis{font-size:11px;fill:var(--muted)}
+body.v2 .res-extras .pc-axis{font-size:var(--t-xs,14px);fill:var(--muted)}
 body.v2 .res-extras .pc-legend .lg-principal{background:var(--brand)}
 body.v2 .res-extras .pc-legend .lg-interest{background:var(--gold-chart)}
 /* PDF uchun yorug' holat (html2canvas shu sinfni vaqtincha qo'yadi) */
@@ -268,7 +268,7 @@ body.v2 .tgcta a:hover{border-color:var(--brand);color:var(--brand)!important}
 body.v2 .foot-note{margin-top:var(--s5);font-size:14px;line-height:1.5;color:var(--muted)}
 
 /* ---------- 1b: overline, yig'iladigan bo'limlar, ishonch qatori, CTA ---------- */
-body.v2 .over{display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:6px}
+body.v2 .over{display:block;font-size:var(--t-xs,14px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:6px}
 body.v2 .section-h>div{min-width:0}
 body.v2 .allcalc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-card)}
 body.v2 .allcalc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:var(--s2);padding:16px 20px;font-size:17px;font-weight:600;color:var(--ink);border-radius:var(--r)}
@@ -315,7 +315,7 @@ body.v2[data-cat="hujjat"]{--cat:var(--brand);--cat-deep:var(--brand-hover);--ca
 body.v2 .gen-main{padding-top:var(--s3);padding-bottom:0}
 body.v2 .dg-grid{gap:var(--s3)}
 body.v2 .dg-sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-card);padding:20px 22px 22px}
-body.v2 .dg-sec-t{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+body.v2 .dg-sec-t{font-size:var(--t-xs,14px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
 body.v2 .dg-field label{font-size:15px;font-weight:600;color:var(--text);letter-spacing:0;margin-bottom:8px}
 body.v2 .dg-hint{font-size:14px;line-height:1.5;color:var(--muted);margin-top:6px}
 body.v2 .dg-shell{border:1.5px solid var(--line-strong);border-radius:var(--r-sm);background:var(--surface);min-height:52px;transition:border-color var(--ease),box-shadow var(--ease)}
