@@ -8,7 +8,7 @@ const write = process.argv.includes('--write');
 const files = [];
 for (const f of fs.readdirSync(root)) if (f.endsWith('.html')) files.push(f);
 for (const f of fs.readdirSync(path.join(root, 'assets'))) if (f.endsWith('.js')) files.push('assets/' + f);
-files.push('assets/css/site.css', 'tools/site-chrome.js');
+files.push('assets/css/site.css', 'tools/site-chrome.js', 'ru/oila-byudjet-kalkulyator.html');
 const FS = /(font-size:\s*)(\d+(?:\.\d+)?)px/g;
 const COL = /((?:^|[;{"'\s])color:\s*)#(8A968F|93A099|7C8A83|A3ACA6|9AA8A0|5C6B63|6B7A72)\b/gi;
 let n = 0, nf = 0, nc = 0;

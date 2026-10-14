@@ -1230,6 +1230,37 @@ function runTool(args) {
     add(!why.length, '40. oy oxiri prognozi: hisob qo\'lda qiymatlarga teng, prognoz.js da tarif raqami va tarmoq chaqiruvi yo\'q, alohida localStorage kalitlari, elektr/gaz sahifalari, FAQ, maxfiylik qatori, sw precache ulangan', why.slice(0, 6).join(' | '));
   }
 
+  /* 41. tipografiya butun saytda: typo2 + typo.css hamma sahifada, <14px shrift yo'q, har kalkulyator/generatorda 3 qadam */
+  {
+    const why = [];
+    try {
+      const SKIP = new Set(['offline.html']);
+      const pages = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/pages.json'), 'utf8'));
+      const files = [];
+      for (const dir of ['', 'ru/', 'cyr/']) for (const f of fs.readdirSync(path.join(ROOT, dir))) {
+        if (!f.endsWith('.html') || SKIP.has(f) || /^yandex_|^google/.test(f)) continue;
+        if (dir && !fs.statSync(path.join(ROOT, dir, f)).isFile()) continue;
+        files.push(dir + f);
+      }
+      const SMALL = /font-size:\s*(\d+(?:\.\d+)?)px/g, STEPS_RE = /<ol class="qadamlar"/;
+      const needSteps = new Set(pages.filter((x) => x.tur === 'kalkulyator' || x.tur === 'generator').map((x) => x.file));
+      for (const f of files) {
+        const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
+        if (f === '404.html' && !/typo2/.test(h)) { why.push(f + ': typo2 yo\'q'); continue; }
+        if (!/<body[^>]*class="[^"]*\btypo2\b/.test(h)) why.push(f + ': body typo2 yo\'q');
+        if (h.indexOf('id="typocss"') < 0) why.push(f + ': typo.css ulanmagan');
+        let m; SMALL.lastIndex = 0;
+        while ((m = SMALL.exec(h))) if (parseFloat(m[1]) < 14) { why.push(f + ': font-size ' + m[1] + 'px'); break; }
+        if (needSteps.has(f.replace(/^(ru|cyr)\//, '')) && !STEPS_RE.test(h) && !/pgSteps/.test(h)) why.push(f + ': 3 qadam bloki yo\'q');
+      }
+      for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js')).map((x) => 'assets/' + x).concat(['assets/css/site.css', 'tools/site-chrome.js'])) {
+        const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); let m; SMALL.lastIndex = 0;
+        while ((m = SMALL.exec(h))) if (parseFloat(m[1]) < 14) { why.push(f + ': font-size ' + m[1] + 'px'); break; }
+      }
+    } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
+    add(!why.length, '41. tipografiya: typo2 + typo.css hamma sahifada (UZ/RU/ЎЗ), qattiq <14px shrift yo\'q, har kalkulyator/generatorda 3 qadam bloki', why.slice(0, 6).join(' | '));
+  }
+
   /* ---------- hisobot ---------- */
   console.log('=== kalki.uz yakuniy tekshiruv ===');
   results.forEach((r) => console.log((r.ok ? 'OK   ' : r.warn ? 'OGOH ' : 'FAIL ') + r.name + (r.extra ? ' — ' + r.extra : '')));

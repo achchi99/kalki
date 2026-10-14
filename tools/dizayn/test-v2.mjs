@@ -127,8 +127,8 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
       over: document.querySelector('.ab-over').textContent.trim(), metaRows: document.querySelectorAll('.ab-card .ab-meta, .ab-card .meta-line').length, oldMeta: document.querySelectorAll('.ct-l .meta-line').length,
       txt: parseFloat(getComputedStyle(document.querySelector('.ab-card .ab-text')).fontSize), sw: document.documentElement.scrollWidth, iw: innerWidth }; });
   assert.equal(m.label, 'Material turi'); assert.ok(m.bottom <= 844, 'forma 1-ekranda emas: ' + m.bottom); assert.equal(m.abDisplay, 'contents'); assert.equal(m.over, 'Qisqacha'); assert.equal(m.metaRows, 2); assert.equal(m.oldMeta, 0);
-  assert.equal(m.subSize, '18px'); assert.equal(m.txt, 17); assert.ok(m.cardBelowH1); assert.ok(m.sw <= m.iw); assert.notEqual(m.bandBg, 'rgba(0, 0, 0, 0)');
-  log('390×844: forma "Material turi" birinchi ekranda (pastki chegara ' + m.bottom + 'px < 844), band fonida tint ' + m.bandBg + ', answerbox 17px, subtitle 18px'); }
+  assert.equal(m.subSize, '17px'); assert.equal(m.txt, 17); assert.ok(m.cardBelowH1); assert.ok(m.sw <= m.iw); assert.notEqual(m.bandBg, 'rgba(0, 0, 0, 0)');
+  log('390×844: forma "Material turi" birinchi ekranda (pastki chegara ' + m.bottom + 'px < 844), band fonida tint ' + m.bandBg + ', answerbox 17px, subtitle 17px'); }
 { const p = await pg(320, 700); await go(p, '/gisht-kalkulyator'); const o = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: innerWidth })); assert.ok(o.sw <= o.iw); log('320px: toshmaydi'); }
 { const p = await pg(1280, 800); await go(p, '/gisht-kalkulyator');
   const r = await p.evaluate(() => { const h = document.querySelector('.ct-l h1').getBoundingClientRect(), c = document.querySelector('.ab-card').getBoundingClientRect(); return { right: c.left > h.right - 20, sameRow: Math.abs((c.top + c.bottom) / 2 - (h.top + h.bottom) / 2) < 120 }; });
