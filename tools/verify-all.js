@@ -1273,12 +1273,12 @@ function runTool(args) {
       for (const dir of ['', 'ru/', 'cyr/']) for (const f of fs.readdirSync(path.join(ROOT, dir))) if (f.endsWith('.html') && fs.statSync(path.join(ROOT, dir, f)).isFile()) files.push(dir + f);
       for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js'))) files.push('assets/' + f);
       files.push('tools/site-chrome.js', 'tools/og-images.js');
-      for (const f of files) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (/Hayotiy|Ҳаётий|ҳаётий/.test(h)) why.push(f); }
+      for (const f of files) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (/Hayotiy|Ҳаётий|ҳаётий/.test(h)) why.push(f); else if (/["'>]Жизнь["'<]/.test(h)) why.push(f + ' (RU: "Жизнь" -> "Повседневная жизнь")'); }
       for (const f of ['ru/index.html', 'cyr/kredit-kalkulyator.html']) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); if (/Kundalik hayot/.test(h.replace(/data-lf-uz="[^"]*"/g, '')) && f.startsWith('ru/')) { /* RU sahifada o'zbekcha yorliq faqat data-lf-uz/lug'atda bo'lishi mumkin */ } }
       const ru = fs.readFileSync(path.join(ROOT, 'ru/index.html'), 'utf8');
-      if (!/hayot:"Жизнь"/.test(ru)) why.push('ru/index.html: catNames.hayot "Жизнь" emas');
+      if (!/hayot:"Повседневная жизнь"/.test(ru)) why.push('ru/index.html: catNames.hayot "Повседневная жизнь" emas');
     } catch (e) { why.push(String(e.message || e).slice(0, 120)); }
-    add(!why.length, '42. kategoriya nomi bitta: ko\'rinadigan matnda "Hayotiy"/"Ҳаётий" yo\'q (RU: "Жизнь")', why.slice(0, 8).join(' | '));
+    add(!why.length, '42. kategoriya nomi bitta: ko\'rinadigan matnda "Hayotiy"/"Ҳаётий" yo\'q (RU: "Повседневная жизнь")', why.slice(0, 8).join(' | '));
   }
 
   /* ---------- hisobot ---------- */

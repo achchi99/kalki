@@ -145,7 +145,7 @@ function v2Active(f) {
 const V2_LINKS = [
   ['./#kategoriyalar', 'Kalkulyatorlar', 'Калькуляторы', [
     ['./#cat-moliya', 'Moliya', 'Финансы'], ['./#cat-qurilish', 'Qurilish', 'Стройка'], ['./#cat-kommunal', 'Kommunal', 'Коммуналка'],
-    ['./#cat-hayot', 'Kundalik hayot', 'Жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
+    ['./#cat-hayot', 'Kundalik hayot', 'Повседневная жизнь'], ['./#cat-huquqiy', 'Huquqiy', 'Юридические']]],
   ['hujjatlar', 'Hujjatlar', 'Документы', [
     ['hujjatlar', 'Hujjat generatorlari', 'Генератор документов'], ['shablonlar', 'Shablonlar', 'Шаблоны']]],
   ['blog', 'Maqolalar', 'Статьи', null],
@@ -188,7 +188,7 @@ const XN_GROUPS = [
   ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
   ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
   ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'gaz-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
-  ['Kundalik hayot', 'Жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
+  ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
   ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
   ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],
 ];
@@ -246,7 +246,7 @@ const FOOTER_V2 = '<footer id="sf2"><div class="sf2-in">'
   + '<div class="sf2-cols" style="margin-top:32px">'
   + '<div><div class="sf2-t"' + lf('Kategoriyalar', 'Категории') + '>Kategoriyalar</div><ul>'
   + fLink('./#cat-moliya', 'Moliya', 'Финансы') + fLink('./#cat-qurilish', 'Qurilish va yer', 'Стройка и земля') + fLink('./#cat-kommunal', 'Kommunal va avto', 'Коммуналка и авто')
-  + fLink('./#cat-hayot', 'Kundalik hayot', 'Жизнь') + fLink('./#cat-huquqiy', 'Huquqiy', 'Юридические') + '</ul></div>'
+  + fLink('./#cat-hayot', 'Kundalik hayot', 'Повседневная жизнь') + fLink('./#cat-huquqiy', 'Huquqiy', 'Юридические') + '</ul></div>'
   + '<div><div class="sf2-t"' + lf('Hujjatlar', 'Документы') + '>Hujjatlar</div><ul>'
   + fLink('hujjatlar', 'Hujjat generatorlari', 'Генератор документов') + fLink('shablonlar', 'Shablonlar', 'Шаблоны')
   + fLink('ariza-namunasi', 'Ariza yozish', 'Написать заявление') + fLink('blog', 'Maqolalar', 'Статьи') + '</ul></div>'
