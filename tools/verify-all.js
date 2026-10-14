@@ -1215,7 +1215,7 @@ function runTool(args) {
       if ((code.match(/new Date\(\)/g) || []).length > 1) why.push('assets/prognoz.js: "bugun"dan boshqa joyda new Date() ishlatilgan');
       // tipografiya (pilot: elektr, gaz): tokenlar, ulanish, minimal o'lcham
       const typo = rd('assets/css/typo.css');
-      for (const tk of ['--t-xs:14px', '--t-s:15px', '--t-m:17px', '--t-ml:18px', '--t-l:20px', '--t-xl:24px', '--t-2xl:32px', '--t-3xl:44px', '--t-lh-text:1.5', '--t-lh-head:1.2', '--sp-tight', '--sp-block']) if (typo.indexOf(tk) < 0) why.push('assets/css/typo.css: token ' + tk + ' yo\'q');
+      for (const tk of ['--t-xs:0.875rem', '--t-s:0.9375rem', '--t-m:1.0625rem', '--t-ml:1.125rem', '--t-l:1.25rem', '--t-xl:1.5rem', '--t-2xl:2rem', '--t-3xl:2.75rem', '--t-lh-text:1.5', '--t-lh-head:1.2', '--sp-tight', '--sp-block']) if (typo.indexOf(tk) < 0) why.push('assets/css/typo.css: token ' + tk + ' yo\'q');
       for (const m of typo.matchAll(/font-size:\s*(\d+(?:\.\d+)?)px/g)) if (!/--t-/.test(m.input.slice(Math.max(0, m.index - 10), m.index)) && parseFloat(m[1]) < 14 && !/^\s*:root/.test('')) why.push('assets/css/typo.css: font-size ' + m[1] + 'px < 14');
       const tb = rd('assets/tier-bar.js').replace(/\/\*[\s\S]*?\*\//g, '');
       for (const m of tb.matchAll(/font-size:\s*(?:var\([^,]+,\s*)?(\d+(?:\.\d+)?)px/g)) if (parseFloat(m[1]) < 14) why.push('assets/tier-bar.js: font-size ' + m[1] + 'px < 14 (chiziq yozuvlari >= 14 px)');
@@ -1242,7 +1242,7 @@ function runTool(args) {
         if (dir && !fs.statSync(path.join(ROOT, dir, f)).isFile()) continue;
         files.push(dir + f);
       }
-      const SMALL = /font-size:\s*(\d+(?:\.\d+)?)px/g, STEPS_RE = /<ol class="qadamlar"/;
+      const SMALL = /font-size:\s*(\d+(?:\.\d+)?)px/g, SMALL_REM = /font-size:\s*(\d*\.?\d+)rem/g, STEPS_RE = /<ol class="qadamlar"/;
       const needSteps = new Set(pages.filter((x) => x.tur === 'kalkulyator' || x.tur === 'generator').map((x) => x.file));
       for (const f of files) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -1251,6 +1251,9 @@ function runTool(args) {
         if (h.indexOf('id="typocss"') < 0) why.push(f + ': typo.css ulanmagan');
         let m; SMALL.lastIndex = 0;
         while ((m = SMALL.exec(h))) if (parseFloat(m[1]) < 14) { why.push(f + ': font-size ' + m[1] + 'px'); break; }
+        SMALL_REM.lastIndex = 0; while ((m = SMALL_REM.exec(h))) if (parseFloat(m[1]) < 0.875) { why.push(f + ': font-size ' + m[1] + 'rem'); break; }
+        if (!/class="tm2-fs"/.test(h) && f !== '404.html') why.push(f + ': shrift o\'lchami qatori yo\'q'); else if (f !== '404.html' && !/^cyr\//.test(f) && !/kalki_fs/.test(h)) why.push(f + ': langboot fs-big yo\'q');
+        if (/font-size:\s*\d+(?:\.\d+)?px/.test(h.replace(/var\(--t-[a-z0-9]+,\s*\d+px\)/g, ''))) why.push(f + ': font-size px (rem bo\'lishi kerak)');
         if (needSteps.has(f.replace(/^(ru|cyr)\//, '')) && !STEPS_RE.test(h) && !/^(elektr|gaz)-xarajat-kalkulyator\.html$/.test(f.replace(/^(ru|cyr)\//, ''))   /* elektr/gaz: qadamlar prognoz.js orqali ish vaqtida (ol#pgSteps) */) why.push(f + ': 3 qadam bloki yo\'q');
       }
       for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js')).map((x) => 'assets/' + x).concat(['assets/css/site.css', 'tools/site-chrome.js'])) {

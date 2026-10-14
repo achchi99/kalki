@@ -12,7 +12,7 @@
  * Masofalar: maydon ↔ izoh yaqin (4), elementlar orasida (8), bloklar orasida kattaroq (20) — guruhlash aniq.
  * Ranglar: ikkinchi darajali matn >= 7:1 (--t-muted oq fonda), qora karta ustida --t-muted-dark >= 9:1. */
 :root{
-  --t-xs:14px; --t-s:15px; --t-m:17px; --t-ml:18px; --t-l:20px; --t-xl:24px; --t-2xl:32px; --t-3xl:44px;
+  --t-xs:0.875rem; --t-s:0.9375rem; --t-m:1.0625rem; --t-ml:1.125rem; --t-l:1.25rem; --t-xl:1.5rem; --t-2xl:2rem; --t-3xl:2.75rem;
   --t-lh-text:1.5; --t-lh-head:1.2;
   --t-muted:#3F4F46; --t-muted-dark:#D2E0D8;
   --sp-tight:4px; --sp-item:8px; --sp-block:20px;
@@ -118,3 +118,26 @@ body.v2.typo2 .receipt-body .hint{color:var(--t-muted-dark)!important}
   body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions)>button{min-width:0;width:100%;padding:0 2px;white-space:nowrap;font-size:var(--t-xs);letter-spacing:-.2px;line-height:1.2;overflow:hidden;text-overflow:ellipsis}
   body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions)>button:last-child:nth-child(odd){grid-column:1/-1}
 }
+
+/* ===== Shrift o'lchami: Oddiy | Katta =====
+ * Matn rem'da (tokenlar ham): ildiz shrifti ~115% -> butun matn birga kattalashadi; brauzerning o'z matn o'lchami/zoom ham ishlaydi
+ * (ildiz % da, px emas). Tanlov: html.fs-big (localStorage 'kalki_fs'; boshlang'ich holat langboot'da). Bosma (PDF/print) 100%. */
+html.fs-big{font-size:115%}
+@media print{html.fs-big{font-size:100%}}
+body.v2 .tm2-fs{display:none}
+@media (max-width:899px){
+  body.v2 .sb2 .tm2-fs{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;padding:16px 4px 4px;border-top:1px solid var(--line);list-style:none}
+  body.v2 .tm2-fs .fs-l{font-size:var(--t-m);font-weight:600;color:var(--text,#1B2A22)}
+  body.v2 .tm2-fs .fs-seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm,10px);padding:3px;gap:2px}
+  body.v2 .tm2-fs .fs-seg button{border:0;background:transparent;font:inherit;font-size:var(--t-s);font-weight:600;color:var(--t-muted);padding:6px 16px;border-radius:7px;cursor:pointer;min-height:44px;min-width:44px;line-height:1.2}
+  body.v2 .tm2-fs .fs-seg button[aria-pressed="true"]{background:var(--ink,#16231C);color:#fff}
+}
+/* Katta rejimida tor ekranda (≤380px) 2×2 sig'maydigan yorliqlar uchun bitta ustun */
+@media (max-width:380px){html.fs-big body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions){grid-template-columns:1fr}}
+/* Katta shrift: segmentlar, ikki ustunli qatorlar va tanlagichlar tor ekranda kartadan chiqmasin */
+body.v2.typo2 .seg,body.v2.typo2 .mode-tabs{min-width:0;max-width:100%}
+body.v2.typo2 .seg button,body.v2.typo2 .mode-tabs button{min-width:0;white-space:normal;line-height:1.2;overflow-wrap:anywhere}
+body.v2.typo2 .row2>*,body.v2.typo2 .row3>*,body.v2.typo2 .field{min-width:0}
+body.v2.typo2 .input-shell{max-width:100%;min-width:0}
+body.v2.typo2 .input-shell select,body.v2.typo2 .input-shell input{min-width:0;max-width:100%}
+@media (max-width:480px){body.v2.typo2 .seg.mini{display:flex;width:100%}body.v2.typo2 .seg.mini button{flex:1 1 auto}}

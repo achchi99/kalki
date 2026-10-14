@@ -35,6 +35,7 @@ for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'u
   const url = (lang === 'ru' ? '/ru/' : '/') + slug; const row = { sahifa: (lang === 'ru' ? 'ru/' : '') + slug, xato: 0, tafsilot: [] };
   for (const w of [390, 1280]) for (const state of ['boshlang\'ich', 'hisoblangan']) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, serviceWorkers: 'block', locale: lang === 'ru' ? 'ru' : 'uz' }); const p = await ctx.newPage();
+    if (process.env.KATTA) await ctx.addInitScript(() => { try { localStorage.setItem('kalki_fs', 'big'); } catch (e) {} });   // KATTA=1 — "Katta" shrift rejimi
     await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me|lex\.uz/, (r) => r.abort());
     await p.goto('http://localhost:' + PORT + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(400);
     if (state === 'hisoblangan') await calculate(p);

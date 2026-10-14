@@ -49,9 +49,9 @@ const LEGAL = [
   ['hamkorlik', 'Hamkorlik', 'Партнёрство'],
   // Aloqa — FAQAT Telegram @achchi90 (info@kalki.uz ishlamaydi, 2026-10-13 da olib tashlandi).
   // Kanal @kalki_uz — alohida, "Telegram kanali" sifatida (footer ustunida).
-  ['https://t.me/achchi90', 'Aloqa uchun: Telegram @achchi90', 'Связь: Telegram @achchi90', ' target="_blank" rel="noopener" style="' + 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%' + '"'],
+  ['https://t.me/achchi90', 'Aloqa uchun: Telegram @achchi90', 'Связь: Telegram @achchi90', ' target="_blank" rel="noopener" style="' + 'color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%' + '"'],
 ];
-const LEGAL_A = 'color:#33403A;font-size:14px;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap';
+const LEGAL_A = 'color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap';
 
 const LEGAL_HTML = '<div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">'
   + LEGAL.map(([href, uz, ru, extra]) => '<a href="' + href + '"'
@@ -169,9 +169,14 @@ function headerV2Html(f) {
     + '<button type="button" id="langUz" class="on">UZ</button>'
     + '<a id="langCyr" href="' + (f === '404.html' ? '?lang=cyr' : '/' + (slug === 'index' ? '' : slug) + '?lang=cyr') + '" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a>'
     + '<button type="button" id="langRu">RU</button></div>';
+  // Shrift o'lchami (faqat mobil menyu ichida): Oddiy | Katta. localStorage 'kalki_fs', html.fs-big — assets/nav.js; langboot ichida miltillashsiz qo'llanadi.
+  const fsRow = '<li class="tm2-fs"><span class="fs-l" data-lf-uz="Shrift o\'lchami" data-lf-ru="Размер шрифта">Shrift o\'lchami</span>'
+    + '<div class="fs-seg" role="group" aria-label="Shrift o\'lchami / Размер шрифта">'
+    + '<button type="button" data-fs="normal" aria-pressed="true" data-lf-uz="Oddiy" data-lf-ru="Обычный">Oddiy</button>'
+    + '<button type="button" data-fs="big" aria-pressed="false" data-lf-uz="Katta" data-lf-ru="Крупный">Katta</button></div></li>';
   return '<div id="sitebar" class="sb2"><div class="sb2-in">'
     + '<a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a>'
-    + '<nav id="topmenu" aria-label="Bo\'limlar"><ul class="tm2">' + items + '</ul></nav>'
+    + '<nav id="topmenu" aria-label="Bo\'limlar"><ul class="tm2">' + items + fsRow + '</ul></nav>'
     + langSeg
     + '<button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button>'
     + '</div></div>';
@@ -221,7 +226,8 @@ const LANGBOOT = String.raw`<script id="langboot">
   var h=document.documentElement;
   if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
   else{h.setAttribute('data-lang',l);h.lang=l;}
-}catch(e){}})();
+}catch(e){}
+try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classList.add('fs-big');}catch(e){}})();
 </script>
 <style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
 html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
