@@ -67,9 +67,9 @@ const CMP_TXT = {
   'ЎЗ': { heatCur: { pricier: (x) => 'Бошқа даврда ' + x + ' сўм қимматроқ' }, otherCur: { cheaper: (x) => 'Иситиш мавсумида ' + x + ' сўм арзонроқ' }, none: 'Нарх фарқи йўқ' }
 };
 const MODES = [
-  { name: 'UZ', url: '/gaz-xarajat-kalkulyator', approx: /TAXMINIY/i, less: /kichik/, inv: /raqam/, shu: /Shu sarf/ },
-  { name: 'RU', url: '/ru/gaz-xarajat-kalkulyator', approx: /ОРИЕНТИРОВОЧНЫЙ/i, less: /меньше/, inv: /числами/, shu: /Если этот расход/ },
-  { name: 'ЎЗ', url: '/gaz-xarajat-kalkulyator?lang=cyr', approx: /ТАХМИНИЙ/i, less: /кичик/, inv: /рақам/, shu: /Шу сарф/ }
+  { name: 'UZ', url: '/gaz-xarajat-kalkulyator', approx: /TAXMINIY/i, qq: /Qoraqalpog'iston va Xorazmda oktabr ham isitish mavsumi/, less: /kichik/, inv: /raqam/, shu: /^Davrlar farqi/ },
+  { name: 'RU', url: '/ru/gaz-xarajat-kalkulyator', approx: /ОРИЕНТИРОВОЧНЫЙ/i, qq: /В Каракалпакстане и Хорезмской области октябрь тоже входит в отопительный сезон/, less: /меньше/, inv: /числами/, shu: /^Разница между периодами/ },
+  { name: 'ЎЗ', url: '/gaz-xarajat-kalkulyator?lang=cyr', approx: /ТАХМИНИЙ/i, qq: /Қорақалпоғистон ва Хоразмда октабр ҳам иситиш мавсуми/, less: /кичик/, inv: /рақам/, shu: /^Даврлар фарқи/ }
 ];
 
 let bad = 0; const table = [];
@@ -105,6 +105,7 @@ for (const mode of MODES) {
   T(info.link === 'https://lex.uz/uz/docs/-8195731' && /lex\.uz\/docs\/-6884060/.test(info.link204 || ''), mode.name + ': manba havolalari (243-son va mavsum uchun 204-son)', info.link + ' | ' + info.link204);
   T(dated.test(info.dn) && (info.body.match(new RegExp(dated.source, 'g')) || []).length === 1, mode.name + ': "Tarif 2026-06-01 dan, tekshirilgan sana: 2026-10-13" AYNAN BIR MARTA');
   T(info.heatOn && mode.approx.test(info.hint), mode.name + ': dekabrda boshlang\'ich davr = isitish mavsumi, izohda "taxminiy"', info.hint.slice(0, 60));
+  T(mode.qq.test(info.hint.replace(/[\u00a0\u202f]/g, ' ')), mode.name + ': mavsum izohida «Qoraqalpog\'iston va Xorazmda oktabr ham isitish mavsumi»', info.hint.slice(0, 160));
   T(!/\bkW\b|\bkWt\b/.test(info.body) && !(mode.name === 'ЎЗ' && /[кК]W|W[тТ]/.test(info.body)), mode.name + ': "kW/кW" aralash yozuv yo\'q');
   T(!info.over, mode.name + ': 360px da gorizontal siljish yo\'q');
   await ctx.close();

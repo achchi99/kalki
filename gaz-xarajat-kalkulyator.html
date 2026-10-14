@@ -171,7 +171,7 @@ img,svg{height:auto}
         <button type="button" id="seasonHeat" class="" data-gseason="heat" aria-pressed="false" data-i="seasonHeat">Isitish mavsumi</button>
         <button type="button" id="seasonOther" data-gseason="other" aria-pressed="true" data-i="seasonOther" class="on">Boshqa davr</button>
       </div>
-      <p class="hint" id="seasonHint" data-i-html="hSeason">Isitish mavsumi — asosiy hududlarda noyabrdan fevralgacha, Qoraqalpog'iston va Xorazmda oktabrdan fevralgacha (<a href="https://lex.uz/docs/-6884060" target="_blank" rel="noopener">Vazirlar Mahkamasining 2024-yil 16-apreldagi 204-son qarori, 2-ilova</a>). Energetika vazirligi muddatni o'zgartirishi mumkin. Boshlang'ich tanlov joriy oyga qarab TAXMINIY qo'yilgan — tekshirib, kerak bo'lsa almashtiring.</p>
+      <p class="hint" id="seasonHint" data-i-html="hSeason">Isitish mavsumi — asosiy hududlarda noyabrdan fevralgacha (<a href="https://lex.uz/docs/-6884060" target="_blank" rel="noopener">Vazirlar Mahkamasining 2024-yil 16-apreldagi 204-son qarori, 2-ilova</a>). Qoraqalpog'iston va Xorazmda oktabr ham isitish mavsumi. Energetika vazirligi muddatni o'zgartirishi mumkin. Boshlang'ich tanlov joriy oyga qarab TAXMINIY qo'yilgan — tekshirib, kerak bo'lsa almashtiring.</p>
     </div>
 
     <div class="field" id="useBox">
@@ -240,7 +240,7 @@ img,svg{height:auto}
       sub:"Oylik tabiiy gaz sarfi bo'yicha qancha to'laysiz — pog'onalar va isitish mavsumi hisobga olingan.",
       lMode:"Hisoblash usuli", modeUse:"Sarf bo'yicha", modeMeter:"Hisoblagich bo'yicha",
       lSeason:"Davr", seasonHeat:"Isitish mavsumi", seasonOther:"Boshqa davr",
-      hSeason:"Isitish mavsumi — asosiy hududlarda noyabrdan fevralgacha, Qoraqalpog'iston va Xorazmda oktabrdan fevralgacha (<a href='{url204}' target='_blank' rel='noopener'>{qaror204}</a>). Energetika vazirligi muddatni o'zgartirishi mumkin. Boshlang'ich tanlov joriy oyga qarab TAXMINIY qo'yilgan — tekshirib, kerak bo'lsa almashtiring.",
+      hSeason:"Isitish mavsumi — asosiy hududlarda noyabrdan fevralgacha (<a href='{url204}' target='_blank' rel='noopener'>{qaror204}</a>). Qoraqalpog'iston va Xorazmda oktabr ham isitish mavsumi. Energetika vazirligi muddatni o'zgartirishi mumkin. Boshlang'ich tanlov joriy oyga qarab TAXMINIY qo'yilgan — tekshirib, kerak bo'lsa almashtiring.",
       lUse:"Oylik gaz sarfi", lPrev:"Oldingi ko'rsatkich", lCur:"Hozirgi ko'rsatkich",
       hMeter:"Sarf = hozirgi ko'rsatkich − oldingi ko'rsatkich (oylik).",
       errLess:"Hozirgi ko'rsatkich oldingisidan kichik bo'lishi mumkin emas — ko'rsatkichlarni tekshiring.",
@@ -251,7 +251,7 @@ img,svg{height:auto}
       tierTitle:"Pog'onalar bo'yicha to'lov", btnShare:"Ulashish", copied:"Nusxalandi ✓",
       barCap:"Rangli blokda — pog'ona narxi (so'm/m³), pastda — pog'ona chegarasi (m³ / oy). Strelka — sizning sarfingiz.", barAria:"Pog'ona chizig'i: {n} ta pog'ona, narxlar {prices} so'm/m³; sizning sarfingiz {m3} m³ — {i}-pog'ona.",
       kUse:"Gaz sarfi", kSeason:"Davr", kAvg:"1 m³ o'rtacha narxi",
-      kOtherHeat:"Shu sarf isitish mavsumida bo'lsa", kOtherOther:"Shu sarf boshqa davrda bo'lsa",
+      kOtherHeat:"Davrlar farqi", kOtherOther:"Davrlar farqi",
       cmpHeat:"Isitish mavsumida", cmpOther:"Boshqa davrda", cheaper:"so'm arzonroq", pricier:"so'm qimmatroq", diffNone:"Narx farqi yo'q",
       posHere:"Siz {n}-pog'onadasiz ({range} m³, {price} so'm/m³).",
       posLeft:" Keyingi pog'onagacha ({from} m³ dan) yana {left} m³ qoldi — undan keyin har m³ {price} so'm.",
@@ -266,7 +266,7 @@ img,svg{height:auto}
       sub:"Сколько вы платите за природный газ в месяц — с учётом ступеней и отопительного сезона.",
       lMode:"Способ расчёта", modeUse:"По расходу", modeMeter:"По счётчику",
       lSeason:"Период", seasonHeat:"Отопительный сезон", seasonOther:"Остальной период",
-      hSeason:"Отопительный сезон — в основных регионах с ноября по февраль, в Каракалпакстане и Хорезмской области с октября по февраль (<a href='{url204}' target='_blank' rel='noopener'>{qaror204}</a>). Министерство энергетики может менять срок. Начальный выбор по текущему месяцу ОРИЕНТИРОВОЧНЫЙ — проверьте и при необходимости измените.",
+      hSeason:"Отопительный сезон — в основных регионах с ноября по февраль (<a href='{url204}' target='_blank' rel='noopener'>{qaror204}</a>). В Каракалпакстане и Хорезмской области октябрь тоже входит в отопительный сезон. Министерство энергетики может менять срок. Начальный выбор по текущему месяцу ОРИЕНТИРОВОЧНЫЙ — проверьте и при необходимости измените.",
       lUse:"Месячный расход газа", lPrev:"Предыдущее показание", lCur:"Текущее показание",
       hMeter:"Расход = текущее показание − предыдущее показание (за месяц).",
       errLess:"Текущее показание не может быть меньше предыдущего — проверьте показания.",
@@ -277,7 +277,7 @@ img,svg{height:auto}
       tierTitle:"Оплата по ступеням", btnShare:"Поделиться", copied:"Скопировано ✓",
       barCap:"Цветной блок — цена ступени (сум/м³), внизу — граница ступени (м³ в месяц). Стрелка — ваш расход.", barAria:"Шкала ступеней: {n} ступеней, цены {prices} сум/м³; ваш расход {m3} м³ — {i}-я ступень.",
       kUse:"Расход газа", kSeason:"Период", kAvg:"Средняя цена 1 м³",
-      kOtherHeat:"Если этот расход в отопительный сезон", kOtherOther:"Если этот расход в остальной период",
+      kOtherHeat:"Разница между периодами", kOtherOther:"Разница между периодами",
       cmpHeat:"В отопительный сезон на", cmpOther:"В остальной период на", cheaper:"сум дешевле", pricier:"сум дороже", diffNone:"Разницы в цене нет",
       posHere:"Вы на {n}-й ступени ({range} м³, {price} сум/м³).",
       posLeft:" До следующей ступени (с {from} м³) осталось {left} м³ — дальше каждый м³ по {price} сум.",
