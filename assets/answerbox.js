@@ -32,7 +32,7 @@
   var CSS = '.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;'
     + 'border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;'
     + 'max-width:100%;box-sizing:border-box}'
-    + '.answerbox .ab-text{font-size:14.5px;line-height:1.55;color:#16211C;font-weight:600;'
+    + '.answerbox .ab-text{font-size:0.9063rem;line-height:1.55;color:#16211C;font-weight:600;'
     + 'margin:0;word-wrap:break-word}'
     + '.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}'
     + '.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}'

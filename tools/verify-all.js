@@ -1242,7 +1242,7 @@ function runTool(args) {
         if (dir && !fs.statSync(path.join(ROOT, dir, f)).isFile()) continue;
         files.push(dir + f);
       }
-      const SMALL = /font-size:\s*(\d+(?:\.\d+)?)px/g, STEPS_RE = /<ol class="qadamlar"/;
+      const SMALL = /font-size:\s*(\d+(?:\.\d+)?)px/g, SMALL_REM = /font-size:\s*(\d*\.?\d+)rem/g, STEPS_RE = /<ol class="qadamlar"/;
       const needSteps = new Set(pages.filter((x) => x.tur === 'kalkulyator' || x.tur === 'generator').map((x) => x.file));
       for (const f of files) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -1251,6 +1251,9 @@ function runTool(args) {
         if (h.indexOf('id="typocss"') < 0) why.push(f + ': typo.css ulanmagan');
         let m; SMALL.lastIndex = 0;
         while ((m = SMALL.exec(h))) if (parseFloat(m[1]) < 14) { why.push(f + ': font-size ' + m[1] + 'px'); break; }
+        SMALL_REM.lastIndex = 0; while ((m = SMALL_REM.exec(h))) if (parseFloat(m[1]) < 0.875) { why.push(f + ': font-size ' + m[1] + 'rem'); break; }
+        if (!/class="tm2-fs"/.test(h) && f !== '404.html') why.push(f + ': shrift o\'lchami qatori yo\'q'); else if (f !== '404.html' && !/kalki_fs/.test(h)) why.push(f + ': langboot fs-big yo\'q');
+        if (/font-size:\s*\d+(?:\.\d+)?px/.test(h.replace(/var\(--t-[a-z0-9]+,\s*\d+px\)/g, ''))) why.push(f + ': font-size px (rem bo\'lishi kerak)');
         if (needSteps.has(f.replace(/^(ru|cyr)\//, '')) && !STEPS_RE.test(h) && !/^(elektr|gaz)-xarajat-kalkulyator\.html$/.test(f.replace(/^(ru|cyr)\//, ''))   /* elektr/gaz: qadamlar prognoz.js orqali ish vaqtida (ol#pgSteps) */) why.push(f + ': 3 qadam bloki yo\'q');
       }
       for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js')).map((x) => 'assets/' + x).concat(['assets/css/site.css', 'tools/site-chrome.js'])) {

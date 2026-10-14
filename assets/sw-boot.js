@@ -114,7 +114,7 @@
     x.textContent = '✕';
     x.setAttribute('aria-label', t.close);
     x.setAttribute('style', 'flex:none;width:32px;min-height:32px;background:transparent;color:#C9D6CE;'
-      + 'border:0;font:inherit;font-size:16px;line-height:1;cursor:pointer');
+      + 'border:0;font:inherit;font-size:1rem;line-height:1;cursor:pointer');
     x.addEventListener('click', function () {
       ss(function () { sessionStorage.setItem(SEEN_KEY, '1'); });
       if (bar.parentNode) bar.parentNode.removeChild(bar);

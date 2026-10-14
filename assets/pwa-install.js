@@ -39,9 +39,9 @@
     if (document.getElementById('pwacss')) return;
     var st = document.createElement('style'); st.id = 'pwacss';
     st.textContent = '.pwa-inst{margin:20px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}.pwa-inst[hidden]{display:none}' +
-      '.pwa-inst button{border:1.5px solid rgba(255,255,255,.45);background:transparent;color:#fff;font:inherit;font-size:15px;font-weight:600;min-height:44px;padding:8px 16px;border-radius:10px;cursor:pointer}' +
+      '.pwa-inst button{border:1.5px solid rgba(255,255,255,.45);background:transparent;color:#fff;font:inherit;font-size:0.9375rem;font-weight:600;min-height:44px;padding:8px 16px;border-radius:10px;cursor:pointer}' +
       '.pwa-inst button:hover{background:rgba(255,255,255,.12);border-color:#fff}' +
-      '.pwa-inst .pwa-note,.pwa-inst .pwa-ios{font-size:14px;line-height:1.5;color:#D2E0D8;margin:0}';
+      '.pwa-inst .pwa-note,.pwa-inst .pwa-ios{font-size:0.875rem;line-height:1.5;color:#D2E0D8;margin:0}';
     document.head.appendChild(st);
   }
   function mount() {
