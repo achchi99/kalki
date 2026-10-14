@@ -252,7 +252,7 @@ img,svg{height:auto}
       barCap:"Rangli blokda — pog'ona narxi (so'm/m³), pastda — pog'ona chegarasi (m³ / oy). Strelka — sizning sarfingiz.", barAria:"Pog'ona chizig'i: {n} ta pog'ona, narxlar {prices} so'm/m³; sizning sarfingiz {m3} m³ — {i}-pog'ona.",
       kUse:"Gaz sarfi", kSeason:"Davr", kAvg:"1 m³ o'rtacha narxi",
       kOtherHeat:"Shu sarf isitish mavsumida bo'lsa", kOtherOther:"Shu sarf boshqa davrda bo'lsa",
-      diffLbl:"farqi", diffNone:"farq yo'q",
+      cmpHeat:"Isitish mavsumida", cmpOther:"Boshqa davrda", cheaper:"so'm arzonroq", pricier:"so'm qimmatroq", diffNone:"Narx farqi yo'q",
       posHere:"Siz {n}-pog'onadasiz ({range} m³, {price} so'm/m³).",
       posLeft:" Keyingi pog'onagacha ({from} m³ dan) yana {left} m³ qoldi — undan keyin har m³ {price} so'm.",
       posLast:" Bu eng yuqori pog'ona.",
@@ -278,7 +278,7 @@ img,svg{height:auto}
       barCap:"Цветной блок — цена ступени (сум/м³), внизу — граница ступени (м³ в месяц). Стрелка — ваш расход.", barAria:"Шкала ступеней: {n} ступеней, цены {prices} сум/м³; ваш расход {m3} м³ — {i}-я ступень.",
       kUse:"Расход газа", kSeason:"Период", kAvg:"Средняя цена 1 м³",
       kOtherHeat:"Если этот расход в отопительный сезон", kOtherOther:"Если этот расход в остальной период",
-      diffLbl:"разница", diffNone:"без разницы",
+      cmpHeat:"В отопительный сезон на", cmpOther:"В остальной период на", cheaper:"сум дешевле", pricier:"сум дороже", diffNone:"Разницы в цене нет",
       posHere:"Вы на {n}-й ступени ({range} м³, {price} сум/м³).",
       posLeft:" До следующей ступени (с {from} м³) осталось {left} м³ — дальше каждый м³ по {price} сум.",
       posLast:" Это высшая ступень.",
@@ -367,7 +367,7 @@ img,svg{height:auto}
       th+='<div class="rrow"><span class="k">'+tierLbl(r)+u+'<span class="fx">'+mFmt(r.m3)+' × '+fmt(r.price)+sum+'</span></span><span class="v">'+fmt(r.cost)+sum+'</span></div>';
     }
     $('tierRows').innerHTML=th;
-    var diff=d.O.total-T.total, dtxt=diff===0?t('diffNone'):t('diffLbl')+': '+(diff>0?'+':'−')+fmt(Math.abs(diff))+sum;
+    var diff=d.O.total-T.total, dtxt=diff===0?t('diffNone'):t(d.season==='heat'?'cmpOther':'cmpHeat')+' '+fmt(Math.abs(diff))+' '+t(diff>0?'pricier':'cheaper');
     $('extraRows').innerHTML=(T.m3>0?'<div class="rrow"><span class="k">'+t('kAvg')+'</span><span class="v">'+fmt(T.effective)+sum+'</span></div>':'')
       +'<div class="rrow"><span class="k">'+t(d.season==='heat'?'kOtherOther':'kOtherHeat')+'<span class="fx">'+dtxt+'</span></span><span class="v">'+fmt(d.O.total)+sum+'</span></div>';
     $('rTotal').textContent=fmt(T.total)+sum;
@@ -452,7 +452,7 @@ img,svg{height:auto}
 </script>
 <div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
   <div style="font-size:20px;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
-  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">13.10.2026</div>
+  <div style="font-size:12px;color:#5C6B63;font-weight:600" id="pdfdate">14.10.2026</div>
 </div>
 <script>
 (function(){

@@ -57,6 +57,15 @@ const BAR_PRICES = [1100, 2000, 2300, 2700, 3300];
 const lumT = ([r, g, bl]) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(bl); };
 const cr = (c1, c2) => { const x = lumT(c1), y = lumT(c2); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
 const rgbOf = (s) => (s.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
+// "Shu sarf boshqa davrda bo'lsa" qatori ostidagi aniq gap (minus belgisisiz): farq = boshqa davr jami − joriy jami (QO'LDA)
+//  isitish 300: 510 000 − 330 000 = 180 000 qimmatroq | 800: 1 510 000 − 1 150 000 = 360 000 qimmatroq | 6000: 13 360 000 − 13 000 000 = 360 000 qimmatroq
+//  boshqa 80: 88 000 − 88 000 = 0 (farq yo'q) | 150: 165 000 − 210 000 = 45 000 arzonroq | 3000: 5 700 000 − 6 060 000 = 360 000 arzonroq
+const CMP = [['pricier', 180000], ['pricier', 360000], ['pricier', 360000], ['none', 0], ['cheaper', 45000], ['cheaper', 360000], ['pricier', 180000]];
+const CMP_TXT = {
+  UZ: { heatCur: { pricier: (x) => 'Boshqa davrda ' + x + " so'm qimmatroq" }, otherCur: { cheaper: (x) => 'Isitish mavsumida ' + x + " so'm arzonroq" }, none: "Narx farqi yo'q" },
+  RU: { heatCur: { pricier: (x) => 'В остальной период на ' + x + ' сум дороже' }, otherCur: { cheaper: (x) => 'В отопительный сезон на ' + x + ' сум дешевле' }, none: 'Разницы в цене нет' },
+  'ЎЗ': { heatCur: { pricier: (x) => 'Бошқа даврда ' + x + ' сўм қимматроқ' }, otherCur: { cheaper: (x) => 'Иситиш мавсумида ' + x + ' сўм арзонроқ' }, none: 'Нарх фарқи йўқ' }
+};
 const MODES = [
   { name: 'UZ', url: '/gaz-xarajat-kalkulyator', approx: /TAXMINIY/i, less: /kichik/, inv: /raqam/, shu: /Shu sarf/ },
   { name: 'RU', url: '/ru/gaz-xarajat-kalkulyator', approx: /ОРИЕНТИРОВОЧНЫЙ/i, less: /меньше/, inv: /числами/, shu: /Если этот расход/ },
@@ -122,6 +131,10 @@ for (const mode of MODES) {
     if (g.tiers.reduce((s, r) => s + digits(r.v), 0) !== jami) why.push('qatorlar yig\'indisi jamiga teng emas');
     const avgN = nums(g.extra[0]); if (avgN[avgN.length - 1] !== avg) why.push('o\'rtacha narx ' + avgN[avgN.length - 1] + ' kutilgan ' + avg);
     const ot = g.extra[1] || ''; const otNums = nums(ot);
+    { const [dir, amt] = CMP[ci], X = String(amt).replace(/\B(?=(\d{3})+(?!\d))/g, ' '), C = CMP_TXT[mode.name];
+      const want = dir === 'none' ? C.none : (davr === 'heat' ? C.heatCur : C.otherCur)[dir](X);
+      if (!ot.replace(/[\u00a0\u202f]/g, ' ').includes(want)) why.push('taqqoslash gapi kutilgan "' + want + '" | ' + ot);
+      if (/[−–—]|(^|[\s(])-\d/.test(ot.replace(/[\u00a0\u202f]/g, ' ').replace(/\d+\s*[–-]\s*\d+/g, ''))) why.push('taqqoslash qatorida minus belgisi bor: ' + ot); }
     if (otNums[otNums.length - 1] !== boshqa || !mode.shu.test(ot)) why.push('boshqa davr jami ' + otNums[otNums.length - 1] + ' kutilgan ' + boshqa + ' | ' + ot);
     if (JSON.stringify(nums(g.pos)) !== JSON.stringify(note)) why.push('izoh ' + JSON.stringify(nums(g.pos)) + ' kutilgan ' + JSON.stringify(note));
     if (mode.name === 'ЎЗ' && /[A-Za-z]/.test(g.extra.join(' ') + g.pos + g.use)) why.push('ЎЗ da lotin harf: ' + (g.pos.match(/[A-Za-z]+/g) || []).join(' '));
