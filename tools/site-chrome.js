@@ -316,6 +316,8 @@ function rebuildV2(f, src) {
   // CSS va nav.js: eski chromecss o'rniga tokens.css + site.css
   const ch = block(s, '<style id="chromecss">', '</style>');
   if (ch) s = s.slice(0, ch.i) + s.slice(ch.j);
+  const V2_OLD = V2_LINKS_TAGS.replace(/<link rel="stylesheet" href="\/assets\/css\/typo\.css" id="typocss">$/, '');
+  if (s.indexOf(V2_LINKS_TAGS) < 0 && s.indexOf(V2_OLD) > -1 && s.indexOf('id="typocss"') < 0) s = s.replace(V2_OLD, V2_LINKS_TAGS);   // joyida: typo.css qo'shiladi, tartib o'zgarmaydi
   if (s.indexOf(V2_LINKS_TAGS) < 0) {
     s = s.replace(/<link rel="stylesheet" href="\/assets\/css\/tokens\.css" id="v2tokens">/, '')
          .replace(/<link rel="stylesheet" href="\/assets\/css\/site\.css" id="v2site">/, '')

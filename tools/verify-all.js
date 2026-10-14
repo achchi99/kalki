@@ -1251,7 +1251,7 @@ function runTool(args) {
         if (h.indexOf('id="typocss"') < 0) why.push(f + ': typo.css ulanmagan');
         let m; SMALL.lastIndex = 0;
         while ((m = SMALL.exec(h))) if (parseFloat(m[1]) < 14) { why.push(f + ': font-size ' + m[1] + 'px'); break; }
-        if (needSteps.has(f.replace(/^(ru|cyr)\//, '')) && !STEPS_RE.test(h) && !/pgSteps/.test(h)) why.push(f + ': 3 qadam bloki yo\'q');
+        if (needSteps.has(f.replace(/^(ru|cyr)\//, '')) && !STEPS_RE.test(h) && !/^(elektr|gaz)-xarajat-kalkulyator\.html$/.test(f.replace(/^(ru|cyr)\//, ''))   /* elektr/gaz: qadamlar prognoz.js orqali ish vaqtida (ol#pgSteps) */) why.push(f + ': 3 qadam bloki yo\'q');
       }
       for (const f of fs.readdirSync(path.join(ROOT, 'assets')).filter((x) => x.endsWith('.js')).map((x) => 'assets/' + x).concat(['assets/css/site.css', 'tools/site-chrome.js'])) {
         const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); let m; SMALL.lastIndex = 0;
