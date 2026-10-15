@@ -338,16 +338,16 @@
   ],
   "oila-byudjet-kalkulyator": [
    {
-    "uz": "Oilaviy daromadlaringizni kiriting.",
-    "ru": "Введите доходы семьи."
+    "uz": "Oylik daromadingizni yozing.",
+    "ru": "Введите ежемесячный доход."
    },
    {
-    "uz": "Oila a'zolari va xarajatlarni belgilang.",
-    "ru": "Отметьте членов семьи и расходы."
+    "uz": "Majburiy to'lovlarni kiriting.",
+    "ru": "Укажите обязательные платежи."
    },
    {
-    "uz": "Xarajat, kredit yuki va salomatlik balli chiqadi.",
-    "ru": "Расходы, долговая нагрузка и балл здоровья."
+    "uz": "Oy oxirida qancha qolishi chiqadi.",
+    "ru": "Увидите, сколько останется к концу месяца."
    }
   ],
   "omonat-kalkulyator": [

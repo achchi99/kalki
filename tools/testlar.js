@@ -55,7 +55,8 @@ const ALL = [
   T('elektr', D + 'test-elektr.mjs'), T('gaz', D + 'test-gaz.mjs'), T('prognoz', D + 'test-prognoz.mjs', { t: 120 }),
   T('konditsioner', D + 'test-konditsioner.mjs'), T('quyosh', D + 'test-quyosh.mjs'), T('avto-elektro', D + 'test-avto-elektro.mjs'),
   T('ishonch', D + 'test-ishonch.mjs'), T('nasiya', D + 'test-nasiya.mjs', { t: 45 }),
-  T('menyu-hover', D + 'test-menyu-hover.mjs', { t: 60 }),   // yuqori menyu dropdown: kursor sekin tushganda yopilmasligi (nav.js / site.css)
+  T('menyu-hover', D + 'test-menyu-hover.mjs', { t: 60 }),
+  T('sodda', D + 'test-sodda.mjs', { t: 70 }),   // oila-byudjet: sodda oqim (390px), saqlash/ulashish moslik   // yuqori menyu dropdown: kursor sekin tushganda yopilmasligi (nav.js / site.css)
   T('links-runtime', D + 'test-links-runtime.mjs'), T('download', D + 'test-download.mjs'),
   T('verify-404', 'tools/verify-404.js', { t: 20 }),
   { id: 'node-testlar', cmd: ['sh', '-c', nodeJs.map((f) => 'node ' + f).join(' && ')], t: 30 }
@@ -68,7 +69,11 @@ function changedFiles() {
   if (flag('files')) return { files: String(flag('files')).split(','), base: '--files' };   // sinov uchun: o'zgargan fayllar ro'yxatini qo'lda berish
   const set = new Set();
   let base = flag('base');
-  if (!base || base === true) { const mb = git('merge-base', 'HEAD', 'origin/main').trim(); base = mb && mb !== git('rev-parse', 'HEAD').trim() ? mb : 'HEAD~1'; }
+  if (!base || base === true) {
+    const mb = git('merge-base', 'HEAD', 'origin/main').trim(), head = git('rev-parse', 'HEAD').trim(), br = git('rev-parse', '--abbrev-ref', 'HEAD').trim();
+    // feature branch: main'dan ajralgandan beri; main'ning o'zida (yoki branch'da hali commit yo'q) — oxirgi commit + saqlanmagan o'zgarishlar
+    base = mb && mb !== head ? mb : (br && br !== 'main' && mb ? head : 'HEAD~1');
+  }
   git('diff', '--name-only', base).split('\n').forEach((f) => f && set.add(f));
   git('diff', '--name-only').split('\n').forEach((f) => f && set.add(f));               // saqlanmagan o'zgarishlar
   git('ls-files', '--others', '--exclude-standard').split('\n').forEach((f) => f && set.add(f));
@@ -84,8 +89,10 @@ const MODULE_TESTS = {
   'assets/ai-ariza.js': ['ishonch'], 'assets/ai-promo.js': ['ishonch'], 'assets/doc-checks.js': ['node-testlar'], 'assets/doc-handoff.js': ['node-testlar'],
   'assets/datanote.js': [], 'assets/partners.js': [], 'assets/tgcta.js': [], 'assets/crosslink.js': ['links-runtime']
 };
+/* sahifaning o'ziga xos testi: sahifa o'zgarsa shu test ham tanlanadi */
+const PAGE_TESTS = { 'oila-byudjet-kalkulyator': ['sodda'], 'naqd-nasiya-kredit-kalkulyator': ['nasiya'] };
 /* Bularning birortasi o'zgarsa — umumiy ta'sir: test:toliq (CLAUDE.md) */
-const UMUMIY = [/^tools\/site-chrome\.js$/, /^assets\/css\//, /^sw\.js$/, /^tools\/prerender\.js$/, /^assets\/tarif-core\.js$/, /^assets\/(nav|lang|footer-lang|calc-v2|answerbox|docgen|icons)\./, /^tools\/render\.js$/, /^tools\/chunked\.js$/, /^tools\/test-cleanup\.cjs$/, /^tools\/dizayn\/parallel\.mjs$/, /^tools\/testlar\.js$/, /^package\.json$/];
+const UMUMIY = [/^tools\/site-chrome\.js$/, /^assets\/css\//, /^sw\.js$/, /^tools\/prerender\.js$/, /^assets\/tarif-core\.js$/, /^assets\/(nav|lang|footer-lang|calc-v2|answerbox|docgen|icons)\./, /^tools\/render\.js$/, /^tools\/chunked\.js$/, /^tools\/test-cleanup\.cjs$/, /^tools\/dizayn\/parallel\.mjs$/, /^package\.json$/];
 const slugOf = (f) => { const m = /^(?:ru\/|cyr\/)?([a-z0-9-]+)\.html$/.exec(f); return m ? m[1] : null; };
 
 function selectTez() {
@@ -109,6 +116,7 @@ function selectTez() {
   const v2s = sl.filter((s) => V2.includes(s));
   if (v2s.length) { add('pages', v2s); add('kontrast', v2s); add('katta', v2s); }
   const gs = sl.filter((s) => GOLD.has(s)); if (gs.length) add('golden', gs);
+  sl.forEach((s) => (PAGE_TESTS[s] || []).forEach((id) => add(id)));
   const qs = sl.filter((s) => STEPS.steps[s]); if (qs.length) add('qadam', qs);
   if (sl.includes('index')) add('v2');
   return { pick, slugs: sl, files, base, why };
