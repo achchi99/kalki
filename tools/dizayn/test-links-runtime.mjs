@@ -7,6 +7,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
+import { pool } from './parallel.mjs';
 const require = createRequire(import.meta.url);
 const { resolves, redirectTarget } = require('../verify-404.js');
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
@@ -37,7 +38,7 @@ const b = track(await chromium.launch());
 const ctx = await b.newContext({ viewport: { width: 390, height: 900 }, serviceWorkers: 'block' });
 await ctx.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me|lex\.uz/, (r) => r.abort());
 const bad = {}; let total = 0, viaRedirect = {};
-for (const u of slice) {
+await pool(slice, 6, async (u) => {
   const p = await ctx.newPage();
   try {
     await p.goto(BASE + u, { waitUntil: 'load', timeout: 20000 });
@@ -55,7 +56,7 @@ for (const u of slice) {
     }
   } catch (e) { (bad['(sahifa ochilmadi) ' + e.message.slice(0, 50)] = new Set([u])); }
   await p.close();
-}
+});
 console.log('sahifa:', slice.length, `(${from}..${from + slice.length - 1} / ${pages.length})`, '| havola:', total, '| buzuq noyob:', Object.keys(bad).length, '| redirect orqali:', Object.keys(viaRedirect).length);
 for (const [k, s] of Object.entries(bad)) console.log('  BUZUQ', k, '<-', [...s].slice(0, 3).join(', '), s.size > 3 ? '(+' + (s.size - 3) + ')' : '');
 for (const k of Object.keys(viaRedirect)) console.log('  redirect', k, '->', redirectTarget(k));

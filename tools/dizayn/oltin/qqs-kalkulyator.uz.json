@@ -1,20 +1,20 @@
 {
  "odatiy": {
-  "text": "Amal turi QQS qo'shish QQSni ajratish QQSsiz summani kiriting — ustiga QQS qo'shamiz. Summa (QQSsiz) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. Hisoblash Hisob natijasi 11 200 000 so'm QQS bilan jami QQSsiz summa10 000 000 so'm QQS1 200 000 so'm QQS bilan jami11 200 000 so'm Ulashish PDF",
+  "text": "QQS qo'shish yoki ajratishni tanlang. Summa va QQS stavkasini yozing. QQS miqdori va yakuniy summa chiqadi. Amal turi QQS qo'shish QQSni ajratish QQSsiz summani yozing — QQS bilan jami chiqadi. QQSsiz summani kiriting — ustiga QQS qo'shamiz. Summa (QQSsiz) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. Hisoblash Hisob natijasi 11 200 000 so'm QQS bilan jami QQSsiz summa10 000 000 so'm QQS1 200 000 so'm QQS bilan jami11 200 000 so'm Ulashish PDF",
   "inputs": [
    "amount=10 000 000",
    "rate=12"
   ]
  },
  "chegara": {
-  "text": "Amal turi QQS qo'shish QQSni ajratish QQSsiz summani kiriting — ustiga QQS qo'shamiz. Summa (QQSsiz) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 11 200 000 so'm QQS bilan jami QQSsiz summa10 000 000 so'm QQS1 200 000 so'm QQS bilan jami11 200 000 so'm Ulashish PDF",
+  "text": "QQS qo'shish yoki ajratishni tanlang. Summa va QQS stavkasini yozing. QQS miqdori va yakuniy summa chiqadi. Amal turi QQS qo'shish QQSni ajratish QQSsiz summani yozing — QQS bilan jami chiqadi. QQSsiz summani kiriting — ustiga QQS qo'shamiz. Summa (QQSsiz) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 11 200 000 so'm QQS bilan jami QQSsiz summa10 000 000 so'm QQS1 200 000 so'm QQS bilan jami11 200 000 so'm Ulashish PDF",
   "inputs": [
    "amount=0",
    "rate=0"
   ]
  },
  "katta": {
-  "text": "Amal turi QQS qo'shish QQSni ajratish QQS ichida bo'lgan summani kiriting — QQSni ajratib ko'rsatamiz. Summa (QQS bilan) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. Hisoblash Hisob natijasi 45 454 545,45 so'm QQSsiz (sof) summa QQSsiz summa45 454 545,45 so'm QQS54 545 454,55 so'm QQS bilan jami100 000 000 so'm Ulashish PDF",
+  "text": "QQS qo'shish yoki ajratishni tanlang. Summa va QQS stavkasini yozing. QQS miqdori va yakuniy summa chiqadi. Amal turi QQS qo'shish QQSni ajratish QQS ichidagi summani yozing — QQS ajratiladi. QQS ichida bo'lgan summani kiriting — QQSni ajratib ko'rsatamiz. Summa (QQS bilan) so'm QQS stavkasi % Asosiy stavka 12%. Ayrim operatsiyalar uchun 0% qo'llaniladi. Hisoblash Hisob natijasi 45 454 545,45 so'm QQSsiz (sof) summa QQSsiz summa45 454 545,45 so'm QQS54 545 454,55 so'm QQS bilan jami100 000 000 so'm Ulashish PDF",
   "inputs": [
    "amount=100 000 000",
    "rate=120"
