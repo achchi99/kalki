@@ -239,6 +239,8 @@ html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-rea
 // PWA (assets/pwa-install.js faqat tugma/ko'rsatma yaratadi; /cyr/ da prerender skriptni olib tashlaydi — faqat <link> qoladi)
 const PWA_HEAD = '<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon">'
   + '<meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>';
+// Salomat — alohida PWA: o'z manifesti, ikonkasi va nomi
+const PWA_HEAD_SALOMAT = PWA_HEAD.replace('/manifest.webmanifest', '/salomat.webmanifest').replace('apple-touch-icon-180.png', 'salomat-apple-180.png').replace('content="Kalki"', 'content="Salomat"');
 const V2_LINKS_TAGS = '<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">';
 function lf(uz, ru) { return ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '"'; }
 function fLink(href, uz, ru) { return '<li><a href="' + href + '"' + lf(uz, ru) + '>' + uz + '</a></li>'; }
@@ -338,12 +340,13 @@ function rebuildV2(f, src) {
   }
 
   // PWA: manifest + apple-touch-icon (eski yo'llar o'rniga), o'rnatish tugmasi skripti
-  if (s.indexOf(PWA_HEAD) < 0) {
+  const PH = f === 'salomat.html' ? PWA_HEAD_SALOMAT : PWA_HEAD;
+  if (s.indexOf(PH) < 0) {
     s = s.replace(/<link rel="manifest"[^>]*>/g, '').replace(/<link rel="apple-touch-icon"[^>]*>/g, '')
          .replace(/<meta name="apple-mobile-web-app-title"[^>]*>/g, '').replace(/<script src="\/assets\/pwa-install\.js"[^>]*><\/script>/g, '');
     const hl2 = s.indexOf('<link rel="alternate" hreflang');
     const hd2 = hl2 > -1 ? hl2 : s.indexOf('</head>');
-    s = s.slice(0, hd2) + PWA_HEAD + '\n' + s.slice(hd2);
+    s = s.slice(0, hd2) + PH + '\n' + s.slice(hd2);
   }
 
   // <body class="v2 typo2">
