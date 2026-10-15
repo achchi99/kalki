@@ -59,12 +59,11 @@ const LEGAL_HTML = '<div id="legal-links" style="margin-top:14px;display:flex;fl
     + ' data-lf-uz="' + uz + '" data-lf-ru="' + ru + '">' + uz + '</a>').join('')
   + '</div>';
 
-/* Mualliflik qatori ikki tilni bitta satrda saqlardi ("Achchi loyihasi ·
-   Проект Achchi") — endi tilga qarab BITTASI ko'rsatiladi. */
+/* Mualliflik qatori: tilga qarab BITTASI ko'rsatiladi (UZ lotin; ЎЗ — translit, Kalki.uz lotinda qoladi; RU). */
 const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600">'
-  + '<span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan."'
-  + ' data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">'
-  + '© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan.</span></div>';
+  + '<span data-lf-uz="© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan."'
+  + ' data-lf-ru="© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.">'
+  + '© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan.</span></div>';
 
 /* ---------------- Kanonik "Boshqa kalkulyatorlar" footer ----------------
    MUAMMO. Bu blok har sahifada QO'LDA ko'chirilgan edi (50 ta sahifada).
