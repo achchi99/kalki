@@ -287,7 +287,9 @@ body.v2 .bj-more .opt-body{padding:14px 2px 0}
 .bj-num.neg{color:#FFD98A}
 .bj-rest{margin-top:8px;font-size:var(--t-m,17px);color:#fff;font-weight:700;line-height:1.4}
 .bj-daily{margin-top:12px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;font:inherit;font-size:var(--t-s,15px);font-weight:800;border-radius:10px;padding:10px 14px;cursor:pointer;min-height:44px}
-.bj-rest[hidden],.bj-daily[hidden]{display:none!important}
+.bj-miss{margin-top:10px;font-size:var(--t-s,15px);font-weight:600;color:#D2E0D8;display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px}
+.bj-miss .linkbtn{color:#fff}
+.bj-rest[hidden],.bj-daily[hidden],.bj-miss[hidden]{display:none!important}
 .bj-note{margin-top:6px;font-size:var(--t-s,15px);color:#D2E0D8;font-weight:600;line-height:1.45}
 .bj-pct{margin-top:6px;font-size:var(--t-s,15px);font-weight:700;color:#fff}
 .bj-tip{margin-top:10px;padding:10px 12px;border-radius:10px;background:#FFF6E0;border:1px solid #F0DDAA;color:#5E4300;font-size:var(--t-s,15px);font-weight:700;line-height:1.45}
@@ -419,6 +421,7 @@ img,svg{height:auto}
 <p class="bj-pct" id="bjPct"></p>
 <button type="button" class="bj-daily" id="btnDaily" data-i="btnDaily" hidden="">Kundalik xarajatlarni qo'shish</button>
 <div class="bj-est" id="bjEst" hidden=""><span id="bjEstTxt"></span><button type="button" class="linkbtn" id="bjEstEdit" data-i="estEdit">O'zgartirish</button></div>
+<div class="bj-miss" id="bjMiss" hidden=""><span data-i="foodMissing">Oziq-ovqat hali kiritilmagan.</span><button type="button" class="linkbtn" id="btnFoodAdd" data-i="foodAdd">Qo'shish</button></div>
 <p class="bj-tip" id="bjTip" hidden=""></p>
 <p class="bj-formula" id="bjFormula"></p>
 <details class="bj-det" id="bjDet"><summary data-i="detSum">Batafsil ko'rish</summary><div id="detBody"></div></details>
@@ -507,6 +510,8 @@ img,svg{height:auto}
   "lblRest": "Majburiy to'lovlardan keyin qoladi",
   "restNote": "Oziq-ovqat, transport va boshqa kundalik xarajatlar shu puldan qilinadi.",
   "btnDaily": "Kundalik xarajatlarni qo'shish",
+  "foodMissing": "Oziq-ovqat hali kiritilmagan.",
+  "foodAdd": "Qo'shish",
   "formulaA": "Daromad {i} − majburiy to'lovlar {m} so'm",
   "planNote": "Bu siz kiritgan raqamlar asosidagi reja, haqiqiy sarfingiz emas.",
   "pctPlus": "Rejaga ko'ra daromadning {p}% i ortib qolishi mumkin.",
@@ -623,6 +628,8 @@ img,svg{height:auto}
   "lblRest": "После обязательных платежей остаётся",
   "restNote": "Продукты, транспорт и другие повседневные расходы оплачиваются из этих денег.",
   "btnDaily": "Добавить повседневные расходы",
+  "foodMissing": "Продукты ещё не введены.",
+  "foodAdd": "Добавить",
   "formulaA": "Доход {i} − обязательные платежи {m} сум",
   "planNote": "Это план по введённым вами цифрам, а не фактические траты.",
   "pctPlus": "По плану может остаться {p}% дохода.",
@@ -749,6 +756,7 @@ img,svg{height:auto}
     $('receipt').classList.remove('is-empty');$('resBox').hidden=false;$('resEmpty').hidden=true;
     $('bjLbl').textContent=neg?t('lblMinus'):(daily?t('lblPlus'):t('lblRest'));
     $('bjRest').hidden=neg||daily;$('btnDaily').hidden=daily;
+    $('bjMiss').hidden=!(daily&&val('food')===0);       // kundalik xarajat bor, lekin oziq-ovqat kiritilmagan
     $('bjLbl').classList.toggle('neg',neg);$('mainNum').classList.toggle('neg',neg);
     $('mainNum').textContent=fmt(Math.abs(L.left))+sum();
     var pct=L.inc>0?Math.round(L.left/L.inc*100):0;
@@ -773,6 +781,7 @@ img,svg{height:auto}
     var ch=$('clearHist');if(ch)ch.onclick=function(){try{var st=store();st.m={};localStorage.setItem(LS,JSON.stringify(st))}catch(e){}calc()};
   }
   function monthName(k){var p=k.split('-');return rep(t('dateFmt'),{y:p[0],m:t('months')[parseInt(p[1],10)-1]||p[1]})}
+  $('btnFoodAdd').addEventListener('click',function(){$('dMore').open=true;var f=$('food');f.scrollIntoView({block:'center'});f.focus()});
   $('btnDaily').addEventListener('click',function(){$('dMore').open=true;var f=$('food');f.scrollIntoView({block:'center'});f.focus()});
   $('bjEstEdit').addEventListener('click',function(){$('dMore').open=true;var f=$('food');f.scrollIntoView({block:'center'});f.focus()});
 
