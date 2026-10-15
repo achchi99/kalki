@@ -219,32 +219,18 @@ function runTool(args) {
     add(!bad.length, '11. diskdagi HTML\'da hamkor havolasi yo\'q', bad.join(', '));
   }
 
-  /* ---------- 9. METRICS holatlari ----------
-     Ilgari bu band hamkorlik.html ni vaqtincha qayta yozib, keyin
-     tiklardi. Jarayon yarim yo'lda uzilsa fayl o'zgargan holda qolib
-     ketardi. Endi barcha holatlar XOTIRADA render qilinadi. */
+  /* ---------- 9. "Oylik ko'rsatkichlar" bloki hamkorlik sahifasidan olib tashlangan ----------
+     Raqamlar (METRICS ma'lumoti) hamkorlik.html ichida saqlanadi — faqat sahifada ko'rsatilmaydi. */
   {
-    const f = path.join(ROOT, 'hamkorlik.html');
-    const orig = fs.readFileSync(f, 'utf8');
-    const withM = (body) => orig.replace(/var METRICS = \{[\s\S]*?\n  \};/, body);
-
-    const empty = withM('var METRICS = {\n    period: null,\n    users: null,\n    pageviews: null,\n    mobileShare: null,\n    topPages: [],\n    updated: null\n  };');
-    const { dom: d1 } = await loadHtml(empty, 'hamkorlik.html', { shims: true });
-    add(!d1.window.document.querySelector('.stat-box'),
-      '12. METRICS to\'liq null -> blok yashiriladi');
+    const orig = fs.readFileSync(path.join(ROOT, 'hamkorlik.html'), 'utf8'), ru = fs.readFileSync(path.join(ROOT, 'ru/hamkorlik.html'), 'utf8');
+    const { dom: d1 } = await loadHtml(orig, 'hamkorlik.html', { shims: true });
+    add(!d1.window.document.querySelector('.stat-box') && !d1.window.document.querySelector('#metricsSlot'), '12. "Oylik ko\'rsatkichlar" bloki sahifada yo\'q (UZ)');
     d1.window.close();
-
-    const partial = withM('var METRICS = {\n    period: "2026-07",\n    users: 12400,\n    pageviews: null,\n    mobileShare: 87,\n    topPages: [],\n    updated: "' + new Date().toISOString().slice(0, 10) + '"\n  };');
-    const { dom: d2 } = await loadHtml(partial, 'hamkorlik.html', { shims: true });
-    const rows = [...d2.window.document.querySelectorAll('.stat-row')];
-    add(rows.length === 2 && !rows.some((r) => /ko’rishlari|Просмотр/.test(r.textContent)),
-      '13. qisman to\'ldirilgan -> faqat mavjud qatorlar', rows.length + ' qator');
+    const { dom: d2 } = await loadHtml(ru, 'hamkorlik.html', { shims: true });
+    add(!d2.window.document.querySelector('.stat-box') && !d2.window.document.querySelector('#metricsSlot'), '13. "Ежемесячные показатели" блока на странице нет (RU)');
     d2.window.close();
-
-    const stale = withM('var METRICS = {\n    period: "2026-04",\n    users: 100,\n    pageviews: null,\n    mobileShare: null,\n    topPages: [],\n    updated: "2026-04-01"\n  };');
-    const { dom: d3 } = await loadHtml(stale, 'hamkorlik.html', { shims: true });
-    add(!!d3.window.document.querySelector('.stat-stale'), '14. updated 60 kundan eski -> eslatma chiqadi');
-    d3.window.close();
+    const left = [orig, ru].filter((h) => /Oylik ko.rsatkichlar|Ежемесячные показатели|С ежемесячными показателями/.test(h)).length;
+    add(left === 0 && /var METRICS = \{/.test(orig), '14. blok matni (UZ/RU, meta, lug\'at) qolmagan; METRICS ma\'lumoti o\'chirilmagan', left ? left + ' fayl' : '');
   }
 
   /* ---------- 10. Prerender barqarorligi va diskdagi holat ---------- */
