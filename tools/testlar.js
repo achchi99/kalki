@@ -55,6 +55,7 @@ const ALL = [
   T('elektr', D + 'test-elektr.mjs'), T('gaz', D + 'test-gaz.mjs'), T('prognoz', D + 'test-prognoz.mjs', { t: 120 }),
   T('konditsioner', D + 'test-konditsioner.mjs'), T('quyosh', D + 'test-quyosh.mjs'), T('avto-elektro', D + 'test-avto-elektro.mjs'),
   T('ishonch', D + 'test-ishonch.mjs'), T('nasiya', D + 'test-nasiya.mjs', { t: 45 }),
+  T('menyu-hover', D + 'test-menyu-hover.mjs', { t: 60 }),   // yuqori menyu dropdown: kursor sekin tushganda yopilmasligi (nav.js / site.css)
   T('links-runtime', D + 'test-links-runtime.mjs'), T('download', D + 'test-download.mjs'),
   T('verify-404', 'tools/verify-404.js', { t: 20 }),
   { id: 'node-testlar', cmd: ['sh', '-c', nodeJs.map((f) => 'node ' + f).join(' && ')], t: 30 }

@@ -7,7 +7,7 @@
 
   function closeSubs(except) {
     var o = d.querySelectorAll('.tm2 li.open');
-    for (var i = 0; i < o.length; i++) if (o[i] !== except) { o[i].classList.remove('open'); var c = o[i].querySelector('.tm2-chev'); if (c) c.setAttribute('aria-expanded', 'false'); }
+    for (var i = 0; i < o.length; i++) if (o[i] !== except) { clearTimeout(o[i]._t); o[i]._pin = false; o[i].classList.remove('open'); var c = o[i].querySelector('.tm2-chev'); if (c) c.setAttribute('aria-expanded', 'false'); }
   }
   function setNav(open) {
     b.classList.toggle('nav-open', open);
@@ -16,10 +16,32 @@
   }
   burger.addEventListener('click', function () { setNav(!b.classList.contains('nav-open')); });
 
+  /* Kompyuter (>=900px): hover bilan ochilish darhol, yopilish 250 ms kechikadi (kursor tugmadan menyuga tushayotganda uzilmasin);
+     chevron bosilsa menyu "mahkamlanadi" (sensorli noutbuk/klaviatura) — tashqariga bosilsa yoki Esc bosilsa yopiladi.
+     JS yoqilgach CSS :hover/:focus-within qoidasi o'chadi (html.nav-js) — holatni faqat shu kod boshqaradi. */
+  if (!/jsdom/i.test(navigator.userAgent)) d.documentElement.classList.add('nav-js');   // prerender (jsdom) sinfni HTML'ga pishirmasin
+  var DESK = w.matchMedia ? w.matchMedia('(min-width: 900px)') : { matches: true };
+  var CLOSE_MS = 250;
+  function setOpen(li, on) { li.classList.toggle('open', on); var c = li.querySelector('.tm2-chev'); if (c) c.setAttribute('aria-expanded', on ? 'true' : 'false'); }
+  function openNow(li) { clearTimeout(li._t); closeSubs(li); setOpen(li, true); }
+  function closeLater(li) { clearTimeout(li._t); if (li._pin) return; li._t = setTimeout(function () { if (!li._pin) setOpen(li, false); }, CLOSE_MS); }
+  var subs = d.querySelectorAll('.tm2 > li.has-sub');
+  for (var si = 0; si < subs.length; si++) (function (li) {
+    li.addEventListener('mouseenter', function () { if (DESK.matches) openNow(li); });
+    li.addEventListener('mouseleave', function () { if (DESK.matches) closeLater(li); });
+    li.addEventListener('focusin', function () { if (DESK.matches) openNow(li); });
+    li.addEventListener('focusout', function (e) { if (DESK.matches && !li.contains(e.relatedTarget)) closeLater(li); });
+  })(subs[si]);
+
   d.addEventListener('click', function (e) {
     var chev = e.target.closest && e.target.closest('.tm2-chev');
     if (chev) {
-      var li = chev.parentNode, open = !li.classList.contains('open');
+      var li = chev.parentNode;
+      if (DESK.matches) {                                 // kompyuter: bosish — mahkamlash / yopish
+        var pin = !li._pin; clearTimeout(li._t); closeSubs(li); li._pin = pin; setOpen(li, pin);
+        return;
+      }
+      var open = !li.classList.contains('open');
       closeSubs(li);
       li.classList.toggle('open', open);
       chev.setAttribute('aria-expanded', open ? 'true' : 'false');
