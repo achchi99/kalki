@@ -6,7 +6,7 @@
  * [data-i] elementlarini aylanib chiqadi, shuning uchun bu blokni umuman
  * ko'rmasdi. Ya'ni sabab "til almashganda footer qayta render bo'lmayapti"
  * emas — kalitlar mavjud emas edi. Mualliflik qatori esa ikki tilni bitta
- * satrda saqlardi ("Achchi loyihasi · Проект Achchi"), ya'ni RU rejimda ham
+ * satrda saqlardi (UZ va RU matn yonma-yon), ya'ni RU rejimda ham
  * o'zbekchasi, UZ rejimda ham ruschasi ko'rinib turardi.
  *
  * Bu modul elementlarni YARATMAYDI — ular prerender qilingan HTML'da

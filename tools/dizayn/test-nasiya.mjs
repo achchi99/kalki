@@ -94,6 +94,8 @@ try {
   assert.equal(digits(d.cards[0][1]), 6000000); assert.equal(digits(d.cards[1][1]), 7800000); assert.equal(digits(d.cards[2][1]), Math.round(K.kredit({ price: 6e6, n: 12, ratePct: 28, type: 'ann' }).total));
   assert.equal(d.cards.filter((c) => c[2]).length, 1); assert.equal(d.cards[0][2], true); assert.match(nb(d.v1), /Nasiya kreditdan 851 569 so'm qimmat/); assert.match(nb(d.v2), /yillik ~51% bilan kredit/); assert.ok(d.ex && /misol/.test(d.ex), 'misol ekani ko\'rinadi');
   assert.match(nb(d.rate[0]), /51,4%/); log('11. sahifa (UZ) standart misol: Naqd 6 000 000 / Nasiya 7 800 000 / Kredit ' + nb(d.cards[2][1]) + ', xulosa "' + d.v1 + '", nasiya haqiqiy stavka ' + d.rate[0]);
+  { const note = await p.evaluate(() => [document.querySelector('.nk-card.kredit .nk-rate .sm:last-child')?.textContent || '', document.querySelector('.nk-card.kredit .nk-rate .sm')?.textContent || '']);
+    assert.ok(!/Komissiya/.test(note.join(' ')), 'komissiya 0: "Komissiya bilan..." yozuvi chiqmasin'); assert.match(note[1], /Haqiqiy yillik stavka/); }
   // 12. ustama rejimi — "wow" jumla; 0% ustama
   await p.click('#mMarkup'); await set(p, 'nMarkup', '30'); await p.waitForTimeout(150);
   let w = await p.evaluate(() => [document.getElementById('v2').textContent, document.getElementById('fldMonthly').hidden, document.getElementById('fldMarkup').hidden]);
@@ -112,6 +114,7 @@ try {
   const kd = await p.evaluate(() => ({ cardK: document.querySelector('.nk-card.kredit .nk-total').textContent, rows: [...document.querySelectorAll('.nk-card.kredit .nk-row .k')].map((x) => x.textContent), open: document.getElementById('schedK').open, trs: document.querySelectorAll('#tblK tbody tr').length, trN: document.querySelectorAll('#tblN tbody tr').length }));
   const kk = K.kredit({ price: 6e6, n: 12, ratePct: 28, type: 'diff', commKind: 'pct', commValue: 2 }); assert.equal(digits(kd.cardK), Math.round(kk.total)); assert.ok(kd.rows.includes('Komissiya') && kd.rows.includes('Birinchi / oxirgi oy')); assert.equal(kd.open, false); assert.equal(kd.trs, 12); assert.equal(kd.trN, 12);
   log('14. kredit differensial + komissiya 2%: kartadagi jami modul bilan bir xil, jadvallar yopiq (details), 12 qator');
+  { const n2 = await p.evaluate(() => document.querySelector('.nk-card.kredit .nk-rate .sm:last-child')?.textContent || ''); assert.match(n2, /Komissiya bilan hisoblangan/, 'komissiya > 0: "Komissiya bilan..." yozuvi chiqsin'); }
   // 15. ulashish URL: holatni tiklash
   await set(p, 'price', '8 500 000'); await p.waitForTimeout(100); const url = await p.evaluate(() => window.__buildShareUrl()); const q = await mk(); await q.goto(url.replace(/^https?:\/\/[^/]+/, BASE), { waitUntil: 'networkidle' }); await q.waitForTimeout(500);
   const st = await q.evaluate(() => ({ price: document.getElementById('price').value, comm: document.getElementById('kComm').value, diff: document.getElementById('tDiff').classList.contains('on'), n: document.querySelector('.nk-card.naqd .nk-total').textContent }));
