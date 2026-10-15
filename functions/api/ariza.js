@@ -353,13 +353,13 @@ export function toCyrillic(t) {
 
 /* ---------- handler ---------- */
 
-const json = (status, body, extra) => new Response(JSON.stringify(body), {
+export const json = (status, body, extra) => new Response(JSON.stringify(body), {
   status,
   headers: Object.assign({ 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }, extra || {})
 });
 const fail = (status, ru) => json(status, { xato: ru && XATO_RU[status] ? XATO_RU[status] : status === 403 ? 'Ruxsat yo\'q.' : status === 405 ? 'Faqat POST.' : status === 415 ? 'JSON yuboring.' : XATO[status] });
 
-const num = (v, d) => { const n = parseInt(v, 10); return n > 0 ? n : d; };
+export const num = (v, d) => { const n = parseInt(v, 10); return n > 0 ? n : d; };
 
 function limitResponse(env, sabab, ru) {
   if (ru) {
@@ -379,10 +379,10 @@ async function sha256Hex(s) {
   return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // null = ruxsat; aks holda 'sayt' | 'mijoz' | 'ip'. KV xatosi tashqariga chiqadi (503).
-async function takeQuota(env, request, clientId) {
+export async function takeQuota(env, request, clientId) {
   const day = tashkentDay();
   const kv = env.KALKI_AI_KV;
   const ip = request.headers.get('CF-Connecting-IP') || 'noma\'lum';
@@ -397,7 +397,7 @@ async function takeQuota(env, request, clientId) {
   return null;
 }
 
-async function askModel(env, userText, system, maxTokens) {
+export async function askModel(env, userText, system, maxTokens) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
   try {

@@ -26,7 +26,7 @@ html:has(body.rz-body),body.rz-body{overflow:hidden;height:100%;overscroll-behav
 .rz-langmenu[hidden]{display:none}
 .rz-langmenu button{border:0;background:transparent;text-align:left;padding:0 14px;min-height:44px;border-radius:10px;font-weight:700}
 .rz-langmenu button:hover{background:var(--accsoft)}
-.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 128px;-webkit-overflow-scrolling:touch;outline:0;scroll-behavior:smooth}
+.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 128px;-webkit-overflow-scrolling:touch;outline:0}
 .rz-h{font-size:var(--t-xl,1.5rem);font-weight:800;margin:6px 2px 14px;letter-spacing:-.01em}
 .rz-bar{margin-top:14px;height:10px;border-radius:6px;background:rgba(255,255,255,.22);overflow:hidden}
 .rz-bar i{display:block;height:100%;width:100%;border-radius:6px;background:#fff;transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
@@ -152,3 +152,4 @@ body.rz-standalone .rz-about,body.rz-standalone .rz-aboutrow{display:none!import
 body.rz-standalone .rz-stage{padding:0}body.rz-standalone .rz{height:100vh;height:100dvh;max-width:480px;border-radius:0}
 .rz-ob-foot .rz-btn.ghost{flex:1;white-space:nowrap;padding:0 10px}
 .rz-row .r{width:18px;height:18px;opacity:.6}
+@media (prefers-color-scheme:dark){.rz-btn.danger:not(.primary){color:#FF9B8A;border-color:#FF9B8A}}

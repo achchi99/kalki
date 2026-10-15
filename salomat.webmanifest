@@ -1,0 +1,22 @@
+{
+  "id": "/salomat",
+  "name": "Salomat — kaloriya, ovqat va qadam",
+  "short_name": "Salomat",
+  "description": "Kunlik kaloriya me'yori, o'zbek taomlari, suv va qadam hisobi. Ro'yxatdan o'tmasdan, oflayn.",
+  "lang": "uz",
+  "dir": "ltr",
+  "start_url": "/salomat?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F1F2EE",
+  "theme_color": "#0E3B2E",
+  "categories": ["health", "fitness", "lifestyle"],
+  "shortcuts": [
+    { "name": "Salomat — ovqat qo'shish", "short_name": "Ovqat", "url": "/salomat#qoshish", "icons": [{ "src": "/assets/icons/salomat-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ],
+  "icons": [
+    { "src": "/assets/icons/salomat-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/salomat-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/salomat-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

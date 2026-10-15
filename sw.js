@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '223ecd1d';   /* sw-version:auto */
+const SW_VERSION = '2e2b7e30';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -44,8 +44,16 @@ const ASSETS = [
   '/assets/rozgor-core.js',
   '/assets/app-kit.js',
   '/assets/rozgor-app.js',
+  '/assets/salomat-core.js',
+  '/assets/salomat-app.js',
   '/assets/css/appkit.css',
   '/assets/css/rozgor.css',
+  '/assets/css/salomat.css',
+  '/data/ovqatlar.json',
+  '/salomat.webmanifest',
+  '/assets/icons/salomat-192.png',
+  '/assets/icons/salomat-512.png',
+  '/assets/icons/salomat-apple-180.png',
   '/assets/mode-tip.js',
   '/data/qadamlar.json',
   '/assets/konditsioner.js',
@@ -101,6 +109,8 @@ const ASSETS = [
   '/ru/naqd-nasiya-kredit-kalkulyator',
   '/rozgor',
   '/ru/rozgor',
+  '/salomat',
+  '/ru/salomat',
   '/gisht-kalkulyator',
   '/ru/gisht-kalkulyator',
   '/grant-ololmadim',

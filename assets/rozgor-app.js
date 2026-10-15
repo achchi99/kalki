@@ -479,7 +479,7 @@
       case 'export': doExport(); break;
       case 'import': doImport(); break;
       case 'wipe': wipe(); break;
-      case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; render(); break;
+      case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;
       case 'hidesaved': prefs().savedMsg.hide = true; commit(); break;
       case 'hide': { prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break; }
