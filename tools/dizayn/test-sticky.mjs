@@ -4,12 +4,13 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 import { chromium } from 'playwright';
 import { hisobla } from './hisobla.mjs';
 import { track } from '../test-cleanup.cjs';
+import { pool } from './parallel.mjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
   if (!f) { r.writeHead(404); return r.end(); }
   r.writeHead(200, { 'Content-Type': { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' }[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
-await new Promise((ok) => srv.listen(8797, ok));
+await new Promise((ok) => srv.listen(0, ok)); const PORT = srv.address().port;
 const b = track(await chromium.launch());
 const out = (n) => path.join(ROOT, 'docs/dizayn-skrinshot', n);
 const PAGES = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/pages.json'), 'utf8'));
@@ -20,10 +21,10 @@ const results = [];
 async function open(w, h, url) {
   const c = await b.newContext({ viewport: { width: w, height: h }, serviceWorkers: 'block' }); const p = await c.newPage();
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
-  await p.goto('http://localhost:8797' + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(400); return p;
+  await p.goto('http://localhost:' + PORT + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(400); return p;
 }
 const inter = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
-for (const slug of CALCS) for (const [w, h] of SIZES) {
+await pool(CALCS, undefined, async (slug) => { for (const [w, h] of SIZES) {
   const p = await open(w, h, '/' + slug);
   if (!(await p.locator('.calc-grid .res-col .receipt').count())) { console.log(`--   ${slug}: natija .receipt emas (norm-banner) — yopishqoq ishlatilmaydi, o'tkazildi`); await p.context().close(); break; }
   if (!(await p.locator('.calc-grid .res-col').count())) { console.log(`--   ${slug}: .calc-grid yo'q (grid qo'llanmagan sahifa) — o'tkazildi`); await p.context().close(); break; }
@@ -51,7 +52,8 @@ for (const slug of CALCS) for (const [w, h] of SIZES) {
   assert.equal(hits, 0, `${slug} ${w}x${h}: ${hits} ta kesishish/osilish`); assert.equal(outside, 0, `${slug} ${w}x${h}: karta ustundan chiqdi`);
   results.push(`${slug} ${w}×${h}: karta ${info.cardH}px, ${info.sticky ? 'sticky' : 'statik'}, kesishish 0`);
   await p.context().close();
-}
+} });
+results.sort();
 console.log(`OK   sticky kesishish testi: ${CALCS.length} sahifa × ${SIZES.length} o'lcham × 10 pozitsiya — kesishish 0`);
 // past ekran: sticky bo'lmasligi kerak
 { const p = await open(1280, 520, '/gisht-kalkulyator');
@@ -70,7 +72,7 @@ console.log(`OK   sticky kesishish testi: ${CALCS.length} sahifa × ${SIZES.leng
   assert.equal(before, true); assert.equal(after, false); console.log('OK   natija qatorlari ko\'paygach (ResizeObserver) karta sticky\'likdan chiqadi'); }
 // mobil
 for (const [w, h] of [[390, 844], [320, 640]]) { const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); const p = await c.newPage();
-  await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await p.goto('http://localhost:8797/gisht-kalkulyator', { waitUntil: 'networkidle' });
+  await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await p.goto('http://localhost:' + PORT + '/gisht-kalkulyator', { waitUntil: 'networkidle' });
   const m = await p.evaluate(() => { const f = document.querySelector('.form-card').getBoundingClientRect(), r = document.querySelector('.receipt').getBoundingClientRect(), s = document.getElementById('smeta-cta').getBoundingClientRect(); return { sw: document.documentElement.scrollWidth, iw: innerWidth, order: f.bottom <= r.top + 1 && r.bottom <= s.top + 1, pos: getComputedStyle(document.querySelector('.receipt, .norm-banner')).position, sticky: document.querySelector('.res-col').classList.contains('is-sticky') }; });
   assert.ok(m.sw <= m.iw); assert.ok(m.order); assert.equal(m.pos, 'static'); assert.equal(m.sticky, false); console.log(`OK   ${w}px: toshmaydi, forma → natija → smeta ketma-ket, statik`); }
 await b.close(); srv.close();

@@ -6,6 +6,7 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
+import { pool } from './parallel.mjs';
 const [MODE, ROOTARG, ...ONLY] = process.argv.slice(2);
 const ROOT = path.resolve(ROOTARG);
 const HERE = path.resolve(path.dirname(new URL(import.meta.url).pathname));
@@ -86,7 +87,7 @@ async function fillGen(page, atypeVal) {
   await page.waitForTimeout(300);
 }
 const zipText = (file) => { try { const x = execFileSync('python3', ['-c', "import zipfile,sys;print(zipfile.ZipFile(sys.argv[1]).read('word/document.xml').decode('utf8'))", file], { maxBuffer: 1 << 26 }).toString(); return norm(x.replace(/<w:tab\/>/g, ' ').replace(/<\/w:p>/g, ' ¶ ').replace(/<[^>]+>/g, '')); } catch (e) { return 'ZIP-XATO'; } };
-async function dl(page, sel) { const w = page.waitForEvent('download', { timeout: 25000 }).catch(() => null); await page.click(sel, { timeout: 4000 }).catch(() => {}); const d = await w; if (!d) return null; const f = path.join(os.tmpdir(), 'oltin-' + Date.now() + '-' + d.suggestedFilename()); await d.saveAs(f); const buf = fs.readFileSync(f); return { name: d.suggestedFilename(), size: buf.length, file: f, pages: (buf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length }; }
+async function dl(page, sel) { const w = page.waitForEvent('download', { timeout: 25000 }).catch(() => null); await page.click(sel, { timeout: 4000 }).catch(() => {}); const d = await w; if (!d) return null; const f = path.join(os.tmpdir(), 'oltin-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '-' + d.suggestedFilename()); await d.saveAs(f); const buf = fs.readFileSync(f); return { name: d.suggestedFilename(), size: buf.length, file: f, pages: (buf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length }; }
 async function runGen(url, lang) {
   const page = await newPage(); const out = { variantlar: {} }; const errs = []; page.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   await page.goto(BASE + url, { waitUntil: 'networkidle' }); await page.waitForTimeout(600);
@@ -122,10 +123,15 @@ async function runAi() {
 // ---------- asosiy ----------
 const targets = PAGES.filter((p) => (p.tur === 'kalkulyator' || p.tur === 'generator') && p.slug !== 'hisob-siyosati-generatori' && (!ONLY.length || ONLY.includes(p.slug)));
 let bad = 0; const sum = [];
+// Sahifalarni BITTA brauzer ichida baravar (3–4 tadan) ishga tushiramiz; solishtirish/chiqish esa eski tartibda ketma-ket.
+const RUNS = []; for (const p of targets) for (const lang of p.ru ? ['uz', 'ru'] : ['uz']) RUNS.push({ p, lang });
+const RES = await pool(RUNS, undefined, async ({ p, lang }) => { const url = lang === 'ru' ? '/ru/' + p.slug : '/' + p.slug;
+  try { return p.tur === 'kalkulyator' ? await runCalc(url) : await runGen(url, lang); } catch (e) { return { xato: ['ISHLAMADI: ' + String(e).slice(0, 160)] }; } });
+let RI = 0;
 for (const p of targets) {
   for (const lang of p.ru ? ['uz', 'ru'] : ['uz']) {
     const url = lang === 'ru' ? '/ru/' + p.slug : '/' + p.slug; const f = path.join(GOLD, `${p.slug}.${lang}.json`);
-    let res; try { res = p.tur === 'kalkulyator' ? await runCalc(url) : await runGen(url, lang); } catch (e) { res = { xato: ['ISHLAMADI: ' + String(e).slice(0, 160)] }; }
+    const res = RES[RI++];
     if (MODE === 'record') { fs.writeFileSync(f, JSON.stringify(res, null, 1)); console.log('yozildi', p.slug, lang, (JSON.stringify(res).length / 1024).toFixed(0) + 'KB', res.xato && res.xato.length ? 'XATO:' + res.xato[0] : ''); sum.push([p.slug, lang, 'yozildi']); }
     else {
       if (!fs.existsSync(f)) { console.log('YO\'Q', p.slug, lang); bad++; continue; }

@@ -5,6 +5,7 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 import { chromium } from 'playwright';
 import { hisobla } from './hisobla.mjs';
 import { track } from '../test-cleanup.cjs';
+import { pool } from './parallel.mjs';
 const require = createRequire(import.meta.url); const AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json', '.woff2': 'font/woff2' };
@@ -31,7 +32,8 @@ async function calculate(p) {
 }
 const NATIJASIZ = new Set();
 let bad = 0; const table = []; const uniq = new Map();
-for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) {
+const TASKS = []; for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) TASKS.push({ slug, lang });
+const OUT = await pool(TASKS, undefined, async ({ slug, lang }) => {
   const url = (lang === 'ru' ? '/ru/' : '/') + slug; const row = { sahifa: (lang === 'ru' ? 'ru/' : '') + slug, xato: 0, tafsilot: [] };
   for (const w of [390, 1280]) for (const state of ['boshlang\'ich', 'hisoblangan']) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, serviceWorkers: 'block', locale: lang === 'ru' ? 'ru' : 'uz' }); const p = await ctx.newPage();
@@ -52,8 +54,9 @@ for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'u
     if (res.length) { row.xato += res.length; res.slice(0, 4).forEach((x) => row.tafsilot.push(`${w}px/${state}: ${x.t} — ${x.m}`)); }
     await ctx.close();
   }
-  bad += row.xato; table.push(row); console.log((row.xato ? 'XATO ' : 'OK   ') + row.sahifa + ' — ' + row.xato); if (!process.env.QUIET) row.tafsilot.forEach((t) => console.log('      ' + t));
-}
+  bad += row.xato; table.push(row); return (row.xato ? 'XATO ' : 'OK   ') + row.sahifa + ' — ' + row.xato + (!process.env.QUIET ? row.tafsilot.map((t) => '\n      ' + t).join('') : '');
+});
+OUT.forEach((l) => console.log(l));
 await b.close(); srv.close();
 if (NATIJASIZ.size) console.log('\nDIQQAT: natija kartasi chiqmagan (hisoblangan holat tekshirilmadi): ' + [...NATIJASIZ].map((u) => u.replace(/^.*localhost:\d+/, '')).join(', '));
 if (uniq.size) { console.log('\nNOYOB xatolar (selektor | nisbat, ranglar) × necha marta:'); [...uniq].sort((a, b) => b[1] - a[1]).forEach(([k, n]) => console.log('  ' + n + '× ' + k)); }

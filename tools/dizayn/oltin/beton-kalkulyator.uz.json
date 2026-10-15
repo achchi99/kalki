@@ -1,18 +1,18 @@
 {
  "odatiy": {
-  "text": "Beton markasi M100 M150 M200 M250 M300 Eng ko'p ishlatiladi: poydevor, stayjka, maydonchalar. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik Hisoblash Hisob natijasi 1 m³ M200 beton uchun materiallar Sement (M400)250 kg5 qop (50 kg) Qum750 kg≈ 0,5 m³ Shag'al1 200 kg≈ 0,8 m³ Suv125 l Ulashish PDF",
+  "text": "Beton markasini tanlang. Hajm yoki o'lchamlarni kiriting. Sement, qum, shag'al va suv miqdori chiqadi. Beton markasi M100 M150 M200 M250 M300 Eng ko'p ishlatiladi: poydevor, stayjka, maydonchalar. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Beton hajmini m³ da yozing. Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik Hisoblash Hisob natijasi 1 m³ M200 beton uchun materiallar Sement (M400)250 kg5 qop (50 kg) Qum750 kg≈ 0,5 m³ Shag'al1 200 kg≈ 0,8 m³ Suv125 l Ulashish PDF",
   "inputs": [
    "vol=1"
   ]
  },
  "chegara": {
-  "text": "Beton markasi M100 M150 M200 M250 M300 Tayyorgarlik qatlami, yo'lakchalar uchun. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 1 m³ M100 beton uchun materiallar Sement (M400)170 kg4 qop (50 kg) Qum800 kg≈ 0,5 m³ Shag'al1 250 kg≈ 0,8 m³ Suv90 l Ulashish PDF",
+  "text": "Beton markasini tanlang. Hajm yoki o'lchamlarni kiriting. Sement, qum, shag'al va suv miqdori chiqadi. Beton markasi M100 M150 M200 M250 M300 Tayyorgarlik qatlami, yo'lakchalar uchun. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Beton hajmini m³ da yozing. Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi 1 m³ M100 beton uchun materiallar Sement (M400)170 kg4 qop (50 kg) Qum800 kg≈ 0,5 m³ Shag'al1 250 kg≈ 0,8 m³ Suv90 l Ulashish PDF",
   "inputs": [
    "vol=0"
   ]
  },
  "katta": {
-  "text": "Beton markasi M100 M150 M200 M250 M300 Monolit devorlar, ustunlar, plitalar. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik Hisoblash Hisob natijasi 3000 m³ M300 beton uchun materiallar Sement (M400)990 000 kg19800 qop (50 kg) Qum2 010 000 kg≈ 1256,3 m³ Shag'al3 480 000 kg≈ 2320,0 m³ Suv495 000 l Ulashish PDF",
+  "text": "Beton markasini tanlang. Hajm yoki o'lchamlarni kiriting. Sement, qum, shag'al va suv miqdori chiqadi. Beton markasi M100 M150 M200 M250 M300 Monolit devorlar, ustunlar, plitalar. Hajmni kiritish usuli Tayyor hajm O'lchamlar bo'yicha Uzunlik, kenglik va qalinlikni kiriting — hajm o'zi hisoblanadi. Beton hajmi m³ Uzunlik × kenglik × qalinlik m uzunlik m kenglik sm qalinlik Hisoblash Hisob natijasi 3000 m³ M300 beton uchun materiallar Sement (M400)990 000 kg19800 qop (50 kg) Qum2 010 000 kg≈ 1256,3 m³ Shag'al3 480 000 kg≈ 2320,0 m³ Suv495 000 l Ulashish PDF",
   "inputs": [
    "dl=50",
    "dw=40",

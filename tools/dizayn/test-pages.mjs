@@ -3,6 +3,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
 import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
+import { pool } from './parallel.mjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const V2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/v2-pages.json'), 'utf8')).map((f) => f.replace(/\.html$/, ''));
 const ONLY = process.argv.slice(2); const LIST = ONLY.length ? V2.filter((s) => ONLY.includes(s)) : V2;
@@ -15,7 +16,8 @@ const EMO = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 async function ctxPage(w, h) { const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 500, hasTouch: w < 500, serviceWorkers: 'block' }); const p = await c.newPage(); const errs = [];
   p.on('pageerror', (e) => errs.push(String(e).slice(0, 140))); p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource|googlesyndication|adsbygoogle|googletag|fonts\.g|ERR_FAILED|ERR_ABORTED/.test(m.text())) errs.push(m.text().slice(0, 140)); });
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); return [p, errs]; }
-for (const slug of LIST) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) {
+const TASKS = []; for (const slug of LIST) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) TASKS.push({ slug, lang });
+const LINES = await pool(TASKS, undefined, async ({ slug, lang }) => {
   const url = (lang === 'ru' ? '/ru/' : '/') + (slug === 'index' ? '' : slug); const probs = [];
   for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 800]]) {
     const [p, errs] = await ctxPage(w, h);
@@ -33,6 +35,7 @@ for (const slug of LIST) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz
     }
     await p.context().close();
   }
-  rows.push([slug, lang, probs.length ? probs.slice(0, 4).join(' | ') : 'OK']); if (probs.length) bad++; console.log((probs.length ? 'MUAMMO ' : 'OK     ') + slug + ' ' + lang + (probs.length ? ' — ' + probs.slice(0, 4).join(' | ') : ''));
-}
+  rows.push([slug, lang, probs.length ? probs.slice(0, 4).join(' | ') : 'OK']); if (probs.length) bad++; return (probs.length ? 'MUAMMO ' : 'OK     ') + slug + ' ' + lang + (probs.length ? ' — ' + probs.slice(0, 4).join(' | ') : '');
+});
+LINES.forEach((l) => console.log(l));
 await b.close(); srv.close(); console.log(bad ? bad + ' ta muammoli sahifa' : 'barcha sahifalar toza'); process.exit(bad ? 1 : 0);

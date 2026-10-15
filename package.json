@@ -10,7 +10,9 @@
     "check:partners": "node tools/check-partners.js",
     "check:prerender": "node tools/prerender-twice.js --all",
     "check:chrome": "node tools/site-chrome.js",
-    "check:visual": "node tools/visual-check.js"
+    "check:visual": "node tools/visual-check.js",
+    "test:tez": "node tools/testlar.js tez",
+    "test:toliq": "node tools/testlar.js toliq"
   },
   "devDependencies": {
     "@resvg/resvg-js": "^2.6.2",
