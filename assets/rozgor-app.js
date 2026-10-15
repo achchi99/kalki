@@ -208,9 +208,12 @@
 
   function render() {
     lang = langNow();
-    if (!st.setup) { showOnb(); return; }
-    var onb = $('#rzOnb'); if (onb) onb.hidden = true;
     $$('[data-k]').forEach(function (e) { e.textContent = T(e.getAttribute('data-k')); });
+    var lt0 = document.documentElement.getAttribute('data-script') === 'cyr' ? 'ЎЗ' : lang.toUpperCase(), lb0 = $('#rzLang'); if (lb0) lb0.setAttribute('aria-label', lt0 + ' · Til / Язык');
+    var lockUi = function (on) { ['#rzMain', '.rz-nav'].forEach(function (q) { var e = $(q); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); };
+    if (!st.setup) { lockUi(true); showOnb(); return; }
+    lockUi(false);
+    var onb = $('#rzOnb'); if (onb) onb.hidden = true;
     $$('.rz-tab').forEach(function (b) { var on = b.getAttribute('data-v') === view; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
     var title = { today: T('appName'), hist: T('histT'), bills: T('billsT'), set: T('setT') }[view]; $('#rzTitle').textContent = title;
     var lt = $('#rzLangTxt'); if (lt) lt.textContent = document.documentElement.getAttribute('data-script') === 'cyr' ? 'ЎЗ' : lang.toUpperCase();
