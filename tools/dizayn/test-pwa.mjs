@@ -17,11 +17,17 @@ const sizeOf = (f) => { const d = fs.readFileSync(path.join(ROOT, f)); return d.
 for (const i of m.icons) { const f = i.src.replace(/^\//, ''); T(fs.existsSync(path.join(ROOT, f)) && sizeOf(f) === i.sizes, 'ikonka ' + i.src + ' (' + i.purpose + ')', sizeOf(f)); }
 T(m.icons.some((i) => i.purpose === 'maskable' && i.sizes === '512x512') && m.icons.some((i) => i.sizes === '192x192') && m.icons.some((i) => i.sizes === '512x512' && i.purpose === 'any'), 'ikonkalar: 192, 512, maskable 512');
 T(sizeOf('assets/icons/apple-touch-icon-180.png') === '180x180', 'apple-touch-icon 180x180');
+// 1b) Salomat — alohida manifest: o'z nomi, id, ikonkalar
+const sm = JSON.parse(fs.readFileSync(path.join(ROOT, 'salomat.webmanifest'), 'utf8'));
+T(sm.short_name === 'Salomat' && sm.id === '/salomat' && sm.start_url === '/salomat?source=pwa' && sm.scope === '/' && sm.display === 'standalone' && sm.id !== m.id, 'Salomat manifest: alohida nom/id/start_url');
+for (const i of sm.icons) { const f = i.src.replace(/^\//, ''); T(fs.existsSync(path.join(ROOT, f)) && sizeOf(f) === i.sizes, 'Salomat ikonka ' + i.src + ' (' + i.purpose + ')', sizeOf(f)); }
+T(sizeOf('assets/icons/salomat-apple-180.png') === '180x180', 'Salomat apple-touch-icon 180x180');
 // 2) <head> havolalari (barcha sahifa, UZ/RU/CYR)
 let miss = [], cnt = 0;
 const dirs = ['', 'ru/', 'cyr/'];
 for (const d of dirs) for (const f of fs.readdirSync(path.join(ROOT, d || '.')).filter((x) => x.endsWith('.html') && !/^(yandex|offline)/.test(x))) { cnt++; const h = fs.readFileSync(path.join(ROOT, d + f), 'utf8'); const head = h.slice(0, h.indexOf('</head>'));
-  if (!head.includes('<link rel="manifest" href="/manifest.webmanifest"') || !head.includes('rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png"') || (head.match(/rel="manifest"/g) || []).length !== 1) miss.push(d + f); }
+  const own = f === 'salomat.html';   // Salomat — alohida PWA (o'z manifest va ikonkasi)
+  if (!head.includes('<link rel="manifest" href="' + (own ? '/salomat.webmanifest' : '/manifest.webmanifest') + '"') || !head.includes('rel="apple-touch-icon" href="/assets/icons/' + (own ? 'salomat-apple-180.png' : 'apple-touch-icon-180.png') + '"') || (head.match(/rel="manifest"/g) || []).length !== 1) miss.push(d + f); }
 T(miss.length === 0, 'manifest + apple-touch-icon barcha sahifa <head> da (bittadan)', cnt + ' sahifa' + (miss.length ? ', yo\'q: ' + miss.slice(0, 4).join(', ') : ''));
 const cy = fs.readdirSync(path.join(ROOT, 'cyr')).filter((x) => x.endsWith('.html')); T(cy.every((f) => !/<script(?![^>]*type="application\/(ld\+)?json")[^>]*>/.test(fs.readFileSync(path.join(ROOT, 'cyr', f), 'utf8'))), '/cyr/: ijro etiladigan skript yo\'q (faqat <link>)', cy.length + ' sahifa');
 // 3) installability (CDP) va tugma
