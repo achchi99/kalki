@@ -285,6 +285,9 @@ body.v2 .bj-more .opt-body{padding:14px 2px 0}
 .bj-lbl.neg{color:#FFE2A6}
 .bj-num{font-size:2.25rem;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1.15;word-break:break-word;margin-top:2px}
 .bj-num.neg{color:#FFD98A}
+.bj-rest{margin-top:8px;font-size:var(--t-m,17px);color:#fff;font-weight:700;line-height:1.4}
+.bj-daily{margin-top:12px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;font:inherit;font-size:var(--t-s,15px);font-weight:800;border-radius:10px;padding:10px 14px;cursor:pointer;min-height:44px}
+.bj-rest[hidden],.bj-daily[hidden]{display:none!important}
 .bj-note{margin-top:6px;font-size:var(--t-s,15px);color:#D2E0D8;font-weight:600;line-height:1.45}
 .bj-pct{margin-top:6px;font-size:var(--t-s,15px);font-weight:700;color:#fff}
 .bj-tip{margin-top:10px;padding:10px 12px;border-radius:10px;background:#FFF6E0;border:1px solid #F0DDAA;color:#5E4300;font-size:var(--t-s,15px);font-weight:700;line-height:1.45}
@@ -411,8 +414,10 @@ img,svg{height:auto}
 <div id="resBox" hidden="">
 <div class="bj-lbl" id="bjLbl"></div>
 <div class="bj-num" id="mainNum"></div>
+<p class="bj-rest" id="bjRest" data-i="restNote" hidden="">Oziq-ovqat, transport va boshqa kundalik xarajatlar shu puldan qilinadi.</p>
 <p class="bj-note" data-i="planNote">Bu siz kiritgan raqamlar asosidagi reja, haqiqiy sarfingiz emas.</p>
 <p class="bj-pct" id="bjPct"></p>
+<button type="button" class="bj-daily" id="btnDaily" data-i="btnDaily" hidden="">Kundalik xarajatlarni qo'shish</button>
 <div class="bj-est" id="bjEst" hidden=""><span id="bjEstTxt"></span><button type="button" class="linkbtn" id="bjEstEdit" data-i="estEdit">O'zgartirish</button></div>
 <p class="bj-tip" id="bjTip" hidden=""></p>
 <p class="bj-formula" id="bjFormula"></p>
@@ -499,6 +504,10 @@ img,svg{height:auto}
   "rTag": "Oylik reja",
   "lblPlus": "Reja bo'yicha oy oxirida qolishi mumkin",
   "lblMinus": "Rejaga ko'ra oyiga yetishmaydi",
+  "lblRest": "Majburiy to'lovlardan keyin qoladi",
+  "restNote": "Oziq-ovqat, transport va boshqa kundalik xarajatlar shu puldan qilinadi.",
+  "btnDaily": "Kundalik xarajatlarni qo'shish",
+  "formulaA": "Daromad {i} − majburiy to'lovlar {m} so'm",
   "planNote": "Bu siz kiritgan raqamlar asosidagi reja, haqiqiy sarfingiz emas.",
   "pctPlus": "Rejaga ko'ra daromadning {p}% i ortib qolishi mumkin.",
   "pctZero": "Rejaga ko'ra daromad xarajatlarga to'liq ketadi.",
@@ -611,6 +620,10 @@ img,svg{height:auto}
   "rTag": "План на месяц",
   "lblPlus": "По плану к концу месяца может остаться",
   "lblMinus": "По плану в месяц не хватает",
+  "lblRest": "После обязательных платежей остаётся",
+  "restNote": "Продукты, транспорт и другие повседневные расходы оплачиваются из этих денег.",
+  "btnDaily": "Добавить повседневные расходы",
+  "formulaA": "Доход {i} − обязательные платежи {m} сум",
   "planNote": "Это план по введённым вами цифрам, а не фактические траты.",
   "pctPlus": "По плану может остаться {p}% дохода.",
   "pctZero": "По плану весь доход уходит на расходы.",
@@ -732,17 +745,18 @@ img,svg{height:auto}
     render(last);persist();
   }
   function render(L){
-    var neg=L.left<0;
+    var neg=L.left<0, daily=L.other>0;      // daily: kamida bitta kundalik xarajat (oziq-ovqat, transport...) kiritilgan
     $('receipt').classList.remove('is-empty');$('resBox').hidden=false;$('resEmpty').hidden=true;
-    $('bjLbl').textContent=neg?t('lblMinus'):t('lblPlus');
+    $('bjLbl').textContent=neg?t('lblMinus'):(daily?t('lblPlus'):t('lblRest'));
+    $('bjRest').hidden=neg||daily;$('btnDaily').hidden=daily;
     $('bjLbl').classList.toggle('neg',neg);$('mainNum').classList.toggle('neg',neg);
     $('mainNum').textContent=fmt(Math.abs(L.left))+sum();
     var pct=L.inc>0?Math.round(L.left/L.inc*100):0;
-    $('bjPct').textContent=neg?'':(L.left>0?rep(t('pctPlus'),{p:pct}):t('pctZero'));$('bjPct').hidden=neg;
+    $('bjPct').textContent=(neg||!daily)?'':(L.left>0?rep(t('pctPlus'),{p:pct}):t('pctZero'));$('bjPct').hidden=neg||!daily;
     var tip=$('bjTip');
     if(neg&&L.items.length){var big=L.items.slice().sort(function(x,y){return y.a-x.a})[0];tip.textContent=rep(t('minusTip'),{n:t(big.k),a:fmt(big.a),p:Math.round(big.a/L.inc*100)});tip.hidden=false}else{tip.hidden=true}
     var est=$('bjEst');if(estFood&&val('food')>0){$('bjEstTxt').textContent=rep(t('estNotice'),{a:fmt(val('food'))});est.hidden=false}else est.hidden=true;
-    $('bjFormula').textContent=rep(t('formula'),{i:fmt(L.inc),m:fmt(L.mand),o:fmt(L.other)});
+    $('bjFormula').textContent=daily?rep(t('formula'),{i:fmt(L.inc),m:fmt(L.mand),o:fmt(L.other)}):rep(t('formulaA'),{i:fmt(L.inc),m:fmt(L.mand)});
     renderDetails(L);
   }
   function rowHtml(it,L){var p=L.inc>0?Math.round(it.a/L.inc*100):0;
@@ -759,6 +773,7 @@ img,svg{height:auto}
     var ch=$('clearHist');if(ch)ch.onclick=function(){try{var st=store();st.m={};localStorage.setItem(LS,JSON.stringify(st))}catch(e){}calc()};
   }
   function monthName(k){var p=k.split('-');return rep(t('dateFmt'),{y:p[0],m:t('months')[parseInt(p[1],10)-1]||p[1]})}
+  $('btnDaily').addEventListener('click',function(){$('dMore').open=true;var f=$('food');f.scrollIntoView({block:'center'});f.focus()});
   $('bjEstEdit').addEventListener('click',function(){$('dMore').open=true;var f=$('food');f.scrollIntoView({block:'center'});f.focus()});
 
   /* ---- saqlash (kalit eskisi bilan bir xil: kalki_byudjet) ---- */
