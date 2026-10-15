@@ -1146,5 +1146,19 @@
   "cyr": false,
   "v2": false,
   "partiya": 2
+ },
+ {
+  "file": "rozgor.html",
+  "slug": "rozgor",
+  "tur": "ilova",
+  "kat": "hayot",
+  "klik_uz": 0,
+  "klik_ru": 0,
+  "kors_uz": 0,
+  "kors_ru": 0,
+  "ru": true,
+  "cyr": false,
+  "v2": false,
+  "partiya": 2
  }
 ]

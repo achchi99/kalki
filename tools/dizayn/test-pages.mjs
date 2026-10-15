@@ -23,9 +23,9 @@ const LINES = await pool(TASKS, undefined, async ({ slug, lang }) => {
     const [p, errs] = await ctxPage(w, h);
     try { await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(350); } catch (e) { probs.push(`${w}: yuklanmadi`); continue; }
     const m = await p.evaluate(() => { const bc = document.getElementById('breadcrumb'); document.querySelectorAll('.xlink-ic').forEach((e) => { e.textContent = ''; }); const t = document.body.innerText.replace(bc ? bc.innerText : '', ''); const h1 = (document.querySelector('h1') || {}).innerText || '';
-      return { sw: document.documentElement.scrollWidth, iw: innerWidth, hdr: Math.round((document.getElementById('sitebar') || { getBoundingClientRect: () => ({ height: 0 }) }).getBoundingClientRect().height), v2: document.body.classList.contains('v2'), text: t, h1 }; });
+      return { sw: document.documentElement.scrollWidth, iw: innerWidth, hdr: Math.round((document.getElementById('sitebar') || { getBoundingClientRect: () => ({ height: 0 }) }).getBoundingClientRect().height), v2: document.body.classList.contains('v2'), app: document.body.classList.contains('rz-body'), text: t, h1 }; });
     if (m.sw > m.iw) probs.push(`${w}px: toshdi (${m.sw}>${m.iw})`);
-    if (!m.v2) probs.push('body.v2 yo\'q'); if (m.hdr > 64 || m.hdr < 50) probs.push(`${w}px: sarlavha ${m.hdr}px`);
+    if (!m.v2) probs.push('body.v2 yo\'q'); if (!m.app && (m.hdr > 64 || m.hdr < 50)) probs.push(`${w}px: sarlavha ${m.hdr}px`);   // m.app — ilova sahifasi (Ro'zg'or): sayt sarlavhasi atayin yashirin
     if (errs.length) probs.push(`${w}px: konsol: ${errs[0]}`);
     if (w === 1280) {
       const body = m.text.replace(m.h1, '');   // H1 dagi emoji SEO uchun saqlanadi

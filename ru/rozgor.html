@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}
+try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classList.add('fs-big');}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/rozgor-core.js" defer=""></script>
+<script src="/assets/rozgor-app.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E3B2E">
+<title>Рузгор — узнайте, сколько можно потратить сегодня</title>
+<link rel="canonical" href="https://kalki.uz/ru/rozgor">
+<meta name="description" content="Бесплатное приложение для ежедневных расходов: по текущим деньгам, обязательным платежам и дате дохода показывает, сколько можно потратить сегодня. Без регистрации, работает офлайн.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/rozgor.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
+body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:1.625rem;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:0.9063rem;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:1.1875rem;font-weight:700;color:var(--ink);padding:13px 14px;min-width:0}
+.unit{font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:0.875rem;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:var(--t-xs,14px);color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:1.0625rem;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.calc-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:2rem;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:var(--t-xs,14px);color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:0.9063rem;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:0.875rem;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seo{margin-top:36px;font-size:0.9375rem;color:#33403A}
+.seo h2{font-size:1.125rem;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-xs,14px);color:var(--muted)}
+</style>
+
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script>
+<meta property="og:title" content="Рузгор — узнайте, сколько можно потратить сегодня">
+<meta property="og:description" content="Бесплатное приложение для ежедневных расходов: по текущим деньгам, обязательным платежам и дате дохода показывает, сколько можно потратить сегодня. Без регистрации, работает офлайн.">
+<meta property="og:url" content="https://kalki.uz/ru/rozgor">
+<meta property="og:image" content="https://kalki.uz/assets/og/rozgor.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ro'zg'or — bugun qancha sarflash mumkinligini biling">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/rozgor.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Рузгор — узнайте, сколько можно потратить сегодня">
+<meta name="twitter:description" content="Бесплатное приложение для ежедневных расходов: по текущим деньгам, обязательным платежам и дате дохода показывает, сколько можно потратить сегодня. Без регистрации, работает офлайн.">
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:var(--t-xs,14px);font-weight:600;color:var(--t-muted,#3F4F46);margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:var(--t-muted,#3F4F46)}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+<style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:0.9063rem;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что такое Рузгор и как он работает?","acceptedAnswer":{"@type":"Answer","text":"Рузгор — простое приложение для ежедневных расходов. Вы вводите деньги на руках и на карте, дату следующего дохода и обязательные платежи (кредит, аренда, коммунальные). Приложение считает «свободные деньги», делит их на оставшиеся до дохода дни и показывает, сколько можно потратить сегодня. Для разового расчёта месячного плана есть калькулятор семейного бюджета, а Рузгор ведётся каждый день. Формула открыта: свободные деньги = баланс − обязательные платежи до даты дохода − резерв. Дневная норма = свободные деньги ÷ оставшиеся дни. В течение дня норма не меняется: записали расход — «сегодня ещё можно» уменьшилось; вышли за норму — норма на оставшиеся дни слегка снижается, сэкономили — растёт. Всё хранится на вашем телефоне, на сервер ничего не отправляется. Если добавить приложение на главный экран, оно работает и без интернета; резервную копию можно скачать файлом и потом восстановить."}},{"@type":"Question","name":"Как считается дневная норма?","acceptedAnswer":{"@type":"Answer","text":"Пример: баланс 3 000 000 сум, резерв 500 000 сум, до дохода платёж за аренду 1 500 000 сум и осталось 12 дней. Свободные деньги 3 000 000 − 1 500 000 − 500 000 = 1 000 000 сум, дневная норма 1 000 000 ÷ 12 ≈ 83 333 сум."}},{"@type":"Question","name":"Не вычтется ли обязательный платёж дважды после оплаты?","acceptedAnswer":{"@type":"Answer","text":"Нет. При нажатии «Оплачено» платёж автоматически становится записью о расходе и исчезает из списка; повторяющийся платёж переходит на следующий месяц. Поэтому и в балансе, и в обязательных платежах он учитывается один раз."}},{"@type":"Question","name":"Что, если дата следующего дохода неизвестна?","acceptedAnswer":{"@type":"Answer","text":"Счёт ведётся до конца месяца, и это явно написано на экране. Дату можно добавить позже в разделе «Платежи», а когда придёт доход — указать новую через «Добавить доход»."}},{"@type":"Question","name":"Не потеряются ли мои данные?","acceptedAnswer":{"@type":"Answer","text":"Данные хранятся в браузере, только на этом устройстве. При смене телефона или очистке данных браузера они могут пропасть, поэтому время от времени скачивайте резервную копию в «Настройках». На iPhone установка «Поделиться → На экран «Домой»» тоже помогает сохранить данные."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Повседневная жизнь","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Рузгор — узнайте, сколько можно потратить сегодня","item":"https://kalki.uz/ru/rozgor"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Рузгор — узнайте, сколько можно потратить сегодня","description":"Бесплатное приложение для ежедневных расходов: по текущим деньгам, обязательным платежам и дате дохода показывает, сколько можно потратить сегодня. Без регистрации, работает офлайн.","url":"https://kalki.uz/ru/rozgor","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}}</script>
+<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon"><meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">
+<link rel="alternate" hreflang="uz" href="https://kalki.uz/rozgor" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/rozgor" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/rozgor" data-hreflang-gen="1"></head><body class="v2 typo2 rz-body" data-cat="hayot">
+
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="./#kategoriyalar" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Калькуляторы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a></li><li><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a></li><li><a href="./#cat-hayot" data-tm-uz="Kundalik hayot" data-tm-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a></li></ul></li><li class="has-sub"><a href="hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Документы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Шаблоны</a></li></ul></li><li><a href="blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Статьи</a></li><li class="tm2-fs"><span class="fs-l" data-lf-uz="Shrift o'lchami" data-lf-ru="Размер шрифта">Размер шрифта</span><div class="fs-seg" role="group" aria-label="Shrift o'lchami / Размер шрифта"><button type="button" data-fs="normal" aria-pressed="true" data-lf-uz="Oddiy" data-lf-ru="Обычный">Обычный</button><button type="button" data-fs="big" aria-pressed="false" data-lf-uz="Katta" data-lf-ru="Крупный">Крупный</button></div></li></ul></nav><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" id="langUz" class="on">UZ</button><a id="langCyr" href="/rozgor?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a><button type="button" id="langRu">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+
+<div class="rz-stage"><div class="rz" id="rzApp" role="application" aria-label="Ro'zg'or"></div></div>
+<div class="wrap rz-below"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-hayot">Повседневная жизнь</a><span class="sep">›</span><span class="cur">Рузгор — узнайте, сколько можно потратить сегодня</span></nav></div>
+<header class="pagehead band rz-below"><div class="wrap ct-in"><div class="ct-l"><span class="cat-badge" data-i="cat">Повседневная жизнь</span><h1 data-i="h1">Рузгор — узнайте, сколько можно потратить сегодня</h1><p class="sub" data-i="sub">Смотрите, сколько денег осталось до зарплаты и сколько можно потратить сегодня. Бесплатно, без регистрации.</p></div></div></header>
+<main class="wrap calc-main rz-below"><section class="seo" id="seoBlock"><h2>Что такое Рузгор и как он работает?</h2><p>Рузгор — простое приложение для ежедневных расходов. Вы вводите деньги на руках и на карте, дату следующего дохода и обязательные платежи (кредит, аренда, коммунальные). Приложение считает «свободные деньги», делит их на оставшиеся до дохода дни и показывает, сколько можно потратить сегодня. Для разового расчёта месячного плана есть <a href="oila-byudjet-kalkulyator">калькулятор семейного бюджета</a>, а Рузгор ведётся каждый день.</p><p>Формула открыта: свободные деньги = баланс − обязательные платежи до даты дохода − резерв. Дневная норма = свободные деньги ÷ оставшиеся дни. В течение дня норма не меняется: записали расход — «сегодня ещё можно» уменьшилось; вышли за норму — норма на оставшиеся дни слегка снижается, сэкономили — растёт.</p><p>Всё хранится на вашем телефоне, на сервер ничего не отправляется. Если добавить приложение на главный экран, оно работает и без интернета; резервную копию можно скачать файлом и потом восстановить.</p><h2>Как считается дневная норма?</h2><p>Пример: баланс 3 000 000 сум, резерв 500 000 сум, до дохода платёж за аренду 1 500 000 сум и осталось 12 дней. Свободные деньги 3 000 000 − 1 500 000 − 500 000 = 1 000 000 сум, дневная норма 1 000 000 ÷ 12 ≈ 83 333 сум.</p><h2>Не вычтется ли обязательный платёж дважды после оплаты?</h2><p>Нет. При нажатии «Оплачено» платёж автоматически становится записью о расходе и исчезает из списка; повторяющийся платёж переходит на следующий месяц. Поэтому и в балансе, и в обязательных платежах он учитывается один раз.</p><h2>Что, если дата следующего дохода неизвестна?</h2><p>Счёт ведётся до конца месяца, и это явно написано на экране. Дату можно добавить позже в разделе «Платежи», а когда придёт доход — указать новую через «Добавить доход».</p><h2>Не потеряются ли мои данные?</h2><p>Данные хранятся в браузере, только на этом устройстве. При смене телефона или очистке данных браузера они могут пропасть, поэтому время от времени скачивайте резервную копию в «Настройках». На iPhone установка «Поделиться → На экран «Домой»» тоже помогает сохранить данные.</p></section><div id="fbcall" class="cta-tg"><div class="cta-tx"><div class="cta-h" data-lf-uz="Kalkulyator yoki shablon kerakmi?" data-lf-ru="Нужен калькулятор или шаблон?">Нужен калькулятор или шаблон?</div><div class="cta-d" data-lf-uz="Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz." data-lf-ru="Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.">Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.</div></div><a class="btn btn-gold" href="https://t.me/achchi90">Telegram</a></div>
+<p class="foot-note" data-i="foot">Рузгор — помощник для расчётов: результат — план по введённым вами цифрам, а не фактические траты.</p></main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">Бесплатные калькуляторы и образцы документов для Узбекистана.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Категории</div><ul><li><a href="./#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Стройка и земля</a></li><li><a href="./#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Коммуналка и авто</a></li><li><a href="./#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Юридические</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Документы</div><ul><li><a href="hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Шаблоны</a></li><li><a href="ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Написать заявление</a></li><li><a href="blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Связь</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram-канал</a></li><li><a href="https://t.me/achchi90" data-lf-uz="Aloqa: @achchi90" data-lf-ru="Связь: @achchi90">Связь: @achchi90</a></li><li><a href="hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a></li></ul></div></div><p class="sf2-note" data-lf-uz="Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." data-lf-ru="Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.">Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.</p><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="hamkorlik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Связь: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.">© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.</span></div></div></footer>
+
+<script>
+(function(){
+  var I={"uz": {"h1": "Ro'zg'or — bugun qancha sarflash mumkinligini biling", "sub": "Oylikkacha qancha pul qolganini va bugun qancha sarflasangiz bo'lishini bir qarashda ko'ring. Bepul, ro'yxatdan o'tmasdan.", "bc": "Ro'zg'or", "cat": "Kundalik hayot", "title": "Ro'zg'or — bugun qancha sarflash mumkinligini biling", "desc": "Bepul kundalik xarajat ilovasi: hozirgi pul, majburiy to'lovlar va daromad sanasiga qarab bugun qancha sarflash mumkinligini ko'rsatadi. Ro'yxatdan o'tmasdan, oflayn ishlaydi.", "seo": "<h2>Ro'zg'or nima va u qanday ishlaydi?</h2><p>Ro'zg'or — kundalik xarajatlar uchun oddiy ilova. Qo'lingizdagi va kartangizdagi pulni, keyingi daromad sanasini va majburiy to'lovlarni (kredit, ijara, kommunal) kiritasiz. Ilova shundan «bo'sh pul»ni hisoblab, uni daromadgacha qolgan kunlarga bo'ladi va bugun yana qancha sarflash mumkinligini ko'rsatadi. Oylik rejani bir martalik hisoblash uchun <a href=\"oila-byudjet-kalkulyator\">oilaviy byudjet kalkulyatori</a> bor, Ro'zg'or esa har kuni yuritiladi.</p><p>Formula ochiq: bo'sh pul = balans − daromadgacha to'lanadigan majburiy to'lovlar − zaxira. Kunlik mo'ljal = bo'sh pul ÷ qolgan kunlar. Mo'ljal kun davomida o'zgarmaydi: xarajat yozsangiz «bugun yana mumkin» kamayadi; mo'ljaldan oshsangiz, qolgan kunlarning mo'ljali sal kamayadi, tejasangiz — ko'payadi.</p><p>Hamma narsa telefoningizda saqlanadi, serverga hech narsa yuborilmaydi. Ilovani bosh ekranga qo'shsangiz internetsiz ham ishlaydi, zaxira nusxani fayl qilib yuklab olib, keyin tiklash mumkin.</p><h2>Kunlik mo'ljal qanday hisoblanadi?</h2><p>Misol: balans 3 000 000 so'm, zaxira 500 000 so'm, daromadgacha 1 500 000 so'mlik ijara to'lovi va 12 kun qolgan. Bo'sh pul 3 000 000 − 1 500 000 − 500 000 = 1 000 000 so'm, kunlik mo'ljal 1 000 000 ÷ 12 ≈ 83 333 so'm.</p><h2>Majburiy to'lov to'langanda ikki marta ayirilib ketmaydimi?</h2><p>Yo'q. «To'landi» bosilganda to'lov avtomatik xarajat yozuvi bo'ladi va ro'yxatdan chiqadi; takroriy to'lov keyingi oyga o'tadi. Shuning uchun balansdan ham, majburiy to'lovlardan ham bir marta hisobga olinadi.</p><h2>Keyingi daromad sanasi noma'lum bo'lsa nima bo'ladi?</h2><p>Hisob oy oxirigacha yuritiladi va ekranda shu aniq yoziladi. Sanani keyin «To'lovlar» bo'limida qo'shsangiz bo'ladi, daromad kelganda esa «Tushum qo'shish» orqali yangi sana kiritiladi.</p><h2>Ma'lumotlarim yo'qolib qolmaydimi?</h2><p>Ma'lumot brauzerda, faqat shu qurilmada saqlanadi. Telefonni almashtirsangiz yoki brauzer ma'lumotini tozalasangiz yo'qolishi mumkin, shuning uchun «Sozlamalar»dan vaqti-vaqti bilan zaxira nusxa yuklab oling. iPhone'da ilovani «Ulashish → Bosh ekranga qo'shish» orqali o'rnatish ham ma'lumotni saqlashga yordam beradi.</p>", "foot": "Ro'zg'or — hisob-kitob uchun yordamchi: natija siz kiritgan raqamlarga asoslangan reja, haqiqiy sarfingiz emas."}, "ru": {"h1": "Рузгор — узнайте, сколько можно потратить сегодня", "sub": "Смотрите, сколько денег осталось до зарплаты и сколько можно потратить сегодня. Бесплатно, без регистрации.", "bc": "Рузгор", "cat": "Повседневная жизнь", "title": "Рузгор — узнайте, сколько можно потратить сегодня", "desc": "Бесплатное приложение для ежедневных расходов: по текущим деньгам, обязательным платежам и дате дохода показывает, сколько можно потратить сегодня. Без регистрации, работает офлайн.", "seo": "<h2>Что такое Рузгор и как он работает?</h2><p>Рузгор — простое приложение для ежедневных расходов. Вы вводите деньги на руках и на карте, дату следующего дохода и обязательные платежи (кредит, аренда, коммунальные). Приложение считает «свободные деньги», делит их на оставшиеся до дохода дни и показывает, сколько можно потратить сегодня. Для разового расчёта месячного плана есть <a href=\"oila-byudjet-kalkulyator\">калькулятор семейного бюджета</a>, а Рузгор ведётся каждый день.</p><p>Формула открыта: свободные деньги = баланс − обязательные платежи до даты дохода − резерв. Дневная норма = свободные деньги ÷ оставшиеся дни. В течение дня норма не меняется: записали расход — «сегодня ещё можно» уменьшилось; вышли за норму — норма на оставшиеся дни слегка снижается, сэкономили — растёт.</p><p>Всё хранится на вашем телефоне, на сервер ничего не отправляется. Если добавить приложение на главный экран, оно работает и без интернета; резервную копию можно скачать файлом и потом восстановить.</p><h2>Как считается дневная норма?</h2><p>Пример: баланс 3 000 000 сум, резерв 500 000 сум, до дохода платёж за аренду 1 500 000 сум и осталось 12 дней. Свободные деньги 3 000 000 − 1 500 000 − 500 000 = 1 000 000 сум, дневная норма 1 000 000 ÷ 12 ≈ 83 333 сум.</p><h2>Не вычтется ли обязательный платёж дважды после оплаты?</h2><p>Нет. При нажатии «Оплачено» платёж автоматически становится записью о расходе и исчезает из списка; повторяющийся платёж переходит на следующий месяц. Поэтому и в балансе, и в обязательных платежах он учитывается один раз.</p><h2>Что, если дата следующего дохода неизвестна?</h2><p>Счёт ведётся до конца месяца, и это явно написано на экране. Дату можно добавить позже в разделе «Платежи», а когда придёт доход — указать новую через «Добавить доход».</p><h2>Не потеряются ли мои данные?</h2><p>Данные хранятся в браузере, только на этом устройстве. При смене телефона или очистке данных браузера они могут пропасть, поэтому время от времени скачивайте резервную копию в «Настройках». На iPhone установка «Поделиться → На экран «Домой»» тоже помогает сохранить данные.</p>", "foot": "Рузгор — помощник для расчётов: результат — план по введённым вами цифрам, а не фактические траты."}};
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', $=function(id){return document.getElementById(id)}, t=function(k){return I[lang][k]};
+  function applyLang(){
+    document.documentElement.lang=lang; document.title=t('title');
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(s){var m=document.querySelector(s);if(m)m.setAttribute('content',t('desc'))});
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(s){var m=document.querySelector(s);if(m)m.setAttribute('content',t('title'))});
+    var els=document.querySelectorAll('[data-i]');for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-i');if(I[lang][k]!=null)els[i].textContent=I[lang][k]}
+    $('seoBlock').innerHTML=t('seo');
+  }
+  var lu=$('langUz'),lr=$('langRu');if(lu)lu.addEventListener('click',function(){lang='uz';applyLang()});if(lr)lr.addEventListener('click',function(){lang='ru';applyLang()});
+  applyLang();
+})();
+</script>
+
+
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Повседневная жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>
