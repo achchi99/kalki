@@ -895,6 +895,20 @@
     "uz": "To'lov tartibini tanlang — shartnoma tayyor.",
     "ru": "Выберите порядок оплаты — договор готов."
    }
+  ],
+  "naqd-nasiya-kredit-kalkulyator": [
+   {
+    "uz": "Mahsulotning naqd narxini yozing.",
+    "ru": "Укажите цену товара за наличные."
+   },
+   {
+    "uz": "Nasiya va kredit shartlarini kiriting.",
+    "ru": "Введите условия рассрочки и кредита."
+   },
+   {
+    "uz": "Jami to'lov va nasiyaning haqiqiy yillik stavkasi chiqadi.",
+    "ru": "Увидите итог и реальную годовую ставку рассрочки."
+   }
   ]
  },
  "modes": {
@@ -1104,6 +1118,22 @@
      {
       "uz": "Qurbonlik variantlarini narxlari bilan solishtiring.",
       "ru": "Сравните варианты курбана по цене."
+     }
+    ]
+   }
+  ],
+  "naqd-nasiya-kredit-kalkulyator": [
+   {
+    "sel": ".seg",
+    "idx": 0,
+    "tips": [
+     {
+      "uz": "Oylik to'lov summasini bilsangiz — foizni o'zimiz topamiz.",
+      "ru": "Знаете сумму платежа — ставку найдём сами."
+     },
+     {
+      "uz": "Ustama foizini bilsangiz — oylik to'lovni o'zimiz hisoblaymiz.",
+      "ru": "Знаете наценку — платёж посчитаем сами."
      }
     ]
    }

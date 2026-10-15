@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '166ba5c9';   /* sw-version:auto */
+const SW_VERSION = '08bd4c4c';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -40,6 +40,7 @@ const ASSETS = [
   '/assets/gaz-tarif.js',
   '/assets/tier-bar.js',
   '/assets/prognoz.js',
+  '/assets/nasiya-hisob.js',
   '/assets/mode-tip.js',
   '/data/qadamlar.json',
   '/assets/konditsioner.js',
@@ -91,6 +92,8 @@ const ASSETS = [
   '/ru/elektr-xarajat-kalkulyator',
   '/gaz-xarajat-kalkulyator',
   '/ru/gaz-xarajat-kalkulyator',
+  '/naqd-nasiya-kredit-kalkulyator',
+  '/ru/naqd-nasiya-kredit-kalkulyator',
   '/gisht-kalkulyator',
   '/ru/gisht-kalkulyator',
   '/grant-ololmadim',

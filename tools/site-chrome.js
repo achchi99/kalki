@@ -76,6 +76,7 @@ const COPY_HTML = '<div id="copyline" style="margin-top:12px;font-size:var(--t-x
    sahifaning o'zi ro'yxatdan chiqarib tashlanadi. */
 const XNAV_LINKS = [
   ['oila-byudjet-kalkulyator', 'Oila byudjeti / Семейный бюджет'],
+  ['naqd-nasiya-kredit-kalkulyator', 'Naqd, nasiya yoki kredit / Наличные, рассрочка или кредит'],
   ['kredit-kalkulyator', 'Kredit / Кредит'],
   ['kredit-limit-kalkulyator', 'Kredit limit / Кредитный лимит'],
   ['ipoteka-kalkulyator', 'Ipoteka / Ипотека'],
@@ -185,7 +186,7 @@ function headerV2Html(f) {
    Havolalar soni XNAV_LINKS bilan bir xil (SEO uchun hech biri kamaymaydi); UZ/RU yorliqlar aralash emas —
    har havolada data-lf-uz/ru (matnni assets/footer-lang.js joriy tilga qo'yadi). */
 const XN_GROUPS = [
-  ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
+  ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'naqd-nasiya-kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
   ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
   ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'gaz-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
   ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],

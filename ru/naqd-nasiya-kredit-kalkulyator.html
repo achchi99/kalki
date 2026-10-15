@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}
+try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classList.add('fs-big');}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/calc-v2.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Калькулятор: наличные, рассрочка или кредит — что выгоднее?</title>
+<link rel="canonical" href="https://kalki.uz/ru/naqd-nasiya-kredit-kalkulyator">
+<meta name="description" content="Введите цену товара, условия рассрочки и кредита — сразу увидите итоговую сумму, разницу с ценой за наличные и реальную годовую ставку рассрочки. Бесплатно.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body[data-cat="moliya"]{--cat:#0E3B2E;--cat-deep:#092A21;--accent:#D99A2B;--cat-soft:#EAF3EE;--cat-text:#BFD9CC}
+body[data-cat="qurilish"]{--cat:#8C3B2A;--cat-deep:#6B2C1F;--accent:#D9A96B;--cat-soft:#F6EDE8;--cat-text:#E8C9BE}
+body[data-cat="kommunal"]{--cat:#1D4E6B;--cat-deep:#143A52;--accent:#6FB3D9;--cat-soft:#E8F1F6;--cat-text:#BBD6E6}
+body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:1.625rem;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:0.9063rem;color:var(--cat-text);max-width:42ch}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:-44px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:1.1875rem;font-weight:700;color:var(--ink);padding:13px 14px;min-width:0}
+.unit{font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);padding:0 14px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:0.875rem;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:var(--t-xs,14px);color:var(--muted);margin-top:6px}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:1.0625rem;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.calc-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:2rem;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15;word-break:break-word}
+.big-figure .lbl{font-size:var(--t-xs,14px);color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:0.9063rem;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:0.875rem;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seo{margin-top:36px;font-size:0.9375rem;color:#33403A}
+.seo h2{font-size:1.125rem;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-xs,14px);color:var(--muted)}
+</style>
+
+<style id="nasiyacss">
+.nk-ex{margin:0 0 16px;padding:10px 12px;border-radius:10px;background:var(--cat-soft);color:var(--ink);font-size:var(--t-s,15px);font-weight:600;line-height:1.45}
+.nk-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:6px}
+@media (min-width:760px){.nk-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}}
+.nk-box{border:1.5px solid var(--line);border-radius:14px;padding:16px 16px 4px;background:#FBFCFB;min-width:0}
+.nk-box h2{font-size:var(--t-ml,18px);font-weight:800;color:var(--ink);margin:0 0 12px}
+.nk-2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.nk-2>*{min-width:0}
+@media (max-width:380px){.nk-2{grid-template-columns:minmax(0,1fr)}}
+.nk-box .field{margin-bottom:14px}
+.nk-err{margin:0 0 12px;padding:12px 14px;border-radius:12px;background:#FDECEA;border:1px solid #F0B8B0;color:#7A1F14;font-size:var(--t-s,15px);font-weight:600;line-height:1.45}
+.nk-res{margin-top:26px}
+.nk-res[hidden]{display:none}
+.nk-res>h2{font-size:var(--t-l,20px);font-weight:800;margin:0 0 12px}
+.nk-verdict{background:var(--cat);color:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.nk-verdict .vt1{font-size:var(--t-l,20px);font-weight:800;line-height:1.3}
+.nk-verdict .vt2{margin-top:8px;font-size:var(--t-m,17px);font-weight:600;line-height:1.4;color:var(--t-muted-dark,#D2E0D8)}
+.nk-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.nk-cards{grid-template-columns:minmax(0,1fr)}}
+.nk-card{position:relative;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+.nk-card.best{border-color:#1E7A4A;box-shadow:0 0 0 3px rgba(30,122,74,.14)}
+.nk-card h3{font-size:var(--t-m,17px);font-weight:800;color:var(--ink);margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nk-badge{display:none;background:#1E7A4A;color:#fff;font-size:var(--t-xs,14px);font-weight:800;border-radius:999px;padding:2px 10px;letter-spacing:.02em}
+.nk-card.best .nk-badge{display:inline-block}
+.nk-total{font-size:1.75rem;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.15;word-break:break-word}
+.nk-card.best .nk-total{color:#1E7A4A}
+.nk-diff{margin-top:4px;font-size:var(--t-s,15px);font-weight:700;color:var(--t-muted,#3F4F46)}
+.nk-rows{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.nk-row{display:flex;justify-content:space-between;gap:10px;font-size:var(--t-s,15px);padding:4px 0}
+.nk-row .k{color:var(--t-muted,#3F4F46);font-weight:600}
+.nk-row .v{font-weight:800;text-align:right}
+.nk-rate{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--cat-soft)}
+.nk-rate .big{font-size:var(--t-ml,18px);font-weight:800;color:var(--cat)}
+.nk-rate .sm{margin-top:2px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600;line-height:1.4}
+.nk-card .nk-cerr{margin-top:10px}
+.nk-bars{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.nk-bars h3{font-size:var(--t-m,17px);font-weight:800;margin:0 0 10px}
+.nk-bar{display:grid;grid-template-columns:84px minmax(0,1fr);gap:4px 10px;align-items:center;margin-bottom:8px}
+.nk-bar .bl{font-size:var(--t-s,15px);font-weight:700;color:var(--ink)}
+.nk-bar .trk{height:14px;background:#EEF2EF;border-radius:7px;overflow:hidden}
+.nk-bar .fil{display:block;height:100%;border-radius:7px;background:var(--cat)}
+.nk-bar.best .fil{background:#1E7A4A}
+.nk-bar .bv{grid-column:2;font-size:var(--t-xs,14px);font-weight:700;color:var(--t-muted,#3F4F46)}
+.nk-sched{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.nk-sched summary{cursor:pointer;list-style:none;padding:14px 16px;font-size:var(--t-m,17px);font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.nk-sched summary::-webkit-details-marker{display:none}
+.nk-sched summary::after{content:"+";font-weight:800;color:var(--cat);font-size:1.25rem}
+.nk-sched[open] summary::after{content:"−"}
+.nk-tw{overflow-x:auto;padding:0 16px 14px}
+.nk-tbl{width:100%;min-width:420px;border-collapse:collapse;font-size:var(--t-xs,14px);font-variant-numeric:tabular-nums}
+.nk-tbl th{text-align:right;font-weight:800;color:var(--t-muted,#3F4F46);padding:6px 6px;border-bottom:1.5px solid var(--line)}
+.nk-tbl td{text-align:right;padding:6px 6px;border-bottom:1px solid #EEF2EF}
+.nk-tbl th:first-child,.nk-tbl td:first-child{text-align:left}
+.nk-tbl tfoot td{font-weight:800;border-top:1.5px solid var(--line)}
+.nk-actions{margin-top:14px}
+.nk-actions button{border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:var(--t-s,15px);font-weight:700;color:var(--cat);padding:12px 20px;border-radius:10px;cursor:pointer;min-height:44px}
+.nk-actions button:active{background:var(--cat-soft)}
+</style>
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script>
+<meta property="og:title" content="Калькулятор: наличные, рассрочка или кредит — что выгоднее?">
+<meta property="og:description" content="Введите цену товара, условия рассрочки и кредита — сразу увидите итоговую сумму, разницу с ценой за наличные и реальную годовую ставку рассрочки. Бесплатно.">
+<meta property="og:url" content="https://kalki.uz/ru/naqd-nasiya-kredit-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/naqd-nasiya-kredit-kalkulyator.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Naqd, nasiya yoki kredit — qaysi biri arzon?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/naqd-nasiya-kredit-kalkulyator.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Калькулятор: наличные, рассрочка или кредит — что выгоднее?">
+<meta name="twitter:description" content="Введите цену товара, условия рассрочки и кредита — сразу увидите итоговую сумму, разницу с ценой за наличные и реальную годовую ставку рассрочки. Бесплатно.">
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:var(--t-xs,14px);font-weight:600;color:var(--t-muted,#3F4F46);margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:var(--t-muted,#3F4F46)}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Naqd, nasiya yoki kredit kalkulyatori — mahsulot narxi va ikkala variantning shartlarini kiriting: jami to'lov, naqd narxdan farq va nasiyaning haqiqiy yillik stavkasi (ustama foizi aslida qanchaga teng) hisoblanadi.","sources":[]},"ru":{"text":"Калькулятор «наличные, рассрочка или кредит» — введите цену товара и условия обоих вариантов: рассчитаем итоговую сумму, разницу с наличной ценой и реальную годовую ставку рассрочки (чему на самом деле равна наценка).","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:0.9063rem;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Почему наценка и годовая ставка — разные числа?","acceptedAnswer":{"@type":"Answer","text":"«Наценка 30%» в рассрочке — обычно процент, который добавляется один раз на весь срок. Кредит же считается по годовой ставке, и проценты уменьшаются вместе с остатком долга. Поэтому два числа нельзя сравнивать напрямую. Пример: товар за 6 000 000 сум в рассрочку на 12 месяцев с наценкой 30% обойдётся в 7 800 000 сум, то есть по 650 000 сум в месяц. Но долг уменьшается каждый месяц: средний остаток за год — не 6 000 000, а почти вдвое меньше. Если записать тот же поток платежей как кредит, реальная годовая ставка получится около 51% (примерно 4,3% в месяц). Калькулятор находит именно эту реальную ставку: подбирает месячный процент, при котором платежи равны начальному долгу. Для кредита строится аннуитетный или дифференцированный график — формулы те же, что в кредитном калькуляторе; разовая комиссия добавляется к итоговой сумме. Результат справочный: точные условия — в договоре."}},{"@type":"Question","name":"Как считается процент по рассрочке?","acceptedAnswer":{"@type":"Answer","text":"Чаще всего наценка начисляется на финансируемую сумму (цена минус первоначальный взнос) на весь срок и делится на число месяцев. Например: 6 000 000 сум, наценка 30%, 12 месяцев — (6 000 000 × 1,3) / 12 = 650 000 сум. Если в договоре наценка указана годовая или месячная, выберите режим «Известен платёж» и введите точную сумму платежа."}},{"@type":"Question","name":"Рассрочка 0% — это действительно бесплатно?","acceptedAnswer":{"@type":"Answer","text":"Если итоговая сумма рассрочки равна цене за наличные — да, процентов нет, реальная ставка 0%. Но порой в «0%» рассрочке цена выше наличной или добавляются другие платежи — за услугу, страховку. Сравните цену за наличные с итогом рассрочки: если разница нулевая, рассрочка бесплатна."}},{"@type":"Question","name":"Кредит или рассрочка — что выгоднее?","acceptedAnswer":{"@type":"Answer","text":"Зависит от условий — единого ответа нет. Введите в калькулятор условия обоих предложенных вам вариантов: итоговая сумма и разница с ценой за наличные появятся в сумах, самый дешёвый вариант отмечен зелёным. Перед займом проверьте, выдержит ли семейный бюджет ежемесячный платёж."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Финансы","item":"https://kalki.uz/#cat-moliya"},{"@type":"ListItem","position":3,"name":"Наличные, рассрочка или кредит — что выгоднее?","item":"https://kalki.uz/ru/naqd-nasiya-kredit-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Наличные, рассрочка или кредит — что выгоднее?","description":"Введите цену товара, условия рассрочки и кредита — сразу увидите итоговую сумму, разницу с ценой за наличные и реальную годовую ставку рассрочки. Бесплатно.","url":"https://kalki.uz/ru/naqd-nasiya-kredit-kalkulyator","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script>
+<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon"><meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">
+<link rel="alternate" hreflang="uz" href="https://kalki.uz/naqd-nasiya-kredit-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/naqd-nasiya-kredit-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/naqd-nasiya-kredit-kalkulyator" data-hreflang-gen="1"></head><body class="v2 typo2" data-cat="moliya">
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="./#kategoriyalar" class="tm-on" aria-current="page" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Калькуляторы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a></li><li><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a></li><li><a href="./#cat-hayot" data-tm-uz="Kundalik hayot" data-tm-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a></li></ul></li><li class="has-sub"><a href="hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Документы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Шаблоны</a></li></ul></li><li><a href="blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Статьи</a></li><li class="tm2-fs"><span class="fs-l" data-lf-uz="Shrift o'lchami" data-lf-ru="Размер шрифта">Размер шрифта</span><div class="fs-seg" role="group" aria-label="Shrift o'lchami / Размер шрифта"><button type="button" data-fs="normal" aria-pressed="true" data-lf-uz="Oddiy" data-lf-ru="Обычный">Обычный</button><button type="button" data-fs="big" aria-pressed="false" data-lf-uz="Katta" data-lf-ru="Крупный">Крупный</button></div></li></ul></nav><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" id="langUz" class="">UZ</button><a id="langCyr" href="/naqd-nasiya-kredit-kalkulyator?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a><button type="button" id="langRu" class="on">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-moliya">Финансы</a><span class="sep">›</span><span class="cur">Наличные, рассрочка или кредит — что выгоднее?</span></nav></div>
+<header class="pagehead band">
+  <div class="wrap ct-in">
+    <div class="ct-l">
+      <span class="cat-badge" data-i="cat">Финансы</span>
+      <h1 data-i="h1">Наличные, рассрочка или кредит — что выгоднее?</h1>
+      <p class="sub" data-i="sub">Введите цену товара и условия рассрочки и кредита — покажем итоговую переплату и реальную годовую ставку рассрочки.</p>
+    </div>
+    <div class="ab-card"><div class="ab-over"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-info"></use></svg><span data-lf-uz="Qisqacha" data-lf-ru="Кратко">Кратко</span></div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор «наличные, рассрочка или кредит» — введите цену товара и условия обоих вариантов: рассчитаем итоговую сумму, разницу с наличной ценой и реальную годовую ставку рассрочки (чему на самом деле равна наценка).</p></div></div>
+  </div>
+</header>
+
+
+<main class="wrap calc-main">
+<ol class="qadamlar" aria-label="3 qadamda">
+<li data-lf-uz="Mahsulotning naqd narxini yozing." data-lf-ru="Укажите цену товара за наличные.">Укажите цену товара за наличные.</li>
+<li data-lf-uz="Nasiya va kredit shartlarini kiriting." data-lf-ru="Введите условия рассрочки и кредита.">Введите условия рассрочки и кредита.</li>
+<li data-lf-uz="Jami to'lov va nasiyaning haqiqiy yillik stavkasi chiqadi." data-lf-ru="Увидите итог и реальную годовую ставку рассрочки.">Увидите итог и реальную годовую ставку рассрочки.</li>
+</ol>
+<section class="form-card">
+<p class="nk-ex" data-i="exNote">Цифры ниже — пример. Введите свою цену и свои условия.</p>
+<div class="field" style="margin-bottom:6px"><label for="price" data-i="lPrice">Цена товара за наличные</label><div class="input-shell"><input type="text" id="price" inputmode="numeric" value="6 000 000" autocomplete="off"><span class="unit" data-i="uSum">сум</span></div><p class="hint" data-i="hPrice">Цена, которую просят в магазине при оплате наличными.</p></div>
+<div class="nk-cols">
+<div class="nk-box" id="boxNasiya">
+<h2 data-i="secNasiya">Рассрочка</h2>
+<div class="field"><div class="seg" id="segN">
+<button type="button" id="mPay" class="on" data-nmode="pay" data-i="segPay">Известен платёж</button>
+<button type="button" id="mMarkup" data-nmode="markup" data-i="segMarkup">Известна наценка</button></div></div>
+<div id="nasErr" class="nk-err" hidden=""></div>
+<div class="field" id="fldMonthly"><label for="nMonthly" data-i="lNMonthly">Платёж в месяц</label><div class="input-shell"><input type="text" id="nMonthly" inputmode="numeric" value="650 000" autocomplete="off"><span class="unit" data-i="uSum">сум</span></div></div><div class="field" id="fldMarkup" hidden=""><label for="nMarkup" data-i="lNMarkup">Наценка</label><div class="input-shell"><input type="text" id="nMarkup" inputmode="decimal" value="30" autocomplete="off"><span class="unit">%</span></div><p class="hint" data-i="hNMarkup">На весь срок (не годовая). Например, 30% — к сумме добавляется 30%.</p></div>
+<div class="nk-2"><div class="field"><label for="nDown" data-i="lNDown">Первоначальный взнос</label><div class="input-shell"><input type="text" id="nDown" inputmode="numeric" value="0" autocomplete="off"><span class="unit" data-i="uSum">сум</span></div></div><div class="field"><label for="nTerm" data-i="lNTerm">Срок</label><div class="input-shell"><input type="text" id="nTerm" inputmode="numeric" value="12" autocomplete="off"><span class="unit" data-i="uMonth">мес.</span></div></div></div>
+
+</div>
+<div class="nk-box" id="boxKredit">
+<h2 data-i="secKredit">Банковский кредит</h2>
+<div id="kreErr" class="nk-err" hidden=""></div>
+<div class="nk-2"><div class="field"><label for="kRate" data-i="lKRate">Годовая ставка</label><div class="input-shell"><input type="text" id="kRate" inputmode="decimal" value="28" autocomplete="off"><span class="unit">%</span></div></div><div class="field"><label for="kTerm" data-i="lKTerm">Срок</label><div class="input-shell"><input type="text" id="kTerm" inputmode="numeric" value="12" autocomplete="off"><span class="unit" data-i="uMonth">мес.</span></div></div></div>
+<div class="field"><label for="kDown" data-i="lKDown">Первоначальный взнос</label><div class="input-shell"><input type="text" id="kDown" inputmode="numeric" value="0" autocomplete="off"><span class="unit" data-i="uSum">сум</span></div></div>
+<div class="field"><label data-i="lKComm">Разовая комиссия (по желанию)</label>
+<div class="input-shell"><input type="text" id="kComm" inputmode="decimal" value="0" autocomplete="off"><span class="unit" id="kCommUnit">%</span></div>
+<div class="seg" style="margin-top:8px" id="segC"><button type="button" id="cPct" class="on" data-ckind="pct" data-i="segPct">%</button><button type="button" id="cSum" data-ckind="sum" data-i="segSum">сум</button></div>
+<p class="hint" data-i="hKComm">Платится один раз при выдаче кредита. Если пусто — 0.</p></div>
+<div class="field"><label data-i="lKType">Тип платежа</label><div class="seg" id="segT"><button type="button" id="tAnn" class="on" data-ctype="ann" data-i="segAnn">Аннуитет</button><button type="button" id="tDiff" data-ctype="diff" data-i="segDiff">Дифференцированный</button></div>
+<p class="hint" id="kTypeHint">Каждый месяц платёж одинаковый.</p></div>
+</div>
+</div>
+<button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Рассчитать</button>
+</section>
+<section class="nk-res" id="res" aria-live="polite">
+<h2 data-i="resH">Результат</h2>
+<div class="nk-verdict" id="verdict"><div class="vt1" id="v1">Рассрочка дороже кредита на 851&nbsp;569 сум.</div><div class="vt2" id="v2">Эта рассрочка равна кредиту под ~51% годовых.</div></div>
+<div class="nk-cards" id="cards"><div class="nk-card naqd best"><h3>Наличные<span class="nk-badge">Дешевле всего</span></h3><div class="nk-total">6&nbsp;000&nbsp;000 сум</div><div class="nk-diff">равно цене за наличные</div><div class="nk-rows"><div class="nk-row"><span class="k">Платите сразу</span><span class="v">6&nbsp;000&nbsp;000 сум</span></div></div></div><div class="nk-card nasiya"><h3>Рассрочка<span class="nk-badge">Дешевле всего</span></h3><div class="nk-total">7&nbsp;800&nbsp;000 сум</div><div class="nk-diff">+1&nbsp;800&nbsp;000 сум к цене за наличные</div><div class="nk-rows"><div class="nk-row"><span class="k">Платёж в месяц</span><span class="v">650&nbsp;000 сум × 12</span></div></div><div class="nk-rate"><div class="sm">Реальная годовая ставка</div><div class="big">~51,4% <span style="font-size:var(--t-xs,14px);font-weight:700">(номинальная)</span></div><div class="sm">эффективная ~65,5% · Ставка, при которой все платежи рассрочки равны начальному долгу.</div></div></div><div class="nk-card kredit"><h3>Кредит<span class="nk-badge">Дешевле всего</span></h3><div class="nk-total">6&nbsp;948&nbsp;431 сум</div><div class="nk-diff">+948&nbsp;431 сум к цене за наличные</div><div class="nk-rows"><div class="nk-row"><span class="k">Платёж в месяц</span><span class="v">579&nbsp;036 сум × 12</span></div></div><div class="nk-rate"><div class="sm">Реальная годовая ставка</div><div class="big">~28% <span style="font-size:var(--t-xs,14px);font-weight:700">(номинальная)</span></div><div class="sm">эффективная ~31,9% · Реальная годовая ставка с учётом комиссии.</div></div></div></div>
+<div class="nk-bars" id="bars"><h3 data-i="barsH">Сравнение итоговых сумм</h3><div id="barRows"><div class="nk-bar best"><span class="bl">Наличные</span><span class="trk"><span class="fil" style="width:76.9%"></span></span><span class="bv">6&nbsp;000&nbsp;000 сум</span></div><div class="nk-bar"><span class="bl">Рассрочка</span><span class="trk"><span class="fil" style="width:100.0%"></span></span><span class="bv">7&nbsp;800&nbsp;000 сум</span></div><div class="nk-bar"><span class="bl">Кредит</span><span class="trk"><span class="fil" style="width:89.1%"></span></span><span class="bv">6&nbsp;948&nbsp;431 сум</span></div></div></div>
+<details class="nk-sched" id="schedN"><summary data-i="schedNasiya">График платежей по рассрочке</summary><div class="nk-tw" id="tblN"><table class="nk-tbl"><thead><tr><th>Мес.</th><th>Платёж</th><th>Основной долг</th><th>Проценты</th><th>Остаток</th></tr></thead><tbody><tr><td>1</td><td>650&nbsp;000</td><td>392&nbsp;787</td><td>257&nbsp;213</td><td>5&nbsp;607&nbsp;213</td></tr><tr><td>2</td><td>650&nbsp;000</td><td>409&nbsp;625</td><td>240&nbsp;375</td><td>5&nbsp;197&nbsp;588</td></tr><tr><td>3</td><td>650&nbsp;000</td><td>427&nbsp;185</td><td>222&nbsp;815</td><td>4&nbsp;770&nbsp;402</td></tr><tr><td>4</td><td>650&nbsp;000</td><td>445&nbsp;498</td><td>204&nbsp;502</td><td>4&nbsp;324&nbsp;904</td></tr><tr><td>5</td><td>650&nbsp;000</td><td>464&nbsp;596</td><td>185&nbsp;404</td><td>3&nbsp;860&nbsp;308</td></tr><tr><td>6</td><td>650&nbsp;000</td><td>484&nbsp;513</td><td>165&nbsp;487</td><td>3&nbsp;375&nbsp;794</td></tr><tr><td>7</td><td>650&nbsp;000</td><td>505&nbsp;284</td><td>144&nbsp;716</td><td>2&nbsp;870&nbsp;511</td></tr><tr><td>8</td><td>650&nbsp;000</td><td>526&nbsp;945</td><td>123&nbsp;055</td><td>2&nbsp;343&nbsp;566</td></tr><tr><td>9</td><td>650&nbsp;000</td><td>549&nbsp;534</td><td>100&nbsp;466</td><td>1&nbsp;794&nbsp;032</td></tr><tr><td>10</td><td>650&nbsp;000</td><td>573&nbsp;092</td><td>76&nbsp;908</td><td>1&nbsp;220&nbsp;940</td></tr><tr><td>11</td><td>650&nbsp;000</td><td>597&nbsp;660</td><td>52&nbsp;340</td><td>623&nbsp;281</td></tr><tr><td>12</td><td>650&nbsp;000</td><td>623&nbsp;281</td><td>26&nbsp;719</td><td>0</td></tr></tbody><tfoot><tr><td>Итого</td><td>7&nbsp;800&nbsp;000</td><td>6&nbsp;000&nbsp;000</td><td>1&nbsp;800&nbsp;000</td><td></td></tr></tfoot></table></div></details>
+<details class="nk-sched" id="schedK"><summary data-i="schedKredit">График платежей по кредиту</summary><div class="nk-tw" id="tblK"><table class="nk-tbl"><thead><tr><th>Мес.</th><th>Платёж</th><th>Основной долг</th><th>Проценты</th><th>Остаток</th></tr></thead><tbody><tr><td>1</td><td>579&nbsp;036</td><td>439&nbsp;036</td><td>140&nbsp;000</td><td>5&nbsp;560&nbsp;964</td></tr><tr><td>2</td><td>579&nbsp;036</td><td>449&nbsp;280</td><td>129&nbsp;756</td><td>5&nbsp;111&nbsp;684</td></tr><tr><td>3</td><td>579&nbsp;036</td><td>459&nbsp;763</td><td>119&nbsp;273</td><td>4&nbsp;651&nbsp;921</td></tr><tr><td>4</td><td>579&nbsp;036</td><td>470&nbsp;491</td><td>108&nbsp;545</td><td>4&nbsp;181&nbsp;430</td></tr><tr><td>5</td><td>579&nbsp;036</td><td>481&nbsp;469</td><td>97&nbsp;567</td><td>3&nbsp;699&nbsp;960</td></tr><tr><td>6</td><td>579&nbsp;036</td><td>492&nbsp;704</td><td>86&nbsp;332</td><td>3&nbsp;207&nbsp;257</td></tr><tr><td>7</td><td>579&nbsp;036</td><td>504&nbsp;200</td><td>74&nbsp;836</td><td>2&nbsp;703&nbsp;057</td></tr><tr><td>8</td><td>579&nbsp;036</td><td>515&nbsp;965</td><td>63&nbsp;071</td><td>2&nbsp;187&nbsp;092</td></tr><tr><td>9</td><td>579&nbsp;036</td><td>528&nbsp;004</td><td>51&nbsp;032</td><td>1&nbsp;659&nbsp;088</td></tr><tr><td>10</td><td>579&nbsp;036</td><td>540&nbsp;324</td><td>38&nbsp;712</td><td>1&nbsp;118&nbsp;765</td></tr><tr><td>11</td><td>579&nbsp;036</td><td>552&nbsp;931</td><td>26&nbsp;105</td><td>565&nbsp;833</td></tr><tr><td>12</td><td>579&nbsp;036</td><td>565&nbsp;833</td><td>13&nbsp;203</td><td>0</td></tr></tbody><tfoot><tr><td>Итого</td><td>6&nbsp;948&nbsp;431</td><td>6&nbsp;000&nbsp;000</td><td>948&nbsp;431</td><td></td></tr></tfoot></table></div></details>
+<div class="nk-actions noprint"><button type="button" id="shareBtn" data-i="btnShare">Поделиться</button></div>
+</section>
+
+<div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:var(--t-xs,14px);line-height:1.45;color:var(--t-muted,#3F4F46);font-weight:600">Данные по состоянию на август 2026 года</div><section class="seo" id="seoBlock"><h2>Почему наценка и годовая ставка — разные числа?</h2><p>«Наценка 30%» в рассрочке — обычно процент, который добавляется один раз на весь срок. Кредит же считается по годовой ставке, и проценты уменьшаются вместе с остатком долга. Поэтому два числа нельзя сравнивать напрямую.</p><p>Пример: товар за 6 000 000 сум в рассрочку на 12 месяцев с наценкой 30% обойдётся в 7 800 000 сум, то есть по 650 000 сум в месяц. Но долг уменьшается каждый месяц: средний остаток за год — не 6 000 000, а почти вдвое меньше. Если записать тот же поток платежей как кредит, реальная годовая ставка получится около 51% (примерно 4,3% в месяц).</p><p>Калькулятор находит именно эту реальную ставку: подбирает месячный процент, при котором платежи равны начальному долгу. Для кредита строится аннуитетный или дифференцированный график — формулы те же, что в <a href="kredit-kalkulyator">кредитном калькуляторе</a>; разовая комиссия добавляется к итоговой сумме. Результат справочный: точные условия — в договоре.</p><h2>Как считается процент по рассрочке?</h2><p>Чаще всего наценка начисляется на финансируемую сумму (цена минус первоначальный взнос) на весь срок и делится на число месяцев. Например: 6 000 000 сум, наценка 30%, 12 месяцев — (6 000 000 × 1,3) / 12 = 650 000 сум. Если в договоре наценка указана годовая или месячная, выберите режим «Известен платёж» и введите точную сумму платежа.</p><h2>Рассрочка 0% — это действительно бесплатно?</h2><p>Если итоговая сумма рассрочки равна цене за наличные — да, процентов нет, реальная ставка 0%. Но порой в «0%» рассрочке цена выше наличной или добавляются другие платежи — за услугу, страховку. Сравните цену за наличные с итогом рассрочки: если разница нулевая, рассрочка бесплатна.</p><h2>Кредит или рассрочка — что выгоднее?</h2><p>Зависит от условий — единого ответа нет. Введите в калькулятор условия обоих предложенных вам вариантов: итоговая сумма и разница с ценой за наличные появятся в сумах, самый дешёвый вариант отмечен зелёным. Перед займом проверьте, выдержит ли <a href="oila-byudjet-kalkulyator">семейный бюджет</a> ежемесячный платёж.</p></section>
+<section class="section" id="related"><div class="section-h"><div><span class="over" data-lf-uz="Shu kategoriyadan" data-lf-ru="Из этой категории">Из этой категории</span><h2 id="relTitle">Похожие калькуляторы</h2></div></div><div class="grid g3"><a class="k-card" href="kredit-kalkulyator"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-credit-card"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Kredit kalkulyatori" data-lf-ru="Кредитный калькулятор">Кредитный калькулятор</span><span class="k-desc" data-lf-uz="Oylik to'lov, annuitet va differensial jadval" data-lf-ru="Ежемесячный платёж, аннуитет и график">Ежемесячный платёж, аннуитет и график</span></span></a><a class="k-card" href="ipoteka-kalkulyator"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-home"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Ipoteka kalkulyatori" data-lf-ru="Ипотечный калькулятор">Ипотечный калькулятор</span><span class="k-desc" data-lf-uz="Boshlang'ich to'lov, oylik to'lov, tavsiya daromad" data-lf-ru="Взнос, платёж, рекомендуемый доход">Взнос, платёж, рекомендуемый доход</span></span></a><a class="k-card" href="oila-byudjet-kalkulyator"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-wallet"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Oilaviy byudjet" data-lf-ru="Семейный бюджет">Семейный бюджет</span><span class="k-desc" data-lf-uz="Daromad, bolalar, oziq-ovqat savati va jamg'arma" data-lf-ru="Доходы, дети, продуктовая корзина и накопления">Доходы, дети, продуктовая корзина и накопления</span></span></a><a class="k-card" href="kredit-limit-kalkulyator"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-bar-chart"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Kredit limit kalkulyatori" data-lf-ru="Кредитный лимит">Кредитный лимит</span><span class="k-desc" data-lf-uz="Daromadingizga ko'ra bank qancha kredit berishi mumkin" data-lf-ru="Сколько кредита даст банк — по вашему доходу">Сколько кредита даст банк — по вашему доходу</span></span></a><a class="k-card" href="omonat-kalkulyator"><span class="k-ico"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-landmark"></use></svg></span><span class="k-body"><span class="k-name" data-lf-uz="Omonat kalkulyatori" data-lf-ru="Депозитный калькулятор">Депозитный калькулятор</span><span class="k-desc" data-lf-uz="Depozit daromadi, kapitalizatsiya, to'ldirish" data-lf-ru="Доход, капитализация, пополнение">Доход, капитализация, пополнение</span></span></a></div></section>
+<div id="fbcall" class="cta-tg"><div class="cta-tx"><div class="cta-h" data-lf-uz="Kalkulyator yoki shablon kerakmi?" data-lf-ru="Нужен калькулятор или шаблон?">Нужен калькулятор или шаблон?</div><div class="cta-d" data-lf-uz="Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz." data-lf-ru="Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.">Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.</div></div><a class="btn btn-gold" href="https://t.me/achchi90">Telegram</a></div>
+<p class="foot-note" data-i="foot">Расчёт носит справочный характер. Точные условия указаны в договоре.</p></main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">Бесплатные калькуляторы и образцы документов для Узбекистана.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Категории</div><ul><li><a href="./#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Стройка и земля</a></li><li><a href="./#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Коммуналка и авто</a></li><li><a href="./#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Юридические</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Документы</div><ul><li><a href="hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Шаблоны</a></li><li><a href="ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Написать заявление</a></li><li><a href="blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Связь</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram-канал</a></li><li><a href="https://t.me/achchi90" data-lf-uz="Aloqa: @achchi90" data-lf-ru="Связь: @achchi90">Связь: @achchi90</a></li><li><a href="hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a></li></ul></div></div><p class="sf2-note" data-lf-uz="Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." data-lf-ru="Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.">Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.</p><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="hamkorlik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Связь: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Achchi loyihasi. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — проект Achchi. Все права защищены.">© 2026 Kalki.uz — проект Achchi. Все права защищены.</span></div></div></footer>
+<script src="/assets/nasiya-hisob.js"></script>
+<script>
+(function(){
+  var I={
+ "uz": {
+  "brand": "Kalki.uz",
+  "cat": "Moliya",
+  "h1": "Naqd, nasiya yoki kredit — qaysi biri arzon?",
+  "sub": "Mahsulot narxini va nasiya hamda kredit shartlarini kiriting — jami to'lov va nasiyaning haqiqiy yillik stavkasi chiqadi.",
+  "bcName": "Naqd, nasiya yoki kredit",
+  "title": "Naqd, nasiya yoki kredit kalkulyatori — qaysi biri arzon?",
+  "desc": "Mahsulot narxini, nasiya va kredit shartlarini kiriting — jami to'lov, naqd narxdan farq va nasiyaning haqiqiy yillik stavkasi darrov chiqadi. Bepul.",
+  "abText": "Naqd, nasiya yoki kredit kalkulyatori — mahsulot narxi va ikkala variantning shartlarini kiriting: jami to'lov, naqd narxdan farq va nasiyaning haqiqiy yillik stavkasi (ustama foizi aslida qanchaga teng) hisoblanadi.",
+  "exNote": "Quyidagi raqamlar — misol. O'zingizning narx va shartlaringizni yozing.",
+  "lPrice": "Mahsulotning naqd narxi",
+  "hPrice": "Do'konda naqd to'laganda so'raladigan narx.",
+  "uSum": "so'm",
+  "uMonth": "oy",
+  "secNasiya": "Nasiya (bo'lib to'lash)",
+  "segPay": "Oylik to'lov ma'lum",
+  "segMarkup": "Ustama foizi ma'lum",
+  "lNDown": "Boshlang'ich to'lov",
+  "lNMonthly": "Oylik to'lov",
+  "lNMarkup": "Ustama foizi",
+  "hNMarkup": "Butun muddat uchun (yillik emas). Masalan, 30% — narxning 30% ustiga qo'shiladi.",
+  "lNTerm": "Muddat",
+  "secKredit": "Bank krediti",
+  "lKRate": "Yillik foiz",
+  "lKTerm": "Muddat",
+  "lKDown": "Boshlang'ich to'lov",
+  "lKComm": "Bir martalik komissiya (ixtiyoriy)",
+  "segPct": "%",
+  "segSum": "so'm",
+  "hKComm": "Kredit berilganda bir marta to'lanadi. Bo'sh qoldirsangiz — 0.",
+  "lKType": "To'lov turi",
+  "segAnn": "Annuitet",
+  "segDiff": "Differensial",
+  "hKAnn": "Har oy bir xil summa to'lanadi.",
+  "hKDiff": "Asosiy qarz teng bo'linadi, oylik to'lov kamayib boradi.",
+  "btnCalc": "Hisoblash",
+  "resH": "Natija",
+  "cNaqd": "Naqd",
+  "cNasiya": "Nasiya",
+  "cKredit": "Kredit",
+  "tTotal": "Jami to'lanadi",
+  "tNow": "Hozir to'laysiz",
+  "tBase": "Naqd narx",
+  "tDiffPlus": "naqd narxdan +{x} so'm",
+  "tDiffMinus": "naqd narxdan −{x} so'm",
+  "tDiffZero": "naqd narxga teng",
+  "tBest": "Eng arzon",
+  "tMonthly": "Oylik to'lov",
+  "tFirstLast": "Birinchi / oxirgi oy",
+  "tDown": "Boshlang'ich to'lov",
+  "tComm": "Komissiya",
+  "tRealRate": "Haqiqiy yillik stavka",
+  "tEff": "effektiv",
+  "tNom": "nominal",
+  "tRateNote": "Nasiya jami to'lovlari boshlang'ich qarz bilan tenglashadigan foiz.",
+  "tKRateNote": "Komissiya bilan hisoblangan haqiqiy yillik stavka.",
+  "vNK_more": "Nasiya kreditdan {x} so'm qimmat.",
+  "vNK_less": "Nasiya kreditdan {x} so'm arzon.",
+  "vNK_same": "Nasiya va kredit bir xil narxga tushadi.",
+  "vNas_more": "Nasiya naqd narxdan {x} so'm qimmat.",
+  "vNas_same": "Nasiya naqd narxga teng — ortiqcha to'lov yo'q.",
+  "vKre_more": "Kredit naqd narxdan {x} so'm qimmat.",
+  "vKre_same": "Kredit naqd narxga teng — ortiqcha to'lov yo'q.",
+  "wowMarkup": "Ustama {m}% ko'rinadi, lekin aslida yillik ~{n}% kredit olgandek.",
+  "wowPay": "Bu nasiya yillik ~{n}% bilan kredit olishga teng.",
+  "wowZero": "Ustama 0% — haqiqiy stavka ham 0%: nasiya naqd narxga teng.",
+  "barsH": "Jami to'lovlar solishtirmasi",
+  "schedNasiya": "Nasiya to'lov jadvali",
+  "schedKredit": "Kredit to'lov jadvali",
+  "thK": "Oy",
+  "thPay": "To'lov",
+  "thPr": "Asosiy qarz",
+  "thInt": "Foiz",
+  "thBal": "Qoldiq",
+  "sumTotal": "Jami",
+  "btnShare": "Ulashish",
+  "copied": "Nusxalandi ✓",
+  "shareTitle": "Naqd, nasiya yoki kredit",
+  "errPrice": "Naqd narxni kiriting.",
+  "errDown": "Boshlang'ich to'lov narxdan kam bo'lishi kerak.",
+  "errN": "Muddat 1 dan 360 oygacha butun son bo'lishi kerak.",
+  "errMonthly": "Oylik to'lovni kiriting.",
+  "errLow": "Oylik to'lov × oylar soni ({t} so'm) moliyalashtirilgan summadan ({f} so'm) kam. Oylik to'lov kamida {m} so'm bo'lishi kerak.",
+  "errMarkup": "Ustama foizi 0 dan kam bo'lmasin.",
+  "errRate": "Yillik foizni kiriting (0 dan kam bo'lmasin).",
+  "errComm": "Komissiya noto'g'ri: u 0 dan kam va moliyalashtirilgan summadan kam bo'lishi kerak.",
+  "foot": "Hisob-kitob ma'lumot uchun. Aniq shartlar shartnomada yoziladi.",
+  "seo": "<h2>Ustama foizi bilan yillik stavka nega farq qiladi?</h2><p>Nasiyada «ustama 30%» odatda butun muddat uchun bir marta qo'shiladigan foiz. Kredit esa yillik foiz bilan hisoblanadi va qarz kamayib borgani sari foiz ham kamayadi. Shu sababli ikki raqamni to'g'ridan-to'g'ri solishtirib bo'lmaydi.</p><p>Misol: 6 000 000 so'mlik mahsulot 12 oyga nasiyaga olinsa va ustama 30% bo'lsa, jami 7 800 000 so'm, ya'ni oyiga 650 000 so'm to'lanadi. Lekin qarz har oy kamayib boradi: o'rtacha qarz yil davomida 6 000 000 so'm emas, deyarli yarmiga teng. Shuning uchun xuddi shu to'lovlar oqimini kredit sifatida yozsak, haqiqiy yillik stavka taxminan 51% chiqadi (har oy ~4,3%).</p><p>Kalkulyator aynan shu haqiqiy stavkani topadi: to'lovlar oqimini boshlang'ich qarz bilan tenglashtiradigan oylik foizni hisoblaydi. Kredit uchun annuitet yoki differensial jadval tuziladi — formulalar <a href=\"kredit-kalkulyator\">kredit kalkulyatori</a> bilan bir xil; bir martalik komissiya jami narxga qo'shiladi. Natija ma'lumot uchun: aniq shartlar shartnomada yoziladi.</p><h2>Nasiya foizi qanday hisoblanadi?</h2><p>Ko'pincha ustama moliyalashtirilgan summaga (narx minus boshlang'ich to'lov) butun muddat uchun qo'shiladi, so'ng jami oylar soniga bo'linadi. Masalan: 6 000 000 so'm, ustama 30%, 12 oy — (6 000 000 × 1,3) / 12 = 650 000 so'm. Shartnomada ustama yillik yoki oylik deb yozilgan bo'lishi mumkin; unda \"Oylik to'lov ma'lum\" rejimida aniq oylik summani kiriting.</p><h2>0% nasiya haqiqatan bepulmi?</h2><p>Nasiya jami summasi naqd narxga teng bo'lsa — ha, foiz yo'q va haqiqiy stavka 0%. Ammo ba'zan \"0%\" nasiyada narx naqd narxdan baland yoki xizmat haqi, sug'urta kabi boshqa to'lovlar qo'shiladi. Naqd narxni va nasiya jami summasini solishtiring: farq nolga teng bo'lsa, nasiya bepul.</p><h2>Kredit yoki nasiya — qaysi biri arzon?</h2><p>Bu shartlarga bog'liq: bitta javob yo'q. Kalkulyatorga o'zingizga taklif qilingan ikkala variantning shartlarini kiriting — jami to'lov va naqd narxdan farq so'mda chiqadi, eng arzoni yashil belgi bilan ajratiladi. Qarz olishdan oldin <a href=\"oila-byudjet-kalkulyator\">oilaviy byudjetingiz</a> oylik to'lovni ko'tarishini ham tekshiring.</p>",
+  "kTypeAnn": "Har oy bir xil summa to'lanadi.",
+  "kTypeDiff": "Asosiy qarz teng bo'linadi, oylik to'lov kamayib boradi."
+ },
+ "ru": {
+  "brand": "Kalki.uz",
+  "cat": "Финансы",
+  "h1": "Наличные, рассрочка или кредит — что выгоднее?",
+  "sub": "Введите цену товара и условия рассрочки и кредита — покажем итоговую переплату и реальную годовую ставку рассрочки.",
+  "bcName": "Наличные, рассрочка или кредит",
+  "title": "Калькулятор: наличные, рассрочка или кредит — что выгоднее?",
+  "desc": "Введите цену товара, условия рассрочки и кредита — сразу увидите итоговую сумму, разницу с ценой за наличные и реальную годовую ставку рассрочки. Бесплатно.",
+  "abText": "Калькулятор «наличные, рассрочка или кредит» — введите цену товара и условия обоих вариантов: рассчитаем итоговую сумму, разницу с наличной ценой и реальную годовую ставку рассрочки (чему на самом деле равна наценка).",
+  "exNote": "Цифры ниже — пример. Введите свою цену и свои условия.",
+  "lPrice": "Цена товара за наличные",
+  "hPrice": "Цена, которую просят в магазине при оплате наличными.",
+  "uSum": "сум",
+  "uMonth": "мес.",
+  "secNasiya": "Рассрочка",
+  "segPay": "Известен платёж",
+  "segMarkup": "Известна наценка",
+  "lNDown": "Первоначальный взнос",
+  "lNMonthly": "Платёж в месяц",
+  "lNMarkup": "Наценка",
+  "hNMarkup": "На весь срок (не годовая). Например, 30% — к сумме добавляется 30%.",
+  "lNTerm": "Срок",
+  "secKredit": "Банковский кредит",
+  "lKRate": "Годовая ставка",
+  "lKTerm": "Срок",
+  "lKDown": "Первоначальный взнос",
+  "lKComm": "Разовая комиссия (по желанию)",
+  "segPct": "%",
+  "segSum": "сум",
+  "hKComm": "Платится один раз при выдаче кредита. Если пусто — 0.",
+  "lKType": "Тип платежа",
+  "segAnn": "Аннуитет",
+  "segDiff": "Дифференцированный",
+  "hKAnn": "Каждый месяц платёж одинаковый.",
+  "hKDiff": "Основной долг делится поровну, платёж со временем уменьшается.",
+  "btnCalc": "Рассчитать",
+  "resH": "Результат",
+  "cNaqd": "Наличные",
+  "cNasiya": "Рассрочка",
+  "cKredit": "Кредит",
+  "tTotal": "Всего заплатите",
+  "tNow": "Платите сразу",
+  "tBase": "Цена за наличные",
+  "tDiffPlus": "+{x} сум к цене за наличные",
+  "tDiffMinus": "−{x} сум к цене за наличные",
+  "tDiffZero": "равно цене за наличные",
+  "tBest": "Дешевле всего",
+  "tMonthly": "Платёж в месяц",
+  "tFirstLast": "Первый / последний месяц",
+  "tDown": "Первоначальный взнос",
+  "tComm": "Комиссия",
+  "tRealRate": "Реальная годовая ставка",
+  "tEff": "эффективная",
+  "tNom": "номинальная",
+  "tRateNote": "Ставка, при которой все платежи рассрочки равны начальному долгу.",
+  "tKRateNote": "Реальная годовая ставка с учётом комиссии.",
+  "vNK_more": "Рассрочка дороже кредита на {x} сум.",
+  "vNK_less": "Рассрочка дешевле кредита на {x} сум.",
+  "vNK_same": "Рассрочка и кредит обходятся одинаково.",
+  "vNas_more": "Рассрочка дороже цены за наличные на {x} сум.",
+  "vNas_same": "Рассрочка равна цене за наличные — переплаты нет.",
+  "vKre_more": "Кредит дороже цены за наличные на {x} сум.",
+  "vKre_same": "Кредит равен цене за наличные — переплаты нет.",
+  "wowMarkup": "Наценка {m}% — на деле как кредит под ~{n}% годовых.",
+  "wowPay": "Эта рассрочка равна кредиту под ~{n}% годовых.",
+  "wowZero": "Наценка 0% — реальная ставка тоже 0%: рассрочка равна цене за наличные.",
+  "barsH": "Сравнение итоговых сумм",
+  "schedNasiya": "График платежей по рассрочке",
+  "schedKredit": "График платежей по кредиту",
+  "thK": "Мес.",
+  "thPay": "Платёж",
+  "thPr": "Основной долг",
+  "thInt": "Проценты",
+  "thBal": "Остаток",
+  "sumTotal": "Итого",
+  "btnShare": "Поделиться",
+  "copied": "Скопировано ✓",
+  "shareTitle": "Наличные, рассрочка или кредит",
+  "errPrice": "Введите цену за наличные.",
+  "errDown": "Первоначальный взнос должен быть меньше цены.",
+  "errN": "Срок — целое число от 1 до 360 месяцев.",
+  "errMonthly": "Введите платёж в месяц.",
+  "errLow": "Платёж × число месяцев ({t} сум) меньше финансируемой суммы ({f} сум). Платёж в месяц должен быть не меньше {m} сум.",
+  "errMarkup": "Наценка не может быть отрицательной.",
+  "errRate": "Введите годовую ставку (не меньше 0).",
+  "errComm": "Комиссия указана неверно: она не меньше 0 и меньше финансируемой суммы.",
+  "foot": "Расчёт носит справочный характер. Точные условия указаны в договоре.",
+  "seo": "<h2>Почему наценка и годовая ставка — разные числа?</h2><p>«Наценка 30%» в рассрочке — обычно процент, который добавляется один раз на весь срок. Кредит же считается по годовой ставке, и проценты уменьшаются вместе с остатком долга. Поэтому два числа нельзя сравнивать напрямую.</p><p>Пример: товар за 6 000 000 сум в рассрочку на 12 месяцев с наценкой 30% обойдётся в 7 800 000 сум, то есть по 650 000 сум в месяц. Но долг уменьшается каждый месяц: средний остаток за год — не 6 000 000, а почти вдвое меньше. Если записать тот же поток платежей как кредит, реальная годовая ставка получится около 51% (примерно 4,3% в месяц).</p><p>Калькулятор находит именно эту реальную ставку: подбирает месячный процент, при котором платежи равны начальному долгу. Для кредита строится аннуитетный или дифференцированный график — формулы те же, что в <a href=\"kredit-kalkulyator\">кредитном калькуляторе</a>; разовая комиссия добавляется к итоговой сумме. Результат справочный: точные условия — в договоре.</p><h2>Как считается процент по рассрочке?</h2><p>Чаще всего наценка начисляется на финансируемую сумму (цена минус первоначальный взнос) на весь срок и делится на число месяцев. Например: 6 000 000 сум, наценка 30%, 12 месяцев — (6 000 000 × 1,3) / 12 = 650 000 сум. Если в договоре наценка указана годовая или месячная, выберите режим «Известен платёж» и введите точную сумму платежа.</p><h2>Рассрочка 0% — это действительно бесплатно?</h2><p>Если итоговая сумма рассрочки равна цене за наличные — да, процентов нет, реальная ставка 0%. Но порой в «0%» рассрочке цена выше наличной или добавляются другие платежи — за услугу, страховку. Сравните цену за наличные с итогом рассрочки: если разница нулевая, рассрочка бесплатна.</p><h2>Кредит или рассрочка — что выгоднее?</h2><p>Зависит от условий — единого ответа нет. Введите в калькулятор условия обоих предложенных вам вариантов: итоговая сумма и разница с ценой за наличные появятся в сумах, самый дешёвый вариант отмечен зелёным. Перед займом проверьте, выдержит ли <a href=\"oila-byudjet-kalkulyator\">семейный бюджет</a> ежемесячный платёж.</p>",
+  "kTypeAnn": "Каждый месяц платёж одинаковый.",
+  "kTypeDiff": "Основной долг делится поровну, платёж со временем уменьшается."
+ }
+};
+  var K=window.KalkiNasiya;
+  var lang=document.documentElement.lang==='ru'?'ru':'uz';
+  var nmode='pay', ckind='pct', ctype='ann', last=null;
+  var $=function(id){return document.getElementById(id)};
+  var t=function(k){return (I[lang]&&I[lang][k]!=null)?I[lang][k]:I.uz[k]};
+  var rep=function(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k]!=null?o[k]:m})};
+  var fmt=function(n){var r=Math.round(n);var neg=r<0;r=Math.abs(r);return (neg?'−':'')+String(r).replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
+  var pct=function(x){var v=Math.round(x*1000)/10;return String(v).replace('.',',')};
+  var raw=function(id){return String($(id).value).replace(/[\s ]/g,'').replace(',','.')};
+  var val=function(id){var s=raw(id);if(s===''||!/^\d*\.?\d*$/.test(s)||s==='.')return NaN;return parseFloat(s)};
+  var sum=function(){return ' '+t('uSum')};
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    document.title=t('title');
+    ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',t('desc'))});
+    ['meta[property="og:title"]','meta[name="twitter:title"]'].forEach(function(sel){var m=document.querySelector(sel);if(m)m.setAttribute('content',t('title'))});
+    var els=document.querySelectorAll('[data-i]');
+    for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-i');if(I[lang][k]!=null)els[i].textContent=I[lang][k]}
+    $('seoBlock').innerHTML=t('seo');
+    $('kTypeHint').textContent=ctype==='ann'?t('kTypeAnn'):t('kTypeDiff');
+    var _rt={uz:"Tegishli kalkulyatorlar",ru:"Похожие калькуляторы"},_t=$('relTitle');if(_t)_t.textContent=_rt[lang]||_rt.uz;
+    $('langUz').classList.toggle('on',lang==='uz');
+    $('langRu').classList.toggle('on',lang==='ru');
+    if(last)render(last);
+  }
+  $('langUz').addEventListener('click',function(){lang='uz';applyLang()});
+  $('langRu').addEventListener('click',function(){lang='ru';applyLang()});
+
+  /* ---- kiritish formati ---- */
+  ['price','nMonthly','nDown','kDown'].forEach(function(id){
+    $(id).addEventListener('input',function(){var v=this.value.replace(/[^\d]/g,'');this.value=v?v.replace(/\B(?=(\d{3})+(?!\d))/g,' '):''});
+  });
+  ['nTerm','kTerm'].forEach(function(id){$(id).addEventListener('input',function(){this.value=this.value.replace(/[^\d]/g,'')})});
+  ['nMarkup','kRate'].forEach(function(id){$(id).addEventListener('input',function(){this.value=this.value.replace(/[^\d.,]/g,'')})});
+  $('kComm').addEventListener('input',function(){
+    if(ckind==='sum'){var v=this.value.replace(/[^\d]/g,'');this.value=v?v.replace(/\B(?=(\d{3})+(?!\d))/g,' '):''}
+    else this.value=this.value.replace(/[^\d.,]/g,'');
+  });
+
+  /* ---- rejimlar ---- */
+  function setOn(group,btn){var b=group.querySelectorAll('button');for(var i=0;i<b.length;i++)b[i].classList.toggle('on',b[i]===btn)}
+  function setNMode(m){nmode=m;setOn($('segN'),m==='pay'?$('mPay'):$('mMarkup'));$('fldMonthly').hidden=m!=='pay';$('fldMarkup').hidden=m!=='markup'}
+  function setCKind(k){
+    if(k===ckind)return;ckind=k;setOn($('segC'),k==='pct'?$('cPct'):$('cSum'));
+    $('kCommUnit').textContent=k==='pct'?'%':t('uSum');$('kCommUnit').setAttribute('data-i',k==='pct'?'':'uSum');
+    $('kComm').value='0';$('kComm').setAttribute('inputmode',k==='pct'?'decimal':'numeric');
+  }
+  function setCType(x){ctype=x;setOn($('segT'),x==='ann'?$('tAnn'):$('tDiff'));$('kTypeHint').textContent=x==='ann'?t('kTypeAnn'):t('kTypeDiff')}
+  $('mPay').onclick=function(){setNMode('pay');calc()};
+  $('mMarkup').onclick=function(){setNMode('markup');calc()};
+  $('cPct').onclick=function(){setCKind('pct');calc()};
+  $('cSum').onclick=function(){setCKind('sum');calc()};
+  $('tAnn').onclick=function(){setCType('ann');calc()};
+  $('tDiff').onclick=function(){setCType('diff');calc()};
+
+  /* ---- hisob ---- */
+  function errText(e,extra){
+    switch(e.error){
+      case 'price':return t('errPrice');
+      case 'down':return t('errDown');
+      case 'n':return t('errN');
+      case 'monthly':return t('errMonthly');
+      case 'markup':return t('errMarkup');
+      case 'rate':return t('errRate');
+      case 'comm':return t('errComm');
+      case 'low':return rep(t('errLow'),{t:fmt((extra&&extra.t)||0),f:fmt(e.financed||0),m:fmt(Math.ceil(e.minMonthly||0))});
+    }
+    return '';
+  }
+  function calc(){
+    var price=val('price');
+    var nas,kre;
+    if(!(price>0)){
+      last={err:true,nas:{error:'price'},kre:{error:'price'}};render(last);return;
+    }
+    var nTerm=val('nTerm'), kTerm=val('kTerm');
+    nas=K.nasiya({price:price,down:isNaN(val('nDown'))?0:val('nDown'),n:nTerm,mode:nmode,monthly:val('nMonthly'),markupPct:val('nMarkup')});
+    var cv=raw('kComm')===''?0:val('kComm');
+    kre=K.kredit({price:price,down:isNaN(val('kDown'))?0:val('kDown'),n:kTerm,ratePct:val('kRate'),type:ctype,commKind:ckind,commValue:cv});
+    last={price:price,nas:nas,kre:kre,nmode:nmode,markup:val('nMarkup'),nTotal:(val('nMonthly')||0)*(nTerm||0)};
+    render(last);
+  }
+
+  function showErr(id,text){var e=$(id);if(text){e.textContent=text;e.hidden=false}else{e.textContent='';e.hidden=true}}
+
+  function card(cls,title,total,diffTxt,rows,rate,isBest){
+    return '<div class="nk-card '+cls+(isBest?' best':'')+'"><h3>'+title+'<span class="nk-badge">'+t('tBest')+'</span></h3>'
+      +'<div class="nk-total">'+fmt(total)+sum()+'</div><div class="nk-diff">'+diffTxt+'</div>'
+      +(rows?'<div class="nk-rows">'+rows+'</div>':'')+(rate||'')+'</div>';
+  }
+  var row=function(k,v){return '<div class="nk-row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>'};
+  function diffTxt(d){
+    var r=Math.round(d);
+    if(r>0)return rep(t('tDiffPlus'),{x:fmt(r)});
+    if(r<0)return rep(t('tDiffMinus'),{x:fmt(-r)});
+    return t('tDiffZero');
+  }
+  function rateBlock(o,noteKey){
+    return '<div class="nk-rate"><div class="sm">'+t('tRealRate')+'</div><div class="big">~'+pct(o.nominal)+'% <span style="font-size:var(--t-xs,14px);font-weight:700">('+t('tNom')+')</span></div>'
+      +'<div class="sm">'+t('tEff')+' ~'+pct(o.effective)+'% · '+t(noteKey)+'</div></div>';
+  }
+  function table(o){
+    var h='<table class="nk-tbl"><thead><tr><th>'+t('thK')+'</th><th>'+t('thPay')+'</th><th>'+t('thPr')+'</th><th>'+t('thInt')+'</th><th>'+t('thBal')+'</th></tr></thead><tbody>';
+    var tp=0,tpr=0,ti=0;
+    o.rows.forEach(function(r){tp+=r.pay;tpr+=r.principal;ti+=r.interest;h+='<tr><td>'+r.k+'</td><td>'+fmt(r.pay)+'</td><td>'+fmt(r.principal)+'</td><td>'+fmt(r.interest)+'</td><td>'+fmt(r.balance)+'</td></tr>'});
+    return h+'</tbody><tfoot><tr><td>'+t('sumTotal')+'</td><td>'+fmt(tp)+'</td><td>'+fmt(tpr)+'</td><td>'+fmt(ti)+'</td><td></td></tr></tfoot></table>';
+  }
+
+  function render(L){
+    var nas=L.nas,kre=L.kre, res=$('res');
+    showErr('nasErr',nas.error?errText(nas,{t:L.nTotal}):'');
+    showErr('kreErr',kre.error?errText(kre):'');
+    $('schedN').hidden=!!nas.error;$('schedK').hidden=!!kre.error;
+    if(L.err||(nas.error&&kre.error)){res.hidden=true;return}
+    res.hidden=false;
+    var cmp=K.compare(L.price,nas,kre), best=cmp.cheapest;
+    var html=card('naqd',t('cNaqd'),L.price,t('tDiffZero'),row(t('tNow'),fmt(L.price)+sum()),'',best==='naqd');
+    if(!nas.error){
+      var nr=(nas.down>0?row(t('tDown'),fmt(nas.down)+sum()):'')+row(t('tMonthly'),fmt(nas.monthly)+sum()+' × '+nas.n);
+      html+=card('nasiya',t('cNasiya'),nas.total,diffTxt(nas.over),nr,rateBlock(nas,'tRateNote'),best==='nasiya');
+    }
+    if(!kre.error){
+      var kr=(kre.down>0?row(t('tDown'),fmt(kre.down)+sum()):'')+(kre.comm>0?row(t('tComm'),fmt(kre.comm)+sum()):'')
+        +(kre.type==='ann'?row(t('tMonthly'),fmt(kre.monthly)+sum()+' × '+kre.n):row(t('tFirstLast'),fmt(kre.first)+' / '+fmt(kre.last)));
+      html+=card('kredit',t('cKredit'),kre.total,diffTxt(kre.over),kr,rateBlock(kre,'tKRateNote'),best==='kredit');
+    }
+    $('cards').innerHTML=html;
+    /* xulosa */
+    var v1='';
+    if(!nas.error&&!kre.error){
+      var d=Math.round(cmp.nasiyaMinusKredit);
+      v1=d>0?rep(t('vNK_more'),{x:fmt(d)}):(d<0?rep(t('vNK_less'),{x:fmt(-d)}):t('vNK_same'));
+    }else if(!nas.error){var o=Math.round(nas.over);v1=o>0?rep(t('vNas_more'),{x:fmt(o)}):t('vNas_same')}
+    else{var o2=Math.round(kre.over);v1=o2>0?rep(t('vKre_more'),{x:fmt(o2)}):t('vKre_same')}
+    var v2='';
+    if(!nas.error){
+      if(nas.nominal<1e-9)v2=t('wowZero');
+      else if(L.nmode==='markup')v2=rep(t('wowMarkup'),{m:pct(nas.markupPct/100),n:pct(nas.nominal).replace(/,\d+$/,'')});
+      else v2=rep(t('wowPay'),{n:pct(nas.nominal).replace(/,\d+$/,'')});
+    }
+    $('v1').textContent=v1;$('v2').textContent=v2;$('v2').hidden=!v2;
+    /* taqqoslash chizig'i */
+    var mx=0;cmp.items.forEach(function(x){if(x.total>mx)mx=x.total});
+    var names={naqd:t('cNaqd'),nasiya:t('cNasiya'),kredit:t('cKredit')};
+    $('barRows').innerHTML=cmp.items.map(function(x){
+      return '<div class="nk-bar'+(x.id===best?' best':'')+'"><span class="bl">'+names[x.id]+'</span><span class="trk"><span class="fil" style="width:'+Math.max(2,x.total/mx*100).toFixed(1)+'%"></span></span><span class="bv">'+fmt(x.total)+sum()+'</span></div>';
+    }).join('');
+    /* jadvallar */
+    $('tblN').innerHTML=nas.error?'':table(nas);
+    $('tblK').innerHTML=kre.error?'':table(kre);
+    window.__nkLast=L;
+  }
+
+  $('calcBtn').onclick=function(){calc();var r=$('res');if(!r.hidden&&r.scrollIntoView)r.scrollIntoView({behavior:'smooth',block:'start'})};
+  ['price','nMonthly','nDown','nTerm','nMarkup','kRate','kTerm','kDown','kComm'].forEach(function(id){$(id).addEventListener('input',calc)});
+
+  /* ---- ulashish: holatni URL'ga yozish / tiklash ---- */
+  window.__buildShareUrl=function(){
+    var d={i:{},m:{n:nmode,c:ckind,t:ctype}};
+    ['price','nMonthly','nDown','nTerm','nMarkup','kRate','kTerm','kDown','kComm'].forEach(function(id){d.i[id]=$(id).value});
+    var b64=btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  function restore(){
+    try{
+      var p=new URLSearchParams(location.search).get('p');if(!p)return;
+      var d=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      if(d.m){setNMode(d.m.n==='markup'?'markup':'pay');if(d.m.c==='sum')setCKind('sum');setCType(d.m.t==='diff'?'diff':'ann')}
+      if(d.i)for(var id in d.i){var el=$(id);if(el&&el.tagName==='INPUT'&&/^[\d\s .,]*$/.test(d.i[id]))el.value=d.i[id]}
+    }catch(e){}
+  }
+  $('shareBtn').onclick=function(){
+    if(!last||last.err)return;
+    var L=last,parts=[t('shareTitle')+': '+fmt(L.price)+sum()];
+    parts.push(t('cNaqd')+' '+fmt(L.price));
+    if(!L.nas.error)parts.push(t('cNasiya')+' '+fmt(L.nas.total)+' ('+t('tRealRate')+' ~'+pct(L.nas.nominal)+'%)');
+    if(!L.kre.error)parts.push(t('cKredit')+' '+fmt(L.kre.total));
+    var txt=parts.join(', '),b=this;
+    if(navigator.share){navigator.share({title:t('shareTitle'),text:txt}).catch(function(){})}
+    else if(navigator.clipboard){navigator.clipboard.writeText(txt+String.fromCharCode(10)+window.__buildShareUrl());b.textContent=t('copied');setTimeout(function(){b.textContent=t('btnShare')},1500)}
+  };
+
+  restore();
+  applyLang();
+  calc();
+})();
+
+</script>
+
+
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='moliya';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Повседневная жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var base='https://kalki.uz/';
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='FinanceApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script><script src="/assets/mode-tip.js" defer=""></script></body></html>
