@@ -60,6 +60,7 @@
   var root = document.getElementById('rzApp');
   var st = null, view = 'today', lang = langNow(), reduce = false, seenTx = null, heroPrev = null, enterNext = true;
   var kit = RzKit.create({ root: root, K: K, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
+  var inst = KalkiInstall.create({ app: 'rozgor', name: "Ro'zg'or", mark: 'R', color: '#0E3B2E', kit: kit, lang: langNow, rowIcon: 'rz-ci rz-c-boshqa', setup: function () { return !!(st && st.setup); }, ready: function () { return !!(st && st.setup && st.tx && st.tx.length > 0); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'set') && !kit.sheetKind()) render(); } });
   reduce = kit.reduce;
   var esc = kit.esc, fmt = kit.fmt, digits = kit.digits, spaced = kit.spaced, vib = kit.vib, wait = kit.wait, ico = kit.ico, okCheck = kit.okCheck, monthName = kit.monthName, dLabel = kit.dLabel, setNum = kit.setNum, toast = kit.toast, hideToast = kit.hideToast, shHead = kit.shHead, fld = kit.fld, closeSheet = kit.closeSheet, flashEl = kit.flashEl, dpHtml = kit.dpHtml, dpGet = kit.dpGet, dpPaint = kit.dpPaint, dpSet = kit.dpSet, dpInit = kit.dpInit, qDate = kit.qDate;
   function openSheet(kind, html) { kit.openSheet(kind, html, { noFocus: kind === 'add' }); }
@@ -126,11 +127,6 @@
     if (st.income && st.income.date && st.income.date <= t) out.push({ k: 'income', msg: T('nudgeIncome'), btn: T('nudgeIncomeBtn'), act: 'income' });
     var last = K.lastTxDate(st) || (st.created ? K.today(new Date(st.created)) : null);
     if (last) { var idle = K.daysBetween(last, t); if (idle >= 3 && !hid('idle')) out.push({ k: 'idle', msg: T('nudgeIdle', { n: idle }), btn: T('nudgeIdleBtn'), act: 'check', dismiss: true }); }
-    var pwa = window.KalkiPwa;
-    if (pwa && !pwa.installed && !hid('install')) {
-      if (pwa.canPrompt && pwa.canPrompt()) out.push({ k: 'install', msg: T('nudgeInstall'), btn: T('nudgeInstallBtn'), act: 'install', dismiss: true });
-      else if (pwa.ios) out.push({ k: 'install', msg: T('nudgeIos'), dismiss: true });
-    }
     var lb = st.lastBackup || st.created || 0;
     if (st.setup && st.tx.length > 0 && now - lb > 7 * DAY_MS && !hid('backup')) out.push({ k: 'backup', msg: T('nudgeBackup'), btn: T('nudgeBackupBtn'), act: 'export', dismiss: true });
     return out;
@@ -168,9 +164,10 @@
     var ratio = s.norm > 0 ? Math.min(1, s.spent / s.norm) : (s.spent > 0 ? 1 : 0), pct = Math.round(ratio * 100);
     var left = T(s.mode === 'income' ? 'hLeft' : 'hLeftM', { d: s.days, f: fmt(Math.max(0, s.free)) });
     var prev = heroPrev && heroPrev.cls === cls ? heroPrev : null;
-    var h = savedCard(s) + '<section class="rz-hero ' + cls + '"><div class="rz-hl" id="hLbl">' + esc(lbl) + '</div><button type="button" class="rz-bigbtn" id="hBig" data-act="explain" aria-label="' + esc(lbl + ': ' + fmt(big) + ' ' + T('sum') + '. ' + T('hHow')) + '"><span class="rz-big"><span class="rz-bn" id="hNum">' + fmt(prev ? prev.big : big) + '</span><small> ' + T('sum') + '</small></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
+    var h = (inst.isTop() ? inst.cardHtml() : '') + savedCard(s) + '<section class="rz-hero ' + cls + '"><div class="rz-hl" id="hLbl">' + esc(lbl) + '</div><button type="button" class="rz-bigbtn" id="hBig" data-act="explain" aria-label="' + esc(lbl + ': ' + fmt(big) + ' ' + T('sum') + '. ' + T('hHow')) + '"><span class="rz-big"><span class="rz-bn" id="hNum">' + fmt(prev ? prev.big : big) + '</span><small> ' + T('sum') + '</small></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
       (s.free >= 0 ? '<div class="rz-bar" aria-hidden="true"><i id="hBar" style="transform:scaleX(' + (prev ? prev.ratio : 0) + ')"></i></div><div class="rz-used">' + esc(s.can >= 0 ? (pct > 0 ? T('hUsed', { p: pct }) : T('hUsed0')) + ' · ' + T('hNorm', { x: fmt(s.norm) }) : T('hNorm', { x: fmt(s.norm) })) + '</div>' : '') +
       (sub ? '<div class="rz-note">' + esc(sub) + '</div>' : '') + '<div class="rz-left">' + esc(left) + '</div>' + (s.mode === 'month' ? '<div class="rz-note sm">' + esc(T('hNoDate')) + '</div>' : '') + '</section>';
+    if (!inst.isTop()) h += inst.cardHtml();
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div><div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + (n.dismiss ? '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button>' : '') + '</div></div>'; });
     var up = K.upcoming(st, t, 3);
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('upT')) + '</div>' + (up.length ? up.map(function (b) { return billRow(b, true, false); }).join('') : '<div class="rz-mut">' + esc(T('noUp')) + '</div>') + '</section>';
@@ -213,7 +210,7 @@
     var big = document.documentElement.classList.contains('fs-big'), cur = isCyr() ? 'cyr' : lang;
     var row = function (act, ic, t1, t2, val) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + (val ? '<span class="v">' + esc(val) + '</span>' : ico('chev', 'r')) + '</button>'; };
     var h = '<h2 class="rz-h">' + esc(T('setT')) + '</h2><section class="rz-card">' + row('check', 'rep', T('sCheck'), T('sCheckH')) + row('income', 'inc', T('sInc'), T('sIncH')) + row('editreserve', 'shield', T('sRes'), T('sResH'), fmt(st.reserve) + ' ' + T('sum')) + '</section>' +
-      '<section class="rz-card">' + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
+      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (cur === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (cur === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (cur === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
       '<section class="rz-card">' + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section>' +
@@ -483,7 +480,6 @@
       case 'about': aboutOpen(true); break;
       case 'hidesaved': prefs().savedMsg.hide = true; commit(); break;
       case 'hide': { prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break; }
-      case 'install': { var pw = window.KalkiPwa; if (pw && pw.prompt) pw.prompt(); setTimeout(render, 300); break; }
       case 'font': { var big = el.getAttribute('data-f') === 'b'; document.documentElement.classList.toggle('fs-big', big); try { if (big) localStorage.setItem('kalki_fs', 'big'); else localStorage.removeItem('kalki_fs'); } catch (x) {} render(); break; }
       case 'langmenu': lmenu.hidden = !lmenu.hidden; break;
       case 'lang': { var l = el.getAttribute('data-l'), tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click(); break; }
@@ -510,7 +506,6 @@
     if (e.key !== 'Escape') return;
     if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (kit.sheetKind()) closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
   });
-  window.addEventListener('beforeinstallprompt', function () { setTimeout(function () { if (st && st.setup && view === 'today' && !kit.tipsOn()) render(); }, 80); });
   var lastDay = K.today();
   document.addEventListener('visibilitychange', function () { if (!document.hidden && st && st.setup) { var d = K.today(); if (d !== lastDay) { lastDay = d; heroPrev = null; render(); } } });
   try { new MutationObserver(function () { var scr = document.documentElement.getAttribute('data-script'); if (langNow() !== lang || scr !== root._scr) { root._scr = scr; render(); } }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang', 'data-lang', 'data-script'] }); } catch (e) {}

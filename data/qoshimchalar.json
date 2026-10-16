@@ -21,7 +21,7 @@
   {
    "id": "vitamin-d",
    "ic": "sun",
-   "level": "moderate",
+   "level": "strong",
    "levelWhy": "ODS: deficiency is common (about 1 in 4 have low or inadequate levels) and supplements help at-risk groups; in people with normal levels benefits are small (slight bone strength gain in older adults, no cancer prevention).",
    "uz": {
     "name": "D vitamini",
@@ -47,12 +47,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Tahlilda D vitamini kamligi tasdiqlanganlar",
+     "ru": "При дефиците витамина D, подтверждённом анализом"
+    },
+    {
+     "level": "moderate",
+     "uz": "Quyoshda kam yuradiganlar va keksalar",
+     "ru": "Мало бывающие на солнце и пожилые люди"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (saraton va boshqa kasalliklar oldini olish)",
+     "ru": "Остальные (для профилактики рака и других болезней)"
+    }
+   ]
   },
   {
    "id": "vitamin-b-kompleks",
    "ic": "pill",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS (B6, niacin, thiamin, riboflavin sheets): most people get enough B vitamins from food and deficiency is rare; risk groups are mainly people with alcohol dependence, malabsorption or kidney disease.",
    "uz": {
     "name": "B guruhi vitaminlari (B-kompleks)",
@@ -78,12 +95,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/"
+   "src2": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/",
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Homiladorlikdagi ko'ngil aynishi (B6, shifokor nazoratida)",
+     "ru": "Тошнота при беременности (B6, под контролем врача)"
+    },
+    {
+     "level": "low",
+     "uz": "Hayz oldi sindromi (PMS) bo'lganlar",
+     "ru": "При предменструальном синдроме (ПМС)"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (xotira, kayfiyat, quvvat uchun)",
+     "ru": "Остальные (для памяти, настроения, энергии)"
+    }
+   ]
   },
   {
    "id": "vitamin-b12",
    "ic": "drop",
-   "level": "moderate",
+   "level": "strong",
    "levelWhy": "ODS: most people get enough from food, but deficiency affects 3-43% of older adults; ODS advises people over 50 to get B12 mainly from fortified foods or supplements, and vegans are at risk.",
    "uz": {
     "name": "B12 vitamini",
@@ -106,12 +140,24 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/"
+   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Go'sht va sut yemaydiganlar hamda 50 yoshdan oshganlar",
+     "ru": "Не едящие мясо и молочное, а также люди старше 50 лет"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (quvvat yoki chidamlilik uchun)",
+     "ru": "Остальные (ради энергии или выносливости)"
+    }
+   ]
   },
   {
    "id": "omega-3",
    "ic": "heart",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: eating fish is linked to lower disease risk, but a large trial found supplements did not lower cancer risk, dry-eye results are mixed, and the AHA does not recommend supplements for people not at high cardiovascular risk.",
    "uz": {
     "name": "Omega-3 (baliq moyi)",
@@ -137,12 +183,24 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Qonda triglitserid yuqori bo'lganlar",
+     "ru": "При повышенных триглицеридах в крови"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (yurak xavfi yuqori bo'lmaganlar)",
+     "ru": "Остальные (без высокого сердечно-сосудистого риска)"
+    }
+   ]
   },
   {
    "id": "magniy",
    "ic": "leaf",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: many diets are below recommendations, but healthy kidneys conserve magnesium, short-term low intake causes no symptoms, and deficiency is tied to specific conditions (GI disease, type 2 diabetes, alcoholism, old age).",
    "uz": {
     "name": "Magniy",
@@ -168,12 +226,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Magnesium-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "2-tur diabet, ichak kasalligi bor yoki keksalar",
+     "ru": "При диабете 2 типа, болезнях кишечника и пожилые"
+    },
+    {
+     "level": "low",
+     "uz": "Migren bilan og'riydiganlar",
+     "ru": "Страдающие мигренью"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (masalan, qon bosimi uchun)",
+     "ru": "Остальные (например, ради давления)"
+    }
+   ]
   },
   {
    "id": "kaliy",
    "ic": "heart",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: most diets are low in potassium, but the fix is food; supplements and salt substitutes can cause hyperkalemia, especially with kidney disease, ACE inhibitors/ARBs or potassium-sparing diuretics.",
    "uz": {
     "name": "Kaliy",
@@ -196,12 +271,29 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/Potassium-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Diuretik ichuvchilar, uzoq ich ketish/qusishdan keyin (shifokor bilan)",
+     "ru": "Принимающие мочегонные, после долгой диареи или рвоты (с врачом)"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (kaliyni ovqatdan olgan ma'qul)",
+     "ru": "Остальные (калий лучше получать из еды)"
+    },
+    {
+     "level": "not",
+     "uz": "Buyrak kasalligi bor yoki bosim uchun ayrim dorilar ichuvchilar",
+     "ru": "При болезни почек или приёме некоторых препаратов от давления"
+    }
+   ]
   },
   {
    "id": "sink",
    "ic": "shield",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: most people get enough zinc from food; lozenges may shorten colds but evidence is incomplete; benefit mainly for specific risk groups (vegetarians, GI disorders, pregnancy).",
    "uz": {
     "name": "Sink (rux)",
@@ -227,12 +319,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Zinc-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (shifokor bilan)",
+     "ru": "Пожилые с высоким риском ВМД глаз (с врачом)"
+    },
+    {
+     "level": "moderate",
+     "uz": "Go'sht yemaydiganlar (vegetarian, vegan)",
+     "ru": "Не едящие мясо (вегетарианцы, веганы)"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (shamollashda ham dalil aniq emas)",
+     "ru": "Остальные (при простуде данные тоже неясны)"
+    }
+   ]
   },
   {
    "id": "vitamin-e",
    "ic": "leaf",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: deficiency is very rare in healthy people (almost only with fat-malabsorption diseases); high-dose supplements raise bleeding/hemorrhagic stroke risk and one trial linked 400 IU/day to higher prostate cancer risk.",
    "uz": {
     "name": "E vitamini",
@@ -258,12 +367,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/VitaminE-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (faqat AREDS tarkibida)",
+     "ru": "Пожилые с высоким риском ВМД (только в составе AREDS)"
+    },
+    {
+     "level": "not",
+     "uz": "Qon suyultiruvchi dori ichuvchilar",
+     "ru": "Принимающие препараты, разжижающие кровь"
+    },
+    {
+     "level": "not",
+     "uz": "Boshqalar (yurak va saraton oldini olish uchun)",
+     "ru": "Остальные (для профилактики болезней сердца и рака)"
+    }
+   ]
   },
   {
    "id": "vitamin-c",
    "ic": "shield",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: most people get enough from food; supplements do not reduce the risk of catching a cold (only slightly shorter colds with regular use) and do not prevent cancer.",
    "uz": {
     "name": "C vitamini",
@@ -289,12 +415,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/VitaminC-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (AREDS tarkibida)",
+     "ru": "Пожилые с высоким риском ВМД (в составе AREDS)"
+    },
+    {
+     "level": "low",
+     "uz": "Chekuvchilar va ovqati juda bir xil bo'lganlar",
+     "ru": "Курящие и питающиеся очень однообразно"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (shamollashning oldini olish uchun)",
+     "ru": "Остальные (для профилактики простуды)"
+    }
+   ]
   },
   {
    "id": "temir",
    "ic": "drop",
-   "level": "low",
+   "level": "strong",
    "levelWhy": "ODS: clearly helpful only when deficiency/anemia is confirmed (women with heavy periods, pregnancy, blood donors); without deficiency there is no benefit and excess iron is harmful and a poisoning risk for children.",
    "uz": {
     "name": "Temir",
@@ -320,12 +463,24 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Iron-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Tahlilda temir kamligi (kamqonlik) aniqlanganlar",
+     "ru": "При дефиците железа (анемии), подтверждённом анализом"
+    },
+    {
+     "level": "not",
+     "uz": "Tahlil qilmasdan, \"har ehtimolga\" ichish",
+     "ru": "Приём без анализа, «на всякий случай»"
+    }
+   ]
   },
   {
    "id": "kalsiy",
    "ic": "bone",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: food (dairy) covers needs for most; calcium + vitamin D slightly increase bone strength in older adults but it is unclear whether they prevent falls or fractures; very high intakes may raise heart disease and prostate cancer risk.",
    "uz": {
     "name": "Kalsiy",
@@ -351,12 +506,29 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/"
+   "src2": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Sut mahsulotlarini yemaydiganlar (vegan, laktozani ko'tarmaydiganlar)",
+     "ru": "Не употребляющие молочное (веганы, непереносимость лактозы)"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetmaydigan, osteoporoz xavfi bor keksa ayollar",
+     "ru": "Пожилые женщины с риском остеопороза, недополучающие кальций"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetarli kalsiy oladiganlar",
+     "ru": "Получающие достаточно кальция из еды"
+    }
+   ]
   },
   {
    "id": "foliy",
    "ic": "leaf",
-   "level": "moderate",
+   "level": "strong",
    "levelWhy": "ODS: strong evidence that folic acid before and in early pregnancy lowers neural tube defect risk; for most other people folate intake from food is adequate and deficiency is rare.",
    "uz": {
     "name": "Foliy kislotasi (B9)",
@@ -382,12 +554,24 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/Folate-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/"
+   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Homiladorlikni rejalashtirayotgan ayollar",
+     "ru": "Женщины, планирующие беременность"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar",
+     "ru": "Остальные"
+    }
+   ]
   },
   {
    "id": "multivitamin",
    "ic": "pill",
-   "level": "low",
+   "level": "moderate",
    "levelWhy": "ODS: most studies found multivitamins have little or no effect on cancer, heart disease, osteoporosis or death risk; useful mainly for people with poor or restricted diets and in pregnancy (prenatal).",
    "uz": {
     "name": "Multivitamin (vitamin-mineral kompleksi)",
@@ -410,7 +594,24 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Homiladorlar (homiladorlik uchun maxsus multivitamin)",
+     "ru": "Беременные (специальные пренатальные комплексы)"
+    },
+    {
+     "level": "moderate",
+     "uz": "Ovqati cheklanganlar: kam kaloriyali parhez, ishtaha past, vegan",
+     "ru": "При ограниченном питании: низкокалорийная диета, плохой аппетит, веганы"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (kasallik oldini olish uchun)",
+     "ru": "Остальные (для профилактики болезней)"
+    }
+   ]
   },
   {
    "id": "protein",
@@ -438,7 +639,19 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Kuch mashqi qiluvchi, oqsilni ovqatdan yetkaza olmaydiganlar",
+     "ru": "Тренирующиеся, не добирающие белок из еды"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetarli oqsil oladiganlar",
+     "ru": "Получающие достаточно белка из еды"
+    }
+   ]
   },
   {
    "id": "kreatin",
@@ -466,7 +679,19 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Kuch mashqlari bilan shug'ullanuvchilar",
+     "ru": "Занимающиеся силовыми тренировками"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (jumladan yugurish, suzish kabi chidamlilik sporti)",
+     "ru": "Остальные (в т. ч. бег, плавание и другие виды на выносливость)"
+    }
+   ]
   },
   {
    "id": "bcaa",
@@ -494,7 +719,19 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Kuch mashqi qiluvchilar (oqsil yetarli bo'lsa foydasi noaniq)",
+     "ru": "Силовые тренировки (при достатке белка польза неясна)"
+    },
+    {
+     "level": "not",
+     "uz": "Ovqatdan yetarli oqsil oladiganlar",
+     "ru": "Получающие достаточно белка из еды"
+    }
+   ]
   },
   {
    "id": "kollagen",
@@ -523,12 +760,24 @@
    "src": "https://nutritionsource.hsph.harvard.edu/collagen/",
    "srcName": "Harvard T.H. Chan School of Public Health — The Nutrition Source",
    "src2": null,
-   "note": "NIH ODS da kollagen bo'yicha fact sheet yo'q (ods.od.nih.gov/factsheets/Collagen-Consumer — 404), shuning uchun Harvard manbasi ishlatildi."
+   "note": "NIH ODS da kollagen bo'yicha fact sheet yo'q (ods.od.nih.gov/factsheets/Collagen-Consumer — 404), shuning uchun Harvard manbasi ishlatildi.",
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Teri elastikligi yoki bo'g'im og'rig'i bilan qiziquvchilar",
+     "ru": "Ради упругости кожи или при боли в суставах"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (soch, tirnoq va h.k.)",
+     "ru": "Остальные (волосы, ногти и т. п.)"
+    }
+   ]
   },
   {
    "id": "kofein-preworkout",
    "ic": "bolt",
-   "level": "moderate",
+   "level": "strong",
    "levelWhy": "ODS: experts agree caffeine helps sustain exercise intensity and reduces fatigue in endurance and intermittent sports, but responses vary and it does not help short sprints or lifting; multi-ingredient pre-workouts are untested in combination.",
    "uz": {
     "name": "Kofein va pre-workout",
@@ -554,7 +803,24 @@
    },
    "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": "https://ods.od.nih.gov/factsheets/WeightLoss-Consumer/"
+   "src2": "https://ods.od.nih.gov/factsheets/WeightLoss-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Chidamlilik va jamoaviy sport (kofeinning o'zi)",
+     "ru": "Виды на выносливость и командный спорт (сам кофеин)"
+    },
+    {
+     "level": "low",
+     "uz": "Sprint, og'ir atletika kabi qisqa mashq; ko'p tarkibli aralashmalar",
+     "ru": "Короткие интенсивные нагрузки (спринт, штанга) и многокомпонентные смеси"
+    },
+    {
+     "level": "not",
+     "uz": "O'smirlar va kofeinga sezgir odamlar",
+     "ru": "Подростки и люди, чувствительные к кофеину"
+    }
+   ]
   },
   {
    "id": "yog-yoquvchi",
@@ -582,7 +848,19 @@
    "ul": null,
    "src": "https://ods.od.nih.gov/factsheets/WeightLoss-Consumer/",
    "srcName": "NIH Office of Dietary Supplements",
-   "src2": null
+   "src2": null,
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Kofeinli yoki yashil choyli mahsulotlar (ta'siri juda oz)",
+     "ru": "Средства с кофеином или зелёным чаем (эффект очень мал)"
+    },
+    {
+     "level": "not",
+     "uz": "Hech kimga vazn tashlashning asosiy vositasi sifatida",
+     "ru": "Никому как основное средство для похудения"
+    }
+   ]
   }
  ]
 }

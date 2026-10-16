@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const R = `
-osh|Osh (palov)|Плов|palov,plov,паловник|170|5|7|24|o|1|likop:350,kosa:250,porsiya:300
+osh|Osh (palov)|Плов|palov,plov,паловник|200|5.5|8.5|25|o|1|likop:350,kosa:250,porsiya:300
 yengil-osh|Osh (yengil, tovuqli)|Плов с курицей|palov tovuqli,plov kurinyy|165|8|6|20|o|1|likop:350,kosa:250
 somsa|Somsa (go'shtli, tandirda)|Самса с мясом|samsa,самса|290|10|17|24|o|1|dona:120
 somsa-qat|Somsa (qatlamali)|Самса слоёная|qatlama somsa|330|9|21|27|o|1|dona:110
@@ -18,13 +18,13 @@ chuchvara|Chuchvara (qaynatilgan)|Чучвара|pelmeni uzbek,чучвара|20
 chuchvara-sho|Chuchvara (sho'rvada)|Чучвара в бульоне|chuchvara shorva|110|6|4|12|o|1|kosa:400
 lagmon|Lag'mon|Лагман|lagman,лағмон|120|5.5|5|15|o|1|kosa:400,likop:450
 lagmon-qov|Lag'mon (qovurma)|Лагман жареный|qovurma lagmon,jarenyy lagman|170|7|8|18|o|1|likop:350
-shurva|Shurva|Шурпа|shorva,шурпа|55|3.5|3|4.5|o|1|kosa:350,piyola:300
+shurva|Shurva|Шурпа|shorva,шурпа|75|4|4.3|5.5|o|1|kosa:350,piyola:300
 mastava|Mastava|Мастава|мастава|80|4|3|10|o|1|kosa:350
 moshxorda|Moshxo'rda|Машхурда|moshhorda,машхурда|85|5|3|10|o|1|kosa:350
 moshkichiri|Moshkichiri|Мошкичири|mashkichiri,мошкичири|125|5|3|18|o|1|kosa:350
 norin|Norin|Нарын|naryn,нарын|190|11|8|18|o|1|likop:250
 dimlama|Dimlama|Димлама|димлама|100|6|5|8|o|1|likop:350
-qozon-kabob|Qozon kabob|Казан-кебаб|kazan kebab,kabob qozon|230|17|15|6|o|1|likop:250
+qozon-kabob|Qozon kabob|Казан-кебаб|kazan kebab,kabob qozon|250|13|17.5|11|o|1|likop:250
 shashlik|Shashlik (go'sht)|Шашлык|kabob,shashlyk,кебаб,шашлик|240|21|17|1|o|1|dona:80,porsiya:200
 shashlik-tovuq|Shashlik (tovuq)|Шашлык куриный|tovuq kabob|170|23|8|1|o|1|dona:70,porsiya:200
 jigar-kabob|Jigar kabob|Печёночный кебаб|jigar shashlik|190|20|11|2|o|1|dona:60,porsiya:150
@@ -79,7 +79,7 @@ tuxum-xom|Tuxum (xom)|Яйцо сырое|xom tuxum|143|12.5|10|1|m|0|dona:55
 mol-gosht|Mol go'shti (pishgan)|Говядина варёная|mol gosht,govyadina,говядина|215|27|11|0|m|0|bolak:100,porsiya:150
 mol-qiyma|Qiyma (mol, pishgan)|Фарш говяжий жареный|qiyma|250|26|16|0|m|0|porsiya:150
 qoy-gosht|Qo'y go'shti (pishgan)|Баранина варёная|qoy gosht,baranina,баранина|290|25|21|0|m|0|bolak:100,porsiya:150
-tovuq-kokrak|Tovuq ko'kragi (pishgan)|Куриная грудка варёная|tovuq kokrak,kurinaya grudka|165|31|3.6|0|m|0|bolak:120,porsiya:150
+tovuq-kokrak|Tovuq ko'kragi (pishgan)|Куриная грудка варёная|tovuq kokrak,kurinaya grudka|150|29.5|3.2|0|m|0|bolak:120,porsiya:150
 tovuq-son|Tovuq soni (pishgan)|Куриное бедро|tovuq son,bedro|210|26|11|0|m|0|dona:100,porsiya:150
 tovuq-qanot|Tovuq qanotchalari (qovurilgan)|Куриные крылья жареные|qanotcha,krylya|290|27|19|0|m|1|dona:40,porsiya:150
 tovuq-qov|Tovuq (qovurilgan, nonli)|Курица в панировке|fried chicken,tovuq kfc|260|20|17|9|q|1|dona:100,porsiya:200
@@ -278,6 +278,8 @@ tofu|Tofu|Тофу|tofu,тофу|76|8|4.8|1.9|x|0|bolak:80
 protein-bar|Protein batonchik|Протеиновый батончик|protein bar,batonchik,батончик|380|25|12|35|x|1|dona:60
 `;
 const rows = R.trim().split('\n').map((l) => l.split('|'));
+const MANBA = JSON.parse(fs.readFileSync(path.join(__dirname, 'ovqatlar-manba.json'), 'utf8'));   // tekshirilgan taomlar: manba/hisob usuli (docs/kalkifit-baza-tekshiruv.md)
+const DEF_M = { o: "Retsept: o'rtacha uy retsepti, masalliqlar grammidan (yog' hisobga olingan)", q: "Odatiy porsiya va o'rtacha retsept bo'yicha taxmin", h: "Odatiy porsiya va o'rtacha retsept bo'yicha taxmin", x: 'USDA FoodData Central va ochiq jadvallar (taxminiy)' };
 const out = [], ids = new Set(), warn = [];
 for (const r of rows) {
   if (r.length !== 11) throw new Error('qator xato: ' + r.join('|'));
@@ -287,6 +289,7 @@ for (const r of rows) {
   const o = { i: id, n, r: ru, a: al.split(',').filter(Boolean), k: +k, p: +p, f: +f, c: +c, t, e: +e, u };
   const atw = 4 * o.p + 9 * o.f + 4 * o.c;
   if (o.k > 20 && id !== 'vino' && Math.abs(atw - o.k) > Math.max(30, o.k * 0.25)) warn.push(id + ': kkal ' + o.k + ' ≠ makrodan ' + Math.round(atw));
+  o.m = MANBA[id] || DEF_M[t] || DEF_M.x;       // manba / hisob usuli (har taomda)
   out.push(o);
 }
 // Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
