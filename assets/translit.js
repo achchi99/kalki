@@ -46,8 +46,12 @@ var DEFAULT_ABBR = [
   'Kalki.uz', 'kalki.uz', 'Telegram',
   'PDF', 'CSV', 'Word', 'Excel', 'AI',
   'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'localStorage',
-  '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz'
+  '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz',
+  'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON'
 ];
+/* Qo'shimchasi APOSTROF bilan kelganda apostrof SAQLANADI: iPhone'da -> iPhone'да, Safari'da -> Safari'да
+ * (boshqa qisqartmalarda eski qoida: AI'ning -> AI-нинг). */
+var APOS_KEEP = { 'iPhone': 1, 'iPad': 1, 'iOS': 1, 'Safari': 1, 'Android': 1, 'Chrome': 1, 'Samsung': 1, 'Kalki': 1 };
 
 /* Rus tilidan o'zlashgan so'zlarda lotincha "s" kirillda "ц" bo'ladi (sement -> цемент),
  * lekin pensiya/versiya/sessiya/konsalting/sentyabr/sertifikat "с" bilan qoladi.
@@ -299,6 +303,13 @@ function translit(text, opts) {
   abbrList.forEach(function (abbr) {
     var ab = escapeRegExp(abbr);
     var before = '(?<![A-Za-z' + APOS_CHARS + '])';   // so'z ichida emas ("MAIN" ichidagi "AI" tegilmaydi)
+    if (APOS_KEEP[abbr]) {                           // iPhone'da -> iPhone'да (apostrof qoladi)
+      text = text.replace(new RegExp(before + ab + '[' + APOS_CHARS + '](?=[A-Za-z\u0400-\u04FF])', 'g'), function () {   // keyingi harf lotin YOKI kirill (matn qayta o'girilsa ham buzilmasin)
+        var idx2 = placeholders.length;
+        placeholders.push(abbr + "'");
+        return PH_OPEN + idx2 + PH_CLOSE;
+      });
+    }
     // qo'shimcha bilan: AIga / AI'ning -> "AI-га" / "AI-нинг" (apostrof yutiladi)
     text = text.replace(new RegExp(before + ab + '[' + APOS_CHARS + ']?(?=[A-Za-z])', 'g'), function (m) {
       var idx = placeholders.length;

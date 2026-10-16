@@ -84,6 +84,13 @@ var CASES = [
   ['PDF', 'PDF', 'fayl formati o’zgarishsiz qoladi'],
   ['Kalki.uz', 'Kalki.uz', 'brend nomi o’zgarishsiz qoladi'],
   ['Telegram', 'Telegram', 'brend nomi o’zgarishsiz qoladi'],
+  ["iPhone'da: Safari'da «Ulashish»", "iPhone'да: Safari'да «Улашиш»", 'brend lotinda, apostrofli qo’shimcha to’g’ri ulanadi (иПхонеьда эмас)'],
+  ["iPhone'да: Safari'да", "iPhone'да: Safari'да", 'allaqachon o’girilgan matn qayta o’girilsa buzilmaydi (иПхонеъда эмас)'],
+  ["Android va Chrome orqali, Samsung telefonida", 'Android ва Chrome орқали, Samsung телефонида', 'Android/Chrome/Samsung brendlari lotinda'],
+  ['iOS 17 da, iPhone da', 'iOS 17 да, iPhone да', 'iOS/iPhone alohida so’z sifatida'],
+  ["Kalki jamoasi", 'Kalki жамоаси', 'Kalki brendi lotinda'],
+  ['Маълумот (JSON)', 'Маълумот (JSON)', 'format nomi lotinda'],
+  ["JSON fayl", 'JSON файл', 'JSON lotinda, qolgani o’giriladi'],
   ['PDFga', 'PDF-га', 'brend + qo’shimcha: aralash so’z emas, defis bilan'],
   ['Wordda', 'Word-да', 'brend + qo’shimcha: defis bilan'],
 

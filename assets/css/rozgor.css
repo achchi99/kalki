@@ -194,3 +194,8 @@ body.rz-aboutopen .rz-about{display:block;position:fixed;inset:0;z-index:100;ove
 body.rz-standalone .rz-about,body.rz-standalone .rz-aboutrow{display:none!important}
 body.rz-standalone .rz-stage{padding:0}body.rz-standalone .rz{height:100vh;height:100dvh;max-width:480px;border-radius:0}
 .rz-ob-foot .rz-btn.ghost{flex:1;white-space:nowrap;padding:0 10px}
+/* iPhone (status-bar-style: black-translucent): holat satri ilova foni ostida — yuqori panel xavfsiz zonani hisobga oladi */
+body.rz-standalone .rz-top{height:calc(56px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+@media (display-mode:standalone){.rz-top{height:calc(56px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}}
+/* ЎЗ (kirill): "Тўловлар" 390px da sig'maydi — qisqa yorliqlar */
+html[data-script=cyr] .rz-tab .l{display:none}html[data-script=cyr] .rz-tab .s{display:block}

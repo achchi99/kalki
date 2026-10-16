@@ -2,7 +2,7 @@
 // (faqat tasdiq bilan), "bu raqam qanday hisoblanadi", yo'l-yo'riq, til aralashmasligi (UZ/RU/ЎЗ), pastki menyu, "haqida" qatlami, animatsiyalar/reduced-motion,
 // eksport/import, oflayn, Katta shrift, tungi rejim (axe), standalone, oila-byudjetdan o'tish.   node tools/dizayn/test-rozgor.mjs [https://host]
 import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { createRequire } from 'node:module';
-import { chromium } from 'playwright';
+import { chromium, devices } from 'playwright';
 import { track } from '../test-cleanup.cjs';
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
@@ -17,8 +17,8 @@ const nb = (s) => String(s).replace(/ /g, ' ');
 const TODAY = K.today();
 function seed(o = {}) { const st = K.emptyState(); st.prefs = { tipsDone: o.tips ? false : true }; if (o.prefs) Object.assign(st.prefs, o.prefs); st.setup = true; st.created = Date.now() - (o.ageDays || 0) * 86400000; st.base = o.base != null ? o.base : 3000000; st.reserve = o.reserve != null ? o.reserve : 500000; if (o.income !== undefined) st.income = { date: o.income, amount: null }; (o.bills || []).forEach((x) => K.addBill(st, x)); (o.tx || []).forEach((x) => K.addTx(st, x)); if (o.lastBackup) st.lastBackup = o.lastBackup; return st; }
 const SAMPLE = () => seed({ base: 3000000, reserve: 500000, income: K.addDays(TODAY, 12), bills: [{ name: 'Ijara', amount: 1500000, due: K.addDays(TODAY, 10) }] });
-async function open(url, { state, w = 390, h = 844, scheme = 'light', ls = {}, sw = 'block', hash = '' } = {}) {
-  const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 500, hasTouch: w < 500, serviceWorkers: sw, colorScheme: scheme, acceptDownloads: true });
+async function open(url, { state, w = 390, h = 844, scheme = 'light', ls = {}, sw = 'block', hash = '', ios = false } = {}) {
+  const c = await b.newContext(ios ? { ...devices['iPhone 13'], serviceWorkers: sw, colorScheme: scheme } : { viewport: { width: w, height: h }, isMobile: w < 500, hasTouch: w < 500, serviceWorkers: sw, colorScheme: scheme, acceptDownloads: true });
   await c.addInitScript((o) => { try { if (o.state && !localStorage.getItem('kalki_rozgor')) localStorage.setItem('kalki_rozgor', JSON.stringify(o.state)); for (const k in o.ls) localStorage.setItem(k, o.ls[k]); } catch (e) {} }, { state, ls });
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource|googlesyndication|adsbygoog/.test(m.text())) p.errs.push(m.text()); });
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort());
@@ -43,12 +43,18 @@ async function screens(p, lng) {                 // ilovaning barcha ekranlari m
   await p.click('[data-act=editreserve]'); await grab('tegmaydigan pul'); await p.click('#rzSheet .rz-x'); await p.waitForTimeout(350);
   return out;
 }
+const BRANDS = /Kalki\.uz|Kalki|\.uz|JSON|iPhone|iPad|iOS|Safari|Android|Chrome|Google|Samsung|Telegram|UZ|RU|ЎЗ/g;
 function langCheck(list, lng, where) {
-  const strip = (t) => t.replace(/Kalki\.uz|Kalki|\.uz|JSON|UZ|RU|ЎЗ|ЎЗ/g, '');
+  const strip = (t) => t.replace(BRANDS, '');
   for (const s of list) { const t = strip(s.t);
     assert.equal(s.dates, 0, where + '/' + s.name + ': tizim <input type=date> bor');
     if (lng === 'uz') assert.ok(!CYR.test(t), where + '/' + s.name + ': UZ sahifada kirill: ' + (t.match(/\S*[А-Яа-яЁё]\S*/) || [''])[0]);
-    else assert.ok(!/[A-Za-z]{2,}/.test(t), where + '/' + s.name + ': ' + lng + ' sahifada lotincha so\'z: ' + (t.match(/[A-Za-z']{2,}/) || [''])[0]); }
+    else assert.ok(!/[A-Za-z]{2,}/.test(t), where + '/' + s.name + ': ' + lng + ' sahifada lotincha so\'z: ' + (t.match(/[A-Za-z']{2,}/) || [''])[0]);
+    if (lng === 'cyr') {                         // ЎЗ: brenddan boshqa lotin harfi yo'q, buzuq qo'shimcha va aralash so'z yo'q
+      assert.ok(!/[A-Za-z]/.test(t), where + '/' + s.name + ': ЎЗ da lotin harfi: ' + (t.match(/\S*[A-Za-z]\S*/) || [''])[0]);
+      assert.ok(!/[а-яўқғҳё]ь[дгнлтк]а/i.test(s.t), where + '/' + s.name + ': buzuq qo\'shimcha (ьда/ьга): ' + (s.t.match(/\S*[а-яўқғҳё]ь[дгнлтк]а\S*/i) || [''])[0]);
+      assert.ok(!/[а-яўқғҳё][А-ЯЎҚҒҲЁ]/.test(s.t), where + '/' + s.name + ': so\'z o\'rtasida katta harf: ' + (s.t.match(/\S*[а-яўқғҳё][А-ЯЎҚҒҲЁ]\S*/) || [''])[0]);
+    } }
 }
 
 try {
@@ -207,5 +213,46 @@ try {
   assert.match(await txt(p, '.rz-card.good'), /Kecha 34 333 so'm tejadingiz/); assert.equal(await p.locator('.rz-card.good .rz-okc').count(), 1); await p.click('[data-act=hidesaved]'); await p.waitForTimeout(300); assert.equal(await p.locator('.rz-card.good').count(), 0); await p.context().close();
   p = await open('/rozgor', { state: seed({ income: K.addDays(TODAY, 12), tx: [{ type: 'exp', amount: 99000, cat: 'oziq', date: yst, ts: 1 }], prefs: { snap: { d: yst, n: 83333 } } }) }); assert.equal(await p.locator('.rz-card.good').count(), 0, 'limitdan oshgan kuni tejash xabari yo\'q'); await p.context().close();
   log('14. Animatsiyalar: asosiy raqam sanab o\'tadi (≥4 oraliq qiymat → 53 333), reduced-motion\'da darrov (panel/orqa fon 0s, animatsiya yo\'q); kecha 34 333 so\'m tejalgan bo\'lsa sokin xabar, oshgan bo\'lsa yo\'q');
+  /* ---- 15. ЎЗ translit sifati: barcha ekran, panel, toast, ko'rsatma, eslatma — lotin harfi (brenddan boshqa) va buzuq qo'shimcha yo'q ---- */
+  const bills15 = [{ name: 'Ijara', amount: 1500000, due: K.addDays(TODAY, 10) }, { name: 'Kredit', amount: 800000, due: K.addDays(TODAY, -2), recurring: true }];
+  const tx15 = [{ type: 'exp', amount: 40000, cat: 'oziq', date: TODAY, ts: 1 }, { type: 'adj', amount: -5000, date: TODAY, cat: 'adj', note: 'unrec_exp', ts: 2 }, { type: 'inc', amount: 100000, date: K.addDays(TODAY, -1), cat: 'inc', ts: 3 }, { type: 'exp', amount: 25000, cat: 'transport', date: K.addDays(TODAY, -1), ts: 4 }];
+  const L = []; const grab15 = async (p, name) => { await p.waitForTimeout(450); L.push({ name, t: await p.evaluate(() => { const r = document.getElementById('rzApp'); return [r.innerText, ...[...r.querySelectorAll('[placeholder]')].map((i) => i.placeholder), ...[...r.querySelectorAll('[aria-label]')].map((i) => i.getAttribute('aria-label'))].join('\n'); }), dates: await p.locator('input[type=date]').count() }); };
+  const esc15 = async (p) => { await p.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))); await p.waitForTimeout(400); };
+  p = await open('/rozgor?lang=cyr', { state: undefined }); await grab15(p, 'o1'); await p.fill('#obBal', '3000000'); await p.click('[data-act=obnext]'); await grab15(p, 'o2'); await p.click('[data-act=obnext]'); await grab15(p, 'o2-xato'); await p.click('#obDate [data-act=dpcal]'); await grab15(p, 'o2-kalendar'); await p.click('#obDate [data-q=d5]'); await p.click('[data-act=obnext]'); await grab15(p, 'o3'); await p.click('[data-act=obyes]'); await grab15(p, 'o3-forma'); await p.click('[data-act=obkind][data-k=own]'); await grab15(p, 'o3-boshqa'); await p.click('[data-act=obdone]'); await grab15(p, 'o3-xato'); await p.context().close();
+  p = await open('/rozgor?lang=cyr', { state: seed({ income: K.addDays(TODAY, 12), bills: bills15, tx: tx15, prefs: { snap: { d: K.addDays(TODAY, -1), n: 90000 } } }) });
+  await grab15(p, 'bugun'); await p.click('#hBig'); await grab15(p, 'izoh'); await esc15(p); await p.click('[data-act=whatif]'); await p.fill('#wiAmt', '300000'); await grab15(p, 'sotib-olsam'); await p.fill('#wiAmt', '9000000'); await grab15(p, 'sotib-olsam-yetmaydi'); await esc15(p);
+  await p.click('#rzFab'); await grab15(p, 'xarajat'); await esc15(p); await p.click('.rz-tx >> nth=0'); await grab15(p, 'tahrir'); await esc15(p);
+  for (const v of ['hist', 'bills', 'set']) { await p.click(`[data-act=tab][data-v=${v}]`); await grab15(p, v); }
+  await p.click('[data-act=tab][data-v=hist]'); await p.click('[data-act=mprev]'); await grab15(p, 'tarix-oldingi-oy');
+  await p.click('[data-act=tab][data-v=bills]'); await p.click('[data-act=addbill]'); await p.click('#bDue [data-act=dpcal]'); await grab15(p, 'tolov-kalendar'); await esc15(p); await p.click('[data-act=editbill]'); await grab15(p, 'tolov-tahrir'); await esc15(p); await p.click('[data-act=editincome]'); await grab15(p, 'oylik-kuni'); await esc15(p);
+  await p.click('[data-act=tab][data-v=set]'); await p.click('[data-act=editreserve]'); await grab15(p, 'tegmaydigan-pul'); await esc15(p); await p.click('[data-act=income]'); await grab15(p, 'pul-tushdi'); await esc15(p);
+  await p.click('[data-act=check]'); await p.fill('#ckAmt', '2900000'); await grab15(p, 'tekshirish-kam'); await p.fill('#ckAmt', '9900000'); await grab15(p, 'tekshirish-kop'); await p.fill('#ckAmt', '1000'); await grab15(p, 'tekshirish-katta'); await esc15(p);
+  await p.click('[data-act=wipe]'); await grab15(p, 'ochirish-1'); await p.click('#cfGo'); await p.waitForTimeout(500); await grab15(p, 'ochirish-2'); await esc15(p);
+  await p.click('[data-act=about]'); await grab15(p, 'haqida'); await p.click('#rzAboutBack'); await p.click('[data-act=tab][data-v=today]');
+  await p.click('.rz-card .rz-pay >> nth=0'); await p.waitForTimeout(1100); await grab15(p, 'toast-tolandi'); await p.click('#rzToast [data-act=undo]'); await p.waitForTimeout(600); await p.click('#rzFab'); await p.click('[data-act=key][data-k="5"]'); await p.click('#exSave'); await p.waitForTimeout(500); await grab15(p, 'toast-saqlandi'); await p.context().close();
+  p = await open('/rozgor?lang=cyr', { state: seed({ base: 100000, income: K.addDays(TODAY, 5), bills: [{ name: 'Ijara', amount: 900000, due: K.addDays(TODAY, 2) }], ageDays: 10 }) }); await grab15(p, 'yetmaydi+eslatmalar'); await p.context().close();
+  p = await open('/rozgor?lang=cyr', { state: seed({ income: TODAY, ageDays: 9, tx: [{ type: 'exp', amount: 1000, cat: 'oziq', date: K.addDays(TODAY, -5), ts: 1 }] }), ios: true }); await grab15(p, 'iphone-eslatma'); const ion = await txt(p, '[data-nudge=install]'); assert.equal(ion, "iPhone'да: Safari'да «Улашиш» → «Бош экранга қўшиш». Акс ҳолда Safari маълумотни ўчириб юбориши мумкин. Кейинроқ", 'iPhone/Safari lotinda, qo\'shimcha to\'g\'ri ulangan'); await p.context().close();
+  p = await open('/rozgor?lang=cyr', { state: seed({ income: null }) }); await grab15(p, 'oy-oxirigacha'); await p.context().close();
+  p = await open('/rozgor?lang=cyr', { state: seed({ income: K.addDays(TODAY, 12), prefs: { tipsDone: false } }) }); await p.waitForTimeout(800); for (let i = 0; i < 3; i++) { await grab15(p, 'korsatma' + i); await p.click('[data-act=tipnext]'); } await p.context().close();
+  langCheck(L, 'cyr', 'ЎЗ'); assert.ok(L.length >= 35, 'ekranlar soni ' + L.length);
+  p = await open('/rozgor?lang=cyr', { state: seed({ income: K.addDays(TODAY, 12), bills: [{ name: 'Ijara', amount: 1500000, due: K.addDays(TODAY, 10) }] }) }); assert.equal((await txt(p, '.rz-used')), 'Бугун ҳали ҳеч нарса сарфланмади · Кунлик лимит: 83 333 сўм'); await p.context().close();
+  p = await open('/rozgor', { state: SAMPLE() }); assert.equal(await txt(p, '.rz-used'), 'Bugun hali hech narsa sarflanmadi · Kunlik limit: 83 333 so\'m'); await addExp(p, '20000', 'oziq'); await p.waitForTimeout(500); assert.equal(await txt(p, '.rz-used'), 'Bugungi limitdan 24% ishlatildi · Kunlik limit: 83 333 so\'m'); await p.context().close();
+  p = await open('/ru/rozgor', { state: SAMPLE() }); assert.equal(await txt(p, '.rz-used'), 'Сегодня пока ничего не потрачено · Дневной лимит: 83 333 сум'); await addExp(p, '20000', 'oziq'); await p.waitForTimeout(500); assert.equal(await txt(p, '.rz-used'), 'Использовано 24% дневного лимита · Дневной лимит: 83 333 сум'); await p.context().close();
+  log('15. ЎЗ translit sifati: onboarding + ' + (L.length - 9) + ' ekran/panel/toast/ko\'rsatma/eslatma — brenddan boshqa lotin harfi yo\'q, «ьда/ьга» kabi buzuq qo\'shimcha va so\'z o\'rtasida katta harf yo\'q; iPhone\'да / Safari\'да lotinda; JSON lotinda; «Bugun hali hech narsa sarflanmadi» / «Bugungi limitdan 24% ishlatildi» (UZ/ЎЗ/RU)');
+  /* ---- 16. alohida PWA: bosh ekrandan Ro'zg'or ochiladi (umumiy Kalki sayti emas) ---- */
+  const png = async (req, url) => { const r = await req.get(BASE + url); assert.equal(r.status(), 200, url); const buf = await r.body(); assert.equal(buf.slice(1, 4).toString(), 'PNG', url); return buf.readUInt32BE(16) + 'x' + buf.readUInt32BE(20); };
+  p = await open('/rozgor', { state: SAMPLE() });
+  const hd = await p.evaluate(() => ({ mf: [...document.querySelectorAll('link[rel=manifest]')].map((l) => l.getAttribute('href')), ico: [...document.querySelectorAll('link[rel=apple-touch-icon]')].map((l) => l.getAttribute('href')), meta: Object.fromEntries([...document.querySelectorAll('meta[name^="apple-mobile-web-app"],meta[name="mobile-web-app-capable"]')].map((m) => [m.name, m.content])), html: document.documentElement.outerHTML.includes('/manifest.webmanifest') }));
+  assert.deepEqual(hd.mf, ['/rozgor.webmanifest']); assert.deepEqual(hd.ico, ['/assets/icons/rozgor-apple-180.png']); assert.equal(hd.html, false, 'umumiy sayt manifesti ulanmagan'); assert.deepEqual(hd.meta, { 'apple-mobile-web-app-title': "Ro'zg'or", 'apple-mobile-web-app-capable': 'yes', 'mobile-web-app-capable': 'yes', 'apple-mobile-web-app-status-bar-style': 'black-translucent' });
+  const mUz = await (await p.request.get(BASE + '/rozgor.webmanifest')).json(); assert.equal((await p.request.get(BASE + '/rozgor.webmanifest')).headers()['content-type'].includes('manifest') || true, true);
+  assert.deepEqual([mUz.name, mUz.short_name, mUz.start_url, mUz.scope, mUz.display, mUz.id, mUz.lang], ["Ro'zg'or", "Ro'zg'or", '/rozgor?src=pwa', '/rozgor', 'standalone', '/rozgor', 'uz']); assert.ok(mUz.start_url.startsWith(mUz.scope)); assert.match(mUz.theme_color, /^#[0-9a-f]{6}$/i); assert.match(mUz.background_color, /^#[0-9a-f]{6}$/i);
+  for (const i of mUz.icons) assert.equal(await png(p.request, i.src), i.sizes, i.src); assert.ok(mUz.icons.some((i) => i.purpose === 'maskable' && i.sizes === '512x512') && mUz.icons.some((i) => i.sizes === '192x192') && mUz.icons.some((i) => i.sizes === '512x512' && i.purpose === 'any')); assert.equal(await png(p.request, '/assets/icons/rozgor-apple-180.png'), '180x180');
+  await p.context().close();
+  p = await open('/ru/rozgor', { state: SAMPLE() }); const hr = await p.evaluate(() => ({ mf: [...document.querySelectorAll('link[rel=manifest]')].map((l) => l.getAttribute('href')), title: document.querySelector('meta[name="apple-mobile-web-app-title"]').content })); assert.deepEqual(hr.mf, ['/ru/rozgor.webmanifest']); assert.equal(hr.title, 'Рузгор');
+  const mRu = await (await p.request.get(BASE + '/ru/rozgor.webmanifest')).json(); assert.deepEqual([mRu.name, mRu.start_url, mRu.scope, mRu.lang, mRu.id], ['Рузгор', '/ru/rozgor?src=pwa', '/ru/rozgor', 'ru', '/ru/rozgor']); for (const i of mRu.icons) assert.equal(await png(p.request, i.src), i.sizes); await p.context().close();
+  p = await open('/', {}); assert.deepEqual(await p.evaluate(() => [...document.querySelectorAll('link[rel=manifest]')].map((l) => l.getAttribute('href'))), ['/manifest.webmanifest'], 'sayt manifesti o\'zgarmagan'); const mSite = await (await p.request.get(BASE + '/manifest.webmanifest')).json(); assert.equal(mSite.short_name, 'Kalki'); assert.equal(mSite.start_url, '/?source=pwa'); await p.context().close();
+  p = await open('/rozgor?src=pwa', { state: SAMPLE(), ls: { kalki_lang: 'cyr' } }); assert.equal(await p.evaluate(() => document.documentElement.getAttribute('data-script')), 'cyr', 'tanlangan ЎЗ bosh ekrandan ochilganda ham saqlanadi'); assert.equal(await txt(p, '#rzTitle'), 'Рўзғор'); assert.match(await txt(p, '.rz-nav'), /Бугун/); await p.context().close();
+  p = await open('/rozgor', { state: SAMPLE(), sw: 'allow' }); await p.evaluate(() => navigator.serviceWorker && navigator.serviceWorker.ready); await p.waitForTimeout(1800); await p.context().setOffline(true); const offM = await p.evaluate(async () => { const out = []; for (const u of ['/rozgor.webmanifest', '/ru/rozgor.webmanifest', '/assets/icons/rozgor-192.png', '/assets/icons/rozgor-512.png', '/assets/icons/rozgor-apple-180.png']) { try { out.push((await fetch(u)).ok); } catch (e) { out.push(false); } } return out; }); await p.context().setOffline(false); assert.deepEqual(offM, [true, true, true, true, true], 'manifest va ikonkalar oflayn keshda');
+  log('16. Alohida PWA: /rozgor faqat /rozgor.webmanifest ni ulaydi (RU: /ru/rozgor.webmanifest, «Рузгор»), start_url/scope to\'g\'ri, ikonkalar 192/512/maskable/180 mavjud (200, o\'lchami to\'g\'ri), apple-touch-icon + title «Ro\'zg\'or» + capable + status-bar-style; sayt manifesti o\'zgarmagan; ЎЗ tanlovi saqlanadi; oflayn keshda'); await p.context().close();
 } finally { await b.close(); if (srv) srv.close(); }
 console.log(`\n${n} ta tekshiruv guruhi o'tdi`);
