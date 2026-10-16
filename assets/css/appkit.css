@@ -235,3 +235,10 @@ body.rz-body{position:fixed;inset:0;width:100%;overflow:hidden;overscroll-behavi
 /* ---------- Zaxira (app-backup.js) ---------- */
 .bk-last{margin:8px 4px 2px;color:var(--mut)}
 .bk-steps{margin:0 0 14px;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:var(--t-m,1rem);line-height:1.45}
+.bk-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1.375rem;line-height:1.5;letter-spacing:.06em;font-weight:800;text-align:center;word-break:break-all;background:var(--accsoft);border:1.5px solid var(--line);border-radius:16px;padding:18px 12px;margin:6px 0 14px;-webkit-user-select:all;user-select:all}
+.bk-consent{background:var(--accsoft);border-radius:12px;padding:10px 12px}
+.bk-cloud{padding:12px 14px;border-top:1px solid var(--line)}.bk-ct b{font-size:var(--t-m,1rem)}.bk-st{margin:4px 0 10px}
+.bk-cb{display:flex;gap:8px;flex-wrap:wrap}.bk-cb .rz-btn{flex:none}
+.bk-conf{background:var(--warnbg);border:1px solid var(--warnline);border-radius:12px;padding:10px 12px;margin:0 0 10px}
+.bk-rclink{display:block;margin:18px auto 0;text-align:center}
+.bk-restore{z-index:76}

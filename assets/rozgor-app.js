@@ -84,6 +84,7 @@
   var persistAsked = false;
   function save() {
     try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {}
+    if (typeof bk !== 'undefined' && bk) bk.touch();
     if (!persistAsked) { persistAsked = true; try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {} }
   }
   function commit(opts) { save(); render(opts); }
@@ -121,7 +122,7 @@
   }
 
   /* ---------- BUGUN ---------- */
-  var bk = KalkiBackup.create({ app: 'rozgor', fileBase: 'rozgor', name: "Ro'zg'or", kit: kit, lang: langNow, rowIcon: 'rz-ci rz-c-boshqa', hasData: function () { return !!(st && st.setup); }, exportText: function () { return JSON.stringify({ app: 'kalki-rozgor', v: K.VERSION, exportedAt: Date.now(), state: st }); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { var o = {}; st.tx.forEach(function (x) { o[x.date] = 1; }); return Object.keys(o).length; }, pickFile: function () { doImport(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
+  var bk = KalkiBackup.create({ app: 'rozgor', fileBase: 'rozgor', name: "Ro'zg'or", kit: kit, lang: langNow, rowIcon: 'rz-ci rz-c-boshqa', hasData: function () { return !!(st && st.setup); }, exportText: function () { return JSON.stringify({ app: 'kalki-rozgor', v: K.VERSION, exportedAt: Date.now(), state: st }); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { var o = {}; st.tx.forEach(function (x) { o[x.date] = 1; }); return Object.keys(o).length; }, pickFile: function () { doImport(); }, sig: function () { return JSON.stringify(st); }, root: root, importText: function (t) { return K.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenTx = null; heroPrev = null; save(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
   function nudges() {
     var out = [], t = todayStr(), p = prefs(), now = Date.now();
     var hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
@@ -210,7 +211,7 @@
     var big = document.documentElement.classList.contains('fs-big'), cur = isCyr() ? 'cyr' : lang;
     var row = function (act, ic, t1, t2, val) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + (val ? '<span class="v">' + esc(val) + '</span>' : ico('chev', 'r')) + '</button>'; };
     var h = '<h2 class="rz-h">' + esc(T('setT')) + '</h2><section class="rz-card">' + row('check', 'rep', T('sCheck'), T('sCheckH')) + row('income', 'inc', T('sInc'), T('sIncH')) + row('editreserve', 'shield', T('sRes'), T('sResH'), fmt(st.reserve) + ' ' + T('sum')) + '</section>' +
-      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
+      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (cur === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (cur === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (cur === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
       '<section class="rz-card">' + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section>' +
@@ -394,7 +395,7 @@
     }
     var s = ob.step, an = ob.anim; ob.anim = null;
     var h = '<div class="rz-ob-top">' + (s > 1 ? '<button type="button" class="rz-x" data-act="obback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button>' : '<span></span>') + '<div class="rz-dots">' + [1, 2, 3].map(function (i) { return '<i class="' + (i === s ? 'on' : (i < s ? 'done' : '')) + '"></i>'; }).join('') + '</div><span></span></div><div class="rz-ob-body' + (an ? ' in-' + an : '') + '">', foot = '';
-    if (s === 1) { h += '<h2 class="rz-q">' + esc(T('o1q')) + '</h2><p class="rz-p">' + esc(T('o1h')) + '</p><div class="rz-amt" id="obBal" role="status"><span id="obBalNum">' + (ob.balance ? spaced(ob.balance) : '0') + '</span><small> ' + T('sum') + '</small></div>' + kit.padHtml('int000'); foot = 'next'; }
+    if (s === 1) { h += '<h2 class="rz-q">' + esc(T('o1q')) + '</h2><p class="rz-p">' + esc(T('o1h')) + '</p><div class="rz-amt" id="obBal" role="status"><span id="obBalNum">' + (ob.balance ? spaced(ob.balance) : '0') + '</span><small> ' + T('sum') + '</small></div>' + kit.padHtml('int000') + bk.restoreLink(); foot = 'next'; }
     if (s === 2) { h += '<h2 class="rz-q">' + esc(T('o2q')) + '</h2><p class="rz-p">' + esc(T('o2h')) + '</p>' + (ob.none ? '' : dpHtml('obDate', T('pickDate'), ob.date, 'inc', todayStr())) + '<button type="button" class="rz-opt' + (ob.none ? ' on' : '') + '" data-act="obnone"><b>' + esc(T('o2none')) + '</b><span>' + esc(T('o2noneH')) + '</span></button>'; foot = 'next'; }
     if (s === 3 && ob.sub === 'ask') { h += '<h2 class="rz-q">' + esc(T('o3q')) + '</h2><p class="rz-p">' + esc(T('o3h')) + '</p><button type="button" class="rz-opt big" data-act="obyes"><b>' + esc(T('o3yes')) + '</b></button><button type="button" class="rz-opt big" data-act="obno"><b>' + esc(T('o3no')) + '</b></button>'; }
     if (s === 3 && ob.sub === 'form') {
