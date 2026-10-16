@@ -8,7 +8,7 @@ import { takeKfQuota } from './kalkifit-quota.js';
 const DEFAULT_CLIENT_LIMIT = 30, DEFAULT_SITE_LIMIT = 3000;   // KALKIFIT_CLIENT_LIMIT, KALKIFIT_SITE_LIMIT (kuniga) — env bilan sozlanadi
 const SYSTEM = `Sen ovqat va ichimliklarning kaloriyasini TAXMINIY baholovchi yordamchisan. Foydalanuvchi nima yeganini yozadi (o'zbek, rus yoki kirill yozuvida).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har element: {"nom": qisqa nom (foydalanuvchi tilida), "porsiya": porsiya oddiy so'zlarda (masalan "1 kosa", "2 dona"), "kcal": butun son, "o": oqsil gramm, "y": yog' gramm, "u": uglevod gramm}.
-Qoidalar: eng ko'pi 8 ta element; qiymatlar butun porsiya uchun (100 g uchun emas); o'zbek oshxonasidagi odatiy porsiya va o'rtacha uy retseptini ol; matnda ovqat bo'lmasa bo'sh massiv [] qaytar; tibbiy maslahat, izoh yoki dieta tavsiyasi yozma.`;
+Qoidalar: eng ko'pi 8 ta element; bir xil taom BITTA elementda bo'lsin (soni porsiyada: "2 dona"), kcal va makro shu jami porsiya uchun; qiymatlar butun porsiya uchun (100 g uchun emas); o'zbek oshxonasidagi odatiy porsiya va o'rtacha uy retseptini ol; matnda ovqat bo'lmasa bo'sh massiv [] qaytar; tibbiy maslahat, izoh yoki dieta tavsiyasi yozma.`;
 
 export function extractJson(text) {
   const t = String(text || '').replace(/```(?:json)?/gi, '').trim(), i = t.indexOf('['), j = t.lastIndexOf(']');

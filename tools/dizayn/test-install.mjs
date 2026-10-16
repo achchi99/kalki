@@ -28,7 +28,7 @@ const UA = {
   assert.equal(I.safariUrl({ host: 'kalki.uz', pathname: '/ru/rozgor', search: '?lang=cyr' }), 'x-safari-https://kalki.uz/ru/rozgor?lang=cyr'); console.log('OK   0. aniqlash: Android/iPhone Safari (iOS 18 va 26)/Chrome/Firefox, Telegram·Instagram·Facebook·TikTok·WhatsApp, standalone; intent:// va x-safari-https:// havolalari'); }
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
-await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port;
+await new Promise((ok) => srv.listen(0, ok)); const BASE = process.env.INSTALL_BASE || 'http://localhost:' + srv.address().port;   // INSTALL_BASE=https://kalki.uz — production tekshiruvi
 const b = track(await chromium.launch()); let n = 1; const log = (m) => { console.log('OK  ', n++ + '.', m); };
 const TODAY = KF.dates.today();
 function kfState(withFood = true) { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 5 * 86400000; st.prefs = { tipsDone: true }; st.profile = { sex: 'm', preg: false, age: 30, height: 175, weight: 80, act: 3, goal: 'lose', goalWeight: null }; KF.addWeight(st, TODAY, 80);
