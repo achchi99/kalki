@@ -2,9 +2,10 @@
  * ariza.js infratuzilmasi: Origin tekshiruvi, kunlik limit (KV), model so'rovi. Ilova avval LOKAL baza bilan moslashtiradi — bu endpoint faqat topilmaganini taxmin qiladi.
  * Yuboriladigan narsa FAQAT ovqat matni (profil, vazn, tarix YO'Q); hech narsa saqlanmaydi — natijani foydalanuvchi ko'rib o'zi tasdiqlaydi.
  * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id } → { ovqatlar: [{ nom, porsiya, kcal, o, y, u }] } | { xato } */
-import { originOk, maskPII, takeQuota, askModel, json, num, UUID_RE } from './ariza.js';
+import { originOk, maskPII, askModel, json, num, UUID_RE } from './ariza.js';
+import { takeKfQuota } from './kalkifit-quota.js';
 
-const DEFAULT_CLIENT_LIMIT = 30;
+const DEFAULT_CLIENT_LIMIT = 30, DEFAULT_SITE_LIMIT = 3000;   // KALKIFIT_CLIENT_LIMIT, KALKIFIT_SITE_LIMIT (kuniga) — env bilan sozlanadi
 const SYSTEM = `Sen ovqat va ichimliklarning kaloriyasini TAXMINIY baholovchi yordamchisan. Foydalanuvchi nima yeganini yozadi (o'zbek, rus yoki kirill yozuvida).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har element: {"nom": qisqa nom (foydalanuvchi tilida), "porsiya": porsiya oddiy so'zlarda (masalan "1 kosa", "2 dona"), "kcal": butun son, "o": oqsil gramm, "y": yog' gramm, "u": uglevod gramm}.
 Qoidalar: eng ko'pi 8 ta element; qiymatlar butun porsiya uchun (100 g uchun emas); o'zbek oshxonasidagi odatiy porsiya va o'rtacha uy retseptini ol; matnda ovqat bo'lmasa bo'sh massiv [] qaytar; tibbiy maslahat, izoh yoki dieta tavsiyasi yozma.`;
@@ -31,7 +32,7 @@ export function sanitize(list) {
 }
 export const _test = { extractJson, sanitize, SYSTEM };
 
-const E = { 400: "Matn noto'g'ri.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 415: 'JSON yuboring.', 429: "Bugungi limit tugadi. Ertaga urinib ko'ring.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
+const E = { 400: "Matn noto'g'ri.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 415: 'JSON yuboring.', 429: "Bugungi limit tugadi. Ertaga urinib ko'ring.", 4291: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
 const fail = (status) => json(status, { xato: E[status] || 'Xato.' });
 
 export async function onRequest({ request, env }) {
@@ -45,9 +46,9 @@ export async function onRequest({ request, env }) {
   if (matn.length < 2 || matn.length > 300) return fail(400);
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
-  const lim = Object.assign({}, env, { AI_CLIENT_LIMIT: String(num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT)) });
-  let sabab; try { sabab = await takeQuota(lim, request, clientId); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: E[429], sabab });
+  const cl = num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT);
+  let sabab; try { sabab = await takeKfQuota(env, request, clientId, { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askModel(env, maskPII(matn), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
     if (r.err) continue;

@@ -3,8 +3,9 @@
  * Limit: kuniga 10 rasm (mijoz va IP bo'yicha, KV), sayt bo'yicha umumiy tavan. Origin — ariza.js kabi.
  * POST { img: <base64 JPEG yoki data URL>, til: 'uz'|'ru'|'kirill', mijoz_id } → { ovqatlar: [{ nom, porsiya, g, kcal, o, y, u }], aniqlik: '±30%' } | { xato } */
 import { originOk, json, num, UUID_RE } from './ariza.js';
+import { takeKfQuota } from './kalkifit-quota.js';
 
-const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 25000, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_LIMIT = 10, DEFAULT_SITE = 300, KV_TTL = 172800;
+const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 25000, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_LIMIT = 10, DEFAULT_SITE = 500;   // kuniga: mijoz 10 (KALKIFIT_IMG_LIMIT), umumiy 500 (KALKIFIT_IMG_SITE_LIMIT)
 const SYSTEM = `Sen ovqat suratidagi taomlarni aniqlab, porsiya og'irligini va kaloriyasini TAXMINIY baholovchi yordamchisan. Suratda o'zbek taomlari (osh, somsa, lag'mon, manti, shurva, non, qatiq...) va kundalik ovqatlar bo'lishi mumkin.
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har element: {"nom": qisqa nom (foydalanuvchi tilida), "porsiya": oddiy so'zlarda ("1 kosa", "2 dona"), "g": taxminiy og'irlik gramm (butun son), "kcal": butun porsiya uchun kkal, "o": oqsil g, "y": yog' g, "u": uglevod g}.
 Qoidalar: eng ko'pi 6 element; qiymatlar suratdagi ANIQ porsiya uchun (100 g uchun emas); ishonching komil bo'lmasa o'rtacha uy retseptini ol; suratda ovqat bo'lmasa bo'sh massiv [] qaytar; odamlar, matn yoki boshqa narsalar haqida yozma; tibbiy maslahat berma.`;
@@ -31,17 +32,6 @@ export function jpegBytes(b64) {                    // base64 → JPEG ekanini (
   if (head.charCodeAt(0) !== 0xFF || head.charCodeAt(1) !== 0xD8 || head.charCodeAt(2) !== 0xFF) return null;
   return { b64: clean, bytes };
 }
-async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 24); }
-const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().slice(0, 10);
-async function takeImgQuota(env, request, cid) {  // null = ruxsat; 'mijoz' | 'ip' | 'sayt'
-  const kv = env.KALKI_AI_KV, day = tashkentDay(), salt = env.IP_HASH_SALT || '', ip = request.headers.get('CF-Connecting-IP') || '?';
-  const keys = [{ k: 'img:site:' + day, lim: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), s: 'sayt' }, { k: 'img:ip:' + day + ':' + await sha(salt + ip), lim: num(env.KALKIFIT_IMG_LIMIT, DEFAULT_LIMIT) * 2, s: 'ip' }];
-  if (cid) keys.splice(1, 0, { k: 'img:cid:' + day + ':' + await sha(salt + 'c:' + cid.toLowerCase()), lim: num(env.KALKIFIT_IMG_LIMIT, DEFAULT_LIMIT), s: 'mijoz' });
-  const counts = await Promise.all(keys.map((x) => kv.get(x.k)));
-  for (let i = 0; i < keys.length; i++) if ((parseInt(counts[i], 10) || 0) >= keys[i].lim) return keys[i].s;
-  await Promise.all(keys.map((x, i) => kv.put(x.k, String((parseInt(counts[i], 10) || 0) + 1), { expirationTtl: KV_TTL })));
-  return null;
-}
 async function askVision(env, b64, til) {
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
   try {
@@ -53,7 +43,7 @@ async function askVision(env, b64, til) {
 }
 export const _test = { extractJson, sanitize, jpegBytes, SYSTEM };
 
-const E = { 400: "Rasm noto'g'ri. JPEG yuboring.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 413: 'Rasm juda katta.', 415: 'JSON yuboring.', 429: 'Bugungi rasm limiti tugadi (kuniga 10 ta). Ertaga urinib ko\'ring.', 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
+const E = { 400: "Rasm noto'g'ri. JPEG yuboring.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 413: 'Rasm juda katta.', 415: 'JSON yuboring.', 429: 'Bugungi rasm limiti tugadi (kuniga 10 ta). Ertaga urinib ko\'ring.', 4291: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' });
 
 export async function onRequest({ request, env }) {
@@ -66,8 +56,9 @@ export async function onRequest({ request, env }) {
   const img = jpegBytes(body.img); if (!img) return fail(400); if (img.err) return fail(img.err);
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const cid = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
-  let sabab; try { sabab = await takeImgQuota(env, request, cid); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: E[429], sabab });
+  const cl = num(env.KALKIFIT_IMG_LIMIT, DEFAULT_LIMIT);
+  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'img', site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz'); if (r.err) continue;
     const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%' });

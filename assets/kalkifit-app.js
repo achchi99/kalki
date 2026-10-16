@@ -19,7 +19,7 @@
       rT: "Sizning kunlik me'yoringiz", rWhyKeep: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Vaznni saqlash uchun shuncha yeyish kifoya.', rWhyLose: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg kamaytirish uchun {d} kkal kam yeysiz.', rWhyGain: "Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg ko'paytirish uchun {d} kkal ko'p yeysiz.",
       rFloor: "Kamaytirish tezligi xavfsiz chegaraga ({min} kkal) moslandi, shuning uchun haftasiga ≈ {kg} kg.", rDoc: "Shifokor bilan maslahatlashing. Bu hisob faqat vaznni saqlash uchun.", under18: "18 yoshdan kichiklar uchun dieta hisoblanmaydi.", pregN: "Homiladorlik va emizish davrida dieta hisoblanmaydi.", lowBmi: "Vazningiz me'yordan past (BMI < 18,5): dieta hisoblanmaydi.",
       disc: "Taxminiy hisob — tibbiy maslahat emas.", rMacro: 'Oqsil {p} g · yog\' {f} g · uglevod {c} g', rWater: 'Suv: {n} stakan ({ml} ml)',
-      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", hEmpty: "Birinchi ovqatni «+» tugmasi bilan yozing — halqa shu yerda to'la boshlaydi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
+      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni «+» tugmasi bilan yozing — halqa shu yerda to'la boshlaydi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
       mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
       aT: "Ovqat qo'shish", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
@@ -58,7 +58,7 @@
       rT: 'Ваша дневная норма', rWhyKeep: 'Вы тратите примерно {tdee} ккал в день. Чтобы сохранить вес, достаточно столько и есть.', rWhyLose: 'Вы тратите примерно {tdee} ккал в день. Чтобы терять ≈ {kg} кг в неделю, нужно есть на {d} ккал меньше.', rWhyGain: 'Вы тратите примерно {tdee} ккал в день. Чтобы набирать ≈ {kg} кг в неделю, нужно есть на {d} ккал больше.',
       rFloor: 'Темп снижения приведён к безопасной границе ({min} ккал), поэтому ≈ {kg} кг в неделю.', rDoc: 'Проконсультируйтесь с врачом. Этот расчёт только для сохранения веса.', under18: 'Для лиц младше 18 лет диета не рассчитывается.', pregN: 'Во время беременности и кормления диета не рассчитывается.', lowBmi: 'Ваш вес ниже нормы (ИМТ < 18,5): диета не рассчитывается.',
       disc: 'Приблизительный расчёт — не медицинская рекомендация.', rMacro: 'Белки {p} г · жиры {f} г · углеводы {c} г', rWater: 'Вода: {n} стаканов ({ml} мл)',
-      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', hEmpty: 'Запишите первую еду кнопкой «+» — кольцо начнёт заполняться здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
+      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду кнопкой «+» — кольцо начнёт заполняться здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
       mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
       aT: 'Добавить еду', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
@@ -460,7 +460,7 @@
     phShrink(file, function (b64) {
       if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
-        fd.busy = false; if (res.s === 429) fd.phErr = T('phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
+        fd.busy = false; if (res.s === 429) fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
         else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, ptxt: o.porsiya || '', est: true, ai: true, photo: true, mult: 1, base: { g: o.g || 0, kcal: o.kcal, p: o.o, f: o.y, c: o.u } }; }); phRefresh();
       }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
     });
@@ -487,15 +487,15 @@
   function spRows() {
     if (suppState !== 2) return '<div class="rz-mut">' + esc(T(suppState === 0 ? 'spErr' : 'spLoading')) + '</div>';
     var q = S.key(spQ), list = supp.items.filter(function (it) { return !q || S.key(it[lang].name + ' ' + it.id).indexOf(q) > -1; });
-    return list.length ? list.map(function (it) { return '<button type="button" class="sl-sp" data-act="spitem" data-id="' + esc(it.id) + '">' + catIcon(it.ic) + '<span class="m"><span class="nm">' + esc(it[lang].name) + '</span><span class="tm">' + esc(it[lang].line) + '</span></span>' + spLvl(it.level) + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('spNone')) + '</b></div>';
+    return list.length ? list.map(function (it) { return '<button type="button" class="sl-sp" data-act="spitem" data-id="' + esc(it.id) + '">' + catIcon(it.ic) + '<span class="m"><span class="nm">' + esc(it[lang].name) + '</span><span class="tm">' + esc(it[lang].line) + '</span>' + (it.warn ? '<span class="sl-warn">' + ico('warn', 'sl-inl') + esc(it.warn[lang]) + '</span>' : '') + '</span>' + spLvl(it.level) + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('spNone')) + '</b></div>';
   }
   function openSupp() { spQ = ''; openSheet('supp', spListHtml()); loadSupp(function () { if (kit.sheetKind() === 'supp') setSheet(spListHtml()); }); }
   function spCardHtml(it) {
     var L = it[lang], part = function (k, key) { return L[key] ? '<div class="sl-sec"><div class="rz-fl">' + esc(T(k)) + '</div><p class="rz-p">' + esc(L[key]) + '</p></div>' : ''; };
     var prot = it.id === 'protein' ? '<p class="rz-p sl-fact">' + ico('muscle', 'sl-inl') + esc(T('spProt', { a: Math.round(S.sumEntries((S.dayOf(st, todayStr()) || { food: [] }).food).p), b: planNow().macros.p })) + '</p>' : '';
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="spback" aria-label="' + esc(T('spBack')) + '">' + ico('back') + '</button><b>' + esc(L.name) + '</b><span></span></div><div class="sl-lvrow"><span class="rz-mut sm">' + esc(T('spLvl')) + '</span></div>' + spEvHtml(it) + part('spWhat', 'what') + part('spFood', 'food') + part('spWho', 'who') + part('spNot', 'not') + part('spCare', 'care') +
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="spback" aria-label="' + esc(T('spBack')) + '">' + ico('back') + '</button><b>' + esc(L.name) + '</b><span></span></div><div class="sl-lvrow"><span class="rz-mut sm">' + esc(T('spLvl')) + '</span></div>' + spEvHtml(it) + (it.warn ? '<p class="sl-warn big">' + ico('warn', 'sl-inl') + esc(it.warn[lang]) + '</p>' : '') + part('spWhat', 'what') + part('spFood', 'food') + part('spWho', 'who') + part('spNot', 'not') + part('spCare', 'care') +
       (it.ul && it.ul[lang] ? '<div class="sl-ul"><b>' + ico('warn', 'sl-inl') + esc(T('spUl')) + '</b><p>' + esc(it.ul[lang]) + '</p></div>' : '') + prot +
-      '<p class="rz-p sm">' + (it.src ? '<a class="rz-link" href="' + esc(it.src) + '" target="_blank" rel="noopener noreferrer">' + esc(T('spSrc', { s: srcLabel(it) })) + '</a>' : esc(T('spSrc', { s: '—' }))) + (it.src2 ? ' · <a class="rz-link" href="' + esc(it.src2) + '" target="_blank" rel="noopener noreferrer">2</a>' : '') + ' · ' + esc(T('spChecked', { d: supp.checked })) + '</p>' + spDisc();
+      '<p class="rz-p sm">' + (it.src ? '<a class="rz-link" href="' + esc(it.src) + '" target="_blank" rel="noopener noreferrer">' + esc(T('spSrc', { s: srcLabel(it) })) + '</a>' : esc(T('spSrc', { s: '—' }))) + (it.src2 ? ' · <a class="rz-link" href="' + esc(it.src2) + '" target="_blank" rel="noopener noreferrer">2</a>' : '') + (it.srcs ? it.srcs.map(function (x) { return ' · <a class="rz-link" href="' + esc(x.u) + '" target="_blank" rel="noopener noreferrer">' + esc(x.l) + '</a>'; }).join('') : '') + ' · ' + esc(T('spChecked', { d: supp.checked })) + '</p>' + spDisc();
   }
 
   /* ---------- tushuntirish panellari ---------- */
@@ -646,7 +646,7 @@
       h += '<p class="rz-p warn">' + esc(T('tMiss', { x: fd.missing.join(', ') })) + '</p>';
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
-    if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T('tAiErr')) + '</p>';
+    if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
     if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('tSave', { n: items.length })) + '</button></div>';
     return h;
   }
@@ -664,7 +664,7 @@
     if (fd.busy || !fd.missing.length) return; fd.busy = true; fd.aiErr = false; txRefresh();
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
-      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = true; txRefresh(); return; }
+      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
       res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, unit: null, qty: 1, g: 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '' }); });
       fd.missing = []; txRefresh();
     }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });

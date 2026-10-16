@@ -1,6 +1,9 @@
 /* kalki.uz — ilovalar uchun UMUMIY uslub (Ro'zg'or, KalkiFit): layout, menyu, panel (sheet), toast, tugma, tanlagich, onboarding, yo'l-yo'riq, "haqida" qatlami, animatsiya. Ilova rangi: .rz o'zgaruvchilari qayta belgilanadi. */
 /* kalki.uz — "Ro'zg'or" ilovasi uslubi. Rang: Kalki palitrasi; tungi rejim — tizim sozlamasi; typo2 tokenlari (rem). */
 body.rz-body #sitebar{display:none}
+/* tez bosishda kattalashmasin (iPhone Safari): touch-action: manipulation — maximum-scale/user-scalable=no QO'SHILMAYDI (qulaylik); input shrifti ≥ 16px (fokusda zoom yo'q) */
+html:has(body.rz-body),body.rz-body,.rz-stage,.rz,.rz :where(button,a,input,textarea,select,label,summary,[role=button],.rz-row,.rz-tab,.rz-fab){touch-action:manipulation}
+.rz input,.rz textarea,.rz select{font-size:max(16px,1rem)}
 .rz-stage{background:radial-gradient(1200px 600px at 50% -10%,#DDEBE3 0,#EEF2EE 55%,#F4F5F1 100%);display:flex;justify-content:center;padding:0;position:fixed;inset:0;height:100vh;height:100dvh;z-index:1}
 html:has(body.rz-body),body.rz-body{overflow:hidden;height:100%;overscroll-behavior:none}
 .rz{--bg:#F1F2EE;--card:#fff;--ink:#16211C;--mut:#3F4F46;--line:#E1E7E3;--acc:#0E3B2E;--acc2:#1E7A4A;--accsoft:#E5F0E9;--warn:#7A4E00;--warnbg:#FFF3D6;--warnline:#F0DDAA;--shadow:0 8px 28px rgba(14,59,46,.10);--on:#fff;--r:18px;

@@ -1,6 +1,6 @@
 -- KalkiFit: umumiy ovqatlar bazasi navbati (Cloudflare D1, binding: KALKIFIT_DB).
--- Yaratish:  npx wrangler d1 create kalkifit-taklif   →  Pages loyihasi Settings → Functions → D1 bindings: KALKIFIT_DB
--- Qo'llash:  npx wrangler d1 execute kalkifit-taklif --remote --file=migrations/kalkifit-taklif.sql
+-- Yaratish:  npx wrangler d1 create kalkifit   →  Pages loyihasi Settings → Functions → D1 bindings: KALKIFIT_DB
+-- Qo'llash:  npx wrangler d1 execute kalkifit --remote --file=migrations/kalkifit-taklif.sql
 -- Admin parol (secret):  npx wrangler pages secret put KALKIFIT_ADMIN_PASSWORD
 -- Shaxsiy ma'lumot YO'Q: faqat ovqat nomi, porsiya matni, kkal/makro, til, sanalar.
 CREATE TABLE IF NOT EXISTS taklif (

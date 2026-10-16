@@ -101,6 +101,14 @@ try {
       assert.deepEqual(p.errs, []); await p.context().close(); }
     log(app + ': UZ / ЎЗ / RU — karta va qo\'llanma matnlari (SVG yozuvlari ham) o\'z tilida, aralashma yo\'q');
   }
+
+  /* Ro'zg'or: umumiy kit — tez bosish va touch-action */
+  { const { devices } = await import('playwright'); const c = await b.newContext({ ...devices['iPhone 13'], serviceWorkers: 'block' }); await c.addInitScript((st) => localStorage.setItem('kalki_rozgor', JSON.stringify(st)), rzState(true)); const q = await c.newPage(); await q.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await q.route('**/api/**', (r) => r.abort());
+    await q.goto(BASE + '/rozgor', { waitUntil: 'networkidle' }); await q.waitForTimeout(600); await q.click('#rzFab'); await q.waitForTimeout(500);
+    for (let i = 0; i < 3; i++) { const bx = await q.locator('[data-act=key][data-k="1"]').boundingBox(); await q.touchscreen.tap(bx.x + bx.width / 2, bx.y + bx.height / 2); await q.waitForTimeout(80); }
+    await q.waitForTimeout(300); assert.equal((await q.locator('#exNum').innerText()).replace(/\s/g, ''), '111', 'Ro\'zg\'or: tez bosish → 111'); assert.equal(await q.evaluate(() => window.visualViewport.scale), 1);
+    assert.deepEqual(await q.evaluate(() => ['#rzApp button', '.rz-pad button', '#rzApp'].map((s) => getComputedStyle(document.querySelector(s)).touchAction)), ['manipulation', 'manipulation', 'manipulation']); await c.close(); }
+  log('Ro\'zg\'or (umumiy kit): iPhone emulyatsiyasida tez bosish → 111, zoom 1, touch-action: manipulation');
   /* 7. kompyuter: bip bo'lsa karta, bo'lmasa yo'q */
   let p = await open('kalkifit', { ua: UA.desktop, state: kfState(true), w: 390 }); assert.equal(await p.locator('[data-inst]').count(), 0, 'bip yo\'q → hech narsa'); await bip(p); await p.waitForTimeout(300); assert.equal(await p.locator('[data-inst=card]').count(), 1); await p.context().close();
   log('Kompyuter Chrome/Edge: beforeinstallprompt kelsa karta chiqadi, kelmasa hech narsa ko\'rinmaydi');

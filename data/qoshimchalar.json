@@ -70,13 +70,13 @@
    "id": "vitamin-b-kompleks",
    "ic": "pill",
    "level": "moderate",
-   "levelWhy": "ODS (B6, niacin, thiamin, riboflavin sheets): most people get enough B vitamins from food and deficiency is rare; risk groups are mainly people with alcohol dependence, malabsorption or kidney disease.",
+   "levelWhy": "ODS (B1, B2, B6, B12, B3): kamlik asosan xavf guruhlarida; sog'lom odamda kompleks foydasi isbotlanmagan.",
    "uz": {
     "name": "B guruhi vitaminlari (B-kompleks)",
     "line": "Ovqatda keng tarqalgan, kamlik kam uchraydi. B6 ning ortig'i nervga zarar qilishi mumkin.",
     "what": "B1, B2, B3 (niatsin), B6, B12 va foliy kislotasi moddalar almashinuvi, qon va nerv hujayralari uchun kerak.",
     "food": "Go'sht, tovuq, baliq, tuxum, sut mahsulotlari, kartoshka, mosh, no'xat, loviya, yong'oq va butun don non.",
-    "who": "Spirtli ichimlikka ruju qo'yganlar, ichak kasalliklari (seliakiya, Kron) borlar, buyrak dializidagilar, ozish jarrohligidan o'tganlar, keksalar. Go'sht va sut yemaydiganlarga ko'pincha alohida B12 kerak bo'ladi.",
+    "who": "Spirtli ichimlikka ruju qo'yganlar, keksalar, diabet yoki ozish jarrohligidan o'tganlar (B1 kamligi xavfi); vegan va sut yemaydiganlar (B2 va B12); ichak kasalliklari (seliakiya, Kron) borlar, buyrak dializidagilar. Go'sht va sut yemaydiganlarga ko'pincha alohida B12 yetarli bo'ladi.",
     "not": "Xilma-xil ovqatlanadigan sog'lom odamda B vitaminlari kamligi kam uchraydi — kompleks tabletka odatda ortiqcha xarajat.",
     "care": "B6 ni bir yil va undan uzoq yuqori dozada ichish og'ir nerv shikastiga olib kelishi mumkin. Qo'shimchada 30 mg dan ko'p niatsin (nikotin kislotasi) yuz va badanni qizartirib, achishtiradi. Ba'zi tutqanoq va sil dorilari bilan to'qnashadi."
    },
@@ -85,7 +85,7 @@
     "line": "Есть во многих продуктах, дефицит редок. Избыток B6 может повредить нервы.",
     "what": "B1, B2, B3 (ниацин), B6, B12 и фолиевая кислота нужны для обмена веществ, крови и нервных клеток.",
     "food": "Мясо, курица, рыба, яйца, молочные продукты, картофель, маш, нут, фасоль, орехи и цельнозерновой хлеб.",
-    "who": "Людям с алкогольной зависимостью, болезнями кишечника (целиакия, болезнь Крона), на диализе, после бариатрической операции, пожилым. Тем, кто не ест мясо и молочное, часто нужен отдельно B12.",
+    "who": "Людям с алкогольной зависимостью, пожилым, при диабете или после операции на желудке (риск дефицита B1); веганам и тем, кто не ест молочное (B2 и B12); при болезнях кишечника (целиакия, Крон), на диализе. Тем, кто не ест мясо и молочное, часто достаточно отдельного B12.",
     "not": "У здорового человека с разнообразным питанием дефицит витаминов B редок — комплекс в таблетках обычно лишняя трата.",
     "care": "Высокие дозы B6 в течение года и дольше могут вызвать тяжёлое поражение нервов. Ниацин (никотиновая кислота) в добавках от 30 мг вызывает покраснение и жжение кожи. Взаимодействует с некоторыми противосудорожными и противотуберкулёзными препаратами."
    },
@@ -99,18 +99,40 @@
    "ev": [
     {
      "level": "moderate",
-     "uz": "Homiladorlikdagi ko'ngil aynishi (B6, shifokor nazoratida)",
-     "ru": "Тошнота при беременности (B6, под контролем врача)"
+     "uz": "Kamlik xavfi: vegan, sut yemaydigan, 50+ yosh (B2, B12)",
+     "ru": "Риск дефицита: веганы, без молочного, 50+ (B2, B12)"
+    },
+    {
+     "level": "moderate",
+     "uz": "Spirtga qaram, ozish jarrohligi o'tgan, diabetli (B1; shifokor)",
+     "ru": "Алкогольная зависимость, бариатрия, диабет (B1; с врачом)"
     },
     {
      "level": "low",
-     "uz": "Hayz oldi sindromi (PMS) bo'lganlar",
-     "ru": "При предменструальном синдроме (ПМС)"
+     "uz": "Sog'lom, xilma-xil ovqatlanuvchilar (energiya, kayfiyat, xotira)",
+     "ru": "Здоровые при разнообразном питании (энергия, настроение, память)"
+    }
+   ],
+   "srcs": [
+    {
+     "u": "https://ods.od.nih.gov/factsheets/Thiamin-Consumer/",
+     "l": "B1"
     },
     {
-     "level": "low",
-     "uz": "Boshqalar (xotira, kayfiyat, quvvat uchun)",
-     "ru": "Остальные (для памяти, настроения, энергии)"
+     "u": "https://ods.od.nih.gov/factsheets/Riboflavin-Consumer/",
+     "l": "B2"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/",
+     "l": "B6"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/",
+     "l": "B12"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/",
+     "l": "B3"
     }
    ]
   },
@@ -288,7 +310,11 @@
      "uz": "Buyrak kasalligi bor yoki bosim uchun ayrim dorilar ichuvchilar",
      "ru": "При болезни почек или приёме некоторых препаратов от давления"
     }
-   ]
+   ],
+   "warn": {
+    "uz": "Faqat shifokor buyurganda",
+    "ru": "Только по назначению врача"
+   }
   },
   {
    "id": "sink",
@@ -323,8 +349,8 @@
    "ev": [
     {
      "level": "moderate",
-     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (shifokor bilan)",
-     "ru": "Пожилые с высоким риском ВМД глаз (с врачом)"
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
     },
     {
      "level": "moderate",
@@ -371,18 +397,18 @@
    "ev": [
     {
      "level": "moderate",
-     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (faqat AREDS tarkibida)",
-     "ru": "Пожилые с высоким риском ВМД (только в составе AREDS)"
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
     },
     {
      "level": "not",
-     "uz": "Qon suyultiruvchi dori ichuvchilar",
-     "ru": "Принимающие препараты, разжижающие кровь"
+     "uz": "Qon suyultiruvchi (masalan, varfarin) ichuvchilar",
+     "ru": "Принимающие разжижающие кровь препараты (например, варфарин)"
     },
     {
      "level": "not",
-     "uz": "Boshqalar (yurak va saraton oldini olish uchun)",
-     "ru": "Остальные (для профилактики болезней сердца и рака)"
+     "uz": "Sog'lomlar: yurak/saraton oldini olish uchun (naf yo'q, zarar mumkin)",
+     "ru": "Здоровые — для профилактики болезней сердца или рака (пользы нет, возможен вред)"
     }
    ]
   },
@@ -419,8 +445,8 @@
    "ev": [
     {
      "level": "moderate",
-     "uz": "Ko'z dog'i (AMD) xavfi yuqori keksalar (AREDS tarkibida)",
-     "ru": "Пожилые с высоким риском ВМД (в составе AREDS)"
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
     },
     {
      "level": "low",

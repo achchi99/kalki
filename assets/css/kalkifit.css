@@ -120,3 +120,5 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 .sl-yj{font-weight:700;background:var(--accsoft);border-radius:12px;padding:10px 12px;margin:8px 0}
 .rz-xr.sum.big .lb{font-size:1.125rem}
 .rz .sl-search input{padding:0;border:0;background:transparent;min-height:48px;flex:1;min-width:0}
+
+.sl-warn{display:flex;align-items:center;gap:6px;margin-top:3px;font-size:var(--t-xs,.875rem);font-weight:800;color:var(--warn,#7A4E00)}.sl-warn.big{font-size:var(--t-s,.9375rem);background:var(--warnbg,#FFF3D6);border:1px solid var(--warnline,#F0DDAA);border-radius:12px;padding:8px 12px;margin:0 0 12px}

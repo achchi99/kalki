@@ -42,6 +42,10 @@
     var touched = false;
     function touch(e) { if (touched || !e.isTrusted) return; touched = true; try { if (window.KalkiSW && window.KalkiSW.hold) window.KalkiSW.hold(); } catch (x) {} }
     root.addEventListener('pointerdown', touch, true); root.addEventListener('keydown', touch, true);
+    /* tez bosish (iPhone): klaviatura tugmasi pointerdown'da darrov bajariladi, keyingi click yutiladi — har bosish alohida raqam, 300 ms kechikish va ikki marta bosishda kattalashish yo'q */
+    var padT = 0;
+    root.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' && e.button > 0) return; var b = e.target.closest && e.target.closest('.rz-pad button[data-act=key]'); if (!b) return; padT = performance.now(); b.click(); }, true);
+    root.addEventListener('click', function (e) { if (e.isTrusted && performance.now() - padT < 900 && e.target.closest && e.target.closest('.rz-pad button[data-act=key]')) { e.stopPropagation(); e.preventDefault(); } }, true);
     kit.vib = function (ms) { try { if (navigator.vibrate) navigator.vibrate(ms || 15); } catch (e) {} };
     kit.wait = function (fn, ms) { if (kit.reduce) fn(); else setTimeout(fn, ms); };
     kit.addIcons = function (o) { for (var k in o) IC[k] = o[k]; };
