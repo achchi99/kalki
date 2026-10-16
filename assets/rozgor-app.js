@@ -15,7 +15,7 @@
       hLbl: 'Bugun yana sarflash mumkin', hOver: 'Bugungi limitdan oshib ketdi', hShort: 'Oylikkacha pul yetmaydi', hOverSub: "Ertangi limit: {x} so'm", hShortSub: "To'lovlar va tegmaydigan puldan keyin pul yetmaydi. «To'lovlar» bo'limini ko'ring.", hLeft: "Oylikkacha {d} kun · sarflash mumkin bo'lgan pul: {f} so'm", hLeftM: "Oy oxirigacha {d} kun · sarflash mumkin bo'lgan pul: {f} so'm", hNoDate: "Oylik kuni kiritilmagan — hisob oy oxirigacha yuritilmoqda.", hUsed: "Bugungi limitdan {p}% ishlatildi", hUsed0: "Bugun hali hech narsa sarflanmadi", hNorm: "Kunlik limit: {x} so'm", hHow: 'Bu raqam qanday hisoblanadi?',
       upT: "Yaqin to'lovlar", paid: "To'landi", noUp: "Yaqin to'lov yo'q", overdue: "muddati o'tgan", todayWord: 'bugun', tomorrowWord: 'ertaga', monthly: 'har oy',
       txT: 'Bugungi xarajatlar', emptyToday: "Bugun hali xarajat yo'q", emptyTodayH: "Pastdagi «+» tugmasi bilan birinchi xarajatni yozing.", whatif: "Shuni sotib olsam-chi?",
-      nudgeIncome: "Oylik keldimi? Pul tushganini yozing va keyingi kunni kiriting.", nudgeIncomeBtn: 'Pul tushdi', nudgeIdle: "{n} kundan beri yozmadingiz — hisobni tekshiraylikmi?", nudgeIdleBtn: 'Tekshirish', nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Zaxira nusxa olish vaqti keldi — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Nusxa olish', later: 'Keyinroq',
+      nudgeIncome: "Oylik keldimi? Pul tushganini yozing va keyingi kunni kiriting.", nudgeIncomeBtn: 'Pul tushdi', nudgeIdle: "{n} kundan beri yozmadingiz — hisobni tekshiraylikmi?", nudgeIdleBtn: 'Tekshirish', nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Haftalik zaxira vaqti — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Telegramga yuborish', later: 'Keyinroq',
       savedY: 'Kecha {x} so\'m tejadingiz', savedYh: "Kunlik limitdan kam sarfladingiz. Barakalla!",
       addT: "Xarajat qo'shish", cats: { oziq: 'Oziq-ovqat', transport: 'Transport', uy: 'Uy', bolalar: 'Bolalar', soglik: "Sog'liq", xarid: 'Xaridlar', dam: 'Dam olish', boshqa: 'Boshqa', tolov: "To'lov" }, notePh: 'Izoh (ixtiyoriy)', saved: 'Saqlandi', undone: 'Bekor qilindi', del1: "Yozuv o'chirildi",
       histT: 'Tarix', histMonth: 'Shu oy xarajatlari', histEmpty: "Hali yozuv yo'q", histEmptyH: "Xarajat qo'shsangiz, shu yerda kunlar bo'yicha ko'rinadi.", unrecExp: 'Yozilmagan xarajatlar', unrecInc: 'Yozilmagan tushum', unrecSub: 'Hisobni tekshirganingizda farq chiqdi', incWord: 'Pul tushdi', editT: 'Yozuvni tahrirlash', billPay: "To'lov",
@@ -40,7 +40,7 @@
       hLbl: 'Сегодня можно потратить ещё', hOver: 'Вы вышли за дневной лимит', hShort: 'До зарплаты не хватает денег', hOverSub: 'Завтрашний лимит: {x} сум', hShortSub: 'После платежей и неприкосновенных денег средств не хватает. Загляните в раздел «Платежи».', hLeft: 'До зарплаты {d} дн. · можно потратить: {f} сум', hLeftM: 'До конца месяца {d} дн. · можно потратить: {f} сум', hNoDate: 'День зарплаты не указан — счёт ведётся до конца месяца.', hUsed: 'Использовано {p}% дневного лимита', hUsed0: 'Сегодня пока ничего не потрачено', hNorm: 'Дневной лимит: {x} сум', hHow: 'Как считается это число?',
       upT: 'Ближайшие платежи', paid: 'Оплачено', noUp: 'Ближайших платежей нет', overdue: 'просрочен', todayWord: 'сегодня', tomorrowWord: 'завтра', monthly: 'ежемесячно',
       txT: 'Расходы за сегодня', emptyToday: 'Сегодня расходов ещё нет', emptyTodayH: 'Запишите первый расход кнопкой «+» внизу.', whatif: 'А если я это куплю?',
-      nudgeIncome: 'Пришла зарплата? Отметьте, что деньги пришли, и укажите следующий день.', nudgeIncomeBtn: 'Деньги пришли', nudgeIdle: 'Вы не записывали расходы {n} дн. — проверим счёт?', nudgeIdleBtn: 'Проверить', nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать резервную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Сделать копию', later: 'Позже',
+      nudgeIncome: 'Пришла зарплата? Отметьте, что деньги пришли, и укажите следующий день.', nudgeIncomeBtn: 'Деньги пришли', nudgeIdle: 'Вы не записывали расходы {n} дн. — проверим счёт?', nudgeIdleBtn: 'Проверить', nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать недельную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Отправить в Telegram', later: 'Позже',
       savedY: 'Вчера вы сэкономили {x} сум', savedYh: 'Вы потратили меньше дневного лимита. Так держать!',
       addT: 'Добавить расход', cats: { oziq: 'Продукты', transport: 'Транспорт', uy: 'Дом', bolalar: 'Дети', soglik: 'Здоровье', xarid: 'Покупки', dam: 'Отдых', boshqa: 'Другое', tolov: 'Платёж' }, notePh: 'Заметка (по желанию)', saved: 'Сохранено', undone: 'Отменено', del1: 'Запись удалена',
       histT: 'История', histMonth: 'Расходы за месяц', histEmpty: 'Записей пока нет', histEmptyH: 'Добавьте расход — он появится здесь по дням.', unrecExp: 'Незаписанные расходы', unrecInc: 'Незаписанный доход', unrecSub: 'Разница при проверке счёта', incWord: 'Деньги пришли', editT: 'Изменить запись', billPay: 'Платёж',
@@ -121,14 +121,14 @@
   }
 
   /* ---------- BUGUN ---------- */
+  var bk = KalkiBackup.create({ app: 'rozgor', fileBase: 'rozgor', name: "Ro'zg'or", kit: kit, lang: langNow, rowIcon: 'rz-ci rz-c-boshqa', hasData: function () { return !!(st && st.setup); }, exportText: function () { return JSON.stringify({ app: 'kalki-rozgor', v: K.VERSION, exportedAt: Date.now(), state: st }); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { var o = {}; st.tx.forEach(function (x) { o[x.date] = 1; }); return Object.keys(o).length; }, pickFile: function () { doImport(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
   function nudges() {
     var out = [], t = todayStr(), p = prefs(), now = Date.now();
     var hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
     if (st.income && st.income.date && st.income.date <= t) out.push({ k: 'income', msg: T('nudgeIncome'), btn: T('nudgeIncomeBtn'), act: 'income' });
     var last = K.lastTxDate(st) || (st.created ? K.today(new Date(st.created)) : null);
     if (last) { var idle = K.daysBetween(last, t); if (idle >= 3 && !hid('idle')) out.push({ k: 'idle', msg: T('nudgeIdle', { n: idle }), btn: T('nudgeIdleBtn'), act: 'check', dismiss: true }); }
-    var lb = st.lastBackup || st.created || 0;
-    if (st.setup && st.tx.length > 0 && now - lb > 7 * DAY_MS && !hid('backup')) out.push({ k: 'backup', msg: T('nudgeBackup'), btn: T('nudgeBackupBtn'), act: 'export', dismiss: true });
+    if (bk.remindDue() && !hid('backup')) out.push({ k: 'backup', msg: T('nudgeBackup'), btn: T('nudgeBackupBtn'), act: 'bktg', dismiss: true });
     return out;
   }
   function billRow(b, withPay, tapEdit) {
@@ -210,7 +210,7 @@
     var big = document.documentElement.classList.contains('fs-big'), cur = isCyr() ? 'cyr' : lang;
     var row = function (act, ic, t1, t2, val) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + (val ? '<span class="v">' + esc(val) + '</span>' : ico('chev', 'r')) + '</button>'; };
     var h = '<h2 class="rz-h">' + esc(T('setT')) + '</h2><section class="rz-card">' + row('check', 'rep', T('sCheck'), T('sCheckH')) + row('income', 'inc', T('sInc'), T('sIncH')) + row('editreserve', 'shield', T('sRes'), T('sResH'), fmt(st.reserve) + ' ' + T('sum')) + '</section>' +
-      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
+      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (cur === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (cur === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (cur === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
       '<section class="rz-card">' + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section>' +
@@ -354,7 +354,7 @@
   function doExport() {
     st.lastBackup = Date.now(); save();
     var txt = JSON.stringify({ app: 'kalki-rozgor', v: K.VERSION, exportedAt: Date.now(), state: st }, null, 1);
-    try { var a = document.createElement('a'), u = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.href = u; a.download = 'kalki-rozgor-' + todayStr() + '.json'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500); } catch (e) {}
+    try { var a = document.createElement('a'), u = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.href = u; a.download = bk.fileName(); document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500); } catch (e) {}
     render(); toast(T('expDone'), null, true);
   }
   function doImport() {
@@ -473,7 +473,7 @@
       case 'cksave': ckSave(); break;
       case 'whatif': openWhatIf(); break;
       case 'export': doExport(); break;
-      case 'import': doImport(); break;
+      case 'import': bk.restoreSheet(); break;
       case 'wipe': wipe(); break;
       case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;

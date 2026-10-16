@@ -231,3 +231,7 @@ body.rz-body{position:fixed;inset:0;width:100%;overflow:hidden;overscroll-behavi
 .rz-main{overscroll-behavior:contain}
 .rz-top{position:relative;top:0;z-index:30;background-color:var(--bg)}
 @media (prefers-color-scheme:dark){html:has(body.rz-body),body.v2.rz-body,body.rz-body{background-color:#0F1714}}
+
+/* ---------- Zaxira (app-backup.js) ---------- */
+.bk-last{margin:8px 4px 2px;color:var(--mut)}
+.bk-steps{margin:0 0 14px;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:var(--t-m,1rem);line-height:1.45}

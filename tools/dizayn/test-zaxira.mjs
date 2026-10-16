@@ -1,0 +1,51 @@
+// Zaxira va tiklash — KalkiFit va Ro'zg'or (assets/app-backup.js). A: Telegramga zaxira (share fayl, fallback yuklab olish, tiklash ko'rsatmasi, eslatma, oxirgi zaxira sanasi).
+// B: tiklash kodi bilan bulut (uchidan-uchiga shifrlangan) — pastda.   node tools/dizayn/test-zaxira.mjs
+import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
+import { chromium } from 'playwright';
+import { track } from '../test-cleanup.cjs';
+const require = createRequire(import.meta.url);
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
+const KF = require(path.join(ROOT, 'assets/kalkifit-core.js')); const RZ = require(path.join(ROOT, 'assets/rozgor-core.js')); const TODAY = KF.dates.today();
+const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png' };
+const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
+await new Promise((ok) => srv.listen(0, ok)); const BASE = process.env.INSTALL_BASE || 'http://localhost:' + srv.address().port;
+const b = track(await chromium.launch()); let n = 0; const log = (m) => console.log('OK  ', ++n + '.', m);
+function kfState(days = 3, last = 0) { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 30 * 86400000; st.prefs = { tipsDone: true }; st.profile = { sex: 'f', preg: false, age: 31, height: 166, weight: 64.5, act: 2, goal: 'slow', goalWeight: 60 }; KF.addWeight(st, TODAY, 64.5);
+  for (let i = 0; i < days; i++) KF.setSteps(st, KF.dates.addDays(TODAY, -i), 3000 + i * 111); if (last) st.lastBackup = last; return st; }
+function rzState(days = 3, last = 0) { const st = RZ.emptyState(); st.prefs = { tipsDone: true }; st.setup = true; st.created = Date.now() - 30 * 86400000; st.base = 3000000; st.reserve = 500000; st.income = RZ.addDays(TODAY, 12); for (let i = 0; i < days; i++) st.tx.push({ id: 't' + i, type: 'exp', amount: 10000 + i, cat: 'oziq', date: RZ.addDays(TODAY, -i), ts: Date.now() - i }); if (last) st.lastBackup = last; return st; }
+const APPS = { kalkifit: { key: 'kalki_fit', st: kfState, tab: 'me', base: 'kalkifit', marker: 'kalki-kalkifit' }, rozgor: { key: 'kalki_rozgor', st: rzState, tab: 'set', base: 'rozgor', marker: 'kalki-rozgor' } };
+async function open(app, { state, share = 'ok', lang = '' } = {}) { const A = APPS[app]; const c = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', acceptDownloads: true });
+  await c.addInitScript((o) => { try { if (o.state && !localStorage.getItem(o.key)) localStorage.setItem(o.key, JSON.stringify(o.state)); } catch (e) {}
+    window.__shared = []; if (o.share === 'none') { try { Object.defineProperty(navigator, 'share', { value: undefined }); Object.defineProperty(navigator, 'canShare', { value: undefined }); } catch (e) {} }
+    else { navigator.canShare = (d) => o.share !== 'cannot' && !!(d && d.files && d.files.length); navigator.share = (d) => { if (o.share === 'abort') return Promise.reject(Object.assign(new Error('x'), { name: 'AbortError' })); return d.files[0].text().then((t) => { window.__shared.push({ name: d.files[0].name, type: d.files[0].type, text: t }); }); }; } }, { state, key: A.key, share });
+  const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.abort());
+  await p.goto(BASE + (lang === 'ru' ? '/ru/' : '/') + app + (lang === 'cyr' ? '?lang=cyr' : ''), { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
+const T = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
+const lsOf = (p, key) => p.evaluate((k) => JSON.parse(localStorage.getItem(k) || 'null'), key);
+try {
+  for (const app of ['kalkifit', 'rozgor']) { const A = APPS[app]; let p;
+    /* A1. share bilan */
+    p = await open(app, { state: A.st(3) }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.waitForTimeout(300); assert.match(await T(p, '#bkLast'), /Zaxira hali olinmagan/); assert.match(await T(p, '[data-bk=tg]'), /Telegramga zaxira yuborish/); assert.match(await T(p, '[data-bk=tg]'), /Saqlangan xabarlar/);
+    await p.click('[data-bk=tg]'); await p.waitForTimeout(700); const sh = await p.evaluate(() => window.__shared); assert.equal(sh.length, 1, 'share chaqirildi'); assert.match(sh[0].name, new RegExp('^' + A.base + '-zaxira-\\d{4}-\\d{2}-\\d{2}\\.json$')); assert.equal(sh[0].type, 'application/json'); const parsed = JSON.parse(sh[0].text); assert.equal(parsed.app, A.marker); assert.ok(parsed.state);
+    assert.match(await T(p, '#rzToast'), /Zaxira tayyor/); assert.match(await T(p, '#bkLast'), /Oxirgi zaxira: bugun \d\d:\d\d/); const stl = await lsOf(p, A.key); assert.ok(Math.abs(stl.lastBackup - Date.now()) < 20000, 'lastBackup yozildi'); assert.equal(await p.locator('#rzSheet.open').count(), 0, 'share bilan ko\'rsatma ochilmaydi'); assert.deepEqual(p.errs, []); await p.context().close();
+    /* A2. foydalanuvchi bekor qildi */
+    p = await open(app, { state: A.st(3), share: 'abort' }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.click('[data-bk=tg]'); await p.waitForTimeout(600); assert.ok(!(await lsOf(p, A.key)).lastBackup, 'bekor qilinsa zaxira sanasi yozilmaydi'); assert.equal(await p.locator('#rzSheet.open').count(), 0); await p.context().close();
+    /* A3. fallback: share yo'q / fayl ulasha olmaydi → yuklab olish + ko'rsatma */
+    for (const mode of ['none', 'cannot']) { p = await open(app, { state: A.st(3), share: mode }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.waitForTimeout(300); const [dl] = await Promise.all([p.waitForEvent('download'), p.click('[data-bk=tg]')]); assert.match(dl.suggestedFilename(), new RegExp('^' + A.base + '-zaxira-\\d{4}-\\d{2}-\\d{2}\\.json$')); const fp = await dl.path(); assert.equal(JSON.parse(fs.readFileSync(fp, 'utf8')).app, A.marker);
+      await p.waitForTimeout(500); const hs = await T(p, '#rzSheet'); assert.match(hs, /Faylni Telegram'ga yuboring/); assert.match(hs, /Saqlangan xabarlar/); assert.match(hs, new RegExp(A.base + '-zaxira-')); assert.ok((await lsOf(p, A.key)).lastBackup > 0); await p.click('#rzSheet [data-act=sheetclose] >> nth=-1'); await p.waitForTimeout(400); assert.match(await T(p, '#bkLast'), /Oxirgi zaxira: bugun/); await p.context().close(); }
+    log(app + ': Telegramga zaxira — share({files}) bilan fayl «' + A.base + '-zaxira-SANA.json» (to\'g\'ri tarkib), bekor qilinsa sana yozilmaydi; share yo\'q/fayl qo\'llanmasa yuklab olish + «Faylni Telegram\'ga yuboring» ko\'rsatmasi; Men\'da oxirgi zaxira sanasi');
+    /* A4. tiklash ko'rsatmasi */
+    p = await open(app, { state: A.st(3) }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.click('[data-act=import]'); await p.waitForTimeout(500); const rs = await T(p, '#rzSheet'); assert.match(rs, /Zaxira nusxadan tiklash/); assert.match(rs, /Saqlangan xabarlar/); assert.match(rs, /Fayl tanlash/);
+    const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.click('[data-act=bkpick]')]); assert.ok(fc.isMultiple() === false); await p.context().close();
+    log(app + ': «Zaxira nusxadan tiklash» — Telegram\'dan faylni olish ko\'rsatmasi, «Fayl tanlash» fayl tanlagichni ochadi');
+    /* A5. eslatma */
+    p = await open(app, { state: A.st(3, Date.now() - 8 * 86400000) }); assert.match(await T(p, '[data-nudge=backup]'), /Haftalik zaxira vaqti/); assert.match(await T(p, '[data-nudge=backup]'), /Telegramga yuborish/); assert.match(await T(p, '[data-nudge=backup]'), /Keyinroq/); await p.click('[data-nudge=backup] [data-act=bktg]'); await p.waitForTimeout(600); assert.equal((await p.evaluate(() => window.__shared)).length, 1); assert.equal(await p.locator('[data-nudge=backup]').count(), 0, 'yuborilgach karta yo\'qoladi'); await p.context().close();
+    for (const [days, last, want] of [[2, Date.now() - 20 * 86400000, 0], [3, Date.now() - 2 * 86400000, 0], [5, Date.now() - 8 * 86400000, 1]]) { p = await open(app, { state: A.st(days, last) }); assert.equal(await p.locator('[data-nudge=backup]').count(), want, `${app} ${days} kun, zaxira ${Math.round((Date.now() - last) / 86400000)} kun oldin`); await p.context().close(); }
+    p = await open(app, { state: A.st(3, Date.now() - 9 * 86400000) }); await p.click('[data-nudge=backup] [data-act=hide]'); await p.waitForTimeout(300); assert.equal(await p.locator('[data-nudge=backup]').count(), 0); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await p.locator('[data-nudge=backup]').count(), 0, '«Keyinroq» keyin ham yashirin'); await p.context().close();
+    log(app + ': haftalik eslatma — 7 kun va ≥3 kunlik ma\'lumotda «Haftalik zaxira vaqti» [Telegramga yuborish] [Keyinroq]; 2 kunlik yoki yaqinda zaxira olingan bo\'lsa chiqmaydi');
+    /* A6. tillar */
+    for (const [lang, re] of [['ru', /Отправить резервную копию в Telegram/], ['cyr', /Телеграмга захира юбориш|Telegram/]]) { p = await open(app, { state: A.st(3), lang }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.waitForTimeout(400); const t = await T(p, '[data-bk=tg]'); assert.match(t, re, lang); if (lang === 'cyr') assert.match(t, /[А-Яа-я]/); await p.click('[data-act=import]'); await p.waitForTimeout(400); assert.match(await T(p, '#rzSheet'), lang === 'ru' ? /Избранное/ : /[А-Яа-я]/); await p.context().close(); }
+    log(app + ': Telegram zaxira matnlari UZ / ЎЗ / RU da');
+  }
+} finally { await b.close(); srv.close(); }
+console.log(`\n${n} ta tekshiruv guruhi o'tdi`);
