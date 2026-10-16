@@ -131,7 +131,7 @@ const RU_PAGES = [
   'gaz-xarajat-kalkulyator.html',
   'naqd-nasiya-kredit-kalkulyator.html',
   'rozgor.html',
-  'salomat.html',
+  'kalkifit.html',
   'bola-puli-kalkulyator.html',
   'zakot-qurbonlik-kalkulyator.html',
   'toy-kalkulyator.html',

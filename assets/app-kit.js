@@ -1,4 +1,4 @@
-/* kalki.uz — ilovalar uchun UMUMIY komponentlar (Ro'zg'or, Salomat): pastki panel (sheet; prujina, pastga tortib yopish), toast (+ yashil belgi),
+/* kalki.uz — ilovalar uchun UMUMIY komponentlar (Ro'zg'or, KalkiFit): pastki panel (sheet; prujina, pastga tortib yopish), toast (+ yashil belgi),
  * raqam sanab o'tishi (count-up), raqam klaviaturasi, o'z sana tanlagichi (tizim <input type=date> YO'Q — til aralashmasin), birinchi marta yo'l-yo'riq,
  * ikonkalar va sana/raqam formatlari. DOM'da kutilgan elementlar: #rzSheet, #rzBg, #rzToast, #rzTips (shellHtml() beradi).
  * Foydalanish: var kit = RzKit.create({ root, K: KalkiRozgor (sana funksiyalari), t: ilova tarjimoni, lang: () => 'uz'|'ru', isCyr: () => bool }). */
@@ -37,6 +37,11 @@
     function $(s, r) { return (r || root).querySelector(s); }
     function $$(s, r) { return [].slice.call((r || root).querySelectorAll(s)); }
     kit.t = t; kit.$ = $; kit.$$ = $$;
+    /* Service worker yangilanganda sw-boot.js sahifani qayta yuklaydi — FAQAT foydalanuvchi input/change'ga tegmagan bo'lsa. Ilovada maydonlar yo'q (o'z klaviaturasi, tugmalar),
+       shuning uchun birinchi kirishda onboarding o'rtasida sahifa boshiga qaytardi. Haqiqiy (trusted) bosish/tugma = "tegdi": qayta yuklash o'rniga yangilanish chizig'i chiqadi. */
+    var touched = false;
+    function touch(e) { if (touched || !e.isTrusted) return; touched = true; try { if (window.KalkiSW && window.KalkiSW.hold) window.KalkiSW.hold(); } catch (x) {} }
+    root.addEventListener('pointerdown', touch, true); root.addEventListener('keydown', touch, true);
     kit.vib = function (ms) { try { if (navigator.vibrate) navigator.vibrate(ms || 15); } catch (e) {} };
     kit.wait = function (fn, ms) { if (kit.reduce) fn(); else setTimeout(fn, ms); };
     kit.addIcons = function (o) { for (var k in o) IC[k] = o[k]; };

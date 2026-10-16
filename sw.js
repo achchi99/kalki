@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '8b0335e0';   /* sw-version:auto */
+const SW_VERSION = '23da6f94';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -44,16 +44,19 @@ const ASSETS = [
   '/assets/rozgor-core.js',
   '/assets/app-kit.js',
   '/assets/rozgor-app.js',
-  '/assets/salomat-core.js',
-  '/assets/salomat-app.js',
+  '/assets/kalkifit-core.js',
+  '/assets/kalkifit-app.js',
+  '/assets/kalkifit-gaplar.js',
+  '/data/masofalar.json',
+  '/data/qoshimchalar.json',
   '/assets/css/appkit.css',
   '/assets/css/rozgor.css',
-  '/assets/css/salomat.css',
+  '/assets/css/kalkifit.css',
   '/data/ovqatlar.json',
-  '/salomat.webmanifest',
-  '/assets/icons/salomat-192.png',
-  '/assets/icons/salomat-512.png',
-  '/assets/icons/salomat-apple-180.png',
+  '/kalkifit.webmanifest',
+  '/assets/icons/kalkifit-192.png',
+  '/assets/icons/kalkifit-512.png',
+  '/assets/icons/kalkifit-apple-180.png',
   '/rozgor.webmanifest',
   '/ru/rozgor.webmanifest',
   '/assets/icons/rozgor-192.png',
@@ -114,8 +117,8 @@ const ASSETS = [
   '/ru/naqd-nasiya-kredit-kalkulyator',
   '/rozgor',
   '/ru/rozgor',
-  '/salomat',
-  '/ru/salomat',
+  '/kalkifit',
+  '/ru/kalkifit',
   '/gisht-kalkulyator',
   '/ru/gisht-kalkulyator',
   '/grant-ololmadim',

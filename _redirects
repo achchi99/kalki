@@ -12,3 +12,8 @@
 /ru/ipoteka-2026          /ipoteka-2026          301
 /ru/qqs-2026              /qqs-2026              301
 /ru/toy-byudjeti-2026     /toy-byudjeti-2026     301
+
+# KalkiFit (avval "Salomat" nomi bilan preview'da edi): eski manzillar yangisiga
+/salomat  /kalkifit  301
+/ru/salomat  /ru/kalkifit  301
+/salomat.webmanifest  /kalkifit.webmanifest  301

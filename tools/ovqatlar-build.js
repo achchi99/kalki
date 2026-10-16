@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const R = `
-osh|Osh (palov)|Плов|palov,plov,паловник|190|5.5|9|22|o|1|likop:350,kosa:250,porsiya:300
+osh|Osh (palov)|Плов|palov,plov,паловник|170|5|7|24|o|1|likop:350,kosa:250,porsiya:300
 yengil-osh|Osh (yengil, tovuqli)|Плов с курицей|palov tovuqli,plov kurinyy|165|8|6|20|o|1|likop:350,kosa:250
 somsa|Somsa (go'shtli, tandirda)|Самса с мясом|samsa,самса|290|10|17|24|o|1|dona:120
 somsa-qat|Somsa (qatlamali)|Самса слоёная|qatlama somsa|330|9|21|27|o|1|dona:110
@@ -16,9 +16,9 @@ somsa-qovoq|Somsa (qovoqli)|Самса с тыквой|qovoqli samsa|230|4|10|31
 manti|Manti|Манты|mante|210|9|9|23|o|1|dona:60,porsiya:300
 chuchvara|Chuchvara (qaynatilgan)|Чучвара|pelmeni uzbek,чучвара|200|9|7|25|o|1|kosa:250,dona:12
 chuchvara-sho|Chuchvara (sho'rvada)|Чучвара в бульоне|chuchvara shorva|110|6|4|12|o|1|kosa:400
-lagmon|Lag'mon|Лагман|lagman,лағмон|105|5|4|13|o|1|kosa:400,likop:450
+lagmon|Lag'mon|Лагман|lagman,лағмон|120|5.5|5|15|o|1|kosa:400,likop:450
 lagmon-qov|Lag'mon (qovurma)|Лагман жареный|qovurma lagmon,jarenyy lagman|170|7|8|18|o|1|likop:350
-shurva|Shurva|Шурпа|shorva,шурпа|60|4|3.5|4|o|1|kosa:350,piyola:300
+shurva|Shurva|Шурпа|shorva,шурпа|55|3.5|3|4.5|o|1|kosa:350,piyola:300
 mastava|Mastava|Мастава|мастава|80|4|3|10|o|1|kosa:350
 moshxorda|Moshxo'rda|Машхурда|moshhorda,машхурда|85|5|3|10|o|1|kosa:350
 moshkichiri|Moshkichiri|Мошкичири|mashkichiri,мошкичири|125|5|3|18|o|1|kosa:350
@@ -98,7 +98,7 @@ baliq-qov|Baliq (qovurilgan)|Рыба жареная|baliq,ryba,рыба|200|20|
 krevetka|Krevetka|Креветки варёные|krevetka,shrimp,креветки|100|21|1|0|m|0|porsiya:100
 guruch|Guruch (pishgan)|Рис варёный|guruch,ris,рис|130|2.7|0.3|28|g|0|kosa:200,likop:250,qoshiq:20
 guruch-xom|Guruch (xom)|Рис сырой|guruch xom|350|7|0.6|78|g|0|stakan:200,qoshiq:20
-grechka|Grechka (pishgan)|Гречка варёная|grechka,гречка|110|4|1|21|g|0|kosa:200,likop:250
+grechka|Grechka (pishgan)|Гречка варёная|grechka,гречка|92|3.4|0.6|19.9|g|0|kosa:200,likop:250
 grechka-xom|Grechka (xom)|Гречка сухая|grechka xom|340|12|3|62|g|0|stakan:200
 makaron|Makaron (pishgan)|Макароны варёные|makaron,pasta,макароны|150|5.5|1|30|g|0|likop:250,kosa:200
 makaron-xom|Makaron (xom)|Макароны сухие|makaron xom|350|12|1.5|72|g|0|porsiya:80
@@ -289,6 +289,9 @@ for (const r of rows) {
   if (o.k > 20 && id !== 'vino' && Math.abs(atw - o.k) > Math.max(30, o.k * 0.25)) warn.push(id + ': kkal ' + o.k + ' ≠ makrodan ' + Math.round(atw));
   out.push(o);
 }
+// Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
+const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');
+if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf8'))) { if (ids.has(x.i)) { warn.push('qo\'shimcha takror id: ' + x.i); continue; } ids.add(x.i); out.push(x); }
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 1, note: 'Qiymatlar 100 g uchun taxminiy (USDA FoodData Central va ochiq jadvallar asosida; retsept taomlar — o\'rtacha uy retsepti).', foods: out }));
 console.log('ovqatlar:', out.length, '| ogohlantirish:', warn.length); warn.forEach((x) => console.log(' ', x));

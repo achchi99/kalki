@@ -1,9 +1,9 @@
-/* kalki.uz — "Salomat" ilovasi hisob moduli. DOM'siz, sof funksiyalar (brauzerda window.KalkiSalomat, Node'da require()).
- * Sana funksiyalari (mahalliy kalendar, UTC'siz) — rozgor-core.js dan. Formulalar va qoidalar: docs/salomat.md.
+/* kalki.uz — "KalkiFit" ilovasi hisob moduli. DOM'siz, sof funksiyalar (brauzerda window.KalkiFit, Node'da require()).
+ * Sana funksiyalari (mahalliy kalendar, UTC'siz) — rozgor-core.js dan. Formulalar va qoidalar: docs/kalkifit.md.
  * Hamma natija "taxminiy hisob": tibbiy maslahat emas. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory(require('./rozgor-core.js'));
-  else root.KalkiSalomat = factory(root.KalkiRozgor);
+  else root.KalkiFit = factory(root.KalkiRozgor);
 })(typeof self !== 'undefined' ? self : this, function (D) {
   'use strict';
 
@@ -108,6 +108,48 @@
     if (o.g > 0) f.u.unshift(['porsiya', Math.round(o.g)]); if (!f.n || !(f.k >= 0)) return null; st.customFoods.push(f); return f;
   }
 
+  /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
+  function dayLimit(st, d) {                       // shu kun uchun limit = me'yor + qadam kaloriyasining 50% i
+    var pl = plan(st.profile), x = dayOf(st, d), steps = x ? x.steps || 0 : 0;
+    return pl.target + stepCredit(steps, num(st.profile.height), currentWeight(st));
+  }
+  function dayStatus(st, d) {                      // 'none' (yozilmagan) | 'ok' (limit ichida) | 'mid' (ozgina oshdi: ≤15%) | 'high' (ko'p oshdi)
+    var x = dayOf(st, d); if (!x || !x.food.length) return { state: 'none', eaten: 0, limit: 0, ratio: 0 };
+    var eaten = sumEntries(x.food).kcal, limit = dayLimit(st, d), ratio = limit > 0 ? eaten / limit : 0;
+    return { state: ratio <= 1 ? 'ok' : (ratio <= 1.15 ? 'mid' : 'high'), eaten: eaten, limit: limit, ratio: ratio };
+  }
+  function logged(st, d) { var x = dayOf(st, d); return !!(x && (x.food.length || x.steps > 0)); }
+  function streak(st, today) {                     // bugungi (yozilgan bo'lsa) yoki kechagi kundan orqaga ketma-ket yozilgan kunlar
+    var d = logged(st, today) ? today : D.addDays(today, -1), n = 0;
+    while (logged(st, d) && n < 3650) { n++; d = D.addDays(d, -1); }
+    return n;
+  }
+  function monthGrid(st, ym) {                     // ym = 'YYYY-MM': kunlar + hisob (baho/ball yo'q)
+    var p = D.parse(ym + '-01'), n = D.dim(p.y, p.m), days = [], c = { ok: 0, mid: 0, high: 0, none: 0 };
+    for (var i = 1; i <= n; i++) { var d = D.ymd(p.y, p.m, i), r = dayStatus(st, d); days.push({ d: d, n: i, state: r.state, eaten: r.eaten, limit: r.limit }); c[r.state]++; }
+    return { ym: ym, days: days, first: weekdayIdx(D.ymd(p.y, p.m, 1)), counts: c };
+  }
+  function minutesToBurn(kcal, weight) { var perMin = MET_WALK * weight / 60; return perMin > 0 ? Math.round(kcal / perMin) : 0; }
+
+  /* ---------- retsept hisoblagich ---------- */
+  function recipe(ings, portions) {                // ings: [{g, k, p, f, c (100 g uchun)}] → jami va bir porsiya
+    var t = { g: 0, kcal: 0, p: 0, f: 0, c: 0 }; (ings || []).forEach(function (i) { var m = num(i.g) / 100; t.g += num(i.g); t.kcal += i.k * m; t.p += i.p * m; t.f += i.f * m; t.c += i.c * m; });
+    var n = Math.max(1, Math.round(num(portions)) || 1);
+    var per = { g: Math.round(t.g / n), kcal: Math.round(t.kcal / n), p: round1(t.p / n), f: round1(t.f / n), c: round1(t.c / n) };
+    var k100 = t.g > 0 ? { k: Math.round(t.kcal / t.g * 100), p: round1(t.p / t.g * 100), f: round1(t.f / t.g * 100), c: round1(t.c / t.g * 100) } : { k: 0, p: 0, f: 0, c: 0 };
+    return { portions: n, total: { g: Math.round(t.g), kcal: Math.round(t.kcal), p: round1(t.p), f: round1(t.f), c: round1(t.c) }, perPortion: per, per100: k100 };
+  }
+  function saveRecipe(st, o) {                     // shaxsiy taom sifatida saqlaydi (id berilsa — yangilaydi); keyin oddiy qidiruvda chiqadi
+    var name = String(o.name || '').trim().slice(0, 60), ings = (o.ings || []).filter(function (i) { return num(i.g) > 0; });
+    if (!name || !ings.length) return null;
+    var r = recipe(ings, o.portions), f = null;
+    if (o.id) f = st.customFoods.filter(function (x) { return x.id === o.id; })[0];
+    var rec = { id: f ? f.id : 'c' + st.seq++, n: name, k: r.per100.k, p: r.per100.p, f: r.per100.f, c: r.per100.c, u: [['porsiya', Math.max(1, r.perPortion.g)], ['g100', 100]], e: 1, t: 'x', custom: 1, recipe: { portions: r.portions, ings: ings.map(function (i) { return { id: i.id || null, name: i.name || '', g: Math.round(num(i.g)), k: i.k, p: i.p, f: i.f, c: i.c }; }) } };
+    if (f) st.customFoods[st.customFoods.indexOf(f)] = rec; else st.customFoods.push(rec);
+    return rec;
+  }
+  function removeCustom(st, id) { var n = st.customFoods.length; st.customFoods = st.customFoods.filter(function (x) { return x.id !== id; }); st.favs = st.favs.filter(function (x) { return x !== id; }); st.recents = st.recents.filter(function (x) { return x !== id; }); return st.customFoods.length < n; }
+
   /* ---------- vazn ---------- */
   function addWeight(st, d, kg) {
     kg = Math.round(num(kg) * 10) / 10; if (!(kg >= LIMITS.weight[0] && kg <= LIMITS.weight[1]) || !D.parse(d)) return null;
@@ -153,7 +195,7 @@
     var s = emptyState(); if (v === 0 && !raw.profile && !raw.days && !raw.log) return null;
     s.setup = !!raw.setup || !!raw.profile; s.created = raw.created || null; s.seq = Math.max(1, Math.round(num(raw.seq)) || 1);
     s.profile = raw.profile && typeof raw.profile === 'object' ? { sex: raw.profile.sex === 'f' ? 'f' : 'm', preg: !!raw.profile.preg, age: num(raw.profile.age), height: num(raw.profile.height), weight: num(raw.profile.weight), act: ACT[raw.profile.act] ? +raw.profile.act : 2, goal: GOAL_DELTA[raw.profile.goal] != null ? raw.profile.goal : 'keep', goalWeight: num(raw.profile.goalWeight) || null } : null;
-    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; });
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (x.party) s.days[d].party = true; });
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
@@ -161,10 +203,10 @@
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null;
     return s;
   }
-  function exportState(st) { return JSON.stringify({ app: 'kalki-salomat', v: VERSION, exportedAt: Date.now(), state: st }); }
+  function exportState(st) { return JSON.stringify({ app: 'kalki-kalkifit', v: VERSION, exportedAt: Date.now(), state: st }); }
   function importState(text) {
     var o; try { o = JSON.parse(text); } catch (e) { return { ok: false }; }
-    if (!o || o.app !== 'kalki-salomat' || !o.state) return { ok: false };
+    if (!o || o.app !== 'kalki-kalkifit' || !o.state) return { ok: false };
     var s = migrate(o.state); return s && s.profile ? { ok: true, state: s } : { ok: false };
   }
 
@@ -241,6 +283,7 @@
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
+    dayLimit: dayLimit, dayStatus: dayStatus, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
     dates: D, num: num };
 });

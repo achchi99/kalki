@@ -47,11 +47,11 @@ var DEFAULT_ABBR = [
   'PDF', 'CSV', 'Word', 'Excel', 'AI',
   'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'localStorage',
   '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz',
-  'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON'
+  'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON', 'KalkiFit', 'NIH', 'USDA', 'Harvard', 'EFSA', 'FDA', 'Nutrition', 'Source'
 ];
 /* Qo'shimchasi APOSTROF bilan kelganda apostrof SAQLANADI: iPhone'da -> iPhone'да, Safari'da -> Safari'да
  * (boshqa qisqartmalarda eski qoida: AI'ning -> AI-нинг). */
-var APOS_KEEP = { 'iPhone': 1, 'iPad': 1, 'iOS': 1, 'Safari': 1, 'Android': 1, 'Chrome': 1, 'Samsung': 1, 'Kalki': 1 };
+var APOS_KEEP = { 'iPhone': 1, 'iPad': 1, 'iOS': 1, 'Safari': 1, 'Android': 1, 'Chrome': 1, 'Samsung': 1, 'Kalki': 1, 'KalkiFit': 1 };
 
 /* Rus tilidan o'zlashgan so'zlarda lotincha "s" kirillda "ц" bo'ladi (sement -> цемент),
  * lekin pensiya/versiya/sessiya/konsalting/sentyabr/sertifikat "с" bilan qoladi.

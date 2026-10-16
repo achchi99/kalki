@@ -1,13 +1,15 @@
-/* kalki.uz — "Salomat" ilovasi (vanilla JS): kaloriya, ovqat va qadam. Hisob: assets/salomat-core.js, umumiy komponentlar: assets/app-kit.js.
- * Saqlash: localStorage "kalki_salomat". Hech narsa serverga yuborilmaydi (faqat foydalanuvchi "AI bilan aniqlash"ni bosganda ovqat matni). Baza: data/ovqatlar.json (lazy). */
+/* kalki.uz — "KalkiFit" ilovasi (vanilla JS): kaloriya, ovqat va qadam. Hisob: assets/kalkifit-core.js, umumiy komponentlar: assets/app-kit.js.
+ * Saqlash: localStorage "kalki_fit". Hech narsa serverga yuborilmaydi (faqat foydalanuvchi "AI bilan aniqlash"ni bosganda ovqat matni). Baza: data/ovqatlar.json (lazy). */
 (function () {
   'use strict';
   if (/jsdom/i.test(navigator.userAgent || '')) return;      // prerender (jsdom) ilova DOM'ini HTML'ga pishirmasin
-  var S = window.KalkiSalomat, Dt = S && S.dates; if (!S || !window.RzKit) return;
-  var LS = 'kalki_salomat', LS_IMPORT = 'kalki_salomat_import', LS_CID = 'kalki_salomat_cid', DAY_MS = 86400000;
+  var S = window.KalkiFit, Dt = S && S.dates; if (!S || !window.RzKit) return;
+  var LS = 'kalki_fit', LS_IMPORT = 'kalki_fit_import', LS_CID = 'kalki_fit_cid', DAY_MS = 86400000;
+  var OLD = { 'kalki_fit': 'kalki_salomat', 'kalki_fit_import': 'kalki_salomat_import', 'kalki_fit_cid': 'kalki_salomat_cid' };   // eski nom (Salomat): preview foydalanuvchilari ma'lumoti yo'qolmasin
+  function lsGet(k) { try { var v = localStorage.getItem(k); if (v == null && OLD[k]) { v = localStorage.getItem(OLD[k]); if (v != null && k !== 'kalki_fit_import') localStorage.setItem(k, v); } return v; } catch (e) { return null; } }
   var D = {
     uz: {
-      appName: 'Salomat', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
+      appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
       today: 'Bugun', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
       mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Gazak', meald: 'Kechki ovqat', meals: 'Gazak',
       o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Kasr bilan yozish mumkin: 72,5',
@@ -17,10 +19,10 @@
       rT: "Sizning kunlik me'yoringiz", rWhyKeep: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Vaznni saqlash uchun shuncha yeyish kifoya.', rWhyLose: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg kamaytirish uchun {d} kkal kam yeysiz.', rWhyGain: "Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg ko'paytirish uchun {d} kkal ko'p yeysiz.",
       rFloor: "Kamaytirish tezligi xavfsiz chegaraga ({min} kkal) moslandi, shuning uchun haftasiga ≈ {kg} kg.", rDoc: "Shifokor bilan maslahatlashing. Bu hisob faqat vaznni saqlash uchun.", under18: "18 yoshdan kichiklar uchun dieta hisoblanmaydi.", pregN: "Homiladorlik va emizish davrida dieta hisoblanmaydi.", lowBmi: "Vazningiz me'yordan past (BMI < 18,5): dieta hisoblanmaydi.",
       disc: "Taxminiy hisob — tibbiy maslahat emas.", rMacro: 'Oqsil {p} g · yog\' {f} g · uglevod {c} g', rWater: 'Suv: {n} stakan ({ml} ml)',
-      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?',
+      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", hEmpty: "Birinchi ovqatni «+» tugmasi bilan yozing — halqa shu yerda to'la boshlaydi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
       mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
-      aT: "Ovqat qo'shish", aPh: 'Ovqat nomi (osh, somsa, olma…)', aRec: 'Oxirgi', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomimni qo'shish", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
+      aT: "Ovqat qo'shish", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
       pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
@@ -34,7 +36,7 @@
       shT: 'Natijamni ulashish', shH: "Faqat o'zingiz tanlagan raqamlar rasmga tushadi.", shDays: 'Kunlar', shSteps: 'Qadam', shKm: 'Masofa', shWeight: "Vazn o'zgarishi", shGo: 'Rasmni ulashish', shDl: 'Rasmni yuklab olish', shTitle: 'Mening natijam', shWin: 'Oxirgi 30 kun', shDaysV: 'kun yozdim', shStepsV: 'qadam', shKmV: 'km yurdim', shWV: 'kg', shNone: 'Hech narsa tanlanmagan',
       sExp: "Ma'lumotni yuklab olish (JSON)", sImp: 'Fayldan tiklash', sDel: "Hammasini o'chirish", sLang: 'Til', sFont: "Shrift o'lchami", fN: 'Oddiy', fB: 'Katta', sTips: "Yo'l-yo'riqni qayta ko'rish", sAbout: 'Ilova haqida', priv: "Ma'lumotlaringiz faqat shu qurilmada saqlanadi.", med: "Bu tibbiy maslahat emas. Taxminiy hisob: sog'liq masalasida shifokor bilan maslahatlashing.",
       expDone: 'Fayl yuklab olindi', impT: 'Fayldan tiklash', impAsk: "Hozirgi ma'lumot shu fayldagi bilan almashtiriladi. Davom etasizmi?", impOk: 'Tiklandi', impBad: "Fayl noto'g'ri", delAsk1: "Hamma ma'lumot o'chiriladi.", delAsk2: "Aniq o'chiraymi? Qaytarib bo'lmaydi.", deleted: "Hammasi o'chirildi",
-      xKcalT: "Bu raqam qanday hisoblanadi?", xTarget: "Kunlik me'yor", xEaten: 'Yeyilgan', xSteps: 'Qadamlar (50%)', xRem: 'Yana yeyish mumkin', xWhy50: "Qadam kaloriyasining faqat yarmi qo'shiladi: telefon va formulalar taxminiy, shuning uchun ortiqcha hisoblab yubormaslik uchun.", xHowT: "Me'yor qanday chiqdi?", xBmr: 'Tinch holatdagi sarf (BMR)', xBmrN: 'Mifflin–St Jeor formulasi', xAct: 'Faollik koeffitsienti', xTdee: 'Kunlik sarf (TDEE)', xGoal: 'Maqsad uchun farq', xFloor: "Pastki xavfsiz chegara", xTargetR: "Kunlik me'yor",
+      xKcalT: "Bu raqam qanday hisoblanadi?", xTarget: "Kunlik me'yor", xLimit: 'Bugungi limit', xEaten: 'Yeyilgan', xSteps: 'Qadamlar (50%)', xRem: 'Yana yeyish mumkin', xWhy50: "Qadam kaloriyasining faqat yarmi qo'shiladi: telefon va formulalar taxminiy, shuning uchun ortiqcha hisoblab yubormaslik uchun.", xHowT: "Me'yor qanday chiqdi?", xBmr: 'Tinch holatdagi sarf (BMR)', xBmrN: 'Mifflin–St Jeor formulasi', xAct: 'Faollik koeffitsienti', xTdee: 'Kunlik sarf (TDEE)', xGoal: 'Maqsad uchun farq', xFloor: "Pastki xavfsiz chegara", xTargetR: "Kunlik me'yor",
       xMacroT: 'Qanday hisoblangan?', xProt: 'Oqsil: {pk} g/kg × {w} kg = {p} g', xFat: "Yog': kaloriyaning 27,5% i ÷ 9 = {f} g", xCarb: "Uglevod: qolgan kaloriya ÷ 4 = {c} g", xMacroN: 'Oqsil mushaklarni saqlaydi, yog\' va uglevod energiya beradi.',
       xWaterT: 'Suv me\'yori', xWater: '33 ml × {w} kg = {ml} ml ÷ 250 ml = {n} stakan', xWaterN: 'Issiq kunlarda va mashq qilganda ko\'proq ichsangiz bo\'ladi.',
       xStepT: 'Qadam qanday hisoblanadi?', xStride: "Qadam uzunligi: bo'y × 0,414 = {s} sm", xDist: 'Masofa: {n} qadam × {s} sm = {km} km', xKc: 'Kaloriya: 3,5 × {w} kg × ({km} km ÷ 5 km/soat) = {k} kkal', xKcN: "Yurish tezligi 5 km/soat deb olingan (oddiy yurish). Hisob taxminiy.",
@@ -46,7 +48,7 @@
       units: { g100: 'g', kosa: 'kosa', likop: 'likop', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' }
     },
     ru: {
-      appName: 'Саломат', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
+      appName: 'KalkiFit', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
       today: 'Сегодня', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
       mealb: 'Завтрак', meall: 'Обед', mealds: 'Ужин', mealss: 'Перекус', meald: 'Ужин', meals: 'Перекус',
       o1q: 'Ваш пол?', male: 'Мужской', female: 'Женский', preg: 'Я беременна или кормлю грудью', o2q: 'Сколько вам лет?', o2h: 'Только для расчёта дневной нормы.', o3q: 'Ваш рост в сантиметрах?', o4q: 'Ваш вес в килограммах?', o4h: 'Можно с дробью: 72,5',
@@ -56,10 +58,10 @@
       rT: 'Ваша дневная норма', rWhyKeep: 'Вы тратите примерно {tdee} ккал в день. Чтобы сохранить вес, достаточно столько и есть.', rWhyLose: 'Вы тратите примерно {tdee} ккал в день. Чтобы терять ≈ {kg} кг в неделю, нужно есть на {d} ккал меньше.', rWhyGain: 'Вы тратите примерно {tdee} ккал в день. Чтобы набирать ≈ {kg} кг в неделю, нужно есть на {d} ккал больше.',
       rFloor: 'Темп снижения приведён к безопасной границе ({min} ккал), поэтому ≈ {kg} кг в неделю.', rDoc: 'Проконсультируйтесь с врачом. Этот расчёт только для сохранения веса.', under18: 'Для лиц младше 18 лет диета не рассчитывается.', pregN: 'Во время беременности и кормления диета не рассчитывается.', lowBmi: 'Ваш вес ниже нормы (ИМТ < 18,5): диета не рассчитывается.',
       disc: 'Приблизительный расчёт — не медицинская рекомендация.', rMacro: 'Белки {p} г · жиры {f} г · углеводы {c} г', rWater: 'Вода: {n} стаканов ({ml} мл)',
-      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?',
+      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', hEmpty: 'Запишите первую еду кнопкой «+» — кольцо начнёт заполняться здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
       mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
-      aT: 'Добавить еду', aPh: 'Название (плов, самса, яблоко…)', aRec: 'Недавние', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Добавить своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
+      aT: 'Добавить еду', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
       pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
@@ -73,7 +75,7 @@
       shT: 'Поделиться результатом', shH: 'На картинку попадут только выбранные вами цифры.', shDays: 'Дни', shSteps: 'Шаги', shKm: 'Расстояние', shWeight: 'Изменение веса', shGo: 'Поделиться картинкой', shDl: 'Скачать картинку', shTitle: 'Мой результат', shWin: 'Последние 30 дней', shDaysV: 'дн. вёл записи', shStepsV: 'шагов', shKmV: 'км пройдено', shWV: 'кг', shNone: 'Ничего не выбрано',
       sExp: 'Скачать данные (JSON)', sImp: 'Восстановить из файла', sDel: 'Удалить всё', sLang: 'Язык', sFont: 'Размер шрифта', fN: 'Обычный', fB: 'Крупный', sTips: 'Показать подсказки снова', sAbout: 'О приложении', priv: 'Ваши данные хранятся только на этом устройстве.', med: 'Это не медицинская рекомендация. Расчёт приблизительный: по вопросам здоровья консультируйтесь с врачом.',
       expDone: 'Файл скачан', impT: 'Восстановление из файла', impAsk: 'Текущие данные будут заменены данными из файла. Продолжить?', impOk: 'Восстановлено', impBad: 'Неверный файл', delAsk1: 'Все данные будут удалены.', delAsk2: 'Точно удалить? Вернуть нельзя.', deleted: 'Всё удалено',
-      xKcalT: 'Как считается это число?', xTarget: 'Дневная норма', xEaten: 'Съедено', xSteps: 'Шаги (50%)', xRem: 'Ещё можно съесть', xWhy50: 'Прибавляется только половина калорий от шагов: телефон и формулы приблизительны, чтобы не посчитать лишнего.', xHowT: 'Как получилась норма?', xBmr: 'Расход в покое (BMR)', xBmrN: 'формула Миффлина — Сан-Жеора', xAct: 'Коэффициент активности', xTdee: 'Дневной расход (TDEE)', xGoal: 'Разница для цели', xFloor: 'Нижняя безопасная граница', xTargetR: 'Дневная норма',
+      xKcalT: 'Как считается это число?', xTarget: 'Дневная норма', xLimit: 'Лимит на сегодня', xEaten: 'Съедено', xSteps: 'Шаги (50%)', xRem: 'Ещё можно съесть', xWhy50: 'Прибавляется только половина калорий от шагов: телефон и формулы приблизительны, чтобы не посчитать лишнего.', xHowT: 'Как получилась норма?', xBmr: 'Расход в покое (BMR)', xBmrN: 'формула Миффлина — Сан-Жеора', xAct: 'Коэффициент активности', xTdee: 'Дневной расход (TDEE)', xGoal: 'Разница для цели', xFloor: 'Нижняя безопасная граница', xTargetR: 'Дневная норма',
       xMacroT: 'Как посчитано?', xProt: 'Белки: {pk} г/кг × {w} кг = {p} г', xFat: 'Жиры: 27,5% калорий ÷ 9 = {f} г', xCarb: 'Углеводы: остаток калорий ÷ 4 = {c} г', xMacroN: 'Белок сохраняет мышцы, жиры и углеводы дают энергию.',
       xWaterT: 'Норма воды', xWater: '33 мл × {w} кг = {ml} мл ÷ 250 мл = {n} стаканов', xWaterN: 'В жару и при тренировках можно пить больше.',
       xStepT: 'Как считаются шаги?', xStride: 'Длина шага: рост × 0,414 = {s} см', xDist: 'Расстояние: {n} шагов × {s} см = {km} км', xKc: 'Калории: 3,5 × {w} кг × ({km} км ÷ 5 км/ч) = {k} ккал', xKcN: 'Скорость ходьбы принята 5 км/ч (обычная ходьба). Расчёт приблизительный.',
@@ -85,6 +87,25 @@
       units: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' }
     }
   };
+  /* ---------- 2-bosqich matnlari: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, qo'shimchalar ---------- */
+  Object.assign(D.uz, {
+    jkT: 'Hazillar', perPortion: 'kkal / porsiya', spUl: 'Yuqori chegara (UL)', jkOn: 'Yoqilgan', jkOff: "O'chirilgan", jkCity: 'Shahringiz', jkCityH: 'Masofa taqqoslashlari shu shahardan boshlanadi', jkParty: "Bugun to'y yoki bayram kuni", jkNote: "Qiziqarli gaplar faqat ovqat, qadam va kundalik hayot ustidan — vazn va tana haqida gap yo'q.",
+    stRouteF: "Bu {km} km — {route} masofasi ({rk} km) dan ko'proq", stRouteP: "Bu {km} km — {route} yo'lining {pct}%", cityPick: 'Shaharni tanlang',
+    yT: 'Buni yesam-chi?', yBtn: 'Buni yesam-chi?', yPh: 'Qaysi ovqat? (somsa, osh, kola…)', yPick: 'Ovqatni tanlang — nima bo\'lishini ko\'ring', yRem: 'Bugun limitdan qoladi: {x} kkal', yAfterOk: 'Yesangiz: {x} kkal qoladi', yAfterOver: 'Yesangiz: limitdan {x} kkal oshadi', yWalk: 'Yoqish uchun: ≈ {min} daqiqa yurish (≈ {steps} qadam)', yNoSave: "Hech narsa saqlanmaydi — faqat oqibatni ko'rsatadi.", yAdd: 'Yeyman — yozib qo\'yish',
+    rcT: "O'z taomim (retsept)", rcName: 'Taom nomi', rcNamePh: "masalan, Onamning oshi", rcIng: 'Masalliqlar', rcAdd: "+ Masalliq qo'shish", rcNoIng: "Hali masalliq yo'q", rcPortions: 'Necha porsiya chiqadi?', rcPer: 'Bir porsiya: {k} kkal', rcPerMac: "oqsil {p} · yog' {f} · uglevod {c} · {g} g", rcTotal: 'Hammasi: {g} g · {k} kkal', rcSave: 'Saqlash', rcSaved: "«{n}» saqlandi — endi qidiruvda chiqadi", rcPickIng: 'Masalliqni tanlang', rcGrams: 'Necha gramm?', rcAddIng: "Qo'shish", rcMine: 'Mening taomlarim', rcNoMine: "Hali retsept yo'q", rcDelete: "Taomni o'chirish", rcDeleted: "Taom o'chirildi", rcEdit: 'Retseptni tahrirlash', rcNew: "+ Retsept qo'shish", rcMineH: "Masalliqlarni gramm bilan yozing — bir porsiya kkal va makro o'zi hisoblanadi.", rcQ: 'Masalliq nomi', aRecipe: 'Retsept',
+    calT: 'Oylik taqvim', calOk: 'Limit ichida', calMid: 'Ozgina oshdi', calHigh: "Ko'p oshdi", calNone: 'Yozilmagan', calStreak: '{n} kun ketma-ket yozdingiz', calStreak0: "Seriya hali yo'q — bugun yozilsa boshlanadi", calNote: "Faqat ranglar va son — baho yoki ball yo'q.", calDays: '{n} kun', calOpen: 'Kunni ochish',
+    phBtn: 'Rasm', phT: "Rasm bilan qo'shish", phNote: 'Rasm AI xizmatiga yuboriladi va saqlanmaydi.', phBusy: 'Rasm tahlil qilinmoqda…', phErr: "Rasmni aniqlab bo'lmadi. Qo'lda qo'shing.", phLimit: "Bugungi rasm limiti tugadi (kuniga 10 ta). Ertaga urinib ko'ring.", phOffline: "Internet yo'q — rasm tugmasi o'chiq", phApprox: 'taxminiy ±30%', phScale: 'Porsiyani tuzating', phNone: 'Rasmda ovqat topilmadi. Boshqa rasm yoki matn bilan urinib ko\'ring.', phSave: '{n} ta ovqatni saqlash', phHint: 'Natijani ko\'rib, porsiyani tuzatib tasdiqlang.', phPick: 'Kamera yoki galereya', tkNote: "Tasdiqlasangiz, ovqat nomi va kkal (shaxsiy ma'lumotsiz) umumiy bazaga taklif sifatida yuboriladi.",
+    spT: 'Vitamin va qo\'shimchalar: kerakmi?', spH: "Ko'pchilikka kerak emas — avval ovqatni ko'ring.", spSearch: 'Qidirish (D vitamini, kreatin…)', spWhat: 'Nima va nima uchun kerak', spFood: 'Ovqatdan qayerdan olinadi', spWho: "Kimga foydali bo'lishi mumkin", spNot: 'Kimga kerak emas', spCare: "Ehtiyot bo'ling", spLvl: 'Dalil kuchi', spLvl_strong: 'Kuchli', spLvl_moderate: "O'rtacha", spLvl_low: 'Kam', spLvlH: "Foydasi haqidagi dalil kuchi (ma'lum guruhlar uchun).", spSrc: 'Manba: {s}', spChecked: 'Tekshirilgan: {d}', spProt: 'Bugun oqsil: {a} / {b} g', spNone: 'Topilmadi', spLoading: 'Yuklanmoqda…', spErr: "Ma'lumot yuklanmadi. Internetni tekshiring.", spRules: ["1. Avval ovqat.", "2. Tahlil bilan aniqlang.", "3. Ko'pi zararli bo'lishi mumkin."], spBack: 'Ro\'yxatga', srcNih: "NIH (AQSh Milliy sog'liqni saqlash institutlari), Qo'shimchalar idorasi", srcHarvard: "Harvard sog'liqni saqlash maktabi (Nutrition Source)"
+  });
+  Object.assign(D.ru, {
+    jkT: 'Шутки', perPortion: 'ккал / порция', spUl: 'Верхняя граница (UL)', jkOn: 'Включены', jkOff: 'Выключены', jkCity: 'Ваш город', jkCityH: 'Сравнения расстояний начинаются с этого города', jkParty: 'Сегодня свадьба или праздник', jkNote: 'Забавные фразы — только про еду, шаги и быт: про вес и тело — никогда.',
+    stRouteF: 'Это {km} км — больше, чем путь {route} ({rk} км)', stRouteP: 'Это {km} км — {pct}% пути {route}', cityPick: 'Выберите город',
+    yT: 'А если я это съем?', yBtn: 'А если я это съем?', yPh: 'Какая еда? (самса, плов, кола…)', yPick: 'Выберите еду — посмотрите, что будет', yRem: 'Сегодня остаётся в лимите: {x} ккал', yAfterOk: 'Если съесть: останется {x} ккал', yAfterOver: 'Если съесть: выйдет за лимит на {x} ккал', yWalk: 'Чтобы сжечь: ≈ {min} мин ходьбы (≈ {steps} шагов)', yNoSave: 'Ничего не сохраняется — только показывает последствия.', yAdd: 'Съем — записать',
+    rcT: 'Моё блюдо (рецепт)', rcName: 'Название блюда', rcNamePh: 'например, мамин плов', rcIng: 'Ингредиенты', rcAdd: '+ Добавить ингредиент', rcNoIng: 'Ингредиентов пока нет', rcPortions: 'Сколько порций получится?', rcPer: 'Одна порция: {k} ккал', rcPerMac: 'белки {p} · жиры {f} · углеводы {c} · {g} г', rcTotal: 'Всего: {g} г · {k} ккал', rcSave: 'Сохранить', rcSaved: '«{n}» сохранено — теперь найдётся в поиске', rcPickIng: 'Выберите ингредиент', rcGrams: 'Сколько граммов?', rcAddIng: 'Добавить', rcMine: 'Мои блюда', rcNoMine: 'Рецептов пока нет', rcDelete: 'Удалить блюдо', rcDeleted: 'Блюдо удалено', rcEdit: 'Изменить рецепт', rcNew: '+ Добавить рецепт', rcMineH: 'Впишите ингредиенты в граммах — ккал и БЖУ порции посчитаются сами.', rcQ: 'Название ингредиента', aRecipe: 'Рецепт',
+    calT: 'Календарь месяца', calOk: 'В лимите', calMid: 'Чуть выше', calHigh: 'Заметно выше', calNone: 'Не записано', calStreak: 'Записи подряд: {n} дн.', calStreak0: 'Серии пока нет — начнётся, как только появится запись сегодня', calNote: 'Только цвета и число — без оценок и баллов.', calDays: '{n} дн.', calOpen: 'Открыть день',
+    phBtn: 'Фото', phT: 'Добавить по фото', phNote: 'Фото отправляется сервису ИИ и не сохраняется.', phBusy: 'Анализирую фото…', phErr: 'Не удалось распознать фото. Добавьте вручную.', phLimit: 'Лимит фото на сегодня исчерпан (10 в день). Попробуйте завтра.', phOffline: 'Нет интернета — кнопка фото отключена', phApprox: 'примерно ±30%', phScale: 'Поправьте порцию', phNone: 'На фото не найдено еды. Попробуйте другое фото или текст.', phSave: 'Сохранить: {n}', phHint: 'Проверьте результат, поправьте порцию и подтвердите.', phPick: 'Камера или галерея', tkNote: 'Если подтвердите, название блюда и ккал (без личных данных) отправятся в общую базу как предложение.',
+    spT: 'Витамины и добавки: нужны ли?', spH: 'Большинству не нужны — сначала посмотрите на питание.', spSearch: 'Поиск (витамин D, креатин…)', spWhat: 'Что это и зачем', spFood: 'Где взять из еды', spWho: 'Кому может быть полезно', spNot: 'Кому не нужно', spCare: 'Осторожно', spLvl: 'Сила доказательств', spLvl_strong: 'Сильная', spLvl_moderate: 'Средняя', spLvl_low: 'Слабая', spLvlH: 'Насколько доказана польза (для определённых групп).', spSrc: 'Источник: {s}', spChecked: 'Проверено: {d}', spProt: 'Белок сегодня: {a} / {b} г', spNone: 'Не найдено', spLoading: 'Загрузка…', spErr: 'Данные не загрузились. Проверьте интернет.', spRules: ['1. Сначала еда.', '2. Уточните анализом.', '3. Лишнее может навредить.'], spBack: 'К списку', srcNih: 'NIH (Национальные институты здоровья США), Управление по пищевым добавкам', srcHarvard: 'Гарвардская школа общественного здравоохранения (Nutrition Source)'
+  });
   var root = document.getElementById('rzApp');
   var st = null, view = 'today', lang = langNow(), enterNext = true, foodDay = null, db = null, dbState = 0, heroPrev = null, seenFood = null, ob = null, reduce = false;
   function langNow() { return document.documentElement.lang === 'ru' ? 'ru' : 'uz'; }
@@ -125,7 +146,7 @@
 
   /* ---------- saqlash ---------- */
   function load() {
-    try { var raw = localStorage.getItem(LS); if (raw) { var s = S.migrate(JSON.parse(raw)); if (s) { if (!s.prefs) s.prefs = {}; return s; } } } catch (e) {}
+    try { var raw = lsGet(LS); if (raw) { var s = S.migrate(JSON.parse(raw)); if (s) { if (!s.prefs) s.prefs = {}; return s; } } } catch (e) {}
     var s2 = S.emptyState(); s2.prefs = {}; return s2;
   }
   var persistAsked = false;
@@ -154,7 +175,7 @@
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
       '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('food', 'food', 'navFood') + '<span class="rz-fabslot"></span>' + tab('steps', 'steps', 'navSteps') + tab('me', 'me', 'navMe') +
       '<button type="button" class="rz-fab" id="rzFab" data-act="add" aria-label="' + esc(T('add')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
-      kit.shellHtml() + '<div class="rz-onb" id="rzOnb" hidden></div>';
+      kit.shellHtml() + '<input type="file" id="phIn" accept="image/*" hidden><div class="rz-onb" id="rzOnb" hidden></div>';
   }
 
   /* ---------- umumiy bo'laklar ---------- */
@@ -201,12 +222,13 @@
   /* ---------- BUGUN ---------- */
   function renderToday() {
     var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), h0 = num(pr.height), w0 = S.currentWeight(st);
-    var bal = S.dayBalance(pl.target, tot.kcal, x.steps, h0, w0), ratio = Math.min(1, tot.kcal / pl.target), over = bal.remaining < 0, prev = heroPrev;
+    var bal = S.dayBalance(pl.target, tot.kcal, x.steps, h0, w0), limit = pl.target + bal.credit, ratio = Math.min(1, tot.kcal / limit), over = bal.remaining < 0, prev = heroPrev;
     var stp = S.stepsStats(st, x.steps), glasses = pl.water.glasses, wl = Math.min(glasses, x.water);
     var h = weekCard();
-    h += '<section class="rz-card sl-hero' + (over ? ' over' : '') + '"><button type="button" class="sl-ringbtn" id="ringBtn" data-act="xkcal" aria-label="' + esc(T('hHow') + ' ' + fmt(tot.kcal) + ' ' + T('ringOf', { t: fmt(pl.target) })) + '">' + ringHtml('ringPg', prev ? prev.ratio : 0) +
-      '<span class="sl-rc"><b id="kNum">' + fmt(prev ? prev.eaten : tot.kcal) + '</b><small>' + T('kcal') + '</small><em>' + esc(T('ringOf', { t: fmt(pl.target) })) + '</em></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
-      '<div class="sl-rem"><span>' + esc(T(over ? 'overLbl' : 'remLbl')) + '</span><b>' + fmt(Math.abs(bal.remaining)) + '<small> ' + T('kcal') + '</small></b>' + (bal.credit > 0 ? '<em>' + esc(T('stepPlus', { c: fmt(bal.credit) })) + '</em>' : '') + '</div></section>';
+    h += '<section class="rz-card sl-hero' + (over ? ' over' : '') + '"><button type="button" class="sl-ringbtn" id="ringBtn" data-act="xkcal" aria-label="' + esc(T('hHow') + ' ' + fmt(tot.kcal) + ' ' + T('ringOf', { t: fmt(limit) })) + '">' + ringHtml('ringPg', prev ? prev.ratio : 0) +
+      '<span class="sl-rc"><b id="kNum">' + fmt(prev ? prev.eaten : tot.kcal) + '</b><small>' + T('kcal') + '</small><em>' + esc(T('ringOf', { t: fmt(limit) })) + '</em></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
+      '<div class="sl-rem"><span>' + esc(T(over ? 'overLbl' : 'remLbl')) + '</span><b>' + fmt(Math.abs(bal.remaining)) + '<small> ' + T('kcal') + '</small></b>' + (bal.credit > 0 ? '<em>' + esc(T('limitParts', { t: fmt(pl.target), c: fmt(bal.credit) })) + '</em>' : '') + '</div>' + (!tot.kcal && !x.food.length ? '<p class="rz-mut sm sl-first">' + esc(T('hEmpty')) + '</p>' : '') + '</section>';
+    var jl = G ? G.todayLine(jokeCtx()) : null; if (jl) save(); h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
     h += '<section class="rz-card sl-macros">' + [['mP', 'p', pl.macros.p], ['mF', 'f', pl.macros.f], ['mC', 'c', pl.macros.c]].map(function (m) { var v = Math.round(tot[m[1]]), r = Math.min(1, v / Math.max(1, m[2])); return '<button type="button" class="sl-mac" data-act="xmacro"><span class="l">' + esc(T(m[0])) + '</span><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + r + ')"></i></div><span class="v">' + v + ' / ' + m[2] + ' ' + T('gram') + '</span></button>'; }).join('') + '</section>';
     h += '<section class="rz-card sl-water" id="wCard"><div class="sl-wh"><b>' + ico('drop') + esc(T('wT')) + '</b><button type="button" class="sl-wv" data-act="xwater" id="wTxt">' + esc(T('wOf', { n: wl, m: glasses })) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML() + '</button></div><div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
     for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl && prev ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
@@ -228,7 +250,7 @@
     var lab = d === t ? T('today') : (d === Dt.addDays(t, -1) ? T('yesterday') : kit.dLabel(d));
     var h = '<h2 class="rz-h">' + esc(T('fT')) + '</h2><section class="rz-card"><div class="rz-monthnav"><button type="button" data-act="dprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(lab) + '</b><button type="button" data-act="dnext" aria-label="›"' + (d >= t ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-daysum"><b>' + fmt(tot.kcal) + '</b><small> / ' + fmt(pl.target) + ' ' + T('kcal') + '</small></div></section>';
     h += '<button type="button" class="sl-wide" data-act="addtext" data-d="' + d + '">' + ico('text') + '<span>' + esc(T('fAddText')) + '</span>' + ico('chev', 'r') + '</button>';
-    h += mealsHtml(d);
+    h += mealsHtml(d) + rcMineHtml();
     var favs = st.favs.map(foodById).filter(Boolean);
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('fFavs')) + '</div>' + (favs.length ? favs.slice(0, 8).map(function (f) { return '<button type="button" class="sl-row" data-act="pickfav" data-id="' + esc(f.id) + '" data-d="' + d + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('heart', 'fv') + '</button>'; }).join('') : '<div class="rz-mut">' + esc(T('fNoFavs')) + '</div>') + '</section>';
     $('#rzMain').innerHTML = h; markSeen();
@@ -237,12 +259,14 @@
 
   /* ---------- QADAM ---------- */
   function renderSteps() {
-    var t = todayStr(), x = S.dayOf(st, t) || { steps: 0 }, stp = S.stepsStats(st, x.steps), ser = S.stepsSeries(st, t, 7), tot = S.stepsTotal(st, ser), mx = Math.max(st.stepGoal, Math.max.apply(null, ser.map(function (s) { return s.steps; })), 1), cmp = S.compareKm(tot.km), mon = S.monthSteps(st, Dt.monthOf(t));
+    var t = todayStr(), x = S.dayOf(st, t) || { steps: 0 }, stp = S.stepsStats(st, x.steps), ser = S.stepsSeries(st, t, 7), tot = S.stepsTotal(st, ser), mx = Math.max(st.stepGoal, Math.max.apply(null, ser.map(function (s) { return s.steps; })), 1), mon = S.monthSteps(st, Dt.monthOf(t));
+    var dl = G ? G.distLines(jokeCtx()) : { week: null, month: null }; if (dl.week || dl.month) save(); loadMasofa();
+    var weekJoke = dl.week ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(dl.week.text) + '</p>' : routeFact(tot.km), monJoke = dl.month ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(dl.month.text) + '</p>' : routeFact(mon.km);
     var h = '<h2 class="rz-h">' + esc(T('stT')) + '</h2><section class="rz-card sl-stepbig"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('stepsT')) + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span></button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, x.steps / st.stepGoal) + ')"></i></div><div class="rz-mut sm">' + esc(T('stGoal', { x: fmt(st.stepGoal) })) + '</div><button type="button" class="rz-btn primary full" data-act="addsteps">' + esc(T('sAdd')) + '</button><button type="button" class="rz-link" data-act="stephelp">' + esc(T('stWhere')) + '</button></section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('stWeek')) + '</div><div class="sl-chart" style="--g:' + (st.stepGoal / mx).toFixed(3) + '" role="img" aria-label="' + esc(T('stWeek')) + '">' + ser.map(function (s) { var wd = S.weekdayIdx(s.d), nm = D[lang] && (lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'])[wd]; return '<button type="button" class="b' + (s.d === t ? ' td' : '') + '" data-act="editsteps" data-d="' + s.d + '" aria-label="' + esc(kit.dLabel(s.d) + ': ' + fmt(s.steps)) + '"><span class="v">' + (s.steps ? fmt(s.steps) : '') + '</span><span class="col"><i style="transform:scaleY(' + (s.steps / mx) + ')"></i></span><span class="d">' + esc(nm) + '</span></button>'; }).join('') + '</div>' +
       '<div class="sl-wtot"><b>' + esc(tot.km.toString().replace('.', ',') + ' ' + T('km')) + '</b><span>' + fmt(tot.steps) + ' · ' + fmt(tot.kcal) + ' ' + T('kcal') + '</span></div>' +
-      (tot.km > 0 ? '<p class="rz-p">' + ico('flame', 'sl-inl') + esc(cmp.full ? T('stCmpFull', { route: lang === 'ru' ? cmp.ru : cmp.uz, km: cmp.km }) : T('stCmp', { km: tot.km.toString().replace('.', ','), route: lang === 'ru' ? cmp.ru : cmp.uz, pct: cmp.share })) + '</p>' : '') + '</section>';
-    h += '<section class="rz-card"><div class="rz-st">' + esc(T('stMonth')) + '</div><div class="sl-wtot"><b>' + fmt(mon.steps) + '</b><span>' + esc(mon.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(mon.kcal) + ' ' + T('kcal')) + '</span></div><button type="button" class="rz-row" data-act="stepgoal"><span class="m"><b>' + esc(T('stGoalSet')) + '</b></span><span class="v">' + fmt(st.stepGoal) + '</span></button><p class="rz-priv">' + esc(T('stNoRank')) + '</p></section>';
+      (tot.steps ? weekJoke : '<p class="rz-mut">' + esc(T('stEmpty')) + '</p>') + '</section>';
+    h += '<section class="rz-card"><div class="rz-st">' + esc(T('stMonth')) + '</div><div class="sl-wtot"><b>' + fmt(mon.steps) + '</b><span>' + esc(mon.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(mon.kcal) + ' ' + T('kcal')) + '</span></div>' + monJoke + '<button type="button" class="rz-row" data-act="stepgoal"><span class="m"><b>' + esc(T('stGoalSet')) + '</b></span><span class="v">' + fmt(st.stepGoal) + '</span></button><p class="rz-priv">' + esc(T('stNoRank')) + '</p></section>';
     $('#rzMain').innerHTML = h;
     $$('.sl-chart .col i').forEach(function (e, i) { var f = e.style.transform; e.style.transform = 'scaleY(0)'; setTimeout(function () { e.style.transform = f; }, reduce ? 0 : 60 + i * 50); });
   }
@@ -258,13 +282,13 @@
   function renderMe() {
     var pr = st.profile, pl = planNow(), cur = S.currentWeight(st), a7 = S.avg7(st.weights, todayStr()), gp = S.goalProgress(st), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang;
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
-    var first = st.weights.length ? st.weights[0].kg : cur;
+    var first = st.weights.length ? st.weights[0].kg : cur, wj = G ? G.weightLine(jokeCtx()) : null; if (wj) save(); loadMasofa();
     var h = '<h2 class="rz-h">' + esc(T('meT')) + '</h2><section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
     h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut">' + (a7 != null ? esc(T('meAvg', { x: dec(a7, 1) })) : '') + '</div>' : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
       (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
-      (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
-    h += '<section class="rz-card">' + row('share', 'share', T('meShare'), T('shH')) + '</section>';
+      (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + (wj ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(wj.text) + '</p>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
+    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
     h += '<section class="rz-card">' + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
@@ -292,12 +316,193 @@
     if (view === 'today' && !prefs().tipsDone && !kit.tipsOn() && !kit.sheetKind()) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 500);
   }
 
+
+  /* ================= 2-bosqich: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, taklif, qo'shimchalar ================= */
+  kit.addIcons({
+    chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
+    sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.900 4.900l1.400 1.400 M17.700 17.700l1.400 1.400 M4.900 19.100l1.400-1.400 M17.700 6.300l1.400-1.400', leaf: 'M5 19c0-8 5-13 14-14 0 9-5 14-13 14 M5 19c2-4 5-7 9-9', bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
+    bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
+    cal2: 'M5 5h14v15H5z M5 10h14 M9 3v4 M15 3v4', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
+  });
+  var G = window.KalkiFitGaplar, masofa = null, masofaState = 0, supp = null, suppState = 0;
+  function loadJson(url, ok, fail) { fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(ok).catch(fail || function () {}); }
+  function loadMasofa() { if (masofaState) return; masofaState = 1; loadJson('/data/masofalar.json', function (j) { masofa = j; masofaState = 2; if (view === 'today' || view === 'steps' || view === 'me') render(); }, function () { masofaState = 0; }); }
+  function loadSupp(cb) { if (suppState === 2) { cb(); return; } if (suppState === 1) return; suppState = 1; loadJson('/data/qoshimchalar.json', function (j) { supp = j; suppState = 2; cb(); }, function () { suppState = 0; cb(true); }); }
+  function jokeCtx() { return { S: S, st: st, today: todayStr(), lang: lang, hour: new Date().getHours(), masofa: masofa, city: prefs().city || 'toshkent', foods: db, jokesOn: prefs().jokes !== false }; }
+  function jokeBox(l, cls) { return l ? '<div class="rz-card sl-joke ' + (cls || '') + '" role="note">' + ico('chat') + '<p>' + esc(l.text) + '</p></div>' : ''; }
+  function routeFact(km) {                          // hazil o'chiq bo'lganda ham haqiqiy taqqoslash (masofalar.json)
+    if (!G || !masofa || !(km >= 1)) return ''; var rt = G.routeFor(masofa, prefs().city || 'toshkent', km);
+    return '<p class="rz-p sl-fact">' + ico('flame', 'sl-inl') + esc(T(rt.type === 'full' ? 'stRouteF' : 'stRouteP', { km: G.fmtKm(km), route: G.routePhrase(rt, lang), rk: rt.km, pct: rt.pct })) + '</p>';
+  }
+  function stepsKmFor(n) { var t = todayStr(), ser = S.stepsSeries(st, t, n); return S.stepsTotal(st, ser).km; }
+
+  /* ---------- "Buni yesam-chi?" (hech narsa saqlanmaydi) ---------- */
+  var yd = null;
+  function openYesam() { yd = { q: '', food: null, unit: null, qty: 1 }; openSheet('yesam', ySearchHtml()); loadDb(function () { if (yd && !yd.food) yRefresh(); }); }
+  function ySearchHtml() { return shHead(T('yT')) + '<div class="sl-search">' + ico('search') + '<input id="ydQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('yPh')) + '" value="' + esc(yd.q) + '" aria-label="' + esc(T('yT')) + '"></div><p class="rz-p sm">' + esc(T('yPick')) + '</p><div class="sl-res" id="ydRes">' + yResults() + '</div>'; }
+  function yRow(f) { return '<button type="button" class="sl-rr" data-act="ypick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }
+  function yResults() {
+    if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = yd.q.trim(), foods = allFoods(), list;
+    if (q) list = S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 30 });
+    else { var rec = st.recents.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom; }).slice(0, 10); list = rec.slice(0, 5).concat(pop.filter(function (f) { return rec.indexOf(f) < 0; })).slice(0, 12); }
+    return list.length ? list.map(yRow).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
+  }
+  function yRefresh() { var r = $('#ydRes'); if (r) r.innerHTML = yResults(); }
+  function yGrams() { return yd.unit === 'g100' ? yd.qty : S.unitGrams(yd.food, yd.unit) * yd.qty; }
+  function yPick(id) { var f = foodById(id); if (!f) return; yd.food = f; yd.unit = f.u[0][0]; yd.qty = yd.unit === 'g100' ? 100 : 1; setSheet(yHtml()); }
+  function yHtml() {
+    var f = yd.food;
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="yback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nameOf(f)) + '</b><span></span></div><div class="rz-chips">' + f.u.map(function (u) { return '<button type="button" class="rz-chip' + (yd.unit === u[0] ? ' on' : '') + '" data-act="yunit" data-u="' + u[0] + '" aria-pressed="' + (yd.unit === u[0]) + '">' + esc(unitLabel(f, u[0])) + '</button>'; }).join('') + '</div>' +
+      '<div class="sl-qty"><button type="button" data-act="yqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="ydQty">' + qtyStr(yd.qty) + (yd.unit === 'g100' ? ' ' + T('gram') : '') + '</b><button type="button" data-act="yqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div><div id="ydOut" aria-live="polite">' + yOutHtml() + '</div><p class="rz-p sm">' + esc(T('yNoSave')) + '</p>';
+  }
+  function yOutHtml() {
+    var f = yd.food, g = yGrams(), pt = S.portion(f, g), t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), bal = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st));
+    var after = bal.remaining - pt.kcal, min = S.minutesToBurn(pt.kcal, S.currentWeight(st)), steps = Math.round(min / 60 * 5000 / S.strideM(num(st.profile.height)));
+    var item = nameOf(f) + ' (' + (yd.unit === 'g100' ? fmt(g) + ' ' + T('gram') : qtyStr(yd.qty) + ' ' + unitName(yd.unit)) + ')';
+    var joke = G && prefs().jokes !== false ? G.pickLine(jokeCtx(), after >= 0 ? 'yesam_ok' : 'yesam_over', { item: item, kcal: pt.kcal, left: after, over: -after, min: min }, 'y|' + f.id + '|' + (after >= 0 ? 'ok' : 'over')) : null; if (joke) save();
+    return '<div class="sl-kc"><b>' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + (f.e ? ' · ' + esc(T('aEst')) : '') + '</small></div>' +
+      '<div class="rz-xrows sl-yrows"><div class="rz-xr"><span class="lb">' + esc(T('yRem', { x: fmt(bal.remaining) })) + '</span></div><div class="rz-xr sum big' + (after < 0 ? ' warnr' : '') + '"><span class="lb">' + esc(after >= 0 ? T('yAfterOk', { x: fmt(after) }) : T('yAfterOver', { x: fmt(-after) })) + '</span></div><div class="rz-xr"><span class="lb">' + ico('steps', 'sl-inl') + esc(T('yWalk', { min: min, steps: fmt(steps) })) + '</span></div></div>' + (joke ? '<p class="rz-p sl-yj">' + esc(joke.text) + '</p>' : '');
+  }
+  function yUpdate() { var o = $('#ydOut'); if (o) o.innerHTML = yOutHtml(); var q = $('#ydQty'); if (q) q.textContent = qtyStr(yd.qty) + (yd.unit === 'g100' ? ' ' + T('gram') : ''); }
+
+  /* ---------- retsept hisoblagich ---------- */
+  var rc = null;
+  function openRecipe(id) {
+    var f = id ? foodById(id) : null;
+    rc = { id: f ? f.id : null, name: f ? f.n : '', ings: f && f.recipe ? f.recipe.ings.map(function (i) { return Object.assign({}, i); }) : [], portions: f && f.recipe ? f.recipe.portions : 1, mode: 'main', q: '', pick: null, g: 100 };
+    openSheet('recipe', rcHtml()); loadDb();
+  }
+  function rcIngName(i) { var f = i.id ? foodById(i.id) : null; return f ? nameOf(f) : i.name; }
+  function rcOutHtml() {
+    var r = S.recipe(rc.ings, rc.portions);
+    return rc.ings.length ? '<div class="sl-kc"><b>' + fmt(r.perPortion.kcal) + '</b><small> ' + T('perPortion') + '</small></div><div class="sl-mc">' + esc(T('rcPerMac', { p: dec(r.perPortion.p, 0), f: dec(r.perPortion.f, 0), c: dec(r.perPortion.c, 0), g: fmt(r.perPortion.g) })) + '</div><div class="rz-mut sm" style="text-align:center">' + esc(T('rcTotal', { g: fmt(r.total.g), k: fmt(r.total.kcal) })) + '</div>' : '';
+  }
+  function rcHtml() {
+    var h = shHead(rc.id ? T('rcEdit') : T('rcT')) + '<p class="rz-p sm">' + esc(T('rcMineH')) + '</p><label class="rz-f" for="rcName"><span>' + esc(T('rcName')) + '</span><input id="rcName" type="text" maxlength="60" placeholder="' + esc(T('rcNamePh')) + '" value="' + esc(rc.name) + '"></label>' +
+      '<div class="rz-fl">' + esc(T('rcIng')) + '</div>' + (rc.ings.length ? rc.ings.map(function (i, k) { var kc = Math.round(i.k * i.g / 100); return '<div class="sl-ti"><span class="m"><span class="nm">' + esc(rcIngName(i)) + '</span><span class="tm">' + fmt(i.g) + ' ' + T('gram') + '</span></span><b>' + fmt(kc) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="rcdel" data-i="' + k + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('') : '<div class="rz-mut">' + esc(T('rcNoIng')) + '</div>') +
+      '<button type="button" class="rz-btn ghost full" data-act="rcadd">' + esc(T('rcAdd')) + '</button>' +
+      '<div class="rz-fl" style="margin-top:12px">' + esc(T('rcPortions')) + '</div><div class="sl-qty"><button type="button" data-act="rcport" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="rcPN">' + rc.portions + '</b><button type="button" data-act="rcport" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
+      '<div id="rcOut" aria-live="polite">' + rcOutHtml() + '</div><div class="rz-actions">' + (rc.id ? '<button type="button" class="rz-btn ghost danger" data-act="rcremove">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="rcSave" data-act="rcsave">' + esc(T('rcSave')) + '</button></div>';
+    return h;
+  }
+  function rcSearchHtml() {
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="rcback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('rcPickIng')) + '</b><span></span></div><div class="sl-search">' + ico('search') + '<input id="rcQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('rcQ')) + '" value="' + esc(rc.q) + '" aria-label="' + esc(T('rcQ')) + '"></div><div class="sl-res" id="rcRes">' + rcResults() + '</div>';
+  }
+  function rcResults() {
+    if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = rc.q.trim(), foods = (db || []), list;
+    list = q ? S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 30 }) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
+    return list.length ? list.map(function (f) { return '<button type="button" class="sl-rr" data-act="rcpick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
+  }
+  function rcGramsHtml() {
+    var f = rc.pick, pt = S.portion(f, rc.g);
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="rcsearch" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nameOf(f)) + '</b><span></span></div><div class="sl-kc"><b id="rcgK">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="rz-fl">' + esc(T('rcGrams')) + '</div><div class="rz-chips">' + [50, 100, 150, 200, 250, 300, 500].map(function (g) { return '<button type="button" class="rz-chip' + (rc.g === g ? ' on' : '') + '" data-act="rcg" data-g="' + g + '">' + g + ' ' + T('gram') + '</button>'; }).join('') + f.u.filter(function (u) { return u[0] !== 'g100'; }).map(function (u) { return '<button type="button" class="rz-chip alt" data-act="rcg" data-g="' + u[1] + '">' + esc(unitLabel(f, u[0])) + '</button>'; }).join('') + '</div>' +
+      '<div class="sl-qty"><button type="button" data-act="rcgq" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="rcgN">' + fmt(rc.g) + ' ' + T('gram') + '</b><button type="button" data-act="rcgq" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="rcaddgo">' + esc(T('rcAddIng')) + '</button></div>';
+  }
+  function rcGUpdate() { var pt = S.portion(rc.pick, rc.g); var k = $('#rcgK'), n = $('#rcgN'); if (k) k.textContent = fmt(pt.kcal); if (n) n.textContent = fmt(rc.g) + ' ' + T('gram'); $$('[data-act=rcg]').forEach(function (b) { b.classList.toggle('on', +b.getAttribute('data-g') === rc.g && !b.classList.contains('alt')); }); }
+  function rcSaveGo() {
+    var nm = ($('#rcName') && $('#rcName').value || rc.name).trim(); rc.name = nm; if (!nm) { flashEl($('#rcName')); return; } if (!rc.ings.length) { flashEl($('#rcSave')); return; }
+    var f = S.saveRecipe(st, { id: rc.id, name: nm, ings: rc.ings, portions: rc.portions }); if (!f) return; kit.closeSheet(); commit(); vib(); toast(T('rcSaved', { n: f.n }), null, true);
+  }
+  function rcMineHtml() {
+    var mine = st.customFoods || [];
+    return '<section class="rz-card"><div class="rz-st">' + esc(T('rcMine')) + '</div>' + (mine.length ? mine.map(function (f) { return '<div class="sl-rowx"><button type="button" class="sl-row" data-act="pickfav" data-id="' + esc(f.id) + '" data-d="' + (foodDay || todayStr()) + '"><span class="m"><span class="nm">' + esc(f.n) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + (f.recipe ? ' · ' + f.recipe.portions + ' ' + (lang === 'ru' ? 'порц.' : 'porsiya') : '') + '</span></span></button>' + (f.recipe ? '<button type="button" class="sl-edit" data-act="rcedit" data-id="' + esc(f.id) + '" aria-label="' + esc(T('rcEdit') + ': ' + f.n) + '">' + ico('pen') + '</button>' : '') + '</div>'; }).join('') : '<div class="rz-mut">' + esc(T('rcNoMine')) + '</div>') + '<button type="button" class="rz-btn ghost full" data-act="rcnew">' + esc(T('rcNew')) + '</button></section>';
+  }
+
+  /* ---------- oylik taqvim (Men) ---------- */
+  var calYm = null;
+  function calHtml() {
+    var t = todayStr(), ym = calYm || Dt.monthOf(t), g = S.monthGrid(st, ym), p = Dt.parse(ym + '-01'), wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], sk = S.streak(st, t);
+    var st2 = { ok: T('calOk'), mid: T('calMid'), high: T('calHigh'), none: T('calNone') };
+    var h = '<section class="rz-card sl-cal" id="calCard"><div class="sl-wh"><b>' + ico('cal2') + esc(T('calT')) + '</b></div><div class="rz-monthnav"><button type="button" data-act="calprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(kit.monthName(p.m, true) + ' ' + p.y) + '</b><button type="button" data-act="calnext" aria-label="›"' + (ym >= Dt.monthOf(t) ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-calg" role="grid">';
+    wd.forEach(function (w) { h += '<i>' + esc(w) + '</i>'; }); for (var i = 0; i < g.first; i++) h += '<span></span>';
+    g.days.forEach(function (d) { h += '<button type="button" class="c ' + d.state + (d.d === t ? ' td' : '') + (d.d > t ? ' fut' : '') + '" data-act="calday" data-d="' + d.d + '" aria-label="' + esc(kit.dLabel(d.d) + ': ' + st2[d.state]) + '"' + (d.d > t ? ' disabled' : '') + '>' + d.n + '</button>'; });
+    h += '</div><div class="sl-leg">' + ['ok', 'mid', 'high', 'none'].map(function (k) { return '<span><i class="c ' + k + '" aria-hidden="true"></i>' + esc(st2[k]) + ' · ' + esc(T('calDays', { n: g.counts[k] - (k === 'none' ? g.days.filter(function (d) { return d.d > t; }).length : 0) })) + '</span>'; }).join('') + '</div>';
+    h += '<div class="sl-streak"><b>' + ico('flame', 'sl-inl') + esc(sk ? T('calStreak', { n: sk }) : T('calStreak0')) + '</b></div>';
+    var sj = G ? G.streakLine(jokeCtx()) : null; if (sj) { h += '<p class="rz-p sl-fact">' + esc(sj.text) + '</p>'; }
+    return h + '<p class="rz-priv">' + esc(T('calNote')) + '</p></section>';
+  }
+
+  /* ---------- hazil sozlamalari, shahar ---------- */
+  function jokesCardHtml() {
+    var on = prefs().jokes !== false, cityId = prefs().city || 'toshkent', cn = masofa && G ? G.nodeOf(masofa, cityId) : null, t = todayStr(), x = S.dayOf(st, t);
+    return '<section class="rz-card"><div class="rz-st">' + esc(T('jkT')) + '</div><div class="rz-seg"><button type="button" data-act="jktog" data-v="1"' + (on ? ' class="on"' : '') + '>' + esc(T('jkOn')) + '</button><button type="button" data-act="jktog" data-v="0"' + (!on ? ' class="on"' : '') + '>' + esc(T('jkOff')) + '</button></div>' +
+      '<button type="button" class="rz-row" data-act="city"><span class="m"><b>' + esc(T('jkCity')) + '</b><span>' + esc(T('jkCityH')) + '</span></span><span class="v">' + esc(cn ? (lang === 'ru' ? cn.ru : cn.uz) : cityId) + '</span></button>' +
+      '<label class="rz-chk"><input type="checkbox" id="jkParty"' + (x && x.party ? ' checked' : '') + '><span>' + esc(T('jkParty')) + '</span></label><p class="rz-priv">' + esc(T('jkNote')) + '</p></section>';
+  }
+  function openCity() {
+    if (!masofa) { loadMasofa(); return; }
+    var cur = prefs().city || 'toshkent';
+    openSheet('city', shHead(T('cityPick')) + masofa.nodes.filter(function (n) { return n.region; }).map(function (n) { return '<button type="button" class="sl-row" data-act="citypick" data-id="' + n.id + '"><span class="m"><span class="nm">' + esc(lang === 'ru' ? n.ru : n.uz) + '</span></span>' + (n.id === cur ? ico('check', '', 2.6) : '') + '</button>'; }).join(''));
+  }
+
+  /* ---------- taklif (umumiy baza navbati): faqat nom, porsiya, kkal/makro, til — foydalanuvchi tasdiqlagandan keyin ---------- */
+  function normKey(s) { return S.key(String(s || '')).replace(/\b(bitta|ta|dona|kosa|likop|porsiya|stakan|piyola|bolak|tilim|g|gr|ml)\b/g, '').replace(/\d+/g, '').replace(/\s+/g, ' ').trim(); }
+  function sendTaklif(it) {
+    if (!it || !it.ai || it.photo || navigator.onLine === false) return; var k = normKey(it.name), p = prefs(), sent = p.tkl || (p.tkl = {}); if (!k || sent[k] === todayStr()) return; sent[k] = todayStr();
+    try { fetch('/api/kalkifit-taklif', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nom: it.name, porsiya: it.ptxt || '', kcal: it.kcal, o: it.p, y: it.f, u: it.c, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }), keepalive: true }).catch(function () {}); } catch (e) {}
+  }
+
+  /* ---------- rasm bilan qo'shish ---------- */
+  function phHtml() {
+    var h = shHead(T('phT')) + '<p class="rz-p sm">' + esc(T('phNote')) + '</p>';
+    if (fd.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('phBusy')) + '</b></div>';
+    if (fd.phErr) h += '<p class="rz-p warn">' + esc(fd.phErr) + '</p>';
+    if (!fd.items.length) return h + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="fphoto">' + ico('cam') + ' ' + esc(T('phPick')) + '</button></div>';
+    h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + fd.items.map(function (it, i) { var kc = Math.round(it.base.kcal * it.mult); return '<div class="sl-ti sl-pi"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt) + ' · ' + fmt(Math.round(it.base.g * it.mult)) + ' ' + T('gram') + ' · ' + esc(T('phApprox')) + '</span><span class="sc" role="group" aria-label="' + esc(T('phScale')) + '">' + [0.5, 1, 1.5, 2].map(function (m) { return '<button type="button" class="rz-chip sm' + (it.mult === m ? ' on' : '') + '" data-act="phsc" data-i="' + i + '" data-m="' + m + '" aria-pressed="' + (it.mult === m) + '">×' + String(m).replace('.', ',') + '</button>'; }).join('') + '</span></span><b>≈ ' + fmt(kc) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="phdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('');
+    return h + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="phsave">' + esc(T('phSave', { n: fd.items.length })) + '</button></div>';
+  }
+  function phRefresh() { if (kit.sheetKind() === 'add' && fd && fd.mode === 'photo') setSheet(phHtml()); }
+  function phShrink(file, cb) {                     // mijozda 1024 px ga kichraytirish, JPEG 0,8
+    var url = URL.createObjectURL(file), img = new Image();
+    img.onload = function () { var s = Math.min(1, 1024 / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.width * s)); c.height = Math.max(1, Math.round(img.height * s)); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url); c.toBlob(function (b) { if (!b) return cb(null); var r = new FileReader(); r.onload = function () { cb(String(r.result).split(',')[1] || null); }; r.readAsDataURL(b); }, 'image/jpeg', 0.8); };
+    img.onerror = function () { URL.revokeObjectURL(url); cb(null); }; img.src = url;
+  }
+  function phFile(file) {
+    if (!file) return; if (!fd || kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'photo'; fd.busy = true; fd.phErr = ''; fd.items = []; setSheet(phHtml());
+    phShrink(file, function (b64) {
+      if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
+      fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
+        fd.busy = false; if (res.s === 429) fd.phErr = T('phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
+        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, ptxt: o.porsiya || '', est: true, ai: true, photo: true, mult: 1, base: { g: o.g || 0, kcal: o.kcal, p: o.o, f: o.y, c: o.u } }; }); phRefresh();
+      }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
+    });
+  }
+  function phSave() {
+    var n = fd.items.length, date = fd.date, ids = [];
+    fd.items.forEach(function (it) { var m = it.mult, e = S.addFood(st, date, { fid: null, name: it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''), meal: fd.meal, unit: null, qty: 1, g: Math.round(it.base.g * m), kcal: it.base.kcal * m, p: it.base.p * m, f: it.base.f * m, c: it.base.c * m, est: true, ts: nowTs() }); ids.push(e.id); });
+    kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
+  }
+  function phSetOffline() { var off = navigator.onLine === false; $$('#phBtn').forEach(function (b) { b.disabled = off; b.title = off ? T('phOffline') : ''; b.setAttribute('aria-disabled', off); }); }
+
+  /* ---------- vitamin va qo'shimchalar ---------- */
+  var spQ = '';
+  function spLvl(l) { return '<span class="sl-lv ' + l + '"><i aria-hidden="true"></i>' + esc(T('spLvl_' + l)) + '</span>'; }
+  function srcLabel(it) { return /harvard/i.test(it.srcName || it.src || '') ? T('srcHarvard') : T('srcNih'); }
+  function spListHtml() {
+    var h = shHead(T('spT')) + '<ol class="sl-rules">' + (supp && supp.rules && supp.rules[lang] ? supp.rules[lang] : T('spRules')).map(function (x) { return '<li>' + esc(x.replace(/^\d+\.\s*/, '')) + '</li>'; }).join('') + '</ol><p class="rz-p sm">' + esc(T('spH')) + ' ' + esc(T('spLvlH')) + '</p><div class="sl-search">' + ico('search') + '<input id="spQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('spSearch')) + '" value="' + esc(spQ) + '" aria-label="' + esc(T('spSearch')) + '"></div><div class="sl-res" id="spRes">' + spRows() + '</div>';
+    return h + spDisc();
+  }
+  function spDisc() { return '<p class="rz-p sm sl-disc">' + ico('warn', 'sl-inl') + esc(supp && supp.disclaimer ? supp.disclaimer[lang] : '') + '</p>'; }
+  function spRows() {
+    if (suppState !== 2) return '<div class="rz-mut">' + esc(T(suppState === 0 ? 'spErr' : 'spLoading')) + '</div>';
+    var q = S.key(spQ), list = supp.items.filter(function (it) { return !q || S.key(it[lang].name + ' ' + it.id).indexOf(q) > -1; });
+    return list.length ? list.map(function (it) { return '<button type="button" class="sl-sp" data-act="spitem" data-id="' + esc(it.id) + '">' + catIcon(it.ic) + '<span class="m"><span class="nm">' + esc(it[lang].name) + '</span><span class="tm">' + esc(it[lang].line) + '</span></span>' + spLvl(it.level) + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('spNone')) + '</b></div>';
+  }
+  function openSupp() { spQ = ''; openSheet('supp', spListHtml()); loadSupp(function () { if (kit.sheetKind() === 'supp') setSheet(spListHtml()); }); }
+  function spCardHtml(it) {
+    var L = it[lang], part = function (k, key) { return L[key] ? '<div class="sl-sec"><div class="rz-fl">' + esc(T(k)) + '</div><p class="rz-p">' + esc(L[key]) + '</p></div>' : ''; };
+    var prot = it.id === 'protein' ? '<p class="rz-p sl-fact">' + ico('muscle', 'sl-inl') + esc(T('spProt', { a: Math.round(S.sumEntries((S.dayOf(st, todayStr()) || { food: [] }).food).p), b: planNow().macros.p })) + '</p>' : '';
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="spback" aria-label="' + esc(T('spBack')) + '">' + ico('back') + '</button><b>' + esc(L.name) + '</b><span></span></div><div class="sl-lvrow">' + spLvl(it.level) + '<span class="rz-mut sm">' + esc(T('spLvl')) + '</span></div>' + part('spWhat', 'what') + part('spFood', 'food') + part('spWho', 'who') + part('spNot', 'not') + part('spCare', 'care') +
+      (it.ul && it.ul[lang] ? '<div class="sl-ul"><b>' + ico('warn', 'sl-inl') + esc(T('spUl')) + '</b><p>' + esc(it.ul[lang]) + '</p></div>' : '') + prot +
+      '<p class="rz-p sm">' + (it.src ? '<a class="rz-link" href="' + esc(it.src) + '" target="_blank" rel="noopener noreferrer">' + esc(T('spSrc', { s: srcLabel(it) })) + '</a>' : esc(T('spSrc', { s: '—' }))) + (it.src2 ? ' · <a class="rz-link" href="' + esc(it.src2) + '" target="_blank" rel="noopener noreferrer">2</a>' : '') + ' · ' + esc(T('spChecked', { d: supp.checked })) + '</p>' + spDisc();
+  }
+
   /* ---------- tushuntirish panellari ---------- */
   function xr(sg, label, val, cls, unit) { return '<div class="rz-xr ' + (cls || '') + '"><span class="sg" aria-hidden="true">' + sg + '</span><span class="lb">' + esc(label) + '</span>' + (val == null ? '' : '<b>' + val + (unit === false ? '' : '<small> ' + T('kcal') + '</small>') + '</b>') + '</div>'; }
   function okBtn() { return '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>'; }
   function openExplainKcal() {
     var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), b = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st));
-    var h = shHead(T('xKcalT')) + '<div class="rz-xrows">' + xr('', T('xTarget'), fmt(pl.target)) + xr('−', T('xEaten'), fmt(tot.kcal)) + xr('+', T('xSteps'), fmt(b.credit)) + xr('=', T('xRem'), fmt(b.remaining), 'sum big') + '</div><p class="rz-p sm">' + esc(T('xWhy50')) + '</p>';
+    var h = shHead(T('xKcalT')) + '<div class="rz-xrows">' + xr('', T('xTarget'), fmt(pl.target)) + xr('+', T('xSteps'), fmt(b.credit)) + xr('=', T('xLimit'), fmt(pl.target + b.credit), 'sum') + xr('−', T('xEaten'), fmt(tot.kcal)) + xr('=', T('xRem'), fmt(b.remaining), 'sum big') + '</div><p class="rz-p sm">' + esc(T('xWhy50')) + '</p>';
     h += '<div class="rz-st" style="margin-top:6px">' + esc(T('xHowT')) + '</div><div class="rz-xrows">' + xr('', T('xBmr') + ' · ' + T('xBmrN'), fmt(pl.bmr)) + xr('×', T('xAct'), dec(pl.actK, 3), '', false) + xr('=', T('xTdee'), fmt(pl.tdee), 'sum');
     if (pl.delta) h += xr(pl.delta < 0 ? '−' : '+', T('xGoal') + ' (' + dec(Math.abs(pl.kgPerWeek), 2) + ' ' + KG() + '/' + (lang === 'ru' ? 'нед.' : 'hafta') + ')', fmt(Math.abs(pl.delta)));
     if (pl.floorApplied) h += xr('', T('xFloor'), fmt(pl.floorMin));
@@ -323,24 +528,43 @@
   var fd = null, CATS = ['o', 'n', 's', 'm', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
   function openAdd(o) {
     o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || S.mealByHour(new Date().getHours()), mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false };
-    openSheet('add', searchHtml()); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
+    openSheet('add', searchHtml()); catsInit(); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
     if (o.food) pickFood(o.food);
   }
+  function catsHtml() {
+    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + [''].concat(CATS).map(function (c) { return '<button type="button" class="rz-chip' + (fd.cat === c ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + (fd.cat === c) + '">' + esc(c ? T('cat_' + c) : T('all')) + '</button>'; }).join('') + '</div></div>';
+  }
+  function actsHtml() {
+    var off = navigator.onLine === false;
+    return '<div class="sl-acts"><button type="button" class="rz-btn ghost sm" data-act="ftext">' + ico('text') + '<span>' + esc(T('aText')) + '</span></button><button type="button" class="rz-btn ghost sm" id="phBtn" data-act="fphoto"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '<span>' + esc(T('phBtn')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="fcustom">' + ico('plus') + '<span>' + esc(T('aCustom')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="frecipe">' + ico('book') + '<span>' + esc(T('aRecipe')) + '</span></button></div>';
+  }
   function searchHtml() {
-    return shHead(T('aT')) + '<div class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></div>' +
-      '<div class="sl-cats" role="group">' + [''].concat(CATS).map(function (c) { return '<button type="button" class="rz-chip' + (fd.cat === c ? ' on' : '') + '" data-act="fcat" data-c="' + c + '">' + esc(c ? T('cat_' + c) : T('all')) + '</button>'; }).join('') + '</div>' +
-      '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div><div class="sl-foot"><button type="button" class="rz-btn ghost sm" data-act="ftext">' + ico('text') + ' ' + esc(T('aText')) + '</button><button type="button" class="rz-btn ghost sm" data-act="fcustom">' + ico('plus') + ' ' + esc(T('aCustom')) + '</button></div>';
+    return shHead(T('aT')) + '<div class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></div>' + catsHtml() + actsHtml() + '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
+  }
+  /* kategoriya qatori: gorizontal scroll, chetlarda yumshoq soya, sichqoncha g'ildiragi va sudrab surish ishlaydi */
+  function catsInit() {
+    var w = $('#catsW'), r = $('#catsRow'); if (!w || !r || r._init) return; r._init = true;
+    var upd = function () { w.classList.toggle('l', r.scrollLeft > 4); w.classList.toggle('r', r.scrollLeft < r.scrollWidth - r.clientWidth - 4); };
+    r.addEventListener('scroll', upd, { passive: true }); upd(); setTimeout(upd, 300);
+    r.addEventListener('wheel', function (e) { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { r.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
+    var drag = null;
+    r.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; drag = { x: e.clientX, l: r.scrollLeft, moved: false }; });
+    window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 4) { drag.moved = true; r.scrollLeft = drag.l - dx; } });
+    window.addEventListener('pointerup', function () { if (drag && drag.moved) { r._swallow = true; setTimeout(function () { r._swallow = false; }, 0); } drag = null; });
+    r.addEventListener('click', function (e) { if (r._swallow) { e.stopPropagation(); e.preventDefault(); } }, true);
+    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - 40); upd();
   }
   function resRow(f) { return '<button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + (f.e ? ' · ' + esc(T('aEst')) : '') + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
     var foods = allFoods(), q = fd.q.trim(), list, h = '';
     if (q) { list = S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 40 }); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
-    else if (fd.cat) list = foods.filter(function (f) { return f.t === fd.cat; }).slice(0, 60);
-    else {
-      var rec = st.recents.map(foodById).filter(Boolean), fav = st.favs.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o'; }).slice(0, 10);
-      var sec = function (k, l) { return l.length ? '<div class="rz-st">' + esc(T(k)) + '</div>' + l.map(resRow).join('') : ''; };
-      return sec('aFav', fav.slice(0, 5)) + sec('aRec', rec.slice(0, 6)) + sec('aPop', pop);
+    else if (fd.cat) list = foods.filter(function (f) { return f.t === fd.cat; });
+    else {                                           // Hammasi: sevimli, oxirgi, mashhur, so'ng BUTUN baza guruhlar bo'yicha
+      var rec = st.recents.map(foodById).filter(Boolean), fav = st.favs.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom && rec.slice(0, 6).indexOf(f) < 0 && fav.slice(0, 5).indexOf(f) < 0; }).slice(0, 8);
+      var sec = function (t, l) { return l.length ? '<div class="rz-st">' + esc(t) + '</div>' + l.map(resRow).join('') : ''; };
+      var all = CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('');
+      return sec(T('aFav'), fav.slice(0, 5)) + sec(T('aRec'), rec.slice(0, 6)) + sec(T('aMine'), st.customFoods) + sec(T('aPop'), pop) + all;
     }
     if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span></div>';
     return list.map(resRow).join('');
@@ -422,7 +646,7 @@
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
     if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T('tAiErr')) + '</p>';
-    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('tSave', { n: items.length })) + '</button></div>';
+    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('tSave', { n: items.length })) + '</button></div>';
     return h;
   }
   function txRefresh() { var o = $('#txOut'); if (o) o.innerHTML = textOut(); }
@@ -434,11 +658,11 @@
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
   }
-  function cid() { try { var c = localStorage.getItem(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
+  function cid() { try { var c = lsGet(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
   function txAi() {
     if (fd.busy || !fd.missing.length) return; fd.busy = true; fd.aiErr = false; txRefresh();
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
-    fetch('/api/salomat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
+    fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = true; txRefresh(); return; }
       res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, unit: null, qty: 1, g: 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '' }); });
       fd.missing = []; txRefresh();
@@ -446,7 +670,7 @@
   }
   function txSave() {
     var n = fd.items.length, date = fd.date, ids = [];
-    fd.items.forEach(function (it) { var e = S.addFood(st, date, { fid: it.fid, name: it.fid ? null : it.name, meal: fd.meal, unit: it.unit, qty: it.qty, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() }); ids.push(e.id); if (it.ai) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); });
+    fd.items.forEach(function (it) { sendTaklif(it); var e = S.addFood(st, date, { fid: it.fid, name: it.fid ? null : it.name, meal: fd.meal, unit: it.unit, qty: it.qty, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() }); ids.push(e.id); if (it.ai) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
   }
 
@@ -514,12 +738,12 @@
     var cv = document.createElement('canvas'); cv.width = 1080; cv.height = 1350; var c = cv.getContext('2d'), s = shareStats(), F = 'system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif';
     var g = c.createLinearGradient(0, 0, 1080, 1350); g.addColorStop(0, '#0E3B2E'); g.addColorStop(1, '#1E7A4A'); c.fillStyle = g; c.fillRect(0, 0, 1080, 1350);
     c.fillStyle = 'rgba(255,255,255,.07)'; c.beginPath(); c.arc(920, 160, 320, 0, 7); c.fill(); c.beginPath(); c.arc(120, 1240, 260, 0, 7); c.fill();
-    c.fillStyle = '#FFB38F'; c.font = '800 54px ' + F; c.fillText('Salomat', 90, 150); c.fillStyle = 'rgba(255,255,255,.8)'; c.font = '600 38px ' + F; c.fillText(T('shWin'), 90, 210);
+    c.fillStyle = '#FFB38F'; c.font = '800 54px ' + F; c.fillText('KalkiFit', 90, 150); c.fillStyle = 'rgba(255,255,255,.8)'; c.font = '600 38px ' + F; c.fillText(T('shWin'), 90, 210);
     c.fillStyle = '#fff'; c.font = '800 68px ' + F; c.fillText(T('shTitle'), 90, 330);
     var rows = []; if (sel.days) rows.push([String(s.days), T('shDaysV')]); if (sel.steps) rows.push([fmt(s.steps), T('shStepsV')]); if (sel.km) rows.push([dec(s.km, 1), T('shKmV')]); if (sel.w && s.dw != null) rows.push([(s.dw > 0 ? '+' : '') + dec(s.dw, 1), T('shWV')]);
     var y = 470; rows.forEach(function (r) { c.fillStyle = '#fff'; c.font = '800 150px ' + F; c.fillText(r[0], 90, y); var w = c.measureText(r[0]).width; c.fillStyle = 'rgba(255,255,255,.85)'; c.font = '600 46px ' + F; c.fillText(r[1], 90 + w + 28, y); y += 210; });
     if (!rows.length) { c.fillStyle = 'rgba(255,255,255,.8)'; c.font = '600 44px ' + F; c.fillText(T('shNone'), 90, 480); }
-    c.fillStyle = 'rgba(255,255,255,.85)'; c.font = '700 40px ' + F; c.fillText('kalki.uz/salomat', 90, 1260);
+    c.fillStyle = 'rgba(255,255,255,.85)'; c.font = '700 40px ' + F; c.fillText('kalki.uz/kalkifit', 90, 1260);
     return cv;
   }
   var shSel = { days: true, steps: true, km: true, w: false };
@@ -532,16 +756,16 @@
   function shBlob(cb) { drawShare(shSel).toBlob(cb, 'image/png'); }
   function shGo(dl) {
     shBlob(function (b) {
-      if (!b) return; var f; try { f = new File([b], 'salomat.png', { type: 'image/png' }); } catch (e) { f = null; }
-      if (!dl && f && navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'Salomat' }).catch(function () {}); return; }
-      var a = document.createElement('a'), u = URL.createObjectURL(b); a.href = u; a.download = 'salomat.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500);
+      if (!b) return; var f; try { f = new File([b], 'kalkifit.png', { type: 'image/png' }); } catch (e) { f = null; }
+      if (!dl && f && navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'KalkiFit' }).catch(function () {}); return; }
+      var a = document.createElement('a'), u = URL.createObjectURL(b); a.href = u; a.download = 'kalkifit.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500);
     });
   }
 
   /* ---------- eksport / import / o'chirish ---------- */
   function doExport() {
     st.lastBackup = Date.now(); save(); var txt = S.exportState(st);
-    try { var a = document.createElement('a'), u = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.href = u; a.download = 'kalki-salomat-' + todayStr() + '.json'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500); } catch (e) {}
+    try { var a = document.createElement('a'), u = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.href = u; a.download = 'kalki-kalkifit-' + todayStr() + '.json'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500); } catch (e) {}
     render(); toast(T('expDone'), null, true);
   }
   function doImport() {
@@ -553,7 +777,7 @@
     openSheet('confirm', shHead(title) + '<p class="rz-p">' + esc(text) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('cancel')) + '</button><button type="button" class="rz-btn primary danger" id="cfGo">' + esc(T('confirm')) + '</button></div>');
     $('#cfGo').onclick = function () { kit.closeSheet(); if (step2) setTimeout(function () { confirmBox(title, step2, yes); }, 300); else yes(); };
   }
-  function wipe() { confirmBox(T('sDel'), T('delAsk1'), function () { try { localStorage.removeItem(LS); } catch (e) {} st = S.emptyState(); st.prefs = {}; view = 'today'; ob = null; seenFood = null; heroPrev = null; render(); toast(T('deleted')); }, T('delAsk2')); }
+  function wipe() { confirmBox(T('sDel'), T('delAsk1'), function () { try { localStorage.removeItem(LS); localStorage.removeItem(OLD[LS]); } catch (e) {} st = S.emptyState(); st.prefs = {}; view = 'today'; ob = null; seenFood = null; heroPrev = null; render(); toast(T('deleted')); }, T('delAsk2')); }
 
   /* ---------- yo'l-yo'riq va "ilova haqida" ---------- */
   var TIPS = [{ sel: '#ringBtn', key: 'tip1', pos: 'below', round: true }, { sel: '#rzFab', key: 'tip2', pos: 'above', round: true }, { sel: '.rz-tab[data-v=steps]', key: 'tip3', pos: 'above' }];
@@ -568,7 +792,7 @@
   function obNew() {
     ob = { step: 1, sex: '', preg: false, age: '', height: '', weight: '', act: 0, goal: '', anim: null };
     try {
-      var imp = JSON.parse(localStorage.getItem(LS_IMPORT) || 'null');
+      var imp = JSON.parse(lsGet(LS_IMPORT) || 'null');
       if (imp && typeof imp === 'object') {
         ob.sex = imp.sex === 'f' ? 'f' : (imp.sex === 'm' ? 'm' : ''); ob.age = imp.age ? String(Math.round(num(imp.age))) : ''; ob.height = imp.height ? String(Math.round(num(imp.height))) : ''; ob.weight = imp.weight ? String(num(imp.weight)).replace('.', ',') : '';
         ob.act = S.ACT[imp.act] ? +imp.act : 0; ob.goal = S.GOAL_DELTA[imp.goal] != null ? imp.goal : '';
@@ -610,7 +834,7 @@
   }
   function obStart() {
     var pr = obProfile(), n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = {}; n.profile = pr; n.setup = true; n.created = Date.now(); S.addWeight(n, todayStr(), pr.weight);
-    st = n; try { localStorage.removeItem(LS_IMPORT); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb();
+    st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb();
     var el = $('#rzOnb'); el.classList.add('out');
     wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); }, 260);
   }
@@ -630,7 +854,7 @@
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
     if (kit.act(a, el)) return;
     switch (a) {
-      case 'tab': if (view !== el.getAttribute('data-v')) { view = el.getAttribute('data-v'); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
+      case 'tab': kit.hideToast(); if (view !== el.getAttribute('data-v')) { view = el.getAttribute('data-v'); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
       case 'add': { var fb = $('#rzFab'); fb.classList.remove('pop'); void fb.offsetWidth; fb.classList.add('pop'); openAdd({ date: view === 'food' && foodDay ? foodDay : todayStr() }); break; }
       case 'xkcal': openExplainKcal(); break; case 'xmacro': openExplainMacro(); break; case 'xwater': openExplainWater(); break; case 'xsteps': openExplainSteps(); break; case 'xweight': openExplainWeight(); break; case 'stephelp': openStepHelp(); break;
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
@@ -664,11 +888,11 @@
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
       case 'pickfood': pickFood(el.getAttribute('data-id')); break;
-      case 'fcat': fd.cat = el.getAttribute('data-c'); $$('.sl-cats .rz-chip').forEach(function (b) { b.classList.toggle('on', b === el); }); refreshRes(); break;
+      case 'fcat': fd.cat = el.getAttribute('data-c'); $$('.sl-cats .rz-chip').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); refreshRes(); break;
       case 'ftext': openText(null, true); break;
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
       case 'cusave': cuSave(); break;
-      case 'fback': if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); refreshRes(dbState === 0); } break;
+      case 'fback': if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } break;
       case 'ffav': { var on = S.toggleFav(st, fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
       case 'funit': { var nu = el.getAttribute('data-u'); if ((nu === 'g100') !== (fd.unit === 'g100')) fd.qty = nu === 'g100' ? 100 : 1; fd.unit = nu; $$('[data-act=funit]').forEach(function (b) { var on2 = b === el; b.classList.toggle('on', on2); b.setAttribute('aria-pressed', on2); }); portionUpdate(); break; }
       case 'fqty': { var step = fd.unit === 'g100' ? 25 : 0.5, nq = fd.qty + (+el.getAttribute('data-s')) * step; fd.qty = Math.max(step, Math.min(fd.unit === 'g100' ? 3000 : 50, Math.round(nq * 100) / 100)); portionUpdate(); vib(5); break; }
@@ -678,6 +902,36 @@
       case 'fsave': fSave(); break; case 'fdel': fDelete(); break;
       case 'txgo': txGo(); break; case 'txai': txAi(); break; case 'txsave': txSave(); break;
       case 'txdel': fd.items.splice(+el.getAttribute('data-i'), 1); txRefresh(); break;
+      case 'yesam': openYesam(); break;
+      case 'ypick': yPick(el.getAttribute('data-id')); break;
+      case 'yback': yd.food = null; setSheet(ySearchHtml()); yRefresh(); break;
+      case 'yunit': { var yu = el.getAttribute('data-u'); if ((yu === 'g100') !== (yd.unit === 'g100')) yd.qty = yu === 'g100' ? 100 : 1; yd.unit = yu; $$('[data-act=yunit]').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); yUpdate(); break; }
+      case 'yqty': { var ys = yd.unit === 'g100' ? 25 : 0.5, yq = yd.qty + (+el.getAttribute('data-s')) * ys; yd.qty = Math.max(ys, Math.min(yd.unit === 'g100' ? 3000 : 50, Math.round(yq * 100) / 100)); yUpdate(); vib(5); break; }
+      case 'fphoto': if (navigator.onLine !== false) { var pin = $('#phIn'); if (pin) { pin.value = ''; pin.click(); } } break;
+      case 'phsc': { var pi = fd.items[+el.getAttribute('data-i')]; if (pi) { pi.mult = +el.getAttribute('data-m'); phRefresh(); } break; }
+      case 'phdel': fd.items.splice(+el.getAttribute('data-i'), 1); phRefresh(); break;
+      case 'phsave': phSave(); break;
+      case 'frecipe': case 'rcnew': openRecipe(); break;
+      case 'rcedit': openRecipe(el.getAttribute('data-id')); break;
+      case 'rcadd': rc.mode = 'ing'; rc.q = ''; setSheet(rcSearchHtml()); break;
+      case 'rcback': rc.mode = 'main'; rc.name = ($('#rcName') ? $('#rcName').value : rc.name); setSheet(rcHtml()); break;
+      case 'rcsearch': rc.mode = 'ing'; setSheet(rcSearchHtml()); break;
+      case 'rcpick': { var rf = foodById(el.getAttribute('data-id')); if (rf) { rc.pick = rf; rc.g = 100; rc.mode = 'g'; setSheet(rcGramsHtml()); } break; }
+      case 'rcg': rc.g = +el.getAttribute('data-g'); rcGUpdate(); break;
+      case 'rcgq': rc.g = Math.max(5, Math.min(5000, rc.g + (+el.getAttribute('data-s')) * 25)); rcGUpdate(); vib(5); break;
+      case 'rcaddgo': { var rp = rc.pick; rc.ings.push({ id: rp.id, name: rp.n, g: rc.g, k: rp.k, p: rp.p, f: rp.f, c: rp.c }); rc.mode = 'main'; setSheet(rcHtml()); break; }
+      case 'rcdel': rc.name = ($('#rcName') ? $('#rcName').value : rc.name); rc.ings.splice(+el.getAttribute('data-i'), 1); setSheet(rcHtml()); break;
+      case 'rcport': rc.portions = Math.max(1, Math.min(30, rc.portions + (+el.getAttribute('data-s')))); $('#rcPN').textContent = rc.portions; $('#rcOut').innerHTML = rcOutHtml(); break;
+      case 'rcsave': rcSaveGo(); break;
+      case 'rcremove': { var rid = rc.id, rnm = rc.name; kit.closeSheet(); confirmBox(T('rcDelete'), rnm, function () { S.removeCustom(st, rid); commit(); toast(T('rcDeleted')); }); break; }
+      case 'calprev': case 'calnext': { var cp = Dt.parse((calYm || Dt.monthOf(todayStr())) + '-01'); calYm = Dt.monthOf(Dt.addMonthsDom(Dt.ymd(cp.y, cp.m, 1), a === 'calprev' ? -1 : 1, 1)); render(); break; }
+      case 'calday': foodDay = el.getAttribute('data-d'); view = 'food'; enterNext = true; render(); break;
+      case 'jktog': prefs().jokes = el.getAttribute('data-v') === '1'; commit(); break;
+      case 'city': openCity(); break;
+      case 'citypick': prefs().city = el.getAttribute('data-id'); kit.closeSheet(); commit(); break;
+      case 'supp': openSupp(); break;
+      case 'spitem': { var it = supp && supp.items.filter(function (x) { return x.id === el.getAttribute('data-id'); })[0]; if (it) { setSheet(spCardHtml(it)); var shh = $('#rzSheet'); if (shh) shh.scrollTop = 0; } break; }
+      case 'spback': setSheet(spListHtml()); break;
       case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; showOnb(); break;
       case 'obact': ob.act = +el.getAttribute('data-v'); showOnb(); break;
       case 'obgoal': if (el.getAttribute('aria-disabled') !== 'true') { ob.goal = el.getAttribute('data-v'); showOnb(); } break;
@@ -685,10 +939,10 @@
       case 'obback': obGo(Math.max(1, ob.step - 1), 'b'); break;
     }
   });
-  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQ') { fd.q = t.value; refreshRes(); } });
+  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQ') { fd.q = t.value; refreshRes(); } else if (t.id === 'ydQ') { yd.q = t.value; yRefresh(); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
-    if (t.id === 'obPreg') ob.preg = t.checked; else if (t.id === 'peP') { pe.preg = t.checked; peRepaint(); } else if (t.hasAttribute && t.hasAttribute('data-sh')) { shSel[t.getAttribute('data-sh')] = t.checked; shPaint(); }
+    if (t.id === 'phIn') { var f0 = t.files && t.files[0]; if (f0) phFile(f0); } else if (t.id === 'jkParty') { S.ensureDay(st, todayStr()).party = t.checked; commit(); } else if (t.id === 'obPreg') ob.preg = t.checked; else if (t.id === 'peP') { pe.preg = t.checked; peRepaint(); } else if (t.hasAttribute && t.hasAttribute('data-sh')) { shSel[t.getAttribute('data-sh')] = t.checked; shPaint(); }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
@@ -709,10 +963,11 @@
       ab.insertBefore(bar, ab.firstChild); bar.firstChild.addEventListener('click', function () { aboutOpen(false); });
     }
     render();
-    if (st.setup) setTimeout(function () { loadDb(); }, 1500);
+    if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
     if (location.hash === '#qoshish' && st.setup) openAdd({});
     if (location.hash === '#haqida') aboutOpen(true);
-    window.__salomat = { get state() { return st; }, render: render, S: S };
+    window.__kalkifit = { get state() { return st; }, render: render, S: S };
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
     if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }

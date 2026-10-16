@@ -1,4 +1,4 @@
-/* kalki.uz — ilovalar uchun UMUMIY uslub (Ro'zg'or, Salomat): layout, menyu, panel (sheet), toast, tugma, tanlagich, onboarding, yo'l-yo'riq, "haqida" qatlami, animatsiya. Ilova rangi: .rz o'zgaruvchilari qayta belgilanadi. */
+/* kalki.uz — ilovalar uchun UMUMIY uslub (Ro'zg'or, KalkiFit): layout, menyu, panel (sheet), toast, tugma, tanlagich, onboarding, yo'l-yo'riq, "haqida" qatlami, animatsiya. Ilova rangi: .rz o'zgaruvchilari qayta belgilanadi. */
 /* kalki.uz — "Ro'zg'or" ilovasi uslubi. Rang: Kalki palitrasi; tungi rejim — tizim sozlamasi; typo2 tokenlari (rem). */
 body.rz-body #sitebar{display:none}
 .rz-stage{background:radial-gradient(1200px 600px at 50% -10%,#DDEBE3 0,#EEF2EE 55%,#F4F5F1 100%);display:flex;justify-content:center;padding:0;position:fixed;inset:0;height:100vh;height:100dvh;z-index:1}
@@ -26,7 +26,7 @@ html:has(body.rz-body),body.rz-body{overflow:hidden;height:100%;overscroll-behav
 .rz-langmenu[hidden]{display:none}
 .rz-langmenu button{border:0;background:transparent;text-align:left;padding:0 14px;min-height:44px;border-radius:10px;font-weight:700}
 .rz-langmenu button:hover{background:var(--accsoft)}
-.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 128px;-webkit-overflow-scrolling:touch;outline:0}
+.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px calc(150px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch;outline:0}
 .rz-h{font-size:var(--t-xl,1.5rem);font-weight:800;margin:6px 2px 14px;letter-spacing:-.01em}
 .rz-bar{margin-top:14px;height:10px;border-radius:6px;background:rgba(255,255,255,.22);overflow:hidden}
 .rz-bar i{display:block;height:100%;width:100%;border-radius:6px;background:#fff;transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
@@ -158,3 +158,5 @@ body.rz-standalone .rz-top{height:calc(56px + env(safe-area-inset-top,0px));padd
 @media (display-mode:standalone){.rz-top{height:calc(56px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}}
 /* ЎЗ (kirill): "Тўловлар" 390px da sig'maydi — qisqa yorliqlar */
 html[data-script=cyr] .rz-tab .l{display:none}html[data-script=cyr] .rz-tab .s{display:block}
+/* panel: bitta scroll (sheet o'zi), ichki ko'rinadigan scrollbar yo'q */
+.rz-sheet{scrollbar-width:thin;scrollbar-color:var(--line) transparent}

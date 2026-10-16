@@ -1,6 +1,6 @@
-# Salomat — kaloriya, ovqat va qadam ilovasi (MVP) — reja
+# KalkiFit — kaloriya, ovqat va qadam ilovasi (MVP) — reja
 
-URL: `/salomat`, `/ru/salomat` (ЎЗ — shu sahifaning o'zi `?lang=cyr`). Nom: Salomat / Саломат. Kategoriya: Kundalik hayot.
+URL: `/kalkifit`, `/ru/kalkifit` (ЎЗ — shu sahifaning o'zi `?lang=cyr`). Nom: KalkiFit / KalkiFit. Kategoriya: Kundalik hayot.
 Hech narsa serverga yuborilmaydi (faqat AI orqali ovqat matni — foydalanuvchi bosganda). Reklama yo'q.
 
 ## Ro'zg'or saboqlari (takrorlanmaydi)
@@ -12,16 +12,16 @@ Hech narsa serverga yuborilmaydi (faqat AI orqali ovqat matni — foydalanuvchi 
 ## Fayllar
 | Fayl | Vazifa |
 |---|---|
-| `assets/app-kit.js` | UMUMIY (Ro'zg'or + Salomat): sheet (prujina, swipe), toast, count-up, raqam klaviaturasi, sana tanlagich, yo'l-yo'riq, ikonkalar, sana/raqam formatlari |
+| `assets/app-kit.js` | UMUMIY (Ro'zg'or + KalkiFit): sheet (prujina, swipe), toast, count-up, raqam klaviaturasi, sana tanlagich, yo'l-yo'riq, ikonkalar, sana/raqam formatlari |
 | `assets/css/appkit.css` | UMUMIY uslub (layout, menyu, sheet, toast, tugma, tanlagich, onboarding, "haqida" qatlami, animatsiya) |
-| `assets/salomat-core.js` | sof hisob (DOM yo'q): BMR/TDEE/maqsad/xavfsizlik/makro/suv/qadam/balans/vazn/migratsiya/parser/qidiruv |
-| `assets/salomat-app.js` + `assets/css/salomat.css` | ilova |
+| `assets/kalkifit-core.js` | sof hisob (DOM yo'q): BMR/TDEE/maqsad/xavfsizlik/makro/suv/qadam/balans/vazn/migratsiya/parser/qidiruv |
+| `assets/kalkifit-app.js` + `assets/css/kalkifit.css` | ilova |
 | `data/ovqatlar.json` | ≥250 mahsulot (lazy, sw keshida) |
-| `functions/api/salomat.js` | AI: matn → ovqat ro'yxati (ariza.js infratuzilmasi: Origin, kunlik limit) |
-| `salomat.webmanifest`, `assets/icons/salomat-*.png` | alohida PWA nomi va ikonkasi |
-| `tools/dizayn/test-salomat-core.mjs`, `test-salomat.mjs`, `tools/test-salomat-api.js` | testlar |
+| `functions/api/kalkifit.js` | AI: matn → ovqat ro'yxati (ariza.js infratuzilmasi: Origin, kunlik limit) |
+| `kalkifit.webmanifest`, `assets/icons/kalkifit-*.png` | alohida PWA nomi va ikonkasi |
+| `tools/dizayn/test-kalkifit-core.mjs`, `test-kalkifit.mjs`, `tools/test-kalkifit-api.js` | testlar |
 
-## Ma'lumot modeli (`localStorage kalki_salomat`, v1)
+## Ma'lumot modeli (`localStorage kalki_fit`, v1)
 ```
 { v:1, setup, created, seq,
   profile:{ sex:'m'|'f', preg:bool, age, height(sm), weight(kg), act:1..5, goal:'keep'|'slow'|'lose'|'gain', goalWeight|null },
@@ -54,4 +54,4 @@ Qiymatlar 100 g uchun: USDA FoodData Central va ochiq jadvallar asosida **taxmin
 Avval lokal parser («2 somsa», «1 kosa osh») baza bilan moslashtiradi; topilmaganini AI taxmin qiladi (`est:true`). Yuboriladi faqat shu matn bo'lagi (profil/tarix/vazn emas). Foydalanuvchi ko'rib «N ta ovqatni saqlash»ni bosadi; AI o'zi hech narsa saqlamaydi. Internet yo'q bo'lsa lokal rejim ishlaydi. Haftalik AI izoh va rasm — keyingi bosqich.
 
 ## Bosqichlar (feat: commit'lar)
-1 kit ajratish (Ro'zg'or shuni ishlatadi, testlar yashil) → 2 salomat-core + test → 3 ovqatlar bazasi → 4 ilova + sahifa → 5 AI + kaloriya-kalkulyator ko'prigi → 6 integratsiya (katalog, menyu, sitemap, sw, manifest, OG) → 7 testlar, runner.
+1 kit ajratish (Ro'zg'or shuni ishlatadi, testlar yashil) → 2 kalkifit-core + test → 3 ovqatlar bazasi → 4 ilova + sahifa → 5 AI + kaloriya-kalkulyator ko'prigi → 6 integratsiya (katalog, menyu, sitemap, sw, manifest, OG) → 7 testlar, runner.

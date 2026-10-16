@@ -573,11 +573,11 @@
     "tpl": 1,
     "v": 2
   },
-  "salomat": {
-    "title": "Salomat — kaloriya, ovqat va qadam ilovasi",
+  "kalkifit": {
+    "title": "KalkiFit — kaloriya, ovqat va qadam ilovasi",
     "cat": "hayot",
-    "hash": "1d6de89a9d48",
+    "hash": "1ab1a3f11f7e",
     "tpl": 1,
-    "v": 1
+    "v": 2
   }
 }

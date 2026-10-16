@@ -1,4 +1,4 @@
-/* kalki.uz — "Salomat" ilovasi uchun AI: erkin matn ("1 kosa osh, 2 somsa") → ovqat ro'yxati (taxminiy kkal va makro).
+/* kalki.uz — "KalkiFit" ilovasi uchun AI: erkin matn ("1 kosa osh, 2 somsa") → ovqat ro'yxati (taxminiy kkal va makro).
  * ariza.js infratuzilmasi: Origin tekshiruvi, kunlik limit (KV), model so'rovi. Ilova avval LOKAL baza bilan moslashtiradi — bu endpoint faqat topilmaganini taxmin qiladi.
  * Yuboriladigan narsa FAQAT ovqat matni (profil, vazn, tarix YO'Q); hech narsa saqlanmaydi — natijani foydalanuvchi ko'rib o'zi tasdiqlaydi.
  * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id } → { ovqatlar: [{ nom, porsiya, kcal, o, y, u }] } | { xato } */
@@ -45,11 +45,11 @@ export async function onRequest({ request, env }) {
   if (matn.length < 2 || matn.length > 300) return fail(400);
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
-  const lim = Object.assign({}, env, { AI_CLIENT_LIMIT: String(num(env.SALOMAT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT)) });
+  const lim = Object.assign({}, env, { AI_CLIENT_LIMIT: String(num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT)) });
   let sabab; try { sabab = await takeQuota(lim, request, clientId); } catch (e) { return fail(503); }
   if (sabab) return json(429, { xato: E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
-    const r = await askModel(env, maskPII(matn), SYSTEM, 700);
+    const r = await askModel(env, maskPII(matn), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
     if (r.err) continue;
     const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list) });
   }

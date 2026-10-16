@@ -1,0 +1,22 @@
+{
+  "id": "/kalkifit",
+  "name": "KalkiFit — kaloriya, ovqat va qadam",
+  "short_name": "KalkiFit",
+  "description": "Kunlik kaloriya me'yori, o'zbek taomlari, suv va qadam hisobi. Ro'yxatdan o'tmasdan, oflayn.",
+  "lang": "uz",
+  "dir": "ltr",
+  "start_url": "/kalkifit?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F1F2EE",
+  "theme_color": "#0E3B2E",
+  "categories": ["health", "fitness", "lifestyle"],
+  "shortcuts": [
+    { "name": "KalkiFit — ovqat qo'shish", "short_name": "Ovqat", "url": "/kalkifit#qoshish", "icons": [{ "src": "/assets/icons/kalkifit-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ],
+  "icons": [
+    { "src": "/assets/icons/kalkifit-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/kalkifit-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icons/kalkifit-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
