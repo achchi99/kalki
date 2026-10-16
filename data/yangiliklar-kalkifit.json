@@ -1,0 +1,14 @@
+{
+  "app": "kalkifit",
+  "items": [
+    {
+      "v": 1,
+      "d": "2026-10-17",
+      "items": [
+        { "uz": "Kun holati endi aniqroq: «To'liq», «Qisman» va «Ma'lumot yo'q» kunlar farqlanadi.", "ru": "Статус дня стал точнее: различаются «Полный», «Частичный» и «Нет данных».", "show": "daychip" },
+        { "uz": "Qadam kaloriyasi to'g'ri hisoblanadi: odatiy qadamdan ortig'i uchungina qo'shiladi.", "ru": "Калории за шаги считаются верно: добавляются только за шаги сверх обычного.", "show": "stepcalc" },
+        { "uz": "Yangi «Kunni yakunlash» tugmasi: ovqatni yozib bo'lgach bosing — kun to'liq hisoblanadi.", "ru": "Новая кнопка «Завершить день»: записав еду, нажмите её — день будет считаться полным.", "show": "dayend" }
+      ]
+    }
+  ]
+}

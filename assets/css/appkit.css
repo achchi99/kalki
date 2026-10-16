@@ -242,3 +242,16 @@ body.rz-body{position:fixed;inset:0;width:100%;overflow:hidden;overscroll-behavi
 .bk-conf{background:var(--warnbg);border:1px solid var(--warnline);border-radius:12px;padding:10px 12px;margin:0 0 10px}
 .bk-rclink{display:block;margin:18px auto 0;text-align:center}
 .bk-restore{z-index:76}
+
+/* ---------- Yangiliklar oynasi (app-yangilik.js) ---------- */
+.yg-pop{position:absolute;left:12px;right:12px;bottom:calc(98px + env(safe-area-inset-bottom,0px));z-index:45;max-height:min(46%,340px);overflow-y:auto;background:var(--card);border:1.5px solid var(--acc2);border-radius:18px;box-shadow:0 10px 32px rgba(0,0,0,.22);padding:12px 14px;animation:ygIn .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes ygIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.yg-h b{font-size:var(--t-m,1rem)}
+.yg-l{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.yg-l li{display:flex;align-items:center;gap:10px;font-size:var(--t-s,.9375rem);line-height:1.4}.yg-l li span{flex:1;min-width:0}
+.yg-go{flex:none}.yg-f{display:flex;justify-content:flex-end;margin-top:10px}.yg-f .rz-btn{flex:none;min-width:120px}
+.yg-e{margin:6px 0 12px}.yg-d{font-size:var(--t-xs,.875rem);font-weight:800;color:var(--mut);margin-bottom:4px}
+.yg-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#D2553A;margin-left:8px;vertical-align:middle}
+.yg-hl{animation:ygHl 2s ease both;border-radius:14px}
+@keyframes ygHl{0%,100%{box-shadow:0 0 0 0 rgba(194,70,31,0)}15%,70%{box-shadow:0 0 0 4px var(--acc2),0 0 22px 6px rgba(30,122,74,.45)}}
+@media (prefers-reduced-motion:reduce){.yg-pop,.yg-hl{animation:none!important}.yg-hl{outline:3px solid var(--acc2)}}

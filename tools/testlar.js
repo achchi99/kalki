@@ -58,7 +58,7 @@ const ALL = [
   T('menyu-hover', D + 'test-menyu-hover.mjs', { t: 60 }),
   T('sodda', D + 'test-sodda.mjs', { t: 70 }),
   T('rozgor-core', D + 'test-rozgor-core.mjs', { t: 15 }), T('rozgor', D + 'test-rozgor.mjs', { t: 90 }),
-  T('kalkifit-core', D + 'test-kalkifit-core.mjs', { t: 20 }), T('kalkifit-api', D + 'test-kalkifit-api.mjs', { t: 5 }), T('kalkifit', D + 'test-kalkifit.mjs', { t: 250 }), T('install', D + 'test-install.mjs', { t: 90 }), T('migrate', D + 'test-migrate.mjs', { t: 120 }), T('zaxira', D + 'test-zaxira.mjs', { t: 300 }), T('zaxira-api', D + 'test-zaxira-api.mjs', { t: 20 }), T('ilovalar-ui', D + 'test-ilovalar-ui.mjs', { t: 60 }),   // KalkiFit ilovasi: hisob (5 soat mintaqasi), AI endpoint, Playwright
+  T('kalkifit-core', D + 'test-kalkifit-core.mjs', { t: 20 }), T('kalkifit-api', D + 'test-kalkifit-api.mjs', { t: 5 }), T('kalkifit', D + 'test-kalkifit.mjs', { t: 250 }), T('install', D + 'test-install.mjs', { t: 90 }), T('migrate', D + 'test-migrate.mjs', { t: 120 }), T('zaxira', D + 'test-zaxira.mjs', { t: 300 }), T('zaxira-api', D + 'test-zaxira-api.mjs', { t: 20 }), T('ilovalar-ui', D + 'test-ilovalar-ui.mjs', { t: 60 }), T('yangilik', D + 'test-yangilik.mjs', { t: 200 }), T('yangilik-qoida', D + 'test-yangilik-qoida.mjs', { t: 5 }),   // KalkiFit ilovasi: hisob (5 soat mintaqasi), AI endpoint, Playwright
     // Ro'zg'or ilovasi: hisob (5 soat mintaqasi) va Playwright   // oila-byudjet: sodda oqim (390px), saqlash/ulashish moslik   // yuqori menyu dropdown: kursor sekin tushganda yopilmasligi (nav.js / site.css)
   T('links-runtime', D + 'test-links-runtime.mjs'), T('download', D + 'test-download.mjs'),
   T('verify-404', 'tools/verify-404.js', { t: 20 }),
@@ -85,7 +85,7 @@ function changedFiles() {
 
 /* assets/<modul>.js -> shu modulning testlari. Ro'yxatda YO'Q assets/*.js — umumiy hisoblanadi (to'liq to'plam). */
 const MODULE_TESTS = {
-  'assets/nasiya-hisob.js': ['nasiya'], 'assets/rozgor-core.js': ['rozgor-core', 'rozgor'], 'assets/rozgor-app.js': ['rozgor'], 'assets/app-install.js': ['install', 'migrate', 'kalkifit', 'rozgor'], 'assets/app-backup.js': ['zaxira', 'zaxira-api', 'kalkifit', 'rozgor'], 'functions/api/zaxira.js': ['zaxira-api'], 'functions/_lib/zaxira-store.js': ['zaxira-api'], 'tools/zaxira-export.js': ['zaxira-api'], 'assets/css/appkit.css': ['rozgor', 'kalkifit', 'ilovalar-ui'], 'assets/css/rozgor.css': ['rozgor'], 'assets/kalkifit-core.js': ['kalkifit-core', 'kalkifit'], 'assets/kalkifit-app.js': ['kalkifit'], 'assets/css/kalkifit.css': ['kalkifit'], 'assets/app-kit.js': ['rozgor', 'kalkifit'], 'assets/css/appkit.css': ['rozgor', 'kalkifit'], 'data/ovqatlar.json': ['kalkifit-core', 'kalkifit'], 'tools/ovqatlar-build.js': ['kalkifit-core'], 'functions/api/kalkifit.js': ['kalkifit-api'], 'assets/mode-tip.js': ['modetip'], 'assets/elektr-tarif.js': ['elektr', 'node-testlar'], 'assets/gaz-tarif.js': ['gaz', 'node-testlar'],
+  'assets/nasiya-hisob.js': ['nasiya'], 'assets/rozgor-core.js': ['rozgor-core', 'rozgor'], 'assets/rozgor-app.js': ['rozgor'], 'assets/app-install.js': ['install', 'migrate', 'kalkifit', 'rozgor'], 'assets/app-backup.js': ['zaxira', 'zaxira-api', 'kalkifit', 'rozgor'], 'assets/app-yangilik.js': ['yangilik', 'yangilik-qoida', 'kalkifit', 'rozgor'], 'data/yangiliklar-kalkifit.json': ['yangilik', 'yangilik-qoida'], 'data/yangiliklar-rozgor.json': ['yangilik', 'yangilik-qoida'], 'functions/api/zaxira.js': ['zaxira-api'], 'functions/_lib/zaxira-store.js': ['zaxira-api'], 'tools/zaxira-export.js': ['zaxira-api'], 'assets/css/appkit.css': ['rozgor', 'kalkifit', 'ilovalar-ui'], 'assets/css/rozgor.css': ['rozgor'], 'assets/kalkifit-core.js': ['kalkifit-core', 'kalkifit'], 'assets/kalkifit-app.js': ['kalkifit'], 'assets/css/kalkifit.css': ['kalkifit'], 'assets/app-kit.js': ['rozgor', 'kalkifit'], 'assets/css/appkit.css': ['rozgor', 'kalkifit'], 'data/ovqatlar.json': ['kalkifit-core', 'kalkifit'], 'tools/ovqatlar-build.js': ['kalkifit-core'], 'functions/api/kalkifit.js': ['kalkifit-api'], 'assets/mode-tip.js': ['modetip'], 'assets/elektr-tarif.js': ['elektr', 'node-testlar'], 'assets/gaz-tarif.js': ['gaz', 'node-testlar'],
   'assets/tier-bar.js': ['elektr', 'gaz'], 'assets/prognoz.js': ['prognoz', 'elektr', 'gaz', 'node-testlar'], 'assets/konditsioner.js': ['konditsioner', 'node-testlar'],
   'assets/translit.js': ['cyr', 'node-testlar'], 'assets/cyr.js': ['cyr'], 'assets/pwa-install.js': ['pwa'], 'assets/sw-boot.js': ['sw', 'pwa'],
   'assets/avto-rasm.js': ['avto-elektro', 'node-testlar'], 'assets/hisobsiyosati.js': ['golden:hisob-siyosati-generatori'], 'assets/csvexport.js': ['download'],
@@ -102,7 +102,7 @@ function selectTez() {
   const { files, base } = changedFiles();
   const why = [], pick = new Map(), slugs = new Set(); let escalate = null;
   const add = (id, slugList) => { const cur = pick.get(id) || { slugs: new Set() }; (slugList || []).forEach((s) => cur.slugs.add(s)); pick.set(id, cur); };
-  add('verify-all'); add('cyr');
+  add('verify-all'); add('cyr'); add('yangilik-qoida');      // yangiliklar qoidasi: ilova kodi o'zgarsa yozuv shart (CLAUDE.md)
   for (const f of files) {
     const um = UMUMIY.find((re) => re.test(f)); if (um) { escalate = escalate || f; continue; }
     const s = slugOf(f); if (s && !['404', 'offline'].includes(s)) { slugs.add(s); continue; }
