@@ -1,0 +1,52 @@
+{
+  "id": "/rozgor",
+  "name": "Ro'zg'or",
+  "short_name": "Ro'zg'or",
+  "description": "Bugun qancha sarflasangiz bo'lishini ko'rsatadigan kundalik xarajat ilovasi. Ro'yxatdan o'tmasdan, oflayn.",
+  "lang": "uz",
+  "dir": "ltr",
+  "start_url": "/rozgor?src=pwa",
+  "scope": "/rozgor",
+  "display": "standalone",
+  "background_color": "#F1F2EE",
+  "theme_color": "#0E3B2E",
+  "categories": [
+    "finance",
+    "productivity",
+    "lifestyle"
+  ],
+  "shortcuts": [
+    {
+      "name": "Xarajat qo'shish",
+      "short_name": "Xarajat",
+      "url": "/rozgor#qoshish",
+      "icons": [
+        {
+          "src": "/assets/icons/rozgor-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/assets/icons/rozgor-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/rozgor-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/rozgor-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

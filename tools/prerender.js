@@ -130,6 +130,7 @@ const RU_PAGES = [
   'elektr-xarajat-kalkulyator.html',
   'gaz-xarajat-kalkulyator.html',
   'naqd-nasiya-kredit-kalkulyator.html',
+  'rozgor.html',
   'bola-puli-kalkulyator.html',
   'zakot-qurbonlik-kalkulyator.html',
   'toy-kalkulyator.html',
@@ -292,6 +293,12 @@ function injectSeoLinks(doc, name, forLang) {
     if (canon) canon.setAttribute('href', targetUrl);
     var ogUrl = doc.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', targetUrl);
+    if (forLang === 'ru') {                         // alohida PWA (Ro'zg'or): RU sahifa o'z manifesti va nomi bilan
+      var pm = doc.querySelector('link[rel="manifest"][data-ru-href]');
+      if (pm) { pm.setAttribute('href', pm.getAttribute('data-ru-href')); pm.removeAttribute('data-ru-href'); }
+      var pt = doc.querySelector('meta[name="apple-mobile-web-app-title"][data-ru]');
+      if (pt) { pt.setAttribute('content', pt.getAttribute('data-ru')); pt.removeAttribute('data-ru'); }
+    }
     // Ba'zi JSON-LD bloklari (masalan hujjatlar.html'dagi CollectionPage)
     // "url"ni JS orqali emas, statik holda o'ziga ishora qiladi — app-ld
     // kabi JS-hisoblab yozadigan bloklar buni allaqachon to'g'ri yozgan
