@@ -8,6 +8,8 @@
     "/docs/*",
     "/functions",
     "/functions/*",
+    "/migrations",
+    "/migrations/*",
     "/CLAUDE.md",
     "/package.json",
     "/package-lock.json",

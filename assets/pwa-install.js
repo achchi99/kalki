@@ -9,6 +9,7 @@
   var PWA_INSTALL_YOQILGAN = true;
   if (!PWA_INSTALL_YOQILGAN) return;
   if (/jsdom/i.test(navigator.userAgent || '')) return;
+  if (document.querySelector('script[src*="app-install.js"]')) return;   // Ro'zg'or/KalkiFit: o'rnatishni app-install.js (app-kit) boshqaradi
 
   var T = {
     uz: { btn: "Telefonga o'rnatish", ios: "iPhone'da o'rnatish: Safari'da «Ulashish» → «Bosh ekranga qo'shish».", note: "Kalki.uz ilova kabi ochiladi" },

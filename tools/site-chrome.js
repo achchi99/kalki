@@ -78,6 +78,7 @@ const XNAV_LINKS = [
   ['naqd-nasiya-kredit-kalkulyator', 'Naqd, nasiya yoki kredit / Наличные, рассрочка или кредит'],
   ['kredit-kalkulyator', 'Kredit / Кредит'],
   ['rozgor', 'Ro\'zg\'or / Рузгор'],
+  ['kalkifit', 'KalkiFit'],
   ['kredit-limit-kalkulyator', 'Kredit limit / Кредитный лимит'],
   ['ipoteka-kalkulyator', 'Ipoteka / Ипотека'],
   ['ipoteka-yoki-ijara-kalkulyator', "Ipoteka yoki ijara / Ипотека или аренда"],
@@ -189,7 +190,7 @@ const XN_GROUPS = [
   ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'naqd-nasiya-kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
   ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
   ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'gaz-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
-  ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['rozgor', 'dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
+  ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['rozgor', 'kalkifit', 'dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
   ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
   ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],
 ];
@@ -240,7 +241,10 @@ const PWA_HEAD = '<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><
   + '<meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>';
 // Alohida PWA ilovalar (o'z manifesti, nomi, ikonkasi: bosh ekrandan ochilganda umumiy Kalki sayti emas, aynan ilova ochilsin).
 // RU variant (data-ru-*) — tools/prerender.js RU chiqishda manifest va nomni almashtiradi.
-const PWA_APPS = { 'rozgor.html': { manifest: '/rozgor.webmanifest', ruManifest: '/ru/rozgor.webmanifest', icon: '/assets/icons/rozgor-apple-180.png', title: 'Ro\'zg\'or', ruTitle: 'Рузгор' } };
+const PWA_APPS = {
+  'rozgor.html': { manifest: '/rozgor.webmanifest', ruManifest: '/ru/rozgor.webmanifest', icon: '/assets/icons/rozgor-apple-180.png', title: 'Ro\'zg\'or', ruTitle: 'Рузгор' },
+  'kalkifit.html': { manifest: '/kalkifit.webmanifest', ruManifest: '/kalkifit.webmanifest', icon: '/assets/icons/kalkifit-apple-180.png', title: 'KalkiFit', ruTitle: 'KalkiFit' }
+};
 function pwaHeadFor(f) {
   const a = PWA_APPS[f]; if (!a) return PWA_HEAD;
   return '<link rel="manifest" href="' + a.manifest + '" data-ru-href="' + a.ruManifest + '" id="pwamf"><link rel="apple-touch-icon" href="' + a.icon + '" id="pwaicon">'

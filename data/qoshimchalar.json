@@ -1,0 +1,892 @@
+{
+ "v": 1,
+ "checked": "2026-10-16",
+ "rules": {
+  "uz": [
+   "1. Avval ovqat.",
+   "2. Tahlil bilan aniqlang.",
+   "3. Ko'pi zararli bo'lishi mumkin."
+  ],
+  "ru": [
+   "1. Сначала еда.",
+   "2. Уточните анализом.",
+   "3. Лишнее может навредить."
+  ]
+ },
+ "disclaimer": {
+  "uz": "Bu tibbiy maslahat emas. Homilador, emizikli, 18 yoshdan kichik yoki doimiy dori ichayotgan bo'lsangiz — qo'shimcha ichishdan oldin shifokor bilan maslahatlashing.",
+  "ru": "Это не медицинская рекомендация. Если вы беременны, кормите грудью, вам нет 18 лет или вы постоянно принимаете лекарства — перед приёмом добавок проконсультируйтесь с врачом."
+ },
+ "items": [
+  {
+   "id": "vitamin-d",
+   "ic": "sun",
+   "level": "strong",
+   "levelWhy": "ODS: deficiency is common (about 1 in 4 have low or inadequate levels) and supplements help at-risk groups; in people with normal levels benefits are small (slight bone strength gain in older adults, no cancer prevention).",
+   "uz": {
+    "name": "D vitamini",
+    "line": "Suyak uchun muhim. Kamligi ko'p uchraydi, ortig'i esa zararli — tahlil bilan aniqlang.",
+    "what": "Organizmga kalsiyni so'rib olishga yordam beradi va suyakni mustahkam saqlaydi. Mushak, nerv va immunitet uchun ham kerak.",
+    "food": "Ovqatda kam: yog'li baliq, tuxum sarig'i, jigar, pishloq va qo'ziqorinda biroz bor. Teri quyosh nurida uni o'zi ham ishlab chiqaradi.",
+    "who": "Keksalar, quyoshga kam chiqadigan yoki badanini to'liq yopib yuradiganlar, qora tanlilar, ichakda yog' so'rilishi buzilgan kasalligi borlar. Faqat ko'krak suti emadigan chaqaloqlarga shifokor odatda D vitamini beradi.",
+    "not": "Tahlil (25-OH D) me'yorda bo'lsa, qo'shimchadan naf kam: tadqiqotlarda u saraton xavfini kamaytirmagan.",
+    "care": "Ortig'i zararli: ko'ngil aynishi, qusish, mushak kuchsizligi, buyrakda tosh, og'ir holatda buyrak yetishmovchiligi va yurak ritmi buzilishi. Statinlar, steroidlar, tiazid diuretiklar va orlistat bilan o'zaro ta'sir qiladi."
+   },
+   "ru": {
+    "name": "Витамин D",
+    "line": "Важен для костей. Дефицит встречается часто, но избыток вреден — проверьте анализом.",
+    "what": "Помогает усваивать кальций и сохранять кости крепкими. Нужен также мышцам, нервам и иммунитету.",
+    "food": "В еде его мало: жирная рыба, яичный желток, печень, сыр, немного — грибы. Кожа сама вырабатывает его на солнце.",
+    "who": "Пожилым, тем, кто редко бывает на солнце или полностью закрывает тело, людям с тёмной кожей, при болезнях с плохим усвоением жиров. Младенцам на грудном вскармливании врач обычно назначает витамин D.",
+    "not": "Если анализ (25-OH D) в норме, от добавки мало пользы: в исследованиях она не снижала риск рака.",
+    "care": "Избыток вреден: тошнота, рвота, слабость мышц, камни в почках, в тяжёлых случаях — почечная недостаточность и сбои ритма сердца. Взаимодействует со статинами, стероидами, тиазидными диуретиками и орлистатом."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): 100 mkg (4 000 XB) — ovqat va qo'shimcha birga. Bundan oshirmang (kamlikni davolashda shifokor vaqtincha boshqacha buyurishi mumkin).",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 100 мкг (4000 МЕ) в сутки — из еды и добавок вместе. Не превышайте (для лечения дефицита врач может временно назначить иначе)."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Tahlilda D vitamini kamligi tasdiqlanganlar",
+     "ru": "При дефиците витамина D, подтверждённом анализом"
+    },
+    {
+     "level": "moderate",
+     "uz": "Quyoshda kam yuradiganlar va keksalar",
+     "ru": "Мало бывающие на солнце и пожилые люди"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (saraton va boshqa kasalliklar oldini olish)",
+     "ru": "Остальные (для профилактики рака и других болезней)"
+    }
+   ]
+  },
+  {
+   "id": "vitamin-b-kompleks",
+   "ic": "pill",
+   "level": "moderate",
+   "levelWhy": "ODS (B1, B2, B6, B12, B3): kamlik asosan xavf guruhlarida; sog'lom odamda kompleks foydasi isbotlanmagan.",
+   "uz": {
+    "name": "B guruhi vitaminlari (B-kompleks)",
+    "line": "Ovqatda keng tarqalgan, kamlik kam uchraydi. B6 ning ortig'i nervga zarar qilishi mumkin.",
+    "what": "B1, B2, B3 (niatsin), B6, B12 va foliy kislotasi moddalar almashinuvi, qon va nerv hujayralari uchun kerak.",
+    "food": "Go'sht, tovuq, baliq, tuxum, sut mahsulotlari, kartoshka, mosh, no'xat, loviya, yong'oq va butun don non.",
+    "who": "Spirtli ichimlikka ruju qo'yganlar, keksalar, diabet yoki ozish jarrohligidan o'tganlar (B1 kamligi xavfi); vegan va sut yemaydiganlar (B2 va B12); ichak kasalliklari (seliakiya, Kron) borlar, buyrak dializidagilar. Go'sht va sut yemaydiganlarga ko'pincha alohida B12 yetarli bo'ladi.",
+    "not": "Xilma-xil ovqatlanadigan sog'lom odamda B vitaminlari kamligi kam uchraydi — kompleks tabletka odatda ortiqcha xarajat.",
+    "care": "B6 ni bir yil va undan uzoq yuqori dozada ichish og'ir nerv shikastiga olib kelishi mumkin. Qo'shimchada 30 mg dan ko'p niatsin (nikotin kislotasi) yuz va badanni qizartirib, achishtiradi. Ba'zi tutqanoq va sil dorilari bilan to'qnashadi."
+   },
+   "ru": {
+    "name": "Витамины группы B (B-комплекс)",
+    "line": "Есть во многих продуктах, дефицит редок. Избыток B6 может повредить нервы.",
+    "what": "B1, B2, B3 (ниацин), B6, B12 и фолиевая кислота нужны для обмена веществ, крови и нервных клеток.",
+    "food": "Мясо, курица, рыба, яйца, молочные продукты, картофель, маш, нут, фасоль, орехи и цельнозерновой хлеб.",
+    "who": "Людям с алкогольной зависимостью, пожилым, при диабете или после операции на желудке (риск дефицита B1); веганам и тем, кто не ест молочное (B2 и B12); при болезнях кишечника (целиакия, Крон), на диализе. Тем, кто не ест мясо и молочное, часто достаточно отдельного B12.",
+    "not": "У здорового человека с разнообразным питанием дефицит витаминов B редок — комплекс в таблетках обычно лишняя трата.",
+    "care": "Высокие дозы B6 в течение года и дольше могут вызвать тяжёлое поражение нервов. Ниацин (никотиновая кислота) в добавках от 30 мг вызывает покраснение и жжение кожи. Взаимодействует с некоторыми противосудорожными и противотуберкулёзными препаратами."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): B6 — 100 mg (Yevropa EFSA — 12 mg), niatsin — qo'shimchadan 35 mg, foliy kislotasi — 1 000 mkg. Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): B6 — 100 мг (по EFSA в Европе — 12 мг), ниацин из добавок — 35 мг, фолиевая кислота — 1000 мкг в сутки. Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/",
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Kamlik xavfi: vegan, sut yemaydigan, 50+ yosh (B2, B12)",
+     "ru": "Риск дефицита: веганы, без молочного, 50+ (B2, B12)"
+    },
+    {
+     "level": "moderate",
+     "uz": "Spirtga qaram, ozish jarrohligi o'tgan, diabetli (B1; shifokor)",
+     "ru": "Алкогольная зависимость, бариатрия, диабет (B1; с врачом)"
+    },
+    {
+     "level": "low",
+     "uz": "Sog'lom, xilma-xil ovqatlanuvchilar (energiya, kayfiyat, xotira)",
+     "ru": "Здоровые при разнообразном питании (энергия, настроение, память)"
+    }
+   ],
+   "srcs": [
+    {
+     "u": "https://ods.od.nih.gov/factsheets/Thiamin-Consumer/",
+     "l": "B1"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/Riboflavin-Consumer/",
+     "l": "B2"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/",
+     "l": "B6"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/",
+     "l": "B12"
+    },
+    {
+     "u": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/",
+     "l": "B3"
+    }
+   ]
+  },
+  {
+   "id": "vitamin-b12",
+   "ic": "drop",
+   "level": "strong",
+   "levelWhy": "ODS: most people get enough from food, but deficiency affects 3-43% of older adults; ODS advises people over 50 to get B12 mainly from fortified foods or supplements, and vegans are at risk.",
+   "uz": {
+    "name": "B12 vitamini",
+    "line": "Faqat hayvon mahsulotlarida bor. Vegan va 50+ yoshdagilarga kerak bo'lishi mumkin.",
+    "what": "Qon va nerv hujayralarini sog'lom saqlaydi, DNK hosil bo'lishiga yordam beradi. Kamligi holsizlik, kamqonlik, qo'l-oyoq uvishishiga olib keladi.",
+    "food": "Go'sht, jigar, baliq, tovuq, tuxum, sut, qatiq va pishloq. O'simlik ovqatida tabiiy B12 yo'q.",
+    "who": "Go'sht va sut mahsulotlarini yemaydiganlar (vegetarian, vegan), 50 yoshdan oshganlar (oshqozon kislotasi kamayib, ovqatdagi B12 yomon so'riladi), oshqozon-ichak jarrohligidan o'tganlar, pernitsioz anemiyasi borlar.",
+    "not": "Go'sht, tuxum va sutni muntazam yeydigan 50 yoshgacha sog'lom odamga odatda kerak emas: tana B12 ni yillar davomida zaxirada saqlaydi.",
+    "care": "Yuqori dozada ham zarari aniqlanmagan. Metformin va oshqozon kislotasini kamaytiruvchi dorilar (masalan, omeprazol) B12 so'rilishini pasaytiradi — ularni uzoq ichsangiz, tahlil haqida shifokor bilan gaplashing."
+   },
+   "ru": {
+    "name": "Витамин B12",
+    "line": "Есть только в продуктах животного происхождения. Может понадобиться веганам и людям 50+.",
+    "what": "Поддерживает здоровье крови и нервных клеток, участвует в синтезе ДНК. Дефицит вызывает слабость, анемию, онемение рук и ног.",
+    "food": "Мясо, печень, рыба, курица, яйца, молоко, кефир, катык и сыр. В растительной пище природного B12 нет.",
+    "who": "Тем, кто не ест мясо и молочное (вегетарианцы, веганы), людям старше 50 (с возрастом кислотность желудка снижается и B12 из еды усваивается хуже), после операций на желудке или кишечнике, при пернициозной анемии.",
+    "not": "Здоровому человеку до 50 лет, который регулярно ест мясо, яйца и молочное, обычно не нужен: организм хранит запас B12 на годы.",
+    "care": "Вреда даже от высоких доз не выявлено. Метформин и препараты, снижающие кислотность желудка (например, омепразол), ухудшают усвоение B12 — при долгом приёме обсудите анализ с врачом."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Go'sht va sut yemaydiganlar hamda 50 yoshdan oshganlar",
+     "ru": "Не едящие мясо и молочное, а также люди старше 50 лет"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (quvvat yoki chidamlilik uchun)",
+     "ru": "Остальные (ради энергии или выносливости)"
+    }
+   ]
+  },
+  {
+   "id": "omega-3",
+   "ic": "heart",
+   "level": "moderate",
+   "levelWhy": "ODS: eating fish is linked to lower disease risk, but a large trial found supplements did not lower cancer risk, dry-eye results are mixed, and the AHA does not recommend supplements for people not at high cardiovascular risk.",
+   "uz": {
+    "name": "Omega-3 (baliq moyi)",
+    "line": "Baliq yeyish foydali. Sog'lom odamda kapsula foydasi isbotlanmagan.",
+    "what": "Har bir hujayra qobig'ining tarkibiy qismi; yurak, qon tomir, miya va ko'z uchun muhim. Turlari: ALA (o'simlikda), EPA va DHA (baliqda).",
+    "food": "Yog'li baliq (gulmohi, skumbriya, seld, sardina), yong'oq, zig'ir urug'i va zig'ir yog'i, chia urug'i.",
+    "who": "Yurak kasalligi borlarga shifokor nazoratida berilishi mumkin; EPA va DHA triglitseridni pasaytiradi. Baliq yemaydiganlar shifokor bilan maslahatlashishi mumkin.",
+    "not": "Yurak xastaligi xavfi yuqori bo'lmagan odamga Amerika Yurak Assotsiatsiyasi kapsula tavsiya qilmaydi. Katta tadqiqotda kapsula saraton xavfini kamaytirmagan.",
+    "care": "Yuqori dozada varfarin kabi qonni suyultiruvchi dorilar bilan birga qon ketish xavfi oshadi. Yengil nojo'ya ta'sirlar: og'izda yoqimsiz ta'm, jig'ildon qaynashi, ko'ngil aynishi, ich ketishi."
+   },
+   "ru": {
+    "name": "Омега-3 (рыбий жир)",
+    "line": "Есть рыбу полезно. Польза капсул для здорового человека не доказана.",
+    "what": "Входит в оболочку каждой клетки, важна для сердца, сосудов, мозга и глаз. Виды: ALA (в растениях), EPA и DHA (в рыбе).",
+    "food": "Жирная рыба (форель, скумбрия, сельдь, сардины), грецкие орехи, семена и масло льна, семена чиа.",
+    "who": "При болезнях сердца врач может назначить под своим контролем; EPA и DHA снижают уровень триглицеридов. Тем, кто не ест рыбу, стоит обсудить это с врачом.",
+    "not": "Людям без высокого риска болезней сердца Американская кардиологическая ассоциация капсулы не рекомендует. В большом исследовании они не снизили риск рака.",
+    "care": "В высоких дозах вместе с разжижающими кровь препаратами (например, варфарином) повышают риск кровотечения. Лёгкие побочные эффекты: неприятный привкус, изжога, тошнота, диарея."
+   },
+   "ul": {
+    "uz": "Kunlik yuqori chegara: AQSh FDA qo'shimchalardan EPA va DHA ni birga kuniga 5 g dan ko'p olmaslikni tavsiya qiladi. Bundan oshirmang.",
+    "ru": "Верхняя граница: FDA (США) рекомендует получать из добавок не более 5 г EPA и DHA вместе в сутки. Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Qonda triglitserid yuqori bo'lganlar",
+     "ru": "При повышенных триглицеридах в крови"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (yurak xavfi yuqori bo'lmaganlar)",
+     "ru": "Остальные (без высокого сердечно-сосудистого риска)"
+    }
+   ]
+  },
+  {
+   "id": "magniy",
+   "ic": "leaf",
+   "level": "moderate",
+   "levelWhy": "ODS: many diets are below recommendations, but healthy kidneys conserve magnesium, short-term low intake causes no symptoms, and deficiency is tied to specific conditions (GI disease, type 2 diabetes, alcoholism, old age).",
+   "uz": {
+    "name": "Magniy",
+    "line": "Ko'pchilikka ovqatdan yetadi. Qo'shimchaning ortig'i ich ketishiga olib keladi.",
+    "what": "Mushak va nerv ishini, qondagi qand va qon bosimini boshqarishda qatnashadi; oqsil, suyak va DNK hosil bo'lishi uchun kerak.",
+    "food": "Mosh, no'xat, loviya, yong'oq, urug'lar, butun don non, ismaloq va ko'katlar, sut va qatiq.",
+    "who": "Kron, seliakiya kabi ichak kasalliklari borlar, 2-tur qandli diabeti borlar, uzoq vaqt spirtli ichimlik ichadiganlar va keksalar. Kamlikni shifokor aniqlaydi.",
+    "not": "Sog'lom odamda buyrak magniyni tejab turadi. Xilma-xil ovqatlanadigan odamga qo'shimcha odatda kerak emas.",
+    "care": "Qo'shimcha va dorilardagi ortiqcha magniy ich ketishi, ko'ngil aynishi, qorin og'rig'iga olib keladi; juda ko'pi yurak ritmini buzadi. Ba'zi antibiotiklar va osteoporoz dorilari u bilan yaqin vaqtda ichilsa, yomon so'riladi."
+   },
+   "ru": {
+    "name": "Магний",
+    "line": "Большинству хватает из еды. Избыток из добавок вызывает диарею.",
+    "what": "Участвует в работе мышц и нервов, регулирует сахар крови и давление; нужен для синтеза белка, костей и ДНК.",
+    "food": "Маш, нут, фасоль, орехи, семечки, цельнозерновой хлеб, шпинат и зелень, молоко и кефир.",
+    "who": "Людям с болезнями кишечника (болезнь Крона, целиакия), диабетом 2 типа, долго злоупотребляющим алкоголем и пожилым. Дефицит определяет врач.",
+    "not": "У здорового человека почки удерживают магний сами. При разнообразном питании добавка обычно не нужна.",
+    "care": "Избыток магния из добавок и лекарств вызывает диарею, тошноту, спазмы в животе; очень большие дозы нарушают ритм сердца. Некоторые антибиотики и средства от остеопороза хуже усваиваются, если принимать их близко по времени."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): qo'shimcha va dorilardan 350 mg (ovqatdagi magniy hisobga kirmaydi). Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 350 мг в сутки из добавок и лекарств (магний из еды не считается). Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Magnesium-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "2-tur diabet, ichak kasalligi bor yoki keksalar",
+     "ru": "При диабете 2 типа, болезнях кишечника и пожилые"
+    },
+    {
+     "level": "low",
+     "uz": "Migren bilan og'riydiganlar",
+     "ru": "Страдающие мигренью"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (masalan, qon bosimi uchun)",
+     "ru": "Остальные (например, ради давления)"
+    }
+   ]
+  },
+  {
+   "id": "kaliy",
+   "ic": "heart",
+   "level": "moderate",
+   "levelWhy": "ODS: most diets are low in potassium, but the fix is food; supplements and salt substitutes can cause hyperkalemia, especially with kidney disease, ACE inhibitors/ARBs or potassium-sparing diuretics.",
+   "uz": {
+    "name": "Kaliy",
+    "line": "Ovqatdan olinadi. Tabletka — faqat shifokor buyursa: ba'zi holatlarda xavfli.",
+    "what": "Buyrak va yurak ishi, mushak qisqarishi va nerv signallari uchun kerak. Kamligi qon bosimini oshirishi va buyrakda tosh xavfini ko'paytirishi mumkin.",
+    "food": "Turshak (quruq o'rik), o'rik, mayiz, banan, kartoshka, pomidor, ismaloq, yasmiq, loviya, yong'oq, sut, qatiq, go'sht va baliq.",
+    "who": "Ko'pchilik ovqatdan kam oladi — shuning uchun meva, sabzavot va dukkaklilarni ko'paytirish foydali. Uzoq ich ketishi, qusish, surgi yoki ba'zi siydik haydovchi dorilar tufayli kaliy kamaysa, davolashni shifokor belgilaydi.",
+    "not": "Kaliyni tabletka yoki kukun ko'rinishida FAQAT shifokor buyurgan bo'lsa ichish mumkin: ehtiyojni ovqatdan (o'rik, banan, kartoshka, mayiz) qoplash xavfsizroq va yetarli.",
+    "care": "Surunkali buyrak kasalligi bo'lsa yoki qon bosimi dorilari (ACE ingibitorlari, ARB — masalan, losartan, kaliyni tejovchi diuretiklar) ichsangiz, qonda kaliy xavfli darajada oshishi mumkin. Qo'shimcha va tuz o'rnini bosuvchilardagi ortiqcha kaliy sog'lom odamga ham zarar qilishi mumkin."
+   },
+   "ru": {
+    "name": "Калий",
+    "line": "Получайте из еды. Таблетки — только по назначению врача: иногда это опасно.",
+    "what": "Нужен для работы почек и сердца, сокращения мышц и передачи нервных сигналов. Нехватка может повышать давление и риск камней в почках.",
+    "food": "Курага, абрикосы, изюм, бананы, картофель, помидоры, шпинат, чечевица, фасоль, орехи, молоко, кефир, мясо и рыба.",
+    "who": "Большинство получает его меньше нормы — поэтому полезно есть больше фруктов, овощей и бобовых. Если калий упал из-за долгой диареи, рвоты, слабительных или некоторых мочегонных, лечение назначает врач.",
+    "not": "Калий в таблетках или порошке — только если его назначил врач: потребность безопаснее и достаточно покрывать едой (курага, абрикосы, бананы, картофель, изюм).",
+    "care": "При хронической болезни почек или приёме препаратов от давления (ингибиторы АПФ, БРА — например, лозартан, калийсберегающие диуретики) калий в крови может опасно вырасти. Избыток калия из добавок и заменителей соли может навредить и здоровому человеку."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/Potassium-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Diuretik ichuvchilar, uzoq ich ketish/qusishdan keyin (shifokor bilan)",
+     "ru": "Принимающие мочегонные, после долгой диареи или рвоты (с врачом)"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (kaliyni ovqatdan olgan ma'qul)",
+     "ru": "Остальные (калий лучше получать из еды)"
+    },
+    {
+     "level": "not",
+     "uz": "Buyrak kasalligi bor yoki bosim uchun ayrim dorilar ichuvchilar",
+     "ru": "При болезни почек или приёме некоторых препаратов от давления"
+    }
+   ],
+   "warn": {
+    "uz": "Faqat shifokor buyurganda",
+    "ru": "Только по назначению врача"
+   }
+  },
+  {
+   "id": "sink",
+   "ic": "shield",
+   "level": "moderate",
+   "levelWhy": "ODS: most people get enough zinc from food; lozenges may shorten colds but evidence is incomplete; benefit mainly for specific risk groups (vegetarians, GI disorders, pregnancy).",
+   "uz": {
+    "name": "Sink (rux)",
+    "line": "Go'sht va dukkaklilarda bor. Uzoq yuqori doza mis kamligiga olib keladi.",
+    "what": "Immunitet, yara bitishi, ta'm sezish, DNK va oqsil hosil bo'lishi uchun kerak; homiladorlik va o'sish davrida ayniqsa muhim.",
+    "food": "Go'sht, tovuq, baliq, tuxum, sut mahsulotlari, loviya, no'xat, yong'oq va butun don.",
+    "who": "Vegetarian va veganlar (dukkakli va donlardagi fitatlar so'rilishni kamaytiradi), homilador va emizikli ayollar, ozish jarrohligidan o'tganlar, ichak kasalliklari borlar, spirtli ichimlikni ko'p ichadiganlar.",
+    "not": "Go'sht va sut yeydigan sog'lom odamga odatda kerak emas. Shamollash boshida sink pastilkalari tuzalishni tezlashtirishi mumkin, lekin dalil hali to'liq emas.",
+    "care": "Ortig'i ko'ngil aynishi, bosh og'rig'i, qusishga olib keladi. Uzoq yuqori dozada mis kamayadi, immunitet va «yaxshi» xolesterin (HDL) pasayadi. Ba'zi antibiotiklar bilan birga ichilsa, ikkalasi ham yomon so'riladi."
+   },
+   "ru": {
+    "name": "Цинк",
+    "line": "Есть в мясе и бобовых. Долгий приём высоких доз ведёт к дефициту меди.",
+    "what": "Нужен для иммунитета, заживления ран, вкуса, синтеза ДНК и белка; особенно важен при беременности и в период роста.",
+    "food": "Мясо, курица, рыба, яйца, молочные продукты, фасоль, нут, орехи и цельные злаки.",
+    "who": "Вегетарианцам и веганам (фитаты в бобовых и злаках снижают усвоение), беременным и кормящим, после бариатрической операции, при болезнях кишечника, при злоупотреблении алкоголем.",
+    "not": "Здоровому человеку, который ест мясо и молочное, обычно не нужен. Цинковые пастилки в начале простуды могут ускорить выздоровление, но данных пока мало.",
+    "care": "Избыток вызывает тошноту, головную боль, рвоту. При долгом приёме высоких доз падает уровень меди, ослабевает иммунитет и снижается «хороший» холестерин (ЛПВП). С некоторыми антибиотиками оба хуже усваиваются."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): 40 mg — ovqat va qo'shimcha birga. Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 40 мг в сутки — из еды и добавок вместе. Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Zinc-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+    },
+    {
+     "level": "moderate",
+     "uz": "Go'sht yemaydiganlar (vegetarian, vegan)",
+     "ru": "Не едящие мясо (вегетарианцы, веганы)"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (shamollashda ham dalil aniq emas)",
+     "ru": "Остальные (при простуде данные тоже неясны)"
+    }
+   ]
+  },
+  {
+   "id": "vitamin-e",
+   "ic": "leaf",
+   "level": "moderate",
+   "levelWhy": "ODS: deficiency is very rare in healthy people (almost only with fat-malabsorption diseases); high-dose supplements raise bleeding/hemorrhagic stroke risk and one trial linked 400 IU/day to higher prostate cancer risk.",
+   "uz": {
+    "name": "E vitamini",
+    "line": "Yong'oq va o'simlik yog'ida bor. Qo'shimchasi qon ketish xavfini oshirishi mumkin.",
+    "what": "Antioksidant: hujayralarni erkin radikallar zararidan himoya qiladi; immunitet va qon tomirlari uchun kerak.",
+    "food": "Kungaboqar yog'i, bodom, yeryong'oq, findiq, kungaboqar pistasi, ismaloq va brokkoli.",
+    "who": "Kamligi deyarli faqat yog' so'rilishi buzilgan kasalliklarda (Kron, mukovistsidoz) uchraydi — bunday holatda shifokor buyuradi.",
+    "not": "Sog'lom odamda kamlik juda kam uchraydi. Qo'shimcha foydasi isbotlanmagan, xavfi esa bor.",
+    "care": "Yuqori dozada qon ivishini susaytiradi, miyaga qon quyilish xavfini oshirishi mumkin. Varfarin kabi qonni suyultiruvchi dorilar bilan ayniqsa xavfli. Bir tadqiqotda yillar davomida kuniga 400 XB sintetik E vitamini ichgan erkaklarda prostata saratoni xavfi oshgan."
+   },
+   "ru": {
+    "name": "Витамин E",
+    "line": "Есть в орехах и растительном масле. Добавки могут повышать риск кровотечений.",
+    "what": "Антиоксидант: защищает клетки от свободных радикалов; нужен иммунитету и сосудам.",
+    "food": "Подсолнечное масло, миндаль, арахис, фундук, семечки подсолнуха, шпинат и брокколи.",
+    "who": "Дефицит бывает почти только при болезнях с нарушением усвоения жиров (болезнь Крона, муковисцидоз) — тогда его назначает врач.",
+    "not": "У здорового человека дефицит очень редок. Польза добавок не доказана, а риск есть.",
+    "care": "В высоких дозах ухудшает свёртываемость крови и может повышать риск кровоизлияния в мозг. Особенно опасен вместе с разжижающими кровь препаратами (например, варфарином). В одном исследовании у мужчин, годами принимавших 400 МЕ синтетического витамина E в день, вырос риск рака простаты."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): qo'shimchadan 1 000 mg (tabiiy shaklda 1 500 XB, sintetik shaklda 1 100 XB). Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 1000 мг в сутки из добавок (1500 МЕ натурального или 1100 МЕ синтетического). Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/VitaminE-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+    },
+    {
+     "level": "not",
+     "uz": "Qon suyultiruvchi (masalan, varfarin) ichuvchilar",
+     "ru": "Принимающие разжижающие кровь препараты (например, варфарин)"
+    },
+    {
+     "level": "not",
+     "uz": "Sog'lomlar: yurak/saraton oldini olish uchun (naf yo'q, zarar mumkin)",
+     "ru": "Здоровые — для профилактики болезней сердца или рака (пользы нет, возможен вред)"
+    }
+   ]
+  },
+  {
+   "id": "vitamin-c",
+   "ic": "shield",
+   "level": "moderate",
+   "levelWhy": "ODS: most people get enough from food; supplements do not reduce the risk of catching a cold (only slightly shorter colds with regular use) and do not prevent cancer.",
+   "uz": {
+    "name": "C vitamini",
+    "line": "Meva-sabzavotdan yetarli olinadi. Shamollashning oldini olmaydi.",
+    "what": "Antioksidant; yara bitishi uchun kollagen hosil qiladi, o'simlikdagi temirning so'rilishini yaxshilaydi va immunitetga yordam beradi.",
+    "food": "Bulg'or qalampiri, pomidor, brokkoli, qulupnay, qovun, kartoshka, apelsin va limon. Uzoq pishirish vitaminni kamaytiradi — xom meva-sabzavotda ko'proq.",
+    "who": "Chekuvchilar va tutunga ko'p duch keladiganlar (ularga ko'proq kerak), ovqati juda bir xil bo'lganlar, og'ir so'rilish buzilishi bor yoki gemodializdagilar.",
+    "not": "Ko'pchilik ovqatdan yetarli oladi. Qo'shimcha shamollash xavfini kamaytirmaydi; muntazam ichganlarda shamollash biroz qisqaroq o'tishi mumkin, xolos.",
+    "care": "Ortig'i ich ketishi, ko'ngil aynishi va qorin sanchig'iga olib keladi. Gemoxromatoz (tanada temir to'planishi) bo'lsa, yuqori doza zararli. Saraton davolanayotgan bo'lsangiz, avval shifokorga ayting."
+   },
+   "ru": {
+    "name": "Витамин C",
+    "line": "Его хватает из фруктов и овощей. Простуду не предотвращает.",
+    "what": "Антиоксидант; нужен для синтеза коллагена и заживления ран, улучшает усвоение железа из растительной пищи и помогает иммунитету.",
+    "food": "Болгарский перец, помидоры, брокколи, клубника, дыня, картофель, апельсины и лимоны. Долгая варка разрушает витамин — в сырых овощах и фруктах его больше.",
+    "who": "Курящим и тем, кто часто дышит табачным дымом (им нужно больше), людям с очень однообразным питанием, с тяжёлым нарушением всасывания или на гемодиализе.",
+    "not": "Большинство получает достаточно из еды. Добавки не снижают риск простуды; при регулярном приёме она может пройти лишь немного быстрее.",
+    "care": "Избыток вызывает диарею, тошноту и спазмы в животе. При гемохроматозе (накоплении железа) высокие дозы вредны. Если вы лечитесь от рака, сначала скажите врачу."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): 2 000 mg — ovqat va qo'shimcha birga. Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 2000 мг в сутки — из еды и добавок вместе. Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/VitaminC-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+    },
+    {
+     "level": "low",
+     "uz": "Chekuvchilar va ovqati juda bir xil bo'lganlar",
+     "ru": "Курящие и питающиеся очень однообразно"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (shamollashning oldini olish uchun)",
+     "ru": "Остальные (для профилактики простуды)"
+    }
+   ]
+  },
+  {
+   "id": "temir",
+   "ic": "drop",
+   "level": "strong",
+   "levelWhy": "ODS: clearly helpful only when deficiency/anemia is confirmed (women with heavy periods, pregnancy, blood donors); without deficiency there is no benefit and excess iron is harmful and a poisoning risk for children.",
+   "uz": {
+    "name": "Temir",
+    "line": "Faqat tahlil kamlikni ko'rsatsa. Ortiqcha temir zararli, bolalar uchun xavfli.",
+    "what": "Qizil qon tanachalaridagi gemoglobin uchun kerak — u o'pkadan butun tanaga kislorod tashiydi. O'sish va ba'zi gormonlar uchun ham zarur.",
+    "food": "Mol go'shti, tovuq, baliq, mosh, loviya, yasmiq, no'xat, ismaloq, yong'oq, mayiz. O'simlikdagi temir go'sht yoki C vitaminli ovqat (pomidor, qalampir) bilan birga yaxshiroq so'riladi.",
+    "who": "Hayzi ko'p keladigan qiz va ayollar, homiladorlar, tez-tez qon topshiradiganlar, ichak kasalliklari borlar. Kamqonlikni faqat qon tahlili aniqlaydi, dozani shifokor belgilaydi.",
+    "not": "Tahlil kamlikni ko'rsatmasa, temir qo'shimchasi kerak emas: foydasi yo'q, zarari bor. Holsizlik har doim ham temir kamligidan emas.",
+    "care": "Ortig'i qorin og'rig'i, qabziyat, qusish, oshqozon yarasiga olib keladi; juda katta dozasi o'limga sabab bo'lishi mumkin — bolalar qo'li yetmaydigan joyda saqlang. Gemoxromatozda temir ichilmaydi. Levotiroksin (qalqonsimon bez) va levodopa (Parkinson) dorilarining ta'sirini susaytiradi."
+   },
+   "ru": {
+    "name": "Железо",
+    "line": "Только если анализ показал дефицит. Лишнее железо вредно и опасно для детей.",
+    "what": "Нужно для гемоглобина в эритроцитах — он переносит кислород из лёгких по всему телу. Также важно для роста и некоторых гормонов.",
+    "food": "Говядина, курица, рыба, маш, фасоль, чечевица, нут, шпинат, орехи, изюм. Железо из растений лучше усваивается вместе с мясом или продуктами с витамином C (помидоры, перец).",
+    "who": "Девушкам и женщинам с обильными месячными, беременным, частым донорам крови, при болезнях кишечника. Анемию определяет только анализ крови, дозу назначает врач.",
+    "not": "Если анализ не показал дефицита, добавка железа не нужна: пользы нет, а вред возможен. Слабость не всегда связана с нехваткой железа.",
+    "care": "Избыток вызывает боль в животе, запор, рвоту, язвы желудка; очень большая доза может быть смертельной — храните в недоступном для детей месте. При гемохроматозе железо принимать нельзя. Снижает действие левотироксина (щитовидная железа) и леводопы (болезнь Паркинсона)."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): 45 mg — ovqat va qo'shimcha birga. Bundan oshirmang (kamlikni davolashda shifokor vaqtincha ko'proq buyurishi mumkin).",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 45 мг в сутки — из еды и добавок вместе. Не превышайте (для лечения дефицита врач может временно назначить больше)."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Iron-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Tahlilda temir kamligi (kamqonlik) aniqlanganlar",
+     "ru": "При дефиците железа (анемии), подтверждённом анализом"
+    },
+    {
+     "level": "not",
+     "uz": "Tahlil qilmasdan, \"har ehtimolga\" ichish",
+     "ru": "Приём без анализа, «на всякий случай»"
+    }
+   ]
+  },
+  {
+   "id": "kalsiy",
+   "ic": "bone",
+   "level": "moderate",
+   "levelWhy": "ODS: food (dairy) covers needs for most; calcium + vitamin D slightly increase bone strength in older adults but it is unclear whether they prevent falls or fractures; very high intakes may raise heart disease and prostate cancer risk.",
+   "uz": {
+    "name": "Kalsiy",
+    "line": "Sut mahsulotlaridan oson olinadi. Qo'shimcha — faqat ovqatdan yetmasa.",
+    "what": "Suyak va tishlarni qattiq va mustahkam qiladi; mushak harakati, nerv signallari va qon tomirlari ishi uchun kerak.",
+    "food": "Sut, qatiq, suzma, pishloq; suyagi bilan konserva baliq; karam va brokkoli. Non va donlarda kam, lekin har kuni yeyilgani uchun yig'iladi.",
+    "who": "Menopauzadan keyingi ayollar, sut mahsulotlarini yemaydiganlar (laktozani ko'tara olmaydiganlar, veganlar), o'smirlar.",
+    "not": "Har kuni sut-qatiq yeydigan odamga qo'shimcha odatda kerak emas. Kalsiy va D vitamini keksalarda suyakni biroz mustahkamlaydi, lekin sinishning oldini oladimi — aniq emas.",
+    "care": "Ba'zi tadqiqotlarga ko'ra, juda ko'p kalsiy yurak kasalligi va prostata saratoni xavfini oshirishi mumkin. Levotiroksin, ba'zi antibiotiklar va litiy bilan to'qnashadi — vaqtini shifokor bilan kelishing. Temirning so'rilishini kamaytiradi."
+   },
+   "ru": {
+    "name": "Кальций",
+    "line": "Легко получить из молочных продуктов. Добавка — только если из еды не хватает.",
+    "what": "Делает кости и зубы твёрдыми и крепкими; нужен для работы мышц, нервов и сосудов.",
+    "food": "Молоко, кефир, катык, сюзьма, сыр; консервированная рыба с костями; капуста и брокколи. В хлебе и крупах его немного, но они едятся каждый день.",
+    "who": "Женщинам после менопаузы, тем, кто не ест молочное (непереносимость лактозы, веганы), подросткам.",
+    "not": "Если вы каждый день едите молочное, добавка обычно не нужна. Кальций с витамином D немного укрепляют кости у пожилых, но предотвращают ли они переломы — неясно.",
+    "care": "По некоторым данным, очень много кальция может повышать риск болезней сердца и рака простаты. Взаимодействует с левотироксином, некоторыми антибиотиками и литием — время приёма согласуйте с врачом. Ухудшает усвоение железа."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): 19–50 yosh — 2 500 mg, 51 yoshdan katta — 2 000 mg (ovqat va qo'shimcha birga). Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 19–50 лет — 2500 мг, старше 51 года — 2000 мг в сутки (из еды и добавок вместе). Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Sut mahsulotlarini yemaydiganlar (vegan, laktozani ko'tarmaydiganlar)",
+     "ru": "Не употребляющие молочное (веганы, непереносимость лактозы)"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetmaydigan, osteoporoz xavfi bor keksa ayollar",
+     "ru": "Пожилые женщины с риском остеопороза, недополучающие кальций"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetarli kalsiy oladiganlar",
+     "ru": "Получающие достаточно кальция из еды"
+    }
+   ]
+  },
+  {
+   "id": "foliy",
+   "ic": "leaf",
+   "level": "strong",
+   "levelWhy": "ODS: strong evidence that folic acid before and in early pregnancy lowers neural tube defect risk; for most other people folate intake from food is adequate and deficiency is rare.",
+   "uz": {
+    "name": "Foliy kislotasi (B9)",
+    "line": "Homiladorlikni rejalashtirayotganlar uchun muhim. Boshqalarga ko'pincha ovqatdan yetadi.",
+    "what": "DNK hosil bo'lishi va hujayralar bo'linishi uchun kerak. Foliy kislotasi — qo'shimcha va boyitilgan unda ishlatiladigan shakli.",
+    "food": "Ismaloq va to'q yashil ko'katlar, mosh, loviya, no'xat, yeryong'oq, apelsin, jigar; boyitilgan un va non.",
+    "who": "Homilador bo'lishi mumkin bo'lgan ayollar: foliy kislotasi bolada miya va orqa miya (nerv naychasi) nuqsonlari xavfini kamaytiradi. Spirtli ichimlikni ko'p ichadiganlar va ichak kasalligi borlar.",
+    "not": "Homiladorlikni rejalashtirmayotgan, ko'kat va dukkakli yeydigan odamga alohida foliy odatda kerak emas.",
+    "care": "Katta doza B12 kamligini yashiradi: kamqonlik tuzalgandek ko'rinadi, nerv shikasti esa davom etadi. Metotreksat, tutqanoqqa qarshi dorilar va sulfasalazin bilan to'qnashadi."
+   },
+   "ru": {
+    "name": "Фолиевая кислота (B9)",
+    "line": "Важна при планировании беременности. Остальным обычно хватает из еды.",
+    "what": "Нужна для синтеза ДНК и деления клеток. Фолиевая кислота — форма, которую используют в добавках и обогащённой муке.",
+    "food": "Шпинат и тёмная зелень, маш, фасоль, нут, арахис, апельсины, печень; обогащённые мука и хлеб.",
+    "who": "Женщинам, которые могут забеременеть: фолиевая кислота снижает риск пороков развития головного и спинного мозга (нервной трубки) у ребёнка. Также при злоупотреблении алкоголем и болезнях кишечника.",
+    "not": "Если вы не планируете беременность и едите зелень и бобовые, отдельная добавка обычно не нужна.",
+    "care": "Большие дозы маскируют дефицит B12: анемия проходит, а поражение нервов продолжается. Взаимодействует с метотрексатом, противосудорожными препаратами и сульфасалазином."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kunlik yuqori chegara (UL): qo'shimcha va boyitilgan ovqatdan 1 000 mkg (ovqatdagi tabiiy folat hisobga kirmaydi). Bundan oshirmang.",
+    "ru": "Верхний допустимый уровень для взрослых (UL): 1000 мкг в сутки из добавок и обогащённых продуктов (природный фолат из еды не считается). Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/Folate-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Homiladorlikni rejalashtirayotgan ayollar",
+     "ru": "Женщины, планирующие беременность"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar",
+     "ru": "Остальные"
+    }
+   ]
+  },
+  {
+   "id": "multivitamin",
+   "ic": "pill",
+   "level": "moderate",
+   "levelWhy": "ODS: most studies found multivitamins have little or no effect on cancer, heart disease, osteoporosis or death risk; useful mainly for people with poor or restricted diets and in pregnancy (prenatal).",
+   "uz": {
+    "name": "Multivitamin (vitamin-mineral kompleksi)",
+    "line": "Ovqatni almashtirmaydi. Ko'p tadqiqotlarda kasallik xavfiga deyarli ta'sir qilmagan.",
+    "what": "Bir tabletkada bir nechta vitamin va mineral. Ovqatdagi tola va boshqa foydali moddalarni bera olmaydi.",
+    "food": "Alohida manba emas: xilma-xil ovqat — meva-sabzavot, don, dukkaklilar, go'sht yoki baliq, sut mahsulotlari — kerakli vitaminlarni beradi.",
+    "who": "Ovqatdan yetarli vitamin ololmaydiganlar, kam kaloriyali parhezdagilar, ishtahasi pastlar, ba'zi ovqatlarni umuman yemaydiganlar (veganlar). Homiladorlarga shifokor maxsus kompleks buyurishi mumkin.",
+    "not": "Ovqatlanishi yaxshi sog'lom odamga odatda kerak emas: tadqiqotlarning ko'pida saraton, yurak kasalligi va o'lim xavfiga deyarli ta'sir qilmagan.",
+    "care": "Boyitilgan ovqat yoki boshqa qo'shimchalar bilan birga ba'zi moddalar yuqori chegaradan oshib ketishi mumkin. Chekuvchilarga beta-karotin va A vitamini ko'p kompleks zararli bo'lishi mumkin; homiladorlikda ortiqcha A vitamini bolaga zarar. Varfarin ichsangiz, K vitaminli kompleks haqida shifokorga ayting."
+   },
+   "ru": {
+    "name": "Мультивитамины (витаминно-минеральный комплекс)",
+    "line": "Не заменяют еду. В большинстве исследований почти не влияли на риск болезней.",
+    "what": "Несколько витаминов и минералов в одной таблетке. Клетчатку и другие полезные вещества из еды они не дают.",
+    "food": "Это не отдельный источник: разнообразная еда — овощи, фрукты, крупы, бобовые, мясо или рыба, молочные продукты — даёт нужные витамины.",
+    "who": "Тем, кто не получает достаточно витаминов из еды, сидит на низкокалорийной диете, плохо ест или полностью исключает какие-то продукты (веганы). Беременным врач может назначить специальный комплекс.",
+    "not": "Здоровому человеку с хорошим питанием обычно не нужны: в большинстве исследований они почти не влияли на риск рака, болезней сердца и смерти.",
+    "care": "Вместе с обогащёнными продуктами и другими добавками некоторые вещества могут превысить верхний предел. Курящим вредны комплексы с большим количеством бета-каротина и витамина A; при беременности избыток витамина A опасен для ребёнка. Если вы принимаете варфарин, обсудите с врачом комплекс с витамином K."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/MVMS-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Homiladorlar (homiladorlik uchun maxsus multivitamin)",
+     "ru": "Беременные (специальные пренатальные комплексы)"
+    },
+    {
+     "level": "moderate",
+     "uz": "Ovqati cheklanganlar: kam kaloriyali parhez, ishtaha past, vegan",
+     "ru": "При ограниченном питании: низкокалорийная диета, плохой аппетит, веганы"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (kasallik oldini olish uchun)",
+     "ru": "Остальные (для профилактики болезней)"
+    }
+   ]
+  },
+  {
+   "id": "protein",
+   "ic": "muscle",
+   "level": "moderate",
+   "levelWhy": "ODS: adequate protein supports muscle building and recovery, and powders can help when food falls short; most athletes can meet needs from food and there is no benefit above recommended amounts.",
+   "uz": {
+    "name": "Oqsil (protein) kukuni",
+    "line": "Oqsil me'yoringiz ovqatdan yig'ilmasa — qulay qo'shimcha. Ortig'idan foyda yo'q.",
+    "what": "Oqsil mushakni qurish, saqlash va tiklash uchun kerak, mashqdan keyin tiklanishni tezlashtiradi. Kukunlarning ko'pi sut oqsili (zardob)dan qilinadi.",
+    "food": "Go'sht, tovuq, baliq, tuxum, sut, qatiq, suzma, pishloq; o'simlikdan — mosh, no'xat, loviya, yasmiq va don.",
+    "who": "Kunlik oqsil me'yoringizni oddiy ovqatdan yig'a olmasangiz, qulay qo'shimcha bo'lishi mumkin — avval ilovadagi oqsil me'yoringizga qarang. Og'ir mashq davrida vaqtincha ko'proq oqsil kerak bo'lishi mumkin.",
+    "not": "Me'yor ovqatdan yig'ilsa, kukun shart emas: me'yordan ortiq oqsil qo'shimcha foyda bermaydi. Sportchilarning ko'pi ham kerakli oqsilni ovqatdan oladi.",
+    "care": "Ko'p oqsil sog'lom odam uchun xavfsiz ko'rinadi. Buyrak kasalligi bo'lsa, oqsil miqdorini shifokor bilan aniqlang. Sut oqsiliga allergiya bo'lsa, tarkibiga qarang."
+   },
+   "ru": {
+    "name": "Протеин (белковый порошок)",
+    "line": "Удобен, если норму белка не набрать едой. Сверх нормы пользы нет.",
+    "what": "Белок нужен, чтобы строить, сохранять и восстанавливать мышцы, и ускоряет восстановление после тренировок. Большинство порошков делают из сывороточного белка молока.",
+    "food": "Мясо, курица, рыба, яйца, молоко, кефир, сюзьма, сыр; из растений — маш, нут, фасоль, чечевица и крупы.",
+    "who": "Если дневную норму белка не получается набрать обычной едой, порошок может быть удобным дополнением — сначала посмотрите свою норму белка в приложении. В период тяжёлых тренировок белка временно может понадобиться больше.",
+    "not": "Если норма набирается едой, порошок не нужен: белок сверх нормы дополнительной пользы не даёт. Большинство спортсменов тоже получают нужный белок из еды.",
+    "care": "Много белка для здорового человека, по-видимому, безопасно. При болезнях почек количество белка уточните у врача. При аллергии на молочный белок проверяйте состав."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "moderate",
+     "uz": "Kuch mashqi qiluvchi, oqsilni ovqatdan yetkaza olmaydiganlar",
+     "ru": "Тренирующиеся, не добирающие белок из еды"
+    },
+    {
+     "level": "low",
+     "uz": "Ovqatdan yetarli oqsil oladiganlar",
+     "ru": "Получающие достаточно белка из еды"
+    }
+   ]
+  },
+  {
+   "id": "kreatin",
+   "ic": "bolt",
+   "level": "strong",
+   "levelWhy": "ODS: sports-medicine experts agree creatine improves performance in repeated short, intense efforts (sprinting, weightlifting); safe for healthy adults for weeks to years; little value for endurance.",
+   "uz": {
+    "name": "Kreatin",
+    "line": "Kuch mashqlari uchun dalil kuchli. Chidamlilik sporti uchun foydasi kam.",
+    "what": "Mushakda saqlanadigan va unga tezkor energiya beradigan modda. Tana kuniga taxminan 1 g kreatinni o'zi ishlab chiqaradi.",
+    "food": "Mol go'shti va baliqda bor: taxminan 110 g lik porsiyada yarim gramm atrofida. Ta'sir uchun ancha ko'p miqdor kerak, shuning uchun u sport qo'shimchasi sifatida ishlatiladi.",
+    "who": "Og'ir atletika, sprint kabi qisqa va kuchli harakatli mashqlar bilan shug'ullanadiganlar: kuch va quvvatni oshirishi mumkin, lekin ta'siri har kimda har xil.",
+    "not": "Yugurish, velosiped, suzish kabi uzoq chidamlilik mashqlari uchun foydasi kam. Kuch mashqi qilmaydigan odamga ma'nosi yo'q.",
+    "care": "Tanada suv ushlanadi, shuning uchun vazn biroz oshadi — suvni yetarli ichish muhim. Ba'zan mushak qotishi, tirishish, oshqozon bezovtaligi bo'ladi. Buyrak kasalligi bo'lsa yoki 18 yoshdan kichik bo'lsangiz — avval shifokor bilan gaplashing."
+   },
+   "ru": {
+    "name": "Креатин",
+    "line": "Для силовых тренировок доказательства сильные. Для выносливости пользы мало.",
+    "what": "Вещество, которое хранится в мышцах и даёт им быструю энергию. Организм сам вырабатывает около 1 г креатина в день.",
+    "food": "Есть в говядине и рыбе: около полуграмма в порции примерно 110 г. Для эффекта нужно гораздо больше, поэтому его используют как спортивную добавку.",
+    "who": "Тем, кто занимается тяжёлой атлетикой, спринтом и другими короткими интенсивными нагрузками: может повысить силу и мощность, но эффект у всех разный.",
+    "not": "Для бега, велоспорта, плавания и других нагрузок на выносливость пользы мало. Без силовых тренировок смысла нет.",
+    "care": "Задерживает воду в организме, поэтому вес немного растёт — важно пить достаточно воды. Иногда бывают скованность мышц, судороги, расстройство желудка. При болезнях почек или если вам нет 18 лет — сначала посоветуйтесь с врачом."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Kuch mashqlari bilan shug'ullanuvchilar",
+     "ru": "Занимающиеся силовыми тренировками"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (jumladan yugurish, suzish kabi chidamlilik sporti)",
+     "ru": "Остальные (в т. ч. бег, плавание и другие виды на выносливость)"
+    }
+   ]
+  },
+  {
+   "id": "bcaa",
+   "ic": "muscle",
+   "level": "low",
+   "levelWhy": "ODS: not much scientific evidence that BCAA supplements improve performance, muscle building or recovery beyond eating enough protein; a protein-rich diet already provides 10-20 g/day of BCAAs.",
+   "uz": {
+    "name": "BCAA (aminokislotalar)",
+    "line": "Oqsilli ovqat BCAA ni allaqachon beradi. Alohida qo'shimcha foydasi dalili kam.",
+    "what": "Leysin, izoleysin va valin — uchta aminokislota. Mashq paytida mushak ulardan energiya oladi.",
+    "food": "Go'sht, baliq, tuxum, sut, qatiq, pishloq. Oqsili yetarli ovqat kuniga 10–20 g BCAA beradi.",
+    "who": "Dalil kam: kuch mashqlari bilan birga mushakka biroz yordam berishi mumkin, lekin yetarli oqsil yeyishdan ustunligi aniqlanmagan.",
+    "not": "Oqsil me'yoringiz ovqatdan yig'ilsa, BCAA ortiqcha xarajat. Chidamlilik va mashqdan keyin tiklanish uchun ham ilmiy dalil kam.",
+    "care": "Ovqatdagidan tashqari kuniga 20 g gacha xavfsiz ko'rinadi. Doimiy dori ichsangiz, shifokorga ayting."
+   },
+   "ru": {
+    "name": "BCAA (аминокислоты)",
+    "line": "Белковая еда уже даёт BCAA. Доказательств пользы отдельной добавки мало.",
+    "what": "Лейцин, изолейцин и валин — три аминокислоты. Во время тренировки мышцы используют их как источник энергии.",
+    "food": "Мясо, рыба, яйца, молоко, кефир, сыр. Еда с достаточным количеством белка даёт 10–20 г BCAA в день.",
+    "who": "Доказательств мало: вместе с силовыми тренировками могут немного помочь мышцам, но преимущество перед достаточным количеством белка в еде не доказано.",
+    "not": "Если норма белка набирается едой, BCAA — лишняя трата. Для выносливости и восстановления после тренировок научных данных тоже мало.",
+    "care": "Сверх того, что даёт еда, до 20 г в день, по-видимому, безопасно. Если постоянно принимаете лекарства, скажите врачу."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Kuch mashqi qiluvchilar (oqsil yetarli bo'lsa foydasi noaniq)",
+     "ru": "Силовые тренировки (при достатке белка польза неясна)"
+    },
+    {
+     "level": "not",
+     "uz": "Ovqatdan yetarli oqsil oladiganlar",
+     "ru": "Получающие достаточно белка из еды"
+    }
+   ]
+  },
+  {
+   "id": "kollagen",
+   "ic": "bone",
+   "level": "low",
+   "levelWhy": "Harvard Nutrition Source (no ODS fact sheet exists): some RCTs show better skin elasticity and joint pain, but most research is industry-funded and independent evidence is lacking.",
+   "uz": {
+    "name": "Kollagen",
+    "line": "Teri va bo'g'imga foydasi haqida mustaqil dalil kam. Oqsilli ovqat ham yordam beradi.",
+    "what": "Tanadagi eng ko'p oqsil: teri, suyak, pay, tog'ay va mushakka mustahkamlik beradi. Yosh o'tgan sari kamroq hosil bo'ladi.",
+    "food": "Suyakli go'shtdan qaynatilgan sho'rva, pay va tog'ayli go'sht, baliq terisi, jelatin. Tana kollagenni oqsil (go'sht, tuxum, sut, dukkaklilar), sink va C vitaminidan o'zi yasaydi.",
+    "who": "Ba'zi tadqiqotlarda teri elastikligi va bo'g'im og'rig'i biroz yaxshilangan, lekin ularning ko'pini ishlab chiqaruvchilar moliyalashtirgan.",
+    "not": "Oqsil, meva va sabzavot yetarli bo'lsa, kollagen qo'shimchasi shart emas. Yetarli uyqu, quyoshdan himoyalanish va chekmaslik tanadagi kollagenni yaxshiroq asraydi.",
+    "care": "Tadqiqotlarda nojo'ya ta'sir ko'rilmagan. Lekin mahsulot tarkibi har doim aniq emas, og'ir metallar bo'lishi mumkinligi haqida xavotir bor."
+   },
+   "ru": {
+    "name": "Коллаген",
+    "line": "Независимых данных о пользе для кожи и суставов мало. Белковая еда тоже помогает.",
+    "what": "Самый распространённый белок в теле: придаёт прочность коже, костям, сухожилиям, хрящам и мышцам. С возрастом его вырабатывается меньше.",
+    "food": "Бульон на костях, мясо с сухожилиями и хрящами, рыбья кожа, желатин. Организм сам строит коллаген из белка (мясо, яйца, молочное, бобовые), цинка и витамина C.",
+    "who": "В некоторых исследованиях эластичность кожи и боль в суставах немного улучшались, но большинство из них финансировали производители.",
+    "not": "Если в рационе хватает белка, овощей и фруктов, добавка коллагена не обязательна. Сон, защита от солнца и отказ от курения сохраняют собственный коллаген лучше.",
+    "care": "В исследованиях побочных эффектов не отмечено. Но состав продукта не всегда точно известен, есть опасения по поводу тяжёлых металлов."
+   },
+   "ul": null,
+   "src": "https://nutritionsource.hsph.harvard.edu/collagen/",
+   "srcName": "Harvard T.H. Chan School of Public Health — The Nutrition Source",
+   "src2": null,
+   "note": "NIH ODS da kollagen bo'yicha fact sheet yo'q (ods.od.nih.gov/factsheets/Collagen-Consumer — 404), shuning uchun Harvard manbasi ishlatildi.",
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Teri elastikligi yoki bo'g'im og'rig'i bilan qiziquvchilar",
+     "ru": "Ради упругости кожи или при боли в суставах"
+    },
+    {
+     "level": "low",
+     "uz": "Boshqalar (soch, tirnoq va h.k.)",
+     "ru": "Остальные (волосы, ногти и т. п.)"
+    }
+   ]
+  },
+  {
+   "id": "kofein-preworkout",
+   "ic": "bolt",
+   "level": "strong",
+   "levelWhy": "ODS: experts agree caffeine helps sustain exercise intensity and reduces fatigue in endurance and intermittent sports, but responses vary and it does not help short sprints or lifting; multi-ingredient pre-workouts are untested in combination.",
+   "uz": {
+    "name": "Kofein va pre-workout",
+    "line": "Chidamlilikni biroz oshirishi mumkin. Ortig'i yurak va uyquga zarar.",
+    "what": "Kofein — qahva, choy va energetik ichimliklardagi qo'zg'atuvchi modda. Pre-workout aralashmalarida odatda asosiy faol modda kofein, yonida esa boshqa ko'p moddalar bo'ladi.",
+    "food": "Choy (ko'k va qora) va qahva. Bir chashka qahvada taxminan 85–100 mg kofein bor.",
+    "who": "Uzoq yugurish, futbol, tennis kabi chidamlilik talab qiladigan sport bilan shug'ullanadiganlarda charchoqni kamaytirishi mumkin. Ta'siri har kimda har xil.",
+    "not": "Sprint yoki og'ir atletika kabi qisqa kuchli mashqlarga yordam bermaydi. Bir chashka qahva yoki choy tabletka va kukunsiz ham shu kofeinni beradi.",
+    "care": "Ortig'i asabiylik, titroq, uyqusizlik, yurak urishining tezlashishiga olib keladi; juda katta dozasi tutqanoq va o'limga sabab bo'lishi mumkin (sof kofein kukuni ayniqsa xavfli). Pre-workout tarkibida yorliqda yozilmagan yoki taqiqlangan qo'zg'atuvchilar bo'lishi mumkin. Homilador bo'lsangiz yoki yurak kasalligi bo'lsa — shifokor bilan gaplashing."
+   },
+   "ru": {
+    "name": "Кофеин и предтренировочные комплексы",
+    "line": "Может немного повысить выносливость. Избыток вредит сердцу и сну.",
+    "what": "Кофеин — стимулятор в кофе, чае и энергетиках. В предтренировочных смесях основное активное вещество обычно кофеин, плюс много других компонентов.",
+    "food": "Чай (зелёный и чёрный) и кофе. В чашке кофе около 85–100 мг кофеина.",
+    "who": "Тем, кто занимается видами спорта на выносливость — бег на длинные дистанции, футбол, теннис: может уменьшить усталость. Эффект у всех разный.",
+    "not": "Не помогает в коротких интенсивных нагрузках вроде спринта или тяжёлой атлетики. Чашка кофе или чая даёт тот же кофеин без таблеток и порошков.",
+    "care": "Избыток вызывает нервозность, дрожь, бессонницу, учащённое сердцебиение; очень большая доза может вызвать судороги и смерть (особенно опасен чистый порошок кофеина). В предтренировочных смесях бывают не указанные на этикетке или запрещённые стимуляторы. При беременности или болезнях сердца — посоветуйтесь с врачом."
+   },
+   "ul": {
+    "uz": "Kattalar uchun kuniga 400–500 mg gacha kofein xavfsiz hisoblanadi, o'smirlar uchun — 100 mg gacha. Bundan oshirmang.",
+    "ru": "Для взрослых безопасным считается до 400–500 мг кофеина в сутки, для подростков — до 100 мг. Не превышайте."
+   },
+   "src": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": "https://ods.od.nih.gov/factsheets/WeightLoss-Consumer/",
+   "ev": [
+    {
+     "level": "strong",
+     "uz": "Chidamlilik va jamoaviy sport (kofeinning o'zi)",
+     "ru": "Виды на выносливость и командный спорт (сам кофеин)"
+    },
+    {
+     "level": "low",
+     "uz": "Sprint, og'ir atletika kabi qisqa mashq; ko'p tarkibli aralashmalar",
+     "ru": "Короткие интенсивные нагрузки (спринт, штанга) и многокомпонентные смеси"
+    },
+    {
+     "level": "not",
+     "uz": "O'smirlar va kofeinga sezgir odamlar",
+     "ru": "Подростки и люди, чувствительные к кофеину"
+    }
+   ]
+  },
+  {
+   "id": "yog-yoquvchi",
+   "ic": "flame",
+   "level": "low",
+   "levelWhy": "ODS: little scientific evidence that weight-loss supplements work; some ingredients (bitter orange, stimulant combinations, banned ephedra) affect heart rate and blood pressure, and products are sometimes adulterated with undeclared drugs.",
+   "uz": {
+    "name": "«Yog' yoquvchi» (ozdiruvchi) qo'shimchalar",
+    "line": "Ishlashi isbotlanmagan, ba'zilari yurak uchun xavfli. Yashirin dori bo'lishi mumkin.",
+    "what": "Yog'ni «eritadi», ishtahani bosadi yoki moddalar almashinuvini tezlashtiradi deb sotiladigan aralashmalar: ko'pincha kofein, achchiq apelsin (sinefrin), ko'k choy ekstrakti va o'nlab boshqa moddalar.",
+    "food": "Ozishning isbotlangan yo'li — sog'lom ovqat, kaloriyani kamaytirish va harakat. Ilovadagi kaloriya va qadam hisobi shunga yordam beradi.",
+    "who": "Ishonchli foydasi isbotlanmagan. Ozish uchun dori kerak deb o'ylasangiz, bu haqda shifokor bilan gaplashing.",
+    "not": "Ko'pchilik uchun behuda xarajat: foydasi juda kam yoki yo'q. «Sehrli tabletka», «parhez va mashqsiz ozish» kabi va'dalar odatda yolg'on.",
+    "care": "Achchiq apelsin (sinefrin) va kofein yurak urishini tezlashtirib, qon bosimini oshiradi, ko'krak og'rig'iga sabab bo'lishi mumkin; efedra xavfli bo'lgani uchun taqiqlangan. Ba'zi mahsulotlarda yorliqda yozilmagan retsept dorilari topilgan. Qon bosimi, diabet, yurak yoki jigar kasalligi bo'lsa — ayniqsa xavfli."
+   },
+   "ru": {
+    "name": "«Жиросжигатели» (добавки для похудения)",
+    "line": "Эффект не доказан, некоторые опасны для сердца. Могут содержать скрытые лекарства.",
+    "what": "Смеси, которые якобы «сжигают» жир, подавляют аппетит или ускоряют обмен веществ: чаще всего кофеин, горький апельсин (синефрин), экстракт зелёного чая и десятки других компонентов.",
+    "food": "Доказанный путь к снижению веса — здоровое питание, меньше калорий и больше движения. Учёт калорий и шагов в приложении помогает именно в этом.",
+    "who": "Надёжной пользы не доказано. Если вы думаете, что вам нужно лекарство для похудения, обсудите это с врачом.",
+    "not": "Для большинства это пустая трата денег: пользы мало или нет. Обещания вроде «волшебной таблетки» или «похудения без диеты и спорта» обычно ложные.",
+    "care": "Горький апельсин (синефрин) и кофеин учащают сердцебиение, повышают давление, могут вызвать боль в груди; эфедра запрещена как опасная. В некоторых продуктах находили не указанные на этикетке рецептурные лекарства. Особенно опасно при гипертонии, диабете, болезнях сердца или печени."
+   },
+   "ul": null,
+   "src": "https://ods.od.nih.gov/factsheets/WeightLoss-Consumer/",
+   "srcName": "NIH Office of Dietary Supplements",
+   "src2": null,
+   "ev": [
+    {
+     "level": "low",
+     "uz": "Kofeinli yoki yashil choyli mahsulotlar (ta'siri juda oz)",
+     "ru": "Средства с кофеином или зелёным чаем (эффект очень мал)"
+    },
+    {
+     "level": "not",
+     "uz": "Hech kimga vazn tashlashning asosiy vositasi sifatida",
+     "ru": "Никому как основное средство для похудения"
+    }
+   ]
+  }
+ ]
+}

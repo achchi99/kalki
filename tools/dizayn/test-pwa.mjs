@@ -24,12 +24,17 @@ for (const [file, nm, st, sc] of [['rozgor.webmanifest', "Ro'zg'or", '/rozgor?sr
   for (const i of rm.icons) { const f = i.src.replace(/^\//, ''); T(fs.existsSync(path.join(ROOT, f)) && sizeOf(f) === i.sizes, file + ' ikonka ' + i.src + ' (' + i.purpose + ')', sizeOf(f)); }
 }
 T(sizeOf('assets/icons/rozgor-apple-180.png') === '180x180', 'Ro\'zg\'or apple-touch-icon 180x180');
+// 1b) KalkiFit — alohida manifest: o'z nomi, id, ikonkalar
+const sm = JSON.parse(fs.readFileSync(path.join(ROOT, 'kalkifit.webmanifest'), 'utf8'));
+T(sm.short_name === 'KalkiFit' && sm.id === '/kalkifit' && sm.start_url === '/kalkifit?source=pwa' && sm.scope === '/' && sm.display === 'standalone' && sm.id !== m.id, 'KalkiFit manifest: alohida nom/id/start_url');
+for (const i of sm.icons) { const f = i.src.replace(/^\//, ''); T(fs.existsSync(path.join(ROOT, f)) && sizeOf(f) === i.sizes, 'KalkiFit ikonka ' + i.src + ' (' + i.purpose + ')', sizeOf(f)); }
+T(sizeOf('assets/icons/kalkifit-apple-180.png') === '180x180', 'KalkiFit apple-touch-icon 180x180');
 // 2) <head> havolalari (barcha sahifa, UZ/RU/CYR)
 let miss = [], cnt = 0;
 const dirs = ['', 'ru/', 'cyr/'];
 for (const d of dirs) for (const f of fs.readdirSync(path.join(ROOT, d || '.')).filter((x) => x.endsWith('.html') && !/^(yandex|offline)/.test(x))) { cnt++; const h = fs.readFileSync(path.join(ROOT, d + f), 'utf8'); const head = h.slice(0, h.indexOf('</head>'));
-  const own = f === 'rozgor.html' ? (d === 'ru/' ? '/ru/rozgor.webmanifest' : '/rozgor.webmanifest') : null;   // Ro'zg'or — alohida PWA (o'z manifest va ikonkasi)
-  if (!head.includes('<link rel="manifest" href="' + (own || '/manifest.webmanifest') + '"') || !head.includes('rel="apple-touch-icon" href="/assets/icons/' + (own ? 'rozgor-apple-180.png' : 'apple-touch-icon-180.png') + '"') || (head.match(/rel="manifest"/g) || []).length !== 1) miss.push(d + f); }
+  const own = f === 'rozgor.html' ? (d === 'ru/' ? '/ru/rozgor.webmanifest' : '/rozgor.webmanifest') : (f === 'kalkifit.html' ? '/kalkifit.webmanifest' : null);   // Ro'zg'or va KalkiFit — alohida PWA (o'z manifest va ikonkasi)
+  if (!head.includes('<link rel="manifest" href="' + (own || '/manifest.webmanifest') + '"') || !head.includes('rel="apple-touch-icon" href="/assets/icons/' + (own ? (f === 'kalkifit.html' ? 'kalkifit-apple-180.png' : 'rozgor-apple-180.png') : 'apple-touch-icon-180.png') + '"') || (head.match(/rel="manifest"/g) || []).length !== 1) miss.push(d + f); }
 T(miss.length === 0, 'manifest + apple-touch-icon barcha sahifa <head> da (bittadan)', cnt + ' sahifa' + (miss.length ? ', yo\'q: ' + miss.slice(0, 4).join(', ') : ''));
 const cy = fs.readdirSync(path.join(ROOT, 'cyr')).filter((x) => x.endsWith('.html')); T(cy.every((f) => !/<script(?![^>]*type="application\/(ld\+)?json")[^>]*>/.test(fs.readFileSync(path.join(ROOT, 'cyr', f), 'utf8'))), '/cyr/: ijro etiladigan skript yo\'q (faqat <link>)', cy.length + ' sahifa');
 // 3) installability (CDP) va tugma

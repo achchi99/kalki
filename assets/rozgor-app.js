@@ -28,9 +28,7 @@
       reserveEdit: 'Tegmaydigan pul',
       xT: 'Bu raqam qanday hisoblanadi?', xNow: 'Hozirgi pulingiz', xBills: "Oylikkacha to'lovlar", xRes: 'Tegmaydigan pul', xFree: 'Sarflash mumkin', xSpent: 'Bugun yozilgan xarajatlar', xStart: 'Bugun boshida sarflash mumkin edi', xDays: '{d} kun (oylikkacha)', xDaysM: '{d} kun (oy oxirigacha)', xNorm: 'kuniga (kunlik limit)', xSpent2: 'Bugun sarflandi', xCan: 'Bugun yana mumkin', xNote: "Bugun hisobga kiradi, oylik kuni kirmaydi. Limit kun davomida o'zgarmaydi.", xShort: "Pul oylikkacha yetmaydi: {x} so'm kam.", xOver: "Bugungi limitdan {x} so'm oshdi — ertangi limit kamayadi.",
       tip1: "Bu raqam — bugungi limit. Shuncha so'm sarflasangiz, oylikkacha pulingiz yetadi.", tip2: "«+» tugmasi — xarajat yozish. Har bir sarfni shu yerda yozib boring.", tip3: "«To'lovlar» bo'limida to'langan to'lovni «To'landi» deb belgilang.", tipOk: 'Tushunarli', tipOf: '{i} / {n}',
-      dBoshqa: 'Boshqa sana', dNone: 'Sana tanlanmagan', dN: '{n}-sana', dEom: 'Oy oxiri', dMonth: 'Oy', errAmt: 'Summani kiriting', pickDate: 'Sana',
       aboutBack: 'Orqaga', aboutT: 'Bu ilova haqida',
-      wd: ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], mon: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr']
     },
     ru: {
       appName: 'Рузгор', navToday: 'Сегодня', navHist: 'История', navBills: 'Платежи', navSet: 'Ещё', navTodayS: 'Сегодня', navHistS: 'История', navBillsS: 'Платежи', navSetS: 'Ещё', add: 'Добавить расход', sum: 'сум',
@@ -55,35 +53,25 @@
       reserveEdit: 'Неприкосновенные деньги',
       xT: 'Как считается это число?', xNow: 'Ваши деньги сейчас', xBills: 'Платежи до зарплаты', xRes: 'Неприкосновенные деньги', xFree: 'Можно тратить', xSpent: 'Расходы, записанные сегодня', xStart: 'В начале дня можно было тратить', xDays: '{d} дн. (до зарплаты)', xDaysM: '{d} дн. (до конца месяца)', xNorm: 'в день (дневной лимит)', xSpent2: 'Сегодня потрачено', xCan: 'Сегодня ещё можно', xNote: 'Сегодняшний день считается, день зарплаты — нет. Лимит в течение дня не меняется.', xShort: 'Денег до зарплаты не хватает: {x} сум.', xOver: 'Вы вышли за дневной лимит на {x} сум — завтрашний лимит станет меньше.',
       tip1: 'Это число — лимит на сегодня. Тратьте не больше, и денег хватит до зарплаты.', tip2: 'Кнопка «+» — записать расход. Записывайте каждую трату здесь.', tip3: 'В разделе «Платежи» отмечайте оплаченные платежи кнопкой «Оплачено».', tipOk: 'Понятно', tipOf: '{i} / {n}',
-      dBoshqa: 'Другая дата', dNone: 'Дата не выбрана', dN: '{n}-е число', dEom: 'Конец месяца', dMonth: 'Месяц', errAmt: 'Введите сумму', pickDate: 'Дата',
       aboutBack: 'Назад', aboutT: 'О приложении',
-      wd: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'], mon: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
-      gen: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+      wd: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'], mon: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
     }
   };
-  var MON_CYR = ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр'];
   var root = document.getElementById('rzApp');
-  var st = null, view = 'today', lang = langNow(), sheetKind = null, undoTimer = null, reduce = false, seenTx = null, heroPrev = null, enterNext = true;
-  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  var st = null, view = 'today', lang = langNow(), reduce = false, seenTx = null, heroPrev = null, enterNext = true;
+  var kit = RzKit.create({ root: root, K: K, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
+  var inst = KalkiInstall.create({ app: 'rozgor', name: "Ro'zg'or", mark: 'R', color: '#0E3B2E', kit: kit, lang: langNow, rowIcon: 'rz-ci rz-c-boshqa', setup: function () { return !!(st && st.setup); }, ready: function () { return !!(st && st.setup && st.tx && st.tx.length > 0); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'set') && !kit.sheetKind()) render(); } });
+  reduce = kit.reduce;
+  var esc = kit.esc, fmt = kit.fmt, digits = kit.digits, spaced = kit.spaced, vib = kit.vib, wait = kit.wait, ico = kit.ico, okCheck = kit.okCheck, monthName = kit.monthName, dLabel = kit.dLabel, setNum = kit.setNum, toast = kit.toast, hideToast = kit.hideToast, shHead = kit.shHead, fld = kit.fld, closeSheet = kit.closeSheet, flashEl = kit.flashEl, dpHtml = kit.dpHtml, dpGet = kit.dpGet, dpPaint = kit.dpPaint, dpSet = kit.dpSet, dpInit = kit.dpInit, qDate = kit.qDate;
+  function openSheet(kind, html) { kit.openSheet(kind, html, { noFocus: kind === 'add' }); }
   function langNow() { return document.documentElement.lang === 'ru' ? 'ru' : 'uz'; }
   function isCyr() { return document.documentElement.getAttribute('data-script') === 'cyr'; }
   function T(k, o) { var s = (D[lang] && D[lang][k] != null) ? D[lang][k] : D.uz[k]; if (typeof s === 'string' && o) s = s.replace(/\{(\w+)\}/g, function (m, x) { return o[x] != null ? o[x] : m; }); return s; }
   function catName(c) { return (D[lang].cats && D[lang].cats[c]) || D.uz.cats[c] || c; }
   function $(s, r) { return (r || root).querySelector(s); }
   function $$(s, r) { return [].slice.call((r || root).querySelectorAll(s)); }
-  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
-  function fmt(n) { var r = Math.round(n), neg = r < 0; r = Math.abs(r); return (neg ? '−' : '') + String(r).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
   function nowTs() { return Math.floor(Date.now() / 1000); }
   function todayStr() { return K.today(); }
-  function digits(v) { return String(v == null ? '' : v).replace(/\D/g, ''); }
-  function vib(ms) { try { if (navigator.vibrate) navigator.vibrate(ms || 15); } catch (e) {} }
-  function wait(fn, ms) { if (reduce) fn(); else setTimeout(fn, ms); }
-  function monthName(m, nominative) { if (isCyr()) return MON_CYR[m - 1]; if (lang === 'ru') return (nominative ? D.ru.mon : D.ru.gen)[m - 1]; return D.uz.mon[m - 1]; }
-  function dLabel(d) {                                   // sana doim sahifa tilida: 30-oktabr / 30 октября / 30-октябр
-    var p = K.parse(d); if (!p) return d;
-    var y = p.y !== K.parse(todayStr()).y ? ' ' + p.y : '';
-    return lang === 'ru' ? p.d + ' ' + monthName(p.m) + y : p.d + '-' + monthName(p.m) + y;
-  }
   function fmtDate(d) { if (!d) return ''; var t = todayStr(); if (d === t) return T('todayWord'); if (d === K.addDays(t, 1)) return T('tomorrowWord'); return dLabel(d); }
   function hhmm(ts) { if (!ts) return ''; var d = new Date(ts * 1000); return (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes(); }
   function prefs() { return st.prefs || (st.prefs = {}); }
@@ -101,7 +89,7 @@
   function commit(opts) { save(); render(opts); }
 
   /* ---------- ikonkalar (inline SVG, bir xil uslub) ---------- */
-  var IC = {
+  kit.addIcons({
     oziq: 'M6 9h12l-1.2 9a2 2 0 0 1-2 1.7H9.2a2 2 0 0 1-2-1.7L6 9z M9 9V6a3 3 0 0 1 6 0v3',
     transport: 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z M4 11h16 M8 19v-3 M16 19v-3 M7.5 14h.01 M16.5 14h.01',
     uy: 'M3 11l9-8 9 8 M5 10v10h14V10 M10 20v-6h4v6',
@@ -118,11 +106,8 @@
     plus: 'M12 5v14 M5 12h14', chev: 'M9 6l6 6-6 6', lang: 'M3 5h12 M9 3v2 M5 5c1 4 4 7 8 8 M13 5c-1 4-3 7-7 9 M13 21l4-10 4 10 M14.5 17h5',
     check: 'M5 12l5 5 9-10', back: 'M15 6l-6 6 6 6', x: 'M6 6l12 12 M18 6L6 18', bag: 'M6 8h12l1 12H5L6 8z M9 8a3 3 0 0 1 6 0', cal: 'M5 5h14v15H5z M5 10h14 M9 3v4 M15 3v4', rep: 'M4 4v6h6 M20 20v-6h-6 M5 15a8 8 0 0 0 14 3 M19 9A8 8 0 0 0 5 6',
     shield: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z', help: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M9.6 9.4a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.1.9-1.1 1.7 M12 16.8h.01', info: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v5 M12 7.8h.01'
-  };
-  function ico(name, cls, sw) { return '<svg class="rz-i ' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw || 2) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + (IC[name] || IC.boshqa) + '"/></svg>'; }
+  });
   function catIcon(c, big) { return '<span class="rz-ci rz-c-' + esc(c) + (big ? ' big' : '') + '">' + ico(c, '', c === 'boshqa' ? 3 : 2) + '</span>'; }
-  function okCheck() { return '<svg class="rz-okc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" class="c"/><path d="M7.5 12.5l3.2 3.2L16.8 9" pathLength="1" class="k"/></svg>'; }
-
   /* ---------- qobiq ---------- */
   function shell() {
     root.innerHTML =
@@ -132,50 +117,8 @@
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
       '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '"><button type="button" class="rz-tab" data-act="tab" data-v="today">' + ico('today') + '<span class="l" data-k="navToday"></span><span class="s" data-k="navTodayS"></span></button><button type="button" class="rz-tab" data-act="tab" data-v="hist">' + ico('hist') + '<span class="l" data-k="navHist"></span><span class="s" data-k="navHistS"></span></button><span class="rz-fabslot"></span><button type="button" class="rz-tab" data-act="tab" data-v="bills">' + ico('tolov') + '<span class="l" data-k="navBills"></span><span class="s" data-k="navBillsS"></span></button><button type="button" class="rz-tab" data-act="tab" data-v="set">' + ico('set') + '<span class="l" data-k="navSet"></span><span class="s" data-k="navSetS"></span></button>' +
       '<button type="button" class="rz-fab" id="rzFab" data-act="add" aria-label="' + esc(T('add')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
-      '<div class="rz-bg" id="rzBg" hidden data-act="sheetclose"></div><div class="rz-sheet" id="rzSheet" hidden role="dialog" aria-modal="true"></div><div class="rz-tips" id="rzTips" hidden></div><div class="rz-toast" id="rzToast" hidden role="status" aria-live="polite"></div><div class="rz-onb" id="rzOnb" hidden></div>';
+      kit.shellHtml() + '<div class="rz-onb" id="rzOnb" hidden></div>';
   }
-
-  /* ---------- raqam animatsiyasi (sanab o'tish ~400ms) ---------- */
-  function setNum(el, from, to) {
-    if (!el) return;
-    var txt = fmt(Math.abs(to));
-    if (from == null || from === to || reduce) { el.textContent = txt; return; }
-    el.textContent = fmt(Math.abs(from));
-    var t0 = performance.now(), dur = 400, tok = el._tok = {};
-    (function step(now) { if (el._tok !== tok) return; var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = p < 1 ? fmt(Math.abs(Math.round(from + (to - from) * e))) : txt; if (p < 1) requestAnimationFrame(step); })(t0);
-  }
-
-  /* ---------- sana tanlagich (tizim <input type=date> ishlatilmaydi — til aralashmasin) ---------- */
-  var DPQ = { inc: ['today', 'tomorrow', 'd5', 'd10', 'd15', 'd25', 'eom'], exp: ['today', 'yesterday'] };
-  function qDate(q) {
-    var t = todayStr(), p = K.parse(t);
-    if (q === 'today') return t; if (q === 'tomorrow') return K.addDays(t, 1); if (q === 'yesterday') return K.addDays(t, -1);
-    if (q === 'eom') return K.addDays(K.firstOfNextMonth(t), -1);
-    var n = +q.slice(1), d = K.ymd(p.y, p.m, Math.min(n, K.dim(p.y, p.m)));
-    return d >= t ? d : K.addMonthsDom(d, 1, n);
-  }
-  function qLabel(q) { return q === 'today' ? T('today') : q === 'tomorrow' ? T('tomorrow') : q === 'yesterday' ? T('yesterday') : q === 'eom' ? T('dEom') : T('dN', { n: q.slice(1) }); }
-  function dpHtml(id, label, val, set, min, max) {
-    return '<div class="rz-dpw"><span class="rz-fl">' + esc(label) + '</span><div class="rz-dp" id="' + id + '" data-v="' + esc(val || '') + '" data-set="' + set + '"' + (min ? ' data-min="' + min + '"' : '') + (max ? ' data-max="' + max + '"' : '') + '></div></div>';
-  }
-  function dpPaint(el) {
-    var v = el.getAttribute('data-v'), min = el.getAttribute('data-min'), max = el.getAttribute('data-max'), cal = el._cal, h = '';
-    h += '<div class="rz-dpv' + (v ? '' : ' none') + '" aria-live="polite">' + ico('cal') + '<b>' + esc(v ? dLabel(v) : T('dNone')) + '</b></div><div class="rz-chips">';
-    DPQ[el.getAttribute('data-set')].forEach(function (q) { var d = qDate(q); if ((min && d < min) || (max && d > max)) return; h += '<button type="button" class="rz-chip' + (v === d ? ' on' : '') + '" data-act="dpq" data-q="' + q + '">' + esc(qLabel(q)) + '</button>'; });
-    h += '<button type="button" class="rz-chip alt' + (cal ? ' on' : '') + '" data-act="dpcal">' + esc(T('dBoshqa')) + '</button></div>';
-    if (cal) {
-      var first = K.ymd(cal.y, cal.m, 1), wd0 = (new Date(Date.UTC(cal.y, cal.m - 1, 1)).getUTCDay() + 6) % 7, n = K.dim(cal.y, cal.m);
-      h += '<div class="rz-cal"><div class="rz-calh"><button type="button" data-act="dpmon" data-s="-1" aria-label="‹">' + ico('back') + '</button><b>' + esc(monthName(cal.m, true) + ' ' + cal.y) + '</b><button type="button" data-act="dpmon" data-s="1" aria-label="›">' + ico('chev') + '</button></div><div class="rz-calg">';
-      D[lang].wd.forEach(function (w) { h += '<i>' + esc(w) + '</i>'; });
-      for (var i = 0; i < wd0; i++) h += '<span></span>';
-      for (var d = 1; d <= n; d++) { var ds = K.ymd(cal.y, cal.m, d), dis = (min && ds < min) || (max && ds > max); h += '<button type="button" data-act="dpday" data-d="' + ds + '"' + (dis ? ' disabled' : '') + (ds === v ? ' class="on"' : (ds === todayStr() ? ' class="td"' : '')) + '>' + d + '</button>'; }
-      h += '</div></div>';
-    }
-    el.innerHTML = h;
-  }
-  function dpInit() { $$('.rz-dp').forEach(function (el) { if (!el._painted) { el._painted = true; dpPaint(el); } }); }
-  function dpGet(id) { var e = $('#' + id); return e ? e.getAttribute('data-v') || '' : ''; }
-  function dpSet(el, v) { el.setAttribute('data-v', v); el._cal = null; dpPaint(el); }
 
   /* ---------- BUGUN ---------- */
   function nudges() {
@@ -184,11 +127,6 @@
     if (st.income && st.income.date && st.income.date <= t) out.push({ k: 'income', msg: T('nudgeIncome'), btn: T('nudgeIncomeBtn'), act: 'income' });
     var last = K.lastTxDate(st) || (st.created ? K.today(new Date(st.created)) : null);
     if (last) { var idle = K.daysBetween(last, t); if (idle >= 3 && !hid('idle')) out.push({ k: 'idle', msg: T('nudgeIdle', { n: idle }), btn: T('nudgeIdleBtn'), act: 'check', dismiss: true }); }
-    var pwa = window.KalkiPwa;
-    if (pwa && !pwa.installed && !hid('install')) {
-      if (pwa.canPrompt && pwa.canPrompt()) out.push({ k: 'install', msg: T('nudgeInstall'), btn: T('nudgeInstallBtn'), act: 'install', dismiss: true });
-      else if (pwa.ios) out.push({ k: 'install', msg: T('nudgeIos'), dismiss: true });
-    }
     var lb = st.lastBackup || st.created || 0;
     if (st.setup && st.tx.length > 0 && now - lb > 7 * DAY_MS && !hid('backup')) out.push({ k: 'backup', msg: T('nudgeBackup'), btn: T('nudgeBackupBtn'), act: 'export', dismiss: true });
     return out;
@@ -226,9 +164,10 @@
     var ratio = s.norm > 0 ? Math.min(1, s.spent / s.norm) : (s.spent > 0 ? 1 : 0), pct = Math.round(ratio * 100);
     var left = T(s.mode === 'income' ? 'hLeft' : 'hLeftM', { d: s.days, f: fmt(Math.max(0, s.free)) });
     var prev = heroPrev && heroPrev.cls === cls ? heroPrev : null;
-    var h = savedCard(s) + '<section class="rz-hero ' + cls + '"><div class="rz-hl" id="hLbl">' + esc(lbl) + '</div><button type="button" class="rz-bigbtn" id="hBig" data-act="explain" aria-label="' + esc(lbl + ': ' + fmt(big) + ' ' + T('sum') + '. ' + T('hHow')) + '"><span class="rz-big"><span class="rz-bn" id="hNum">' + fmt(prev ? prev.big : big) + '</span><small> ' + T('sum') + '</small></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
+    var h = (inst.isTop() ? inst.cardHtml() : '') + savedCard(s) + '<section class="rz-hero ' + cls + '"><div class="rz-hl" id="hLbl">' + esc(lbl) + '</div><button type="button" class="rz-bigbtn" id="hBig" data-act="explain" aria-label="' + esc(lbl + ': ' + fmt(big) + ' ' + T('sum') + '. ' + T('hHow')) + '"><span class="rz-big"><span class="rz-bn" id="hNum">' + fmt(prev ? prev.big : big) + '</span><small> ' + T('sum') + '</small></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
       (s.free >= 0 ? '<div class="rz-bar" aria-hidden="true"><i id="hBar" style="transform:scaleX(' + (prev ? prev.ratio : 0) + ')"></i></div><div class="rz-used">' + esc(s.can >= 0 ? (pct > 0 ? T('hUsed', { p: pct }) : T('hUsed0')) + ' · ' + T('hNorm', { x: fmt(s.norm) }) : T('hNorm', { x: fmt(s.norm) })) + '</div>' : '') +
       (sub ? '<div class="rz-note">' + esc(sub) + '</div>' : '') + '<div class="rz-left">' + esc(left) + '</div>' + (s.mode === 'month' ? '<div class="rz-note sm">' + esc(T('hNoDate')) + '</div>' : '') + '</section>';
+    if (!inst.isTop()) h += inst.cardHtml();
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div><div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + (n.dismiss ? '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button>' : '') + '</div></div>'; });
     var up = K.upcoming(st, t, 3);
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('upT')) + '</div>' + (up.length ? up.map(function (b) { return billRow(b, true, false); }).join('') : '<div class="rz-mut">' + esc(T('noUp')) + '</div>') + '</section>';
@@ -271,7 +210,7 @@
     var big = document.documentElement.classList.contains('fs-big'), cur = isCyr() ? 'cyr' : lang;
     var row = function (act, ic, t1, t2, val) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + (val ? '<span class="v">' + esc(val) + '</span>' : ico('chev', 'r')) + '</button>'; };
     var h = '<h2 class="rz-h">' + esc(T('setT')) + '</h2><section class="rz-card">' + row('check', 'rep', T('sCheck'), T('sCheckH')) + row('income', 'inc', T('sInc'), T('sIncH')) + row('editreserve', 'shield', T('sRes'), T('sResH'), fmt(st.reserve) + ' ' + T('sum')) + '</section>' +
-      '<section class="rz-card">' + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
+      '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + row('export', 'tolov', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (cur === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (cur === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (cur === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
       '<section class="rz-card">' + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section>' +
@@ -296,43 +235,7 @@
     ({ today: renderToday, hist: renderHist, bills: renderBills, set: renderSet })[view]();
     main.classList.toggle('enter', enterNext); enterNext = false;
     main.scrollTop = sc;
-    var p = prefs(); if (view === 'today' && !p.tipsDone && !tipsOn && !sheetKind) setTimeout(function () { if (!tipsOn && st.setup && view === 'today' && !prefs().tipsDone && !sheetKind && !$('#rzOnb') .classList.contains('out')) tipsStart(0); }, 450);
-  }
-
-  /* ---------- toast / panel ---------- */
-  function toast(msg, undo, ok) {
-    var el = $('#rzToast'); clearTimeout(undoTimer);
-    el.innerHTML = (ok ? okCheck() : '') + '<span class="tm">' + esc(msg) + '</span>' + (undo ? '<button type="button" data-act="undo">' + esc(T('cancel')) + '</button>' : '');
-    el._undo = undo || null; el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-    undoTimer = setTimeout(hideToast, 5000);
-  }
-  function hideToast() { var el = $('#rzToast'); el.classList.remove('show'); setTimeout(function () { if (!el.classList.contains('show')) { el.hidden = true; el._undo = null; } }, 220); }
-  function openSheet(kind, html) {
-    var sh = $('#rzSheet'), bg = $('#rzBg'); sheetKind = kind;
-    sh.style.transform = ''; sh.style.transition = '';
-    sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; sh.hidden = false; bg.hidden = false; dpInit(); void sh.offsetWidth; sh.classList.add('open'); bg.classList.add('open');
-    var f = sh.querySelector('input:not([type=hidden]):not([type=checkbox]),select'); if (f && kind !== 'add') setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 260);
-  }
-  function closeSheet() {
-    var sh = $('#rzSheet'), bg = $('#rzBg'); if (sh.hidden) return; sh.style.transition = ''; sh.style.transform = ''; sh.classList.remove('open'); bg.classList.remove('open'); sheetKind = null;
-    setTimeout(function () { if (!sheetKind) { sh.hidden = true; bg.hidden = true; sh.innerHTML = ''; } }, reduce ? 0 : 260);
-  }
-  function shHead(title) { return '<div class="rz-sh-h"><b>' + esc(title) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>'; }
-  function fld(id, label, val, ph, extra) { return '<label class="rz-f" for="' + id + '"><span>' + esc(label) + '</span><input id="' + id + '" type="text" inputmode="numeric" autocomplete="off" data-fmt placeholder="' + esc(ph || '') + '" value="' + esc(val || '') + '"' + (extra || '') + '></label>'; }
-  function spaced(v) { var d = digits(v).replace(/^0+(?=\d)/, '').slice(0, 12); return d.replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
-
-  /* pastga tortib yopish (swipe down) */
-  var sw = null;
-  function swStart(e) {
-    var z = e.target.closest('.rz-grab,.rz-sh-h'); if (!z || e.target.closest('.rz-x') || $('#rzSheet').hidden) return;
-    sw = { y: e.clientY, t: performance.now(), dy: 0, id: e.pointerId, el: z }; try { z.setPointerCapture(e.pointerId); } catch (x) {}
-    var sh = $('#rzSheet'); sh.style.transition = 'none';
-  }
-  function swMove(e) { if (!sw || e.pointerId !== sw.id) return; sw.dy = Math.max(0, e.clientY - sw.y); $('#rzSheet').style.transform = 'translateY(' + sw.dy + 'px)'; }
-  function swEnd(e) {
-    if (!sw || e.pointerId !== sw.id) return; var s = sw, sh = $('#rzSheet'); sw = null; sh.style.transition = '';
-    var v = s.dy / Math.max(1, performance.now() - s.t);
-    if (s.dy > 110 || (s.dy > 40 && v > 0.5)) closeSheet(); else sh.style.transform = '';
+    var p = prefs(); if (view === 'today' && !p.tipsDone && !kit.tipsOn() && !kit.sheetKind()) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 450);
   }
 
   /* ---------- xarajat qo'shish / tahrirlash ---------- */
@@ -347,7 +250,7 @@
     }
     h += '<div class="rz-meta">' + (tx ? dpHtml('exDate', T('pickDate'), ex.date, 'exp', null, t) : '<div class="rz-seg sm"><button type="button" data-act="day" data-d="t" class="on">' + esc(T('today')) + '</button><button type="button" data-act="day" data-d="y">' + esc(T('yesterday')) + '</button></div>') +
       (ex.type === 'exp' ? '<input class="rz-notein" id="exNote" type="text" maxlength="120" placeholder="' + esc(T('notePh')) + '" value="' + esc(ex.note) + '">' : '') + '</div>';
-    h += '<div class="rz-pad">' + ['1', '2', '3', '4', '5', '6', '7', '8', '9', '000', '0', 'del'].map(function (k) { return '<button type="button" data-act="key" data-k="' + k + '"' + (k === 'del' ? ' aria-label="⌫"' : '') + '>' + (k === 'del' ? '⌫' : k) + '</button>'; }).join('') + '</div>';
+    h += kit.padHtml('int000');
     h += '<div class="rz-actions">' + (tx ? '<button type="button" class="rz-btn ghost danger" data-act="exdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="exSave" data-act="exsave"' + (ex.amount ? '' : ' disabled') + '>' + esc(T('save')) + '</button></div>';
     openSheet('add', h);
   }
@@ -384,7 +287,6 @@
   }
 
   /* ---------- tushum / tekshirish / sotib olsam-chi ---------- */
-  function flashEl(e) { if (!e) return; e.classList.add('err'); setTimeout(function () { e.classList.remove('err'); }, 600); try { if (e.focus && e.tagName === 'INPUT') e.focus({ preventScroll: true }); } catch (x) {} }
   function flash(sel) { flashEl($(sel)); }
   function openIncome() {
     openSheet('income', shHead(T('incT')) + fld('inAmt', T('incAmt'), '', '0') + dpHtml('inDate', T('incNext'), '', 'inc', K.addDays(todayStr(), 0)) + fld('inNext', T('nextIncAmt'), '', '') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="insave">' + esc(T('save')) + '</button></div>');
@@ -469,22 +371,8 @@
   }
 
   /* ---------- birinchi marta yo'l-yo'riq (3 qadam) ---------- */
-  var tipsOn = false, tipI = 0, TIPS = [['#hBig', 'tip1', 'below'], ['#rzFab', 'tip2', 'above'], ['.rz-tab[data-v=bills]', 'tip3', 'above']];
-  function tipsStart(i) { tipsOn = true; tipI = i || 0; tipsShow(); }
-  function tipsShow() {
-    var s = TIPS[tipI], layer = $('#rzTips'), el = s && $(s[0]);
-    if (!el) { tipsOn = false; layer.hidden = true; return; }
-    var r = el.getBoundingClientRect(), rr = root.getBoundingClientRect(), pad = 8, below = s[2] === 'below';
-    var pos = below ? 'top:' + Math.round(r.bottom - rr.top + pad + 14) + 'px' : 'bottom:' + Math.round(rr.bottom - r.top + pad + 14) + 'px';
-    var dots = TIPS.map(function (x, i) { return '<i class="' + (i === tipI ? 'on' : '') + '"></i>'; }).join('');
-    layer.innerHTML = '<div class="rz-spot" style="left:' + Math.round(r.left - rr.left - pad) + 'px;top:' + Math.round(r.top - rr.top - pad) + 'px;width:' + Math.round(r.width + pad * 2) + 'px;height:' + Math.round(r.height + pad * 2) + 'px;border-radius:' + (s[0] === '#rzFab' ? '50%' : '22px') + '"></div>' +
-      '<div class="rz-tipcard" role="dialog" aria-modal="true" style="' + pos + '"><p>' + esc(T(s[1])) + '</p><div class="f"><span class="rz-tdots" aria-label="' + esc(T('tipOf', { i: tipI + 1, n: TIPS.length })) + '">' + dots + '</span><button type="button" class="rz-btn primary sm" data-act="tipnext">' + esc(T('tipOk')) + '</button></div></div>';
-    layer.hidden = false; var b = layer.querySelector('button'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {}
-  }
-  function tipsNext() {
-    tipI++;
-    if (tipI >= TIPS.length) { prefs().tipsDone = true; save(); tipsOn = false; var l = $('#rzTips'); l.hidden = true; l.innerHTML = ''; var f = $('#rzFab'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} } else tipsShow();
-  }
+  var TIPS = [{ sel: '#hBig', key: 'tip1', pos: 'below' }, { sel: '#rzFab', key: 'tip2', pos: 'above', round: true }, { sel: '.rz-tab[data-v=bills]', key: 'tip3', pos: 'above' }];
+  function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#rzFab'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
 
   /* ---------- "Bu ilova haqida" (SEO matni sahifada qoladi, lekin ilova ochiq paytida ko'rinmaydi) ---------- */
   function aboutOpen(on) {
@@ -559,10 +447,11 @@
     if (!el) { if (lmenu && !lmenu.hidden && !e.target.closest('.rz-langwrap')) lmenu.hidden = true; return; }
     var a = el.getAttribute('data-act'), id = +el.getAttribute('data-id');
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
+    if (kit.act(a, el)) return;
     switch (a) {
       case 'tab': if (view !== el.getAttribute('data-v')) { view = el.getAttribute('data-v'); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
       case 'add': { var fb = $('#rzFab'); fb.classList.remove('pop'); void fb.offsetWidth; fb.classList.add('pop'); openExpense(); break; }
-      case 'key': { var k = el.getAttribute('data-k'); if (k === 'del') ex.amount = ex.amount.slice(0, -1); else if ((ex.amount + k).replace(/^0+/, '').length <= 11) ex.amount = (ex.amount + k).replace(/^0+(?=\d)/, '').replace(/^0$/, ''); exUpdate(); vib(5); break; }
+      case 'key': ex.amount = kit.padApply(ex.amount, el.getAttribute('data-k'), { max: 11 }); exUpdate(); vib(5); break;
       case 'cat': ex.cat = el.getAttribute('data-c'); $$('.rz-cat').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-c') === ex.cat); }); break;
       case 'day': ex.day = el.getAttribute('data-d'); $$('[data-act=day]').forEach(function (b) { b.classList.toggle('on', b === el); }); break;
       case 'exsave': exSave(); break;
@@ -587,23 +476,14 @@
       case 'export': doExport(); break;
       case 'import': doImport(); break;
       case 'wipe': wipe(); break;
-      case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; render(); break;
+      case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;
-      case 'tipnext': tipsNext(); break;
       case 'hidesaved': prefs().savedMsg.hide = true; commit(); break;
       case 'hide': { prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break; }
-      case 'install': { var pw = window.KalkiPwa; if (pw && pw.prompt) pw.prompt(); setTimeout(render, 300); break; }
       case 'font': { var big = el.getAttribute('data-f') === 'b'; document.documentElement.classList.toggle('fs-big', big); try { if (big) localStorage.setItem('kalki_fs', 'big'); else localStorage.removeItem('kalki_fs'); } catch (x) {} render(); break; }
       case 'langmenu': lmenu.hidden = !lmenu.hidden; break;
       case 'lang': { var l = el.getAttribute('data-l'), tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click(); break; }
       case 'mprev': case 'mnext': { var hm = histMonth || K.monthOf(todayStr()), p = K.parse(hm + '-01'); histMonth = K.monthOf(K.addMonthsDom(K.ymd(p.y, p.m, 1), a === 'mprev' ? -1 : 1, 1)); render(); break; }
-      case 'sheetclose': closeSheet(); break;
-      case 'undo': { var tt = $('#rzToast'), fn = tt._undo; hideToast(); if (fn) { fn(); vib(10); } break; }
-      /* sana tanlagich */
-      case 'dpq': dpSet(el.closest('.rz-dp'), qDate(el.getAttribute('data-q'))); break;
-      case 'dpday': dpSet(el.closest('.rz-dp'), el.getAttribute('data-d')); break;
-      case 'dpcal': { var dp = el.closest('.rz-dp'), cv = K.parse(dp.getAttribute('data-v')) || K.parse(todayStr()); dp._cal = dp._cal ? null : { y: cv.y, m: cv.m }; dpPaint(dp); break; }
-      case 'dpmon': { var dq = el.closest('.rz-dp'), c = dq._cal, s = +el.getAttribute('data-s'); c.m += s; if (c.m < 1) { c.m = 12; c.y--; } if (c.m > 12) { c.m = 1; c.y++; } dpPaint(dq); break; }
       /* onboarding */
       case 'obnext': obNext(); break;
       case 'obback': { obRead(); if (ob.step === 3 && ob.sub === 'form' && !ob.imp && !ob.bills.length) { ob.sub = 'ask'; ob.anim = 'b'; showOnb(); } else obGo(Math.max(1, ob.step - 1), 'b'); break; }
@@ -622,12 +502,10 @@
     if (t.hasAttribute && t.hasAttribute('data-fmt')) { var v = spaced(t.value); if (v !== t.value) t.value = v; }
     if (t.id === 'ckAmt') ckInfo(); else if (t.id === 'wiAmt') wiUpdate();
   });
-  root.addEventListener('pointerdown', swStart); root.addEventListener('pointermove', swMove); root.addEventListener('pointerup', swEnd); root.addEventListener('pointercancel', swEnd);
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (!$('#rzSheet').hidden) closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
+    if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (kit.sheetKind()) closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
   });
-  window.addEventListener('beforeinstallprompt', function () { setTimeout(function () { if (st && st.setup && view === 'today' && !tipsOn) render(); }, 80); });
   var lastDay = K.today();
   document.addEventListener('visibilitychange', function () { if (!document.hidden && st && st.setup) { var d = K.today(); if (d !== lastDay) { lastDay = d; heroPrev = null; render(); } } });
   try { new MutationObserver(function () { var scr = document.documentElement.getAttribute('data-script'); if (langNow() !== lang || scr !== root._scr) { root._scr = scr; render(); } }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang', 'data-lang', 'data-script'] }); } catch (e) {}
@@ -646,7 +524,7 @@
     if (location.hash === '#haqida') aboutOpen(true);
     window.__rozgor = { get state() { return st; }, render: render, K: K };
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
-    if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !sheetKind && !tipsOn) render(); });
+    if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

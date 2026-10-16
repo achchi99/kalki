@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '31a57bcc';   /* sw-version:auto */
+const SW_VERSION = '64733f1a';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -42,8 +42,22 @@ const ASSETS = [
   '/assets/prognoz.js',
   '/assets/nasiya-hisob.js',
   '/assets/rozgor-core.js',
+  '/assets/app-kit.js',
+  '/assets/app-install.js',
   '/assets/rozgor-app.js',
+  '/assets/kalkifit-core.js',
+  '/assets/kalkifit-app.js',
+  '/assets/kalkifit-gaplar.js',
+  '/data/masofalar.json',
+  '/data/qoshimchalar.json',
+  '/assets/css/appkit.css',
   '/assets/css/rozgor.css',
+  '/assets/css/kalkifit.css',
+  '/data/ovqatlar.json',
+  '/kalkifit.webmanifest',
+  '/assets/icons/kalkifit-192.png',
+  '/assets/icons/kalkifit-512.png',
+  '/assets/icons/kalkifit-apple-180.png',
   '/rozgor.webmanifest',
   '/ru/rozgor.webmanifest',
   '/assets/icons/rozgor-192.png',
@@ -104,6 +118,8 @@ const ASSETS = [
   '/ru/naqd-nasiya-kredit-kalkulyator',
   '/rozgor',
   '/ru/rozgor',
+  '/kalkifit',
+  '/ru/kalkifit',
   '/gisht-kalkulyator',
   '/ru/gisht-kalkulyator',
   '/grant-ololmadim',

@@ -62,7 +62,7 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
 
 // 6. bosh sahifa: render, qidiruv, yig'iladigan katalog, kategoriya ranglari
 { const p = await pg(1280, 900); await go(p, '/');
-  assert.equal(await p.locator('#catGrid .k-card').count(), 5); assert.equal(await p.locator('#popGrid .k-card').count(), 8); assert.equal(await p.locator('#catalog .k-card').count(), 45);
+  assert.equal(await p.locator('#catGrid .k-card').count(), 5); assert.equal(await p.locator('#popGrid .k-card').count(), 8); assert.equal(await p.locator('#catalog .k-card').count(), 46);
   assert.equal(await p.locator('h1').count(), 1);
   assert.equal(await p.evaluate(() => document.getElementById('allcalc').open), false, 'katalog yopiq bo\'lishi kerak');
   assert.equal(await p.evaluate(() => /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(document.body.innerText)), false, 'sahifada emoji bor');
@@ -101,7 +101,7 @@ log('RU: menyu (Калькуляторы | Документы | Статьи) uc
   assert.equal(await p.evaluate(() => !document.querySelector('.calc-grid #fbcall, .calc-grid #related, .calc-grid #xnav, .calc-grid #seoBlock')), true, 'pastki bloklar grid ichida');
   assert.equal(await p.locator('#related .k-card').count(), 5);
   const xn = await p.evaluate(() => ({ open: document.getElementById('xnav').open, links: document.querySelectorAll('#xnav a').length, groups: document.querySelectorAll('#xnav .xn-t').length }));
-  assert.equal(xn.open, false); assert.equal(xn.groups, 6); assert.equal(xn.links, 53, 'xnav havolalar soni ' + xn.links);
+  assert.equal(xn.open, false); assert.equal(xn.groups, 6); assert.equal(xn.links, 54, 'xnav havolalar soni ' + xn.links);
   log('tegishli kalkulyatorlar: 5 karta; "Barcha kalkulyatorlar" <details>: ' + xn.links + ' havola, ' + xn.groups + ' guruh (yopiq)');
   // #langCyr (ЎЗ tugmasi) — yagona ruxsat etilgan kirill belgi
   assert.equal(await p.evaluate(() => /[\u0400-\u04FF]/.test(document.body.innerText.replace(document.getElementById('langCyr').innerText, ''))), false, 'UZ sahifada kirill harf bor');
