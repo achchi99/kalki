@@ -39,6 +39,8 @@ T(miss.length === 0, 'manifest + apple-touch-icon barcha sahifa <head> da (bitta
 const cy = fs.readdirSync(path.join(ROOT, 'cyr')).filter((x) => x.endsWith('.html')); T(cy.every((f) => !/<script(?![^>]*type="application\/(ld\+)?json")[^>]*>/.test(fs.readFileSync(path.join(ROOT, 'cyr', f), 'utf8'))), '/cyr/: ijro etiladigan skript yo\'q (faqat <link>)', cy.length + ' sahifa');
 // 3) installability (CDP) va tugma
 const b = track(await chromium.launch()); let c = await b.newContext({ viewport: { width: 390, height: 800 }, serviceWorkers: 'allow' }); let p = await c.newPage();
+// «Yangiliklar» oynasi sinovlarga xalaqit bermasin: ikkala ilova uchun yangiliklar «ko'rilgan» deb belgilanadi (oyna o'zi test-yangilik.mjs da tekshiriladi)
+{ const nc0 = b.newContext.bind(b); b.newContext = async (o) => { const c = await nc0(o); await c.addInitScript(() => { try { for (const a of ['kalkifit', 'rozgor']) if (!localStorage.getItem('kalki_news_' + a)) localStorage.setItem('kalki_news_' + a, '{"shown":999,"read":999}'); } catch (e) {} }); return c; }; }
 await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.evaluate(() => navigator.serviceWorker.ready); await p.waitForTimeout(1500);
 const cdp = await c.newCDPSession(p); const inst = await cdp.send('Page.getInstallabilityErrors').catch((e) => ({ installabilityErrors: [{ errorId: 'cdp:' + e.message }] }));
 T(inst.installabilityErrors.length === 0, 'installability (Chrome CDP): xato yo\'q', JSON.stringify(inst.installabilityErrors.map((e) => e.errorId)));

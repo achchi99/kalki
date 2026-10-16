@@ -13,6 +13,8 @@ if (!BASE) { srv = http.createServer((q, r) => { let p = decodeURIComponent(q.ur
   if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
   await new Promise((ok) => srv.listen(0, ok)); BASE = 'http://localhost:' + srv.address().port; }
 const b = track(await chromium.launch()); let n = 0; const log = (m) => { n++; console.log('OK  ', m); };
+// «Yangiliklar» oynasi sinovlarga xalaqit bermasin: ikkala ilova uchun yangiliklar «ko'rilgan» deb belgilanadi (oyna o'zi test-yangilik.mjs da tekshiriladi)
+{ const nc0 = b.newContext.bind(b); b.newContext = async (o) => { const c = await nc0(o); await c.addInitScript(() => { try { for (const a of ['kalkifit', 'rozgor']) if (!localStorage.getItem('kalki_news_' + a)) localStorage.setItem('kalki_news_' + a, '{"shown":999,"read":999}'); } catch (e) {} }); return c; }; }
 const nb = (s) => String(s).replace(/ /g, ' ');
 const TODAY = K.today();
 function seed(o = {}) { const st = K.emptyState(); st.prefs = { tipsDone: o.tips ? false : true }; if (o.prefs) Object.assign(st.prefs, o.prefs); st.setup = true; st.created = Date.now() - (o.ageDays || 0) * 86400000; st.base = o.base != null ? o.base : 3000000; st.reserve = o.reserve != null ? o.reserve : 500000; if (o.income !== undefined) st.income = { date: o.income, amount: null }; (o.bills || []).forEach((x) => K.addBill(st, x)); (o.tx || []).forEach((x) => K.addTx(st, x)); if (o.lastBackup) st.lastBackup = o.lastBackup; return st; }
