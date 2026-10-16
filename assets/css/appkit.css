@@ -205,3 +205,22 @@ html[data-script=cyr] .rz-tab .l{display:none}html[data-script=cyr] .rz-tab .s{d
 @keyframes igBobL{0%,100%{transform:translateX(4px)}50%{transform:translateX(-4px)}}
 @media (prefers-reduced-motion:reduce){.inst-step,.ig-pulse,.ig-arrow{animation:none!important}}
 body.rz-standalone .inst,body.rz-standalone [data-inst]{display:none!important}
+
+/* ---------- iPhone: o'rnatish tanlovi va ma'lumot ko'chirish ekrani (app-install.js) ---------- */
+.inst-gate{z-index:75}
+.rz.inst-gating .rz-sheet{z-index:90}.rz.inst-gating .rz-bg{z-index:89}.rz.inst-gating .rz-toast{z-index:100}
+.inst-gbody{display:flex;flex-direction:column;justify-content:center;gap:12px;padding-bottom:20px}
+.inst-gic{width:64px;height:64px;border-radius:20px;background:var(--accsoft);color:var(--acc2);display:flex;align-items:center;justify-content:center}.inst-gic .rz-i{width:32px;height:32px}
+.inst-gfoot{flex-direction:column}.inst-gfoot .rz-btn{flex:none;width:100%;min-height:52px}
+.inst-gate textarea{width:100%;min-height:84px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:10px 12px;font:inherit;font-size:max(16px,1rem);resize:vertical}
+.inst-note{margin:0;font-size:var(--t-s,.9375rem);font-weight:700;background:var(--accsoft);border-radius:12px;padding:8px 12px}
+
+/* ---------- Tepadagi panel: qattiq fon, safe-area (iPhone'da xira gradient/blur yo'q) ---------- */
+html:has(body.rz-body),body.rz-body{background:#F1F2EE}
+.rz-top{height:calc(56px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);background-color:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+.rz-onb{padding-top:env(safe-area-inset-top,0px);background-color:var(--bg)}
+@media (max-width:640px){.rz-stage{background:#F1F2EE}}
+@media (prefers-color-scheme:dark){html:has(body.rz-body),body.rz-body{background:#0F1714}@media (max-width:640px){.rz-stage{background:#0F1714}}}
+body.rz-aboutopen .rz-about{padding-top:env(safe-area-inset-top,0px)}
+/* Tab sarlavhasi yuqori panelda allaqachon bor — sahifa ichidagi takror h2 faqat ekran o'quvchi uchun */
+.rz-main>h2.rz-h:first-child{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}

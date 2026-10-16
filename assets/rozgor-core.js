@@ -240,6 +240,7 @@
   function importState(text) {
     var o; try { o = JSON.parse(text); } catch (e) { return { ok: false, error: 'json' }; }
     if (!o || o.app !== 'kalki-rozgor' || !o.state) return { ok: false, error: 'format' };
+    var rs = o.state; if (typeof rs !== 'object' || Array.isArray(rs) || !(Array.isArray(rs.tx) || rs.base !== undefined || rs.balance !== undefined)) return { ok: false, error: 'state' };   // begona/bo'sh tuzilma holat bo'lib qolmasin
     var st = migrate(o.state); if (!st) return { ok: false, error: 'state' };
     return { ok: true, state: st };
   }

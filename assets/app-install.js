@@ -45,6 +45,10 @@
       s_chrShare: "Manzil qatoridagi «Ulashish» tugmasini bosing", s_fxMenu: "Pastdagi menyu (≡) tugmasini bosing",
       s_inMore: "O'ng tepadagi «⋯» tugmasini bosing", s_inOpen: "«{open}» ni tanlang", s_inMoreA: "O'ng tepadagi «⋮» tugmasini bosing", inGT: "Brauzerda oching", inGN: "Brauzerda ochilgach, o'rnatish tugmasi shu yerda paydo bo'ladi.",
       aT: "Brauzer menyusidan o'rnating", aS: "⋮ menyusini oching → «Ilovani o'rnatish» yoki «Bosh ekranga qo'shish».",
+      chT: "{app} qanday ishlatasiz?", chS: "iPhone'da Safari va bosh ekrandagi ilova ma'lumotlari ALOHIDA saqlanadi. Ilova qilib o'rnatsangiz, ma'lumotlaringiz bir joyda qoladi.", chInst: "Ilova qilib o'rnatish — tavsiya", chWeb: 'Brauzerda davom etish',
+      mgT: "Safari'da ma'lumot kiritgan edingizmi?", mgS: "Kiritgan bo'lsangiz, Safari'da «O'rnatish» ni bosganingizda ma'lumotlar nusxalangan edi. Ularni shu yerga ko'chirib oling.", mgGo: "Ko'chirish", mgNo: "Yo'q, yangidan boshlash", mgPaste: "Kodni shu yerga joylang", mgPasteGo: "Joylangan kodni ko'chirish", mgBusy: "Ko'chirilmoqda…", mgOk: "Ma'lumotlaringiz ko'chirildi",
+      eEmpty: "Nusxalangan kod topilmadi. Safari'da ilovani ochib «O'rnatish» ni bosing, so'ng bu yerga qayting.", eFmt: "Bu {app} kodi emas yoki buzilgan. Safari'da qaytadan nusxalang.", eApp: "Bu kod boshqa ilovaniki.", eSize: "Kod juda katta (200 KB dan oshdi).", eBad: "Kod buzilgan yoki eskirgan. Safari'da qaytadan nusxalang.", eClip: "Buferdan o'qishga ruxsat berilmadi. Kodni quyidagi maydonga joylang.",
+      cpOk: "Ma'lumotlaringiz nusxalandi — ilovani ochgach «Ko'chirish»ni bosing", cpNote: "Ma'lumotlaringiz nusxalandi. Ilovani bosh ekrandan ochgach «Ko'chirish» tugmasini bosing.", cpAgain: "Ma'lumotni qayta nusxalash", cpFail: "Nusxalab bo'lmadi — Men bo'limidan «Zaxira nusxa olish» ni ishlating.",
       lShare: 'Ulashish', lAddHome: "Bosh ekranga qo'shish", lAdd: "Qo'shish", lCancel: 'Bekor qilish', lCopy: 'Nusxa olish', lBook: "Xatcho'p", lPrint: 'Chop etish', lSafari: "Safari'da ochish", lChrome: "Chrome'da ochish", lExt: 'Tashqi brauzerda ochish', lRefresh: 'Yangilash', lCopyLink: 'Havolani nusxalash'
     },
     ru: {
@@ -57,6 +61,10 @@
       s_chrShare: 'Нажмите «Поделиться» в адресной строке', s_fxMenu: 'Нажмите кнопку меню (≡) внизу',
       s_inMore: 'Нажмите «⋯» справа вверху', s_inOpen: 'Выберите «{open}»', s_inMoreA: 'Нажмите «⋮» справа вверху', inGT: 'Откройте в браузере', inGN: 'Когда откроется браузер, кнопка установки появится здесь.',
       aT: 'Установите через меню браузера', aS: 'Откройте меню ⋮ → «Установить приложение» или «Добавить на главный экран».',
+      chT: 'Как вы будете пользоваться {app}?', chS: 'На iPhone данные в Safari и в приложении на главном экране хранятся ОТДЕЛЬНО. Если установить как приложение, данные останутся в одном месте.', chInst: 'Установить как приложение — рекомендуем', chWeb: 'Продолжить в браузере',
+      mgT: 'Вводили данные в Safari?', mgS: 'Если вводили, при нажатии «Установить» в Safari данные были скопированы. Перенесите их сюда.', mgGo: 'Перенести', mgNo: 'Нет, начать заново', mgPaste: 'Вставьте код сюда', mgPasteGo: 'Перенести вставленный код', mgBusy: 'Переносим…', mgOk: 'Данные перенесены',
+      eEmpty: 'Скопированный код не найден. Откройте приложение в Safari, нажмите «Установить» и вернитесь сюда.', eFmt: 'Это не код {app} или он повреждён. Скопируйте заново в Safari.', eApp: 'Этот код от другого приложения.', eSize: 'Код слишком большой (больше 200 КБ).', eBad: 'Код повреждён или устарел. Скопируйте заново в Safari.', eClip: 'Нет доступа к буферу обмена. Вставьте код в поле ниже.',
+      cpOk: 'Данные скопированы — после открытия приложения нажмите «Перенести»', cpNote: 'Данные скопированы. Откройте приложение с главного экрана и нажмите «Перенести».', cpAgain: 'Скопировать данные ещё раз', cpFail: 'Не удалось скопировать — используйте «Сделать резервную копию» в разделе «Я».',
       lShare: 'Поделиться', lAddHome: 'На экран «Домой»', lAdd: 'Добавить', lCancel: 'Отмена', lCopy: 'Скопировать', lBook: 'Закладка', lPrint: 'Печать', lSafari: 'Открыть в Safari', lChrome: 'Открыть в Chrome', lExt: 'Открыть во внешнем браузере', lRefresh: 'Обновить', lCopyLink: 'Копировать ссылку'
     }
   };
@@ -108,6 +116,33 @@
     return v === '26' ? ['saf26a', 'menu26', 'share', 'add'] : ['saf1', 'share', 'add'];
   }
 
+  /* ---------- ko'chirish kodi: butun holat → ixcham matn (deflate + base64url), serversiz ---------- */
+  var MAX_CODE = 300000, MAX_DECODED = 200 * 1024;
+  function toB64u(u8) { var s = ''; for (var i = 0; i < u8.length; i += 8192) s += String.fromCharCode.apply(null, u8.subarray(i, i + 8192)); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function fromB64u(t) { t = String(t).replace(/-/g, '+').replace(/_/g, '/'); while (t.length % 4) t += '='; var bin = atob(t), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
+  function plainCode(app, text) { return 'kalki1.' + app + '.p.' + toB64u(new TextEncoder().encode(text)); }   // sinxron (siqilmagan) — zaxira
+  function encodeCode(app, text) {                       // Promise<string>
+    var raw = new TextEncoder().encode(text);
+    if (typeof CompressionStream === 'undefined') return Promise.resolve('kalki1.' + app + '.p.' + toB64u(raw));
+    var cs = new CompressionStream('deflate-raw'), w = cs.writable.getWriter(); w.write(raw); w.close();
+    return new Response(cs.readable).arrayBuffer().then(function (b) { return 'kalki1.' + app + '.z.' + toB64u(new Uint8Array(b)); });
+  }
+  function decodeCode(app, code) {                       // Promise<{ok, text} | {ok:false, err}>
+    code = String(code == null ? '' : code).replace(/\s+/g, '');
+    if (!code) return Promise.resolve({ ok: false, err: 'eEmpty' });
+    if (code.length > MAX_CODE) return Promise.resolve({ ok: false, err: 'eSize' });
+    var m = /^kalki1\.([a-z]+)\.([zp])\.([A-Za-z0-9_-]+)$/.exec(code);
+    if (!m) return Promise.resolve({ ok: false, err: 'eFmt' });
+    if (m[1] !== app) return Promise.resolve({ ok: false, err: 'eApp' });
+    var u8; try { u8 = fromB64u(m[3]); } catch (e) { return Promise.resolve({ ok: false, err: 'eBad' }); }
+    var done = function (bytes) { if (bytes.length > MAX_DECODED) return { ok: false, err: 'eSize' }; try { return { ok: true, text: new TextDecoder('utf-8', { fatal: true }).decode(bytes) }; } catch (e) { return { ok: false, err: 'eBad' }; } };
+    if (m[2] === 'p') return Promise.resolve(done(u8));
+    if (typeof DecompressionStream === 'undefined') return Promise.resolve({ ok: false, err: 'eBad' });
+    var ds = new DecompressionStream('deflate-raw'), w = ds.writable.getWriter(); w.write(u8)['catch'](function () {}); w.close()['catch'](function () {});
+    var rd = ds.readable.getReader(), parts = [], total = 0;
+    return (function pump() { return rd.read().then(function (r) { if (r.done) { var all = new Uint8Array(total), o = 0; parts.forEach(function (c) { all.set(c, o); o += c.length; }); return done(all); } total += r.value.length; if (total > MAX_DECODED) { rd.cancel()['catch'](function () {}); return { ok: false, err: 'eSize' }; } parts.push(r.value); return pump(); }); })()['catch'](function () { return { ok: false, err: 'eBad' }; });
+  }
+
   /* ---------- komponent ---------- */
   function create(cfg) {
     var NAV = typeof navigator !== 'undefined' ? navigator : {}, WIN = typeof window !== 'undefined' ? window : {};
@@ -115,7 +150,7 @@
     var env = detect(NAV.userAgent, { platform: NAV.platform, maxTouchPoints: NAV.maxTouchPoints, standalone: standalone, telegram: !!(WIN.TelegramWebviewProxy || WIN.TelegramWebview) });
     var KEY = 'kalki_inst_' + cfg.app, deferred = null, S = load(), iosV = env.ios26 ? '26' : '18', manualWait = false;
     var inst = { env: env, detect: detect, state: function () { return S; } };
-    function load() { try { var o = JSON.parse(localStorage.getItem(KEY) || '{}'); return { nos: +o.nos || 0, later: +o.later || 0, res: o.res || '', ok: +o.ok || 0 }; } catch (e) { return { nos: 0, later: 0, res: '', ok: 0 }; } }
+    function load() { try { var o = JSON.parse(localStorage.getItem(KEY) || '{}'); return { nos: +o.nos || 0, later: +o.later || 0, res: o.res || '', ok: +o.ok || 0, choice: o.choice || '', mig: +o.mig || 0 }; } catch (e) { return { nos: 0, later: 0, res: '', ok: 0, choice: '', mig: 0 }; } }
     function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
     function L() { var lg = cfg.lang ? cfg.lang() : 'uz'; return D[lg === 'ru' ? 'ru' : 'uz']; }
     function changed() { if (cfg.onChange) cfg.onChange(); }
@@ -167,8 +202,9 @@
         var v = inapp && env.android ? 'a' : 'i', fig = STEPS[k](t, c, v, open), cap = fill({ saf1: t.s_share, saf26a: t.s_more, menu26: t.s_menuShare, fxmenu: t.s_fxMenu, fxmenu2: t.s_menuShare, chr1: t.s_chrShare, share: t.s_addhome, add: t.s_add, in1: v === 'a' ? t.s_inMoreA : t.s_inMore, in2: t.s_inOpen }[k], { open: open });
         return '<li class="inst-step" style="--i:' + i + '"><div class="inst-fig">' + fig + '</div><p><b class="inst-n">' + (i + 1) + '</b><span>' + esc(cap) + '</span></p></li>';
       }).join('');
-      return '<div class="inst-guide" data-inst="guide"><div class="rz-sh-h"><b>' + esc(inapp ? t.inGT : t.gT) + (who ? ' · ' + esc(who) : '') + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(t.x) + '">' + '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' + sw + '<ol class="inst-steps">' + steps + '</ol><p class="inst-s">' + esc(inapp ? t.inGN : fill(t.gNote, { name: cfg.name }) + (env.browser === 'chrome' || env.browser === 'firefox' ? ' ' + t.gOld : '')) + '</p><button type="button" class="rz-btn primary wide" data-act="sheetclose">' + esc(t.gClose) + '</button></div>';
+      return '<div class="inst-guide" data-inst="guide"><div class="rz-sh-h"><b>' + esc(inapp ? t.inGT : t.gT) + (who ? ' · ' + esc(who) : '') + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(t.x) + '">' + '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' + sw + (!inapp && inst.hasData() && env.ios ? '<p class="inst-note" role="status">' + esc(t.cpNote) + '</p><button type="button" class="rz-btn sm" data-act="instcopy">' + esc(t.cpAgain) + '</button>' : '') + '<ol class="inst-steps">' + steps + '</ol><p class="inst-s">' + esc(inapp ? t.inGN : fill(t.gNote, { name: cfg.name }) + (env.browser === 'chrome' || env.browser === 'firefox' ? ' ' + t.gOld : '')) + '</p><button type="button" class="rz-btn primary wide" data-act="sheetclose">' + esc(t.gClose) + '</button></div>';
     };
+    inst.refreshGuide = function () { var sh = document.getElementById('rzSheet'), g = sh && sh.querySelector('.inst-guide'); if (g) g.outerHTML = inst.guideHtml(); };
     inst.openGuide = function () { if (cfg.kit) cfg.kit.openSheet('install', inst.guideHtml(), { noFocus: true }); };
     inst.manualHtml = function () { var t = L(); return '<div class="inst-guide"><div class="rz-sh-h"><b>' + esc(t.aT) + '</b></div><p class="inst-s">' + esc(t.aS) + '</p><button type="button" class="rz-btn primary wide" data-act="sheetclose">' + esc(t.gClose) + '</button></div>'; };
     inst.openExternal = function () {                      // ichki brauzerdan chiqish
@@ -178,17 +214,72 @@
       setTimeout(function () { if (Date.now() - t0 < 4000 && !document.hidden) inst.openGuide(); }, 1400);   // chiqib bo'lmadi → ko'rsatma
     };
 
+    /* ---- iPhone: Safari va bosh ekrandagi ilova xotirasi ALOHIDA → ma'lumotni kod bilan ko'chirish ---- */
+    var copied = false;
+    inst.hasData = function () { return !!(cfg.hasData && cfg.hasData()); };
+    inst.copyData = function () {                       // foydalanuvchi bosishi ichida chaqiriladi; Promise<boolean>
+      if (!inst.hasData()) return Promise.resolve(false);
+      var text; try { text = cfg.exportText(); } catch (e) { return Promise.resolve(false); }
+      var ok = function () { copied = true; if (cfg.kit) cfg.kit.toast(L().cpOk, null, true); return true; };
+      var bad = function () { if (cfg.kit) cfg.kit.toast(L().cpFail); return false; };
+      var legacy = function () { try { var ta = document.createElement('textarea'); ta.value = plainCode(cfg.app, text); ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px'; document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, ta.value.length); var r = document.execCommand('copy'); ta.remove(); return r ? ok() : bad(); } catch (e) { return bad(); } };
+      var nav = NAV.clipboard;
+      if (nav && WIN.ClipboardItem && nav.write) {      // Safari: Promise bilan — bosish "ruxsati" asinxron siqish davomida yo'qolmaydi
+        try { var item = new WIN.ClipboardItem({ 'text/plain': encodeCode(cfg.app, text).then(function (c) { return new Blob([c], { type: 'text/plain' }); }) }); return nav.write([item]).then(ok, function () { return nav.writeText ? nav.writeText(plainCode(cfg.app, text)).then(ok, legacy) : legacy(); }); } catch (e) {}
+      }
+      if (nav && nav.writeText) return nav.writeText(plainCode(cfg.app, text)).then(ok, legacy);
+      return Promise.resolve(legacy());
+    };
+    inst.copiedNow = function () { return copied; };
+    function gateMode() {
+      if (!cfg.root || (cfg.hasData && cfg.hasData())) return '';
+      if (env.ios && env.kind === 'standalone' && !S.mig) return 'migrate';
+      if (env.ios && env.kind === 'ios' && S.choice !== 'browser') return 'choice';
+      return '';
+    }
+    function gateClose() { var g = document.getElementById('rzGate'); if (g) g.remove(); if (cfg.root) cfg.root.classList.remove('inst-gating'); if (cfg.onGate) cfg.onGate(); }
+    function gateHtml(mode, errKey, paste) {
+      var t = L(), appN = (L() === D.ru ? (cfg.nameRu || cfg.name) : (cfg.nameAcc || cfg.name)), ic = '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg>';
+      if (mode === 'choice') return '<div class="rz-ob-top"><span></span></div><div class="rz-ob-body inst-gbody"><div class="inst-gic" aria-hidden="true">' + ic + '</div><h2 class="rz-q">' + esc(fill(t.chT, { app: appN })) + '</h2><p class="rz-p">' + esc(t.chS) + '</p></div><div class="rz-ob-foot inst-gfoot"><button type="button" class="rz-btn primary" data-act="gateinst">' + esc(t.chInst) + '</button><button type="button" class="rz-btn ghost" data-act="gateweb">' + esc(t.chWeb) + '</button></div>';
+      return '<div class="rz-ob-top"><span></span></div><div class="rz-ob-body inst-gbody"><div class="inst-gic" aria-hidden="true">' + ic + '</div><h2 class="rz-q">' + esc(t.mgT) + '</h2><p class="rz-p">' + esc(t.mgS) + '</p>' + (errKey ? '<p class="rz-p warn" role="alert" id="mgErr">' + esc(fill(t[errKey] || t.eBad, { app: (L() === D.ru ? (cfg.nameRu || cfg.name) : cfg.name) })) + '</p>' : '') + (paste ? '<label class="rz-f" for="mgPaste"><span>' + esc(t.mgPaste) + '</span><textarea id="mgPaste" rows="3" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea></label>' : '') + '</div><div class="rz-ob-foot inst-gfoot"><button type="button" class="rz-btn primary" data-act="' + (paste ? 'gatepaste' : 'gatemig') + '" id="mgGo">' + esc(paste ? t.mgPasteGo : t.mgGo) + '</button><button type="button" class="rz-btn ghost" data-act="gateno">' + esc(t.mgNo) + '</button></div>';
+    }
+    var gMode = '', gPaste = false;
+    inst.gate = function () {                            // ilova ishga tushganda (shell'dan keyin) chaqiriladi; true = ekran ko'rsatildi
+      gMode = gateMode(); if (!gMode || typeof document === 'undefined') return false;
+      var g = document.getElementById('rzGate'); if (!g) { g = document.createElement('div'); g.id = 'rzGate'; g.className = 'rz-onb inst-gate'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); cfg.root.appendChild(g); }
+      cfg.root.classList.add('inst-gating'); g.innerHTML = gateHtml(gMode, '', false); gPaste = false; return true;
+    };
+    inst.gateActive = function () { return !!document.getElementById('rzGate'); };
+    function gateShow(err, paste) { var g = document.getElementById('rzGate'); if (!g) return; gPaste = !!paste; g.innerHTML = gateHtml(gMode, err, gPaste); var ta = g.querySelector('textarea'); if (ta) try { ta.focus({ preventScroll: true }); } catch (e) {} }
+    function runImport(code) {
+      var b = document.getElementById('mgGo'); if (b) { b.disabled = true; b.textContent = L().mgBusy; }
+      return decodeCode(cfg.app, code).then(function (r) {
+        if (!r.ok) { gateShow(r.err, true); return false; }
+        var res; try { res = cfg.importText(r.text); } catch (e) { res = null; }
+        if (!res || !res.ok) { gateShow('eFmt', true); return false; }
+        S.mig = Date.now(); save(); try { cfg.applyState(res.state); } catch (e) {} gateClose(); if (cfg.kit) cfg.kit.toast(L().mgOk, null, true); return true;
+      });
+    }
+    inst.importCode = function (code) { return decodeCode(cfg.app, code).then(function (r) { if (!r.ok) return { ok: false, err: r.err }; var res = cfg.importText(r.text); return res && res.ok ? { ok: true, state: res.state } : { ok: false, err: 'eFmt' }; }); };
+
     /* ---- hodisalar ---- */
     inst.act = function (a, el) {
-      if (a === 'inst') { if (!inst.prompt()) inst.openGuide(); return true; }
-      if (a === 'instguide') { if (inst.mode() === 'manual') cfg.kit.openSheet('install', inst.manualHtml(), { noFocus: true }); else inst.openGuide(); return true; }
-      if (a === 'instopen') { inst.openExternal(); return true; }
+      var iosCopy = env.ios && inst.hasData();
+      if (a === 'inst') { if (!inst.prompt()) { if (iosCopy) inst.copyData(); inst.openGuide(); } return true; }
+      if (a === 'instguide') { if (inst.mode() === 'manual') cfg.kit.openSheet('install', inst.manualHtml(), { noFocus: true }); else { if (iosCopy) inst.copyData(); inst.openGuide(); } return true; }
+      if (a === 'instopen') { if (iosCopy) inst.copyData(); inst.openExternal(); return true; }
+      if (a === 'instcopy') { inst.copyData().then(function () { inst.refreshGuide(); }); return true; }
+      if (a === 'gateinst') { inst.openGuide(); return true; }
+      if (a === 'gateweb') { S.choice = 'browser'; save(); gateClose(); return true; }
+      if (a === 'gateno') { S.mig = Date.now(); save(); gateClose(); return true; }
+      if (a === 'gatemig') { var nav = NAV.clipboard; if (!nav || !nav.readText) { gateShow('eClip', true); return true; } nav.readText().then(function (t) { if (!String(t || '').trim()) { gateShow('eEmpty', true); return; } runImport(t); }, function () { gateShow('eClip', true); }); return true; }
+      if (a === 'gatepaste') { var ta = document.getElementById('mgPaste'); runImport(ta ? ta.value : ''); return true; }
       if (a === 'instlater') { inst.later(); return true; }
       if (a === 'instv') { iosV = el.getAttribute('data-v') === '26' ? '26' : '18'; var sh = $('#rzSheet'); if (sh && sh.querySelector('.inst-guide')) { var g = sh.querySelector('.inst-guide'); g.outerHTML = inst.guideHtml(); } return true; }
       return false;
     };
     if (typeof document !== 'undefined') {
-      document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-act^=inst]'); if (b && inst.act(b.getAttribute('data-act'), b)) { e.preventDefault(); } });
+      document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-act^=inst],[data-act^=gate]'); if (b && inst.act(b.getAttribute('data-act'), b)) { e.preventDefault(); } });
       WIN.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; changed(); });
       WIN.addEventListener('appinstalled', function () { deferred = null; S.ok = Date.now(); S.res = 'accepted'; save(); if (cfg.kit && cfg.kit.sheetKind() === 'install') cfg.kit.closeSheet(); if (cfg.kit) cfg.kit.toast(L().done, null, true); changed(); });
       if (env.kind === 'android') setTimeout(function () { if (!deferred && !S.ok) { manualWait = true; changed(); } }, 4000);
@@ -196,5 +287,5 @@
     }
     return inst;
   }
-  return { create: create, detect: detect, intentUrl: intentUrl, safariUrl: safariUrl, STEPS: STEPS, D: D };
+  return { create: create, encodeCode: encodeCode, decodeCode: decodeCode, plainCode: plainCode, detect: detect, intentUrl: intentUrl, safariUrl: safariUrl, STEPS: STEPS, D: D };
 });

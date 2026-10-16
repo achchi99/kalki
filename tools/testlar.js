@@ -58,7 +58,7 @@ const ALL = [
   T('menyu-hover', D + 'test-menyu-hover.mjs', { t: 60 }),
   T('sodda', D + 'test-sodda.mjs', { t: 70 }),
   T('rozgor-core', D + 'test-rozgor-core.mjs', { t: 15 }), T('rozgor', D + 'test-rozgor.mjs', { t: 90 }),
-  T('kalkifit-core', D + 'test-kalkifit-core.mjs', { t: 20 }), T('kalkifit-api', D + 'test-kalkifit-api.mjs', { t: 5 }), T('kalkifit', D + 'test-kalkifit.mjs', { t: 250 }), T('install', D + 'test-install.mjs', { t: 90 }),   // KalkiFit ilovasi: hisob (5 soat mintaqasi), AI endpoint, Playwright
+  T('kalkifit-core', D + 'test-kalkifit-core.mjs', { t: 20 }), T('kalkifit-api', D + 'test-kalkifit-api.mjs', { t: 5 }), T('kalkifit', D + 'test-kalkifit.mjs', { t: 250 }), T('install', D + 'test-install.mjs', { t: 90 }), T('migrate', D + 'test-migrate.mjs', { t: 120 }), T('ilovalar-ui', D + 'test-ilovalar-ui.mjs', { t: 60 }),   // KalkiFit ilovasi: hisob (5 soat mintaqasi), AI endpoint, Playwright
     // Ro'zg'or ilovasi: hisob (5 soat mintaqasi) va Playwright   // oila-byudjet: sodda oqim (390px), saqlash/ulashish moslik   // yuqori menyu dropdown: kursor sekin tushganda yopilmasligi (nav.js / site.css)
   T('links-runtime', D + 'test-links-runtime.mjs'), T('download', D + 'test-download.mjs'),
   T('verify-404', 'tools/verify-404.js', { t: 20 }),
@@ -85,7 +85,7 @@ function changedFiles() {
 
 /* assets/<modul>.js -> shu modulning testlari. Ro'yxatda YO'Q assets/*.js — umumiy hisoblanadi (to'liq to'plam). */
 const MODULE_TESTS = {
-  'assets/nasiya-hisob.js': ['nasiya'], 'assets/rozgor-core.js': ['rozgor-core', 'rozgor'], 'assets/rozgor-app.js': ['rozgor'], 'assets/app-install.js': ['install', 'kalkifit', 'rozgor'], 'assets/css/rozgor.css': ['rozgor'], 'assets/kalkifit-core.js': ['kalkifit-core', 'kalkifit'], 'assets/kalkifit-app.js': ['kalkifit'], 'assets/css/kalkifit.css': ['kalkifit'], 'assets/app-kit.js': ['rozgor', 'kalkifit'], 'assets/css/appkit.css': ['rozgor', 'kalkifit'], 'data/ovqatlar.json': ['kalkifit-core', 'kalkifit'], 'tools/ovqatlar-build.js': ['kalkifit-core'], 'functions/api/kalkifit.js': ['kalkifit-api'], 'assets/mode-tip.js': ['modetip'], 'assets/elektr-tarif.js': ['elektr', 'node-testlar'], 'assets/gaz-tarif.js': ['gaz', 'node-testlar'],
+  'assets/nasiya-hisob.js': ['nasiya'], 'assets/rozgor-core.js': ['rozgor-core', 'rozgor'], 'assets/rozgor-app.js': ['rozgor'], 'assets/app-install.js': ['install', 'migrate', 'kalkifit', 'rozgor'], 'assets/css/appkit.css': ['rozgor', 'kalkifit', 'ilovalar-ui'], 'assets/css/rozgor.css': ['rozgor'], 'assets/kalkifit-core.js': ['kalkifit-core', 'kalkifit'], 'assets/kalkifit-app.js': ['kalkifit'], 'assets/css/kalkifit.css': ['kalkifit'], 'assets/app-kit.js': ['rozgor', 'kalkifit'], 'assets/css/appkit.css': ['rozgor', 'kalkifit'], 'data/ovqatlar.json': ['kalkifit-core', 'kalkifit'], 'tools/ovqatlar-build.js': ['kalkifit-core'], 'functions/api/kalkifit.js': ['kalkifit-api'], 'assets/mode-tip.js': ['modetip'], 'assets/elektr-tarif.js': ['elektr', 'node-testlar'], 'assets/gaz-tarif.js': ['gaz', 'node-testlar'],
   'assets/tier-bar.js': ['elektr', 'gaz'], 'assets/prognoz.js': ['prognoz', 'elektr', 'gaz', 'node-testlar'], 'assets/konditsioner.js': ['konditsioner', 'node-testlar'],
   'assets/translit.js': ['cyr', 'node-testlar'], 'assets/cyr.js': ['cyr'], 'assets/pwa-install.js': ['pwa'], 'assets/sw-boot.js': ['sw', 'pwa'],
   'assets/avto-rasm.js': ['avto-elektro', 'node-testlar'], 'assets/hisobsiyosati.js': ['golden:hisob-siyosati-generatori'], 'assets/csvexport.js': ['download'],
@@ -93,7 +93,7 @@ const MODULE_TESTS = {
   'assets/datanote.js': [], 'assets/partners.js': [], 'assets/tgcta.js': [], 'assets/crosslink.js': ['links-runtime']
 };
 /* sahifaning o'ziga xos testi: sahifa o'zgarsa shu test ham tanlanadi */
-const PAGE_TESTS = { 'rozgor': ['rozgor', 'rozgor-core'], 'kalkifit': ['kalkifit', 'kalkifit-core'], 'kaloriya-kalkulyator': ['kalkifit'], 'oila-byudjet-kalkulyator': ['sodda', 'rozgor'], 'naqd-nasiya-kredit-kalkulyator': ['nasiya'] };
+const PAGE_TESTS = { 'index': ['ilovalar-ui'], 'rozgor': ['rozgor', 'rozgor-core'], 'kalkifit': ['kalkifit', 'kalkifit-core'], 'kaloriya-kalkulyator': ['kalkifit'], 'oila-byudjet-kalkulyator': ['sodda', 'rozgor'], 'naqd-nasiya-kredit-kalkulyator': ['nasiya'] };
 /* Bularning birortasi o'zgarsa — umumiy ta'sir: test:toliq (CLAUDE.md) */
 const UMUMIY = [/^tools\/site-chrome\.js$/, /^assets\/css\/(?!rozgor\.css|appkit\.css|kalkifit\.css)/, /^sw\.js$/, /^tools\/prerender\.js$/, /^assets\/tarif-core\.js$/, /^assets\/(nav|lang|footer-lang|calc-v2|answerbox|docgen|icons)\./, /^tools\/render\.js$/, /^tools\/chunked\.js$/, /^tools\/test-cleanup\.cjs$/, /^tools\/dizayn\/parallel\.mjs$/, /^package\.json$/];
 const slugOf = (f) => { const m = /^(?:ru\/|cyr\/)?([a-z0-9-]+)\.html$/.exec(f); return m ? m[1] : null; };

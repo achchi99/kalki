@@ -292,7 +292,7 @@ try {
   log('26. Qo\'shimchalar: har kartada 1–3 «kim uchun» guruh (Kuchli/O\'rtacha/Kam/Tavsiya etilmaydi), ro\'yxatda eng yuqori guruh bahosi; shaxsiy doza yo\'q; foliy/temir/B12/omega-3/kreatin/D baholari to\'g\'ri');
 
   /* ---- 27. tez bosish: iPhone — klaviaturada «1» «1» «1» 80 ms oraliqda → 111, zoom o'zgarmaydi; touch-action; input ≥ 16 px; viewport'da user-scalable=no yo'q ---- */
-  { const { devices } = await import('playwright'); const c = await b.newContext({ ...devices['iPhone 13'], serviceWorkers: 'block' }); const q = await c.newPage(); q.errs = []; q.on('pageerror', (e) => q.errs.push(String(e)));
+  { const { devices } = await import('playwright'); const c = await b.newContext({ ...devices['iPhone 13'], serviceWorkers: 'block' }); await c.addInitScript(() => { try { localStorage.setItem('kalki_inst_kalkifit', JSON.stringify({ choice: 'browser' })); } catch (e) {} }); const q = await c.newPage(); q.errs = []; q.on('pageerror', (e) => q.errs.push(String(e)));
     await q.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await q.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await q.waitForTimeout(600);
     assert.doesNotMatch(await q.locator('meta[name=viewport]').getAttribute('content'), /maximum-scale|user-scalable/i, 'viewport cheklanmagan (qulaylik)');
     await q.click('[data-act=obsex][data-v=m]'); await q.click('[data-act=obnext]'); await q.waitForTimeout(500);

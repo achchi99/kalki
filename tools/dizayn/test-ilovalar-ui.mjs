@@ -1,0 +1,49 @@
+// Tepadagi panel (qattiq fon, safe-area), «Zaxira nusxa» yozuvlari, bosh sahifadagi «Yangi ilovalar» bloki (UZ/ЎЗ/RU, 390 va 1280) — KalkiFit va Ro'zg'or.
+import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
+import { chromium, devices } from 'playwright';
+import { track } from '../test-cleanup.cjs';
+const require = createRequire(import.meta.url);
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
+const KF = require(path.join(ROOT, 'assets/kalkifit-core.js')); const RZ = require(path.join(ROOT, 'assets/rozgor-core.js')); const TODAY = KF.dates.today();
+const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png' };
+const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; if (p === '/ru/') p = '/ru/index'; const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
+await new Promise((ok) => srv.listen(0, ok)); const BASE = process.env.INSTALL_BASE || 'http://localhost:' + srv.address().port;
+const b = track(await chromium.launch()); let n = 0; const log = (m) => console.log('OK  ', ++n + '.', m);
+function kfState() { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 5 * 86400000; st.prefs = { tipsDone: true }; st.profile = { sex: 'm', preg: false, age: 30, height: 175, weight: 80, act: 3, goal: 'lose', goalWeight: null }; KF.addWeight(st, TODAY, 80); return st; }
+function rzState() { const st = RZ.emptyState(); st.prefs = { tipsDone: true }; st.setup = true; st.created = Date.now() - 5 * 86400000; st.base = 3000000; st.reserve = 500000; st.income = RZ.addDays(TODAY, 12); return st; }
+const APPS = { kalkifit: { key: 'kalki_fit', st: kfState, tab: 'me' }, rozgor: { key: 'kalki_rozgor', st: rzState, tab: 'set' } };
+async function open(url, { state, key, scheme = 'light', ios = true, w = 390 } = {}) { const c = await b.newContext(ios ? { ...devices['iPhone 13'], colorScheme: scheme, serviceWorkers: 'block' } : { viewport: { width: w, height: 800 }, colorScheme: scheme, serviceWorkers: 'block' });
+  await c.addInitScript((o) => { try { if (o.state && !localStorage.getItem(o.key)) localStorage.setItem(o.key, JSON.stringify(o.state)); localStorage.setItem('kalki_inst_x', '{}'); } catch (e) {} }, { state, key });
+  const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.abort()); await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
+const T = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
+const opaque = (css) => { const m = /rgba?\(([^)]+)\)/.exec(css); if (!m) return false; const a = m[1].split(',').map((x) => parseFloat(x)); return a.length < 4 || a[3] === 1; };
+try {
+  const cssText = fs.readFileSync(path.join(ROOT, 'assets/css/appkit.css'), 'utf8');
+  assert.match(cssText, /\.rz-top\{[^}]*padding-top:env\(safe-area-inset-top/); assert.match(cssText, /\.rz-onb\{padding-top:env\(safe-area-inset-top/); assert.doesNotMatch(cssText.replace(/\.rz-bg\{[^}]*\}/, ''), /\.rz-top[^{]*\{[^}]*(?<!-webkit-)backdrop-filter:(?!none)/);
+  for (const app of ['kalkifit', 'rozgor']) { const A = APPS[app];
+    for (const scheme of ['light', 'dark']) {
+      let p = await open('/' + app, { state: A.st(), key: A.key, scheme }); const top = await p.evaluate(() => { const t = document.querySelector('.rz-top'), s = document.querySelector('.rz-stage'), cs = getComputedStyle(t), ss = getComputedStyle(s); return { bg: cs.backgroundColor, bf: cs.backdropFilter, img: cs.backgroundImage, stageImg: ss.backgroundImage, stageBg: ss.backgroundColor, h: t.getBoundingClientRect().height, htmlBg: getComputedStyle(document.documentElement).backgroundColor }; });
+      assert.ok(opaque(top.bg), app + ' ' + scheme + ': yuqori panel fon rangi qattiq: ' + top.bg); assert.ok(/none|^$/.test(top.bf || 'none'), 'blur yo\'q'); assert.equal(top.img, 'none', 'gradient yo\'q'); assert.equal(top.stageImg, 'none', 'telefonda atrof gradienti yo\'q (qattiq fon)'); assert.ok(opaque(top.stageBg) && opaque(top.htmlBg)); assert.ok(top.h >= 56);
+      const mainTop = await p.evaluate(() => document.querySelector('#rzMain').getBoundingClientRect().top - document.querySelector('.rz-top').getBoundingClientRect().bottom); assert.ok(mainTop >= 0, 'kontent panel ostiga kirmaydi'); await p.context().close();
+      p = await open('/' + app, { scheme, ios: false }); const ob = await p.evaluate(() => { const o = document.querySelector('#rzOnb'); const q = o.querySelector('.rz-q'); const cs = getComputedStyle(o); return { bg: cs.backgroundColor, q: q ? q.getBoundingClientRect().top : -1, vis: !o.hidden }; }); assert.ok(opaque(ob.bg)); assert.ok(ob.vis);
+      if (app === 'rozgor') { assert.ok(ob.q >= 56, 'onboarding sarlavhasi to\'liq ko\'rinadi'); } else { await p.click('[data-act=obsex][data-v=m]'); await p.click('[data-act=obnext]'); await p.click('[data-act=key][data-k="3"]'); await p.click('[data-act=key][data-k="0"]'); await p.click('[data-act=obnext]'); await p.waitForTimeout(600); const q = await p.evaluate(() => { const e = document.querySelector('#rzOnb .rz-q'); const r = e.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, txt: e.textContent, clip: getComputedStyle(e).visibility, op: getComputedStyle(e).opacity }; }); assert.ok(q.top >= 56 && q.op === '1', 'sarlavha to\'liq ko\'rinadi: ' + JSON.stringify(q)); assert.match(q.txt, /Bo'yingiz necha sm\?|yingiz/); }
+      await p.context().close(); }
+    log(app + ': yuqori panel va onboarding fon rangi qattiq (yorug\'/tungi), blur/gradient yo\'q, atrof (stage) telefonda qattiq, safe-area-inset-top padding, kontent panel ostiga kirmaydi, onboarding sarlavhasi to\'liq ko\'rinadi');
+    /* yozuvlar */
+    for (const [lang, exp, imp, bad] of [['', 'Zaxira nusxa olish', 'Zaxira nusxadan tiklash', /JSON|yuklab olish|Fayldan tiklash/], ['ru', 'Сделать резервную копию', 'Восстановить из резервной копии', /JSON|Скачать данные|из файла/], ['cyr', 'Захира нусха олиш', 'Захира нусхадан тиклаш', /JSON|юклаб олиш|Файлдан/]]) {
+      const p = await open((lang === 'ru' ? '/ru/' : '/') + app + (lang === 'cyr' ? '?lang=cyr' : ''), { state: A.st(), key: A.key }); await p.click(`[data-act=tab][data-v=${A.tab}]`); await p.waitForTimeout(400); const ex = await T(p, '[data-act=export]'), im = await T(p, '[data-act=import]');
+      assert.equal(ex, exp, app + ' ' + lang); assert.equal(im, imp); assert.doesNotMatch(ex + im, bad); await p.context().close(); }
+    log(app + ': «Zaxira nusxa olish» / «Zaxira nusxadan tiklash» (UZ, ЎЗ, RU) — JSON/«yuklab olish» yo\'q');
+  }
+  /* bosh sahifa: Yangi ilovalar */
+  for (const [url, lang] of [['/', 'uz'], ['/ru/', 'ru'], ['/?lang=cyr', 'cyr']]) for (const [w, ios] of [[390, true], [1280, false]]) {
+    const p = await open(url, { ios, w }); const blk = await T(p, '#yangi-ilovalar'); assert.ok(blk, lang + ' blok bor'); assert.equal(await p.locator('#yangi-ilovalar .app-card').count(), 2);
+    const exp = { uz: [/Yangi ilovalar/, /KalkiFit/, /Ro'zg'or/, /Ochish/], ru: [/Новые приложения/, /KalkiFit/, /Рузгор/, /Открыть/], cyr: [/Янги иловалар/, /KalkiFit/, /Рўзғор/, /Очиш/] }[lang]; for (const re of exp) assert.match(blk, re, lang);
+    if (lang === 'ru') assert.doesNotMatch(blk.replace(/KalkiFit/g, ''), /[A-Za-z]{3,}/); if (lang === 'cyr') assert.doesNotMatch(blk.replace(/KalkiFit/g, ''), /[A-Za-z]{3,}/);
+    const hrefs = await p.locator('#yangi-ilovalar .app-card').evaluateAll((a) => a.map((x) => new URL(x.href).pathname)); assert.deepEqual(hrefs, lang === 'ru' ? ['/ru/kalkifit', '/ru/rozgor'] : ['/kalkifit', '/rozgor'], lang + ' havolalar: ' + hrefs);
+    const geo = await p.evaluate(() => { const hero = document.querySelector('.hero2').getBoundingClientRect(), s = document.querySelector('#yangi-ilovalar').getBoundingClientRect(), cats = document.querySelector('#kategoriyalar').getBoundingClientRect(), cards = [...document.querySelectorAll('.app-card')].map((c) => c.getBoundingClientRect()), imgs = [...document.querySelectorAll('.app-ic')].map((i) => i.naturalWidth); return { heroB: hero.bottom + scrollY, sTop: s.top + scrollY, catsTop: cats.top + scrollY, w: cards.map((c) => Math.round(c.width)), h: cards.map((c) => Math.round(c.height)), imgs, vw: innerWidth, sw: document.documentElement.scrollWidth }; });
+    assert.ok(geo.sTop >= geo.heroB - 1 && geo.sTop < geo.catsTop, 'hero ostida, kategoriyalar tepasida'); assert.ok(geo.imgs.every((x) => x >= 64), 'ikonkalar yuklandi'); assert.ok(geo.sw <= geo.vw, 'gorizontal scroll yo\'q'); if (w === 390) assert.ok(geo.w.every((x) => x >= 340), 'katta kartalar (to\'liq kenglik)'); else assert.ok(geo.w[0] > 400);
+    assert.deepEqual(p.errs, []); await p.context().close(); }
+  log('Bosh sahifa: hero ostida «Yangi ilovalar» — KalkiFit va Ro\'zg\'or katta kartalar (ikonka, jumla, «Ochish»), UZ/ЎЗ/RU, 390 va 1280, havolalar (RU: /ru/…), gorizontal scroll yo\'q');
+} finally { await b.close(); srv.close(); }
+console.log(`\n${n} ta tekshiruv guruhi o'tdi`);

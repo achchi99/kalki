@@ -496,7 +496,8 @@
     var run = 0, d = t, sum = 0; while (run < 7) { var r = dayStats(ctx, d); if (r.state === 'none' || r.eaten <= r.limit) break; run++; sum += r.eaten; sum += 0; d = D.addDays(d, -1); }
     if (run >= 3) { var avg = Math.round(sum / run), lsum = 0, dd = t; for (var i = 0; i < run; i++) { lsum += dayStats(ctx, dd).limit; dd = D.addDays(dd, -1); } return pickLine(ctx, 'over_neutral', { avg: avg, pct: Math.round((sum / lsum - 1) * 100) }, 'over_neutral'); }
     if (eaten > lim) return pickLine(ctx, 'over', { over: eaten - lim }, 'over');
-    if (!x.steps && hour >= 13) return pickLine(ctx, 'zero_steps', {}, 'zero_steps');
+    var fresh = st.created && (Date.now() - st.created) < 24 * 3600 * 1000;      // yangi foydalanuvchining birinchi kunida «qadam 0» hazili yo'q
+    if (!x.steps && hour >= 13 && !fresh) return pickLine(ctx, 'zero_steps', {}, 'zero_steps');
     var target = pl.water.glasses; if (x.water >= target) return pickLine(ctx, 'water_ok', { glasses: x.water, target: target }, 'water_ok'); if (hour >= 15 && x.water <= target * 0.4) return pickLine(ctx, 'water_low', { glasses: x.water, target: target }, 'water_low');
     if (eaten > 0 && eaten <= lim && hour >= 18) return pickLine(ctx, 'within', { left: lim - eaten }, 'within');
     if (x.steps >= 2000) {
