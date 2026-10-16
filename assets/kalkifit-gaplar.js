@@ -488,13 +488,14 @@
 
   /* ---------- vaziyatlar ---------- */
   function fmtKm(km) { return String(Math.round(km * 10) / 10).replace('.', ','); }
-  function dayStats(ctx, d) { var S = ctx.S, st = ctx.st; return S.dayStatus(st, d); }
+  function dayStats(ctx, d) { var S = ctx.S, st = ctx.st; return S.dayStatus(st, d, ctx.today); }
   function todayLine(ctx) {                        // Bugun ekrani uchun BITTA gap yoki null (hazil o'chirilgan bo'lsa — null)
     if (ctx.jokesOn === false) return null;
     var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = S.plan(st.profile), eaten = S.sumEntries(x.food).kcal, lim = S.dayLimit(st, t), D = S.dates, hour = ctx.hour == null ? 12 : ctx.hour;
     if (isHoliday(t, D) || x.party) return pickLine(ctx, 'holiday', {}, 'holiday');
-    var run = 0, d = t, sum = 0; while (run < 7) { var r = dayStats(ctx, d); if (r.state === 'none' || r.eaten <= r.limit) break; run++; sum += r.eaten; sum += 0; d = D.addDays(d, -1); }
-    if (run >= 3) { var avg = Math.round(sum / run), lsum = 0, dd = t; for (var i = 0; i < run; i++) { lsum += dayStats(ctx, dd).limit; dd = D.addDays(dd, -1); } return pickLine(ctx, 'over_neutral', { avg: avg, pct: Math.round((sum / lsum - 1) * 100) }, 'over_neutral'); }
+    var run = 0, d = t, sum = 0; if (dayStats(ctx, d).state !== 'high') d = D.addDays(t, -1); var d0 = d;          // faqat TO'LIQ kunlar (state 'high' = to'liq va maqsaddan >10% yuqori)
+    while (run < 7) { var r = dayStats(ctx, d); if (r.state !== 'high') break; run++; sum += r.eaten; d = D.addDays(d, -1); }
+    if (run >= 3) { var avg = Math.round(sum / run), lsum = 0, dd = d0; for (var i = 0; i < run; i++) { lsum += dayStats(ctx, dd).limit; dd = D.addDays(dd, -1); } return pickLine(ctx, 'over_neutral', { avg: avg, pct: Math.round((sum / lsum - 1) * 100) }, 'over_neutral'); }
     if (eaten > lim) return pickLine(ctx, 'over', { over: eaten - lim }, 'over');
     var fresh = st.created && (Date.now() - st.created) < 24 * 3600 * 1000;      // yangi foydalanuvchining birinchi kunida «qadam 0» hazili yo'q
     if (!x.steps && hour >= 13 && !fresh) return pickLine(ctx, 'zero_steps', {}, 'zero_steps');
@@ -520,6 +521,7 @@
   }
   function weightLine(ctx) {                       // Faqat 7 kunlik O'RTACHA (joriy va oldingi 7 kun); baholamasdan
     if (ctx.jokesOn === false) return null; var S = ctx.S, st = ctx.st, t = ctx.today, D = S.dates;
+    if (S.weightInfo(st, t).kind !== 'trend') return null;                      // <7 kunlik tarixda trend gapi yo'q
     var a = S.avg7(st.weights, t), b = S.avg7(st.weights, D.addDays(t, -7)); if (a == null || b == null) return null;
     var dl = Math.round((a - b) * 10) / 10, abs = String(Math.abs(dl)).replace('.', ',');
     return pickLine(ctx, dl <= -0.2 ? 'weight_down' : (dl >= 0.2 ? 'weight_up' : 'weight_flat'), { delta: abs }, 'weight|' + (dl <= -0.2 ? 'd' : dl >= 0.2 ? 'u' : 'f'));

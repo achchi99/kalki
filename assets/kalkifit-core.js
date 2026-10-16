@@ -15,7 +15,8 @@
   var PROTEIN_PER_KG = { keep: 1.6, slow: 1.8, lose: 2.0, gain: 1.8 };
   var PROTEIN_MAX_SHARE = 0.35, FAT_SHARE = 0.275;
   var WATER_ML_PER_KG = 33, GLASS_ML = 250;
-  var STRIDE_K = 0.414, MET_WALK = 3.5, WALK_KMH = 5, STEP_CREDIT = 0.5;
+  var STRIDE_K = 0.414, MET_WALK = 3.5, WALK_KMH = 5, MET_NET = MET_WALK - 1;           // MET_NET: sof sarf (dam olish sarfisiz)
+var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };                    // faollik darajasiga odatiy kunlik qadam (kam harakat / o'rtacha / faol / juda faol) — me'yorga allaqachon kiritilgan
   var MEALS = ['b', 'l', 'd', 's'];                                          // nonushta, tushlik, kechki ovqat, gazak
   var LIMITS = { age: [10, 100], height: [120, 230], weight: [30, 250] };
 
@@ -61,7 +62,9 @@
   function strideM(height) { return height * STRIDE_K / 100; }
   function distanceKm(steps, height) { return Math.max(0, steps) * strideM(height) / 1000; }
   function stepKcal(steps, height, weight) { return Math.round(MET_WALK * weight * (distanceKm(steps, height) / WALK_KMH)); }
-  function stepCredit(steps, height, weight) { return Math.round(STEP_CREDIT * stepKcal(steps, height, weight)); }
+  function stepBase(act) { return STEP_BASE[act] || STEP_BASE[2]; }
+  function extraSteps(steps, act) { return Math.max(0, Math.round(num(steps)) - stepBase(act)); }                      // odatiy chegaradan ORTIQ qadamlar
+  function stepCredit(steps, height, weight, act) { return Math.round(MET_NET * weight * (distanceKm(extraSteps(steps, act), height) / WALK_KMH)); }   // faqat ortiqcha qadamlar uchun, to'liq sof qiymat (50% emas)
   var ROUTES = [                                                            // taxminiy yo'l masofalari (km): taqqoslash uchun
     [35, 'Toshkent — Chirchiq', 'Ташкент — Чирчик'], [90, 'Qarshi — Shahrisabz', 'Карши — Шахрисабз'], [120, 'Toshkent — Guliston', 'Ташкент — Гулистан'],
     [190, 'Toshkent — Jizzax', 'Ташкент — Джизак'], [270, 'Samarqand — Buxoro', 'Самарканд — Бухара'], [300, 'Toshkent — Samarqand', 'Ташкент — Самарканд'], [450, 'Buxoro — Xiva', 'Бухара — Хива']
@@ -73,9 +76,9 @@
   }
 
   /* ---------- kun balansi ---------- */
-  function dayBalance(target, eaten, steps, height, weight) {
-    var sk = stepKcal(steps, height, weight), credit = Math.round(STEP_CREDIT * sk);
-    return { target: target, eaten: eaten, stepKcal: sk, credit: credit, remaining: target - eaten + credit };
+  function dayBalance(target, eaten, steps, height, weight, act) {
+    var sk = stepKcal(steps, height, weight), credit = stepCredit(steps, height, weight, act);
+    return { target: target, eaten: eaten, stepKcal: sk, credit: credit, base: stepBase(act), extraSteps: extraSteps(steps, act), remaining: target - eaten + credit };
   }
 
   /* ---------- ovqat hisobi ---------- */
@@ -90,9 +93,9 @@
 
   /* ---------- sana bo'yicha ma'lumot ---------- */
   function dayOf(st, d) { return st.days[d] || null; }
-  function ensureDay(st, d) { if (!st.days[d]) st.days[d] = { food: [], water: 0, steps: 0 }; return st.days[d]; }
+  function ensureDay(st, d) { if (!st.days[d]) st.days[d] = { food: [], water: 0, steps: 0 }; if (st.trackStart && d < st.trackStart) st.trackStart = d; return st.days[d]; }   // oldingi sanaga yozilsa, kuzatuv boshlanishi shu sanaga suriladi
   function dayTotals(st, d) { var x = dayOf(st, d); return sumEntries(x ? x.food : []); }
-  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], stepGoal: 8000, prefs: {}, lastBackup: null }; }
+  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
@@ -109,24 +112,42 @@
   }
 
   /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
-  function dayLimit(st, d) {                       // shu kun uchun limit = me'yor + qadam kaloriyasining 50% i
+  function dayLimit(st, d) {                       // shu kun uchun maqsad = me'yor + odatiy qadamdan ORTIQ qadamlarning sof kaloriyasi
     var pl = plan(st.profile), x = dayOf(st, d), steps = x ? x.steps || 0 : 0;
-    return pl.target + stepCredit(steps, num(st.profile.height), currentWeight(st));
-  }
-  function dayStatus(st, d) {                      // 'none' (yozilmagan) | 'ok' (limit ichida) | 'mid' (ozgina oshdi: ≤15%) | 'high' (ko'p oshdi)
-    var x = dayOf(st, d); if (!x || !x.food.length) return { state: 'none', eaten: 0, limit: 0, ratio: 0 };
-    var eaten = sumEntries(x.food).kcal, limit = dayLimit(st, d), ratio = limit > 0 ? eaten / limit : 0;
-    return { state: ratio <= 1 ? 'ok' : (ratio <= 1.15 ? 'mid' : 'high'), eaten: eaten, limit: limit, ratio: ratio };
+    return pl.target + stepCredit(steps, num(st.profile.height), currentWeight(st), st.profile.act);
   }
   function logged(st, d) { var x = dayOf(st, d); return !!(x && (x.food.length || x.steps > 0)); }
+  function hasData(x) { return !!(x && (x.food.length || x.steps > 0 || x.water > 0)); }
+  function trackStart(st) {                        // kuzatuv boshlanishi: profil yaratilgan kun; eski foydalanuvchida — eng birinchi yozuv sanasi
+    if (st.trackStart && D.parse(st.trackStart)) return st.trackStart;
+    var first = null; Object.keys(st.days).forEach(function (d) { if (hasData(st.days[d]) && (!first || d < first)) first = d; });
+    if (first) return first; return st.created ? D.today(new Date(st.created)) : null;
+  }
+  function isComplete(st, d, today) {              // to'liq kun: "Kunni yakunlash" bosilgan yoki kun o'tgan VA yozuv maqsadning ≥ 50% i
+    var x = dayOf(st, d); if (!x || !x.food.length) return false; today = today || D.today();
+    if (!(x.done || d < today)) return false;
+    var lim = dayLimit(st, d); return lim > 0 && sumEntries(x.food).kcal >= 0.5 * lim;
+  }
+  function dayStatus(st, d, today) {               // pre | none | part | near (±10%) | low | high — faqat TO'LIQ kunlar maqsad bilan solishtiriladi; rang "yaxshi/yomon" ma'nosiz
+    today = today || D.today(); var x = dayOf(st, d), start = trackStart(st);
+    if (start && d < start) return { state: 'pre', eaten: 0, limit: 0, ratio: 0, complete: false, live: false };
+    if (!x || !x.food.length) return { state: 'none', eaten: 0, limit: 0, ratio: 0, complete: false, live: false };
+    var eaten = sumEntries(x.food).kcal, limit = dayLimit(st, d), ratio = limit > 0 ? eaten / limit : 0, live = d === today && !x.done;
+    if (!isComplete(st, d, today)) return { state: 'part', eaten: eaten, limit: limit, ratio: ratio, complete: false, live: live };
+    return { state: Math.abs(ratio - 1) <= 0.10 + 1e-9 ? 'near' : (ratio < 1 ? 'low' : 'high'), eaten: eaten, limit: limit, ratio: ratio, complete: true, live: false };
+  }
+  function finishDay(st, d, today) {               // "Kunni yakunlash": kun to'liq belgisi; yozuv < 50% bo'lsa kun "qisman" bo'lib qoladi (ok:false)
+    var x = dayOf(st, d); if (!x || !x.food.length) return { ok: false, why: 'empty' };
+    x.done = true; return { ok: isComplete(st, d, today), why: isComplete(st, d, today) ? '' : 'low' };
+  }
   function streak(st, today) {                     // bugungi (yozilgan bo'lsa) yoki kechagi kundan orqaga ketma-ket yozilgan kunlar
     var d = logged(st, today) ? today : D.addDays(today, -1), n = 0;
     while (logged(st, d) && n < 3650) { n++; d = D.addDays(d, -1); }
     return n;
   }
-  function monthGrid(st, ym) {                     // ym = 'YYYY-MM': kunlar + hisob (baho/ball yo'q)
-    var p = D.parse(ym + '-01'), n = D.dim(p.y, p.m), days = [], c = { ok: 0, mid: 0, high: 0, none: 0 };
-    for (var i = 1; i <= n; i++) { var d = D.ymd(p.y, p.m, i), r = dayStatus(st, d); days.push({ d: d, n: i, state: r.state, eaten: r.eaten, limit: r.limit }); c[r.state]++; }
+  function monthGrid(st, ym, today) {              // ym = 'YYYY-MM': kunlar + hisob (baho/ball yo'q)
+    var p = D.parse(ym + '-01'), n = D.dim(p.y, p.m), days = [], c = { near: 0, low: 0, high: 0, part: 0, none: 0, pre: 0 }; today = today || D.today();
+    for (var i = 1; i <= n; i++) { var d = D.ymd(p.y, p.m, i), r = dayStatus(st, d, today); days.push({ d: d, n: i, state: r.state, eaten: r.eaten, limit: r.limit, live: r.live }); if (d <= today) c[r.state]++; }
     return { ym: ym, days: days, first: weekdayIdx(D.ymd(p.y, p.m, 1)), counts: c };
   }
   function minutesToBurn(kcal, weight) { var perMin = MET_WALK * weight / 60; return perMin > 0 ? Math.round(kcal / perMin) : 0; }
@@ -162,6 +183,15 @@
     weights.forEach(function (w) { if (w.d >= from && w.d <= d) { s += w.kg; n++; } });
     return n ? Math.round(s / n * 10) / 10 : null;
   }
+  function weightInfo(st, today) {                 // yorliq turi: first (1 ta o'lchov) | last | avg (2+ ta, tarix <7 kun) | trend (≥7 kunlik tarix)
+    var w = st.weights; today = today || D.today(); if (!w.length) return { kind: 'none' };
+    var cur = w[w.length - 1].kg, from = D.addDays(today, -6), n7 = w.filter(function (x) { return x.d >= from && x.d <= today; }).length;
+    if (w.length === 1) return { kind: 'first', kg: cur };
+    var span = D.daysBetween(w[0].d, w[w.length - 1].d);
+    if (span >= 6) { var a = avg7(w, today), b = avg7(w, D.addDays(today, -7)); return { kind: 'trend', kg: a != null ? a : cur, avg: a, prev: b, delta: (a != null && b != null) ? Math.round((a - b) * 10) / 10 : null, n: n7 }; }
+    if (n7 >= 2) return { kind: 'avg', kg: avg7(w, today), n: n7 };
+    return { kind: 'last', kg: cur };
+  }
   function weightSeries(weights) { return weights.map(function (w) { return { d: w.d, kg: w.kg, avg: avg7(weights, w.d) }; }); }
   function currentWeight(st) { return st.weights.length ? st.weights[st.weights.length - 1].kg : (st.profile ? num(st.profile.weight) : 0); }
   function goalProgress(st) {                        // maqsad vazn bo'lsa: boshlang'ich → hozirgi → maqsad (0..1)
@@ -179,13 +209,13 @@
   function weekdayIdx(d) { return ((D.daysBetween('1970-01-05', d) % 7) + 7) % 7; }          // 0 = dushanba
 
   /* ---------- haftalik xulosa (faqat faktlar) ---------- */
-  function weekSummary(st, end) {                    // end — haftaning oxirgi kuni (oxirgi 7 kun)
-    var days = [], i; for (i = 6; i >= 0; i--) days.push(D.addDays(end, -i));
-    var kc = [], stp = [];
-    days.forEach(function (d) { var x = dayOf(st, d); if (x && x.food.length) kc.push(sumEntries(x.food).kcal); if (x && x.steps > 0) stp.push(x.steps); });
+  function weekSummary(st, end, today) {            // end — haftaning oxirgi kuni (oxirgi 7 kun); o'rtacha FAQAT to'liq kunlardan (yozilmagan kun 0 kkal emas)
+    var days = [], i; for (i = 6; i >= 0; i--) days.push(D.addDays(end, -i)); today = today || D.today();
+    var kc = [], stp = [], logged = 0;
+    days.forEach(function (d) { var x = dayOf(st, d); if (x && x.food.length) logged++; if (isComplete(st, d, today)) kc.push(sumEntries(x.food).kcal); if (x && x.steps > 0) stp.push(x.steps); });
     var wFrom = avg7(st.weights, days[0]), wTo = avg7(st.weights, end);
     var avgK = kc.length ? Math.round(kc.reduce(function (a, b) { return a + b; }, 0) / kc.length) : null, avgS = stp.length ? Math.round(stp.reduce(function (a, b) { return a + b; }, 0) / stp.length) : null;
-    return { days: days, loggedDays: kc.length, stepDays: stp.length, avgKcal: avgK, avgSteps: avgS, weightFrom: wFrom, weightTo: wTo, weightDelta: (wFrom != null && wTo != null) ? Math.round((wTo - wFrom) * 10) / 10 : null, empty: !kc.length && !stp.length && wTo == null };
+    return { days: days, fullDays: kc.length, loggedDays: logged, stepDays: stp.length, avgKcal: avgK, avgSteps: avgS, weightFrom: wFrom, weightTo: wTo, weightDelta: (wFrom != null && wTo != null) ? Math.round((wTo - wFrom) * 10) / 10 : null, empty: !logged && !stp.length && wTo == null };
   }
 
   /* ---------- migratsiya / eksport / import ---------- */
@@ -195,12 +225,12 @@
     var s = emptyState(); if (v === 0 && !raw.profile && !raw.days && !raw.log) return null;
     s.setup = !!raw.setup || !!raw.profile; s.created = raw.created || null; s.seq = Math.max(1, Math.round(num(raw.seq)) || 1);
     s.profile = raw.profile && typeof raw.profile === 'object' ? { sex: raw.profile.sex === 'f' ? 'f' : 'm', preg: !!raw.profile.preg, age: num(raw.profile.age), height: num(raw.profile.height), weight: num(raw.profile.weight), act: ACT[raw.profile.act] ? +raw.profile.act : 2, goal: GOAL_DELTA[raw.profile.goal] != null ? raw.profile.goal : 'keep', goalWeight: num(raw.profile.goalWeight) || null } : null;
-    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (x.party) s.days[d].party = true; });
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
-    s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null;
+    s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     return s;
   }
   function exportState(st) { return JSON.stringify({ app: 'kalki-kalkifit', v: VERSION, exportedAt: Date.now(), state: st }); }
@@ -276,14 +306,14 @@
     return { items: items, missing: miss };
   }
 
-  return { VERSION: VERSION, ACT: ACT, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_CREDIT: STEP_CREDIT, ROUTES: ROUTES,
+  return { VERSION: VERSION, ACT: ACT, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
     bmrRaw: bmrRaw, bmi: bmi, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
-    strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, compareKm: compareKm, dayBalance: dayBalance,
+    strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, toggleFav: toggleFav, addCustom: addCustom,
-    addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
+    addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayStatus: dayStatus, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
     dates: D, num: num };
 });

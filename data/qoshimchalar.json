@@ -52,19 +52,32 @@
     {
      "level": "strong",
      "uz": "Tahlilda D vitamini kamligi tasdiqlanganlar",
-     "ru": "При дефиците витамина D, подтверждённом анализом"
+     "ru": "При дефиците витамина D, подтверждённом анализом",
+     "tag": {
+      "uz": "tasdiqlangan yetishmovchilikda",
+      "ru": "при подтверждённом дефиците"
+     }
     },
     {
      "level": "moderate",
      "uz": "Quyoshda kam yuradiganlar va keksalar",
-     "ru": "Мало бывающие на солнце и пожилые люди"
+     "ru": "Мало бывающие на солнце и пожилые люди",
+     "tag": {
+      "uz": "quyosh kam tushadiganlarda va keksalarda",
+      "ru": "у мало бывающих на солнце и пожилых"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (saraton va boshqa kasalliklar oldini olish)",
-     "ru": "Остальные (для профилактики рака и других болезней)"
+     "ru": "Остальные (для профилактики рака и других болезней)",
+     "tag": {
+      "uz": "sog'lom odamda (kasallik oldini olishda)",
+      "ru": "у здоровых (для профилактики болезней)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "vitamin-b-kompleks",
@@ -100,17 +113,29 @@
     {
      "level": "moderate",
      "uz": "Kamlik xavfi: vegan, sut yemaydigan, 50+ yosh (B2, B12)",
-     "ru": "Риск дефицита: веганы, без молочного, 50+ (B2, B12)"
+     "ru": "Риск дефицита: веганы, без молочного, 50+ (B2, B12)",
+     "tag": {
+      "uz": "kamlik xavfi bor guruhlarda (vegan, 50+)",
+      "ru": "в группах риска дефицита (веганы, 50+)"
+     }
     },
     {
      "level": "moderate",
      "uz": "Spirtga qaram, ozish jarrohligi o'tgan, diabetli (B1; shifokor)",
-     "ru": "Алкогольная зависимость, бариатрия, диабет (B1; с врачом)"
+     "ru": "Алкогольная зависимость, бариатрия, диабет (B1; с врачом)",
+     "tag": {
+      "uz": "B1 kamligi xavfida (spirt, jarrohlik, diabet)",
+      "ru": "при риске дефицита B1 (алкоголь, операция, диабет)"
+     }
     },
     {
      "level": "low",
      "uz": "Sog'lom, xilma-xil ovqatlanuvchilar (energiya, kayfiyat, xotira)",
-     "ru": "Здоровые при разнообразном питании (энергия, настроение, память)"
+     "ru": "Здоровые при разнообразном питании (энергия, настроение, память)",
+     "tag": {
+      "uz": "sog'lom, xilma-xil ovqatlanuvchida",
+      "ru": "у здоровых при разнообразном питании"
+     }
     }
    ],
    "srcs": [
@@ -134,7 +159,8 @@
      "u": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/",
      "l": "B3"
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "vitamin-b12",
@@ -145,7 +171,7 @@
     "name": "B12 vitamini",
     "line": "Faqat hayvon mahsulotlarida bor. Vegan va 50+ yoshdagilarga kerak bo'lishi mumkin.",
     "what": "Qon va nerv hujayralarini sog'lom saqlaydi, DNK hosil bo'lishiga yordam beradi. Kamligi holsizlik, kamqonlik, qo'l-oyoq uvishishiga olib keladi.",
-    "food": "Go'sht, jigar, baliq, tovuq, tuxum, sut, qatiq va pishloq. O'simlik ovqatida tabiiy B12 yo'q.",
+    "food": "Asosan hayvon mahsulotlarida (go'sht, jigar, baliq, tuxum, sut va qatiq). Vegetarianlar uchun — boyitilgan mahsulotlar yoki qo'shimcha.",
     "who": "Go'sht va sut mahsulotlarini yemaydiganlar (vegetarian, vegan), 50 yoshdan oshganlar (oshqozon kislotasi kamayib, ovqatdagi B12 yomon so'riladi), oshqozon-ichak jarrohligidan o'tganlar, pernitsioz anemiyasi borlar.",
     "not": "Go'sht, tuxum va sutni muntazam yeydigan 50 yoshgacha sog'lom odamga odatda kerak emas: tana B12 ni yillar davomida zaxirada saqlaydi.",
     "care": "Yuqori dozada ham zarari aniqlanmagan. Metformin va oshqozon kislotasini kamaytiruvchi dorilar (masalan, omeprazol) B12 so'rilishini pasaytiradi — ularni uzoq ichsangiz, tahlil haqida shifokor bilan gaplashing."
@@ -154,7 +180,7 @@
     "name": "Витамин B12",
     "line": "Есть только в продуктах животного происхождения. Может понадобиться веганам и людям 50+.",
     "what": "Поддерживает здоровье крови и нервных клеток, участвует в синтезе ДНК. Дефицит вызывает слабость, анемию, онемение рук и ног.",
-    "food": "Мясо, печень, рыба, курица, яйца, молоко, кефир, катык и сыр. В растительной пище природного B12 нет.",
+    "food": "В основном в продуктах животного происхождения (мясо, печень, рыба, яйца, молоко и кефир). Вегетарианцам — обогащённые продукты или добавка.",
     "who": "Тем, кто не ест мясо и молочное (вегетарианцы, веганы), людям старше 50 (с возрастом кислотность желудка снижается и B12 из еды усваивается хуже), после операций на желудке или кишечнике, при пернициозной анемии.",
     "not": "Здоровому человеку до 50 лет, который регулярно ест мясо, яйца и молочное, обычно не нужен: организм хранит запас B12 на годы.",
     "care": "Вреда даже от высоких доз не выявлено. Метформин и препараты, снижающие кислотность желудка (например, омепразол), ухудшают усвоение B12 — при долгом приёме обсудите анализ с врачом."
@@ -167,14 +193,23 @@
     {
      "level": "strong",
      "uz": "Go'sht va sut yemaydiganlar hamda 50 yoshdan oshganlar",
-     "ru": "Не едящие мясо и молочное, а также люди старше 50 лет"
+     "ru": "Не едящие мясо и молочное, а также люди старше 50 лет",
+     "tag": {
+      "uz": "go'sht/sut yemaydiganlarda va 50+ yoshda",
+      "ru": "у не едящих мясо/молочное и в возрасте 50+"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (quvvat yoki chidamlilik uchun)",
-     "ru": "Остальные (ради энергии или выносливости)"
+     "ru": "Остальные (ради энергии или выносливости)",
+     "tag": {
+      "uz": "boshqalarda (quvvat uchun)",
+      "ru": "у остальных (ради энергии)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "omega-3",
@@ -210,14 +245,23 @@
     {
      "level": "moderate",
      "uz": "Qonda triglitserid yuqori bo'lganlar",
-     "ru": "При повышенных триглицеридах в крови"
+     "ru": "При повышенных триглицеридах в крови",
+     "tag": {
+      "uz": "triglitserid yuqori bo'lganda",
+      "ru": "при высоких триглицеридах"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (yurak xavfi yuqori bo'lmaganlar)",
-     "ru": "Остальные (без высокого сердечно-сосудистого риска)"
+     "ru": "Остальные (без высокого сердечно-сосудистого риска)",
+     "tag": {
+      "uz": "yurak xavfi yuqori bo'lmaganlarda",
+      "ru": "без высокого риска для сердца"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "magniy",
@@ -253,19 +297,32 @@
     {
      "level": "moderate",
      "uz": "2-tur diabet, ichak kasalligi bor yoki keksalar",
-     "ru": "При диабете 2 типа, болезнях кишечника и пожилые"
+     "ru": "При диабете 2 типа, болезнях кишечника и пожилые",
+     "tag": {
+      "uz": "diabet, ichak kasalligi yoki keksalikda",
+      "ru": "при диабете, болезнях кишечника и в пожилом возрасте"
+     }
     },
     {
      "level": "low",
      "uz": "Migren bilan og'riydiganlar",
-     "ru": "Страдающие мигренью"
+     "ru": "Страдающие мигренью",
+     "tag": {
+      "uz": "migrenda",
+      "ru": "при мигрени"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (masalan, qon bosimi uchun)",
-     "ru": "Остальные (например, ради давления)"
+     "ru": "Остальные (например, ради давления)",
+     "tag": {
+      "uz": "qon bosimi uchun va boshqalarda",
+      "ru": "для давления и у остальных"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "kaliy",
@@ -298,23 +355,36 @@
     {
      "level": "moderate",
      "uz": "Diuretik ichuvchilar, uzoq ich ketish/qusishdan keyin (shifokor bilan)",
-     "ru": "Принимающие мочегонные, после долгой диареи или рвоты (с врачом)"
+     "ru": "Принимающие мочегонные, после долгой диареи или рвоты (с врачом)",
+     "tag": {
+      "uz": "diuretik yoki uzoq ich ketishdan keyin (shifokor bilan)",
+      "ru": "при мочегонных или после долгой диареи (с врачом)"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (kaliyni ovqatdan olgan ma'qul)",
-     "ru": "Остальные (калий лучше получать из еды)"
+     "ru": "Остальные (калий лучше получать из еды)",
+     "tag": {
+      "uz": "boshqalarda (ovqatdan olish ma'qul)",
+      "ru": "у остальных (лучше из еды)"
+     }
     },
     {
      "level": "not",
      "uz": "Buyrak kasalligi bor yoki bosim uchun ayrim dorilar ichuvchilar",
-     "ru": "При болезни почек или приёме некоторых препаратов от давления"
+     "ru": "При болезни почек или приёме некоторых препаратов от давления",
+     "tag": {
+      "uz": "buyrak kasalligi yoki ayrim bosim dorilarida",
+      "ru": "при болезни почек или некоторых препаратах от давления"
+     }
     }
    ],
    "warn": {
     "uz": "Faqat shifokor buyurganda",
     "ru": "Только по назначению врача"
-   }
+   },
+   "checked": "2026-10-16"
   },
   {
    "id": "sink",
@@ -350,19 +420,32 @@
     {
      "level": "moderate",
      "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
-     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом",
+     "tag": {
+      "uz": "AMD (ko'z dog'i) o'rta bosqichida, shifokor bilan",
+      "ru": "при промежуточной AMD (глаза), с врачом"
+     }
     },
     {
      "level": "moderate",
      "uz": "Go'sht yemaydiganlar (vegetarian, vegan)",
-     "ru": "Не едящие мясо (вегетарианцы, веганы)"
+     "ru": "Не едящие мясо (вегетарианцы, веганы)",
+     "tag": {
+      "uz": "go'sht yemaydiganlarda",
+      "ru": "у не едящих мясо"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (shamollashda ham dalil aniq emas)",
-     "ru": "Остальные (при простуде данные тоже неясны)"
+     "ru": "Остальные (при простуде данные тоже неясны)",
+     "tag": {
+      "uz": "boshqalarda (shamollashda)",
+      "ru": "у остальных (при простуде)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "vitamin-e",
@@ -398,19 +481,32 @@
     {
      "level": "moderate",
      "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
-     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом",
+     "tag": {
+      "uz": "AMD o'rta bosqichida (AREDS, shifokor bilan)",
+      "ru": "при промежуточной AMD (AREDS, с врачом)"
+     }
     },
     {
      "level": "not",
      "uz": "Qon suyultiruvchi (masalan, varfarin) ichuvchilar",
-     "ru": "Принимающие разжижающие кровь препараты (например, варфарин)"
+     "ru": "Принимающие разжижающие кровь препараты (например, варфарин)",
+     "tag": {
+      "uz": "qon suyultiruvchi ichganda",
+      "ru": "при приёме разжижающих кровь"
+     }
     },
     {
      "level": "not",
      "uz": "Sog'lomlar: yurak/saraton oldini olish uchun (naf yo'q, zarar mumkin)",
-     "ru": "Здоровые — для профилактики болезней сердца или рака (пользы нет, возможен вред)"
+     "ru": "Здоровые — для профилактики болезней сердца или рака (пользы нет, возможен вред)",
+     "tag": {
+      "uz": "sog'lom odamda (yurak/saraton oldini olishda)",
+      "ru": "у здоровых (профилактика сердца/рака)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "vitamin-c",
@@ -446,19 +542,32 @@
     {
      "level": "moderate",
      "uz": "O'rta bosqichli ko'z dog'i (AMD) borlar: AREDS, shifokor bilan",
-     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом"
+     "ru": "Промежуточная стадия AMD (болезнь глаз): состав AREDS, с врачом",
+     "tag": {
+      "uz": "AMD o'rta bosqichida (AREDS, shifokor bilan)",
+      "ru": "при промежуточной AMD (AREDS, с врачом)"
+     }
     },
     {
      "level": "low",
      "uz": "Chekuvchilar va ovqati juda bir xil bo'lganlar",
-     "ru": "Курящие и питающиеся очень однообразно"
+     "ru": "Курящие и питающиеся очень однообразно",
+     "tag": {
+      "uz": "chekuvchilarda va bir xil ovqatlanuvchilarda",
+      "ru": "у курящих и питающихся однообразно"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (shamollashning oldini olish uchun)",
-     "ru": "Остальные (для профилактики простуды)"
+     "ru": "Остальные (для профилактики простуды)",
+     "tag": {
+      "uz": "boshqalarda (shamollashda)",
+      "ru": "у остальных (при простуде)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "temir",
@@ -494,14 +603,23 @@
     {
      "level": "strong",
      "uz": "Tahlilda temir kamligi (kamqonlik) aniqlanganlar",
-     "ru": "При дефиците железа (анемии), подтверждённом анализом"
+     "ru": "При дефиците железа (анемии), подтверждённом анализом",
+     "tag": {
+      "uz": "tahlilda kamlik aniqlanganda (kamqonlik)",
+      "ru": "при дефиците по анализу (анемия)"
+     }
     },
     {
      "level": "not",
      "uz": "Tahlil qilmasdan, \"har ehtimolga\" ichish",
-     "ru": "Приём без анализа, «на всякий случай»"
+     "ru": "Приём без анализа, «на всякий случай»",
+     "tag": {
+      "uz": "tahlilsiz «har ehtimolga» ichishda",
+      "ru": "при приёме без анализа «на всякий случай»"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "kalsiy",
@@ -537,19 +655,32 @@
     {
      "level": "moderate",
      "uz": "Sut mahsulotlarini yemaydiganlar (vegan, laktozani ko'tarmaydiganlar)",
-     "ru": "Не употребляющие молочное (веганы, непереносимость лактозы)"
+     "ru": "Не употребляющие молочное (веганы, непереносимость лактозы)",
+     "tag": {
+      "uz": "sut yemaydiganlarda",
+      "ru": "у не употребляющих молочное"
+     }
     },
     {
      "level": "low",
      "uz": "Ovqatdan yetmaydigan, osteoporoz xavfi bor keksa ayollar",
-     "ru": "Пожилые женщины с риском остеопороза, недополучающие кальций"
+     "ru": "Пожилые женщины с риском остеопороза, недополучающие кальций",
+     "tag": {
+      "uz": "ovqatdan yetmaydigan keksa ayollarda",
+      "ru": "у пожилых женщин с нехваткой кальция"
+     }
     },
     {
      "level": "low",
      "uz": "Ovqatdan yetarli kalsiy oladiganlar",
-     "ru": "Получающие достаточно кальция из еды"
+     "ru": "Получающие достаточно кальция из еды",
+     "tag": {
+      "uz": "ovqatdan yetarli oladiganlarda",
+      "ru": "у получающих достаточно из еды"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "foliy",
@@ -585,14 +716,23 @@
     {
      "level": "strong",
      "uz": "Homiladorlikni rejalashtirayotgan ayollar",
-     "ru": "Женщины, планирующие беременность"
+     "ru": "Женщины, планирующие беременность",
+     "tag": {
+      "uz": "homiladorlikni rejalashtirganda",
+      "ru": "при планировании беременности"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar",
-     "ru": "Остальные"
+     "ru": "Остальные",
+     "tag": {
+      "uz": "boshqalarda",
+      "ru": "у остальных"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "multivitamin",
@@ -625,19 +765,32 @@
     {
      "level": "moderate",
      "uz": "Homiladorlar (homiladorlik uchun maxsus multivitamin)",
-     "ru": "Беременные (специальные пренатальные комплексы)"
+     "ru": "Беременные (специальные пренатальные комплексы)",
+     "tag": {
+      "uz": "homiladorlikda (maxsus kompleks)",
+      "ru": "при беременности (особый комплекс)"
+     }
     },
     {
      "level": "moderate",
      "uz": "Ovqati cheklanganlar: kam kaloriyali parhez, ishtaha past, vegan",
-     "ru": "При ограниченном питании: низкокалорийная диета, плохой аппетит, веганы"
+     "ru": "При ограниченном питании: низкокалорийная диета, плохой аппетит, веганы",
+     "tag": {
+      "uz": "ovqati cheklanganlarda",
+      "ru": "при ограниченном питании"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (kasallik oldini olish uchun)",
-     "ru": "Остальные (для профилактики болезней)"
+     "ru": "Остальные (для профилактики болезней)",
+     "tag": {
+      "uz": "boshqalarda (kasallik oldini olishda)",
+      "ru": "у остальных (профилактика болезней)"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "protein",
@@ -670,14 +823,23 @@
     {
      "level": "moderate",
      "uz": "Kuch mashqi qiluvchi, oqsilni ovqatdan yetkaza olmaydiganlar",
-     "ru": "Тренирующиеся, не добирающие белок из еды"
+     "ru": "Тренирующиеся, не добирающие белок из еды",
+     "tag": {
+      "uz": "mashq qilib, oqsil yetmaydiganlarda",
+      "ru": "у тренирующихся при нехватке белка"
+     }
     },
     {
      "level": "low",
      "uz": "Ovqatdan yetarli oqsil oladiganlar",
-     "ru": "Получающие достаточно белка из еды"
+     "ru": "Получающие достаточно белка из еды",
+     "tag": {
+      "uz": "ovqatdan yetarli oqsil oladiganlarda",
+      "ru": "при достатке белка из еды"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "kreatin",
@@ -710,14 +872,23 @@
     {
      "level": "strong",
      "uz": "Kuch mashqlari bilan shug'ullanuvchilar",
-     "ru": "Занимающиеся силовыми тренировками"
+     "ru": "Занимающиеся силовыми тренировками",
+     "tag": {
+      "uz": "kuch mashqlarida",
+      "ru": "в силовых тренировках"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (jumladan yugurish, suzish kabi chidamlilik sporti)",
-     "ru": "Остальные (в т. ч. бег, плавание и другие виды на выносливость)"
+     "ru": "Остальные (в т. ч. бег, плавание и другие виды на выносливость)",
+     "tag": {
+      "uz": "chidamlilik sportida va boshqalarda",
+      "ru": "в видах на выносливость и у остальных"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "bcaa",
@@ -750,14 +921,23 @@
     {
      "level": "low",
      "uz": "Kuch mashqi qiluvchilar (oqsil yetarli bo'lsa foydasi noaniq)",
-     "ru": "Силовые тренировки (при достатке белка польза неясна)"
+     "ru": "Силовые тренировки (при достатке белка польза неясна)",
+     "tag": {
+      "uz": "kuch mashqlarida (oqsil yetarli bo'lsa noaniq)",
+      "ru": "в силовых тренировках (при достатке белка неясно)"
+     }
     },
     {
      "level": "not",
      "uz": "Ovqatdan yetarli oqsil oladiganlar",
-     "ru": "Получающие достаточно белка из еды"
+     "ru": "Получающие достаточно белка из еды",
+     "tag": {
+      "uz": "ovqatdan yetarli oqsil olganda",
+      "ru": "при достатке белка из еды"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "kollagen",
@@ -791,14 +971,23 @@
     {
      "level": "low",
      "uz": "Teri elastikligi yoki bo'g'im og'rig'i bilan qiziquvchilar",
-     "ru": "Ради упругости кожи или при боли в суставах"
+     "ru": "Ради упругости кожи или при боли в суставах",
+     "tag": {
+      "uz": "teri elastikligi va bo'g'im og'rig'ida",
+      "ru": "для упругости кожи и при боли в суставах"
+     }
     },
     {
      "level": "low",
      "uz": "Boshqalar (soch, tirnoq va h.k.)",
-     "ru": "Остальные (волосы, ногти и т. п.)"
+     "ru": "Остальные (волосы, ногти и т. п.)",
+     "tag": {
+      "uz": "soch, tirnoq va boshqalarda",
+      "ru": "для волос, ногтей и прочего"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "kofein-preworkout",
@@ -834,19 +1023,32 @@
     {
      "level": "strong",
      "uz": "Chidamlilik va jamoaviy sport (kofeinning o'zi)",
-     "ru": "Виды на выносливость и командный спорт (сам кофеин)"
+     "ru": "Виды на выносливость и командный спорт (сам кофеин)",
+     "tag": {
+      "uz": "chidamlilik va jamoaviy sportda (kofeinning o'zi)",
+      "ru": "в видах на выносливость и командных (сам кофеин)"
+     }
     },
     {
      "level": "low",
      "uz": "Sprint, og'ir atletika kabi qisqa mashq; ko'p tarkibli aralashmalar",
-     "ru": "Короткие интенсивные нагрузки (спринт, штанга) и многокомпонентные смеси"
+     "ru": "Короткие интенсивные нагрузки (спринт, штанга) и многокомпонентные смеси",
+     "tag": {
+      "uz": "sprint/og'ir atletika va ko'p tarkibli aralashmalarda",
+      "ru": "в спринте/штанге и многокомпонентных смесях"
+     }
     },
     {
      "level": "not",
      "uz": "O'smirlar va kofeinga sezgir odamlar",
-     "ru": "Подростки и люди, чувствительные к кофеину"
+     "ru": "Подростки и люди, чувствительные к кофеину",
+     "tag": {
+      "uz": "o'smirlarda va kofeinga sezgirlarda",
+      "ru": "у подростков и чувствительных к кофеину"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   },
   {
    "id": "yog-yoquvchi",
@@ -879,14 +1081,23 @@
     {
      "level": "low",
      "uz": "Kofeinli yoki yashil choyli mahsulotlar (ta'siri juda oz)",
-     "ru": "Средства с кофеином или зелёным чаем (эффект очень мал)"
+     "ru": "Средства с кофеином или зелёным чаем (эффект очень мал)",
+     "tag": {
+      "uz": "kofeinli/yashil choyli mahsulotlarda (ta'siri oz)",
+      "ru": "у средств с кофеином/зелёным чаем (эффект мал)"
+     }
     },
     {
      "level": "not",
      "uz": "Hech kimga vazn tashlashning asosiy vositasi sifatida",
-     "ru": "Никому как основное средство для похудения"
+     "ru": "Никому как основное средство для похудения",
+     "tag": {
+      "uz": "vazn tashlashning asosiy vositasi sifatida",
+      "ru": "как основное средство для похудения"
+     }
     }
-   ]
+   ],
+   "checked": "2026-10-16"
   }
  ]
 }
