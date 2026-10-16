@@ -2,7 +2,7 @@
  * Himoya: oddiy parol (Cloudflare secret KALKIFIT_ADMIN_PASSWORD), sarlavha X-Admin-Password; noto'g'ri urinishlar IP bo'yicha soatiga 10 ta (KV).
  * GET  ?holat=yangi|tasdiqlangan|maqullangan|rad|hammasi  → { takliflar: [...] }
  * GET  ?eksport=1                                           → { v:1, taomlar: [ ma'qullangan, bazaga tayyor ] }
- * POST { h, amal: 'maqullash'|'rad'|'qaytarish', g, kat, nom_uz, nom_ru } */
+ * POST { h, amal: 'maqullash'|'rad'|'qaytarish'|'ochirish', g, kat, nom_uz, nom_ru }   ('ochirish' — taklifni butunlay o'chiradi) */
 import { originOk, json, num } from './ariza.js';
 
 const HOLAT = ['yangi', 'tasdiqlangan', 'maqullangan', 'rad'], KAT = ['o', 'n', 's', 'm', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
@@ -35,7 +35,8 @@ export async function onRequest({ request, env }) {
   let b; try { const raw = await request.text(); if (raw.length > 2000) return fail(400); b = JSON.parse(raw); } catch (e) { return fail(400); }
   if (!b || typeof b.h !== 'string' || !/^[0-9a-f]{16}$/.test(b.h)) return fail(400);
   const cur = await db.prepare('SELECT * FROM taklif WHERE h = ?').bind(b.h).first(); if (!cur) return fail(404);
-  if (b.amal === 'rad') await db.prepare("UPDATE taklif SET holat = 'rad' WHERE h = ?").bind(b.h).run();
+  if (b.amal === 'ochirish') { await db.prepare('DELETE FROM taklif_kun WHERE h = ?').bind(b.h).run(); await db.prepare('DELETE FROM taklif WHERE h = ?').bind(b.h).run(); }
+  else if (b.amal === 'rad') await db.prepare("UPDATE taklif SET holat = 'rad' WHERE h = ?").bind(b.h).run();
   else if (b.amal === 'qaytarish') await db.prepare("UPDATE taklif SET holat = CASE WHEN kunlar >= 3 THEN 'tasdiqlangan' ELSE 'yangi' END WHERE h = ?").bind(b.h).run();
   else if (b.amal === 'maqullash') {
     const g = num(b.g, 0), kat = KAT.includes(b.kat) ? b.kat : null, nu = String(b.nom_uz || cur.nom).replace(/[<>]/g, '').trim().slice(0, 60), nr = String(b.nom_ru || '').replace(/[<>]/g, '').trim().slice(0, 60);
