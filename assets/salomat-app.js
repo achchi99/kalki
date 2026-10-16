@@ -713,6 +713,8 @@
     if (location.hash === '#qoshish' && st.setup) openAdd({});
     if (location.hash === '#haqida') aboutOpen(true);
     window.__salomat = { get state() { return st; }, render: render, S: S };
+    // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
+    if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
