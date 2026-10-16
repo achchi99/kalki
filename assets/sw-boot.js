@@ -150,7 +150,12 @@
     d.addEventListener('visibilitychange', function () { if (d.visibilityState === 'visible') upd(); });
   })['catch'](function () {});
 
+  /* Birinchi tashrif: sahifa ochilganda controller yo'q edi — service worker hozir o'rnatilib sahifani "o'ziniki" qiladi (clients.claim).
+     Bu YANGILANISH emas: sahifa tarmoqdan, ya'ni eng yangisi bilan yuklangan. Shuning uchun qayta yuklash ham, "Sayt yangilandi" chizig'i ham kerak emas
+     (chiziq ilovalarning pastki tugmalarini to'sib qo'yardi). */
+  var hadController = !!w.navigator.serviceWorker.controller;
   w.navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (!hadController) { hadController = true; return; }
     if (reloaded) return;                 // cheksiz sikl bo'lmasin
     if (userTouched || holds > 0) {
       ga('sw_update_deferred', { page: slug() });
