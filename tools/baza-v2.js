@@ -48,7 +48,7 @@ function apply(foods) {
     const axes = d.axes.map((a, ai) => {
       const ks = a.o.map((o) => { const v = d.axes.map((b, bi) => (bi === ai ? o.id : b.d)).join('.'); return g[v] ? g[v].k : null; }).filter((x) => x != null);
       const spread = ks.length > 1 ? (Math.max(...ks) - Math.min(...ks)) / Math.min(...ks) : 0;
-      return { i: a.id, n: a.n, r: a.r, d: a.d, s: spread > 0.15 ? 1 : 0, o: a.o.map((o) => ({ i: o.id, n: o.n, r: o.r })) };
+      return { i: a.id, n: a.n, r: a.r, d: a.d, s: spread > 0.15 || a.must ? 1 : 0, o: a.o.map((o) => ({ i: o.id, n: o.n, r: o.r })) };
     });
     // sinonimlar: alias (eski) yozuvlarning nomlari + qo'lda
     const sy = (d.sy || []).map((x) => ({ q: x.q, p: x.p })), have = new Set(sy.map((x) => key(x.q)));
@@ -71,6 +71,8 @@ function apply(foods) {
   for (const [id, o] of Object.entries(od)) { const f = idx[id]; if (!f) continue; const u = usda.foods[String(o.usda)]; if (!u) continue; const rel = (f.k - u.kcal) / Math.max(1, u.kcal);
     if (Math.abs(rel) <= 0.10 || (u.kcal <= 10 && Math.abs(f.k - u.kcal) <= 3)) { f.tk = date; tk[id] = 1; f.ms = { u: 'USDA FoodData Central, fdc_id ' + o.usda + ' (' + u.d.replace(/"/g, '') + '): ' + u.kcal + ' kkal/100 g — bazadagi qiymat (' + f.k + ') ±10% ichida, tekshirilgan ' + date + '.', r: 'USDA FoodData Central, fdc_id ' + o.usda + ': ' + u.kcal + ' ккал/100 г — значение в базе (' + f.k + ') в пределах ±10%, проверено ' + date + '.' }; }
     else farqlar.push({ id, baza: f.k, usda: u.kcal, fdc: o.usda, d: u.d, farq: Math.round(rel * 100) }); }
+  /* --- «taxminiy»: tanlangan 150 taomdan tarozida yoki ikki manba bilan tasdiqlanmaganlar --- */
+  const topSet0 = new Set(fam.top); for (const f of out) if (topSet0.has(f.i) && !f.x && !f.tk) { f.x = 1; f.e = 1; }
   /* --- b (birliklar), x, top, ms --- */
   const topSet = new Set(fam.top);
   for (const f of out) {

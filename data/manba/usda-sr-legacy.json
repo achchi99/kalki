@@ -32,6 +32,66 @@
     }
    ]
   },
+  "167765": {
+   "d": "Watermelon, raw",
+   "p": 0.61,
+   "suv": 91.45,
+   "f": 0.15,
+   "c": 7.55,
+   "kcal": 30.0,
+   "o": [
+    {
+     "nom": "cup, balls",
+     "miqdor": 1.0,
+     "g": 154.0
+    },
+    {
+     "nom": "cup, diced",
+     "miqdor": 1.0,
+     "g": 152.0
+    },
+    {
+     "nom": "melon (15\" long x 7-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 4518.0
+    },
+    {
+     "nom": "wedge (approx 1/16 of melon)",
+     "miqdor": 1.0,
+     "g": 286.0
+    },
+    {
+     "nom": "watermelon balls",
+     "miqdor": 10.0,
+     "g": 122.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 280.0
+    }
+   ]
+  },
+  "167771": {
+   "d": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
+   "p": 0.1,
+   "f": 0.13,
+   "c": 11.3,
+   "kcal": 46.0,
+   "suv": 88.24,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 248.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 31.0
+    }
+   ]
+  },
   "168409": {
    "d": "Cucumber, with peel, raw",
    "c": 3.63,
@@ -84,6 +144,26 @@
      "nom": "leaf",
      "miqdor": 1.0,
      "g": 3.0
+    }
+   ]
+  },
+  "168627": {
+   "d": "Beef, variety meats and by-products, liver, cooked, pan-fried",
+   "f": 4.68,
+   "suv": 62.01,
+   "p": 26.52,
+   "c": 5.16,
+   "kcal": 175.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 81.0
     }
    ]
   },
@@ -177,6 +257,241 @@
     }
    ]
   },
+  "169092": {
+   "d": "Melons, cantaloupe, raw",
+   "c": 8.16,
+   "kcal": 34.0,
+   "p": 0.84,
+   "suv": 90.15,
+   "f": 0.19,
+   "o": [
+    {
+     "nom": "cup, balls",
+     "miqdor": 1.0,
+     "g": 177.0
+    },
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 160.0
+    },
+    {
+     "nom": "cup, diced",
+     "miqdor": 1.0,
+     "g": 156.0
+    },
+    {
+     "nom": "melon, large (about 6-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 814.0
+    },
+    {
+     "nom": "wedge, large (1/8 of large melon)",
+     "miqdor": 1.0,
+     "g": 102.0
+    },
+    {
+     "nom": "melon, medium (about 5\" dia)",
+     "miqdor": 1.0,
+     "g": 552.0
+    },
+    {
+     "nom": "wedge, medium (1/8 of medium melon)",
+     "miqdor": 1.0,
+     "g": 69.0
+    },
+    {
+     "nom": "melon, small (about 4-1/4\" dia)",
+     "miqdor": 1.0,
+     "g": 441.0
+    },
+    {
+     "nom": "wedge, small (1/8 of small melon)",
+     "miqdor": 1.0,
+     "g": 55.0
+    },
+    {
+     "nom": "cantaloupe balls",
+     "miqdor": 10.0,
+     "g": 138.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 134.0
+    }
+   ]
+  },
+  "169097": {
+   "d": "Oranges, raw, all commercial varieties",
+   "f": 0.12,
+   "c": 11.75,
+   "kcal": 47.0,
+   "suv": 86.75,
+   "p": 0.94,
+   "o": [
+    {
+     "nom": "cup, sections",
+     "miqdor": 1.0,
+     "g": 180.0
+    },
+    {
+     "nom": "large (3-1/16\" dia)",
+     "miqdor": 1.0,
+     "g": 184.0
+    },
+    {
+     "nom": "small (2-3/8\" dia)",
+     "miqdor": 1.0,
+     "g": 96.0
+    },
+    {
+     "nom": "fruit (2-5/8\" dia)",
+     "miqdor": 1.0,
+     "g": 131.0
+    }
+   ]
+  },
+  "169105": {
+   "d": "Tangerines, (mandarin oranges), raw",
+   "f": 0.31,
+   "c": 13.34,
+   "kcal": 53.0,
+   "suv": 85.17,
+   "p": 0.81,
+   "o": [
+    {
+     "nom": "cup, sections",
+     "miqdor": 1.0,
+     "g": 195.0
+    },
+    {
+     "nom": "small (2-1/4\" dia)",
+     "miqdor": 1.0,
+     "g": 76.0
+    },
+    {
+     "nom": "medium (2-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 88.0
+    },
+    {
+     "nom": "large (2-3/4\" dia)",
+     "miqdor": 1.0,
+     "g": 120.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 109.0
+    }
+   ]
+  },
+  "169118": {
+   "d": "Pears, raw",
+   "f": 0.14,
+   "c": 15.23,
+   "kcal": 57.0,
+   "suv": 83.96,
+   "p": 0.36,
+   "o": [
+    {
+     "nom": "cup, slices",
+     "miqdor": 1.0,
+     "g": 140.0
+    },
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 161.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 148.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 178.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 230.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 166.0
+    }
+   ]
+  },
+  "169134": {
+   "d": "Pomegranates, raw",
+   "p": 1.67,
+   "suv": 77.93,
+   "f": 1.17,
+   "c": 18.7,
+   "kcal": 83.0,
+   "o": [
+    {
+     "nom": "cup arils (seed/juice sacs)",
+     "miqdor": 0.5,
+     "g": 87.0
+    },
+    {
+     "nom": "pomegranate (4\" dia)",
+     "miqdor": 1.0,
+     "g": 282.0
+    }
+   ]
+  },
+  "169145": {
+   "d": "Beets, raw",
+   "c": 9.56,
+   "kcal": 43.0,
+   "suv": 87.58,
+   "f": 0.17,
+   "p": 1.61,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 136.0
+    },
+    {
+     "nom": "beet (2\" dia)",
+     "miqdor": 1.0,
+     "g": 82.0
+    }
+   ]
+  },
+  "169228": {
+   "d": "Eggplant, raw",
+   "f": 0.18,
+   "c": 5.88,
+   "kcal": 25.0,
+   "suv": 92.3,
+   "p": 0.98,
+   "o": [
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 82.0
+    },
+    {
+     "nom": "eggplant, peeled (yield from 1-1/4 lb)",
+     "miqdor": 1.0,
+     "g": 458.0
+    },
+    {
+     "nom": "eggplant, unpeeled (approx 1-1/4 lb)",
+     "miqdor": 1.0,
+     "g": 548.0
+    }
+   ]
+  },
   "169276": {
    "d": "Radishes, raw",
    "c": 3.4,
@@ -214,6 +529,31 @@
      "nom": "cup slices",
      "miqdor": 0.5,
      "g": 58.0
+    }
+   ]
+  },
+  "169640": {
+   "d": "Honey",
+   "p": 0.3,
+   "f": 0.0,
+   "c": 82.4,
+   "kcal": 304.0,
+   "suv": 17.1,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 339.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 21.0
+    },
+    {
+     "nom": "packet (0.5 oz)",
+     "miqdor": 1.0,
+     "g": 14.0
     }
    ]
   },
@@ -299,6 +639,61 @@
      "nom": "cup lasagne",
      "miqdor": 1.0,
      "g": 116.0
+    }
+   ]
+  },
+  "169928": {
+   "d": "Peaches, yellow, raw",
+   "c": 9.54,
+   "kcal": 39.0,
+   "p": 0.91,
+   "f": 0.25,
+   "suv": 88.87,
+   "o": [
+    {
+     "nom": "cup slices",
+     "miqdor": 1.0,
+     "g": 154.0
+    },
+    {
+     "nom": "small (2-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 130.0
+    },
+    {
+     "nom": "medium (2-2/3\" dia)",
+     "miqdor": 1.0,
+     "g": 150.0
+    },
+    {
+     "nom": "large (2-3/4\" dia)",
+     "miqdor": 1.0,
+     "g": 175.0
+    },
+    {
+     "nom": "extra large (3\" dia)",
+     "miqdor": 1.0,
+     "g": 224.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 147.0
+    }
+   ]
+  },
+  "169941": {
+   "d": "Persimmons, japanese, raw",
+   "p": 0.58,
+   "f": 0.19,
+   "c": 18.59,
+   "kcal": 70.0,
+   "suv": 80.32,
+   "o": [
+    {
+     "nom": "fruit (2-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 168.0
     }
    ]
   },
@@ -459,6 +854,91 @@
      "nom": "Potato small (1-3/4\" to 2-1/2\" dia)",
      "miqdor": 1.0,
      "g": 170.0
+    }
+   ]
+  },
+  "170108": {
+   "d": "Peppers, sweet, red, raw",
+   "kcal": 26.0,
+   "c": 6.03,
+   "p": 0.99,
+   "suv": 92.21,
+   "f": 0.3,
+   "o": [
+    {
+     "nom": "cup, chopped",
+     "miqdor": 1.0,
+     "g": 149.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 92.0
+    },
+    {
+     "nom": "tablespoon",
+     "miqdor": 1.0,
+     "g": 9.3
+    },
+    {
+     "nom": "large (2-1/4 per pound, approx 3-3/4\" long, 3\" dia.)",
+     "miqdor": 1.0,
+     "g": 164.0
+    },
+    {
+     "nom": "medium (approx 2-3/4\" long, 2-1/2 dia.)",
+     "miqdor": 1.0,
+     "g": 119.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 74.0
+    },
+    {
+     "nom": "ring (3\" dia., 1/4\" thick)",
+     "miqdor": 1.0,
+     "g": 10.0
+    }
+   ]
+  },
+  "170187": {
+   "d": "Nuts, walnuts, english",
+   "c": 13.71,
+   "kcal": 654.0,
+   "p": 15.23,
+   "suv": 4.07,
+   "f": 65.21,
+   "o": [
+    {
+     "nom": "cup, chopped",
+     "miqdor": 1.0,
+     "g": 117.0
+    },
+    {
+     "nom": "cup, ground",
+     "miqdor": 1.0,
+     "g": 80.0
+    },
+    {
+     "nom": "cup, in shell, edible yield (7 nuts)",
+     "miqdor": 1.0,
+     "g": 28.0
+    },
+    {
+     "nom": "cup shelled (50 halves)",
+     "miqdor": 1.0,
+     "g": 100.0
+    },
+    {
+     "nom": "cup pieces or chips",
+     "miqdor": 1.0,
+     "g": 120.0
+    },
+    {
+     "nom": "oz (14 halves)",
+     "miqdor": 1.0,
+     "g": 28.35
     }
    ]
   },
@@ -707,6 +1187,46 @@
     }
    ]
   },
+  "170567": {
+   "d": "Nuts, almonds",
+   "p": 21.15,
+   "suv": 4.41,
+   "f": 49.93,
+   "c": 21.55,
+   "kcal": 579.0,
+   "o": [
+    {
+     "nom": "cup, whole",
+     "miqdor": 1.0,
+     "g": 143.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 92.0
+    },
+    {
+     "nom": "cup, slivered",
+     "miqdor": 1.0,
+     "g": 108.0
+    },
+    {
+     "nom": "cup, ground",
+     "miqdor": 1.0,
+     "g": 95.0
+    },
+    {
+     "nom": "oz (23 whole kernels)",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "almond",
+     "miqdor": 1.0,
+     "g": 1.2
+    }
+   ]
+  },
   "170686": {
    "d": "Buckwheat groats, roasted, cooked",
    "f": 0.62,
@@ -744,6 +1264,26 @@
      "nom": "tsp",
      "miqdor": 1.0,
      "g": 4.5
+    }
+   ]
+  },
+  "171061": {
+   "d": "Chicken, liver, all classes, cooked, simmered",
+   "f": 6.51,
+   "suv": 66.81,
+   "p": 24.46,
+   "c": 0.87,
+   "kcal": 167.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "liver",
+     "miqdor": 1.0,
+     "g": 44.0
     }
    ]
   },
@@ -809,6 +1349,26 @@
      "nom": "package (7 oz)",
      "miqdor": 1.0,
      "g": 198.0
+    }
+   ]
+  },
+  "171257": {
+   "d": "Cream, sour, cultured",
+   "p": 2.44,
+   "suv": 73.07,
+   "f": 19.35,
+   "c": 4.63,
+   "kcal": 198.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 12.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 230.0
     }
    ]
   },
@@ -1027,6 +1587,76 @@
     }
    ]
   },
+  "171697": {
+   "d": "Apricots, raw",
+   "p": 1.4,
+   "f": 0.39,
+   "c": 11.12,
+   "kcal": 48.0,
+   "suv": 86.35,
+   "o": [
+    {
+     "nom": "cup, halves",
+     "miqdor": 1.0,
+     "g": 155.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 165.0
+    },
+    {
+     "nom": "apricot",
+     "miqdor": 1.0,
+     "g": 35.0
+    }
+   ]
+  },
+  "171890": {
+   "d": "Beverages, coffee, brewed, prepared with tap water",
+   "kcal": 1.0,
+   "p": 0.12,
+   "f": 0.02,
+   "c": 0.0,
+   "suv": 99.39,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 6.0,
+     "g": 178.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 237.0
+    }
+   ]
+  },
+  "171986": {
+   "d": "Fish, tuna, light, canned in water, without salt, drained solids",
+   "p": 25.51,
+   "f": 0.82,
+   "suv": 75.21,
+   "kcal": 116.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "can",
+     "miqdor": 1.0,
+     "g": 165.0
+    }
+   ]
+  },
   "172385": {
    "d": "Chicken, broilers or fryers, thigh, meat and skin, raw",
    "kcal": 221.0,
@@ -1107,6 +1737,36 @@
     }
    ]
   },
+  "172684": {
+   "d": "Bread, rye",
+   "kcal": 259.0,
+   "p": 8.5,
+   "f": 3.3,
+   "c": 48.3,
+   "suv": 37.3,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "slice, regular",
+     "miqdor": 1.0,
+     "g": 32.0
+    },
+    {
+     "nom": "slice, snack-size",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "slice, thin",
+     "miqdor": 1.0,
+     "g": 25.0
+    }
+   ]
+  },
   "173126": {
    "d": "Beef, round, tip round, roast, separable lean only, trimmed to 0\" fat, choice, raw",
    "suv": 73.98,
@@ -1124,6 +1784,31 @@
      "nom": "roast",
      "miqdor": 1.0,
      "g": 1392.0
+    }
+   ]
+  },
+  "173227": {
+   "d": "Beverages, tea, black, brewed, prepared with tap water",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.3,
+   "kcal": 1.0,
+   "suv": 99.7,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 6.0,
+     "g": 178.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 237.0
     }
    ]
   },
@@ -1174,6 +1859,46 @@
      "nom": "stick",
      "miqdor": 1.0,
      "g": 113.0
+    }
+   ]
+  },
+  "173418": {
+   "d": "Cheese, cream",
+   "p": 6.15,
+   "suv": 52.62,
+   "f": 34.44,
+   "c": 5.52,
+   "kcal": 350.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.5
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 232.0
+    },
+    {
+     "nom": "tbsp, whipped",
+     "miqdor": 1.0,
+     "g": 10.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cubic inch",
+     "miqdor": 1.0,
+     "g": 16.0
+    },
+    {
+     "nom": "package, small (3 oz)",
+     "miqdor": 1.0,
+     "g": 85.0
     }
    ]
   },
@@ -1262,6 +1987,26 @@
     }
    ]
   },
+  "173941": {
+   "d": "Apricots, dried, sulfured, uncooked",
+   "c": 62.64,
+   "kcal": 241.0,
+   "suv": 30.89,
+   "f": 0.51,
+   "p": 3.39,
+   "o": [
+    {
+     "nom": "cup, halves",
+     "miqdor": 1.0,
+     "g": 130.0
+    },
+    {
+     "nom": "half",
+     "miqdor": 1.0,
+     "g": 3.5
+    }
+   ]
+  },
   "173944": {
    "d": "Bananas, raw",
    "c": 22.84,
@@ -1309,6 +2054,21 @@
      "nom": "NLEA serving",
      "miqdor": 1.0,
      "g": 126.0
+    }
+   ]
+  },
+  "174036": {
+   "d": "Beef, ground, 80% lean meat / 20% fat, raw",
+   "p": 17.17,
+   "f": 20.0,
+   "c": 0.0,
+   "kcal": 254.0,
+   "suv": 61.87,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
     }
    ]
   },
@@ -1407,6 +2167,31 @@
     }
    ]
   },
+  "174683": {
+   "d": "Grapes, red or green (European type, such as Thompson seedless), raw",
+   "suv": 80.54,
+   "f": 0.16,
+   "p": 0.72,
+   "c": 18.1,
+   "kcal": 69.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 151.0
+    },
+    {
+     "nom": "grapes",
+     "miqdor": 10.0,
+     "g": 49.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 126.0
+    }
+   ]
+  },
   "174852": {
    "d": "Beverages, carbonated, cola, regular",
    "suv": 89.36,
@@ -1469,6 +2254,106 @@
      "nom": "pita, small  (4\" dia)",
      "miqdor": 1.0,
      "g": 28.0
+    }
+   ]
+  },
+  "174925": {
+   "d": "Bread, white, commercially prepared, toasted",
+   "f": 4.0,
+   "suv": 30.4,
+   "p": 9.0,
+   "c": 54.5,
+   "kcal": 290.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cup, crumbs",
+     "miqdor": 1.0,
+     "g": 45.0
+    },
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 42.0
+    },
+    {
+     "nom": "slice, large",
+     "miqdor": 1.0,
+     "g": 27.0
+    },
+    {
+     "nom": "slice crust not eaten",
+     "miqdor": 1.0,
+     "g": 11.0
+    },
+    {
+     "nom": "slice, thin",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "slice thin, crust not eaten",
+     "miqdor": 1.0,
+     "g": 8.0
+    },
+    {
+     "nom": "slice, very thin",
+     "miqdor": 1.0,
+     "g": 13.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 22.0
+    }
+   ]
+  },
+  "175096": {
+   "d": "Beverages, water, tap, well",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 0.0,
+   "suv": 99.9,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "serving 8 fl oz 8 fl oz",
+     "miqdor": 1.0,
+     "g": 237.0
+    },
+    {
+     "nom": "liter",
+     "miqdor": 1.0,
+     "g": 1000.0
+    }
+   ]
+  },
+  "175167": {
+   "d": "Fish, salmon, Atlantic, farmed, raw",
+   "kcal": 208.0,
+   "suv": 64.89,
+   "f": 13.42,
+   "p": 20.42,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 0.5,
+     "g": 198.0
     }
    ]
   }
