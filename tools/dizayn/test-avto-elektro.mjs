@@ -122,7 +122,7 @@ for (const mode of MODES) {
     else {
       if (JSON.stringify(nums(g.st)) !== JSON.stringify(stNums)) why.push('stansiya izohi ' + JSON.stringify(nums(g.st)) + ' kutilgan ' + JSON.stringify(stNums));
       if (g.stHidden) why.push('stansiya izohi yashirin');
-      const warn = /Stansiyada zaryad narxini kiriting, aks holda u bepul hisoblanadi|Укажите цену зарядки на станции, иначе она считается бесплатной|Стансияда заряд нархини киритинг, акс ҳолда у бепул ҳисобланади/.test(g.st);
+      const warn = /Stansiyada zaryad narxini kiriting, aks holda u bepul hisoblanadi|Укажите цену зарядки на станции, иначе она считается бесплатной|(?:Станцияда|Стансияда) заряд нархини киритинг, акс ҳолда у бепул ҳисобланади/.test(g.st);
       if (sp === 0 && !warn) why.push('ulush<100% va narx 0: ogohlantirish chiqmadi: ' + g.st);
       if (sp > 0 && warn) why.push('narx kiritilgan, ogohlantirish chiqmasligi kerak');
     }
