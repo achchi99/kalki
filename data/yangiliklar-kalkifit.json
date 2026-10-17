@@ -2,6 +2,13 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 3,
+      "d": "2026-10-18",
+      "items": [
+        { "uz": "Odatdagi ovqatlar osonlashdi: ovqat bo'limidagi ☆ Saqlash tugmasini bosing.", "ru": "Привычная еда стала проще: нажмите ☆ «Сохранить» у приёма пищи.", "show": "templates" }
+      ]
+    },
+    {
       "v": 2,
       "d": "2026-10-17",
       "items": [

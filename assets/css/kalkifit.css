@@ -142,3 +142,8 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 .sl-chk{flex:none;width:30px;height:30px;border-radius:9px;border:2px solid var(--line);background:transparent;color:transparent;display:inline-flex;align-items:center;justify-content:center;padding:0;margin-right:2px}.sl-chk.on{background:var(--acc2);border-color:var(--acc2);color:#fff}.sl-ti.off .m,.sl-ti.off b{opacity:.45}
 .sl-tr{display:flex;align-items:center;gap:2px;padding:8px 0;border-bottom:1px solid var(--line)}.sl-tr .m{flex:1;min-width:0;display:flex;flex-direction:column}.sl-tr .m b{overflow-wrap:anywhere}.sl-tr .m span{color:var(--mut);font-size:var(--t-xs,.875rem);font-weight:600}.sl-tr .rz-x:disabled{opacity:.3}.sl-tr .rz-i.up{transform:rotate(-90deg)}.sl-tr .rz-i.dn{transform:rotate(90deg)}.sl-tsg{margin-bottom:8px}
 .sl-yb{display:inline-flex;align-items:center;gap:6px}
+/* kun holati chipi: aylana nuqta (katakcha/checkbox'ga o'xshamasin; bosiladigan emas) */
+.sl-dst .c{width:12px;height:12px;border-radius:50%;flex:none}.sl-dst .c.none{background:transparent;border:1.5px dashed var(--mut)}.sl-dst .c.part{background:var(--mut);border-color:var(--mut);opacity:.55}
+
+.sl-sv{margin-left:auto;margin-right:6px;display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:0 10px;border-radius:18px;border:1.5px solid var(--line);background:transparent;color:var(--acc2);font:700 .8125rem/1 inherit;flex:none}.sl-sv .rz-i{width:15px;height:15px}.sl-mh span:first-of-type{min-width:0}
+.sl-sug{background:var(--accsoft);border-radius:14px;padding:10px 12px;margin:0 0 8px}.sl-sug p{margin:0 0 8px;font-weight:700}.sl-sug .rz-actions{margin:0}.sl-sug .rz-btn{min-height:40px}

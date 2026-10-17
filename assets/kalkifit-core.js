@@ -258,6 +258,20 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function moveTemplate(st, id, dir) { var l = tplList(st), i = -1; for (var k = 0; k < l.length; k++) if (l[k].id === id) i = k; var j = i + (dir < 0 ? -1 : 1); if (i < 0 || j < 0 || j >= l.length) return false; var x = l[i]; l[i] = l[j]; l[j] = x; return true; }
   function tplKcal(t) { return t.items.reduce(function (a, e) { return a + e.kcal; }, 0); }
   function yesterdayEntries(st, date, meal) { var x = dayOf(st, D.addDays(date, -1)); return x ? x.food.filter(function (e) { return e.meal === meal; }) : []; }
+  function suggestTemplate(st, today) {                          // oxirgi 14 kunda bir ovqatda 3+ kun birga yeyilgan taomlar to'plami (rad etilgan va allaqachon saqlanganlari — yo'q)
+    var no = (st.prefs && st.prefs.tplNo) || [], best = null;
+    MEALS.forEach(function (m) {
+      var days = []; for (var i = 0; i < 14; i++) { var d = D.addDays(today, -i), x = dayOf(st, d); if (!x) continue; var l = x.food.filter(function (e) { return e.meal === m && e.fid; }); if (l.length) days.push({ d: d, list: l, set: l.map(function (e) { return e.fid; }) }); }
+      var cnt = {}; days.forEach(function (y) { y.set.filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (f) { cnt[f] = (cnt[f] || 0) + 1; }); });
+      var fr = Object.keys(cnt).filter(function (f) { return cnt[f] >= 3; }).sort(function (a, b) { return cnt[b] - cnt[a] || (a < b ? -1 : 1); }); if (fr.length < 2) return;
+      var core = [fr[0]], co = days.filter(function (y) { return y.set.indexOf(fr[0]) > -1; });
+      for (var k = 1; k < fr.length && core.length < 6; k++) { var co2 = co.filter(function (y) { return y.set.indexOf(fr[k]) > -1; }); if (co2.length >= 3) { core.push(fr[k]); co = co2; } }
+      if (core.length < 2) return; var ids = core.slice().sort(), key = m + '|' + ids.join(',');
+      if (no.indexOf(key) > -1 || tplList(st).some(function (t) { return t.meal === m && t.items.length === ids.length && t.items.every(function (it) { return ids.indexOf(it.fid) > -1; }); })) return;
+      var last = co[0], entries = last.list.filter(function (e) { return ids.indexOf(e.fid) > -1; });
+      var c = { meal: m, key: key, ids: ids, days: co.length, entries: entries }; if (!best || c.days > best.days) best = c;
+    }); return best;
+  }
   function kechagidekOk(st, date, meal) {                         // shu kunda shu ovqat bo'sh va kecha unda yozuv bo'lgan
     var t = dayOf(st, date); if (t && t.food.some(function (e) { return e.meal === meal; })) return false; return yesterdayEntries(st, date, meal).length > 0;
   }
@@ -365,6 +379,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });
