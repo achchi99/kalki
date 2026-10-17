@@ -24,7 +24,7 @@
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
       aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
-      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
+      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", vNew: 'Mening idishim', vfT: "Ichiga to'ldirish", vf_yarim: 'Yarim', vf_tola: "To'la", vf_kop: "Ko'p", vk_kosa: 'Kosa', vk_lagan: 'Lagan', vk_piyola: 'Piyola', vk_likopcha: 'Likopcha', vk_custom: "O'zim yozaman", vn_kosa: 'Mening kosam', vn_lagan: 'Mening laganim', vn_piyola: 'Mening piyolam', vn_likopcha: 'Mening likopcham', vn_custom: 'Mening idishim', vs_kosa: 'Odatiy kosa', vs_lagan: 'Odatiy lagan', vs_piyola: 'Odatiy piyola', vs_likopcha: 'Odatiy likopcha', vs_custom: 'Odatiy porsiya', vcT: 'Mening idishim', vcFor: '«{x}» uchun', vcLink: 'Boshqa idishlaringiz', vcKind: 'Idish turi', vcName: 'Idish nomi', vcHow: 'Hajmini qanday aniqlaymiz?', vcScaleOn: 'Tarozida tortdim', vcScaleOff: "Tarozim yo'q", vcHint: "Idishni bo'sh torting, keyin ovqat bilan — farqi ovqatingiz.", vcFull: 'Ovqat bilan vazn (g)', vcEmpty: "Bo'sh idish vazni (g)", vcDirect: "Yoki to'g'ridan-to'g'ri ovqat grammi", vcRes: 'Ovqat: {g} g', vcStd: '{k} ≈ {g} g', vcCompare: 'Sizning idishingiz standartga nisbatan?', vc_kichik: 'Kichikroq (×0,75)', vc_ohshash: "Shunga o'xshash (×1)", vc_katta: 'Kattaroq (×1,3)', vcSave: 'Saqlash', vcBad: "Gramm 10 dan 3000 gacha bo'lsin", vcMax: "Ko'pi bilan 20 ta idish. Keraksizini Men → «Mening idishlarim»dan o'chiring.", vSaved: 'Saqlandi: {x}', vmT: 'Mening idishlarim', vmH: "O'z kosa va laganlaringiz", vmEmpty: "O'z kosangizni bir marta belgilang — keyin hisob aniqroq bo'ladi.", vmGuide: "Ovqat qo'shayotganda porsiya oynasida «+ Mening idishim» ni bosing.", vmMax: "Ko'pi bilan {n} ta idish.", vmDel1: "Idish o'chirildi", vmEdit: 'Tahrirlash', vmName: 'Nomi', vmFam: 'Taomlar', vsugL: 'Har safar laganingizdan yeysizmi? Uni bir marta belgilang.', vsugK: 'Har safar kosangizdan yeysizmi? Uni bir marta belgilang.', vsugYes: 'Belgilash', vsugNo: 'Keyin', pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
       tT: "Matn bilan qo'shish", tPh: 'Masalan: 1 kosa osh, 2 somsa, choy shakar bilan', tGo: 'Aniqlash', tMiss: 'Topilmadi: {x}', tAi: 'AI bilan aniqlash', tAiNote: "Bu matn AI xizmatiga yuboriladi (profil, vazn va tarix yuborilmaydi).", tAiBusy: 'Aniqlanmoqda…', tAiErr: "AI hozir ishlamayapti. Qo'lda qo'shing.", tOffline: "Internet yo'q — AI ishlamaydi. Topilganlarini saqlashingiz mumkin.", tSave: '{n} ta ovqatni saqlash', tAiTag: 'AI taxmini', tHelp: "Faqat siz tasdiqlaganingizda saqlanadi.", tEmpty: 'Hech narsa topilmadi',
       fT: 'Ovqat', fDay: 'Kun', fAddText: "Matn bilan qo'shish", fFavs: 'Sevimlilar', fNoFavs: "Sevimli ovqatlar yo'q. Ovqat qo'shayotganda yurakchani bosing.",
@@ -63,7 +63,7 @@
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
       aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
-      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
+      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', vNew: 'Моя посуда', vfT: 'Насколько наполнена', vf_yarim: 'Половина', vf_tola: 'Полная', vf_kop: 'С горкой', vk_kosa: 'Миска', vk_lagan: 'Лаган', vk_piyola: 'Пиала', vk_likopcha: 'Тарелочка', vk_custom: 'Своя (впишу название)', vn_kosa: 'Моя миска', vn_lagan: 'Мой лаган', vn_piyola: 'Моя пиала', vn_likopcha: 'Моя тарелочка', vn_custom: 'Моя посуда', vs_kosa: 'Обычная миска', vs_lagan: 'Обычный лаган', vs_piyola: 'Обычная пиала', vs_likopcha: 'Обычная тарелочка', vs_custom: 'Обычная порция', vcT: 'Моя посуда', vcFor: 'для «{x}»', vcLink: 'Другая ваша посуда', vcKind: 'Вид посуды', vcName: 'Название', vcHow: 'Как определим объём?', vcScaleOn: 'Взвесил(а)', vcScaleOff: 'Весов нет', vcHint: 'Взвесьте пустую посуду, затем с едой — разница и есть ваша еда.', vcFull: 'Вес с едой (г)', vcEmpty: 'Вес пустой посуды (г)', vcDirect: 'Или сразу вес еды (г)', vcRes: 'Еда: {g} г', vcStd: '{k} ≈ {g} г', vcCompare: 'Ваша посуда по сравнению со стандартной?', vc_kichik: 'Меньше (×0,75)', vc_ohshash: 'Такая же (×1)', vc_katta: 'Больше (×1,3)', vcSave: 'Сохранить', vcBad: 'Вес от 10 до 3000 г', vcMax: 'Не больше 20 штук. Удалите лишнее в «Я» → «Моя посуда».', vSaved: 'Сохранено: {x}', vmT: 'Моя посуда', vmH: 'Ваши миски и лаганы', vmEmpty: 'Отметьте свою миску один раз — и расчёт станет точнее.', vmGuide: 'При добавлении еды в окне порции нажмите «+ Моя посуда».', vmMax: 'Не больше {n} штук.', vmDel1: 'Посуда удалена', vmEdit: 'Изменить', vmName: 'Название', vmFam: 'Блюда', vsugL: 'Вы всегда едите из своего лагана? Отметьте его один раз.', vsugK: 'Вы всегда едите из своей миски? Отметьте её один раз.', vsugYes: 'Отметить', vsugNo: 'Позже', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
       tT: 'Добавить текстом', tPh: 'Например: 1 миска плова, 2 самсы, чай с сахаром', tGo: 'Распознать', tMiss: 'Не найдено: {x}', tAi: 'Определить с помощью ИИ', tAiNote: 'Этот текст будет отправлен сервису ИИ (профиль, вес и история не отправляются).', tAiBusy: 'Определяю…', tAiErr: 'ИИ сейчас недоступен. Добавьте вручную.', tOffline: 'Нет интернета — ИИ не работает. Найденное можно сохранить.', tSave: 'Сохранить: {n}', tAiTag: 'оценка ИИ', tHelp: 'Сохраняется только после вашего подтверждения.', tEmpty: 'Ничего не найдено',
       fT: 'Еда', fDay: 'День', fAddText: 'Добавить текстом', fFavs: 'Избранное', fNoFavs: 'Избранного нет. Нажмите на сердечко при добавлении еды.',
@@ -131,7 +131,7 @@
   function unitName(u) { return (D[lang].units && D[lang].units[u]) || D.uz.units[u] || u; }
   function qtyStr(q) { return dec(q, 2).replace(/,00$/, ''); }
   function unitLabel(f, u) { var g = S.unitGrams(f, u); return u === 'g100' ? '100 ' + unitName('g100') : '1 ' + unitName(u) + ' · ' + g + ' ' + T('gram'); }
-  function portionText(e) { if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (e.unit) return qtyStr(e.qty) + ' ' + unitName(e.unit); return e.g ? fmt(e.g) + ' ' + T('gram') : ''; }
+  function portionText(e) { if (e.unit && String(e.unit).indexOf('v:') === 0) return qtyStr(e.qty) + ' ' + (e.vn || T('vn_lagan')) + (e.vf && e.vf !== 'tola' ? ' · ' + T('vf_' + e.vf) : ''); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (e.unit) return qtyStr(e.qty) + ' ' + unitName(e.unit); return e.g ? fmt(e.g) + ' ' + T('gram') : ''; }
 
   /* ---------- baza (lazy) ---------- */
   var dbWaiters = [];
@@ -215,6 +215,7 @@
     units: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('#fdUnits')); }, 500); }); },
     variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('#fdUnits').previousElementSibling.previousElementSibling || $('#fdUnits')); }, 500); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
+    vessel: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('.sl-vnew')); }, 500); }); },
     templates: function (n) { return goTab('me', function () { n.highlight($('[data-act=tpls]')); }); },
     dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('.sl-hero')); } }); } } });
   function nudges() {
@@ -316,7 +317,7 @@
     h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
       (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
       (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + (wj ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(wj.text) + '</p>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
-    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
+    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
     h += '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
@@ -347,6 +348,7 @@
 
   /* ================= 2-bosqich: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, taklif, qo'shimchalar ================= */
   kit.addIcons({
+    bowl: 'M3 11h18a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z M8 7c0-1 1-1 1-2 M12 7c0-1 1-1 1-2 M16 7c0-1 1-1 1-2',
     star: 'M12 3.500l2.700 5.500 6 .900-4.400 4.200 1 6-5.300-2.800-5.300 2.800 1-6L3.300 9.900l6-.900z',
     dots: 'M5.500 12h.010 M12 12h.010 M18.500 12h.010', undo: 'M4 12a8 8 0 1 0 2.500-5.800 M4 4v5h5', bm: 'M6 4h12v17l-6-4-6 4z',
     chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
@@ -607,9 +609,17 @@
   /* ---------- porsiya oynasi (bitta): qidiruvdan tanlash, saqlangan yozuv, AI matn/rasm qatorlari ---------- */
   function pwO() { return fd.mode === 'item' ? fd.items[fd.ix] : fd; }
   function pwBaseG(o) { return o.base ? (o.base.g || 0) : 0; }
-  function pwUg(o, u) { if (u === 'g100') return 1; return o.food ? (S.unitGrams(o.food, u) || 0) : pwBaseG(o); }   // 1 birlik necha gramm
-  function pwUnits(o) { if (!o.food) return ['pc'].concat(pwBaseG(o) > 0 ? ['g100'] : []); var l = o.food.u.map(function (u) { return u[0]; }), d = defUnit(o.food); return [d].concat(l.filter(function (k) { return k !== d; })); }
-  function pwUName(u) { return u === 'pc' ? unitName('porsiya') : (u === 'g100' ? T('pwGramm') : unitName(u)); }
+  function vFillChips(o) {
+    if (!vOf(o.unit)) return ''; var fl = o.vfill || 'tola';
+    return '<div class="rz-fl">' + esc(T('vfT')) + '</div><div class="rz-chips" id="fdFill" role="group" aria-label="' + esc(T('vfT')) + '">' + ['yarim', 'tola', 'kop'].map(function (k) { return '<button type="button" class="rz-chip sm' + (fl === k ? ' on' : '') + '" data-act="vfill" data-f="' + k + '" aria-pressed="' + (fl === k) + '">' + esc(T('vf_' + k)) + '</button>'; }).join('') + '</div>';
+  }
+  function vkey(o) { var f = o && (o.fam || o.food); if (!f) return null; return f.fam ? f.fam.id : (dbAlias[f.id] || f.id); }          // «taom oilasi» kaliti: oila id yoki yakka taom id
+  function vOf(u) { return u && String(u).indexOf('v:') === 0 ? S.vesselById(st, +String(u).slice(2)) : null; }
+  function vName(v) { return v.name || T('vn_' + v.kind); }
+  function vLabel(v, key) { return vName(v) + ' · ' + fmt(v.fam[key]) + ' ' + T('gram'); }
+  function pwUg(o, u) { var vv = vOf(u); if (vv) return S.vessGrams(vv, vkey(o), o.vfill); if (u === 'g100') return 1; return o.food ? (S.unitGrams(o.food, u) || 0) : pwBaseG(o); }   // 1 birlik necha gramm
+  function pwUnits(o) { if (!o.food) return ['pc'].concat(pwBaseG(o) > 0 ? ['g100'] : []); var l = o.food.u.map(function (u) { return u[0]; }), d = defUnit(o.food), vs = S.vesselsFor(st, vkey(o)).map(function (v) { return 'v:' + v.id; }); return vs.concat([d], l.filter(function (k) { return k !== d; })); }
+  function pwUName(u) { var vv = vOf(u); if (vv) return vName(vv); return u === 'pc' ? unitName('porsiya') : (u === 'g100' ? T('pwGramm') : unitName(u)); }
   function pwGrams(o) { return o.unit === 'g100' ? o.qty : pwUg(o, o.unit) * o.qty; }
   function pwCalc(o) {
     var g = pwGrams(o); if (o.food) return S.portion(o.food, g);
@@ -627,7 +637,7 @@
     var pt = pwCalc(o), approx = !!o.base;                             // «taxminiy» faqat bazada yo'q (AI/rasm) taom uchun; baza taomlariniki — faqat ⓘ Manba ichida
     return '<div class="sl-kc" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
       (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
-      famChips(o) + '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits">' + pwUnits(o).map(function (u) { return '<button type="button" class="rz-chip' + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(pwUName(u)) + '</button>'; }).join('') + '</div>' +
+      famChips(o) + '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits">' + pwUnits(o).map(function (u) { var vv = vOf(u); return '<button type="button" class="rz-chip' + (vv ? ' sl-vc' : '') + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(vv ? vLabel(vv, vkey(o)) : pwUName(u)) + '</button>'; }).join('') + (o.food ? '<button type="button" class="rz-chip sl-vnew" data-act="vnew">+ ' + esc(T('vNew')) + '</button>' : '') + '</div>' + vFillChips(o) +
       '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + (o.unit === 'g100' ? esc(T('gram')) : '') + '</i></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
       '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div><div class="rz-chips sl-pwq" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
       '<div class="sl-two"><button type="button" class="rz-btn ghost sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button><button type="button" class="rz-btn ghost sl-sw sl-src" data-act="pwsrc">ⓘ ' + esc(T('srcBtn')) + '</button></div>';
@@ -667,7 +677,7 @@
   }
   function pwSetQty(o, q) { o.qty = Math.max(pwStep(o), Math.min(pwMax(o), Math.round(q * 100) / 100)); }
   function pwSetUnit(o, nu) {                          // birlik almashganda gramm (demak kkal) o'zgarmaydi
-    var g = pwGrams(o), ug = pwUg(o, nu); o.unit = nu;
+    var g = pwGrams(o), ug = pwUg(o, nu); o.unit = nu; if (vOf(nu)) { o.vfill = o.vfill || 'tola'; o.qty = 1; return; }
     if (g > 0 && ug > 0) o.qty = nu === 'g100' ? Math.round(g) : Math.round(g / ug * 100) / 100; else o.qty = nu === 'g100' ? 100 : 1;
     o.qty = Math.max(pwStep(o) / (nu === 'g100' ? 1 : 50), Math.min(pwMax(o), o.qty));
   }
@@ -701,10 +711,75 @@
   function itemBack() { var b = fd.back; fd.mode = b; if (b === 'photo') setSheet(phHtml()); else if (b === 'tpl') setSheet(tplHtml()); else setSheet(textHtml()); }
 
   /* ---------- «Odatdagi ovqatlarim» va «Kechagidek» ---------- */
+
+  /* ---------- «Mening idishim»: o'z kosa/laganingiz (idish × taom oilasi) ---------- */
+  function vStdG(o, kind) { var uk = S.VUNIT[kind] || defUnit(o.food), g = S.unitGrams(o.food, uk) || S.unitGrams(o.food, defUnit(o.food)) || 0; return g; }
+  function vcGrams() {                                 // 2 yo'l: tarozida (ovqat bilan − bo'sh idish yoki to'g'ridan-to'g'ri ovqat grammi) / tarozisiz (standartga nisbatan)
+    var vc = fd.vc, o = pwO(); if (vc.method === 'scale') { var d = num(vc.full) - num(vc.empty); return num(vc.full) > 0 && num(vc.empty) >= 0 && d > 0 ? Math.round(d) : Math.round(num(vc.direct)); }
+    return Math.round(vStdG(o, vc.kind) * S.SCALE[vc.scale]);
+  }
+  function vcOpen(kind) {
+    var o = pwO(); if (!o || !o.food) return; var du = defUnit(o.food), dk = kind || (du === 'kosa' ? 'kosa' : (du === 'piyola' ? 'piyola' : 'lagan'));
+    fd.vcBack = fd.mode; fd.vc = { kind: dk, name: '', vid: null, method: 'scale', full: '', empty: '', direct: '', scale: 'ohshash' }; setSheet(vesselHtml());
+  }
+  function vesselHtml() {
+    var vc = fd.vc, o = pwO(), key = vkey(o), kinds = S.VKINDS, h, link = vc.vid ? S.vesselById(st, vc.vid) : null;
+    h = '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="vback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('vcT')) + '</b><span></span></div><p class="rz-p sm">' + esc(T('vcFor', { x: nameOf(o.fam || o.food) })) + '</p>';
+    var ex = (st.vessels || []).filter(function (v) { return !(v.fam[key] > 0); });
+    if (ex.length) h += '<div class="rz-fl">' + esc(T('vcLink')) + '</div><div class="rz-chips">' + ex.map(function (v) { return '<button type="button" class="rz-chip' + (vc.vid === v.id ? ' on' : '') + '" data-act="vlink" data-id="' + v.id + '" aria-pressed="' + (vc.vid === v.id) + '">' + esc(vName(v)) + '</button>'; }).join('') + '</div>';
+    if (!link) h += '<div class="rz-fl">' + esc(T('vcKind')) + '</div><div class="rz-chips">' + kinds.map(function (k) { return '<button type="button" class="rz-chip' + (vc.kind === k ? ' on' : '') + '" data-act="vkind" data-k="' + k + '" aria-pressed="' + (vc.kind === k) + '">' + esc(T('vk_' + k)) + '</button>'; }).join('') + '</div>' +
+      (vc.kind === 'custom' ? '<label class="rz-f" for="vcName"><span>' + esc(T('vcName')) + '</span><input id="vcName" type="text" maxlength="30" autocomplete="off" value="' + esc(vc.name) + '"></label>' : '');
+    else h += '<p class="rz-p"><b>' + esc(vName(link)) + '</b></p>';
+    h += '<div class="rz-fl">' + esc(T('vcHow')) + '</div><div class="rz-chips">' + ['scale', 'noscale'].map(function (m) { return '<button type="button" class="rz-chip' + (vc.method === m ? ' on' : '') + '" data-act="vmeth" data-m="' + m + '" aria-pressed="' + (vc.method === m) + '">' + esc(T(m === 'scale' ? 'vcScaleOn' : 'vcScaleOff')) + '</button>'; }).join('') + '</div>';
+    if (vc.method === 'scale') h += '<p class="rz-p sm">' + esc(T('vcHint')) + '</p>' + numFld('vcFull', T('vcFull'), vc.full, '', 'decimal') + numFld('vcEmpty', T('vcEmpty'), vc.empty, '', 'decimal') + numFld('vcDirect', T('vcDirect'), vc.direct, '', 'decimal');
+    else { var sg = vStdG(o, vc.kind); h += '<p class="rz-p">' + esc(T('vcStd', { k: T('vs_' + vc.kind), g: fmt(sg) })) + '</p><div class="rz-fl">' + esc(T('vcCompare')) + '</div><div class="rz-chips">' + ['kichik', 'ohshash', 'katta'].map(function (k) { return '<button type="button" class="rz-chip' + (vc.scale === k ? ' on' : '') + '" data-act="vscale" data-s="' + k + '" aria-pressed="' + (vc.scale === k) + '">' + esc(T('vc_' + k)) + '</button>'; }).join('') + '</div>'; }
+    h += '<div class="sl-vres" id="vcRes" aria-live="polite">' + vcResTxt() + '</div><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="vsave">' + esc(T('vcSave')) + '</button></div>';
+    return h;
+  }
+  function vcResTxt() { var g = vcGrams(); return g >= 10 ? T('vcRes', { g: fmt(g) }) : ''; }
+  function vcSave() {
+    var vc = fd.vc, o = pwO(), key = vkey(o), g = vcGrams(); if (!(g >= 10 && g <= 3000)) { toast(T('vcBad')); return; }
+    var v; if (vc.vid) { if (!S.linkVessel(st, vc.vid, key, g)) { toast(T('vcBad')); return; } v = S.vesselById(st, vc.vid); }
+    else { if (vc.kind === 'custom' && !String(vc.name).trim()) { flashEl($('#vcName')); return; } v = S.addVessel(st, vc.kind, vc.name, key, g); if (!v) { toast(T('vcMax')); return; } }
+    save(); o.unit = 'v:' + v.id; o.qty = 1; o.vfill = 'tola'; fd.mode = fd.vcBack || 'portion'; fd.vc = null; pwScreen(); if (fd.mode === 'item') { o.ed = true; itSync(o); }
+    toast(T('vSaved', { x: vLabel(v, key) }), null, true);
+  }
+  function vSugKind() { var du = fd.food ? defUnit(fd.food) : 'likop'; return du === 'kosa' ? 'kosa' : 'lagan'; }
+  function vSugHtml() {                                // kashfiyot: idishli taomni 3-marta qo'shganda bir martalik taklif
+    if (fd.editId != null || fd.mode !== 'portion' || !fd.food || fd.food.t !== 'o') return ''; var key = vkey(fd); if (!key || S.vesselsFor(st, key).length) return '';
+    var du = defUnit(fd.food); if (du !== 'kosa' && du !== 'likop') return ''; var pr = prefs(); pr.vsug = pr.vsug || {};
+    if (fd.vsugShown !== key) { if (pr.vsug[key]) return ''; var from = Dt.addDays(todayStr(), -60), cnt = 0; Object.keys(st.days).forEach(function (d) { if (d >= from) st.days[d].food.forEach(function (e) { if (e.fid && (dbAlias[e.fid] || e.fid) === key) cnt++; }); }); if (cnt < 2) return ''; pr.vsug[key] = 1; fd.vsugShown = key; save(); }
+    return '<div class="sl-sug" id="vSug"><p>' + esc(T(du === 'kosa' ? 'vsugK' : 'vsugL')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost sm" data-act="vsugno">' + esc(T('vsugNo')) + '</button><button type="button" class="rz-btn primary sm" data-act="vsugyes">' + esc(T('vsugYes')) + '</button></div></div>';
+  }
+  var vm = null;
+  function vFams(v) { return Object.keys(v.fam).map(function (k) { var f = foodById(k); return (f ? nameOf(f) : k) + ' ' + fmt(v.fam[k]) + ' ' + T('gram'); }).join(' · '); }
+  function vmHtml() {
+    var l = st.vessels || [];
+    return shHead(T('vmT')) + (l.length ? l.map(function (v) {
+      return '<div class="sl-tr"><span class="m"><b>' + esc(vName(v)) + '</b><span>' + esc(vFams(v)) + '</span></span><button type="button" class="rz-x" data-act="vedit" data-id="' + v.id + '" aria-label="' + esc(T('vmEdit') + ': ' + vName(v)) + '">' + ico('pen') + '</button><button type="button" class="rz-x" data-act="vdel" data-id="' + v.id + '" aria-label="' + esc(T('del') + ': ' + vName(v)) + '">' + ico('x') + '</button></div>';
+    }).join('') + '<p class="rz-p sm">' + esc(T('vmMax', { n: S.VESSEL_MAX })) + '</p>' : '<p class="rz-p">' + esc(T('vmEmpty')) + '</p><p class="rz-p sm">' + esc(T('vmGuide')) + '</p><button type="button" class="rz-btn primary full" data-act="tplgoadd">' + esc(T('tplAddFood')) + '</button>') + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
+  }
+  function vmOpen() { openSheet('vess', vmHtml()); }
+  function vmEdit(id) {
+    var v = S.vesselById(st, id); if (!v) return; vm = { id: id };
+    setSheet('<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="vmback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('vmEdit')) + '</b><span></span></div>' +
+      '<label class="rz-f" for="vmName"><span>' + esc(T('vmName')) + '</span><input id="vmName" type="text" maxlength="30" autocomplete="off" value="' + esc(vName(v)) + '"></label><div class="rz-fl">' + esc(T('vmFam')) + '</div>' +
+      Object.keys(v.fam).map(function (k, i) { var f = foodById(k); return numFld('vmg' + i, (f ? nameOf(f) : k) + ' (' + T('gram') + ')', String(v.fam[k]), '', 'numeric'); }).join('') + '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn ghost danger" data-act="vdel" data-id="' + id + '">' + esc(T('del')) + '</button><button type="button" class="rz-btn primary" data-act="vedsave">' + esc(T('vcSave')) + '</button></div>');
+  }
+  function vmSave() {
+    var v = vm && S.vesselById(st, vm.id); if (!v) return; var nm = $('#vmName').value.trim(), keys = Object.keys(v.fam), ng = {}, bad = false;
+    keys.forEach(function (k, i) { var g = Math.round(num($('#vmg' + i).value)); if (g >= 10 && g <= 3000) ng[k] = g; else { bad = true; flashEl($('#vmg' + i)); } });
+    if (bad) { toast(T('vcBad')); return; } if (!nm) { flashEl($('#vmName')); return; }
+    v.fam = ng; v.name = nm === T('vn_' + v.kind) ? undefined : nm; if (v.kind === 'custom' && !v.name) v.name = nm; save(); setSheet(vmHtml()); toast(T('saved'), null, true);
+  }
+  function vmDel(id) {
+    var r = S.removeVessel(st, id); if (!r) return; save(); if (kit.sheetKind() === 'vess') setSheet(vmHtml());
+    toast(T('vmDel1'), function () { var l = st.vessels || (st.vessels = []); l.splice(Math.min(r.i, l.length), 0, r.v); save(); if (kit.sheetKind() === 'vess') setSheet(vmHtml()); });
+  }
   var tm = null;
   function tplSuggest(m) { var k = ({ b: 'S', l: 'L', d: 'D', s: 'T' })[m]; return [T('tpl' + k + '0'), T('tpl' + k + '1'), T('tplS2')]; }
   function entryToTpl(e) {
-    var f = e.fid ? foodById(e.fid) : null; return { fid: e.fid || null, n: f ? nameOf(f) : (e.name || ''), unit: e.unit, qty: e.qty, g: e.g, kcal: e.kcal, p: e.p, f: e.f, c: e.c, est: !!e.est, vr: e.vr, sz: e.sz };
+    var f = e.fid ? foodById(e.fid) : null; return { fid: e.fid || null, n: f ? nameOf(f) : (e.name || ''), unit: e.unit, qty: e.qty, g: e.g, kcal: e.kcal, p: e.p, f: e.f, c: e.c, est: !!e.est, vr: e.vr, sz: e.sz, vn: e.vn, vf: e.vf };
   }
   var MEAL_EM = { b: '🍳', l: '🍲', d: '🌙', s: '🍎' };
   function tplTodayHtml(date) {                      // bugungi yozilgan bo'limlar: bir bosishda saqlash
@@ -733,8 +808,10 @@
       var f = x.fid ? foodById(x.fid) : null, vr = x.vr || null, fam = null;
       if (f && f.al) { var bf = foodById(f.al.f); if (bf) { vr = vr || f.al.v; f = bf; } }
       if (f && f.fam) { fam = f; f = S.famVariant(fam, S.famSelOf(fam, vr), x.sz || null); }
-      var ok = f && f.u.some(function (u) { return u[0] === x.unit; }), qty = x.qty > 0 ? x.qty : 1;
-      if (ok) { if (x.unit === 'g100' && qty < 5 && x.g > 5) qty = x.g; var it = { name: nameOf(fam || f), fid: (fam || f).id, food: f, unit: x.unit, qty: qty, est: !!f.e, ai: false }; if (fam) { it.fam = fam; it.sel = S.famSelOf(fam, vr); it.szid = x.sz || fam.fam.sz && fam.fam.sz.d || null; it.vr = f.vr; it.sz = f.sz; var lb = S.famLabel(fam, f.vr, it.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it; }
+      var ux = x.unit, qty = x.qty > 0 ? x.qty : 1, vkx = f ? (fam ? fam.fam.id : f.id) : null;
+      if (ux && String(ux).indexOf('v:') === 0) { var vv = S.vesselById(st, +String(ux).slice(2)); if (!(vv && vkx && vv.fam[vkx] > 0)) { ux = 'g100'; qty = x.g > 0 ? Math.round(x.g) : 100; } }       // idish o'chirilgan: saqlangan gramm bilan
+      var ok = f && (vOf(ux) || f.u.some(function (u) { return u[0] === ux; }));
+      if (ok) { if (ux === 'g100' && qty < 5 && x.g > 5) qty = x.g; var it = { name: nameOf(fam || f), fid: (fam || f).id, food: f, unit: ux, qty: qty, est: !!f.e, ai: false, vfill: vOf(ux) ? (x.vf || 'tola') : undefined }; if (fam) { it.fam = fam; it.sel = S.famSelOf(fam, vr); it.szid = x.sz || fam.fam.sz && fam.fam.sz.d || null; it.vr = f.vr; it.sz = f.sz; var lb = S.famLabel(fam, f.vr, it.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it; }
       var m = /^(.*?)\s*\(([^)]*)\)\s*$/.exec(x.n || ''), nm = m ? m[1] : (x.n || '?'), it2 = { name: nm, fid: null, food: null, unit: 'pc', qty: 1, est: true, ai: false, ptxt: m ? m[2] : '', base: { g: x.g || 0, kcal: x.kcal, p: x.p || 0, f: x.f || 0, c: x.c || 0 } };
       it2.g = x.g || 0; it2.kcal = x.kcal; it2.p = x.p || 0; it2.f = x.f || 0; it2.c = x.c || 0; return it2;
     });
@@ -788,12 +865,14 @@
     if (f.al) { var bf = foodById(f.al.f); if (bf) { fd.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
     if (f.fam) { famOpen(fd, f, Object.assign(S.famDefault(f), pick || {})); }
     else fd.food = f;
-    fd.base = null; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; setSheet(portionHtml());
+    fd.base = null; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
+    var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
+    setSheet(portionHtml());
   }
   function portionHtml() {
     var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1, nm = f ? nameOf(f) : (fd.name || '');
     return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nm) + '</b>' + (f && !f.custom ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : (f ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '<span></span>')) + '</div>' +
-      pwBody(fd) + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') +
+      vSugHtml() + pwBody(fd) + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') +
       '<div class="rz-actions sl-sticky">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
   }
   function fSave() {
@@ -802,11 +881,11 @@
       var x = S.dayOf(st, fd.date), e = x && x.food.filter(function (y) { return y.id === fd.editId; })[0];
       if (e) {
         e.meal = fd.meal; e.g = pt.g; e.kcal = pt.kcal; e.p = pt.p; e.f = pt.f; e.c = pt.c;
-        if (f) { e.fid = f.id; e.name = f.custom ? f.n : null; e.unit = fd.unit; e.qty = fd.qty; e.est = !!f.e; if (fd.fam) { e.vr = f.vr; if (fd.fam.fam.sz) e.sz = fd.szid; else delete e.sz; } else { delete e.vr; delete e.sz; } } else { e.unit = null; e.qty = 1; }
+        if (f) { e.fid = f.id; e.name = f.custom ? f.n : null; e.unit = fd.unit; e.qty = fd.qty; e.est = !!f.e; var ev = vOf(fd.unit); if (ev) { e.vn = vName(ev); e.vf = fd.vfill || 'tola'; } else { delete e.vn; delete e.vf; } if (fd.fam) { e.vr = f.vr; if (fd.fam.fam.sz) e.sz = fd.szid; else delete e.sz; } else { delete e.vr; delete e.sz; } } else { e.unit = null; e.qty = 1; }
       }
       kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); return;
     }
-    var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: fd.fam ? f.vr : null, sz: fd.fam && fd.fam.fam.sz ? fd.szid : null });
+    var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: fd.fam ? f.vr : null, sz: fd.fam && fd.fam.fam.sz ? fd.szid : null, vn: vOf(fd.unit) ? vName(vOf(fd.unit)) : null, vf: vOf(fd.unit) ? (fd.vfill || 'tola') : null });
     var date = fd.date; kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { rowOut(it.id, function () { S.removeFood(st, date, it.id); commit(); }); }, true);
     afterWater();
   }
@@ -817,9 +896,11 @@
     if (f && f.al) { var bf = foodById(f.al.f); if (bf) { vr = vr || f.al.v; f = bf; } }       // eski id (alias) → oila + shu omillar oldindan tanlangan
     fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [], name: e.name || '' };
     if (f && f.fam) famOpen(fd, f, S.famSelOf(f, vr), e.sz || null);
-    if (fd.food && fd.food.u.some(function (u) { return u[0] === e.unit; })) {
+    fd.vfill = e.vf || 'tola';
+    var unitOk = fd.food && (vOf(e.unit) ? S.vesselsFor(st, vkey(fd)).some(function (v) { return 'v:' + v.id === e.unit; }) : fd.food.u.some(function (u) { return u[0] === e.unit; }));
+    if (unitOk) {
       if (e.unit === 'g100' && e.qty < 5 && e.g > 5) fd.qty = e.g;
-      var ug = S.unitGrams(fd.food, e.unit);                         // birlik grammi o'zgargan bo'lsa saqlangan gramm asos: kkal o'zgarmaydi
+      var ug = pwUg(fd, e.unit);                         // birlik grammi o'zgargan bo'lsa saqlangan gramm asos: kkal o'zgarmaydi
       if (e.unit !== 'g100' && ug > 0 && e.g > 0 && Math.abs(ug * fd.qty - e.g) > Math.max(1.5, e.g * 0.01)) fd.qty = Math.max(0.01, Math.round(e.g / ug * 100) / 100);
       openSheet('add', '', { noFocus: true }); setSheet(portionHtml()); return;
     }
@@ -873,8 +954,8 @@
   function txRefresh() { var o = $('#txOut'); if (o) o.innerHTML = textOut(); }
   function txGo() {
     fd.txt = $('#txQ').value; var run = function () {
-      var r = S.parseText(fd.txt, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias) }); fd.parsed = true; fd.aiErr = false;
-      fd.items = r.items.map(function (x) { var it = { name: nameOf(x.fam || x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false }; if (x.fam) { it.fam = x.fam; it.sel = x.sel; it.szid = x.szid; it.vr = x.vr; it.sz = x.sz; var lb = S.famLabel(x.fam, x.vr, x.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it; });
+      var r = S.parseText(fd.txt, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); fd.parsed = true; fd.aiErr = false;
+      fd.items = r.items.map(function (x) { var it = { name: nameOf(x.fam || x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false, vfill: x.vfill }; if (x.fam) { it.fam = x.fam; it.sel = x.sel; it.szid = x.szid; it.vr = x.vr; it.sz = x.sz; var lb = S.famLabel(x.fam, x.vr, x.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it; });
       fd.missing = r.missing; txRefresh();
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
@@ -882,10 +963,10 @@
   function cid() { try { var c = lsGet(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
   function aiItem(o) {                               // AI javobini bazaga moslash: nom + porsiya → eng yaqin taom/oila/birikma; kkal AI bilan ±50…160% ichida bo'lsa baza qiymati (aks holda AI «taxminiy»)
     try {
-      var r = S.parseText(String(o.porsiya || '') + ' ' + String(o.nom || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias) });
+      var r = S.parseText(String(o.porsiya || '') + ' ' + String(o.nom || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels });
       if (r.items.length !== 1 || r.missing.length) return null; var x = r.items[0], pt = S.portion(x.food, x.g);
       if (!o.fid && !(o.kcal > 0 && pt.kcal >= o.kcal * 0.5 && pt.kcal <= o.kcal * 1.6)) return null;
-      var it = { name: nameOf(x.fam || x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false, fromAi: true };
+      var it = { name: nameOf(x.fam || x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false, fromAi: true, vfill: x.vfill };
       if (x.fam) { it.fam = x.fam; it.sel = x.sel; it.szid = x.szid; it.vr = x.vr; it.sz = x.sz; var lb = S.famLabel(x.fam, x.vr, x.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it;
     } catch (e) { return null; }
   }
@@ -901,7 +982,7 @@
   function txSave() {
     var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
     list.forEach(function (it) {
-      sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
+      sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, vn: vOf(it.unit) ? vName(vOf(it.unit)) : null, vf: vOf(it.unit) ? (it.vfill || 'tola') : null, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
       ids.push(e.id); if (!it.fid) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : '');
     });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
@@ -1129,7 +1210,7 @@
       case 'cusave': cuSave(); break;
       case 'fback': if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } break;
       case 'ffav': { var on = S.toggleFav(st, fd.favId || fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
-      case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'); if (nu !== o1.unit) pwSetUnit(o1, nu); pwUpdate(); break; }
+      case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'), wasV = !!vOf(o1.unit); if (nu !== o1.unit) pwSetUnit(o1, nu); if (wasV || vOf(nu)) pwScreen(); else pwUpdate(); break; }
       case 'fqty': { var o2 = pwO(); pwSetQty(o2, o2.qty + (+el.getAttribute('data-s')) * pwStep(o2)); pwUpdate(); vib(5); break; }
       case 'fmeal': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal]').forEach(function (b) { var on3 = b === el; b.classList.toggle('on', on3); b.setAttribute('aria-pressed', on3); }); break;
       case 'fmeal2': { var x2 = S.dayOf(st, fd.date), e2 = x2 && x2.food.filter(function (y) { return y.id === fd.editId; })[0]; if (e2) { e2.meal = el.getAttribute('data-m'); save(); kit.closeSheet(); render(); } break; }
@@ -1148,6 +1229,21 @@
       case 'pwq': { var o3 = pwO(); pwSetQty(o3, +el.getAttribute('data-v')); pwUpdate(); vib(5); break; }
       case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
       case 'pwswapx': pwScreen(); break;
+      case 'vfill': { var o8 = pwO(); o8.vfill = el.getAttribute('data-f'); if (fd.mode === 'item') { o8.ed = true; itSync(o8); } pwScreen(); break; }
+      case 'vnew': vcOpen(); break;
+      case 'vsugyes': vcOpen(vSugKind()); break;
+      case 'vsugno': fd.vsugShown = null; pwScreen(); break;
+      case 'vback': pwScreen(); break;
+      case 'vkind': fd.vc.kind = el.getAttribute('data-k'); fd.vc.vid = null; setSheet(vesselHtml()); break;
+      case 'vlink': { var lv = S.vesselById(st, +el.getAttribute('data-id')); if (lv) { fd.vc.vid = lv.id; fd.vc.kind = lv.kind; } setSheet(vesselHtml()); break; }
+      case 'vmeth': fd.vc.method = el.getAttribute('data-m'); setSheet(vesselHtml()); break;
+      case 'vscale': fd.vc.scale = el.getAttribute('data-s'); setSheet(vesselHtml()); break;
+      case 'vsave': vcSave(); break;
+      case 'vessels': vmOpen(); break;
+      case 'vedit': vmEdit(+el.getAttribute('data-id')); break;
+      case 'vedsave': vmSave(); break;
+      case 'vdel': vmDel(+el.getAttribute('data-id')); break;
+      case 'vmback': setSheet(vmHtml()); break;
       case 'pwsrc': setSheet(srcHtml(pwO())); break;
       case 'fax': { var o6 = pwO(); if (o6.fam) { o6.sel[el.getAttribute('data-a')] = el.getAttribute('data-o'); famRefresh(o6); } break; }
       case 'fsz': { var o7 = pwO(); if (o7.fam) { o7.szid = el.getAttribute('data-o'); famRefresh(o7); } break; }
@@ -1201,7 +1297,7 @@
   root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
   root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'fdQty') { e.preventDefault(); e.target.blur(); } });
   if (window.visualViewport) { var vv = window.visualViewport, vvf = function () { var kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)); root.style.setProperty('--kb', (kb > 80 ? kb : 0) + 'px'); }; vv.addEventListener('resize', vvf); vv.addEventListener('scroll', vvf); }
-  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
+  root.addEventListener('input', function (e) { var t = e.target; if (fd && fd.vc && /^vc(Name|Full|Empty|Direct)$/.test(t.id)) { fd.vc[{ vcName: 'name', vcFull: 'full', vcEmpty: 'empty', vcDirect: 'direct' }[t.id]] = t.value; var rs = $('#vcRes'); if (rs) rs.textContent = vcResTxt(); } else if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
     if (t.id === 'phIn') { var f0 = t.files && t.files[0]; if (f0) phFile(f0); } else if (t.id === 'jkParty') { S.ensureDay(st, todayStr()).party = t.checked; commit(); } else if (t.id === 'obPreg') ob.preg = t.checked; else if (t.id === 'peP') { pe.preg = t.checked; peRepaint(); } else if (t.hasAttribute && t.hasAttribute('data-sh')) { shSel[t.getAttribute('data-sh')] = t.checked; shPaint(); }
