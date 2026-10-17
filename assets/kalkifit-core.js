@@ -89,13 +89,13 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     var t = { kcal: 0, p: 0, f: 0, c: 0 }; (list || []).forEach(function (e) { t.kcal += e.kcal || 0; t.p += e.p || 0; t.f += e.f || 0; t.c += e.c || 0; });
     return { kcal: Math.round(t.kcal), p: Math.round(t.p), f: Math.round(t.f), c: Math.round(t.c) };
   }
-  function mealByHour(h) { return h < 11 ? 'b' : (h < 16 ? 'l' : (h < 21 ? 'd' : 's')); }
+  function mealByHour(h) { return h >= 5 && h < 11 ? 'b' : (h >= 11 && h < 16 ? 'l' : (h >= 16 && h < 22 ? 'd' : 's')); }       // 05–11 nonushta, 11–16 tushlik, 16–22 kechki ovqat, qolgani tamaddi
 
   /* ---------- sana bo'yicha ma'lumot ---------- */
   function dayOf(st, d) { return st.days[d] || null; }
   function ensureDay(st, d) { if (!st.days[d]) st.days[d] = { food: [], water: 0, steps: 0 }; if (st.trackStart && d < st.trackStart) st.trackStart = d; return st.days[d]; }   // oldingi sanaga yozilsa, kuzatuv boshlanishi shu sanaga suriladi
   function dayTotals(st, d) { var x = dayOf(st, d); return sumEntries(x ? x.food : []); }
-  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
+  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
@@ -230,9 +230,52 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
+    s.tpls = cleanTpls(raw.tpls, s);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     return s;
   }
+  /* ---------- «Odatdagi ovqatlarim» (shablonlar) va «Kechagidek» ---------- */
+  var TPL_MAX = 12;
+  function r1(x) { return Math.round(num(x) * 10) / 10; }
+  function cleanTplItem(e) {
+    if (!e || typeof e !== 'object') return null; var k = Math.round(num(e.kcal)); if (!(k >= 0) || !(e.fid || e.n || e.name)) return null;
+    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est };
+  }
+  function cleanTpls(list, s) {
+    var out = [], used = {}; (Array.isArray(list) ? list : []).forEach(function (t) {
+      if (out.length >= TPL_MAX || !t || typeof t !== 'object') return; var name = String(t.name || '').trim().slice(0, 40), items = (Array.isArray(t.items) ? t.items : []).map(cleanTplItem).filter(Boolean).slice(0, 40); if (!name || !items.length) return;
+      var id = Math.round(num(t.id)); if (!(id > 0) || used[id]) id = s.seq++; else if (id >= s.seq) s.seq = id + 1; used[id] = 1; out.push({ id: id, name: name, meal: MEALS.indexOf(t.meal) > -1 ? t.meal : null, items: items });
+    }); return out;
+  }
+  function tplList(st) { return st.tpls || (st.tpls = []); }
+  function addTemplate(st, name, entries, meal) {                 // entries: kunning shu ovqati yozuvlari ({fid,n,unit,qty,g,kcal,p,f,c,est}); to'lgan (12) yoki bo'sh bo'lsa — null
+    var l = tplList(st); name = String(name || '').trim().slice(0, 40); var items = (entries || []).map(cleanTplItem).filter(Boolean).slice(0, 40);
+    if (!name || !items.length || l.length >= TPL_MAX) return null; var t = { id: st.seq++, name: name, meal: MEALS.indexOf(meal) > -1 ? meal : null, items: items }; l.push(t); return t;
+  }
+  function tplById(st, id) { var l = tplList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+  function renameTemplate(st, id, name) { var t = tplById(st, id); name = String(name || '').trim().slice(0, 40); if (!t || !name) return false; t.name = name; return true; }
+  function removeTemplate(st, id) { var l = tplList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l.splice(i, 1)[0]; return null; }
+  function moveTemplate(st, id, dir) { var l = tplList(st), i = -1; for (var k = 0; k < l.length; k++) if (l[k].id === id) i = k; var j = i + (dir < 0 ? -1 : 1); if (i < 0 || j < 0 || j >= l.length) return false; var x = l[i]; l[i] = l[j]; l[j] = x; return true; }
+  function tplKcal(t) { return t.items.reduce(function (a, e) { return a + e.kcal; }, 0); }
+  function yesterdayEntries(st, date, meal) { var x = dayOf(st, D.addDays(date, -1)); return x ? x.food.filter(function (e) { return e.meal === meal; }) : []; }
+  function suggestTemplate(st, today) {                          // oxirgi 14 kunda bir ovqatda 3+ kun birga yeyilgan taomlar to'plami (rad etilgan va allaqachon saqlanganlari — yo'q)
+    var no = (st.prefs && st.prefs.tplNo) || [], best = null;
+    MEALS.forEach(function (m) {
+      var days = []; for (var i = 0; i < 14; i++) { var d = D.addDays(today, -i), x = dayOf(st, d); if (!x) continue; var l = x.food.filter(function (e) { return e.meal === m && e.fid; }); if (l.length) days.push({ d: d, list: l, set: l.map(function (e) { return e.fid; }) }); }
+      var cnt = {}; days.forEach(function (y) { y.set.filter(function (v, i, a) { return a.indexOf(v) === i; }).forEach(function (f) { cnt[f] = (cnt[f] || 0) + 1; }); });
+      var fr = Object.keys(cnt).filter(function (f) { return cnt[f] >= 3; }).sort(function (a, b) { return cnt[b] - cnt[a] || (a < b ? -1 : 1); }); if (fr.length < 2) return;
+      var core = [fr[0]], co = days.filter(function (y) { return y.set.indexOf(fr[0]) > -1; });
+      for (var k = 1; k < fr.length && core.length < 6; k++) { var co2 = co.filter(function (y) { return y.set.indexOf(fr[k]) > -1; }); if (co2.length >= 3) { core.push(fr[k]); co = co2; } }
+      if (core.length < 2) return; var ids = core.slice().sort(), key = m + '|' + ids.join(',');
+      if (no.indexOf(key) > -1 || tplList(st).some(function (t) { return t.meal === m && t.items.length === ids.length && t.items.every(function (it) { return ids.indexOf(it.fid) > -1; }); })) return;
+      var last = co[0], entries = last.list.filter(function (e) { return ids.indexOf(e.fid) > -1; });
+      var c = { meal: m, key: key, ids: ids, days: co.length, entries: entries }; if (!best || c.days > best.days) best = c;
+    }); return best;
+  }
+  function kechagidekOk(st, date, meal) {                         // shu kunda shu ovqat bo'sh va kecha unda yozuv bo'lgan
+    var t = dayOf(st, date); if (t && t.food.some(function (e) { return e.meal === meal; })) return false; return yesterdayEntries(st, date, meal).length > 0;
+  }
+
   function exportState(st) { return JSON.stringify({ app: 'kalki-kalkifit', v: VERSION, exportedAt: Date.now(), state: st }); }
   function importState(text) {
     var o; try { o = JSON.parse(text); } catch (e) { return { ok: false }; }
@@ -244,36 +287,58 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
 
   /* ---------- qidiruv va matn tahlili ---------- */
   var CYR = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'j', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'x', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': '', 'ы': 'i', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ў': 'o', 'қ': 'q', 'ғ': 'g', 'ҳ': 'h' };
-  function key(s) {                                  // lotin/kirill/rus + xato yozuvga chidamli kalit
-    var t = String(s || '').toLowerCase().replace(/[’'`‘ʻʼ]/g, ''), o = '';
+  function key(s) {                                  // lotin/kirill/rus + xato yozuvga chidamli kalit: o' o‘ oʻ o` o’ → o, g' → g, ў қ ғ ҳ х ш ч ё ю я → lotin
+    var t = String(s || '').toLowerCase().replace(/[’'`‘ʻʼ´′]/g, ''), o = '';
     for (var i = 0; i < t.length; i++) o += CYR[t[i]] != null ? CYR[t[i]] : t[i];
     return o.replace(/w/g, 'v').replace(/kh/g, 'x').replace(/ph/g, 'f').replace(/ts/g, 's').replace(/([a-z])\1+/g, '$1').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
-  function lev1(a, b) {                               // Levenshtein <= 1 ?
-    if (a === b) return true; var la = a.length, lb = b.length; if (Math.abs(la - lb) > 1) return false;
-    var i = 0, j = 0, edits = 0; while (i < la && j < lb) { if (a[i] === b[j]) { i++; j++; continue; } if (++edits > 1) return false; if (la > lb) i++; else if (lb > la) j++; else { i++; j++; } }
-    return edits + (la - i) + (lb - j) <= 1;
-  }
-  function foodKeys(f) { if (!f._k) { var arr = [f.n, f.r].concat(f.a || []); f._k = arr.filter(Boolean).map(function (x) { return key(x); }); f._t = f._k.map(function (k) { return k.split(' '); }); } return f; }
-  function scoreFood(f, qt) {                          // qt — so'rov so'zlari (kalitlangan); har so'z mos kelishi shart
-    foodKeys(f); var total = 0;
-    for (var i = 0; i < qt.length; i++) {
-      var best = 0;
-      for (var k = 0; k < f._t.length; k++) for (var j = 0; j < f._t[k].length; j++) {
-        var w = f._t[k][j], q = qt[i], sc = 0;
-        if (w === q) sc = 3; else if (w.indexOf(q) === 0) sc = 2.2; else if (q.length >= 3 && w.indexOf(q) > -1) sc = 1.2; else if (q.length >= 4 && lev1(w, q)) sc = 1;
-        if (k === 0 && sc) sc += 0.3; if (sc > best) best = sc;
-      }
-      if (!best) return 0; total += best;
+  function dmax(len) { return len < 3 ? 0 : (len <= 5 ? 1 : 2); }            // xatoga chidamlilik: 3–5 harfda 1 ta, 6+ da 2 ta
+  function osa(a, b, max) {                           // Damerau–Levenshtein (harf tushishi, ortiqcha harf, almashishi, ikki harf o'rin almashishi); max dan oshsa max+1
+    var la = a.length, lb = b.length; if (Math.abs(la - lb) > max) return max + 1;
+    var prev2 = null, prev = [], cur, i, j; for (j = 0; j <= lb; j++) prev[j] = j;
+    for (i = 1; i <= la; i++) {
+      cur = [i]; var rm = i;
+      for (j = 1; j <= lb; j++) { var c = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1, v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + c); if (i > 1 && j > 1 && a.charCodeAt(i - 1) === b.charCodeAt(j - 2) && a.charCodeAt(i - 2) === b.charCodeAt(j - 1)) v = Math.min(v, prev2[j - 2] + 1); cur[j] = v; if (v < rm) rm = v; }
+      if (rm > max) return max + 1; prev2 = prev; prev = cur;
     }
-    var whole = qt.join(' '); for (var k2 = 0; k2 < f._k.length; k2++) if (f._k[k2] === whole) { total += qt.length * 1.2; break; }          // butun nom/sinonim aynan mos — yuqoriroq
-    return total / qt.length;
+    return prev[lb];
   }
-  function search(foods, q, o) {
-    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return [];
-    var rec = o.recents || [], fav = o.favs || [], out = [];
-    foods.forEach(function (f, ix) { var sc = scoreFood(f, qt); if (sc > 0) { var r = rec.indexOf(f.id); if (fav.indexOf(f.id) > -1) sc += 0.4; if (r > -1) sc += 0.3 - r * 0.01; if (f.t === 'o') sc += 0.05; out.push({ f: f, s: sc, ix: ix }); } });
-    out.sort(function (a, b) { return b.s - a.s || a.ix - b.ix; });
+  function foodKeys(f) { if (!f._k) { var arr = [f.n, f.r].concat(f.a || []); f._k = arr.filter(Boolean).map(function (x) { return key(x); }); f._t = f._k.map(function (k) { return k.split(' '); }); f._nl = f._k[0] ? f._k[0].length : 99; } return f; }
+  function buildIndex(foods) { foods.forEach(foodKeys); return foods; }       // indeksni oldindan qurish (har harfda qayta hisoblanmaydi)
+  /* so'z darajasi: 1 so'zning o'zi · 2 so'z boshidan · 3 so'z boshida xato bilan · 4 ichida · 5 butun so'z xato bilan; {t, d (xato soni), l (uzunlik farqi)} */
+  function tokTier(w, q) {
+    if (w === q) return { t: 1, d: 0, l: 0 };
+    if (w.indexOf(q) === 0) return { t: 2, d: 0, l: w.length - q.length };
+    var ql = q.length; if (ql < 3) return null; var tol = dmax(ql), best = null, d, fl = ql <= 4 && w.charAt(0) !== q.charAt(0);      // qisqa so'rovda birinchi harfda xato qidirilmaydi (shovqin kamayadi)
+    if (!fl) for (var n = Math.max(3, ql - 1); n <= ql + 1; n++) { if (n > w.length) continue; d = osa(q, w.slice(0, n), tol); if (d <= tol && (!best || d < best.d)) best = { t: 3, d: d, l: Math.abs(w.length - ql) }; }
+    if (best) return best;
+    if (w.indexOf(q) > 0) return { t: 4, d: 0, l: w.length - ql };
+    if (fl) return null; d = osa(q, w, tol); if (d <= tol) return { t: 5, d: d, l: Math.abs(w.length - ql) };
+    return null;
+  }
+  function matchFood(f, qt, whole) {                   // → null | {tier, d, l}; tier 0 — butun so'rov nom/sinonimga aynan mos
+    foodKeys(f); for (var k = 0; k < f._k.length; k++) if (f._k[k] === whole) return { tier: 0, d: 0, l: 0 };
+    var tier = 0, dd = 0, ll = 0;
+    for (var i = 0; i < qt.length; i++) {
+      var best = null;
+      for (var k2 = 0; k2 < f._t.length; k2++) for (var j = 0; j < f._t[k2].length; j++) { var r = tokTier(f._t[k2][j], qt[i]); if (r && (!best || r.t < best.t || (r.t === best.t && (r.d < best.d || (r.d === best.d && r.l < best.l))))) best = r; }
+      if (!best) return null; if (best.t > tier) tier = best.t; dd += best.d; ll += best.l;
+    }
+    return { tier: tier, d: dd, l: ll };
+  }
+  function freqMap(st, today, days) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
+    var out = {}, from = D.addDays(today, -((days || 30) - 1));
+    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) out[e.fid] = (out[e.fid] || 0) + 1; }); });
+    return out;
+  }
+  function search(foods, q, o) {                       // ① aynan ② so'z boshidan ③ ichida/xato bilan ④ — bir xil darajada: ko'p yeyilgan va sevimlilar yuqorida
+    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' ');
+    var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
+    foods.forEach(function (f, ix) {
+      var m = matchFood(f, qt, whole); if (!m) return; var r = rec.indexOf(f.id);
+      out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), d: m.d, l: m.l, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
+    });
+    out.sort(function (a, b) { return a.tier - b.tier || b.pref - a.pref || a.d - b.d || a.l - b.l || a.r - b.r || a.ix - b.ix; });
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
@@ -314,6 +379,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

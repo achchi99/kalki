@@ -280,6 +280,9 @@ protein-bar|Protein batonchik|Протеиновый батончик|protein ba
 const rows = R.trim().split('\n').map((l) => l.split('|'));
 const MANBA = JSON.parse(fs.readFileSync(path.join(__dirname, 'ovqatlar-manba.json'), 'utf8'));   // tekshirilgan taomlar: manba/hisob usuli (docs/kalkifit-baza-tekshiruv.md)
 const DEF_M = { o: "Retsept: o'rtacha uy retsepti, masalliqlar grammidan (yog' hisobga olingan)", q: "Odatiy porsiya va o'rtacha retsept bo'yicha taxmin", h: "Odatiy porsiya va o'rtacha retsept bo'yicha taxmin", x: 'USDA FoodData Central va ochiq jadvallar (taxminiy)' };
+const ALIAS = JSON.parse(fs.readFileSync(path.join(__dirname, 'ovqatlar-alias.json'), 'utf8'));   // qidiruv sinonimlari (qiymatlarga tegmaydi): imlo/rus/ingliz variantlari
+const normA = (x) => String(x).toLowerCase().replace(/[’'`‘ʻʼ´′]/g, '').replace(/\s+/g, ' ').trim();
+let aliasFoods = 0, aliasAdded = 0;
 const out = [], ids = new Set(), warn = [];
 for (const r of rows) {
   if (r.length !== 11) throw new Error('qator xato: ' + r.join('|'));
@@ -289,6 +292,7 @@ for (const r of rows) {
   const o = { i: id, n, r: ru, a: al.split(',').filter(Boolean), k: +k, p: +p, f: +f, c: +c, t, e: +e, u };
   const atw = 4 * o.p + 9 * o.f + 4 * o.c;
   if (o.k > 20 && id !== 'vino' && Math.abs(atw - o.k) > Math.max(30, o.k * 0.25)) warn.push(id + ': kkal ' + o.k + ' ≠ makrodan ' + Math.round(atw));
+  { const have = new Set([o.n, o.r].concat(o.a).map(normA)); let add = 0; (ALIAS[id] || []).forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); add++; } }); if (add) { aliasFoods++; aliasAdded += add; } }
   o.m = MANBA[id] || DEF_M[t] || DEF_M.x;       // manba / hisob usuli (har taomda)
   out.push(o);
 }
@@ -297,4 +301,4 @@ const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');
 if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf8'))) { if (ids.has(x.i)) { warn.push('qo\'shimcha takror id: ' + x.i); continue; } ids.add(x.i); out.push(x); }
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 1, note: 'Qiymatlar 100 g uchun taxminiy (USDA FoodData Central va ochiq jadvallar asosida; retsept taomlar — o\'rtacha uy retsepti).', foods: out }));
-console.log('ovqatlar:', out.length, '| ogohlantirish:', warn.length); warn.forEach((x) => console.log(' ', x));
+console.log('ovqatlar:', out.length, '| sinonim qo\'shilgan taomlar:', aliasFoods, '(+' + aliasAdded + ' ta nom) | ogohlantirish:', warn.length); warn.forEach((x) => console.log(' ', x));

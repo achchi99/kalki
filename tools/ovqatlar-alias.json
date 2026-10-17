@@ -1,0 +1,832 @@
+{
+ "osh": [
+  "to'y oshi",
+  "toy oshi",
+  "plov uzbekskiy",
+  "палов",
+  "плов узбекский",
+  "ош",
+  "palav",
+  "pilov",
+  "pilaf"
+ ],
+ "yengil-osh": [
+  "palov tovuq",
+  "plov s kuritsey",
+  "osh tovuqli"
+ ],
+ "somsa": [
+  "somsa go'shtli",
+  "samsa mясо",
+  "самса мясная",
+  "somsa tandir"
+ ],
+ "somsa-qat": [
+  "qatlamali somsa",
+  "samsa sloenaya",
+  "слоёная самса",
+  "qatlam somsa"
+ ],
+ "somsa-qovoq": [
+  "qovoqli somsa",
+  "samsa s tykvoy",
+  "самса тыква"
+ ],
+ "manti": [
+  "mantı",
+  "мантый",
+  "manti go'shtli",
+  "mantu"
+ ],
+ "chuchvara": [
+  "chuchvara qaynatma",
+  "uzbek pelmeni",
+  "чучвара вареная",
+  "pelmen"
+ ],
+ "lagmon": [
+  "lag'mon",
+  "laghman",
+  "лагман уйгурский",
+  "uyg'ur lag'mon",
+  "lagmon sho'rva"
+ ],
+ "shurva": [
+  "sho'rva",
+  "shurpa",
+  "shorpa",
+  "шўрва",
+  "шурва",
+  "go'sht sho'rva",
+  "суп мясной"
+ ],
+ "mastava": [
+  "mastoba",
+  "mastava sho'rva",
+  "мастава суп"
+ ],
+ "moshxorda": [
+  "moshhurda",
+  "mash xorda",
+  "машхурда суп"
+ ],
+ "moshkichiri": [
+  "mash kichiri",
+  "mashkichiri",
+  "кичири",
+  "kichiri"
+ ],
+ "norin": [
+  "naryn",
+  "norin go'sht",
+  "нарын узбекский",
+  "norin"
+ ],
+ "dimlama": [
+  "dimlama go'shtli",
+  "димлама мясо",
+  "damlama"
+ ],
+ "qozon-kabob": [
+  "qozon kebab",
+  "kazan-kebab",
+  "казан кебаб",
+  "kozon kabob"
+ ],
+ "shashlik": [
+  "shashlyk",
+  "shashlik",
+  "shish kabob",
+  "шашлык баранина",
+  "kabab",
+  "shishlik"
+ ],
+ "shashlik-tovuq": [
+  "tovuq shashlik",
+  "shashlyk kurinyy",
+  "куриный шашлык",
+  "tovuq kabab"
+ ],
+ "jigar-kabob": [
+  "jigar kabab",
+  "печёночный",
+  "jigar shashlyk"
+ ],
+ "lyulya": [
+  "lulya kabob",
+  "lula kebab",
+  "люля кебаб",
+  "lyulya kabab"
+ ],
+ "tandir-gosht": [
+  "tandirda go'sht",
+  "tandir kabab",
+  "мясо в тандыре",
+  "tandir gosht"
+ ],
+ "qovurdoq": [
+  "qovurdoq go'sht",
+  "жаркое мясо",
+  "kavurdak",
+  "qovurma"
+ ],
+ "dolma": [
+  "do'lma",
+  "karam dolma",
+  "голубцы",
+  "golubtsi",
+  "kapusta dolma"
+ ],
+ "dolma-uzum": [
+  "uzum dolma",
+  "bargak",
+  "долма виноградная",
+  "tok barg dolma"
+ ],
+ "qazi": [
+  "qazi-karta",
+  "kazy",
+  "казы лошадиная",
+  "qazi go'sht"
+ ],
+ "sumalak": [
+  "sumalak bug'doy",
+  "сумаляк пшеничный",
+  "somolak"
+ ],
+ "halim": [
+  "xalim",
+  "халим",
+  "halim go'sht",
+  "haleem"
+ ],
+ "xonim": [
+  "hanum",
+  "ханум",
+  "xonim sho'rva",
+  "xonim rulet"
+ ],
+ "kartoshka-qov": [
+  "qovurilgan kartoshka",
+  "картошка жареная",
+  "kartoshka qovurma",
+  "жареный картофель"
+ ],
+ "kartoshka-pyure": [
+  "pyure",
+  "картофельное пюре",
+  "pyuresi",
+  "kartoshka pyuresi"
+ ],
+ "tuxum-qov": [
+  "qovurilgan tuxum",
+  "яичница глазунья",
+  "tuxum qovurma",
+  "glazunya"
+ ],
+ "omlet": [
+  "omlet tuxumli",
+  "омлет яичный",
+  "omelet"
+ ],
+ "achichuk": [
+  "achchiq chuchuk",
+  "ачичук салат",
+  "achichuk salat",
+  "pomidor piyoz salati"
+ ],
+ "salat-sabzavot": [
+  "sabzavotli salat",
+  "овощной салат",
+  "salat",
+  "салат из овощей"
+ ],
+ "olivye": [
+  "olivye salat",
+  "салат оливье",
+  "olive salat",
+  "olivie"
+ ],
+ "vinegret": [
+  "vinegret salat",
+  "винегрет свёкла",
+  "vinaigret"
+ ],
+ "koreys-sabzi": [
+  "koreyscha sabzi",
+  "морковча",
+  "morkovcha",
+  "сабзи по-корейски"
+ ],
+ "non": [
+  "tandir non",
+  "lepyoshka",
+  "лепёшка",
+  "obi non",
+  "нон",
+  "lepeshka",
+  "non tandirda"
+ ],
+ "patir": [
+  "patyr",
+  "патыр лепёшка",
+  "patir non"
+ ],
+ "qatlama": [
+  "qatlama non",
+  "катлама",
+  "katlama",
+  "qatlamali non"
+ ],
+ "boglirsoq": [
+  "bug'irsoq",
+  "баурсак",
+  "baursak",
+  "boursak",
+  "bo'g'irsoq"
+ ],
+ "non-oq": [
+  "oq non",
+  "белый хлеб",
+  "batoni",
+  "bulka",
+  "bulochka oq",
+  "хлеб белый",
+  "nan"
+ ],
+ "non-qora": [
+  "qora non",
+  "чёрный хлеб",
+  "chyorniy xleb",
+  "rye bread",
+  "jovdar non"
+ ],
+ "lavash-non": [
+  "lavash",
+  "лаваш армянский",
+  "yupqa non",
+  "lavash non"
+ ],
+ "baget": [
+  "bageta",
+  "багет",
+  "baguette"
+ ],
+ "bulochka": [
+  "bulka",
+  "булочка",
+  "shirin bulochka",
+  "сдоба"
+ ],
+ "kruassan": [
+  "kruassan",
+  "круассан",
+  "croissant"
+ ],
+ "pirojki": [
+  "pirojki qovurma",
+  "пирожки",
+  "pirozhki",
+  "pirojok"
+ ],
+ "qatiq": [
+  "qatiq sut",
+  "катык",
+  "katyk",
+  "qatik",
+  "yogurt qatiq"
+ ],
+ "suzma": [
+  "suzma qatiq",
+  "сузьма",
+  "suzma"
+ ],
+ "qurt": [
+  "qurt sut",
+  "курт",
+  "kurt",
+  "shor qurt"
+ ],
+ "ayron": [
+  "ayron ichimlik",
+  "айран",
+  "ayran",
+  "tuzli ayron"
+ ],
+ "sut": [
+  "sut 3",
+  "молоко",
+  "moloko",
+  "sut 3,2",
+  "pasteurizatsiya sut"
+ ],
+ "sut-yogsiz": [
+  "yog'siz sut",
+  "молоко 1",
+  "moloko 1",
+  "sut 1"
+ ],
+ "kefir": [
+  "kefir 2,5",
+  "кефир",
+  "kefir ichimlik"
+ ],
+ "qaymoq": [
+  "qaymoq sut",
+  "каймак",
+  "kaymak"
+ ],
+ "smetana": [
+  "smetana 20",
+  "сметана",
+  "qaymoq smetana"
+ ],
+ "pishloq": [
+  "qattiq pishloq",
+  "сыр",
+  "syr",
+  "cheese",
+  "gollandiya pishloq",
+  "pishloq"
+ ],
+ "pishloq-yumshoq": [
+  "brinza",
+  "брынза",
+  "bryndza",
+  "feta",
+  "suluguni"
+ ],
+ "tvorog5": [
+  "tvorog",
+  "творог",
+  "tvorog 5",
+  "suzma tvorog",
+  "cottage cheese"
+ ],
+ "tvorog9": [
+  "tvorog 9",
+  "творог 9",
+  "tvorog yog'li"
+ ],
+ "sariyog": [
+  "sariyog'",
+  "сливочное масло",
+  "maslo slivochnoe",
+  "saryog",
+  "butter"
+ ],
+ "yogurt-meva": [
+  "mevali yogurt",
+  "йогурт фруктовый",
+  "yogurt meva",
+  "fruit yogurt"
+ ],
+ "yogurt-tabiiy": [
+  "tabiiy yogurt",
+  "йогурт натуральный",
+  "oddiy yogurt",
+  "yogurt"
+ ],
+ "muzqaymoq": [
+  "muzqaymoq",
+  "мороженое",
+  "plombir",
+  "morozhenoe",
+  "ice cream"
+ ],
+ "tuxum": [
+  "qaynatilgan tuxum",
+  "яйцо варёное",
+  "yaytso",
+  "tuxum",
+  "tuxum qaynatma",
+  "сваренное яйцо"
+ ],
+ "tuxum-xom": [
+  "xom tuxum",
+  "яйцо сырое",
+  "tuxum xom"
+ ],
+ "mol-gosht": [
+  "mol go'sht",
+  "говядина",
+  "govyadina",
+  "mol go'shti",
+  "beef",
+  "mol gosht pishgan"
+ ],
+ "mol-qiyma": [
+  "mol qiyma",
+  "фарш",
+  "farsh",
+  "qiyma go'sht",
+  "говяжий фарш"
+ ],
+ "qoy-gosht": [
+  "qo'y go'sht",
+  "баранина",
+  "baranina",
+  "qo'y go'shti",
+  "lamb",
+  "qoy"
+ ],
+ "tovuq-kokrak": [
+  "tovuq ko'kragi",
+  "куриная грудка",
+  "kurinaya grudka",
+  "filе",
+  "grudka",
+  "tovuq fileyi",
+  "tovuq filesi"
+ ],
+ "tovuq-son": [
+  "tovuq soni",
+  "бедро курицы",
+  "kurinoe bedro",
+  "tovuq oyog'i",
+  "голень",
+  "chicken thigh"
+ ],
+ "tovuq-qanot": [
+  "tovuq qanoti",
+  "куриные крылья",
+  "krylya",
+  "qanotcha",
+  "wings"
+ ],
+ "tovuq-qov": [
+  "qovurilgan tovuq",
+  "курица в панировке",
+  "fried chicken",
+  "tovuq kfc",
+  "tovuq nonli"
+ ],
+ "kurka": [
+  "kurka go'shti",
+  "индейка",
+  "indeyka",
+  "turkey"
+ ],
+ "ot-gosht": [
+  "ot go'shti",
+  "конина",
+  "konina",
+  "qazi ot go'shti"
+ ],
+ "jigar": [
+  "mol jigari",
+  "печень",
+  "pechen",
+  "jigar qovurma"
+ ],
+ "kotlet": [
+  "kotlet go'shtli",
+  "котлета",
+  "kotleta",
+  "kotlet qovurma"
+ ],
+ "tushonka": [
+  "tushyonka",
+  "тушёнка",
+  "tushenka",
+  "konserva go'sht"
+ ],
+ "kolbasa": [
+  "kolbasa",
+  "колбаса",
+  "doktorskaya",
+  "qaynatma kolbasa",
+  "vareniy kolbasa"
+ ],
+ "sosiska": [
+  "sosiska",
+  "сосиска",
+  "sardelka",
+  "сардельки",
+  "сосиски"
+ ],
+ "bekon": [
+  "bekon",
+  "бекон",
+  "bacon",
+  "shpik"
+ ],
+ "losos": [
+  "losos",
+  "лосось",
+  "semga",
+  "семга",
+  "salmon",
+  "forel",
+  "форель"
+ ],
+ "tunets": [
+  "tunets",
+  "тунец",
+  "tuna",
+  "tunets konserva"
+ ],
+ "treska": [
+  "treska",
+  "треска",
+  "oq baliq",
+  "kod"
+ ],
+ "baliq-qov": [
+  "qovurilgan baliq",
+  "рыба жареная",
+  "baliq qovurma",
+  "ryba",
+  "fish"
+ ],
+ "krevetka": [
+  "krevetka",
+  "креветки",
+  "shrimp",
+  "qisqichbaqa"
+ ],
+ "guruch": [
+  "pishgan guruch",
+  "рис варёный",
+  "ris",
+  "guruch pishgan",
+  "oq guruch",
+  "рис"
+ ],
+ "grechka": [
+  "grechka bo'tqa",
+  "гречка",
+  "grechixa",
+  "grechka pishgan",
+  "гречневая каша"
+ ],
+ "makaron": [
+  "makaron pishgan",
+  "макароны",
+  "pasta",
+  "spagetti",
+  "vermishel"
+ ],
+ "suli": [
+  "suli bo'tqa",
+  "овсянка",
+  "ovsyanka",
+  "oatmeal",
+  "suli yormasi"
+ ],
+ "manka": [
+  "manka bo'tqa",
+  "манная каша",
+  "manniy kasha",
+  "манка"
+ ],
+ "mosh": [
+  "mosh pishgan",
+  "маш",
+  "mash",
+  "mung"
+ ],
+ "noxat": [
+  "no'xat",
+  "нут",
+  "nut",
+  "chickpea",
+  "noxat pishgan"
+ ],
+ "loviya": [
+  "loviya pishgan",
+  "фасоль",
+  "fasol",
+  "beans"
+ ],
+ "yasmiq": [
+  "yasmiq pishgan",
+  "чечевица",
+  "chechevitsa",
+  "lentil"
+ ],
+ "kartoshka": [
+  "qaynatilgan kartoshka",
+  "картофель",
+  "kartofel",
+  "картошка",
+  "kartoshka"
+ ],
+ "pomidor": [
+  "pomidor",
+  "помидор",
+  "tomat",
+  "tomato",
+  "помидоры",
+  "pomidorlar"
+ ],
+ "bodring": [
+  "bodring",
+  "огурец",
+  "ogurets",
+  "cucumber",
+  "огурцы"
+ ],
+ "sabzi": [
+  "sabzi",
+  "морковь",
+  "morkov",
+  "carrot",
+  "морковка"
+ ],
+ "piyoz": [
+  "piyoz",
+  "лук",
+  "luk",
+  "onion",
+  "лук репчатый"
+ ],
+ "sarimsoq": [
+  "sarimsoq piyoz",
+  "чеснок",
+  "chesnok",
+  "garlic"
+ ],
+ "karam": [
+  "oq karam",
+  "капуста",
+  "kapusta",
+  "cabbage",
+  "белокочанная"
+ ],
+ "qovoq": [
+  "qovoq",
+  "тыква",
+  "tykva",
+  "pumpkin"
+ ],
+ "baqlajon": [
+  "baqlajon",
+  "баклажан",
+  "baklazhan",
+  "eggplant",
+  "baklajon"
+ ],
+ "qalampir": [
+  "bulg'or qalampir",
+  "болгарский перец",
+  "perets sladkiy",
+  "qalampir"
+ ],
+ "olma": [
+  "olma",
+  "яблоко",
+  "yabloko",
+  "apple",
+  "яблоки",
+  "olmа",
+  "alma"
+ ],
+ "nok": [
+  "nok",
+  "груша",
+  "grusha",
+  "pear"
+ ],
+ "banan": [
+  "banan",
+  "банан",
+  "banana"
+ ],
+ "apelsin": [
+  "apelsin",
+  "апельсин",
+  "orange"
+ ],
+ "uzum": [
+  "uzum",
+  "виноград",
+  "vinograd",
+  "grape",
+  "kishmish uzum"
+ ],
+ "qovun": [
+  "qovun",
+  "дыня",
+  "dynya",
+  "melon"
+ ],
+ "tarvuz": [
+  "tarvuz",
+  "арбуз",
+  "arbuz",
+  "watermelon"
+ ],
+ "shaftoli": [
+  "shaftoli",
+  "персик",
+  "persik",
+  "peach"
+ ],
+ "orik": [
+  "o'rik",
+  "абрикос",
+  "abrikos",
+  "apricot",
+  "orik"
+ ],
+ "anor": [
+  "anor",
+  "гранат",
+  "granat",
+  "pomegranate"
+ ],
+ "choy": [
+  "qora choy",
+  "чай",
+  "chay",
+  "tea",
+  "choy shakarsiz",
+  "choy"
+ ],
+ "choy-shakar": [
+  "shakarli choy",
+  "чай с сахаром",
+  "choy shakar",
+  "chay s saxarom"
+ ],
+ "kofe": [
+  "qahva",
+  "кофе",
+  "kofe",
+  "coffee",
+  "qora kofe",
+  "qahva shakarsiz"
+ ],
+ "kola": [
+  "cola",
+  "кола",
+  "coca cola",
+  "pepsi",
+  "kola ichimlik",
+  "koka kola"
+ ],
+ "suv": [
+  "suv",
+  "вода",
+  "voda",
+  "water",
+  "mineral suv",
+  "gazsiz suv"
+ ],
+ "lavash-tovuq": [
+  "shaurma",
+  "шаурма",
+  "shawarma",
+  "lavash tovuq",
+  "tovuqli shaurma",
+  "shaurma tovuq"
+ ],
+ "burger": [
+  "burger",
+  "бургер",
+  "chizburger",
+  "cheeseburger",
+  "гамбургер"
+ ],
+ "pitsa": [
+  "pitsa",
+  "пицца",
+  "pizza",
+  "margarita"
+ ],
+ "pelmeni": [
+  "pelmeni",
+  "пельмени",
+  "pelmen",
+  "pelmenlar"
+ ],
+ "shokolad-sut": [
+  "shokolad",
+  "шоколад",
+  "chocolate",
+  "shokolad sutli"
+ ],
+ "tort": [
+  "tort",
+  "торт",
+  "cake",
+  "tort biskvitli"
+ ],
+ "shakar": [
+  "shakar",
+  "сахар",
+  "saxar",
+  "sugar",
+  "qand shakar"
+ ],
+ "yog": [
+  "o'simlik yog'i",
+  "растительное масло",
+  "maslo podsolnechnoe",
+  "kungaboqar yog'i",
+  "zigir yog'i",
+  "paxta yog'i",
+  "yog'"
+ ]
+}

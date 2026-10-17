@@ -69,33 +69,33 @@
 "Bugungi sayr {food} hisobdan o'chirdi. Choynak buni bayram deb qabul qildi."
 ],
 "within": [
-"Bugun limit ichida. Muzlatgich sizga hayrat bilan qarayapti.",
-"Limitgacha yana {left} kkal bor. Dasturxon bugun tartibli ishladi.",
-"Bugun hisob-kitob silliq: {left} kkal zaxirada. Kalkulyator mamnun.",
-"{left} kkal qoldi. Choy bilan biror narsaga hali joy bor — tanlov sizda.",
-"Limit ichida! Muzlatgich eshigi bugun kamroq g'ijirladi.",
-"Bugungi raqamlar chiroyli: limitgacha {left} kkal. Tarozi emas, jadval xursand.",
-"Zaxirada {left} kkal. Kechki choy hech qanday hisobni buzmaydi.",
-"Bugun limit bilan bir tilni topdingiz. Yana {left} kkal ehtiyot uchun turibdi.",
-"Kun hisoboti: limit ichida, {left} kkal qoldi. Kuryer bugun boshqa manzilga ketdi.",
-"Limitgacha {left} kkal. Dasturxon bilan munosabatlar barqaror va ijobiy."
+"Bugungi hisob: me'yorgacha yana {left} kkal bor.",
+"Me'yorda {left} kkal qoldi. Kechki choy ham sig'adi.",
+"{left} kkal zaxirada. Kalkulyator hammasini yozib bordi.",
+"Kun davom etmoqda: {left} kkal qoldi, tanlov o'zingizda.",
+"Me'yorgacha {left} kkal. Muzlatgich eshigi bugun tinch.",
+"Bugungi raqam: me'yorgacha {left} kkal. Choy bilan biror narsaga joy bor.",
+"Hisob aniq: {left} kkal qoldi. Kuryer boshqa manzilga ketdi.",
+"Me'yor ichida, {left} kkal zaxirada. Ertangi nonushta uchun ham joy qoladi.",
+"Hozircha {left} kkal qoldi — kun bo'yi bemalol yozib boring.",
+"{left} kkal bor. Dasturxon bugun o'z holicha."
 ],
 "over": [
-"Limit bugun {over} kkalga tor kelibdi. Ertaga 30 daqiqalik sayr yoki shunchaki yangi kun — ikkalasi ham ishlaydi.",
-"Bugun limit sal tor keldi — {over} kkal. Bir stakan suv, 20 daqiqalik sayr yoki shunchaki uxlab, ertaga davom.",
-"+{over} kkal. Dasturxon bugun saxiy chiqdi. Ertaga kechki sayr 40 daqiqa — va hisob yengillashadi.",
-"Limitga {over} kkal sig'madi. Ertaga liftsiz bir-ikki qavat yoki shunchaki odatdagi kun — tanlov sizda.",
-"Bugungi hisob limitdan {over} kkal nariroqda. Kechki choy va 15 daqiqa sayr — kun yaxshi yakunlanadi.",
-"Limit bugun biroz qisqa keldi: +{over} kkal. Ertaga telefonda yurib gaplashish — qadamlar o'zi yig'iladi.",
-"Bugun dasturxon limitdan {over} kkal kengroq chiqdi. Ertaga 50 daqiqa sayr yoki shunchaki yangi kun.",
-"+{over} kkal. Muzlatgich bugun mehmondo'st edi. Bir stakan suv va yaxshi uyqu — ertaga hammasi yangidan.",
-"Limitga {over} kkal joy yetmadi. Ertaga do'konga piyoda borish — ham xarid, ham sayr.",
-"{over} kkal limitga sig'madi, hechqisi yo'q. Ertaga bir bekat oldin tushib yurish yoki shunchaki yangi varaq."
+"Bugun me'yordan {over} kkal ko'proq yozildi. Ertaga odatdagi kun — hammasi joyida.",
+"+{over} kkal. Dasturxon bugun boy bo'ldi; ertaga yangi hisob bilan boshlanadi.",
+"Me'yordan {over} kkal yuqori. Bir stakan suv va 15 daqiqa sayr — xohlasangiz.",
+"Bugungi hisob me'yordan {over} kkal yuqori. Ertaga odatdagidek davom etasiz.",
+"{over} kkal me'yordan yuqori — bitta kun butun rasmni o'zgartirmaydi. Kechki sayr ixtiyoriy.",
+"Hisob: +{over} kkal. Choynak buni bayram deb qabul qildi. Ertaga yangi sahifa.",
+"Me'yordan {over} kkal ko'p. Ertaga sayr yoki shunchaki oddiy kun — ikkalasi ham joyida.",
+"+{over} kkal bugun. Do'konga piyoda borish ixtiyoriy, uyqu esa foydali.",
+"Bugun me'yordan {over} kkal yuqori chiqdi. Kalkulyator hukm qilmaydi, faqat hisoblaydi.",
+"{over} kkal me'yordan yuqori. Bir bekat oldin tushib yurish — qulay variant."
 ],
 "over_neutral": [
 "So'nggi 3 kunda o'rtacha {avg} kkal yozildi — me'yordan {pct}% yuqori.",
-"Oxirgi kunlardagi o'rtacha: {avg} kkal. Bu belgilangan limitdan {pct}% yuqori.",
-"Bir necha kun ketma-ket o'rtacha {avg} kkal qayd etildi, limitdan {pct}% yuqori. Limitni sozlamalarda qayta ko'rib chiqish mumkin."
+"Oxirgi kunlardagi o'rtacha: {avg} kkal, bu me'yordan {pct}% yuqori.",
+"Bir necha kun ketma-ket o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Me'yorni sozlamalarda qayta ko'rib chiqish mumkin."
 ],
 "zero_steps": [
 "0 qadam. Divan bilan munosabatlar jiddiylashyapti.",
@@ -190,28 +190,24 @@
 "Bayram dasturxoni hech qaysi jadvalga sig'maydi. Bugun shunchaki yaxshi kun."
 ],
 "yesam_ok": [
-"{item} — {kcal} kkal. Limitga bemalol sig'adi, keyin ham {left} kkal qoladi.",
-"{item} bugungi rejaga sig'adi. Muzlatgich ruxsat berdi, kalkulyator ham qarshi emas.",
-"{kcal} kkal — limit ichida. Choy bilan birga ham {left} kkal zaxirada qoladi.",
-"{item} bilan ham limitgacha {left} kkal qoladi. Qaror sizda, kalkulyator faqat kuzatyapti.",
-"Hisob tinch: {item} = {kcal} kkal, qoldiq {left} kkal. Dasturxon yashil chiroq yoqdi.",
-"{item}? Sig'adi. Bu taxminan {min} daqiqalik sayrga teng, lekin bugun bu shunchaki ma'lumot.",
-"Kalkulyator o'ylab, bosh irg'adi: {item} limitga sig'adi, {left} kkal ortib qoladi.",
-"{item} — {kcal} kkal. Limit buni bemalol ko'taradi, choynak ham rozi.",
-"Shu taom bilan limitgacha yana {left} kkal qoladi. Muzlatgich eshigi do'stona g'ijirladi.",
-"{kcal} kkal limitga sig'adi. Yoqimli ishtaha — keyin ham {left} kkal ehtiyot uchun turadi."
+"{item} — {kcal} kkal. Me'yorga sig'adi, keyin ham {left} kkal qoladi.",
+"{kcal} kkal — me'yor ichida. Choy bilan birga ham {left} kkal zaxirada qoladi.",
+"{item} bilan ham me'yorgacha {left} kkal qoladi. Qaror sizda, kalkulyator faqat hisoblaydi.",
+"Kalkulyator o'ylab, bosh irg'adi: {item} me'yorga sig'adi, {left} kkal qoladi.",
+"{item} — {kcal} kkal. Me'yor buni bemalol ko'taradi, choynak ham rozi.",
+"Shu taom bilan me'yorgacha yana {left} kkal qoladi. Muzlatgich eshigi do'stona g'ijirladi.",
+"{kcal} kkal me'yorga sig'adi. Yoqimli ishtaha — keyin ham {left} kkal zaxirada.",
+"{item} — {kcal} kkal; undan keyin me'yorgacha {left} kkal qoladi. Hisob oddiy."
 ],
 "yesam_over": [
-"{item} limitga {over} kkal sig'maydi. Yarmi hozir, qolgani ertaga — yoki shunchaki bugun bayram.",
-"{item} — {kcal} kkal, limit {over} kkalga tor keladi. {min} daqiqalik sayr bilan muvozanatlanadi.",
-"Limitga {over} kkal joy yetmaydi. Kichikroq porsiya yoki kechki {min} daqiqa sayr — ikkalasi ham ishlaydi.",
-"Kalkulyator biroz o'ylanib qoldi: +{over} kkal. Choy bilan yarim porsiya — o'rtacha yo'l.",
-"{item} bugungi limitdan {over} kkal nariroqda. Ertangi nonushtaga qoldirsa ham bo'ladi.",
-"Hisob: {kcal} kkal, limitga {over} kkal sig'maydi. {min} daqiqa piyoda yurish uni tenglashtiradi.",
-"Muzlatgich ikkilanyapti: {item} limitni {over} kkalga siljitadi. Ertaga saqlab qo'yish ham variant.",
-"+{over} kkal limitdan tashqarida. Do'stlar bilan bo'lishilsa, taom ham, limit ham xursand.",
-"{item} uchun limitda {over} kkal joy yetmaydi. Bugun bayramona kun bo'lsa — mayli, ertaga {min} daqiqa sayr.",
-"Limit bugun {item} uchun sal tor: +{over} kkal. Bir stakan suv va {min} daqiqalik sayr — muvozanat tiklanadi."
+"{item} me'yordan {over} kkal oshiradi. Yarmi hozir, qolgani ertaga ham bo'ladi — yoki shunchaki bugun bayram.",
+"{item} — {kcal} kkal, me'yordan +{over} kkal. {min} daqiqalik sayr bilan tenglashadi — xohlasangiz.",
+"Me'yordan {over} kkal yuqori chiqadi. Kichikroq porsiya yoki kechki {min} daqiqa sayr — ikkalasi ham ishlaydi.",
+"{item} bugungi me'yordan {over} kkal nariroqda. Ertangi nonushtaga qoldirsa ham bo'ladi.",
+"Hisob: {kcal} kkal, me'yordan +{over} kkal. {min} daqiqa piyoda yurish uni tenglashtiradi.",
+"Muzlatgich ikkilanyapti: {item} me'yorni {over} kkalga siljitadi. Ertaga saqlab qo'yish ham variant.",
+"+{over} kkal me'yordan tashqarida. Do'stlar bilan bo'lishilsa, taom ham, hisob ham xursand.",
+"{item} bilan me'yordan +{over} kkal bo'ladi. Bir stakan suv va {min} daqiqalik sayr — muvozanat tiklanadi."
 ]
 },
 "ru": {
@@ -275,33 +271,33 @@
 "Сегодняшняя прогулка списала {food}. Чайник считает, что это стоит отметить."
 ],
 "within": [
-"Сегодня в пределах лимита. Холодильник смотрит на вас с уважением.",
-"До лимита ещё {left} ккал. Стол сегодня вёл себя прилично.",
-"Всё по плану: в запасе {left} ккал. Калькулятор доволен.",
-"Осталось {left} ккал. Место для чая с чем-нибудь ещё есть — выбор за вами.",
-"В рамках лимита! Дверца холодильника сегодня скрипела реже обычного.",
-"Цифры красивые: до лимита {left} ккал. Радуется таблица, а не весы.",
-"В запасе {left} ккал. Вечерний чай ничего не испортит.",
-"Лимит и день нашли общий язык. Ещё {left} ккал на всякий случай.",
-"Отчёт дня: всё в лимите, остаток {left} ккал. Курьер сегодня поехал по другому адресу.",
-"До лимита {left} ккал. С дастарханом отношения стабильные."
+"Расчёт на сегодня: до нормы ещё {left} ккал.",
+"До нормы {left} ккал. Вечерний чай тоже помещается.",
+"В запасе {left} ккал. Калькулятор всё записал.",
+"День идёт: осталось {left} ккал, выбор за вами.",
+"До нормы {left} ккал. Дверца холодильника сегодня спокойна.",
+"Цифра дня: до нормы {left} ккал. Для чая с чем-нибудь место есть.",
+"Счёт точный: осталось {left} ккал. Курьер поехал по другому адресу.",
+"В пределах нормы, в запасе {left} ккал. Место останется и на завтрашний завтрак.",
+"Пока осталось {left} ккал — записывайте в течение дня спокойно.",
+"Осталось {left} ккал. Дастархан сегодня сам по себе."
 ],
 "over": [
-"Лимит сегодня оказался тесноват на {over} ккал. Завтра 30 минут прогулки или просто новый день — оба варианта рабочие.",
-"+{over} ккал. Стакан воды, 20 минут прогулки — или просто выспаться, а завтра — новый день.",
-"Лимит сегодня узковат на {over} ккал. Завтра можно выйти на остановку раньше — и прогулка готова.",
-"В лимит не поместилось {over} ккал. Завтра пара этажей без лифта или просто обычный день — как удобнее.",
-"Сегодня {over} ккал за рамками лимита. Вечерний чай и 15 минут прогулки — и день закончится хорошо.",
-"Холодильник сегодня был гостеприимен: +{over} ккал. Стакан воды, хороший сон — и завтра с чистого листа.",
-"Лимит чуть коротковат: +{over} ккал. Завтра телефонный разговор на ходу — шаги наберутся сами.",
-"Дастархан сегодня вышел на {over} ккал шире лимита. Завтра 50 минут прогулки или просто новый день.",
-"+{over} ккал к лимиту. Завтра в магазин пешком — и покупки, и прогулка.",
-"Лимит сегодня не вместил {over} ккал. Ничего страшного: прогулка вечером или просто утро вечера мудренее."
+"Сегодня записано на {over} ккал больше нормы. Завтра обычный день — всё в порядке.",
+"+{over} ккал. Дастархан сегодня был богатым; завтра — новый счёт с чистого листа.",
+"На {over} ккал выше нормы. Стакан воды и 15 минут прогулки — по желанию.",
+"Сегодняшний счёт выше нормы на {over} ккал. Завтра продолжите как обычно.",
+"{over} ккал сверх нормы — один день не меняет общей картины. Вечерняя прогулка по желанию.",
+"Счёт: +{over} ккал. Чайник принял это за праздник. Завтра — новая страница.",
+"На {over} ккал больше нормы. Завтра прогулка или просто обычный день — оба варианта хороши.",
+"+{over} ккал за сегодня. Сходить в магазин пешком — по желанию, а сон точно полезен.",
+"Сегодня вышло на {over} ккал выше нормы. Калькулятор не осуждает, он только считает.",
+"{over} ккал сверх нормы. Выйти на остановку раньше — удобный вариант."
 ],
 "over_neutral": [
 "За последние 3 дня в среднем записано {avg} ккал — на {pct}% выше нормы.",
-"Среднее за последние дни: {avg} ккал. Это на {pct}% выше установленного лимита.",
-"Несколько дней подряд в среднем {avg} ккал, выше лимита на {pct}%. Лимит можно пересмотреть в настройках."
+"Среднее за последние дни: {avg} ккал. Это на {pct}% выше нормы.",
+"Несколько дней подряд в среднем {avg} ккал, на {pct}% выше нормы. Норму можно пересмотреть в настройках."
 ],
 "zero_steps": [
 "0 шагов. Отношения с диваном становятся серьёзными.",
@@ -396,28 +392,24 @@
 "Праздничный дастархан не помещается ни в одну таблицу. Сегодня просто хороший день."
 ],
 "yesam_ok": [
-"{item} — {kcal} ккал. В лимит помещается, и ещё {left} ккал останется.",
-"{item} вписывается в план дня. Холодильник не возражает, калькулятор тоже.",
-"{kcal} ккал — в рамках лимита. Даже с чаем в запасе останется {left} ккал.",
-"Вариант «{item}»: до лимита останется {left} ккал. Решение за вами, калькулятор просто смотрит.",
-"Счёт спокойный: {item} = {kcal} ккал, остаток {left} ккал. Дастархан даёт зелёный свет.",
-"{item}? Помещается. Это примерно {min} минут прогулки, но сегодня это просто справка.",
-"Калькулятор подумал и кивнул: {item} в лимит влезает, останется {left} ккал.",
-"{item} — {kcal} ккал. Лимит выдержит, чайник тоже одобряет.",
-"С этим блюдом до лимита останется {left} ккал. Дверца холодильника скрипнула дружелюбно.",
-"{kcal} ккал помещаются в лимит. Приятного аппетита — и ещё {left} ккал в запасе."
+"{item} — {kcal} ккал. В норму помещается, и ещё {left} ккал остаётся.",
+"{kcal} ккал — в пределах нормы. С чаем в запасе всё равно {left} ккал.",
+"С «{item}» до нормы остаётся {left} ккал. Решение за вами, калькулятор только считает.",
+"Калькулятор подумал и кивнул: {item} помещается в норму, остаётся {left} ккал.",
+"{item} — {kcal} ккал. Норма это легко выдерживает, чайник тоже согласен.",
+"С этим блюдом до нормы ещё {left} ккал. Дверца холодильника дружелюбно скрипнула.",
+"{kcal} ккал помещаются в норму. Приятного аппетита — и потом остаётся {left} ккал.",
+"{item} — {kcal} ккал; после него до нормы {left} ккал. Счёт простой."
 ],
 "yesam_over": [
-"{item} не помещается в лимит на {over} ккал. Половину сейчас, остальное завтра — или просто сегодня праздник.",
-"{item} — {kcal} ккал, лимит тесноват на {over} ккал. {min} минут прогулки всё уравновесят.",
-"В лимит не влезают {over} ккал. Порция поменьше или вечерние {min} минут пешком — оба варианта рабочие.",
-"Калькулятор слегка задумался: +{over} ккал. Половина порции с чаем — золотая середина.",
-"{item} выходит за лимит на {over} ккал. Можно оставить на завтрашний завтрак.",
-"Счёт: {kcal} ккал, за лимитом {over} ккал. {min} минут пешком это выравнивают.",
-"Холодильник колеблется: {item} сдвигает лимит на {over} ккал. Отложить на завтра — тоже вариант.",
-"+{over} ккал за рамками лимита. Если поделиться с друзьями, рады будут все — и лимит тоже.",
-"Для «{item}» в лимите не хватает {over} ккал. Если день праздничный — пусть, а завтра {min} минут прогулки.",
-"Лимит сегодня узковат для «{item}»: +{over} ккал. Стакан воды и {min} минут прогулки — баланс на месте."
+"«{item}» превышает норму на {over} ккал. Половину сейчас, остальное завтра — или просто сегодня праздник.",
+"{item} — {kcal} ккал, норма превышается на {over} ккал. Прогулка {min} минут выравнивает — если захотите.",
+"Выходит на {over} ккал выше нормы. Порция поменьше или вечерняя прогулка {min} минут — оба варианта работают.",
+"«{item}» выходит за сегодняшнюю норму на {over} ккал. Можно оставить на завтрашний завтрак.",
+"Счёт: {kcal} ккал, +{over} ккал к норме. {min} минут пешком — и баланс ровный.",
+"Холодильник колеблется: «{item}» сдвигает норму на {over} ккал. Отложить на завтра — тоже вариант.",
+"+{over} ккал за нормой. Если поделиться с друзьями, и блюдо, и счёт будут довольны.",
+"С «{item}» будет +{over} ккал к норме. Стакан воды и {min} минут прогулки — баланс восстановится."
 ]
 }
 };

@@ -67,13 +67,21 @@ var TS_DICT = [
   ['sikl', 'цикл'], ['aksiya', 'акция'], ['aksiz', 'акциз'], ['auksion', 'аукцион'],
   ['fraksiya', 'фракция'], ['kvitansiya', 'квитанция'], ['proporsional', 'пропорционал'],
   ['sanksiya', 'санкция'], ['silindr', 'цилиндр'], ['sirkul', 'циркул'],
-  ['ssenariy', 'сценарий']
+  ['ssenariy', 'сценарий'], ['stansiya', 'станция'], ['sirk', 'цирк', /^sirka/], ['porsiya', 'порция'], ['konsert', 'концерт'], ['sink', 'цинк'], ['seliakiya', 'целиакия'],
+  ['pitsa', 'пицца'], ['motsarella', 'моцарелла'], ['tunets', 'тунец'], ['mukovistsidoz', 'муковисцидоз'], ['niatsin', 'ниацин'], ['koeffitsient', 'коэффициент'],
+  ['mayonez', 'майонез'], ['yogurt', 'йогурт'], ['ekspeditsiya', 'экспедиция']   // sirka (uksus) — «с»
 ];
+/* Rus o'zlashmalarida yumshoq belgi «ь» saqlanadi (kalsiy -> кальций, kalkulyator -> калькулятор). Qoida bilan aniqlab bo'lmaydi — lug'at (ildiz so'z boshida, qo'shimchalar odatiy).
+ * Oy nomlari (yanvar, iyul…) o'zbek kirilida «ь»siz yoziladi — ro'yxatda yo'q. */
+var SOFT_DICT = [
+  ['kalsiy', 'кальций'], ['kalkulyator', 'калькулятор'], ['filtr', 'фильтр'], ['olivye', 'оливье'], ['pechenye', 'печенье'], ['kuryer', 'курьер']
+];
+TS_DICT = TS_DICT.concat(SOFT_DICT);
 TS_DICT.sort(function (a, b) { return b[0].length - a[0].length; });   // uzunroq ildiz avval
 
 function tsLookup(lowerWord) {
   for (var k = 0; k < TS_DICT.length; k++) {
-    if (lowerWord.indexOf(TS_DICT[k][0]) === 0) return TS_DICT[k];
+    if (lowerWord.indexOf(TS_DICT[k][0]) === 0 && !(TS_DICT[k][2] && TS_DICT[k][2].test(lowerWord))) return TS_DICT[k];
   }
   return null;
 }
@@ -124,6 +132,7 @@ var DIGRAPH = [
   ['y', 'a', 'я']  // ya -> ya (cyrillic ya)
 ];
 
+var TS_AFTER = /^(e|iya|ia|io|ina|ino|ikl|irk|ifr)/i;   // «ts» dan keyin shu kelsa — «ц» (litsenziya, inflyatsiya, ratsion, vaktsina, stsenariy, tsement)
 var E_START = 'э'; // cyrillic e -- faqat yakka "e" so'z boshida (masalan eshik)
 var E_MID = 'е';   // cyrillic ie -- "ye" digrafida (har doim) va yakka "e" so'z ichida
 var TUTUQ = 'ъ';   // cyrillic hard sign (tutuq belgisi)
@@ -176,6 +185,9 @@ function translitWord(word, notStart) {
         // "yo'" (yo'q, yo'l) -- bu "ё" emas, "й" + "ў": apostrofli "o'" keyingi
         // bosqichda ("ў") alohida ishlanadi (tuzatildi 2026-10: oldin "ёъқ" chiqardi).
         if (first === 'y' && second === 'o' && i + 2 < n && isApos(word[i + 2])) continue;
+        // "ts" SUKUT BO'YICHA "тс" (liftsiz -> лифтсиз, mashqsiz, sutsiz, go'shtsiz, o'tsa). "ц" faqat -tsiya/-tsion/-tse… (ruscha o'zlashma) naqshlarida;
+        // boshqalari — TS_DICT ('s' -> 'ц': sement, aksiya, stansiya…).
+        if (first === 't' && second === 's' && !TS_AFTER.test(word.slice(i + 2))) continue;
         matched = DIGRAPH[d][2];
         break;
       }

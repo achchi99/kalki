@@ -22,9 +22,9 @@
       ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni «+» tugmasi bilan yozing — halqa shu yerda to'la boshlaydi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
       mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
-      aT: "Ovqat qo'shish", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
+      aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
-      pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
+      pwGramm: 'gramm', pwEq: '1 {u} = {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
       tT: "Matn bilan qo'shish", tPh: 'Masalan: 1 kosa osh, 2 somsa, choy shakar bilan', tGo: 'Aniqlash', tMiss: 'Topilmadi: {x}', tAi: 'AI bilan aniqlash', tAiNote: "Bu matn AI xizmatiga yuboriladi (profil, vazn va tarix yuborilmaydi).", tAiBusy: 'Aniqlanmoqda…', tAiErr: "AI hozir ishlamayapti. Qo'lda qo'shing.", tOffline: "Internet yo'q — AI ishlamaydi. Topilganlarini saqlashingiz mumkin.", tSave: '{n} ta ovqatni saqlash', tAiTag: 'AI taxmini', tHelp: "Faqat siz tasdiqlaganingizda saqlanadi.", tEmpty: 'Hech narsa topilmadi',
       fT: 'Ovqat', fDay: 'Kun', fAddText: "Matn bilan qo'shish", fFavs: 'Sevimlilar', fNoFavs: "Sevimli ovqatlar yo'q. Ovqat qo'shayotganda yurakchani bosing.",
@@ -36,7 +36,7 @@
       shT: 'Natijamni ulashish', shH: "Faqat o'zingiz tanlagan raqamlar rasmga tushadi.", shDays: 'Kunlar', shSteps: 'Qadam', shKm: 'Masofa', shWeight: "Vazn o'zgarishi", shGo: 'Rasmni ulashish', shDl: 'Rasmni yuklab olish', shTitle: 'Mening natijam', shWin: 'Oxirgi 30 kun', shDaysV: 'kun yozdim', shStepsV: 'qadam', shKmV: 'km yurdim', shWV: 'kg', shNone: 'Hech narsa tanlanmagan',
       sExp: 'Zaxira nusxa olish', sImp: 'Zaxira nusxadan tiklash', sDel: "Hammasini o'chirish", sLang: 'Til', sFont: "Shrift o'lchami", fN: 'Oddiy', fB: 'Katta', sTips: "Yo'l-yo'riqni qayta ko'rish", sAbout: 'Ilova haqida', priv: "Ma'lumotlaringiz faqat shu qurilmada saqlanadi.", med: "Bu tibbiy maslahat emas. Taxminiy hisob: sog'liq masalasida shifokor bilan maslahatlashing.",
       expDone: 'Zaxira nusxa saqlandi', impT: 'Zaxira nusxadan tiklash', impAsk: "Hozirgi ma'lumot zaxira nusxadagi bilan almashtiriladi. Davom etasizmi?", impOk: 'Tiklandi', impBad: "Zaxira nusxa fayli noto'g'ri", delAsk1: "Hamma ma'lumot o'chiriladi.", delAsk2: "Aniq o'chiraymi? Qaytarib bo'lmaydi.", deleted: "Hammasi o'chirildi",
-      xKcalT: "Bu raqam qanday hisoblanadi?", xTarget: "Kunlik me'yor", xLimit: 'Bugungi limit', xEaten: 'Yeyilgan', xSteps: 'Odatiydan ortiq qadamlar', xRem: 'Yana yeyish mumkin', xWhyStep: "Faollik darajangizdagi odatiy qadam soni ({base}) me'yorga allaqachon kiritilgan. Faqat undan ORTIQ qadamlar uchun to'liq sof kaloriya qo'shiladi: (3,5 − 1) × vazn × (masofa ÷ 5 km/soat). Chegaradan kam bo'lsa 0 qo'shiladi — me'yor kamaymaydi.", xHowT: "Me'yor qanday chiqdi?", xBmr: 'Tinch holatdagi sarf (BMR)', xBmrN: 'Mifflin–St Jeor formulasi', xAct: 'Faollik koeffitsienti', xTdee: 'Kunlik sarf (TDEE)', xGoal: 'Maqsad uchun farq', xFloor: "Pastki xavfsiz chegara", xTargetR: "Kunlik me'yor",
+      xKcalT: "Bu raqam qanday hisoblanadi?", xTarget: "Kunlik me'yor", xLimit: "Bugungi me'yor", xEaten: 'Yeyilgan', xSteps: 'Odatiydan ortiq qadamlar', xRem: 'Yana yeyish mumkin', xWhyStep: "Faollik darajangizdagi odatiy qadam soni ({base}) me'yorga allaqachon kiritilgan. Faqat undan ORTIQ qadamlar uchun to'liq sof kaloriya qo'shiladi: (3,5 − 1) × vazn × (masofa ÷ 5 km/soat). Chegaradan kam bo'lsa 0 qo'shiladi — me'yor kamaymaydi.", xHowT: "Me'yor qanday chiqdi?", xBmr: 'Tinch holatdagi sarf (BMR)', xBmrN: 'Mifflin–St Jeor formulasi', xAct: 'Faollik koeffitsienti', xTdee: 'Kunlik sarf (TDEE)', xGoal: 'Maqsad uchun farq', xFloor: "Pastki xavfsiz chegara", xTargetR: "Kunlik me'yor",
       xMacroT: 'Qanday hisoblangan?', xProt: 'Oqsil: {pk} g/kg × {w} kg = {p} g', xFat: "Yog': kaloriyaning 27,5% i ÷ 9 = {f} g", xCarb: "Uglevod: qolgan kaloriya ÷ 4 = {c} g", xMacroN: 'Oqsil mushaklarni saqlaydi, yog\' va uglevod energiya beradi.',
       xWaterT: 'Suv me\'yori', xWater: '33 ml × {w} kg = {ml} ml ÷ 250 ml = {n} stakan', xWaterN: 'Issiq kunlarda va mashq qilganda ko\'proq ichsangiz bo\'ladi.',
       xStepT: 'Qadam qanday hisoblanadi?', xStride: "Qadam uzunligi: bo'y × 0,414 = {s} sm", xDist: 'Masofa: {n} qadam × {s} sm = {km} km', xKc: 'Kaloriya: 3,5 × {w} kg × ({km} km ÷ 5 km/soat) = {k} kkal', xKcN: "Yurish tezligi 5 km/soat deb olingan (oddiy yurish). Hisob taxminiy.",
@@ -61,9 +61,9 @@
       ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду кнопкой «+» — кольцо начнёт заполняться здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
       mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
-      aT: 'Добавить еду', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
+      aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
-      pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
+      pwGramm: 'грамм', pwEq: '1 {u} = {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
       tT: 'Добавить текстом', tPh: 'Например: 1 миска плова, 2 самсы, чай с сахаром', tGo: 'Распознать', tMiss: 'Не найдено: {x}', tAi: 'Определить с помощью ИИ', tAiNote: 'Этот текст будет отправлен сервису ИИ (профиль, вес и история не отправляются).', tAiBusy: 'Определяю…', tAiErr: 'ИИ сейчас недоступен. Добавьте вручную.', tOffline: 'Нет интернета — ИИ не работает. Найденное можно сохранить.', tSave: 'Сохранить: {n}', tAiTag: 'оценка ИИ', tHelp: 'Сохраняется только после вашего подтверждения.', tEmpty: 'Ничего не найдено',
       fT: 'Еда', fDay: 'День', fAddText: 'Добавить текстом', fFavs: 'Избранное', fNoFavs: 'Избранного нет. Нажмите на сердечко при добавлении еды.',
@@ -75,7 +75,7 @@
       shT: 'Поделиться результатом', shH: 'На картинку попадут только выбранные вами цифры.', shDays: 'Дни', shSteps: 'Шаги', shKm: 'Расстояние', shWeight: 'Изменение веса', shGo: 'Поделиться картинкой', shDl: 'Скачать картинку', shTitle: 'Мой результат', shWin: 'Последние 30 дней', shDaysV: 'дн. вёл записи', shStepsV: 'шагов', shKmV: 'км пройдено', shWV: 'кг', shNone: 'Ничего не выбрано',
       sExp: 'Сделать резервную копию', sImp: 'Восстановить из резервной копии', sDel: 'Удалить всё', sLang: 'Язык', sFont: 'Размер шрифта', fN: 'Обычный', fB: 'Крупный', sTips: 'Показать подсказки снова', sAbout: 'О приложении', priv: 'Ваши данные хранятся только на этом устройстве.', med: 'Это не медицинская рекомендация. Расчёт приблизительный: по вопросам здоровья консультируйтесь с врачом.',
       expDone: 'Резервная копия сохранена', impT: 'Восстановление из резервной копии', impAsk: 'Текущие данные будут заменены данными из резервной копии. Продолжить?', impOk: 'Восстановлено', impBad: 'Неверный файл резервной копии', delAsk1: 'Все данные будут удалены.', delAsk2: 'Точно удалить? Вернуть нельзя.', deleted: 'Всё удалено',
-      xKcalT: 'Как считается это число?', xTarget: 'Дневная норма', xLimit: 'Лимит на сегодня', xEaten: 'Съедено', xSteps: 'Шаги сверх обычного', xRem: 'Ещё можно съесть', xWhyStep: 'Обычное число шагов для вашего уровня активности ({base}) уже учтено в норме. Прибавляются калории только за шаги СВЕРХ этого порога, полностью и «чистыми»: (3,5 − 1) × вес × (расстояние ÷ 5 км/ч). Если шагов меньше порога — прибавляется 0, норма не уменьшается.', xHowT: 'Как получилась норма?', xBmr: 'Расход в покое (BMR)', xBmrN: 'формула Миффлина — Сан-Жеора', xAct: 'Коэффициент активности', xTdee: 'Дневной расход (TDEE)', xGoal: 'Разница для цели', xFloor: 'Нижняя безопасная граница', xTargetR: 'Дневная норма',
+      xKcalT: 'Как считается это число?', xTarget: 'Дневная норма', xLimit: 'Норма на сегодня', xEaten: 'Съедено', xSteps: 'Шаги сверх обычного', xRem: 'Ещё можно съесть', xWhyStep: 'Обычное число шагов для вашего уровня активности ({base}) уже учтено в норме. Прибавляются калории только за шаги СВЕРХ этого порога, полностью и «чистыми»: (3,5 − 1) × вес × (расстояние ÷ 5 км/ч). Если шагов меньше порога — прибавляется 0, норма не уменьшается.', xHowT: 'Как получилась норма?', xBmr: 'Расход в покое (BMR)', xBmrN: 'формула Миффлина — Сан-Жеора', xAct: 'Коэффициент активности', xTdee: 'Дневной расход (TDEE)', xGoal: 'Разница для цели', xFloor: 'Нижняя безопасная граница', xTargetR: 'Дневная норма',
       xMacroT: 'Как посчитано?', xProt: 'Белки: {pk} г/кг × {w} кг = {p} г', xFat: 'Жиры: 27,5% калорий ÷ 9 = {f} г', xCarb: 'Углеводы: остаток калорий ÷ 4 = {c} г', xMacroN: 'Белок сохраняет мышцы, жиры и углеводы дают энергию.',
       xWaterT: 'Норма воды', xWater: '33 мл × {w} кг = {ml} мл ÷ 250 мл = {n} стаканов', xWaterN: 'В жару и при тренировках можно пить больше.',
       xStepT: 'Как считаются шаги?', xStride: 'Длина шага: рост × 0,414 = {s} см', xDist: 'Расстояние: {n} шагов × {s} см = {km} км', xKc: 'Калории: 3,5 × {w} кг × ({km} км ÷ 5 км/ч) = {k} ккал', xKcN: 'Скорость ходьбы принята 5 км/ч (обычная ходьба). Расчёт приблизительный.',
@@ -91,7 +91,7 @@
   Object.assign(D.uz, {
     jkT: 'Hazillar', perPortion: 'kkal / porsiya', spUl: 'Yuqori chegara (UL)', jkOn: 'Yoqilgan', jkOff: "O'chirilgan", jkCity: 'Shahringiz', jkCityH: 'Masofa taqqoslashlari shu shahardan boshlanadi', jkParty: "Bugun to'y yoki bayram kuni", jkNote: "Qiziqarli gaplar faqat ovqat, qadam va kundalik hayot ustidan — vazn va tana haqida gap yo'q.",
     stRouteF: "Bu {km} km — {route} masofasi ({rk} km) dan ko'proq", stRouteP: "Bu {km} km — {route} yo'lining {pct}%", cityPick: 'Shaharni tanlang',
-    yT: 'Buni yesam-chi?', yBtn: 'Buni yesam-chi?', yPh: 'Qaysi ovqat? (somsa, osh, kola…)', yPick: 'Ovqatni tanlang — nima bo\'lishini ko\'ring', yRem: 'Bugun limitdan qoladi: {x} kkal', yAfterOk: 'Yesangiz: {x} kkal qoladi', yAfterOver: 'Yesangiz: limitdan {x} kkal oshadi', yWalk: 'Yoqish uchun: ≈ {min} daqiqa yurish (≈ {steps} qadam)', yNoSave: "Hech narsa saqlanmaydi — faqat oqibatni ko'rsatadi.", yAdd: 'Yeyman — yozib qo\'yish',
+    yT: 'Buni yesam-chi?', yBtn: 'Buni yesam-chi?', yPh: 'Qaysi ovqat? (somsa, osh, kola…)', yPick: 'Ovqatni tanlang — nima bo\'lishini ko\'ring', yRem: "Bugun me'yordan qoladi: {x} kkal", yAfterOk: 'Yesangiz: {x} kkal qoladi', yAfterOver: "Yesangiz: me'yordan {x} kkal oshadi", yWalk: 'Yoqish uchun: ≈ {min} daqiqa yurish (≈ {steps} qadam)', yNoSave: "Hech narsa saqlanmaydi — faqat oqibatni ko'rsatadi.", yAdd: 'Yeyman — yozib qo\'yish',
     rcT: "O'z taomim (retsept)", rcName: 'Taom nomi', rcNamePh: "masalan, Onamning oshi", rcIng: 'Masalliqlar', rcAdd: "+ Masalliq qo'shish", rcNoIng: "Hali masalliq yo'q", rcPortions: 'Necha porsiya chiqadi?', rcPer: 'Bir porsiya: {k} kkal', rcPerMac: "oqsil {p} · yog' {f} · uglevod {c} · {g} g", rcTotal: 'Hammasi: {g} g · {k} kkal', rcSave: 'Saqlash', rcSaved: "«{n}» saqlandi — endi qidiruvda chiqadi", rcPickIng: 'Masalliqni tanlang', rcGrams: 'Necha gramm?', rcAddIng: "Qo'shish", rcMine: 'Mening taomlarim', rcNoMine: "Hali retsept yo'q", rcDelete: "Taomni o'chirish", rcDeleted: "Taom o'chirildi", rcEdit: 'Retseptni tahrirlash', rcNew: "+ Retsept qo'shish", rcMineH: "Masalliqlarni gramm bilan yozing — bir porsiya kkal va makro o'zi hisoblanadi.", rcQ: 'Masalliq nomi', aRecipe: 'Retsept',
     calT: 'Oylik taqvim', calNear: 'Maqsadga yaqin', calLow: 'Pastroq', calHigh: 'Yuqoriroq', calPart: 'Qisman / davom etmoqda', calNone: "Ma'lumot yo'q", calPre: 'Kuzatuv boshlanmagan', calStart: 'Kuzatuv boshlangan: {d}', stNone: "Ma'lumot yo'q", stLive: 'Kun davom etmoqda', stPart: 'Qisman yozilgan', stNear: 'Maqsadga yaqin', stLow: 'Pastroq', stHigh: 'Yuqoriroq', stPre: 'Kuzatuv boshlanmagan', stFull: "To'liq kun", deBtn: 'Kunni yakunlash', deHint: "Hamma ovqatni yozgan bo'lsangiz, kunni yakunlang — statistika faqat to'liq kunlardan hisoblanadi.", deDone: 'Kun yakunlandi', deLow: "Kun yakunlandi, lekin yozuv maqsadning yarmidan kam — «qisman» bo'lib qoladi", deDoneL: 'Kun yakunlandi ✓', wFirst: "Birinchi o'lchov", wLast: "Oxirgi o'lchov", wAvgN: "Oxirgi 7 kundagi {n} ta o'lchov o'rtachasi: {x} kg", wTrend: "7 kunlik o'rtacha (trend): {x} kg", wTrendD: 'oldingi 7 kunga nisbatan {d} kg', wkNoFull: "To'liq kun yo'q — o'rtacha hisoblanmadi", xStepBase: "Odatiy chegara: {base} qadam. Bugun ortig'i: {n} qadam → +{k} kkal (sof)", calStreak: '{n} kun ketma-ket yozdingiz', calStreak0: "Seriya hali yo'q — bugun yozilsa boshlanadi", calNote: "Faqat to'liq kunlar (yakunlangan yoki o'tib ketgan, yozuv maqsadning ≥50% i) maqsad bilan solishtiriladi. Ranglar baho emas.", calDays: '{n} kun', calOpen: 'Kunni ochish',
     phBtn: 'Rasm', phT: "Rasm bilan qo'shish", phNote: 'Rasm AI xizmatiga yuboriladi va saqlanmaydi.', phBusy: 'Rasm tahlil qilinmoqda…', phErr: "Rasmni aniqlab bo'lmadi. Qo'lda qo'shing.", phLimit: "Bugungi rasm limiti tugadi (kuniga 10 ta). Ertaga urinib ko'ring.", phOffline: "Internet yo'q — rasm tugmasi o'chiq", phApprox: 'taxminiy ±30%', phScale: 'Porsiyani tuzating', phNone: 'Rasmda ovqat topilmadi. Boshqa rasm yoki matn bilan urinib ko\'ring.', phSave: '{n} ta ovqatni saqlash', phHint: 'Natijani ko\'rib, porsiyani tuzatib tasdiqlang.', phPick: 'Kamera yoki galereya', tkNote: "Tasdiqlasangiz, ovqat nomi va kkal (shaxsiy ma'lumotsiz) umumiy bazaga taklif sifatida yuboriladi.",
@@ -100,7 +100,7 @@
   Object.assign(D.ru, {
     jkT: 'Шутки', perPortion: 'ккал / порция', spUl: 'Верхняя граница (UL)', jkOn: 'Включены', jkOff: 'Выключены', jkCity: 'Ваш город', jkCityH: 'Сравнения расстояний начинаются с этого города', jkParty: 'Сегодня свадьба или праздник', jkNote: 'Забавные фразы — только про еду, шаги и быт: про вес и тело — никогда.',
     stRouteF: 'Это {km} км — больше, чем путь {route} ({rk} км)', stRouteP: 'Это {km} км — {pct}% пути {route}', cityPick: 'Выберите город',
-    yT: 'А если я это съем?', yBtn: 'А если я это съем?', yPh: 'Какая еда? (самса, плов, кола…)', yPick: 'Выберите еду — посмотрите, что будет', yRem: 'Сегодня остаётся в лимите: {x} ккал', yAfterOk: 'Если съесть: останется {x} ккал', yAfterOver: 'Если съесть: выйдет за лимит на {x} ккал', yWalk: 'Чтобы сжечь: ≈ {min} мин ходьбы (≈ {steps} шагов)', yNoSave: 'Ничего не сохраняется — только показывает последствия.', yAdd: 'Съем — записать',
+    yT: 'А если я это съем?', yBtn: 'А если я это съем?', yPh: 'Какая еда? (самса, плов, кола…)', yPick: 'Выберите еду — посмотрите, что будет', yRem: 'Сегодня до нормы остаётся: {x} ккал', yAfterOk: 'Если съесть: останется {x} ккал', yAfterOver: 'Если съесть: выше нормы на {x} ккал', yWalk: 'Чтобы сжечь: ≈ {min} мин ходьбы (≈ {steps} шагов)', yNoSave: 'Ничего не сохраняется — только показывает последствия.', yAdd: 'Съем — записать',
     rcT: 'Моё блюдо (рецепт)', rcName: 'Название блюда', rcNamePh: 'например, мамин плов', rcIng: 'Ингредиенты', rcAdd: '+ Добавить ингредиент', rcNoIng: 'Ингредиентов пока нет', rcPortions: 'Сколько порций получится?', rcPer: 'Одна порция: {k} ккал', rcPerMac: 'белки {p} · жиры {f} · углеводы {c} · {g} г', rcTotal: 'Всего: {g} г · {k} ккал', rcSave: 'Сохранить', rcSaved: '«{n}» сохранено — теперь найдётся в поиске', rcPickIng: 'Выберите ингредиент', rcGrams: 'Сколько граммов?', rcAddIng: 'Добавить', rcMine: 'Мои блюда', rcNoMine: 'Рецептов пока нет', rcDelete: 'Удалить блюдо', rcDeleted: 'Блюдо удалено', rcEdit: 'Изменить рецепт', rcNew: '+ Добавить рецепт', rcMineH: 'Впишите ингредиенты в граммах — ккал и БЖУ порции посчитаются сами.', rcQ: 'Название ингредиента', aRecipe: 'Рецепт',
     calT: 'Календарь месяца', calNear: 'Близко к цели', calLow: 'Ниже цели', calHigh: 'Выше цели', calPart: 'Частично / день идёт', calNone: 'Нет данных', calPre: 'Наблюдение не начато', calStart: 'Наблюдение начато: {d}', stNone: 'Нет данных', stLive: 'День продолжается', stPart: 'Частично записано', stNear: 'Близко к цели', stLow: 'Ниже цели', stHigh: 'Выше цели', stPre: 'Наблюдение не начато', stFull: 'Полный день', deBtn: 'Завершить день', deHint: 'Если записали всю еду — завершите день: статистика считается только по полным дням.', deDone: 'День завершён', deLow: 'День завершён, но записано меньше половины цели — он останется «частичным»', deDoneL: 'День завершён ✓', wFirst: 'Первое измерение', wLast: 'Последнее измерение', wAvgN: 'Среднее за последние 7 дней по {n} измерениям: {x} кг', wTrend: 'Среднее за 7 дней (тренд): {x} кг', wTrendD: 'по сравнению с предыдущими 7 днями {d} кг', wkNoFull: 'Нет полных дней — среднее не посчитано', xStepBase: 'Обычный порог: {base} шагов. Сегодня сверх него: {n} шагов → +{k} ккал (чистыми)', calStreak: 'Записи подряд: {n} дн.', calStreak0: 'Серии пока нет — начнётся, как только появится запись сегодня', calNote: 'Только полные дни (завершённые или прошедшие, записано ≥50% цели) сравниваются с целью. Цвета — не оценка.', calDays: '{n} дн.', calOpen: 'Открыть день',
     phBtn: 'Фото', phT: 'Добавить по фото', phNote: 'Фото отправляется сервису ИИ и не сохраняется.', phBusy: 'Анализирую фото…', phErr: 'Не удалось распознать фото. Добавьте вручную.', phLimit: 'Лимит фото на сегодня исчерпан (10 в день). Попробуйте завтра.', phOffline: 'Нет интернета — кнопка фото отключена', phApprox: 'примерно ±30%', phScale: 'Поправьте порцию', phNone: 'На фото не найдено еды. Попробуйте другое фото или текст.', phSave: 'Сохранить: {n}', phHint: 'Проверьте результат, поправьте порцию и подтвердите.', phPick: 'Камера или галерея', tkNote: 'Если подтвердите, название блюда и ккал (без личных данных) отправятся в общую базу как предложение.',
@@ -139,9 +139,11 @@
     if (dbState === 2) { cb && cb(); return; }
     if (cb) dbWaiters.push(cb);
     if (dbState === 1) return; dbState = 1;
-    fetch('/data/ovqatlar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { db = S.normFoods(j.foods); dbState = 2; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(); }); })
+    fetch('/data/ovqatlar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { db = S.normFoods(j.foods); S.buildIndex(db); dbState = 2; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(); }); })
       .catch(function () { dbState = 0; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(true); }); });
   }
+  var jokeBoot = false, qTimer = null;                                 // qidiruv: har harfda emas, 120 ms kutib
+  function srchOpts(limit) { return { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr()), limit: limit }; }      // tenglikda: oxirgi 30 kunda ko'p yeyilgan + sevimlilar
   function allFoods() { return (db || []).concat(st.customFoods || []); }
   function foodById(id) { var l = allFoods(); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
 
@@ -190,8 +192,8 @@
     var x = S.dayOf(st, date) || { food: [] }, h = '';
     S.MEALS.forEach(function (m) {
       var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal;
-      h += '<section class="rz-card sl-meal"><div class="sl-mh"><b>' + esc(mealName(m)) + '</b><span>' + (list.length ? fmt(sum) + ' ' + T('kcal') : '') + '</span><button type="button" class="sl-plus" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-        (list.length ? list.map(function (e) { return entryRow(e, date); }).join('') : '<div class="rz-mut">' + esc(T('emptyMeal')) + '</div>') + '</section>';
+      h += '<section class="rz-card sl-meal"><div class="sl-mh"><span class="mi"><b>' + esc(mealName(m)) + '</b><span>' + (list.length ? fmt(sum) + ' ' + T('kcal') : '') + '</span></span><button type="button" class="sl-plus" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>' + (list.length ? '<button type="button" class="sl-sv" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '<span>' + esc(T('tplSaveS')) + '</span></button>' : '') + '</div>' +
+        (list.length ? list.map(function (e) { return entryRow(e, date); }).join('') : '<div class="rz-mut sl-emp">' + esc(T('emptyMeal')) + (S.kechagidekOk(st, date, m) ? '<button type="button" class="rz-btn ghost sm sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '') + '</div>') + '</section>';
     });
     return h;
   }
@@ -206,6 +208,9 @@
   var news = KalkiNews.create({ app: 'kalkifit', kit: kit, lang: langNow, root: root, rowIcon: 'sl-ci', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
     daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('.sl-hero')); }); },
     stepcalc: function (n) { return goTab('today', function () { n.highlight($('.sl-rem') || $('.sl-hero')); }); },
+    search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
+    portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
+    templates: function (n) { return goTab('me', function () { n.highlight($('[data-act=tpls]')); }); },
     dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('.sl-hero')); } }); } } });
   function nudges() {
     var out = [], p = prefs(), now = Date.now(), hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
@@ -239,7 +244,9 @@
     h += '<section class="rz-card sl-hero' + (over ? ' over' : '') + '"><button type="button" class="sl-ringbtn" id="ringBtn" data-act="xkcal" aria-label="' + esc(T('hHow') + ' ' + fmt(tot.kcal) + ' ' + T('ringOf', { t: fmt(limit) })) + '">' + ringHtml('ringPg', prev ? prev.ratio : 0) +
       '<span class="sl-rc"><b id="kNum">' + fmt(prev ? prev.eaten : tot.kcal) + '</b><small>' + T('kcal') + '</small><em>' + esc(T('ringOf', { t: fmt(limit) })) + '</em></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
       '<div class="sl-rem"><span>' + esc(T(over ? 'overLbl' : 'remLbl')) + '</span><b>' + fmt(Math.abs(bal.remaining)) + '<small> ' + T('kcal') + '</small></b>' + (bal.credit > 0 ? '<em>' + esc(T('limitParts', { t: fmt(pl.target), c: fmt(bal.credit) })) + '</em>' : '') + '</div>' + dayChip(t) + (!tot.kcal && !x.food.length ? '<p class="rz-mut sm sl-first">' + esc(T('hEmpty')) + '</p>' : '') + '</section>';
-    var jl = G ? G.todayLine(jokeCtx()) : null; if (jl) save(); h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
+    if (G && !jokeBoot) { jokeBoot = true; loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    var jl = G && masofaState !== 1 && dbState !== 1 ? G.todayLine(jokeCtx()) : null; if (jl) save();           // masofa va taomlar bazasi yuklanguncha hazil tanlanmaydi (yuklangach qayta chiziladi) — aks holda qayta ochganda hazil almashib ketardi
+     h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
     h += '<section class="rz-card sl-macros">' + [['mP', 'p', pl.macros.p], ['mF', 'f', pl.macros.f], ['mC', 'c', pl.macros.c]].map(function (m) { var v = Math.round(tot[m[1]]), r = Math.min(1, v / Math.max(1, m[2])); return '<button type="button" class="sl-mac" data-act="xmacro"><span class="l">' + esc(T(m[0])) + '</span><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + r + ')"></i></div><span class="v">' + v + ' / ' + m[2] + ' ' + T('gram') + '</span></button>'; }).join('') + '</section>';
     h += '<section class="rz-card sl-water" id="wCard"><div class="sl-wh"><b>' + ico('drop') + esc(T('wT')) + '</b><button type="button" class="sl-wv" data-act="xwater" id="wTxt">' + esc(T('wOf', { n: wl, m: glasses })) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML() + '</button></div><div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
     for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl && prev ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
@@ -304,7 +311,7 @@
     h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
       (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
       (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + (wj ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(wj.text) + '</p>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
-    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
+    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
     h += '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
       '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
@@ -335,6 +342,8 @@
 
   /* ================= 2-bosqich: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, taklif, qo'shimchalar ================= */
   kit.addIcons({
+    star: 'M12 3.500l2.700 5.500 6 .900-4.400 4.200 1 6-5.300-2.800-5.300 2.800 1-6L3.300 9.900l6-.900z',
+    dots: 'M5.500 12h.010 M12 12h.010 M18.500 12h.010', undo: 'M4 12a8 8 0 1 0 2.500-5.800 M4 4v5h5', bm: 'M6 4h12v17l-6-4-6 4z',
     chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
     sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.900 4.900l1.400 1.400 M17.700 17.700l1.400 1.400 M4.900 19.100l1.400-1.400 M17.700 6.300l1.400-1.400', leaf: 'M5 19c0-8 5-13 14-14 0 9-5 14-13 14 M5 19c2-4 5-7 9-9', bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
@@ -359,7 +368,7 @@
   function yRow(f) { return '<button type="button" class="sl-rr" data-act="ypick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function yResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = yd.q.trim(), foods = allFoods(), list;
-    if (q) list = S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 30 });
+    if (q) list = S.search(foods, q, srchOpts(30));
     else { var rec = st.recents.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom; }).slice(0, 10); list = rec.slice(0, 5).concat(pop.filter(function (f) { return rec.indexOf(f) < 0; })).slice(0, 12); }
     return list.length ? list.map(yRow).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
@@ -406,7 +415,7 @@
   }
   function rcResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = rc.q.trim(), foods = (db || []), list;
-    list = q ? S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 30 }) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
+    list = q ? S.search(foods, q, srchOpts(30)) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
     return list.length ? list.map(function (f) { return '<button type="button" class="sl-rr" data-act="rcpick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
   function rcGramsHtml() {
@@ -466,8 +475,8 @@
     if (fd.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('phBusy')) + '</b></div>';
     if (fd.phErr) h += '<p class="rz-p warn">' + esc(fd.phErr) + '</p>';
     if (!fd.items.length) return h + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="fphoto">' + ico('cam') + ' ' + esc(T('phPick')) + '</button></div>';
-    h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + fd.items.map(function (it, i) { var kc = Math.round(it.base.kcal * it.mult); return '<div class="sl-ti sl-pi"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt) + ' · ' + fmt(Math.round(it.base.g * it.mult)) + ' ' + T('gram') + ' · ' + esc(T('phApprox')) + '</span><span class="sc" role="group" aria-label="' + esc(T('phScale')) + '">' + [0.5, 1, 1.5, 2].map(function (m) { return '<button type="button" class="rz-chip sm' + (it.mult === m ? ' on' : '') + '" data-act="phsc" data-i="' + i + '" data-m="' + m + '" aria-pressed="' + (it.mult === m) + '">×' + String(m).replace('.', ',') + '</button>'; }).join('') + '</span></span><b>≈ ' + fmt(kc) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="phdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('');
-    return h + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="phsave">' + esc(T('phSave', { n: fd.items.length })) + '</button></div>';
+    h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + itRows(fd.items);
+    return h + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: fd.items.length })) + '</button></div>';
   }
   function phRefresh() { if (kit.sheetKind() === 'add' && fd && fd.mode === 'photo') setSheet(phHtml()); }
   function phShrink(file, cb) {                     // mijozda 1024 px ga kichraytirish, JPEG 0,8
@@ -481,14 +490,9 @@
       if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         fd.busy = false; if (res.s === 429) fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
-        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, ptxt: o.porsiya || '', est: true, ai: true, photo: true, mult: 1, base: { g: o.g || 0, kcal: o.kcal, p: o.o, f: o.y, c: o.u } }; }); phRefresh();
+        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
       }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
     });
-  }
-  function phSave() {
-    var n = fd.items.length, date = fd.date, ids = [];
-    fd.items.forEach(function (it) { var m = it.mult, e = S.addFood(st, date, { fid: null, name: it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''), meal: fd.meal, unit: null, qty: 1, g: Math.round(it.base.g * m), kcal: it.base.kcal * m, p: it.base.p * m, f: it.base.f * m, c: it.base.c * m, est: true, ts: nowTs() }); ids.push(e.id); });
-    kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
   }
   function phSetOffline() { var off = navigator.onLine === false; $$('#phBtn').forEach(function (b) { b.disabled = off; b.title = off ? T('phOffline') : ''; b.setAttribute('aria-disabled', off); }); }
 
@@ -560,7 +564,7 @@
     return '<div class="sl-acts"><button type="button" class="rz-btn ghost sm" data-act="ftext">' + ico('text') + '<span>' + esc(T('aText')) + '</span></button><button type="button" class="rz-btn ghost sm" id="phBtn" data-act="fphoto"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '<span>' + esc(T('phBtn')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="fcustom">' + ico('plus') + '<span>' + esc(T('aCustom')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="frecipe">' + ico('book') + '<span>' + esc(T('aRecipe')) + '</span></button></div>';
   }
   function searchHtml() {
-    return shHead(T('aT')) + '<div class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></div>' + catsHtml() + actsHtml() + '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
+    return shHead(T('aT')) + '<div class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></div>' + tplBar() + catsHtml() + actsHtml() + '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
   }
   /* kategoriya qatori: gorizontal scroll, chetlarda yumshoq soya, sichqoncha g'ildiragi va sudrab surish ishlaydi */
   function catsInit() {
@@ -579,7 +583,7 @@
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
     var foods = allFoods(), q = fd.q.trim(), list, h = '';
-    if (q) { list = S.search(foods, q, { recents: st.recents, favs: st.favs, limit: 40 }); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
+    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
     else if (fd.cat) list = foods.filter(function (f) { return f.t === fd.cat; });
     else {                                           // Hammasi: sevimli, oxirgi, mashhur, so'ng BUTUN baza guruhlar bo'yicha
       var rec = st.recents.map(foodById).filter(Boolean), fav = st.favs.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom && rec.slice(0, 6).indexOf(f) < 0 && fav.slice(0, 5).indexOf(f) < 0; }).slice(0, 8);
@@ -587,35 +591,179 @@
       var all = CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('');
       return sec(T('aFav'), fav.slice(0, 5)) + sec(T('aRec'), rec.slice(0, 6)) + sec(T('aMine'), st.customFoods) + sec(T('aPop'), pop) + all;
     }
-    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span></div>';
+    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
     return list.map(resRow).join('');
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
-  function curGrams() { var f = fd.food; return fd.unit === 'g100' ? fd.qty : S.unitGrams(f, fd.unit) * fd.qty; }
+  /* ---------- porsiya oynasi (bitta): qidiruvdan tanlash, saqlangan yozuv, AI matn/rasm qatorlari ---------- */
+  function pwO() { return fd.mode === 'item' ? fd.items[fd.ix] : fd; }
+  function pwBaseG(o) { return o.base ? (o.base.g || 0) : 0; }
+  function pwUg(o, u) { if (u === 'g100') return 1; return o.food ? (S.unitGrams(o.food, u) || 0) : pwBaseG(o); }   // 1 birlik necha gramm
+  function pwUnits(o) { return o.food ? o.food.u.map(function (u) { return u[0]; }) : ['pc'].concat(pwBaseG(o) > 0 ? ['g100'] : []); }
+  function pwUName(u) { return u === 'pc' ? unitName('porsiya') : (u === 'g100' ? T('pwGramm') : unitName(u)); }
+  function pwGrams(o) { return o.unit === 'g100' ? o.qty : pwUg(o, o.unit) * o.qty; }
+  function pwCalc(o) {
+    var g = pwGrams(o); if (o.food) return S.portion(o.food, g);
+    var b = o.base, m = o.unit === 'g100' ? (b.g > 0 ? o.qty / b.g : 1) : o.qty, r1 = function (x) { return Math.round(x * m * 10) / 10; };
+    return { g: Math.round(g), kcal: Math.round(b.kcal * m), p: r1(b.p), f: r1(b.f), c: r1(b.c) };
+  }
+  function pwStep(o) { return o.unit === 'g100' ? 10 : 0.5; }
+  function pwMax(o) { return o.unit === 'g100' ? 3000 : 50; }
+  function pwInfo(o) {
+    var g = pwGrams(o), ug = pwUg(o, o.unit); if (o.unit === 'g100') return T('pwNow', { g: fmt(g) });
+    return (ug > 0 ? T('pwEq', { u: pwUName(o.unit), g: fmt(ug) }) + (g > 0 ? ' · ' : '') : '') + (g > 0 ? T('pwNow', { g: fmt(g) }) : '');
+  }
+  function pwQuick(o) { return [0.5, 1, 1.5, 2].map(function (v, i) { var q = o.unit === 'g100' ? v * 100 : v, on = Math.abs(o.qty - q) < 1e-6; return '<button type="button" class="rz-chip sm' + (on ? ' on' : '') + '" data-act="pwq" data-v="' + q + '" aria-pressed="' + on + '">' + ['½', '1', '1½', '2'][i] + '</button>'; }).join(''); }
+  function pwBody(o) {
+    var pt = pwCalc(o), approx = !!(o.base || o.est || (o.food && o.food.e));
+    return '<div class="sl-kc" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
+      (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
+      '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits">' + pwUnits(o).map(function (u) { return '<button type="button" class="rz-chip' + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(pwUName(u)) + '</button>'; }).join('') + '</div>' +
+      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + (o.unit === 'g100' ? esc(T('gram')) : '') + '</i></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
+      '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div><div class="rz-chips sl-pwq" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
+      '<button type="button" class="rz-btn ghost full sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button>';
+  }
+  function itSync(it) {
+    var pt = pwCalc(it); it.g = pt.g; it.kcal = pt.kcal; it.p = pt.p; it.f = pt.f; it.c = pt.c;
+    if (it.ed || it.food) it.ptxt = it.unit === 'g100' ? fmt(pt.g) + ' ' + T('gram') : qtyStr(it.qty) + ' ' + pwUName(it.unit);
+  }
+  function pwUpdate(fromInput) {
+    var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
+    kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
+    $('#fdMac').textContent = T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) });
+    if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
+    $('#fdQu').textContent = o.unit === 'g100' ? T('gram') : ''; $('#fdInfo').textContent = pwInfo(o); $('#fdQuick').innerHTML = pwQuick(o);
+    $$('[data-act=funit]').forEach(function (b) { var on = b.getAttribute('data-u') === o.unit; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  }
+  function pwSetQty(o, q) { o.qty = Math.max(pwStep(o), Math.min(pwMax(o), Math.round(q * 100) / 100)); }
+  function pwSetUnit(o, nu) {                          // birlik almashganda gramm (demak kkal) o'zgarmaydi
+    var g = pwGrams(o), ug = pwUg(o, nu); o.unit = nu;
+    if (g > 0 && ug > 0) o.qty = nu === 'g100' ? Math.round(g) : Math.round(g / ug * 100) / 100; else o.qty = nu === 'g100' ? 100 : 1;
+    o.qty = Math.max(pwStep(o) / (nu === 'g100' ? 1 : 50), Math.min(pwMax(o), o.qty));
+  }
+  function pwSimilar(o) {
+    var nm = o.food ? nameOf(o.food) : o.name, ws = S.key(nm).split(' ').filter(function (w) { return w.length >= 3; }), seen = {}, out = [];
+    [nm].concat(ws).forEach(function (q) { if (q) S.search(allFoods(), q, srchOpts(12)).forEach(function (f) { if ((o.food && f.id === o.food.id) || seen[f.id]) return; seen[f.id] = 1; out.push(f); }); });
+    if (out.length < 5 && o.food && o.food.t) {          // yetmasa — shu turdagi (meva, go'sht…) kaloriyasi yaqin taomlar
+      allFoods().filter(function (f) { return f.t === o.food.t && f.id !== o.food.id && !seen[f.id]; }).sort(function (a, b) { return Math.abs(a.k - o.food.k) - Math.abs(b.k - o.food.k); }).forEach(function (f) { if (out.length < 5) { seen[f.id] = 1; out.push(f); } });
+    }
+    return out.slice(0, 5);
+  }
+  function pwSwapHtml(o) {
+    var l = pwSimilar(o);
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwswapx" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('pwSwapT')) + '</b><span></span></div>' +
+      (l.length ? l.map(function (f) { return '<button type="button" class="sl-row" data-act="pwsw" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + (f.e ? ' · ' + esc(T('aEst')) : '') + '</span></span></button>'; }).join('') : '<div class="rz-mut">' + esc(T('pwNoSim')) + '</div>');
+  }
+  function pwSwapTo(id) {
+    var o = pwO(), f = foodById(id); if (!f) return; var g = pwGrams(o), has = function (u) { return f.u.some(function (x) { return x[0] === u; }); };
+    o.food = f; delete o.base;
+    if (!(o.unit && o.unit !== 'pc' && has(o.unit))) { if (g > 0 && has('g100')) { o.unit = 'g100'; o.qty = Math.round(g); } else { o.unit = f.u[0][0]; o.qty = o.unit === 'g100' ? 100 : 1; } }
+    if (fd.mode === 'item') { o.fid = f.id; o.name = nameOf(f); o.ai = false; o.photo = false; o.est = !!f.e; o.ed = true; itSync(o); }
+    pwScreen();
+  }
+  function pwScreen() { setSheet(fd.mode === 'item' ? itemHtml() : portionHtml()); }
+  function itemHtml() {
+    var it = fd.items[fd.ix];
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><span></span></div>' + pwBody(it) +
+      '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
+  }
+  function itemOpen(i, back) { fd.back = back; fd.ix = i; fd.mode = 'item'; var it = fd.items[i]; if (!it.unit) { it.unit = 'pc'; it.qty = 1; } setSheet(itemHtml()); }
+  function itemBack() { var b = fd.back; fd.mode = b; if (b === 'photo') setSheet(phHtml()); else if (b === 'tpl') setSheet(tplHtml()); else setSheet(textHtml()); }
+
+  /* ---------- «Odatdagi ovqatlarim» va «Kechagidek» ---------- */
+  var tm = null;
+  function tplSuggest(m) { var k = ({ b: 'S', l: 'L', d: 'D', s: 'T' })[m]; return [T('tpl' + k + '0'), T('tpl' + k + '1'), T('tplS2')]; }
+  function entryToTpl(e) {
+    var f = e.fid ? foodById(e.fid) : null; return { fid: e.fid || null, n: f ? nameOf(f) : (e.name || ''), unit: e.unit, qty: e.qty, g: e.g, kcal: e.kcal, p: e.p, f: e.f, c: e.c, est: !!e.est };
+  }
+  var MEAL_EM = { b: '🍳', l: '🍲', d: '🌙', s: '🍎' };
+  function tplTodayHtml(date) {                      // bugungi yozilgan bo'limlar: bir bosishda saqlash
+    var x = S.dayOf(st, date), rows = (x ? S.MEALS : []).map(function (m) {
+      var l = x.food.filter(function (e) { return e.meal === m; }); if (!l.length) return '';
+      return '<div class="sl-tr"><span class="m"><b>' + MEAL_EM[m] + ' ' + esc(mealName(m)) + '</b><span>' + esc(T('tplTodayRow', { n: l.length, k: fmt(S.sumEntries(l).kcal) })) + '</span></span><button type="button" class="rz-btn sm" data-act="tplsave" data-m="' + m + '" data-d="' + date + '">' + esc(T('tplSaveS')) + '</button></div>';
+    }).join('');
+    return rows ? '<div class="rz-fl">' + esc(T('tplToday')) + '</div>' + rows : '<p class="rz-p">' + esc(T('tplNoToday')) + '</p><button type="button" class="rz-btn primary full" data-act="tplgoadd">' + esc(T('tplAddFood')) + '</button>';
+  }
+  function tplSugHtml() {                            // avtomatik taklif: tez-tez birga yeyiladigan taomlar
+    var g = S.suggestTemplate(st, todayStr()); if (!g) return ''; tmSug = g;
+    var names = g.ids.map(function (id) { var f = foodById(id); return f ? nameOf(f) : id; }).join(', ');
+    return '<div class="sl-sug" id="tplSug"><p>' + esc(T('tplSugT', { x: names })) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost sm" data-act="tplsugno">' + esc(T('tplNo')) + '</button><button type="button" class="rz-btn primary sm" data-act="tplsugsave">' + esc(T('tplSaveS')) + '</button></div></div>';
+  }
+  var tmSug = null;
+  function tplBar() {
+    var yb = S.kechagidekOk(st, fd.date, fd.meal), l = st.tpls || [];
+    return tplSugHtml() + '<div class="sl-tpl" id="tplBar" role="group" aria-label="' + esc(T('tplBar')) + '">' + (yb ? '<button type="button" class="rz-chip on" data-act="yday2">' + ico('undo') + ' ' + esc(T('tplYest')) + '</button>' : '') +
+      l.map(function (t) { return '<button type="button" class="rz-chip" data-act="tplopen" data-id="' + t.id + '">' + esc(t.name) + '</button>'; }).join('') + (l.length ? '' : '<button type="button" class="rz-chip" data-act="tplhelp">' + ico('star') + ' ' + esc(T('tplBar')) + '</button>') + '</div>';
+  }
+  function tplHelpHtml() {
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('tplBar')) + '</b><span></span></div><p class="rz-p">' + esc(T('tplEmpty')) + '</p>' + tplSugHtml() + tplTodayHtml(fd.date);
+  }
+  function tplToItems(list) {                       // shablon/kecha yozuvlari → porsiya oynasi qatorlari
+    return list.map(function (x) {
+      var f = x.fid ? foodById(x.fid) : null, ok = f && f.u.some(function (u) { return u[0] === x.unit; }), qty = x.qty > 0 ? x.qty : 1;
+      if (ok) { if (x.unit === 'g100' && qty < 5 && x.g > 5) qty = x.g; var it = { name: nameOf(f), fid: f.id, food: f, unit: x.unit, qty: qty, est: !!f.e, ai: false }; itSync(it); return it; }
+      var m = /^(.*?)\s*\(([^)]*)\)\s*$/.exec(x.n || ''), nm = m ? m[1] : (x.n || '?'), it2 = { name: nm, fid: null, food: null, unit: 'pc', qty: 1, est: true, ai: false, ptxt: m ? m[2] : '', base: { g: x.g || 0, kcal: x.kcal, p: x.p || 0, f: x.f || 0, c: x.c || 0 } };
+      it2.g = x.g || 0; it2.kcal = x.kcal; it2.p = x.p || 0; it2.f = x.f || 0; it2.c = x.c || 0; return it2;
+    });
+  }
+  function tplHtml() {
+    var on = fd.items.filter(function (i) { return !i.off; }).length;
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(fd.tplT || '') + '</b><span></span></div>' + itRows(fd.items, true) +
+      '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + '</p>' +
+      '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave"' + (on ? '' : ' disabled') + '>' + esc(T('tplAdd', { n: on })) + '</button></div>';
+  }
+  function tplShow(title, raw) {
+    fd.mode = 'tpl'; fd.tplT = title; var go = function () { fd.items = tplToItems(raw); setSheet(tplHtml()); };
+    if (dbState === 2) go(); else loadDb(function () { if (fd && kit.sheetKind() === 'add') go(); });
+  }
+  function tplNameHtml() {
+    return shHead(T('tplSave1')) + '<div class="rz-fl">' + esc(T('tplNameT')) + '</div><div class="rz-chips sl-tsg">' + tplSuggest(tm.m).map(function (n) { return '<button type="button" class="rz-chip" data-act="tplname" data-n="' + esc(n) + '">' + esc(n) + '</button>'; }).join('') + '</div>' +
+      '<label class="rz-f" for="tplNm"><span>' + esc(T('tplNameIn')) + '</span><input id="tplNm" type="text" maxlength="40" autocomplete="off" enterkeyhint="done" value=""></label><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="tplsave2">' + esc(T('save')) + '</button></div>';
+  }
+  function tplSaveAs(name) {
+    var x = S.dayOf(st, tm.d), list = tm.items || (x ? x.food.filter(function (e) { return e.meal === tm.m; }) : []);
+    var t = S.addTemplate(st, name, list.map(entryToTpl), tm.m); if (!t) { toast(T('tplFull')); return; }
+    var back = tm.back; vib();
+    if (back === 'tpls') { save(); setSheet(tplsHtml()); render(); }
+    else if (back === 'add') { save(); render(); fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); }
+    else { kit.closeSheet(); commit(); }
+    toast(T('tplSaved', { x: t.name }), null, true);
+  }
+  function tplStartSave(m, d, items) {
+    var ctx = kit.sheetKind() === 'tpls' ? 'tpls' : (kit.sheetKind() === 'add' ? 'add' : null);
+    if ((st.tpls || []).length >= S.TPL_MAX) { toast(T('tplFull')); return; }
+    tm = { m: m, d: d, items: items || null, back: ctx }; if (ctx) setSheet(tplNameHtml()); else openSheet('mmenu', tplNameHtml());
+  }
+  function tplsHtml() {
+    var l = st.tpls || [];
+    return shHead(T('tplMine')) + (l.length ? l.map(function (t, i) {
+      return '<div class="sl-tr"><span class="m"><b>' + esc(t.name) + '</b><span>' + esc(T('tplCnt', { n: t.items.length, k: fmt(S.tplKcal(t)) })) + '</span></span>' +
+        '<button type="button" class="rz-x" data-act="tplup" data-id="' + t.id + '" aria-label="' + esc(T('tplUp') + ': ' + t.name) + '"' + (i === 0 ? ' disabled' : '') + '>' + ico('chev', 'up') + '</button>' +
+        '<button type="button" class="rz-x" data-act="tpldn" data-id="' + t.id + '" aria-label="' + esc(T('tplDown') + ': ' + t.name) + '"' + (i === l.length - 1 ? ' disabled' : '') + '>' + ico('chev', 'dn') + '</button>' +
+        '<button type="button" class="rz-x" data-act="tplren" data-id="' + t.id + '" aria-label="' + esc(T('tplRen') + ': ' + t.name) + '">' + ico('pen') + '</button>' +
+        '<button type="button" class="rz-x" data-act="tpldel" data-id="' + t.id + '" aria-label="' + esc(T('del') + ': ' + t.name) + '">' + ico('x') + '</button></div>';
+    }).join('') : '<p class="rz-p">' + esc(T('tplEmpty')) + '</p>') + tplSugHtml() + (l.length ? '' : tplTodayHtml(todayStr())) + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
+  }
+  function tplsOpen() { openSheet('tpls', tplsHtml()); }
   function pickFood(id) {
     var f = foodById(id); if (!f) { loadDb(function () { pickFood(id); }); return; }
-    fd.food = f; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; setSheet(portionHtml());
+    fd.food = f; fd.base = null; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; setSheet(portionHtml());
   }
   function portionHtml() {
-    var f = fd.food, pt = S.portion(f, curGrams()), fav = st.favs.indexOf(f.id) > -1;
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nameOf(f)) + '</b><button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button></div>' +
-      '<div class="sl-kc" aria-live="polite"><b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
-      '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips">' + f.u.map(function (u) { return '<button type="button" class="rz-chip' + (fd.unit === u[0] ? ' on' : '') + '" data-act="funit" data-u="' + u[0] + '" aria-pressed="' + (fd.unit === u[0]) + '">' + esc(unitLabel(f, u[0])) + '</button>'; }).join('') + '</div>' +
-      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="fdQty">' + qtyStr(fd.qty) + (fd.unit === 'g100' ? ' ' + T('gram') : '') + '</b><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-      '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') + (f.e ? '<p class="rz-p sm">' + esc(T('pEstNote')) + '</p>' : '') +
-      '<div class="rz-actions">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
-  }
-  function portionUpdate() {
-    var pt = S.portion(fd.food, curGrams()); kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
-    $('#fdMac').textContent = T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) });
-    $('#fdQty').textContent = qtyStr(fd.qty) + (fd.unit === 'g100' ? ' ' + T('gram') : '');
+    var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1, nm = f ? nameOf(f) : (fd.name || '');
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nm) + '</b>' + (f && !f.custom ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : (f ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '<span></span>')) + '</div>' +
+      pwBody(fd) + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') +
+      '<div class="rz-actions sl-sticky">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
   }
   function fSave() {
-    var f = fd.food, g = curGrams(), pt = S.portion(f, g);
+    var f = fd.food, pt = pwCalc(fd);
     if (fd.editId != null) {
       var x = S.dayOf(st, fd.date), e = x && x.food.filter(function (y) { return y.id === fd.editId; })[0];
-      if (e) { e.meal = fd.meal; e.unit = fd.unit; e.qty = fd.qty; e.g = pt.g; e.kcal = pt.kcal; e.p = pt.p; e.f = pt.f; e.c = pt.c; }
+      if (e) {
+        e.meal = fd.meal; e.g = pt.g; e.kcal = pt.kcal; e.p = pt.p; e.f = pt.f; e.c = pt.c;
+        if (f) { e.fid = f.id; e.name = f.custom ? f.n : null; e.unit = fd.unit; e.qty = fd.qty; e.est = !!f.e; } else { e.unit = null; e.qty = 1; }
+      }
       kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); return;
     }
     var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs() });
@@ -626,24 +774,26 @@
   function openEdit(date, id) {
     var x = S.dayOf(st, date), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return;
     var f = e.fid ? foodById(e.fid) : null;
-    fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [] };
-    if (f && f.u.some(function (u) { return u[0] === e.unit; })) { openSheet('add', shHead(T('pEdit')) + '', { noFocus: true }); setSheet(portionHtml()); return; }
-    fd.food = null;                                   // baza topilmadi / AI yozuvi: faqat bo'lim va o'chirish
-    openSheet('add', shHead(T('pEdit')) + '<div class="sl-kc"><b>' + fmt(e.kcal) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(e.name || '') + (e.est ? ' · ' + esc(T('aEst')) : '') + '</p><div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(e.meal, 'fmeal2') + '<div class="rz-actions"><button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>');
+    fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [], name: e.name || '' };
+    if (f && f.u.some(function (u) { return u[0] === e.unit; })) { if (e.unit === 'g100' && e.qty < 5 && e.g > 5) fd.qty = e.g; openSheet('add', '', { noFocus: true }); setSheet(portionHtml()); return; }
+    fd.food = null; fd.unit = 'pc'; fd.qty = 1; fd.est = true;                    // baza topilmadi / AI yozuvi: shu yozuvning o'zi asos (×porsiya)
+    fd.base = { g: e.g || 0, kcal: e.kcal, p: e.p || 0, f: e.f || 0, c: e.c || 0 };
+    openSheet('add', '', { noFocus: true }); setSheet(portionHtml());
   }
   function fDelete() { var d = fd.date, id = fd.editId; kit.closeSheet(); rowOut(id, function () { var rm = S.removeFood(st, d, id); commit(); toast(T('del1'), function () { S.restoreFood(st, d, rm); commit(); }); }); }
 
   /* ---------- o'z taomim ---------- */
   function numFld(id, label, val, ph, mode) { return '<label class="rz-f" for="' + id + '"><span>' + esc(label) + '</span><input id="' + id + '" type="text" inputmode="' + (mode || 'decimal') + '" autocomplete="off" placeholder="' + esc(ph || '') + '" value="' + esc(val || '') + '"></label>'; }
   function openCustom(name) {
-    fd.mode = 'custom';
-    setSheet(shHead(T('cT')) + '<label class="rz-f" for="cuName"><span>' + esc(T('cName')) + '</span><input id="cuName" type="text" maxlength="60" value="' + esc(name || '') + '" placeholder="' + esc(T('cName')) + '"></label>' + numFld('cuK', T('cKcal'), '', '0', 'numeric') + numFld('cuG', T('cG'), '', '', 'numeric') + numFld('cuP', T('cP'), '', '') + numFld('cuF', T('cF'), '', '') + numFld('cuC', T('cC'), '', '') +
+    fd.mode = 'custom'; var sugNote = fd.suggest ? '<p class="rz-p sm">' + esc(T('aSugNote')) + '</p>' : '';
+    setSheet(shHead(T('cT')) + '<label class="rz-f" for="cuName"><span>' + esc(T('cName')) + '</span><input id="cuName" type="text" maxlength="60" value="' + esc(name || '') + '" placeholder="' + esc(T('cName')) + '"></label>' + numFld('cuK', T('cKcal'), '', '0', 'numeric') + numFld('cuG', T('cG'), '', '', 'numeric') + numFld('cuP', T('cP'), '', '') + numFld('cuF', T('cF'), '', '') + numFld('cuC', T('cC'), '', '') + sugNote +
       '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="cusave">' + esc(T('save')) + '</button></div>');
   }
   function cuSave() {
     var name = $('#cuName').value.trim(), k = num($('#cuK').value), g = num($('#cuG').value) || 100, m = 100 / g;
     if (!name) { flashEl($('#cuName')); return; } if (!(k > 0)) { flashEl($('#cuK')); return; }
     var f = S.addCustom(st, { name: name, k: k * m, p: num($('#cuP').value) * m, f: num($('#cuF').value) * m, c: num($('#cuC').value) * m, g: g }); if (!f) return; save();
+    if (fd.suggest) { fd.suggest = false; sendTaklif({ name: name, ptxt: fmt(g) + ' ' + T('gram'), kcal: k, p: num($('#cuP').value), f: num($('#cuF').value), c: num($('#cuC').value), ai: true }); }
     fd.food = f; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = 1; setSheet(portionHtml());
   }
 
@@ -658,23 +808,26 @@
     var h = shHead(T('tT')) + '<input id="txQ" class="sl-ta" type="text" autocomplete="off" autocapitalize="off" enterkeyhint="done" placeholder="' + esc(T('tPh')) + '" aria-label="' + esc(T('tT')) + '" value="' + esc(fd.txt || '') + '"><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="txgo">' + esc(T('tGo')) + '</button></div><div id="txOut">' + textOut() + '</div>';
     return h;
   }
+  function itRows(items, tpl) {
+    return items.map(function (it, i) { var ap = it.ai || it.est || it.base; return '<div class="sl-ti' + (tpl && it.off ? ' off' : '') + '">' + (tpl ? '<button type="button" class="sl-chk' + (it.off ? '' : ' on') + '" data-act="tplchk" data-i="' + i + '" role="checkbox" aria-checked="' + !it.off + '" aria-label="' + esc(T('tplChk') + ': ' + it.name) + '">' + ico('check', '', 3) + '</button>' : '') + '<button type="button" class="sl-tib" data-act="itedit" data-i="' + i + '" aria-label="' + esc(T('pwEditRow', { x: it.name })) + '"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt || '') + (it.ai ? ' · ' + esc(it.photo ? T('phApprox') : T('tAiTag')) : (ap ? ' · ' + esc(T('aEst')) : '')) + '</span></span><b>' + (ap ? '≈ ' : '') + fmt(it.kcal) + '<small> ' + T('kcal') + '</small></b>' + ico('pen', 'sl-pen') + '</button>' + (tpl ? '' : '<button type="button" class="rz-x" data-act="txdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button>') + '</div>'; }).join('');
+  }
   function textOut() {
     var items = fd.items, h = '', offline = navigator.onLine === false;
     if (fd.parsed && !items.length && !(fd.missing || []).length) h += '<div class="rz-mut">' + esc(T('tEmpty')) + '</div>';
-    items.forEach(function (it, i) { h += '<div class="sl-ti"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt) + (it.ai ? ' · ' + esc(T('tAiTag')) : (it.est ? ' · ' + esc(T('aEst')) : '')) + '</span></span><b>' + ((it.ai || it.est) ? '≈ ' : '') + fmt(it.kcal) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="txdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; });
+    h += itRows(items);
     if ((fd.missing || []).length) {
       h += '<p class="rz-p warn">' + esc(T('tMiss', { x: fd.missing.join(', ') })) + '</p>';
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
     if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
-    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('tSave', { n: items.length })) + '</button></div>';
+    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: items.length })) + '</button></div>';
     return h;
   }
   function txRefresh() { var o = $('#txOut'); if (o) o.innerHTML = textOut(); }
   function txGo() {
     fd.txt = $('#txQ').value; var run = function () {
       var r = S.parseText(fd.txt, allFoods(), { recents: st.recents, favs: st.favs }); fd.parsed = true; fd.aiErr = false;
-      fd.items = r.items.map(function (x) { var pt = S.portion(x.food, x.g); return { name: nameOf(x.food), fid: x.fid, unit: x.unit, qty: x.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: x.est, ai: false, ptxt: x.unit === 'g100' ? fmt(x.g) + ' ' + T('gram') : qtyStr(x.qty) + ' ' + unitName(x.unit) }; });
+      fd.items = r.items.map(function (x) { var it = { name: nameOf(x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false }; itSync(it); return it; });
       fd.missing = r.missing; txRefresh();
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
@@ -685,13 +838,16 @@
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
-      res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, unit: null, qty: 1, g: 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '' }); });
+      res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, food: null, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });
   }
   function txSave() {
-    var n = fd.items.length, date = fd.date, ids = [];
-    fd.items.forEach(function (it) { sendTaklif(it); var e = S.addFood(st, date, { fid: it.fid, name: it.fid ? null : it.name, meal: fd.meal, unit: it.unit, qty: it.qty, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() }); ids.push(e.id); if (it.ai) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); });
+    var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
+    list.forEach(function (it) {
+      sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
+      ids.push(e.id); if (!it.fid) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : '');
+    });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
   }
 
@@ -911,12 +1067,14 @@
       case 'pickfood': pickFood(el.getAttribute('data-id')); break;
       case 'fcat': fd.cat = el.getAttribute('data-c'); $$('.sl-cats .rz-chip').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); refreshRes(); break;
       case 'ftext': openText(null, true); break;
+      case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
+      case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
       case 'cusave': cuSave(); break;
       case 'fback': if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } break;
       case 'ffav': { var on = S.toggleFav(st, fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
-      case 'funit': { var nu = el.getAttribute('data-u'); if ((nu === 'g100') !== (fd.unit === 'g100')) fd.qty = nu === 'g100' ? 100 : 1; fd.unit = nu; $$('[data-act=funit]').forEach(function (b) { var on2 = b === el; b.classList.toggle('on', on2); b.setAttribute('aria-pressed', on2); }); portionUpdate(); break; }
-      case 'fqty': { var step = fd.unit === 'g100' ? 25 : 0.5, nq = fd.qty + (+el.getAttribute('data-s')) * step; fd.qty = Math.max(step, Math.min(fd.unit === 'g100' ? 3000 : 50, Math.round(nq * 100) / 100)); portionUpdate(); vib(5); break; }
+      case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'); if (nu !== o1.unit) pwSetUnit(o1, nu); pwUpdate(); break; }
+      case 'fqty': { var o2 = pwO(); pwSetQty(o2, o2.qty + (+el.getAttribute('data-s')) * pwStep(o2)); pwUpdate(); vib(5); break; }
       case 'fmeal': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal]').forEach(function (b) { var on3 = b === el; b.classList.toggle('on', on3); b.setAttribute('aria-pressed', on3); }); break;
       case 'fmeal2': { var x2 = S.dayOf(st, fd.date), e2 = x2 && x2.food.filter(function (y) { return y.id === fd.editId; })[0]; if (e2) { e2.meal = el.getAttribute('data-m'); save(); kit.closeSheet(); render(); } break; }
       case 'fmeal3': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal3]').forEach(function (b) { var on4 = b === el; b.classList.toggle('on', on4); b.setAttribute('aria-pressed', on4); }); break;
@@ -929,9 +1087,13 @@
       case 'yunit': { var yu = el.getAttribute('data-u'); if ((yu === 'g100') !== (yd.unit === 'g100')) yd.qty = yu === 'g100' ? 100 : 1; yd.unit = yu; $$('[data-act=yunit]').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); yUpdate(); break; }
       case 'yqty': { var ys = yd.unit === 'g100' ? 25 : 0.5, yq = yd.qty + (+el.getAttribute('data-s')) * ys; yd.qty = Math.max(ys, Math.min(yd.unit === 'g100' ? 3000 : 50, Math.round(yq * 100) / 100)); yUpdate(); vib(5); break; }
       case 'fphoto': if (navigator.onLine !== false) { var pin = $('#phIn'); if (pin) { pin.value = ''; pin.click(); } } break;
-      case 'phsc': { var pi = fd.items[+el.getAttribute('data-i')]; if (pi) { pi.mult = +el.getAttribute('data-m'); phRefresh(); } break; }
+      case 'itedit': itemOpen(+el.getAttribute('data-i'), fd.mode === 'photo' ? 'photo' : (fd.mode === 'tpl' ? 'tpl' : 'text')); break;
+      case 'pwdone': itemBack(); break;
+      case 'pwq': { var o3 = pwO(); pwSetQty(o3, +el.getAttribute('data-v')); pwUpdate(); vib(5); break; }
+      case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
+      case 'pwswapx': pwScreen(); break;
+      case 'pwsw': pwSwapTo(el.getAttribute('data-id')); break;
       case 'phdel': fd.items.splice(+el.getAttribute('data-i'), 1); phRefresh(); break;
-      case 'phsave': phSave(); break;
       case 'frecipe': case 'rcnew': openRecipe(); break;
       case 'rcedit': openRecipe(el.getAttribute('data-id')); break;
       case 'rcadd': rc.mode = 'ing'; rc.q = ''; setSheet(rcSearchHtml()); break;
@@ -951,6 +1113,23 @@
       case 'city': openCity(); break;
       case 'citypick': prefs().city = el.getAttribute('data-id'); kit.closeSheet(); commit(); break;
       case 'supp': openSupp(); break;
+      case 'tpls': tplsOpen(); break;
+      case 'tplsave': tplStartSave(el.getAttribute('data-m'), el.getAttribute('data-d')); break;
+      case 'tplhelp': fd.mode = 'tplhelp'; setSheet(tplHelpHtml()); break;
+      case 'tplgoadd': if (kit.sheetKind() === 'add') { fd.mode = 'search'; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } else { kit.closeSheet(); setTimeout(function () { openAdd(); }, 250); } break;
+      case 'tplsugsave': if (tmSug) tplStartSave(tmSug.meal, todayStr(), tmSug.entries); break;
+      case 'tplsugno': { if (tmSug) { var pr = prefs(); (pr.tplNo || (pr.tplNo = [])).push(tmSug.key); save(); var sg = $('#tplSug'); if (sg) sg.parentNode.removeChild(sg); } break; }
+      case 'tplname': tplSaveAs(el.getAttribute('data-n')); break;
+      case 'tplsave2': { var tn = $('#tplNm').value.trim(); if (!tn) { flashEl($('#tplNm')); break; } tplSaveAs(tn); break; }
+      case 'tplopen': { var tp = S.tplById(st, +el.getAttribute('data-id')); if (tp) tplShow(tp.name, tp.items); break; }
+      case 'yday': { openAdd({ meal: el.getAttribute('data-m'), date: el.getAttribute('data-d') }); tplShow(T('tplYestT'), S.yesterdayEntries(st, fd.date, fd.meal).map(entryToTpl)); break; }
+      case 'yday2': tplShow(T('tplYestT'), S.yesterdayEntries(st, fd.date, fd.meal).map(entryToTpl)); break;
+      case 'tplchk': { var ti = fd.items[+el.getAttribute('data-i')]; if (ti) { ti.off = !ti.off; var sc = $('#rzSheet').scrollTop; setSheet(tplHtml()); $('#rzSheet').scrollTop = sc; } break; }
+      case 'tplup': case 'tpldn': { S.moveTemplate(st, +el.getAttribute('data-id'), a === 'tplup' ? -1 : 1); save(); setSheet(tplsHtml()); break; }
+      case 'tpldel': { var did = +el.getAttribute('data-id'), idx = (st.tpls || []).map(function (x) { return x.id; }).indexOf(did), rm = S.removeTemplate(st, did); if (rm) { save(); setSheet(tplsHtml()); toast(T('tplDel1'), function () { st.tpls.splice(Math.min(idx, st.tpls.length), 0, rm); save(); if (kit.sheetKind() === 'tpls') setSheet(tplsHtml()); }); } break; }
+      case 'tplren': { var rt = S.tplById(st, +el.getAttribute('data-id')); if (rt) { tm = { rid: rt.id }; setSheet(shHead(T('tplRen')) + '<label class="rz-f" for="tplNm"><span>' + esc(T('tplNameT')) + '</span><input id="tplNm" type="text" maxlength="40" autocomplete="off" enterkeyhint="done" value="' + esc(rt.name) + '"></label><div class="rz-actions sl-sticky"><button type="button" class="rz-btn ghost" data-act="tplren0">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="tplren2">' + esc(T('save')) + '</button></div>'); } break; }
+      case 'tplren0': setSheet(tplsHtml()); break;
+      case 'tplren2': { var rn = $('#tplNm').value.trim(); if (!rn) { flashEl($('#tplNm')); break; } S.renameTemplate(st, tm.rid, rn); save(); setSheet(tplsHtml()); break; }
       case 'spitem': { var it = supp && supp.items.filter(function (x) { return x.id === el.getAttribute('data-id'); })[0]; if (it) { setSheet(spCardHtml(it)); var shh = $('#rzSheet'); if (shh) shh.scrollTop = 0; } break; }
       case 'spback': setSheet(spListHtml()); break;
       case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; showOnb(); break;
@@ -960,7 +1139,10 @@
       case 'obback': obGo(Math.max(1, ob.step - 1), 'b'); break;
     }
   });
-  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQ') { fd.q = t.value; refreshRes(); } else if (t.id === 'ydQ') { yd.q = t.value; yRefresh(); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
+  root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
+  root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'fdQty') { e.preventDefault(); e.target.blur(); } });
+  if (window.visualViewport) { var vv = window.visualViewport, vvf = function () { var kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)); root.style.setProperty('--kb', (kb > 80 ? kb : 0) + 'px'); }; vv.addEventListener('resize', vvf); vv.addEventListener('scroll', vvf); }
+  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
     if (t.id === 'phIn') { var f0 = t.files && t.files[0]; if (f0) phFile(f0); } else if (t.id === 'jkParty') { S.ensureDay(st, todayStr()).party = t.checked; commit(); } else if (t.id === 'obPreg') ob.preg = t.checked; else if (t.id === 'peP') { pe.preg = t.checked; peRepaint(); } else if (t.hasAttribute && t.hasAttribute('data-sh')) { shSel[t.getAttribute('data-sh')] = t.checked; shPaint(); }
