@@ -8,8 +8,8 @@
 'use strict';
 const fs = require('fs'), path = require('path');
 const R = (p) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
-const usda = R('data/manba/usda-sr-legacy.json'), sk = R('data/manba/skurikhin.json'), mas = R('data/baza-masalliq.json').masalliq, rets = R('data/baza-retseptlar.json').retseptlar, foods = R('data/ovqatlar.json').foods;
-const cur = {}; foods.forEach((f) => { cur[f.i] = f; });
+const usda = R('data/manba/usda-sr-legacy.json'), sk = R('data/manba/skurikhin.json'), mas = R('data/baza-masalliq.json').masalliq, rets = R('data/baza-retseptlar.json').retseptlar;
+const cur = R('data/manba/baza-v1.json').qiymatlar;      // eski (v1) qiymatlar — muzlatilgan nusxa, solishtirish uchun
 const nutU = (id) => { const f = usda.foods[String(id)]; if (!f) throw new Error('USDA id yo\'q: ' + id); return f; };
 function ingNut(key, useSk, sKey) {                       // 100 g xom masalliq: [kkal, O, Y, U, manba]
   const m = mas[key]; if (!m) throw new Error('masalliq yo\'q: ' + key);

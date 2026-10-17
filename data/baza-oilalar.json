@@ -1,0 +1,1946 @@
+{
+ "v": 1,
+ "izoh": "Oilalar (ota-taom + omillar). grid: har kombinatsiya uchun qiymat manbasi — `rc` (retsept id, tools/baza-hisob.js) yoki `from` (mavjud oddiy taom id). alias_old: eski id → kombinatsiya (eski id lar abadiy alias). size: faqat birlik grammini o'zgartiradi (0,6/1/1,5). uv: kombinatsiyaga xos birliklar. sy: sinonim → oldindan tanlangan omillar.",
+ "oilalar": [
+  {
+   "id": "osh",
+   "n": "Osh (palov)",
+   "r": "Плов",
+   "axes": [
+    {
+     "id": "gosht",
+     "n": "Go'sht",
+     "r": "Мясо",
+     "o": [
+      {
+       "id": "kam",
+       "n": "kam",
+       "r": "мало"
+      },
+      {
+       "id": "orta",
+       "n": "o'rta",
+       "r": "средне"
+      },
+      {
+       "id": "kop",
+       "n": "ko'p",
+       "r": "много"
+      }
+     ],
+     "d": "orta"
+    },
+    {
+     "id": "yog",
+     "n": "Yog'",
+     "r": "Масло",
+     "o": [
+      {
+       "id": "kam",
+       "n": "kam",
+       "r": "мало"
+      },
+      {
+       "id": "odatiy",
+       "n": "odatiy",
+       "r": "обычно"
+      },
+      {
+       "id": "kop",
+       "n": "ko'p",
+       "r": "много"
+      }
+     ],
+     "d": "odatiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "kam.kam",
+     "rc": "osh.kam.kam"
+    },
+    {
+     "v": "kam.odatiy",
+     "rc": "osh.kam.odatiy"
+    },
+    {
+     "v": "kam.kop",
+     "rc": "osh.kam.kop"
+    },
+    {
+     "v": "orta.kam",
+     "rc": "osh.orta.kam"
+    },
+    {
+     "v": "orta.odatiy",
+     "rc": "osh.orta.odatiy"
+    },
+    {
+     "v": "orta.kop",
+     "rc": "osh.orta.kop"
+    },
+    {
+     "v": "kop.kam",
+     "rc": "osh.kop.kam"
+    },
+    {
+     "v": "kop.odatiy",
+     "rc": "osh.kop.odatiy"
+    },
+    {
+     "v": "kop.kop",
+     "rc": "osh.kop.kop"
+    }
+   ],
+   "alias_old": {
+    "yengil-osh": "kam.kam"
+   },
+   "sy": [
+    {
+     "q": "to'y oshi",
+     "p": {
+      "gosht": "orta",
+      "yog": "kop"
+     }
+    },
+    {
+     "q": "toy oshi",
+     "p": {
+      "gosht": "orta",
+      "yog": "kop"
+     }
+    },
+    {
+     "q": "choyxona oshi",
+     "p": {
+      "gosht": "orta",
+      "yog": "kop"
+     }
+    },
+    {
+     "q": "uy oshi",
+     "p": {
+      "gosht": "orta",
+      "yog": "odatiy"
+     }
+    },
+    {
+     "q": "go'shti ko'p osh",
+     "p": {
+      "gosht": "kop",
+      "yog": "odatiy"
+     }
+    },
+    {
+     "q": "yengil osh",
+     "p": {
+      "gosht": "kam",
+      "yog": "kam"
+     }
+    },
+    {
+     "q": "dietik osh",
+     "p": {
+      "gosht": "kam",
+      "yog": "kam"
+     }
+    },
+    {
+     "q": "свадебный плов",
+     "p": {
+      "gosht": "orta",
+      "yog": "kop"
+     }
+    },
+    {
+     "q": "домашний плов",
+     "p": {
+      "gosht": "orta",
+      "yog": "odatiy"
+     }
+    }
+   ]
+  },
+  {
+   "id": "somsa",
+   "n": "Somsa",
+   "r": "Самса",
+   "axes": [
+    {
+     "id": "xamir",
+     "n": "Xamir",
+     "r": "Тесто",
+     "o": [
+      {
+       "id": "oddiy",
+       "n": "oddiy",
+       "r": "обычное"
+      },
+      {
+       "id": "qatlama",
+       "n": "qatlama",
+       "r": "слоёное"
+      }
+     ],
+     "d": "oddiy"
+    },
+    {
+     "id": "ichi",
+     "n": "Ichi",
+     "r": "Начинка",
+     "o": [
+      {
+       "id": "yogli",
+       "n": "go'sht (yog'li)",
+       "r": "мясо жирное"
+      },
+      {
+       "id": "yogsiz",
+       "n": "go'sht (yog'siz)",
+       "r": "мясо постное"
+      },
+      {
+       "id": "tovuq",
+       "n": "tovuq",
+       "r": "курица"
+      },
+      {
+       "id": "qovoq",
+       "n": "qovoq",
+       "r": "тыква"
+      },
+      {
+       "id": "kokat",
+       "n": "ko'kat",
+       "r": "зелень"
+      },
+      {
+       "id": "kartoshka",
+       "n": "kartoshka",
+       "r": "картофель"
+      }
+     ],
+     "d": "yogli"
+    }
+   ],
+   "grid": [
+    {
+     "v": "oddiy.yogli",
+     "rc": "somsa.oddiy.yogli"
+    },
+    {
+     "v": "oddiy.yogsiz",
+     "rc": "somsa.oddiy.yogsiz"
+    },
+    {
+     "v": "oddiy.tovuq",
+     "rc": "somsa.oddiy.tovuq"
+    },
+    {
+     "v": "oddiy.qovoq",
+     "rc": "somsa.oddiy.qovoq"
+    },
+    {
+     "v": "oddiy.kokat",
+     "rc": "somsa.oddiy.kokat"
+    },
+    {
+     "v": "oddiy.kartoshka",
+     "rc": "somsa.oddiy.kartoshka"
+    },
+    {
+     "v": "qatlama.yogli",
+     "rc": "somsa.qatlama.yogli"
+    },
+    {
+     "v": "qatlama.yogsiz",
+     "rc": "somsa.qatlama.yogsiz"
+    },
+    {
+     "v": "qatlama.tovuq",
+     "rc": "somsa.qatlama.tovuq"
+    },
+    {
+     "v": "qatlama.qovoq",
+     "rc": "somsa.qatlama.qovoq"
+    },
+    {
+     "v": "qatlama.kokat",
+     "rc": "somsa.qatlama.kokat"
+    },
+    {
+     "v": "qatlama.kartoshka",
+     "rc": "somsa.qatlama.kartoshka"
+    }
+   ],
+   "alias_old": {
+    "somsa-qat": "qatlama.yogli",
+    "somsa-qovoq": "oddiy.qovoq"
+   },
+   "size": {
+    "u": "dona",
+    "o": [
+     {
+      "id": "kichik",
+      "n": "kichik",
+      "r": "маленькая",
+      "m": 0.6
+     },
+     {
+      "id": "orta",
+      "n": "o'rta",
+      "r": "средняя",
+      "m": 1
+     },
+     {
+      "id": "katta",
+      "n": "katta",
+      "r": "большая",
+      "m": 1.5
+     }
+    ],
+    "d": "orta",
+    "n": "O'lcham",
+    "r": "Размер"
+   },
+   "sy": [
+    {
+     "q": "tandir somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "tandirda somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "go'shtli somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "qarshi somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "buxoro somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "samarqand somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "toshkent somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "jizzax somsa",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "самса тандырная",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "самса с мясом",
+     "p": {
+      "xamir": "oddiy",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "qovoqli somsa",
+     "p": {
+      "ichi": "qovoq"
+     }
+    },
+    {
+     "q": "самса с тыквой",
+     "p": {
+      "ichi": "qovoq"
+     }
+    },
+    {
+     "q": "tovuqli somsa",
+     "p": {
+      "ichi": "tovuq"
+     }
+    },
+    {
+     "q": "ko'katli somsa",
+     "p": {
+      "ichi": "kokat"
+     }
+    },
+    {
+     "q": "kartoshkali somsa",
+     "p": {
+      "ichi": "kartoshka"
+     }
+    },
+    {
+     "q": "qatlama somsa",
+     "p": {
+      "xamir": "qatlama",
+      "ichi": "yogli"
+     }
+    },
+    {
+     "q": "самса слоёная",
+     "p": {
+      "xamir": "qatlama",
+      "ichi": "yogli"
+     }
+    }
+   ]
+  },
+  {
+   "id": "manti",
+   "n": "Manti",
+   "r": "Манты",
+   "axes": [
+    {
+     "id": "ichi",
+     "n": "Ichi",
+     "r": "Начинка",
+     "o": [
+      {
+       "id": "goshtli",
+       "n": "go'sht",
+       "r": "мясо"
+      },
+      {
+       "id": "qovoq",
+       "n": "qovoq",
+       "r": "тыква"
+      },
+      {
+       "id": "kartoshka",
+       "n": "kartoshka",
+       "r": "картофель"
+      }
+     ],
+     "d": "goshtli"
+    }
+   ],
+   "grid": [
+    {
+     "v": "goshtli",
+     "rc": "manti.goshtli"
+    },
+    {
+     "v": "qovoq",
+     "rc": "manti.qovoq"
+    },
+    {
+     "v": "kartoshka",
+     "rc": "manti.kartoshka"
+    }
+   ],
+   "size": {
+    "u": "dona",
+    "o": [
+     {
+      "id": "kichik",
+      "n": "kichik",
+      "r": "маленькая",
+      "m": 0.6
+     },
+     {
+      "id": "orta",
+      "n": "o'rta",
+      "r": "средняя",
+      "m": 1
+     },
+     {
+      "id": "katta",
+      "n": "katta",
+      "r": "большая",
+      "m": 1.5
+     }
+    ],
+    "d": "orta",
+    "n": "O'lcham",
+    "r": "Размер"
+   },
+   "sy": [
+    {
+     "q": "qovoqli manti",
+     "p": {
+      "ichi": "qovoq"
+     }
+    },
+    {
+     "q": "манты с тыквой",
+     "p": {
+      "ichi": "qovoq"
+     }
+    },
+    {
+     "q": "kartoshkali manti",
+     "p": {
+      "ichi": "kartoshka"
+     }
+    }
+   ]
+  },
+  {
+   "id": "chuchvara",
+   "n": "Chuchvara",
+   "r": "Чучвара",
+   "axes": [
+    {
+     "id": "ichi",
+     "n": "Ichi",
+     "r": "Начинка",
+     "o": [
+      {
+       "id": "goshtli",
+       "n": "go'sht",
+       "r": "мясо"
+      },
+      {
+       "id": "tovuq",
+       "n": "tovuq",
+       "r": "курица"
+      }
+     ],
+     "d": "goshtli"
+    },
+    {
+     "id": "berilishi",
+     "n": "Berilishi",
+     "r": "Подача",
+     "o": [
+      {
+       "id": "qaynatma",
+       "n": "qaynatma",
+       "r": "отварная"
+      },
+      {
+       "id": "shorvada",
+       "n": "sho'rvada",
+       "r": "в бульоне"
+      },
+      {
+       "id": "qovurma",
+       "n": "qovurma",
+       "r": "жареная"
+      }
+     ],
+     "d": "qaynatma"
+    }
+   ],
+   "grid": [
+    {
+     "v": "goshtli.qaynatma",
+     "rc": "chuchvara.goshtli.qaynatma"
+    },
+    {
+     "v": "goshtli.shorvada",
+     "rc": "chuchvara.goshtli.shorvada"
+    },
+    {
+     "v": "goshtli.qovurma",
+     "rc": "chuchvara.goshtli.qovurma"
+    },
+    {
+     "v": "tovuq.qaynatma",
+     "rc": "chuchvara.tovuq.qaynatma"
+    },
+    {
+     "v": "tovuq.shorvada",
+     "rc": "chuchvara.tovuq.shorvada"
+    },
+    {
+     "v": "tovuq.qovurma",
+     "rc": "chuchvara.tovuq.qovurma"
+    }
+   ],
+   "alias_old": {
+    "chuchvara-sho": "goshtli.shorvada"
+   },
+   "uv": {
+    "goshtli.shorvada": {
+     "kosa": 400
+    },
+    "tovuq.shorvada": {
+     "kosa": 400
+    }
+   },
+   "sy": [
+    {
+     "q": "chuchvara shorva",
+     "p": {
+      "berilishi": "shorvada"
+     }
+    },
+    {
+     "q": "sho'rvada chuchvara",
+     "p": {
+      "berilishi": "shorvada"
+     }
+    },
+    {
+     "q": "qovurma chuchvara",
+     "p": {
+      "berilishi": "qovurma"
+     }
+    }
+   ]
+  },
+  {
+   "id": "lagmon",
+   "n": "Lag'mon",
+   "r": "Лагман",
+   "axes": [
+    {
+     "id": "korinish",
+     "n": "Ko'rinishi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "shorvali",
+       "n": "sho'rvali",
+       "r": "с бульоном"
+      },
+      {
+       "id": "qovurma",
+       "n": "qovurma",
+       "r": "жареный"
+      }
+     ],
+     "d": "shorvali"
+    },
+    {
+     "id": "gosht",
+     "n": "Go'sht",
+     "r": "Мясо",
+     "o": [
+      {
+       "id": "mol",
+       "n": "mol",
+       "r": "говядина"
+      },
+      {
+       "id": "qoy",
+       "n": "qo'y",
+       "r": "баранина"
+      },
+      {
+       "id": "tovuq",
+       "n": "tovuq",
+       "r": "курица"
+      }
+     ],
+     "d": "mol"
+    }
+   ],
+   "grid": [
+    {
+     "v": "shorvali.mol",
+     "rc": "lagmon.shorvali.mol"
+    },
+    {
+     "v": "shorvali.qoy",
+     "rc": "lagmon.shorvali.qoy"
+    },
+    {
+     "v": "shorvali.tovuq",
+     "rc": "lagmon.shorvali.tovuq"
+    },
+    {
+     "v": "qovurma.mol",
+     "rc": "lagmon.qovurma.mol"
+    },
+    {
+     "v": "qovurma.qoy",
+     "rc": "lagmon.qovurma.qoy"
+    },
+    {
+     "v": "qovurma.tovuq",
+     "rc": "lagmon.qovurma.tovuq"
+    }
+   ],
+   "alias_old": {
+    "lagmon-qov": "qovurma.mol"
+   },
+   "uv": {
+    "qovurma.mol": {
+     "likop": 350
+    },
+    "qovurma.qoy": {
+     "likop": 350
+    },
+    "qovurma.tovuq": {
+     "likop": 350
+    }
+   },
+   "sy": [
+    {
+     "q": "qovurma lagmon",
+     "p": {
+      "korinish": "qovurma"
+     }
+    },
+    {
+     "q": "лагман жареный",
+     "p": {
+      "korinish": "qovurma"
+     }
+    },
+    {
+     "q": "uyg'ur lag'mon",
+     "p": {
+      "korinish": "shorvali"
+     }
+    }
+   ]
+  },
+  {
+   "id": "shurva",
+   "n": "Sho'rva",
+   "r": "Шурпа",
+   "axes": [
+    {
+     "id": "tarkibi",
+     "n": "Tarkibi",
+     "r": "Состав",
+     "o": [
+      {
+       "id": "qaynatma",
+       "n": "Qaynatma",
+       "r": "бульон"
+      },
+      {
+       "id": "odatiy",
+       "n": "Odatiy",
+       "r": "обычный"
+      },
+      {
+       "id": "yogli",
+       "n": "Yog'li quyuq",
+       "r": "жирный густой"
+      }
+     ],
+     "d": "odatiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "qaynatma",
+     "rc": "shurva.qaynatma"
+    },
+    {
+     "v": "odatiy",
+     "rc": "shurva.odatiy"
+    },
+    {
+     "v": "yogli",
+     "rc": "shurva.yogli"
+    }
+   ],
+   "alias_old": {
+    "tovuq-shurva": "qaynatma"
+   },
+   "sy": [
+    {
+     "q": "qaynatma sho'rva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "yog'li sho'rva",
+     "p": {
+      "tarkibi": "yogli"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dolma",
+   "n": "Do'lma",
+   "r": "Долма",
+   "axes": [
+    {
+     "id": "orami",
+     "n": "O'rami",
+     "r": "Обёртка",
+     "o": [
+      {
+       "id": "karam",
+       "n": "karam bargi",
+       "r": "капустный лист"
+      },
+      {
+       "id": "uzum",
+       "n": "uzum bargi",
+       "r": "виноградный лист"
+      }
+     ],
+     "d": "karam"
+    }
+   ],
+   "grid": [
+    {
+     "v": "karam",
+     "rc": "dolma.karam"
+    },
+    {
+     "v": "uzum",
+     "rc": "dolma.uzum"
+    }
+   ],
+   "alias_old": {
+    "dolma-uzum": "uzum"
+   },
+   "uv": {
+    "uzum": {
+     "dona": 40,
+     "porsiya": 240
+    }
+   }
+  },
+  {
+   "id": "shashlik",
+   "n": "Kabob / shashlik",
+   "r": "Шашлык",
+   "axes": [
+    {
+     "id": "gosht",
+     "n": "Go'sht",
+     "r": "Мясо",
+     "o": [
+      {
+       "id": "gosht",
+       "n": "go'sht",
+       "r": "мясо"
+      },
+      {
+       "id": "tovuq",
+       "n": "tovuq",
+       "r": "курица"
+      }
+     ],
+     "d": "gosht"
+    }
+   ],
+   "grid": [
+    {
+     "v": "gosht",
+     "from": "shashlik"
+    },
+    {
+     "v": "tovuq",
+     "from": "shashlik-tovuq"
+    }
+   ],
+   "alias_old": {
+    "shashlik-tovuq": "tovuq"
+   },
+   "size": {
+    "u": "dona",
+    "o": [
+     {
+      "id": "kichik",
+      "n": "kichik",
+      "r": "маленькая",
+      "m": 0.6
+     },
+     {
+      "id": "orta",
+      "n": "o'rta",
+      "r": "средняя",
+      "m": 1
+     },
+     {
+      "id": "katta",
+      "n": "katta",
+      "r": "большая",
+      "m": 1.5
+     }
+    ],
+    "d": "orta",
+    "n": "O'lcham",
+    "r": "Размер"
+   }
+  },
+  {
+   "id": "kartoshka",
+   "n": "Kartoshka",
+   "r": "Картофель",
+   "axes": [
+    {
+     "id": "usul",
+     "n": "Usul",
+     "r": "Способ",
+     "o": [
+      {
+       "id": "qaynatma",
+       "n": "qaynatma",
+       "r": "варёный"
+      },
+      {
+       "id": "pyure",
+       "n": "pyure",
+       "r": "пюре"
+      },
+      {
+       "id": "qovurma",
+       "n": "qovurma",
+       "r": "жареный"
+      },
+      {
+       "id": "fri",
+       "n": "fri",
+       "r": "фри"
+      }
+     ],
+     "d": "qaynatma"
+    }
+   ],
+   "grid": [
+    {
+     "v": "qaynatma",
+     "from": "kartoshka"
+    },
+    {
+     "v": "pyure",
+     "from": "kartoshka-pyure"
+    },
+    {
+     "v": "qovurma",
+     "rc": "kartoshka-qov",
+     "from": "kartoshka-qov"
+    },
+    {
+     "v": "fri",
+     "from": "kartoshka-fri"
+    }
+   ],
+   "alias_old": {
+    "kartoshka-pyure": "pyure",
+    "kartoshka-qov": "qovurma",
+    "kartoshka-fri": "fri"
+   }
+  },
+  {
+   "id": "tuxum",
+   "n": "Tuxum",
+   "r": "Яйцо",
+   "axes": [
+    {
+     "id": "tayyorlash",
+     "n": "Tayyorlash",
+     "r": "Приготовление",
+     "o": [
+      {
+       "id": "qaynatilgan",
+       "n": "qaynatilgan",
+       "r": "варёное"
+      },
+      {
+       "id": "qovurilgan",
+       "n": "qovurilgan",
+       "r": "жареное"
+      },
+      {
+       "id": "omlet",
+       "n": "omlet",
+       "r": "омлет"
+      }
+     ],
+     "d": "qaynatilgan"
+    }
+   ],
+   "grid": [
+    {
+     "v": "qaynatilgan",
+     "from": "tuxum"
+    },
+    {
+     "v": "qovurilgan",
+     "from": "tuxum-qov"
+    },
+    {
+     "v": "omlet",
+     "from": "omlet"
+    }
+   ],
+   "alias_old": {
+    "tuxum-qov": "qovurilgan",
+    "omlet": "omlet"
+   }
+  },
+  {
+   "id": "non",
+   "n": "Non",
+   "r": "Хлеб/лепёшка",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "obi",
+       "n": "obi non",
+       "r": "обычная лепёшка"
+      },
+      {
+       "id": "patir",
+       "n": "patir",
+       "r": "патыр"
+      },
+      {
+       "id": "qatlama",
+       "n": "qatlama",
+       "r": "катлама"
+      },
+      {
+       "id": "buxanka",
+       "n": "buxanka (oq non)",
+       "r": "булка"
+      }
+     ],
+     "d": "obi"
+    }
+   ],
+   "grid": [
+    {
+     "v": "obi",
+     "rc": "non.obi",
+     "from": "non"
+    },
+    {
+     "v": "patir",
+     "rc": "patir",
+     "from": "patir"
+    },
+    {
+     "v": "qatlama",
+     "rc": "qatlama.non",
+     "from": "qatlama"
+    },
+    {
+     "v": "buxanka",
+     "from": "non-oq"
+    }
+   ],
+   "alias_old": {
+    "patir": "patir",
+    "qatlama": "qatlama",
+    "non-oq": "buxanka"
+   },
+   "sy": [
+    {
+     "q": "tandir non",
+     "p": {
+      "turi": "obi"
+     }
+    },
+    {
+     "q": "lochira",
+     "p": {
+      "turi": "obi"
+     }
+    },
+    {
+     "q": "kulcha",
+     "p": {
+      "turi": "obi"
+     }
+    },
+    {
+     "q": "lepyoshka",
+     "p": {
+      "turi": "obi"
+     }
+    },
+    {
+     "q": "лепёшка",
+     "p": {
+      "turi": "obi"
+     }
+    },
+    {
+     "q": "хлеб",
+     "p": {
+      "turi": "buxanka"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sut",
+   "n": "Sut",
+   "r": "Молоко",
+   "axes": [
+    {
+     "id": "yogliligi",
+     "n": "Yog'liligi",
+     "r": "Жирность",
+     "o": [
+      {
+       "id": "odatiy",
+       "n": "odatiy",
+       "r": "обычное"
+      },
+      {
+       "id": "yogsiz",
+       "n": "yog'siz",
+       "r": "обезжиренное"
+      }
+     ],
+     "d": "odatiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "odatiy",
+     "from": "sut"
+    },
+    {
+     "v": "yogsiz",
+     "from": "sut-yogsiz"
+    }
+   ],
+   "alias_old": {
+    "sut-yogsiz": "yogsiz"
+   }
+  },
+  {
+   "id": "qatiq",
+   "n": "Qatiq",
+   "r": "Катык",
+   "axes": [
+    {
+     "id": "yogliligi",
+     "n": "Yog'liligi",
+     "r": "Жирность",
+     "o": [
+      {
+       "id": "odatiy",
+       "n": "odatiy",
+       "r": "обычный"
+      },
+      {
+       "id": "yogsiz",
+       "n": "yog'siz",
+       "r": "обезжиренный"
+      }
+     ],
+     "d": "odatiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "odatiy",
+     "from": "qatiq"
+    },
+    {
+     "v": "yogsiz",
+     "from": "qatiq-yogsiz"
+    }
+   ],
+   "alias_old": {
+    "qatiq-yogsiz": "yogsiz"
+   }
+  },
+  {
+   "id": "tvorog5",
+   "n": "Tvorog",
+   "r": "Творог",
+   "axes": [
+    {
+     "id": "yogliligi",
+     "n": "Yog'liligi",
+     "r": "Жирность",
+     "o": [
+      {
+       "id": "5",
+       "n": "5%",
+       "r": "5%"
+      },
+      {
+       "id": "9",
+       "n": "9%",
+       "r": "9%"
+      }
+     ],
+     "d": "5"
+    }
+   ],
+   "grid": [
+    {
+     "v": "5",
+     "from": "tvorog5"
+    },
+    {
+     "v": "9",
+     "from": "tvorog9"
+    }
+   ],
+   "alias_old": {
+    "tvorog9": "9"
+   }
+  },
+  {
+   "id": "yogurt-tabiiy",
+   "n": "Yogurt",
+   "r": "Йогурт",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "tabiiy",
+       "n": "tabiiy",
+       "r": "натуральный"
+      },
+      {
+       "id": "mevali",
+       "n": "mevali",
+       "r": "фруктовый"
+      }
+     ],
+     "d": "tabiiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "tabiiy",
+     "from": "yogurt-tabiiy"
+    },
+    {
+     "v": "mevali",
+     "from": "yogurt-meva"
+    }
+   ],
+   "alias_old": {
+    "yogurt-meva": "mevali"
+   }
+  },
+  {
+   "id": "choy",
+   "n": "Choy",
+   "r": "Чай",
+   "axes": [
+    {
+     "id": "qoshimcha",
+     "n": "Qo'shimcha",
+     "r": "Добавки",
+     "o": [
+      {
+       "id": "shakarsiz",
+       "n": "shakarsiz",
+       "r": "без сахара"
+      },
+      {
+       "id": "shakarli",
+       "n": "shakarli",
+       "r": "с сахаром"
+      },
+      {
+       "id": "sutli",
+       "n": "sutli",
+       "r": "с молоком"
+      }
+     ],
+     "d": "shakarsiz"
+    }
+   ],
+   "grid": [
+    {
+     "v": "shakarsiz",
+     "from": "choy"
+    },
+    {
+     "v": "shakarli",
+     "from": "choy-shakar"
+    },
+    {
+     "v": "sutli",
+     "from": "choy-sut"
+    }
+   ],
+   "alias_old": {
+    "choy-shakar": "shakarli",
+    "choy-sut": "sutli"
+   }
+  },
+  {
+   "id": "kofe",
+   "n": "Qahva",
+   "r": "Кофе",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "qora",
+       "n": "qora",
+       "r": "чёрный"
+      },
+      {
+       "id": "3in1",
+       "n": "3-in-1",
+       "r": "3 в 1"
+      },
+      {
+       "id": "latte",
+       "n": "latte",
+       "r": "латте"
+      },
+      {
+       "id": "kapuchino",
+       "n": "kapuchino",
+       "r": "капучино"
+      }
+     ],
+     "d": "qora"
+    }
+   ],
+   "grid": [
+    {
+     "v": "qora",
+     "from": "kofe"
+    },
+    {
+     "v": "3in1",
+     "from": "kofe-3in1"
+    },
+    {
+     "v": "latte",
+     "from": "latte"
+    },
+    {
+     "v": "kapuchino",
+     "from": "kapuchino"
+    }
+   ],
+   "alias_old": {
+    "kofe-3in1": "3in1",
+    "latte": "latte",
+    "kapuchino": "kapuchino"
+   }
+  },
+  {
+   "id": "sharbat-olma",
+   "n": "Sharbat",
+   "r": "Сок",
+   "axes": [
+    {
+     "id": "mevasi",
+     "n": "Mevasi",
+     "r": "Вкус",
+     "o": [
+      {
+       "id": "olma",
+       "n": "olma",
+       "r": "яблочный"
+      },
+      {
+       "id": "apelsin",
+       "n": "apelsin",
+       "r": "апельсиновый"
+      },
+      {
+       "id": "anor",
+       "n": "anor",
+       "r": "гранатовый"
+      },
+      {
+       "id": "uzum",
+       "n": "uzum",
+       "r": "виноградный"
+      },
+      {
+       "id": "pomidor",
+       "n": "pomidor",
+       "r": "томатный"
+      }
+     ],
+     "d": "olma"
+    }
+   ],
+   "grid": [
+    {
+     "v": "olma",
+     "from": "sharbat-olma"
+    },
+    {
+     "v": "apelsin",
+     "from": "sharbat-apelsin"
+    },
+    {
+     "v": "anor",
+     "from": "sharbat-anor"
+    },
+    {
+     "v": "uzum",
+     "from": "sharbat-uzum"
+    },
+    {
+     "v": "pomidor",
+     "from": "sharbat-pomidor"
+    }
+   ],
+   "alias_old": {
+    "sharbat-apelsin": "apelsin",
+    "sharbat-anor": "anor",
+    "sharbat-uzum": "uzum",
+    "sharbat-pomidor": "pomidor"
+   }
+  },
+  {
+   "id": "shokolad-sut",
+   "n": "Shokolad",
+   "r": "Шоколад",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "sutli",
+       "n": "sutli",
+       "r": "молочный"
+      },
+      {
+       "id": "qora",
+       "n": "qora",
+       "r": "тёмный"
+      }
+     ],
+     "d": "sutli"
+    }
+   ],
+   "grid": [
+    {
+     "v": "sutli",
+     "from": "shokolad-sut"
+    },
+    {
+     "v": "qora",
+     "from": "shokolad-qora"
+    }
+   ],
+   "alias_old": {
+    "shokolad-qora": "qora"
+   }
+  },
+  {
+   "id": "tort",
+   "n": "Tort",
+   "r": "Торт",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "oddiy",
+       "n": "oddiy",
+       "r": "обычный"
+      },
+      {
+       "id": "napoleon",
+       "n": "napoleon",
+       "r": "наполеон"
+      },
+      {
+       "id": "medovik",
+       "n": "medovik",
+       "r": "медовик"
+      },
+      {
+       "id": "chizkeyk",
+       "n": "chizkeyk",
+       "r": "чизкейк"
+      }
+     ],
+     "d": "oddiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "oddiy",
+     "from": "tort"
+    },
+    {
+     "v": "napoleon",
+     "from": "napoleon"
+    },
+    {
+     "v": "medovik",
+     "from": "medovik"
+    },
+    {
+     "v": "chizkeyk",
+     "from": "chizkeyk"
+    }
+   ],
+   "alias_old": {
+    "napoleon": "napoleon",
+    "medovik": "medovik",
+    "chizkeyk": "chizkeyk"
+   }
+  },
+  {
+   "id": "lavash-tovuq",
+   "n": "Lavash / shaurma",
+   "r": "Лаваш / шаурма",
+   "axes": [
+    {
+     "id": "gosht",
+     "n": "Go'sht",
+     "r": "Мясо",
+     "o": [
+      {
+       "id": "tovuq",
+       "n": "tovuq",
+       "r": "курица"
+      },
+      {
+       "id": "mol",
+       "n": "mol",
+       "r": "говядина"
+      }
+     ],
+     "d": "tovuq"
+    }
+   ],
+   "grid": [
+    {
+     "v": "tovuq",
+     "from": "lavash-tovuq"
+    },
+    {
+     "v": "mol",
+     "from": "lavash-mol"
+    }
+   ],
+   "alias_old": {
+    "lavash-mol": "mol"
+   },
+   "size": {
+    "u": "dona",
+    "o": [
+     {
+      "id": "kichik",
+      "n": "kichik",
+      "r": "маленькая",
+      "m": 0.6
+     },
+     {
+      "id": "orta",
+      "n": "o'rta",
+      "r": "средняя",
+      "m": 1
+     },
+     {
+      "id": "katta",
+      "n": "katta",
+      "r": "большая",
+      "m": 1.5
+     }
+    ],
+    "d": "orta",
+    "n": "O'lcham",
+    "r": "Размер"
+   },
+   "sy": [
+    {
+     "q": "shaurma",
+     "p": {
+      "gosht": "tovuq"
+     }
+    },
+    {
+     "q": "шаурма",
+     "p": {
+      "gosht": "tovuq"
+     }
+    },
+    {
+     "q": "shawarma",
+     "p": {
+      "gosht": "tovuq"
+     }
+    },
+    {
+     "q": "shaurma mol",
+     "p": {
+      "gosht": "mol"
+     }
+    }
+   ]
+  },
+  {
+   "id": "burger",
+   "n": "Burger",
+   "r": "Бургер",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "oddiy",
+       "n": "oddiy",
+       "r": "обычный"
+      },
+      {
+       "id": "katta",
+       "n": "katta",
+       "r": "большой"
+      }
+     ],
+     "d": "oddiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "oddiy",
+     "from": "burger"
+    },
+    {
+     "v": "katta",
+     "from": "burger-katta"
+    }
+   ],
+   "alias_old": {
+    "burger-katta": "katta"
+   }
+  },
+  {
+   "id": "pitsa",
+   "n": "Pitsa",
+   "r": "Пицца",
+   "axes": [
+    {
+     "id": "turi",
+     "n": "Turi",
+     "r": "Вид",
+     "o": [
+      {
+       "id": "oddiy",
+       "n": "oddiy",
+       "r": "обычная"
+      },
+      {
+       "id": "pepperoni",
+       "n": "pepperoni",
+       "r": "пепперони"
+      },
+      {
+       "id": "4pishloq",
+       "n": "4 pishloq",
+       "r": "4 сыра"
+      }
+     ],
+     "d": "oddiy"
+    }
+   ],
+   "grid": [
+    {
+     "v": "oddiy",
+     "from": "pitsa"
+    },
+    {
+     "v": "pepperoni",
+     "from": "pitsa-pepperoni"
+    },
+    {
+     "v": "4pishloq",
+     "from": "pitsa-4"
+    }
+   ],
+   "alias_old": {
+    "pitsa-pepperoni": "pepperoni",
+    "pitsa-4": "4pishloq"
+   }
+  }
+ ],
+ "retseptli_oddiy": {
+  "mastava": "mastava",
+  "moshxorda": "moshxorda",
+  "moshkichiri": "moshkichiri",
+  "qozon-kabob": "qozon-kabob",
+  "qovurdoq": "qovurdoq",
+  "dimlama": "dimlama",
+  "norin": "norin",
+  "jarkop": "jarkop"
+ },
+ "yangi": [
+  {
+   "i": "shovla",
+   "n": "Shovla (Xorazm)",
+   "r": "Шовла",
+   "a": [
+    "shavla",
+    "шавля",
+    "хорезмский плов"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ]
+   ],
+   "rc": "shovla",
+   "ub": "likop"
+  },
+  {
+   "i": "shirguruch",
+   "n": "Shirguruch (sutli guruch bo'tqasi)",
+   "r": "Молочная рисовая каша",
+   "a": [
+    "sutli guruch",
+    "sut guruch",
+    "рисовая каша на молоке",
+    "shir guruch"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     250
+    ]
+   ],
+   "rc": "shirguruch",
+   "ub": "kosa"
+  },
+  {
+   "i": "ugra-osh",
+   "n": "Ugra osh",
+   "r": "Угра-ош",
+   "a": [
+    "ugra",
+    "угра",
+    "угро"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "ugra-osh",
+   "ub": "kosa"
+  },
+  {
+   "i": "chalop",
+   "n": "Chalop",
+   "r": "Чалоп",
+   "a": [
+    "chalop",
+    "чалоп",
+    "qatiqli sho'rva"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     350
+    ]
+   ],
+   "rc": "chalop",
+   "ub": "kosa"
+  }
+ ],
+ "top_qoshimcha": [
+  "pelmeni",
+  "sirniki",
+  "vareniki"
+ ],
+ "top": [
+  "osh",
+  "somsa",
+  "manti",
+  "chuchvara",
+  "lagmon",
+  "mastava",
+  "shurva",
+  "moshxorda",
+  "moshkichiri",
+  "norin",
+  "dimlama",
+  "qozon-kabob",
+  "qovurdoq",
+  "dolma",
+  "halim",
+  "xonim",
+  "sumalak",
+  "jiz",
+  "beshbarmoq",
+  "jarkop",
+  "shashlik",
+  "jigar-kabob",
+  "lyulya",
+  "tandir-gosht",
+  "qazi",
+  "kartoshka",
+  "tuxum",
+  "achichuk",
+  "salat-sabzavot",
+  "olivye",
+  "vinegret",
+  "koreys-sabzi",
+  "borsch",
+  "sabzavot-ragu",
+  "qaynatma-baliq",
+  "kotlet",
+  "tovuq-qov",
+  "guruch",
+  "grechka",
+  "makaron",
+  "suli",
+  "manka",
+  "mosh",
+  "noxat",
+  "non",
+  "non-qora",
+  "lavash-non",
+  "baget",
+  "bulochka",
+  "pirojki",
+  "suxari",
+  "tost",
+  "blin",
+  "sut",
+  "qatiq",
+  "ayron",
+  "suzma",
+  "qurt",
+  "kefir",
+  "qaymoq",
+  "smetana",
+  "pishloq",
+  "tvorog5",
+  "sariyog",
+  "yogurt-tabiiy",
+  "muzqaymoq",
+  "krem-pishloq",
+  "mol-gosht",
+  "mol-qiyma",
+  "qoy-gosht",
+  "tovuq-kokrak",
+  "tovuq-son",
+  "tovuq-qanot",
+  "ot-gosht",
+  "jigar",
+  "kolbasa",
+  "sosiska",
+  "losos",
+  "baliq-qov",
+  "tushonka",
+  "tunets",
+  "pomidor",
+  "tuzlangan-bodring",
+  "orik",
+  "bodring",
+  "sabzi",
+  "piyoz",
+  "karam",
+  "qovoq",
+  "baqlajon",
+  "qalampir",
+  "lavlagi",
+  "kokat",
+  "olma",
+  "nok",
+  "banan",
+  "apelsin",
+  "mandarin",
+  "uzum",
+  "qovun",
+  "tarvuz",
+  "shaftoli",
+  "anor",
+  "xurmo",
+  "mayiz",
+  "quruq-orik",
+  "yongoq",
+  "bodom",
+  "asal",
+  "choy",
+  "kofe",
+  "kola",
+  "limonad",
+  "sharbat-olma",
+  "kompot",
+  "kakao",
+  "suv",
+  "kvas",
+  "smuzi",
+  "energetik",
+  "sovuq-choy",
+  "boglirsoq",
+  "murabbo",
+  "pechenye",
+  "shokolad-sut",
+  "konfet",
+  "xalva",
+  "navvot",
+  "tort",
+  "chakchak",
+  "paxlava",
+  "shakar",
+  "sgushyonka",
+  "lavash-tovuq",
+  "doner",
+  "hotdog",
+  "burger",
+  "pitsa",
+  "naggets",
+  "chebureki",
+  "belyashi",
+  "sendvich",
+  "shovla",
+  "shirguruch",
+  "ugra-osh",
+  "chalop",
+  "pelmeni",
+  "sirniki",
+  "vareniki",
+  "tovuq-jigar"
+ ]
+}

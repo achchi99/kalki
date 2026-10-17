@@ -9,7 +9,9 @@
    "yield": {
     "juft": true,
     "belgi": "kcal"
-   }
+   },
+   "uz": "guruch",
+   "ru": "рис"
   },
   "sabzi": {
    "nom": "Sabzi (xom)",
@@ -18,7 +20,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "sabzi",
+   "ru": "морковь"
   },
   "piyoz": {
    "nom": "Piyoz (xom)",
@@ -27,7 +31,9 @@
    "yield": {
     "q": 0.75,
     "taxmin": true
-   }
+   },
+   "uz": "piyoz",
+   "ru": "лук"
   },
   "qoy": {
    "nom": "Qo'y go'shti (yog'li, xom)",
@@ -37,7 +43,9 @@
    "yield": {
     "juft": true,
     "belgi": "p"
-   }
+   },
+   "uz": "qo'y go'shti",
+   "ru": "баранина"
   },
   "qoy_yogsiz": {
    "nom": "Qo'y go'shti (yog'siz, xom)",
@@ -46,7 +54,9 @@
    "yield": {
     "juft": true,
     "belgi": "p"
-   }
+   },
+   "uz": "qo'y go'shti (yog'siz)",
+   "ru": "баранина (постная)"
   },
   "mol": {
    "nom": "Mol go'shti (o'rtacha yog'li, xom)",
@@ -56,7 +66,9 @@
    "yield": {
     "juft": true,
     "belgi": "p"
-   }
+   },
+   "uz": "mol go'shti",
+   "ru": "говядина"
   },
   "mol_yogsiz": {
    "nom": "Mol go'shti (yog'siz, xom)",
@@ -65,7 +77,9 @@
    "yield": {
     "juft": true,
     "belgi": "p"
-   }
+   },
+   "uz": "mol go'shti (yog'siz)",
+   "ru": "говядина (постная)"
   },
   "tovuq_kokrak": {
    "nom": "Tovuq ko'kragi (xom)",
@@ -74,7 +88,9 @@
    "yield": {
     "juft": true,
     "belgi": "p"
-   }
+   },
+   "uz": "tovuq ko'kragi",
+   "ru": "куриная грудка"
   },
   "tovuq_son": {
    "nom": "Tovuq soni (terili, xom)",
@@ -82,7 +98,9 @@
    "yield": {
     "q": 0.72,
     "taxmin": true
-   }
+   },
+   "uz": "tovuq soni",
+   "ru": "куриное бедро"
   },
   "dumba": {
    "nom": "Dumba (qo'y yog'i, xom)",
@@ -91,7 +109,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "dumba",
+   "ru": "курдючный жир"
   },
   "yog": {
    "nom": "O'simlik yog'i (paxta)",
@@ -100,7 +120,9 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "o'simlik yog'i",
+   "ru": "растительное масло"
   },
   "un": {
    "nom": "Un (bug'doy, oliy nav)",
@@ -109,14 +131,18 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "un",
+   "ru": "мука"
   },
   "suv": {
    "nom": "Suv",
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "suv",
+   "ru": "вода"
   },
   "kartoshka": {
    "nom": "Kartoshka (xom)",
@@ -126,7 +152,9 @@
    "yield": {
     "juft": true,
     "belgi": "kcal"
-   }
+   },
+   "uz": "kartoshka",
+   "ru": "картофель"
   },
   "qovoq": {
    "nom": "Qovoq (xom)",
@@ -134,7 +162,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "qovoq",
+   "ru": "тыква"
   },
   "sariyog": {
    "nom": "Sariyog'",
@@ -142,7 +172,9 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "sariyog'",
+   "ru": "сливочное масло"
   },
   "tuxum": {
    "nom": "Tuxum (xom)",
@@ -150,7 +182,9 @@
    "yield": {
     "q": 0.9,
     "taxmin": true
-   }
+   },
+   "uz": "tuxum",
+   "ru": "яйцо"
   },
   "sut": {
    "nom": "Sut (3,25%)",
@@ -158,7 +192,9 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "sut",
+   "ru": "молоко"
   },
   "karam": {
    "nom": "Karam (oq, xom)",
@@ -166,7 +202,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "karam",
+   "ru": "капуста"
   },
   "pomidor": {
    "nom": "Pomidor (xom)",
@@ -175,7 +213,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "pomidor",
+   "ru": "помидор"
   },
   "qalampir": {
    "nom": "Bolgar qalampiri (xom)",
@@ -183,7 +223,9 @@
    "yield": {
     "q": 0.8,
     "taxmin": true
-   }
+   },
+   "uz": "bolgar qalampiri",
+   "ru": "болгарский перец"
   },
   "kokat": {
    "nom": "Ko'kat (kashnich)",
@@ -191,7 +233,9 @@
    "yield": {
     "q": 0.9,
     "taxmin": true
-   }
+   },
+   "uz": "ko'kat",
+   "ru": "зелень"
   },
   "mosh": {
    "nom": "Mosh (xom)",
@@ -200,7 +244,9 @@
    "yield": {
     "juft": true,
     "belgi": "kcal"
-   }
+   },
+   "uz": "mosh",
+   "ru": "маш"
   },
   "noxat": {
    "nom": "No'xat (xom)",
@@ -209,7 +255,9 @@
    "yield": {
     "juft": true,
     "belgi": "kcal"
-   }
+   },
+   "uz": "no'xat",
+   "ru": "нут"
   },
   "bodring": {
    "nom": "Bodring (xom)",
@@ -217,7 +265,9 @@
    "yield": {
     "q": 0.95,
     "taxmin": true
-   }
+   },
+   "uz": "bodring",
+   "ru": "огурец"
   },
   "redis": {
    "nom": "Turp/redis (xom)",
@@ -225,7 +275,9 @@
    "yield": {
     "q": 0.95,
     "taxmin": true
-   }
+   },
+   "uz": "turp",
+   "ru": "редис"
   },
   "qatiq": {
    "nom": "Qatiq/yogurt (tabiiy, to'liq sut)",
@@ -233,7 +285,9 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "qatiq",
+   "ru": "катык/йогурт"
   },
   "uzum_barg": {
    "nom": "Uzum bargi (xom)",
@@ -241,7 +295,9 @@
    "yield": {
     "q": 0.85,
     "taxmin": true
-   }
+   },
+   "uz": "uzum bargi",
+   "ru": "виноградные листья"
   },
   "shakar": {
    "nom": "Shakar",
@@ -249,7 +305,9 @@
    "yield": {
     "q": 1.0,
     "tarif": true
-   }
+   },
+   "uz": "shakar",
+   "ru": "сахар"
   }
  }
 }

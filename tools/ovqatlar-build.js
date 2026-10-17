@@ -299,6 +299,8 @@ for (const r of rows) {
 // Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
 const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');
 if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf8'))) { if (ids.has(x.i)) { warn.push('qo\'shimcha takror id: ' + x.i); continue; } ids.add(x.i); out.push(x); }
+const V2 = require('./baza-v2.js').apply(out);      // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
-fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 1, note: 'Qiymatlar 100 g uchun taxminiy (USDA FoodData Central va ochiq jadvallar asosida; retsept taomlar — o\'rtacha uy retsepti).', foods: out }));
+fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 2, note: 'Qiymatlar 100 g uchun TAXMINIY: retsept taomlar — o\'rtacha uy retsepti (USDA FoodData Central + Скурихин, tools/baza-hisob.js), oddiy mahsulotlar — USDA/ochiq jadvallar. «x» — taxminiy (tarozida/ikki manba bilan tasdiqlanmagan).', mr: V2.mr, foods: V2.foods }));
+console.log('baza v2: top', V2.meta.top, '| USDA bilan tekshirilgan oddiy mahsulotlar:', V2.meta.tekshirilgan, '| ±10% dan farq qilganlar:', V2.meta.farqlar.length); V2.meta.farqlar.forEach((x) => console.log('  ', x.id, 'baza', x.baza, 'USDA', x.usda, '(' + x.farq + '%)', x.fdc, x.d));
 console.log('ovqatlar:', out.length, '| sinonim qo\'shilgan taomlar:', aliasFoods, '(+' + aliasAdded + ' ta nom) | ogohlantirish:', warn.length); warn.forEach((x) => console.log(' ', x));

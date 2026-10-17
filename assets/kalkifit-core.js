@@ -326,15 +326,16 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     }
     return { tier: tier, d: dd, l: ll };
   }
-  function freqMap(st, today, days) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
+  function freqMap(st, today, days, alias) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
     var out = {}, from = D.addDays(today, -((days || 30) - 1));
-    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) out[e.fid] = (out[e.fid] || 0) + 1; }); });
+    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) { var id = (alias && alias[e.fid]) || e.fid; out[id] = (out[id] || 0) + 1; } }); });
     return out;
   }
   function search(foods, q, o) {                       // ① aynan ② so'z boshidan ③ ichida/xato bilan ④ — bir xil darajada: ko'p yeyilgan va sevimlilar yuqorida
     o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' ');
     var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
     foods.forEach(function (f, ix) {
+      if (f.h) return;                                  // eski id (alias) — qidiruvda ko'rinmaydi, oila ko'rinadi
       var m = matchFood(f, qt, whole); if (!m) return; var r = rec.indexOf(f.id);
       out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), d: m.d, l: m.l, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
     });
@@ -356,6 +357,39 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
       if (STOP[k]) return; name.push(t);
     });
     return { qty: qty, unit: unit, name: name.join(' ') };
+  }
+  /* ---------- oilalar (ota-taom + omillar): baza v2 ---------- */
+  function aliasMap(foods) { var m = {}; foods.forEach(function (f) { if (f.al) m[f.id] = f.al.f; }); return m; }      // eski id → oila id
+  function famDef(f) { return f && f.fam || null; }
+  function famKey(f, sel) { var fm = f.fam; return fm.ax.map(function (a) { return (sel && sel[a.i]) || a.d; }).join('.'); }
+  function famSelOf(f, vr) { var fm = f.fam, o = {}, p = String(vr || '').split('.'); fm.ax.forEach(function (a, i) { o[a.i] = p[i] && a.o.some(function (x) { return x.i === p[i]; }) ? p[i] : a.d; }); return o; }
+  function famDefault(f) { return famSelOf(f, null); }
+  function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
+    var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
+    for (k in f) o[k] = f[k];
+    o.k = g.k; o.p = g.p; o.f = g.f; o.c = g.c; o.e = g.x ? 1 : 0; o.x = o.e; o.rc = g.rc || null; o.vr = vr;
+    var uo = fm.uv && fm.uv[vr], u = f.u.map(function (x) { return [x[0], uo && uo[x[0]] != null ? uo[x[0]] : x[1]]; });
+    if (uo) Object.keys(uo).forEach(function (kk) { if (!u.some(function (x) { return x[0] === kk; })) u.splice(u.length - 1, 0, [kk, uo[kk]]); });
+    if (fm.sz) { var so = fm.sz.o.filter(function (x) { return x.i === (sz || fm.sz.d); })[0] || fm.sz.o[0]; u = u.map(function (x) { return x[0] === fm.sz.u ? [x[0], Math.round(x[1] * so.m)] : x; }); o.sz = so.i; }
+    o.u = u; o.b = (f.b || []).map(function (b) { var q = {}, kk; for (kk in b) q[kk] = b[kk]; var m = u.filter(function (x) { return x[0] === b.k; })[0]; if (m) q.g = m[1]; return q; });
+    return o;
+  }
+  function famLabel(f, vr, sz, lang) {                   // "qovoq, o'rta" — yozuv/qatorda ko'rsatiladigan omillar (faqat kkal'ga ta'sir qiladiganlar + o'lcham)
+    var fm = f.fam, p = String(vr || '').split('.'), out = [];
+    fm.ax.forEach(function (a, i) { if (!a.s) return; var o = a.o.filter(function (x) { return x.i === (p[i] || a.d); })[0]; if (o) out.push(lang === 'ru' ? o.r : o.n); });
+    if (fm.sz && sz) { var so = fm.sz.o.filter(function (x) { return x.i === sz; })[0]; if (so && sz !== fm.sz.d) out.push(lang === 'ru' ? so.r : so.n); }
+    return out.join(', ');
+  }
+  function famPick(f, q) {                               // sinonim bo'yicha qidirilsa: oldindan tanlangan omillar (eng uzun mos kelgan) yoki null
+    var fm = f.fam; if (!fm || !fm.sy) return null; var qk = key(q); if (!qk) return null;
+    var best = null, bl = 0, qt = qk.split(' ');
+    fm.sy.forEach(function (sy) {
+      var sk = key(sy.q), st = sk.split(' '), score = 0;
+      if (sk === qk) score = 1000 + sk.length; else if (qk.indexOf(sk) === 0 || (sk.indexOf(qk) === 0 && qk.length >= sk.length * 0.7)) score = 500 + Math.min(sk.length, qk.length);
+      else if (st.length > 1 && st.every(function (w) { return qt.indexOf(w) > -1; })) score = 300 + sk.length;
+      if (score > bl) { bl = score; best = sy; }
+    });
+    return best ? best.p : null;
   }
   function unitGrams(food, unit) { for (var i = 0; i < food.u.length; i++) if (food.u[i][0] === unit) return food.u[i][1]; return null; }
   function parseText(text, foods, o) {                // lokal tahlil: topilganlar va topilmaganlar
@@ -379,6 +413,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });
