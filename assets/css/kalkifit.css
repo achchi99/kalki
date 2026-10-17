@@ -162,7 +162,7 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-near:#1F4D38;--
 
 /* ===================== KalkiFit dizayn tokenlari (rang, kartochka, matn darajalari) — BITTA joyda ===================== */
 /* Och mavzu — standart; qorong'i: tizim sozlamasi (Avto) yoki Profil → Mavzu (data-theme="dark"|"light" — <html>da). Matn kontrasti WCAG AA (≥4.5:1), katta matn/element ≥3:1 — test-kalkifit-soddalik.mjs tekshiradi. */
-.sl{--bg:#F5F3EF;--card:#FFFFFF;--ink:#1B1F1D;--mut:#4F5A54;--line:#E2DBD4;--soft:#EEE9E3;--acc2:#B93E18;--accink:#9E3413;--accsoft:#FBEBE4;--onacc:#FFFFFF;--danger:#B2412F;--water:#2F7FC1;--shadow:0 1px 2px rgba(27,31,29,.06),0 6px 20px rgba(27,31,29,.07);--r:16px}
+.sl{--bg:#F1F2EE;--card:#FFFFFF;--ink:#1B1F1D;--mut:#4F5A54;--line:#E2DBD4;--soft:#EEE9E3;--acc2:#B93E18;--accink:#9E3413;--accsoft:#FBEBE4;--onacc:#FFFFFF;--danger:#B2412F;--water:#2F7FC1;--shadow:0 1px 2px rgba(27,31,29,.06),0 6px 20px rgba(27,31,29,.07);--r:16px}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--danger:#FF9A8A;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}}
 html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--danger:#FF9A8A;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}
 .sl .rz-card{box-shadow:var(--shadow);border-radius:var(--r)}

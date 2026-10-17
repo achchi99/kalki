@@ -601,7 +601,7 @@
     return T('aDefOne', { x: u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u), k: fmt(S.portion(v, g).kcal) });
   }
   function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
-  function aiLineHtml() { var q = (fd && fd.q || '').trim(); return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai"><span>' + esc(T('aAiLine', { q: q })) + '</span></button>' : ''; }
+  function aiLineHtml() { var q = (fd && fd.q || '').trim(); return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai"><span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : ''; }
   function recRow(r) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal');
     return '<div class="sl-rw"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '><span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="rz-x sl-plus" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" aria-label="' + esc(T('aQuickAdd') + ': ' + nm) + '">' + ico('plus', '', 2.4) + '</button></div>';
