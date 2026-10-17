@@ -149,3 +149,6 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 .sl-sug{background:var(--accsoft);border-radius:14px;padding:10px 12px;margin:0 0 8px}.sl-sug p{margin:0 0 8px;font-weight:700}.sl-sug .rz-actions{margin:0}.sl-sug .rz-btn{min-height:40px}
 .sl-meal .sl-mh .mi{flex:1;min-width:0;display:flex;flex-direction:column}.sl-meal .sl-mh .mi b{flex:none}.sl-meal .sl-mh .mi span{white-space:nowrap;line-height:1.2}.sl-meal .sl-mh .sl-sv span{font-size:.8125rem;color:inherit}
 .sl-meal .sl-mh .mi{color:var(--ink);font-size:inherit;font-weight:inherit}.sl-meal .sl-mh .mi>span{color:var(--mut);font-size:var(--t-s,.9375rem);font-weight:700}
+/* baza v2: oilalar / omillar */
+.sl-xil{font-weight:700;color:var(--mut);margin-left:2px;font-size:.8125rem}
+.sl-two{display:flex;gap:8px;margin-top:8px}.sl-two .rz-btn{flex:1;margin-top:0}.sl-two .sl-src{flex:none;min-width:34%}
