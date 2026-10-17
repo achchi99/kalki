@@ -4,6 +4,8 @@
 > Hamma qaror shunga moslanadi: baza kattalashmaydi — ~150 ta taom **mukammallashtiriladi**; mahalliy nomlar alohida taom bo'lmaydi, **omillar** (xamir, ichi, o'lcham, yog'…) bilan qamrab olinadi;
 > aniqlikka ta'sir qilmaydigan narsaga (hududiy nom, ikkinchi darajali variant) kod va jadval qo'shilmaydi.
 >
+> **YANGILANISH (2026-10-17):** masalliq qiymatlari endi xotiradan emas — USDA FDC + Скурихин bilan qayta hisoblandi; natija va 15%+ jadval: **`docs/baza-v2-tekshiruv.md`** (quyidagi 5.2 va osh/somsa jadvallari **eskirgan**, xotiradan edi).
+>
 > Holat: **reja, kodga tegilmagan.** Raqamlar «dastlabki hisob» — masalliq qiymatlari USDA FoodData Central (SR Legacy) bo'yicha xotiradan olingan, FDC id'lari va qiymatlar 2-bosqichda `data/baza-retseptlar.json` ga
 > manba bilan kiritilib, tekshiriladi. Pishgandagi vazn (yield) koeffitsientlari taxminiy, uyda tarozida tekshiriladi (`docs/tarozida-tekshirish.md`).
 
@@ -408,3 +410,12 @@ Prinsiplar: **hech bir `fid` o'chirilmaydi**; **hech bir saqlangan kkal o'zgarti
 ## 8. 2-bosqich rejasi (tasdiqdan keyin)
 
 A) retsept usuli: `data/baza-retseptlar.json` + `tools/baza-hisob.js` + manbalar (USDA id / Скурихин) → `ovqatlar.json` · B) oilalar va omillar (core: oila/variant hisobi, alias; app: chiplar porsiya oynasida; qidiruv sinonimi → omil) · C) porsiya birliklari (tarozi natijalari bilan) · D) migratsiya sinovlari · E) yangiliklar (`data/yangiliklar-kalkifit.json`), UZ/RU/ЎЗ, 360 px/katta shrift, `test:tez`.
+
+## 9. Tasdiqlangan qarorlar (foydalanuvchi javoblari, 2026-10-17)
+
+1. D1 ro'yxati keyinroq; 4 ta yangi taom (shovla, shirguruch, ugra osh, chalop) **«taxminiy»** belgisi bilan qoladi.
+2. `tarozida-tekshirish.md`: 1–8 universal o'lchovlar **majburiy**, 9–20 «ixtiyoriy, vaqt bo'lsa».
+3. ±15% — tarozida tortilgan haqiqatga nisbatan. 5 ta uy taomi bilan sinaymiz (oddiy ro'yxat: taom + nima tortiladi).
+4. Pivo/vino bazada qoladi, top-150 ga kirmaydi. 5. O'lcham 0,6 / 1 / 1,5; gramm bilan kiritish qoladi. 6. «To'y oshi / choyxona oshi» — faqat sinonim + oldindan tanlangan omil. 7. Eski id'lar abadiy alias.
+8. Tarozini kutmaymiz, lekin **xotiradan raqam qabul qilinmaydi**: masalliq qiymatlari USDA FDC (fdc_id + sana) → `data/manba/`; `tools/baza-hisob.js` faqat shulardan hisoblaydi. Norin, sho'rva, qovurdoq — ikki mustaqil manba (USDA asosidagi retsept + Скурихин) o'rtachasi, «taxminiy». Farqi 30% dan oshganlar o'zgartirilmaydi (norin +46%: qaror sizda).
+9. 2-bosqich rejasi (A–E) foydalanuvchi xabarida: retsept usuli, ma'lumot tuzilmasi (`b` birliklar, oila/omillar, `m`, `r`, `t`, `x`, `top`), interfeys (tabiiy birlik birinchi, omil chiplari, «Somsa · 6 xil», ⓘ Manba), AI parse (lokal avval), testlar. **Jadval tasdiqlangandan keyin boshlanadi.**

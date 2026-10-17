@@ -1,4 +1,6 @@
-# Tarozida tekshirish — 20 ta eng muhim birlik
+# Tarozida tekshirish
+
+**MAJBURIY: A bo'lim (1–8 universal o'lchovlar).** B bo'lim (9–20) — *ixtiyoriy, vaqt bo'lsa*. C bo'lim — 5 ta uy taomi (v2 sinovi).
 
 Maqsad: bazadagi porsiya birliklari grammini **haqiqatga** yaqinlashtirish (aniqlik ±15%, `docs/baza-v2-reja.md`).
 Asbob: 1 g aniqlikdagi oshxona tarozisi. Har o'lchovni **3 marta** takrorlang va o'rtachasini yozing.
@@ -6,7 +8,7 @@ Ustunlar: **Hozirgi** — bazadagi qiymat; **Natija 1–3** — siz yozasiz; **O
 
 **Umumiy qoida:** idishni avval **bo'sh** tortib `tara` ni yozing, so'ng to'ldirib torting, **sof og'irlik = to'la − tara**. Taom **pishgan, issiq, suyuqligi bilan** tortiladi (suyuqlik bor taomda suyuqlik ham kiradi). Hamma taom «odatdagi bir porsiya»ni siz o'zingiz quyadigandek soling (maxsus kam/ko'p qilmang).
 
-## A. Universal o'lchovlar (1–8) — hamma taomga ta'sir qiladi
+## A. MAJBURIY — universal o'lchovlar (1–8): hamma taomga ta'sir qiladi
 
 | # | O'lchov | Qanday o'lchanadi | Hozirgi | Tara | Natija 1 | Natija 2 | Natija 3 | O'rtacha (g) |
 |---|---|---|---|---|---|---|---|---|
@@ -19,7 +21,7 @@ Ustunlar: **Hozirgi** — bazadagi qiymat; **Natija 1–3** — siz yozasiz; **O
 | 7 | **1 choy qoshiq** | O'z choy qoshig'ingiz: shakar va yog' | shakar 5 g · yog' 5 g | | | | | |
 | 8 | **1 stakan** (odatdagi) | Bo'sh torting; chekkasigacha emas, «ichadigan» darajagacha suv/sut | 250 g | | | | | |
 
-## B. Taom-maxsus tekshiruvlar (9–20) — eng ko'p xato beradiganlar
+## B. IXTIYORIY (vaqt bo'lsa) — taom-maxsus tekshiruvlar (9–20)
 
 | # | Tekshiruv | Qanday o'lchanadi | Hozirgi | Tara | Natija 1 | Natija 2 | Natija 3 | O'rtacha (g) |
 |---|---|---|---|---|---|---|---|---|
@@ -36,13 +38,16 @@ Ustunlar: **Hozirgi** — bazadagi qiymat; **Natija 1–3** — siz yozasiz; **O
 | 19 | **1 shish kabob** (qo'y/mol, sotuvdagi) | 1 shish (go'sht — yog'li bo'lagi bilan), shishsiz torting | 80 g | | | | | |
 | 20 | **1 dona lavash/shaurma** (ko'cha, o'rtacha) | Qog'ozsiz, to'liq tortiladi | 300 g | | | | | |
 
-## Sinov uchun uy taomlari (ixtiyoriy — v2 ni tekshirish uchun)
+## C. 5 ta uy taomi bilan sinov (v2 ni tekshirish) — oddiy ro'yxat
 
-Uyda pishirgan 3–5 ta taomni **butun qozon** bo'yicha yozing: har masalliqning xom og'irligi, pishgan taomning jami og'irligi (yield) va 1 porsiya (lagan/kosa) og'irligi.
-Bu v2 retseptlarini haqiqatga solishtiradigan eng ishonchli ma'lumot.
+Har bir taom uchun: **tortiladi** ustunidagini yozing. «Qozon» = butun pishirilgan idish. Natijada bitta qator yetadi.
 
-| Taom | Masalliqlar (xom, g) | Pishgan jami (g) | 1 porsiya (g) | Eslatma |
-|---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
+| # | Taom | Nima tortiladi (hammasi g da) | Natija |
+|---|---|---|---|
+| 1 | **Osh** (uyda, qozonda) | (a) **xom** guruch, sabzi, piyoz, go'sht (suyaksiz), yog' — har birini alohida; (b) **pishgan oshning butun qozoni** (qozonsiz); (c) o'zingiz suzadigan **1 lagan** | |
+| 2 | **Somsa** (uyda yoki bir xil do'kondan) | (a) 1 ta **xom** somsa (pishirishdan oldin); (b) xuddi shu somsa **pishgandan keyin**; (c) agar o'zingiz qilsangiz — xamir va ichining xom vazni | |
+| 3 | **Sho'rva yoki mastava** (uyda) | (a) hamma **xom** masalliq vazni; (b) tayyor **butun qozon** (qozonsiz); (c) 1 **kosa** (o'zingiz quyadigan) | |
+| 4 | **Manti yoki chuchvara** | (a) xamir va qiyma (go'sht, piyoz, yog') **xom** vazni; (b) soni; (c) **pishgan** hammasi (suvsiz) va 1 dona | |
+| 5 | **Obi non / patir** (o'zingiz yopgan yoki do'kondan) | (a) xamir uchun un va suv/sut/yog' vazni (o'zingiz yopsangiz); (b) **pishgan** non butun; (c) 1/4 bo'lak | |
+
+Bu 5 ta taom v2 retseptlari va yield'ni haqiqatga solishtiradigan eng ishonchli ma'lumot. Rasm yoki oddiy matn (qanday bo'lsa) yetadi.

@@ -1,0 +1,215 @@
+{
+ "v": 1,
+ "izoh": "Masalliq registri: har masalliq USDA SR Legacy fdc_id (data/manba/usda-sr-legacy.json) va — bor bo'lsa — Skurikhin yozuvi (data/manba/skurikhin.json) bilan bog'langan. `pishgan` — pishgan juft id; yield koeffitsienti = xom/pishgan (oqsil yoki kkal bo'yicha, avtomatik). `q` — USDA da juft yo'q: qo'lda yield (taxmin=true — tarozida tekshiriladi).",
+ "masalliq": {
+  "guruch": {
+   "nom": "Guruch (oq, xom)",
+   "usda": 168877,
+   "pishgan": 168878,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   }
+  },
+  "sabzi": {
+   "nom": "Sabzi (xom)",
+   "usda": 170393,
+   "skurikhin": "sabzi",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "piyoz": {
+   "nom": "Piyoz (xom)",
+   "usda": 170000,
+   "skurikhin": "piyoz",
+   "yield": {
+    "q": 0.75,
+    "taxmin": true
+   }
+  },
+  "qoy": {
+   "nom": "Qo'y go'shti (yog'li, xom)",
+   "usda": 172479,
+   "pishgan": 172480,
+   "skurikhin": "qoy",
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   }
+  },
+  "qoy_yogsiz": {
+   "nom": "Qo'y go'shti (yog'siz, xom)",
+   "usda": 174307,
+   "pishgan": 174308,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   }
+  },
+  "mol": {
+   "nom": "Mol go'shti (o'rtacha yog'li, xom)",
+   "usda": 168668,
+   "pishgan": 168669,
+   "skurikhin": "mol",
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   }
+  },
+  "mol_yogsiz": {
+   "nom": "Mol go'shti (yog'siz, xom)",
+   "usda": 173126,
+   "pishgan": 168669,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   }
+  },
+  "tovuq_kokrak": {
+   "nom": "Tovuq ko'kragi (xom)",
+   "usda": 171077,
+   "pishgan": 171477,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   }
+  },
+  "tovuq_son": {
+   "nom": "Tovuq soni (terili, xom)",
+   "usda": 172385,
+   "yield": {
+    "q": 0.72,
+    "taxmin": true
+   }
+  },
+  "dumba": {
+   "nom": "Dumba (qo'y yog'i, xom)",
+   "usda": 174309,
+   "skurikhin": "dumba",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "yog": {
+   "nom": "O'simlik yog'i (paxta)",
+   "usda": 171024,
+   "skurikhin": "yog",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "un": {
+   "nom": "Un (bug'doy, oliy nav)",
+   "usda": 168894,
+   "skurikhin": "un",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "suv": {
+   "nom": "Suv",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "kartoshka": {
+   "nom": "Kartoshka (xom)",
+   "usda": 170026,
+   "pishgan": 170438,
+   "skurikhin": "kartoshka",
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   }
+  },
+  "qovoq": {
+   "nom": "Qovoq (xom)",
+   "usda": 168448,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "sariyog": {
+   "nom": "Sariyog'",
+   "usda": 173410,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "tuxum": {
+   "nom": "Tuxum (xom)",
+   "usda": 171287,
+   "yield": {
+    "q": 0.9,
+    "taxmin": true
+   }
+  },
+  "sut": {
+   "nom": "Sut (3,25%)",
+   "usda": 171265,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "karam": {
+   "nom": "Karam (oq, xom)",
+   "usda": 169975,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "pomidor": {
+   "nom": "Pomidor (xom)",
+   "usda": 170457,
+   "skurikhin": "pomidor",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "qalampir": {
+   "nom": "Bolgar qalampiri (xom)",
+   "usda": 170427,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   }
+  },
+  "kokat": {
+   "nom": "Ko'kat (kashnich)",
+   "usda": 169997,
+   "yield": {
+    "q": 0.9,
+    "taxmin": true
+   }
+  },
+  "mosh": {
+   "nom": "Mosh (xom)",
+   "usda": 174256,
+   "pishgan": 174257,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   }
+  },
+  "noxat": {
+   "nom": "No'xat (xom)",
+   "usda": 173756,
+   "pishgan": 173757,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   }
+  }
+ }
+}
