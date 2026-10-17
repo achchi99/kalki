@@ -216,7 +216,7 @@
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
     units: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('#fdUnits')); }, 500); }); },
-    variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); fd.more = true; pwScreen(); setTimeout(function () { n.highlight($('#pwMore .rz-chips') || $('.sl-morebtn')); }, 500); }); },
+    variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); fd.pmore = true; pwScreen(); setTimeout(function () { n.highlight($('#pwMore .rz-chips') || $('.sl-morebtn')); }, 500); }); },
     theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
@@ -251,7 +251,7 @@
   var jokeFlash = null;
   function jokeAfter(kind) {                         // ovqat/suv qo'shilgach bir qatorli qisqa gap — kuniga ko'pi bilan 2 marta, 9 soniyadan so'ng o'chadi (doimiy karta YO'Q)
     if (!G || prefs().jokes === false) return; var p = prefs(), t = todayStr(); if (!p.jfl || p.jfl.d !== t) p.jfl = { d: t, n: 0 }; if (p.jfl.n >= 2) return;
-    var l = G.todayLine ? G.todayLine(jokeCtx()) : null; if (!l || !l.text) return; p.jfl.n++; jokeFlash = { d: t, text: l.text }; save(); if (view === 'today') render();
+    var l = G.todayLine ? G.todayLine(jokeCtx()) : null; if (!l || !l.text) return; p.jfl.n++; jokeFlash = { d: t, text: l.text }; save(); var mb = view === 'today' && $('#mainAdd'); if (mb && !$('#jFlash')) mb.insertAdjacentHTML('afterend', jokeFlashHtml());
     clearTimeout(jokeAfter.tm); jokeAfter.tm = setTimeout(function () { jokeFlash = null; var el = $('#jFlash'); if (el) el.remove(); }, 9000);
   }
   function renderToday() {
@@ -260,7 +260,7 @@
     var glasses = pl.water.glasses, wmax = glasses * S.GLASS_ML, note = info.complete ? T('stFull') + ' · ' + stLabel(info, t, t) : T('cNote');
     var h = (inst.isTop() ? inst.cardHtml() : '');
     h += '<h2 class="rz-h sl-hd" id="todayHd">' + esc(T('todayDate', { d: kit.dLabel(t) })) + '</h2>';
-    h += '<section class="sl-cal' + (over ? ' over' : '') + '"><button type="button" class="sl-nums" id="kcalBtn" data-act="xkcal" aria-label="' + esc(T('hHow')) + '"><span class="n"><small>' + esc(T('cEaten')) + '</small><b id="kNum">' + fmt(tot.kcal) + '</b></span><span class="n"><small>' + esc(T('cGoal')) + '</small><b id="kGoal">' + fmt(limit) + '</b></span>' +
+    h += '<section class="sl-cal' + (over ? ' ovr' : '') + '"><button type="button" class="sl-nums" id="kcalBtn" data-act="xkcal" aria-label="' + esc(T('hHow')) + '"><span class="n"><small>' + esc(T('cEaten')) + '</small><b id="kNum">' + fmt(heroPrev ? heroPrev.eaten : tot.kcal) + '</b></span><span class="n"><small>' + esc(T('cGoal')) + '</small><b id="kGoal">' + fmt(limit) + '</b></span>' +
       (over ? '' : '<span class="n"><small>' + esc(T('cLeft')) + '</small><b id="kLeft">' + fmt(bal.remaining) + '</b></span>') + '</button><div class="rz-bar thin sl-prog" aria-hidden="true"><i style="transform:scaleX(' + ratio.toFixed(3) + ')"></i></div>' +
       (over ? '<p class="sl-over" id="kOver">' + esc(T('cOver', { x: fmt(-bal.remaining) })) + '</p>' : '') + '<p class="sl-note" id="dayChip" data-state="' + info.state + '">' + esc(note) + '</p></section>';
     h += '<button type="button" class="rz-btn primary full sl-main" id="mainAdd" data-act="add">' + esc(T('mainAdd')) + '</button>' + (!tot.kcal && !x.food.length ? '<p class="rz-mut sm sl-first">' + esc(T('hEmpty')) + '</p>' : '') + jokeFlashHtml();
@@ -272,6 +272,7 @@
     if (!inst.isTop()) h += inst.cardHtml();
     h += '<p class="rz-priv">' + esc(T('disc')) + '</p>';
     $('#rzMain').innerHTML = h; markSeen();
+    var num0 = $('#kNum'); if (heroPrev && heroPrev.eaten !== tot.kcal) kit.setNum(num0, heroPrev.eaten, tot.kcal); heroPrev = { eaten: tot.kcal };
     if (G && !jokeBoot) { jokeBoot = true; loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
 
@@ -337,7 +338,7 @@
     var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>';
     h += '<section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
-    h += '<section class="rz-card">' + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('supp', 'pill', T('spT'), T('spH')) + '</section>';
+    h += '<section class="rz-card">' + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('rcmine', 'book', T('rcMine'), '') + row('supp', 'pill', T('spT'), T('spH')) + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('profBackup')) + '</div>' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('themeT')) + '</div>' + seg('theme', 't', [['auto', T('thAuto')], ['light', T('thLight')], ['dark', T('thDark')]], th) +
@@ -599,7 +600,7 @@
     var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); if (!(g > 0)) return '';
     return T('aDefOne', { x: u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u), k: fmt(S.portion(v, g).kcal) });
   }
-  function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 3; }
+  function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
   function aiLineHtml() { var q = (fd && fd.q || '').trim(); return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai"><span>' + esc(T('aAiLine', { q: q })) + '</span></button>' : ''; }
   function recRow(r) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal');
@@ -607,7 +608,7 @@
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
-    return '<div class="sl-more"><button type="button" class="sl-morebtn" data-act="fmore" aria-expanded="' + !!fd.more + '"><span>' + esc(T('aMoreT')) + '</span><i class="cv' + (fd.more ? ' open' : '') + '">▾</i></button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
+    return '<div class="sl-more"><button type="button" class="sl-morebtn" data-act="fmore" aria-expanded="' + !!fd.more + '"><span>' + esc(T('aMoreT')) + '</span><i class="cv' + (fd.more ? ' open' : '') + '">▾</i></button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
   }
   function catsHtml() {
     return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + [''].concat(CATS).map(function (c) { return '<button type="button" class="rz-chip' + (fd.cat === c ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + (fd.cat === c) + '">' + esc(c ? T('cat_' + c) : T('all')) + '</button>'; }).join('') + '</div></div>';
@@ -643,10 +644,10 @@
       return CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom && !f.h; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('') + '<button type="button" class="sl-txtbtn" data-act="fbrowse">' + esc(T('back')) + '</button>';
     } else {                                         // birinchi ko'rinish: Oxirgilar → Saqlanganlar → Boshqa usullar
       var rec = le.slice(0, 5), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l) { return l.length ? '<div class="rz-st">' + esc(t) + '</div>' + l.join('') : ''; };
-      var pop = rec.length ? [] : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6);
+      var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
       return sec(T('aRecentT'), rec.map(recRow)) + sec(T('aPop'), pop.map(resRow)) + '<div class="rz-st">' + esc(T('aSavedT')) + '</div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
     }
-    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
+    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
     return list.map(resRow).join('');
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); }
@@ -687,7 +688,7 @@
       (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
       '<div class="rz-chips" id="fdUnits" role="group" aria-label="' + esc(T('pUnit')) + '">' + pwUnits(o).map(function (u) { var vv = vOf(u); return '<button type="button" class="rz-chip' + (vv ? ' sl-vc' : '') + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(vv ? vLabel(vv, vkey(o)) : pwUName(u)) + '</button>'; }).join('') + (o.food ? '<button type="button" class="rz-chip sl-vnew" data-act="vnew">+ ' + esc(T('vNew')) + '</button>' : '') + '</div>' +
       '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + (o.unit === 'g100' ? esc(T('gram')) : '') + '</i></span><button type="button" class="rz-x sl-qp" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-      '<button type="button" class="sl-morebtn" data-act="pwmore" aria-expanded="' + !!o.more + '"><span>' + esc(T(o.fam ? 'pMoreT' : 'pMore2T')) + '</span><i class="cv' + (o.more ? ' open' : '') + '">▾</i></button><div class="sl-pwmore" id="pwMore"' + (o.more ? '' : ' hidden') + '>' + more + '</div>' +
+      '<button type="button" class="sl-morebtn" data-act="pwmore" aria-expanded="' + !!o.pmore + '"><span>' + esc(T(o.fam ? 'pMoreT' : 'pMore2T')) + '</span><i class="cv' + (o.pmore ? ' open' : '') + '">▾</i></button><div class="sl-pwmore" id="pwMore"' + (o.pmore ? '' : ' hidden') + '>' + more + '</div>' +
       '<div class="sl-two"><button type="button" class="sl-txtbtn sl-src" data-act="pwsrc">ⓘ ' + esc(T('srcBtn')) + '</button></div>';
   }
   function fl(x) { return lang === 'ru' ? x.r : x.n; }
@@ -1286,7 +1287,7 @@
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i')); break;
       case 'fmore': fd.more = !fd.more; refreshRes(); break;
       case 'fbrowse': fd.browse = !fd.browse; fd.cat = ''; fd.q = ''; setSheet(searchHtml()); catsInit(); break;
-      case 'pwmore': { var o8 = pwO(); o8.more = !o8.more; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.more; el.setAttribute('aria-expanded', !!o8.more); var cv = el.querySelector('.cv'); if (cv) cv.classList.toggle('open', !!o8.more); break; }
+      case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.cv'); if (cv) cv.classList.toggle('open', !!o8.pmore); break; }
       case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
       case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
@@ -1323,6 +1324,7 @@
       case 'vscale': fd.vc.scale = el.getAttribute('data-s'); setSheet(vesselHtml()); break;
       case 'vsave': vcSave(); break;
       case 'vessels': vmOpen(); break;
+      case 'rcmine': openSheet('rcmine', shHead(T('rcMine')) + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); break;
       case 'vedit': vmEdit(+el.getAttribute('data-id')); break;
       case 'vedsave': vmSave(); break;
       case 'vdel': vmDel(+el.getAttribute('data-id')); break;

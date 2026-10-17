@@ -162,23 +162,23 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-near:#1F4D38;--
 
 /* ===================== KalkiFit dizayn tokenlari (rang, kartochka, matn darajalari) — BITTA joyda ===================== */
 /* Och mavzu — standart; qorong'i: tizim sozlamasi (Avto) yoki Profil → Mavzu (data-theme="dark"|"light" — <html>da). Matn kontrasti WCAG AA (≥4.5:1), katta matn/element ≥3:1 — test-kalkifit-soddalik.mjs tekshiradi. */
-.sl{--bg:#F5F3EF;--card:#FFFFFF;--ink:#1B1F1D;--mut:#4F5A54;--line:#E2DBD4;--soft:#EEE9E3;--acc2:#B93E18;--accink:#9E3413;--accsoft:#FBEBE4;--onacc:#FFFFFF;--water:#2F7FC1;--shadow:0 1px 2px rgba(27,31,29,.06),0 6px 20px rgba(27,31,29,.07);--r:16px}
-@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}}
-html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}
+.sl{--bg:#F5F3EF;--card:#FFFFFF;--ink:#1B1F1D;--mut:#4F5A54;--line:#E2DBD4;--soft:#EEE9E3;--acc2:#B93E18;--accink:#9E3413;--accsoft:#FBEBE4;--onacc:#FFFFFF;--danger:#B2412F;--water:#2F7FC1;--shadow:0 1px 2px rgba(27,31,29,.06),0 6px 20px rgba(27,31,29,.07);--r:16px}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--danger:#FF9A8A;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}}
+html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--danger:#FF9A8A;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}
 .sl .rz-card{box-shadow:var(--shadow);border-radius:var(--r)}
 /* tugma ierarxiyasi: to'ldirilgan (accent) — faqat asosiy amal; yordamchi — sokin kulrang yoki matn */
-.sl .rz-btn{background:var(--soft);color:var(--ink);border-radius:12px}
-.sl .rz-btn.primary{background:var(--acc2);color:var(--onacc)}
-.sl .rz-btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
-.sl .rz-btn.danger:not(.primary){color:#B2412F;border-color:#B2412F;background:transparent}
-.sl .rz-chip{border:0;background:var(--soft);color:var(--ink);border-radius:10px;font-weight:700}
-.sl .rz-chip.on{background:var(--accsoft);color:var(--accink);box-shadow:inset 0 0 0 2px var(--accink)}
-.sl .rz-chip.sl-vnew{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
-.sl .rz-seg{background:var(--soft)}.sl .rz-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.22)}
-.sl .rz-tab.on{color:var(--accink)}.sl .rz-nav{background:var(--card)}
-.sl .rz-fab{width:56px;height:56px;top:-22px;background:var(--ink);color:var(--bg);border:4px solid var(--bg);box-shadow:0 4px 14px rgba(0,0,0,.28)}
-.sl .rz-fab .rz-i{width:26px;height:26px}.sl .rz-fab .rz-fabl{position:absolute;top:57px;left:50%;transform:translateX(-50%);font-size:.75rem;font-weight:700;color:var(--mut);white-space:nowrap}
-.sl .rz-tab .l,.sl .rz-tab .s{font-size:.8125rem}
+.rz.sl .rz-btn{background:var(--soft);color:var(--ink);border-radius:12px}
+.rz.sl .rz-btn.primary{background:var(--acc2);color:var(--onacc)}
+.rz.sl .rz-btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.rz.sl .rz-btn.danger:not(.primary){color:var(--danger);border-color:var(--danger);background:transparent}
+.rz.sl .rz-chip{border:0;background:var(--soft);color:var(--ink);border-radius:10px;font-weight:700}
+.rz.sl .rz-chip.on{background:var(--accsoft);color:var(--accink);box-shadow:inset 0 0 0 2px var(--accink)}
+.rz.sl .rz-chip.sl-vnew{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.rz.sl .rz-seg{background:var(--soft)}.rz.sl .rz-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.rz.sl .rz-tab.on{color:var(--accink)}.rz.sl .rz-nav{background:var(--card)}
+.rz.sl .rz-fab{width:56px;height:56px;top:-22px;background:var(--ink);color:var(--bg);border:4px solid var(--bg);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.rz.sl .rz-fab .rz-i{width:26px;height:26px}.rz.sl .rz-fab .rz-fabl{position:absolute;top:57px;left:50%;transform:translateX(-50%);font-size:.75rem;font-weight:700;color:var(--mut);white-space:nowrap}
+.rz.sl .rz-tab .l,.rz.sl .rz-tab .s{font-size:.8125rem}
 .sl-plus{background:var(--soft);color:var(--ink)}
 .sl-sv{border:0;background:transparent;color:var(--accink);padding:0 8px}.sl-sv span{color:var(--accink)}
 .sl-ci{background:var(--accsoft);color:var(--accink)}
