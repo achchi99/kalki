@@ -2,6 +2,13 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 5,
+      "d": "2026-10-18",
+      "items": [
+        { "uz": "O'z kosangiz va laganingizni belgilang: «Mening laganimda osh» bir bosishda yoziladi.", "ru": "Отметьте свою миску и лаган: «Плов в моём лагане» записывается в одно касание.", "show": "vessel" }
+      ]
+    },
+    {
       "v": 4,
       "d": "2026-10-18",
       "items": [

@@ -95,6 +95,7 @@ Ustunlar: **Hozirgi** — bazadagi qiymat; **Natija 1–3** — siz yozasiz; **O
 | 18 | **1 dona do'lma** | 3 dona do'lma — o'rtachasi | 50 g | | | | | |
 | 19 | **1 shish kabob** (qo'y/mol, sotuvdagi) | 1 shish (go'sht — yog'li bo'lagi bilan), shishsiz torting | 80 g | | | | | |
 | 20 | **1 dona lavash/shaurma** (ko'cha, o'rtacha) | Qog'ozsiz, to'liq tortiladi | 300 g | | | | | |
+| 21 | **1 likopcha** (kichik likop: choy yoniga, salat yoki shirinlik uchun) | Bo'sh torting; o'zingiz odatda soladigan miqdorda ovqat bilan torting (ovqat bilan − bo'sh) | ≈ 200 g («Mening idishim» → Likopcha standarti) | | | | | |
 
 ## C. 5 ta uy taomi bilan sinov (v2 ni tekshirish) — oddiy ro'yxat
 

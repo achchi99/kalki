@@ -18,7 +18,7 @@ try {
   /* 1. qidiruvdan tanlash: 1 dona olma (180 g = 94 kkal), 0,5 qadam, ½, birlik almashishi kkal'ni saqlaydi, raqamni bosib yozish */
   let p = await mk(); await p.click('#rzFab'); await p.waitForTimeout(400); await p.fill('#fdQ', 'olma'); await p.waitForTimeout(250); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300);
   assert.equal(await txt(p, '.sl-ph b'), 'Olma'); assert.equal(await kc(p), 94); assert.equal(await qv(p), 1); assert.match(await txt(p, '#fdInfo'), /1 dona ≈ 180 g · hozir 180 g/, 'joriy gramm doim ko\'rinadi');
-  const chips = await p.locator('#fdUnits .rz-chip').allInnerTexts(); assert.deepEqual(chips.map((x) => x.trim()), ['dona', 'gramm']);
+  const chips = await p.locator('#fdUnits .rz-chip').allInnerTexts(); assert.deepEqual(chips.map((x) => x.trim()), ['dona', 'gramm', '+ Mening idishim']);
   await p.click('[data-act=fqty][data-s="-1"]'); assert.equal(await qv(p), 0.5); assert.equal(await kc(p), 47, '1 → 0,5 dona = yarmi'); assert.match(await txt(p, '#fdInfo'), /hozir 90 g/);
   await p.click('[data-act=funit][data-u=g100]'); assert.equal(await qv(p), 90); assert.equal(await kc(p), 47, 'dona → gramm: kkal o\'zgarmaydi'); assert.equal(await txt(p, '#fdQu'), 'g'); await p.click('[data-act=fqty][data-s="1"]'); assert.equal(await qv(p), 100, 'gramm qadami 10'); await p.click('[data-act=fqty][data-s="-1"]'); await p.click('[data-act=fqty][data-s="-1"]'); assert.equal(await qv(p), 80);
   await p.click('[data-act=funit][data-u=dona]'); assert.ok(Math.abs((await kc(p)) - 42) <= 1, 'gramm → dona: kkal saqlanadi (±1, 2 xonali yaxlitlash)'); assert.ok(Math.abs((await qv(p)) - 80 / 180) < 0.01);

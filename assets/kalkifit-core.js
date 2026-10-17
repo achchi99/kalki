@@ -95,10 +95,11 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function dayOf(st, d) { return st.days[d] || null; }
   function ensureDay(st, d) { if (!st.days[d]) st.days[d] = { food: [], water: 0, steps: 0 }; if (st.trackStart && d < st.trackStart) st.trackStart = d; return st.days[d]; }   // oldingi sanaga yozilsa, kuzatuv boshlanishi shu sanaga suriladi
   function dayTotals(st, d) { var x = dayOf(st, d); return sumEntries(x ? x.food : []); }
-  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
+  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], vessels: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
     if (e.vr) it.vr = String(e.vr).slice(0, 40); if (e.sz) it.sz = String(e.sz).slice(0, 20);
+    if (e.vn) { it.vn = String(e.vn).slice(0, 30); if (FILL[e.vf]) it.vf = e.vf; }                 // «Mening idishim»: idish nomi (snapshot) va to'ldirish
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
     return it;
   }
@@ -231,7 +232,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
-    s.tpls = cleanTpls(raw.tpls, s);
+    s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     return s;
   }
@@ -240,7 +241,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function r1(x) { return Math.round(num(x) * 10) / 10; }
   function cleanTplItem(e) {
     if (!e || typeof e !== 'object') return null; var k = Math.round(num(e.kcal)); if (!(k >= 0) || !(e.fid || e.n || e.name)) return null;
-    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est, vr: e.vr ? String(e.vr).slice(0, 40) : undefined, sz: e.sz ? String(e.sz).slice(0, 20) : undefined };
+    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est, vr: e.vr ? String(e.vr).slice(0, 40) : undefined, sz: e.sz ? String(e.sz).slice(0, 20) : undefined, vn: e.vn ? String(e.vn).slice(0, 30) : undefined, vf: FILL[e.vf] ? e.vf : undefined };
   }
   function cleanTpls(list, s) {
     var out = [], used = {}; (Array.isArray(list) ? list : []).forEach(function (t) {
@@ -276,6 +277,29 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function kechagidekOk(st, date, meal) {                         // shu kunda shu ovqat bo'sh va kecha unda yozuv bo'lgan
     var t = dayOf(st, date); if (t && t.food.some(function (e) { return e.meal === meal; })) return false; return yesterdayEntries(st, date, meal).length > 0;
   }
+
+  /* ---------- «Mening idishim»: foydalanuvchining o'z kosasi/laganining grammi (idish × taom oilasi) ---------- */
+  var VESSEL_MAX = 20, VKINDS = ['kosa', 'lagan', 'piyola', 'likopcha', 'custom'], FILL = { yarim: 0.5, tola: 1, kop: 1.25 }, SCALE = { kichik: 0.75, ohshash: 1, katta: 1.3 };
+  var VUNIT = { kosa: 'kosa', lagan: 'likop', piyola: 'piyola', likopcha: 'likop', custom: null };      // idish turi → bazadagi standart birlik kaliti
+  function cleanVessels(list, s) {
+    var out = [], used = {}; (Array.isArray(list) ? list : []).forEach(function (v) {
+      if (out.length >= VESSEL_MAX || !v || typeof v !== 'object') return; var kind = VKINDS.indexOf(v.kind) > -1 ? v.kind : 'custom', fam = {}, n = 0;
+      if (v.fam && typeof v.fam === 'object') Object.keys(v.fam).slice(0, 60).forEach(function (k) { var g = Math.round(num(v.fam[k])); if (g >= 10 && g <= 3000 && k.length <= 60) { fam[k] = g; n++; } });
+      var name = String(v.name || '').trim().slice(0, 30); if (!n || (kind === 'custom' && !name)) return;
+      var id = Math.round(num(v.id)); if (!(id > 0) || used[id]) id = s.seq++; else if (id >= s.seq) s.seq = id + 1; used[id] = 1; out.push({ id: id, kind: kind, name: name || undefined, fam: fam });
+    }); return out;
+  }
+  function vList(st) { return st.vessels || (st.vessels = []); }
+  function vesselById(st, id) { var l = vList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+  function vesselsFor(st, famKey) { return vList(st).filter(function (v) { return v.fam[famKey] > 0; }); }
+  function addVessel(st, kind, name, famKey, g) {                // yangi idish: boshqa idish bilan to'lgan (20) bo'lsa — null
+    var l = vList(st); g = Math.round(num(g)); name = String(name || '').trim().slice(0, 30); kind = VKINDS.indexOf(kind) > -1 ? kind : 'custom';
+    if (l.length >= VESSEL_MAX || !famKey || !(g >= 10 && g <= 3000) || (kind === 'custom' && !name)) return null;
+    var v = { id: st.seq++, kind: kind, name: name || undefined, fam: {} }; v.fam[famKey] = g; l.push(v); return v;
+  }
+  function linkVessel(st, id, famKey, g) { var v = vesselById(st, id); g = Math.round(num(g)); if (!v || !famKey || !(g >= 10 && g <= 3000)) return false; v.fam[famKey] = g; return true; }
+  function removeVessel(st, id) { var l = vList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return { v: l.splice(i, 1)[0], i: i }; return null; }
+  function vessGrams(v, famKey, fill) { return v && v.fam[famKey] > 0 ? Math.round(v.fam[famKey] * (FILL[fill] || 1)) : 0; }
 
   function exportState(st) { return JSON.stringify({ app: 'kalki-kalkifit', v: VERSION, exportedAt: Date.now(), state: st }); }
   function importState(text) {
@@ -345,16 +369,18 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
   var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100' };
+  var MYW = { laganim: 'lagan', laganimda: 'lagan', laganimdagi: 'lagan', laganimdan: 'lagan', kosam: 'kosa', kosamda: 'kosa', kosamdagi: 'kosa', kosamdan: 'kosa', piyolam: 'piyola', piyolamda: 'piyola', piyolamdagi: 'piyola', likopcham: 'likopcha', likopchamda: 'likopcha' };
   var SZW = { kichik: 'kichik', kichkina: 'kichik', mayda: 'kichik', malenkiy: 'kichik', malenkaya: 'kichik', malenkie: 'kichik', orta: 'orta', ortacha: 'orta', srednyaya: 'orta', sredniy: 'orta', katta: 'katta', yirik: 'katta', bolshoy: 'katta', bolshaya: 'katta', bolshie: 'katta' };
   var STOP = { bilan: 1, sho: 0, bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 };
-  [WORDS, UNITW, STOP, SZW].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });          // kalitlar key() shaklida (ikki → iki)
+  [WORDS, UNITW, STOP, SZW, MYW].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });          // kalitlar key() shaklida (ikki → iki)
   function splitText(text) { return String(text || '').split(/[,;\n+]|\sva\s|\sи\s/i).map(function (x) { return x.trim(); }).filter(Boolean); }
   function parseFragment(fr) {                        // "2 katta somsa" → {qty:2, unit:null, name:'somsa', sz:'katta', raw:'katta somsa'}
-    var toks = fr.replace(/(\d)([a-zA-Zа-яА-Я])/g, '$1 $2').split(/\s+/), qty = null, unit = null, name = [], sz = null, raw = [];
+    var toks = fr.replace(/(\d)([a-zA-Zа-яА-Я])/g, '$1 $2').split(/\s+/), qty = null, unit = null, name = [], sz = null, raw = [], my = null;
     toks.forEach(function (t, i) {
       var k = key(t), m = /^(\d+(?:[.,]\d+)?)$/.exec(t), more = i < toks.length - 1;
       if (m && qty == null) { qty = parseFloat(m[1].replace(',', '.')); return; }
       if (WORDS[k] != null && qty == null && more && !name.length) { qty = WORDS[k]; return; }       // "to'rt" va "tort" (торт) farqi: so'zdan keyin nom bo'lsagina son
+      if (MYW[k] && unit == null && more) { my = MYW[k]; unit = VUNIT[my] || 'likop'; if (qty == null) qty = 1; return; }       // «laganimda osh», «kosamda mastava»
       if (UNITW[k] && unit == null && (qty != null || !name.length) && more) { unit = UNITW[k]; if (qty == null) qty = 1; return; }
       if (STOP[k]) return; raw.push(t); if (SZW[k] && sz == null && more) { sz = SZW[k]; return; } name.push(t);
     });
@@ -362,7 +388,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
       var u1 = UNITW[key(name[name.length - 1])], q1 = key(name[name.length - 2]), qv = /^\d+(?:[.,]\d+)?$/.test(q1) ? parseFloat(q1.replace(',', '.')) : WORDS[q1];
       if (u1 && qv != null) { unit = u1; qty = qv; name.length -= 2; raw.length = Math.max(0, raw.length - 2); }
     }
-    return { qty: qty, unit: unit, name: name.join(' '), sz: sz, raw: raw.join(' ') };
+    return { qty: qty, unit: unit, name: name.join(' '), sz: sz, raw: raw.join(' '), my: my };
   }
   /* ---------- oilalar (ota-taom + omillar): baza v2 ---------- */
   function aliasMap(foods) { var m = {}; foods.forEach(function (f) { if (f.al) m[f.id] = f.al.f; }); return m; }      // eski id → oila id
@@ -417,7 +443,14 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
       var qty = p.qty > 0 ? p.qty : 1, u = p.unit, g;
       if (u === 'g100' && p.qty > 0) { g = p.qty; qty = p.qty; }                // "200 g tovuq"
       else { if (!u || unitGrams(food, u) == null) u = (food.b && food.b.filter(function (b) { return b.d; })[0] || { k: food.u[0][0] }).k; if (unitGrams(food, u) == null) u = food.u[0][0]; g = unitGrams(food, u) * qty; if (u === 'g100') { g = qty * 100; } }
+      var vk = fam ? fam.fam.id : hit.id, vs = o && o.vessels ? o.vessels.filter(function (v) { return v.fam[vk] > 0; }) : [];
+      if (vs.length && u !== 'g100') {                                         // foydalanuvchining o'z idishi (shu oila uchun): «laganimda», «bir lagan osh», «2 osh»
+        var want = p.my ? [p.my] : (u === 'kosa' ? ['kosa'] : (u === 'likop' ? ['lagan', 'likopcha'] : (u === 'piyola' ? ['piyola'] : null))), pickV = null;
+        if (want) want.forEach(function (kd) { if (!pickV) pickV = vs.filter(function (v) { return v.kind === kd; })[0]; }); else if (!p.unit) pickV = vs[0];
+        if (pickV) { u = 'v:' + pickV.id; g = pickV.fam[vk] * qty; }
+      }
       var it = { text: fr, fid: hit.id, food: food, unit: u, qty: qty, g: g, est: !!food.e };
+      if (u.indexOf('v:') === 0) { it.vfill = 'tola'; it.vessel = u; }
       if (fam) { it.fam = fam; it.sel = sel; it.szid = fam.fam.sz ? (szid || fam.fam.sz.d) : null; it.vr = food.vr; it.sz = fam.fam.sz ? it.szid : null; }
       items.push(it);
     });
@@ -432,6 +465,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

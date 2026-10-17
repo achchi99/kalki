@@ -152,3 +152,7 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 /* baza v2: oilalar / omillar */
 .sl-xil{font-weight:700;color:var(--mut);margin-left:2px;font-size:.8125rem}
 .sl-two{display:flex;gap:8px;margin-top:8px}.sl-two .rz-btn{flex:1;margin-top:0}.sl-two .sl-src{flex:none;min-width:34%}
+
+/* Mening idishim */
+.sl-vnew{border-style:dashed}.sl-vc{font-weight:700}.sl-vres{text-align:center;font-weight:800;font-size:1.0625rem;min-height:1.6em;margin:6px 0}.rz-chips.sl-fill{margin-bottom:2px}
+.sl-vbar{margin-top:6px}.sl-vbar .rz-actions{margin-top:2px}
