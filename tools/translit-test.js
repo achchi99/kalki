@@ -16,7 +16,7 @@ var APOS_MODLETTER = 'ʻ';
 var CASES = [
   // ---- oddiy harflar ----
   ['aliment', 'алимент', 'oddiy harflar (a,l,i,m,e,n,t)'],
-  ['kalkulyator', 'калкулятор', 'oddiy harflar + ya digraf'],
+  ['kalkulyator', 'калькулятор', 'oddiy harflar + ya digraf'],
 
   // ---- sh/ch/ts/yo/yu/ya digraflari (kichik/katta/BARCHA katta) ----
   ['sh', 'ш', 'sh -> sh (kichik)'],
@@ -114,8 +114,8 @@ var CASES = [
 
   // ---- «ts» sukut bo'yicha «тс»; «ц» faqat ruscha o'zlashma istisnolarda ----
   ['liftsiz', 'лифтсиз', 'liftsiz'], ['mashqsiz', 'машқсиз', 'mashqsiz'], ['sutsiz', 'сутсиз', 'sutsiz'], ['go’shtsiz', 'гўштсиз', 'go’shtsiz'], ['tuzsiz', 'тузсиз', 'tuzsiz'],
-  ['sement', 'цемент', 'sement'], ['militsiya', 'милиция', 'militsiya'], ['konsert', 'консерт', 'konsert'], ['aksiya', 'акция', 'aksiya'], ['stansiya', 'станция', 'stansiya'],
-  ['porsiyaga', 'порцияга', 'porsiya'], ['kalsiy', 'калций', 'kalsiy'], ['sink', 'цинк', 'sink'], ['mayonez', 'майонез', 'mayonez'], ['yogurt', 'йогурт', 'yogurt'], ['pitsa', 'пицца', 'pitsa'], ['assotsiatsiyasi', 'ассоциацияси', 'assotsiatsiya'], ['koeffitsienti', 'коэффициенти', 'koeffitsient'], ['stansiyasi', 'станцияси', 'stansiyasi'], ['o’tsa', 'ўтса', 'o’tsa'], ['vaktsina', 'вакцина', 'vaktsina'], ['ratsion', 'рацион', 'ratsion'], ['sirk', 'цирк', 'sirk'], ['sirka', 'сирка', 'sirka (uksus)'], ['Liftsiz', 'Лифтсиз', 'bosh harf'],
+  ['sement', 'цемент', 'sement'], ['militsiya', 'милиция', 'militsiya'], ['konsert', 'концерт', 'konsert (ц — ruscha o’zlashma)'], ['konsertga', 'концертга', 'konsert + qo’shimcha'], ['aksiya', 'акция', 'aksiya'], ['stansiya', 'станция', 'stansiya'],
+  ['porsiyaga', 'порцияга', 'porsiya'], ['kalsiy', 'кальций', 'kalsiy (ь)'], ['kalsiyni', 'кальцийни', 'kalsiy + qo’shimcha'], ['kalkulyator', 'калькулятор', 'kalkulyator (ь)'], ['Kalkulyatorlar', 'Калькуляторлар', 'kalkulyatorlar'], ['filtr', 'фильтр', 'filtr (ь)'], ['olivye', 'оливье', 'olivye (ь)'], ['pechenye', 'печенье', 'pechenye (ь)'], ['kuryer', 'курьер', 'kuryer (ь)'], ['sirniki', 'сирники', 'o’zgarmaydi'], ['sirok', 'сирок', 'o’zgarmaydi'], ['yanvar', 'январ', 'oy nomi ь’siz'], ['magniy', 'магний', 'magniy'], ['sink', 'цинк', 'sink'], ['mayonez', 'майонез', 'mayonez'], ['yogurt', 'йогурт', 'yogurt'], ['pitsa', 'пицца', 'pitsa'], ['assotsiatsiyasi', 'ассоциацияси', 'assotsiatsiya'], ['koeffitsienti', 'коэффициенти', 'koeffitsient'], ['stansiyasi', 'станцияси', 'stansiyasi'], ['o’tsa', 'ўтса', 'o’tsa'], ['vaktsina', 'вакцина', 'vaktsina'], ['ratsion', 'рацион', 'ratsion'], ['sirk', 'цирк', 'sirk'], ['sirka', 'сирка', 'sirka (uksus)'], ['Liftsiz', 'Лифтсиз', 'bosh harf'],
   // ---- ц-lug'ati: rus tilidan o'zlashgan so'zlarda "s" -> "ц" (qo'shimchalar bilan ham) ----
   ['differensial', 'дифференциал', 'differensial -> дифференциал'],
   ['differensial usulda', 'дифференциал усулда', 'differensial usulda'],

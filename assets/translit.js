@@ -67,10 +67,16 @@ var TS_DICT = [
   ['sikl', 'цикл'], ['aksiya', 'акция'], ['aksiz', 'акциз'], ['auksion', 'аукцион'],
   ['fraksiya', 'фракция'], ['kvitansiya', 'квитанция'], ['proporsional', 'пропорционал'],
   ['sanksiya', 'санкция'], ['silindr', 'цилиндр'], ['sirkul', 'циркул'],
-  ['ssenariy', 'сценарий'], ['stansiya', 'станция'], ['sirk', 'цирк', /^sirka/], ['porsiya', 'порция'], ['kalsiy', 'калций'], ['sink', 'цинк'], ['seliakiya', 'целиакия'],
+  ['ssenariy', 'сценарий'], ['stansiya', 'станция'], ['sirk', 'цирк', /^sirka/], ['porsiya', 'порция'], ['konsert', 'концерт'], ['sink', 'цинк'], ['seliakiya', 'целиакия'],
   ['pitsa', 'пицца'], ['motsarella', 'моцарелла'], ['tunets', 'тунец'], ['mukovistsidoz', 'муковисцидоз'], ['niatsin', 'ниацин'], ['koeffitsient', 'коэффициент'],
   ['mayonez', 'майонез'], ['yogurt', 'йогурт'], ['ekspeditsiya', 'экспедиция']   // sirka (uksus) — «с»
 ];
+/* Rus o'zlashmalarida yumshoq belgi «ь» saqlanadi (kalsiy -> кальций, kalkulyator -> калькулятор). Qoida bilan aniqlab bo'lmaydi — lug'at (ildiz so'z boshida, qo'shimchalar odatiy).
+ * Oy nomlari (yanvar, iyul…) o'zbek kirilida «ь»siz yoziladi — ro'yxatda yo'q. */
+var SOFT_DICT = [
+  ['kalsiy', 'кальций'], ['kalkulyator', 'калькулятор'], ['filtr', 'фильтр'], ['olivye', 'оливье'], ['pechenye', 'печенье'], ['kuryer', 'курьер']
+];
+TS_DICT = TS_DICT.concat(SOFT_DICT);
 TS_DICT.sort(function (a, b) { return b[0].length - a[0].length; });   // uzunroq ildiz avval
 
 function tsLookup(lowerWord) {
