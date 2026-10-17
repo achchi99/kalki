@@ -24,7 +24,7 @@
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
       aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
-      pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
+      pwGramm: 'gramm', pwEq: '1 {u} = {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
       tT: "Matn bilan qo'shish", tPh: 'Masalan: 1 kosa osh, 2 somsa, choy shakar bilan', tGo: 'Aniqlash', tMiss: 'Topilmadi: {x}', tAi: 'AI bilan aniqlash', tAiNote: "Bu matn AI xizmatiga yuboriladi (profil, vazn va tarix yuborilmaydi).", tAiBusy: 'Aniqlanmoqda…', tAiErr: "AI hozir ishlamayapti. Qo'lda qo'shing.", tOffline: "Internet yo'q — AI ishlamaydi. Topilganlarini saqlashingiz mumkin.", tSave: '{n} ta ovqatni saqlash', tAiTag: 'AI taxmini', tHelp: "Faqat siz tasdiqlaganingizda saqlanadi.", tEmpty: 'Hech narsa topilmadi',
       fT: 'Ovqat', fDay: 'Kun', fAddText: "Matn bilan qo'shish", fFavs: 'Sevimlilar', fNoFavs: "Sevimli ovqatlar yo'q. Ovqat qo'shayotganda yurakchani bosing.",
@@ -63,7 +63,7 @@
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
       aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
-      pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
+      pwGramm: 'грамм', pwEq: '1 {u} = {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
       tT: 'Добавить текстом', tPh: 'Например: 1 миска плова, 2 самсы, чай с сахаром', tGo: 'Распознать', tMiss: 'Не найдено: {x}', tAi: 'Определить с помощью ИИ', tAiNote: 'Этот текст будет отправлен сервису ИИ (профиль, вес и история не отправляются).', tAiBusy: 'Определяю…', tAiErr: 'ИИ сейчас недоступен. Добавьте вручную.', tOffline: 'Нет интернета — ИИ не работает. Найденное можно сохранить.', tSave: 'Сохранить: {n}', tAiTag: 'оценка ИИ', tHelp: 'Сохраняется только после вашего подтверждения.', tEmpty: 'Ничего не найдено',
       fT: 'Еда', fDay: 'День', fAddText: 'Добавить текстом', fFavs: 'Избранное', fNoFavs: 'Избранного нет. Нажмите на сердечко при добавлении еды.',
@@ -142,7 +142,7 @@
     fetch('/data/ovqatlar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { db = S.normFoods(j.foods); S.buildIndex(db); dbState = 2; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(); }); })
       .catch(function () { dbState = 0; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(true); }); });
   }
-  var qTimer = null;                                 // qidiruv: har harfda emas, 120 ms kutib
+  var jokeBoot = false, qTimer = null;                                 // qidiruv: har harfda emas, 120 ms kutib
   function srchOpts(limit) { return { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr()), limit: limit }; }      // tenglikda: oxirgi 30 kunda ko'p yeyilgan + sevimlilar
   function allFoods() { return (db || []).concat(st.customFoods || []); }
   function foodById(id) { var l = allFoods(); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
@@ -209,6 +209,7 @@
     daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('.sl-hero')); }); },
     stepcalc: function (n) { return goTab('today', function () { n.highlight($('.sl-rem') || $('.sl-hero')); }); },
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
+    portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
     dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('.sl-hero')); } }); } } });
   function nudges() {
     var out = [], p = prefs(), now = Date.now(), hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
@@ -242,7 +243,9 @@
     h += '<section class="rz-card sl-hero' + (over ? ' over' : '') + '"><button type="button" class="sl-ringbtn" id="ringBtn" data-act="xkcal" aria-label="' + esc(T('hHow') + ' ' + fmt(tot.kcal) + ' ' + T('ringOf', { t: fmt(limit) })) + '">' + ringHtml('ringPg', prev ? prev.ratio : 0) +
       '<span class="sl-rc"><b id="kNum">' + fmt(prev ? prev.eaten : tot.kcal) + '</b><small>' + T('kcal') + '</small><em>' + esc(T('ringOf', { t: fmt(limit) })) + '</em></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
       '<div class="sl-rem"><span>' + esc(T(over ? 'overLbl' : 'remLbl')) + '</span><b>' + fmt(Math.abs(bal.remaining)) + '<small> ' + T('kcal') + '</small></b>' + (bal.credit > 0 ? '<em>' + esc(T('limitParts', { t: fmt(pl.target), c: fmt(bal.credit) })) + '</em>' : '') + '</div>' + dayChip(t) + (!tot.kcal && !x.food.length ? '<p class="rz-mut sm sl-first">' + esc(T('hEmpty')) + '</p>' : '') + '</section>';
-    var jl = G ? G.todayLine(jokeCtx()) : null; if (jl) save(); h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
+    if (G && !jokeBoot) { jokeBoot = true; loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    var jl = G && masofaState !== 1 && dbState !== 1 ? G.todayLine(jokeCtx()) : null; if (jl) save();           // masofa va taomlar bazasi yuklanguncha hazil tanlanmaydi (yuklangach qayta chiziladi) — aks holda qayta ochganda hazil almashib ketardi
+     h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
     h += '<section class="rz-card sl-macros">' + [['mP', 'p', pl.macros.p], ['mF', 'f', pl.macros.f], ['mC', 'c', pl.macros.c]].map(function (m) { var v = Math.round(tot[m[1]]), r = Math.min(1, v / Math.max(1, m[2])); return '<button type="button" class="sl-mac" data-act="xmacro"><span class="l">' + esc(T(m[0])) + '</span><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + r + ')"></i></div><span class="v">' + v + ' / ' + m[2] + ' ' + T('gram') + '</span></button>'; }).join('') + '</section>';
     h += '<section class="rz-card sl-water" id="wCard"><div class="sl-wh"><b>' + ico('drop') + esc(T('wT')) + '</b><button type="button" class="sl-wv" data-act="xwater" id="wTxt">' + esc(T('wOf', { n: wl, m: glasses })) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML() + '</button></div><div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
     for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl && prev ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
@@ -469,8 +472,8 @@
     if (fd.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('phBusy')) + '</b></div>';
     if (fd.phErr) h += '<p class="rz-p warn">' + esc(fd.phErr) + '</p>';
     if (!fd.items.length) return h + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="fphoto">' + ico('cam') + ' ' + esc(T('phPick')) + '</button></div>';
-    h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + fd.items.map(function (it, i) { var kc = Math.round(it.base.kcal * it.mult); return '<div class="sl-ti sl-pi"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt) + ' · ' + fmt(Math.round(it.base.g * it.mult)) + ' ' + T('gram') + ' · ' + esc(T('phApprox')) + '</span><span class="sc" role="group" aria-label="' + esc(T('phScale')) + '">' + [0.5, 1, 1.5, 2].map(function (m) { return '<button type="button" class="rz-chip sm' + (it.mult === m ? ' on' : '') + '" data-act="phsc" data-i="' + i + '" data-m="' + m + '" aria-pressed="' + (it.mult === m) + '">×' + String(m).replace('.', ',') + '</button>'; }).join('') + '</span></span><b>≈ ' + fmt(kc) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="phdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('');
-    return h + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="phsave">' + esc(T('phSave', { n: fd.items.length })) + '</button></div>';
+    h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + itRows(fd.items);
+    return h + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: fd.items.length })) + '</button></div>';
   }
   function phRefresh() { if (kit.sheetKind() === 'add' && fd && fd.mode === 'photo') setSheet(phHtml()); }
   function phShrink(file, cb) {                     // mijozda 1024 px ga kichraytirish, JPEG 0,8
@@ -484,14 +487,9 @@
       if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         fd.busy = false; if (res.s === 429) fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
-        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, ptxt: o.porsiya || '', est: true, ai: true, photo: true, mult: 1, base: { g: o.g || 0, kcal: o.kcal, p: o.o, f: o.y, c: o.u } }; }); phRefresh();
+        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
       }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
     });
-  }
-  function phSave() {
-    var n = fd.items.length, date = fd.date, ids = [];
-    fd.items.forEach(function (it) { var m = it.mult, e = S.addFood(st, date, { fid: null, name: it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''), meal: fd.meal, unit: null, qty: 1, g: Math.round(it.base.g * m), kcal: it.base.kcal * m, p: it.base.p * m, f: it.base.f * m, c: it.base.c * m, est: true, ts: nowTs() }); ids.push(e.id); });
-    kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
   }
   function phSetOffline() { var off = navigator.onLine === false; $$('#phBtn').forEach(function (b) { b.disabled = off; b.title = off ? T('phOffline') : ''; b.setAttribute('aria-disabled', off); }); }
 
@@ -595,30 +593,98 @@
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
-  function curGrams() { var f = fd.food; return fd.unit === 'g100' ? fd.qty : S.unitGrams(f, fd.unit) * fd.qty; }
+  /* ---------- porsiya oynasi (bitta): qidiruvdan tanlash, saqlangan yozuv, AI matn/rasm qatorlari ---------- */
+  function pwO() { return fd.mode === 'item' ? fd.items[fd.ix] : fd; }
+  function pwBaseG(o) { return o.base ? (o.base.g || 0) : 0; }
+  function pwUg(o, u) { if (u === 'g100') return 1; return o.food ? (S.unitGrams(o.food, u) || 0) : pwBaseG(o); }   // 1 birlik necha gramm
+  function pwUnits(o) { return o.food ? o.food.u.map(function (u) { return u[0]; }) : ['pc'].concat(pwBaseG(o) > 0 ? ['g100'] : []); }
+  function pwUName(u) { return u === 'pc' ? unitName('porsiya') : (u === 'g100' ? T('pwGramm') : unitName(u)); }
+  function pwGrams(o) { return o.unit === 'g100' ? o.qty : pwUg(o, o.unit) * o.qty; }
+  function pwCalc(o) {
+    var g = pwGrams(o); if (o.food) return S.portion(o.food, g);
+    var b = o.base, m = o.unit === 'g100' ? (b.g > 0 ? o.qty / b.g : 1) : o.qty, r1 = function (x) { return Math.round(x * m * 10) / 10; };
+    return { g: Math.round(g), kcal: Math.round(b.kcal * m), p: r1(b.p), f: r1(b.f), c: r1(b.c) };
+  }
+  function pwStep(o) { return o.unit === 'g100' ? 10 : 0.5; }
+  function pwMax(o) { return o.unit === 'g100' ? 3000 : 50; }
+  function pwInfo(o) {
+    var g = pwGrams(o), ug = pwUg(o, o.unit); if (o.unit === 'g100') return T('pwNow', { g: fmt(g) });
+    return (ug > 0 ? T('pwEq', { u: pwUName(o.unit), g: fmt(ug) }) + (g > 0 ? ' · ' : '') : '') + (g > 0 ? T('pwNow', { g: fmt(g) }) : '');
+  }
+  function pwQuick(o) { return [0.5, 1, 1.5, 2].map(function (v, i) { var q = o.unit === 'g100' ? v * 100 : v, on = Math.abs(o.qty - q) < 1e-6; return '<button type="button" class="rz-chip sm' + (on ? ' on' : '') + '" data-act="pwq" data-v="' + q + '" aria-pressed="' + on + '">' + ['½', '1', '1½', '2'][i] + '</button>'; }).join(''); }
+  function pwBody(o) {
+    var pt = pwCalc(o), approx = !!(o.base || o.est || (o.food && o.food.e));
+    return '<div class="sl-kc" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
+      (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
+      '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits">' + pwUnits(o).map(function (u) { return '<button type="button" class="rz-chip' + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(pwUName(u)) + '</button>'; }).join('') + '</div>' +
+      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + (o.unit === 'g100' ? esc(T('gram')) : '') + '</i></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
+      '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div><div class="rz-chips sl-pwq" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
+      '<button type="button" class="rz-btn ghost full sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button>';
+  }
+  function itSync(it) {
+    var pt = pwCalc(it); it.g = pt.g; it.kcal = pt.kcal; it.p = pt.p; it.f = pt.f; it.c = pt.c;
+    if (it.ed || it.food) it.ptxt = it.unit === 'g100' ? fmt(pt.g) + ' ' + T('gram') : qtyStr(it.qty) + ' ' + pwUName(it.unit);
+  }
+  function pwUpdate(fromInput) {
+    var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
+    kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
+    $('#fdMac').textContent = T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) });
+    if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
+    $('#fdQu').textContent = o.unit === 'g100' ? T('gram') : ''; $('#fdInfo').textContent = pwInfo(o); $('#fdQuick').innerHTML = pwQuick(o);
+    $$('[data-act=funit]').forEach(function (b) { var on = b.getAttribute('data-u') === o.unit; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  }
+  function pwSetQty(o, q) { o.qty = Math.max(pwStep(o), Math.min(pwMax(o), Math.round(q * 100) / 100)); }
+  function pwSetUnit(o, nu) {                          // birlik almashganda gramm (demak kkal) o'zgarmaydi
+    var g = pwGrams(o), ug = pwUg(o, nu); o.unit = nu;
+    if (g > 0 && ug > 0) o.qty = nu === 'g100' ? Math.round(g) : Math.round(g / ug * 100) / 100; else o.qty = nu === 'g100' ? 100 : 1;
+    o.qty = Math.max(pwStep(o) / (nu === 'g100' ? 1 : 50), Math.min(pwMax(o), o.qty));
+  }
+  function pwSimilar(o) {
+    var nm = o.food ? nameOf(o.food) : o.name, ws = S.key(nm).split(' ').filter(function (w) { return w.length >= 3; }), seen = {}, out = [];
+    [nm].concat(ws).forEach(function (q) { if (q) S.search(allFoods(), q, srchOpts(12)).forEach(function (f) { if ((o.food && f.id === o.food.id) || seen[f.id]) return; seen[f.id] = 1; out.push(f); }); });
+    if (out.length < 5 && o.food && o.food.t) {          // yetmasa — shu turdagi (meva, go'sht…) kaloriyasi yaqin taomlar
+      allFoods().filter(function (f) { return f.t === o.food.t && f.id !== o.food.id && !seen[f.id]; }).sort(function (a, b) { return Math.abs(a.k - o.food.k) - Math.abs(b.k - o.food.k); }).forEach(function (f) { if (out.length < 5) { seen[f.id] = 1; out.push(f); } });
+    }
+    return out.slice(0, 5);
+  }
+  function pwSwapHtml(o) {
+    var l = pwSimilar(o);
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwswapx" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('pwSwapT')) + '</b><span></span></div>' +
+      (l.length ? l.map(function (f) { return '<button type="button" class="sl-row" data-act="pwsw" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + (f.e ? ' · ' + esc(T('aEst')) : '') + '</span></span></button>'; }).join('') : '<div class="rz-mut">' + esc(T('pwNoSim')) + '</div>');
+  }
+  function pwSwapTo(id) {
+    var o = pwO(), f = foodById(id); if (!f) return; var g = pwGrams(o), has = function (u) { return f.u.some(function (x) { return x[0] === u; }); };
+    o.food = f; delete o.base;
+    if (!(o.unit && o.unit !== 'pc' && has(o.unit))) { if (g > 0 && has('g100')) { o.unit = 'g100'; o.qty = Math.round(g); } else { o.unit = f.u[0][0]; o.qty = o.unit === 'g100' ? 100 : 1; } }
+    if (fd.mode === 'item') { o.fid = f.id; o.name = nameOf(f); o.ai = false; o.photo = false; o.est = !!f.e; o.ed = true; itSync(o); }
+    pwScreen();
+  }
+  function pwScreen() { setSheet(fd.mode === 'item' ? itemHtml() : portionHtml()); }
+  function itemHtml() {
+    var it = fd.items[fd.ix];
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><span></span></div>' + pwBody(it) +
+      '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
+  }
+  function itemOpen(i, back) { fd.back = back; fd.ix = i; fd.mode = 'item'; var it = fd.items[i]; if (!it.unit) { it.unit = 'pc'; it.qty = 1; } setSheet(itemHtml()); }
+  function itemBack() { var b = fd.back; fd.mode = b; if (b === 'photo') setSheet(phHtml()); else { setSheet(textHtml()); } }
   function pickFood(id) {
     var f = foodById(id); if (!f) { loadDb(function () { pickFood(id); }); return; }
-    fd.food = f; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; setSheet(portionHtml());
+    fd.food = f; fd.base = null; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; setSheet(portionHtml());
   }
   function portionHtml() {
-    var f = fd.food, pt = S.portion(f, curGrams()), fav = st.favs.indexOf(f.id) > -1;
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nameOf(f)) + '</b><button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button></div>' +
-      '<div class="sl-kc" aria-live="polite"><b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
-      '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips">' + f.u.map(function (u) { return '<button type="button" class="rz-chip' + (fd.unit === u[0] ? ' on' : '') + '" data-act="funit" data-u="' + u[0] + '" aria-pressed="' + (fd.unit === u[0]) + '">' + esc(unitLabel(f, u[0])) + '</button>'; }).join('') + '</div>' +
-      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="fdQty">' + qtyStr(fd.qty) + (fd.unit === 'g100' ? ' ' + T('gram') : '') + '</b><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-      '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') + (f.e ? '<p class="rz-p sm">' + esc(T('pEstNote')) + '</p>' : '') +
-      '<div class="rz-actions">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
-  }
-  function portionUpdate() {
-    var pt = S.portion(fd.food, curGrams()); kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
-    $('#fdMac').textContent = T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) });
-    $('#fdQty').textContent = qtyStr(fd.qty) + (fd.unit === 'g100' ? ' ' + T('gram') : '');
+    var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1, nm = f ? nameOf(f) : (fd.name || '');
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nm) + '</b>' + (f && !f.custom ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : (f ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '<span></span>')) + '</div>' +
+      pwBody(fd) + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') +
+      '<div class="rz-actions sl-sticky">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
   }
   function fSave() {
-    var f = fd.food, g = curGrams(), pt = S.portion(f, g);
+    var f = fd.food, pt = pwCalc(fd);
     if (fd.editId != null) {
       var x = S.dayOf(st, fd.date), e = x && x.food.filter(function (y) { return y.id === fd.editId; })[0];
-      if (e) { e.meal = fd.meal; e.unit = fd.unit; e.qty = fd.qty; e.g = pt.g; e.kcal = pt.kcal; e.p = pt.p; e.f = pt.f; e.c = pt.c; }
+      if (e) {
+        e.meal = fd.meal; e.g = pt.g; e.kcal = pt.kcal; e.p = pt.p; e.f = pt.f; e.c = pt.c;
+        if (f) { e.fid = f.id; e.name = f.custom ? f.n : null; e.unit = fd.unit; e.qty = fd.qty; e.est = !!f.e; } else { e.unit = null; e.qty = 1; }
+      }
       kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); return;
     }
     var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs() });
@@ -629,10 +695,11 @@
   function openEdit(date, id) {
     var x = S.dayOf(st, date), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return;
     var f = e.fid ? foodById(e.fid) : null;
-    fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [] };
-    if (f && f.u.some(function (u) { return u[0] === e.unit; })) { openSheet('add', shHead(T('pEdit')) + '', { noFocus: true }); setSheet(portionHtml()); return; }
-    fd.food = null;                                   // baza topilmadi / AI yozuvi: faqat bo'lim va o'chirish
-    openSheet('add', shHead(T('pEdit')) + '<div class="sl-kc"><b>' + fmt(e.kcal) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(e.name || '') + (e.est ? ' · ' + esc(T('aEst')) : '') + '</p><div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(e.meal, 'fmeal2') + '<div class="rz-actions"><button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>');
+    fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [], name: e.name || '' };
+    if (f && f.u.some(function (u) { return u[0] === e.unit; })) { if (e.unit === 'g100' && e.qty < 5 && e.g > 5) fd.qty = e.g; openSheet('add', '', { noFocus: true }); setSheet(portionHtml()); return; }
+    fd.food = null; fd.unit = 'pc'; fd.qty = 1; fd.est = true;                    // baza topilmadi / AI yozuvi: shu yozuvning o'zi asos (×porsiya)
+    fd.base = { g: e.g || 0, kcal: e.kcal, p: e.p || 0, f: e.f || 0, c: e.c || 0 };
+    openSheet('add', '', { noFocus: true }); setSheet(portionHtml());
   }
   function fDelete() { var d = fd.date, id = fd.editId; kit.closeSheet(); rowOut(id, function () { var rm = S.removeFood(st, d, id); commit(); toast(T('del1'), function () { S.restoreFood(st, d, rm); commit(); }); }); }
 
@@ -662,23 +729,26 @@
     var h = shHead(T('tT')) + '<input id="txQ" class="sl-ta" type="text" autocomplete="off" autocapitalize="off" enterkeyhint="done" placeholder="' + esc(T('tPh')) + '" aria-label="' + esc(T('tT')) + '" value="' + esc(fd.txt || '') + '"><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="txgo">' + esc(T('tGo')) + '</button></div><div id="txOut">' + textOut() + '</div>';
     return h;
   }
+  function itRows(items) {
+    return items.map(function (it, i) { var ap = it.ai || it.est || it.base; return '<div class="sl-ti"><button type="button" class="sl-tib" data-act="itedit" data-i="' + i + '" aria-label="' + esc(T('pwEditRow', { x: it.name })) + '"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt || '') + (it.ai ? ' · ' + esc(it.photo ? T('phApprox') : T('tAiTag')) : (ap ? ' · ' + esc(T('aEst')) : '')) + '</span></span><b>' + (ap ? '≈ ' : '') + fmt(it.kcal) + '<small> ' + T('kcal') + '</small></b>' + ico('pen', 'sl-pen') + '</button><button type="button" class="rz-x" data-act="txdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('');
+  }
   function textOut() {
     var items = fd.items, h = '', offline = navigator.onLine === false;
     if (fd.parsed && !items.length && !(fd.missing || []).length) h += '<div class="rz-mut">' + esc(T('tEmpty')) + '</div>';
-    items.forEach(function (it, i) { h += '<div class="sl-ti"><span class="m"><span class="nm">' + esc(it.name) + '</span><span class="tm">' + esc(it.ptxt) + (it.ai ? ' · ' + esc(T('tAiTag')) : (it.est ? ' · ' + esc(T('aEst')) : '')) + '</span></span><b>' + ((it.ai || it.est) ? '≈ ' : '') + fmt(it.kcal) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="txdel" data-i="' + i + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; });
+    h += itRows(items);
     if ((fd.missing || []).length) {
       h += '<p class="rz-p warn">' + esc(T('tMiss', { x: fd.missing.join(', ') })) + '</p>';
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
     if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
-    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('tSave', { n: items.length })) + '</button></div>';
+    if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: items.length })) + '</button></div>';
     return h;
   }
   function txRefresh() { var o = $('#txOut'); if (o) o.innerHTML = textOut(); }
   function txGo() {
     fd.txt = $('#txQ').value; var run = function () {
       var r = S.parseText(fd.txt, allFoods(), { recents: st.recents, favs: st.favs }); fd.parsed = true; fd.aiErr = false;
-      fd.items = r.items.map(function (x) { var pt = S.portion(x.food, x.g); return { name: nameOf(x.food), fid: x.fid, unit: x.unit, qty: x.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: x.est, ai: false, ptxt: x.unit === 'g100' ? fmt(x.g) + ' ' + T('gram') : qtyStr(x.qty) + ' ' + unitName(x.unit) }; });
+      fd.items = r.items.map(function (x) { var it = { name: nameOf(x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false }; itSync(it); return it; });
       fd.missing = r.missing; txRefresh();
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
@@ -689,13 +759,16 @@
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
-      res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, unit: null, qty: 1, g: 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '' }); });
+      res.j.ovqatlar.forEach(function (o) { fd.items.push({ name: o.nom, fid: null, food: null, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });
   }
   function txSave() {
     var n = fd.items.length, date = fd.date, ids = [];
-    fd.items.forEach(function (it) { sendTaklif(it); var e = S.addFood(st, date, { fid: it.fid, name: it.fid ? null : it.name, meal: fd.meal, unit: it.unit, qty: it.qty, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() }); ids.push(e.id); if (it.ai) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); });
+    fd.items.forEach(function (it) {
+      sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
+      ids.push(e.id); if (!it.fid) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : '');
+    });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true);
   }
 
@@ -921,8 +994,8 @@
       case 'cusave': cuSave(); break;
       case 'fback': if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } break;
       case 'ffav': { var on = S.toggleFav(st, fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
-      case 'funit': { var nu = el.getAttribute('data-u'); if ((nu === 'g100') !== (fd.unit === 'g100')) fd.qty = nu === 'g100' ? 100 : 1; fd.unit = nu; $$('[data-act=funit]').forEach(function (b) { var on2 = b === el; b.classList.toggle('on', on2); b.setAttribute('aria-pressed', on2); }); portionUpdate(); break; }
-      case 'fqty': { var step = fd.unit === 'g100' ? 25 : 0.5, nq = fd.qty + (+el.getAttribute('data-s')) * step; fd.qty = Math.max(step, Math.min(fd.unit === 'g100' ? 3000 : 50, Math.round(nq * 100) / 100)); portionUpdate(); vib(5); break; }
+      case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'); if (nu !== o1.unit) pwSetUnit(o1, nu); pwUpdate(); break; }
+      case 'fqty': { var o2 = pwO(); pwSetQty(o2, o2.qty + (+el.getAttribute('data-s')) * pwStep(o2)); pwUpdate(); vib(5); break; }
       case 'fmeal': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal]').forEach(function (b) { var on3 = b === el; b.classList.toggle('on', on3); b.setAttribute('aria-pressed', on3); }); break;
       case 'fmeal2': { var x2 = S.dayOf(st, fd.date), e2 = x2 && x2.food.filter(function (y) { return y.id === fd.editId; })[0]; if (e2) { e2.meal = el.getAttribute('data-m'); save(); kit.closeSheet(); render(); } break; }
       case 'fmeal3': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal3]').forEach(function (b) { var on4 = b === el; b.classList.toggle('on', on4); b.setAttribute('aria-pressed', on4); }); break;
@@ -935,9 +1008,13 @@
       case 'yunit': { var yu = el.getAttribute('data-u'); if ((yu === 'g100') !== (yd.unit === 'g100')) yd.qty = yu === 'g100' ? 100 : 1; yd.unit = yu; $$('[data-act=yunit]').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); yUpdate(); break; }
       case 'yqty': { var ys = yd.unit === 'g100' ? 25 : 0.5, yq = yd.qty + (+el.getAttribute('data-s')) * ys; yd.qty = Math.max(ys, Math.min(yd.unit === 'g100' ? 3000 : 50, Math.round(yq * 100) / 100)); yUpdate(); vib(5); break; }
       case 'fphoto': if (navigator.onLine !== false) { var pin = $('#phIn'); if (pin) { pin.value = ''; pin.click(); } } break;
-      case 'phsc': { var pi = fd.items[+el.getAttribute('data-i')]; if (pi) { pi.mult = +el.getAttribute('data-m'); phRefresh(); } break; }
+      case 'itedit': itemOpen(+el.getAttribute('data-i'), fd.mode === 'photo' ? 'photo' : 'text'); break;
+      case 'pwdone': itemBack(); break;
+      case 'pwq': { var o3 = pwO(); pwSetQty(o3, +el.getAttribute('data-v')); pwUpdate(); vib(5); break; }
+      case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
+      case 'pwswapx': pwScreen(); break;
+      case 'pwsw': pwSwapTo(el.getAttribute('data-id')); break;
       case 'phdel': fd.items.splice(+el.getAttribute('data-i'), 1); phRefresh(); break;
-      case 'phsave': phSave(); break;
       case 'frecipe': case 'rcnew': openRecipe(); break;
       case 'rcedit': openRecipe(el.getAttribute('data-id')); break;
       case 'rcadd': rc.mode = 'ing'; rc.q = ''; setSheet(rcSearchHtml()); break;
@@ -966,7 +1043,10 @@
       case 'obback': obGo(Math.max(1, ob.step - 1), 'b'); break;
     }
   });
-  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
+  root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
+  root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'fdQty') { e.preventDefault(); e.target.blur(); } });
+  if (window.visualViewport) { var vv = window.visualViewport, vvf = function () { var kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)); root.style.setProperty('--kb', (kb > 80 ? kb : 0) + 'px'); }; vv.addEventListener('resize', vvf); vv.addEventListener('scroll', vvf); }
+  root.addEventListener('input', function (e) { var t = e.target; if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
     if (t.id === 'phIn') { var f0 = t.files && t.files[0]; if (f0) phFile(f0); } else if (t.id === 'jkParty') { S.ensureDay(st, todayStr()).party = t.checked; commit(); } else if (t.id === 'obPreg') ob.preg = t.checked; else if (t.id === 'peP') { pe.preg = t.checked; peRepaint(); } else if (t.hasAttribute && t.hasAttribute('data-sh')) { shSel[t.getAttribute('data-sh')] = t.checked; shPaint(); }
