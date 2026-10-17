@@ -733,7 +733,7 @@
     h += '<div class="rz-fl">' + esc(T('vcHow')) + '</div><div class="rz-chips">' + ['scale', 'noscale'].map(function (m) { return '<button type="button" class="rz-chip' + (vc.method === m ? ' on' : '') + '" data-act="vmeth" data-m="' + m + '" aria-pressed="' + (vc.method === m) + '">' + esc(T(m === 'scale' ? 'vcScaleOn' : 'vcScaleOff')) + '</button>'; }).join('') + '</div>';
     if (vc.method === 'scale') h += '<p class="rz-p sm">' + esc(T('vcHint')) + '</p>' + numFld('vcFull', T('vcFull'), vc.full, '', 'decimal') + numFld('vcEmpty', T('vcEmpty'), vc.empty, '', 'decimal') + numFld('vcDirect', T('vcDirect'), vc.direct, '', 'decimal');
     else { var sg = vStdG(o, vc.kind); h += '<p class="rz-p">' + esc(T('vcStd', { k: T('vs_' + vc.kind), g: fmt(sg) })) + '</p><div class="rz-fl">' + esc(T('vcCompare')) + '</div><div class="rz-chips">' + ['kichik', 'ohshash', 'katta'].map(function (k) { return '<button type="button" class="rz-chip' + (vc.scale === k ? ' on' : '') + '" data-act="vscale" data-s="' + k + '" aria-pressed="' + (vc.scale === k) + '">' + esc(T('vc_' + k)) + '</button>'; }).join('') + '</div>'; }
-    h += '<div class="sl-vres" id="vcRes" aria-live="polite">' + vcResTxt() + '</div><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="vsave">' + esc(T('vcSave')) + '</button></div>';
+    h += '<div class="sl-sticky sl-vbar"><div class="sl-vres" id="vcRes" aria-live="polite">' + vcResTxt() + '</div><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="vsave">' + esc(T('vcSave')) + '</button></div></div>';
     return h;
   }
   function vcResTxt() { var g = vcGrams(); return g >= 10 ? T('vcRes', { g: fmt(g) }) : ''; }
