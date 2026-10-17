@@ -1,5 +1,63 @@
 # Tarozida tekshirish
 
+## 0. YIELD O'LCHOVI — eng muhim tekshiruv (avval shu)
+
+**Nima uchun:** taom kaloriyasini eng ko'p buzadigan narsa — pishgandagi jami vazn (yield). Xom masalliqlar vazni + pishgan taom vazni berilsa, **kkal/100 g avtomatik** hisoblanadi. 3 ta taom yetadi: **osh, manti, sho'rva**.
+
+**Qanday:** (1) hamma XOM masalliqni **alohida** torting; (2) **bo'sh qozonni** torting; (3) taom pishgach **qozon + pishgan taom** (butun) torting; (4) ixtiyoriy: o'zingiz suzadigan 1 laganni torting.
+
+Raqamlarni **`data/baza-olchovlar.json`** ga yozasiz (nomi bo'yicha: `xom_g`, `qozon_bosh_g`, `qozon_toliq_g`, `porsiya_g`). Keyin:
+
+```bash
+node tools/baza-hisob.js --olchov     # hisobot: yield, kkal/100 g, retsept va bazadagi qiymat bilan farq
+node tools/baza-hisob.js --kalibr     # retseptni shu o'lchov bilan kalibrlaydi («taxminiy» belgisi olinadi)
+node tools/baza-hisob.js --yoz        # ovqatlar.json ni qayta yasaydi (yangi qiymat, farq chiqadi)
+```
+
+### 0.1 Osh (uyda, qozonda)
+
+| Nima tortiladi | JSON maydoni | g |
+|---|---|---|
+| Guruch (xom) | `xom_g.guruch` | |
+| Qo'y go'shti (xom, suyaksiz) | `xom_g.qoy` | |
+| Mol go'shti (xom, suyaksiz) | `xom_g.mol` | |
+| Sabzi (xom, tozalangan) | `xom_g.sabzi` | |
+| Piyoz (xom, tozalangan) | `xom_g.piyoz` | |
+| Yog' | `xom_g.yog` | |
+| Qo'shilgan suv (ixtiyoriy) | `suv_g` | |
+| **Bo'sh qozon** | `qozon_bosh_g` | |
+| **Qozon + pishgan osh** | `qozon_toliq_g` | |
+| 1 lagan (o'zingiz suzadigan) | `porsiya_g` | |
+
+### 0.2 Manti
+
+| Nima tortiladi | JSON maydoni | g |
+|---|---|---|
+| Un | `xom_g.un` | |
+| Xamirga qo'shilgan suv | `xom_g.suv` | |
+| Mol / qo'y qiymasi (xom) | `xom_g.mol` / `xom_g.qoy` | |
+| Piyoz | `xom_g.piyoz` | |
+| Dumba/yog' (bo'lsa) | `xom_g.dumba` | |
+| **Bo'sh kasqon (idish)** | `qozon_bosh_g` | |
+| **Idish + pishgan manti** (suvsiz, hammasi) | `qozon_toliq_g` | |
+| 1 manti yoki 5 dona | `porsiya_g` | |
+
+### 0.3 Sho'rva
+
+| Nima tortiladi | JSON maydoni | g |
+|---|---|---|
+| Qo'y go'shti (xom, suyaksiz) | `xom_g.qoy` | |
+| Kartoshka | `xom_g.kartoshka` | |
+| Sabzi | `xom_g.sabzi` | |
+| Piyoz | `xom_g.piyoz` | |
+| Pomidor | `xom_g.pomidor` | |
+| Qo'shilgan suv (ixtiyoriy) | `suv_g` | |
+| **Bo'sh qozon** | `qozon_bosh_g` | |
+| **Qozon + pishgan sho'rva** (suyagi olingan) | `qozon_toliq_g` | |
+| 1 kosa (o'zingiz quyadigan) | `porsiya_g` | |
+
+> Manti va sho'rvada yog' qatlami va go'sht ulushi o'zgarsa natija o'zgaradi — shu uchun **qanday pishirgan bo'lsangiz shundayligicha** o'lchang (o'rtacha emas).
+
 **MAJBURIY: A bo'lim (1–8 universal o'lchovlar).** B bo'lim (9–20) — *ixtiyoriy, vaqt bo'lsa*. C bo'lim — 5 ta uy taomi (v2 sinovi).
 
 Maqsad: bazadagi porsiya birliklari grammini **haqiqatga** yaqinlashtirish (aniqlik ±15%, `docs/baza-v2-reja.md`).

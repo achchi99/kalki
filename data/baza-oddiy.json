@@ -1,0 +1,98 @@
+{
+ "v": 1,
+ "izoh": "Oddiy mahsulotlar: eski manba izohidagi USDA fdc_id lar. tools/baza-v2.js bazadagi kkal ni USDA bilan solishtiradi (±10% — tekshirilgan sana `tk` qo'yiladi; aks holda ro'yxatga farq sifatida chiqadi, qiymat o'zgartirilmaydi).",
+ "oddiy": {
+  "grechka": {
+   "usda": 170686,
+   "izoh": "USDA 170686 + calorizator «без масла»; pishgan holat"
+  },
+  "guruch": {
+   "usda": 168878,
+   "izoh": "USDA 168878 + calorizator — mos"
+  },
+  "mol-gosht": {
+   "usda": 171203,
+   "izoh": "USDA 171203 + calorizator — mos"
+  },
+  "qoy-gosht": {
+   "usda": 172497,
+   "izoh": "USDA 172497 + calorizator — mos"
+  },
+  "tovuq-kokrak": {
+   "usda": 171478,
+   "izoh": "USDA 171478 (stewed) + calorizator: qaynatilgan ko'krak ~144–151 kkal"
+  },
+  "tovuq-son": {
+   "usda": 173625,
+   "izoh": "USDA 173625 (terili) + calorizator окорочок; terili/terisiz o'rtasi"
+  },
+  "sut": {
+   "usda": 171265,
+   "izoh": "USDA 171265 + calorizator — mos"
+  },
+  "qatiq": {
+   "usda": 171284,
+   "izoh": "USDA 171284 + calorizator — mos"
+  },
+  "choy-shakar": {
+   "usda": 169655,
+   "izoh": "Hisob: 5 g shakar/100 ml (USDA 169655); calorizator ~7 g — shakarga bog'liq"
+  },
+  "kola": {
+   "usda": 174852,
+   "izoh": "USDA 174852 + calorizator — mos"
+  },
+  "burger": {
+   "usda": 170320,
+   "izoh": "USDA 170320 + calorizator — mos"
+  },
+  "pitsa": {
+   "usda": 173292,
+   "izoh": "USDA 173292 + calorizator — mos"
+  },
+  "kartoshka": {
+   "usda": 170440,
+   "izoh": "USDA 170440 + calorizator — mos"
+  },
+  "makaron": {
+   "usda": 169737,
+   "izoh": "USDA 169737 (158) + calorizator (112) — o'rtasida"
+  },
+  "suli": {
+   "usda": 171675,
+   "izoh": "USDA 171675 + calorizator — mos"
+  },
+  "olma": {
+   "usda": 171688,
+   "izoh": "USDA 171688 + calorizator — mos"
+  },
+  "banan": {
+   "usda": 173944,
+   "izoh": "USDA 173944 + calorizator — mos"
+  },
+  "pomidor": {
+   "usda": 170457,
+   "izoh": "USDA 170457 + calorizator — mos"
+  },
+  "sariyog": {
+   "usda": 173410,
+   "izoh": "USDA 173410 + calorizator — mos"
+  },
+  "pishloq": {
+   "usda": 171241,
+   "izoh": "USDA 171241 + calorizator — mos"
+  },
+  "shokolad-sut": {
+   "usda": 167587,
+   "izoh": "USDA 167587 + calorizator — mos"
+  },
+  "tuxum": {
+   "usda": 173424,
+   "izoh": "USDA 173424 + calorizator — mos"
+  },
+  "non": {
+   "usda": 174915,
+   "izoh": "USDA 174915 + calorizator — mos"
+  }
+ }
+}

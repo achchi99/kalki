@@ -1,0 +1,56 @@
+{
+ "v": 1,
+ "izoh": "Uy o'lchovi (tarozida). Faqat o'zingiz to'ldirasiz: xom_g — har masalliqning XOM vazni (g), qozon_bosh_g — bo'sh qozon, qozon_toliq_g — pishgan taom bilan qozon, porsiya_g — 1 porsiya (lagan/kosa) vazni (ixtiyoriy). Qoldirilgan (null) maydon e'tiborsiz. Keyin: node tools/baza-hisob.js --olchov (hisobot) va --kalibr (retseptni kalibrlash), so'ng node tools/baza-hisob.js --yoz.",
+ "olchovlar": [
+  {
+   "id": "osh",
+   "retsept": "osh.orta.odatiy",
+   "xom_g": {
+    "guruch": null,
+    "qoy": null,
+    "mol": null,
+    "sabzi": null,
+    "piyoz": null,
+    "yog": null
+   },
+   "suv_g": null,
+   "qozon_bosh_g": null,
+   "qozon_toliq_g": null,
+   "porsiya_g": null,
+   "eslatma": "Go'sht turi: qo'y → `qoy`, mol → `mol` (ikkalasi bo'lsa ikkalasini yozing). Suv: pishirishda qo'shilgan suv (ixtiyoriy — yield qozon tarozisidan olinadi)."
+  },
+  {
+   "id": "manti",
+   "retsept": "manti.goshtli",
+   "xom_g": {
+    "un": null,
+    "suv": null,
+    "mol": null,
+    "qoy": null,
+    "piyoz": null,
+    "dumba": null
+   },
+   "suv_g": null,
+   "qozon_bosh_g": null,
+   "qozon_toliq_g": null,
+   "porsiya_g": null,
+   "eslatma": "Xamir: un + suv (suv ham `xom_g.suv` ga). Idish (kasqon/qozon) bo'sh va pishgan manti bilan tortiladi (suvsiz)."
+  },
+  {
+   "id": "shurva",
+   "retsept": "shurva.odatiy",
+   "xom_g": {
+    "qoy": null,
+    "kartoshka": null,
+    "sabzi": null,
+    "piyoz": null,
+    "pomidor": null
+   },
+   "suv_g": null,
+   "qozon_bosh_g": null,
+   "qozon_toliq_g": null,
+   "porsiya_g": null,
+   "eslatma": "Pishgan sho'rva butun qozon (suyuqligi bilan); go'sht suyakli bo'lsa suyakni olib tortiladi."
+  }
+ ]
+}

@@ -210,6 +210,46 @@
     "juft": true,
     "belgi": "kcal"
    }
+  },
+  "bodring": {
+   "nom": "Bodring (xom)",
+   "usda": 168409,
+   "yield": {
+    "q": 0.95,
+    "taxmin": true
+   }
+  },
+  "redis": {
+   "nom": "Turp/redis (xom)",
+   "usda": 169276,
+   "yield": {
+    "q": 0.95,
+    "taxmin": true
+   }
+  },
+  "qatiq": {
+   "nom": "Qatiq/yogurt (tabiiy, to'liq sut)",
+   "usda": 171284,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
+  },
+  "uzum_barg": {
+   "nom": "Uzum bargi (xom)",
+   "usda": 168575,
+   "yield": {
+    "q": 0.85,
+    "taxmin": true
+   }
+  },
+  "shakar": {
+   "nom": "Shakar",
+   "usda": 169655,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   }
   }
  }
 }

@@ -12,6 +12,8 @@ ids = set()
 for v in mas['masalliq'].values():
     for k in ('usda', 'pishgan'):
         if v.get(k): ids.add(str(v[k]))
+od = json.load(open(os.path.join(ROOT, 'data', 'baza-oddiy.json'), encoding='utf8'))
+for v in od['oddiy'].values(): ids.add(str(v['usda']))
 z = zipfile.ZipFile(zp); base = 'FoodData_Central_sr_legacy_food_csv_2018-04/'
 rd = lambda n: csv.DictReader(io.TextIOWrapper(z.open(base + n), encoding='utf-8'))
 want = {'1008': 'kcal', '1003': 'p', '1004': 'f', '1005': 'c', '1051': 'suv'}
