@@ -1,6 +1,7 @@
 /* kalki.uz — "KalkiFit" ilovasiga xos uslub (umumiy qismi: assets/css/appkit.css). Iliq aksent: shaftoli-qizil (AA kontrast). */
 .sl{--accsoft:#FBEBE4;--acc2:#C2461F;--line:#E6DDD8;--water:#2F7FC1}
-@media (prefers-color-scheme:dark){.sl{--accsoft:#3A241C;--acc2:#FF9B75;--line:#33403A;--water:#7CC0F5}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--accsoft:#3A241C;--acc2:#FF9B75;--line:#33403A;--water:#7CC0F5}}
+html[data-theme=dark] .sl{--accsoft:#3A241C;--acc2:#FF9B75;--line:#33403A;--water:#7CC0F5}
 .sl-ci{width:40px;height:40px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--accsoft);color:var(--acc2);flex:none}
 .sl-ci.big{width:48px;height:48px;border-radius:14px}
 .sl-hero{text-align:center;padding:18px 16px 16px}
@@ -10,7 +11,8 @@
 .sl-ring .tr{fill:none;stroke:var(--line);stroke-width:14}
 .sl-ring .pg{fill:none;stroke:var(--acc2);stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.2,.8,.2,1)}
 .sl-hero.over .pg{stroke:#D69A00}
-@media (prefers-color-scheme:dark){.sl-hero.over .pg{stroke:#FFD98A}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl-hero.over .pg{stroke:#FFD98A}}
+html[data-theme=dark] .sl-hero.over .pg{stroke:#FFD98A}
 .sl-rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
 .sl-rc b{font-size:2.6rem;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
 .sl-rc small{font-size:var(--t-s,.9375rem);font-weight:700;color:var(--mut)}
@@ -93,7 +95,8 @@ body.v2 .rz input.sl-ta{color:var(--ink);background:var(--bg)}
 .sl-joke .rz-i{flex:none;color:var(--acc2);margin-top:3px}.sl-joke p{margin:0;font-weight:600;line-height:1.4}
 p.sl-fact{font-weight:600;margin:8px 0 0}
 .sl-cal,.sl-hero{--c-near:#CFEBDD;--c-nearb:#2E9E63;--c-low:#D3E4F7;--c-lowb:#5B8DC9;--c-high:#FBE3A6;--c-highb:#C98A00;--c-part:#ECEEEA;--c-partb:#8A958E}
-@media (prefers-color-scheme:dark){.sl-cal,.sl-hero{--c-near:#1F4D38;--c-nearb:#57C48A;--c-low:#1E3550;--c-lowb:#7FB0EA;--c-high:#54421A;--c-highb:#E8B23A;--c-part:#26302B;--c-partb:#7B8A81}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl-cal,html:not([data-theme=light]) .sl-hero{--c-near:#1F4D38;--c-nearb:#57C48A;--c-low:#1E3550;--c-lowb:#7FB0EA;--c-high:#54421A;--c-highb:#E8B23A;--c-part:#26302B;--c-partb:#7B8A81}}
+html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-near:#1F4D38;--c-nearb:#57C48A;--c-low:#1E3550;--c-lowb:#7FB0EA;--c-high:#54421A;--c-highb:#E8B23A;--c-part:#26302B;--c-partb:#7B8A81}
 .sl-calg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:6px 0}
 .sl-calg>i{font-style:normal;text-align:center;color:var(--mut);font-size:.8rem;font-weight:700;padding:2px 0}
 .sl-calg .c,.sl-leg .c{border-radius:10px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-weight:700;font-variant-numeric:tabular-nums}
@@ -156,3 +159,53 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 /* Mening idishim */
 .sl-vnew{border-style:dashed}.sl-vc{font-weight:700}.sl-vres{text-align:center;font-weight:800;font-size:1.0625rem;min-height:1.6em;margin:6px 0}.rz-chips.sl-fill{margin-bottom:2px}
 .sl-vbar{margin-top:6px}.sl-vbar .rz-actions{margin-top:2px}
+
+/* ===================== KalkiFit dizayn tokenlari (rang, kartochka, matn darajalari) — BITTA joyda ===================== */
+/* Och mavzu — standart; qorong'i: tizim sozlamasi (Avto) yoki Profil → Mavzu (data-theme="dark"|"light" — <html>da). Matn kontrasti WCAG AA (≥4.5:1), katta matn/element ≥3:1 — test-kalkifit-soddalik.mjs tekshiradi. */
+.sl{--bg:#F5F3EF;--card:#FFFFFF;--ink:#1B1F1D;--mut:#4F5A54;--line:#E2DBD4;--soft:#EEE9E3;--acc2:#B93E18;--accink:#9E3413;--accsoft:#FBEBE4;--onacc:#FFFFFF;--water:#2F7FC1;--shadow:0 1px 2px rgba(27,31,29,.06),0 6px 20px rgba(27,31,29,.07);--r:16px}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}}
+html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3BC;--line:#3A4943;--soft:#27342E;--acc2:#FF9B75;--accink:#FFB296;--accsoft:#3D271F;--onacc:#1A0C07;--water:#7CC0F5;--shadow:0 0 0 1px #34433C,0 8px 24px rgba(0,0,0,.35)}
+.sl .rz-card{box-shadow:var(--shadow);border-radius:var(--r)}
+/* tugma ierarxiyasi: to'ldirilgan (accent) — faqat asosiy amal; yordamchi — sokin kulrang yoki matn */
+.sl .rz-btn{background:var(--soft);color:var(--ink);border-radius:12px}
+.sl .rz-btn.primary{background:var(--acc2);color:var(--onacc)}
+.sl .rz-btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.sl .rz-btn.danger:not(.primary){color:#B2412F;border-color:#B2412F;background:transparent}
+.sl .rz-chip{border:0;background:var(--soft);color:var(--ink);border-radius:10px;font-weight:700}
+.sl .rz-chip.on{background:var(--accsoft);color:var(--accink);box-shadow:inset 0 0 0 2px var(--accink)}
+.sl .rz-chip.sl-vnew{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.sl .rz-seg{background:var(--soft)}.sl .rz-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.sl .rz-tab.on{color:var(--accink)}.sl .rz-nav{background:var(--card)}
+.sl .rz-fab{width:56px;height:56px;top:-22px;background:var(--ink);color:var(--bg);border:4px solid var(--bg);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.sl .rz-fab .rz-i{width:26px;height:26px}.sl .rz-fab .rz-fabl{position:absolute;top:57px;left:50%;transform:translateX(-50%);font-size:.75rem;font-weight:700;color:var(--mut);white-space:nowrap}
+.sl .rz-tab .l,.sl .rz-tab .s{font-size:.8125rem}
+.sl-plus{background:var(--soft);color:var(--ink)}
+.sl-sv{border:0;background:transparent;color:var(--accink);padding:0 8px}.sl-sv span{color:var(--accink)}
+.sl-ci{background:var(--accsoft);color:var(--accink)}
+.sl-txtbtn{border:0;background:transparent;color:var(--mut);font-weight:700;text-decoration:underline;min-height:44px;padding:0 8px;font-size:var(--t-s,.9375rem)}
+/* BUGUN */
+.sl-hd{font-size:1.375rem;margin:4px 2px 10px}
+.sl-cal{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;margin:0 0 12px}
+.sl-nums{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:0;min-height:56px}
+.sl-nums .n{display:flex;flex-direction:column;gap:2px;min-width:0}.sl-nums small{color:var(--mut);font-weight:700;font-size:var(--t-xs,.875rem)}
+.sl-nums b{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.15;white-space:nowrap}
+.sl-nums .n:nth-child(3) b{color:var(--accink)}
+.sl-prog{margin:10px 0 4px}.sl-cal .rz-bar.thin{background:var(--soft)}
+.sl-over{margin:6px 0 0;color:var(--ink);font-weight:800;font-size:var(--t-s,.9375rem)}
+.sl-note{margin:6px 0 0;color:var(--mut);font-size:var(--t-xs,.875rem);font-weight:600}
+.sl-main{margin:0 0 12px;min-height:56px;font-size:1.0625rem;flex:none}
+.sl-first{margin:-6px 4px 12px}
+.sl-jflash{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--soft);font-weight:700;font-size:var(--t-s,.9375rem)}
+.sl-dayend{text-align:center;margin:0 0 12px}.sl-dayend.done{color:var(--accink);font-weight:800}
+.sl-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.sl-mini{margin:0;padding:12px;display:flex;flex-direction:column;gap:8px}.sl-mini .rz-btn{min-height:44px;width:100%}
+.sl-minib{border:0;background:transparent;text-align:left;color:inherit;padding:0;display:flex;flex-direction:column;gap:4px;min-height:44px;width:100%}
+.sl-minib .l{display:inline-flex;gap:6px;align-items:center;font-size:var(--t-xs,.875rem);font-weight:800;color:var(--mut)}.sl-minib .l .rz-i{width:18px;height:18px}
+.sl-minib b{font-size:1.0625rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.sl-macrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;border:0;text-align:left;color:inherit;margin:0 0 12px;min-height:56px}
+.sl-macrow span{display:flex;flex-direction:column;min-width:0}.sl-macrow small{color:var(--mut);font-weight:700;font-size:var(--t-xs,.875rem)}
+.sl-macrow b{font-size:1.125rem;font-weight:800;font-variant-numeric:tabular-nums}.sl-macrow i{font-style:normal;color:var(--mut);font-size:.8125rem;font-weight:600}
+/* + (Qo'shish) menyusi */
+.sl-fabg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 8px}
+.sl-fabt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:96px;border:0;border-radius:var(--r);background:var(--soft);color:var(--ink);font-weight:800;font-size:var(--t-m,1.0625rem)}
+.sl-fabt .rz-i{width:30px;height:30px;color:var(--accink)}
