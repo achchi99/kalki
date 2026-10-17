@@ -24,7 +24,7 @@ var CASES = [
   ['SH', 'Ш', 'sh -> sh (BARCHA KATTA)'],
   ['ch', 'ч', 'ch -> ch (kichik)'],
   ['Ch', 'Ч', 'ch -> ch (Bosh harf)'],
-  ['ts', 'ц', 'ts -> ts'],
+  ['ts', 'тс', 'ts -> тс (sukut bo’yicha; «ц» faqat istisno so’zlarda)'],
   ['yo', 'ё', 'yo -> yo'],
   ['yu', 'ю', 'yu -> yu'],
   ['ya', 'я', 'ya -> ya'],
@@ -112,6 +112,10 @@ var CASES = [
     'ikkita fayl formati bitta jumlada'
   ],
 
+  // ---- «ts» sukut bo'yicha «тс»; «ц» faqat ruscha o'zlashma istisnolarda ----
+  ['liftsiz', 'лифтсиз', 'liftsiz'], ['mashqsiz', 'машқсиз', 'mashqsiz'], ['sutsiz', 'сутсиз', 'sutsiz'], ['go’shtsiz', 'гўштсиз', 'go’shtsiz'], ['tuzsiz', 'тузсиз', 'tuzsiz'],
+  ['sement', 'цемент', 'sement'], ['militsiya', 'милиция', 'militsiya'], ['konsert', 'консерт', 'konsert'], ['aksiya', 'акция', 'aksiya'], ['stansiya', 'станция', 'stansiya'],
+  ['porsiyaga', 'порцияга', 'porsiya'], ['kalsiy', 'калций', 'kalsiy'], ['sink', 'цинк', 'sink'], ['mayonez', 'майонез', 'mayonez'], ['yogurt', 'йогурт', 'yogurt'], ['pitsa', 'пицца', 'pitsa'], ['assotsiatsiyasi', 'ассоциацияси', 'assotsiatsiya'], ['koeffitsienti', 'коэффициенти', 'koeffitsient'], ['stansiyasi', 'станцияси', 'stansiyasi'], ['o’tsa', 'ўтса', 'o’tsa'], ['vaktsina', 'вакцина', 'vaktsina'], ['ratsion', 'рацион', 'ratsion'], ['sirk', 'цирк', 'sirk'], ['sirka', 'сирка', 'sirka (uksus)'], ['Liftsiz', 'Лифтсиз', 'bosh harf'],
   // ---- ц-lug'ati: rus tilidan o'zlashgan so'zlarda "s" -> "ц" (qo'shimchalar bilan ham) ----
   ['differensial', 'дифференциал', 'differensial -> дифференциал'],
   ['differensial usulda', 'дифференциал усулда', 'differensial usulda'],
