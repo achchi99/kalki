@@ -1,0 +1,253 @@
+{
+ "v": 1,
+ "izoh": "Oddiy mahsulotlar: eski manba izohidagi USDA fdc_id lar. tools/baza-v2.js bazadagi kkal ni USDA bilan solishtiradi (±10% — tekshirilgan sana `tk` qo'yiladi; aks holda ro'yxatga farq sifatida chiqadi, qiymat o'zgartirilmaydi).",
+ "oddiy": {
+  "grechka": {
+   "usda": 170686,
+   "izoh": "USDA 170686 + calorizator «без масла»; pishgan holat"
+  },
+  "guruch": {
+   "usda": 168878,
+   "izoh": "USDA 168878 + calorizator — mos"
+  },
+  "mol-gosht": {
+   "usda": 169484,
+   "yangila": true,
+   "izoh": "USDA 169484: Beef, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8\" fat, all grades, cooked — «Mol go'shti (pishgan)», o'rtacha yog'li qism (oshxonada ishlatiladigan aralash qism). Eski tanlov (171203, chuck for stew, 191 kkal) faqat yog'siz stew bo'lagi edi."
+  },
+  "qoy-gosht": {
+   "usda": 172480,
+   "izoh": "USDA 172480: Lamb, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/4\" fat, choice, cooked — «Qo'y go'shti (pishgan)», o'rtacha yog'li qism. Eski tanlov (172497, shoulder braised, 344) bitta yog'li bo'lak edi."
+  },
+  "tovuq-kokrak": {
+   "usda": 171478,
+   "izoh": "USDA 171478 (stewed) + calorizator: qaynatilgan ko'krak ~144–151 kkal"
+  },
+  "tovuq-son": {
+   "usda": 173625,
+   "izoh": "USDA 173625 (terili) + calorizator окорочок; terili/terisiz o'rtasi"
+  },
+  "sut": {
+   "usda": 171265,
+   "izoh": "USDA 171265 + calorizator — mos"
+  },
+  "qatiq": {
+   "usda": 171284,
+   "izoh": "USDA 171284 + calorizator — mos"
+  },
+  "kola": {
+   "usda": 174852,
+   "izoh": "USDA 174852 + calorizator — mos"
+  },
+  "burger": {
+   "usda": 170320,
+   "izoh": "USDA 170320 + calorizator — mos"
+  },
+  "pitsa": {
+   "usda": 173292,
+   "izoh": "USDA 173292 + calorizator — mos"
+  },
+  "kartoshka": {
+   "usda": 170440,
+   "izoh": "USDA 170440 + calorizator — mos"
+  },
+  "makaron": {
+   "usda": 169737,
+   "izoh": "USDA 169737 (158) + calorizator (112) — o'rtasida"
+  },
+  "suli": {
+   "usda": 171675,
+   "izoh": "USDA 171675 + calorizator — mos"
+  },
+  "olma": {
+   "usda": 171688,
+   "izoh": "USDA 171688 + calorizator — mos"
+  },
+  "banan": {
+   "usda": 173944,
+   "izoh": "USDA 173944 + calorizator — mos"
+  },
+  "pomidor": {
+   "usda": 170457,
+   "izoh": "USDA 170457 + calorizator — mos"
+  },
+  "sariyog": {
+   "usda": 173410,
+   "izoh": "USDA 173410 + calorizator — mos"
+  },
+  "pishloq": {
+   "usda": 171241,
+   "izoh": "USDA 171241 + calorizator — mos"
+  },
+  "shokolad-sut": {
+   "usda": 167587,
+   "izoh": "USDA 167587 + calorizator — mos"
+  },
+  "tuxum": {
+   "usda": 173424,
+   "izoh": "USDA 173424 + calorizator — mos"
+  },
+  "non-qora": {
+   "sk": "non-qora",
+   "izoh": "Скурихин jadvali: Хлеб ржано-пшеничный бородинский (мука ржаная обойная и пшеничная 2 сорта) — «Qora non»; USDA «Bread, rye» bizning qora nonimiz emas."
+  },
+  "smetana": {
+   "usda": 171257,
+   "izoh": "USDA 171257 (Cream, sour, cultured) — qidiruv: cream + sour + cultured (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "mol-qiyma": {
+   "usda": 174034,
+   "izoh": "USDA 174034: Beef, ground, 85% lean / 15% fat, crumbles, cooked, pan-browned — «Qiyma (mol, pishgan)»; eski tanlov xom qiyma edi (holat nomga mos emasdi)."
+  },
+  "jigar": {
+   "usda": 168627,
+   "izoh": "USDA 168627 (Beef, variety meats and by-products, liver, cooked, pan-fried) — qidiruv: beef + liver + cooked (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "losos": {
+   "usda": 175168,
+   "izoh": "USDA 175168: Fish, salmon, Atlantic, farmed, cooked, dry heat — «Losos (pishgan)»; eski tanlov xom losos edi (holat nomga mos emasdi)."
+  },
+  "tunets": {
+   "usda": 171986,
+   "izoh": "USDA 171986 (Fish, tuna, light, canned in water, without salt, drained solids) — qidiruv: tuna + light + canned in water + drained (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "noxat": {
+   "usda": 173757,
+   "yangila": true,
+   "izoh": "USDA 173757: Chickpeas, mature seeds, cooked, boiled, without salt — «No'xat (pishgan)»; pishgan holat."
+  },
+  "qalampir": {
+   "usda": 170108,
+   "izoh": "USDA 170108 (Peppers, sweet, red, raw) — qidiruv: peppers + sweet + red + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "nok": {
+   "usda": 169118,
+   "izoh": "USDA 169118 (Pears, raw) — qidiruv: pears + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "apelsin": {
+   "usda": 169097,
+   "izoh": "USDA 169097 (Oranges, raw, all commercial varieties) — qidiruv: oranges + raw + all commercial (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "mandarin": {
+   "usda": 169105,
+   "izoh": "USDA 169105 (Tangerines, (mandarin oranges), raw) — qidiruv: tangerines + mandarin + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "uzum": {
+   "usda": 174683,
+   "izoh": "USDA 174683 (Grapes, red or green (European type, such as Thompson seedless), raw) — qidiruv: grapes + red or green + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "qovun": {
+   "usda": 169092,
+   "izoh": "USDA 169092 (Melons, cantaloupe, raw) — qidiruv: melons + cantaloupe + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "tarvuz": {
+   "usda": 167765,
+   "izoh": "USDA 167765 (Watermelon, raw) — qidiruv: watermelon + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "shaftoli": {
+   "usda": 169928,
+   "izoh": "USDA 169928 (Peaches, yellow, raw) — qidiruv: peaches + yellow + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "orik": {
+   "usda": 171697,
+   "izoh": "USDA 171697 (Apricots, raw) — qidiruv: apricots + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "anor": {
+   "usda": 169134,
+   "izoh": "USDA 169134 (Pomegranates, raw) — qidiruv: pomegranates + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "xurmo": {
+   "usda": 169941,
+   "izoh": "USDA 169941 (Persimmons, japanese, raw) — qidiruv: persimmons + japanese + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "quruq-orik": {
+   "usda": 173941,
+   "izoh": "USDA 173941 (Apricots, dried, sulfured, uncooked) — qidiruv: apricots + dried + sulfured + uncooked (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "yongoq": {
+   "usda": 170187,
+   "izoh": "USDA 170187 (Nuts, walnuts, english) — qidiruv: nuts + walnuts + english (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "bodom": {
+   "usda": 170567,
+   "izoh": "USDA 170567 (Nuts, almonds) — qidiruv: nuts + almonds (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "asal": {
+   "usda": 169640,
+   "izoh": "USDA 169640 (Honey) — qidiruv: honey (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "choy": {
+   "usda": 173227,
+   "izoh": "USDA 173227 (Beverages, tea, black, brewed, prepared with tap water) — qidiruv: tea + brewed + prepared with tap water (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "kofe": {
+   "usda": 171890,
+   "izoh": "USDA 171890 (Beverages, coffee, brewed, prepared with tap water) — qidiruv: coffee + brewed + prepared with tap water (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "sharbat-olma": {
+   "usda": 167771,
+   "izoh": "USDA 167771 (Apple juice, canned or bottled, unsweetened, with added ascorbic acid) — qidiruv: apple juice + canned or bottled + unsweetened (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "suv": {
+   "usda": 175096,
+   "izoh": "USDA 175096 (Beverages, water, tap, well) — qidiruv: beverages + water + tap (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "shakar": {
+   "usda": 169655,
+   "izoh": "USDA 169655 (Sugars, granulated) — qidiruv: sugars + granulated (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "tost": {
+   "usda": 174925,
+   "izoh": "USDA 174925 (Bread, white, commercially prepared, toasted) — qidiruv: bread + white + commercially prepared + toasted (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "krem-pishloq": {
+   "usda": 173418,
+   "yangila": true,
+   "izoh": "USDA 173418: Cheese, cream — «Qaymoqli pishloq» (an'anaviy krem-pishloq, ~34% yog')."
+  },
+  "tovuq-jigar": {
+   "usda": 171061,
+   "izoh": "USDA 171061 (Chicken, liver, all classes, cooked, simmered) — qidiruv: chicken + liver + simmered (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "sabzi": {
+   "usda": 170393,
+   "izoh": "USDA 170393 (Carrots, raw) — qidiruv: carrots + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "piyoz": {
+   "usda": 170000,
+   "izoh": "USDA 170000 (Onions, raw) — qidiruv: onions + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "karam": {
+   "usda": 169975,
+   "izoh": "USDA 169975 (Cabbage, raw) — qidiruv: cabbage + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "qovoq": {
+   "usda": 168448,
+   "izoh": "USDA 168448 (Pumpkin, raw) — qidiruv: pumpkin + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "baqlajon": {
+   "usda": 169228,
+   "izoh": "USDA 169228 (Eggplant, raw) — qidiruv: eggplant + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "lavlagi": {
+   "usda": 169145,
+   "izoh": "USDA 169145 (Beets, raw) — qidiruv: beets + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "kokat": {
+   "usda": 169997,
+   "izoh": "USDA 169997 (Coriander (cilantro) leaves, raw) — qidiruv: coriander + leaves + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "bodring": {
+   "usda": 168409,
+   "izoh": "USDA 168409 (Cucumber, with peel, raw) — qidiruv: cucumber + with peel + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "mosh": {
+   "usda": 174257,
+   "izoh": "USDA 174257 (Mung beans, mature seeds, cooked, boiled, without salt) — qidiruv: mung beans + mature + boiled + without salt (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  },
+  "yogurt-tabiiy": {
+   "usda": 171284,
+   "izoh": "USDA 171284 (Yogurt, plain, whole milk) — qidiruv: yogurt + plain + whole milk (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+  }
+ }
+}

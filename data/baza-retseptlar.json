@@ -1,0 +1,2092 @@
+{
+ "v": 1,
+ "izoh": "Retseptlar: xom masalliq vazni (g). Pishgandagi jami vazn (yield) = Σ(g × masalliq yield koeffitsienti); satrdagi `y` — shu satr uchun qo'lda (taxmin: pishirish/qovurish yo'qotishi; tarozida tekshiriladi). `s` — Skurikhin hisobida boshqa masalliq kaliti. `taxminiy` — ikki manba o'rtachasi bilan chiqadi. Retsept miqdorlari — o'rtacha uy retsepti (tarozida/uy retseptlari bilan tasdiqlanadi). `ikki_manba` — USDA va Скурихин hisoblarining o'rtachasi (norin, qovurdoq, sho'rva); qolganlari USDA hisobi. `qaror` — foydalanuvchi qarori (koeffitsient). `kalibr` — uy o'lchovi bilan kalibrlangan (taxminiy belgisi olinadi). Sho'rva omillari (qaynatma/odatiy/yog'li) miqdorlari foydalanuvchi bergan mo'ljal (~40/~53/~75) atrofida tanlangan taxminiy retseptlar.",
+ "retseptlar": [
+  {
+   "id": "osh.kam.kam",
+   "nom": "Osh: go'sht kam, yog' kam",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 250.0
+    },
+    {
+     "m": "mol",
+     "g": 250.0
+    },
+    {
+     "m": "yog",
+     "g": 150
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.kam.odatiy",
+   "nom": "Osh: go'sht kam, yog' odatiy",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 250.0
+    },
+    {
+     "m": "mol",
+     "g": 250.0
+    },
+    {
+     "m": "yog",
+     "g": 220
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.kam.kop",
+   "nom": "Osh: go'sht kam, yog' kop",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 250.0
+    },
+    {
+     "m": "mol",
+     "g": 250.0
+    },
+    {
+     "m": "yog",
+     "g": 320
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.orta.kam",
+   "nom": "Osh: go'sht orta, yog' kam",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 400.0
+    },
+    {
+     "m": "mol",
+     "g": 400.0
+    },
+    {
+     "m": "yog",
+     "g": 150
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.orta.odatiy",
+   "nom": "Osh: go'sht orta, yog' odatiy",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 400.0
+    },
+    {
+     "m": "mol",
+     "g": 400.0
+    },
+    {
+     "m": "yog",
+     "g": 220
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.orta.kop",
+   "nom": "Osh: go'sht orta, yog' kop",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 400.0
+    },
+    {
+     "m": "mol",
+     "g": 400.0
+    },
+    {
+     "m": "yog",
+     "g": 320
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.kop.kam",
+   "nom": "Osh: go'sht kop, yog' kam",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 600.0
+    },
+    {
+     "m": "mol",
+     "g": 600.0
+    },
+    {
+     "m": "yog",
+     "g": 150
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.kop.odatiy",
+   "nom": "Osh: go'sht kop, yog' odatiy",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 600.0
+    },
+    {
+     "m": "mol",
+     "g": 600.0
+    },
+    {
+     "m": "yog",
+     "g": 220
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "osh.kop.kop",
+   "nom": "Osh: go'sht kop, yog' kop",
+   "eski": "osh",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 600.0
+    },
+    {
+     "m": "mol",
+     "g": 600.0
+    },
+    {
+     "m": "yog",
+     "g": 320
+    }
+   ],
+   "taxminiy": true,
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "somsa.oddiy.yogli",
+   "nom": "Somsa: xamir oddiy, ichi yogli",
+   "eski": "somsa",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "qoy",
+     "g": 220
+    },
+    {
+     "m": "dumba",
+     "g": 70
+    },
+    {
+     "m": "piyoz",
+     "g": 230
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.oddiy.yogsiz",
+   "nom": "Somsa: xamir oddiy, ichi yogsiz",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "mol_yogsiz",
+     "g": 260
+    },
+    {
+     "m": "dumba",
+     "g": 25
+    },
+    {
+     "m": "piyoz",
+     "g": 230
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.oddiy.tovuq",
+   "nom": "Somsa: xamir oddiy, ichi tovuq",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 140
+    },
+    {
+     "m": "tovuq_son",
+     "g": 140
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.oddiy.qovoq",
+   "nom": "Somsa: xamir oddiy, ichi qovoq",
+   "eski": "somsa-qovoq",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "qovoq",
+     "g": 450
+    },
+    {
+     "m": "piyoz",
+     "g": 120
+    },
+    {
+     "m": "yog",
+     "g": 50
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.oddiy.kokat",
+   "nom": "Somsa: xamir oddiy, ichi kokat",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "kokat",
+     "g": 350
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 35
+    },
+    {
+     "m": "tuxum",
+     "g": 60
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.oddiy.kartoshka",
+   "nom": "Somsa: xamir oddiy, ichi kartoshka",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "kartoshka",
+     "g": 420
+    },
+    {
+     "m": "piyoz",
+     "g": 120
+    },
+    {
+     "m": "yog",
+     "g": 40
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.yogli",
+   "nom": "Somsa: xamir qatlama, ichi yogli",
+   "eski": "somsa-qat",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "qoy",
+     "g": 220
+    },
+    {
+     "m": "dumba",
+     "g": 70
+    },
+    {
+     "m": "piyoz",
+     "g": 230
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.yogsiz",
+   "nom": "Somsa: xamir qatlama, ichi yogsiz",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "mol_yogsiz",
+     "g": 260
+    },
+    {
+     "m": "dumba",
+     "g": 25
+    },
+    {
+     "m": "piyoz",
+     "g": 230
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.tovuq",
+   "nom": "Somsa: xamir qatlama, ichi tovuq",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 140
+    },
+    {
+     "m": "tovuq_son",
+     "g": 140
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.qovoq",
+   "nom": "Somsa: xamir qatlama, ichi qovoq",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "qovoq",
+     "g": 450
+    },
+    {
+     "m": "piyoz",
+     "g": 120
+    },
+    {
+     "m": "yog",
+     "g": 50
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.kokat",
+   "nom": "Somsa: xamir qatlama, ichi kokat",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "kokat",
+     "g": 350
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 35
+    },
+    {
+     "m": "tuxum",
+     "g": 60
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "somsa.qatlama.kartoshka",
+   "nom": "Somsa: xamir qatlama, ichi kartoshka",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 130,
+     "y": 0.9
+    },
+    {
+     "m": "sariyog",
+     "g": 110
+    },
+    {
+     "m": "kartoshka",
+     "g": 420
+    },
+    {
+     "m": "piyoz",
+     "g": 120
+    },
+    {
+     "m": "yog",
+     "g": 40
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "manti.goshtli",
+   "nom": "Manti (go'shtli)",
+   "eski": "manti",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 150,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "piyoz",
+     "g": 350,
+     "y": 0.9
+    },
+    {
+     "m": "dumba",
+     "g": 50,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "manti.qovoq",
+   "nom": "Manti (qovoqli)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300
+    },
+    {
+     "m": "suv",
+     "g": 150
+    },
+    {
+     "m": "qovoq",
+     "g": 600,
+     "y": 0.9
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 60,
+     "y": 1.0
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "mastava",
+   "nom": "Mastava",
+   "eski": "mastava",
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 150
+    },
+    {
+     "m": "qoy",
+     "g": 250
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "suv",
+     "g": 1550,
+     "y": 0.8
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "moshxorda",
+   "nom": "Moshxo'rda",
+   "eski": "moshxorda",
+   "ingr": [
+    {
+     "m": "mosh",
+     "g": 120
+    },
+    {
+     "m": "guruch",
+     "g": 50
+    },
+    {
+     "m": "qoy",
+     "g": 250
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 40
+    },
+    {
+     "m": "suv",
+     "g": 1530,
+     "y": 0.8
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "moshkichiri",
+   "nom": "Moshkichiri",
+   "eski": "moshkichiri",
+   "ingr": [
+    {
+     "m": "mosh",
+     "g": 150
+    },
+    {
+     "m": "guruch",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    },
+    {
+     "m": "yog",
+     "g": 60
+    },
+    {
+     "m": "suv",
+     "g": 685,
+     "y": 0.6
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "qozon-kabob",
+   "nom": "Qozon kabob",
+   "eski": "qozon-kabob",
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 500
+    },
+    {
+     "m": "mol",
+     "g": 200
+    },
+    {
+     "m": "kartoshka",
+     "g": 800
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "yog",
+     "g": 70
+    },
+    {
+     "m": "sariyog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "qovurdoq",
+   "nom": "Qovurdoq",
+   "eski": "qovurdoq",
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 400,
+     "s": "qoy"
+    },
+    {
+     "m": "kartoshka",
+     "g": 500
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 60
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    }
+   ],
+   "taxminiy": true,
+   "ikki_manba": true
+  },
+  {
+   "id": "dimlama",
+   "nom": "Dimlama",
+   "eski": "dimlama",
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 400
+    },
+    {
+     "m": "kartoshka",
+     "g": 500
+    },
+    {
+     "m": "karam",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "pomidor",
+     "g": 200
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "norin",
+   "nom": "Norin (xamir + qaynatma go'sht)",
+   "eski": "norin",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 140,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 400,
+     "s": "ot"
+    },
+    {
+     "m": "qoy",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true,
+   "ikki_manba": true
+  },
+  {
+   "id": "kartoshka-qov",
+   "nom": "Kartoshka (qovurma)",
+   "eski": "kartoshka-qov",
+   "ingr": [
+    {
+     "m": "kartoshka",
+     "g": 1000
+    },
+    {
+     "m": "yog",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "jarkop",
+   "nom": "Jarkop",
+   "eski": "jarkop",
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 450
+    },
+    {
+     "m": "kartoshka",
+     "g": 700
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "yog",
+     "g": 60
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "non.obi",
+   "nom": "Obi non (tandir)",
+   "eski": "non",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 1000,
+     "y": 0.78
+    },
+    {
+     "m": "suv",
+     "g": 600,
+     "y": 0.78
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "patir",
+   "nom": "Patir",
+   "eski": "patir",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 1000,
+     "y": 0.85
+    },
+    {
+     "m": "suv",
+     "g": 400,
+     "y": 0.85
+    },
+    {
+     "m": "sariyog",
+     "g": 120
+    },
+    {
+     "m": "sut",
+     "g": 100
+    },
+    {
+     "m": "tuxum",
+     "g": 60,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "qatlama.non",
+   "nom": "Qatlama (non)",
+   "eski": "qatlama",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 1000,
+     "y": 0.85
+    },
+    {
+     "m": "suv",
+     "g": 450,
+     "y": 0.85
+    },
+    {
+     "m": "sariyog",
+     "g": 250
+    },
+    {
+     "m": "yog",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "shurva.odatiy",
+   "nom": "Sho'rva — odatiy (sabzavotli)",
+   "eski": "shurva",
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 400,
+     "s": "qoy"
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 50
+    },
+    {
+     "m": "suv",
+     "g": 2000,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "ikki_manba": true
+  },
+  {
+   "id": "chuchvara.goshtli.qaynatma",
+   "nom": "Chuchvara: go'shtli, qaynatma",
+   "eski": "chuchvara",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 150,
+     "y": 0.85
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "dumba",
+     "g": 20,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.shorvali.mol",
+   "nom": "Lag'mon sho'rvali (mol)",
+   "eski": "lagmon",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "qoy",
+     "g": 150
+    },
+    {
+     "m": "mol",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "dolma.karam",
+   "nom": "Do'lma (karam bargida)",
+   "eski": "dolma",
+   "ingr": [
+    {
+     "m": "mol",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 100
+    },
+    {
+     "m": "guruch",
+     "g": 120
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "karam",
+     "g": 500
+    },
+    {
+     "m": "yog",
+     "g": 40
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 800,
+     "y": 0.2
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "shurva.qaynatma",
+   "nom": "Sho'rva — qaynatma (yog'siz)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 400
+    },
+    {
+     "m": "kartoshka",
+     "g": 300
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 1900,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "ikki_manba": true
+  },
+  {
+   "id": "shurva.yogli",
+   "nom": "Sho'rva — yog'li quyuq",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 500
+    },
+    {
+     "m": "dumba",
+     "g": 50
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 1900,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "ikki_manba": true
+  },
+  {
+   "id": "manti.kartoshka",
+   "nom": "Manti (kartoshkali)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300
+    },
+    {
+     "m": "suv",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 650,
+     "y": 0.9
+    },
+    {
+     "m": "piyoz",
+     "g": 200,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 60
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chuchvara.goshtli.shorvada",
+   "nom": "Chuchvara: goshtli, sho'rvada",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 150,
+     "y": 0.85
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "dumba",
+     "g": 20,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 800,
+     "y": 0.95
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chuchvara.goshtli.qovurma",
+   "nom": "Chuchvara: goshtli, qovurma",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 150,
+     "y": 0.85
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "dumba",
+     "g": 20,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 70
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chuchvara.tovuq.qaynatma",
+   "nom": "Chuchvara: tovuq, qaynatma",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 200,
+     "y": 0.9
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 25
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chuchvara.tovuq.shorvada",
+   "nom": "Chuchvara: tovuq, sho'rvada",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 200,
+     "y": 0.9
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 25
+    },
+    {
+     "m": "suv",
+     "g": 800,
+     "y": 0.95
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chuchvara.tovuq.qovurma",
+   "nom": "Chuchvara: tovuq, qovurma",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 200,
+     "y": 0.9
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "yog",
+     "g": 25
+    },
+    {
+     "m": "yog",
+     "g": 70
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.qovurma.mol",
+   "nom": "Lag'mon qovurma (mol)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 250
+    },
+    {
+     "m": "suv",
+     "g": 100
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "qalampir",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 120
+    },
+    {
+     "m": "mol",
+     "g": 250.0
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.shorvali.qoy",
+   "nom": "Lag'mon sho'rvali (qoy)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 300
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.qovurma.qoy",
+   "nom": "Lag'mon qovurma (qoy)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 250
+    },
+    {
+     "m": "suv",
+     "g": 100
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "qalampir",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 120
+    },
+    {
+     "m": "qoy",
+     "g": 250.0
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.shorvali.tovuq",
+   "nom": "Lag'mon sho'rvali (tovuq)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 150
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "lagmon.qovurma.tovuq",
+   "nom": "Lag'mon qovurma (tovuq)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 250
+    },
+    {
+     "m": "suv",
+     "g": 100
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "qalampir",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 120
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 125.0
+    },
+    {
+     "m": "tovuq_son",
+     "g": 125.0
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "dolma.uzum",
+   "nom": "Do'lma (uzum bargida)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "uzum_barg",
+     "g": 200
+    },
+    {
+     "m": "mol",
+     "g": 200
+    },
+    {
+     "m": "qoy",
+     "g": 100
+    },
+    {
+     "m": "guruch",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 120
+    },
+    {
+     "m": "yog",
+     "g": 40
+    },
+    {
+     "m": "pomidor",
+     "g": 80
+    },
+    {
+     "m": "suv",
+     "g": 600,
+     "y": 0.2
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "shovla",
+   "nom": "Shovla (Xorazm)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 500
+    },
+    {
+     "m": "qoy",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 600,
+     "y": 0.8
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "shirguruch",
+   "nom": "Shirguruch (sutli guruch bo'tqasi)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 150,
+     "y": 1.0
+    },
+    {
+     "m": "sut",
+     "g": 1000,
+     "y": 0.9
+    },
+    {
+     "m": "shakar",
+     "g": 60
+    },
+    {
+     "m": "sariyog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "ugra-osh",
+   "nom": "Ugra osh",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 250
+    },
+    {
+     "m": "suv",
+     "g": 100
+    },
+    {
+     "m": "qoy",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "kartoshka",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "suv",
+     "g": 1000,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "chalop",
+   "nom": "Chalop (qatiqli sovuq sho'rva)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qatiq",
+     "g": 500
+    },
+    {
+     "m": "suv",
+     "g": 500
+    },
+    {
+     "m": "bodring",
+     "g": 200
+    },
+    {
+     "m": "kokat",
+     "g": 50
+    },
+    {
+     "m": "redis",
+     "g": 50
+    }
+   ],
+   "taxminiy": true
+  }
+ ]
+}

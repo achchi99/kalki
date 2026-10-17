@@ -1,0 +1,109 @@
+{
+ "meta": {
+  "manba": "Скурихин И.М. и др. «Химический состав пищевых продуктов» (nashr qilingan jadval) — health-diet.ru/base_of_food/sostav/<id>.php sahifalarida keltirilgan qiymatlar",
+  "yuklangan": "2026-10-17",
+  "eslatma": "Sahifalardan qo'lda ko'chirilgan (har yozuvda url); 100 g uchun. Skurikhin da pishgan juft yo'q — yield USDA juftlaridan olinadi."
+ },
+ "yozuvlar": {
+  "qoy": {
+   "id": 35,
+   "nom": "Баранина 1 кат.",
+   "url": "https://health-diet.ru/base_of_food/sostav/35.php",
+   "kcal": 209,
+   "p": 15.6,
+   "f": 16.3,
+   "c": 0
+  },
+  "mol": {
+   "id": 65,
+   "nom": "Говядина 1 кат.",
+   "url": "https://health-diet.ru/base_of_food/sostav/65.php",
+   "kcal": 218,
+   "p": 18.6,
+   "f": 16,
+   "c": 0
+  },
+  "kartoshka": {
+   "id": 130,
+   "nom": "Картофель",
+   "url": "https://health-diet.ru/base_of_food/sostav/130.php",
+   "kcal": 77,
+   "p": 2,
+   "f": 0.4,
+   "c": 16.3
+  },
+  "piyoz": {
+   "id": 186,
+   "nom": "Лук репчатый",
+   "url": "https://health-diet.ru/base_of_food/sostav/186.php",
+   "kcal": 41,
+   "p": 1.4,
+   "f": 0.2,
+   "c": 8.2
+  },
+  "sabzi": {
+   "id": 804,
+   "nom": "Морковь",
+   "url": "https://health-diet.ru/base_of_food/sostav/804.php",
+   "kcal": 35,
+   "p": 1.3,
+   "f": 0.1,
+   "c": 6.9
+  },
+  "pomidor": {
+   "id": 808,
+   "nom": "Помидор (томат), грунтовый",
+   "url": "https://health-diet.ru/base_of_food/sostav/808.php",
+   "kcal": 24,
+   "p": 1.1,
+   "f": 0.2,
+   "c": 3.8
+  },
+  "yog": {
+   "id": 283,
+   "nom": "Подсолнечное масло",
+   "url": "https://health-diet.ru/base_of_food/sostav/283.php",
+   "kcal": 899,
+   "p": 0,
+   "f": 99.9,
+   "c": 0
+  },
+  "dumba": {
+   "id": 840,
+   "nom": "Жир бараний топленый",
+   "url": "https://health-diet.ru/base_of_food/sostav/840.php",
+   "kcal": 897,
+   "p": 0,
+   "f": 99.7,
+   "c": 0
+  },
+  "un": {
+   "id": 293,
+   "nom": "Пшеничная мука, высшего сорта",
+   "url": "https://health-diet.ru/base_of_food/sostav/293.php",
+   "kcal": 334,
+   "p": 10.8,
+   "f": 1.3,
+   "c": 69.9
+  },
+  "ot": {
+   "id": 813,
+   "nom": "Конина 1 кат.",
+   "url": "https://health-diet.ru/base_of_food/sostav/813.php",
+   "kcal": 167,
+   "p": 19.5,
+   "f": 9.9,
+   "c": 0
+  },
+  "non-qora": {
+   "id": 418,
+   "nom": "Хлеб ржано-пшеничный бородинский (мука ржаная обойная и пшеничная 2 сорта)",
+   "url": "https://health-diet.ru/base_of_food/sostav/418.php",
+   "kcal": 201,
+   "p": 6.8,
+   "f": 1.3,
+   "c": 39.8,
+   "eslatma": "qiymatlar health-diet.ru qidiruv natijasidan (sahifaning o'zi 429 sabab to'g'ridan-to'g'ri ochilmadi); manba: Скурихин И.М. и др."
+  }
+ }
+}

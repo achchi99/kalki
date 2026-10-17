@@ -1,0 +1,313 @@
+{
+ "v": 1,
+ "izoh": "Masalliq registri: har masalliq USDA SR Legacy fdc_id (data/manba/usda-sr-legacy.json) va — bor bo'lsa — Skurikhin yozuvi (data/manba/skurikhin.json) bilan bog'langan. `pishgan` — pishgan juft id; yield koeffitsienti = xom/pishgan (oqsil yoki kkal bo'yicha, avtomatik). `q` — USDA da juft yo'q: qo'lda yield (taxmin=true — tarozida tekshiriladi).",
+ "masalliq": {
+  "guruch": {
+   "nom": "Guruch (oq, xom)",
+   "usda": 168877,
+   "pishgan": 168878,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "guruch",
+   "ru": "рис"
+  },
+  "sabzi": {
+   "nom": "Sabzi (xom)",
+   "usda": 170393,
+   "skurikhin": "sabzi",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "sabzi",
+   "ru": "морковь"
+  },
+  "piyoz": {
+   "nom": "Piyoz (xom)",
+   "usda": 170000,
+   "skurikhin": "piyoz",
+   "yield": {
+    "q": 0.75,
+    "taxmin": true
+   },
+   "uz": "piyoz",
+   "ru": "лук"
+  },
+  "qoy": {
+   "nom": "Qo'y go'shti (yog'li, xom)",
+   "usda": 172479,
+   "pishgan": 172480,
+   "skurikhin": "qoy",
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "qo'y go'shti",
+   "ru": "баранина"
+  },
+  "qoy_yogsiz": {
+   "nom": "Qo'y go'shti (yog'siz, xom)",
+   "usda": 174307,
+   "pishgan": 174308,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "qo'y go'shti (yog'siz)",
+   "ru": "баранина (постная)"
+  },
+  "mol": {
+   "nom": "Mol go'shti (o'rtacha yog'li, xom)",
+   "usda": 168668,
+   "pishgan": 168669,
+   "skurikhin": "mol",
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "mol go'shti",
+   "ru": "говядина"
+  },
+  "mol_yogsiz": {
+   "nom": "Mol go'shti (yog'siz, xom)",
+   "usda": 173126,
+   "pishgan": 168669,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "mol go'shti (yog'siz)",
+   "ru": "говядина (постная)"
+  },
+  "tovuq_kokrak": {
+   "nom": "Tovuq ko'kragi (xom)",
+   "usda": 171077,
+   "pishgan": 171477,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "tovuq ko'kragi",
+   "ru": "куриная грудка"
+  },
+  "tovuq_son": {
+   "nom": "Tovuq soni (terili, xom)",
+   "usda": 172385,
+   "yield": {
+    "q": 0.72,
+    "taxmin": true
+   },
+   "uz": "tovuq soni",
+   "ru": "куриное бедро"
+  },
+  "dumba": {
+   "nom": "Dumba (qo'y yog'i, xom)",
+   "usda": 174309,
+   "skurikhin": "dumba",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "dumba",
+   "ru": "курдючный жир"
+  },
+  "yog": {
+   "nom": "O'simlik yog'i (paxta)",
+   "usda": 171024,
+   "skurikhin": "yog",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "o'simlik yog'i",
+   "ru": "растительное масло"
+  },
+  "un": {
+   "nom": "Un (bug'doy, oliy nav)",
+   "usda": 168894,
+   "skurikhin": "un",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "un",
+   "ru": "мука"
+  },
+  "suv": {
+   "nom": "Suv",
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "suv",
+   "ru": "вода"
+  },
+  "kartoshka": {
+   "nom": "Kartoshka (xom)",
+   "usda": 170026,
+   "pishgan": 170438,
+   "skurikhin": "kartoshka",
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "kartoshka",
+   "ru": "картофель"
+  },
+  "qovoq": {
+   "nom": "Qovoq (xom)",
+   "usda": 168448,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "qovoq",
+   "ru": "тыква"
+  },
+  "sariyog": {
+   "nom": "Sariyog'",
+   "usda": 173410,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "sariyog'",
+   "ru": "сливочное масло"
+  },
+  "tuxum": {
+   "nom": "Tuxum (xom)",
+   "usda": 171287,
+   "yield": {
+    "q": 0.9,
+    "taxmin": true
+   },
+   "uz": "tuxum",
+   "ru": "яйцо"
+  },
+  "sut": {
+   "nom": "Sut (3,25%)",
+   "usda": 171265,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "sut",
+   "ru": "молоко"
+  },
+  "karam": {
+   "nom": "Karam (oq, xom)",
+   "usda": 169975,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "karam",
+   "ru": "капуста"
+  },
+  "pomidor": {
+   "nom": "Pomidor (xom)",
+   "usda": 170457,
+   "skurikhin": "pomidor",
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "pomidor",
+   "ru": "помидор"
+  },
+  "qalampir": {
+   "nom": "Bolgar qalampiri (xom)",
+   "usda": 170427,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "bolgar qalampiri",
+   "ru": "болгарский перец"
+  },
+  "kokat": {
+   "nom": "Ko'kat (kashnich)",
+   "usda": 169997,
+   "yield": {
+    "q": 0.9,
+    "taxmin": true
+   },
+   "uz": "ko'kat",
+   "ru": "зелень"
+  },
+  "mosh": {
+   "nom": "Mosh (xom)",
+   "usda": 174256,
+   "pishgan": 174257,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "mosh",
+   "ru": "маш"
+  },
+  "noxat": {
+   "nom": "No'xat (xom)",
+   "usda": 173756,
+   "pishgan": 173757,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "no'xat",
+   "ru": "нут"
+  },
+  "bodring": {
+   "nom": "Bodring (xom)",
+   "usda": 168409,
+   "yield": {
+    "q": 0.95,
+    "taxmin": true
+   },
+   "uz": "bodring",
+   "ru": "огурец"
+  },
+  "redis": {
+   "nom": "Turp/redis (xom)",
+   "usda": 169276,
+   "yield": {
+    "q": 0.95,
+    "taxmin": true
+   },
+   "uz": "turp",
+   "ru": "редис"
+  },
+  "qatiq": {
+   "nom": "Qatiq/yogurt (tabiiy, to'liq sut)",
+   "usda": 171284,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "qatiq",
+   "ru": "катык/йогурт"
+  },
+  "uzum_barg": {
+   "nom": "Uzum bargi (xom)",
+   "usda": 168575,
+   "yield": {
+    "q": 0.85,
+    "taxmin": true
+   },
+   "uz": "uzum bargi",
+   "ru": "виноградные листья"
+  },
+  "shakar": {
+   "nom": "Shakar",
+   "usda": 169655,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "shakar",
+   "ru": "сахар"
+  }
+ }
+}

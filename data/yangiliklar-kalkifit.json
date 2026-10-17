@@ -2,6 +2,15 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 4,
+      "d": "2026-10-18",
+      "items": [
+        { "uz": "O'zbek taomlari endi kosa, lagan va donada: «1 kosa ≈ 350 g» ko'rinadi.", "ru": "Узбекские блюда теперь в мисках, тарелках и штуках: видно «1 миска ≈ 350 г».", "show": "units" },
+        { "uz": "Somsa va oshning turlari: ichi, xamiri, o'lchami, go'shti va yog'ini tanlang.", "ru": "Виды самсы и плова: выберите начинку, тесто, размер, мясо и масло.", "show": "variants" },
+        { "uz": "Kaloriya manbasini ko'rish mumkin: «ⓘ Manba» tugmasini bosing.", "ru": "Источник калорий можно посмотреть: нажмите «ⓘ Источник».", "show": "source" }
+      ]
+    },
+    {
       "v": 3,
       "d": "2026-10-18",
       "items": [

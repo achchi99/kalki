@@ -98,6 +98,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
+    if (e.vr) it.vr = String(e.vr).slice(0, 40); if (e.sz) it.sz = String(e.sz).slice(0, 20);
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
     return it;
   }
@@ -239,7 +240,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function r1(x) { return Math.round(num(x) * 10) / 10; }
   function cleanTplItem(e) {
     if (!e || typeof e !== 'object') return null; var k = Math.round(num(e.kcal)); if (!(k >= 0) || !(e.fid || e.n || e.name)) return null;
-    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est };
+    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est, vr: e.vr ? String(e.vr).slice(0, 40) : undefined, sz: e.sz ? String(e.sz).slice(0, 20) : undefined };
   }
   function cleanTpls(list, s) {
     var out = [], used = {}; (Array.isArray(list) ? list : []).forEach(function (t) {
@@ -326,15 +327,16 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     }
     return { tier: tier, d: dd, l: ll };
   }
-  function freqMap(st, today, days) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
+  function freqMap(st, today, days, alias) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
     var out = {}, from = D.addDays(today, -((days || 30) - 1));
-    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) out[e.fid] = (out[e.fid] || 0) + 1; }); });
+    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) { var id = (alias && alias[e.fid]) || e.fid; out[id] = (out[id] || 0) + 1; } }); });
     return out;
   }
   function search(foods, q, o) {                       // ① aynan ② so'z boshidan ③ ichida/xato bilan ④ — bir xil darajada: ko'p yeyilgan va sevimlilar yuqorida
     o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' ');
     var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
     foods.forEach(function (f, ix) {
+      if (f.h) return;                                  // eski id (alias) — qidiruvda ko'rinmaydi, oila ko'rinadi
       var m = matchFood(f, qt, whole); if (!m) return; var r = rec.indexOf(f.id);
       out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), d: m.d, l: m.l, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
     });
@@ -342,31 +344,82 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
-  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', porsiya: 'porsiya', porsii: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100' };
-  var STOP = { bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 };
-  [WORDS, UNITW, STOP].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });          // kalitlar key() shaklida (ikki → iki)
+  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100' };
+  var SZW = { kichik: 'kichik', kichkina: 'kichik', mayda: 'kichik', malenkiy: 'kichik', malenkaya: 'kichik', malenkie: 'kichik', orta: 'orta', ortacha: 'orta', srednyaya: 'orta', sredniy: 'orta', katta: 'katta', yirik: 'katta', bolshoy: 'katta', bolshaya: 'katta', bolshie: 'katta' };
+  var STOP = { bilan: 1, sho: 0, bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 };
+  [WORDS, UNITW, STOP, SZW].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });          // kalitlar key() shaklida (ikki → iki)
   function splitText(text) { return String(text || '').split(/[,;\n+]|\sva\s|\sи\s/i).map(function (x) { return x.trim(); }).filter(Boolean); }
-  function parseFragment(fr) {                        // "2 somsa" → {qty:2, unit:null, name:'somsa'}
-    var toks = fr.replace(/(\d)([a-zA-Zа-яА-Я])/g, '$1 $2').split(/\s+/), qty = null, unit = null, name = [];
+  function parseFragment(fr) {                        // "2 katta somsa" → {qty:2, unit:null, name:'somsa', sz:'katta', raw:'katta somsa'}
+    var toks = fr.replace(/(\d)([a-zA-Zа-яА-Я])/g, '$1 $2').split(/\s+/), qty = null, unit = null, name = [], sz = null, raw = [];
     toks.forEach(function (t, i) {
       var k = key(t), m = /^(\d+(?:[.,]\d+)?)$/.exec(t), more = i < toks.length - 1;
       if (m && qty == null) { qty = parseFloat(m[1].replace(',', '.')); return; }
       if (WORDS[k] != null && qty == null && more && !name.length) { qty = WORDS[k]; return; }       // "to'rt" va "tort" (торт) farqi: so'zdan keyin nom bo'lsagina son
-      if (UNITW[k] && unit == null && qty != null && more) { unit = UNITW[k]; return; }
-      if (STOP[k]) return; name.push(t);
+      if (UNITW[k] && unit == null && (qty != null || !name.length) && more) { unit = UNITW[k]; if (qty == null) qty = 1; return; }
+      if (STOP[k]) return; raw.push(t); if (SZW[k] && sz == null && more) { sz = SZW[k]; return; } name.push(t);
     });
-    return { qty: qty, unit: unit, name: name.join(' ') };
+    if (qty == null && unit == null && name.length >= 3) {                      // "to'y oshidan bir lagan": oxirida «son + birlik»
+      var u1 = UNITW[key(name[name.length - 1])], q1 = key(name[name.length - 2]), qv = /^\d+(?:[.,]\d+)?$/.test(q1) ? parseFloat(q1.replace(',', '.')) : WORDS[q1];
+      if (u1 && qv != null) { unit = u1; qty = qv; name.length -= 2; raw.length = Math.max(0, raw.length - 2); }
+    }
+    return { qty: qty, unit: unit, name: name.join(' '), sz: sz, raw: raw.join(' ') };
+  }
+  /* ---------- oilalar (ota-taom + omillar): baza v2 ---------- */
+  function aliasMap(foods) { var m = {}; foods.forEach(function (f) { if (f.al) m[f.id] = f.al.f; }); return m; }      // eski id → oila id
+  function famDef(f) { return f && f.fam || null; }
+  function famKey(f, sel) { var fm = f.fam; return fm.ax.map(function (a) { return (sel && sel[a.i]) || a.d; }).join('.'); }
+  function famSelOf(f, vr) { var fm = f.fam, o = {}, p = String(vr || '').split('.'); fm.ax.forEach(function (a, i) { o[a.i] = p[i] && a.o.some(function (x) { return x.i === p[i]; }) ? p[i] : a.d; }); return o; }
+  function famDefault(f) { return famSelOf(f, null); }
+  function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
+    var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
+    for (k in f) o[k] = f[k];
+    o.k = g.k; o.p = g.p; o.f = g.f; o.c = g.c; o.e = g.x ? 1 : 0; o.x = o.e; o.rc = g.rc || null; o.vr = vr;
+    var uo = fm.uv && fm.uv[vr], u = f.u.map(function (x) { return [x[0], uo && uo[x[0]] != null ? uo[x[0]] : x[1]]; });
+    if (uo) Object.keys(uo).forEach(function (kk) { if (!u.some(function (x) { return x[0] === kk; })) u.splice(u.length - 1, 0, [kk, uo[kk]]); });
+    if (fm.sz) { var so = fm.sz.o.filter(function (x) { return x.i === (sz || fm.sz.d); })[0] || fm.sz.o[0]; u = u.map(function (x) { return x[0] === fm.sz.u ? [x[0], Math.round(x[1] * so.m)] : x; }); o.sz = so.i; }
+    o.u = u; o.b = (f.b || []).map(function (b) { var q = {}, kk; for (kk in b) q[kk] = b[kk]; var m = u.filter(function (x) { return x[0] === b.k; })[0]; if (m) q.g = m[1]; return q; });
+    return o;
+  }
+  function famLabel(f, vr, sz, lang) {                   // "qovoq, o'rta" — yozuv/qatorda ko'rsatiladigan omillar (faqat kkal'ga ta'sir qiladiganlar + o'lcham)
+    var fm = f.fam, p = String(vr || '').split('.'), out = [];
+    fm.ax.forEach(function (a, i) { if (!a.s) return; var o = a.o.filter(function (x) { return x.i === (p[i] || a.d); })[0]; if (o) out.push(lang === 'ru' ? o.r : o.n); });
+    if (fm.sz && sz) { var so = fm.sz.o.filter(function (x) { return x.i === sz; })[0]; if (so && sz !== fm.sz.d) out.push(lang === 'ru' ? so.r : so.n); }
+    return out.join(', ');
+  }
+  function famPick(f, q) {                               // sinonim bo'yicha qidirilsa: oldindan tanlangan omillar (eng uzun mos kelgan) yoki null
+    var fm = f.fam; if (!fm || !fm.sy) return null; var qk = key(q).split(' ').filter(function (w) { return !STOP[w]; }).join(' '); if (!qk) return null;
+    var best = null, bl = 0, qt = qk.split(' ');
+    fm.sy.forEach(function (sy) {
+      var st = key(sy.q).split(' ').filter(function (w) { return !STOP[w]; }), sk = st.join(' '), score = 0;
+      if (sk === qk) score = 1000 + sk.length; else if (qk.indexOf(sk) === 0 || (sk.indexOf(qk) === 0 && qk.length >= sk.length * 0.7)) score = 500 + Math.min(sk.length, qk.length);
+      else if (st.length > 1 && st.every(function (w) { return qt.indexOf(w) > -1; })) score = 300 + sk.length;
+      if (!score && st.length > 1 && st.every(function (w) { return qt.some(function (x) { return x === w || (w.length >= 5 && x.length >= 4 && osa(x, w, 1) <= 1); }); })) score = 200 + sk.length;
+      if (score > bl) { bl = score; best = sy; }
+    });
+    return best ? best.p : null;
   }
   function unitGrams(food, unit) { for (var i = 0; i < food.u.length; i++) if (food.u[i][0] === unit) return food.u[i][1]; return null; }
-  function parseText(text, foods, o) {                // lokal tahlil: topilganlar va topilmaganlar
+  var CASE_SUF = /(ning|dan|ni|ga|da|ni|lari|ларни|ов|а|у|ы|и|ой|ом|е)$/;
+  function bestHit(foods, name, o) {
+    var h = search(foods, name, { limit: 1, recents: o && o.recents, favs: o && o.favs, freq: o && o.freq })[0]; if (h) return h;
+    var st = name.split(/\s+/).map(function (w) { return w.length > 4 ? w.replace(CASE_SUF, '') : w; }).join(' ');      // "osh-dan", "плов-а": kelishik/падеж qo'shimchasi
+    return st !== name ? search(foods, st, { limit: 1, recents: o && o.recents, favs: o && o.favs, freq: o && o.freq })[0] : null;
+  }
+  function parseText(text, foods, o) {                // lokal tahlil: topilganlar va topilmaganlar (oila: omillar sinonimdan, o'lcham so'zdan)
     var items = [], miss = [];
     splitText(text).forEach(function (fr) {
       var p = parseFragment(fr); if (!p.name) { miss.push(fr); return; }
-      var hit = search(foods, p.name, { limit: 1, recents: o && o.recents, favs: o && o.favs })[0]; if (!hit) { miss.push(fr); return; }
+      var hit = bestHit(foods, p.name, o), szid = p.sz;
+      if (hit && p.sz && !(hit.fam && hit.fam.sz)) { var h2 = bestHit(foods, p.raw, o); if (h2) { hit = h2; szid = null; } }      // "katta burger" — o'lcham omili yo'q, sinonim bo'lishi mumkin
+      if (!hit) { miss.push(fr); return; }
+      var fam = null, food = hit, sel = null, qn = p.name;
+      if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
       var qty = p.qty > 0 ? p.qty : 1, u = p.unit, g;
       if (u === 'g100' && p.qty > 0) { g = p.qty; qty = p.qty; }                // "200 g tovuq"
-      else { if (!u || unitGrams(hit, u) == null) u = hit.u[0][0]; g = unitGrams(hit, u) * qty; if (u === 'g100') { g = qty * 100; } }
-      items.push({ text: fr, fid: hit.id, food: hit, unit: u, qty: qty, g: g, est: !!hit.e });
+      else { if (!u || unitGrams(food, u) == null) u = (food.b && food.b.filter(function (b) { return b.d; })[0] || { k: food.u[0][0] }).k; if (unitGrams(food, u) == null) u = food.u[0][0]; g = unitGrams(food, u) * qty; if (u === 'g100') { g = qty * 100; } }
+      var it = { text: fr, fid: hit.id, food: food, unit: u, qty: qty, g: g, est: !!food.e };
+      if (fam) { it.fam = fam; it.sel = sel; it.szid = fam.fam.sz ? (szid || fam.fam.sz.d) : null; it.vr = food.vr; it.sz = fam.fam.sz ? it.szid : null; }
+      items.push(it);
     });
     return { items: items, missing: miss };
   }
@@ -379,6 +432,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

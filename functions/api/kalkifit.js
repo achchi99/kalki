@@ -4,6 +4,7 @@
  * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id } → { ovqatlar: [{ nom, porsiya, kcal, o, y, u }] } | { xato } */
 import { originOk, maskPII, askModel, json, num, UUID_RE } from './ariza.js';
 import { takeKfQuota } from './kalkifit-quota.js';
+import S from '../../assets/kalkifit-core.js';
 
 const DEFAULT_CLIENT_LIMIT = 30, DEFAULT_SITE_LIMIT = 3000;   // KALKIFIT_CLIENT_LIMIT, KALKIFIT_SITE_LIMIT (kuniga) — env bilan sozlanadi
 const SYSTEM = `Sen ovqat va ichimliklarning kaloriyasini TAXMINIY baholovchi yordamchisan. Foydalanuvchi nima yeganini yozadi (o'zbek, rus yoki kirill yozuvida).
@@ -30,6 +31,21 @@ export function sanitize(list) {
   }
   return out;
 }
+/* ---- lokal parse (AI'dan OLDIN): bazada bor taom ("1 kosa mastava", "2 ta qovoqli somsa", "to'y oshidan bir lagan") — fid + birlik + miqdor + omillar; AI faqat topilmaganini oladi ---- */
+let FOODS = null;
+async function loadFoods(env, request) {
+  if (FOODS) return FOODS; if (!env.ASSETS || typeof env.ASSETS.fetch !== 'function') return null;       // Pages: statik baza; boshqa muhitda (test) — lokal parse o'tkazib yuboriladi
+  try { const r = await env.ASSETS.fetch(new URL('/data/ovqatlar.json', request.url)); if (!r.ok) return null; const j = await r.json(); FOODS = S.buildIndex(S.normFoods(j.foods)); return FOODS; } catch (e) { return null; }
+}
+const UN = { uz: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' }, ru: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' } };
+export function localItems(matn, foods, til) {
+  const ru = til === 'ru', r = S.parseText(matn, foods, {}), out = [];
+  for (const x of r.items) {
+    const pt = S.portion(x.food, x.g), lb = x.fam ? S.famLabel(x.fam, x.vr, x.szid, ru ? 'ru' : 'uz') : '', nm = (ru && (x.fam || x.food).r ? (x.fam || x.food).r : (x.fam || x.food).n) + (lb ? ' · ' + lb : '');
+    out.push({ nom: nm, porsiya: x.unit === 'g100' ? Math.round(x.g) + ' ' + UN[ru ? 'ru' : 'uz'].g100 : String(x.qty).replace('.', ',') + ' ' + UN[ru ? 'ru' : 'uz'][x.unit], kcal: pt.kcal, o: pt.p, y: pt.f, u: pt.c, fid: x.fid, vr: x.vr || undefined, sz: x.sz || undefined, taxminiy: !!x.food.e });
+  }
+  return { items: out, missing: r.missing };
+}
 export const _test = { extractJson, sanitize, SYSTEM };
 
 const E = { 400: "Matn noto'g'ri.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 415: 'JSON yuboring.', 429: "Bugungi limit tugadi. Ertaga urinib ko'ring.", 4291: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
@@ -44,15 +60,17 @@ export async function onRequest({ request, env }) {
   if (!body || typeof body !== 'object' || Array.isArray(body) || typeof body.matn !== 'string') return fail(400);
   const matn = body.matn.trim();
   if (matn.length < 2 || matn.length > 300) return fail(400);
+  let matn2 = matn, lokal = [];
+  { const foods = await loadFoods(env, request); if (foods) { const L = localItems(matn, foods, body.til); lokal = L.items; if (lokal.length && !L.missing.length) return json(200, { ovqatlar: lokal.slice(0, 8), lokal: true }); if (lokal.length) matn2 = L.missing.join(', '); } }
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
   const cl = num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT);
   let sabab; try { sabab = await takeKfQuota(env, request, clientId, { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
   if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
-    const r = await askModel(env, maskPII(matn), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
+    const r = await askModel(env, maskPII(matn2), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
     if (r.err) continue;
-    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list) });
+    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: lokal.concat(sanitize(list)).slice(0, 8) });
   }
   return fail(502);
 }
