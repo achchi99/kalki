@@ -80,3 +80,31 @@ Oldingi (1-bosqich) jadval xotiradagi qiymatlar bilan edi: osh 183 → 180, soms
 ## 5. Keyingi qadam
 
 Jadvalni ko'rib chiqing: (1) shu usul qabul qilinsa 2-bosqichga o'tamiz (`baza-hisob.js --yoz` yoqiladi, `x: taxminiy` belgilari bilan); (2) norin (+46%) bo'yicha qaror; (3) 5 ta uy taomi natijalari kelsa retseptlar o'sha qiymatlar bilan kalibrlanadi.
+
+## 6. Oldin «tuzatilgan» osh (≈200) va sho'rva (75) qiymatlari — yangi retsept bilan izoh
+
+Eski qiymatlar uchun yagona asos — `tools/ovqatlar-manba.json` dagi tarkib izohi. Shu izohni **haqiqiy USDA/Скурихин qiymatlari bilan** qayta hisobladim va yangi retsept bilan solishtirdim. **Bazaga tegmadim** — farqlar quyida, qaror sizda.
+
+### Osh (bazada 200 kkal/100 g)
+
+| | 100 g pishgan oshda (g) | Kkal/100 g |
+|---|---|---|
+| Eski izoh: «guruch 26, sabzi 26, go'sht 18, yog' 5 g/100 g» (xom deb olinsa) | guruch 26 · sabzi 26 · go'sht 18 · yog' 5 | **196** (USDA) · **187** (Скурихин qiymatlari) |
+| Yangi retsept (1 kg guruch, 1 kg sabzi, 250 g piyoz, 800 g go'sht, 220 g yog'), yield 4544 g | guruch 22.0 · sabzi 22.0 · piyoz 5.5 · go'sht 17.6 · yog' 4.8 | **180** |
+
+- **Eski 200 o'z izohiga mos** (196 USDA, 187 Скурихин) — bu yerda «tuzatish» to'g'ri bo'lgan.
+- Yangi retsept 180 beradi (**−10%**). Sabab bitta: **guruchning pishgandagi vazni.** Eski izoh guruchni 26% olgan (pishgan oshning yield'i ≈ 3,8 kg/kg guruch → guruch ×2,0); yangi hisobda yield USDA juftidan avtomatik (guruch xom 365 → pishgan 130 kkal = **×2,81**, ya'ni 22%). Oshda guruch qaynatmadagidan kamroq suv shimadi (zirvak quyuq), shuning uchun real koeffitsient 2,0–2,8 oralig'ida — **bu aynan tarozida o'lchanadigan narsa** (uy oshi: guruch xom/pishgan).
+- Natija: osh 180–200 oralig'ida (|farq| ≤10%) — **±15% maqsadi ichida**; qaysi biri to'g'ri ekani yield o'lchovi bilan hal bo'ladi.
+- Agar eski izohdagi 26 g guruch **pishgan** guruch bo'lsa, tarkib 135 kkal beradi — izoh bunday emas deb tushundim (200 bilan mos kelmaydi).
+
+### Sho'rva (bazada 75 kkal/100 g)
+
+| | 100 g sho'rvada (g) | Kkal/100 g |
+|---|---|---|
+| Eski izoh: «qo'y go'shti 16, kartoshka 16, sabzi 6, suv 70 g/100 g» | qo'y 16 · kartoshka 16 · sabzi 6 · suv 70 | **58** (USDA) · **48** (Скурихин) |
+| Yangi retsept (400 g qo'y, 400 g kartoshka, 200 g sabzi, 150 g piyoz, 100 g pomidor, 50 g qalampir, 2 l suv), yield 2722 g | qo'y 14.7 · kartoshka 14.7 · sabzi 7.3 · piyoz 5.5 | **57** (USDA) · **48** (Скурихин) · o'rtacha **53** |
+
+- ⚠ **Bazadagi 75 o'z izohiga ham mos emas**: izohdagi tarkib 58 (USDA) / 48 (Скурихин) kkal beradi, ya'ni 75 u dan **+29% / +56%** yuqori. Izohning o'zi «ru-jadvaldan past» deb yozgan edi — demak 75 ning asosi izohda ko'rsatilmagan (qo'shimcha yog'/sho'rvaning yog' qatlami hisobga olingan bo'lishi mumkin).
+- Yangi retsept eski **izohga** mos (57 / 48) va 53 ga olib keladi (**−29% bazadagi 75 dan**). Ya'ni farq retseptdan emas, 75 raqamining o'zidan.
+- **Sho'rvaning bir narsaga sezgirligi:** yog' qatlami. Go'shtli quyuq sho'rvada suzib yurgan yog' bo'lsa 70–80 ga ko'tariladi, qaynatma/yog'siz bo'lsa 35–45 ga tushadi. Shuning uchun sho'rva uchun omil («tarkibi») majburiy chip bo'ladi va qiymat «taxminiy» belgisi bilan chiqadi.
+- **Qaror sizda:** 75 ni saqlash (eski), 53 ga o'tkazish (izohga mos) yoki sho'rvani 3 ta omil kombinatsiyasi qilib (qaynatma ~40 / sabzavotli ~53 / yog'li quyuq ~75) — **men hech narsani o'zgartirmadim**.
