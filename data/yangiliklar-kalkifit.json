@@ -2,6 +2,34 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 7,
+      "d": "2026-10-17",
+      "bn": {
+        "uz": "Yangi ko'rinish: kaloriya «idishi», taom rasmlari, yangi ranglar.",
+        "ru": "Новый вид: «сосуд» калорий, фото блюд, новые цвета."
+      },
+      "items": [
+        {
+          "uz": "Kaloriya endi «idish»da: yegan sari to'lib boradi, markazda qancha qolgani ko'rinadi.",
+          "ru": "Калории теперь в «сосуде»: он наполняется по мере еды, в центре — сколько осталось.",
+          "show": "simple",
+          "btn": {
+            "uz": "Bosh ekranni ko'rish",
+            "ru": "Показать главный экран"
+          }
+        },
+        {
+          "uz": "Taomlar rasm bilan, ovqat vaqti qo'shish oynasining tepasida.",
+          "ru": "Блюда с фото, приём пищи — вверху окна добавления.",
+          "show": "search",
+          "btn": {
+            "uz": "Qo'shish oynasini ko'rish",
+            "ru": "Показать окно добавления"
+          }
+        }
+      ]
+    },
+    {
       "v": 6,
       "d": "2026-10-17",
       "bn": {

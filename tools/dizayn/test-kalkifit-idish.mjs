@@ -29,8 +29,8 @@ async function mk(st, lang = '') { const c = await b.newContext({ viewport: { wi
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.abort()); await p.goto(BASE + (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit' + (lang === 'cyr' ? '?lang=cyr' : '')), { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
 const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state))); const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
 const kc = async (p) => { await p.waitForTimeout(320); return num(await p.locator('#fdKcal').innerText()); };
-const openFood = async (p, q) => { await p.click('#mainAdd'); await p.waitForTimeout(450); await p.fill('#fdQ', q); await p.waitForTimeout(260); await p.click('.sl-rr >> nth=0'); await p.waitForTimeout(320); };
 const more = async (p) => { if (await p.locator('#pwMore[hidden]').count()) { await p.click('[data-act=pwmore]'); await p.waitForTimeout(120); } };
+const openFood = async (p, q) => { await p.click('#mainAdd'); await p.waitForTimeout(450); await p.fill('#fdQ', q); await p.waitForTimeout(260); await p.click('.sl-rr >> nth=0'); await p.waitForTimeout(320); await more(p); };
 const textMode = async (p, q) => { await p.fill('#fdQ', q); await p.waitForTimeout(250); await p.click('[data-act=fqai]'); await p.waitForTimeout(1100); };
 try {
   /* 1. tarozida tortish yo'li */

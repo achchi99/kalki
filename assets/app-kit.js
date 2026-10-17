@@ -75,7 +75,7 @@
     kit.sheetKind = function () { return sheetKind; };
     kit.shHead = function (title) { return '<div class="rz-sh-h"><b>' + esc(title) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(t('close')) + '">' + ico('x') + '</button></div>'; };
     kit.openSheet = function (kind, html, o) {
-      o = o || {}; var sh = $('#rzSheet'), bg = $('#rzBg'); sheetKind = kind;
+      o = o || {}; var sh = $('#rzSheet'), bg = $('#rzBg'); sheetKind = kind; sh.setAttribute('data-kind', kind);
       sh.style.transform = ''; sh.style.transition = '';
       sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; sh.hidden = false; bg.hidden = false; kit.dpInit(); void sh.offsetWidth; sh.classList.add('open'); bg.classList.add('open');
       var f = sh.querySelector('input:not([type=hidden]):not([type=checkbox]),textarea'); if (f && !o.noFocus) setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 260);
@@ -100,11 +100,11 @@
     root.addEventListener('pointerdown', swStart); root.addEventListener('pointermove', swMove); root.addEventListener('pointerup', swEnd); root.addEventListener('pointercancel', swEnd);
 
     /* ---------- toast ---------- */
-    kit.toast = function (msg, undo, ok) {
+    kit.toast = function (msg, undo, ok, ms) {
       var el = $('#rzToast'); clearTimeout(undoTimer);
       el.innerHTML = (ok ? kit.okCheck() : '') + '<span class="tm">' + esc(msg) + '</span>' + (undo ? '<button type="button" data-act="undo">' + esc(t('cancel')) + '</button>' : '');
       el._undo = undo || null; el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-      undoTimer = setTimeout(kit.hideToast, 5000);
+      undoTimer = setTimeout(kit.hideToast, ms || 5000);
     };
     kit.hideToast = function () { var el = $('#rzToast'); el.classList.remove('show'); setTimeout(function () { if (!el.classList.contains('show')) { el.hidden = true; el._undo = null; } }, 220); };
 
