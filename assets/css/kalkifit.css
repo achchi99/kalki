@@ -138,6 +138,7 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 
 /* odatdagi ovqatlar / kechagidek */
 .sl-mh .sl-more{margin-left:6px;background:transparent;color:var(--mut)}.sl-emp{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.sl-yb{min-height:40px;flex:none}
-.sl-tpl{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;margin:0 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.sl-tpl::-webkit-scrollbar{display:none}.sl-tpl .rz-chip{flex:none;white-space:nowrap}.sl-tpl .rz-i,.sl-yb .rz-i{width:16px;height:16px}
+.sl-tpl{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;margin:0 0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.sl-tpl::-webkit-scrollbar{display:none}.sl-tpl .rz-chip{flex:none;white-space:nowrap}.sl-tpl .rz-i,.sl-yb .rz-i{width:16px;height:16px}
 .sl-chk{flex:none;width:30px;height:30px;border-radius:9px;border:2px solid var(--line);background:transparent;color:transparent;display:inline-flex;align-items:center;justify-content:center;padding:0;margin-right:2px}.sl-chk.on{background:var(--acc2);border-color:var(--acc2);color:#fff}.sl-ti.off .m,.sl-ti.off b{opacity:.45}
 .sl-tr{display:flex;align-items:center;gap:2px;padding:8px 0;border-bottom:1px solid var(--line)}.sl-tr .m{flex:1;min-width:0;display:flex;flex-direction:column}.sl-tr .m b{overflow-wrap:anywhere}.sl-tr .m span{color:var(--mut);font-size:var(--t-xs,.875rem);font-weight:600}.sl-tr .rz-x:disabled{opacity:.3}.sl-tr .rz-i.up{transform:rotate(-90deg)}.sl-tr .rz-i.dn{transform:rotate(90deg)}.sl-tsg{margin-bottom:8px}
+.sl-yb{display:inline-flex;align-items:center;gap:6px}
