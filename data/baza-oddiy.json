@@ -11,12 +11,13 @@
    "izoh": "USDA 168878 + calorizator — mos"
   },
   "mol-gosht": {
-   "usda": 171203,
-   "izoh": "USDA 171203 + calorizator — mos"
+   "usda": 169484,
+   "yangila": true,
+   "izoh": "USDA 169484: Beef, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8\" fat, all grades, cooked — «Mol go'shti (pishgan)», o'rtacha yog'li qism (oshxonada ishlatiladigan aralash qism). Eski tanlov (171203, chuck for stew, 191 kkal) faqat yog'siz stew bo'lagi edi."
   },
   "qoy-gosht": {
-   "usda": 172497,
-   "izoh": "USDA 172497 + calorizator — mos"
+   "usda": 172480,
+   "izoh": "USDA 172480: Lamb, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/4\" fat, choice, cooked — «Qo'y go'shti (pishgan)», o'rtacha yog'li qism. Eski tanlov (172497, shoulder braised, 344) bitta yog'li bo'lak edi."
   },
   "tovuq-kokrak": {
    "usda": 171478,
@@ -86,29 +87,25 @@
    "usda": 173424,
    "izoh": "USDA 173424 + calorizator — mos"
   },
-  "non": {
-   "usda": 174915,
-   "izoh": "USDA 174915 + calorizator — mos"
-  },
   "non-qora": {
-   "usda": 172684,
-   "izoh": "USDA 172684 (Bread, rye) — qidiruv: bread + rye (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+   "sk": "non-qora",
+   "izoh": "Скурихин jadvali: Хлеб ржано-пшеничный бородинский (мука ржаная обойная и пшеничная 2 сорта) — «Qora non»; USDA «Bread, rye» bizning qora nonimiz emas."
   },
   "smetana": {
    "usda": 171257,
    "izoh": "USDA 171257 (Cream, sour, cultured) — qidiruv: cream + sour + cultured (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
   },
   "mol-qiyma": {
-   "usda": 174036,
-   "izoh": "USDA 174036 (Beef, ground, 80% lean meat / 20% fat, raw) — qidiruv: beef + ground + 80% + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+   "usda": 174034,
+   "izoh": "USDA 174034: Beef, ground, 85% lean / 15% fat, crumbles, cooked, pan-browned — «Qiyma (mol, pishgan)»; eski tanlov xom qiyma edi (holat nomga mos emasdi)."
   },
   "jigar": {
    "usda": 168627,
    "izoh": "USDA 168627 (Beef, variety meats and by-products, liver, cooked, pan-fried) — qidiruv: beef + liver + cooked (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
   },
   "losos": {
-   "usda": 175167,
-   "izoh": "USDA 175167 (Fish, salmon, Atlantic, farmed, raw) — qidiruv: salmon + atlantic + farmed + raw (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+   "usda": 175168,
+   "izoh": "USDA 175168: Fish, salmon, Atlantic, farmed, cooked, dry heat — «Losos (pishgan)»; eski tanlov xom losos edi (holat nomga mos emasdi)."
   },
   "tunets": {
    "usda": 171986,
@@ -116,7 +113,8 @@
   },
   "noxat": {
    "usda": 173757,
-   "izoh": "USDA 173757 (Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt) — qidiruv: chickpeas + boiled (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+   "yangila": true,
+   "izoh": "USDA 173757: Chickpeas, mature seeds, cooked, boiled, without salt — «No'xat (pishgan)»; pishgan holat."
   },
   "qalampir": {
    "usda": 170108,
@@ -204,7 +202,8 @@
   },
   "krem-pishloq": {
    "usda": 173418,
-   "izoh": "USDA 173418 (Cheese, cream) — qidiruv: cheese + cream (2026-10-17, tavsif qo'lda ko'rib chiqilgan)"
+   "yangila": true,
+   "izoh": "USDA 173418: Cheese, cream — «Qaymoqli pishloq» (an'anaviy krem-pishloq, ~34% yog')."
   },
   "tovuq-jigar": {
    "usda": 171061,

@@ -532,6 +532,21 @@
     }
    ]
   },
+  "169484": {
+   "d": "Beef, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8\" fat, all grades, cooked",
+   "f": 16.59,
+   "c": 0.0,
+   "kcal": 259.0,
+   "suv": 56.97,
+   "p": 26.11,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
   "169640": {
    "d": "Honey",
    "p": 0.3,
@@ -1312,26 +1327,6 @@
     }
    ]
   },
-  "171203": {
-   "d": "Beef, chuck for stew, separable lean and fat, all grades, cooked, braised",
-   "p": 32.41,
-   "f": 6.82,
-   "c": 0.0,
-   "kcal": 191.0,
-   "suv": 60.08,
-   "o": [
-    {
-     "nom": "oz",
-     "miqdor": 3.0,
-     "g": 85.0
-    },
-    {
-     "nom": "lb",
-     "miqdor": 1.0,
-     "g": 453.6
-    }
-   ]
-  },
   "171241": {
    "d": "Cheese, gouda",
    "kcal": 356.0,
@@ -1717,56 +1712,6 @@
     }
    ]
   },
-  "172497": {
-   "d": "Lamb, shoulder, whole (arm and blade), separable lean and fat, trimmed to 1/4\" fat, choice, cooked, braised",
-   "f": 24.55,
-   "c": 0.0,
-   "kcal": 344.0,
-   "suv": 45.2,
-   "p": 28.68,
-   "o": [
-    {
-     "nom": "oz",
-     "miqdor": 3.0,
-     "g": 85.0
-    },
-    {
-     "nom": "piece, cooked, excluding refuse (yield from 1 lb raw meat with refuse)",
-     "miqdor": 1.0,
-     "g": 218.0
-    }
-   ]
-  },
-  "172684": {
-   "d": "Bread, rye",
-   "kcal": 259.0,
-   "p": 8.5,
-   "f": 3.3,
-   "c": 48.3,
-   "suv": 37.3,
-   "o": [
-    {
-     "nom": "oz",
-     "miqdor": 1.0,
-     "g": 28.35
-    },
-    {
-     "nom": "slice, regular",
-     "miqdor": 1.0,
-     "g": 32.0
-    },
-    {
-     "nom": "slice, snack-size",
-     "miqdor": 1.0,
-     "g": 7.0
-    },
-    {
-     "nom": "slice, thin",
-     "miqdor": 1.0,
-     "g": 25.0
-    }
-   ]
-  },
   "173126": {
    "d": "Beef, round, tip round, roast, separable lean only, trimmed to 0\" fat, choice, raw",
    "suv": 73.98,
@@ -2057,18 +2002,18 @@
     }
    ]
   },
-  "174036": {
-   "d": "Beef, ground, 80% lean meat / 20% fat, raw",
-   "p": 17.17,
-   "f": 20.0,
+  "174034": {
+   "d": "Beef, ground, 85% lean meat / 15% fat, crumbles, cooked, pan-browned",
+   "p": 27.73,
+   "suv": 55.9,
+   "f": 15.3,
    "c": 0.0,
-   "kcal": 254.0,
-   "suv": 61.87,
+   "kcal": 256.0,
    "o": [
     {
      "nom": "oz",
-     "miqdor": 4.0,
-     "g": 113.0
+     "miqdor": 3.0,
+     "g": 85.0
     }
    ]
   },
@@ -2237,26 +2182,6 @@
     }
    ]
   },
-  "174915": {
-   "d": "Bread, pita, white, enriched",
-   "f": 1.2,
-   "c": 55.7,
-   "kcal": 275.0,
-   "suv": 32.1,
-   "p": 9.1,
-   "o": [
-    {
-     "nom": "pita, large (6-1/2\" dia)",
-     "miqdor": 1.0,
-     "g": 60.0
-    },
-    {
-     "nom": "pita, small  (4\" dia)",
-     "miqdor": 1.0,
-     "g": 28.0
-    }
-   ]
-  },
   "174925": {
    "d": "Bread, white, commercially prepared, toasted",
    "f": 4.0,
@@ -2337,13 +2262,13 @@
     }
    ]
   },
-  "175167": {
-   "d": "Fish, salmon, Atlantic, farmed, raw",
-   "kcal": 208.0,
-   "suv": 64.89,
-   "f": 13.42,
-   "p": 20.42,
+  "175168": {
+   "d": "Fish, salmon, Atlantic, farmed, cooked, dry heat",
+   "suv": 64.75,
+   "f": 12.35,
    "c": 0.0,
+   "p": 22.1,
+   "kcal": 206.0,
    "o": [
     {
      "nom": "oz",
@@ -2353,7 +2278,7 @@
     {
      "nom": "fillet",
      "miqdor": 0.5,
-     "g": 198.0
+     "g": 178.0
     }
    ]
   }

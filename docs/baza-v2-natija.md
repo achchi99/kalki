@@ -27,17 +27,21 @@ Hammasi retseptdan (USDA FDC + Скурихин; tools/baza-hisob.js). Qo'lda ra
 
 > Oila ichidagi eski alias yozuvlar (somsa-qat, yengil-osh …) o'z eski qiymatini saqlaydi (yozuvlar buzilmasligi uchun); oilada esa yangi kombinatsiya qiymati ishlatiladi.
 
-## Oddiy mahsulotlarni USDA bilan solishtirish (±10% — «tekshirilgan», aks holda farq sifatida ro'yxatda; qiymat o'zgartirilmagan)
+## Oddiy mahsulotlar: USDA / Скурихин bilan solishtirish — tuzatilgan (2026-10-17)
 
-| Taom | Bazada | USDA | Farq | fdc_id | USDA tavsifi |
+Oldingi 5 ta «farq» noto'g'ri yozuvlarga bog'langan edi (holat/qism nomga mos emas). Endi yozuv nomdagi holatga (xom/pishgan), go'sht qismi va yog'lilikka qarab tanlandi:
+
+| Taom (bazadagi nom) | fdc_id / manba | USDA yozuvi | Bazada eski | Yangi | Qaror |
 |---|---|---|---|---|---|
-| mol-gosht | 215 | 191 | +13% | 171203 | Beef, chuck for stew, separable lean and fat, cooked, braised |
-| qoy-gosht | 290 | 344 | -16% | 172497 | Lamb, shoulder, separable lean and fat, 1/4" fat, cooked, braised |
-| non-qora | 210 | 259 | -19% | 172684 | Bread, rye |
-| noxat | 125 | 164 | -24% | 173757 | Chickpeas, mature seeds, cooked, boiled |
-| krem-pishloq | 250 | 350 | -29% | 173418 | Cheese, cream |
+| noxat — No'xat (pishgan) | **173757** | Chickpeas, mature seeds, cooked, boiled, without salt | 125 | **164** | yangilandi |
+| krem-pishloq — Qaymoqli pishloq | **173418** | Cheese, cream | 250 | **350** | yangilandi |
+| mol-gosht — Mol go'shti (pishgan) | **169484** | Beef, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/8" fat, all grades, cooked (o'rtacha yog'li, 259 kkal; avvalgi tanlov 171203 «chuck for stew» yog'siz bo'lak edi — 191) | 215 | **259** | yangilandi (+20%) |
+| qoy-gosht — Qo'y go'shti (pishgan) | **172480** | Lamb, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/4" fat, choice, cooked (294; avvalgi tanlov 172497 bitta yog'li bo'lak — 344) | 290 | 290 | USDA bilan ±10% ichida — o'zgarmadi, tekshirilgan |
+| non-qora — Qora non | **Скурихин** — «Хлеб ржано-пшеничный бородинский», health-diet.ru/base_of_food/sostav/418 | 201 kkal (O 6,8 · Y 1,3 · U 39,8); USDA «Bread, rye» (259) bizning qora nonimiz emas | 210 | 210 | qiymat qoldi (Скурихин bilan −4%), manba Скурихин |
+| mol-qiyma — Qiyma (mol, pishgan) | **174034** | Beef, ground, 85% lean / 15% fat, crumbles, cooked, pan-browned (256) — oldin xom yozuv bilan solishtirilgan edi | 250 | 250 | ±10% ichida, tekshirilgan |
+| losos — Losos (pishgan) | **175168** | Fish, salmon, Atlantic, farmed, cooked, dry heat (206) — oldin xom yozuv bilan solishtirilgan edi | 205 | 205 | ±10% ichida, tekshirilgan |
 
-Bu 5 taomda baza qiymati USDA'dan 13–29% farq qiladi (ehtimol boshqa tayyorlash/yog'lilik). **O'zgartirilmadi** — qaror sizda.
+Hammasi: `data/baza-oddiy.json` (har yozuvda sabab), qiymatlar `data/manba/usda-sr-legacy.json` (fdc_id bilan) va `data/manba/skurikhin.json` dan. Eski noto'g'ri bog'lanish olib tashlandi (non — «Bread, pita» ham olib tashlandi: non endi retseptdan).
 
 ## Qanday kalibrlanadi
 

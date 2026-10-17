@@ -21,8 +21,8 @@ function apply(foods) {
     const names = Object.entries(byM).filter(([m]) => m !== 'suv').sort((a, b) => b[1] - a[1]).slice(0, 6).map(([m]) => m);
     const fdc = [...new Set(names.map((m) => mas[m] && mas[m].usda).filter(Boolean))].slice(0, 5).join(', ');
     const two = !!r.ikki_manba, cal = !!r.kalibr;
-    const uz = 'Retsept (o\'rtacha uy retsepti): ' + names.map((m) => mas[m].uz).join(', ') + '. Qiymatlar: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' va Скурихин jadvali (ikkalasining o\'rtachasi)' : '') + '.' + (cal ? ' Uy o\'lchovi (tarozi) bilan kalibrlangan ' + r.kalibr.sana + '.' : ' «Taxminiy»: retsept miqdori va pishgandagi vazn taxminiy, uy tarozisida hali tasdiqlanmagan' + (h && r.qaror ? '; standart qiymat foydalanuvchi qarori bilan 190 kkal' : '') + '.');
-    const ru = 'Рецепт (средний домашний): ' + names.map((m) => mas[m].ru).join(', ') + '. Данные: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' и таблица Скурихина (среднее)' : '') + '.' + (cal ? ' Откалибровано по домашнему взвешиванию ' + r.kalibr.sana + '.' : ' «Примерно»: количества и вес готового блюда оценочные, на домашних весах пока не подтверждены' + (h && r.qaror ? '; стандартное значение — решение пользователя, 190 ккал' : '') + '.');
+    const uz = 'Retsept (o\'rtacha uy retsepti): ' + names.map((m) => mas[m].uz).join(', ') + '. Qiymatlar: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' va Скурихин jadvali (ikkalasining o\'rtachasi)' : '') + '.' + (cal ? ' Uy o\'lchovi (tarozi) bilan kalibrlangan ' + r.kalibr.sana + '.' : ' Retsept o\'rtacha uy taomiga asoslangan, ±15% farq bo\'lishi mumkin; uy tarozisida hali tasdiqlanmagan' + (h && r.qaror ? '; standart qiymat foydalanuvchi qarori bilan 190 kkal' : '') + '.');
+    const ru = 'Рецепт (средний домашний): ' + names.map((m) => mas[m].ru).join(', ') + '. Данные: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' и таблица Скурихина (среднее)' : '') + '.' + (cal ? ' Откалибровано по домашнему взвешиванию ' + r.kalibr.sana + '.' : ' Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%; на домашних весах пока не подтверждено' + (h && r.qaror ? '; стандартное значение — решение пользователя, 190 ккал' : '') + '.');
     return { u: uz, r: ru };
   };
   rets.forEach((r) => { mr[r.id] = msFor(r.id); });
@@ -66,11 +66,18 @@ function apply(foods) {
     base.a = (base.a || []).slice(); sy.forEach((x) => { const k = key(x.q); if (!seen.has(k)) { seen.add(k); base.a.push(x.q); } });
     base.m = dq.rc ? mr[dq.rc].u : base.m;
   }
-  /* --- oddiy mahsulotlar: USDA bilan solishtirish --- */
-  const tk = {};
-  for (const [id, o] of Object.entries(od)) { const f = idx[id]; if (!f) continue; const u = usda.foods[String(o.usda)]; if (!u) continue; const rel = (f.k - u.kcal) / Math.max(1, u.kcal);
-    if (Math.abs(rel) <= 0.10 || (u.kcal <= 10 && Math.abs(f.k - u.kcal) <= 3)) { f.tk = date; tk[id] = 1; f.ms = { u: 'USDA FoodData Central, fdc_id ' + o.usda + ' (' + u.d.replace(/"/g, '') + '): ' + u.kcal + ' kkal/100 g — bazadagi qiymat (' + f.k + ') ±10% ichida, tekshirilgan ' + date + '.', r: 'USDA FoodData Central, fdc_id ' + o.usda + ': ' + u.kcal + ' ккал/100 г — значение в базе (' + f.k + ') в пределах ±10%, проверено ' + date + '.' }; }
-    else farqlar.push({ id, baza: f.k, usda: u.kcal, fdc: o.usda, d: u.d, farq: Math.round(rel * 100) }); }
+  /* --- oddiy mahsulotlar: USDA / Скурихин bilan solishtirish (nomdagi holatga mos yozuv tanlanadi) --- */
+  const tk = {}, yangilangan = [];
+  const R1 = (x) => Math.round(x * 10) / 10;
+  for (const [id, o] of Object.entries(od)) {
+    const f = idx[id]; if (!f) continue;
+    const src = o.sk ? sk.yozuvlar[o.sk] : usda.foods[String(o.usda)]; if (!src) continue;
+    const kk = src.kcal, rel = (f.k - kk) / Math.max(1, kk), why = o.sk ? { u: 'Скурихин jadvali («' + src.nom + '», ' + src.url.replace('https://', '') + '): ' + kk + ' kkal/100 g — bazadagi qiymat (' + f.k + ') ±10% ichida, tekshirilgan ' + date + '.', r: 'Таблица Скурихина («' + src.nom + '»): ' + kk + ' ккал/100 г — значение в базе (' + f.k + ') в пределах ±10%, проверено ' + date + '.' }
+      : { u: 'USDA FoodData Central, fdc_id ' + o.usda + ' (' + src.d.replace(/"/g, '') + '): ' + kk + ' kkal/100 g — bazadagi qiymat ' + (o.yangila ? 'USDA bilan yangilandi' : '(' + f.k + ') ±10% ichida') + ', tekshirilgan ' + date + '.', r: 'USDA FoodData Central, fdc_id ' + o.usda + ': ' + kk + ' ккал/100 г — значение ' + (o.yangila ? 'в базе обновлено по USDA' : 'в базе (' + f.k + ') в пределах ±10%') + ', проверено ' + date + '.' };
+    if (o.yangila && Math.abs(rel) > 0.10) { const old = f.k; f.k = Math.round(src.kcal); f.p = R1(src.p); f.f = R1(src.f); f.c = R1(src.c); f.tk = date; f.x = 0; f.e = 0; f.ms = why; f.m = 'USDA FDC ' + o.usda + ' (yangilangan ' + date + ', eski ' + old + ' kkal)'; tk[id] = 1; yangilangan.push({ id, eski: old, yangi: f.k, fdc: o.usda, d: src.d }); continue; }
+    if (Math.abs(rel) <= 0.10 || (kk <= 10 && Math.abs(f.k - kk) <= 3)) { f.tk = date; tk[id] = 1; f.ms = why; if (f.x) { f.x = 0; f.e = 0; } }
+    else farqlar.push({ id, baza: f.k, usda: kk, fdc: o.usda || o.sk, d: src.d || src.nom, farq: Math.round(rel * 100) });
+  }
   /* --- «taxminiy»: tanlangan 150 taomdan tarozida yoki ikki manba bilan tasdiqlanmaganlar --- */
   const topSet0 = new Set(fam.top); for (const f of out) if (topSet0.has(f.i) && !f.x && !f.tk) { f.x = 1; f.e = 1; }
   /* --- b (birliklar), x, top, ms --- */
@@ -80,8 +87,8 @@ function apply(foods) {
     f.b = un.map((x, i) => ({ k: x[0], g: x[1], d: i === 0 ? 1 : undefined, s: own }));
     if (f.x == null) f.x = f.e ? 1 : 0; f.e = f.x;
     if (topSet.has(f.i)) f.top = 1;
-    if (!f.ms) { const rid = f.rc; if (rid && mr[rid]) f.ms = mr[rid]; else f.ms = { u: f.tk ? '' : 'Mavjud baza qiymati (USDA/ochiq jadvallar asosida; ikkinchi manba yoki tarozi bilan tekshirilmagan) — «taxminiy».', r: f.tk ? '' : 'Существующее значение базы (на основе USDA/открытых таблиц; второй источник или весы не проверяли) — «примерно».' }; if (!f.x && !f.tk) { f.ms.u = f.m || 'Mahsulot qiymati (USDA / ochiq jadvallar).'; f.ms.r = 'Значение продукта (USDA / открытые таблицы).'; } }
+    if (!f.ms) { const rid = f.rc; if (rid && mr[rid]) f.ms = mr[rid]; else f.ms = { u: f.tk ? '' : 'Qiymat mavjud jadvallarga (USDA/ochiq manbalar) asoslangan; ikkinchi manba yoki tarozi bilan hali tekshirilmagan, ±15% farq bo\'lishi mumkin.', r: f.tk ? '' : 'Значение основано на существующих таблицах (USDA/открытые источники); второй источник или весы пока не проверяли, возможно отклонение ±15%.' }; if (!f.x && !f.tk) { f.ms.u = f.m || 'Mahsulot qiymati (USDA / ochiq jadvallar).'; f.ms.r = 'Значение продукта (USDA / открытые таблицы).'; } }
   }
-  return { foods: out, mr, meta: { v: 2, usda: usda.meta, skurikhin: sk.meta, tekshirilgan: Object.keys(tk).length, farqlar, top: out.filter((f) => f.top).length } };
+  return { foods: out, mr, meta: { v: 2, usda: usda.meta, skurikhin: sk.meta, tekshirilgan: Object.keys(tk).length, yangilangan, farqlar, top: out.filter((f) => f.top).length } };
 }
 module.exports = { apply };
