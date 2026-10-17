@@ -10,9 +10,9 @@
   'use strict';
   var MAX_ITEMS = 5, HL_MS = 2000, POLL_MS = 1500;
   var D = {
-    uz: { pop: '🎉 Yangilandi', ok: 'Tushunarli', show: "Ko'rsat", rowT: 'Yangiliklar', rowS: 'Ilovada nima yangi', unread: "O'qilmagan yangilik", sheetT: 'Yangiliklar', none: "Hozircha yangilik yo'q",
+    uz: { pop: '🎉 Yangilandi', ok: 'Tushunarli', bnNew: 'Yangi:', bnSee: "Ko'rish", bnX: 'Yopish', show: "Ko'rsat", rowT: 'Yangiliklar', rowS: 'Ilovada nima yangi', unread: "O'qilmagan yangilik", sheetT: 'Yangiliklar', none: "Hozircha yangilik yo'q",
       hDayEnd: "Avval bugungi ovqatni yozing — «Kunni yakunlash» tugmasi shundan keyin shu yerda paydo bo'ladi.", hNo: "Bu joy hozir ko'rinmayapti." },
-    ru: { pop: '🎉 Обновление', ok: 'Понятно', show: 'Показать', rowT: 'Что нового', rowS: 'Что нового в приложении', unread: 'Непрочитанная новость', sheetT: 'Что нового', none: 'Пока новостей нет',
+    ru: { pop: '🎉 Обновление', ok: 'Понятно', bnNew: 'Новое:', bnSee: 'Смотреть', bnX: 'Закрыть', show: 'Показать', rowT: 'Что нового', rowS: 'Что нового в приложении', unread: 'Непрочитанная новость', sheetT: 'Что нового', none: 'Пока новостей нет',
       hDayEnd: 'Сначала запишите сегодняшнюю еду — кнопка «Завершить день» появится здесь.', hNo: 'Это место сейчас не видно.' }
   };
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -47,7 +47,7 @@
     };
     function itemsHtml(items) {
       var t = L(), lg = (cfg.lang ? cfg.lang() : 'uz') === 'ru' ? 'ru' : 'uz';
-      return '<ul class="yg-l">' + items.map(function (it) { return '<li><span>' + esc(it[lg] || it.uz) + '</span>' + (it.show ? '<button type="button" class="rz-btn sm yg-go" data-act="ygshow" data-t="' + esc(it.show) + '">' + esc(t.show) + '</button>' : '') + '</li>'; }).join('') + '</ul>';
+      return '<ul class="yg-l">' + items.map(function (it) { return '<li><span>' + esc(it[lg] || it.uz) + '</span>' + (it.show ? '<button type="button" class="rz-btn sm yg-go" data-act="ygshow" data-t="' + esc(it.show) + '">' + esc(it.btn && it.btn[lg] ? it.btn[lg] : t.show) + '</button>' : '') + '</li>'; }).join('') + '</ul>';
     }
     function mark(shown, read) { if (!S) return; if (shown != null) S.shown = Math.max(S.shown, shown); if (read != null) S.read = Math.max(S.read, read); saveS(); if (read != null && !inst.hasUnread()) { var dots = document.querySelectorAll('.yg-dot'); for (var i = 0; i < dots.length; i++) dots[i].parentNode.removeChild(dots[i]); } if (cfg.onChange) cfg.onChange(); }
     function closePop() { if (popEl && popEl.parentNode) popEl.parentNode.removeChild(popEl); popEl = null; }
@@ -62,7 +62,14 @@
       if (document.body.classList.contains('rz-aboutopen')) return true;
       return false;
     }
+    function showBanner(items) {                             // cfg.banner: bir qatorli tepa xabar «Yangi: … [Ko'rish] ✕» (ro'yxat — Profil → Yangiliklar)
+      closePop(); var t = L(), lg = (cfg.lang ? cfg.lang() : 'uz') === 'ru' ? 'ru' : 'uz', e = sorted(list)[0] || {}, tx = (e.bn && e.bn[lg]) || (items[0] && (items[0][lg] || items[0].uz)) || '';
+      popEl = document.createElement('div'); popEl.className = 'yg-pop yg-bn'; popEl.id = 'ygPop'; popEl.setAttribute('role', 'status'); popEl.setAttribute('aria-label', t.bnNew);
+      popEl.innerHTML = '<span class="yg-bt"><b>' + esc(t.bnNew) + '</b> ' + esc(tx) + '</span><button type="button" class="rz-btn sm" data-act="ygopen" data-yg="bn">' + esc(t.bnSee) + '</button><button type="button" class="rz-x" data-act="ygok" id="ygOk" aria-label="' + esc(t.bnX) + '"><svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+      cfg.root.appendChild(popEl); mark(latest(list), null);
+    }
     function showPop(items) {
+      if (cfg.banner) return showBanner(items);
       closePop(); var t = L(); popEl = document.createElement('div'); popEl.className = 'yg-pop'; popEl.id = 'ygPop'; popEl.setAttribute('role', 'dialog'); popEl.setAttribute('aria-label', t.pop);
       popEl.innerHTML = '<div class="yg-h"><b>' + esc(t.pop) + '</b></div>' + itemsHtml(items) + '<div class="yg-f"><button type="button" class="rz-btn primary sm" data-act="ygok" id="ygOk">' + esc(t.ok) + '</button></div>';
       cfg.root.appendChild(popEl); mark(latest(list), null);   // har versiyada BIR marta (ko'rsatilgan zahoti)
@@ -91,7 +98,7 @@
     inst.act = function (a, el) {
       if (a === 'ygok') { closePop(); mark(latest(list), latest(list)); return true; }
       if (a === 'ygshow') { var tg = el && el.getAttribute('data-t'); if (cfg.kit && cfg.kit.sheetKind() === 'news') cfg.kit.closeSheet(); closePop(); mark(latest(list), latest(list)); setTimeout(function () { inst.go(tg); }, 120); return true; }
-      if (a === 'ygopen') { inst.open(); return true; }
+      if (a === 'ygopen') { closePop(); inst.open(); return true; }
       return false;
     };
     inst.highlight = highlight;

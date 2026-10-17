@@ -209,3 +209,25 @@ html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3B
 .sl-fabg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 8px}
 .sl-fabt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:96px;border:0;border-radius:var(--r);background:var(--soft);color:var(--ink);font-weight:800;font-size:var(--t-m,1.0625rem)}
 .sl-fabt .rz-i{width:30px;height:30px;color:var(--accink)}
+/* OVQAT QO'SHISH oynasi: qidiruv + rasm; oxirgilar [+]; boshqa usullar; porsiya oynasi (bitta xulosa qatori) */
+.sl-sr{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:8px;background:var(--card);margin:0 0 8px;box-shadow:0 6px 0 6px var(--card)}
+.sl-sr .sl-search{position:static;flex:1;margin:0;box-shadow:none;min-width:0}
+.sl-cam{flex:none;width:52px;height:52px;border:0;border-radius:14px;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}.sl-cam .rz-i{width:24px;height:24px}.sl-cam[disabled]{opacity:.4}
+.sl-ai{display:flex;width:100%;text-align:left;border:0;border-radius:12px;background:var(--accsoft);color:var(--accink);font-weight:800;min-height:48px;padding:8px 12px;margin:0 0 8px;font-size:var(--t-s,.9375rem)}
+.sl-rw{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--line)}.sl-rw .sl-rr{border-bottom:0;flex:1;min-width:0}
+.sl-rw .sl-plus{flex:none;width:48px;height:48px;border-radius:50%;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;border:0}
+.sl-more{margin:10px 0 0}.sl-morebtn{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;border:0;background:transparent;color:var(--mut);font-weight:800;font-size:var(--t-s,.9375rem);min-height:48px;padding:0 4px;text-align:left}
+.sl-morebtn .cv{font-style:normal;transition:transform .15s}.sl-morebtn .cv.open{transform:rotate(180deg)}
+.sl-morep .sl-row{gap:10px}.sl-morep .rz-i:first-child{width:22px;height:22px;color:var(--accink);flex:none}
+.sl-sum{font-size:1.1875rem;font-weight:700;line-height:1.35;margin:4px 0 2px}.sl-sum b{font-weight:800}.sl-sum #fdKcal{font-variant-numeric:tabular-nums}
+.sl-mc{text-align:left}
+.sl-qty .sl-qp{width:52px;height:52px;border-radius:50%;border:0;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
+.sl-qty button{background:var(--soft);color:var(--ink)}
+.sl-pwmore{padding:2px 0 6px}
+.sl-src{margin:0 auto;display:block}
+.sl-sr .sl-search input:focus,.sl-sr .sl-search input:focus-visible{outline:0;box-shadow:none}.sl-sr .sl-search:focus-within{border-color:var(--accink);box-shadow:0 0 0 3px var(--accsoft)}
+/* yordamchi xabarlar: bir qatorli tepa banner (Yangi: … [Ko'rish] ✕) */
+.sl .yg-bn,.rz.sl .yg-bn{top:calc(60px + env(safe-area-inset-top,0px));bottom:auto;left:8px;right:8px;max-height:none;display:flex;align-items:center;gap:8px;padding:6px 6px 6px 12px;border:0;background:var(--accsoft);color:var(--accink);box-shadow:var(--shadow)}
+.yg-bn .yg-bt{flex:1;min-width:0;font-size:var(--t-s,.9375rem);font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.yg-bn .rz-btn{flex:none;min-height:44px;background:var(--card);color:var(--ink)}.yg-bn .rz-x{flex:none;width:44px;height:44px;color:var(--accink)}
+.sl-info{font-weight:800;font-size:1.125rem;min-width:44px;min-height:44px;color:var(--mut)}

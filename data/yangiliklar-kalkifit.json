@@ -2,44 +2,169 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 6,
+      "d": "2026-10-17",
+      "bn": {
+        "uz": "Ilova soddalashdi — ovqatni qidirib, porsiyani tanlab qo'shing.",
+        "ru": "Приложение стало проще — найдите еду, выберите порцию и добавьте."
+      },
+      "items": [
+        {
+          "uz": "Ilova soddalashdi: asosiy ekranda faqat kerakli narsa — «+ Ovqat qo'shish» tugmasi.",
+          "ru": "Приложение стало проще: на главном экране только нужное — кнопка «+ Добавить еду».",
+          "show": "simple",
+          "btn": {
+            "uz": "Bosh ekranni ko'rish",
+            "ru": "Показать главный экран"
+          }
+        },
+        {
+          "uz": "Oxirgi yegan taomingiz bir bosishda qo'shiladi: «Ovqat qo'shish» → Oxirgilar → [+].",
+          "ru": "Последнюю еду можно добавить одним касанием: «Добавить еду» → Недавние → [+].",
+          "show": "search",
+          "btn": {
+            "uz": "Oxirgilarni ko'rish",
+            "ru": "Показать недавние"
+          }
+        },
+        {
+          "uz": "Och va qorong'i mavzu: Profil → Mavzu.",
+          "ru": "Светлая и тёмная тема: Профиль → Тема.",
+          "show": "theme",
+          "btn": {
+            "uz": "Mavzuni ko'rish",
+            "ru": "Показать тему"
+          }
+        }
+      ]
+    },
+    {
       "v": 5,
       "d": "2026-10-18",
       "items": [
-        { "uz": "O'z kosangiz va laganingizni belgilang: «Mening laganimda osh» bir bosishda yoziladi.", "ru": "Отметьте свою миску и лаган: «Плов в моём лагане» записывается в одно касание.", "show": "vessel" }
+        {
+          "uz": "O'z kosangiz va laganingizni belgilang: «Mening laganimda osh» bir bosishda yoziladi.",
+          "ru": "Отметьте свою миску и лаган: «Плов в моём лагане» записывается в одно касание.",
+          "show": "vessel",
+          "btn": {
+            "uz": "Mening idishimni ko'rish",
+            "ru": "Показать «Мою посуду»"
+          }
+        }
       ]
     },
     {
       "v": 4,
       "d": "2026-10-18",
       "items": [
-        { "uz": "O'zbek taomlari endi kosa, lagan va donada: «1 kosa ≈ 350 g» ko'rinadi.", "ru": "Узбекские блюда теперь в мисках, тарелках и штуках: видно «1 миска ≈ 350 г».", "show": "units" },
-        { "uz": "Somsa va oshning turlari: ichi, xamiri, o'lchami, go'shti va yog'ini tanlang.", "ru": "Виды самсы и плова: выберите начинку, тесто, размер, мясо и масло.", "show": "variants" },
-        { "uz": "Kaloriya manbasini ko'rish mumkin: «ⓘ Manba» tugmasini bosing.", "ru": "Источник калорий можно посмотреть: нажмите «ⓘ Источник».", "show": "source" }
+        {
+          "uz": "O'zbek taomlari endi kosa, lagan va donada: «1 kosa ≈ 350 g» ko'rinadi.",
+          "ru": "Узбекские блюда теперь в мисках, тарелках и штуках: видно «1 миска ≈ 350 г».",
+          "show": "units",
+          "btn": {
+            "uz": "Porsiya oynasini ko'rish",
+            "ru": "Показать окно порции"
+          }
+        },
+        {
+          "uz": "Somsa va oshning turlari: ichi, xamiri, o'lchami, go'shti va yog'ini tanlang.",
+          "ru": "Виды самсы и плова: выберите начинку, тесто, размер, мясо и масло.",
+          "show": "variants",
+          "btn": {
+            "uz": "Turlarini ko'rish",
+            "ru": "Показать виды"
+          }
+        },
+        {
+          "uz": "Kaloriya manbasini ko'rish mumkin: «ⓘ Manba» tugmasini bosing.",
+          "ru": "Источник калорий можно посмотреть: нажмите «ⓘ Источник».",
+          "show": "source",
+          "btn": {
+            "uz": "Manbani ko'rish",
+            "ru": "Показать источник"
+          }
+        }
       ]
     },
     {
       "v": 3,
       "d": "2026-10-18",
       "items": [
-        { "uz": "Odatdagi ovqatlar osonlashdi: ovqat bo'limidagi ☆ Saqlash tugmasini bosing.", "ru": "Привычная еда стала проще: нажмите ☆ «Сохранить» у приёма пищи.", "show": "templates" }
+        {
+          "uz": "Odatdagi ovqatlar osonlashdi: ovqat bo'limidagi ☆ Saqlash tugmasini bosing.",
+          "ru": "Привычная еда стала проще: нажмите ☆ «Сохранить» у приёма пищи.",
+          "show": "templates",
+          "btn": {
+            "uz": "Saqlanganlarni ko'rish",
+            "ru": "Показать сохранённое"
+          }
+        }
       ]
     },
     {
       "v": 2,
       "d": "2026-10-17",
       "items": [
-        { "uz": "Qidiruv endi xato yozsangiz ham topadi: «ola» — Olma, «плов» — Osh.", "ru": "Поиск теперь находит и с опечатками: «ола» — Яблоко, «плов» — Плов.", "show": "search" },
-        { "uz": "Porsiyani oson o'zgartiring: ½, 1, 2 tugmalari yoki raqamni o'zingiz yozing.", "ru": "Порцию легко менять: кнопки ½, 1, 2 или впишите число сами.", "show": "portion" },
-        { "uz": "Odatdagi ovqatingizni bir marta saqlang — keyin bir bosishda qo'shing. Kechagidek ham bor.", "ru": "Сохраните привычную еду один раз — потом добавляйте в одно касание. Есть и «Как вчера».", "show": "templates" }
+        {
+          "uz": "Qidiruv endi xato yozsangiz ham topadi: «ola» — Olma, «плов» — Osh.",
+          "ru": "Поиск теперь находит и с опечатками: «ола» — Яблоко, «плов» — Плов.",
+          "show": "search",
+          "btn": {
+            "uz": "Qidiruvni ochish",
+            "ru": "Открыть поиск"
+          }
+        },
+        {
+          "uz": "Porsiyani oson o'zgartiring: ½, 1, 2 tugmalari yoki raqamni o'zingiz yozing.",
+          "ru": "Порцию легко менять: кнопки ½, 1, 2 или впишите число сами.",
+          "show": "portion",
+          "btn": {
+            "uz": "Porsiya oynasini ko'rish",
+            "ru": "Показать окно порции"
+          }
+        },
+        {
+          "uz": "Odatdagi ovqatingizni bir marta saqlang — keyin bir bosishda qo'shing. Kechagidek ham bor.",
+          "ru": "Сохраните привычную еду один раз — потом добавляйте в одно касание. Есть и «Как вчера».",
+          "show": "templates",
+          "btn": {
+            "uz": "Saqlanganlarni ko'rish",
+            "ru": "Показать сохранённое"
+          }
+        }
       ]
     },
     {
       "v": 1,
       "d": "2026-10-17",
       "items": [
-        { "uz": "Kun holati endi aniqroq: «To'liq», «Qisman» va «Ma'lumot yo'q» kunlar farqlanadi.", "ru": "Статус дня стал точнее: различаются «Полный», «Частичный» и «Нет данных».", "show": "daychip" },
-        { "uz": "Qadam kaloriyasi to'g'ri hisoblanadi: odatiy qadamdan ortig'i uchungina qo'shiladi.", "ru": "Калории за шаги считаются верно: добавляются только за шаги сверх обычного.", "show": "stepcalc" },
-        { "uz": "Yangi «Kunni yakunlash» tugmasi: ovqatni yozib bo'lgach bosing — kun to'liq hisoblanadi.", "ru": "Новая кнопка «Завершить день»: записав еду, нажмите её — день будет считаться полным.", "show": "dayend" }
+        {
+          "uz": "Kun holati endi aniqroq: «To'liq», «Qisman» va «Ma'lumot yo'q» kunlar farqlanadi.",
+          "ru": "Статус дня стал точнее: различаются «Полный», «Частичный» и «Нет данных».",
+          "show": "daychip",
+          "btn": {
+            "uz": "Kun holatini ko'rish",
+            "ru": "Показать статус дня"
+          }
+        },
+        {
+          "uz": "Qadam kaloriyasi to'g'ri hisoblanadi: odatiy qadamdan ortig'i uchungina qo'shiladi.",
+          "ru": "Калории за шаги считаются верно: добавляются только за шаги сверх обычного.",
+          "show": "stepcalc",
+          "btn": {
+            "uz": "Hisobni ko'rish",
+            "ru": "Показать расчёт"
+          }
+        },
+        {
+          "uz": "Yangi «Kunni yakunlash» tugmasi: ovqatni yozib bo'lgach bosing — kun to'liq hisoblanadi.",
+          "ru": "Новая кнопка «Завершить день»: записав еду, нажмите её — день будет считаться полным.",
+          "show": "dayend",
+          "btn": {
+            "uz": "Tugmani ko'rsatish",
+            "ru": "Показать кнопку"
+          }
+        }
       ]
     }
   ]
