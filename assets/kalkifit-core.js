@@ -89,7 +89,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     var t = { kcal: 0, p: 0, f: 0, c: 0 }; (list || []).forEach(function (e) { t.kcal += e.kcal || 0; t.p += e.p || 0; t.f += e.f || 0; t.c += e.c || 0; });
     return { kcal: Math.round(t.kcal), p: Math.round(t.p), f: Math.round(t.f), c: Math.round(t.c) };
   }
-  function mealByHour(h) { return h < 11 ? 'b' : (h < 16 ? 'l' : (h < 21 ? 'd' : 's')); }
+  function mealByHour(h) { return h >= 5 && h < 11 ? 'b' : (h >= 11 && h < 16 ? 'l' : (h >= 16 && h < 22 ? 'd' : 's')); }       // 05–11 nonushta, 11–16 tushlik, 16–22 kechki ovqat, qolgani tamaddi
 
   /* ---------- sana bo'yicha ma'lumot ---------- */
   function dayOf(st, d) { return st.days[d] || null; }
@@ -244,36 +244,58 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
 
   /* ---------- qidiruv va matn tahlili ---------- */
   var CYR = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'j', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'x', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': '', 'ы': 'i', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ў': 'o', 'қ': 'q', 'ғ': 'g', 'ҳ': 'h' };
-  function key(s) {                                  // lotin/kirill/rus + xato yozuvga chidamli kalit
-    var t = String(s || '').toLowerCase().replace(/[’'`‘ʻʼ]/g, ''), o = '';
+  function key(s) {                                  // lotin/kirill/rus + xato yozuvga chidamli kalit: o' o‘ oʻ o` o’ → o, g' → g, ў қ ғ ҳ х ш ч ё ю я → lotin
+    var t = String(s || '').toLowerCase().replace(/[’'`‘ʻʼ´′]/g, ''), o = '';
     for (var i = 0; i < t.length; i++) o += CYR[t[i]] != null ? CYR[t[i]] : t[i];
     return o.replace(/w/g, 'v').replace(/kh/g, 'x').replace(/ph/g, 'f').replace(/ts/g, 's').replace(/([a-z])\1+/g, '$1').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
-  function lev1(a, b) {                               // Levenshtein <= 1 ?
-    if (a === b) return true; var la = a.length, lb = b.length; if (Math.abs(la - lb) > 1) return false;
-    var i = 0, j = 0, edits = 0; while (i < la && j < lb) { if (a[i] === b[j]) { i++; j++; continue; } if (++edits > 1) return false; if (la > lb) i++; else if (lb > la) j++; else { i++; j++; } }
-    return edits + (la - i) + (lb - j) <= 1;
-  }
-  function foodKeys(f) { if (!f._k) { var arr = [f.n, f.r].concat(f.a || []); f._k = arr.filter(Boolean).map(function (x) { return key(x); }); f._t = f._k.map(function (k) { return k.split(' '); }); } return f; }
-  function scoreFood(f, qt) {                          // qt — so'rov so'zlari (kalitlangan); har so'z mos kelishi shart
-    foodKeys(f); var total = 0;
-    for (var i = 0; i < qt.length; i++) {
-      var best = 0;
-      for (var k = 0; k < f._t.length; k++) for (var j = 0; j < f._t[k].length; j++) {
-        var w = f._t[k][j], q = qt[i], sc = 0;
-        if (w === q) sc = 3; else if (w.indexOf(q) === 0) sc = 2.2; else if (q.length >= 3 && w.indexOf(q) > -1) sc = 1.2; else if (q.length >= 4 && lev1(w, q)) sc = 1;
-        if (k === 0 && sc) sc += 0.3; if (sc > best) best = sc;
-      }
-      if (!best) return 0; total += best;
+  function dmax(len) { return len < 3 ? 0 : (len <= 5 ? 1 : 2); }            // xatoga chidamlilik: 3–5 harfda 1 ta, 6+ da 2 ta
+  function osa(a, b, max) {                           // Damerau–Levenshtein (harf tushishi, ortiqcha harf, almashishi, ikki harf o'rin almashishi); max dan oshsa max+1
+    var la = a.length, lb = b.length; if (Math.abs(la - lb) > max) return max + 1;
+    var prev2 = null, prev = [], cur, i, j; for (j = 0; j <= lb; j++) prev[j] = j;
+    for (i = 1; i <= la; i++) {
+      cur = [i]; var rm = i;
+      for (j = 1; j <= lb; j++) { var c = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1, v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + c); if (i > 1 && j > 1 && a.charCodeAt(i - 1) === b.charCodeAt(j - 2) && a.charCodeAt(i - 2) === b.charCodeAt(j - 1)) v = Math.min(v, prev2[j - 2] + 1); cur[j] = v; if (v < rm) rm = v; }
+      if (rm > max) return max + 1; prev2 = prev; prev = cur;
     }
-    var whole = qt.join(' '); for (var k2 = 0; k2 < f._k.length; k2++) if (f._k[k2] === whole) { total += qt.length * 1.2; break; }          // butun nom/sinonim aynan mos — yuqoriroq
-    return total / qt.length;
+    return prev[lb];
   }
-  function search(foods, q, o) {
-    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return [];
-    var rec = o.recents || [], fav = o.favs || [], out = [];
-    foods.forEach(function (f, ix) { var sc = scoreFood(f, qt); if (sc > 0) { var r = rec.indexOf(f.id); if (fav.indexOf(f.id) > -1) sc += 0.4; if (r > -1) sc += 0.3 - r * 0.01; if (f.t === 'o') sc += 0.05; out.push({ f: f, s: sc, ix: ix }); } });
-    out.sort(function (a, b) { return b.s - a.s || a.ix - b.ix; });
+  function foodKeys(f) { if (!f._k) { var arr = [f.n, f.r].concat(f.a || []); f._k = arr.filter(Boolean).map(function (x) { return key(x); }); f._t = f._k.map(function (k) { return k.split(' '); }); f._nl = f._k[0] ? f._k[0].length : 99; } return f; }
+  function buildIndex(foods) { foods.forEach(foodKeys); return foods; }       // indeksni oldindan qurish (har harfda qayta hisoblanmaydi)
+  /* so'z darajasi: 1 so'zning o'zi · 2 so'z boshidan · 3 so'z boshida xato bilan · 4 ichida · 5 butun so'z xato bilan; {t, d (xato soni), l (uzunlik farqi)} */
+  function tokTier(w, q) {
+    if (w === q) return { t: 1, d: 0, l: 0 };
+    if (w.indexOf(q) === 0) return { t: 2, d: 0, l: w.length - q.length };
+    var ql = q.length; if (ql < 3) return null; var tol = dmax(ql), best = null, d, fl = ql <= 4 && w.charAt(0) !== q.charAt(0);      // qisqa so'rovda birinchi harfda xato qidirilmaydi (shovqin kamayadi)
+    if (!fl) for (var n = Math.max(3, ql - 1); n <= ql + 1; n++) { if (n > w.length) continue; d = osa(q, w.slice(0, n), tol); if (d <= tol && (!best || d < best.d)) best = { t: 3, d: d, l: Math.abs(w.length - ql) }; }
+    if (best) return best;
+    if (w.indexOf(q) > 0) return { t: 4, d: 0, l: w.length - ql };
+    if (fl) return null; d = osa(q, w, tol); if (d <= tol) return { t: 5, d: d, l: Math.abs(w.length - ql) };
+    return null;
+  }
+  function matchFood(f, qt, whole) {                   // → null | {tier, d, l}; tier 0 — butun so'rov nom/sinonimga aynan mos
+    foodKeys(f); for (var k = 0; k < f._k.length; k++) if (f._k[k] === whole) return { tier: 0, d: 0, l: 0 };
+    var tier = 0, dd = 0, ll = 0;
+    for (var i = 0; i < qt.length; i++) {
+      var best = null;
+      for (var k2 = 0; k2 < f._t.length; k2++) for (var j = 0; j < f._t[k2].length; j++) { var r = tokTier(f._t[k2][j], qt[i]); if (r && (!best || r.t < best.t || (r.t === best.t && (r.d < best.d || (r.d === best.d && r.l < best.l))))) best = r; }
+      if (!best) return null; if (best.t > tier) tier = best.t; dd += best.d; ll += best.l;
+    }
+    return { tier: tier, d: dd, l: ll };
+  }
+  function freqMap(st, today, days) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
+    var out = {}, from = D.addDays(today, -((days || 30) - 1));
+    Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) out[e.fid] = (out[e.fid] || 0) + 1; }); });
+    return out;
+  }
+  function search(foods, q, o) {                       // ① aynan ② so'z boshidan ③ ichida/xato bilan ④ — bir xil darajada: ko'p yeyilgan va sevimlilar yuqorida
+    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' ');
+    var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
+    foods.forEach(function (f, ix) {
+      var m = matchFood(f, qt, whole); if (!m) return; var r = rec.indexOf(f.id);
+      out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), d: m.d, l: m.l, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
+    });
+    out.sort(function (a, b) { return a.tier - b.tier || b.pref - a.pref || a.d - b.d || a.l - b.l || a.r - b.r || a.ix - b.ix; });
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
@@ -314,6 +336,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
     dates: D, num: num };
 });

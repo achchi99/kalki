@@ -45,7 +45,7 @@ const files = (git('diff', '--name-only', mb) || '').split('\n').filter(Boolean)
 const dirty = [...(git('diff', '--name-only', 'HEAD') || '').split('\n'), ...(git('ls-files', '--others', '--exclude-standard') || '').split('\n')].filter(Boolean);
 const commits = (git('log', '--format=%H%x09%s', mb + '..HEAD') || '').split('\n').filter(Boolean).map((l) => { const [h, ...s] = l.split('\t'); return { subject: s.join('\t'), files: (git('diff-tree', '--no-commit-id', '--name-only', '-r', h) || '').split('\n').filter(Boolean) }; });
 const jsonChanged = {}, latestBase = {}, latestNow = {};
-for (const [app, r] of Object.entries(RULES)) { const now = fs.existsSync(path.join(ROOT, r.json)) ? fs.readFileSync(path.join(ROOT, r.json), 'utf8') : ''; const old = git('show', mb + ':' + r.json); latestNow[app] = readLatest(now); latestBase[app] = old ? readLatest(old) : 0; jsonChanged[app] = (old || '') !== now; }
+for (const [app, r] of Object.entries(RULES)) { const now = fs.existsSync(path.join(ROOT, r.json)) ? fs.readFileSync(path.join(ROOT, r.json), 'utf8') : ''; const old = git('show', mb + ':' + r.json); latestNow[app] = readLatest(now); latestBase[app] = old ? readLatest(old) : 0; jsonChanged[app] = (old || '').trim() !== now.trim(); }
 const errs = check({ files, commits, dirty, jsonChanged, latestBase, latestNow });
 if (errs.length) { console.log('XATO yangiliklar qoidasi:\n - ' + errs.join('\n - ') + '\n(CLAUDE.md «Ilovalarga yangi funksiya qoidasi»: har relizda data/yangiliklar-*.json ga yozuv qo\'shing; faqat ko\'rinish/imlo bo\'lsa commit nomi design:/matn: bilan boshlansin)'); process.exit(1); }
 console.log('OK   repo: ilova kodi o\'zgarishlariga mos yangilik yozuvlari bor (asos ' + mb.slice(0, 7) + ', ' + commits.length + ' commit)');

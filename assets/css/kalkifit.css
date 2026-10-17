@@ -126,3 +126,5 @@ p.sl-fact{font-weight:600;margin:8px 0 0}
 
 .sl-warn{display:flex;align-items:center;gap:6px;margin-top:3px;font-size:var(--t-xs,.875rem);font-weight:800;color:var(--warn,#7A4E00)}.sl-warn.big{font-size:var(--t-s,.9375rem);background:var(--warnbg,#FFF3D6);border:1px solid var(--warnline,#F0DDAA);border-radius:12px;padding:8px 12px;margin:0 0 12px}
 .sl-lv i{margin-top:.38em;flex:none}
+
+.sl-nact{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}.sl-nact .rz-btn{flex:none}
