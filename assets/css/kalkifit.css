@@ -177,8 +177,8 @@ html[data-theme=dark] .sl{--bg:#0F1714;--card:#1B2722;--ink:#F1F4F2;--mut:#B7C3B
 .rz.sl .rz-seg{background:var(--soft)}.rz.sl .rz-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.22)}
 .rz.sl .rz-tab.on{color:var(--accink)}.rz.sl .rz-nav{background:var(--card)}
 .rz.sl .rz-fab{width:56px;height:56px;top:-22px;background:var(--ink);color:var(--bg);border:4px solid var(--bg);box-shadow:0 4px 14px rgba(0,0,0,.28)}
-.rz.sl .rz-fab .rz-i{width:26px;height:26px}.rz.sl .rz-fab .rz-fabl{position:absolute;top:57px;left:50%;transform:translateX(-50%);font-size:.75rem;font-weight:700;color:var(--mut);white-space:nowrap}
-.rz.sl .rz-tab .l,.rz.sl .rz-tab .s{font-size:.8125rem}
+.rz.sl .rz-fab .rz-i{width:26px;height:26px}.rz.sl .rz-fab .rz-fabl{position:absolute;top:57px;left:50%;transform:translateX(-50%);font-size:.875rem;font-weight:700;color:var(--mut);white-space:nowrap}
+.rz.sl .rz-tab .l,.rz.sl .rz-tab .s{font-size:.875rem}
 .sl-plus{background:var(--soft);color:var(--ink)}
 .sl-sv{border:0;background:transparent;color:var(--accink);padding:0 8px}.sl-sv span{color:var(--accink)}
 .sl-ci{background:var(--accsoft);color:var(--accink)}

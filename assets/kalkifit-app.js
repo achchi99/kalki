@@ -149,8 +149,9 @@
   function foodById(id) { var l = allFoods(); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
 
   /* ---------- saqlash ---------- */
+  var loadDirty = false;                             // migratsiya yangi maydon (kuzatuv boshi) qo'shdi — bir marta saqlanadi (zaxira/ko'chirish kodi bilan bir xil bo'lsin)
   function load() {
-    try { var raw = lsGet(LS); if (raw) { var s = S.migrate(JSON.parse(raw)); if (s) { if (!s.prefs) s.prefs = {}; return s; } } } catch (e) {}
+    try { var raw = lsGet(LS); if (raw) { var o0 = JSON.parse(raw), s = S.migrate(o0); if (s) { if (!s.prefs) s.prefs = {}; if (s.setup && o0 && !o0.trackStart) loadDirty = true; return s; } } } catch (e) {}
     var s2 = S.emptyState(); s2.prefs = {}; return s2;
   }
   var persistAsked = false;
@@ -1397,7 +1398,7 @@
 
   /* ---------- ishga tushirish ---------- */
   function init() {
-    st = load(); applyTheme(); shell();
+    st = load(); if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
     try { if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true) document.body.classList.add('rz-standalone'); } catch (e) {}
     var ab = document.getElementById('rzAbout');
     if (ab && !document.getElementById('rzAboutBar')) {
