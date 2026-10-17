@@ -713,7 +713,8 @@
   /* ---------- «Odatdagi ovqatlarim» va «Kechagidek» ---------- */
 
   /* ---------- «Mening idishim»: o'z kosa/laganingiz (idish × taom oilasi) ---------- */
-  function vStdG(o, kind) { var uk = S.VUNIT[kind] || defUnit(o.food), g = S.unitGrams(o.food, uk) || S.unitGrams(o.food, defUnit(o.food)) || 0; return g; }
+  var LIKOPCHA_G = 200;                                // likopcha (kichik likop) — alohida standart (lagan emas); tarozida hali tekshirilmagan (docs/tarozida-tekshirish.md, ixtiyoriy)
+  function vStdG(o, kind) { if (kind === 'likopcha') return LIKOPCHA_G; var uk = S.VUNIT[kind] || defUnit(o.food), g = S.unitGrams(o.food, uk) || S.unitGrams(o.food, defUnit(o.food)) || 0; return g; }
   function vcGrams() {                                 // 2 yo'l: tarozida (ovqat bilan − bo'sh idish yoki to'g'ridan-to'g'ri ovqat grammi) / tarozisiz (standartga nisbatan)
     var vc = fd.vc, o = pwO(); if (vc.method === 'scale') { var d = num(vc.full) - num(vc.empty); return num(vc.full) > 0 && num(vc.empty) >= 0 && d > 0 ? Math.round(d) : Math.round(num(vc.direct)); }
     return Math.round(vStdG(o, vc.kind) * S.SCALE[vc.scale]);
