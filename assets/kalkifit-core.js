@@ -95,7 +95,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function dayOf(st, d) { return st.days[d] || null; }
   function ensureDay(st, d) { if (!st.days[d]) st.days[d] = { food: [], water: 0, steps: 0 }; if (st.trackStart && d < st.trackStart) st.trackStart = d; return st.days[d]; }   // oldingi sanaga yozilsa, kuzatuv boshlanishi shu sanaga suriladi
   function dayTotals(st, d) { var x = dayOf(st, d); return sumEntries(x ? x.food : []); }
-  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
+  function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
@@ -230,9 +230,38 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
+    s.tpls = cleanTpls(raw.tpls, s);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     return s;
   }
+  /* ---------- «Odatdagi ovqatlarim» (shablonlar) va «Kechagidek» ---------- */
+  var TPL_MAX = 12;
+  function r1(x) { return Math.round(num(x) * 10) / 10; }
+  function cleanTplItem(e) {
+    if (!e || typeof e !== 'object') return null; var k = Math.round(num(e.kcal)); if (!(k >= 0) || !(e.fid || e.n || e.name)) return null;
+    return { fid: e.fid ? String(e.fid).slice(0, 60) : null, n: String(e.n || e.name || '').slice(0, 80), unit: e.unit ? String(e.unit).slice(0, 20) : null, qty: num(e.qty) > 0 ? Math.min(3000, Math.round(num(e.qty) * 100) / 100) : 1, g: Math.max(0, Math.round(num(e.g))), kcal: k, p: r1(e.p), f: r1(e.f), c: r1(e.c), est: !!e.est };
+  }
+  function cleanTpls(list, s) {
+    var out = [], used = {}; (Array.isArray(list) ? list : []).forEach(function (t) {
+      if (out.length >= TPL_MAX || !t || typeof t !== 'object') return; var name = String(t.name || '').trim().slice(0, 40), items = (Array.isArray(t.items) ? t.items : []).map(cleanTplItem).filter(Boolean).slice(0, 40); if (!name || !items.length) return;
+      var id = Math.round(num(t.id)); if (!(id > 0) || used[id]) id = s.seq++; else if (id >= s.seq) s.seq = id + 1; used[id] = 1; out.push({ id: id, name: name, meal: MEALS.indexOf(t.meal) > -1 ? t.meal : null, items: items });
+    }); return out;
+  }
+  function tplList(st) { return st.tpls || (st.tpls = []); }
+  function addTemplate(st, name, entries, meal) {                 // entries: kunning shu ovqati yozuvlari ({fid,n,unit,qty,g,kcal,p,f,c,est}); to'lgan (12) yoki bo'sh bo'lsa — null
+    var l = tplList(st); name = String(name || '').trim().slice(0, 40); var items = (entries || []).map(cleanTplItem).filter(Boolean).slice(0, 40);
+    if (!name || !items.length || l.length >= TPL_MAX) return null; var t = { id: st.seq++, name: name, meal: MEALS.indexOf(meal) > -1 ? meal : null, items: items }; l.push(t); return t;
+  }
+  function tplById(st, id) { var l = tplList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+  function renameTemplate(st, id, name) { var t = tplById(st, id); name = String(name || '').trim().slice(0, 40); if (!t || !name) return false; t.name = name; return true; }
+  function removeTemplate(st, id) { var l = tplList(st); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l.splice(i, 1)[0]; return null; }
+  function moveTemplate(st, id, dir) { var l = tplList(st), i = -1; for (var k = 0; k < l.length; k++) if (l[k].id === id) i = k; var j = i + (dir < 0 ? -1 : 1); if (i < 0 || j < 0 || j >= l.length) return false; var x = l[i]; l[i] = l[j]; l[j] = x; return true; }
+  function tplKcal(t) { return t.items.reduce(function (a, e) { return a + e.kcal; }, 0); }
+  function yesterdayEntries(st, date, meal) { var x = dayOf(st, D.addDays(date, -1)); return x ? x.food.filter(function (e) { return e.meal === meal; }) : []; }
+  function kechagidekOk(st, date, meal) {                         // shu kunda shu ovqat bo'sh va kecha unda yozuv bo'lgan
+    var t = dayOf(st, date); if (t && t.food.some(function (e) { return e.meal === meal; })) return false; return yesterdayEntries(st, date, meal).length > 0;
+  }
+
   function exportState(st) { return JSON.stringify({ app: 'kalki-kalkifit', v: VERSION, exportedAt: Date.now(), state: st }); }
   function importState(text) {
     var o; try { o = JSON.parse(text); } catch (e) { return { ok: false }; }
@@ -336,6 +365,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams,
+    migrate: migrate, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk,
     dates: D, num: num };
 });

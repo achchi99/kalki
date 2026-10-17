@@ -6,7 +6,8 @@
       "d": "2026-10-17",
       "items": [
         { "uz": "Qidiruv endi xato yozsangiz ham topadi: «ola» — Olma, «плов» — Osh.", "ru": "Поиск теперь находит и с опечатками: «ола» — Яблоко, «плов» — Плов.", "show": "search" },
-        { "uz": "Porsiyani oson o'zgartiring: ½, 1, 2 tugmalari yoki raqamni o'zingiz yozing.", "ru": "Порцию легко менять: кнопки ½, 1, 2 или впишите число сами.", "show": "portion" }
+        { "uz": "Porsiyani oson o'zgartiring: ½, 1, 2 tugmalari yoki raqamni o'zingiz yozing.", "ru": "Порцию легко менять: кнопки ½, 1, 2 или впишите число сами.", "show": "portion" },
+        { "uz": "Odatdagi ovqatingizni bir marta saqlang — keyin bir bosishda qo'shing. Kechagidek ham bor.", "ru": "Сохраните привычную еду один раз — потом добавляйте в одно касание. Есть и «Как вчера».", "show": "templates" }
       ]
     },
     {
