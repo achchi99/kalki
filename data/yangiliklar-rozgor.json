@@ -2,6 +2,21 @@
   "app": "rozgor",
   "items": [
     {
+      "v": 3,
+      "d": "2026-10-18",
+      "items": [
+        {
+          "uz": "Email bilan kirish: ma'lumotingiz avtomatik saqlanadi, yangi telefonda email bilan kirsangiz hammasi qaytadi.",
+          "ru": "Вход по email: данные сохраняются автоматически, на новом телефоне войдите по email — и всё вернётся.",
+          "show": "akkaunt",
+          "btn": {
+            "uz": "Kirishni ochish",
+            "ru": "Открыть вход"
+          }
+        }
+      ]
+    },
+    {
       "v": 2,
       "d": "2026-10-18",
       "items": [

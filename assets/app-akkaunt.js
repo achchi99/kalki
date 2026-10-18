@@ -91,7 +91,7 @@
     }
     /* ---- holat: faqat kerak bo'lganda so'raladi ---- */
     ak.load = function (force, done) {
-      if (loading) return; if (!force && S.t && Date.now() - S.t < (S.yoq ? TTL_ON : TTL_OFF)) { if (done) done(); return; } loading = true;
+      if (loading) { if (done) setTimeout(done, 600); return; } if (!force && S.t && Date.now() - S.t < (S.yoq ? TTL_ON : TTL_OFF)) { if (done) done(); return; } loading = true;
       call('GET', 'sessiya').then(function (r) {
         loading = false; var ch;
         if (r.s === 200 && r.j && r.j.yoqilgan) ch = setState({ yoq: true, kirgan: !!r.j.kirgan, email: r.j.email, marketing: r.j.marketing, qur: r.j.qurilmalar, dev: !!r.j.dev, il: r.j.ilovalar });

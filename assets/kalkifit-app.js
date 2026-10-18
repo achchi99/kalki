@@ -245,6 +245,7 @@
   function viewOf(v) { return VIEW_ALIAS[String(v || '').replace(/^#/, '').toLowerCase()] || null; }       // eski nomlar/manzillar (#ovqat, #qadam, #men …) yangi joyga
   function goTab(v0, fn) { var v = viewOf(v0) || v0; if (view !== v) { var tb = $('[data-act=tab][data-v=' + v + ']'); if (tb) tb.click(); } setTimeout(fn, 480); return true; }
   var news = KalkiNews.create({ app: 'kalkifit', banner: true, kit: kit, lang: langNow, root: root, rowIcon: 'sl-ci', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
+    akkaunt: function (n) { return goTab('profile', function () { akk.load(true, function () { if (akk.enabled()) akk.act('akk'); }); }); },
     daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('#kcalBtn')); }); },
     stepcalc: function (n) { return goTab('today', function () { n.highlight($('#kcalBtn')); }); },
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },

@@ -126,7 +126,8 @@
   var akk = KalkiAkkaunt.create({ app: 'rozgor', kit: kit, lang: langNow, bk: bk, rowIcon: 'rz-ci rz-c-boshqa', hasData: function () { return !!(st && st.setup); }, isTrivial: function () { return !!(st && st.setup && !(st.tx || []).length && !(st.bills || []).length); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'set') && !kit.sheetKind()) render(); }, onOnb: function () { if (st && !st.setup && $('#rzOnb') && !$('#rzOnb').hidden && ob && ob.step === 1) showOnb(); } });
   function goTab(v, fn) { if (view !== v) { var tb = $('[data-act=tab][data-v=' + v + ']'); if (tb) tb.click(); } setTimeout(fn, 480); return true; }
   var news = KalkiNews.create({ app: 'rozgor', kit: kit, lang: langNow, root: root, rowIcon: 'rz-ci rz-c-boshqa', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
-    backup: function (n) { return goTab('set', function () { n.highlight($('[data-bk=tg]') || $('#rzMain')); }); } } });
+    backup: function (n) { return goTab('set', function () { n.highlight($('[data-bk=tg]') || $('#rzMain')); }); },
+    akkaunt: function (n) { return goTab('set', function () { akk.load(true, function () { if (akk.enabled()) akk.act('akk'); }); }); } } });
   function nudges() {
     var out = [], t = todayStr(), p = prefs(), now = Date.now();
     var hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
