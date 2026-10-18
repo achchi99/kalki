@@ -2,6 +2,25 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 11,
+      "d": "2026-10-18",
+      "items": [
+        {
+          "uz": "Email bilan kirish: ma'lumotingiz avtomatik saqlanadi, yangi telefonda email bilan kirsangiz hammasi qaytadi.",
+          "ru": "Вход по почте: данные сохраняются автоматически, на новом телефоне войдите по почте — и всё вернётся.",
+          "show": "akkaunt",
+          "btn": {
+            "uz": "Kirishni ochish",
+            "ru": "Открыть вход"
+          }
+        }
+      ],
+      "bn": {
+        "uz": "Endi email bilan kirish mumkin: ma'lumot avtomatik saqlanadi.",
+        "ru": "Теперь можно войти по почте: данные сохраняются автоматически."
+      }
+    },
+    {
       "v": 10,
       "d": "2026-10-18",
       "items": [

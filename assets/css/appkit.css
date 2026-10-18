@@ -67,7 +67,7 @@ html.fs-big .rz-tab .l{display:none}html.fs-big .rz-tab .s{display:block}
 .rz-x{border:0;background:transparent;width:44px;height:44px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;color:var(--mut)}
 .rz-amt{text-align:center;font-size:2.75rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;padding:6px 0 10px}.rz-amt small{font-size:1.125rem;color:var(--mut);font-weight:700}
 .rz-meta{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
-.rz-notein,.rz-f input[type=text]{width:100%;min-height:48px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:0 14px;font:inherit;font-weight:700}
+.rz-notein,.rz-f input[type=text],.rz-f input[type=email]{width:100%;min-height:48px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:0 14px;font:inherit;font-weight:700}
 .rz-notein{flex:1;min-width:140px}
 .rz-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 .rz-pad button{min-height:52px;border:0;border-radius:14px;background:var(--soft);font-size:1.375rem;font-weight:800;color:var(--ink);transition:transform .08s,background .12s}.rz-pad button:active{transform:scale(.95);background:var(--line)}
@@ -241,6 +241,23 @@ html[data-theme=dark]:has(body.rz-body),html[data-theme=dark] body.v2.rz-body,ht
 .bk-conf{border-radius:12px;padding:10px 12px;margin:0 0 10px}
 .bk-rclink{display:block;margin:18px auto 0;text-align:center}
 .bk-restore{z-index:76}
+/* akkaunt (ixtiyoriy kirish) — assets/app-akkaunt.js */
+.akk-code{text-align:center;font-size:1.5rem;letter-spacing:.3em;font-weight:800;font-variant-numeric:tabular-nums}
+.akk-err{background:var(--soft);color:var(--ink);border-radius:12px;padding:10px 12px;font-weight:600;margin:0 0 10px;box-shadow:inset 3px 0 0 var(--err)}
+.akk-priv{margin:12px 0 0}.akk-priv a{color:var(--acc2);font-weight:800}
+.akk-links{display:flex;flex-direction:column;align-items:center;gap:2px;margin:10px 0 4px}.akk-links .rz-link:disabled{opacity:.55;text-decoration:none}
+.akk-del{color:var(--warn)}
+.akk-mk{color:var(--ink);display:flex;gap:12px;align-items:flex-start;background:var(--soft);box-shadow:inset 3px 0 0 var(--bline);border-radius:14px;padding:12px 14px;margin:6px 0 12px;cursor:pointer}
+.akk-mk input{margin-top:1px}
+.akk-mk b{display:block;font-size:var(--t-m,1rem);line-height:1.35}.akk-mk span span{display:block;color:var(--mut);font-size:var(--t-s,.9375rem);margin-top:4px;line-height:1.4}
+.akk-me{word-break:break-all}
+.akk-dev{border-top:1px dashed var(--line);margin-top:14px;padding-top:6px}.akk-devr{display:flex;gap:8px}.akk-devr input{flex:1;min-width:0;min-height:44px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:0 12px;font:inherit}
+/* akkaunt B: «Boshqa usullar» (yig'ilgan), onboarding ustida panel */
+.akk-more>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:0 14px;font-weight:800;font-size:var(--t-m,1rem);color:var(--ink);cursor:pointer;list-style:none;border-top:1px solid var(--line)}
+.akk-more>summary::-webkit-details-marker{display:none}.akk-more>summary .rz-i{width:20px;height:20px;flex:none;color:var(--mut);transition:transform .2s}.akk-more[open]>summary .rz-i{transform:rotate(90deg)}
+.akk-more>.rz-row{border-top:1px solid var(--line)}
+.akk-cf{flex-direction:column}.akk-cf .rz-btn{width:100%}
+.rz-sheet[data-kind=akk],.rz-sheet[data-kind=akkc],.rz-sheet[data-kind=akks]{z-index:80}
 
 /* ---------- Yangiliklar oynasi (app-yangilik.js) ---------- */
 .yg-pop{position:absolute;left:12px;right:12px;bottom:calc(98px + env(safe-area-inset-bottom,0px));z-index:45;max-height:min(46%,340px);overflow-y:auto;background:var(--card);border:1.5px solid var(--acc2);border-radius:18px;box-shadow:0 10px 32px rgba(0,0,0,.22);padding:12px 14px;animation:ygIn .35s cubic-bezier(.2,.8,.2,1) both}

@@ -139,7 +139,7 @@ for (const [name, url, key] of [['UZ', '/maxfiylik', 'uz'], ['RU', '/ru/maxfiyli
   T(errs.length === 0, name + ': JS xatolari yo\'q', errs.join(' | '));
   await ctx.close();
 }
-for (const [name, url, re] of [['UZ', '/maxfiylik', /Oxirgi yangilanish: 2026-yil 16-oktabr/], ['RU', '/ru/maxfiylik', /Последнее обновление: 16 октября 2026/], ['ЎЗ', '/maxfiylik?lang=cyr', /2026-йил 16-октабр/], ['UZ', '/shartlar', /Oxirgi yangilanish: 2026-yil 13-oktabr/], ['RU', '/ru/shartlar', /Последнее обновление: 13 октября 2026/], ['ЎЗ', '/shartlar?lang=cyr', /2026-йил 13-октабр/]]) {
+for (const [name, url, re] of [['UZ', '/maxfiylik', /Oxirgi yangilanish: 2026-yil 18-oktabr/], ['RU', '/ru/maxfiylik', /Последнее обновление: 18 октября 2026/], ['ЎЗ', '/maxfiylik?lang=cyr', /2026-йил 18-октабр/], ['UZ', '/shartlar', /Oxirgi yangilanish: 2026-yil 13-oktabr/], ['RU', '/ru/shartlar', /Последнее обновление: 13 октября 2026/], ['ЎЗ', '/shartlar?lang=cyr', /2026-йил 13-октабр/]]) {
   const { ctx, p } = await open(url);
   T(re.test(nbsp(await p.evaluate(() => document.body.innerText))), name + ' ' + url + ': yangilangan sana 2026-10-13');
   await ctx.close();
