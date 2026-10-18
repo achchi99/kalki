@@ -24,6 +24,13 @@ Hozir: tiklash kodidan HKDF bilan `id` va AES-GCM kalit chiqadi; server faqat `i
 
 **Tavsiya: (c).** Konvert: AES-GCM(kalit = HKDF(MASTER_SECRET, akkaunt_id), AAD = `akkaunt_id|ilova`), ichida tiklash kodi. Blob formati, `/api/zaxira`, eski kod oqimi tegilmaydi. Qat'iy rejim (konvertsiz) sozlamada ixtiyoriy, ogohlantirish bilan: "email bilan tiklab bo'lmaydi, faqat kod". Master secret rotatsiyasi: `master_v` ustuni bilan qayta o'rash (blobga tegmaydi).
 
+**Server kaliti (gibrid uchun) — qaror:**
+- Secret nomi: `AKKAUNT_MASTER_KEYS`, shakli `versiya:kalit` juftliklari vergul bilan (`2:<yangi>,1:<eski>`); kalit — kamida 43 ta tasodifiy harf-raqam. **Birinchisi joriy** (yangi o'rashlar shu bilan), qolganlari faqat eski konvertlarni ochish uchun. Kodda/repoda YO'Q: faqat Cloudflare secret (keyin VPS env). O'qish/tekshirish: `functions/_lib/akkaunt-kalit.js`; yaratish va tekshirish vositasi: `tools/akkaunt-kalit.js` (kalitni faylga yozmaydi).
+- Konvert (B bosqich): `kod_konvert = versiya | iv | AES-GCM(HKDF(kalit_versiya, akkaunt_id), tiklash kodi)`, AAD = `akkaunt_id|ilova`; `akkaunt_ilova.master_v` qaysi versiya bilan o'ralganini saqlaydi.
+- **Almashtirish (rotation):** yangi `N+1` juftlikni boshiga qo'shish → «qayta o'rash» vositasi (B) har konvertni ochib yangi versiya bilan qayta yozadi → eski juftlikni olib tashlash. Blob va foydalanuvchi kodlariga tegilmaydi.
+- **Kalit yo'qolsa:** blob'lar tiklash kodi bilan shifrlangan, kalitga bog'liq emas → ma'lumot yo'qolmaydi; faqat eski konvertlar ochilmaydi. Kirgan qurilmalar kodni qayta yuboradi (yangi kalit bilan qayta o'raladi); telefoni ham, kodi ham yo'q odam bulutdagi ma'lumotni ocha olmaydi. Batafsil va oddiy 6 qadam: `docs/akkaunt-kalit.md`.
+- Qat'iy rejim konvertni umuman yaratmaydi — kalitga bog'liq emas.
+
 ## 2. Email yuborish
 
 Talab: Workers'dan HTTPS API (SMTP yo'q), bepul limit, mail.ru/gmail/yandex'ga yetib borish.
@@ -136,12 +143,17 @@ Kalkifit/Ro'zg'or qoidalari: 360 px, `fs-big`, klaviatura ochiq; `data/yangilikl
 
 | Bosqich | Ichida | Baho |
 |---|---|---|
-| A. Email kod + sessiya | `akkaunt.sql`, store/email adapterlari, kod/sessiya API, Profil bloki (UI), limitlar, testlar, `akkaunt-kochirish.md` | 4–5 kun |
+| A. Email kod + sessiya — **tayyor (branch `akkaunt`)** | `akkaunt.sql`, store/email adapterlari, `/api/akkaunt/*` (kod, kirish, sessiya, chiqish, qurilmalar, marketing, yuklab, o'chirish), Profil «Kirish» qatori, limitlar, testlar, `akkaunt-kochirish.md`, `akkaunt-kalit.md`, eksport/import/kalit vositalari. Qurilmalar ro'yxati UI'da hozircha faqat soni (alohida qurilmadan chiqish — D da) | 4–5 kun |
 | B. Zaxira bilan ulash | konvert, mavjud kodni ulash, yangi telefonda tiklash, qat'iy rejim, o'chirish/yuklab olish, maxfiylik matni | 3–4 kun |
 | C. Google | GIS tugmasi, ID-token tekshiruvi, email bilan birlashtirish, iOS PWA zaxirasi | 2–3 kun |
 | D. Admin/eksport | statistika, marketing CSV, obuna bekor qilish | 1–2 kun |
 | (keyin) Apple | App Store bilan birga: Sign in with Apple (App Store qoidasi — Google bo'lsa Apple ham shart) | alohida |
 Jami ≈ 10–14 ish kuni + provayder/DNS kutish.
+
+### A bosqichdan B ga o'tkazma eslatmalari
+- `assets/app-akkaunt.js` dagi `inP2` matni («hozircha akkaunt faqat kirish uchun…») B da o'chiriladi / almashtiriladi — A da akkaunt ma'lumotni tiklamaydi, shuning uchun matn halol yozilgan.
+- **Production'da `AKKAUNT_EMAIL_API_KEY` ni B tayyor bo'lgunicha qo'ymang** — kalit qo'yilishi bilan «Kirish» qatori hammaga ko'rinadi (kalit yo'q → ko'rinmaydi).
+- A bosqichda yangilik yozuvi (`data/yangiliklar-*.json`) qo'shilmadi: funksiya production'da yashirin; yozuv B bilan, ko'rinadigan bo'lganda qo'shiladi.
 
 ## 12. Foydalanuvchining qo'l vazifalari
 
