@@ -11,7 +11,7 @@
     uz: {
       appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
       today: 'Bugun', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
-      mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Gazak', meald: 'Kechki ovqat', meals: 'Gazak',
+      mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Tamaddi', meald: 'Kechki ovqat', meals: 'Tamaddi',
       o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Kasr bilan yozish mumkin: 72,5',
       o5q: "Kuningiz qanday o'tadi?", o6q: 'Maqsadingiz?', errAge: '10 dan 100 gacha yozing', errHeight: '120 dan 230 gacha yozing', errWeight: '30 dan 250 gacha yozing',
       a1: "Ko'proq o'tiraman", a1h: "Ofis yoki uyda ishlayman, kam yuraman", a2: 'Yengil faol', a2h: "Ozgina yuraman yoki haftada 1–2 mashq", a3: "O'rtacha faol", a3h: 'Haftada 3–5 mashq', a4: 'Juda faol', a4h: 'Deyarli har kuni mashq', a5: "Og'ir jismoniy mehnat", a5h: "Kun bo'yi oyoqda, og'ir ish",
@@ -19,12 +19,16 @@
       rT: "Sizning kunlik me'yoringiz", rWhyKeep: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Vaznni saqlash uchun shuncha yeyish kifoya.', rWhyLose: 'Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg kamaytirish uchun {d} kkal kam yeysiz.', rWhyGain: "Siz kuniga taxminan {tdee} kkal sarflaysiz. Haftasiga ≈ {kg} kg ko'paytirish uchun {d} kkal ko'p yeysiz.",
       rFloor: "Kamaytirish tezligi xavfsiz chegaraga ({min} kkal) moslandi, shuning uchun haftasiga ≈ {kg} kg.", rDoc: "Shifokor bilan maslahatlashing. Bu hisob faqat vaznni saqlash uchun.", under18: "18 yoshdan kichiklar uchun dieta hisoblanmaydi.", pregN: "Homiladorlik va emizish davrida dieta hisoblanmaydi.", lowBmi: "Vazningiz me'yordan past (BMI < 18,5): dieta hisoblanmaydi.",
       disc: "Taxminiy hisob — tibbiy maslahat emas.", rMacro: 'Oqsil {p} g · yog\' {f} g · uglevod {c} g', rWater: 'Suv: {n} stakan ({ml} ml)',
-      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni «+» tugmasi bilan yozing — halqa shu yerda to'la boshlaydi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
+      ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni yozing — «Yedingiz» va «Qoldi» shu yerda yangilanadi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
       mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
-      aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Ovqat nomi (osh, somsa…)', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
+      aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Osh, somsa yoki «2 ta somsa va choy»', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
-      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", vNew: 'Mening idishim', vfT: "Ichiga to'ldirish", vf_yarim: 'Yarim', vf_tola: "To'la", vf_kop: "Ko'p", vk_kosa: 'Kosa', vk_lagan: 'Lagan', vk_piyola: 'Piyola', vk_likopcha: 'Likopcha', vk_custom: "O'zim yozaman", vn_kosa: 'Mening kosam', vn_lagan: 'Mening laganim', vn_piyola: 'Mening piyolam', vn_likopcha: 'Mening likopcham', vn_custom: 'Mening idishim', vs_kosa: 'Odatiy kosa', vs_lagan: 'Odatiy lagan', vs_piyola: 'Odatiy piyola', vs_likopcha: 'Odatiy likopcha', vs_custom: 'Odatiy porsiya', vcT: 'Mening idishim', vcFor: '«{x}» uchun', vcLink: 'Boshqa idishlaringiz', vcKind: 'Idish turi', vcName: 'Idish nomi', vcHow: 'Hajmini qanday aniqlaymiz?', vcScaleOn: 'Tarozida tortdim', vcScaleOff: "Tarozim yo'q", vcHint: "Idishni bo'sh torting, keyin ovqat bilan — farqi ovqatingiz.", vcFull: 'Ovqat bilan vazn (g)', vcEmpty: "Bo'sh idish vazni (g)", vcDirect: "Yoki to'g'ridan-to'g'ri ovqat grammi", vcRes: 'Ovqat: {g} g', vcStd: '{k} ≈ {g} g', vcCompare: 'Sizning idishingiz standartga nisbatan?', vc_kichik: 'Kichikroq (×0,75)', vc_ohshash: "Shunga o'xshash (×1)", vc_katta: 'Kattaroq (×1,3)', vcSave: 'Saqlash', vcBad: "Gramm 10 dan 3000 gacha bo'lsin", vcMax: "Ko'pi bilan 20 ta idish. Keraksizini Men → «Mening idishlarim»dan o'chiring.", vSaved: 'Saqlandi: {x}', vmT: 'Mening idishlarim', vmH: "O'z kosa va laganlaringiz", vmEmpty: "O'z kosangizni bir marta belgilang — keyin hisob aniqroq bo'ladi.", vmGuide: "Ovqat qo'shayotganda porsiya oynasida «+ Mening idishim» ni bosing.", vmMax: "Ko'pi bilan {n} ta idish.", vmDel1: "Idish o'chirildi", vmEdit: 'Tahrirlash', vmName: 'Nomi', vmFam: 'Taomlar', vsugL: 'Har safar laganingizdan yeysizmi? Uni bir marta belgilang.', vsugK: 'Har safar kosangizdan yeysizmi? Uni bir marta belgilang.', vsugYes: 'Belgilash', vsugNo: 'Keyin', pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
+      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", vNew: 'Mening idishim', vfT: "Ichiga to'ldirish", vf_yarim: 'Yarim', vf_tola: "To'la", vf_kop: "Ko'p", vk_kosa: 'Kosa', vk_lagan: 'Lagan', vk_piyola: 'Piyola', vk_likopcha: 'Likopcha', vk_custom: "O'zim yozaman", vn_kosa: 'Mening kosam', vn_lagan: 'Mening laganim', vn_piyola: 'Mening piyolam', vn_likopcha: 'Mening likopcham', vn_custom: 'Mening idishim', vs_kosa: 'Odatiy kosa', vs_lagan: 'Odatiy lagan', vs_piyola: 'Odatiy piyola', vs_likopcha: 'Odatiy likopcha', vs_custom: 'Odatiy porsiya', vcT: 'Mening idishim', vcFor: '«{x}» uchun', vcLink: 'Boshqa idishlaringiz', vcKind: 'Idish turi', vcName: 'Idish nomi', vcHow: 'Hajmini qanday aniqlaymiz?', vcScaleOn: 'Tarozida tortdim', vcScaleOff: "Tarozim yo'q", vcHint: "Idishni bo'sh torting, keyin ovqat bilan — farqi ovqatingiz.", vcFull: 'Ovqat bilan vazn (g)', vcEmpty: "Bo'sh idish vazni (g)", vcDirect: "Yoki to'g'ridan-to'g'ri ovqat grammi", vcRes: 'Ovqat: {g} g', vcStd: '{k} ≈ {g} g', vcCompare: 'Sizning idishingiz standartga nisbatan?', vc_kichik: 'Kichikroq (×0,75)', vc_ohshash: "Shunga o'xshash (×1)", vc_katta: 'Kattaroq (×1,3)', vcSave: 'Saqlash', vcBad: "Gramm 10 dan 3000 gacha bo'lsin", vcMax: "Ko'pi bilan 20 ta idish. Keraksizini Men → «Mening idishlarim»dan o'chiring.", vSaved: 'Saqlandi: {x}', vmT: 'Mening idishlarim', vmH: "O'z kosa va laganlaringiz", vmEmpty: "O'z kosangizni bir marta belgilang — keyin hisob aniqroq bo'ladi.", vmGuide: "Ovqat qo'shayotganda porsiya oynasida «+ Mening idishim» ni bosing.", vmMax: "Ko'pi bilan {n} ta idish.", vmDel1: "Idish o'chirildi", vmEdit: 'Tahrirlash', vmName: 'Nomi', vmFam: 'Taomlar', vsugL: 'Har safar laganingizdan yeysizmi? Uni bir marta belgilang.', vsugK: 'Har safar kosangizdan yeysizmi? Uni bir marta belgilang.', vsugYes: 'Belgilash', vsugNo: 'Keyin', navDiary: 'Kundalik', navResults: 'Natijalar', navProfile: 'Profil', navAdd: "Qo'shish", diaryT: 'Kundalik', resT: 'Natijalar', profT: 'Profil', todayDate: 'Bugun, {d}', cEaten: 'Yedingiz', cGoal: 'Maqsad', cLeft: 'Qoldi', cOver: "Maqsaddan {x} kkal ko'p", cNote: "Kiritilgan ovqatlar bo'yicha", mainAdd: "Ovqat qo'shish", wCard: '{a} / {b} ml', wAdd: '+250', sCard: '{n} qadam', sEnter: 'Kiritish', sNoneC: 'Bugun kiritilmagan', macroRow: "Oqsil · Yog' · Uglevod", fabMenuT: "Nimani qo'shamiz?", fabFood: 'Ovqat', fabWater: 'Suv', fabSteps: 'Qadam', fabWeight: 'Vazn', wOpenT: 'Suv', themeT: 'Mavzu', thAuto: 'Avto', thLight: 'Och', thDark: "Qorong'i", profData: "Maqsad va ma'lumotlar", resWeekT: 'Hafta xulosasi', resMore: 'Batafsil', diaryAdd: "Shu kunga ovqat qo'shish", profBackup: 'Zaxira va ko\'chirish', calInfoT: 'Taqvim qanday hisoblanadi?', hStreak: '{n} kun', cBurn: 'Yoqildi', vLeft: 'Qoldi', vOver1: 'Maqsaddan', vOver2: "kkal ko'p", vAria: 'Kunlik maqsadning {p} foizi yeyildi, {k} kkal qoldi', vAriaO: "Kunlik maqsaddan {k} kkal ko'p yeyildi", wAdd2: '+ 250 ml', sTap: 'Qadam kiriting', wRowT: 'Vazn: {x} kg', wRowW: 'Haftada {d} kg', avL: 'K',
+      mealAdd_b: "Nonushtani qo'shish", mealAdd_l: "Tushlikni qo'shish", mealAdd_d: "Kechki ovqatni qo'shish", mealAdd_s: "Tamaddini qo'shish", mealS_b: 'Nonushta', mealS_l: 'Tushlik', mealS_d: 'Kechki', mealS_s: 'Tamaddi',
+      pCta_b: "Nonushtaga qo'shish · {k} kkal", pCta_l: "Tushlikka qo'shish · {k} kkal", pCta_d: "Kechki ovqatga qo'shish · {k} kkal", pCta_s: "Tamaddiga qo'shish · {k} kkal", pCtaE: 'Saqlash · {k} kkal',
+      aHint: "Gap bilan yozing — AI o'zi ajratib beradi", aRecHint: "bitta bosishda qo'shiladi", aMoreSub: "O'z taomim · Retsept · Kategoriyalar", aCnt: '{n} taom · {k} kkal', aYestSub: '{m} · {k} kkal', pTypeT: 'Turi va hajmi', pChange: "O'zgartirish", pCloseL: 'Yopish', pMealT: 'Ovqat vaqti', aDone: "Qo'shildi", pManba: 'Manba',
+      aAiLine: '✨ AI bilan aniqlash: «{q}»', aRecentT: 'Oxirgilar', aSavedT: 'Saqlanganlar', aMoreT: 'Boshqa usullar', aCatsBtn: "Kategoriyalar bo'yicha ko'rish", aLastTime: 'Oxirgi safar: {x}', aDefOne: '{x} ≈ {k} kkal', aQuickAdd: "Qo'shish", aAdded: "Qo'shildi: {x}", pAddBtn: "Qo'shish", pMoreT: "Turi va hajmini aniqlashtirish", pMore2T: 'Boshqa sozlamalar', srcPer100: '{k} kkal / 100 g', nbSee: "Ko'rish", nbClose: 'Yopish', pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
       tT: "Matn bilan qo'shish", tPh: 'Masalan: 1 kosa osh, 2 somsa, choy shakar bilan', tGo: 'Aniqlash', tMiss: 'Topilmadi: {x}', tAi: 'AI bilan aniqlash', tAiNote: "Bu matn AI xizmatiga yuboriladi (profil, vazn va tarix yuborilmaydi).", tAiBusy: 'Aniqlanmoqda…', tAiErr: "AI hozir ishlamayapti. Qo'lda qo'shing.", tOffline: "Internet yo'q — AI ishlamaydi. Topilganlarini saqlashingiz mumkin.", tSave: '{n} ta ovqatni saqlash', tAiTag: 'AI taxmini', tHelp: "Faqat siz tasdiqlaganingizda saqlanadi.", tEmpty: 'Hech narsa topilmadi',
       fT: 'Ovqat', fDay: 'Kun', fAddText: "Matn bilan qo'shish", fFavs: 'Sevimlilar', fNoFavs: "Sevimli ovqatlar yo'q. Ovqat qo'shayotganda yurakchani bosing.",
@@ -41,7 +45,7 @@
       xWaterT: 'Suv me\'yori', xWater: '33 ml × {w} kg = {ml} ml ÷ 250 ml = {n} stakan', xWaterN: 'Issiq kunlarda va mashq qilganda ko\'proq ichsangiz bo\'ladi.',
       xStepT: 'Qadam qanday hisoblanadi?', xStride: "Qadam uzunligi: bo'y × 0,414 = {s} sm", xDist: 'Masofa: {n} qadam × {s} sm = {km} km', xKc: 'Kaloriya: 3,5 × {w} kg × ({km} km ÷ 5 km/soat) = {k} kkal', xKcN: "Yurish tezligi 5 km/soat deb olingan (oddiy yurish). Hisob taxminiy.",
       xWeightT: "Vazn yorlig'i nimani bildiradi?", xWeightN: "1 ta o'lchov — «Birinchi o'lchov». 2–6 ta bo'lsa — oxirgi 7 kundagi o'lchovlar o'rtachasi. 7 kundan ko'p tarix bo'lsa — 7 kunlik o'rtacha va oldingi 7 kunga nisbatan trend. Vazn kun davomida 1–2 kg tebranadi, shu sababli bitta o'lchovga qarab xulosa qilmang.",
-      tip1: "Bu halqa — bugungi me'yor. Ovqat yozsangiz to'ladi, «yana yeyish mumkin» raqami kamayadi.", tip2: "«+» tugmasi — ovqat qo'shish. Odatda 3 ta bosish yetadi.", tip3: "«Qadam» bo'limida telefondagi qadam sonini yozing — ilova masofa va kaloriyani hisoblaydi.",
+      tip1: "Bu yerda bugun nechta kkal yeganingiz va qancha qolgani ko'rinadi. Ovqat yozsangiz «Qoldi» kamayadi.", tip2: "«Qo'shish» tugmasi — ovqat, suv, qadam yoki vazn qo'shish. Ovqat uchun odatda 3 ta bosish yetadi.", tip3: "«Natijalar»da vazn, hafta xulosasi va qadam tarixi bor — qadam sonini yozsangiz ilova masofa va kaloriyani hisoblaydi.",
       wkT: "O'tgan hafta", wkAvgK: "To'liq kunlarda o'rtacha: {x} kkal/kun", wkAvgS: "O'rtacha qadam: {x}", wkW: "Vazn (7 kunlik o'rtacha): {a} → {b} kg", wkDays: "7 kundan {n} tasi to'liq", wkNone: "Ma'lumot kam",
       nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Haftalik zaxira vaqti — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Telegramga yuborish',
       qtyMinus: 'Kamaytirish', qtyPlus: "Ko'paytirish", aboutBack: 'Orqaga', errAmt: 'Raqamni kiriting', stepsT: 'Bugungi qadam', stepsOf: '{d} kuni qadami',
@@ -58,12 +62,16 @@
       rT: 'Ваша дневная норма', rWhyKeep: 'Вы тратите примерно {tdee} ккал в день. Чтобы сохранить вес, достаточно столько и есть.', rWhyLose: 'Вы тратите примерно {tdee} ккал в день. Чтобы терять ≈ {kg} кг в неделю, нужно есть на {d} ккал меньше.', rWhyGain: 'Вы тратите примерно {tdee} ккал в день. Чтобы набирать ≈ {kg} кг в неделю, нужно есть на {d} ккал больше.',
       rFloor: 'Темп снижения приведён к безопасной границе ({min} ккал), поэтому ≈ {kg} кг в неделю.', rDoc: 'Проконсультируйтесь с врачом. Этот расчёт только для сохранения веса.', under18: 'Для лиц младше 18 лет диета не рассчитывается.', pregN: 'Во время беременности и кормления диета не рассчитывается.', lowBmi: 'Ваш вес ниже нормы (ИМТ < 18,5): диета не рассчитывается.',
       disc: 'Приблизительный расчёт — не медицинская рекомендация.', rMacro: 'Белки {p} г · жиры {f} г · углеводы {c} г', rWater: 'Вода: {n} стаканов ({ml} мл)',
-      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду кнопкой «+» — кольцо начнёт заполняться здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
+      ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду — «Съели» и «Осталось» обновятся здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
       mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
-      aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Название (плов, самса…)', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
+      aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Плов, самса или «2 самсы и чай»', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
-      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', vNew: 'Моя посуда', vfT: 'Насколько наполнена', vf_yarim: 'Половина', vf_tola: 'Полная', vf_kop: 'С горкой', vk_kosa: 'Миска', vk_lagan: 'Лаган', vk_piyola: 'Пиала', vk_likopcha: 'Тарелочка', vk_custom: 'Своя (впишу название)', vn_kosa: 'Моя миска', vn_lagan: 'Мой лаган', vn_piyola: 'Моя пиала', vn_likopcha: 'Моя тарелочка', vn_custom: 'Моя посуда', vs_kosa: 'Обычная миска', vs_lagan: 'Обычный лаган', vs_piyola: 'Обычная пиала', vs_likopcha: 'Обычная тарелочка', vs_custom: 'Обычная порция', vcT: 'Моя посуда', vcFor: 'для «{x}»', vcLink: 'Другая ваша посуда', vcKind: 'Вид посуды', vcName: 'Название', vcHow: 'Как определим объём?', vcScaleOn: 'Взвесил(а)', vcScaleOff: 'Весов нет', vcHint: 'Взвесьте пустую посуду, затем с едой — разница и есть ваша еда.', vcFull: 'Вес с едой (г)', vcEmpty: 'Вес пустой посуды (г)', vcDirect: 'Или сразу вес еды (г)', vcRes: 'Еда: {g} г', vcStd: '{k} ≈ {g} г', vcCompare: 'Ваша посуда по сравнению со стандартной?', vc_kichik: 'Меньше (×0,75)', vc_ohshash: 'Такая же (×1)', vc_katta: 'Больше (×1,3)', vcSave: 'Сохранить', vcBad: 'Вес от 10 до 3000 г', vcMax: 'Не больше 20 штук. Удалите лишнее в «Я» → «Моя посуда».', vSaved: 'Сохранено: {x}', vmT: 'Моя посуда', vmH: 'Ваши миски и лаганы', vmEmpty: 'Отметьте свою миску один раз — и расчёт станет точнее.', vmGuide: 'При добавлении еды в окне порции нажмите «+ Моя посуда».', vmMax: 'Не больше {n} штук.', vmDel1: 'Посуда удалена', vmEdit: 'Изменить', vmName: 'Название', vmFam: 'Блюда', vsugL: 'Вы всегда едите из своего лагана? Отметьте его один раз.', vsugK: 'Вы всегда едите из своей миски? Отметьте её один раз.', vsugYes: 'Отметить', vsugNo: 'Позже', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
+      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', vNew: 'Моя посуда', vfT: 'Насколько наполнена', vf_yarim: 'Половина', vf_tola: 'Полная', vf_kop: 'С горкой', vk_kosa: 'Миска', vk_lagan: 'Лаган', vk_piyola: 'Пиала', vk_likopcha: 'Тарелочка', vk_custom: 'Своя (впишу название)', vn_kosa: 'Моя миска', vn_lagan: 'Мой лаган', vn_piyola: 'Моя пиала', vn_likopcha: 'Моя тарелочка', vn_custom: 'Моя посуда', vs_kosa: 'Обычная миска', vs_lagan: 'Обычный лаган', vs_piyola: 'Обычная пиала', vs_likopcha: 'Обычная тарелочка', vs_custom: 'Обычная порция', vcT: 'Моя посуда', vcFor: 'для «{x}»', vcLink: 'Другая ваша посуда', vcKind: 'Вид посуды', vcName: 'Название', vcHow: 'Как определим объём?', vcScaleOn: 'Взвесил(а)', vcScaleOff: 'Весов нет', vcHint: 'Взвесьте пустую посуду, затем с едой — разница и есть ваша еда.', vcFull: 'Вес с едой (г)', vcEmpty: 'Вес пустой посуды (г)', vcDirect: 'Или сразу вес еды (г)', vcRes: 'Еда: {g} г', vcStd: '{k} ≈ {g} г', vcCompare: 'Ваша посуда по сравнению со стандартной?', vc_kichik: 'Меньше (×0,75)', vc_ohshash: 'Такая же (×1)', vc_katta: 'Больше (×1,3)', vcSave: 'Сохранить', vcBad: 'Вес от 10 до 3000 г', vcMax: 'Не больше 20 штук. Удалите лишнее в «Я» → «Моя посуда».', vSaved: 'Сохранено: {x}', vmT: 'Моя посуда', vmH: 'Ваши миски и лаганы', vmEmpty: 'Отметьте свою миску один раз — и расчёт станет точнее.', vmGuide: 'При добавлении еды в окне порции нажмите «+ Моя посуда».', vmMax: 'Не больше {n} штук.', vmDel1: 'Посуда удалена', vmEdit: 'Изменить', vmName: 'Название', vmFam: 'Блюда', vsugL: 'Вы всегда едите из своего лагана? Отметьте его один раз.', vsugK: 'Вы всегда едите из своей миски? Отметьте её один раз.', vsugYes: 'Отметить', vsugNo: 'Позже', navDiary: 'Дневник', navResults: 'Итоги', navProfile: 'Профиль', navAdd: 'Добавить', diaryT: 'Дневник', resT: 'Итоги', profT: 'Профиль', todayDate: 'Сегодня, {d}', cEaten: 'Съели', cGoal: 'Цель', cLeft: 'Осталось', cOver: 'На {x} ккал больше цели', cNote: 'По внесённым блюдам', mainAdd: 'Добавить еду', wCard: '{a} / {b} мл', wAdd: '+250', sCard: '{n} шагов', sEnter: 'Ввести', sNoneC: 'Сегодня не введено', macroRow: 'Белки · Жиры · Углеводы', fabMenuT: 'Что добавим?', fabFood: 'Еда', fabWater: 'Вода', fabSteps: 'Шаги', fabWeight: 'Вес', wOpenT: 'Вода', themeT: 'Тема', thAuto: 'Авто', thLight: 'Светлая', thDark: 'Тёмная', profData: 'Цель и данные', resWeekT: 'Итоги недели', resMore: 'Подробнее', diaryAdd: 'Добавить еду на этот день', profBackup: 'Резервная копия и перенос', calInfoT: 'Как считается календарь?', hStreak: '{n} дн.', cBurn: 'Сожжено', vLeft: 'Осталось', vOver1: 'Сверх цели', vOver2: 'ккал', vAria: 'Съедено {p}% дневной цели, осталось {k} ккал', vAriaO: 'Съедено на {k} ккал больше цели', wAdd2: '+ 250 мл', sTap: 'Введите шаги', wRowT: 'Вес: {x} кг', wRowW: 'За неделю {d} кг', avL: 'К',
+      mealAdd_b: 'Добавить завтрак', mealAdd_l: 'Добавить обед', mealAdd_d: 'Добавить ужин', mealAdd_s: 'Добавить перекус', mealS_b: 'Завтрак', mealS_l: 'Обед', mealS_d: 'Ужин', mealS_s: 'Перекус',
+      pCta_b: 'Добавить в завтрак · {k} ккал', pCta_l: 'Добавить в обед · {k} ккал', pCta_d: 'Добавить в ужин · {k} ккал', pCta_s: 'Добавить в перекус · {k} ккал', pCtaE: 'Сохранить · {k} ккал',
+      aHint: 'Пишите фразой — ИИ сам разберёт', aRecHint: 'добавляется одним касанием', aMoreSub: 'Своё блюдо · Рецепт · Категории', aCnt: '{n} блюд · {k} ккал', aYestSub: '{m} · {k} ккал', pTypeT: 'Вид и размер', pChange: 'Изменить', pCloseL: 'Закрыть', pMealT: 'Приём пищи', aDone: 'Добавлено', pManba: 'Источник',
+      aAiLine: '✨ Определить через ИИ: «{q}»', aRecentT: 'Недавние', aSavedT: 'Сохранённое', aMoreT: 'Другие способы', aCatsBtn: 'Смотреть по категориям', aLastTime: 'В прошлый раз: {x}', aDefOne: '{x} ≈ {k} ккал', aQuickAdd: 'Добавить', aAdded: 'Добавлено: {x}', pAddBtn: 'Добавить', pMoreT: 'Уточнить вид и размер', pMore2T: 'Другие настройки', srcPer100: '{k} ккал / 100 г', nbSee: 'Смотреть', nbClose: 'Закрыть', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
       tT: 'Добавить текстом', tPh: 'Например: 1 миска плова, 2 самсы, чай с сахаром', tGo: 'Распознать', tMiss: 'Не найдено: {x}', tAi: 'Определить с помощью ИИ', tAiNote: 'Этот текст будет отправлен сервису ИИ (профиль, вес и история не отправляются).', tAiBusy: 'Определяю…', tAiErr: 'ИИ сейчас недоступен. Добавьте вручную.', tOffline: 'Нет интернета — ИИ не работает. Найденное можно сохранить.', tSave: 'Сохранить: {n}', tAiTag: 'оценка ИИ', tHelp: 'Сохраняется только после вашего подтверждения.', tEmpty: 'Ничего не найдено',
       fT: 'Еда', fDay: 'День', fAddText: 'Добавить текстом', fFavs: 'Избранное', fNoFavs: 'Избранного нет. Нажмите на сердечко при добавлении еды.',
@@ -80,7 +88,7 @@
       xWaterT: 'Норма воды', xWater: '33 мл × {w} кг = {ml} мл ÷ 250 мл = {n} стаканов', xWaterN: 'В жару и при тренировках можно пить больше.',
       xStepT: 'Как считаются шаги?', xStride: 'Длина шага: рост × 0,414 = {s} см', xDist: 'Расстояние: {n} шагов × {s} см = {km} км', xKc: 'Калории: 3,5 × {w} кг × ({km} км ÷ 5 км/ч) = {k} ккал', xKcN: 'Скорость ходьбы принята 5 км/ч (обычная ходьба). Расчёт приблизительный.',
       xWeightT: 'Что означает подпись под весом?', xWeightN: 'Одно измерение — «Первое измерение». 2–6 измерений — среднее за последние 7 дней. Если истории больше 7 дней — среднее за 7 дней и тренд относительно предыдущих 7 дней. Вес в течение дня колеблется на 1–2 кг, поэтому не делайте выводов по одному измерению.',
-      tip1: 'Это кольцо — норма на сегодня. Записываете еду — оно заполняется, а «ещё можно съесть» уменьшается.', tip2: 'Кнопка «+» — добавить еду. Обычно хватает 3 нажатий.', tip3: 'В разделе «Шаги» введите число шагов с телефона — приложение посчитает расстояние и калории.',
+      tip1: 'Здесь видно, сколько ккал вы съели сегодня и сколько осталось. Записываете еду — «Осталось» уменьшается.', tip2: 'Кнопка «Добавить» — еда, вода, шаги или вес. Для еды обычно хватает 3 нажатий.', tip3: 'В «Итогах» — вес, итоги недели и история шагов; введите шаги — приложение посчитает расстояние и калории.',
       wkT: 'Прошлая неделя', wkAvgK: 'В полные дни в среднем: {x} ккал/день', wkAvgS: 'В среднем шагов: {x}', wkW: 'Вес (среднее за 7 дней): {a} → {b} кг', wkDays: '{n} из 7 дней полные', wkNone: 'Мало данных',
       nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать недельную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Отправить в Telegram',
       qtyMinus: 'Меньше', qtyPlus: 'Больше', aboutBack: 'Назад', errAmt: 'Введите число', stepsT: 'Шаги за сегодня', stepsOf: 'Шаги за {d}',
@@ -149,8 +157,9 @@
   function foodById(id) { var l = allFoods(); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
 
   /* ---------- saqlash ---------- */
+  var loadDirty = false;                             // migratsiya yangi maydon (kuzatuv boshi) qo'shdi — bir marta saqlanadi (zaxira/ko'chirish kodi bilan bir xil bo'lsin)
   function load() {
-    try { var raw = lsGet(LS); if (raw) { var s = S.migrate(JSON.parse(raw)); if (s) { if (!s.prefs) s.prefs = {}; return s; } } } catch (e) {}
+    try { var raw = lsGet(LS); if (raw) { var o0 = JSON.parse(raw), s = S.migrate(o0); if (s) { if (!s.prefs) s.prefs = {}; if (s.setup && o0 && !o0.trackStart) loadDirty = true; return s; } } } catch (e) {}
     var s2 = S.emptyState(); s2.prefs = {}; return s2;
   }
   var persistAsked = false;
@@ -163,10 +172,11 @@
 
   /* ---------- ikonkalar ---------- */
   kit.addIcons({
-    today: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7v5l3 2', food: 'M7 3v8 M4 3v5a3 3 0 0 0 6 0V3 M7 11v10 M17 21V3c-2.2 1.5-3.5 4-3.5 7.5 0 2 1.2 3 3.5 3', steps: 'M8 4c-1.7 0-3 1.8-3 4.5S6 13 8 13s3-1.4 3-3.5S9.7 4 8 4z M7.5 16.5h.01 M16 9c-1.7 0-3 1.8-3 4.5S14 18 16 18s3-1.4 3-3.5S17.7 9 16 9z M15.5 21.5h.01',
-    me: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21c0-4 3.6-7 8-7s8 3 8 7', drop: 'M12 3s6 6.2 6 10.5A6 6 0 0 1 6 13.5C6 9.2 12 3 12 3z', heart: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z', search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M21 21l-5-5',
+    trend: 'M3 17l5-5 4 4 8-8 M15 8h5v5', spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z', info: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v6 M12 7.500v.500', grid: 'M6 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M15 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M6 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z M15 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z', today: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z', food: 'M7 3v8 M4 3v5a3 3 0 0 0 6 0V3 M7 11v10 M17 21V3c-2.2 1.5-3.5 4-3.5 7.5 0 2 1.2 3 3.5 3', steps: 'M7 20c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5S9.5 15 9.5 17c0 1.8-1 3-2.5 3z M16 13c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5s2.5 1.5 2.5 3.5c0 1.8-1 3-2.5 3z',
+    me: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6', drop: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z', heart: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z', search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M21 21l-5-5',
     minus: 'M5 12h14', pen: 'M4 20h4L19 9l-4-4L4 16v4z M13 7l4 4', share: 'M12 3v12 M7 8l5-5 5 5 M5 14v6h14v-6', text: 'M5 6h14 M5 12h14 M5 18h9', shield: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z', rep: 'M4 4v6h6 M20 20v-6h-6 M5 15a8 8 0 0 0 14 3 M19 9A8 8 0 0 0 5 6',
-    scale: 'M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M9 9a4 4 0 0 1 6 0 M12 12l1.5-2', phone: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z M11 18h2', flame: 'M12 3c1 3 4 4.5 4 9a4 4 0 0 1-8 0c0-2 1-3 2-4 0 2 1 2 1.5 1.5C12 8 11 6 12 3z'
+    chart: 'M4 20V10 M10 20V4 M16 20v-7 M22 20H2',
+    scale: 'M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M9 9a4 4 0 0 1 6 0 M12 12l1.5-2', phone: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z M11 18h2', flame: 'M12 22c4 0 7-3 7-7 0-3-2-5.5-3.5-7-.3 2-1.5 3.5-3 4 .5-3-1-6.5-4-8 .5 3-1.5 5-3 7S4 13.5 5 16c.8 3.5 3.5 6 7 6z'
   });
   function catIcon(c, big) { return '<span class="sl-ci' + (big ? ' big' : '') + '">' + ico(c) + '</span>'; }
 
@@ -178,26 +188,47 @@
       '<div class="rz-langwrap"><button type="button" class="rz-lang" id="rzLang" data-act="langmenu" aria-label="Til / Язык" data-cyr="skip">' + ico('lang', '', 2) + '<span id="rzLangTxt">UZ</span></button>' +
       '<div class="rz-langmenu" id="rzLangMenu" hidden data-cyr="skip"><button type="button" data-act="lang" data-l="uz">UZ</button><button type="button" data-act="lang" data-l="cyr">ЎЗ</button><button type="button" data-act="lang" data-l="ru">RU</button></div></div></div>' +
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
-      '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('food', 'food', 'navFood') + '<span class="rz-fabslot"></span>' + tab('steps', 'steps', 'navSteps') + tab('me', 'me', 'navMe') +
-      '<button type="button" class="rz-fab" id="rzFab" data-act="add" aria-label="' + esc(T('add')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
+      '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('diary', 'cal2', 'navDiary') + '<span class="rz-fabslot"></span>' + tab('results', 'chart', 'navResults') + tab('profile', 'me', 'navProfile') +
+      '<button type="button" class="rz-fab" id="rzFab" data-act="fab" aria-label="' + esc(T('navAdd')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
       kit.shellHtml() + '<input type="file" id="phIn" accept="image/*" hidden><div class="rz-onb" id="rzOnb" hidden></div>';
   }
 
   /* ---------- umumiy bo'laklar ---------- */
   function planNow() { return S.plan(st.profile); }
+  /* ---------- taom rasmlari (assets/ovqat, 128/256 px WebP) va harfli tile ---------- */
+  var IMGS = {};
+  ['anor', 'ayron', 'banan', 'burger', 'chuchvara', 'dimlama', 'guruch', 'kartoshka-fri', 'lagmon', 'manti', 'mastava', 'moshxorda', 'navvot', 'norin', 'olivye', 'olma', 'osh', 'patir', 'pitsa', 'qatiq', 'qatlama', 'qovun', 'qovurdoq', 'qozon-kabob', 'shashlik', 'suzma', 'tarvuz', 'tuxum', 'uzum', 'xurmo'].forEach(function (k) { IMGS[k] = k; });
+  var IMGMAP = { shurva: 'shorva', 'tovuq-shurva': 'shorva', choy: 'qora-choy', 'choy-shakar': 'qora-choy', 'choy-sut': 'qora-choy', 'yashil-choy': 'kok-choy', 'lavash-tovuq': 'lavash', 'lavash-mol': 'lavash', 'lavash-roll': 'lavash', hotdog: 'hot-dog', chakchak: 'chak-chak', achichuk: 'achchiq-chuchuk', 'tovuq-son': 'tovuq', 'tovuq-qov': 'tovuq', 'tuxum-qov': 'tuxum', 'tuxum-xom': 'tuxum', 'yengil-osh': 'osh', 'chuchvara-sho': 'chuchvara', 'shashlik-tovuq': 'shashlik', 'lagmon-qov': 'lagmon' };
+  Object.keys(IMGMAP).forEach(function (k) { IMGS[k] = IMGMAP[k]; });
+  function imgFile(fid, vr) {
+    if (!fid) return null; var k = dbAlias[fid] || fid;
+    if (String(fid).indexOf('somsa') === 0 || k === 'somsa') return (fid === 'somsa-qovoq' || /qovoq/.test(vr || '')) ? 'somsa-qovoq' : 'somsa-gosht';
+    if (k === 'non') return vr === 'buxanka' ? null : (vr === 'patir' ? 'patir' : (vr === 'qatlama' ? 'qatlama' : 'obi-non'));
+    if (fid === 'non-oq' || fid === 'non-qora') return null;
+    return IMGS[fid] || IMGS[k] || null;
+  }
+  function tileHtml(fid, vr, name, px, hi) {
+    var f = imgFile(fid, vr), sz = '--s:' + px + 'px';
+    if (f) return '<span class="sl-tile" style="' + sz + '"><img src="/assets/ovqat/' + f + (hi ? '-256' : '-128') + '.webp"' + (hi ? '' : ' srcset="/assets/ovqat/' + f + '-128.webp 1x, /assets/ovqat/' + f + '-256.webp 2x"') + ' alt="" width="' + px + '" height="' + px + '" loading="lazy" decoding="async"></span>';
+    var h = 0, n = String(name || '?'); for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % 360;
+    return '<span class="sl-tile sl-tl" style="' + sz + ';--h:' + h + '" aria-hidden="true"><b>' + esc(n.charAt(0).toUpperCase()) + '</b></span>';
+  }
+  var MEAL_DOT = { b: '#FFC24B', l: '#FF6B4A', d: '#6E9BFF', s: '#34D399' };
+  var WDN = { uz: ['Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba', 'Yakshanba'], ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'] };
   function entryRow(e, date) {
-    var f = e.fid ? foodById(e.fid) : null, name = f ? nameOf(f) : (e.name || '?'), isNew = seenFood && !seenFood[e.id];
-    if (f && f.fam && e.vr) { var lb = S.famLabel(f, e.vr, e.sz, lang); if (lb) name += ' · ' + lb; }
-    return '<button type="button" class="sl-row' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '"><span class="m"><span class="nm">' + esc(name) + '</span><span class="tm">' + esc(portionText(e)) + (e.est && !e.fid ? ' · ' + esc(T('aEst')) : '') + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '<small> ' + T('kcal') + '</small></span></button>';
+    var f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, name = base ? nameOf(base) : (e.name || '?'), isNew = seenFood && !seenFood[e.id], lb = '';
+    if (f && f.fam && e.vr) lb = S.famLabel(f, e.vr, e.sz, lang) || '';
+    return '<button type="button" class="sl-row' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '">' + tileHtml(e.fid, e.vr, name, 44) + '<span class="m"><span class="nm">' + esc(name) + '</span><span class="tm">' + esc(portionText(e) + (lb ? ' · ' + lb : '')) + (e.est && !e.fid ? ' · ' + esc(T('aEst')) : '') + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button>';
   }
   function mealsHtml(date) {
-    var x = S.dayOf(st, date) || { food: [] }, h = '';
+    var x = S.dayOf(st, date) || { food: [] }, h = '<section class="sl-meals">';
     S.MEALS.forEach(function (m) {
-      var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal;
-      h += '<section class="rz-card sl-meal"><div class="sl-mh"><span class="mi"><b>' + esc(mealName(m)) + '</b><span>' + (list.length ? fmt(sum) + ' ' + T('kcal') : '') + '</span></span><button type="button" class="sl-plus" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>' + (list.length ? '<button type="button" class="sl-sv" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '<span>' + esc(T('tplSaveS')) + '</span></button>' : '') + '</div>' +
-        (list.length ? list.map(function (e) { return entryRow(e, date); }).join('') : '<div class="rz-mut sl-emp">' + esc(T('emptyMeal')) + (S.kechagidekOk(st, date, m) ? '<button type="button" class="rz-btn ghost sm sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '') + '</div>') + '</section>';
+      var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal, yb = S.kechagidekOk(st, date, m);
+      h += '<section class="sl-meal" data-m="' + m + '"><div class="sl-mh"><span class="dot" style="background:' + MEAL_DOT[m] + '" aria-hidden="true"></span><b>' + esc(mealName(m)) + '</b><span class="k">' + (list.length ? fmt(sum) + ' ' + T('kcal') : '—') + '</span>' +
+        (list.length ? '<button type="button" class="sl-ib" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '</button><button type="button" class="sl-ib" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>' : '') + '</div>' +
+        (list.length ? list.map(function (e) { return entryRow(e, date); }).join('') : '<button type="button" class="sl-dash" data-act="addto" data-m="' + m + '" data-d="' + date + '">' + ico('plus', '', 2.2) + '<span>' + esc(T('mealAdd_' + m)) + '</span></button>' + (yb ? '<button type="button" class="sl-txtbtn sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '')) + '</section>';
     });
-    return h;
+    return h + '</section>';
   }
   function markSeen() { seenFood = {}; Object.keys(st.days).forEach(function (d) { st.days[d].food.forEach(function (e) { seenFood[e.id] = 1; }); }); }
   var C = 2 * Math.PI * 86;
@@ -206,18 +237,22 @@
   function glassSvg() { return '<svg viewBox="0 0 24 28" aria-hidden="true"><path class="fill" d="M5.6 9h12.8l-1.3 14.6a1.6 1.6 0 0 1-1.6 1.4H8.5a1.6 1.6 0 0 1-1.6-1.4L5.6 9z"/><path class="ln" d="M4 4h16l-1.8 19.6A2.6 2.6 0 0 1 15.600 26H8.400a2.6 2.6 0 0 1-2.600-2.400L4 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>'; }
 
   var bk = KalkiBackup.create({ app: 'kalkifit', fileBase: 'kalkifit', name: 'KalkiFit', kit: kit, lang: langNow, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { return Object.keys(st.days).filter(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }).length; }, pickFile: function () { doImport(); }, sig: function () { return JSON.stringify(st); }, root: root, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenFood = null; heroPrev = null; save(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
-  function goTab(v, fn) { if (view !== v) { var tb = $('[data-act=tab][data-v=' + v + ']'); if (tb) tb.click(); } setTimeout(fn, 480); return true; }
-  var news = KalkiNews.create({ app: 'kalkifit', kit: kit, lang: langNow, root: root, rowIcon: 'sl-ci', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
-    daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('.sl-hero')); }); },
-    stepcalc: function (n) { return goTab('today', function () { n.highlight($('.sl-rem') || $('.sl-hero')); }); },
+  var VIEW_ALIAS = { food: 'diary', steps: 'results', me: 'profile', ovqat: 'diary', qadam: 'results', men: 'profile', bugun: 'today', kundalik: 'diary', natijalar: 'results', profil: 'profile', today: 'today', diary: 'diary', results: 'results', profile: 'profile' };
+  function viewOf(v) { return VIEW_ALIAS[String(v || '').replace(/^#/, '').toLowerCase()] || null; }       // eski nomlar/manzillar (#ovqat, #qadam, #men …) yangi joyga
+  function goTab(v0, fn) { var v = viewOf(v0) || v0; if (view !== v) { var tb = $('[data-act=tab][data-v=' + v + ']'); if (tb) tb.click(); } setTimeout(fn, 480); return true; }
+  var news = KalkiNews.create({ app: 'kalkifit', banner: true, kit: kit, lang: langNow, root: root, rowIcon: 'sl-ci', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
+    daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('#kcalBtn')); }); },
+    stepcalc: function (n) { return goTab('today', function () { n.highlight($('#kcalBtn')); }); },
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
     units: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('#fdUnits')); }, 500); }); },
-    variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('#fdUnits').previousElementSibling.previousElementSibling || $('#fdUnits')); }, 500); }); },
+    variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); fd.pmore = true; pwScreen(); setTimeout(function () { n.highlight($('#pwMore .rz-chips') || $('.sl-morebtn')); }, 500); }); },
+    theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
+    simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
     vessel: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('.sl-vnew')); }, 500); }); },
-    templates: function (n) { return goTab('me', function () { n.highlight($('[data-act=tpls]')); }); },
-    dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('.sl-hero')); } }); } } });
+    templates: function (n) { return goTab('profile', function () { n.highlight($('[data-act=tpls]')); }); },
+    dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('#kcalBtn')); } }); } } });
   function nudges() {
     var out = [], p = prefs(), now = Date.now(), hid = function (k) { return p['h_' + k] && now - p['h_' + k] < 7 * DAY_MS; };
     if (bk.remindDue() && !hid('backup')) out.push({ k: 'backup', msg: T('nudgeBackup'), btn: T('nudgeBackupBtn'), act: 'bktg' });
@@ -234,67 +269,114 @@
   }
 
   /* ---------- BUGUN ---------- */
-  function dayChip(t) {                              // bugungi kun holati: Ma'lumot yo'q / Kun davom etmoqda / To'liq · ...
-    var i = S.dayStatus(st, t, t), lab = stLabel(i, t, t); if (i.complete) lab = T('stFull') + ' · ' + lab;
+  function dayChip(t) {                              // kun holati (Kundalik'da): Ma'lumot yo'q / Kun davom etmoqda / To'liq · ...
+    var i = S.dayStatus(st, t, todayStr()), lab = stLabel(i, t, todayStr()); if (i.complete) lab = T('stFull') + ' · ' + lab;
     return '<p class="sl-dst" id="dayChip" data-state="' + i.state + '"><i class="c ' + i.state + '" aria-hidden="true"></i>' + esc(lab) + '</p>';
   }
-  function dayEndHtml(t, x) {
+  function dayEndHtml(t, x) {                        // «Kunni yakunlash» — ovqatlar ro'yxati oxirida kichik matnli tugma
     if (!x.food.length) return ''; if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + '</p>';
-    return '<section class="rz-card sl-dayend"><button type="button" class="rz-btn primary full" data-act="dayend" id="dayEnd">' + esc(T('deBtn')) + '</button><p class="rz-mut sm">' + esc(T('deHint')) + '</p></section>';
+    return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button></p>';
+  }
+  function jokeFlashHtml() { return jokeFlash && jokeFlash.d === todayStr() ? '<p class="sl-jflash" id="jFlash" role="status">' + ico('chat', 'sl-inl') + esc(jokeFlash.text) + '</p>' : ''; }
+  var jokeFlash = null;
+  function jokeAfter(kind) {                         // ovqat/suv qo'shilgach bir qatorli qisqa gap — kuniga ko'pi bilan 2 marta, 9 soniyadan so'ng o'chadi (doimiy karta YO'Q)
+    if (!G || prefs().jokes === false) return; var p = prefs(), t = todayStr(); if (!p.jfl || p.jfl.d !== t) p.jfl = { d: t, n: 0 }; if (p.jfl.n >= 2) return;
+    var l = G.todayLine ? G.todayLine(jokeCtx()) : null; if (!l || !l.text) return; p.jfl.n++; jokeFlash = { d: t, text: l.text }; save(); var mb = view === 'today' && $('#mainAdd'); if (mb && !$('#jFlash')) mb.insertAdjacentHTML('afterend', jokeFlashHtml());
+    clearTimeout(jokeAfter.tm); jokeAfter.tm = setTimeout(function () { jokeFlash = null; var el = $('#jFlash'); if (el) el.remove(); }, 9000);
+  }
+  function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
+  function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
+  function vesselSvg(o) {                            // kaloriya «idishi»: maketdan aynan (to'lqin yo'li mk(), ikki qatlamli matn, animatsiya vaqtlari)
+    var ty = o.ty, ty2 = ty - 6, fy = o.fromTy, fy2 = fy - 6, d1 = o.upd ? '1.2s' : '1.8s', d2 = o.upd ? '1.3s' : '1.9s', rd = reduce;
+    var rise = function (a, b, d) { return '<animateTransform attributeName="transform" type="translate" from="0 ' + a + '" to="0 ' + b + '" dur="' + d + '"' + (o.begin ? ' begin="-' + o.begin.toFixed(2) + 's"' : '') + ' fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".22 1 .36 1"/>'; };
+    var sway1 = '<animateTransform attributeName="transform" type="translate" from="0 0" to="-240 0" dur="3.2s" repeatCount="indefinite" additive="sum"/>', sway2 = '<animateTransform attributeName="transform" type="translate" from="-240 0" to="0 0" dur="4.6s" repeatCount="indefinite" additive="sum"/>';
+    var txt = function (cls, a, b, c, ids) {
+      return '<text class="' + cls + '" x="120" y="86" text-anchor="middle" font-size="13" font-weight="600">' + esc(a) + '</text><text class="' + cls + ' kv-n" x="120" y="138" text-anchor="middle" font-size="46" font-weight="800" letter-spacing="-1.5"' + ids + '>' + esc(b) + '</text><text class="' + cls + '" x="120" y="162" text-anchor="middle" font-size="14" font-weight="500">' + esc(c) + '</text>';
+    };
+    return '<svg class="sl-vsvg" width="240" height="240" viewBox="0 0 240 240" aria-hidden="true" focusable="false"><defs><linearGradient id="kfLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFB547"/><stop offset="100%" stop-color="#FF6B4A"/></linearGradient><linearGradient id="kfRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B4A"/><stop offset="100%" stop-color="#FFB547"/></linearGradient><clipPath id="kfVessel"><circle cx="120" cy="120" r="104"/></clipPath>' +
+      '<clipPath id="kfWave"><path d="' + waveD(7, 0) + '"' + (rd ? ' transform="translate(0 ' + ty + ')"' : '') + '>' + (rd ? '' : rise(fy, ty, d1) + sway1) + '</path></clipPath></defs>' +
+      '<circle cx="120" cy="120" r="115" fill="none" stroke="url(#kfRim)" stroke-width="3" opacity=".55"/><circle class="kv-vessel" cx="120" cy="120" r="104"/>' + txt('kv-sub', o.a, o.b, o.c, ' id="kLeft" data-n="' + o.n + '"') +
+      '<g clip-path="url(#kfVessel)"><path d="' + waveD(9, 1.6) + '" fill="#FF8A5C" opacity=".45"' + (rd ? ' transform="translate(0 ' + ty2 + ')"' : '') + '>' + (rd ? '' : rise(fy2, ty2, d2) + sway2) + '</path><g clip-path="url(#kfWave)"><rect x="0" y="0" width="240" height="240" fill="url(#kfLiq)"/>' + txt('kv-dk', o.a, o.b, o.c, ' id="kLeft2"') + '</g></g></svg>';
+  }
+  var animRaf = 0, heroAnim = null;
+  function animNum(from, to, dur) {
+    var els = function () { return [$('#kLeft'), $('#kLeft2')]; }, set = function (n) { els().forEach(function (e) { if (e) e.textContent = fmt(n); }); };
+    cancelAnimationFrame(animRaf); if (reduce || !(dur > 0) || from === to) { set(to); return; }
+    var t0 = performance.now(); set(from); (function tick(t) { var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); set(Math.round(from + (to - from) * e)); if (k < 1) animRaf = requestAnimationFrame(tick); })(t0);
+  }
+  function routeShort(km) {
+    if (!G || !masofa || !(km >= 1)) return ''; var rt = G.routeFor(masofa, prefs().city || 'toshkent', km), dest = lang === 'ru' ? 'до ' + (rt.to.ruGen || rt.to.ru) : rt.to.uz + 'gacha';
+    return rt.type === 'full' ? dest : rt.pct + '% · ' + dest;
   }
   function renderToday() {
     var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), h0 = num(pr.height), w0 = S.currentWeight(st);
-    var bal = S.dayBalance(pl.target, tot.kcal, x.steps, h0, w0, pr.act), limit = pl.target + bal.credit, ratio = Math.min(1, tot.kcal / limit), over = bal.remaining < 0, prev = heroPrev;
-    var stp = S.stepsStats(st, x.steps), glasses = pl.water.glasses, wl = Math.min(glasses, x.water);
-    var h = (inst.isTop() ? inst.cardHtml() : '') + weekCard();
-    h += '<section class="rz-card sl-hero' + (over ? ' over' : '') + '"><button type="button" class="sl-ringbtn" id="ringBtn" data-act="xkcal" aria-label="' + esc(T('hHow') + ' ' + fmt(tot.kcal) + ' ' + T('ringOf', { t: fmt(limit) })) + '">' + ringHtml('ringPg', prev ? prev.ratio : 0) +
-      '<span class="sl-rc"><b id="kNum">' + fmt(prev ? prev.eaten : tot.kcal) + '</b><small>' + T('kcal') + '</small><em>' + esc(T('ringOf', { t: fmt(limit) })) + '</em></span><span class="rz-qb" aria-hidden="true">?</span></button>' +
-      '<div class="sl-rem"><span>' + esc(T(over ? 'overLbl' : 'remLbl')) + '</span><b>' + fmt(Math.abs(bal.remaining)) + '<small> ' + T('kcal') + '</small></b>' + (bal.credit > 0 ? '<em>' + esc(T('limitParts', { t: fmt(pl.target), c: fmt(bal.credit) })) + '</em>' : '') + '</div>' + dayChip(t) + (!tot.kcal && !x.food.length ? '<p class="rz-mut sm sl-first">' + esc(T('hEmpty')) + '</p>' : '') + '</section>';
-    if (G && !jokeBoot) { jokeBoot = true; loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
-    var jl = G && masofaState !== 1 && dbState !== 1 ? G.todayLine(jokeCtx()) : null; if (jl) save();           // masofa va taomlar bazasi yuklanguncha hazil tanlanmaydi (yuklangach qayta chiziladi) — aks holda qayta ochganda hazil almashib ketardi
-     h += jokeBox(jl) + '<button type="button" class="sl-wide" data-act="yesam">' + ico('help') + '<span>' + esc(T('yBtn')) + '</span>' + ico('chev', 'r') + '</button>';
-    h += '<section class="rz-card sl-macros">' + [['mP', 'p', pl.macros.p], ['mF', 'f', pl.macros.f], ['mC', 'c', pl.macros.c]].map(function (m) { var v = Math.round(tot[m[1]]), r = Math.min(1, v / Math.max(1, m[2])); return '<button type="button" class="sl-mac" data-act="xmacro"><span class="l">' + esc(T(m[0])) + '</span><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + r + ')"></i></div><span class="v">' + v + ' / ' + m[2] + ' ' + T('gram') + '</span></button>'; }).join('') + '</section>';
-    h += '<section class="rz-card sl-water" id="wCard"><div class="sl-wh"><b>' + ico('drop') + esc(T('wT')) + '</b><button type="button" class="sl-wv" data-act="xwater" id="wTxt">' + esc(T('wOf', { n: wl, m: glasses })) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML() + '</button></div><div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
-    for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl && prev ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
-    h += '</div><p class="rz-mut sm">' + esc(T('wHint')) + '</p></section>';
-    var gr = x.steps / st.stepGoal;
-    h += '<section class="rz-card sl-stepcard"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span></button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, gr) + ')"></i></div><button type="button" class="rz-btn sm" data-act="addsteps">' + esc(T('sAdd')) + '</button></section>';
+    var bal = S.dayBalance(pl.target, tot.kcal, x.steps, h0, w0, pr.act), limit = pl.target + bal.credit, ratio = Math.min(1, tot.kcal / Math.max(1, limit)), over = bal.remaining < 0, info = S.dayStatus(st, t, t);
+    var glasses = pl.water.glasses, wmax = glasses * S.GLASS_ML, note = info.complete ? T('stFull') + ' · ' + stLabel(info, t, t) : T('cNote');
+    var prev = heroPrev, n = over ? -bal.remaining : bal.remaining, ty = tyOf(over ? 1 : ratio), now0 = performance.now(), cont = !!(heroAnim && !reduce && now0 - heroAnim.t0 < heroAnim.dur && heroAnim.to === n && heroAnim.ty === ty);
+    var fromTy = cont ? heroAnim.fromTy : (prev ? prev.ty : 250), upd = cont ? heroAnim.upd : (!!prev && prev.ty !== ty), el0 = cont ? (now0 - heroAnim.t0) / 1000 : 0, startN = prev ? prev.n : 0, curN = startN, durN = prev ? (prev.n !== n ? 1200 : 0) : 1800;
+    if (cont) { var kk = Math.min(1, (now0 - heroAnim.t0) / heroAnim.dur); curN = Math.round(heroAnim.from + (heroAnim.to - heroAnim.from) * (1 - Math.pow(1 - kk, 3))); durN = heroAnim.dur - (now0 - heroAnim.t0); startN = heroAnim.from; }
+    var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
+    var h = (inst.isTop() ? inst.cardHtml() : '');
+    h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div><div class="r">' + (sk > 0 ? '<span class="sl-streak2" id="streakChip">' + ico('flame') + esc(T('hStreak', { n: sk })) + '</span>' : '') + '<button type="button" class="sl-av" data-act="tab" data-v="profile" aria-label="' + esc(T('navProfile')) + '"><span data-cyr="skip">' + esc(T('avL')) + '</span></button></div></div>';
+    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : T('vLeft'), b: fmt(curN), c: over ? T('vOver2') : T('kcal') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
+      '<div class="sl-trio" style="--n:' + (bal.credit > 0 ? 3 : 2) + '"><div><span>' + esc(T('cEaten')) + '</span><b id="kNum">' + fmt(tot.kcal) + '</b></div><div><span>' + esc(T('cGoal')) + '</span><b id="kGoal">' + fmt(pl.target) + '</b></div>' + (bal.credit > 0 ? '<div><span>' + esc(T('cBurn')) + '</span><b id="kBurn">+' + fmt(bal.credit) + '</b></div>' : '') + '</div>' +
+      '<button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p', '#6E9BFF'], ['mF', 'f', "#FFC24B"], ['mC', 'c', '#34D399']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b>' + esc(T(m[0])) + '</b><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:' + m[2] + '"></i></span><small>' + v + ' / ' + goal + ' g</small></span>'; }).join('') + '</button>' +
+      '<p class="sl-note" id="dayChip" data-state="' + info.state + '">' + esc(note) + '</p></section>';
+    h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(T('hEmpty')) + '</p>' : '') + jokeFlashHtml();
+    h += mealsHtml(t) + dayEndHtml(t, x);
+    var wsegs = ''; for (var wi2 = 0; wi2 < glasses; wi2++) wsegs += '<i' + (wi2 < Math.min(glasses, x.water) ? ' class="on"' : '') + '></i>';
+    var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
+    h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(x.water * S.GLASS_ML) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span><span class="segs" id="wSegs" style="--g:' + glasses + '">' + wsegs + '</span></button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
+      '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span><span class="bar"><i style="width:' + Math.min(100, Math.round(x.steps / Math.max(1, st.stepGoal) * 100)) + '%"></i></span><span class="km">' + (x.steps ? esc('≈ ' + String(stp.km).replace('.', ',') + ' ' + T('km') + (rs ? ' · ' + rs : '')) : esc(T('sTap'))) + '</span></button></section></div>';
+    if (st.weights.length) { var dl = wiInfo.delta; h += '<button type="button" class="sl-card sl-wrow" data-act="tab" data-v="results"><span class="ic">' + ico('trend') + '</span><span class="m"><b>' + esc(T('wRowT', { x: dec(S.currentWeight(st), 1) })) + '</b><span>' + esc(dl != null ? T('wRowW', { d: (dl > 0 ? '+' : '−') + dec(Math.abs(dl), 1) }) : weightLabel(wiInfo)) + '</span></span>' + ico('chev', 'r') + '</button>'; }
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div><div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button></div></div>'; });
     if (!inst.isTop()) h += inst.cardHtml();
-    h += mealsHtml(t) + dayEndHtml(t, x) + '<p class="rz-priv">' + esc(T('disc')) + '</p>';
+    h += '<p class="rz-priv">' + esc(T('disc')) + '</p>';
     $('#rzMain').innerHTML = h; markSeen();
-    var num0 = $('#kNum'); if (prev && prev.eaten !== tot.kcal) kit.setNum(num0, prev.eaten, tot.kcal);
-    animRing('ringPg', ratio);
-    $$('.sl-glass.on').length || $$('.sl-glass').forEach(function (g, i) { if (i < wl) setTimeout(function () { g.classList.add('on'); }, reduce ? 0 : 60 + i * 45); });
-    heroPrev = { eaten: tot.kcal, ratio: ratio };
+    animNum(curN, n, durN); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 1800, from: startN, to: n, fromTy: fromTy, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty };
+    if (G && !jokeBoot) { jokeBoot = true; loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
 
-  /* ---------- OVQAT ---------- */
-  function renderFood() {
+  /* ---------- KUNDALIK ---------- */
+  function renderDiary() {
     var t = todayStr(), d = foodDay || t, x = S.dayOf(st, d), tot = S.sumEntries(x ? x.food : []), pl = planNow();
     var lab = d === t ? T('today') : (d === Dt.addDays(t, -1) ? T('yesterday') : kit.dLabel(d));
-    var h = '<h2 class="rz-h">' + esc(T('fT')) + '</h2><section class="rz-card"><div class="rz-monthnav"><button type="button" data-act="dprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(lab) + '</b><button type="button" data-act="dnext" aria-label="›"' + (d >= t ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-daysum"><b>' + fmt(tot.kcal) + '</b><small> / ' + fmt(pl.target) + ' ' + T('kcal') + '</small></div></section>';
-    h += '<button type="button" class="sl-wide" data-act="addtext" data-d="' + d + '">' + ico('text') + '<span>' + esc(T('fAddText')) + '</span>' + ico('chev', 'r') + '</button>';
-    h += mealsHtml(d) + rcMineHtml();
-    var favs = st.favs.map(foodById).filter(Boolean);
-    h += '<section class="rz-card"><div class="rz-st">' + esc(T('fFavs')) + '</div>' + (favs.length ? favs.slice(0, 8).map(function (f) { return '<button type="button" class="sl-row" data-act="pickfav" data-id="' + esc(f.id) + '" data-d="' + d + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('heart', 'fv') + '</button>'; }).join('') : '<div class="rz-mut">' + esc(T('fNoFavs')) + '</div>') + '</section>';
+    var h = '<h2 class="rz-h">' + esc(T('diaryT')) + '</h2><section class="rz-card"><div class="rz-monthnav"><button type="button" data-act="dprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(lab) + '</b><button type="button" data-act="dnext" aria-label="›"' + (d >= t ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-daysum"><b>' + fmt(tot.kcal) + '</b><small> / ' + fmt(pl.target) + ' ' + T('kcal') + '</small></div>' + dayChip(d) + '</section>';
+    h += mealsHtml(d) + calHtml();
     $('#rzMain').innerHTML = h; markSeen();
-    if (dbState === 0 && st.favs.length) loadDb(function () { if (view === 'food') render(); });
   }
 
-  /* ---------- QADAM ---------- */
-  function renderSteps() {
+  /* ---------- NATIJALAR ---------- */
+  function weekStatsHtml() {                         // oxirgi 7 kun (kechagacha) — faqat to'liq kunlar bo'yicha
+    var t = todayStr(), w = S.weekSummary(st, Dt.addDays(t, -1)); if (w.empty) return '';
+    var rows = [];
+    if (w.loggedDays) rows.push((w.fullDays ? T('wkAvgK', { x: fmt(w.avgKcal) }) : T('wkNoFull')) + ' · ' + T('wkDays', { n: w.fullDays }));
+    if (w.avgSteps != null) rows.push(T('wkAvgS', { x: fmt(w.avgSteps) }));
+    if (w.weightFrom != null && w.weightTo != null) rows.push(T('wkW', { a: dec(w.weightFrom, 1), b: dec(w.weightTo, 1) }));
+    return '<section class="rz-card sl-week"><div class="rz-st">' + esc(T('resWeekT')) + '</div>' + rows.map(function (r) { return '<p class="rz-p">' + esc(r) + '</p>'; }).join('') + '</section>';
+  }
+  function renderResults() {
+    var pr = st.profile, cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), first = st.weights.length ? st.weights[0].kg : cur; loadMasofa();
+    var h = '<h2 class="rz-h">' + esc(T('resT')) + '</h2>';
+    h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
+      (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
+      (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
+    h += weekStatsHtml() + stepsHtml() + '<section class="rz-card"><button type="button" class="rz-row" data-act="share"><span class="sl-ci">' + ico('share') + '</span><span class="m"><b>' + esc(T('meShare')) + '</b><span>' + esc(T('shH')) + '</span></span>' + ico('chev', 'r') + '</button></section>';
+    $('#rzMain').innerHTML = h; stepsAnim();
+    var p = $('.sl-wchart .avg'); if (p && !reduce) { p.style.strokeDashoffset = '1'; requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = '0'; }); }); }
+  }
+  function stepsHtml() {
     var t = todayStr(), x = S.dayOf(st, t) || { steps: 0 }, stp = S.stepsStats(st, x.steps), ser = S.stepsSeries(st, t, 7), tot = S.stepsTotal(st, ser), mx = Math.max(st.stepGoal, Math.max.apply(null, ser.map(function (s) { return s.steps; })), 1), mon = S.monthSteps(st, Dt.monthOf(t));
-    var dl = G ? G.distLines(jokeCtx()) : { week: null, month: null }; if (dl.week || dl.month) save(); loadMasofa();
-    var weekJoke = dl.week ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(dl.week.text) + '</p>' : routeFact(tot.km), monJoke = dl.month ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(dl.month.text) + '</p>' : routeFact(mon.km);
-    var h = '<h2 class="rz-h">' + esc(T('stT')) + '</h2><section class="rz-card sl-stepbig"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('stepsT')) + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span></button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, x.steps / st.stepGoal) + ')"></i></div><div class="rz-mut sm">' + esc(T('stGoal', { x: fmt(st.stepGoal) })) + '</div><button type="button" class="rz-btn primary full" data-act="addsteps">' + esc(T('sAdd')) + '</button><button type="button" class="rz-link" data-act="stephelp">' + esc(T('stWhere')) + '</button></section>';
+    loadMasofa(); var weekJoke = routeFact(tot.km), monJoke = routeFact(mon.km);
+    var h = '<section class="rz-card sl-stepbig"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('stepsT')) + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span></button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, x.steps / st.stepGoal) + ')"></i></div><div class="rz-mut sm">' + esc(T('stGoal', { x: fmt(st.stepGoal) })) + '</div><button type="button" class="rz-btn full" data-act="addsteps">' + esc(T('sAdd')) + '</button><button type="button" class="rz-link" data-act="stephelp">' + esc(T('stWhere')) + '</button></section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('stWeek')) + '</div><div class="sl-chart" style="--g:' + (st.stepGoal / mx).toFixed(3) + '" role="img" aria-label="' + esc(T('stWeek')) + '">' + ser.map(function (s) { var wd = S.weekdayIdx(s.d), nm = D[lang] && (lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'])[wd]; return '<button type="button" class="b' + (s.d === t ? ' td' : '') + '" data-act="editsteps" data-d="' + s.d + '" aria-label="' + esc(kit.dLabel(s.d) + ': ' + fmt(s.steps)) + '"><span class="v">' + (s.steps ? fmt(s.steps) : '') + '</span><span class="col"><i style="transform:scaleY(' + (s.steps / mx) + ')"></i></span><span class="d">' + esc(nm) + '</span></button>'; }).join('') + '</div>' +
       '<div class="sl-wtot"><b>' + esc(tot.km.toString().replace('.', ',') + ' ' + T('km')) + '</b><span>' + fmt(tot.steps) + ' · ' + fmt(tot.kcal) + ' ' + T('kcal') + '</span></div>' +
       (tot.steps ? weekJoke : '<p class="rz-mut">' + esc(T('stEmpty')) + '</p>') + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('stMonth')) + '</div><div class="sl-wtot"><b>' + fmt(mon.steps) + '</b><span>' + esc(mon.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(mon.kcal) + ' ' + T('kcal')) + '</span></div>' + monJoke + '<button type="button" class="rz-row" data-act="stepgoal"><span class="m"><b>' + esc(T('stGoalSet')) + '</b></span><span class="v">' + fmt(st.stepGoal) + '</span></button><p class="rz-priv">' + esc(T('stNoRank')) + '</p></section>';
-    $('#rzMain').innerHTML = h;
-    $$('.sl-chart .col i').forEach(function (e, i) { var f = e.style.transform; e.style.transform = 'scaleY(0)'; setTimeout(function () { e.style.transform = f; }, reduce ? 0 : 60 + i * 50); });
+    return h;
   }
+  function stepsAnim() { $$('.sl-chart .col i').forEach(function (e, i) { var f = e.style.transform; e.style.transform = 'scaleY(0)'; setTimeout(function () { e.style.transform = f; }, reduce ? 0 : 60 + i * 50); }); }
+
 
   /* ---------- MEN ---------- */
   function weightChart() {
@@ -308,22 +390,23 @@
     if (wi.kind === 'first') return T('wFirst'); if (wi.kind === 'last') return T('wLast'); if (wi.kind === 'avg') return T('wAvgN', { n: wi.n, x: dec(wi.kg, 1) });
     if (wi.kind === 'trend') return T('wTrend', { x: dec(wi.kg, 1) }) + (wi.delta != null ? ' · ' + T('wTrendD', { d: (wi.delta > 0 ? '+' : '') + dec(wi.delta, 1) }) : ''); return '';
   }
-  function renderMe() {
-    var pr = st.profile, pl = planNow(), cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang;
+  function themeNow() { var t = (prefs().theme || 'auto'); return t === 'light' || t === 'dark' ? t : 'auto'; }
+  function applyTheme() { var t = themeNow(), h = document.documentElement; if (t === 'auto') h.removeAttribute('data-theme'); else h.setAttribute('data-theme', t); try { if (t === 'auto') localStorage.removeItem('kalki_theme'); else localStorage.setItem('kalki_theme', t); } catch (e) {} }
+  function renderProfile() {
+    var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
-    var first = st.weights.length ? st.weights[0].kg : cur, wj = G ? G.weightLine(jokeCtx()) : null; if (wj) save(); loadMasofa();
-    var h = '<h2 class="rz-h">' + esc(T('meT')) + '</h2><section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
+    var seg = function (act, key, opts, cur) { return '<div class="rz-seg">' + opts.map(function (o) { return '<button type="button" data-act="' + act + '" data-' + key + '="' + o[0] + '"' + (cur === o[0] ? ' class="on"' : '') + '>' + esc(o[1]) + '</button>'; }).join('') + '</div>'; };
+    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>';
+    h += '<section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
-    h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
-      (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
-      (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + (wj ? '<p class="rz-p sl-fact">' + ico('chat', 'sl-inl') + esc(wj.text) + '</p>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
-    h += calHtml() + '<section class="rz-card">' + row('supp', 'pill', T('spT'), T('spH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('share', 'share', T('meShare'), T('shH')) + '</section>' + jokesCardHtml();
-    h += '<section class="rz-card">' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>' +
-      '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
-      '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>' +
-      '<section class="rz-card">' + news.row() + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section><p class="rz-priv">' + esc(T('priv')) + ' ' + esc(T('med')) + '</p>';
+    h += '<section class="rz-card">' + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('rcmine', 'book', T('rcMine'), '') + row('supp', 'pill', T('spT'), T('spH')) + '</section>';
+    h += '<section class="rz-card"><div class="rz-st">' + esc(T('profBackup')) + '</div>' + (inst.row() ? inst.row().html : '') + bk.tgRow() + bk.cloudHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml() + '</section>';
+    h += '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div><div class="rz-seg" data-cyr="skip"><button type="button" data-act="lang" data-l="uz"' + (curL === 'uz' ? ' class="on"' : '') + '>UZ</button><button type="button" data-act="lang" data-l="cyr"' + (curL === 'cyr' ? ' class="on"' : '') + '>ЎЗ</button><button type="button" data-act="lang" data-l="ru"' + (curL === 'ru' ? ' class="on"' : '') + '>RU</button></div>' +
+      '<div class="rz-st" style="margin-top:14px">' + esc(T('themeT')) + '</div>' + seg('theme', 't', [['auto', T('thAuto')], ['light', T('thLight')], ['dark', T('thDark')]], th) +
+      '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div><div class="rz-seg"><button type="button" data-act="font" data-f="n"' + (!big ? ' class="on"' : '') + '>' + esc(T('fN')) + '</button><button type="button" data-act="font" data-f="b"' + (big ? ' class="on"' : '') + '>' + esc(T('fB')) + '</button></div></section>';
+    h += jokesCardHtml();
+    h += '<section class="rz-card">' + news.row() + row('tips', 'help', T('sTips'), '') + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section><p class="rz-priv">' + esc(T('priv')) + ' ' + esc(T('med')) + '</p>';
     $('#rzMain').innerHTML = h;
-    var p = $('.sl-wchart .avg'); if (p && !reduce) { p.style.strokeDashoffset = '1'; requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = '0'; }); }); }
   }
 
   function render() {
@@ -336,11 +419,11 @@
     lockUi(false);
     var onb = $('#rzOnb'); if (onb && !onb.classList.contains('out')) onb.hidden = true;
     $$('.rz-tab').forEach(function (b) { var on = b.getAttribute('data-v') === view; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
-    var title = { today: T('appName'), food: T('fT'), steps: T('stT'), me: T('meT') }[view]; $('#rzTitle').textContent = title;
+    var title = { today: T('appName'), diary: T('diaryT'), results: T('resT'), profile: T('profT') }[view]; $('#rzTitle').textContent = title;
     var lt = $('#rzLangTxt'); if (lt) lt.textContent = isCyr() ? 'ЎЗ' : lang.toUpperCase();
-    $('#rzFab').setAttribute('aria-label', T('add'));
+    $('#rzFab').setAttribute('aria-label', T('navAdd'));
     var main = $('#rzMain'), sc = main.scrollTop;
-    ({ today: renderToday, food: renderFood, steps: renderSteps, me: renderMe })[view]();
+    ({ today: renderToday, diary: renderDiary, results: renderResults, profile: renderProfile })[view]();
     main.classList.toggle('enter', enterNext); enterNext = false; main.scrollTop = sc;
     if (view === 'today' && !prefs().tipsDone && !kit.tipsOn() && !kit.sheetKind()) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 500);
   }
@@ -354,7 +437,7 @@
     chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
     sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.900 4.900l1.400 1.400 M17.700 17.700l1.400 1.400 M4.900 19.100l1.400-1.400 M17.700 6.300l1.400-1.400', leaf: 'M5 19c0-8 5-13 14-14 0 9-5 14-13 14 M5 19c2-4 5-7 9-9', bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
-    cal2: 'M5 5h14v15H5z M5 10h14 M9 3v4 M15 3v4', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
+    cal2: 'M7 5h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z M8 3v4 M16 3v4 M4 10h16', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
   });
   var G = window.KalkiFitGaplar, masofa = null, masofaState = 0, supp = null, suppState = 0;
   function loadJson(url, ok, fail) { fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(ok).catch(fail || function () {}); }
@@ -446,14 +529,14 @@
   function calHtml() {
     var t = todayStr(), ym = calYm || Dt.monthOf(t), g = S.monthGrid(st, ym, t), p = Dt.parse(ym + '-01'), wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], sk = S.streak(st, t), start = S.trackStart(st);
     var st2 = { near: T('calNear'), low: T('calLow'), high: T('calHigh'), part: T('calPart'), none: T('calNone'), pre: T('calPre') };
-    var h = '<section class="rz-card sl-cal" id="calCard"><div class="sl-wh"><b>' + ico('cal2') + esc(T('calT')) + '</b></div><div class="rz-monthnav"><button type="button" data-act="calprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(kit.monthName(p.m, true) + ' ' + p.y) + '</b><button type="button" data-act="calnext" aria-label="›"' + (ym >= Dt.monthOf(t) ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-calg" role="grid">';
+    var h = '<section class="rz-card sl-cal" id="calCard"><div class="sl-wh"><b>' + ico('cal2') + esc(T('calT')) + '</b><button type="button" class="rz-x sl-info" data-act="calinfo" aria-label="ⓘ ' + esc(T('calInfoT')) + '">ⓘ</button></div><div class="rz-monthnav"><button type="button" data-act="calprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(kit.monthName(p.m, true) + ' ' + p.y) + '</b><button type="button" data-act="calnext" aria-label="›"' + (ym >= Dt.monthOf(t) ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-calg" role="grid">';
     wd.forEach(function (w) { h += '<i>' + esc(w) + '</i>'; }); for (var i = 0; i < g.first; i++) h += '<span></span>';
     g.days.forEach(function (d) { var pre = d.state === 'pre'; h += '<button type="button" class="c ' + d.state + (d.d === t ? ' td' : '') + (d.d > t ? ' fut' : '') + '" data-act="calday" data-d="' + d.d + '" aria-label="' + esc(kit.dLabel(d.d) + ': ' + (d.live ? T('stLive') : st2[d.state])) + '"' + (d.d > t || pre ? ' disabled' : '') + '>' + d.n + '</button>'; });
     h += '</div><div class="sl-leg">' + ['near', 'low', 'high', 'part', 'none'].map(function (k) { return '<span><i class="c ' + k + '" aria-hidden="true"></i>' + esc(st2[k]) + ' · ' + esc(T('calDays', { n: g.counts[k] })) + '</span>'; }).join('') + '</div>';
     if (start) h += '<p class="rz-mut sm sl-cstart">' + esc(T('calStart', { d: kit.dLabel(start) })) + '</p>';
     h += '<div class="sl-streak"><b>' + ico('flame', 'sl-inl') + esc(sk ? T('calStreak', { n: sk }) : T('calStreak0')) + '</b></div>';
     var sj = G ? G.streakLine(jokeCtx()) : null; if (sj) { h += '<p class="rz-p sl-fact">' + esc(sj.text) + '</p>'; }
-    return h + '<p class="rz-priv">' + esc(T('calNote')) + '</p></section>';
+    return h + '</section>';
   }
 
   /* ---------- hazil sozlamalari, shahar ---------- */
@@ -563,15 +646,42 @@
     openSheet('add', searchHtml()); catsInit(); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
     if (o.food) pickFood(o.food);
   }
+  function entUnitTxt(e) { var vv = vOf(e.unit); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (vv) return qtyStr(e.qty) + ' ' + vName(vv); if (e.vn) return qtyStr(e.qty) + ' ' + e.vn; return qtyStr(e.qty) + ' ' + (e.unit && e.unit !== 'pc' ? unitName(e.unit) : unitName('porsiya')); }
+  function lastEntries(limit) {                        // eng oxirgi yozuvlar (yangisi birinchi), har taomdan bittadan: [{e, d, k}]
+    var out = [], seen = {}, days = Object.keys(st.days).sort().reverse(), from = Dt.addDays(todayStr(), -120);
+    for (var i = 0; i < days.length && out.length < limit; i++) {
+      if (days[i] < from) break; var l = st.days[days[i]].food;
+      for (var j = l.length - 1; j >= 0 && out.length < limit; j--) { var e = l[j], k = e.fid ? (dbAlias[e.fid] || e.fid) : (e.name ? 'n:' + e.name : null); if (!k || seen[k]) continue; seen[k] = 1; out.push({ e: e, d: days[i], k: k }); }
+    }
+    return out;
+  }
+  var fdLM = {};
+  function lastFor(key) { return key ? (fdLM[key] || null) : null; }
+  function defPortionTxt(f) {
+    var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); if (!(g > 0)) return '';
+    return T('aDefOne', { x: u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u), k: fmt(S.portion(v, g).kcal) });
+  }
+  function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
+  function aiLineHtml() {
+    var q = (fd && fd.q || '').trim();
+    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
+  }
+  function mealSeg() { return '<div class="sl-seg4" role="tablist" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { var on = fd.meal === m; return '<button type="button" role="tab" class="' + (on ? 'on' : '') + '" data-act="fmeals" data-m="' + m + '" aria-selected="' + on + '">' + esc(T('mealS_' + m)) + '</button>'; }).join('') + '</div>'; }
+  function recRow(r) {
+    var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
+    return '<div class="sl-rw"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+  }
+  function moreHtml() {
+    var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
+    return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
+  }
   function catsHtml() {
     return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + [''].concat(CATS).map(function (c) { return '<button type="button" class="rz-chip' + (fd.cat === c ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + (fd.cat === c) + '">' + esc(c ? T('cat_' + c) : T('all')) + '</button>'; }).join('') + '</div></div>';
   }
-  function actsHtml() {
-    var off = navigator.onLine === false;
-    return '<div class="sl-acts"><button type="button" class="rz-btn ghost sm" data-act="ftext">' + ico('text') + '<span>' + esc(T('aText')) + '</span></button><button type="button" class="rz-btn ghost sm" id="phBtn" data-act="fphoto"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '<span>' + esc(T('phBtn')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="fcustom">' + ico('plus') + '<span>' + esc(T('aCustom')) + '</span></button><button type="button" class="rz-btn ghost sm" data-act="frecipe">' + ico('book') + '<span>' + esc(T('aRecipe')) + '</span></button></div>';
-  }
+  function actsHtml() { return ''; }
   function searchHtml() {
-    return shHead(T('aT')) + '<div class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></div>' + tplBar() + catsHtml() + actsHtml() + '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
+    var off = navigator.onLine === false;
+    return shHead(T('aT')) + mealSeg() + '<div class="sl-sr"><label class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></label><button type="button" class="sl-cam" id="phBtn" data-act="fphoto" aria-label="' + esc(T('phT')) + '"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '</button></div><div id="fdAiW">' + aiLineHtml() + '</div>' + (fd.browse ? catsHtml() : '') + '<div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
   }
   /* kategoriya qatori: gorizontal scroll, chetlarda yumshoq soya, sichqoncha g'ildiragi va sudrab surish ishlaydi */
   function catsInit() {
@@ -587,24 +697,25 @@
     var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - 40); upd();
   }
   function resRow(f) {
-    var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, nx = f.fam ? ' · ' + T('famN', { n: f.fam.N }) : '';
-    return '<button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '><span class="m"><span class="nm">' + esc(nameOf(f)) + (f.fam ? '<small class="sl-xil">' + esc(nx) + '</small>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span><span class="tm">' + esc(f.fam ? T('per100', { k: f.k }) + ' · ' + T('famDef') : T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>';
+    var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), sub = le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f);
+    return '<button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
   }
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
-    var foods = allFoods(), q = fd.q.trim(), list, h = '';
+    var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
     if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
     else if (fd.cat) list = foods.filter(function (f) { return f.t === fd.cat && !f.h; });
-    else {                                           // Hammasi: sevimli, oxirgi, mashhur, so'ng BUTUN baza guruhlar bo'yicha
-      var rec = st.recents.map(foodById).filter(Boolean), fav = st.favs.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h && rec.slice(0, 6).indexOf(f) < 0 && fav.slice(0, 5).indexOf(f) < 0; }).slice(0, 8);
-      var sec = function (t, l) { return l.length ? '<div class="rz-st">' + esc(t) + '</div>' + l.map(resRow).join('') : ''; };
-      var all = CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom && !f.h; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('');
-      return sec(T('aFav'), fav.slice(0, 5)) + sec(T('aRec'), rec.slice(0, 6)) + sec(T('aMine'), st.customFoods) + sec(T('aPop'), pop) + all;
+    else if (fd.browse) {                            // «Kategoriyalar bo'yicha ko'rish»: BUTUN baza guruhlar bo'yicha
+      return CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom && !f.h; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('') + '<button type="button" class="sl-txtbtn" data-act="fbrowse">' + esc(T('back')) + '</button>';
+    } else {                                         // birinchi ko'rinish: Oxirgilar → Saqlanganlar → Boshqa usullar
+      var rec = fd.recSnap || (fd.recSnap = le.slice(0, 5)), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
+      var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
+      return sec(T('aRecentT'), rec.map(recRow), T('aRecHint')) + sec(T('aPop'), pop.map(resRow)) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
     }
-    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
+    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
     return list.map(resRow).join('');
   }
-  function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); }
+  function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
   /* ---------- porsiya oynasi (bitta): qidiruvdan tanlash, saqlangan yozuv, AI matn/rasm qatorlari ---------- */
   function pwO() { return fd.mode === 'item' ? fd.items[fd.ix] : fd; }
@@ -633,14 +744,18 @@
     return (ug > 0 ? T('pwEq', { u: pwUName(o.unit), g: fmt(ug) }) + (g > 0 ? ' · ' : '') : '') + (g > 0 ? T('pwNow', { g: fmt(g) }) : '');
   }
   function pwQuick(o) { return [0.5, 1, 1.5, 2].map(function (v, i) { var q = o.unit === 'g100' ? v * 100 : v, on = Math.abs(o.qty - q) < 1e-6; return '<button type="button" class="rz-chip sm' + (on ? ' on' : '') + '" data-act="pwq" data-v="' + q + '" aria-pressed="' + on + '">' + ['½', '1', '1½', '2'][i] + '</button>'; }).join(''); }
-  function pwBody(o) {
+  function pwSumQ(o) { return o.unit === 'g100' ? fmt(pwGrams(o)) + ' ' + T('gram') : qtyStr(o.qty) + ' ' + pwUName(o.unit); }
+  function pwBody(o, noName) {
     var pt = pwCalc(o), approx = !!o.base;                             // «taxminiy» faqat bazada yo'q (AI/rasm) taom uchun; baza taomlariniki — faqat ⓘ Manba ichida
-    return '<div class="sl-kc" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><small> ' + T('kcal') + '</small></div><div class="sl-mc" id="fdMac">' + esc(T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) })) + '</div>' +
+    var nm = o.fam ? nameOf(o.fam) : (o.food ? nameOf(o.food) : (o.name || '')), lb = o.fam && o.food ? S.famLabel(o.fam, o.food.vr, o.szid, lang) : '', fidv = o.fam ? o.fam.id : (o.food ? o.food.id : null);
+    var more = famChips(o) + '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits" role="group" aria-label="' + esc(T('pUnit')) + '">' + pwUnits(o).map(function (u) { var vv = vOf(u); return '<button type="button" class="rz-chip' + (vv ? ' sl-vc' : '') + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(vv ? vLabel(vv, vkey(o)) : pwUName(u)) + '</button>'; }).join('') + (o.food ? '<button type="button" class="rz-chip sl-vnew" data-act="vnew">+ ' + esc(T('vNew')) + '</button>' : '') + '</div>' + vFillChips(o) +
+      (fd.mode === 'portion' ? '<div class="rz-fl">' + esc(T('pMealT')) + '</div>' + mealChips(fd.meal, 'fmeal') : '') + '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div>' + (fd.mode === 'portion' || fd.mode === 'item' ? '<button type="button" class="rz-btn ghost sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button>' : '');
+    return (noName ? '' : '<div class="sl-hero2"><span class="sl-pimg kf-pop">' + tileHtml(fidv, o.food ? o.food.vr : null, nm, 120, true) + '</span><h2 class="sl-pn" id="fdName">' + esc(nm) + '</h2><span class="sl-pv" id="fdVar">' + esc(lb) + '</span></div>') +
+      '<div class="sl-pk" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><span> ' + T('kcal') + '</span></div><div class="sl-pm" id="fdMac"><span class="p">' + esc(T('mP')) + ' <b id="fdMp">' + Math.round(pt.p) + '</b> g</span><span class="f">' + esc(T('mF')) + ' <b id="fdMf">' + Math.round(pt.f) + '</b> g</span><span class="c">' + esc(T('mC')) + ' <b id="fdMc">' + Math.round(pt.c) + '</b> g</span></div>' +
       (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
-      famChips(o) + '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits">' + pwUnits(o).map(function (u) { var vv = vOf(u); return '<button type="button" class="rz-chip' + (vv ? ' sl-vc' : '') + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(vv ? vLabel(vv, vkey(o)) : pwUName(u)) + '</button>'; }).join('') + (o.food ? '<button type="button" class="rz-chip sl-vnew" data-act="vnew">+ ' + esc(T('vNew')) + '</button>' : '') + '</div>' + vFillChips(o) +
-      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + (o.unit === 'g100' ? esc(T('gram')) : '') + '</i></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-      '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div><div class="rz-chips sl-pwq" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
-      '<div class="sl-two"><button type="button" class="rz-btn ghost sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button><button type="button" class="rz-btn ghost sl-sw sl-src" data-act="pwsrc">ⓘ ' + esc(T('srcBtn')) + '</button></div>';
+      '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.6) + '</button><span class="c"><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + esc(o.unit === 'g100' ? T('gram') : pwUName(o.unit)) + '</i></span><small id="fdGr">≈ ' + fmt(pwGrams(o)) + ' ' + T('gram') + '</small></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.6) + '</button></div>' +
+      '<div class="sl-q4" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
+      '<button type="button" class="sl-type" data-act="pwmore" aria-expanded="' + !!o.pmore + '"><span class="m"><b>' + esc(T('pTypeT')) + '</b><small id="fdTSum">' + esc(lb || pwUName(o.unit)) + '</small></span><span class="a">' + esc(T(o.pmore ? 'pCloseL' : 'pChange')) + '</span></button><div class="sl-pwmore" id="pwMore"' + (o.pmore ? '' : ' hidden') + '>' + more + '</div>';
   }
   function fl(x) { return lang === 'ru' ? x.r : x.n; }
   function famChips(o) {                              // omillar chiplari: faqat kkal'ga sezilarli ta'sir qiladiganlar (>15%) + o'lcham
@@ -660,7 +775,7 @@
     var t = ms ? (lang === 'ru' ? ms.r : ms.u) : T('srcNone'), us = un.length ? un.map(function (b) { return '1 ' + unitName(b.k) + ' ≈ ' + fmt(b.g) + ' ' + T('gram'); }).join(' · ') + ' — ' + T(un[0].s === 'a' ? 'srcUnitA' : 'srcUnitB') : '';
     return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwswapx" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('srcBtn')) + '</b><span></span></div>' +
       '<p class="rz-p"><b>' + esc(f ? nameOf(o.fam || f) : (o.name || '')) + '</b>' + ((o.fam && f.vr) ? ' · ' + esc(S.famLabel(o.fam, f.vr, o.szid, lang) || '') : '') + '</p>' +
-      (!f ? '<p class="rz-p sl-ap">' + esc(T('srcAi')) + '</p>' : (f.e ? '<p class="rz-p sl-ap">' + esc(T(f.rc ? 'srcApprox' : 'srcApprox2')) + '</p>' : '')) + '<p class="rz-p">' + esc(t) + '</p>' + (us ? '<p class="rz-p sm">' + esc(us) + '</p>' : '') +
+      (!f ? '<p class="rz-p sl-ap">' + esc(T('srcAi')) + '</p>' : (f.e ? '<p class="rz-p sl-ap">' + esc(T(f.rc ? 'srcApprox' : 'srcApprox2')) + '</p>' : '')) + '<p class="rz-p">' + esc(t) + '</p>' + (f && f.k ? '<p class="rz-p sm">' + esc(T('srcPer100', { k: f.k }) + (o.fam ? ' · ' + T('famN', { n: o.fam.fam.N }) + ' · ' + T('famDef') : '')) + '</p>' : '') + (us ? '<p class="rz-p sm">' + esc(us) + '</p>' : '') +
       '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="pwswapx">' + esc(T('back')) + '</button></div>';
   }
   function itSync(it) {
@@ -670,10 +785,12 @@
   function pwUpdate(fromInput) {
     var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
     kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
-    $('#fdMac').textContent = T('pMacro', { p: dec(pt.p, 0), f: dec(pt.f, 0), c: dec(pt.c, 0) });
+    var set = function (id, v) { var e = $(id); if (e) e.textContent = v; };
+    set('#fdMp', Math.round(pt.p)); set('#fdMf', Math.round(pt.f)); set('#fdMc', Math.round(pt.c));
     if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
-    $('#fdQu').textContent = o.unit === 'g100' ? T('gram') : ''; $('#fdInfo').textContent = pwInfo(o); $('#fdQuick').innerHTML = pwQuick(o);
+    set('#fdQu', o.unit === 'g100' ? T('gram') : pwUName(o.unit)); set('#fdGr', '≈ ' + fmt(pwGrams(o)) + ' ' + T('gram')); set('#fdInfo', pwInfo(o)); if (!o.fam) set('#fdTSum', pwUName(o.unit)); $('#fdQuick').innerHTML = pwQuick(o);
     $$('[data-act=funit]').forEach(function (b) { var on = b.getAttribute('data-u') === o.unit; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    var cb = $('#fsave'); if (cb && fd.mode === 'portion') cb.textContent = ctaText(pt.kcal);
   }
   function pwSetQty(o, q) { o.qty = Math.max(pwStep(o), Math.min(pwMax(o), Math.round(q * 100) / 100)); }
   function pwSetUnit(o, nu) {                          // birlik almashganda gramm (demak kkal) o'zgarmaydi
@@ -692,7 +809,7 @@
   function pwSwapHtml(o) {
     var l = pwSimilar(o);
     return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwswapx" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('pwSwapT')) + '</b><span></span></div>' +
-      (l.length ? l.map(function (f) { return '<button type="button" class="sl-row" data-act="pwsw" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span></button>'; }).join('') : '<div class="rz-mut">' + esc(T('pwNoSim')) + '</div>');
+      (l.length ? l.map(function (f) { return '<button type="button" class="sl-row" data-act="pwsw" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(defPortionTxt(f)) + '</span></span></button>'; }).join('') : '<div class="rz-mut">' + esc(T('pwNoSim')) + '</div>');
   }
   function pwSwapTo(id) {
     var o = pwO(), f = foodById(id); if (!f) return; var g = pwGrams(o), has = function (u) { return f.u.some(function (x) { return x[0] === u; }); };
@@ -704,8 +821,8 @@
   function pwScreen() { setSheet(fd.mode === 'item' ? itemHtml() : portionHtml()); }
   function itemHtml() {
     var it = fd.items[fd.ix];
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><span></span></div>' + pwBody(it) +
-      '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><button type="button" class="rz-x sl-src" data-act="pwsrc" aria-label="' + esc(T('pManba')) + '">' + ico('info') + '</button></div>' + pwBody(it, true) +
+      '<div class="sl-cta"><button type="button" class="sl-main" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
   }
   function itemOpen(i, back) { fd.back = back; fd.ix = i; fd.mode = 'item'; var it = fd.items[i]; if (!it.unit) { it.unit = 'pc'; it.qty = 1; } setSheet(itemHtml()); }
   function itemBack() { var b = fd.back; fd.mode = b; if (b === 'photo') setSheet(phHtml()); else if (b === 'tpl') setSheet(tplHtml()); else setSheet(textHtml()); }
@@ -797,9 +914,12 @@
   }
   var tmSug = null;
   function tplBar() {
-    var yb = S.kechagidekOk(st, fd.date, fd.meal), l = st.tpls || [];
-    return tplSugHtml() + '<div class="sl-tpl" id="tplBar" role="group" aria-label="' + esc(T('tplBar')) + '">' + (yb ? '<button type="button" class="rz-chip on" data-act="yday2">' + ico('undo') + ' ' + esc(T('tplYest')) + '</button>' : '') +
-      l.map(function (t) { return '<button type="button" class="rz-chip" data-act="tplopen" data-id="' + t.id + '">' + esc(t.name) + '</button>'; }).join('') + (l.length ? '' : '<button type="button" class="rz-chip" data-act="tplhelp">' + ico('star') + ' ' + esc(T('tplBar')) + '</button>') + '</div>';
+    var yb = S.kechagidekOk(st, fd.date, fd.meal), l = st.tpls || [], cards = '';
+    var thumbs = function (arr) { return '<span class="th">' + arr.slice(0, 3).map(function (x) { return tileHtml(x.fid, x.vr, x.n, 30); }).join('') + '</span>'; };
+    if (yb) { var ye = S.yesterdayEntries(st, fd.date, fd.meal); cards += '<button type="button" class="sl-sc" data-act="yday2">' + thumbs(ye.map(function (e) { var f = e.fid ? foodById(e.fid) : null; return { fid: e.fid, vr: e.vr, n: f ? nameOf(f) : (e.name || '?') }; })) + '<b>' + esc(T('tplYest')) + '</b><small>' + esc(T('aYestSub', { m: mealName(fd.meal), k: fmt(S.sumEntries(ye).kcal) })) + '</small></button>'; }
+    l.forEach(function (t) { cards += '<button type="button" class="sl-sc" data-act="tplopen" data-id="' + t.id + '">' + thumbs(t.items.map(function (x) { return { fid: x.fid, vr: x.vr, n: x.n }; })) + '<b>' + esc(t.name) + '</b><small>' + esc(T('aCnt', { n: t.items.length, k: fmt(S.tplKcal(t)) })) + '</small></button>'; });
+    if (!l.length) cards += '<button type="button" class="sl-sc help" data-act="tplhelp"><span class="th">' + ico('star') + '</span><b>' + esc(T('tplBar')) + '</b><small>' + esc(T('tplSaveS')) + '</small></button>';
+    return tplSugHtml() + '<div class="sl-sgrid" id="tplBar" role="group" aria-label="' + esc(T('tplBar')) + '">' + cards + '</div>';
   }
   function tplHelpHtml() {
     return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('tplBar')) + '</b><span></span></div><p class="rz-p">' + esc(T('tplEmpty')) + '</p>' + tplSugHtml() + tplTodayHtml(fd.date);
@@ -868,13 +988,29 @@
     else fd.food = f;
     fd.base = null; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
     var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
+    var le = lastFor(vkey(fd)); if (le) pwApplyLast(le.e, pick);
     setSheet(portionHtml());
   }
+  function pwApplyLast(e, pick) {                        // shu taomning OXIRGI porsiyasi (va omillari) — boshlang'ich qiymat
+    if (fd.fam && !pick) famOpen(fd, fd.fam, S.famSelOf(fd.fam, e.vr || null), e.sz || null);
+    var ok = vOf(e.unit) ? S.vesselsFor(st, vkey(fd)).some(function (v) { return 'v:' + v.id === e.unit; }) : fd.food.u.some(function (u) { return u[0] === e.unit; });
+    if (!ok) return; fd.unit = e.unit; fd.qty = e.qty > 0 ? e.qty : 1; if (e.unit === 'g100' && e.qty < 5 && e.g > 5) fd.qty = e.g; if (vOf(e.unit)) fd.vfill = e.vf || 'tola';
+  }
+  function quickAdd(d, id, key) {                       // Oxirgilar [+]: oxirgi porsiya bilan shu zahoti (1 bosish); ✓ bo'ladi, qayta bosilsa — bekor
+    fd.added = fd.added || {}; var cur = fd.added[key];
+    if (cur) { var rm = S.removeFood(st, fd.date, cur); delete fd.added[key]; commit(); refreshRes(); return rm; }
+    var x = S.dayOf(st, d), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return; var o = {};
+    ['fid', 'name', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) o[k] = e[k]; }); o.meal = fd.meal; o.ts = nowTs();
+    var date = fd.date, it = S.addFood(st, date, o), f = e.fid ? foodById(e.fid) : null, nm = e.name || (f ? nameOf(f.al ? (foodById(f.al.f) || f) : f) : '');
+    fd.added[key] = it.id; commit(); vib(); refreshRes();
+    toast(T('aAdded', { x: nm + ' · ' + entUnitTxt(e) }), function () { S.removeFood(st, date, it.id); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000); afterWater(); jokeAfter('food');
+  }
+  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) }); }
   function portionHtml() {
-    var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1, nm = f ? nameOf(f) : (fd.name || '');
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(nm) + '</b>' + (f && !f.custom ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : (f ? '<button type="button" class="rz-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '<span></span>')) + '</div>' +
-      vSugHtml() + pwBody(fd) + '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal') +
-      '<div class="rz-actions sl-sticky">' + (fd.editId != null ? '<button type="button" class="rz-btn ghost danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="rz-btn primary" id="fsave" data-act="fsave">' + esc(T('pSave')) + '</button></div>';
+    var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1;
+    return '<div class="sl-ph2"><button type="button" class="sl-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><span class="sp"></span>' + (f ? '<button type="button" class="sl-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '') + '<button type="button" class="sl-chip sl-src" data-act="pwsrc">' + ico('info') + '<span>' + esc(T('pManba')) + '</span></button></div>' +
+      vSugHtml() + pwBody(fd) +
+      '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div>';
   }
   function fSave() {
     var f = fd.food, pt = pwCalc(fd);
@@ -888,7 +1024,7 @@
     }
     var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: fd.fam ? f.vr : null, sz: fd.fam && fd.fam.fam.sz ? fd.szid : null, vn: vOf(fd.unit) ? vName(vOf(fd.unit)) : null, vf: vOf(fd.unit) ? (fd.vfill || 'tola') : null });
     var date = fd.date; kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { rowOut(it.id, function () { S.removeFood(st, date, it.id); commit(); }); }, true);
-    afterWater();
+    afterWater(); jokeAfter('food');
   }
   function rowOut(id, cb) { var el = $('.sl-row[data-id="' + id + '"]'); if (el && !reduce) { el.classList.add('rz-gone'); setTimeout(cb, 230); } else cb(); }
   function openEdit(date, id) {
@@ -999,7 +1135,7 @@
   function spUpdate() { $('#spNum').textContent = sp.val ? fmt(+sp.val) : '0'; $('#spSave').disabled = !sp.val; }
   function afterWater() { /* qadam/suv/ovqat saqlangach sokin bayram tekshiruvi */ var t = todayStr(), x = S.dayOf(st, t); if (!x) return; var p = prefs(); if (!p.cel || p.cel.d !== t) p.cel = { d: t }; var pl = planNow();
     if (x.water >= pl.water.glasses && !p.cel.w) { p.cel.w = 1; save(); celebrate('wCard', T('wDone')); }
-    if (x.steps >= st.stepGoal && !p.cel.s) { p.cel.s = 1; save(); celebrate('ringBtn', T('sGoalDone')); } }
+    if (x.steps >= st.stepGoal && !p.cel.s) { p.cel.s = 1; save(); celebrate('kcalBtn', T('sGoalDone')); } }
   function celebrate(id, msg) { setTimeout(function () { var el = document.getElementById(id) && $('#' + id); if (el) { el.classList.remove('glow'); void el.offsetWidth; el.classList.add('glow'); } toast(msg, null, true); vib(25); }, 350); }
   function spSave() {
     var v = +sp.val; if (sp.goal) { st.stepGoal = Math.max(1000, Math.min(100000, v)); } else S.setSteps(st, sp.date, v);
@@ -1095,7 +1231,7 @@
   function wipe() { confirmBox(T('sDel'), T('delAsk1'), function () { try { localStorage.removeItem(LS); localStorage.removeItem(OLD[LS]); } catch (e) {} st = S.emptyState(); st.prefs = {}; view = 'today'; ob = null; seenFood = null; heroPrev = null; render(); toast(T('deleted')); }, T('delAsk2')); }
 
   /* ---------- yo'l-yo'riq va "ilova haqida" ---------- */
-  var TIPS = [{ sel: '#ringBtn', key: 'tip1', pos: 'below', round: true }, { sel: '#rzFab', key: 'tip2', pos: 'above', round: true }, { sel: '.rz-tab[data-v=steps]', key: 'tip3', pos: 'above' }];
+  var TIPS = [{ sel: '#kcalBtn', key: 'tip1', pos: 'below' }, { sel: '#rzFab', key: 'tip2', pos: 'above', round: true }, { sel: '.rz-tab[data-v=results]', key: 'tip3', pos: 'above' }];
   function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#rzFab'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
   function aboutOpen(on) {
     document.body.classList.toggle('rz-aboutopen', !!on); var a = document.getElementById('rzAbout'); if (!a) return;
@@ -1155,10 +1291,20 @@
   }
 
   /* ---------- suv ---------- */
+  function openFab() {
+    openSheet('fab', shHead(T('fabMenuT')) + '<div class="sl-fabg">' + [['fabfood', 'food', 'fabFood'], ['fabwater', 'drop', 'fabWater'], ['fabsteps', 'steps', 'fabSteps'], ['fabweight', 'scale', 'fabWeight']].map(function (a) { return '<button type="button" class="sl-fabt" data-act="' + a[0] + '">' + ico(a[1]) + '<span>' + esc(T(a[2])) + '</span></button>'; }).join('') + '</div>');
+  }
+  function waterSheetHtml() {
+    var t = todayStr(), x = S.dayOf(st, t) || { water: 0 }, pl = planNow(), glasses = pl.water.glasses, wl = Math.min(glasses, x.water), h = shHead(T('wOpenT')) + '<div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
+    for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
+    return h + '</div><p class="rz-p sm" id="wsTxt">' + esc(T('wOf', { n: wl, m: glasses }) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML()) + '</p><p class="rz-mut sm">' + esc(T('wHint')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="xwater">' + esc(T('hHow')) + '</button><button type="button" class="rz-btn" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
+  }
+  function openWaterSheet() { openSheet('water', waterSheetHtml(), { noFocus: true }); }
   function glassTap(i) {
     var t = todayStr(), x = S.ensureDay(st, t), pl = planNow(), n = (x.water === i + 1) ? i : i + 1; S.setWater(st, t, n); save();
     $$('.sl-glass').forEach(function (g, j) { var on = j < Math.min(n, pl.water.glasses); g.classList.toggle('on', on); g.setAttribute('aria-pressed', on); });
-    var w = $('#wTxt'); if (w) w.textContent = T('wOf', { n: Math.min(n, pl.water.glasses), m: pl.water.glasses }) + ' · ' + fmt(n * S.GLASS_ML) + ' ' + ML(); vib(10); afterWater();
+    $$('#wSegs i').forEach(function (g, j) { g.classList.toggle('on', j < Math.min(n, pl.water.glasses)); });
+    var w = $('#wTxt'); if (w) w.innerHTML = '<b>' + fmt(n * S.GLASS_ML) + '</b><small> / ' + fmt(pl.water.glasses * S.GLASS_ML) + ' ' + ML() + '</small>'; var ws = $('#wsTxt'); if (ws) ws.textContent = T('wOf', { n: Math.min(n, pl.water.glasses), m: pl.water.glasses }) + ' · ' + fmt(n * S.GLASS_ML) + ' ' + ML(); vib(10); afterWater(); jokeAfter('water');
   }
 
   /* ---------- hodisalar ---------- */
@@ -1169,8 +1315,16 @@
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
     if (kit.act(a, el)) return;
     switch (a) {
-      case 'tab': kit.hideToast(); if (view !== el.getAttribute('data-v')) { view = el.getAttribute('data-v'); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
-      case 'add': { var fb = $('#rzFab'); fb.classList.remove('pop'); void fb.offsetWidth; fb.classList.add('pop'); openAdd({ date: view === 'food' && foodDay ? foodDay : todayStr() }); break; }
+      case 'tab': kit.hideToast(); if (view !== viewOf(el.getAttribute('data-v'))) { view = viewOf(el.getAttribute('data-v')); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
+      case 'add': openAdd({ date: view === 'diary' && foodDay ? foodDay : todayStr() }); break;
+      case 'fab': openFab(); break;
+      case 'fabfood': openAdd({ date: view === 'diary' && foodDay ? foodDay : todayStr() }); break;
+      case 'fabwater': openWaterSheet(); break;
+      case 'fabsteps': openSteps(todayStr()); break;
+      case 'fabweight': openWeight(); break;
+      case 'wopen': openWaterSheet(); break;
+      case 'wadd': { var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
+      case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
       case 'xkcal': openExplainKcal(); break; case 'xmacro': openExplainMacro(); break; case 'xwater': openExplainWater(); break; case 'xsteps': openExplainSteps(); break; case 'xweight': openExplainWeight(); break; case 'stephelp': openStepHelp(); break;
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
       case 'addsteps': openSteps(todayStr()); break; case 'editsteps': openSteps(el.getAttribute('data-d')); break; case 'stepgoal': openSteps(null, true); break;
@@ -1205,6 +1359,12 @@
       case 'pickfood': { var pk0 = el.getAttribute('data-pick'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null); break; }
       case 'fcat': fd.cat = el.getAttribute('data-c'); $$('.sl-cats .rz-chip').forEach(function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); refreshRes(); break;
       case 'ftext': openText(null, true); break;
+      case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
+      case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
+      case 'fmeals': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeals]').forEach(function (b) { var on9 = b === el; b.classList.toggle('on', on9); b.setAttribute('aria-selected', on9); }); refreshRes(); break;
+      case 'fmore': fd.more = !fd.more; refreshRes(); break;
+      case 'fbrowse': fd.browse = !fd.browse; fd.cat = ''; fd.q = ''; setSheet(searchHtml()); catsInit(); break;
+      case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.a'); if (cv) cv.textContent = T(o8.pmore ? 'pCloseL' : 'pChange'); break; }
       case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
       case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
@@ -1213,7 +1373,7 @@
       case 'ffav': { var on = S.toggleFav(st, fd.favId || fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
       case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'), wasV = !!vOf(o1.unit); if (nu !== o1.unit) pwSetUnit(o1, nu); if (wasV || vOf(nu)) pwScreen(); else pwUpdate(); break; }
       case 'fqty': { var o2 = pwO(); pwSetQty(o2, o2.qty + (+el.getAttribute('data-s')) * pwStep(o2)); pwUpdate(); vib(5); break; }
-      case 'fmeal': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal]').forEach(function (b) { var on3 = b === el; b.classList.toggle('on', on3); b.setAttribute('aria-pressed', on3); }); break;
+      case 'fmeal': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal]').forEach(function (b) { var on3 = b === el; b.classList.toggle('on', on3); b.setAttribute('aria-pressed', on3); });  pwUpdate(); break;
       case 'fmeal2': { var x2 = S.dayOf(st, fd.date), e2 = x2 && x2.food.filter(function (y) { return y.id === fd.editId; })[0]; if (e2) { e2.meal = el.getAttribute('data-m'); save(); kit.closeSheet(); render(); } break; }
       case 'fmeal3': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal3]').forEach(function (b) { var on4 = b === el; b.classList.toggle('on', on4); b.setAttribute('aria-pressed', on4); }); break;
       case 'fsave': fSave(); break; case 'fdel': fDelete(); break;
@@ -1241,6 +1401,7 @@
       case 'vscale': fd.vc.scale = el.getAttribute('data-s'); setSheet(vesselHtml()); break;
       case 'vsave': vcSave(); break;
       case 'vessels': vmOpen(); break;
+      case 'rcmine': openSheet('rcmine', shHead(T('rcMine')) + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); break;
       case 'vedit': vmEdit(+el.getAttribute('data-id')); break;
       case 'vedsave': vmSave(); break;
       case 'vdel': vmDel(+el.getAttribute('data-id')); break;
@@ -1264,7 +1425,7 @@
       case 'rcsave': rcSaveGo(); break;
       case 'rcremove': { var rid = rc.id, rnm = rc.name; kit.closeSheet(); confirmBox(T('rcDelete'), rnm, function () { S.removeCustom(st, rid); commit(); toast(T('rcDeleted')); }); break; }
       case 'calprev': case 'calnext': { var cp = Dt.parse((calYm || Dt.monthOf(todayStr())) + '-01'); calYm = Dt.monthOf(Dt.addMonthsDom(Dt.ymd(cp.y, cp.m, 1), a === 'calprev' ? -1 : 1, 1)); render(); break; }
-      case 'calday': foodDay = el.getAttribute('data-d'); view = 'food'; enterNext = true; render(); break;
+      case 'calday': foodDay = el.getAttribute('data-d'); view = 'diary'; enterNext = true; render(); break;
       case 'jktog': prefs().jokes = el.getAttribute('data-v') === '1'; commit(); break;
       case 'city': openCity(); break;
       case 'citypick': prefs().city = el.getAttribute('data-id'); kit.closeSheet(); commit(); break;
@@ -1313,7 +1474,7 @@
 
   /* ---------- ishga tushirish ---------- */
   function init() {
-    st = load(); shell();
+    st = load(); if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
     try { if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true) document.body.classList.add('rz-standalone'); } catch (e) {}
     var ab = document.getElementById('rzAbout');
     if (ab && !document.getElementById('rzAboutBar')) {
@@ -1323,6 +1484,7 @@
     render(); inst.gate();
     if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
     window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
+    var hv = viewOf(location.hash); if (hv && st.setup) { view = hv; render(); }
     if (location.hash === '#qoshish' && st.setup) openAdd({});
     if (location.hash === '#haqida') aboutOpen(true);
     window.__kalkifit = { get state() { return st; }, render: render, S: S };

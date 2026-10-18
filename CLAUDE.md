@@ -69,8 +69,10 @@ To'liq to'plam avval ~5 soat olardi. Endi ikki rejim (`tools/testlar.js`; parall
 Har yangi funksiya shu qoidalarga javob berishi shart (relizdan oldin tekshiriladi):
 
 - **Topish oson:** kerakli joydan ko'pi bilan 1–2 bosishda ochiladi. Yangi atama bo'lsa — yonida 1 jumlali izoh. Bo'sh holatda (ma'lumot yo'q) «nima qilish kerak» ko'rsatmasi chiqadi.
+- **Asosiy yo'l — qidir → porsiya → qo'sh.** Yangi funksiya bu yo'lga qadam qo'shmaydi; qo'shimcha imkoniyatlar «Boshqa usullar» yoki «▾» ichida.
 - **Bosh ekranni uzaytirmaydi:** yangi narsa mavjud kartaga joylashadi yoki bosilganda ochiladi (yangi doimiy karta qo'shilmaydi).
 - **Tekshiruv:** 360 px ekranda, katta shriftda (`fs-big`) va klaviatura ochiq holatda tekshiriladi (hech narsa to'silmaydi, sig'adi).
 - **Oddiy so'zlar:** texnik bilmaydigan odam birinchi ko'rishda tushunmasa — soddalashtir (UZ, RU; ЎЗ avtomatik translit).
 - **Yangiliklar:** har relizda `data/yangiliklar-kalkifit.json` / `data/yangiliklar-rozgor.json` ga yangi yozuv qo'shiladi: `v` (oldingisidan katta butun son), `d` (sana), 1–3 band `{uz, ru, show?}` — bitta qisqa jumla; `show` — [Ko'rsat] tugmasi olib boradigan joy (ilovadagi `targets` ichida bo'lishi shart). Oyna (`assets/app-yangilik.js`) har versiyada faqat bir marta chiqadi, yangi foydalanuvchiga ko'rsatilmaydi.
+- **KalkiFit ko'rinishi:** dizayn tokenlari bitta joyda — `assets/css/kalkifit.css` boshidagi «dizayn tokenlari» (qorong'i/och, Manrope); taom rasmlari — `assets/ovqat/<nom>-128|256.webp`, id'larga moslash — `kalkifit-app.js` dagi `IMGS`/`imgFile()` (rasmi yo'q taomga rangli bosh harf tile); kaloriya «idishi» — `vesselSvg()`. Ko'rinish testi: `test-kalkifit-soddalik`.
 - **Test majburlaydi:** `test-yangilik-qoida` (`tools/dizayn/test-yangilik-qoida.mjs`, `npm run test:tez` ichida har doim) — ilova kodi (`assets/kalkifit-*.js`, `assets/rozgor-*.js`, ularning CSS'i; umumiy kit bo'lsa kamida bitta JSON) o'zgarib, yangiliklar JSON'iga yozuv qo'shilmasa YIQILADI. Faqat ko'rinish/imlo o'zgargan bo'lsa commit nomi `design:` yoki `matn:` bilan boshlansin — shunda istisno.

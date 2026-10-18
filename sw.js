@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '2dbbadb5';   /* sw-version:auto */
+const SW_VERSION = '6e9db1cb';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -57,6 +57,48 @@ const ASSETS = [
   '/assets/css/appkit.css',
   '/assets/css/rozgor.css',
   '/assets/css/kalkifit.css',
+  '/assets/ovqat/achchiq-chuchuk-128.webp',
+  '/assets/ovqat/anor-128.webp',
+  '/assets/ovqat/ayron-128.webp',
+  '/assets/ovqat/banan-128.webp',
+  '/assets/ovqat/burger-128.webp',
+  '/assets/ovqat/chak-chak-128.webp',
+  '/assets/ovqat/chuchvara-128.webp',
+  '/assets/ovqat/dimlama-128.webp',
+  '/assets/ovqat/guruch-128.webp',
+  '/assets/ovqat/holva-128.webp',
+  '/assets/ovqat/hot-dog-128.webp',
+  '/assets/ovqat/kartoshka-fri-128.webp',
+  '/assets/ovqat/kok-choy-128.webp',
+  '/assets/ovqat/lagmon-128.webp',
+  '/assets/ovqat/lavash-128.webp',
+  '/assets/ovqat/manti-128.webp',
+  '/assets/ovqat/mastava-128.webp',
+  '/assets/ovqat/moshxorda-128.webp',
+  '/assets/ovqat/navvot-128.webp',
+  '/assets/ovqat/norin-128.webp',
+  '/assets/ovqat/obi-non-128.webp',
+  '/assets/ovqat/olivye-128.webp',
+  '/assets/ovqat/olma-128.webp',
+  '/assets/ovqat/osh-128.webp',
+  '/assets/ovqat/patir-128.webp',
+  '/assets/ovqat/pitsa-128.webp',
+  '/assets/ovqat/qatiq-128.webp',
+  '/assets/ovqat/qatlama-128.webp',
+  '/assets/ovqat/qora-choy-128.webp',
+  '/assets/ovqat/qovun-128.webp',
+  '/assets/ovqat/qovurdoq-128.webp',
+  '/assets/ovqat/qozon-kabob-128.webp',
+  '/assets/ovqat/shashlik-128.webp',
+  '/assets/ovqat/shorva-128.webp',
+  '/assets/ovqat/somsa-gosht-128.webp',
+  '/assets/ovqat/somsa-qovoq-128.webp',
+  '/assets/ovqat/suzma-128.webp',
+  '/assets/ovqat/tarvuz-128.webp',
+  '/assets/ovqat/tovuq-128.webp',
+  '/assets/ovqat/tuxum-128.webp',
+  '/assets/ovqat/uzum-128.webp',
+  '/assets/ovqat/xurmo-128.webp',
   '/data/ovqatlar.json',
   '/kalkifit.webmanifest',
   '/assets/icons/kalkifit-192.png',
@@ -332,8 +374,15 @@ self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
 
-  // Tashqi domenlar (GA, AdSense, shriftlar) umuman ushlanmaydi:
-  // keshlash statistikani buzadi.
+  // Manrope shrifti (Google Fonts): CSS ham, fayllar ham keshlanadi — oflaynda ham bir xil ko'rinish.
+  // Boshqa tashqi domenlar (GA, AdSense) umuman ushlanmaydi: keshlash statistikani buzadi.
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+    e.respondWith(caches.open(RUNTIME).then((c) => c.match(e.request).then((m) => {
+      const net = fetch(e.request).then((r) => { if (r && (r.ok || r.type === 'opaque')) c.put(e.request, r.clone()); return r; }).catch(() => m || Response.error());
+      return m || net;
+    })));
+    return;
+  }
   if (url.origin !== self.location.origin) return;
 
   const p = url.pathname;
