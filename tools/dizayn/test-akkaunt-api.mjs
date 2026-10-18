@@ -54,7 +54,7 @@ await T('PRODUCTION\'DA DEV YO\'Q: kalki.uz / www / kalki-10y.pages.dev da AKKAU
     const b = JSON.parse(sent[0].o.body); assert.deepEqual(b.to, ['odam@mail.ru']); assert.match(b.text, /Ваш код входа: \d{6}/); assert.match(b.subject, /^Код входа Kalki\.uz: \d{6}$/);
     const kod = /(\d{6})/.exec(b.text)[1];
     assert.equal((await call(env, 'dev-kod', { host: PROD, headers: { 'X-Admin-Password': ADMIN }, body: { __qs: '?email=odam@mail.ru' } })).s, 404);
-    assert.equal(await env.KALKI_AI_KV.get('akk:dev:x'), undefined); assert.equal([...env.KALKI_AI_KV.m.keys()].filter((k2) => k2.startsWith('akk:dev:')).length, 0, 'production\'da KV ga kod yozilmaydi');
+    assert.equal(raw(env, "SELECT name FROM sqlite_master WHERE name = 'dev_kod'").length, 0, "production'da dev_kod jadvali ochilmaydi, kod hech qayerga yozilmaydi"); assert.ok(![...env.KALKI_AI_KV.m.keys()].some((k2) => k2.startsWith('akk:dev')));
     const r = await call(env, 'kirish', { host: PROD, body: { email: 'odam@mail.ru', kod } }); assert.equal(r.s, 200);
     assert.match(r.h.get('Set-Cookie'), /^__Host-kalki_s=[A-Za-z0-9_-]{43}; Path=\/; Max-Age=\d+; HttpOnly; SameSite=Lax; Secure$/);
     globalThis.fetch = async () => new Response('{}', { status: 422 });                                                   // provayder xato → 502, hisoblagich ishlaydi
@@ -205,6 +205,22 @@ await T('server kaliti (AKKAUNT_MASTER_KEYS): format, birinchisi joriy, almashti
   const two = KL.kalitlar({ AKKAUNT_MASTER_KEYS: '2:' + K2 + ', 1:' + K1 }); assert.equal(two.joriy.v, 2); assert.equal(two.joriy.kalit, K2); assert.deepEqual(two.hammasi.map((x) => x.v), [2, 1]);
   for (const bad of ['1:qisqa', K1, '0:' + K1, '1:' + K1 + ',1:' + K2, 'x:' + K1, '1:' + K1 + ',', '1:' + 'a b'.repeat(20)]) assert.equal(KL.kalitlar({ AKKAUNT_MASTER_KEYS: bad }), null, bad);
   const f = await KL.izi(K1); assert.match(f, /^[0-9a-f]{8}$/); assert.equal(f, await KL.izi(K1)); assert.notEqual(f, await KL.izi(K2)); assert.ok(!K1.includes(f));
+});
+
+await T('dev kod ishonchliligi (preview xatosi): ketma-ket ikki so\'rovda OXIRGI kod; "000042" kabi 0 bilan boshlanadigan kod; katta harfli email/bo\'shliqli kod; eski kod bekor; kirish aynan dev-kod qaytargan qiymat bilan o\'tadi', async () => {
+  const env = mkEnv(); const E1 = 'Achchii99@Gmail.COM '; const norm = 'achchii99@gmail.com';
+  const WC = globalThis.crypto; const gv = WC.getRandomValues.bind(WC); const set = (n) => Object.defineProperty(WC, 'getRandomValues', { configurable: true, writable: true, value: (a) => { if (a instanceof Uint32Array) { a[0] = n; return a; } return gv(a); } });
+  try {
+    set(11); assert.equal((await call(env, 'kod', { body: { email: E1 } })).s, 200); const k1 = await devKod(env, norm); assert.equal(k1, '000011', '0 bilan boshlanadigan kod satr sifatida qaytadi');
+    adv(61000); set(222222); assert.equal((await call(env, 'kod', { body: { email: norm } })).s, 200);
+    for (let i = 0; i < 5; i++) assert.equal(await devKod(env, 'ACHCHII99@gmail.com'), '222222', 'har o\'qishda OXIRGI kod (' + i + ')');
+    assert.equal((await call(env, 'kirish', { body: { email: norm, kod: k1 } })).j.e, 'kod_xato', 'eski kod bekor');
+    const r = await call(env, 'kirish', { body: { email: 'ACHCHII99@GMAIL.com', kod: ' 222 222 ' } }); assert.equal(r.s, 200, r.txt); assert.equal(r.j.email, norm);
+    adv(61000); set(7); await call(env, 'kod', { body: { email: norm } }); const z = await devKod(env, norm); assert.equal(z, '000007');
+    const rz = await call(env, 'kirish', { body: { email: norm, kod: z } }); assert.equal(rz.s, 200, '0 bilan boshlanadigan kod o\'tadi'); assert.equal(rz.j.yangi, false);
+    assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM dev_kod')[0].c, 1, 'har email uchun bitta (oxirgi) dev yozuvi');
+    adv(11 * 60000); assert.equal((await call(env, 'dev-kod', { headers: { 'X-Admin-Password': ADMIN }, body: { __qs: '?email=' + norm } })).s, 404, 'dev kod 10 daqiqadan keyin ko\'rinmaydi');
+  } finally { delete WC.getRandomValues; }
 });
 
 await T('eksport/import (VPS\'ga ko\'chirish): akkaunt JSON → yangi SQLite bir xil; qayta yurgizish ikkilantirmaydi; kodlar/limitlar ko\'chmaydi; Postgres SQL; buzuq fayl rad etiladi; kalit vositasi lib bilan mos', async () => {

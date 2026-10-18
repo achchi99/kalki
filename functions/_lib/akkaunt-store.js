@@ -13,6 +13,7 @@
  *   sessiyaYarat({ id, akkauntId, now, muddatAbs, qurilma }) / sessiyaOl(id) → { id, akkaunt_id, yaratilgan, oxirgi, muddat_abs, qurilma } | null
  *   sessiyaYangila(id, now) / sessiyaOchir(id) → true|false / sessiyalar(akkauntId) → [..] / sessiyaOchirHammasi(akkauntId, saqla?) → soni
  *   limit(kalit, oynaMs, lim, now)              → { ok, soni, qayta }   (qayta = oyna tugashigacha ms; hisoblagich har chaqiruvda +1)
+ *   devYoz(email, kod, maqsad, now) / devOl(email, now) → FAQAT preview dev rejimi (jadval `dev_kod` shu yerda, birinchi chaqiruvda yaratiladi; production'da hech qachon chaqirilmaydi va jadval ochilmaydi)
  *   audit(akkauntId, hodisa, now)
  *   akkauntOchir(id, email)                     → akkaunt, sessiyalar, kodlar va audit qatorlari BUTUNLAY o'chadi
  *   yuklab(id)                                  → { akkaunt, sessiyalar: [...] }  (foydalanuvchi o'z ma'lumotini yuklab olishi uchun)
@@ -56,6 +57,11 @@ export function makeStore(env) {
       const soni = r ? r.soni : 1, ob = r ? r.oyna_boshi : now;
       return { ok: soni <= lim, soni, qayta: Math.max(0, ob + oynaMs - now) };
     },
+    async devYoz(email, kod, maqsad, now) {                    // KV emas, D1: yozuvdan keyin o'qish darhol izchil (KV eventual consistency eskirgan kodni qaytarardi)
+      await db.prepare('CREATE TABLE IF NOT EXISTS dev_kod (email TEXT PRIMARY KEY, kod TEXT NOT NULL, maqsad TEXT NOT NULL, vaqt INTEGER NOT NULL)').run();
+      await run('INSERT INTO dev_kod (email, kod, maqsad, vaqt) VALUES (?, ?, ?, ?) ON CONFLICT(email) DO UPDATE SET kod = excluded.kod, maqsad = excluded.maqsad, vaqt = excluded.vaqt', email, kod, maqsad, now);
+    },
+    async devOl(email, now) { try { return await one('SELECT kod, maqsad, vaqt FROM dev_kod WHERE email = ? AND vaqt > ?', email, now - 600000); } catch (e) { return null; } },
     async audit(akkauntId, hodisa, now) { await run('INSERT INTO audit (vaqt, akkaunt_id, hodisa) VALUES (?, ?, ?)', now, akkauntId || null, hodisa); },
     async akkauntOchir(id, email) {
       await run('DELETE FROM sessiya WHERE akkaunt_id = ?', id); await run('DELETE FROM kirish_kodi WHERE email = ?', email); await run('DELETE FROM audit WHERE akkaunt_id = ?', id);

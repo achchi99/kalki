@@ -59,7 +59,7 @@ try {
     assert.match(await T(p, '#akkResend'), /Qayta yuborish: \d+ s/); assert.equal(await p.locator('#akkResend').isDisabled(), true);
     await p.fill('#akkCode', '000000'); await p.waitForTimeout(500); let er = await T(p, '#akkErr'); if (!/Kod noto'g'ri/.test(er || '')) { /* 1/10^6 ehtimol: tasodifan to'g'ri */ } else assert.match(er, /Kod noto'g'ri/);
     await p.fill('#akkDevPw', 'xato-parol'); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); assert.match(await T(p, '#akkErr'), /Kod topilmadi/);
-    await p.fill('#akkDevPw', adminPw); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); const kod = await p.inputValue('#akkCode'); assert.match(kod, /^\d{6}$/); assert.equal(kod, (await EM.devOl(ENV, 'madina@pochta.uz')).kod);
+    await p.fill('#akkDevPw', adminPw); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); const kod = await p.inputValue('#akkCode'); assert.match(kod, /^\d{6}$/); assert.equal(kod, ENV.KALKIFIT_DB._raw.prepare('SELECT kod FROM dev_kod WHERE email = ?').get('madina@pochta.uz').kod);
     await p.click('#akkGo'); await p.waitForTimeout(900); assert.match(await T(p, '#rzToast'), /Akkaunt ochildi/); assert.equal(await p.locator('#rzSheet').evaluate((e) => e.hidden || !e.classList.contains('open')), true, 'panel yopildi');
     assert.match(await T(p, '[data-akk=row]'), /Akkaunt/); assert.match(await T(p, '[data-akk=row]'), /madina@pochta\.uz/);
     assert.equal(await lsOf(p, APPS[app].key), before, 'ilova ma\'lumoti kirishdan o\'zgarmadi'); assert.equal(await lsOf(p, 'kalki_zaxira_' + app), null, 'bulutga saqlash/tiklash kodiga tegilmadi');

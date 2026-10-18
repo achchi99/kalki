@@ -13,7 +13,7 @@
  * CSRF: POST faqat Origin tekshiruvi + application/json. Hamma javob Cache-Control: no-store. Secret'lar: AKKAUNT_OTP_PEPPER, AKKAUNT_EMAIL_API_KEY, AKKAUNT_ADMIN_PASSWORD (docs/akkaunt-kalit.md). */
 import { originOk, json, num, toCyrillic } from '../ariza.js';
 import { makeStore } from '../../_lib/akkaunt-store.js';
-import { rejim, yubor, devOl } from '../../_lib/akkaunt-email.js';
+import { rejim, yubor } from '../../_lib/akkaunt-email.js';
 
 export const KOD_MUDDAT = 10 * 60 * 1000, MAX_URINISH = 5, SES_SLIDING = 30 * 86400000, SES_ABS = 180 * 86400000, MAX_SESSIYA = 20, MARKETING_MATN_V = 'm1';
 const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', 'dev-kod': 'GET' };
@@ -90,7 +90,7 @@ export async function onRequest(ctx) {
       const pw = env.AKKAUNT_ADMIN_PASSWORD || env.KALKIFIT_ADMIN_PASSWORD; if (!pw) return fail(503);
       if (!(await same(request.headers.get('X-Admin-Password') || '', pw))) return fail(401);
       const email = normEmail(new URL(request.url).searchParams.get('email')); if (!email) return fail(400, 'email');
-      const d = await devOl(env, email); return d ? json(200, d) : fail(404);
+      const d = await store.devOl(email, now); return d ? json(200, d) : fail(404);
     }
 
     if (amal === 'kod') {
@@ -104,7 +104,7 @@ export async function onRequest(ctx) {
       const d = await lim(await emH('emd', email), 86400000, num(env.AKKAUNT_EMAIL_KUN_LIMIT, 20)); if (!d.ok) return fail(429, 'limit', { kut: Math.ceil(d.qayta / 1000) });
       const kod = kod6();
       await store.kodYoz({ email, maqsad, hash: await hmac(pepper, 'kod|' + email + '|' + maqsad + '|' + kod), now, muddat: now + KOD_MUDDAT });
-      try { const m = xat(til, kod, maqsad); await yubor(env, rj, { to: email, subject: m.subject, text: m.text, kod, maqsad }); } catch (e) { console.error('akkaunt xat xato'); return fail(502, 'xat'); }
+      try { const m = xat(til, kod, maqsad); await yubor(env, rj, { to: email, subject: m.subject, text: m.text, kod, maqsad }); if (rj === 'dev') await store.devYoz(email, kod, maqsad, now); } catch (e) { console.error('akkaunt xat xato'); return fail(502, 'xat'); }
       return json(200, { ok: true, kut: 60, dev: rj === 'dev' });
     }
 
