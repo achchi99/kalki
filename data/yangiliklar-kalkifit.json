@@ -2,6 +2,25 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 10,
+      "d": "2026-10-18",
+      "items": [
+        {
+          "uz": "Qorong'i mavzu yangilandi: neytral grafit, o'qish oson, ranglar tinchlandi. Hazil qatori endi yo'qolib ketmaydi.",
+          "ru": "Тёмная тема обновлена: нейтральный графит, читать проще, цвета спокойнее. Строка с шуткой больше не исчезает.",
+          "show": "theme",
+          "btn": {
+            "uz": "Mavzuni ko'rish",
+            "ru": "Показать тему"
+          }
+        }
+      ],
+      "bn": {
+        "uz": "Qorong'i mavzu yangilandi, hazil qatori endi yo'qolmaydi.",
+        "ru": "Тёмная тема обновлена, строка с шуткой больше не исчезает."
+      }
+    },
+    {
       "v": 9,
       "d": "2026-10-18",
       "items": [
