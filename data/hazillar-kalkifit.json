@@ -1,0 +1,788 @@
+{
+ "v": 1,
+ "note": "KalkiFit hazil matnlari: holat id → til (uz; ЎЗ — uz matnining runtime translit'i, ru) → variantlar. neutral — hazil o'chirilganda chiqadigan sodda matn. Tahrir qoidalari: CLAUDE.md va tools/dizayn/test-kalkifit-hazil.mjs (taqiqlangan so'zlar, uzunlik).",
+ "states": {
+  "dist_full_day": {
+   "uz": [
+    "Bugun {km} km. {route} yurib bordingiz — taksi puli cho'ntakda qoldi.",
+    "{km} km bugun! {route} piyoda yetib bo'ldi, yo'lkira esa tejaldi.",
+    "{route} masofa {routeKm} km. Siz bugun {km} km yurdingiz — marshrutka biroz xijolatda.",
+    "{route} yo'l {routeKm} km, siz bugun {km} km bosdingiz. Navigator sizdan maslahat so'ramoqchi.",
+    "Bugun {km} km: {route} bemalol yetib, yana ortib qoldi. Oyoq kiyim bugun ishlab topdi.",
+    "{km} km. Agar yo'l {route} bo'lganda, allaqachon u yerda choy ichib o'tirgan bo'lardingiz.",
+    "Bugungi qadamlar bilan {route} yetib bordingiz deyish mumkin. Taksichi bugun sizni sog'inadi.",
+    "{km} km — {route} masofadan uzun. Telefon qadam sanashdan charchab, quvvatlagichga qarab qo'ydi.",
+    "Bugun {route} yurib borsa bo'ladigan masofa bosib o'tildi: {km} km. Kuryerlar raqobatdan xavotirda.",
+    "{km} km! {route} yo'lni bugun mashinasiz, faqat qadam bilan yopdingiz."
+   ],
+   "ru": [
+    "Сегодня {km} км. Можно было дойти {route} пешком — такси осталось без заказа.",
+    "{km} км за день. Это больше, чем путь {route}, — навигатор в лёгком шоке.",
+    "Сегодня вы прошли {km} км, а путь {route} всего {routeKm} км. Маршрутка нервно курит в сторонке.",
+    "{km} км! Дорога {route} пешком — и ещё осталось на прогулку до ларька.",
+    "Сегодняшние {km} км с запасом покрывают путь {route}. Кроссовки отработали смену.",
+    "{km} км. Если бы шли {route}, уже пили бы там чай.",
+    "За день {km} км — дорога {route} пройдена с горкой. Таксист сегодня скучает.",
+    "{km} км сегодня. Телефон устал считать шаги и косится на зарядку.",
+    "Путь {route} — {routeKm} км. Ваши {km} км сегодня его обогнали. Курьеры напряглись.",
+    "{km} км. Бензин сегодня сэкономлен, а путь {route} пройден с запасом."
+   ]
+  },
+  "dist_full_week": {
+   "uz": [
+    "Bu hafta {km} km. {route} yurib bordingiz. Taksi puli tejaldi.",
+    "Haftalik hisob: {km} km. {route} piyoda — avtobus jadvali bu hafta dam oldi.",
+    "{route} {routeKm} km, sizning haftangiz esa {km} km. Hisob siz tomonda.",
+    "{km} km bir haftada! {route} yurib borib, ortig'ini sayrga yozsa ham bo'ladi.",
+    "Bu hafta {km} km: {route} yetib borildi, benzin narxi esa sizni qiziqtirmay qoldi.",
+    "Hafta yakuni: {km} km. Lift sizni kam ko'rdi, {route} yo'l esa piyoda bosib o'tildi.",
+    "{route} — {routeKm} km. Siz bir haftada {km} km yurdingiz. Navigator jim qoldi.",
+    "Bu hafta {km} km. Xaritada {route} chiziq tortilardi va hali joy qolardi.",
+    "Haftalik {km} km — {route} yurib bordingiz. Yo'lda bir choyxonada dam olishga ham vaqt topilardi.",
+    "Bu hafta {km} km. Taksi ilovasi siz haqingizda xavotirlanib, chegirma yubormoqchi."
+   ],
+   "ru": [
+    "За неделю {km} км. Это как дойти {route}. Деньги на такси остались в кармане.",
+    "Неделя: {km} км. Путь {route} пройден, автобус проехал мимо без вас — и ладно.",
+    "Расстояние {route} — {routeKm} км, а у вас за неделю {km} км. Счёт в вашу пользу.",
+    "Итоги недели: {km} км. Хватило бы дойти {route} и ещё заглянуть на базар.",
+    "{km} км за неделю! Лифт вас почти не видел, зато дорога {route} пройдена.",
+    "Неделя в цифрах: {km} км. На карте это линия {route} — и ещё немного сверху.",
+    "За неделю {km} км. Цены на бензин вас больше не волнуют — по крайней мере, на маршруте {route}.",
+    "{km} км за семь дней. Приложение такси прислало грустный смайлик.",
+    "Неделя: {km} км. Путь {route} пройден пешком — навигатор молча записал рекорд.",
+    "{km} км за неделю — это дорога {route} с запасом. Кроссовки просят выходной."
+   ]
+  },
+  "dist_full_month": {
+   "uz": [
+    "Bu oy {km} km. {route} yurib bordingiz — bu endi sayr emas, ekspeditsiya.",
+    "Oylik natija: {km} km. {route} piyoda yetib borsa bo'lardi, poyezd chiptasi tejaldi.",
+    "{km} km bir oyda! {route} {routeKm} km, siz esa undan ham uzoqqa yetdingiz.",
+    "Bu oy oyoqlar {km} km bosdi. {route} yo'l oyoq kiyimingizga tanish bo'lib qoldi.",
+    "Oy yakuni: {km} km. {route} bordingiz, xaritada bayroqcha qo'ysa bo'ladi.",
+    "{km} km — {route} masofadan ham uzun. Mashina garajda o'zini nafaqadagidek his qilyapti.",
+    "Bu oy {km} km. {route} yurib borilganda, yo'ldagi har bir choyxona sizni tanib qolardi.",
+    "Oylik {km} km. Kuryerlar sizga ish taklif qilishdan oldin rezyumeni so'rashmoqda.",
+    "Bir oyda {km} km: {route} yetib bordingiz. Qadam hisoblagich ham hurmat bilan qaraydi.",
+    "Bu oy {km} km. Tejalgan yo'lkira hisoblansa, cho'ntak ancha quvonardi."
+   ],
+   "ru": [
+    "За месяц {km} км. Это уже не прогулка, а экспедиция: дошли бы {route}.",
+    "Месяц: {km} км. Путь {route} пройден, билет на поезд остался в кассе.",
+    "{km} км за месяц! Дорога {route} — {routeKm} км, а вы ушли дальше.",
+    "Итог месяца: {km} км. Машина в гараже чувствует себя пенсионером.",
+    "За месяц {km} км — хватит, чтобы дойти {route}. Кроссовки уже знают дорогу.",
+    "{km} км за месяц. По пути {route} вас бы узнавали в каждой чайхане.",
+    "Месяц пешком: {km} км. Курьеры интересуются, не ищете ли вы работу.",
+    "{km} км за месяц. Маршрут {route} пройден — на карте можно ставить флажок.",
+    "Месячный счёт: {km} км. Шагомер в телефоне смотрит с уважением.",
+    "За месяц {km} км. Если посчитать несостоявшиеся поездки на такси, кошелёк ликует."
+   ]
+  },
+  "dist_part": {
+   "uz": [
+    "{km} km — {route} yo'lning {pct} foizi. Qolgani ertaga ham joyida turadi.",
+    "{route} yo'lning {pct} foizi bosib o'tildi. Yo'l qochib ketmaydi, xotirjam.",
+    "{km} km yurildi: {route} {pct} foiz tayyor. Taksi hali kutib turibdi, lekin umidi kamayyapti.",
+    "{route} yo'lda {pct} foiz. Navigator shivirlayapti: «choyxona yaqin».",
+    "{km} km. Xaritada {route} chiziqning {pct} foizi chizildi, xarita sabr bilan kutyapti.",
+    "{pct} foiz — {route} yo'lning shuncha qismi oyoq ostida qoldi. Qolgani shoshmaydi.",
+    "{km} km bilan {route} yo'lning {pct} foizini bosdingiz. Marshrutka orqada qoldi... deylik.",
+    "{route} yo'l {pct} foizga yopildi. Qolgan qismi uchun avtobus emas, ertangi kun bor.",
+    "{km} km — bu {route} {pct} foiz. Qolgan yo'l ham sizni bemalol kutib o'tiribdi."
+   ],
+   "ru": [
+    "{km} км — это {pct}% пути {route}. Остальное никуда не денется.",
+    "Пройдено {pct}% дороги {route}. Дорога терпеливая, подождёт.",
+    "{km} км: {pct}% маршрута {route} позади. Такси всё ещё ждёт, но уже без надежды.",
+    "{pct}% пути {route}. Навигатор шепчет: «чайхана уже близко».",
+    "{km} км — на карте {route} закрашено {pct}%. Карта довольна.",
+    "Уже {pct}% маршрута {route}. Отличный повод для привала с чаем.",
+    "{km} км, то есть {pct}% пути {route}. Маршрутка где-то позади… допустим.",
+    "Пройдено {km} км — {pct}% дороги {route}. Оставшаяся часть подождёт до завтра.",
+    "{pct}% пути {route} пройдено. Кроссовки уже прикидывают остаток."
+   ]
+  },
+  "burn": {
+   "uz": [
+    "Bugungi qadamlaringiz {food} yoqdi. Navbatdagilar hali o'ylanyapti.",
+    "Qadamlar {kcal} kkal yoqdi, ya'ni {food} hisobdan o'chirdi.",
+    "{kcal} kkal: qadamlaringiz {food} jimgina hazm qilib qo'ydi.",
+    "Yurgan yo'lingiz {food} tarixga aylantirdi. {kcal} kkal — halol mehnat.",
+    "Bugun oyoqlar {food} yoqib yubordi. Bu xabarni {foodNom} hali eshitmagan.",
+    "{kcal} kkal qadam bilan ketdi — bu {food} yoqishga teng. Lift buni qila olmasdi.",
+    "Qadamlar hisobi: {food} yoqildi. Muzlatgich bu yangilikni sukut bilan qabul qildi.",
+    "{kcal} kkal — {food} yoqishga yetadigan yurish. Kuryer ham hayron.",
+    "Pillapoya va yo'laklar {food} yoqib berdi. {kcal} kkal — kichik g'alaba.",
+    "Bugungi sayr {food} hisobdan o'chirdi. Choynak buni bayram deb qabul qildi."
+   ],
+   "ru": [
+    "Сегодняшние шаги сожгли {food}. Следующие пока размышляют.",
+    "Шаги сожгли {kcal} ккал — по сути, {food}.",
+    "Прогулка аннулировала {food}. {kcal} ккал — честная работа.",
+    "Ноги сегодня отработали {food}. Холодильник принял новость молча.",
+    "{kcal} ккал сожжено. По калориям это {food} — лифт так не умеет.",
+    "Шаги сегодня тихо переварили {food}. Калькулятор одобрительно кивает.",
+    "Лестницы и тротуары сожгли {food}. {kcal} ккал — маленькая победа.",
+    "{kcal} ккал за день. Где-то на кухне {foodNom} нервно оглядывается.",
+    "Ваши шаги сожгли {food} — курьер бы так быстро даже не довёз.",
+    "Сегодняшняя прогулка списала {food}. Чайник считает, что это стоит отметить."
+   ]
+  },
+  "within": {
+   "uz": [
+    "Bugungi hisob: me'yorgacha yana {left} kkal bor.",
+    "Me'yorda {left} kkal qoldi. Kechki choy ham sig'adi.",
+    "{left} kkal zaxirada. Kalkulyator hammasini yozib bordi.",
+    "Kun davom etmoqda: {left} kkal qoldi, tanlov o'zingizda.",
+    "Me'yorgacha {left} kkal. Muzlatgich eshigi bugun tinch.",
+    "Bugungi raqam: me'yorgacha {left} kkal. Choy bilan biror narsaga joy bor.",
+    "Hisob aniq: {left} kkal qoldi. Kuryer boshqa manzilga ketdi.",
+    "Me'yor ichida, {left} kkal zaxirada. Ertangi nonushta uchun ham joy qoladi.",
+    "Hozircha {left} kkal qoldi — kun bo'yi bemalol yozib boring.",
+    "{left} kkal bor. Dasturxon bugun o'z holicha."
+   ],
+   "ru": [
+    "Расчёт на сегодня: до нормы ещё {left} ккал.",
+    "До нормы {left} ккал. Вечерний чай тоже помещается.",
+    "В запасе {left} ккал. Калькулятор всё записал.",
+    "День идёт: осталось {left} ккал, выбор за вами.",
+    "До нормы {left} ккал. Дверца холодильника сегодня спокойна.",
+    "Цифра дня: до нормы {left} ккал. Для чая с чем-нибудь место есть.",
+    "Счёт точный: осталось {left} ккал. Курьер поехал по другому адресу.",
+    "В пределах нормы, в запасе {left} ккал. Место останется и на завтрашний завтрак.",
+    "Пока осталось {left} ккал — записывайте в течение дня спокойно.",
+    "Осталось {left} ккал. Дастархан сегодня сам по себе."
+   ]
+  },
+  "over": {
+   "uz": [
+    "Bugun me'yordan {over} kkal ko'proq yozildi. Ertaga odatdagi kun — hammasi joyida.",
+    "+{over} kkal. Dasturxon bugun boy bo'ldi; ertaga yangi hisob bilan boshlanadi.",
+    "Me'yordan {over} kkal yuqori. Bir stakan suv va 15 daqiqa sayr — xohlasangiz.",
+    "Bugungi hisob me'yordan {over} kkal yuqori. Ertaga odatdagidek davom etasiz.",
+    "{over} kkal me'yordan yuqori — bitta kun butun rasmni o'zgartirmaydi. Kechki sayr ixtiyoriy.",
+    "Hisob: +{over} kkal. Choynak buni bayram deb qabul qildi. Ertaga yangi sahifa.",
+    "Me'yordan {over} kkal ko'p. Ertaga sayr yoki shunchaki oddiy kun — ikkalasi ham joyida.",
+    "+{over} kkal bugun. Do'konga piyoda borish ixtiyoriy, uyqu esa foydali.",
+    "Bugun me'yordan {over} kkal yuqori chiqdi. Kalkulyator hukm qilmaydi, faqat hisoblaydi.",
+    "{over} kkal me'yordan yuqori. Bir bekat oldin tushib yurish — qulay variant."
+   ],
+   "ru": [
+    "Сегодня записано на {over} ккал больше нормы. Завтра обычный день — всё в порядке.",
+    "+{over} ккал. Дастархан сегодня был богатым; завтра — новый счёт с чистого листа.",
+    "На {over} ккал выше нормы. Стакан воды и 15 минут прогулки — по желанию.",
+    "Сегодняшний счёт выше нормы на {over} ккал. Завтра продолжите как обычно.",
+    "{over} ккал сверх нормы — один день не меняет общей картины. Вечерняя прогулка по желанию.",
+    "Счёт: +{over} ккал. Чайник принял это за праздник. Завтра — новая страница.",
+    "На {over} ккал больше нормы. Завтра прогулка или просто обычный день — оба варианта хороши.",
+    "+{over} ккал за сегодня. Сходить в магазин пешком — по желанию, а сон точно полезен.",
+    "Сегодня вышло на {over} ккал выше нормы. Калькулятор не осуждает, он только считает.",
+    "{over} ккал сверх нормы. Выйти на остановку раньше — удобный вариант."
+   ]
+  },
+  "over_neutral": {
+   "uz": [
+    "So'nggi 3 kunda o'rtacha {avg} kkal yozildi — me'yordan {pct}% yuqori.",
+    "Oxirgi kunlardagi o'rtacha: {avg} kkal, bu me'yordan {pct}% yuqori.",
+    "Bir necha kun ketma-ket o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Me'yorni sozlamalarda qayta ko'rib chiqish mumkin.",
+    "Oxirgi kunlarda o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Bir kunlik emas, haftalik rasm muhimroq.",
+    "O'rtacha {avg} kkal — me'yordan {pct}% ko'p. Bayram, mehmon yoki yangi odat bo'lishi mumkin; me'yorni sozlamalardan tekshirib ko'ring.",
+    "Bir necha kundan beri o'rtacha {avg} kkal. Hisob shunchaki hisob: baho emas, faqat kuzatuv."
+   ],
+   "ru": [
+    "За последние 3 дня в среднем записано {avg} ккал — на {pct}% выше нормы.",
+    "Среднее за последние дни: {avg} ккал. Это на {pct}% выше нормы.",
+    "Несколько дней подряд в среднем {avg} ккал, на {pct}% выше нормы. Норму можно пересмотреть в настройках.",
+    "За последние дни в среднем {avg} ккал — на {pct}% выше нормы. Важнее неделя целиком, а не один день.",
+    "В среднем {avg} ккал — на {pct}% больше нормы. Гости, праздник или новая привычка — норму можно пересмотреть в настройках.",
+    "Уже несколько дней в среднем {avg} ккал. Это просто учёт: не оценка, а наблюдение."
+   ]
+  },
+  "zero_steps": {
+   "uz": [
+    "0 qadam. Divan bilan munosabatlar jiddiylashyapti.",
+    "Bugun 0 qadam. Pult sizni eng yaqin do'sti deb hisoblay boshladi.",
+    "Qadam hisoblagich bugun dam oldi. Yo telefon divanda, yo ikkalangiz ham.",
+    "0 qadam. Lift tugmasi ham bugun sizni ko'rmadi — bu allaqachon rekord.",
+    "Bugun nol. Kuryer sizning o'rningizga yurdi, qadamlar unda qoldi.",
+    "0 qadam. Telefon kun bo'yi stolda yotgan bo'lsa, bu nol unga tegishli.",
+    "Qadamlar: 0. Divan bugun uydagi eng mashhur joy.",
+    "0 qadam. Choynak bilan televizor orasidagi masofa hisobga olinmagani alam qiladi.",
+    "Bugun nol qadam. Ertaga choynakkacha borib-kelish ham hisobga yoziladi.",
+    "0 qadam. Taksi ilovasi sizni sevimli mijoz deb atadi."
+   ],
+   "ru": [
+    "0 шагов. Отношения с диваном становятся серьёзными.",
+    "Сегодня 0 шагов. Пульт уже считает вас лучшим другом.",
+    "Шагомер сегодня отдыхал. Либо телефон лежал на диване, либо вы оба.",
+    "0 шагов. Даже кнопка лифта вас сегодня не видела — это уже рекорд.",
+    "Ноль. Курьер прошёл ваши шаги за вас и унёс их с собой.",
+    "0 шагов. Если телефон весь день лежал на столе — этот ноль на его совести.",
+    "Шагов: 0. Диван сегодня — самое посещаемое место в квартире.",
+    "0 шагов. Расстояние от чайника до телевизора, увы, не засчитывается.",
+    "Сегодня ноль. Завтра даже поход до чайника попадёт в статистику.",
+    "0 шагов. Приложение такси присвоило вам статус любимого клиента."
+   ]
+  },
+  "water_low": {
+   "uz": [
+    "Bugun {glasses} stakan suv. Choyni suv deb hisoblash istagi tushunarli, lekin yo'q.",
+    "{glasses}/{target} stakan. Kofe o'zini suv deb tanishtirdi, ilova ishonmadi.",
+    "Suv: {glasses} stakan. Sharbat ham suyuqlik, lekin hisob boshqacha ishlaydi.",
+    "{glasses} stakan suv. Ko'k choy yashil bo'lgani bilan suvga aylanmaydi.",
+    "Bugun {target} stakandan {glasses} tasi ichildi. Qolgani kranda sizni kutyapti.",
+    "{glasses} stakan. Grafin stolda turibdi, u ham hisobga tushishni xohlaydi.",
+    "Suv hisobi: {glasses}/{target}. Choynak g'olib, grafin hali o'yinga kirmadi.",
+    "{glasses} stakan suv. Qatiq ham ichimlik, lekin suv rolini o'ynay olmaydi.",
+    "Bugun suv {glasses} stakan. Kompot qanchalik mazali bo'lmasin, u suv emas — afsus.",
+    "{glasses}/{target}. Suv shishasi xafa: bugun undan ko'ra piyola mashhurroq."
+   ],
+   "ru": [
+    "Воды сегодня {glasses} из {target} стаканов. Желание засчитать чай как воду понятно, но нет.",
+    "{glasses}/{target}. Кофе представился водой, приложение не поверило.",
+    "Вода: {glasses} из {target}. Сок, конечно, тоже жидкость, но счёт работает иначе.",
+    "{glasses} из {target} стаканов. Зелёный чай зелёный, но водой от этого не становится.",
+    "Выпито {glasses} из {target}. Остальное ждёт в кране и не обижается.",
+    "Вода: {glasses}/{target}. Графин на столе тоже хотел бы попасть в статистику.",
+    "Счёт по воде: {glasses}/{target}. Чайник лидирует, графин ещё не вышел на поле.",
+    "{glasses} из {target}. Айран — напиток достойный, но роль воды ему не дали.",
+    "Воды {glasses} из {target}. Компот, каким бы вкусным он ни был, — не вода. Увы.",
+    "{glasses}/{target}. Бутылка с водой обижена: пиала сегодня популярнее."
+   ]
+  },
+  "water_ok": {
+   "uz": [
+    "{glasses} stakan suv! Grafin bugun bekor turmadi.",
+    "Suv: {glasses}/{target}. Kran sizga minnatdorchilik bildirmoqchi.",
+    "{glasses} stakan. Choy bugun suv rolini o'ynashga urinmadi, o'z o'rnini bildi.",
+    "Bugungi suv rejasi bajarildi: {glasses} stakan. Piyola va stakan tinch-totuv.",
+    "Reja {target} stakan edi, bugun {glasses}. Grafin faxrlanyapti.",
+    "Suv yetarli: {glasses} stakan. Kofe bugun ikkinchi rolda.",
+    "{glasses} stakan. Suv idishi bugun kun qahramoni.",
+    "Bugun {glasses} stakan suv ichildi. Kran ham, filtr ham ish bilan band bo'ldi.",
+    "{glasses}/{target} — suv bo'yicha hisobot a'lo. Sharbat va kompot bugun tomoshabin."
+   ],
+   "ru": [
+    "Вода: {glasses} из {target}. Графин сегодня не простаивал.",
+    "{glasses}/{target}. Кран хочет сказать спасибо.",
+    "По воде {glasses} из {target}. Чай сегодня не пытался выдать себя за воду.",
+    "План по воде выполнен: {glasses}/{target}. Пиала и стакан живут мирно.",
+    "Цель была {target}, вышло {glasses}. Графин гордится.",
+    "Воды достаточно: {glasses} из {target}. Кофе сегодня на второстепенной роли.",
+    "{glasses}/{target}. Бутылка с водой — герой дня.",
+    "Вода: {glasses} из {target}. Фильтр работал без перерыва на обед.",
+    "{glasses} из {target} — отчёт по воде на отлично. Сок и компот сегодня в зрителях."
+   ]
+  },
+  "weight_down": {
+   "uz": [
+    "7 kunlik o'rtacha {delta} kg kamaydi. Grafik pastga qarab, xotirjam ketyapti.",
+    "Haftalik o'rtacha -{delta} kg. Tarozi emas, trend gapiryapti.",
+    "O'rtacha ko'rsatkich {delta} kg pasaydi. Chiziq tinch, shoshmasdan.",
+    "7 kunlik o'rtacha: -{delta} kg. Grafik bugun yengil kayfiyatda.",
+    "O'rtacha {delta} kg kamaydi. Kunlik sakrashlar emas, haftalik yo'nalish shu.",
+    "Haftalik o'rtacha {delta} kg pasaydi. Jadval chiroyli egilyapti.",
+    "-{delta} kg o'rtacha. Grafik pillapoyadan tushayotgandek — liftsiz, bosqichma-bosqich.",
+    "O'rtacha raqam {delta} kg pasaydi. Choy bilan nishonlasa ham, nishonlamasa ham bo'ladi.",
+    "7 kunlik o'rtacha {delta} kg kamaydi. Kalkulyator bu xabarni ikki marta tekshirdi — to'g'ri."
+   ],
+   "ru": [
+    "Среднее за 7 дней снизилось на {delta} кг. График спокойно идёт вниз.",
+    "Недельное среднее: -{delta} кг. Говорят не весы, а тренд.",
+    "Средний показатель опустился на {delta} кг. Линия ровная, без спешки.",
+    "7-дневное среднее: -{delta} кг. У графика сегодня лёгкое настроение.",
+    "Среднее снизилось на {delta} кг. Не дневные скачки, а направление недели.",
+    "-{delta} кг в среднем за неделю. График спускается по лестнице — без лифта, ступенька за ступенькой.",
+    "Среднее меньше на {delta} кг. Калькулятор перепроверил дважды — всё верно.",
+    "Среднее за неделю: минус {delta} кг. Можно отметить чаем, а можно и без него.",
+    "Тренд за 7 дней: -{delta} кг. Таблица выглядит аккуратно."
+   ]
+  },
+  "weight_up": {
+   "uz": [
+    "7 kunlik o'rtacha {delta} kg ko'tarildi. Suv, tuz, uyqu — raqam har narsaga sezgir.",
+    "O'rtacha +{delta} kg. Bu ko'pincha suv va tuzning ishi; grafik bir haftada fikrini o'zgartirishi mumkin.",
+    "Haftalik o'rtacha {delta} kg yuqoriroq. Kechki sho'r taom ham, kam uyqu ham raqamda iz qoldiradi.",
+    "+{delta} kg o'rtacha. Mushak, suv, mavsum — tarozi ularni farqlay olmaydi.",
+    "O'rtacha {delta} kg ko'tarildi. Grafiklar ham ob-havoga o'xshab, ba'zan to'lqinlanadi.",
+    "7 kunlik o'rtacha +{delta} kg. Hayot ritmi o'zgarsa, raqam ham bir oz raqsga tushadi.",
+    "O'rtacha {delta} kg yuqorida. Bitta haftalik to'lqin — hali trend emas.",
+    "+{delta} kg haftalik o'rtachada. Issiq havo, tuzli non, kam suv — hammasi raqamda iz qoldiradi.",
+    "O'rtacha {delta} kg o'zgardi. Kalkulyator xotirjam: bunday tebranishlar oddiy hol."
+   ],
+   "ru": [
+    "Среднее за 7 дней выросло на {delta} кг. Вода, соль, сон — цифра чувствительна ко всему.",
+    "Недельное среднее +{delta} кг. Часто это вода и соль; через неделю график может передумать.",
+    "Среднее выше на {delta} кг. Солёный ужин и короткий сон тоже оставляют след в цифрах.",
+    "+{delta} кг в среднем. Мышцы, вода, сезон — весы их не различают.",
+    "Среднее поднялось на {delta} кг. Графики, как и погода, бывают волнистыми.",
+    "7-дневное среднее: +{delta} кг. Меняется ритм жизни — цифра немного пританцовывает.",
+    "Среднее выше на {delta} кг. Одна недельная волна — ещё не тренд.",
+    "+{delta} кг в недельном среднем. Жара, солёный хлеб, мало воды — всё отражается в цифрах.",
+    "Среднее сдвинулось на {delta} кг. Калькулятор спокоен: такие колебания — обычное дело."
+   ]
+  },
+  "weight_flat": {
+   "uz": [
+    "7 kunlik o'rtacha deyarli o'zgarmadi: {delta} kg farq. Barqarorlik ham natija.",
+    "O'rtacha joyida: {delta} kg. Grafik tekis, xuddi cho'l yo'lidek.",
+    "{delta} kg farq — haftalik o'rtacha tinch. Tarozi bugun hikoya aytmadi.",
+    "O'rtacha deyarli bir xil ({delta} kg). Grafik dam olish kunida.",
+    "Haftalik o'rtacha: ±{delta} kg. Chiziq tekis, xuddi choy ichib o'tirgandek.",
+    "Barqaror: {delta} kg o'zgarish. Raqam joyidan jilmay, kuzatib turibdi.",
+    "{delta} kg — bu o'zgarish emas, yumshoq tebranish. O'rtacha joyida.",
+    "O'rtacha atigi {delta} kg siljidi. Grafik shoshmayapti, siz ham shoshmasangiz bo'ladi.",
+    "Haftalik o'rtacha o'zgarmas: {delta} kg farq. Statistika uchun bu sokin hafta."
+   ],
+   "ru": [
+    "Среднее за 7 дней почти не изменилось: разница {delta} кг. Стабильность — тоже результат.",
+    "Среднее на месте: {delta} кг. График ровный, как степная трасса.",
+    "Разница {delta} кг — недельное среднее спокойно. Весы сегодня без сюжета.",
+    "Среднее почти то же ({delta} кг). У графика выходной.",
+    "Недельное среднее: ±{delta} кг. Линия ровная, будто сидит и пьёт чай.",
+    "Стабильно: изменение {delta} кг. Цифра никуда не спешит, просто наблюдает.",
+    "{delta} кг — это не изменение, а лёгкое колебание. Среднее на месте.",
+    "Среднее сдвинулось всего на {delta} кг. График не торопится — и вам можно не торопиться.",
+    "Недельное среднее без перемен: {delta} кг. Для статистики — тихая неделя."
+   ]
+  },
+  "streak": {
+   "uz": [
+    "{days} kun ketma-ket! Kalendar sizni hurmat qila boshladi.",
+    "Ketma-ket {days} kun yozuv. Ilova sizni doimiy mijoz deb tanidi.",
+    "{days} kun uzluksiz. Hatto choynak ham bunchalik muntazam qaynamaydi.",
+    "Seriya: {days} kun. Telefon eslatmalari endi o'zini ortiqcha his qilyapti.",
+    "{days} kun qatorasiga. Bu allaqachon odat, tasodif emas.",
+    "{days} kunlik zanjir. Har bir halqa — bitta yozilgan kun.",
+    "Ketma-ket {days} kun! Kuryer ham bunchalik muntazam kelmaydi.",
+    "{days} kun ketma-ket. Kalkulyatorning sevimli foydalanuvchisi aniqlandi.",
+    "Yozuvlar zanjiri: {days} kun. Ertangi kun ham shu ro'yxatga qo'shilishni kutyapti.",
+    "{days} kun! Bunday barqarorlikka obuna xizmatlari ham havas qiladi."
+   ],
+   "ru": [
+    "Дней подряд: {days}. Календарь начал вас уважать.",
+    "Серия без пропусков: {days}. Приложение записало вас в постоянные клиенты.",
+    "Дней подряд: {days}. Даже чайник не закипает так регулярно.",
+    "Серия — {days}. Напоминания в телефоне чувствуют себя лишними.",
+    "Уже {days} подряд. Это привычка, а не случайность.",
+    "Цепочка из дней: {days}. Каждое звено — один записанный день.",
+    "Серия: {days}! Курьер и тот приезжает реже.",
+    "Дней без пропуска: {days}. Любимый пользователь калькулятора найден.",
+    "Счётчик серии: {days}. Завтрашний день уже стоит в очереди.",
+    "Серия {days}. Такой стабильности позавидуют подписки на сериалы."
+   ]
+  },
+  "holiday": {
+   "uz": [
+    "Bugun bayram — hisob-kitob ham dam oladi. Dasturxon esa ishda.",
+    "Osh, somsa, mehmon... Kalkulyator bugun burchakda jim o'tiribdi.",
+    "Bayram kuni raqamlar emas, mehmonlar sanaladi.",
+    "Bugun dasturxon kalkulyatordan kattaroq. Bu normal, bu bayram.",
+    "To'y yoki bayram — sanash bugun ikkinchi o'rinda. Ertaga hammasi odatdagidek.",
+    "Mehmondorchilik kuni: choynak navbatchilikda, hisob-kitob ta'tilda.",
+    "Bugun asosiy ilova — osh qozoni. Biz ertaga qaytamiz.",
+    "Bayram muborak! Bugungi asosiy mashq — mehmonlarni kutib olish va kuzatish.",
+    "Bugun qadamlar ham bayramda: mehmondan mehmonga, uydan uyga.",
+    "Bayram dasturxoni hech qaysi jadvalga sig'maydi. Bugun shunchaki yaxshi kun."
+   ],
+   "ru": [
+    "Сегодня праздник — подсчёты тоже отдыхают. А дастархан работает.",
+    "Плов, самса, гости… Калькулятор сегодня тихо сидит в уголке.",
+    "В праздник считают гостей, а не калории.",
+    "Сегодня дастархан больше калькулятора. Это нормально, это праздник.",
+    "Свадьба или праздник — подсчёты сегодня на втором плане. Завтра всё как обычно.",
+    "День гостей: чайник на смене, подсчёты в отпуске.",
+    "Сегодня главное приложение — казан с пловом. Мы вернёмся завтра.",
+    "С праздником! Главная тренировка дня — встретить и проводить гостей.",
+    "Сегодня и шаги праздничные: из гостей в гости, от дома к дому.",
+    "Праздничный дастархан не помещается ни в одну таблицу. Сегодня просто хороший день."
+   ]
+  },
+  "yesam_ok": {
+   "uz": [
+    "{item} — {kcal} kkal. Me'yorga sig'adi, keyin ham {left} kkal qoladi.",
+    "{kcal} kkal — me'yor ichida. Choy bilan birga ham {left} kkal zaxirada qoladi.",
+    "{item} bilan ham me'yorgacha {left} kkal qoladi. Qaror sizda, kalkulyator faqat hisoblaydi.",
+    "Kalkulyator o'ylab, bosh irg'adi: {item} me'yorga sig'adi, {left} kkal qoladi.",
+    "{item} — {kcal} kkal. Me'yor buni bemalol ko'taradi, choynak ham rozi.",
+    "Shu taom bilan me'yorgacha yana {left} kkal qoladi. Muzlatgich eshigi do'stona g'ijirladi.",
+    "{kcal} kkal me'yorga sig'adi. Yoqimli ishtaha — keyin ham {left} kkal zaxirada.",
+    "{item} — {kcal} kkal; undan keyin me'yorgacha {left} kkal qoladi. Hisob oddiy."
+   ],
+   "ru": [
+    "{item} — {kcal} ккал. В норму помещается, и ещё {left} ккал остаётся.",
+    "{kcal} ккал — в пределах нормы. С чаем в запасе всё равно {left} ккал.",
+    "С «{item}» до нормы остаётся {left} ккал. Решение за вами, калькулятор только считает.",
+    "Калькулятор подумал и кивнул: {item} помещается в норму, остаётся {left} ккал.",
+    "{item} — {kcal} ккал. Норма это легко выдерживает, чайник тоже согласен.",
+    "С этим блюдом до нормы ещё {left} ккал. Дверца холодильника дружелюбно скрипнула.",
+    "{kcal} ккал помещаются в норму. Приятного аппетита — и потом остаётся {left} ккал.",
+    "{item} — {kcal} ккал; после него до нормы {left} ккал. Счёт простой."
+   ]
+  },
+  "yesam_over": {
+   "uz": [
+    "{item} me'yordan {over} kkal oshiradi. Yarmi hozir, qolgani ertaga ham bo'ladi — yoki shunchaki bugun bayram.",
+    "{item} — {kcal} kkal, me'yordan +{over} kkal. {min} daqiqalik sayr bilan tenglashadi — xohlasangiz.",
+    "Me'yordan {over} kkal yuqori chiqadi. Kichikroq porsiya yoki kechki {min} daqiqa sayr — ikkalasi ham ishlaydi.",
+    "{item} bugungi me'yordan {over} kkal nariroqda. Ertangi nonushtaga qoldirsa ham bo'ladi.",
+    "Hisob: {kcal} kkal, me'yordan +{over} kkal. {min} daqiqa piyoda yurish uni tenglashtiradi.",
+    "Muzlatgich ikkilanyapti: {item} me'yorni {over} kkalga siljitadi. Ertaga saqlab qo'yish ham variant.",
+    "+{over} kkal me'yordan tashqarida. Do'stlar bilan bo'lishilsa, taom ham, hisob ham xursand.",
+    "{item} bilan me'yordan +{over} kkal bo'ladi. Bir stakan suv va {min} daqiqalik sayr — muvozanat tiklanadi."
+   ],
+   "ru": [
+    "«{item}» превышает норму на {over} ккал. Половину сейчас, остальное завтра — или просто сегодня праздник.",
+    "{item} — {kcal} ккал, норма превышается на {over} ккал. Прогулка {min} минут выравнивает — если захотите.",
+    "Выходит на {over} ккал выше нормы. Порция поменьше или вечерняя прогулка {min} минут — оба варианта работают.",
+    "«{item}» выходит за сегодняшнюю норму на {over} ккал. Можно оставить на завтрашний завтрак.",
+    "Счёт: {kcal} ккал, +{over} ккал к норме. {min} минут пешком — и баланс ровный.",
+    "Холодильник колеблется: «{item}» сдвигает норму на {over} ккал. Отложить на завтра — тоже вариант.",
+    "+{over} ккал за нормой. Если поделиться с друзьями, и блюдо, и счёт будут довольны.",
+    "С «{item}» будет +{over} ккал к норме. Стакан воды и {min} минут прогулки — баланс восстановится."
+   ]
+  },
+  "food_first": {
+   "uz": [
+    "Kunning birinchi yozuvi tayyor. Daftar bugun ham sizga ishonyapti.",
+    "Birinchi ovqat yozildi — hisob ochildi, hisobchi choy ichgani chiqdi.",
+    "Yozib qo'ydik. Kun hali uzun, bu faqat boshlanishi.",
+    "Bugungi birinchi yozuv. Telefon xotirjam: uni bugun unutmadingiz.",
+    "Nonushtami, choymi — baribir yozdingiz. Odat shunaqa boshlanadi.",
+    "Kun boshlandi, daftar ochildi. Qolganini yozishni ham unutmang-a.",
+    "Birinchi yozuv — eng qiyini. Qolganlari odatda o'zi ketaveradi.",
+    "Hisobchi ishga tushdi. Maosh so'ramaydi, faqat rostini yozishni yaxshi ko'radi."
+   ],
+   "ru": [
+    "Первая запись дня готова. Дневник и сегодня на вас рассчитывает.",
+    "Первая еда записана — счёт открыт, бухгалтер пошёл за чаем.",
+    "Записали. День ещё длинный, это только начало.",
+    "Первая запись за сегодня. Телефон спокоен: вы его не забыли.",
+    "Завтрак или просто чай — вы всё равно записали. Так и начинаются привычки.",
+    "День начался, тетрадь открыта. Остальное тоже не забудьте записать.",
+    "Первая запись — самая трудная. Дальше обычно идёт само.",
+    "Счетовод вышел на работу. Зарплату не просит, любит только честные записи."
+   ]
+  },
+  "food_sweet": {
+   "uz": [
+    "Shirinlik vasvasasi bugun ham g'alaba qozondi. Hisobga yozildi, janjalsiz.",
+    "Shirinlik doim «bitta xolos» deydi. Biz esa o'sha bittasini ham yozib qo'yamiz.",
+    "Choy yoniga shirinlik — klassika. Hisobda shunchaki yana bir qator.",
+    "Shirinlik ayyor: qadam bosmay, ruxsatsiz kirib keladi. Yozdik, tamom.",
+    "Yozildi. Shirinlik kechqurun yana eshik qoqishi mumkin — u odatda sabrli.",
+    "Shirinlik daftarga tushdi. Kkal bilan tanishib oldik, bo'ldi.",
+    "Shirinlik: 1, daftar: halol. Hisob ochiq.",
+    "Shirinlik navbatda turmaydi, o'zi keladi. Daftar esa hammasini kutib oladi."
+   ],
+   "ru": [
+    "Сладкое искушение и сегодня победило. В дневнике записано, без скандала.",
+    "Сладкое всегда говорит «ну всего одну». Мы эту одну тоже записываем.",
+    "К чаю сладкое — классика. В учёте просто ещё одна строка.",
+    "Сладкое хитрое: без шагов и без спроса заходит. Записали, и всё.",
+    "Записано. Вечером сладкое может постучаться снова — оно терпеливое.",
+    "Сладкое попало в дневник. С калориями познакомились, и хватит.",
+    "Сладкое: 1, дневник: честный. Счёт открытый.",
+    "Сладкое в очередь не встаёт, оно приходит само. А дневник всех встречает."
+   ]
+  },
+  "food_add": {
+   "uz": [
+    "Yozildi. Daftar bugun ham sizdan xursand.",
+    "Bitta yozuv ko'paydi. Xotiraga ishonmaslik — aqlli odat.",
+    "Qo'shildi. Yozilmagan ovqat hisobda yo'q — telefon folbin emas.",
+    "Hisob yangilandi. Idish yana bir qultum to'ldi.",
+    "Tayyor. Bunaqa tartibli yozuvga buxgalterning ham havasi keladi.",
+    "Yana bir qator — daftar qalinlashmoqda, odat mustahkamlanmoqda.",
+    "Qo'shildi. Aytgancha, yeganingizni yozmasangiz, idish sizga ishonmaydi.",
+    "Yozuv saqlandi. Rostgo'ylik daftarda ham, kayfiyatda ham hisobga olinadi."
+   ],
+   "ru": [
+    "Записано. Дневник и сегодня вами доволен.",
+    "Одной записью больше. Не доверять памяти — умная привычка.",
+    "Добавлено. Не записанной еды в учёте нет — телефон не гадалка.",
+    "Счёт обновлён. Сосуд наполнился ещё на глоток.",
+    "Готово. Такой аккуратной записи позавидует и бухгалтер.",
+    "Ещё одна строка — записей прибавилось, привычка крепнет.",
+    "Добавлено. Кстати, если не записывать съеденное, сосуд вам не поверит.",
+    "Запись сохранена. Честность учитывается и в дневнике, и в настроении."
+   ]
+  },
+  "steps_add": {
+   "uz": [
+    "{steps} qadam yozildi. Oyoqlar bugun ish haqini oldi.",
+    "Qadamlar qabul qilindi. Divan biroz xafa bo'ldi.",
+    "{steps} qadam — raqam bo'lsa ham, yurgan siz.",
+    "Yozildi. Telefon qadam sanashdan charchagan edi, endi dam oladi.",
+    "{steps} qadam. Lift bugun sizni kam ko'rdi.",
+    "Qadam hisobi yangilandi. Poyabzal tilga kirsa, rahmat aytardi.",
+    "Yozib qo'ydik: {steps}. Marshrutka bugun sizsiz zerikdi.",
+    "{steps} qadam hisobga tushdi. Kichik qadam ham daftarda o'z o'rniga ega."
+   ],
+   "ru": [
+    "{steps} шагов записано. Ноги сегодня получили зарплату.",
+    "Шаги приняты. Диван слегка расстроен.",
+    "{steps} шагов — пусть это цифра, но ходили вы.",
+    "Записано. Телефон устал считать шаги, теперь отдохнёт.",
+    "{steps} шагов. Лифт сегодня вас почти не видел.",
+    "Шаги обновлены. Если бы обувь умела говорить, сказала бы спасибо.",
+    "Записали: {steps}. Маршрутка сегодня скучала без вас.",
+    "{steps} шагов в учёте. Даже маленький шаг имеет место в дневнике."
+   ]
+  },
+  "steps_goal": {
+   "uz": [
+    "Qadam maqsadi bajarildi! Divan bugun yolg'iz qoldi.",
+    "{steps} qadam — maqsad yopildi. Poyabzal ish haqi so'raydi.",
+    "Maqsad ostiga chiziq tortildi: {steps} qadam. Lift ishsiz qoldi.",
+    "Qadam maqsadi olindi. Taksichi bugun sizni kutib o'tirmadi.",
+    "Bajarildi: {steps} qadam. Telefon chin dildan hayratda.",
+    "Maqsad — {goal}, siz — {steps}. Hisob bu safar sizning foydangizga.",
+    "Qadam maqsadi yopildi. Ertaga ham shunday bo'lsa, divanga rasmiy ogohlantirish beramiz.",
+    "{steps} qadam! Oyoqlar bugun o'zini ko'rsatdi."
+   ],
+   "ru": [
+    "Цель по шагам выполнена! Диван сегодня остался один.",
+    "{steps} шагов — цель закрыта. Кроссовки просят зарплату.",
+    "Под целью подведена черта: {steps} шагов. Лифт остался без работы.",
+    "Цель по шагам взята. Таксист сегодня вас не дождался.",
+    "Выполнено: {steps} шагов. Телефон искренне поражён.",
+    "Цель — {goal}, вы — {steps}. Счёт на этот раз в вашу пользу.",
+    "Цель по шагам закрыта. Если завтра повторится, объявим дивану официальное предупреждение.",
+    "{steps} шагов! Ноги сегодня показали класс."
+   ]
+  },
+  "steps_couch": {
+   "uz": [
+    "Qadam hali kam: divan bugun oldinda. Kechki sayr hisobni tenglashtirishi mumkin.",
+    "{steps} qadam. Divan bugun ustun — uni ertaga yutish mumkin.",
+    "Qadamlar kam, divan esa bor. Raqobat qizg'in, kech hali to'liq tushmadi.",
+    "Bugun oyoqlar dam oldi. Ertaga ular ham gapirib qo'yishi mumkin.",
+    "{steps} qadam — telefon bugun juda tinch yashadi.",
+    "Divan bugun o'z o'rnini mustahkamladi. Kechki sayr uni biroz bezovta qilardi.",
+    "Qadam hisobi sokin. Poyabzal eshik oldida sabr bilan kutmoqda.",
+    "Bugungi qadamlar sanoqli — uyda ish ko'p bo'lgandir. Yo'l hali ochiq."
+   ],
+   "ru": [
+    "Шагов пока мало: диван сегодня впереди. Вечерняя прогулка может выровнять счёт.",
+    "{steps} шагов. Диван сегодня сильнее — завтра его можно обыграть.",
+    "Шагов мало, диван на месте. Борьба напряжённая, вечер ещё не закончился.",
+    "Сегодня ноги отдыхали. Завтра они тоже могут высказаться.",
+    "{steps} шагов — телефон сегодня жил очень спокойно.",
+    "Диван сегодня укрепил позиции. Вечерняя прогулка его бы слегка встревожила.",
+    "Шагомер молчит. Кроссовки терпеливо ждут у двери.",
+    "Шагов немного — наверное, дома было много дел. Дорога ещё открыта."
+   ]
+  },
+  "water_none": {
+   "uz": [
+    "Hali bir stakan ham yo'q. Suv butilkasi sizni sabr bilan kutmoqda.",
+    "Suv hisobi — nol. Stakan ham, siz ham hali tanishmadingiz.",
+    "Tushgacha bir stakan ham yo'q. Qani, birinchi qultum — eng qiyini.",
+    "Suv bugun «keyinroq» ro'yxatida. Keyinroq esa ko'pincha hozir bo'ladi.",
+    "Bo'sh stakan bugun ish topolmayapti. Unga bitta imkoniyat bering.",
+    "Nol stakan. Kaktus ham kuniga ko'proq suv oladi.",
+    "Suv bugun yig'ilmayapti. Bir stakan — va hisob jonlanadi.",
+    "Stakan javonda changib qoldi shekilli. Bitta qultum uni uyg'otadi."
+   ],
+   "ru": [
+    "Ни одного стакана пока. Бутылка с водой терпеливо вас ждёт.",
+    "Счёт воды — ноль. Стакан и вы ещё не познакомились.",
+    "К полудню ни одного стакана. Ну же, первый глоток — самый трудный.",
+    "Вода сегодня в списке «потом». А «потом» часто означает «сейчас».",
+    "Пустой стакан сегодня без работы. Дайте ему шанс.",
+    "Ноль стаканов. Даже кактус получает воды больше.",
+    "Вода сегодня не копится. Один стакан — и счёт оживёт.",
+    "Стакан, видимо, запылился на полке. Один глоток его разбудит."
+   ]
+  },
+  "water_half": {
+   "uz": [
+    "Suv yarmiga yetdi. Stakan bugun foydali ishda.",
+    "Yarmi tayyor. Qolgan yarmi — bir oz sabr va bir oz stakan.",
+    "Suv hisobi — yarim yo'lda. Idish ham xursand.",
+    "Suv yarim yo'lda, choynak esa bu safar chetda qoldi.",
+    "50% bajarildi. Qolgan stakanlar navbat kutmoqda.",
+    "Stakanlar saf tortdi: yarmi ichildi. Qolganlari ham tayyor.",
+    "Yarmiga yetdik. Bu ritm bilan kechgacha suv ham, siz ham mamnun bo'lasiz.",
+    "Suv bo'yicha o'rtadasiz. Ikkinchi yarmi ham xuddi shunday sodda."
+   ],
+   "ru": [
+    "Вода дошла до половины. Стакан сегодня при деле.",
+    "Половина готова. Вторая — немного терпения и немного стаканов.",
+    "Счёт воды — на полпути. Сосуд тоже доволен.",
+    "Вода на полпути, а чайник на этот раз в стороне.",
+    "50% выполнено. Остальные стаканы стоят в очереди.",
+    "Стаканы выстроились: половина выпита. Остальные готовы.",
+    "Дошли до половины. В таком ритме к вечеру и вода, и вы будете довольны.",
+    "По воде вы посередине. Вторая половина так же проста."
+   ]
+  },
+  "dayend": {
+   "uz": [
+    "Kun yakunlandi. Daftar yopildi, hisobchi uyiga ketdi.",
+    "Bugungi hisob muhrlandi. Ertangi kun toza sahifadan boshlanadi.",
+    "Yakunlandi. Yozuvlar arxivga tushdi — endi hech qayoqqa qochmaydi.",
+    "Kun yopildi. Eng yaxshi tomoni: ertangi sahifa hali bo'sh.",
+    "Hisob tugadi. Daftarga bugun ham rostgo'ylik yozildi.",
+    "Kun muhrlandi. Hisobchi imzo chekib, choyga o'tdi.",
+    "Yakunlandi. Ertaga yana yangi sahifa — qalam o'zingizda.",
+    "Kun tugadi, daftar yopildi. Bugungi eng tartibli ishingiz shu bo'ldi, ehtimol."
+   ],
+   "ru": [
+    "День завершён. Дневник закрыт, бухгалтер ушёл домой.",
+    "Сегодняшний счёт опечатан. Завтрашний день начнётся с чистой страницы.",
+    "Завершено. Записи ушли в архив — теперь они никуда не убегут.",
+    "День закрыт. Самое лучшее: завтрашняя страница ещё пуста.",
+    "Счёт закрыт. В дневник и сегодня записана честность.",
+    "День опечатан. Бухгалтер расписался и пошёл пить чай.",
+    "Завершено. Завтра снова новая страница — ручка у вас.",
+    "День окончен, дневник закрыт. Возможно, это самое аккуратное дело за сегодня."
+   ]
+  },
+  "dayend_high": {
+   "uz": [
+    "Kun yakunlandi. Bugun hisob biroz oshdi — ertaga me'yor yana joyida.",
+    "Yopildi. Ba'zan kun shunday bo'ladi; ertangi sahifa toza.",
+    "Muhrlandi. Bugungi raqam — shunchaki raqam, ertasi esa yangi.",
+    "Kun tugadi. Hisob oshgan bo'lsa ham, yozganingiz — yaxshi odat.",
+    "Yakunlandi. Dasturxon ham, hisob ham bugun keng bo'ldi; ertaga oddiy kun.",
+    "Daftar yopildi. Me'yor ertaga o'z joyida kutib turadi, hech narsa so'ramaydi."
+   ],
+   "ru": [
+    "День завершён. Сегодня счёт немного вырос — завтра норма на месте.",
+    "Закрыто. Бывают и такие дни; завтрашняя страница чистая.",
+    "Опечатано. Сегодняшняя цифра — просто цифра, а завтра всё новое.",
+    "День окончен. Даже если счёт вырос, то, что вы записали, — хорошая привычка.",
+    "Завершено. И стол, и счёт сегодня были щедрыми; завтра обычный день.",
+    "Дневник закрыт. Норма завтра будет ждать на месте и ничего не потребует."
+   ]
+  },
+  "streak7": {
+   "uz": [
+    "Ketma-ket yetti kun yozdingiz! Daftar sizni endi shaxsan taniydi.",
+    "7 kun qatorasiga. Odat endi sizdan so'ramay ham ishlayapti.",
+    "Bir hafta uzilishsiz — hisobchi ta'tilga chiqmoqchi edi, qoldi.",
+    "Yetti kun qator: telefondagi eslatmalar ham hayron.",
+    "7 kun! Bunday izchillikka hatto budilnik ham havas qiladi.",
+    "Bir haftalik seriya. Divan buni sezib, sekin chekinmoqda.",
+    "Yetti kun qatorasiga — bu endi tasodif emas, odat.",
+    "Seriya 7 kunga yetdi. Daftar sizga ishonch tamg'asini bosdi."
+   ],
+   "ru": [
+    "Семь дней подряд вы записывали! Дневник теперь знает вас лично.",
+    "7 дней подряд. Привычка уже работает без напоминаний.",
+    "Неделя без перерыва — бухгалтер хотел в отпуск, но остался.",
+    "Семь дней подряд: даже напоминания в телефоне удивлены.",
+    "7 дней! Такой последовательности позавидует и будильник.",
+    "Недельная серия. Диван это почувствовал и потихоньку отступает.",
+    "Семь дней подряд — это уже не случайность, а привычка.",
+    "Серия дошла до 7 дней. Дневник поставил на вас печать доверия."
+   ]
+  },
+  "empty_day": {
+   "uz": [
+    "Bugungi hisob hali toza. Birinchi yozuvni qo'shing — idish to'lishni boshlaydi.",
+    "Daftar bo'm-bo'sh, idish ham. Birinchi ovqat — birinchi to'lqin.",
+    "Hamma narsa nolda. Kunni boshlash uchun eng qulay joy.",
+    "Bo'sh sahifa. Hisobchi qo'lida qalam bilan kutib o'tiribdi.",
+    "Hali hech narsa yozilmagan. Idish suyuqlikni sabr bilan kutmoqda.",
+    "Kun toza varaqdan boshlandi. Birinchi yozuv — sizdan.",
+    "Daftar ochiq, idish bo'sh. Ikkalasi ham sizni kutmoqda.",
+    "Bugun hali yozuv yo'q: hisobchi choyini ham ichib bo'ldi."
+   ],
+   "ru": [
+    "Сегодняшний счёт пока чист. Добавьте первую запись — сосуд начнёт наполняться.",
+    "Дневник пуст, сосуд тоже. Первая еда — первая волна.",
+    "Везде ноль. Удобнее места для начала дня не найти.",
+    "Чистая страница. Бухгалтер сидит с ручкой наготове.",
+    "Пока ничего не записано. Сосуд терпеливо ждёт жидкость.",
+    "День начался с чистого листа. Первая запись — за вами.",
+    "Дневник открыт, сосуд пуст. Оба вас ждут.",
+    "Записей пока нет: бухгалтер уже допил чай."
+   ]
+  },
+  "weight_add": {
+   "uz": [
+    "Vazn yozildi. Tarozi bugun ham hamma narsani biladi, lekin hukm chiqarmaydi.",
+    "Yozib qo'ydik: {kg} kg. Tarozi bilan salomlashish ham odat.",
+    "Raqam daftarda. Muhimi — o'lchash odati, raqamning o'zi emas.",
+    "Vazn qayd etildi. Tarozi yana jim qoldi, bu yaxshi.",
+    "Yozildi. Bitta o'lchov hech narsani hal qilmaydi, hafta o'rtachasi esa gapiradi.",
+    "Tarozi bilan uchrashuv tugadi. Yozuv saqlandi, kayfiyat esa sizniki.",
+    "O'lchov qo'shildi. Tarozi hazil tushunmaydi, shuning uchun biz tushunamiz.",
+    "Yozildi. Grafikda yana bir nuqta paydo bo'ldi, u ham o'z o'rnida."
+   ],
+   "ru": [
+    "Вес записан. Весы и сегодня всё знают, но приговор не выносят.",
+    "Записали: {kg} кг. Здороваться с весами — тоже привычка.",
+    "Цифра в дневнике. Важна привычка измерять, а не сама цифра.",
+    "Вес зафиксирован. Весы снова промолчали, и это хорошо.",
+    "Записано. Одно измерение ничего не решает, зато среднее за неделю скажет многое.",
+    "Встреча с весами окончена. Запись сохранена, а настроение остаётся вашим.",
+    "Измерение добавлено. Весы шуток не понимают, поэтому понимаем мы.",
+    "Записано. На графике появилась ещё одна точка, и она на своём месте."
+   ]
+  },
+  "backup": {
+   "uz": [
+    "Zaxira nusxa yo'q-ku? Telefon bir kuni «tozalash» qilib hammasini unutishi mumkin.",
+    "Daftaringizni bitta bosish bilan ehtiyot qiling. Telefonlar ba'zan keyin kechirim so'raydi.",
+    "Haftalik zaxira vaqti. Bu hazil emas, lekin biz hazil bilan eslatamiz.",
+    "Zaxira — bu sug'urta, faqat narx so'ramaydi. Bir bosish.",
+    "Yozuvlaringiz faqat telefonda. Telefon esa ba'zan suvga tushadi — buni hamma biladi.",
+    "Zaxira nusxa olsangiz, yangi telefonga daftar o'zi ko'chadi."
+   ],
+   "ru": [
+    "Резервной копии нет? Телефон однажды «почистится» и всё забудет.",
+    "Сохраните дневник одним нажатием. Телефоны иногда потом извиняются.",
+    "Пора для еженедельной копии. Это не шутка, но напоминаем мы с юмором.",
+    "Копия — это страховка, только без платы. Одно нажатие.",
+    "Записи только в телефоне. А телефоны иногда падают в воду — все знают.",
+    "Если сделать копию, дневник сам переедет на новый телефон."
+   ]
+  },
+  "log_low": {
+   "uz": [
+    "Bugun yozuvlar kam. Hammasini yozdingizmi, yoki daftar bugun ham ochiq qoldimi?",
+    "Hisob hozircha qisqa — ehtimol yozishni unutgandirsiz. Eslab qolganlaringizni qo'shing.",
+    "Yozuvlar sanoqli. Daftar bugungi kunni ham kechagidek eslab qoladi.",
+    "Daftar bugun jim. Yeganlaringiz yozilmagan bo'lsa, hozir ham kech emas.",
+    "Bugungi hisob juda qisqa. Eslaganlaringizni yozib chiqing, qolganini daftar so'ramaydi.",
+    "Idish to'lmay turibdi. Yozilmagan ovqatlar bo'lsa, ularni ham qo'shsangiz bo'ladi."
+   ],
+   "ru": [
+    "Записей сегодня мало. Вы записали всё, или тетрадь опять осталась открытой?",
+    "Счёт пока короткий — возможно, вы забыли записать. Добавьте то, что вспомните.",
+    "Записей раз-два и обчёлся. Дневник запомнит и сегодняшний день.",
+    "Дневник сегодня молчит. Если съеденное не записано, ещё не поздно.",
+    "Сегодняшний счёт очень короткий. Запишите, что вспомните, остального дневник не спросит.",
+    "Сосуд не наполняется. Если есть незаписанная еда, можно добавить и её."
+   ]
+  }
+ },
+ "neutral": {
+  "food": {
+   "uz": "Yozildi. Bugun jami {eaten} kkal.",
+   "ru": "Записано. Всего за сегодня {eaten} ккал."
+  },
+  "water": {
+   "uz": "Suv: {ml} / {goal} ml.",
+   "ru": "Вода: {ml} / {goal} мл."
+  },
+  "steps": {
+   "uz": "Qadam yozildi: {steps}.",
+   "ru": "Шаги записаны: {steps}."
+  },
+  "weight": {
+   "uz": "Vazn yozildi: {kg} kg.",
+   "ru": "Вес записан: {kg} кг."
+  },
+  "dayend": {
+   "uz": "Kun yakunlandi.",
+   "ru": "День завершён."
+  }
+ }
+}

@@ -2,6 +2,34 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 8,
+      "d": "2026-10-18",
+      "bn": {
+        "uz": "Hazilli xabarlar qaytdi: qadam, suv, ovqat va vazn haqida — qisqa va do'stona.",
+        "ru": "Шутливые сообщения вернулись: про шаги, воду, еду и вес — коротко и по-дружески."
+      },
+      "items": [
+        {
+          "uz": "Hazilli xabarlar qaytdi: ovqat, suv, qadam va kun yakunidan keyin bitta qisqa gap chiqadi.",
+          "ru": "Шутливые сообщения вернулись: после еды, воды, шагов и итога дня появляется одна короткая фраза.",
+          "show": "search",
+          "btn": {
+            "uz": "Qo'shib ko'rish",
+            "ru": "Попробовать"
+          }
+        },
+        {
+          "uz": "Hazil yoqmasa — Profil → Hazil matnlari orqali o'chiriladi.",
+          "ru": "Не нравятся шутки — отключите в Профиль → Шутливые тексты.",
+          "show": "jokes",
+          "btn": {
+            "uz": "Sozlamani ko'rish",
+            "ru": "Показать настройку"
+          }
+        }
+      ]
+    },
+    {
       "v": 7,
       "d": "2026-10-17",
       "bn": {

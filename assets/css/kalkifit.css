@@ -255,3 +255,4 @@ html:has(.rz.sl),html:has(.rz.sl) body{background:#F5F4F0}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]):has(.rz.sl),html:not([data-theme=light]):has(.rz.sl) body{background:#0C0F14}@media (max-width:640px){html:not([data-theme=light]) .rz-stage:has(.rz.sl){background:#0C0F14}}}
 html[data-theme=dark]:has(.rz.sl),html[data-theme=dark]:has(.rz.sl) body{background:#0C0F14}@media (max-width:640px){html[data-theme=dark] .rz-stage:has(.rz.sl){background:#0C0F14}}
 html[data-theme=light]:has(.rz.sl),html[data-theme=light]:has(.rz.sl) body{background:#F5F4F0}@media (max-width:640px){html[data-theme=light] .rz-stage:has(.rz.sl){background:#F5F4F0}}
+.rz .sl-jline{margin:-6px 0 0;font-size:14px;font-weight:600;color:var(--mut);text-align:center;line-height:1.35}
