@@ -17,13 +17,13 @@ let ENV = mkEnv(); let n = 0; const log = (m) => console.log('OK  ', ++n + '.', 
 const MARK = { kalkifit: 71.3, rozgor: 4321000 };
 function kfState(w, days = 3, last = 0) { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 30 * 86400000; st.prefs = { tipsDone: true }; st.profile = { sex: 'f', preg: false, age: 31, height: 166, weight: w, act: 2, goal: 'slow', goalWeight: 60 }; KF.addWeight(st, TODAY, w); for (let i = 0; i < days; i++) KF.setSteps(st, KF.dates.addDays(TODAY, -i), 3000 + i * 111); if (last) st.lastBackup = last; return st; }
 function rzState(base, days = 3, last = 0) { const st = RZ.emptyState(); st.prefs = { tipsDone: true }; st.setup = true; st.created = Date.now() - 30 * 86400000; st.base = base; st.reserve = 500000; st.income = RZ.addDays(TODAY, 12); for (let i = 0; i < days; i++) st.tx.push({ id: 't' + i, type: 'exp', amount: 10000 + i, cat: 'oziq', date: RZ.addDays(TODAY, -i), ts: Date.now() - i }); if (last) st.lastBackup = last; return st; }
-const APPS = { kalkifit: { key: 'kalki_fit', st: kfState, tab: 'profile', mark: (s) => s.profile.weight, size: (s) => Object.keys(s.days).length, exp: (st) => KF.exportState(st) }, rozgor: { key: 'kalki_rozgor', st: rzState, tab: 'set', mark: (s) => s.base, size: (s) => s.tx.length, exp: (st) => JSON.stringify({ app: 'kalki-rozgor', v: RZ.VERSION, exportedAt: Date.now(), state: st }) } };
+const APPS = { kalkifit: { key: 'kalki_fit', st: kfState, tab: 'profile', has: (s) => Object.keys(s.days).some((d) => s.days[d].water > 0), triv: () => kfState(66.6, 0), mark: (s) => s.profile.weight, size: (s) => Object.keys(s.days).length, exp: (st) => KF.exportState(st) }, rozgor: { key: 'kalki_rozgor', st: rzState, tab: 'set', has: (s) => s.tx.length > 0, triv: () => rzState(1500000, 0), mark: (s) => s.base, size: (s) => s.tx.length, exp: (st) => JSON.stringify({ app: 'kalki-rozgor', v: RZ.VERSION, exportedAt: Date.now(), state: st }) } };
 async function open(app, { state, lang = '', mode = 'on', vp = { width: 390, height: 844 }, ls = {}, force = null } = {}) {
   const A = APPS[app]; const c = await b.newContext({ viewport: vp, isMobile: true, hasTouch: true, serviceWorkers: 'block', acceptDownloads: true });
   await c.addInitScript((o) => { try { if (o.state && !localStorage.getItem(o.key)) localStorage.setItem(o.key, JSON.stringify(o.state)); for (const k of Object.keys(o.ls)) if (!localStorage.getItem(k)) localStorage.setItem(k, JSON.stringify(o.ls[k])); } catch (e) {} }, { state, key: A.key, ls });
-  const p = await c.newPage(); p.errs = []; p.req = []; p.jar = ''; p.force = force; p.on('pageerror', (e) => p.errs.push(String(e)));
-  await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
-  await p.route('**/api/**', async (r) => {
+  const p = await c.newPage(); p.errs = []; p.req = []; p.jar = ''; p.cev = []; c.on('request', (rq) => { if (/zaxira/.test(rq.url())) p.cev.push('req ' + rq.method()); }); c.on('requestfailed', (rq) => { if (/zaxira/.test(rq.url())) p.cev.push('failed ' + rq.method() + ' ' + (rq.failure() || {}).errorText); }); c.on('requestfinished', (rq) => { if (/zaxira/.test(rq.url())) p.cev.push('done ' + rq.method()); }); p.force = force; p.on('pageerror', (e) => p.errs.push(String(e)));
+  await c.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
+  await c.route('**/api/**', async (r) => {   // kontekst darajasida: sahifa yopilgandan keyingi (keepalive) so'rovlar ham qayta ishlanadi
     const rq = r.request(), u = rq.url(), pn = new URL(u).pathname; p.req.push(rq.method() + ' ' + pn.replace('/api/', ''));
     const h = { 'Content-Type': 'application/json', Origin: new URL(u).origin, 'CF-Connecting-IP': '4.4.4.4', 'X-Admin-Password': rq.headers()['x-admin-password'] || '' }; if (p.jar) h.Cookie = p.jar;
     if (/\/api\/zaxira/.test(u)) { const zr = await ZAX.onRequest({ request: new Request(u, { method: rq.method(), headers: h, body: rq.postData() || undefined }), env: ENV }); return r.fulfill({ status: zr.status, contentType: 'application/json', body: await zr.text() }); }
@@ -123,6 +123,40 @@ try {
     r1 = await open(app, { state: old }); assert.equal(await r1.locator('[data-nudge=backup]').count(), 1, 'kirmagan: eslatma bor'); await goProfile(r1, app); await login(r1, app, 'eslatma@pochta.uz'); await waitUploaded(r1, app);
     await r1.click(`[data-act=tab][data-v=today]`); await r1.waitForTimeout(500); assert.equal(await r1.locator('[data-nudge=backup]').count(), 0, 'kirgan va avtomatik saqlanayotgan: Telegram eslatmasi chiqmaydi'); assert.deepEqual(r1.errs, []);
     log(app + ': kirgan va avtomatik saqlanayotgan foydalanuvchiga haftalik Telegram eslatmasi chiqmaydi (kirmagan/akkauntsizga avvalgidek chiqadi)'); await r1.context().close();
+  }
+
+  /* 7. Telefondagi haqiqiy ketma-ketlik (iPhone Safari → Chrome): a) kirish → ma'lumot → DARHOL yopish; b) 2-qurilmada onboarding tugagan (deyarli bo'sh) holda Profil'dan kirish; c) onboarding havolasi orqali */
+  const change = async (p, app) => { await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(250); if (app === 'kalkifit') await p.click('[data-act=wadd]'); else { await p.click('#rzFab'); await p.waitForTimeout(500); for (const k of ['2', '5', '0', '0', '0']) await p.click(`[data-act=key][data-k="${k}"]`); await p.click('#exSave'); } await p.waitForTimeout(250); };
+  const serverState = async (app, code) => { const k = await BK.deriveKeys(app, BK.parseCode(app, code).body), r = DB().prepare('SELECT blob, versiya FROM zaxira WHERE id = ?').get(k.id); return r ? { v: r.versiya, st: JSON.parse(await BK.open(app, k, r.blob)).state } : null; };
+  const until = async (fn, ms = 3000) => { const t0 = Date.now(); for (;;) { const v = await fn(); if (v) return v; if (Date.now() - t0 > ms) return null; await new Promise((r) => setTimeout(r, 100)); } };
+  for (const app of ['kalkifit', 'rozgor']) {
+    const A = APPS[app];
+    for (const hide of ['pagehide', 'visibilitychange']) {
+      ENV = mkEnv(); const t1 = await open(app, { state: A.triv() }); await goProfile(t1, app); const t0 = Date.now(); await login(t1, app, 'tel@pochta.uz'); await waitUploaded(t1, app); const firstMs = Date.now() - t0;
+      const code = (await cs(t1, app)).code; assert.ok(await serverState(app, code), 'kirish bilan birga birinchi saqlash bo\'ldi'); assert.ok(firstMs < 6000, 'birinchi saqlash darhol (kirishdan ' + firstMs + ' ms)');
+      await change(t1, app); assert.ok(A.has(await lsJ(t1, A.key)), 'ma\'lumot qo\'shildi');
+      // 4 s debounce tugamasdan fonga o'tish/yopish: faqat pagehide/visibilitychange saqlay oladi
+      if (hide === 'pagehide') {
+        // Playwright navigatsiya paytidagi keepalive so'rovni ushlay olmaydi (brauzer o'zi yuboradi) — shuning uchun bu yerda faqat: pagehide ishladi va oldindan tayyorlangan nusxa yuborildi
+        // (holat: pending=false, versiya +1), tayyor nusxa joriy holatga aynan mos edi. Serverga yetishi pastda visibilitychange variantida (sahifa tirik) tekshiriladi.
+        await t1.goto('about:blank'); const q = await t1.context().newPage(); await q.goto(BASE + '/assets/app-backup.js'); const c2 = await lsJ(q, 'kalki_zaxira_' + app);
+        assert.equal(c2.pending, false, 'pagehide: sinxron keepalive yuborildi (pending=false)'); assert.equal(c2.ver, 2, 'pagehide: versiya oshirildi'); await t1.context().close(); continue;
+      }
+      await t1.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange')); });
+      const got = await until(async () => { const x = await serverState(app, code); return x && A.has(x.st) ? x : null; }, 3000); assert.ok(got, hide + ': ma\'lumot debounce kutmasdan serverga yetdi'); assert.ok(got.v >= 2);
+      // b) 2-qurilma: onboarding tugagan (faqat profil), Profil'dan kirish → o'zi tiklanadi (tanlov oynasisiz), bulutdagi nusxa ustiga yozilmaydi
+      const t2 = await open(app, { state: A.triv() }); await goProfile(t2, app); await login(t2, app, 'tel@pochta.uz'); await t2.waitForTimeout(1800);
+      assert.ok(A.has(await lsJ(t2, A.key)), hide + ' b) deyarli bo\'sh qurilma akkauntdan tiklandi'); assert.equal(await t2.locator('[data-act=akkcfcloud]').count(), 0, 'tanlov oynasi chiqmadi (bo\'sh lokal)'); assert.ok(!t2.req.some((x) => /^PUT zaxira/.test(x)), 'bo\'sh qurilma bulutga YOZMADI'); assert.equal((await serverState(app, code)).v, got.v, 'bulutdagi versiya o\'zgarmadi');
+      // c) 3-qurilma: yangi (onboarding) → havola orqali
+      const t3 = await open(app, {}); await login(t3, app, 'tel@pochta.uz', { onb: true }); await t3.waitForTimeout(1800); assert.ok(A.has(await lsJ(t3, A.key)), hide + ' c) onboarding havolasi orqali tiklandi'); assert.ok(!t3.req.some((x) => /^PUT zaxira/.test(x)));
+      assert.deepEqual(t2.errs.concat(t3.errs), []); await t1.context().close(); await t2.context().close(); await t3.context().close();
+    }
+    log(app + ': telefondagi ketma-ketlik — (a) kirish bilan birinchi saqlash darhol, ma\'lumot qo\'shilib DARHOL yopilsa ham (pagehide / visibilitychange, 4 s debounce kutilmaydi) serverga yetadi; (b) deyarli bo\'sh qurilmada Profil\'dan kirish → o\'zi tiklanadi, bulutga yozmaydi; (c) onboarding havolasi orqali tiklanadi');
+    /* 8. Xato: boshqa email (masalan gmail.con) — ogohlantirish */
+    ENV = mkEnv(); const ty = await open(app, { state: A.triv() }); await goProfile(ty, app); await ty.click('[data-akk=row]'); await ty.waitForTimeout(450); await ty.fill('#akkEmail', 'achchii99@gmail.con'); await ty.click('#akkSend'); await ty.waitForTimeout(250);
+    assert.match(await T(ty, '#akkErr'), /Email manzilida xato bo'lishi mumkin\. «achchii99@gmail\.con» o'rniga «achchii99@gmail\.com» yozdik/); assert.equal(await ty.inputValue('#akkEmail'), 'achchii99@gmail.com'); assert.ok(!ty.req.some((x) => /kod$/.test(x)), 'tuzatilmaguncha kod yuborilmadi');
+    await ty.click('#akkSend'); await ty.waitForSelector('#akkCode', { timeout: 6000 }); assert.ok(DB().prepare("SELECT 1 FROM dev_kod WHERE email = 'achchii99@gmail.com'").get(), 'tuzatilgan manzilga yuborildi'); await ty.context().close();
+    log(app + ': email xatosi («gmail.con») bilinadi: maydon tuzatiladi, ogohlantirish chiqadi, tasdiqlanmaguncha kod yuborilmaydi');
   }
 
   /* 6. Xato xabarlari — oddiy tilda, nima qilish kerakligi bilan (UZ/RU/ЎЗ); test bloki faqat kod bosqichida */

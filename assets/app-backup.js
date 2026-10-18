@@ -156,23 +156,40 @@
     function backoff() { retry++; schedule(Math.min(300000, 30000 * Math.pow(2, retry))); }
     bk.cloudOn = function () { return CS.on; };
     bk.cloudState = function () { return JSON.parse(JSON.stringify(CS)); };
-    bk.touch = function () { if (!CS.on) return; if (curSig() === CS.sig) return; CS.pending = true; saveCloud(); if (!CS.conflict) schedule(); };   // faqat HAQIQIY o'zgarishda (render paytidagi bir xil save() hisobga olinmaydi)    // ma'lumot o'zgardi → 30 s kutib yuboriladi
+    bk.touch = function () { if (!CS.on) return; if (curSig() === CS.sig) return; CS.pending = true; saveCloud(); schedulePrep(); if (!CS.conflict) schedule(cfg.autoSaved && cfg.autoSaved() ? 4000 : undefined); };   // akkaunt bilan avtomatik saqlashda 4 s (iOS fonga o'tganda JS to'xtaydi); oddiy bulutda 30 s   // faqat HAQIQIY o'zgarishda (render paytidagi bir xil save() hisobga olinmaydi)    // ma'lumot o'zgardi → 30 s kutib yuboriladi
     function flush(force) {
       if (!CS.on || busy || CS.conflict || (!CS.pending && !force)) return Promise.resolve(false);
       if (!online()) { changed(); return Promise.resolve(false); }                  // oflayn: navbatda (pending saqlangan), 'online' hodisasida yuboriladi
       busy = true; clearTimeout(timer); var text, mark = curSig(); try { text = cfg.exportText(); } catch (e) { busy = false; return Promise.resolve(false); }
-      return keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { return api('PUT', '', { id: k.id, ilova: cfg.app, kutilgan: CS.ver, blob: blob }, blob.length < 60000); }); }).then(function (r) {
+      var sent = CS.ver;
+      return keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { return api('PUT', '', { id: k.id, ilova: cfg.app, kutilgan: sent, blob: blob }, blob.length < 60000); }); }).then(function (r) {
         busy = false;
         if (r.s === 200) { CS.ver = r.j.versiya; CS.last = Date.now(); retry = 0; CS.sig = mark; CS.pending = curSig() !== mark; saveCloud(); if (CS.pending) schedule(); }
+        else if (r.s === 409 && r.j.versiya && r.j.versiya < sent) { CS.ver = r.j.versiya; saveCloud(); schedule(300); }   // serverdagi versiya biz bilganimizdan KAM: oldingi (keepalive) yozuv yetib bormagan, boshqa qurilma yozmagan → xavfsiz qayta urinish
         else if (r.s === 409) { CS.conflict = r.j.versiya || 1; saveCloud(); }
         else backoff();
         changed(); return r.s === 200;
       }, function () { busy = false; backoff(); changed(); return false; });
     }
     bk.flush = flush;
+    /* iOS Safari/Chrome: sahifa fonga o'tganda yoki yopilganda JS tez to'xtaydi — asinxron shifrlash (WebCrypto) tugamay qolishi mumkin. Shuning uchun o'zgarishdan keyin
+       (250 ms) shifrlangan nusxa OLDINDAN tayyorlab qo'yiladi; pagehide/visibilitychange'da u SINXRON keepalive PUT bilan yuboriladi (kutish yo'q). */
+    var prep = null, prepTimer = null;
+    function prepare() {
+      if (!CS.on || CS.conflict) return; var mark = curSig(), text; try { text = cfg.exportText(); } catch (e) { return; }
+      keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { prep = { mark: mark, id: k.id, blob: blob }; }); }, function () {});
+    }
+    function schedulePrep() { clearTimeout(prepTimer); prepTimer = setTimeout(prepare, 250); }
+    function beacon() {                                // true = yuborildi
+      if (!CS.on || !CS.pending || CS.conflict || busy || !prep || prep.mark !== curSig() || prep.blob.length >= 60000 || !online()) return false;
+      var p0 = prep; prep = null;
+      try { fetch(ZAXIRA_API, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: p0.id, ilova: cfg.app, kutilgan: CS.ver, blob: p0.blob }), keepalive: true, cache: 'no-store' })['catch'](function () {}); } catch (e) { return false; }
+      CS.ver += 1; CS.pending = false; CS.sig = p0.mark; CS.last = Date.now(); saveCloud(); clearTimeout(timer); return true;
+    }
+    bk.beacon = beacon;
     if (typeof document !== 'undefined') {
-      document.addEventListener('visibilitychange', function () { if (document.hidden && CS.on && CS.pending) flush(); });
-      window.addEventListener('pagehide', function () { if (CS.on && CS.pending) flush(); });
+      document.addEventListener('visibilitychange', function () { if (document.hidden && CS.on && CS.pending && !beacon()) flush(); });
+      window.addEventListener('pagehide', function () { if (CS.on && CS.pending && !beacon()) flush(); });
       window.addEventListener('online', function () { if (CS.on && CS.pending) flush(); changed(); });
       window.addEventListener('offline', function () { changed(); });
     }
@@ -239,11 +256,11 @@
       return deriveKeys(cfg.app, pc.body).then(function (k) { return api('GET', '?id=' + k.id); }).then(function (r) { return { s: r.s, versiya: r.j && r.j.versiya, yangilangan: r.j && r.j.yangilangan }; }, function () { return { s: 0 }; });
     };
     bk.enableNew = function () {                      // yangi kod bilan bulutga avtomatik saqlashni yoqish (kod foydalanuvchiga ko'rsatilmaydi — akkauntga o'ralib saqlanadi)
-      var code = genCode(cfg.app); CS = { on: true, code: code, ver: 0, last: 0, pending: true, conflict: 0, sig: '' }; saveCloud(); schedule(2000); changed(); return code;
+      var code = genCode(cfg.app); CS = { on: true, code: code, ver: 0, last: 0, pending: true, conflict: 0, sig: '' }; saveCloud(); schedule(50); changed(); return code;   // kirish bilan birga DARHOL birinchi saqlash
     };
     bk.adoptCode = function (raw, ver) {              // shu qurilmadagi ma'lumot akkauntdagi kodga yoziladi (ver: bulutdagi joriy versiya — PUT o'tishi uchun)
       var pc = parseCode(cfg.app, raw); if (!pc.ok) return false; var code = PREFIX[cfg.app] + '-' + pc.body.match(/.{4}/g).join('-');
-      CS = { on: true, code: code, ver: ver || 0, last: 0, pending: true, conflict: 0, sig: '' }; saveCloud(); schedule(2000); changed(); return true;
+      CS = { on: true, code: code, ver: ver || 0, last: 0, pending: true, conflict: 0, sig: '' }; saveCloud(); schedule(50); changed(); return true;
     };
     function takeCloud() {
       keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id).then(function (r) { if (r.s !== 200) throw new Error('net'); return open(cfg.app, k, r.j.blob).then(function (text) { var res = cfg.importText(text); if (!res || !res.ok) throw new Error('bad'); cfg.applyState(res.state); CS.ver = r.j.versiya; CS.last = r.j.yangilangan || Date.now(); CS.conflict = 0; CS.pending = false; CS.sig = curSig(); saveCloud(); if (cfg.kit) cfg.kit.toast(L().clTaken, null, true); changed(); }); }); })['catch'](function () { if (cfg.kit) cfg.kit.toast(L().eNet); });

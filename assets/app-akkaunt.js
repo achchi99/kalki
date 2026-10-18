@@ -35,7 +35,8 @@
       stP: "Qat'iy rejimda tiklash kodingiz serverda saqlanmaydi: yangi telefonda ma'lumotni FAQAT shu kod bilan tiklaysiz. Kodni yo'qotsangiz, ma'lumotni hech kim — biz ham — tiklay olmaydi.", stCode: 'Kodingiz (avval yozib oling):', stGo: "Qat'iy rejimni yoqish",
       stOnP: "Qat'iy rejim yoqilgan: tiklash kodi serverda saqlanmaydi, ma'lumotni faqat kod bilan tiklaysiz. Email bilan tiklashni qayta yoqmoqchimisiz?", stBack: 'Email bilan tiklashni yoqish', stNoCode: "Qaytish uchun bu qurilmada tiklash kodi kerak. Avval kod bilan tiklang.",
       stLoginT: "Qat'iy rejim yoqilgan", stLoginP: "Bu akkaunt qat'iy rejimda: ma'lumotni faqat tiklash kodi bilan tiklaysiz.", stLoginGo: 'Tiklash kodini kiritish', stLoginNo: 'Hozir emas',
-      onbLink: 'Email bilan kirish (yangi telefon)'
+      onbLink: 'Email bilan kirish (yangi telefon)',
+      eTypo: "Email manzilida xato bo'lishi mumkin. «{a}» o'rniga «{b}» yozdik — to'g'ri bo'lsa «Kod yuborish»ni bosing.", eRestore: "Akkauntdagi ma'lumotni tiklab bo'lmadi. Internetni tekshirib, qaytadan kirib ko'ring."
     },
     ru: {
       rowT: 'Вход по email', rowS: 'Ваши данные сохраняются автоматически', rowOnT: 'Аккаунт', rowOnS: '{e}', rowOnSaved: '{e} · сохраняется автоматически',
@@ -57,22 +58,26 @@
       stP: 'В строгом режиме код восстановления не хранится на сервере: на новом телефоне данные восстанавливаются ТОЛЬКО по этому коду. Если потерять код, никто, включая нас, не сможет восстановить данные.', stCode: 'Ваш код (сначала запишите):', stGo: 'Включить строгий режим',
       stOnP: 'Строгий режим включён: код не хранится на сервере, данные восстанавливаются только по коду. Хотите снова включить восстановление по email?', stBack: 'Включить восстановление по email', stNoCode: 'Для возврата на этом устройстве нужен код восстановления. Сначала восстановите данные по коду.',
       stLoginT: 'Строгий режим включён', stLoginP: 'Этот аккаунт в строгом режиме: данные восстанавливаются только по коду восстановления.', stLoginGo: 'Ввести код восстановления', stLoginNo: 'Не сейчас',
-      onbLink: 'Вход по email (новый телефон)'
+      onbLink: 'Вход по email (новый телефон)',
+      eTypo: 'Возможна опечатка в email. Мы заменили «{a}» на «{b}» — если верно, нажмите «Отправить код».', eRestore: 'Не удалось восстановить данные из аккаунта. Проверьте интернет и войдите ещё раз.'
     }
   };
   function fill(s, p) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return p && p[k] != null ? p[k] : m; }); }
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  var TYPO = { 'gmail.con': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmail.comm': 'gmail.com', 'gmial.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmaill.com': 'gmail.com', 'mail.ry': 'mail.ru', 'mail.ruu': 'mail.ru', 'bk.ry': 'bk.ru', 'yandex.ry': 'yandex.ru', 'yandex.con': 'yandex.com', 'inbox.uzz': 'inbox.uz' };
+  function typoFix(email) { var i = email.lastIndexOf('@'); if (i < 0) return null; var d = email.slice(i + 1).toLowerCase(), f = TYPO[d] || (/\.con$/.test(d) ? d.replace(/\.con$/, '.com') : null); return f && f !== d ? email.slice(0, i + 1) + f : null; }   // «gmail.con» kabi odatiy xatolar (dev rejimda xat ketmagani uchun xato sezilmay qolardi)
   var ICON = '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
   var ICON2 = '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/></svg>';
   var CHEV = '<svg class="rz-i r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 
   function create(cfg) {
     var ak = {}, bk = cfg.bk, app = cfg.app;
-    var S = { yoq: false, kirgan: false, email: '', marketing: 0, qur: 0, dev: false, il: {}, t: 0 }, loading = false, syncing = false, lastTry = 0, step = 'in', cur = { email: '', next: 0, busy: false, err: '' }, timer = null, moreOpen = false;
+    var S = { yoq: false, kirgan: false, email: '', marketing: 0, qur: 0, dev: false, il: {}, t: 0 }, loading = false, syncing = false, lastTry = 0, step = 'in', cur = { email: '', next: 0, busy: false, err: '' }, timer = null, moreOpen = false, typoSeen = {};
     function L() { return D[(cfg.lang ? cfg.lang() : 'uz') === 'ru' ? 'ru' : 'uz']; }
     function til() { if (cfg.til) return cfg.til(); if (typeof document !== 'undefined') { var h = document.documentElement; if (h.lang === 'ru') return 'ru'; if (h.getAttribute('data-script') === 'cyr') return 'cyr'; } return 'uz'; }
     function changed() { if (cfg.onChange) cfg.onChange(); }
     function hasData() { return !!(cfg.hasData && cfg.hasData()); }
+    function isTrivial() { try { return !!(cfg.isTrivial && cfg.isTrivial()); } catch (e) { return false; } }   // faqat onboarding profili: yo'qotadigan narsa yo'q → bulutdagi to'liq nusxa ustiga HECH QACHON yozilmaydi, aksincha u olinadi
     function sig() { return [S.yoq, S.kirgan, S.email, S.marketing, S.qur, JSON.stringify(S.il)].join('|'); }
     function readCache() { try { var o = JSON.parse(localStorage.getItem(CACHE) || 'null'); return o && typeof o === 'object' ? o : null; } catch (e) { return null; } }
     function writeCache() { try { localStorage.setItem(CACHE, JSON.stringify(S)); } catch (e) {} }
@@ -166,6 +171,7 @@
       cur.email = email; if (cur.busy) return; setErr('');
       if (maqsad !== 'ochirish' && !email) { setErr(t.eEmpty); return; }
       if (maqsad !== 'ochirish' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr(t.eEmail); return; }
+      if (maqsad !== 'ochirish') { var fx = typoFix(email); if (fx && !typoSeen[email]) { typoSeen[email] = true; typoSeen[fx] = true; var ie = document.getElementById('akkEmail'); if (ie) ie.value = fx; cur.email = fx; setErr(fill(t.eTypo, { a: email, b: fx })); return; } }
       var bid = maqsad === 'ochirish' ? 'akkDelSend' : 'akkSend', btxt = maqsad === 'ochirish' ? t.delSend : t.send;
       busy(true, bid, t.sending);
       call('POST', 'kod', { email: email, til: til(), maqsad: maqsad }).then(function (r) {
@@ -230,18 +236,19 @@
       cfg.kit.openSheet('akkc', '<div class="bk-sheet">' + cfg.kit.shHead(t.cfT) + '<p class="rz-p">' + esc(fill(t.cfP, { d: d })) + '</p><div class="rz-actions akk-cf"><button type="button" class="rz-btn primary" data-act="akkcfcloud">' + esc(t.cfCloud) + '</button><button type="button" class="rz-btn ghost" data-act="akkcflocal">' + esc(t.cfLocal) + '</button></div></div>');
       conflictSheet.code = code; conflictSheet.ver = peek && peek.versiya;
     }
-    function restoreFrom(code) {
+    function restoreFrom(code, loud) {
       return bk.restoreCode(code).then(function (r) {
         if (r.ok) { markLinked('konvert'); if (cfg.kit) cfg.kit.closeSheet(); toast(L().okRestored); changed(); return true; }
         if (r.err === 'eNone' && hasData()) { bk.adoptCode(code, 0); markLinked('konvert'); toast(L().okSaved); changed(); return true; }   // akkauntda hali nusxa yo'q → shu qurilmadagi yoziladi
         // eNone va ma'lumot yo'q: ulangan deb BELGILANMAYDI — ma'lumot paydo bo'lganda check() qayta ulab, adoptCode qiladi
+        if (r.err !== 'eNone' && loud && cfg.kit) cfg.kit.toast(r.err === 'eNet' ? L().eNet : r.err === 'eLimit' ? errText('limit', { kut: 600 }) : L().eRestore);   // xato jimgina yutilmaydi
         return false;
       });
     }
-    function reconcile(code) {
+    function reconcile(code, loud) {
       var mine = bk.cloudCode();
       if (mine && norm(mine) === norm(code)) { markLinked('konvert'); return Promise.resolve(); }                // allaqachon shu kod
-      if (!hasData()) return restoreFrom(code);                                                                   // yangi qurilma: avtomatik tiklash
+      if (!hasData() || isTrivial()) return restoreFrom(code, loud);                                              // yangi qurilma (yoki faqat onboarding profili bor): avtomatik tiklash — bulutdagi nusxa yo'qolmaydi
       return bk.peekCode(code).then(function (p) {
         if (p.s === 404) { bk.adoptCode(code, 0); markLinked('konvert'); toast(L().okSaved); changed(); return; }  // akkauntda nusxa yo'q → shu qurilma yozadi
         if (p.s === 200) { conflictSheet(code, p); return; }                                                     // ikkala tomonda ma'lumot → foydalanuvchi tanlaydi
@@ -255,14 +262,14 @@
     function sync(afterLogin) {
       if (!S.kirgan || syncing || !bk) return Promise.resolve(); syncing = true;
       return call('GET', 'tiklash', null, '?ilova=' + app).then(function (r) {
-        if (r.s === 401) { sessionLost(); return; } if (r.s !== 200) return;
+        if (r.s === 401) { sessionLost(); return; } if (r.s !== 200) { if (afterLogin && cfg.kit) cfg.kit.toast(L().eSrv); return; }
         if (r.j.yoq) return linkLocal();
         if (r.j.rejim === 'qatiy') return strictOnLogin();
-        if (r.j.rejim === 'konvert' && r.j.kod) return reconcile(r.j.kod);
-      }).then(function () { syncing = false; changed(); }, function () { syncing = false; });
+        if (r.j.rejim === 'konvert' && r.j.kod) return reconcile(r.j.kod, afterLogin);
+      }).then(function () { syncing = false; changed(); }, function () { syncing = false; if (afterLogin && cfg.kit) cfg.kit.toast(L().eNet); });
     }
     ak.check = function () {                         // render paytida: kirgan, lekin bu ilova ulanmagan va ma'lumot bor → ulash (tarmoq faqat shu holatda)
-      if (S.yoq && S.kirgan && hasData() && !syncing && !S.il[app] && Date.now() - lastTry > 60000) { lastTry = Date.now(); sync(false); }
+      if (S.yoq && S.kirgan && hasData() && !syncing && (!S.il[app] || (S.il[app] === 'konvert' && !bk.cloudOn() && isTrivial())) && Date.now() - lastTry > 60000) { lastTry = Date.now(); sync(false); }
     };
     function strictSheet() {
       var t = L(), k = cfg.kit; if (!k) return; var on = S.il[app] === 'qatiy', code = bk.cloudCode();
