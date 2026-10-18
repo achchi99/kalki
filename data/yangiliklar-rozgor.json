@@ -2,10 +2,24 @@
   "app": "rozgor",
   "items": [
     {
+      "v": 2,
+      "d": "2026-10-18",
+      "items": [
+        {
+          "uz": "Qorong'i mavzu yangilandi: neytral grafit, o'qish oson, ranglar tinchlandi.",
+          "ru": "Тёмная тема обновлена: нейтральный графит, читать проще, цвета спокойнее."
+        }
+      ]
+    },
+    {
       "v": 1,
       "d": "2026-10-17",
       "items": [
-        { "uz": "Ma'lumotlarni Telegramga zaxira qilish va bulutga saqlash mumkin — telefon almashsangiz ham yo'qolmaydi.", "ru": "Данные можно сохранить в Telegram и в облако — они не пропадут, даже если вы смените телефон.", "show": "backup" }
+        {
+          "uz": "Ma'lumotlarni Telegramga zaxira qilish va bulutga saqlash mumkin — telefon almashsangiz ham yo'qolmaydi.",
+          "ru": "Данные можно сохранить в Telegram и в облако — они не пропадут, даже если вы смените телефон.",
+          "show": "backup"
+        }
       ]
     }
   ]

@@ -1,0 +1,81 @@
+// TEMA (neytral grafit): palitra, kontrast (WCAG AA), rangli fonli bloklar YO'Q, havola/katak, token intizomi.   node tools/dizayn/test-tema.mjs
+//  1) CSS (kalkifit, rozgor, appkit): token bo'lmagan qattiq hex soni = 0 (istisnolar: tools/dizayn/tema-istisno.json); var(--x,#zaxira) tokendan foydalanish hisoblanadi;
+//  2) qorong'i palitra = berilgan qiymatlar; matn/sub/accent/xato kontrasti ≥ 4.5 (och va qorong'i); sub2 faqat matn bo'lmagan joyda;
+//  3) brauzer (360 px, ikkala mavzu, ikkala ilova): sahifa/karta fon ranglari, rangli fonli katta bloklar yo'q, havolalar accent rangda (yashil emas), katak ko'rinadi, axe kontrast, overlay yengil.
+import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs';
+const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
+const ISTISNO = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/tema-istisno.json'), 'utf8'));
+let n = 0; const log = (m) => console.log('OK  ', ++n + '.', m);
+const FILES = ['assets/css/kalkifit.css', 'assets/css/rozgor.css', 'assets/css/appkit.css']; const CSS = Object.fromEntries(FILES.map((f) => [f, fs.readFileSync(path.join(ROOT, f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')]));
+/* ---------- 1. token intizomi ---------- */
+const HEX = /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b/;
+for (const f of FILES) {
+  const bad = []; for (const m of CSS[f].matchAll(/([^{}]+)\{([^{}]*)\}/g)) { const sel = m[1].trim().replace(/\s+/g, ' ').slice(-80);
+    for (const d0 of m[2].split(';')) { const d = d0.trim(); if (!d || d.startsWith('--')) continue; const x = d.replace(/var\(\s*--[\w-]+\s*,\s*#[0-9a-fA-F]{3,8}\s*\)/g, 'var()'); if (HEX.test(x) && !ISTISNO.hex.some((e) => e.file === f && sel.includes(e.selektor) && d.includes(e.qiymat))) bad.push(sel + ' { ' + d.slice(0, 70) + ' }'); } }
+  assert.deepEqual(bad, [], f + ': token bo\'lmagan hex ' + bad.length + ' ta');
+}
+log('CSS (kalkifit.css, rozgor.css, appkit.css): token bo\'lmagan qattiq hex soni = 0 (istisnolar ro\'yxati: ' + ISTISNO.hex.length + ' ta); var(--x,#zaxira) tokendan foydalanish');
+/* ---------- 2. palitra va kontrast ---------- */
+const props = (css, selRe) => { const o = {}; for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) if (selRe.test(m[1].trim())) for (const d of m[2].split(';')) { const k = /^\s*(--[\w-]+)\s*:\s*(.+?)\s*$/.exec(d); if (k) o[k[1]] = k[2]; } return o; };
+const resolve = (t, k, d = 0) => { let v = t[k]; if (v == null || d > 5) return v; const m = /^var\((--[\w-]+)\)$/.exec(v); return m ? resolve(t, m[1], d + 1) : v; };
+const A = CSS['assets/css/appkit.css'], K = CSS['assets/css/kalkifit.css'];
+const rzL = props(A, /^\.rz$/), rzD = props(A, /^html\[data-theme=dark\] \.rz$/), slL = props(K, /^\.sl$/), slD = props(K, /^html\[data-theme=dark\] \.sl$/);
+const T = { rzL, rzD: Object.assign({}, rzL, rzD), kfL: Object.assign({}, rzL, slL), kfD: Object.assign({}, rzL, rzD, slD) };
+const lum = (h) => { const c = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+const cr = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+const V = (t, k) => { let v = resolve(t, k); if (/^#[0-9a-fA-F]{3}$/.test(String(v))) v = '#' + v.slice(1).split('').map((c) => c + c).join(''); assert.match(String(v), /^#[0-9a-fA-F]{6}$/, k + ' = ' + v); return v.toUpperCase(); };
+const SPEC = { '--bg': '#111214', '--card': '#1A1C1F', '--soft': '#222529', '--line': '#2C2F34', '--track': '#2A2D32', '--ink': '#EDEEF0', '--mut': '#A3A8B0', '--mut2': '#7C828B' };
+for (const [k, v] of Object.entries(SPEC)) for (const th of ['rzD', 'kfD']) assert.equal(V(T[th], k), v, th + ' ' + k);
+assert.equal(V(T.kfD, '--fill'), '#FF6B4A'); assert.equal(V(T.kfD, '--acc2'), '#FF8A6F'); assert.equal(V(T.kfD, '--onacc'), '#1A0A05'); assert.equal(V(T.kfD, '--err'), '#FF5C5C'); assert.match(resolve(T.kfD, '--overlay'), /^rgba\(0,\s*0,\s*0,\s*\.45\)$/);
+assert.ok(!/#0[0-9A-F]1[0-9A-F]{2}[0-9A-F]/i.test(''), 'ko\'k-qora fon qiymatlari yo\'q');
+for (const th of ['kfD', 'kfL', 'rzD', 'rzL']) {
+  const t = T[th], dark = th.endsWith('D'), surf = ['--bg', '--card', '--soft'].concat(dark ? ['--track'] : []);
+  for (const bgk of surf) { for (const fg of ['--ink', '--mut', '--acc2', '--err']) { if (th === 'rzL' && fg === '--acc2' && bgk === '--soft') continue; const r = cr(V(t, fg), V(t, bgk)); assert.ok(r >= 4.5, th + ' ' + fg + ' ' + V(t, fg) + ' / ' + bgk + ' ' + V(t, bgk) + ' = ' + r.toFixed(2)); } }
+  assert.ok(cr(V(t, '--mut2'), V(t, '--bg')) >= (dark ? 4.5 : 4.5), th + ' --mut2 / --bg'); assert.ok(cr(V(t, '--mut2'), V(t, '--card')) >= 3, th + ' --mut2 (matn bo\'lmagan: katak chegarasi, ikonka) / card ≥ 3');
+  const onfill = th.startsWith('kf') ? V(t, '--onacc') : V(t, '--on'), fill = th.startsWith('kf') ? V(t, '--fill') : V(t, '--acc2'); assert.ok(cr(onfill, fill) >= 4.5, th + ' tugma matni / fill ' + cr(onfill, fill).toFixed(2));
+  assert.ok(cr(V(t, '--on-err'), V(t, '--err')) >= 4.5, th + ' on-err / err');
+}
+log('palitra: qorong\'i = bg #111214, surf #1A1C1F, surf2 #222529, line #2C2F34, track #2A2D32, text #EDEEF0, sub #A3A8B0, sub2 #7C828B, accent #FF6B4A (havola #FF8A6F), xato #FF5C5C, overlay .45; ikkala mavzuda ink/sub/accent/xato matni barcha sirtlarda ≥ 4.5:1; sub2 faqat matn bo\'lmagan joyda (katak chegarasi ≥ 3:1)');
+/* ---------- 3. brauzer ---------- */
+const KF = require(path.join(ROOT, 'assets/kalkifit-core.js')), RZ = require(path.join(ROOT, 'assets/rozgor-core.js')), D = KF.dates, TODAY = D.today(); const AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
+const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.webp': 'image/webp' };
+const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
+await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch());
+function kfSeed() { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 40 * 86400000; st.prefs = { tipsDone: true, jokes: true }; st.profile = { sex: 'f', preg: false, age: 31, height: 166, weight: 64.5, act: 2, goal: 'slow', goalWeight: 60 }; st.trackStart = D.addDays(TODAY, -30); for (let i = 0; i < 8; i++) KF.addWeight(st, D.addDays(TODAY, -i * 2), 66 - i * 0.12); for (let i = 0; i < 12; i++) { const d = D.addDays(TODAY, -i); KF.setSteps(st, d, 4000 + i * 300); KF.setWater(st, d, 3); if (i) KF.addFood(st, d, { meal: 'l', ts: 2, fid: 'chuchvara', unit: 'kosa', qty: 1, g: 250, kcal: 500 + i * 40, p: 20, f: 18, c: 60, est: false }); } KF.addFood(st, TODAY, { meal: 'b', ts: 1, fid: 'chuchvara', unit: 'kosa', qty: 1, g: 250, kcal: 420, p: 18, f: 14, c: 52, est: false }); return st; }
+function rzSeed() { const st = RZ.emptyState(); st.prefs = { tipsDone: true }; st.setup = true; st.created = Date.now() - 30 * 86400000; st.base = 3200000; st.reserve = 500000; st.income = RZ.addDays(TODAY, 9); const cats = ['oziq', 'transport', 'soglik', 'xarid']; for (let i = 0; i < 8; i++) st.tx.push({ id: 't' + i, type: 'exp', amount: 18000 + i * 9300, cat: cats[i % 4], date: RZ.addDays(TODAY, -(i % 5)), ts: Date.now() - i * 1000 }); st.bills = [{ id: 'b1', kind: 'komm', name: 'Kommunal', amount: 420000, due: RZ.addDays(TODAY, 3), repeat: 'monthly' }]; return st; }
+async function open(app, scheme, h = 780) { const c = await b.newContext({ viewport: { width: 360, height: h }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: scheme }); await c.addInitScript((o) => { try { localStorage.setItem(o.k, JSON.stringify(o.s)); localStorage.setItem('kalki_news_' + o.app, '{"shown":999,"read":999}'); localStorage.setItem('kalki_theme', o.scheme); } catch (e) {} }, { k: app === 'kalkifit' ? 'kalki_fit' : 'kalki_rozgor', s: app === 'kalkifit' ? kfSeed() : rzSeed(), app, scheme });
+  const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js|\/api\//, (r) => r.abort()); await p.goto(BASE + '/' + app, { waitUntil: 'networkidle' }); await p.evaluate((s) => document.documentElement.setAttribute('data-theme', s), scheme); await p.waitForTimeout(1000); return p; }
+const SCAN = (allow) => { const sat = (r, g, bl) => { const mx = Math.max(r, g, bl) / 255, mn = Math.min(r, g, bl) / 255, l = (mx + mn) / 2; return mx === mn ? 0 : (mx - mn) / (1 - Math.abs(2 * l - 1)); };
+  const out = []; for (const e of document.querySelectorAll('#rzApp *')) { const r = e.getBoundingClientRect(); if (r.width < 60 || r.height < 24 || r.bottom < 0) continue; const cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') continue; const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/.exec(cs.backgroundColor); if (!m) continue; const a = m[4] == null ? 1 : +m[4]; if (a < 0.5) continue;
+    if (allow.some((s) => { try { return e.matches(s) || e.closest(s); } catch (x) { return false; } })) continue; const sa = sat(+m[1], +m[2], +m[3]); if (sa > 0.3) out.push((e.id ? '#' + e.id : '') + '.' + String(e.className && e.className.baseVal != null ? e.className.baseVal : e.className).trim().split(/\s+/).join('.') + ' ' + cs.backgroundColor + ' s=' + sa.toFixed(2)); } return out; };
+const axeRun = async (p) => { await p.evaluate(AXE); return p.evaluate(async () => { const x = await axe.run(document.querySelector('#rzApp'), { runOnly: { type: 'rule', values: ['color-contrast'] } }); return x.violations.flatMap((v) => v.nodes.map((nd) => nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 110) : ''))); }); };
+const rgb = (hex) => { const h = hex.replace('#', ''); return `rgb(${parseInt(h.slice(0, 2), 16)}, ${parseInt(h.slice(2, 4), 16)}, ${parseInt(h.slice(4, 6), 16)})`; };
+try {
+  { const p = await open('kalkifit', 'dark'); const hit = await p.evaluate((sc) => { const f = new Function('allow', 'return (' + sc + ')(allow)'); const d = document.createElement('div'); d.id = 'mut'; d.style.cssText = 'background:#3A2F12;width:200px;height:50px'; document.querySelector('#rzApp').appendChild(d); return f([]); }, SCAN.toString()); assert.ok(hit.some((x) => /#mut/.test(x)), 'tekshiruv jigarrang blokni TOPADI (o\'z-o\'zini sinash)'); await p.context().close(); }
+  const SCREENS = { kalkifit: [['today', 'today'], ['diary', 'diary'], ['results', 'results'], ['profile', 'profile']], rozgor: [['today', 'today'], ['bills', 'bills'], ['set', 'set']] };
+  for (const scheme of ['dark', 'light']) for (const app of ['kalkifit', 'rozgor']) {
+    const tok = T[(app === 'kalkifit' ? 'kf' : 'rz') + (scheme === 'dark' ? 'D' : 'L')]; let p = await open(app, scheme, 1300);
+    const tabs = await p.$$eval('[data-act=tab]', (e) => e.map((x) => x.getAttribute('data-v')));
+    for (const [v, nm] of SCREENS[app]) { const tv = tabs.includes(v) ? v : (v === 'bills' ? tabs.find((x) => /bill|tolov/.test(x)) : v); if (!tv || !tabs.includes(tv)) continue; await p.click(`[data-act=tab][data-v=${tv}]`); await p.waitForTimeout(700);
+      const colored = await p.evaluate(SCAN, ISTISNO.rangliSelektorlar); assert.deepEqual(colored, [], `${app}/${scheme}/${nm}: rangli fonli katta bloklar`); const ax = await axeRun(p); assert.deepEqual(ax, [], `${app}/${scheme}/${nm}: kontrast (axe)`); }
+    // oynalar (sheet): Ovqat qo'shish + Porsiya (KalkiFit), Xarajat (Ro'zg'or)
+    await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500);
+    const sheets = []; if (app === 'kalkifit') { await p.click('#mainAdd'); await p.waitForTimeout(600); sheets.push('ovqat'); } else { await p.click('#rzFab'); await p.waitForTimeout(600); sheets.push('xarajat'); }
+    for (const nm of sheets) { const sc = async (extra) => { const colored = await p.evaluate(SCAN, ISTISNO.rangliSelektorlar); assert.deepEqual(colored, [], `${app}/${scheme}/${nm}${extra}: rangli fonli bloklar`); const ax = await axeRun(p); assert.deepEqual(ax, [], `${app}/${scheme}/${nm}${extra}: kontrast`); }; await sc('');
+      if (app === 'kalkifit') { await p.fill('#fdQ', 'chuchvara'); await p.waitForTimeout(500); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(700); await sc(' (porsiya)'); } }
+    await p.keyboard.press('Escape'); await p.evaluate(() => document.querySelector('[data-act=sheetclose]') && document.querySelector('#rzSheet .rz-x') && document.querySelector('#rzSheet .rz-x').click()); await p.waitForTimeout(400);
+    if (scheme === 'dark') { assert.equal(await p.evaluate(() => getComputedStyle(document.body).backgroundColor), rgb('#111214'), app + ': sahifa foni grafit (ko\'k-qora emas)'); const card = await p.evaluate(() => { const c = document.querySelector('#rzApp .rz-card:not(.nudge):not(.good):not(.rz-hero), #rzApp .sl-card'); return c && getComputedStyle(c).backgroundColor; }); assert.equal(card, rgb('#1A1C1F'), app + ': karta foni surf'); }
+    // havolalar: accent rangda (yashil emas) — barcha ko'rinadigan <a> (ilova ichi) va .rz-link
+    await p.evaluate(() => { const d = document.createElement('div'); d.className = 'rz-main'; d.innerHTML = '<a id="tA" href="#">Maxfiylik</a><button class="rz-link" id="tL">x</button><label class="rz-chk"><input type="checkbox" id="tC"><span>Rozi</span></label><label class="rz-chk"><input type="checkbox" id="tC2" checked><span>Rozi</span></label>'; document.querySelector('#rzApp').appendChild(d); });
+    const acc = tok['--acc2'] ? rgb(V(tok, '--acc2')) : null; for (const id of ['#tA', '#tL']) assert.equal(await p.evaluate((s) => getComputedStyle(document.querySelector(s)).color, id), acc, `${app}/${scheme}: havola rangi = accent (${id})`);
+    if (app === 'kalkifit') { const [r, g, bl] = (await p.evaluate(() => getComputedStyle(document.querySelector('#tA')).color)).match(/\d+/g).map(Number); assert.ok(!(g > r && g > bl), 'KalkiFit havolasi yashil emas'); }
+    const cb = await p.evaluate(() => { const g = (s) => { const e = document.querySelector(s), c = getComputedStyle(e); return { b: c.borderTopColor, w: c.borderTopWidth, bg: c.backgroundColor, ap: c.appearance }; }; return { off: g('#tC'), on: g('#tC2') }; });
+    assert.equal(cb.off.b, rgb(V(tok, '--mut2')), `${app}/${scheme}: belgilanmagan katak chegarasi ko'rinadi (--mut2)`); assert.equal(cb.off.w, '2px'); assert.equal(cb.on.bg, rgb(V(tok, app === 'kalkifit' ? '--fill' : '--fill')), `${app}/${scheme}: belgilangan katak — accent fon`);
+    assert.deepEqual(p.errs, []); await p.context().close();
+  }
+  log('brauzer (360 px, qorong\'i + och, KalkiFit + Ro\'zg\'or ekranlari): rangli fonli katta bloklar YO\'Q, axe kontrast (WCAG AA) toza, sahifa foni grafit, karta foni surf, havolalar accent rangda (KalkiFit — yashil emas), katak ko\'rinadi (chegara --mut2, belgilanganda accent fon)');
+  /* overlay yengil, blur yo'q */
+  { const p = await open('kalkifit', 'dark'); await p.click('#mainAdd'); await p.waitForTimeout(600); const o = await p.evaluate(() => { const c = getComputedStyle(document.querySelector('#rzBg')); return { bg: c.backgroundColor, f: c.backdropFilter }; }); assert.equal(o.bg, 'rgba(0, 0, 0, 0.45)'); assert.ok(!o.f || o.f === 'none', 'overlay blur yo\'q'); await p.context().close(); }
+  log('overlay: rgba(0,0,0,.45), blur yo\'q (avval og\'ir qora + xiralashtirish edi)');
+  console.log('\nTema: ' + n + ' tekshiruv OK');
+} finally { await b.close().catch(() => {}); srv.close(); }
