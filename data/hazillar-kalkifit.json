@@ -494,7 +494,7 @@
     "Bitta yozuv ko'paydi. Xotiraga ishonmaslik — aqlli odat.",
     "Qo'shildi. Yozilmagan ovqat hisobda yo'q — telefon folbin emas.",
     "Hisob yangilandi. Idish yana bir qultum to'ldi.",
-    "Tayyor. Bunaqa tartibli yozuvga buxgalterning ham havasi keladi.",
+    "Tayyor. Bunaqa aniq yozuvga buxgalterning ham havasi keladi.",
     "Yana bir qator — daftar qalinlashmoqda, odat mustahkamlanmoqda.",
     "Qo'shildi. Aytgancha, yeganingizni yozmasangiz, idish sizga ishonmaydi.",
     "Yozuv saqlandi. Rostgo'ylik daftarda ham, kayfiyatda ham hisobga olinadi."
@@ -629,7 +629,7 @@
     "Hisob tugadi. Daftarga bugun ham rostgo'ylik yozildi.",
     "Kun muhrlandi. Hisobchi imzo chekib, choyga o'tdi.",
     "Yakunlandi. Ertaga yana yangi sahifa — qalam o'zingizda.",
-    "Kun tugadi, daftar yopildi. Bugungi eng tartibli ishingiz shu bo'ldi, ehtimol."
+    "Kun tugadi, daftar yopildi. Bugungi eng kichik g'alabangiz shu bo'ldi, ehtimol."
    ],
    "ru": [
     "День завершён. Дневник закрыт, бухгалтер ушёл домой.",
@@ -730,7 +730,7 @@
    "uz": [
     "Zaxira nusxa yo'q-ku? Telefon bir kuni «tozalash» qilib hammasini unutishi mumkin.",
     "Daftaringizni bitta bosish bilan ehtiyot qiling. Telefonlar ba'zan keyin kechirim so'raydi.",
-    "Haftalik zaxira vaqti. Bu hazil emas, lekin biz hazil bilan eslatamiz.",
+    "Zaxira nusxa — hazil emas, lekin biz uni hazil bilan eslatamiz.",
     "Zaxira — bu sug'urta, faqat narx so'ramaydi. Bir bosish.",
     "Yozuvlaringiz faqat telefonda. Telefon esa ba'zan suvga tushadi — buni hamma biladi.",
     "Zaxira nusxa olsangiz, yangi telefonga daftar o'zi ko'chadi."
@@ -738,7 +738,7 @@
    "ru": [
     "Резервной копии нет? Телефон однажды «почистится» и всё забудет.",
     "Сохраните дневник одним нажатием. Телефоны иногда потом извиняются.",
-    "Пора для еженедельной копии. Это не шутка, но напоминаем мы с юмором.",
+    "Резервная копия — не шутка, но напоминаем мы с юмором.",
     "Копия — это страховка, только без платы. Одно нажатие.",
     "Записи только в телефоне. А телефоны иногда падают в воду — все знают.",
     "Если сделать копию, дневник сам переедет на новый телефон."

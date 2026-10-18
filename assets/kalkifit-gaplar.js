@@ -67,10 +67,10 @@
 
   /* ---------- tanlash: bir kunda takrorlanmaydi, qayta chizilganda barqaror ---------- */
   function fill(tpl, p) { return String(tpl).replace(/\{(\w+)\}/g, function (m, k) { return p && p[k] != null ? p[k] : ''; }).replace(/\s+([.,!?])/g, '$1').replace(/\s{2,}/g, ' ').trim(); }
-  function jk(st, day) { var p = st.prefs || (st.prefs = {}); if (!p.jk || p.jk.d !== day) p.jk = { d: day, used: {}, cur: null, last: (p.jk && p.jk.last) || {} }; if (!p.jk.last) p.jk.last = {}; return p.jk; }
+  function jk(ctx, day) { var st = ctx.st, p = ctx.store || st.prefs || (st.prefs = {}); if (!p.jk || p.jk.d !== day) p.jk = { d: day, used: {}, cur: null, last: (p.jk && p.jk.last) || {} }; if (!p.jk.last) p.jk.last = {}; return p.jk; }
   function pickLine(ctx, state, params, key) {      // bir kunda takrorlanmaydi; OXIRGI ko'rsatilgan variant keyingi safar ham (kun almashsa ham) qaytmaydi; ctx.fresh — har chaqiruvda yangi tanlov (hodisa uchun)
     var list = (TEXTS[ctx.lang] || TEXTS.uz)[state]; if (!list || !list.length) return null;
-    var j = jk(ctx.st, ctx.today); key = key || state;
+    var j = jk(ctx, ctx.today); key = key || state;
     if (!ctx.fresh && j.cur && j.cur.key === key && j.cur.state === state && list[j.cur.idx] != null) return { state: state, text: fill(list[j.cur.idx], params) };
     var used = j.used[state] || (j.used[state] = []), last = j.last[state], avail = []; for (var i = 0; i < list.length; i++) if (used.indexOf(i) < 0 && !(list.length > 1 && i === last)) avail.push(i);
     if (!avail.length) { used.length = 0; for (i = 0; i < list.length; i++) if (!(list.length > 1 && i === last)) avail.push(i); }

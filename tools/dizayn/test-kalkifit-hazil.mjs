@@ -8,7 +8,7 @@ const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const G = require
 const J = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/hazillar-kalkifit.json'), 'utf8')); const TODAY = D.today();
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const BAN = G.BANNED.map((w) => new RegExp(w, 'i'));
-const BODY_EXTRA = [/ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
+const BODY_EXTRA = [/tartibli|молодец|умница|ortiqcha yedingiz|переели|limit|лимит/i, /ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
 
 /* ---- 1. sxema, to'liqlik, uzunlik ---- */
 const REQUIRED = ['dist_full_day', 'dist_full_week', 'dist_full_month', 'dist_part', 'burn', 'within', 'over', 'over_neutral', 'zero_steps', 'water_low', 'water_ok', 'weight_down', 'weight_up', 'weight_flat', 'streak', 'holiday', 'yesam_ok', 'yesam_over',
@@ -83,7 +83,7 @@ const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit
 try {
   let p = await open('/kalkifit', seed(), 9); assert.ok(poolOf('empty_day').includes(await txt(p, '.sl-first')), 'bo\'sh kun: hazilli matn: ' + await txt(p, '.sl-first'));
   await addFood(p, 'osh'); const fl = await txt(p, '#jFlash'); assert.ok(fl && poolOf('food_first').concat(poolOf('streak'), poolOf('streak7')).some((t) => G.fill(t, { days: '\\d+' }) === fl || new RegExp('^' + G.fill(t, { days: '\\d+' }).replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\\\\d\\+/g, '\\d+') + '$').test(fl)), 'birinchi ovqatdan keyin hazil: ' + fl);
-  await p.waitForTimeout(500); await addFood(p, 'olma'); assert.equal((await stOf(p)).prefs.jfl.n, 1, '60 soniya ichida ikkinchi gap chiqmaydi (spam yo\'q)');
+  await p.waitForTimeout(500); await addFood(p, 'olma'); assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit_hazil') || '{}'))).jfl.n, 1, '60 soniya ichida ikkinchi gap chiqmaydi (spam yo\'q)');
   await p.context().close();
   /* hazil o'chirilgan: neytral matn */
   p = await open('/kalkifit', seed({ jokes: false }), 9); assert.match(await txt(p, '.sl-first'), /Birinchi ovqatni yozing/, 'o\'chirilganda: neytral bo\'sh holat'); assert.equal(await p.locator('#jLine').count(), 0); await addFood(p, 'osh'); assert.match(await txt(p, '#jFlash'), /^Yozildi\. Bugun jami [\d ]+ kkal\.$/); await p.context().close();
@@ -100,7 +100,7 @@ try {
   p = await open('/kalkifit?lang=cyr', seed(), 9); await addFood(p, 'osh'); const cy = await txt(p, '#jFlash'); assert.ok(cy && !/[A-Za-z]{3,}/.test(cy.replace(/AI/g, '')) && /[А-Яа-яЎўҚқҒғҲҳ]/.test(cy), 'ЎЗ: ' + cy); await p.context().close();
   p = await open('/ru/kalkifit', seed(), 9); assert.ok(poolOf('empty_day', 'ru').includes(await txt(p, '.sl-first')), 'RU bo\'sh kun'); await addFood(p, 'плов'); const ru = await txt(p, '#jFlash'); assert.ok(ru && /[А-Яа-я]/.test(ru) && !/[A-Za-z]{3,}/.test(ru), 'RU: ' + ru); assert.deepEqual(p.errs, []); await p.context().close();
   /* kuniga ≤4 */
-  p = await open('/kalkifit', seed({ entries: [100] }), 14); await p.evaluate(() => { const s = window.__kalkifit.state; s.prefs.jfl = { d: s.prefs.jfl && s.prefs.jfl.d, n: 4, t: 0 }; }); const before = (await stOf(p)).prefs.jfl; await p.evaluate(() => { const s = window.__kalkifit.state; const t = new Date(); const d = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0'); s.prefs.jfl = { d, n: 4, t: 0 }; localStorage.setItem('kalki_fit', JSON.stringify(s)); }); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(600); await addFood(p, 'banan'); assert.equal(await p.locator('#jFlash').count(), 0, 'kuniga 4 tadan ortiq gap chiqmaydi'); await p.context().close();
+  p = await open('/kalkifit', seed({ entries: [100] }), 14); await p.evaluate(() => { const t = new Date(); const d = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0'); localStorage.setItem('kalki_fit_hazil', JSON.stringify({ jfl: { d, n: 4, t: 0 } })); }); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(600); await addFood(p, 'banan'); assert.equal(await p.locator('#jFlash').count(), 0, 'kuniga 4 tadan ortiq gap chiqmaydi'); await p.context().close();
   log('Brauzer: bo\'sh kun hazilli (o\'chirilganda neytral), birinchi ovqatdan keyin gap, 60 s ichida ikkinchisi yo\'q, kuniga ≤4; hazil o\'chirilganda «Yozildi. Bugun jami N kkal.»; Profil → Hazil matnlari yoqish/o\'chirish; Bugun qatori (karta emas, idish kartasi ichida); qadam, vazn, kun yakuni; ЎЗ va RU matnlari');
   console.log(`\n${n} ta tekshiruv guruhi o'tdi`);
 } finally { await b.close(); srv.close(); }
