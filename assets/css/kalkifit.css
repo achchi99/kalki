@@ -269,7 +269,7 @@ html[data-theme=light]:has(.rz.sl),html[data-theme=light]:has(.rz.sl) body{backg
 .rz .sl-cathd{display:flex;align-items:center;gap:8px;margin:6px 0 0}.rz .sl-cathd b{font-size:18px;font-weight:700}.rz .sl-cathd .sl-txtbtn{padding:0 8px 0 0;text-decoration:none;color:var(--accink)}
 /* yon tomonga surilmaslik: uzun nomlar qatorni kengaytirmaydi, [+] tugmasi ekrandan chiqmaydi */
 html:has(.rz.sl),html:has(.rz.sl) body{overflow-x:clip;overscroll-behavior-x:none}
-.rz.sl,.rz.sl .rz-main,.rz.sl .rz-sheet{overflow-x:hidden;overscroll-behavior-x:none;max-width:100%}
+.rz.sl,.rz.sl .rz-main,.rz.sl .rz-sheet{overflow-x:hidden;overscroll-behavior-x:none}
 .rz.sl .rz-sheet{touch-action:pan-y}
 .rz .sl-row,.rz .sl-rr,.rz .sl-rw,.rz .sl-tr,.rz .sl-sc{min-width:0;max-width:100%}
 .rz .sl-row .m,.rz .sl-rr .m,.rz .sl-tr .m{flex:1;min-width:0}

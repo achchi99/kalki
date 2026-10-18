@@ -14,7 +14,11 @@
             "ru": "Показать категории"
           }
         }
-      ]
+      ],
+      "bn": {
+        "uz": "Ovqatni endi kategoriya bo'yicha ham tanlash mumkin.",
+        "ru": "Теперь еду можно выбирать и по категориям."
+      }
     },
     {
       "v": 8,
