@@ -7,7 +7,7 @@
       "items": [
         {
           "uz": "Email bilan kirish: ma'lumotingiz avtomatik saqlanadi, yangi telefonda email bilan kirsangiz hammasi qaytadi.",
-          "ru": "Вход по email: данные сохраняются автоматически, на новом телефоне войдите по email — и всё вернётся.",
+          "ru": "Вход по почте: данные сохраняются автоматически, на новом телефоне войдите по почте — и всё вернётся.",
           "show": "akkaunt",
           "btn": {
             "uz": "Kirishni ochish",
@@ -17,7 +17,7 @@
       ],
       "bn": {
         "uz": "Endi email bilan kirish mumkin: ma'lumot avtomatik saqlanadi.",
-        "ru": "Теперь можно войти по email: данные сохраняются автоматически."
+        "ru": "Теперь можно войти по почте: данные сохраняются автоматически."
       }
     },
     {
