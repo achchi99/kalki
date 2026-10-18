@@ -11,3 +11,6 @@ tools/ai-sinov/out/
 # Cloudflare Pages lokal sinov (sirlar!)
 .dev.vars
 .wrangler/
+
+# tema skrinshotlari (tools/dizayn/tema-shot.mjs) — lokal, commit qilinmaydi
+docs/tema/*.png
