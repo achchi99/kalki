@@ -29,6 +29,7 @@ try {
     let p = await open('kalkifit', scheme); await shot(p, 'kf-bugun', scheme);
     await p.click('#mainAdd'); await p.waitForTimeout(700); await shot(p, 'kf-ovqat', scheme);
     await p.fill('#fdQ', 'chuchvara').catch(() => {}); await p.waitForTimeout(400); await p.click('[data-act=pickfood] >> nth=0').catch(() => {}); await p.waitForTimeout(700); await shot(p, 'kf-porsiya', scheme); await p.context().close();
+    p = await open('kalkifit', scheme); await p.click('#mainAdd'); await p.waitForTimeout(600); await p.click('#catsRow [data-c=f]'); await p.waitForTimeout(700); await shot(p, 'kf-kategoriya', scheme); await p.context().close();
     for (const [v, nm, hh] of [['profile', 'kf-profil', 1500], ['results', 'kf-natijalar', 1300], ['diary', 'kf-kundalik', 1100]]) { p = await open('kalkifit', scheme, hh); await p.click(`[data-act=tab][data-v=${v}]`); await p.waitForTimeout(900); await shot(p, nm, scheme); await p.context().close(); }
     p = await open('rozgor', scheme); await shot(p, 'rz-bugun', scheme); await p.context().close();
     p = await open('rozgor', scheme, 1200); const tabs = await p.$$eval('[data-act=tab]', (e) => e.map((x) => x.getAttribute('data-v'))); for (const [v, nm] of [[tabs.find((x) => /bill|hisob/.test(x)), 'rz-hisoblar'], ['set', 'rz-sozlamalar']]) { if (!v) continue; await p.click(`[data-act=tab][data-v=${v}]`); await p.waitForTimeout(800); await shot(p, nm, scheme); } await p.context().close();

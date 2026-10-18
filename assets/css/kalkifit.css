@@ -102,9 +102,9 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-nearb:#57C48A;-
 /* ===================== KalkiFit dizayn tokenlari (maket asosida) — BITTA joyda ===================== */
 /* Qorong'i/Och: Avto (tizim sozlamasi) yoki Profil → Mavzu (<html data-theme="dark|light">). Matn kontrasti WCAG AA — test-kalkifit-soddalik.mjs (axe) tekshiradi. */
 .sl{--bg:#F5F4F0;--card:#FFFFFF;--soft:#F1EFEA;--line:#E7E4DD;--line2:#CFCAC0;--track:#ECE9E3;--ink:#15171B;--mut:#5A6170;--mut2:#666C78;--vessel:#EFEDE8;--field:#F1EFEA;--nav:rgba(255,255,255,.96);
-  --btn:#FFFFFF;--fill:#FF6B4A;--bline:var(--fill);--acc2:#B93A0A;--acc:#B93A0A;--onacc:#1A0A05;--on:#1A0A05;--accink:#B93A0A;--accsoft:rgba(255,107,74,.12);--p:#6E9BFF;--f:#FFC24B;--c:#34D399;--pink:#2F5FD0;--fink:#7A5200;--cink:#0B7A55;--water:#5AB8FF;--waterink:#1F7FC0;--step:#34D399;--ok:#0E8F63;--danger:#C0392B;--err:#C0392B;--on-err:#fff;--toast-acc:#FF8A6F;--fav:#D6336C;--flame:#FF8A3D;--gold:#FFB547;--av1:#FF6B4A;--av2:#FFB547;--photo-bg:#F5F1EA;--vk-d:#3A1408;--vk-n:#1A0A05;--lv-strong:#2E9E63;--lv-mod:#E3A008;--lv-low:#D2553A;--lv-not:#5B6470;--r:22px;--shadow:none}
-@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--btn:#222529;--fill:#FF6B4A;--bline:var(--fill);--acc2:#FF8A6F;--acc:#FF8A6F;--onacc:#1A0A05;--on:#1A0A05;--bg:#111214;--card:#1A1C1F;--soft:#222529;--line:#2C2F34;--line2:#3A3E44;--track:#2A2D32;--ink:#EDEEF0;--mut:#A3A8B0;--mut2:#7C828B;--vessel:#222529;--field:#111214;--nav:rgba(17,18,20,.96);--accink:#FF8A6F;--accsoft:rgba(255,107,74,.14);--pink:#9DBBFF;--fink:#FFD27A;--cink:#6EE7B7;--waterink:#5AB8FF;--ok:#34D399;--danger:#FF5C5C;--err:#FF5C5C;--on-err:#1A0A05;--toast-acc:#FF8A6F;--fav:#FF6B8A}}
-html[data-theme=dark] .sl{--btn:#222529;--fill:#FF6B4A;--bline:var(--fill);--acc2:#FF8A6F;--acc:#FF8A6F;--onacc:#1A0A05;--on:#1A0A05;--bg:#111214;--card:#1A1C1F;--soft:#222529;--line:#2C2F34;--line2:#3A3E44;--track:#2A2D32;--ink:#EDEEF0;--mut:#A3A8B0;--mut2:#7C828B;--vessel:#222529;--field:#111214;--nav:rgba(17,18,20,.96);--accink:#FF8A6F;--accsoft:rgba(255,107,74,.14);--pink:#9DBBFF;--fink:#FFD27A;--cink:#6EE7B7;--waterink:#5AB8FF;--ok:#34D399;--danger:#FF5C5C;--err:#FF5C5C;--on-err:#1A0A05;--toast-acc:#FF8A6F;--fav:#FF6B8A}
+  --btn:#FFFFFF;--fill:#FF6B4A;--bline:var(--fill);--acc2:#B93A0A;--acc:#B93A0A;--onacc:#1A0A05;--on:#1A0A05;--accink:#B93A0A;--accsoft:rgba(255,107,74,.12);--p:#6E9BFF;--f:#FFC24B;--c:#34D399;--pink:#2F5FD0;--fink:#7A5200;--cink:#0B7A55;--water:#5AB8FF;--waterink:#1F7FC0;--step:#34D399;--ok:#0E8F63;--danger:#C0392B;--err:#C0392B;--on-err:#fff;--toast-acc:#FF8A6F;--fav:#D6336C;--flame:#FF8A3D;--gold:#FFB547;--av1:#FF6B4A;--av2:#FFB547;--photo-bg:#F5F1EA;--vk-d:#3A1408;--vk-n:#1A0A05;--lv-strong:#2E9E63;--lv-mod:#E3A008;--lv-low:#D2553A;--lv-not:#5B6470;--tl:24%;--r:22px;--shadow:none}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--btn:#222529;--fill:#FF6B4A;--bline:var(--fill);--acc2:#FF8A6F;--acc:#FF8A6F;--onacc:#1A0A05;--on:#1A0A05;--bg:#111214;--card:#1A1C1F;--soft:#222529;--line:#2C2F34;--line2:#3A3E44;--track:#2A2D32;--ink:#EDEEF0;--mut:#A3A8B0;--mut2:#7C828B;--tl:72%;--vessel:#222529;--field:#111214;--nav:rgba(17,18,20,.96);--accink:#FF8A6F;--accsoft:rgba(255,107,74,.14);--pink:#9DBBFF;--fink:#FFD27A;--cink:#6EE7B7;--waterink:#5AB8FF;--ok:#34D399;--danger:#FF5C5C;--err:#FF5C5C;--on-err:#1A0A05;--toast-acc:#FF8A6F;--fav:#FF6B8A}}
+html[data-theme=dark] .sl{--btn:#222529;--fill:#FF6B4A;--bline:var(--fill);--acc2:#FF8A6F;--acc:#FF8A6F;--onacc:#1A0A05;--on:#1A0A05;--bg:#111214;--card:#1A1C1F;--soft:#222529;--line:#2C2F34;--line2:#3A3E44;--track:#2A2D32;--ink:#EDEEF0;--mut:#A3A8B0;--mut2:#7C828B;--tl:72%;--vessel:#222529;--field:#111214;--nav:rgba(17,18,20,.96);--accink:#FF8A6F;--accsoft:rgba(255,107,74,.14);--pink:#9DBBFF;--fink:#FFD27A;--cink:#6EE7B7;--waterink:#5AB8FF;--ok:#34D399;--danger:#FF5C5C;--err:#FF5C5C;--on-err:#1A0A05;--toast-acc:#FF8A6F;--fav:#FF6B8A}
 .rz.sl{font-family:'Manrope',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}
 .rz.sl button,.rz.sl input,.rz.sl textarea{font-family:inherit}
 .rz.sl .rz-main{display:flex;flex-direction:column;gap:16px;padding:8px 20px calc(130px + env(safe-area-inset-bottom,0px))}
@@ -129,7 +129,7 @@ html[data-theme=dark] .sl{--btn:#222529;--fill:#FF6B4A;--bline:var(--fill);--acc
 .rz .sl-txtbtn{border:0;background:transparent;color:var(--mut);font-weight:700;text-decoration:underline;min-height:44px;padding:0 8px;font-size:14px;display:inline-flex;align-items:center;gap:6px;justify-content:center}.rz .sl-txtbtn.danger{color:var(--danger)}
 .rz .sl-ib{width:44px;height:44px;margin:-8px -8px -8px 0;border:0;background:transparent;color:var(--mut);display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex:none}.rz .sl-ib .rz-i{width:20px;height:20px}
 .rz .sl-tile{--s:44px;width:var(--s);height:var(--s);border-radius:calc(var(--s) * .27);background:var(--photo-bg);overflow:hidden;display:inline-flex;flex:none;align-items:center;justify-content:center}.rz .sl-tile img{width:100%;height:100%;object-fit:cover;display:block}
-.rz .sl-tl{background:hsl(var(--h) 60% 90%);color:hsl(var(--h) 45% 24%)}.rz .sl-tl b{font-weight:800;font-size:calc(var(--s) * .42)}
+.rz .sl-tl{background:var(--soft);color:hsl(var(--h) 70% var(--tl))}.rz .sl-tl b{font-weight:800;font-size:calc(var(--s) * .42)}
 /* nav: Bugun · Kundalik · [+] · Natijalar · Profil */
 .rz.sl .rz-nav{grid-template-columns:repeat(5,minmax(0,1fr));align-items:start;min-height:92px;padding:10px 0 calc(8px + env(safe-area-inset-bottom,0px));background:var(--nav);border-top:1px solid var(--line)}
 .rz.sl .rz-tab{min-height:56px;color:var(--mut);font-size:14px;font-weight:500;gap:4px;justify-content:flex-start;border-radius:12px}.rz.sl .rz-tab .rz-i{width:24px;height:24px}
@@ -266,7 +266,6 @@ html[data-theme=light]:has(.rz.sl),html[data-theme=light]:has(.rz.sl) body{backg
 .rz .sl-cats{padding:4px 20px 6px;gap:8px;overflow-x:auto;touch-action:pan-x;overscroll-behavior-x:contain}
 .rz .sl-cats .rz-chip{flex:none;min-height:44px;padding:0 16px;border:0;background:var(--soft);color:var(--ink);white-space:nowrap;border-radius:16px;font-weight:600}
 .rz .sl-cats .rz-chip.on,.rz .sl-cats .rz-chip[aria-pressed=true]{background:var(--fill);color:var(--onacc)}
-.rz .sl-cathd{display:flex;align-items:center;gap:8px;margin:6px 0 0}.rz .sl-cathd b{font-size:18px;font-weight:700}.rz .sl-cathd .sl-txtbtn{padding:0 8px 0 0;text-decoration:none;color:var(--accink)}
 /* yon tomonga surilmaslik: uzun nomlar qatorni kengaytirmaydi, [+] tugmasi ekrandan chiqmaydi */
 html:has(.rz.sl),html:has(.rz.sl) body{overflow-x:clip;overscroll-behavior-x:none}
 .rz.sl,.rz.sl .rz-main,.rz.sl .rz-sheet{overflow-x:hidden;overscroll-behavior-x:none}
@@ -290,3 +289,6 @@ html[data-theme=dark]:has(.rz.sl){--page-bg:#111214}
 .rz .sl-jline.jnew{animation:jIn .2s ease both}.rz .sl-jline.jout{opacity:0;transition:opacity .2s}
 @keyframes jIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.rz .sl-jline.jnew{animation:none}.rz .sl-jline.jout{transition:none}}
+/* kategoriya ro'yxati almashganda yengil fade (150 ms) */
+.rz .sl-res.fi{animation:catFade .15s ease both}@keyframes catFade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.rz .sl-res.fi{animation:none}}

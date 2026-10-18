@@ -698,11 +698,18 @@
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
     return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
   }
-  function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari (bazadagi kategoriyalar, shu tartibda); «Boshqa usullar → Kategoriyalar» ham shu kodni ishlatadi
-    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + CATS.map(function (c) { return '<button type="button" class="rz-chip" data-act="fcat" data-c="' + c + '" aria-pressed="false">' + esc(T('cat_' + c)) + '</button>'; }).join('') + '</div></div>';
+  function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
+  function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
+    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
   }
-  function catHeadHtml() { return '<div class="sl-cathd"><button type="button" class="sl-txtbtn" data-act="fcatback">← ' + esc(T('aCats')) + '</button><b>' + esc(T('cat_' + fd.cat)) + '</b></div>'; }
-  function chipsHtml() { return fd.q.trim() ? '' : (fd.cat ? catHeadHtml() : catsHtml()); }
+  function chipsHtml() { return fd.q.trim() ? '' : catsHtml(); }
+  function catSelect(c) {                            // chip bosildi: shu chip tanlanadi (qayta bosilsa — «Mashhur»ga qaytadi), ro'yxat darhol almashadi, yengil fade (150 ms), tepaga qaytadi
+    fd.cat = (c && c !== fd.cat) ? c : ''; var hadQ = !!fd.q.trim(); fd.q = ''; var qi = $('#fdQ'); if (qi) qi.value = '';
+    var r = $('#catsRow');
+    if (!r || hadQ) refreshRes(); else { [].forEach.call(r.querySelectorAll('.rz-chip'), function (b) { var on = (b.getAttribute('data-c') || '') === (fd.cat || ''); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); var cw = $('#fdCat'); if (cw) cw._k = chipsHtml(); var res = $('#fdRes'); if (res) { res.innerHTML = resultsHtml(); res.classList.remove('fi'); void res.offsetWidth; res.classList.add('fi'); } var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); }
+    var sh = $('#rzSheet'); if (sh) sh.scrollTop = 0; catView();
+  }
+  function catView() { var on = document.querySelector('#catsRow .rz-chip.on'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ inline: 'center', block: 'nearest', behavior: kit.reduce ? 'auto' : 'smooth' }); } catch (e) { on.scrollIntoView(); } } }
   function actsHtml() { return ''; }
   function searchHtml() {
     var off = navigator.onLine === false;
@@ -719,7 +726,7 @@
     window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 4) { drag.moved = true; r.scrollLeft = drag.l - dx; } });
     window.addEventListener('pointerup', function () { if (drag && drag.moved) { r._swallow = true; setTimeout(function () { r._swallow = false; }, 0); } drag = null; });
     r.addEventListener('click', function (e) { if (r._swallow) { e.stopPropagation(); e.preventDefault(); } }, true);
-    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - 40); upd();
+    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2); upd();
   }
   function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
   function resRow(f, cat) {
@@ -731,9 +738,7 @@
     var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
     if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
     else if (fd.cat) { list = foods.filter(function (f) { return f.t === fd.cat && !f.h; }); return list.length ? list.map(function (f) { return resRow(f, true); }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
-    else if (fd.browse) {                            // «Kategoriyalar bo'yicha ko'rish»: BUTUN baza guruhlar bo'yicha
-      return CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom && !f.h; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('') + '<button type="button" class="sl-txtbtn" data-act="fbrowse">' + esc(T('back')) + '</button>';
-    } else {                                         // birinchi ko'rinish: Oxirgilar → Saqlanganlar → Boshqa usullar
+    else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
       var rec = fd.recSnap || (fd.recSnap = le.slice(0, 5)), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
       var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
       return sec(T('aRecentT'), rec.map(recRow), T('aRecHint')) + sec(T('aPop'), pop.map(resRow)) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
@@ -1384,14 +1389,13 @@
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
       case 'pickfood': { var pk0 = el.getAttribute('data-pick'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null); break; }
-      case 'fcat': fd.cat = el.getAttribute('data-c'); fd.q = ''; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
-      case 'fcatback': fd.cat = ''; fd.q = ''; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
+      case 'fcat': catSelect(el.getAttribute('data-c') || ''); break;
       case 'ftext': openText(null, true); break;
       case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
       case 'fmeals': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeals]').forEach(function (b) { var on9 = b === el; b.classList.toggle('on', on9); b.setAttribute('aria-checked', on9); }); refreshRes(); break;
       case 'fmore': fd.more = !fd.more; refreshRes(); break;
-      case 'fbrowse': fd.browse = !fd.browse; fd.cat = ''; fd.q = ''; fd.more = false; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
+      case 'fbrowse': fd.more = false; fd.q = ''; if (!fd.cat) fd.cat = CATS[0]; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;     // «Boshqa usullar → Kategoriyalar»: chiplar qatori (tab) ochiladi, birinchi guruh tanlanadi
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.a'); if (cv) cv.textContent = T(o8.pmore ? 'pCloseL' : 'pChange'); break; }
       case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
       case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
