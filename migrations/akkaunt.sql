@@ -1,7 +1,7 @@
 -- KalkiFit va Ro'zg'or: IXTIYORIY akkaunt (email + bir martalik kod, parolsiz). D1 binding: KALKIFIT_DB (zaxira va taklif bilan bir baza).
 -- Minimal ma'lumot: email, akkaunt ID, kirish usuli, yaratilgan/oxirgi kirish vaqti, marketing roziligi. Ism va telefon YO'Q.
 -- Vaqtlar — millisekund (Date.now()). Saqlash qatlami: functions/_lib/akkaunt-store.js (D1 faqat shu yerda).
--- Rejadagi akkaunt_ilova (zaxira bilan ulash, B bosqich) shu fayl ichida EMAS — alohida migratsiya bilan keladi.
+-- B bosqich: akkaunt_ilova — akkauntni ilovadagi zaxira (zaxira.id) bilan bog'laydi. Shu fayl qayta yurgizilsa xavfsiz (IF NOT EXISTS).
 CREATE TABLE IF NOT EXISTS akkaunt (
   id TEXT PRIMARY KEY,                           -- tasodifiy 24 hex (email'dan olinmaydi)
   email TEXT NOT NULL UNIQUE,                    -- kichik harfda, bo'shliqsiz
@@ -41,3 +41,15 @@ CREATE TABLE IF NOT EXISTS limit_hisob (kalit TEXT PRIMARY KEY, soni INTEGER NOT
 -- Minimal audit: IP va email YOZILMAYDI.
 CREATE TABLE IF NOT EXISTS audit (id INTEGER PRIMARY KEY AUTOINCREMENT, vaqt INTEGER NOT NULL, akkaunt_id TEXT, hodisa TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS audit_akkaunt ON audit (akkaunt_id);
+-- B bosqich (gibrid rejim): akkaunt ↔ ilova zaxirasi. zaxira.id (kodning hosilasi) bilan bog'lanadi; zaxira jadvaliga TEGILMAYDI.
+-- kod_konvert = tiklash kodi, server kaliti (AKKAUNT_MASTER_KEYS, versiya master_v) bilan AES-GCM shifrlangan. 'qatiy' rejimda konvert YO'Q (zaxira_id ham NULL): tiklash faqat kod bilan.
+CREATE TABLE IF NOT EXISTS akkaunt_ilova (
+  akkaunt_id TEXT NOT NULL,
+  ilova TEXT NOT NULL,                           -- 'kalkifit' | 'rozgor'
+  zaxira_id TEXT UNIQUE,                         -- bitta zaxira faqat bitta akkauntga tegishli; 'qatiy' da NULL
+  kod_konvert TEXT,
+  rejim TEXT NOT NULL DEFAULT 'konvert',         -- 'konvert' | 'qatiy'
+  master_v INTEGER,
+  ulangan INTEGER NOT NULL,
+  PRIMARY KEY (akkaunt_id, ilova)
+);

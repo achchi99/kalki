@@ -259,6 +259,12 @@ html[data-theme=dark]:has(body.rz-body),html[data-theme=dark] body.v2.rz-body,ht
 .akk-mk b{display:block;font-size:var(--t-m,1rem);line-height:1.35}.akk-mk span span{display:block;color:var(--mut);font-size:var(--t-s,.9375rem);margin-top:4px;line-height:1.4}
 .akk-me{word-break:break-all}
 .akk-dev{border-top:1px dashed var(--line);margin-top:14px;padding-top:6px}.akk-devr{display:flex;gap:8px}.akk-devr input{flex:1;min-width:0;min-height:44px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:0 12px;font:inherit}
+/* akkaunt B: «Boshqa usullar» (yig'ilgan), onboarding ustida panel */
+.akk-more>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:0 14px;font-weight:800;font-size:var(--t-m,1rem);color:var(--ink);cursor:pointer;list-style:none;border-top:1px solid var(--line)}
+.akk-more>summary::-webkit-details-marker{display:none}.akk-more>summary .rz-i{width:20px;height:20px;flex:none;color:var(--mut);transition:transform .2s}.akk-more[open]>summary .rz-i{transform:rotate(90deg)}
+.akk-more>.rz-row{border-top:1px solid var(--line)}
+.akk-cf{flex-direction:column}.akk-cf .rz-btn{width:100%}
+.rz-sheet[data-kind=akk],.rz-sheet[data-kind=akkc],.rz-sheet[data-kind=akks]{z-index:80}
 
 /* ---------- Yangiliklar oynasi (app-yangilik.js) ---------- */
 .yg-pop{position:absolute;left:12px;right:12px;bottom:calc(98px + env(safe-area-inset-bottom,0px));z-index:45;max-height:min(46%,340px);overflow-y:auto;background:var(--card);border:1.5px solid var(--acc2);border-radius:18px;box-shadow:0 10px 32px rgba(0,0,0,.22);padding:12px 14px;animation:ygIn .35s cubic-bezier(.2,.8,.2,1) both}

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /* kalki.uz — AKKAUNT ma'lumotlarini eksport (boshqa serverga/VPS'ga ko'chirish uchun). Qo'llanma: docs/akkaunt-kochirish.md
  *   node tools/akkaunt-export.js [--db kalkifit] [--out akkaunt-export] [--format json|sql|both] [--dialect postgres|sqlite]
- *                                [--sessions] [--audit]        ← sessiyalar/audit ixtiyoriy (odatda foydalanuvchilar qaytadan kirishadi)
+ *                                [--sessions] [--audit] [--ilovalar]   ← sessiyalar/audit ixtiyoriy (odatda foydalanuvchilar qaytadan kirishadi)
  *   node tools/akkaunt-export.js --sqlite path/to/local.sqlite      (lokal D1 nusxasidan; wrangler kerak emas)
+ * --ilovalar: akkaunt↔zaxira ulanishlari (gibrid konvertlar bilan). ⚠ Konvertlar SERVER KALITI (AKKAUNT_MASTER_KEYS) bilan shifrlangan — kalit ham yangi serverga ko'chirilmasa ochilmaydi.
  * D1 (remote) uchun `npx wrangler login` bo'lishi kerak. Eksport QILINADI: akkaunt (+ ixtiyoriy sessiya, audit). Eksport QILINMAYDI: kirish_kodi (10 daqiqalik kodlar) va limit_hisob (vaqtinchalik).
  * ⚠ Fayl EMAIL manzillari va marketing rozilik tarixini saqlaydi — MAXFIY: shifrlangan diskda saqlang, ishlatgach o'chiring, repoga/chatga yubormang. Sessiya fayli (--sessions) token xeshlarini saqlaydi.
  * Chiqish: <out>.json ({ v, jadvallar:{ akkaunt:[...], sessiya:[...] } }) va <out>.sql (CREATE TABLE + INSERT ... ON CONFLICT). Ichkaridagi kutubxona funksiyalarini tools/akkaunt-import.js ham ishlatadi. */
@@ -11,10 +12,13 @@ const fs = require('fs'), path = require('path'), { execFileSync } = require('ch
 const COLS = {
   akkaunt: ['id', 'email', 'usul', 'google_sub', 'yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt', 'marketing_matn_v'],
   sessiya: ['id', 'akkaunt_id', 'yaratilgan', 'oxirgi', 'muddat_abs', 'qurilma'],
-  audit: ['id', 'vaqt', 'akkaunt_id', 'hodisa']
+  audit: ['id', 'vaqt', 'akkaunt_id', 'hodisa'],
+  akkaunt_ilova: ['akkaunt_id', 'ilova', 'zaxira_id', 'kod_konvert', 'rejim', 'master_v', 'ulangan']
 };
-const KEY = { akkaunt: 'id', sessiya: 'id', audit: 'id' };
-const INTS = { akkaunt: ['yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt'], sessiya: ['yaratilgan', 'oxirgi', 'muddat_abs'], audit: ['id', 'vaqt'] };
+const KEY = { akkaunt: 'id', sessiya: 'id', audit: 'id', akkaunt_ilova: 'akkaunt_id, ilova' };
+const keyCols = (t) => KEY[t].split(', ');
+const keyOf = (t, r) => keyCols(t).map((c) => r[c]).join('|');
+const INTS = { akkaunt: ['yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt'], sessiya: ['yaratilgan', 'oxirgi', 'muddat_abs'], audit: ['id', 'vaqt'], akkaunt_ilova: ['master_v', 'ulangan'] };
 const SQLITE_DDL = () => fs.readFileSync(path.join(__dirname, '..', 'migrations', 'akkaunt.sql'), 'utf8').split('\n').filter((l) => !/^\s*--\s/.test(l) || true).join('\n');
 const PG_DDL = [
   'CREATE TABLE IF NOT EXISTS akkaunt (id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, usul TEXT NOT NULL DEFAULT \'email\', google_sub TEXT UNIQUE, yaratilgan BIGINT NOT NULL, oxirgi_kirish BIGINT NOT NULL, marketing INTEGER NOT NULL DEFAULT 0, marketing_vaqt BIGINT, marketing_matn_v TEXT);',
@@ -32,7 +36,7 @@ function toJson(data) { const jadvallar = {}, soni = {}; for (const t of Object.
 function toSql(data, dialect) {
   dialect = dialect || 'postgres'; const out = ['-- kalki.uz akkaunt eksporti, dialekt: ' + dialect + '. MAXFIY: email manzillari bor.', 'BEGIN;', DDL[dialect]()];
   for (const t of Object.keys(data)) for (const r0 of data[t]) {
-    const r = clean(t, r0), cs = COLS[t], upd = cs.filter((c) => c !== KEY[t]).map((c) => c + ' = EXCLUDED.' + c).join(', ');
+    const r = clean(t, r0), cs = COLS[t], upd = cs.filter((c) => keyCols(t).indexOf(c) < 0).map((c) => c + ' = EXCLUDED.' + c).join(', ');
     out.push('INSERT INTO ' + t + ' (' + cs.join(', ') + ') VALUES (' + cs.map((c) => q(r[c])).join(', ') + ') ON CONFLICT (' + KEY[t] + ') DO UPDATE SET ' + upd + ';');
   }
   if (dialect === 'postgres' && data.audit && data.audit.length) out.push("SELECT setval(pg_get_serial_sequence('audit','id'), (SELECT COALESCE(MAX(id),1) FROM audit));");
@@ -44,9 +48,9 @@ function readD1(dbName, tables) {                                   // sahifalab
   for (const t of tables) {
     const all = []; let last = t === 'audit' ? 0 : '';
     for (;;) {
-      const sql = 'SELECT ' + COLS[t].join(', ') + ' FROM ' + t + ' WHERE ' + KEY[t] + ' > ' + (typeof last === 'number' ? last : "'" + String(last).replace(/'/g, "''") + "'") + ' ORDER BY ' + KEY[t] + ' LIMIT 200';
+      const kx = keyCols(t).join(" || '|' || "); const sql = 'SELECT ' + COLS[t].join(', ') + ' FROM ' + t + ' WHERE ' + kx + ' > ' + (typeof last === 'number' ? last : "'" + String(last).replace(/'/g, "''") + "'") + ' ORDER BY ' + kx + ' LIMIT 200';
       const raw = execFileSync('npx', ['wrangler', 'd1', 'execute', dbName, '--remote', '--json', '--command', sql], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
-      const j = JSON.parse(raw.slice(raw.indexOf('['))); const rows = (j[0] && j[0].results) || []; all.push(...rows); if (rows.length < 200) break; last = rows[rows.length - 1][KEY[t]];
+      const j = JSON.parse(raw.slice(raw.indexOf('['))); const rows = (j[0] && j[0].results) || []; all.push(...rows); if (rows.length < 200) break; last = keyOf(t, rows[rows.length - 1]);
     }
     o[t] = all;
   }
@@ -54,11 +58,11 @@ function readD1(dbName, tables) {                                   // sahifalab
 }
 function main(argv) {
   const a = {}; for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) { a[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; }
-  const out = a.out || 'akkaunt-export', fmt = a.format || 'both', dialect = a.dialect || 'postgres', tables = ['akkaunt'].concat(a.sessions ? ['sessiya'] : [], a.audit ? ['audit'] : []);
+  const out = a.out || 'akkaunt-export', fmt = a.format || 'both', dialect = a.dialect || 'postgres', tables = ['akkaunt'].concat(a.sessions ? ['sessiya'] : [], a.audit ? ['audit'] : [], a.ilovalar ? ['akkaunt_ilova'] : []);
   const data = a.sqlite ? readSqlite(a.sqlite, tables) : readD1(a.db || 'kalkifit', tables);
   if (fmt === 'json' || fmt === 'both') fs.writeFileSync(out + '.json', toJson(data), { mode: 0o600 });
   if (fmt === 'sql' || fmt === 'both') fs.writeFileSync(out + '.sql', toSql(data, dialect), { mode: 0o600 });
   console.log('Eksport: ' + tables.map((t) => t + ' ' + data[t].length).join(', ') + ' → ' + out + (fmt === 'both' ? '.json, .sql' : '.' + fmt) + ' (' + dialect + ')\nDiqqat: fayl email manzillarini saqlaydi — maxfiy; ishlatgach o\'chiring.');
 }
-module.exports = { COLS, KEY, DDL, toJson, toSql, readSqlite, readD1, clean };
+module.exports = { COLS, KEY, keyOf, keyCols, DDL, toJson, toSql, readSqlite, readD1, clean };
 if (require.main === module) try { main(process.argv.slice(2)); } catch (e) { console.error('Xato: ' + (e && e.message || e)); process.exit(1); }

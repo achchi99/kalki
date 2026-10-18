@@ -12,7 +12,7 @@ function toSqlite(data, dbFile) {
   try {
     db.exec(E.DDL.sqlite()); db.exec('BEGIN');
     for (const t of Object.keys(data)) {
-      const cs = E.COLS[t], upd = cs.filter((c) => c !== E.KEY[t]).map((c) => c + ' = excluded.' + c).join(', ');
+      const cs = E.COLS[t], upd = cs.filter((c) => E.keyCols(t).indexOf(c) < 0).map((c) => c + ' = excluded.' + c).join(', ');
       const st = db.prepare('INSERT INTO ' + t + ' (' + cs.join(', ') + ') VALUES (' + cs.map(() => '?').join(', ') + ') ON CONFLICT(' + E.KEY[t] + ') DO UPDATE SET ' + upd);
       for (const r of data[t]) { st.run(...cs.map((c) => E.clean(t, r)[c])); n++; }
     }
@@ -20,7 +20,8 @@ function toSqlite(data, dbFile) {
   } catch (e) { try { db.exec('ROLLBACK'); } catch (x) {} throw e; } finally { db.close(); }
   return n;
 }
-function verify(data, dbFile) { const got = E.readSqlite(dbFile, Object.keys(data)); for (const t of Object.keys(data)) { const a = JSON.stringify(data[t].map((r) => E.clean(t, r)).sort((x, y) => String(x[E.KEY[t]]) < String(y[E.KEY[t]]) ? -1 : 1)), b = JSON.stringify(got[t].map((r) => E.clean(t, r))); if (a !== b) throw new Error('Tekshiruv: "' + t + '" jadvali eksportga mos emas'); } return true; }
+const cmp = (t, x, y) => { for (const c of E.keyCols(t)) { if (x[c] < y[c]) return -1; if (x[c] > y[c]) return 1; } return 0; };
+function verify(data, dbFile) { const got = E.readSqlite(dbFile, Object.keys(data)); for (const t of Object.keys(data)) { const a = JSON.stringify(data[t].map((r) => E.clean(t, r)).sort((x, y) => cmp(t, x, y) < 0 ? -1 : 1)), b = JSON.stringify(got[t].map((r) => E.clean(t, r))); if (a !== b) throw new Error('Tekshiruv: "' + t + '" jadvali eksportga mos emas'); } return true; }
 function main(argv) {
   const a = {}, pos = []; for (let i = 0; i < argv.length; i++) { if (argv[i].startsWith('--')) a[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true; else pos.push(argv[i]); }
   if (!pos[0]) throw new Error('Foydalanish: node tools/akkaunt-import.js <eksport.json> --to sqlite --db fayl.sqlite | --to sql --out fayl.sql [--dialect postgres|sqlite] [--tekshir]');

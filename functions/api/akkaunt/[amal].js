@@ -7,6 +7,9 @@
  *   POST /api/akkaunt/marketing  { rozi: true|false }      → { ok, marketing }    (alohida rozilik, odatiy O'CHIQ)
  *   POST /api/akkaunt/yuklab                               → ma'lumot nusxasi (JSON)
  *   POST /api/akkaunt/kod { maqsad: 'ochirish' } + POST /api/akkaunt/ochirish { kod } → akkaunt butunlay o'chadi
+ *   POST /api/akkaunt/ulash      { ilova, rejim:'konvert'|'qatiy', kod?, almashtir? } → { ok, rejim }   (B: tiklash kodi server kaliti bilan o'ralib akkauntga ulanadi; 'qatiy' — konvertsiz)
+ *   GET  /api/akkaunt/tiklash?ilova=  → { rejim:'konvert', kod } | { rejim:'qatiy' } | { yoq:true }        (B: yangi qurilmada tiklash kodini qaytaradi)
+ *   POST /api/akkaunt/qayta-ora  (X-Admin-Password) → kalit almashtirgach eski konvertlarni joriy kalit bilan qayta o'raydi
  *   GET  /api/akkaunt/dev-kod?email=  (X-Admin-Password)   → FAQAT preview dev rejimida: oxirgi yuborilgan kod
  * Xavfsizlik: 6 raqamli kod (CSPRNG), 10 daqiqa, 5 urinish, HMAC-SHA256 xesh (AKKAUNT_OTP_PEPPER); kodni yuborish — email boshiga 1/60 s, 8/soat, 20/kun va IP boshiga 20/soat;
  * tekshirish — IP boshiga 30/soat. Sessiya: tasodifiy 256-bit token cookie'da (HttpOnly; Secure; SameSite=Lax; __Host-), bazada faqat SHA-256. Sliding 30 kun, mutlaq 180 kun.
@@ -14,9 +17,11 @@
 import { originOk, json, num, toCyrillic } from '../ariza.js';
 import { makeStore } from '../../_lib/akkaunt-store.js';
 import { rejim, yubor } from '../../_lib/akkaunt-email.js';
+import { kalitlar } from '../../_lib/akkaunt-kalit.js';
+import { kodTahlil, zaxiraId, konvertYop, konvertOch, ILOVALAR } from '../../_lib/akkaunt-konvert.js';
 
 export const KOD_MUDDAT = 10 * 60 * 1000, MAX_URINISH = 5, SES_SLIDING = 30 * 86400000, SES_ABS = 180 * 86400000, MAX_SESSIYA = 20, MARKETING_MATN_V = 'm1';
-const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', 'dev-kod': 'GET' };
+const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', ulash: 'POST', tiklash: 'GET', 'qayta-ora': 'POST', 'dev-kod': 'GET' };
 const E = { 400: "So'rov noto'g'ri.", 401: 'Kirilmagan.', 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq urinib ko'ring.", 502: "Xatni yuborib bo'lmadi.", 503: 'Xizmat sozlanmagan.' };
 const fail = (s, e, extra, h) => json(s, Object.assign({ xato: E[s] || 'Xato.', e: e || '' }, extra || {}), h);
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
@@ -59,7 +64,7 @@ export async function onRequest(ctx) {
   const origin = request.headers.get('Origin');
   if (origin ? !originOk(origin, env) : request.method !== 'GET') return fail(403);
   const store = makeStore(env), rj = rejim(env, request), pepper = env.AKKAUNT_OTP_PEPPER;
-  const tayyor = !!(store && rj && typeof pepper === 'string' && pepper.length >= 32);
+  const tayyor = !!(store && rj && typeof pepper === 'string' && pepper.length >= 32 && kalitlar(env));   // gibrid rejim uchun server kaliti ham shart
   if (!tayyor) return amal === 'sessiya' ? json(200, { yoqilgan: false }) : fail(503);
   const now = Date.now(), salt = env.IP_HASH_SALT || '';
   const ipH = async (t) => t + ':' + (await sha(salt + '|' + (request.headers.get('CF-Connecting-IP') || '?'))).slice(0, 24);
@@ -82,7 +87,8 @@ export async function onRequest(ctx) {
     if (amal === 'sessiya') {
       if (!ses) return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: false }, yoqCookie);
       const q = await store.sessiyalar(ak.id);
-      return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: true, email: ak.email, marketing: ak.marketing ? 1 : 0, yaratilgan: ak.yaratilgan, qurilmalar: q.length });
+      const il = {}; for (const x of await store.ilovalar(ak.id)) il[x.ilova] = x.rejim;
+      return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: true, email: ak.email, marketing: ak.marketing ? 1 : 0, yaratilgan: ak.yaratilgan, qurilmalar: q.length, ilovalar: il });
     }
     if (amal === 'dev-kod') {
       if (rj !== 'dev') return fail(404);
@@ -93,6 +99,14 @@ export async function onRequest(ctx) {
       const d = await store.devOl(email, now); return d ? json(200, d) : fail(404);
     }
 
+    if (amal === 'qayta-ora') {                                  // kalit almashtirish: eski versiya bilan o'ralgan konvertlarni joriy kalit bilan qayta o'raydi (X-Admin-Password; takror chaqirib tugatiladi)
+      const ip = await lim(await ipH('adm'), 3600000, 60); if (!ip.ok) return fail(429, 'limit');
+      const pw = env.AKKAUNT_ADMIN_PASSWORD || env.KALKIFIT_ADMIN_PASSWORD; if (!pw) return fail(503);
+      if (!(await same(request.headers.get('X-Admin-Password') || '', pw))) return fail(401);
+      const K = kalitlar(env), { qatorlar } = await store.eskiKonvertlar(K.joriy.v, 200); let ora = 0, xato = 0;
+      for (const q of qatorlar) { const o = await konvertOch(env, q.akkaunt_id, q.ilova, q.kod_konvert); if (o.xato) { xato++; continue; } const y = await konvertYop(env, q.akkaunt_id, q.ilova, o.kod); if (y && await store.ilovaKonvert(q.akkaunt_id, q.ilova, y.konvert, y.v)) ora++; else xato++; }
+      const left = await store.eskiKonvertlar(K.joriy.v, 1); return json(200, { ok: true, ora, xato, qoldi: left.qoldi, joriy: K.joriy.v });
+    }
     if (amal === 'kod') {
       const { b, err } = await bodyOf(request); if (err) return err;
       const maqsad = b.maqsad === 'ochirish' ? 'ochirish' : 'kirish';
@@ -149,9 +163,31 @@ export async function onRequest(ctx) {
       await store.marketingYoz(ak.id, b.rozi, now, MARKETING_MATN_V); await store.audit(ak.id, b.rozi ? 'marketing_ha' : 'marketing_yoq', now);
       return json(200, { ok: true, marketing: b.rozi ? 1 : 0 });
     }
+    if (amal === 'ulash') {                                      // akkauntni ilovaning zaxirasiga ulash (qayta yuklamasdan): server kodni faqat o'raydi
+      const { b, err } = await bodyOf(request); if (err) return err;
+      if (ILOVALAR.indexOf(b.ilova) < 0 || (b.rejim !== 'konvert' && b.rejim !== 'qatiy')) return fail(400);
+      const rl = await lim('ul:' + ak.id, 3600000, 60); if (!rl.ok) return fail(429, 'limit', { kut: Math.ceil(rl.qayta / 1000) });
+      if (b.rejim === 'qatiy') { await store.ilovaYoz({ akkauntId: ak.id, ilova: b.ilova, zaxiraId: null, konvert: null, rejim: 'qatiy', masterV: null, now }); await store.audit(ak.id, 'qatiy_' + b.ilova, now); return json(200, { ok: true, rejim: 'qatiy' }); }
+      const t = kodTahlil(b.ilova, b.kod); if (!t.ok) return fail(400, 'kod_format', { xato: "Tiklash kodi noto'g'ri yozilgan." });
+      const zid = await zaxiraId(b.ilova, t.body), cur = await store.ilovaOl(ak.id, b.ilova);
+      if (cur && cur.rejim === 'konvert' && cur.zaxira_id && cur.zaxira_id !== zid && b.almashtir !== true) return fail(409, 'boshqa', { xato: "Akkauntga boshqa zaxira ulangan." });
+      const y = await konvertYop(env, ak.id, b.ilova, t.kod); if (!y) return fail(503, 'kalit');
+      const r = await store.ilovaYoz({ akkauntId: ak.id, ilova: b.ilova, zaxiraId: zid, konvert: y.konvert, rejim: 'konvert', masterV: y.v, now });
+      if (r !== 'ok') return fail(409, 'band', { xato: 'Bu zaxira boshqa akkauntga ulangan.' });
+      await store.audit(ak.id, 'ulandi_' + b.ilova, now); return json(200, { ok: true, rejim: 'konvert' });
+    }
+    if (amal === 'tiklash') {                                    // kirgan foydalanuvchiga o'z tiklash kodini qaytaradi (ilova odatdagi tiklashni bajaradi)
+      const ilova = new URL(request.url).searchParams.get('ilova'); if (ILOVALAR.indexOf(ilova) < 0) return fail(400);
+      const rl = await lim('tk:' + ak.id, 3600000, 30); if (!rl.ok) return fail(429, 'limit', { kut: Math.ceil(rl.qayta / 1000) });
+      const row = await store.ilovaOl(ak.id, ilova); if (!row) return json(200, { yoq: true });
+      if (row.rejim === 'qatiy' || !row.kod_konvert) return json(200, { rejim: 'qatiy' });
+      const o = await konvertOch(env, ak.id, ilova, row.kod_konvert); if (o.xato) return fail(503, o.xato === 'kalit' ? 'kalit' : 'konvert', { xato: o.xato === 'kalit' ? 'Server kaliti topilmadi.' : 'Konvert buzilgan.' });
+      if (!o.joriy) { const y = await konvertYop(env, ak.id, ilova, o.kod); if (y) await store.ilovaKonvert(ak.id, ilova, y.konvert, y.v); }   // sust almashtirish: ochilgan zahoti joriy kalit bilan qayta o'raladi
+      await store.audit(ak.id, 'tiklash_' + ilova, now); return json(200, { rejim: 'konvert', kod: o.kod });
+    }
     if (amal === 'yuklab') {
       const y = await store.yuklab(ak.id), a = y.akkaunt;
-      return json(200, { v: 1, eksport: new Date(now).toISOString(), akkaunt: { id: a.id, email: a.email, usul: a.usul, yaratilgan: a.yaratilgan, oxirgi_kirish: a.oxirgi_kirish, marketing: a.marketing ? 1 : 0, marketing_vaqt: a.marketing_vaqt, marketing_matn_v: a.marketing_matn_v }, qurilmalar: y.sessiyalar.map((s) => ({ qurilma: s.qurilma, yaratilgan: s.yaratilgan, oxirgi: s.oxirgi })) });
+      return json(200, { v: 1, eksport: new Date(now).toISOString(), akkaunt: { id: a.id, email: a.email, usul: a.usul, yaratilgan: a.yaratilgan, oxirgi_kirish: a.oxirgi_kirish, marketing: a.marketing ? 1 : 0, marketing_vaqt: a.marketing_vaqt, marketing_matn_v: a.marketing_matn_v }, qurilmalar: y.sessiyalar.map((s) => ({ qurilma: s.qurilma, yaratilgan: s.yaratilgan, oxirgi: s.oxirgi })), ilovalar: y.ilovalar.map((x) => ({ ilova: x.ilova, rejim: x.rejim, ulangan: x.ulangan })) });
     }
     return fail(404);
   } catch (e) { console.error('akkaunt xato'); return fail(503); }

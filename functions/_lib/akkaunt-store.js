@@ -13,6 +13,9 @@
  *   sessiyaYarat({ id, akkauntId, now, muddatAbs, qurilma }) / sessiyaOl(id) → { id, akkaunt_id, yaratilgan, oxirgi, muddat_abs, qurilma } | null
  *   sessiyaYangila(id, now) / sessiyaOchir(id) → true|false / sessiyalar(akkauntId) → [..] / sessiyaOchirHammasi(akkauntId, saqla?) → soni
  *   limit(kalit, oynaMs, lim, now)              → { ok, soni, qayta }   (qayta = oyna tugashigacha ms; hisoblagich har chaqiruvda +1)
+ *   ilovalar(akkauntId) → [{ ilova, rejim, master_v, ulangan, konvert_bor }]   ilovaOl(akkauntId, ilova) → to'liq qator (kod_konvert bilan) | null
+ *   ilovaYoz({ akkauntId, ilova, zaxiraId, konvert, rejim, masterV, now }) → 'ok' | 'band' (zaxira boshqa akkauntga ulangan)   ilovaKonvert(akkauntId, ilova, konvert, masterV) / ilovaOchir(akkauntId, ilova)
+ *   eskiKonvertlar(joriyV, limit) → { qatorlar: [{ akkaunt_id, ilova, kod_konvert, master_v }], qoldi }   (kalit almashtirish: qayta o'rash uchun)
  *   devYoz(email, kod, maqsad, now) / devOl(email, now) → FAQAT preview dev rejimi (jadval `dev_kod` shu yerda, birinchi chaqiruvda yaratiladi; production'da hech qachon chaqirilmaydi va jadval ochilmaydi)
  *   audit(akkauntId, hodisa, now)
  *   akkauntOchir(id, email)                     → akkaunt, sessiyalar, kodlar va audit qatorlari BUTUNLAY o'chadi
@@ -28,7 +31,7 @@ export function makeStore(env) {
   const one = async (q, ...a) => (await db.prepare(q).bind(...a).first()) || null;
   const run = (q, ...a) => db.prepare(q).bind(...a).run();
   return {
-    async ping() { await db.prepare('SELECT 1 FROM akkaunt LIMIT 1').first(); await db.prepare('SELECT 1 FROM kirish_kodi LIMIT 1').first(); await db.prepare('SELECT 1 FROM sessiya LIMIT 1').first(); await db.prepare('SELECT 1 FROM limit_hisob LIMIT 1').first(); return true; },
+    async ping() { await db.prepare('SELECT 1 FROM akkaunt_ilova LIMIT 1').first(); await db.prepare('SELECT 1 FROM akkaunt LIMIT 1').first(); await db.prepare('SELECT 1 FROM kirish_kodi LIMIT 1').first(); await db.prepare('SELECT 1 FROM sessiya LIMIT 1').first(); await db.prepare('SELECT 1 FROM limit_hisob LIMIT 1').first(); return true; },
     akkauntEmail: (email) => one('SELECT ' + AK + ' FROM akkaunt WHERE email = ?', email),
     akkauntId: (id) => one('SELECT ' + AK + ' FROM akkaunt WHERE id = ?', id),
     async akkauntYarat(o) { return changes(await run("INSERT OR IGNORE INTO akkaunt (id, email, usul, yaratilgan, oxirgi_kirish, marketing) VALUES (?, ?, ?, ?, ?, 0)", o.id, o.email, o.usul || 'email', o.now, o.now)) === 1; },
@@ -57,6 +60,23 @@ export function makeStore(env) {
       const soni = r ? r.soni : 1, ob = r ? r.oyna_boshi : now;
       return { ok: soni <= lim, soni, qayta: Math.max(0, ob + oynaMs - now) };
     },
+    async ilovalar(akkauntId) { return ((await db.prepare('SELECT ilova, rejim, master_v, ulangan, kod_konvert IS NOT NULL AS konvert_bor FROM akkaunt_ilova WHERE akkaunt_id = ? ORDER BY ilova').bind(akkauntId).all()).results) || []; },
+    ilovaOl: (akkauntId, ilova) => one('SELECT akkaunt_id, ilova, zaxira_id, kod_konvert, rejim, master_v, ulangan FROM akkaunt_ilova WHERE akkaunt_id = ? AND ilova = ?', akkauntId, ilova),
+    async ilovaYoz(o) {
+      if (o.zaxiraId) { const b = await one('SELECT akkaunt_id FROM akkaunt_ilova WHERE zaxira_id = ?', o.zaxiraId); if (b && b.akkaunt_id !== o.akkauntId) return 'band'; }
+      try {
+        await run('INSERT INTO akkaunt_ilova (akkaunt_id, ilova, zaxira_id, kod_konvert, rejim, master_v, ulangan) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(akkaunt_id, ilova) DO UPDATE SET zaxira_id = excluded.zaxira_id, kod_konvert = excluded.kod_konvert, rejim = excluded.rejim, master_v = excluded.master_v, ulangan = excluded.ulangan',
+          o.akkauntId, o.ilova, o.zaxiraId || null, o.konvert || null, o.rejim, o.masterV == null ? null : o.masterV, o.now);
+      } catch (e) { return 'band'; }                           // UNIQUE(zaxira_id) poygasi
+      return 'ok';
+    },
+    async ilovaKonvert(akkauntId, ilova, konvert, masterV) { return changes(await run('UPDATE akkaunt_ilova SET kod_konvert = ?, master_v = ? WHERE akkaunt_id = ? AND ilova = ? AND rejim = ?', konvert, masterV, akkauntId, ilova, 'konvert')) === 1; },
+    async ilovaOchir(akkauntId, ilova) { return changes(await run('DELETE FROM akkaunt_ilova WHERE akkaunt_id = ? AND ilova = ?', akkauntId, ilova)) > 0; },
+    async eskiKonvertlar(joriyV, limit) {
+      const q = ((await db.prepare('SELECT akkaunt_id, ilova, kod_konvert, master_v FROM akkaunt_ilova WHERE kod_konvert IS NOT NULL AND (master_v IS NULL OR master_v != ?) ORDER BY akkaunt_id, ilova LIMIT ?').bind(joriyV, limit).all()).results) || [];
+      const c = await one('SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE kod_konvert IS NOT NULL AND (master_v IS NULL OR master_v != ?)', joriyV);
+      return { qatorlar: q, qoldi: c ? c.c : 0 };
+    },
     async devYoz(email, kod, maqsad, now) {                    // KV emas, D1: yozuvdan keyin o'qish darhol izchil (KV eventual consistency eskirgan kodni qaytarardi)
       await db.prepare('CREATE TABLE IF NOT EXISTS dev_kod (email TEXT PRIMARY KEY, kod TEXT NOT NULL, maqsad TEXT NOT NULL, vaqt INTEGER NOT NULL)').run();
       await run('INSERT INTO dev_kod (email, kod, maqsad, vaqt) VALUES (?, ?, ?, ?) ON CONFLICT(email) DO UPDATE SET kod = excluded.kod, maqsad = excluded.maqsad, vaqt = excluded.vaqt', email, kod, maqsad, now);
@@ -64,10 +84,10 @@ export function makeStore(env) {
     async devOl(email, now) { try { return await one('SELECT kod, maqsad, vaqt FROM dev_kod WHERE email = ? AND vaqt > ?', email, now - 600000); } catch (e) { return null; } },
     async audit(akkauntId, hodisa, now) { await run('INSERT INTO audit (vaqt, akkaunt_id, hodisa) VALUES (?, ?, ?)', now, akkauntId || null, hodisa); },
     async akkauntOchir(id, email) {
-      await run('DELETE FROM sessiya WHERE akkaunt_id = ?', id); await run('DELETE FROM kirish_kodi WHERE email = ?', email); await run('DELETE FROM audit WHERE akkaunt_id = ?', id);
+      await run('DELETE FROM akkaunt_ilova WHERE akkaunt_id = ?', id); await run('DELETE FROM sessiya WHERE akkaunt_id = ?', id); await run('DELETE FROM kirish_kodi WHERE email = ?', email); await run('DELETE FROM audit WHERE akkaunt_id = ?', id);
       return changes(await run('DELETE FROM akkaunt WHERE id = ?', id)) > 0;
     },
-    async yuklab(id) { return { akkaunt: await one('SELECT ' + AK + ' FROM akkaunt WHERE id = ?', id), sessiyalar: await this.sessiyalar(id) }; },
+    async yuklab(id) { return { akkaunt: await one('SELECT ' + AK + ' FROM akkaunt WHERE id = ?', id), sessiyalar: await this.sessiyalar(id), ilovalar: await this.ilovalar(id) }; },
     async tozala(now) {
       await run('DELETE FROM kirish_kodi WHERE muddat < ?', now - 86400000); await run('DELETE FROM sessiya WHERE muddat_abs < ?', now);
       await run('DELETE FROM sessiya WHERE oxirgi < ?', now - 30 * 86400000); await run('DELETE FROM limit_hisob WHERE oyna_boshi < ?', now - 2 * 86400000);

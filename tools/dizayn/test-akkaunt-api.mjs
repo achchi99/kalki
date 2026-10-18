@@ -8,8 +8,8 @@ const API = await imp('functions/api/akkaunt/[amal].js'); const EM = await imp('
 const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/akkaunt.sql'), 'utf8');
 let n = 0; const T = async (name, fn) => { try { await fn(); n++; console.log('OK  ', n + '.', name); } catch (e) { console.log('XATO ' + name + ': ' + (e && e.stack || e)); process.exit(1); } };
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
-const PEPPER = 'p'.repeat(40), ADMIN = 'admin-parol-sinov';
-const mkEnv = (x = {}) => Object.assign({ KALKI_AI_KV: kv(), KALKIFIT_DB: makeD1(SCHEMA), AKKAUNT_OTP_PEPPER: PEPPER, AKKAUNT_DEV: '1', AKKAUNT_ADMIN_PASSWORD: ADMIN, IP_HASH_SALT: 'tuz' }, x);
+const PEPPER = 'p'.repeat(40), ADMIN = 'admin-parol-sinov', MK1 = '1:' + 'Kalit1'.repeat(8), MK2 = '2:' + 'Yangi2'.repeat(8);
+const mkEnv = (x = {}) => Object.assign({ KALKI_AI_KV: kv(), KALKIFIT_DB: makeD1(SCHEMA), AKKAUNT_OTP_PEPPER: PEPPER, AKKAUNT_MASTER_KEYS: MK1, AKKAUNT_DEV: '1', AKKAUNT_ADMIN_PASSWORD: ADMIN, IP_HASH_SALT: 'tuz' }, x);
 const PREVIEW = 'https://akkaunt.kalki-10y.pages.dev', PROD = 'https://kalki.uz';
 let NOW = Date.now(); const realNow = Date.now; Date.now = () => NOW; const adv = (ms) => { NOW += ms; };
 let ipN = 0;
@@ -28,7 +28,7 @@ async function kirish(env, email, ip, gap) {                      // kod so'rash
 const raw = (env, q, ...a) => env.KALKIFIT_DB._raw.prepare(q).all(...a);
 
 await T('xizmat sozlanmasa: pepper yo\'q / dev ham, kalit ham yo\'q → yoqilgan:false, boshqa endpoint 503', async () => {
-  for (const env of [mkEnv({ AKKAUNT_OTP_PEPPER: undefined }), mkEnv({ AKKAUNT_DEV: undefined }), mkEnv({ KALKIFIT_DB: undefined }), mkEnv({ AKKAUNT_OTP_PEPPER: 'qisqa' })]) {
+  for (const env of [mkEnv({ AKKAUNT_MASTER_KEYS: undefined }), mkEnv({ AKKAUNT_MASTER_KEYS: '1:qisqa' }), mkEnv({ AKKAUNT_OTP_PEPPER: undefined }), mkEnv({ AKKAUNT_DEV: undefined }), mkEnv({ KALKIFIT_DB: undefined }), mkEnv({ AKKAUNT_OTP_PEPPER: 'qisqa' })]) {
     const s = await call(env, 'sessiya'); assert.equal(s.s, 200); assert.deepEqual(s.j, { yoqilgan: false });
     assert.equal((await call(env, 'kod', { body: { email: 'a@b.uz' } })).s, 503);
   }
@@ -195,7 +195,7 @@ await T('akkauntsiz rejim avvalgidek: zaxira API akkaunt jadvallarisiz ishlaydi;
   const get = await Z.onRequest({ request: new Request('https://kalki.uz/api/zaxira?id=' + id, { headers: { Origin: 'https://kalki.uz' } }), env }); assert.equal((await get.json()).blob, blob);
   assert.deepEqual((await call(env, 'sessiya', { host: PROD })).j, { yoqilgan: false });
   const env2 = mkEnv(); env2.KALKIFIT_DB._raw.exec(zs); await kirish(env2, 'z@x.uz'); assert.equal(env2.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM zaxira').get().c, 0);
-  const sch = fs.readFileSync(path.join(ROOT, 'migrations/akkaunt.sql'), 'utf8'); assert.doesNotMatch(sch, /zaxira\s*\(|REFERENCES\s+zaxira/i, 'A bosqichda akkaunt zaxiraga bog\'lanmaydi');
+  const sch = fs.readFileSync(path.join(ROOT, 'migrations/akkaunt.sql'), 'utf8'); assert.doesNotMatch(sch, /REFERENCES\s+zaxira\b|CREATE TABLE[^;(]*\bzaxira\s*\(/i, 'akkaunt jadvallari zaxira jadvaliga tashqi kalit bilan bog\'lanmaydi (faqat zaxira_id matni)');
 });
 
 await T('server kaliti (AKKAUNT_MASTER_KEYS): format, birinchisi joriy, almashtirish, xato formatlar rad etiladi; barmoq izi kalitni oshkor qilmaydi', async () => {
@@ -223,19 +223,99 @@ await T('dev kod ishonchliligi (preview xatosi): ketma-ket ikki so\'rovda OXIRGI
   } finally { delete WC.getRandomValues; }
 });
 
+/* ================= B bosqich: gibrid (konvert) ================= */
+const { createRequire: cr } = await import('node:module'); const BK = cr(import.meta.url)(path.join(ROOT, 'assets/app-backup.js'));
+const ZAX = await imp('functions/api/zaxira.js'); const ZSQL = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8');
+const KOD = BK.genCode('kalkifit'), KOD2 = BK.genCode('kalkifit'), RZKOD = BK.genCode('rozgor');
+const ulash = (env, cookie, body) => call(env, 'ulash', { cookie, body });
+const tiklash = (env, cookie, ilova) => call(env, 'tiklash', { cookie, method: 'GET', body: { __qs: '?ilova=' + ilova } });
+const zreq = (env, method, qs, body) => ZAX.onRequest({ request: new Request('https://akkaunt.kalki-10y.pages.dev/api/zaxira' + (qs || ''), { method, headers: { 'Content-Type': 'application/json', Origin: PREVIEW, 'CF-Connecting-IP': '8.8.8.8' }, body: body ? JSON.stringify(body) : undefined }), env });
+
+await T('B: ulash/tiklash — kod server kaliti bilan o\'raladi; zaxira_id mijoz hosilasi bilan bir xil; bazada ochiq kod yo\'q; tiklash aynan shu kodni qaytaradi; format/ilova/401 tekshiruvlari', async () => {
+  const env = mkEnv(); const A = await kirish(env, 'b1@x.uz');
+  assert.equal((await ulash(env, null, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD })).s, 401); assert.equal((await tiklash(env, null, 'kalkifit')).s, 401);
+  assert.deepEqual((await tiklash(env, A.cookie, 'kalkifit')).j, { yoq: true }, 'ulanmagan akkaunt');
+  for (const bad of [{ ilova: 'boshqa', rejim: 'konvert', kod: KOD }, { ilova: 'kalkifit', rejim: 'x', kod: KOD }, { ilova: 'kalkifit' }]) assert.equal((await ulash(env, A.cookie, bad)).s, 400);
+  for (const bad of [RZKOD, 'KF-ABCD', '', 'KF-' + 'I0O1'.repeat(7), null]) { const r = await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: bad }); assert.equal(r.s, 400); assert.equal(r.j.e, 'kod_format'); }
+  const messy = ' ' + KOD.toLowerCase().replace(/-/g, ' - ') + ' ';
+  const u = await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: messy }); assert.equal(u.s, 200, u.txt); assert.deepEqual(u.j, { ok: true, rejim: 'konvert' });
+  const row = raw(env, 'SELECT * FROM akkaunt_ilova')[0]; const keys = await BK.deriveKeys('kalkifit', BK.parseCode('kalkifit', KOD).body);
+  assert.equal(row.zaxira_id, keys.id, 'server hosilasi = ilova (app-backup.js) hosilasi'); assert.equal(row.rejim, 'konvert'); assert.equal(row.master_v, 1); assert.match(row.kod_konvert, /^[A-Za-z0-9_-]{40,}$/);
+  const body = BK.parseCode('kalkifit', KOD).body; const dump = JSON.stringify(['akkaunt', 'akkaunt_ilova', 'kirish_kodi', 'sessiya', 'audit', 'limit_hisob'].map((t) => raw(env, 'SELECT * FROM ' + t))); assert.ok(!dump.includes(body) && !dump.includes(KOD), 'bazada tiklash kodi ochiq emas');
+  const t = await tiklash(env, A.cookie, 'kalkifit'); assert.deepEqual(t.j, { rejim: 'konvert', kod: KOD }); assert.equal(t.h.get('Cache-Control'), 'no-store');
+  assert.deepEqual((await tiklash(env, A.cookie, 'rozgor')).j, { yoq: true }, 'boshqa ilova alohida');
+  assert.deepEqual((await call(env, 'sessiya', { cookie: A.cookie })).j.ilovalar, { kalkifit: 'konvert' }); assert.equal((await tiklash(env, A.cookie, 'x')).s, 400);
+  const dl = (await call(env, 'yuklab', { cookie: A.cookie })).j; assert.deepEqual(dl.ilovalar.map((x) => [x.ilova, x.rejim]), [['kalkifit', 'konvert']]); assert.doesNotMatch(JSON.stringify(dl), /kod_konvert|KF-/);
+});
+
+await T('B: yangi qurilma — butun zanjir: 1-qurilma zaxira yozadi (/api/zaxira o\'zgarmagan) → 2-qurilmada email bilan kirish → tiklash kodi → odatdagi tiklash shifrni ochadi', async () => {
+  const env = mkEnv(); env.KALKIFIT_DB._raw.exec(ZSQL); const plain = JSON.stringify({ app: 'kalki-kalkifit', v: 3, state: { profile: { name: 'Madina' }, days: { '2026-10-18': { food: [{ n: 'Osh', kcal: 700 }] } } } });
+  const k1 = await BK.deriveKeys('kalkifit', BK.parseCode('kalkifit', KOD).body); const blob = await BK.seal('kalkifit', k1, plain);
+  assert.equal((await zreq(env, 'PUT', '', { id: k1.id, ilova: 'kalkifit', kutilgan: 0, blob })).status, 200);
+  const dev1 = await kirish(env, 'madina@x.uz'); assert.equal((await ulash(env, dev1.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD })).s, 200);
+  assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM zaxira')[0].c, 1, 'ulash zaxira jadvaliga tegmaydi'); assert.equal(raw(env, 'SELECT blob FROM zaxira')[0].blob, blob);
+  // 2-qurilma: boshqa cookie, boshqa kontekst
+  const dev2 = await kirish(env, 'madina@x.uz'); assert.notEqual(dev1.cookie, dev2.cookie); const t = await tiklash(env, dev2.cookie, 'kalkifit'); assert.equal(t.j.kod, KOD);
+  const k2 = await BK.deriveKeys('kalkifit', BK.parseCode('kalkifit', t.j.kod).body); const g = await (await zreq(env, 'GET', '?id=' + k2.id)).json(); assert.equal(await BK.open('kalkifit', k2, g.blob), plain, 'yangi qurilmada ma\'lumot tiklandi');
+  // boshqa akkaunt bu zaxiraga ulana olmaydi, o'z kodi bilan emas
+  const other = await kirish(env, 'begona@x.uz'); const r = await ulash(env, other.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD }); assert.equal(r.s, 409); assert.equal(r.j.e, 'band'); assert.deepEqual((await tiklash(env, other.cookie, 'kalkifit')).j, { yoq: true });
+});
+
+await T('B: akkaunt-zaxira almashtirish: boshqa kod 409 «boshqa» (almashtir:true bilan o\'tadi); konvert boshqa akkaunt/ilovaga ko\'chirilsa OCHILMAYDI; akkaunt o\'chsa ulanish ham o\'chadi (zaxira blob qoladi)', async () => {
+  const env = mkEnv(); env.KALKIFIT_DB._raw.exec(ZSQL); const A = await kirish(env, 'a@x.uz'); await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD });
+  const r = await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD2 }); assert.equal(r.s, 409); assert.equal(r.j.e, 'boshqa'); assert.equal((await tiklash(env, A.cookie, 'kalkifit')).j.kod, KOD, 'rad etilsa eskisi qoladi');
+  assert.equal((await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD, almashtir: false })).s, 200, 'o\'sha kodni qayta ulash — xato emas'); assert.equal((await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD2, almashtir: true })).s, 200); assert.equal((await tiklash(env, A.cookie, 'kalkifit')).j.kod, KOD2);
+  assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova')[0].c, 1);
+  await ulash(env, A.cookie, { ilova: 'rozgor', rejim: 'konvert', kod: RZKOD }); const B = await kirish(env, 'b@x.uz'); await ulash(env, B.cookie, { ilova: 'kalkifit', rejim: 'qatiy' });
+  const ids = raw(env, 'SELECT id, email FROM akkaunt'); const idA = ids.find((x) => x.email === 'a@x.uz').id, idB = ids.find((x) => x.email === 'b@x.uz').id;
+  const envA = raw(env, "SELECT kod_konvert FROM akkaunt_ilova WHERE akkaunt_id = ? AND ilova = 'kalkifit'", idA)[0].kod_konvert;
+  env.KALKIFIT_DB._raw.prepare("UPDATE akkaunt_ilova SET kod_konvert = ?, rejim = 'konvert', zaxira_id = 'x' WHERE akkaunt_id = ? AND ilova = 'kalkifit'").run(envA, idB);       // A ning konvertini B ga ko'chirish (hujum)
+  const bad = await tiklash(env, B.cookie, 'kalkifit'); assert.equal(bad.s, 503); assert.equal(bad.j.e, 'konvert'); assert.doesNotMatch(bad.txt, /KF-/);
+  const rz = raw(env, "SELECT kod_konvert FROM akkaunt_ilova WHERE akkaunt_id = ? AND ilova = 'rozgor'", idA)[0].kod_konvert; env.KALKIFIT_DB._raw.prepare("UPDATE akkaunt_ilova SET kod_konvert = ? WHERE akkaunt_id = ? AND ilova = 'kalkifit'").run(rz, idA); assert.equal((await tiklash(env, A.cookie, 'kalkifit')).s, 503, 'boshqa ilova konverti ham ochilmaydi (AAD)');
+  // o'chirish
+  const k = await BK.deriveKeys('kalkifit', BK.parseCode('kalkifit', KOD2).body); await zreq(env, 'PUT', '', { id: k.id, ilova: 'kalkifit', kutilgan: 0, blob: 'B'.repeat(40) }); adv(61000);
+  await call(env, 'kod', { cookie: A.cookie, body: { maqsad: 'ochirish' } }); const dk = await devKod(env, 'a@x.uz'); assert.equal((await call(env, 'ochirish', { cookie: A.cookie, body: { kod: dk } })).s, 200);
+  assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idA)[0].c, 0); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idB)[0].c, 1); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM zaxira')[0].c, 1, 'zaxira nusxasi saqlanib qoladi');
+});
+
+await T('B: qat\'iy rejim — konvert ham, zaxira_id ham saqlanmaydi; tiklash «qatiy» qaytaradi; konvertga qaytish; qatiyga o\'tganda eski konvert o\'chadi', async () => {
+  const env = mkEnv(); const A = await kirish(env, 'q@x.uz'); await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD });
+  const r = await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'qatiy', kod: KOD }); assert.deepEqual(r.j, { ok: true, rejim: 'qatiy' });
+  const row = raw(env, 'SELECT * FROM akkaunt_ilova')[0]; assert.equal(row.rejim, 'qatiy'); assert.equal(row.kod_konvert, null); assert.equal(row.zaxira_id, null); assert.equal(row.master_v, null);
+  assert.ok(!JSON.stringify(raw(env, 'SELECT * FROM akkaunt_ilova')).includes(BK.parseCode('kalkifit', KOD).body), 'qat\'iy rejimda kod hech qayerda yo\'q');
+  assert.deepEqual((await tiklash(env, A.cookie, 'kalkifit')).j, { rejim: 'qatiy' }); assert.deepEqual((await call(env, 'sessiya', { cookie: A.cookie })).j.ilovalar, { kalkifit: 'qatiy' });
+  assert.equal((await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD, almashtir: true })).s, 200); assert.equal((await tiklash(env, A.cookie, 'kalkifit')).j.kod, KOD);
+  await ulash(env, A.cookie, { ilova: 'rozgor', rejim: 'qatiy' }); await ulash(env, A.cookie, { ilova: 'rozgor', rejim: 'qatiy' }); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova')[0].c, 2, 'takror qatiy ikkilanmaydi');
+  const B = await kirish(env, 'q2@x.uz'); await ulash(env, B.cookie, { ilova: 'kalkifit', rejim: 'qatiy' }); await ulash(env, B.cookie, { ilova: 'rozgor', rejim: 'qatiy' }); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova')[0].c, 4, 'qat\'iy rejim (zaxira_id NULL) UNIQUE ni buzmaydi');
+});
+
+await T('B: server kalitini almashtirish — yangi kalit joriy, eski faqat ochish uchun; tiklash sust qayta o\'raydi; /qayta-ora (admin) qolganini o\'raydi; eski kalit olib tashlansa ham ishlaydi; kalit yo\'qolsa — aniq xato, kod oshkor bo\'lmaydi', async () => {
+  const env = mkEnv(); const A = await kirish(env, 'r1@x.uz'); const B = await kirish(env, 'r2@x.uz'); await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD }); await ulash(env, B.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD2 });
+  assert.deepEqual(raw(env, 'SELECT master_v FROM akkaunt_ilova').map((x) => x.master_v), [1, 1]);
+  const both = Object.assign({}, env, { AKKAUNT_MASTER_KEYS: MK2 + ',' + MK1 });                                                   // 2 — joriy, 1 — eski
+  const t = await tiklash(both, A.cookie, 'kalkifit'); assert.equal(t.j.kod, KOD, 'eski konvert yangi sozlamada ochiladi'); assert.deepEqual(raw(both, 'SELECT master_v FROM akkaunt_ilova ORDER BY master_v').map((x) => x.master_v), [1, 2], 'ochilgan zahoti yangi kalit bilan qayta o\'raldi');
+  assert.equal((await call(both, 'qayta-ora', { body: {} })).s, 401); assert.equal((await call(both, 'qayta-ora', { headers: { 'X-Admin-Password': 'xato' }, body: {} })).s, 401);
+  const q = await call(both, 'qayta-ora', { headers: { 'X-Admin-Password': ADMIN }, body: {} }); assert.deepEqual(q.j, { ok: true, ora: 1, xato: 0, qoldi: 0, joriy: 2 });
+  assert.deepEqual(raw(both, 'SELECT master_v FROM akkaunt_ilova').map((x) => x.master_v), [2, 2]); assert.equal((await call(both, 'qayta-ora', { headers: { 'X-Admin-Password': ADMIN }, body: {} })).j.ora, 0, 'takror — hech narsa qolmagan');
+  const onlyNew = Object.assign({}, env, { AKKAUNT_MASTER_KEYS: MK2 }); assert.equal((await tiklash(onlyNew, B.cookie, 'kalkifit')).j.kod, KOD2, 'eski kalit olib tashlangach ham ishlaydi'); assert.equal((await tiklash(onlyNew, A.cookie, 'kalkifit')).j.kod, KOD);
+  const onlyOld = Object.assign({}, env, { AKKAUNT_MASTER_KEYS: MK1 }); const lost = await tiklash(onlyOld, A.cookie, 'kalkifit'); assert.equal(lost.s, 503); assert.equal(lost.j.e, 'kalit'); assert.doesNotMatch(lost.txt, /KF-/);
+  const wrong = Object.assign({}, env, { AKKAUNT_MASTER_KEYS: '2:' + 'Boshqa3'.repeat(7) }); assert.equal((await tiklash(wrong, A.cookie, 'kalkifit')).s, 503, 'noto\'g\'ri kalit (versiya mos, qiymat boshqa) ochmaydi');
+  const none = Object.assign({}, env, { AKKAUNT_MASTER_KEYS: undefined }); assert.deepEqual((await call(none, 'sessiya', { cookie: A.cookie })).j, { yoqilgan: false }, 'server kaliti yo\'q → blok yashirin');
+});
+
 await T('eksport/import (VPS\'ga ko\'chirish): akkaunt JSON → yangi SQLite bir xil; qayta yurgizish ikkilantirmaydi; kodlar/limitlar ko\'chmaydi; Postgres SQL; buzuq fayl rad etiladi; kalit vositasi lib bilan mos', async () => {
   const { execFileSync } = await import('node:child_process'); const os = await import('node:os'); const { createRequire } = await import('node:module'); const require = createRequire(import.meta.url);
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'akk-')); try {
-    const env = mkEnv(); const A = await kirish(env, 'ko\'chish@x.uz'); await call(env, 'marketing', { cookie: A.cookie, body: { rozi: true } }); await kirish(env, 'ikkinchi@x.uz'); await call(env, 'kod', { body: { email: 'kutayotgan@x.uz' } });
+    const env = mkEnv(); const A = await kirish(env, 'ko\'chish@x.uz'); await call(env, 'marketing', { cookie: A.cookie, body: { rozi: true } }); await ulash(env, A.cookie, { ilova: 'kalkifit', rejim: 'konvert', kod: KOD }); await ulash(env, A.cookie, { ilova: 'rozgor', rejim: 'qatiy' }); await kirish(env, 'ikkinchi@x.uz'); await call(env, 'kod', { body: { email: 'kutayotgan@x.uz' } });
     const src = path.join(tmp, 'src.sqlite'); env.KALKIFIT_DB._raw.exec("VACUUM INTO '" + src + "'");
     const ex = path.join(ROOT, 'tools/akkaunt-export.js'), im = path.join(ROOT, 'tools/akkaunt-import.js'), out = path.join(tmp, 'ex');
     execFileSync('node', [ex, '--sqlite', src, '--out', out], { encoding: 'utf8' }); const j = JSON.parse(fs.readFileSync(out + '.json', 'utf8'));
     assert.equal(j.v, 1); assert.equal(j.jadvallar.akkaunt.length, 2); assert.deepEqual(Object.keys(j.jadvallar), ['akkaunt']); assert.equal(j.jadvallar.akkaunt.find((a) => a.email === 'ko\'chish@x.uz').marketing, 1);
     assert.equal(fs.statSync(out + '.json').mode & 0o077, 0, 'fayl faqat egasiga ochiq (0600)'); assert.doesNotMatch(fs.readFileSync(out + '.json', 'utf8'), /kod_hash|limit_hisob|kalki_s/);
-    execFileSync('node', [ex, '--sqlite', src, '--out', out + '2', '--sessions', '--audit', '--format', 'json']); const j2 = JSON.parse(fs.readFileSync(out + '2.json', 'utf8')); assert.equal(j2.jadvallar.sessiya.length, 2); assert.ok(j2.jadvallar.audit.length >= 2);
+    execFileSync('node', [ex, '--sqlite', src, '--out', out + '2', '--sessions', '--audit', '--ilovalar', '--format', 'json']); const j2 = JSON.parse(fs.readFileSync(out + '2.json', 'utf8')); assert.equal(j2.jadvallar.sessiya.length, 2); assert.deepEqual(j2.jadvallar.akkaunt_ilova.map((x) => [x.ilova, x.rejim]), [['kalkifit', 'konvert'], ['rozgor', 'qatiy']]); assert.ok(j2.jadvallar.akkaunt_ilova[0].kod_konvert && !JSON.stringify(j2).includes(BK.parseCode('kalkifit', KOD).body), 'eksportda ham ochiq kod yo\'q'); assert.ok(j2.jadvallar.audit.length >= 2);
     const dst = path.join(tmp, 'dst.sqlite'); const o1 = execFileSync('node', [im, out + '2.json', '--to', 'sqlite', '--db', dst, '--tekshir'], { encoding: 'utf8' }); assert.match(o1, /tekshiruv: mos/);
     execFileSync('node', [im, out + '2.json', '--to', 'sqlite', '--db', dst, '--tekshir']);                                             // qayta yurgizish
-    const { DatabaseSync } = require('node:sqlite'); const d = new DatabaseSync(dst, { readOnly: true }); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM akkaunt').get().c, 2); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 2); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM kirish_kodi').get().c, 0, 'kodlar ko\'chmaydi'); assert.equal(d.prepare('SELECT marketing_matn_v AS v FROM akkaunt WHERE email = ?').get('ko\'chish@x.uz').v, 'm1'); d.close();
+    const { DatabaseSync } = require('node:sqlite'); const d = new DatabaseSync(dst, { readOnly: true }); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM akkaunt').get().c, 2); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 2); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM kirish_kodi').get().c, 0, 'kodlar ko\'chmaydi'); assert.equal(d.prepare('SELECT COUNT(*) AS c FROM akkaunt_ilova').get().c, 2); assert.equal(d.prepare('SELECT marketing_matn_v AS v FROM akkaunt WHERE email = ?').get('ko\'chish@x.uz').v, 'm1'); d.close();
     execFileSync('node', [im, out + '2.json', '--to', 'sql', '--dialect', 'postgres', '--out', path.join(tmp, 'pg.sql')]); const pg = fs.readFileSync(path.join(tmp, 'pg.sql'), 'utf8');
     assert.match(pg, /BIGINT/); assert.match(pg, /ON CONFLICT \(id\) DO UPDATE/); assert.match(pg, /'ko''chish@x\.uz'/); assert.match(pg, /setval/); assert.doesNotMatch(pg, /AUTOINCREMENT/);
     fs.writeFileSync(path.join(tmp, 'bad.json'), '{"v":2}'); assert.throws(() => execFileSync('node', [im, path.join(tmp, 'bad.json'), '--to', 'sqlite', '--db', path.join(tmp, 'x.sqlite')], { stdio: 'pipe' }));

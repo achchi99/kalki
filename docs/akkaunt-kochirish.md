@@ -11,7 +11,8 @@ Ko'chirish shuning uchun oson: D1 va xat yuborish **ikkita alohida qatlam** orqa
 | HTTP API | `functions/api/akkaunt/[amal].js` (kod, kirish, sessiya, limitlar, Origin) | yangi serverda xuddi shu mantiq (yoki shu fayl; Node/Hono/Express) |
 | Saqlash qatlami | `functions/_lib/akkaunt-store.js` — **D1'ga bog'liq yagona fayl** | Postgres uchun shu faylni almashtirish |
 | Xat yuborish | `functions/_lib/akkaunt-email.js` — `rejim` / `yubor` / `devOl` | VPS'dan chiqadigan SMTP yoki boshqa provayder uchun shu faylni almashtirish |
-| Server kaliti | `functions/_lib/akkaunt-kalit.js` (env `AKKAUNT_MASTER_KEYS`) | env'ni **aynan shu qiymat** bilan ko'chirish (`docs/akkaunt-kalit.md`) |
+| Gibrid (konvert) | `functions/_lib/akkaunt-konvert.js` — tiklash kodini kalit bilan o'rash/ochish (WebCrypto) | o'zgarishsiz (Node 20+ da `crypto.subtle` bor) |
+| Server kaliti | `functions/_lib/akkaunt-kalit.js` (env `AKKAUNT_MASTER_KEYS`) | env'ni **aynan shu qiymat** (barcha versiyalar) bilan ko'chirish — aks holda `akkaunt_ilova.kod_konvert` ochilmaydi (`docs/akkaunt-kalit.md`) |
 | Jadvallar | `migrations/akkaunt.sql` | Postgres uchun `tools/akkaunt-export.js` chiqargan DDL |
 | Eksport / import | `tools/akkaunt-export.js`, `tools/akkaunt-import.js` | ko'chirish vositasi |
 
@@ -27,7 +28,12 @@ kodTekshir({ email, maqsad, hash, now, maxUrinish })     → 'ok' | 'yoq' | 'qul
 sessiyaYarat / sessiyaOl / sessiyaYangila / sessiyaOchir / sessiyalar / sessiyaOchirHammasi
 limit(kalit, oynaMs, lim, now)                           → { ok, soni, qayta }                   ← ATOMIK upsert
 audit(akkauntId, hodisa, now) / akkauntOchir(id, email) / yuklab(id) / tozala(now) / sanoq()
+-- B bosqich (gibrid):
+ilovalar(akkauntId) / ilovaOl(akkauntId, ilova) / ilovaYoz({ akkauntId, ilova, zaxiraId, konvert, rejim, masterV, now }) → 'ok' | 'band'
+ilovaKonvert(akkauntId, ilova, konvert, masterV) / ilovaOchir(akkauntId, ilova) / eskiKonvertlar(joriyV, limit) → { qatorlar, qoldi }
+devYoz / devOl   -- FAQAT preview dev rejimi (production'da chaqirilmaydi; jadval o'zi ochiladi)
 ```
+`ilovaYoz`: `zaxira_id` boshqa akkauntda bo'lsa `'band'` (UNIQUE); `'qatiy'` rejimda `zaxira_id`/`kod_konvert` NULL.
 
 **Atomiklik (xavfsizlik uchun SHART):**
 - `kodTekshir`: avval `UPDATE kirish_kodi SET urinish = urinish+1 WHERE id=? AND ishlatilgan=0 AND urinish < max` (0 qator → `'qulf'`), keyin xesh solishtirish, to'g'ri bo'lsa `UPDATE … SET ishlatilgan=1 WHERE id=? AND ishlatilgan=0` (aynan 1 qator o'zgarsa → `'ok'`). Shunda parallel taxminlar ham sanaladi va kod faqat bir marta o'tadi.
@@ -40,6 +46,7 @@ Postgres'da farqlar: vaqt ustunlari `BIGINT` (millisekund), `AUTOINCREMENT` o'rn
 | Ma'lumot | Ko'chadimi |
 |---|---|
 | `akkaunt` (email, usul, vaqtlar, marketing roziligi + vaqti + matn versiyasi) | **Ha** — asosiy |
+| `akkaunt_ilova` (zaxira bilan ulanish + shifrlangan konvert) | **Ha, `--ilovalar` bilan.** ⚠ Konvertlar faqat server kaliti bilan ochiladi — kalit ham ko'chishi shart; kalitsiz foydalanuvchilar faqat tiklash kodi bilan tiklaydi |
 | `sessiya` | Ixtiyoriy (`--sessions`). Ko'chirmasangiz hamma bir marta qaytadan kiradi (email kodi bilan) — oddiy va xavfsizroq |
 | `audit` | Ixtiyoriy (`--audit`) |
 | `kirish_kodi`, `limit_hisob` | **Yo'q** (10 daqiqalik/soatlik vaqtinchalik) |
@@ -52,7 +59,7 @@ Postgres'da farqlar: vaqt ustunlari `BIGINT` (millisekund), `AUTOINCREMENT` o'rn
 2. **Saqlash va xat qatlamini almashtiring.** `akkaunt-store.js` ni Postgres variantiga, `akkaunt-email.js` ni yangi yuboruvchiga. Qaytish shakllari bir xil bo'lsa, API'ga tegilmaydi.
 3. **Eksport (D1 → fayl).** `npx wrangler login` dan keyin:
    ```bash
-   node tools/akkaunt-export.js --db kalkifit --out akkaunt-export --format both --dialect postgres
+   node tools/akkaunt-export.js --db kalkifit --out akkaunt-export --format both --dialect postgres --ilovalar
    # sessiyalarni ham ko'chirmoqchi bo'lsangiz: --sessions    (audit uchun: --audit)
    ```
    Fayllar `0600` ruxsat bilan yoziladi. **Ular email manzillarini saqlaydi — maxfiy**: shifrlangan diskda saqlang, ishlatgach o'chiring, repoga/chatga yubormang.

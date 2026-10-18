@@ -144,15 +144,22 @@ Kalkifit/Ro'zg'or qoidalari: 360 px, `fs-big`, klaviatura ochiq; `data/yangilikl
 | Bosqich | Ichida | Baho |
 |---|---|---|
 | A. Email kod + sessiya — **tayyor (branch `akkaunt`)** | `akkaunt.sql`, store/email adapterlari, `/api/akkaunt/*` (kod, kirish, sessiya, chiqish, qurilmalar, marketing, yuklab, o'chirish), Profil «Kirish» qatori, limitlar, testlar, `akkaunt-kochirish.md`, `akkaunt-kalit.md`, eksport/import/kalit vositalari. Qurilmalar ro'yxati UI'da hozircha faqat soni (alohida qurilmadan chiqish — D da) | 4–5 kun |
-| B. Zaxira bilan ulash | konvert, mavjud kodni ulash, yangi telefonda tiklash, qat'iy rejim, o'chirish/yuklab olish, maxfiylik matni | 3–4 kun |
+| B. Zaxira bilan ulash — **tayyor (branch `akkaunt`)**; avtomatik saqlash/tiklash, tiklash-kodli foydalanuvchini ulash, qat'iy rejim, kalit almashtirish (sust + `/qayta-ora`), «Boshqa usullar» | konvert, mavjud kodni ulash, yangi telefonda tiklash, qat'iy rejim, o'chirish/yuklab olish, maxfiylik matni | 3–4 kun |
 | C. Google | GIS tugmasi, ID-token tekshiruvi, email bilan birlashtirish, iOS PWA zaxirasi | 2–3 kun |
 | D. Admin/eksport | statistika, marketing CSV, obuna bekor qilish | 1–2 kun |
 | (keyin) Apple | App Store bilan birga: Sign in with Apple (App Store qoidasi — Google bo'lsa Apple ham shart) | alohida |
 Jami ≈ 10–14 ish kuni + provayder/DNS kutish.
 
+### B bosqichda qabul qilingan qoidalar
+- **Ikki qurilma bir vaqtda yozsa:** birlashtirish YO'Q, «oxirgi yozuv yutadi» ham YO'Q — optimistik versiya (mavjud `/api/zaxira`): ikkinchi yozuvchi 409 oladi va ilova «Boshqa qurilmada yangiroq nusxa bor — qaysi biri qolsin?» deb so'raydi. Kirishda ikkala tomonda ma'lumot bo'lsa ham xuddi shunday tanlov oynasi chiqadi; jimgina ustiga yozilmaydi.
+- **Avtomatik saqlash:** kirgan foydalanuvchida yangi tiklash kodi yaratilib bulut yoqiladi (kod foydalanuvchiga ko'rsatilmaydi — server kaliti bilan o'ralib akkauntga bog'lanadi); «Boshqa usullar» → «Kodni ko'rsatish» orqali kod baribir ko'rinadi.
+- **Yangi qurilma:** Email bilan kirish → server o'raolgan kodni qaytaradi → ilova odatdagi kod bilan tiklashni bajaradi (zaxira formati va `/api/zaxira` o'zgarmagan).
+- **Qat'iy rejim:** `akkaunt_ilova` da `zaxira_id`/`kod_konvert` NULL — server kodni ham, uning hosilasini ham bilmaydi; yangi qurilmada avtomatik tiklanmaydi.
+- **Maxfiylik:** gibrid rejimda kodni ochish server tomonida texnik jihatdan mumkin — maxfiylik sahifasida ochiq yozilgan (6-bo'lim).
+
 ### A bosqichdan B ga o'tkazma eslatmalari
-- `assets/app-akkaunt.js` dagi `inP2` matni («hozircha akkaunt faqat kirish uchun…») B da o'chiriladi / almashtiriladi — A da akkaunt ma'lumotni tiklamaydi, shuning uchun matn halol yozilgan.
-- **Production'da `AKKAUNT_EMAIL_API_KEY` ni B tayyor bo'lgunicha qo'ymang** — kalit qo'yilishi bilan «Kirish» qatori hammaga ko'rinadi (kalit yo'q → ko'rinmaydi).
+- (B da bajarildi) `inP2` matni almashtirildi: endi akkaunt ma'lumotni saqlaydi va tiklaydi.
+- **Production'da blok uchta narsa BIRGA bo'lgandagina ko'rinadi:** `AKKAUNT_EMAIL_API_KEY`, `AKKAUNT_OTP_PEPPER`, `AKKAUNT_MASTER_KEYS` (+ migratsiya). Hozir ularning birortasi qo'yilmagan bo'lsa — yashirin.
 - A bosqichda yangilik yozuvi (`data/yangiliklar-*.json`) qo'shilmadi: funksiya production'da yashirin; yozuv B bilan, ko'rinadigan bo'lganda qo'shiladi.
 
 ## 12. Foydalanuvchining qo'l vazifalari

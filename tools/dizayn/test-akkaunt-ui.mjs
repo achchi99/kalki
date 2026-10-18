@@ -8,11 +8,11 @@ const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.cs
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port;
 const b = track(await chromium.launch());
-const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/akkaunt/[amal].js')).href); const EM = await import(pathToFileURL(path.join(ROOT, 'functions/_lib/akkaunt-email.js')).href);
+const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/akkaunt/[amal].js')).href); const ZAX = await import(pathToFileURL(path.join(ROOT, 'functions/api/zaxira.js')).href); const ZSQL = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8'); const EM = await import(pathToFileURL(path.join(ROOT, 'functions/_lib/akkaunt-email.js')).href);
 const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/akkaunt.sql'), 'utf8');
 { const nc0 = b.newContext.bind(b); b.newContext = async (o) => { const c = await nc0(o); await c.addInitScript(() => { try { for (const a of ['kalkifit', 'rozgor']) if (!localStorage.getItem('kalki_news_' + a)) localStorage.setItem('kalki_news_' + a, '{"shown":999,"read":999}'); } catch (e) {} }); return c; }; }
 const kvf = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
-const mkEnv = () => ({ KALKI_AI_KV: kvf(), KALKIFIT_DB: makeD1(SCHEMA), AKKAUNT_OTP_PEPPER: 'p'.repeat(40), AKKAUNT_DEV: '1', ALLOW_LOCAL_ORIGIN: '1', AKKAUNT_ADMIN_PASSWORD: 'admin-sinov', IP_HASH_SALT: 'tuz' });
+const mkEnv = () => ({ KALKI_AI_KV: kvf(), KALKIFIT_DB: makeD1(SCHEMA + '\n' + ZSQL), AKKAUNT_OTP_PEPPER: 'p'.repeat(40), AKKAUNT_MASTER_KEYS: '1:' + 'Kalit1'.repeat(8), AKKAUNT_DEV: '1', ALLOW_LOCAL_ORIGIN: '1', AKKAUNT_ADMIN_PASSWORD: 'admin-sinov', IP_HASH_SALT: 'tuz' });
 let ENV = mkEnv(); let n = 0; const log = (m) => console.log('OK  ', ++n + '.', m);
 function kfState() { const st = KF.emptyState(); st.setup = true; st.created = Date.now() - 30 * 86400000; st.prefs = { tipsDone: true }; st.profile = { sex: 'f', preg: false, age: 31, height: 166, weight: 64.5, act: 2, goal: 'slow', goalWeight: 60 }; KF.addWeight(st, TODAY, 64.5); for (let i = 0; i < 3; i++) KF.setSteps(st, KF.dates.addDays(TODAY, -i), 3000 + i * 111); return st; }
 function rzState() { const st = RZ.emptyState(); st.prefs = { tipsDone: true }; st.setup = true; st.created = Date.now() - 30 * 86400000; st.base = 3000000; st.reserve = 500000; st.income = RZ.addDays(TODAY, 12); for (let i = 0; i < 3; i++) st.tx.push({ id: 't' + i, type: 'exp', amount: 10000 + i, cat: 'oziq', date: RZ.addDays(TODAY, -i), ts: Date.now() - i }); return st; }
@@ -24,7 +24,7 @@ async function open(app, { lang = '', mode = 'on', vp = { width: 390, height: 84
   const p = await c.newPage(); p.errs = []; p.akkReq = []; p.jar = ''; p.on('pageerror', (e) => p.errs.push(String(e)));
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
   await p.route('**/api/**', async (r) => {
-    const rq = r.request(), u = rq.url(); if (!/\/api\/akkaunt\//.test(u)) return r.abort();
+    const rq = r.request(), u = rq.url(); if (/\/api\/zaxira/.test(u)) { p.akkReq.push(rq.method() + ' zaxira'); const zr = await ZAX.onRequest({ request: new Request(u, { method: rq.method(), headers: { 'Content-Type': 'application/json', Origin: new URL(u).origin, 'CF-Connecting-IP': '4.4.4.4' }, body: rq.postData() || undefined }), env: ENV }); return r.fulfill({ status: zr.status, contentType: 'application/json', body: await zr.text() }); } if (!/\/api\/akkaunt\//.test(u)) return r.abort();
     p.akkReq.push(rq.method() + ' ' + new URL(u).pathname); if (mode === '404') return r.fulfill({ status: 404, body: '' }); if (mode === 'off') return r.fulfill({ status: 200, contentType: 'application/json', body: '{"yoqilgan":false}' });
     const h = { 'Content-Type': 'application/json', Origin: new URL(u).origin, 'CF-Connecting-IP': '4.4.4.4', 'X-Admin-Password': rq.headers()['x-admin-password'] || '' }; if (p.jar) h.Cookie = p.jar;
     const res = await API.onRequest({ request: new Request(u, { method: rq.method(), headers: h, body: rq.method() === 'POST' ? (rq.postData() || '{}') : undefined }), env: ENV, params: { amal: new URL(u).pathname.split('/').pop() } });
@@ -52,17 +52,17 @@ try {
     /* 2. Yoqilgan: email → kod → tayyor */
     ENV = mkEnv(); let p = await open(app); const before = await lsOf(p, APPS[app].key);
     assert.equal(await p.locator('[data-akk=row]').count(), 0, 'Today/asosiy ekranda akkaunt yo\'q'); await goProfile(p, app);
-    assert.match(await T(p, '[data-akk=row]'), /Kirish \(ixtiyoriy\)/); assert.match(await T(p, '[data-akk=row]'), /parol kerak emas/);
-    await p.click('[data-akk=row]'); await p.waitForTimeout(450); let sh = await T(p, '#rzSheet'); assert.match(sh, /Kirish \(ixtiyoriy\)/); assert.match(sh, /Parol kerak emas/); assert.match(sh, /ilova avvalgidek ishlayveradi/); assert.match(sh, /Test rejimi/); assert.equal(await p.locator('#akkEmail').count(), 1);
+    assert.match(await T(p, '[data-akk=row]'), /Email bilan kirish/); assert.match(await T(p, '[data-akk=row]'), /avtomatik saqlanadi/);
+    await p.click('[data-akk=row]'); await p.waitForTimeout(450); let sh = await T(p, '#rzSheet'); assert.match(sh, /Email bilan kirish/); assert.match(sh, /parol kerak emas/); assert.match(sh, /ilova avvalgidek ishlayveradi/); assert.doesNotMatch(sh, /Test rejimi|Administrator paroli|Kodni olish/, 'test bloki email bosqichida KO\'RINMAYDI'); assert.equal(await p.locator('#akkDevPw').count(), 0); assert.equal(await p.locator('#akkEmail').count(), 1);
     await p.fill('#akkEmail', 'noto\'g\'ri'); await p.click('#akkSend'); await p.waitForTimeout(200); assert.match(await T(p, '#akkErr'), /Email noto'g'ri yozilgan/); assert.equal(p.akkReq.filter((x) => /kod/.test(x)).length, 0, 'noto\'g\'ri email serverga bormaydi');
     await p.fill('#akkEmail', 'Madina@Pochta.uz'); await p.click('#akkSend'); await p.waitForSelector('#akkCode', { timeout: 5000 }); sh = await T(p, '#rzSheet'); assert.match(sh, /madina@pochta\.uz manziliga 6 xonali kod yubordik|Madina@Pochta\.uz manziliga/i); assert.match(sh, /Spam/);
     assert.match(await T(p, '#akkResend'), /Qayta yuborish: \d+ s/); assert.equal(await p.locator('#akkResend').isDisabled(), true);
     await p.fill('#akkCode', '000000'); await p.waitForTimeout(500); let er = await T(p, '#akkErr'); if (!/Kod noto'g'ri/.test(er || '')) { /* 1/10^6 ehtimol: tasodifan to'g'ri */ } else assert.match(er, /Kod noto'g'ri/);
     await p.fill('#akkDevPw', 'xato-parol'); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); assert.match(await T(p, '#akkErr'), /Kod topilmadi/);
     await p.fill('#akkDevPw', adminPw); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); const kod = await p.inputValue('#akkCode'); assert.match(kod, /^\d{6}$/); assert.equal(kod, ENV.KALKIFIT_DB._raw.prepare('SELECT kod FROM dev_kod WHERE email = ?').get('madina@pochta.uz').kod);
-    await p.click('#akkGo'); await p.waitForTimeout(900); assert.match(await T(p, '#rzToast'), /Akkaunt ochildi/); assert.equal(await p.locator('#rzSheet').evaluate((e) => e.hidden || !e.classList.contains('open')), true, 'panel yopildi');
+    await p.click('#akkGo'); await p.waitForTimeout(900); assert.match(await T(p, '#rzToast'), /Akkaunt ochildi|avtomatik saqlanadi/); assert.equal(await p.locator('#rzSheet').evaluate((e) => e.hidden || !e.classList.contains('open')), true, 'panel yopildi');
     assert.match(await T(p, '[data-akk=row]'), /Akkaunt/); assert.match(await T(p, '[data-akk=row]'), /madina@pochta\.uz/);
-    assert.equal(await lsOf(p, APPS[app].key), before, 'ilova ma\'lumoti kirishdan o\'zgarmadi'); assert.equal(await lsOf(p, 'kalki_zaxira_' + app), null, 'bulutga saqlash/tiklash kodiga tegilmadi');
+    assert.equal(await lsOf(p, APPS[app].key), before, 'ilova ma\'lumoti kirishdan o\'zgarmadi'); assert.equal(JSON.parse(await lsOf(p, 'kalki_zaxira_' + app)).on, true, 'kirgach bulutga avtomatik saqlash yoqildi (kod akkauntga o\'ralgan)'); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM akkaunt_ilova').get().c, 1);
     log(app + ': Profil → «Kirish (ixtiyoriy)» → email → kod (qayta yuborish 60 s taymer, noto\'g\'ri email serverga bormaydi, noto\'g\'ri kod xatosi) → «Akkaunt ochildi», qatorda email; ilova ma\'lumoti va tiklash kodi tegilmagan');
 
     /* 3. Akkaunt paneli: marketing (odatda o'chiq), qurilmalar, yuklab olish */
@@ -75,23 +75,23 @@ try {
 
     /* 4. Qayta ochish: sessiya saqlanadi (cookie) → qator darhol akkaunt; chiqish */
     await p.click('#rzSheet .rz-x'); await p.waitForTimeout(350); await p.reload({ waitUntil: 'networkidle' }); await goProfile(p, app); assert.match(await T(p, '[data-akk=row]'), /madina@pochta\.uz/, 'reloaddan keyin ham kirgan');
-    await p.click('[data-akk=row]'); await p.waitForTimeout(450); await p.click('[data-act=akkout]'); await p.waitForTimeout(700); assert.match(await T(p, '#rzToast'), /Chiqdingiz/); assert.match(await T(p, '[data-akk=row]'), /Kirish \(ixtiyoriy\)/); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 0);
+    await p.click('[data-akk=row]'); await p.waitForTimeout(450); await p.click('[data-act=akkout]'); await p.waitForTimeout(700); assert.match(await T(p, '#rzToast'), /Chiqdingiz/); assert.match(await T(p, '[data-akk=row]'), /Email bilan kirish/); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 0);
     assert.equal(await lsOf(p, APPS[app].key), before, 'chiqishdan keyin ham ilova ma\'lumoti o\'z joyida');
     log(app + ': sahifa qayta yuklansa kirgan holat saqlanadi; «Chiqish» sessiyani o\'chiradi, ilova ma\'lumoti o\'zgarmaydi');
 
     /* 5. Akkauntni o'chirish (email kodi bilan) */
     const reset = () => ENV.KALKIFIT_DB._raw.exec('DELETE FROM limit_hisob'); reset(); ENV.KALKI_AI_KV.m.clear(); await p.evaluate(() => localStorage.removeItem('kalki_akk')); await p.reload({ waitUntil: 'networkidle' }); await goProfile(p, app);
     await p.click('[data-akk=row]'); await p.waitForTimeout(400); await p.fill('#akkEmail', 'madina@pochta.uz'); await p.click('#akkSend'); await p.waitForSelector('#akkCode'); await p.fill('#akkDevPw', adminPw); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); await p.click('#akkGo'); await p.waitForTimeout(900); assert.match(await T(p, '#rzToast'), /Kirdingiz/, 'mavjud akkaunt — «Akkaunt ochildi» emas');
-    await p.click('[data-akk=row]'); await p.waitForTimeout(450); await p.click('[data-act=akkdel]'); await p.waitForTimeout(350); assert.match(await T(p, '#rzSheet'), /butunlay o'chadi/); assert.match(await T(p, '#rzSheet'), /bulutdagi zaxira va tiklash kodi saqlanib qoladi/);
+    await p.click('[data-akk=row]'); await p.waitForTimeout(450); await p.click('[data-act=akkdel]'); await p.waitForTimeout(350); assert.match(await T(p, '#rzSheet'), /butunlay o'chadi/); assert.match(await T(p, '#rzSheet'), /bulutdagi zaxira \(tiklash kodi bilan\) saqlanib qoladi/);
     reset(); await p.click('#akkDelSend'); await p.waitForSelector('#akkCode'); await p.fill('#akkDevPw', adminPw); await p.click('[data-act=akkdev]'); await p.waitForTimeout(400); await p.click('#akkGo'); await p.waitForTimeout(900);
-    assert.match(await T(p, '#rzToast'), /Akkaunt o'chirildi/); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM akkaunt').get().c, 0); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 0); assert.match(await T(p, '[data-akk=row]'), /Kirish \(ixtiyoriy\)/); assert.equal(await lsOf(p, APPS[app].key), before);
+    assert.match(await T(p, '#rzToast'), /Akkaunt o'chirildi/); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM akkaunt').get().c, 0); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM sessiya').get().c, 0); assert.equal(ENV.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS c FROM akkaunt_ilova').get().c, 0, 'ulanish ham o\'chdi'); assert.match(await T(p, '[data-akk=row]'), /Email bilan kirish/); assert.equal(await lsOf(p, APPS[app].key), before);
     assert.deepEqual(p.errs, []); await p.context().close();
     log(app + ': akkauntni o\'chirish — ogohlantirish matni, email kodi bilan tasdiq, serverdan hamma narsa o\'chadi, ilova ma\'lumoti saqlanadi');
 
     /* 6. Tillar: RU va ЎЗ */
-    ENV = mkEnv(); p = await open(app, { lang: 'ru' }); await goProfile(p, app); assert.match(await T(p, '[data-akk=row]'), /Вход \(по желанию\)/); await p.click('[data-akk=row]'); await p.waitForTimeout(450); sh = await T(p, '#rzSheet'); assert.match(sh, /Пароль не нужен/); assert.match(sh, /приложение работает как раньше/);
+    ENV = mkEnv(); p = await open(app, { lang: 'ru' }); await goProfile(p, app); assert.match(await T(p, '[data-akk=row]'), /Вход по email/); await p.click('[data-akk=row]'); await p.waitForTimeout(450); sh = await T(p, '#rzSheet'); assert.match(sh, /пароль не нужен/); assert.match(sh, /приложение работает как раньше/);
     await p.fill('#akkEmail', 'ru@pochta.uz'); await p.click('#akkSend'); await p.waitForSelector('#akkCode'); assert.match(await T(p, '#rzSheet'), /Мы отправили 6-значный код на ru@pochta\.uz/); await p.fill('#akkCode', '123456'); await p.waitForTimeout(700); assert.match(await T(p, '#akkErr') || '', /Код неверный|Код устарел/); await p.context().close();
-    p = await open(app, { lang: 'cyr' }); await goProfile(p, app); assert.match(await T(p, '[data-akk=row]'), /Кириш \(ихтиёрий\)/); await p.click('[data-akk=row]'); await p.waitForTimeout(450); sh = await T(p, '#rzSheet'); assert.match(sh, /Парол керак эмас/); assert.doesNotMatch(sh, /Kirish|Parol/); await p.context().close();
+    p = await open(app, { lang: 'cyr' }); await goProfile(p, app); assert.match(await T(p, '[data-akk=row]'), /билан кириш/); await p.click('[data-akk=row]'); await p.waitForTimeout(450); sh = await T(p, '#rzSheet'); assert.match(sh, /парол керак эмас/); assert.doesNotMatch(sh, /Kirish|parol/); await p.context().close();
     log(app + ': matnlar RU va ЎЗ da');
 
     /* 7. 360 px + katta shrift: panel sig'adi, gorizontal siljish yo'q, tugma ko'rinadi (klaviatura ochiq: kichik balandlik) */

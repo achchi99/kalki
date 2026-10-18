@@ -2,7 +2,7 @@
 
 **Bu nima?** Akkaunt tizimining «gibrid» rejimida (B bosqich) foydalanuvchining tiklash kodi (KF-/RZ-) bazada **server kaliti bilan shifrlangan holda** turadi — shu tufayli yangi telefonda faqat email/Google yetarli bo'ladi. Kalit bazada **emas**, faqat Cloudflare'ning yashirin sozlamasida (secret) turadi. Baza o'g'irlansa ham, kalitsiz u ochilmaydi.
 
-> ⚠ Hozirgi (A) bosqichda kalit **hali ishlatilmaydi** — lekin uni oldindan yaratib, xavfsiz saqlab qo'ying: B bosqich kalitni kutadi. Kalit yo'qolsa nima bo'lishi pastda.
+> ⚠ B bosqichdan boshlab kalit **ishlatiladi**: production'da `AKKAUNT_MASTER_KEYS` bo'lmasa (yoki noto'g'ri formatda bo'lsa) «Email bilan kirish» umuman ko'rinmaydi. Kalitni 2–3-qadamlardagidek saqlamasdan Cloudflare'ga qo'ymang. Kalit yo'qolsa nima bo'lishi pastda. (Preview'da alohida sinov kaliti bor — uni saqlash shart emas.)
 
 **Secret nomi:** `AKKAUNT_MASTER_KEYS`  ·  **Qiymat shakli:** `1:<64 ta tasodifiy harf-raqam>` (almashtirganda: `2:<yangi>,1:<eski>` — birinchisi joriy).
 
@@ -22,7 +22,7 @@ Kompyuterdan: `printf '%s' '1:...' | npx wrangler pages secret put AKKAUNT_MASTE
 
 **5. Tekshiring.** Kompyuterda: `AKKAUNT_MASTER_KEYS='1:...' node tools/akkaunt-kalit.js tekshir` — «OK», versiya va barmoq izi chiqadi. Barmoq izi parol menejeridagi izoh va qog'ozdagi nusxa bilan **bir xil** bo'lsin (kalit to'g'ri ko'chirilganini shu isbotlaydi). Qog'ozdagi nusxani ham yiliga bir marta shu usulda tekshiring (`izi "<qo'lda yozilgan kalit>"`).
 
-**6. Yiliga bir marta (yoki kalit sizib chiqsa darhol) almashtiring.** Yangi kalit yarating (`yarat 2`), Cloudflare'dagi qiymatni `2:<yangi>,1:<eski>` ga o'zgartiring (eskisini O'CHIRMANG). Yangi shifrlashlar `2` bilan bo'ladi, eski konvertlar `1` bilan ochiladi. B bosqichdagi «qayta o'rash» vositasi hamma konvertni `2` ga o'tkazgach, eskisini (`,1:…`) olib tashlang. Ikkala kalitni ham 2–3-qadamlardagidek saqlang.
+**6. Yiliga bir marta (yoki kalit sizib chiqsa darhol) almashtiring.** Yangi kalit yarating (`yarat 2`), Cloudflare'dagi qiymatni `2:<yangi>,1:<eski>` ga o'zgartiring (eskisini O'CHIRMANG). Yangi shifrlashlar `2` bilan bo'ladi, eski konvertlar `1` bilan ochiladi. Konvertlar ikki yo'l bilan yangi kalitga o'tadi: (a) foydalanuvchi tiklash so'raganda o'zi (sust, avtomatik); (b) hammasini bir yo'la: `curl -s -X POST https://kalki.uz/api/akkaunt/qayta-ora -H 'Origin: https://kalki.uz' -H 'Content-Type: application/json' -H "X-Admin-Password: $KALKIFIT_ADMIN_PASSWORD" -d '{}'` — javobdagi `qoldi` 0 bo'lguncha takrorlang (har chaqiruvda 200 tagacha). `qoldi:0` va `xato:0` bo'lgach eskisini (`,1:…`) olib tashlang. Ikkala kalitni ham 2–3-qadamlardagidek saqlang.
 
 ## Boshqa secret'lar (kalit emas, lekin ular ham repoda bo'lmaydi)
 
