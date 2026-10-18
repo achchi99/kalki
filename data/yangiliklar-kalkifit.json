@@ -14,7 +14,11 @@
             "ru": "Показать тему"
           }
         }
-      ]
+      ],
+      "bn": {
+        "uz": "Qorong'i mavzu yangilandi, hazil qatori endi yo'qolmaydi.",
+        "ru": "Тёмная тема обновлена, строка с шуткой больше не исчезает."
+      }
     },
     {
       "v": 9,
