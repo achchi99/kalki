@@ -8,7 +8,8 @@ const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const G = require
 const J = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/hazillar-kalkifit.json'), 'utf8')); const TODAY = D.today();
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const BAN = G.BANNED.map((w) => new RegExp(w, 'i'));
-const BODY_EXTRA = [/tartibli|молодец|умница|ortiqcha yedingiz|переели|limit|лимит/i, /ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
+const URGE = [/to'lmay|to'ldir|yetishma|yetmayap|kam yed|kam ovqat|yetarli yem|\byeng\b|ko'proq yeng|ovqat yeng/i, /не наполн|недоед|недостаточно|мало съел|мало ел|не хватает|съешьте|поешьте|ешьте|доешь/i];
+const BODY_EXTRA = [...URGE, /tartibli|молодец|умница|ortiqcha yedingiz|переели|limit|лимит/i, /ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
 
 /* ---- 1. sxema, to'liqlik, uzunlik ---- */
 const REQUIRED = ['dist_full_day', 'dist_full_week', 'dist_full_month', 'dist_part', 'burn', 'within', 'over', 'over_neutral', 'zero_steps', 'water_low', 'water_ok', 'weight_down', 'weight_up', 'weight_flat', 'streak', 'holiday', 'yesam_ok', 'yesam_over',
@@ -24,7 +25,7 @@ const ph = (t) => (t.match(/\{(\w+)\}/g) || []).sort().join(',');
 
 /* ---- 2. taqiqlangan so'zlar, ЎЗ (translit) ---- */
 { const allT = []; for (const [id, st] of Object.entries(J.states)) for (const lg of ['uz', 'ru']) for (const t of st[lg]) allT.push([id + '/' + lg, t]); for (const [k, v] of Object.entries(J.neutral)) for (const lg of ['uz', 'ru']) allT.push(['neutral ' + k + '/' + lg, v[lg]]);
-  for (const [w, t] of allT) { for (const re of BAN.concat(BODY_EXTRA)) assert.ok(!re.test(t), w + ': taqiqlangan ibora (' + re + '): ' + t); assert.ok(!/(?:siyosat|prezident|hukumat|islom|xristian|yahudiy|millat|ayol(?:lar)?\b|erkaklar)/i.test(t), w + ': siyosat/din/millat/jins mavzusi: ' + t); assert.ok(!/\b(?:ahmoq|tentak|jinni|latta|ssh|lanat)\b/i.test(t), w + ': qo\'pol so\'z'); assert.ok(!/[«»]{2}/.test(t)); }
+  for (const [w, t] of allT) { for (const re of BAN.concat(BODY_EXTRA)) assert.ok(!re.test(t), w + ': taqiqlangan ibora (' + re + '): ' + t); for (const re of URGE) assert.ok(!re.test(t), w + ': ko\'proq yeyishga undovchi ibora (' + re + '): ' + t); assert.ok(!/(?:siyosat|prezident|hukumat|islom|xristian|yahudiy|millat|ayol(?:lar)?\b|erkaklar)/i.test(t), w + ': siyosat/din/millat/jins mavzusi: ' + t); assert.ok(!/\b(?:ahmoq|tentak|jinni|latta|ssh|lanat)\b/i.test(t), w + ': qo\'pol so\'z'); assert.ok(!/[«»]{2}/.test(t)); }
   const LAT = /[A-Za-z'’ʻ]{3,}/g; for (const [w, t] of allT.filter((x) => x[0].endsWith('/uz'))) { const cy = TR.translit(t.replace(/\{\w+\}/g, '')).replace(/\bAI\b|kg|km|ml/g, ''); assert.ok(!/[A-Za-z]{2,}/.test(cy), w + ': ЎЗ da lotincha qoldi: ' + (cy.match(/[A-Za-z']{2,}/) || [''])[0]); assert.ok(/[А-Яа-яЎўҚқҒғҲҳ]/.test(cy), w); }
   for (const [w, t] of allT.filter((x) => x[0].endsWith('/ru'))) assert.ok(!/[A-Za-z]{3,}/.test(t.replace(/\{\w+\}/g, '')), w + ': RU da lotincha so\'z: ' + t);
   log('Taqiqlangan so\'zlar (tana/vazn kamsitish, ochlik/ortiqcha ovqat, aybdorlik, qo\'pol so\'z, siyosat/din/millat/jins) — ' + allT.length + ' matnda yo\'q; ЎЗ (translit) da lotincha qoldiq yo\'q, RU da lotincha so\'z yo\'q'); }

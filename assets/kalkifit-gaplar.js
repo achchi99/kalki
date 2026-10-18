@@ -14,8 +14,9 @@
   }
 
   /* ---------- taqiqlangan so'zlar (test shu ro'yxat bo'yicha barcha gaplarni tekshiradi) ---------- */
-  var BANNED = ['semiz', "ozg'in", 'ozgin', "yog' bosgan", 'yog bosgan', "to'lag", 'tolag', 'kilo', 'yana yedingiz', 'yeb qo\'yding', 'yeb qoyding', "tuta olmadingiz", 'uyat', 'aybdor', 'ayb ', 'dangasa', 'majbursiz', 'kerak', 'shart', 'jazo',
+  var BANNED = ['semiz', "ozg'in", '\\bozgin\\b', "yog' bosgan", 'yog bosgan', "to'lag", 'tolag', 'kilo', 'yana yedingiz', 'yeb qo\'yding', 'yeb qoyding', "tuta olmadingiz", 'uyat', 'aybdor', 'ayb ', 'dangasa', 'majbursiz', 'kerak', 'shart', 'jazo',
     '\\bsemir', '\\bozib\\b', '\\bqorin', 'badan', 'figura', 'tanang', 'tanangiz', 'ortiqcha vazn', 'ochlik', 'och qol', 'och yur', 'yemang', 'kamroq yeng', 'ko\'proq yeng', 'gunoh', 'aybli', 'qiyshiq', 'bukri', 'xunuk', 'chiroyli bo', 'ahmoq', 'tentak', 'jinni',
+    "to'lmay", "to'ldir", 'yetishma', 'yetmayap', 'kam yed', 'kam ovqat', 'yetarli yem', '\\byeng\\b', 'ovqat yeng', 'ovqatni qo\'shing', 'не наполн', 'недоед', 'недостаточно', 'мало съел', 'мало ел', 'не хватает', 'съешьте', 'поешьте', 'ешьте', 'доешь',
     'толст', 'жирн', 'тощ', 'худ', 'опять поел', 'снова поел', 'виноват', 'стыд', 'надо', 'должн', 'обязан', 'лентяй', 'срыв', 'наказан',
     'похуде', 'живот', 'фигур', '\\bтел[оа]\\b', 'голод', 'не ешь', 'меньше ешь', 'больше ешь', '\\bгрех', '\\bвина\\b', 'урод', 'глуп', 'дурак', 'идиот'];
 

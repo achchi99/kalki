@@ -493,7 +493,7 @@
     "Yozildi. Daftar bugun ham sizdan xursand.",
     "Bitta yozuv ko'paydi. Xotiraga ishonmaslik — aqlli odat.",
     "Qo'shildi. Yozilmagan ovqat hisobda yo'q — telefon folbin emas.",
-    "Hisob yangilandi. Idish yana bir qultum to'ldi.",
+    "Hisob yangilandi. Idish darajasi biroz ko'tarildi.",
     "Tayyor. Bunaqa aniq yozuvga buxgalterning ham havasi keladi.",
     "Yana bir qator — daftar qalinlashmoqda, odat mustahkamlanmoqda.",
     "Qo'shildi. Aytgancha, yeganingizni yozmasangiz, idish sizga ishonmaydi.",
@@ -503,7 +503,7 @@
     "Записано. Дневник и сегодня вами доволен.",
     "Одной записью больше. Не доверять памяти — умная привычка.",
     "Добавлено. Не записанной еды в учёте нет — телефон не гадалка.",
-    "Счёт обновлён. Сосуд наполнился ещё на глоток.",
+    "Счёт обновлён. Уровень в сосуде чуть поднялся.",
     "Готово. Такой аккуратной записи позавидует и бухгалтер.",
     "Ещё одна строка — записей прибавилось, привычка крепнет.",
     "Добавлено. Кстати, если не записывать съеденное, сосуд вам не поверит.",
@@ -684,7 +684,7 @@
   },
   "empty_day": {
    "uz": [
-    "Bugungi hisob hali toza. Birinchi yozuvni qo'shing — idish to'lishni boshlaydi.",
+    "Bugungi hisob hali toza. Birinchi yozuv qo'shilganda idish ham jonlanadi.",
     "Daftar bo'm-bo'sh, idish ham. Birinchi ovqat — birinchi to'lqin.",
     "Hamma narsa nolda. Kunni boshlash uchun eng qulay joy.",
     "Bo'sh sahifa. Hisobchi qo'lida qalam bilan kutib o'tiribdi.",
@@ -694,7 +694,7 @@
     "Bugun hali yozuv yo'q: hisobchi choyini ham ichib bo'ldi."
    ],
    "ru": [
-    "Сегодняшний счёт пока чист. Добавьте первую запись — сосуд начнёт наполняться.",
+    "Сегодняшний счёт пока чист. Когда появится первая запись, сосуд оживёт.",
     "Дневник пуст, сосуд тоже. Первая еда — первая волна.",
     "Везде ноль. Удобнее места для начала дня не найти.",
     "Чистая страница. Бухгалтер сидит с ручкой наготове.",
@@ -746,20 +746,20 @@
   },
   "log_low": {
    "uz": [
-    "Bugun yozuvlar kam. Hammasini yozdingizmi, yoki daftar bugun ham ochiq qoldimi?",
-    "Hisob hozircha qisqa — ehtimol yozishni unutgandirsiz. Eslab qolganlaringizni qo'shing.",
-    "Yozuvlar sanoqli. Daftar bugungi kunni ham kechagidek eslab qoladi.",
-    "Daftar bugun jim. Yeganlaringiz yozilmagan bo'lsa, hozir ham kech emas.",
-    "Bugungi hisob juda qisqa. Eslaganlaringizni yozib chiqing, qolganini daftar so'ramaydi.",
-    "Idish to'lmay turibdi. Yozilmagan ovqatlar bo'lsa, ularni ham qo'shsangiz bo'ladi."
+    "Hisobchi hozircha ozgina yozuv ko'rdi. Kun tugamagan bo'lsa, qolganini keyin ham qo'shasiz.",
+    "Daftar bugun qisqa gapirdi. Hammasi yozilgan bo'lsa — yaxshi, yozilmagan bo'lsa — keyinroq qo'shsa bo'ladi.",
+    "Bugungi yozuvlar sanoqli. Balki hisobchi ba'zi qatorlarni hali ko'rmagandir.",
+    "Hisob hozircha qisqa. Yozmagan narsangiz bo'lsa, daftar kutib turibdi — shoshilmasdan.",
+    "Daftar bugun ixcham. Eslagan paytingizda qo'shib qo'ysangiz, hisobchi xursand bo'ladi.",
+    "Yozuvlar hozircha kam ko'rinyapti. Bu faqat daftar haqida: ehtimol, yozilmagandir, xolos."
    ],
    "ru": [
-    "Записей сегодня мало. Вы записали всё, или тетрадь опять осталась открытой?",
-    "Счёт пока короткий — возможно, вы забыли записать. Добавьте то, что вспомните.",
-    "Записей раз-два и обчёлся. Дневник запомнит и сегодняшний день.",
-    "Дневник сегодня молчит. Если съеденное не записано, ещё не поздно.",
-    "Сегодняшний счёт очень короткий. Запишите, что вспомните, остального дневник не спросит.",
-    "Сосуд не наполняется. Если есть незаписанная еда, можно добавить и её."
+    "Бухгалтер пока увидел мало записей. Если день не закончился, остальное можно добавить и позже.",
+    "Дневник сегодня немногословен. Если всё записано — отлично, если нет — можно добавить потом.",
+    "Записей сегодня немного. Возможно, бухгалтер просто видел не все строки.",
+    "Счёт пока короткий. Если что-то не записано, дневник подождёт — без спешки.",
+    "Дневник сегодня компактный. Добавите, когда вспомните, — бухгалтер будет рад.",
+    "Записей пока мало. Это только про дневник: возможно, что-то просто не записано."
    ]
   }
  },
