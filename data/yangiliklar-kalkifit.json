@@ -2,6 +2,21 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 9,
+      "d": "2026-10-18",
+      "items": [
+        {
+          "uz": "Ovqatni kategoriya bo'yicha tanlash mumkin: qidiruv ostidagi chiplar.",
+          "ru": "Еду можно выбирать по категориям: чипы под строкой поиска.",
+          "show": "cats",
+          "btn": {
+            "uz": "Kategoriyalarni ko'rish",
+            "ru": "Показать категории"
+          }
+        }
+      ]
+    },
+    {
       "v": 8,
       "d": "2026-10-18",
       "bn": {
