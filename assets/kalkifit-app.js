@@ -10,7 +10,7 @@
   var D = {
     uz: {
       appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
-      today: 'Bugun', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
+      today: 'Bugun', jClose: 'Yopish (bugun uchun)', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
       mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Tamaddi', meald: 'Kechki ovqat', meals: 'Tamaddi',
       o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Kasr bilan yozish mumkin: 72,5',
       o5q: "Kuningiz qanday o'tadi?", o6q: 'Maqsadingiz?', errAge: '10 dan 100 gacha yozing', errHeight: '120 dan 230 gacha yozing', errWeight: '30 dan 250 gacha yozing',
@@ -53,7 +53,7 @@
     },
     ru: {
       appName: 'KalkiFit', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
-      today: 'Сегодня', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
+      today: 'Сегодня', jClose: 'Закрыть (на сегодня)', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
       mealb: 'Завтрак', meall: 'Обед', mealds: 'Ужин', mealss: 'Перекус', meald: 'Ужин', meals: 'Перекус',
       o1q: 'Ваш пол?', male: 'Мужской', female: 'Женский', preg: 'Я беременна или кормлю грудью', o2q: 'Сколько вам лет?', o2h: 'Только для расчёта дневной нормы.', o3q: 'Ваш рост в сантиметрах?', o4q: 'Ваш вес в килограммах?', o4h: 'Можно с дробью: 72,5',
       o5q: 'Как проходит ваш день?', o6q: 'Ваша цель?', errAge: 'Введите от 10 до 100', errHeight: 'Введите от 120 до 230', errWeight: 'Введите от 30 до 250',
@@ -283,20 +283,23 @@
     if (!x.food.length) return ''; if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + '</p>';
     return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button></p>';
   }
-  function jokeFlashHtml() { return jokeFlash && jokeFlash.d === todayStr() ? '<p class="sl-jflash" id="jFlash" role="status">' + ico('chat', 'sl-inl') + esc(jokeFlash.text) + '</p>' : ''; }
-  var jokeFlash = null;
-  function jokeAfter(kind, p) {                      // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin bir qatorli gap: kuniga ≤4 marta, oralig'i ≥60 s, 9 soniyadan so'ng o'chadi; hazil o'chirilgan bo'lsa — neytral fakt
-    if (!G || !G.eventLine) return; var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
-    var ctx = jokeCtx(true), l = G.eventLine(ctx, kind, p); if (!l || !l.text) return; pr.jfl.n++; pr.jfl.t = now; saveQuiet();
-    if (view === 'today') {
-      jokeFlash = { d: t, text: l.text }; var ex = $('#jFlash'); if (ex) { ex.innerHTML = ico('chat', 'sl-inl') + esc(l.text); ex.classList.remove('rz-new'); void ex.offsetWidth; ex.classList.add('rz-new'); } else { var mb = $('#mainAdd'); if (mb) mb.insertAdjacentHTML('afterend', jokeFlashHtml()); }
-      clearTimeout(jokeAfter.tm); jokeAfter.tm = setTimeout(function () { jokeFlash = null; var el = $('#jFlash'); if (el) el.remove(); }, 9000);
-    } else toast(l.text, null, true);
+  var jShown = '';                                  // oxirgi ko'rsatilgan hazil matni (almashganda 200 ms fade)
+  function jokeSwap(text) {                         // Bugun: qator o'rnida matn yumshoq (200 ms) almashadi; qator yo'q bo'lsa qayta chiziladi
+    var el = $('#jLine'); if (!el) { render(); return; } if (el.textContent === text) return;
+    el.classList.remove('jnew'); el.classList.add('jout');
+    setTimeout(function () { var e = $('#jLine'); if (!e) return; e.textContent = text; jShown = text; e.classList.remove('jout'); void e.offsetWidth; e.classList.add('jnew'); }, kit.reduce ? 0 : 200);
+  }
+  function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
+    if (!G || !G.eventLine || prefs().jokes === false) return; var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
+    var ctx = jokeCtx(true), l = G.eventLine(ctx, kind, p); if (!l || !l.text) return; pr.jfl.n++; pr.jfl.t = now; pr.last = { d: t, text: l.text }; saveQuiet();
+    if (view === 'today' && pr.jx !== t) jokeSwap(l.text);
   }
   function emptyLine() { var l = G && G.pickLine && prefs().jokes !== false && hazilState === 2 ? G.pickLine(jokeCtx(false), 'empty_day', {}, 'empty') : null; if (l) saveQuiet(); return l ? l.text : T('hEmpty'); }
-  function jokeLineHtml() {                          // Bugun: holatga mos kichik qator (karta emas); hazil o'chiq bo'lsa yo'q
-    if (!G || !G.todayLine || prefs().jokes === false || (masofaState === 1) || (dbState === 1)) return ''; var l = G.todayLine(jokeCtx(false)); if (!l) return ''; saveQuiet();
-    return '<p class="sl-jline" id="jLine">' + esc(l.text) + '</p>';
+  function jokeLineHtml() {                          // Bugun, idish kartasi ostidagi bitta ixcham qator: oxirgi hodisa hazili (bo'lmasa holatga mos qator); hazil o'chiq yoki bugun yopilgan bo'lsa yo'q
+    if (!G || !G.todayLine || prefs().jokes === false) return ''; var pr = hazilStore(), t = todayStr(); if (pr.jx === t) return ''; var text;
+    if (pr.last && pr.last.d === t) text = pr.last.text; else { if (masofaState === 1 || dbState === 1) return ''; var l = G.todayLine(jokeCtx(false)); if (!l) return ''; saveQuiet(); text = l.text; }
+    var cls = text !== jShown ? ' jnew' : ''; jShown = text;
+    return '<button type="button" class="sl-jline' + cls + '" id="jLine" data-act="jclose" title="' + esc(T('jClose')) + '">' + esc(text) + '</button>';
   }
   function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
   function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
@@ -336,7 +339,7 @@
       '<div class="sl-trio" style="--n:' + (bal.credit > 0 ? 3 : 2) + '"><div><span>' + esc(T('cEaten')) + '</span><b id="kNum">' + fmt(tot.kcal) + '</b></div><div><span>' + esc(T('cGoal')) + '</span><b id="kGoal">' + fmt(pl.target) + '</b></div>' + (bal.credit > 0 ? '<div><span>' + esc(T('cBurn')) + '</span><b id="kBurn">+' + fmt(bal.credit) + '</b></div>' : '') + '</div>' +
       '<button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p', '#6E9BFF'], ['mF', 'f', "#FFC24B"], ['mC', 'c', '#34D399']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b>' + esc(T(m[0])) + '</b><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:' + m[2] + '"></i></span><small>' + v + ' / ' + goal + ' g</small></span>'; }).join('') + '</button>' +
       '<p class="sl-note" id="dayChip" data-state="' + info.state + '">' + esc(note) + '</p>' + jokeLineHtml() + '</section>';
-    h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(emptyLine()) + '</p>' : '') + jokeFlashHtml();
+    h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(emptyLine()) + '</p>' : '');
     h += mealsHtml(t) + dayEndHtml(t, x);
     var wsegs = ''; for (var wi2 = 0; wi2 < glasses; wi2++) wsegs += '<i' + (wi2 < Math.min(glasses, x.water) ? ' class="on"' : '') + '></i>';
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
@@ -695,11 +698,18 @@
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
     return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
   }
-  function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari (bazadagi kategoriyalar, shu tartibda); «Boshqa usullar → Kategoriyalar» ham shu kodni ishlatadi
-    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + CATS.map(function (c) { return '<button type="button" class="rz-chip" data-act="fcat" data-c="' + c + '" aria-pressed="false">' + esc(T('cat_' + c)) + '</button>'; }).join('') + '</div></div>';
+  function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
+  function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
+    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
   }
-  function catHeadHtml() { return '<div class="sl-cathd"><button type="button" class="sl-txtbtn" data-act="fcatback">← ' + esc(T('aCats')) + '</button><b>' + esc(T('cat_' + fd.cat)) + '</b></div>'; }
-  function chipsHtml() { return fd.q.trim() ? '' : (fd.cat ? catHeadHtml() : catsHtml()); }
+  function chipsHtml() { return fd.q.trim() ? '' : catsHtml(); }
+  function catSelect(c) {                            // chip bosildi: shu chip tanlanadi (qayta bosilsa — «Mashhur»ga qaytadi), ro'yxat darhol almashadi, yengil fade (150 ms), tepaga qaytadi
+    fd.cat = (c && c !== fd.cat) ? c : ''; var hadQ = !!fd.q.trim(); fd.q = ''; var qi = $('#fdQ'); if (qi) qi.value = '';
+    var r = $('#catsRow');
+    if (!r || hadQ) refreshRes(); else { [].forEach.call(r.querySelectorAll('.rz-chip'), function (b) { var on = (b.getAttribute('data-c') || '') === (fd.cat || ''); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); var cw = $('#fdCat'); if (cw) cw._k = chipsHtml(); var res = $('#fdRes'); if (res) { res.innerHTML = resultsHtml(); res.classList.remove('fi'); void res.offsetWidth; res.classList.add('fi'); } var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); }
+    var sh = $('#rzSheet'); if (sh) sh.scrollTop = 0; catView();
+  }
+  function catView() { var on = document.querySelector('#catsRow .rz-chip.on'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ inline: 'center', block: 'nearest', behavior: kit.reduce ? 'auto' : 'smooth' }); } catch (e) { on.scrollIntoView(); } } }
   function actsHtml() { return ''; }
   function searchHtml() {
     var off = navigator.onLine === false;
@@ -716,7 +726,7 @@
     window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 4) { drag.moved = true; r.scrollLeft = drag.l - dx; } });
     window.addEventListener('pointerup', function () { if (drag && drag.moved) { r._swallow = true; setTimeout(function () { r._swallow = false; }, 0); } drag = null; });
     r.addEventListener('click', function (e) { if (r._swallow) { e.stopPropagation(); e.preventDefault(); } }, true);
-    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - 40); upd();
+    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2); upd();
   }
   function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
   function resRow(f, cat) {
@@ -728,9 +738,7 @@
     var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
     if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return f.t === fd.cat; }); }
     else if (fd.cat) { list = foods.filter(function (f) { return f.t === fd.cat && !f.h; }); return list.length ? list.map(function (f) { return resRow(f, true); }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
-    else if (fd.browse) {                            // «Kategoriyalar bo'yicha ko'rish»: BUTUN baza guruhlar bo'yicha
-      return CATS.map(function (c) { var l = foods.filter(function (f) { return f.t === c && !f.custom && !f.h; }); return l.length ? '<div class="rz-st grp">' + esc(T('cat_' + c)) + ' <small>' + l.length + '</small></div>' + l.map(resRow).join('') : ''; }).join('') + '<button type="button" class="sl-txtbtn" data-act="fbrowse">' + esc(T('back')) + '</button>';
-    } else {                                         // birinchi ko'rinish: Oxirgilar → Saqlanganlar → Boshqa usullar
+    else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
       var rec = fd.recSnap || (fd.recSnap = le.slice(0, 5)), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
       var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
       return sec(T('aRecentT'), rec.map(recRow), T('aRecHint')) + sec(T('aPop'), pop.map(resRow)) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
@@ -1368,6 +1376,7 @@
       case 'export': doExport(); break; case 'import': bk.restoreSheet(); break; case 'wipe': wipe(); break;
       case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;
+      case 'jclose': { hazilStore().jx = todayStr(); saveQuiet(); var jl = $('#jLine'); if (jl) jl.remove(); break; }
       case 'hide': prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break;
       case 'hideweek': prefs().weekHide = todayStr(); commit(); break;
       case 'font': { var big = el.getAttribute('data-f') === 'b'; document.documentElement.classList.toggle('fs-big', big); try { if (big) localStorage.setItem('kalki_fs', 'big'); else localStorage.removeItem('kalki_fs'); } catch (x) {} render(); break; }
@@ -1380,14 +1389,13 @@
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
       case 'pickfood': { var pk0 = el.getAttribute('data-pick'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null); break; }
-      case 'fcat': fd.cat = el.getAttribute('data-c'); fd.q = ''; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
-      case 'fcatback': fd.cat = ''; fd.q = ''; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
+      case 'fcat': catSelect(el.getAttribute('data-c') || ''); break;
       case 'ftext': openText(null, true); break;
       case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
       case 'fmeals': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeals]').forEach(function (b) { var on9 = b === el; b.classList.toggle('on', on9); b.setAttribute('aria-checked', on9); }); refreshRes(); break;
       case 'fmore': fd.more = !fd.more; refreshRes(); break;
-      case 'fbrowse': fd.browse = !fd.browse; fd.cat = ''; fd.q = ''; fd.more = false; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;
+      case 'fbrowse': fd.more = false; fd.q = ''; if (!fd.cat) fd.cat = CATS[0]; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;     // «Boshqa usullar → Kategoriyalar»: chiplar qatori (tab) ochiladi, birinchi guruh tanlanadi
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.a'); if (cv) cv.textContent = T(o8.pmore ? 'pCloseL' : 'pChange'); break; }
       case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
       case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
