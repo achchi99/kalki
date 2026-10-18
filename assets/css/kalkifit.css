@@ -255,3 +255,26 @@ html:has(.rz.sl),html:has(.rz.sl) body{background:#F5F4F0}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]):has(.rz.sl),html:not([data-theme=light]):has(.rz.sl) body{background:#0C0F14}@media (max-width:640px){html:not([data-theme=light]) .rz-stage:has(.rz.sl){background:#0C0F14}}}
 html[data-theme=dark]:has(.rz.sl),html[data-theme=dark]:has(.rz.sl) body{background:#0C0F14}@media (max-width:640px){html[data-theme=dark] .rz-stage:has(.rz.sl){background:#0C0F14}}
 html[data-theme=light]:has(.rz.sl),html[data-theme=light]:has(.rz.sl) body{background:#F5F4F0}@media (max-width:640px){html[data-theme=light] .rz-stage:has(.rz.sl){background:#F5F4F0}}
+.rz .sl-jline{margin:-6px 0 0;font-size:14px;font-weight:600;color:var(--mut);text-align:center;line-height:1.35}
+/* BITTA segment komponenti (Til, Mavzu, Shrift, Hazil, Jins, Ovqat vaqti): tanlangani — accent fon + #1A0A05, 600; tanlanmagani — shaffof, sub rangi */
+.rz .sl-seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--field);margin:4px 0 14px;min-width:0}
+.rz .rz-card .sl-seg{margin:6px 0 0}
+.rz .sl-seg button{flex:1 1 0;min-width:0;min-height:44px;border-radius:10px;border:0;background:transparent;color:var(--mut);font:600 14px 'Manrope',sans-serif;padding:0 6px;transition:background .2s ease,color .2s ease}
+.rz .sl-seg button[aria-checked=true],.rz .sl-seg button.on{background:var(--fill);color:var(--onacc);font-weight:600;box-shadow:none}
+/* kategoriya chiplari (qidiruv ostida) va kategoriya sarlavhasi */
+.rz .sl-catsw{margin:2px -20px 0}
+.rz .sl-cats{padding:4px 20px 6px;gap:8px;overflow-x:auto;touch-action:pan-x;overscroll-behavior-x:contain}
+.rz .sl-cats .rz-chip{flex:none;min-height:44px;padding:0 16px;border:0;background:var(--soft);color:var(--ink);white-space:nowrap;border-radius:16px;font-weight:600}
+.rz .sl-cats .rz-chip.on,.rz .sl-cats .rz-chip[aria-pressed=true]{background:var(--fill);color:var(--onacc)}
+.rz .sl-cathd{display:flex;align-items:center;gap:8px;margin:6px 0 0}.rz .sl-cathd b{font-size:18px;font-weight:700}.rz .sl-cathd .sl-txtbtn{padding:0 8px 0 0;text-decoration:none;color:var(--accink)}
+/* yon tomonga surilmaslik: uzun nomlar qatorni kengaytirmaydi, [+] tugmasi ekrandan chiqmaydi */
+html:has(.rz.sl),html:has(.rz.sl) body{overflow-x:clip;overscroll-behavior-x:none}
+.rz.sl,.rz.sl .rz-main,.rz.sl .rz-sheet{overflow-x:hidden;overscroll-behavior-x:none}
+.rz.sl .rz-sheet{touch-action:pan-y}
+.rz .sl-row,.rz .sl-rr,.rz .sl-rw,.rz .sl-tr,.rz .sl-sc{min-width:0;max-width:100%}
+.rz .sl-row .m,.rz .sl-rr .m,.rz .sl-tr .m{flex:1;min-width:0}
+.rz .sl-row .nm,.rz .sl-rr .nm,.rz .sl-row .tm,.rz .sl-rr .tm,.rz .sl-tr .m b,.rz .sl-tr .m span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.rz .sl-rw .sl-rr{flex:1;min-width:0}.rz .sl-pl,.rz .sl-ib,.rz .sl-row .am,.rz .sl-tile{flex-shrink:0}
+.rz .sl-search{gap:8px;padding:0 12px}
+.rz .sl-res>.sl-rr{padding:6px 0;min-height:56px}
+.rz.sl .rz-chk span{color:var(--ink);font-weight:600}

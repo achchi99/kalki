@@ -1,4 +1,4 @@
-/* kalki.uz — KalkiFit: "qiziqarli gaplar" (yengil sarkazmli, do'stona hazillar). DOM'siz, sof funksiyalar (brauzerda window.KalkiFitGaplar, Node'da require()).
+/* kalki.uz — KalkiFit: "qiziqarli gaplar" (yengil sarkazmli, do'stona hazillar). MATNLAR — data/hazillar-kalkifit.json (holat id → til → variantlar; neytral matnlar ham shu yerda). DOM'siz, sof funksiyalar (brauzerda window.KalkiFitGaplar, Node'da require()).
  * Matnlar UZ (ЎЗ — shu matnning kirill ko'rinishi, runtime translit) va RU alohida yozilgan. Taqqoslashlar HAQIQIY: masofa — data/masofalar.json (OSRM yo'l masofalari),
  * kaloriya — ovqatlar bazasidagi qiymat. QOIDALAR: vazn/tana haqida hazil yo'q (vazn faqat 7 kunlik o'rtacha bilan, baholamasdan); limitdan oshganda yumshoq amaliy chiqish;
  * 3 kundan ortiq ketma-ket oshsa hazil o'chadi, faqat neytral fakt; bir kunda variant takrorlanmaydi. */
@@ -7,416 +7,18 @@
   else root.KalkiFitGaplar = factory();
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var TEXTS = {
-"uz": {
-"dist_full_day": [
-"Bugun {km} km. {route} yurib bordingiz — taksi puli cho'ntakda qoldi.",
-"{km} km bugun! {route} piyoda yetib bo'ldi, yo'lkira esa tejaldi.",
-"{route} masofa {routeKm} km. Siz bugun {km} km yurdingiz — marshrutka biroz xijolatda.",
-"{route} yo'l {routeKm} km, siz bugun {km} km bosdingiz. Navigator sizdan maslahat so'ramoqchi.",
-"Bugun {km} km: {route} bemalol yetib, yana ortib qoldi. Oyoq kiyim bugun ishlab topdi.",
-"{km} km. Agar yo'l {route} bo'lganda, allaqachon u yerda choy ichib o'tirgan bo'lardingiz.",
-"Bugungi qadamlar bilan {route} yetib bordingiz deyish mumkin. Taksichi bugun sizni sog'inadi.",
-"{km} km — {route} masofadan uzun. Telefon qadam sanashdan charchab, quvvatlagichga qarab qo'ydi.",
-"Bugun {route} yurib borsa bo'ladigan masofa bosib o'tildi: {km} km. Kuryerlar raqobatdan xavotirda.",
-"{km} km! {route} yo'lni bugun mashinasiz, faqat qadam bilan yopdingiz."
-],
-"dist_full_week": [
-"Bu hafta {km} km. {route} yurib bordingiz. Taksi puli tejaldi.",
-"Haftalik hisob: {km} km. {route} piyoda — avtobus jadvali bu hafta dam oldi.",
-"{route} {routeKm} km, sizning haftangiz esa {km} km. Hisob siz tomonda.",
-"{km} km bir haftada! {route} yurib borib, ortig'ini sayrga yozsa ham bo'ladi.",
-"Bu hafta {km} km: {route} yetib borildi, benzin narxi esa sizni qiziqtirmay qoldi.",
-"Hafta yakuni: {km} km. Lift sizni kam ko'rdi, {route} yo'l esa piyoda bosib o'tildi.",
-"{route} — {routeKm} km. Siz bir haftada {km} km yurdingiz. Navigator jim qoldi.",
-"Bu hafta {km} km. Xaritada {route} chiziq tortilardi va hali joy qolardi.",
-"Haftalik {km} km — {route} yurib bordingiz. Yo'lda bir choyxonada dam olishga ham vaqt topilardi.",
-"Bu hafta {km} km. Taksi ilovasi siz haqingizda xavotirlanib, chegirma yubormoqchi."
-],
-"dist_full_month": [
-"Bu oy {km} km. {route} yurib bordingiz — bu endi sayr emas, ekspeditsiya.",
-"Oylik natija: {km} km. {route} piyoda yetib borsa bo'lardi, poyezd chiptasi tejaldi.",
-"{km} km bir oyda! {route} {routeKm} km, siz esa undan ham uzoqqa yetdingiz.",
-"Bu oy oyoqlar {km} km bosdi. {route} yo'l oyoq kiyimingizga tanish bo'lib qoldi.",
-"Oy yakuni: {km} km. {route} bordingiz, xaritada bayroqcha qo'ysa bo'ladi.",
-"{km} km — {route} masofadan ham uzun. Mashina garajda o'zini nafaqadagidek his qilyapti.",
-"Bu oy {km} km. {route} yurib borilganda, yo'ldagi har bir choyxona sizni tanib qolardi.",
-"Oylik {km} km. Kuryerlar sizga ish taklif qilishdan oldin rezyumeni so'rashmoqda.",
-"Bir oyda {km} km: {route} yetib bordingiz. Qadam hisoblagich ham hurmat bilan qaraydi.",
-"Bu oy {km} km. Tejalgan yo'lkira hisoblansa, cho'ntak ancha quvonardi."
-],
-"dist_part": [
-"{km} km — {route} yo'lning {pct} foizi. Qolgani ertaga ham joyida turadi.",
-"{route} yo'lning {pct} foizi bosib o'tildi. Yo'l qochib ketmaydi, xotirjam.",
-"{km} km yurildi: {route} {pct} foiz tayyor. Taksi hali kutib turibdi, lekin umidi kamayyapti.",
-"{route} yo'lda {pct} foiz. Navigator shivirlayapti: «choyxona yaqin».",
-"{km} km. Xaritada {route} chiziqning {pct} foizi chizildi, xarita sabr bilan kutyapti.",
-"{pct} foiz — {route} yo'lning shuncha qismi oyoq ostida qoldi. Qolgani shoshmaydi.",
-"{km} km bilan {route} yo'lning {pct} foizini bosdingiz. Marshrutka orqada qoldi... deylik.",
-"{route} yo'l {pct} foizga yopildi. Qolgan qismi uchun avtobus emas, ertangi kun bor.",
-"{km} km — bu {route} {pct} foiz. Qolgan yo'l ham sizni bemalol kutib o'tiribdi."
-],
-"burn": [
-"Bugungi qadamlaringiz {food} yoqdi. Navbatdagilar hali o'ylanyapti.",
-"Qadamlar {kcal} kkal yoqdi, ya'ni {food} hisobdan o'chirdi.",
-"{kcal} kkal: qadamlaringiz {food} jimgina hazm qilib qo'ydi.",
-"Yurgan yo'lingiz {food} tarixga aylantirdi. {kcal} kkal — halol mehnat.",
-"Bugun oyoqlar {food} yoqib yubordi. Bu xabarni {foodNom} hali eshitmagan.",
-"{kcal} kkal qadam bilan ketdi — bu {food} yoqishga teng. Lift buni qila olmasdi.",
-"Qadamlar hisobi: {food} yoqildi. Muzlatgich bu yangilikni sukut bilan qabul qildi.",
-"{kcal} kkal — {food} yoqishga yetadigan yurish. Kuryer ham hayron.",
-"Pillapoya va yo'laklar {food} yoqib berdi. {kcal} kkal — kichik g'alaba.",
-"Bugungi sayr {food} hisobdan o'chirdi. Choynak buni bayram deb qabul qildi."
-],
-"within": [
-"Bugungi hisob: me'yorgacha yana {left} kkal bor.",
-"Me'yorda {left} kkal qoldi. Kechki choy ham sig'adi.",
-"{left} kkal zaxirada. Kalkulyator hammasini yozib bordi.",
-"Kun davom etmoqda: {left} kkal qoldi, tanlov o'zingizda.",
-"Me'yorgacha {left} kkal. Muzlatgich eshigi bugun tinch.",
-"Bugungi raqam: me'yorgacha {left} kkal. Choy bilan biror narsaga joy bor.",
-"Hisob aniq: {left} kkal qoldi. Kuryer boshqa manzilga ketdi.",
-"Me'yor ichida, {left} kkal zaxirada. Ertangi nonushta uchun ham joy qoladi.",
-"Hozircha {left} kkal qoldi — kun bo'yi bemalol yozib boring.",
-"{left} kkal bor. Dasturxon bugun o'z holicha."
-],
-"over": [
-"Bugun me'yordan {over} kkal ko'proq yozildi. Ertaga odatdagi kun — hammasi joyida.",
-"+{over} kkal. Dasturxon bugun boy bo'ldi; ertaga yangi hisob bilan boshlanadi.",
-"Me'yordan {over} kkal yuqori. Bir stakan suv va 15 daqiqa sayr — xohlasangiz.",
-"Bugungi hisob me'yordan {over} kkal yuqori. Ertaga odatdagidek davom etasiz.",
-"{over} kkal me'yordan yuqori — bitta kun butun rasmni o'zgartirmaydi. Kechki sayr ixtiyoriy.",
-"Hisob: +{over} kkal. Choynak buni bayram deb qabul qildi. Ertaga yangi sahifa.",
-"Me'yordan {over} kkal ko'p. Ertaga sayr yoki shunchaki oddiy kun — ikkalasi ham joyida.",
-"+{over} kkal bugun. Do'konga piyoda borish ixtiyoriy, uyqu esa foydali.",
-"Bugun me'yordan {over} kkal yuqori chiqdi. Kalkulyator hukm qilmaydi, faqat hisoblaydi.",
-"{over} kkal me'yordan yuqori. Bir bekat oldin tushib yurish — qulay variant."
-],
-"over_neutral": [
-"So'nggi 3 kunda o'rtacha {avg} kkal yozildi — me'yordan {pct}% yuqori.",
-"Oxirgi kunlardagi o'rtacha: {avg} kkal, bu me'yordan {pct}% yuqori.",
-"Bir necha kun ketma-ket o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Me'yorni sozlamalarda qayta ko'rib chiqish mumkin."
-],
-"zero_steps": [
-"0 qadam. Divan bilan munosabatlar jiddiylashyapti.",
-"Bugun 0 qadam. Pult sizni eng yaqin do'sti deb hisoblay boshladi.",
-"Qadam hisoblagich bugun dam oldi. Yo telefon divanda, yo ikkalangiz ham.",
-"0 qadam. Lift tugmasi ham bugun sizni ko'rmadi — bu allaqachon rekord.",
-"Bugun nol. Kuryer sizning o'rningizga yurdi, qadamlar unda qoldi.",
-"0 qadam. Telefon kun bo'yi stolda yotgan bo'lsa, bu nol unga tegishli.",
-"Qadamlar: 0. Divan bugun uydagi eng mashhur joy.",
-"0 qadam. Choynak bilan televizor orasidagi masofa hisobga olinmagani alam qiladi.",
-"Bugun nol qadam. Ertaga choynakkacha borib-kelish ham hisobga yoziladi.",
-"0 qadam. Taksi ilovasi sizni sevimli mijoz deb atadi."
-],
-"water_low": [
-"Bugun {glasses} stakan suv. Choyni suv deb hisoblash istagi tushunarli, lekin yo'q.",
-"{glasses}/{target} stakan. Kofe o'zini suv deb tanishtirdi, ilova ishonmadi.",
-"Suv: {glasses} stakan. Sharbat ham suyuqlik, lekin hisob boshqacha ishlaydi.",
-"{glasses} stakan suv. Ko'k choy yashil bo'lgani bilan suvga aylanmaydi.",
-"Bugun {target} stakandan {glasses} tasi ichildi. Qolgani kranda sizni kutyapti.",
-"{glasses} stakan. Grafin stolda turibdi, u ham hisobga tushishni xohlaydi.",
-"Suv hisobi: {glasses}/{target}. Choynak g'olib, grafin hali o'yinga kirmadi.",
-"{glasses} stakan suv. Qatiq ham ichimlik, lekin suv rolini o'ynay olmaydi.",
-"Bugun suv {glasses} stakan. Kompot qanchalik mazali bo'lmasin, u suv emas — afsus.",
-"{glasses}/{target}. Suv shishasi xafa: bugun undan ko'ra piyola mashhurroq."
-],
-"water_ok": [
-"{glasses} stakan suv! Grafin bugun bekor turmadi.",
-"Suv: {glasses}/{target}. Kran sizga minnatdorchilik bildirmoqchi.",
-"{glasses} stakan. Choy bugun suv rolini o'ynashga urinmadi, o'z o'rnini bildi.",
-"Bugungi suv rejasi bajarildi: {glasses} stakan. Piyola va stakan tinch-totuv.",
-"Reja {target} stakan edi, bugun {glasses}. Grafin faxrlanyapti.",
-"Suv yetarli: {glasses} stakan. Kofe bugun ikkinchi rolda.",
-"{glasses} stakan. Suv idishi bugun kun qahramoni.",
-"Bugun {glasses} stakan suv ichildi. Kran ham, filtr ham ish bilan band bo'ldi.",
-"{glasses}/{target} — suv bo'yicha hisobot a'lo. Sharbat va kompot bugun tomoshabin."
-],
-"weight_down": [
-"7 kunlik o'rtacha {delta} kg kamaydi. Grafik pastga qarab, xotirjam ketyapti.",
-"Haftalik o'rtacha -{delta} kg. Tarozi emas, trend gapiryapti.",
-"O'rtacha ko'rsatkich {delta} kg pasaydi. Chiziq tinch, shoshmasdan.",
-"7 kunlik o'rtacha: -{delta} kg. Grafik bugun yengil kayfiyatda.",
-"O'rtacha {delta} kg kamaydi. Kunlik sakrashlar emas, haftalik yo'nalish shu.",
-"Haftalik o'rtacha {delta} kg pasaydi. Jadval chiroyli egilyapti.",
-"-{delta} kg o'rtacha. Grafik pillapoyadan tushayotgandek — liftsiz, bosqichma-bosqich.",
-"O'rtacha raqam {delta} kg pasaydi. Choy bilan nishonlasa ham, nishonlamasa ham bo'ladi.",
-"7 kunlik o'rtacha {delta} kg kamaydi. Kalkulyator bu xabarni ikki marta tekshirdi — to'g'ri."
-],
-"weight_up": [
-"7 kunlik o'rtacha {delta} kg ko'tarildi. Suv, tuz, uyqu — raqam har narsaga sezgir.",
-"O'rtacha +{delta} kg. Bu ko'pincha suv va tuzning ishi; grafik bir haftada fikrini o'zgartirishi mumkin.",
-"Haftalik o'rtacha {delta} kg yuqoriroq. Kechki sho'r taom ham, kam uyqu ham raqamda iz qoldiradi.",
-"+{delta} kg o'rtacha. Mushak, suv, mavsum — tarozi ularni farqlay olmaydi.",
-"O'rtacha {delta} kg ko'tarildi. Grafiklar ham ob-havoga o'xshab, ba'zan to'lqinlanadi.",
-"7 kunlik o'rtacha +{delta} kg. Hayot ritmi o'zgarsa, raqam ham bir oz raqsga tushadi.",
-"O'rtacha {delta} kg yuqorida. Bitta haftalik to'lqin — hali trend emas.",
-"+{delta} kg haftalik o'rtachada. Issiq havo, tuzli non, kam suv — hammasi raqamda iz qoldiradi.",
-"O'rtacha {delta} kg o'zgardi. Kalkulyator xotirjam: bunday tebranishlar oddiy hol."
-],
-"weight_flat": [
-"7 kunlik o'rtacha deyarli o'zgarmadi: {delta} kg farq. Barqarorlik ham natija.",
-"O'rtacha joyida: {delta} kg. Grafik tekis, xuddi cho'l yo'lidek.",
-"{delta} kg farq — haftalik o'rtacha tinch. Tarozi bugun hikoya aytmadi.",
-"O'rtacha deyarli bir xil ({delta} kg). Grafik dam olish kunida.",
-"Haftalik o'rtacha: ±{delta} kg. Chiziq tekis, xuddi choy ichib o'tirgandek.",
-"Barqaror: {delta} kg o'zgarish. Raqam joyidan jilmay, kuzatib turibdi.",
-"{delta} kg — bu o'zgarish emas, yumshoq tebranish. O'rtacha joyida.",
-"O'rtacha atigi {delta} kg siljidi. Grafik shoshmayapti, siz ham shoshmasangiz bo'ladi.",
-"Haftalik o'rtacha o'zgarmas: {delta} kg farq. Statistika uchun bu sokin hafta."
-],
-"streak": [
-"{days} kun ketma-ket! Kalendar sizni hurmat qila boshladi.",
-"Ketma-ket {days} kun yozuv. Ilova sizni doimiy mijoz deb tanidi.",
-"{days} kun uzluksiz. Hatto choynak ham bunchalik muntazam qaynamaydi.",
-"Seriya: {days} kun. Telefon eslatmalari endi o'zini ortiqcha his qilyapti.",
-"{days} kun qatorasiga. Bu allaqachon odat, tasodif emas.",
-"{days} kunlik zanjir. Har bir halqa — bitta yozilgan kun.",
-"Ketma-ket {days} kun! Kuryer ham bunchalik muntazam kelmaydi.",
-"{days} kun ketma-ket. Kalkulyatorning sevimli foydalanuvchisi aniqlandi.",
-"Yozuvlar zanjiri: {days} kun. Ertangi kun ham shu ro'yxatga qo'shilishni kutyapti.",
-"{days} kun! Bunday barqarorlikka obuna xizmatlari ham havas qiladi."
-],
-"holiday": [
-"Bugun bayram — hisob-kitob ham dam oladi. Dasturxon esa ishda.",
-"Osh, somsa, mehmon... Kalkulyator bugun burchakda jim o'tiribdi.",
-"Bayram kuni raqamlar emas, mehmonlar sanaladi.",
-"Bugun dasturxon kalkulyatordan kattaroq. Bu normal, bu bayram.",
-"To'y yoki bayram — sanash bugun ikkinchi o'rinda. Ertaga hammasi odatdagidek.",
-"Mehmondorchilik kuni: choynak navbatchilikda, hisob-kitob ta'tilda.",
-"Bugun asosiy ilova — osh qozoni. Biz ertaga qaytamiz.",
-"Bayram muborak! Bugungi asosiy mashq — mehmonlarni kutib olish va kuzatish.",
-"Bugun qadamlar ham bayramda: mehmondan mehmonga, uydan uyga.",
-"Bayram dasturxoni hech qaysi jadvalga sig'maydi. Bugun shunchaki yaxshi kun."
-],
-"yesam_ok": [
-"{item} — {kcal} kkal. Me'yorga sig'adi, keyin ham {left} kkal qoladi.",
-"{kcal} kkal — me'yor ichida. Choy bilan birga ham {left} kkal zaxirada qoladi.",
-"{item} bilan ham me'yorgacha {left} kkal qoladi. Qaror sizda, kalkulyator faqat hisoblaydi.",
-"Kalkulyator o'ylab, bosh irg'adi: {item} me'yorga sig'adi, {left} kkal qoladi.",
-"{item} — {kcal} kkal. Me'yor buni bemalol ko'taradi, choynak ham rozi.",
-"Shu taom bilan me'yorgacha yana {left} kkal qoladi. Muzlatgich eshigi do'stona g'ijirladi.",
-"{kcal} kkal me'yorga sig'adi. Yoqimli ishtaha — keyin ham {left} kkal zaxirada.",
-"{item} — {kcal} kkal; undan keyin me'yorgacha {left} kkal qoladi. Hisob oddiy."
-],
-"yesam_over": [
-"{item} me'yordan {over} kkal oshiradi. Yarmi hozir, qolgani ertaga ham bo'ladi — yoki shunchaki bugun bayram.",
-"{item} — {kcal} kkal, me'yordan +{over} kkal. {min} daqiqalik sayr bilan tenglashadi — xohlasangiz.",
-"Me'yordan {over} kkal yuqori chiqadi. Kichikroq porsiya yoki kechki {min} daqiqa sayr — ikkalasi ham ishlaydi.",
-"{item} bugungi me'yordan {over} kkal nariroqda. Ertangi nonushtaga qoldirsa ham bo'ladi.",
-"Hisob: {kcal} kkal, me'yordan +{over} kkal. {min} daqiqa piyoda yurish uni tenglashtiradi.",
-"Muzlatgich ikkilanyapti: {item} me'yorni {over} kkalga siljitadi. Ertaga saqlab qo'yish ham variant.",
-"+{over} kkal me'yordan tashqarida. Do'stlar bilan bo'lishilsa, taom ham, hisob ham xursand.",
-"{item} bilan me'yordan +{over} kkal bo'ladi. Bir stakan suv va {min} daqiqalik sayr — muvozanat tiklanadi."
-]
-},
-"ru": {
-"dist_full_day": [
-"Сегодня {km} км. Можно было дойти {route} пешком — такси осталось без заказа.",
-"{km} км за день. Это больше, чем путь {route}, — навигатор в лёгком шоке.",
-"Сегодня вы прошли {km} км, а путь {route} всего {routeKm} км. Маршрутка нервно курит в сторонке.",
-"{km} км! Дорога {route} пешком — и ещё осталось на прогулку до ларька.",
-"Сегодняшние {km} км с запасом покрывают путь {route}. Кроссовки отработали смену.",
-"{km} км. Если бы шли {route}, уже пили бы там чай.",
-"За день {km} км — дорога {route} пройдена с горкой. Таксист сегодня скучает.",
-"{km} км сегодня. Телефон устал считать шаги и косится на зарядку.",
-"Путь {route} — {routeKm} км. Ваши {km} км сегодня его обогнали. Курьеры напряглись.",
-"{km} км. Бензин сегодня сэкономлен, а путь {route} пройден с запасом."
-],
-"dist_full_week": [
-"За неделю {km} км. Это как дойти {route}. Деньги на такси остались в кармане.",
-"Неделя: {km} км. Путь {route} пройден, автобус проехал мимо без вас — и ладно.",
-"Расстояние {route} — {routeKm} км, а у вас за неделю {km} км. Счёт в вашу пользу.",
-"Итоги недели: {km} км. Хватило бы дойти {route} и ещё заглянуть на базар.",
-"{km} км за неделю! Лифт вас почти не видел, зато дорога {route} пройдена.",
-"Неделя в цифрах: {km} км. На карте это линия {route} — и ещё немного сверху.",
-"За неделю {km} км. Цены на бензин вас больше не волнуют — по крайней мере, на маршруте {route}.",
-"{km} км за семь дней. Приложение такси прислало грустный смайлик.",
-"Неделя: {km} км. Путь {route} пройден пешком — навигатор молча записал рекорд.",
-"{km} км за неделю — это дорога {route} с запасом. Кроссовки просят выходной."
-],
-"dist_full_month": [
-"За месяц {km} км. Это уже не прогулка, а экспедиция: дошли бы {route}.",
-"Месяц: {km} км. Путь {route} пройден, билет на поезд остался в кассе.",
-"{km} км за месяц! Дорога {route} — {routeKm} км, а вы ушли дальше.",
-"Итог месяца: {km} км. Машина в гараже чувствует себя пенсионером.",
-"За месяц {km} км — хватит, чтобы дойти {route}. Кроссовки уже знают дорогу.",
-"{km} км за месяц. По пути {route} вас бы узнавали в каждой чайхане.",
-"Месяц пешком: {km} км. Курьеры интересуются, не ищете ли вы работу.",
-"{km} км за месяц. Маршрут {route} пройден — на карте можно ставить флажок.",
-"Месячный счёт: {km} км. Шагомер в телефоне смотрит с уважением.",
-"За месяц {km} км. Если посчитать несостоявшиеся поездки на такси, кошелёк ликует."
-],
-"dist_part": [
-"{km} км — это {pct}% пути {route}. Остальное никуда не денется.",
-"Пройдено {pct}% дороги {route}. Дорога терпеливая, подождёт.",
-"{km} км: {pct}% маршрута {route} позади. Такси всё ещё ждёт, но уже без надежды.",
-"{pct}% пути {route}. Навигатор шепчет: «чайхана уже близко».",
-"{km} км — на карте {route} закрашено {pct}%. Карта довольна.",
-"Уже {pct}% маршрута {route}. Отличный повод для привала с чаем.",
-"{km} км, то есть {pct}% пути {route}. Маршрутка где-то позади… допустим.",
-"Пройдено {km} км — {pct}% дороги {route}. Оставшаяся часть подождёт до завтра.",
-"{pct}% пути {route} пройдено. Кроссовки уже прикидывают остаток."
-],
-"burn": [
-"Сегодняшние шаги сожгли {food}. Следующие пока размышляют.",
-"Шаги сожгли {kcal} ккал — по сути, {food}.",
-"Прогулка аннулировала {food}. {kcal} ккал — честная работа.",
-"Ноги сегодня отработали {food}. Холодильник принял новость молча.",
-"{kcal} ккал сожжено. По калориям это {food} — лифт так не умеет.",
-"Шаги сегодня тихо переварили {food}. Калькулятор одобрительно кивает.",
-"Лестницы и тротуары сожгли {food}. {kcal} ккал — маленькая победа.",
-"{kcal} ккал за день. Где-то на кухне {foodNom} нервно оглядывается.",
-"Ваши шаги сожгли {food} — курьер бы так быстро даже не довёз.",
-"Сегодняшняя прогулка списала {food}. Чайник считает, что это стоит отметить."
-],
-"within": [
-"Расчёт на сегодня: до нормы ещё {left} ккал.",
-"До нормы {left} ккал. Вечерний чай тоже помещается.",
-"В запасе {left} ккал. Калькулятор всё записал.",
-"День идёт: осталось {left} ккал, выбор за вами.",
-"До нормы {left} ккал. Дверца холодильника сегодня спокойна.",
-"Цифра дня: до нормы {left} ккал. Для чая с чем-нибудь место есть.",
-"Счёт точный: осталось {left} ккал. Курьер поехал по другому адресу.",
-"В пределах нормы, в запасе {left} ккал. Место останется и на завтрашний завтрак.",
-"Пока осталось {left} ккал — записывайте в течение дня спокойно.",
-"Осталось {left} ккал. Дастархан сегодня сам по себе."
-],
-"over": [
-"Сегодня записано на {over} ккал больше нормы. Завтра обычный день — всё в порядке.",
-"+{over} ккал. Дастархан сегодня был богатым; завтра — новый счёт с чистого листа.",
-"На {over} ккал выше нормы. Стакан воды и 15 минут прогулки — по желанию.",
-"Сегодняшний счёт выше нормы на {over} ккал. Завтра продолжите как обычно.",
-"{over} ккал сверх нормы — один день не меняет общей картины. Вечерняя прогулка по желанию.",
-"Счёт: +{over} ккал. Чайник принял это за праздник. Завтра — новая страница.",
-"На {over} ккал больше нормы. Завтра прогулка или просто обычный день — оба варианта хороши.",
-"+{over} ккал за сегодня. Сходить в магазин пешком — по желанию, а сон точно полезен.",
-"Сегодня вышло на {over} ккал выше нормы. Калькулятор не осуждает, он только считает.",
-"{over} ккал сверх нормы. Выйти на остановку раньше — удобный вариант."
-],
-"over_neutral": [
-"За последние 3 дня в среднем записано {avg} ккал — на {pct}% выше нормы.",
-"Среднее за последние дни: {avg} ккал. Это на {pct}% выше нормы.",
-"Несколько дней подряд в среднем {avg} ккал, на {pct}% выше нормы. Норму можно пересмотреть в настройках."
-],
-"zero_steps": [
-"0 шагов. Отношения с диваном становятся серьёзными.",
-"Сегодня 0 шагов. Пульт уже считает вас лучшим другом.",
-"Шагомер сегодня отдыхал. Либо телефон лежал на диване, либо вы оба.",
-"0 шагов. Даже кнопка лифта вас сегодня не видела — это уже рекорд.",
-"Ноль. Курьер прошёл ваши шаги за вас и унёс их с собой.",
-"0 шагов. Если телефон весь день лежал на столе — этот ноль на его совести.",
-"Шагов: 0. Диван сегодня — самое посещаемое место в квартире.",
-"0 шагов. Расстояние от чайника до телевизора, увы, не засчитывается.",
-"Сегодня ноль. Завтра даже поход до чайника попадёт в статистику.",
-"0 шагов. Приложение такси присвоило вам статус любимого клиента."
-],
-"water_low": [
-"Воды сегодня {glasses} из {target} стаканов. Желание засчитать чай как воду понятно, но нет.",
-"{glasses}/{target}. Кофе представился водой, приложение не поверило.",
-"Вода: {glasses} из {target}. Сок, конечно, тоже жидкость, но счёт работает иначе.",
-"{glasses} из {target} стаканов. Зелёный чай зелёный, но водой от этого не становится.",
-"Выпито {glasses} из {target}. Остальное ждёт в кране и не обижается.",
-"Вода: {glasses}/{target}. Графин на столе тоже хотел бы попасть в статистику.",
-"Счёт по воде: {glasses}/{target}. Чайник лидирует, графин ещё не вышел на поле.",
-"{glasses} из {target}. Айран — напиток достойный, но роль воды ему не дали.",
-"Воды {glasses} из {target}. Компот, каким бы вкусным он ни был, — не вода. Увы.",
-"{glasses}/{target}. Бутылка с водой обижена: пиала сегодня популярнее."
-],
-"water_ok": [
-"Вода: {glasses} из {target}. Графин сегодня не простаивал.",
-"{glasses}/{target}. Кран хочет сказать спасибо.",
-"По воде {glasses} из {target}. Чай сегодня не пытался выдать себя за воду.",
-"План по воде выполнен: {glasses}/{target}. Пиала и стакан живут мирно.",
-"Цель была {target}, вышло {glasses}. Графин гордится.",
-"Воды достаточно: {glasses} из {target}. Кофе сегодня на второстепенной роли.",
-"{glasses}/{target}. Бутылка с водой — герой дня.",
-"Вода: {glasses} из {target}. Фильтр работал без перерыва на обед.",
-"{glasses} из {target} — отчёт по воде на отлично. Сок и компот сегодня в зрителях."
-],
-"weight_down": [
-"Среднее за 7 дней снизилось на {delta} кг. График спокойно идёт вниз.",
-"Недельное среднее: -{delta} кг. Говорят не весы, а тренд.",
-"Средний показатель опустился на {delta} кг. Линия ровная, без спешки.",
-"7-дневное среднее: -{delta} кг. У графика сегодня лёгкое настроение.",
-"Среднее снизилось на {delta} кг. Не дневные скачки, а направление недели.",
-"-{delta} кг в среднем за неделю. График спускается по лестнице — без лифта, ступенька за ступенькой.",
-"Среднее меньше на {delta} кг. Калькулятор перепроверил дважды — всё верно.",
-"Среднее за неделю: минус {delta} кг. Можно отметить чаем, а можно и без него.",
-"Тренд за 7 дней: -{delta} кг. Таблица выглядит аккуратно."
-],
-"weight_up": [
-"Среднее за 7 дней выросло на {delta} кг. Вода, соль, сон — цифра чувствительна ко всему.",
-"Недельное среднее +{delta} кг. Часто это вода и соль; через неделю график может передумать.",
-"Среднее выше на {delta} кг. Солёный ужин и короткий сон тоже оставляют след в цифрах.",
-"+{delta} кг в среднем. Мышцы, вода, сезон — весы их не различают.",
-"Среднее поднялось на {delta} кг. Графики, как и погода, бывают волнистыми.",
-"7-дневное среднее: +{delta} кг. Меняется ритм жизни — цифра немного пританцовывает.",
-"Среднее выше на {delta} кг. Одна недельная волна — ещё не тренд.",
-"+{delta} кг в недельном среднем. Жара, солёный хлеб, мало воды — всё отражается в цифрах.",
-"Среднее сдвинулось на {delta} кг. Калькулятор спокоен: такие колебания — обычное дело."
-],
-"weight_flat": [
-"Среднее за 7 дней почти не изменилось: разница {delta} кг. Стабильность — тоже результат.",
-"Среднее на месте: {delta} кг. График ровный, как степная трасса.",
-"Разница {delta} кг — недельное среднее спокойно. Весы сегодня без сюжета.",
-"Среднее почти то же ({delta} кг). У графика выходной.",
-"Недельное среднее: ±{delta} кг. Линия ровная, будто сидит и пьёт чай.",
-"Стабильно: изменение {delta} кг. Цифра никуда не спешит, просто наблюдает.",
-"{delta} кг — это не изменение, а лёгкое колебание. Среднее на месте.",
-"Среднее сдвинулось всего на {delta} кг. График не торопится — и вам можно не торопиться.",
-"Недельное среднее без перемен: {delta} кг. Для статистики — тихая неделя."
-],
-"streak": [
-"Дней подряд: {days}. Календарь начал вас уважать.",
-"Серия без пропусков: {days}. Приложение записало вас в постоянные клиенты.",
-"Дней подряд: {days}. Даже чайник не закипает так регулярно.",
-"Серия — {days}. Напоминания в телефоне чувствуют себя лишними.",
-"Уже {days} подряд. Это привычка, а не случайность.",
-"Цепочка из дней: {days}. Каждое звено — один записанный день.",
-"Серия: {days}! Курьер и тот приезжает реже.",
-"Дней без пропуска: {days}. Любимый пользователь калькулятора найден.",
-"Счётчик серии: {days}. Завтрашний день уже стоит в очереди.",
-"Серия {days}. Такой стабильности позавидуют подписки на сериалы."
-],
-"holiday": [
-"Сегодня праздник — подсчёты тоже отдыхают. А дастархан работает.",
-"Плов, самса, гости… Калькулятор сегодня тихо сидит в уголке.",
-"В праздник считают гостей, а не калории.",
-"Сегодня дастархан больше калькулятора. Это нормально, это праздник.",
-"Свадьба или праздник — подсчёты сегодня на втором плане. Завтра всё как обычно.",
-"День гостей: чайник на смене, подсчёты в отпуске.",
-"Сегодня главное приложение — казан с пловом. Мы вернёмся завтра.",
-"С праздником! Главная тренировка дня — встретить и проводить гостей.",
-"Сегодня и шаги праздничные: из гостей в гости, от дома к дому.",
-"Праздничный дастархан не помещается ни в одну таблицу. Сегодня просто хороший день."
-],
-"yesam_ok": [
-"{item} — {kcal} ккал. В норму помещается, и ещё {left} ккал остаётся.",
-"{kcal} ккал — в пределах нормы. С чаем в запасе всё равно {left} ккал.",
-"С «{item}» до нормы остаётся {left} ккал. Решение за вами, калькулятор только считает.",
-"Калькулятор подумал и кивнул: {item} помещается в норму, остаётся {left} ккал.",
-"{item} — {kcal} ккал. Норма это легко выдерживает, чайник тоже согласен.",
-"С этим блюдом до нормы ещё {left} ккал. Дверца холодильника дружелюбно скрипнула.",
-"{kcal} ккал помещаются в норму. Приятного аппетита — и потом остаётся {left} ккал.",
-"{item} — {kcal} ккал; после него до нормы {left} ккал. Счёт простой."
-],
-"yesam_over": [
-"«{item}» превышает норму на {over} ккал. Половину сейчас, остальное завтра — или просто сегодня праздник.",
-"{item} — {kcal} ккал, норма превышается на {over} ккал. Прогулка {min} минут выравнивает — если захотите.",
-"Выходит на {over} ккал выше нормы. Порция поменьше или вечерняя прогулка {min} минут — оба варианта работают.",
-"«{item}» выходит за сегодняшнюю норму на {over} ккал. Можно оставить на завтрашний завтрак.",
-"Счёт: {kcal} ккал, +{over} ккал к норме. {min} минут пешком — и баланс ровный.",
-"Холодильник колеблется: «{item}» сдвигает норму на {over} ккал. Отложить на завтра — тоже вариант.",
-"+{over} ккал за нормой. Если поделиться с друзьями, и блюдо, и счёт будут довольны.",
-"С «{item}» будет +{over} ккал к норме. Стакан воды и {min} минут прогулки — баланс восстановится."
-]
-}
-};
+  var TEXTS = { uz: {}, ru: {} }, NEUTRAL = {};      // matnlar data/hazillar-kalkifit.json da (holat id → til → variantlar); brauzerda ilova yuklab setTexts() ga beradi, Node'da shu yerning o'zida o'qiladi
+  function setTexts(j) {
+    var S = (j && j.states) || {}, T = { uz: {}, ru: {} }; Object.keys(S).forEach(function (id) { ['uz', 'ru'].forEach(function (l) { if (S[id][l] && S[id][l].length) T[l][id] = S[id][l].slice(); }); });
+    TEXTS = T; NEUTRAL = (j && j.neutral) || {}; if (api) { api.TEXTS = TEXTS; api.NEUTRAL = NEUTRAL; }
+  }
 
   /* ---------- taqiqlangan so'zlar (test shu ro'yxat bo'yicha barcha gaplarni tekshiradi) ---------- */
-  var BANNED = ['semiz', "ozg'in", 'ozgin', "yog' bosgan", 'yog bosgan', "to'lag", 'tolag', 'kilo', 'yana yedingiz', 'yeb qo\'yding', 'yeb qoyding', "tuta olmadingiz", 'uyat', 'aybdor', 'ayb ', 'dangasa', 'majbursiz', 'kerak', 'shart', 'jazo',
-    'толст', 'жирн', 'тощ', 'худ', 'опять поел', 'снова поел', 'виноват', 'стыд', 'надо', 'должн', 'обязан', 'лентяй', 'срыв', 'наказан'];
+  var BANNED = ['semiz', "ozg'in", '\\bozgin\\b', "yog' bosgan", 'yog bosgan', "to'lag", 'tolag', 'kilo', 'yana yedingiz', 'yeb qo\'yding', 'yeb qoyding', "tuta olmadingiz", 'uyat', 'aybdor', 'ayb ', 'dangasa', 'majbursiz', 'kerak', 'shart', 'jazo',
+    '\\bsemir', '\\bozib\\b', '\\bqorin', 'badan', 'figura', 'tanang', 'tanangiz', 'ortiqcha vazn', 'ochlik', 'och qol', 'och yur', 'yemang', 'kamroq yeng', 'ko\'proq yeng', 'gunoh', 'aybli', 'qiyshiq', 'bukri', 'xunuk', 'chiroyli bo', 'ahmoq', 'tentak', 'jinni',
+    "to'lmay", "to'ldir", 'yetishma', 'yetmayap', 'kam yed', 'kam ovqat', 'yetarli yem', '\\byeng\\b', 'ovqat yeng', 'ovqatni qo\'shing', 'не наполн', 'недоед', 'недостаточно', 'мало съел', 'мало ел', 'не хватает', 'съешьте', 'поешьте', 'ешьте', 'доешь',
+    'толст', 'жирн', 'тощ', 'худ', 'опять поел', 'снова поел', 'виноват', 'стыд', 'надо', 'должн', 'обязан', 'лентяй', 'срыв', 'наказан',
+    'похуде', 'живот', 'фигур', '\\bтел[оа]\\b', 'голод', 'не ешь', 'меньше ешь', 'больше ешь', '\\bгрех', '\\bвина\\b', 'урод', 'глуп', 'дурак', 'идиот'];
 
   /* ---------- sana, bayramlar ---------- */
   var FIXED = { '01-01': 1, '01-14': 1, '03-08': 1, '03-21': 1, '05-09': 1, '09-01': 1, '10-01': 1, '12-08': 1, '12-31': 1 };
@@ -466,14 +68,14 @@
 
   /* ---------- tanlash: bir kunda takrorlanmaydi, qayta chizilganda barqaror ---------- */
   function fill(tpl, p) { return String(tpl).replace(/\{(\w+)\}/g, function (m, k) { return p && p[k] != null ? p[k] : ''; }).replace(/\s+([.,!?])/g, '$1').replace(/\s{2,}/g, ' ').trim(); }
-  function jk(st, day) { var p = st.prefs || (st.prefs = {}); if (!p.jk || p.jk.d !== day) p.jk = { d: day, used: {}, cur: null }; return p.jk; }
-  function pickLine(ctx, state, params, key) {
+  function jk(ctx, day) { var st = ctx.st, p = ctx.store || st.prefs || (st.prefs = {}); if (!p.jk || p.jk.d !== day) p.jk = { d: day, used: {}, cur: null, last: (p.jk && p.jk.last) || {} }; if (!p.jk.last) p.jk.last = {}; return p.jk; }
+  function pickLine(ctx, state, params, key) {      // bir kunda takrorlanmaydi; OXIRGI ko'rsatilgan variant keyingi safar ham (kun almashsa ham) qaytmaydi; ctx.fresh — har chaqiruvda yangi tanlov (hodisa uchun)
     var list = (TEXTS[ctx.lang] || TEXTS.uz)[state]; if (!list || !list.length) return null;
-    var j = jk(ctx.st, ctx.today); key = key || state;
-    if (j.cur && j.cur.key === key && j.cur.state === state && list[j.cur.idx] != null) return { state: state, text: fill(list[j.cur.idx], params) };
-    var used = j.used[state] || (j.used[state] = []), avail = []; for (var i = 0; i < list.length; i++) if (used.indexOf(i) < 0) avail.push(i);
-    if (!avail.length) { used.length = 0; for (i = 0; i < list.length; i++) avail.push(i); }
-    var idx = avail[Math.floor((ctx.rng ? ctx.rng() : Math.random()) * avail.length)]; used.push(idx); j.cur = { key: key, state: state, idx: idx };
+    var j = jk(ctx, ctx.today); key = key || state;
+    if (!ctx.fresh && j.cur && j.cur.key === key && j.cur.state === state && list[j.cur.idx] != null) return { state: state, text: fill(list[j.cur.idx], params) };
+    var used = j.used[state] || (j.used[state] = []), last = j.last[state], avail = []; for (var i = 0; i < list.length; i++) if (used.indexOf(i) < 0 && !(list.length > 1 && i === last)) avail.push(i);
+    if (!avail.length) { used.length = 0; for (i = 0; i < list.length; i++) if (!(list.length > 1 && i === last)) avail.push(i); }
+    var idx = avail[Math.floor((ctx.rng ? ctx.rng() : Math.random()) * avail.length)]; used.push(idx); j.last[state] = idx; if (!ctx.fresh) j.cur = { key: key, state: state, idx: idx };
     return { state: state, text: fill(list[idx], params) };
   }
   function pickTexts(lang, state) { return (TEXTS[lang] || TEXTS.uz)[state] || []; }
@@ -481,17 +83,26 @@
   /* ---------- vaziyatlar ---------- */
   function fmtKm(km) { return String(Math.round(km * 10) / 10).replace('.', ','); }
   function dayStats(ctx, d) { var S = ctx.S, st = ctx.st; return S.dayStatus(st, d, ctx.today); }
-  function todayLine(ctx) {                        // Bugun ekrani uchun BITTA gap yoki null (hazil o'chirilgan bo'lsa — null)
+  function nf(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  function overRun(ctx) {                          // faqat TO'LIQ kunlar (state 'high' = to'liq va maqsaddan >10% yuqori); ketma-ket 3+ kun — hazil o'rniga neytral fakt
+    var S = ctx.S, t = ctx.today, D = S.dates, run = 0, d = t, sum = 0; if (dayStats(ctx, d).state !== 'high') d = D.addDays(t, -1); var d0 = d;
+    while (run < 7) { var r = dayStats(ctx, d); if (r.state !== 'high') break; run++; sum += r.eaten; d = D.addDays(d, -1); }
+    if (run < 3) return null; var avg = Math.round(sum / run), lsum = 0, dd = d0; for (var i = 0; i < run; i++) { lsum += dayStats(ctx, dd).limit; dd = D.addDays(dd, -1); }
+    return pickLine(ctx, 'over_neutral', { avg: avg, pct: Math.round((sum / lsum - 1) * 100) }, 'over_neutral');
+  }
+  function todayLine(ctx) {                        // Bugun ekrani uchun BITTA kichik qator yoki null (hazil o'chirilgan bo'lsa — null)
     if (ctx.jokesOn === false) return null;
     var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = S.plan(st.profile), eaten = S.sumEntries(x.food).kcal, lim = S.dayLimit(st, t), D = S.dates, hour = ctx.hour == null ? 12 : ctx.hour;
     if (isHoliday(t, D) || x.party) return pickLine(ctx, 'holiday', {}, 'holiday');
-    var run = 0, d = t, sum = 0; if (dayStats(ctx, d).state !== 'high') d = D.addDays(t, -1); var d0 = d;          // faqat TO'LIQ kunlar (state 'high' = to'liq va maqsaddan >10% yuqori)
-    while (run < 7) { var r = dayStats(ctx, d); if (r.state !== 'high') break; run++; sum += r.eaten; d = D.addDays(d, -1); }
-    if (run >= 3) { var avg = Math.round(sum / run), lsum = 0, dd = d0; for (var i = 0; i < run; i++) { lsum += dayStats(ctx, dd).limit; dd = D.addDays(dd, -1); } return pickLine(ctx, 'over_neutral', { avg: avg, pct: Math.round((sum / lsum - 1) * 100) }, 'over_neutral'); }
+    var on = overRun(ctx); if (on) return on;
     if (eaten > lim) return pickLine(ctx, 'over', { over: eaten - lim }, 'over');
     var fresh = st.created && (Date.now() - st.created) < 24 * 3600 * 1000;      // yangi foydalanuvchining birinchi kunida «qadam 0» hazili yo'q
     if (!x.steps && hour >= 13 && !fresh) return pickLine(ctx, 'zero_steps', {}, 'zero_steps');
-    var target = pl.water.glasses; if (x.water >= target) return pickLine(ctx, 'water_ok', { glasses: x.water, target: target }, 'water_ok'); if (hour >= 15 && x.water <= target * 0.4) return pickLine(ctx, 'water_low', { glasses: x.water, target: target }, 'water_low');
+    if (x.steps > 0 && x.steps < 2000 && hour >= 18 && !fresh) return pickLine(ctx, 'steps_couch', { steps: nf(x.steps) }, 'steps_couch');
+    var target = pl.water.glasses; if (x.water >= target) return pickLine(ctx, 'water_ok', { glasses: x.water, target: target }, 'water_ok');
+    if (!x.water && hour >= 12 && !fresh) return pickLine(ctx, 'water_none', {}, 'water_none');
+    if (hour >= 15 && x.water <= target * 0.4) return pickLine(ctx, 'water_low', { glasses: x.water, target: target }, 'water_low');
+    if (x.food.length && hour >= 20 && eaten < 0.4 * lim && !x.done) return pickLine(ctx, 'log_low', {}, 'log_low');
     if (eaten > 0 && eaten <= lim && hour >= 18) return pickLine(ctx, 'within', { left: lim - eaten }, 'within');
     if (x.steps >= 2000) {
       var h = Number(st.profile.height), w = S.currentWeight(st), km = S.distanceKm(x.steps, h), kc = S.stepKcal(x.steps, h, w), dom = Number(t.slice(8));
@@ -499,8 +110,33 @@
       if (bf && (dom % 2 === 1 || !rt)) return pickLine(ctx, 'burn', { kcal: kc, food: bf.food, foodNom: bf.foodNom }, 'burn|' + bf.id);
       if (rt) return pickLine(ctx, rt.type === 'full' ? 'dist_full_day' : 'dist_part', { km: fmtKm(km), route: routePhrase(rt, ctx.lang), routeKm: rt.km, pct: rt.pct }, 'day|' + rt.to.id);
     }
-    var sk = S.streak(st, t); if (sk >= 3) return pickLine(ctx, 'streak', { days: sk }, 'streak');
+    var sk = S.streak(st, t); if (sk >= 3) return pickLine(ctx, sk >= 7 && sk % 7 === 0 ? 'streak7' : 'streak', { days: sk }, 'streak');
     return null;
+  }
+  function neutralLine(ctx, kind, p) { var n = NEUTRAL[kind], t = n && (n[ctx.lang] || n.uz); return t ? { state: 'neutral_' + kind, text: fill(t, p) } : null; }
+  /* Hodisadan keyingi bir qatorli gap: kind = food | water | steps | weight | dayend. Hazil o'chirilgan bo'lsa shu vaziyat uchun NEUTRAL fakt qaytadi. */
+  function eventLine(ctx, kind, p) {
+    p = p || {}; var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = S.plan(st.profile), eaten = S.sumEntries(x.food).kcal, lim = S.dayLimit(st, t), hour = ctx.hour == null ? 12 : ctx.hour, sk = S.streak(st, t);
+    var jc = {}; Object.keys(ctx).forEach(function (k) { jc[k] = ctx[k]; }); jc.fresh = true; jc.jokesOn = true; var state = null, par = {}, nk = kind, np = {};
+    if (kind === 'food') {
+      nk = 'food'; np = { eaten: nf(eaten) };
+      if (eaten > lim) { var on = overRun(jc); if (on) return ctx.jokesOn === false ? neutralLine(ctx, nk, np) : on; state = 'over'; par = { over: nf(eaten - lim) }; }
+      else if (p.sweet) state = 'food_sweet';
+      else if (x.food.length === 1) state = sk >= 7 && sk % 7 === 0 ? 'streak7' : (sk >= 3 ? 'streak' : 'food_first'), par = { days: sk };
+      else if (hour >= 20 && eaten < 0.4 * lim && !x.done) state = 'log_low';
+      else if (hour >= 18 && eaten <= lim && x.food.length > 2) state = 'within', par = { left: nf(lim - eaten) };
+      else state = 'food_add';
+    } else if (kind === 'water') {
+      var tg = pl.water.glasses; nk = 'water'; np = { ml: nf(x.water * S.GLASS_ML), goal: nf(tg * S.GLASS_ML) };
+      if (x.water === tg) { state = 'water_ok'; par = { glasses: x.water, target: tg }; } else if (x.water === Math.ceil(tg / 2)) state = 'water_half';
+    } else if (kind === 'steps') {
+      var goal = st.stepGoal, sc = Number(p.steps) || x.steps; nk = 'steps'; np = par = { steps: nf(sc), goal: nf(goal) };
+      if (sc >= goal && !(p.prev >= goal)) state = 'steps_goal'; else if (hour >= 18 && sc > 0 && sc < 2000) state = 'steps_couch'; else state = 'steps_add';
+    } else if (kind === 'weight') { nk = 'weight'; np = par = { kg: String(Math.round(Number(p.kg) * 10) / 10).replace('.', ',') }; state = 'weight_add'; }
+    else if (kind === 'dayend') { nk = 'dayend'; state = dayStats(jc, t).state === 'high' ? 'dayend_high' : 'dayend'; }
+    if (!state) return null;
+    if (ctx.jokesOn === false) return neutralLine(ctx, nk, np);
+    return pickLine(jc, state, par, 'ev|' + kind + '|' + state);
   }
   function distLines(ctx) {                        // Qadam ekrani: oxirgi 7 kun va shu oy uchun masofa gaplari
     if (ctx.jokesOn === false || !ctx.masofa) return { week: null, month: null };
@@ -520,6 +156,8 @@
   }
   function streakLine(ctx) { if (ctx.jokesOn === false) return null; var n = ctx.S.streak(ctx.st, ctx.today); return n >= 3 ? pickLine(ctx, 'streak', { days: n }, 'streak2') : null; }
 
-  return { TEXTS: TEXTS, BANNED: BANNED, FIXED: FIXED, isHoliday: isHoliday, kmBetween: kmBetween, nodeOf: nodeOf, routeFor: routeFor, routePhrase: routePhrase, burnFood: burnFood, fill: fill, pickLine: pickLine, pickTexts: pickTexts,
-    todayLine: todayLine, distLines: distLines, weightLine: weightLine, streakLine: streakLine, fmtKm: fmtKm };
+  var api = { TEXTS: TEXTS, NEUTRAL: NEUTRAL, setTexts: setTexts, BANNED: BANNED, FIXED: FIXED, isHoliday: isHoliday, kmBetween: kmBetween, nodeOf: nodeOf, routeFor: routeFor, routePhrase: routePhrase, burnFood: burnFood, fill: fill, pickLine: pickLine, pickTexts: pickTexts,
+    todayLine: todayLine, eventLine: eventLine, neutralLine: neutralLine, distLines: distLines, weightLine: weightLine, streakLine: streakLine, fmtKm: fmtKm };
+  if (typeof module === 'object' && module.exports) { try { var fs = require('fs'), path = require('path'); setTexts(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'hazillar-kalkifit.json'), 'utf8'))); } catch (e) {} }
+  return api;
 });
