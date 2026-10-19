@@ -372,7 +372,7 @@
     h += '<p class="rz-priv">' + esc(T('disc')) + '</p>';
     $('#rzMain').innerHTML = h; markSeen();
     animNum(curN, n, durN); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 1800, from: startN, to: n, fromTy: fromTy, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty };
-    if (G && !jokeBoot) { jokeBoot = true; loadHazil(); loadMasofa(); loadPush(function () { pushSync(); if ((view === 'today' || view === 'profile') && !kit.sheetKind()) render(); }); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    if (G && !jokeBoot) { jokeBoot = true; loadHazil(); loadMasofa(); if (appDays() >= 3) loadPush(function () { pushSync(); if ((view === 'today' || view === 'profile') && !kit.sheetKind()) render(); }); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
 
   /* ---------- KUNDALIK ---------- */

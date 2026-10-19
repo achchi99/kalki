@@ -18,7 +18,7 @@ Pages'da cron yo'q; alohida Worker = yana bir deploy/secret/D1 binding. Hetzner'
 
 Cron (server vaqti UTC):
 ```
-0 6 * * 4  cd ~/projects/kalki && /usr/bin/node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
+0 6 * * 4  cd ~/projects/kalki && node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
 ```
 Production'da `push_obuna` jadvali yo'q bo'lsa (kod main'ga chiqmaguncha) skript «jadval yo'q» deb chiqib ketadi.
 
