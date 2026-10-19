@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "izoh": "«Bugun nima yeymiz?» va «Boshqa variantlar» uchun guruhlar (qo'lda). Kalit: taom id yoki id#kombinatsiya. Har kalit data/ovqatlar.json da bo'lishi va cheklov tegiga ega bo'lishi shart (test-yeymiz-malumot / test-yeymiz).",
+ "chips": [
+  { "id": "kabob", "uz": "Kabob", "ru": "Кебаб" },
+  { "id": "suyuq", "uz": "Suyuq ovqat", "ru": "Суп" },
+  { "id": "tandir", "uz": "Tandir", "ru": "Тандыр" },
+  { "id": "tez", "uz": "Tez tayyor", "ru": "Быстро" },
+  { "id": "baliq", "uz": "Baliq", "ru": "Рыба" }
+ ],
+ "guruh": {
+  "kabob": ["kafe-tovuq-shashlik", "kafe-kabob", "kafe-lyulya", "kafe-tovuq-son-grill", "shashlik#tovuq", "shashlik#gosht", "tovuq-son", "kurka", "tovuq-kokrak", "lyulya", "qozon-kabob", "jigar-kabob"],
+  "suyuq": ["kafe-lagmon-tovuq", "lagmon#shorvali.tovuq", "lagmon#shorvali.mol", "shurva#qaynatma", "shurva#odatiy", "mastava", "loviya-shurva", "yasmiq-shurva", "moshxorda-gostsiz", "moshkichiri", "kafe-baliq-shurva", "baliq-shurva"],
+  "tandir": ["tandir-gosht", "somsa#oddiy.tovuq", "somsa#oddiy.yogsiz", "somsa#oddiy.yogli", "somsa#oddiy.qovoq", "kafe-tovuq-son-grill", "kafe-tovuq-shashlik", "kafe-kabob"],
+  "tez": ["omlet-sabzavot", "qoymoq", "suzma-salat", "qatiq-salat", "tovuq-kokrak", "lavash-tovuq#tovuq", "sendvich", "tuxum#qaynatilgan"]
+ },
+ "birinchi": { "kabob": "kafe-tovuq-shashlik" },
+ "birlik": {
+  "somsa#oddiy.tovuq": { "u": "dona", "n": 2 }, "somsa#oddiy.yogsiz": { "u": "dona", "n": 2 }, "somsa#oddiy.yogli": { "u": "dona", "n": 2 }, "somsa#oddiy.qovoq": { "u": "dona", "n": 2 },
+  "tuxum#qaynatilgan": { "u": "dona", "n": 2 }, "tovuq-son": { "u": "porsiya", "n": 1 }
+ },
+ "baliq": {
+  "kafe": ["kafe-sazan-qovurma", "kafe-baliq-shashlik", "kafe-losos-steyk", "kafe-baliq-shurva"],
+  "uyda": ["tovada", "duxovka", "grill"]
+ },
+ "kun": { "standart": 3, "nomlar": { "uz": ["Du", "Se", "Chor", "Pay", "Ju", "Sha", "Ya"], "ru": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] } }
+}

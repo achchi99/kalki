@@ -245,7 +245,7 @@
         "uz": "Yandex Eda",
         "ru": "Яндекс Еда"
       },
-      "url": "https://eda.yandex.uz/",
+      "url": "https://eats.yandex.com",
       "type": "organic",
       "categories": [
         "yetkazish"
@@ -256,11 +256,11 @@
       },
       "append_utm": false,
       "priority": 0,
-      "active": false,
+      "active": true,
       "valid_until": "2027-12-31",
       "checked": "2026-10-19",
       "note_verified": false,
-      "tekshiruv": "serverdan SmartCaptcha — telefonda tekshirilmagan"
+      "tekshiruv": "ochiladi (iPhone Safari, 2026-10-19); eda.yandex.uz shu yerga yo'naltiradi"
     },
     {
       "id": "express24",
@@ -283,7 +283,7 @@
       "valid_until": "2027-12-31",
       "checked": "2026-10-19",
       "note_verified": false,
-      "tekshiruv": "serverdan ochilmadi — telefonda tekshirilmagan"
+      "tekshiruv": "Yandex Eda'ga qo'shilgan, 2026-10"
     }
   ]
 }

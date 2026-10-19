@@ -2265,7 +2265,7 @@
   },
   {
    "i": "kafe-tovuq-shashlik",
-   "n": "Tovuq shashlik (choyxona, 1 six)",
+   "n": "Tovuq shashlik (choyxona)",
    "r": "Шашлык из курицы (чайхана, 1 шампур)",
    "a": [
     "tovuq kabob choyxona",
@@ -2289,7 +2289,7 @@
   },
   {
    "i": "kafe-kabob",
-   "n": "Qo'y/mol kabob (choyxona, 1 six)",
+   "n": "Qo'y/mol kabob (choyxona)",
    "r": "Кебаб баранина/говядина (чайхана, 1 шампур)",
    "a": [
     "kabob choyxona",
@@ -2315,7 +2315,7 @@
   },
   {
    "i": "kafe-lyulya",
-   "n": "Lyulya kabob (choyxona, 1 six)",
+   "n": "Lyulya kabob (choyxona)",
    "r": "Люля-кебаб (чайхана, 1 шампур)",
    "a": [
     "lyulya choyxona",

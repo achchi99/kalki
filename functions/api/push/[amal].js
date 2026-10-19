@@ -1,6 +1,6 @@
 /* kalki.uz — «Baliq kuni» eslatmasi: Web Push obunalari (D1 push_obuna). Yuborish bu yerda EMAS — Hetzner cron (tools/push-yubor.js).
  *   GET  /api/push/kalit               → { yoqilgan, kalit? }   (VAPID ochiq kalit; jadval yoki kalit yo'q bo'lsa yoqilgan:false — ilova taklif ko'rsatmaydi)
- *   POST /api/push/obuna  { obuna: PushSubscription.toJSON(), til }  → { ok, akkaunt }   (akkaunt: sessiya cookie'si bo'lsa unga ulanadi — ixtiyoriy)
+ *   POST /api/push/obuna  { obuna: PushSubscription.toJSON(), til, baliqsiz?: bool, kun?: 0..6 }  → { ok, akkaunt }   (akkaunt: sessiya cookie'si bo'lsa unga ulanadi — ixtiyoriy)
  *   POST /api/push/ochir  { endpoint } → { ok }
  *   GET  /api/push/holat (X-Admin-Password) → { obunalar, akkaunt_bilan, til: {uz,cyr,ru}, oxirgi }   (admin: obuna soni va oxirgi yuborish natijasi)
  * Xavfsizlik: POST faqat Origin tekshiruvi + application/json; endpoint faqat ma'lum push xizmatlari (SSRF yo'q); IP boshiga soatiga 20 ta obuna (KV). Secret'lar: VAPID_PUBLIC_KEY (ochiq),
@@ -54,10 +54,16 @@ export async function onRequest({ request, env, params }) {
     let akk = null; const tok = cookieOf(request);
     if (tok) { try { const s = await db.prepare('SELECT akkaunt_id, muddat_abs FROM sessiya WHERE id = ?').bind(await sha(tok)).first(); if (s && s.muddat_abs > Date.now()) akk = s.akkaunt_id; } catch (e) { akk = null; } }
     const id = await sha(o.endpoint), now = Date.now();
+    const bs = b.baliqsiz === true ? 1 : 0, kn = Number.isInteger(b.kun) && b.kun >= 0 && b.kun <= 6 ? b.kun : 3;      // «Baliq yoqtirmayman» / «Boshqa kun»: yangi ustunlar (migrations/push-yeymiz.sql)
     try {
-      await db.prepare('INSERT INTO push_obuna (id, endpoint, p256dh, auth, til, akkaunt_id, yaratilgan) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET p256dh = excluded.p256dh, auth = excluded.auth, til = excluded.til, akkaunt_id = COALESCE(excluded.akkaunt_id, push_obuna.akkaunt_id), xato = 0')
-        .bind(id, o.endpoint, o.p256dh, o.auth, o.til, akk, now).run();
-    } catch (e) { return fail(503); }
+      await db.prepare('INSERT INTO push_obuna (id, endpoint, p256dh, auth, til, akkaunt_id, yaratilgan, baliqsiz, kun) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET p256dh = excluded.p256dh, auth = excluded.auth, til = excluded.til, akkaunt_id = COALESCE(excluded.akkaunt_id, push_obuna.akkaunt_id), baliqsiz = excluded.baliqsiz, kun = excluded.kun, xato = 0')
+        .bind(id, o.endpoint, o.p256dh, o.auth, o.til, akk, now, bs, kn).run();
+    } catch (e) {
+      try {                                          // ustunlar hali yo'q (migratsiya yurgizilmagan): eski usulda saqlanadi — obuna yo'qolmasin
+        await db.prepare('INSERT INTO push_obuna (id, endpoint, p256dh, auth, til, akkaunt_id, yaratilgan) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET p256dh = excluded.p256dh, auth = excluded.auth, til = excluded.til, akkaunt_id = COALESCE(excluded.akkaunt_id, push_obuna.akkaunt_id), xato = 0')
+          .bind(id, o.endpoint, o.p256dh, o.auth, o.til, akk, now).run();
+      } catch (e2) { return fail(503); }
+    }
     return json(200, { ok: true, akkaunt: !!akk }, NC);
   }
   /* ochir */

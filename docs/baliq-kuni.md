@@ -1,6 +1,6 @@
 # «Baliq kuni» eslatmasi (Web Push)
 
-Haftada **bitta** push — payshanba 11:00 Toshkent (06:00 UTC). Boshqa push yo'q.
+Haftada **bitta** push — standart payshanba, foydalanuvchi «Boshqa kun» tanlasa o'sha kun; 11:00 Toshkent (06:00 UTC). «Baliq yoqtirmayman» deganga yuborilmaydi. Boshqa push yo'q. Bosilganda «Baliq kuni» oynasi ochiladi (buyurtma · kafe · uyda) — qarang: `docs/yeymiz.md`.
 
 ## Qismlar
 | Qism | Qayerda |
@@ -18,7 +18,7 @@ Pages'da cron yo'q; alohida Worker = yana bir deploy/secret/D1 binding. Hetzner'
 
 Cron (server vaqti UTC):
 ```
-0 6 * * 4  cd ~/projects/kalki && node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
+0 6 * * *  cd ~/projects/kalki && node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
 ```
 Production'da `push_obuna` jadvali yo'q bo'lsa (kod main'ga chiqmaguncha) skript «jadval yo'q» deb chiqib ketadi.
 
