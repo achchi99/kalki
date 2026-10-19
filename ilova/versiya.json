@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "versionCode": 1,
+  "apk": "/ilova/kalkifit-1.0.0.apk",
+  "sha256": "dbff1dcc44da14e3c23bab5be72aad33b05e244a91babeb053fcb6628ad9a675",
+  "size": 3116173,
+  "minAndroid": "8.0",
+  "date": "2026-10-19",
+  "notes": {
+    "uz": "Birinchi versiya: KalkiFit qobiq ilovasi.",
+    "ru": "Первая версия: оболочка приложения KalkiFit."
+  }
+}

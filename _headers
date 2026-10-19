@@ -12,3 +12,12 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+/ilova/*.apk
+  Content-Type: application/vnd.android.package-archive
+  Content-Disposition: attachment
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex
+
+/ilova/versiya.json
+  Cache-Control: no-store

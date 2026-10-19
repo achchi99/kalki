@@ -11,7 +11,7 @@
     uz: {
       obLater: 'Keyinroq', obLater2: "Keyinroq — o'rtacha me'yor bilan boshlash", txChip: 'Taxminiy · Aniqlashtirish', txP: "Me'yoringiz taxminiy", obYq2: "Yemaydigan narsangiz bormi?", obYh2: 'Belgilangan taomlar sizga taklif qilinmaydi. Hech narsa tanlamasangiz ham bo\'ladi.', obYno: "Yo'q, hammasini yeyman", obYgo: 'Davom etish', txT: "Me'yoringiz taxminiy — 30 soniyada aniqlashtiring", txBtn: 'Aniqlashtirish', sldMinus: 'Kamaytirish', sldPlus: "Ko'paytirish", sldEdit: 'Aniq qiymatni yozish',
       appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
-      today: 'Bugun', jClose: 'Yopish (bugun uchun)', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
+      today: 'Bugun', apkT: 'Android ilovasini yuklab olish', apkH: "Telefoningizga o'rnatiladigan ilova (APK)", jClose: 'Yopish (bugun uchun)', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
       mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Tamaddi', meald: 'Kechki ovqat', meals: 'Tamaddi',
       o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Lineykani suring yoki − / + bosing. Taxminiy qiymat ham bo\'ladi.', o3h: 'Lineykani suring yoki − / + bosing.',
       o5q: "Kuningiz qanday o'tadi?", o6q: 'Maqsadingiz?', errAge: '10 dan 100 gacha yozing', errHeight: '120 dan 230 gacha yozing', errWeight: '30 dan 250 gacha yozing',
@@ -55,7 +55,7 @@
     ru: {
       obLater: 'Позже', obLater2: 'Позже — начать со средней нормой', txChip: 'Примерно · Уточнить', txP: 'Норма примерная', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
       appName: 'KalkiFit', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
-      today: 'Сегодня', jClose: 'Закрыть (на сегодня)', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
+      today: 'Сегодня', apkT: 'Скачать приложение для Android', apkH: 'Приложение для установки на телефон (APK)', jClose: 'Закрыть (на сегодня)', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
       mealb: 'Завтрак', meall: 'Обед', mealds: 'Ужин', mealss: 'Перекус', meald: 'Ужин', meals: 'Перекус',
       o1q: 'Ваш пол?', male: 'Мужской', female: 'Женский', preg: 'Я беременна или кормлю грудью', o2q: 'Сколько вам лет?', o2h: 'Только для расчёта дневной нормы.', o3q: 'Ваш рост в сантиметрах?', o4q: 'Ваш вес в килограммах?', o4h: 'Двигайте линейку или нажимайте − / +. Примерное значение тоже подойдёт.', o3h: 'Двигайте линейку или нажимайте − / +.',
       o5q: 'Как проходит ваш день?', o6q: 'Ваша цель?', errAge: 'Введите от 10 до 100', errHeight: 'Введите от 120 до 230', errWeight: 'Введите от 30 до 250',
@@ -506,7 +506,7 @@
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div>' + segHtml(T('sFont'), [{ attrs: 'data-act="font" data-f="n"', on: !big, text: T('fN') }, { attrs: 'data-act="font" data-f="b"', on: big, text: T('fB') }]) + '</section>';
     h += jokesCardHtml();
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('profBackup')) + '</div>' + (inst.row() ? inst.row().html : '') + (akk.enabled() ? akk.rowHtml() + akk.more(bk.tgRow() + bk.cloudHtml() + akk.strictRow() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + bk.lastHtml()) + row('wipe', 'x', T('sDel'), '') : bk.tgRow() + bk.cloudHtml() + akk.rowHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml()) + '</section>';
-    h += '<section class="rz-card">' + row('intro', 'help', T('sHow'), '') + news.row() + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section><p class="rz-priv">' + esc(T('pFoot')) + '</p>';
+    h += '<section class="rz-card">' + (window.KalkiNative && KalkiNative.isAndroidBrowser() ? row('apk', 'boshqa', T('apkT'), T('apkH')) : '') + row('intro', 'help', T('sHow'), '') + news.row() + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section><p class="rz-priv">' + esc(T('pFoot')) + '</p>';
     $('#rzMain').innerHTML = h;
   }
 
@@ -1682,6 +1682,7 @@
       case 'export': doExport(); break; case 'import': bk.restoreSheet(); break; case 'wipe': wipe(); break;
       case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;
+      case 'apk': { window.location.href = lang === 'ru' ? '/ilova/?lang=ru' : (isCyr() ? '/ilova/?lang=cyr' : '/ilova/'); break; }
       case 'jclose': { hazilStore().jx = todayStr(); saveQuiet(); var jl = $('#jLine'); if (jl) jl.remove(); break; }
       case 'hide': prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break;
       case 'hideweek': prefs().weekHide = todayStr(); commit(); break;

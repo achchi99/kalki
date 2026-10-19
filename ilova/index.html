@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="uz" data-lang="uz"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||''); if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+  var ua=navigator.userAgent||'';var ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  h.setAttribute('data-plat',ios?'ios':(/Android/i.test(ua)?'android':'desk'));
+  if(localStorage.getItem('kalki_fs')==='big')h.classList.add('fs-big');
+}catch(e){}})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<style id="ilfirst">html,body{background:#F5F4F0}@media (prefers-color-scheme:dark){html,body{background:#111214}}</style>
+<meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+<title>KalkiFit — Android ilovasi (APK yuklab olish)</title>
+<meta name="description" content="KalkiFit Android ilovasi: APK ni yuklab oling va o'rnating. Bepul, kaloriya va ovqat hisobi, ma'lumot avtomatik saqlanadi.">
+<link rel="canonical" href="https://kalki.uz/ilova/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/appkit.css">
+<link rel="stylesheet" href="/assets/css/kalkifit.css">
+<link rel="stylesheet" href="/assets/css/ilova.css">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+</head><body>
+<div class="sl il" id="il">
+<div class="il-w">
+  <div class="il-top">
+    <a class="il-logo" href="/kalkifit" data-i="back">← KalkiFit</a>
+    <div class="il-seg" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" data-l="uz">UZ</button><button type="button" data-l="cyr">ЎЗ</button><button type="button" data-l="ru">RU</button></div>
+  </div>
+  <h1 data-i="h1">KalkiFit Android ilovasi</h1>
+  <p class="il-sub" data-i="sub">Telefoningizga o'rnating: bosh ekranda belgisi bo'ladi, ma'lumotingiz avtomatik saqlanadi. Bepul.</p>
+
+  <section class="il-card not-ios" id="ilDlCard">
+    <a class="il-btn" id="ilDl" href="/ilova/kalkifit-1.0.0.apk" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg><span data-i="dl">APK yuklab olish</span></a>
+    <p class="il-meta"><span data-i="ver">Versiya</span> <b id="ilVer">1.0.0</b> · <b id="ilSize">3,0 MB</b> · Android <b id="ilMin">8.0</b>+</p>
+    <div class="il-sha"><b data-i="sha">SHA-256 (tekshirish ixtiyoriy):</b><code id="ilSha">dbff1dcc44da14e3c23bab5be72aad33b05e244a91babeb053fcb6628ad9a675</code><button class="il-copy" type="button" id="ilCopy" data-i="copy">Nusxalash</button></div>
+    <p class="il-note only-desk" data-i="desk">Bu sahifani Android telefoningizdan oching yoki faylni telefonga yuboring.</p>
+  </section>
+
+  <section class="il-card not-ios" id="ilSteps">
+    <h2 data-i="stT">O'rnatish — 4 qadam</h2>
+    <ol class="il-steps"><li data-i="s1"></li><li data-i="s2"></li><li data-i="s3"></li><li data-i="s4"></li></ol>
+    <p class="il-note" data-i="trust">Faylni faqat shu sahifadan yuklang. Ilova Google Play'da emas, shuning uchun o'rnatish yuqoridagi ruxsatlarni talab qiladi.</p>
+  </section>
+
+  <section class="il-card only-ios" id="ilIos">
+    <h2 data-i="iosT">iPhone uchun</h2>
+    <p style="margin:0" data-i="ios">Safari'da kalki.uz/kalkifit ni oching → «Ulashish» → «Bosh ekranga qo'shish» → «Qo'shish». Ilova bosh ekranda paydo bo'ladi.</p>
+    <p class="il-note" data-i="iosN">APK faqat Android uchun; iPhone'da u kerak emas.</p>
+    <p style="margin:14px 0 0"><a class="il-link" href="/kalkifit" data-i="open">KalkiFit'ni ochish</a></p>
+  </section>
+
+  <p class="il-foot"><a class="il-link" href="/maxfiylik" data-i="priv">Maxfiylik</a></p>
+</div></div>
+<script src="/assets/translit.js"></script>
+<script src="/assets/app-native.js"></script>
+<script>
+(function(){
+  var D={
+    uz:{back:"← KalkiFit",h1:"KalkiFit Android ilovasi",sub:"Telefoningizga o'rnating: bosh ekranda belgisi bo'ladi, ma'lumotingiz avtomatik saqlanadi. Bepul.",dl:"APK yuklab olish",ver:"Versiya",sha:"SHA-256 (tekshirish ixtiyoriy):",copy:"Nusxalash",copied:"Nusxalandi ✓",
+      desk:"Bu sahifani Android telefoningizdan oching yoki faylni telefonga yuboring.",stT:"O'rnatish — 4 qadam",
+      s1:"«APK yuklab olish» tugmasini bosing. Brauzer «Bu fayl zarar yetkazishi mumkin» desa, «Baribir saqlash»ni tanlang.",
+      s2:"Yuklangan faylni oching (bildirishnomadan yoki «Yuklamalar» papkasidan). «Noma'lum manbalardan o'rnatish» so'ralsa — «Sozlamalar»ni bosing, shu brauzer (masalan, Chrome) uchun ruxsatni yoqing, orqaga qaytib «O'rnatish»ni bosing.",
+      s3:"Google Play Protect ogohlantirishi chiqsa («Ilova xavfli bo'lishi mumkin»): «Batafsil» → «Baribir o'rnatish». Ilova Play Do'konida emas, shuning uchun bu ogohlantirish odatiy.",
+      s4:"«Ochish»ni bosing. Xohlasangiz Profil → «Email bilan kirish»: yangi telefonda ma'lumotingiz qaytadi.",
+      trust:"Faylni faqat shu sahifadan yuklang. Ilova Google Play'da emas, shuning uchun o'rnatish yuqoridagi ruxsatlarni talab qiladi.",
+      iosT:"iPhone uchun",ios:"Safari'da kalki.uz/kalkifit ni oching → «Ulashish» → «Bosh ekranga qo'shish» → «Qo'shish». Ilova bosh ekranda paydo bo'ladi.",iosN:"APK faqat Android uchun; iPhone'da u kerak emas.",open:"KalkiFit'ni ochish",priv:"Maxfiylik",
+      title:"KalkiFit — Android ilovasi (APK yuklab olish)"},
+    ru:{back:"← KalkiFit",h1:"Приложение KalkiFit для Android",sub:"Установите на телефон: значок на главном экране, данные сохраняются автоматически. Бесплатно.",dl:"Скачать APK",ver:"Версия",sha:"SHA-256 (проверка по желанию):",copy:"Копировать",copied:"Скопировано ✓",
+      desk:"Откройте эту страницу на Android-телефоне или отправьте файл на телефон.",stT:"Установка — 4 шага",
+      s1:"Нажмите «Скачать APK». Если браузер предупредит, что «файл может быть опасен», выберите «Всё равно сохранить».",
+      s2:"Откройте скачанный файл (из уведомления или из папки «Загрузки»). Если попросит «Установку из неизвестных источников» — нажмите «Настройки», включите разрешение для этого браузера (например, Chrome), вернитесь назад и нажмите «Установить».",
+      s3:"Если появится предупреждение Google Play Protect («Приложение может быть опасным»): «Подробнее» → «Всё равно установить». Приложения нет в Google Play, поэтому такое предупреждение обычно.",
+      s4:"Нажмите «Открыть». По желанию: Профиль → «Вход по почте» — на новом телефоне данные вернутся.",
+      trust:"Скачивайте файл только с этой страницы. Приложения нет в Google Play, поэтому для установки нужны перечисленные разрешения.",
+      iosT:"Для iPhone",ios:"Откройте kalki.uz/kalkifit в Safari → «Поделиться» → «На экран Домой» → «Добавить». Приложение появится на главном экране.",iosN:"APK нужен только для Android; на iPhone он не нужен.",open:"Открыть KalkiFit",priv:"Конфиденциальность",
+      title:"KalkiFit — приложение для Android (скачать APK)"}
+  };
+  var BRAND=['KalkiFit','APK','SHA-256','Android','Play Protect','Chrome','Safari','iPhone','Google Play','Google'];
+  function cyr(s){var m=[];BRAND.forEach(function(b,i){s=s.split(b).join('⁠'+String.fromCharCode(0xE000+i)+'⁠')});
+    var o=(window.KalkiTranslit&&KalkiTranslit.translit)?KalkiTranslit.translit(s):s;
+    return o.replace(/⁠?([-])⁠?/g,function(_,c){return BRAND[c.charCodeAt(0)-0xE000]});}
+  var cur=document.documentElement.getAttribute('data-script')==='cyr'?'cyr':(document.documentElement.getAttribute('data-lang')==='ru'?'ru':'uz');
+  function txt(k){return cur==='ru'?D.ru[k]:(cur==='cyr'?cyr(D.uz[k]):D.uz[k])}
+  function apply(){
+    var h=document.documentElement; h.lang=cur==='ru'?'ru':'uz'; h.setAttribute('data-lang',cur==='ru'?'ru':'uz'); if(cur==='cyr')h.setAttribute('data-script','cyr'); else h.removeAttribute('data-script');
+    [].forEach.call(document.querySelectorAll('[data-i]'),function(e){var k=e.getAttribute('data-i');var v=txt(k);if(v!=null)e.textContent=v});
+    document.title=txt('title'); [].forEach.call(document.querySelectorAll('.il-seg button'),function(b){b.classList.toggle('on',b.getAttribute('data-l')===cur)});
+  }
+  [].forEach.call(document.querySelectorAll('.il-seg button'),function(b){b.addEventListener('click',function(){cur=b.getAttribute('data-l');try{localStorage.setItem('kalki_lang',cur)}catch(e){}try{var u=new URL(location.href);u.searchParams.set('lang',cur);history.replaceState(null,'',u.toString())}catch(e){}apply()})});
+  document.getElementById('ilCopy').addEventListener('click',function(){var t=document.getElementById('ilSha').textContent.trim(),b=this;var done=function(){b.textContent=txt('copied');setTimeout(function(){b.textContent=txt('copy')},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,done);else{try{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}catch(e){}done()}});
+  apply();
+})();
+</script>
+</body></html>
