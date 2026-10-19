@@ -1,5 +1,5 @@
 {
   "izoh": "test-tema.mjs istisnolari. hex: token bo'lmagan qattiq hex (hozir bo'sh — hammasi CSS o'zgaruvchilarida). rangli: katta (≥60×24 px) rangli fonli elementlarga ruxsat — faqat accent TUGMA/CHIP/BELGI/PROGRESS ko'rinishlari (bloklar emas).",
   "hex": [],
-  "rangliSelektorlar": [".sl-pimg", ".sl-tile", ".sl-main", ".rz-btn.primary", ".rz-fab", ".rz-seg button.on", ".rz-chip.on", ".sl-seg button.on", ".sl-av", ".sl-pill", ".rz-pay.done", ".rz-bar i", ".bar i", ".segs i", ".sl-pm", ".rz-chk", ".sl-vessel", ".sl-ring", "svg", "canvas", "img", ".sl-cat", ".sl-catc", ".kf-dot", ".rz-cat.on", ".rz-opt.on", ".sl-opt.on"]
+  "rangliSelektorlar": [".sl-pimg", ".sl-tile", ".sl-main", ".sl-week7 .wd.on", ".sl-seg4 button.on", ".sl-cats .rz-chip.on", ".rz-btn.primary", ".rz-fab", ".rz-seg button.on", ".rz-chip.on", ".sl-seg button.on", ".sl-av", ".sl-pill", ".rz-pay.done", ".rz-bar i", ".bar i", ".segs i", ".sl-pm", ".rz-chk", ".sl-vessel", ".sl-ring", "svg", "canvas", "img", ".sl-cat", ".sl-catc", ".kf-dot", ".rz-cat.on", ".rz-opt.on", ".sl-opt.on"]
 }

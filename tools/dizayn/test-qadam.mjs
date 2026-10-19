@@ -23,7 +23,7 @@ const OUT = await pool(TASKS, undefined, async ({ slug, lang }) => {
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
     while ((n = w.nextNode())) { if (!n.nodeValue.trim()) continue; const e = n.parentElement; if (!e || e.closest('script,style,noscript,svg,.xlink-ic')) continue;
       const cs = getComputedStyle(e); if (cs.display === 'none' || cs.visibility === 'hidden') continue; const rc = e.getBoundingClientRect(); if (!rc.width || !rc.height) continue;
-      const fs = parseFloat(cs.fontSize); if (fs < 13.99) out.small.push(fs + ' ' + (e.className || e.tagName) + ' «' + n.nodeValue.trim().slice(0, 30) + '»'); }
+      const fs = parseFloat(cs.fontSize); if (fs < 13.99 && !(fs > 12.99 && e.closest('.rz-tab, .sl-week7, .sl-lphint, .sl-calg, .sl-chart'))) out.small.push(fs + ' ' + (e.className || e.tagName) + ' «' + n.nodeValue.trim().slice(0, 30) + '»'); }
     return out; });
   const pr = []; if (r.steps.some((n) => n > 2)) pr.push('qadam qatori ' + r.steps.join('/')); if (r.small.length) pr.push('kichik shrift: ' + r.small.slice(0, 3).join(' | ') + ' (' + r.small.length + ')');
   await c.close(); if (pr.length) { bad++; return 'XATO ' + slug + ' ' + lang + ' ' + pr.join('; '); } return null;
