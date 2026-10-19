@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = 'b9ee11f4';   /* sw-version:auto */
+const SW_VERSION = '557441d2';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -392,7 +392,6 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== self.location.origin) return;
 
   const p = url.pathname;
-  if (p.indexOf('/dizayn2/') === 0) return;      // dizayn maketi (faqat preview): service worker ushlamaydi va keshlamaydi
 
   // HTML sahifalar — network-first, oflaynda keshdan.
   //

@@ -45,7 +45,7 @@
       xWaterT: 'Suv me\'yori', xWater: '33 ml × {w} kg = {ml} ml ÷ 250 ml = {n} stakan', xWaterN: 'Issiq kunlarda va mashq qilganda ko\'proq ichsangiz bo\'ladi.',
       xStepT: 'Qadam qanday hisoblanadi?', xStride: "Qadam uzunligi: bo'y × 0,414 = {s} sm", xDist: 'Masofa: {n} qadam × {s} sm = {km} km', xKc: 'Kaloriya: 3,5 × {w} kg × ({km} km ÷ 5 km/soat) = {k} kkal', xKcN: "Yurish tezligi 5 km/soat deb olingan (oddiy yurish). Hisob taxminiy.",
       xWeightT: "Vazn yorlig'i nimani bildiradi?", xWeightN: "1 ta o'lchov — «Birinchi o'lchov». 2–6 ta bo'lsa — oxirgi 7 kundagi o'lchovlar o'rtachasi. 7 kundan ko'p tarix bo'lsa — 7 kunlik o'rtacha va oldingi 7 kunga nisbatan trend. Vazn kun davomida 1–2 kg tebranadi, shu sababli bitta o'lchovga qarab xulosa qilmang.",
-      tip1: "Bu yerda bugun nechta kkal yeganingiz va qancha qolgani ko'rinadi. Ovqat yozsangiz «Qoldi» kamayadi.", tip2: "«Qo'shish» tugmasi — ovqat, suv, qadam yoki vazn qo'shish. Ovqat uchun odatda 3 ta bosish yetadi.", tip3: "«Natijalar»da vazn, hafta xulosasi va qadam tarixi bor — qadam sonini yozsangiz ilova masofa va kaloriyani hisoblaydi.",
+      tip1: "Bu yerda bugun nechta kkal yeganingiz va qancha qolgani ko'rinadi. Ovqat yozsangiz «Qoldi» kamayadi.", tip2: "«Ovqat qo'shish» tugmasi — qidiring, porsiyani tanlang, qo'shing. Odatda 3 ta bosish yetadi.", tip3: "«Tarix»da kunlar, taqvim, vazn, hafta xulosasi va qadam tarixi bor — qadam sonini yozsangiz ilova masofa va kaloriyani hisoblaydi.",
       wkT: "O'tgan hafta", wkAvgK: "To'liq kunlarda o'rtacha: {x} kkal/kun", wkAvgS: "O'rtacha qadam: {x}", wkW: "Vazn (7 kunlik o'rtacha): {a} → {b} kg", wkDays: "7 kundan {n} tasi to'liq", wkNone: "Ma'lumot kam",
       nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Haftalik zaxira vaqti — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Telegramga yuborish',
       qtyMinus: 'Kamaytirish', qtyPlus: "Ko'paytirish", aboutBack: 'Orqaga', errAmt: 'Raqamni kiriting', stepsT: 'Bugungi qadam', stepsOf: '{d} kuni qadami',
@@ -88,7 +88,7 @@
       xWaterT: 'Норма воды', xWater: '33 мл × {w} кг = {ml} мл ÷ 250 мл = {n} стаканов', xWaterN: 'В жару и при тренировках можно пить больше.',
       xStepT: 'Как считаются шаги?', xStride: 'Длина шага: рост × 0,414 = {s} см', xDist: 'Расстояние: {n} шагов × {s} см = {km} км', xKc: 'Калории: 3,5 × {w} кг × ({km} км ÷ 5 км/ч) = {k} ккал', xKcN: 'Скорость ходьбы принята 5 км/ч (обычная ходьба). Расчёт приблизительный.',
       xWeightT: 'Что означает подпись под весом?', xWeightN: 'Одно измерение — «Первое измерение». 2–6 измерений — среднее за последние 7 дней. Если истории больше 7 дней — среднее за 7 дней и тренд относительно предыдущих 7 дней. Вес в течение дня колеблется на 1–2 кг, поэтому не делайте выводов по одному измерению.',
-      tip1: 'Здесь видно, сколько ккал вы съели сегодня и сколько осталось. Записываете еду — «Осталось» уменьшается.', tip2: 'Кнопка «Добавить» — еда, вода, шаги или вес. Для еды обычно хватает 3 нажатий.', tip3: 'В «Итогах» — вес, итоги недели и история шагов; введите шаги — приложение посчитает расстояние и калории.',
+      tip1: 'Здесь видно, сколько ккал вы съели сегодня и сколько осталось. Записываете еду — «Осталось» уменьшается.', tip2: 'Кнопка «Добавить еду» — найдите блюдо, выберите порцию, добавьте. Обычно хватает 3 нажатий.', tip3: 'В «Истории» — дни, календарь, вес, итоги недели и история шагов; введите шаги — приложение посчитает расстояние и калории.',
       wkT: 'Прошлая неделя', wkAvgK: 'В полные дни в среднем: {x} ккал/день', wkAvgS: 'В среднем шагов: {x}', wkW: 'Вес (среднее за 7 дней): {a} → {b} кг', wkDays: '{n} из 7 дней полные', wkNone: 'Мало данных',
       nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать недельную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Отправить в Telegram',
       qtyMinus: 'Меньше', qtyPlus: 'Больше', aboutBack: 'Назад', errAmt: 'Введите число', stepsT: 'Шаги за сегодня', stepsOf: 'Шаги за {d}',
@@ -117,7 +117,7 @@
   Object.assign(D.uz, {
     bkT: 'Baliq kuni eslatmasi', bkH: "Haftada bir marta — payshanba 11:00 da. Boshqa xabar yuborilmaydi.", bkOn: 'Yoqish', bkOff: "O'chirish", bkIsOn: 'Yoqilgan: payshanba 11:00 da.', bkIos: "Avval ilovani Bosh ekranga qo'shing (Safari: Ulashish → «Bosh ekranga qo'shish»), keyin eslatmani shu yerdan yoqing.", bkDenied: "Brauzerda bildirishnomalar o'chirilgan. Sayt sozlamalaridan ruxsat bering.", bkNA: "Bu brauzer yoki qurilmada bildirishnomalar mavjud emas. Payshanba kuni ilova ichida eslatma ko'rsatiladi.", bkErr: "Yoqib bo'lmadi. Keyinroq urinib ko'ring.",
     bkAsk: 'Haftalik baliq kuni eslatmasini yoqasizmi?', bkAskH: "Payshanba 11:00 da bitta xabar. Istalgan payt o'chirasiz.", bkNo: 'Hozir emas', bkOk: 'Tushunarli', bkMsg: "Bugun baliq kuni 🐟 — kechki ovqatga grilda sazan yoki baliq sho'rva?", bkBtn: 'Baliq taomlari', bkNever: "Bundan keyin ko'rsatma", bkDone: 'Yoqildi: payshanba 11:00 da eslatamiz.', bkDoneOff: "Eslatma o'chirildi.", cat_baliq: 'Baliq',
-    orWord: "O'rniga:", orLine: "O'rniga: {n} — {d}", orMore: 'Boshqa variantlar', orLess: 'Yopish', orP_up: 'oqsil +{x} g', orP_down: 'oqsil −{x} g', orP_same: 'oqsil deyarli bir xil', orF: "yog' {x} g", orK: '{x} kkal',
+    mealAddS: "Qo'shish", vLeftK: 'kkal qoldi', cEaten2: "iste'mol", cGoal2: 'maqsad', cBurn2: 'yoqildi', stWrite: 'Yozish', stkQ: "Kun qanday hisoblanadi?", stkT: 'Ketma-ket kunlar', stkB: "Ketma-ket {n} kun ovqat yozdingiz. Kun hisobga olinishi uchun kamida bitta ovqat yozilgan bo'lishi kerak. Bugun hali yozilmagan bo'lsa ham, seriya kechagacha saqlanadi.", wkTap: "Kunni ochish", mealRepT: 'Takrorlash', mealRepD: "Shu ovqatdagi hamma taomni bugunga yana qo'shadi.", mealRepH: "Taomni uzun bosing — «Takrorlash»", mealEmptyD: 'Hali yozilmadi', histT: 'Tarix', navHist: 'Tarix', histDays: 'Kunlar', histRes: 'Natijalar', orWord: "O'rniga:", orLine: "O'rniga: {n} — {d}", orMore: 'Boshqa variantlar', orLess: 'Yopish', orP_up: 'oqsil +{x} g', orP_down: 'oqsil −{x} g', orP_same: 'oqsil deyarli bir xil', orF: "yog' {x} g", orK: '{x} kkal',
     orSet: "O'rinbosar takliflari", orSetH: "Porsiya oynasida o'xshash, oqsilga boyroq yoki yog'i kamroq taom taklif qilinadi", orOn: 'Yoqilgan', orOff: "O'chirilgan",
     orbT: 'Oqsil manbalari', orbEmpty: "3 kun yozgandan keyin shu yerda oqsil qaysi manbadan kelayotgani ko'rinadi.", orbSent: 'Bu hafta oqsilning {x}% i {s}. Baliq {n}.', orbTimes: '{n} marta',
     orb_qizil: "Qizil go'sht", orb_tovuq: 'Tovuq', orb_baliq: 'Baliq', orb_sut: 'Tuxum va sut', orb_dukkak: 'Dukkaklilar',
@@ -126,7 +126,7 @@
   Object.assign(D.ru, {
     bkT: 'Напоминание о рыбном дне', bkH: 'Раз в неделю — в четверг в 11:00. Других уведомлений не будет.', bkOn: 'Включить', bkOff: 'Выключить', bkIsOn: 'Включено: четверг, 11:00.', bkIos: 'Сначала добавьте приложение на экран «Домой» (Safari: Поделиться → «На экран Домой»), затем включите напоминание здесь.', bkDenied: 'В браузере уведомления отключены. Разрешите их в настройках сайта.', bkNA: 'В этом браузере или на этом устройстве уведомления недоступны. В четверг напоминание покажем внутри приложения.', bkErr: 'Не удалось включить. Попробуйте позже.',
     bkAsk: 'Включить еженедельное напоминание о рыбном дне?', bkAskH: 'Одно уведомление в четверг в 11:00. Отключить можно в любой момент.', bkNo: 'Не сейчас', bkOk: 'Понятно', bkMsg: 'Сегодня рыбный день 🐟 — на ужин карп на гриле или рыбный суп?', bkBtn: 'Блюда из рыбы', bkNever: 'Больше не показывать', bkDone: 'Включено: напомним в четверг в 11:00.', bkDoneOff: 'Напоминание выключено.', cat_baliq: 'Рыба',
-    orWord: 'Вместо:', orLine: 'Вместо: {n} — {d}', orMore: 'Другие варианты', orLess: 'Свернуть', orP_up: 'белка +{x} г', orP_down: 'белка −{x} г', orP_same: 'белка почти столько же', orF: 'жира {x} г', orK: '{x} ккал',
+    mealAddS: 'Добавить', vLeftK: 'ккал осталось', cEaten2: 'съедено', cGoal2: 'цель', cBurn2: 'сожжено', stWrite: 'Ввести', stkQ: 'Как считаются дни?', stkT: 'Дни подряд', stkB: 'Вы записывали еду {n} дн. подряд. День засчитывается, если записано хотя бы одно блюдо. Если сегодня ещё нет записей, серия сохраняется до вчерашнего дня.', wkTap: 'Открыть день', mealRepT: 'Повторить', mealRepD: 'Добавит на сегодня все блюда этого приёма пищи ещё раз.', mealRepH: 'Нажмите на приём пищи и удерживайте — «Повторить»', mealEmptyD: 'Пока не записано', histT: 'История', navHist: 'История', histDays: 'Дни', histRes: 'Итоги', orWord: 'Вместо:', orLine: 'Вместо: {n} — {d}', orMore: 'Другие варианты', orLess: 'Свернуть', orP_up: 'белка +{x} г', orP_down: 'белка −{x} г', orP_same: 'белка почти столько же', orF: 'жира {x} г', orK: '{x} ккал',
     orSet: 'Подсказки-замены', orSetH: 'В окне порции предлагается похожее блюдо с большим количеством белка или меньшим — жира', orOn: 'Включено', orOff: 'Выключено',
     orbT: 'Источники белка', orbEmpty: 'После 3 дней записей здесь будет видно, из чего складывается белок.', orbSent: 'На этой неделе {x}% белка — {s}. Рыба: {n}.', orbTimes: '{n}',
     orb_qizil: 'Красное мясо', orb_tovuq: 'Курица', orb_baliq: 'Рыба', orb_sut: 'Яйца и молочное', orb_dukkak: 'Бобовые',
@@ -209,7 +209,7 @@
       '<div class="rz-langwrap"><button type="button" class="rz-lang" id="rzLang" data-act="langmenu" aria-label="Til / Язык" data-cyr="skip">' + ico('lang', '', 2) + '<span id="rzLangTxt">UZ</span></button>' +
       '<div class="rz-langmenu" id="rzLangMenu" hidden data-cyr="skip"><button type="button" data-act="lang" data-l="uz">UZ</button><button type="button" data-act="lang" data-l="cyr">ЎЗ</button><button type="button" data-act="lang" data-l="ru">RU</button></div></div></div>' +
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
-      '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('diary', 'cal2', 'navDiary') + '<span class="rz-fabslot"></span>' + tab('results', 'chart', 'navResults') + tab('profile', 'me', 'navProfile') +
+      '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('history', 'cal2', 'navHist') + tab('profile', 'me', 'navProfile') +
       '<button type="button" class="rz-fab" id="rzFab" data-act="fab" aria-label="' + esc(T('navAdd')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
       kit.shellHtml() + '<input type="file" id="phIn" accept="image/*" hidden><div class="rz-onb" id="rzOnb" hidden></div>';
   }
@@ -234,22 +234,51 @@
     var h = 0, n = String(name || '?'); for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % 360;
     return '<span class="sl-tile sl-tl" style="' + sz + ';--h:' + h + '" aria-hidden="true"><b>' + esc(n.charAt(0).toUpperCase()) + '</b></span>';
   }
-  var MEAL_DOT = { b: '#FFC24B', l: '#FF6B4A', d: '#6E9BFF', s: '#34D399' };
   var WDN = { uz: ['Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba', 'Yakshanba'], ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'] };
   function entryRow(e, date) {
     var f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, name = base ? nameOf(base) : (e.name || '?'), isNew = seenFood && !seenFood[e.id], lb = '';
     if (f && f.fam && e.vr) lb = S.famLabel(f, e.vr, e.sz, lang) || '';
-    return '<button type="button" class="sl-row' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '">' + tileHtml(e.fid, e.vr, name, 44) + '<span class="m"><span class="nm">' + esc(name) + '</span><span class="tm">' + esc(portionText(e) + (lb ? ' · ' + lb : '')) + (e.est && !e.fid ? ' · ' + esc(T('aEst')) : '') + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button>';
+    return '<button type="button" class="sl-row' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '"><span class="m"><span class="nm">' + esc(name) + '</span><span class="tm">' + esc(portionText(e) + (lb ? ' · ' + lb : '')) + (e.est && !e.fid ? ' · ' + esc(T('aEst')) : '') + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button>';
+  }
+  function mealTile(list) {                          // kartadagi 48 px rasm: eng ko'p kkal'li taom (rasmi yo'q bo'lsa — harfli tile)
+    var best = null; list.forEach(function (e) { if (!best || e.kcal > best.kcal) best = e; });
+    if (!best) return '<span class="sl-tile sl-te" style="--s:48px">' + ico('bowl') + '</span>';
+    var f = best.fid ? foodById(best.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f;
+    return tileHtml(best.fid, best.vr, base ? nameOf(base) : (best.name || '?'), 48);
   }
   function mealsHtml(date) {
     var x = S.dayOf(st, date) || { food: [] }, h = '<section class="sl-meals">';
     S.MEALS.forEach(function (m) {
       var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal, yb = S.kechagidekOk(st, date, m);
-      h += '<section class="sl-meal" data-m="' + m + '"><div class="sl-mh"><span class="dot" style="background:' + MEAL_DOT[m] + '" aria-hidden="true"></span><b>' + esc(mealName(m)) + '</b><span class="k">' + (list.length ? fmt(sum) + ' ' + T('kcal') : '—') + '</span>' +
-        (list.length ? '<button type="button" class="sl-ib" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '</button><button type="button" class="sl-ib" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>' : '') + '</div>' +
-        (list.length ? list.map(function (e) { return entryRow(e, date); }).join('') : '<button type="button" class="sl-dash" data-act="addto" data-m="' + m + '" data-d="' + date + '">' + ico('plus', '', 2.2) + '<span>' + esc(T('mealAdd_' + m)) + '</span></button>' + (yb ? '<button type="button" class="sl-txtbtn sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '')) + '</section>';
+      h += '<section class="sl-meal' + (list.length ? '' : ' empty') + '" data-m="' + m + '"><div class="sl-mh" data-m="' + m + '" data-d="' + date + '">' + mealTile(list) + '<span class="m"><b>' + esc(mealName(m)) + '</b>' + (list.length ? '' : '<span class="s">' + esc(T('mealEmptyD')) + '</span>') + '</span>' +
+        (list.length ? '<span class="k">' + fmt(sum) + ' ' + T('kcal') + '</span><button type="button" class="sl-ib" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '</button><button type="button" class="sl-ib" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>'
+          : '<button type="button" class="sl-dash" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('mealAdd_' + m)) + '">' + ico('plus', '', 2.2) + '<span>' + esc(T('mealAddS')) + '</span></button>') + '</div>' +
+        (list.length ? '<div class="sl-ents">' + list.map(function (e) { return entryRow(e, date); }).join('') + '</div>' : (yb ? '<button type="button" class="sl-txtbtn sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '')) + '</section>';
     });
     return h + '</section>';
+  }
+  function mealRepeatSheet(date, m) {
+    var x = S.dayOf(st, date), n = x ? x.food.filter(function (e) { return e.meal === m; }).length : 0; if (!n) return;
+    openSheet('mealrep', shHead(T('mealRepT') + ': ' + mealName(m)) + '<p class="rz-p">' + esc(T('mealRepD')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('cancel')) + '</button><button type="button" class="rz-btn primary" data-act="mealrep" data-m="' + m + '" data-d="' + date + '">' + esc(T('mealRepT')) + '</button></div>');
+  }
+  function mealRepeat(date, m) {
+    var x = S.dayOf(st, date), t = todayStr(), added = []; if (!x) return;
+    x.food.filter(function (e) { return e.meal === m; }).forEach(function (e) { var c = {}; ['fid', 'name', 'meal', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) c[k] = e[k]; }); c.ts = nowTs(); added.push(S.addFood(st, t, c)); });
+    kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { added.forEach(function (it) { S.removeFood(st, t, it.id); }); commit(); }, true);
+  }
+  var lpTimer = 0, lpFired = false;
+  function lpBind() {                                // taom kartasini uzun bosish (550 ms) → «Takrorlash»
+    root.addEventListener('pointerdown', function (ev) {
+      var h = ev.target.closest && ev.target.closest('.sl-mh[data-m]'); if (!h || ev.target.closest('button')) return; lpFired = false; clearTimeout(lpTimer);
+      lpTimer = setTimeout(function () { lpFired = true; vib(10); mealRepeatSheet(h.getAttribute('data-d'), h.getAttribute('data-m')); }, 550);
+    });
+    ['pointerup', 'pointercancel', 'pointerleave', 'pointermove', 'scroll'].forEach(function (t) { root.addEventListener(t, function () { clearTimeout(lpTimer); }, true); });
+  }
+  function weekStripHtml(t) {                        // oxirgi 7 kun (kechagacha + bugun): bosilsa shu kun Tarix'da ochiladi
+    var wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], h = '<div class="sl-week7" role="group" aria-label="' + esc(T('wkTap')) + '">';
+    for (var i = 6; i >= 0; i--) { var d = Dt.addDays(t, -i), r = S.dayStatus(st, d, t), cls = { near: 'ok', low: 'lo', high: 'hi', part: 'pt', none: '', pre: '' }[r.state] || '';
+      h += '<button type="button" class="wd' + (i === 0 ? ' on' : '') + '" data-act="wkday" data-d="' + d + '"' + (i === 0 ? ' aria-current="date"' : '') + ' aria-label="' + esc(kit.dLabel(d)) + '"><span class="w">' + wd[S.weekdayIdx(d)] + '</span><b>' + Dt.parse(d).d + '</b><i class="' + cls + '"></i></button>'; }
+    return h + '</div>';
   }
   function markSeen() { seenFood = {}; Object.keys(st.days).forEach(function (d) { st.days[d].food.forEach(function (e) { seenFood[e.id] = 1; }); }); }
   var C = 2 * Math.PI * 86;
@@ -259,12 +288,12 @@
 
   var bk = KalkiBackup.create({ app: 'kalkifit', autoSaved: function () { return akk.autoSaved(); }, fileBase: 'kalkifit', name: 'KalkiFit', kit: kit, lang: langNow, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { return Object.keys(st.days).filter(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }).length; }, pickFile: function () { doImport(); }, sig: function () { return JSON.stringify(st); }, root: root, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenFood = null; heroPrev = null; save(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
   var akk = KalkiAkkaunt.create({ app: 'kalkifit', kit: kit, lang: langNow, bk: bk, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, isTrivial: function () { var e = function (x) { return !x || (Array.isArray(x) ? !x.length : !Object.keys(x).length); }; return !!(st && st.setup && !Object.keys(st.days || {}).some(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }) && (st.weights || []).length <= 1 && e(st.customFoods) && e(st.favs) && e(st.tpls) && e(st.vessels)); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, onOnb: function () { if (st && !st.setup && $('#rzOnb') && !$('#rzOnb').hidden && ob && ob.step === 1) showOnb(); } });
-  var VIEW_ALIAS = { food: 'diary', steps: 'results', me: 'profile', ovqat: 'diary', qadam: 'results', men: 'profile', bugun: 'today', kundalik: 'diary', natijalar: 'results', profil: 'profile', today: 'today', diary: 'diary', results: 'results', profile: 'profile' };
+  var VIEW_ALIAS = { food: 'history', steps: 'history', me: 'profile', ovqat: 'history', qadam: 'history', men: 'profile', bugun: 'today', kundalik: 'history', natijalar: 'history', tarix: 'history', profil: 'profile', today: 'today', diary: 'history', results: 'history', history: 'history', profile: 'profile' };
   function viewOf(v) { return VIEW_ALIAS[String(v || '').replace(/^#/, '').toLowerCase()] || null; }       // eski nomlar/manzillar (#ovqat, #qadam, #men …) yangi joyga
   function goTab(v0, fn) { var v = viewOf(v0) || v0; if (view !== v) { var tb = $('[data-act=tab][data-v=' + v + ']'); if (tb) tb.click(); } setTimeout(fn, 480); return true; }
   var news = KalkiNews.create({ app: 'kalkifit', banner: true, kit: kit, lang: langNow, root: root, rowIcon: 'sl-ci', isSetup: function () { return !!(st && st.setup); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, targets: {
     akkaunt: function (n) { return goTab('profile', function () { akk.load(true, function () { if (akk.enabled()) akk.act('akk'); }); }); },
-    daychip: function (n) { return goTab('today', function () { n.highlight($('#dayChip') || $('#kcalBtn')); }); },
+    daychip: function (n) { return goTab('today', function () { n.highlight($('.sl-infob') || $('#kcalBtn')); }); },
     stepcalc: function (n) { return goTab('today', function () { n.highlight($('#kcalBtn')); }); },
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
@@ -272,6 +301,8 @@
     variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); fd.pmore = true; pwScreen(); setTimeout(function () { n.highlight($('#pwMore .rz-chips') || $('.sl-morebtn')); }, 500); }); },
     theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
+    history: function (n) { return goTab('history', function () { n.highlight($('.sl-sec2') || $('#rzMain')); }); },
+    week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
     fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
     cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#catsRow')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
@@ -330,12 +361,12 @@
     var rise = function (a, b, d) { return '<animateTransform attributeName="transform" type="translate" from="0 ' + a + '" to="0 ' + b + '" dur="' + d + '"' + (o.begin ? ' begin="-' + o.begin.toFixed(2) + 's"' : '') + ' fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".22 1 .36 1"/>'; };
     var sway1 = '<animateTransform attributeName="transform" type="translate" from="0 0" to="-240 0" dur="3.2s" repeatCount="indefinite" additive="sum"/>', sway2 = '<animateTransform attributeName="transform" type="translate" from="-240 0" to="0 0" dur="4.6s" repeatCount="indefinite" additive="sum"/>';
     var txt = function (cls, a, b, c, ids) {
-      return '<text class="' + cls + '" x="120" y="86" text-anchor="middle" font-size="13" font-weight="600">' + esc(a) + '</text><text class="' + cls + ' kv-n" x="120" y="138" text-anchor="middle" font-size="46" font-weight="800" letter-spacing="-1.5"' + ids + '>' + esc(b) + '</text><text class="' + cls + '" x="120" y="162" text-anchor="middle" font-size="14" font-weight="500">' + esc(c) + '</text>';
+      return (a ? '<text class="' + cls + '" x="120" y="82" text-anchor="middle" font-size="15" font-weight="500">' + esc(a) + '</text>' : '') + '<text class="' + cls + ' kv-n" x="120" y="132" text-anchor="middle" font-size="52" font-weight="800" letter-spacing="-1.5"' + ids + '>' + esc(b) + '</text><text class="' + cls + '" x="120" y="162" text-anchor="middle" font-size="15" font-weight="500">' + esc(c) + '</text>';
     };
-    return '<svg class="sl-vsvg" width="240" height="240" viewBox="0 0 240 240" aria-hidden="true" focusable="false"><defs><linearGradient id="kfLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFB547"/><stop offset="100%" stop-color="#FF6B4A"/></linearGradient><linearGradient id="kfRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF6B4A"/><stop offset="100%" stop-color="#FFB547"/></linearGradient><clipPath id="kfVessel"><circle cx="120" cy="120" r="104"/></clipPath>' +
+    return '<svg class="sl-vsvg" width="240" height="240" viewBox="0 0 240 240" aria-hidden="true" focusable="false"><defs><linearGradient id="kfLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" style="stop-color:var(--liq1)"/><stop offset="100%" style="stop-color:var(--liq2)"/></linearGradient><linearGradient id="kfRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:var(--liq2)"/><stop offset="100%" style="stop-color:var(--liq1)"/></linearGradient><clipPath id="kfVessel"><circle cx="120" cy="120" r="104"/></clipPath>' +
       '<clipPath id="kfWave"><path d="' + waveD(7, 0) + '"' + (rd ? ' transform="translate(0 ' + ty + ')"' : '') + '>' + (rd ? '' : rise(fy, ty, d1) + sway1) + '</path></clipPath></defs>' +
       '<circle cx="120" cy="120" r="115" fill="none" stroke="url(#kfRim)" stroke-width="3" opacity=".55"/><circle class="kv-vessel" cx="120" cy="120" r="104"/>' + txt('kv-sub', o.a, o.b, o.c, ' id="kLeft" data-n="' + o.n + '"') +
-      '<g clip-path="url(#kfVessel)"><path d="' + waveD(9, 1.6) + '" fill="#FF8A5C" opacity=".45"' + (rd ? ' transform="translate(0 ' + ty2 + ')"' : '') + '>' + (rd ? '' : rise(fy2, ty2, d2) + sway2) + '</path><g clip-path="url(#kfWave)"><rect x="0" y="0" width="240" height="240" fill="url(#kfLiq)"/>' + txt('kv-dk', o.a, o.b, o.c, ' id="kLeft2"') + '</g></g></svg>';
+      '<g clip-path="url(#kfVessel)"><path d="' + waveD(9, 1.6) + '" style="fill:var(--liq3)" opacity=".45"' + (rd ? ' transform="translate(0 ' + ty2 + ')"' : '') + '>' + (rd ? '' : rise(fy2, ty2, d2) + sway2) + '</path><g clip-path="url(#kfWave)"><rect x="0" y="0" width="240" height="240" fill="url(#kfLiq)"/>' + txt('kv-dk', o.a, o.b, o.c, ' id="kLeft2"') + '</g></g></svg>';
   }
   var animRaf = 0, heroAnim = null;
   function animNum(from, to, dur) {
@@ -356,18 +387,19 @@
     if (cont) { var kk = Math.min(1, (now0 - heroAnim.t0) / heroAnim.dur); curN = Math.round(heroAnim.from + (heroAnim.to - heroAnim.from) * (1 - Math.pow(1 - kk, 3))); durN = heroAnim.dur - (now0 - heroAnim.t0); startN = heroAnim.from; }
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = (inst.isTop() ? inst.cardHtml() : '');
-    h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div><div class="r">' + (sk > 0 ? '<span class="sl-streak2" id="streakChip">' + ico('flame') + esc(T('hStreak', { n: sk })) + '</span>' : '') + '<button type="button" class="sl-av" data-act="tab" data-v="profile" aria-label="' + esc(T('navProfile')) + '"><span data-cyr="skip">' + esc(T('avL')) + '</span></button></div></div>';
-    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : T('vLeft'), b: fmt(curN), c: over ? T('vOver2') : T('kcal') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
-      '<div class="sl-trio" style="--n:' + (bal.credit > 0 ? 3 : 2) + '"><div><span>' + esc(T('cEaten')) + '</span><b id="kNum">' + fmt(tot.kcal) + '</b></div><div><span>' + esc(T('cGoal')) + '</span><b id="kGoal">' + fmt(pl.target) + '</b></div>' + (bal.credit > 0 ? '<div><span>' + esc(T('cBurn')) + '</span><b id="kBurn">+' + fmt(bal.credit) + '</b></div>' : '') + '</div>' +
-      '<button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p', '#6E9BFF'], ['mF', 'f', "#FFC24B"], ['mC', 'c', '#34D399']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b>' + esc(T(m[0])) + '</b><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:' + m[2] + '"></i></span><small>' + v + ' / ' + goal + ' g</small></span>'; }).join('') + '</button>' +
-      '<p class="sl-note" id="dayChip" data-state="' + info.state + '">' + esc(note) + '</p>' + jokeLineHtml() + '</section>';
+    h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div><div class="r">' + (sk >= 2 ? '<button type="button" class="sl-streak2" id="streakChip" data-act="streakinfo" aria-label="' + esc(T('hStreak', { n: sk }) + '. ' + T('stkQ')) + '">' + ico('flame') + esc(T('hStreak', { n: sk })) + '</button>' : '') + '<button type="button" class="sl-av" data-act="tab" data-v="profile" aria-label="' + esc(T('navProfile')) + '"><span data-cyr="skip">' + esc(T('avL')) + '</span></button></div></div>';
+    h += weekStripHtml(t);
+    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : '', b: fmt(curN), c: over ? T('vOver2') : T('vLeftK') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
+      '<div class="sl-rsub"><span><b id="kNum">' + fmt(tot.kcal) + '</b> ' + esc(T('cEaten2')) + '</span><i aria-hidden="true">·</i><span><b id="kGoal">' + fmt(pl.target) + '</b> ' + esc(T('cGoal2')) + '</span>' + (bal.credit > 0 ? '<i aria-hidden="true">·</i><span><b id="kBurn">+' + fmt(bal.credit) + '</b> ' + esc(T('cBurn2')) + '</span>' : '') + '<button type="button" class="sl-infob" data-act="xkcal" aria-label="ⓘ ' + esc(T('xKcalT')) + '">i</button></div></section>';
+    h += jokeLineHtml();
     h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(emptyLine()) + '</p>' : '');
-    h += mealsHtml(t) + dayEndHtml(t, x);
+    h += '<section class="sl-card sl-macs"><button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b><i class="dt" style="background:var(--' + m[1] + ')"></i>' + esc(T(m[0])) + '</b><span class="mv">' + v + ' <small>/ ' + goal + ' g</small></span><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + m[1] + ')"></i></span></span>'; }).join('') + '</button></section>';
+    h += mealsHtml(t) + (x.food.length ? '<p class="sl-lphint">' + esc(T('mealRepH')) + '</p>' : '') + dayEndHtml(t, x);
     var wsegs = ''; for (var wi2 = 0; wi2 < glasses; wi2++) wsegs += '<i' + (wi2 < Math.min(glasses, x.water) ? ' class="on"' : '') + '></i>';
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
-    h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(x.water * S.GLASS_ML) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span><span class="segs" id="wSegs" style="--g:' + glasses + '">' + wsegs + '</span></button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
-      '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span><span class="bar"><i style="width:' + Math.min(100, Math.round(x.steps / Math.max(1, st.stepGoal) * 100)) + '%"></i></span><span class="km">' + (x.steps ? esc('≈ ' + String(stp.km).replace('.', ',') + ' ' + T('km') + (rs ? ' · ' + rs : '')) : esc(T('sTap'))) + '</span></button></section></div>';
-    if (st.weights.length) { var dl = wiInfo.delta; h += '<button type="button" class="sl-card sl-wrow" data-act="tab" data-v="results"><span class="ic">' + ico('trend') + '</span><span class="m"><b>' + esc(T('wRowT', { x: dec(S.currentWeight(st), 1) })) + '</b><span>' + esc(dl != null ? T('wRowW', { d: (dl > 0 ? '+' : '−') + dec(Math.abs(dl), 1) }) : weightLabel(wiInfo)) + '</span></span>' + ico('chev', 'r') + '</button>'; }
+    h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(x.water * S.GLASS_ML) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span></button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
+      '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span></button><button type="button" class="sl-pill" data-act="addsteps">' + ico('pen') + '<span>' + esc(T('stWrite')) + '</span></button></section></div>';
+    if (st.weights.length) { var dl = wiInfo.delta; h += '<button type="button" class="sl-card sl-wrow" data-act="tab" data-v="history"><span class="ic">' + ico('trend') + '</span><span class="m"><b>' + esc(T('wRowT', { x: dec(S.currentWeight(st), 1) })) + '</b><span>' + esc(dl != null ? T('wRowW', { d: (dl > 0 ? '+' : '−') + dec(Math.abs(dl), 1) }) : weightLabel(wiInfo)) + '</span></span>' + ico('chev', 'r') + '</button>'; }
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div>' + (n.joke ? '<div class="rz-mut sm sl-nj">' + esc(n.joke) + '</div>' : '') + '<div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button>' + (n.never ? '<button type="button" class="rz-btn sm ghost" data-act="' + n.never.act + '">' + esc(n.never.label) + '</button>' : '') + '</div></div>'; });
     if (!inst.isTop()) h += inst.cardHtml();
     h += '<p class="rz-priv">' + esc(T('disc')) + '</p>';
@@ -377,12 +409,11 @@
   }
 
   /* ---------- KUNDALIK ---------- */
-  function renderDiary() {
+  function diaryHtml() {
     var t = todayStr(), d = foodDay || t, x = S.dayOf(st, d), tot = S.sumEntries(x ? x.food : []), pl = planNow();
     var lab = d === t ? T('today') : (d === Dt.addDays(t, -1) ? T('yesterday') : kit.dLabel(d));
-    var h = '<h2 class="rz-h">' + esc(T('diaryT')) + '</h2><section class="rz-card"><div class="rz-monthnav"><button type="button" data-act="dprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(lab) + '</b><button type="button" data-act="dnext" aria-label="›"' + (d >= t ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-daysum"><b>' + fmt(tot.kcal) + '</b><small> / ' + fmt(pl.target) + ' ' + T('kcal') + '</small></div>' + dayChip(d) + '</section>';
-    h += mealsHtml(d) + calHtml();
-    $('#rzMain').innerHTML = h; markSeen();
+    var h = '<section class="rz-card"><div class="rz-monthnav"><button type="button" data-act="dprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(lab) + '</b><button type="button" data-act="dnext" aria-label="›"' + (d >= t ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-daysum"><b>' + fmt(tot.kcal) + '</b><small> / ' + fmt(pl.target) + ' ' + T('kcal') + '</small></div>' + dayChip(d) + '</section>';
+    return h + mealsHtml(d) + calHtml();
   }
 
   /* ---------- NATIJALAR ---------- */
@@ -394,16 +425,25 @@
     if (w.weightFrom != null && w.weightTo != null) rows.push(T('wkW', { a: dec(w.weightFrom, 1), b: dec(w.weightTo, 1) }));
     return '<section class="rz-card sl-week"><div class="rz-st">' + esc(T('resWeekT')) + '</div>' + rows.map(function (r) { return '<p class="rz-p">' + esc(r) + '</p>'; }).join('') + '</section>';
   }
-  function renderResults() {
+  function histResultsHtml() {
     var pr = st.profile, cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), first = st.weights.length ? st.weights[0].kg : cur; loadMasofa();
-    var h = '<h2 class="rz-h">' + esc(T('resT')) + '</h2>';
+    var h = '';
     var wjoke = G && prefs().jokes !== false ? G.weightLine(jokeCtx(false)) : null; if (wjoke) saveQuiet();
     h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' + (wjoke ? '<p class="rz-p sl-fact">' + esc(wjoke.text) + '</p>' : '') : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
       (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
       (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
-    h += weekStatsHtml() + orbHtml() + stepsHtml() + '<section class="rz-card"><button type="button" class="rz-row" data-act="share"><span class="sl-ci">' + ico('share') + '</span><span class="m"><b>' + esc(T('meShare')) + '</b><span>' + esc(T('shH')) + '</span></span>' + ico('chev', 'r') + '</button></section>';
-    $('#rzMain').innerHTML = h; stepsAnim();
+    h += orbHtml() + stepsHtml() + '<section class="rz-card"><button type="button" class="rz-row" data-act="share"><span class="sl-ci">' + ico('share') + '</span><span class="m"><b>' + esc(T('meShare')) + '</b><span>' + esc(T('shH')) + '</span></span>' + ico('chev', 'r') + '</button></section>';
+    return h;
+  }
+  function resultsAfter() {
+    stepsAnim();
     var p = $('.sl-wchart .avg'); if (p && !reduce) { p.style.strokeDashoffset = '1'; requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = '0'; }); }); }
+  }
+  /* ---------- TARIX (Kundalik + Natijalar birlashgan) ---------- */
+  function secHead(k) { return '<div class="sl-sec2"><h3>' + esc(T(k)) + '</h3></div>'; }
+  function renderHistory() {
+    var h = '<h2 class="rz-h">' + esc(T('histT')) + '</h2>' + weekStatsHtml() + secHead('histDays') + diaryHtml() + secHead('histRes') + histResultsHtml();
+    $('#rzMain').innerHTML = h; markSeen(); resultsAfter();
   }
   function stepsHtml() {
     var t = todayStr(), x = S.dayOf(st, t) || { steps: 0 }, stp = S.stepsStats(st, x.steps), ser = S.stepsSeries(st, t, 7), tot = S.stepsTotal(st, ser), mx = Math.max(st.stepGoal, Math.max.apply(null, ser.map(function (s) { return s.steps; })), 1), mon = S.monthSteps(st, Dt.monthOf(t));
@@ -460,11 +500,11 @@
     lockUi(false); akk.check();
     var onb = $('#rzOnb'); if (onb && !onb.classList.contains('out')) onb.hidden = true;
     $$('.rz-tab').forEach(function (b) { var on = b.getAttribute('data-v') === view; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
-    var title = { today: T('appName'), diary: T('diaryT'), results: T('resT'), profile: T('profT') }[view]; $('#rzTitle').textContent = title;
+    var title = { today: T('appName'), history: T('histT'), profile: T('profT') }[view]; $('#rzTitle').textContent = title; root.setAttribute('data-view', view);
     var lt = $('#rzLangTxt'); if (lt) lt.textContent = isCyr() ? 'ЎЗ' : lang.toUpperCase();
     $('#rzFab').setAttribute('aria-label', T('navAdd'));
     var main = $('#rzMain'), sc = main.scrollTop;
-    ({ today: renderToday, diary: renderDiary, results: renderResults, profile: renderProfile })[view]();
+    ({ today: renderToday, history: renderHistory, profile: renderProfile })[view]();
     main.classList.toggle('enter', enterNext); enterNext = false; main.scrollTop = sc;
     if (view === 'today' && !prefs().tipsDone && !kit.tipsOn() && !kit.sheetKind()) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 500);
   }
@@ -581,7 +621,7 @@
     return { g: g, fish: fish, days: days, tot: tot };
   }
   function orbHtml() {                                // «Oqsil manbalari»: bitta gorizontal ustma-ust chiziq + bitta faktik gap (Natijalar, Kun yakuni)
-    if (!OR) return ''; if (orState !== 2) { loadOr(function () { if ((view === 'results' || view === 'today') && !kit.sheetKind()) render(); }); return ''; } if (!db) { loadDb(function () { if ((view === 'results' || view === 'today') && !kit.sheetKind()) render(); }); return ''; }
+    if (!OR) return ''; if (orState !== 2) { loadOr(function () { if ((view === 'history' || view === 'today') && !kit.sheetKind()) render(); }); return ''; } if (!db) { loadDb(function () { if ((view === 'history' || view === 'today') && !kit.sheetKind()) render(); }); return ''; }
     var s0 = orbStats(); if (s0.days < 3 || s0.tot < 1) return '<section class="rz-card sl-orb"><div class="rz-st">' + esc(T('orbT')) + '</div><p class="rz-p sm">' + esc(T('orbEmpty')) + '</p></section>';
     var top = ORB_TAGS.slice().sort(function (a, b) { return s0.g[b] - s0.g[a]; })[0], pc = {}, sum = 0; ORB_TAGS.forEach(function (k) { pc[k] = Math.round(s0.g[k] / s0.tot * 100); sum += pc[k]; });
     var bar = ORB_TAGS.filter(function (k) { return s0.g[k] > 0; }).map(function (k) { return '<i class="orb-' + k + '" style="flex-grow:' + s0.g[k].toFixed(1) + '"></i>'; }).join('');
@@ -595,8 +635,8 @@
   function hazilStore() { if (!hz) { try { hz = JSON.parse(localStorage.getItem('kalki_fit_hazil') || '{}') || {}; } catch (e) { hz = {}; } } return hz; }
   function saveQuiet() { try { localStorage.setItem('kalki_fit_hazil', JSON.stringify(hz || {})); } catch (e) {} }
   var hazilState = 0;
-  function loadHazil() { if (!G || !G.setTexts || hazilState) return; hazilState = 1; loadJson('/data/hazillar-kalkifit.json', function (j) { G.setTexts(j); hazilState = 2; if ((view === 'today' || view === 'results') && !kit.sheetKind()) render(); }, function () { hazilState = 0; }); }
-  function loadMasofa() { if (masofaState) return; masofaState = 1; loadJson('/data/masofalar.json', function (j) { masofa = j; masofaState = 2; if ((view === 'today' || view === 'results') && !kit.sheetKind()) render(); }, function () { masofaState = 0; }); }
+  function loadHazil() { if (!G || !G.setTexts || hazilState) return; hazilState = 1; loadJson('/data/hazillar-kalkifit.json', function (j) { G.setTexts(j); hazilState = 2; if ((view === 'today' || view === 'history') && !kit.sheetKind()) render(); }, function () { hazilState = 0; }); }
+  function loadMasofa() { if (masofaState) return; masofaState = 1; loadJson('/data/masofalar.json', function (j) { masofa = j; masofaState = 2; if ((view === 'today' || view === 'history') && !kit.sheetKind()) render(); }, function () { masofaState = 0; }); }
   function loadSupp(cb) { if (suppState === 2) { cb(); return; } if (suppState === 1) return; suppState = 1; loadJson('/data/qoshimchalar.json', function (j) { j.items.forEach(function (it) { if (it.ev && it.ev.length) it.level = topLevel(it.ev); }); supp = j; suppState = 2; cb(); }, function () { suppState = 0; cb(true); }); }
   function jokeCtx(fresh) { return { fresh: !!fresh, store: hazilStore(), S: S, st: st, today: todayStr(), lang: lang, hour: new Date().getHours(), masofa: masofa, city: prefs().city || 'toshkent', foods: db, jokesOn: prefs().jokes !== false }; }
   function jokeBox(l, cls) { return l ? '<div class="rz-card sl-joke ' + (cls || '') + '" role="note">' + ico('chat') + '<p>' + esc(l.text) + '</p></div>' : ''; }
@@ -772,7 +812,8 @@
   function okBtn() { return '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>'; }
   function openExplainKcal() {
     var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), b = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st), st.profile.act);
-    var h = shHead(T('xKcalT')) + '<div class="rz-xrows">' + xr('', T('xTarget'), fmt(pl.target)) + xr('+', T('xSteps') + (b.extraSteps ? ' (' + fmt(b.extraSteps) + ')' : ''), fmt(b.credit)) + xr('=', T('xLimit'), fmt(pl.target + b.credit), 'sum') + xr('−', T('xEaten'), fmt(tot.kcal)) + xr('=', T('xRem'), fmt(b.remaining), 'sum big') + '</div><p class="rz-p sm">' + esc(T('xWhyStep', { base: fmt(b.base) })) + '</p>';
+    var di = S.dayStatus(st, t, t), dnote = di.complete ? T('stFull') + ' · ' + stLabel(di, t, t) : T('cNote');
+    var h = shHead(T('xKcalT')) + '<p class="rz-p sm" id="dayChip" data-state="' + di.state + '">' + esc(dnote) + '</p><div class="rz-xrows">' + xr('', T('xTarget'), fmt(pl.target)) + xr('+', T('xSteps') + (b.extraSteps ? ' (' + fmt(b.extraSteps) + ')' : ''), fmt(b.credit)) + xr('=', T('xLimit'), fmt(pl.target + b.credit), 'sum') + xr('−', T('xEaten'), fmt(tot.kcal)) + xr('=', T('xRem'), fmt(b.remaining), 'sum big') + '</div><p class="rz-p sm">' + esc(T('xWhyStep', { base: fmt(b.base) })) + '</p>';
     h += '<div class="rz-st" style="margin-top:6px">' + esc(T('xHowT')) + '</div><div class="rz-xrows">' + xr('', T('xBmr') + ' · ' + T('xBmrN'), fmt(pl.bmr)) + xr('×', T('xAct'), dec(pl.actK, 3), '', false) + xr('=', T('xTdee'), fmt(pl.tdee), 'sum');
     if (pl.delta) h += xr(pl.delta < 0 ? '−' : '+', T('xGoal') + ' (' + dec(Math.abs(pl.kgPerWeek), 2) + ' ' + KG() + '/' + (lang === 'ru' ? 'нед.' : 'hafta') + ')', fmt(Math.abs(pl.delta)));
     if (pl.floorApplied) h += xr('', T('xFloor'), fmt(pl.floorMin));
@@ -1395,8 +1436,8 @@
   function wipe() { confirmBox(T('sDel'), T('delAsk1'), function () { try { localStorage.removeItem(LS); localStorage.removeItem(OLD[LS]); } catch (e) {} st = S.emptyState(); st.prefs = {}; view = 'today'; ob = null; seenFood = null; heroPrev = null; render(); toast(T('deleted')); }, T('delAsk2')); }
 
   /* ---------- yo'l-yo'riq va "ilova haqida" ---------- */
-  var TIPS = [{ sel: '#kcalBtn', key: 'tip1', pos: 'below' }, { sel: '#rzFab', key: 'tip2', pos: 'above', round: true }, { sel: '.rz-tab[data-v=results]', key: 'tip3', pos: 'above' }];
-  function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#rzFab'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
+  var TIPS = [{ sel: '#kcalBtn', key: 'tip1', pos: 'below' }, { sel: '#mainAdd', key: 'tip2', pos: 'above' }, { sel: '.rz-tab[data-v=history]', key: 'tip3', pos: 'above' }];
+  function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
   function aboutOpen(on) {
     document.body.classList.toggle('rz-aboutopen', !!on); var a = document.getElementById('rzAbout'); if (!a) return;
     if (on) { a.scrollTop = 0; var b = document.getElementById('rzAboutBack'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {} } else { var m = $('#rzMain'); if (m) try { m.focus({ preventScroll: true }); } catch (e) {} }
@@ -1455,9 +1496,6 @@
   }
 
   /* ---------- suv ---------- */
-  function openFab() {
-    openSheet('fab', shHead(T('fabMenuT')) + '<div class="sl-fabg">' + [['fabfood', 'food', 'fabFood'], ['fabwater', 'drop', 'fabWater'], ['fabsteps', 'steps', 'fabSteps'], ['fabweight', 'scale', 'fabWeight']].map(function (a) { return '<button type="button" class="sl-fabt" data-act="' + a[0] + '">' + ico(a[1]) + '<span>' + esc(T(a[2])) + '</span></button>'; }).join('') + '</div>');
-  }
   function waterSheetHtml() {
     var t = todayStr(), x = S.dayOf(st, t) || { water: 0 }, pl = planNow(), glasses = pl.water.glasses, wl = Math.min(glasses, x.water), h = shHead(T('wOpenT')) + '<div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
     for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
@@ -1472,6 +1510,7 @@
   }
 
   /* ---------- hodisalar ---------- */
+  lpBind();
   root.addEventListener('click', function (e) {
     var lmenu = $('#rzLangMenu'), el = e.target.closest('[data-act]');
     if (!el) { if (lmenu && !lmenu.hidden && !e.target.closest('.rz-langwrap')) lmenu.hidden = true; return; }
@@ -1480,12 +1519,8 @@
     if (kit.act(a, el)) return;
     switch (a) {
       case 'tab': kit.hideToast(); if (view !== viewOf(el.getAttribute('data-v'))) { view = viewOf(el.getAttribute('data-v')); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
-      case 'add': openAdd({ date: view === 'diary' && foodDay ? foodDay : todayStr() }); break;
-      case 'fab': openFab(); break;
-      case 'fabfood': openAdd({ date: view === 'diary' && foodDay ? foodDay : todayStr() }); break;
-      case 'fabwater': openWaterSheet(); break;
-      case 'fabsteps': openSteps(todayStr()); break;
-      case 'fabweight': openWeight(); break;
+      case 'add': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;
+      case 'fab': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;
       case 'wopen': openWaterSheet(); break;
       case 'wadd': { var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
       case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
@@ -1556,6 +1591,9 @@
       case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
       case 'pwswapx': pwScreen(); break;
       case 'baliqgo': openFish(); break;
+      case 'streakinfo': openSheet('stk', shHead(T('stkT')) + '<p class="rz-p">' + esc(T('stkB', { n: S.streak(st, todayStr()) })) + '</p>' + okBtn()); break;
+      case 'wkday': { var wd0 = el.getAttribute('data-d'); if (wd0 !== todayStr()) { foodDay = wd0; view = 'history'; enterNext = true; render(); } break; }
+      case 'mealrep': mealRepeat(el.getAttribute('data-d'), el.getAttribute('data-m')); break;
       case 'baliqoff': prefs().baliqOff = true; commit(); break;
       case 'pushon': pushEnable(); break;
       case 'pushoff': pushDisable(); break;
@@ -1598,7 +1636,7 @@
       case 'rcsave': rcSaveGo(); break;
       case 'rcremove': { var rid = rc.id, rnm = rc.name; kit.closeSheet(); confirmBox(T('rcDelete'), rnm, function () { S.removeCustom(st, rid); commit(); toast(T('rcDeleted')); }); break; }
       case 'calprev': case 'calnext': { var cp = Dt.parse((calYm || Dt.monthOf(todayStr())) + '-01'); calYm = Dt.monthOf(Dt.addMonthsDom(Dt.ymd(cp.y, cp.m, 1), a === 'calprev' ? -1 : 1, 1)); render(); break; }
-      case 'calday': foodDay = el.getAttribute('data-d'); view = 'diary'; enterNext = true; render(); break;
+      case 'calday': foodDay = el.getAttribute('data-d'); view = 'history'; enterNext = true; render(); break;
       case 'jktog': prefs().jokes = el.getAttribute('data-v') === '1'; commit(); break;
       case 'city': openCity(); break;
       case 'citypick': prefs().city = el.getAttribute('data-id'); kit.closeSheet(); commit(); break;
@@ -1663,7 +1701,7 @@
     if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) navigator.serviceWorker.addEventListener('message', function (ev) { if (ev.data && ev.data.t === 'baliq' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/baliq'); }); } catch (e) {} openFish(); } });
     if (/[?&]baliq=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openFish, 500); }          // eslatma bosildi: baliq guruhi ochiladi
     if (location.hash === '#haqida') aboutOpen(true);
-    window.__kalkifit = { get state() { return st; }, render: render, S: S };
+    window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile };
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
     if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }

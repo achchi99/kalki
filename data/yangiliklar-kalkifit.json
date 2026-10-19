@@ -2,6 +2,43 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 13,
+      "d": "2026-10-19",
+      "bn": {
+        "uz": "Kattaroq harflar va ko'zga yumshoq qorong'i mavzu.",
+        "ru": "Крупнее шрифт и мягкая для глаз тёмная тема."
+      },
+      "items": [
+        {
+          "uz": "Yangi ko'rinish: kattaroq harflar va ko'zga yumshoq qorong'i mavzu.",
+          "ru": "Новый вид: крупнее шрифт и мягкая для глаз тёмная тема.",
+          "show": "theme",
+          "btn": {
+            "uz": "Mavzuni ko'rish",
+            "ru": "Показать тему"
+          }
+        },
+        {
+          "uz": "Pastki menyuda 3 ta bo'lim: Bugun, Tarix, Profil — Kundalik va Natijalar endi Tarixda.",
+          "ru": "В нижнем меню 3 раздела: Сегодня, История, Профиль — Дневник и Итоги теперь в Истории.",
+          "show": "history",
+          "btn": {
+            "uz": "Tarixni ochish",
+            "ru": "Открыть историю"
+          }
+        },
+        {
+          "uz": "Bugunda oxirgi 7 kun qatori bor, «Ovqat qo'shish» tugmasi esa doira ostida.",
+          "ru": "На экране «Сегодня» — строка последних 7 дней, а кнопка «Добавить еду» под кругом.",
+          "show": "week7",
+          "btn": {
+            "uz": "Qatorni ko'rish",
+            "ru": "Показать строку"
+          }
+        }
+      ]
+    },
+    {
       "v": 12,
       "d": "2026-10-19",
       "bn": {
