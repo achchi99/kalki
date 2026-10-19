@@ -82,8 +82,9 @@ try {
     await pg.goto('https://' + host + url, { waitUntil: 'networkidle' }); await pg.waitForTimeout(600); await pg.click('[data-act=tab][data-v=profile]'); await pg.waitForTimeout(350); const n1 = await pg.locator('[data-act=pushon]').count(); await c.close(); return n1; };
   assert.equal(await asHost('oqsil.kalki-10y.pages.dev', '/kalkifit?pushtest=1'), 1, 'preview: ishlaydi');
   assert.equal(await asHost('kalki.uz', '/kalkifit?pushtest=1'), 0, 'kalki.uz: e\'tiborsiz');
-  assert.equal(await asHost('oqsil.kalki-10y.pages.dev', '/kalkifit'), 0, 'param yo\'q — odatiy');
+  assert.equal(await asHost('oqsil.kalki-10y.pages.dev', '/kalkifit'), 1, 'preview: 3-kun sharti o\'chiq (parametrsiz ham — Bosh ekrandan ochilganda)');
+  assert.equal(await asHost('kalki.uz', '/kalkifit'), 0, 'kalki.uz: 3-kun sharti ishlaydi');
   p = await mk(seed(0), { url: '/kalkifit?pushtest=1' }); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 0, 'localhost (preview emas): e\'tiborsiz'); await p.context().close();
-  log('?pushtest=1 faqat *.pages.dev preview\'da (Profil qatori 1-kunda ham chiqadi); kalki.uz va localhost\'da e\'tiborsiz; parametrsiz preview — odatiy');
+  log('?pushtest=1 faqat *.pages.dev preview\'da (Profil qatori 1-kunda ham chiqadi); kalki.uz va localhost\'da e\'tiborsiz; preview\'da 3-kun sharti umuman o\'chiq (parametrsiz ham — iPhone Bosh ekrandan ochilganda start_url da parametr yo\'qoladi); kalki.uz da shart ishlaydi');
 } finally { await b.close().catch(() => {}); srv.close(); }
 console.log('\nHAMMASI OK (' + n + ' blok)');
