@@ -21,7 +21,7 @@ await c.setOffline(true);
 for (const u of ['/kredit-kalkulyator', '/ru/hujjatlar', '/cyr/kredit-kalkulyator', '/qqs-2026']) {
   const rsp = await p.goto(BASE + u, { waitUntil: 'load' }).catch((e) => null); await p.waitForTimeout(500);
   const m = await p.evaluate(() => ({ v2: document.body.classList.contains('v2'), hdr: getComputedStyle(document.getElementById('sitebar') || document.body).position, bg: getComputedStyle(document.body).backgroundColor, svg: !!document.querySelector('svg.ic use') }));
-  T(!!rsp && m.v2 && m.bg === 'rgb(241, 242, 238)', 'oflayn ochiladi va V2 uslubi bor: ' + u, JSON.stringify(m));
+  T(!!rsp && m.v2 && m.bg === 'rgb(247, 245, 242)', 'oflayn ochiladi va V2 uslubi bor: ' + u, JSON.stringify(m));
 }
 await p.goto(BASE + '/hech-qachon-ochilmagan-sahifa', { waitUntil: 'load' }).catch(() => {}); await p.waitForTimeout(400);
 T(/Internet aloqasi yo'q|Нет подключения/.test(await p.evaluate(() => document.body.innerText)), 'ochilmagan sahifa -> offline.html');

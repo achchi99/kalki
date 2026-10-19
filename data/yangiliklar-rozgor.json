@@ -2,6 +2,16 @@
   "app": "rozgor",
   "items": [
     {
+      "v": 4,
+      "d": "2026-10-19",
+      "items": [
+        {
+          "uz": "Yangi ko'rinish: iliq, ko'zga yumshoq ranglar va qorong'i mavzu.",
+          "ru": "Новый вид: тёплые, мягкие для глаз цвета и тёмная тема."
+        }
+      ]
+    },
+    {
       "v": 3,
       "d": "2026-10-18",
       "items": [
