@@ -29,6 +29,13 @@
         "uz": "Ta'lim yo'nalishida hozircha hamkor yo'q — OTM yoki o'quv markazi bo'lsangiz, hamkorlik shartlari bilan tanishing",
         "ru": "В образовательном направлении партнёров пока нет — если вы вуз или учебный центр, посмотрите условия партнёрства"
       }
+    },
+    "yetkazish": {
+      "url": "https://www.uzumtezkor.uz/uz",
+      "label": {
+        "uz": "Uzum Tezkor",
+        "ru": "Uzum Tezkor"
+      }
     }
   },
   "partners": [
@@ -208,6 +215,75 @@
       "valid_until": "2027-12-31",
       "checked": "2026-08-08",
       "note_verified": false
+    },
+    {
+      "id": "uzum-tezkor",
+      "name": {
+        "uz": "Uzum Tezkor",
+        "ru": "Uzum Tezkor"
+      },
+      "url": "https://www.uzumtezkor.uz/uz",
+      "type": "organic",
+      "categories": [
+        "yetkazish"
+      ],
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": false,
+      "priority": 0,
+      "active": true,
+      "valid_until": "2027-12-31",
+      "checked": "2026-10-19",
+      "note_verified": false,
+      "tekshiruv": "ochiladi (200); qidiruv havolasi yo'q — bosh sahifa"
+    },
+    {
+      "id": "yandex-eda",
+      "name": {
+        "uz": "Yandex Eda",
+        "ru": "Яндекс Еда"
+      },
+      "url": "https://eda.yandex.uz/",
+      "type": "organic",
+      "categories": [
+        "yetkazish"
+      ],
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": false,
+      "priority": 0,
+      "active": false,
+      "valid_until": "2027-12-31",
+      "checked": "2026-10-19",
+      "note_verified": false,
+      "tekshiruv": "serverdan SmartCaptcha — telefonda tekshirilmagan"
+    },
+    {
+      "id": "express24",
+      "name": {
+        "uz": "Express24",
+        "ru": "Express24"
+      },
+      "url": "https://www.express24.uz/",
+      "type": "organic",
+      "categories": [
+        "yetkazish"
+      ],
+      "note": {
+        "uz": "",
+        "ru": ""
+      },
+      "append_utm": false,
+      "priority": 0,
+      "active": false,
+      "valid_until": "2027-12-31",
+      "checked": "2026-10-19",
+      "note_verified": false,
+      "tekshiruv": "serverdan ochilmadi — telefonda tekshirilmagan"
     }
   ]
 }

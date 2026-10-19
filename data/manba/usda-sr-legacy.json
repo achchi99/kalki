@@ -1692,6 +1692,41 @@
     }
    ]
   },
+  "172380": {
+   "d": "Chicken, broilers or fryers, leg, meat only, cooked, roasted",
+   "f": 7.8,
+   "c": 0.0,
+   "kcal": 174.0,
+   "p": 24.22,
+   "suv": 67.69,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "leg (Sum of drumstick+thigh+back meat only)",
+     "miqdor": 1.0,
+     "g": 199.0
+    },
+    {
+     "nom": "drumstick bone and skin",
+     "miqdor": 1.0,
+     "g": 105.0
+    },
+    {
+     "nom": "thigh bone and skin",
+     "miqdor": 1.0,
+     "g": 72.0
+    },
+    {
+     "nom": "back bone and skin",
+     "miqdor": 1.0,
+     "g": 22.0
+    }
+   ]
+  },
   "172385": {
    "d": "Chicken, broilers or fryers, thigh, meat and skin, raw",
    "kcal": 221.0,
@@ -1949,6 +1984,41 @@
      "nom": "large",
      "miqdor": 1.0,
      "g": 50.0
+    }
+   ]
+  },
+  "173619": {
+   "d": "Chicken, broilers or fryers, leg, meat only, raw",
+   "c": 0.0,
+   "kcal": 120.0,
+   "p": 19.16,
+   "f": 4.22,
+   "suv": 76.41,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "leg, bone and skin removed (Sum of drumstick+thigh+back meat only)",
+     "miqdor": 1.0,
+     "g": 265.0
+    },
+    {
+     "nom": "thigh bone and skin removed",
+     "miqdor": 1.0,
+     "g": 147.0
+    },
+    {
+     "nom": "drumstick bone and skin removed",
+     "miqdor": 1.0,
+     "g": 88.0
+    },
+    {
+     "nom": "back bone and skin removed",
+     "miqdor": 1.0,
+     "g": 30.0
     }
    ]
   },
@@ -2359,6 +2429,26 @@
      "nom": "liter",
      "miqdor": 1.0,
      "g": 1000.0
+    }
+   ]
+  },
+  "175167": {
+   "d": "Fish, salmon, Atlantic, farmed, raw",
+   "kcal": 208.0,
+   "suv": 64.89,
+   "f": 13.42,
+   "p": 20.42,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 0.5,
+     "g": 198.0
     }
    ]
   },

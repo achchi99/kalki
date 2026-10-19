@@ -351,6 +351,28 @@
    },
    "uz": "suzma",
    "ru": "творог"
+  },
+  "losos": {
+   "nom": "Losos (Atlantika, fermada, xom)",
+   "usda": 175167,
+   "pishgan": 175168,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "losos",
+   "ru": "лосось"
+  },
+  "tovuq_son_teriz": {
+   "nom": "Tovuq soni/oyog'i (terisiz, xom → pishgan)",
+   "usda": 173619,
+   "pishgan": 172380,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "tovuq soni (terisiz)",
+   "ru": "куриное бедро (без кожи)"
   }
  }
 }

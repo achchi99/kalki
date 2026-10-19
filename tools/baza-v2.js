@@ -21,15 +21,16 @@ function apply(foods) {
     const names = Object.entries(byM).filter(([m]) => m !== 'suv').sort((a, b) => b[1] - a[1]).slice(0, 6).map(([m]) => m);
     const fdc = [...new Set(names.map((m) => mas[m] && mas[m].usda).filter(Boolean))].slice(0, 5).join(', ');
     const two = !!r.ikki_manba, cal = !!r.kalibr;
-    const uz = 'Retsept (o\'rtacha uy retsepti): ' + names.map((m) => mas[m].uz).join(', ') + '. Qiymatlar: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' va Скурихин jadvali (ikkalasining o\'rtachasi)' : '') + '.' + (cal ? ' Uy o\'lchovi (tarozi) bilan kalibrlangan ' + r.kalibr.sana + '.' : ' Retsept o\'rtacha uy taomiga asoslangan, ±15% farq bo\'lishi mumkin; uy tarozisida hali tasdiqlanmagan' + (h && r.qaror ? '; standart qiymat foydalanuvchi qarori bilan 190 kkal' : '') + '.');
-    const ru = 'Рецепт (средний домашний): ' + names.map((m) => mas[m].ru).join(', ') + '. Данные: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' и таблица Скурихина (среднее)' : '') + '.' + (cal ? ' Откалибровано по домашнему взвешиванию ' + r.kalibr.sana + '.' : ' Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%; на домашних весах пока не подтверждено' + (h && r.qaror ? '; стандартное значение — решение пользователя, 190 ккал' : '') + '.');
+    let uz = 'Retsept (o\'rtacha uy retsepti): ' + names.map((m) => mas[m].uz).join(', ') + '. Qiymatlar: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' va Скурихин jadvali (ikkalasining o\'rtachasi)' : '') + '.' + (cal ? ' Uy o\'lchovi (tarozi) bilan kalibrlangan ' + r.kalibr.sana + '.' : ' Retsept o\'rtacha uy taomiga asoslangan, ±15% farq bo\'lishi mumkin; uy tarozisida hali tasdiqlanmagan' + (h && r.qaror ? '; standart qiymat foydalanuvchi qarori bilan 190 kkal' : '') + '.');
+    let ru = 'Рецепт (средний домашний): ' + names.map((m) => mas[m].ru).join(', ') + '. Данные: USDA FoodData Central (fdc_id ' + fdc + ')' + (two ? ' и таблица Скурихина (среднее)' : '') + '.' + (cal ? ' Откалибровано по домашнему взвешиванию ' + r.kalibr.sana + '.' : ' Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%; на домашних весах пока не подтверждено' + (h && r.qaror ? '; стандартное значение — решение пользователя, 190 ккал' : '') + '.');
+    if (r.kafe) { uz += ' Kafe/choyxona porsiyasi — taxminiy, joyga qarab farq qiladi. Porsiya asosi: ' + r.kafe.asos_uz + ' (kafe menyulari odatiy vazni; rasmiy statistika yo\'q, tarozida tekshirilmagan).'; ru += ' Порция кафе/чайханы — примерная, зависит от заведения. Основа порции: ' + r.kafe.asos_ru + ' (типичный вес в меню кафе; официальной статистики нет, на весах не проверялось).'; }
     return { u: uz, r: ru };
   };
   rets.forEach((r) => { mr[r.id] = msFor(r.id); });
   /* --- yagona retseptli taomlar --- */
   for (const [id, rid] of Object.entries(fam.retseptli_oddiy)) { const f = idx[id], h = res[rid]; if (!f || !h) throw new Error('retseptli: ' + id); setVals(f, h); f.rc = rid; f.x = h.x ? 1 : 0; f.e = f.x; f.m = mr[rid].u; }
   /* --- yangi taomlar --- */
-  for (const n of fam.yangi) { const h = res[n.rc]; if (!h) throw new Error('yangi: ' + n.rc); const o = { i: n.i, n: n.n, r: n.r, a: n.a, k: 0, p: 0, f: 0, c: 0, t: n.t, e: 1, u: n.u.concat([['g100', 100]]) }; setVals(o, h); o.rc = n.rc; o.x = 1; o.m = mr[n.rc].u; o.ubs = 'a'; out.push(o); idx[o.i] = o; }
+  for (const n of fam.yangi) { const h = res[n.rc]; if (!h) throw new Error('yangi: ' + n.rc); const o = { i: n.i, n: n.n, r: n.r, a: n.a, k: 0, p: 0, f: 0, c: 0, t: n.t, e: 1, u: n.u.concat([['g100', 100]]) }; setVals(o, h); o.rc = n.rc; o.x = 1; o.m = mr[n.rc].u; o.ubs = 'a'; if (n.kf) o.kf = 1; out.push(o); idx[o.i] = o; }
   /* --- oilalar --- */
   const key = (s) => String(s).toLowerCase().replace(/[’'`‘ʻʼ´′]/g, '').replace(/\s+/g, ' ').trim();
   for (const d of fam.oilalar) {

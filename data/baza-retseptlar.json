@@ -2579,6 +2579,348 @@
     }
    ],
    "taxminiy": true
+  },
+  {
+   "id": "kafe-sazan-qovurma",
+   "nom": "Qovurilgan sazan (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "un",
+     "g": 30
+    },
+    {
+     "m": "yog",
+     "g": 70
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "choyxonadagi odatiy 1 dona qovurilgan sazan, yeyiladigan qismi ≈ 300 g (suyaksiz)",
+    "asos_ru": "типичная порция чайханы: 1 жареный карп, съедобная часть ≈ 300 г (без костей)"
+   }
+  },
+  {
+   "id": "kafe-baliq-shashlik",
+   "nom": "Baliq shashlik (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 450
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 90 g (4–5 bo'lak), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 90 г (4–5 кусочков), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-losos-steyk",
+   "nom": "Losos steyk (restoran)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "losos",
+     "g": 230
+    },
+    {
+     "m": "yog",
+     "g": 12
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "restorandagi odatiy losos steyk ≈ 180 g (pishgan)",
+    "asos_ru": "типичный стейк из лосося в ресторане ≈ 180 г (готовый)"
+   }
+  },
+  {
+   "id": "kafe-baliq-shurva",
+   "nom": "Baliq sho'rva (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 350
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    },
+    {
+     "m": "kokat",
+     "g": 15
+    },
+    {
+     "m": "yog",
+     "g": 15
+    },
+    {
+     "m": "suv",
+     "g": 1300,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-tovuq-shashlik",
+   "nom": "Tovuq shashlik (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_kokrak",
+     "g": 350
+    },
+    {
+     "m": "tovuq_son_teriz",
+     "g": 350
+    },
+    {
+     "m": "piyoz",
+     "g": 40
+    },
+    {
+     "m": "yog",
+     "g": 25
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 90 g (4–5 bo'lak, ko'krak va terisiz son go'shti), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 90 г (4–5 кусочков, грудка и бедро без кожи), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-kabob",
+   "nom": "Qo'y/mol kabob (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 450
+    },
+    {
+     "m": "mol",
+     "g": 100
+    },
+    {
+     "m": "dumba",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g (3–4 bo'lak go'sht va dumba), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 80 г (3–4 кусочка мяса и курдючного жира), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-lyulya",
+   "nom": "Lyulya kabob (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 450
+    },
+    {
+     "m": "mol",
+     "g": 150
+    },
+    {
+     "m": "dumba",
+     "g": 120
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 100 g (1 dona lyulya), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 100 г (1 люля), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "choyxona-osh",
+   "nom": "Choyxona oshi (1 lagan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 400.0
+    },
+    {
+     "m": "mol",
+     "g": 400.0
+    },
+    {
+     "m": "yog",
+     "g": 320
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "choyxonadagi 1 lagan osh ≈ 400 g (yog' ko'p, go'sht o'rta — oddiy osh retseptining yog'li varianti)",
+    "asos_ru": "1 тарелка плова в чайхане ≈ 400 г (много масла, мяса средне — жирный вариант обычного рецепта)"
+   },
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "kafe-lagmon-tovuq",
+   "nom": "Tovuq lag'mon (kafe kosa)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 70
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 150
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g (yog' odatdagidan ko'proq)",
+    "asos_ru": "типичная миска в кафе ≈ 450 г (масла больше обычного)"
+   }
+  },
+  {
+   "id": "kafe-tovuq-son-grill",
+   "nom": "Grilda tovuq soni (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son_teriz",
+     "g": 700
+    },
+    {
+     "m": "yog",
+     "g": 15
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 dona grilda son ≈ 140 g (yeyiladigan qism, TERISIZ hisob; teri yeyilsa ≈ +60 kkal)",
+    "asos_ru": "1 бедро гриль ≈ 140 г (съедобная часть, БЕЗ кожи; если съесть кожу ≈ +60 ккал)"
+   }
+  },
+  {
+   "id": "sazan-duxovka",
+   "nom": "Duxovkada sazan (kartoshka bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
   }
  ]
 }

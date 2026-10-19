@@ -2176,6 +2176,252 @@
    ],
    "rc": "moshxorda-gostsiz",
    "ub": "kosa"
+  },
+  {
+   "i": "kafe-sazan-qovurma",
+   "n": "Qovurilgan sazan (choyxona)",
+   "r": "Жареный карп (чайхана)",
+   "a": [
+    "choyxona sazan",
+    "qovurilgan baliq choyxona",
+    "жареный карп чайхана"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "kafe-sazan-qovurma",
+   "ub": "porsiya",
+   "kf": 1
+  },
+  {
+   "i": "kafe-baliq-shashlik",
+   "n": "Baliq shashlik (choyxona)",
+   "r": "Рыбный шашлык (чайхана)",
+   "a": [
+    "baliq kabob",
+    "baliq shashlik",
+    "рыбный шашлык",
+    "sazan shashlik"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     90
+    ],
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "kafe-baliq-shashlik",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-losos-steyk",
+   "n": "Losos steyk (restoran)",
+   "r": "Стейк из лосося (ресторан)",
+   "a": [
+    "losos steyk",
+    "salmon steak",
+    "стейк лосось",
+    "losos restoran"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "kafe-losos-steyk",
+   "ub": "porsiya",
+   "kf": 1
+  },
+  {
+   "i": "kafe-baliq-shurva",
+   "n": "Baliq sho'rva (kafe)",
+   "r": "Рыбный суп (кафе)",
+   "a": [
+    "baliq shorva kafe",
+    "uxa kafe",
+    "рыбный суп кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-baliq-shurva",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tovuq-shashlik",
+   "n": "Tovuq shashlik (choyxona, 1 six)",
+   "r": "Шашлык из курицы (чайхана, 1 шампур)",
+   "a": [
+    "tovuq kabob choyxona",
+    "tovuq shashlik choyxona",
+    "шашлык куриный чайхана"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     90
+    ],
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "kafe-tovuq-shashlik",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-kabob",
+   "n": "Qo'y/mol kabob (choyxona, 1 six)",
+   "r": "Кебаб баранина/говядина (чайхана, 1 шампур)",
+   "a": [
+    "kabob choyxona",
+    "qo'y kabob",
+    "mol kabob",
+    "шашлык баранина чайхана",
+    "kabob six"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     80
+    ],
+    [
+     "porsiya",
+     160
+    ]
+   ],
+   "rc": "kafe-kabob",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-lyulya",
+   "n": "Lyulya kabob (choyxona, 1 six)",
+   "r": "Люля-кебаб (чайхана, 1 шампур)",
+   "a": [
+    "lyulya choyxona",
+    "люля чайхана",
+    "lyulya six"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     100
+    ],
+    [
+     "porsiya",
+     200
+    ]
+   ],
+   "rc": "kafe-lyulya",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "choyxona-osh",
+   "n": "Choyxona oshi (1 lagan)",
+   "r": "Плов чайханский (1 тарелка)",
+   "a": [
+    "choyxona palov",
+    "choyxona plov",
+    "плов чайхана",
+    "chayxona oshi"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "choyxona-osh",
+   "ub": "likop",
+   "kf": 1
+  },
+  {
+   "i": "kafe-lagmon-tovuq",
+   "n": "Tovuq lag'mon (kafe kosa)",
+   "r": "Лагман с курицей (кафе)",
+   "a": [
+    "lagmon kafe",
+    "tovuqli lagmon kafe",
+    "лагман кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-lagmon-tovuq",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tovuq-son-grill",
+   "n": "Grilda tovuq soni (kafe)",
+   "r": "Куриное бедро гриль (кафе)",
+   "a": [
+    "tovuq son grill",
+    "grill tovuq",
+    "куриное бедро гриль"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "dona",
+     140
+    ]
+   ],
+   "rc": "kafe-tovuq-son-grill",
+   "ub": "dona",
+   "kf": 1
+  },
+  {
+   "i": "sazan-duxovka",
+   "n": "Duxovkada sazan (kartoshka bilan)",
+   "r": "Карп в духовке с картофелем",
+   "a": [
+    "sazan duxovka",
+    "baliq duxovkada",
+    "карп в духовке",
+    "запечённый карп",
+    "pechda sazan"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "sazan-duxovka",
+   "ub": "likop"
   }
  ],
  "top_qoshimcha": [
