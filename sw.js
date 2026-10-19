@@ -5,11 +5,12 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '0b2db7f3';   /* sw-version:auto */
+const SW_VERSION = '4dff160f';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
-const KEEP = [STATIC, RUNTIME];
+const PENDING = 'kalkifit-pending';       // bildirishnoma bosilganini ilovaga yetkazish (iOS openWindow manzilni e'tiborsiz qoldirishi mumkin)
+const KEEP = [STATIC, RUNTIME, PENDING];
 
 /* Precache — birinchi ochishda oflayn ishlashi uchun. Ro'yxatdagi har bir
    yo'l haqiqatan mavjudligini tools/verify-sw.js tekshiradi. */
@@ -440,8 +441,10 @@ self.addEventListener('push', (e) => {
 });
 self.addEventListener('notificationclick', (e) => {
   e.notification.close(); const u = (e.notification.data && e.notification.data.u) || '/kalkifit';
-  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
-    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { return c.focus().then(() => ('navigate' in c ? c.navigate(u) : c)); } }
-    return self.clients.openWindow(u);
-  }));
+  e.waitUntil((async () => {
+    try { const c = await caches.open(PENDING); await c.put('/__pending/baliq', new Response(String(Date.now()))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
+    const list = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage({ t: 'baliq' }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
+    await self.clients.openWindow(u);
+  })());
 });
