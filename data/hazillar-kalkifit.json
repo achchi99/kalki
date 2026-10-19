@@ -761,6 +761,60 @@
     "Дневник сегодня компактный. Добавите, когда вспомните, — бухгалтер будет рад.",
     "Записей пока мало. Это только про дневник: возможно, что-то просто не записано."
    ]
+  },
+  "food_fish": {
+   "uz": [
+    "Baliq hisobga yozildi — tushlikdami, kechqurundami, daftar farqlamaydi. Oqsil ham tinch.",
+    "Baliq daftarga tushdi. Sho'rvasimi, grilimi — qator baribir bitta.",
+    "Yozildi: baliq. Bu hafta daftarda yangi «suv ahli» paydo bo'ldi.",
+    "Baliq tanlovi hisobda. Daftar suzishni bilmaydi, lekin yozishni yaxshi biladi.",
+    "Baliq stolga kelibdi, biz esa daftarga yozib qo'ydik. Qolganini oshpaz hal qiladi.",
+    "Baliq: yozildi. Daftarning o'zi ham bugun biroz tetik."
+   ],
+   "ru": [
+    "Рыба записана — обед или ужин, дневник не различает. Белок тоже спокоен.",
+    "Рыба в дневнике. Суп или гриль — строка всё равно одна.",
+    "Записано: рыба. На этой неделе в дневнике появился свежий улов.",
+    "Выбор в пользу рыбы записан. Дневник плавать не умеет, зато писать умеет.",
+    "Рыба пришла на стол, а мы — в дневник. Остальное — дело повара.",
+    "Рыба: записано. Дневник сегодня тоже бодрый."
+   ]
+  },
+  "alt_chosen": {
+   "uz": [
+    "Almashtirish ham tanlov. Hisobga yozildi, bahosiz.",
+    "O'rniga boshqa taom tanlandi — daftar hech narsa demaydi, faqat yozadi.",
+    "Variant almashdi, daftar bardam. Yozildi.",
+    "Bugun tanlov boshqa tomonga burildi. Daftar buni jimgina yozib qo'ydi.",
+    "Taklif ma'qul keldi shekilli. Yozildi, janjalsiz.",
+    "Boshqa taom — boshqa qator. Daftar ikkalasiga ham tayyor."
+   ],
+   "ru": [
+    "Замена — тоже выбор. Записано, без оценок.",
+    "Вместо одного блюда выбрано другое. Дневник ничего не говорит, только записывает.",
+    "Вариант сменился, дневник спокоен. Записано.",
+    "Сегодня выбор повернул в другую сторону. Дневник тихо всё записал.",
+    "Подсказка пришлась по вкусу. Записано без споров.",
+    "Другое блюдо — другая строка. Дневник готов к обоим."
+   ]
+  },
+  "fish_none_week": {
+   "uz": [
+    "Baliq bu hafta stolga hali kelmadi. Daryo ham, dengiz ham sabrli.",
+    "Bu hafta baliq daftarda yo'q. Qozonda sazan kutib turgan bo'lsa ajab emas.",
+    "Haftada baliq uchramadi. Sho'rvasi ham, grili ham o'z navbatini kutadi.",
+    "Bu hafta baliq uchun bo'sh qator turibdi. Qidiruvda «baliq» deb yozish kifoya.",
+    "Baliq hali kelmadi, lekin stol har doim ochiq.",
+    "Baliq bu hafta navbatda. Hech kim shoshirmayapti."
+   ],
+   "ru": [
+    "Рыба на этой неделе пока не заходила. Ни река, ни море не торопят.",
+    "На этой неделе рыбы в дневнике нет. Может, в казане уже ждёт карп.",
+    "Рыба не попалась на этой неделе. Суп и гриль ждут своей очереди.",
+    "Для рыбы на этой неделе есть свободная строка. Достаточно набрать «рыба» в поиске.",
+    "Рыба пока не пришла, но стол всегда открыт.",
+    "Рыба на этой неделе в очереди. Никто не торопит."
+   ]
   }
  },
  "neutral": {

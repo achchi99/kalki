@@ -1786,6 +1786,396 @@
    ],
    "rc": "chalop",
    "ub": "kosa"
+  },
+  {
+   "i": "sazan-grill",
+   "n": "Grilda sazan",
+   "r": "Карп на гриле",
+   "a": [
+    "sazan grill",
+    "grilda baliq",
+    "карп гриль",
+    "baliq grill",
+    "sazan kabob"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     250
+    ],
+    [
+     "dona",
+     150
+    ]
+   ],
+   "rc": "sazan-grill",
+   "ub": "porsiya"
+  },
+  {
+   "i": "sazan-qovurma",
+   "n": "Qovurilgan sazan",
+   "r": "Жареный карп",
+   "a": [
+    "sazan qovurma",
+    "qovurilgan baliq",
+    "жареный карп",
+    "baliq qovurma",
+    "sazan"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     250
+    ],
+    [
+     "dona",
+     150
+    ]
+   ],
+   "rc": "sazan-qovurma",
+   "ub": "porsiya"
+  },
+  {
+   "i": "baliq-dimlama",
+   "n": "Dimlangan baliq",
+   "r": "Тушёная рыба",
+   "a": [
+    "baliq dimlama",
+    "dimlangan sazan",
+    "тушеная рыба",
+    "baliq qozonda"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ]
+   ],
+   "rc": "baliq-dimlama",
+   "ub": "likop"
+  },
+  {
+   "i": "baliq-shurva",
+   "n": "Baliq sho'rva",
+   "r": "Рыбный суп",
+   "a": [
+    "baliq shorva",
+    "sazan shorva",
+    "рыбная шурпа",
+    "уха",
+    "uxa"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ],
+    [
+     "likop",
+     450
+    ]
+   ],
+   "rc": "baliq-shurva",
+   "ub": "kosa"
+  },
+  {
+   "i": "tovuq-son-qozon",
+   "n": "Tovuq soni (qozonda)",
+   "r": "Куриное бедро в казане",
+   "a": [
+    "tovuq qozon",
+    "tovuq son qozon",
+    "курица в казане",
+    "tovuq dimlangan"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "dona",
+     120
+    ],
+    [
+     "porsiya",
+     250
+    ],
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "tovuq-son-qozon",
+   "ub": "porsiya"
+  },
+  {
+   "i": "tovuq-kokrak-qozon",
+   "n": "Tovuq ko'kragi (qozonda)",
+   "r": "Куриная грудка в казане",
+   "a": [
+    "tovuq kokrak qozon",
+    "грудка в казане",
+    "dietik tovuq"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "dona",
+     130
+    ],
+    [
+     "porsiya",
+     250
+    ],
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "tovuq-kokrak-qozon",
+   "ub": "porsiya"
+  },
+  {
+   "i": "osh-tovuq",
+   "n": "Tovuqli osh",
+   "r": "Плов с курицей",
+   "a": [
+    "tovuq palov",
+    "palov tovuqli",
+    "плов с курицей",
+    "osh tovuq",
+    "palov tovuq"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "osh-tovuq",
+   "ub": "likop"
+  },
+  {
+   "i": "dimlama-tovuq",
+   "n": "Tovuqli dimlama",
+   "r": "Димлама с курицей",
+   "a": [
+    "tovuq dimlama",
+    "димлама куриная",
+    "dimlama tovuqli"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ]
+   ],
+   "rc": "dimlama-tovuq",
+   "ub": "likop"
+  },
+  {
+   "i": "loviya-shurva",
+   "n": "Loviya sho'rva",
+   "r": "Фасолевый суп",
+   "a": [
+    "loviya shorva",
+    "фасолевый суп",
+    "loviyali sho'rva",
+    "лобио суп"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     350
+    ],
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "loviya-shurva",
+   "ub": "kosa"
+  },
+  {
+   "i": "yasmiq-shurva",
+   "n": "Yasmiq sho'rva",
+   "r": "Чечевичный суп",
+   "a": [
+    "yasmiq shorva",
+    "чечевичный суп",
+    "mercimek"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     350
+    ],
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "yasmiq-shurva",
+   "ub": "kosa"
+  },
+  {
+   "i": "noxat-ragu",
+   "n": "No'xatli sabzavot taomi",
+   "r": "Нут с овощами",
+   "a": [
+    "noxat taomi",
+    "нут с овощами",
+    "noxatli taom",
+    "nohat",
+    "нохат"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     300
+    ],
+    [
+     "kosa",
+     250
+    ]
+   ],
+   "rc": "noxat-ragu",
+   "ub": "likop"
+  },
+  {
+   "i": "qoymoq",
+   "n": "Tuxumli qo'ymoq",
+   "r": "Кўймоқ (яичница с луком и помидором)",
+   "a": [
+    "qoymoq",
+    "qo'ymoq",
+    "кўймоқ",
+    "яичница с помидором"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "porsiya",
+     200
+    ],
+    [
+     "likop",
+     250
+    ]
+   ],
+   "rc": "qoymoq",
+   "ub": "porsiya"
+  },
+  {
+   "i": "omlet-sabzavot",
+   "n": "Sabzavotli omlet",
+   "r": "Омлет с овощами",
+   "a": [
+    "omlet sabzavotli",
+    "омлет с овощами",
+    "omlet pomidorli"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "porsiya",
+     200
+    ],
+    [
+     "dona",
+     150
+    ]
+   ],
+   "rc": "omlet-sabzavot",
+   "ub": "porsiya"
+  },
+  {
+   "i": "qatiq-salat",
+   "n": "Qatiqli salat (bodring, ko'kat)",
+   "r": "Салат с катыком",
+   "a": [
+    "qatiqli salat",
+    "салат с катыком",
+    "bodring qatiq",
+    "чакка"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     250
+    ],
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "qatiq-salat",
+   "ub": "kosa"
+  },
+  {
+   "i": "suzma-salat",
+   "n": "Suzmali salat",
+   "r": "Салат с творогом",
+   "a": [
+    "suzma salat",
+    "салат с творогом",
+    "tvorogli salat",
+    "suzmali bodring"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     250
+    ],
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "suzma-salat",
+   "ub": "kosa"
+  },
+  {
+   "i": "moshxorda-gostsiz",
+   "n": "Moshxo'rda (go'shtsiz)",
+   "r": "Машхурда без мяса",
+   "a": [
+    "moshxorda goshtsiz",
+    "машхурда постная",
+    "mosh sho'rva",
+    "mosh shorva",
+    "машхурда без мяса"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     350
+    ]
+   ],
+   "rc": "moshxorda-gostsiz",
+   "ub": "kosa"
   }
  ],
  "top_qoshimcha": [

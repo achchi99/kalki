@@ -121,6 +121,8 @@
     if (kind === 'food') {
       nk = 'food'; np = { eaten: nf(eaten) };
       if (eaten > lim) { var on = overRun(jc); if (on) return ctx.jokesOn === false ? neutralLine(ctx, nk, np) : on; state = 'over'; par = { over: nf(eaten - lim) }; }
+      else if (p.alt) state = 'alt_chosen';
+      else if (p.fish) state = 'food_fish';
       else if (p.sweet) state = 'food_sweet';
       else if (x.food.length === 1) state = sk >= 7 && sk % 7 === 0 ? 'streak7' : (sk >= 3 ? 'streak' : 'food_first'), par = { days: sk };
       else if (hour >= 20 && eaten < 0.4 * lim && !x.done) state = 'log_low';

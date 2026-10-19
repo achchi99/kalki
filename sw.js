@@ -5,11 +5,12 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '8e63c089';   /* sw-version:auto */
+const SW_VERSION = 'c217912b';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
-const KEEP = [STATIC, RUNTIME];
+const PENDING = 'kalkifit-pending';       // bildirishnoma bosilganini ilovaga yetkazish (iOS openWindow manzilni e'tiborsiz qoldirishi mumkin)
+const KEEP = [STATIC, RUNTIME, PENDING];
 
 /* Precache — birinchi ochishda oflayn ishlashi uchun. Ro'yxatdagi har bir
    yo'l haqiqatan mavjudligini tools/verify-sw.js tekshiradi. */
@@ -51,6 +52,9 @@ const ASSETS = [
   '/assets/kalkifit-core.js',
   '/assets/kalkifit-app.js',
   '/assets/kalkifit-gaplar.js',
+  '/assets/orinbosar-core.js',
+  '/data/orinbosar.json',
+  '/data/oqsil-manba.json',
   '/data/masofalar.json',
   '/data/yangiliklar-kalkifit.json',
   '/data/hazillar-kalkifit.json',
@@ -427,4 +431,20 @@ self.addEventListener('fetch', (e) => {
   }
 
   e.respondWith(staleWhileRevalidate(e.request, RUNTIME));
+});
+
+/* ---- «Baliq kuni» eslatmasi (Web Push). Haftada 1 ta; server: tools/push-yubor.js. Xabar: { t, b, u, tag } ---- */
+self.addEventListener('push', (e) => {
+  let d = {}; try { d = e.data ? e.data.json() : {}; } catch (_) { d = {}; }
+  const u = typeof d.u === 'string' && d.u.charAt(0) === '/' ? d.u : '/kalkifit';
+  e.waitUntil(self.registration.showNotification(String(d.t || 'KalkiFit').slice(0, 60), { body: String(d.b || '').slice(0, 200), icon: '/assets/icons/kalkifit-192.png', badge: '/assets/icons/kalkifit-192.png', tag: String(d.tag || 'baliq-kuni'), data: { u } }));
+});
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close(); const u = (e.notification.data && e.notification.data.u) || '/kalkifit';
+  e.waitUntil((async () => {
+    try { const c = await caches.open(PENDING); await c.put('/__pending/baliq', new Response(String(Date.now()))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
+    const list = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage({ t: 'baliq' }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
+    await self.clients.openWindow(u);
+  })());
 });

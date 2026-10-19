@@ -292,3 +292,13 @@ html[data-theme=dark]:has(.rz.sl){--page-bg:#111214}
 /* kategoriya ro'yxati almashganda yengil fade (150 ms) */
 .rz .sl-res.fi{animation:catFade .15s ease both}@keyframes catFade{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.rz .sl-res.fi{animation:none}}
+/* O'rniga (oqsilga boy o'rinbosar) va «Oqsil manbalari» — faqat tokenlar */
+.rz .sl-or{background:var(--soft);border-radius:12px;box-shadow:inset 3px 0 0 var(--bline);margin:10px 0 8px;padding:2px 6px 2px 12px}
+.rz .sl-or-b{display:flex;align-items:center;gap:8px;width:100%;min-height:52px;padding:8px 0;border:0;background:transparent;color:var(--ink);text-align:left;font:inherit;cursor:pointer}
+.rz .sl-or-b .m{flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}.rz .sl-or-b small{color:var(--mut);font-weight:600;font-size:14px}.rz .sl-or-b b{font-weight:700}.rz .sl-or-b .m>span{color:var(--mut);font-size:14px}
+.rz .sl-or-more{border-top:1px solid var(--line)}.rz .sl-or .sl-txtbtn{padding:0 2px}
+.rz .sl-orb .orb-bar{display:flex;gap:2px;height:14px;border-radius:7px;overflow:hidden;margin:10px 0 8px}.rz .sl-orb .orb-bar i{flex-basis:0;min-width:6px}
+.rz .sl-orb .orb-leg{list-style:none;display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 8px;padding:0;font-size:14px;color:var(--mut)}.rz .sl-orb .orb-leg li{display:inline-flex;align-items:center}.rz .sl-orb .orb-leg i{width:10px;height:10px;border-radius:3px;margin-right:6px}.rz .sl-orb .orb-leg b{color:var(--ink);margin-left:4px}
+.rz .sl-orb .orb-qizil{background:var(--mut2)}.rz .sl-orb .orb-tovuq{background:var(--mut)}.rz .sl-orb .orb-baliq{background:var(--fill)}.rz .sl-orb .orb-sut{background:var(--line2)}.rz .sl-orb .orb-dukkak{background:var(--ink);opacity:.55}
+/* «Baliq kuni» eslatmasi taklifi (Kun yakuni) */
+.rz .sl-poff{background:var(--soft);border:0;border-radius:12px;box-shadow:inset 3px 0 0 var(--bline);margin:10px 0}.rz .sl-poff b{display:block;margin-bottom:2px}.rz .sl-poff .rz-actions{margin-top:8px}

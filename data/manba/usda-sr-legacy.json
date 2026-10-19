@@ -3,7 +3,7 @@
   "manba": "USDA FoodData Central, SR Legacy (2018-04), CSV arxiv",
   "url": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
   "sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
-  "yuklangan": "2026-10-17",
+  "yuklangan": "2026-10-19",
   "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun"
  },
  "foods": {
@@ -1632,6 +1632,26 @@
     }
    ]
   },
+  "171952": {
+   "d": "Fish, carp, raw",
+   "f": 5.6,
+   "c": 0.0,
+   "kcal": 127.0,
+   "suv": 76.31,
+   "p": 17.83,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 218.0
+    }
+   ]
+  },
   "171986": {
    "d": "Fish, tuna, light, canned in water, without salt, drained solids",
    "p": 25.51,
@@ -1652,6 +1672,26 @@
     }
    ]
   },
+  "172182": {
+   "d": "Cheese, cottage, lowfat, 2% milkfat",
+   "suv": 81.24,
+   "f": 2.27,
+   "c": 4.76,
+   "kcal": 81.0,
+   "p": 10.45,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "cup (not packed)",
+     "miqdor": 1.0,
+     "g": 226.0
+    }
+   ]
+  },
   "172385": {
    "d": "Chicken, broilers or fryers, thigh, meat and skin, raw",
    "kcal": 221.0,
@@ -1669,6 +1709,46 @@
      "nom": "thigh with skin",
      "miqdor": 1.0,
      "g": 193.0
+    }
+   ]
+  },
+  "172420": {
+   "d": "Lentils, raw",
+   "f": 1.06,
+   "p": 24.63,
+   "c": 63.35,
+   "kcal": 352.0,
+   "suv": 8.26,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 192.0
+    },
+    {
+     "nom": "tablespoon",
+     "miqdor": 1.0,
+     "g": 12.0
+    }
+   ]
+  },
+  "172421": {
+   "d": "Lentils, mature seeds, cooked, boiled, without salt",
+   "c": 20.13,
+   "kcal": 116.0,
+   "p": 9.02,
+   "f": 0.38,
+   "suv": 69.64,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 198.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 12.3
     }
    ]
   },
@@ -2017,6 +2097,26 @@
     }
    ]
   },
+  "174185": {
+   "d": "Fish, carp, cooked, dry heat",
+   "p": 22.86,
+   "f": 7.17,
+   "c": 0.0,
+   "kcal": 162.0,
+   "suv": 69.63,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 170.0
+    }
+   ]
+  },
   "174256": {
    "d": "Mung beans, mature seeds, raw",
    "c": 62.62,
@@ -2279,6 +2379,46 @@
      "nom": "fillet",
      "miqdor": 0.5,
      "g": 178.0
+    }
+   ]
+  },
+  "175202": {
+   "d": "Beans, white, mature seeds, raw",
+   "c": 60.27,
+   "kcal": 333.0,
+   "f": 0.85,
+   "suv": 11.32,
+   "p": 23.36,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 202.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 12.6
+    }
+   ]
+  },
+  "175203": {
+   "d": "Beans, white, mature seeds, cooked, boiled, without salt",
+   "c": 25.09,
+   "kcal": 139.0,
+   "p": 9.73,
+   "f": 0.35,
+   "suv": 63.08,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 179.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 11.2
     }
    ]
   }

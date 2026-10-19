@@ -308,6 +308,49 @@
    },
    "uz": "shakar",
    "ru": "сахар"
+  },
+  "sazan": {
+   "nom": "Sazan (xom, tozalangan)",
+   "usda": 171952,
+   "pishgan": 174185,
+   "yield": {
+    "juft": true,
+    "belgi": "p"
+   },
+   "uz": "sazan",
+   "ru": "карп"
+  },
+  "loviya_oq": {
+   "nom": "Oq loviya (xom)",
+   "usda": 175202,
+   "pishgan": 175203,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "loviya",
+   "ru": "фасоль"
+  },
+  "yasmiq": {
+   "nom": "Yasmiq (xom)",
+   "usda": 172420,
+   "pishgan": 172421,
+   "yield": {
+    "juft": true,
+    "belgi": "kcal"
+   },
+   "uz": "yasmiq",
+   "ru": "чечевица"
+  },
+  "suzma": {
+   "nom": "Suzma/tvorog (2% yog')",
+   "usda": 172182,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "suzma",
+   "ru": "творог"
   }
  }
 }
