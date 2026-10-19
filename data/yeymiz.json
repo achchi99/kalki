@@ -1,27 +1,290 @@
 {
- "v": 1,
- "izoh": "«Bugun nima yeymiz?» va «Boshqa variantlar» uchun guruhlar (qo'lda). Kalit: taom id yoki id#kombinatsiya. Har kalit data/ovqatlar.json da bo'lishi va cheklov tegiga ega bo'lishi shart (test-yeymiz-malumot / test-yeymiz).",
- "chips": [
-  { "id": "kabob", "uz": "Kabob", "ru": "Кебаб" },
-  { "id": "suyuq", "uz": "Suyuq ovqat", "ru": "Суп" },
-  { "id": "tandir", "uz": "Tandir", "ru": "Тандыр" },
-  { "id": "tez", "uz": "Tez tayyor", "ru": "Быстро" },
-  { "id": "baliq", "uz": "Baliq", "ru": "Рыба" }
+ "v": 2,
+ "izoh": "«Bugun nima yeymiz?» ma'lumoti (qo'lda). taom: kalit (id yoki id#kombinatsiya) → {t: yeymiz_toifa (BITTA asosiy teg), s: segmentlar K=Kafe va choyxonada, B=Buyurtma}; TARTIB = mashhurlik tartibi (statistika yo'q, qo'lda). Tegsiz taom hech qaysi chipga tushmaydi. «Baliq» chipi: t=baliq taomlari + `baliq` ro'yxati (baliq shashlik/sho'rva o'z toifasida ham chiqadi). uyda: toifa → data/uyda.json retsept id'lari. manba_toifa: «O'rniga» manbasi bo'lgan asl taom qaysi toifa guruhiga yaqin (FAQAT «Boshqa variantlar» uchun; chipga taom qo'shmaydi).",
+ "toifalar": {
+  "kabob": {
+   "qidiruv": {
+    "uz": "shashlik",
+    "ru": "шашлык"
+   },
+   "ikon": "six"
+  },
+  "suyuq": {
+   "qidiruv": {
+    "uz": "sho'rva",
+    "ru": "суп"
+   },
+   "ikon": "kosa"
+  },
+  "tandir": {
+   "qidiruv": {
+    "uz": "somsa",
+    "ru": "самса"
+   },
+   "ikon": "tandir"
+  },
+  "tez": {
+   "qidiruv": {
+    "uz": "lavash",
+    "ru": "лаваш"
+   },
+   "ikon": "lavash"
+  },
+  "baliq": {
+   "qidiruv": {
+    "uz": "baliq",
+    "ru": "рыба"
+   },
+   "ikon": "baliq"
+  }
+ },
+ "taom": {
+  "kafe-tovuq-shashlik": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-qoy-shashlik": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-lyulya": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-mol-shashlik": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-tovuq-qanot": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-jigar-kabob": {
+   "t": "kabob",
+   "s": "K"
+  },
+  "kafe-jiz": {
+   "t": "kabob",
+   "s": "K"
+  },
+  "kafe-qovurga": {
+   "t": "kabob",
+   "s": "K"
+  },
+  "kafe-baliq-shashlik": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "kafe-sabzavot-shashlik": {
+   "t": "kabob",
+   "s": "K"
+  },
+  "kafe-shurva": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-mastava": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-lagmon-qoy": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-moshxorda": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-chuchvara-shorva": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-tovuq-shurva": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "kafe-lagmon-tovuq": {
+   "t": "suyuq",
+   "s": "K"
+  },
+  "kafe-kartoshka-shurva": {
+   "t": "suyuq",
+   "s": "K"
+  },
+  "kafe-baliq-shurva": {
+   "t": "suyuq",
+   "s": "KB"
+  },
+  "tandir-gosht": {
+   "t": "tandir",
+   "s": "KB"
+  },
+  "kafe-tandir-tovuq": {
+   "t": "tandir",
+   "s": "KB"
+  },
+  "somsa#oddiy.yogli": {
+   "t": "tandir",
+   "s": "KB"
+  },
+  "somsa#oddiy.tovuq": {
+   "t": "tandir",
+   "s": "KB"
+  },
+  "somsa#oddiy.qovoq": {
+   "t": "tandir",
+   "s": "KB"
+  },
+  "kafe-tandir-kabob": {
+   "t": "tandir",
+   "s": "K"
+  },
+  "lavash-tovuq#tovuq": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "lavash-tovuq#mol": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "burger#oddiy": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "doner": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "hotdog-mol": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "hotdog-tovuq": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "sendvich": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "qoymoq": {
+   "t": "tez",
+   "s": "K"
+  },
+  "tuxum#qovurilgan": {
+   "t": "tez",
+   "s": "K"
+  },
+  "omlet-sabzavot": {
+   "t": "tez",
+   "s": "K"
+  },
+  "kafe-sazan-qovurma": {
+   "t": "baliq",
+   "s": "KB"
+  },
+  "kafe-losos-steyk": {
+   "t": "baliq",
+   "s": "KB"
+  }
+ },
+ "baliq": [
+  "kafe-sazan-qovurma",
+  "kafe-baliq-shashlik",
+  "kafe-losos-steyk",
+  "kafe-baliq-shurva"
  ],
- "guruh": {
-  "kabob": ["kafe-tovuq-shashlik", "kafe-kabob", "kafe-lyulya", "kafe-tovuq-son-grill", "shashlik#tovuq", "shashlik#gosht", "tovuq-son", "kurka", "tovuq-kokrak", "lyulya", "qozon-kabob", "jigar-kabob"],
-  "suyuq": ["kafe-lagmon-tovuq", "lagmon#shorvali.tovuq", "lagmon#shorvali.mol", "shurva#qaynatma", "shurva#odatiy", "mastava", "loviya-shurva", "yasmiq-shurva", "moshxorda-gostsiz", "moshkichiri", "kafe-baliq-shurva", "baliq-shurva"],
-  "tandir": ["tandir-gosht", "somsa#oddiy.tovuq", "somsa#oddiy.yogsiz", "somsa#oddiy.yogli", "somsa#oddiy.qovoq", "kafe-tovuq-son-grill", "kafe-tovuq-shashlik", "kafe-kabob"],
-  "tez": ["omlet-sabzavot", "qoymoq", "suzma-salat", "qatiq-salat", "tovuq-kokrak", "lavash-tovuq#tovuq", "sendvich", "tuxum#qaynatilgan"]
+ "uyda": {
+  "kabob": [
+   "tovuq-shashlik",
+   "lyulya"
+  ],
+  "suyuq": [
+   "mastava",
+   "tovuq-shurva",
+   "moshxorda"
+  ],
+  "tandir": [
+   "tovuq-duxovka",
+   "qoy-duxovka"
+  ],
+  "tez": [
+   "lavash",
+   "omlet",
+   "qoymoq"
+  ],
+  "baliq": [
+   "tovada",
+   "duxovka",
+   "grill"
+  ]
  },
- "birinchi": { "kabob": "kafe-tovuq-shashlik" },
+ "birinchi": {
+  "kabob": "kafe-tovuq-shashlik"
+ },
  "birlik": {
-  "somsa#oddiy.tovuq": { "u": "dona", "n": 2 }, "somsa#oddiy.yogsiz": { "u": "dona", "n": 2 }, "somsa#oddiy.yogli": { "u": "dona", "n": 2 }, "somsa#oddiy.qovoq": { "u": "dona", "n": 2 },
-  "tuxum#qaynatilgan": { "u": "dona", "n": 2 }, "tovuq-son": { "u": "porsiya", "n": 1 }
+  "somsa#oddiy.yogli": {
+   "u": "dona",
+   "n": 2
+  },
+  "somsa#oddiy.tovuq": {
+   "u": "dona",
+   "n": 2
+  },
+  "somsa#oddiy.qovoq": {
+   "u": "dona",
+   "n": 2
+  },
+  "tuxum#qovurilgan": {
+   "u": "dona",
+   "n": 2
+  }
  },
- "baliq": {
-  "kafe": ["kafe-sazan-qovurma", "kafe-baliq-shashlik", "kafe-losos-steyk", "kafe-baliq-shurva"],
-  "uyda": ["tovada", "duxovka", "grill"]
+ "chegara": {
+  "oqsil": 10,
+  "yengil": 0.8
  },
- "kun": { "standart": 3, "nomlar": { "uz": ["Du", "Se", "Chor", "Pay", "Ju", "Sha", "Ya"], "ru": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"] } }
+ "kun": {
+  "standart": 3,
+  "nomlar": {
+   "uz": [
+    "Du",
+    "Se",
+    "Chor",
+    "Pay",
+    "Ju",
+    "Sha",
+    "Ya"
+   ],
+   "ru": [
+    "Пн",
+    "Вт",
+    "Ср",
+    "Чт",
+    "Пт",
+    "Сб",
+    "Вс"
+   ]
+  }
+ },
+ "manba_toifa": {
+  "shashlik": "kabob",
+  "lyulya": "kabob",
+  "jigar-kabob": "kabob",
+  "tovuq-qanot": "kabob",
+  "qozon-kabob": "kabob",
+  "jiz": "kabob",
+  "shurva": "suyuq",
+  "mastava": "suyuq",
+  "lagmon": "suyuq",
+  "moshxorda": "suyuq",
+  "chuchvara": "suyuq",
+  "tandir-gosht": "tandir",
+  "somsa": "tandir",
+  "doner": "tez",
+  "burger": "tez",
+  "hotdog": "tez",
+  "chebureki": "tez",
+  "belyashi": "tez"
+ }
 }

@@ -404,3 +404,20 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 .rz .sl-fwb{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px}.rz .sl-fwb .rz-btn{flex:1;min-width:140px}
 .rz .sl-stps{margin:4px 0 8px;padding-left:22px}.rz .sl-stps li{margin:0 0 8px;line-height:1.45;font-size:var(--t-s)}
 .rz .sl-obyl{display:block;margin:12px auto 0;min-height:44px}
+/* ---- 2.1: umumiy «Bugun nima yeymiz?» oynasi ---- */
+.rz .sl-yh{display:flex;align-items:center;gap:8px;margin:0 0 6px;min-height:44px}.rz .sl-yh .sl-fwt{flex:1;margin:0;min-width:0}.rz .sl-yh .rz-x{flex:none}
+.rz .sl-ye-chips.sc{flex-wrap:nowrap;overflow-x:auto;padding:0 0 2px;margin:2px 0 10px;scrollbar-width:none;touch-action:pan-x}.rz .sl-ye-chips.sc .rz-chip{flex:none}
+.rz .sl-segs3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 12px}
+.rz .sl-segs3 button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:60px;padding:6px 4px;border:0;border-radius:14px;background:var(--soft);color:var(--ink);font:600 var(--t-lbl) 'Manrope',sans-serif;line-height:1.2;text-align:center}
+.rz .sl-segs3 button .rz-i{width:22px;height:22px;color:var(--acc2)}.rz .sl-segs3 button.on{background:var(--fill);color:var(--onacc)}.rz .sl-segs3 button.on .rz-i{color:var(--onacc)}
+.rz .sl-fls{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}.rz .sl-fl{font-size:var(--t-lbl);font-weight:600;line-height:1;padding:3px 7px;border-radius:8px;background:var(--soft);color:var(--ink)}.rz .sl-fl.o{background:var(--accsoft);color:var(--accink)}
+.rz .sl-osh{font-size:var(--t-lbl);color:var(--mut);font-weight:400}
+.rz .sl-ymore{display:block;margin:6px auto 0;min-height:44px}
+.rz .sl-ybody{min-height:120px}
+.rz .sl-tile.sl-ti2{background:var(--accsoft);color:var(--acc2)}.rz .sl-tile.sl-ti2 .rz-i{width:55%;height:55%}
+/* tuzatishlar: hazil/suv qatori qirqilmaydi; Profil/Tarixda FAB va toast oxirgi qatorlarni yopmaydi */
+.rz .sl-jline{display:block;-webkit-line-clamp:unset;-webkit-box-orient:initial;overflow:visible;text-overflow:clip;white-space:normal}
+.rz.sl:not([data-view=today]) .rz-main{padding-bottom:calc(220px + env(safe-area-inset-bottom,0px))}
+.rz.sl .rz-toast{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+/* flex-ustundagi (.rz-main) elementlar hech qachon qisilmaydi — hazil/suv qatorlari, kartalar to'liq balandligida (iOS'da qirqilish sababi shu edi) */
+.rz.sl .rz-main>*{flex-shrink:0}

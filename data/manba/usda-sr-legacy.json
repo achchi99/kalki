@@ -492,6 +492,51 @@
     }
    ]
   },
+  "169251": {
+   "d": "Mushrooms, white, raw",
+   "f": 0.34,
+   "p": 3.09,
+   "c": 3.26,
+   "kcal": 22.0,
+   "suv": 92.45,
+   "o": [
+    {
+     "nom": "cup, pieces or slices",
+     "miqdor": 1.0,
+     "g": 70.0
+    },
+    {
+     "nom": "cup, whole",
+     "miqdor": 1.0,
+     "g": 96.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 23.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 18.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 6.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 10.0
+    },
+    {
+     "nom": "cup pieces",
+     "miqdor": 0.5,
+     "g": 35.0
+    }
+   ]
+  },
   "169276": {
    "d": "Radishes, raw",
    "c": 3.4,
@@ -529,6 +574,21 @@
      "nom": "cup slices",
      "miqdor": 0.5,
      "g": 58.0
+    }
+   ]
+  },
+  "169451": {
+   "d": "Beef, variety meats and by-products, liver, raw",
+   "suv": 70.81,
+   "f": 3.63,
+   "p": 20.36,
+   "c": 3.89,
+   "kcal": 135.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
     }
    ]
   },
@@ -1242,6 +1302,26 @@
     }
    ]
   },
+  "170636": {
+   "d": "Beef, round, tip round, roast, separable lean only, trimmed to 0\" fat, choice, cooked, roasted",
+   "f": 6.42,
+   "suv": 65.62,
+   "p": 27.68,
+   "c": 0.0,
+   "kcal": 176.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "roast (yield from 1405 g raw meat)",
+     "miqdor": 1.0,
+     "g": 1138.0
+    }
+   ]
+  },
   "170686": {
    "d": "Buckwheat groats, roasted, cooked",
    "f": 0.62,
@@ -1467,6 +1547,61 @@
     }
    ]
   },
+  "171447": {
+   "d": "Chicken, broilers or fryers, meat and skin, raw",
+   "p": 18.6,
+   "f": 15.06,
+   "c": 0.0,
+   "kcal": 215.0,
+   "suv": 65.99,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "unit (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 1.0,
+     "g": 276.0
+    },
+    {
+     "nom": "chicken, bone removed",
+     "miqdor": 0.5,
+     "g": 460.0
+    }
+   ]
+  },
+  "171450": {
+   "d": "Chicken, broilers or fryers, meat and skin, cooked, roasted",
+   "f": 13.6,
+   "c": 0.0,
+   "kcal": 239.0,
+   "suv": 59.45,
+   "p": 27.3,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "cup, chopped or diced",
+     "miqdor": 1.0,
+     "g": 140.0
+    },
+    {
+     "nom": "unit (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 0.5,
+     "g": 178.0
+    },
+    {
+     "nom": "chicken, bone removed",
+     "miqdor": 0.0,
+     "g": 299.0
+    }
+   ]
+  },
   "171477": {
    "d": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
    "f": 3.57,
@@ -1514,6 +1649,26 @@
      "nom": "breast, bone and skin removed",
      "miqdor": 0.5,
      "g": 95.0
+    }
+   ]
+  },
+  "171624": {
+   "d": "Frankfurter, chicken",
+   "c": 2.74,
+   "kcal": 223.0,
+   "suv": 62.5,
+   "f": 16.19,
+   "p": 15.51,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "link",
+     "miqdor": 1.0,
+     "g": 45.0
     }
    ]
   },
@@ -1744,6 +1899,31 @@
      "nom": "thigh with skin",
      "miqdor": 1.0,
      "g": 193.0
+    }
+   ]
+  },
+  "172390": {
+   "d": "Chicken, broilers or fryers, wing, meat and skin, raw",
+   "p": 17.52,
+   "kcal": 191.0,
+   "suv": 69.19,
+   "c": 0.0,
+   "f": 12.85,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "piece",
+     "miqdor": 1.0,
+     "g": 107.0
+    },
+    {
+     "nom": "package",
+     "miqdor": 1.0,
+     "g": 1150.0
     }
    ]
   },
@@ -2047,6 +2227,26 @@
     }
    ]
   },
+  "173630": {
+   "d": "Chicken, broilers or fryers, wing, meat and skin, cooked, roasted",
+   "f": 16.87,
+   "kcal": 254.0,
+   "suv": 59.4,
+   "p": 23.79,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "piece",
+     "miqdor": 1.0,
+     "g": 85.0
+    }
+   ]
+  },
   "173756": {
    "d": "Chickpeas (garbanzo beans, bengal gram), mature seeds, raw",
    "c": 62.95,
@@ -2282,6 +2482,66 @@
     }
    ]
   },
+  "174321": {
+   "d": "Lamb, rib, separable lean and fat, trimmed to 1/4\" fat, choice, raw",
+   "p": 14.52,
+   "f": 34.39,
+   "c": 0.0,
+   "kcal": 372.0,
+   "suv": 50.8,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "174323": {
+   "d": "Lamb, rib, separable lean and fat, trimmed to 1/4\" fat, choice, cooked, roasted",
+   "p": 21.12,
+   "f": 29.82,
+   "c": 0.0,
+   "kcal": 359.0,
+   "suv": 47.89,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "piece, cooked, excluding refuse (yield from 1 lb raw meat with refuse)",
+     "miqdor": 1.0,
+     "g": 255.0
+    }
+   ]
+  },
+  "174614": {
+   "d": "Frankfurter, beef, heated",
+   "f": 29.36,
+   "c": 2.66,
+   "kcal": 322.0,
+   "suv": 53.5,
+   "p": 11.69,
+   "o": [
+    {
+     "nom": "frankfurter",
+     "miqdor": 1.0,
+     "g": 48.0
+    },
+    {
+     "nom": "package",
+     "miqdor": 1.0,
+     "g": 451.0
+    }
+   ]
+  },
   "174683": {
    "d": "Grapes, red or green (European type, such as Thompson seedless), raw",
    "suv": 80.54,
@@ -2349,6 +2609,66 @@
      "nom": "drink, extra large (44 fl oz)",
      "miqdor": 1.0,
      "g": 1353.0
+    }
+   ]
+  },
+  "174924": {
+   "d": "Bread, white, commercially prepared (includes soft bread crumbs)",
+   "f": 3.33,
+   "c": 49.42,
+   "kcal": 266.0,
+   "suv": 36.42,
+   "p": 8.85,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 29.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cup, crumbs",
+     "miqdor": 1.0,
+     "g": 45.0
+    },
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 35.0
+    },
+    {
+     "nom": "slice, large",
+     "miqdor": 1.0,
+     "g": 30.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 25.0
+    },
+    {
+     "nom": "slice crust not eaten",
+     "miqdor": 1.0,
+     "g": 12.0
+    },
+    {
+     "nom": "slice, thin",
+     "miqdor": 1.0,
+     "g": 20.0
+    },
+    {
+     "nom": "slice thin, crust not eaten",
+     "miqdor": 1.0,
+     "g": 9.0
+    },
+    {
+     "nom": "slice, very thin",
+     "miqdor": 1.0,
+     "g": 15.0
     }
    ]
   },

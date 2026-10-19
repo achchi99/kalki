@@ -7,7 +7,7 @@
 const fs = require('fs'), path = require('path');
 const R = (p) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
 const TEGLAR = ['baliq', 'tuxum', 'sut', 'yongoq', 'glyuten', 'choshqa'];
-const MASALLIQ_TEG = { un: ['glyuten'], tuxum: ['tuxum'], sut: ['sut'], qatiq: ['sut'], suzma: ['sut'], sariyog: ['sut'], sazan: ['baliq'], losos: ['baliq'] };
+const MASALLIQ_TEG = { un: ['glyuten'], tuxum: ['tuxum'], sut: ['sut'], qatiq: ['sut'], suzma: ['sut'], sariyog: ['sut'], sazan: ['baliq'], losos: ['baliq'], bulka: ['glyuten'] };
 const L = (s) => s.split(/\s+/).filter(Boolean);
 const QOLDA = {
   baliq: L('losos tunets treska baliq-qov krevetka sardina qaynatma-baliq'),

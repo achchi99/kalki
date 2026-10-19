@@ -10,7 +10,7 @@ zp = sys.argv[1] if len(sys.argv) > 1 else sys.exit(__doc__)
 mas = json.load(open(os.path.join(ROOT, 'data', 'baza-masalliq.json'), encoding='utf8'))
 ids = set()
 for v in mas['masalliq'].values():
-    for k in ('usda', 'pishgan'):
+    for k in ('usda', 'pishgan', 'xom_usda'):
         if v.get(k): ids.add(str(v[k]))
 od = json.load(open(os.path.join(ROOT, 'data', 'baza-oddiy.json'), encoding='utf8'))
 for v in od['oddiy'].values():

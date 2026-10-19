@@ -1,6 +1,6 @@
 # 2.1-bosqich: «Bugun nima yeymiz?» — taomlar jadvali (TASDIQ UCHUN)
 
-Holat: **taklif**. Hali bazaga/interfeysga qo'shilmagan (hisoblash sinovi bajarilgan, o'zgarishlar qaytarilgan; tasdiqdan keyin qo'llanadi). Raqamlar `tools/baza-hisob.js` bilan USDA SR Legacy (fdc_id) + Скурихин jadvalidan retsept bo'yicha hisoblangan; qo'lda raqam yozilmagan. Hammasi «taxminiy», ±15% Atwater tekshiruvidan o'tgan (eng katta chetlanish: sabzavot shashlik +6%). Cho'chqa yo'q; har yangi taomga cheklov tegi avtomatik (retsept masalliqlaridan).
+Holat: **tasdiqlangan va qo'llangan** (2.1). Tasdiq tuzatishlari pastdagi «2.1 yakuniy tuzatishlar» bo'limida. Raqamlar `tools/baza-hisob.js` bilan USDA SR Legacy (fdc_id) + Скурихин jadvalidan retsept bo'yicha hisoblangan; qo'lda raqam yozilmagan. Hammasi «taxminiy», ±15% Atwater tekshiruvidan o'tgan (eng katta chetlanish: sabzavot shashlik +6%). Cho'chqa yo'q; har yangi taomga cheklov tegi avtomatik (retsept masalliqlaridan).
 
 ## Qoidalar (tasdiqlansa)
 - **`yeymiz_toifa`** — har taomda BITTA asosiy teg: `kabob | suyuq | tandir | tez`. Tegsiz taom hech qaysi chipga tushmaydi. «Baliq» chipi — alohida teg emas: oqsil manbasi tegi `baliq` bo'lgan taomlar (baliq shashlik va baliq sho'rva o'z toifasida ham chiqadi). «Tovuq ko'kragi (pishgan)», «Jigar» kabi oddiy mahsulotlar toifasiz — hech qayerda chiqmaydi.
@@ -88,3 +88,20 @@ Mol jigari 169451 → 168626 · Qo'y qovurg'asi (go'sht+yog') 174321 → 174323 
 ## 8. Rasm: toifa ikonkasi kerak bo'ladigan taomlar
 Hozirgi rasm to'plami (30+ ta WebP) bilan mos keladigan rasmga ega: shashlik/lyulya/jigar/tandir kabob/qo'y-mol shashlik (shashlik), qanot/tandir tovuq (tovuq), sho'rvalar (shorva, mastava, moshxorda, chuchvara, lagmon), lavash/doner, burger, somsa, tuxum/omlet, qozon kabob, choyxona oshi.
 **Rasmi yo'q (ikonkali yumshoq fon):** Qo'zi qovurg'a, Sabzavot shashlik, Kartoshka sho'rva, Tandir go'sht, Sendvich, Quymoq, Duxovkada tovuq, Duxovkada qo'y go'shti, va barcha baliq taomlari (Qovurilgan sazan, Losos steyk, Grilda/Duxovkada/Tovada sazan). Ikonkalar: six (kabob), kosa (suyuq), tandir, lavash, baliq.
+
+## 2.1 yakuniy tuzatishlar (tasdiq bilan)
+Muammo: eski usulda xom USDA yozuvi olinib, faqat massa pishgan vazngacha kamaytirilgan (yog' «tomib ketmagan») — yog'li go'shtlarda kkal oshib ketgan (qovurg'a 511, tandir tovuq 332 kkal/100 g). Yangi go'shtli masalliqlar **PISHGAN USDA yozuvi** bilan (gramm = likopdagi pishgan vazn); xom vazn faqat «Uyda» xarid ro'yxati uchun (`xom_usda`, oqsil saqlanish qoidasi).
+| Taom | Avval | Endi (100 g) | Porsiya | kkal | USDA (pishgan) |
+|---|---|---|---|---|---|
+| Qo'zi qovurg'a | 511 | **359** | 150 g | **539** | 174323 (rib, lean+fat, roasted); xom 174321 |
+| Tandir tovuq | 332 | **239** | 300 g | **717** | 171450 (meat and skin, roasted); xom 171447 |
+| Qo'y shashlik / Tandir kabob | 264 / 289 | 269 / 282 | 240 g | 646 / 677 | 174308 (lean cooked) + dumba |
+| Mol shashlik | 242 | 213 | 240 g | 511 | 170636 (tip round roast, lean, roasted) |
+| Tovuq qanoti | 299 | 269 | 200 g | 538 | 173630 (wing, meat and skin, roasted) |
+| Jigar kabob | 271 | 257 | 180 g | 463 | 168627 (liver, pan-fried) + dumba |
+| **Jiz (choyxona)** — yangi | | 268 | likop 300 g | 804 | 174308 + 168627 + dumba + piyoz |
+| **Hot-dog (mol sosiska)** — yangi | | 295 | 1 dona 115 g | 339 | 174614 (Frankfurter, beef, heated) + 174924 (oq non) |
+| **Hot-dog (tovuq sosiska)** — yangi | | 245 | 1 dona 110 g | 270 | 171624 (Frankfurter, chicken) + 174924 |
+Hot-dog sous/ketchupsiz; sosiska tarkibi ishlab chiqaruvchiga qarab farq qiladi (ⓘ Manba'da yozilgan). Cho'chqa tegi YO'Q (tekshiruv: `test-yeymiz-malumot`); mavjud «Sosiska» va «Hot-dog» (cho'chqa tegli) tegilmagan.
+«Jaz/kuskovoy» o'rniga **Jiz** (Скурихин/USDA asosida retsept tuzilgan); Qozon kabob kabob chipidan chiqarildi (shashlik emas).
+«Oqsilga boy» chegarasi: oqsil/kkal ≥ **10** g/100 kkal (12 emas — mol shashlik va tandir tovuq ham kirsin).

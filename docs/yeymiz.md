@@ -5,8 +5,8 @@ Kirish nuqtalari faqat IKKITA (yangi menyu/tab yo'q): **«Boshqa variantlar»** 
 | Qism | Qayerda |
 |---|---|
 | Cheklov filtri (cho'chqa hech qachon) | `assets/cheklov-core.js`, `data/cheklov-teglar.json` (`tools/cheklov-teglar.js --yoz`) |
-| Takliflar, Boshqa variantlar, kafe baliq | `assets/yeymiz-core.js`, `data/yeymiz.json` (guruhlar qo'lda) |
-| Uyda baliq retseptlari, kishi soni, xarid ro'yxati | `data/baliq-uy.json` (`tools/baliq-uy-yasa.js --yoz`), `assets/baliq-uy-core.js` |
+| Takliflar (toifa tegi, segment, tartib, belgilar), Boshqa variantlar | `assets/yeymiz-core.js`, `data/yeymiz.json` (qo'lda; taomlar: `docs/yeymiz-taomlar.md`) |
+| «Uyda» retseptlari (har toifada 2–3 ta), kishi soni, xarid ro'yxati (xom vazn) | `data/uyda.json` (`tools/uyda-yasa.js --yoz`), `assets/uyda-core.js` |
 | Interfeys (karta, oynalar, Profil, onboarding) | `assets/kalkifit-yeymiz.js` (+ ulash: `kalkifit-app.js` `Y.*`), `assets/css/kalkifit.css` oxiri |
 | Yetkazish havolalari | `assets/partners.json` (kategoriya `yetkazish`; Uzum Tezkor, Yandex Eda faol; Express24 — Yandex Eda'ga qo'shilgan, nofaol) |
 | Anonim hisoblagichlar | `assets/hisob-kun.js` (navbat), `functions/api/hisob.js`, `migrations/hisob.sql`, `tools/hisob-hisobot.js` |
@@ -19,9 +19,12 @@ Kirish nuqtalari faqat IKKITA (yangi menyu/tab yo'q): **«Boshqa variantlar»** 
 - UTM/hamkor maydoni hozircha bo'sh (`append_utm: false`).
 
 ## Hisoblagichlar (anonim)
-Faqat `kun + hodisa + son` (D1 `hisob_kun`). Hodisalar: `orinbosar_korsatildi`, `orinbosar_tanlandi`, `baliq_oyna_ochildi`, `baliq_buyurtma_bosildi[.xizmat]`, `baliq_kafe_yozildi`, `baliq_uyda_ochildi`, `yeymiz_ochildi`, `yeymiz_tanlandi`. Foydalanuvchi id, IP, qurilma, taom nomi, kkal, cookie YO'Q; Do Not Track'da hisoblanmaydi; xatoda jim. Hisobot: `node tools/hisob-hisobot.js --muhit preview|production [--kun 30]` (parol `~/.kalkifit-admin-pass`).
+Faqat `kun + hodisa + son` (D1 `hisob_kun`). Hodisalar: `orinbosar_korsatildi`, `orinbosar_tanlandi`, `baliq_oyna_ochildi`, `baliq_buyurtma_bosildi[.xizmat]`, `baliq_kafe_yozildi`, `baliq_uyda_ochildi`, `yeymiz_ochildi`, `yeymiz_tanlandi`, `yeymiz_buyurtma_bosildi[.xizmat]`, `yeymiz_uyda_ochildi` (2.1). Foydalanuvchi id, IP, qurilma, taom nomi, kkal, cookie YO'Q; Do Not Track'da hisoblanmaydi; xatoda jim. Hisobot: `node tools/hisob-hisobot.js --muhit preview|production [--kun 30]` (parol `~/.kalkifit-admin-pass`).
 
 ## Production'ga chiqarishda (bir marta)
 1. D1 (production `kalkifit`): `migrations/hisob.sql` va `migrations/push-yeymiz.sql` (ikkinchisi bir marta). Preview'da bajarilgan.
 2. Hetzner cron: `0 6 * * 4` → `0 6 * * *` (har kuni; `tools/push-yubor.js` o'zi faqat bugungi kuni bo'lgan va baliqsiz bo'lmaganlarga yuboradi).
 3. `data/yangiliklar-kalkifit.json` ga yangi yozuv (ko'rinadigan reliz).
+
+## 2.1: umumiy oyna
+Har chip (Kabob, Suyuq ovqat, Tandir, Tez tayyor, Baliq) bitta oynani ochadi: 3 segment — **Kafe va choyxonada · Buyurtma · Uyda**. Birlamchi segment: 18:00 dan keyin yoki shanba/yakshanba — Kafe; boshqa paytda oxirgi tanlangani (`localStorage kalki_fit_yseg`, try/catch). Buyurtma: tugma bosilganda qidiruv so'zi (`shashlik`, `sho'rva`, `somsa`, `lavash`, `baliq`) buferga nusxalanadi. Birinchi 5 ta + «Yana ko'rsatish». «Qo'shish» joriy vaqtga qarab ovqat vaqtini tanlaydi va toast'da ko'rsatadi. «Baliq yoqtirmayman» / «Boshqa kun» faqat Baliq chipida. `yeymiz_toifa` — `data/yeymiz.json` `taom[*].t` (tegsiz taom hech qaysi chipga tushmaydi).

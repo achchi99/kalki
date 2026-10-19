@@ -2422,6 +2422,490 @@
    ],
    "rc": "sazan-duxovka",
    "ub": "likop"
+  },
+  {
+   "i": "kafe-qoy-shashlik",
+   "n": "Qo'y shashlik (choyxona)",
+   "r": "Шашлык из баранины (чайхана)",
+   "a": [
+    "qo'y shashlik",
+    "шашлык баранина",
+    "qoy shashlik choyxona"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     80
+    ],
+    [
+     "porsiya",
+     240
+    ]
+   ],
+   "rc": "kafe-qoy-shashlik",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-mol-shashlik",
+   "n": "Mol shashlik (choyxona)",
+   "r": "Шашлык из говядины (чайхана)",
+   "a": [
+    "mol shashlik",
+    "шашлык говядина"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     80
+    ],
+    [
+     "porsiya",
+     240
+    ]
+   ],
+   "rc": "kafe-mol-shashlik",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tovuq-qanot",
+   "n": "Tovuq qanoti grilda (choyxona)",
+   "r": "Куриные крылья на гриле (чайхана)",
+   "a": [
+    "tovuq qanoti grilda",
+    "qanot kabob",
+    "крылья гриль"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "dona",
+     40
+    ],
+    [
+     "porsiya",
+     200
+    ]
+   ],
+   "rc": "kafe-tovuq-qanot",
+   "ub": "dona",
+   "kf": 1
+  },
+  {
+   "i": "kafe-jigar-kabob",
+   "n": "Jigar kabob (choyxona)",
+   "r": "Кебаб из печени (чайхана)",
+   "a": [
+    "jigar kabob choyxona",
+    "печёночный кебаб"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     60
+    ],
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "kafe-jigar-kabob",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-qovurga",
+   "n": "Qo'zi qovurg'a grilda (choyxona)",
+   "r": "Бараньи рёбрышки на гриле (чайхана)",
+   "a": [
+    "qovurg'a",
+    "qovurga",
+    "qo'zi qovurg'a",
+    "рёбрышки"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     150
+    ]
+   ],
+   "rc": "kafe-qovurga",
+   "ub": "porsiya",
+   "kf": 1
+  },
+  {
+   "i": "kafe-sabzavot-shashlik",
+   "n": "Sabzavot shashlik (qo'ziqorin, baqlajon, qalampir)",
+   "r": "Овощной шашлык (грибы, баклажан, перец)",
+   "a": [
+    "sabzavot shashlik",
+    "qo'ziqorin shashlik",
+    "овощной шашлык"
+   ],
+   "t": "v",
+   "u": [
+    [
+     "six",
+     80
+    ],
+    [
+     "porsiya",
+     240
+    ]
+   ],
+   "rc": "kafe-sabzavot-shashlik",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tandir-tovuq",
+   "n": "Tandir tovuq (choyxona, yarim tovuq)",
+   "r": "Тандыр-курица (чайхана, половина)",
+   "a": [
+    "tandir tovuq",
+    "тандыр курица"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "kafe-tandir-tovuq",
+   "ub": "porsiya",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tandir-kabob",
+   "n": "Tandir kabob (qo'y, choyxona)",
+   "r": "Тандыр-кебаб (баранина, чайхана)",
+   "a": [
+    "tandir kabob",
+    "тандыр кебаб"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     80
+    ],
+    [
+     "porsiya",
+     240
+    ]
+   ],
+   "rc": "kafe-tandir-kabob",
+   "ub": "six",
+   "kf": 1
+  },
+  {
+   "i": "kafe-shurva",
+   "n": "Sho'rva (qo'y, choyxona)",
+   "r": "Шурпа (баранина, чайхана)",
+   "a": [
+    "sho'rva choyxona",
+    "shurva kafe",
+    "шурпа чайхана"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-shurva",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-mastava",
+   "n": "Mastava (kafe)",
+   "r": "Мастава (кафе)",
+   "a": [
+    "mastava kafe",
+    "мастава кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-mastava",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-moshxorda",
+   "n": "Moshxo'rda (kafe)",
+   "r": "Мошхурда (кафе)",
+   "a": [
+    "moshxo'rda kafe",
+    "мошхурда кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-moshxorda",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-chuchvara-shorva",
+   "n": "Chuchvara sho'rva (kafe)",
+   "r": "Пельмени в бульоне (кафе)",
+   "a": [
+    "chuchvara sho'rva",
+    "пельмени в бульоне кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "kafe-chuchvara-shorva",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-lagmon-qoy",
+   "n": "Lag'mon suyuq (qo'y, kafe)",
+   "r": "Лагман суповой (баранина, кафе)",
+   "a": [
+    "lag'mon qo'y kafe",
+    "лагман кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-lagmon-qoy",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-tovuq-shurva",
+   "n": "Tovuq sho'rva (kafe)",
+   "r": "Куриный суп (кафе)",
+   "a": [
+    "tovuq sho'rva kafe",
+    "куриный суп кафе"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "kafe-tovuq-shurva",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "kafe-kartoshka-shurva",
+   "n": "Kartoshka sho'rva (kafe)",
+   "r": "Картофельный суп (кафе)",
+   "a": [
+    "kartoshka sho'rva",
+    "картофельный суп"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     450
+    ]
+   ],
+   "rc": "kafe-kartoshka-shurva",
+   "ub": "kosa",
+   "kf": 1
+  },
+  {
+   "i": "uy-tovuq-shashlik",
+   "n": "Tovuq shashlik (uyda, duxovka)",
+   "r": "Куриный шашлык (дома, духовка)",
+   "a": [
+    "tovuq shashlik uyda"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "six",
+     90
+    ],
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "uy-tovuq-shashlik",
+   "ub": "six"
+  },
+  {
+   "i": "uy-lyulya",
+   "n": "Lyulya kabob (uyda, duxovka)",
+   "r": "Люля-кебаб (дома, духовка)",
+   "a": [
+    "lyulya uyda"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "dona",
+     90
+    ],
+    [
+     "porsiya",
+     180
+    ]
+   ],
+   "rc": "uy-lyulya",
+   "ub": "dona"
+  },
+  {
+   "i": "uy-tovuq-shurva",
+   "n": "Tovuq sho'rva (uyda)",
+   "r": "Куриный суп (дома)",
+   "a": [
+    "tovuq sho'rva uyda"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     350
+    ]
+   ],
+   "rc": "uy-tovuq-shurva",
+   "ub": "kosa"
+  },
+  {
+   "i": "uy-tovuq-duxovka",
+   "n": "Duxovkada tovuq (kartoshka bilan)",
+   "r": "Курица в духовке с картофелем",
+   "a": [
+    "duxovkada tovuq"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "uy-tovuq-duxovka",
+   "ub": "likop"
+  },
+  {
+   "i": "uy-qoy-duxovka",
+   "n": "Duxovkada qo'y go'shti (sabzavot bilan)",
+   "r": "Баранина в духовке с овощами",
+   "a": [
+    "duxovkada qo'y go'shti"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "uy-qoy-duxovka",
+   "ub": "likop"
+  },
+  {
+   "i": "uy-lavash-tovuq",
+   "n": "Tovuq lavash (uyda)",
+   "r": "Куриный лаваш (дома)",
+   "a": [
+    "uy lavashi",
+    "tovuq lavash uyda"
+   ],
+   "t": "q",
+   "u": [
+    [
+     "dona",
+     280
+    ]
+   ],
+   "rc": "uy-lavash-tovuq",
+   "ub": "dona"
+  },
+  {
+   "i": "kafe-jiz",
+   "n": "Jiz (choyxona, qovurma go'sht va jigar)",
+   "r": "Жиз (чайхана, жареное мясо с печенью)",
+   "a": [
+    "jiz choyxona",
+    "jiz kafe",
+    "жиз чайхана"
+   ],
+   "t": "m",
+   "u": [
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "kafe-jiz",
+   "ub": "likop",
+   "kf": 1
+  },
+  {
+   "i": "hotdog-mol",
+   "n": "Hot-dog (mol sosiska)",
+   "r": "Хот-дог (говяжья сосиска)",
+   "a": [
+    "hotdog mol",
+    "hot dog mol sosiska",
+    "хот-дог говяжья сосиска"
+   ],
+   "t": "q",
+   "u": [
+    [
+     "dona",
+     115
+    ]
+   ],
+   "rc": "hotdog-mol",
+   "ub": "dona"
+  },
+  {
+   "i": "hotdog-tovuq",
+   "n": "Hot-dog (tovuq sosiska)",
+   "r": "Хот-дог (куриная сосиска)",
+   "a": [
+    "hotdog tovuq",
+    "hot dog tovuq sosiska",
+    "хот-дог куриная сосиска"
+   ],
+   "t": "q",
+   "u": [
+    [
+     "dona",
+     110
+    ]
+   ],
+   "rc": "hotdog-tovuq",
+   "ub": "dona"
   }
  ],
  "top_qoshimcha": [

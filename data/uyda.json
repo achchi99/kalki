@@ -1,0 +1,1431 @@
+{
+ "v": 2,
+ "izoh": "Uyda retseptlari (tools/uyda-yasa.js yasaydi, qo'lda tahrir qilinmaydi). Masalliq grammi 1 kishi uchun; pishgan-asosli go'sht masalliqlari bozor (xom) vazniga o'girilgan. Qayta hisob: assets/uyda-core.js. Qo'shimchalar (tuz, ziravor, limon, sixlar) kkal hisobiga kirmaydi.",
+ "kishi": {
+  "min": 1,
+  "max": 8,
+  "standart": 4
+ },
+ "retseptlar": [
+  {
+   "id": "tovada",
+   "toifa": "baliq",
+   "taom": "sazan-qovurma",
+   "rc": "sazan-qovurma",
+   "nom": {
+    "uz": "Tovada qovurilgan sazan",
+    "ru": "Жареный карп на сковороде"
+   },
+   "vaqt": {
+    "uz": "35 daqiqa",
+    "ru": "35 минут"
+   },
+   "g1_asos": {
+    "m": "sazan",
+    "g": 250
+   },
+   "masalliq": [
+    {
+     "m": "sazan",
+     "n": {
+      "uz": "Sazan",
+      "ru": "Карп"
+     },
+     "g1": 250,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 25,
+     "birlik": "g"
+    },
+    {
+     "m": "un",
+     "n": {
+      "uz": "Un",
+      "ru": "Мука"
+     },
+     "g1": 20,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Limon",
+      "ru": "Лимон"
+     },
+     "g1": 0.25,
+     "birlik": "dona"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Baliqni tozalab, 3–4 sm li bo'laklarga kesing, yuving va qog'oz sochiq bilan quriting.",
+     "Tuz va ziravor bilan aralashtirib, 10 daqiqa qoldiring.",
+     "Bo'laklarni unga ag'daring, ortig'ini silkitib tashlang.",
+     "Tovada yog'ni qizdiring (o'rtacha-baland olov): yog' tutay boshlamasin, bo'lak tashlaganda «chirs» etsin.",
+     "Bo'laklarni bir-biriga tegizmay joylang; har tomonini 4–5 daqiqa qovuring, bir marta ag'daring.",
+     "Tayyor baliq oq-tiniq bo'lib, vilka bilan oson ajralishi kerak. Qog'oz sochiqqa olib, ortiqcha yog'ni oling.",
+     "Limon va ko'kat bilan tortiq qiling."
+    ],
+    "ru": [
+     "Очистите рыбу, нарежьте кусками 3–4 см, промойте и обсушите бумажным полотенцем.",
+     "Посолите, добавьте специи, оставьте на 10 минут.",
+     "Обваляйте кусочки в муке, стряхните лишнее.",
+     "Разогрейте масло на сковороде (средне-сильный огонь): оно не должно дымить, кусочек должен «шипеть».",
+     "Выложите кусочки, не прижимая друг к другу; жарьте по 4–5 минут с каждой стороны, переверните один раз.",
+     "Готовая рыба белая, непрозрачная и легко делится вилкой. Переложите на бумажное полотенце, убрав лишнее масло.",
+     "Подавайте с лимоном и зеленью."
+    ]
+   }
+  },
+  {
+   "id": "duxovka",
+   "toifa": "baliq",
+   "taom": "sazan-duxovka",
+   "rc": "sazan-duxovka",
+   "nom": {
+    "uz": "Duxovkada sazan (kartoshka bilan)",
+    "ru": "Карп в духовке с картофелем"
+   },
+   "vaqt": {
+    "uz": "60 daqiqa",
+    "ru": "60 минут"
+   },
+   "g1_asos": {
+    "m": "sazan",
+    "g": 250
+   },
+   "masalliq": [
+    {
+     "m": "sazan",
+     "n": {
+      "uz": "Sazan",
+      "ru": "Карп"
+     },
+     "g1": 250,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 200,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 75,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 75,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 15,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Limon",
+      "ru": "Лимон"
+     },
+     "g1": 0.25,
+     "birlik": "dona"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Duxovkani 200 °C ga qizdiring.",
+     "Kartoshkani yupqa halqalarga, piyoz va pomidorni halqalarga kesing.",
+     "Pishirish idishiga yog' surting; kartoshkani yoyib, tuz seping va 15 daqiqa pishiring.",
+     "Baliqni bo'laklarga kesib, tuz va ziravor bilan ishqalang.",
+     "Kartoshka ustiga baliq, piyoz va pomidorni joylang, ozgina yog' tomizing.",
+     "Yana 25–30 daqiqa pishiring: baliq oq-tiniq bo'lishi, kartoshka yumshashi kerak.",
+     "Limon sixib, issiq holda torting."
+    ],
+    "ru": [
+     "Разогрейте духовку до 200 °C.",
+     "Картофель нарежьте тонкими кружками, лук и помидоры — кольцами.",
+     "Смажьте форму маслом; разложите картофель, посолите и запекайте 15 минут.",
+     "Рыбу нарежьте кусками, натрите солью и специями.",
+     "На картофель выложите рыбу, лук и помидоры, сбрызните небольшим количеством масла.",
+     "Запекайте ещё 25–30 минут: рыба должна стать белой и непрозрачной, картофель — мягким.",
+     "Выжмите лимон и подавайте горячим."
+    ]
+   }
+  },
+  {
+   "id": "grill",
+   "toifa": "baliq",
+   "taom": "sazan-grill",
+   "rc": "sazan-grill",
+   "nom": {
+    "uz": "Grilda sazan",
+    "ru": "Карп на гриле"
+   },
+   "vaqt": {
+    "uz": "30 daqiqa",
+    "ru": "30 минут"
+   },
+   "g1_asos": {
+    "m": "sazan",
+    "g": 250
+   },
+   "masalliq": [
+    {
+     "m": "sazan",
+     "n": {
+      "uz": "Sazan",
+      "ru": "Карп"
+     },
+     "g1": 250,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 20.8,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 8.3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Limon",
+      "ru": "Лимон"
+     },
+     "g1": 0.25,
+     "birlik": "dona"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Grilni (yoki gril tovasini, mangalni) o'rtacha issiqlikgacha qizdiring.",
+     "Baliqni 3–4 sm qalinlikdagi bo'laklarga kesing, quriting.",
+     "Tuz, ziravor, limon sharbati va oz yog' bilan 10 daqiqa marinadlang.",
+     "Panjara/tovaga yog' surting — baliq yopishib qolmasin.",
+     "Bo'laklarni joylang; har tomonini 5–6 daqiqa pishiring, faqat bir marta ag'daring.",
+     "Baliq oq-tiniq bo'lib, vilka bilan oson ajralganda tayyor.",
+     "Piyoz halqalari va limon bilan torting."
+    ],
+    "ru": [
+     "Разогрейте гриль (или сковороду-гриль, мангал) до средней температуры.",
+     "Нарежьте рыбу кусками толщиной 3–4 см, обсушите.",
+     "Замаринуйте с солью, специями, лимонным соком и небольшим количеством масла на 10 минут.",
+     "Смажьте решётку/сковороду маслом, чтобы рыба не прилипла.",
+     "Выложите кусочки; готовьте по 5–6 минут с каждой стороны, переворачивая только один раз.",
+     "Рыба готова, когда стала белой, непрозрачной и легко делится вилкой.",
+     "Подавайте с кольцами лука и лимоном."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-shashlik",
+   "toifa": "kabob",
+   "taom": "uy-tovuq-shashlik",
+   "rc": "uy-tovuq-shashlik",
+   "nom": {
+    "uz": "Tovuq shashlik uyda (duxovka)",
+    "ru": "Куриный шашлык дома (духовка)"
+   },
+   "vaqt": {
+    "uz": "45 daqiqa + marinad",
+    "ru": "45 минут + маринад"
+   },
+   "g1_asos": {
+    "por_g": 180
+   },
+   "masalliq": [
+    {
+     "m": "tovuq_son_teriz",
+     "n": {
+      "uz": "Tovuq soni (terisiz)",
+      "ru": "Куриное бедро (без кожи)"
+     },
+     "g1": 136.4,
+     "birlik": "g"
+    },
+    {
+     "m": "tovuq_kokrak",
+     "n": {
+      "uz": "Tovuq ko'kragi",
+      "ru": "Куриная грудка"
+     },
+     "g1": 68.2,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 18.2,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 9.1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Limon",
+      "ru": "Лимон"
+     },
+     "g1": 0.25,
+     "birlik": "dona"
+    },
+    {
+     "n": {
+      "uz": "Sixlar (shampur)",
+      "ru": "Шпажки (шампуры)"
+     },
+     "g1": 2,
+     "birlik": "dona"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Go'shtni 3 sm li bo'laklarga kesing. Piyozni maydalab, tuz, ziravor va yog' bilan aralashtiring.",
+     "Go'shtga piyozli aralashmani surting; kamida 30 daqiqa (yaxshisi 2 soat) sovutgichda saqlang.",
+     "Duxovkani 220 °C ga qizdiring. Yog'och sixlarni 10 daqiqa suvda ivitib qo'ying — kuymasligi uchun.",
+     "Go'sht bo'laklarini sixlarga zich emas, oraliq qoldirib tizing.",
+     "Sixlarni panjara ustiga qo'yib 15–18 daqiqa pishiring, o'rtasida bir marta aylantiring.",
+     "Bo'lakni kesib ko'ring: ichida pushti rang qolmasligi kerak.",
+     "Piyoz halqalari va limon bilan torting."
+    ],
+    "ru": [
+     "Нарежьте мясо кусками по 3 см. Лук измельчите, смешайте с солью, специями и маслом.",
+     "Натрите мясо луковой смесью; уберите в холодильник минимум на 30 минут (лучше на 2 часа).",
+     "Разогрейте духовку до 220 °C. Деревянные шпажки замочите в воде на 10 минут, чтобы не горели.",
+     "Нанижите кусочки на шпажки не плотно, оставляя промежутки.",
+     "Выложите шпажки на решётку и готовьте 15–18 минут, один раз переверните.",
+     "Разрежьте кусочек: внутри не должно остаться розового цвета.",
+     "Подавайте с кольцами лука и лимоном."
+    ]
+   }
+  },
+  {
+   "id": "lyulya",
+   "toifa": "kabob",
+   "taom": "uy-lyulya",
+   "rc": "uy-lyulya",
+   "nom": {
+    "uz": "Lyulya kabob duxovkada",
+    "ru": "Люля-кебаб в духовке"
+   },
+   "vaqt": {
+    "uz": "45 daqiqa",
+    "ru": "45 минут"
+   },
+   "g1_asos": {
+    "por_g": 180
+   },
+   "masalliq": [
+    {
+     "m": "qoy_yogsiz",
+     "n": {
+      "uz": "Qo'y go'shti (yog'siz)",
+      "ru": "Баранина (постная)"
+     },
+     "g1": 121,
+     "birlik": "g"
+    },
+    {
+     "m": "mol_yogsiz",
+     "n": {
+      "uz": "Mol go'shti (yog'siz)",
+      "ru": "Говядина (постная)"
+     },
+     "g1": 48.4,
+     "birlik": "g"
+    },
+    {
+     "m": "dumba",
+     "n": {
+      "uz": "Dumba",
+      "ru": "Курдючный жир"
+     },
+     "g1": 38.7,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 38.7,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 10,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Sixlar (shampur)",
+      "ru": "Шпажки (шампуры)"
+     },
+     "g1": 2,
+     "birlik": "dona"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Qiymani (qo'y, mol), mayda to'g'ralgan piyoz va dumba, tuz va zira bilan 5 daqiqa yaxshilab ezing.",
+     "Qiymani sovutgichda 30 daqiqa dam oldiring.",
+     "Duxovkani 220 °C ga qizdiring.",
+     "Qo'lingizni sovuq suvga ho'llab, qiymadan cho'ziq lyulya (taxminan 90 g) yasang va sixga o'rnating.",
+     "Sixlarni panjara ustiga qo'yib 15–20 daqiqa pishiring, bir marta aylantiring.",
+     "Ichi pushti bo'lmasligi kerak — bitta lyulyani kesib ko'ring.",
+     "Ko'kat, piyoz va non bilan torting."
+    ],
+    "ru": [
+     "Тщательно вымесите фарш (баранина, говядина) с мелко нарезанным луком, курдючным жиром, солью и зирой 5 минут.",
+     "Уберите фарш в холодильник на 30 минут.",
+     "Разогрейте духовку до 220 °C.",
+     "Смочите руки холодной водой, слепите из фарша продолговатые люля (примерно по 90 г) и наденьте на шпажки.",
+     "Выложите шпажки на решётку и готовьте 15–20 минут, один раз переверните.",
+     "Внутри не должно быть розового — разрежьте одну люля.",
+     "Подавайте с зеленью, луком и лепёшкой."
+    ]
+   }
+  },
+  {
+   "id": "mastava",
+   "toifa": "suyuq",
+   "taom": "mastava",
+   "rc": "mastava",
+   "nom": {
+    "uz": "Mastava",
+    "ru": "Мастава"
+   },
+   "vaqt": {
+    "uz": "70 daqiqa",
+    "ru": "70 минут"
+   },
+   "g1_asos": {
+    "por_g": 350
+   },
+   "masalliq": [
+    {
+     "m": "qoy",
+     "n": {
+      "uz": "Qo'y go'shti",
+      "ru": "Баранина"
+     },
+     "g1": 38.1,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 30.5,
+     "birlik": "g"
+    },
+    {
+     "m": "guruch",
+     "n": {
+      "uz": "Guruch",
+      "ru": "Рис"
+     },
+     "g1": 22.9,
+     "birlik": "g"
+    },
+    {
+     "m": "sabzi",
+     "n": {
+      "uz": "Sabzi",
+      "ru": "Морковь"
+     },
+     "g1": 15.3,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 15.3,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 15.3,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 7.6,
+     "birlik": "g"
+    },
+    {
+     "m": "suv",
+     "n": {
+      "uz": "Suv",
+      "ru": "Вода"
+     },
+     "g1": 236.4,
+     "birlik": "ml"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 10,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Go'shtni mayda bo'laklarga kesib, qozonda yog'da 5–7 daqiqa qovuring.",
+     "Piyoz va sabzini to'g'rab qo'shing, 5 daqiqa qovuring; pomidorni solib aralashtiring.",
+     "Suv quyib qaynating, ko'pigini oling.",
+     "Kartoshkani kubik qilib kesing, guruchni yuvib soling.",
+     "Tuz va zira qo'shib, past olovda 30–40 daqiqa qaynating.",
+     "Tayyor mastavaga ko'kat soling, 5 daqiqa damlab torting."
+    ],
+    "ru": [
+     "Нарежьте мясо мелкими кусочками и обжарьте в казане на масле 5–7 минут.",
+     "Добавьте нарезанные лук и морковь, жарьте 5 минут; добавьте помидоры и перемешайте.",
+     "Залейте водой, доведите до кипения, снимите пену.",
+     "Картофель нарежьте кубиками, рис промойте и добавьте.",
+     "Посолите, добавьте зиру и варите на слабом огне 30–40 минут.",
+     "Добавьте в готовую маставу зелень, дайте настояться 5 минут и подавайте."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-shurva",
+   "toifa": "suyuq",
+   "taom": "uy-tovuq-shurva",
+   "rc": "uy-tovuq-shurva",
+   "nom": {
+    "uz": "Tovuq sho'rva",
+    "ru": "Куриный суп"
+   },
+   "vaqt": {
+    "uz": "60 daqiqa",
+    "ru": "60 минут"
+   },
+   "g1_asos": {
+    "por_g": 350
+   },
+   "masalliq": [
+    {
+     "m": "tovuq_son_teriz",
+     "n": {
+      "uz": "Tovuq soni (terisiz)",
+      "ru": "Куриное бедро (без кожи)"
+     },
+     "g1": 54.6,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 45.5,
+     "birlik": "g"
+    },
+    {
+     "m": "sabzi",
+     "n": {
+      "uz": "Sabzi",
+      "ru": "Морковь"
+     },
+     "g1": 18.2,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 18.2,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 3.6,
+     "birlik": "g"
+    },
+    {
+     "m": "kokat",
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 2.7,
+     "birlik": "g"
+    },
+    {
+     "m": "suv",
+     "n": {
+      "uz": "Suv",
+      "ru": "Вода"
+     },
+     "g1": 273.2,
+     "birlik": "ml"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Qora murch",
+      "ru": "Чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Tovuq go'shtini sovuq suvga solib qaynating, hosil bo'lgan ko'pikni oling.",
+     "Past olovda 25 daqiqa qaynating.",
+     "Piyoz va sabzini yirik to'g'rab, kartoshkani bo'laklarga kesib soling.",
+     "Tuz va murch qo'shib, yana 20 daqiqa qaynating.",
+     "O'chirishdan oldin to'g'ralgan ko'katni soling.",
+     "5 daqiqa damlab, kosada torting."
+    ],
+    "ru": [
+     "Положите курицу в холодную воду, доведите до кипения, снимите пену.",
+     "Варите на слабом огне 25 минут.",
+     "Крупно нарежьте лук и морковь, картофель нарежьте кусочками и добавьте.",
+     "Посолите, поперчите и варите ещё 20 минут.",
+     "Перед выключением добавьте нарезанную зелень.",
+     "Дайте настояться 5 минут и подавайте в мисках."
+    ]
+   }
+  },
+  {
+   "id": "moshxorda",
+   "toifa": "suyuq",
+   "taom": "moshxorda",
+   "rc": "moshxorda",
+   "nom": {
+    "uz": "Moshxo'rda",
+    "ru": "Мошхурда"
+   },
+   "vaqt": {
+    "uz": "90 daqiqa + ivitish",
+    "ru": "90 минут + замачивание"
+   },
+   "g1_asos": {
+    "por_g": 350
+   },
+   "masalliq": [
+    {
+     "m": "qoy",
+     "n": {
+      "uz": "Qo'y go'shti",
+      "ru": "Баранина"
+     },
+     "g1": 38,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 30.4,
+     "birlik": "g"
+    },
+    {
+     "m": "mosh",
+     "n": {
+      "uz": "Mosh",
+      "ru": "Маш"
+     },
+     "g1": 18.2,
+     "birlik": "g"
+    },
+    {
+     "m": "sabzi",
+     "n": {
+      "uz": "Sabzi",
+      "ru": "Морковь"
+     },
+     "g1": 15.2,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 15.2,
+     "birlik": "g"
+    },
+    {
+     "m": "guruch",
+     "n": {
+      "uz": "Guruch",
+      "ru": "Рис"
+     },
+     "g1": 7.6,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 6.1,
+     "birlik": "g"
+    },
+    {
+     "m": "suv",
+     "n": {
+      "uz": "Suv",
+      "ru": "Вода"
+     },
+     "g1": 232.3,
+     "birlik": "ml"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 10,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Moshni yuvib, 1 soat iliq suvda ivitib qo'ying.",
+     "Go'shtni bo'laklab yog'da qovuring; piyoz va sabzini qo'shib yana 5 daqiqa qovuring.",
+     "Suv quyib qaynating, moshni soling va 30 daqiqa pishiring.",
+     "Kartoshka va yuvilgan guruchni qo'shing.",
+     "Tuz va zira solib, yana 25–30 daqiqa past olovda pishiring.",
+     "Ko'kat bilan torting."
+    ],
+    "ru": [
+     "Промойте маш и замочите в тёплой воде на 1 час.",
+     "Нарежьте мясо и обжарьте на масле; добавьте лук и морковь, жарьте ещё 5 минут.",
+     "Залейте водой, доведите до кипения, добавьте маш и варите 30 минут.",
+     "Добавьте картофель и промытый рис.",
+     "Посолите, добавьте зиру и варите ещё 25–30 минут на слабом огне.",
+     "Подавайте с зеленью."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-duxovka",
+   "toifa": "tandir",
+   "taom": "uy-tovuq-duxovka",
+   "rc": "uy-tovuq-duxovka",
+   "nom": {
+    "uz": "Duxovkada tovuq (kartoshka bilan)",
+    "ru": "Курица в духовке с картофелем"
+   },
+   "vaqt": {
+    "uz": "65 daqiqa",
+    "ru": "65 минут"
+   },
+   "g1_asos": {
+    "por_g": 400
+   },
+   "masalliq": [
+    {
+     "m": "tovuq_teri",
+     "n": {
+      "uz": "Tovuq go'shti (teri bilan, xom, suyaksiz hisob)",
+      "ru": "Курица с кожей (сырая, без костей)"
+     },
+     "g1": 276.6,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 188.5,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 47.1,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 9.4,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Duxovkani 200 °C ga qizdiring.",
+     "Tovuqni bo'laklarga bo'lib, tuz, ziravor va yog'ning bir qismi bilan 15 daqiqa qoldiring.",
+     "Kartoshka va piyozni yirik kesib, pishirish idishiga soling, tuz seping.",
+     "Tovuq bo'laklarini sabzavot ustiga, terisi yuqoriga qilib joylang.",
+     "40–45 daqiqa pishiring; o'rtasida bir marta ajralgan sharbat bilan sug'oring.",
+     "Go'sht sharbati tiniq bo'lsa, tayyor. 5 daqiqa damlab torting."
+    ],
+    "ru": [
+     "Разогрейте духовку до 200 °C.",
+     "Разделите курицу на куски, оставьте на 15 минут с солью, специями и частью масла.",
+     "Крупно нарежьте картофель и лук, выложите в форму, посолите.",
+     "Положите куски курицы на овощи кожей вверх.",
+     "Запекайте 40–45 минут; один раз полейте выделившимся соком.",
+     "Если сок прозрачный — готово. Дайте постоять 5 минут и подавайте."
+    ]
+   }
+  },
+  {
+   "id": "qoy-duxovka",
+   "toifa": "tandir",
+   "taom": "uy-qoy-duxovka",
+   "rc": "uy-qoy-duxovka",
+   "nom": {
+    "uz": "Duxovkada qo'y go'shti (sabzavot bilan)",
+    "ru": "Баранина в духовке с овощами"
+   },
+   "vaqt": {
+    "uz": "2 soat",
+    "ru": "2 часа"
+   },
+   "g1_asos": {
+    "por_g": 400
+   },
+   "masalliq": [
+    {
+     "m": "qoy_pishgan",
+     "n": {
+      "uz": "Qo'y go'shti (yog'siz, xom)",
+      "ru": "Баранина (постная, сырая)"
+     },
+     "g1": 171.1,
+     "birlik": "g"
+    },
+    {
+     "m": "kartoshka",
+     "n": {
+      "uz": "Kartoshka",
+      "ru": "Картофель"
+     },
+     "g1": 169.7,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 63.6,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 42.4,
+     "birlik": "g"
+    },
+    {
+     "m": "sabzi",
+     "n": {
+      "uz": "Sabzi",
+      "ru": "Морковь"
+     },
+     "g1": 33.9,
+     "birlik": "g"
+    },
+    {
+     "m": "dumba",
+     "n": {
+      "uz": "Dumba",
+      "ru": "Курдючный жир"
+     },
+     "g1": 17,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 4.2,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Duxovkani 180 °C ga qizdiring.",
+     "Go'shtni 4–5 sm li bo'laklarga kesib, tuz va zira bilan ishqalang.",
+     "Kartoshka, piyoz, sabzi va pomidorni yirik kesing.",
+     "Idish tagiga kartoshka va sabzini, ustiga go'sht, dumba, piyoz va pomidorni qo'ying; yog' quying.",
+     "Folga bilan mahkam yoping va 70 daqiqa pishiring.",
+     "Folgani olib, yana 25–30 daqiqa pishiring — usti qizarsin.",
+     "Go'sht yumshoq bo'lganda tayyor; issiq torting."
+    ],
+    "ru": [
+     "Разогрейте духовку до 180 °C.",
+     "Нарежьте мясо кусками 4–5 см, натрите солью и зирой.",
+     "Крупно нарежьте картофель, лук, морковь и помидоры.",
+     "На дно формы положите картофель и морковь, сверху мясо, курдючный жир, лук и помидоры; добавьте масло.",
+     "Плотно накройте фольгой и запекайте 70 минут.",
+     "Снимите фольгу и запекайте ещё 25–30 минут до румяной корочки.",
+     "Когда мясо мягкое — готово; подавайте горячим."
+    ]
+   }
+  },
+  {
+   "id": "lavash",
+   "toifa": "tez",
+   "taom": "uy-lavash-tovuq",
+   "rc": "uy-lavash-tovuq",
+   "nom": {
+    "uz": "Tovuq lavash uyda",
+    "ru": "Куриный лаваш дома"
+   },
+   "vaqt": {
+    "uz": "40 daqiqa",
+    "ru": "40 минут"
+   },
+   "g1_asos": {
+    "por_g": 280
+   },
+   "masalliq": [
+    {
+     "m": "tovuq_kokrak",
+     "n": {
+      "uz": "Tovuq ko'kragi",
+      "ru": "Куриная грудка"
+     },
+     "g1": 89.1,
+     "birlik": "g"
+    },
+    {
+     "m": "un",
+     "n": {
+      "uz": "Un",
+      "ru": "Мука"
+     },
+     "g1": 74.3,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 44.6,
+     "birlik": "g"
+    },
+    {
+     "m": "bodring",
+     "n": {
+      "uz": "Bodring",
+      "ru": "Огурец"
+     },
+     "g1": 37.1,
+     "birlik": "g"
+    },
+    {
+     "m": "qatiq",
+     "n": {
+      "uz": "Qatiq",
+      "ru": "Катык/йогурт"
+     },
+     "g1": 22.3,
+     "birlik": "g"
+    },
+    {
+     "m": "kokat",
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 7.4,
+     "birlik": "g"
+    },
+    {
+     "m": "suv",
+     "n": {
+      "uz": "Suv",
+      "ru": "Вода"
+     },
+     "g1": 40.8,
+     "birlik": "ml"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Zira yoki qora murch",
+      "ru": "Зира или чёрный перец"
+     },
+     "g1": 1,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Un, tuz va iliq suvdan qattiq xamir qoring; yopib, 15 daqiqa damlang.",
+     "Xamirni bo'laklarga bo'lib, juda yupqa yoying.",
+     "Quruq, qizdirilgan tovada har tomonini 30–40 soniyadan pishiring.",
+     "Tovuq go'shtini mayda to'g'rab, tuz va ziravor bilan 8–10 daqiqa pishiring.",
+     "Pomidor, bodring va ko'katni to'g'rang; qatiqqa tuz qo'shib sous qiling.",
+     "Lavashga qatiq, go'sht va sabzavotni qo'yib, o'rab torting."
+    ],
+    "ru": [
+     "Замесите крутое тесто из муки, соли и тёплой воды; накройте и оставьте на 15 минут.",
+     "Разделите тесто на части и раскатайте очень тонко.",
+     "Выпекайте на сухой горячей сковороде по 30–40 секунд с каждой стороны.",
+     "Мелко нарежьте курицу и готовьте с солью и специями 8–10 минут.",
+     "Нарежьте помидор, огурец и зелень; посолите катык — это соус.",
+     "Положите на лаваш соус, мясо и овощи, заверните и подавайте."
+    ]
+   }
+  },
+  {
+   "id": "omlet",
+   "toifa": "tez",
+   "taom": "omlet-sabzavot",
+   "rc": "omlet-sabzavot",
+   "nom": {
+    "uz": "Sabzavotli omlet",
+    "ru": "Омлет с овощами"
+   },
+   "vaqt": {
+    "uz": "15 daqiqa",
+    "ru": "15 минут"
+   },
+   "g1_asos": {
+    "por_g": 200
+   },
+   "masalliq": [
+    {
+     "m": "tuxum",
+     "n": {
+      "uz": "Tuxum",
+      "ru": "Яйцо"
+     },
+     "g1": 106,
+     "birlik": "g"
+    },
+    {
+     "m": "sut",
+     "n": {
+      "uz": "Sut",
+      "ru": "Молоко"
+     },
+     "g1": 35.3,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 35.3,
+     "birlik": "g"
+    },
+    {
+     "m": "qalampir",
+     "n": {
+      "uz": "Bolgar qalampiri",
+      "ru": "Болгарский перец"
+     },
+     "g1": 26.5,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 17.7,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 6.6,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Qora murch",
+      "ru": "Чёрный перец"
+     },
+     "g1": 0.5,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 10,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Piyoz, pomidor va qalampirni mayda to'g'rang.",
+     "Tovada yog'ni qizdirib, piyozni 2 daqiqa qovuring; qalampir va pomidorni qo'shib yana 3 daqiqa pishiring.",
+     "Tuxumni sut, tuz va murch bilan chalkashtirib uring.",
+     "Aralashmani sabzavot ustiga quying, qopqoq ostida past olovda 4–5 daqiqa pishiring.",
+     "Ko'kat seping va issiq torting."
+    ],
+    "ru": [
+     "Мелко нарежьте лук, помидор и перец.",
+     "Разогрейте масло на сковороде, обжарьте лук 2 минуты; добавьте перец и помидор и готовьте ещё 3 минуты.",
+     "Взбейте яйца с молоком, солью и перцем.",
+     "Залейте смесью овощи и готовьте под крышкой на слабом огне 4–5 минут.",
+     "Посыпьте зеленью и подавайте горячим."
+    ]
+   }
+  },
+  {
+   "id": "qoymoq",
+   "toifa": "tez",
+   "taom": "qoymoq",
+   "rc": "qoymoq",
+   "nom": {
+    "uz": "Quymoq",
+    "ru": "Куймак (яичница по-узбекски)"
+   },
+   "vaqt": {
+    "uz": "15 daqiqa",
+    "ru": "15 минут"
+   },
+   "g1_asos": {
+    "por_g": 200
+   },
+   "masalliq": [
+    {
+     "m": "tuxum",
+     "n": {
+      "uz": "Tuxum",
+      "ru": "Яйцо"
+     },
+     "g1": 134.8,
+     "birlik": "g"
+    },
+    {
+     "m": "piyoz",
+     "n": {
+      "uz": "Piyoz",
+      "ru": "Лук"
+     },
+     "g1": 44.9,
+     "birlik": "g"
+    },
+    {
+     "m": "pomidor",
+     "n": {
+      "uz": "Pomidor",
+      "ru": "Помидор"
+     },
+     "g1": 44.9,
+     "birlik": "g"
+    },
+    {
+     "m": "yog",
+     "n": {
+      "uz": "O'simlik yog'i",
+      "ru": "Растительное масло"
+     },
+     "g1": 9,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Tuz",
+      "ru": "Соль"
+     },
+     "g1": 3,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Qora murch",
+      "ru": "Чёрный перец"
+     },
+     "g1": 0.5,
+     "birlik": "g"
+    },
+    {
+     "n": {
+      "uz": "Ko'kat",
+      "ru": "Зелень"
+     },
+     "g1": 10,
+     "birlik": "g"
+    }
+   ],
+   "qadamlar": {
+    "uz": [
+     "Piyoz va pomidorni mayda to'g'rang.",
+     "Tovada yog'ni qizdirib, piyozni 3 daqiqa qovuring.",
+     "Pomidor qo'shib, 3 daqiqa dimlang.",
+     "Tuxumlarni sabzavot ustiga sindirib soling, tuz va murch seping.",
+     "Past olovda, qopqoq ostida 4–5 daqiqa pishiring — sarig'i bir oz suyuq qolishi mumkin.",
+     "Ko'kat bilan non bilan torting."
+    ],
+    "ru": [
+     "Мелко нарежьте лук и помидоры.",
+     "Разогрейте масло, жарьте лук 3 минуты.",
+     "Добавьте помидоры и тушите 3 минуты.",
+     "Разбейте яйца на овощи, посолите и поперчите.",
+     "Готовьте на слабом огне под крышкой 4–5 минут — желток может остаться жидким.",
+     "Подавайте с зеленью и лепёшкой."
+    ]
+   }
+  }
+ ]
+}

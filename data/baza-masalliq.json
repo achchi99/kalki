@@ -373,6 +373,134 @@
    },
    "uz": "tovuq soni (terisiz)",
    "ru": "куриное бедро (без кожи)"
+  },
+  "qoy_pishgan": {
+   "nom": "Qo'y go'shti (yog'siz, PISHGAN)",
+   "usda": 174308,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "qo'y go'shti (pishgan)",
+   "ru": "баранина (готовая, постная)",
+   "xom_usda": 174307,
+   "xom_uz": "qo'y go'shti (yog'siz, xom)",
+   "xom_ru": "баранина (постная, сырая)"
+  },
+  "mol_pishgan": {
+   "nom": "Mol go'shti (yog'siz, PISHGAN)",
+   "usda": 170636,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "mol go'shti (pishgan)",
+   "ru": "говядина (готовая, постная)",
+   "xom_usda": 173126,
+   "xom_uz": "mol go'shti (yog'siz, xom)",
+   "xom_ru": "говядина (постная, сырая)"
+  },
+  "jigar": {
+   "nom": "Mol jigari (PISHGAN, qovurilgan)",
+   "usda": 168627,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "mol jigari (pishgan)",
+   "ru": "говяжья печень (готовая)",
+   "xom_usda": 169451,
+   "xom_uz": "mol jigari (xom)",
+   "xom_ru": "говяжья печень (сырая)"
+  },
+  "qoy_qovurga": {
+   "nom": "Qo'y qovurg'asi (go'sht+yog', suyaksiz, PISHGAN)",
+   "usda": 174323,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "qo'y qovurg'asi (pishgan)",
+   "ru": "бараньи рёбрышки (готовые)",
+   "xom_usda": 174321,
+   "xom_uz": "qo'y qovurg'asi (suyaksiz hisob, xom)",
+   "xom_ru": "бараньи рёбрышки (сырые, без костей)"
+  },
+  "tovuq_qanot": {
+   "nom": "Tovuq qanoti (teri bilan, PISHGAN)",
+   "usda": 173630,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "tovuq qanoti (pishgan)",
+   "ru": "куриные крылья (готовые)",
+   "xom_usda": 172390,
+   "xom_uz": "tovuq qanoti (teri bilan, xom, suyaksiz hisob)",
+   "xom_ru": "куриные крылья (сырые, без костей)"
+  },
+  "tovuq_teri": {
+   "nom": "Tovuq go'shti (teri bilan, PISHGAN)",
+   "usda": 171450,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "tovuq go'shti (teri bilan, pishgan)",
+   "ru": "курица с кожей (готовая)",
+   "xom_usda": 171447,
+   "xom_uz": "tovuq go'shti (teri bilan, xom, suyaksiz hisob)",
+   "xom_ru": "курица с кожей (сырая, без костей)"
+  },
+  "sosiska_mol": {
+   "nom": "Mol sosiskasi (frankfurter, issiq)",
+   "usda": 174614,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "mol sosiskasi",
+   "ru": "говяжья сосиска"
+  },
+  "sosiska_tovuq": {
+   "nom": "Tovuq sosiskasi (frankfurter)",
+   "usda": 171624,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "tovuq sosiskasi",
+   "ru": "куриная сосиска"
+  },
+  "bulka": {
+   "nom": "Oq non / bulochka",
+   "usda": 174924,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "bulochka",
+   "ru": "булочка"
+  },
+  "baqlajon": {
+   "nom": "Baqlajon (xom)",
+   "usda": 169228,
+   "yield": {
+    "q": 0.8,
+    "taxmin": true
+   },
+   "uz": "baqlajon",
+   "ru": "баклажан"
+  },
+  "qoziqorin": {
+   "nom": "Qo'ziqorin shampinon (xom)",
+   "usda": 169251,
+   "yield": {
+    "q": 0.85,
+    "taxmin": true
+   },
+   "uz": "qo'ziqorin",
+   "ru": "шампиньоны"
   }
  }
 }

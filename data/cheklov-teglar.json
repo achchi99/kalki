@@ -206,6 +206,12 @@
    "glyuten",
    "choshqa"
   ],
+  "hotdog-mol": [
+   "glyuten"
+  ],
+  "hotdog-tovuq": [
+   "glyuten"
+  ],
   "ismaloq": [],
   "jarkop": [],
   "jigar": [],
@@ -217,7 +223,16 @@
   "kafe-baliq-shurva": [
    "baliq"
   ],
+  "kafe-chuchvara-shorva": [
+   "glyuten"
+  ],
+  "kafe-jigar-kabob": [],
+  "kafe-jiz": [],
   "kafe-kabob": [],
+  "kafe-kartoshka-shurva": [],
+  "kafe-lagmon-qoy": [
+   "glyuten"
+  ],
   "kafe-lagmon-tovuq": [
    "glyuten"
   ],
@@ -225,11 +240,22 @@
    "baliq"
   ],
   "kafe-lyulya": [],
+  "kafe-mastava": [],
+  "kafe-mol-shashlik": [],
+  "kafe-moshxorda": [],
+  "kafe-qovurga": [],
+  "kafe-qoy-shashlik": [],
+  "kafe-sabzavot-shashlik": [],
   "kafe-sazan-qovurma": [
    "baliq",
    "glyuten"
   ],
+  "kafe-shurva": [],
+  "kafe-tandir-kabob": [],
+  "kafe-tandir-tovuq": [],
+  "kafe-tovuq-qanot": [],
   "kafe-tovuq-shashlik": [],
+  "kafe-tovuq-shurva": [],
   "kafe-tovuq-son-grill": [],
   "kakao": [
    "sut"
@@ -873,6 +899,15 @@
   "ugra-osh": [
    "glyuten"
   ],
+  "uy-lavash-tovuq": [
+   "sut",
+   "glyuten"
+  ],
+  "uy-lyulya": [],
+  "uy-qoy-duxovka": [],
+  "uy-tovuq-duxovka": [],
+  "uy-tovuq-shashlik": [],
+  "uy-tovuq-shurva": [],
   "uzum": [],
   "vafli": [
    "tuxum",

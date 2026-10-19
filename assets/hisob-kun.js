@@ -3,7 +3,7 @@
  * Do Not Track yoqilgan bo'lsa — umuman hisoblanmaydi. Ruxsat etilgan nomlar server bilan bir xil (functions/api/hisob.js; test-yeymiz bir-biriga tenglikni tekshiradi). (UMD) */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiHisob = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var HODISA = ['orinbosar_korsatildi', 'orinbosar_tanlandi', 'baliq_oyna_ochildi', 'baliq_buyurtma_bosildi', 'baliq_kafe_yozildi', 'baliq_uyda_ochildi', 'yeymiz_ochildi', 'yeymiz_tanlandi'];
+  var HODISA = ['orinbosar_korsatildi', 'orinbosar_tanlandi', 'baliq_oyna_ochildi', 'baliq_buyurtma_bosildi', 'baliq_kafe_yozildi', 'baliq_uyda_ochildi', 'yeymiz_ochildi', 'yeymiz_tanlandi', 'yeymiz_buyurtma_bosildi', 'yeymiz_uyda_ochildi'];
   var XIZMAT = ['uzum-tezkor', 'yandex-eda'], LS = 'kalki_fit_hisob', MAXK = 100, BATCH = 5;
   function create(o) {
     o = o || {}; var store = o.storage, today = o.today || function () { return new Date().toISOString().slice(0, 10); }, post = o.post, dnt = o.dnt, q = {}, timer = null, busy = false;
@@ -12,7 +12,7 @@
     function size() { var n = 0, k; for (k in q) n += q[k]; return n; }
     function add(h, xizmat) {
       if (dnt) return false; if (HODISA.indexOf(h) < 0) return false;
-      if (xizmat != null) { if (h !== 'baliq_buyurtma_bosildi' || XIZMAT.indexOf(xizmat) < 0) return false; h = h + '.' + xizmat; }
+      if (xizmat != null) { if (!/_buyurtma_bosildi$/.test(h) || XIZMAT.indexOf(xizmat) < 0) return false; h = h + '.' + xizmat; }
       rd(); var k = today() + '|' + h; q[k] = (q[k] || 0) + 1;
       var keys = Object.keys(q); if (keys.length > MAXK) keys.sort().slice(0, keys.length - MAXK).forEach(function (x) { delete q[x]; });
       wr(); if (size() >= BATCH) flush(); else sched(); return true;

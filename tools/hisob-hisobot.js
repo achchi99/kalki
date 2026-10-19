@@ -5,7 +5,7 @@
 'use strict';
 const fs = require('fs'), os = require('os'), path = require('path');
 const HOST = { production: 'https://kalki.uz', preview: 'https://yeymiz.kalki-10y.pages.dev' };
-const NOM = { orinbosar_korsatildi: "«O'rniga» ko'rsatildi", orinbosar_tanlandi: "«O'rniga» tanlandi", baliq_oyna_ochildi: 'Baliq kuni oynasi ochildi', baliq_buyurtma_bosildi: 'Buyurtma bosildi', baliq_kafe_yozildi: 'Kafe baliq taomi yozildi', baliq_uyda_ochildi: 'Uyda retsept ochildi', yeymiz_ochildi: '«Bugun nima yeymiz?» ochildi', yeymiz_tanlandi: '«Bugun nima yeymiz?» tanlandi' };
+const NOM = { orinbosar_korsatildi: "«O'rniga» ko'rsatildi", orinbosar_tanlandi: "«O'rniga» tanlandi", baliq_oyna_ochildi: 'Baliq kuni oynasi ochildi', baliq_buyurtma_bosildi: 'Buyurtma bosildi', baliq_kafe_yozildi: 'Kafe baliq taomi yozildi', baliq_uyda_ochildi: 'Uyda retsept ochildi', yeymiz_ochildi: '«Bugun nima yeymiz?» ochildi', yeymiz_tanlandi: '«Bugun nima yeymiz?» tanlandi', yeymiz_buyurtma_bosildi: '«Bugun nima yeymiz?» buyurtma bosildi', yeymiz_uyda_ochildi: '«Bugun nima yeymiz?» uyda retsept ochildi' };
 const pct = (a, b) => (b > 0 ? Math.round(a / b * 100) + '%' : '—');
 function hisobot(j, kun) {
   const jami = j.jami || {}, g = (k) => jami[k] || 0, sum = (p) => Object.keys(jami).filter((k) => k === p || k.startsWith(p + '.')).reduce((a, k) => a + jami[k], 0);
@@ -14,7 +14,7 @@ function hisobot(j, kun) {
   for (const k of Object.keys(NOM)) {
     const h7 = (j.kunlar || []).filter((x) => son7.includes(x.sana) && (x.hodisa === k || x.hodisa.startsWith(k + '.'))).reduce((a, x) => a + x.son, 0);
     l.push((NOM[k] + ':').padEnd(36) + String(sum(k)).padStart(7) + '   (oxirgi 7 kun: ' + h7 + ')');
-    if (k === 'baliq_buyurtma_bosildi') Object.keys(jami).filter((x) => x.startsWith(k + '.')).sort().forEach((x) => l.push('    ' + x.slice(k.length + 1).padEnd(32) + String(jami[x]).padStart(7)));
+    if (/_buyurtma_bosildi$/.test(k)) Object.keys(jami).filter((x) => x.startsWith(k + '.')).sort().forEach((x) => l.push('    ' + x.slice(k.length + 1).padEnd(32) + String(jami[x]).padStart(7)));
   }
   l.push('', "O'rniga: ko'rsatildi → tanlandi:        " + pct(sum('orinbosar_tanlandi'), sum('orinbosar_korsatildi')), 'Bugun nima yeymiz?: ochildi → tanlandi: ' + pct(sum('yeymiz_tanlandi'), sum('yeymiz_ochildi')), 'Baliq kuni: oyna → buyurtma bosildi:    ' + pct(sum('baliq_buyurtma_bosildi'), sum('baliq_oyna_ochildi')));
   return l.join('\n');
