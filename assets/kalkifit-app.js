@@ -272,6 +272,7 @@
     variants: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); fd.pmore = true; pwScreen(); setTimeout(function () { n.highlight($('#pwMore .rz-chips') || $('.sl-morebtn')); }, 500); }); },
     theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
+    fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
     cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#catsRow')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
@@ -554,7 +555,7 @@
   function pushRowHtml() {                             // Profil («Maslahat va hazil» kartasi ichida) — 3-kundan keyin
     if (appDays() < 3) return ''; var s0 = pushStatus(); if (s0 === 'na') return '';
     var body = s0 === 'ios' ? '<p class="rz-priv">' + esc(T('bkIos')) + '</p>' : s0 === 'denied' ? '<p class="rz-priv">' + esc(T('bkDenied')) + '</p>' : '<p class="rz-priv">' + esc(T(s0 === 'on' ? 'bkIsOn' : 'bkH')) + '</p>' + '<button type="button" class="rz-btn ghost full" data-act="' + (s0 === 'on' ? 'pushoff' : 'pushon') + '">' + esc(T(s0 === 'on' ? 'bkOff' : 'bkOn')) + '</button>';
-    return '<div class="rz-st" style="margin-top:14px">' + esc(T('bkT')) + '</div>' + body;
+    return '<div id="pushRow"><div class="rz-st" style="margin-top:14px">' + esc(T('bkT')) + '</div>' + body + '</div>';
   }
   function pushOfferHtml() {                           // Kun yakuni: BITTA taklif; «Hozir emas» — 30 kun so'ramaydi
     if (appDays() < 3 || !pushAskDue()) return ''; var s0 = pushStatus(); if (s0 !== 'off' && s0 !== 'ios') return '';
