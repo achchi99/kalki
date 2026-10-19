@@ -70,5 +70,9 @@ try {
   /* 7. «Baliq» chipi tartibi: Mashhur + guruhlar, o'rtada */
   p = await mk(seed(9)); await p.click('#mainAdd'); await p.waitForTimeout(500); const chips = await p.locator('#catsRow .rz-chip').allInnerTexts(); assert.equal(chips.length, 14); assert.equal(chips[5], 'Baliq', 'Go\'sht, baliq... dan keyin'); await p.context().close();
   log('«Baliq» chipi: Mashhur + 13 guruh (14 chip), «Go\'sht, baliq, tuxum» dan keyin');
+  /* 8. sinov kaliti: ?pushtest=1 — 3-kun shartini o'tkazadi (yangi brauzer/preview'da sinash uchun); odatiy foydalanuvchiga ta'sir qilmaydi */
+  p = await mk(seed(0), { url: '/kalkifit?pushtest=1' }); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 1); await p.context().close();
+  p = await mk(seed(0)); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 0); await p.context().close();
+  log('?pushtest=1 — sinov uchun Profil qatori 1-kunda ham chiqadi; oddiy ochilishda yo\'q');
 } finally { await b.close().catch(() => {}); srv.close(); }
 console.log('\nHAMMASI OK (' + n + ' blok)');

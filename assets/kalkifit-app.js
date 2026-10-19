@@ -526,7 +526,7 @@
   function pushSupported() { return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window; }
   function isIOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent || '') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
   function standalone() { return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; }
-  function appDays() { return st && st.created ? Math.floor((Date.now() - st.created) / DAY_MS) : 0; }
+  function appDays() { if (/[?&]pushtest=1\b/.test(location.search)) prefs().pushTest = true; if (prefs().pushTest) return 99; return st && st.created ? Math.floor((Date.now() - st.created) / DAY_MS) : 0; }          // ?pushtest=1 — sinov uchun 3-kun shartini o'tkazadi (yangi brauzer/preview)
   function pushStatus() {                              // 'na' (server/brauzer qo'llamaydi) | 'ios' (avval Bosh ekran) | 'denied' | 'on' | 'off'
     if (PS.state !== 2 || !PS.on) return 'na'; if (isIOS() && !standalone()) return 'ios'; if (!pushSupported()) return 'na';
     if (Notification.permission === 'denied') return 'denied'; var p = prefs().push; return p && p.on ? 'on' : 'off';
