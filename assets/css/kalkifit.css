@@ -382,8 +382,8 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 .rz.sl :where(b,strong,th){font-weight:600}
 .rz.sl:not([data-view=today]) .rz-main{padding-bottom:calc(184px + env(safe-area-inset-bottom,0px))}
 /* ---- «Bugun nima yeymiz?», Baliq kuni, Yemaydiganlarim, Boshqa variantlar (dizayn tokenlari: --soft, --fill, --accsoft, --line, --mut) ---- */
-.rz .sl-ye{padding:12px 0 12px 16px;overflow:hidden}.rz .sl-ye-t{font-weight:600;font-size:var(--t-m);margin:0 16px 8px 0}
-.rz .sl-ye-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 16px 0 0;touch-action:pan-x}.rz .sl-ye-chips::-webkit-scrollbar{display:none}
+.rz .sl-ye{flex:none;min-height:min-content;height:auto;padding:12px 0 12px 16px;overflow:visible}      /* .rz-main — flex ustun: overflow:hidden kartani qisib qirqardi (iOS); balandlik kontentdan, gorizontal scroll faqat chiplar qatorida */.rz .sl-ye-t{font-weight:600;font-size:var(--t-m);margin:0 16px 8px 0}
+.rz .sl-ye-chips{flex:none;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 16px 0 0;touch-action:pan-x}.rz .sl-ye-chips::-webkit-scrollbar{display:none}
 .rz .sl-ye-chips.in{padding:0;margin:4px 0 10px;flex-wrap:wrap;overflow:visible}
 .rz .sl-ye-chips .rz-chip{flex:none;min-height:44px;padding:0 14px;border:0;background:var(--soft);color:var(--ink);border-radius:16px;font-weight:600;white-space:nowrap}
 .rz .sl-ye-chips .rz-chip.on,.rz .sl-days .rz-chip.on,.rz .sl-yn .rz-chip.on{background:var(--fill);color:var(--onacc)}
