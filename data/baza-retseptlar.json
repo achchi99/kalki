@@ -2087,6 +2087,498 @@
     }
    ],
    "taxminiy": true
+  },
+  {
+   "id": "sazan-grill",
+   "nom": "Grilda sazan",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 600
+    },
+    {
+     "m": "yog",
+     "g": 20
+    },
+    {
+     "m": "piyoz",
+     "g": 50
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "sazan-qovurma",
+   "nom": "Qovurilgan sazan",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "un",
+     "g": 40
+    },
+    {
+     "m": "yog",
+     "g": 50
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "baliq-dimlama",
+   "nom": "Dimlangan baliq (sazan, sabzavot)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "kartoshka",
+     "g": 300
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 30
+    },
+    {
+     "m": "suv",
+     "g": 200,
+     "y": 0.6
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "baliq-shurva",
+   "nom": "Baliq sho'rva (sazan, kartoshka)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 400
+    },
+    {
+     "m": "kartoshka",
+     "g": 300
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "kokat",
+     "g": 20
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "tovuq-son-qozon",
+   "nom": "Tovuq soni qozonda",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son",
+     "g": 700
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 10
+    },
+    {
+     "m": "suv",
+     "g": 100,
+     "y": 0.3
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "tovuq-kokrak-qozon",
+   "nom": "Tovuq ko'kragi qozonda",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_kokrak",
+     "g": 600
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 25
+    },
+    {
+     "m": "suv",
+     "g": 150,
+     "y": 0.5
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "osh-tovuq",
+   "nom": "Tovuqli osh",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "tovuq_son",
+     "g": 400
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 500
+    },
+    {
+     "m": "yog",
+     "g": 150
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "dimlama-tovuq",
+   "nom": "Tovuqli dimlama",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son",
+     "g": 250
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 500
+    },
+    {
+     "m": "karam",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "pomidor",
+     "g": 200
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "loviya-shurva",
+   "nom": "Loviya sho'rva",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "loviya_oq",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 25
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "yasmiq-shurva",
+   "nom": "Yasmiq sho'rva",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "yasmiq",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    },
+    {
+     "m": "suv",
+     "g": 1400,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "noxat-ragu",
+   "nom": "No'xatli sabzavot taomi",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "noxat",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 30
+    },
+    {
+     "m": "suv",
+     "g": 400,
+     "y": 0.5
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "qoymoq",
+   "nom": "Tuxumli qo'ymoq",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tuxum",
+     "g": 300
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "omlet-sabzavot",
+   "nom": "Sabzavotli omlet",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tuxum",
+     "g": 240
+    },
+    {
+     "m": "sut",
+     "g": 80
+    },
+    {
+     "m": "pomidor",
+     "g": 80
+    },
+    {
+     "m": "qalampir",
+     "g": 60
+    },
+    {
+     "m": "piyoz",
+     "g": 40
+    },
+    {
+     "m": "yog",
+     "g": 15
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "qatiq-salat",
+   "nom": "Qatiqli salat (bodring, ko'kat)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qatiq",
+     "g": 200
+    },
+    {
+     "m": "bodring",
+     "g": 150
+    },
+    {
+     "m": "kokat",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "suzma-salat",
+   "nom": "Suzmali salat",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "suzma",
+     "g": 150
+    },
+    {
+     "m": "bodring",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "kokat",
+     "g": 20
+    },
+    {
+     "m": "yog",
+     "g": 5
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "moshxorda-gostsiz",
+   "nom": "Moshxo'rda (go'shtsiz)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "mosh",
+     "g": 150
+    },
+    {
+     "m": "guruch",
+     "g": 60
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 30
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
   }
  ]
 }

@@ -1,0 +1,462 @@
+{
+ "v": 1,
+ "izoh": "O'rinbosar nomzodlari (tools/orinbosar-yasa.js yasaydi, qo'lda tahrir qilinmaydi). Ilova har safar assets/orinbosar-core.js qoidasi bilan filtrlaydi: oqsil ≥ asl VA (yog' yoki kkal kam), bir xil vazn; eng ko'pi 3. Nomzod: {i} | {i,v: kombinatsiya} | {i,set:{o'q:qiymat}} (shu oila, boshqa o'qlar saqlanadi).",
+ "qoida": {
+  "oqsil": ">=",
+  "yog_yoki_kkal": "<",
+  "max": 3
+ },
+ "manba": {
+  "osh": [
+   {
+    "i": "osh-tovuq"
+   },
+   {
+    "i": "baliq-dimlama"
+   },
+   {
+    "i": "qoymoq"
+   }
+  ],
+  "shovla": [
+   {
+    "i": "osh-tovuq"
+   },
+   {
+    "i": "baliq-dimlama"
+   },
+   {
+    "i": "qoymoq"
+   }
+  ],
+  "ugra-osh": [
+   {
+    "i": "baliq-dimlama"
+   }
+  ],
+  "somsa": [
+   {
+    "i": "somsa",
+    "set": {
+     "ichi": "tovuq"
+    }
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "omlet-sabzavot"
+   },
+   {
+    "i": "noxat-ragu"
+   }
+  ],
+  "manti": [
+   {
+    "i": "chuchvara",
+    "v": "tovuq.qaynatma"
+   },
+   {
+    "i": "somsa",
+    "v": "oddiy.tovuq"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "omlet-sabzavot"
+   }
+  ],
+  "chuchvara": [
+   {
+    "i": "chuchvara",
+    "set": {
+     "ichi": "tovuq"
+    }
+   },
+   {
+    "i": "somsa",
+    "v": "oddiy.tovuq"
+   },
+   {
+    "i": "baliq-dimlama"
+   }
+  ],
+  "lagmon": [
+   {
+    "i": "lagmon",
+    "set": {
+     "gosht": "tovuq"
+    }
+   }
+  ],
+  "norin": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   }
+  ],
+  "chebureki": [
+   {
+    "i": "somsa",
+    "v": "oddiy.tovuq"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "sendvich"
+   }
+  ],
+  "belyashi": [
+   {
+    "i": "somsa",
+    "v": "oddiy.tovuq"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "sendvich"
+   }
+  ],
+  "shurva": [
+   {
+    "i": "baliq-shurva"
+   },
+   {
+    "i": "tovuq-shurva"
+   }
+  ],
+  "mastava": [
+   {
+    "i": "baliq-shurva"
+   },
+   {
+    "i": "tovuq-shurva"
+   }
+  ],
+  "dimlama": [
+   {
+    "i": "dimlama-tovuq"
+   },
+   {
+    "i": "baliq-dimlama"
+   },
+   {
+    "i": "qoymoq"
+   }
+  ],
+  "qozon-kabob": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   },
+   {
+    "i": "baliq-dimlama"
+   }
+  ],
+  "qovurdoq": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   },
+   {
+    "i": "dimlama-tovuq"
+   },
+   {
+    "i": "baliq-dimlama"
+   },
+   {
+    "i": "qoymoq"
+   }
+  ],
+  "jarkop": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   },
+   {
+    "i": "baliq-dimlama"
+   }
+  ],
+  "dolma": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   },
+   {
+    "i": "baliq-dimlama"
+   },
+   {
+    "i": "qoymoq"
+   }
+  ],
+  "shashlik": [
+   {
+    "i": "shashlik",
+    "set": {
+     "gosht": "tovuq"
+    }
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "jigar-kabob": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "lyulya": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "tandir-gosht": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "qazi": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "jiz": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "beshbarmoq": [
+   {
+    "i": "tovuq-kokrak-qozon"
+   }
+  ],
+  "mol-gosht": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "mol-qiyma": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "qoy-gosht": [
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "ot-gosht": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "jigar": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "kotlet": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-son"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "tovuq-kokrak"
+   }
+  ],
+  "doner": [
+   {
+    "i": "lavash-tovuq",
+    "v": "tovuq"
+   },
+   {
+    "i": "sendvich"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   }
+  ],
+  "burger": [
+   {
+    "i": "sendvich"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   }
+  ],
+  "hotdog": [
+   {
+    "i": "lavash-tovuq",
+    "v": "tovuq"
+   },
+   {
+    "i": "sendvich"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   }
+  ],
+  "tushonka": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "kolbasa": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "sosiska": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "olivye": [
+   {
+    "i": "suzma-salat"
+   },
+   {
+    "i": "qoymoq"
+   },
+   {
+    "i": "omlet-sabzavot"
+   }
+  ],
+  "tovuq-qanot": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "tovuq-qov": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "kurka"
+   }
+  ],
+  "naggets": [
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "kurka"
+   }
+  ]
+ }
+}
