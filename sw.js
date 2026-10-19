@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '38f27bb7';   /* sw-version:auto */
+const SW_VERSION = '08746adc';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -51,6 +51,9 @@ const ASSETS = [
   '/assets/kalkifit-core.js',
   '/assets/kalkifit-app.js',
   '/assets/kalkifit-gaplar.js',
+  '/assets/orinbosar-core.js',
+  '/data/orinbosar.json',
+  '/data/oqsil-manba.json',
   '/data/masofalar.json',
   '/data/yangiliklar-kalkifit.json',
   '/data/hazillar-kalkifit.json',

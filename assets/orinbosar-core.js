@@ -27,7 +27,7 @@
     return alt.i;
   }
   function r1(x) { return Math.round(x * 10) / 10; }
-  /* porsiya: { u: birlik nomi|null, g: gramm }. Asl taomning standart porsiyasi — birinchi (g100 dan boshqa) birlik. */
+  /* porsiya: { u: birlik nomi|null, g: 1 birlik grammi (birlik bo'lmasa — jami gramm), n: miqdor (ixtiyoriy, standart 1) }. Asl taomning standart porsiyasi — birinchi (g100 dan boshqa) birlik. */
   function unitsOf(by, key) { var s = split(key), f = by[s.id]; if (f && f.al && by[f.al.f]) f = by[f.al.f]; return f && f.u ? f.u.filter(function (x) { return x[0] !== 'g100'; }) : []; }
   function defPortion(by, key) { var u = unitsOf(by, key)[0]; return u ? { u: u[0], g: u[1] } : { u: null, g: 100 }; }
   /* «bir xil porsiya»: idish birligi (likop, kosa, piyola, porsiya) o'rinbosarda ham bo'lsa — o'sha birlik (1 likop → 1 likop); aks holda (dona, bo'lak... — o'lchami taomga qarab farq qiladi) — bir xil gramm */
@@ -49,8 +49,8 @@
   /* asl va o'rinbosar porsiyalari bo'yicha taqqoslash: { ok, dk, dp, df, g, u } */
   function compare(by, srcKey, altKeyStr, srcPortion) {
     var sv = valuesOf(by, srcKey), av = valuesOf(by, altKeyStr); if (!sv || !av) return null;
-    var sp = srcPortion || defPortion(by, srcKey), ap = altPortion(by, altKeyStr, sp), S = portionVals(sv, sp.g), A = portionVals(av, ap.g);
-    return { ok: passes(S, A), dk: Math.round(A.k - S.k), dp: r1(A.p - S.p), df: r1(A.f - S.f), g: ap.g, u: ap.u, sg: sp.g, su: sp.u };
+    var sp = srcPortion || defPortion(by, srcKey), n = sp.n > 0 ? sp.n : 1, ap = altPortion(by, altKeyStr, sp), S = portionVals(sv, sp.g * n), A = portionVals(av, ap.g * n);
+    return { ok: passes(S, A), dk: Math.round(A.k - S.k), dp: r1(A.p - S.p), df: r1(A.f - S.f), g: Math.round(ap.g * n), u: ap.u, n: n, sg: sp.g * n, su: sp.u };
   }
   /* oqsil «sifati»: 100 kkal ga necha gramm oqsil */
   function sifat(v) { return v && v.k > 0 ? r1(v.p / v.k * 100) : 0; }
@@ -62,7 +62,7 @@
     for (var i = 0; i < cand.length && out.length < MAX; i++) {
       var key = altKey(by, srcKey, cand[i]); if (!key || key === srcKey) continue;
       var c = compare(by, srcKey, key, srcPortion); if (!c || !c.ok) continue;
-      var av = valuesOf(by, key); out.push({ key: key, id: av.id, v: av.v, dk: c.dk, dp: c.dp, df: c.df, g: c.g, u: c.u, sifat: sifat(av) });
+      var av = valuesOf(by, key); out.push({ key: key, id: av.id, v: av.v, dk: c.dk, dp: c.dp, df: c.df, g: c.g, u: c.u, n: c.n, sifat: sifat(av) });
     }
     return out;
   }
