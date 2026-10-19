@@ -959,11 +959,11 @@ function runTool(args) {
         const must = ['/.nvmrc', '/.gitignore', '/.gitattributes', '/CLAUDE.md', '/package.json', '/package-lock.json', '/fix.py', '/tools', '/tools/prerender.js', '/docs/', '/docs/sw-check.md', '/functions/api/ariza.js'];
         const open = must.filter((p) => !re.test(p) || !covers(p));
         if (open.length) { ok = false; why.push('ochiq: ' + open.join(', ')); }
-        const pub = ['/', '/kredit-kalkulyator', '/ru/kredit-kalkulyator', '/cyr/kredit-kalkulyator', '/assets/cyr.js', '/sw.js', '/manifest.webmanifest', '/api/ariza', '/sitemap.xml', '/.well-known/security.txt'];
+        const pub = ['/', '/kredit-kalkulyator', '/ru/kredit-kalkulyator', '/cyr/kredit-kalkulyator', '/assets/cyr.js', '/sw.js', '/manifest.webmanifest', '/api/ariza', '/sitemap.xml', '/.well-known/security.txt', '/ilova/', '/ilova/versiya.json'];
         const shut = pub.filter((p) => re.test(p));
         if (shut.length) { ok = false; why.push('sayt yo\'li yopilib qolgan: ' + shut.join(', ')); }
         // yangi ichki fayl "unutilib" ochiq qolmasin: ildizdagi har bir yo'l sayt yoki yopilganlardan biri bo'lishi shart
-        const SITE = /\.(html|xlsx|docx|png|svg|txt|xml|webmanifest)$|^(assets|cyr|ru|data|admin)$|^(_headers|_redirects|_routes\.json|ga\.js|sw\.js|html2canvas\.min\.js|jspdf\.umd\.min\.js)$/;
+        const SITE = /\.(html|xlsx|docx|png|svg|txt|xml|webmanifest)$|^(assets|cyr|ru|data|admin|ilova)$|^(_headers|_redirects|_routes\.json|ga\.js|sw\.js|html2canvas\.min\.js|jspdf\.umd\.min\.js)$/;
         const top = [...new Set(execFileSync('git', ['ls-files'], { cwd: ROOT }).toString().split('\n').filter(Boolean).map((x) => x.split('/')[0]))];
         const unknown = top.filter((n) => !SITE.test(n) && !(re.test('/' + n) && (covers('/' + n) || covers('/' + n + '/x'))));
         if (unknown.length) { ok = false; why.push('ildizda yangi fayl/papka (sayt yoki GIZLI+_routes.json ga qo\'shing): ' + unknown.join(', ')); }
