@@ -1,10 +1,12 @@
 {
  "v": 1,
- "izoh": "O'rinbosar nomzodlari (tools/orinbosar-yasa.js yasaydi, qo'lda tahrir qilinmaydi). Ilova har safar assets/orinbosar-core.js qoidasi bilan filtrlaydi: oqsil ≥ asl VA (yog' yoki kkal kam), bir xil vazn; eng ko'pi 3. Nomzod: {i} | {i,v: kombinatsiya} | {i,set:{o'q:qiymat}} (shu oila, boshqa o'qlar saqlanadi).",
+ "izoh": "O'rinbosar nomzodlari (tools/orinbosar-yasa.js yasaydi, qo'lda tahrir qilinmaydi). Ilova har safar assets/orinbosar-core.js qoidasi bilan filtrlaydi: oqsil ≥ asl×0.90 VA (yog' yoki kkal ≤ asl×0.85) VA farq sezilarli; eng ko'pi 3 (1 asosiy + 2 «Boshqa variantlar»). Nomzod: {i} | {i,v: kombinatsiya} | {i,set:{o'q:qiymat}} (shu oila, boshqa o'qlar saqlanadi).",
  "qoida": {
-  "oqsil": ">=",
-  "yog_yoki_kkal": "<",
-  "max": 3
+  "max": 3,
+  "oqsil": 0.9,
+  "kam": 0.85,
+  "minKkal": 40,
+  "minYog": 5
  },
  "manba": {
   "osh": [
@@ -16,6 +18,9 @@
    },
    {
     "i": "qoymoq"
+   },
+   {
+    "i": "noxat-ragu"
    }
   ],
   "shovla": [
@@ -27,6 +32,9 @@
    },
    {
     "i": "qoymoq"
+   },
+   {
+    "i": "noxat-ragu"
    }
   ],
   "ugra-osh": [
@@ -53,18 +61,7 @@
   ],
   "manti": [
    {
-    "i": "chuchvara",
-    "v": "tovuq.qaynatma"
-   },
-   {
-    "i": "somsa",
-    "v": "oddiy.tovuq"
-   },
-   {
-    "i": "sazan-grill"
-   },
-   {
-    "i": "omlet-sabzavot"
+    "i": "tovuq-kokrak"
    }
   ],
   "chuchvara": [
@@ -138,12 +135,6 @@
   "dimlama": [
    {
     "i": "dimlama-tovuq"
-   },
-   {
-    "i": "baliq-dimlama"
-   },
-   {
-    "i": "qoymoq"
    }
   ],
   "qozon-kabob": [
@@ -173,12 +164,7 @@
     "i": "tovuq-kokrak-qozon"
    },
    {
-    "i": "baliq-dimlama"
-   }
-  ],
-  "dolma": [
-   {
-    "i": "tovuq-kokrak-qozon"
+    "i": "dimlama-tovuq"
    },
    {
     "i": "baliq-dimlama"
@@ -195,25 +181,10 @@
     }
    },
    {
-    "i": "tovuq-son"
-   },
-   {
-    "i": "tovuq-kokrak"
-   }
-  ],
-  "jigar-kabob": [
-   {
-    "i": "shashlik",
-    "v": "tovuq"
-   },
-   {
     "i": "sazan-grill"
    },
    {
     "i": "tovuq-kokrak"
-   },
-   {
-    "i": "kurka"
    }
   ],
   "lyulya": [
@@ -241,6 +212,9 @@
    },
    {
     "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
    }
   ],
   "qazi": [
@@ -280,6 +254,9 @@
   ],
   "mol-gosht": [
    {
+    "i": "tovuq-son"
+   },
+   {
     "i": "tovuq-kokrak"
    },
    {
@@ -303,6 +280,10 @@
   ],
   "qoy-gosht": [
    {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
     "i": "tovuq-son"
    },
    {
@@ -320,12 +301,9 @@
     "i": "kurka"
    }
   ],
-  "jigar": [
+  "steyk": [
    {
-    "i": "tovuq-kokrak"
-   },
-   {
-    "i": "kurka"
+    "i": "sazan-grill"
    }
   ],
   "kotlet": [
@@ -334,13 +312,10 @@
     "v": "tovuq"
    },
    {
-    "i": "tovuq-son"
-   },
-   {
-    "i": "sazan-grill"
-   },
-   {
     "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
    }
   ],
   "doner": [
@@ -359,6 +334,10 @@
    }
   ],
   "burger": [
+   {
+    "i": "lavash-tovuq",
+    "v": "tovuq"
+   },
    {
     "i": "sendvich"
    },
@@ -384,28 +363,6 @@
     "i": "sazan-grill"
    }
   ],
-  "tushonka": [
-   {
-    "i": "tovuq-kokrak"
-   },
-   {
-    "i": "sazan-grill"
-   },
-   {
-    "i": "kurka"
-   }
-  ],
-  "kolbasa": [
-   {
-    "i": "tovuq-kokrak"
-   },
-   {
-    "i": "sazan-grill"
-   },
-   {
-    "i": "kurka"
-   }
-  ],
   "sosiska": [
    {
     "i": "tovuq-kokrak"
@@ -422,9 +379,6 @@
     "i": "suzma-salat"
    },
    {
-    "i": "qoymoq"
-   },
-   {
     "i": "omlet-sabzavot"
    }
   ],
@@ -437,17 +391,6 @@
    }
   ],
   "tovuq-qov": [
-   {
-    "i": "tovuq-kokrak"
-   },
-   {
-    "i": "sazan-grill"
-   },
-   {
-    "i": "kurka"
-   }
-  ],
-  "naggets": [
    {
     "i": "tovuq-kokrak"
    },

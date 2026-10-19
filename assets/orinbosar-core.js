@@ -1,6 +1,6 @@
 /* kalki.uz — «O'rniga» (oqsilga boy o'rinbosar) hisobi: toza funksiyalar, DOM yo'q (UMD).
  * Ma'lumot: data/ovqatlar.json (foods), data/oqsil-manba.json (teglar), data/orinbosar.json (nomzodlar).
- * Qoida: o'rinbosar FAQAT oqsili asl taomdan kam bo'lmasa VA (yog'i yoki kkali kam bo'lsa) ko'rsatiladi — bir xil porsiya uchun (1 likop → 1 likop; dona/bo'lak bo'lsa — bir xil gramm).
+ * Qoida: o'rinbosar FAQAT oqsili asl x 0.90 dan kam bo'lmasa, yog'i yoki kkali asl x 0.85 dan oshmasa va farq sezilarli (|kkal| >= 40 yoki |yog'| >= 5 g) bo'lsa ko'rsatiladi — bir xil porsiya uchun (1 likop → 1 likop; dona/bo'lak bo'lsa — bir xil gramm).
  * Taom kaliti: «id» (oila bo'lsa — standart kombinatsiya) yoki «id#kombinatsiya» (masalan «somsa#oddiy.tovuq»). */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiOrinbosar = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
@@ -39,8 +39,13 @@
   }
   function portionVals(v, g) { var m = g / 100; return { k: v.k * m, p: v.p * m, f: v.f * m }; }
   /* qoida (porsiya uchun): oqsil >= asl VA (yog' < asl YOKI kkal < asl) */
-  var EPS = 1e-6;                                                                               // float xatosi (teng qiymatlar) uchun
-  function passes(src, alt) { return alt.p >= src.p - EPS && (alt.f < src.f - EPS || alt.k < src.k - EPS); }
+  /* qoida (porsiya uchun, 2-tahrir): oqsil >= asl x 0.90 VA (yog' <= asl x 0.85 YOKI kkal <= asl x 0.85) VA farq sezilarli (|kkal| >= 40 YOKI |yog'| >= 5 g) */
+  var EPS = 1e-6, K_OQSIL = 0.90, K_KAM = 0.85, MIN_KKAL = 40, MIN_YOG = 5;                  // EPS — float xatosi (teng qiymatlar) uchun
+  function passes(src, alt) {
+    if (!(alt.p >= src.p * K_OQSIL - EPS)) return false;
+    if (!(alt.f <= src.f * K_KAM + EPS || alt.k <= src.k * K_KAM + EPS)) return false;
+    return Math.abs(alt.k - src.k) >= MIN_KKAL - EPS || Math.abs(alt.f - src.f) >= MIN_YOG - EPS;
+  }
   /* asl va o'rinbosar porsiyalari bo'yicha taqqoslash: { ok, dk, dp, df, g, u } */
   function compare(by, srcKey, altKeyStr, srcPortion) {
     var sv = valuesOf(by, srcKey), av = valuesOf(by, altKeyStr); if (!sv || !av) return null;
@@ -61,6 +66,8 @@
     }
     return out;
   }
+  /* karta matni uchun: oqsil farqi |dp| < 2 g bo'lsa «deyarli bir xil» (halol matn) */
+  function deyarli(dp) { return Math.abs(dp) < 2; }
   function tegOf(teglar, key) { var t = teglar.taom || teglar, s = split(key); return t[key] || t[s.id] || 'yoq'; }
-  return { MAX: MAX, index: index, defVariant: defVariant, famRoot: famRoot, split: split, valuesOf: valuesOf, altKey: altKey, defPortion: defPortion, altPortion: altPortion, compare: compare, passes: passes, sifat: sifat, alternatives: alternatives, tegOf: tegOf };
+  return { MAX: MAX, QOIDA: { oqsil: K_OQSIL, kam: K_KAM, minKkal: MIN_KKAL, minYog: MIN_YOG }, deyarli: deyarli, index: index, defVariant: defVariant, famRoot: famRoot, split: split, valuesOf: valuesOf, altKey: altKey, defPortion: defPortion, altPortion: altPortion, compare: compare, passes: passes, sifat: sifat, alternatives: alternatives, tegOf: tegOf };
 });

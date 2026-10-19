@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /* kalki.uz — data/orinbosar.json yasovchi: qizil go'shtli va yog'i ko'p taomlar uchun oqsilga boy o'rinbosar NOMZODLARI.
  * Tartib: avval o'sha oila (osh → tovuqli osh, somsa → tovuqli somsa, shashlik → tovuq shashlik, kabob → tovuq soni), keyin umumiy (baliq, tuxum, dukkak).
- * Nomzod jadvalga tushishi uchun qoida (assets/orinbosar-core.js passes): oqsil ≥ asl VA (yog' < asl YOKI kkal < asl) — bir xil vazn; shu taomning kamida bitta kombinatsiyasi uchun bajarilsin.
+ * Nomzod jadvalga tushishi uchun qoida (assets/orinbosar-core.js passes): oqsil ≥ asl×0.90 VA (yog' yoki kkal ≤ asl×0.85) VA farq sezilarli (|kkal| ≥ 40 yoki |yog'| ≥ 5 g); shu taomning kamida bitta kombinatsiyasi uchun bajarilsin.
  * Har manbaga ≤4 nomzod (har xil oqsil manbai birinchi navbatda), ilovada eng ko'pi 3 ta ko'rsatiladi.   node tools/orinbosar-yasa.js [--yoz] */
 'use strict';
 const fs = require('fs'), path = require('path');
 const O = require('../assets/orinbosar-core.js');
 const J = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), 'utf8')), TG = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'oqsil-manba.json'), 'utf8'));
 const by = O.index(J.foods), A = (i, x) => Object.assign({ i }, x || {});
-const TABAQ = [A('baliq-dimlama'), A('noxat-ragu'), A('qoymoq')];                                      // likop/kosa turidagi taomlar uchun umumiy: baliq, dukkak, tuxum
+const TABAQ = [A('baliq-dimlama'), A('qoymoq'), A('noxat-ragu')];                                      // likop/kosa turidagi taomlar uchun umumiy: baliq, dukkak, tuxum
 const KABOB = [A('shashlik', { v: 'tovuq' }), A('tovuq-son'), A('sazan-grill'), A('tovuq-kokrak'), A('kurka'), A('omlet-sabzavot'), A('noxat-ragu')];
 const QOZON = [A('tovuq-son-qozon'), A('tovuq-kokrak-qozon'), A('dimlama-tovuq'), A('baliq-dimlama'), A('noxat-ragu'), A('qoymoq')];
 const SHURVA = [A('baliq-shurva'), A('loviya-shurva'), A('yasmiq-shurva'), A('moshxorda-gostsiz'), A('tovuq-shurva')];
@@ -50,7 +50,7 @@ if (require.main === module) {
   const { out, hisobot } = yasa();
   console.log('manba taomlar:', hisobot.length, '| nomzodsiz:', hisobot.filter((h) => !h[1]).map((h) => h[0]).join(', ') || '—', '| 1 ta:', hisobot.filter((h) => h[1] === 1).map((h) => h[0]).join(', ') || '—');
   if (process.argv.includes('--yoz')) {
-    const j = { v: 1, izoh: 'O\'rinbosar nomzodlari (tools/orinbosar-yasa.js yasaydi, qo\'lda tahrir qilinmaydi). Ilova har safar assets/orinbosar-core.js qoidasi bilan filtrlaydi: oqsil ≥ asl VA (yog\' yoki kkal kam), bir xil vazn; eng ko\'pi 3. Nomzod: {i} | {i,v: kombinatsiya} | {i,set:{o\'q:qiymat}} (shu oila, boshqa o\'qlar saqlanadi).', qoida: { oqsil: '>=', yog_yoki_kkal: '<', max: O.MAX }, manba: out };
+    const j = { v: 1, izoh: 'O\'rinbosar nomzodlari (tools/orinbosar-yasa.js yasaydi, qo\'lda tahrir qilinmaydi). Ilova har safar assets/orinbosar-core.js qoidasi bilan filtrlaydi: oqsil ≥ asl×0.90 VA (yog\' yoki kkal ≤ asl×0.85) VA farq sezilarli; eng ko\'pi 3 (1 asosiy + 2 «Boshqa variantlar»). Nomzod: {i} | {i,v: kombinatsiya} | {i,set:{o\'q:qiymat}} (shu oila, boshqa o\'qlar saqlanadi).', qoida: Object.assign({ max: O.MAX }, O.QOIDA), manba: out };
     fs.writeFileSync(path.join(__dirname, '..', 'data', 'orinbosar.json'), JSON.stringify(j, null, 1) + '\n'); console.log('data/orinbosar.json yozildi');
   }
 }

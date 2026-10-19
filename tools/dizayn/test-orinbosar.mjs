@@ -27,11 +27,11 @@ for (const id of YANGI) {
 }
 const R = (id) => { const f = by[id]; const g = f.u.find((u) => u[0] !== 'g100')[1]; return { id, g, k: Math.round(f.k * g / 100), p: Math.round(f.p * g) / 100, f: Math.round(f.f * g) / 100 }; };
 for (const id of ['osh-tovuq', 'sazan-grill', 'loviya-shurva']) assert.ok(R(id).g > 0);
-assert.ok(by['sazan-grill'].p >= 15 && by['sazan-grill'].f <= 12 && by['osh-tovuq'].p > by.osh.p, 'sazan/tovuqli osh oqsili');
+assert.ok(by['sazan-grill'].p >= 15 && by['sazan-grill'].f <= 12 && by['osh-tovuq'].p >= by.osh.p * 0.95, 'sazan/tovuqli osh oqsili');
 log('yangi ' + YANGI.length + ' ta taom: hammasida retsept + USDA fdc_id manba (UZ/RU), «taxminiy», ±15% Atwater, birliklar; baza 288 ta');
 /* 3. o'rinbosar jadvali */
 assert.deepEqual(TB.manba, GEN.yasa().out, 'data/orinbosar.json eskirgan: node tools/orinbosar-yasa.js --yoz');
-const srcs = Object.keys(TB.manba); const ISTISNO = new Set(['steyk', 'bekon']);
+const srcs = Object.keys(TB.manba); const ISTISNO = new Set(['dolma', 'jigar-kabob', 'jigar', 'tushonka', 'kolbasa', 'bekon', 'naggets']);
 assert.deepEqual(Object.keys(GEN.MANBA).filter((s) => !TB.manba[s]).sort(), [...ISTISNO].sort(), 'nomzodsiz taomlar (qoidaga javob beradigani yo\'q)');
 const variants = (id) => (by[id].fam ? Object.keys(by[id].fam.g).map((v) => id + '#' + v) : [id]);
 let jami = 0, kam2 = [];
@@ -45,7 +45,7 @@ for (const s of srcs) {
     const order = TB.manba[s].map((a) => O.altKey(by, sk, a)).filter(Boolean); let last = -1;
     for (const a of alts) {
       const av = O.valuesOf(by, a.key), ap = O.altPortion(by, a.key, sp), m = ap.g / 100, S = { p: sv.p * sp.g / 100, f: sv.f * sp.g / 100, k: sv.k * sp.g / 100 }, A = { p: av.p * m, f: av.f * m, k: av.k * m };
-      assert.ok(A.p >= S.p - 1e-6 && (A.f < S.f - 1e-6 || A.k < S.k - 1e-6), sk + ' → ' + a.key + ': qoida buzilgan'); assert.ok(Math.abs(a.dp - (A.p - S.p)) <= 0.051 && Math.abs(a.df - (A.f - S.f)) <= 0.051 && Math.abs(a.dk - (A.k - S.k)) <= 0.51, sk + ' → ' + a.key + ': farq');
+      assert.ok(O.passes(S, A), sk + ' → ' + a.key + ': qoida buzilgan'); assert.ok(Math.abs(a.dp - (A.p - S.p)) <= 0.051 && Math.abs(a.df - (A.f - S.f)) <= 0.051 && Math.abs(a.dk - (A.k - S.k)) <= 0.51, sk + ' → ' + a.key + ': farq');
       const ix = order.indexOf(a.key); assert.ok(ix > last, sk + ': tartib (oila birinchi) buzilgan'); last = ix;
     }
     /* ko'rsatilmaganlari — rostdan qoidaga javob bermaydi (yashirin to'g'ri) */
@@ -54,19 +54,31 @@ for (const s of srcs) {
   const dv = O.alternatives(by, TB, s); jami += dv.length; if (dv.length < 2) kam2.push(s + ':' + dv.length);
   if (!ISTISNO.has(s)) assert.ok(dv.length >= 1, s + ': standart kombinatsiyada o\'rinbosar yo\'q');
 }
-assert.ok(srcs.length >= 40, 'manba taomlar soni');
+assert.ok(srcs.length >= 35 && Object.keys(GEN.MANBA).length === 42, 'manba taomlar soni');
 log(srcs.length + ' manba taom (qizil go\'sht + yog\'i ≥ 14 g): har bir kombinatsiyada ko\'rsatilganlar qoidaga javob beradi (oqsil ≥ asl VA yog\' yoki kkal kam), farqlar to\'g\'ri, tartib — oila birinchi; standart kombinatsiyada o\'rtacha ' + (jami / srcs.length).toFixed(1) + ' ta; <2: ' + kam2.join(', '));
-/* 4. qoida chegaralari */
+/* 4. qoida chegaralari: oqsil >= asl x 0.90 VA (yog' yoki kkal <= asl x 0.85) VA (|kkal| >= 40 YOKI |yog'| >= 5) */
 const P = (k, p, f) => ({ k, p, f });
-assert.equal(O.passes(P(200, 10, 10), P(200, 10, 9)), true, 'oqsil teng, yog\' kam');
-assert.equal(O.passes(P(200, 10, 10), P(150, 10, 10)), true, 'oqsil teng, yog\' teng, kkal kam');
-assert.equal(O.passes(P(200, 10, 10), P(150, 9.9, 5)), false, 'oqsil kam — ko\'rsatilmaydi');
-assert.equal(O.passes(P(200, 10, 10), P(250, 20, 12)), false, 'oqsil ko\'p, lekin yog\' ham kkal ham ko\'p');
-assert.equal(O.passes(P(200, 10, 10), P(200, 12, 10)), false, 'yog\' ham, kkal ham teng');
-assert.equal(O.passes(P(200, 10, 10), P(250, 14, 8)), true, 'yog\' kam (kkal ko\'p bo\'lsa ham)');
+assert.deepEqual(O.QOIDA, { oqsil: 0.9, kam: 0.85, minKkal: 40, minYog: 5 });
+const base = P(400, 20, 20);
+assert.equal(O.passes(base, P(300, 18, 15)), true, 'oqsil = asl x 0.90 (chegara), yog\' = x 0.75');
+assert.equal(O.passes(base, P(300, 17.9, 15)), false, 'oqsil asl x 0.90 dan kam');
+assert.equal(O.passes(base, P(400, 20, 17)), false, 'yog\' x 0.85, lekin farq 3 g < 5 va kkal farqi 0 — sezilarli emas');
+const b2 = P(500, 20, 40); assert.equal(O.passes(b2, P(500, 20, 34)), true, 'yog\' = x 0.85 (chegara), farq 6 g'); assert.equal(O.passes(b2, P(500, 20, 34.1)), false, 'yog\' x 0.85 dan oshadi, kkal x 0.85 emas');
+assert.equal(O.passes(base, P(340, 20, 20)), true, 'kkal = x 0.85 (chegara), farq 60 kkal');
+assert.equal(O.passes(base, P(341, 20, 20)), false, 'kkal x 0.85 dan oshadi');
+assert.equal(O.passes(P(52, 2.6, 4.6), P(30, 3.4, 2)), false, 'kolbasa tilimi: foiz bor, lekin |kkal| < 40 va |yog\'| < 5 — sezilarli emas');
+assert.equal(O.passes(P(100, 10, 10), P(60, 10, 5.1)), true, 'kkal farqi 40 (chegara)');
+assert.equal(O.passes(P(100, 10, 6), P(95, 10, 0.5)), true, 'yog\' farqi 5.5 g');
+assert.equal(O.passes(P(100, 10, 6), P(70, 10, 5)), false, 'kkal farqi 30 < 40 va yog\' farqi 1 < 5');
+assert.equal(O.passes(base, P(390, 30, 25)), false, 'oqsil ko\'p, lekin yog\' va kkal kam emas');
+assert.equal(O.deyarli(1.9), true); assert.equal(O.deyarli(-1.9), true); assert.equal(O.deyarli(2), false); assert.equal(O.deyarli(-3.4), false);
 const osh = O.alternatives(by, TB, 'osh#kop.kop').map((a) => a.key), osh2 = O.alternatives(by, TB, 'osh').map((a) => a.key);
-assert.ok(osh2[0] === 'osh-tovuq' && !osh.includes('osh-tovuq'), 'osh-tovuq: o\'rta go\'shtli oshga ha, eng ko\'p go\'shtlisiga (oqsil 6,4 > 5,7) yo\'q');
-log('qoida chegaralari: oqsil teng/kam, yog\' va kkal teng/ko\'p; osh-tovuq o\'rta oshga ko\'rsatiladi, «go\'sht ko\'p» oshga ko\'rsatilmaydi (oqsil kam)');
+assert.ok(osh2[0] === 'osh-tovuq' && !osh.includes('osh-tovuq'), 'osh-tovuq: o\'rta go\'shtli oshga ha (oqsil teng), eng ko\'p go\'shtlisiga (oqsil 6,4 > 5,3/0.9) yo\'q');
+log('qoida chegaralari (x0.90 oqsil, x0.85 yog\'/kkal, sezilarli farq): chegara qiymatlari, kolbasa tilimi chiqib ketadi, «deyarli bir xil» (|oqsil farqi| < 2 g); osh-tovuq o\'rta oshga ko\'rsatiladi, «go\'sht ko\'p» oshga yo\'q');
+/* 4b. retsept qoidaga moslanmaydi: tovuqli osh go'shti = osh retseptidagi go'sht miqdori */
+const RT = Object.fromEntries(rd('data/baza-retseptlar.json').retseptlar.map((r) => [r.id, r])), sum = (r, ms) => r.ingr.filter((l) => ms.includes(l.m)).reduce((a, l) => a + l.g, 0);
+assert.equal(sum(RT['osh-tovuq'], ['tovuq_son', 'tovuq_kokrak']), sum(RT['osh.orta.odatiy'], ['qoy', 'mol']), 'tovuqli osh: go\'sht miqdori oddiy osh retseptiga teng'); assert.equal(RT['osh-tovuq'].ingr.find((l) => l.m === 'guruch').g, RT['osh.orta.odatiy'].ingr.find((l) => l.m === 'guruch').g);
+log('tovuqli osh retsepti: tovuq ' + sum(RT['osh-tovuq'], ['tovuq_son', 'tovuq_kokrak']) + ' g (son + ko\'krak) = oddiy osh go\'shti (qo\'y + mol), guruch/sabzi/yog\' bir xil — qoidaga moslanmagan');
 /* 5. bir xil porsiya */
 const sp = O.defPortion(by, 'osh'); assert.deepEqual([sp.u, sp.g], ['likop', 350]); const ot = O.alternatives(by, TB, 'osh')[0]; assert.deepEqual([ot.id, ot.g], ['osh-tovuq', 350]);
 const ks = O.alternatives(by, TB, 'shashlik')[0]; assert.equal(ks.key, 'shashlik#tovuq'); assert.equal(ks.g, 80, 'dona — bir xil gramm');
