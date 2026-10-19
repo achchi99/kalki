@@ -2,6 +2,33 @@
   "app": "kalkifit",
   "items": [
     {
+      "v": 12,
+      "d": "2026-10-19",
+      "bn": {
+        "uz": "«O'rniga» takliflari, «Oqsil manbalari» va «Baliq kuni» eslatmasi.",
+        "ru": "Подсказки «Вместо», «Источники белка» и напоминание «Рыбный день»."
+      },
+      "items": [
+        {
+          "uz": "Yangi: «O'rniga» takliflari — sevimli taomingizning oqsilga boy, yog'i kamroq varianti.",
+          "ru": "Новое: подсказки «Вместо» — вариант любимого блюда с большим количеством белка и меньшим — жира."
+        },
+        {
+          "uz": "Natijalarda «Oqsil manbalari»: oqsil qaysi manbalardan kelayotgani ko'rinadi.",
+          "ru": "В «Результатах» — «Источники белка»: из чего складывается белок за неделю."
+        },
+        {
+          "uz": "Payshanba kuni «Baliq kuni» eslatmasi — Profil'dan yoqiladi.",
+          "ru": "По четвергам — напоминание о «Рыбном дне»: включается в Профиле.",
+          "show": "fishday",
+          "btn": {
+            "uz": "Eslatmani ko'rish",
+            "ru": "Показать напоминание"
+          }
+        }
+      ]
+    },
+    {
       "v": 11,
       "d": "2026-10-18",
       "items": [
@@ -276,29 +303,6 @@
           "btn": {
             "uz": "Tugmani ko'rsatish",
             "ru": "Показать кнопку"
-          }
-        }
-      ]
-    },
-    {
-      "v": 12,
-      "d": "2026-10-19",
-      "items": [
-        {
-          "uz": "Yangi: «O'rniga» takliflari — sevimli taomingizning oqsilga boy, yog'i kamroq varianti.",
-          "ru": "Новое: подсказки «Вместо» — вариант любимого блюда с большим количеством белка и меньшим — жира."
-        },
-        {
-          "uz": "Natijalarda «Oqsil manbalari»: oqsil qaysi manbalardan kelayotgani ko'rinadi.",
-          "ru": "В «Результатах» — «Источники белка»: из чего складывается белок за неделю."
-        },
-        {
-          "uz": "Payshanba kuni «Baliq kuni» eslatmasi — Profil'dan yoqiladi.",
-          "ru": "По четвергам — напоминание о «Рыбном дне»: включается в Профиле.",
-          "show": "fishday",
-          "btn": {
-            "uz": "Eslatmani ko'rish",
-            "ru": "Показать напоминание"
           }
         }
       ]
