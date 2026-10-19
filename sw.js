@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '08746adc';   /* sw-version:auto */
+const SW_VERSION = '2f823779';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -430,4 +430,18 @@ self.addEventListener('fetch', (e) => {
   }
 
   e.respondWith(staleWhileRevalidate(e.request, RUNTIME));
+});
+
+/* ---- «Baliq kuni» eslatmasi (Web Push). Haftada 1 ta; server: tools/push-yubor.js. Xabar: { t, b, u, tag } ---- */
+self.addEventListener('push', (e) => {
+  let d = {}; try { d = e.data ? e.data.json() : {}; } catch (_) { d = {}; }
+  const u = typeof d.u === 'string' && d.u.charAt(0) === '/' ? d.u : '/kalkifit';
+  e.waitUntil(self.registration.showNotification(String(d.t || 'KalkiFit').slice(0, 60), { body: String(d.b || '').slice(0, 200), icon: '/assets/icons/kalkifit-192.png', badge: '/assets/icons/kalkifit-192.png', tag: String(d.tag || 'baliq-kuni'), data: { u } }));
+});
+self.addEventListener('notificationclick', (e) => {
+  e.notification.close(); const u = (e.notification.data && e.notification.data.u) || '/kalkifit';
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { return c.focus().then(() => ('navigate' in c ? c.navigate(u) : c)); } }
+    return self.clients.openWindow(u);
+  }));
 });

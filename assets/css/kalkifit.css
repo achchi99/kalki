@@ -300,3 +300,5 @@ html[data-theme=dark]:has(.rz.sl){--page-bg:#111214}
 .rz .sl-orb .orb-bar{display:flex;gap:2px;height:14px;border-radius:7px;overflow:hidden;margin:10px 0 8px}.rz .sl-orb .orb-bar i{flex-basis:0;min-width:6px}
 .rz .sl-orb .orb-leg{list-style:none;display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 8px;padding:0;font-size:14px;color:var(--mut)}.rz .sl-orb .orb-leg li{display:inline-flex;align-items:center}.rz .sl-orb .orb-leg i{width:10px;height:10px;border-radius:3px;margin-right:6px}.rz .sl-orb .orb-leg b{color:var(--ink);margin-left:4px}
 .rz .sl-orb .orb-qizil{background:var(--mut2)}.rz .sl-orb .orb-tovuq{background:var(--mut)}.rz .sl-orb .orb-baliq{background:var(--fill)}.rz .sl-orb .orb-sut{background:var(--line2)}.rz .sl-orb .orb-dukkak{background:var(--ink);opacity:.55}
+/* «Baliq kuni» eslatmasi taklifi (Kun yakuni) */
+.rz .sl-poff{background:var(--soft);border:0;border-radius:12px;box-shadow:inset 3px 0 0 var(--bline);margin:10px 0}.rz .sl-poff b{display:block;margin-bottom:2px}.rz .sl-poff .rz-actions{margin-top:8px}
