@@ -58,10 +58,14 @@ try {
   await p.click('[data-act=baliqgo]'); await p.waitForTimeout(900); assert.equal(await p.locator('#catsRow .rz-chip.on').innerText(), 'Baliq'); const names = await p.locator('#fdRes [data-act=pickfood] .nm').allInnerTexts(); assert.ok(names.length >= 8, 'Baliq guruhida taomlar: ' + names.length); assert.ok(names.some((x) => /Grilda sazan/.test(x)) && names.some((x) => /Losos/.test(x)) && names.some((x) => /Baliq sho'rva/.test(x)), names.join('|')); assert.ok(!names.some((x) => /^Osh|Tovuq ko'kragi|Tuxum/.test(x)), 'faqat baliq: ' + names.join('|')); await noX(p);
   await p.keyboard.press('Escape'); await p.context().close();
   p = await mk(seed(9), { date: THU }); await p.click('[data-act=hide][data-k=baliq]'); await p.waitForTimeout(300); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 0, '«Keyinroq» — bu hafta yo\'q'); await p.context().close();
+  p = await mk(seed(9), { date: THU }); assert.equal(await p.locator('.nudge[data-nudge=baliq] .b button').count(), 3, 'Baliq taomlari · Keyinroq · Bundan keyin ko\'rsatma'); assert.equal((await p.locator('.nudge[data-nudge=baliq] [data-act=baliqoff]').innerText()).trim(), "Bundan keyin ko'rsatma"); await noX(p);
+  await p.click('[data-act=baliqoff]'); await p.waitForTimeout(300); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 0); assert.equal((await stOf(p)).prefs.baliqOff, true);
+  await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 1, 'Profil\'dagi eslatma qatori qoladi'); await p.context().close();
+  p = await mk(seed(9, { prefs: { baliqOff: true } }), { date: THU }); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 0, 'baliqOff — payshanba ham yo\'q'); await p.context().close();
   p = await mk(seed(9), { date: WED }); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 0, 'chorshanba: banner yo\'q'); await p.context().close();
   p = await mk(seed(9, { prefs: { push: { on: true, ep: 'x', t: Date.now(), sync: Date.now() } } }), { date: THU }); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 0, 'eslatma yoqilgan — ilova ichida banner yo\'q (push keladi)'); await p.context().close();
   p = await mk(seed(9), { date: THU, mock: false }); assert.equal(await p.locator('.nudge[data-nudge=baliq]').count(), 1, 'push qo\'llanmaydigan brauzerda ham banner'); await p.context().close();
-  log('Payshanba banneri (eslatmasizlar, push qo\'llanmaydigan brauzerlar ham): bitta, «Baliq taomlari» → qo\'shish oynasida «Baliq» chipi, faqat baliq taomlari; «Keyinroq» — 7 kun; chorshanba va eslatma yoqilgan bo\'lsa yo\'q');
+  log('Payshanba banneri (eslatmasizlar, push qo\'llanmaydigan brauzerlar ham): bitta, «Baliq taomlari» → qo\'shish oynasida «Baliq» chipi, faqat baliq taomlari; «Keyinroq» — 7 kun; «Bundan keyin ko\'rsatma» — butunlay yo\'q (Profil qatori qoladi); chorshanba va eslatma yoqilgan bo\'lsa yo\'q');
   /* 6. eslatmadan kelganda (?baliq=1) Baliq guruhi ochiladi; RU */
   p = await mk(seed(9), { url: '/kalkifit?baliq=1' }); await p.waitForTimeout(500); assert.equal(await p.locator('#catsRow .rz-chip.on').innerText(), 'Baliq'); assert.ok(!/baliq=1/.test(p.url()), 'manzil tozalanadi'); await p.context().close();
   p = await mk(seed(9), { url: '/ru/kalkifit?baliq=1' }); await p.waitForTimeout(500); assert.equal(await p.locator('#catsRow .rz-chip.on').innerText(), 'Рыба'); const rn = await p.locator('#fdRes [data-act=pickfood] .nm').allInnerTexts(); assert.ok(rn.length >= 8); await p.context().close();
@@ -70,9 +74,16 @@ try {
   /* 7. «Baliq» chipi tartibi: Mashhur + guruhlar, o'rtada */
   p = await mk(seed(9)); await p.click('#mainAdd'); await p.waitForTimeout(500); const chips = await p.locator('#catsRow .rz-chip').allInnerTexts(); assert.equal(chips.length, 14); assert.equal(chips[5], 'Baliq', 'Go\'sht, baliq... dan keyin'); await p.context().close();
   log('«Baliq» chipi: Mashhur + 13 guruh (14 chip), «Go\'sht, baliq, tuxum» dan keyin');
-  /* 8. sinov kaliti: ?pushtest=1 — 3-kun shartini o'tkazadi (yangi brauzer/preview'da sinash uchun); odatiy foydalanuvchiga ta'sir qilmaydi */
-  p = await mk(seed(0), { url: '/kalkifit?pushtest=1' }); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 1); await p.context().close();
-  p = await mk(seed(0)); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 0); await p.context().close();
-  log('?pushtest=1 — sinov uchun Profil qatori 1-kunda ham chiqadi; oddiy ochilishda yo\'q');
+  /* 8. ?pushtest=1 FAQAT *.pages.dev preview'da ishlaydi; kalki.uz (va boshqa domen)da e'tiborsiz */
+  const asHost = async (host, url) => { const c = await b.newContext({ viewport: { width: 360, height: 700 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); await c.addInitScript((s) => { localStorage.setItem('kalki_fit', JSON.stringify(s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); }, seed(0)); await c.addInitScript(MOCK, {});
+    const pg = await c.newPage(); await pg.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); 
+    await pg.route('https://' + host + '/**', async (r) => { const u = new URL(r.request().url()); await r.fulfill({ response: await r.fetch({ url: BASE + u.pathname + u.search }) }); });
+    await pg.route('**/api/push/kalit', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ yoqilgan: true, kalit: 'BCVxsr7N_eNgVRqvHtD0zTZsEc6-VV-JvLexhqUzORcxaOzi6-AYWXvTBHm4bjyPjs7Vd8pZGH6SRpkNtoIAiw4' }) }));
+    await pg.goto('https://' + host + url, { waitUntil: 'networkidle' }); await pg.waitForTimeout(600); await pg.click('[data-act=tab][data-v=profile]'); await pg.waitForTimeout(350); const n1 = await pg.locator('[data-act=pushon]').count(); await c.close(); return n1; };
+  assert.equal(await asHost('oqsil.kalki-10y.pages.dev', '/kalkifit?pushtest=1'), 1, 'preview: ishlaydi');
+  assert.equal(await asHost('kalki.uz', '/kalkifit?pushtest=1'), 0, 'kalki.uz: e\'tiborsiz');
+  assert.equal(await asHost('oqsil.kalki-10y.pages.dev', '/kalkifit'), 0, 'param yo\'q — odatiy');
+  p = await mk(seed(0), { url: '/kalkifit?pushtest=1' }); await prof(p); assert.equal(await p.locator('[data-act=pushon]').count(), 0, 'localhost (preview emas): e\'tiborsiz'); await p.context().close();
+  log('?pushtest=1 faqat *.pages.dev preview\'da (Profil qatori 1-kunda ham chiqadi); kalki.uz va localhost\'da e\'tiborsiz; parametrsiz preview — odatiy');
 } finally { await b.close().catch(() => {}); srv.close(); }
 console.log('\nHAMMASI OK (' + n + ' blok)');
