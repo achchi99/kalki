@@ -49,7 +49,7 @@ try {
   log('Bosh sahifa: hero ostida «Yangi ilovalar» — KalkiFit va Ro\'zg\'or katta kartalar (ikonka, jumla, «Ochish»), UZ/ЎЗ/RU, 390 va 1280, havolalar (RU: /ru/…), gorizontal scroll yo\'q');
 
   /* ---- iPhone 15: standalone va Safari — status bar hududi ilova foni, theme-color, manifest, qattiq panel, body scroll yo'q ---- */
-  const BGS = { rozgor: { light: 'rgb(241, 242, 238)', dark: 'rgb(17, 18, 20)' }, kalkifit: { light: 'rgb(245, 244, 240)', dark: 'rgb(17, 18, 20)' } }; const HEX = { rozgor: ['#F1F2EE', '#111214'], kalkifit: ['#F5F4F0', '#111214'] };
+  const BGS = { rozgor: { light: 'rgb(241, 242, 238)', dark: 'rgb(17, 18, 20)' }, kalkifit: { light: 'rgb(247, 245, 242)', dark: 'rgb(24, 25, 28)' } }; const HEX = { rozgor: ['#F1F2EE', '#111214'], kalkifit: ['#F7F5F2', '#18191C'] };
   for (const app of ['kalkifit', 'rozgor']) { const A = APPS[app];
     for (const standalone of [true, false]) for (const scheme of ['light', 'dark']) {
       const c = await b.newContext({ ...devices['iPhone 15'], colorScheme: scheme, serviceWorkers: 'block' });
