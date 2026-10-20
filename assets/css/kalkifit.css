@@ -570,3 +570,31 @@ html.fs-big .rz .rt-odo{font-size:80px}
 @media (max-width:420px){.rz .sl-atabs{display:grid;grid-template-columns:1fr 1fr}.rz .sl-atab{min-width:0}}
 html.fs-big .rz .sl-atabs{display:grid;grid-template-columns:1fr 1fr}html.fs-big .rz .sl-atab{min-width:0}
 .rz .rz-intro:focus{outline:none}
+/* ---- Retsept (haqiqiy): xabar, «Tez orada», tanlagich ---- */
+.rz .rt-msg{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 16%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);color:var(--ink);font-size:var(--t-s);font-weight:600;line-height:1.4}
+.rz .rt-msg[hidden]{display:none}
+.rz .rt-soon{display:inline-flex;align-items:center;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--mut);font-size:var(--t-lbl);font-weight:600}
+.rz .rt-cam:disabled{opacity:.7}
+.rz .rt-addb{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;margin:6px 0 12px}
+.rz .rt-est{color:var(--mut);font-weight:600}
+.rz .rt-ing.need{background:color-mix(in srgb,var(--gold) 12%,transparent);border-radius:14px;padding:10px 12px;border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent);margin:4px 0}
+.rz .rt-search{margin:0 0 10px}
+.rz .rt-plist{display:flex;flex-direction:column;max-height:56vh;overflow-y:auto}
+.rz .rt-pr{min-height:52px}
+/* aylana: raqam to'lqin ustida ham aniq o'qiladi — yorug' qatlam (to'lqin ostida emas, ustida) + yengil halo, to'lqin ichida to'q qatlam */
+.rz .kv-sub.kv-n{stroke:var(--vessel);stroke-width:2.2px;paint-order:stroke fill;stroke-linejoin:round}
+/* ---- ochilish animatsiyasi (faqat transform/opacity; prefers-reduced-motion'da yo'q — global qoida + JS) ---- */
+.rz .rz-main.rzi :is(#mainAdd,.sl-door,.sl-meal,.sl-macs,.sl-duo){animation:rzUp .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
+@keyframes rzUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rz .rz-splash{position:absolute;inset:0;z-index:95;background:var(--bg);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:rzSplashOut .2s ease .7s both}
+.rz .rz-splash .in{display:flex;align-items:center;gap:14px;animation:rzSplashIn .7s cubic-bezier(.2,.8,.2,1) both}
+.rz .rz-splash i{width:64px;height:64px;border-radius:20px;background:var(--fill);color:var(--onbtn);display:inline-flex;align-items:center;justify-content:center;font:800 36px 'Manrope',sans-serif;font-style:normal}
+.rz .rz-splash b{font:800 30px 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--ink)}
+@keyframes rzSplashIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes rzSplashOut{to{opacity:0;visibility:hidden}}
+/* Retsept eshigi: nozik yaltirash (4 s sikl) */
+.rz .rt-door{position:relative;overflow:hidden}
+.rz .rt-door::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.2) 50%,transparent 62%);transform:translateX(-130%);animation:rtShine 4s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes rtShine{0%,70%,100%{transform:translateX(-130%)}85%{transform:translateX(130%)}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rz .rt-door::after{background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.08) 50%,transparent 62%)}}
+html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.08) 50%,transparent 62%)}

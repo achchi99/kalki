@@ -1,43 +1,50 @@
-/* kalki.uz — KalkiFit: «Retseptimni moslashtir» (MAKET). AI YO'Q: soxta ma'lumot bilan bosib ko'riladigan 4 ekran (Kirish → Tahlil → Natija → Ulashish kartochkasi).
- * Hisob maketda ham haqiqiy: masalliq gramm × 100 g dagi qiymat (baza qiymatlariga yaqin, qo'lda) — o'zgarish yoqilsa/o'chirilsa raqamlar qayta hisoblanadi.
- * Keyingi bosqich (haqiqiy AI, baza id, limit, kesh, hisoblagichlar): docs/retsept-reja.md.
- * kalkifit-app.js dan OLDIN yuklanadi va window.KalkiRetseptUI ni beradi; ilova init() da bog'laydi (api). Kirish: «Bugun nima yeymiz?» → Uyda; Profil → Mening taomlarim. */
+/* kalki.uz — KalkiFit: «Retseptingizni yengillashtiring» (interfeys). 4 ekran: Kirish → Tahlil → Natija → Ulashish kartochkasi.
+ * Hisob: assets/retsept-core.js (mahalliy parser, deterministik qoidalar; kkal/oqsil/yog'/uglevod — FAQAT data/retsept-masalliq.json, USDA). AI (functions/api/retsept.js) FAQAT mahalliy parser tanimagan qatorlarni
+ * masalliqqa ajratadi; AI xato/limit/tarmoq yo'q bo'lsa — tushunarli xabar + qo'lda masalliq tanlash (HECH QACHON soxta natija). 3 misol (Osh, Mastava, Manti) AI'siz ishlaydi.
+ * kalkifit-app.js dan OLDIN yuklanadi va window.KalkiRetseptUI ni beradi; ilova init() da bog'laydi (api). Kirish nuqtasi: Bugun'dagi eshik karta (yagona). */
 (function () {
   'use strict';
-  var A = null;
+  var A = null, R = window.KalkiRetsept, rt = null, tblState = 0, tblWait = [];
+  if (!R) return;
   var D = {
     uz: {
-      rtDoorT: 'Retseptingizni yengillashtiring', rtDoorS: "Oshingizni 20–30% yengil qilamiz", rtMk: 'Maket',
-      rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: "Masalliqlarni yozing yoki qo'lda yozilgan retseptni rasmga oling.",
-      rtPh: "Onamning oshi: 1 kg guruch, 1 kg qo'y go'shti, 300 g yog', 1 kg sabzi…", rtCam: 'Rasmga olish', rtEx: 'Misollar', rtGo: 'Moslashtirish',
-      rtEmpty: 'Retseptni yozing yoki misolni tanlang', rtCamRead: "Rasm o'qildi (maket: namunaviy matn)",
-      rtScan: 'Masalliqlar tanilmoqda…', rtFound: '{n} ta masalliq topildi', rtIngT: 'Masalliqlar', rtIngH: "Grammni − / + bilan to'g'rilang.", rtBase: 'bazada: {b}',
-      rtUnk: 'tanlang', rtUnkH: 'Bu masalliq bazada aniq topilmadi — qaysi biri?', rtUnkNo: "Qo'shmaslik", rtUnkNeed: 'Sariq belgili masalliqni tanlang',
+      rtDoorT: 'Retseptingizni yengillashtiring', rtDoorS: "Oshingizni 20–30% yengil qilamiz",
+      rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: "Masalliqlarni gramm bilan yozing. Ta'mi qoladi, kaloriyasi kamayadi.",
+      rtPh: "Onamning oshi: 1 kg guruch, 1 kg qo'y go'shti, 300 g yog', 1 kg sabzi…", rtCam: 'Rasmga olish', rtSoon: 'Tez orada', rtEx: 'Misollar', rtGo: 'Moslashtirish',
+      rtEmpty: 'Retseptni yozing yoki misolni tanlang', rtShort: "Matn juda qisqa — masalliqlarni gramm bilan yozing (masalan, «1 kg guruch, 300 g yog'»).", rtLong: 'Matn juda uzun (1500 belgidan oshmasin).',
+      rtScan: 'Masalliqlar tanilmoqda…', rtAiBusy: 'AI bilan tekshirilmoqda…', rtFound: '{n} ta masalliq topildi', rtIngT: 'Masalliqlar', rtIngH: "Grammni − / + bilan to'g'rilang. Hammasi bazadagi qiymat bilan hisoblanadi.", rtBase: 'bazada: {b}', rtAiAs: 'AI: «{a}» → {b} (tekshiring)',
+      rtUnk: 'tanlang', rtUnkH: 'Bu masalliq bazadan aniq topilmadi — qaysi biri?', rtUnkNo: "Qo'shmaslik", rtNeedH: 'Miqdor aniq emas — gramm kiriting.', rtMore: 'Boshqa…', rtAdd: "Masalliq qo'shish",
+      rtPickT: 'Masalliqni tanlang', rtPickQ: 'Qidirish: guruch, sabzi…', rtPickNone: 'Hech narsa topilmadi.', rtNeedFix: 'Sariq belgili masalliqlarni tanlang yoki miqdorini kiriting', rtNone: "Masalliq qo'shing",
+      rtPork: "Matnda cho'chqa go'shti bor — KalkiFit uni qo'shmaydi. Kerak bo'lsa, boshqa masalliq bilan almashtiring.", rtEst: 'taxminiy',
       rtPeople: 'Necha kishiga?', rtNext: 'Davom',
-      rtPor: '1 porsiya', rtKcal: 'kkal', rtPct: '{p}%', rtProtOk: 'oqsil saqlandi', rtProtUp: 'oqsil +{g} g', rtProtDn: 'oqsil −{g} g', rtNoCh: "O'zgarishlarni yoqing",
+      rtPor: '1 porsiya', rtKcal: 'kkal', rtProtOk: 'oqsil saqlandi', rtProtUp: 'oqsil +{g} g', rtProtDn: 'oqsil −{g} g', rtNoCh: "O'zgarishlarni yoqing",
       rtCmp: 'Oldin / Keyin', rtBefore: 'Oldin', rtAfter: 'Keyin', rtMK: 'Kaloriya', rtMP: 'Oqsil', rtMF: "Yog'",
       rtChT: "Aqlli o'zgarishlar", rtChH: "Har birini yoqing yoki o'chiring — raqam darhol o'zgaradi.", rtBen: '−{k} kkal porsiyada', rtBen0: "kaloriya deyarli o'zgarmaydi", rtBenUp: "+{k} kkal porsiyada, lekin to'yimlilik oshadi",
-      rtT0: 'deyarli sezilmaydi', rtT1: 'ozgina farq', rtT2: "boshqacha ta'm",
-      rtNote: 'Raqamlar taxminiy, KalkiFit bazasi asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: "Maket: haqiqiy saqlash keyingi bosqichda",
+      rtT0: 'deyarli sezilmaydi', rtT1: 'ozgina farq', rtT2: "boshqacha ta'm", rtNoRules: "Bu retseptda yengillashtirish uchun mos o'zgarish topilmadi — u allaqachon yengil yoki boshqa taom.",
+      rtNote: 'Raqamlar taxminiy, KalkiFit bazasi (USDA) asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: "Saqlandi: «{n}» — 1 porsiya {k} kkal. «Ovqat qo'shish» → Taomlarim'da.", rtSavedBtn: 'Bugunga yozish', rtLight: 'yengil', rtNoSave: "Saqlab bo'lmadi — masalliq yo'q",
       rtCardT: 'Ulashish kartochkasi', rtCardH: "Instagram yoki Telegram'ga qo'yish uchun rasm.", rtDl: 'Yuklab olish', rtShared: 'Ulashildi', rtMaking: 'Rasm tayyorlanmoqda…',
-      rtLight: 'Yengil versiya', rtBy: 'KalkiFit bilan hisoblandi', rtCardSub: '1 porsiya: {a} → {b} kkal', rtPeopleN: '{n} kishilik',
+      rtLightV: 'Yengil versiya', rtBy: 'KalkiFit bilan hisoblandi', rtCardSub: '1 porsiya: {a} → {b} kkal', rtPeopleN: '{n} kishilik',
+      rtErrNet: "Internetga ulanib bo'lmadi. Masalliqlarni qo'lda tanlang.", rtErrAi: "AI bu qatorlarni aniqlay olmadi. Quyidagilarni o'zingiz tanlang.", rtErrNone: "Masalliq topilmadi. Retseptni gram bilan yozing yoki masalliqni qo'lda qo'shing.",
       rtBack: 'Orqaga'
     },
     ru: {
-      rtDoorT: 'Облегчите свой рецепт', rtDoorS: 'Сделаем ваш плов легче на 20–30%', rtMk: 'Макет',
-      rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты или сфотографируйте рецепт, написанный от руки.',
-      rtPh: 'Мамин плов: 1 кг риса, 1 кг баранины, 300 г масла, 1 кг моркови…', rtCam: 'Сфотографировать', rtEx: 'Примеры', rtGo: 'Облегчить',
-      rtEmpty: 'Напишите рецепт или выберите пример', rtCamRead: 'Фото прочитано (макет: пример текста)',
-      rtScan: 'Распознаём ингредиенты…', rtFound: 'Найдено ингредиентов: {n}', rtIngT: 'Ингредиенты', rtIngH: 'Поправьте граммы кнопками − / +.', rtBase: 'в базе: {b}',
-      rtUnk: 'выберите', rtUnkH: 'Этот ингредиент не найден точно — какой именно?', rtUnkNo: 'Не добавлять', rtUnkNeed: 'Выберите ингредиент с жёлтой меткой',
+      rtDoorT: 'Облегчите свой рецепт', rtDoorS: 'Сделаем ваш плов легче на 20–30%',
+      rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты с граммами. Вкус останется, калорий станет меньше.',
+      rtPh: 'Мамин плов: 1 кг риса, 1 кг баранины, 300 г масла, 1 кг моркови…', rtCam: 'Сфотографировать', rtSoon: 'Скоро', rtEx: 'Примеры', rtGo: 'Облегчить',
+      rtEmpty: 'Напишите рецепт или выберите пример', rtShort: 'Слишком коротко — напишите ингредиенты с граммами (например, «1 кг риса, 300 г масла»).', rtLong: 'Слишком длинно (не больше 1500 символов).',
+      rtScan: 'Распознаём ингредиенты…', rtAiBusy: 'Проверяем с помощью ИИ…', rtFound: 'Найдено ингредиентов: {n}', rtIngT: 'Ингредиенты', rtIngH: 'Поправьте граммы кнопками − / +. Всё считается по значениям из базы.', rtBase: 'в базе: {b}', rtAiAs: 'ИИ: «{a}» → {b} (проверьте)',
+      rtUnk: 'выберите', rtUnkH: 'Этот ингредиент не найден точно в базе — какой именно?', rtUnkNo: 'Не добавлять', rtNeedH: 'Количество неясно — укажите граммы.', rtMore: 'Другое…', rtAdd: 'Добавить ингредиент',
+      rtPickT: 'Выберите ингредиент', rtPickQ: 'Поиск: рис, морковь…', rtPickNone: 'Ничего не найдено.', rtNeedFix: 'Выберите ингредиенты с жёлтой меткой или укажите количество', rtNone: 'Добавьте ингредиент',
+      rtPork: 'В тексте есть свинина — KalkiFit её не добавляет. При необходимости замените другим ингредиентом.', rtEst: 'примерно',
       rtPeople: 'На сколько человек?', rtNext: 'Дальше',
-      rtPor: '1 порция', rtKcal: 'ккал', rtPct: '{p}%', rtProtOk: 'белок сохранён', rtProtUp: 'белок +{g} г', rtProtDn: 'белок −{g} г', rtNoCh: 'Включите изменения',
+      rtPor: '1 порция', rtKcal: 'ккал', rtProtOk: 'белок сохранён', rtProtUp: 'белок +{g} г', rtProtDn: 'белок −{g} г', rtNoCh: 'Включите изменения',
       rtCmp: 'До / После', rtBefore: 'До', rtAfter: 'После', rtMK: 'Калории', rtMP: 'Белок', rtMF: 'Жиры',
       rtChT: 'Умные изменения', rtChH: 'Включайте и выключайте — число меняется сразу.', rtBen: '−{k} ккал на порцию', rtBen0: 'калории почти не меняются', rtBenUp: '+{k} ккал на порцию, но сытнее',
-      rtT0: 'почти незаметно', rtT1: 'небольшая разница', rtT2: 'другой вкус',
-      rtNote: 'Цифры примерные, по базе KalkiFit.', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Макет: настоящее сохранение — на следующем этапе',
+      rtT0: 'почти незаметно', rtT1: 'небольшая разница', rtT2: 'другой вкус', rtNoRules: 'Для этого рецепта подходящих изменений не нашлось — он уже лёгкий или это другое блюдо.',
+      rtNote: 'Цифры примерные, по базе KalkiFit (USDA).', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Сохранено: «{n}» — 1 порция {k} ккал. «Добавить еду» → Мои блюда.', rtSavedBtn: 'Записать на сегодня', rtLight: 'лёгкая', rtNoSave: 'Не удалось сохранить — нет ингредиентов',
       rtCardT: 'Карточка для соцсетей', rtCardH: 'Картинка для Instagram или Telegram.', rtDl: 'Скачать', rtShared: 'Отправлено', rtMaking: 'Готовим картинку…',
-      rtLight: 'Лёгкая версия', rtBy: 'Посчитано в KalkiFit', rtCardSub: '1 порция: {a} → {b} ккал', rtPeopleN: 'на {n} чел.',
+      rtLightV: 'Лёгкая версия', rtBy: 'Посчитано в KalkiFit', rtCardSub: '1 порция: {a} → {b} ккал', rtPeopleN: 'на {n} чел.',
+      rtErrNet: 'Нет соединения с интернетом. Выберите ингредиенты вручную.', rtErrAi: 'ИИ не смог распознать эти строки. Выберите их сами.', rtErrNone: 'Ингредиенты не найдены. Напишите рецепт с граммами или добавьте ингредиент вручную.',
       rtBack: 'Назад'
     }
   };
@@ -49,247 +56,188 @@
     rleg: 'M14.5 4a5.5 5.5 0 0 1 4 9.4c-1.6 1.6-3.8 2-5.6 1.4l-3.2 3.2a2 2 0 1 1-2.6 2.2 2 2 0 1 1 1.6-3.2l3.2-3.2c-.6-1.8-.2-4 1.4-5.6A5.5 5.5 0 0 1 14.5 4z',
     rcarrot: 'M15 9L5 20c-.8.3-1.3-.2-1-1L15 9z M15 9c-1-2-1-4 0-5 M15 9c2 1 4 1 5 0 M15 9c1.5-1.5 3-2 4.5-1.5',
     rcup: 'M6 5h12l-1.3 14.5a1.5 1.5 0 0 1-1.5 1.5H8.8a1.5 1.5 0 0 1-1.5-1.5z M6.5 10h11',
-    rwheat: 'M12 21V9 M12 9c-2.6 0-3.8-2.4-3.8-5 2.2 0 3.8 1.5 3.8 5z M12 9c2.6 0 3.8-2.4 3.8-5-2.2 0-3.8 1.5-3.8 5z M12 14.5c-2.6 0-3.8-2.4-3.8-5 M12 14.5c2.6 0 3.8-2.4 3.8-5',
-    rbeef: 'M5 9c2-4 9-5 13-2 3 2.2 2 7-2 8.6-3.6 1.4-6 4-9 3-3-1-3.6-6.4-2-9.6z M12 11a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2z',
-    rok: 'M5 12.5l4.5 4.5L19 7.5', rshare: 'M12 4v11 M7.5 8.5L12 4l4.5 4.5 M5 14v6h14v-6', rdl: 'M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 20h14'
+    rsugar: 'M4 9l8-4 8 4v8l-8 4-8-4z M4 9l8 4 8-4 M12 13v8',
+    rok: 'M5 12.5l4.5 4.5L19 7.5', rshare: 'M12 4v11 M7.5 8.5L12 4l4.5 4.5 M5 14v6h14v-6', rdl: 'M12 4v11 M7.5 10.5L12 15l4.5-4.5 M5 20h14', rplus: 'M12 5v14 M5 12h14'
   };
-  /* ---------- soxta ma'lumot: masalliq (g — butun qozon uchun), 100 g dagi k(kkal)/p(oqsil)/f(yog') — baza qiymatlariga yaqin ---------- */
-  var ING = {
-    guruch: { uz: 'Guruch', ru: 'Рис', b: { uz: 'Guruch, xom', ru: 'Рис, сырой' }, k: 350, p: 7, f: 0.6 },
-    qoy: { uz: "Qo'y go'shti", ru: 'Баранина', b: { uz: "Qo'y go'shti, xom", ru: 'Баранина, сырая' }, k: 250, p: 17, f: 20 },
-    dumba: { uz: 'Dumba', ru: 'Курдюк', b: { uz: "Dumba yog'i", ru: 'Курдючный жир' }, k: 760, p: 2, f: 82 },
-    yog: { uz: "O'simlik yog'i", ru: 'Растительное масло', b: { uz: "Paxta yog'i", ru: 'Хлопковое масло' }, k: 827, p: 0, f: 92, ml: true },      // ml: 100 ml ≈ 92 g yog' (zichligi 0,92)
-    sabzi: { uz: 'Sabzi', ru: 'Морковь', b: { uz: 'Sabzi, sariq', ru: 'Морковь, жёлтая' }, k: 41, p: 0.9, f: 0.2 },
-    piyoz: { uz: 'Piyoz', ru: 'Лук', b: { uz: 'Piyoz', ru: 'Лук репчатый' }, k: 40, p: 1.1, f: 0.1 },
-    noxat: { uz: "No'xat", ru: 'Нут', b: { uz: "No'xat, quruq", ru: 'Нут, сухой' }, k: 364, p: 19, f: 6 },
-    sarimsoq: { uz: 'Sarimsoq', ru: 'Чеснок', b: { uz: 'Sarimsoq', ru: 'Чеснок' }, k: 149, p: 6.4, f: 0.5 },
-    zira: { uz: 'Zira', ru: 'Зира', b: { uz: 'Zira', ru: 'Зира' }, k: 375, p: 18, f: 22 },
-    mayiz: { uz: 'Mayiz', ru: 'Изюм', b: { uz: 'Mayiz', ru: 'Изюм' }, k: 299, p: 3.1, f: 0.5 },
-    qmayiz: { uz: 'Qora mayiz', ru: 'Тёмный изюм', b: { uz: 'Qora mayiz', ru: 'Тёмный изюм' }, k: 299, p: 3.1, f: 0.5 },
-    orik: { uz: "Quritilgan o'rik", ru: 'Курага', b: { uz: "O'rik, quritilgan", ru: 'Курага' }, k: 241, p: 3.4, f: 0.5 },
-    tovuq: { uz: 'Tovuq filesi', ru: 'Куриное филе', b: { uz: "Tovuq ko'kragi, xom", ru: 'Куриная грудка, сырая' }, k: 120, p: 22.5, f: 2.6 },
-    mol: { uz: "Mol go'shti", ru: 'Говядина', b: { uz: "Mol go'shti, xom", ru: 'Говядина, сырая' }, k: 218, p: 18.6, f: 16 },
-    molyog: { uz: "Yog'siz mol go'shti", ru: 'Постная говядина', b: { uz: "Mol go'shti, yog'siz (5%)", ru: 'Говядина постная (5%)' }, k: 137, p: 21, f: 5 },
-    kartoshka: { uz: 'Kartoshka', ru: 'Картофель', b: { uz: 'Kartoshka', ru: 'Картофель' }, k: 77, p: 2, f: 0.1 },
-    pomidor: { uz: 'Pomidor', ru: 'Помидоры', b: { uz: 'Pomidor', ru: 'Помидоры' }, k: 18, p: 0.9, f: 0.2 },
-    qaymoq: { uz: 'Qaymoq (smetana)', ru: 'Сметана', b: { uz: 'Smetana, 20%', ru: 'Сметана, 20%' }, k: 206, p: 2.8, f: 20 },
-    qatiq: { uz: 'Qatiq', ru: 'Катык', b: { uz: 'Qatiq, 2,5%', ru: 'Катык, 2,5%' }, k: 53, p: 2.9, f: 2.5 },
-    ukrop: { uz: 'Shivit', ru: 'Укроп', b: { uz: 'Shivit', ru: 'Укроп' }, k: 43, p: 3.5, f: 1.1 },
-    kashnich: { uz: 'Kashnich', ru: 'Кинза', b: { uz: 'Kashnich', ru: 'Кинза' }, k: 23, p: 2.1, f: 0.5 },
-    un: { uz: 'Un', ru: 'Мука', b: { uz: "Bug'doy uni, oliy nav", ru: 'Мука пшеничная, в/с' }, k: 364, p: 10, f: 1 },
-    murch: { uz: 'Qora murch', ru: 'Чёрный перец', b: { uz: 'Qora murch', ru: 'Перец чёрный' }, k: 251, p: 10, f: 3.3 }
-  };
-  /* o'zgarish turlari: scale (ko'paytirish), zero, move (bir qismini boshqa masalliqqa), swap (o'rniga), add (+g) */
+  /* misollar: oddiy matn (mahalliy parser tahlil qiladi — AI'siz) */
   var EX = {
-    osh: {
-      nom: { uz: 'Onamning oshi', ru: 'Мамин плов' }, chip: { uz: 'Osh', ru: 'Плов' }, n: 8,
-      txt: { uz: "Onamning oshi (8 kishi): 1 kg guruch, 1 kg qo'y go'shti (150 g dumba bilan), 1 kg sabzi, 250 ml o'simlik yog'i, 2 ta piyoz, 1 bosh sarimsoq, ziravor.", ru: 'Мамин плов (на 8): 1 кг риса, 1 кг баранины (с 150 г курдюка), 1 кг моркови, 250 мл растительного масла, 2 луковицы, 1 головка чеснока, специи.' },
-      ings: [['guruch', 1000], ['qoy', 850], ['dumba', 150], ['yog', 250], ['sabzi', 1000], ['piyoz', 300], ['sarimsoq', 50], ['?ziravor', 5, ['zira', 'murch']]],
-      unk: { ziravor: { uz: 'Ziravor', ru: 'Специи' } },
-      ch: [
-        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 0.6]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} {u}", ru: 'Меньше масла: {a} → {b} {u}' }, s: { uz: "Yog' {a} → {b} {u}", ru: 'Масло {a} → {b} {u}' } },
-        { id: 'dumba', ic: 'rfat', ops: [['zero', 'dumba']], taste: 1, t: { uz: "Dumbasiz: {a} g dumba olib tashlanadi", ru: 'Без курдюка: убираем {a} г' }, s: { uz: 'Dumbasiz', ru: 'Без курдюка' } },
-        { id: 'tovuq', ic: 'rleg', ops: [['move', 'qoy', 1 / 3, 'tovuq']], taste: 1, t: { uz: "Go'shtning 1/3 qismi — tovuq filesi ({m} g)", ru: 'Треть мяса — куриное филе ({m} г)' }, s: { uz: "1/3 go'sht — tovuq", ru: '1/3 мяса — курица' } },
-        { id: 'sabzi', ic: 'rcarrot', ops: [['add', 'sabzi', 300]], taste: 0, t: { uz: "Sabzi ko'proq: {a} → {b} g", ru: 'Больше моркови: {a} → {b} г' }, s: { uz: 'Sabzi +300 g', ru: 'Морковь +300 г' } }
-      ]
-    },
-    mastava: {
-      nom: { uz: 'Mastava', ru: 'Мастава' }, chip: { uz: 'Mastava', ru: 'Мастава' }, n: 6,
-      txt: { uz: "Mastava (6 kishi): 500 g mol go'shti, 200 g guruch, 450 g kartoshka, 200 g sabzi, 200 g piyoz, 200 g pomidor, 70 ml yog', tortishga 150 g qaymoq, ko'kat.", ru: 'Мастава (на 6): говядина 500 г, рис 200 г, картофель 450 г, морковь 200 г, лук 200 г, помидоры 200 г, масло 70 мл, к подаче сметана 150 г, зелень.' },
-      ings: [['mol', 500], ['guruch', 200], ['kartoshka', 450], ['sabzi', 200], ['piyoz', 200], ['pomidor', 200], ['yog', 70], ['qaymoq', 150], ['?kokat', 30, ['ukrop', 'kashnich']]],
-      unk: { kokat: { uz: "Ko'kat", ru: 'Зелень' } },
-      ch: [
-        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 0.55]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} {u}", ru: 'Меньше масла: {a} → {b} {u}' }, s: { uz: "Yog' {a} → {b} {u}", ru: 'Масло {a} → {b} {u}' } },
-        { id: 'molyog', ic: 'rbeef', ops: [['swap', 'mol', 'molyog']], taste: 0, t: { uz: "Yog'siz mol go'shti ({a} g)", ru: 'Постная говядина ({a} г)' }, s: { uz: "Yog'siz go'sht", ru: 'Постное мясо' } },
-        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: "Qaymoq o'rniga qatiq ({a} g)", ru: 'Катык вместо сметаны ({a} г)' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
-      ]
-    },
-    manti: {
-      nom: { uz: 'Manti', ru: 'Манты' }, chip: { uz: 'Manti', ru: 'Манты' }, n: 6,
-      txt: { uz: "Manti (6 kishi, 30 dona): 500 g un, 500 g qo'y go'shti, 100 g dumba, 600 g piyoz, ziravor, tortishga 120 g qaymoq.", ru: 'Манты (на 6, 30 шт.): мука 500 г, баранина 500 г, курдюк 100 г, лук 600 г, специи, к подаче сметана 120 г.' },
-      ings: [['un', 500], ['qoy', 500], ['dumba', 100], ['piyoz', 600], ['qaymoq', 120], ['?ziravor', 5, ['zira', 'murch']]],
-      unk: { ziravor: { uz: 'Ziravor', ru: 'Специи' } },
-      ch: [
-        { id: 'dumba', ic: 'rfat', ops: [['scale', 'dumba', 0.3]], taste: 1, t: { uz: 'Dumbani kamaytirish: {a} → {b} g', ru: 'Меньше курдюка: {a} → {b} г' }, s: { uz: 'Dumba {a} → {b} g', ru: 'Курдюк {a} → {b} г' } },
-        { id: 'molyog', ic: 'rbeef', ops: [['move', 'qoy', 0.5, 'molyog']], taste: 0, t: { uz: "Go'shtning yarmi — yog'siz mol go'shti ({m} g)", ru: 'Половина мяса — постная говядина ({m} г)' }, s: { uz: "1/2 go'sht — yog'siz", ru: '1/2 мяса — постное' } },
-        { id: 'un', ic: 'rwheat', ops: [['scale', 'un', 0.84]], taste: 0, t: { uz: 'Hamir yupqaroq: un {a} → {b} g', ru: 'Тесто тоньше: мука {a} → {b} г' }, s: { uz: 'Yupqa hamir', ru: 'Тонкое тесто' } },
-        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: "Qaymoq o'rniga qatiq bilan tortish", ru: 'Подавать с катыком вместо сметаны' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
-      ]
-    }
+    osh: { chip: { uz: 'Osh', ru: 'Плов' }, uz: "Onamning oshi (8 kishi): 1 kg guruch, 850 g qo'y go'shti, 150 g dumba, 250 ml o'simlik yog'i, 1 kg sabzi, 2 ta piyoz, 1 bosh sarimsoq, zira", ru: 'Мамин плов (на 8 человек): 1 кг риса, 850 г баранины, 150 г курдюка, 250 мл растительного масла, 1 кг моркови, 2 луковицы, 1 головка чеснока, зира' },
+    mastava: { chip: { uz: 'Mastava', ru: 'Мастава' }, uz: "Mastava (6 kishi): 500 g mol go'shti, 200 g guruch, 450 g kartoshka, 200 g sabzi, 2 ta piyoz, 3 ta pomidor, 70 ml o'simlik yog'i, 150 g qaymoq, ko'kat", ru: 'Мастава (на 6 человек): 500 г говядины, 200 г риса, 450 г картофеля, 200 г моркови, 2 луковицы, 3 помидора, 70 мл растительного масла, 150 г сметаны, зелень' },
+    manti: { chip: { uz: 'Manti', ru: 'Манты' }, uz: "Manti (6 kishi): 500 g un, 500 g qo'y go'shti, 100 g dumba, 600 g piyoz, 1 choy qoshiq tuz, 120 g qaymoq", ru: 'Манты (на 6 человек): 500 г муки, 500 г баранины, 100 г курдюка, 600 г лука, 1 ч. л. соли, 120 г сметаны' }
   };
   var ORDER = ['osh', 'mastava', 'manti'];
-  var rt = null;                                                   // { scr, ex, text, nom, ings:[{id,g,unk?,opts?,uz?,ru?}], n, on:{}, from }
 
   function T(k, o) { return A.T(k, o); }
   function esc(s) { return A.esc(s); }
   function L() { return A.lang() === 'ru' ? 'ru' : 'uz'; }
-  function lbl(o) { return o ? (L() === 'ru' ? (o.ru || o.uz) : o.uz) : ''; }
   function reduce() { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } }
-  function unit(id) { var m = ING[id] && ING[id].ml; return L() === 'ru' ? (m ? 'мл' : 'г') : (m ? 'ml' : 'g'); }
-  function r5(g) { return Math.max(0, Math.round(g / 5) * 5); }
   function ico(n, c) { return A.ico(n, c); }
-  function head(title, back) { return '<div class="sl-yh rt-yh">' + (back ? '<button type="button" class="sl-x" data-act="' + back + '" aria-label="' + esc(T('rtBack')) + '">' + ico('back') + '</button>' : '') + '<h3 class="sl-fwt">' + (title ? esc(title) : '<span class="rt-mk">' + esc(T('rtMk')) + '</span>') + '</h3><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>'; }
+  function tr(s) { var K = window.KalkiTranslit; return A.isCyr() && K && K.translit ? K.translit(s) : s; }
+  function head(title, back) { return '<div class="sl-yh rt-yh">' + (back ? '<button type="button" class="sl-x" data-act="' + back + '" aria-label="' + esc(T('rtBack')) + '">' + ico('back') + '</button>' : '') + '<h3 class="sl-fwt">' + esc(title) + '</h3><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>'; }
+  function count(h) { try { if (A.count) A.count(h); } catch (e) {} }
+  function cap(s) { s = String(s || ''); return s.charAt(0).toUpperCase() + s.slice(1); }
+  function nameOf(it) { var m = it.id && R.table()[it.id]; return cap(m ? m[L()] : it.nom); }
+  function unitLbl(id) { return R.unitName(id, L()); }
+  function ml(id) { return R.isMl(id); }
+  function disp(it) { return ml(it.id) ? Math.round(it.g / 0.92 / 5) * 5 : Math.round(it.g); }
+  function grams(it, v) { return ml(it.id) ? Math.round(v * 0.92) : v; }
+  function step(v, dir) { var s = v >= 300 ? 50 : v >= 100 ? 10 : 5; return Math.max(0, Math.min(5000, dir > 0 ? Math.floor(v / s) * s + s : Math.ceil(v / s) * s - s)); }
 
-  /* ---------- hisob ---------- */
-  function ingName(it) { return it.unk ? lbl(it.unkNom) : lbl(ING[it.id]); }
-  function cloneIngs(l) { return l.map(function (x) { return { id: x.id, g: x.g, unk: x.unk, unkNom: x.unkNom, opts: x.opts }; }); }
-  function applyCh(ings, ch) {
-    var l = cloneIngs(ings), find = function (id) { for (var i = 0; i < l.length; i++) if (l[i].id === id && !l[i].unk) return l[i]; return null; };
-    ch.ops.forEach(function (o) {
-      var it = find(o[1]); if (!it) return;
-      if (o[0] === 'scale') it.g = r5(it.g * o[2]);
-      else if (o[0] === 'zero') it.g = 0;
-      else if (o[0] === 'add') it.g = Math.max(0, it.g + o[2]);
-      else if (o[0] === 'swap') it.id = o[2];
-      else if (o[0] === 'move') { var m = r5(it.g * o[2]); it.g -= m; var t = find(o[3]); if (t) t.g += m; else l.push({ id: o[3], g: m }); }
-    });
-    return l;
-  }
-  function withChanges(ids) { var l = cloneIngs(rt.ings), ex = EX[rt.ex]; ex.ch.forEach(function (c) { if (ids[c.id]) l = applyCh(l, c); }); return l; }
-  function totals(l) { var s = { k: 0, p: 0, f: 0 }; l.forEach(function (it) { var d = it.unk ? null : ING[it.id]; if (!d || !it.g) return; s.k += it.g * d.k / 100; s.p += it.g * d.p / 100; s.f += it.g * d.f / 100; }); var n = rt.n || 1; return { k: Math.round(s.k / n), p: Math.round(s.p / n), f: Math.round(s.f / n) }; }
-  function base() { return totals(rt.ings); }
-  function cur() { return totals(withChanges(rt.on)); }
-  function chBenefit(c) { var b = base().k, o = {}; o[c.id] = true; return b - totals(withChanges(o)).k; }        // manfiy bo'lsa — kaloriya OSHADI (halol ko'rsatiladi)
-  function chTitle(c, short) {
-    var src = cloneIngs(rt.ings), op = c.ops[0], it = null; src.forEach(function (x) { if (x.id === op[1] && !x.unk) it = x; });
-    var a = it ? it.g : 0, aft = applyCh(src, c), b = 0, m = op[0] === 'move' ? r5(a * op[2]) : 0; aft.forEach(function (x) { if (x.id === op[1]) b = x.g; });
-    if (op[0] === 'add') { a = it ? it.g : 0; b = a + op[2]; }
-    return lbl(short ? c.s : c.t).replace('{a}', a).replace('{b}', b).replace('{m}', m).replace('{u}', unit(op[1])).replace(/(\d) (g|г|ml|мл)(?![\wа-я])/g, '$1\u00a0$2');      // «70 g» bir qatorda
+  /* ---------- jadval (lazy) ---------- */
+  function loadTable(cb) {
+    if (tblState === 2) { cb(true); return; } tblWait.push(cb); if (tblState === 1) return; tblState = 1;
+    fetch('/data/retsept-masalliq.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { R.init(j); tblState = 2; var w = tblWait; tblWait = []; w.forEach(function (f) { f(true); }); })
+      .catch(function () { tblState = 0; var w = tblWait; tblWait = []; w.forEach(function (f) { f(false); }); });
   }
 
   /* ---------- 1. Kirish ---------- */
   function inHtml() {
     return head('') +
       '<div class="rt-hero rt-in"><span class="rt-spk" aria-hidden="true">' + ico('rspark') + '</span><h2 class="rt-h">' + esc(T('rtH')) + '</h2><p class="rz-mut">' + esc(T('rtSub')) + '</p></div>' +
-      '<label class="rt-ta rt-in" for="rtText"><span class="sr">' + esc(T('rtH')) + '</span><textarea id="rtText" rows="6" maxlength="1500" placeholder="' + esc(T('rtPh')) + '">' + esc(rt.text || '') + '</textarea></label>' +
-      '<button type="button" class="rz-btn ghost full rt-cam rt-in" data-act="rtcam">' + ico('rcam') + ' ' + esc(T('rtCam')) + '</button><input type="file" id="rtFile" accept="image/*" capture="environment" hidden>' +
-      '<div class="rz-st rt-in">' + esc(T('rtEx')) + '</div><div class="rt-chips rt-in" role="group" aria-label="' + esc(T('rtEx')) + '">' + ORDER.map(function (k) { return '<button type="button" class="rz-chip' + (rt.chip === k ? ' on' : '') + '" data-act="rtex" data-x="' + k + '">' + esc(lbl(EX[k].chip)) + '</button>'; }).join('') + '</div>' +
+      '<label class="rt-ta rt-in" for="rtText"><span class="sr">' + esc(T('rtH')) + '</span><textarea id="rtText" rows="6" maxlength="1500" placeholder="' + esc(T('rtPh')) + '">' + esc(rt.shown || '') + '</textarea></label>' +
+      '<p class="rt-msg rt-in" id="rtMsg" role="alert" hidden></p>' +
+      '<button type="button" class="rz-btn ghost full rt-cam rt-in" disabled aria-disabled="true">' + ico('rcam') + ' ' + esc(T('rtCam')) + ' <span class="rt-soon">' + esc(T('rtSoon')) + '</span></button>' +
+      '<div class="rz-st rt-in">' + esc(T('rtEx')) + '</div><div class="rt-chips rt-in" role="group" aria-label="' + esc(T('rtEx')) + '">' + ORDER.map(function (k) { return '<button type="button" class="rz-chip' + (rt.chip === k ? ' on' : '') + '" data-act="rtex" data-x="' + k + '">' + esc(EX[k].chip[L()]) + '</button>'; }).join('') + '</div>' +
       '<div class="sl-cta"><button type="button" class="sl-main rt-go" data-act="rtgo">' + ico('rspark') + ' ' + esc(T('rtGo')) + '</button></div>';
   }
-  function pickEx(text) { var t = (text || '').toLowerCase(); if (/mastava|мастава/.test(t)) return 'mastava'; if (/mant[iy]|манты|манти/.test(t)) return 'manti'; return 'osh'; }
-  function dishName(text, ex) { var m = /^\s*([^:(\n,]{2,32})\s*[:(]/.exec(text || ''); return m ? m[1].trim() : lbl(EX[ex].nom); }
-  function startEx(k, text) {
-    var ex = EX[k];
-    rt.ex = k; rt.nom = dishName(text, k); rt.n = ex.n; rt.on = {}; ex.ch.forEach(function (c) { rt.on[c.id] = true; });
-    rt.ings = ex.ings.map(function (x) { if (x[0].charAt(0) === '?') { var u = x[0].slice(1); return { id: u, g: x[1], unk: true, unkNom: ex.unk[u], opts: x[2] }; } return { id: x[0], g: x[1] }; });
-  }
+  function msg(t) { var m = A.$('#rtMsg'); if (!m) return; m.textContent = t || ''; m.hidden = !t; }
+  function srcText() { var ta = A.$('#rtText'), v = ta ? ta.value : ''; rt.shown = v; return rt.ex && v === rt.exShown ? rt.exTxt : v; }       // misol (ЎЗ da transliteratsiya ko'rsatilgan) — asl lotin matn tahlil qilinadi
 
   /* ---------- 2. Tahlil ---------- */
-  function ingRow(it, i, scan) {
-    var nm = ingName(it);
-    if (it.unk) {
-      return '<div class="rt-ing unk' + (scan ? ' scan' : '') + '" id="rtUnk" style="--i:' + i + '"><div class="nm"><b>' + esc(nm) + '</b><span class="rt-warn">' + esc(T('rtUnk')) + '</span></div>' +
-        (scan ? '<span class="rt-q" aria-hidden="true">?</span>' : '<p class="rz-mut sm">' + esc(T('rtUnkH')) + '</p><div class="rt-opts">' + it.opts.map(function (o) { return '<button type="button" class="rz-chip" data-act="rtunk" data-o="' + o + '">' + esc(lbl(ING[o])) + '</button>'; }).join('') + '<button type="button" class="rz-chip" data-act="rtunk" data-o="">' + esc(T('rtUnkNo')) + '</button></div>') + '</div>';
+  function rowHtml(it, i, scan) {
+    var m = R.table()[it.id];
+    if (!it.id) {
+      var cands = (it.cands && it.cands.length ? it.cands : []).slice(0, 4);
+      return '<div class="rt-ing unk' + (scan ? ' scan' : '') + '" data-i="' + i + '" style="--i:' + i + '"><div class="nm"><b>' + esc(cap(it.nom)) + '</b><span class="rt-warn">' + esc(T('rtUnk')) + '</span></div>' +
+        (scan ? '<span class="rt-q" aria-hidden="true">?</span>' : '<p class="rz-mut sm">' + esc(T('rtUnkH')) + '</p><div class="rt-opts">' + cands.map(function (c) { return '<button type="button" class="rz-chip" data-act="rtset" data-i="' + i + '" data-o="' + c + '">' + esc(cap(R.table()[c][L()])) + '</button>'; }).join('') + '<button type="button" class="rz-chip" data-act="rtpick" data-i="' + i + '">' + esc(T('rtMore')) + '</button><button type="button" class="rz-chip" data-act="rtdrop" data-i="' + i + '">' + esc(T('rtUnkNo')) + '</button></div>') + '</div>';
     }
-    var d = ING[it.id];
-    return '<div class="rt-ing' + (scan ? ' scan' : '') + (it.g ? '' : ' off') + '" style="--i:' + i + '"><div class="nm"><b>' + esc(nm) + '</b><small>' + esc(T('rtBase', { b: lbl(d.b) })) + '</small></div>' +
-      (scan ? '<span class="rt-ok" aria-hidden="true">' + ico('rok') + '</span>' : '<div class="rt-step" role="group" aria-label="' + esc(nm) + '"><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="-1" aria-label="' + esc(nm) + ' −"' + (it.g <= 0 ? ' disabled' : '') + '>−</button><b aria-live="polite">' + it.g + '\u00a0' + unit(it.id) + '</b><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="1" aria-label="' + esc(nm) + ' +">+</button></div>') + '</div>';
+    var need = !(it.g > 0) && it.need, u = unitLbl(it.id);
+    return '<div class="rt-ing' + (scan ? ' scan' : '') + (it.g > 0 || need ? '' : ' off') + (need ? ' need' : '') + '" data-i="' + i + '" style="--i:' + i + '"><div class="nm"><b>' + esc(nameOf(it)) + (it.est ? ' <small class="rt-est">' + esc(T('rtEst')) + '</small>' : '') + '</b><small>' + esc(need ? T('rtNeedH') : it.ai ? T('rtAiAs', { a: cap(it.nom), b: m[L()] }) : T('rtBase', { b: m[L()] })) + '</small></div>' +
+      (scan ? '<span class="rt-ok" aria-hidden="true">' + ico('rok') + '</span>' : '<div class="rt-step" role="group" aria-label="' + esc(nameOf(it)) + '"><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="-1" aria-label="' + esc(nameOf(it)) + ' −"' + (it.g <= 0 ? ' disabled' : '') + '>−</button><b aria-live="polite">' + disp(it) + ' ' + u + '</b><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="1" aria-label="' + esc(nameOf(it)) + ' +">+</button></div>') + '</div>';
   }
   function anHtml(scan) {
-    var rows = rt.ings.map(function (it, i) { return ingRow(it, i, scan); }).join('');
-    if (scan) return head(rt.nom, 'rtback1') + '<div class="rt-scanh"><b>' + esc(T('rtScan')) + '</b><span class="rt-bar"><i></i></span></div><div class="rt-ings">' + rows + '</div>';
-    return head(rt.nom, 'rtback1') + '<p class="rt-found rt-in">' + ico('rok') + ' ' + esc(T('rtFound', { n: rt.ings.length })) + '</p>' +
+    var rows = rt.items.map(function (it, i) { return rowHtml(it, i, scan); }).join('');
+    if (scan) return head(rt.nom || T('rtIngT'), 'rtback1') + '<div class="rt-scanh"><b>' + esc(rt.busy ? T('rtAiBusy') : T('rtScan')) + '</b><span class="rt-bar"><i></i></span></div><div class="rt-ings">' + rows + '</div>';
+    var found = rt.items.filter(function (i) { return i.id; }).length;
+    return head(rt.nom || T('rtIngT'), 'rtback1') + (rt.err ? '<p class="rt-msg rt-in" role="alert">' + esc(rt.err) + '</p>' : '') + (rt.pork ? '<p class="rt-msg rt-in" role="status">' + esc(T('rtPork')) + '</p>' : '') +
+      (found ? '<p class="rt-found rt-in">' + ico('rok') + ' ' + esc(T('rtFound', { n: found })) + '</p>' : '') +
       '<div class="rz-st rt-in">' + esc(T('rtIngT')) + '</div><p class="rz-mut sm rt-in">' + esc(T('rtIngH')) + '</p><div class="rt-ings rt-in">' + rows + '</div>' +
+      '<button type="button" class="rz-btn ghost full rt-addb rt-in" data-act="rtpick" data-i="-1">' + ico('rplus') + ' ' + esc(T('rtAdd')) + '</button>' +
       '<div class="rz-st rt-in">' + esc(T('rtPeople')) + '</div><div class="sl-stp rt-in" role="group" aria-label="' + esc(T('rtPeople')) + '"><button type="button" class="sl-pill" data-act="rtn" data-s="-1" aria-label="−"' + (rt.n <= 1 ? ' disabled' : '') + '>−</button><b id="rtN" aria-live="polite">' + rt.n + '</b><button type="button" class="sl-pill" data-act="rtn" data-s="1" aria-label="+"' + (rt.n >= 12 ? ' disabled' : '') + '>+</button></div>' +
       '<div class="sl-cta"><button type="button" class="sl-main" data-act="rtnext">' + esc(T('rtNext')) + '</button></div>';
   }
-  function step(g, dir) { var s = g >= 300 ? 50 : g >= 100 ? 10 : 5; return Math.max(0, Math.min(5000, dir > 0 ? Math.floor(g / s) * s + s : Math.ceil(g / s) * s - s)); }
+  /* masalliq tanlagich (tanilmagan masalliq / qo'lda qo'shish) */
+  function pickIds(q) {
+    var t = R.table(), nq = R.norm(q || ''), ids = Object.keys(t);
+    if (nq) ids = ids.filter(function (id) { var m = t[id]; return R.norm(m.uz).indexOf(nq) > -1 || R.norm(m.ru).indexOf(nq) > -1 || (m.a || []).some(function (a) { return R.norm(a).indexOf(nq) === 0; }); });
+    return ids.sort(function (a, b) { return R.norm(t[a][L()]).localeCompare(R.norm(t[b][L()])); });
+  }
+  function pickList(ids) { var t = R.table(); return ids.length ? ids.map(function (id) { return '<button type="button" class="rz-row rt-pr" data-act="rtchoose" data-o="' + id + '"><span class="m"><b>' + esc(cap(t[id][L()])) + '</b></span>' + ico('chev', 'r') + '</button>'; }).join('') : '<p class="rz-mut">' + esc(T('rtPickNone')) + '</p>'; }
+  function pickHtml(q) {
+    return head(T('rtPickT'), 'rtback2') + '<label class="sl-search rt-search">' + ico('search') + '<input id="rtPQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('rtPickQ')) + '" value="' + esc(q || '') + '" aria-label="' + esc(T('rtPickT')) + '"></label>' +
+      '<div class="rt-plist" id="rtPL">' + pickList(pickIds(q)) + '</div>';
+  }
 
   /* ---------- 3. Natija ---------- */
-  /* raqam lentasi: har xona — bo'sh + 0–9 ustuni, translateY bilan aylanadi (pastga «aylanib» tushadi); xonalar soni = asl qiymatnikidek, ortiqcha bosh xona eni 0 ga tushadi */
-  var STRIP = ' 0123456789';
+  var ODO = ' 0123456789';
   function cells(n, w) { var s = String(n); while (s.length < w) s = ' ' + s; return s.split(''); }
-  function odo(n, w) {
-    return cells(n, w).map(function (c) { var k = STRIP.indexOf(c); return '<span class="d' + (c === ' ' ? ' b' : '') + '"><span class="s" style="transform:translateY(-' + k + 'em)">' + STRIP.split('').map(function (x) { return '<i>' + (x === ' ' ? '&nbsp;' : x) + '</i>'; }).join('') + '</span></span>'; }).join('');
-  }
+  function odo(n, w) { return cells(n, w).map(function (c) { return '<span class="d' + (c === ' ' ? ' b' : '') + '"><span class="s" style="transform:translateY(-' + ODO.indexOf(c) + 'em)">' + ODO.split('').map(function (x) { return '<i>' + (x === ' ' ? '&nbsp;' : x) + '</i>'; }).join('') + '</span></span>'; }).join(''); }
   function setOdo(el, n) {
-    if (!el) return; var ds = el.querySelectorAll('.d'), cs = cells(n, ds.length);
-    el.setAttribute('aria-label', n + ' ' + T('rtKcal'));
+    if (!el) return; var ds = el.querySelectorAll('.d'), cs = cells(n, ds.length); el.setAttribute('aria-label', n + ' ' + T('rtKcal'));
     if (cs.length !== ds.length) { el.innerHTML = odo(n, cs.length); return; }
-    cs.forEach(function (c, i) { ds[i].classList.toggle('b', c === ' '); ds[i].firstChild.style.transform = 'translateY(-' + STRIP.indexOf(c) + 'em)'; });
+    cs.forEach(function (c, i) { ds[i].classList.toggle('b', c === ' '); ds[i].firstChild.style.transform = 'translateY(-' + ODO.indexOf(c) + 'em)'; });
   }
+  function active() { return rt.rules.filter(function (r) { return rt.on[r.id]; }); }
+  function itemsAfter() { return R.applyRules(rt.items, active()); }
+  function baseT() { return R.totals(rt.items, rt.n); }
+  function curT() { return R.totals(itemsAfter(), rt.n); }
   function pct(a, b) { return a ? Math.round((b - a) / a * 100) : 0; }
   function protTxt(b, c) { var d = c.p - b.p; if (d >= -1) return d >= 2 ? T('rtProtUp', { g: d }) : T('rtProtOk'); return T('rtProtDn', { g: -d }); }
+  function vol(id, g) { return ml(id) ? Math.round(g / 0.92 / 5) * 5 : Math.round(g / 5) * 5; }
+  function ruleTitle(r, short) {
+    var u = unitLbl(r.ref), ru = L() === 'ru', g = ru ? 'г' : 'g', NB = ' ';
+    var a = r.a != null ? vol(r.ref, r.a) : 0, b = r.b != null ? vol(r.ref, r.b) : 0, m = Math.round((r.m || 0) / 5) * 5;
+    if (r.id === 'yog') return short ? (ru ? 'Масло ' : "Yog' ") + a + ' → ' + b + ' ' + u : (ru ? 'Меньше масла: ' : "Yog'ni kamaytirish: ") + a + ' → ' + b + NB + u;
+    if (r.id === 'dumba') return r.mode === 'yoq' ? (short ? (ru ? 'Без курдюка' : 'Dumbasiz') : (ru ? 'Без курдюка: убираем ' + a + NB + 'г' : 'Dumbasiz: ' + a + NB + 'g dumba olib tashlanadi')) : (short ? (ru ? 'Курдюк ' : 'Dumba ') + a + ' → ' + b + ' ' + g : (ru ? 'Меньше курдюка: ' : 'Dumbani kamaytirish: ') + a + ' → ' + b + NB + g);
+    if (r.id === 'gosht') {
+      if (r.to === 'tovuq_kokrak' && r.ref === 'qoy') return short ? (ru ? '1/3 мяса — курица' : "1/3 go'sht — tovuq") : (ru ? 'Треть мяса — куриное филе (' + m + NB + 'г)' : "Go'shtning 1/3 qismi — tovuq filesi (" + m + NB + 'g)');
+      if (r.ref === 'tovuq_son') return short ? (ru ? 'Курица без кожи' : 'Terisiz tovuq') : (ru ? 'Курица: грудка без кожи (' + m + NB + 'г)' : "Tovuq: terisiz ko'krak (" + m + NB + 'g)');
+      return short ? (ru ? '1/2 мяса — постное' : "1/2 go'sht — yog'siz") : (ru ? 'Половина мяса — постная говядина (' + m + NB + 'г)' : "Go'shtning yarmi — yog'siz mol go'shti (" + m + NB + 'g)');
+    }
+    if (r.id === 'qatiq') return r.kind === 'mayonez' ? (short ? (ru ? 'Майонез → катык' : 'Mayonez → qatiq') : (ru ? 'Половина майонеза — катык (' + m + NB + 'г)' : 'Mayonezning yarmi — qatiq bilan (' + m + NB + 'g)')) : (short ? (ru ? 'Сметана → катык' : 'Qaymoq → qatiq') : (ru ? 'Катык вместо сметаны (' + a + NB + 'г)' : "Qaymoq o'rniga qatiq (" + a + NB + 'g)'));
+    if (r.id === 'shakar') return short ? (ru ? 'Сахар −30%' : 'Shakar −30%') : (ru ? 'Меньше сахара: ' : 'Shakarni kamaytirish: ') + a + ' → ' + b + NB + g + ' (−30%)';
+    return short ? (ru ? 'Морковь +' : 'Sabzi +') + r.add + ' ' + g : (ru ? 'Больше моркови: ' : "Sabzi ko'proq: ") + a + ' → ' + b + NB + g;
+  }
   function barsHtml() {
-    return [['k', 'rtMK', T('rtKcal')], ['p', 'rtMP', 'g'], ['f', 'rtMF', 'g']].map(function (m) {
-      return '<div class="rt-bm ' + m[0] + '"><div class="h"><span>' + esc(T(m[1])) + '</span><b><span class="o"></span> → <span class="n"></span> ' + esc(m[2]) + '</b></div>' +
-        '<div class="rt-br o" aria-hidden="true"><i></i></div><div class="rt-br n" aria-hidden="true"><i></i></div></div>';
+    return [['k', 'rtMK', T('rtKcal')], ['p', 'rtMP', L() === 'ru' ? 'г' : 'g'], ['f', 'rtMF', L() === 'ru' ? 'г' : 'g']].map(function (m) {
+      return '<div class="rt-bm ' + m[0] + '"><div class="h"><span>' + esc(T(m[1])) + '</span><b><span class="o"></span> → <span class="n"></span> ' + esc(m[2]) + '</b></div><div class="rt-br o" aria-hidden="true"><i></i></div><div class="rt-br n" aria-hidden="true"><i></i></div></div>';
     }).join('');
   }
-  function chHtml(c) {
-    var on = !!rt.on[c.id], k = chBenefit(c);
-    return '<button type="button" class="rt-ch' + (on ? ' on' : '') + '" role="switch" aria-checked="' + on + '" data-act="rttog" data-c="' + c.id + '"><span class="sl-ci">' + ico(c.ic) + '</span>' +
-      '<span class="m"><b>' + esc(chTitle(c)) + '</b><span class="bn">' + esc(k >= 5 ? T('rtBen', { k: k }) : k <= -5 ? T('rtBenUp', { k: -k }) : T('rtBen0')) + '</span><span class="rt-tb t' + c.taste + '">' + esc(T('rtT' + c.taste)) + '</span></span><span class="rt-sw" aria-hidden="true"><i></i></span></button>';
+  function chHtml(r) {
+    var on = !!rt.on[r.id], k = r.benefit;
+    return '<button type="button" class="rt-ch' + (on ? ' on' : '') + '" role="switch" aria-checked="' + on + '" data-act="rttog" data-c="' + r.id + '"><span class="sl-ci">' + ico(r.ic) + '</span>' +
+      '<span class="m"><b>' + esc(ruleTitle(r)) + '</b><span class="bn">' + esc(k >= 5 ? T('rtBen', { k: k }) : k <= -5 ? T('rtBenUp', { k: -k }) : T('rtBen0')) + '</span><span class="rt-tb t' + r.taste + '">' + esc(T('rtT' + r.taste)) + '</span></span><span class="rt-sw" aria-hidden="true"><i></i></span></button>';
+  }
+  function prepRules() {
+    var y = []; try { y = A.yemay() || []; } catch (e) {}
+    rt.rules = R.suggest(rt.items, { kishi: rt.n, nom: rt.nom, dish: rt.dish, yemay: y }); rt.on = {}; rt.rules.forEach(function (r) { rt.on[r.id] = true; });
   }
   function resHtml() {
-    var ex = EX[rt.ex], b = base();
-    return head(rt.nom, 'rtback2') +
+    var b = baseT();
+    return head(rt.nom || T('rtIngT'), 'rtback2') +
       '<section class="rt-big rt-in" aria-live="polite"><div class="l">' + esc(T('rtPor')) + ' · ' + esc(T('rtPeopleN', { n: rt.n })) + '</div>' +
-      '<div class="v"><s class="old">' + b.k + '</s><span class="ar" aria-hidden="true">→</span><span class="rt-odo" id="rtOdo" role="img" aria-label="' + b.k + ' ' + esc(T('rtKcal')) + '">' + odo(b.k) + '</span><span class="u">' + esc(T('rtKcal')) + '</span></div>' +
-      '<div class="rt-pchip" id="rtChip"></div></section>' +
+      '<div class="v"><s class="old">' + b.k + '</s><span class="ar" aria-hidden="true">→</span><span class="rt-odo" id="rtOdo" role="img" aria-label="' + b.k + ' ' + esc(T('rtKcal')) + '">' + odo(b.k, String(b.k).length) + '</span><span class="u">' + esc(T('rtKcal')) + '</span></div><div class="rt-pchip" id="rtChip"></div></section>' +
       '<section class="rt-cmp rt-in"><div class="rz-st">' + esc(T('rtCmp')) + '</div><div class="rt-leg"><span class="o">' + esc(T('rtBefore')) + '</span><span class="n">' + esc(T('rtAfter')) + '</span></div>' + barsHtml() + '</section>' +
-      '<div class="rz-st rt-in">' + esc(T('rtChT')) + '</div><p class="rz-mut sm rt-in">' + esc(T('rtChH')) + '</p><div class="rt-chs rt-in">' + ex.ch.map(chHtml).join('') + '</div>' +
+      (rt.rules.length ? '<div class="rz-st rt-in">' + esc(T('rtChT')) + '</div><p class="rz-mut sm rt-in">' + esc(T('rtChH')) + '</p><div class="rt-chs rt-in">' + rt.rules.map(chHtml).join('') + '</div>' : '<p class="rt-msg rt-in" role="status">' + esc(T('rtNoRules')) + '</p>') +
       '<p class="rz-priv rt-in">' + esc(T('rtNote')) + '</p>' +
-      '<div class="sl-cta rt-cta2"><button type="button" class="sl-main" data-act="rtsave">' + esc(T('rtSave')) + '</button><button type="button" class="rz-btn ghost rt-shb" data-act="rtshare" aria-label="' + esc(T('rtShare')) + '">' + ico('rshare') + '<span>' + esc(T('rtShare')) + '</span></button></div>';
+      '<div class="sl-cta rt-cta2"><button type="button" class="sl-main" data-act="rtsave" id="rtSaveB">' + esc(rt.saved ? T('rtSavedBtn') : T('rtSave')) + '</button><button type="button" class="rz-btn ghost rt-shb" data-act="rtshare" aria-label="' + esc(T('rtShare')) + '">' + ico('rshare') + '<span>' + esc(T('rtShare')) + '</span></button></div>';
   }
-  function upd(first) {                                           // natija ekranini joyida yangilash (to'liq qayta chizmasdan — animatsiya uzilmasin)
+  function upd(first) {
     var sh = A.$('#rzSheet'); if (!sh || !rt || rt.scr !== 'res') return;
-    var b = base(), c = cur(), any = Object.keys(rt.on).some(function (k) { return rt.on[k]; });
-    var go = function () { setOdo(sh.querySelector('#rtOdo'), c.k); };
+    var b = baseT(), c = curT(), any = rt.rules.some(function (r) { return rt.on[r.id]; }), go = function () { setOdo(sh.querySelector('#rtOdo'), c.k); };
     if (first && !reduce()) setTimeout(go, 350); else go();
-    var ch = sh.querySelector('#rtChip'), p = pct(b.k, c.k);
-    ch.className = 'rt-pchip' + (any ? '' : ' none'); ch.textContent = any ? (p < 0 ? '−' + Math.abs(p) : '+' + p) + '% · ' + protTxt(b, c) : T('rtNoCh');
+    var ch = sh.querySelector('#rtChip'), p = pct(b.k, c.k); ch.className = 'rt-pchip' + (any ? '' : ' none'); ch.textContent = any ? (p < 0 ? '−' + Math.abs(p) : '+' + p) + '% · ' + protTxt(b, c) : T('rtNoCh');
     ['k', 'p', 'f'].forEach(function (m) {
       var row = sh.querySelector('.rt-bm.' + m); if (!row) return; var mx = Math.max(b[m], c[m], 1);
-      row.querySelector('.o').textContent = b[m]; row.querySelector('.n').textContent = c[m];
-      row.querySelector('.rt-br.o i').style.width = Math.round(b[m] / mx * 100) + '%';
-      var ni = row.querySelector('.rt-br.n i'), w = Math.round(c[m] / mx * 100) + '%';
-      if (first && !reduce()) { ni.style.width = Math.round(b[m] / mx * 100) + '%'; setTimeout(function () { ni.style.width = w; }, 380); } else ni.style.width = w;
+      row.querySelector('.o').textContent = b[m]; row.querySelector('.n').textContent = c[m]; row.querySelector('.rt-br.o i').style.width = Math.round(b[m] / mx * 100) + '%';
+      var ni = row.querySelector('.rt-br.n i'), w = Math.round(c[m] / mx * 100) + '%'; if (first && !reduce()) { ni.style.width = Math.round(b[m] / mx * 100) + '%'; setTimeout(function () { ni.style.width = w; }, 380); } else ni.style.width = w;
     });
-    EX[rt.ex].ch.forEach(function (cc) { var el = sh.querySelector('[data-act=rttog][data-c="' + cc.id + '"]'); if (!el) return; var on = !!rt.on[cc.id]; el.classList.toggle('on', on); el.setAttribute('aria-checked', on); });
+    rt.rules.forEach(function (r) { var el = sh.querySelector('[data-act=rttog][data-c="' + r.id + '"]'); if (!el) return; var on = !!rt.on[r.id]; el.classList.toggle('on', on); el.setAttribute('aria-checked', on); });
   }
 
   /* ---------- 4. Ulashish kartochkasi (canvas 1080×1350) ---------- */
-  function tr(s) { var K = window.KalkiTranslit; return A.isCyr() && K && K.translit ? K.translit(s) : s; }
-  function cssVar(n, d) { try { var v = getComputedStyle(A.$('.rz.sl') || document.documentElement).getPropertyValue(n).trim(); return v || d; } catch (e) { return d; } }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
   function fitText(ctx, s, max, size, weight) { var z = size; do { ctx.font = weight + ' ' + z + 'px Manrope, system-ui, sans-serif'; if (ctx.measureText(s).width <= max) break; z -= 4; } while (z > 30); return z; }
   function drawCard(cv) {
-    var W = 1080, H = 1350, ctx = cv.getContext('2d'), b = base(), c = cur(), dk = b.k - c.k, p = pct(b.k, c.k);
+    var W = 1080, H = 1350, ctx = cv.getContext('2d'), b = baseT(), c = curT(), dk = Math.max(0, b.k - c.k), p = pct(b.k, c.k);
     var acc = '#FF7E5C', acc2 = '#FFB46B', ink = '#FFF4EC', mut = 'rgba(255,244,236,.66)';
     var g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#2A1712'); g.addColorStop(1, '#14100F'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     var rg = ctx.createRadialGradient(W * 0.82, H * 0.2, 20, W * 0.82, H * 0.2, 640); rg.addColorStop(0, 'rgba(255,126,92,.45)'); rg.addColorStop(1, 'rgba(255,126,92,0)'); ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
     var rg2 = ctx.createRadialGradient(W * 0.1, H * 0.95, 10, W * 0.1, H * 0.95, 520); rg2.addColorStop(0, 'rgba(242,179,61,.18)'); rg2.addColorStop(1, 'rgba(242,179,61,0)'); ctx.fillStyle = rg2; ctx.fillRect(0, 0, W, H);
     ctx.textBaseline = 'alphabetic';
-    /* yuqori: belgi + «Yengil versiya» */
     rr(ctx, 80, 84, 72, 72, 22); ctx.fillStyle = acc; ctx.fill(); ctx.fillStyle = '#1C0C06'; ctx.font = '800 44px Manrope, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('K', 116, 136);
     ctx.textAlign = 'left'; ctx.fillStyle = ink; ctx.font = '700 38px Manrope, system-ui, sans-serif'; ctx.fillText('KalkiFit', 172, 133);
-    var pill = tr(T('rtLight')); ctx.font = '700 32px Manrope, system-ui, sans-serif'; var pw = ctx.measureText(pill).width + 56; rr(ctx, W - 80 - pw, 88, pw, 64, 32); ctx.strokeStyle = acc; ctx.lineWidth = 3; ctx.stroke(); ctx.fillStyle = acc; ctx.fillText(pill, W - 80 - pw + 28, 131);
-    /* taom nomi */
-    var nm = tr(rt.nom); fitText(ctx, nm, W - 160, 96, 800); ctx.fillStyle = ink; ctx.fillText(nm, 80, 330);
+    var pill = tr(T('rtLightV')); ctx.font = '700 32px Manrope, system-ui, sans-serif'; var pw = ctx.measureText(pill).width + 56; rr(ctx, W - 80 - pw, 88, pw, 64, 32); ctx.strokeStyle = acc; ctx.lineWidth = 3; ctx.stroke(); ctx.fillStyle = acc; ctx.fillText(pill, W - 80 - pw + 28, 131);
+    var nm = tr(rt.nom || T('rtIngT')); fitText(ctx, nm, W - 160, 96, 800); ctx.fillStyle = ink; ctx.fillText(nm, 80, 330);
     ctx.font = '600 38px Manrope, system-ui, sans-serif'; ctx.fillStyle = mut; ctx.fillText(tr(T('rtPeopleN', { n: rt.n }) + ' · ' + T('rtPor')), 80, 392);
-    /* katta raqam */
-    var big = '−' + dk, gg = ctx.createLinearGradient(80, 470, 80, 720); gg.addColorStop(0, acc2); gg.addColorStop(1, acc);
-    ctx.font = '800 76px Manrope, system-ui, sans-serif'; var uw = ctx.measureText(tr(T('rtKcal'))).width;
+    var big = '−' + dk; ctx.font = '800 76px Manrope, system-ui, sans-serif'; var uw = ctx.measureText(tr(T('rtKcal'))).width, gg = ctx.createLinearGradient(80, 470, 80, 720); gg.addColorStop(0, acc2); gg.addColorStop(1, acc);
     var bz = fitText(ctx, big, W - 160 - uw - 24, 290, 800); ctx.fillStyle = gg; ctx.fillText(big, 72, 700); var bw = ctx.measureText(big).width;
     ctx.font = '800 76px Manrope, system-ui, sans-serif'; ctx.fillStyle = ink; ctx.fillText(tr(T('rtKcal')), 72 + bw + 24, 700 - bz * 0.06);
     ctx.font = '600 40px Manrope, system-ui, sans-serif'; ctx.fillStyle = mut; ctx.fillText(tr(T('rtCardSub', { a: b.k, b: c.k })) + (p < 0 ? '  ·  −' + Math.abs(p) + '%' : ''), 80, 784);
-    /* o'zgarishlar */
     ctx.strokeStyle = 'rgba(255,244,236,.14)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, 850); ctx.lineTo(W - 80, 850); ctx.stroke();
-    var on = EX[rt.ex].ch.filter(function (x) { return rt.on[x.id]; }).sort(function (a, z) { return chBenefit(z) - chBenefit(a); }).slice(0, 3);
+    var on = active().filter(function (x) { return x.benefit > 0; }).sort(function (a, z) { return z.benefit - a.benefit; }).slice(0, 3);
     on.forEach(function (x, i) {
       var y = 930 + i * 92; ctx.beginPath(); ctx.arc(104, y - 13, 24, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255,126,92,.18)'; ctx.fill();
       ctx.strokeStyle = acc; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(93, y - 13); ctx.lineTo(101, y - 5); ctx.lineTo(116, y - 22); ctx.stroke();
-      var s = tr(chTitle(x, true)); fitText(ctx, s, W - 160 - 70, 44, 700); ctx.fillStyle = ink; ctx.fillText(s, 150, y);
+      var s = tr(ruleTitle(x, true)); fitText(ctx, s, W - 160 - 70, 44, 700); ctx.fillStyle = ink; ctx.fillText(s, 150, y);
     });
-    /* pastki qator */
     ctx.font = '800 46px Manrope, system-ui, sans-serif'; ctx.fillStyle = ink; ctx.fillText('kalki.uz', 80, H - 92);
     var kw = ctx.measureText('kalki.uz').width; ctx.beginPath(); ctx.arc(80 + kw + 22, H - 107, 8, 0, Math.PI * 2); ctx.fillStyle = acc; ctx.fill();
     ctx.font = '600 32px Manrope, system-ui, sans-serif'; ctx.fillStyle = mut; ctx.textAlign = 'right'; ctx.fillText(tr(T('rtBy')), W - 80, H - 94); ctx.textAlign = 'left';
   }
   function shareHtml(src) {
     return head(T('rtCardT'), 'rtback3') + '<p class="rz-mut sm">' + esc(T('rtCardH')) + '</p>' +
-      '<div class="rt-cardw rt-in">' + (src ? '<img class="rt-card" id="rtCardImg" src="' + src + '" width="1080" height="1350" alt="' + esc(rt.nom + ' — ' + T('rtLight')) + '">' : '<div class="rt-card wait">' + esc(T('rtMaking')) + '</div>') + '</div>' +
+      '<div class="rt-cardw rt-in">' + (src ? '<img class="rt-card" id="rtCardImg" src="' + src + '" width="1080" height="1350" alt="' + esc((rt.nom || '') + ' — ' + T('rtLightV')) + '">' : '<div class="rt-card wait">' + esc(T('rtMaking')) + '</div>') + '</div>' +
       '<div class="sl-cta rt-cta2"><button type="button" class="sl-main" data-act="rtsend">' + ico('rshare') + ' ' + esc(T('rtShare')) + '</button><button type="button" class="rz-btn ghost rt-shb" data-act="rtdl" aria-label="' + esc(T('rtDl')) + '">' + ico('rdl') + '<span>' + esc(T('rtDl')) + '</span></button></div>';
   }
   function makeCard(cb) {
@@ -297,63 +245,116 @@
     var go = function () { try { drawCard(cv); } catch (e) {} cv.toBlob(function (bl) { rt.blob = bl; if (rt.url) try { URL.revokeObjectURL(rt.url); } catch (e) {} rt.url = bl ? URL.createObjectURL(bl) : null; cb(); }, 'image/png'); };
     if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('800 120px Manrope'), document.fonts.load('600 40px Manrope'), document.fonts.load('700 40px Manrope')]).then(go, go); else go();
   }
-  function fileName() { return 'kalkifit-yengil-' + rt.ex + '.png'; }
-  function download() { if (!rt.url) return; var a = document.createElement('a'); a.href = rt.url; a.download = fileName(); document.body.appendChild(a); a.click(); document.body.removeChild(a); }
+  function fileName() { return 'kalkifit-yengil-' + (R.norm(rt.nom || 'retsept').replace(/[^a-z0-9а-я]+/g, '-').replace(/^-|-$/g, '').slice(0, 24) || 'retsept') + '.png'; }
+  function download() { if (!rt.url) return; var a = document.createElement('a'); a.href = rt.url; a.download = fileName(); document.body.appendChild(a); a.click(); document.body.removeChild(a); count('retsept_ulashildi'); }
   function send() {
     if (!rt.blob) return; var f = null; try { f = new File([rt.blob], fileName(), { type: 'image/png' }); } catch (e) {}
-    if (f && navigator.canShare && navigator.canShare({ files: [f] }) && navigator.share) { navigator.share({ files: [f], title: rt.nom, text: rt.nom + ' — ' + T('rtLight') + ' · kalki.uz' }).then(function () { A.toast(T('rtShared'), null, true); }, function () {}); }
+    if (f && navigator.canShare && navigator.canShare({ files: [f] }) && navigator.share) { navigator.share({ files: [f], title: rt.nom, text: (rt.nom || '') + ' — ' + T('rtLightV') + ' · kalki.uz' }).then(function () { count('retsept_ulashildi'); A.toast(T('rtShared'), null, true); }, function () {}); }
     else download();
   }
 
   /* ---------- ekranlar ---------- */
   function show(scr) {
-    rt.scr = scr; var html = scr === 'in' ? inHtml() : scr === 'scan' ? anHtml(true) : scr === 'an' ? anHtml(false) : scr === 'res' ? resHtml() : shareHtml(rt.url);
+    rt.scr = scr; var html = scr === 'in' ? inHtml() : scr === 'scan' ? anHtml(true) : scr === 'an' ? anHtml(false) : scr === 'pick' ? pickHtml(rt.pq) : scr === 'res' ? resHtml() : shareHtml(rt.url);
     if (A.sheetKind() === 'retsept') A.setSheet(html); else A.openSheet('retsept', html);
-    var sh = A.$('#rzSheet'); if (sh) { sh.scrollTop = 0; sh.classList.toggle('rt-sheet', true); }
-    if (scr === 'res') upd(true);
+    var sh = A.$('#rzSheet'); if (sh) { sh.scrollTop = 0; sh.classList.add('rt-sheet'); }
+    if (scr === 'res') { if (!rt.counted) { rt.counted = true; count('retsept_natija'); } upd(true); }
+    if (scr === 'pick') { var q = A.$('#rtPQ'); if (q) try { q.focus({ preventScroll: true }); } catch (e) {} }
   }
-  function open(from) { rt = { scr: 'in', text: '', from: from || '' }; show('in'); }
-  function analyse() {
-    show('scan');
-    if (reduce()) { show('an'); return; }
-    var tok = rt.tok = {}; setTimeout(function () { if (rt && rt.tok === tok && rt.scr === 'scan') show('an'); }, 360 + rt.ings.length * 170);
-  }
+  function open() { rt = { scr: 'in', shown: '', chip: '', items: [], n: 4, nom: '', rules: [], on: {} }; count('retsept_ochildi'); show('in'); loadTable(function () {}); }
   function door() { return '<button type="button" class="sl-door rt-door" id="rtDoor" data-act="rtopen"><span class="ic"><span class="rt-sp" aria-hidden="true">' + ico('rspark') + '</span></span><span class="m"><b>' + esc(T('rtDoorT')) + '</b><span>' + esc(T('rtDoorS')) + '</span></span>' + ico('chev', 'r') + '</button>'; }
+  function applyParse(p) {
+    rt.items = p.items.map(function (it) { var o = Object.assign({}, it); if (o.id && !(o.g > 0)) { o.g = 0; o.need = true; } return o; });
+    rt.nom = p.nom || ''; rt.dish = p.dish; rt.pork = p.pork; rt.n = p.kishi || rt.n || 4;
+  }
+  function toAnalysis() { rt.busy = false; if (!rt.items.length && !rt.err) { rt.err = T('rtErrNone'); count('retsept_xato'); } show('an'); }
+  function analyse(text) {
+    rt.err = ''; rt.pork = false; rt.busy = false;
+    var p = R.parse(text); applyParse(p);
+    var unres = rt.items.filter(function (i) { return !i.id; });
+    if (!unres.length) { show('scan'); setTimeout(function () { if (rt && rt.scr === 'scan') toAnalysis(); }, reduce() ? 0 : 420 + rt.items.length * 150); return; }
+    /* mahalliy parser tanimagan qatorlar — AI (faqat shu qatorlar) */
+    rt.busy = true; show('scan'); count('retsept_ai');
+    var lines = unres.map(function (i) { return i.line; }).join('\n').slice(0, 700), t0 = Date.now();
+    aiCall(lines, function (res) {
+      var wait = Math.max(0, (reduce() ? 0 : 900) - (Date.now() - t0));
+      setTimeout(function () {
+        if (!rt || rt.scr !== 'scan') return;
+        if (res.ok) mergeAi(unres, res.list); else { rt.err = res.msg; count('retsept_xato'); }
+        toAnalysis();
+      }, wait);
+    });
+  }
+  function aiCall(lines, cb) {
+    var body = JSON.stringify({ matn: lines, til: A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid() }), done = false, tm = setTimeout(function () { if (!done) { done = true; cb({ ok: false, msg: T('rtErrNet') }); } }, 25000);
+    fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (x) {
+      if (done) return; done = true; clearTimeout(tm);
+      if (x.s === 200 && x.j && Array.isArray(x.j.masalliqlar)) cb({ ok: true, list: x.j.masalliqlar }); else cb({ ok: false, msg: x.j && x.j.xato ? x.j.xato : T('rtErrAi') });
+    }).catch(function () { if (done) return; done = true; clearTimeout(tm); cb({ ok: false, msg: T('rtErrNet') }); });
+  }
+  function mergeAi(unres, list) {
+    /* AI natijasini o'rniga qo'yish: nom bo'yicha moslash; aniq id bo'lsa — masalliq tanilgan (gramm yo'q bo'lsa — «miqdori» sariq); aks holda sariq qoladi */
+    var used = {}, any = false;
+    unres.forEach(function (u) {
+      var un = R.norm(u.nom), hit = null;
+      list.forEach(function (x, k) { if (!hit && !used[k] && x.id && R.table()[x.id] && (R.norm(x.nom).indexOf(un) > -1 || un.indexOf(R.norm(x.nom)) > -1 || R.norm(u.line).indexOf(R.norm(x.nom)) > -1)) { hit = x; used[k] = true; } });
+      if (hit) { u.id = hit.id; u.ai = true; u.g = hit.g > 0 ? hit.g : 0; u.need = !(u.g > 0); any = true; }
+    });
+    if (!any) rt.err = T('rtErrAi');
+  }
+  function haveYellow() { return rt.items.some(function (it) { return !it.id || (it.need && !(it.g > 0)); }); }
+  function save() {
+    var items = itemsAfter().filter(function (i) { return i.id && i.g > 0; }), t = R.table();
+    var ings = items.map(function (i) { var m = t[i.id]; return { id: null, name: m[L()], g: Math.round(i.g), k: m.k, p: m.p, f: m.f, c: m.c }; });
+    var name = (rt.nom || cap(L() === 'ru' ? 'рецепт' : 'retsept')) + ' (' + T('rtLight') + ')'; return A.saveRecipe(name, ings, rt.n);
+  }
+  function keep(fn) { var sh = A.$('#rzSheet'), sc = sh ? sh.scrollTop : 0; fn(); sh = A.$('#rzSheet'); if (sh) sh.scrollTop = sc; }
   function act(a, el) {
     switch (a) {
-      case 'rtopen': open(el.getAttribute('data-f')); return true;
-      case 'rtex': { var k = el.getAttribute('data-x'); rt.chip = k; rt.text = lbl(EX[k].txt); var ta = A.$('#rtText'); if (ta) ta.value = rt.text; A.$$('[data-act=rtex]').forEach(function (b) { b.classList.toggle('on', b === el); }); return true; }
-      case 'rtcam': { var fi = A.$('#rtFile'); if (fi) fi.click(); return true; }
+      case 'rtopen': open(); return true;
+      case 'rtex': { var k = el.getAttribute('data-x'); rt.chip = k; rt.ex = true; rt.exTxt = EX[k][L()]; rt.shown = tr(EX[k][L()]); rt.exShown = rt.shown; var ta = A.$('#rtText'); if (ta) ta.value = rt.shown; msg(''); A.$$('[data-act=rtex]').forEach(function (bt) { bt.classList.toggle('on', bt === el); }); return true; }
       case 'rtgo': {
-        var t = A.$('#rtText'), v = (t && t.value || '').trim(); rt.text = v;
-        if (!v) { if (t) { t.classList.add('err'); setTimeout(function () { t.classList.remove('err'); }, 600); try { t.focus({ preventScroll: true }); } catch (e) {} } A.toast(T('rtEmpty')); return true; }
-        startEx(pickEx(v), v); analyse(); return true;
+        var txt = srcText().trim(); if (!txt) { var t0 = A.$('#rtText'); if (t0) { t0.classList.add('err'); setTimeout(function () { t0.classList.remove('err'); }, 600); try { t0.focus({ preventScroll: true }); } catch (e) {} } msg(T('rtEmpty')); return true; }
+        if (txt.length < 8) { msg(T('rtShort')); return true; } if (txt.length > 1500) { msg(T('rtLong')); return true; } msg('');
+        el.disabled = true; loadTable(function (ok) { el.disabled = false; if (!ok) { msg(T('rtErrNet')); count('retsept_xato'); return; } if (rt && rt.scr === 'in') analyse(txt); }); return true;
       }
-      case 'rtback1': show('in'); return true;
+      case 'rtback1': rt.err = ''; show('in'); return true;
       case 'rtback2': show('an'); return true;
       case 'rtback3': show('res'); return true;
-      case 'rtg': { var i = +el.getAttribute('data-i'), it = rt.ings[i]; if (!it) return true; it.g = step(it.g, +el.getAttribute('data-s')); var sc = A.$('#rzSheet').scrollTop; show('an'); A.$('#rzSheet').scrollTop = sc; return true; }
-      case 'rtn': { rt.n = Math.max(1, Math.min(12, rt.n + (+el.getAttribute('data-s')))); var sc2 = A.$('#rzSheet').scrollTop; show('an'); A.$('#rzSheet').scrollTop = sc2; return true; }
-      case 'rtunk': { var o = el.getAttribute('data-o'); rt.ings.forEach(function (x) { if (x.unk) { if (o) { x.id = o; x.unk = false; } else { x.unk = false; x.id = x.opts[0]; x.g = 0; } } }); var sc3 = A.$('#rzSheet').scrollTop; show('an'); A.$('#rzSheet').scrollTop = sc3; return true; }
-      case 'rtnext': {
-        var u = A.$('#rtUnk'); if (u) { u.classList.remove('shake'); void u.offsetWidth; u.classList.add('shake'); try { u.scrollIntoView({ block: 'center', behavior: reduce() ? 'auto' : 'smooth' }); } catch (e) {} A.toast(T('rtUnkNeed')); return true; }
-        show('res'); return true;
+      case 'rtg': { var it = rt.items[+el.getAttribute('data-i')]; if (!it) return true; it.g = grams(it, step(disp(it), +el.getAttribute('data-s'))); if (it.g > 0) it.need = false; keep(function () { show('an'); }); return true; }
+      case 'rtn': rt.n = Math.max(1, Math.min(12, rt.n + (+el.getAttribute('data-s')))); keep(function () { show('an'); }); return true;
+      case 'rtset': { var it1 = rt.items[+el.getAttribute('data-i')]; if (it1) { it1.id = el.getAttribute('data-o'); it1.cands = []; if (!(it1.g > 0)) { it1.need = true; it1.g = 0; } } keep(function () { show('an'); }); return true; }
+      case 'rtdrop': rt.items.splice(+el.getAttribute('data-i'), 1); keep(function () { show('an'); }); return true;
+      case 'rtpick': rt.pickFor = +el.getAttribute('data-i'); rt.pq = ''; show('pick'); return true;
+      case 'rtchoose': {
+        var id = el.getAttribute('data-o'), f = rt.pickFor;
+        if (f >= 0 && rt.items[f]) { var x = rt.items[f]; x.id = id; x.cands = []; if (!(x.g > 0)) { x.g = 0; x.need = true; } } else rt.items.push({ n: 800 + rt.items.length, line: '', nom: R.table()[id].uz, id: id, q: null, b: null, g: 0, need: true, cands: [] });
+        show('an'); return true;
       }
-      case 'rttog': { var id = el.getAttribute('data-c'); rt.on[id] = !rt.on[id]; upd(false); return true; }
-      case 'rtsave': A.toast(T('rtSaved'), null, true); return true;
+      case 'rtnext': {
+        if (!rt.items.some(function (i) { return i.id && i.g > 0; }) && !haveYellow()) { rt.err = T('rtNone'); show('an'); return true; }
+        if (haveYellow()) { var bad = A.$('.rt-ing.unk, .rt-ing.need'); if (bad) { bad.classList.remove('shake'); void bad.offsetWidth; bad.classList.add('shake'); try { bad.scrollIntoView({ block: 'center', behavior: reduce() ? 'auto' : 'smooth' }); } catch (e) {} } A.toast(T('rtNeedFix')); return true; }
+        rt.err = ''; rt.dish = R.dishOf(rt.items, rt.nom); prepRules(); rt.saved = null; rt.counted = false; show('res'); return true;
+      }
+      case 'rttog': { var rid = el.getAttribute('data-c'); rt.on[rid] = !rt.on[rid]; rt.saved = null; var sb = A.$('#rtSaveB'); if (sb) sb.textContent = T('rtSave'); upd(false); return true; }
+      case 'rtsave': {
+        if (rt.saved) { A.openAddFood(rt.saved.id); return true; }
+        var rec = save(); if (!rec) { A.toast(T('rtNoSave')); return true; } rt.saved = rec; count('retsept_saqlandi'); var sb2 = A.$('#rtSaveB'); if (sb2) sb2.textContent = T('rtSavedBtn'); A.toast(T('rtSaved', { n: rec.n, k: curT().k }), null, true); return true;
+      }
       case 'rtshare': rt.url = null; show('share'); makeCard(function () { if (rt.scr === 'share') show('share'); }); return true;
       case 'rtsend': send(); return true;
       case 'rtdl': download(); return true;
     }
     return false;
   }
-  function onChange(e) {
-    var t = e.target; if (!t || t.id !== 'rtFile' || !rt) return; var f = t.files && t.files[0]; if (!f) return;
-    A.toast(T('rtCamRead'), null, true); rt.chip = 'osh'; rt.text = lbl(EX.osh.txt); var ta = A.$('#rtText'); if (ta) ta.value = rt.text; t.value = '';
+  function onInput(e) {
+    var t = e.target; if (!t || !rt) return;
+    if (t.id === 'rtPQ' && rt.scr === 'pick') { rt.pq = t.value; var l = A.$('#rtPL'); if (l) l.innerHTML = pickList(pickIds(rt.pq)); }
+    else if (t.id === 'rtText') { rt.shown = t.value; msg(''); }
   }
   function init(api) {
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
-    api.addIcons(ICONS); document.addEventListener('change', onChange);
+    api.addIcons(ICONS); document.addEventListener('input', onInput);
   }
-  window.KalkiRetseptUI = { init: init, act: act, door: door, open: open, _ex: EX, _ing: ING, _calc: function (ex, on, n) { var keep = rt; rt = { ex: ex, n: n || EX[ex].n, on: on || {} }; startEx(ex, ''); if (n) rt.n = n; if (on) rt.on = on; var r = { base: base(), cur: cur() }; rt = keep; return r; } };
+  window.KalkiRetseptUI = { init: init, act: act, door: door, open: open };
 })();

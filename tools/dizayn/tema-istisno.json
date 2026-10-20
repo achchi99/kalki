@@ -46,6 +46,9 @@
   ".rt-sw",
   ".in-dots i.on",
   ".rt-ci",
-  ".rt-spk"
+  ".rt-spk",
+  ".rt-msg",
+  ".rt-ing.need",
+  ".rt-soon"
  ]
 }

@@ -4,7 +4,7 @@
  * Himoya: Origin tekshiruvi, hodisa nomi QAT'IY ro'yxatdan (ixtiyoriy matn qabul qilinmaydi), n ≤ 20, ≤ 40 qator, sana ± 3 kun. Migratsiya: migrations/hisob.sql. */
 import { originOk, json } from './ariza.js';
 
-export const HODISA = ['orinbosar_korsatildi', 'orinbosar_tanlandi', 'baliq_oyna_ochildi', 'baliq_buyurtma_bosildi', 'baliq_kafe_yozildi', 'baliq_uyda_ochildi', 'yeymiz_ochildi', 'yeymiz_tanlandi', 'yeymiz_buyurtma_bosildi', 'yeymiz_uyda_ochildi', 'onboarding_boshlandi', 'onboarding_tugadi', 'onboarding_keyinroq', 'yemaydi_hammasi', 'yemaydi_tanlandi'];
+export const HODISA = ['orinbosar_korsatildi', 'orinbosar_tanlandi', 'baliq_oyna_ochildi', 'baliq_buyurtma_bosildi', 'baliq_kafe_yozildi', 'baliq_uyda_ochildi', 'yeymiz_ochildi', 'yeymiz_tanlandi', 'yeymiz_buyurtma_bosildi', 'yeymiz_uyda_ochildi', 'onboarding_boshlandi', 'onboarding_tugadi', 'onboarding_keyinroq', 'yemaydi_hammasi', 'yemaydi_tanlandi', 'retsept_ochildi', 'retsept_ai', 'retsept_natija', 'retsept_saqlandi', 'retsept_ulashildi', 'retsept_xato'];
 export const XIZMAT = ['uzum-tezkor', 'yandex-eda'];                      // baliq_buyurtma_bosildi.<xizmat> — faqat shu nomlar
 const KEY = new RegExp('^(?:' + HODISA.filter((h) => !/_buyurtma_bosildi$/.test(h)).join('|') + '|(?:baliq|yeymiz)_buyurtma_bosildi(?:\\.(?:' + XIZMAT.join('|') + '))?)$');      // xizmat qo'shimchasi FAQAT buyurtma hodisalarida
 const NC = { 'Cache-Control': 'no-store' };

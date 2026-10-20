@@ -1,0 +1,1165 @@
+{
+ "v": 1,
+ "izoh": "«Retseptimni yengillashtir» masalliq jadvali. tools/retsept-yasa.js yasaydi (qo'lda tahrirlanmaydi). k/p/f/c — 100 g (xom) dagi qiymat, USDA SR Legacy. Kkal/makro faqat shu jadvaldan hisoblanadi (AI emas).",
+ "masalliq": {
+  "guruch": {
+   "uz": "guruch",
+   "ru": "рис",
+   "a": [
+    "guruch",
+    "devzira",
+    "lazer"
+   ],
+   "r": [
+    "рис"
+   ],
+   "k": 365,
+   "p": 7.13,
+   "f": 0.66,
+   "c": 79.95,
+   "u": {
+    "osh": 12,
+    "choy": 4,
+    "stakan": 180
+   },
+   "t": [],
+   "ch": [],
+   "y": 168877,
+   "m": "USDA SR Legacy 168877: Rice, white, long-grain, regular, raw, enriched"
+  },
+  "sabzi": {
+   "uz": "sabzi",
+   "ru": "морковь",
+   "a": [
+    "sabzi"
+   ],
+   "r": [
+    "морков"
+   ],
+   "k": 41,
+   "p": 0.93,
+   "f": 0.24,
+   "c": 9.58,
+   "u": {
+    "dona": 80,
+    "stakan": 110
+   },
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 170393,
+   "m": "USDA SR Legacy 170393: Carrots, raw"
+  },
+  "piyoz": {
+   "uz": "piyoz",
+   "ru": "лук",
+   "a": [
+    "piyoz"
+   ],
+   "r": [
+    "лук",
+    "луковиц"
+   ],
+   "k": 40,
+   "p": 1.1,
+   "f": 0.1,
+   "c": 9.34,
+   "u": {
+    "dona": 110
+   },
+   "t": [],
+   "ch": [],
+   "y": 170000,
+   "m": "USDA SR Legacy 170000: Onions, raw"
+  },
+  "qoy": {
+   "uz": "qo'y go'shti",
+   "ru": "баранина",
+   "a": [
+    "qo'y go'sht",
+    "qoy gosht",
+    "qo'y",
+    "qoy"
+   ],
+   "r": [
+    "баранин"
+   ],
+   "k": 267,
+   "p": 16.88,
+   "f": 21.59,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogligosht"
+   ],
+   "ch": [],
+   "y": 172479,
+   "m": "USDA SR Legacy 172479: Lamb, composite of trimmed retail cuts, separable lean and fat, trimmed to 1/4\" fat, choice, raw"
+  },
+  "qoy_yogsiz": {
+   "uz": "qo'y go'shti (yog'siz)",
+   "ru": "баранина (постная)",
+   "a": [
+    "yog'siz qo'y",
+    "yog'siz qoy"
+   ],
+   "r": [
+    "постн баранин"
+   ],
+   "k": 134,
+   "p": 20.29,
+   "f": 5.25,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogsiz"
+   ],
+   "ch": [],
+   "y": 174307,
+   "m": "USDA SR Legacy 174307: Lamb, composite of trimmed retail cuts, separable lean only, trimmed to 1/4\" fat, choice, raw"
+  },
+  "mol": {
+   "uz": "mol go'shti",
+   "ru": "говядина",
+   "a": [
+    "mol go'sht",
+    "mol gosht",
+    "mol"
+   ],
+   "r": [
+    "говядин"
+   ],
+   "k": 249,
+   "p": 19.14,
+   "f": 18.57,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogligosht"
+   ],
+   "ch": [],
+   "y": 168668,
+   "m": "USDA SR Legacy 168668: Beef, chuck, arm pot roast, separable lean and fat, trimmed to 1/8\" fat, choice, raw"
+  },
+  "mol_yogsiz": {
+   "uz": "mol go'shti (yog'siz)",
+   "ru": "говядина (постная)",
+   "a": [
+    "yog'siz mol go'sht",
+    "yog'siz mol",
+    "yog'siz go'sht"
+   ],
+   "r": [
+    "постн говядин",
+    "постн мяс"
+   ],
+   "k": 130,
+   "p": 20.76,
+   "f": 4.55,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogsiz"
+   ],
+   "ch": [],
+   "y": 173126,
+   "m": "USDA SR Legacy 173126: Beef, round, tip round, roast, separable lean only, trimmed to 0\" fat, choice, raw"
+  },
+  "tovuq_kokrak": {
+   "uz": "tovuq ko'kragi",
+   "ru": "куриная грудка",
+   "a": [
+    "tovuq ko'krag",
+    "tovuq ko'krak",
+    "tovuq fil",
+    "file"
+   ],
+   "r": [
+    "курин грудк",
+    "курин филе",
+    "грудк",
+    "филе"
+   ],
+   "k": 120,
+   "p": 22.5,
+   "f": 2.62,
+   "c": 0,
+   "u": {
+    "dona": 220
+   },
+   "t": [
+    "yogsiz"
+   ],
+   "ch": [],
+   "y": 171077,
+   "m": "USDA SR Legacy 171077: Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw"
+  },
+  "tovuq_son": {
+   "uz": "tovuq soni",
+   "ru": "куриное бедро",
+   "a": [
+    "tovuq go'sht",
+    "tovuq",
+    "tovuq son"
+   ],
+   "r": [
+    "курин",
+    "курица",
+    "курицы"
+   ],
+   "k": 221,
+   "p": 16.52,
+   "f": 16.61,
+   "c": 0.25,
+   "u": {
+    "dona": 190
+   },
+   "t": [
+    "yogligosht"
+   ],
+   "ch": [],
+   "y": 172385,
+   "m": "USDA SR Legacy 172385: Chicken, broilers or fryers, thigh, meat and skin, raw"
+  },
+  "dumba": {
+   "uz": "dumba",
+   "ru": "курдючный жир",
+   "a": [
+    "dumba"
+   ],
+   "r": [
+    "курдюк"
+   ],
+   "k": 665,
+   "p": 6.65,
+   "f": 70.61,
+   "c": 0,
+   "u": {},
+   "t": [
+    "dumba"
+   ],
+   "ch": [],
+   "y": 174309,
+   "m": "USDA SR Legacy 174309: Lamb, composite of trimmed retail cuts, separable fat, trimmed to 1/4\" fat, choice, raw"
+  },
+  "yog": {
+   "uz": "o'simlik yog'i",
+   "ru": "растительное масло",
+   "a": [
+    "o'simlik yog'",
+    "osimlik yog",
+    "paxta yog",
+    "kungaboqar yog",
+    "yog'",
+    "yog"
+   ],
+   "r": [
+    "растительн масл",
+    "подсолнечн масл",
+    "хлопков масл",
+    "масл"
+   ],
+   "k": 884,
+   "p": 0,
+   "f": 100,
+   "c": 0,
+   "u": {
+    "osh": 14,
+    "choy": 4.5,
+    "stakan": 230,
+    "ml": 0.92
+   },
+   "t": [
+    "moy"
+   ],
+   "ch": [],
+   "y": 171024,
+   "m": "USDA SR Legacy 171024: Oil, cottonseed, salad or cooking"
+  },
+  "un": {
+   "uz": "un",
+   "ru": "мука",
+   "a": [
+    "un"
+   ],
+   "r": [
+    "мука",
+    "муки",
+    "муку"
+   ],
+   "k": 364,
+   "p": 10.33,
+   "f": 0.98,
+   "c": 76.31,
+   "u": {
+    "osh": 8,
+    "choy": 3,
+    "stakan": 130
+   },
+   "t": [],
+   "ch": [
+    "glyuten"
+   ],
+   "y": 168894,
+   "m": "USDA SR Legacy 168894: Wheat flour, white, all-purpose, enriched, bleached"
+  },
+  "kartoshka": {
+   "uz": "kartoshka",
+   "ru": "картофель",
+   "a": [
+    "kartoshka"
+   ],
+   "r": [
+    "картоф",
+    "картошк"
+   ],
+   "k": 77,
+   "p": 2.05,
+   "f": 0.09,
+   "c": 17.49,
+   "u": {
+    "dona": 130
+   },
+   "t": [],
+   "ch": [],
+   "y": 170026,
+   "m": "USDA SR Legacy 170026: Potatoes, flesh and skin, raw"
+  },
+  "qovoq": {
+   "uz": "qovoq",
+   "ru": "тыква",
+   "a": [
+    "qovoq"
+   ],
+   "r": [
+    "тыкв"
+   ],
+   "k": 26,
+   "p": 1,
+   "f": 0.1,
+   "c": 6.5,
+   "u": {},
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 168448,
+   "m": "USDA SR Legacy 168448: Pumpkin, raw"
+  },
+  "sariyog": {
+   "uz": "sariyog'",
+   "ru": "сливочное масло",
+   "a": [
+    "sariyog'",
+    "sariyog",
+    "margarin"
+   ],
+   "r": [
+    "сливочн масл",
+    "маргарин"
+   ],
+   "k": 717,
+   "p": 0.85,
+   "f": 81.11,
+   "c": 0.06,
+   "u": {
+    "osh": 14,
+    "choy": 4.7,
+    "stakan": 227
+   },
+   "t": [
+    "moy"
+   ],
+   "ch": [
+    "sut"
+   ],
+   "y": 173410,
+   "m": "USDA SR Legacy 173410: Butter, salted"
+  },
+  "tuxum": {
+   "uz": "tuxum",
+   "ru": "яйцо",
+   "a": [
+    "tuxum"
+   ],
+   "r": [
+    "яйц",
+    "яиц"
+   ],
+   "k": 143,
+   "p": 12.56,
+   "f": 9.51,
+   "c": 0.72,
+   "u": {
+    "dona": 50
+   },
+   "t": [],
+   "ch": [
+    "tuxum"
+   ],
+   "y": 171287,
+   "m": "USDA SR Legacy 171287: Egg, whole, raw, fresh"
+  },
+  "sut": {
+   "uz": "sut",
+   "ru": "молоко",
+   "a": [
+    "sut"
+   ],
+   "r": [
+    "молок"
+   ],
+   "k": 61,
+   "p": 3.15,
+   "f": 3.25,
+   "c": 4.8,
+   "u": {
+    "osh": 15,
+    "choy": 5,
+    "stakan": 250,
+    "ml": 1.03
+   },
+   "t": [],
+   "ch": [
+    "sut"
+   ],
+   "y": 171265,
+   "m": "USDA SR Legacy 171265: Milk, whole, 3.25% milkfat, with added vitamin D"
+  },
+  "karam": {
+   "uz": "karam",
+   "ru": "капуста",
+   "a": [
+    "karam"
+   ],
+   "r": [
+    "капуст"
+   ],
+   "k": 25,
+   "p": 1.28,
+   "f": 0.1,
+   "c": 5.8,
+   "u": {},
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 169975,
+   "m": "USDA SR Legacy 169975: Cabbage, raw"
+  },
+  "pomidor": {
+   "uz": "pomidor",
+   "ru": "помидор",
+   "a": [
+    "pomidor",
+    "tomat"
+   ],
+   "r": [
+    "помидор",
+    "томат"
+   ],
+   "k": 18,
+   "p": 0.88,
+   "f": 0.2,
+   "c": 3.89,
+   "u": {
+    "dona": 120
+   },
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 170457,
+   "m": "USDA SR Legacy 170457: Tomatoes, red, ripe, raw, year round average"
+  },
+  "qalampir": {
+   "uz": "bolgar qalampiri",
+   "ru": "болгарский перец",
+   "a": [
+    "bolgar qalampir",
+    "bulg'or qalampir",
+    "bolg'or qalampir",
+    "qalampir"
+   ],
+   "r": [
+    "болгарск перец",
+    "сладк перец",
+    "перец болгарск"
+   ],
+   "k": 20,
+   "p": 0.86,
+   "f": 0.17,
+   "c": 4.64,
+   "u": {
+    "dona": 120
+   },
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 170427,
+   "m": "USDA SR Legacy 170427: Peppers, sweet, green, raw"
+  },
+  "kokat": {
+   "uz": "ko'kat",
+   "ru": "зелень",
+   "a": [
+    "ko'kat",
+    "kokat",
+    "shivit",
+    "kashnich",
+    "petrushka"
+   ],
+   "r": [
+    "зелен",
+    "укроп",
+    "кинз",
+    "петрушк"
+   ],
+   "k": 23,
+   "p": 2.13,
+   "f": 0.52,
+   "c": 3.67,
+   "u": {
+    "osh": 4,
+    "stakan": 30
+   },
+   "t": [],
+   "ch": [],
+   "y": 169997,
+   "m": "USDA SR Legacy 169997: Coriander (cilantro) leaves, raw"
+  },
+  "mosh": {
+   "uz": "mosh",
+   "ru": "маш",
+   "a": [
+    "mosh"
+   ],
+   "r": [
+    "маш"
+   ],
+   "k": 347,
+   "p": 23.86,
+   "f": 1.15,
+   "c": 62.62,
+   "u": {
+    "osh": 13,
+    "stakan": 200
+   },
+   "t": [],
+   "ch": [],
+   "y": 174256,
+   "m": "USDA SR Legacy 174256: Mung beans, mature seeds, raw"
+  },
+  "noxat": {
+   "uz": "no'xat",
+   "ru": "нут",
+   "a": [
+    "no'xat",
+    "nohut",
+    "noxat"
+   ],
+   "r": [
+    "нут"
+   ],
+   "k": 378,
+   "p": 20.47,
+   "f": 6.04,
+   "c": 62.95,
+   "u": {
+    "osh": 12,
+    "stakan": 190
+   },
+   "t": [],
+   "ch": [],
+   "y": 173756,
+   "m": "USDA SR Legacy 173756: Chickpeas (garbanzo beans, bengal gram), mature seeds, raw"
+  },
+  "bodring": {
+   "uz": "bodring",
+   "ru": "огурец",
+   "a": [
+    "bodring",
+    "tuzlangan bodring"
+   ],
+   "r": [
+    "огурец",
+    "огурц",
+    "солен огурц",
+    "солен огурец"
+   ],
+   "k": 15,
+   "p": 0.65,
+   "f": 0.11,
+   "c": 3.63,
+   "u": {
+    "dona": 100
+   },
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 168409,
+   "m": "USDA SR Legacy 168409: Cucumber, with peel, raw"
+  },
+  "redis": {
+   "uz": "turp",
+   "ru": "редис",
+   "a": [
+    "turp",
+    "redis"
+   ],
+   "r": [
+    "редис"
+   ],
+   "k": 16,
+   "p": 0.68,
+   "f": 0.1,
+   "c": 3.4,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 169276,
+   "m": "USDA SR Legacy 169276: Radishes, raw"
+  },
+  "qatiq": {
+   "uz": "qatiq",
+   "ru": "катык/йогурт",
+   "a": [
+    "qatiq",
+    "yogurt",
+    "yoghurt"
+   ],
+   "r": [
+    "катык",
+    "йогурт",
+    "кефир"
+   ],
+   "k": 61,
+   "p": 3.47,
+   "f": 3.25,
+   "c": 4.66,
+   "u": {
+    "osh": 15,
+    "choy": 5,
+    "stakan": 250,
+    "ml": 1.03
+   },
+   "t": [],
+   "ch": [
+    "sut"
+   ],
+   "y": 171284,
+   "m": "USDA SR Legacy 171284: Yogurt, plain, whole milk"
+  },
+  "uzum_barg": {
+   "uz": "uzum bargi",
+   "ru": "виноградные листья",
+   "a": [
+    "uzum barg"
+   ],
+   "r": [
+    "виноградн"
+   ],
+   "k": 93,
+   "p": 5.6,
+   "f": 2.12,
+   "c": 17.31,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 168575,
+   "m": "USDA SR Legacy 168575: Grape leaves, raw"
+  },
+  "shakar": {
+   "uz": "shakar",
+   "ru": "сахар",
+   "a": [
+    "shakar"
+   ],
+   "r": [
+    "сахар"
+   ],
+   "k": 387,
+   "p": 0,
+   "f": 0,
+   "c": 99.98,
+   "u": {
+    "osh": 12.5,
+    "choy": 4.2,
+    "stakan": 200
+   },
+   "t": [
+    "shakar"
+   ],
+   "ch": [],
+   "y": 169655,
+   "m": "USDA SR Legacy 169655: Sugars, granulated"
+  },
+  "sazan": {
+   "uz": "sazan",
+   "ru": "карп",
+   "a": [
+    "sazan"
+   ],
+   "r": [
+    "карп",
+    "сазан"
+   ],
+   "k": 127,
+   "p": 17.83,
+   "f": 5.6,
+   "c": 0,
+   "u": {},
+   "t": [],
+   "ch": [
+    "baliq"
+   ],
+   "y": 171952,
+   "m": "USDA SR Legacy 171952: Fish, carp, raw"
+  },
+  "loviya_oq": {
+   "uz": "loviya",
+   "ru": "фасоль",
+   "a": [
+    "loviya"
+   ],
+   "r": [
+    "фасол"
+   ],
+   "k": 333,
+   "p": 23.36,
+   "f": 0.85,
+   "c": 60.27,
+   "u": {
+    "stakan": 200
+   },
+   "t": [],
+   "ch": [],
+   "y": 175202,
+   "m": "USDA SR Legacy 175202: Beans, white, mature seeds, raw"
+  },
+  "yasmiq": {
+   "uz": "yasmiq",
+   "ru": "чечевица",
+   "a": [
+    "yasmiq"
+   ],
+   "r": [
+    "чечевиц"
+   ],
+   "k": 352,
+   "p": 24.63,
+   "f": 1.06,
+   "c": 63.35,
+   "u": {
+    "stakan": 190
+   },
+   "t": [],
+   "ch": [],
+   "y": 172420,
+   "m": "USDA SR Legacy 172420: Lentils, raw"
+  },
+  "suzma": {
+   "uz": "suzma",
+   "ru": "творог",
+   "a": [
+    "suzma"
+   ],
+   "r": [
+    "творог"
+   ],
+   "k": 81,
+   "p": 10.45,
+   "f": 2.27,
+   "c": 4.76,
+   "u": {
+    "osh": 18
+   },
+   "t": [],
+   "ch": [
+    "sut"
+   ],
+   "y": 172182,
+   "m": "USDA SR Legacy 172182: Cheese, cottage, lowfat, 2% milkfat"
+  },
+  "losos": {
+   "uz": "losos",
+   "ru": "лосось",
+   "a": [
+    "losos",
+    "qizil baliq"
+   ],
+   "r": [
+    "лосос",
+    "семг"
+   ],
+   "k": 208,
+   "p": 20.42,
+   "f": 13.42,
+   "c": 0,
+   "u": {},
+   "t": [],
+   "ch": [
+    "baliq"
+   ],
+   "y": 175167,
+   "m": "USDA SR Legacy 175167: Fish, salmon, Atlantic, farmed, raw"
+  },
+  "jigar": {
+   "uz": "mol jigari (pishgan)",
+   "ru": "говяжья печень (готовая)",
+   "a": [
+    "jigar"
+   ],
+   "r": [
+    "печен"
+   ],
+   "k": 175,
+   "p": 26.52,
+   "f": 4.68,
+   "c": 5.16,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 168627,
+   "m": "USDA SR Legacy 168627: Beef, variety meats and by-products, liver, cooked, pan-fried"
+  },
+  "qoy_qovurga": {
+   "uz": "qo'y qovurg'asi (pishgan)",
+   "ru": "бараньи рёбрышки (готовые)",
+   "a": [
+    "qo'y qovurg'a",
+    "qovurg"
+   ],
+   "r": [
+    "ребр"
+   ],
+   "k": 359,
+   "p": 21.12,
+   "f": 29.82,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogligosht"
+   ],
+   "ch": [],
+   "y": 174323,
+   "m": "USDA SR Legacy 174323: Lamb, rib, separable lean and fat, trimmed to 1/4\" fat, choice, cooked, roasted"
+  },
+  "tovuq_qanot": {
+   "uz": "tovuq qanoti (pishgan)",
+   "ru": "куриные крылья (готовые)",
+   "a": [
+    "tovuq qanot",
+    "qanot"
+   ],
+   "r": [
+    "крыл"
+   ],
+   "k": 254,
+   "p": 23.79,
+   "f": 16.87,
+   "c": 0,
+   "u": {},
+   "t": [
+    "yogligosht"
+   ],
+   "ch": [],
+   "y": 173630,
+   "m": "USDA SR Legacy 173630: Chicken, broilers or fryers, wing, meat and skin, cooked, roasted"
+  },
+  "sosiska_mol": {
+   "uz": "mol sosiskasi",
+   "ru": "говяжья сосиска",
+   "a": [
+    "sosiska"
+   ],
+   "r": [
+    "сосис"
+   ],
+   "k": 322,
+   "p": 11.69,
+   "f": 29.36,
+   "c": 2.66,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 174614,
+   "m": "USDA SR Legacy 174614: Frankfurter, beef, heated"
+  },
+  "bulka": {
+   "uz": "bulochka",
+   "ru": "булочка",
+   "a": [
+    "bulka",
+    "bulochka",
+    "non"
+   ],
+   "r": [
+    "булочк",
+    "булк",
+    "хлеб"
+   ],
+   "k": 266,
+   "p": 8.85,
+   "f": 3.33,
+   "c": 49.42,
+   "u": {
+    "dona": 60
+   },
+   "t": [],
+   "ch": [
+    "glyuten"
+   ],
+   "y": 174924,
+   "m": "USDA SR Legacy 174924: Bread, white, commercially prepared (includes soft bread crumbs)"
+  },
+  "baqlajon": {
+   "uz": "baqlajon",
+   "ru": "баклажан",
+   "a": [
+    "baqlajon"
+   ],
+   "r": [
+    "баклажан"
+   ],
+   "k": 25,
+   "p": 0.98,
+   "f": 0.18,
+   "c": 5.88,
+   "u": {},
+   "t": [
+    "sabzavot"
+   ],
+   "ch": [],
+   "y": 169228,
+   "m": "USDA SR Legacy 169228: Eggplant, raw"
+  },
+  "qoziqorin": {
+   "uz": "qo'ziqorin",
+   "ru": "шампиньоны",
+   "a": [
+    "qo'ziqorin",
+    "qoziqorin",
+    "shampinon"
+   ],
+   "r": [
+    "шампиньон",
+    "гриб"
+   ],
+   "k": 22,
+   "p": 3.09,
+   "f": 0.34,
+   "c": 3.26,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 169251,
+   "m": "USDA SR Legacy 169251: Mushrooms, white, raw"
+  },
+  "kolbasa_mol": {
+   "uz": "mol kolbasasi",
+   "ru": "говяжья колбаса",
+   "a": [
+    "kolbasa"
+   ],
+   "r": [
+    "колбас"
+   ],
+   "k": 299,
+   "p": 10.91,
+   "f": 26.13,
+   "c": 4.29,
+   "u": {
+    "dona": 100
+   },
+   "t": [],
+   "ch": [],
+   "y": 172012,
+   "m": "USDA SR Legacy 172012: Bologna, beef"
+  },
+  "tushonka_mol": {
+   "uz": "mol tushonkasi",
+   "ru": "говяжья тушёнка",
+   "a": [
+    "tushonka"
+   ],
+   "r": [
+    "тушенк",
+    "тушёнк"
+   ],
+   "k": 250,
+   "p": 27.1,
+   "f": 14.93,
+   "c": 0,
+   "u": {},
+   "t": [],
+   "ch": [],
+   "y": 170602,
+   "m": "USDA SR Legacy 170602: Beef, cured, corned beef, canned"
+  },
+  "sarimsoq": {
+   "uz": "sarimsoq",
+   "ru": "чеснок",
+   "a": [
+    "sarimsoq"
+   ],
+   "r": [
+    "чеснок"
+   ],
+   "k": 149,
+   "p": 6.36,
+   "f": 0.5,
+   "c": 33.06,
+   "u": {
+    "dona": 40
+   },
+   "t": [],
+   "ch": [],
+   "y": 169230,
+   "m": "USDA SR Legacy (qo'lda): Garlic, raw"
+  },
+  "mayiz": {
+   "uz": "mayiz (kishmish)",
+   "ru": "изюм",
+   "a": [
+    "mayiz",
+    "kishmish"
+   ],
+   "r": [
+    "изюм",
+    "кишмиш"
+   ],
+   "k": 299,
+   "p": 3.07,
+   "f": 0.46,
+   "c": 79.18,
+   "u": {
+    "osh": 10,
+    "stakan": 150
+   },
+   "t": [],
+   "ch": [],
+   "y": null,
+   "m": "USDA SR Legacy (qo'lda): Raisins, seedless"
+  },
+  "qaymoq": {
+   "uz": "qaymoq (smetana)",
+   "ru": "сметана",
+   "a": [
+    "qaymoq",
+    "smetana"
+   ],
+   "r": [
+    "сметан"
+   ],
+   "k": 198,
+   "p": 2.44,
+   "f": 19.35,
+   "c": 4.63,
+   "u": {
+    "osh": 12,
+    "choy": 4,
+    "stakan": 240,
+    "ml": 1
+   },
+   "t": [
+    "qaymoq"
+   ],
+   "ch": [
+    "sut"
+   ],
+   "y": null,
+   "m": "USDA SR Legacy (qo'lda): Sour cream, cultured"
+  },
+  "mayonez": {
+   "uz": "mayonez",
+   "ru": "майонез",
+   "a": [
+    "mayonez"
+   ],
+   "r": [
+    "майонез"
+   ],
+   "k": 680,
+   "p": 0.96,
+   "f": 74.85,
+   "c": 0.57,
+   "u": {
+    "osh": 14,
+    "choy": 4.6,
+    "stakan": 230,
+    "ml": 0.92
+   },
+   "t": [
+    "mayonez"
+   ],
+   "ch": [
+    "tuxum"
+   ],
+   "y": null,
+   "m": "USDA SR Legacy (qo'lda): Salad dressing, mayonnaise, regular"
+  },
+  "yashil_noxat": {
+   "uz": "yashil no'xat",
+   "ru": "зелёный горошек",
+   "a": [
+    "yashil no'xat",
+    "yashil noxat",
+    "konserva no'xat",
+    "burchoq"
+   ],
+   "r": [
+    "зелен горош",
+    "горош"
+   ],
+   "k": 81,
+   "p": 5.42,
+   "f": 0.4,
+   "c": 14.45,
+   "u": {
+    "osh": 10,
+    "stakan": 160
+   },
+   "t": [],
+   "ch": [],
+   "y": null,
+   "m": "USDA SR Legacy (qo'lda): Peas, green, raw"
+  },
+  "ziravor": {
+   "uz": "ziravor, tuz",
+   "ru": "специи, соль",
+   "a": [
+    "ziravor",
+    "zira",
+    "murch",
+    "tuz",
+    "qora murch",
+    "dalchin",
+    "zirabarg"
+   ],
+   "r": [
+    "специи",
+    "зира",
+    "сол",
+    "перец",
+    "перц",
+    "приправ"
+   ],
+   "k": 0,
+   "p": 0,
+   "f": 0,
+   "c": 0,
+   "u": {
+    "osh": 8,
+    "choy": 3
+   },
+   "t": [],
+   "ch": [],
+   "y": null,
+   "m": "USDA SR Legacy (qo'lda): ziravor/tuz — kaloriyasi e'tiborsiz (odatda 5–10 g)"
+  }
+ }
+}
