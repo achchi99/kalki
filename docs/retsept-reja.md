@@ -4,14 +4,18 @@ Hozirgi holat: **MAKET** (`retsept` tarmog'i, `assets/kalkifit-retsept.js`). AI 
 Hisob maketda ham haqiqiy: gramm × 100 g dagi qiymat, o'zgarish yoqilsa qayta hisoblanadi.
 Test: `tools/dizayn/test-retsept-maket.mjs` (`--only retsept-maket`).
 
-## Maketdagi soxta ma'lumot (1 porsiya)
-| taom | kishi | oldin | keyin | o'zgarishlar (porsiyaga) |
-|---|---:|---:|---:|---|
-| Osh | 6 | 827 kkal | 613 (−26 %), oqsil 22 → 23 g, yog' 46 → 24 g | yog' 130 → 70 g (−90) · dumbasiz (−76) · go'shtning 1/3 qismi tovuq filesi (−32) · sabzi +200 g, guruch −50 g (−15) |
-| Mastava | 4 | 551 | 385 (−30 %) | yog' 60 → 30 g (−67) · yog'siz mol go'shti (−61) · qaymoq → qatiq (−38) |
-| Manti | 5 | 880 | 613 (−30 %) | dumba 100 → 30 g (−107) · go'shtning yarmi yog'siz mol (−57) · hamir yupqaroq, un −16 % (−58) · qaymoq → qatiq (−46) |
+## Maketdagi ma'lumot (1 porsiya) — odatiy uy retseptlari, raqamga moslanmagan
+Qoida: retsept raqamga qarab o'zgartirilmaydi — avval haqiqiy uy retsepti olinadi, natija qancha chiqsa shuni ko'rsatamiz.
+Hisob maketda ham haqiqiy: gramm × 100 g dagi qiymat (yog' — ml, zichligi 0,92).
 
-Osh miqdorlari 6 porsiya ≈ 820 kkal bo'ladigan qilib tanlangan. Topshiriqdagi «yog' 300 → 180 g» bilan 6 kishiga porsiya ~1100+ kkal chiqardi, shuning uchun yog' o'zgarishi 130 → 70 g (−90 kkal ≈ topshiriqdagi −95) bo'ldi.
+| taom | kishi | masalliqlar | oldin | keyin | o'zgarishlar (porsiyaga) |
+|---|---:|---|---:|---:|---|
+| Osh | 8 | 1 kg guruch, 850 g qo'y go'shti + 150 g dumba, 1 kg sabzi, 250 ml yog', 300 g piyoz (2 ta), 50 g sarimsoq (1 bosh), ziravor | **1182 kkal** | **905** (−23 %), oqsil 29 → 31 g, yog' 67 → 34 g | yog' 250 → 150 ml (−103) · dumbasiz (−143) · go'shtning 1/3 qismi tovuq filesi (−46) · sabzi +300 g (**+15**, to'yimlilik oshadi) |
+| Mastava | 6 | 500 g mol go'shti, 200 g guruch, 450 g kartoshka, 200 g sabzi, 200 g piyoz, 200 g pomidor, 70 ml yog', 150 g qaymoq, ko'kat | **539** | **392** (−27 %) | yog' 70 → 40 ml (−41) · yog'siz mol go'shti (−67) · qaymoq → qatiq (−38) |
+| Manti | 6 (30 dona) | 500 g un, 500 g qo'y go'shti, 100 g dumba, 600 g piyoz, 120 g qaymoq, ziravor | **723** | **508** (−30 %) | dumba 100 → 30 g (−89) · go'shtning yarmi yog'siz mol (−47) · hamir yupqaroq (−49) · qaymoq → qatiq (−31) |
+
+Eslatma: osh porsiyasi 1182 kkal — chunki haqiqiy uy retseptida 8 kishiga 1 kg guruch va 250 ml yog' ketadi, yog'ning katta qismi taomda qoladi. Bu — kutilgan natija, maqsadli raqamga moslanmagan.
+Sabzi +300 g kaloriyani biroz OSHIRADI (+15); maketda buni yashirmaymiz: kartada «+15 kkal porsiyada, lekin to'yimlilik oshadi» deb ko'rsatiladi.
 
 ## 1. AI nima qiladi (faqat ikki ish)
 1. **Masalliqlarni bazaga moslash:** matn yoki rasm → `[{ nom, baza_id, gramm, ishonch }]`. `ishonch` past bo'lsa — maketdagi sariq «tanlang» (2–3 nomzod + «Qo'shmaslik»).

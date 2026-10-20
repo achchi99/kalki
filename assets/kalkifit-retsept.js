@@ -16,7 +16,7 @@
       rtPeople: 'Necha kishiga?', rtNext: 'Davom',
       rtPor: '1 porsiya', rtKcal: 'kkal', rtPct: '{p}%', rtProtOk: 'oqsil saqlandi', rtProtUp: 'oqsil +{g} g', rtProtDn: 'oqsil −{g} g', rtNoCh: "O'zgarishlarni yoqing",
       rtCmp: 'Oldin / Keyin', rtBefore: 'Oldin', rtAfter: 'Keyin', rtMK: 'Kaloriya', rtMP: 'Oqsil', rtMF: "Yog'",
-      rtChT: "Aqlli o'zgarishlar", rtChH: "Har birini yoqing yoki o'chiring — raqam darhol o'zgaradi.", rtBen: '−{k} kkal porsiyada', rtBen0: "kaloriya deyarli o'zgarmaydi",
+      rtChT: "Aqlli o'zgarishlar", rtChH: "Har birini yoqing yoki o'chiring — raqam darhol o'zgaradi.", rtBen: '−{k} kkal porsiyada', rtBen0: "kaloriya deyarli o'zgarmaydi", rtBenUp: "+{k} kkal porsiyada, lekin to'yimlilik oshadi",
       rtT0: 'deyarli sezilmaydi', rtT1: 'ozgina farq', rtT2: "boshqacha ta'm",
       rtNote: 'Raqamlar taxminiy, KalkiFit bazasi asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: "Maket: haqiqiy saqlash keyingi bosqichda",
       rtCardT: 'Ulashish kartochkasi', rtCardH: "Instagram yoki Telegram'ga qo'yish uchun rasm.", rtDl: 'Yuklab olish', rtShared: 'Ulashildi', rtMaking: 'Rasm tayyorlanmoqda…',
@@ -33,7 +33,7 @@
       rtPeople: 'На сколько человек?', rtNext: 'Дальше',
       rtPor: '1 порция', rtKcal: 'ккал', rtPct: '{p}%', rtProtOk: 'белок сохранён', rtProtUp: 'белок +{g} г', rtProtDn: 'белок −{g} г', rtNoCh: 'Включите изменения',
       rtCmp: 'До / После', rtBefore: 'До', rtAfter: 'После', rtMK: 'Калории', rtMP: 'Белок', rtMF: 'Жиры',
-      rtChT: 'Умные изменения', rtChH: 'Включайте и выключайте — число меняется сразу.', rtBen: '−{k} ккал на порцию', rtBen0: 'калории почти не меняются',
+      rtChT: 'Умные изменения', rtChH: 'Включайте и выключайте — число меняется сразу.', rtBen: '−{k} ккал на порцию', rtBen0: 'калории почти не меняются', rtBenUp: '+{k} ккал на порцию, но сытнее',
       rtT0: 'почти незаметно', rtT1: 'небольшая разница', rtT2: 'другой вкус',
       rtNote: 'Цифры примерные, по базе KalkiFit.', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Макет: настоящее сохранение — на следующем этапе',
       rtCardT: 'Карточка для соцсетей', rtCardH: 'Картинка для Instagram или Telegram.', rtDl: 'Скачать', rtShared: 'Отправлено', rtMaking: 'Готовим картинку…',
@@ -58,10 +58,11 @@
     guruch: { uz: 'Guruch', ru: 'Рис', b: { uz: 'Guruch, xom', ru: 'Рис, сырой' }, k: 350, p: 7, f: 0.6 },
     qoy: { uz: "Qo'y go'shti", ru: 'Баранина', b: { uz: "Qo'y go'shti, xom", ru: 'Баранина, сырая' }, k: 250, p: 17, f: 20 },
     dumba: { uz: 'Dumba', ru: 'Курдюк', b: { uz: "Dumba yog'i", ru: 'Курдючный жир' }, k: 760, p: 2, f: 82 },
-    yog: { uz: "O'simlik yog'i", ru: 'Растительное масло', b: { uz: "Paxta yog'i", ru: 'Хлопковое масло' }, k: 899, p: 0, f: 99.9 },
+    yog: { uz: "O'simlik yog'i", ru: 'Растительное масло', b: { uz: "Paxta yog'i", ru: 'Хлопковое масло' }, k: 827, p: 0, f: 92, ml: true },      // ml: 100 ml ≈ 92 g yog' (zichligi 0,92)
     sabzi: { uz: 'Sabzi', ru: 'Морковь', b: { uz: 'Sabzi, sariq', ru: 'Морковь, жёлтая' }, k: 41, p: 0.9, f: 0.2 },
     piyoz: { uz: 'Piyoz', ru: 'Лук', b: { uz: 'Piyoz', ru: 'Лук репчатый' }, k: 40, p: 1.1, f: 0.1 },
     noxat: { uz: "No'xat", ru: 'Нут', b: { uz: "No'xat, quruq", ru: 'Нут, сухой' }, k: 364, p: 19, f: 6 },
+    sarimsoq: { uz: 'Sarimsoq', ru: 'Чеснок', b: { uz: 'Sarimsoq', ru: 'Чеснок' }, k: 149, p: 6.4, f: 0.5 },
     zira: { uz: 'Zira', ru: 'Зира', b: { uz: 'Zira', ru: 'Зира' }, k: 375, p: 18, f: 22 },
     mayiz: { uz: 'Mayiz', ru: 'Изюм', b: { uz: 'Mayiz', ru: 'Изюм' }, k: 299, p: 3.1, f: 0.5 },
     qmayiz: { uz: 'Qora mayiz', ru: 'Тёмный изюм', b: { uz: 'Qora mayiz', ru: 'Тёмный изюм' }, k: 299, p: 3.1, f: 0.5 },
@@ -81,38 +82,38 @@
   /* o'zgarish turlari: scale (ko'paytirish), zero, move (bir qismini boshqa masalliqqa), swap (o'rniga), add (+g) */
   var EX = {
     osh: {
-      nom: { uz: 'Onamning oshi', ru: 'Мамин плов' }, chip: { uz: 'Osh', ru: 'Плов' }, n: 6,
-      txt: { uz: "Onamning oshi (6 kishi): 450 g guruch, 450 g qo'y go'shti, 60 g dumba, 130 g yog', 450 g sabzi, 150 g piyoz, 70 g no'xat, 40 g kishmish, zira.", ru: 'Мамин плов (на 6): рис 450 г, баранина 450 г, курдюк 60 г, масло 130 г, морковь 450 г, лук 150 г, нут 70 г, кишмиш 40 г, зира.' },
-      ings: [['guruch', 450], ['qoy', 450], ['dumba', 60], ['yog', 130], ['sabzi', 450], ['piyoz', 150], ['noxat', 70], ['?kishmish', 40, ['mayiz', 'qmayiz', 'orik']], ['zira', 5]],
-      unk: { kishmish: { uz: 'Kishmish', ru: 'Кишмиш' } },
+      nom: { uz: 'Onamning oshi', ru: 'Мамин плов' }, chip: { uz: 'Osh', ru: 'Плов' }, n: 8,
+      txt: { uz: "Onamning oshi (8 kishi): 1 kg guruch, 1 kg qo'y go'shti (150 g dumba bilan), 1 kg sabzi, 250 ml o'simlik yog'i, 2 ta piyoz, 1 bosh sarimsoq, ziravor.", ru: 'Мамин плов (на 8): 1 кг риса, 1 кг баранины (с 150 г курдюка), 1 кг моркови, 250 мл растительного масла, 2 луковицы, 1 головка чеснока, специи.' },
+      ings: [['guruch', 1000], ['qoy', 850], ['dumba', 150], ['yog', 250], ['sabzi', 1000], ['piyoz', 300], ['sarimsoq', 50], ['?ziravor', 5, ['zira', 'murch']]],
+      unk: { ziravor: { uz: 'Ziravor', ru: 'Специи' } },
       ch: [
-        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 70 / 130]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} g", ru: 'Меньше масла: {a} → {b} г' }, s: { uz: "Yog' {a} → {b} g", ru: 'Масло {a} → {b} г' } },
+        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 0.6]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} {u}", ru: 'Меньше масла: {a} → {b} {u}' }, s: { uz: "Yog' {a} → {b} {u}", ru: 'Масло {a} → {b} {u}' } },
         { id: 'dumba', ic: 'rfat', ops: [['zero', 'dumba']], taste: 1, t: { uz: "Dumbasiz: {a} g dumba olib tashlanadi", ru: 'Без курдюка: убираем {a} г' }, s: { uz: 'Dumbasiz', ru: 'Без курдюка' } },
         { id: 'tovuq', ic: 'rleg', ops: [['move', 'qoy', 1 / 3, 'tovuq']], taste: 1, t: { uz: "Go'shtning 1/3 qismi — tovuq filesi ({m} g)", ru: 'Треть мяса — куриное филе ({m} г)' }, s: { uz: "1/3 go'sht — tovuq", ru: '1/3 мяса — курица' } },
-        { id: 'sabzi', ic: 'rcarrot', ops: [['add', 'sabzi', 200], ['add', 'guruch', -50]], taste: 0, t: { uz: 'Sabzi ko\'proq: {a} → {b} g, guruch −50 g', ru: 'Больше моркови: {a} → {b} г, рис −50 г' }, s: { uz: 'Sabzi +200 g', ru: 'Морковь +200 г' } }
+        { id: 'sabzi', ic: 'rcarrot', ops: [['add', 'sabzi', 300]], taste: 0, t: { uz: "Sabzi ko'proq: {a} → {b} g", ru: 'Больше моркови: {a} → {b} г' }, s: { uz: 'Sabzi +300 g', ru: 'Морковь +300 г' } }
       ]
     },
     mastava: {
-      nom: { uz: 'Mastava', ru: 'Мастава' }, chip: { uz: 'Mastava', ru: 'Мастава' }, n: 4,
-      txt: { uz: "Mastava (4 kishi): 300 g mol go'shti, 120 g guruch, 300 g kartoshka, 150 g sabzi, 120 g piyoz, 200 g pomidor, 60 g yog', 100 g qaymoq, ko'kat.", ru: 'Мастава (на 4): говядина 300 г, рис 120 г, картофель 300 г, морковь 150 г, лук 120 г, помидоры 200 г, масло 60 г, сметана 100 г, зелень.' },
-      ings: [['mol', 300], ['guruch', 120], ['kartoshka', 300], ['sabzi', 150], ['piyoz', 120], ['pomidor', 200], ['yog', 60], ['qaymoq', 100], ['?kokat', 20, ['ukrop', 'kashnich']]],
+      nom: { uz: 'Mastava', ru: 'Мастава' }, chip: { uz: 'Mastava', ru: 'Мастава' }, n: 6,
+      txt: { uz: "Mastava (6 kishi): 500 g mol go'shti, 200 g guruch, 450 g kartoshka, 200 g sabzi, 200 g piyoz, 200 g pomidor, 70 ml yog', tortishga 150 g qaymoq, ko'kat.", ru: 'Мастава (на 6): говядина 500 г, рис 200 г, картофель 450 г, морковь 200 г, лук 200 г, помидоры 200 г, масло 70 мл, к подаче сметана 150 г, зелень.' },
+      ings: [['mol', 500], ['guruch', 200], ['kartoshka', 450], ['sabzi', 200], ['piyoz', 200], ['pomidor', 200], ['yog', 70], ['qaymoq', 150], ['?kokat', 30, ['ukrop', 'kashnich']]],
       unk: { kokat: { uz: "Ko'kat", ru: 'Зелень' } },
       ch: [
-        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 0.5]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} g", ru: 'Меньше масла: {a} → {b} г' }, s: { uz: "Yog' {a} → {b} g", ru: 'Масло {a} → {b} г' } },
+        { id: 'yog', ic: 'rdrop', ops: [['scale', 'yog', 0.55]], taste: 0, t: { uz: "Yog'ni kamaytirish: {a} → {b} {u}", ru: 'Меньше масла: {a} → {b} {u}' }, s: { uz: "Yog' {a} → {b} {u}", ru: 'Масло {a} → {b} {u}' } },
         { id: 'molyog', ic: 'rbeef', ops: [['swap', 'mol', 'molyog']], taste: 0, t: { uz: "Yog'siz mol go'shti ({a} g)", ru: 'Постная говядина ({a} г)' }, s: { uz: "Yog'siz go'sht", ru: 'Постное мясо' } },
-        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: 'Qaymoq o\'rniga qatiq ({a} g)', ru: 'Катык вместо сметаны ({a} г)' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
+        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: "Qaymoq o'rniga qatiq ({a} g)", ru: 'Катык вместо сметаны ({a} г)' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
       ]
     },
     manti: {
-      nom: { uz: 'Manti', ru: 'Манты' }, chip: { uz: 'Manti', ru: 'Манты' }, n: 5,
-      txt: { uz: "Manti (5 kishi): 500 g un, 500 g qo'y go'shti, 100 g dumba, 600 g piyoz, ziravor, tortishga 150 g qaymoq.", ru: 'Манты (на 5): мука 500 г, баранина 500 г, курдюк 100 г, лук 600 г, специи, к подаче сметана 150 г.' },
-      ings: [['un', 500], ['qoy', 500], ['dumba', 100], ['piyoz', 600], ['qaymoq', 150], ['?ziravor', 5, ['zira', 'murch']]],
+      nom: { uz: 'Manti', ru: 'Манты' }, chip: { uz: 'Manti', ru: 'Манты' }, n: 6,
+      txt: { uz: "Manti (6 kishi, 30 dona): 500 g un, 500 g qo'y go'shti, 100 g dumba, 600 g piyoz, ziravor, tortishga 120 g qaymoq.", ru: 'Манты (на 6, 30 шт.): мука 500 г, баранина 500 г, курдюк 100 г, лук 600 г, специи, к подаче сметана 120 г.' },
+      ings: [['un', 500], ['qoy', 500], ['dumba', 100], ['piyoz', 600], ['qaymoq', 120], ['?ziravor', 5, ['zira', 'murch']]],
       unk: { ziravor: { uz: 'Ziravor', ru: 'Специи' } },
       ch: [
         { id: 'dumba', ic: 'rfat', ops: [['scale', 'dumba', 0.3]], taste: 1, t: { uz: 'Dumbani kamaytirish: {a} → {b} g', ru: 'Меньше курдюка: {a} → {b} г' }, s: { uz: 'Dumba {a} → {b} g', ru: 'Курдюк {a} → {b} г' } },
         { id: 'molyog', ic: 'rbeef', ops: [['move', 'qoy', 0.5, 'molyog']], taste: 0, t: { uz: "Go'shtning yarmi — yog'siz mol go'shti ({m} g)", ru: 'Половина мяса — постная говядина ({m} г)' }, s: { uz: "1/2 go'sht — yog'siz", ru: '1/2 мяса — постное' } },
         { id: 'un', ic: 'rwheat', ops: [['scale', 'un', 0.84]], taste: 0, t: { uz: 'Hamir yupqaroq: un {a} → {b} g', ru: 'Тесто тоньше: мука {a} → {b} г' }, s: { uz: 'Yupqa hamir', ru: 'Тонкое тесто' } },
-        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: 'Qaymoq o\'rniga qatiq bilan tortish', ru: 'Подавать с катыком вместо сметаны' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
+        { id: 'qatiq', ic: 'rcup', ops: [['swap', 'qaymoq', 'qatiq']], taste: 1, t: { uz: "Qaymoq o'rniga qatiq bilan tortish", ru: 'Подавать с катыком вместо сметаны' }, s: { uz: 'Qaymoq → qatiq', ru: 'Сметана → катык' } }
       ]
     }
   };
@@ -124,6 +125,7 @@
   function L() { return A.lang() === 'ru' ? 'ru' : 'uz'; }
   function lbl(o) { return o ? (L() === 'ru' ? (o.ru || o.uz) : o.uz) : ''; }
   function reduce() { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } }
+  function unit(id) { var m = ING[id] && ING[id].ml; return L() === 'ru' ? (m ? 'мл' : 'г') : (m ? 'ml' : 'g'); }
   function r5(g) { return Math.max(0, Math.round(g / 5) * 5); }
   function ico(n, c) { return A.ico(n, c); }
   function head(title, back) { return '<div class="sl-yh rt-yh">' + (back ? '<button type="button" class="sl-x" data-act="' + back + '" aria-label="' + esc(T('rtBack')) + '">' + ico('back') + '</button>' : '') + '<h3 class="sl-fwt">' + (title ? esc(title) : '<span class="rt-mk">' + esc(T('rtMk')) + '</span>') + '</h3><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>'; }
@@ -147,12 +149,12 @@
   function totals(l) { var s = { k: 0, p: 0, f: 0 }; l.forEach(function (it) { var d = it.unk ? null : ING[it.id]; if (!d || !it.g) return; s.k += it.g * d.k / 100; s.p += it.g * d.p / 100; s.f += it.g * d.f / 100; }); var n = rt.n || 1; return { k: Math.round(s.k / n), p: Math.round(s.p / n), f: Math.round(s.f / n) }; }
   function base() { return totals(rt.ings); }
   function cur() { return totals(withChanges(rt.on)); }
-  function chBenefit(c) { var b = base().k, o = {}; o[c.id] = true; return Math.max(0, b - totals(withChanges(o)).k); }
+  function chBenefit(c) { var b = base().k, o = {}; o[c.id] = true; return b - totals(withChanges(o)).k; }        // manfiy bo'lsa — kaloriya OSHADI (halol ko'rsatiladi)
   function chTitle(c, short) {
     var src = cloneIngs(rt.ings), op = c.ops[0], it = null; src.forEach(function (x) { if (x.id === op[1] && !x.unk) it = x; });
     var a = it ? it.g : 0, aft = applyCh(src, c), b = 0, m = op[0] === 'move' ? r5(a * op[2]) : 0; aft.forEach(function (x) { if (x.id === op[1]) b = x.g; });
     if (op[0] === 'add') { a = it ? it.g : 0; b = a + op[2]; }
-    return lbl(short ? c.s : c.t).replace('{a}', a).replace('{b}', b).replace('{m}', m).replace(/(\d) (g|г)\b/g, '$1\u00a0$2');      // «70 g» bir qatorda
+    return lbl(short ? c.s : c.t).replace('{a}', a).replace('{b}', b).replace('{m}', m).replace('{u}', unit(op[1])).replace(/(\d) (g|г|ml|мл)(?![\wа-я])/g, '$1\u00a0$2');      // «70 g» bir qatorda
   }
 
   /* ---------- 1. Kirish ---------- */
@@ -181,7 +183,7 @@
     }
     var d = ING[it.id];
     return '<div class="rt-ing' + (scan ? ' scan' : '') + (it.g ? '' : ' off') + '" style="--i:' + i + '"><div class="nm"><b>' + esc(nm) + '</b><small>' + esc(T('rtBase', { b: lbl(d.b) })) + '</small></div>' +
-      (scan ? '<span class="rt-ok" aria-hidden="true">' + ico('rok') + '</span>' : '<div class="rt-step" role="group" aria-label="' + esc(nm) + '"><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="-1" aria-label="' + esc(nm) + ' −"' + (it.g <= 0 ? ' disabled' : '') + '>−</button><b aria-live="polite">' + it.g + ' g</b><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="1" aria-label="' + esc(nm) + ' +">+</button></div>') + '</div>';
+      (scan ? '<span class="rt-ok" aria-hidden="true">' + ico('rok') + '</span>' : '<div class="rt-step" role="group" aria-label="' + esc(nm) + '"><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="-1" aria-label="' + esc(nm) + ' −"' + (it.g <= 0 ? ' disabled' : '') + '>−</button><b aria-live="polite">' + it.g + '\u00a0' + unit(it.id) + '</b><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="1" aria-label="' + esc(nm) + ' +">+</button></div>') + '</div>';
   }
   function anHtml(scan) {
     var rows = rt.ings.map(function (it, i) { return ingRow(it, i, scan); }).join('');
@@ -217,7 +219,7 @@
   function chHtml(c) {
     var on = !!rt.on[c.id], k = chBenefit(c);
     return '<button type="button" class="rt-ch' + (on ? ' on' : '') + '" role="switch" aria-checked="' + on + '" data-act="rttog" data-c="' + c.id + '"><span class="sl-ci">' + ico(c.ic) + '</span>' +
-      '<span class="m"><b>' + esc(chTitle(c)) + '</b><span class="bn">' + esc(k >= 5 ? T('rtBen', { k: k }) : T('rtBen0')) + '</span><span class="rt-tb t' + c.taste + '">' + esc(T('rtT' + c.taste)) + '</span></span><span class="rt-sw" aria-hidden="true"><i></i></span></button>';
+      '<span class="m"><b>' + esc(chTitle(c)) + '</b><span class="bn">' + esc(k >= 5 ? T('rtBen', { k: k }) : k <= -5 ? T('rtBenUp', { k: -k }) : T('rtBen0')) + '</span><span class="rt-tb t' + c.taste + '">' + esc(T('rtT' + c.taste)) + '</span></span><span class="rt-sw" aria-hidden="true"><i></i></span></button>';
   }
   function resHtml() {
     var ex = EX[rt.ex], b = base();
