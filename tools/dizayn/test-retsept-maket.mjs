@@ -12,7 +12,7 @@ let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 function seed() { const st = S.emptyState(); st.setup = true; st.created = Date.now() - 9 * 86400000; st.prefs = { tipsDone: true, jokes: false, yemayK: 1 }; st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'keep' }; st.trackStart = D.addDays(TODAY, -8); S.addWeight(st, TODAY, 80); return st; }
 async function mk(o = {}) {
   const c = await b.newContext({ viewport: { width: o.w || 390, height: o.h || 844 }, colorScheme: o.dark ? 'dark' : 'light', reducedMotion: o.reduce ? 'reduce' : 'no-preference', isMobile: true, hasTouch: true, serviceWorkers: 'block' });
-  await c.addInitScript((s) => { if (!localStorage.getItem('kalki_fit')) localStorage.setItem('kalki_fit', JSON.stringify(s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); }, seed());
+  await c.addInitScript((s) => { if (!localStorage.getItem('kalki_fit')) localStorage.setItem('kalki_fit', JSON.stringify(s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); }, seed());
   if (o.big) await c.addInitScript(() => localStorage.setItem('kalki_fs', 'big'));
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e)));
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
@@ -21,21 +21,19 @@ const odo = (p) => p.evaluate(() => document.getElementById('rtOdo').getAttribut
 const chip = (p) => p.evaluate(() => document.getElementById('rtChip').textContent);
 const noScroll = (p) => p.evaluate(() => { const s = document.getElementById('rzSheet'); return document.documentElement.scrollWidth <= innerWidth + 1 && (!s || s.scrollWidth <= s.clientWidth + 1); });
 async function toResult(p, o = {}) {
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); await p.click('.rz-main [data-act=rtopen]'); await p.waitForSelector('#rtText');
+  await p.click('#rtDoor'); await p.waitForSelector('#rtText');
   await p.click('[data-act=rtex][data-x=' + (o.ex || 'osh') + ']'); await p.click('[data-act=rtgo]');
   await p.waitForSelector('[data-act=rtnext]', { timeout: 6000 }); if (o.unk !== false) { const u = p.locator('[data-act=rtunk]').first(); if (await u.count()) await u.click(); }
   await p.click('[data-act=rtnext]'); await p.waitForSelector('#rtOdo'); await p.waitForTimeout(o.reduce ? 150 : 1000); }
 try {
-  /* 1. kirish nuqtalari */
-  let p = await mk(); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300);
-  const rows = await p.locator('.rz-main .rz-row').evaluateAll((l) => l.map((e) => e.getAttribute('data-act'))); const i = rows.indexOf('rtopen');
-  assert.ok(i > -1 && rows[i + 1] === 'rcmine', 'Profil: «Mening taomlarim» tepasida: ' + rows.join(','));
-  await p.click('.rz-main [data-act=rcmine]'); await p.waitForSelector('#rzSheet [data-act=rtopen]'); await p.click('#rzSheet [data-act=rtopen]'); await p.waitForSelector('#rtText'); await p.click('#rzSheet .rz-x[data-act=sheetclose]'); await p.waitForTimeout(500);
-  await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); await p.click('#yeCard [data-act=yechip]'); await p.waitForSelector('[data-act=yeseg]', { timeout: 6000 }); await p.click('[data-act=yeseg][data-s=uyda]'); await p.waitForSelector('#rzSheet [data-act=rtopen]');
-  assert.match(await p.locator('#rzSheet [data-act=rtopen]').innerText(), /O'z retseptimni yengillashtirish/); await p.click('#rzSheet [data-act=rtopen]'); await p.waitForSelector('#rtText'); await p.context().close();
-  log('Kirish nuqtalari: Profil (Mening taomlarim tepasida), Mening taomlarim oynasi, «Bugun nima yeymiz?» → Uyda — «O\'z retseptimni yengillashtirish»');
+  /* 1. kirish nuqtasi: Bugun'dagi eshik karta — YAGONA (Profil, Mening taomlarim, Uyda'da takror yo'q) */
+  let p = await mk(); assert.equal(await p.locator('[data-act=rtopen]').count(), 1); assert.match(await p.locator('#rtDoor').innerText(), /Retseptingizni yengillashtiring[\s\S]*Oshingizni 20–30% yengil qilamiz/);
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('[data-act=rtopen]').count(), 0, 'Profilda yo\'q'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300);
+  await p.click('#yeCard'); await p.waitForSelector('[data-act=yeseg]', { timeout: 6000 }); await p.click('[data-act=yeseg][data-s=uyda]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rzSheet [data-act=rtopen]').count(), 0, 'Uyda segmentida yo\'q'); await p.click('#rzSheet .rz-x[data-act=sheetclose]'); await p.waitForTimeout(450);
+  await p.click('#rtDoor'); await p.waitForSelector('#rtText'); await p.context().close();
+  log('Kirish nuqtasi: Bugun\'dagi eshik karta «Retseptingizni yengillashtiring» — yagona (Profil va Uyda\'da takror yo\'q)');
   /* 2. kirish ekrani: bo'sh matn — ogohlantirish; misol chipi to'ldiradi */
-  p = await mk(); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); await p.click('.rz-main [data-act=rtopen]'); await p.waitForSelector('#rtText');
+  p = await mk(); await p.click('#rtDoor'); await p.waitForSelector('#rtText');
   assert.match(await p.locator('#rtText').getAttribute('placeholder'), /Onamning oshi: 1 kg guruch/); assert.equal(await p.locator('[data-act=rtex]').count(), 3); assert.equal(await p.locator('#rtFile[accept="image/*"]').count(), 1);
   await p.click('[data-act=rtgo]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rtText').count(), 1, 'bo\'sh matn bilan o\'tmaydi'); assert.match(await p.locator('#rzToast').innerText(), /Retseptni yozing/);
   await p.click('[data-act=rtex][data-x=osh]'); assert.match(await p.locator('#rtText').inputValue(), /1 kg guruch/);

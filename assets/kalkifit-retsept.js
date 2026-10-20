@@ -7,7 +7,7 @@
   var A = null;
   var D = {
     uz: {
-      rtRow: "O'z retseptimni yengillashtirish", rtRowS: "Retseptni yuboring — ta'mi qoladi, kaloriyasi kamayadi", rtMk: 'Maket',
+      rtDoorT: 'Retseptingizni yengillashtiring', rtDoorS: "Oshingizni 20–30% yengil qilamiz", rtMk: 'Maket',
       rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: "Masalliqlarni yozing yoki qo'lda yozilgan retseptni rasmga oling.",
       rtPh: "Onamning oshi: 1 kg guruch, 1 kg qo'y go'shti, 300 g yog', 1 kg sabzi…", rtCam: 'Rasmga olish', rtEx: 'Misollar', rtGo: 'Moslashtirish',
       rtEmpty: 'Retseptni yozing yoki misolni tanlang', rtCamRead: "Rasm o'qildi (maket: namunaviy matn)",
@@ -24,7 +24,7 @@
       rtBack: 'Orqaga'
     },
     ru: {
-      rtRow: 'Облегчить мой рецепт', rtRowS: 'Пришлите рецепт — вкус сохраним, калорий станет меньше', rtMk: 'Макет',
+      rtDoorT: 'Облегчите свой рецепт', rtDoorS: 'Сделаем ваш плов легче на 20–30%', rtMk: 'Макет',
       rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты или сфотографируйте рецепт, написанный от руки.',
       rtPh: 'Мамин плов: 1 кг риса, 1 кг баранины, 300 г масла, 1 кг моркови…', rtCam: 'Сфотографировать', rtEx: 'Примеры', rtGo: 'Облегчить',
       rtEmpty: 'Напишите рецепт или выберите пример', rtCamRead: 'Фото прочитано (макет: пример текста)',
@@ -318,7 +318,7 @@
     if (reduce()) { show('an'); return; }
     var tok = rt.tok = {}; setTimeout(function () { if (rt && rt.tok === tok && rt.scr === 'scan') show('an'); }, 360 + rt.ings.length * 170);
   }
-  function row() { return '<button type="button" class="rz-row rt-row" data-act="rtopen"><span class="sl-ci rt-ci">' + ico('rspark') + '</span><span class="m"><b>' + esc(T('rtRow')) + '</b><span>' + esc(T('rtRowS')) + '</span></span>' + ico('chev', 'r') + '</button>'; }
+  function door() { return '<button type="button" class="sl-door rt-door" id="rtDoor" data-act="rtopen"><span class="ic"><span class="rt-sp" aria-hidden="true">' + ico('rspark') + '</span></span><span class="m"><b>' + esc(T('rtDoorT')) + '</b><span>' + esc(T('rtDoorS')) + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function act(a, el) {
     switch (a) {
       case 'rtopen': open(el.getAttribute('data-f')); return true;
@@ -355,5 +355,5 @@
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
     api.addIcons(ICONS); document.addEventListener('change', onChange);
   }
-  window.KalkiRetseptUI = { init: init, act: act, row: row, open: open, _ex: EX, _ing: ING, _calc: function (ex, on, n) { var keep = rt; rt = { ex: ex, n: n || EX[ex].n, on: on || {} }; startEx(ex, ''); if (n) rt.n = n; if (on) rt.on = on; var r = { base: base(), cur: cur() }; rt = keep; return r; } };
+  window.KalkiRetseptUI = { init: init, act: act, door: door, open: open, _ex: EX, _ing: ING, _calc: function (ex, on, n) { var keep = rt; rt = { ex: ex, n: n || EX[ex].n, on: on || {} }; startEx(ex, ''); if (n) rt.n = n; if (on) rt.on = on; var r = { base: base(), cur: cur() }; rt = keep; return r; } };
 })();
