@@ -1560,7 +1560,7 @@
     if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb();
     var el = $('#rzOnb'); el.classList.add('out');
-    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); }, 260);
+    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); }, 260);
   }
   function obStart() { if (ob.refine) { obRefineSave(); return; } obFinish(obProfile(), false); }
   function obLater() { if (!ob || !ob.sex) return; var d = obDef(ob.sex); obFinish({ sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: d.age, height: d.height, weight: d.weight, act: 2, goal: 'keep', goalWeight: null }, true); }

@@ -176,20 +176,47 @@
     var tip = { on: false, i: 0, steps: [], done: null };
     kit.tipsOn = function () { return tip.on; };
     kit.tipsStart = function (steps, done) { tip = { on: true, i: 0, steps: steps, done: done }; kit.tipsShow(); };
+    /* Har bir qadam faqat nishon ko'rinib turganda ochiladi: yo'q / o'lchamsiz / ekrandan tashqarida bo'lsa — qadam o'tkazib yuboriladi.
+       Karta ekran ichida qisiladi (safe-area bilan); parda bosilsa yoki Escape — yo'l-yo'riq yopiladi (hech qachon qotib qolmaydi). */
+    function tipsEnd(fire) {
+      var d = tip.done; tip.on = false; var l = $('#rzTips'); l.hidden = true; l.innerHTML = '';
+      if (fire && d) d();
+    }
+    kit.tipsEnd = function () { if (tip.on) tipsEnd(true); };
+    function vp() { var v = window.visualViewport; return { w: Math.round(v ? v.width : window.innerWidth), h: Math.round(v ? v.height : window.innerHeight) }; }
+    function safeIns() {
+      var p = document.createElement('div'); p.style.cssText = 'position:fixed;left:0;top:0;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)';
+      document.body.appendChild(p); var c = getComputedStyle(p), r = { t: parseFloat(c.paddingTop) || 0, b: parseFloat(c.paddingBottom) || 0 }; document.body.removeChild(p); return r;
+    }
     kit.tipsShow = function () {
-      var s = tip.steps[tip.i], layer = $('#rzTips'), el = s && $(s.sel);
-      if (!el) { tip.on = false; layer.hidden = true; return; }
-      var r = el.getBoundingClientRect(), rr = root.getBoundingClientRect(), pad = 8, below = s.pos === 'below';
-      var pos = below ? 'top:' + Math.round(r.bottom - rr.top + pad + 14) + 'px' : 'bottom:' + Math.round(rr.bottom - r.top + pad + 14) + 'px';
+      var layer = $('#rzTips'), s, el, r, v = vp(), si = safeIns();
+      for (;;) {
+        s = tip.steps[tip.i]; el = s && $(s.sel);
+        if (el) {
+          try { r = el.getBoundingClientRect(); if (r.width > 0 && r.height > 0 && (r.top < si.t || r.bottom > v.h - si.b) && $('#rzMain')) { var mn = $('#rzMain'); mn.scrollTop += Math.round(r.top + r.height / 2 - v.h / 2); r = el.getBoundingClientRect(); }      /* faqat #rzMain skrollanadi (scrollIntoView overflow:hidden ildizni ham siljitadi) */ } catch (e) { r = null; }
+        }
+        if (el && r && r.width > 0 && r.height > 0 && r.bottom > si.t && r.top < v.h - si.b && r.right > 0 && r.left < v.w) break;
+        if (!s) { tipsEnd(true); return; }
+        tip.i++; if (tip.i >= tip.steps.length) { tipsEnd(true); return; }
+      }
+      root.scrollTop = 0; root.scrollLeft = 0; r = el.getBoundingClientRect();
+      var rr = root.getBoundingClientRect(), pad = 8, below = s.pos === 'below';
       var dots = tip.steps.map(function (x, i) { return '<i class="' + (i === tip.i ? 'on' : '') + '"></i>'; }).join('');
       layer.innerHTML = '<div class="rz-spot" style="left:' + Math.round(r.left - rr.left - pad) + 'px;top:' + Math.round(r.top - rr.top - pad) + 'px;width:' + Math.round(r.width + pad * 2) + 'px;height:' + Math.round(r.height + pad * 2) + 'px;border-radius:' + (s.round ? '50%' : '22px') + '"></div>' +
-        '<div class="rz-tipcard" role="dialog" aria-modal="true" style="' + pos + '"><p>' + esc(cfg.t(s.key)) + '</p><div class="f"><span class="rz-tdots" aria-label="' + esc(t('tipOf', { i: tip.i + 1, n: tip.steps.length })) + '">' + dots + '</span><button type="button" class="rz-btn primary sm" data-act="tipnext">' + esc(t('tipOk')) + '</button></div></div>';
-      layer.hidden = false; var b = layer.querySelector('button'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {}
+        '<div class="rz-tipcard" role="dialog" aria-modal="true"><p>' + esc(cfg.t(s.key)) + '</p><div class="f"><span class="rz-tdots" aria-label="' + esc(t('tipOf', { i: tip.i + 1, n: tip.steps.length })) + '">' + dots + '</span><button type="button" class="rz-btn primary sm" data-act="tipnext">' + esc(t('tipOk')) + '</button></div></div>';
+      layer.hidden = false;
+      var card = layer.querySelector('.rz-tipcard'), ch = card.offsetHeight, m = 12, rt = root.getBoundingClientRect();
+      var top = below ? r.bottom + pad + 14 : r.top - pad - 14 - ch;
+      top = Math.max(si.t + m, Math.min(top, v.h - si.b - m - ch));       // ekran ichida
+      card.style.top = Math.round(top - rt.top) + 'px';
+      layer.onclick = function (e) { if (!e.target.closest('.rz-tipcard')) kit.tipsEnd(); };
+      var b = layer.querySelector('button'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {}
     };
     kit.tipsNext = function () {
       tip.i++;
-      if (tip.i >= tip.steps.length) { var d = tip.done; tip.on = false; var l = $('#rzTips'); l.hidden = true; l.innerHTML = ''; if (d) d(); } else kit.tipsShow();
+      if (tip.i >= tip.steps.length) tipsEnd(true); else kit.tipsShow();
     };
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && tip.on) { e.preventDefault(); kit.tipsEnd(); } });
     return kit;
   }
   window.RzKit = { create: create, esc: esc, fmt: fmt, digits: digits, spaced: spaced, ico: ico };
