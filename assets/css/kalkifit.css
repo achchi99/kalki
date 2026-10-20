@@ -462,3 +462,4 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 /* «Yemaydiganlarim»: ro'yxatlarda yashirilganlar (xira), belgi, yumshoq ogohlantirish */
 .rz .sl-rr.dim,.rz .sl-rw.dim{opacity:.55}.rz .sl-kb.sl-rb{background:var(--soft);color:var(--mut)}.rz .sl-rhid{display:block;width:100%;margin:6px 0;min-height:44px;text-align:center;color:var(--mut)}
 .rz .sl-rwarn{display:flex;align-items:flex-start;gap:8px;margin:2px 0 10px;padding:10px 12px;border-radius:12px;background:var(--accsoft);border:1px solid var(--line);font-size:var(--t-s);font-weight:600;line-height:1.35}.rz .sl-rwarn .rz-i{flex:none;width:20px;height:20px;color:var(--acc2);margin-top:1px}
+.sl-ob-foot>.rz-btn+.rz-btn{margin-top:4px}
