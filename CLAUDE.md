@@ -39,9 +39,21 @@ Faqat ko'rinish/imlo o'zgartirsangiz commit nomi `design:` yoki `matn:` bilan bo
 - Brend/format lotincha qoladi: `DEFAULT_ABBR` (Kalki.uz, Telegram, PDF, CSV, Word, Excel, AI).
 - Til tugmalari `data-cyr="skip"`: har doim "UZ | ЎЗ | RU".
 
+## Ish tartibi: preview tarmog'i va reliz darvozasi (tezlik uchun — QAT'IY)
+
+To'liq `test:tez` ~50 daqiqa edi va har tuzatishdan keyin qayta yurilardi. Endi:
+
+1. **Preview tarmog'ida ishlayotganda** (`main` emas): faqat o'zgarishga tegishli testlar — `node tools/testlar.js tez --only <id>[,<id>]` (qaysilari tanlanishi: `node tools/testlar.js tez --list`) — va `npm run check:sw`.
+   To'liq `test:tez` YURGIZILMAYDI. Test yiqilsa — tuzat va FAQAT o'sha testni qayta yurgiz.
+2. **Reliz darvozasi:** to'liq `test:tez` (umumiy fayl o'zgargan bo'lsa `test:toliq`) faqat `main`'ga merge qilishdan OLDIN, BIR MARTA yuriladi.
+   Unda yiqilganlar tuzatiladi va faqat ular qayta yuritiladi (`--only`). Darvoza yashil bo'lmaguncha `main`'ga merge qilinmaydi.
+3. **Skrinshotlar:** faqat o'zgargan ekran, 1–2 holatda (390 dark + 360 light). Barcha kombinatsiyalar (til, tema, shrift, o'lcham) faqat testda, rasmsiz.
+4. **Hisobot qisqa:** nima qilindi, preview havolasi, foydalanuvchi nimani sinashi kerak. Uzun tafsilot faqat `docs/` da (hisobotga ko'chirilmaydi).
+5. Test tezligi: `docs/testlar.md` (bo'laklash, yukga qarab parallel, eng sekin testlar). Yangi og'ir sahifa testi yozsangiz — slug bo'yicha bo'linadigan qiling (`shard`, `tools/testlar.js`).
+
 ## Testlar: ikki rejim (tezlik)
 
-To'liq to'plam avval ~5 soat olardi. Endi ikki rejim (`tools/testlar.js`; parallel, 3 jarayon; natija jadvali + vaqt chiqadi):
+To'liq to'plam avval ~5 soat olardi. Endi ikki rejim (`tools/testlar.js`; slug bo'yicha bo'laklangan, yukga qarab 3–5 jarayon; natija jadvali + vaqt + CPU chiqadi; qachon yurgizilishi — yuqoridagi «Ish tartibi»):
 
 - `npm run test:tez` — o'zgargan fayllarga qarab tanlaydi (maqsad < 15 daqiqa): har doim `verify-all` + `test-cyr`;
   o'zgargan sahifalar uchun `golden`, `test-pages`, kontrast, Katta, qadamlar (faqat o'sha sahifalar);
