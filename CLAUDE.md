@@ -36,7 +36,7 @@ Faqat ko'rinish/imlo o'zgartirsangiz commit nomi `design:` yoki `matn:` bilan bo
 - UZ (lotin) va RU: `assets/lang.js`; ЎЗ (kirill) — shu sahifaning o'zi `?lang=cyr` bilan, matn brauzerda
   `assets/translit.js` + `assets/cyr.js` orqali o'giriladi. Yangi sahifa YARATILMAYDI.
 - Rus tilidan o'zlashgan "ц" so'zlar — `assets/translit.js` dagi `TS_DICT` lug'ati (qoida bilan emas).
-- Brend/format lotincha qoladi: `DEFAULT_ABBR` (Kalki.uz, Telegram, PDF, CSV, Word, Excel, AI).
+- Brend/format lotincha qoladi: `DEFAULT_ABBR` (Kalki.uz, Telegram, email, PDF, CSV, Word, Excel, AI).
 - Til tugmalari `data-cyr="skip"`: har doim "UZ | ЎЗ | RU".
 
 ## Ish tartibi: preview tarmog'i va reliz darvozasi (tezlik uchun — QAT'IY)

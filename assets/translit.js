@@ -43,7 +43,7 @@ var PH_CLOSE = '';
  * qo'shimcha so'zlar berish mumkin -- standart ro'yxatni almashtirmaydi,
  * unga qo'shiladi). Katta-kichik harf ANIQ mos kelishi kerak. */
 var DEFAULT_ABBR = [
-  'Kalki.uz', 'kalki.uz', 'Telegram',
+  'Kalki.uz', 'kalki.uz', 'Telegram', 'email', 'Email',
   'PDF', 'CSV', 'Word', 'Excel', 'AI',
   'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'localStorage',
   '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz',
