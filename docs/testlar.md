@@ -29,5 +29,20 @@
 | 9 | zaxira | 266 s | 58 kutish (42 s): zaxira nusxa/tiklash oqimlari |
 | 10 | rozgor | 243 s | 73 kutish (40 s), 6 kontekst |
 
-## Natija
-(Quyida to'liq yurish vaqtlari — «Natija» bo'limi yurishdan keyin to'ldirilgan.)
+## Natija (to'liq yurish, 3 worker bazasi, server 4 vCPU)
+| | oldin | keyin |
+|---|---:|---:|
+| devor vaqti | 49,5 daqiqa (onboarding2, 65 test) | **38,3 daqiqa** (main + infra, 62 test) |
+| eng uzun zanjir | `kontrast` ≈ 23 daqiqa (bitta jarayon) | eng uzun bo'lak ≈ 5 daqiqa (`kontrast-katta#`); eng uzun yagona test — `kalkifit` ≈ 10,5 daqiqa |
+| yig'indi vaqt | 147,9 daqiqa | 133,9 daqiqa |
+| CPU (o'lchangan) | — | 26,7 daqiqa (faqat `time` hisoblagan bola jarayonlar) |
+
+Qamrov kamaymadi: hech bir tekshiruv o'chirilmagan, `kontrast` faqat sahifani ikki marta emas, bir marta yuklaydi (xuddi shu ikki holat tekshiriladi).
+
+**Maqsad (≤ 20 daqiqa) bajarilmadi — sababi o'lchandi.** Yurish davomida o'rtacha bo'sh CPU 3 %, parallel jarayon 3,5. Serverdagi boshqa servislar ~2 yadroni egallaydi:
+`bots/4_converter_bot` va `bots/5_currency_bot` (`python bot.py`) har 1–2 soniyada qayta ishga tushib turibdi (crash-loop, har biri ~100 % CPU). Ular o'chirilsa/tuzatilsa testlar ~2 baravar tez yuradi (taxminan 20 daqiqa) — bu mening vakolatimdan tashqari, tegmadim.
+Yuk ostida 2 ta test vaqtincha yiqildi (`golden` — 30 s kutish, `yeymiz` — hisoblagich vaqti); yolg'iz yurganda ikkalasi o'tdi, boshqa yurishda esa o'tgan edi. Ya'ni bu CPU tanqisligidan kelib chiqqan flaky: yiqilsa — faqat o'shani `--only` bilan qayta yurgizing.
+
+## Keyingi imkoniyatlar (hozir qilinmadi)
+- Sahifa sweep'larini (`pages`, `kontrast`, `katta`, `kontrast-katta`) bitta umumiy yuklashga birlashtirish: 9 → 5 yuklash/sahifa (~−40 % sweep CPU). Test id'lari va `--only` mantig'ini o'zgartirishni talab qiladi.
+- `kalkifit` (≈ 90 s qo'lda kutish) va shunga o'xshash testlarda `waitForTimeout` → shartli kutish (`waitForFunction`): faqat kutish-bog'liq testlarda foyda, flaky xavfi bor.
