@@ -487,7 +487,7 @@
     h += '<section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
     if (Y) h += Y.profileCard();
-    h += '<section class="rz-card">' + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + row('rcmine', 'book', T('rcMine'), '') + row('supp', 'pill', T('spT'), T('spH')) + '</section>';
+    h += '<section class="rz-card">' + row('vessels', 'bowl', T('vmT'), T('vmH')) + row('tpls', 'bm', T('tplMine'), T('tplMineH')) + (R ? R.row() : '') + row('rcmine', 'book', T('rcMine'), '') + row('supp', 'pill', T('spT'), T('spH')) + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('profBackup')) + '</div>' + (inst.row() ? inst.row().html : '') + (akk.enabled() ? akk.rowHtml() + akk.more(bk.tgRow() + bk.cloudHtml() + akk.strictRow() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + bk.lastHtml()) + row('wipe', 'x', T('sDel'), '') : bk.tgRow() + bk.cloudHtml() + akk.rowHtml() + row('export', 'text', T('sExp'), '') + row('import', 'boshqa', T('sImp'), '') + row('wipe', 'x', T('sDel'), '') + bk.lastHtml()) + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('sLang')) + '</div>' + segHtml(T('sLang'), [{ attrs: 'data-act="lang" data-l="uz"', on: curL === 'uz', text: 'UZ' }, { attrs: 'data-act="lang" data-l="cyr"', on: curL === 'cyr', text: 'ЎЗ' }, { attrs: 'data-act="lang" data-l="ru"', on: curL === 'ru', text: 'RU' }], ' data-cyr="skip"') +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('themeT')) + '</div>' + seg('theme', 't', [['auto', T('thAuto')], ['light', T('thLight')], ['dark', T('thDark')]], th, T('themeT')) +
@@ -527,7 +527,7 @@
     bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
     cal2: 'M7 5h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z M8 3v4 M16 3v4 M4 10h16', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
   });
-  var Y = window.KalkiYeymizUI, G = window.KalkiFitGaplar, masofa = null, masofaState = 0, supp = null, suppState = 0;
+  var Y = window.KalkiYeymizUI, R = window.KalkiRetseptUI, G = window.KalkiFitGaplar, masofa = null, masofaState = 0, supp = null, suppState = 0;
   /* ---------- O'RNIGA (oqsilga boy o'rinbosar) va «Oqsil manbalari» ---------- */
   var OR = window.KalkiOrinbosar, orState = 0, orTable = null, orTags = null, orBy = null, orWait = [];
   function loadOr(cb) {
@@ -1605,6 +1605,7 @@
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
     if (kit.act(a, el)) return;
     if (Y && Y.act(a, el, e)) return;
+    if (R && R.act(a, el, e)) return;
     switch (a) {
       case 'tab': kit.hideToast(); if (view !== viewOf(el.getAttribute('data-v'))) { view = viewOf(el.getAttribute('data-v')); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
       case 'add': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;
@@ -1699,7 +1700,7 @@
       case 'vscale': fd.vc.scale = el.getAttribute('data-s'); setSheet(vesselHtml()); break;
       case 'vsave': vcSave(); break;
       case 'vessels': vmOpen(); break;
-      case 'rcmine': openSheet('rcmine', shHead(T('rcMine')) + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); break;
+      case 'rcmine': openSheet('rcmine', shHead(T('rcMine')) + (R ? '<div class="rt-rowc">' + R.row() + '</div>' : '') + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); break;
       case 'vedit': vmEdit(+el.getAttribute('data-id')); break;
       case 'vedsave': vmSave(); break;
       case 'vdel': vmDel(+el.getAttribute('data-id')); break;
@@ -1786,6 +1787,7 @@
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
       sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, openExternal: openExternal,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
+    if (R) R.init({ D: D, T: T, esc: esc, ico: ico, $: $, $$: $$, lang: function () { return lang; }, isCyr: isCyr, toast: toast, openSheet: openSheet, setSheet: setSheet, sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons });
     tipsSess = !!(st && st.setup && !prefs().tipsDone); render(); inst.gate();
     if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
     if (st.setup && Y) Y.loadCh();                   // «Yemaydiganlarim» qoidasi ro'yxatlarda tayyor turishi uchun (kichik fayl)

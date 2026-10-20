@@ -120,7 +120,8 @@
     var tf = yv.toifa, rem = A.remaining(), body = '';
     if (yv.seg === 'uyda') {
       var rs = YC.uyda({ data: data, toifa: tf, uyda: uy, cheklov: ch, yemaydi: yemay() });
-      body = rs.length ? '<p class="rz-p">' + esc(T('yzUyH')) + '</p>' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return '<button type="button" class="rz-row sl-fwr" data-act="yerec" data-id="' + esc(r.id) + '">' + A.tileHtml(r.taom, null, lbl(r.nom), 44) + '<span class="m"><b>' + esc(lbl(r.nom)) + '</b><span>' + esc(T('fwTime', { t: lbl(r.vaqt) }) + (p ? ' · ' + T('fwK1', { k: p.k }) : '')) + '</span></span>' + A.ico('chev', 'r') + '</button>'; }).join('') : emptyHtml();
+      var RT = window.KalkiRetseptUI;
+      body = (RT ? '<div class="rt-rowc">' + RT.row() + '</div>' : '') + (rs.length ? '<p class="rz-p">' + esc(T('yzUyH')) + '</p>' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return '<button type="button" class="rz-row sl-fwr" data-act="yerec" data-id="' + esc(r.id) + '">' + A.tileHtml(r.taom, null, lbl(r.nom), 44) + '<span class="m"><b>' + esc(lbl(r.nom)) + '</b><span>' + esc(T('fwTime', { t: lbl(r.vaqt) }) + (p ? ' · ' + T('fwK1', { k: p.k }) : '')) + '</span></span>' + A.ico('chev', 'r') + '</button>'; }).join('') : emptyHtml());
     } else {
       var r = YC.list({ by: A.by(), data: data, toifa: tf, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem });
       yv.shown = r.items.map(function (p) { return p.key; });
