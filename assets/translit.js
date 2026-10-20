@@ -47,7 +47,9 @@ var DEFAULT_ABBR = [
   'PDF', 'CSV', 'Word', 'Excel', 'AI',
   'Anthropic', 'Google', 'Analytics', 'AdSense', 'Cloudflare', 'localStorage',
   '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz',
-  'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON', 'KalkiFit', 'NIH', 'USDA', 'Harvard', 'EFSA', 'FDA', 'Nutrition', 'Source'
+  'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON', 'KalkiFit', 'NIH', 'USDA', 'Harvard', 'EFSA', 'FDA', 'Nutrition', 'Source',
+  /* texnik qisqartma va brendlar — lotincha qoladi (kirillda «ИД», «УРЛ», «ҲТМЛ», «ПWА» emas) */
+  'ID', 'URL', 'API', 'HTML', 'HTTP', 'HTTPS', 'PWA', 'USD', 'OTP', 'LED', 'Wi-Fi', 'Claude', 'Apple', 'WhatsApp', 'cookie', 'Cookie'
 ];
 /* Qo'shimchasi APOSTROF bilan kelganda apostrof SAQLANADI: iPhone'da -> iPhone'да, Safari'da -> Safari'да
  * (boshqa qisqartmalarda eski qoida: AI'ning -> AI-нинг). */
@@ -69,7 +71,8 @@ var TS_DICT = [
   ['sanksiya', 'санкция'], ['silindr', 'цилиндр'], ['sirkul', 'циркул'],
   ['ssenariy', 'сценарий'], ['stansiya', 'станция'], ['sirk', 'цирк', /^sirka/], ['porsiya', 'порция'], ['konsert', 'концерт'], ['sink', 'цинк'], ['seliakiya', 'целиакия'],
   ['pitsa', 'пицца'], ['motsarella', 'моцарелла'], ['tunets', 'тунец'], ['mukovistsidoz', 'муковисцидоз'], ['niatsin', 'ниацин'], ['koeffitsient', 'коэффициент'],
-  ['mayonez', 'майонез'], ['yogurt', 'йогурт'], ['ekspeditsiya', 'экспедиция']   // sirka (uksus) — «с»
+  ['mayonez', 'майонез'], ['yogurt', 'йогурт'], ['ekspeditsiya', 'экспедиция'],
+  ['web', 'веб'], ['online', 'онлайн'], ['offline', 'офлайн']   // inglizcha o'zlashmalar: «wеб»/«онлине» emas   // sirka (uksus) — «с»
 ];
 /* Rus o'zlashmalarida yumshoq belgi «ь» saqlanadi (kalsiy -> кальций, kalkulyator -> калькулятор). Qoida bilan aniqlab bo'lmaydi — lug'at (ildiz so'z boshida, qo'shimchalar odatiy).
  * Oy nomlari (yanvar, iyul…) o'zbek kirilida «ь»siz yoziladi — ro'yxatda yo'q. */
@@ -116,7 +119,9 @@ var SINGLE = {
   // sifatida alohida ishlov beriladi (pastga qarang); yakka "c" duch
   // kelsa (kam uchraydi, masalan xorijiy so'zda) "k" bilan bir xil
   // ko'riladi, ehtiyot chorasi.
-  c: 'к'
+  c: 'к',
+  // w -- o'zbek alifbosida yo'q; xorijiy so'zda (workout, web) "в" — aks holda so'z ichida lotin "w" qolib, aralash alifbo chiqadi ("wеб").
+  w: 'в'
 };
 
 /* Ikki harfdan bitta kirill harfiga tushadigan digraflar. "ng" BU
@@ -273,6 +278,7 @@ function translitPlain(text) {
 var PROTECT_PATTERNS = [
   /https?:\/\/[^\s<>"']+/g,             // URL
   /[\w.+-]+@[\w-]+\.[\w.-]+/g,          // email
+  /\b(?=[A-Z0-9]*\d)(?=[A-Z0-9]*[A-Z])[A-Z0-9]{8,17}\b/g,   // kod: VIN (XWB1234567890123), seriya raqami — katta harf + raqam aralash (telefondan OLDIN)
   /\+?\d[\d\s\-()]{6,}\d/g              // telefon (qo'pol taxmin)
 ];
 
