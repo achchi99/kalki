@@ -17,7 +17,7 @@ const c = cnt(vis); assert.ok(c.baliq >= 11 && c.tovuq >= 14 && c.qizil >= 30 &&
 log('oqsil manbasi: ' + foods.length + ' taom + oila kombinatsiyalari (' + Object.keys(T.taom).length + ' kalit) teglangan, retseptdan avtomatik (yangilangan); ko\'rinadigan ' + vis.length + ': ' + JSON.stringify(c));
 /* 2. yangi mahalliy oqsilli taomlar: manba (retsept, fdc_id), ±15% (Atwater), 3 til, birliklar */
 const YANGI = ['sazan-grill', 'sazan-qovurma', 'baliq-dimlama', 'baliq-shurva', 'tovuq-son-qozon', 'tovuq-kokrak-qozon', 'osh-tovuq', 'dimlama-tovuq', 'loviya-shurva', 'yasmiq-shurva', 'noxat-ragu', 'moshxorda-gostsiz', 'qoymoq', 'omlet-sabzavot', 'qatiq-salat', 'suzma-salat'];
-assert.equal(foods.length, 288);
+assert.equal(foods.length, 323);
 for (const id of YANGI) {
   const f = by[id]; assert.ok(f, id + ': bazada yo\'q'); assert.ok(f.rc && f.x === 1 && f.e === 1, id + ': retsept + «taxminiy»');
   assert.ok(f.ms && /fdc_id \d{6}/.test(f.ms.u) && /fdc_id \d{6}/.test(f.ms.r), id + ': manba bayoni (fdc_id) UZ/RU');
@@ -28,7 +28,7 @@ for (const id of YANGI) {
 const R = (id) => { const f = by[id]; const g = f.u.find((u) => u[0] !== 'g100')[1]; return { id, g, k: Math.round(f.k * g / 100), p: Math.round(f.p * g) / 100, f: Math.round(f.f * g) / 100 }; };
 for (const id of ['osh-tovuq', 'sazan-grill', 'loviya-shurva']) assert.ok(R(id).g > 0);
 assert.ok(by['sazan-grill'].p >= 15 && by['sazan-grill'].f <= 12 && by['osh-tovuq'].p >= by.osh.p * 0.95, 'sazan/tovuqli osh oqsili');
-log('yangi ' + YANGI.length + ' ta taom: hammasida retsept + USDA fdc_id manba (UZ/RU), «taxminiy», ±15% Atwater, birliklar; baza 288 ta');
+log('yangi ' + YANGI.length + ' ta taom: hammasida retsept + USDA fdc_id manba (UZ/RU), «taxminiy», ±15% Atwater, birliklar; baza 323 ta');
 /* 3. o'rinbosar jadvali */
 assert.deepEqual(TB.manba, GEN.yasa().out, 'data/orinbosar.json eskirgan: node tools/orinbosar-yasa.js --yoz');
 const srcs = Object.keys(TB.manba); const ISTISNO = new Set(['dolma', 'jigar-kabob', 'jigar', 'tushonka', 'kolbasa', 'bekon', 'naggets']);

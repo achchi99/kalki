@@ -2579,6 +2579,1098 @@
     }
    ],
    "taxminiy": true
+  },
+  {
+   "id": "kafe-sazan-qovurma",
+   "nom": "Qovurilgan sazan (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "un",
+     "g": 30
+    },
+    {
+     "m": "yog",
+     "g": 70
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "choyxonadagi odatiy 1 dona qovurilgan sazan, yeyiladigan qismi ≈ 300 g (suyaksiz)",
+    "asos_ru": "типичная порция чайханы: 1 жареный карп, съедобная часть ≈ 300 г (без костей)"
+   }
+  },
+  {
+   "id": "kafe-baliq-shashlik",
+   "nom": "Baliq shashlik (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 450
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 90 g (4–5 bo'lak), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 90 г (4–5 кусочков), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-losos-steyk",
+   "nom": "Losos steyk (restoran)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "losos",
+     "g": 230
+    },
+    {
+     "m": "yog",
+     "g": 12
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "restorandagi odatiy losos steyk ≈ 180 g (pishgan)",
+    "asos_ru": "типичный стейк из лосося в ресторане ≈ 180 г (готовый)"
+   }
+  },
+  {
+   "id": "kafe-baliq-shurva",
+   "nom": "Baliq sho'rva (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 350
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    },
+    {
+     "m": "kokat",
+     "g": 15
+    },
+    {
+     "m": "yog",
+     "g": 15
+    },
+    {
+     "m": "suv",
+     "g": 1300,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-tovuq-shashlik",
+   "nom": "Tovuq shashlik (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_kokrak",
+     "g": 350
+    },
+    {
+     "m": "tovuq_son_teriz",
+     "g": 350
+    },
+    {
+     "m": "piyoz",
+     "g": 40
+    },
+    {
+     "m": "yog",
+     "g": 25
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 90 g (4–5 bo'lak, ko'krak va terisiz son go'shti), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 90 г (4–5 кусочков, грудка и бедро без кожи), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-kabob",
+   "nom": "Qo'y/mol kabob (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 450
+    },
+    {
+     "m": "mol",
+     "g": 100
+    },
+    {
+     "m": "dumba",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g (3–4 bo'lak go'sht va dumba), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 80 г (3–4 кусочка мяса и курдючного жира), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "kafe-lyulya",
+   "nom": "Lyulya kabob (choyxona, 1 six)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 450
+    },
+    {
+     "m": "mol",
+     "g": 150
+    },
+    {
+     "m": "dumba",
+     "g": 120
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 100 g (1 dona lyulya), porsiya — 2 six",
+    "asos_ru": "1 шампур ≈ 100 г (1 люля), порция — 2 шампура"
+   }
+  },
+  {
+   "id": "choyxona-osh",
+   "nom": "Choyxona oshi (1 lagan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "qoy",
+     "g": 400.0
+    },
+    {
+     "m": "mol",
+     "g": 400.0
+    },
+    {
+     "m": "yog",
+     "g": 320
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "choyxonadagi 1 lagan osh ≈ 400 g (yog' ko'p, go'sht o'rta — oddiy osh retseptining yog'li varianti)",
+    "asos_ru": "1 тарелка плова в чайхане ≈ 400 г (много масла, мяса средне — жирный вариант обычного рецепта)"
+   },
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "kafe-lagmon-tovuq",
+   "nom": "Tovuq lag'mon (kafe kosa)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 70
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 150
+    },
+    {
+     "m": "tovuq_son",
+     "g": 150
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g (yog' odatdagidan ko'proq)",
+    "asos_ru": "типичная миска в кафе ≈ 450 г (масла больше обычного)"
+   }
+  },
+  {
+   "id": "kafe-tovuq-son-grill",
+   "nom": "Grilda tovuq soni (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son_teriz",
+     "g": 700
+    },
+    {
+     "m": "yog",
+     "g": 15
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 dona grilda son ≈ 140 g (yeyiladigan qism, TERISIZ hisob; teri yeyilsa ≈ +60 kkal)",
+    "asos_ru": "1 бедро гриль ≈ 140 г (съедобная часть, БЕЗ кожи; если съесть кожу ≈ +60 ккал)"
+   }
+  },
+  {
+   "id": "sazan-duxovka",
+   "nom": "Duxovkada sazan (kartoshka bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "sazan",
+     "g": 500
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "kafe-qoy-shashlik",
+   "nom": "Qo'y shashlik (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_pishgan",
+     "g": 280
+    },
+    {
+     "m": "dumba",
+     "g": 50
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g (5–6 bo'lak pishgan go'sht va dumba), porsiya — 3 six",
+    "asos_ru": "1 шампур ≈ 80 г (5–6 кусочков готового мяса и курдючного жира), порция — 3 шампура"
+   }
+  },
+  {
+   "id": "kafe-mol-shashlik",
+   "nom": "Mol shashlik (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "mol_pishgan",
+     "g": 300
+    },
+    {
+     "m": "dumba",
+     "g": 30
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g, porsiya — 3 six",
+    "asos_ru": "1 шампур ≈ 80 г, порция — 3 шампура"
+   }
+  },
+  {
+   "id": "kafe-tovuq-qanot",
+   "nom": "Tovuq qanoti grilda (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_qanot",
+     "g": 400
+    },
+    {
+     "m": "yog",
+     "g": 10
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 dona ≈ 40 g (suyaksiz hisob, teri bilan), porsiya — 5 dona",
+    "asos_ru": "1 крылышко ≈ 40 г (без костей, с кожей), порция — 5 штук"
+   }
+  },
+  {
+   "id": "kafe-jigar-kabob",
+   "nom": "Jigar kabob (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "jigar",
+     "g": 280
+    },
+    {
+     "m": "dumba",
+     "g": 60
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 60 g (pishgan jigar va dumba), porsiya — 3 six",
+    "asos_ru": "1 шампур ≈ 60 г (готовая печень и курдючный жир), порция — 3 шампура"
+   }
+  },
+  {
+   "id": "kafe-qovurga",
+   "nom": "Qo'zi qovurg'a grilda (choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_qovurga",
+     "g": 300
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "porsiya ≈ 150 g (pishgan, suyagisiz go'sht va yog' hisobi)",
+    "asos_ru": "порция ≈ 150 г (готовое мясо и жир без костей)"
+   }
+  },
+  {
+   "id": "kafe-sabzavot-shashlik",
+   "nom": "Sabzavot shashlik (qo'ziqorin, baqlajon, qalampir)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "baqlajon",
+     "g": 200
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "qalampir",
+     "g": 150
+    },
+    {
+     "m": "qoziqorin",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    },
+    {
+     "m": "yog",
+     "g": 40
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g, porsiya — 3 six",
+    "asos_ru": "1 шампур ≈ 80 г, порция — 3 шампура"
+   }
+  },
+  {
+   "id": "kafe-tandir-tovuq",
+   "nom": "Tandir tovuq (choyxona, yarim tovuq)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_teri",
+     "g": 500
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "yarim tovuq ≈ 300 g (pishgan, suyagisiz go'sht va teri hisobi)",
+    "asos_ru": "половина курицы ≈ 300 г (готовая, мясо и кожа без костей)"
+   }
+  },
+  {
+   "id": "kafe-tandir-kabob",
+   "nom": "Tandir kabob (qo'y, choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_pishgan",
+     "g": 280
+    },
+    {
+     "m": "dumba",
+     "g": 60
+    },
+    {
+     "m": "piyoz",
+     "g": 30
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 six ≈ 80 g, porsiya — 3 six",
+    "asos_ru": "1 шампур ≈ 80 г, порция — 3 шампура"
+   }
+  },
+  {
+   "id": "kafe-shurva",
+   "nom": "Sho'rva (qo'y, choyxona)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 500
+    },
+    {
+     "m": "dumba",
+     "g": 50
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 1900,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-mastava",
+   "nom": "Mastava (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 150
+    },
+    {
+     "m": "qoy",
+     "g": 250
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "suv",
+     "g": 1550,
+     "y": 0.8
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-moshxorda",
+   "nom": "Moshxo'rda (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "mosh",
+     "g": 120
+    },
+    {
+     "m": "guruch",
+     "g": 50
+    },
+    {
+     "m": "qoy",
+     "g": 250
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 40
+    },
+    {
+     "m": "suv",
+     "g": 1530,
+     "y": 0.8
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-chuchvara-shorva",
+   "nom": "Chuchvara sho'rva (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1.0
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1.0
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 150,
+     "y": 0.85
+    },
+    {
+     "m": "piyoz",
+     "g": 150,
+     "y": 0.9
+    },
+    {
+     "m": "dumba",
+     "g": 20,
+     "y": 0.9
+    },
+    {
+     "m": "suv",
+     "g": 800,
+     "y": 0.95
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 400 g (~14 dona chuchvara)",
+    "asos_ru": "типичная миска в кафе ≈ 400 г (~14 пельмешек)"
+   }
+  },
+  {
+   "id": "kafe-lagmon-qoy",
+   "nom": "Lag'mon suyuq (qo'y, kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 80
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "karam",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.85
+    },
+    {
+     "m": "qoy",
+     "g": 300
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "kafe-tovuq-shurva",
+   "nom": "Tovuq sho'rva (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son_teriz",
+     "g": 300
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "kokat",
+     "g": 15
+    },
+    {
+     "m": "yog",
+     "g": 20
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 400 g",
+    "asos_ru": "типичная миска в кафе ≈ 400 г"
+   }
+  },
+  {
+   "id": "kafe-kartoshka-shurva",
+   "nom": "Kartoshka sho'rva (kafe)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 100
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    },
+    {
+     "m": "kokat",
+     "g": 15
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
+    "asos_ru": "типичная миска в кафе ≈ 450 г"
+   }
+  },
+  {
+   "id": "uy-tovuq-shashlik",
+   "nom": "Tovuq shashlik (uyda, duxovka)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son_teriz",
+     "g": 300
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 40
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "uy-lyulya",
+   "nom": "Lyulya kabob (uyda, duxovka)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_yogsiz",
+     "g": 250
+    },
+    {
+     "m": "mol_yogsiz",
+     "g": 100
+    },
+    {
+     "m": "dumba",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "uy-tovuq-shurva",
+   "nom": "Tovuq sho'rva (uyda)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_son_teriz",
+     "g": 300
+    },
+    {
+     "m": "kartoshka",
+     "g": 250
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "kokat",
+     "g": 15
+    },
+    {
+     "m": "yog",
+     "g": 20
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.85
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "uy-tovuq-duxovka",
+   "nom": "Duxovkada tovuq (kartoshka bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "tovuq_teri",
+     "g": 400
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 20
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "uy-qoy-duxovka",
+   "nom": "Duxovkada qo'y go'shti (sabzavot bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_pishgan",
+     "g": 290
+    },
+    {
+     "m": "dumba",
+     "g": 40
+    },
+    {
+     "m": "kartoshka",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "sabzi",
+     "g": 80
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 10
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "uy-lavash-tovuq",
+   "nom": "Tovuq lavash (uyda)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 55
+    },
+    {
+     "m": "tovuq_kokrak",
+     "g": 120
+    },
+    {
+     "m": "pomidor",
+     "g": 60
+    },
+    {
+     "m": "bodring",
+     "g": 50
+    },
+    {
+     "m": "kokat",
+     "g": 10
+    },
+    {
+     "m": "qatiq",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "kafe-jiz",
+   "nom": "Jiz (choyxona, qovurma go'sht va jigar)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy_pishgan",
+     "g": 150
+    },
+    {
+     "m": "jigar",
+     "g": 100
+    },
+    {
+     "m": "dumba",
+     "g": 70
+    },
+    {
+     "m": "piyoz",
+     "g": 80
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "choyxonadagi odatiy likop ≈ 300 g (qovurilgan go'sht, jigar, dumba va piyoz)",
+    "asos_ru": "типичная тарелка в чайхане ≈ 300 г (жареное мясо, печень, курдючный жир и лук)"
+   }
+  },
+  {
+   "id": "hotdog-mol",
+   "nom": "Hot-dog (mol sosiska)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "bulka",
+     "g": 55
+    },
+    {
+     "m": "sosiska_mol",
+     "g": 60
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 dona ≈ 115 g (bulochka va 1 sosiska; sous va ketchupsiz). Sosiska tarkibi ishlab chiqaruvchiga qarab farq qiladi",
+    "asos_ru": "1 шт ≈ 115 г (булочка и 1 сосиска; без соусов). Состав сосисок зависит от производителя"
+   }
+  },
+  {
+   "id": "hotdog-tovuq",
+   "nom": "Hot-dog (tovuq sosiska)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "bulka",
+     "g": 55
+    },
+    {
+     "m": "sosiska_tovuq",
+     "g": 55
+    }
+   ],
+   "taxminiy": true,
+   "kafe": {
+    "asos_uz": "1 dona ≈ 110 g (bulochka va 1 sosiska; sous va ketchupsiz). Sosiska tarkibi ishlab chiqaruvchiga qarab farq qiladi",
+    "asos_ru": "1 шт ≈ 110 г (булочка и 1 сосиска; без соусов). Состав сосисок зависит от производителя"
+   }
   }
  ]
 }

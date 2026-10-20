@@ -1,4 +1,4 @@
-// KalkiFit «O'rniga» UI: karta (qoida bajarilganda), 1 asosiy + «Boshqa variantlar» ≤2, o'rinbosarga o'tganda porsiya hajmi saqlanadi, o'chirish (Profil), 360 px/katta shrift,
+// KalkiFit «O'rniga» UI: karta (qoida bajarilganda), 1 asosiy + «Boshqa variantlar» (ro'yxat oynasi), o'rinbosarga o'tganda porsiya hajmi saqlanadi, o'chirish (Profil), 360 px/katta shrift,
 // «Oqsil manbalari» (Natijalar, Kun yakuni), hazil holatlari (baliq, almashtirish), RU.   node tools/dizayn/test-orinbosar-ui.mjs
 import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { createRequire } from 'node:module'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs';
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const D = S.dates; const TODAY = D.today();
@@ -16,13 +16,13 @@ const txt = (p, s) => p.locator(s).first().innerText(); const stOf = (p) => p.ev
 async function pick(p, q, nth = 0) { await p.click('#mainAdd'); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=' + nth); await p.waitForTimeout(500); }
 const noX = async (p) => assert.ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'gorizontal skroll yo\'q');
 try {
-  /* 1. karta: osh → tovuqli osh (oqsil deyarli bir xil, yog' −14 g); 1 asosiy + «Boshqa variantlar» ≤2; CTA'dan oldin */
+  /* 1. karta: osh → tovuqli osh (oqsil deyarli bir xil, yog' −14 g); 1 asosiy + «Boshqa variantlar» (ro'yxat oynasi); CTA'dan oldin */
   let p = await mk(seed()); await pick(p, 'osh'); await p.waitForSelector('#orCard');
   assert.match(await txt(p, '#orCard .sl-or-b.main b'), /Tovuqli osh/); const d1 = await txt(p, '#orCard .sl-or-b.main .m > span'); assert.match(d1, /oqsil deyarli bir xil/); assert.match(d1, /yog' −1[34] g/); assert.match(await txt(p, '#orCard .sl-or-b.main small'), /O'rniga/);
   assert.ok(await p.evaluate(() => { const c = document.getElementById('orCard'), s = document.getElementById('fsave'); return !!(c.compareDocumentPosition(s) & Node.DOCUMENT_POSITION_FOLLOWING); }), 'karta CTA\'dan oldin');
-  assert.equal(await p.locator('#orCard .sl-or-more[hidden] .sl-or-b').count(), 2, 'yopiq: ≤2 qo\'shimcha'); assert.equal(await p.locator('#orCard .sl-or-b.main').count(), 1); await p.click('[data-act=ormore]'); await p.waitForTimeout(150);
-  const more = await p.locator('#orCard .sl-or-more .sl-or-b b').allInnerTexts(); assert.equal(more.length, 2); assert.match(more[0], /Dimlangan baliq/); assert.match(await txt(p, '[data-act=ormore]'), /Yopish/); await noX(p);
-  log('Osh: karta «O\'rniga: Tovuqli osh — ' + d1 + '» (CTA\'dan oldin), «Boshqa variantlar» ochilganda 2 ta (' + more.join(', ') + '), gorizontal skroll yo\'q');
+  assert.equal(await p.locator('#orCard .sl-or-b.main').count(), 1); assert.equal(await p.locator('#orCard [data-act=ormore]').count(), 0, 'eski ichki ro\'yxat o\'rniga bitta «Boshqa variantlar» tugmasi'); assert.match(await txt(p, '#orCard [data-act=yevopen]'), /Boshqa variantlar/); await p.click('[data-act=yevopen]'); await p.waitForSelector('.sl-yr-b.full'); await p.waitForTimeout(150);
+  const more = await p.locator('.sl-yr-b.full .nm').allInnerTexts(); assert.ok(more.length >= 2); assert.match(more[0], /Dimlangan baliq/); await noX(p); await p.click('[data-act=yevback]'); await p.waitForSelector('#orCard');
+  log('Osh: karta «O\'rniga: Tovuqli osh — ' + d1 + '» (CTA\'dan oldin), «Boshqa variantlar» ro\'yxati (' + more.join(', ') + '), gorizontal skroll yo\'q');
   /* 2. o'rinbosarga o'tganda hajm saqlanadi: 2 likop → 2 likop; ro'yxatda saqlanadi, ketma-ket karta chiqmaydi */
   await p.click('[data-act=pwmore]'); await p.waitForTimeout(100); await p.click('[data-act=pwq][data-v="2"]'); await p.waitForTimeout(200); const ds2 = await txt(p, '#orCard .sl-or-b.main .m > span');
   await p.click('#orCard .sl-or-b.main'); await p.waitForTimeout(500); assert.equal((await txt(p, '#fdName')).trim(), 'Tovuqli osh'); assert.equal(num(await p.inputValue('#fdQty')), 2, '2 likop → 2 likop'); assert.match(await txt(p, '#fdGr'), /700/, '700 g'); assert.equal(await p.locator('#orCard').count(), 0, 'o\'rinbosar oynasida yana karta yo\'q');

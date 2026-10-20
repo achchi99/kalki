@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-/* kalki.uz — «Baliq kuni» eslatmasini yuboruvchi (Hetzner cron). Haftada BITTA push (payshanba 11:00 Toshkent = 06:00 UTC), boshqa push YO'Q.
+/* kalki.uz — «Baliq kuni» eslatmasini yuboruvchi (Hetzner cron). Haftada BITTA push (standart payshanba, foydalanuvchi «Boshqa kun» tanlasa — o'sha kun; 11:00 Toshkent = 06:00 UTC), boshqa push YO'Q. «Baliq yoqtirmayman» (baliqsiz=1) obunaga HECH QACHON yuborilmaydi.
  * Obunalar Cloudflare D1 (push_obuna) dan REST API orqali o'qiladi; kalitlar fayllarda (repoda emas): ~/.kalkifit-vapid (VAPID), ~/.cf-token (Cloudflare).
  *   node tools/push-yubor.js [--muhit production|preview] [--dry]          — haftalik yuborish (payshanba bo'lmasa chiqib ketadi; --kuch bilan majburan)
  *   node tools/push-yubor.js --muhit preview --test <email>                — FAQAT shu akkauntga ulangan obunaga (haftalik hisobga tegmaydi, kun tekshirilmaydi)
  *   node tools/push-yubor.js --muhit preview --obuna <id-boshi>            — FAQAT id (SHA-256(endpoint)) shu harflardan boshlanadigan obunaga (akkauntsiz sinov; ro'yxat: --royxat)
- * Cron (server vaqti UTC):  0 6 * * 4  cd ~/projects/kalki && node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
+ * Cron (server vaqti UTC):  0 6 * * *  cd ~/projects/kalki && node tools/push-yubor.js >> ~/.kalkifit-push.log 2>&1
  * Har obuna uchun haftada 1 marta (oxirgi_hafta), o'lik obuna (404/410) o'chadi, 5 ketma-ket xato — o'chadi. Natija push_holat('oxirgi') ga yoziladi (admin: GET /api/push/holat). */
 'use strict';
 const fs = require('fs'), os = require('os'), path = require('path');
@@ -39,12 +39,14 @@ async function main(argv, deps) {
   if (!DB[muhit]) throw new Error('--muhit production|preview'); if (test === true) throw new Error('--test <email>');
   const one = arg('--obuna'), roy = !!arg('--royxat');
   if (roy) { const r0 = await (deps.q || d1(muhit))('SELECT id, til, akkaunt_id IS NOT NULL AS akk, yaratilgan FROM push_obuna ORDER BY yaratilgan DESC LIMIT 20'); r0.forEach((r) => console.log(r.id.slice(0, 10), r.til, r.akk ? 'akkaunt' : '-', new Date(r.yaratilgan).toISOString())); return { yuborildi: 0 }; }
-  if (!test && !one && !kuch && hf.kun !== 3) { console.log(new Date(now).toISOString(), 'payshanba emas (Toshkent) — yuborilmadi'); return { yuborildi: 0 }; }
   const q = deps.q || d1(muhit), vp = deps.vapid || vapid(), send = deps.send || W.yubor; let rows;
   try {
     if (one && one !== true) rows = (await q('SELECT * FROM push_obuna WHERE id LIKE ?', [String(one).replace(/[^0-9a-f]/g, '') + '%'])).slice(0, 1);
     else if (test) { const e = String(test).trim().toLowerCase(), a = await q('SELECT id FROM akkaunt WHERE email = ?', [e]); if (!a.length) { console.log('akkaunt topilmadi'); return { yuborildi: 0 }; } rows = await q('SELECT * FROM push_obuna WHERE akkaunt_id = ?', [a[0].id]); }
-    else rows = await q('SELECT * FROM push_obuna WHERE oxirgi_hafta IS NULL OR oxirgi_hafta <> ?', [hf.id]);
+    else {                                       // har kuni 06:00 UTC: faqat BUGUN o'z kuni bo'lgan (standart payshanba) va «Baliq yoqtirmayman» demagan obunalarga; --kuch — kun tekshirilmaydi
+      try { rows = await q('SELECT * FROM push_obuna WHERE (oxirgi_hafta IS NULL OR oxirgi_hafta <> ?) AND baliqsiz = 0' + (kuch ? '' : ' AND kun = ?'), kuch ? [hf.id] : [hf.id, hf.kun]); }
+      catch (e) { if (!kuch && hf.kun !== 3) { console.log(new Date(now).toISOString(), 'payshanba emas (Toshkent) — yuborilmadi'); return { yuborildi: 0 }; } rows = await q('SELECT * FROM push_obuna WHERE oxirgi_hafta IS NULL OR oxirgi_hafta <> ?', [hf.id]); }      // yangi ustunlar yo'q (migratsiya yurgizilmagan) — eski xatti-harakat
+    }
   } catch (e) { console.log('jadval yo\'q yoki xato:', e.message); return { yuborildi: 0, xato: 1 }; }
   console.log(new Date(now).toISOString(), muhit, test || one ? 'TEST' : 'haftalik', hf.id, 'obuna:', rows.length, dry ? '(dry)' : '');
   let ok = 0, xato = 0, ochirildi = 0;

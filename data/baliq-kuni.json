@@ -1,21 +1,24 @@
 {
  "v": 1,
- "note": "«Baliq kuni» eslatmasi matnlari (haftada 1 ta, payshanba 11:00 Toshkent). uz — ЎЗ (kirill) uchun tools/translit.js orqali o'giriladi. Hafta raqami bo'yicha aylanadi. Tahrir qoidalari: tinch, faktik, vazn/tana haqida gap yo'q, 5 ta variant, har tilda bir xil son.",
- "sarlavha": { "uz": "KalkiFit", "ru": "KalkiFit" },
+ "note": "«Baliq kuni» eslatmasi matnlari (haftada 1 ta, foydalanuvchi kuni — standart payshanba, 11:00 Toshkent). uz — ЎЗ (kirill) uchun tools/translit.js orqali o'giriladi. Hafta raqami bo'yicha aylanadi. Tahrir qoidalari: tinch, faktik, vazn/tana haqida gap yo'q, 5 ta variant, har tilda bir xil son. Bosilganda «Baliq kuni» oynasi ochiladi (buyurtma · kafe · uyda).",
+ "sarlavha": {
+  "uz": "KalkiFit",
+  "ru": "KalkiFit"
+ },
  "matn": {
   "uz": [
-   "Bugun baliq kuni 🐟 — kechki ovqatga grilda sazan yoki baliq sho'rva?",
-   "Payshanba — baliq kuni 🐟 Bugun dimlangan baliq yoki sho'rva qanday?",
-   "Baliq kuni keldi 🐟 Kechki ovqatga grilda sazan — oson va mazali.",
-   "Haftada bir marta baliq 🐟 Bugun qozonda yoki grilda — o'zingiz tanlang.",
-   "Bugun baliq kuni 🐟 Sazan, forel yoki baliq sho'rva — ilovada ko'rib chiqing."
+   "Bugun baliq kuni 🐟 — yaqin kafedan buyurtma qilasizmi yoki uyda pishirasizmi?",
+   "Baliq kuni keldi 🐟 Buyurtma, kafe yoki uyda — qaysi biri qulay?",
+   "Haftada bir marta baliq 🐟 Bugun kafedan olasizmi yoki o'zingiz pishirasizmi?",
+   "Bugun baliq kuni 🐟 Sazan yoki baliq sho'rva — yetkazib berishdan yoki uyda tayyorlab ko'ring.",
+   "Baliq vaqti 🐟 Yaqin kafeda yoki uyda — ilovada variantlarni ko'ring."
   ],
   "ru": [
-   "Сегодня рыбный день 🐟 — на ужин карп на гриле или рыбный суп?",
-   "Четверг — рыбный день 🐟 Как насчёт тушёной рыбы или ухи?",
-   "Пришёл рыбный день 🐟 На ужин карп на гриле — просто и вкусно.",
-   "Раз в неделю — рыба 🐟 Сегодня в казане или на гриле, выбирайте сами.",
-   "Сегодня рыбный день 🐟 Карп, форель или рыбный суп — загляните в приложение."
+   "Сегодня рыбный день 🐟 — закажете в ближайшем кафе или приготовите дома?",
+   "Пришёл рыбный день 🐟 Заказ, кафе или дома — что удобнее?",
+   "Раз в неделю — рыба 🐟 Сегодня закажете в кафе или приготовите сами?",
+   "Сегодня рыбный день 🐟 Карп или рыбный суп — с доставкой или дома.",
+   "Время рыбы 🐟 В ближайшем кафе или дома — загляните в приложение."
   ]
  }
 }
