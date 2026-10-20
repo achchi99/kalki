@@ -179,7 +179,7 @@
     /* Har bir qadam faqat nishon ko'rinib turganda ochiladi: yo'q / o'lchamsiz / ekrandan tashqarida bo'lsa — qadam o'tkazib yuboriladi.
        Karta ekran ichida qisiladi (safe-area bilan); parda bosilsa yoki Escape — yo'l-yo'riq yopiladi (hech qachon qotib qolmaydi). */
     function tipsEnd(fire) {
-      var d = tip.done; tip.on = false; var l = $('#rzTips'); l.hidden = true; l.innerHTML = '';
+      var d = tip.done; tip.on = false; var l = $('#rzTips'); l.hidden = true; l.innerHTML = ''; var mn = $('#rzMain'); if (mn && tip.sc != null) mn.scrollTop = tip.sc;      /* yo'l-yo'riq skrollagan bo'lsa — joyiga qaytadi */
       if (fire && d) d();
     }
     kit.tipsEnd = function () { if (tip.on) tipsEnd(true); };
@@ -193,7 +193,7 @@
       for (;;) {
         s = tip.steps[tip.i]; el = s && $(s.sel);
         if (el) {
-          try { r = el.getBoundingClientRect(); if (r.width > 0 && r.height > 0 && (r.top < si.t || r.bottom > v.h - si.b) && $('#rzMain')) { var mn = $('#rzMain'); mn.scrollTop += Math.round(r.top + r.height / 2 - v.h / 2); r = el.getBoundingClientRect(); }      /* faqat #rzMain skrollanadi (scrollIntoView overflow:hidden ildizni ham siljitadi) */ } catch (e) { r = null; }
+          try { r = el.getBoundingClientRect(); if (r.width > 0 && r.height > 0 && (r.top < si.t || r.bottom > v.h - si.b) && $('#rzMain')) { var mn = $('#rzMain'); if (tip.sc == null) tip.sc = mn.scrollTop; mn.scrollTop += Math.round(r.top + r.height / 2 - v.h / 2); r = el.getBoundingClientRect(); }      /* faqat #rzMain skrollanadi (scrollIntoView overflow:hidden ildizni ham siljitadi) */ } catch (e) { r = null; }
         }
         if (el && r && r.width > 0 && r.height > 0 && r.bottom > si.t && r.top < v.h - si.b && r.right > 0 && r.left < v.w) break;
         if (!s) { tipsEnd(true); return; }
