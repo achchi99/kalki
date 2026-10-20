@@ -15,7 +15,7 @@ const QOLDA = {
   sut: L('sut sut-yogsiz qatiq qatiq-yogsiz suzma qurt ayron kefir qaymoq smetana pishloq pishloq-yumshoq tvorog5 tvorog9 sariyog yogurt-meva yogurt-tabiiy muzqaymoq muzqaymoq-eskimo krem-pishloq motsarella sut-kokteyl kakao choy-sut latte kapuchino kofe-3in1 manka sgushyonka shokolad-sut sirok nutella sirniki tort napoleon medovik chizkeyk ekler brauni keks vafli pechenye blin kartoshka-pyure omlet pitsa pitsa-pepperoni pitsa-4 bulochka kruassan donut protein-bar konfet boglirsoq paxlava'),
   yongoq: L('yongoq bodom pista funduk yerfistiq nutella granola protein-bar paxlava brauni konfet'),
   glyuten: L('patir qatlama non-oq non-qora lavash-non baget bulochka kruassan pirojki makaron makaron-xom manka suli suli-xom kornfleks granola kraker suxari tost pitsa pitsa-pepperoni pitsa-4 pelmeni vareniki blin sirniki chebureki belyashi donut keks tort napoleon medovik pirog-olma ekler brauni chizkeyk vafli pechenye chakchak paxlava boglirsoq burger burger-katta hotdog lavash-tovuq lavash-mol lavash-roll doner sendvich naggets tovuq-qov kotlet kolbasa sosiska pivo kvas soya-sous xonim halim sumalak protein-bar somsa-qat somsa-qovoq chuchvara-sho lagmon-qov'),
-  choshqa: L('bekon kolbasa sosiska tushonka hotdog pelmeni pitsa pitsa-pepperoni olivye zefir marmelad')
+  choshqa: L('bekon pitsa-pepperoni')       // FAQAT aniq cho'chqali taomlar (bekon, cho'chqali pepperoni; vetchina va h.k. bazaga qo'shilsa shu yerga). Kolbasa, sosiska, pelmeni, hot-dog, tushonka — mol/tovuq go'shtidan (O'zbekiston), zefir/marmelad — jelatin manbasi noaniq → cho'chqa tegi yo'q
 };
 function hammasi() {
   const foods = R('data/ovqatlar.json').foods, rets = Object.fromEntries(R('data/baza-retseptlar.json').retseptlar.map((r) => [r.id, r])), by = Object.fromEntries(foods.map((f) => [f.i, f]));
@@ -30,7 +30,7 @@ function hammasi() {
       const k = f.i + '#' + v, s = new Set();
       if (g.rc && rets[g.rc]) recTeg(g.rc).forEach((t) => s.add(t));
       const al = foods.find((x) => x.al && x.al.f === f.i && x.al.v === v);       // yashirin alias taom (eski id) — shu kombinatsiyaning qo'lda tegi
-      if (al) (manual[al.i] || []).forEach((t) => s.add(t)); else if (v === dk) (manual[f.i] || []).forEach((t) => s.add(t));
+      if (al) own(al).forEach((t) => s.add(t)); else if (v === dk) (manual[f.i] || []).forEach((t) => s.add(t));
       if (!al && v !== dk && !g.rc) (manual[f.i] || []).forEach((t) => { if (!f.fam.g || true) s.add(t); });   // aliassiz kombinatsiya: ildiz tegi (ehtiyotkor tomon)
       out[k] = ord(s);
     }

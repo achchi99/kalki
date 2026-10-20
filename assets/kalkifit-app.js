@@ -9,10 +9,11 @@
   function lsGet(k) { try { var v = localStorage.getItem(k); if (v == null && OLD[k]) { v = localStorage.getItem(OLD[k]); if (v != null && k !== 'kalki_fit_import') localStorage.setItem(k, v); } return v; } catch (e) { return null; } }
   var D = {
     uz: {
+      obLater: 'Keyinroq', obLater2: "Keyinroq — o'rtacha me'yor bilan boshlash", txChip: 'Taxminiy · Aniqlashtirish', txP: "Me'yoringiz taxminiy", obYq2: "Yemaydigan narsangiz bormi?", obYh2: 'Belgilangan taomlar sizga taklif qilinmaydi. Hech narsa tanlamasangiz ham bo\'ladi.', obYno: "Yo'q, hammasini yeyman", obYgo: 'Davom etish', obYpork: "Cho'chqa go'shti hech qachon taklif qilinmaydi.", txT: "Me'yoringiz taxminiy — 30 soniyada aniqlashtiring", txBtn: 'Aniqlashtirish', sldMinus: 'Kamaytirish', sldPlus: "Ko'paytirish", sldEdit: 'Aniq qiymatni yozish',
       appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
       today: 'Bugun', jClose: 'Yopish (bugun uchun)', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
       mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Tamaddi', meald: 'Kechki ovqat', meals: 'Tamaddi',
-      o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Kasr bilan yozish mumkin: 72,5',
+      o1q: 'Jinsingiz?', male: 'Erkak', female: 'Ayol', preg: 'Homiladorman yoki emizikli onaman', o2q: 'Yoshingiz nechida?', o2h: "Faqat kunlik me'yorni hisoblash uchun.", o3q: "Bo'yingiz necha sm?", o4q: 'Vazningiz necha kg?', o4h: 'Lineykani suring yoki − / + bosing. Taxminiy qiymat ham bo\'ladi.', o3h: 'Lineykani suring yoki − / + bosing.',
       o5q: "Kuningiz qanday o'tadi?", o6q: 'Maqsadingiz?', errAge: '10 dan 100 gacha yozing', errHeight: '120 dan 230 gacha yozing', errWeight: '30 dan 250 gacha yozing',
       a1: "Ko'proq o'tiraman", a1h: "Ofis yoki uyda ishlayman, kam yuraman", a2: 'Yengil faol', a2h: "Ozgina yuraman yoki haftada 1–2 mashq", a3: "O'rtacha faol", a3h: 'Haftada 3–5 mashq', a4: 'Juda faol', a4h: 'Deyarli har kuni mashq', a5: "Og'ir jismoniy mehnat", a5h: "Kun bo'yi oyoqda, og'ir ish",
       gkeep: 'Vaznni saqlash', gkeepH: "Hozirgi vaznni ushlab turish", gslow: 'Sekin kamaytirish', gslowH: 'Haftasiga ≈ 0,25 kg', glose: 'Kamaytirish', gloseH: 'Haftasiga ≈ 0,5 kg', ggain: "Ko'paytirish", ggainH: 'Haftasiga ≈ 0,25 kg', gLocked: "Sizning holatingizda faqat vaznni saqlash rejimi hisoblanadi.",
@@ -52,10 +53,11 @@
       units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six' }
     },
     ru: {
+      obLater: 'Позже', obLater2: 'Позже — начать со средней нормой', txChip: 'Примерно · Уточнить', txP: 'Норма примерная', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', obYpork: 'Свинина не предлагается никогда.', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
       appName: 'KalkiFit', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
       today: 'Сегодня', jClose: 'Закрыть (на сегодня)', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
       mealb: 'Завтрак', meall: 'Обед', mealds: 'Ужин', mealss: 'Перекус', meald: 'Ужин', meals: 'Перекус',
-      o1q: 'Ваш пол?', male: 'Мужской', female: 'Женский', preg: 'Я беременна или кормлю грудью', o2q: 'Сколько вам лет?', o2h: 'Только для расчёта дневной нормы.', o3q: 'Ваш рост в сантиметрах?', o4q: 'Ваш вес в килограммах?', o4h: 'Можно с дробью: 72,5',
+      o1q: 'Ваш пол?', male: 'Мужской', female: 'Женский', preg: 'Я беременна или кормлю грудью', o2q: 'Сколько вам лет?', o2h: 'Только для расчёта дневной нормы.', o3q: 'Ваш рост в сантиметрах?', o4q: 'Ваш вес в килограммах?', o4h: 'Двигайте линейку или нажимайте − / +. Примерное значение тоже подойдёт.', o3h: 'Двигайте линейку или нажимайте − / +.',
       o5q: 'Как проходит ваш день?', o6q: 'Ваша цель?', errAge: 'Введите от 10 до 100', errHeight: 'Введите от 120 до 230', errWeight: 'Введите от 30 до 250',
       a1: 'Больше сижу', a1h: 'Работаю в офисе или дома, мало хожу', a2: 'Слегка активный', a2h: 'Немного хожу или 1–2 тренировки в неделю', a3: 'Умеренно активный', a3h: '3–5 тренировок в неделю', a4: 'Очень активный', a4h: 'Тренировки почти каждый день', a5: 'Тяжёлый физический труд', a5h: 'Весь день на ногах, тяжёлая работа',
       gkeep: 'Сохранить вес', gkeepH: 'Удерживать текущий вес', gslow: 'Медленно снижать', gslowH: '≈ 0,25 кг в неделю', glose: 'Снижать', gloseH: '≈ 0,5 кг в неделю', ggain: 'Набирать', ggainH: '≈ 0,25 кг в неделю', gLocked: 'В вашем случае считается только режим сохранения веса.',
@@ -150,8 +152,8 @@
   function num(v) { return S.num(v); }
   function KG() { return lang === 'ru' ? 'кг' : 'kg'; }
   function ML() { return lang === 'ru' ? 'мл' : 'ml'; }
-  function openSheet(kind, html, o) { kit.openSheet(kind, html, o || { noFocus: true }); }
-  function setSheet(html) { var sh = $('#rzSheet'); sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; kit.dpInit(); }
+  function openSheet(kind, html, o) { kit.openSheet(kind, html, o || { noFocus: true }); if (SL) SL.mount($('#rzSheet')); }
+  function setSheet(html) { var sh = $('#rzSheet'); sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; kit.dpInit(); if (SL) SL.mount(sh); }
   function mealName(m) { return T('meal' + (m === 'd' ? 'd' : m)); }
   function nameOf(f) { return lang === 'ru' && f.r ? f.r : f.n; }
   function unitName(u) { return (D[lang].units && D[lang].units[u]) || D.uz.units[u] || u; }
@@ -391,9 +393,9 @@
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = (inst.isTop() ? inst.cardHtml() : '');
     h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div><div class="r">' + (sk >= 2 ? '<button type="button" class="sl-streak2" id="streakChip" data-act="streakinfo" aria-label="' + esc(T('hStreak', { n: sk }) + '. ' + T('stkQ')) + '">' + ico('flame') + esc(T('hStreak', { n: sk })) + '</button>' : '') + '<button type="button" class="sl-av" data-act="tab" data-v="profile" aria-label="' + esc(T('navProfile')) + '"><span data-cyr="skip">' + esc(T('avL')) + '</span></button></div></div>';
-    h += weekStripHtml(t);
+    h += weekStripHtml(t) + (Y && oneTimeOk() ? Y.yemayCard() : '');
     h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : '', b: fmt(curN), c: over ? T('vOver2') : T('vLeftK') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
-      '<div class="sl-rsub"><span><b id="kNum">' + fmt(tot.kcal) + '</b> ' + esc(T('cEaten2')) + '</span><i aria-hidden="true">·</i><span><b id="kGoal">' + fmt(pl.target) + '</b> ' + esc(T('cGoal2')) + '</span>' + (bal.credit > 0 ? '<i aria-hidden="true">·</i><span><b id="kBurn">+' + fmt(bal.credit) + '</b> ' + esc(T('cBurn2')) + '</span>' : '') + '<button type="button" class="sl-infob" data-act="xkcal" aria-label="ⓘ ' + esc(T('xKcalT')) + '">i</button></div></section>';
+      '<div class="sl-rsub"><span><b id="kNum">' + fmt(tot.kcal) + '</b> ' + esc(T('cEaten2')) + '</span><i aria-hidden="true">·</i><span><b id="kGoal">' + fmt(pl.target) + '</b> ' + esc(T('cGoal2')) + '</span>' + (bal.credit > 0 ? '<i aria-hidden="true">·</i><span><b id="kBurn">+' + fmt(bal.credit) + '</b> ' + esc(T('cBurn2')) + '</span>' : '') + '<button type="button" class="sl-infob" data-act="xkcal" aria-label="ⓘ ' + esc(T('xKcalT')) + '">i</button></div>' + taxChipHtml() + '</section>';
     h += jokeLineHtml();
     h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(emptyLine()) + '</p>' : '');
     if (Y) h += Y.todayCard();
@@ -481,7 +483,7 @@
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
     var seg = function (act, key, opts, cur, label) { return segHtml(label || '', opts.map(function (o) { return { attrs: 'data-act="' + act + '" data-' + key + '="' + o[0] + '"', on: cur === o[0], text: o[1] }; })); };
-    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>';
+    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + taxRowHtml();
     h += '<section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
     if (Y) h += Y.profileCard();
@@ -796,7 +798,7 @@
       if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         fd.busy = false; if (res.s === 429) fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
-        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
+        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
       }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
     });
   }
@@ -860,7 +862,7 @@
   var fd = null, CATS = ['o', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
   function openAdd(o) {
     o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || S.mealByHour(new Date().getHours()), mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false };
-    openSheet('add', searchHtml()); catsInit(); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
+    openSheet('add', searchHtml()); catsInit(); if (Y) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
     if (o.food) pickFood(o.food);
   }
   function entUnitTxt(e) { var vv = vOf(e.unit); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (vv) return qtyStr(e.qty) + ' ' + vName(vv); if (e.vn) return qtyStr(e.qty) + ' ' + e.vn; return qtyStr(e.qty) + ' ' + (e.unit && e.unit !== 'pc' ? unitName(e.unit) : unitName('porsiya')); }
@@ -884,9 +886,9 @@
     return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
   }
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
-  function recRow(r) {
+  function recRow(r, dim) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
-    return '<div class="sl-rw"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
@@ -894,7 +896,7 @@
   }
   function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
   function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
-    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.filter(function (c) { return !(c === 'baliq' && Y && Y.avoids('baliq')); }).map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
+    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.filter(catVisible).map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
   }
   function chipsHtml() { return fd.q.trim() ? '' : catsHtml(); }
   function catSelect(c) {                            // chip bosildi: shu chip tanlanadi (qayta bosilsa — «Mashhur»ga qaytadi), ro'yxat darhol almashadi, yengil fade (150 ms), tepaga qaytadi
@@ -923,22 +925,41 @@
     var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2); upd();
   }
   function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
-  function resRow(f, cat) {
+  /* «Yemaydiganlarim» qoidasi (yagona: kalkifit-yeymiz.js rinfo): cho'chqa — hech qayerda; cheklangan teglar — ro'yxatda yashiriladi (+ «Ko'rsatish»), qidiruvda belgi, porsiya oynasida yumshoq ogohlantirish */
+  function rI(f, vr) { return Y ? Y.rinfo(f, vr) : { pork: false, hit: [] }; }
+  function rSplit(list, keepPork) { var o = { show: [], hid: [] }; list.forEach(function (f) { var i = rI(f); if (i.pork && !keepPork) return; (i.hit.length ? o.hid : o.show).push(f); }); return o; }
+  function rNoPork(list) { return list.filter(function (f) { return !rI(f).pork; }); }
+  function rFoot(n) { return n ? '<button type="button" class="sl-txtbtn sl-rhid" data-act="rshow" aria-expanded="' + !!fd.showR + '">' + esc(T(fd.showR ? 'rhHide' : 'rhShow', { n: n })) + '</button>' : ''; }
+  function rEntInfo(e) { var f = e.fid ? foodById(e.fid) : null; return f ? rI(f.al ? (foodById(f.al.f) || f) : f, e.vr || null) : { pork: false, hit: [] }; }
+  var catCache = { k: '', m: {} };
+  function catVisible(c) {                              // butun guruh cheklangan bo'lsa (masalan «Baliq») — tabning o'zi yashiriladi
+    if (c === 'baliq' && Y && Y.avoids('baliq')) return false; if (!Y || !Y.chReady() || dbState !== 2) return true;
+    var k = dbState + '|' + Y.yemay().join(); if (catCache.k !== k) catCache = { k: k, m: {} }; if (catCache.m[c] != null) return catCache.m[c];
+    var l = allFoods().filter(function (f) { return inCat(f, c) && !f.h && !f.custom; }); return (catCache.m[c] = !l.length || l.some(function (f) { var i = rI(f); return !i.pork && !i.hit.length; }));
+  }
+  function rHits() { if (!Y || !fd || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var o = fd.mode === 'item' ? fd.items[fd.ix] : fd; if (!o) return []; if (!o.food && fd.mode === 'item') return o.rHit || []; if (!o.food || o.food.custom || (fd.mode === 'portion' && fd.editId != null)) return []; var f = o.fam || o.food; return rI(f, o.fam ? o.food.vr : null).hit; }      // AI matn / rasm natijasi (item) ham: taom tanilsa — o'sha yumshoq ogohlantirish
+  function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
+  function resRow(f, cat, dim) {
     var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f));
-    return '<button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
+    var bad = rI(f).hit.length;
+    return '<button type="button" class="sl-rr' + (dim ? ' dim' : '') + '" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
   }
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
+    if (Y && !Y.chReady()) { Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; }
     var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
-    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }
-    else if (fd.cat) { list = foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; }); return list.length ? list.map(function (f) { return resRow(f, true); }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
+    var withR = function (sp, fn) { return sp.show.map(function (f) { return fn(f, false); }).join('') + (fd.showR ? sp.hid.map(function (f) { return fn(f, true); }).join('') : '') + rFoot(sp.hid.length); };
+    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }      // qidiruv: odam o'zi yozgan — HAMMASI chiqadi (cho'chqali ham, belgisiz); cheklangani «Yemaydiganlaringizda» belgisi bilan
+    else if (fd.cat) { var sc = rSplit(foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; })); return sc.show.length || sc.hid.length ? withR(sc, function (f, d) { return resRow(f, true, d); }) : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
     else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
-      var rec = fd.recSnap || (fd.recSnap = le.slice(0, 5)), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
-      var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
-      return sec(T('aRecentT'), rec.map(recRow), T('aRecHint')) + sec(T('aPop'), pop.map(resRow)) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
+      var recAll = fd.recSnap || (fd.recSnap = le.slice(0, 8)), recI = recAll.filter(function (r) { return !rEntInfo(r.e).pork; }), recS = recI.filter(function (r) { return !rEntInfo(r.e).hit.length; }), recH = recI.filter(function (r) { return rEntInfo(r.e).hit.length; });
+      var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8), true), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
+      var pop = rec.length ? [] : (function () { var r0 = rSplit(st.recents.map(foodById).filter(Boolean)).show.slice(0, 5); return r0.length ? r0 : rSplit(foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6); })();
+      var hidN = recH.length + favSp.hid.length;
+      return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : []), T('aRecHint')) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
     }
     if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
-    return list.map(resRow).join('');
+    return list.map(function (f) { return resRow(f); }).join('');
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); var cw = $('#fdCat'); if (cw) { var want = chipsHtml(); if (cw._k !== want) { cw.innerHTML = want; cw._k = want; catsInit(); } } }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
@@ -1010,7 +1031,7 @@
   function pwUpdate(fromInput) {
     var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
     kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
-    var set = function (id, v) { var e = $(id); if (e) e.textContent = v; };
+    var set = function (id, v) { var e = $(id); if (e) e.textContent = v; }; var rw = $('#rWarn'); if (rw) rw.innerHTML = rWarnInner();
     set('#fdMp', Math.round(pt.p)); set('#fdMf', Math.round(pt.f)); set('#fdMc', Math.round(pt.c));
     if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
     set('#fdQu', o.unit === 'g100' ? T('gram') : pwUName(o.unit)); set('#fdGr', '≈ ' + fmt(pwGrams(o)) + ' ' + T('gram')); set('#fdInfo', pwInfo(o)); if (!o.fam) set('#fdTSum', pwUName(o.unit)); $('#fdQuick').innerHTML = pwQuick(o);
@@ -1030,7 +1051,7 @@
     if (out.length < 5 && o.food && o.food.t) {          // yetmasa — shu turdagi (meva, go'sht…) kaloriyasi yaqin taomlar
       allFoods().filter(function (f) { return f.t === o.food.t && f.id !== o.food.id && !seen[f.id]; }).sort(function (a, b) { return Math.abs(a.k - o.food.k) - Math.abs(b.k - o.food.k); }).forEach(function (f) { if (out.length < 5) { seen[f.id] = 1; out.push(f); } });
     }
-    return out.slice(0, 5);
+    return rSplit(out).show.slice(0, 5);
   }
   function pwSwapHtml(o) {
     var l = pwSimilar(o);
@@ -1047,7 +1068,7 @@
   function pwScreen() { setSheet(fd.mode === 'item' ? itemHtml() : portionHtml()); }
   function itemHtml() {
     var it = fd.items[fd.ix];
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><button type="button" class="rz-x sl-src" data-act="pwsrc" aria-label="' + esc(T('pManba')) + '">' + ico('info') + '</button></div>' + pwBody(it, true) +
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><button type="button" class="rz-x sl-src" data-act="pwsrc" aria-label="' + esc(T('pManba')) + '">' + ico('info') + '</button></div><div id="rWarn">' + rWarnInner() + '</div>' + pwBody(it, true) +
       '<div class="sl-cta"><button type="button" class="sl-main" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
   }
   function itemOpen(i, back) { fd.back = back; fd.ix = i; fd.mode = 'item'; var it = fd.items[i]; if (!it.unit) { it.unit = 'pc'; it.qty = 1; } setSheet(itemHtml()); }
@@ -1231,11 +1252,11 @@
     fd.added[key] = it.id; commit(); vib(); refreshRes();
     toast(T('aAdded', { x: nm + ' · ' + entUnitTxt(e) }), function () { S.removeFood(st, date, it.id); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000); afterWater(); jokeAfter('food', { sweet: !!(f && f.t === 'h') });
   }
-  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) }); }
+  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : (rHits().length ? T('pCtaForce', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) })); }
   function portionHtml() {
     var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1;
     return '<div class="sl-ph2"><button type="button" class="sl-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><span class="sp"></span>' + (f ? '<button type="button" class="sl-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '') + '<button type="button" class="sl-chip sl-src" data-act="pwsrc">' + ico('info') + '<span>' + esc(T('pManba')) + '</span></button></div>' +
-      vSugHtml() + pwBody(fd) + '<div id="orBox">' + orCardHtml() + '</div>' +
+      '<div id="rWarn">' + rWarnInner() + '</div>' + vSugHtml() + pwBody(fd) + '<div id="orBox">' + orCardHtml() + '</div>' +
       '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div>';
   }
   function fSave() {
@@ -1324,6 +1345,9 @@
     if (dbState === 2) run(); else loadDb(function () { run(); });
   }
   function cid() { try { var c = lsGet(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
+  function rGuess(nm) {                               // bazaga moslanmagan AI/rasm qatori: nomdan taom taniladimi? tanilsa — «Yemaydiganlarim» teglari (yumshoq ogohlantirish uchun)
+    try { if (!Y || !Y.chReady()) return []; var r = S.parseText(String(nm || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); if (r.items.length !== 1 || r.missing.length) return []; var x = r.items[0]; return rI(x.fam || x.food, x.fam ? x.vr : null).hit; } catch (e) { return []; }
+  }
   function aiItem(o) {                               // AI javobini bazaga moslash: nom + porsiya → eng yaqin taom/oila/birikma; kkal AI bilan ±50…160% ichida bo'lsa baza qiymati (aks holda AI «taxminiy»)
     try {
       var r = S.parseText(String(o.porsiya || '') + ' ' + String(o.nom || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels });
@@ -1338,7 +1362,7 @@
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
-      res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
+      res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });
   }
@@ -1386,11 +1410,15 @@
     var p = st.profile; pe = { sex: p.sex, preg: p.preg, act: p.act, goal: p.goal };
     openSheet('prof', profHtml(p));
   }
+  function peSlider(id, f, v) {                          // Profil tahriri ham slayder: chegaralar mavjud qiymatni o'z ichiga oladi (eski qiymat o'zgarib ketmasin)
+    var lm = OBLIM[f], x = num(v) || obDef(pe.sex)[f], mn = Math.min(lm.min, Math.floor(x)), mx = Math.max(lm.max, Math.ceil(x)), unit = { age: lang === 'ru' ? 'лет' : 'yosh', height: lang === 'ru' ? 'см' : 'sm', weight: lang === 'ru' ? 'кг' : 'kg' }[f], lb = { age: 'pfAge', height: 'pfH', weight: 'pfW' }[f];
+    return '<div class="rz-fl">' + esc(T(lb)) + '</div><div class="sl-pe-sld">' + SL.html({ id: id, min: mn, max: mx, step: lm.step, value: x, unit: unit, label: T(lb), minus: T('sldMinus'), plus: T('sldPlus'), edit: T('sldEdit') }) + '</div>';
+  }
   function profHtml(p) {
     var lock = S.restrictions({ age: num(p.age), sex: pe.sex, preg: pe.preg, weight: num(p.weight), height: num(p.height) }).keepOnly;
     return shHead(T('meEdit')) + '<div class="rz-fl">' + esc(T('pfSex')) + '</div>' + segHtml(T('pfSex'), [{ attrs: 'data-act="pesex" data-v="m"', on: pe.sex === 'm', text: T('male') }, { attrs: 'data-act="pesex" data-v="f"', on: pe.sex === 'f', text: T('female') }]) + '' +
       (pe.sex === 'f' ? '<label class="rz-chk"><input type="checkbox" id="peP"' + (pe.preg ? ' checked' : '') + '><span>' + esc(T('preg')) + '</span></label>' : '') +
-      numFld('peA', T('pfAge'), p.age, '', 'numeric') + numFld('peH', T('pfH'), p.height, '', 'numeric') + numFld('peW', T('pfW'), dec(num(p.weight), 1), '') + numFld('peG', T('meGoalW'), p.goalWeight ? dec(p.goalWeight, 1) : '', '') +
+      peSlider('peA', 'age', p.age) + peSlider('peH', 'height', p.height) + peSlider('peW', 'weight', p.weight) + numFld('peG', T('meGoalW'), p.goalWeight ? dec(p.goalWeight, 1) : '', '') +
       '<div class="rz-fl">' + esc(T('pfAct')) + '</div><div class="rz-chips">' + [1, 2, 3, 4, 5].map(function (a) { return '<button type="button" class="rz-chip' + (pe.act === a ? ' on' : '') + '" data-act="peact" data-v="' + a + '">' + esc(T('a' + a)) + '</button>'; }).join('') + '</div>' +
       '<div class="rz-fl">' + esc(T('pfGoal')) + '</div><div class="rz-chips">' + ['keep', 'slow', 'lose', 'gain'].map(function (g) { var off = lock && g !== 'keep'; return '<button type="button" class="rz-chip' + (pe.goal === g ? ' on' : '') + (off ? ' off' : '') + '" data-act="pegoal" data-v="' + g + '"' + (off ? ' aria-disabled="true"' : '') + '>' + esc(T('g' + g)) + '</button>'; }).join('') + '</div>' + (lock ? '<p class="rz-p warn">' + esc(T('gLocked')) + '</p>' : '') +
       '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="pesave">' + esc(T('save')) + '</button></div>';
@@ -1458,65 +1486,101 @@
 
   /* ---------- yo'l-yo'riq va "ilova haqida" ---------- */
   var TIPS = [{ sel: '#kcalBtn', key: 'tip1', pos: 'below' }, { sel: '#mainAdd', key: 'tip2', pos: 'above' }, { sel: '.rz-tab[data-v=history]', key: 'tip3', pos: 'above' }];
-  function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
+  function tipsStart() { tipsSess = true; kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
   function aboutOpen(on) {
     document.body.classList.toggle('rz-aboutopen', !!on); var a = document.getElementById('rzAbout'); if (!a) return;
     if (on) { a.scrollTop = 0; var b = document.getElementById('rzAboutBack'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {} } else { var m = $('#rzMain'); if (m) try { m.focus({ preventScroll: true }); } catch (e) {} }
   }
 
-  /* ---------- onboarding: bir savol — bir ekran ---------- */
-  var OBF = { 2: 'age', 3: 'height', 4: 'weight' };
+  /* ---------- onboarding: bir savol — bir ekran, KLAVIATURASIZ (slayder: assets/num-slider.js) ----------
+   Qadamlar: 1 jins · 2 yosh · 3 bo'y · 4 vazn · 5 faollik · 6 maqsad · 7 yemaydigan narsa (ixtiyoriy) · 8 natija. Saqlash formati va me'yor hisobi (S.plan) o'zgarmagan.
+   «Keyinroq» (1-ekran): jinsga qarab o'rtacha qiymatlar bilan me'yor hisoblanadi (taxminiy), keyin yumshoq karta («30 soniyada aniqlashtiring») → refine rejimi (2–6 + natija). */
+  var SL = window.KalkiSlider, OBN = 7, OBID = { obAge: 'age', obHeight: 'height', obWeight: 'weight' };
+  var OBDEF = { m: { age: 30, height: 175, weight: 75 }, f: { age: 30, height: 162, weight: 62 } }, OBLIM = { age: { min: 14, max: 90, step: 1 }, height: { min: 120, max: 220, step: 1 }, weight: { min: 35, max: 200, step: 0.5 } };
+  function obDef(sex) { return OBDEF[sex === 'f' ? 'f' : 'm']; }
+  function obFmt(f, v) { return f === 'weight' ? String(v).replace('.', ',') : String(Math.round(v)); }
   function obNew() {
-    ob = { step: 1, sex: '', preg: false, age: '', height: '', weight: '', act: 0, goal: '', anim: null };
+    ob = { step: 1, sex: '', preg: false, age: '', height: '', weight: '', act: 0, goal: '', yemay: [], touched: {}, anim: null, refine: false, counted: false, ycounted: false };
     try {
       var imp = JSON.parse(lsGet(LS_IMPORT) || 'null');
       if (imp && typeof imp === 'object') {
         ob.sex = imp.sex === 'f' ? 'f' : (imp.sex === 'm' ? 'm' : ''); ob.age = imp.age ? String(Math.round(num(imp.age))) : ''; ob.height = imp.height ? String(Math.round(num(imp.height))) : ''; ob.weight = imp.weight ? String(num(imp.weight)).replace('.', ',') : '';
-        ob.act = S.ACT[imp.act] ? +imp.act : 0; ob.goal = S.GOAL_DELTA[imp.goal] != null ? imp.goal : '';
+        ob.act = S.ACT[imp.act] ? +imp.act : 0; ob.goal = S.GOAL_DELTA[imp.goal] != null ? imp.goal : ''; ['age', 'height', 'weight'].forEach(function (f) { if (ob[f]) ob.touched[f] = true; });
         var er = S.validate(obProfile()); ob.step = !ob.sex ? 1 : er.age ? 2 : er.height ? 3 : er.weight ? 4 : !ob.act ? 5 : !ob.goal ? 6 : 7;
       }
     } catch (e) {}
   }
   function obProfile() { return { sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: num(ob.age), height: num(ob.height), weight: num(ob.weight), act: ob.act, goal: ob.goal || 'keep', goalWeight: null }; }
   function optBtn(act, v, title, sub, on, off) { return '<button type="button" class="rz-opt big' + (on ? ' on' : '') + (off ? ' off' : '') + '" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + !!on + '"' + (off ? ' aria-disabled="true"' : '') + '><b>' + esc(title) + '</b>' + (sub ? '<span>' + esc(sub) + '</span>' : '') + '</button>'; }
+  function obSlider(f) {
+    var lm = OBLIM[f], id = { age: 'obAge', height: 'obHeight', weight: 'obWeight' }[f], unit = { age: lang === 'ru' ? 'лет' : 'yosh', height: lang === 'ru' ? 'см' : 'sm', weight: lang === 'ru' ? 'кг' : 'kg' }[f], q = { age: 'o2q', height: 'o3q', weight: 'o4q' }[f];
+    if (!ob[f]) ob[f] = obFmt(f, obDef(ob.sex)[f]);
+    return SL.html({ id: id, min: lm.min, max: lm.max, step: lm.step, value: num(ob[f]), unit: unit, label: T(q), minus: T('sldMinus'), plus: T('sldPlus'), edit: T('sldEdit') });
+  }
   function showOnb() {
     var el = $('#rzOnb'); if (!ob) obNew();
-    if (ob.yn && Y) { el.innerHTML = '<div class="rz-ob-top"><button type="button" class="rz-x" data-act="obynok" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><div class="rz-dots"></div><span></span></div>' + Y.obScreen(ob.yemay || []); el.hidden = false; el.classList.remove('out'); return; }
-    var s = ob.step, an = ob.anim, foot = ''; ob.anim = null;
-    var h = '<div class="rz-ob-top">' + (s > 1 ? '<button type="button" class="rz-x" data-act="obback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button>' : '<span></span>') + '<div class="rz-dots">' + [1, 2, 3, 4, 5, 6].map(function (i) { return '<i class="' + (i === s ? 'on' : (i < s ? 'done' : '')) + '"></i>'; }).join('') + '</div><span></span></div><div class="rz-ob-body' + (an ? ' in-' + an : '') + '">';
-    if (s === 1) { h += '<h2 class="rz-q">' + esc(T('o1q')) + '</h2>' + optBtn('obsex', 'm', T('male'), '', ob.sex === 'm') + optBtn('obsex', 'f', T('female'), '', ob.sex === 'f') + bk.restoreLink() + akk.restoreLink() + (ob.sex === 'f' ? '<label class="rz-chk" style="margin-top:12px"><input type="checkbox" id="obPreg"' + (ob.preg ? ' checked' : '') + '><span>' + esc(T('preg')) + '</span></label>' : ''); foot = ob.sex ? 'next' : 'next0'; }
-    if (OBF[s]) { var f = OBF[s], unit = f === 'age' ? (lang === 'ru' ? 'лет' : 'yosh') : (f === 'height' ? (lang === 'ru' ? 'см' : 'sm') : (lang === 'ru' ? 'кг' : 'kg'));
-      h += '<h2 class="rz-q">' + esc(T('o' + s + 'q')) + '</h2>' + ((s === 2 || s === 4) ? '<p class="rz-p">' + esc(T('o' + s + 'h')) + '</p>' : '') + '<div class="rz-amt sl-obamt" id="obAmt"><span id="obNum">' + (ob[f] ? esc(ob[f]) : '0') + '</span><small> ' + unit + '</small></div><p class="rz-p warn" id="obErr" hidden></p>' + kit.padHtml(f === 'weight' ? 'dec' : 'int'); foot = 'next'; }
-    if (s === 5) { h += '<h2 class="rz-q">' + esc(T('o5q')) + '</h2>' + [1, 2, 3, 4, 5].map(function (a) { return optBtn('obact', a, T('a' + a), T('a' + a + 'h'), ob.act === a); }).join(''); foot = ob.act ? 'next' : 'next0'; }
-    if (s === 6) { var lock = S.restrictions(obProfile()).keepOnly; h += '<h2 class="rz-q">' + esc(T('o6q')) + '</h2>' + ['keep', 'slow', 'lose', 'gain'].map(function (g) { return optBtn('obgoal', g, T('g' + g), T('g' + g + 'H'), (ob.goal === g) || (lock && g === 'keep' && !ob.goal), lock && g !== 'keep'); }).join('') + (lock ? '<p class="rz-p warn">' + esc(T('gLocked')) + '</p>' : ''); foot = (ob.goal || lock) ? 'next' : 'next0'; }
-    if (s === 7) {
+    var s = ob.step, an = ob.anim, h = '', foot = 'next', nav = ''; ob.anim = null;
+    if (!ob.counted && !ob.refine) { ob.counted = true; if (Y) Y.count('onboarding_boshlandi'); }
+    var body = '';
+    if (s === 1) { body = '<h2 class="rz-q">' + esc(T('o1q')) + '</h2>' + optBtn('obsex', 'm', T('male'), '', ob.sex === 'm') + optBtn('obsex', 'f', T('female'), '', ob.sex === 'f') + bk.restoreLink() + akk.restoreLink() + (ob.sex === 'f' ? '<label class="rz-chk" style="margin-top:12px"><input type="checkbox" id="obPreg"' + (ob.preg ? ' checked' : '') + '><span>' + esc(T('preg')) + '</span></label>' : ''); foot = ob.sex ? 'next' : 'next0'; }
+    if (OBID && (s === 2 || s === 3 || s === 4)) { var f = { 2: 'age', 3: 'height', 4: 'weight' }[s]; body = '<h2 class="rz-q">' + esc(T('o' + s + 'q')) + '</h2>' + '<p class="rz-p">' + esc(T('o' + s + 'h')) + '</p>' + '<div class="sl-ob-sld">' + obSlider(f) + '</div>'; }
+    if (s === 5) { body = '<h2 class="rz-q">' + esc(T('o5q')) + '</h2>' + [1, 2, 3, 4, 5].map(function (x) { return optBtn('obact', x, T('a' + x), T('a' + x + 'h'), ob.act === x); }).join(''); foot = ob.act ? 'next' : 'next0'; }
+    if (s === 6) { var lock = S.restrictions(obProfile()).keepOnly; body = '<h2 class="rz-q">' + esc(T('o6q')) + '</h2>' + ['keep', 'slow', 'lose', 'gain'].map(function (g) { return optBtn('obgoal', g, T('g' + g), T('g' + g + 'H'), (ob.goal === g) || (lock && g === 'keep' && !ob.goal), lock && g !== 'keep'); }).join('') + (lock ? '<p class="rz-p warn">' + esc(T('gLocked')) + '</p>' : ''); foot = (ob.goal || lock) ? 'next' : 'next0'; }
+    if (s === 7) { body = '<h2 class="rz-q">' + esc(T('obYq2')) + '</h2><p class="rz-p">' + esc(T('obYh2')) + '</p>' + (Y ? Y.chipsHtml(ob.yemay, 'obyntog') : '') + '<p class="rz-priv">' + esc(T('obYpork')) + '</p><p class="rz-priv sl-ywarn">' + esc(T('obYwarn')) + '</p>'; foot = 'yemay'; }
+    if (s === 8) {
       var pr = obProfile(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; var pl = S.plan(pr);
       var why = pl.goal === 'keep' ? T('rWhyKeep', { tdee: fmt(pl.tdee) }) : T(pl.goal === 'gain' ? 'rWhyGain' : 'rWhyLose', { tdee: fmt(pl.tdee), kg: dec(Math.abs(pl.kgPerWeek), 2), d: fmt(Math.abs(pl.target - pl.tdee)) });
-      h += '<div class="sl-res7"><p class="rz-fl" style="text-align:center">' + esc(T('rT')) + '</p><div class="sl-big" aria-live="polite"><b id="obTarget">' + fmt(pl.target) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(why) + '</p>' +
+      body = '<div class="sl-res7"><p class="rz-fl" style="text-align:center">' + esc(T('rT')) + '</p><div class="sl-big" aria-live="polite"><b id="obTarget">' + fmt(pl.target) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(why) + '</p>' +
         (pl.floorApplied ? '<p class="rz-p warn">' + esc(T('rFloor', { min: fmt(pl.floorMin), kg: dec(Math.abs(pl.kgPerWeek), 2) })) + '</p>' : '') +
         pl.notes.filter(function (n) { return n !== 'floor'; }).map(function (n) { return '<p class="rz-p warn">' + esc(T(n === 'preg' ? 'pregN' : n)) + '</p>'; }).join('') + (pl.doctor ? '<p class="rz-p warn"><b>' + esc(T('rDoc')) + '</b></p>' : '') +
-        '<p class="rz-p">' + esc(T('rMacro', { p: pl.macros.p, f: pl.macros.f, c: pl.macros.c })) + '<br>' + esc(T('rWater', { n: pl.water.glasses, ml: fmt(pl.water.ml) })) + '</p><p class="rz-p sm">' + esc(T('disc')) + '</p>' + (Y ? Y.obLink() : '') + '</div>'; foot = 'start';
+        '<p class="rz-p">' + esc(T('rMacro', { p: pl.macros.p, f: pl.macros.f, c: pl.macros.c })) + '<br>' + esc(T('rWater', { n: pl.water.glasses, ml: fmt(pl.water.ml) })) + '</p><p class="rz-p sm">' + esc(T('disc')) + '</p></div>'; foot = 'start';
     }
-    h += '</div>' + (foot === 'next' || foot === 'next0' ? '<div class="rz-ob-foot"><button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(s === 6 ? T('next') : T('next')) + '</button></div>' : '') + (foot === 'start' ? '<div class="rz-ob-foot"><button type="button" class="rz-btn primary" data-act="obstart">' + esc(T('start')) + '</button></div>' : '');
-    el.innerHTML = h; el.hidden = false; el.classList.remove('out');
-    if (s === 7) kit.setNum($('#obTarget'), 0, planOfOb().target, { dur: 700 });
+    var first = ob.refine ? 2 : 1, dots = [1, 2, 3, 4, 5, 6, 7].map(function (i) { return '<i class="' + (i === s ? 'on' : (i < s ? 'done' : '')) + '"></i>'; }).join('');
+    var btn = foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
+    nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + '<span class="sl-ob-sp"></span></div>';
+    var later = s === 1 && ob.sex ? '<button type="button" class="rz-btn ghost sl-ob-later" data-act="oblater">' + esc(T('obLater2')) + '</button>' : '';
+    h = '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
+    el.className = 'rz-onb sl-ob'; el.innerHTML = h; el.hidden = false; el.classList.remove('out'); if (SL) SL.mount(el);
+    if (s === 8) kit.setNum($('#obTarget'), 0, planOfOb().target, { dur: 700 });
   }
   function planOfOb() { var pr = obProfile(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; return S.plan(pr); }
   function obGo(step, an) { ob.step = step; ob.anim = an; showOnb(); }
   function obNext() {
     var s = ob.step;
     if (s === 1) { obGo(2, 'f'); return; }
-    if (OBF[s]) { var f = OBF[s], er = S.validate(Object.assign({ sex: 'm', act: 1, goal: 'keep', age: 30, height: 170, weight: 70 }, (function () { var o = {}; o[f] = num(ob[f]); return o; })())); if (er[f] || !ob[f]) { var e = $('#obErr'); e.textContent = T(f === 'age' ? 'errAge' : (f === 'height' ? 'errHeight' : 'errWeight')); e.hidden = false; flashEl($('#obAmt')); vib(30); return; } obGo(s + 1, 'f'); return; }
+    if (s === 2 || s === 3 || s === 4) { obGo(s + 1, 'f'); return; }
     if (s === 5) { obGo(6, 'f'); return; }
-    if (s === 6) { if (!ob.goal) ob.goal = 'keep'; obGo(7, 'f'); return; }
+    if (s === 6) { if (!ob.goal) ob.goal = 'keep'; obGo(ob.refine ? 8 : 7, 'f'); return; }
+    if (s === 7) { if (!ob.ycounted) { ob.ycounted = true; if (Y) Y.count(ob.yemay.length ? 'yemaydi_tanlandi' : 'yemaydi_hammasi'); } obGo(8, 'f'); return; }
   }
-  function obPrefs() { var p = {}, l = ob && ob.yemay; if (l && l.length) { p.yemay = l.slice(); if (l.indexOf('baliq') > -1) p.baliqOff = true; } return p; }
-  function obStart() {
-    var pr = obProfile(), n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
+  function obBack() { var first = ob.refine ? 2 : 1; if (ob.refine && ob.step === first) { obClose(); return; } obGo(Math.max(first, ob.step === 8 && ob.refine ? 6 : ob.step - 1), 'b'); }
+  function obPrefs() { var p = {}, l = ob && ob.yemay; if (l && l.length) { p.yemay = l.slice(); if (l.indexOf('baliq') > -1) p.baliqOff = true; } if (ob && ob.ycounted) p.yemayK = 1; return p; }
+  function obFinish(pr, later) {                          // yangi foydalanuvchi: holat yaratiladi (saqlash formati o'zgarmagan)
+    var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
+    if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb();
     var el = $('#rzOnb'); el.classList.add('out');
-    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); }, 260);
+    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); }, 260);
   }
+  function obStart() { if (ob.refine) { obRefineSave(); return; } obFinish(obProfile(), false); }
+  function obLater() { if (!ob || !ob.sex) return; var d = obDef(ob.sex); obFinish({ sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: d.age, height: d.height, weight: d.weight, act: 2, goal: 'keep', goalWeight: null }, true); }
+  /* «Me'yoringiz taxminiy» → aniqlashtirish (slayder ekranlari 2–6 + natija); mavjud holat saqlanadi, faqat profil yangilanadi */
+  function obLock(on) { ['#rzMain', '.rz-nav'].forEach(function (q) { var e = $(q); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); }
+  function obClose() { var el = $('#rzOnb'); el.classList.add('out'); ob = null; wait(function () { el.hidden = true; el.classList.remove('out'); obLock(false); render(); }, 220); }
+  function taxOpen() { var p = st.profile; ob = { step: 2, refine: true, sex: p.sex, preg: !!p.preg, age: String(Math.round(num(p.age))), height: String(Math.round(num(p.height))), weight: String(num(p.weight)).replace('.', ','), act: p.act, goal: p.goal, yemay: [], touched: { age: 1, height: 1, weight: 1 }, anim: null, counted: true, ycounted: true }; obLock(true); showOnb(); }
+  function obRefineSave() {
+    var r = obProfile(), np = { sex: r.sex, preg: r.preg, age: r.age, height: r.height, weight: r.weight, act: r.act, goal: r.goal, goalWeight: st.profile.goalWeight || null }; if (S.restrictions(np).keepOnly) np.goal = 'keep';
+    st.profile = np; var d = todayStr(); if (st.weights.length === 0 || Math.abs(S.currentWeight(st) - np.weight) > 0.04) S.addWeight(st, d, np.weight); prefs().taxminiy = null; save(); ob = null;
+    var el = $('#rzOnb'); el.classList.add('out'); wait(function () { el.hidden = true; el.classList.remove('out'); obLock(false); render(); toast(T('saved'), null, true); }, 220);
+  }
+  /* «Taxminiy» belgisi: aniqlashtirilguncha doim turadi — Bugun'da aylana ostida kichik chip (joylashuvni siljitmaydi), Profil tepasida ixcham qator */
+  function taxChipHtml() { return prefs().taxminiy ? '<div class="sl-taxrow"><button type="button" class="sl-taxchip" id="taxChip" data-act="taxgo">' + esc(T('txChip')) + ' ›</button></div>' : ''; }
+  function taxRowHtml() { return prefs().taxminiy ? '<section class="rz-card sl-tax1" id="taxCard"><span>' + esc(T('txP')) + '</span><button type="button" class="rz-btn sm" data-act="taxgo">' + esc(T('txBtn')) + '</button></section>' : ''; }
+  var tipsSess = false;                                   // shu seansda yo'l-ko'rsatkich bor edi/bo'ldi → bir martalik kartalar KEYINGI ochilishda (bir vaqtda chiqmaydi)
+  function oneTimeOk() { return !!(st && st.prefs && st.prefs.tipsDone) && !tipsSess; }
+  if (SL) document.addEventListener('sldchange', function (e) {
+    var d = e.detail || {}, f = OBID[d.id]; if (f && ob) { ob[f] = obFmt(f, d.value); ob.touched[f] = true; }
+  });
 
   /* ---------- suv ---------- */
   function waterSheetHtml() {
@@ -1553,8 +1617,7 @@
       case 'addsteps': openSteps(todayStr()); break; case 'editsteps': openSteps(el.getAttribute('data-d')); break; case 'stepgoal': openSteps(null, true); break;
       case 'key': {
         var k = el.getAttribute('data-k'), ks = kit.sheetKind();
-        if (ob && !$('#rzOnb').hidden && OBF[ob.step]) { var f = OBF[ob.step]; ob[f] = kit.padApply(ob[f], k, { max: 3, dec: f === 'weight' ? 1 : 0 }); $('#obNum').textContent = ob[f] || '0'; $('#obErr').hidden = true; vib(5); }
-        else if (ks === 'steps') { sp.val = kit.padApply(sp.val, k, { max: 6 }); spUpdate(); vib(5); }
+        if (ks === 'steps') { sp.val = kit.padApply(sp.val, k, { max: 6 }); spUpdate(); vib(5); }
         else if (ks === 'weight') { wf.val = kit.padApply(wf.val, k, { max: 3, dec: 1 }); $('#wfNum').textContent = wf.val || '0'; vib(5); }
         break; }
       case 'spsave': spSave(); break; case 'addweight': openWeight(); break; case 'wfsave': wfSave(); break;
@@ -1684,11 +1747,14 @@
       case 'tplren2': { var rn = $('#tplNm').value.trim(); if (!rn) { flashEl($('#tplNm')); break; } S.renameTemplate(st, tm.rid, rn); save(); setSheet(tplsHtml()); break; }
       case 'spitem': { var it = supp && supp.items.filter(function (x) { return x.id === el.getAttribute('data-id'); })[0]; if (it) { setSheet(spCardHtml(it)); var shh = $('#rzSheet'); if (shh) shh.scrollTop = 0; } break; }
       case 'spback': setSheet(spListHtml()); break;
-      case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; showOnb(); break;
+      case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; ['age', 'height', 'weight'].forEach(function (f) { if (!ob.touched[f]) ob[f] = ''; }); showOnb(); break;      // tegilmagan qiymatlar yangi jinsning boshlang'ich qiymatiga qaytadi
       case 'obact': ob.act = +el.getAttribute('data-v'); showOnb(); break;
       case 'obgoal': if (el.getAttribute('aria-disabled') !== 'true') { ob.goal = el.getAttribute('data-v'); showOnb(); } break;
+      case 'rshow': fd.showR = !fd.showR; refreshRes(); break;
       case 'obnext': obNext(); break; case 'obstart': obStart(); break;
-      case 'obback': obGo(Math.max(1, ob.step - 1), 'b'); break;
+      case 'obback': obBack(); break;
+      case 'oblater': obLater(); break;
+      case 'taxgo': taxOpen(); break;
     }
   });
   root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
@@ -1719,9 +1785,10 @@
     if (Y) Y.init({ D: D, T: T, esc: esc, ico: ico, catIcon: catIcon, $: $, lang: function () { return lang; }, prefs: prefs, save: save, render: render, S: S, fmt: fmt, unitName: unitName, foodById: foodById, nameOf: nameOf, tileHtml: tileHtml, toast: toast, shHead: shHead,
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
       sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, openExternal: openExternal,
-      obYn: function (on) { ob.yn = on; showOnb(); }, obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
-    render(); inst.gate();
+      obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
+    tipsSess = !!(st && st.setup && !prefs().tipsDone); render(); inst.gate();
     if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    if (st.setup && Y) Y.loadCh();                   // «Yemaydiganlarim» qoidasi ro'yxatlarda tayyor turishi uchun (kichik fayl)
     window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
     var hv = viewOf(location.hash); if (hv && st.setup) { view = hv; render(); }
     if (location.hash === '#qoshish' && st.setup) openAdd({});

@@ -69,11 +69,11 @@ try {
   /* 9. 360 px: gorizontal skroll yo'q, hech narsa to'silmaydi */
   p = await mk(seed({ food: DAY }), { big: true }); await p.setViewportSize({ width: 360, height: 780 }); await p.waitForTimeout(400); for (const v of ['today', 'history', 'profile']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); assert.ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1 && document.querySelector('#rzMain').scrollWidth <= document.querySelector('#rzMain').clientWidth + 1), v + ': gorizontal skroll'); }
   assert.deepEqual(p.errs, []); log('360 px + katta shrift: Bugun/Tarix/Profil\'da gorizontal skroll yo\'q, xatolar yo\'q'); await p.context().close();
-  /* 10. Yangilik (v14, eng yangisi): banner → oyna → 3 band, [Ko'rsat] tugmalari tegishli joyga olib boradi va yoritadi (v13 mazmuni dizayn2 relizida tekshirilgan) */
-  for (const [band, tabV, hl] of [['Bugun nima yeymiz', 'today', '#yeCard'], ['Yemaydiganlarim', 'profile', '#ynCard'], ['Baliq kuni', 'profile', '#pushRow']]) {
-    p = await mk(seed({ food: DAY }), { news: '{"shown":13,"read":13}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); assert.match(await txt(p, '#ygPop'), /Yangi:.*Bugun nima yeymiz/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
-    const bands = await p.locator('#rzSheet li').allInnerTexts(); assert.ok(bands.length >= 3); assert.match(bands[0], /Bugun nima yeymiz/); assert.match(bands[1], /Yemaydiganlarim/); assert.match(bands[2], /Baliq kuni/);
-    await p.locator('#rzSheet li:has-text("' + band + '") [data-act=ygshow]').first().click(); await p.waitForTimeout(1000); assert.equal(await p.locator('.rz-tab.on').getAttribute('data-v'), tabV, band); assert.equal(await p.locator(hl + '.yg-hl').count() >= 1, true, band + ' yoritildi'); await p.context().close(); }
-  log('Yangilik v14: banner → oyna (Bugun nima yeymiz · Yemaydiganlarim · Baliq kuni); [Ko\'rsat] → Bugun (karta yoritiladi) / Profil (Yemaydiganlarim kartasi) / Profil (eslatma qatori)');
+  /* 10. Yangilik (v15, eng yangisi): banner → oyna → 3 band; birinchisida [Ko'rsat] Profil'dagi «Yemaydiganlarim» kartasiga olib boradi va yoritadi */
+  p = await mk(seed({ food: DAY }), { news: '{"shown":14,"read":14}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); assert.match(await txt(p, '#ygPop'), /Yangi:.*Yemaydiganlarim/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
+  const bands = await p.locator('#rzSheet li').allInnerTexts(); assert.ok(bands.length >= 3); assert.match(bands[0], /Yemaydiganlarim/); assert.match(bands[1], /barmoq bilan/); assert.match(bands[2], /Sosiska, kolbasa, pelmen/);
+  assert.equal(await p.locator('#rzSheet li:has-text("barmoq bilan") [data-act=ygshow]').count() + await p.locator('#rzSheet li:has-text("Sosiska") [data-act=ygshow]').count(), 0, 'band 2-3 da [Ko\'rsat] yo\'q');
+  await p.locator('#rzSheet li:has-text("Yemaydiganlarim") [data-act=ygshow]').first().click(); await p.waitForTimeout(1000); assert.equal(await p.locator('.rz-tab.on').getAttribute('data-v'), 'profile'); assert.equal(await p.locator('#ynCard.yg-hl').count() >= 1, true, 'Yemaydiganlarim kartasi yoritildi'); await p.context().close();
+  log('Yangilik v15: banner → oyna (Yemaydiganlarim · barmoq bilan kiritish · sosiska/kolbasa/pelmen); [Ko\'rsat] → Profil (Yemaydiganlarim kartasi yoritiladi)');
 } finally { await b.close().catch(() => {}); srv.close(); }
 console.log('\nHAMMASI OK (' + n + ' blok)');

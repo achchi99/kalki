@@ -203,8 +203,13 @@
    "glyuten"
   ],
   "hotdog": [
-   "glyuten",
-   "choshqa"
+   "glyuten"
+  ],
+  "hotdog#mol": [
+   "glyuten"
+  ],
+  "hotdog#tovuq": [
+   "glyuten"
   ],
   "hotdog-mol": [
    "glyuten"
@@ -305,8 +310,7 @@
   "kokat": [],
   "kola": [],
   "kolbasa": [
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "kompot": [],
   "konfet": [
@@ -421,9 +425,7 @@
   "manti#qovoq": [
    "glyuten"
   ],
-  "marmelad": [
-   "choshqa"
-  ],
+  "marmelad": [],
   "mastava": [],
   "mayiz": [],
   "mayonez": [
@@ -496,8 +498,7 @@
   ],
   "olcha": [],
   "olivye": [
-   "tuxum",
-   "choshqa"
+   "tuxum"
   ],
   "olma": [],
   "oluxori": [],
@@ -538,8 +539,7 @@
   ],
   "pelmeni": [
    "tuxum",
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "pirog-olma": [
    "tuxum",
@@ -560,8 +560,7 @@
   ],
   "pitsa": [
    "sut",
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "pitsa#4pishloq": [
    "sut",
@@ -569,8 +568,7 @@
   ],
   "pitsa#oddiy": [
    "sut",
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "pitsa#pepperoni": [
    "sut",
@@ -769,8 +767,7 @@
    "glyuten"
   ],
   "sosiska": [
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "sovuq-choy": [],
   "soya-sous": [
@@ -860,9 +857,7 @@
    "baliq"
   ],
   "turp": [],
-  "tushonka": [
-   "choshqa"
-  ],
+  "tushonka": [],
   "tut": [],
   "tuxum": [
    "tuxum"
@@ -953,8 +948,6 @@
   ],
   "zaytun": [],
   "zaytun-yogi": [],
-  "zefir": [
-   "choshqa"
-  ]
+  "zefir": []
  }
 }

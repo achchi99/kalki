@@ -421,3 +421,45 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 .rz.sl .rz-toast{bottom:calc(112px + env(safe-area-inset-bottom,0px))}
 /* flex-ustundagi (.rz-main) elementlar hech qachon qisilmaydi — hazil/suv qatorlari, kartalar to'liq balandligida (iOS'da qirqilish sababi shu edi) */
 .rz.sl .rz-main>*{flex-shrink:0}
+/* ---- onboarding2: klaviaturasiz slayder va yangi onboarding maketi (dizayn2 tokenlari) ---- */
+.sld{display:flex;flex-direction:column;gap:14px;width:100%}
+.sld-row{display:flex;align-items:center;justify-content:center;gap:10px}
+.sld-b{flex:none;width:56px;height:56px;border-radius:50%;border:0;background:var(--soft);color:var(--ink);font:600 30px/1 'Manrope',sans-serif;display:inline-flex;align-items:center;justify-content:center;padding:0;touch-action:manipulation;-webkit-user-select:none;user-select:none;cursor:pointer}
+.sld-b:active{background:var(--accsoft);color:var(--acc2)}.sld-b:focus-visible,.sld-val:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.sld-val,.sld-edit{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:center;gap:8px;min-height:64px;border:0;background:transparent;color:var(--ink);padding:0;cursor:text}
+.sld-val[hidden]{display:none}
+.sld-val b,.sld-edit .sld-in{font:600 var(--t-ring,56px)/1 'Manrope',sans-serif;font-size:56px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sld-val small,.sld-edit small{font-size:var(--t-l);font-weight:600;color:var(--mut)}
+.sld-edit{align-items:center}.sld-edit .sld-in{width:5ch;min-width:0;text-align:center;border:0;border-bottom:3px solid var(--acc2);background:transparent;color:var(--ink);border-radius:0;padding:0 0 2px;margin:0;outline:none;-webkit-appearance:none;appearance:none}
+.sld-rw{position:relative;height:84px;border-radius:18px;background:var(--soft);overflow:hidden}
+.sld-rul{height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;outline:none;-webkit-mask-image:linear-gradient(90deg,transparent,black 16%,black 84%,transparent);mask-image:linear-gradient(90deg,transparent,black 16%,black 84%,transparent)}
+.sld-rul::-webkit-scrollbar{display:none}.sld-rul:focus-visible{box-shadow:inset 0 0 0 3px var(--acc2)}
+.sld-rt{display:flex;width:max-content;height:100%;padding:14px calc(50% - 6px) 0;box-sizing:border-box}
+.sld-rt i{flex:none;width:12px;height:100%;position:relative;scroll-snap-align:center;font-style:normal}
+.sld-rt i::before{content:"";position:absolute;left:5px;top:0;width:2px;height:16px;border-radius:1px;background:var(--line2)}
+.sld-rt i.m::before{height:30px;background:var(--mut)}
+.sld-rt i b{position:absolute;top:36px;left:50%;transform:translateX(-50%);font-size:var(--t-xs);font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums}
+.sld-ind{position:absolute;left:50%;top:10px;width:4px;height:46px;margin-left:-2px;border-radius:2px;background:var(--acc2);pointer-events:none}
+.rz-onb.sl-ob{padding:calc(10px + env(safe-area-inset-top,0px)) 20px calc(14px + env(safe-area-inset-bottom,0px));overflow:hidden}
+.sl-ob-body{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column}.sl-ob-in{margin:auto 0;width:100%;padding:6px 0}
+.sl-ob-body .rz-q{margin-bottom:6px}.sl-ob-body .rz-p{margin:0 0 10px}
+.sl-ob .rz-opt.big{min-height:52px;padding:8px 16px;margin:0 0 7px;font-size:var(--t-m);line-height:1.25}.sl-ob .rz-opt.big span{font-size:var(--t-xs);line-height:1.25}.sl-ob .rz-opt.big b{font-weight:600}
+.sl-ob-sld{margin-top:22px}
+.sl-ob-foot{flex:none;display:flex;flex-direction:column;gap:6px;padding-top:10px}.sl-ob-foot>.rz-btn{width:100%;flex:none}
+.sl-ob-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px}.sl-ob-nav .rz-dots{flex:none}.sl-ob-nav .sl-txtbtn,.sl-ob-sp{flex:1 1 0;min-height:44px}.sl-ob-sp{display:block}
+.sl-ob-back{text-align:left;justify-content:flex-start}.sl-ob-later{text-align:right;justify-content:flex-end}
+.sl-ywarn{color:var(--mut)}
+.sl-ob .sl-yn{margin:8px 0 6px}
+.rz .sl-tax,.rz .sl-yq{display:flex;flex-direction:column;gap:10px;background:var(--accsoft);box-shadow:none;border:1px solid var(--line)}.rz .sl-tax .t,.rz .sl-yq .t{font-weight:600;line-height:1.35}.rz .sl-tax .b,.rz .sl-yq .b{display:flex;gap:8px}.rz .sl-tax .b .rz-btn,.rz .sl-yq .b .rz-btn{flex:1;min-width:0}
+.sl-pe-sld{margin:2px 0 10px}.sl-pe-sld .sld-val b,.sl-pe-sld .sld-edit .sld-in{font-size:44px}.sl-pe-sld .sld-b{width:48px;height:48px}.sl-pe-sld .sld-rw{height:76px}
+@media (prefers-reduced-motion:reduce){.sld-b,.sl-ob-body{transition:none!important;animation:none!important}}
+/* natija ekrani ixcham: ogohlantirishli holatda ham skrollsiz (375×667) */
+.sl-ob .sl-res7 .rz-fl{margin:0 0 2px}.sl-ob .sl-res7 .sl-big{margin:0 0 4px}.sl-ob .sl-res7 .sl-big b{font-size:46px}.sl-ob .sl-res7 .rz-p{margin:0 0 6px;font-size:var(--t-s);line-height:1.35}.sl-ob .sl-res7 .rz-p.sm{font-size:var(--t-xs);margin:0}
+/* onboarding2.1: «Keyinroq» — ikkinchi darajali to'liq tugma; taxminiy chip (Bugun) va ixcham qator (Profil) */
+.sl-ob .sl-ob-later{width:100%;flex:none;min-height:48px;font-size:17px;font-weight:600;background:var(--soft);border:1px solid var(--line2);color:var(--ink);justify-content:center;text-align:center;white-space:normal;line-height:1.25;padding:8px 14px}
+.rz .sl-taxrow{display:flex;justify-content:center;margin:-8px 0 0}.rz .sl-taxchip{position:relative;border:0;background:transparent;color:var(--accink);font:600 15px 'Manrope',sans-serif;min-height:28px;line-height:28px;padding:0 12px;cursor:pointer}.rz .sl-taxchip::after{content:"";position:absolute;inset:-8px -6px}      /* ko'rinadigan balandlik 28 px (joylashuvni siljitmaydi), bosish maydoni 44 px */
+.rz .sl-tax1{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 10px 16px;background:var(--accsoft);box-shadow:none;border:1px solid var(--line)}.rz .sl-tax1 span{font-weight:600;font-size:var(--t-s);line-height:1.3;min-width:0}.rz .sl-tax1 .rz-btn{flex:none}
+/* «Yemaydiganlarim»: ro'yxatlarda yashirilganlar (xira), belgi, yumshoq ogohlantirish */
+.rz .sl-rr.dim,.rz .sl-rw.dim{opacity:.55}.rz .sl-kb.sl-rb{background:var(--soft);color:var(--mut)}.rz .sl-rhid{display:block;width:100%;margin:6px 0;min-height:44px;text-align:center;color:var(--mut)}
+.rz .sl-rwarn{display:flex;align-items:flex-start;gap:8px;margin:2px 0 10px;padding:10px 12px;border-radius:12px;background:var(--accsoft);border:1px solid var(--line);font-size:var(--t-s);font-weight:600;line-height:1.35}.rz .sl-rwarn .rz-i{flex:none;width:20px;height:20px;color:var(--acc2);margin-top:1px}
+.sl-ob-foot>.rz-btn+.rz-btn{margin-top:4px}

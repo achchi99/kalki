@@ -3,7 +3,7 @@
   "manba": "USDA FoodData Central, SR Legacy (2018-04), CSV arxiv",
   "url": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
   "sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
-  "yuklangan": "2026-10-19",
+  "yuklangan": "2026-10-20",
   "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun"
  },
  "foods": {
@@ -1302,6 +1302,26 @@
     }
    ]
   },
+  "170602": {
+   "d": "Beef, cured, corned beef, canned",
+   "f": 14.93,
+   "c": 0.0,
+   "kcal": 250.0,
+   "suv": 57.72,
+   "p": 27.1,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "slice (3/4 oz)",
+     "miqdor": 1.0,
+     "g": 21.0
+    }
+   ]
+  },
   "170636": {
    "d": "Beef, round, tip round, roast, separable lean only, trimmed to 0\" fat, choice, cooked, roasted",
    "f": 6.42,
@@ -1824,6 +1844,26 @@
      "nom": "can",
      "miqdor": 1.0,
      "g": 165.0
+    }
+   ]
+  },
+  "172012": {
+   "d": "Bologna, beef",
+   "p": 10.91,
+   "f": 26.13,
+   "suv": 55.31,
+   "c": 4.29,
+   "kcal": 299.0,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 30.0
+    },
+    {
+     "nom": "serving",
+     "miqdor": 1.0,
+     "g": 28.0
     }
    ]
   },

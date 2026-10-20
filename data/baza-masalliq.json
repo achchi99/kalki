@@ -501,6 +501,26 @@
    },
    "uz": "qo'ziqorin",
    "ru": "шампиньоны"
+  },
+  "kolbasa_mol": {
+   "nom": "Kolbasa (mol go'shtidan, «Bologna, beef»)",
+   "usda": 172012,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "mol kolbasasi",
+   "ru": "говяжья колбаса"
+  },
+  "tushonka_mol": {
+   "nom": "Tushonka (mol go'shti konservasi — «Beef, cured, corned beef, canned» analogi)",
+   "usda": 170602,
+   "yield": {
+    "q": 1,
+    "tarif": true
+   },
+   "uz": "mol tushonkasi",
+   "ru": "говяжья тушёнка"
   }
  }
 }

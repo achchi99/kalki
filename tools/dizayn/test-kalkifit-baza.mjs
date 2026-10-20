@@ -16,17 +16,17 @@ for (const f of top) {
 const grp = { fam: top.filter((f) => f.fam).length, retsept: top.filter((f) => f.rc).length, taxminiy: top.filter((f) => f.x).length, tekshirilgan: top.filter((f) => f.tk).length };
 log('top-150: hammasida birlik (bitta def), manba bayoni UZ/RU, sana (tk) yoki «taxminiy» (x): oila ' + grp.fam + ' · retseptli ' + grp.retsept + ' · taxminiy ' + grp.taxminiy + ' · USDA bilan tekshirilgan ' + grp.tekshirilgan);
 /* 2. oilalar */
-const fams = DB.filter((f) => f.fam); assert.equal(fams.length, 23);
+const fams = DB.filter((f) => f.fam); assert.equal(fams.length, 24);
 for (const f of fams) { const fm = f.fam; assert.ok(fm.N >= 2 && Object.keys(fm.g).length === fm.N); const dk = S.famKey(f, null); assert.ok(fm.g[dk], f.id + ': standart kombinatsiya'); assert.equal(f.k, fm.g[dk].k, f.id + ': oila qiymati = standart kombinatsiya');
   fm.ax.forEach((a) => a.o.forEach((o) => { const v = fm.ax.map((b) => (b === a ? o.i : b.d)).join('.'); assert.ok(fm.g[v], f.id + ': kombinatsiya ' + v); })); if (fm.sz) assert.deepEqual(fm.sz.o.map((x) => x.m), [0.6, 1, 1.5]); }
 const sh = by.shurva.fam; assert.deepEqual(sh.ax.map((a) => a.i), ['tarkibi']); assert.equal(sh.ax[0].s, 1); assert.deepEqual(sh.ax[0].o.map((o) => o.n), ['Qaynatma', 'Odatiy', "Yog'li quyuq"]); const sk = ['qaynatma', 'odatiy', 'yogli'].map((v) => sh.g[v].k); assert.ok(sk[0] >= 33 && sk[0] <= 46 && sk[1] >= 49 && sk[1] <= 57 && sk[2] >= 68 && sk[2] <= 80, 'sho\'rva ' + sk);
 assert.equal(by.osh.k, 190); assert.equal(by.osh.fam.g['orta.odatiy'].k, 190); assert.equal(by.norin.k, 278); assert.equal(by.chuchvara.fam.g['goshtli.qaynatma'].k >= 235, true);
 const sm = by.somsa.fam; assert.deepEqual(sm.ax.map((a) => [a.i, a.s]), [['xamir', 1], ['ichi', 1]]); assert.equal(by.manti.fam.ax[0].s, 1);
 assert.ok(S.famVariant(by.somsa, { ichi: 'qovoq' }, 'katta').u.find((u) => u[0] === 'dona')[1] === 180 && S.famVariant(by.somsa, null, 'kichik').u.find((u) => u[0] === 'dona')[1] === 72, 'o\'lcham 0,6 / 1 / 1,5');
-log('23 oila: standart kombinatsiya = oila qiymati; hamma kombinatsiya grid da; osh 190; sho\'rva «Tarkibi» (' + sk.join('/') + '); o\'lcham 0,6/1/1,5; somsa — Xamir + Ichi, norin 278');
+log('24 oila: standart kombinatsiya = oila qiymati; hamma kombinatsiya grid da; osh 190; sho\'rva «Tarkibi» (' + sk.join('/') + '); o\'lcham 0,6/1/1,5; somsa — Xamir + Ichi, norin 278');
 /* 3. eski id lar abadiy alias; yashirin; qidiruvda ko'rinmaydi */
 const old = Object.keys(V1); for (const id of old) assert.ok(by[id], 'eski id yo\'q: ' + id); const al = DB.filter((f) => f.al); assert.ok(al.length >= 35);
-for (const f of al) { assert.ok(f.h === 1 && by[f.al.f] && by[f.al.f].fam.g[f.al.v], f.id + ': alias ' + JSON.stringify(f.al)); assert.ok(!S.search(DB, f.n, { limit: 30 }).some((x) => x.id === f.id), f.id + ' qidiruvda ko\'rinmasin'); assert.equal(f.k, V1[f.id].k || f.k); }
+for (const f of al) { assert.ok(f.h === 1 && by[f.al.f] && by[f.al.f].fam.g[f.al.v], f.id + ': alias ' + JSON.stringify(f.al)); assert.ok(!S.search(DB, f.n, { limit: 30 }).some((x) => x.id === f.id), f.id + ' qidiruvda ko\'rinmasin'); assert.equal(f.k, (V1[f.id] || f).k || f.k); }
 assert.equal(DB.length, 323); log('eski ' + old.length + ' ta id hammasi bazada (alias: ' + al.length + ' ta yashirin, qidiruvda oila chiqadi); yangi 20 ta («taxminiy»; 4 ta Xorazm/sut + 16 ta oqsilli)');
 for (const id of ['shovla', 'shirguruch', 'ugra-osh', 'chalop']) assert.ok(by[id] && by[id].x === 1 && by[id].rc && by[id].b[0].s === 'a', id);
 
