@@ -463,3 +463,138 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 .rz .sl-rr.dim,.rz .sl-rw.dim{opacity:.55}.rz .sl-kb.sl-rb{background:var(--soft);color:var(--mut)}.rz .sl-rhid{display:block;width:100%;margin:6px 0;min-height:44px;text-align:center;color:var(--mut)}
 .rz .sl-rwarn{display:flex;align-items:flex-start;gap:8px;margin:2px 0 10px;padding:10px 12px;border-radius:12px;background:var(--accsoft);border:1px solid var(--line);font-size:var(--t-s);font-weight:600;line-height:1.35}.rz .sl-rwarn .rz-i{flex:none;width:20px;height:20px;color:var(--acc2);margin-top:1px}
 .sl-ob-foot>.rz-btn+.rz-btn{margin-top:4px}
+/* ---- «Retseptimni moslashtir» (MAKET, assets/kalkifit-retsept.js) — dizayn tokenlari: --fill (aksent faqat asosiy joylarda), --p/--f (oqsil/yog'), --soft, --line ---- */
+.rz .rz-sheet.rt-sheet[data-kind=retsept]{min-height:72%}
+.rz .rt-mk{display:inline-block;vertical-align:middle;margin-left:6px;padding:2px 8px;border-radius:8px;background:var(--soft);color:var(--mut);font-size:var(--t-lbl);font-weight:700;letter-spacing:.02em}
+.rz .rt-in{animation:fadeUp .3s cubic-bezier(.2,.8,.2,1) both}
+.rz .rt-hero{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px}.rz .rt-hero .rz-mut{margin:0;font-size:var(--t-s)}
+.rz .rt-spk{width:48px;height:48px;border-radius:16px;background:var(--accsoft);color:var(--accink);display:inline-flex;align-items:center;justify-content:center}.rz .rt-spk .rz-i{width:26px;height:26px}
+.rz .rt-h{margin:4px 0 0;font-size:var(--t-l);line-height:1.25;font-weight:800;letter-spacing:-.01em}
+.rz .rt-ta{display:block;margin:0 0 10px}.rz .rt-ta .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.rz .rt-ta textarea{width:100%;min-height:150px;resize:vertical;border:1.5px solid var(--line2);background:var(--field);color:var(--ink);border-radius:18px;padding:14px 16px;font:500 var(--t-m)/1.45 'Manrope',sans-serif;box-sizing:border-box}
+.rz .rt-ta textarea:focus{outline:none;border-color:var(--fill)}.rz .rt-ta textarea::placeholder{color:var(--mut2)}
+.rz .rt-ta textarea.err{border-color:var(--err);animation:rzShake .3s}
+.rz .rt-cam{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;margin-bottom:14px}
+.rz .rt-chips{display:flex;gap:8px;flex-wrap:wrap}.rz .rt-chips .rz-chip{min-height:44px;padding:0 18px}
+.rz .rt-go .rz-i,.rz .rt-cta2 .rz-i{width:22px;height:22px}
+/* tahlil */
+.rz .rt-scanh{display:flex;flex-direction:column;gap:10px;margin:6px 0 12px}.rz .rt-scanh b{font-size:var(--t-m)}
+.rz .rt-bar{display:block;height:6px;border-radius:6px;background:var(--track);overflow:hidden}.rz .rt-bar i{display:block;height:100%;width:100%;background:var(--fill);border-radius:inherit;transform-origin:0 50%;animation:rtFill 1.9s cubic-bezier(.4,.1,.2,1) both}
+@keyframes rtFill{from{transform:scaleX(.04)}to{transform:scaleX(1)}}
+.rz .rt-ings{display:flex;flex-direction:column}
+.rz .rt-ing{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line);min-height:56px}.rz .rt-ing:last-child{border-bottom:0}
+.rz .rt-ing .nm{flex:1;min-width:0;display:flex;flex-direction:column}.rz .rt-ing .nm b{font-size:var(--t-m);font-weight:700}.rz .rt-ing .nm small{color:var(--mut);font-weight:600;font-size:var(--t-lbl)}
+.rz .rt-ing.off .nm b{color:var(--mut);text-decoration:line-through}
+.rz .rt-ing.scan{opacity:0;animation:fadeUp .3s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 170ms)}
+.rz .rt-ok,.rz .rt-q{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.rz .rt-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}.rz .rt-ok .rz-i{width:18px;height:18px}
+.rz .rt-ing.scan .rt-ok,.rz .rt-ing.scan .rt-q{animation:pop .3s both;animation-delay:calc(var(--i) * 170ms + 160ms)}
+.rz .rt-q{background:color-mix(in srgb,var(--gold) 26%,transparent);color:var(--fink);font-weight:800}
+.rz .rt-step{display:flex;align-items:center;gap:6px}.rz .rt-step b{min-width:6.4ch;text-align:center;font-variant-numeric:tabular-nums;font-size:var(--t-s);font-weight:700}
+.rz .rt-step .sl-pill{width:44px;height:44px;padding:0;font-size:var(--t-l);border-radius:12px;background:var(--soft);color:var(--ink)}
+.rz .rt-step .sl-pill:disabled{opacity:.4}
+.rz .rt-ing.unk{background:color-mix(in srgb,var(--gold) 12%,transparent);border-radius:16px;padding:12px;border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent);margin:4px 0}
+.rz .rt-ing.unk .nm{flex-direction:row;align-items:center;gap:8px;flex-wrap:wrap}.rz .rt-ing.unk p{flex-basis:100%;margin:0}
+.rz .rt-warn{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;background:var(--gold);color:var(--on);font-size:var(--t-lbl);font-weight:800}
+.rz .rt-opts{flex-basis:100%;display:flex;flex-wrap:wrap;gap:8px}
+.rz .rt-ing.shake{animation:rzShake .35s}
+.rz .rt-found{display:flex;align-items:center;gap:8px;margin:2px 0 12px;font-weight:700;color:var(--ok)}.rz .rt-found .rz-i{width:20px;height:20px}
+/* natija */
+.rz .rt-big{background:var(--soft);border-radius:24px;padding:18px 18px 16px;margin:4px 0 16px;text-align:left}
+.rz .rt-big .l{font-size:var(--t-s);font-weight:700;color:var(--mut)}
+.rz .rt-big .v{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+.rz .rt-big .old{font-size:var(--t-l);font-weight:700;color:var(--mut);font-variant-numeric:tabular-nums;text-decoration-thickness:2px}
+.rz .rt-big .ar{color:var(--mut);font-weight:700;font-size:var(--t-l)}
+.rz .rt-big .u{font-size:var(--t-l);font-weight:700}
+.rz .rt-odo{display:inline-flex;font-size:76px;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
+html.fs-big .rz .rt-odo{font-size:80px}
+.rz .rt-odo .d{display:inline-block;height:1em;overflow:hidden;width:.58em;transition:width .3s ease}.rz .rt-odo .d.b{width:0}
+.rz .rt-odo .s{display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.rz .rt-odo .s i{display:block;height:1em;font-style:normal;text-align:center}
+.rz .rt-pchip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:var(--fill);color:var(--onbtn);font-weight:800;font-size:var(--t-s);font-variant-numeric:tabular-nums}
+.rz .rt-pchip.none{background:var(--card);color:var(--mut);border:1px solid var(--line2)}
+.rz .rt-cmp{margin:0 0 18px}
+.rz .rt-leg{display:flex;gap:14px;margin:-2px 0 8px;font-size:var(--t-lbl);font-weight:700;color:var(--mut)}.rz .rt-leg span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px;background:var(--line2)}.rz .rt-leg .n::before{background:linear-gradient(90deg,var(--fill) 0 33%,var(--p) 33% 66%,var(--f) 66%)}
+.rz .rt-bm{margin:0 0 12px}.rz .rt-bm .h{display:flex;justify-content:space-between;gap:8px;font-size:var(--t-s);font-weight:600;margin-bottom:4px}.rz .rt-bm .h b{font-variant-numeric:tabular-nums;font-weight:700}.rz .rt-bm .h .o{color:var(--mut);font-weight:600}
+.rz .rt-br{height:10px;border-radius:6px;background:var(--track);margin:3px 0;overflow:hidden}.rz .rt-br i{display:block;height:100%;border-radius:inherit;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.rz .rt-br.o i{background:var(--line2)}.rz .rt-bm.k .rt-br.n i{background:var(--fill)}.rz .rt-bm.p .rt-br.n i{background:var(--p)}.rz .rt-bm.f .rt-br.n i{background:var(--f)}
+.rz .rt-chs{display:flex;flex-direction:column;gap:10px;margin:0 0 6px}
+.rz .rt-ch{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:14px;transition:border-color .2s,background-color .2s,opacity .2s}
+.rz .rt-ch.on{border-color:var(--fill);background:color-mix(in srgb,var(--fill) 6%,var(--card))}
+.rz .rt-ch:not(.on) .m,.rz .rt-ch:not(.on) .sl-ci{opacity:.62}
+.rz .rt-ch .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.rz .rt-ch .m b{font-size:var(--t-s);font-weight:700;line-height:1.3}.rz .rt-ch .bn{font-size:var(--t-s);font-weight:700;color:var(--accink)}
+.rz .rt-tb{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:var(--t-lbl);font-weight:700;color:var(--mut)}.rz .rt-tb::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.rz .rt-tb.t1::before{background:var(--gold)}.rz .rt-tb.t2::before{background:var(--danger)}
+.rz .rt-sw{flex:none;width:48px;height:28px;border-radius:999px;background:var(--line2);position:relative;margin-top:2px;transition:background-color .2s}
+.rz .rt-sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .22s cubic-bezier(.3,1.4,.5,1)}
+.rz .rt-ch.on .rt-sw{background:var(--fill)}.rz .rt-ch.on .rt-sw i{transform:translateX(20px)}
+.rz .rt-cta2{gap:8px}.rz .rt-cta2 .sl-main{flex:1;min-width:0;font-size:var(--t-s);padding:0 12px;line-height:1.2}
+.rz .rt-shb{flex:none;width:56px;min-height:56px;border-radius:18px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.rz .rt-shb span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* ulashish */
+.rz .rt-cardw{margin:8px 0 4px;display:flex;justify-content:center}
+.rz .rt-card{display:block;width:100%;max-width:420px;height:auto;aspect-ratio:4/5;border-radius:22px;box-shadow:0 18px 40px -16px rgba(0,0,0,.45);background:var(--soft)}
+.rz .rt-card.wait{display:flex;align-items:center;justify-content:center;color:var(--mut);font-weight:700}
+.rz .rt-rowc{margin:0 0 6px}.rz .rt-rowc .rt-row{border-bottom:1px solid var(--line)}
+.rz .rt-ci{background:var(--accsoft);color:var(--accink)}
+/* ---- Soddalashtirish: eshik kartalar (Bugun), Ovqat qo'shish tablari, Qanday ishlaydi? slaydlari, taqdimot belgisi ---- */
+.rz .sl-doors{display:flex;flex-direction:column;gap:10px}
+.rz .sl-door{display:flex;flex-shrink:0;align-items:center;gap:14px;width:100%;min-height:76px;padding:14px 16px;border:1px solid var(--line);border-radius:22px;background:var(--card);color:var(--ink);text-align:left;box-shadow:var(--shadow)}
+.rz .sl-door:active{transform:scale(.985)}
+.rz .sl-door .ic{flex:none;width:48px;height:48px;border-radius:15px;background:var(--accsoft);color:var(--accink);display:inline-flex;align-items:center;justify-content:center}.rz .sl-door .ic .rz-i{width:26px;height:26px}
+.rz .sl-door .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.rz .sl-door .m b{font-size:var(--t-m);font-weight:600;line-height:1.25}.rz .sl-door .m span{font-size:var(--t-s);color:var(--mut);font-weight:600;line-height:1.3}
+.rz .sl-door>.rz-i.r{flex:none;color:var(--mut)}
+.rz .rt-door{background:linear-gradient(135deg,color-mix(in srgb,var(--fill) 13%,var(--card)),var(--card) 70%);border-color:color-mix(in srgb,var(--fill) 38%,var(--line))}
+.rz .rt-door .ic{background:var(--fill);color:var(--onbtn)}
+.rz .rt-sp{display:inline-flex;animation:rtTw 3s ease-in-out infinite}
+@keyframes rtTw{0%,100%{transform:scale(1) rotate(0);opacity:1}45%{transform:scale(1.14) rotate(10deg);opacity:.82}70%{transform:scale(.96) rotate(-6deg);opacity:1}}
+.rz .sl-first{margin:-4px 4px 0;text-align:center;font-size:var(--t-s);font-weight:600;color:var(--mut);line-height:1.4}
+.rz .sl-atabs{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 12px}
+.rz .sl-atab{flex:1 1 auto;min-width:max-content;min-height:44px;padding:0 10px;border:1px solid var(--line2);border-radius:14px;background:transparent;color:var(--ink);font:600 var(--t-xs) 'Manrope',sans-serif;white-space:nowrap}
+.rz .sl-atab.on{background:var(--accsoft);border-color:var(--fill);color:var(--accink)}
+.rz .rz-demo{display:inline-flex;align-items:center;margin-left:8px;padding:2px 9px;border-radius:999px;background:var(--gold);color:var(--on);font-size:var(--t-lbl);font-weight:600;vertical-align:middle}
+/* «Qanday ishlaydi?» */
+.rz .rz-intro{position:absolute;inset:0;z-index:72;background:var(--bg);display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));overflow-y:auto}
+.rz .rz-intro[hidden]{display:none}
+.rz .in-top{display:flex;justify-content:flex-end;min-height:44px}
+.rz .in-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;animation:fadeUp .3s cubic-bezier(.2,.8,.2,1) both;padding:6px 0 12px}
+.rz .in-art{display:flex;justify-content:center;margin-bottom:10px}
+.rz .in-mk{width:100%;max-width:330px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px}
+.rz .in-mk .r{display:flex;align-items:center;gap:12px}.rz .in-mk .m{flex:1;min-width:0;display:flex;flex-direction:column}.rz .in-mk .m b{font-size:var(--t-m);font-weight:700}.rz .in-mk .m small{color:var(--mut);font-weight:600;font-size:var(--t-s)}
+.rz .in-mk .k{font-size:var(--t-pn);font-weight:800;font-variant-numeric:tabular-nums}.rz .in-mk .p{color:var(--ok);font-weight:800;font-size:var(--t-m)}.rz .in-mk .a b{color:var(--ink)}
+.rz .in-mk .t{display:block;font-size:var(--t-m);font-weight:800;margin-bottom:10px}.rz .in-mk .c{display:flex;gap:8px;flex-wrap:wrap}.rz .in-mk .rz-chip{pointer-events:none;min-height:40px}
+.rz .in-h{margin:0;font-size:var(--t-xl);line-height:1.2;font-weight:800;letter-spacing:-.02em;text-align:center}
+.rz .in-p{margin:0 auto;max-width:34ch;text-align:center;color:var(--mut);font-size:var(--t-m);line-height:1.45;font-weight:500}
+.rz .in-foot{display:flex;flex-direction:column;align-items:center;gap:16px}
+.rz .in-dots{display:flex;gap:8px}.rz .in-dots i{width:8px;height:8px;border-radius:50%;background:var(--line2);transition:width .25s,background-color .25s}.rz .in-dots i.on{width:24px;border-radius:6px;background:var(--fill)}
+.rz .in-foot .in-go{width:100%}
+@media (max-width:420px){.rz .sl-atabs{display:grid;grid-template-columns:1fr 1fr}.rz .sl-atab{min-width:0}}
+html.fs-big .rz .sl-atabs{display:grid;grid-template-columns:1fr 1fr}html.fs-big .rz .sl-atab{min-width:0}
+.rz .rz-intro:focus{outline:none}
+/* ---- Retsept (haqiqiy): xabar, «Tez orada», tanlagich ---- */
+.rz .rt-msg{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 16%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);color:var(--ink);font-size:var(--t-s);font-weight:600;line-height:1.4}
+.rz .rt-msg[hidden]{display:none}
+.rz .rt-soon{display:inline-flex;align-items:center;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--mut);font-size:var(--t-lbl);font-weight:600}
+.rz .rt-cam:disabled{opacity:.7}
+.rz .rt-addb{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;margin:6px 0 12px}
+.rz .rt-est{color:var(--mut);font-weight:600}
+.rz .rt-ing.need{background:color-mix(in srgb,var(--gold) 12%,transparent);border-radius:14px;padding:10px 12px;border:1.5px solid color-mix(in srgb,var(--gold) 55%,transparent);margin:4px 0}
+.rz .rt-search{margin:0 0 10px}
+.rz .rt-plist{display:flex;flex-direction:column;max-height:56vh;overflow-y:auto}
+.rz .rt-pr{min-height:52px}
+/* aylana: raqam to'lqin ustida ham aniq o'qiladi — yorug' qatlam (to'lqin ostida emas, ustida) + yengil halo, to'lqin ichida to'q qatlam */
+.rz .kv-sub.kv-n{stroke:var(--vessel);stroke-width:2.2px;paint-order:stroke fill;stroke-linejoin:round}
+/* ---- ochilish animatsiyasi (faqat transform/opacity; prefers-reduced-motion'da yo'q — global qoida + JS) ---- */
+.rz .rz-main.rzi :is(#mainAdd,.sl-door,.sl-meal,.sl-macs,.sl-duo){animation:rzUp .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
+@keyframes rzUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rz .rz-splash{position:absolute;inset:0;z-index:95;background:var(--bg);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:rzSplashOut .2s ease .7s both}
+.rz .rz-splash .in{display:flex;align-items:center;gap:14px;animation:rzSplashIn .7s cubic-bezier(.2,.8,.2,1) both}
+.rz .rz-splash i{width:64px;height:64px;border-radius:20px;background:var(--fill);color:var(--onbtn);display:inline-flex;align-items:center;justify-content:center;font:800 36px 'Manrope',sans-serif;font-style:normal}
+.rz .rz-splash b{font:800 30px 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--ink)}
+@keyframes rzSplashIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes rzSplashOut{to{opacity:0;visibility:hidden}}
+/* Retsept eshigi: nozik yaltirash (4 s sikl) */
+.rz .rt-door{position:relative;overflow:hidden}
+.rz .rt-door::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.2) 50%,transparent 62%);transform:translateX(-130%);animation:rtShine 4s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes rtShine{0%,70%,100%{transform:translateX(-130%)}85%{transform:translateX(130%)}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rz .rt-door::after{background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.08) 50%,transparent 62%)}}
+html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.08) 50%,transparent 62%)}

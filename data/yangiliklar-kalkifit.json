@@ -2,6 +2,43 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 16,
+   "d": "2026-10-20",
+   "bn": {
+    "uz": "Retseptingizni yengillashtiring — oshingiz 20–30% yengil.",
+    "ru": "Облегчите свой рецепт — плов станет на 20–30% легче."
+   },
+   "items": [
+    {
+     "uz": "Retseptingizni yengillashtiring — oshingiz 20–30% yengil.",
+     "ru": "Облегчите свой рецепт — плов станет на 20–30% легче.",
+     "show": "retsept",
+     "btn": {
+      "uz": "Sinab ko'rish",
+      "ru": "Попробовать"
+     }
+    },
+    {
+     "uz": "Ilova soddalashdi: hammasi Bugun ekranida.",
+     "ru": "Приложение стало проще: всё на экране «Сегодня».",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsatish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Ovqat qo'shish ichida — Taomlarim, Odatdagi, Idishlar.",
+     "ru": "Внутри «Добавить еду» — Мои блюда, Привычные, Посуда.",
+     "show": "templates",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Посмотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 15,
    "d": "2026-10-20",
    "bn": {

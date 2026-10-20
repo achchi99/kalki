@@ -9,7 +9,7 @@
   var D = {
     uz: {
       rhShow: "{n} ta taom yashirildi (yemaydiganlaringiz) · Ko'rsatish", rhHide: "{n} ta taom ko'rsatilmoqda (yemaydiganlaringiz) · Yashirish", rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
-      yzT: 'Bugun nima yeymiz?', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
+      yzT: 'Bugun nima yeymiz?', yzDoorS: 'Kafe, buyurtma yoki uyda', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
       yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
       yzNote: 'Kafe porsiyasi taxminiy. Nomni bossangiz — porsiyani o\'zgartirasiz.', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
       yzNo: 'Bu yerda sizga mos taom topilmadi.', yzNoH: 'Qidiruvdan o\'zingiz tanlang.', yzSearch: 'Qidirish',
@@ -23,7 +23,7 @@
     },
     ru: {
       rhShow: 'Скрыто блюд: {n} («Не ем») · Показать', rhHide: 'Показано блюд: {n} («Не ем») · Скрыть', rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
-      yzT: 'Что поесть сегодня?', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
+      yzT: 'Что поесть сегодня?', yzDoorS: 'Кафе, заказ или дома', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
       yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
       yzNote: 'Порция в кафе примерная. Нажмите на название — измените порцию.', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
       yzNo: 'Подходящих блюд здесь не нашлось.', yzNoH: 'Выберите через поиск.', yzSearch: 'Искать',
@@ -120,7 +120,7 @@
     var tf = yv.toifa, rem = A.remaining(), body = '';
     if (yv.seg === 'uyda') {
       var rs = YC.uyda({ data: data, toifa: tf, uyda: uy, cheklov: ch, yemaydi: yemay() });
-      body = rs.length ? '<p class="rz-p">' + esc(T('yzUyH')) + '</p>' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return '<button type="button" class="rz-row sl-fwr" data-act="yerec" data-id="' + esc(r.id) + '">' + A.tileHtml(r.taom, null, lbl(r.nom), 44) + '<span class="m"><b>' + esc(lbl(r.nom)) + '</b><span>' + esc(T('fwTime', { t: lbl(r.vaqt) }) + (p ? ' · ' + T('fwK1', { k: p.k }) : '')) + '</span></span>' + A.ico('chev', 'r') + '</button>'; }).join('') : emptyHtml();
+      body = (rs.length ? '<p class="rz-p">' + esc(T('yzUyH')) + '</p>' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return '<button type="button" class="rz-row sl-fwr" data-act="yerec" data-id="' + esc(r.id) + '">' + A.tileHtml(r.taom, null, lbl(r.nom), 44) + '<span class="m"><b>' + esc(lbl(r.nom)) + '</b><span>' + esc(T('fwTime', { t: lbl(r.vaqt) }) + (p ? ' · ' + T('fwK1', { k: p.k }) : '')) + '</span></span>' + A.ico('chev', 'r') + '</button>'; }).join('') : emptyHtml());
     } else {
       var r = YC.list({ by: A.by(), data: data, toifa: tf, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem });
       yv.shown = r.items.map(function (p) { return p.key; });
@@ -143,9 +143,8 @@
     }, function () { partners = []; cb(); });
   }
   /* ---------- Bugun kartasi ---------- */
-  function todayCard() {
-    var cs = CHIPS.filter(function (c) { return !(c === 'baliq' && avoids('baliq')); });
-    return '<section class="rz-card sl-ye" id="yeCard" aria-label="' + esc(T('yzT')) + '"><div class="sl-ye-t">' + esc(T('yzT')) + '</div><div class="sl-ye-chips" role="group" aria-label="' + esc(T('yzT')) + '">' + cs.map(function (c) { return '<button type="button" class="rz-chip" data-act="yechip" data-c="' + c + '">' + esc(T('yzC_' + c)) + '</button>'; }).join('') + '</div></section>';
+  function todayCard() {                                  // Bugun: katta ESHIK karta (chiplar oyna ichida) — «Bugun nima yeymiz?» uchun yagona kirish
+    return '<button type="button" class="sl-door" id="yeCard" data-act="yedoor"><span class="ic">' + A.ico('zfork') + '</span><span class="m"><b>' + esc(T('yzT')) + '</b><span>' + esc(T('yzDoorS')) + '</span></span>' + A.ico('chev', 'r') + '</button>';
   }
   /* ---------- Uyda: retsept ---------- */
   var rv = { id: null, n: 4 };
@@ -192,6 +191,7 @@
   function dayChosen(d) { A.prefs().baliqKun = d; A.save(); A.pushResync(); }
   function act(a, el, ev) {
     switch (a) {
+      case 'yedoor': show('kabob'); return true;
       case 'yechip': show(el.getAttribute('data-c')); return true;
       case 'yechip2': { var c = el.getAttribute('data-c'); if (c === 'baliq') count('baliq_oyna_ochildi'); yv.toifa = c; draw(); return true; }
       case 'yeseg': yv.seg = el.getAttribute('data-s'); lsSet(yv.seg); draw(); return true;

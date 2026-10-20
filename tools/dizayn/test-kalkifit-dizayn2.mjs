@@ -27,7 +27,7 @@ try {
   const tt = await p.locator('#kcalBtn').innerText().catch(() => ''); const vtxt = await p.evaluate(() => document.querySelector('#kcalBtn svg').textContent.replace(/\s+/g, ' ')); assert.match(vtxt, /kkal qoldi/); assert.match(await txt(p, '.sl-rsub'), /iste'mol\s*·\s*[\d\s]+\s*maqsad/);
   const mac = await txt(p, '.sl-macs'); assert.ok(!/%/.test(mac), 'makrolar foizsiz'); assert.equal(await p.locator('.sl-mac3 .mc').count(), 3); assert.match(mac, /Oqsil[\s\S]*\/\s*\d+\s*g/);
   const geo = await p.evaluate(() => { const r = (s) => document.querySelector(s).getBoundingClientRect(); return { ring: r('.sl-big'), btn: r('#mainAdd'), mac: r('.sl-macs'), meals: r('.sl-meals'), duo: r('.sl-duo'), w: r('#wCard'), s: r('.sl-s'), week: r('.sl-week7') }; });
-  assert.ok(geo.week.bottom <= geo.ring.top + 1 && geo.ring.bottom <= geo.btn.top + 1 && geo.btn.bottom <= geo.mac.top + 1 && geo.mac.bottom <= geo.meals.top + 1 && geo.meals.bottom <= geo.duo.top + 1, 'tartib: hafta · doira · tugma · makrolar · ovqatlar · suv/qadam');
+  assert.ok(geo.week.bottom <= geo.ring.top + 1 && geo.ring.bottom <= geo.btn.top + 1 && geo.btn.bottom <= geo.meals.top + 1 && geo.meals.bottom <= geo.mac.top + 1 && geo.mac.bottom <= geo.duo.top + 1, 'tartib: hafta · doira · tugma · eshiklar · ovqatlar · makrolar · suv/qadam');
   assert.ok(Math.abs(geo.btn.height - 56) <= 1 && geo.btn.width >= 340, 'katta tugma 56 px, to\'liq kenglik'); assert.ok(Math.abs(geo.w.top - geo.s.top) <= 1, 'suv va qadam bitta qatorda');
   assert.equal(await p.locator('.sl-meal').count(), 4); assert.equal(await p.locator('.sl-meal.empty').count(), 2, 'bo\'sh kartalar: Kechki ovqat, Tamaddi'); assert.equal(await p.locator('.sl-meal.empty .sl-dash').count(), 2); const tile = await p.locator('.sl-meal:not(.empty) .sl-mh .sl-tile').first().boundingBox(); assert.ok(Math.abs(tile.width - 48) <= 1, '48 px rasm');
   assert.match(await txt(p, '.sl-meal:not(.empty) .sl-mh .k'), /kkal$/); assert.match(await txt(p, '.sl-lphint'), /uzun bosing/i); assert.ok(await p.locator('.sl-jline, .sl-first').count() >= 0);
@@ -69,11 +69,14 @@ try {
   /* 9. 360 px: gorizontal skroll yo'q, hech narsa to'silmaydi */
   p = await mk(seed({ food: DAY }), { big: true }); await p.setViewportSize({ width: 360, height: 780 }); await p.waitForTimeout(400); for (const v of ['today', 'history', 'profile']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); assert.ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1 && document.querySelector('#rzMain').scrollWidth <= document.querySelector('#rzMain').clientWidth + 1), v + ': gorizontal skroll'); }
   assert.deepEqual(p.errs, []); log('360 px + katta shrift: Bugun/Tarix/Profil\'da gorizontal skroll yo\'q, xatolar yo\'q'); await p.context().close();
-  /* 10. Yangilik (v15, eng yangisi): banner → oyna → 3 band; birinchisida [Ko'rsat] Profil'dagi «Yemaydiganlarim» kartasiga olib boradi va yoritadi */
-  p = await mk(seed({ food: DAY }), { news: '{"shown":14,"read":14}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); assert.match(await txt(p, '#ygPop'), /Yangi:.*Yemaydiganlarim/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
-  const bands = await p.locator('#rzSheet li').allInnerTexts(); assert.ok(bands.length >= 3); assert.match(bands[0], /Yemaydiganlarim/); assert.match(bands[1], /barmoq bilan/); assert.match(bands[2], /Sosiska, kolbasa, pelmen/);
-  assert.equal(await p.locator('#rzSheet li:has-text("barmoq bilan") [data-act=ygshow]').count() + await p.locator('#rzSheet li:has-text("Sosiska") [data-act=ygshow]').count(), 0, 'band 2-3 da [Ko\'rsat] yo\'q');
-  await p.locator('#rzSheet li:has-text("Yemaydiganlarim") [data-act=ygshow]').first().click(); await p.waitForTimeout(1000); assert.equal(await p.locator('.rz-tab.on').getAttribute('data-v'), 'profile'); assert.equal(await p.locator('#ynCard.yg-hl').count() >= 1, true, 'Yemaydiganlarim kartasi yoritildi'); await p.context().close();
-  log('Yangilik v15: banner → oyna (Yemaydiganlarim · barmoq bilan kiritish · sosiska/kolbasa/pelmen); [Ko\'rsat] → Profil (Yemaydiganlarim kartasi yoritiladi)');
+  /* 10. Yangilik (v16, eng yangisi): banner → oyna → 3 band, har birida [Ko'rsat]: Retsept eshigi · Bugun eshiklari · Ovqat qo'shish → Odatdagi tab */
+  const V = ['Retseptingizni yengillashtiring', 'Ilova soddalashdi', 'Taomlarim, Odatdagi, Idishlar'];
+  for (let k = 0; k < 3; k++) {
+    p = await mk(seed({ food: DAY }), { news: '{"shown":15,"read":15}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); if (k === 0) assert.match(await txt(p, '#ygPop'), /Yangi:.*Retseptingizni yengillashtiring/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
+    const bands = await p.locator('#rzSheet li').allInnerTexts(); assert.ok(bands.length >= 3); V.forEach((v, i) => assert.match(bands[i], new RegExp(v))); assert.equal(await p.locator('#rzSheet li [data-act=ygshow]').count() >= 3, true);
+    await p.locator('#rzSheet li:has-text("' + V[k] + '") [data-act=ygshow]').first().click(); await p.waitForTimeout(k === 2 ? 2000 : 1300);
+    if (k === 0) assert.equal(await p.locator('#rtDoor.yg-hl').count() >= 1, true, 'Retsept eshigi yoritildi'); if (k === 1) assert.equal(await p.locator('.sl-doors.yg-hl').count() >= 1, true, 'Eshiklar yoritildi'); if (k === 2) { assert.equal(await p.locator('#rzSheet[data-kind=tpls]').count(), 1); assert.equal(await p.locator('.sl-atab[data-t=t].yg-hl').count() >= 1, true, 'Odatdagi tabi yoritildi'); } await p.context().close();
+  }
+  log('Yangilik v16: banner → oyna (Retseptingizni yengillashtiring · Ilova soddalashdi · Taomlarim/Odatdagi/Idishlar); [Ko\'rsat] → Retsept eshigi / Bugun eshiklari / Ovqat qo\'shish → Odatdagi tabi yoritiladi');
 } finally { await b.close().catch(() => {}); srv.close(); }
 console.log('\nHAMMASI OK (' + n + ' blok)');

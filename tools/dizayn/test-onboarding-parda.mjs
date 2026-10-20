@@ -9,7 +9,7 @@ let b, eng = 'chromium'; if (process.env.WEBKIT) { try { b = track(await webkit.
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 async function mk(o) {
   const c = await b.newContext({ colorScheme: o.dark ? 'dark' : 'light', reducedMotion: o.reduce ? 'reduce' : 'no-preference', viewport: { width: o.w, height: o.h }, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
-  await c.addInitScript((far) => { localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); if (far) document.addEventListener('DOMContentLoaded', () => { const s = document.createElement('style'); s.textContent = '#kcalBtn{position:relative;top:2500px}'; document.head.appendChild(s); }); }, !!o.far);
+  await c.addInitScript((far) => { localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); if (far) document.addEventListener('DOMContentLoaded', () => { const s = document.createElement('style'); s.textContent = '#kcalBtn{position:relative;top:2500px}'; document.head.appendChild(s); }); }, !!o.far);
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
   await p.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await p.waitForTimeout(400); return p; }
 /* Bugun ochilgach: ko'rinadigan va bosiladigan «Ovqat qo'shish»; ochiq qatlam ichidagi kontent viewport ichida */
