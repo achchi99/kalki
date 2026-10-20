@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 15,
+   "d": "2026-10-20",
+   "bn": {
+    "uz": "Yemaydiganlarim ro'yxatlarda, bo'y va vazn — barmoq bilan.",
+    "ru": "«Не ем» учитывается в списках, рост и вес — пальцем."
+   },
+   "items": [
+    {
+     "uz": "«Yemaydiganlarim» endi ovqat ro'yxatlarida ham hisobga olinadi.",
+     "ru": "«Не ем» теперь учитывается и в списках блюд.",
+     "show": "yemaydi",
+     "btn": {
+      "uz": "Profilda ochish",
+      "ru": "Открыть в профиле"
+     }
+    },
+    {
+     "uz": "Bo'y, vazn va yoshni endi barmoq bilan surib kiritasiz.",
+     "ru": "Рост, вес и возраст теперь вводятся движком — пальцем."
+    },
+    {
+     "uz": "Sosiska, kolbasa, pelmen — mol/tovuq go'shtidan, aniqroq hisob.",
+     "ru": "Сосиски, колбаса, пельмени — из говядины/курицы, расчёт точнее."
+    }
+   ]
+  },
+  {
    "v": 14,
    "d": "2026-10-20",
    "bn": {
