@@ -35,23 +35,26 @@ let bad = 0; const table = []; const uniq = new Map();
 const TASKS = []; for (const slug of SLUGS) for (const lang of ['uz', 'ru'].filter((l) => l === 'uz' || fs.existsSync(path.join(ROOT, 'ru', slug + '.html')))) TASKS.push({ slug, lang });
 const OUT = await pool(TASKS, undefined, async ({ slug, lang }) => {
   const url = (lang === 'ru' ? '/ru/' : '/') + slug; const row = { sahifa: (lang === 'ru' ? 'ru/' : '') + slug, xato: 0, tafsilot: [] };
-  for (const w of [390, 1280]) for (const state of ['boshlang\'ich', 'hisoblangan']) {
+  for (const w of [390, 1280]) {
+    /* BITTA yuklash: avval boshlang'ich holat, so'ng shu sahifada hisoblash va "hisoblangan" holat (yangi yuklash bilan bir xil natija — ilgari har holat uchun alohida yuklanardi) */
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, serviceWorkers: 'block', locale: lang === 'ru' ? 'ru' : 'uz' }); const p = await ctx.newPage();
     if (process.env.KATTA) await ctx.addInitScript(() => { try { localStorage.setItem('kalki_fs', 'big'); } catch (e) {} });   // KATTA=1 — "Katta" shrift rejimi
     await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me|lex\.uz/, (r) => r.abort());
     await p.goto('http://localhost:' + PORT + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(400);
-    if (state === 'hisoblangan') await calculate(p);
     await p.evaluate(AXE);
-    const res = await p.evaluate(async () => { const r = await axe.run(document, { runOnly: { type: 'rule', values: ['color-contrast'] } });
-      return r.violations.flatMap((v) => v.nodes.map((n) => ({ t: n.target.join(' ').slice(0, 70), m: (n.any[0] && n.any[0].message || '').slice(0, 130) }))); });
-    // diagramma ranglari: seriya (fill/stroke) fonga nisbatan >= 3:1
-    const chart = await p.evaluate(() => { const out = []; document.querySelectorAll('svg [class*="pc-principal"], svg [class*="pc-interest"], svg [class*="pc-"]:not([class*="axis"]):not([class*="grid"]):not([class*="txt"])').forEach((e) => {
-      const cs = getComputedStyle(e); if (!e.getBoundingClientRect().width) return; let bg = e; let c = 'rgba(0, 0, 0, 0)';
-      while (bg) { c = getComputedStyle(bg).backgroundColor; if (!/rgba\(.*, 0\)|transparent/.test(c)) break; bg = bg.parentElement; }
-      out.push({ cls: String(e.getAttribute('class')), fill: cs.fill, stroke: cs.stroke, bg: c }); }); return out; });
-    for (const c of chart) { const col = /rgb/.test(c.fill) ? c.fill : c.stroke; if (!/rgb/.test(col)) continue; const r = ratio(rgb(col), rgb(c.bg)); if (r < 3) res.push({ t: 'diagramma ' + c.cls, m: 'seriya rangi ' + col + ' fon ' + c.bg + ' = ' + r.toFixed(2) + ':1 (<3)' }); }
-    res.forEach((x) => { const k = x.t.replace(/:nth-child\(\d+\)/g, '') + ' | ' + x.m.replace(/^Element has insufficient color contrast of /, '').slice(0, 90); uniq.set(k, (uniq.get(k) || 0) + 1); });
-    if (res.length) { row.xato += res.length; res.slice(0, 4).forEach((x) => row.tafsilot.push(`${w}px/${state}: ${x.t} — ${x.m}`)); }
+    for (const state of ['boshlang\'ich', 'hisoblangan']) {
+      if (state === 'hisoblangan') await calculate(p);
+      const res = await p.evaluate(async () => { const r = await axe.run(document, { runOnly: { type: 'rule', values: ['color-contrast'] } });
+        return r.violations.flatMap((v) => v.nodes.map((n) => ({ t: n.target.join(' ').slice(0, 70), m: (n.any[0] && n.any[0].message || '').slice(0, 130) }))); });
+      // diagramma ranglari: seriya (fill/stroke) fonga nisbatan >= 3:1
+      const chart = await p.evaluate(() => { const out = []; document.querySelectorAll('svg [class*="pc-principal"], svg [class*="pc-interest"], svg [class*="pc-"]:not([class*="axis"]):not([class*="grid"]):not([class*="txt"])').forEach((e) => {
+        const cs = getComputedStyle(e); if (!e.getBoundingClientRect().width) return; let bg = e; let c = 'rgba(0, 0, 0, 0)';
+        while (bg) { c = getComputedStyle(bg).backgroundColor; if (!/rgba\(.*, 0\)|transparent/.test(c)) break; bg = bg.parentElement; }
+        out.push({ cls: String(e.getAttribute('class')), fill: cs.fill, stroke: cs.stroke, bg: c }); }); return out; });
+      for (const c of chart) { const col = /rgb/.test(c.fill) ? c.fill : c.stroke; if (!/rgb/.test(col)) continue; const r = ratio(rgb(col), rgb(c.bg)); if (r < 3) res.push({ t: 'diagramma ' + c.cls, m: 'seriya rangi ' + col + ' fon ' + c.bg + ' = ' + r.toFixed(2) + ':1 (<3)' }); }
+      res.forEach((x) => { const k = x.t.replace(/:nth-child\(\d+\)/g, '') + ' | ' + x.m.replace(/^Element has insufficient color contrast of /, '').slice(0, 90); uniq.set(k, (uniq.get(k) || 0) + 1); });
+      if (res.length) { row.xato += res.length; res.slice(0, 4).forEach((x) => row.tafsilot.push(`${w}px/${state}: ${x.t} — ${x.m}`)); }
+    }
     await ctx.close();
   }
   bad += row.xato; table.push(row); return (row.xato ? 'XATO ' : 'OK   ') + row.sahifa + ' — ' + row.xato + (!process.env.QUIET ? row.tafsilot.map((t) => '\n      ' + t).join('') : '');

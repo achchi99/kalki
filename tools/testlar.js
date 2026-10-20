@@ -8,6 +8,10 @@
  *   node tools/testlar.js toliq --only pages,katta     (to'plamdan tanlab)
  *   TEST_JOBS=2 — bir vaqtda nechta test jarayoni (standart 3; server 4 yadro, xotira ~7,5 GB)
  *
+ * Tezlik: og'ir sahifa testlari (pages, kontrast, katta, golden, qadam) slug bo'yicha BO'LAKLARGA bo'linadi (bir-biriga bog'liq emas);
+ *   ishga tushirish YUKGA qarab: kamida TEST_JOBS (3), ko'pi bilan TEST_JOBS_MAX (5) jarayon — CPU bo'sh va xotira yetarli bo'lsa yangisi qo'shiladi.
+ *   Har test uchun CPU vaqti ham o'lchanadi; eng sekin 10 ta: node tools/testlar.js sekin   (oxirgi yurish: <tmp>/kalki-test-vaqt.json)
+ *
  * QOIDALAR: bitta test yiqilsa — tuzat va FAQAT shuni qayta yurgiz (`--only <id>`); to'liq to'plamni qayta boshlama.
  * 15b (prerender: ru/oila-byudjet random demo soni) e'tiborga olinmaydi. Golden farqi faqat qadam matni yoki sanaga bog'liq
  * bo'lsa — xato emas ("ogohlantirish" sifatida chiqadi; qayta yozish: node tools/dizayn/oltin.mjs record . <slug>). */
@@ -16,9 +20,15 @@ const fs = require('fs'), path = require('path'), os = require('os');
 const { spawn, execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
+if (args[0] === 'sekin') {                           // oxirgi yurishdagi eng sekin 10 ta test
+  try { const j = JSON.parse(fs.readFileSync(path.join(os.tmpdir(), 'kalki-test-vaqt.json'), 'utf8')); console.log('Oxirgi yurish (' + j.mode + '), devor vaqti ' + (j.wall / 60).toFixed(1) + ' daqiqa');
+    j.results.slice().sort((a, b) => b.s - a.s).slice(0, 10).forEach((r, i) => console.log(String(i + 1).padStart(2) + '. ' + r.id.padEnd(20) + String(r.s.toFixed(0)).padStart(6) + 's' + (r.cpu != null ? '  cpu ' + r.cpu.toFixed(0) + 's' : '') + (r.parts > 1 ? '  [' + r.parts + ' bo\'lak]' : ''))); } catch (e) { console.log('Hali yurish yo\'q: avval node tools/testlar.js tez|toliq'); }
+  process.exit(0);
+}
 const MODE = args[0] === 'toliq' ? 'toliq' : 'tez';
 const flag = (n) => { const i = args.indexOf('--' + n); return i < 0 ? null : (args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : true); };
 const JOBS_N = Math.max(1, Number(process.env.TEST_JOBS) || 3);
+const JOBS_MAX = Math.max(JOBS_N, Number(process.env.TEST_JOBS_MAX) || 5);
 const ONLY = flag('only') ? String(flag('only')).split(',') : null;
 const LIST = !!flag('list');
 const D = 'tools/dizayn/';
@@ -37,14 +47,14 @@ const nodeJs = ['tools/test-avto.js', 'tools/test-doc-checks.js', 'tools/test-do
 const T = (id, file, o) => Object.assign({ id, cmd: ['node', file], t: 60 }, o || {});
 const ALL = [
   T('verify-all', 'tools/verify-all.js', { t: 560, mutex: 'repo', note15b: true }),
-  T('pages', D + 'test-pages.mjs', { t: 900, slugs: 'args' }),
-  T('kontrast', D + 'test-kontrast.mjs', { t: 900, slugs: 'comma' }),
-  T('kontrast-katta', D + 'test-kontrast.mjs', { t: 900, slugs: 'comma', env: { KATTA: '1' } }),
-  T('katta', D + 'test-katta.mjs', { t: 900, slugs: 'args' }),
-  T('golden', D + 'oltin.mjs', { t: 900, golden: true }),
+  T('pages', D + 'test-pages.mjs', { t: 900, slugs: 'args', shard: 4 }),
+  T('kontrast', D + 'test-kontrast.mjs', { t: 900, slugs: 'comma', shard: 4 }),
+  T('kontrast-katta', D + 'test-kontrast.mjs', { t: 900, slugs: 'comma', shard: 4, env: { KATTA: '1' } }),
+  T('katta', D + 'test-katta.mjs', { t: 900, slugs: 'args', shard: 3 }),
+  T('golden', D + 'oltin.mjs', { t: 900, golden: true, shard: 3 }),
   T('sticky', D + 'test-sticky.mjs', { t: 400, mutex: 'repo', shots: true }),   // gisht skrinshotlarini docs/ ga yozadi -> verify-all bilan birga yurmaydi
   T('mobil', D + 'test-mobil.mjs', { t: 240 }),
-  T('qadam', D + 'test-qadam.mjs', { t: 200, slugs: 'args' }),
+  T('qadam', D + 'test-qadam.mjs', { t: 200, slugs: 'args', shard: 2 }),
   T('modetip', D + 'test-modetip.mjs', { t: 40 }),
   T('sarlavha', D + 'test-sarlavha.mjs', { t: 90 }),
   T('v2', D + 'test-v2.mjs', { t: 150, mutex: 'repo', shots: true }),
@@ -65,6 +75,8 @@ const ALL = [
   { id: 'node-testlar', cmd: ['sh', '-c', nodeJs.map((f) => 'node ' + f).join(' && ')], t: 30 }
 ];
 const byId = Object.fromEntries(ALL.map((j) => [j.id, j]));
+/* rejalashtirish tartibi: oxirgi to'liq yurishdagi HAQIQIY vaqt (tools/testlar-vaqt.json) — eng uzun test birinchi boshlanadi */
+try { const est = readJson('tools/testlar-vaqt.json').vaqt; ALL.forEach((j) => { if (est[j.id] > 0) j.t = est[j.id] * (j.shard || 1); }); } catch (e) { /* eski taxminlar */ }
 
 /* ---------- o'zgargan fayllar ---------- */
 function git(...a) { try { return execFileSync('git', a, { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString(); } catch (e) { return ''; } }
@@ -138,13 +150,16 @@ function jobSpec(job, slugs) {
   return { cmd, env };
 }
 const strip = (s) => s.split('\n').filter((l) => !/INFO:CONSOLE|^\[pid=|^\s*$/.test(l));
+const TIME_BIN = fs.existsSync('/usr/bin/time') ? '/usr/bin/time' : null;                  // CPU vaqtini o'lchash (bola jarayonlar bilan: Chromium ham)
+const CPU_RE = /^@@CPU ([\d.]+) ([\d.]+)$/m;
 function runJob(job, slugs) {
-  const { cmd, env } = jobSpec(job, slugs); const t0 = Date.now();
+  let { cmd, env } = jobSpec(job, slugs); const t0 = Date.now();
+  if (TIME_BIN) cmd = [TIME_BIN, '-f', '@@CPU %U %S', ...cmd];
   return new Promise((resolve) => {
     const p = spawn(cmd[0], cmd.slice(1), { cwd: ROOT, env, stdio: ['ignore', 'pipe', 'pipe'] }); let out = '';
     const kill = setTimeout(() => { try { p.kill('SIGKILL'); } catch (e) {} out += '\n[TIMEOUT]'; }, 55 * 60 * 1000);
     p.stdout.on('data', (d) => { out += d; }); p.stderr.on('data', (d) => { out += d; });
-    p.on('close', (rc) => { clearTimeout(kill); resolve({ job, slugs, rc: rc == null ? 1 : rc, ms: Date.now() - t0, out }); });
+    p.on('close', (rc) => { clearTimeout(kill); const m = CPU_RE.exec(out); if (m) out = out.replace(CPU_RE, ''); resolve({ job, slugs, rc: rc == null ? 1 : rc, ms: Date.now() - t0, cpu: m ? Number(m[1]) + Number(m[2]) : null, out }); });
   });
 }
 const SKIP_PAGE_LINE = /^\s*(OK|ok)\b/;
@@ -182,18 +197,44 @@ function verdict(r) {
   return { ok: false, tail };
 }
 
-async function schedule(items) {                     // items: [{job, slugs}]
-  const queue = items.slice().sort((a, b) => b.job.t - a.job.t); const running = new Set(); const results = []; let busyMutex = null;
-  await new Promise((resolveAll) => {
-    const pump = () => {
-      for (let i = 0; i < queue.length && running.size < JOBS_N; ) {
+/* ---------- bo'laklash: slug ro'yxati bor testlar N ta mustaqil jarayonga bo'linadi (interleaved — og'ir/yengil sahifalar aralash) ---------- */
+function expand(items) {
+  const out = [];
+  for (const it of items) {
+    const job = it.job, n = job.shard || 1;
+    if (n < 2 || !(job.slugs || job.golden)) { out.push(it); continue; }
+    const all = it.slugs && it.slugs.length ? it.slugs : (job.golden ? [...GOLD].sort() : V2);
+    const k = Math.min(n, Math.ceil(all.length / 4));                                       // kamida 4 slug / bo'lak
+    if (k < 2) { out.push({ job, slugs: it.slugs && it.slugs.length ? it.slugs : (job.golden ? null : all) }); continue; }
+    for (let i = 0; i < k; i++) out.push({ job, slugs: all.filter((_, j) => j % k === i), part: (i + 1) + '/' + k, t: Math.round(job.t / k) });
+  }
+  return out;
+}
+/* ---------- yukga qarab ishga tushirish: /proc/stat dan CPU bo'shligi, /proc/meminfo dan xotira ---------- */
+let cpuPrev = null, idleNow = 0; const LOAD = { n: 0, idle: 0, jobs: 0 };       // yurish davomida o'rtacha: bo'sh CPU va parallel jarayonlar
+function cpuIdleSample() {
+  try { const l = fs.readFileSync('/proc/stat', 'utf8').split('\n')[0].split(/\s+/).slice(1).map(Number); const idle = l[3] + (l[4] || 0), tot = l.reduce((a, b) => a + b, 0);
+    if (cpuPrev) { const dt = tot - cpuPrev.tot; if (dt > 0) idleNow = (idle - cpuPrev.idle) / dt; } cpuPrev = { idle, tot }; } catch (e) { idleNow = 1; }
+}
+function memAvailMB() { try { const m = /MemAvailable:\s+(\d+)/.exec(fs.readFileSync('/proc/meminfo', 'utf8')); return m ? Number(m[1]) / 1024 : 9999; } catch (e) { return 9999; } }
+const MEM_MIN = Number(process.env.TEST_MEM_MIN) || 1500, IDLE_MIN = Number(process.env.TEST_IDLE_MIN) || 0.2;
+async function schedule(items) {                     // items: [{job, slugs, part?, t?}]
+  const queue = items.slice().sort((a, b) => (b.t || b.job.t) - (a.t || a.job.t)); const running = new Set(); const results = []; let lastStart = 0;
+  cpuIdleSample(); const tick = setInterval(() => { cpuIdleSample(); LOAD.n++; LOAD.idle += idleNow; LOAD.jobs += running.size; pump(); }, 2000);
+  const label = (it) => it.job.id + (it.part ? '#' + it.part : '');
+  let pump; await new Promise((resolveAll) => {
+    pump = () => {
+      for (let i = 0; i < queue.length; ) {
+        const n = running.size, now = Date.now();
+        const allow = n < JOBS_N || (n < JOBS_MAX && idleNow >= IDLE_MIN && memAvailMB() >= MEM_MIN && now - lastStart > 4000);       // yangi jarayon CPU'ni to'ldirguncha 4 s kutiladi
+        if (!allow) break;
         const it = queue[i]; const mx = it.job.mutex;
         const conflict = mx && [...running].some((r) => r.job.mutex === mx);
         if (conflict) { i++; continue; }
-        queue.splice(i, 1); running.add(it); const t0 = Date.now();
-        console.log('▶ ' + it.job.id + (it.slugs && it.slugs.length ? ' (' + it.slugs.length + ' sahifa)' : ''));
-        runJob(it.job, it.slugs).then((r) => { const v = verdict(r); r.v = v; results.push(r); running.delete(it);
-          console.log((v.ok ? '✔ ' : '✘ ') + it.job.id + '  ' + (r.ms / 1000).toFixed(1) + 's' + (v.note ? '  — ' + v.note : ''));
+        queue.splice(i, 1); running.add(it); lastStart = now;
+        console.log('▶ ' + label(it) + (it.slugs && it.slugs.length ? ' (' + it.slugs.length + ' sahifa)' : ''));
+        runJob(it.job, it.slugs).then((r) => { const v = verdict(r); r.v = v; r.part = it.part; results.push(r); running.delete(it);
+          console.log((v.ok ? '✔ ' : '✘ ') + label(it) + '  ' + (r.ms / 1000).toFixed(1) + 's' + (r.cpu != null ? ' (cpu ' + r.cpu.toFixed(0) + 's)' : '') + (v.note ? '  — ' + v.note : ''));
           if (!v.ok) (v.tail || []).forEach((l) => console.log('     ' + l));
           pump(); });
       }
@@ -201,7 +242,14 @@ async function schedule(items) {                     // items: [{job, slugs}]
     };
     pump();
   });
+  clearInterval(tick);
   return results;
+}
+/* bo'laklarni bitta testga birlashtirish (jadval/yiqilgan ro'yxati test id'si bo'yicha) */
+function merge(results) {
+  const by = new Map();
+  for (const r of results) { const g = by.get(r.job.id) || { id: r.job.id, ms: 0, cpu: 0, hasCpu: false, ok: true, parts: 0, wall: 0, v: { ok: true } }; g.ms += r.ms; g.parts++; g.wall = Math.max(g.wall, r.ms); if (r.cpu != null) { g.cpu += r.cpu; g.hasCpu = true; } if (!r.v.ok) { g.ok = false; g.v = r.v; } by.set(r.job.id, g); }
+  return [...by.values()];
 }
 function cleanup() { git('checkout', '--', 'docs/dizayn-skrinshot'); }
 
@@ -222,14 +270,17 @@ function cleanup() { git('checkout', '--', 'docs/dizayn-skrinshot'); }
   if (ONLY) items = items.filter((it) => ONLY.includes(it.job.id));
   console.log('Tanlangan testlar (' + items.length + '): ' + items.map((it) => it.job.id + (it.slugs && it.slugs.length ? '[' + it.slugs.length + ']' : '')).join(', ') + '  | parallel: ' + JOBS_N);
   if (LIST) return;
-  const results = await schedule(items); cleanup();
+  const results = await schedule(expand(items)); cleanup();
   const wall = (Date.now() - t0) / 1000;
-  console.log('\n=== NATIJA (' + MODE + ') ===');
-  results.sort((a, b) => b.ms - a.ms).forEach((r) => console.log((r.v.ok ? 'OK    ' : 'YIQILDI') + '  ' + String((r.ms / 1000).toFixed(1)).padStart(7) + 's  ' + r.job.id));
-  const sum = results.reduce((s, r) => s + r.ms, 0) / 1000; const failed = results.filter((r) => !r.v.ok);
-  console.log('Jami devor vaqti: ' + (wall / 60).toFixed(1) + ' daqiqa (testlar yig\'indisi ' + (sum / 60).toFixed(1) + ' daqiqa)');
-  if (failed.length) console.log('Yiqilgan: ' + failed.map((r) => r.job.id).join(', ') + '\nQayta yurgizish: node tools/testlar.js ' + MODE + ' --only ' + failed.map((r) => r.job.id).join(','));
+  const G = merge(results);
+  console.log('\n=== NATIJA (' + MODE + ') ===  (soniya: yig\'indi vaqt | cpu = CPU-soniya | bo\'laklar)');
+  G.sort((a, b) => b.ms - a.ms).forEach((g) => console.log((g.ok ? 'OK    ' : 'YIQILDI') + '  ' + String((g.ms / 1000).toFixed(1)).padStart(7) + 's  ' + (g.hasCpu ? 'cpu ' + String(g.cpu.toFixed(0)).padStart(5) + 's  ' : '') + g.id + (g.parts > 1 ? '  [' + g.parts + ' bo\'lak, eng uzuni ' + (g.wall / 1000).toFixed(0) + 's]' : '')));
+  if (LOAD.n) console.log('Yuk: o\'rtacha parallel jarayon ' + (LOAD.jobs / LOAD.n).toFixed(1) + ', o\'rtacha bo\'sh CPU ' + (LOAD.idle / LOAD.n * 100).toFixed(0) + '% (boshqa servislar ham CPU ishlatadi: ps -eo pcpu,args --sort=-pcpu | head)');
+  const sum = results.reduce((s, r) => s + r.ms, 0) / 1000, cpuSum = results.reduce((s, r) => s + (r.cpu || 0), 0); const failed = G.filter((g) => !g.ok);
+  console.log('Jami devor vaqti: ' + (wall / 60).toFixed(1) + ' daqiqa (testlar yig\'indisi ' + (sum / 60).toFixed(1) + ' daqiqa, CPU ' + (cpuSum / 60).toFixed(1) + ' daqiqa)');
+  if (failed.length) console.log('Yiqilgan: ' + failed.map((g) => g.id).join(', ') + '\nQayta yurgizish: node tools/testlar.js ' + MODE + ' --only ' + failed.map((g) => g.id).join(','));
   else console.log('Hammasi o\'tdi.');
-  try { fs.writeFileSync(path.join(os.tmpdir(), 'kalki-test-vaqt.json'), JSON.stringify({ mode: MODE, wall, results: results.map((r) => ({ id: r.job.id, s: r.ms / 1000, ok: r.v.ok })) }, null, 1)); } catch (e) { /* tmp */ }
+  if (flag('yangila-vaqt') && MODE === 'toliq' && !ONLY) { const o = {}; G.forEach((g) => { o[g.id] = Math.round(g.ms / 1000 / g.parts); }); fs.writeFileSync(path.join(ROOT, 'tools/testlar-vaqt.json'), JSON.stringify({ izoh: readJson('tools/testlar-vaqt.json').izoh, vaqt: o }, null, 1) + '\n'); console.log('tools/testlar-vaqt.json yangilandi'); }
+  try { fs.writeFileSync(path.join(os.tmpdir(), 'kalki-test-vaqt.json'), JSON.stringify({ mode: MODE, wall, results: G.map((g) => ({ id: g.id, s: g.ms / 1000, cpu: g.hasCpu ? g.cpu : null, parts: g.parts, ok: g.ok })) }, null, 1)); } catch (e) { /* tmp */ }
   process.exit(failed.length ? 1 : 0);
 })();
