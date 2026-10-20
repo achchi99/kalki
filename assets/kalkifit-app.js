@@ -304,6 +304,8 @@
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
     history: function (n) { return goTab('history', function () { n.highlight($('.sl-sec2') || $('#rzMain')); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
+    yeymiz: function (n) { return goTab('today', function () { n.highlight($('#yeCard')); }); },
+    yemaydi: function (n) { return goTab('profile', function () { n.highlight($('#ynCard')); }); },
     fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
     cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#catsRow')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
