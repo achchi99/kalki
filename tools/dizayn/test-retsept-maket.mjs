@@ -50,7 +50,7 @@ try {
   /* 4. natija: raqam, foiz, oqsil, diagramma, toggle jonli */
   await p.click('[data-act=rtnext]'); await p.waitForSelector('#rtOdo'); await p.waitForTimeout(1000);
   assert.equal(await odo(p), '613 kkal'); assert.equal(await p.locator('.rt-big .old').innerText(), '827'); assert.equal(await chip(p), '−26% · oqsil saqlandi');
-  assert.equal(await p.locator('.rt-ch').count(), 4); assert.equal(await p.locator('.rt-ch[aria-checked=true]').count(), 4); assert.match(await p.locator('.rt-ch').first().innerText(), /Yog'ni kamaytirish: 130 → 70 g[\s\S]*−90 kkal porsiyada[\s\S]*deyarli sezilmaydi/);
+  assert.equal(await p.locator('.rt-ch').count(), 4); assert.equal(await p.locator('.rt-ch[aria-checked=true]').count(), 4); assert.match(await p.locator('.rt-ch').first().innerText(), /Yog'ni kamaytirish: 130 → 70\sg[\s\S]*−90 kkal porsiyada[\s\S]*deyarli sezilmaydi/);
   assert.match(await p.locator('.rt-bm.k .h').innerText(), /827 → 613/); const w = await p.locator('.rt-bm.k .rt-br.n i').evaluate((e) => e.style.width); assert.equal(w, '74%');
   await p.click('[data-act=rttog][data-c=dumba]'); await p.waitForTimeout(600); assert.equal(await odo(p), '689 kkal'); assert.equal(await p.locator('[data-c=dumba]').getAttribute('aria-checked'), 'false'); assert.match(await chip(p), /−17%/);
   for (const c of ['yog', 'tovuq', 'sabzi']) await p.click('[data-act=rttog][data-c=' + c + ']'); await p.waitForTimeout(500); assert.equal(await odo(p), '827 kkal'); assert.equal(await chip(p), 'O\'zgarishlarni yoqing');
