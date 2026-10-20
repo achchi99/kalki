@@ -16,7 +16,7 @@ for (const f of top) {
 const grp = { fam: top.filter((f) => f.fam).length, retsept: top.filter((f) => f.rc).length, taxminiy: top.filter((f) => f.x).length, tekshirilgan: top.filter((f) => f.tk).length };
 log('top-150: hammasida birlik (bitta def), manba bayoni UZ/RU, sana (tk) yoki «taxminiy» (x): oila ' + grp.fam + ' · retseptli ' + grp.retsept + ' · taxminiy ' + grp.taxminiy + ' · USDA bilan tekshirilgan ' + grp.tekshirilgan);
 /* 2. oilalar */
-const fams = DB.filter((f) => f.fam); assert.equal(fams.length, 23);
+const fams = DB.filter((f) => f.fam); assert.equal(fams.length, 24);
 for (const f of fams) { const fm = f.fam; assert.ok(fm.N >= 2 && Object.keys(fm.g).length === fm.N); const dk = S.famKey(f, null); assert.ok(fm.g[dk], f.id + ': standart kombinatsiya'); assert.equal(f.k, fm.g[dk].k, f.id + ': oila qiymati = standart kombinatsiya');
   fm.ax.forEach((a) => a.o.forEach((o) => { const v = fm.ax.map((b) => (b === a ? o.i : b.d)).join('.'); assert.ok(fm.g[v], f.id + ': kombinatsiya ' + v); })); if (fm.sz) assert.deepEqual(fm.sz.o.map((x) => x.m), [0.6, 1, 1.5]); }
 const sh = by.shurva.fam; assert.deepEqual(sh.ax.map((a) => a.i), ['tarkibi']); assert.equal(sh.ax[0].s, 1); assert.deepEqual(sh.ax[0].o.map((o) => o.n), ['Qaynatma', 'Odatiy', "Yog'li quyuq"]); const sk = ['qaynatma', 'odatiy', 'yogli'].map((v) => sh.g[v].k); assert.ok(sk[0] >= 33 && sk[0] <= 46 && sk[1] >= 49 && sk[1] <= 57 && sk[2] >= 68 && sk[2] <= 80, 'sho\'rva ' + sk);

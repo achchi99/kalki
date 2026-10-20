@@ -3679,7 +3679,7 @@
    "ingr": [
     {
      "m": "kolbasa_mol",
-     "g": 100
+     "g": 200
     }
    ],
    "taxminiy": true
@@ -3691,7 +3691,7 @@
    "ingr": [
     {
      "m": "sosiska_mol",
-     "g": 100
+     "g": 200
     }
    ],
    "taxminiy": true
@@ -3703,7 +3703,7 @@
    "ingr": [
     {
      "m": "tushonka_mol",
-     "g": 100
+     "g": 200
     }
    ],
    "taxminiy": true
