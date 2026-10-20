@@ -1697,6 +1697,50 @@
     "pitsa-pepperoni": "pepperoni",
     "pitsa-4": "4pishloq"
    }
+  },
+  {
+   "id": "hotdog",
+   "n": "Hot-dog",
+   "r": "Хот-дог",
+   "axes": [
+    {
+     "id": "sosiska",
+     "n": "Sosiska",
+     "r": "Сосиска",
+     "o": [
+      {
+       "id": "mol",
+       "n": "mol go'shtli",
+       "r": "говяжья"
+      },
+      {
+       "id": "tovuq",
+       "n": "tovuq go'shtli",
+       "r": "куриная"
+      }
+     ],
+     "d": "mol"
+    }
+   ],
+   "grid": [
+    {
+     "v": "mol",
+     "from": "hotdog-mol"
+    },
+    {
+     "v": "tovuq",
+     "from": "hotdog-tovuq"
+    }
+   ],
+   "alias_old": {
+    "hotdog-mol": "mol",
+    "hotdog-tovuq": "tovuq"
+   },
+   "uv": {
+    "tovuq": {
+     "dona": 110
+    }
+   }
   }
  ],
  "retseptli_oddiy": {
@@ -1707,7 +1751,12 @@
   "qovurdoq": "qovurdoq",
   "dimlama": "dimlama",
   "norin": "norin",
-  "jarkop": "jarkop"
+  "jarkop": "jarkop",
+  "kolbasa": "kolbasa",
+  "sosiska": "sosiska",
+  "tushonka": "tushonka",
+  "pelmeni": "pelmeni",
+  "hotdog": "hotdog-mol"
  },
  "yangi": [
   {

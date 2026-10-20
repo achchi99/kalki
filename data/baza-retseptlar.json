@@ -3671,6 +3671,74 @@
     "asos_uz": "1 dona ≈ 110 g (bulochka va 1 sosiska; sous va ketchupsiz). Sosiska tarkibi ishlab chiqaruvchiga qarab farq qiladi",
     "asos_ru": "1 шт ≈ 110 г (булочка и 1 сосиска; без соусов). Состав сосисок зависит от производителя"
    }
+  },
+  {
+   "id": "kolbasa",
+   "nom": "Kolbasa (mol go'shti)",
+   "eski": "kolbasa",
+   "ingr": [
+    {
+     "m": "kolbasa_mol",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "sosiska",
+   "nom": "Sosiska (mol)",
+   "eski": "sosiska",
+   "ingr": [
+    {
+     "m": "sosiska_mol",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "tushonka",
+   "nom": "Tushonka (mol go'shti)",
+   "eski": "tushonka",
+   "ingr": [
+    {
+     "m": "tushonka_mol",
+     "g": 100
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "pelmeni",
+   "nom": "Pelmeni (mol va tovuq go'shtli, qaynatma)",
+   "eski": "pelmeni",
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300,
+     "y": 1
+    },
+    {
+     "m": "suv",
+     "g": 110,
+     "y": 1
+    },
+    {
+     "m": "mol",
+     "g": 200,
+     "y": 0.85
+    },
+    {
+     "m": "tovuq_son_teriz",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
   }
  ]
 }

@@ -676,7 +676,7 @@
   function yRow(f) { return '<button type="button" class="sl-rr" data-act="ypick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function yResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = yd.q.trim(), foods = allFoods(), list;
-    if (q) list = rNoPork(S.search(foods, q, srchOpts(30)));
+    if (q) list = S.search(foods, q, srchOpts(30));
     else { var rec = st.recents.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom; }).slice(0, 10); list = rec.slice(0, 5).concat(pop.filter(function (f) { return rec.indexOf(f) < 0; })).slice(0, 12); }
     return list.length ? list.map(yRow).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
@@ -723,7 +723,7 @@
   }
   function rcResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = rc.q.trim(), foods = (db || []), list;
-    list = q ? rNoPork(S.search(foods, q, srchOpts(30))) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
+    list = q ? S.search(foods, q, srchOpts(30)) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
     return list.length ? list.map(function (f) { return '<button type="button" class="sl-rr" data-act="rcpick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
   function rcGramsHtml() {
@@ -798,7 +798,7 @@
       if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         fd.busy = false; if (res.s === 429) fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); else if (res.s !== 200 || !res.j || !res.j.ovqatlar) fd.phErr = T('phErr'); else if (!res.j.ovqatlar.length) fd.phErr = T('phNone');
-        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
+        else fd.items = res.j.ovqatlar.map(function (o) { return { name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), ptxt: o.porsiya || '', est: true, ai: true, photo: true, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0, base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }; }); phRefresh();
       }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
     });
   }
@@ -927,7 +927,7 @@
   function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
   /* «Yemaydiganlarim» qoidasi (yagona: kalkifit-yeymiz.js rinfo): cho'chqa — hech qayerda; cheklangan teglar — ro'yxatda yashiriladi (+ «Ko'rsatish»), qidiruvda belgi, porsiya oynasida yumshoq ogohlantirish */
   function rI(f, vr) { return Y ? Y.rinfo(f, vr) : { pork: false, hit: [] }; }
-  function rSplit(list) { var o = { show: [], hid: [] }; list.forEach(function (f) { var i = rI(f); if (i.pork) return; (i.hit.length ? o.hid : o.show).push(f); }); return o; }
+  function rSplit(list, keepPork) { var o = { show: [], hid: [] }; list.forEach(function (f) { var i = rI(f); if (i.pork && !keepPork) return; (i.hit.length ? o.hid : o.show).push(f); }); return o; }
   function rNoPork(list) { return list.filter(function (f) { return !rI(f).pork; }); }
   function rFoot(n) { return n ? '<button type="button" class="sl-txtbtn sl-rhid" data-act="rshow" aria-expanded="' + !!fd.showR + '">' + esc(T(fd.showR ? 'rhHide' : 'rhShow', { n: n })) + '</button>' : ''; }
   function rEntInfo(e) { var f = e.fid ? foodById(e.fid) : null; return f ? rI(f.al ? (foodById(f.al.f) || f) : f, e.vr || null) : { pork: false, hit: [] }; }
@@ -937,7 +937,7 @@
     var k = dbState + '|' + Y.yemay().join(); if (catCache.k !== k) catCache = { k: k, m: {} }; if (catCache.m[c] != null) return catCache.m[c];
     var l = allFoods().filter(function (f) { return inCat(f, c) && !f.h && !f.custom; }); return (catCache.m[c] = !l.length || l.some(function (f) { var i = rI(f); return !i.pork && !i.hit.length; }));
   }
-  function rHits() { if (!Y || !fd || !fd.food || fd.food.custom || fd.editId != null || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var f = fd.fam || fd.food; return rI(f, fd.fam ? fd.food.vr : null).hit; }
+  function rHits() { if (!Y || !fd || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var o = fd.mode === 'item' ? fd.items[fd.ix] : fd; if (!o) return []; if (!o.food && fd.mode === 'item') return o.rHit || []; if (!o.food || o.food.custom || (fd.mode === 'portion' && fd.editId != null)) return []; var f = o.fam || o.food; return rI(f, o.fam ? o.food.vr : null).hit; }      // AI matn / rasm natijasi (item) ham: taom tanilsa — o'sha yumshoq ogohlantirish
   function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
   function resRow(f, cat, dim) {
     var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f));
@@ -949,11 +949,11 @@
     if (Y && !Y.chReady()) { Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; }
     var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
     var withR = function (sp, fn) { return sp.show.map(function (f) { return fn(f, false); }).join('') + (fd.showR ? sp.hid.map(function (f) { return fn(f, true); }).join('') : '') + rFoot(sp.hid.length); };
-    if (q) { list = rNoPork(S.search(foods, q, srchOpts(40))); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }      // qidiruv: odam o'zi yozgan — chiqadi, cheklangani «Yemaydiganlaringizda» belgisi bilan; cho'chqa — hech qachon
+    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }      // qidiruv: odam o'zi yozgan — HAMMASI chiqadi (cho'chqali ham, belgisiz); cheklangani «Yemaydiganlaringizda» belgisi bilan
     else if (fd.cat) { var sc = rSplit(foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; })); return sc.show.length || sc.hid.length ? withR(sc, function (f, d) { return resRow(f, true, d); }) : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
     else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
       var recAll = fd.recSnap || (fd.recSnap = le.slice(0, 8)), recI = recAll.filter(function (r) { return !rEntInfo(r.e).pork; }), recS = recI.filter(function (r) { return !rEntInfo(r.e).hit.length; }), recH = recI.filter(function (r) { return rEntInfo(r.e).hit.length; });
-      var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8)), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
+      var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8), true), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
       var pop = rec.length ? [] : (function () { var r0 = rSplit(st.recents.map(foodById).filter(Boolean)).show.slice(0, 5); return r0.length ? r0 : rSplit(foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6); })();
       var hidN = recH.length + favSp.hid.length;
       return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : []), T('aRecHint')) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
@@ -1006,7 +1006,7 @@
   function fl(x) { return lang === 'ru' ? x.r : x.n; }
   function famChips(o) {                              // omillar chiplari: faqat kkal'ga sezilarli ta'sir qiladiganlar (>15%) + o'lcham
     if (!o.fam) return ''; var fm = o.fam.fam, h = '';
-    fm.ax.forEach(function (a) { if (!a.s) return; h += '<div class="rz-fl">' + esc(fl(a)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(a)) + '">' + a.o.filter(function (x) { return !Y || Y.variantOk(o.fam.fam, o.sel, a.i, x.i); }).map(function (x) { var on = (o.sel[a.i] || a.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fax" data-a="' + a.i + '" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>'; });
+    fm.ax.forEach(function (a) { if (!a.s) return; h += '<div class="rz-fl">' + esc(fl(a)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(a)) + '">' + a.o.map(function (x) { var on = (o.sel[a.i] || a.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fax" data-a="' + a.i + '" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>'; });
     if (fm.sz) h += '<div class="rz-fl">' + esc(fl(fm.sz)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(fm.sz)) + '">' + fm.sz.o.map(function (x) { var on = (o.szid || fm.sz.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fsz" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>';
     return h;
   }
@@ -1068,7 +1068,7 @@
   function pwScreen() { setSheet(fd.mode === 'item' ? itemHtml() : portionHtml()); }
   function itemHtml() {
     var it = fd.items[fd.ix];
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><button type="button" class="rz-x sl-src" data-act="pwsrc" aria-label="' + esc(T('pManba')) + '">' + ico('info') + '</button></div>' + pwBody(it, true) +
+    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwdone" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(it.name) + '</b><button type="button" class="rz-x sl-src" data-act="pwsrc" aria-label="' + esc(T('pManba')) + '">' + ico('info') + '</button></div><div id="rWarn">' + rWarnInner() + '</div>' + pwBody(it, true) +
       '<div class="sl-cta"><button type="button" class="sl-main" id="fsave" data-act="pwdone">' + esc(T('pwDone')) + '</button></div>';
   }
   function itemOpen(i, back) { fd.back = back; fd.ix = i; fd.mode = 'item'; var it = fd.items[i]; if (!it.unit) { it.unit = 'pc'; it.qty = 1; } setSheet(itemHtml()); }
@@ -1231,7 +1231,7 @@
     var f = foodById(id); if (!f) { loadDb(function () { pickFood(id, pick); }); return; }
     fd.fam = null; fd.sel = null; fd.szid = null; fd.favId = null;
     if (f.al) { var bf = foodById(f.al.f); if (bf) { fd.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
-    if (f.fam) { famOpen(fd, f, Y ? Y.safeSel(f, Object.assign(S.famDefault(f), pick || {})) : Object.assign(S.famDefault(f), pick || {})); }
+    if (f.fam) { famOpen(fd, f, Object.assign(S.famDefault(f), pick || {})); }
     else fd.food = f;
     fd.base = null; fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
     var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
@@ -1345,6 +1345,9 @@
     if (dbState === 2) run(); else loadDb(function () { run(); });
   }
   function cid() { try { var c = lsGet(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
+  function rGuess(nm) {                               // bazaga moslanmagan AI/rasm qatori: nomdan taom taniladimi? tanilsa — «Yemaydiganlarim» teglari (yumshoq ogohlantirish uchun)
+    try { if (!Y || !Y.chReady()) return []; var r = S.parseText(String(nm || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); if (r.items.length !== 1 || r.missing.length) return []; var x = r.items[0]; return rI(x.fam || x.food, x.fam ? x.vr : null).hit; } catch (e) { return []; }
+  }
   function aiItem(o) {                               // AI javobini bazaga moslash: nom + porsiya → eng yaqin taom/oila/birikma; kkal AI bilan ±50…160% ichida bo'lsa baza qiymati (aks holda AI «taxminiy»)
     try {
       var r = S.parseText(String(o.porsiya || '') + ' ' + String(o.nom || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels });
@@ -1359,7 +1362,7 @@
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
-      res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
+      res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });
   }

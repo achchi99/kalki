@@ -74,13 +74,6 @@
     if (allBlocked && !allPork) per.forEach(function (x) { x.hit.forEach(function (t) { if (hit.indexOf(t) < 0) hit.push(t); }); });
     return { pork: allPork, hit: allPork ? [] : hit };
   }
-  function comboKey(fam, sel, ai, xi) { return fam.id + '#' + fam.ax.map(function (a) { return a.i === ai ? xi : ((sel && sel[a.i]) || a.d); }).join('.'); }
-  function variantOk(fam, sel, ai, xi) { if (!ch) return true; return (ch.taom[comboKey(fam, sel, ai, xi)] || []).indexOf('choshqa') < 0; }          // cho'chqali variant tanlovda ko'rinmaydi
-  function safeSel(fam, sel) {                           // standart variant cho'chqali bo'lsa — birinchi cho'chqasiz kombinatsiyaga o'tadi
-    if (!ch) return sel; var f = fam.fam || fam; if ((ch.taom[comboKey(f, sel)] || []).indexOf('choshqa') < 0) return sel;
-    for (var i = 0; i < f.ax.length; i++) for (var j = 0; j < f.ax[i].o.length; j++) { var x = f.ax[i].o[j].i; if (variantOk(f, sel, f.ax[i].i, x)) { var n = Object.assign({}, sel); n[f.ax[i].i] = x; return n; } }
-    return sel;
-  }
   function hitText(hit) { return hit.map(function (t) { return T('ya_' + t); }).join(', '); }
   function yemay() { var p = A.prefs().yemay; return Array.isArray(p) ? p : []; }
   function avoids(t) { return CH.toza(yemay()).indexOf(t) > -1; }
@@ -234,5 +227,5 @@
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
     api.addIcons(ICONS); hs = HS && HS.browser ? HS.browser() : null;
   }
-  window.KalkiYeymizUI = { chReady: chReady, loadCh: loadCh, rinfo: rinfo, variantOk: variantOk, safeSel: safeSel, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
+  window.KalkiYeymizUI = { chReady: chReady, loadCh: loadCh, rinfo: rinfo, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
 })();

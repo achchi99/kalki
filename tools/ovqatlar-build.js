@@ -201,7 +201,7 @@ lavash-mol|Lavash (mol go'shtli, shaurma)|Шаурма с говядиной|lav
 doner|Doner kebab|Донер кебаб|doner,doner kabob,донер|215|11|11|19|q|1|dona:300
 burger|Burger (chizburger)|Чизбургер|burger,cheeseburger,бургер|265|13|12|27|q|1|dona:150
 burger-katta|Burger (katta)|Большой бургер|big burger,katta burger|250|12|13|22|q|1|dona:220
-hotdog|Hot-dog|Хот-дог|hotdog,hot dog,хот-дог|250|10|14|21|q|1|dona:150
+hotdog|Hot-dog|Хот-дог|hotdog,hot dog,хот-дог|250|10|14|21|q|1|dona:115
 kartoshka-fri|Kartoshka fri|Картофель фри|fri,french fries,картошка фри|310|3.5|15|41|q|1|porsiya:120,dona:5
 pitsa|Pitsa (margarita)|Пицца Маргарита|pizza,пицца|250|11|10|29|q|1|bolak:110
 pitsa-pepperoni|Pitsa (pepperoni)|Пицца Пепперони|pepperoni,пепперони|270|12|12|28|q|1|bolak:110

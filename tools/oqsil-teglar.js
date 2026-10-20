@@ -8,7 +8,7 @@
 const fs = require('fs'), path = require('path');
 const R = (p) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
 const TEGLAR = ['qizil', 'tovuq', 'baliq', 'tuxum', 'sut', 'dukkak', 'aralash', 'yoq'];
-const MASALLIQ_TEG = { mol: 'qizil', mol_yogsiz: 'qizil', qoy: 'qizil', qoy_yogsiz: 'qizil', dumba: 'qizil', tovuq_kokrak: 'tovuq', tovuq_son: 'tovuq', tovuq_son_teriz: 'tovuq', sazan: 'baliq', losos: 'baliq', qoy_pishgan: 'qizil', mol_pishgan: 'qizil', jigar: 'qizil', qoy_qovurga: 'qizil', tovuq_qanot: 'tovuq', tovuq_teri: 'tovuq', sosiska_mol: 'qizil', sosiska_tovuq: 'tovuq', tuxum: 'tuxum', qatiq: 'sut', sut: 'sut', suzma: 'sut', mosh: 'dukkak', noxat: 'dukkak', loviya_oq: 'dukkak', yasmiq: 'dukkak' };
+const MASALLIQ_TEG = { mol: 'qizil', mol_yogsiz: 'qizil', qoy: 'qizil', qoy_yogsiz: 'qizil', dumba: 'qizil', tovuq_kokrak: 'tovuq', tovuq_son: 'tovuq', tovuq_son_teriz: 'tovuq', sazan: 'baliq', losos: 'baliq', qoy_pishgan: 'qizil', mol_pishgan: 'qizil', jigar: 'qizil', qoy_qovurga: 'qizil', tovuq_qanot: 'tovuq', tovuq_teri: 'tovuq', sosiska_mol: 'qizil', kolbasa_mol: 'qizil', tushonka_mol: 'qizil', sosiska_tovuq: 'tovuq', tuxum: 'tuxum', qatiq: 'sut', sut: 'sut', suzma: 'sut', mosh: 'dukkak', noxat: 'dukkak', loviya_oq: 'dukkak', yasmiq: 'dukkak' };
 /* Retseptsiz taomlar (id → teg). Qolgani: tur bo'yicha (pastda TUR). */
 const QOLDA = {
   'yengil-osh': 'tovuq', 'somsa-qat': 'qizil', 'somsa-qovoq': 'yoq', 'chuchvara-sho': 'qizil', 'lagmon-qov': 'qizil', shashlik: 'qizil', 'shashlik-tovuq': 'tovuq', 'jigar-kabob': 'qizil', lyulya: 'qizil', 'tandir-gosht': 'qizil', qazi: 'qizil',

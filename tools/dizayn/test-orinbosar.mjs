@@ -11,7 +11,7 @@ for (const f of foods) { assert.ok(T.taom[f.i], f.i + ': teg yo\'q'); assert.ok(
 assert.deepEqual(TG.hammasi().out, T.taom, 'data/oqsil-manba.json eskirgan: node tools/oqsil-teglar.js --yoz');
 const tg = (k) => T.taom[k];
 assert.equal(tg('osh'), 'qizil'); assert.equal(tg('osh-tovuq'), 'tovuq'); assert.equal(tg('sazan-grill'), 'baliq'); assert.equal(tg('moshkichiri'), 'dukkak'); assert.equal(tg('moshxorda-gostsiz'), 'dukkak'); assert.equal(tg('somsa#oddiy.tovuq'), 'tovuq'); assert.equal(tg('somsa#oddiy.qovoq'), 'yoq');
-assert.equal(tg('shashlik#tovuq'), 'tovuq'); assert.equal(tg('lagmon#shorvali.tovuq'), 'tovuq'); assert.equal(tg('lagmon#shorvali.mol'), 'qizil'); assert.equal(tg('qoymoq'), 'tuxum'); assert.equal(tg('qatiq-salat'), 'sut'); assert.equal(tg('kolbasa'), 'aralash'); assert.equal(tg('non'), 'yoq'); assert.equal(tg('shurva'), 'qizil');
+assert.equal(tg('shashlik#tovuq'), 'tovuq'); assert.equal(tg('lagmon#shorvali.tovuq'), 'tovuq'); assert.equal(tg('lagmon#shorvali.mol'), 'qizil'); assert.equal(tg('qoymoq'), 'tuxum'); assert.equal(tg('qatiq-salat'), 'sut'); assert.equal(tg('kolbasa'), 'qizil'); assert.equal(tg('non'), 'yoq'); assert.equal(tg('shurva'), 'qizil');
 const cnt = (arr) => Object.fromEntries(T.teglar.map((t) => [t, arr.filter((k) => T.taom[k] === t).length])), vis = foods.filter((f) => !f.h).map((f) => f.i);
 const c = cnt(vis); assert.ok(c.baliq >= 11 && c.tovuq >= 14 && c.qizil >= 30 && c.dukkak >= 13, JSON.stringify(c));
 log('oqsil manbasi: ' + foods.length + ' taom + oila kombinatsiyalari (' + Object.keys(T.taom).length + ' kalit) teglangan, retseptdan avtomatik (yangilangan); ko\'rinadigan ' + vis.length + ': ' + JSON.stringify(c));
