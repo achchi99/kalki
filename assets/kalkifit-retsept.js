@@ -12,7 +12,7 @@
       rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: "Masalliqlarni gramm bilan yozing. Ta'mi qoladi, kaloriyasi kamayadi.",
       rtPh: "Onamning oshi: 1 kg guruch, 1 kg qo'y go'shti, 300 g yog', 1 kg sabzi…", rtCam: 'Rasmga olish', rtSoon: 'Tez orada', rtEx: 'Misollar', rtGo: 'Moslashtirish',
       rtEmpty: 'Retseptni yozing yoki misolni tanlang', rtShort: "Matn juda qisqa — masalliqlarni gramm bilan yozing (masalan, «1 kg guruch, 300 g yog'»).", rtLong: 'Matn juda uzun (1500 belgidan oshmasin).',
-      rtScan: 'Masalliqlar tanilmoqda…', rtAiBusy: 'AI bilan tekshirilmoqda…', rtFound: '{n} ta masalliq topildi', rtIngT: 'Masalliqlar', rtIngH: "Grammni − / + bilan to'g'rilang. Hammasi bazadagi qiymat bilan hisoblanadi.", rtBase: 'bazada: {b}', rtAiAs: 'AI: «{a}» → {b} (tekshiring)',
+      rtScan: 'Masalliqlar tanilmoqda…', rtAiBusy: 'AI bilan tekshirilmoqda…', rtFound: '{n} ta masalliq topildi', rtIngT: 'Masalliqlar', rtIngH: "Grammni − / + bilan to'g'rilang. Hammasi bazadagi qiymat bilan hisoblanadi.", rtBase: '100 g da: {b}', rtAiAs: 'AI: «{a}» → {b} (tekshiring)',
       rtUnk: 'tanlang', rtUnkH: 'Bu masalliq bazadan aniq topilmadi — qaysi biri?', rtUnkNo: "Qo'shmaslik", rtNeedH: 'Miqdor aniq emas — gramm kiriting.', rtMore: 'Boshqa…', rtAdd: "Masalliq qo'shish",
       rtPickT: 'Masalliqni tanlang', rtPickQ: 'Qidirish: guruch, sabzi…', rtPickNone: 'Hech narsa topilmadi.', rtNeedFix: 'Sariq belgili masalliqlarni tanlang yoki miqdorini kiriting', rtNone: "Masalliq qo'shing",
       rtPork: "Matnda cho'chqa go'shti bor — KalkiFit uni qo'shmaydi. Kerak bo'lsa, boshqa masalliq bilan almashtiring.", rtEst: 'taxminiy',
@@ -21,7 +21,7 @@
       rtCmp: 'Oldin / Keyin', rtBefore: 'Oldin', rtAfter: 'Keyin', rtMK: 'Kaloriya', rtMP: 'Oqsil', rtMF: "Yog'",
       rtChT: "Aqlli o'zgarishlar", rtChH: "Har birini yoqing yoki o'chiring — raqam darhol o'zgaradi.", rtBen: '−{k} kkal porsiyada', rtBen0: "kaloriya deyarli o'zgarmaydi", rtBenUp: "+{k} kkal porsiyada, lekin to'yimlilik oshadi",
       rtT0: 'deyarli sezilmaydi', rtT1: 'ozgina farq', rtT2: "boshqacha ta'm", rtNoRules: "Bu retseptda yengillashtirish uchun mos o'zgarish topilmadi — u allaqachon yengil yoki boshqa taom.",
-      rtNote: 'Raqamlar taxminiy, KalkiFit bazasi (USDA) asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: "Saqlandi: «{n}» — 1 porsiya {k} kkal. «Ovqat qo'shish» → Taomlarim'da.", rtSavedBtn: 'Bugunga yozish', rtLight: 'yengil', rtNoSave: "Saqlab bo'lmadi — masalliq yo'q",
+      rtNote: 'Raqamlar taxminiy, KalkiFit bazasi (USDA) asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: 'Saqlandi: «{n}» — 1 porsiya {k} kkal', rtSavedBtn: 'Bugunga yozish', rtLight: 'yengil', rtNoSave: "Saqlab bo'lmadi — masalliq yo'q",
       rtCardT: 'Ulashish kartochkasi', rtCardH: "Instagram yoki Telegram'ga qo'yish uchun rasm.", rtDl: 'Yuklab olish', rtShared: 'Ulashildi', rtMaking: 'Rasm tayyorlanmoqda…',
       rtLightV: 'Yengil versiya', rtBy: 'KalkiFit bilan hisoblandi', rtCardSub: '1 porsiya: {a} → {b} kkal', rtPeopleN: '{n} kishilik',
       rtErrNet: "Internetga ulanib bo'lmadi. Masalliqlarni qo'lda tanlang.", rtErrAi: "AI bu qatorlarni aniqlay olmadi. Quyidagilarni o'zingiz tanlang.", rtErrNone: "Masalliq topilmadi. Retseptni gram bilan yozing yoki masalliqni qo'lda qo'shing.",
@@ -32,7 +32,7 @@
       rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты с граммами. Вкус останется, калорий станет меньше.',
       rtPh: 'Мамин плов: 1 кг риса, 1 кг баранины, 300 г масла, 1 кг моркови…', rtCam: 'Сфотографировать', rtSoon: 'Скоро', rtEx: 'Примеры', rtGo: 'Облегчить',
       rtEmpty: 'Напишите рецепт или выберите пример', rtShort: 'Слишком коротко — напишите ингредиенты с граммами (например, «1 кг риса, 300 г масла»).', rtLong: 'Слишком длинно (не больше 1500 символов).',
-      rtScan: 'Распознаём ингредиенты…', rtAiBusy: 'Проверяем с помощью ИИ…', rtFound: 'Найдено ингредиентов: {n}', rtIngT: 'Ингредиенты', rtIngH: 'Поправьте граммы кнопками − / +. Всё считается по значениям из базы.', rtBase: 'в базе: {b}', rtAiAs: 'ИИ: «{a}» → {b} (проверьте)',
+      rtScan: 'Распознаём ингредиенты…', rtAiBusy: 'Проверяем с помощью ИИ…', rtFound: 'Найдено ингредиентов: {n}', rtIngT: 'Ингредиенты', rtIngH: 'Поправьте граммы кнопками − / +. Всё считается по значениям из базы.', rtBase: 'на 100 г: {b}', rtAiAs: 'ИИ: «{a}» → {b} (проверьте)',
       rtUnk: 'выберите', rtUnkH: 'Этот ингредиент не найден точно в базе — какой именно?', rtUnkNo: 'Не добавлять', rtNeedH: 'Количество неясно — укажите граммы.', rtMore: 'Другое…', rtAdd: 'Добавить ингредиент',
       rtPickT: 'Выберите ингредиент', rtPickQ: 'Поиск: рис, морковь…', rtPickNone: 'Ничего не найдено.', rtNeedFix: 'Выберите ингредиенты с жёлтой меткой или укажите количество', rtNone: 'Добавьте ингредиент',
       rtPork: 'В тексте есть свинина — KalkiFit её не добавляет. При необходимости замените другим ингредиентом.', rtEst: 'примерно',
@@ -41,7 +41,7 @@
       rtCmp: 'До / После', rtBefore: 'До', rtAfter: 'После', rtMK: 'Калории', rtMP: 'Белок', rtMF: 'Жиры',
       rtChT: 'Умные изменения', rtChH: 'Включайте и выключайте — число меняется сразу.', rtBen: '−{k} ккал на порцию', rtBen0: 'калории почти не меняются', rtBenUp: '+{k} ккал на порцию, но сытнее',
       rtT0: 'почти незаметно', rtT1: 'небольшая разница', rtT2: 'другой вкус', rtNoRules: 'Для этого рецепта подходящих изменений не нашлось — он уже лёгкий или это другое блюдо.',
-      rtNote: 'Цифры примерные, по базе KalkiFit (USDA).', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Сохранено: «{n}» — 1 порция {k} ккал. «Добавить еду» → Мои блюда.', rtSavedBtn: 'Записать на сегодня', rtLight: 'лёгкая', rtNoSave: 'Не удалось сохранить — нет ингредиентов',
+      rtNote: 'Цифры примерные, по базе KalkiFit (USDA).', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Сохранено: «{n}» — 1 порция {k} ккал', rtSavedBtn: 'Записать на сегодня', rtLight: 'лёгкая', rtNoSave: 'Не удалось сохранить — нет ингредиентов',
       rtCardT: 'Карточка для соцсетей', rtCardH: 'Картинка для Instagram или Telegram.', rtDl: 'Скачать', rtShared: 'Отправлено', rtMaking: 'Готовим картинку…',
       rtLightV: 'Лёгкая версия', rtBy: 'Посчитано в KalkiFit', rtCardSub: '1 порция: {a} → {b} ккал', rtPeopleN: 'на {n} чел.',
       rtErrNet: 'Нет соединения с интернетом. Выберите ингредиенты вручную.', rtErrAi: 'ИИ не смог распознать эти строки. Выберите их сами.', rtErrNone: 'Ингредиенты не найдены. Напишите рецепт с граммами или добавьте ингредиент вручную.',
@@ -112,7 +112,7 @@
         (scan ? '<span class="rt-q" aria-hidden="true">?</span>' : '<p class="rz-mut sm">' + esc(T('rtUnkH')) + '</p><div class="rt-opts">' + cands.map(function (c) { return '<button type="button" class="rz-chip" data-act="rtset" data-i="' + i + '" data-o="' + c + '">' + esc(cap(R.table()[c][L()])) + '</button>'; }).join('') + '<button type="button" class="rz-chip" data-act="rtpick" data-i="' + i + '">' + esc(T('rtMore')) + '</button><button type="button" class="rz-chip" data-act="rtdrop" data-i="' + i + '">' + esc(T('rtUnkNo')) + '</button></div>') + '</div>';
     }
     var need = !(it.g > 0) && it.need, u = unitLbl(it.id);
-    return '<div class="rt-ing' + (scan ? ' scan' : '') + (it.g > 0 || need ? '' : ' off') + (need ? ' need' : '') + '" data-i="' + i + '" style="--i:' + i + '"><div class="nm"><b>' + esc(nameOf(it)) + (it.est ? ' <small class="rt-est">' + esc(T('rtEst')) + '</small>' : '') + '</b><small>' + esc(need ? T('rtNeedH') : it.ai ? T('rtAiAs', { a: cap(it.nom), b: m[L()] }) : T('rtBase', { b: m[L()] })) + '</small></div>' +
+    return '<div class="rt-ing' + (scan ? ' scan' : '') + (it.g > 0 || need ? '' : ' off') + (need ? ' need' : '') + '" data-i="' + i + '" style="--i:' + i + '"><div class="nm"><b>' + esc(nameOf(it)) + (it.est ? ' <small class="rt-est">' + esc(T('rtEst')) + '</small>' : '') + '</b><small>' + esc(need ? T('rtNeedH') : it.ai ? T('rtAiAs', { a: cap(it.nom), b: m[L()] }) : T('rtBase', { b: m.k + ' ' + T('rtKcal') })) + '</small></div>' +
       (scan ? '<span class="rt-ok" aria-hidden="true">' + ico('rok') + '</span>' : '<div class="rt-step" role="group" aria-label="' + esc(nameOf(it)) + '"><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="-1" aria-label="' + esc(nameOf(it)) + ' −"' + (it.g <= 0 ? ' disabled' : '') + '>−</button><b aria-live="polite">' + disp(it) + ' ' + u + '</b><button type="button" class="sl-pill" data-act="rtg" data-i="' + i + '" data-s="1" aria-label="' + esc(nameOf(it)) + ' +">+</button></div>') + '</div>';
   }
   function anHtml(scan) {
@@ -280,7 +280,8 @@
       var wait = Math.max(0, (reduce() ? 0 : 900) - (Date.now() - t0));
       setTimeout(function () {
         if (!rt || rt.scr !== 'scan') return;
-        if (res.ok) mergeAi(unres, res.list); else { rt.err = res.msg; count('retsept_xato'); }
+        if (res.ok) mergeAi(unres, res.list); else rt.err = res.msg;
+        if (rt.err) count('retsept_xato');
         toAnalysis();
       }, wait);
     });

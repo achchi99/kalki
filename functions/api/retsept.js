@@ -17,7 +17,7 @@ const DEFAULT_CLIENT_LIMIT = 5, DEFAULT_SITE_LIMIT = 800, CACHE_TTL = 30 * 86400
 const BIRLIK = { g: 'g', kg: 'kg', ml: 'ml', l: 'l', dona: 'dona', bosh: 'bosh', osh_qoshiq: 'osh', choy_qoshiq: 'choy', stakan: 'stakan' };
 const system = () => `Sen retsept matnidan MASALLIQLARNI ajratuvchi yordamchisan. Foydalanuvchi retsept qatorlarini yozadi (o'zbek lotin, kirill yoki rus tilida).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har masalliq uchun BITTA element: {"nom": matndagi nomi (qisqa), "id": quyidagi ro'yxatdan eng mos id yoki null, "miqdor": son yoki null, "birlik": "g"|"kg"|"ml"|"l"|"dona"|"bosh"|"osh_qoshiq"|"choy_qoshiq"|"stakan"|null}.
-Qoidalar: miqdorni FAQAT matnda yozilgan bo'yicha ber, o'zing o'ylab topma (yozilmagan bo'lsa null); "id" faqat ro'yxatdagi aniq mos masalliq uchun, shubha bo'lsa yoki ro'yxatda yo'q bo'lsa null; kaloriya yoki ozuqa qiymatini YOZMA; eng ko'pi ${MAX_ITEMS} ta element.
+Qoidalar: miqdorni FAQAT matnda yozilgan bo'yicha ber, o'zing o'ylab topma (yozilmagan bo'lsa null); "id" faqat ro'yxatdagi AYNAN o'sha masalliq (yoki uning oddiy turi, masalan «devzira» = guruch) uchun; masalliqning boshqa qismi yoki boshqa mahsulot bo'lsa (tuxum sarig'i/oqi, pomidor pastasi, limon, lavlagi) yoki shubha bo'lsa — null; kaloriya yoki ozuqa qiymatini YOZMA; eng ko'pi ${MAX_ITEMS} ta element.
 Ro'yxat (id=o'zbekcha/ruscha): ${CATALOG}.`;
 
 export function extractJson(text) {

@@ -525,7 +525,7 @@
     ({ today: renderToday, history: renderHistory, profile: renderProfile })[view]();
     main.classList.toggle('enter', enterNext); enterNext = false; main.scrollTop = sc;
     if (view === 'today') { if (!todayIn) { todayIn = true; staggerToday(); } else upIdx(); }
-    if (view === 'today' && !prefs().tipsDone && !kit.tipsOn() && !kit.sheetKind() && !introPending && !(IN && IN.isOpen())) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !introPending && !(IN && IN.isOpen()) && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 500);
+    if (view === 'today' && !prefs().tipsDone && !kit.tipsOn() && !kit.sheetKind() && !introPending && !(IN && IN.isOpen())) setTimeout(function () { if (!kit.tipsOn() && st.setup && view === 'today' && !prefs().tipsDone && !kit.sheetKind() && !introPending && !(IN && IN.isOpen()) && !$('#rzOnb').classList.contains('out')) tipsStart(); }, 1700);
   }
 
 
@@ -1519,7 +1519,7 @@
     var rm = function () { if (el.parentNode) el.parentNode.removeChild(el); }; el.addEventListener('animationend', function (e) { if (e.target === el) rm(); }); setTimeout(rm, 1100);
   }
   var introPending = false;                                // yangi foydalanuvchi: avval «Qanday ishlaydi?» slaydlari, KEYIN tips (bir vaqtda emas)
-  function introShow() { if (!IN) { introPending = false; return; } IN.show(function () { introPending = false; prefs().introDone = true; save(); render(); }); }
+  function introShow() { if (!IN) { introPending = false; return; } IN.show(function () { introPending = false; prefs().introDone = true; save(); heroPrev = null; heroAnim = null; todayIn = false; render(); }); }      // Bugun kirish animatsiyasi slayd YOPILGANDAN keyin ko'rinsin
   function tipsStart() { tipsSess = true; kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
   function aboutOpen(on) {
     document.body.classList.toggle('rz-aboutopen', !!on); var a = document.getElementById('rzAbout'); if (!a) return;
