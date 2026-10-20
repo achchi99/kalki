@@ -9,7 +9,7 @@
   function lsGet(k) { try { var v = localStorage.getItem(k); if (v == null && OLD[k]) { v = localStorage.getItem(OLD[k]); if (v != null && k !== 'kalki_fit_import') localStorage.setItem(k, v); } return v; } catch (e) { return null; } }
   var D = {
     uz: {
-      obLater: 'Keyinroq', obYq2: "Yemaydigan narsangiz bormi?", obYh2: 'Belgilangan taomlar sizga taklif qilinmaydi. Hech narsa tanlamasangiz ham bo\'ladi.', obYno: "Yo'q, hammasini yeyman", obYgo: 'Davom etish', obYpork: "Cho'chqa go'shti hech qachon taklif qilinmaydi.", txT: "Me'yoringiz taxminiy — 30 soniyada aniqlashtiring", txBtn: 'Aniqlashtirish', sldMinus: 'Kamaytirish', sldPlus: "Ko'paytirish", sldEdit: 'Aniq qiymatni yozish',
+      obLater: 'Keyinroq', obLater2: "Keyinroq — o'rtacha me'yor bilan boshlash", txChip: 'Taxminiy · Aniqlashtirish', txP: "Me'yoringiz taxminiy", obYq2: "Yemaydigan narsangiz bormi?", obYh2: 'Belgilangan taomlar sizga taklif qilinmaydi. Hech narsa tanlamasangiz ham bo\'ladi.', obYno: "Yo'q, hammasini yeyman", obYgo: 'Davom etish', obYpork: "Cho'chqa go'shti hech qachon taklif qilinmaydi.", txT: "Me'yoringiz taxminiy — 30 soniyada aniqlashtiring", txBtn: 'Aniqlashtirish', sldMinus: 'Kamaytirish', sldPlus: "Ko'paytirish", sldEdit: 'Aniq qiymatni yozish',
       appName: 'KalkiFit', navToday: 'Bugun', navFood: 'Ovqat', navSteps: 'Qadam', navMe: 'Men', add: "Ovqat qo'shish", kcal: 'kkal', gram: 'g', km: 'km',
       today: 'Bugun', jClose: 'Yopish (bugun uchun)', yesterday: 'Kecha', back: 'Orqaga', next: 'Keyingi', start: 'Boshlash', save: 'Saqlash', cancel: 'Bekor qilish', del: "O'chirish", close: 'Yopish', confirm: 'Tasdiqlash', later: 'Keyinroq', saved: 'Saqlandi', del1: "Yozuv o'chirildi",
       mealb: 'Nonushta', meall: 'Tushlik', mealds: 'Kechki ovqat', mealss: 'Tamaddi', meald: 'Kechki ovqat', meals: 'Tamaddi',
@@ -53,7 +53,7 @@
       units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six' }
     },
     ru: {
-      obLater: 'Позже', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', obYpork: 'Свинина не предлагается никогда.', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
+      obLater: 'Позже', obLater2: 'Позже — начать со средней нормой', txChip: 'Примерно · Уточнить', txP: 'Норма примерная', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', obYpork: 'Свинина не предлагается никогда.', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
       appName: 'KalkiFit', navToday: 'Сегодня', navFood: 'Еда', navSteps: 'Шаги', navMe: 'Я', add: 'Добавить еду', kcal: 'ккал', gram: 'г', km: 'км',
       today: 'Сегодня', jClose: 'Закрыть (на сегодня)', yesterday: 'Вчера', back: 'Назад', next: 'Далее', start: 'Начать', save: 'Сохранить', cancel: 'Отмена', del: 'Удалить', close: 'Закрыть', confirm: 'Подтвердить', later: 'Позже', saved: 'Сохранено', del1: 'Запись удалена',
       mealb: 'Завтрак', meall: 'Обед', mealds: 'Ужин', mealss: 'Перекус', meald: 'Ужин', meals: 'Перекус',
@@ -393,9 +393,9 @@
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = (inst.isTop() ? inst.cardHtml() : '');
     h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div><div class="r">' + (sk >= 2 ? '<button type="button" class="sl-streak2" id="streakChip" data-act="streakinfo" aria-label="' + esc(T('hStreak', { n: sk }) + '. ' + T('stkQ')) + '">' + ico('flame') + esc(T('hStreak', { n: sk })) + '</button>' : '') + '<button type="button" class="sl-av" data-act="tab" data-v="profile" aria-label="' + esc(T('navProfile')) + '"><span data-cyr="skip">' + esc(T('avL')) + '</span></button></div></div>';
-    h += weekStripHtml(t) + taxCardHtml() + (Y && !taxDue(prefs().taxminiy) ? Y.yemayCard() : '');
+    h += weekStripHtml(t) + (Y && oneTimeOk() ? Y.yemayCard() : '');
     h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : '', b: fmt(curN), c: over ? T('vOver2') : T('vLeftK') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
-      '<div class="sl-rsub"><span><b id="kNum">' + fmt(tot.kcal) + '</b> ' + esc(T('cEaten2')) + '</span><i aria-hidden="true">·</i><span><b id="kGoal">' + fmt(pl.target) + '</b> ' + esc(T('cGoal2')) + '</span>' + (bal.credit > 0 ? '<i aria-hidden="true">·</i><span><b id="kBurn">+' + fmt(bal.credit) + '</b> ' + esc(T('cBurn2')) + '</span>' : '') + '<button type="button" class="sl-infob" data-act="xkcal" aria-label="ⓘ ' + esc(T('xKcalT')) + '">i</button></div></section>';
+      '<div class="sl-rsub"><span><b id="kNum">' + fmt(tot.kcal) + '</b> ' + esc(T('cEaten2')) + '</span><i aria-hidden="true">·</i><span><b id="kGoal">' + fmt(pl.target) + '</b> ' + esc(T('cGoal2')) + '</span>' + (bal.credit > 0 ? '<i aria-hidden="true">·</i><span><b id="kBurn">+' + fmt(bal.credit) + '</b> ' + esc(T('cBurn2')) + '</span>' : '') + '<button type="button" class="sl-infob" data-act="xkcal" aria-label="ⓘ ' + esc(T('xKcalT')) + '">i</button></div>' + taxChipHtml() + '</section>';
     h += jokeLineHtml();
     h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>' + (!tot.kcal && !x.food.length ? '<p class="sl-first">' + esc(emptyLine()) + '</p>' : '');
     if (Y) h += Y.todayCard();
@@ -483,7 +483,7 @@
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
     var seg = function (act, key, opts, cur, label) { return segHtml(label || '', opts.map(function (o) { return { attrs: 'data-act="' + act + '" data-' + key + '="' + o[0] + '"', on: cur === o[0], text: o[1] }; })); };
-    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + taxCardHtml();
+    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + taxRowHtml();
     h += '<section class="rz-card sl-prof"><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button></section>';
     if (Y) h += Y.profileCard();
@@ -676,7 +676,7 @@
   function yRow(f) { return '<button type="button" class="sl-rr" data-act="ypick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function yResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = yd.q.trim(), foods = allFoods(), list;
-    if (q) list = S.search(foods, q, srchOpts(30));
+    if (q) list = rNoPork(S.search(foods, q, srchOpts(30)));
     else { var rec = st.recents.map(foodById).filter(Boolean), pop = foods.filter(function (f) { return f.t === 'o' && !f.custom; }).slice(0, 10); list = rec.slice(0, 5).concat(pop.filter(function (f) { return rec.indexOf(f) < 0; })).slice(0, 12); }
     return list.length ? list.map(yRow).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
@@ -723,7 +723,7 @@
   }
   function rcResults() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; var q = rc.q.trim(), foods = (db || []), list;
-    list = q ? S.search(foods, q, srchOpts(30)) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
+    list = q ? rNoPork(S.search(foods, q, srchOpts(30))) : foods.filter(function (f) { return f.t !== 'q' && f.t !== 'h' && f.t !== 'i'; }).slice(0, 60);
     return list.length ? list.map(function (f) { return '<button type="button" class="sl-rr" data-act="rcpick" data-id="' + esc(f.id) + '"><span class="m"><span class="nm">' + esc(nameOf(f)) + '</span><span class="tm">' + esc(T('per100', { k: f.k })) + '</span></span>' + ico('chev', 'r') + '</button>'; }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>';
   }
   function rcGramsHtml() {
@@ -862,7 +862,7 @@
   var fd = null, CATS = ['o', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
   function openAdd(o) {
     o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || S.mealByHour(new Date().getHours()), mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false };
-    openSheet('add', searchHtml()); catsInit(); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
+    openSheet('add', searchHtml()); catsInit(); if (Y) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
     if (o.food) pickFood(o.food);
   }
   function entUnitTxt(e) { var vv = vOf(e.unit); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (vv) return qtyStr(e.qty) + ' ' + vName(vv); if (e.vn) return qtyStr(e.qty) + ' ' + e.vn; return qtyStr(e.qty) + ' ' + (e.unit && e.unit !== 'pc' ? unitName(e.unit) : unitName('porsiya')); }
@@ -886,9 +886,9 @@
     return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
   }
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
-  function recRow(r) {
+  function recRow(r, dim) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
-    return '<div class="sl-rw"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
@@ -896,7 +896,7 @@
   }
   function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
   function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
-    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.filter(function (c) { return !(c === 'baliq' && Y && Y.avoids('baliq')); }).map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
+    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.filter(catVisible).map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
   }
   function chipsHtml() { return fd.q.trim() ? '' : catsHtml(); }
   function catSelect(c) {                            // chip bosildi: shu chip tanlanadi (qayta bosilsa — «Mashhur»ga qaytadi), ro'yxat darhol almashadi, yengil fade (150 ms), tepaga qaytadi
@@ -925,22 +925,41 @@
     var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2); upd();
   }
   function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
-  function resRow(f, cat) {
+  /* «Yemaydiganlarim» qoidasi (yagona: kalkifit-yeymiz.js rinfo): cho'chqa — hech qayerda; cheklangan teglar — ro'yxatda yashiriladi (+ «Ko'rsatish»), qidiruvda belgi, porsiya oynasida yumshoq ogohlantirish */
+  function rI(f, vr) { return Y ? Y.rinfo(f, vr) : { pork: false, hit: [] }; }
+  function rSplit(list) { var o = { show: [], hid: [] }; list.forEach(function (f) { var i = rI(f); if (i.pork) return; (i.hit.length ? o.hid : o.show).push(f); }); return o; }
+  function rNoPork(list) { return list.filter(function (f) { return !rI(f).pork; }); }
+  function rFoot(n) { return n ? '<button type="button" class="sl-txtbtn sl-rhid" data-act="rshow" aria-expanded="' + !!fd.showR + '">' + esc(T(fd.showR ? 'rhHide' : 'rhShow', { n: n })) + '</button>' : ''; }
+  function rEntInfo(e) { var f = e.fid ? foodById(e.fid) : null; return f ? rI(f.al ? (foodById(f.al.f) || f) : f, e.vr || null) : { pork: false, hit: [] }; }
+  var catCache = { k: '', m: {} };
+  function catVisible(c) {                              // butun guruh cheklangan bo'lsa (masalan «Baliq») — tabning o'zi yashiriladi
+    if (c === 'baliq' && Y && Y.avoids('baliq')) return false; if (!Y || !Y.chReady() || dbState !== 2) return true;
+    var k = dbState + '|' + Y.yemay().join(); if (catCache.k !== k) catCache = { k: k, m: {} }; if (catCache.m[c] != null) return catCache.m[c];
+    var l = allFoods().filter(function (f) { return inCat(f, c) && !f.h && !f.custom; }); return (catCache.m[c] = !l.length || l.some(function (f) { var i = rI(f); return !i.pork && !i.hit.length; }));
+  }
+  function rHits() { if (!Y || !fd || !fd.food || fd.food.custom || fd.editId != null || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var f = fd.fam || fd.food; return rI(f, fd.fam ? fd.food.vr : null).hit; }
+  function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
+  function resRow(f, cat, dim) {
     var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f));
-    return '<button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
+    var bad = rI(f).hit.length;
+    return '<button type="button" class="sl-rr' + (dim ? ' dim' : '') + '" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
   }
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
+    if (Y && !Y.chReady()) { Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; }
     var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
-    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }
-    else if (fd.cat) { list = foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; }); return list.length ? list.map(function (f) { return resRow(f, true); }).join('') : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
+    var withR = function (sp, fn) { return sp.show.map(function (f) { return fn(f, false); }).join('') + (fd.showR ? sp.hid.map(function (f) { return fn(f, true); }).join('') : '') + rFoot(sp.hid.length); };
+    if (q) { list = rNoPork(S.search(foods, q, srchOpts(40))); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }      // qidiruv: odam o'zi yozgan — chiqadi, cheklangani «Yemaydiganlaringizda» belgisi bilan; cho'chqa — hech qachon
+    else if (fd.cat) { var sc = rSplit(foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; })); return sc.show.length || sc.hid.length ? withR(sc, function (f, d) { return resRow(f, true, d); }) : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
     else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
-      var rec = fd.recSnap || (fd.recSnap = le.slice(0, 5)), fav = st.favs.map(foodById).filter(Boolean).slice(0, 5), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
-      var pop = rec.length ? [] : (function () { var r0 = st.recents.map(foodById).filter(Boolean).slice(0, 5); return r0.length ? r0 : foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; }).slice(0, 6); })();
-      return sec(T('aRecentT'), rec.map(recRow), T('aRecHint')) + sec(T('aPop'), pop.map(resRow)) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + fav.map(resRow).join('') + st.customFoods.map(resRow).join('') + moreHtml();
+      var recAll = fd.recSnap || (fd.recSnap = le.slice(0, 8)), recI = recAll.filter(function (r) { return !rEntInfo(r.e).pork; }), recS = recI.filter(function (r) { return !rEntInfo(r.e).hit.length; }), recH = recI.filter(function (r) { return rEntInfo(r.e).hit.length; });
+      var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8)), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
+      var pop = rec.length ? [] : (function () { var r0 = rSplit(st.recents.map(foodById).filter(Boolean)).show.slice(0, 5); return r0.length ? r0 : rSplit(foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6); })();
+      var hidN = recH.length + favSp.hid.length;
+      return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : []), T('aRecHint')) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
     }
     if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
-    return list.map(resRow).join('');
+    return list.map(function (f) { return resRow(f); }).join('');
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); var cw = $('#fdCat'); if (cw) { var want = chipsHtml(); if (cw._k !== want) { cw.innerHTML = want; cw._k = want; catsInit(); } } }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
@@ -987,7 +1006,7 @@
   function fl(x) { return lang === 'ru' ? x.r : x.n; }
   function famChips(o) {                              // omillar chiplari: faqat kkal'ga sezilarli ta'sir qiladiganlar (>15%) + o'lcham
     if (!o.fam) return ''; var fm = o.fam.fam, h = '';
-    fm.ax.forEach(function (a) { if (!a.s) return; h += '<div class="rz-fl">' + esc(fl(a)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(a)) + '">' + a.o.map(function (x) { var on = (o.sel[a.i] || a.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fax" data-a="' + a.i + '" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>'; });
+    fm.ax.forEach(function (a) { if (!a.s) return; h += '<div class="rz-fl">' + esc(fl(a)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(a)) + '">' + a.o.filter(function (x) { return !Y || Y.variantOk(o.fam.fam, o.sel, a.i, x.i); }).map(function (x) { var on = (o.sel[a.i] || a.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fax" data-a="' + a.i + '" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>'; });
     if (fm.sz) h += '<div class="rz-fl">' + esc(fl(fm.sz)) + '</div><div class="rz-chips" role="group" aria-label="' + esc(fl(fm.sz)) + '">' + fm.sz.o.map(function (x) { var on = (o.szid || fm.sz.d) === x.i; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fsz" data-o="' + x.i + '" aria-pressed="' + on + '">' + esc(fl(x)) + '</button>'; }).join('') + '</div>';
     return h;
   }
@@ -1012,7 +1031,7 @@
   function pwUpdate(fromInput) {
     var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
     kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
-    var set = function (id, v) { var e = $(id); if (e) e.textContent = v; };
+    var set = function (id, v) { var e = $(id); if (e) e.textContent = v; }; var rw = $('#rWarn'); if (rw) rw.innerHTML = rWarnInner();
     set('#fdMp', Math.round(pt.p)); set('#fdMf', Math.round(pt.f)); set('#fdMc', Math.round(pt.c));
     if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
     set('#fdQu', o.unit === 'g100' ? T('gram') : pwUName(o.unit)); set('#fdGr', '≈ ' + fmt(pwGrams(o)) + ' ' + T('gram')); set('#fdInfo', pwInfo(o)); if (!o.fam) set('#fdTSum', pwUName(o.unit)); $('#fdQuick').innerHTML = pwQuick(o);
@@ -1032,7 +1051,7 @@
     if (out.length < 5 && o.food && o.food.t) {          // yetmasa — shu turdagi (meva, go'sht…) kaloriyasi yaqin taomlar
       allFoods().filter(function (f) { return f.t === o.food.t && f.id !== o.food.id && !seen[f.id]; }).sort(function (a, b) { return Math.abs(a.k - o.food.k) - Math.abs(b.k - o.food.k); }).forEach(function (f) { if (out.length < 5) { seen[f.id] = 1; out.push(f); } });
     }
-    return out.slice(0, 5);
+    return rSplit(out).show.slice(0, 5);
   }
   function pwSwapHtml(o) {
     var l = pwSimilar(o);
@@ -1212,7 +1231,7 @@
     var f = foodById(id); if (!f) { loadDb(function () { pickFood(id, pick); }); return; }
     fd.fam = null; fd.sel = null; fd.szid = null; fd.favId = null;
     if (f.al) { var bf = foodById(f.al.f); if (bf) { fd.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
-    if (f.fam) { famOpen(fd, f, Object.assign(S.famDefault(f), pick || {})); }
+    if (f.fam) { famOpen(fd, f, Y ? Y.safeSel(f, Object.assign(S.famDefault(f), pick || {})) : Object.assign(S.famDefault(f), pick || {})); }
     else fd.food = f;
     fd.base = null; fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
     var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
@@ -1233,11 +1252,11 @@
     fd.added[key] = it.id; commit(); vib(); refreshRes();
     toast(T('aAdded', { x: nm + ' · ' + entUnitTxt(e) }), function () { S.removeFood(st, date, it.id); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000); afterWater(); jokeAfter('food', { sweet: !!(f && f.t === 'h') });
   }
-  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) }); }
+  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : (rHits().length ? T('pCtaForce', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) })); }
   function portionHtml() {
     var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1;
     return '<div class="sl-ph2"><button type="button" class="sl-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><span class="sp"></span>' + (f ? '<button type="button" class="sl-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '') + '<button type="button" class="sl-chip sl-src" data-act="pwsrc">' + ico('info') + '<span>' + esc(T('pManba')) + '</span></button></div>' +
-      vSugHtml() + pwBody(fd) + '<div id="orBox">' + orCardHtml() + '</div>' +
+      '<div id="rWarn">' + rWarnInner() + '</div>' + vSugHtml() + pwBody(fd) + '<div id="orBox">' + orCardHtml() + '</div>' +
       '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div>';
   }
   function fSave() {
@@ -1464,7 +1483,7 @@
 
   /* ---------- yo'l-yo'riq va "ilova haqida" ---------- */
   var TIPS = [{ sel: '#kcalBtn', key: 'tip1', pos: 'below' }, { sel: '#mainAdd', key: 'tip2', pos: 'above' }, { sel: '.rz-tab[data-v=history]', key: 'tip3', pos: 'above' }];
-  function tipsStart() { kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
+  function tipsStart() { tipsSess = true; kit.tipsStart(TIPS, function () { prefs().tipsDone = true; save(); var f = $('#mainAdd'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); }
   function aboutOpen(on) {
     document.body.classList.toggle('rz-aboutopen', !!on); var a = document.getElementById('rzAbout'); if (!a) return;
     if (on) { a.scrollTop = 0; var b = document.getElementById('rzAboutBack'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {} } else { var m = $('#rzMain'); if (m) try { m.focus({ preventScroll: true }); } catch (e) {} }
@@ -1515,8 +1534,9 @@
     }
     var first = ob.refine ? 2 : 1, dots = [1, 2, 3, 4, 5, 6, 7].map(function (i) { return '<i class="' + (i === s ? 'on' : (i < s ? 'done' : '')) + '"></i>'; }).join('');
     var btn = foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
-    nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + (s === 1 && ob.sex ? '<button type="button" class="sl-txtbtn sl-ob-later" data-act="oblater">' + esc(T('obLater')) + '</button>' : '<span class="sl-ob-sp"></span>') + '</div>';
-    h = '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + nav + '</div>';
+    nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + '<span class="sl-ob-sp"></span></div>';
+    var later = s === 1 && ob.sex ? '<button type="button" class="rz-btn ghost sl-ob-later" data-act="oblater">' + esc(T('obLater2')) + '</button>' : '';
+    h = '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
     el.className = 'rz-onb sl-ob'; el.innerHTML = h; el.hidden = false; el.classList.remove('out'); if (SL) SL.mount(el);
     if (s === 8) kit.setNum($('#obTarget'), 0, planOfOb().target, { dur: 700 });
   }
@@ -1550,11 +1570,11 @@
     st.profile = np; var d = todayStr(); if (st.weights.length === 0 || Math.abs(S.currentWeight(st) - np.weight) > 0.04) S.addWeight(st, d, np.weight); prefs().taxminiy = null; save(); ob = null;
     var el = $('#rzOnb'); el.classList.add('out'); wait(function () { el.hidden = true; el.classList.remove('out'); obLock(false); render(); toast(T('saved'), null, true); }, 220);
   }
-  function taxDue(t) { var k = t && t.n || 0; return !!t && (k === 0 || (k === 1 && Date.now() - (t.hide || 0) >= 7 * DAY_MS)); }
-  function taxCardHtml() {
-    var t = prefs().taxminiy; if (!taxDue(t)) return '';
-    return '<section class="rz-card sl-tax" id="taxCard"><b class="t">' + esc(T('txT')) + '</b><div class="b"><button type="button" class="rz-btn sm" data-act="taxgo">' + esc(T('txBtn')) + '</button><button type="button" class="rz-btn ghost sm" data-act="taxhide">' + esc(T('later')) + '</button></div></section>';
-  }
+  /* «Taxminiy» belgisi: aniqlashtirilguncha doim turadi — Bugun'da aylana ostida kichik chip (joylashuvni siljitmaydi), Profil tepasida ixcham qator */
+  function taxChipHtml() { return prefs().taxminiy ? '<div class="sl-taxrow"><button type="button" class="sl-taxchip" id="taxChip" data-act="taxgo">' + esc(T('txChip')) + ' ›</button></div>' : ''; }
+  function taxRowHtml() { return prefs().taxminiy ? '<section class="rz-card sl-tax1" id="taxCard"><span>' + esc(T('txP')) + '</span><button type="button" class="rz-btn sm" data-act="taxgo">' + esc(T('txBtn')) + '</button></section>' : ''; }
+  var tipsSess = false;                                   // shu seansda yo'l-ko'rsatkich bor edi/bo'ldi → bir martalik kartalar KEYINGI ochilishda (bir vaqtda chiqmaydi)
+  function oneTimeOk() { return !!(st && st.prefs && st.prefs.tipsDone) && !tipsSess; }
   if (SL) document.addEventListener('sldchange', function (e) {
     var d = e.detail || {}, f = OBID[d.id]; if (f && ob) { ob[f] = obFmt(f, d.value); ob.touched[f] = true; }
   });
@@ -1727,11 +1747,11 @@
       case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; ['age', 'height', 'weight'].forEach(function (f) { if (!ob.touched[f]) ob[f] = ''; }); showOnb(); break;      // tegilmagan qiymatlar yangi jinsning boshlang'ich qiymatiga qaytadi
       case 'obact': ob.act = +el.getAttribute('data-v'); showOnb(); break;
       case 'obgoal': if (el.getAttribute('aria-disabled') !== 'true') { ob.goal = el.getAttribute('data-v'); showOnb(); } break;
+      case 'rshow': fd.showR = !fd.showR; refreshRes(); break;
       case 'obnext': obNext(); break; case 'obstart': obStart(); break;
       case 'obback': obBack(); break;
       case 'oblater': obLater(); break;
       case 'taxgo': taxOpen(); break;
-      case 'taxhide': { var tx = prefs().taxminiy; if (tx) { tx.n = (tx.n || 0) + 1; tx.hide = Date.now(); save(); render(); } break; }
     }
   });
   root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
@@ -1763,8 +1783,9 @@
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
       sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, openExternal: openExternal,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
-    render(); inst.gate();
+    tipsSess = !!(st && st.setup && !prefs().tipsDone); render(); inst.gate();
     if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
+    if (st.setup && Y) Y.loadCh();                   // «Yemaydiganlarim» qoidasi ro'yxatlarda tayyor turishi uchun (kichik fayl)
     window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
     var hv = viewOf(location.hash); if (hv && st.setup) { view = hv; render(); }
     if (location.hash === '#qoshish' && st.setup) openAdd({});
