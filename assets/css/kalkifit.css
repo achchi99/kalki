@@ -432,7 +432,7 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 .sld-val small,.sld-edit small{font-size:var(--t-l);font-weight:600;color:var(--mut)}
 .sld-edit{align-items:center}.sld-edit .sld-in{width:5ch;min-width:0;text-align:center;border:0;border-bottom:3px solid var(--acc2);background:transparent;color:var(--ink);border-radius:0;padding:0 0 2px;margin:0;outline:none;-webkit-appearance:none;appearance:none}
 .sld-rw{position:relative;height:84px;border-radius:18px;background:var(--soft);overflow:hidden}
-.sld-rul{height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;outline:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent)}
+.sld-rul{height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;overscroll-behavior-x:contain;outline:none;-webkit-mask-image:linear-gradient(90deg,transparent,black 16%,black 84%,transparent);mask-image:linear-gradient(90deg,transparent,black 16%,black 84%,transparent)}
 .sld-rul::-webkit-scrollbar{display:none}.sld-rul:focus-visible{box-shadow:inset 0 0 0 3px var(--acc2)}
 .sld-rt{display:flex;width:max-content;height:100%;padding:14px calc(50% - 6px) 0;box-sizing:border-box}
 .sld-rt i{flex:none;width:12px;height:100%;position:relative;scroll-snap-align:center;font-style:normal}

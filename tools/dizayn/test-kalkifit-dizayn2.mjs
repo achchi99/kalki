@@ -71,7 +71,7 @@ try {
   assert.deepEqual(p.errs, []); log('360 px + katta shrift: Bugun/Tarix/Profil\'da gorizontal skroll yo\'q, xatolar yo\'q'); await p.context().close();
   /* 10. Yangilik (v13): banner → oyna → 3 band, [Ko'rsat] tugmalari tegishli joyga olib boradi va yoritadi */
   for (const [band, tabV, hl] of [["Kattaroq harflar", 'profile', null], ['Tarix', 'history', '.sl-sec2'], ['7 kun', 'today', '.sl-week7']]) {
-    p = await mk(seed({ food: DAY }), { news: '{"shown":12,"read":12}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); assert.match(await txt(p, '#ygPop'), /Yangi:.*(Kattaroq harflar|ko'zga yumshoq)/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
+    p = await mk(seed({ food: DAY }), { news: '{"shown":12,"read":12}' }); await p.waitForSelector('#ygPop', { timeout: 6000 }); assert.match(await txt(p, '#ygPop'), /Yangi:.*(Bugun nima yeymiz|Kattaroq harflar|ko'zga yumshoq)/); await p.click('#ygPop [data-act=ygopen]'); await p.waitForTimeout(500);
     const bands = await p.locator('#rzSheet li').allInnerTexts(); assert.ok(bands.length >= 3); assert.match(bands[0], /kattaroq harflar/); assert.match(bands[1], /Tarix/); assert.match(bands[2], /7 kun/);
     await p.locator('#rzSheet li:has-text("' + band + '") [data-act=ygshow]').first().click(); await p.waitForTimeout(1000); assert.equal(await p.locator('.rz-tab.on').getAttribute('data-v'), tabV, band); if (hl) assert.equal(await p.locator(hl + '.yg-hl').count() >= 1, true, band + ' yoritildi'); await p.context().close(); }
   log('Yangilik v13: banner → oyna (kattaroq harflar/qorong\'i mavzu · Tarix · 7 kun qatori); [Ko\'rsat] → Profil (Mavzu) / Tarix (sarlavha yoritiladi) / Bugun (hafta qatori yoritiladi)');

@@ -166,7 +166,7 @@
   function yemayAsked() { var p = A.prefs(); return p.yemayK != null || Array.isArray(p.yemay); }
   function yemayCard() {
     if (yemayAsked()) return '';
-    return '<section class="rz-card sl-yq" id="yqCard"><b class="t">' + esc(T('yqT')) + '</b><div class="b"><button type="button" class="rz-btn primary sm" data-act="yqbel">' + esc(T('yqBel')) + '</button><button type="button" class="rz-btn ghost sm" data-act="yqyoq">' + esc(T('yqNo')) + '</button></div></section>';
+    return '<section class="rz-card sl-yq" id="yqCard"><b class="t">' + esc(T('yqT')) + '</b><div class="b"><button type="button" class="rz-btn sm" data-act="yqbel">' + esc(T('yqBel')) + '</button><button type="button" class="rz-btn ghost sm" data-act="yqyoq">' + esc(T('yqNo')) + '</button></div></section>';
   }
   function yemaySheet() { return head(T('ynT')) + '<p class="rz-p">' + esc(T('ynH')) + '</p>' + chipsHtml(yemay(), 'yntog') + '<p class="rz-priv sl-ywarn">' + esc(T('obYwarn')) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="yqok">' + esc(T('obYok')) + '</button></div>'; }
   /* ---------- amallar ---------- */

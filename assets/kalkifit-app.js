@@ -1553,7 +1553,7 @@
   function taxDue(t) { var k = t && t.n || 0; return !!t && (k === 0 || (k === 1 && Date.now() - (t.hide || 0) >= 7 * DAY_MS)); }
   function taxCardHtml() {
     var t = prefs().taxminiy; if (!taxDue(t)) return '';
-    return '<section class="rz-card sl-tax" id="taxCard"><b class="t">' + esc(T('txT')) + '</b><div class="b"><button type="button" class="rz-btn primary sm" data-act="taxgo">' + esc(T('txBtn')) + '</button><button type="button" class="rz-btn ghost sm" data-act="taxhide">' + esc(T('later')) + '</button></div></section>';
+    return '<section class="rz-card sl-tax" id="taxCard"><b class="t">' + esc(T('txT')) + '</b><div class="b"><button type="button" class="rz-btn sm" data-act="taxgo">' + esc(T('txBtn')) + '</button><button type="button" class="rz-btn ghost sm" data-act="taxhide">' + esc(T('later')) + '</button></div></section>';
   }
   if (SL) document.addEventListener('sldchange', function (e) {
     var d = e.detail || {}, f = OBID[d.id]; if (f && ob) { ob[f] = obFmt(f, d.value); ob.touched[f] = true; }
