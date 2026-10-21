@@ -30,7 +30,7 @@ const split = (theme, h, txt, vis, cls = '') => slide(theme, `<div class="txt">$
 // 1
 slide('dark', `<div class="txt"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><p class="sub">O‘zingiz yoqtirgan taomlar bilan yaxshiroq ovqatlaning</p></div><div class="vis">${pair('bugun')}</div>`, 'split cover');
 // 2
-slide('light', `<div class="center"><div class="kick">Muammo</div><h2 class="big">O‘zbek taomi kaloriya ilovalarida<br>yo yo‘q, yo <b class="acc">«yomon»</b></h2><div class="lns">${lines(['Osh, lag‘mon, somsa — bazada yo‘q yoki noto‘g‘ri hisoblangan', 'Bor bo‘lsa ham — «ozish uchun yemang» deb qoralanadi', 'Ta’qiqlar zeriktiradi — odam ilovani tashlab ketadi'])}</div></div>`, 'cen');
+slide('light', `<div class="center"><div class="kick">Muammo</div><h2 class="big">O‘zbek taomi kaloriya ilovalarida<br>yoki yo‘q, yoki <b class="acc">«yomon»</b></h2><div class="lns">${lines(['Osh, lag‘mon, somsa — bazada yo‘q yoki noto‘g‘ri hisoblangan', 'Bor bo‘lsa ham — «ozish uchun yemang» deb qoralanadi', 'Ta’qiqlar zeriktiradi — odam ilovani tashlab ketadi'])}</div></div>`, 'cen');
 // 3
 slide('dark', `<div class="center"><div class="kick">G‘oya</div><h2 class="big">Kaloriya sanagich emas — dasturxoningizga yordamchi</h2><div class="cards">${[['heart', 'Ta’qiqlamaymiz — yengilroq yo‘lni ko‘rsatamiz'], ['eye', 'Tushunarli — hamma narsa bir ekranda'], ['scale', 'Ochiq raqamlar — manbasi ko‘rsatilgan']].map(([k, t]) => `<div class="card"><span class="ic">${ic(k)}</span><p>${t}</p></div>`).join('')}</div></div>`, 'cen');
 // 4
@@ -48,17 +48,19 @@ split('dark', '<h2>Qizil go‘sht o‘rniga — tovuq va baliq</h2>', lines(['Oq
 // 10
 split('light', '<h2>🐟 Baliq kuni</h2>', lines(['Haftada bir kun eslatma — kunni o‘zingiz tanlaysiz', 'Buyurtma, kafe yoki uyda — retsept va xarid ro‘yxati bilan']), `<div class="phones">${ph('baliqchip-light.jpg')}${ph('baliq-dark.jpg')}</div>`);
 // 11
-split('dark', '<h2>Yemaydiganlarim</h2>', lines(['Baliq, tuxum, sut, yong‘oq, glyuten — belgilang, takliflarda chiqmaydi', 'Cho‘chqa go‘shti hech qachon taklif qilinmaydi']), pair('profil'));
+split('dark', '<h2>Yemaydiganlarim</h2>', lines(['Baliq, tuxum, sut, yong‘oq, glyuten — belgilang, takliflarda chiqmaydi', 'Allergiya yoki odat — o‘zingiz belgilaysiz']), pair('profil'));
 // 12
-split('light', '<h2><b class="acc">30</b> soniyada boshlash</h2>', lines(['Klaviaturasiz — barmoq bilan suring', 'Xohlasangiz — keyinroq']), `<div class="phones">${ph('onboarding-dark.jpg')}${ph('intro-light.jpg')}</div>`);
+split('light', '<h2>💊 Vitamin va BAD — kerakmi?</h2>', lines(['Ko‘pchilikka kerak emas — avval ovqatingizni ko‘ring', 'Reklamasiz, ochiq maslahat']), pair('supp-tarix', 'supp'));
 // 13
-slide('dark', `<div class="center"><h2 class="big">Raqamlarga ishonsa bo‘ladi</h2>${items([['db', 'USDA va Skurixin ma’lumotlari'], ['tag', 'Kafe porsiyalari — «taxminiy» deb ochiq yozilgan'], ['check', 'Har taom <b class="acc">±15%</b> Atuoter tekshiruvidan o‘tgan']])}</div>`, 'cen');
+split('light', '<h2><b class="acc">30</b> soniyada boshlash</h2>', lines(['Klaviaturasiz — barmoq bilan suring', 'Xohlasangiz — keyinroq']), `<div class="phones">${ph('onboarding-dark.jpg')}${ph('intro-light.jpg')}</div>`);
 // 14
-slide('light', `<div class="center"><h2 class="big">Maxfiylik va qulaylik</h2>${items([['lock', 'Ma’lumot — telefoningizda'], ['mail', 'Email bilan avtomatik zaxira'], ['globe', 'UZ · ЎЗ · RU, och va to‘q mavzu, katta shrift'], ['chart', 'Statistika faqat anonim sonlar']])}</div>`, 'cen');
+slide('dark', `<div class="center"><h2 class="big">Raqamlarga ishonsa bo‘ladi</h2>${items([['db', 'USDA va Skurixin ma’lumotlari'], ['tag', 'Kafe porsiyalari — «taxminiy» deb ochiq yozilgan'], ['check', 'Har taom kaloriya formulasi bilan tekshirilgan']])}</div>`, 'cen');
 // 15
-slide('dark', `<div class="center"><h2 class="big">Keyingi qadamlar</h2>${items([['phone', 'Android va iPhone ilova'], ['steps', 'Qadamlarni telefon o‘zi sanaydi'], ['cam', 'Daftardagi retseptni rasmga olib yengillashtirish'], ['target', '1 oydan keyin — natijalar: takliflarning necha foizi tanlandi']])}</div>`, 'cen');
+slide('light', `<div class="center"><h2 class="big">Maxfiylik va qulaylik</h2>${items([['lock', 'Ma’lumot — telefoningizda'], ['mail', 'Email bilan avtomatik zaxira'], ['globe', 'UZ · ЎЗ · RU, och va to‘q mavzu, katta shrift'], ['chart', 'Statistika faqat anonim sonlar']])}</div>`, 'cen');
 // 16
-slide('light', `<div class="center end"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><div class="qr" id="qr"></div><p class="sub">Hozir bepul sinab ko‘ring</p></div>`, 'cen');
+slide('dark', `<div class="center"><h2 class="big">Keyingi qadamlar</h2>${items([['phone', 'Android ilova<br><small>iPhone\u2019da hozir ham bosh ekranga o‘rnatiladi</small>'], ['steps', 'Qadamlarni telefon o‘zi sanaydi'], ['cam', 'Daftardagi retseptni rasmga olib yengillashtirish'], ['target', '1 oydan keyin — natijalar: takliflarning necha foizi tanlandi']])}</div>`, 'cen');
+// 17
+slide('light', `<div class="center end"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><div class="qr" id="qr"></div><p class="url">kalki.uz/kalkifit</p><p class="sub">Hozir bepul sinab ko‘ring</p></div>`, 'cen');
 const CSS = `@page{size:1920px 1080px;margin:0}*{box-sizing:border-box;margin:0}html,body{background:#18191C}body{font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
 .sl{width:1920px;height:1080px;position:relative;overflow:hidden;page-break-after:always;break-after:page;display:flex;align-items:center;padding:0 120px}
 .light{background:#F7F5F2;color:#1F2125;--acc:#E8572F;--mut:#5E6470;--card:#fff;--line:#E7E2DB}.dark{background:#18191C;color:#F1EFEB;--acc:#FF7E5C;--mut:#ABA7A0;--card:#212327;--line:#34373D}
@@ -79,7 +81,7 @@ h1.mega{font-size:150px;font-weight:800;letter-spacing:-.04em;line-height:1}h2{f
 .cen{justify-content:center;text-align:center}.center{width:100%}.center .ln{display:table;margin:0 auto 24px;font-size:42px}.center .lns{display:inline-block;text-align:left}.center .lns .ln{margin:0 0 24px}
 .cards{display:flex;gap:40px;justify-content:center}.card{width:460px;background:var(--card);border:1px solid var(--line);border-radius:36px;padding:48px 40px;text-align:left}.card p{font-size:36px;font-weight:600;line-height:1.3;margin-top:28px}
 .ic{display:inline-flex;width:84px;height:84px;border-radius:24px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc);flex:none}.ic svg{width:46px;height:46px}
-.items{display:grid;gap:30px;max-width:1300px;margin:0 auto;text-align:left}.it{display:flex;align-items:center;gap:34px;font-size:44px;font-weight:600;line-height:1.25}.it b{color:var(--acc)}
+.items{display:grid;gap:30px;max-width:1300px;margin:0 auto;text-align:left}.it{display:flex;align-items:center;gap:34px;font-size:44px;font-weight:600;line-height:1.25}.it b{color:var(--acc)}.it small{display:block;font-size:28px;font-weight:500;color:var(--mut);margin-top:8px}
 .end .logo{justify-content:center;margin-bottom:10px}.end h1.mega{font-size:130px}.qr{width:330px;height:330px;margin:44px auto 28px;padding:24px;background:#fff;border-radius:32px;box-shadow:0 30px 70px -30px rgba(60,30,10,.35)}.qr img,.qr canvas{width:282px!important;height:282px!important}
 .url{font-size:48px;font-weight:800;color:var(--acc)}.end .sub{margin:14px auto 0}
 .cover h1.mega{margin-bottom:0}.cover .logo{margin-bottom:56px}`;
