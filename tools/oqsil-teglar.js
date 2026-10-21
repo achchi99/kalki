@@ -8,7 +8,7 @@
 const fs = require('fs'), path = require('path');
 const R = (p) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', p), 'utf8'));
 const TEGLAR = ['qizil', 'tovuq', 'baliq', 'tuxum', 'sut', 'dukkak', 'aralash', 'yoq'];
-const MASALLIQ_TEG = { mol: 'qizil', mol_yogsiz: 'qizil', qoy: 'qizil', qoy_yogsiz: 'qizil', dumba: 'qizil', tovuq_kokrak: 'tovuq', tovuq_son: 'tovuq', tovuq_son_teriz: 'tovuq', sazan: 'baliq', losos: 'baliq', qoy_pishgan: 'qizil', mol_pishgan: 'qizil', jigar: 'qizil', qoy_qovurga: 'qizil', tovuq_qanot: 'tovuq', tovuq_teri: 'tovuq', sosiska_mol: 'qizil', kolbasa_mol: 'qizil', tushonka_mol: 'qizil', sosiska_tovuq: 'tovuq', tuxum: 'tuxum', qatiq: 'sut', sut: 'sut', suzma: 'sut', mosh: 'dukkak', noxat: 'dukkak', loviya_oq: 'dukkak', yasmiq: 'dukkak' };
+const MASALLIQ_TEG = { mol: 'qizil', mol_yogsiz: 'qizil', qoy: 'qizil', qoy_yogsiz: 'qizil', dumba: 'qizil', tovuq_kokrak: 'tovuq', tovuq_son: 'tovuq', tovuq_son_teriz: 'tovuq', sazan: 'baliq', losos: 'baliq', qoy_pishgan: 'qizil', mol_pishgan: 'qizil', jigar: 'qizil', qoy_qovurga: 'qizil', tovuq_qanot: 'tovuq', tovuq_teri: 'tovuq', sosiska_mol: 'qizil', kolbasa_mol: 'qizil', tushonka_mol: 'qizil', sosiska_tovuq: 'tovuq', tuxum: 'tuxum', qatiq: 'sut', sut: 'sut', suzma: 'sut', sut_0: 'sut', sut_1: 'sut', sut_2: 'sut', qaymoq_yarim: 'sut', qaymoq_yengil: 'sut', smetana_20: 'sut', smetana_12: 'sut', kefir_1: 'sut', protein_whey: 'sut', mosh: 'dukkak', noxat: 'dukkak', loviya_oq: 'dukkak', yasmiq: 'dukkak' };
 /* Retseptsiz taomlar (id → teg). Qolgani: tur bo'yicha (pastda TUR). */
 const QOLDA = {
   'yengil-osh': 'tovuq', 'somsa-qat': 'qizil', 'somsa-qovoq': 'yoq', 'chuchvara-sho': 'qizil', 'lagmon-qov': 'qizil', shashlik: 'qizil', 'shashlik-tovuq': 'tovuq', 'jigar-kabob': 'qizil', lyulya: 'qizil', 'tandir-gosht': 'qizil', qazi: 'qizil',
@@ -16,7 +16,7 @@ const QOLDA = {
   'tushonka': 'aralash', kolbasa: 'aralash', sosiska: 'aralash', bekon: 'aralash', 'mol-gosht': 'qizil', 'mol-qiyma': 'qizil', 'qoy-gosht': 'qizil', 'ot-gosht': 'qizil', jigar: 'qizil', steyk: 'qizil', kotlet: 'qizil',
   'tovuq-kokrak': 'tovuq', 'tovuq-son': 'tovuq', 'tovuq-qanot': 'tovuq', 'tovuq-qov': 'tovuq', kurka: 'tovuq', 'tovuq-jigar': 'tovuq', tuxum: 'tuxum', 'tuxum-xom': 'tuxum',
   losos: 'baliq', tunets: 'baliq', treska: 'baliq', 'baliq-qov': 'baliq', krevetka: 'baliq', sardina: 'baliq',
-  mosh: 'dukkak', noxat: 'dukkak', loviya: 'dukkak', yasmiq: 'dukkak', 'yashil-loviya': 'dukkak', 'yashil-noxat': 'dukkak', xummus: 'dukkak', tofu: 'dukkak', 'protein-bar': 'aralash',
+  mosh: 'dukkak', noxat: 'dukkak', loviya: 'dukkak', yasmiq: 'dukkak', 'yashil-loviya': 'dukkak', 'yashil-noxat': 'dukkak', xummus: 'dukkak', tofu: 'dukkak', 'protein-bar': 'aralash', 'protein-kukun': 'sut', 'protein-izolyat': 'sut', 'protein-kazein': 'sut', aminokislota: 'yoq',
   sariyog: 'yoq', qaymoq: 'yoq', 'sut-kokteyl': 'sut', kakao: 'sut',
   'lavash-tovuq': 'tovuq', 'lavash-mol': 'qizil', doner: 'qizil', burger: 'qizil', 'burger-katta': 'qizil', hotdog: 'aralash', pitsa: 'aralash', 'pitsa-pepperoni': 'aralash', 'pitsa-4': 'sut', chebureki: 'qizil', belyashi: 'qizil',
   naggets: 'tovuq', sendvich: 'tovuq', pelmeni: 'aralash', vareniki: 'yoq', blin: 'yoq', sirniki: 'sut', 'lavash-roll': 'tovuq', sgushyonka: 'sut', chizkeyk: 'sut', sirok: 'sut', 'muzqaymoq-eskimo': 'yoq', pirojki: 'yoq'

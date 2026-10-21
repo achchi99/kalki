@@ -605,7 +605,8 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .rz .sl-sti{display:flex;align-items:center;gap:6px}.rz .sl-sti .sl-infob{width:26px;height:26px;font-size:var(--t-xs)}
 .rz .sl-ibx{margin:2px 0 10px;font-size:var(--t-s);color:var(--mut);line-height:1.45}
 .rz .sl-suplink{display:flex;justify-content:center;width:100%;text-align:center;margin:-4px 0 2px;font-size:var(--t-s);font-weight:600}
-.sl-ob-top{flex:none;display:flex;justify-content:flex-end;padding:0 0 4px}
-.sl-ob-lang{display:flex;gap:2px;padding:3px;border-radius:14px;background:var(--soft)}
-.sl-ob-lang button{min-width:48px;min-height:40px;padding:0 10px;border:0;border-radius:11px;background:transparent;color:var(--mut);font:600 var(--t-s) 'Manrope',sans-serif;cursor:pointer}
+.sl-ob-top{flex:none;display:flex;justify-content:flex-end;padding:0}
+.sl-ob-lang{display:flex;gap:2px;padding:1px;border-radius:12px;background:var(--soft)}
+.sl-ob-lang button{position:relative;min-width:46px;min-height:28px;padding:0 10px;border:0;border-radius:11px;background:transparent;color:var(--mut);font:600 var(--t-s) 'Manrope',sans-serif;cursor:pointer}.sl-ob-lang button::before{content:'';position:absolute;inset:-8px -1px}
+@media (max-height:700px){.sl-ob .rz-opt.big{min-height:46px;margin-bottom:5px}.sl-ob-body .rz-q{margin-bottom:4px}.sl-ob .sl-res7 .rz-p{margin-bottom:3px}.sl-ob .sl-res7 .sl-big b{font-size:42px}}
 .sl-ob-lang button.on{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line2)}
