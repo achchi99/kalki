@@ -1610,7 +1610,6 @@
       [['uz', 'O\u2018zbekcha (lotin)', 'uz'], ['cyr', 'Ўзбекча (кирилл)', 'uz-Cyrl'], ['ru', 'Русский', 'ru']].map(function (x) {
         return '<button type="button" class="rz-opt big sl-lp-b' + (cur === x[0] ? ' cur' : '') + '" data-act="lppick" data-l="' + x[0] + '" lang="' + x[2] + '"><b>' + x[1] + '</b></button>';
       }).join('') + '</div></div>';
-    var b = el.querySelector('.sl-lp-b'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {}
   }
   function lpPick(l) {
     lpDone = true;
