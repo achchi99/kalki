@@ -516,7 +516,7 @@
     var lt0 = isCyr() ? 'ЎЗ' : lang.toUpperCase(), lb0 = $('#rzLang'); if (lb0) lb0.setAttribute('aria-label', lt0 + ' · Til / Язык');
     var ab = document.getElementById('rzAboutBack'); if (ab) ab.textContent = T('aboutBack');
     var lockUi = function (on) { ['#rzMain', '.rz-nav'].forEach(function (q) { var e = $(q); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); };
-    if (!st.setup) { lockUi(true); showOnb(); return; }
+    if (!st.setup) { lockUi(true); if (needLangPick()) showLangPick(); else showOnb(); return; }
     lockUi(false); akk.check();
     var onb = $('#rzOnb'); if (onb && !onb.classList.contains('out')) onb.hidden = true;
     $$('.rz-tab').forEach(function (b) { var on = b.getAttribute('data-v') === view; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
@@ -1596,6 +1596,26 @@
     var tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click();
     setTimeout(function () { if (ob) { lang = langNow(); showOnb(); } }, 80);          // sahifa qayta yuklanmasa (joyida almashsa) — hozirgi ekran yangi tilda qayta chiziladi
   }
+  /* birinchi ochilish: onboarding'dan OLDIN til tanlash ekrani. Faqat: yangi foydalanuvchi (setup yo'q), saqlangan til yo'q (kalki_lang), demo emas.
+     Tanlov lang.js orqali saqlanadi (KalkiLang.setLang → kalki_lang); UZ↔RU/ЎЗ da sahifa o'zi qayta yuklanadi va ekran qayta chiqmaydi. */
+  var lpDone = false;
+  function langStored() { try { var v = localStorage.getItem('kalki_lang'); return v === 'uz' || v === 'ru' || v === 'cyr'; } catch (e) { return false; } }
+  function needLangPick() { return !lpDone && !(KD && KD.on) && !noIntro() && !(st && st.setup) && !langStored(); }
+  function showLangPick() {
+    var el = $('#rzOnb'); if (!el) return;
+    var cur = isCyr() ? 'cyr' : lang;
+    el.className = 'rz-onb sl-ob sl-lp'; el.hidden = false; el.classList.remove('out');
+    el.innerHTML = '<div class="sl-ob-body" data-cyr="skip"><div class="sl-ob-in"><div class="sl-lp-logo" aria-hidden="true">K</div>' +
+      '<h1 class="sl-lp-t"><span lang="uz">Tilni tanlang</span><span lang="uz-Cyrl">Тилни танланг</span><span lang="ru">Выберите язык</span></h1>' +
+      [['uz', 'O\u2018zbekcha (lotin)', 'uz'], ['cyr', 'Ўзбекча (кирилл)', 'uz-Cyrl'], ['ru', 'Русский', 'ru']].map(function (x) {
+        return '<button type="button" class="rz-opt big sl-lp-b' + (cur === x[0] ? ' cur' : '') + '" data-act="lppick" data-l="' + x[0] + '" lang="' + x[2] + '"><b>' + x[1] + '</b></button>';
+      }).join('') + '</div></div>';
+  }
+  function lpPick(l) {
+    lpDone = true;
+    if (window.KalkiLang && KalkiLang.setLang) KalkiLang.setLang(l, { user: true }); else { var t = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (t) t.click(); }
+    setTimeout(function () { lang = langNow(); render(); }, 60);          // joyida almashgan bo'lsa — onboarding yangi tilda; sahifa qayta yuklansa bu kod ishlamaydi (tanlov saqlangan)
+  }
   function obResume() {                               // til almashtirishdan keyin: 10 daqiqa ichida yozilgan qiymatlar va qadam tiklanadi
     var raw = null; try { raw = sessionStorage.getItem(OB_RES); sessionStorage.removeItem(OB_RES); } catch (e) {} if (!raw) return;
     try { var r = JSON.parse(raw), o = r && r.ob; if (!o || typeof o !== 'object' || Date.now() - (+r.t || 0) > 600000 || !(o.step >= 1 && o.step <= 8)) return; if (st && st.setup && !o.refine) return; o.anim = null; ob = o; if (st && st.setup) obLock(true); } catch (e) {}
@@ -1841,7 +1861,7 @@
       case 'rshow': fd.showR = !fd.showR; refreshRes(); break;
       case 'obnext': obNext(); break; case 'obstart': obStart(); break;
       case 'obback': obBack(); break;
-      case 'oblater': obLater(); break; case 'oblang': obLang(el.getAttribute('data-l')); break;
+      case 'oblater': obLater(); break; case 'oblang': obLang(el.getAttribute('data-l')); break; case 'lppick': lpPick(el.getAttribute('data-l')); break;
       case 'taxgo': taxOpen(); break;
     }
   });

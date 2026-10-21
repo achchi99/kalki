@@ -30,7 +30,7 @@ const LINES = await pool(TASKS, undefined, async ({ slug, lang }) => {
     if (w === 1280) {
       const body = m.text.replace(m.h1, '');   // H1 dagi emoji SEO uchun saqlanadi
       if (EMO.test(body)) probs.push('emoji: ' + (body.match(EMO) || [''])[0]);
-      if (lang === 'uz' && slug !== 'uy-qurish-kalkulyator' && /[\u0400-\u04FF]/.test(body.replace(/ЎЗ|Кириллча|график отпусков|(?<=40% )идан/g, ''))) probs.push('UZ sahifada kirill: ' + (body.match(/[\u0400-\u04FF]+/) || [''])[0]);   // uy-qurish: asl matnda kirill "материал" bor (main'da ham)
+      if (lang === 'uz' && slug !== 'uy-qurish-kalkulyator' && /[\u0400-\u04FF]/.test(body.replace(/ЎЗ|Ўзбекча \(кирилл\)|Тилни танланг|Выберите язык|Русский|Кириллча|график отпусков|(?<=40% )идан/g, ''))) probs.push('UZ sahifada kirill: ' + (body.match(/[\u0400-\u04FF]+/) || [''])[0]);   // uy-qurish: asl matnda kirill "материал" bor (main'da ham)
       if (lang === 'ru' && /(^|[^A-Za-z])[a-z]+['\u2019\u02bb\u2018][a-z]+/.test(body)) probs.push('RU sahifada o\'zbekcha: ' + (body.match(/(^|[^A-Za-z])[a-z]+['\u2019\u02bb\u2018][a-z]+/) || [''])[0]);
     }
     await p.context().close();
