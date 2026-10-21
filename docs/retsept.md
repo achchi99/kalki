@@ -31,7 +31,7 @@ Bugun ekranidagi eshik karta → 4 ekran: Kirish → Tahlil → Natija → Ulash
 Guruch/un tegilmaydi (guruchsiz osh yo'q). Eng foydali 3–4 tasi tanlanadi (foyda ≥ 8 kkal). Cho'chqa go'shti — qo'shilmaydi (ogohlantirish). Yemaydiganlarim — taklif qilinadigan masalliq cheklangan bo'lsa, qoida chiqmaydi.
 
 ## Limit va xavfsizlik
-Qurilmaga (`mijoz_id`) kuniga AI so'rovi: veb 5, Android ilovasi 2 (`CLIENT_LIMIT` — `functions/api/retsept.js`; ilova `platforma: 'android'` yuboradi; veb qiymatini `RETSEPT_CLIENT_LIMIT` o'zgartiradi), IP — 10, sayt — 800/kun (`RETSEPT_SITE_LIMIT`); KV (`ns: rt`). Bir xil matn — KV keshi (30 kun, limitga sanalmaydi). Modelga FAQAT masalliq matni ketadi (profil, vazn yo'q), telefon raqami yashiriladi. AI xato/limit/tarmoq yo'q → tushunarli xabar + qo'lda masalliq (soxta natija YO'Q). «Rasmga olish» — «Tez orada».
+Retsept va rasm AI — UMUMIY kunlik hisob (`AI_LIMIT` — `functions/api/kalkifit-quota.js`, KV `ai:`): qurilmaga (`mijoz_id`) veb 5, Android ilovasi 2 (ilova `platforma: 'android'` yuboradi; veb qiymatini `KALKIFIT_AI_LIMIT` o'zgartiradi), IP — 10, sayt — 800/kun (`RETSEPT_SITE_LIMIT`); KV (`ns: rt`). Bir xil matn — KV keshi (30 kun, limitga sanalmaydi). Modelga FAQAT masalliq matni ketadi (profil, vazn yo'q), telefon raqami yashiriladi. AI xato/limit/tarmoq yo'q → tushunarli xabar + qo'lda masalliq (soxta natija YO'Q). «Rasmga olish» — «Tez orada».
 
 ## 6 haqiqiy retsept (UZ = RU natijasi bir xil; `node tools/test-retsept-core.js --jadval`)
 | taom | kishi | oldin → keyin (1 porsiya, kkal) | oqsil | yog' | qoidalar (foyda kkal/porsiya) |

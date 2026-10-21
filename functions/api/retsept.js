@@ -2,10 +2,10 @@
  * yengillashtirish qoidalari ham AI emas (deterministik, retsept-core.js). Bu endpoint faqat ilova mahalliy parser tanimagan qatorlarni yuboradi.
  * Infratuzilma: ariza.js (Origin, model so'rovi, PII yashirish) + kalkifit-quota.js (kunlik limit, KV, ns 'rt'). Yuboriladigan narsa FAQAT masalliq matni (profil/vazn/tarix YO'Q); hech narsa saqlanmaydi (faqat natija keshi).
  * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id } → { masalliqlar: [{ nom, id|null, q, b, g|null }], kesh?: true } | { xato, sabab? }
- * Limit: qurilmaga (mijoz_id) kuniga CLIENT_LIMIT — Android ilovasi (platforma: 'android') 2, veb 5 (RETSEPT_CLIENT_LIMIT bilan o'zgaradi); IP — veb limitining 2×, sayt — RETSEPT_SITE_LIMIT (standart 800).
+ * Limit: retsept va rasm AI uchun UMUMIY kunlik hisob (kalkifit-quota.js AI_LIMIT, ns 'ai'): qurilmaga (mijoz_id) Android ilovasi (platforma: 'android') 2, veb 5; IP — veb limitining 2×; sayt tavani — alohida (RETSEPT_SITE_LIMIT, standart 800).
  * Bir xil matn — KV keshi (30 kun, limitga sanalmaydi). Javobda limit va qoldi (hisoblagich); POST { sorov: 'qoldi', mijoz_id, platforma } — sanamasdan qolganini qaytaradi. */
 import { originOk, maskPII, askModel, json, num, UUID_RE } from './ariza.js';
-import { takeKfQuota, peekKfQuota } from './kalkifit-quota.js';
+import { takeKfQuota, peekKfQuota, AI_LIMIT, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
 import R from '../../assets/retsept-core.js';
 
 let TABLE = null, CATALOG = '', SYS = '';
@@ -14,7 +14,7 @@ async function loadTable(env, request) {                // jadval statik fayldan
   if (TABLE) return true; if (!env.ASSETS || typeof env.ASSETS.fetch !== 'function') return false;
   try { const r = await env.ASSETS.fetch(new URL('/data/retsept-masalliq.json', request.url)); if (!r.ok) return false; setTable(await r.json()); return true; } catch (e) { return false; }
 }
-const CLIENT_LIMIT = { veb: 5, android: 2 };     // «Retseptimni moslashtir» AI: qurilmaga kunlik so'rov (bitta joyda)
+const CLIENT_LIMIT = AI_LIMIT;                   // retsept + rasm AI: UMUMIY kunlik hisob (kalkifit-quota.js AI_LIMIT, ns 'ai')
 const DEFAULT_SITE_LIMIT = 800, CACHE_TTL = 30 * 86400, MAX_LEN = 700, MAX_ITEMS = 25;
 const BIRLIK = { g: 'g', kg: 'kg', ml: 'ml', l: 'l', dona: 'dona', bosh: 'bosh', osh_qoshiq: 'osh', choy_qoshiq: 'choy', stakan: 'stakan' };
 const system = () => `Sen retsept matnidan MASALLIQLARNI ajratuvchi yordamchisan. Foydalanuvchi retsept qatorlarini yozadi (o'zbek lotin, kirill yoki rus tilida).
@@ -43,11 +43,7 @@ export function sanitize(list) {
 const sha = async (s) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))).map((x) => x.toString(16).padStart(2, '0')).join('');
 const E = { 400: "Matn noto'g'ri.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 415: 'JSON yuboring.', 4291: "AI bugun juda band — masalliqlarni qo'lda qo'shing. Ertaga AI yana ishlaydi.", 502: "AI hozir javob bermadi. Masalliqlarni qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti. Masalliqlarni qo\'lda qo\'shing.' };
 const fail = (status) => json(status, { xato: E[status] || 'Xato.' });
-const limitMsg = (n) => `Bugungi ${n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.`;
-function limits(env, body) {
-  const android = body.platforma === 'android', veb = num(env.RETSEPT_CLIENT_LIMIT, CLIENT_LIMIT.veb);
-  return { client: android ? CLIENT_LIMIT.android : veb, ip: veb * 2 };
-}
+const limitMsg = aiLimitMsg, limits = aiLimits;
 export const _test = { extractJson, sanitize, init: setTable, system: () => SYS, CLIENT_LIMIT };
 
 export async function onRequest({ request, env }) {
@@ -57,7 +53,7 @@ export async function onRequest({ request, env }) {
   let body;
   try { const raw = await request.text(); if (raw.length > 3000) return fail(400); body = JSON.parse(raw); } catch (e) { return fail(400); }
   if (!body || typeof body !== 'object' || Array.isArray(body)) return fail(400);
-  const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '', lim = limits(env, body), qo = { ns: 'rt', site: num(env.RETSEPT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: lim.client, ip: lim.ip };
+  const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '', lim = limits(env, body), qo = { ns: 'rt', uns: 'ai', site: num(env.RETSEPT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: lim.client, ip: lim.ip };
   if (body.sorov === 'qoldi') {                                     // hisoblagich: sanamaydi
     if (!env.KALKI_AI_KV) return fail(503);
     try { return json(200, { limit: lim.client, qoldi: await peekKfQuota(env, request, clientId, qo) }); } catch (e) { return fail(503); }
