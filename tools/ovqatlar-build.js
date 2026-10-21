@@ -277,7 +277,7 @@ pitsa-4|Pitsa (4 pishloq)|Пицца 4 сыра|pitsa 4 pishloq,четыре с�
 qatiq-yogsiz|Qatiq (yog'siz)|Катык обезжиренный|yogsiz qatiq|35|3.5|0.5|4|s|1|stakan:250
 qaynatma-baliq|Baliq sho'rvasi (uxa)|Уха|uxa,baliq shorva,уха|40|5|1.5|2|o|1|kosa:350
 tofu|Tofu|Тофу|tofu,тофу|76|8|4.8|1.9|x|0|bolak:80
-protein-kukun|Protein kukuni (whey)|Протеин сывороточный|protein,протеин,protein kukun,protein kokteyl,сывороточный,сывороточный протеин,whey,whey protein|352|78|1.6|6.3|x|1|skup:30
+protein-kukun|Protein kukuni (whey)|Протеин сывороточный|protein,протеин,protein kukun,protein kokteyl,сывороточный,сывороточный протеин,whey,whey protein|400|78|6|8|x|1|skup:30
 protein-izolyat|Protein izolyat (whey isolate)|Изолят сывороточного протеина|protein izolyat,izolyat,изолят,whey isolate,isolate|370|88|1|2|x|1|skup:30
 protein-kazein|Kazein protein|Казеиновый протеин|kazein,казеин,casein,protein kazein,casein protein|355|76|2|7|x|1|skup:30
 aminokislota|BCAA / aminokislotalar|BCAA / аминокислоты|bcaa,aminokislota,aminokislotalar,аминокислоты,бцаа,amino|0|0|0|0|x|1|skup:7

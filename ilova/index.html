@@ -55,7 +55,6 @@
         <div class="il-pic" aria-hidden="true"><div class="il-ph"><div class="il-dlg"><span class="il-ic big">K</span><b>KalkiFit</b><small data-i="m3a">Ushbu ilovani o'rnatmoqchimisiz?</small><div class="il-dbtn"><span data-i="m3b">Bekor qilish</span><span class="on" data-i="m3c">O'rnatish</span></div></div></div></div></li>
     </ol>
     <p class="il-note" data-i="trust">Faylni faqat shu sahifadan yuklang. Ilova Google Play'da emas, shuning uchun telefon bir marta ruxsat so'raydi.</p>
-    <p class="il-note" id="ilSinov" hidden><span data-i="sinov">Sinov versiyasi (preview bilan ishlaydi, asosiy ilova bilan yonma-yon o'rnatiladi):</span> <a class="il-link" href="/ilova/kalkifit-1.0.0-sinov.apk" download>kalkifit-1.0.0-sinov.apk</a></p>
   </section>
 
   <section class="il-card only-ios" id="ilIos">
@@ -105,7 +104,6 @@
   [].forEach.call(document.querySelectorAll('.il-seg button'),function(b){b.addEventListener('click',function(){cur=b.getAttribute('data-l');try{localStorage.setItem('kalki_lang',cur)}catch(e){}try{var u=new URL(location.href);u.searchParams.set('lang',cur);history.replaceState(null,'',u.toString())}catch(e){}apply()})});
   document.getElementById('ilCopy').addEventListener('click',function(){var t=document.getElementById('ilSha').textContent.trim(),b=this;var done=function(){b.textContent=txt('copied');setTimeout(function(){b.textContent=txt('copy')},1800)};
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,done);else{try{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}catch(e){}done()}});
-  if(/\.pages\.dev$/.test(location.hostname)||/[?&]sinov=1\b/.test(location.search)){var sv=document.getElementById('ilSinov');if(sv)sv.hidden=false;}
   apply();
 })();
 </script>

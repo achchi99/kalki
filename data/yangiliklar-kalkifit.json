@@ -5,13 +5,17 @@
    "v": 18,
    "d": "2026-10-21",
    "bn": {
-    "uz": "Sut mahsulotlari yog'liligi bilan, sport ovqatlanishi va til tanlash.",
-    "ru": "Молочные продукты с жирностью, спортпит и выбор языка."
+    "uz": "Android ilova, sut mahsulotlari yog'liligi bilan, sport ovqatlanishi.",
+    "ru": "Android-приложение, молочные продукты с жирностью, спортпит."
    },
    "items": [
     {
-     "uz": "Sut, kefir, smetana va tvorog — endi yog'liligini tanlaysiz (masalan, «sut 1,5»).",
-     "ru": "Молоко, кефир, сметана и творог — теперь с выбором жирности (например, «молоко 1,5»).",
+     "uz": "📱 Android ilova — kalki.uz/ilova",
+     "ru": "📱 Приложение для Android — kalki.uz/ilova"
+    },
+    {
+     "uz": "Sut, kefir, tvorog — yog'liligi bo'yicha.",
+     "ru": "Молоко, кефир, творог — по жирности.",
      "show": "search",
      "btn": {
       "uz": "Qidirish",
@@ -19,12 +23,12 @@
      }
     },
     {
-     "uz": "Yangi taomlar: protein kukuni, izolyat, kazein, geyner va BCAA.",
-     "ru": "Новые продукты: протеин, изолят, казеин, гейнер и BCAA."
+     "uz": "Protein kukuni va sport ovqatlanishi.",
+     "ru": "Протеин и спортивное питание."
     },
     {
-     "uz": "Til telefon tiliga qarab tanlanadi; boshlash ekranlarida UZ · ЎЗ · RU tugmasi bor.",
-     "ru": "Язык выбирается по языку телефона; на экранах начала есть кнопка UZ · ЎЗ · RU."
+     "uz": "Til telefoningizga qarab o'zi tanlanadi.",
+     "ru": "Язык выбирается сам — по языку телефона."
     }
    ]
   },

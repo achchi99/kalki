@@ -603,8 +603,9 @@
    "ru": "кефир 1%"
   },
   "protein_whey": {
-   "nom": "Protein kukuni (whey asosida, o'rtacha)",
+   "nom": "Protein kukuni (whey konsentrat, odatiy yorliq qiymati)",
    "usda": 173180,
+   "qol": {"k": 400, "p": 78, "f": 6, "c": 8},
    "yield": {
     "q": 1.0,
     "tarif": true

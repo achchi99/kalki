@@ -3813,8 +3813,8 @@
    "r": "Творог 18%: средние табличные значения для русского творога (таблицы типа Скурихина). В USDA такого творога нет (американский «cottage cheese» — другой продукт, белка меньше), поэтому по странице источника не перепроверено: примерно, возможно отклонение ±15% — проверяйте упаковку."
   },
   "protein-kukun": {
-   "u": "Protein kukuni (whey, brendsiz o'rtacha): USDA FoodData Central, fdc_id 173180 («Beverages, Protein powder whey based»): 352 kkal va 78 g oqsil / 100 g. 1 skup ≈ 30 g ≈ 106 kkal, ~23 g oqsil. Brendga qarab ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-   "r": "Протеин (сывороточный, усреднённый, без бренда): USDA FoodData Central, fdc_id 173180 («Beverages, Protein powder whey based»): 352 ккал и 78 г белка / 100 г. 1 скуп ≈ 30 г ≈ 106 ккал, ~23 г белка. В зависимости от бренда возможно отклонение ±15% — проверяйте упаковку."
+   "u": "Protein kukuni (whey, brendsiz o'rtacha): odatiy qadoq yorlig'i qiymati (whey konsentrat; USDA fdc_id 173180 bilan mos): 100 g ≈ 400 kkal, 78 g oqsil, 6 g yog'. 1 skup ≈ 30 g ≈ 120 kkal, ~24 g oqsil. Brendga qarab ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+   "r": "Протеин (сывороточный, усреднённый, без бренда): типичное значение с этикетки (концентрат сыворотки; сверено с USDA fdc_id 173180): 100 г ≈ 400 ккал, 78 г белка, 6 г жира. 1 скуп ≈ 30 г ≈ 120 ккал, ~24 г белка. В зависимости от бренда возможно отклонение ±15% — проверяйте упаковку."
   },
   "protein-izolyat": {
    "u": "Protein izolyat (whey isolate, brendsiz o'rtacha): ta'rif bo'yicha oqsil ≥90% (quruq massada); 100 g ≈ 88 g oqsil, ~1 g yog', ~2 g uglevod. USDA'dagi «Whey protein powder isolate» (fdc_id 173177) aralash mahsulot (58 g oqsil, 29 g uglevod) — izolyat uchun mos emas, shuning uchun olinmadi. Taxminiy — qadoq yorlig'ini tekshiring.",
