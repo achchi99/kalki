@@ -1,7 +1,7 @@
 /* kalki.uz/ilova — KalkiFit APK yuklab olish sahifasi. Dizayn tokenlari: assets/css/kalkifit.css dagi `.sl` bloki (qorong'i/och avtomatik); bu faylda qattiq rang yo'q. */
-html:has(.il){--page-bg:#F5F4F0}
-@media (prefers-color-scheme:dark){html:not([data-theme=light]):has(.il){--page-bg:#111214}}
-html[data-theme=dark]:has(.il){--page-bg:#111214}
+html:has(.il){--page-bg:#F7F5F2}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]):has(.il){--page-bg:#18191C}}
+html[data-theme=dark]:has(.il){--page-bg:#18191C}
 html:has(.il),html:has(.il) body{background:var(--page-bg);margin:0}
 .il{min-height:100vh;min-height:100dvh;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,-apple-system,Roboto,sans-serif;font-size:1rem;line-height:1.5;-webkit-text-size-adjust:100%}
 .il *{box-sizing:border-box}
@@ -15,7 +15,7 @@ html:has(.il),html:has(.il) body{background:var(--page-bg);margin:0}
 .il h1{margin:18px 0 6px;font-size:1.75rem;line-height:1.2;font-weight:800;letter-spacing:-.02em}
 .il-sub{margin:0 0 18px;color:var(--mut);max-width:44ch}
 .il-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin:0 0 16px}
-.il-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border:0;border-radius:18px;background:var(--fill);color:var(--onacc);font:800 1.1875rem/1.2 inherit;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -10px rgba(255,107,74,.6)}
+.il-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border:0;border-radius:18px;background:var(--fill);color:var(--onacc);font:800 1.1875rem/1.2 inherit;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -10px color-mix(in srgb,var(--fill) 60%,transparent)}
 .il-btn:active{transform:scale(.985)}
 .il-btn svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .il-meta{margin:12px 0 0;text-align:center;color:var(--mut);font-weight:600;font-size:.9375rem}
@@ -36,3 +36,17 @@ html[data-plat=ios] .only-ios{display:block}html[data-plat=ios] .not-ios{display
 html[data-plat=desk] .only-desk{display:block}
 html.fs-big .il{font-size:1.125rem}
 @media (prefers-reduced-motion:reduce){.il-btn:active{transform:none}}
+.il-steps li p{margin:0 0 10px}
+/* qadam rasmlari: telefon ekranining sxematik maketi (HTML — matnlar tarjima qilinadi) */
+.il-pic{display:flex;justify-content:center}
+.il-ph{width:100%;max-width:300px;border-radius:22px;border:6px solid var(--line2);background:var(--soft);padding:14px 12px}
+.il-ic{width:36px;height:36px;border-radius:11px;background:var(--fill);color:var(--onacc);font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex:none}.il-ic.big{width:52px;height:52px;border-radius:16px;font-size:1.375rem}
+.il-ntf{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:14px;padding:10px 12px}
+.il-nt{flex:1;min-width:0;display:flex;flex-direction:column}.il-nt b{font-size:.875rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.il-nt small{color:var(--mut);font-size:.8125rem}
+.il-pill{border-radius:999px;background:var(--fill);color:var(--onacc);font-weight:800;font-size:.8125rem;padding:6px 12px}
+.il-set{background:var(--card);border-radius:14px;padding:12px}.il-set>b{display:block;font-size:.9375rem;margin-bottom:8px}
+.il-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:.875rem;font-weight:600}
+.il-row.on{color:var(--ink)}
+.il-tg{width:40px;height:24px;border-radius:999px;background:var(--fill);position:relative;flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--fill) 30%,transparent)}.il-tg::after{content:'';position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:var(--card)}
+.il-dlg{background:var(--card);border-radius:16px;padding:16px 12px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}.il-dlg b{font-size:1rem}.il-dlg small{color:var(--mut);font-size:.8125rem}
+.il-dbtn{display:flex;gap:18px;justify-content:flex-end;width:100%;margin-top:8px;font-weight:700;font-size:.875rem;color:var(--mut)}.il-dbtn .on{color:var(--acc2);background:color-mix(in srgb,var(--fill) 14%,transparent);border-radius:10px;padding:4px 10px}
