@@ -1,0 +1,27 @@
+// KalkiFit taqdimoti: production (kalki.uz/kalkifit, ЎЗ, ?demo=1) skrinshotlari — 390×844 @3x, och va to'q.   node taqdimot/yasash/skrinshot.mjs
+import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright'; import { track } from '../../tools/test-cleanup.cjs';
+const OUT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'rasm'); const H = 'https://kalki.uz';
+const only = process.argv[2] ? process.argv[2].split(',') : null;
+const b = track(await chromium.launch()); const log = [];
+async function page(theme, url, o = {}) {
+  const c = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, colorScheme: theme, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'uz-UZ' });
+  const p = await c.newPage(); p.on('pageerror', (e) => log.push(theme + ' ' + url + ' XATO ' + e));
+  await p.goto(H + url, { waitUntil: 'networkidle' }); await p.waitForSelector('#kfSplash', { state: 'detached', timeout: 8000 }).catch(() => {}); await p.waitForTimeout(o.wait || 2200); return p; }
+const shot = async (p, name, theme, o = {}) => { await p.evaluate(() => { document.querySelectorAll('.rz-demo').forEach((e) => { e.style.display = 'none'; }); document.querySelectorAll('.sl-infob').forEach((e) => { e.setAttribute('data-cyr', 'skip'); e.textContent = 'i'; }); const l = document.querySelector('#remCard .sl-bkL'); if (l) l.textContent = 'Ҳафтада бир кун эслатамиз. Қайси кун?'; }); await p.waitForTimeout(400); await p.screenshot({ path: path.join(OUT, name + '-' + theme + '.jpg'), type: 'jpeg', quality: 90, ...o }); log.push('OK ' + name + '-' + theme); };
+const D = '/kalkifit?demo=1&lang=cyr';
+const JOBS = {
+  bugun: async (t) => { const p = await page(t, D, { wait: 3500 }); await shot(p, 'bugun', t); await p.context().close(); },
+  qoshish: async (t) => { const p = await page(t, D); await p.click('#mainAdd'); await p.waitForTimeout(1500); await shot(p, 'qoshish', t); await p.context().close(); },
+  retsept: async (t) => { const p = await page(t, D); await p.click('#rtDoor'); await p.waitForSelector('#rtText'); await p.click('[data-act=rtex][data-x=osh]'); await p.click('[data-act=rtgo]'); await p.waitForSelector('[data-act=rtnext]', { timeout: 10000 }); await p.click('[data-act=rtnext]'); await p.waitForSelector('#rtOdo'); await p.waitForTimeout(3000); await shot(p, 'retsept', t);
+    await p.click('[data-act=rtshare]'); await p.waitForSelector('#rtCardImg', { timeout: 10000 }); await p.waitForTimeout(500); const data = await p.evaluate(async () => { const r = await fetch(document.getElementById('rtCardImg').src); const bl = await r.blob(); return await new Promise((ok) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.readAsDataURL(bl); }); });
+    fs.writeFileSync(path.join(OUT, 'karta-' + t + '.png'), Buffer.from(data.split(',')[1], 'base64')); log.push('OK karta-' + t); await p.waitForTimeout(800); await shot(p, 'ulashish', t); await p.context().close(); },
+  yeymiz: async (t) => { const p = await page(t, D); await p.click('#yeCard'); await p.waitForTimeout(800); await p.click('[data-act=yechip2][data-c=kabob]'); await p.waitForTimeout(700); await p.click('[data-act=yeseg][data-s=kafe]').catch(() => {}); await p.waitForTimeout(1200); await shot(p, 'yeymiz', t); await p.context().close(); },
+  baliq: async (t) => { const p = await page(t, D + '&bugun=2026-10-22', { wait: 5500 }); await shot(p, 'baliqchip', t); await p.click('#fishChip'); await p.waitForTimeout(1500); await shot(p, 'baliq', t); await p.context().close(); },
+  profil: async (t) => { const p = await page(t, D); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(800); await p.evaluate(() => { const e = document.getElementById('remCard'); e.scrollIntoView({ block: 'start' }); let n = e.parentElement; while (n && n.scrollHeight <= n.clientHeight + 2) n = n.parentElement; const sc = n && n !== document.body ? n : document.scrollingElement; sc.scrollTop -= 90; }); await p.waitForTimeout(600); await shot(p, 'profil', t); await p.context().close(); },
+  onboarding: async (t) => { const p = await page(t, '/kalkifit?lang=cyr', { wait: 1500 }); await p.click('[data-act=obsex][data-v=m]'); await p.click('[data-act=obnext]'); await p.waitForTimeout(300); await p.click('[data-act=obnext]'); await p.waitForTimeout(900); await shot(p, 'onboarding', t); await p.context().close(); },
+  intro: async (t) => { const p = await page(t, D + '&intro=1', { wait: 2500 }); await p.waitForSelector('#rzIntro:not([hidden])', { timeout: 8000 }); await p.waitForTimeout(1200); await shot(p, 'intro', t); await p.context().close(); },
+  orniga: async (t) => { const p = await page(t, D); await p.click('#mainAdd'); await p.waitForTimeout(600); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(800); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForSelector('#orCard', { timeout: 8000 }); await p.waitForTimeout(800);
+    await p.evaluate(() => { const e = document.getElementById('orCard'), s = document.getElementById('rzSheet'); s.scrollTop += e.getBoundingClientRect().top - 420; }); await p.waitForTimeout(700); await shot(p, 'orniga', t); await p.context().close(); },
+};
+try { for (const [k, f] of Object.entries(JOBS)) { if (only && !only.includes(k)) continue; for (const t of ['light', 'dark']) { try { await f(t); } catch (e) { log.push('XATO ' + k + '-' + t + ': ' + String(e.message).split('\n')[0]); } } } }
+finally { await b.close(); console.log(log.join('\n')); }
