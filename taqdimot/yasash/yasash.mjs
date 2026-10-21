@@ -58,7 +58,7 @@ slide('dark', `<div class="center"><h2 class="big">Raqamlarga ishonsa bo‘ladi<
 // 15
 slide('light', `<div class="center"><h2 class="big">Maxfiylik va qulaylik</h2>${items([['lock', 'Ma’lumot — telefoningizda'], ['mail', 'Email bilan avtomatik zaxira'], ['globe', 'UZ · ЎЗ · RU, och va to‘q mavzu, katta shrift'], ['chart', 'Statistika faqat anonim sonlar']])}</div>`, 'cen');
 // 16
-slide('dark', `<div class="center"><h2 class="big">Keyingi qadamlar</h2>${items([['phone', 'Android ilova<br><small>iPhone\u2019da hozir ham bosh ekranga o‘rnatiladi</small>'], ['steps', 'Qadamlarni telefon o‘zi sanaydi'], ['cam', 'Daftardagi retseptni rasmga olib yengillashtirish'], ['target', '1 oydan keyin — natijalar: takliflarning necha foizi tanlandi']])}</div>`, 'cen');
+slide('dark', `<div class="center"><h2 class="big">Keyingi qadamlar</h2>${items([['phone', 'Android va iPhone ilova'], ['steps', 'Qadamlarni telefon o‘zi sanaydi'], ['cam', 'Daftardagi retseptni rasmga olib yengillashtirish'], ['target', '1 oydan keyin — natijalar: takliflarning necha foizi tanlandi']])}</div>`, 'cen');
 // 17
 slide('light', `<div class="center end"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><div class="qr" id="qr"></div><p class="url">kalki.uz/kalkifit</p><p class="sub">Hozir bepul sinab ko‘ring</p></div>`, 'cen');
 const CSS = `@page{size:1920px 1080px;margin:0}*{box-sizing:border-box;margin:0}html,body{background:#18191C}body{font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
