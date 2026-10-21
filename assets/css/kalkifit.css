@@ -622,3 +622,7 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 /* avtomatik qadam belgisi (Android ilovasi: apparat hisoblagich) */
 .rz .sl-sb .l,.sl-sn .l{flex-wrap:wrap;row-gap:2px}
 .sl-auto{display:inline-flex;align-items:center;padding:1px 7px;border-radius:999px;background:var(--accsoft,rgba(232,87,47,.12));color:var(--accink,var(--acc));font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.01em;vertical-align:middle;white-space:nowrap}
+/* rasm natijasi: «Bu emasmi?» variantlari va bazadan qidirish */
+.sl-alt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 10px;padding:0 2px}.sl-alt>span{font-size:var(--t-xs);color:var(--mut);margin-right:2px}
+.sl-alt .rz-chip{min-height:36px;font-size:var(--t-xs)}.sl-alt .sl-altq{gap:4px}.sl-alt .sl-altq .rz-i{width:14px;height:14px}
+.sl-aileft{margin:4px 0 8px}
