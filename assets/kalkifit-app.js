@@ -50,7 +50,7 @@
       wkT: "O'tgan hafta", wkAvgK: "To'liq kunlarda o'rtacha: {x} kkal/kun", wkAvgS: "O'rtacha qadam: {x}", wkW: "Vazn (7 kunlik o'rtacha): {a} → {b} kg", wkDays: "7 kundan {n} tasi to'liq", wkNone: "Ma'lumot kam",
       nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Haftalik zaxira vaqti — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Telegramga yuborish',
       qtyMinus: 'Kamaytirish', qtyPlus: "Ko'paytirish", aboutBack: 'Orqaga', errAmt: 'Raqamni kiriting', stepsT: 'Bugungi qadam', stepsOf: '{d} kuni qadami',
-      units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six' }
+      units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six', skup: 'skup' }
     },
     ru: {
       obLater: 'Позже', obLater2: 'Позже — начать со средней нормой', txChip: 'Примерно · Уточнить', txP: 'Норма примерная', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
@@ -94,7 +94,7 @@
       wkT: 'Прошлая неделя', wkAvgK: 'В полные дни в среднем: {x} ккал/день', wkAvgS: 'В среднем шагов: {x}', wkW: 'Вес (среднее за 7 дней): {a} → {b} кг', wkDays: '{n} из 7 дней полные', wkNone: 'Мало данных',
       nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать недельную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Отправить в Telegram',
       qtyMinus: 'Меньше', qtyPlus: 'Больше', aboutBack: 'Назад', errAmt: 'Введите число', stepsT: 'Шаги за сегодня', stepsOf: 'Шаги за {d}',
-      units: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка', six: 'шампур' }
+      units: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка', six: 'шампур', skup: 'мерная ложка' }
     }
   };
   /* ---------- 2-bosqich matnlari: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, qo'shimchalar ---------- */
@@ -927,8 +927,8 @@
   }
   var fdLM = {};
   function lastFor(key) { return key ? (fdLM[key] || null) : null; }
-  function defPortionTxt(f) {
-    var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); if (!(g > 0)) return '';
+  function defPortionTxt(f, sel) {
+    var v = f.fam ? S.famVariant(f, sel || S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); if (!(g > 0)) return '';
     return T('aDefOne', { x: u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u), k: fmt(S.portion(v, g).kcal) });
   }
   function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
@@ -998,9 +998,9 @@
   function rHits() { if (!Y || !fd || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var o = fd.mode === 'item' ? fd.items[fd.ix] : fd; if (!o) return []; if (!o.food && fd.mode === 'item') return o.rHit || []; if (!o.food || o.food.custom || (fd.mode === 'portion' && fd.editId != null)) return []; var f = o.fam || o.food; return rI(f, o.fam ? o.food.vr : null).hit; }      // AI matn / rasm natijasi (item) ham: taom tanilsa — o'sha yumshoq ogohlantirish
   function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
   function resRow(f, cat, dim) {
-    var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f));
+    var pk = f.fam && fd && fd.q ? S.famPick(f, fd.q) : null, key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), fv = pk ? S.famVariant(f, Object.assign(S.famDefault(f), pk)) : null, vl = fv ? S.famLabel(f, fv.vr, null, lang) : '', sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f, fv ? Object.assign(S.famDefault(f), pk) : null));      // «sut 1,5» → qatorda ham «Sut · 1,5%» va shu variantning kkal'i (bosganda porsiya oynasida o'sha tanlanadi)
     var bad = rI(f).hit.length;
-    return '<button type="button" class="sl-rr' + (dim ? ' dim' : '') + '" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f)) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
+    return '<button type="button" class="sl-rr' + (dim ? ' dim' : '') + '" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f) + (vl ? ' · ' + vl : '')) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
   }
   function resultsHtml() {
     if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
@@ -1584,6 +1584,22 @@
     if (!ob[f]) ob[f] = obFmt(f, obDef(ob.sex)[f]);
     return SL.html({ id: id, min: lm.min, max: lm.max, step: lm.step, value: num(ob[f]), unit: unit, label: T(q), minus: T('sldMinus'), plus: T('sldPlus'), edit: T('sldEdit') });
   }
+  /* til tugmasi (har onboarding ekranida): joriy ekran darhol shu tilga o'tadi; kiritilgan qiymatlar (ob) sessionStorage'ga yoziladi va sahifa qayta yuklansa (UZ↔RU boshqa sahifa, ЎЗ) tiklanadi */
+  var OB_RES = 'kalki_ob_resume';
+  function obLangHtml() {
+    var cur = isCyr() ? 'cyr' : lang;
+    return '<div class="sl-ob-top" data-cyr="skip"><div class="sl-ob-lang" role="group" aria-label="Til / Язык">' + [['uz', 'UZ'], ['cyr', 'ЎЗ'], ['ru', 'RU']].map(function (x) { return '<button type="button" data-act="oblang" data-l="' + x[0] + '" aria-pressed="' + (cur === x[0]) + '"' + (cur === x[0] ? ' class="on"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div></div>';
+  }
+  function obLang(l) {
+    var cur = isCyr() ? 'cyr' : lang; if (!ob || l === cur) return;
+    try { var sn = JSON.parse(JSON.stringify(ob)); sn.anim = null; sessionStorage.setItem(OB_RES, JSON.stringify({ t: Date.now(), ob: sn })); } catch (e) {}
+    var tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click();
+    setTimeout(function () { if (ob) { lang = langNow(); showOnb(); } }, 80);          // sahifa qayta yuklanmasa (joyida almashsa) — hozirgi ekran yangi tilda qayta chiziladi
+  }
+  function obResume() {                               // til almashtirishdan keyin: 10 daqiqa ichida yozilgan qiymatlar va qadam tiklanadi
+    var raw = null; try { raw = sessionStorage.getItem(OB_RES); sessionStorage.removeItem(OB_RES); } catch (e) {} if (!raw) return;
+    try { var r = JSON.parse(raw), o = r && r.ob; if (!o || typeof o !== 'object' || Date.now() - (+r.t || 0) > 600000 || !(o.step >= 1 && o.step <= 8)) return; if (st && st.setup && !o.refine) return; o.anim = null; ob = o; if (st && st.setup) obLock(true); } catch (e) {}
+  }
   function showOnb() {
     var el = $('#rzOnb'); if (!ob) obNew();
     var s = ob.step, an = ob.anim, h = '', foot = 'next', nav = ''; ob.anim = null;
@@ -1606,7 +1622,7 @@
     var btn = foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
     nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + '<span class="sl-ob-sp"></span></div>';
     var later = s === 1 && ob.sex ? '<button type="button" class="rz-btn ghost sl-ob-later" data-act="oblater">' + esc(T('obLater2')) + '</button>' : '';
-    h = '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
+    h = obLangHtml() + '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
     el.className = 'rz-onb sl-ob'; el.innerHTML = h; el.hidden = false; el.classList.remove('out'); if (SL) SL.mount(el);
     if (s === 8) kit.setNum($('#obTarget'), 0, planOfOb().target, { dur: 700 });
   }
@@ -1825,7 +1841,7 @@
       case 'rshow': fd.showR = !fd.showR; refreshRes(); break;
       case 'obnext': obNext(); break; case 'obstart': obStart(); break;
       case 'obback': obBack(); break;
-      case 'oblater': obLater(); break;
+      case 'oblater': obLater(); break; case 'oblang': obLang(el.getAttribute('data-l')); break;
       case 'taxgo': taxOpen(); break;
     }
   });
@@ -1863,7 +1879,7 @@
       saveRecipe: function (name, ings, portions) { var f = S.saveRecipe(st, { name: name, ings: ings, portions: portions }); if (f) commit(); return f; },
       openAddFood: function (id) { kit.closeSheet(); setTimeout(function () { openAdd({ food: id }); }, 320); } });
     if (IN) IN.init({ D: D, T: T, esc: esc, ico: ico, $: $, lang: function () { return lang; } });
-    tipsSess = !!(st && st.setup && !prefs().tipsDone); render(); inst.gate();
+    obResume(); tipsSess = !!(st && st.setup && !prefs().tipsDone); if (ob && st && st.setup) showOnb(); else render(); inst.gate();
     try { if (window.__kfSplashHide) window.__kfSplashHide(); } catch (e) {}      // HTML ichidagi splash (kalkifit.html) — ilova tayyor: silliq yo'qoladi (min 600 ms)
     if (KD.on && KD.intro && IN && st && st.setup) { introPending = true; introShow(); }
     if (st.setup) { loadMasofa(); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }

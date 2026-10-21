@@ -4,7 +4,21 @@
   "url": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
   "sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
   "yuklangan": "2026-10-20",
-  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun"
+  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun; 2026-10-21: sut mahsulotlari va sport ovqatlanishi uchun id lar qo'shildi (meta.qoshimcha)",
+  "qoshimcha": {
+   "2026-10-21": [
+    "169698",
+    "170858",
+    "170904",
+    "171255",
+    "171256",
+    "172205",
+    "172217",
+    "173180",
+    "173432",
+    "173441"
+   ]
+  }
  },
  "foods": {
   "167587": {
@@ -659,6 +673,21 @@
      "nom": "serving 1 cube",
      "miqdor": 1.0,
      "g": 2.3
+    }
+   ]
+  },
+  "169698": {
+   "d": "Cornstarch",
+   "f": 0.05,
+   "c": 91.27,
+   "kcal": 381.0,
+   "suv": 8.32,
+   "p": 0.26,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 128.0
     }
    ]
   },
@@ -1357,6 +1386,51 @@
     }
    ]
   },
+  "170858": {
+   "d": "Cream, fluid, light whipping",
+   "kcal": 292.0,
+   "p": 2.17,
+   "f": 30.91,
+   "c": 2.96,
+   "suv": 63.5,
+   "o": [
+    {
+     "nom": "cup, whipped",
+     "miqdor": 1.0,
+     "g": 120.0
+    },
+    {
+     "nom": "cup, fluid (yields 2 cups whipped)",
+     "miqdor": 1.0,
+     "g": 239.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    }
+   ]
+  },
+  "170904": {
+   "d": "Kefir, lowfat, plain, LIFEWAY",
+   "p": 3.79,
+   "f": 1.02,
+   "c": 4.77,
+   "kcal": 43.0,
+   "suv": 89.7,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 243.0
+    },
+    {
+     "nom": "bottle",
+     "miqdor": 1.0,
+     "g": 971.0
+    }
+   ]
+  },
   "171024": {
    "d": "Oil, cottonseed, salad or cooking",
    "f": 100.0,
@@ -1444,6 +1518,56 @@
      "nom": "package (7 oz)",
      "miqdor": 1.0,
      "g": 198.0
+    }
+   ]
+  },
+  "171255": {
+   "d": "Cream, fluid, half and half",
+   "p": 3.13,
+   "f": 11.5,
+   "c": 4.3,
+   "kcal": 131.0,
+   "suv": 80.57,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.2
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 242.0
+    },
+    {
+     "nom": "container, individual (.5 fl oz)",
+     "miqdor": 1.0,
+     "g": 15.0
+    }
+   ]
+  },
+  "171256": {
+   "d": "Cream, sour, reduced fat, cultured",
+   "kcal": 135.0,
+   "suv": 80.14,
+   "f": 12.0,
+   "c": 4.26,
+   "p": 2.94,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 242.0
     }
    ]
   },
@@ -1887,6 +2011,56 @@
     }
    ]
   },
+  "172205": {
+   "d": "Milk, reduced fat, fluid, 2% milkfat, without added vitamin A and vitamin D",
+   "c": 4.8,
+   "kcal": 50.0,
+   "f": 1.98,
+   "suv": 89.21,
+   "p": 3.3,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 246.0
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 984.0
+    }
+   ]
+  },
+  "172217": {
+   "d": "Milk, whole, 3.25% milkfat, without added vitamin A and vitamin D",
+   "c": 4.78,
+   "kcal": 61.0,
+   "suv": 88.13,
+   "f": 3.27,
+   "p": 3.15,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 244.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.5
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 976.0
+    }
+   ]
+  },
   "172380": {
    "d": "Chicken, broilers or fryers, leg, meat only, cooked, roasted",
    "f": 7.8,
@@ -2067,6 +2241,21 @@
     }
    ]
   },
+  "173180": {
+   "d": "Beverages, Protein powder whey based",
+   "p": 78.13,
+   "f": 1.56,
+   "c": 6.25,
+   "kcal": 352.0,
+   "suv": 3.44,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 0.33,
+     "g": 32.0
+    }
+   ]
+  },
   "173227": {
    "d": "Beverages, tea, black, brewed, prepared with tap water",
    "p": 0.0,
@@ -2204,6 +2393,46 @@
      "nom": "large",
      "miqdor": 1.0,
      "g": 50.0
+    }
+   ]
+  },
+  "173432": {
+   "d": "Milk, nonfat, fluid, without added vitamin A and vitamin D (fat free or skim)",
+   "f": 0.18,
+   "c": 4.86,
+   "kcal": 35.0,
+   "p": 3.37,
+   "suv": 90.84,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 245.0
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 980.0
+    }
+   ]
+  },
+  "173441": {
+   "d": "Milk, fluid, 1% fat, without added vitamin A and vitamin D",
+   "c": 4.99,
+   "kcal": 42.0,
+   "p": 3.37,
+   "f": 0.97,
+   "suv": 89.92,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 244.0
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 976.0
     }
    ]
   },

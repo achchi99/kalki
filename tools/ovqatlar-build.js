@@ -70,6 +70,8 @@ pishloq|Pishloq (qattiq)|Сыр твёрдый|syr,cheese,gouda|350|25|27|2|s|0|
 pishloq-yumshoq|Pishloq (brynza)|Брынза|brinza,bryndza|260|18|20|0.5|s|0|bolak:30
 tvorog5|Tvorog (5%)|Творог 5%|tvorog,cottage|121|17|5|2|s|0|piyola:150,qoshiq:20
 tvorog9|Tvorog (9%)|Творог 9%|tvorog 9|155|16|9|3|s|0|piyola:150,qoshiq:20
+tvorog0|Tvorog (0%)|Творог обезжиренный|tvorog 0,tvorog yogsiz|88|18|0.6|1.8|s|1|piyola:150,qoshiq:20
+tvorog18|Tvorog (18%)|Творог 18%|tvorog 18,tvorog yogli|229|14|18|2.8|s|1|piyola:150,qoshiq:20
 sariyog|Sariyog'|Сливочное масло|saryog,maslo,butter|717|0.8|81|0.6|s|0|qoshiq:12,choyq:5,bolak:10
 yogurt-meva|Yogurt (mevali)|Йогурт фруктовый|yogurt mevali|90|3|2|15|s|0|dona:125,stakan:200
 yogurt-tabiiy|Yogurt (tabiiy)|Йогурт натуральный|yogurt oddiy,yoghurt|60|4|3|5|s|0|dona:125,stakan:200
@@ -275,6 +277,10 @@ pitsa-4|Pitsa (4 pishloq)|Пицца 4 сыра|pitsa 4 pishloq,четыре с�
 qatiq-yogsiz|Qatiq (yog'siz)|Катык обезжиренный|yogsiz qatiq|35|3.5|0.5|4|s|1|stakan:250
 qaynatma-baliq|Baliq sho'rvasi (uxa)|Уха|uxa,baliq shorva,уха|40|5|1.5|2|o|1|kosa:350
 tofu|Tofu|Тофу|tofu,тофу|76|8|4.8|1.9|x|0|bolak:80
+protein-kukun|Protein kukuni (whey)|Протеин сывороточный|protein,протеин,protein kukun,protein kokteyl,сывороточный,сывороточный протеин,whey,whey protein|352|78|1.6|6.3|x|1|skup:30
+protein-izolyat|Protein izolyat (whey isolate)|Изолят сывороточного протеина|protein izolyat,izolyat,изолят,whey isolate,isolate|370|88|1|2|x|1|skup:30
+protein-kazein|Kazein protein|Казеиновый протеин|kazein,казеин,casein,protein kazein,casein protein|355|76|2|7|x|1|skup:30
+aminokislota|BCAA / aminokislotalar|BCAA / аминокислоты|bcaa,aminokislota,aminokislotalar,аминокислоты,бцаа,amino|0|0|0|0|x|1|skup:7
 protein-bar|Protein batonchik|Протеиновый батончик|protein bar,batonchik,батончик|380|25|12|35|x|1|dona:60
 `;
 const rows = R.trim().split('\n').map((l) => l.split('|'));

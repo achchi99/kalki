@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<html lang="uz" data-lang="uz" data-ru-page="1" data-lang-auto="1"><head>
 <meta charset="UTF-8">
 <script id="langboot">
 (function(){try{
   var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
   var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(l==='uz'&&!(s==='ru'||s==='uz'||s==='cyr')){var nl=String(navigator.language||'').toLowerCase();if(/^ru(-|_|$)/.test(nl))l='ru';else if(/^uz/.test(nl)&&/cyrl/.test(nl))l='cyr';}   /* KalkiFit: tanlov yo'q — telefon tiliga qarab (saqlanmaydi) */
   if(/^\/ru\//.test(location.pathname))l='ru';
   var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
   if(q)l=q[1];

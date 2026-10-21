@@ -1111,32 +1111,230 @@
      "r": "Жирность",
      "o": [
       {
-       "id": "odatiy",
-       "n": "odatiy",
-       "r": "обычное"
+       "id": "f05",
+       "n": "0,5%",
+       "r": "0,5%"
       },
       {
-       "id": "yogsiz",
-       "n": "yog'siz",
-       "r": "обезжиренное"
+       "id": "f15",
+       "n": "1,5%",
+       "r": "1,5%"
+      },
+      {
+       "id": "f25",
+       "n": "2,5%",
+       "r": "2,5%"
+      },
+      {
+       "id": "odatiy",
+       "n": "3,2%",
+       "r": "3,2%"
+      },
+      {
+       "id": "f6",
+       "n": "6%",
+       "r": "6%"
       }
      ],
-     "d": "odatiy"
+     "d": "odatiy",
+     "must": true
     }
    ],
    "grid": [
+    {
+     "v": "f05",
+     "rc": "sut.f05"
+    },
+    {
+     "v": "f15",
+     "rc": "sut.f15"
+    },
+    {
+     "v": "f25",
+     "rc": "sut.f25"
+    },
     {
      "v": "odatiy",
      "from": "sut"
     },
     {
-     "v": "yogsiz",
-     "from": "sut-yogsiz"
+     "v": "f6",
+     "rc": "sut.f6"
     }
    ],
    "alias_old": {
-    "sut-yogsiz": "yogsiz"
-   }
+    "sut-yogsiz": "f05"
+   },
+   "sy": [
+    {
+     "q": "sut",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "молоко",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "moloko",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "sut 0,5",
+     "p": {
+      "yogliligi": "f05"
+     }
+    },
+    {
+     "q": "sut 0.5",
+     "p": {
+      "yogliligi": "f05"
+     }
+    },
+    {
+     "q": "молоко 0,5",
+     "p": {
+      "yogliligi": "f05"
+     }
+    },
+    {
+     "q": "yogsiz sut",
+     "p": {
+      "yogliligi": "f05"
+     }
+    },
+    {
+     "q": "обезжиренное молоко",
+     "p": {
+      "yogliligi": "f05"
+     }
+    },
+    {
+     "q": "sut 1",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "молоко 1",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "sut 1,5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "sut 1.5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "молоко 1,5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "sut 2,5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "sut 2.5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "молоко 2,5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "sut 2",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "молоко 2",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "sut 3,2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "sut 3.2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "sut 3",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "молоко 3,2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "молоко 3",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "sut 6",
+     "p": {
+      "yogliligi": "f6"
+     }
+    },
+    {
+     "q": "sut 6%",
+     "p": {
+      "yogliligi": "f6"
+     }
+    },
+    {
+     "q": "молоко 6",
+     "p": {
+      "yogliligi": "f6"
+     }
+    },
+    {
+     "q": "pishirilgan sut",
+     "p": {
+      "yogliligi": "f6"
+     }
+    },
+    {
+     "q": "топлёное молоко",
+     "p": {
+      "yogliligi": "f6"
+     }
+    }
+   ]
   },
   {
    "id": "qatiq",
@@ -1169,7 +1367,7 @@
     },
     {
      "v": "yogsiz",
-     "from": "qatiq-yogsiz"
+     "rc": "qatiq.yogsiz"
     }
    ],
    "alias_old": {
@@ -1187,6 +1385,11 @@
      "r": "Жирность",
      "o": [
       {
+       "id": "0",
+       "n": "0%",
+       "r": "0%"
+      },
+      {
        "id": "5",
        "n": "5%",
        "r": "5%"
@@ -1195,12 +1398,22 @@
        "id": "9",
        "n": "9%",
        "r": "9%"
+      },
+      {
+       "id": "18",
+       "n": "18%",
+       "r": "18%"
       }
      ],
-     "d": "5"
+     "d": "5",
+     "must": true
     }
    ],
    "grid": [
+    {
+     "v": "0",
+     "from": "tvorog0"
+    },
     {
      "v": "5",
      "from": "tvorog5"
@@ -1208,11 +1421,109 @@
     {
      "v": "9",
      "from": "tvorog9"
+    },
+    {
+     "v": "18",
+     "from": "tvorog18"
     }
    ],
    "alias_old": {
-    "tvorog9": "9"
-   }
+    "tvorog9": "9",
+    "tvorog0": "0",
+    "tvorog18": "18"
+   },
+   "sy": [
+    {
+     "q": "tvorog",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "творог",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "tvorog5",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "tvorog 0",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "творог 0",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "tvorog yogsiz",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "обезжиренный творог",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "tvorog 5",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "творог 5",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "tvorog 9",
+     "p": {
+      "yogliligi": "9"
+     }
+    },
+    {
+     "q": "творог 9",
+     "p": {
+      "yogliligi": "9"
+     }
+    },
+    {
+     "q": "tvorog 18",
+     "p": {
+      "yogliligi": "18"
+     }
+    },
+    {
+     "q": "творог 18",
+     "p": {
+      "yogliligi": "18"
+     }
+    },
+    {
+     "q": "tvorog yogli",
+     "p": {
+      "yogliligi": "18"
+     }
+    },
+    {
+     "q": "жирный творог",
+     "p": {
+      "yogliligi": "18"
+     }
+    }
+   ]
   },
   {
    "id": "yogurt-tabiiy",
@@ -1741,6 +2052,362 @@
      "dona": 110
     }
    }
+  },
+  {
+   "id": "kefir",
+   "n": "Kefir",
+   "r": "Кефир",
+   "axes": [
+    {
+     "id": "yogliligi",
+     "n": "Yog'liligi",
+     "r": "Жирность",
+     "o": [
+      {
+       "id": "f1",
+       "n": "1%",
+       "r": "1%"
+      },
+      {
+       "id": "odatiy",
+       "n": "2,5%",
+       "r": "2,5%"
+      },
+      {
+       "id": "f32",
+       "n": "3,2%",
+       "r": "3,2%"
+      }
+     ],
+     "d": "odatiy",
+     "must": true
+    }
+   ],
+   "grid": [
+    {
+     "v": "f1",
+     "rc": "kefir.f1"
+    },
+    {
+     "v": "odatiy",
+     "from": "kefir"
+    },
+    {
+     "v": "f32",
+     "rc": "kefir.f32"
+    }
+   ],
+   "sy": [
+    {
+     "q": "kefir",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "кефир",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "kefir 1",
+     "p": {
+      "yogliligi": "f1"
+     }
+    },
+    {
+     "q": "кефир 1",
+     "p": {
+      "yogliligi": "f1"
+     }
+    },
+    {
+     "q": "kefir 2,5",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "kefir 2.5",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "кефир 2,5",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "kefir 2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "кефир 2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "kefir 3,2",
+     "p": {
+      "yogliligi": "f32"
+     }
+    },
+    {
+     "q": "kefir 3.2",
+     "p": {
+      "yogliligi": "f32"
+     }
+    },
+    {
+     "q": "кефир 3,2",
+     "p": {
+      "yogliligi": "f32"
+     }
+    },
+    {
+     "q": "kefir 3",
+     "p": {
+      "yogliligi": "f32"
+     }
+    },
+    {
+     "q": "кефир 3",
+     "p": {
+      "yogliligi": "f32"
+     }
+    }
+   ]
+  },
+  {
+   "id": "smetana",
+   "n": "Smetana",
+   "r": "Сметана",
+   "axes": [
+    {
+     "id": "yogliligi",
+     "n": "Yog'liligi",
+     "r": "Жирность",
+     "o": [
+      {
+       "id": "f10",
+       "n": "10%",
+       "r": "10%"
+      },
+      {
+       "id": "f15",
+       "n": "15%",
+       "r": "15%"
+      },
+      {
+       "id": "odatiy",
+       "n": "20%",
+       "r": "20%"
+      },
+      {
+       "id": "f25",
+       "n": "25%",
+       "r": "25%"
+      }
+     ],
+     "d": "odatiy",
+     "must": true
+    }
+   ],
+   "grid": [
+    {
+     "v": "f10",
+     "rc": "smetana.f10"
+    },
+    {
+     "v": "f15",
+     "rc": "smetana.f15"
+    },
+    {
+     "v": "odatiy",
+     "from": "smetana"
+    },
+    {
+     "v": "f25",
+     "rc": "smetana.f25"
+    }
+   ],
+   "sy": [
+    {
+     "q": "smetana",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "сметана",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "smetana 10",
+     "p": {
+      "yogliligi": "f10"
+     }
+    },
+    {
+     "q": "сметана 10",
+     "p": {
+      "yogliligi": "f10"
+     }
+    },
+    {
+     "q": "smetana 15",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "сметана 15",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "smetana 20",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "сметана 20",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "smetana 25",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "сметана 25",
+     "p": {
+      "yogliligi": "f25"
+     }
+    }
+   ]
+  },
+  {
+   "id": "protein-kukun",
+   "n": "Protein kukuni (whey)",
+   "r": "Протеин сывороточный",
+   "axes": [
+    {
+     "id": "tayyor",
+     "n": "Tayyorlash",
+     "r": "Приготовление",
+     "o": [
+      {
+       "id": "suvda",
+       "n": "suvda",
+       "r": "на воде"
+      },
+      {
+       "id": "sutda",
+       "n": "sutda (1,5% sut)",
+       "r": "на молоке 1,5%"
+      }
+     ],
+     "d": "suvda",
+     "must": true
+    }
+   ],
+   "grid": [
+    {
+     "v": "suvda",
+     "from": "protein-kukun"
+    },
+    {
+     "v": "sutda",
+     "rc": "protein.sutda"
+    }
+   ],
+   "uv": {
+    "sutda": {
+     "skup": 280
+    }
+   },
+   "sy": [
+    {
+     "q": "protein",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "протеин",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "protein kokteyl",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "протеиновый коктейль",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "whey",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "whey protein",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "protein sutda",
+     "p": {
+      "tayyor": "sutda"
+     }
+    },
+    {
+     "q": "protein kokteyl sutda",
+     "p": {
+      "tayyor": "sutda"
+     }
+    },
+    {
+     "q": "протеин на молоке",
+     "p": {
+      "tayyor": "sutda"
+     }
+    },
+    {
+     "q": "protein suvda",
+     "p": {
+      "tayyor": "suvda"
+     }
+    },
+    {
+     "q": "протеин на воде",
+     "p": {
+      "tayyor": "suvda"
+     }
+    }
+   ]
   }
  ],
  "retseptli_oddiy": {
@@ -2955,6 +3622,28 @@
    ],
    "rc": "hotdog-tovuq",
    "ub": "dona"
+  },
+  {
+   "i": "geyner",
+   "n": "Geyner (mass gainer)",
+   "r": "Гейнер",
+   "a": [
+    "geyner",
+    "gainer",
+    "гейнер",
+    "mass gainer",
+    "massa geyner",
+    "gainer kokteyl"
+   ],
+   "t": "x",
+   "u": [
+    [
+     "porsiya",
+     100
+    ]
+   ],
+   "rc": "geyner",
+   "ub": "porsiya"
   }
  ],
  "top_qoshimcha": [
@@ -3113,5 +3802,31 @@
   "sirniki",
   "vareniki",
   "tovuq-jigar"
- ]
+ ],
+ "izohlar": {
+  "tvorog0": {
+   "u": "Tvorog (0%): rus tvorogining o'rtacha jadval qiymatlari (Скурихин turidagi jadvallar). USDA'da bunday tvorog yo'q (amerika «cottage cheese» boshqa mahsulot — oqsili kam), shuning uchun manba sahifasidan qayta tekshirilmagan: taxminiy, ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+   "r": "Творог 0%: средние табличные значения для русского творога (таблицы типа Скурихина). В USDA такого творога нет (американский «cottage cheese» — другой продукт, белка меньше), поэтому по странице источника не перепроверено: примерно, возможно отклонение ±15% — проверяйте упаковку."
+  },
+  "tvorog18": {
+   "u": "Tvorog (18%): rus tvorogining o'rtacha jadval qiymatlari (Скурихин turidagi jadvallar). USDA'da bunday tvorog yo'q (amerika «cottage cheese» boshqa mahsulot — oqsili kam), shuning uchun manba sahifasidan qayta tekshirilmagan: taxminiy, ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+   "r": "Творог 18%: средние табличные значения для русского творога (таблицы типа Скурихина). В USDA такого творога нет (американский «cottage cheese» — другой продукт, белка меньше), поэтому по странице источника не перепроверено: примерно, возможно отклонение ±15% — проверяйте упаковку."
+  },
+  "protein-kukun": {
+   "u": "Protein kukuni (whey, brendsiz o'rtacha): USDA FoodData Central, fdc_id 173180 («Beverages, Protein powder whey based»): 352 kkal va 78 g oqsil / 100 g. 1 skup ≈ 30 g ≈ 106 kkal, ~23 g oqsil. Brendga qarab ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+   "r": "Протеин (сывороточный, усреднённый, без бренда): USDA FoodData Central, fdc_id 173180 («Beverages, Protein powder whey based»): 352 ккал и 78 г белка / 100 г. 1 скуп ≈ 30 г ≈ 106 ккал, ~23 г белка. В зависимости от бренда возможно отклонение ±15% — проверяйте упаковку."
+  },
+  "protein-izolyat": {
+   "u": "Protein izolyat (whey isolate, brendsiz o'rtacha): ta'rif bo'yicha oqsil ≥90% (quruq massada); 100 g ≈ 88 g oqsil, ~1 g yog', ~2 g uglevod. USDA'dagi «Whey protein powder isolate» (fdc_id 173177) aralash mahsulot (58 g oqsil, 29 g uglevod) — izolyat uchun mos emas, shuning uchun olinmadi. Taxminiy — qadoq yorlig'ini tekshiring.",
+   "r": "Изолят сывороточного протеина (усреднённый, без бренда): по определению белка ≥90% (в сухом веществе); 100 г ≈ 88 г белка, ~1 г жира, ~2 г углеводов. Запись USDA «Whey protein powder isolate» (fdc_id 173177) — смесь (58 г белка, 29 г углеводов), для изолята не подходит, поэтому не использована. Примерно — проверяйте упаковку."
+  },
+  "protein-kazein": {
+   "u": "Kazein protein (brendsiz o'rtacha): USDA'da kazein yo'q; oqsil ulushi (~75–80%) bo'yicha whey kukuniga (fdc_id 173180: 352 kkal, 78 g oqsil) yaqin deb olingan. 1 skup ≈ 30 g ≈ 107 kkal. Taxminiy — qadoq yorlig'ini tekshiring.",
+   "r": "Казеиновый протеин (усреднённый, без бренда): казеина в USDA нет; по доле белка (~75–80%) принят близким к сывороточному порошку (fdc_id 173180: 352 ккал, 78 г белка). 1 скуп ≈ 30 г ≈ 107 ккал. Примерно — проверяйте упаковку."
+  },
+  "aminokislota": {
+   "u": "BCAA / aminokislotalar: 1 porsiya (skup ≈ 7 g) uchun yorliqlarda odatda 0–25 kkal ko'rsatiladi; ilova ≈0 kkal deb hisoblaydi (kaloriya hisobiga ta'sir qilmaydi). Taxminiy.",
+   "r": "BCAA / аминокислоты: на этикетках для порции (скуп ≈ 7 г) обычно указано 0–25 ккал; приложение считает ≈0 ккал (на подсчёт калорий не влияет). Примерно."
+  }
+ }
 }
