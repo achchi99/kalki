@@ -1,4 +1,4 @@
-// KalkiFit taqdimoti: HTML (1920×1080 slaydlar, ЎЗ kirill) → PDF.   node taqdimot/yasash/skrinshot.mjs && node taqdimot/yasash/yasash.mjs
+// KalkiFit taqdimoti: HTML (1920×1080 slaydlar, UZ lotin) → PDF.   node taqdimot/yasash/skrinshot.mjs && node taqdimot/yasash/yasash.mjs
 import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright'; import { track } from '../../tools/test-cleanup.cjs';
 const DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const R = (f) => 'rasm/' + f;
@@ -9,6 +9,7 @@ const IC = {
   tag: '<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
   check: '<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>',
   phone: '<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
   chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
@@ -24,40 +25,40 @@ const ic = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const items = (arr) => `<div class="items">${arr.map(([k, t]) => `<div class="it"><span class="ic">${ic(k)}</span><span>${t}</span></div>`).join('')}</div>`;
 const lines = (arr) => arr.map((t) => `<p class="ln">${t}</p>`).join('');
 const S = [];
-const slide = (theme, body, cls = '') => S.push(`<section class="sl ${theme} ${cls}">${body}<footer>KalkiFit · kalki.uz</footer></section>`);
+const slide = (theme, body, cls = '') => S.push(`<section class="sl ${theme} ${cls}">${body}<footer>KalkiFit</footer></section>`);
 const split = (theme, h, txt, vis, cls = '') => slide(theme, `<div class="txt">${h}${txt}</div><div class="vis">${vis}</div>`, 'split ' + cls);
 // 1
-slide('dark', `<div class="txt"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><p class="sub">Ўзингиз ёқтирган таомлар билан яхшироқ овқатланинг</p></div><div class="vis">${pair('bugun')}</div>`, 'split cover');
+slide('dark', `<div class="txt"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><p class="sub">O‘zingiz yoqtirgan taomlar bilan yaxshiroq ovqatlaning</p></div><div class="vis">${pair('bugun')}</div>`, 'split cover');
 // 2
-slide('light', `<div class="center"><div class="kick">Муаммо</div><h2 class="big">Калория иловалари ўзбек дастурхонини билмайди</h2>${lines(['Ош, лағмон, сомса — йўқ ёки нотўғри', 'Тақиқлар зериктиради, одам ташлаб кетади'])}</div>`, 'cen');
+slide('light', `<div class="center"><div class="kick">Muammo</div><h2 class="big">Kaloriya ilovalarida o‘zbek taomlari yo‘q</h2>${lines(['Osh, lag‘mon, somsa — yo‘q yoki noto‘g‘ri hisoblangan', 'Ta’qiqlar zeriktiradi — odam ilovani tashlab ketadi'])}</div>`, 'cen');
 // 3
-slide('dark', `<div class="center"><div class="kick">Ғоя</div><h2 class="big">Калория санагич эмас — дастурхонингизга ёрдамчи</h2><div class="cards">${[['heart', 'Тақиқламаймиз — енгилроқ йўлни кўрсатамиз'], ['eye', 'Тушунарли — ҳамма нарса бир экранда'], ['scale', 'Ҳалол рақамлар — манбаси очиқ']].map(([k, t]) => `<div class="card"><span class="ic">${ic(k)}</span><p>${t}</p></div>`).join('')}</div></div>`, 'cen');
+slide('dark', `<div class="center"><div class="kick">G‘oya</div><h2 class="big">Kaloriya sanagich emas — dasturxoningizga yordamchi</h2><div class="cards">${[['heart', 'Ta’qiqlamaymiz — yengilroq yo‘lni ko‘rsatamiz'], ['eye', 'Tushunarli — hamma narsa bir ekranda'], ['scale', 'Ochiq raqamlar — manbasi ko‘rsatilgan']].map(([k, t]) => `<div class="card"><span class="ic">${ic(k)}</span><p>${t}</p></div>`).join('')}</div></div>`, 'cen');
 // 4
-split('light', '<h2>Бир экранда ҳаммаси</h2>', lines(['Қанча қолди — бир қарашда', 'Овқат қўшиш — бир босишда']), pair('bugun'));
+split('light', '<h2>Bir ekranda hammasi</h2>', lines(['Qancha qoldi — bir qarashda', 'Ovqat qo‘shish — bir bosishda']), pair('bugun'));
 // 5
-split('dark', '<h2><b class="acc">300+</b> ўзбек ва жаҳон таоми</h2>', lines(['Гап билан ёзинг — AI ўзи ажратади', 'Коса, лаган — ўз идишларингиз билан']), pair('qoshish'));
+split('dark', '<h2><b class="acc">300+</b> o‘zbek va jahon taomi</h2>', lines(['📷 Taomni rasmga oling — kaloriyasi o‘zi chiqadi', 'Gap bilan yozing — AI o‘zi ajratadi', 'Kosa, lagan — o‘z idishlaringiz bilan']), `<div class="phones">${ph('foto-light.jpg')}${ph('qoshish-dark.jpg')}</div>`);
 // 6
-split('light', '<div class="kick">✨ Рецептингизни енгиллаштиринг</div>', `<div class="num"><s>1188</s> → <b class="acc">927</b> <small>ккал</small></div>` + lines(['Уй оши, 1 порция: <b class="acc">−22%</b>', 'Таъми қолади: думба, ёғ ва гўшт мувозанати']), pair('retsept'), 'wow');
+split('light', '<div class="kick">✨ Retseptingizni yengillashtiring</div>', `<div class="num"><s>1188</s> → <b class="acc">927</b> <small>kkal</small></div>` + lines(['Uy oshi, 1 porsiya: <b class="acc">−22%</b>', 'Ta’mi qoladi: dumba, yog‘ va go‘sht muvozanati']), pair('retsept'), 'wow');
 // 7
-split('dark', '<h2>Улашинг — дўстлар ҳам кўрсин</h2>', lines(['Telegram ва Instagram учун тайёр карточка']), `<div class="phones"><img class="card1" src="${R('karta-light.png')}">${ph('ulashish-dark.jpg')}</div>`);
+split('dark', '<h2>Ulashing — do‘stlar ham ko‘rsin</h2>', lines(['Telegram va Instagram uchun tayyor kartochka']), `<div class="phones"><img class="card1" src="${R('karta-light.png')}">${ph('ulashish-dark.jpg')}</div>`);
 // 8
-split('light', '<h2>Бугун нима еймиз?</h2>', lines(['Кафеда, буюртма ёки уйда', 'Оқсилга бой ва енгилроқ — белги билан']), pair('yeymiz'));
+split('light', '<h2>Bugun nima yeymiz?</h2>', lines(['Kafeda, buyurtma yoki uyda', 'Oqsilga boy va yengilroq — belgi bilan']), pair('yeymiz'));
 // 9
-split('dark', '<h2>Қизил гўшт ўрнига — товуқ ва балиқ</h2>', lines(['Оқсил сақланади, ёғ камаяди', 'Ҳалол: фарқ кам бўлса — шуни айтамиз']), pair('orniga'));
+split('dark', '<h2>Qizil go‘sht o‘rniga — tovuq va baliq</h2>', lines(['Oqsil saqlanadi, yog‘ kamayadi', 'Farq kam bo‘lsa — shuni ochiq aytamiz']), pair('orniga'));
 // 10
-split('light', '<h2>🐟 Балиқ куни</h2>', lines(['Ҳафтада бир кун эслатма — кунни ўзингиз танлайсиз', 'Буюртма, кафе ёки уйда — рецепт ва харид рўйхати билан']), `<div class="phones">${ph('baliqchip-light.jpg')}${ph('baliq-dark.jpg')}</div>`);
+split('light', '<h2>🐟 Baliq kuni</h2>', lines(['Haftada bir kun eslatma — kunni o‘zingiz tanlaysiz', 'Buyurtma, kafe yoki uyda — retsept va xarid ro‘yxati bilan']), `<div class="phones">${ph('baliqchip-light.jpg')}${ph('baliq-dark.jpg')}</div>`);
 // 11
-split('dark', '<h2>Емайдиганларим</h2>', lines(['Балиқ, тухум, сут, ёнғоқ, глютен — белгиланг, таклифларда чиқмайди', 'Чўчқа гўшти ҳеч қачон таклиф қилинмайди']), pair('profil'));
+split('dark', '<h2>Yemaydiganlarim</h2>', lines(['Baliq, tuxum, sut, yong‘oq, glyuten — belgilang, takliflarda chiqmaydi', 'Cho‘chqa go‘shti hech qachon taklif qilinmaydi']), pair('profil'));
 // 12
-split('light', '<h2><b class="acc">30</b> сонияда бошлаш</h2>', lines(['Клавиатурасиз — бармоқ билан суринг', 'Хоҳласангиз — кейинроқ']), `<div class="phones">${ph('onboarding-dark.jpg')}${ph('intro-light.jpg')}</div>`);
+split('light', '<h2><b class="acc">30</b> soniyada boshlash</h2>', lines(['Klaviaturasiz — barmoq bilan suring', 'Xohlasangiz — keyinroq']), `<div class="phones">${ph('onboarding-dark.jpg')}${ph('intro-light.jpg')}</div>`);
 // 13
-slide('dark', `<div class="center"><h2 class="big">Рақамларга ишонса бўлади</h2>${items([['db', 'USDA ва Скурихин маълумотлари'], ['tag', 'Кафе порциялари — «тахминий» деб очиқ ёзилган'], ['check', 'Ҳар таом <b class="acc">±15%</b> Атуотер текширувидан ўтган']])}</div>`, 'cen');
+slide('dark', `<div class="center"><h2 class="big">Raqamlarga ishonsa bo‘ladi</h2>${items([['db', 'USDA va Skurixin ma’lumotlari'], ['tag', 'Kafe porsiyalari — «taxminiy» deb ochiq yozilgan'], ['check', 'Har taom <b class="acc">±15%</b> Atuoter tekshiruvidan o‘tgan']])}</div>`, 'cen');
 // 14
-slide('light', `<div class="center"><h2 class="big">Махфийлик ва қулайлик</h2>${items([['phone', 'Маълумот — телефонингизда'], ['mail', 'Email билан автоматик захира'], ['globe', 'UZ · ЎЗ · RU, очиқ ва тўқ мавзу, катта шрифт'], ['chart', 'Статистика фақат аноним сонлар']])}</div>`, 'cen');
+slide('light', `<div class="center"><h2 class="big">Maxfiylik va qulaylik</h2>${items([['lock', 'Ma’lumot — telefoningizda'], ['mail', 'Email bilan avtomatik zaxira'], ['globe', 'UZ · ЎЗ · RU, och va to‘q mavzu, katta shrift'], ['chart', 'Statistika faqat anonim sonlar']])}</div>`, 'cen');
 // 15
-slide('dark', `<div class="center"><h2 class="big">Кейинги қадамлар</h2>${items([['android', 'Android илова'], ['steps', 'Қадамларни телефон ўзи санайди'], ['cam', 'Рецептни расмдан ўқиш'], ['target', '1 ойдан кейин — натижалар: таклифларнинг неча фоизи танланди']])}</div>`, 'cen');
+slide('dark', `<div class="center"><h2 class="big">Keyingi qadamlar</h2>${items([['phone', 'Android va iPhone ilova'], ['steps', 'Qadamlarni telefon o‘zi sanaydi'], ['cam', 'Daftardagi retseptni rasmga olib yengillashtirish'], ['target', '1 oydan keyin — natijalar: takliflarning necha foizi tanlandi']])}</div>`, 'cen');
 // 16
-slide('light', `<div class="center end"><div class="logo"><span>K</span>KalkiFit</div><h1 class="mega">KalkiFit</h1><div class="qr" id="qr"></div><p class="url">kalki.uz/kalkifit</p><p class="sub">Ҳозир бепул синаб кўринг</p></div>`, 'cen');
+slide('light', `<div class="center end"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><div class="qr" id="qr"></div><p class="sub">Hozir bepul sinab ko‘ring</p></div>`, 'cen');
 const CSS = `@page{size:1920px 1080px;margin:0}*{box-sizing:border-box;margin:0}html,body{background:#18191C}body{font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
 .sl{width:1920px;height:1080px;position:relative;overflow:hidden;page-break-after:always;break-after:page;display:flex;align-items:center;padding:0 120px}
 .light{background:#F7F5F2;color:#1F2125;--acc:#E8572F;--mut:#5E6470;--card:#fff;--line:#E7E2DB}.dark{background:#18191C;color:#F1EFEB;--acc:#FF7E5C;--mut:#ABA7A0;--card:#212327;--line:#34373D}
