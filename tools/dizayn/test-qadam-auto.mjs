@@ -31,6 +31,7 @@ const day = (p, d) => p.evaluate((d) => { const s = JSON.parse(localStorage.getI
 const prefs = (p) => p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs);
 const num = async (p) => +(await p.locator('#sNum').first().innerText()).replace(/\D/g, '');
 const calls = (p) => p.evaluate(() => window.__q.calls.slice());
+async function enter2(p, v) { await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); await enter(p, v); }
 async function enter(p, v) { for (const ch of String(v)) await p.click(`#rzSheet [data-k="${ch}"]`); await p.click('#spSave'); await p.waitForTimeout(450); }
 try {
   /* 1. veb / iPhone: plagin yo'q — hamma narsa avvalgidek */
@@ -56,6 +57,9 @@ try {
   assert.equal(await num(p), 3956, 'avtomatik + qo\'lda'); assert.deepEqual(await day(p, TODAY).then((x) => [x.sa, x.steps]), [3456, 3956]);
   await p.evaluate(() => { window.__q.today = 4100; document.dispatchEvent(new Event('visibilitychange')); }); await p.waitForTimeout(700); assert.equal(await num(p), 4600, 'avtomatik yangilandi, qo\'lda qo\'shilgan 500 saqlandi');
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.match(await p.locator('#spHint').innerText(), /Qo'shilgan: 500/); await enter(p, 200); assert.equal(await num(p), 4300, 'qo\'lda qismi 200 ga o\'zgardi (avtomatik 4 100 + 200)');
+  await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); await p.click('#rzSheet [data-k="0"]'); assert.equal(await p.locator('#spNum').innerText(), '0'); await p.click('#spSave'); await p.waitForTimeout(450); assert.equal(await num(p), 4100, '«0» — qo\'lda qismi nolga, avtomatik o\'zgarmadi'); assert.equal((await day(p, TODAY)).sa, 4100);
+  await enter2(p, 200); assert.equal(await num(p), 4300); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spClear'); await p.click('#spClear'); await p.waitForTimeout(450); assert.equal(await num(p), 4100, '«Tozalash»'); assert.equal((await day(p, TODAY)).sa, 4100);
+  await enter2(p, 200); assert.equal(await num(p), 4300);
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.equal(await p.locator('.sl-stepbig .sl-auto').count(), 1, 'Natijalar: belgi'); assert.equal(await num(p), 4300);
   log('Ruxsat → bugungi qadam o\'zi (3 456) + «Avtomatik» belgisi, kechagi kun ham; qo\'lda +500 → 3 956; avtomatik 4 100 ga yangilansa → 4 600 (qo\'lda qismi saqlanadi); Natijalar ham');
   /* 5. maqsad va kaloriya avtomatik qiymat bilan */
