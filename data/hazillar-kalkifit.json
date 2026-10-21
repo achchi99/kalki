@@ -109,7 +109,7 @@
     "Bugungi qadamlaringiz {food} yoqdi. Navbatdagilar hali o'ylanyapti.",
     "Qadamlar {kcal} kkal yoqdi, ya'ni {food} hisobdan o'chirdi.",
     "{kcal} kkal: qadamlaringiz {food} jimgina hazm qilib qo'ydi.",
-    "Yurgan yo'lingiz {food} tarixga aylantirdi. {kcal} kkal — halol mehnat.",
+    "Yurgan yo'lingiz {food} tarixga aylantirdi. {kcal} kkal — mehnat bilan topildi.",
     "Bugun oyoqlar {food} yoqib yubordi. Bu xabarni {foodNom} hali eshitmagan.",
     "{kcal} kkal qadam bilan ketdi — bu {food} yoqishga teng. Lift buni qila olmasdi.",
     "Qadamlar hisobi: {food} yoqildi. Muzlatgich bu yangilikni sukut bilan qabul qildi.",
@@ -474,7 +474,7 @@
     "Shirinlik ayyor: qadam bosmay, ruxsatsiz kirib keladi. Yozdik, tamom.",
     "Yozildi. Shirinlik kechqurun yana eshik qoqishi mumkin — u odatda sabrli.",
     "Shirinlik daftarga tushdi. Kkal bilan tanishib oldik, bo'ldi.",
-    "Shirinlik: 1, daftar: halol. Hisob ochiq.",
+    "Shirinlik: 1, daftar: aniq. Hisob ochiq.",
     "Shirinlik navbatda turmaydi, o'zi keladi. Daftar esa hammasini kutib oladi."
    ],
    "ru": [

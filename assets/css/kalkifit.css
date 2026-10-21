@@ -604,3 +604,4 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 #remCard .sl-days{margin-bottom:12px}
 .rz .sl-sti{display:flex;align-items:center;gap:6px}.rz .sl-sti .sl-infob{width:26px;height:26px;font-size:var(--t-xs)}
 .rz .sl-ibx{margin:2px 0 10px;font-size:var(--t-s);color:var(--mut);line-height:1.45}
+.rz .sl-suplink{display:flex;justify-content:center;width:100%;text-align:center;margin:-4px 0 2px;font-size:var(--t-s);font-weight:600}

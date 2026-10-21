@@ -76,7 +76,7 @@ try {
   log('AI limit (429) / 503 / 502 / tarmoq yo\'q: tushunarli xabar, tanimagan qatorlar sariq, qo\'lda qo\'shish bor, natijaga SOXTA o\'tish yo\'q, retsept_xato hisoblagichi');
   /* 7. cho'chqa va Yemaydiganlarim */
   p = await mk(); await p.click('#rtDoor'); await p.fill('#rtText', "Palov (4 kishi): 500 g guruch, 300 g cho'chqa go'shti, 400 g sabzi, 100 ml yog', 150 g qaymoq, 200 g piyoz"); await p.click('[data-act=rtgo]'); await p.waitForSelector('[data-act=rtnext]', { timeout: 8000 });
-  assert.match(await p.locator('.rt-msg[role=status]').innerText(), /cho'chqa go'shti bor/); assert.equal(await p.locator('.rt-ing').count(), 5); assert.doesNotMatch(await p.locator('.rt-ings').innerText(), /cho'chqa/i); await p.context().close();
+  assert.match(await p.locator('.rt-msg[role=status]').innerText(), /ro'yxatda yo'q/); assert.equal(await p.locator('.rt-ing').count(), 5); const msgTxt = await p.locator('.rt-msg[role=status]').innerText(); assert.ok(!/cho'chqa/i.test(msgTxt), 'cho\'chqa so\'zi yozilmaydi'); assert.doesNotMatch(await p.locator('.rt-ings').innerText(), /cho'chqa/i); await p.context().close();
   p = await mk({ state: seed({ prefs: { yemay: ['sut'] } }) }); await toResult(p, 'mastava'); assert.equal(await p.locator('[data-c=qatiq]').count(), 0, 'Yemaydiganlarim: sut → qatiq taklif qilinmaydi'); assert.ok(await p.locator('.rt-ch').count() >= 2); await p.context().close();
   log('Cho\'chqa go\'shti — qo\'shilmaydi (ogohlantirish); Yemaydiganlarim (sut) — «qatiq» qoidasi chiqmaydi');
   /* 8. reduced-motion; 360 / katta shrift / dark / RU / ЎЗ — skroll va xato yo'q */

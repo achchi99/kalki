@@ -59,9 +59,12 @@ try {
   await p.click('#yeCard'); await p.waitForSelector('[data-act=yeseg]'); await p.click('[data-act=yeseg][data-s=uyda]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rzSheet [data-act=rtopen]').count(), 0, 'Uyda: retsept qatori yo\'q'); await closeX(p);
   await p.click('#mainAdd'); await p.waitForSelector('#fdQ'); await p.click('#rzSheet [data-act=atab][data-t=m]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rzSheet [data-act=rtopen]').count(), 0); await closeX(p);
   assert.equal(await p.locator('[data-act=rtopen]').count(), 1, 'Retsept — Bugun\'dagi yagona eshik'); log('Retsept — bitta kirish nuqtasi (Bugun eshigi); Uyda/Profil/Taomlarim\'da takror yo\'q');
-  /* 7. Tarix tagida «Foydali» (vitamin) */
-  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500); assert.ok(await p.locator('.rz-main [data-act=supp]').count() === 1); await p.click('.rz-main [data-act=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p); await p.context().close();
-  log('Vitamin va qo\'shimchalar — Tarix tagidagi «Foydali» qatorida');
+  /* 7. Vitamin va BAD: Tarix TEPASIDA ixcham karta + Bugun'da eng pastda bitta qator havola */
+  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500);
+  const histTop = await p.evaluate(() => { const m = document.getElementById('rzMain'), b = m.querySelector('[data-act=supp]'), h2 = m.querySelector('h2.rz-h'); return b && h2 ? b.getBoundingClientRect().top - h2.getBoundingClientRect().bottom : -1; });
+  assert.ok(histTop >= 0 && histTop < 80, 'Tarix: Vitamin kartasi sarlavhadan keyin DARHOL (tepada): ' + histTop); assert.match(await txt(p, '.rz-main [data-act=supp]'), /💊/, 'pill emoji'); await p.click('.rz-main [data-act=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
+  await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); assert.equal(await p.locator('.sl-suplink').count(), 1, 'Bugun: pastda bitta qator havola'); assert.match(await txt(p, '.sl-suplink'), /💊/); await p.click('.sl-suplink'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await p.context().close();
+  log('Vitamin va BAD — Tarix TEPASIDA ixcham karta (💊 + qisqa qator), Bugun\'da eng pastda bitta qator havola; ikkalasi ham oynani ochadi');
   /* 8. bo'sh holat: aylana ostida yo'riqnoma (hazil emas) */
   p = await mk(seed({ food: false })); const first = await p.evaluate(() => { const m = document.getElementById('rzMain'), big = m.querySelector('.sl-big'), f = m.querySelector('.sl-first'), a = document.getElementById('mainAdd'); return f ? [f.textContent.trim(), big.getBoundingClientRect().bottom <= f.getBoundingClientRect().top + 1, f.getBoundingClientRect().bottom <= a.getBoundingClientRect().top + 1] : null; });
   assert.deepEqual(first, ["Birinchi ovqatni qo'shing", true, true]); await p.context().close(); log('Bo\'sh holat: aylana ostida «Birinchi ovqatingizni qo\'shing — qolgani o\'zi hisoblanadi»');
@@ -120,7 +123,7 @@ try {
   { const q = await mk(seed(), { reduce: true, wait: 0 }); const r = await q.evaluate(() => { const e = document.getElementById('kfSplash'); return e ? [getComputedStyle(e.querySelector('.kf-in')).animationName, getComputedStyle(e.querySelector('svg')).animationName, getComputedStyle(e.querySelector('.kf-ring')).display] : 'gone'; }); assert.ok(r === 'gone' || (r[0] === 'none' && r[1] === 'none' && r[2] === 'none'), 'reduced-motion: statik logo ' + r); await q.waitForSelector('#kfSplash', { state: 'detached', timeout: 3000 }); assert.equal(await q.locator('.rz-main.rzi').count(), 0); await q.context().close(); }
   { const css = fs.readFileSync(path.join(ROOT, 'assets/css/kalkifit.css'), 'utf8') + fs.readFileSync(path.join(ROOT, 'kalkifit.html'), 'utf8'); for (const kf of ['rzUp', 'kfIn', 'kfPulse', 'kfRing', 'kfAuto', 'rtShine', 'rtTw']) { const m = new RegExp('@keyframes ' + kf + '\\{([\\s\\S]*?\\}\\})').exec(css); assert.ok(m, kf); assert.ok(!/(width|height|top|left|margin|padding|box-shadow)\s*:/.test(m[1]), kf + ': faqat transform/opacity'); } }
   log('Ochilish: inline splash (JS\'siz, light/dark fon, bloklamaydi, ilova kodi kelguncha turadi, so\'ng ≤300 ms; seansda 2-marta qisqa; reduced-motion — statik), iOS startup rasmlari 20 ta, eski JS splash yo\'q; aylana to\'lqini 0,95 s, stagger 55 ms (bir marta); keyframes faqat transform/opacity');
-  /* 13. aylana raqami har qanday to'lalikda aniq (0/50/90 %, ortiqcha; light/dark): yorug' qatlam to'lqin USTIDA, to'q qatlam faqat suyuqlik ichida; kontrast ≥4,5 (ikkilamchi to'lqin ustida ≥3) */
+  /* 13. aylana raqami har qanday to'lalikda aniq (0/50/90 %, ortiqcha; light/dark): BITTA qatlam, to'lqin GURUHIDAN KEYIN chiziladi (DOM tartibi — doim ustida, hech qanday chiziq bilan kesilmaydi); halo (stroke) fon va suyuqlikda ham o'qiladigan qiladi */
   for (const dark of [true, false]) for (const [name, k] of [['0%', 0], ['50%', 1355], ['90%', 2440], ['ortiqcha', 3100]]) {
     const st2 = seed({ food: false }); if (k) S.addFood(st2, TODAY, { fid: 'osh', meal: 'l', unit: 'kosa', qty: 1, g: 250, kcal: k, p: 12, f: 21, c: 58 });
     const q = await mk(st2, { dark, wait: 1800 }); const r = await q.evaluate(() => {
@@ -128,15 +131,16 @@ try {
       const rgb = (c) => { const e = document.createElement('i'); e.style.color = c; document.body.appendChild(e); const m = getComputedStyle(e).color.match(/[\d.]+/g).map(Number); e.remove(); return m.slice(0, 3); };
       const lum = ([r0, g0, b0]) => { const f = (x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r0) + 0.7152 * f(g0) + 0.0722 * f(b0); };
       const ratio = (a, c) => { const x = lum(a), y = lum(c); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
-      const mix = (a, c, t) => a.map((x, i) => x * t + c[i] * (1 - t));
-      const ves = rgb(v('--vessel')), ink = rgb(getComputedStyle(svg.querySelector('.kv-sub.kv-n')).fill), dk = rgb(getComputedStyle(svg.querySelector('.kv-dk.kv-n')).fill), l1 = rgb(v('--liq1')), l2 = rgb(v('--liq2')), l3 = rgb(v('--liq3'));
-      const kids = [...svg.querySelector('g[clip-path]').children], iBack = kids.findIndex((e) => e.tagName === 'path'), iSub = kids.findIndex((e) => e.tagName === 'text' && e.classList.contains('kv-sub')), iFront = kids.findIndex((e) => e.tagName === 'g');
-      return { order: [iBack, iSub, iFront], text: ratio(ink, ves), back: ratio(ink, mix(l3, ves, 0.45)), liq: Math.min(ratio(dk, l1), ratio(dk, l2)), n: svg.querySelector('.kv-n').textContent };
+      const ves = rgb(v('--vessel')), numEl = svg.querySelector('.kv-n'), ink = rgb(getComputedStyle(numEl).fill), halo = rgb(getComputedStyle(numEl).stroke), l1 = rgb(v('--liq1')), l2 = rgb(v('--liq2'));
+      const g = svg.querySelector('g[clip-path]'), kids = [...g.children], iWave = kids.findIndex((e) => e.tagName === 'g'), iNum = kids.indexOf(numEl);
+      return { nCount: svg.querySelectorAll('.kv-n').length, order: [iWave, iNum], vsBg: ratio(ink, ves), vsLiq: Math.max(ratio(ink, l1), ratio(halo, l1)), vsLiq2: Math.max(ratio(ink, l2), ratio(halo, l2)), n: numEl.textContent };
     });
-    assert.ok(r.order[0] >= 0 && r.order[0] < r.order[1] && r.order[1] < r.order[2], (dark ? 'dark ' : 'light ') + name + ': qatlam tartibi (to\'lqin → yorug\' matn → suyuqlik ichida to\'q matn): ' + r.order);
-    assert.ok(r.text >= 4.5 && r.back >= 3 && r.liq >= 4.5, (dark ? 'dark ' : 'light ') + name + ': kontrast ' + JSON.stringify(r)); assert.ok(r.n.length > 0); await q.context().close();
+    assert.equal(r.nCount, 1, (dark ? 'dark ' : 'light ') + name + ': raqam BITTA qatlam (ikkiga bo\'linmagan, chiziq yo\'q)');
+    assert.ok(r.order[1] > r.order[0], (dark ? 'dark ' : 'light ') + name + ': raqam to\'lqin guruhidan KEYIN (doim ustida): ' + JSON.stringify(r.order));
+    assert.ok(r.vsBg >= 4.5, (dark ? 'dark ' : 'light ') + name + ': matn/fon kontrasti ' + r.vsBg);
+    assert.ok(r.vsLiq >= 3 && r.vsLiq2 >= 3, (dark ? 'dark ' : 'light ') + name + ': matn (yoki halo) suyuqlikda o\'qiladi ' + JSON.stringify(r)); assert.ok(r.n.length > 0); await q.context().close();
   }
-  log('Aylana raqami: light/dark × 0/50/90%/ortiqcha — yorug\' matn to\'lqin USTIDA (qatlam tartibi), to\'q matn faqat suyuqlik ichida; kontrast: matn/fon ≥4,5, ikkilamchi to\'lqin ustida ≥3, suyuqlikda ≥4,5');
+  log('Aylana raqami: light/dark × 0/50/90%/ortiqcha — raqam BITTA qatlam, to\'lqin guruhidan keyin chiziladi (doim ustida, hech qanday chiziq bilan kesilmaydi); halo bilan fon va suyuqlikda ham o\'qiladi (kontrast ≥4,5 fonda, ≥3 suyuqlikda)');
   /* 15. Yozuvlar kam va katta: Bugun, Profil va oynalarda asosiy matn ≥17 px, ikkilamchi ≥15 px; 13 px faqat birlik/nishon (hafta harflari, «kafe», «Oqsilga boy», «Tez orada»); uzun izoh paragraflari yo'q (Profilda ⓘ ortida) */
   for (const o of [{}, { big: true }, { url: '/ru/kalkifit' }]) { const p = await mk(seed(), Object.assign({ wait: 900 }, o));
     const scan = (name) => p.evaluate((name) => { const ok13 = (e) => e.closest('.sl-wk .w,.sl-week2 .w,.wd .w,.sl-kb,.sl-fl,.rt-soon,.rz-demo,.rz-badge,.rz-news-dot,small,sub,sup'); const root = (() => { const sh = document.getElementById('rzSheet'); return sh && !sh.hidden ? sh : document.getElementById('rzMain'); })(); const bad = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let t;

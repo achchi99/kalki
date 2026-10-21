@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 17,
+   "d": "2026-10-21",
+   "bn": {
+    "uz": "Vitamin va BAD haqida — endi Tarix tepasida.",
+    "ru": "О витаминах и БАДах — теперь наверху «Истории»."
+   },
+   "items": [
+    {
+     "uz": "Vitamin va BAD haqida — endi Tarix tepasida, bir bosishda ochiladi.",
+     "ru": "О витаминах и БАДах — теперь наверху вкладки «История», в один клик.",
+     "show": "supp",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Kaloriya aylanasidagi raqam endi har qanday to'ldirishda ham aniq o'qiladi.",
+     "ru": "Число на круге калорий теперь чётко читается при любом заполнении.",
+     "show": "daychip",
+     "btn": {
+      "uz": "Ko'rsatish",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 16,
    "d": "2026-10-20",
    "bn": {
