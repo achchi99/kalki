@@ -3937,8 +3937,8 @@
    ],
    "taxminiy": true,
    "manba": {
-    "uz": "Protein kokteyl: 30 g protein kukuni (USDA 173180, whey asosida o'rtacha) + 250 g (≈250 ml) 1,5% sut (1% va 2% sut aralashmasi) — fdc_id {fdc}. Brendga qarab kukun qiymati ±15% farq qilishi mumkin.",
-    "ru": "Протеиновый коктейль: 30 г протеина (USDA 173180, сывороточный усреднённый) + 250 г (≈250 мл) молока 1,5% (смесь 1% и 2%) — fdc_id {fdc}. В зависимости от бренда значение порошка может отличаться на ±15%."
+    "uz": "Protein kokteyl: 30 g protein kukuni (whey konsentrat, odatiy yorliq qiymati: 100 g ≈ 400 kkal, 78 g oqsil, 6 g yog') + 250 g (≈250 ml) 1,5% sut (1% va 2% sut aralashmasi) — fdc_id {fdc}. Brendga qarab kukun qiymati ±15% farq qilishi mumkin.",
+    "ru": "Протеиновый коктейль: 30 г протеина (концентрат сыворотки, типичное значение с этикетки: 100 г ≈ 400 ккал, 78 г белка, 6 г жира) + 250 г (≈250 мл) молока 1,5% (смесь 1% и 2%) — fdc_id {fdc}. В зависимости от бренда значение порошка может отличаться на ±15%."
    }
   },
   {
@@ -3960,8 +3960,8 @@
    ],
    "taxminiy": true,
    "manba": {
-    "uz": "Geyner (o'rtacha tarkib, brendsiz): ~26% protein kukuni (USDA 173180) + ~70% uglevod (kraxmal, mal'todekstrin o'rnida) + ~4% o'simlik yog'i — fdc_id {fdc}. Haqiqiy brendlarda 350–420 kkal/100 g, oqsil 15–30 g; qadoq yorlig'ini tekshiring.",
-    "ru": "Гейнер (усреднённый состав, без бренда): ~26% протеин (USDA 173180) + ~70% углеводы (крахмал вместо мальтодекстрина) + ~4% растительное масло — fdc_id {fdc}. У реальных брендов 350–420 ккал/100 г, белка 15–30 г; проверяйте упаковку."
+    "uz": "Geyner (o'rtacha tarkib, brendsiz): ~26% protein kukuni (whey konsentrat, yorliq qiymati) + ~70% uglevod (kraxmal, mal'todekstrin o'rnida) + ~4% o'simlik yog'i — fdc_id {fdc}. Haqiqiy brendlarda 350–420 kkal/100 g, oqsil 15–30 g; qadoq yorlig'ini tekshiring.",
+    "ru": "Гейнер (усреднённый состав, без бренда): ~26% протеина (концентрат сыворотки, значение с этикетки) + ~70% углеводы (крахмал вместо мальтодекстрина) + ~4% растительное масло — fdc_id {fdc}. У реальных брендов 350–420 ккал/100 г, белка 15–30 г; проверяйте упаковку."
    }
   }
  ]
