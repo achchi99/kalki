@@ -3739,6 +3739,230 @@
     }
    ],
    "taxminiy": true
+  },
+  {
+   "id": "sut.f05",
+   "nom": "Sut 0,5%",
+   "ingr": [
+    {
+     "m": "sut_0",
+     "g": 300
+    },
+    {
+     "m": "sut_1",
+     "g": 200
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Sut 0,5%: USDA FoodData Central (fdc_id {fdc}) dagi yog'siz (0,2%) va 1% sut yog'liligi bo'yicha aralashtirilgan (60/40). Oqsil va laktoza deyarli bir xil, yog' farqlanadi; ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 0,5%: смесь обезжиренного (0,2%) и 1% молока из USDA FoodData Central (fdc_id {fdc}) по жирности (60/40). Белок и лактоза почти одинаковы, различается жир; возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "sut.f15",
+   "nom": "Sut 1,5%",
+   "ingr": [
+    {
+     "m": "sut_1",
+     "g": 240
+    },
+    {
+     "m": "sut_2",
+     "g": 260
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Sut 1,5%: USDA FoodData Central (fdc_id {fdc}) dagi 1% va 2% sut yog'liligi bo'yicha aralashtirilgan (48/52). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 1,5%: смесь 1% и 2% молока из USDA FoodData Central (fdc_id {fdc}) по жирности (48/52). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "sut.f25",
+   "nom": "Sut 2,5%",
+   "ingr": [
+    {
+     "m": "sut_2",
+     "g": 295
+    },
+    {
+     "m": "sut",
+     "g": 205
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Sut 2,5%: USDA FoodData Central (fdc_id {fdc}) dagi 2% va 3,25% sut yog'liligi bo'yicha aralashtirilgan (59/41). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 2,5%: смесь 2% и 3,25% молока из USDA FoodData Central (fdc_id {fdc}) по жирности (59/41). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "sut.f6",
+   "nom": "Sut 6% (qaymoqli)",
+   "ingr": [
+    {
+     "m": "sut",
+     "g": 335
+    },
+    {
+     "m": "qaymoq_yarim",
+     "g": 165
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Sut 6% (pishirilgan/qaymoqli sut turi): USDA FoodData Central (fdc_id {fdc}) dagi 3,25% sut va qaymoq (11,5%) yog'liligi bo'yicha aralashtirilgan (67/33). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 6% (топлёное/сливочное): смесь 3,25% молока и сливок 11,5% из USDA FoodData Central (fdc_id {fdc}) по жирности (67/33). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "qatiq.yogsiz",
+   "nom": "Qatiq (yog'siz)",
+   "ingr": [
+    {
+     "m": "sut_0",
+     "g": 500
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Qatiq (yog'siz): achitilgan yog'siz sut tarkibi yog'siz sutga (USDA FoodData Central, fdc_id {fdc}) teng deb olingan; ±15% farq bo'lishi mumkin.",
+    "ru": "Катык обезжиренный: состав кисломолочного обезжиренного молока принят равным обезжиренному молоку (USDA FoodData Central, fdc_id {fdc}); возможно отклонение ±15%."
+   }
+  },
+  {
+   "id": "kefir.f1",
+   "nom": "Kefir 1%",
+   "ingr": [
+    {
+     "m": "kefir_1",
+     "g": 500
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Kefir 1%: USDA FoodData Central, fdc_id {fdc} («Kefir, lowfat, plain», ~1% yog'). Brend/zavodga qarab ±15% farq bo'lishi mumkin.",
+    "ru": "Кефир 1%: USDA FoodData Central, fdc_id {fdc} («Kefir, lowfat, plain», ~1% жира). В зависимости от производителя возможно отклонение ±15%."
+   }
+  },
+  {
+   "id": "kefir.f32",
+   "nom": "Kefir 3,2%",
+   "ingr": [
+    {
+     "m": "qatiq",
+     "g": 500
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Kefir 3,2%: USDA'da to'liq yog'li kefir yo'q — achitilgan to'liq sut (tabiiy yogurt, 3,25% yog', fdc_id {fdc}) tarkibi olingan; kefirda oqsil/uglevod biroz kamroq bo'lishi mumkin (±15%).",
+    "ru": "Кефир 3,2%: в USDA нет жирного кефира — взят состав кисломолочного цельного молока (натуральный йогурт 3,25%, fdc_id {fdc}); в кефире белка/углеводов может быть немного меньше (±15%)."
+   }
+  },
+  {
+   "id": "smetana.f10",
+   "nom": "Smetana 10%",
+   "ingr": [
+    {
+     "m": "smetana_12",
+     "g": 415
+    },
+    {
+     "m": "sut_0",
+     "g": 85
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Smetana 10%: USDA FoodData Central (fdc_id {fdc}) dagi kam yog'li smetana (~12%) va yog'siz sut yog'liligi bo'yicha aralashtirilgan (83/17). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Сметана 10%: смесь сметаны пониженной жирности (~12%) и обезжиренного молока из USDA FoodData Central (fdc_id {fdc}) по жирности (83/17). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "smetana.f15",
+   "nom": "Smetana 15%",
+   "ingr": [
+    {
+     "m": "smetana_12",
+     "g": 295
+    },
+    {
+     "m": "smetana_20",
+     "g": 205
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Smetana 15%: USDA FoodData Central (fdc_id {fdc}) dagi kam yog'li (~12%) va oddiy (~19%) smetana yog'liligi bo'yicha aralashtirilgan (59/41). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Сметана 15%: смесь сметаны пониженной жирности (~12%) и обычной (~19%) из USDA FoodData Central (fdc_id {fdc}) по жирности (59/41). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "smetana.f25",
+   "nom": "Smetana 25%",
+   "ingr": [
+    {
+     "m": "smetana_20",
+     "g": 255
+    },
+    {
+     "m": "qaymoq_yengil",
+     "g": 245
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Smetana 25%: USDA FoodData Central (fdc_id {fdc}) dagi smetana (~19%) va yengil qaymoq (~31%) yog'liligi bo'yicha aralashtirilgan (51/49). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Сметана 25%: смесь сметаны (~19%) и лёгких сливок (~31%) из USDA FoodData Central (fdc_id {fdc}) по жирности (51/49). Возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "protein.sutda",
+   "nom": "Protein kokteyl (sutda)",
+   "ingr": [
+    {
+     "m": "protein_whey",
+     "g": 30
+    },
+    {
+     "m": "sut_1",
+     "g": 120
+    },
+    {
+     "m": "sut_2",
+     "g": 130
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Protein kokteyl: 30 g protein kukuni (whey konsentrat, odatiy yorliq qiymati: 100 g ≈ 400 kkal, 78 g oqsil, 6 g yog') + 250 g (≈250 ml) 1,5% sut (1% va 2% sut aralashmasi) — fdc_id {fdc}. Brendga qarab kukun qiymati ±15% farq qilishi mumkin.",
+    "ru": "Протеиновый коктейль: 30 г протеина (концентрат сыворотки, типичное значение с этикетки: 100 г ≈ 400 ккал, 78 г белка, 6 г жира) + 250 г (≈250 мл) молока 1,5% (смесь 1% и 2%) — fdc_id {fdc}. В зависимости от бренда значение порошка может отличаться на ±15%."
+   }
+  },
+  {
+   "id": "geyner",
+   "nom": "Geyner (o'rtacha)",
+   "ingr": [
+    {
+     "m": "protein_whey",
+     "g": 52
+    },
+    {
+     "m": "kraxmal",
+     "g": 140
+    },
+    {
+     "m": "yog",
+     "g": 8
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Geyner (o'rtacha tarkib, brendsiz): ~26% protein kukuni (whey konsentrat, yorliq qiymati) + ~70% uglevod (kraxmal, mal'todekstrin o'rnida) + ~4% o'simlik yog'i — fdc_id {fdc}. Haqiqiy brendlarda 350–420 kkal/100 g, oqsil 15–30 g; qadoq yorlig'ini tekshiring.",
+    "ru": "Гейнер (усреднённый состав, без бренда): ~26% протеина (концентрат сыворотки, значение с этикетки) + ~70% углеводы (крахмал вместо мальтодекстрина) + ~4% растительное масло — fdc_id {fdc}. У реальных брендов 350–420 ккал/100 г, белка 15–30 г; проверяйте упаковку."
+   }
   }
  ]
 }

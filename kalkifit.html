@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<html lang="uz" data-lang="uz" data-ru-page="1" data-lang-auto="1"><head>
 <meta charset="UTF-8">
 <script id="langboot">
 (function(){try{
@@ -18,10 +18,14 @@ try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classLi
 html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
 @keyframes kalkiLangReveal{to{visibility:visible}}
 </style>
+<script id="langauto">/* KalkiFit: saqlangan/URL tanlovi YO'Q bo'lsa — telefon tiliga qarab (ru* → RU, uz-Cyrl → ЎЗ); natija saqlanmaydi (assets/lang.js autoLang bilan bir xil qoida) */
+(function(){try{var h=document.documentElement,s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');if(s==='ru'||s==='uz'||s==='cyr'||/^\/ru\//.test(location.pathname)||/[?&]lang=(uz|ru|cyr)\b/.test(location.search||''))return;var n=String(navigator.language||'').toLowerCase();if(/^ru(-|_|$)/.test(n)){h.setAttribute('data-lang','ru');h.lang='ru';}else if(/^uz/.test(n)&&/cyrl/.test(n)){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}}catch(e){}})();
+</script>
 <script src="assets/lang.js" defer=""></script>
 <script src="assets/footer-lang.js" defer=""></script>
 <script src="assets/sw-boot.js" defer=""></script>
 <script src="assets/rozgor-core.js" defer=""></script>
+<script src="assets/app-native.js" defer=""></script>
 <script src="assets/kalkifit-core.js" defer=""></script>
 <script src="assets/kalkifit-gaplar.js" defer=""></script>
 <script src="assets/orinbosar-core.js" defer=""></script><script src="assets/cheklov-core.js" defer=""></script><script src="assets/yeymiz-core.js" defer=""></script><script src="assets/uyda-core.js" defer=""></script><script src="assets/hisob-kun.js" defer=""></script>

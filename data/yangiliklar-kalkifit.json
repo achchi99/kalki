@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 18,
+   "d": "2026-10-21",
+   "bn": {
+    "uz": "Android ilova, sut mahsulotlari yog'liligi bilan, sport ovqatlanishi.",
+    "ru": "Android-приложение, молочные продукты с жирностью, спортпит."
+   },
+   "items": [
+    {
+     "uz": "📱 Android ilova — kalki.uz/ilova",
+     "ru": "📱 Приложение для Android — kalki.uz/ilova"
+    },
+    {
+     "uz": "Sut, kefir, tvorog — yog'liligi bo'yicha; protein kukuni va sport ovqatlanishi.",
+     "ru": "Молоко, кефир, творог — по жирности; протеин и спортивное питание.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidirish",
+      "ru": "Искать"
+     }
+    },
+    {
+     "uz": "Til telefoningizga qarab o'zi tanlanadi.",
+     "ru": "Язык выбирается сам — по языку телефона."
+    }
+   ]
+  },
+  {
    "v": 17,
    "d": "2026-10-21",
    "bn": {

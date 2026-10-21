@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = 'e1bf2c74';   /* sw-version:auto */
+const SW_VERSION = 'adc93f30';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -45,6 +45,7 @@ const ASSETS = [
   '/assets/rozgor-core.js',
   '/assets/app-kit.js',
   '/assets/app-install.js',
+  '/assets/app-native.js',
   '/assets/app-backup.js',
   '/assets/app-akkaunt.js',
   '/assets/app-yangilik.js',
@@ -406,6 +407,9 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== self.location.origin) return;
 
   const p = url.pathname;
+
+  // APK va versiya.json (/ilova/): HECH QACHON keshlanmaydi (katta fayl; versiya tekshiruvi har doim yangi bo'lsin) — brauzer to'g'ridan-to'g'ri tarmoqdan oladi.
+  if (/^\/ilova\/.+\.(apk|json)$/i.test(p)) return;
 
   // HTML sahifalar — network-first, oflaynda keshdan.
   //

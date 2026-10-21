@@ -41,6 +41,7 @@
  "taom": {
   "achchiq-qalampir": [],
   "achichuk": [],
+  "aminokislota": [],
   "ananas": [],
   "anjir": [],
   "anor": [],
@@ -188,6 +189,9 @@
   "funduk": [
    "yongoq"
   ],
+  "geyner": [
+   "sut"
+  ],
   "gilos": [],
   "granola": [
    "yongoq",
@@ -284,6 +288,15 @@
   "kartoshka-qov": [],
   "kartoshka-xom": [],
   "kefir": [
+   "sut"
+  ],
+  "kefir#f1": [
+   "sut"
+  ],
+  "kefir#f32": [
+   "sut"
+  ],
+  "kefir#odatiy": [
    "sut"
   ],
   "keks": [
@@ -596,6 +609,21 @@
    "yongoq",
    "glyuten"
   ],
+  "protein-izolyat": [
+   "sut"
+  ],
+  "protein-kazein": [
+   "sut"
+  ],
+  "protein-kukun": [
+   "sut"
+  ],
+  "protein-kukun#sutda": [
+   "sut"
+  ],
+  "protein-kukun#suvda": [
+   "sut"
+  ],
   "qalampir": [],
   "qand": [],
   "qatiq": [
@@ -712,6 +740,18 @@
   "smetana": [
    "sut"
   ],
+  "smetana#f10": [
+   "sut"
+  ],
+  "smetana#f15": [
+   "sut"
+  ],
+  "smetana#f25": [
+   "sut"
+  ],
+  "smetana#odatiy": [
+   "sut"
+  ],
   "smuzi": [],
   "somsa": [
    "glyuten"
@@ -786,10 +826,19 @@
   "sut": [
    "sut"
   ],
-  "sut#odatiy": [
+  "sut#f05": [
    "sut"
   ],
-  "sut#yogsiz": [
+  "sut#f15": [
+   "sut"
+  ],
+  "sut#f25": [
+   "sut"
+  ],
+  "sut#f6": [
+   "sut"
+  ],
+  "sut#odatiy": [
    "sut"
   ],
   "sut-kokteyl": [
@@ -879,7 +928,19 @@
    "tuxum"
   ],
   "tuzlangan-bodring": [],
+  "tvorog0": [
+   "sut"
+  ],
+  "tvorog18": [
+   "sut"
+  ],
   "tvorog5": [
+   "sut"
+  ],
+  "tvorog5#0": [
+   "sut"
+  ],
+  "tvorog5#18": [
    "sut"
   ],
   "tvorog5#5": [

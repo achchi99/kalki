@@ -96,6 +96,16 @@
     });
   }
 
+  // KalkiFit (<html data-lang-auto>): saqlangan tanlov YO'Q bo'lsa — telefon/brauzer tiliga qarab: ru* → RU, uz-Cyrl → ЎЗ, qolgani → UZ.
+  // Faqat shu ilova uchun (qolgan sahifalar pastdagi qoidada qoladi); avtomatik natija SAQLANMAYDI — foydalanuvchi o'zi tanlagach saqlanadi va o'sha qoladi.
+  function autoLang() {
+    if (!d.documentElement.hasAttribute('data-lang-auto')) return null;
+    var n = String((w.navigator && w.navigator.language) || '').toLowerCase();
+    if (/^ru(-|_|$)/.test(n)) return 'ru';
+    if (/^uz/.test(n) && /cyrl/.test(n)) return 'cyr';
+    return null;
+  }
+
   // ?lang= > /ru/ yo'li > saqlangan qiymat > uz (birinchi tashrifda hech qachon
   // brauzer/qurilma tiliga qarab avtomatik RU tanlanmaydi — 2026-09'da real
   // foydalanuvchi buni bug sifatida xabar qilgan: yangi brauzerdan kalki.uz'ga
@@ -109,7 +119,7 @@
     migrate();
     var s = read();
     if (valid(s)) return s;
-    return 'uz';
+    return autoLang() || 'uz';
   }
 
   function markHtml(l) {

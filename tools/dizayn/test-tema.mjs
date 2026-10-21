@@ -6,7 +6,7 @@ import assert from 'node:assert/strict'; import http from 'node:http'; import fs
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const ISTISNO = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/tema-istisno.json'), 'utf8'));
 let n = 0; const log = (m) => console.log('OK  ', ++n + '.', m);
-const FILES = ['assets/css/kalkifit.css', 'assets/css/rozgor.css', 'assets/css/appkit.css']; const CSS = Object.fromEntries(FILES.map((f) => [f, fs.readFileSync(path.join(ROOT, f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')]));
+const FILES = ['assets/css/kalkifit.css', 'assets/css/rozgor.css', 'assets/css/appkit.css', 'assets/css/ilova.css']; const CSS = Object.fromEntries(FILES.map((f) => [f, fs.readFileSync(path.join(ROOT, f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')]));
 /* ---------- 1. token intizomi ---------- */
 const HEX = /#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b/;
 for (const f of FILES) {

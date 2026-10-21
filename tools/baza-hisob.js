@@ -13,6 +13,7 @@ const cur = R('data/manba/baza-v1.json').qiymatlar;      // eski (v1) qiymatlar 
 const nutU = (id) => { const f = usda.foods[String(id)]; if (!f) throw new Error('USDA id yo\'q: ' + id); return f; };
 function ingNut(key, useSk, sKey) {                       // 100 g xom masalliq: [kkal, O, Y, U, manba]
   const m = mas[key]; if (!m) throw new Error('masalliq yo\'q: ' + key);
+  if (m.qol) return { k: m.qol.k, p: m.qol.p, f: m.qol.f, c: m.qol.c, src: 'qol' };   // qadoq yorlig'ining odatiy qiymati (USDA mos kelmasa)
   if (!m.usda) return { k: 0, p: 0, f: 0, c: 0, src: 'suv' };
   const sk1 = useSk && sk.yozuvlar[sKey || m.skurikhin];
   if (sk1) return { k: sk1.kcal, p: sk1.p, f: sk1.f, c: sk1.c, src: 'sk' };

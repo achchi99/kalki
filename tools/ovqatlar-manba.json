@@ -32,5 +32,11 @@
  "pishloq": "USDA 171241 + calorizator — mos",
  "shokolad-sut": "USDA 167587 + calorizator — mos",
  "tuxum": "USDA 173424 + calorizator — mos",
- "non": "USDA 174915 + calorizator — mos"
+ "non": "USDA 174915 + calorizator — mos",
+ "tvorog0": "Rus tvorogining o'rtacha jadval qiymatlari (Скурихин turidagi); USDA'da mos mahsulot yo'q — taxminiy",
+ "tvorog18": "Rus tvorogining o'rtacha jadval qiymatlari (Скурихин turidagi); USDA'da mos mahsulot yo'q — taxminiy",
+ "protein-kukun": "Odatiy qadoq yorlig'i qiymati (whey konsentrat; USDA FDC 173180 bilan solishtirilgan), brendsiz o'rtacha — taxminiy",
+ "protein-izolyat": "Ta'rif bo'yicha oqsil ≥90%, brendsiz o'rtacha — taxminiy",
+ "protein-kazein": "USDA FDC 173180 (whey kukuni) ga yaqin, brendsiz o'rtacha — taxminiy",
+ "aminokislota": "Yorliqlarda odatda 0–25 kkal/porsiya; ≈0 deb hisoblanadi — taxminiy"
 }

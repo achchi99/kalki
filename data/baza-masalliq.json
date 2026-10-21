@@ -521,6 +521,107 @@
    },
    "uz": "mol tushonkasi",
    "ru": "говяжья тушёнка"
+  },
+  "sut_0": {
+   "nom": "Sut (yog'siz, 0%)",
+   "usda": 173432,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "yog'siz sut",
+   "ru": "обезжиренное молоко"
+  },
+  "sut_1": {
+   "nom": "Sut (1%)",
+   "usda": 173441,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "sut 1%",
+   "ru": "молоко 1%"
+  },
+  "sut_2": {
+   "nom": "Sut (2%)",
+   "usda": 172205,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "sut 2%",
+   "ru": "молоко 2%"
+  },
+  "qaymoq_yarim": {
+   "nom": "Qaymoq (half-and-half, ~11,5% yog')",
+   "usda": 171255,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "qaymoq (11,5%)",
+   "ru": "сливки 11,5%"
+  },
+  "qaymoq_yengil": {
+   "nom": "Qaymoq (ko'pirtiriladigan yengil, ~31% yog')",
+   "usda": 170858,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "qaymoq (31%)",
+   "ru": "сливки 31%"
+  },
+  "smetana_20": {
+   "nom": "Smetana (~19% yog')",
+   "usda": 171257,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "smetana 20%",
+   "ru": "сметана 20%"
+  },
+  "smetana_12": {
+   "nom": "Smetana (kam yog'li, ~12%)",
+   "usda": 171256,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "smetana 12%",
+   "ru": "сметана 12%"
+  },
+  "kefir_1": {
+   "nom": "Kefir (kam yog'li ~1%)",
+   "usda": 170904,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "kefir 1%",
+   "ru": "кефир 1%"
+  },
+  "protein_whey": {
+   "nom": "Protein kukuni (whey konsentrat, odatiy yorliq qiymati)",
+   "usda": 173180,
+   "qol": {"k": 400, "p": 78, "f": 6, "c": 8},
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "protein kukuni",
+   "ru": "протеин сывороточный"
+  },
+  "kraxmal": {
+   "nom": "Kraxmal (mal'todekstrin o'rnida)",
+   "usda": 169698,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "kraxmal",
+   "ru": "крахмал"
   }
  }
 }
