@@ -11,7 +11,7 @@
       rhShow: "{n} ta taom yashirildi (yemaydiganlaringiz) · Ko'rsatish", rhHide: "{n} ta taom ko'rsatilmoqda (yemaydiganlaringiz) · Yashirish", rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
       yzT: 'Bugun nima yeymiz?', yzDoorS: 'Kafe, buyurtma yoki uyda', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
       yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
-      yzNote: 'Kafe porsiyasi taxminiy. Nomni bossangiz — porsiyani o\'zgartirasiz.', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
+      yzNote: 'Porsiya taxminiy — nomni bosib o\'zgartiring', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
       yzNo: 'Bu yerda sizga mos taom topilmadi.', yzNoH: 'Qidiruvdan o\'zingiz tanlang.', yzSearch: 'Qidirish',
       yzOrdH: 'Yetkazib berish xizmatida «{q}» deb qidiring. Tugmani bossangiz so\'z nusxalanadi.', yzCopied: '«{q}» nusxalandi — ilovada qidiruvga qo\'ying', yzOrdList: 'Odatiy buyurtmalar (o\'rtacha porsiya)', yzOrdNone: 'Havolalar hozir yuklanmadi. Internetni tekshirib, qayta urining.', yzUyH: 'Qaysi usulda pishirasiz?',
       yzMeal_b: 'Nonushtaga yozildi', yzMeal_l: 'Tushlikka yozildi', yzMeal_d: 'Kechki ovqatga yozildi', yzMeal_s: 'Tamaddiga yozildi',
@@ -25,7 +25,7 @@
       rhShow: 'Скрыто блюд: {n} («Не ем») · Показать', rhHide: 'Показано блюд: {n} («Не ем») · Скрыть', rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
       yzT: 'Что поесть сегодня?', yzDoorS: 'Кафе, заказ или дома', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
       yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
-      yzNote: 'Порция в кафе примерная. Нажмите на название — измените порцию.', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
+      yzNote: 'Порция примерная — нажмите на название', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
       yzNo: 'Подходящих блюд здесь не нашлось.', yzNoH: 'Выберите через поиск.', yzSearch: 'Искать',
       yzOrdH: 'Найдите «{q}» в сервисе доставки. По нажатию слово копируется.', yzCopied: '«{q}» скопировано — вставьте в поиск приложения', yzOrdList: 'Частые заказы (средняя порция)', yzOrdNone: 'Ссылки сейчас не загрузились. Проверьте интернет и повторите.', yzUyH: 'Как будете готовить?',
       yzMeal_b: 'Записано на завтрак', yzMeal_l: 'Записано на обед', yzMeal_d: 'Записано на ужин', yzMeal_s: 'Записано на перекус',
@@ -83,7 +83,7 @@
   function lsSet(v) { try { localStorage.setItem(LSEG, v); } catch (e) {} }
   /* ---------- Yemaydiganlarim ---------- */
   function chipsHtml(sel, act) { return '<div class="sl-yn" role="group" aria-label="' + esc(T('ynT')) + '">' + CHTAGS.map(function (t) { var on = sel.indexOf(t) > -1; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="' + act + '" data-t="' + t + '" aria-pressed="' + on + '">' + esc(T('yn_' + t)) + '</button>'; }).join('') + '</div>'; }
-  function profileCard() { return '<section class="rz-card sl-ync" id="ynCard"><div class="rz-st">' + esc(T('ynT')) + '</div><p class="rz-priv">' + esc(T('ynH')) + '</p>' + chipsHtml(yemay(), 'yntog') + '</section>'; }
+  function profileCard() { return '<section class="rz-card sl-ync" id="ynCard">' + A.infoTitle(T('ynT'), T('ynH')) + chipsHtml(yemay(), 'yntog') + '</section>'; }
   function setYemay(list) { A.prefs().yemay = list; A.prefs().yemayK = 1; A.save(); if (list.indexOf('baliq') > -1) A.prefs().baliqOff = true; A.pushResync(); }
   function toggleYemay(t) { var l = yemay().slice(), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); setYemay(l); }
   function filterAlts(list) { if (ldState !== 2) { load(function () { A.render(); }); return yemay().length ? [] : list; } return list.filter(function (a) { return CH.ruxsat(ch, a.key, yemay()); }); }
@@ -91,7 +91,7 @@
   function kunNow() { var k = A.prefs().baliqKun; return YC.kunOk(k == null ? 3 : k); }
   function dayName(i) { return WDF[L()][i]; }
   function dayChips(act) { var cur = kunNow(); return '<div class="sl-days" role="radiogroup" aria-label="' + esc(T('fwDayRow')) + '">' + WD[L()].map(function (n, i) { return '<button type="button" role="radio" class="rz-chip' + (i === cur ? ' on' : '') + '" aria-checked="' + (i === cur) + '" data-act="' + act + '" data-d="' + i + '">' + esc(n) + '</button>'; }).join('') + '</div>'; }
-  function profileDays() { return '<div class="rz-st" style="margin-top:14px">' + esc(T('fwDayRow')) + '</div>' + dayChips('fwdayprof'); }
+  function profileDays() { return dayChips('fwdayprof'); }
   /* ---------- umumiy oyna ---------- */
   function iconName(id) { var s = OR.split(id).id; return IKON[id] || IKON[s] || null; }
   function badge(p) { return '<span class="sl-kb' + (p.kafe ? '' : ' uy') + '">' + esc(T(p.kafe ? 'yzKafe' : 'yzUy')) + '</span>'; }
