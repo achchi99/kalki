@@ -446,3 +446,8 @@ body.v2 .app-n{display:block;font-size:1.25rem;line-height:1.2}
 body.v2 .app-d{display:block;margin-top:4px;color:var(--muted,#3F4F46);font-size:0.9375rem;line-height:1.45}
 body.v2 .app-go{grid-column:1/-1;margin-top:8px;width:100%}
 @media (min-width:700px){body.v2 .app-go{width:auto;justify-self:start}}
+/* KalkiFit kartasi: «Ochish» (asosiy) + «Android uchun yuklash» (ikkinchi darajali) yonma-yon; tor ekranda ustma-ust */
+body.v2 .app-acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+body.v2 .app-acts .app-go{grid-column:auto;margin-top:0;flex:1 1 140px;width:auto;justify-self:auto}
+body.v2 .app-acts .app-apk{flex:1 1 140px;min-height:44px;text-align:center}
+body.v2 .app-apk[hidden]{display:none}

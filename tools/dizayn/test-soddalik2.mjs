@@ -12,7 +12,7 @@ function seed(o = {}) { const st = S.emptyState(); st.setup = true; st.created =
   if (o.food !== false) { S.addFood(st, TODAY, { fid: 'osh', meal: 'l', unit: 'kosa', qty: 1, g: 250, kcal: 475, p: 12, f: 21, c: 58 }); S.addFood(st, TODAY, { fid: 'olma', meal: 's', unit: 'dona', qty: 1, g: 180, kcal: 94, p: 0.5, f: 0.3, c: 25 }); } return st; }
 async function mk(st, o = {}) {
   const c = await b.newContext({ viewport: { width: o.w || 390, height: o.h || 844 }, colorScheme: o.dark ? 'dark' : 'light', reducedMotion: o.reduce ? 'reduce' : 'no-preference', isMobile: true, hasTouch: true, serviceWorkers: 'block' });
-  await c.addInitScript((s) => { if (s && !localStorage.getItem('kalki_fit') && !location.search.includes('demo=1')) localStorage.setItem('kalki_fit', JSON.stringify(s)); if (!location.search.includes('demo=1')) localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); }, st);
+  await c.addInitScript((s) => { try { if (!localStorage.getItem('kalki_lang')) localStorage.setItem('kalki_lang', 'uz'); } catch (e) {} if (s && !localStorage.getItem('kalki_fit') && !location.search.includes('demo=1')) localStorage.setItem('kalki_fit', JSON.stringify(s)); if (!location.search.includes('demo=1')) localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); }, st);
   if (o.big) await c.addInitScript(() => localStorage.setItem('kalki_fs', 'big'));
   const p = await c.newPage(); p.errs = []; p.api = []; p.on('pageerror', (e) => p.errs.push(String(e))); p.on('request', (r) => { if (/\/api\//.test(r.url())) p.api.push(r.url()); });
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
