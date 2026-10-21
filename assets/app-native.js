@@ -4,6 +4,7 @@
  *   notif.perm() / notif.enable(o) / notif.disable() / notif.onTap(cb)   — «Baliq kuni» haftalik LOKAL bildirishnomasi (@capacitor/local-notifications)
  *   pickPhoto(labels)                           — kamera yoki galereya (@capacitor/camera, PROMPT) → Promise<File|null>
  *   openUrl(url)                                — tashqi brauzer yoki tegishli ilova (Uzum Tezkor, Yandex Eda…) (@capacitor/app-launcher)
+ *   qadam.ok() / status() / perm() / enable(on) / today() / days(n)   — apparat qadam hisoblagichi (ilovadagi «Qadam» plagini, kalkifit-android: qadam/)
  *   setBack(fn) / back()                        — Android «Orqaga» (MainActivity chaqiradi): fn() → 'sheet'|'step'|'tab'|'onb'|'overlay' (ushlandi) yoki 'home'
  * Ilova ichida navigator.share/canShare (fayl bilan — Filesystem keshi orqali, @capacitor/share) va navigator.vibrate (@capacitor/haptics) native'ga yo'naltiriladi —
  * mavjud kod (retsept kartochkasi, natijalar rasmi, Telegram zaxira, ro'yxat ulashish, kit.vib) o'zgarmasdan ishlaydi.
@@ -60,6 +61,15 @@
       if (!N.isApp()) return false;
       if (N.has('AppLauncher')) { call('AppLauncher', 'openUrl', { url: url }).catch(function () { try { root.open(url, '_blank'); } catch (e) {} }); return true; }
       return false;
+    },
+    /* ---------- qadam: apparat hisoblagich (faqat ilovada; veb/iPhone'da ok() = false) ---------- */
+    qadam: {
+      ok: function () { return N.has('Qadam'); },
+      status: function () { if (!N.qadam.ok()) return Promise.resolve({ available: false, granted: false, enabled: false }); return call('Qadam', 'isAvailable').catch(function () { return { available: false, granted: false, enabled: false }; }); },
+      perm: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false }); return call('Qadam', 'requestPermission').catch(function () { return { granted: false }; }); },
+      enable: function (on) { if (!N.qadam.ok()) return Promise.resolve({ enabled: false }); return call('Qadam', 'setEnabled', { on: !!on }).catch(function () { return { enabled: false }; }); },
+      today: function () { if (!N.qadam.ok()) return Promise.resolve(null); return call('Qadam', 'getToday').catch(function () { return null; }); },
+      days: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getDays', { n: n || 7 }).then(function (r) { return (r && r.kunlar) || []; }, function () { return []; }); }
     },
     /* ---------- «Orqaga» ---------- */
     setBack: function (fn) { backFn = typeof fn === 'function' ? fn : null; },

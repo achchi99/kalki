@@ -107,6 +107,16 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function restoreFood(st, d, rm) { if (!rm) return; ensureDay(st, d).food.splice(Math.min(rm.index, st.days[d].food.length), 0, rm.item); }
   function setWater(st, d, n) { ensureDay(st, d).water = Math.max(0, Math.min(40, Math.round(n))); return st.days[d].water; }
   function setSteps(st, d, n) { ensureDay(st, d).steps = Math.max(0, Math.min(200000, Math.round(num(n)))); return st.days[d].steps; }
+  /* avtomatik qadam (Android: apparat hisoblagich): day.sa — avtomatik qism; day.steps = sa + qo'lda qo'shilgan (telefonsiz yurilgan).
+     Avtomatik qiymat yangilansa qo'lda qo'shilgani saqlanadi; qolgan hisob (maqsad, kaloriya, tarix) day.steps bilan ishlaydi. */
+  function manualSteps(x) { return x ? Math.max(0, Math.round(num(x.steps)) - Math.round(num(x.sa))) : 0; }
+  function setAutoSteps(st, d, n) {
+    n = Math.max(0, Math.min(200000, Math.round(num(n)))); var x = st.days[d];
+    if (!x) { if (!n) return false; x = ensureDay(st, d); }
+    if (x.sa === n && x.steps >= n) return false;
+    var m = manualSteps(x); x.sa = n; x.steps = Math.min(200000, n + m); return true;
+  }
+  function setManualSteps(st, d, n) { var x = ensureDay(st, d), a = Math.round(num(x.sa)); x.steps = Math.max(0, Math.min(200000, a + Math.max(0, Math.round(num(n))))); return x.steps; }
   function toggleFav(st, fid) { var i = st.favs.indexOf(fid); if (i > -1) st.favs.splice(i, 1); else st.favs.unshift(fid); return i === -1; }
   function addCustom(st, o) {
     var f = { id: 'c' + st.seq++, n: String(o.name || '').slice(0, 60), k: Math.round(num(o.k)), p: round1(num(o.p)), f: round1(num(o.f)), c: round1(num(o.c)), u: [['g100', 100]], e: 1, t: 'x', custom: 1 };
@@ -227,7 +237,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     var s = emptyState(); if (v === 0 && !raw.profile && !raw.days && !raw.log) return null;
     s.setup = !!raw.setup || !!raw.profile; s.created = raw.created || null; s.seq = Math.max(1, Math.round(num(raw.seq)) || 1);
     s.profile = raw.profile && typeof raw.profile === 'object' ? { sex: raw.profile.sex === 'f' ? 'f' : 'm', preg: !!raw.profile.preg, age: num(raw.profile.age), height: num(raw.profile.height), weight: num(raw.profile.weight), act: ACT[raw.profile.act] ? +raw.profile.act : 2, goal: GOAL_DELTA[raw.profile.goal] != null ? raw.profile.goal : 'keep', goalWeight: num(raw.profile.goalWeight) || null } : null;
-    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
@@ -461,7 +471,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     bmrRaw: bmrRaw, bmi: bmi, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
-    addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, toggleFav: toggleFav, addCustom: addCustom,
+    addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,

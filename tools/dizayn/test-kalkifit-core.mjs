@@ -124,4 +124,14 @@ T('53 vazn yorlig\'i: 1 ta o\'lchov → birinchi; 2–6 ta (tarix <7 kun) → ox
 T('54 statistika yozilmagan kunni 0 deb olmaydi: faqat to\'liq kunlar; qadam o\'rtachasi — qadam yozilgan kunlardan', () => {
   const st = mk(); st.trackStart = '2026-10-01'; S.addFood(st, '2026-10-10', { kcal: 2400, meal: 'l' }); S.setSteps(st, '2026-10-10', 9000); S.setSteps(st, '2026-10-11', 3000); const w = S.weekSummary(st, '2026-10-14', '2026-10-15'); assert.equal(w.avgKcal, 2400); assert.equal(w.fullDays, 1); assert.equal(w.avgSteps, 6000); assert.equal(S.weekSummary(st, '2026-10-14', '2026-10-15').loggedDays, 1);
 });
+T('55 avtomatik qadam (Android): sa — avtomatik qism, qo\'lda qo\'shilgani ustiga; yangilanganda qo\'lda qismi saqlanadi; migrate sa ni saqlaydi', () => {
+  const st = mk(), d = '2026-10-15';
+  assert.equal(S.setAutoSteps(st, d, 0), false, 'bo\'sh kun yaratilmaydi');
+  assert.equal(S.setAutoSteps(st, d, 3000), true); assert.deepEqual([st.days[d].sa, st.days[d].steps], [3000, 3000]);
+  S.setManualSteps(st, d, 500); assert.equal(st.days[d].steps, 3500); assert.equal(S.manualSteps(st.days[d]), 500);
+  assert.equal(S.setAutoSteps(st, d, 4200), true); assert.equal(st.days[d].steps, 4700, 'qo\'lda 500 saqlandi'); assert.equal(S.setAutoSteps(st, d, 4200), false, 'o\'zgarmasa — false');
+  const st2 = mk(); S.setSteps(st2, d, 6000); S.setAutoSteps(st2, d, 1000); assert.equal(st2.days[d].steps, 7000, 'avval qo\'lda yozilgan 6000 — qo\'shimcha qism bo\'lib qoladi');
+  const m = S.migrate(JSON.parse(JSON.stringify(st))); assert.deepEqual([m.days[d].sa, m.days[d].steps], [4200, 4700]);
+  const raw = JSON.parse(JSON.stringify(st)); raw.days[d] = { food: [], water: 0, steps: 100, sa: 999 }; assert.equal(S.migrate(raw).days[d].sa, 100, 'sa steps dan oshmaydi');
+});
 console.log(n + ' ta holat o\'tdi');
