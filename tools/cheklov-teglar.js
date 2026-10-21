@@ -19,6 +19,7 @@ const QOLDA = {
 };
 function hammasi() {
   const foods = R('data/ovqatlar.json').foods, rets = Object.fromEntries(R('data/baza-retseptlar.json').retseptlar.map((r) => [r.id, r])), by = Object.fromEntries(foods.map((f) => [f.i, f]));
+  const KT = require('./ovqatlar-kengaytma.js').TEG; for (const t of TEGLAR) (KT[t] || []).forEach((id) => { if (by[id]) QOLDA[t].push(id); });   // kengaytma taomlari (manbasi topilmay qo'shilmaganlari o'tkazib yuboriladi)
   const manual = {}; for (const t of TEGLAR) for (const id of QOLDA[t]) { if (!by[id]) throw new Error('cheklov: bazada yo\'q taom ' + id + ' (' + t + ')'); (manual[id] = manual[id] || new Set()).add(t); }
   const recTeg = (rid) => { const s = new Set(); for (const l of rets[rid].ingr) (MASALLIQ_TEG[l.m] || []).forEach((t) => s.add(t)); return s; };
   const own = (f) => { const s = new Set(manual[f.i] || []); if (f.rc && rets[f.rc]) recTeg(f.rc).forEach((t) => s.add(t)); return s; };

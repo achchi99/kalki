@@ -14,10 +14,11 @@ async function mk(o = {}) {
   const c = await b.newContext({ viewport: { width: o.w || 390, height: o.h || 844 }, colorScheme: o.dark ? 'dark' : 'light', reducedMotion: o.reduce ? 'reduce' : 'no-preference', isMobile: true, hasTouch: true, serviceWorkers: 'block', acceptDownloads: true });
   await c.addInitScript((a) => { if (!localStorage.getItem('kalki_fit')) localStorage.setItem('kalki_fit', JSON.stringify(a.s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); }, { s: o.state || seed() });
   if (o.big) await c.addInitScript(() => localStorage.setItem('kalki_fs', 'big'));
-  const p = await c.newPage(); p.errs = []; p.posts = []; p.ai = []; p.on('pageerror', (e) => p.errs.push(String(e)));
+  if (o.android) await c.addInitScript(() => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: [] }; });
+  const p = await c.newPage(); p.errs = []; p.posts = []; p.ai = []; p.peeks = []; p.on('pageerror', (e) => p.errs.push(String(e)));
   await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
   await p.route('**/api/hisob', (r) => { try { p.posts.push(JSON.parse(r.request().postData() || '{}')); } catch (e) {} r.fulfill({ status: 204, body: '' }); });
-  await p.route('**/api/retsept', (r) => { const body = JSON.parse(r.request().postData() || '{}'); p.ai.push(body); if (o.aiOff) return r.abort(); const x = o.ai ? o.ai(body) : { status: 503, json: { xato: 'Xizmat vaqtincha ishlamayapti.' } }; r.fulfill({ status: x.status, contentType: 'application/json', body: JSON.stringify(x.json) }); });
+  await p.route('**/api/retsept', (r) => { const body = JSON.parse(r.request().postData() || '{}'); if (body.sorov === 'qoldi') { p.peeks.push(body); if (o.aiOff) return r.abort(); const pk = o.peek ? o.peek(body) : { limit: 5, qoldi: 5 }; return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(pk) }); } p.ai.push(body); if (o.aiOff) return r.abort(); const x = o.ai ? o.ai(body) : { status: 503, json: { xato: 'Xizmat vaqtincha ishlamayapti.' } }; r.fulfill({ status: x.status, contentType: 'application/json', body: JSON.stringify(x.json) }); });
   await p.route('**/api/**', (r) => r.fallback()); await p.route(/\/api\/(?!retsept|hisob)/, (r) => r.fulfill({ status: 204, body: '' }));
   await p.goto(BASE + (o.url || '/kalkifit'), { waitUntil: 'networkidle' }); await p.waitForTimeout(500); return p; }
 const odo = (p) => p.evaluate(() => document.getElementById('rtOdo').getAttribute('aria-label')); const chip = (p) => p.evaluate(() => document.getElementById('rtChip').textContent);
@@ -74,6 +75,23 @@ try {
     await p.click('[data-act=rtnext]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rtOdo').count(), 0, name + ': soxta natijaga o\'tmaydi'); assert.ok((await counters(p)).includes('retsept_xato'), name + ': retsept_xato'); await p.context().close();
   }
   log('AI limit (429) / 503 / 502 / tarmoq yo\'q: tushunarli xabar, tanimagan qatorlar sariq, qo\'lda qo\'shish bor, natijaga SOXTA o\'tish yo\'q, retsept_xato hisoblagichi');
+  /* 6b. Android ilovasi: platforma belgisi, hisoblagich 2 dan; 2 ta so'rovdan keyin 429 — «Bugungi 2 ta AI so'rov ishlatildi», AI'siz qism (qo'lda tanlash, hisob) ishlaydi */
+  { let left = 2; const aiA = (body) => { if (body.platforma !== 'android') return { status: 400, json: {} }; if (left <= 0) return { status: 429, json: { xato: 'x', sabab: 'mijoz', limit: 2, qoldi: 0 } }; left--; return { status: 200, json: { masalliqlar: [{ nom: 'kunjut', id: 'qatiq', q: 3, b: 'osh', g: 45 }, { nom: 'lavlagi', id: null, q: 2, b: 'dona', g: null }], limit: 2, qoldi: left } }; };
+    for (const [lng, url, re0, re1, reL] of [['uz', '/kalkifit', /2 tadan 2 ta qoldi/, /2 tadan 1 ta qoldi/, /Bugungi 2 ta AI so'rov ishlatildi\. Ertaga yana urinib ko'ring\./], ['ru', '/ru/kalkifit', /осталось 2 из 2/, /осталось 1 из 2/, /Сегодняшние AI-запросы \(2\) использованы/], ['cyr', '/kalkifit?lang=cyr', /2 тадан 2 та қолди/, /2 тадан 1 та қолди/, /Бугунги 2 та AI сўров ишлатилди/]]) {
+      left = 2; p = await mk({ android: true, ai: aiA, url, peek: () => ({ limit: 2, qoldi: left }) }); await p.click('#rtDoor'); await p.waitForTimeout(400);
+      assert.equal(p.peeks.length, 1); assert.equal(p.peeks[0].platforma, 'android', 'peek: platforma belgisi'); assert.match(await p.locator('#rtAiLeft').innerText(), re0, lng + ': hisoblagich 2 dan');
+      for (let k = 0; k < 3; k++) {
+        if (k) { await p.click('[data-act=rtback1]'); await p.waitForSelector('#rtText'); }
+        await p.fill('#rtText', FREE + ' ' + k); await p.click('[data-act=rtgo]'); await p.waitForSelector('[data-act=rtnext]', { timeout: 8000 });
+        if (k === 0) { await p.click('[data-act=rtback1]'); await p.waitForSelector('#rtText'); assert.match(await p.locator('#rtAiLeft').innerText(), re1, lng + ': 1 ta qoldi'); await p.click('[data-act=rtgo]'); await p.waitForSelector('[data-act=rtnext]', { timeout: 8000 }); k++; }
+      }
+      assert.equal(p.ai.length, 3); assert.ok(p.ai.every((x) => x.platforma === 'android'));
+      assert.match(await p.locator('.rt-msg[role=alert]').innerText(), reL, lng + ': limit matni'); assert.equal(await p.locator('.rt-ing.unk').count(), 2, 'AI\'siz: tanimagan qatorlar sariq, qo\'lda tanlanadi');
+      for (let q = 0; q < 2; q++) { await p.click('.rt-ing.unk [data-act=rtpick] >> nth=0'); await p.waitForSelector('#rtPQ'); await p.fill('#rtPQ', q ? 'pomid' : 'sabzi'); await p.click('.rt-pr >> nth=0'); await p.waitForTimeout(150); if (await p.locator('.rt-ing.need').count()) await p.click('.rt-ing.need [data-s="1"] >> nth=0'); }
+      await p.click('[data-act=rtnext]'); await p.waitForSelector('#rtOdo', { timeout: 5000 }); assert.ok(parseInt(await odo(p), 10) > 0, lng + ': limitdan keyin ham hisob ishlaydi');
+      await p.click('[data-act=rtback1]').catch(() => {}); assert.deepEqual(p.errs, []); await p.context().close(); }
+    p = await mk({}); await p.click('#rtDoor'); await p.waitForTimeout(400); assert.equal(p.peeks[0].platforma, undefined, 'veb: belgi yo\'q'); assert.match(await p.locator('#rtAiLeft').innerText(), /5 tadan 5 ta qoldi/); await p.context().close(); }
+  log('Android ilovasi: platforma belgisi yuboriladi, hisoblagich 2 → 1, 3-so\'rovda «Bugungi 2 ta AI so\'rov ishlatildi» (UZ/ЎЗ/RU), keyin ham qo\'lda tanlash va hisob ishlaydi; veb: 5 dan');
   /* 7. cho'chqa va Yemaydiganlarim */
   p = await mk(); await p.click('#rtDoor'); await p.fill('#rtText', "Palov (4 kishi): 500 g guruch, 300 g cho'chqa go'shti, 400 g sabzi, 100 ml yog', 150 g qaymoq, 200 g piyoz"); await p.click('[data-act=rtgo]'); await p.waitForSelector('[data-act=rtnext]', { timeout: 8000 });
   assert.match(await p.locator('.rt-msg[role=status]').innerText(), /ro'yxatda yo'q/); assert.equal(await p.locator('.rt-ing').count(), 5); const msgTxt = await p.locator('.rt-msg[role=status]').innerText(); assert.ok(!/cho'chqa/i.test(msgTxt), 'cho\'chqa so\'zi yozilmaydi'); assert.doesNotMatch(await p.locator('.rt-ings').innerText(), /cho'chqa/i); await p.context().close();

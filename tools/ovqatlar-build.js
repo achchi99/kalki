@@ -29,8 +29,8 @@ shashlik|Shashlik (go'sht)|Шашлык|kabob,shashlyk,кебаб,шашлик|2
 shashlik-tovuq|Shashlik (tovuq)|Шашлык куриный|tovuq kabob|170|23|8|1|o|1|dona:70,porsiya:200
 jigar-kabob|Jigar kabob|Печёночный кебаб|jigar shashlik|190|20|11|2|o|1|dona:60,porsiya:150
 lyulya|Lyulya kabob|Люля-кебаб|lula kabob,люля|250|15|19|3|o|1|dona:90,porsiya:200
-tandir-gosht|Tandir go'sht|Тандыр-мясо|tandir kabob|260|22|19|0.5|o|1|porsiya:200
-qovurdoq|Qovurdoq|Жаркое|kovurdok,жаркое|250|15|19|6|o|1|likop:250
+tandir-gosht|Tandir go'sht|Тандыр-гушт (мясо из тандыра)|tandir kabob,тандыр-мясо,тандыр гушт|260|22|19|0.5|o|1|porsiya:200
+qovurdoq|Qovurdoq|Ковурдак (жаркое)|kovurdok,жаркое,ковурдак|250|15|19|6|o|1|likop:250
 dolma|Do'lma (karam bargida)|Долма|dolma,голубцы,golubtsy|150|7|9|10|o|1|dona:50,porsiya:250
 dolma-uzum|Do'lma (uzum bargida)|Долма в виноградных листьях|bargak dolma|140|6|8|11|o|1|dona:40,porsiya:240
 qazi|Qazi|Казы|kazy,otiq|360|17|33|1.5|o|1|bolak:30
@@ -59,7 +59,7 @@ kruassan|Kruassan|Круассан|croissant,kruasan|400|8|21|45|n|1|dona:60
 pirojki|Pirojki (qovurilgan)|Пирожки жареные|pirozhki|290|7|14|34|n|1|dona:80
 qatiq|Qatiq|Катык|katyk,qatik,катык|60|3|3.2|4|s|1|stakan:250,piyola:200,qoshiq:20
 suzma|Suzma|Сузьма|suzma,сузьма|150|9|10|5|s|1|qoshiq:20,piyola:150
-qurt|Qurt|Курт|kurt,курт|320|24|12|28|s|1|dona:20
+qurt|Qurt|Курут|kurt,курт,курут,qurut,kurut|320|24|12|28|s|1|dona:20
 ayron|Ayron|Айран|ayran,айран|30|1.5|1|3|s|1|stakan:250
 sut|Sut (3,2%)|Молоко 3,2%|moloko,sut|60|3|3.2|4.8|s|0|stakan:250,piyola:200
 sut-yogsiz|Sut (1%)|Молоко 1%|yogsiz sut|42|3.4|1|5|s|0|stakan:250
@@ -228,7 +228,7 @@ karamel|Karamel (lolipop)|Карамель|karamel,леденец,lolipop|380|0|
 zefir|Zefir|Зефир|zefir,зефир|330|1|0|80|h|1|dona:35
 marmelad|Marmelad|Мармелад|marmelad,мармелад|320|0|0|80|h|1|dona:15
 xalva|Xalva (kungaboqarli)|Халва подсолнечная|halva,halvo,халва|520|12|30|50|h|1|bolak:30
-navvot|Navvot|Нават|navot,нават,qand navvot|390|0|0|98|h|1|dona:10
+navvot|Novvot|Нават (кристаллический сахар)|navvot,navot,нават,novvot,qand novvot|390|0|0|98|h|1|dona:10
 shakar|Shakar|Сахар|shakar,sugar,сахар|387|0|0|100|h|0|choyq:5,qoshiq:25
 qand|Qand (kub)|Сахар-рафинад|kub qand,рафинад|387|0|0|100|h|0|dona:5
 tort|Tort (biskvitli)|Торт бисквитный|tort,торт,cake|350|4|16|48|h|1|bolak:100
@@ -249,7 +249,7 @@ ketchup|Ketchup|Кетчуп|ketchup,кетчуп|100|1.5|0.3|25|x|0|qoshiq:18
 soya-sous|Soya sousi|Соевый соус|soya sousi,soy sauce|55|8|0|5|x|0|qoshiq:15
 xummus|Xummus|Хумус|hummus,humus,хумус|170|8|10|14|x|1|qoshiq:15
 tahini|Tahini (kunjut pastasi)|Тахини|tahini,tahina,тахини|595|17|54|21|x|0|qoshiq:15
-jiz|Jiz (qovurilgan go'sht)|Жареное мясо|jiz biz,джиз|270|20|20|2|o|1|porsiya:150
+jiz|Jiz (qovurilgan go'sht)|Джиз (жареное мясо)|jiz biz,джиз,жареное мясо|270|20|20|2|o|1|porsiya:150
 beshbarmoq|Beshbarmoq|Бешбармак|beshbarmak,бешбармак|180|10|8|17|o|1|likop:350
 jarkop|Jarkop|Жаркоп|zharkop,жаркоп|230|13|15|9|o|1|likop:300
 tovuq-shurva|Tovuq sho'rvasi|Куриный суп|tovuq shorva,kurinyy sup|45|4|2|3|o|1|kosa:350
@@ -301,6 +301,37 @@ for (const r of rows) {
   { const have = new Set([o.n, o.r].concat(o.a).map(normA)); let add = 0; (ALIAS[id] || []).forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); add++; } }); if (add) { aliasFoods++; aliasAdded += add; } }
   o.m = MANBA[id] || DEF_M[t] || DEF_M.x;       // manba / hisob usuli (har taomda)
   out.push(o);
+}
+// Bazani kengaytirish (tools/ovqatlar-kengaytma.js, 2026-10): qiymat FAQAT manbadan — USDA fdc_id, ishlab chiqaruvchi yorlig'i (data/manba/yorliq.json) yoki ular aralashmasi
+{
+  const KENG = require('./ovqatlar-kengaytma.js'), RD = (f) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
+  const USDA = RD('data/manba/usda-sr-legacy.json').foods, YQ = fs.existsSync(path.join(__dirname, '..', 'data/manba/yorliq.json')) ? RD('data/manba/yorliq.json').yorliq : {};
+  const r1 = (x) => Math.round((+x || 0) * 10) / 10;
+  const part = (tok) => {                                  // bitta komponent: u:<id> | y:<kalit> | <id> | suv → 100 g dagi qiymat + bayon
+    if (tok === 'suv') return { k: 0, p: 0, f: 0, c: 0, u: 'suv', r: 'вода' };
+    const y = /^y:(.+)$/.exec(tok); if (y) { const L = YQ[y[1]]; return L ? { k: L.k, p: L.p, f: L.f, c: L.c, u: 'yorliq: ' + L.nom + ' (shtrix-kod ' + L.code + ')', r: 'этикетка: ' + L.nom + ' (штрихкод ' + L.code + ')' } : null; }
+    const id = tok.replace(/^u:/, ''), U = USDA[id]; return U ? { k: U.kcal, p: U.p, f: U.f, c: U.c, u: 'USDA ' + id + ' («' + U.d + '»)', r: 'USDA ' + id + ' («' + U.d + '»)' } : null;
+  };
+  const ich = (t) => t === 'i' ? [' (ichimlik: 100 ml ≈ 100 g)', ' (напиток: 100 мл ≈ 100 г)'] : ['', ''];
+  for (const row of KENG) {
+    const [id, n, ru, al, t, un, src] = row;
+    if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
+    let v = null;
+    if (/^u:\d+$/.test(src)) { const q = part(src), U = USDA[src.slice(2)]; if (q) v = Object.assign(q, { e: 0, m: 'USDA FDC ' + src.slice(2), ms: { u: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), 100 g uchun' + ich(t)[0] + '.', r: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), на 100 г' + ich(t)[1] + '.' } }); }
+    else if (/^y:/.test(src)) { const L = YQ[src.slice(2)]; if (L) v = { k: L.k, p: L.p, f: L.f, c: L.c, e: 0, m: 'Yorliq: ' + L.nom + ' (OFF ' + L.code + ')', ms: { u: "Ishlab chiqaruvchi yorlig'i bo'yicha: " + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + ' — Open Food Facts, shtrix-kod ' + L.code + '; 100 g uchun' + ich(t)[0] + '. Boshqa ishlab chiqaruvchida biroz farq qilishi mumkin.', r: 'По этикетке производителя: ' + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + ' — Open Food Facts, штрихкод ' + L.code + '; на 100 г' + ich(t)[1] + '. У другого производителя возможны небольшие отличия.' } }; }
+    else if (/^m:/.test(src)) {
+      const ps = src.slice(2).split('+').map((x) => { const i = x.lastIndexOf('*'); return { tok: x.slice(0, i), g: +x.slice(i + 1), q: part(x.slice(0, i)) }; });
+      if (ps.every((x) => x.q && x.g > 0)) { const G = ps.reduce((a, x) => a + x.g, 0), sum = (k) => ps.reduce((a, x) => a + x.q[k] * x.g / 100, 0) / G * 100;
+        v = { k: Math.round(sum('k')), p: sum('p'), f: sum('f'), c: sum('c'), e: 1, m: 'Hisob: ' + ps.map((x) => x.g + ' g ' + x.tok).join(' + '),
+          ms: { u: 'Hisob (taxminiy, tayyorlashga qarab farq qiladi): ' + ps.map((x) => x.g + ' g — ' + x.q.u).join('; ') + '. Qiymat 100 g uchun' + ich(t)[0] + '.', r: 'Расчёт (примерно, зависит от приготовления): ' + ps.map((x) => x.g + ' г — ' + x.q.r).join('; ') + '. На 100 г' + ich(t)[1] + '.' } }; }
+    } else throw new Error('kengaytma: manba noto\'g\'ri ' + id + ' ' + src);
+    if (!v) { warn.push('kengaytma: manba yo\'q, qo\'shilmadi — ' + id + ' (' + src + ')'); continue; }
+    ids.add(id);
+    const u = un.split(',').map((x) => { const [a, b] = x.split(':'); return [a, +b]; }); u.push(['g100', 100]);
+    const o = { i: id, n, r: ru, a: al.split(',').filter(Boolean), k: Math.round(v.k), p: r1(v.p), f: r1(v.f), c: r1(v.c), t, e: v.e, u, m: v.m, ms: v.ms };
+    { const have = new Set([o.n, o.r].concat(o.a).map(normA)); (ALIAS[id] || []).forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); }
+    out.push(o);
+  }
 }
 // Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
 const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');

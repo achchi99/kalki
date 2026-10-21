@@ -2780,7 +2780,7 @@
   {
    "i": "qoymoq",
    "n": "Tuxumli qo'ymoq",
-   "r": "Кўймоқ (яичница с луком и помидором)",
+   "r": "Куймак (яичница с луком и помидором)",
    "a": [
     "qoymoq",
     "qo'ymoq",
@@ -3644,6 +3644,237 @@
    ],
    "rc": "geyner",
    "ub": "porsiya"
+  },
+  {
+   "i": "tuxum-barak",
+   "n": "Tuxum barak (Xorazm)",
+   "r": "Тухум барак (хорезмские пельмени с яйцом)",
+   "a": [
+    "tuxum barak",
+    "tuhum barak",
+    "тухум барак",
+    "барак"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "porsiya",
+     250
+    ],
+    [
+     "dona",
+     25
+    ]
+   ],
+   "rc": "tuxum-barak",
+   "ub": "porsiya"
+  },
+  {
+   "i": "hasip",
+   "n": "Hasip",
+   "r": "Хасып (домашняя колбаса из ливера и риса)",
+   "a": [
+    "hasip",
+    "xasip",
+    "хасып",
+    "хасиб"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "bolak",
+     80
+    ],
+    [
+     "porsiya",
+     200
+    ]
+   ],
+   "rc": "hasip",
+   "ub": "porsiya"
+  },
+  {
+   "i": "kesma",
+   "n": "Kesma (uy lapshasi sho'rva)",
+   "r": "Кесма (суп с домашней лапшой)",
+   "a": [
+    "kesma",
+    "кесма",
+    "lapsha shorva",
+    "суп с лапшой"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "kesma",
+   "ub": "kosa"
+  },
+  {
+   "i": "unash",
+   "n": "Unash",
+   "r": "Унаш (суп-лапша с фасолью и катыком)",
+   "a": [
+    "unash",
+    "унаш"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "unash",
+   "ub": "kosa"
+  },
+  {
+   "i": "jigar-qovurma",
+   "n": "Jigar qovurma",
+   "r": "Жаркое из печени (печень с луком)",
+   "a": [
+    "jigar qovurma",
+    "qovurilgan jigar piyoz",
+    "печень с луком",
+    "жареная печень с луком",
+    "жигар қовурма"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "porsiya",
+     200
+    ],
+    [
+     "likop",
+     250
+    ]
+   ],
+   "rc": "jigar-qovurma",
+   "ub": "porsiya"
+  },
+  {
+   "i": "mampar",
+   "n": "Mampar",
+   "r": "Мампар (суп с кусочками теста)",
+   "a": [
+    "mampar",
+    "манпар",
+    "мампар"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     400
+    ]
+   ],
+   "rc": "mampar",
+   "ub": "kosa"
+  },
+  {
+   "i": "shivit-oshi",
+   "n": "Shivit oshi",
+   "r": "Шивит оши (зелёный лагман)",
+   "a": [
+    "shivit oshi",
+    "шивит оши",
+    "ko'k lag'mon",
+    "зеленый лагман"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     400
+    ]
+   ],
+   "rc": "shivit-oshi",
+   "ub": "likop"
+  },
+  {
+   "i": "kok-chuchvara",
+   "n": "Ko'k chuchvara",
+   "r": "Кук чучвара (с зеленью)",
+   "a": [
+    "kok chuchvara",
+    "кук чучвара",
+    "chuchvara kokatli"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "kosa",
+     250
+    ]
+   ],
+   "rc": "kok-chuchvara",
+   "ub": "kosa"
+  },
+  {
+   "i": "yupqa",
+   "n": "Yupqa",
+   "r": "Юпка (хорезмский слоёный пирог с мясом)",
+   "a": [
+    "yupqa",
+    "юпка",
+    "юпқа"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "bolak",
+     150
+    ]
+   ],
+   "rc": "yupqa",
+   "ub": "bolak"
+  },
+  {
+   "i": "goshtli-non",
+   "n": "Go'shtli non",
+   "r": "Гушт-нон (лепёшка с мясом)",
+   "a": [
+    "goshtli non",
+    "гушт нон",
+    "лепешка с мясом",
+    "gosht non"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "dona",
+     250
+    ],
+    [
+     "bolak",
+     120
+    ]
+   ],
+   "rc": "goshtli-non",
+   "ub": "dona"
+  },
+  {
+   "i": "kartoshka-qovurma",
+   "n": "Kartoshkali qovurdoq",
+   "r": "Ковурдак с картофелем",
+   "a": [
+    "kartoshka qovurdoq",
+    "картошка с мясом жареная",
+    "жаркое с картошкой"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     300
+    ]
+   ],
+   "rc": "kartoshka-qovurma",
+   "ub": "likop"
   }
  ],
  "top_qoshimcha": [

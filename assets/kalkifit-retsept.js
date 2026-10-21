@@ -24,6 +24,7 @@
       rtNote: 'Raqamlar taxminiy, KalkiFit bazasi (USDA) asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: 'Saqlandi: «{n}» — 1 porsiya {k} kkal', rtSavedBtn: 'Bugunga yozish', rtLight: 'yengil', rtNoSave: "Saqlab bo'lmadi — masalliq yo'q",
       rtCardT: 'Ulashish kartochkasi', rtCardH: "Instagram yoki Telegram'ga qo'yish uchun rasm.", rtDl: 'Yuklab olish', rtShared: 'Ulashildi', rtMaking: 'Rasm tayyorlanmoqda…',
       rtLightV: 'Yengil versiya', rtBy: 'KalkiFit bilan hisoblandi', rtCardSub: '1 porsiya: {a} → {b} kkal', rtPeopleN: '{n} kishilik',
+      rtLimit: "Bugungi {n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.", rtAiLeft: "Bugungi AI so'rovlari: {n} tadan {q} ta qoldi.",
       rtErrNet: "Internetga ulanib bo'lmadi. Masalliqlarni qo'lda tanlang.", rtErrAi: "AI bu qatorlarni aniqlay olmadi. Quyidagilarni o'zingiz tanlang.", rtErrNone: "Masalliq topilmadi. Retseptni gram bilan yozing yoki masalliqni qo'lda qo'shing.",
       rtBack: 'Orqaga'
     },
@@ -44,6 +45,7 @@
       rtNote: 'Цифры примерные, по базе KalkiFit (USDA).', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Сохранено: «{n}» — 1 порция {k} ккал', rtSavedBtn: 'Записать на сегодня', rtLight: 'лёгкая', rtNoSave: 'Не удалось сохранить — нет ингредиентов',
       rtCardT: 'Карточка для соцсетей', rtCardH: 'Картинка для Instagram или Telegram.', rtDl: 'Скачать', rtShared: 'Отправлено', rtMaking: 'Готовим картинку…',
       rtLightV: 'Лёгкая версия', rtBy: 'Посчитано в KalkiFit', rtCardSub: '1 порция: {a} → {b} ккал', rtPeopleN: 'на {n} чел.',
+      rtLimit: 'Сегодняшние AI-запросы ({n}) использованы. Попробуйте завтра.', rtAiLeft: 'AI-запросов на сегодня: осталось {q} из {n}.',
       rtErrNet: 'Нет соединения с интернетом. Выберите ингредиенты вручную.', rtErrAi: 'ИИ не смог распознать эти строки. Выберите их сами.', rtErrNone: 'Ингредиенты не найдены. Напишите рецепт с граммами или добавьте ингредиент вручную.',
       rtBack: 'Назад'
     }
@@ -98,7 +100,17 @@
       '<p class="rt-msg rt-in" id="rtMsg" role="alert" hidden></p>' +
       '<button type="button" class="rz-btn ghost full rt-cam rt-in" disabled aria-disabled="true">' + ico('rcam') + ' ' + esc(T('rtCam')) + ' <span class="rt-soon">' + esc(T('rtSoon')) + '</span></button>' +
       '<div class="rz-st rt-in">' + esc(T('rtEx')) + '</div><div class="rt-chips rt-in" role="group" aria-label="' + esc(T('rtEx')) + '">' + ORDER.map(function (k) { return '<button type="button" class="rz-chip' + (rt.chip === k ? ' on' : '') + '" data-act="rtex" data-x="' + k + '">' + esc(EX[k].chip[L()]) + '</button>'; }).join('') + '</div>' +
+      '<p class="rz-mut rt-ai-left rt-in" id="rtAiLeft" role="status"' + (aiq ? '' : ' hidden') + '>' + esc(aiTxt()) + '</p>' +
       '<div class="sl-cta"><button type="button" class="sl-main rt-go" data-act="rtgo">' + ico('rspark') + ' ' + esc(T('rtGo')) + '</button></div>';
+  }
+  /* AI so'rovlari hisoblagichi: limit serverda (functions/api/retsept.js CLIENT_LIMIT — Android ilovasi 2, veb 5); bu yerda faqat ko'rsatiladi */
+  var aiq = null;
+  function plat() { var N = window.KalkiNative; try { return N && N.isApp() && N.platform() === 'android' ? 'android' : ''; } catch (e) { return ''; } }
+  function aiTxt() { return !aiq ? '' : aiq.qoldi > 0 ? T('rtAiLeft', { q: aiq.qoldi, n: aiq.limit }) : T('rtLimit', { n: aiq.limit }); }
+  function aiSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; var e = A.$('#rtAiLeft'); if (e) { e.textContent = aiTxt(); e.hidden = false; } }
+  function aiPeek() {
+    try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: A.cid(), platforma: plat() || undefined }) })
+      .then(function (r) { return r.ok ? r.json() : null; }).then(aiSet).catch(function () {}); } catch (e) {}
   }
   function msg(t) { var m = A.$('#rtMsg'); if (!m) return; m.textContent = t || ''; m.hidden = !t; }
   function srcText() { var ta = A.$('#rtText'), v = ta ? ta.value : ''; rt.shown = v; return rt.ex && v === rt.exShown ? rt.exTxt : v; }       // misol (ЎЗ da transliteratsiya ko'rsatilgan) — asl lotin matn tahlil qilinadi
@@ -261,7 +273,7 @@
     if (scr === 'res') { if (!rt.counted) { rt.counted = true; count('retsept_natija'); } upd(true); }
     if (scr === 'pick') { var q = A.$('#rtPQ'); if (q) try { q.focus({ preventScroll: true }); } catch (e) {} }
   }
-  function open() { rt = { scr: 'in', shown: '', chip: '', items: [], n: 4, nom: '', rules: [], on: {} }; count('retsept_ochildi'); show('in'); loadTable(function () {}); }
+  function open() { rt = { scr: 'in', shown: '', chip: '', items: [], n: 4, nom: '', rules: [], on: {} }; count('retsept_ochildi'); show('in'); loadTable(function () {}); aiPeek(); }
   function door() { return '<button type="button" class="sl-door rt-door" id="rtDoor" data-act="rtopen"><span class="ic"><span class="rt-sp" aria-hidden="true">' + ico('rspark') + '</span></span><span class="m"><b>' + esc(T('rtDoorT')) + '</b><span>' + esc(T('rtDoorS')) + '</span></span>' + ico('chev', 'r') + '</button>'; }
   function applyParse(p) {
     rt.items = p.items.map(function (it) { var o = Object.assign({}, it); if (o.id && !(o.g > 0)) { o.g = 0; o.need = true; } return o; });
@@ -287,10 +299,11 @@
     });
   }
   function aiCall(lines, cb) {
-    var body = JSON.stringify({ matn: lines, til: A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid() }), done = false, tm = setTimeout(function () { if (!done) { done = true; cb({ ok: false, msg: T('rtErrNet') }); } }, 25000);
+    var body = JSON.stringify({ matn: lines, til: A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid(), platforma: plat() || undefined }), done = false, tm = setTimeout(function () { if (!done) { done = true; cb({ ok: false, msg: T('rtErrNet') }); } }, 25000);
     fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (x) {
       if (done) return; done = true; clearTimeout(tm);
-      if (x.s === 200 && x.j && Array.isArray(x.j.masalliqlar)) cb({ ok: true, list: x.j.masalliqlar }); else cb({ ok: false, msg: x.j && x.j.xato ? x.j.xato : T('rtErrAi') });
+      aiSet(x.j);
+      if (x.s === 200 && x.j && Array.isArray(x.j.masalliqlar)) cb({ ok: true, list: x.j.masalliqlar }); else if (x.s === 429 && x.j && x.j.sabab !== 'sayt' && x.j.limit > 0) cb({ ok: false, msg: T('rtLimit', { n: x.j.limit }) }); else cb({ ok: false, msg: x.j && x.j.xato ? x.j.xato : T('rtErrAi') });
     }).catch(function () { if (done) return; done = true; clearTimeout(tm); cb({ ok: false, msg: T('rtErrNet') }); });
   }
   function mergeAi(unres, list) {

@@ -4,7 +4,7 @@
   "url": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
   "sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
   "yuklangan": "2026-10-20",
-  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun; 2026-10-21: sut mahsulotlari va sport ovqatlanishi uchun id lar qo'shildi (meta.qoshimcha)",
+  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun; 2026-10-21: sut mahsulotlari va sport ovqatlanishi uchun id lar qo'shildi (meta.qoshimcha); 2026-10-21b: bazani kengaytirish (tools/ovqatlar-kengaytma.js) uchun id lar",
   "qoshimcha": {
    "2026-10-21": [
     "169698",
@@ -17,6 +17,301 @@
     "173180",
     "173432",
     "173441"
+   ],
+   "2026-10-21b": [
+    "167535",
+    "167536",
+    "167541",
+    "167542",
+    "167552",
+    "167555",
+    "167558",
+    "167561",
+    "167571",
+    "167572",
+    "167573",
+    "167575",
+    "167577",
+    "167585",
+    "167668",
+    "167680",
+    "167697",
+    "167747",
+    "167753",
+    "167754",
+    "167785",
+    "167795",
+    "167807",
+    "167959",
+    "167977",
+    "167981",
+    "167990",
+    "167991",
+    "167992",
+    "167995",
+    "167996",
+    "168081",
+    "168104",
+    "168117",
+    "168130",
+    "168136",
+    "168154",
+    "168155",
+    "168176",
+    "168185",
+    "168186",
+    "168187",
+    "168390",
+    "168411",
+    "168424",
+    "168449",
+    "168451",
+    "168463",
+    "168483",
+    "168580",
+    "168596",
+    "168598",
+    "168599",
+    "168624",
+    "168626",
+    "168754",
+    "168756",
+    "168768",
+    "168809",
+    "168810",
+    "168813",
+    "168815",
+    "168849",
+    "168871",
+    "168897",
+    "168914",
+    "168917",
+    "168919",
+    "169060",
+    "169112",
+    "169121",
+    "169146",
+    "169214",
+    "169229",
+    "169231",
+    "169246",
+    "169252",
+    "169261",
+    "169279",
+    "169292",
+    "169418",
+    "169421",
+    "169426",
+    "169440",
+    "169442",
+    "169448",
+    "169450",
+    "169572",
+    "169582",
+    "169583",
+    "169588",
+    "169589",
+    "169593",
+    "169631",
+    "169632",
+    "169671",
+    "169700",
+    "169704",
+    "169728",
+    "169850",
+    "169900",
+    "169914",
+    "169926",
+    "169944",
+    "169967",
+    "169976",
+    "170005",
+    "170015",
+    "170093",
+    "170169",
+    "170170",
+    "170182",
+    "170190",
+    "170250",
+    "170285",
+    "170287",
+    "170291",
+    "170295",
+    "170296",
+    "170298",
+    "170299",
+    "170394",
+    "170397",
+    "170416",
+    "170459",
+    "170491",
+    "170569",
+    "170583",
+    "170591",
+    "170598",
+    "170689",
+    "170690",
+    "170697",
+    "170718",
+    "170720",
+    "170744",
+    "170848",
+    "170851",
+    "170859",
+    "170880",
+    "170888",
+    "170894",
+    "171059",
+    "171078",
+    "171176",
+    "171177",
+    "171186",
+    "171190",
+    "171251",
+    "171263",
+    "171275",
+    "171290",
+    "171301",
+    "171306",
+    "171451",
+    "171457",
+    "171496",
+    "171506",
+    "171579",
+    "171638",
+    "171646",
+    "171655",
+    "171691",
+    "171704",
+    "171711",
+    "171722",
+    "171723",
+    "171826",
+    "171870",
+    "171880",
+    "171891",
+    "171914",
+    "171917",
+    "171935",
+    "171970",
+    "171982",
+    "172008",
+    "172097",
+    "172175",
+    "172187",
+    "172228",
+    "172233",
+    "172234",
+    "172347",
+    "172374",
+    "172411",
+    "172446",
+    "172451",
+    "172454",
+    "172455",
+    "172497",
+    "172509",
+    "172522",
+    "172526",
+    "172528",
+    "172533",
+    "172544",
+    "172684",
+    "172688",
+    "172700",
+    "172706",
+    "172709",
+    "172716",
+    "172718",
+    "172721",
+    "172723",
+    "172725",
+    "172738",
+    "172754",
+    "172765",
+    "172780",
+    "172787",
+    "172796",
+    "172909",
+    "172915",
+    "173030",
+    "173044",
+    "173132",
+    "173141",
+    "173147",
+    "173204",
+    "173205",
+    "173210",
+    "173217",
+    "173277",
+    "173304",
+    "173330",
+    "173414",
+    "173420",
+    "173435",
+    "173454",
+    "173456",
+    "173469",
+    "173592",
+    "173628",
+    "173668",
+    "173679",
+    "173681",
+    "173687",
+    "173702",
+    "173708",
+    "173718",
+    "173735",
+    "173818",
+    "173904",
+    "173946",
+    "173960",
+    "173963",
+    "173964",
+    "174032",
+    "174113",
+    "174117",
+    "174118",
+    "174187",
+    "174188",
+    "174217",
+    "174262",
+    "174266",
+    "174285",
+    "174312",
+    "174327",
+    "174355",
+    "174360",
+    "174367",
+    "174491",
+    "174523",
+    "174678",
+    "174769",
+    "174831",
+    "174832",
+    "174854",
+    "174879",
+    "174915",
+    "174934",
+    "174950",
+    "174956",
+    "174967",
+    "174974",
+    "174992",
+    "175000",
+    "175009",
+    "175032",
+    "175034",
+    "175039",
+    "175049",
+    "175108",
+    "175118",
+    "175120",
+    "175127",
+    "175175",
+    "175177",
+    "175182",
+    "175304"
    ]
   }
  },
@@ -3100,6 +3395,2057 @@
      "g": 11.2
     }
    ]
+  },
+  "167573": {
+   "d": "Ice creams, vanilla, rich",
+   "p": 3.5,
+   "f": 16.2,
+   "c": 22.29,
+   "kcal": 249.0
+  },
+  "167575": {
+   "d": "Ice creams, vanilla",
+   "p": 3.5,
+   "f": 11.0,
+   "c": 23.6,
+   "kcal": 207.0
+  },
+  "168809": {
+   "d": "Ice creams, chocolate",
+   "p": 3.8,
+   "f": 11.0,
+   "c": 28.2,
+   "kcal": 216.0
+  },
+  "168136": {
+   "d": "Ice creams, chocolate, rich",
+   "p": 4.72,
+   "f": 16.98,
+   "c": 19.78,
+   "kcal": 251.0
+  },
+  "168810": {
+   "d": "Ice creams, strawberry",
+   "p": 3.2,
+   "f": 8.4,
+   "c": 27.6,
+   "kcal": 192.0
+  },
+  "167572": {
+   "d": "Ice creams, vanilla, light",
+   "p": 4.78,
+   "f": 4.83,
+   "c": 29.46,
+   "kcal": 180.0
+  },
+  "169631": {
+   "d": "Ice creams, vanilla, light, no sugar added",
+   "p": 3.97,
+   "f": 7.45,
+   "c": 21.42,
+   "kcal": 169.0
+  },
+  "167981": {
+   "d": "Ice creams, french vanilla, soft-serve",
+   "p": 4.1,
+   "f": 13.0,
+   "c": 22.2,
+   "kcal": 222.0
+  },
+  "172228": {
+   "d": "Ice cream cone, chocolate covered, with nuts, flavors other than chocolate",
+   "p": 5.21,
+   "f": 21.88,
+   "c": 34.38,
+   "kcal": 354.0
+  },
+  "171306": {
+   "d": "Ice cream sundae cone",
+   "p": 3.0,
+   "f": 14.0,
+   "c": 28.89,
+   "kcal": 254.0
+  },
+  "168130": {
+   "d": "Frozen novelties, ice cream type, chocolate or caramel covered, with nuts",
+   "p": 4.4,
+   "f": 20.2,
+   "c": 30.9,
+   "kcal": 323.0
+  },
+  "167577": {
+   "d": "Sherbet, orange",
+   "p": 1.1,
+   "f": 2.0,
+   "c": 30.4,
+   "kcal": 144.0
+  },
+  "168813": {
+   "d": "Frozen novelties, ice type, pop",
+   "p": 0.0,
+   "f": 0.24,
+   "c": 19.23,
+   "kcal": 79.0
+  },
+  "169632": {
+   "d": "Frozen novelties, fruit and juice bars",
+   "p": 1.2,
+   "f": 0.1,
+   "c": 20.2,
+   "kcal": 87.0
+  },
+  "169900": {
+   "d": "Frozen novelties, ice cream type, sundae, prepackaged",
+   "p": 4.3,
+   "f": 6.0,
+   "c": 29.64,
+   "kcal": 190.0
+  },
+  "175000": {
+   "d": "Ice cream cones, cake or wafer-type",
+   "p": 8.1,
+   "f": 6.9,
+   "c": 79.0,
+   "kcal": 417.0
+  },
+  "173304": {
+   "d": "McDONALD'S, McFLURRY with OREO cookies",
+   "p": 3.97,
+   "f": 5.66,
+   "c": 25.55,
+   "kcal": 165.0
+  },
+  "173132": {
+   "d": "Formulated bar, MARS SNACKFOOD US, SNICKERS MARATHON Double Chocolate Nut Bar",
+   "p": 22.35,
+   "f": 8.99,
+   "c": 51.66,
+   "kcal": 377.0
+  },
+  "175108": {
+   "d": "Beverages, COCA-COLA, POWERADE, lemon-lime flavored, ready-to-drink",
+   "p": 0.0,
+   "f": 0.05,
+   "c": 7.84,
+   "kcal": 32.0
+  },
+  "174113": {
+   "d": "Beverages, POWERADE, Zero, Mixed Berry",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.14,
+   "kcal": 0.0
+  },
+  "174854": {
+   "d": "Beverages, carbonated, orange",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 12.3,
+   "kcal": 48.0
+  },
+  "173210": {
+   "d": "Beverages, Energy drink, RED BULL",
+   "p": 0.46,
+   "f": 0.0,
+   "c": 10.23,
+   "kcal": 43.0
+  },
+  "171870": {
+   "d": "Beverages, Energy drink, RED BULL, sugar free, with added caffeine, niacin, pantothenic acid, vitamins B6 and B12",
+   "p": 0.25,
+   "f": 0.08,
+   "c": 0.7,
+   "kcal": 5.0
+  },
+  "171935": {
+   "d": "Beverages, Energy Drink, Monster, fortified with vitamins C, B2, B3, B6, B12",
+   "p": 0.47,
+   "f": 0.0,
+   "c": 11.28,
+   "kcal": 47.0
+  },
+  "168187": {
+   "d": "Pineapple juice, canned or bottled, unsweetened, with added ascorbic acid",
+   "p": 0.36,
+   "f": 0.12,
+   "c": 12.87,
+   "kcal": 53.0
+  },
+  "167807": {
+   "d": "Cherry juice, tart",
+   "p": 0.31,
+   "f": 0.54,
+   "c": 13.7,
+   "kcal": 59.0
+  },
+  "168117": {
+   "d": "Cranberry juice, unsweetened",
+   "p": 0.39,
+   "f": 0.13,
+   "c": 12.2,
+   "kcal": 46.0
+  },
+  "167753": {
+   "d": "Prune juice, canned",
+   "p": 0.61,
+   "f": 0.03,
+   "c": 17.45,
+   "kcal": 71.0
+  },
+  "168185": {
+   "d": "Peach nectar, canned, with added ascorbic acid",
+   "p": 0.21,
+   "f": 0.51,
+   "c": 11.93,
+   "kcal": 50.0
+  },
+  "171704": {
+   "d": "Apricot nectar, canned, with added ascorbic acid",
+   "p": 0.17,
+   "f": 0.45,
+   "c": 13.63,
+   "kcal": 56.0
+  },
+  "167785": {
+   "d": "Mango nectar, canned",
+   "p": 0.11,
+   "f": 0.06,
+   "c": 13.12,
+   "kcal": 51.0
+  },
+  "168186": {
+   "d": "Pear nectar, canned, with added ascorbic acid",
+   "p": 0.11,
+   "f": 0.01,
+   "c": 15.76,
+   "kcal": 60.0
+  },
+  "171914": {
+   "d": "Beverages, fruit punch drink, without added nutrients, canned",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 11.97,
+   "kcal": 48.0
+  },
+  "173217": {
+   "d": "Lemonade, frozen concentrate, white, prepared with water",
+   "p": 0.07,
+   "f": 0.04,
+   "c": 10.42,
+   "kcal": 40.0
+  },
+  "171891": {
+   "d": "Beverages, coffee, brewed, espresso, restaurant-prepared",
+   "p": 0.12,
+   "f": 0.18,
+   "c": 1.67,
+   "kcal": 9.0
+  },
+  "171880": {
+   "d": "Beverages, coffee, ready to drink, milk based, sweetened",
+   "p": 1.98,
+   "f": 1.38,
+   "c": 12.6,
+   "kcal": 71.0
+  },
+  "174118": {
+   "d": "Beverages, chocolate syrup, prepared with whole milk",
+   "p": 3.07,
+   "f": 2.96,
+   "c": 12.78,
+   "kcal": 90.0
+  },
+  "170880": {
+   "d": "Milk, chocolate, fluid, commercial, reduced fat, with added vitamin A and vitamin D",
+   "p": 2.99,
+   "f": 1.9,
+   "c": 12.13,
+   "kcal": 76.0
+  },
+  "172446": {
+   "d": "Soymilk, original and vanilla, unfortified",
+   "p": 3.27,
+   "f": 1.75,
+   "c": 6.28,
+   "kcal": 54.0
+  },
+  "174832": {
+   "d": "Beverages, almond milk, unsweetened, shelf stable",
+   "p": 0.4,
+   "f": 0.96,
+   "c": 1.31,
+   "kcal": 15.0
+  },
+  "167795": {
+   "d": "Fruit juice smoothie, NAKED JUICE, MIGHTY MANGO",
+   "p": 0.42,
+   "f": 0.0,
+   "c": 15.0,
+   "kcal": 63.0
+  },
+  "169589": {
+   "d": "Candies, MARS SNACKFOOD US, SNICKERS Bar",
+   "p": 7.53,
+   "f": 23.85,
+   "c": 61.51,
+   "kcal": 491.0
+  },
+  "168768": {
+   "d": "Candies, MARS SNACKFOOD US, TWIX Caramel Cookie Bars",
+   "p": 4.91,
+   "f": 24.85,
+   "c": 64.8,
+   "kcal": 502.0
+  },
+  "167992": {
+   "d": "Candies, KIT KAT Wafer Bar",
+   "p": 6.51,
+   "f": 25.99,
+   "c": 64.59,
+   "kcal": 518.0
+  },
+  "168756": {
+   "d": "Candies, MARS SNACKFOOD US, MILKY WAY Bar",
+   "p": 4.01,
+   "f": 17.23,
+   "c": 71.17,
+   "kcal": 456.0
+  },
+  "169583": {
+   "d": "Candies, MARS SNACKFOOD US, M&M's Milk Chocolate Candies",
+   "p": 4.33,
+   "f": 21.13,
+   "c": 71.19,
+   "kcal": 492.0
+  },
+  "169582": {
+   "d": "Candies, MARS SNACKFOOD US, M&M's Peanut Chocolate Candies",
+   "p": 9.57,
+   "f": 26.13,
+   "c": 60.48,
+   "kcal": 515.0
+  },
+  "167571": {
+   "d": "Candies, white chocolate",
+   "p": 5.87,
+   "f": 32.09,
+   "c": 59.24,
+   "kcal": 539.0
+  },
+  "167977": {
+   "d": "Candies, sweet chocolate",
+   "p": 3.9,
+   "f": 34.2,
+   "c": 60.4,
+   "kcal": 507.0
+  },
+  "172718": {
+   "d": "Cookies, chocolate sandwich, with creme filling, regular",
+   "p": 5.21,
+   "f": 19.14,
+   "c": 71.0,
+   "kcal": 464.0
+  },
+  "174967": {
+   "d": "Cookies, shortbread, commercially prepared, plain",
+   "p": 5.37,
+   "f": 26.22,
+   "c": 63.78,
+   "kcal": 514.0
+  },
+  "172725": {
+   "d": "Cookies, oatmeal, commercially prepared, regular",
+   "p": 6.2,
+   "f": 18.1,
+   "c": 68.7,
+   "kcal": 450.0
+  },
+  "174950": {
+   "d": "Cookies, butter, commercially prepared, enriched",
+   "p": 6.1,
+   "f": 18.8,
+   "c": 68.9,
+   "kcal": 467.0
+  },
+  "172716": {
+   "d": "Cookies, chocolate chip, commercially prepared, regular, higher fat, enriched",
+   "p": 5.1,
+   "f": 24.72,
+   "c": 65.36,
+   "kcal": 492.0
+  },
+  "174956": {
+   "d": "Cookies, gingersnaps",
+   "p": 5.6,
+   "f": 9.8,
+   "c": 76.9,
+   "kcal": 416.0
+  },
+  "167555": {
+   "d": "Snacks, pretzels, hard, plain, salted",
+   "p": 10.04,
+   "f": 2.93,
+   "c": 80.39,
+   "kcal": 384.0
+  },
+  "172706": {
+   "d": "Cake, sponge, commercially prepared",
+   "p": 5.4,
+   "f": 2.7,
+   "c": 61.0,
+   "kcal": 290.0
+  },
+  "174934": {
+   "d": "Cake, chocolate, commercially prepared with chocolate frosting, in-store bakery",
+   "p": 3.48,
+   "f": 20.05,
+   "c": 52.84,
+   "kcal": 389.0
+  },
+  "175034": {
+   "d": "Sweet rolls, cinnamon, commercially prepared with raisins",
+   "p": 6.2,
+   "f": 16.4,
+   "c": 50.9,
+   "kcal": 372.0
+  },
+  "172754": {
+   "d": "Danish pastry, cheese",
+   "p": 8.0,
+   "f": 21.9,
+   "c": 37.2,
+   "kcal": 374.0
+  },
+  "172765": {
+   "d": "Muffins, blueberry, commercially prepared (Includes mini-muffins)",
+   "p": 4.49,
+   "f": 16.07,
+   "c": 53.0,
+   "kcal": 375.0
+  },
+  "175009": {
+   "d": "Pancakes, plain, prepared from recipe",
+   "p": 6.4,
+   "f": 9.7,
+   "c": 28.3,
+   "kcal": 227.0
+  },
+  "175039": {
+   "d": "Waffles, plain, prepared from recipe",
+   "p": 7.9,
+   "f": 14.1,
+   "c": 32.9,
+   "kcal": 291.0
+  },
+  "172738": {
+   "d": "Puff pastry, frozen, ready-to-bake, baked",
+   "p": 7.4,
+   "f": 38.5,
+   "c": 45.7,
+   "kcal": 558.0
+  },
+  "174992": {
+   "d": "Doughnuts, cake-type, plain, sugared or glazed",
+   "p": 5.2,
+   "f": 22.9,
+   "c": 50.8,
+   "kcal": 426.0
+  },
+  "167558": {
+   "d": "Snacks, tortilla chips, plain, white corn, salted",
+   "p": 7.1,
+   "f": 20.68,
+   "c": 67.78,
+   "kcal": 472.0
+  },
+  "173141": {
+   "d": "Popcorn, microwave, regular (butter) flavor, made with palm oil",
+   "p": 8.38,
+   "f": 30.22,
+   "c": 57.26,
+   "kcal": 535.0
+  },
+  "169418": {
+   "d": "Seeds, sunflower seed kernels, dry roasted, with salt added",
+   "p": 19.33,
+   "f": 49.8,
+   "c": 24.07,
+   "kcal": 582.0
+  },
+  "169421": {
+   "d": "Nuts, cashew nuts, dry roasted, with salt added",
+   "p": 15.31,
+   "f": 46.35,
+   "c": 32.69,
+   "kcal": 574.0
+  },
+  "170591": {
+   "d": "Nuts, pine nuts, dried",
+   "p": 13.69,
+   "f": 68.37,
+   "c": 13.08,
+   "kcal": 673.0
+  },
+  "168599": {
+   "d": "Nuts, mixed nuts, dry roasted, with peanuts, with salt added",
+   "p": 17.3,
+   "f": 51.45,
+   "c": 25.35,
+   "kcal": 594.0
+  },
+  "174262": {
+   "d": "Peanuts, all types, dry-roasted, with salt",
+   "p": 24.35,
+   "f": 49.66,
+   "c": 21.26,
+   "kcal": 587.0
+  },
+  "168598": {
+   "d": "Nuts, macadamia nuts, dry roasted, with salt added",
+   "p": 7.79,
+   "f": 76.08,
+   "c": 12.83,
+   "kcal": 716.0
+  },
+  "170182": {
+   "d": "Nuts, pecans",
+   "p": 9.17,
+   "f": 71.97,
+   "c": 13.86,
+   "kcal": 691.0
+  },
+  "170170": {
+   "d": "Nuts, coconut meat, dried (desiccated), not sweetened",
+   "p": 6.88,
+   "f": 64.53,
+   "c": 23.65,
+   "kcal": 660.0
+  },
+  "170169": {
+   "d": "Nuts, coconut meat, raw",
+   "p": 3.33,
+   "f": 33.49,
+   "c": 15.23,
+   "kcal": 354.0
+  },
+  "171691": {
+   "d": "Apples, dried, sulfured, uncooked",
+   "p": 0.93,
+   "f": 0.32,
+   "c": 65.89,
+   "kcal": 243.0
+  },
+  "169121": {
+   "d": "Pears, dried, sulfured, uncooked",
+   "p": 1.87,
+   "f": 0.63,
+   "c": 69.7,
+   "kcal": 262.0
+  },
+  "168849": {
+   "d": "Snacks, banana chips",
+   "p": 2.3,
+   "f": 33.6,
+   "c": 58.4,
+   "kcal": 519.0
+  },
+  "171723": {
+   "d": "Cranberries, dried, sweetened (Includes foods for USDA's Food Distribution Program)",
+   "p": 0.17,
+   "f": 1.09,
+   "c": 82.8,
+   "kcal": 308.0
+  },
+  "167996": {
+   "d": "Candies, halavah, plain",
+   "p": 12.49,
+   "f": 21.52,
+   "c": 60.49,
+   "kcal": 469.0
+  },
+  "169588": {
+   "d": "Candies, sesame crunch",
+   "p": 11.6,
+   "f": 33.3,
+   "c": 50.3,
+   "kcal": 516.0
+  },
+  "167990": {
+   "d": "Candies, hard",
+   "p": 0.0,
+   "f": 0.2,
+   "c": 98.0,
+   "kcal": 394.0
+  },
+  "167991": {
+   "d": "Candies, jellybeans",
+   "p": 0.0,
+   "f": 0.05,
+   "c": 93.55,
+   "kcal": 375.0
+  },
+  "167995": {
+   "d": "Candies, marshmallows",
+   "p": 1.8,
+   "f": 0.2,
+   "c": 81.3,
+   "kcal": 318.0
+  },
+  "167542": {
+   "d": "Snacks, granola bars, hard, plain",
+   "p": 10.1,
+   "f": 19.8,
+   "c": 64.4,
+   "kcal": 471.0
+  },
+  "170250": {
+   "d": "Snacks, rice cakes, brown rice, plain, unsalted",
+   "p": 8.2,
+   "f": 2.8,
+   "c": 81.5,
+   "kcal": 387.0
+  },
+  "168626": {
+   "d": "Beef, variety meats and by-products, liver, cooked, braised",
+   "p": 29.08,
+   "f": 5.26,
+   "c": 5.13,
+   "kcal": 191.0
+  },
+  "172533": {
+   "d": "Lamb, variety meats and by-products, liver, cooked, pan-fried",
+   "p": 25.53,
+   "f": 12.65,
+   "c": 3.78,
+   "kcal": 238.0
+  },
+  "174491": {
+   "d": "Chicken, liver, all classes, cooked, pan-fried",
+   "p": 25.78,
+   "f": 6.43,
+   "c": 1.11,
+   "kcal": 172.0
+  },
+  "169450": {
+   "d": "Beef, variety meats and by-products, kidneys, cooked, simmered",
+   "p": 27.27,
+   "f": 4.65,
+   "c": 0.0,
+   "kcal": 158.0
+  },
+  "174355": {
+   "d": "Lamb, variety meats and by-products, kidneys, cooked, braised",
+   "p": 23.65,
+   "f": 3.62,
+   "c": 0.99,
+   "kcal": 137.0
+  },
+  "169448": {
+   "d": "Beef, variety meats and by-products, heart, cooked, simmered",
+   "p": 28.48,
+   "f": 4.73,
+   "c": 0.15,
+   "kcal": 165.0
+  },
+  "172528": {
+   "d": "Lamb, variety meats and by-products, heart, cooked, braised",
+   "p": 24.97,
+   "f": 7.91,
+   "c": 1.93,
+   "kcal": 185.0
+  },
+  "171059": {
+   "d": "Chicken, heart, all classes, cooked, simmered",
+   "p": 26.41,
+   "f": 7.92,
+   "c": 0.1,
+   "kcal": 185.0
+  },
+  "171457": {
+   "d": "Chicken, gizzard, all classes, cooked, simmered",
+   "p": 30.39,
+   "f": 2.68,
+   "c": 0.0,
+   "kcal": 154.0
+  },
+  "170598": {
+   "d": "Beef, variety meats and by-products, tongue, cooked, simmered",
+   "p": 19.29,
+   "f": 22.3,
+   "c": 0.0,
+   "kcal": 284.0
+  },
+  "174367": {
+   "d": "Lamb, variety meats and by-products, tongue, cooked, braised",
+   "p": 21.57,
+   "f": 20.28,
+   "c": 0.0,
+   "kcal": 275.0
+  },
+  "174769": {
+   "d": "Beef, variety meats and by-products, tripe, cooked, simmered",
+   "p": 11.71,
+   "f": 4.05,
+   "c": 1.99,
+   "kcal": 94.0
+  },
+  "172526": {
+   "d": "Lamb, variety meats and by-products, brain, cooked, braised",
+   "p": 12.55,
+   "f": 10.17,
+   "c": 0.0,
+   "kcal": 145.0
+  },
+  "168624": {
+   "d": "Beef, variety meats and by-products, brain, cooked, simmered",
+   "p": 11.67,
+   "f": 10.53,
+   "c": 1.48,
+   "kcal": 151.0
+  },
+  "174360": {
+   "d": "Lamb, variety meats and by-products, lungs, cooked, braised",
+   "p": 19.88,
+   "f": 3.1,
+   "c": 0.0,
+   "kcal": 113.0
+  },
+  "174312": {
+   "d": "Lamb, leg, whole (shank and sirloin), separable lean and fat, trimmed to 1/4\" fat, choice, cooked, roasted",
+   "p": 25.55,
+   "f": 16.48,
+   "c": 0.0,
+   "kcal": 258.0
+  },
+  "172497": {
+   "d": "Lamb, shoulder, whole (arm and blade), separable lean and fat, trimmed to 1/4\" fat, choice, cooked, braised",
+   "p": 28.68,
+   "f": 24.55,
+   "c": 0.0,
+   "kcal": 344.0
+  },
+  "172544": {
+   "d": "Lamb, ground, cooked, broiled",
+   "p": 24.75,
+   "f": 19.65,
+   "c": 0.0,
+   "kcal": 283.0
+  },
+  "172509": {
+   "d": "Lamb, cubed for stew or kabob (leg and shoulder), separable lean only, trimmed to 1/4\" fat, cooked, braised",
+   "p": 33.69,
+   "f": 8.8,
+   "c": 0.0,
+   "kcal": 223.0
+  },
+  "169440": {
+   "d": "Beef, brisket, flat half, separable lean and fat, trimmed to 0\" fat, choice, cooked, braised",
+   "p": 32.21,
+   "f": 9.24,
+   "c": 0.0,
+   "kcal": 221.0
+  },
+  "169442": {
+   "d": "Beef, shank crosscuts, separable lean only, trimmed to 1/4\" fat, choice, cooked, simmered",
+   "p": 33.68,
+   "f": 6.36,
+   "c": 0.0,
+   "kcal": 201.0
+  },
+  "174032": {
+   "d": "Beef, ground, 85% lean meat / 15% fat, patty, cooked, broiled",
+   "p": 25.93,
+   "f": 15.41,
+   "c": 0.0,
+   "kcal": 250.0
+  },
+  "173818": {
+   "d": "Veal, leg (top round), separable lean and fat, cooked, braised",
+   "p": 36.16,
+   "f": 6.33,
+   "c": 0.0,
+   "kcal": 211.0
+  },
+  "174879": {
+   "d": "Veal, ground, cooked, pan-fried",
+   "p": 25.83,
+   "f": 11.78,
+   "c": 1.51,
+   "kcal": 215.0
+  },
+  "175304": {
+   "d": "Game meat, goat, cooked, roasted",
+   "p": 27.1,
+   "f": 3.03,
+   "c": 0.0,
+   "kcal": 143.0
+  },
+  "172522": {
+   "d": "Game meat, rabbit, domesticated, composite of cuts, cooked, roasted",
+   "p": 29.06,
+   "f": 8.05,
+   "c": 0.0,
+   "kcal": 197.0
+  },
+  "172411": {
+   "d": "Duck, domesticated, meat only, cooked, roasted",
+   "p": 23.48,
+   "f": 11.2,
+   "c": 0.0,
+   "kcal": 201.0
+  },
+  "171496": {
+   "d": "Turkey, whole, breast, meat only, cooked, roasted",
+   "p": 30.13,
+   "f": 2.08,
+   "c": 0.0,
+   "kcal": 147.0
+  },
+  "171451": {
+   "d": "Chicken, broilers or fryers, meat only, cooked, stewed",
+   "p": 27.29,
+   "f": 6.71,
+   "c": 0.0,
+   "kcal": 177.0
+  },
+  "172374": {
+   "d": "Chicken, broilers or fryers, drumstick, meat and skin, cooked, fried, batter",
+   "p": 21.95,
+   "f": 15.75,
+   "c": 8.28,
+   "kcal": 268.0
+  },
+  "173628": {
+   "d": "Chicken, broilers or fryers, wing, meat and skin, cooked, fried, batter",
+   "p": 19.87,
+   "f": 21.81,
+   "c": 10.94,
+   "kcal": 324.0
+  },
+  "170744": {
+   "d": "KFC, Fried Chicken, ORIGINAL RECIPE, Breast, meat and skin with breading",
+   "p": 21.94,
+   "f": 13.11,
+   "c": 6.28,
+   "kcal": 231.0
+  },
+  "170718": {
+   "d": "Fast foods, chicken, breaded and fried, boneless pieces, plain",
+   "p": 15.92,
+   "f": 20.36,
+   "c": 14.93,
+   "kcal": 307.0
+  },
+  "175120": {
+   "d": "Fish, mackerel, Atlantic, cooked, dry heat",
+   "p": 23.85,
+   "f": 17.81,
+   "c": 0.0,
+   "kcal": 262.0
+  },
+  "175118": {
+   "d": "Fish, herring, Atlantic, pickled",
+   "p": 14.19,
+   "f": 18.0,
+   "c": 9.64,
+   "kcal": 262.0
+  },
+  "173668": {
+   "d": "Fish, herring, Atlantic, kippered",
+   "p": 24.58,
+   "f": 12.37,
+   "c": 0.0,
+   "kcal": 217.0
+  },
+  "173718": {
+   "d": "Fish, trout, rainbow, farmed, cooked, dry heat",
+   "p": 23.8,
+   "f": 7.38,
+   "c": 0.0,
+   "kcal": 168.0
+  },
+  "173681": {
+   "d": "Fish, pollock, Alaska, cooked, dry heat (may contain additives to retain moisture)",
+   "p": 23.48,
+   "f": 1.18,
+   "c": 0.0,
+   "kcal": 111.0
+  },
+  "174187": {
+   "d": "Fish, catfish, channel, cooked, breaded and fried",
+   "p": 18.09,
+   "f": 13.33,
+   "c": 8.04,
+   "kcal": 229.0
+  },
+  "171982": {
+   "d": "Mollusks, squid, mixed species, cooked, fried",
+   "p": 17.94,
+   "f": 7.48,
+   "c": 7.79,
+   "kcal": 175.0
+  },
+  "174188": {
+   "d": "Fish, caviar, black and red, granular",
+   "p": 24.6,
+   "f": 17.9,
+   "c": 4.0,
+   "kcal": 264.0
+  },
+  "173702": {
+   "d": "Fish, surimi",
+   "p": 15.18,
+   "f": 0.9,
+   "c": 6.85,
+   "kcal": 99.0
+  },
+  "175175": {
+   "d": "Fish, salmon, pink, canned, drained solids",
+   "p": 23.1,
+   "f": 5.02,
+   "c": 0.0,
+   "kcal": 138.0
+  },
+  "174217": {
+   "d": "Mollusks, mussel, blue, cooked, moist heat",
+   "p": 23.8,
+   "f": 4.48,
+   "c": 7.39,
+   "kcal": 172.0
+  },
+  "172008": {
+   "d": "Crustaceans, crab, queen, cooked, moist heat",
+   "p": 23.72,
+   "f": 1.51,
+   "c": 0.0,
+   "kcal": 115.0
+  },
+  "173708": {
+   "d": "Fish, tuna, light, canned in oil, drained solids",
+   "p": 29.13,
+   "f": 8.21,
+   "c": 0.0,
+   "kcal": 198.0
+  },
+  "172187": {
+   "d": "Egg, whole, cooked, scrambled",
+   "p": 9.99,
+   "f": 10.98,
+   "c": 1.61,
+   "kcal": 149.0
+  },
+  "174915": {
+   "d": "Bread, pita, white, enriched",
+   "p": 9.1,
+   "f": 1.2,
+   "c": 55.7,
+   "kcal": 275.0
+  },
+  "172688": {
+   "d": "Bread, whole-wheat, commercially prepared",
+   "p": 12.45,
+   "f": 3.5,
+   "c": 42.71,
+   "kcal": 252.0
+  },
+  "172684": {
+   "d": "Bread, rye",
+   "p": 8.5,
+   "f": 3.3,
+   "c": 48.3,
+   "kcal": 259.0
+  },
+  "175049": {
+   "d": "Bagels, plain, enriched, without calcium propionate (includes onion, poppy, sesame)",
+   "p": 10.5,
+   "f": 1.6,
+   "c": 53.4,
+   "kcal": 275.0
+  },
+  "172796": {
+   "d": "Rolls, hamburger or hotdog, plain",
+   "p": 9.77,
+   "f": 3.91,
+   "c": 50.12,
+   "kcal": 279.0
+  },
+  "167535": {
+   "d": "Tortillas, ready-to-bake or -fry, flour, shelf stable",
+   "p": 8.01,
+   "f": 7.58,
+   "c": 49.27,
+   "kcal": 297.0
+  },
+  "173414": {
+   "d": "Cheese, cheddar (Includes foods for USDA's Food Distribution Program)",
+   "p": 22.87,
+   "f": 33.31,
+   "c": 3.37,
+   "kcal": 403.0
+  },
+  "170848": {
+   "d": "Cheese, parmesan, hard",
+   "p": 35.75,
+   "f": 25.0,
+   "c": 3.22,
+   "kcal": 392.0
+  },
+  "173420": {
+   "d": "Cheese, feta",
+   "p": 14.21,
+   "f": 21.49,
+   "c": 3.88,
+   "kcal": 265.0
+  },
+  "171290": {
+   "d": "Cheese, pasteurized process, American, without added vitamin D",
+   "p": 18.13,
+   "f": 31.79,
+   "c": 3.7,
+   "kcal": 371.0
+  },
+  "170894": {
+   "d": "Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)",
+   "p": 10.19,
+   "f": 0.39,
+   "c": 3.6,
+   "kcal": 59.0
+  },
+  "173456": {
+   "d": "Yogurt, fruit, low fat, 9 grams protein per 8 ounce, fortified with vitamin D",
+   "p": 3.98,
+   "f": 1.15,
+   "c": 18.64,
+   "kcal": 99.0
+  },
+  "170287": {
+   "d": "Bulgur, cooked",
+   "p": 3.08,
+   "f": 0.24,
+   "c": 18.58,
+   "kcal": 83.0
+  },
+  "169700": {
+   "d": "Couscous, cooked",
+   "p": 3.79,
+   "f": 0.16,
+   "c": 23.22,
+   "kcal": 112.0
+  },
+  "170285": {
+   "d": "Barley, pearled, cooked",
+   "p": 2.26,
+   "f": 0.44,
+   "c": 28.22,
+   "kcal": 123.0
+  },
+  "168871": {
+   "d": "Millet, cooked",
+   "p": 3.51,
+   "f": 1.0,
+   "c": 23.67,
+   "kcal": 119.0
+  },
+  "169704": {
+   "d": "Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+   "p": 2.74,
+   "f": 0.97,
+   "c": 25.58,
+   "kcal": 123.0
+  },
+  "168919": {
+   "d": "Noodles, egg, cooked, enriched, with added salt",
+   "p": 4.54,
+   "f": 2.07,
+   "c": 25.16,
+   "kcal": 138.0
+  },
+  "171177": {
+   "d": "Soup, ramen noodle, any flavor, dry",
+   "p": 10.17,
+   "f": 17.59,
+   "c": 60.26,
+   "kcal": 440.0
+  },
+  "168914": {
+   "d": "Rice noodles, cooked",
+   "p": 1.79,
+   "f": 0.2,
+   "c": 24.01,
+   "kcal": 108.0
+  },
+  "168917": {
+   "d": "Quinoa, cooked",
+   "p": 4.4,
+   "f": 1.92,
+   "c": 21.3,
+   "kcal": 120.0
+  },
+  "173904": {
+   "d": "Cereals, oats, regular and quick, not fortified, dry",
+   "p": 13.15,
+   "f": 6.52,
+   "c": 67.7,
+   "kcal": 379.0
+  },
+  "171646": {
+   "d": "Cereals ready-to-eat, granola, homemade",
+   "p": 13.67,
+   "f": 24.31,
+   "c": 53.88,
+   "kcal": 489.0
+  },
+  "170093": {
+   "d": "Potatoes, baked, flesh and skin, without salt",
+   "p": 2.5,
+   "f": 0.13,
+   "c": 21.15,
+   "kcal": 93.0
+  },
+  "167754": {
+   "d": "Pummelo, raw",
+   "p": 0.76,
+   "f": 0.04,
+   "c": 9.62,
+   "kcal": 38.0
+  },
+  "171711": {
+   "d": "Blueberries, raw",
+   "p": 0.74,
+   "f": 0.33,
+   "c": 14.49,
+   "kcal": 57.0
+  },
+  "173946": {
+   "d": "Blackberries, raw",
+   "p": 1.39,
+   "f": 0.49,
+   "c": 9.61,
+   "kcal": 43.0
+  },
+  "169926": {
+   "d": "Papayas, raw",
+   "p": 0.47,
+   "f": 0.26,
+   "c": 10.82,
+   "kcal": 43.0
+  },
+  "173963": {
+   "d": "Currants, european black, raw",
+   "p": 1.4,
+   "f": 0.41,
+   "c": 15.38,
+   "kcal": 63.0
+  },
+  "173964": {
+   "d": "Currants, red and white, raw",
+   "p": 1.4,
+   "f": 0.2,
+   "c": 13.8,
+   "kcal": 56.0
+  },
+  "173030": {
+   "d": "Gooseberries, raw",
+   "p": 0.88,
+   "f": 0.58,
+   "c": 10.18,
+   "kcal": 44.0
+  },
+  "169914": {
+   "d": "Nectarines, raw",
+   "p": 1.06,
+   "f": 0.32,
+   "c": 10.55,
+   "kcal": 44.0
+  },
+  "169112": {
+   "d": "Peaches, canned, heavy syrup pack, solids and liquids",
+   "p": 0.45,
+   "f": 0.1,
+   "c": 19.94,
+   "kcal": 74.0
+  },
+  "169944": {
+   "d": "Pineapple, canned, heavy syrup pack, solids and liquids",
+   "p": 0.35,
+   "f": 0.11,
+   "c": 20.2,
+   "kcal": 78.0
+  },
+  "173960": {
+   "d": "Cherries, sweet, canned, pitted, heavy syrup pack, solids and liquids",
+   "p": 0.6,
+   "f": 0.15,
+   "c": 21.27,
+   "kcal": 83.0
+  },
+  "169292": {
+   "d": "Squash, summer, zucchini, includes skin, cooked, boiled, drained, without salt",
+   "p": 1.14,
+   "f": 0.36,
+   "c": 2.69,
+   "kcal": 15.0
+  },
+  "169252": {
+   "d": "Mushrooms, white, cooked, boiled, drained, without salt",
+   "p": 2.17,
+   "f": 0.47,
+   "c": 5.29,
+   "kcal": 28.0
+  },
+  "169214": {
+   "d": "Corn, sweet, yellow, canned, whole kernel, drained solids",
+   "p": 2.29,
+   "f": 1.22,
+   "c": 14.34,
+   "kcal": 67.0
+  },
+  "170015": {
+   "d": "Peas, green, canned, drained solids, rinsed in tap water",
+   "p": 4.33,
+   "f": 0.95,
+   "c": 11.82,
+   "kcal": 71.0
+  },
+  "174285": {
+   "d": "Beans, kidney, red, mature seeds, canned, drained solids",
+   "p": 7.98,
+   "f": 1.05,
+   "c": 21.49,
+   "kcal": 124.0
+  },
+  "175182": {
+   "d": "Beans, baked, canned, plain or vegetarian",
+   "p": 4.75,
+   "f": 0.37,
+   "c": 21.14,
+   "kcal": 94.0
+  },
+  "169279": {
+   "d": "Sauerkraut, canned, solids and liquids",
+   "p": 0.91,
+   "f": 0.14,
+   "c": 4.28,
+   "kcal": 19.0
+  },
+  "170459": {
+   "d": "Tomato products, canned, paste, without salt added (Includes foods for USDA's Food Distribution Program)",
+   "p": 4.32,
+   "f": 0.47,
+   "c": 18.91,
+   "kcal": 82.0
+  },
+  "168483": {
+   "d": "Sweet potato, cooked, baked in skin, flesh, without salt",
+   "p": 2.01,
+   "f": 0.15,
+   "c": 20.71,
+   "kcal": 90.0
+  },
+  "168390": {
+   "d": "Asparagus, cooked, boiled, drained",
+   "p": 2.4,
+   "f": 0.22,
+   "c": 4.11,
+   "kcal": 22.0
+  },
+  "170005": {
+   "d": "Onions, spring or scallions (includes tops and bulb), raw",
+   "p": 1.83,
+   "f": 0.19,
+   "c": 7.34,
+   "kcal": 32.0
+  },
+  "172233": {
+   "d": "Dill weed, fresh",
+   "p": 3.46,
+   "f": 1.12,
+   "c": 7.02,
+   "kcal": 43.0
+  },
+  "170416": {
+   "d": "Parsley, fresh",
+   "p": 2.97,
+   "f": 0.79,
+   "c": 6.33,
+   "kcal": 36.0
+  },
+  "170720": {
+   "d": "McDONALD'S, BIG MAC",
+   "p": 11.82,
+   "f": 14.96,
+   "c": 20.08,
+   "kcal": 257.0
+  },
+  "170690": {
+   "d": "Fast foods, cheeseburger; single, regular patty; plain",
+   "p": 16.51,
+   "f": 14.72,
+   "c": 28.03,
+   "kcal": 308.0
+  },
+  "169850": {
+   "d": "Restaurant, Italian, lasagna with meat",
+   "p": 10.83,
+   "f": 10.69,
+   "c": 11.36,
+   "kcal": 185.0
+  },
+  "167680": {
+   "d": "Restaurant, Italian, spaghetti with meat sauce",
+   "p": 5.79,
+   "f": 3.59,
+   "c": 16.4,
+   "kcal": 121.0
+  },
+  "170697": {
+   "d": "Fast foods, onion rings, breaded and fried",
+   "p": 3.86,
+   "f": 25.23,
+   "c": 43.58,
+   "kcal": 411.0
+  },
+  "170689": {
+   "d": "Fast foods, taco with beef, cheese and lettuce, hard shell",
+   "p": 8.86,
+   "f": 12.7,
+   "c": 19.85,
+   "kcal": 226.0
+  },
+  "173277": {
+   "d": "Fast foods, burrito, with beans and beef",
+   "p": 11.52,
+   "f": 7.47,
+   "c": 19.52,
+   "kcal": 191.0
+  },
+  "170291": {
+   "d": "Fast foods, nachos, with cheese",
+   "p": 4.32,
+   "f": 21.5,
+   "c": 34.91,
+   "kcal": 343.0
+  },
+  "170296": {
+   "d": "Fast foods, fish sandwich, with tartar sauce",
+   "p": 10.29,
+   "f": 12.45,
+   "c": 26.69,
+   "kcal": 257.0
+  },
+  "170295": {
+   "d": "Fast foods, chicken fillet sandwich, plain with pickles",
+   "p": 16.28,
+   "f": 11.19,
+   "c": 20.89,
+   "kcal": 250.0
+  },
+  "167668": {
+   "d": "Restaurant, Chinese, fried rice, without meat",
+   "p": 4.05,
+   "f": 2.96,
+   "c": 32.79,
+   "kcal": 174.0
+  },
+  "168081": {
+   "d": "Restaurant, Chinese, sweet and sour chicken",
+   "p": 10.1,
+   "f": 12.65,
+   "c": 23.86,
+   "kcal": 250.0
+  },
+  "172455": {
+   "d": "Falafel, home-prepared",
+   "p": 13.31,
+   "f": 17.8,
+   "c": 31.84,
+   "kcal": 333.0
+  },
+  "172454": {
+   "d": "Hummus, home prepared",
+   "p": 4.86,
+   "f": 8.59,
+   "c": 20.12,
+   "kcal": 177.0
+  },
+  "172451": {
+   "d": "Tofu, fried",
+   "p": 18.82,
+   "f": 20.18,
+   "c": 8.86,
+   "kcal": 270.0
+  },
+  "172909": {
+   "d": "Soup, chicken noodle, canned, prepared with equal volume water",
+   "p": 1.16,
+   "f": 0.76,
+   "c": 2.97,
+   "kcal": 24.0
+  },
+  "171176": {
+   "d": "Soup, tomato, canned, prepared with equal volume water, commercial",
+   "p": 0.71,
+   "f": 0.21,
+   "c": 7.45,
+   "kcal": 32.0
+  },
+  "172915": {
+   "d": "Soup, cream of mushroom, canned, prepared with equal volume water",
+   "p": 0.66,
+   "f": 2.59,
+   "c": 3.33,
+   "kcal": 39.0
+  },
+  "171190": {
+   "d": "Soup, beef and vegetables, canned, ready-to-serve",
+   "p": 3.18,
+   "f": 1.16,
+   "c": 6.16,
+   "kcal": 48.0
+  },
+  "172234": {
+   "d": "Mustard, prepared, yellow",
+   "p": 3.74,
+   "f": 3.34,
+   "c": 5.83,
+   "kcal": 60.0
+  },
+  "174523": {
+   "d": "Sauce, barbecue",
+   "p": 0.82,
+   "f": 0.63,
+   "c": 40.77,
+   "kcal": 172.0
+  },
+  "171579": {
+   "d": "Sauce, pesto, ready-to-serve, refrigerated",
+   "p": 9.83,
+   "f": 37.6,
+   "c": 10.09,
+   "kcal": 418.0
+  },
+  "173592": {
+   "d": "Salad dressing, ranch dressing, regular",
+   "p": 1.32,
+   "f": 44.54,
+   "c": 5.9,
+   "kcal": 430.0
+  },
+  "172347": {
+   "d": "Margarine, regular, 80% fat, composite, tub, with salt",
+   "p": 0.22,
+   "f": 80.17,
+   "c": 0.75,
+   "kcal": 713.0
+  },
+  "171263": {
+   "d": "Cream substitute, powdered",
+   "p": 2.48,
+   "f": 32.92,
+   "c": 59.29,
+   "kcal": 529.0
+  },
+  "174117": {
+   "d": "Beverages, chocolate syrup",
+   "p": 2.1,
+   "f": 1.13,
+   "c": 65.1,
+   "kcal": 279.0
+  },
+  "170859": {
+   "d": "Cream, fluid, heavy whipping",
+   "p": 2.84,
+   "f": 36.08,
+   "c": 2.84,
+   "kcal": 340.0
+  },
+  "171917": {
+   "d": "Beverages, tea, green, brewed, regular",
+   "p": 0.22,
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 1.0
+  },
+  "169593": {
+   "d": "Cocoa, dry powder, unsweetened",
+   "p": 19.6,
+   "f": 13.7,
+   "c": 57.9,
+   "kcal": 228.0
+  },
+  "170491": {
+   "d": "Carrot juice, canned",
+   "p": 0.95,
+   "f": 0.15,
+   "c": 9.28,
+   "kcal": 40.0
+  },
+  "167747": {
+   "d": "Lemon juice, raw",
+   "p": 0.35,
+   "f": 0.24,
+   "c": 6.9,
+   "kcal": 22.0
+  },
+  "171301": {
+   "d": "Kefir, lowfat, strawberry, LIFEWAY",
+   "p": 3.39,
+   "f": 0.9,
+   "c": 10.2,
+   "kcal": 62.0
+  },
+  "167697": {
+   "d": "Milk, buttermilk, fluid, cultured, reduced fat",
+   "p": 4.1,
+   "f": 2.0,
+   "c": 5.3,
+   "kcal": 56.0
+  },
+  "171275": {
+   "d": "Milk, canned, condensed, sweetened",
+   "p": 7.91,
+   "f": 8.7,
+   "c": 54.4,
+   "kcal": 321.0
+  },
+  "173454": {
+   "d": "Milk, dry, whole, without added vitamin D",
+   "p": 26.32,
+   "f": 26.71,
+   "c": 38.42,
+   "kcal": 496.0
+  },
+  "170851": {
+   "d": "Cheese, ricotta, whole milk",
+   "p": 7.54,
+   "f": 10.18,
+   "c": 7.27,
+   "kcal": 150.0
+  },
+  "171506": {
+   "d": "Turkey, Ground, cooked",
+   "p": 27.37,
+   "f": 10.4,
+   "c": 0.0,
+   "kcal": 203.0
+  },
+  "171078": {
+   "d": "Chicken, broilers or fryers, breast, meat only, cooked, fried",
+   "p": 33.44,
+   "f": 4.71,
+   "c": 0.51,
+   "kcal": 187.0
+  },
+  "174327": {
+   "d": "Lamb, shoulder, whole (arm and blade), separable lean only, trimmed to 1/4\" fat, choice, cooked, braised",
+   "p": 32.81,
+   "f": 15.89,
+   "c": 0.0,
+   "kcal": 283.0
+  },
+  "171655": {
+   "d": "Cereals, corn grits, white, regular and quick, enriched, cooked with water, without salt",
+   "p": 1.71,
+   "f": 0.46,
+   "c": 14.76,
+   "kcal": 71.0
+  },
+  "169146": {
+   "d": "Beets, cooked, boiled, drained",
+   "p": 1.68,
+   "f": 0.18,
+   "c": 9.96,
+   "kcal": 44.0
+  },
+  "170394": {
+   "d": "Carrots, cooked, boiled, drained, without salt",
+   "p": 0.76,
+   "f": 0.18,
+   "c": 8.22,
+   "kcal": 35.0
+  },
+  "169967": {
+   "d": "Broccoli, cooked, boiled, drained, without salt",
+   "p": 2.38,
+   "f": 0.41,
+   "c": 7.18,
+   "kcal": 35.0
+  },
+  "170397": {
+   "d": "Cauliflower, cooked, boiled, drained, without salt",
+   "p": 1.84,
+   "f": 0.45,
+   "c": 4.11,
+   "kcal": 23.0
+  },
+  "168463": {
+   "d": "Spinach, cooked, boiled, drained, without salt",
+   "p": 2.97,
+   "f": 0.26,
+   "c": 3.75,
+   "kcal": 23.0
+  },
+  "169976": {
+   "d": "Cabbage, cooked, boiled, drained, without salt",
+   "p": 1.27,
+   "f": 0.06,
+   "c": 5.51,
+   "kcal": 23.0
+  },
+  "169229": {
+   "d": "Eggplant, cooked, boiled, drained, without salt",
+   "p": 0.83,
+   "f": 0.23,
+   "c": 8.73,
+   "kcal": 35.0
+  },
+  "169231": {
+   "d": "Ginger root, raw",
+   "p": 1.82,
+   "f": 0.75,
+   "c": 17.77,
+   "kcal": 80.0
+  },
+  "167552": {
+   "d": "Snacks, popcorn, caramel-coated, without peanuts",
+   "p": 3.8,
+   "f": 12.8,
+   "c": 79.1,
+   "kcal": 431.0
+  },
+  "168596": {
+   "d": "Nuts, almonds, dry roasted, with salt added",
+   "p": 20.96,
+   "f": 52.54,
+   "c": 21.01,
+   "kcal": 598.0
+  },
+  "170583": {
+   "d": "Nuts, hazelnuts or filberts, dry roasted, without salt added",
+   "p": 15.03,
+   "f": 62.4,
+   "c": 17.6,
+   "kcal": 646.0
+  },
+  "174266": {
+   "d": "Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)",
+   "p": 22.21,
+   "f": 51.36,
+   "c": 22.31,
+   "kcal": 598.0
+  },
+  "168754": {
+   "d": "Candies, milk chocolate, with almonds",
+   "p": 9.0,
+   "f": 34.4,
+   "c": 53.4,
+   "kcal": 526.0
+  },
+  "171186": {
+   "d": "Sauce, hot chile, sriracha",
+   "p": 1.93,
+   "f": 0.93,
+   "c": 19.16,
+   "kcal": 93.0
+  },
+  "171826": {
+   "d": "Sauce, tartar, ready-to-serve",
+   "p": 1.0,
+   "f": 16.7,
+   "c": 13.3,
+   "kcal": 211.0
+  },
+  "173469": {
+   "d": "Vinegar, cider",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.93,
+   "kcal": 21.0
+  },
+  "170299": {
+   "d": "Fast foods, submarine sandwich, tuna on white bread with lettuce and tomato",
+   "p": 12.33,
+   "f": 12.04,
+   "c": 15.95,
+   "kcal": 218.0
+  },
+  "170298": {
+   "d": "Fast foods, submarine sandwich, roast beef on white bread with lettuce and tomato",
+   "p": 12.17,
+   "f": 2.73,
+   "c": 20.34,
+   "kcal": 156.0
+  },
+  "167585": {
+   "d": "Ice creams, chocolate, light",
+   "p": 5.0,
+   "f": 7.19,
+   "c": 25.7,
+   "kcal": 187.0
+  },
+  "168815": {
+   "d": "Frozen yogurts, vanilla, soft-serve",
+   "p": 4.0,
+   "f": 5.6,
+   "c": 24.2,
+   "kcal": 159.0
+  },
+  "168104": {
+   "d": "Frozen yogurts, chocolate",
+   "p": 3.0,
+   "f": 3.6,
+   "c": 21.6,
+   "kcal": 131.0
+  },
+  "174831": {
+   "d": "Beverages, Coconut water, ready-to-drink, unsweetened",
+   "p": 0.22,
+   "f": 0.0,
+   "c": 4.24,
+   "kcal": 18.0
+  },
+  "174678": {
+   "d": "Grapefruit juice, white, canned or bottled, unsweetened",
+   "p": 0.55,
+   "f": 0.66,
+   "c": 7.54,
+   "kcal": 37.0
+  },
+  "169572": {
+   "d": "Alcoholic beverage, beer, light, BUD LIGHT",
+   "p": 0.25,
+   "f": 0.0,
+   "c": 1.3,
+   "kcal": 29.0
+  },
+  "173147": {
+   "d": "Snacks, pita chips, salted",
+   "p": 11.79,
+   "f": 15.2,
+   "c": 68.26,
+   "kcal": 457.0
+  },
+  "167561": {
+   "d": "Snacks, trail mix, regular",
+   "p": 13.8,
+   "f": 29.4,
+   "c": 44.9,
+   "kcal": 462.0
+  },
+  "169426": {
+   "d": "Nuts, pistachio nuts, dry roasted, with salt added",
+   "p": 21.05,
+   "f": 45.82,
+   "c": 27.55,
+   "kcal": 569.0
+  },
+  "170569": {
+   "d": "Nuts, brazilnuts, dried, unblanched",
+   "p": 14.32,
+   "f": 67.1,
+   "c": 11.74,
+   "kcal": 659.0
+  },
+  "170190": {
+   "d": "Nuts, chestnuts, european, roasted",
+   "p": 3.17,
+   "f": 2.2,
+   "c": 52.96,
+   "kcal": 245.0
+  },
+  "167541": {
+   "d": "Snacks, fruit leather, rolls",
+   "p": 0.1,
+   "f": 3.0,
+   "c": 85.8,
+   "kcal": 371.0
+  },
+  "169060": {
+   "d": "Candies, nougat, with almonds",
+   "p": 3.33,
+   "f": 1.67,
+   "c": 92.39,
+   "kcal": 398.0
+  },
+  "169671": {
+   "d": "Candies, toffee, prepared-from-recipe",
+   "p": 1.07,
+   "f": 32.75,
+   "c": 64.72,
+   "kcal": 560.0
+  },
+  "172723": {
+   "d": "Cookies, marshmallow, chocolate-coated (includes marshmallow pies)",
+   "p": 4.0,
+   "f": 16.9,
+   "c": 67.7,
+   "kcal": 421.0
+  },
+  "172721": {
+   "d": "Cookies, fig bars",
+   "p": 3.7,
+   "f": 7.3,
+   "c": 70.9,
+   "kcal": 348.0
+  },
+  "174974": {
+   "d": "Cookies, vanilla wafers, higher fat",
+   "p": 4.9,
+   "f": 16.41,
+   "c": 72.6,
+   "kcal": 455.0
+  },
+  "172780": {
+   "d": "Pie, cherry, commercially prepared",
+   "p": 2.0,
+   "f": 11.0,
+   "c": 39.8,
+   "kcal": 260.0
+  },
+  "172787": {
+   "d": "Pie, pumpkin, commercially prepared",
+   "p": 3.9,
+   "f": 9.75,
+   "c": 34.83,
+   "kcal": 243.0
+  },
+  "175032": {
+   "d": "Strudel, apple",
+   "p": 3.3,
+   "f": 11.2,
+   "c": 41.1,
+   "kcal": 274.0
+  },
+  "172709": {
+   "d": "Cake, white, prepared from recipe without frosting",
+   "p": 5.4,
+   "f": 12.4,
+   "c": 57.2,
+   "kcal": 357.0
+  },
+  "172700": {
+   "d": "Cake, coffeecake, cinnamon with crumb topping, commercially prepared, enriched",
+   "p": 6.8,
+   "f": 23.3,
+   "c": 46.7,
+   "kcal": 418.0
+  },
+  "167536": {
+   "d": "Snacks, beef jerky, chopped and formed",
+   "p": 33.2,
+   "f": 25.6,
+   "c": 11.0,
+   "kcal": 410.0
+  },
+  "173330": {
+   "d": "Beef stew, canned entree",
+   "p": 4.41,
+   "f": 5.53,
+   "c": 7.85,
+   "kcal": 99.0
+  },
+  "172097": {
+   "d": "Chili con carne with beans, canned entree",
+   "p": 5.8,
+   "f": 3.47,
+   "c": 13.1,
+   "kcal": 107.0
+  },
+  "171638": {
+   "d": "Meatballs, frozen, Italian style",
+   "p": 14.4,
+   "f": 22.21,
+   "c": 8.06,
+   "kcal": 286.0
+  },
+  "173687": {
+   "d": "Fish, salmon, chinook, smoked",
+   "p": 18.28,
+   "f": 4.32,
+   "c": 0.0,
+   "kcal": 117.0
+  },
+  "171970": {
+   "d": "Crustaceans, shrimp, mixed species, cooked, breaded and fried",
+   "p": 21.39,
+   "f": 12.28,
+   "c": 11.47,
+   "kcal": 242.0
+  },
+  "175177": {
+   "d": "Fish, tilapia, cooked, dry heat",
+   "p": 26.15,
+   "f": 2.65,
+   "c": 0.0,
+   "kcal": 128.0
+  },
+  "175127": {
+   "d": "Fish, pike, northern, cooked, dry heat",
+   "p": 24.69,
+   "f": 0.88,
+   "c": 0.0,
+   "kcal": 113.0
+  },
+  "173679": {
+   "d": "Fish, perch, mixed species, cooked, dry heat",
+   "p": 24.86,
+   "f": 1.18,
+   "c": 0.0,
+   "kcal": 117.0
+  },
+  "171251": {
+   "d": "Cheese, swiss",
+   "p": 26.96,
+   "f": 30.99,
+   "c": 1.44,
+   "kcal": 393.0
+  },
+  "172175": {
+   "d": "Cheese, blue",
+   "p": 21.4,
+   "f": 28.74,
+   "c": 2.34,
+   "kcal": 353.0
+  },
+  "173435": {
+   "d": "Cheese, goat, soft type",
+   "p": 18.52,
+   "f": 21.08,
+   "c": 0.0,
+   "kcal": 264.0
+  },
+  "170888": {
+   "d": "Yogurt, vanilla, low fat.",
+   "p": 4.93,
+   "f": 1.25,
+   "c": 13.8,
+   "kcal": 85.0
+  },
+  "168897": {
+   "d": "Wild rice, cooked",
+   "p": 3.99,
+   "f": 0.34,
+   "c": 21.34,
+   "kcal": 101.0
+  },
+  "169728": {
+   "d": "Pasta, fresh-refrigerated, plain, cooked",
+   "p": 5.15,
+   "f": 1.05,
+   "c": 24.93,
+   "kcal": 131.0
+  },
+  "167959": {
+   "d": "Snacks, popcorn, air-popped",
+   "p": 12.94,
+   "f": 4.54,
+   "c": 77.78,
+   "kcal": 387.0
+  },
+  "168176": {
+   "d": "Feijoa, raw",
+   "p": 0.71,
+   "f": 0.42,
+   "c": 15.21,
+   "kcal": 61.0
+  },
+  "173044": {
+   "d": "Guavas, common, raw",
+   "p": 2.55,
+   "f": 0.95,
+   "c": 14.32,
+   "kcal": 68.0
+  },
+  "168154": {
+   "d": "Kumquats, raw",
+   "p": 1.88,
+   "f": 0.86,
+   "c": 15.9,
+   "kcal": 71.0
+  },
+  "168155": {
+   "d": "Limes, raw",
+   "p": 0.7,
+   "f": 0.2,
+   "c": 10.54,
+   "kcal": 30.0
+  },
+  "171722": {
+   "d": "Cranberries, raw",
+   "p": 0.46,
+   "f": 0.13,
+   "c": 11.97,
+   "kcal": 46.0
+  },
+  "168451": {
+   "d": "Radishes, oriental, raw",
+   "p": 0.6,
+   "f": 0.1,
+   "c": 4.1,
+   "kcal": 18.0
+  },
+  "169246": {
+   "d": "Leeks, (bulb and lower leaf-portion), raw",
+   "p": 1.5,
+   "f": 0.3,
+   "c": 14.15,
+   "kcal": 61.0
+  },
+  "168424": {
+   "d": "Kohlrabi, raw",
+   "p": 1.7,
+   "f": 0.1,
+   "c": 6.2,
+   "kcal": 27.0
+  },
+  "168449": {
+   "d": "Pumpkin, cooked, boiled, drained, without salt",
+   "p": 0.72,
+   "f": 0.07,
+   "c": 4.9,
+   "kcal": 20.0
+  },
+  "168580": {
+   "d": "Mushrooms, oyster, raw",
+   "p": 3.31,
+   "f": 0.41,
+   "c": 6.09,
+   "kcal": 33.0
+  },
+  "173735": {
+   "d": "Beans, black, mature seeds, cooked, boiled, without salt",
+   "p": 8.86,
+   "f": 0.54,
+   "c": 23.71,
+   "kcal": 132.0
+  },
+  "168411": {
+   "d": "Edamame, frozen, prepared",
+   "p": 11.91,
+   "f": 5.2,
+   "c": 8.91,
+   "kcal": 121.0
+  },
+  "169261": {
+   "d": "Okra, cooked, boiled, drained, without salt",
+   "p": 1.87,
+   "f": 0.21,
+   "c": 4.51,
+   "kcal": 22.0
+  },
+  "173205": {
+   "d": "Beverages, carbonated, lemon-lime soda, no caffeine",
+   "p": 0.09,
+   "f": 0.0,
+   "c": 10.42,
+   "kcal": 41.0
+  },
+  "173204": {
+   "d": "Beverages, carbonated, low calorie, other than cola or pepper,  without caffeine",
+   "p": 0.1,
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 0.0
   }
  }
 }

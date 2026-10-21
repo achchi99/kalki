@@ -618,3 +618,11 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .sl-ob.sl-lp .rz-opt.big.sl-lp-b{min-height:64px;margin:0 0 12px;text-align:center;justify-content:center;font-size:var(--t-l,1.1875rem)}.sl-ob.sl-lp .sl-lp-b b{font-weight:700}
 .sl-ob.sl-lp .rz-opt.big.sl-lp-b.cur{border-color:var(--fill,var(--accent))}
 @media (max-height:640px){.sl-lp-logo{width:48px;height:48px;font-size:24px;margin-bottom:10px}.sl-lp-t{margin-bottom:12px}.sl-ob.sl-lp .rz-opt.big.sl-lp-b{min-height:56px;margin-bottom:8px}}
+.rt-ai-left{margin:10px 0 0;font-size:var(--t-xs);text-align:center}
+/* avtomatik qadam belgisi (Android ilovasi: apparat hisoblagich) */
+.rz .sl-sb .l,.sl-sn .l{flex-wrap:wrap;row-gap:2px}
+.sl-auto{display:inline-flex;align-items:center;padding:1px 7px;border-radius:999px;background:var(--accsoft,rgba(232,87,47,.12));color:var(--accink,var(--acc));font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.01em;vertical-align:middle;white-space:nowrap}
+/* rasm natijasi: «Bu emasmi?» variantlari va bazadan qidirish */
+.sl-alt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 10px;padding:0 2px}.sl-alt>span{font-size:var(--t-xs);color:var(--mut);margin-right:2px}
+.sl-alt .rz-chip{min-height:36px;font-size:var(--t-xs)}.sl-alt .sl-altq{gap:4px}.sl-alt .sl-altq .rz-i{width:14px;height:14px}
+.sl-aileft{margin:4px 0 8px}

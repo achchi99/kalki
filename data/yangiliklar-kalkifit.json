@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 20,
+   "d": "2026-10-21",
+   "bn": {
+    "uz": "Android'da qadam o'zi sanaladi, bazada 300+ yangi taom.",
+    "ru": "Шаги на Android считаются сами, в базе 300+ новых блюд."
+   },
+   "items": [
+    {
+     "uz": "Android ilovada qadam o'zi sanaladi — telefon cho'ntagingizda bo'lsa bas.",
+     "ru": "В приложении для Android шаги считаются сами — достаточно телефона в кармане.",
+     "show": "history",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Bazaga 300+ yangi taom va ichimlik; rasmdan aniqlashda «Bu emasmi?» variantlari.",
+     "ru": "300+ новых блюд и напитков; при распознавании по фото — варианты «Не то?».",
+     "show": "search",
+     "btn": {
+      "uz": "Qidirish",
+      "ru": "Искать"
+     }
+    },
+    {
+     "uz": "AI so'rovlari: kuniga 5 ta (Android ilovada 2 ta), retsept va rasm uchun umumiy.",
+     "ru": "Запросы к ИИ: 5 в день (в приложении Android — 2), общие для рецепта и фото."
+    }
+   ]
+  },
+  {
    "v": 19,
    "d": "2026-10-21",
    "bn": {
