@@ -618,3 +618,4 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .sl-ob.sl-lp .rz-opt.big.sl-lp-b{min-height:64px;margin:0 0 12px;text-align:center;justify-content:center;font-size:var(--t-l,1.1875rem)}.sl-ob.sl-lp .sl-lp-b b{font-weight:700}
 .sl-ob.sl-lp .rz-opt.big.sl-lp-b.cur{border-color:var(--fill,var(--accent))}
 @media (max-height:640px){.sl-lp-logo{width:48px;height:48px;font-size:24px;margin-bottom:10px}.sl-lp-t{margin-bottom:12px}.sl-ob.sl-lp .rz-opt.big.sl-lp-b{min-height:56px;margin-bottom:8px}}
+.rt-ai-left{margin:10px 0 0;font-size:var(--t-xs);text-align:center}
