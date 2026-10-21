@@ -36,6 +36,7 @@ function recTeg(rec, mas, usda) {
 function hammasi() {
   const foods = R('data/ovqatlar.json').foods, rets = Object.fromEntries(R('data/baza-retseptlar.json').retseptlar.map((r) => [r.id, r])), mas = R('data/baza-masalliq.json').masalliq, usda = R('data/manba/usda-sr-legacy.json');
   const out = {}, nega = {};
+  Object.assign(QOLDA, require('./ovqatlar-kengaytma.js').OQSIL);         // kengaytma taomlari (tools/ovqatlar-kengaytma.js)
   const own = (f) => { if (f.rc && rets[f.rc]) { const r = recTeg(rets[f.rc], mas, usda); nega[f.i] = 'retsept ' + f.rc; return r.teg; } if (QOLDA[f.i]) { nega[f.i] = 'qo\'lda'; return QOLDA[f.i]; } nega[f.i] = 'tur ' + f.t; return TUR[f.t] || 'yoq'; };
   for (const f of foods) {
     out[f.i] = own(f);

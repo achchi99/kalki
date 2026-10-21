@@ -3963,6 +3963,376 @@
     "uz": "Geyner (o'rtacha tarkib, brendsiz): ~26% protein kukuni (whey konsentrat, yorliq qiymati) + ~70% uglevod (kraxmal, mal'todekstrin o'rnida) + ~4% o'simlik yog'i — fdc_id {fdc}. Haqiqiy brendlarda 350–420 kkal/100 g, oqsil 15–30 g; qadoq yorlig'ini tekshiring.",
     "ru": "Гейнер (усреднённый состав, без бренда): ~26% протеина (концентрат сыворотки, значение с этикетки) + ~70% углеводы (крахмал вместо мальтодекстрина) + ~4% растительное масло — fdc_id {fdc}. У реальных брендов 350–420 ккал/100 г, белка 15–30 г; проверяйте упаковку."
    }
+  },
+  {
+   "id": "tuxum-barak",
+   "nom": "Tuxum barak (Xorazm)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300
+    },
+    {
+     "m": "suv",
+     "g": 150,
+     "y": 1.0
+    },
+    {
+     "m": "tuxum",
+     "g": 400
+    },
+    {
+     "m": "sut",
+     "g": 150
+    },
+    {
+     "m": "sariyog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "hasip",
+   "nom": "Hasip (qo'y ichak, guruch va jigar bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "qoy",
+     "g": 300
+    },
+    {
+     "m": "jigar",
+     "g": 200
+    },
+    {
+     "m": "guruch",
+     "g": 250
+    },
+    {
+     "m": "dumba",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "suv",
+     "g": 300,
+     "y": 0.9
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "kesma",
+   "nom": "Kesma (uy lapshasi bilan sho'rva)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 250
+    },
+    {
+     "m": "tuxum",
+     "g": 50
+    },
+    {
+     "m": "suv",
+     "g": 1500,
+     "y": 0.9
+    },
+    {
+     "m": "mol",
+     "g": 300
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "unash",
+   "nom": "Unash (loviyali lapsha sho'rva, qatiq bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 200
+    },
+    {
+     "m": "suv",
+     "g": 1400,
+     "y": 0.9
+    },
+    {
+     "m": "loviya_oq",
+     "g": 150
+    },
+    {
+     "m": "qatiq",
+     "g": 300
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 30
+    },
+    {
+     "m": "kokat",
+     "g": 30
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "jigar-qovurma",
+   "nom": "Jigar qovurma (piyoz va pomidor bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "jigar",
+     "g": 500
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "pomidor",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 40
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "mampar",
+   "nom": "Mampar (xamir bo'laklari go'shtli sousda)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 300
+    },
+    {
+     "m": "suv",
+     "g": 900,
+     "y": 0.8
+    },
+    {
+     "m": "mol",
+     "g": 300
+    },
+    {
+     "m": "pomidor",
+     "g": 200
+    },
+    {
+     "m": "qalampir",
+     "g": 100
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "sabzi",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 40
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "shivit-oshi",
+   "nom": "Shivit oshi (ko'k lag'mon, sabzavotli sous)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 400
+    },
+    {
+     "m": "kokat",
+     "g": 80
+    },
+    {
+     "m": "suv",
+     "g": 800,
+     "y": 0.7
+    },
+    {
+     "m": "mol",
+     "g": 300
+    },
+    {
+     "m": "sabzi",
+     "g": 150
+    },
+    {
+     "m": "kartoshka",
+     "g": 200
+    },
+    {
+     "m": "piyoz",
+     "g": 100
+    },
+    {
+     "m": "pomidor",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 50
+    },
+    {
+     "m": "qatiq",
+     "g": 200
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "kok-chuchvara",
+   "nom": "Ko'k chuchvara (ko'katli)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 400
+    },
+    {
+     "m": "suv",
+     "g": 400,
+     "y": 0.9
+    },
+    {
+     "m": "kokat",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 60
+    },
+    {
+     "m": "qatiq",
+     "g": 200
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "yupqa",
+   "nom": "Yupqa (go'shtli qatlamali non, Xorazm)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 500
+    },
+    {
+     "m": "suv",
+     "g": 250,
+     "y": 0.6
+    },
+    {
+     "m": "mol",
+     "g": 400
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "yog",
+     "g": 80
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "goshtli-non",
+   "nom": "Go'shtli non (tandirda)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "un",
+     "g": 500
+    },
+    {
+     "m": "suv",
+     "g": 250,
+     "y": 0.6
+    },
+    {
+     "m": "qoy",
+     "g": 350
+    },
+    {
+     "m": "dumba",
+     "g": 80
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    }
+   ],
+   "taxminiy": true
+  },
+  {
+   "id": "kartoshka-qovurma",
+   "nom": "Kartoshkali qovurdoq (go'sht bilan)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "mol",
+     "g": 400
+    },
+    {
+     "m": "kartoshka",
+     "g": 700
+    },
+    {
+     "m": "piyoz",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 70
+    },
+    {
+     "m": "suv",
+     "g": 100,
+     "y": 0.3
+    }
+   ],
+   "taxminiy": true
   }
  ]
 }

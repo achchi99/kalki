@@ -1,0 +1,219 @@
+{
+ "meta": {
+  "manba": "Open Food Facts (openfoodfacts.org) — ishlab chiqaruvchi yorlig'i ma'lumotlari, ODbL litsenziyasi",
+  "olingan": "2026-10-21",
+  "eslatma": "Har yozuv: shtrix-kod (code), mahsulot nomi va brendi, 100 g (ichimlik — 100 ml) uchun kkal/oqsil/yog'/uglevod. tools/ovqatlar-kengaytma.js dagi y:<kalit> shu yerdan oladi."
+ },
+ "yorliq": {
+  "alpen-gold": {
+   "nom": "Шоколад молочный [Alpen Gold] с фундуком",
+   "brand": "Alpen Gold",
+   "code": "7622201695958",
+   "qadoq": "80 г",
+   "k": 531,
+   "p": 6.0,
+   "f": 30.0,
+   "c": 58.0
+  },
+  "barni": {
+   "nom": "Barni Milk filling",
+   "brand": "barni",
+   "code": "5906747318321",
+   "qadoq": "",
+   "k": 394,
+   "p": 5.0,
+   "f": 16.0,
+   "c": 60.0
+  },
+  "bombbar-60": {
+   "nom": "Chocolate hazelnut protein bar",
+   "brand": "Bombbar",
+   "code": "4680046720634",
+   "qadoq": "",
+   "k": 328,
+   "p": 33.0,
+   "f": 13.6,
+   "c": 6.9
+  },
+  "cola-zero": {
+   "nom": "Coca-Cola Zero",
+   "brand": "Coca-Cola",
+   "code": "5000112558265",
+   "qadoq": "50cl",
+   "k": 0,
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.0
+  },
+  "doshirak": {
+   "nom": "Cheese рамен",
+   "brand": "Doshirak",
+   "code": "4607065580728",
+   "qadoq": "110 g",
+   "k": 418,
+   "p": 9.5,
+   "f": 12.0,
+   "c": 68.0
+  },
+  "fanta": {
+   "nom": "Fanta orange 1.5l",
+   "brand": "Fanta",
+   "code": "5449000052926",
+   "qadoq": "1.5 L",
+   "k": 48,
+   "p": 0.0,
+   "f": 0.0,
+   "c": 11.7
+  },
+  "fanta-zero": {
+   "nom": "Fanta zero orange",
+   "brand": "Fanta",
+   "code": "5449000235367",
+   "qadoq": "330 ml",
+   "k": 3,
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.4
+  },
+  "fitness-bar-40": {
+   "nom": "Protein bar батончик глазированный с дробленным фундуком",
+   "brand": "Topless",
+   "code": "4680089892077",
+   "qadoq": "",
+   "k": 373,
+   "p": 16.0,
+   "f": 19.0,
+   "c": 22.0
+  },
+  "kinder-bueno": {
+   "nom": "Kinder bueno",
+   "brand": "Kinder",
+   "code": "80052760",
+   "qadoq": "43 g",
+   "k": 572,
+   "p": 8.6,
+   "f": 37.3,
+   "c": 49.5
+  },
+  "kinder-choc": {
+   "nom": "Kinder Chocolate",
+   "brand": "Kinder",
+   "code": "80177609",
+   "qadoq": "50g",
+   "k": 566,
+   "p": 8.7,
+   "f": 35.0,
+   "c": 53.5
+  },
+  "lays": {
+   "nom": "Gourmet Original",
+   "brand": "Lay's",
+   "code": "8410199023094",
+   "qadoq": "170 g",
+   "k": 523,
+   "p": 5.0,
+   "f": 31.0,
+   "c": 54.0
+  },
+  "mars": {
+   "nom": "Mars",
+   "brand": "Mars",
+   "code": "5900951311321",
+   "qadoq": "51 g e",
+   "k": 443,
+   "p": 4.5,
+   "f": 16.0,
+   "c": 70.0
+  },
+  "milka": {
+   "nom": "Milka au lait du pays alpin",
+   "brand": "Milka",
+   "code": "7622210720566",
+   "qadoq": "3 x 100g",
+   "k": 539,
+   "p": 6.5,
+   "f": 31.0,
+   "c": 57.0
+  },
+  "pepsi-zero": {
+   "nom": "Pepsi Zero Zucker",
+   "brand": "Pepsi",
+   "code": "4062139025299",
+   "qadoq": "1.25l",
+   "k": 0,
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.0
+  },
+  "plavlenniy": {
+   "nom": "Hochland плавленый сыр",
+   "brand": "hochland",
+   "code": "4607004890154",
+   "qadoq": "400 грамм",
+   "k": 291,
+   "p": 9.8,
+   "f": 25.8,
+   "c": 4.8
+  },
+  "plombir-stakan": {
+   "nom": "Мороженное пломбир ванильный",
+   "brand": "Коровка из Кореновки",
+   "code": "4602358003823",
+   "qadoq": "400 г.",
+   "k": 240,
+   "p": 3.5,
+   "f": 15.0,
+   "c": 22.0
+  },
+  "pringles": {
+   "nom": "Pringles Original",
+   "brand": "Pringles",
+   "code": "5053990156009",
+   "qadoq": "175 g",
+   "k": 528,
+   "p": 6.2,
+   "f": 31.0,
+   "c": 54.0
+  },
+  "protein-shake-rtd": {
+   "nom": "High Quality Protein",
+   "brand": "Fairlife",
+   "code": "0811620022118",
+   "qadoq": "11.5 fl oz (340 ml)",
+   "k": 44,
+   "p": 8.8,
+   "f": 0.7,
+   "c": 1.2
+  },
+  "pryanik": {
+   "nom": "Тульский пряник со сгущеным молоком смотка",
+   "brand": "Ясная поляна",
+   "code": "4601713001719",
+   "qadoq": "140 g",
+   "k": 380,
+   "p": 7.0,
+   "f": 8.0,
+   "c": 69.0
+  },
+  "rojok": {
+   "nom": "Мороженое пломбир с черничным наполнителем в вафельном стаканчике с глазурью зол",
+   "brand": "Золотой Стандарт",
+   "code": "4605922001737",
+   "qadoq": "93 г / 165 мл",
+   "k": 262,
+   "p": 3.7,
+   "f": 12.6,
+   "c": 32.7
+  },
+  "sirok-glaz": {
+   "nom": "Сырок творожный глазированный в бельгийском молочном шоколаде с молоком сгущёным",
+   "brand": "Ростагрокомплекс",
+   "code": "4660043858790",
+   "qadoq": "50 г",
+   "k": 410,
+   "p": 7.9,
+   "f": 26.3,
+   "c": 35.3
+  }
+ }
+}

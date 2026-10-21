@@ -50,7 +50,7 @@
       wkT: "O'tgan hafta", wkAvgK: "To'liq kunlarda o'rtacha: {x} kkal/kun", wkAvgS: "O'rtacha qadam: {x}", wkW: "Vazn (7 kunlik o'rtacha): {a} → {b} kg", wkDays: "7 kundan {n} tasi to'liq", wkNone: "Ma'lumot kam",
       nudgeInstall: "Ilovani bosh ekranga qo'shing — tezroq ochiladi va ma'lumot saqlanadi.", nudgeInstallBtn: "O'rnatish", nudgeIos: "iPhone'da: Safari'da «Ulashish» → «Bosh ekranga qo'shish». Aks holda Safari ma'lumotni o'chirib yuborishi mumkin.", nudgeBackup: "Haftalik zaxira vaqti — ma'lumot faqat shu qurilmada.", nudgeBackupBtn: 'Telegramga yuborish',
       qtyMinus: 'Kamaytirish', qtyPlus: "Ko'paytirish", aboutBack: 'Orqaga', errAmt: 'Raqamni kiriting', stepsT: 'Bugungi qadam', stepsOf: '{d} kuni qadami',
-      units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six', skup: 'skup' }
+      units: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha', six: 'six', skup: 'skup', shisha05: 'shisha (0,5 l)', shisha1: 'shisha (1 l)', shisha15: 'shisha (1,5 l)', banka: 'banka', shar: 'shar', paket: 'paket', plitka: 'plitka' }
     },
     ru: {
       obLater: 'Позже', obLater2: 'Позже — начать со средней нормой', txChip: 'Примерно · Уточнить', txP: 'Норма примерная', obYq2: 'Есть что-то, что вы не едите?', obYh2: 'Отмеченное вам предлагаться не будет. Можно ничего не выбирать.', obYno: 'Нет, ем всё', obYgo: 'Продолжить', txT: 'Ваша норма примерная — уточните за 30 секунд', txBtn: 'Уточнить', sldMinus: 'Уменьшить', sldPlus: 'Увеличить', sldEdit: 'Ввести точное значение',
@@ -94,7 +94,7 @@
       wkT: 'Прошлая неделя', wkAvgK: 'В полные дни в среднем: {x} ккал/день', wkAvgS: 'В среднем шагов: {x}', wkW: 'Вес (среднее за 7 дней): {a} → {b} кг', wkDays: '{n} из 7 дней полные', wkNone: 'Мало данных',
       nudgeInstall: 'Добавьте приложение на главный экран — открывается быстрее, данные надёжнее.', nudgeInstallBtn: 'Установить', nudgeIos: 'На iPhone: в Safari «Поделиться» → «На экран «Домой»». Иначе Safari может удалить данные.', nudgeBackup: 'Пора сделать недельную копию — данные хранятся только на этом устройстве.', nudgeBackupBtn: 'Отправить в Telegram',
       qtyMinus: 'Меньше', qtyPlus: 'Больше', aboutBack: 'Назад', errAmt: 'Введите число', stepsT: 'Шаги за сегодня', stepsOf: 'Шаги за {d}',
-      units: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка', six: 'шампур', skup: 'мерная ложка' }
+      units: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка', six: 'шампур', skup: 'мерная ложка', shisha05: 'бутылка (0,5 л)', shisha1: 'бутылка (1 л)', shisha15: 'бутылка (1,5 л)', banka: 'банка', shar: 'шарик', paket: 'пачка', plitka: 'плитка' }
     }
   };
   /* ---------- 2-bosqich matnlari: hazillar, "Buni yesam-chi?", retsept, taqvim, rasm, qo'shimchalar ---------- */
@@ -165,7 +165,7 @@
   function nameOf(f) { return lang === 'ru' && f.r ? f.r : f.n; }
   function unitName(u) { return (D[lang].units && D[lang].units[u]) || D.uz.units[u] || u; }
   function qtyStr(q) { return dec(q, 2).replace(/,00$/, ''); }
-  function unitLabel(f, u) { var g = S.unitGrams(f, u); return u === 'g100' ? '100 ' + unitName('g100') : '1 ' + unitName(u) + ' · ' + g + ' ' + T('gram'); }
+  function unitLabel(f, u) { var g = S.unitGrams(f, u); return u === 'g100' ? '100 ' + unitName('g100') : '1 ' + unitName(u) + ' · ' + g + ' ' + (f && f.t === 'i' ? ML() : T('gram')); }      // ichimlik: 1 ml ≈ 1 g
   function portionText(e) { if (e.unit && String(e.unit).indexOf('v:') === 0) return qtyStr(e.qty) + ' ' + (e.vn || T('vn_lagan')) + (e.vf && e.vf !== 'tola' ? ' · ' + T('vf_' + e.vf) : ''); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (e.unit) return qtyStr(e.qty) + ' ' + unitName(e.unit); return e.g ? fmt(e.g) + ' ' + T('gram') : ''; }
 
   /* ---------- baza (lazy) ---------- */
@@ -1018,8 +1018,27 @@
       var hidN = recH.length + favSp.hid.length;
       return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : []), T('aRecHint')) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
     }
+    if (!list.length && q) qtNote(q);
     if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
     return list.map(function (f) { return resRow(f); }).join('');
+  }
+  /* qidiruvda topilmagan so'z — anonim hisoblagich (/api/qidiruv: faqat kun + so'z + son; id/IP yo'q). Yozib to'xtagandan 2,5 s keyin, har so'z kuniga bir marta; DNT/demo'da yo'q */
+  var QT_LS = 'kalki_fit_qt', qtTm = null;
+  function qtNorm(q) {
+    var s0 = String(q == null ? '' : q).toLowerCase().replace(/[\u2019\u2018\u02bb\u02bc`\u00b4]/g, "'").replace(/\s+/g, ' ').trim();
+    if (s0.length < 2 || s0.length > 40 || /[@\/\\<>{}\[\]|=:;#$%^&*_~+]|https?|www\./.test(s0) || (s0.match(/\d/g) || []).length > 4 || !/[a-z\u0430-\u044f\u0451\u045e\u049b\u0493\u04b3]/i.test(s0)) return '';
+    return /^[a-z0-9\u0430-\u044f\u0451\u045e\u049b\u0493\u04b3' ,.()%-]+$/i.test(s0) ? s0 : '';
+  }
+  function qtNote(q) {
+    if (KD.on || (navigator.doNotTrack === '1') || !window.fetch) return;
+    clearTimeout(qtTm);
+    qtTm = setTimeout(function () {
+      if (!fd || fd.q.trim() !== q) return; var w = qtNorm(q), d = todayStr(); if (!w) return;
+      var m = {}; try { m = JSON.parse(localStorage.getItem(QT_LS) || '{}') || {}; } catch (e) {}
+      Object.keys(m).forEach(function (k) { if (k.slice(0, 10) !== d) delete m[k]; });
+      if (m[d + '|' + w]) return; m[d + '|' + w] = 1; try { localStorage.setItem(QT_LS, JSON.stringify(m)); } catch (e) {}
+      try { fetch('/api/qidiruv', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ k: [{ s: d, q: w, n: 1 }] }), keepalive: true }).catch(function () {}); } catch (e) {}
+    }, 2500);
   }
   function refreshRes(err) { var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); var cw = $('#fdCat'); if (cw) { var want = chipsHtml(); if (cw._k !== want) { cw.innerHTML = want; cw._k = want; catsInit(); } } }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
