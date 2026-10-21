@@ -9,20 +9,20 @@ html:has(.il),html:has(.il) body{background:var(--page-bg);margin:0}
 .il-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
 .il-logo{font-weight:800;font-size:1.0625rem;color:var(--acc);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
 .il-seg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--field)}
-.il-seg button{min-width:48px;min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--mut);font:700 14px/1 inherit;font-family:inherit;padding:0 10px;cursor:pointer}
+.il-seg button{min-width:48px;min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--mut);font-weight:700;font-size:14px;line-height:1;font-family:inherit;padding:0 10px;cursor:pointer}
 .il-seg button.on{background:var(--fill);color:var(--onacc)}
 .il-seg button:focus-visible,.il-btn:focus-visible,.il-link:focus-visible,.il-copy:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
 .il h1{margin:18px 0 6px;font-size:1.75rem;line-height:1.2;font-weight:800;letter-spacing:-.02em}
 .il-sub{margin:0 0 18px;color:var(--mut);max-width:44ch}
 .il-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin:0 0 16px}
-.il-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border:0;border-radius:18px;background:var(--fill);color:var(--onacc);font:800 1.1875rem/1.2 inherit;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -10px color-mix(in srgb,var(--fill) 60%,transparent)}
+.il-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;border:0;border-radius:18px;background:var(--fill);color:var(--onacc);font-weight:800;font-size:1.1875rem;line-height:1.2;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px -10px color-mix(in srgb,var(--fill) 60%,transparent)}
 .il-btn:active{transform:scale(.985)}
 .il-btn svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .il-meta{margin:12px 0 0;text-align:center;color:var(--mut);font-weight:600;font-size:.9375rem}
 .il-sha{margin:14px 0 0;color:var(--mut);font-size:.8125rem;line-height:1.35}
 .il-sha b{display:block;font-weight:700;margin-bottom:4px}
 .il-sha code{display:block;font:600 .8125rem/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;color:var(--ink);background:var(--soft);border-radius:12px;padding:10px 12px}
-.il-copy{margin-top:8px;border:0;background:transparent;color:var(--acc2);font:700 .875rem/1 inherit;font-family:inherit;min-height:44px;padding:0;text-decoration:underline;cursor:pointer}
+.il-copy{margin-top:8px;border:0;background:transparent;color:var(--acc2);font-weight:700;font-size:.875rem;line-height:1;font-family:inherit;min-height:44px;padding:0;text-decoration:underline;cursor:pointer}
 .il h2{margin:0 0 12px;font-size:1.25rem;font-weight:800}
 .il-steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:14px}
 .il-steps li{position:relative;padding-left:44px;counter-increment:s}
