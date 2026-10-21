@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 19,
+   "d": "2026-10-21",
+   "bn": {
+    "uz": "Birinchi ochilishda til tanlash, Android ilovani yuklash tugmasi.",
+    "ru": "Выбор языка при первом запуске, кнопка загрузки Android-приложения."
+   },
+   "items": [
+    {
+     "uz": "Ilovani birinchi ochganda til tanlash (lotin / кирилл / русский).",
+     "ru": "При первом запуске приложения — выбор языка (латиница / кириллица / русский)."
+    },
+    {
+     "uz": "kalki.uz bosh sahifasidan Android ilovani yuklab olish tugmasi.",
+     "ru": "Кнопка загрузки Android-приложения на главной странице kalki.uz."
+    }
+   ]
+  },
+  {
    "v": 18,
    "d": "2026-10-21",
    "bn": {
