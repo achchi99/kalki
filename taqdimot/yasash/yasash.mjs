@@ -30,7 +30,7 @@ const split = (theme, h, txt, vis, cls = '') => slide(theme, `<div class="txt">$
 // 1
 slide('dark', `<div class="txt"><div class="logo"><span>K</span></div><h1 class="mega">KalkiFit</h1><p class="sub">O‘zingiz yoqtirgan taomlar bilan yaxshiroq ovqatlaning</p></div><div class="vis">${pair('bugun')}</div>`, 'split cover');
 // 2
-slide('light', `<div class="center"><div class="kick">Muammo</div><h2 class="big">Kaloriya ilovalarida o‘zbek taomlari yo‘q</h2>${lines(['Osh, lag‘mon, somsa — yo‘q yoki noto‘g‘ri hisoblangan', 'Ta’qiqlar zeriktiradi — odam ilovani tashlab ketadi'])}</div>`, 'cen');
+slide('light', `<div class="center"><div class="kick">Muammo</div><h2 class="big">O‘zbek taomi kaloriya ilovalarida<br>yo yo‘q, yo <b class="acc">«yomon»</b></h2><div class="lns">${lines(['Osh, lag‘mon, somsa — bazada yo‘q yoki noto‘g‘ri hisoblangan', 'Bor bo‘lsa ham — «ozish uchun yemang» deb qoralanadi', 'Ta’qiqlar zeriktiradi — odam ilovani tashlab ketadi'])}</div></div>`, 'cen');
 // 3
 slide('dark', `<div class="center"><div class="kick">G‘oya</div><h2 class="big">Kaloriya sanagich emas — dasturxoningizga yordamchi</h2><div class="cards">${[['heart', 'Ta’qiqlamaymiz — yengilroq yo‘lni ko‘rsatamiz'], ['eye', 'Tushunarli — hamma narsa bir ekranda'], ['scale', 'Ochiq raqamlar — manbasi ko‘rsatilgan']].map(([k, t]) => `<div class="card"><span class="ic">${ic(k)}</span><p>${t}</p></div>`).join('')}</div></div>`, 'cen');
 // 4
@@ -76,7 +76,7 @@ h1.mega{font-size:150px;font-weight:800;letter-spacing:-.04em;line-height:1}h2{f
 .ph img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:54px;display:block}
 .card1{width:400px;height:500px;border-radius:36px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 .logo{display:flex;align-items:center;gap:18px;font-size:34px;font-weight:700;margin-bottom:40px}.logo span{width:72px;height:72px;border-radius:22px;background:#E8572F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:40px}.dark .logo span{background:#FF7E5C;color:#1C0C06}
-.cen{justify-content:center;text-align:center}.center{width:100%}.center .ln{display:table;margin:0 auto 24px;font-size:42px}
+.cen{justify-content:center;text-align:center}.center{width:100%}.center .ln{display:table;margin:0 auto 24px;font-size:42px}.center .lns{display:inline-block;text-align:left}.center .lns .ln{margin:0 0 24px}
 .cards{display:flex;gap:40px;justify-content:center}.card{width:460px;background:var(--card);border:1px solid var(--line);border-radius:36px;padding:48px 40px;text-align:left}.card p{font-size:36px;font-weight:600;line-height:1.3;margin-top:28px}
 .ic{display:inline-flex;width:84px;height:84px;border-radius:24px;align-items:center;justify-content:center;background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc);flex:none}.ic svg{width:46px;height:46px}
 .items{display:grid;gap:30px;max-width:1300px;margin:0 auto;text-align:left}.it{display:flex;align-items:center;gap:34px;font-size:44px;font-weight:600;line-height:1.25}.it b{color:var(--acc)}
