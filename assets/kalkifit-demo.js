@@ -7,6 +7,8 @@
   var q = {}; try { location.search.replace(/^\?/, '').split('&').forEach(function (p) { if (!p) return; var a = p.split('='); q[a[0]] = decodeURIComponent(a[1] || ''); }); } catch (e) {}
   var on = q.demo === '1', S = window.KalkiFit, API = { on: false, intro: q.intro === '1', mark: function () {} };
   window.KalkiDemo = API;
+  /* ?bugun=YYYY-MM-DD — «bugun»ni almashtirish (baliq kuni va sana bilan bog'liq ko'rinishni sinash uchun): FAQAT preview/lokal yoki ?demo=1 da; production'da e'tiborsiz */
+  if (S && S.dates && /^\d{4}-\d{2}-\d{2}$/.test(q.bugun || '') && (on || !/(^|\.)kalki\.uz$/.test(location.hostname))) { var fx = q.bugun; S.dates.today = function () { return fx; }; }
   if (!on || !S || !window.Storage) return;
   var P = 'kalkidemo_', SP = Storage.prototype, oGet = SP.getItem, oSet = SP.setItem, oRem = SP.removeItem, oKey = SP.key;
   var map = function (k) { return typeof k === 'string' && /^kalki_/.test(k) ? P + k : k; };

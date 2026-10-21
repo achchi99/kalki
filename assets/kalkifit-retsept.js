@@ -9,7 +9,7 @@
   var D = {
     uz: {
       rtDoorT: 'Retseptingizni yengillashtiring', rtDoorS: "Oshingizni 20–30% yengil qilamiz",
-      rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: "Masalliqlarni gramm bilan yozing. Ta'mi qoladi, kaloriyasi kamayadi.",
+      rtH: 'Retseptingizni yuboring — yengilroq qilib beramiz', rtSub: 'Masalliqlarni gramm bilan yozing',
       rtPh: "Onamning oshi: 1 kg guruch, 1 kg qo'y go'shti, 300 g yog', 1 kg sabzi…", rtCam: 'Rasmga olish', rtSoon: 'Tez orada', rtEx: 'Misollar', rtGo: 'Moslashtirish',
       rtEmpty: 'Retseptni yozing yoki misolni tanlang', rtShort: "Matn juda qisqa — masalliqlarni gramm bilan yozing (masalan, «1 kg guruch, 300 g yog'»).", rtLong: 'Matn juda uzun (1500 belgidan oshmasin).',
       rtScan: 'Masalliqlar tanilmoqda…', rtAiBusy: 'AI bilan tekshirilmoqda…', rtFound: '{n} ta masalliq topildi', rtIngT: 'Masalliqlar', rtIngH: "Grammni − / + bilan to'g'rilang. Hammasi bazadagi qiymat bilan hisoblanadi.", rtBase: '100 g da: {b}', rtAiAs: 'AI: «{a}» → {b} (tekshiring)',
@@ -29,7 +29,7 @@
     },
     ru: {
       rtDoorT: 'Облегчите свой рецепт', rtDoorS: 'Сделаем ваш плов легче на 20–30%',
-      rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты с граммами. Вкус останется, калорий станет меньше.',
+      rtH: 'Пришлите рецепт — сделаем его легче', rtSub: 'Напишите ингредиенты с граммами',
       rtPh: 'Мамин плов: 1 кг риса, 1 кг баранины, 300 г масла, 1 кг моркови…', rtCam: 'Сфотографировать', rtSoon: 'Скоро', rtEx: 'Примеры', rtGo: 'Облегчить',
       rtEmpty: 'Напишите рецепт или выберите пример', rtShort: 'Слишком коротко — напишите ингредиенты с граммами (например, «1 кг риса, 300 г масла»).', rtLong: 'Слишком длинно (не больше 1500 символов).',
       rtScan: 'Распознаём ингредиенты…', rtAiBusy: 'Проверяем с помощью ИИ…', rtFound: 'Найдено ингредиентов: {n}', rtIngT: 'Ингредиенты', rtIngH: 'Поправьте граммы кнопками − / +. Всё считается по значениям из базы.', rtBase: 'на 100 г: {b}', rtAiAs: 'ИИ: «{a}» → {b} (проверьте)',

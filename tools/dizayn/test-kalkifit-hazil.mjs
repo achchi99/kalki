@@ -82,12 +82,12 @@ const addFood = async (p, q) => { await p.click('#mainAdd'); await p.waitForTime
 const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
 const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state)));
 try {
-  let p = await open('/kalkifit', seed(), 9); assert.equal(await txt(p, '.sl-first'), "Birinchi ovqatingizni qo'shing — qolgani o'zi hisoblanadi", 'bo\'sh kun: yo\'riqnoma (hazil emas)');
+  let p = await open('/kalkifit', seed(), 9); assert.equal(await txt(p, '.sl-first'), "Birinchi ovqatni qo'shing", 'bo\'sh kun: yo\'riqnoma (hazil emas)');
   await addFood(p, 'osh'); const fl = await txt(p, '#jLine'); assert.ok(fl && poolOf('food_first').concat(poolOf('streak'), poolOf('streak7')).some((t) => G.fill(t, { days: '\\d+' }) === fl || new RegExp('^' + G.fill(t, { days: '\\d+' }).replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\\\\d\\+/g, '\\d+') + '$').test(fl)), 'birinchi ovqatdan keyin hazil: ' + fl);
   await p.waitForTimeout(500); await addFood(p, 'olma'); assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit_hazil') || '{}'))).jfl.n, 1, '60 soniya ichida ikkinchi gap chiqmaydi (spam yo\'q)');
   await p.context().close();
   /* hazil o'chirilgan: neytral matn */
-  p = await open('/kalkifit', seed({ jokes: false }), 9); assert.match(await txt(p, '.sl-first'), /Birinchi ovqatingizni qo'shing — qolgani o'zi hisoblanadi/, 'o\'chirilganda: neytral bo\'sh holat'); assert.equal(await p.locator('#jLine').count(), 0); await addFood(p, 'osh'); assert.equal(await p.locator('#jLine').count(), 0, 'hazil o\'chirilgan: hodisadan keyin ham qator YO\'Q'); assert.ok(!/Yozildi\. Bugun jami/.test(await txt(p, '#rzToast') || ''), 'neytral gap ham yo\'q'); await p.context().close();
+  p = await open('/kalkifit', seed({ jokes: false }), 9); assert.match(await txt(p, '.sl-first'), /Birinchi ovqatni qo'shing/, 'o\'chirilganda: neytral bo\'sh holat'); assert.equal(await p.locator('#jLine').count(), 0); await addFood(p, 'osh'); assert.equal(await p.locator('#jLine').count(), 0, 'hazil o\'chirilgan: hodisadan keyin ham qator YO\'Q'); assert.ok(!/Yozildi\. Bugun jami/.test(await txt(p, '#rzToast') || ''), 'neytral gap ham yo\'q'); await p.context().close();
   /* Profil: yoqish/o'chirish, sarlavha */
   p = await open('/kalkifit', seed(), 9); await p.click('[data-act=tab][data-v=profile]'); assert.match(await txt(p, '[data-act=jktog]:first-child').then((x) => x || ''), /Yoqilgan/); assert.match(await p.locator('.rz-st:has-text("Maslahat va hazil")').first().innerText(), /Maslahat va hazil/); await p.click('[data-act=jktog][data-v="0"]'); assert.equal((await stOf(p)).prefs.jokes, false); await p.click('[data-act=jktog][data-v="1"]'); assert.equal((await stOf(p)).prefs.jokes, true); await p.context().close();
   /* Bugun qatori: 0 qadam, tushdan keyin */
