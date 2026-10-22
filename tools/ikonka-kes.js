@@ -47,7 +47,7 @@ async function main() {
         while (st.length) { const p0 = st.pop(), px = p0 % w, py = (p0 / w) | 0; c.n++; c.sx += px; c.sy += py; if (px < c.x0) c.x0 = px; if (px > c.x1) c.x1 = px; if (py < c.y0) c.y0 = py; if (py > c.y1) c.y1 = py;
           for (const q of [p0 - 1, p0 + 1, p0 - w, p0 + w]) { if (q < 0 || q >= w * h || (q === p0 - 1 && px === 0) || (q === p0 + 1 && px === w - 1)) continue; if (mask[q] && lab[q] < 0) { lab[q] = id; st.push(q); } } } }
       return { lab, comps }; };
-    const tw = components(dilate(tm, 7, 2)), words = tw.comps.filter((c) => { const ph = (c.y1 - c.y0 + 1) * SC, pw = (c.x1 - c.x0 + 1) * SC; return ph >= 18 && ph <= 80 && pw >= 24 && c.n > 20; });
+    const tw = components(dilate(tm, 3, 2)), words = tw.comps.filter((c) => { const ph = (c.y1 - c.y0 + 1) * SC, pw = (c.x1 - c.x0 + 1) * SC; return ph >= 18 && ph <= 80 && pw >= 24 && c.n > 20; });
     const colOf = (c) => Math.max(0, Math.min(COLS - 1, Math.floor(((c.x0 + c.x1) / 2) / (w / COLS)))); const labCols = Array.from({ length: COLS }, () => []); words.forEach((c) => labCols[colOf(c)].push(c)); labCols.forEach((l) => l.sort((a, b) => a.y0 - b.y0));
     const warn = [], labels = new Array(COLS * ROWS).fill(null); window.__dbg = labCols.map((l) => l.map((c) => [c.x0 * SC, c.y0 * SC, c.x1 * SC, c.y1 * SC, c.n].join(',')));
     /* nomzodlar ichidan ROWS ta yozuv: ketma-ket yozuvlar oralig'i ~ qator davri (H/ROWS ± 20%) bo'lishi shart, jami «siyoh» (n) maksimal — taom ichidagi to'q bo'laklar (qora tova, jigar) chetda qoladi */
@@ -102,7 +102,7 @@ async function main() {
 }
 
 main().then((r) => {
-  if (process.env.KES_DEBUG) console.log(JSON.stringify(r.dbg[1]));
+  if (process.env.KES_DEBUG) console.log(JSON.stringify(r.dbg[+process.env.KES_DEBUG - 1]));
   console.log('katak siljishi (px): x ' + r.PH.ox + ', y ' + r.PH.oy + '; to\'r ' + r.W + '×' + r.H + ', fon ' + r.B0.join(',') + ' → ' + BG.join(',') + ', komponent ' + r.ncomp + '; yozuv komponentlari/katak: ' + [...new Set(r.labs)].join(','));
   if (r.warn.length) { console.error(r.warn.join('\n')); }
   const dir = path.join(HOME, 'ikonka-toplamlar'); fs.mkdirSync(dir, { recursive: true });
