@@ -2204,6 +2204,48 @@
    "uz": "Yozildi — hisob, yozilmadi — taxmin. Taxmin hali bir marta ham yutmagan.",
    "ru": "Записали — это учёт, нет — догадка. Догадка ещё ни разу не выигрывала.",
    "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y1",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Choy ham suv hisobiga o'tdi. Choynak bugun rasman suv bo'limi xodimi.",
+   "ru": "Чай тоже засчитан как вода. Чайник теперь официально сотрудник водного отдела.",
+   "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y2",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Ichimlik yozildi — endi u suv hisobiga ham kiradi. Piyola ishidan mamnun.",
+   "ru": "Напиток записан — в счёт воды он тоже идёт. Пиала довольна своей службой.",
+   "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y3",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Qahva ham, sut ham suv hisobiga qo'shildi. Stakanlar biroz rashk qilyapti.",
+   "ru": "Кофе и молоко тоже пошли в счёт воды. Стаканы слегка ревнуют.",
+   "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y4",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Ichimliklar endi suv hisobiga yoziladi. Choy bugun ikki lavozimda ishlayapti.",
+   "ru": "Напитки теперь считаются водой. Чай сегодня работает на полторы ставки.",
+   "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y5",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Sharbat ham, kompot ham suv hisobida. Butilka biroz xafa, lekin tushunadi.",
+   "ru": "Сок и компот — тоже вода. Бутылка воды чуть обижена, но понимает.",
+   "yangi": true
+  },
+  {
+   "id": "ichimlik_suvga_qoshildi-y6",
+   "holat": "ichimlik_suvga_qoshildi",
+   "uz": "Yangi qoida: ichimliklar suv hisobiga kiradi. Piyola endi shtatga olindi.",
+   "ru": "Новое правило: напитки идут в счёт воды. Пиала зачислена в штат.",
+   "yangi": true
   }
  ]
 }

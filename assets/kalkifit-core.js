@@ -2,7 +2,7 @@
  * Sana funksiyalari (mahalliy kalendar, UTC'siz) — rozgor-core.js dan. Formulalar va qoidalar: docs/kalkifit.md.
  * Hamma natija "taxminiy hisob": tibbiy maslahat emas. */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory(require('./rozgor-core.js'));
+  if (typeof module === 'object' && module.exports) { var api0 = factory(require('./rozgor-core.js')); try { var fs0 = require('fs'), p0 = require('path'); api0.setSuv(JSON.parse(fs0.readFileSync(p0.join(__dirname, '..', 'data', 'suv-ulush.json'), 'utf8'))); } catch (e) {} module.exports = api0; }       // Node (testlar): suv ulushi jadvali o'zi yuklanadi
   else root.KalkiFit = factory(root.KalkiRozgor);
 })(typeof self !== 'undefined' ? self : this, function (D) {
   'use strict';
@@ -467,7 +467,19 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     return { items: items, missing: miss };
   }
 
-  return { VERSION: VERSION, ACT: ACT, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
+  /* ---------- suv hisobi: qo'lda stakanlar + ichimlik/suyuq taomlar (data/suv-ulush.json: id → 0…1) ----------
+     Ichimlik/suyuq taom ml'i × ulush HISOBLANADI (saqlanmaydi): yozuv o'chirilsa/porsiya o'zgarsa suv ham o'zi o'zgaradi. Yangi qoida faqat st.prefs.suvFrom (bugundan) kunlar uchun — eski kunlar o'zgarmaydi.
+     Yozuvning taomi: e.fid (baza) yoki e.sfid (rasm/AI/retsept yozuvi nomi bo'yicha topilgan baza taomi; ilova saqlaydi). ml ≈ g (suyuqlik zichligi ≈ 1). */
+  var SUV = {};
+  function setSuv(j) { SUV = (j && j.ulush) || {}; }
+  function suvShare(e) { var v = SUV[(e && (e.fid || e.sfid)) || '']; return typeof v === 'number' ? v : 0; }
+  function waterInfo(st, d) {
+    var x = dayOf(st, d), manual = x && x.water > 0 ? x.water * GLASS_ML : 0, from = st && st.prefs && st.prefs.suvFrom, items = [], drink = 0;
+    if (x && from && d >= from) x.food.forEach(function (e) { var sh = suvShare(e); if (sh > 0 && e.g > 0) { var ml = Math.round(e.g * sh); items.push({ e: e, ml: ml, share: sh }); drink += ml; } });
+    var ml = manual + drink; return { manual: manual, drink: drink, ml: ml, glasses: Math.floor(ml / GLASS_ML + 1e-9), items: items };
+  }
+
+  return { VERSION: VERSION, ACT: ACT, setSuv: setSuv, suvShare: suvShare, waterInfo: waterInfo, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
     bmrRaw: bmrRaw, bmi: bmi, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,

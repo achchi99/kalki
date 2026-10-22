@@ -655,3 +655,8 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .rz .sl-jline::before{content:"";position:absolute;top:-7px;left:50%;width:12px;height:12px;background:var(--card);border-left:1px solid var(--line);border-top:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
 .rz .sl-jline .t{padding-top:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rz .sl-jline .sl-jx{margin-top:0;width:36px;height:36px}
+/* suv kartasi: umumiy son katta; ostida bitta kichik qator «Suv 750 · Ichimliklar 600»; oynada ichimliklar ro'yxati */
+.rz .sl-wsplit{display:block;width:100%;font-size:var(--t-xs);font-weight:600;color:var(--mut);line-height:1.3;margin-top:2px;white-space:normal;overflow-wrap:anywhere;text-align:left}
+.rz .sl-glass.dr{opacity:.62}
+.rz .sl-wl{margin:6px 0 2px}.rz .sl-wlr{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:var(--t-s);min-width:0}.rz .sl-wlr .m{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:600}.rz .sl-wlr small{color:var(--mut);font-weight:500;font-size:var(--t-xs)}.rz .sl-wlr b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.rz .sl-wnote{margin:8px 0 0;font-weight:600}
