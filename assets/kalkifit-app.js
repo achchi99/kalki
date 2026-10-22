@@ -272,6 +272,11 @@
     try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom || !imgFile(f.id, null)) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0)) return f.id; } } catch (e) {}
     return null;
   }
+  function menuMatch(nom) {                         // «Menyudan tanlash»: menyu nomi → bazadagi taom (faqat aniq mos: nom/ruscha nom teng yoki so'z boshi; o'z taomlari emas)
+    if (dbState !== 2) return null; var q = String(nom || '').split(/[(·,]/)[0].trim(); if (q.length < 3) return null;
+    try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0) || (f.a || []).some(function (x) { return foldNm(x) === b; })) return f; } } catch (e) {}
+    return null;
+  }
   function iconFid(e) { if (!e || e.fid) return null; if (e.ifid !== undefined) return e.ifid; if (dbState !== 2) return null; e.ifid = iconMatch(e.name) || ''; save(); return e.ifid; }
   function mealTile(list) {                          // kartadagi 48 px rasm: eng ko'p kkal'li taom (rasmi yo'q bo'lsa — harfli tile)
     var best = null; list.forEach(function (e) { if (!best || e.kcal > best.kcal) best = e; });
@@ -1056,7 +1061,7 @@
   function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
   function aiLineHtml() {
     var q = (fd && fd.q || '').trim();
-    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
+    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>' + (!q && Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr() ? '<p class="sl-mnd"><button type="button" class="sl-txtbtn" data-act="mnopen" data-f="add" id="mnAdd">' + ico('cam', 'sl-inl') + esc(T('mnBtn')) + '</button></p>' : '');
   }
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
   function recRow(r, dim) {
@@ -2203,7 +2208,7 @@
     }
     if (Y) Y.init({ D: D, T: T, esc: esc, ico: ico, catIcon: catIcon, $: $, lang: function () { return lang; }, prefs: prefs, save: save, render: render, S: S, fmt: fmt, unitName: unitName, foodById: foodById, nameOf: nameOf, tileHtml: tileHtml, toast: toast, shHead: shHead,
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
-      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, openExternal: openExternal, infoTitle: infoTitle,
+      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
     if (R) R.init({ D: D, T: T, esc: esc, ico: ico, $: $, $$: $$, lang: function () { return lang; }, isCyr: isCyr, toast: toast, openSheet: openSheet, setSheet: setSheet, sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons,
       count: function (h) { if (Y) Y.count(h); }, cid: cid, yemay: function () { return Array.isArray(prefs().yemay) ? prefs().yemay : []; },
