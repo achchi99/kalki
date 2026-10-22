@@ -2246,6 +2246,48 @@
    "uz": "Yangi qoida: ichimliklar suv hisobiga kiradi. Piyola endi shtatga olindi.",
    "ru": "Новое правило: напитки идут в счёт воды. Пиала зачислена в штат.",
    "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y1",
+   "holat": "hafta_xulosa",
+   "uz": "Hafta yopildi. Daftar ham dam olish kunini so'rab turibdi.",
+   "ru": "Неделя закрыта. Блокнот тоже просит выходной.",
+   "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y2",
+   "holat": "hafta_xulosa",
+   "uz": "Yetti kun — yetti sahifa. Kalkulyator hammasini o'qib chiqdi.",
+   "ru": "Семь дней — семь страниц. Калькулятор всё прочитал.",
+   "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y3",
+   "holat": "hafta_xulosa",
+   "uz": "Hafta tugadi. Muzlatgich ham bu hisobotni kutib turgandi.",
+   "ru": "Неделя позади. Даже холодильник ждал этот отчёт.",
+   "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y4",
+   "holat": "hafta_xulosa",
+   "uz": "Haftalik hisob tayyor. Divan bu safar izoh bermadi.",
+   "ru": "Итоги недели готовы. Диван на этот раз воздержался от комментариев.",
+   "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y5",
+   "holat": "hafta_xulosa",
+   "uz": "Yangi hafta — yangi daftar. Eskisi arxivda g'urur bilan turibdi.",
+   "ru": "Новая неделя — новый блокнот. Старый гордо стоит в архиве.",
+   "yangi": true
+  },
+  {
+   "id": "hafta_xulosa-y6",
+   "holat": "hafta_xulosa",
+   "uz": "Hafta yakuni: shirinlik vasvasasi ham bir-ikki marta quruq qoldi.",
+   "ru": "Итог недели: соблазн сладкого пару раз остался ни с чем.",
+   "yangi": true
   }
  ]
 }

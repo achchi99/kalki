@@ -1,13 +1,13 @@
 {
-  "version": "1.0.3",
-  "versionCode": 5,
-  "apk": "/ilova/kalkifit-1.0.3.apk",
-  "sha256": "5a52d141bc07b4f55962164ba8255daed5b564990af2488b042e1d6e2490576c",
-  "size": 8561935,
+  "version": "1.0.4",
+  "versionCode": 6,
+  "apk": "/ilova/kalkifit-1.0.4.apk",
+  "sha256": "68a242e3dc17db209e6d5c06935e95265e8658e7053bd965179df58e3b612b46",
+  "size": 8562031,
   "minAndroid": "8.0",
   "date": "2026-10-22",
   "notes": {
-    "uz": "Qadamlar bitta tugma bilan ulanadi: Health Connect va telefon sensori birga, ilova ochiq bo'lsa real vaqtda sanaladi.",
-    "ru": "Шаги подключаются одной кнопкой: Health Connect и датчик телефона вместе, при открытом приложении — в реальном времени."
+    "uz": "Ovqatni ovoz bilan qo'shish: 🎤 ni bosing va ayting — «bir piyola osh, ikki tilim non va choy».",
+    "ru": "Добавляйте еду голосом: нажмите 🎤 и скажите — «тарелка плова, два куска хлеба и чай»."
   }
 }

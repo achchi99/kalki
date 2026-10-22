@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = 'e4e5f63b';   /* sw-version:auto */
+const SW_VERSION = '8450fa12';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -53,11 +53,16 @@ const ASSETS = [
   '/assets/kalkifit-core.js',
   '/assets/kalkifit-app.js',
   '/assets/kalkifit-gaplar.js',
+  '/assets/kalkifit-kunkarta.js',
+  '/assets/kalkifit-hafta.js',
+  '/assets/kalkifit-menyu.js',
+  '/assets/kalkifit-ovoz.js',
   '/assets/orinbosar-core.js',
   '/assets/cheklov-core.js',
   '/assets/yeymiz-core.js',
   '/assets/uyda-core.js',
   '/assets/hisob-kun.js',
+  '/assets/stat-kun.js',
   '/assets/num-slider.js',
   '/assets/kalkifit-yeymiz.js',
   '/assets/kalkifit-demo.js',
@@ -452,7 +457,7 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(staleWhileRevalidate(e.request, RUNTIME));
 });
 
-/* ---- «Baliq kuni» eslatmasi (Web Push). Haftada 1 ta; server: tools/push-yubor.js. Xabar: { t, b, u, tag } ---- */
+/* ---- «Baliq kuni» va «Haftalik xulosa» eslatmalari (Web Push). Har biri haftada 1 ta; server: tools/push-yubor.js. Xabar: { t, b, u, tag } ---- */
 self.addEventListener('push', (e) => {
   let d = {}; try { d = e.data ? e.data.json() : {}; } catch (_) { d = {}; }
   const u = typeof d.u === 'string' && d.u.charAt(0) === '/' ? d.u : '/kalkifit';
@@ -461,9 +466,10 @@ self.addEventListener('push', (e) => {
 self.addEventListener('notificationclick', (e) => {
   e.notification.close(); const u = (e.notification.data && e.notification.data.u) || '/kalkifit';
   e.waitUntil((async () => {
-    try { const c = await caches.open(PENDING); await c.put('/__pending/baliq', new Response(String(Date.now()))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
+    const k = /[?&]hafta=1\b/.test(u) ? 'hafta' : 'baliq';          // «Haftangiz xulosasi tayyor» yoki «Baliq kuni»
+    try { const c = await caches.open(PENDING); await c.put('/__pending/' + k, new Response(String(Date.now()))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
     const list = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage({ t: 'baliq' }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
+    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage({ t: k }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
     await self.clients.openWindow(u);
   })());
 });

@@ -2,6 +2,43 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 25,
+   "d": "2026-10-23",
+   "bn": {
+    "uz": "Ovqatni endi ovoz bilan ham qo'shish mumkin.",
+    "ru": "Еду теперь можно добавлять и голосом."
+   },
+   "items": [
+    {
+     "uz": "Ovqatni ovoz bilan qo'shing: 🎤 ni bosib ayting — «bir piyola osh va choy».",
+     "ru": "Добавляйте еду голосом: нажмите 🎤 и скажите — «тарелка плова и чай».",
+     "show": "ovoz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Kafe menyusini suratga oling — sizga mos 2–3 taomni tanlab beramiz.",
+     "ru": "Сфотографируйте меню кафе — подберём 2–3 подходящих блюда.",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Kun oxirida natijangizni rasm qilib ulashing; yakshanba kechqurun — hafta xulosasi.",
+     "ru": "Вечером делитесь итогом дня картинкой; в воскресенье вечером — итоги недели.",
+     "show": "dayend",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 24,
    "d": "2026-10-22",
    "bn": {

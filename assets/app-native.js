@@ -41,15 +41,15 @@
         });
       },
       /* ruxsat bor deb hisoblab qayta rejalashtirish (kun/til o'zgarganda; ruxsat so'ramaydi) */
-      schedule: function (o) {
-        var wd = ((+o.day || 0) + 1) % 7 + 1;          // 0=dushanba → Capacitor Weekday (1=yakshanba … 7=shanba)
-        return call('LocalNotifications', 'cancel', { notifications: [{ id: NOTIF_ID }] }).catch(function () {}).then(function () {
-          return call('LocalNotifications', 'schedule', { notifications: [{ id: NOTIF_ID, title: String(o.title || 'KalkiFit').slice(0, 60), body: String(o.body || '').slice(0, 200), smallIcon: 'ic_stat_kalkifit', iconColor: '#E8572F', extra: { u: o.url || '/kalkifit?baliq=1' }, schedule: { on: { weekday: wd, hour: o.hour == null ? 11 : o.hour, minute: 0 }, allowWhileIdle: true } }] });
+      schedule: function (o) {                        // o.id — boshqa haftalik eslatma uchun (standart: «Baliq kuni»; 7002 — «Haftalik xulosa»)
+        var wd = ((+o.day || 0) + 1) % 7 + 1, id = +o.id || NOTIF_ID;          // 0=dushanba → Capacitor Weekday (1=yakshanba … 7=shanba)
+        return call('LocalNotifications', 'cancel', { notifications: [{ id: id }] }).catch(function () {}).then(function () {
+          return call('LocalNotifications', 'schedule', { notifications: [{ id: id, title: String(o.title || 'KalkiFit').slice(0, 60), body: String(o.body || '').slice(0, 200), smallIcon: 'ic_stat_kalkifit', iconColor: '#E8572F', extra: { u: o.url || '/kalkifit?baliq=1' }, schedule: { on: { weekday: wd, hour: o.hour == null ? 11 : o.hour, minute: 0 }, allowWhileIdle: true } }] });
         });
       },
-      disable: function () { if (!N.notif.ok()) return Promise.resolve(); return call('LocalNotifications', 'cancel', { notifications: [{ id: NOTIF_ID }] }).catch(function () {}); },
+      disable: function (id) { if (!N.notif.ok()) return Promise.resolve(); return call('LocalNotifications', 'cancel', { notifications: [{ id: +id || NOTIF_ID }] }).catch(function () {}); },
       pending: function () { if (!N.notif.ok()) return Promise.resolve([]); return call('LocalNotifications', 'getPending').then(function (r) { return (r && r.notifications) || []; }, function () { return []; }); },
-      onTap: function (cb) { var c = cap(); if (!N.notif.ok() || !c || typeof c.addListener !== 'function') return; try { c.addListener('LocalNotifications', 'localNotificationActionPerformed', function (e) { var n = e && e.notification; if (n && +n.id === NOTIF_ID) cb(n.extra || {}); }); } catch (e) {} }
+      onTap: function (cb, id) { var c = cap(), want = +id || NOTIF_ID; if (!N.notif.ok() || !c || typeof c.addListener !== 'function') return; try { c.addListener('LocalNotifications', 'localNotificationActionPerformed', function (e) { var n = e && e.notification; if (n && +n.id === want) cb(n.extra || {}); }); } catch (e) {} }
     },
     /* ---------- rasm: kamera yoki galereya ---------- */
     canPickPhoto: function () { return N.has('Camera'); },
