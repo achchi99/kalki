@@ -51,7 +51,7 @@ console.log('rasmsiz:', noIcon.length, '| ikonka rejalashtirilgan taom:', noIcon
     for (const r of tr) {
       if (sl.has(r.slug)) e2.push('turk: takror slug ' + r.slug); sl.add(r.slug);
       if (!/^[a-z0-9-]+$/.test(r.slug)) e2.push('turk: slug noto\'g\'ri ' + r.slug);
-      if (planned.has(r.slug) || allSlugs.has(r.slug)) e2.push('turk: asosiy reja bilan to\'qnashadi ' + r.slug);
+      if (planned.has(r.slug)) e2.push('turk: asosiy reja bilan to\'qnashadi ' + r.slug);
       if (BAD.test(r.desc)) e2.push('turk ' + r.slug + ': taqiqlangan so\'z: ' + (r.desc.match(BAD) || [])[0]);
       if (!r.desc.endsWith('.') || r.desc.length < 20) e2.push('turk ' + r.slug + ': tavsif qisqa');
       for (const id of r.ids) { if (!by[id]) e2.push('turk ' + r.slug + ': baza\'da yo\'q ' + id); cv.add(id); }

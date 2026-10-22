@@ -17,7 +17,7 @@ const arg = (k, d) => { const i = process.argv.indexOf(k); return i < 0 ? d : pr
 const img = process.argv.slice(2).find((x) => !x.startsWith('--') && /\.(jpe?g|png|webp)$/i.test(x));
 if (!img) { console.error('Ishlatish: node tools/ikonka-kes.js <to\'r.jpg> [--n N]'); process.exit(1); }
 const TEK = arg('--tek', null);          // bitta ikonka (to'r emas): node tools/ikonka-kes.js <rasm> --tek <slug> — yozuvsiz, butun rasmda bitta taom
-const imgPath = img.replace(/^~/, HOME), N = TEK ? 0 : +(arg('--n', (path.basename(imgPath).match(/(\d+)/) || [])[1])), COLS = TEK ? 1 : +arg('--ustun', 6), ROWS = TEK ? 1 : +arg('--qator', 7), QURU = process.argv.includes('--quru');
+const imgPath = img.replace(/^~/, HOME), N = TEK ? 0 : (arg('--n', /turk/i.test(path.basename(imgPath)) ? 'turk' : (path.basename(imgPath).match(/(\d+)/) || [])[1]) === 'turk' ? 'turk' : +arg('--n', (path.basename(imgPath).match(/(\d+)/) || [])[1])), COLS = TEK ? 1 : +arg('--ustun', 6), ROWS = TEK ? 1 : +arg('--qator', 7), QURU = process.argv.includes('--quru');
 if (!TEK && !N) { console.error('To\'plam raqami aniqlanmadi (--n N)'); process.exit(1); }
 const slugs = TEK ? [TEK] : fs.readFileSync(path.join(ROOT, 'docs', 'ikonka-toplam-' + N + '.txt'), 'utf8').split('\n').filter((l) => / — /.test(l) && !l.startsWith('Create ONE')).map((l) => l.split(' — ')[0].trim());
 if (slugs.length !== COLS * ROWS) { console.error('to\'plam faylida ' + slugs.length + ' ta slug, kutilgan ' + COLS * ROWS); process.exit(1); }

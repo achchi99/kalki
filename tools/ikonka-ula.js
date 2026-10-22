@@ -4,7 +4,7 @@
 'use strict';
 const fs = require('fs'), path = require('path'), ROOT = path.join(__dirname, '..');
 const have = new Set(fs.readdirSync(path.join(ROOT, 'assets/ovqat')).filter((f) => /-256\.webp$/.test(f)).map((f) => f.replace(/-256\.webp$/, '')).filter((s) => fs.existsSync(path.join(ROOT, 'assets/ovqat', s + '-128.webp'))));
-const rows = fs.readFileSync(path.join(ROOT, 'data/ikonka-reja.txt'), 'utf8').split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => l.split('|'));
+const rows = (fs.readFileSync(path.join(ROOT, 'data/ikonka-reja.txt'), 'utf8') + '\n' + (fs.existsSync(path.join(ROOT, 'data/ikonka-reja-turk.txt')) ? fs.readFileSync(path.join(ROOT, 'data/ikonka-reja-turk.txt'), 'utf8') : '')).split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => l.split('|'));
 const map = {}; let icons = 0;
 for (const r of rows) { const slug = r[1].trim(); if (!have.has(slug)) continue; icons++; for (const id of r[3].trim().split(/\s+/)) { if (map[id]) throw new Error('ikki ikonka: ' + id); map[id] = slug; } }
 const P = path.join(ROOT, 'assets/kalkifit-app.js'); let s = fs.readFileSync(P, 'utf8');
