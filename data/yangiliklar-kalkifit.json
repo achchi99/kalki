@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 23,
+   "d": "2026-10-22",
+   "bn": {
+    "uz": "Qadamlar bitta tugma bilan ulanadi, yangi hazillar.",
+    "ru": "Шаги подключаются одной кнопкой, новые шутки."
+   },
+   "items": [
+    {
+     "uz": "Qadamlarni bitta tugma bilan ulang: Health Connect va telefon sensori birga ishlaydi.",
+     "ru": "Подключите шаги одной кнопкой: Health Connect и датчик телефона работают вместе.",
+     "show": "qadam",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "150 dan ortiq yangi hazil — endi kaloriya doirasi ostida.",
+     "ru": "Больше 150 новых шуток — теперь прямо под кругом калорий.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 22,
    "d": "2026-10-22",
    "bn": {

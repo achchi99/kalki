@@ -1,0 +1,2209 @@
+{
+ "v": 2,
+ "note": "KalkiFit hazillari: har yozuv — id (o'zgarmas), holat (vaziyat), uz (lotin; ЎЗ — runtime translit), ru (rus tilida tabiiy yozilgan). «yangi»: v23 to'plami (≤ 90 belgi). Qo'shish/o'chirish: shu ro'yxatga yozuv qo'shing yoki olib tashlang (har holatda ≥ 6 ta qolsin). Qoidalar: CLAUDE.md va tools/dizayn/test-kalkifit-hazil.mjs — tana/vazn/tashqi ko'rinish, din, siyosat, millat haqida hazil yo'q; odatlar ustidan kulamiz, odam ustidan emas.",
+ "neutral": {
+  "food": {
+   "uz": "Yozildi. Bugun jami {eaten} kkal.",
+   "ru": "Записано. Всего за сегодня {eaten} ккал."
+  },
+  "water": {
+   "uz": "Suv: {ml} / {goal} ml.",
+   "ru": "Вода: {ml} / {goal} мл."
+  },
+  "steps": {
+   "uz": "Qadam yozildi: {steps}.",
+   "ru": "Шаги записаны: {steps}."
+  },
+  "weight": {
+   "uz": "Vazn yozildi: {kg} kg.",
+   "ru": "Вес записан: {kg} кг."
+  },
+  "dayend": {
+   "uz": "Kun yakunlandi.",
+   "ru": "День завершён."
+  }
+ },
+ "items": [
+  {
+   "id": "dist_full_day-1",
+   "holat": "dist_full_day",
+   "uz": "Bugun {km} km. {route} yurib bordingiz — taksi puli cho'ntakda qoldi.",
+   "ru": "Сегодня {km} км. Можно было дойти {route} пешком — такси осталось без заказа."
+  },
+  {
+   "id": "dist_full_day-2",
+   "holat": "dist_full_day",
+   "uz": "{km} km bugun! {route} piyoda yetib bo'ldi, yo'lkira esa tejaldi.",
+   "ru": "{km} км за день. Это больше, чем путь {route}, — навигатор в лёгком шоке."
+  },
+  {
+   "id": "dist_full_day-3",
+   "holat": "dist_full_day",
+   "uz": "{route} masofa {routeKm} km. Siz bugun {km} km yurdingiz — marshrutka biroz xijolatda.",
+   "ru": "Сегодня вы прошли {km} км, а путь {route} всего {routeKm} км. Маршрутка нервно курит в сторонке."
+  },
+  {
+   "id": "dist_full_day-4",
+   "holat": "dist_full_day",
+   "uz": "{route} yo'l {routeKm} km, siz bugun {km} km bosdingiz. Navigator sizdan maslahat so'ramoqchi.",
+   "ru": "{km} км! Дорога {route} пешком — и ещё осталось на прогулку до ларька."
+  },
+  {
+   "id": "dist_full_day-5",
+   "holat": "dist_full_day",
+   "uz": "Bugun {km} km: {route} bemalol yetib, yana ortib qoldi. Oyoq kiyim bugun ishlab topdi.",
+   "ru": "Сегодняшние {km} км с запасом покрывают путь {route}. Кроссовки отработали смену."
+  },
+  {
+   "id": "dist_full_day-6",
+   "holat": "dist_full_day",
+   "uz": "{km} km. Agar yo'l {route} bo'lganda, allaqachon u yerda choy ichib o'tirgan bo'lardingiz.",
+   "ru": "{km} км. Если бы шли {route}, уже пили бы там чай."
+  },
+  {
+   "id": "dist_full_day-7",
+   "holat": "dist_full_day",
+   "uz": "Bugungi qadamlar bilan {route} yetib bordingiz deyish mumkin. Taksichi bugun sizni sog'inadi.",
+   "ru": "За день {km} км — дорога {route} пройдена с горкой. Таксист сегодня скучает."
+  },
+  {
+   "id": "dist_full_day-8",
+   "holat": "dist_full_day",
+   "uz": "{km} km — {route} masofadan uzun. Telefon qadam sanashdan charchab, quvvatlagichga qarab qo'ydi.",
+   "ru": "{km} км сегодня. Телефон устал считать шаги и косится на зарядку."
+  },
+  {
+   "id": "dist_full_day-9",
+   "holat": "dist_full_day",
+   "uz": "Bugun {route} yurib borsa bo'ladigan masofa bosib o'tildi: {km} km. Kuryerlar raqobatdan xavotirda.",
+   "ru": "Путь {route} — {routeKm} км. Ваши {km} км сегодня его обогнали. Курьеры напряглись."
+  },
+  {
+   "id": "dist_full_day-10",
+   "holat": "dist_full_day",
+   "uz": "{km} km! {route} yo'lni bugun mashinasiz, faqat qadam bilan yopdingiz.",
+   "ru": "{km} км. Бензин сегодня сэкономлен, а путь {route} пройден с запасом."
+  },
+  {
+   "id": "dist_full_week-1",
+   "holat": "dist_full_week",
+   "uz": "Bu hafta {km} km. {route} yurib bordingiz. Taksi puli tejaldi.",
+   "ru": "За неделю {km} км. Это как дойти {route}. Деньги на такси остались в кармане."
+  },
+  {
+   "id": "dist_full_week-2",
+   "holat": "dist_full_week",
+   "uz": "Haftalik hisob: {km} km. {route} piyoda — avtobus jadvali bu hafta dam oldi.",
+   "ru": "Неделя: {km} км. Путь {route} пройден, автобус проехал мимо без вас — и ладно."
+  },
+  {
+   "id": "dist_full_week-3",
+   "holat": "dist_full_week",
+   "uz": "{route} {routeKm} km, sizning haftangiz esa {km} km. Hisob siz tomonda.",
+   "ru": "Расстояние {route} — {routeKm} км, а у вас за неделю {km} км. Счёт в вашу пользу."
+  },
+  {
+   "id": "dist_full_week-4",
+   "holat": "dist_full_week",
+   "uz": "{km} km bir haftada! {route} yurib borib, ortig'ini sayrga yozsa ham bo'ladi.",
+   "ru": "Итоги недели: {km} км. Хватило бы дойти {route} и ещё заглянуть на базар."
+  },
+  {
+   "id": "dist_full_week-5",
+   "holat": "dist_full_week",
+   "uz": "Bu hafta {km} km: {route} yetib borildi, benzin narxi esa sizni qiziqtirmay qoldi.",
+   "ru": "{km} км за неделю! Лифт вас почти не видел, зато дорога {route} пройдена."
+  },
+  {
+   "id": "dist_full_week-6",
+   "holat": "dist_full_week",
+   "uz": "Hafta yakuni: {km} km. Lift sizni kam ko'rdi, {route} yo'l esa piyoda bosib o'tildi.",
+   "ru": "Неделя в цифрах: {km} км. На карте это линия {route} — и ещё немного сверху."
+  },
+  {
+   "id": "dist_full_week-7",
+   "holat": "dist_full_week",
+   "uz": "{route} — {routeKm} km. Siz bir haftada {km} km yurdingiz. Navigator jim qoldi.",
+   "ru": "За неделю {km} км. Цены на бензин вас больше не волнуют — по крайней мере, на маршруте {route}."
+  },
+  {
+   "id": "dist_full_week-8",
+   "holat": "dist_full_week",
+   "uz": "Bu hafta {km} km. Xaritada {route} chiziq tortilardi va hali joy qolardi.",
+   "ru": "{km} км за семь дней. Приложение такси прислало грустный смайлик."
+  },
+  {
+   "id": "dist_full_week-9",
+   "holat": "dist_full_week",
+   "uz": "Haftalik {km} km — {route} yurib bordingiz. Yo'lda bir choyxonada dam olishga ham vaqt topilardi.",
+   "ru": "Неделя: {km} км. Путь {route} пройден пешком — навигатор молча записал рекорд."
+  },
+  {
+   "id": "dist_full_week-10",
+   "holat": "dist_full_week",
+   "uz": "Bu hafta {km} km. Taksi ilovasi siz haqingizda xavotirlanib, chegirma yubormoqchi.",
+   "ru": "{km} км за неделю — это дорога {route} с запасом. Кроссовки просят выходной."
+  },
+  {
+   "id": "dist_full_month-1",
+   "holat": "dist_full_month",
+   "uz": "Bu oy {km} km. {route} yurib bordingiz — bu endi sayr emas, ekspeditsiya.",
+   "ru": "За месяц {km} км. Это уже не прогулка, а экспедиция: дошли бы {route}."
+  },
+  {
+   "id": "dist_full_month-2",
+   "holat": "dist_full_month",
+   "uz": "Oylik natija: {km} km. {route} piyoda yetib borsa bo'lardi, poyezd chiptasi tejaldi.",
+   "ru": "Месяц: {km} км. Путь {route} пройден, билет на поезд остался в кассе."
+  },
+  {
+   "id": "dist_full_month-3",
+   "holat": "dist_full_month",
+   "uz": "{km} km bir oyda! {route} {routeKm} km, siz esa undan ham uzoqqa yetdingiz.",
+   "ru": "{km} км за месяц! Дорога {route} — {routeKm} км, а вы ушли дальше."
+  },
+  {
+   "id": "dist_full_month-4",
+   "holat": "dist_full_month",
+   "uz": "Bu oy oyoqlar {km} km bosdi. {route} yo'l oyoq kiyimingizga tanish bo'lib qoldi.",
+   "ru": "Итог месяца: {km} км. Машина в гараже чувствует себя пенсионером."
+  },
+  {
+   "id": "dist_full_month-5",
+   "holat": "dist_full_month",
+   "uz": "Oy yakuni: {km} km. {route} bordingiz, xaritada bayroqcha qo'ysa bo'ladi.",
+   "ru": "За месяц {km} км — хватит, чтобы дойти {route}. Кроссовки уже знают дорогу."
+  },
+  {
+   "id": "dist_full_month-6",
+   "holat": "dist_full_month",
+   "uz": "{km} km — {route} masofadan ham uzun. Mashina garajda o'zini nafaqadagidek his qilyapti.",
+   "ru": "{km} км за месяц. По пути {route} вас бы узнавали в каждой чайхане."
+  },
+  {
+   "id": "dist_full_month-7",
+   "holat": "dist_full_month",
+   "uz": "Bu oy {km} km. {route} yurib borilganda, yo'ldagi har bir choyxona sizni tanib qolardi.",
+   "ru": "Месяц пешком: {km} км. Курьеры интересуются, не ищете ли вы работу."
+  },
+  {
+   "id": "dist_full_month-8",
+   "holat": "dist_full_month",
+   "uz": "Oylik {km} km. Kuryerlar sizga ish taklif qilishdan oldin rezyumeni so'rashmoqda.",
+   "ru": "{km} км за месяц. Маршрут {route} пройден — на карте можно ставить флажок."
+  },
+  {
+   "id": "dist_full_month-9",
+   "holat": "dist_full_month",
+   "uz": "Bir oyda {km} km: {route} yetib bordingiz. Qadam hisoblagich ham hurmat bilan qaraydi.",
+   "ru": "Месячный счёт: {km} км. Шагомер в телефоне смотрит с уважением."
+  },
+  {
+   "id": "dist_full_month-10",
+   "holat": "dist_full_month",
+   "uz": "Bu oy {km} km. Tejalgan yo'lkira hisoblansa, cho'ntak ancha quvonardi.",
+   "ru": "За месяц {km} км. Если посчитать несостоявшиеся поездки на такси, кошелёк ликует."
+  },
+  {
+   "id": "dist_part-1",
+   "holat": "dist_part",
+   "uz": "{km} km — {route} yo'lning {pct} foizi. Qolgani ertaga ham joyida turadi.",
+   "ru": "{km} км — это {pct}% пути {route}. Остальное никуда не денется."
+  },
+  {
+   "id": "dist_part-2",
+   "holat": "dist_part",
+   "uz": "{route} yo'lning {pct} foizi bosib o'tildi. Yo'l qochib ketmaydi, xotirjam.",
+   "ru": "Пройдено {pct}% дороги {route}. Дорога терпеливая, подождёт."
+  },
+  {
+   "id": "dist_part-3",
+   "holat": "dist_part",
+   "uz": "{km} km yurildi: {route} {pct} foiz tayyor. Taksi hali kutib turibdi, lekin umidi kamayyapti.",
+   "ru": "{km} км: {pct}% маршрута {route} позади. Такси всё ещё ждёт, но уже без надежды."
+  },
+  {
+   "id": "dist_part-4",
+   "holat": "dist_part",
+   "uz": "{route} yo'lda {pct} foiz. Navigator shivirlayapti: «choyxona yaqin».",
+   "ru": "{pct}% пути {route}. Навигатор шепчет: «чайхана уже близко»."
+  },
+  {
+   "id": "dist_part-5",
+   "holat": "dist_part",
+   "uz": "{km} km. Xaritada {route} chiziqning {pct} foizi chizildi, xarita sabr bilan kutyapti.",
+   "ru": "{km} км — на карте {route} закрашено {pct}%. Карта довольна."
+  },
+  {
+   "id": "dist_part-6",
+   "holat": "dist_part",
+   "uz": "{pct} foiz — {route} yo'lning shuncha qismi oyoq ostida qoldi. Qolgani shoshmaydi.",
+   "ru": "Уже {pct}% маршрута {route}. Отличный повод для привала с чаем."
+  },
+  {
+   "id": "dist_part-7",
+   "holat": "dist_part",
+   "uz": "{km} km bilan {route} yo'lning {pct} foizini bosdingiz. Marshrutka orqada qoldi... deylik.",
+   "ru": "{km} км, то есть {pct}% пути {route}. Маршрутка где-то позади… допустим."
+  },
+  {
+   "id": "dist_part-8",
+   "holat": "dist_part",
+   "uz": "{route} yo'l {pct} foizga yopildi. Qolgan qismi uchun avtobus emas, ertangi kun bor.",
+   "ru": "Пройдено {km} км — {pct}% дороги {route}. Оставшаяся часть подождёт до завтра."
+  },
+  {
+   "id": "dist_part-9",
+   "holat": "dist_part",
+   "uz": "{km} km — bu {route} {pct} foiz. Qolgan yo'l ham sizni bemalol kutib o'tiribdi.",
+   "ru": "{pct}% пути {route} пройдено. Кроссовки уже прикидывают остаток."
+  },
+  {
+   "id": "burn-1",
+   "holat": "burn",
+   "uz": "Bugungi qadamlaringiz {food} yoqdi. Navbatdagilar hali o'ylanyapti.",
+   "ru": "Сегодняшние шаги сожгли {food}. Следующие пока размышляют."
+  },
+  {
+   "id": "burn-2",
+   "holat": "burn",
+   "uz": "Qadamlar {kcal} kkal yoqdi, ya'ni {food} hisobdan o'chirdi.",
+   "ru": "Шаги сожгли {kcal} ккал — по сути, {food}."
+  },
+  {
+   "id": "burn-3",
+   "holat": "burn",
+   "uz": "{kcal} kkal: qadamlaringiz {food} jimgina hazm qilib qo'ydi.",
+   "ru": "Прогулка аннулировала {food}. {kcal} ккал — честная работа."
+  },
+  {
+   "id": "burn-4",
+   "holat": "burn",
+   "uz": "Yurgan yo'lingiz {food} tarixga aylantirdi. {kcal} kkal — mehnat bilan topildi.",
+   "ru": "Ноги сегодня отработали {food}. Холодильник принял новость молча."
+  },
+  {
+   "id": "burn-5",
+   "holat": "burn",
+   "uz": "Bugun oyoqlar {food} yoqib yubordi. Bu xabarni {foodNom} hali eshitmagan.",
+   "ru": "{kcal} ккал сожжено. По калориям это {food} — лифт так не умеет."
+  },
+  {
+   "id": "burn-6",
+   "holat": "burn",
+   "uz": "{kcal} kkal qadam bilan ketdi — bu {food} yoqishga teng. Lift buni qila olmasdi.",
+   "ru": "Шаги сегодня тихо переварили {food}. Калькулятор одобрительно кивает."
+  },
+  {
+   "id": "burn-7",
+   "holat": "burn",
+   "uz": "Qadamlar hisobi: {food} yoqildi. Muzlatgich bu yangilikni sukut bilan qabul qildi.",
+   "ru": "Лестницы и тротуары сожгли {food}. {kcal} ккал — маленькая победа."
+  },
+  {
+   "id": "burn-8",
+   "holat": "burn",
+   "uz": "{kcal} kkal — {food} yoqishga yetadigan yurish. Kuryer ham hayron.",
+   "ru": "{kcal} ккал за день. Где-то на кухне {foodNom} нервно оглядывается."
+  },
+  {
+   "id": "burn-9",
+   "holat": "burn",
+   "uz": "Pillapoya va yo'laklar {food} yoqib berdi. {kcal} kkal — kichik g'alaba.",
+   "ru": "Ваши шаги сожгли {food} — курьер бы так быстро даже не довёз."
+  },
+  {
+   "id": "burn-10",
+   "holat": "burn",
+   "uz": "Bugungi sayr {food} hisobdan o'chirdi. Choynak buni bayram deb qabul qildi.",
+   "ru": "Сегодняшняя прогулка списала {food}. Чайник считает, что это стоит отметить."
+  },
+  {
+   "id": "within-1",
+   "holat": "within",
+   "uz": "Bugungi hisob: me'yorgacha yana {left} kkal bor.",
+   "ru": "Расчёт на сегодня: до нормы ещё {left} ккал."
+  },
+  {
+   "id": "within-2",
+   "holat": "within",
+   "uz": "Me'yorda {left} kkal qoldi. Kechki choy ham sig'adi.",
+   "ru": "До нормы {left} ккал. Вечерний чай тоже помещается."
+  },
+  {
+   "id": "within-3",
+   "holat": "within",
+   "uz": "{left} kkal zaxirada. Kalkulyator hammasini yozib bordi.",
+   "ru": "В запасе {left} ккал. Калькулятор всё записал."
+  },
+  {
+   "id": "within-4",
+   "holat": "within",
+   "uz": "Kun davom etmoqda: {left} kkal qoldi, tanlov o'zingizda.",
+   "ru": "День идёт: осталось {left} ккал, выбор за вами."
+  },
+  {
+   "id": "within-5",
+   "holat": "within",
+   "uz": "Me'yorgacha {left} kkal. Muzlatgich eshigi bugun tinch.",
+   "ru": "До нормы {left} ккал. Дверца холодильника сегодня спокойна."
+  },
+  {
+   "id": "within-6",
+   "holat": "within",
+   "uz": "Bugungi raqam: me'yorgacha {left} kkal. Choy bilan biror narsaga joy bor.",
+   "ru": "Цифра дня: до нормы {left} ккал. Для чая с чем-нибудь место есть."
+  },
+  {
+   "id": "within-7",
+   "holat": "within",
+   "uz": "Hisob aniq: {left} kkal qoldi. Kuryer boshqa manzilga ketdi.",
+   "ru": "Счёт точный: осталось {left} ккал. Курьер поехал по другому адресу."
+  },
+  {
+   "id": "within-8",
+   "holat": "within",
+   "uz": "Me'yor ichida, {left} kkal zaxirada. Ertangi nonushta uchun ham joy qoladi.",
+   "ru": "В пределах нормы, в запасе {left} ккал. Место останется и на завтрашний завтрак."
+  },
+  {
+   "id": "within-9",
+   "holat": "within",
+   "uz": "Hozircha {left} kkal qoldi — kun bo'yi bemalol yozib boring.",
+   "ru": "Пока осталось {left} ккал — записывайте в течение дня спокойно."
+  },
+  {
+   "id": "within-10",
+   "holat": "within",
+   "uz": "{left} kkal bor. Dasturxon bugun o'z holicha.",
+   "ru": "Осталось {left} ккал. Дастархан сегодня сам по себе."
+  },
+  {
+   "id": "over_neutral-1",
+   "holat": "over_neutral",
+   "uz": "So'nggi 3 kunda o'rtacha {avg} kkal yozildi — me'yordan {pct}% yuqori.",
+   "ru": "За последние 3 дня в среднем записано {avg} ккал — на {pct}% выше нормы."
+  },
+  {
+   "id": "over_neutral-2",
+   "holat": "over_neutral",
+   "uz": "Oxirgi kunlardagi o'rtacha: {avg} kkal, bu me'yordan {pct}% yuqori.",
+   "ru": "Среднее за последние дни: {avg} ккал. Это на {pct}% выше нормы."
+  },
+  {
+   "id": "over_neutral-3",
+   "holat": "over_neutral",
+   "uz": "Bir necha kun ketma-ket o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Me'yorni sozlamalarda qayta ko'rib chiqish mumkin.",
+   "ru": "Несколько дней подряд в среднем {avg} ккал, на {pct}% выше нормы. Норму можно пересмотреть в настройках."
+  },
+  {
+   "id": "over_neutral-4",
+   "holat": "over_neutral",
+   "uz": "Oxirgi kunlarda o'rtacha {avg} kkal yozildi, me'yordan {pct}% yuqori. Bir kunlik emas, haftalik rasm muhimroq.",
+   "ru": "За последние дни в среднем {avg} ккал — на {pct}% выше нормы. Важнее неделя целиком, а не один день."
+  },
+  {
+   "id": "over_neutral-5",
+   "holat": "over_neutral",
+   "uz": "O'rtacha {avg} kkal — me'yordan {pct}% ko'p. Bayram, mehmon yoki yangi odat bo'lishi mumkin; me'yorni sozlamalardan tekshirib ko'ring.",
+   "ru": "В среднем {avg} ккал — на {pct}% больше нормы. Гости, праздник или новая привычка — норму можно пересмотреть в настройках."
+  },
+  {
+   "id": "over_neutral-6",
+   "holat": "over_neutral",
+   "uz": "Bir necha kundan beri o'rtacha {avg} kkal. Hisob shunchaki hisob: baho emas, faqat kuzatuv.",
+   "ru": "Уже несколько дней в среднем {avg} ккал. Это просто учёт: не оценка, а наблюдение."
+  },
+  {
+   "id": "water_low-1",
+   "holat": "water_low",
+   "uz": "Bugun {glasses} stakan suv. Choyni suv deb hisoblash istagi tushunarli, lekin yo'q.",
+   "ru": "Воды сегодня {glasses} из {target} стаканов. Желание засчитать чай как воду понятно, но нет."
+  },
+  {
+   "id": "water_low-2",
+   "holat": "water_low",
+   "uz": "{glasses}/{target} stakan. Kofe o'zini suv deb tanishtirdi, ilova ishonmadi.",
+   "ru": "{glasses}/{target}. Кофе представился водой, приложение не поверило."
+  },
+  {
+   "id": "water_low-3",
+   "holat": "water_low",
+   "uz": "Suv: {glasses} stakan. Sharbat ham suyuqlik, lekin hisob boshqacha ishlaydi.",
+   "ru": "Вода: {glasses} из {target}. Сок, конечно, тоже жидкость, но счёт работает иначе."
+  },
+  {
+   "id": "water_low-4",
+   "holat": "water_low",
+   "uz": "{glasses} stakan suv. Ko'k choy yashil bo'lgani bilan suvga aylanmaydi.",
+   "ru": "{glasses} из {target} стаканов. Зелёный чай зелёный, но водой от этого не становится."
+  },
+  {
+   "id": "water_low-5",
+   "holat": "water_low",
+   "uz": "Bugun {target} stakandan {glasses} tasi ichildi. Qolgani kranda sizni kutyapti.",
+   "ru": "Выпито {glasses} из {target}. Остальное ждёт в кране и не обижается."
+  },
+  {
+   "id": "water_low-6",
+   "holat": "water_low",
+   "uz": "{glasses} stakan. Grafin stolda turibdi, u ham hisobga tushishni xohlaydi.",
+   "ru": "Вода: {glasses}/{target}. Графин на столе тоже хотел бы попасть в статистику."
+  },
+  {
+   "id": "water_low-7",
+   "holat": "water_low",
+   "uz": "Suv hisobi: {glasses}/{target}. Choynak g'olib, grafin hali o'yinga kirmadi.",
+   "ru": "Счёт по воде: {glasses}/{target}. Чайник лидирует, графин ещё не вышел на поле."
+  },
+  {
+   "id": "water_low-8",
+   "holat": "water_low",
+   "uz": "{glasses} stakan suv. Qatiq ham ichimlik, lekin suv rolini o'ynay olmaydi.",
+   "ru": "{glasses} из {target}. Айран — напиток достойный, но роль воды ему не дали."
+  },
+  {
+   "id": "water_low-9",
+   "holat": "water_low",
+   "uz": "Bugun suv {glasses} stakan. Kompot qanchalik mazali bo'lmasin, u suv emas — afsus.",
+   "ru": "Воды {glasses} из {target}. Компот, каким бы вкусным он ни был, — не вода. Увы."
+  },
+  {
+   "id": "water_low-10",
+   "holat": "water_low",
+   "uz": "{glasses}/{target}. Suv shishasi xafa: bugun undan ko'ra piyola mashhurroq.",
+   "ru": "{glasses}/{target}. Бутылка с водой обижена: пиала сегодня популярнее."
+  },
+  {
+   "id": "holiday-1",
+   "holat": "holiday",
+   "uz": "Bugun bayram — hisob-kitob ham dam oladi. Dasturxon esa ishda.",
+   "ru": "Сегодня праздник — подсчёты тоже отдыхают. А дастархан работает."
+  },
+  {
+   "id": "holiday-2",
+   "holat": "holiday",
+   "uz": "Osh, somsa, mehmon... Kalkulyator bugun burchakda jim o'tiribdi.",
+   "ru": "Плов, самса, гости… Калькулятор сегодня тихо сидит в уголке."
+  },
+  {
+   "id": "holiday-3",
+   "holat": "holiday",
+   "uz": "Bayram kuni raqamlar emas, mehmonlar sanaladi.",
+   "ru": "В праздник считают гостей, а не калории."
+  },
+  {
+   "id": "holiday-4",
+   "holat": "holiday",
+   "uz": "Bugun dasturxon kalkulyatordan kattaroq. Bu normal, bu bayram.",
+   "ru": "Сегодня дастархан больше калькулятора. Это нормально, это праздник."
+  },
+  {
+   "id": "holiday-5",
+   "holat": "holiday",
+   "uz": "To'y yoki bayram — sanash bugun ikkinchi o'rinda. Ertaga hammasi odatdagidek.",
+   "ru": "Свадьба или праздник — подсчёты сегодня на втором плане. Завтра всё как обычно."
+  },
+  {
+   "id": "holiday-6",
+   "holat": "holiday",
+   "uz": "Mehmondorchilik kuni: choynak navbatchilikda, hisob-kitob ta'tilda.",
+   "ru": "День гостей: чайник на смене, подсчёты в отпуске."
+  },
+  {
+   "id": "holiday-7",
+   "holat": "holiday",
+   "uz": "Bugun asosiy ilova — osh qozoni. Biz ertaga qaytamiz.",
+   "ru": "Сегодня главное приложение — казан с пловом. Мы вернёмся завтра."
+  },
+  {
+   "id": "holiday-8",
+   "holat": "holiday",
+   "uz": "Bayram muborak! Bugungi asosiy mashq — mehmonlarni kutib olish va kuzatish.",
+   "ru": "С праздником! Главная тренировка дня — встретить и проводить гостей."
+  },
+  {
+   "id": "holiday-9",
+   "holat": "holiday",
+   "uz": "Bugun qadamlar ham bayramda: mehmondan mehmonga, uydan uyga.",
+   "ru": "Сегодня и шаги праздничные: из гостей в гости, от дома к дому."
+  },
+  {
+   "id": "holiday-10",
+   "holat": "holiday",
+   "uz": "Bayram dasturxoni hech qaysi jadvalga sig'maydi. Bugun shunchaki yaxshi kun.",
+   "ru": "Праздничный дастархан не помещается ни в одну таблицу. Сегодня просто хороший день."
+  },
+  {
+   "id": "yesam_ok-1",
+   "holat": "yesam_ok",
+   "uz": "{item} — {kcal} kkal. Me'yorga sig'adi, keyin ham {left} kkal qoladi.",
+   "ru": "{item} — {kcal} ккал. В норму помещается, и ещё {left} ккал остаётся."
+  },
+  {
+   "id": "yesam_ok-2",
+   "holat": "yesam_ok",
+   "uz": "{kcal} kkal — me'yor ichida. Choy bilan birga ham {left} kkal zaxirada qoladi.",
+   "ru": "{kcal} ккал — в пределах нормы. С чаем в запасе всё равно {left} ккал."
+  },
+  {
+   "id": "yesam_ok-3",
+   "holat": "yesam_ok",
+   "uz": "{item} bilan ham me'yorgacha {left} kkal qoladi. Qaror sizda, kalkulyator faqat hisoblaydi.",
+   "ru": "С «{item}» до нормы остаётся {left} ккал. Решение за вами, калькулятор только считает."
+  },
+  {
+   "id": "yesam_ok-4",
+   "holat": "yesam_ok",
+   "uz": "Kalkulyator o'ylab, bosh irg'adi: {item} me'yorga sig'adi, {left} kkal qoladi.",
+   "ru": "Калькулятор подумал и кивнул: {item} помещается в норму, остаётся {left} ккал."
+  },
+  {
+   "id": "yesam_ok-5",
+   "holat": "yesam_ok",
+   "uz": "{item} — {kcal} kkal. Me'yor buni bemalol ko'taradi, choynak ham rozi.",
+   "ru": "{item} — {kcal} ккал. Норма это легко выдерживает, чайник тоже согласен."
+  },
+  {
+   "id": "yesam_ok-6",
+   "holat": "yesam_ok",
+   "uz": "Shu taom bilan me'yorgacha yana {left} kkal qoladi. Muzlatgich eshigi do'stona g'ijirladi.",
+   "ru": "С этим блюдом до нормы ещё {left} ккал. Дверца холодильника дружелюбно скрипнула."
+  },
+  {
+   "id": "yesam_ok-7",
+   "holat": "yesam_ok",
+   "uz": "{kcal} kkal me'yorga sig'adi. Yoqimli ishtaha — keyin ham {left} kkal zaxirada.",
+   "ru": "{kcal} ккал помещаются в норму. Приятного аппетита — и потом остаётся {left} ккал."
+  },
+  {
+   "id": "yesam_ok-8",
+   "holat": "yesam_ok",
+   "uz": "{item} — {kcal} kkal; undan keyin me'yorgacha {left} kkal qoladi. Hisob oddiy.",
+   "ru": "{item} — {kcal} ккал; после него до нормы {left} ккал. Счёт простой."
+  },
+  {
+   "id": "yesam_over-1",
+   "holat": "yesam_over",
+   "uz": "{item} me'yordan {over} kkal oshiradi. Yarmi hozir, qolgani ertaga ham bo'ladi — yoki shunchaki bugun bayram.",
+   "ru": "«{item}» превышает норму на {over} ккал. Половину сейчас, остальное завтра — или просто сегодня праздник."
+  },
+  {
+   "id": "yesam_over-2",
+   "holat": "yesam_over",
+   "uz": "{item} — {kcal} kkal, me'yordan +{over} kkal. {min} daqiqalik sayr bilan tenglashadi — xohlasangiz.",
+   "ru": "{item} — {kcal} ккал, норма превышается на {over} ккал. Прогулка {min} минут выравнивает — если захотите."
+  },
+  {
+   "id": "yesam_over-3",
+   "holat": "yesam_over",
+   "uz": "Me'yordan {over} kkal yuqori chiqadi. Kichikroq porsiya yoki kechki {min} daqiqa sayr — ikkalasi ham ishlaydi.",
+   "ru": "Выходит на {over} ккал выше нормы. Порция поменьше или вечерняя прогулка {min} минут — оба варианта работают."
+  },
+  {
+   "id": "yesam_over-4",
+   "holat": "yesam_over",
+   "uz": "{item} bugungi me'yordan {over} kkal nariroqda. Ertangi nonushtaga qoldirsa ham bo'ladi.",
+   "ru": "«{item}» выходит за сегодняшнюю норму на {over} ккал. Можно оставить на завтрашний завтрак."
+  },
+  {
+   "id": "yesam_over-5",
+   "holat": "yesam_over",
+   "uz": "Hisob: {kcal} kkal, me'yordan +{over} kkal. {min} daqiqa piyoda yurish uni tenglashtiradi.",
+   "ru": "Счёт: {kcal} ккал, +{over} ккал к норме. {min} минут пешком — и баланс ровный."
+  },
+  {
+   "id": "yesam_over-6",
+   "holat": "yesam_over",
+   "uz": "Muzlatgich ikkilanyapti: {item} me'yorni {over} kkalga siljitadi. Ertaga saqlab qo'yish ham variant.",
+   "ru": "Холодильник колеблется: «{item}» сдвигает норму на {over} ккал. Отложить на завтра — тоже вариант."
+  },
+  {
+   "id": "yesam_over-7",
+   "holat": "yesam_over",
+   "uz": "+{over} kkal me'yordan tashqarida. Do'stlar bilan bo'lishilsa, taom ham, hisob ham xursand.",
+   "ru": "+{over} ккал за нормой. Если поделиться с друзьями, и блюдо, и счёт будут довольны."
+  },
+  {
+   "id": "yesam_over-8",
+   "holat": "yesam_over",
+   "uz": "{item} bilan me'yordan +{over} kkal bo'ladi. Bir stakan suv va {min} daqiqalik sayr — muvozanat tiklanadi.",
+   "ru": "С «{item}» будет +{over} ккал к норме. Стакан воды и {min} минут прогулки — баланс восстановится."
+  },
+  {
+   "id": "food_first-1",
+   "holat": "food_first",
+   "uz": "Kunning birinchi yozuvi tayyor. Daftar bugun ham sizga ishonyapti.",
+   "ru": "Первая запись дня готова. Дневник и сегодня на вас рассчитывает."
+  },
+  {
+   "id": "food_first-2",
+   "holat": "food_first",
+   "uz": "Birinchi ovqat yozildi — hisob ochildi, hisobchi choy ichgani chiqdi.",
+   "ru": "Первая еда записана — счёт открыт, бухгалтер пошёл за чаем."
+  },
+  {
+   "id": "food_first-3",
+   "holat": "food_first",
+   "uz": "Yozib qo'ydik. Kun hali uzun, bu faqat boshlanishi.",
+   "ru": "Записали. День ещё длинный, это только начало."
+  },
+  {
+   "id": "food_first-4",
+   "holat": "food_first",
+   "uz": "Bugungi birinchi yozuv. Telefon xotirjam: uni bugun unutmadingiz.",
+   "ru": "Первая запись за сегодня. Телефон спокоен: вы его не забыли."
+  },
+  {
+   "id": "food_first-5",
+   "holat": "food_first",
+   "uz": "Nonushtami, choymi — baribir yozdingiz. Odat shunaqa boshlanadi.",
+   "ru": "Завтрак или просто чай — вы всё равно записали. Так и начинаются привычки."
+  },
+  {
+   "id": "food_first-6",
+   "holat": "food_first",
+   "uz": "Kun boshlandi, daftar ochildi. Qolganini yozishni ham unutmang-a.",
+   "ru": "День начался, тетрадь открыта. Остальное тоже не забудьте записать."
+  },
+  {
+   "id": "food_first-7",
+   "holat": "food_first",
+   "uz": "Birinchi yozuv — eng qiyini. Qolganlari odatda o'zi ketaveradi.",
+   "ru": "Первая запись — самая трудная. Дальше обычно идёт само."
+  },
+  {
+   "id": "food_first-8",
+   "holat": "food_first",
+   "uz": "Hisobchi ishga tushdi. Maosh so'ramaydi, faqat rostini yozishni yaxshi ko'radi.",
+   "ru": "Счетовод вышел на работу. Зарплату не просит, любит только честные записи."
+  },
+  {
+   "id": "food_add-1",
+   "holat": "food_add",
+   "uz": "Yozildi. Daftar bugun ham sizdan xursand.",
+   "ru": "Записано. Дневник и сегодня вами доволен."
+  },
+  {
+   "id": "food_add-2",
+   "holat": "food_add",
+   "uz": "Bitta yozuv ko'paydi. Xotiraga ishonmaslik — aqlli odat.",
+   "ru": "Одной записью больше. Не доверять памяти — умная привычка."
+  },
+  {
+   "id": "food_add-3",
+   "holat": "food_add",
+   "uz": "Qo'shildi. Yozilmagan ovqat hisobda yo'q — telefon folbin emas.",
+   "ru": "Добавлено. Не записанной еды в учёте нет — телефон не гадалка."
+  },
+  {
+   "id": "food_add-4",
+   "holat": "food_add",
+   "uz": "Hisob yangilandi. Idish darajasi biroz ko'tarildi.",
+   "ru": "Счёт обновлён. Уровень в сосуде чуть поднялся."
+  },
+  {
+   "id": "food_add-5",
+   "holat": "food_add",
+   "uz": "Tayyor. Bunaqa aniq yozuvga buxgalterning ham havasi keladi.",
+   "ru": "Готово. Такой аккуратной записи позавидует и бухгалтер."
+  },
+  {
+   "id": "food_add-6",
+   "holat": "food_add",
+   "uz": "Yana bir qator — daftar qalinlashmoqda, odat mustahkamlanmoqda.",
+   "ru": "Ещё одна строка — записей прибавилось, привычка крепнет."
+  },
+  {
+   "id": "food_add-7",
+   "holat": "food_add",
+   "uz": "Qo'shildi. Aytgancha, yeganingizni yozmasangiz, idish sizga ishonmaydi.",
+   "ru": "Добавлено. Кстати, если не записывать съеденное, сосуд вам не поверит."
+  },
+  {
+   "id": "food_add-8",
+   "holat": "food_add",
+   "uz": "Yozuv saqlandi. Rostgo'ylik daftarda ham, kayfiyatda ham hisobga olinadi.",
+   "ru": "Запись сохранена. Честность учитывается и в дневнике, и в настроении."
+  },
+  {
+   "id": "steps_add-1",
+   "holat": "steps_add",
+   "uz": "{steps} qadam yozildi. Oyoqlar bugun ish haqini oldi.",
+   "ru": "{steps} шагов записано. Ноги сегодня получили зарплату."
+  },
+  {
+   "id": "steps_add-2",
+   "holat": "steps_add",
+   "uz": "Qadamlar qabul qilindi. Divan biroz xafa bo'ldi.",
+   "ru": "Шаги приняты. Диван слегка расстроен."
+  },
+  {
+   "id": "steps_add-3",
+   "holat": "steps_add",
+   "uz": "{steps} qadam — raqam bo'lsa ham, yurgan siz.",
+   "ru": "{steps} шагов — пусть это цифра, но ходили вы."
+  },
+  {
+   "id": "steps_add-4",
+   "holat": "steps_add",
+   "uz": "Yozildi. Telefon qadam sanashdan charchagan edi, endi dam oladi.",
+   "ru": "Записано. Телефон устал считать шаги, теперь отдохнёт."
+  },
+  {
+   "id": "steps_add-5",
+   "holat": "steps_add",
+   "uz": "{steps} qadam. Lift bugun sizni kam ko'rdi.",
+   "ru": "{steps} шагов. Лифт сегодня вас почти не видел."
+  },
+  {
+   "id": "steps_add-6",
+   "holat": "steps_add",
+   "uz": "Qadam hisobi yangilandi. Poyabzal tilga kirsa, rahmat aytardi.",
+   "ru": "Шаги обновлены. Если бы обувь умела говорить, сказала бы спасибо."
+  },
+  {
+   "id": "steps_add-7",
+   "holat": "steps_add",
+   "uz": "Yozib qo'ydik: {steps}. Marshrutka bugun sizsiz zerikdi.",
+   "ru": "Записали: {steps}. Маршрутка сегодня скучала без вас."
+  },
+  {
+   "id": "steps_add-8",
+   "holat": "steps_add",
+   "uz": "{steps} qadam hisobga tushdi. Kichik qadam ham daftarda o'z o'rniga ega.",
+   "ru": "{steps} шагов в учёте. Даже маленький шаг имеет место в дневнике."
+  },
+  {
+   "id": "dayend-1",
+   "holat": "dayend",
+   "uz": "Kun yakunlandi. Daftar yopildi, hisobchi uyiga ketdi.",
+   "ru": "День завершён. Дневник закрыт, бухгалтер ушёл домой."
+  },
+  {
+   "id": "dayend-2",
+   "holat": "dayend",
+   "uz": "Bugungi hisob muhrlandi. Ertangi kun toza sahifadan boshlanadi.",
+   "ru": "Сегодняшний счёт опечатан. Завтрашний день начнётся с чистой страницы."
+  },
+  {
+   "id": "dayend-3",
+   "holat": "dayend",
+   "uz": "Yakunlandi. Yozuvlar arxivga tushdi — endi hech qayoqqa qochmaydi.",
+   "ru": "Завершено. Записи ушли в архив — теперь они никуда не убегут."
+  },
+  {
+   "id": "dayend-4",
+   "holat": "dayend",
+   "uz": "Kun yopildi. Eng yaxshi tomoni: ertangi sahifa hali bo'sh.",
+   "ru": "День закрыт. Самое лучшее: завтрашняя страница ещё пуста."
+  },
+  {
+   "id": "dayend-5",
+   "holat": "dayend",
+   "uz": "Hisob tugadi. Daftarga bugun ham rostgo'ylik yozildi.",
+   "ru": "Счёт закрыт. В дневник и сегодня записана честность."
+  },
+  {
+   "id": "dayend-6",
+   "holat": "dayend",
+   "uz": "Kun muhrlandi. Hisobchi imzo chekib, choyga o'tdi.",
+   "ru": "День опечатан. Бухгалтер расписался и пошёл пить чай."
+  },
+  {
+   "id": "dayend-7",
+   "holat": "dayend",
+   "uz": "Yakunlandi. Ertaga yana yangi sahifa — qalam o'zingizda.",
+   "ru": "Завершено. Завтра снова новая страница — ручка у вас."
+  },
+  {
+   "id": "dayend-8",
+   "holat": "dayend",
+   "uz": "Kun tugadi, daftar yopildi. Bugungi eng kichik g'alabangiz shu bo'ldi, ehtimol.",
+   "ru": "День окончен, дневник закрыт. Возможно, это самое аккуратное дело за сегодня."
+  },
+  {
+   "id": "dayend_high-1",
+   "holat": "dayend_high",
+   "uz": "Kun yakunlandi. Bugun hisob biroz oshdi — ertaga me'yor yana joyida.",
+   "ru": "День завершён. Сегодня счёт немного вырос — завтра норма на месте."
+  },
+  {
+   "id": "dayend_high-2",
+   "holat": "dayend_high",
+   "uz": "Yopildi. Ba'zan kun shunday bo'ladi; ertangi sahifa toza.",
+   "ru": "Закрыто. Бывают и такие дни; завтрашняя страница чистая."
+  },
+  {
+   "id": "dayend_high-3",
+   "holat": "dayend_high",
+   "uz": "Muhrlandi. Bugungi raqam — shunchaki raqam, ertasi esa yangi.",
+   "ru": "Опечатано. Сегодняшняя цифра — просто цифра, а завтра всё новое."
+  },
+  {
+   "id": "dayend_high-4",
+   "holat": "dayend_high",
+   "uz": "Kun tugadi. Hisob oshgan bo'lsa ham, yozganingiz — yaxshi odat.",
+   "ru": "День окончен. Даже если счёт вырос, то, что вы записали, — хорошая привычка."
+  },
+  {
+   "id": "dayend_high-5",
+   "holat": "dayend_high",
+   "uz": "Yakunlandi. Dasturxon ham, hisob ham bugun keng bo'ldi; ertaga oddiy kun.",
+   "ru": "Завершено. И стол, и счёт сегодня были щедрыми; завтра обычный день."
+  },
+  {
+   "id": "dayend_high-6",
+   "holat": "dayend_high",
+   "uz": "Daftar yopildi. Me'yor ertaga o'z joyida kutib turadi, hech narsa so'ramaydi.",
+   "ru": "Дневник закрыт. Норма завтра будет ждать на месте и ничего не потребует."
+  },
+  {
+   "id": "streak7-1",
+   "holat": "streak7",
+   "uz": "Ketma-ket yetti kun yozdingiz! Daftar sizni endi shaxsan taniydi.",
+   "ru": "Семь дней подряд вы записывали! Дневник теперь знает вас лично."
+  },
+  {
+   "id": "streak7-2",
+   "holat": "streak7",
+   "uz": "7 kun qatorasiga. Odat endi sizdan so'ramay ham ishlayapti.",
+   "ru": "7 дней подряд. Привычка уже работает без напоминаний."
+  },
+  {
+   "id": "streak7-3",
+   "holat": "streak7",
+   "uz": "Bir hafta uzilishsiz — hisobchi ta'tilga chiqmoqchi edi, qoldi.",
+   "ru": "Неделя без перерыва — бухгалтер хотел в отпуск, но остался."
+  },
+  {
+   "id": "streak7-4",
+   "holat": "streak7",
+   "uz": "Yetti kun qator: telefondagi eslatmalar ham hayron.",
+   "ru": "Семь дней подряд: даже напоминания в телефоне удивлены."
+  },
+  {
+   "id": "streak7-5",
+   "holat": "streak7",
+   "uz": "7 kun! Bunday izchillikka hatto budilnik ham havas qiladi.",
+   "ru": "7 дней! Такой последовательности позавидует и будильник."
+  },
+  {
+   "id": "streak7-6",
+   "holat": "streak7",
+   "uz": "Bir haftalik seriya. Divan buni sezib, sekin chekinmoqda.",
+   "ru": "Недельная серия. Диван это почувствовал и потихоньку отступает."
+  },
+  {
+   "id": "streak7-7",
+   "holat": "streak7",
+   "uz": "Yetti kun qatorasiga — bu endi tasodif emas, odat.",
+   "ru": "Семь дней подряд — это уже не случайность, а привычка."
+  },
+  {
+   "id": "streak7-8",
+   "holat": "streak7",
+   "uz": "Seriya 7 kunga yetdi. Daftar sizga ishonch tamg'asini bosdi.",
+   "ru": "Серия дошла до 7 дней. Дневник поставил на вас печать доверия."
+  },
+  {
+   "id": "empty_day-1",
+   "holat": "empty_day",
+   "uz": "Bugungi hisob hali toza. Birinchi yozuv qo'shilganda idish ham jonlanadi.",
+   "ru": "Сегодняшний счёт пока чист. Когда появится первая запись, сосуд оживёт."
+  },
+  {
+   "id": "empty_day-2",
+   "holat": "empty_day",
+   "uz": "Daftar bo'm-bo'sh, idish ham. Birinchi ovqat — birinchi to'lqin.",
+   "ru": "Дневник пуст, сосуд тоже. Первая еда — первая волна."
+  },
+  {
+   "id": "empty_day-3",
+   "holat": "empty_day",
+   "uz": "Hamma narsa nolda. Kunni boshlash uchun eng qulay joy.",
+   "ru": "Везде ноль. Удобнее места для начала дня не найти."
+  },
+  {
+   "id": "empty_day-4",
+   "holat": "empty_day",
+   "uz": "Bo'sh sahifa. Hisobchi qo'lida qalam bilan kutib o'tiribdi.",
+   "ru": "Чистая страница. Бухгалтер сидит с ручкой наготове."
+  },
+  {
+   "id": "empty_day-5",
+   "holat": "empty_day",
+   "uz": "Hali hech narsa yozilmagan. Idish suyuqlikni sabr bilan kutmoqda.",
+   "ru": "Пока ничего не записано. Сосуд терпеливо ждёт жидкость."
+  },
+  {
+   "id": "empty_day-6",
+   "holat": "empty_day",
+   "uz": "Kun toza varaqdan boshlandi. Birinchi yozuv — sizdan.",
+   "ru": "День начался с чистого листа. Первая запись — за вами."
+  },
+  {
+   "id": "empty_day-7",
+   "holat": "empty_day",
+   "uz": "Daftar ochiq, idish bo'sh. Ikkalasi ham sizni kutmoqda.",
+   "ru": "Дневник открыт, сосуд пуст. Оба вас ждут."
+  },
+  {
+   "id": "empty_day-8",
+   "holat": "empty_day",
+   "uz": "Bugun hali yozuv yo'q: hisobchi choyini ham ichib bo'ldi.",
+   "ru": "Записей пока нет: бухгалтер уже допил чай."
+  },
+  {
+   "id": "backup-1",
+   "holat": "backup",
+   "uz": "Zaxira nusxa yo'q-ku? Telefon bir kuni «tozalash» qilib hammasini unutishi mumkin.",
+   "ru": "Резервной копии нет? Телефон однажды «почистится» и всё забудет."
+  },
+  {
+   "id": "backup-2",
+   "holat": "backup",
+   "uz": "Daftaringizni bitta bosish bilan ehtiyot qiling. Telefonlar ba'zan keyin kechirim so'raydi.",
+   "ru": "Сохраните дневник одним нажатием. Телефоны иногда потом извиняются."
+  },
+  {
+   "id": "backup-3",
+   "holat": "backup",
+   "uz": "Zaxira nusxa — hazil emas, lekin biz uni hazil bilan eslatamiz.",
+   "ru": "Резервная копия — не шутка, но напоминаем мы с юмором."
+  },
+  {
+   "id": "backup-4",
+   "holat": "backup",
+   "uz": "Zaxira — bu sug'urta, faqat narx so'ramaydi. Bir bosish.",
+   "ru": "Копия — это страховка, только без платы. Одно нажатие."
+  },
+  {
+   "id": "backup-5",
+   "holat": "backup",
+   "uz": "Yozuvlaringiz faqat telefonda. Telefon esa ba'zan suvga tushadi — buni hamma biladi.",
+   "ru": "Записи только в телефоне. А телефоны иногда падают в воду — все знают."
+  },
+  {
+   "id": "backup-6",
+   "holat": "backup",
+   "uz": "Zaxira nusxa olsangiz, yangi telefonga daftar o'zi ko'chadi.",
+   "ru": "Если сделать копию, дневник сам переедет на новый телефон."
+  },
+  {
+   "id": "log_low-1",
+   "holat": "log_low",
+   "uz": "Hisobchi hozircha ozgina yozuv ko'rdi. Kun tugamagan bo'lsa, qolganini keyin ham qo'shasiz.",
+   "ru": "Бухгалтер пока увидел мало записей. Если день не закончился, остальное можно добавить и позже."
+  },
+  {
+   "id": "log_low-2",
+   "holat": "log_low",
+   "uz": "Daftar bugun qisqa gapirdi. Hammasi yozilgan bo'lsa — yaxshi, yozilmagan bo'lsa — keyinroq qo'shsa bo'ladi.",
+   "ru": "Дневник сегодня немногословен. Если всё записано — отлично, если нет — можно добавить потом."
+  },
+  {
+   "id": "log_low-3",
+   "holat": "log_low",
+   "uz": "Bugungi yozuvlar sanoqli. Balki hisobchi ba'zi qatorlarni hali ko'rmagandir.",
+   "ru": "Записей сегодня немного. Возможно, бухгалтер просто видел не все строки."
+  },
+  {
+   "id": "log_low-4",
+   "holat": "log_low",
+   "uz": "Hisob hozircha qisqa. Yozmagan narsangiz bo'lsa, daftar kutib turibdi — shoshilmasdan.",
+   "ru": "Счёт пока короткий. Если что-то не записано, дневник подождёт — без спешки."
+  },
+  {
+   "id": "log_low-5",
+   "holat": "log_low",
+   "uz": "Daftar bugun ixcham. Eslagan paytingizda qo'shib qo'ysangiz, hisobchi xursand bo'ladi.",
+   "ru": "Дневник сегодня компактный. Добавите, когда вспомните, — бухгалтер будет рад."
+  },
+  {
+   "id": "log_low-6",
+   "holat": "log_low",
+   "uz": "Yozuvlar hozircha kam ko'rinyapti. Bu faqat daftar haqida: ehtimol, yozilmagandir, xolos.",
+   "ru": "Записей пока мало. Это только про дневник: возможно, что-то просто не записано."
+  },
+  {
+   "id": "food_fish-1",
+   "holat": "food_fish",
+   "uz": "Baliq hisobga yozildi — tushlikdami, kechqurundami, daftar farqlamaydi. Oqsil ham tinch.",
+   "ru": "Рыба записана — обед или ужин, дневник не различает. Белок тоже спокоен."
+  },
+  {
+   "id": "food_fish-2",
+   "holat": "food_fish",
+   "uz": "Baliq daftarga tushdi. Sho'rvasimi, grilimi — qator baribir bitta.",
+   "ru": "Рыба в дневнике. Суп или гриль — строка всё равно одна."
+  },
+  {
+   "id": "food_fish-3",
+   "holat": "food_fish",
+   "uz": "Yozildi: baliq. Bu hafta daftarda yangi «suv ahli» paydo bo'ldi.",
+   "ru": "Записано: рыба. На этой неделе в дневнике появился свежий улов."
+  },
+  {
+   "id": "food_fish-4",
+   "holat": "food_fish",
+   "uz": "Baliq tanlovi hisobda. Daftar suzishni bilmaydi, lekin yozishni yaxshi biladi.",
+   "ru": "Выбор в пользу рыбы записан. Дневник плавать не умеет, зато писать умеет."
+  },
+  {
+   "id": "food_fish-5",
+   "holat": "food_fish",
+   "uz": "Baliq stolga kelibdi, biz esa daftarga yozib qo'ydik. Qolganini oshpaz hal qiladi.",
+   "ru": "Рыба пришла на стол, а мы — в дневник. Остальное — дело повара."
+  },
+  {
+   "id": "food_fish-6",
+   "holat": "food_fish",
+   "uz": "Baliq: yozildi. Daftarning o'zi ham bugun biroz tetik.",
+   "ru": "Рыба: записано. Дневник сегодня тоже бодрый."
+  },
+  {
+   "id": "alt_chosen-1",
+   "holat": "alt_chosen",
+   "uz": "Almashtirish ham tanlov. Hisobga yozildi, bahosiz.",
+   "ru": "Замена — тоже выбор. Записано, без оценок."
+  },
+  {
+   "id": "alt_chosen-2",
+   "holat": "alt_chosen",
+   "uz": "O'rniga boshqa taom tanlandi — daftar hech narsa demaydi, faqat yozadi.",
+   "ru": "Вместо одного блюда выбрано другое. Дневник ничего не говорит, только записывает."
+  },
+  {
+   "id": "alt_chosen-3",
+   "holat": "alt_chosen",
+   "uz": "Variant almashdi, daftar bardam. Yozildi.",
+   "ru": "Вариант сменился, дневник спокоен. Записано."
+  },
+  {
+   "id": "alt_chosen-4",
+   "holat": "alt_chosen",
+   "uz": "Bugun tanlov boshqa tomonga burildi. Daftar buni jimgina yozib qo'ydi.",
+   "ru": "Сегодня выбор повернул в другую сторону. Дневник тихо всё записал."
+  },
+  {
+   "id": "alt_chosen-5",
+   "holat": "alt_chosen",
+   "uz": "Taklif ma'qul keldi shekilli. Yozildi, janjalsiz.",
+   "ru": "Подсказка пришлась по вкусу. Записано без споров."
+  },
+  {
+   "id": "alt_chosen-6",
+   "holat": "alt_chosen",
+   "uz": "Boshqa taom — boshqa qator. Daftar ikkalasiga ham tayyor.",
+   "ru": "Другое блюдо — другая строка. Дневник готов к обоим."
+  },
+  {
+   "id": "fish_none_week-1",
+   "holat": "fish_none_week",
+   "uz": "Baliq bu hafta stolga hali kelmadi. Daryo ham, dengiz ham sabrli.",
+   "ru": "Рыба на этой неделе пока не заходила. Ни река, ни море не торопят."
+  },
+  {
+   "id": "fish_none_week-2",
+   "holat": "fish_none_week",
+   "uz": "Bu hafta baliq daftarda yo'q. Qozonda sazan kutib turgan bo'lsa ajab emas.",
+   "ru": "На этой неделе рыбы в дневнике нет. Может, в казане уже ждёт карп."
+  },
+  {
+   "id": "fish_none_week-3",
+   "holat": "fish_none_week",
+   "uz": "Haftada baliq uchramadi. Sho'rvasi ham, grili ham o'z navbatini kutadi.",
+   "ru": "Рыба не попалась на этой неделе. Суп и гриль ждут своей очереди."
+  },
+  {
+   "id": "fish_none_week-4",
+   "holat": "fish_none_week",
+   "uz": "Bu hafta baliq uchun bo'sh qator turibdi. Qidiruvda «baliq» deb yozish kifoya.",
+   "ru": "Для рыбы на этой неделе есть свободная строка. Достаточно набрать «рыба» в поиске."
+  },
+  {
+   "id": "fish_none_week-5",
+   "holat": "fish_none_week",
+   "uz": "Baliq hali kelmadi, lekin stol har doim ochiq.",
+   "ru": "Рыба пока не пришла, но стол всегда открыт."
+  },
+  {
+   "id": "fish_none_week-6",
+   "holat": "fish_none_week",
+   "uz": "Baliq bu hafta navbatda. Hech kim shoshirmayapti.",
+   "ru": "Рыба на этой неделе в очереди. Никто не торопит."
+  },
+  {
+   "id": "day_morning-y1",
+   "holat": "day_morning",
+   "uz": "Ertalab. Daftar toza, choynak qaynayapti — kun hali hech kimga va'da berilmagan.",
+   "ru": "Утро. Дневник чист, чайник закипает — день пока никому не обещан.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y2",
+   "holat": "day_morning",
+   "uz": "Tong. Hozircha eng katta yutuq — budilnik uchinchi marta kechiktirilmadi.",
+   "ru": "Утро. Пока главное достижение — будильник не отложен в третий раз.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y3",
+   "holat": "day_morning",
+   "uz": "Yangi kun. Divan kechagi uchrashuvni eslab, yana taklif yubormoqchi.",
+   "ru": "Новый день. Диван уже вспоминает вчерашнюю встречу и шлёт приглашение.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y4",
+   "holat": "day_morning",
+   "uz": "Ertalabki sukunat. Muzlatkich eshigi hali bir marta ham ochilmadi — rekord yaqin.",
+   "ru": "Утренняя тишина. Холодильник ещё ни разу не открывали — рекорд близко.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y5",
+   "holat": "day_morning",
+   "uz": "Kun boshlandi, hisob nolda. Sahifa toza — qalam sizda.",
+   "ru": "День начался, счёт на нуле. Страница чистая — ручка у вас.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y6",
+   "holat": "day_morning",
+   "uz": "Tong. Qadam hisoblagich isinmoqda, choynak esa allaqachon smenada.",
+   "ru": "Утро. Шагомер разминается, а чайник уже на смене.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y7",
+   "holat": "day_morning",
+   "uz": "Ertalab sizni soat ham, daftar ham kutyapti. Soat kamroq sabrli.",
+   "ru": "С утра вас ждут и часы, и дневник. Часы — куда менее терпеливо.",
+   "yangi": true
+  },
+  {
+   "id": "day_morning-y8",
+   "holat": "day_morning",
+   "uz": "Tong. Kun hali qog'oz samolyotdek yengil — qayoqqa uchishi sizga bog'liq.",
+   "ru": "Утро. День лёгкий, как бумажный самолётик, — куда полетит, решать вам.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y1",
+   "holat": "breakfast",
+   "uz": "Nonushta yozildi. Kun to'g'ri oyoqdan boshlandi — hatto choynak ham rozi.",
+   "ru": "Завтрак записан. День начался с правильной ноги — даже чайник согласен.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y2",
+   "holat": "breakfast",
+   "uz": "Nonushta qayd etildi. Tushlik endi bilib qo'ysin: bu yerda hisob bor.",
+   "ru": "Завтрак в дневнике. Пусть обед знает: здесь ведётся учёт.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y3",
+   "holat": "breakfast",
+   "uz": "Ertalabki yozuv joyida. Kechqurungi siz bunga rahmat aytadi.",
+   "ru": "Утренняя запись на месте. Вечерний вы скажете за это спасибо.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y4",
+   "holat": "breakfast",
+   "uz": "Nonushta yozildi. Xotira emas, daftar ishlayapti — demak, hammasi aniq.",
+   "ru": "Завтрак записан. Работает не память, а дневник — значит, всё точно.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y5",
+   "holat": "breakfast",
+   "uz": "Nonushta kun rejasiga kirdi. Reja hozircha sizdan juda mamnun.",
+   "ru": "Завтрак вошёл в план дня. План пока под приятным впечатлением.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y6",
+   "holat": "breakfast",
+   "uz": "Birinchi yozuv tongda. Odatlar kitobida bu sahifa endi ochiq turadi.",
+   "ru": "Первая запись — с утра. В книге привычек эта страница теперь открыта.",
+   "yangi": true
+  },
+  {
+   "id": "breakfast-y7",
+   "holat": "breakfast",
+   "uz": "Nonushta yozildi. Choynak bilan non ertalabki uchrashuvni rasmiylashtirdi.",
+   "ru": "Завтрак записан. Чайник и лепёшка официально оформили утреннюю встречу.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y1",
+   "holat": "water_none",
+   "uz": "Suv hisobi — nol. Stakan javonda o'zini muzey eksponati deb his qilyapti.",
+   "ru": "Воды — ноль. Стакан на полке чувствует себя музейным экспонатом.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y2",
+   "holat": "water_none",
+   "uz": "Suv hali navbatda. Choy esa o'zini suv deb tanishtirib yuribdi.",
+   "ru": "Вода всё ещё в очереди. А чай выдаёт себя за воду.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y3",
+   "holat": "water_none",
+   "uz": "Bir stakan ham yo'q. Hatto xona guli ham bugun sizdan oldinda.",
+   "ru": "Ни одного стакана. Даже комнатный цветок сегодня впереди вас.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y4",
+   "holat": "water_none",
+   "uz": "Suv: 0. Jo'mrak sizni eslab, sekin tomchilab turibdi.",
+   "ru": "Вода: 0. Кран, вспоминая вас, тихонько капает.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y5",
+   "holat": "water_none",
+   "uz": "Butilka hali ochilmagan. U sabrli, lekin qopqog'i allaqachon zerikdi.",
+   "ru": "Бутылка не открыта. Она терпелива, но крышка уже скучает.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y6",
+   "holat": "water_none",
+   "uz": "Suv bugun «keyinroq» ro'yxatida. Bu ro'yxat odatda hech qachon tugamaydi.",
+   "ru": "Вода сегодня в списке «потом». Этот список обычно бесконечен.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y7",
+   "holat": "water_none",
+   "uz": "Nol stakan. Kaktus ham bunday tejamkorlikka havas qilmaydi.",
+   "ru": "Ноль стаканов. Даже кактус такой экономии не завидует.",
+   "yangi": true
+  },
+  {
+   "id": "water_none-y8",
+   "holat": "water_none",
+   "uz": "Suv yo'q, choy bor. Choy bundan juda mamnun, suv esa jim.",
+   "ru": "Воды нет, чай есть. Чай доволен, вода молчит.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y1",
+   "holat": "water_half",
+   "uz": "Suvning yarmi ichildi. Stakan yarim to'la — falsafiy bahs yopildi.",
+   "ru": "Половина воды выпита. Стакан наполовину полон — философский спор закрыт.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y2",
+   "holat": "water_half",
+   "uz": "Yarim yo'l. Suv hisoblagichi endi sizni jiddiy qabul qilyapti.",
+   "ru": "Полпути. Счётчик воды теперь воспринимает вас всерьёз.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y3",
+   "holat": "water_half",
+   "uz": "Suv yarmida. Qolgan stakanlar navbatga yozilib, yaxshi kayfiyatda kutmoqda.",
+   "ru": "Вода на середине. Остальные стаканы записались в очередь и ждут.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y4",
+   "holat": "water_half",
+   "uz": "Yarmi tayyor. Choynak bilan suv o'rtasidagi raqobat qiziqlashdi.",
+   "ru": "Половина готова. Соревнование чайника и воды становится интересным.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y5",
+   "holat": "water_half",
+   "uz": "Suv — yarmi. Butilka sizni endi tanishlar ro'yxatiga qo'shdi.",
+   "ru": "Вода — наполовину. Бутылка добавила вас в список знакомых.",
+   "yangi": true
+  },
+  {
+   "id": "water_half-y6",
+   "holat": "water_half",
+   "uz": "Stakanlar yarmigacha keldi. Ikkinchi yarmi odatda tezroq ketadi.",
+   "ru": "Стаканы дошли до середины. Вторая половина обычно идёт быстрее.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y1",
+   "holat": "water_ok",
+   "uz": "Suv me'yori bajarildi. Buyraklar bugun sizga tashakkurnoma yozmoqda.",
+   "ru": "Норма воды выполнена. Почки сегодня пишут вам благодарственное письмо.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y2",
+   "holat": "water_ok",
+   "uz": "Suv to'liq. Stakan bugun dam olishga haqli — smena tugadi.",
+   "ru": "Вода выпита полностью. Стакан заслужил выходной — смена закончена.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y3",
+   "holat": "water_ok",
+   "uz": "Me'yor bajarildi. Kaktuslar sizni jamoasiga olmaydi — siz boshqa ligadasiz.",
+   "ru": "Норма есть. Кактусы вас в команду не возьмут — вы в другой лиге.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y4",
+   "holat": "water_ok",
+   "uz": "Suv rejasi to'la bajarildi. Butilka endi sizni eng yaxshi mijoz deb ataydi.",
+   "ru": "План по воде выполнен. Бутылка называет вас лучшим клиентом.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y5",
+   "holat": "water_ok",
+   "uz": "Hamma stakanlar joyida. Jo'mrak bugun ishsiz qolmadi.",
+   "ru": "Все стаканы на месте. Кран сегодня без работы не остался.",
+   "yangi": true
+  },
+  {
+   "id": "water_ok-y6",
+   "holat": "water_ok",
+   "uz": "Suv — 100%. Choy endi o'zini asosiy ichimlik deb da'vo qila olmaydi.",
+   "ru": "Вода — 100%. Чай больше не претендует на звание главного напитка.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y1",
+   "holat": "zero_steps",
+   "uz": "Qadam: 0. Telefon ham bugun dam olish kunini e'lon qildi.",
+   "ru": "Шагов: 0. Телефон тоже объявил сегодня выходной.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y2",
+   "holat": "zero_steps",
+   "uz": "Nol qadam. Tapochkalar bugun o'zini juda qadrli his qilyapti.",
+   "ru": "Ноль шагов. Тапочки сегодня чувствуют себя особенно ценными.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y3",
+   "holat": "zero_steps",
+   "uz": "Qadam hisoblagich hali uyg'onmadi. Uni eshikkacha olib borib qo'yaylikmi?",
+   "ru": "Шагомер ещё не проснулся. Может, проводим его до двери?",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y4",
+   "holat": "zero_steps",
+   "uz": "0 qadam. Lift tugmasi bugun sizni sog'inib qoldi.",
+   "ru": "0 шагов. Кнопка лифта сегодня по вам соскучилась.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y5",
+   "holat": "zero_steps",
+   "uz": "Qadamlar yo'q. Yo'lak bo'm-bo'sh, faqat kuryer izlari qoldi.",
+   "ru": "Шагов нет. Коридор пуст, остались только следы курьера.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y6",
+   "holat": "zero_steps",
+   "uz": "Bugun nol. Divan bu kunni sizning eng yaxshi kuningiz deb hisoblayapti.",
+   "ru": "Сегодня ноль. Диван считает этот день вашим лучшим.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y7",
+   "holat": "zero_steps",
+   "uz": "Qadam: 0. Eshik tutqichi sizni oxirgi marta qachon ko'rganini eslolmayapti.",
+   "ru": "Шагов: 0. Дверная ручка не помнит, когда видела вас в последний раз.",
+   "yangi": true
+  },
+  {
+   "id": "zero_steps-y8",
+   "holat": "zero_steps",
+   "uz": "Nol qadam. Hatto robot-changyutgich ham bugun sizdan ko'proq yurdi.",
+   "ru": "Ноль шагов. Даже робот-пылесос сегодня прошёл больше вас.",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y1",
+   "holat": "steps_couch",
+   "uz": "Qadam kam. Oshxona va divan o'rtasidagi marshrut a'lo darajada o'zlashtirildi.",
+   "ru": "Шагов мало. Маршрут «кухня — диван» освоен блестяще.",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y2",
+   "holat": "steps_couch",
+   "uz": "Bugungi qadamlar — uy ichidagi sayohat, viza so'ralmadi.",
+   "ru": "Сегодняшние шаги — путешествие по квартире, визы не потребовались.",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y3",
+   "holat": "steps_couch",
+   "uz": "Qadamlar oz. Muzlatkichgacha borish ham sport, lekin musobaqa emas.",
+   "ru": "Шагов немного. Дойти до холодильника — спорт, но не соревнование.",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y4",
+   "holat": "steps_couch",
+   "uz": "Qadamlar bor, lekin tortinib turibdi. Kechqurun ularni ko'chaga chiqaraylik.",
+   "ru": "Шаги есть, но стесняются. Давайте вечером выведем их на улицу.",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y5",
+   "holat": "steps_couch",
+   "uz": "Bugun qadamlar tejaldi. Ertaga foizi bilan qaytarasizmi?",
+   "ru": "Сегодня шаги сэкономлены. Завтра вернёте с процентами?",
+   "yangi": true
+  },
+  {
+   "id": "steps_couch-y6",
+   "holat": "steps_couch",
+   "uz": "Yurish bo'ldi, lekin qisqa metrajli. Kechki sayr — to'liq metrajli versiya.",
+   "ru": "Прогулка была, но короткометражная. Вечерняя — полный метр.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y1",
+   "holat": "steps_goal",
+   "uz": "Maqsad bajarildi! Poyabzallar bugun o'zini haqiqiy ish quroli deb biladi.",
+   "ru": "Цель выполнена! Кроссовки сегодня чувствуют себя настоящим инструментом.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y2",
+   "holat": "steps_goal",
+   "uz": "Qadam maqsadi yopildi. Lift bugun sizsiz zerikib qoldi.",
+   "ru": "Цель по шагам закрыта. Лифт сегодня без вас заскучал.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y3",
+   "holat": "steps_goal",
+   "uz": "Maqsadga yetdingiz. Divan rasmiy norozilik bildirdi, lekin qabul qilinmadi.",
+   "ru": "Цель достигнута. Диван подал официальный протест, но его отклонили.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y4",
+   "holat": "steps_goal",
+   "uz": "Qadamlar to'liq! Ko'cha sizni endi tanish yuz sifatida taniydi.",
+   "ru": "Шаги набраны! Улица теперь узнаёт вас в лицо.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y5",
+   "holat": "steps_goal",
+   "uz": "Kunlik qadam — bajarildi. Hisoblagich hatto bir oz g'ururlanib qoldi.",
+   "ru": "Дневные шаги — есть. Шагомер даже немного загордился.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y6",
+   "holat": "steps_goal",
+   "uz": "Maqsad yopildi. Bugun tapochkalar dam oldi, poyabzallar ishladi.",
+   "ru": "Цель закрыта. Сегодня тапочки отдыхали, а кроссовки работали.",
+   "yangi": true
+  },
+  {
+   "id": "steps_goal-y7",
+   "holat": "steps_goal",
+   "uz": "Qadamlar to'liq. Tapochkalar bugun o'zini nafaqadagidek his qildi.",
+   "ru": "Шаги набраны. Тапочки сегодня почувствовали себя пенсионерами.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y1",
+   "holat": "late_food",
+   "uz": "Kech kirdi. Muzlatkich chirog'i bugun qo'shimcha smenada ishladi.",
+   "ru": "Поздний вечер. Лампочка холодильника сегодня отработала лишнюю смену.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y2",
+   "holat": "late_food",
+   "uz": "Tungi yozuv. Oshxona soati ham sizga hayron bo'lib qaradi.",
+   "ru": "Ночная запись. Даже кухонные часы посмотрели на вас с удивлением.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y3",
+   "holat": "late_food",
+   "uz": "Juda kech kechki ovqat. Ertangi nonushta joyini bermaydi, ogohlantirib qo'yamiz.",
+   "ru": "Очень поздний ужин. Завтрашний завтрак предупреждает: место он не уступит.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y4",
+   "holat": "late_food",
+   "uz": "Tunda muzlatkich bilan suhbat. U yaxshi tinglovchi, lekin javoblari kaloriyali.",
+   "ru": "Ночной разговор с холодильником. Слушатель он хороший, но ответы калорийные.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y5",
+   "holat": "late_food",
+   "uz": "Soat kech, ovqat yozildi. Rostgo'ylik uchun alohida ball.",
+   "ru": "Час поздний, еда записана. За честность — отдельный балл.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y6",
+   "holat": "late_food",
+   "uz": "22:00 dan keyin. Oshxona chirog'i ham allaqachon pijamada edi.",
+   "ru": "После 22:00. Свет на кухне был уже в пижаме.",
+   "yangi": true
+  },
+  {
+   "id": "late_food-y7",
+   "holat": "late_food",
+   "uz": "Tungi tamaddi. Oy ham derazadan qarab, hisobga yozib qo'ydi.",
+   "ru": "Ночной перекус. Луна заглянула в окно и тоже записала.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y1",
+   "holat": "food_sweet",
+   "uz": "Shirinlik yozildi. Yashirmaganingiz uchun alohida rahmat.",
+   "ru": "Сладкое записано. Отдельное спасибо, что не стали скрывать.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y2",
+   "holat": "food_sweet",
+   "uz": "Shokolad daftarga kirdi. U ham bugun mashhur bo'lishni orzu qilgan edi.",
+   "ru": "Шоколад попал в дневник. Он тоже мечтал сегодня прославиться.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y3",
+   "holat": "food_sweet",
+   "uz": "Shirin yozuv. Hisob ham bir oz shirinroq bo'ldi.",
+   "ru": "Сладкая запись. Даже счёт стал немного слаще.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y4",
+   "holat": "food_sweet",
+   "uz": "Tort keldi, yozildi. Vasvasa yutdi, lekin hisob sizda qoldi.",
+   "ru": "Торт пришёл, торт записан. Соблазн победил, но счёт остался за вами.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y5",
+   "holat": "food_sweet",
+   "uz": "Shirinlik qayd etildi. Konfet qog'ozi ham guvoh sifatida ro'yxatda.",
+   "ru": "Сладкое учтено. Фантик тоже внесён в протокол как свидетель.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y6",
+   "holat": "food_sweet",
+   "uz": "Shirin tanaffus yozildi. Choy bunga sherik ekanini tan oldi.",
+   "ru": "Сладкая пауза записана. Чай признался, что был соучастником.",
+   "yangi": true
+  },
+  {
+   "id": "food_sweet-y7",
+   "holat": "food_sweet",
+   "uz": "Konfet yozildi. Yashirincha yeyilgani hisobga kirmaydi, deyishadi — kiradi.",
+   "ru": "Конфета записана. Говорят, съеденная втихую не считается, — считается.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y1",
+   "holat": "food_fast",
+   "uz": "Fast-food yozildi. Kartoshka fri hammaga yoqadi, daftar ham istisno emas.",
+   "ru": "Фастфуд записан. Картошку фри любят все, дневник не исключение.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y2",
+   "holat": "food_fast",
+   "uz": "Burger qayd etildi. Tezligi — nomida, kaloriyasi — daftarda.",
+   "ru": "Бургер учтён. Его скорость — в названии, калории — в дневнике.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y3",
+   "holat": "food_fast",
+   "uz": "Tez ovqat, tez yozuv. Hech bo'lmasa bittasi foydali tezlikda.",
+   "ru": "Быстрая еда, быстрая запись. Хоть что-то быстрое пошло на пользу.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y4",
+   "holat": "food_fast",
+   "uz": "Lavash keldi. Daftar uni ham, sousini ham bir xil hurmat bilan qayd etdi.",
+   "ru": "Пришла шаурма. Дневник учёл и её, и соус — с одинаковым уважением.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y5",
+   "holat": "food_fast",
+   "uz": "Fast-food. Kuryerning qadamlari sizga yozilmaydi, afsuski.",
+   "ru": "Фастфуд. Шаги курьера вам, к сожалению, не засчитываются.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y6",
+   "holat": "food_fast",
+   "uz": "Pitsa yozildi. Bo'laklarni sanash — eng mazali matematika.",
+   "ru": "Пицца записана. Считать кусочки — самая вкусная математика.",
+   "yangi": true
+  },
+  {
+   "id": "food_fast-y7",
+   "holat": "food_fast",
+   "uz": "Kartoshka fri yozildi. Ketchup ham hujjatlarda qayd etildi.",
+   "ru": "Картошка фри записана. Кетчуп тоже внесён в протокол.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y1",
+   "holat": "protein_low",
+   "uz": "Oqsil bugun kechikyapti. Tuxum va tvorog telefon raqamini qoldirgan.",
+   "ru": "Белок сегодня опаздывает. Яйца и творог оставили свой номер.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y2",
+   "holat": "protein_low",
+   "uz": "Oqsil ustuni hali bo'sh. Qatiq bu bo'shliqni sezib, javonda turibdi.",
+   "ru": "Колонка белка пока пустует. Кефир это заметил и стоит на полке.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y3",
+   "holat": "protein_low",
+   "uz": "Uglevodlar keldi, oqsil esa yo'lda tirbandlikda qoldi.",
+   "ru": "Углеводы приехали, а белок застрял в пробке.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y4",
+   "holat": "protein_low",
+   "uz": "Oqsil kam. Tovuq go'shti navbatdan tashqari qabul qilinishni so'raydi.",
+   "ru": "Белка маловато. Курица просит принять её без очереди.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y5",
+   "holat": "protein_low",
+   "uz": "Oqsil hisobi sokin. Loviya bunga jiddiy e'tiroz bildirdi.",
+   "ru": "Счёт белка скромный. Фасоль выразила серьёзный протест.",
+   "yangi": true
+  },
+  {
+   "id": "protein_low-y6",
+   "holat": "protein_low",
+   "uz": "Bugun oqsil o'zini kamtar tutyapti. Baliq uni ruhlantirishga tayyor.",
+   "ru": "Белок сегодня скромничает. Рыба готова его поддержать.",
+   "yangi": true
+  },
+  {
+   "id": "over-y1",
+   "holat": "over",
+   "uz": "Me'yordan biroz o'tdi. Ertangi kun bunga xafa emas, u yangi sahifa.",
+   "ru": "Чуть больше нормы. Завтрашний день не обижен, он — новая страница.",
+   "yangi": true
+  },
+  {
+   "id": "over-y2",
+   "holat": "over",
+   "uz": "Bugun hisob biroz ko'tarildi. Kechki sayr uni muloyimlik bilan tushiradi.",
+   "ru": "Сегодня счёт немного подрос. Вечерняя прогулка вежливо его поправит.",
+   "yangi": true
+  },
+  {
+   "id": "over-y3",
+   "holat": "over",
+   "uz": "Maqsad ortda qoldi. Ba'zan kunlar shunchaki to'yga o'xshab ketadi.",
+   "ru": "Цель осталась позади. Иногда дни просто похожи на свадьбу.",
+   "yangi": true
+  },
+  {
+   "id": "over-y4",
+   "holat": "over",
+   "uz": "Me'yordan oshdi — yozildi. Aniq hisob yashirin hisobdan doim yaxshi.",
+   "ru": "Норма превышена — записано. Точный счёт всегда лучше тайного.",
+   "yangi": true
+  },
+  {
+   "id": "over-y5",
+   "holat": "over",
+   "uz": "Raqam bugun yuqoriroq. Bitta kun — ob-havo, iqlim emas.",
+   "ru": "Сегодня цифра выше. Один день — это погода, а не климат.",
+   "yangi": true
+  },
+  {
+   "id": "over-y6",
+   "holat": "over",
+   "uz": "Bugungi hisob dasturxondek keng chiqdi. Ertaga ixchamroq bo'lar.",
+   "ru": "Сегодняшний счёт вышел широким, как дастархан. Завтра будет компактнее.",
+   "yangi": true
+  },
+  {
+   "id": "over-y7",
+   "holat": "over",
+   "uz": "Bugun dasturxon g'olib chiqdi. Ertaga revansh — sizda.",
+   "ru": "Сегодня победил дастархан. Завтра реванш — за вами.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y1",
+   "holat": "on_target",
+   "uz": "Maqsadga aniq tushdingiz. Hatto kalkulyator ham hayratda.",
+   "ru": "Точно в цель. Даже калькулятор удивлён.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y2",
+   "holat": "on_target",
+   "uz": "Bugungi hisob — xuddi o'lchab qo'yilgandek. Dorixona tarozisi havas qiladi.",
+   "ru": "Сегодняшний счёт — как по линейке. Аптечные весы завидуют.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y3",
+   "holat": "on_target",
+   "uz": "Maqsad bilan raqam bugun do'stlashdi. Ikkalasi ham mamnun.",
+   "ru": "Цель и цифра сегодня подружились. Обе довольны.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y4",
+   "holat": "on_target",
+   "uz": "Nishonning qoq markazi. Merganlar maktabiga taklifnoma yo'lda.",
+   "ru": "Прямо в яблочко. Приглашение в школу снайперов уже в пути.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y5",
+   "holat": "on_target",
+   "uz": "Kun aniq rejadagidek. Bu kamdan-kam bo'ladi — eslab qoling.",
+   "ru": "День точно по плану. Такое бывает редко — запомните.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y6",
+   "holat": "on_target",
+   "uz": "Hisob joyida, maqsad joyida. Bugungi daftar ko'rgazmaga qo'yiladi.",
+   "ru": "Счёт на месте, цель на месте. Сегодняшний дневник — на выставку.",
+   "yangi": true
+  },
+  {
+   "id": "on_target-y7",
+   "holat": "on_target",
+   "uz": "Aniq maqsadda. Bunday aniqlik odatda faqat poyezd jadvalida bo'ladi.",
+   "ru": "Ровно в цель. Такая точность бывает разве что у расписания поездов.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y1",
+   "holat": "streak",
+   "uz": "{days} kun ketma-ket. Bahonalar ishsiz qolib, ta'tilga chiqdi.",
+   "ru": "Серия — {days}. Отговорки остались без работы и ушли в отпуск.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y2",
+   "holat": "streak",
+   "uz": "Ketma-ket {days} kun. Kalendar sizning rasmingizni muqovaga qo'ymoqchi.",
+   "ru": "Серия — {days}. Календарь думает поставить ваше фото на обложку.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y3",
+   "holat": "streak",
+   "uz": "{days} kunlik zanjir. Uni uzish endi rostdan ham achinarli bo'ladi.",
+   "ru": "Цепочка длиной {days} — рвать её теперь по-настоящему жалко.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y4",
+   "holat": "streak",
+   "uz": "{days} kun uzluksiz. Choynak ham bunchalik muntazam emas.",
+   "ru": "Без пропусков уже {days}. Даже чайник не так регулярен.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y5",
+   "holat": "streak",
+   "uz": "Seriya: {days} kun. Eslatmalar endi o'zini ortiqcha his qilmoqda.",
+   "ru": "Серия: {days}. Напоминания начинают чувствовать себя лишними.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y6",
+   "holat": "streak",
+   "uz": "{days} kun qatorasiga. Bu allaqachon odat, tasodif emas.",
+   "ru": "Дней подряд — {days}. Это уже привычка, а не случайность.",
+   "yangi": true
+  },
+  {
+   "id": "streak-y7",
+   "holat": "streak",
+   "uz": "{days} kun. Ilova sizni endi foydalanuvchi emas, hamkor deb ataydi.",
+   "ru": "Уже {days}. Приложение называет вас не пользователем, а партнёром.",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y1",
+   "holat": "comeback",
+   "uz": "Qaytganingiz bilan! Daftar sizni sog'inib, sahifalarni o'zi varaqlab turdi.",
+   "ru": "С возвращением! Дневник скучал и сам листал свои страницы.",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y2",
+   "holat": "comeback",
+   "uz": "Bir necha kunlik tanaffus. Ilova xafa emas — faqat sal hayajonda.",
+   "ru": "Перерыв в несколько дней. Приложение не обижено — просто немного волнуется.",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y3",
+   "holat": "comeback",
+   "uz": "Siz yo'qligingizda hisoblagich faqat soatni sanadi. Endi yana ishga!",
+   "ru": "Без вас счётчик считал только часы. Снова за работу!",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y4",
+   "holat": "comeback",
+   "uz": "Xush kelibsiz. Bo'sh kunlar o'tdi, bugungi sahifa toza va tayyor.",
+   "ru": "Добро пожаловать. Пустые дни позади, сегодняшняя страница чиста.",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y5",
+   "holat": "comeback",
+   "uz": "Uzoq ta'tildan qaytdingiz. Daftar chang bosmadi — biz artib turdik.",
+   "ru": "Вы вернулись из долгого отпуска. Дневник не запылился — мы протирали.",
+   "yangi": true
+  },
+  {
+   "id": "comeback-y6",
+   "holat": "comeback",
+   "uz": "Qaytish — eng yaxshi odat. Ketish emas, aynan qaytish.",
+   "ru": "Возвращаться — лучшая привычка. Не уходить, а именно возвращаться.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y1",
+   "holat": "food_osh",
+   "uz": "Osh yozildi. Qozon bugun yana o'z obro'sini himoya qildi.",
+   "ru": "Плов записан. Казан сегодня снова отстоял свою репутацию.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y2",
+   "holat": "food_osh",
+   "uz": "Osh daftarga kirdi. Sabzi buni tarixiy voqea deb hisoblayapti.",
+   "ru": "Плов в дневнике. Морковь считает это историческим событием.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y3",
+   "holat": "food_osh",
+   "uz": "Milliy taom qayd etildi. Dasturxonning to'riga o'tirdi.",
+   "ru": "Национальное блюдо учтено. Заняло место во главе дастархана.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y4",
+   "holat": "food_osh",
+   "uz": "Osh yozildi — hisob ham bir oz bayramona tus oldi.",
+   "ru": "Плов записан — даже счёт стал немного праздничным.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y5",
+   "holat": "food_osh",
+   "uz": "Osh. Bu shunchaki yozuv emas, bu hurmat belgisi.",
+   "ru": "Плов. Это не просто запись — это знак уважения.",
+   "yangi": true
+  },
+  {
+   "id": "food_osh-y6",
+   "holat": "food_osh",
+   "uz": "Oshdan keyin choy — klassika. Daftar ikkalasini ham kutyapti.",
+   "ru": "После плова — чай, классика. Дневник ждёт обоих.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y1",
+   "holat": "tea",
+   "uz": "Choy yozildi. Choynak bugun eng mehnatkash xodim unvoniga nomzod.",
+   "ru": "Чай записан. Чайник сегодня — кандидат в лучшие работники.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y2",
+   "holat": "tea",
+   "uz": "Yana choy. Piyola sizni yaqin do'stlar ro'yxatiga yozdi.",
+   "ru": "Снова чай. Пиала внесла вас в список близких друзей.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y3",
+   "holat": "tea",
+   "uz": "Choy bizda soat o'rnida. Bugun soat juda aniq yurmoqda.",
+   "ru": "Чай у нас вместо часов. Сегодня они идут очень точно.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y4",
+   "holat": "tea",
+   "uz": "Choy qayd etildi. Qand ham unga qo'shilganmi — daftar biladi.",
+   "ru": "Чай учтён. Был ли с ним сахар — дневник знает.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y5",
+   "holat": "tea",
+   "uz": "Navbatdagi piyola. Choynak tinmay ishlab, shtatga o'tishni so'rayapti.",
+   "ru": "Очередная пиала. Чайник работает без перерыва и просится в штат.",
+   "yangi": true
+  },
+  {
+   "id": "tea-y6",
+   "holat": "tea",
+   "uz": "Choy ichildi. Suv buni ko'rib, «men ham shu yerdaman» demoqda.",
+   "ru": "Чай выпит. Вода смотрит на это и напоминает: «я тоже здесь».",
+   "yangi": true
+  },
+  {
+   "id": "tea-y7",
+   "holat": "tea",
+   "uz": "Choy, choy va yana choy. Choynak bugun maosh oshishini kutmoqda.",
+   "ru": "Чай, чай и снова чай. Чайник ждёт прибавки к зарплате.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y1",
+   "holat": "bread_much",
+   "uz": "Non bugun uchinchi marta tashrif buyurdi. Endi u mehmon emas, uy egasi.",
+   "ru": "Лепёшка заглядывает уже в третий раз. Теперь она не гость, а хозяйка.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y2",
+   "holat": "bread_much",
+   "uz": "Yana non. Tandir bugun sizning sharafingizga ishlayapti.",
+   "ru": "Снова лепёшка. Тандыр сегодня работает в вашу честь.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y3",
+   "holat": "bread_much",
+   "uz": "Non soni ko'paydi. Dasturxon hisobini endi non olib boryapti.",
+   "ru": "Лепёшек всё больше. Учёт дастархана теперь ведёт хлеб.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y4",
+   "holat": "bread_much",
+   "uz": "Uchinchi bo'lak non. Novvoy sizni doimiy mijozlar ro'yxatiga yozdi.",
+   "ru": "Третий кусок лепёшки. Пекарь записал вас в постоянные клиенты.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y5",
+   "holat": "bread_much",
+   "uz": "Non bugun bosh rolda. Qolgan taomlar epizodik rolga rozi bo'ldi.",
+   "ru": "Хлеб сегодня в главной роли. Остальные блюда согласились на эпизоды.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y6",
+   "holat": "bread_much",
+   "uz": "Non ko'p, hurmat ham ko'p. Hisob esa hammasini sanab bordi.",
+   "ru": "Лепёшек много, уважения тоже. А счёт аккуратно всё посчитал.",
+   "yangi": true
+  },
+  {
+   "id": "bread_much-y7",
+   "holat": "bread_much",
+   "uz": "Non yana keldi. Endi u dasturxonning doimiy a'zosi.",
+   "ru": "Опять лепёшка. Теперь она постоянный член дастархана.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y1",
+   "holat": "weekend",
+   "uz": "Dam olish kuni. Budilnik ta'tilda, divan esa navbatchilikda.",
+   "ru": "Выходной. Будильник в отпуске, диван на дежурстве.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y2",
+   "holat": "weekend",
+   "uz": "Dam olish kunlari muzlatkich eshigi ko'proq ochiladi — bu statistika.",
+   "ru": "По выходным дверь холодильника открывается чаще — это статистика.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y3",
+   "holat": "weekend",
+   "uz": "Dam olish. Qadamlar ham dam oladimi yoki baribir bozorgami?",
+   "ru": "Выходной. Шаги тоже отдыхают или всё-таки на базар?",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y4",
+   "holat": "weekend",
+   "uz": "Hafta oxiri. Mehmonlar, dasturxon va daftar — uchalasi ham tayyor.",
+   "ru": "Конец недели. Гости, дастархан и дневник — все трое наготове.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y5",
+   "holat": "weekend",
+   "uz": "Dam olish kuni yozuvi. Aynan bugun yozish — bu mahorat.",
+   "ru": "Запись в выходной. Вести дневник именно сегодня — это мастерство.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y6",
+   "holat": "weekend",
+   "uz": "Dam olish kuni. Divan sizni bugun ham smenaga chaqirmoqda — rad eting.",
+   "ru": "Выходной. Диван и сегодня зовёт вас на смену — откажитесь.",
+   "yangi": true
+  },
+  {
+   "id": "weekend-y7",
+   "holat": "weekend",
+   "uz": "Shanba yoki yakshanba — muzlatkich farqini bilmaydi, siz bilasiz.",
+   "ru": "Суббота или воскресенье — холодильнику всё равно, а вам нет.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y1",
+   "holat": "fish_day",
+   "uz": "Baliq kuni. Muzlatkichdagi baliq bugun o'z vaqti kelganini his qildi.",
+   "ru": "Рыбный день. Рыба в морозилке почувствовала: её время пришло.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y2",
+   "holat": "fish_day",
+   "uz": "Bugun baliq kuni. Go'sht biroz rashk qilmoqda, lekin tushunadi.",
+   "ru": "Сегодня рыбный день. Мясо немного ревнует, но понимает.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y3",
+   "holat": "fish_day",
+   "uz": "Baliq kuni keldi. Limon ham sahnaga chiqishga tayyorlanmoqda.",
+   "ru": "Наступил рыбный день. Лимон тоже готовится к выходу на сцену.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y4",
+   "holat": "fish_day",
+   "uz": "Baliq kuni. Daryo bo'yidagi kayfiyatni oshxonaga olib kelish payti.",
+   "ru": "Рыбный день. Время перенести настроение с берега реки на кухню.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y5",
+   "holat": "fish_day",
+   "uz": "Bugun baliq navbati. Kotlet bugun dam olish kunini oldi.",
+   "ru": "Сегодня очередь рыбы. Котлета взяла выходной.",
+   "yangi": true
+  },
+  {
+   "id": "fish_day-y6",
+   "holat": "fish_day",
+   "uz": "Baliq kuni. Hatto mushuk ham sizni qo'llab-quvvatlaydi.",
+   "ru": "Рыбный день. Даже кот вас поддерживает.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y1",
+   "holat": "day_any",
+   "uz": "Kun yarmi o'tdi. Hisob ishlayapti, choynak ishlayapti — hammasi rejada.",
+   "ru": "Полдня позади. Счёт работает, чайник работает — всё по плану.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y2",
+   "holat": "day_any",
+   "uz": "Divan chaqiryapti, eshik ham chaqiryapti. Bugun kim yutadi?",
+   "ru": "Зовёт диван, зовёт и дверь. Кто сегодня победит?",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y3",
+   "holat": "day_any",
+   "uz": "Kunning eng arzon yaxshi odati — bir stakan suv. Narxi: o'n soniya.",
+   "ru": "Самая дешёвая полезная привычка дня — стакан воды. Цена: десять секунд.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y4",
+   "holat": "day_any",
+   "uz": "Lift tugmasi bugun sizdan dam olishni so'radi. Zinapoya rozi.",
+   "ru": "Кнопка лифта попросила у вас выходной. Лестница не против.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y5",
+   "holat": "day_any",
+   "uz": "Shirinlik vasvasasi soat to'rtga yaqin kuchayadi. Bu shunchaki ob-havo ma'lumoti.",
+   "ru": "Тяга к сладкому усиливается к четырём часам. Это просто прогноз погоды.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y6",
+   "holat": "day_any",
+   "uz": "Ilova jim turibdi, lekin hamma yozuvni eslab qoladi — fil kabi.",
+   "ru": "Приложение молчит, но помнит каждую запись — как слон.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y7",
+   "holat": "day_any",
+   "uz": "Kun davom etmoqda. Yaxshi odatlar sekin yuradi, lekin uzoqqa boradi.",
+   "ru": "День продолжается. Хорошие привычки ходят медленно, но далеко.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y8",
+   "holat": "day_any",
+   "uz": "Telefon cho'ntakda, qadamlar sanalmoqda. Bugun bu ikkisi eng yaxshi jamoa.",
+   "ru": "Телефон в кармане, шаги считаются. Сегодня это лучшая команда.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y9",
+   "holat": "day_any",
+   "uz": "Bugun hali hech narsa bo'lmadi. Bu ham hikoyaning boshlanishi.",
+   "ru": "Сегодня пока ничего не случилось. Это тоже начало истории.",
+   "yangi": true
+  },
+  {
+   "id": "day_any-y10",
+   "holat": "day_any",
+   "uz": "Yozildi — hisob, yozilmadi — taxmin. Taxmin hali bir marta ham yutmagan.",
+   "ru": "Записали — это учёт, нет — догадка. Догадка ещё ни разу не выигрывала.",
+   "yangi": true
+  }
+ ]
+}

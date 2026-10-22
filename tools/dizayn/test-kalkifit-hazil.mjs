@@ -1,27 +1,29 @@
-// KalkiFit hazil matnlari (data/hazillar-kalkifit.json): har holatda matn chiqishi, UZ/RU/ЎЗ to'liqligi, uzunlik, taqiqlangan so'zlar (tana/vazn/ovqatga aybdorlik),
+// KalkiFit hazil matnlari (data/hazillar.json — items: id, holat, uz, ru): har holatda matn chiqishi, UZ/RU/ЎЗ to'liqligi, uzunlik, taqiqlangan so'zlar (tana/vazn/ovqatga aybdorlik),
 // o'chirilganda neytral matn, ketma-ket takrorlanmasligi, brauzerda hodisadan keyingi gap va Profildagi yoqish/o'chirish.   node tools/dizayn/test-kalkifit-hazil.mjs
 import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const G = require(path.join(ROOT, 'assets/kalkifit-gaplar.js')); const TR = require(path.join(ROOT, 'assets/translit.js')); const D = S.dates;
-const J = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/hazillar-kalkifit.json'), 'utf8')); const TODAY = D.today();
+const J0 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/hazillar.json'), 'utf8')), J = { states: {}, neutral: J0.neutral }; const TODAY = D.today();
+for (const it of J0.items) { const h = (J.states[it.holat] = J.states[it.holat] || { uz: [], ru: [] }); h.uz.push(it.uz); h.ru.push(it.ru); }      // holat → variantlar (eski ko'rinish — quyidagi tekshiruvlar uchun)
+const NEW = ['day_morning', 'breakfast', 'water_none', 'water_half', 'water_ok', 'zero_steps', 'steps_couch', 'steps_goal', 'late_food', 'food_sweet', 'food_fast', 'protein_low', 'over', 'on_target', 'streak', 'comeback', 'food_osh', 'tea', 'bread_much', 'weekend', 'fish_day', 'day_any'];
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const BAN = G.BANNED.map((w) => new RegExp(w, 'i'));
 const URGE = [/to'lmay|to'ldir|yetishma|yetmayap|kam yed|kam ovqat|yetarli yem|\byeng\b|ko'proq yeng|ovqat yeng/i, /не наполн|недоед|недостаточно|мало съел|мало ел|не хватает|съешьте|поешьте|ешьте|доешь/i];
 const BODY_EXTRA = [...URGE, /tartibli|молодец|умница|ortiqcha yedingiz|переели|limit|лимит/i, /ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
 
 /* ---- 1. sxema, to'liqlik, uzunlik ---- */
-const REQUIRED = ['dist_full_day', 'dist_full_week', 'dist_full_month', 'dist_part', 'burn', 'within', 'over', 'over_neutral', 'zero_steps', 'water_low', 'water_ok', 'weight_down', 'weight_up', 'weight_flat', 'streak', 'holiday', 'yesam_ok', 'yesam_over',
-  'food_first', 'food_sweet', 'food_add', 'steps_add', 'steps_goal', 'steps_couch', 'water_none', 'water_half', 'dayend', 'dayend_high', 'streak7', 'empty_day', 'weight_add', 'backup', 'log_low'];
+const REQUIRED = ['dist_full_day', 'dist_full_week', 'dist_full_month', 'dist_part', 'burn', 'within', 'over', 'over_neutral', 'zero_steps', 'water_low', 'water_ok', 'streak', 'holiday', 'yesam_ok', 'yesam_over',
+  'food_first', 'food_sweet', 'food_add', 'steps_add', 'steps_goal', 'steps_couch', 'water_none', 'water_half', 'dayend', 'dayend_high', 'streak7', 'empty_day', 'backup', 'log_low'].concat(NEW);
 const ph = (t) => (t.match(/\{(\w+)\}/g) || []).sort().join(',');
 { const ids = Object.keys(J.states); for (const id of REQUIRED) assert.ok(J.states[id], id + ': holat yo\'q'); let total = 0; const counts = {};
-  for (const id of ids) { const st = J.states[id]; assert.ok(Array.isArray(st.uz) && Array.isArray(st.ru), id); assert.ok(st.uz.length >= 5 && st.ru.length >= 5, id + ': ≥5 variant'); assert.equal(st.uz.length, st.ru.length, id + ': UZ va RU variantlar soni teng'); counts[id] = st.uz.length; total += st.uz.length;
+  for (const id of ids) { const st = J.states[id]; assert.ok(Array.isArray(st.uz) && Array.isArray(st.ru), id); assert.ok(st.uz.length >= 6 && st.ru.length >= 6, id + ': ≥6 variant'); assert.equal(st.uz.length, st.ru.length, id + ': UZ va RU variantlar soni teng'); counts[id] = st.uz.length; total += st.uz.length;
     const all = new Set(), names = (arr) => new Set(arr.flatMap((t) => (t.match(/\{(\w+)\}/g) || []))); st.uz.forEach((t) => { assert.ok(!all.has(t), id + ': takror matn'); all.add(t); }); const KNOWN = new Set(['{km}', '{route}', '{routeKm}', '{pct}', '{kcal}', '{food}', '{foodNom}', '{left}', '{over}', '{avg}', '{days}', '{glasses}', '{target}', '{steps}', '{goal}', '{kg}', '{item}', '{min}', '{delta}']); for (const x of [...names(st.uz), ...names(st.ru)]) assert.ok(KNOWN.has(x), id + ': noma\'lum o\'rin-belgisi ' + x); const un = names(st.uz); for (const x of names(st.ru)) assert.ok(un.has(x), id + ': RU da bor, UZ da yo\'q: ' + x);
     for (const lg of ['uz', 'ru']) for (const t of st[lg]) { assert.ok(t.length >= 20 && t.length <= 190, id + '/' + lg + ': uzunlik ' + t.length + ': ' + t); const sentences = t.split(/[.!?…]+(?:\s|$)/).filter((x) => x.trim()); assert.ok(sentences.length <= 3, id + '/' + lg + ': ko\'pi bilan 2–3 jumla: ' + t); } }
   for (const k of Object.keys(J.neutral)) { assert.ok(J.neutral[k].uz && J.neutral[k].ru, 'neytral ' + k); assert.equal(ph(J.neutral[k].uz), ph(J.neutral[k].ru)); void ph; }
   assert.deepEqual(Object.keys(J.neutral).sort(), ['dayend', 'food', 'steps', 'water', 'weight']);
-  log('Ma\'lumot fayli: ' + ids.length + ' holat, ' + total + ' ta variant (UZ) + shuncha RU; har holatda ≥5 variant, UZ/RU soni teng, o\'rin-belgilari ma\'lum va mos, takror yo\'q, uzunlik 20–190 belgi, ko\'pi bilan 2–3 jumla; 5 ta neytral matn'); }
+  log('Ma\'lumot fayli: ' + ids.length + ' holat, ' + total + ' ta variant (UZ) + shuncha RU; har holatda ≥6 variant, UZ/RU soni teng, o\'rin-belgilari ma\'lum va mos, takror yo\'q, uzunlik 20–190 belgi, ko\'pi bilan 2–3 jumla; 5 ta neytral matn'); }
 
 /* ---- 2. taqiqlangan so'zlar, ЎЗ (translit) ---- */
 { const allT = []; for (const [id, st] of Object.entries(J.states)) for (const lg of ['uz', 'ru']) for (const t of st[lg]) allT.push([id + '/' + lg, t]); for (const [k, v] of Object.entries(J.neutral)) for (const lg of ['uz', 'ru']) allT.push(['neutral ' + k + '/' + lg, v[lg]]);
@@ -29,6 +31,14 @@ const ph = (t) => (t.match(/\{(\w+)\}/g) || []).sort().join(',');
   const LAT = /[A-Za-z'’ʻ]{3,}/g; for (const [w, t] of allT.filter((x) => x[0].endsWith('/uz'))) { const cy = TR.translit(t.replace(/\{\w+\}/g, '')).replace(/\bAI\b|kg|km|ml/g, ''); assert.ok(!/[A-Za-z]{2,}/.test(cy), w + ': ЎЗ da lotincha qoldi: ' + (cy.match(/[A-Za-z']{2,}/) || [''])[0]); assert.ok(/[А-Яа-яЎўҚқҒғҲҳ]/.test(cy), w); }
   for (const [w, t] of allT.filter((x) => x[0].endsWith('/ru'))) assert.ok(!/[A-Za-z]{3,}/.test(t.replace(/\{\w+\}/g, '')), w + ': RU da lotincha so\'z: ' + t);
   log('Taqiqlangan so\'zlar (tana/vazn kamsitish, ochlik/ortiqcha ovqat, aybdorlik, qo\'pol so\'z, siyosat/din/millat/jins) — ' + allT.length + ' matnda yo\'q; ЎЗ (translit) da lotincha qoldiq yo\'q, RU da lotincha so\'z yo\'q'); }
+
+/* ---- 2b. v23 to'plami: fayl tuzilishi, ≥150 yangi hazil, ≤90 belgi, qat'iy taqiqlar ---- */
+{ const ids = new Set(); for (const it of J0.items) { assert.ok(it.id && it.holat && it.uz && it.ru, 'yozuv: id, holat, uz, ru'); assert.ok(!ids.has(it.id), 'takror id ' + it.id); ids.add(it.id); }
+  const nw = J0.items.filter((x) => x.yangi); assert.ok(nw.length >= 150, 'kamida 150 ta yangi hazil: ' + nw.length);
+  for (const h of NEW) assert.ok(nw.filter((x) => x.holat === h).length >= 6, h + ': ≥6 yangi variant');
+  const STRICT = [/vazn|semiz|ozg'?in|kilo(?!metr)|\bkg\b|tana(?!ffus)|badan|qorin|figura|chiroy|xunuk|\bdin\b|namoz|xudo|ollo|masjid|siyosat|prezident|millat|cho'chqa|halol|harom/i, /(?<![а-яё])вес(а|у|ом)?(?![а-яё])|похуд|толст|(?<![а-яё])худ[ое]|килогр|(?<![а-яё])кило(?![а-яё])|(?<![а-яё])тел[оа](?![а-яё])|фигур|живот|религ|(?<![а-яё])бог(?![а-яё])|молит|полит|национальност|свин|халял/i];
+  for (const it of nw) { for (const lg of ['uz', 'ru']) { const t = it[lg]; assert.ok(t.length >= 15 && t.length <= 90, it.id + '/' + lg + ': ≤ 90 belgi (' + t.length + '): ' + t); assert.ok((t.match(/[.!?…]+(?:\s|$)/g) || []).length <= 2, it.id + ': 1–2 qisqa jumla'); for (const re of STRICT) assert.ok(!re.test(t), it.id + '/' + lg + ': taqiqlangan mavzu (' + re + '): ' + t); } }
+  log('data/hazillar.json: ' + J0.items.length + ' yozuv (id, holat, uz, ru), ' + nw.length + ' ta yangi (v23) — ' + NEW.length + ' holat, har birida ≥6; ≤ 90 belgi, 1–2 jumla; vazn/tana/din/siyosat/millat/cho\'chqa yo\'q'); }
 
 /* ---- 3. holatga mos tanlash (Node'da, haqiqiy hisob bilan) ---- */
 const mkSt = (o = {}) => { const st = S.emptyState(); st.setup = true; st.created = Date.now() - 20 * 86400000; st.prefs = { jokes: o.jokes }; st.profile = { sex: 'm', preg: false, age: 30, height: 175, weight: 80, act: 3, goal: 'lose', goalWeight: null }; st.trackStart = D.addDays(TODAY, -15); S.addWeight(st, TODAY, 80); return st; };
@@ -51,11 +61,30 @@ const sameShape = (line, state) => line && line.state === state;
   /* qadam */
   st = mkSt(); S.setSteps(st, TODAY, 9000); l = G.eventLine(ctxOf(st), 'steps', { steps: 9000, prev: 2000 }); assert.equal(l.state, 'steps_goal'); st = mkSt(); S.setSteps(st, TODAY, 1200); assert.equal(G.eventLine(ctxOf(st, { hour: 19 }), 'steps', { steps: 1200, prev: 0 }).state, 'steps_couch'); st = mkSt(); S.setSteps(st, TODAY, 4000); assert.equal(G.eventLine(ctxOf(st), 'steps', { steps: 4000, prev: 0 }).state, 'steps_add');
   /* vazn, kun yakuni */
-  st = mkSt(); l = G.eventLine(ctxOf(st), 'weight', { kg: 79.6 }); assert.equal(l.state, 'weight_add'); st = mkSt(); add(st, TODAY, 2000); S.finishDay(st, TODAY, TODAY); assert.equal(G.eventLine(ctxOf(st), 'dayend', {}).state, 'dayend'); st = mkSt(); add(st, TODAY, lim(st) * 1.4); S.finishDay(st, TODAY, TODAY); assert.equal(G.eventLine(ctxOf(st), 'dayend', {}).state, 'dayend_high');
+  st = mkSt(); l = G.eventLine(ctxOf(st), 'weight', { kg: 79.6 }); assert.equal(l.state, 'neutral_weight', 'vazn — hazil emas, neytral fakt'); assert.equal(G.weightLine(ctxOf(st)), null); st = mkSt(); add(st, TODAY, 2000); S.finishDay(st, TODAY, TODAY); assert.equal(G.eventLine(ctxOf(st), 'dayend', {}).state, 'dayend'); st = mkSt(); add(st, TODAY, lim(st) * 1.4); S.finishDay(st, TODAY, TODAY); assert.equal(G.eventLine(ctxOf(st), 'dayend', {}).state, 'dayend_high');
   /* Bugun qatori (todayLine) */
   st = mkSt(); assert.equal(G.todayLine(ctxOf(st, { hour: 15, fresh: false })).state, 'zero_steps'); st = mkSt(); S.setSteps(st, TODAY, 4000); assert.equal(G.todayLine(ctxOf(st, { hour: 13, fresh: false })).state, 'water_none'); st = mkSt(); S.setSteps(st, TODAY, 1200); assert.equal(G.todayLine(ctxOf(st, { hour: 19, fresh: false })).state, 'steps_couch');
   st = mkSt(); S.setSteps(st, TODAY, 4000); S.setWater(st, TODAY, 6); add(st, TODAY, 300); assert.equal(G.todayLine(ctxOf(st, { hour: 21, fresh: false })).state, 'log_low'); st = mkSt(); add(st, TODAY, lim(st) + 300); assert.equal(G.todayLine(ctxOf(st, { hour: 12, fresh: false })).state, 'over');
   log('Holatga mos tanlash (haqiqiy hisob): birinchi yozuv, shirinlik, oddiy qo\'shish, kechqurun kam yozuv, me\'yordan oshgan kun, 3+ kun ketma-ket (neytral fakt), suv yarmi/maqsad, qadam maqsadi/divan/oddiy, vazn, kun yakuni (oddiy/yuqori), Bugun qatori: 0 qadam, suv nol, divan, kam yozuv, oshish'); }
+
+/* ---- 3b. v23 holatlari: Bugun pufagi har doim bitta; vaziyatga mos; 7 kun takrorlanmaydi ---- */
+{ const FOODS = [{ id: 'tort-t', t: 'h' }, { id: 'burger-t', t: 'q' }, { id: 'osh-t', t: 'o' }, { id: 'non-t', t: 'n' }, { id: 'choy-t', t: 'i' }, { id: 'x', t: 'o' }];
+  const C = (st, o = {}) => ctxOf(st, Object.assign({ foods: FOODS, fresh: false, store: {} }, o));
+  const tl = (st, o) => G.todayLine(C(st, o)).state;
+  let st = mkSt(); assert.equal(tl(st, { hour: 8 }), 'day_morning', 'ertalab, hech narsa'); st = mkSt(); add(st, TODAY, 300, { meal: 'b' }); S.setWater(st, TODAY, 1); assert.equal(tl(st, { hour: 9 }), 'breakfast');
+  st = mkSt(); add(st, TODAY, 300, { fid: 'tort-t' }); assert.equal(tl(st, { hour: 11 }), 'food_sweet'); st = mkSt(); add(st, TODAY, 300, { fid: 'burger-t' }); assert.equal(tl(st, { hour: 11 }), 'food_fast');
+  st = mkSt(); add(st, TODAY, 500, { fid: 'osh-t' }); assert.equal(tl(st, { hour: 11 }), 'food_osh'); st = mkSt(); for (let i = 0; i < 3; i++) add(st, TODAY, 150, { fid: 'non-t', ts: i + 1 }); assert.equal(tl(st, { hour: 11 }), 'bread_much');
+  st = mkSt(); add(st, TODAY, 5, { fid: 'choy-t', ts: 1 }); add(st, TODAY, 5, { fid: 'choy-t', ts: 2 }); assert.equal(tl(st, { hour: 11 }), 'tea');
+  st = mkSt(); add(st, TODAY, 400, { ts: new Date(new Date().setHours(22, 30, 0, 0)).getTime() }); assert.equal(tl(st, { hour: 23 }), 'late_food', '22:00 dan keyin');
+  st = mkSt(); const L = S.dayLimit(st, TODAY); add(st, TODAY, Math.round(L / 2), { p: 60 }); add(st, TODAY, Math.round(L / 2), { p: 60, ts: 2 }); S.setSteps(st, TODAY, 9000); assert.equal(tl(st, { hour: 20 }), 'on_target', 'maqsadga aniq');
+  st = mkSt(); add(st, TODAY, 300); add(st, TODAY, 300, { ts: 2 }); S.setSteps(st, TODAY, 5000); assert.equal(tl(st, { hour: 18 }), 'protein_low');
+  st = mkSt(); S.setSteps(st, TODAY, 12000); assert.equal(tl(st, { hour: 15 }), 'steps_goal'); st = mkSt(); add(st, D.addDays(TODAY, -5), 1500); S.setSteps(st, TODAY, 4000); S.setWater(st, TODAY, 3); assert.equal(tl(st, { hour: 13 }), 'comeback', 'uzoq yozilmagan');
+  st = mkSt(); S.setSteps(st, TODAY, 4000); S.setWater(st, TODAY, 3); assert.equal(tl(st, { hour: 13, fishDay: true }), 'fish_day'); st = mkSt(); S.setSteps(st, TODAY, 4000); S.setWater(st, TODAY, 3); add(st, TODAY, 300); assert.ok(['day_any', 'weekend'].includes(tl(st, { hour: 13 })), 'mos holat yo\'q — kunlik umumiy');
+  st = mkSt({ jokes: false }); assert.equal(G.todayLine(C(st, { jokesOn: false, hour: 8 })), null, 'o\'chirilsa — chiqmaydi');
+  /* 7 kun takrorlanmaydi: day_any (10 ta) — 7 kun ketma-ket har kuni boshqasi, 8-kun 1-kundagisi qaytishi mumkin */
+  const store = {}, seenT = []; for (let i = 0; i < 7; i++) { const day = D.addDays(TODAY, i), s2 = mkSt(); S.setSteps(s2, day, 4000); S.setWater(s2, day, 3); add(s2, day, 300); const l = G.pickLine(Object.assign(C(s2, { store, today: day, hour: 13 })), 'day_any', {}, 'day_any'); seenT.push(l.id); }
+  assert.equal(new Set(seenT).size, 7, '7 kunda takror yo\'q: ' + seenT.join(','));
+  log('v23 holatlari: ertalab bo\'sh, nonushta, shirinlik, fast-food, osh, non ko\'p, choy, 22:00 dan keyin, maqsadga aniq, oqsil kam, qadam maqsadi, uzoq tanaffus, baliq kuni, kunlik umumiy; o\'chirilsa yo\'q; oxirgi 7 kunda chiqqan hazil qaytmaydi (id bo\'yicha)'); }
 
 /* ---- 4. o'chirilganda neytral matn ---- */
 { let st = mkSt({ jokes: false }); add(st, TODAY, 300); let l = G.eventLine(ctxOf(st), 'food', {}); assert.equal(l.state, 'neutral_food'); assert.match(l.text, /^Yozildi\. Bugun jami 300 kkal\.$/); assert.equal(G.todayLine(ctxOf(st, { fresh: false })), null);
@@ -83,7 +112,7 @@ const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await 
 const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state)));
 try {
   let p = await open('/kalkifit', seed(), 9); assert.equal(await txt(p, '.sl-first'), "Birinchi ovqatni qo'shing", 'bo\'sh kun: yo\'riqnoma (hazil emas)');
-  await addFood(p, 'osh'); const fl = await txt(p, '#jLine'); assert.ok(fl && poolOf('food_first').concat(poolOf('streak'), poolOf('streak7')).some((t) => G.fill(t, { days: '\\d+' }) === fl || new RegExp('^' + G.fill(t, { days: '\\d+' }).replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\\\\d\\+/g, '\\d+') + '$').test(fl)), 'birinchi ovqatdan keyin hazil: ' + fl);
+  await addFood(p, 'osh'); const fl = await txt(p, '#jLine'); const flN = fl && fl.replace(/\d+/g, '#'); assert.ok(fl && poolOf('food_first').concat(poolOf('streak'), poolOf('streak7'), poolOf('food_osh')).some((t) => G.fill(t, { days: '#' }) === flN || t === fl), 'birinchi ovqatdan (osh) keyin hazil: ' + fl);
   await p.waitForTimeout(500); await addFood(p, 'olma'); assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit_hazil') || '{}'))).jfl.n, 1, '60 soniya ichida ikkinchi gap chiqmaydi (spam yo\'q)');
   await p.context().close();
   /* hazil o'chirilgan: neytral matn */
@@ -91,10 +120,10 @@ try {
   /* Profil: yoqish/o'chirish, sarlavha */
   p = await open('/kalkifit', seed(), 9); await p.click('[data-act=tab][data-v=profile]'); assert.match(await txt(p, '[data-act=jktog]:first-child').then((x) => x || ''), /Yoqilgan/); assert.match(await p.locator('.rz-st:has-text("Maslahat va hazil")').first().innerText(), /Maslahat va hazil/); await p.click('[data-act=jktog][data-v="0"]'); assert.equal((await stOf(p)).prefs.jokes, false); await p.click('[data-act=jktog][data-v="1"]'); assert.equal((await stOf(p)).prefs.jokes, true); await p.context().close();
   /* Bugun qatori: 0 qadam, tushdan keyin */
-  p = await open('/kalkifit', seed({ entries: [400] }), 16); await p.waitForTimeout(800); const jl = await txt(p, '#jLine'); assert.ok(jl && poolOf('zero_steps').includes(jl), 'Bugun qatori (0 qadam): ' + jl); assert.equal(await p.locator('.sl-joke').count(), 0, 'doimiy karta yo\'q'); assert.ok(await p.locator('#jLine').evaluate((e) => { const duo = document.querySelector('.sl-duo').getBoundingClientRect(), r = e.getBoundingClientRect(); return e.closest('.sl-big') === null && r.top >= duo.bottom - 1; }), 'hazil qatori — Bugun\'ning eng pastida (suv/qadamdan keyin)'); await p.context().close();
+  p = await open('/kalkifit', seed({ entries: [400] }), 16); await p.waitForTimeout(800); const jl = await txt(p, '#jLine'); assert.ok(jl && poolOf('zero_steps').includes(jl), 'Bugun qatori (0 qadam): ' + jl); assert.equal(await p.locator('.sl-joke').count(), 0, 'doimiy karta yo\'q'); assert.ok(await p.locator('#jLine').evaluate((e) => { const big = document.querySelector('.sl-big').getBoundingClientRect(), add = document.getElementById('mainAdd').getBoundingClientRect(), r = e.getBoundingClientRect(); return e.previousElementSibling && e.previousElementSibling.classList.contains('sl-big') && r.top >= big.bottom - 1 && r.bottom <= add.top + 1; }), 'v23: hazil — kaloriya doirasi ostidagi pufak («Ovqat qo\'shish» tugmasidan yuqorida)'); await p.context().close();
   /* qadam kiritish → hazil, vazn → hazil */
   p = await open('/kalkifit', seed({ entries: [400] }), 11); await p.click('[data-act=addsteps]'); await p.waitForTimeout(400); for (const k of ['9', '000']) await p.click(`[data-act=key][data-k="${k}"]`); await p.click('#spSave'); await p.waitForTimeout(700); const sf = await txt(p, '#jLine'); assert.ok(sf && (poolOf('steps_goal').concat(poolOf('steps_add')).some((t) => G.fill(t, { steps: '9 000', goal: '8 000' }).replace(/ /g, ' ') === sf.replace(/ /g, ' '))), 'qadam kiritilgach: ' + sf); await p.context().close();
-  p = await open('/kalkifit', seed(), 11); await p.click('[data-act=tab][data-v=history]'); await p.click('[data-act=addweight]'); await p.waitForTimeout(400); for (const k of ['7', '9', ',', '5']) await p.click(`[data-act=key][data-k="${k}"]`); await p.click('[data-act=wfsave]'); await p.waitForTimeout(700); const tw = await txt(p, '#rzToast'); assert.ok(!poolOf('weight_add').some((t) => G.fill(t, { kg: '79,5' }) === tw), 'hazil toast bo\'lib chiqmaydi'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); const wt = await txt(p, '#jLine'); assert.ok(wt && poolOf('weight_add').some((t) => G.fill(t, { kg: '79,5' }) === wt), 'vazn yozilgach hazil Bugun qatorida: ' + wt); await p.context().close();
+  p = await open('/kalkifit', seed(), 11); await p.click('[data-act=tab][data-v=history]'); await p.click('[data-act=addweight]'); await p.waitForTimeout(400); for (const k of ['7', '9', ',', '5']) await p.click(`[data-act=key][data-k="${k}"]`); await p.click('[data-act=wfsave]'); await p.waitForTimeout(700); const tw = await txt(p, '#rzToast'); assert.ok(!poolOf('weight_add').some((t) => G.fill(t, { kg: '79,5' }) === tw), 'hazil toast bo\'lib chiqmaydi'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); const wt = await txt(p, '#jLine'); assert.ok(!wt || /^Vazn yozildi: 79,5 kg\.?$/.test(wt) || !/kg/.test(wt), 'v23: vazn haqida hazil yo\'q (faqat neytral fakt): ' + wt); await p.context().close();
   /* kun yakuni */
   p = await open('/kalkifit', seed({ entries: [1800] }), 20); await p.click('#dayEnd'); await p.waitForTimeout(700); const de = await txt(p, '#jLine'); assert.ok(de && poolOf('dayend').includes(de), 'kun yakuni: ' + de); await p.context().close();
 
@@ -115,7 +144,7 @@ try {
   // kun almashdi: kechagi hodisa gapi bugun ko'rinmaydi
   await p.evaluate(() => { const h = JSON.parse(localStorage.getItem('kalki_fit_hazil')); h.jx = '2000-01-01'; h.last = { d: '2000-01-01', text: 'ESKI-KUN-GAPI' }; localStorage.setItem('kalki_fit_hazil', JSON.stringify(h)); }); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(800); assert.ok(!((await txt(p, '#jLine')) || '').includes('ESKI-KUN-GAPI'), 'kechagi gap bugun ko\'rinmaydi'); await p.context().close();
   /* qora mavzuda ham o'qiladi: rang = sub (--mut) */
-  p = await open('/kalkifit', seed(), 9, 'dark'); await addFood(p, 'osh'); assert.equal(await p.locator('#jLine').evaluate((e) => getComputedStyle(e).color), 'rgb(171, 167, 160)', 'sub rangi #ABA7A0'); await p.context().close();
+  p = await open('/kalkifit', seed(), 9, 'dark'); await addFood(p, 'osh'); assert.equal(await p.locator('#jLine').evaluate((e) => getComputedStyle(e).color), 'rgb(222, 220, 216)', 'v23 pufak: asosiy matn rangi (ink) — sezilarli'); await p.context().close();
   /* ЎЗ va RU */
   p = await open('/kalkifit?lang=cyr', seed(), 9); await addFood(p, 'osh'); const cy = await txt(p, '#jLine'); assert.ok(cy && !/[A-Za-z]{3,}/.test(cy.replace(/AI/g, '')) && /[А-Яа-яЎўҚқҒғҲҳ]/.test(cy), 'ЎЗ: ' + cy); await p.context().close();
   p = await open('/ru/kalkifit', seed(), 9); assert.equal(await txt(p, '.sl-first'), 'Добавьте первую еду', 'RU bo\'sh kun'); await addFood(p, 'плов'); const ru = await txt(p, '#jLine'); assert.ok(ru && /[А-Яа-я]/.test(ru) && !/[A-Za-z]{3,}/.test(ru), 'RU: ' + ru); assert.deepEqual(p.errs, []); await p.context().close();

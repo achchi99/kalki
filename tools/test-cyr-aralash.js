@@ -23,7 +23,7 @@ const ALLOW = new Set([]);
 const BAN = { link: 'havola', app: 'ilova', dark: "to'q", TG: 'Telegram', UZS: "so'm" };
 
 /* data/: faqat sayt/ilova yuklaydigan fayllar; manba izohlari (inglizcha USDA/ODS tavsifi) foydalanuvchiga chiqmaydi */
-const JSON_SITE = /^(yeymiz|uyda|qoshimchalar|qadamlar|ovqatlar|orinbosar|oqsil-manba|masofalar|ijara-stavkalari|hazillar-kalkifit|cheklov-teglar|yangiliklar-[a-z]+)\.json$/;
+const JSON_SITE = /^(yeymiz|uyda|qoshimchalar|qadamlar|ovqatlar|orinbosar|oqsil-manba|masofalar|ijara-stavkalari|hazillar|cheklov-teglar|yangiliklar-[a-z]+)\.json$/;
 const JSON_SKIP_KEYS = new Set(['m', 'izoh', 'manba', 'src', 'levelWhy', 'usda', 'q']);
 const items = [];                                                   // { src, text }
 const add = (src, text) => { if (text && /[A-Za-z]{2}/.test(text)) items.push({ src, text }); };
