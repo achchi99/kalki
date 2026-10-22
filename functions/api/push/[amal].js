@@ -1,6 +1,6 @@
 /* kalki.uz — «Baliq kuni» eslatmasi: Web Push obunalari (D1 push_obuna). Yuborish bu yerda EMAS — Hetzner cron (tools/push-yubor.js).
  *   GET  /api/push/kalit               → { yoqilgan, kalit? }   (VAPID ochiq kalit; jadval yoki kalit yo'q bo'lsa yoqilgan:false — ilova taklif ko'rsatmaydi)
- *   POST /api/push/obuna  { obuna: PushSubscription.toJSON(), til, baliqsiz?: bool, kun?: 0..6 }  → { ok, akkaunt }   (akkaunt: sessiya cookie'si bo'lsa unga ulanadi — ixtiyoriy)
+ *   POST /api/push/obuna  { obuna: PushSubscription.toJSON(), til, baliqsiz?: bool, kun?: 0..6, hafta?: bool }  → { ok, akkaunt }   (hafta — «Haftalik xulosa» eslatmasi, migrations/push-hafta.sql)   (akkaunt: sessiya cookie'si bo'lsa unga ulanadi — ixtiyoriy)
  *   POST /api/push/ochir  { endpoint } → { ok }
  *   GET  /api/push/holat (X-Admin-Password) → { obunalar, akkaunt_bilan, til: {uz,cyr,ru}, oxirgi }   (admin: obuna soni va oxirgi yuborish natijasi)
  * Xavfsizlik: POST faqat Origin tekshiruvi + application/json; endpoint faqat ma'lum push xizmatlari (SSRF yo'q); IP boshiga soatiga 20 ta obuna (KV). Secret'lar: VAPID_PUBLIC_KEY (ochiq),
@@ -64,6 +64,7 @@ export async function onRequest({ request, env, params }) {
           .bind(id, o.endpoint, o.p256dh, o.auth, o.til, akk, now).run();
       } catch (e2) { return fail(503); }
     }
+    if (typeof b.hafta === 'boolean') { try { await db.prepare('UPDATE push_obuna SET hafta = ? WHERE id = ?').bind(b.hafta ? 1 : 0, id).run(); } catch (e) { /* ustun yo'q (migrations/push-hafta.sql yurgizilmagan) — e'tiborsiz */ } }          // «Haftalik xulosa» eslatmasi (Profil)
     return json(200, { ok: true, akkaunt: !!akk }, NC);
   }
   /* ochir */

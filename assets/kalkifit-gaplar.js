@@ -134,10 +134,10 @@
     if (hour < 12) return P('day_morning');
     return P('day_any');
   }
-  function cardLine(ctx, state) {                  // kun kartasi uchun BITTA hazil (raqamsiz holat: on_target / dayend / dayend_high); kun va til bo'yicha barqaror — qayta chizilganda o'zgarmaydi
-    if (ctx.jokesOn === false) return null; var p = ctx.store || (ctx.st && ctx.st.prefs) || {}, k = p.kc;
+  function cardLine(ctx, state, slot) {            // kun kartasi / hafta xulosasi uchun BITTA hazil (raqamsiz holat: on_target / dayend / dayend_high / hafta_xulosa); kun va til bo'yicha barqaror — qayta chizilganda o'zgarmaydi
+    if (ctx.jokesOn === false) return null; var p = ctx.store || (ctx.st && ctx.st.prefs) || {}, sk = 'kc' + (slot || ''), k = p[sk];
     if (k && k.d === ctx.today && k.s === state && k.l === ctx.lang) return { state: state, text: k.t };
-    var c = {}; for (var x in ctx) c[x] = ctx[x]; c.fresh = true; var l = pickLine(c, state, {}, 'card'); if (l) p.kc = { d: ctx.today, s: state, l: ctx.lang, t: l.text }; return l;
+    var c = {}; for (var x in ctx) c[x] = ctx[x]; c.fresh = true; var l = pickLine(c, state, {}, 'card' + (slot || '')); if (l) p[sk] = { d: ctx.today, s: state, l: ctx.lang, t: l.text }; return l;
   }
   function neutralLine(ctx, kind, p) { var n = NEUTRAL[kind], t = n && (n[ctx.lang] || n.uz); return t ? { state: 'neutral_' + kind, text: fill(t, p) } : null; }
   /* Hodisadan keyingi bir qatorli gap: kind = food | water | steps | weight | dayend. Hazil o'chirilgan bo'lsa shu vaziyat uchun NEUTRAL fakt qaytadi. */

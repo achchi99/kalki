@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url); const ROOT = path.resolve(path.d
 const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const G = require(path.join(ROOT, 'assets/kalkifit-gaplar.js')); const TR = require(path.join(ROOT, 'assets/translit.js')); const D = S.dates;
 const J0 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/hazillar.json'), 'utf8')), J = { states: {}, neutral: J0.neutral }; const TODAY = D.today();
 for (const it of J0.items) { const h = (J.states[it.holat] = J.states[it.holat] || { uz: [], ru: [] }); h.uz.push(it.uz); h.ru.push(it.ru); }      // holat → variantlar (eski ko'rinish — quyidagi tekshiruvlar uchun)
-const NEW = ['day_morning', 'breakfast', 'water_none', 'water_half', 'water_ok', 'zero_steps', 'steps_couch', 'steps_goal', 'late_food', 'food_sweet', 'food_fast', 'protein_low', 'over', 'on_target', 'streak', 'comeback', 'food_osh', 'tea', 'bread_much', 'weekend', 'fish_day', 'day_any', 'ichimlik_suvga_qoshildi'];
+const NEW = ['day_morning', 'breakfast', 'water_none', 'water_half', 'water_ok', 'zero_steps', 'steps_couch', 'steps_goal', 'late_food', 'food_sweet', 'food_fast', 'protein_low', 'over', 'on_target', 'streak', 'comeback', 'food_osh', 'tea', 'bread_much', 'weekend', 'fish_day', 'day_any', 'ichimlik_suvga_qoshildi', 'hafta_xulosa'];
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const BAN = G.BANNED.map((w) => new RegExp(w, 'i'));
 const URGE = [/to'lmay|to'ldir|yetishma|yetmayap|kam yed|kam ovqat|yetarli yem|\byeng\b|ko'proq yeng|ovqat yeng/i, /не наполн|недоед|недостаточно|мало съел|мало ел|не хватает|съешьте|поешьте|ешьте|доешь/i];
