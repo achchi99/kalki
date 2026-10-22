@@ -334,10 +334,13 @@ qoziqorin-veshenka|Veshenka qo'ziqorini|Вешенки|veshenka,вешенки,o
 loviya-qora|Qora loviya (pishgan)|Фасоль чёрная (отварная)|qora loviya,черная фасоль|v|kosa:170|u:173735
 edamame|Edamame (soya dukkagi)|Эдамаме|edamame,эдамаме|v|stakan:155|u:168411
 bamiya|Bamiya (qaynatilgan)|Бамия (окра)|bamiya,бамия,okra|v|likop:160|u:169261
+adrenaline|Adrenaline Rush (energetik)|Адреналин Раш (энергетик)|adrenalin,адреналин,adrenaline rush,энергетик адреналин|i|banka:250,shisha05:500|y:adrenaline
+protein-pechenye|Protein pechenye (Bombbar)|Протеиновое печенье (Bombbar)|protein cookie,протеиновое печенье,bombbar cookie,fitness cookie|x|dona:40|y:bombbar-cookie
+kokos-batonchik|Kokosli shokoladli batonchik (Bounty turi)|Кокосовый батончик в шоколаде (типа Bounty)|bounty,баунти,kokosli batonchik,кокосовый батончик|h|dona:57|u:168759
 qaymoq-10|Qaymoq (10%, qahva uchun)|Сливки 10%|slivki 10,сливки 10,half and half|s|qoshiq:15|u:171255
 `;
 const rows = T.trim().split('\n').map((l) => l.split('|'));
-/* «Yemaydiganlarim» teglari (tools/cheklov-teglar.js): shubhali bo'lsa teg QO'YILADI (ehtiyotkor tomon). choshqa — tarkibi aniq bo'lmagan go'shtli restoran taomlari. */
+/* «Yemaydiganlarim» teglari (tools/cheklov-teglar.js): shubhali bo'lsa teg QO'YILADI (ehtiyotkor tomon) — cho'chqa tegi bundan mustasno. */
 const L = (x) => x.trim().split(/\s+/);
 const TEG = {
   sut: L(`mz-plombir-stakan mz-plombir-briket mz-vanil mz-shokolad mz-shokolad-plombir mz-qulupnay mz-light mz-shakarsiz mz-yumshoq mz-konus-shokolad mz-konus-sundae mz-eskimo-yongoq mz-sorbet mz-sundae mz-makflurri mz-shokolad-light mz-yogurt mz-yogurt-shokolad
@@ -346,16 +349,17 @@ const TEG = {
     biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya donut-glazur choko-pie iriska nuga keks-darchin pirog-qovoq shtrudel popkorn-sariyog popkorn-karamel
     pishloq-chedder pishloq-parmezan pishloq-feta pishloq-eritilgan pishloq-gauda pishloq-rikotta pishloq-shveytsar pishloq-kok pishloq-echki yogurt-yunon yogurt-meva2 yogurt-vanil ryajenka varenets snejok tan sirok-glazur2 kefir-qulupnay pahta sut-quyultirilgan sut-kukun qaymoq-yogli qaymoq-10 qaymoq-kukun
     tuxum-qov-aralash pitsa-pishloq big-mac chizburger lazanya nachos-pishloq tako burrito sendvich-baliq sendvich-tovuq sendvich-tunets rench pesto tefteli margarin`),
-  tuxum: L(`tuxum-qov-aralash biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya donut-glazur choko-pie pryanik keks-darchin shtrudel pirog-olcha pirog-qovoq pechenye-oreo pechenye-qumli pechenye-suli pechenye-sariyog pechenye-shokolad pechenye-zanjabil pechenye-anjir yubileynoe barni vafli-vanil
+  tuxum: L(`protein-pechenye tuxum-qov-aralash biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya donut-glazur choko-pie pryanik keks-darchin shtrudel pirog-olcha pirog-qovoq pechenye-oreo pechenye-qumli pechenye-suli pechenye-sariyog pechenye-shokolad pechenye-zanjabil pechenye-anjir yubileynoe barni vafli-vanil
     lapsha-tuxum makaron-yangi krab-tayoq tefteli baliq-panirovka krevetka-panirovka tovuq-boneless tovuq-kfc sendvich-baliq sendvich-tovuq sendvich-tunets big-mac rench tartar-sous mz-makflurri protein-pechenye`),
   yongoq: L(`snickers sport-snickers-marathon mms-yongoq picnic nuts kinder-bueno mz-eskimo-yongoq mz-konus-shokolad shokolad-bodom nuga pesto keshyu kedr-yongogi aralash-yongoq yerfistiq-tuzli makadamiya pekan braziliya-yongogi pista-pistachio-tuzli kashtan bodom-qovurilgan funduk-qovurilgan yeryongoq-pasta yongoq-mevali-aralash granola-batonchik granola-uy protein-bar-60 protein-bar-40 protein-bar-50`),
-  glyuten: L(`mz-plombir-vafli doshirak-pishloq mz-plombir-stakan mz-konus-shokolad mz-konus-sundae mz-vafli-stakan mz-makflurri sport-snickers-marathon protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye twix kitkat mars milky-way picnic nuts kinder-bueno barni pryanik sushki
+  glyuten: L(`protein-pechenye mz-plombir-vafli doshirak-pishloq mz-plombir-stakan mz-konus-shokolad mz-konus-sundae mz-vafli-stakan mz-makflurri sport-snickers-marathon protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye twix kitkat mars milky-way picnic nuts kinder-bueno barni pryanik sushki
     pechenye-oreo pechenye-qumli pechenye-suli pechenye-sariyog pechenye-shokolad pechenye-zanjabil pechenye-anjir yubileynoe vafli-vanil krendel biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya sloyka donut-glazur choko-pie keks-darchin pirog-olcha pirog-qovoq shtrudel parvarda pita-chips granola-batonchik granola-uy
     non-pita non-bugdoy non-jovdar bagel burger-bulochka tortilya bulgur kuskus perlovka lapsha-tuxum ramen makaron-pishgan2 makaron-yangi suli-quruq shurva-tovuq-lapsha gosht-dimlangan-konserva
     big-mac chizburger pitsa-pishloq lazanya spagetti-bolonez piyoz-halqa tako burrito sendvich-baliq sendvich-tovuq sendvich-tunets sendvich-mol baliq-panirovka krevetka-panirovka tovuq-kfc tovuq-boneless tefteli falafel tovuq-shirin-nordon`),
   baliq: L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`),
-  choshqa: L(`lazanya spagetti-bolonez tefteli`)
+  choshqa: []                      // cho'chqa tegi FAQAT bekon va pepperonida (tools/cheklov-teglar.js QOLDA) — kengaytma taomlariga QO'YILMAYDI (CLAUDE.md «Cho'chqa tegi qoidasi»)
 };
+for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plombir-vafli', 'pishloq-hochland']], ['tuxum', ['protein-pechenye']], ['glyuten', ['protein-pechenye', 'mz-plombir-vafli', 'doshirak-pishloq']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
 /* oqsil manbasi (tools/oqsil-teglar.js): qolganlari tur bo'yicha (s — sut, boshqalar — yoq) */
 const OQSIL = Object.assign({},
   ...L(`mol-jigar-qov mol-jigar-dim qoy-jigar-qov mol-buyrak qoy-buyrak mol-yurak qoy-yurak mol-til qoy-til qorin qoy-miya mol-miya qoy-opka qoy-son qoy-kurak qoy-qiyma qoy-kabob-bolak qoy-yogsiz-dim mol-tosh mol-qaynatilgan mol-kotlet-grill buzoq buzoq-qiyma echki gosht-quritilgan gosht-dimlangan-konserva tefteli big-mac chizburger tako sendvich-mol shurva-mol-sabzavot`).map((i) => ({ [i]: 'qizil' })),

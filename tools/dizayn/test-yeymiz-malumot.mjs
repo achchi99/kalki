@@ -16,7 +16,7 @@ log('teglar: ' + Object.keys(D.taom).length + ' kalit (taom + oila kombinatsiyas
 /* 2. cho'chqa HECH QACHON; tanlov bo'sh bo'lsa ham */
 const kal = Object.keys(D.taom); const bosh = C.filtr(D, kal, []);
 for (const k of bosh) assert.ok(!D.taom[k].includes('choshqa'), k + ': cho\'chqa taklif qilinmoqda'); assert.ok(!bosh.includes('bekon'));
-const ch = kal.filter((k) => D.taom[k].includes('choshqa')); assert.deepEqual(ch.slice().sort(), ['bekon', 'lazanya', 'pitsa#pepperoni', 'pitsa-pepperoni', 'spagetti-bolonez', 'tefteli'], 'cho\'chqa tegi FAQAT aniq yoki tarkibi noaniq (restoran go\'sht sousli) taomlarda'); log('cho\'chqa: ' + ch.length + ' kalit har qanday tanlovda yashirin (' + ch.slice(0, 6).join(', ') + '…)');
+const ch = kal.filter((k) => D.taom[k].includes('choshqa')); assert.deepEqual(ch.slice().sort(), ['bekon', 'pitsa#pepperoni', 'pitsa-pepperoni'], 'cho\'chqa tegi FAQAT bekon va pepperonida (CLAUDE.md qoidasi)'); log('cho\'chqa: ' + ch.length + ' kalit har qanday tanlovda yashirin (' + ch.slice(0, 6).join(', ') + '…)');
 /* 3. baliq yemaydigan: baliq hech qayerda */
 const nb = C.filtr(D, kal, ['baliq']); for (const k of nb) assert.ok(!D.taom[k].includes('baliq'), k + ': baliq qoldi'); for (const k of ['sazan-grill', 'sazan-qovurma', 'baliq-dimlama', 'kafe-sazan-qovurma', 'kafe-losos-steyk', 'sazan-duxovka', 'kafe-baliq-shurva']) assert.ok(!nb.includes(k), k);
 assert.ok(nb.includes('osh') && nb.includes('kafe-kabob')); assert.ok(!C.ruxsat(D, 'noma\'lum-taom', []), 'noma\'lum taom taklif qilinmaydi'); assert.ok(!C.ruxsat(D, 'qoymoq', ['tuxum']) && C.ruxsat(D, 'qoymoq', ['baliq']));
