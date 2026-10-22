@@ -76,7 +76,7 @@ try {
   let sch = (await p.evaluate(() => window.__ln)).filter((x) => x[0] === 'schedule').map((x) => x[1].notifications[0]).filter((x) => x.id === 7002);
   assert.equal(sch.length, 1, 'ruxsat bor — standart yoqilgan: 7002 rejalashtirildi'); assert.deepEqual([sch[0].schedule.on.weekday, sch[0].schedule.on.hour, sch[0].body, sch[0].extra.u], [1, 19, 'Haftangiz xulosasi tayyor', '/kalkifit?hafta=1']);
   await p.click('[data-act=tab][data-v=profile] >> nth=0'); await p.waitForSelector('#hwRow'); assert.match(await txt(p, '#hwRow'), /Haftalik xulosa/);
-  await p.click('#hwRow [data-act=hwtog][data-v="0"]'); await p.waitForTimeout(400); assert.equal(await p.evaluate(() => window.__kalkifit.state.prefs.hafta), false);
+  assert.match(await txt(p, '#hwRow [data-act=hwtog]'), /O'chirish/); await p.click('#hwRow [data-act=hwtog][data-v="0"]'); await p.waitForTimeout(400); assert.equal(await p.evaluate(() => window.__kalkifit.state.prefs.hafta), false);
   const cn = (await p.evaluate(() => window.__ln)).filter((x) => x[0] === 'cancel' && x[1].notifications[0].id === 7002); assert.ok(cn.length >= 1, 'o\'chirilsa — 7002 bekor');
   await p.click('#hwRow [data-act=hwtog][data-v="1"]'); await p.waitForTimeout(400); sch = (await p.evaluate(() => window.__ln)).filter((x) => x[0] === 'schedule' && x[1].notifications[0].id === 7002); assert.equal(sch.length, 2, 'qayta yoqildi');
   assert.ok((await p.evaluate(() => window.__ln)).some((x) => x[0] === 'schedule' && x[1].notifications[0].id === 7001) === false || true); assert.deepEqual(p.errs, []); await p.context().close();
