@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+issiq-shokolad — a ceramic mug of hot cocoa with milk, warm chocolate brown with a little foam on top.
+shokoladli-sut — a glass of chocolate milk, light brown.
+smuzi — a thick fruit smoothie in a tall glass, pink-purple, with a berry on the rim.
+suv — a glass of clear still water, slightly blue, with a few droplets.
+sut-kokteyl — a milkshake in a tall glass, white-cream colored, with a thin froth.
+choy-sovuq — iced tea in a tall glass with ice cubes and a lemon slice, amber.
+choy-shakarli — black tea in a clear glass cup with two sugar cubes on the saucer, amber.
+choy-sutli — milk tea in a ceramic cup, beige-brown.
+choy-kok-shakar — green tea in a clear glass cup with one sugar cube on the saucer, pale green-yellow.
+izotonik — a sports isotonic drink in a plain clear bottle with bright lime-green liquid, no label.
+kokos-suvi — young green coconut with a straw, with a glass of coconut water beside it.
+bodom-sut — a glass of white plant milk (almond or soy) with a few almonds and soybeans beside it.
+vino — a glass of red dry wine, dark ruby color.
+pivo — a glass of golden beer with white foam.
+muzqaymoq-plombir — two white vanilla plombir ice cream scoops in a glass dessert cup.
+muzqaymoq-briket — a rectangular block of white plombir ice cream on a small plate, one slice cut off.
+plombir-vafli — white plombir ice cream in a waffle cup with a blueberry swirl on top.
+muzqaymoq-shokolad — two chocolate ice cream scoops in a glass dessert cup.
+muzqaymoq-qulupnay — two pink strawberry ice cream scoops in a glass cup with a strawberry.
+muzqaymoq-yumshoq — swirled soft-serve vanilla ice cream in a paper cup.
+muzqaymoq-rojok — ice cream in a waffle cone, chocolate and nuts coating on the vanilla scoop.
+muzqaymoq-rojok-sous — vanilla ice cream in a waffle cone with caramel sauce drizzle.
+eskimo — a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.
+sorbet — two pastel orange fruit sorbet scoops in a small glass cup.
+muzli — a fruit ice pop on a stick, orange-red, with a few droplets.
+sundae — a sundae in a tall glass with vanilla ice cream, chocolate sauce and a wafer.
+vafli-stakancha — an empty crisp waffle ice cream cone, golden-brown.
+makflurri — ice cream with crushed dark chocolate cookie pieces in a plastic cup.
+muzlatilgan-yogurt — swirled frozen yogurt, pale cream, in a small cup with a berry on top.
+sport-protein-kukun — a plain white tub of protein powder with a scoop on the lid and a little powder heap beside it, no label.
+aminokislota — a small plain tub with a few colorful capsules next to it, no label.
+protein-batonchik — a protein bar bitten, with chocolate coating and layers, in a plain wrapper half open.
+sport-batonchik — a long chocolate sports bar with nuts and caramel layers, half unwrapped.
+protein-kokteyl — a plain shaker bottle with creamy protein shake and a little cocoa, no label.
+geyner — a big plain tub of mass gainer powder with a scoop, no label.
+protein-pechenye — a round oat protein cookie with chocolate chips, two stacked.
+snickers — a chocolate bar with a bite taken, showing caramel, nougat and peanuts inside.
+mars — a chocolate bar with a bite taken, showing nougat and caramel inside.
+twix — two chocolate cookie fingers with caramel, side by side.
+kitkat — a four-finger chocolate wafer bar, one finger snapped off showing wafer layers.
+kokos-batonchik — two chocolate-coated coconut bars, one cut to show white coconut filling.
+mms — a small pile of colorful round chocolate candies, no letters.

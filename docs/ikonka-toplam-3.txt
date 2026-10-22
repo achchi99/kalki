@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+jerki — dried cured beef jerky strips, dark brown, in a small pile.
+losos-dudlangan — smoked salmon slices, thin orange-pink layers, rolled, on a small plate with a dill sprig.
+baliq-qovurilgan — fried white fish fillet with a golden crust, with a lemon wedge, on a plate.
+forel — cooked rainbow trout whole, silver-pink skin, on an oval plate with lemon.
+skumbriya — baked mackerel whole with dark striped skin, on an oval plate.
+seld — marinated herring fillets with onion rings, silver-grey, on a small plate.
+chortan — cooked pike pieces, white flesh, on a plate with dill.
+baliq-panirovka — breaded fried fish fillet, golden crumb coating, on a plate.
+tunets — opened small can of tuna chunks in water, pink-beige.
+sardina — opened small can of sardines in oil, silver fish packed in a row.
+qizil-baliq-konserva — opened small can of pink salmon pieces, pink with bones visible.
+krevetka — a few boiled pink shrimps, curled, on a plate.
+krevetka-panirovka — breaded fried shrimps, golden crumb, a few on a plate.
+kalmar — fried squid rings, golden, on a plate.
+ikra — red salmon caviar, bright orange pearls, in a small glass bowl.
+krab-tayoq — a few crab sticks, white with red-orange stripe on one side, on a small plate.
+krab — cooked crab meat pieces and a red claw, on a small plate.
+midiya — steamed mussels in open black shells, orange flesh, in a small bowl.
+tuxum-boltunya — scrambled eggs, soft yellow curds, on a small white plate.
+kofe — a cup of black coffee in a white cup on a saucer, dark brown, light steam.
+kofe-sutli — milk coffee in a tall glass cup, light brown with a thin foam on top.
+kofe-latte — latte, coffee with milk in a tall glass with layers of brown and cream and thin foam on top.
+kofe-3v1 — a white cup of instant coffee with a small sachet beside it, light brown.
+kofe-muzli — iced coffee in a tall plastic cup with ice cubes, light brown.
+kola — a clear glass of dark cola with bubbles beside a plain unlabeled dark glass bottle.
+limonad — a glass of clear sparkling lemon-lime soda with bubbles, a lemon slice.
+fanta — a glass of orange sparkling soda with bubbles and an orange slice.
+energetik — a slim plain silver energy drink can with a blue-silver design and no text.
+sharbat-meva — a tall glass of golden-orange fruit juice with an apple slice.
+sharbat-ananas — a glass of pale yellow pineapple juice with a pineapple wedge.
+sharbat-olcha — a glass of deep red cherry-cranberry juice with two cherries and a few cranberries beside it.
+sharbat-olxori — a glass of dark purple-brown prune juice with a dried plum.
+nektar-shaftoli — a glass of thick orange peach-apricot nectar with a peach half and an apricot beside it.
+nektar-mango — a glass of bright yellow mango nectar with a mango slice.
+nektar-nok — a glass of pale yellow-green pear nectar with a pear slice.
+sharbat-sabzi — a glass of bright orange carrot juice with a small carrot.
+sharbat-greypfrut — a glass of pink-yellow grapefruit juice with a grapefruit slice.
+limon-suvi — a small glass of lemon juice with a halved lemon beside it.
+mevali-ichimlik — a jug-style glass of red fruit punch with berries.
+limonad-uy — homemade lemonade in a tall glass with lemon slices and ice.
+kompot — homemade fruit compote in a tall glass, pinkish-red with a few cherries and apricot pieces, no ice.
+kvas — kvass, dark amber-brown fermented drink, in a tall glass with light foam.

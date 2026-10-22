@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+guruch-xom — a small heap of raw white rice grains.
+guruch-jigarrang — cooked brown rice in a small bowl.
+grechka — cooked buckwheat in a small bowl, dark brown grains.
+makaron — cooked pasta, penne pieces, plain, in a small bowl.
+suli-botqa — oatmeal porridge in a bowl with a spoon, beige.
+suli-xom — raw rolled oats, a small heap on a spoon.
+manka — semolina porridge in a bowl, white-cream.
+mosh — cooked green mung beans in a small bowl.
+noxat — cooked chickpeas in a small bowl, golden beige.
+loviya — cooked red kidney beans in a small bowl.
+loviya-qora — cooked black beans in a small white bowl, glossy dark with a little broth.
+yasmiq — cooked orange lentils in a small bowl.
+kartoshka — boiled potatoes, two whole, pale yellow, with a bit of dill.
+kartoshka-pishirilgan — baked potato split open, with butter on top.
+makkajoxori — a boiled corn cob, golden-yellow kernels.
+makkajoxori-botqa — corn grits porridge in a bowl, bright yellow.
+kornfleks — a bowl of cornflakes with milk.
+granola — a bowl of granola clusters with nuts.
+bulgur — cooked bulgur in a small bowl, light brown.
+kuskus — cooked couscous in a small bowl, pale yellow.
+perlovka — cooked pearl barley in a small bowl.
+tariq — cooked millet porridge in a bowl, yellow.
+lapsha — cooked egg noodles in a small bowl, yellow.
+ramen — a block of dry instant noodles, wavy, in a bowl.
+guruch-lapsha — cooked thin rice noodles in a small bowl, white.
+kinoa — cooked quinoa in a small bowl, pale with tiny spirals.
+pomidor — two ripe red tomatoes with a green stem, one cut.
+bodring — a cucumber with a few round slices.
+sabzi — two orange carrots with green tops, one sliced.
+piyoz — a yellow onion and a cut half.
+sarimsoq — a white garlic bulb and a few cloves.
+karam — a round white cabbage head, one wedge cut.
+gulkaram — a head of white cauliflower.
+brokkoli — a head of green broccoli.
+qovoq — a wedge of orange pumpkin with seeds.
+baqlajon — two glossy purple eggplants.
+qalampir — a red and a green bell pepper side by side, one of them cut in half showing the seed core.
+achchiq-qalampir — two red chili peppers.
+lavlagi — two purple beetroots, one cut showing rings.
+turp — a pink radish bunch with leaves.
+ismaloq — a bunch of fresh dark green spinach leaves.
+kokat — a bunch of mixed green herbs, dill and coriander.

@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+moshkichiri — mashkichiri, a thick Uzbek porridge-soup of mung beans and rice, pale beige-green with a few small carrot cubes, in a small white bowl.
+jigar-kabob — two skewers of grilled lamb liver cubes alternating with white fat pieces, dark brown with char marks, on a small oval ceramic plate with raw onion rings.
+lyulya — two Uzbek lula kebab skewers, long cylindrical ground-lamb kebabs, browned, lying on a small plate with thin sliced onion.
+tandir-gosht — a large piece of tandoor-roasted lamb on the bone, deeply browned and glossy, on a round plate with a little onion.
+dolma — three Uzbek dolma, cabbage leaves rolled around rice and minced meat, light green, in a small shallow bowl with a little broth.
+qazi — Uzbek qazi, a few thick slices of dark red-brown horse-meat sausage with white fat, on a small wooden board.
+sumalak — sumalak, thick dark brown sweet wheat-sprout pudding, glossy, in a small black cast-iron bowl, a wooden spoon is not included.
+halim — Uzbek halim, a thick creamy porridge of wheat and shredded meat, pale beige, in a deep bowl with a small pool of melted butter on top.
+xonim — Uzbek khanum, a spiral steamed rolled dough with potato-and-meat filling cut into thick slices, pale, on a plate.
+salat-sabzavot — fresh vegetable salad with tomato wedges, cucumber slices, onion rings and herbs with a glossy oil sheen, in a shallow white bowl.
+vinegret — vinegret salad, diced beetroot, potato, carrot, pickled cucumber and peas, deep magenta-red, in a small glass bowl.
+koreys-sabzi — Korean-style spicy carrot salad, thin orange carrot strips with sesame and a bit of chili, in a small white bowl.
+jiz — Uzbek jiz, small crispy fried lamb cubes with fried onion rings, golden brown, in a black cast-iron pan.
+beshbarmoq — Uzbek beshbarmoq, wide flat boiled noodles topped with boiled meat slices and onion rings, on a big round platter.
+jarkop — Uzbek jarkop, stewed lamb with potato wedges and carrot pieces in a small cast-iron pot, thick brown gravy.
+borsch — red beet borscht in a bowl with a spoonful of white sour cream on top, a few cabbage and carrot pieces visible.
+sabzavot-ragu — vegetable stew with zucchini, carrot, potato and tomato chunks in a light tomato sauce, in a small bowl.
+baliq-uxa — clear fish soup (ukha) with carrot slices, potato cubes and a piece of white fish and dill, in a deep white bowl.
+shurva-lapsha — chicken noodle soup in a deep bowl, golden clear broth with thin egg noodles and a few carrot coins.
+shurva-pomidor — smooth red tomato cream soup in a white bowl with a swirl of cream and a basil leaf.
+shurva-qoziqorin — creamy beige mushroom cream soup in a white bowl with a few small mushroom slices on top.
+shurva-mol — beef and vegetable soup with chunks of beef, potato and carrot in a clear brown broth, in a deep bowl.
+dimlama-konserva — a small round tin can opened, filled with stewed beef chunks and vegetables in gravy.
+shovla — Khorezm shovla, a soft rice-and-lamb pilaf cooked in broth, slightly mushy, with carrot strips and a lamb piece, on a round plate.
+shirguruch — Uzbek shirguruch, rice porridge cooked in milk, creamy white, in a bowl with a small pat of butter in the middle.
+ugra-osh — Uzbek ugra osh, thin short homemade noodle soup in a pale broth with a little carrot and herbs, in a bowl.
+chalop — chalop, cold sour yogurt soup with cucumber cubes, radish slices and dill, white-green, in a deep bowl.
+baliq-dimlama — stewed whole fish with potato wedges and tomato slices in a small cast-iron pot.
+tovuq-qozon — chicken pieces stewed with onion and tomato in a black cast-iron kazan, golden-brown, glossy.
+osh-tovuq — Uzbek chicken plov, a mound of golden rice with carrot strips and a roasted chicken piece on top, on a round plate.
+dimlama-tovuq — chicken dimlama, layered stewed chicken, potato, carrot and cabbage in a small pot.
+loviya-shurva — Uzbek bean soup, white-bean broth with potato and carrot pieces in a deep bowl.
+yasmiq-shurva — orange-yellow lentil soup in a deep bowl with a few herbs on top.
+noxat-ragu — chickpea and vegetable stew, golden chickpeas with carrot and tomato pieces in a small bowl.
+qoymoq — Uzbek qoymoq, fried eggs scrambled with onion and tomato pieces in a small black frying pan, yolks visible.
+salat-qatiq — cucumber and herb salad in white yogurt dressing, in a small glass bowl.
+moshxorda-goshtsiz — moshkhorda without meat, a light mung-bean soup with potato and carrot, in a deep bowl with a dollop of yogurt.
+sazan-duxovka — oven-baked whole carp on a bed of potato slices with lemon slice, on a baking tray.
+kartoshka-shurva — simple potato soup with potato cubes, carrot and dill in a clear broth, in a deep bowl.
+tovuq-duxovka — oven-roasted chicken legs with potato wedges and carrot, golden skin, on a baking tray.
+qoy-duxovka — oven-baked lamb pieces with carrot and potato in a baking dish, brown and juicy.
+tuxum-barak — Khorezm tuxum barak, small folded dumplings filled with egg, golden-brown, on a plate, a little melted butter.

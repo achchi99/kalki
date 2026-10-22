@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+tut — a small pile of dark mulberries.
+greypfrut — a pink grapefruit and a half.
+kokos — a halved coconut with white flesh.
+chernika — a small pile of blueberries.
+ejevika — a small pile of blackberries.
+papayya — a papaya half with black seeds.
+smorodina — two small clusters of berries, one of glossy black currants and one of translucent red currants.
+krijovnik — a few green gooseberries.
+nektarin — a nectarine with a cut half.
+konserva-shaftoli — peach halves in syrup in a small glass bowl.
+konserva-ananas — pineapple rings in a small bowl.
+konserva-gilos — cherries in syrup in a small glass bowl.
+feyxoa — two green feijoa fruits, one halved.
+guava — a pink-green guava with a cut half.
+qovun-kantalupa — a cantaloupe slice, orange flesh.
+kumkvat — a few small orange kumquats.
+klyukva — a small pile of fresh cranberries.
+mayiz — a small pile of golden raisins.
+quruq-orik — a small pile of dried apricots.
+finik — a small pile of dark brown wrinkled dried dates on a small plate, one split open showing the pit.
+quruq-anjir — a small pile of flat tan-brown dried figs on a small plate, one torn open showing seeds.
+chernosliv — a small pile of dark purple-black wrinkled dried prunes in a small bowl.
+quruq-olma — a small stack of pale golden dried apple rings on a small plate.
+quruq-nok — a small pile of brown dried pear halves on a small plate.
+banan-chips — a small pile of banana chips.
+quruq-klyukva — a small pile of dried cranberries.
+yog — a small glass bottle of golden cooking oil.
+zaytun-yogi — a small glass bottle of green-gold olive oil with olives.
+mayonez — a small jar of white mayonnaise with a spoon.
+ketchup — a small bowl of red ketchup.
+soya-sous — a small dish of dark soy sauce with a small bottle.
+xummus — a small bowl of hummus with olive oil and paprika swirl.
+tahini — a small jar of beige sesame paste.
+tofu — a block of white tofu with cubes cut.
+tofu-qovurilgan — golden fried tofu cubes in a small bowl.
+xantal — a small bowl of yellow mustard.
+bbq-sous — a small bowl of dark red-brown barbecue sauce.
+pesto — a small bowl of green basil pesto.
+rench — a small bowl of white-green ranch dressing.
+achchiq-sous — a small bowl of red chili sauce with a small bottle.
+tartar — a small bowl of creamy tartar sauce with pickle bits.
+shokolad-sirop — a small jug pouring dark chocolate syrup.
