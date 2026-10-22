@@ -375,6 +375,7 @@
     fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
     cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#catsRow')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
+    ovoz: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#micBtn') || $('#fdQ')); }, 450); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
     vessel: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('.sl-vnew')); }, 500); }); },
     templates: function (n) { return goTab('today', function () { openAdd({}); setTimeout(function () { tplsOpen(); setTimeout(function () { n.highlight($('.sl-atab[data-t=t]')); }, 350); }, 450); }); },
