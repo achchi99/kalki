@@ -214,6 +214,26 @@
    "p": 7.9,
    "f": 26.3,
    "c": 35.3
+  },
+  "adrenaline": {
+   "nom": "Passion Fruit Energy Drink",
+   "brand": "Adrenaline Rush",
+   "code": "7421600303835",
+   "qadoq": "",
+   "k": 51,
+   "p": 0.3,
+   "f": 0.0,
+   "c": 12.2
+  },
+  "bombbar-cookie": {
+   "nom": "Fitness cookie",
+   "brand": "Bombbar",
+   "code": "4680046722003",
+   "qadoq": "",
+   "k": 368,
+   "p": 11.2,
+   "f": 22.0,
+   "c": 24.5
   }
  }
 }

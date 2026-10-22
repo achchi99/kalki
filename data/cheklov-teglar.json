@@ -42,6 +42,7 @@
   "achchiq-qalampir": [],
   "achchiq-sous": [],
   "achichuk": [],
+  "adrenaline": [],
   "alpen-gold": [
    "sut"
   ],
@@ -522,6 +523,9 @@
   "kok-piyoz": [],
   "kokat": [],
   "kokos": [],
+  "kokos-batonchik": [
+   "sut"
+  ],
   "kokos-qirindi": [],
   "kokos-suvi": [],
   "kola": [],
@@ -639,8 +643,7 @@
   "lays": [],
   "lazanya": [
    "sut",
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "ledenets": [],
   "limon": [],
@@ -1164,6 +1167,11 @@
   "protein-kukun#suvda": [
    "sut"
   ],
+  "protein-pechenye": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "pryanik": [
    "tuxum",
    "sut",
@@ -1495,8 +1503,7 @@
   ],
   "soya-sut": [],
   "spagetti-bolonez": [
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "sparja": [],
   "sport-izotonik": [],
@@ -1575,8 +1582,7 @@
   "tefteli": [
    "tuxum",
    "sut",
-   "glyuten",
-   "choshqa"
+   "glyuten"
   ],
   "tilapiya": [
    "baliq"
