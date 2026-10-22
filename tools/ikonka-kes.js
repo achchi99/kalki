@@ -54,7 +54,7 @@ async function main() {
     const tw = components(dilate(tm, 3, 2)), words = tw.comps.filter((c) => { const ph = (c.y1 - c.y0 + 1) * SC, pw = (c.x1 - c.x0 + 1) * SC; return ph >= 18 && ph <= 80 && pw >= 24 && c.n > 20; });
     if (SINGLE) { words.length = 0; words.push({ id: -1, x0: 0, x1: w - 1, y0: h, y1: h - 1, n: 99 }); }      // bitta ikonka: yozuv yo'q — butun rasm bitta katak
     /* yonma-yon turgan ikki yozuv bir komponentga qo'shilib ketishi mumkin (masalan «muzqaymoq-qulupnay» + «muzqaymoq-yumshoq»): ustun chegarasi yaqinidagi eng bo'sh joydan kesamiz */
-    const split = []; for (let wi = words.length - 1; wi >= 0; wi--) { const c = words[wi]; if ((c.x1 - c.x0 + 1) <= (w / COLS) * 1.1) continue; const cuts = []; for (let k = 1; k < COLS; k++) { const bx = Math.round(k * w / COLS); if (bx <= c.x0 + 6 || bx >= c.x1 - 6) continue; let bestX = bx, bv = 1e9; for (let x = bx - 16; x <= bx + 16; x++) { let v = 0; for (let y = c.y0; y <= c.y1; y++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) v++; if (v < bv) { bv = v; bestX = x; } } cuts.push(bestX); }
+    const split = []; for (let wi = words.length - 1; wi >= 0; wi--) { const c = words[wi]; if ((c.x1 - c.x0 + 1) <= (w / COLS) * 1.4) continue; const cuts = []; for (let k = 1; k < COLS; k++) { const bx = Math.round(k * w / COLS); if (bx <= c.x0 + 6 || bx >= c.x1 - 6) continue; let bestX = bx, bv = 1e9; for (let x = bx - 16; x <= bx + 16; x++) { let v = 0; for (let y = c.y0; y <= c.y1; y++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) v++; if (v < bv) { bv = v; bestX = x; } } cuts.push(bestX); }
       if (!cuts.length) continue; words.splice(wi, 1); const edges = [c.x0 - 1, ...cuts, c.x1]; for (let q = 0; q + 1 < edges.length; q++) { let n = 0, x0 = w, x1 = 0, y0 = h, y1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = edges[q] + 1; x <= edges[q + 1]; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) { n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } if (n > 20) split.push({ id: c.id, x0, x1, y0, y1, n, sx: 0, sy: 0, part: [edges[q] + 1, edges[q + 1]] }); } }
     words.push(...split);
     const colOf = (c) => Math.max(0, Math.min(COLS - 1, Math.floor(((c.x0 + c.x1) / 2) / (w / COLS)))); const labCols = Array.from({ length: COLS }, () => []); words.forEach((c) => labCols[colOf(c)].push(c)); labCols.forEach((l) => l.sort((a, b) => a.y0 - b.y0));
@@ -68,7 +68,10 @@ async function main() {
     const T = 70, sm = new Uint8Array(w * h); for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) if (dist((j * W + i) * 4) > T) sm[(j >> 1) * w + (i >> 1)] = 1;
     /* yozuv bbox'i: so'z komponenti ichidagi AYNAN matn piksellarining qamrovi (+1 katak ≈ 2 px) — taom soyasi keraksiz kesilmasin */
     const inLab = new Uint8Array(w * h); labels.forEach((c) => { if (!c) return; let tx0 = w, ty0 = h, tx1 = 0, ty1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = c.x0; x <= c.x1; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id && (!c.part || (x >= c.part[0] && x <= c.part[1]))) { if (x < tx0) tx0 = x; if (x > tx1) tx1 = x; if (y < ty0) ty0 = y; if (y > ty1) ty1 = y; }
+      /* yozuvning uzilib qolgan bo'laklari (masalan so'z oxiridagi «hik»): bir qatorda (y bo'yicha ≥50% ustma-ust) va 15 katakdan yaqin bo'lsa — shu yozuvga qo'shiladi */
+      for (const f of tw.comps) { if (f.id === c.id || f.n <= 3 || (f.y1 - f.y0 + 1) * SC > 80) continue; const ov = Math.min(ty1, f.y1) - Math.max(ty0, f.y0) + 1; if (ov < 0.5 * Math.min(ty1 - ty0 + 1, f.y1 - f.y0 + 1)) continue; const gap = f.x0 > tx1 ? f.x0 - tx1 : (f.x1 < tx0 ? tx0 - f.x1 : 0); if (gap > 15) continue; if (labels.some((q) => q && q.id === f.id)) continue; tx0 = Math.min(tx0, f.x0); tx1 = Math.max(tx1, f.x1); ty0 = Math.min(ty0, f.y0); ty1 = Math.max(ty1, f.y1); }
       for (let y = Math.max(0, ty0 - 1); y <= Math.min(h - 1, ty1 + 1); y++) for (let x = Math.max(0, tx0 - 1); x <= Math.min(w - 1, tx1 + 1); x++) inLab[y * w + x] = 1; });
+    window.__dbg3 = [inLab[(605 >> 1) * w + (680 >> 1)], labels.map((c) => c && c.id).join(','), tw.comps.filter((f) => f.x0 * 2 >= 640 && f.x0 * 2 <= 720 && f.y0 * 2 >= 580 && f.y0 * 2 <= 600).map((f) => [f.id, f.x0 * 2, f.x1 * 2, f.y0 * 2, f.y1 * 2, f.n].join(':'))];
     for (let q = 0; q < w * h; q++) if (inLab[q]) sm[q] = 0;
     const ic = components(dilate(sm, 3, 3)), lab = ic.lab, big = ic.comps.filter((c) => c.n > 3);
     const cellOf = new Int32Array(big.length === 0 ? 1 : ic.comps.length).fill(-1), cells = Array.from({ length: COLS * ROWS }, () => []);
@@ -104,14 +107,14 @@ async function main() {
     const PAD = 14, LH = 22, CW = 256 + PAD, CH = 256 + LH + PAD, sheet = document.createElement('canvas'); sheet.width = COLS * CW + PAD; sheet.height = ROWS * CH + PAD; const sx2 = sheet.getContext('2d'); sx2.fillStyle = '#fff'; sx2.fillRect(0, 0, sheet.width, sheet.height); sx2.font = '15px sans-serif'; sx2.textAlign = 'center'; sx2.fillStyle = '#222';
     out.forEach((o, i) => { const x = PAD + (i % COLS) * CW, y = PAD + ((i / COLS) | 0) * CH; if (o) sx2.drawImage(o.png[256], x, y); else { sx2.fillStyle = '#c00'; sx2.fillRect(x, y, 256, 256); sx2.fillStyle = '#222'; } sx2.fillStyle = '#222'; sx2.fillText(slugs[i], x + 128, y + 256 + 16); });
     const sheetB64 = sheet.toDataURL('image/png').split(',')[1];
-    return { dbg: window.__dbg, TC, W, H, B0, PH, ncomp: big.length, warn, results, files, sheet: sheetB64, labs: out.map((o) => o ? o.nl : 0) };
+    return { dbg: window.__dbg, dbg3: window.__dbg3, TC, W, H, B0, PH, ncomp: big.length, warn, results, files, sheet: sheetB64, labs: out.map((o) => o ? o.nl : 0) };
   }, [b64, mime, COLS, ROWS, BG, FILL, slugs, !!TEK]);
   await browser.close();
   return res;
 }
 
 main().then((r) => {
-  if (process.env.KES_DEBUG) console.log(JSON.stringify(r.dbg[+process.env.KES_DEBUG - 1]));
+  if (process.env.KES_DEBUG) console.log(JSON.stringify(r.dbg[+process.env.KES_DEBUG - 1]), JSON.stringify(r.dbg3));
   console.log('yozuv rangi ' + r.TC.join(',') + '; to\'r ' + r.W + '×' + r.H + ', fon ' + r.B0.join(',') + ' → ' + BG.join(',') + ', komponent ' + r.ncomp + '; yozuv komponentlari/katak: ' + [...new Set(r.labs)].join(','));
   if (r.warn.length) { console.error(r.warn.join('\n')); }
   const dir = path.join(HOME, 'ikonka-toplamlar'); fs.mkdirSync(dir, { recursive: true });

@@ -244,48 +244,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `sirok` | v20 yangilari (sport, shokolad, gazaklar) | Sirok (glazurli) (`sirok`), Glazurlangan tvorog sirok (shokoladda) (`sirok-glazur2`) |
-| 2 | `ledenets` | v20 yangilari (sport, shokolad, gazaklar) | Qattiq konfet (ledenets, chupa-chups) (`ledenets`), Karamel (lolipop) (`karamel`) |
-| 3 | `jele-konfet` | v20 yangilari (sport, shokolad, gazaklar) | Jele konfet (drajje) (`jele-konfet`) |
-| 4 | `marshmallow` | v20 yangilari (sport, shokolad, gazaklar) | Marshmallou (`marshmallow`), Zefir (`zefir`) |
-| 5 | `iriska` | v20 yangilari (sport, shokolad, gazaklar) | Iriska (toffi) (`iriska`) |
-| 6 | `nuga` | v20 yangilari (sport, shokolad, gazaklar) | Nuga (bodomli) (`nuga`) |
-| 7 | `pastila` | v20 yangilari (sport, shokolad, gazaklar) | Mevali pastila (rulet) (`pastila-meva`) |
-| 8 | `granola-batonchik` | v20 yangilari (sport, shokolad, gazaklar) | Granola batonchik (suli) (`granola-batonchik`) |
-| 9 | `donut` | v20 yangilari (sport, shokolad, gazaklar) | Donut (`donut`), Donut (glazurli) (`donut-glazur`) |
-| 10 | `bulochka-darchin` | v20 yangilari (sport, shokolad, gazaklar) | Darchinli bulochka (`bulochka-darchin`) |
-| 11 | `sloyka` | v20 yangilari (sport, shokolad, gazaklar) | Sloyka xamir (pishirilgan) (`sloyka`), Pishloqli sloyka (daniya) (`pirojnoe-pishloq`) |
-| 12 | `maffin` | v20 yangilari (sport, shokolad, gazaklar) | Maffin (chernikali) (`maffin`) |
-| 13 | `pankeyk` | v20 yangilari (sport, shokolad, gazaklar) | Pankeyk (`pankeyk`) |
-| 14 | `vafli-belgiya` | v20 yangilari (sport, shokolad, gazaklar) | Belgiya vaflisi (`vafli-belgiya`), Vafli (`vafli`) |
-| 15 | `chizkeyk` | v20 yangilari (sport, shokolad, gazaklar) | Tort → chizkeyk (`tort#chizkeyk`) |
-| 16 | `tort-shokolad` | v20 yangilari (sport, shokolad, gazaklar) | Shokoladli tort (`tort-shokolad`), Tort (`tort`) |
-| 17 | `biskvit` | v20 yangilari (sport, shokolad, gazaklar) | Biskvit (`biskvit`), Oq biskvit (keks) (`biskvit-oq`), Darchinli keks (kraublli) (`keks-darchin`), Keks (`keks`) |
-| 18 | `pirog-olcha` | v20 yangilari (sport, shokolad, gazaklar) | Olchali pirog (`pirog-olcha`) |
-| 19 | `pirog-qovoq` | v20 yangilari (sport, shokolad, gazaklar) | Qovoqli pirog (`pirog-qovoq`) |
-| 20 | `pirog-olma` | v20 yangilari (sport, shokolad, gazaklar) | Pirog (olmali) (`pirog-olma`) |
-| 21 | `shtrudel` | v20 yangilari (sport, shokolad, gazaklar) | Olmali shtrudel (`shtrudel`) |
-| 22 | `ekler` | v20 yangilari (sport, shokolad, gazaklar) | Ekler (`ekler`) |
-| 23 | `brauni` | v20 yangilari (sport, shokolad, gazaklar) | Brauni (`brauni`) |
-| 24 | `paxlava` | v20 yangilari (sport, shokolad, gazaklar) | Paxlava (`paxlava`) |
-| 25 | `chak-chak-ikki` | v20 yangilari (sport, shokolad, gazaklar) | Bo'g'irsoq (`boglirsoq`) |
-| 26 | `murabbo` | v20 yangilari (sport, shokolad, gazaklar) | Murabbo (`murabbo`) |
-| 27 | `sgushyonka` | v20 yangilari (sport, shokolad, gazaklar) | Quyultirilgan sut (qaynatilgan) (`sgushyonka`) |
-| 28 | `asal` | v20 yangilari (sport, shokolad, gazaklar) | Asal (`asal`) |
-| 29 | `konfet` | v20 yangilari (sport, shokolad, gazaklar) | Konfet (shokoladli) (`konfet`) |
-| 30 | `marmelad` | v20 yangilari (sport, shokolad, gazaklar) | Marmelad (`marmelad`) |
-| 31 | `shakar` | v20 yangilari (sport, shokolad, gazaklar) | Shakar (`shakar`) |
-| 32 | `qand` | v20 yangilari (sport, shokolad, gazaklar) | Qand (kub) (`qand`) |
-| 33 | `qurt` | qolganlari | Qurt (`qurt`) |
-| 34 | `sut` | qolganlari | Sut (`sut`) |
-| 35 | `kefir` | qolganlari | Kefir (`kefir`), Qulupnayli kefir (`kefir-qulupnay`), Pahta (kam yog'li qatiq zardobi) (`pahta`) |
-| 36 | `qaymoq` | qolganlari | Qaymoq (`qaymoq`), Qaymoq (10%, qahva uchun) (`qaymoq-10`), Qaymoq (ko'pirtirish uchun, 33%) (`qaymoq-yogli`), Qahva uchun quruq qaymoq (`qaymoq-kukun`) |
-| 37 | `smetana` | qolganlari | Smetana (`smetana`) |
-| 38 | `pishloq-qattiq` | qolganlari | Pishloq (qattiq) (`pishloq`), Chedder pishlog'i (`pishloq-chedder`), Gauda pishlog'i (`pishloq-gauda`), Shveytsar pishlog'i (`pishloq-shveytsar`) |
-| 39 | `pishloq-brynza` | qolganlari | Pishloq (brynza) (`pishloq-yumshoq`), Feta (brynza turi) (`pishloq-feta`) |
-| 40 | `tvorog` | qolganlari | Tvorog (`tvorog5`) |
-| 41 | `sariyog` | qolganlari | Sariyog' (`sariyog`), Margarin (`margarin`) |
-| 42 | `yogurt` | qolganlari | Yogurt (`yogurt-tabiiy`), Vanilli yogurt (kam yog'li) (`yogurt-vanil`), Yunon yogurti (yog'siz) (`yogurt-yunon`) |
+| 1 | `sirok` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Sirok (glazurli) (`sirok`), Glazurlangan tvorog sirok (shokoladda) (`sirok-glazur2`) |
+| 2 | `ledenets` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Qattiq konfet (ledenets, chupa-chups) (`ledenets`), Karamel (lolipop) (`karamel`) |
+| 3 | `jele-konfet` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Jele konfet (drajje) (`jele-konfet`) |
+| 4 | `marshmallow` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Marshmallou (`marshmallow`), Zefir (`zefir`) |
+| 5 | `iriska` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Iriska (toffi) (`iriska`) |
+| 6 | `nuga` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Nuga (bodomli) (`nuga`) |
+| 7 | `pastila` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Mevali pastila (rulet) (`pastila-meva`) |
+| 8 | `granola-batonchik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Granola batonchik (suli) (`granola-batonchik`) |
+| 9 | `donut` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Donut (`donut`), Donut (glazurli) (`donut-glazur`) |
+| 10 | `bulochka-darchin` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Darchinli bulochka (`bulochka-darchin`) |
+| 11 | `sloyka` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Sloyka xamir (pishirilgan) (`sloyka`), Pishloqli sloyka (daniya) (`pirojnoe-pishloq`) |
+| 12 | `maffin` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Maffin (chernikali) (`maffin`) |
+| 13 | `pankeyk` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pankeyk (`pankeyk`) |
+| 14 | `vafli-belgiya` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Belgiya vaflisi (`vafli-belgiya`), Vafli (`vafli`) |
+| 15 | `chizkeyk` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Tort → chizkeyk (`tort#chizkeyk`) |
+| 16 | `tort-shokolad` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Shokoladli tort (`tort-shokolad`), Tort (`tort`) |
+| 17 | `biskvit` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Biskvit (`biskvit`), Oq biskvit (keks) (`biskvit-oq`), Darchinli keks (kraublli) (`keks-darchin`), Keks (`keks`) |
+| 18 | `pirog-olcha` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Olchali pirog (`pirog-olcha`) |
+| 19 | `pirog-qovoq` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Qovoqli pirog (`pirog-qovoq`) |
+| 20 | `pirog-olma` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pirog (olmali) (`pirog-olma`) |
+| 21 | `shtrudel` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Olmali shtrudel (`shtrudel`) |
+| 22 | `ekler` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Ekler (`ekler`) |
+| 23 | `brauni` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Brauni (`brauni`) |
+| 24 | `paxlava` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Paxlava (`paxlava`) |
+| 25 | `chak-chak-ikki` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Bo'g'irsoq (`boglirsoq`) |
+| 26 | `murabbo` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Murabbo (`murabbo`) |
+| 27 | `sgushyonka` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Quyultirilgan sut (qaynatilgan) (`sgushyonka`) |
+| 28 | `asal` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Asal (`asal`) |
+| 29 | `konfet` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Konfet (shokoladli) (`konfet`) |
+| 30 | `marmelad` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Marmelad (`marmelad`) |
+| 31 | `shakar` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Shakar (`shakar`) |
+| 32 | `qand` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Qand (kub) (`qand`) |
+| 33 | `qurt` ✅ | qolganlari | Qurt (`qurt`) |
+| 34 | `sut` ✅ | qolganlari | Sut (`sut`) |
+| 35 | `kefir` ✅ | qolganlari | Kefir (`kefir`), Qulupnayli kefir (`kefir-qulupnay`), Pahta (kam yog'li qatiq zardobi) (`pahta`) |
+| 36 | `qaymoq` ✅ | qolganlari | Qaymoq (`qaymoq`), Qaymoq (10%, qahva uchun) (`qaymoq-10`), Qaymoq (ko'pirtirish uchun, 33%) (`qaymoq-yogli`), Qahva uchun quruq qaymoq (`qaymoq-kukun`) |
+| 37 | `smetana` ✅ | qolganlari | Smetana (`smetana`) |
+| 38 | `pishloq-qattiq` ✅ | qolganlari | Pishloq (qattiq) (`pishloq`), Chedder pishlog'i (`pishloq-chedder`), Gauda pishlog'i (`pishloq-gauda`), Shveytsar pishlog'i (`pishloq-shveytsar`) |
+| 39 | `pishloq-brynza` ✅ | qolganlari | Pishloq (brynza) (`pishloq-yumshoq`), Feta (brynza turi) (`pishloq-feta`) |
+| 40 | `tvorog` ✅ | qolganlari | Tvorog (`tvorog5`) |
+| 41 | `sariyog` ✅ | qolganlari | Sariyog' (`sariyog`), Margarin (`margarin`) |
+| 42 | `yogurt` ✅ | qolganlari | Yogurt (`yogurt-tabiiy`), Vanilli yogurt (kam yog'li) (`yogurt-vanil`), Yunon yogurti (yog'siz) (`yogurt-yunon`) |
 
 ## To'plam 7 (42)
 
