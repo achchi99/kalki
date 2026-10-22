@@ -81,11 +81,17 @@
       ok: function () { return N.has('Qadam'); },
       status: function () { if (!N.qadam.ok()) return Promise.resolve({ available: false, granted: false, enabled: false }); return call('Qadam', 'isAvailable').catch(function () { return { available: false, granted: false, enabled: false }; }); },
       perm: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false }); return call('Qadam', 'requestPermission').catch(function () { return { granted: false }; }); },          // → { granted, source: 'hc'|'sensor' } (Health Connect bo'lsa — u, bo'lmasa sensor)
+      ulash: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false }); var old = function () { return call('Qadam', 'requestPermission').catch(function () { return { granted: false }; }); }; return call('Qadam', 'ulash').then(function (r) { return r && typeof r.granted === 'boolean' ? r : old(); }, old); },      // BITTA bosish: Health Connect ruxsat oynasi + ACTIVITY_RECOGNITION
+      fitInstall: function () { if (!N.qadam.ok()) return Promise.resolve(false); return call('Qadam', 'openGoogleFit').then(function () { return true; }, function () { return false; }); },
+      diag: function () { if (!N.qadam.ok()) return Promise.resolve(''); return call('Qadam', 'diag').then(function (r) { return (r && r.matn) || ''; }, function (e) { return 'diag xato: ' + ((e && e.message) || e); }); },
+      onLive: function (cb) { var c = cap(); if (!N.qadam.ok() || !c || typeof c.addListener !== 'function') return; try { c.addListener('Qadam', 'qadam', function (e) { cb(e || {}); }); } catch (e) {} },      // ilova ochiq: sensor har yangi qadamda
       hcInstall: function () { if (!N.qadam.ok()) return Promise.resolve(false); return call('Qadam', 'openHealthConnect').then(function () { return true; }, function () { return false; }); },
       enable: function (on) { if (!N.qadam.ok()) return Promise.resolve({ enabled: false }); return call('Qadam', 'setEnabled', { on: !!on }).catch(function () { return { enabled: false }; }); },
       today: function () { if (!N.qadam.ok()) return Promise.resolve(null); return call('Qadam', 'getToday').catch(function () { return null; }); },
-      days: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getDays', { n: n || 7 }).then(function (r) { return (r && r.kunlar) || []; }, function () { return []; }); }
+      days: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getDays', { n: n || 7 }).then(function (r) { var l = (r && r.kunlar) || []; if (r && r.source != null) l.source = r.source; if (r && r.hcToday != null) l.hcToday = r.hcToday; return l; }, function () { return []; }); }      // ro'yxat + .source ('hc'|'sensor'|''), .hcToday
     },
+    /* ---------- ilova versiyasi (App.getInfo: { version, build }) — yangilanish banneri uchun ---------- */
+    appInfo: function () { if (!N.has('App')) return Promise.resolve(null); return call('App', 'getInfo').then(function (r) { return r && r.build ? { version: String(r.version || ''), build: +r.build || 0 } : null; }, function () { return null; }); },
     /* ---------- «Orqaga» ---------- */
     setBack: function (fn) { backFn = typeof fn === 'function' ? fn : null; },
     back: function () { if (!backFn) return ''; try { return String(backFn() || 'home'); } catch (e) { return 'home'; } }

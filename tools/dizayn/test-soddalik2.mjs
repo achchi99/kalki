@@ -24,11 +24,11 @@ const txt = (p, s) => p.locator(s).first().innerText();
 try {
   /* 1. Bugun tartibi: sana → aylana → «Ovqat qo'shish» → 2 eshik → ovqat vaqtlari → makro → suv/qadam → (hazil eng pastda) */
   let p = await mk(seed({ prefs: { jokes: true } }), { wait: 1500 });
-  const order = await p.evaluate(() => { const sel = ['.sl-hd2', '.sl-big', '#mainAdd', '#rtDoor', '#yeCard', '.sl-meals', '.sl-macs', '.sl-duo', '#jLine']; const m = document.getElementById('rzMain'); return sel.map((s) => { const e = m.querySelector(s); return e ? Math.round(e.getBoundingClientRect().top + m.scrollTop) : null; }); });
-  const present = order.filter((x) => x != null); assert.ok(order[0] != null && order[1] != null && order[2] != null && order[3] != null && order[4] != null && order[5] != null && order[6] != null && order[7] != null, 'bloklar: ' + order); assert.deepEqual(present, present.slice().sort((a, b2) => a - b2), 'tartib: ' + order);
+  const order = await p.evaluate(() => { const sel = ['.sl-hd2', '.sl-big', '#jLine', '#mainAdd', '#rtDoor', '#yeCard', '.sl-meals', '.sl-macs', '.sl-duo']; const m = document.getElementById('rzMain'); return sel.map((s) => { const e = m.querySelector(s); return e ? Math.round(e.getBoundingClientRect().top + m.scrollTop) : null; }); });
+  const present = order.filter((x) => x != null); assert.ok(order[0] != null && order[1] != null && order[3] != null && order[4] != null && order[5] != null && order[6] != null && order[7] != null && order[8] != null, 'bloklar: ' + order); assert.deepEqual(present, present.slice().sort((a, b2) => a - b2), 'tartib: ' + order);
   assert.equal(await p.locator('.rz-main .sl-door').count(), 2); assert.match(await txt(p, '#rtDoor'), /Retseptingizni yengillashtiring[\s\S]*Oshingizni 20–30% yengil qilamiz/); assert.match(await txt(p, '#yeCard'), /Bugun nima yeymiz\?[\s\S]*Kafe, buyurtma yoki uyda/);
   assert.equal(await p.locator('.rz-main [data-act=yechip]').count(), 0, 'Bugun: chiplar yo\'q (eshik karta)'); assert.equal(await p.locator('#jLine').count() <= 1, true, 'hazil bitta');
-  log('Bugun tartibi: sana → aylana → Ovqat qo\'shish → 2 eshik karta → ovqat vaqtlari → makro → suv/qadam' + (order[8] != null ? ' → hazil (eng pastda)' : ''));
+  log('Bugun tartibi: sana → aylana' + (order[2] != null ? ' → hazil pufagi' : '') + ' → Ovqat qo\'shish → 2 eshik karta → ovqat vaqtlari → makro → suv/qadam');
   /* 2. har asosiy funksiya Bugun'dan 1 bosishda; 1 qavat; yopilganda Bugun */
   const F = [['#mainAdd', 'add'], ['#rtDoor', 'retsept'], ['#yeCard', 'yeymiz'], ['#wCard [data-act=wopen]', 'water'], ['.rz-main [data-act=addsteps]', 'steps']];
   for (const [sel, k] of F) { await p.click(sel); await p.waitForTimeout(700); assert.equal(await kind(p), k, sel); assert.equal(await dialogs(p), 1, sel + ': oyna ustiga oyna (bir vaqtda 1 ta)'); await closeX(p); assert.equal(await kind(p), null); assert.equal(await view(p), 'today', sel + ': yopilganda Bugun'); }
