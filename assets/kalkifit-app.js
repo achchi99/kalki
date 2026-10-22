@@ -1061,7 +1061,7 @@
   function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
   function aiLineHtml() {
     var q = (fd && fd.q || '').trim();
-    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>' + (!q && Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr() ? '<p class="sl-mnd"><button type="button" class="sl-txtbtn" data-act="mnopen" data-f="add" id="mnAdd">' + ico('cam', 'sl-inl') + esc(T('mnBtn')) + '</button></p>' : '');
+    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
   }
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
   function recRow(r, dim) {
@@ -1070,7 +1070,7 @@
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
-    return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
+    return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + (Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr() ? '<button type="button" class="sl-row" data-act="mnopen" data-f="add" id="mnAdd">' + ico('cam') + '<span class="m"><span class="nm">' + esc(T('mnBtn')) + '</span></span>' + ico('chev', 'r') + '</button>' : '') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
   }
   function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
   function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
