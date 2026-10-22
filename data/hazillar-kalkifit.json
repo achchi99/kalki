@@ -815,6 +815,42 @@
     "Рыба пока не пришла, но стол всегда открыт.",
     "Рыба на этой неделе в очереди. Никто не торопит."
    ]
+  },
+  "day_morning": {
+   "uz": [
+    "Ertalab — daftar toza, choynak issiq. Kun hali sizniki.",
+    "Yangi kun ochildi. Hisobchi qalamini charxlab, yozuvlarni kutyapti.",
+    "Tong. Divan hali uyg'onmadi — u bilan uchrashuvni kechroqqa qoldiring.",
+    "Kun boshlandi. Qadamlar ham, stakanlar ham sanashga tayyor turibdi.",
+    "Ertalabki sokinlik. Telefon cho'ntakka kirsa, qadam hisoblagich ham ishga tushadi.",
+    "Yangi sahifa. Kechagi kun kechada qoldi, bugungisi esa hali yozilmagan."
+   ],
+   "ru": [
+    "Утро: дневник чист, чайник горячий. День пока весь ваш.",
+    "Новый день открыт. Счетовод наточил карандаш и ждёт записей.",
+    "Утро. Диван ещё спит — перенесите встречу с ним на потом.",
+    "День начался. Шаги и стаканы уже готовы к подсчёту.",
+    "Утренняя тишина. Телефон в кармане — и счётчик шагов тоже на работе.",
+    "Новая страница. Вчерашний день остался во вчера, сегодняшний ещё не написан."
+   ]
+  },
+  "day_any": {
+   "uz": [
+    "Kun o'rtasi. Divan sizni chaqiryapti, lekin eshik ham yaqin turibdi.",
+    "Hammasi o'z yo'lida. Choynak ham, daftar ham o'z ishida.",
+    "Bir stakan suv — eng arzon va eng tez yaxshi odat. Stakan javonda kutib turibdi.",
+    "Kun davom etyapti. Lift tugmasi bugun sizni sog'inib qolishi mumkin.",
+    "Daftar ochiq, hisob ishlayapti. Qolgani — sizning tanlovingiz.",
+    "Shirinlik vasvasasi kun o'rtasida kuchayadi. Bu shunchaki eslatma, hukm emas."
+   ],
+   "ru": [
+    "Середина дня. Диван зовёт, но и дверь недалеко.",
+    "Всё идёт своим чередом. Чайник и дневник — каждый при деле.",
+    "Стакан воды — самая дешёвая и быстрая хорошая привычка. Стакан ждёт на полке.",
+    "День продолжается. Кнопка лифта сегодня может по вам соскучиться.",
+    "Дневник открыт, счёт идёт. Остальное — ваш выбор.",
+    "Соблазн сладкого к середине дня крепнет. Это просто напоминание, а не приговор."
+   ]
   }
  },
  "neutral": {

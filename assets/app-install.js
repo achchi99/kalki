@@ -24,7 +24,8 @@
     if (isIOS) browser = /CriOS/.test(ua) ? 'chrome' : /FxiOS/.test(ua) ? 'firefox' : /EdgiOS/.test(ua) ? 'edge' : /OPiOS/.test(ua) ? 'opera' : /Safari\//.test(ua) ? 'safari' : 'other';
     else browser = /SamsungBrowser/i.test(ua) ? 'samsung' : /EdgA?\//.test(ua) ? 'edge' : /OPR\//.test(ua) ? 'opera' : /Firefox\//.test(ua) ? 'firefox' : /Chrome\//.test(ua) ? 'chrome' : /Safari\//.test(ua) ? 'safari' : 'other';
     var sv = parseInt((ua.match(/Version\/(\d+)/) || [])[1], 10), osv = parseInt((ua.match(/OS (\d+)[_.]/) || [])[1], 10);
-    var ios26 = isIOS && (sv >= 26 || osv >= 26), kind = o.standalone ? 'standalone' : (name || wv) ? 'inapp' : isIOS ? 'ios' : isAndroid ? 'android' : 'desktop';
+    var ios26 = isIOS && (sv >= 26 || osv >= 26), kind = o.native ? 'native' : o.standalone ? 'standalone' : (name || wv) ? 'inapp' : isIOS ? 'ios' : isAndroid ? 'android' : 'desktop';
+    if (o.native) name = null, wv = false;          // o'z ilovamiz (Capacitor, KalkiFit Android): o'rnatish/«brauzerda oching» takliflari yo'q
     return { kind: kind, inapp: (name || wv) ? (name || 'webview') : null, ios: isIOS, android: isAndroid, browser: browser, ios26: !!ios26, iosVer: isNaN(sv) ? (isNaN(osv) ? 0 : osv) : sv };
   }
   function intentUrl(loc) {                       // Android: Chrome'da ochish; Chrome bo'lmasa oddiy https
@@ -147,7 +148,8 @@
   function create(cfg) {
     var NAV = typeof navigator !== 'undefined' ? navigator : {}, WIN = typeof window !== 'undefined' ? window : {};
     var standalone = false; try { standalone = (WIN.matchMedia && WIN.matchMedia('(display-mode: standalone)').matches) || NAV.standalone === true; } catch (e) {}
-    var env = detect(NAV.userAgent, { platform: NAV.platform, maxTouchPoints: NAV.maxTouchPoints, standalone: standalone, telegram: !!(WIN.TelegramWebviewProxy || WIN.TelegramWebview) });
+    var native = false; try { native = !!(WIN.KalkiNative && WIN.KalkiNative.isApp && WIN.KalkiNative.isApp()); } catch (e) {}
+    var env = detect(NAV.userAgent, { platform: NAV.platform, maxTouchPoints: NAV.maxTouchPoints, standalone: standalone, native: native, telegram: !!(WIN.TelegramWebviewProxy || WIN.TelegramWebview) });
     var KEY = 'kalki_inst_' + cfg.app, deferred = null, S = load(), iosV = env.ios26 ? '26' : '18', manualWait = false;
     var inst = { env: env, detect: detect, state: function () { return S; } };
     function load() { try { var o = JSON.parse(localStorage.getItem(KEY) || '{}'); return { nos: +o.nos || 0, later: +o.later || 0, res: o.res || '', ok: +o.ok || 0, choice: o.choice || '', mig: +o.mig || 0 }; } catch (e) { return { nos: 0, later: 0, res: '', ok: 0, choice: '', mig: 0 }; } }
@@ -157,7 +159,7 @@
     function $(s) { return document.querySelector(s); }
 
     inst.mode = function () {                              // 'none' | 'prompt' | 'guide' | 'inapp' | 'manual'
-      if (env.kind === 'standalone' || S.ok) return 'none';
+      if (env.kind === 'standalone' || env.kind === 'native' || S.ok) return 'none';
       if (env.kind === 'inapp') return 'inapp';
       if (deferred) return 'prompt';
       if (env.kind === 'ios') return env.browser === 'other' ? 'none' : 'guide';
@@ -166,7 +168,7 @@
     };
     inst.isTop = function () { return inst.mode() === 'inapp'; };
     inst.canPrompt = function () { return !!deferred; };
-    inst.installed = function () { return env.kind === 'standalone' || !!S.ok; };
+    inst.installed = function () { return env.kind === 'standalone' || env.kind === 'native' || !!S.ok; };
     function cardOk() {
       var m = inst.mode(); if (m === 'none' || m === 'manual') return false;
       if (S.nos >= MAX_NOS || Date.now() < S.later) return false;

@@ -40,6 +40,10 @@
     /* Service worker yangilanganda sw-boot.js sahifani qayta yuklaydi — FAQAT foydalanuvchi input/change'ga tegmagan bo'lsa. Ilovada maydonlar yo'q (o'z klaviaturasi, tugmalar),
        shuning uchun birinchi kirishda onboarding o'rtasida sahifa boshiga qaytardi. Haqiqiy (trusted) bosish/tugma = "tegdi": qayta yuklash o'rniga yangilanish chizig'i chiqadi. */
     var touched = false;
+    try { if (window.KalkiSW && window.KalkiSW.quiet) window.KalkiSW.quiet(); } catch (x) {}          // ilova ochilganda avtomatik reload YO'Q (sw-boot.js)
+    /* pastki menyu balandligi (katta shrift / Android tizim shrifti bilan o'sadi) → --navh: kontent menyu ostida qolmaydi (appkit.css .rz-main) */
+    function navH() { var n = root.querySelector('.rz-nav'); if (n && n.offsetHeight) document.documentElement.style.setProperty('--navh', n.offsetHeight + 'px'); }
+    try { navH(); if (window.ResizeObserver) { var nro = new ResizeObserver(navH), nn = root.querySelector('.rz-nav'); if (nn) nro.observe(nn); } window.addEventListener('resize', navH); setTimeout(navH, 300); } catch (x) {}
     function touch(e) { if (touched || !e.isTrusted) return; touched = true; try { if (window.KalkiSW && window.KalkiSW.hold) window.KalkiSW.hold(); } catch (x) {} }
     root.addEventListener('pointerdown', touch, true); root.addEventListener('keydown', touch, true);
     /* tez bosish (iPhone): klaviatura tugmasi pointerdown'da darrov bajariladi, keyingi click yutiladi — har bosish alohida raqam, 300 ms kechikish va ikki marta bosishda kattalashish yo'q */

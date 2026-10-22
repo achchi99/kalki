@@ -2,6 +2,43 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 22,
+   "d": "2026-10-22",
+   "bn": {
+    "uz": "Qadamlar Health Connect orqali, ekranlar soddalashdi, hazillar qaytdi.",
+    "ru": "Шаги через Health Connect, экраны проще, шутки вернулись."
+   },
+   "items": [
+    {
+     "uz": "Qadamlar Health Connect (Google Fit va boshqalar) orqali olinadi.",
+     "ru": "Шаги берутся через Health Connect (Google Fit и другие).",
+     "show": "qadam",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Ekranlar soddalashdi: kamroq yozuv, katta shriftda ham hammasi sig'adi.",
+     "ru": "Экраны стали проще: меньше текста, всё помещается даже с крупным шрифтом.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Hazillar qaytdi — Bugun ekranida har kuni bittadan.",
+     "ru": "Шутки вернулись — каждый день на экране «Сегодня».",
+     "show": "jokes",
+     "btn": {
+      "uz": "Sozlash",
+      "ru": "Настроить"
+     }
+    }
+   ]
+  },
+  {
    "v": 21,
    "d": "2026-10-22",
    "bn": {

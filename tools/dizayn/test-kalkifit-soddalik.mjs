@@ -103,7 +103,7 @@ try {
   log('Navigatsiya: Bugun · Tarix · Profil; Bugunda FAB yo\'q (katta tugma), Tarixda kichik FAB — bir bosishda ovqat qo\'shish; suv, qadam, vazn o\'z joyidan ochiladi; eski manzillar (#ovqat, #kundalik, #qadam, #natijalar → Tarix, #men→Profil, #qoshish→qo\'shish oynasi, #food/#steps/#me) yangi joylarga o\'tadi');
 
   /* ---- 7. Har eski funksiya yangi joyidan topiladi (hisobotdagi jadval) ---- */
-  const FULL = seed({ entries: [Object.assign({ d: YEST }, CHU), { fid: 'osh', unit: 'likop', qty: 1, g: 350, kcal: 665 }], days: { [TODAY]: { steps: 5000, water: 3 }, [YEST]: { steps: 4000 } } });
+  const FULL = seed({ entries: [Object.assign({ d: YEST }, CHU), { fid: 'osh', unit: 'likop', qty: 1, g: 350, kcal: 665 }, { fid: 'non', unit: 'dona', qty: 1, g: 250, kcal: 600, meal: 'b' }], days: { [TODAY]: { steps: 5000, water: 3 }, [YEST]: { steps: 4000 } } });
   const reach = async (name, steps, sel) => { for (const s of steps) { if (s.startsWith('fill:')) await p.fill('#fdQ', s.slice(5)); else if (s.startsWith('wait')) await p.waitForTimeout(300); else await p.click(s); await p.waitForTimeout(150); } assert.ok((await p.locator(sel).count()) >= 1, name + ' topilmadi: ' + sel); };
   const T = (v) => `[data-act=tab][data-v=${{ diary: 'history', results: 'history' }[v] || v}]`; const RES = {};
   const cases = [
