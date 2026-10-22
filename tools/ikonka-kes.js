@@ -16,10 +16,11 @@ const ROOT = path.join(__dirname, '..'), HOME = os.homedir();
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i < 0 ? d : process.argv[i + 1]; };
 const img = process.argv.slice(2).find((x) => !x.startsWith('--') && /\.(jpe?g|png|webp)$/i.test(x));
 if (!img) { console.error('Ishlatish: node tools/ikonka-kes.js <to\'r.jpg> [--n N]'); process.exit(1); }
-const imgPath = img.replace(/^~/, HOME), N = +(arg('--n', (path.basename(imgPath).match(/(\d+)/) || [])[1])), COLS = +arg('--ustun', 6), ROWS = +arg('--qator', 7), QURU = process.argv.includes('--quru');
-if (!N) { console.error('To\'plam raqami aniqlanmadi (--n N)'); process.exit(1); }
-const txt = fs.readFileSync(path.join(ROOT, 'docs', 'ikonka-toplam-' + N + '.txt'), 'utf8').split('\n').filter((l) => / — /.test(l) && !l.startsWith('Create ONE'));
-const slugs = txt.map((l) => l.split(' — ')[0].trim()); if (slugs.length !== COLS * ROWS) { console.error('to\'plam faylida ' + slugs.length + ' ta slug, kutilgan ' + COLS * ROWS); process.exit(1); }
+const TEK = arg('--tek', null);          // bitta ikonka (to'r emas): node tools/ikonka-kes.js <rasm> --tek <slug> — yozuvsiz, butun rasmda bitta taom
+const imgPath = img.replace(/^~/, HOME), N = TEK ? 0 : +(arg('--n', (path.basename(imgPath).match(/(\d+)/) || [])[1])), COLS = TEK ? 1 : +arg('--ustun', 6), ROWS = TEK ? 1 : +arg('--qator', 7), QURU = process.argv.includes('--quru');
+if (!TEK && !N) { console.error('To\'plam raqami aniqlanmadi (--n N)'); process.exit(1); }
+const slugs = TEK ? [TEK] : fs.readFileSync(path.join(ROOT, 'docs', 'ikonka-toplam-' + N + '.txt'), 'utf8').split('\n').filter((l) => / — /.test(l) && !l.startsWith('Create ONE')).map((l) => l.split(' — ')[0].trim());
+if (slugs.length !== COLS * ROWS) { console.error('to\'plam faylida ' + slugs.length + ' ta slug, kutilgan ' + COLS * ROWS); process.exit(1); }
 const BG = [243, 235, 228], FILL = 0.90;
 
 async function main() {
@@ -27,7 +28,7 @@ async function main() {
   const { track } = require('./test-cleanup.cjs');
   const browser = track(await chromium.launch()); const page = await (await browser.newContext()).newPage(); await page.goto('about:blank');
   const b64 = fs.readFileSync(imgPath).toString('base64'), mime = /\.png$/i.test(imgPath) ? 'image/png' : /\.webp$/i.test(imgPath) ? 'image/webp' : 'image/jpeg';
-  const res = await page.evaluate(async ([data, mime, COLS, ROWS, BG, FILL, slugs]) => {
+  const res = await page.evaluate(async ([data, mime, COLS, ROWS, BG, FILL, slugs, SINGLE]) => {
     const im = new Image(); im.src = 'data:' + mime + ';base64,' + data; await im.decode();
     const W = im.width, H = im.height, cv = document.createElement('canvas'); cv.width = W; cv.height = H; const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(im, 0, 0);
     const D = cx.getImageData(0, 0, W, H).data;
@@ -51,6 +52,7 @@ async function main() {
           for (const q of [p0 - 1, p0 + 1, p0 - w, p0 + w]) { if (q < 0 || q >= w * h || (q === p0 - 1 && px === 0) || (q === p0 + 1 && px === w - 1)) continue; if (mask[q] && lab[q] < 0) { lab[q] = id; st.push(q); } } } }
       return { lab, comps }; };
     const tw = components(dilate(tm, 3, 2)), words = tw.comps.filter((c) => { const ph = (c.y1 - c.y0 + 1) * SC, pw = (c.x1 - c.x0 + 1) * SC; return ph >= 18 && ph <= 80 && pw >= 24 && c.n > 20; });
+    if (SINGLE) { words.length = 0; words.push({ id: -1, x0: 0, x1: w - 1, y0: h, y1: h - 1, n: 99 }); }      // bitta ikonka: yozuv yo'q — butun rasm bitta katak
     /* yonma-yon turgan ikki yozuv bir komponentga qo'shilib ketishi mumkin (masalan «muzqaymoq-qulupnay» + «muzqaymoq-yumshoq»): ustun chegarasi yaqinidagi eng bo'sh joydan kesamiz */
     const split = []; for (let wi = words.length - 1; wi >= 0; wi--) { const c = words[wi]; if ((c.x1 - c.x0 + 1) <= (w / COLS) * 1.1) continue; const cuts = []; for (let k = 1; k < COLS; k++) { const bx = Math.round(k * w / COLS); if (bx <= c.x0 + 6 || bx >= c.x1 - 6) continue; let bestX = bx, bv = 1e9; for (let x = bx - 16; x <= bx + 16; x++) { let v = 0; for (let y = c.y0; y <= c.y1; y++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) v++; if (v < bv) { bv = v; bestX = x; } } cuts.push(bestX); }
       if (!cuts.length) continue; words.splice(wi, 1); const edges = [c.x0 - 1, ...cuts, c.x1]; for (let q = 0; q + 1 < edges.length; q++) { let n = 0, x0 = w, x1 = 0, y0 = h, y1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = edges[q] + 1; x <= edges[q + 1]; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) { n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } if (n > 20) split.push({ id: c.id, x0, x1, y0, y1, n, sx: 0, sy: 0, part: [edges[q] + 1, edges[q + 1]] }); } }
@@ -103,7 +105,7 @@ async function main() {
     out.forEach((o, i) => { const x = PAD + (i % COLS) * CW, y = PAD + ((i / COLS) | 0) * CH; if (o) sx2.drawImage(o.png[256], x, y); else { sx2.fillStyle = '#c00'; sx2.fillRect(x, y, 256, 256); sx2.fillStyle = '#222'; } sx2.fillStyle = '#222'; sx2.fillText(slugs[i], x + 128, y + 256 + 16); });
     const sheetB64 = sheet.toDataURL('image/png').split(',')[1];
     return { dbg: window.__dbg, TC, W, H, B0, PH, ncomp: big.length, warn, results, files, sheet: sheetB64, labs: out.map((o) => o ? o.nl : 0) };
-  }, [b64, mime, COLS, ROWS, BG, FILL, slugs]);
+  }, [b64, mime, COLS, ROWS, BG, FILL, slugs, !!TEK]);
   await browser.close();
   return res;
 }
@@ -113,7 +115,7 @@ main().then((r) => {
   console.log('yozuv rangi ' + r.TC.join(',') + '; to\'r ' + r.W + '×' + r.H + ', fon ' + r.B0.join(',') + ' → ' + BG.join(',') + ', komponent ' + r.ncomp + '; yozuv komponentlari/katak: ' + [...new Set(r.labs)].join(','));
   if (r.warn.length) { console.error(r.warn.join('\n')); }
   const dir = path.join(HOME, 'ikonka-toplamlar'); fs.mkdirSync(dir, { recursive: true });
-  const sheet = path.join(dir, 'kontakt-' + N + '.png'); fs.writeFileSync(sheet, Buffer.from(r.sheet, 'base64')); console.log('kontakt-varaq:', sheet);
+  const sheet = path.join(dir, 'kontakt-' + (TEK || N) + '.png'); fs.writeFileSync(sheet, Buffer.from(r.sheet, 'base64')); console.log('kontakt-varaq:', sheet);
   if (r.warn.length) process.exit(1);
   if (QURU) return;
   let n = 0; for (const [k, v] of Object.entries(r.files)) { fs.writeFileSync(path.join(ROOT, 'assets/ovqat', k + '.webp'), Buffer.from(v, 'base64')); n++; }

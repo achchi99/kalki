@@ -189,7 +189,7 @@
 | 37 | `snickers` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Snickers (`snickers`) |
 | 38 | `mars` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Mars (batonchik) (`mars`), Milky Way (`milky-way`) |
 | 39 | `twix` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Twix (`twix`) |
-| 40 | `kitkat` | v20 yangilari (sport, shokolad, gazaklar) | KitKat (`kitkat`) |
+| 40 | `kitkat` ✅ | v20 yangilari (sport, shokolad, gazaklar) | KitKat (`kitkat`) |
 | 41 | `kokos-batonchik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kokosli shokoladli batonchik (Bounty turi) (`kokos-batonchik`) |
 | 42 | `mms` ✅ | v20 yangilari (sport, shokolad, gazaklar) | M&M's (shokoladli) (`mms`), M&M's (yeryong'oqli) (`mms-yongoq`) |
 
