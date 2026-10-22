@@ -171,7 +171,7 @@ try {
     const ims = await p.evaluate(async () => { const l = [...document.querySelectorAll('.sl-meal .sl-mh img')]; await Promise.all(l.map((i) => i.decode().catch(() => {}))); return l.map((i) => [i.getAttribute('src'), i.naturalWidth]); }); assert.ok(ims.length >= 3, 'kartalarda rasm: ' + ims.length); assert.ok(ims.every((x) => x[1] > 0), 'hamma rasm yuklandi: ' + JSON.stringify(ims.filter((x) => !x[1])));
     const map = await p.evaluate((ent) => ent.map(([fid, vr]) => window.__kalkifit.imgFile(fid, vr || undefined)), ENT); const srcs = map.filter(Boolean);
     for (const k of ['tuxum', 'olma', 'osh', 'somsa-gosht', 'somsa-qovoq', 'obi-non', 'patir', 'qora-choy', 'shorva', 'kok-choy', 'lavash', 'hot-dog', 'chak-chak', 'achchiq-chuchuk', 'tovuq', 'chuchvara']) assert.ok(srcs.includes(k), k + ' moslashtirildi: ' + srcs.join(','));
-    assert.equal(map.length, ENT.length); assert.equal(await p.evaluate(() => window.__kalkifit.imgFile('non-qora')), null, 'rasmi yo\'q taom (qora non) — rangli bosh harf tile (imgFile → null)'); await p.context().close(); }
+    assert.equal(map.length, ENT.length); assert.equal(await p.evaluate(() => window.__kalkifit.imgFile('bekon')), null, 'rasmi yo\'q taom (bekon — doim harfli tile) — rangli bosh harf tile (imgFile → null)'); await p.context().close(); }
   log('Taom rasmlari: assets/ovqat — 42 taom × 128/256 px WebP (sarlavha o\'lchami tekshirildi), id\'larga moslash (somsa → go\'shtli/qovoqli, non → obi/patir, choy → qora, sho\'rva, ko\'k choy, lavash, hot-dog, chak-chak, achichuk, tovuq…), hammasi yuklanadi, rasmsiz taomga rangli bosh harf');
   console.log(`\n${n} ta tekshiruv guruhi o'tdi`);
 } finally { await b.close(); srv.close(); }

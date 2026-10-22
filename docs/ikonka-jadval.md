@@ -291,48 +291,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `yogurt-meva` | qolganlari | Mevali yogurt (kam yog'li) (`yogurt-meva2`) |
-| 2 | `krem-pishloq` | qolganlari | Qaymoqli pishloq (`krem-pishloq`), Plavlenniy pishloq (Hochland) (`pishloq-hochland`), Eritilgan pishloq (plavlenniy) (`pishloq-eritilgan`) |
-| 3 | `motsarella` | qolganlari | Motsarella (`motsarella`) |
-| 4 | `parmezan` | qolganlari | Parmezan (`pishloq-parmezan`) |
-| 5 | `rikotta` | qolganlari | Rikotta (`pishloq-rikotta`) |
-| 6 | `pishloq-kok` | qolganlari | Ko'k mog'orli pishloq (`pishloq-kok`) |
-| 7 | `pishloq-echki` | qolganlari | Echki pishlog'i (yumshoq) (`pishloq-echki`) |
-| 8 | `sut-quyultirilgan` | qolganlari | Quyultirilgan sut (oddiy) (`sut-quyultirilgan`) |
-| 9 | `sut-kukun` | qolganlari | Quruq sut (to'liq yog'li) (`sut-kukun`) |
-| 10 | `non-qora` | qolganlari | Qora non (`non-qora`), Jovdar noni (`non-jovdar`) |
-| 11 | `lavash-yupqa` | qolganlari | Lavash (yupqa non) (`lavash-non`), Tortilya (bug'doy) (`tortilya`) |
-| 12 | `baget` | qolganlari | Baget (`baget`) |
-| 13 | `bulochka` | qolganlari | Bulochka (shirin) (`bulochka`), Burger bulochkasi (`burger-bulochka`) |
-| 14 | `kruassan` | qolganlari | Kruassan (`kruassan`) |
-| 15 | `pirojki` | qolganlari | Pirojki (qovurilgan) (`pirojki`) |
-| 16 | `tost` | qolganlari | Tost non (`tost`) |
-| 17 | `suxari` | qolganlari | Suxari (`suxari`) |
-| 18 | `xlebets` | qolganlari | Guruch xlebtsi (`guruch-xlebets`) |
-| 19 | `pita` | qolganlari | Pita non (`non-pita`) |
-| 20 | `non-bugdoy` | qolganlari | Bug'doy noni (to'liq donli) (`non-bugdoy`) |
-| 21 | `bagel` | qolganlari | Bagel (`bagel`) |
-| 22 | `chebureki` | qolganlari | Chebureki (`chebureki`), Belyashi (`belyashi`) |
-| 23 | `naggets` | qolganlari | Naggets (tovuq) (`naggets`), Tovuq bo'laklari (panirovkada qovurilgan) (`tovuq-boneless`) |
-| 24 | `sendvich` | qolganlari | Sendvich (tovuqli) (`sendvich`), Tovuqli sendvich (`sendvich-tovuq`), Tunetsli sendvich (`sendvich-tunets`), Mol go'shtli sendvich (`sendvich-mol`) |
-| 25 | `sendvich-baliq` | qolganlari | Baliqli sendvich (tartar sousi bilan) (`sendvich-baliq`) |
-| 26 | `pelmeni` | qolganlari | Pelmeni (`pelmeni`) |
-| 27 | `vareniki` | qolganlari | Vareniki (kartoshkali) (`vareniki`) |
-| 28 | `blin` | qolganlari | Blin (blinchik) (`blin`) |
-| 29 | `sirniki` | qolganlari | Sirniki (`sirniki`) |
-| 30 | `tovuq-kfc` | qolganlari | Tovuq (KFC uslubida, qovurilgan) (`tovuq-kfc`) |
-| 31 | `big-mac` | qolganlari | Big Mac (`big-mac`) |
-| 32 | `chizburger` | qolganlari | Chizburger (`chizburger`) |
-| 33 | `pitsa-pishloq` | qolganlari | Pitsa (pishloqli) (`pitsa-pishloq`) |
-| 34 | `lazanya` | qolganlari | Lazanya (go'shtli) (`lazanya`) |
-| 35 | `spagetti` | qolganlari | Spagetti (go'shtli sous bilan) (`spagetti-bolonez`) |
-| 36 | `piyoz-halqa` | qolganlari | Piyoz halqalari (qovurilgan) (`piyoz-halqa`) |
-| 37 | `tako` | qolganlari | Tako (mol go'shtli) (`tako`) |
-| 38 | `burrito` | qolganlari | Burrito (loviya va go'shtli) (`burrito`), Chili kon karne (loviya va go'shtli) (`chili-konkarne`) |
-| 39 | `nachos` | qolganlari | Nachos (pishloqli) (`nachos-pishloq`) |
-| 40 | `qovurilgan-guruch` | qolganlari | Qovurilgan guruch (xitoycha) (`guruch-qovurilgan`) |
-| 41 | `shirin-nordon-tovuq` | qolganlari | Shirin-nordon tovuq (xitoycha) (`tovuq-shirin-nordon`) |
-| 42 | `falafel` | qolganlari | Falafel (`falafel`) |
+| 1 | `yogurt-meva` ✅ | qolganlari | Mevali yogurt (kam yog'li) (`yogurt-meva2`) |
+| 2 | `krem-pishloq` ✅ | qolganlari | Qaymoqli pishloq (`krem-pishloq`), Plavlenniy pishloq (Hochland) (`pishloq-hochland`), Eritilgan pishloq (plavlenniy) (`pishloq-eritilgan`) |
+| 3 | `motsarella` ✅ | qolganlari | Motsarella (`motsarella`) |
+| 4 | `parmezan` ✅ | qolganlari | Parmezan (`pishloq-parmezan`) |
+| 5 | `rikotta` ✅ | qolganlari | Rikotta (`pishloq-rikotta`) |
+| 6 | `pishloq-kok` ✅ | qolganlari | Ko'k mog'orli pishloq (`pishloq-kok`) |
+| 7 | `pishloq-echki` ✅ | qolganlari | Echki pishlog'i (yumshoq) (`pishloq-echki`) |
+| 8 | `sut-quyultirilgan` ✅ | qolganlari | Quyultirilgan sut (oddiy) (`sut-quyultirilgan`) |
+| 9 | `sut-kukun` ✅ | qolganlari | Quruq sut (to'liq yog'li) (`sut-kukun`) |
+| 10 | `non-qora` ✅ | qolganlari | Qora non (`non-qora`), Jovdar noni (`non-jovdar`) |
+| 11 | `lavash-yupqa` ✅ | qolganlari | Lavash (yupqa non) (`lavash-non`), Tortilya (bug'doy) (`tortilya`) |
+| 12 | `baget` ✅ | qolganlari | Baget (`baget`) |
+| 13 | `bulochka` ✅ | qolganlari | Bulochka (shirin) (`bulochka`), Burger bulochkasi (`burger-bulochka`) |
+| 14 | `kruassan` ✅ | qolganlari | Kruassan (`kruassan`) |
+| 15 | `pirojki` ✅ | qolganlari | Pirojki (qovurilgan) (`pirojki`) |
+| 16 | `tost` ✅ | qolganlari | Tost non (`tost`) |
+| 17 | `suxari` ✅ | qolganlari | Suxari (`suxari`) |
+| 18 | `xlebets` ✅ | qolganlari | Guruch xlebtsi (`guruch-xlebets`) |
+| 19 | `pita` ✅ | qolganlari | Pita non (`non-pita`) |
+| 20 | `non-bugdoy` ✅ | qolganlari | Bug'doy noni (to'liq donli) (`non-bugdoy`) |
+| 21 | `bagel` ✅ | qolganlari | Bagel (`bagel`) |
+| 22 | `chebureki` ✅ | qolganlari | Chebureki (`chebureki`), Belyashi (`belyashi`) |
+| 23 | `naggets` ✅ | qolganlari | Naggets (tovuq) (`naggets`), Tovuq bo'laklari (panirovkada qovurilgan) (`tovuq-boneless`) |
+| 24 | `sendvich` ✅ | qolganlari | Sendvich (tovuqli) (`sendvich`), Tovuqli sendvich (`sendvich-tovuq`), Tunetsli sendvich (`sendvich-tunets`), Mol go'shtli sendvich (`sendvich-mol`) |
+| 25 | `sendvich-baliq` ✅ | qolganlari | Baliqli sendvich (tartar sousi bilan) (`sendvich-baliq`) |
+| 26 | `pelmeni` ✅ | qolganlari | Pelmeni (`pelmeni`) |
+| 27 | `vareniki` ✅ | qolganlari | Vareniki (kartoshkali) (`vareniki`) |
+| 28 | `blin` ✅ | qolganlari | Blin (blinchik) (`blin`) |
+| 29 | `sirniki` ✅ | qolganlari | Sirniki (`sirniki`) |
+| 30 | `tovuq-kfc` ✅ | qolganlari | Tovuq (KFC uslubida, qovurilgan) (`tovuq-kfc`) |
+| 31 | `big-mac` ✅ | qolganlari | Big Mac (`big-mac`) |
+| 32 | `chizburger` ✅ | qolganlari | Chizburger (`chizburger`) |
+| 33 | `pitsa-pishloq` ✅ | qolganlari | Pitsa (pishloqli) (`pitsa-pishloq`) |
+| 34 | `lazanya` ✅ | qolganlari | Lazanya (go'shtli) (`lazanya`) |
+| 35 | `spagetti` ✅ | qolganlari | Spagetti (go'shtli sous bilan) (`spagetti-bolonez`) |
+| 36 | `piyoz-halqa` ✅ | qolganlari | Piyoz halqalari (qovurilgan) (`piyoz-halqa`) |
+| 37 | `tako` ✅ | qolganlari | Tako (mol go'shtli) (`tako`) |
+| 38 | `burrito` ✅ | qolganlari | Burrito (loviya va go'shtli) (`burrito`), Chili kon karne (loviya va go'shtli) (`chili-konkarne`) |
+| 39 | `nachos` ✅ | qolganlari | Nachos (pishloqli) (`nachos-pishloq`) |
+| 40 | `qovurilgan-guruch` ✅ | qolganlari | Qovurilgan guruch (xitoycha) (`guruch-qovurilgan`) |
+| 41 | `shirin-nordon-tovuq` ✅ | qolganlari | Shirin-nordon tovuq (xitoycha) (`tovuq-shirin-nordon`) |
+| 42 | `falafel` ✅ | qolganlari | Falafel (`falafel`) |
 
 ## To'plam 8 (42)
 
