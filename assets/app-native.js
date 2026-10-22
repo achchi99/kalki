@@ -2,7 +2,8 @@
  *   isApp() / platform() / isAndroidBrowser()   — aniqlash (isAndroidBrowser: Android brauzerida, ilova ICHIDA EMAS — «yuklab olish» qatori uchun)
  *   has(plugin)                                 — native plugin bormi (Capacitor.PluginHeaders)
  *   notif.perm() / notif.enable(o) / notif.disable() / notif.onTap(cb)   — «Baliq kuni» haftalik LOKAL bildirishnomasi (@capacitor/local-notifications)
- *   pickPhoto(labels)                           — kamera yoki galereya (@capacitor/camera, PROMPT) → Promise<File|null>
+ *   pickPhoto(labels)                           — (eski) kamera yoki galereya (@capacitor/camera, native PROMPT oynasi) → Promise<File|null>
+ *   pickPhotoFrom('PHOTOS'|'CAMERA')            — tanlangan manba (native oyna YO'Q; sayt o'z tanlov oynasini ko'rsatadi) → Promise<{file}|{cancel:true}|{error:'camera'|'other', message}>
  *   openUrl(url)                                — tashqi brauzer yoki tegishli ilova (Uzum Tezkor, Yandex Eda…) (@capacitor/app-launcher)
  *   qadam.ok() / status() / perm() / enable(on) / today() / days(n)   — apparat qadam hisoblagichi (ilovadagi «Qadam» plagini, kalkifit-android: qadam/)
  *   setBack(fn) / back()                        — Android «Orqaga» (MainActivity chaqiradi): fn() → 'sheet'|'step'|'tab'|'onb'|'overlay' (ushlandi) yoki 'home'
@@ -55,6 +56,12 @@
       L = L || {};
       return call('Camera', 'getPhoto', { quality: 82, resultType: 'dataUrl', source: 'PROMPT', width: 1600, height: 1600, correctOrientation: true, saveToGallery: false, promptLabelHeader: L.header || 'Rasm', promptLabelPhoto: L.gallery || 'Galereyadan', promptLabelPicture: L.camera || 'Rasmga olish', promptLabelCancel: L.cancel || 'Bekor qilish' })
         .then(function (r) { return r && r.dataUrl ? dataUrlToFile(r.dataUrl, 'rasm.' + (r.format || 'jpeg')) : null; }, function () { return null; });   // bekor qilinsa — null (xato emas)
+    },
+    /* manba aniq (PHOTOS — tizim Photo Picker, ruxsat kerak emas; CAMERA — tizim kamerasi). Native PROMPT ishlatilmaydi: u ba'zi telefonlarda qora/xira ko'rinib, bosishlarga javob bermagan. */
+    pickPhotoFrom: function (source) {
+      return call('Camera', 'getPhoto', { quality: 82, resultType: 'dataUrl', source: source === 'CAMERA' ? 'CAMERA' : 'PHOTOS', width: 1600, height: 1600, correctOrientation: true, saveToGallery: false })
+        .then(function (r) { var f = r && r.dataUrl ? dataUrlToFile(r.dataUrl, 'rasm.' + (r.format || 'jpeg')) : null; return f ? { file: f } : { error: 'other', message: 'bo\'sh javob' }; },
+          function (e) { var m = String((e && (e.message || e.errorMessage || e.code)) || e || ''); if (/cancel/i.test(m)) return { cancel: true }; return { error: /denied|permission|camera|resolve/i.test(m) && source === 'CAMERA' ? 'camera' : 'other', message: m.slice(0, 80) }; });
     },
     /* ---------- tashqi havola: brauzer yoki tegishli ilova ---------- */
     openUrl: function (url) {

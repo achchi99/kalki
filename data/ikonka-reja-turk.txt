@@ -1,0 +1,43 @@
+# KalkiFit — turk taomlari ikonkalari rejasi (v21; rasm hali yasalmagan). Format: guruh | slug | tavsif (inglizcha) | shu ikonkani ishlatadigan taom id'lari. Yagona to'plam: docs/ikonka-toplam-turk.txt (node tools/ikonka-toplam.js)
+1|turk-doner-tovuq|a chicken doner wrap, thin lavash flatbread rolled around sliced grilled chicken, lettuce, tomato and onion, cut in half to show the filling, wrapped at the bottom in plain paper.|tr-doner-tovuq-lavash
+1|turk-doner-mol|a beef doner wrap, thin lavash flatbread rolled around dark thin-sliced roasted beef, tomato, onion and yogurt sauce, cut in half to show the filling.|tr-doner-mol-lavash
+1|turk-doner-non|a doner sandwich in a split soft bread roll, filled with thin-sliced roasted beef, tomato, cucumber and onion.|tr-doner-mol-non
+1|turk-iskender|Iskender kebab, thin doner slices on cut pieces of pita bread, covered with red tomato sauce, a spoon of white yogurt and a pour of browned butter, on a plate.|tr-iskender
+1|turk-adana|Adana kebab, a long flat skewer of spicy minced lamb with char marks, with grilled red pepper and a charred tomato, on a plate.|tr-adana-kabob
+1|turk-urfa|Urfa kebab, a long skewer of minced lamb and beef, milder and less red than Adana, with grilled onion pieces, on a plate.|tr-urfa-kabob
+1|turk-kofte|Turkish kofte, five small oval grilled meatballs with char marks, with a grilled green pepper, on a small plate.|tr-kofte
+1|turk-lahmajun|lahmajun, a very thin round flatbread topped with a spiced minced-meat and tomato layer, with parsley and a lemon wedge, rolled partly.|tr-lahmajun
+1|turk-pide-gosht|meat pide, a boat-shaped Turkish flatbread with a golden edge and minced meat filling in the open middle, cut into pieces.|tr-pide-goshtli
+1|turk-pide-pishloq|cheese pide, a boat-shaped Turkish flatbread with a golden edge and melted white cheese with a glazed egg-wash shine in the open middle, cut into pieces.|tr-pide-pishloqli
+1|turk-gozleme|gozleme, a thin rolled flatbread folded in half, griddled with golden-brown spots, cut to show spinach and white cheese inside.|tr-gozleme
+1|turk-menemen|menemen, soft scrambled eggs with red tomato and green pepper in a small round copper pan, with a piece of bread.|tr-menemen
+1|turk-mercimek|Turkish red lentil soup, a smooth orange-yellow puree in a white bowl with a lemon wedge and a sprinkle of red pepper flakes.|tr-mercimek
+1|turk-ezogelin|ezogelin soup, a thick red-orange lentil and bulgur soup in a white bowl with a sprinkle of dried mint.|tr-ezogelin
+1|turk-kumpir|kumpir, a big baked potato split open and filled with melted butter, yellow cheese, corn and olive pieces.|tr-kumpir
+1|turk-bulgur|Turkish bulgur pilaf, fluffy golden-brown bulgur with small tomato pieces, in a small white bowl.|tr-bulgur-pilavi
+1|turk-coban-salat|shepherd salad, finely diced tomato, cucumber, onion, green pepper and parsley with olive oil, in a bowl.|tr-coban-salat
+1|turk-sigara-boregi|sigara boregi, four thin crispy golden fried pastry rolls shaped like cigars, one cut to show white cheese inside.|tr-sigara-boregi
+1|turk-manti|Turkish manti, tiny dumplings in a shallow bowl covered with white garlic yogurt and a red butter-paprika drizzle.|tr-manti
+1|turk-karniyarik|karniyarik, a split roasted eggplant stuffed with minced meat, tomato and pepper, with a tomato on top, on an oval plate.|tr-karniyarik
+1|turk-kuru-fasulye|kuru fasulye, white beans in a thick red tomato sauce in a white bowl, with a piece of flatbread beside.|tr-kuru-fasulye
+1|turk-mucver|mucver, three round golden pan-fried zucchini fritters with green herbs visible, on a small plate with a dollop of yogurt.|tr-mucver
+1|turk-su-boregi|su boregi, a square slice of layered boiled-dough pastry with cheese, golden on top, layers visible, on a plate.|tr-su-boregi
+1|turk-pisi|pisi, three puffy golden-brown fried dough pillows, some with a split showing airy inside, on a small plate.|tr-pisi
+1|turk-kisir|kisir, a bulgur salad in a bowl in orange-red, with chopped green onions, parsley and a lemon wedge, with a lettuce leaf on the side.|tr-kisir
+1|turk-cacik|cacik, a bowl of white yogurt with cucumber pieces, dried mint and a little olive oil on top.|tr-cacik
+1|turk-tavuk-sis|tavuk sis, two skewers of grilled marinated chicken cubes with a charred pepper and tomato, on a small plate.|tr-tavuk-sis
+1|turk-patlican|Turkish smoky eggplant salad, a creamy brown-beige puree in a small bowl with a drizzle of olive oil and a sprig of parsley.|tr-patlican-salatasi
+1|turk-simit|simit, a golden sesame-covered ring-shaped bread, one whole and a piece torn off.|tr-simit
+2|turk-baklava|baklava, two diamond-shaped pieces of thin layered golden pastry with crushed green pistachio on top, with syrup shine.|tr-baklava
+2|turk-kunefe|kunefe, a round golden-orange shredded-pastry dessert with melted white cheese layer inside, cut open, with crushed green pistachio on top.|tr-kunefe
+2|turk-sutlac|sutlac, a baked rice pudding in a small round clay bowl, creamy white with a browned top and a sprinkle of cinnamon.|tr-sutlac
+2|turk-kadayif|kadayif, a square piece of golden shredded-dough dessert with walnuts, glossy with syrup, on a small plate.|tr-kadayif
+2|turk-lokum|Turkish delight, a few soft cubes of pink and white gelled sweets dusted with powdered sugar, one with a visible nut inside.|tr-lokum
+2|turk-lokma|lokma, a small pile of golden-brown round fried dough balls glossy with syrup.|tr-lokma
+2|turk-revani|revani, a square slice of yellow semolina syrup cake with a shiny syrup top and one almond on it.|tr-revani
+2|turk-irmik-helvasi|irmik helvasi, a warm golden semolina halva scoop shaped like a dome with pine nuts, on a small plate.|tr-irmik-helvasi
+2|turk-asure|asure, Noah's pudding, a thick light-brown pudding in a small bowl topped with pomegranate seeds, walnuts and dried apricot pieces.|tr-asure
+2|turk-tulumba|tulumba, four golden fried ridged dough fingers glossy with syrup, on a small plate.|tr-tulumba
+3|turk-choy|Turkish black tea in a small tulip-shaped glass on a small saucer, deep red-amber, with a teaspoon.|tr-choy
+3|turk-choy-shakar|Turkish black tea in a small tulip-shaped glass on a small saucer, with two sugar cubes on the saucer, deep red-amber.|tr-choy-shakar
+3|turk-qahva|Turkish coffee in a small white cup with a thin foam on top, on a saucer, with a small copper long-handled coffee pot beside it.|tr-qahva tr-qahva-shakar

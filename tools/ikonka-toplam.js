@@ -12,7 +12,7 @@ const alias = {}; JSON.parse(R('data/ovqatlar.json')).foods.forEach((f) => { if 
 const imgFile = new Function('dbAlias', app.slice(a, b).join('\n').replace(/var IKX = \{[^\n]*\};/, 'var IKX = {};') + ';return imgFile')(alias);      // IKX (ulangan yangi ikonkalar) hisobga olinmaydi — reja har doim to'liq
 const planned = new Set(R('data/ikonka-reja.txt').split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => l.split('|')[1].trim()));
 const existing = new Set(fs.readdirSync(path.join(ROOT, 'assets/ovqat')).map((x) => x.replace(/-(128|256)\.webp$/, '')).filter((x) => !planned.has(x)));      // reja ichidagi slug'lar (ulangan to'plamlar) to'qnashuv emas
-const noIcon = foods.filter((f) => !imgFile(f.i, null)).map((f) => f.i);
+const noIcon = foods.filter((f) => !imgFile(f.i, null) && !f.i.startsWith('tr-')).map((f) => f.i);      // turk taomlari (tr-) — alohida reja: data/ikonka-reja-turk.txt
 const rows = R('data/ikonka-reja.txt').split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => { const p = l.split('|'); if (p.length !== 4) throw new Error('qator noto\'g\'ri: ' + l.slice(0, 60)); return { g: +p[0], slug: p[1].trim(), desc: p[2].trim(), ids: p[3].trim().split(/\s+/).filter(Boolean) }; });
 const err = [], seen = new Set(), cover = {};
 const BAD = /(coca|pepsi|fanta|sprite|snickers|mars\b|twix|bounty|kitkat|kit kat|milky|m&m|oreo|kinder|milka|alpen|nutella|pringles|lay's|red bull|monster|adrenaline|powerade|mcdonald|big mac|kfc|logo|brand|\bhand\b|\bhands\b|\bperson\b|\bpeople\b|\bpork\b|\bham\b|\bbacon\b|\bpig\b)/i;
@@ -41,3 +41,26 @@ let md = '# Ovqat ikonkalari rejasi (rasm hali yasalmagan)\n\n`node tools/ikonka
 sets.forEach((s, k) => { md += '## To\'plam ' + (k + 1) + ' (' + s.length + ')\n\n| № | slug | guruh | ishlatadigan taomlar |\n|---|---|---|---|\n' + s.map((r, i) => '| ' + (i + 1) + ' | `' + r.slug + '`' + (fs.existsSync(path.join(ROOT, 'assets/ovqat', r.slug + '-256.webp')) ? ' ✅' : '') + ' | ' + GN[r.g] + ' | ' + r.ids.map((id) => (by[id.split('#')[0]].n + (id.includes('#') ? ' → ' + id.split('#')[1] : '')).replace(/\|/g, '/') + ' (`' + id + '`)').join(', ') + ' |').join('\n') + '\n\n'; });
 fs.writeFileSync(path.join(ROOT, 'docs', 'ikonka-jadval.md'), md);
 console.log('rasmsiz:', noIcon.length, '| ikonka rejalashtirilgan taom:', noIcon.length - PORK_SKIP.size, '| noyob ikonka:', order.length, '| to\'plam:', sets.length, '(oxirgisi ' + sets[sets.length - 1].length + ')');
+
+/* Turk taomlari (v21): alohida reja → docs/ikonka-toplam-turk.txt (bitta to'plam; yuqoridagi bilan bir xil uslub prompti, faqat milliy taom jumlasi turkcha) */
+{
+  const tf = path.join(ROOT, 'data/ikonka-reja-turk.txt');
+  if (fs.existsSync(tf)) {
+    const tr = R('data/ikonka-reja-turk.txt').split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => { const p = l.split('|'); if (p.length !== 4) throw new Error('turk reja: qator noto\'g\'ri: ' + l.slice(0, 60)); return { g: +p[0], slug: p[1].trim(), desc: p[2].trim(), ids: p[3].trim().split(/\s+/) }; });
+    const e2 = [], sl = new Set(), cv = new Set(), allSlugs = new Set(fs.readdirSync(path.join(ROOT, 'assets/ovqat')).map((x) => x.replace(/-(128|256)\.webp$/, '')));
+    for (const r of tr) {
+      if (sl.has(r.slug)) e2.push('turk: takror slug ' + r.slug); sl.add(r.slug);
+      if (!/^[a-z0-9-]+$/.test(r.slug)) e2.push('turk: slug noto\'g\'ri ' + r.slug);
+      if (planned.has(r.slug) || allSlugs.has(r.slug)) e2.push('turk: asosiy reja bilan to\'qnashadi ' + r.slug);
+      if (BAD.test(r.desc)) e2.push('turk ' + r.slug + ': taqiqlangan so\'z: ' + (r.desc.match(BAD) || [])[0]);
+      if (!r.desc.endsWith('.') || r.desc.length < 20) e2.push('turk ' + r.slug + ': tavsif qisqa');
+      for (const id of r.ids) { if (!by[id]) e2.push('turk ' + r.slug + ': baza\'da yo\'q ' + id); cv.add(id); }
+    }
+    foods.filter((f) => f.i.startsWith('tr-') && !cv.has(f.i)).forEach((f) => e2.push('turk: ikonkasiz taom ' + f.i));
+    if (tr.length > 42) e2.push('turk: 42 tadan ko\'p (' + tr.length + ')');
+    if (e2.length) { console.error(e2.join('\n')); process.exit(1); }
+    const HT = HEAD.replace('Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions.', 'Traditional Turkish dishes must follow the description exactly — do not substitute Greek, Arab or Russian versions.');
+    fs.writeFileSync(path.join(ROOT, 'docs', 'ikonka-toplam-turk.txt'), HT + tr.map((r) => r.slug + ' — ' + r.desc).join('\n') + '\n');
+    console.log('turk: ikonka', tr.length, '| taom', cv.size, '→ docs/ikonka-toplam-turk.txt');
+  }
+}

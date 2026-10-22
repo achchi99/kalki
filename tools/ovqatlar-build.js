@@ -313,7 +313,7 @@ for (const r of rows) {
     const id = tok.replace(/^u:/, ''), U = USDA[id]; return U ? { k: U.kcal, p: U.p, f: U.f, c: U.c, u: 'USDA ' + id + ' («' + U.d + '»)', r: 'USDA ' + id + ' («' + U.d + '»)' } : null;
   };
   const ich = (t) => t === 'i' ? [' (ichimlik: 100 ml ≈ 100 g)', ' (напиток: 100 мл ≈ 100 г)'] : ['', ''];
-  for (const row of KENG) {
+  for (const row of KENG.concat(require('./ovqatlar-turk.js'))) {
     const [id, n, ru, al, t, un, src] = row;
     if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
     let v = null;

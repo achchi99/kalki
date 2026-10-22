@@ -5454,6 +5454,83 @@
    "f": 26.6,
    "c": 58.88,
    "kcal": 493.0
+  },
+  "171413": {
+   "d": "Oil, olive, salad or cooking",
+   "p": 0,
+   "f": 100,
+   "c": 0,
+   "kcal": 884
+  },
+  "170054": {
+   "d": "Tomato products, canned, sauce",
+   "p": 1.2,
+   "f": 0.3,
+   "c": 5.31,
+   "kcal": 24
+  },
+  "170845": {
+   "d": "Cheese, mozzarella, whole milk",
+   "p": 22.17,
+   "f": 22.14,
+   "c": 2.4,
+   "kcal": 299
+  },
+  "169230": {
+   "d": "Garlic, raw",
+   "p": 6.36,
+   "f": 0.5,
+   "c": 33.06,
+   "kcal": 149
+  },
+  "169291": {
+   "d": "Squash, summer, zucchini, includes skin, raw",
+   "p": 1.21,
+   "f": 0.32,
+   "c": 3.11,
+   "kcal": 17
+  },
+  "168462": {
+   "d": "Spinach, raw",
+   "p": 2.86,
+   "f": 0.39,
+   "c": 3.63,
+   "kcal": 23
+  },
+  "169715": {
+   "d": "Semolina, enriched",
+   "p": 12.68,
+   "f": 1.05,
+   "c": 72.83,
+   "kcal": 360
+  },
+  "169094": {
+   "d": "Olives, ripe, canned (small-extra large)",
+   "p": 0.84,
+   "f": 10.9,
+   "c": 6.04,
+   "kcal": 116
+  },
+  "170150": {
+   "d": "Seeds, sesame seeds, whole, dried",
+   "p": 17.73,
+   "f": 49.67,
+   "c": 23.45,
+   "kcal": 573
+  },
+  "172675": {
+   "d": "Bread, french or vienna (includes sourdough)",
+   "p": 10.75,
+   "f": 2.42,
+   "c": 51.88,
+   "kcal": 272
+  },
+  "168782": {
+   "d": "Puddings, rice, ready-to-eat",
+   "p": 3.23,
+   "f": 2.15,
+   "c": 18.39,
+   "kcal": 108
   }
  }
 }

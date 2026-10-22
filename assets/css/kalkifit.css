@@ -626,3 +626,4 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .sl-alt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 10px;padding:0 2px}.sl-alt>span{font-size:var(--t-xs);color:var(--mut);margin-right:2px}
 .sl-alt .rz-chip{min-height:36px;font-size:var(--t-xs)}.sl-alt .sl-altq{gap:4px}.sl-alt .sl-altq .rz-i{width:14px;height:14px}
 .sl-aileft{margin:4px 0 8px}
+.sl-phc{display:flex;flex-direction:column;gap:10px;margin:14px 0 6px}.sl-phc .rz-btn{min-height:56px;font-size:var(--t-m)}

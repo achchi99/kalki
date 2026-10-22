@@ -27,7 +27,7 @@ log('24 oila: standart kombinatsiya = oila qiymati; hamma kombinatsiya grid da; 
 /* 3. eski id lar abadiy alias; yashirin; qidiruvda ko'rinmaydi */
 const old = Object.keys(V1); for (const id of old) assert.ok(by[id], 'eski id yo\'q: ' + id); const al = DB.filter((f) => f.al); assert.ok(al.length >= 35);
 for (const f of al) { assert.ok(f.h === 1 && by[f.al.f] && by[f.al.f].fam.g[f.al.v], f.id + ': alias ' + JSON.stringify(f.al)); assert.ok(!S.search(DB, f.n, { limit: 30 }).some((x) => x.id === f.id), f.id + ' qidiruvda ko\'rinmasin'); assert.equal(f.k, (V1[f.id] || f).k || f.k); }
-assert.equal(DB.length, 672); log('eski ' + old.length + ' ta id hammasi bazada (alias: ' + al.length + ' ta yashirin, qidiruvda oila chiqadi); yangi 20 ta («taxminiy»; 4 ta Xorazm/sut + 16 ta oqsilli)');
+assert.equal(DB.length, 715); log('eski ' + old.length + ' ta id hammasi bazada (alias: ' + al.length + ' ta yashirin, qidiruvda oila chiqadi); yangi 20 ta («taxminiy»; 4 ta Xorazm/sut + 16 ta oqsilli)');
 for (const id of ['shovla', 'shirguruch', 'ugra-osh', 'chalop']) assert.ok(by[id] && by[id].x === 1 && by[id].rc && by[id].b[0].s === 'a', id);
 
 /* 3b. 5 ta oddiy mahsulot: USDA/Скурихин yozuvi nomdagi holatga mos tanlangan */
