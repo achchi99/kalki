@@ -9,8 +9,8 @@ const rd = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8')), CH = 
 /* mustaqil qoida (test o'zi hisoblaydi): taom/oila cheklanganmi */
 const keysOf = (f) => (f.fam ? Object.keys(f.fam.g).map((k) => f.i + '#' + k) : [f.i]);
 const info = (f, user) => { const per = keysOf(f).map((k) => { const t = CH[k] || []; return { pork: t.includes('choshqa'), hit: t.filter((x) => x !== 'choshqa' && user.includes(x)) }; }); if (per.length === 1) return per[0]; const allPork = per.every((x) => x.pork), blocked = per.every((x) => x.pork || x.hit.length); return { pork: allPork, hit: blocked && !allPork ? [...new Set(per.flatMap((x) => x.hit))] : [] }; };
-const CATS = ['o', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
-const inCat = (f, c) => (c === 'baliq' ? OQ[f.i] === 'baliq' : f.t === c);
+const CATS = ['o', 'turk', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
+const inCat = (f, c) => (c === 'turk' ? f.i.startsWith('tr-') : c === 'baliq' ? OQ[f.i] === 'baliq' : f.t === c);
 const members = (c) => FOODS.filter((f) => inCat(f, c) && !f.h && !f.al);
 function seed(o = {}) { const st = S.emptyState(); st.setup = true; st.created = Date.now() - 9 * 86400000; st.prefs = Object.assign({ tipsDone: true, jokes: false, yemayK: 1 }, o.prefs || {}); st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'keep' }; st.trackStart = D.addDays(TODAY, -8); S.addWeight(st, TODAY, 80);
   (o.recent || []).forEach((id0, i) => { const [id, v0] = id0.split('#'), f = BYID[id]; S.addFood(st, D.addDays(TODAY, -(i % 3)), { fid: id, vr: f.fam ? (v0 || Object.keys(f.fam.g)[0]) : null, meal: 'l', unit: 'g100', qty: 100, g: 100, kcal: f.k || 100, p: 5, f: 5, c: 5, ts: 1 + i }); }); return st; }

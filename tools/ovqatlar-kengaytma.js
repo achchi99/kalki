@@ -369,4 +369,5 @@ const OQSIL = Object.assign({},
   ...L(`falafel xummus-uy tofu-qov edamame loviya-qora loviya-konserva loviya-tomat noxat-konserva`).map((i) => ({ [i]: 'dukkak' })),
   ...L(`protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye protein-kokteyl-tayyor pitsa-pishloq nachos-pishloq`).map((i) => ({ [i]: 'sut' })),
   ...L(`quyon burrito chili-konkarne lazanya spagetti-bolonez`).map((i) => ({ [i]: 'aralash' })));
+{ const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }   // turk taomlari (v21)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

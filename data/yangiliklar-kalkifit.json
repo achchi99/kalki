@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 21,
+   "d": "2026-10-22",
+   "bn": {
+    "uz": "Android'da rasmdan qo'shish tuzatildi, 40+ turk taomi.",
+    "ru": "На Android исправлено добавление по фото, 40+ турецких блюд."
+   },
+   "items": [
+    {
+     "uz": "Android ilovada rasmdan qo'shish tuzatildi: galereya yoki kamerani o'zingiz tanlaysiz.",
+     "ru": "В приложении для Android исправлено добавление по фото: галерея или камера — на выбор.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidirish",
+      "ru": "Искать"
+     }
+    },
+    {
+     "uz": "25+ turk taomi qo'shildi: doner, iskender, lahmajun, pide, baklava va boshqalar.",
+     "ru": "Добавлено 25+ турецких блюд: донер, искендер, лахмаджун, пиде, баклава и другие.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidirish",
+      "ru": "Искать"
+     }
+    }
+   ]
+  },
+  {
    "v": 20,
    "d": "2026-10-21",
    "bn": {

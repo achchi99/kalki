@@ -186,6 +186,66 @@
   "kafe-losos-steyk": {
    "t": "baliq",
    "s": "KB"
+  },
+  "tr-doner-tovuq-lavash": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-doner-mol-lavash": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-doner-mol-non": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-iskender": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "tr-adana-kabob": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "tr-urfa-kabob": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "tr-kofte": {
+   "t": "kabob",
+   "s": "K"
+  },
+  "tr-tavuk-sis": {
+   "t": "kabob",
+   "s": "KB"
+  },
+  "tr-lahmajun": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-pide-goshtli": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-pide-pishloqli": {
+   "t": "tez",
+   "s": "KB"
+  },
+  "tr-gozleme": {
+   "t": "tez",
+   "s": "K"
+  },
+  "tr-mercimek": {
+   "t": "suyuq",
+   "s": "K"
+  },
+  "tr-ezogelin": {
+   "t": "suyuq",
+   "s": "K"
+  },
+  "tr-sigara-boregi": {
+   "t": "tez",
+   "s": "K"
   }
  },
  "baliq": [

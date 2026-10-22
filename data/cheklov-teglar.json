@@ -1654,6 +1654,144 @@
   "tovuq-son": [],
   "tovuq-son-qozon": [],
   "tovuq-yurak": [],
+  "tr-adana-kabob": [],
+  "tr-asure": [
+   "yongoq",
+   "glyuten"
+  ],
+  "tr-baklava": [
+   "sut",
+   "yongoq",
+   "glyuten"
+  ],
+  "tr-bulgur-pilavi": [
+   "glyuten"
+  ],
+  "tr-cacik": [
+   "sut"
+  ],
+  "tr-choy": [],
+  "tr-choy-shakar": [],
+  "tr-coban-salat": [],
+  "tr-doner-mol-lavash": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-doner-mol-non": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-doner-tovuq-lavash": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-ezogelin": [
+   "glyuten"
+  ],
+  "tr-gozleme": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-irmik-helvasi": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-iskender": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-kadayif": [
+   "sut",
+   "yongoq",
+   "glyuten"
+  ],
+  "tr-karniyarik": [
+   "sut"
+  ],
+  "tr-kisir": [
+   "glyuten"
+  ],
+  "tr-kofte": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tr-kumpir": [
+   "sut"
+  ],
+  "tr-kunefe": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-kuru-fasulye": [],
+  "tr-lahmajun": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-lokma": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-lokum": [],
+  "tr-manti": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-menemen": [
+   "tuxum",
+   "sut"
+  ],
+  "tr-mercimek": [],
+  "tr-mucver": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-patlican-salatasi": [],
+  "tr-pide-goshtli": [
+   "glyuten"
+  ],
+  "tr-pide-pishloqli": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-pisi": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-qahva": [],
+  "tr-qahva-shakar": [],
+  "tr-revani": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-sigara-boregi": [
+   "sut",
+   "glyuten"
+  ],
+  "tr-simit": [
+   "glyuten"
+  ],
+  "tr-su-boregi": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-sutlac": [
+   "sut"
+  ],
+  "tr-tavuk-sis": [],
+  "tr-tulumba": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tr-urfa-kabob": [],
   "treska": [
    "baliq"
   ],
