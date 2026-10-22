@@ -25,6 +25,16 @@ tekshiruvlarni sekinlashtiradi va xotirani to'ldiradi.
 5. `pkill -f "node tools/"` kabi buyruq o'z shell'ining buyruq matniga ham tushadi (exit 144) —
    `pgrep` + `kill <pid>` yoki `[x]` hiylasini ishlating.
 
+## Disk (server diski kichik — QAT'IY)
+
+Disk tez to'ladi (journal, Gradle/npm/uv keshlari, docker build cache, test skrinshotlari). Qoida:
+
+1. **Ish oxirida o'zingiz ochgan artefaktlarni o'chiring:** test skrinshotlari/trace/video (`docs/screenshots`, `tools/ai-sinov/out`, `test-results`, scratchpad), vaqtinchalik `_*.mjs` skriptlar, `kalkifit-android/dist` va `android/app/build` (APK `/ilova` ga ko'chirilgach). Skrinshotlarni repoga qo'shmang.
+2. Katta ish (APK build, to'liq `test:tez`) oldidan `df -h /` ni tekshiring: **2 GB dan kam bo'lsa** — avval tozalang (quyidagi skript), keyin boshlang. Disk to'lganda yozilayotgan fayl kesilib qolishi mumkin — tozalagach o'zgargan fayllarni `node --check` / JSON parse bilan tekshiring.
+3. Haftalik cron (yakshanba 04:30): `tools/disk-tozala.sh` — faqat qayta tiklanadigan narsalar, 7 kundan eskilar (build/test artefaktlari, npm/pip/uv/puccinialin keshlari, docker dangling image va eski build cache, eski VS Code server versiyalari). Qo'lda: `bash tools/disk-tozala.sh [--quruq]`; natija `~/disk-tozala.log`.
+4. **Tegilmaydi:** `~/backups`, `~/ikonka-toplamlar`, kalitlar (`~/.kalkifit-*`, `~/.cf-token`), `.env`/`.dev.vars`, ma'lumot bazalari va docker volume, ishlab turgan konteynerlar, git tarixi, `~/.cache/ms-playwright` (testlar kerak).
+5. journal (`/var/log/journal`, ~3 GB gacha o'sadi) — sudo kerak: `sudo journalctl --vacuum-size=200M`; doimiy cheklash: `/etc/systemd/journald.conf` da `SystemMaxUse=300M`.
+
 ## Prerender va "Yangilangan" sanasi
 
 `tools/prerender.js` "Yangilangan" sanasini faylning oxirgi **mazmuniy** git commit'idan oladi.
