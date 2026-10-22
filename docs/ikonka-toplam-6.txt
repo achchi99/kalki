@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+sirok — a chocolate-glazed curd cheese bar, one bite taken showing white inside.
+ledenets — a swirled round lollipop on a stick, multicolor.
+jele-konfet — a small pile of colorful jelly beans.
+marshmallow — three white puffy marshmallows.
+iriska — three wrapped toffee candies, golden-brown, one unwrapped.
+nuga — a block of white nougat with whole almonds, a slice cut.
+pastila — a rolled fruit leather, red-purple spiral.
+granola-batonchik — a granola bar with oats and seeds, rectangular.
+donut — a ring donut with pink glaze and sprinkles.
+bulochka-darchin — a cinnamon roll with white icing swirl.
+sloyka — a square Danish pastry with cream cheese in the center, next to a golden flaky puff pastry twist.
+maffin — a blueberry muffin with a domed top, in a paper cup.
+pankeyk — a stack of three pancakes with a pat of butter and syrup.
+vafli-belgiya — a thick Belgian waffle square with grid pattern, with powdered sugar.
+chizkeyk — a slice of New York cheesecake with a graham crust.
+tort-shokolad — a slice of chocolate layer cake with chocolate frosting.
+biskvit — a slice of pale yellow sponge cake next to a slice of cinnamon crumb cake.
+pirog-olcha — a slice of cherry pie with lattice top.
+pirog-qovoq — a slice of orange pumpkin pie.
+pirog-olma — a slice of apple pie with golden crust.
+shtrudel — a slice of apple strudel with powdered sugar.
+ekler — a chocolate-glazed eclair with cream filling visible.
+brauni — a square of chocolate brownie, dense dark brown.
+paxlava — two diamond pieces of paklava, layered golden with nuts.
+chak-chak-ikki — small honey-coated fried dough pieces in a pile.
+murabbo — a small glass jar of dark red fruit jam with a spoon-swirl.
+sgushyonka — a can of boiled condensed milk, opened, caramel brown, with a spoon.
+asal — a glass jar of golden honey with a dipper.
+konfet — three chocolate candies, one cut open showing filling.
+marmelad — colorful fruit marmalade squares, sugar-coated.
+shakar — a small heap of white granulated sugar.
+qand — a few white sugar cubes stacked.
+qurt — a few small round white dried yogurt balls on a small blue-white plate.
+sut — a glass of white milk next to a small glass bottle of milk.
+kefir — a glass of white kefir, thick, next to a small bottle.
+qaymoq — a small bowl of thick pale cream (qaymoq) with a spoon-swirl.
+smetana — a small bowl of white sour cream with a spoon swirl.
+pishloq-qattiq — a wedge of yellow hard cheese with a few small holes, and two slices.
+pishloq-brynza — a block of white brynza cheese with small cuts and a cube sliced.
+tvorog — a small bowl of crumbly white cottage cheese with a spoon.
+sariyog — a block of butter with a slice cut off, pale yellow.
+yogurt — a small cup of thick white plain yogurt with a spoon.

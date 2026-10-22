@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+salat-barg — a head of light green lettuce.
+yashil-loviya — a small pile of green beans.
+yashil-noxat — a small pile of green peas in an open pod.
+zaytun — a few green and black olives.
+avokado — an avocado halved with a pit.
+shampinon — three white button mushrooms.
+tuzlangan-bodring — pickled cucumbers in a small glass jar with dill.
+selderey — a bunch of green celery stalks.
+qovoqcha — a green zucchini with a few round slices, boiled.
+konserva-makkajoxori — an opened can of sweet corn kernels.
+konserva-noxat — an opened can of green peas.
+konserva-loviya — an opened can of red kidney beans.
+loviya-tomat — an opened can of baked beans in tomato sauce.
+karam-tuzlangan — sauerkraut in a small bowl, pale yellow-white.
+batat — a baked orange sweet potato, split open.
+sparja — boiled green asparagus spears.
+kok-piyoz — a bunch of green onions.
+shivit — a bunch of fresh dill.
+kashnich — a bunch of fresh coriander.
+petrushka — a bunch of fresh parsley.
+zanjabil — a ginger root with a few slices.
+daykon — a long white daikon radish, a few slices.
+porey — a leek with white stem and green leaves.
+kolrabi — a round pale-green kohlrabi with leaves.
+veshenka — a cluster of grey oyster mushrooms.
+edamame — edamame pods in a small bowl, green.
+bamiya — boiled okra pods, green, in a small bowl.
+nok — a ripe yellow-green pear.
+apelsin — a whole orange and a half.
+mandarin — a mandarin with a few peeled segments.
+limon — a yellow lemon and a half.
+shaftoli — a ripe peach with a cut half.
+orik — three apricots, one halved.
+gilos — a few red sweet cherries with stems.
+oluxori — three purple plums, one halved.
+anjir — two fresh figs, one cut showing pink inside.
+behi — one whole golden-yellow quince with a fuzzy skin and a leaf, next to a halved quince showing pale flesh.
+kivi — a kiwi with a cut half showing green flesh.
+ananas — a pineapple with a few ring slices.
+mango — a ripe mango with a cut half.
+qulupnay — three red strawberries.
+malina — a small pile of raspberries.

@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+yogurt-meva — a small cup of pink fruit yogurt with a strawberry.
+krem-pishloq — a small tub of cream cheese with a knife-spread.
+motsarella — a ball of white mozzarella in a small bowl of water, one slice cut.
+parmezan — a wedge of aged parmesan, pale yellow with crumbly texture.
+rikotta — a small bowl of soft white ricotta with a spoon.
+pishloq-kok — a wedge of blue cheese with blue-green veins.
+pishloq-echki — a small white round soft goat cheese with herbs.
+sut-quyultirilgan — a small can of sweetened condensed milk, opened, pale cream.
+sut-kukun — a small pile of white milk powder with a scoop.
+non-qora — a loaf of dark rye bread with two slices cut.
+lavash-yupqa — a thin lavash flatbread folded loosely, pale.
+baget — a long French baguette with golden crust, two slices cut.
+bulochka — a sweet round bun, glossy golden.
+kruassan — a golden crescent croissant with flaky layers.
+pirojki — two fried piroshki pies, golden, one cut showing filling.
+tost — two slices of toasted white bread, golden.
+suxari — small golden bread rusks cubes in a pile.
+xlebets — round puffed rice cakes, light, in a stack.
+pita — a round pita bread, puffed and pale, one half open.
+non-bugdoy — a loaf of whole-grain wheat bread with seeds, two slices cut.
+bagel — a ring bagel with sesame seeds.
+chebureki — a crescent fried cheburek with blistered golden crust.
+naggets — four golden chicken nuggets.
+sendvich — a sandwich on sliced bread with lettuce, tomato and a filling of chicken, tuna or roast beef, cut in half.
+sendvich-baliq — a fish sandwich with a breaded fillet and sauce in a soft bun.
+pelmeni — a plate of boiled pelmeni, small round dumplings, with a spoon of sour cream.
+vareniki — a plate of vareniki, potato-filled half-moon dumplings, with fried onion.
+blin — a stack of thin crepes with a fold, with sour cream.
+sirniki — three golden fried curd pancakes with a spoon of sour cream.
+tovuq-kfc — crispy battered fried chicken pieces, golden-brown, on a plate.
+big-mac — a large double beef burger with sesame bun, lettuce and cheese.
+chizburger — a cheeseburger with a beef patty, melted cheese, sesame bun.
+pitsa-pishloq — a pizza with melted cheese and tomato sauce, one slice pulled.
+lazanya — a square slice of layered lasagna with meat sauce and melted cheese.
+spagetti — spaghetti with meat tomato sauce on a plate.
+piyoz-halqa — golden fried onion rings, stacked.
+tako — a taco with beef, lettuce, tomato and cheese in a folded corn shell.
+burrito — a burrito, wrapped tortilla cut in half showing beans and meat.
+nachos — nachos with melted cheese sauce over corn chips.
+qovurilgan-guruch — Chinese fried rice with egg, carrot and peas, in a small bowl.
+shirin-nordon-tovuq — sweet and sour chicken pieces in red-orange sauce with pineapple, in a bowl.
+falafel — four round golden-brown falafel balls, one cut open green inside.

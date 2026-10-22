@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+hasip — Uzbek hasip, a few thick slices of homemade rice-and-liver sausage, grey-brown with visible rice, on a small plate.
+unash — Uzbek unash, a noodle-bean soup in pale broth with a spoonful of yogurt and herbs, in a deep bowl.
+jigar-qovurma — fried lamb liver pieces with onion rings in a small cast-iron pan.
+mampar — Uzbek mampar, a soup with small torn pieces of dough, meat, potato and carrot in a red-brown broth, in a deep bowl.
+shivit-oshi — Uzbek shivit oshi, bright green dill noodles with a meaty vegetable sauce and a spoonful of yogurt, in a wide bowl.
+kok-chuchvara — green chuchvara, small herb-green dumplings with a yogurt dollop, in a shallow bowl.
+yupqa — Khorezm yupqa, a flat layered meat pie, golden, cut open to show a thin layered dough with meat inside, on a plate.
+goshtli-non — Uzbek meat-filled flatbread (gosht non), round golden-brown, one slice cut out showing the minced meat and onion filling.
+kartoshka-qovurdoq — kartoshkali qovurdoq, fried beef chunks with golden potato pieces and onion in a black cast-iron pan.
+baliq-qovurma — whole fried carp, golden-crispy, on an oval plate with lemon slices and onion rings.
+losos-steyk — grilled salmon steak, orange-pink with grill marks, with a lemon wedge, on a white plate.
+kabob-mol-qoy — two skewers of grilled lamb and beef cubes with charred edges, on a small plate with raw onion rings.
+qovurga-grill — grilled lamb ribs, a small rack of three ribs, glossy brown, on a wooden board with onion.
+sabzavot-shashlik — vegetable skewer with mushroom, bell pepper, zucchini and eggplant pieces, grilled, on a small plate.
+mol-gosht — boiled beef slices, lean pink-grey, arranged in a fan on a small plate with dill.
+qiyma — cooked minced meat, crumbly brown, in a small pile in a small white bowl.
+qoy-gosht — roasted lamb pieces on the bone, golden brown, on a plate.
+tovuq-kokrak — cooked sliced chicken breast, white-pink slices fanned out on a plate.
+tovuq-kokrak-grill — golden pan-fried chicken breast fillet with light char marks, on a plate.
+tovuq-qanot — a few glossy golden fried chicken wings on a plate.
+tovuq-boldir — two fried chicken drumsticks with crispy golden skin, on a plate.
+kurka — roasted turkey breast slices, pale golden, fanned out on a plate.
+ot-gosht — slices of cooked horse meat, dark red, on a small wooden board.
+jigar-mol — pan-fried beef liver slices, dark brown, on a plate with a few onion rings.
+jigar-tovuq — small fried chicken livers, glossy brown, in a small bowl.
+buyrak — cooked kidneys, dark brown bean-shaped pieces sliced, on a small plate.
+yurak — sliced cooked heart meat, deep red-brown cross-sections, on a small plate.
+tovuq-yurak — small cooked chicken hearts, glossy brown, in a small bowl.
+tovuq-oshqozon — cooked chicken gizzards, grey-brown, in a small bowl with a little broth.
+til — boiled beef tongue sliced thick, pinkish-grey with a rough edge, on a small plate.
+qorin — boiled tripe, pale yellow-white honeycomb strips, in a small bowl with broth.
+miya — cooked brains, pale pink-beige soft pieces, on a small plate with parsley.
+opka — cooked lung slices, pale pink-brown, on a small plate.
+mol-tosh — braised beef or veal pieces in a little dark gravy, in a small shallow bowl.
+echki — roasted goat meat pieces on the bone, brown, on a plate.
+quyon — roasted rabbit leg, golden-brown, on a plate.
+ordak — roasted duck pieces without skin, dark brown, on a plate.
+kotlet — a fried meat cutlet, golden-brown with a crisp crust, on a plate.
+tefteli — three round meatballs in a light tomato sauce, in a small bowl.
+steyk — a grilled beef steak with grill marks and a pink cut edge, on a plate.
+kolbasa — three slices of boiled sausage, pale pink, on a small plate.
+sosiska — two boiled sausages, pink-brown, on a small plate.

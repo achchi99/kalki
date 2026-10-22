@@ -1,0 +1,45 @@
+---
+Create ONE square image: a grid of 42 food icons, 6 columns × 7 rows, each icon with its slug written in small dark text below it. Style for every icon: soft 3D illustration (clay / matte 3D icon), not a photograph; one single dish centered at a 45-degree angle; plain solid background #F5F1EA with only a soft contact shadow under the dish; no other text, no logos, no hands, no people, no cutlery unless mentioned, no extra side dishes; warm, appetizing, natural colors; simple shapes; clean edges. Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Keep the icons in exactly this order:
+---
+shokolad-plitka — a milk chocolate bar with a few squares broken off and stacked.
+shokolad-oq — a white chocolate bar with a few squares broken off.
+shokolad-bodom — a milk chocolate bar with whole almonds visible, a square broken off.
+kinder-bueno — two wafer bars coated with chocolate, one cut to show hazelnut cream.
+nutella — a small glass jar of chocolate hazelnut spread with a knife-swirl in the open jar.
+chips — a handful of golden potato chips on a plate.
+chips-pringles — a stack of uniform saddle-shaped potato crisps.
+chips-nachos — corn tortilla chips, triangle, golden, in a small pile.
+pita-chips — baked pita chips, rectangular pieces, golden.
+popkorn — a bowl of fluffy white-yellow popcorn.
+popkorn-karamel — caramel popcorn, glossy amber pieces, in a bowl.
+kraker — a few square thin crackers, golden, on a small plate.
+krendel — three salted hard pretzels, brown with white salt crystals.
+pista — roasted sunflower seeds in shells, a small handful with a few husks.
+kungaboqar-yadro — a small pile of shelled sunflower seeds.
+pistachio — salted pistachios in half-open shells, in a small pile.
+keshyu — a handful of curved roasted cashew nuts.
+kedr — a small pile of small pine nuts.
+aralash-yongoq — mixed roasted nuts, peanuts, almonds and cashews, in a small bowl.
+yeryongoq — roasted peanuts in a small pile, a few in shells.
+makadamiya — a few round macadamia nuts, one cracked.
+pekan — a few pecan halves, brown with grooves.
+braziliya-yongogi — three large elongated Brazil nuts.
+kashtan — roasted chestnuts, a few brown with one peeled, in a small pile.
+yongoq-grek — a few walnut halves and one whole walnut in shell.
+bodom — a small pile of almonds, whole brown.
+funduk — a small pile of round hazelnuts with one cracked.
+yeryongoq-pasta — a small open jar of smooth peanut butter with a knife-swirl.
+kokos-qirindi — a small heap of white shredded coconut next to a coconut half.
+kozinak — a few rectangular sesame brittle bars, golden, stacked.
+holva-tahin — a thick slice of tahini halva with a flaky texture, beige.
+parvarda — Uzbek parvarda, small white hard candy sticks, in a small pile.
+pryanik — a round glazed gingerbread with a swirl of condensed milk filling.
+pechenye-oreo — two dark chocolate sandwich cookies with white cream, one twisted open.
+pechenye-qumli — round shortbread cookies, pale golden, two stacked.
+pechenye-suli — oat cookies with visible oat flakes, two stacked.
+pechenye-chip — cookies with chocolate chips, two stacked.
+pechenye-zanjabil — round ginger cookies with cracked top, brown.
+pechenye-anjir — a fig bar cut diagonally, showing fig filling.
+vafli-vanil — small round vanilla wafer cookies, pale gold, a few.
+choko-pie — two round chocolate-coated marshmallow cookies, one cut in half.
+barni — a small rectangular sponge cake with milk filling cut open.
