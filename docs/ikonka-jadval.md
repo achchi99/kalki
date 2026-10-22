@@ -56,48 +56,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `hasip` | milliy taomlar va Yeymiz | Hasip (`hasip`) |
-| 2 | `unash` | milliy taomlar va Yeymiz | Unash (`unash`) |
-| 3 | `jigar-qovurma` | milliy taomlar va Yeymiz | Jigar qovurma (`jigar-qovurma`) |
-| 4 | `mampar` | milliy taomlar va Yeymiz | Mampar (`mampar`) |
-| 5 | `shivit-oshi` | milliy taomlar va Yeymiz | Shivit oshi (`shivit-oshi`) |
-| 6 | `kok-chuchvara` | milliy taomlar va Yeymiz | Ko'k chuchvara (`kok-chuchvara`) |
-| 7 | `yupqa` | milliy taomlar va Yeymiz | Yupqa (`yupqa`) |
-| 8 | `goshtli-non` | milliy taomlar va Yeymiz | Go'shtli non (`goshtli-non`) |
-| 9 | `kartoshka-qovurdoq` | milliy taomlar va Yeymiz | Kartoshkali qovurdoq (`kartoshka-qovurma`) |
-| 10 | `baliq-qovurma` | milliy taomlar va Yeymiz | Qovurilgan sazan (`sazan-qovurma`), Qovurilgan sazan (choyxona) (`kafe-sazan-qovurma`) |
-| 11 | `losos-steyk` | milliy taomlar va Yeymiz | Losos steyk (restoran) (`kafe-losos-steyk`), Losos (pishgan) (`losos`) |
-| 12 | `kabob-mol-qoy` | milliy taomlar va Yeymiz | Qo'y/mol kabob (choyxona) (`kafe-kabob`), Qo'y go'shti (kabobga, yog'siz, pishgan) (`qoy-kabob-bolak`) |
-| 13 | `qovurga-grill` | milliy taomlar va Yeymiz | Qo'zi qovurg'a grilda (choyxona) (`kafe-qovurga`) |
-| 14 | `sabzavot-shashlik` | milliy taomlar va Yeymiz | Sabzavot shashlik (qo'ziqorin, baqlajon, qalampir) (`kafe-sabzavot-shashlik`) |
-| 15 | `mol-gosht` | go'sht, ichki a'zolar, baliq | Mol go'shti (pishgan) (`mol-gosht`), Mol go'shti (qaynatilgan, yog'siz) (`mol-qaynatilgan`) |
-| 16 | `qiyma` | go'sht, ichki a'zolar, baliq | Qiyma (mol, pishgan) (`mol-qiyma`), Buzoq qiymasi (qovurilgan) (`buzoq-qiyma`), Qo'y qiymasi (pishgan) (`qoy-qiyma`), Kurka qiymasi (pishgan) (`kurka-qiyma`) |
-| 17 | `qoy-gosht` | go'sht, ichki a'zolar, baliq | Qo'y go'shti (pishgan) (`qoy-gosht`), Qo'y go'shti (son, qovurilgan/duxovka) (`qoy-son`), Qo'y go'shti (yog'siz, dimlangan) (`qoy-yogsiz-dim`) |
-| 18 | `tovuq-kokrak` | go'sht, ichki a'zolar, baliq | Tovuq ko'kragi (pishgan) (`tovuq-kokrak`), Tovuq go'shti (qaynatilgan, terisiz) (`tovuq-qaynatilgan`) |
-| 19 | `tovuq-kokrak-grill` | go'sht, ichki a'zolar, baliq | Tovuq ko'kragi (qovurilgan) (`tovuq-kokrak-qov`), Tovuq ko'kragi (duxovkada) (`tovuq-kokrak-duxovka`) |
-| 20 | `tovuq-qanot` | go'sht, ichki a'zolar, baliq | Tovuq qanotchalari (qovurilgan) (`tovuq-qanot`), Tovuq qanoti (qovurilgan) (`tovuq-qanot-qov`) |
-| 21 | `tovuq-boldir` | go'sht, ichki a'zolar, baliq | Tovuq boldiri (qovurilgan, terili) (`tovuq-boldir-qov`) |
-| 22 | `kurka` | go'sht, ichki a'zolar, baliq | Kurka go'shti (pishgan) (`kurka`), Kurka ko'kragi (pishgan) (`kurka-kokrak`) |
-| 23 | `ot-gosht` | go'sht, ichki a'zolar, baliq | Ot go'shti (pishgan) (`ot-gosht`) |
-| 24 | `jigar-mol` | go'sht, ichki a'zolar, baliq | Jigar (mol, pishgan) (`jigar`), Mol jigari (qovurilgan) (`mol-jigar-qov`), Mol jigari (dimlangan) (`mol-jigar-dim`), Qo'y jigari (qovurilgan) (`qoy-jigar-qov`) |
-| 25 | `jigar-tovuq` | go'sht, ichki a'zolar, baliq | Tovuq jigari (pishgan) (`tovuq-jigar`), Tovuq jigari (qovurilgan) (`tovuq-jigar-qov`) |
-| 26 | `buyrak` | go'sht, ichki a'zolar, baliq | Mol buyragi (pishgan) (`mol-buyrak`), Qo'y buyragi (pishgan) (`qoy-buyrak`) |
-| 27 | `yurak` | go'sht, ichki a'zolar, baliq | Mol yuragi (pishgan) (`mol-yurak`), Qo'y yuragi (pishgan) (`qoy-yurak`) |
-| 28 | `tovuq-yurak` | go'sht, ichki a'zolar, baliq | Tovuq yuragi (pishgan) (`tovuq-yurak`) |
-| 29 | `tovuq-oshqozon` | go'sht, ichki a'zolar, baliq | Tovuq oshqozoni (pishgan) (`tovuq-oshqozon`) |
-| 30 | `til` | go'sht, ichki a'zolar, baliq | Mol tili (qaynatilgan) (`mol-til`), Qo'y tili (pishgan) (`qoy-til`) |
-| 31 | `qorin` | go'sht, ichki a'zolar, baliq | Qorin (mol, qaynatilgan) (`qorin`) |
-| 32 | `miya` | go'sht, ichki a'zolar, baliq | Qo'y miyasi (pishgan) (`qoy-miya`), Mol miyasi (qaynatilgan) (`mol-miya`) |
-| 33 | `opka` | go'sht, ichki a'zolar, baliq | Qo'y o'pkasi (pishgan) (`qoy-opka`) |
-| 34 | `mol-tosh` | go'sht, ichki a'zolar, baliq | Mol go'shti (to'sh, dimlangan) (`mol-tosh`), Buzoq go'shti (dimlangan) (`buzoq`), Qo'y go'shti (kurak, dimlangan) (`qoy-kurak`) |
-| 35 | `echki` | go'sht, ichki a'zolar, baliq | Echki go'shti (pishgan) (`echki`) |
-| 36 | `quyon` | go'sht, ichki a'zolar, baliq | Quyon go'shti (pishgan) (`quyon`) |
-| 37 | `ordak` | go'sht, ichki a'zolar, baliq | O'rdak go'shti (terisiz, pishgan) (`ordak`) |
-| 38 | `kotlet` | go'sht, ichki a'zolar, baliq | Kotlet (go'shtli, qovurilgan) (`kotlet`), Mol go'shti kotleti (grill) (`mol-kotlet-grill`) |
-| 39 | `tefteli` | go'sht, ichki a'zolar, baliq | Tefteli (go'shtli kotletchalar) (`tefteli`) |
-| 40 | `steyk` | go'sht, ichki a'zolar, baliq | Steyk (mol go'shti) (`steyk`) |
-| 41 | `kolbasa` | go'sht, ichki a'zolar, baliq | Kolbasa (qaynatilgan) (`kolbasa`) |
-| 42 | `sosiska` | go'sht, ichki a'zolar, baliq | Sosiska (`sosiska`) |
+| 1 | `hasip` ✅ | milliy taomlar va Yeymiz | Hasip (`hasip`) |
+| 2 | `unash` ✅ | milliy taomlar va Yeymiz | Unash (`unash`) |
+| 3 | `jigar-qovurma` ✅ | milliy taomlar va Yeymiz | Jigar qovurma (`jigar-qovurma`) |
+| 4 | `mampar` ✅ | milliy taomlar va Yeymiz | Mampar (`mampar`) |
+| 5 | `shivit-oshi` ✅ | milliy taomlar va Yeymiz | Shivit oshi (`shivit-oshi`) |
+| 6 | `kok-chuchvara` ✅ | milliy taomlar va Yeymiz | Ko'k chuchvara (`kok-chuchvara`) |
+| 7 | `yupqa` ✅ | milliy taomlar va Yeymiz | Yupqa (`yupqa`) |
+| 8 | `goshtli-non` ✅ | milliy taomlar va Yeymiz | Go'shtli non (`goshtli-non`) |
+| 9 | `kartoshka-qovurdoq` ✅ | milliy taomlar va Yeymiz | Kartoshkali qovurdoq (`kartoshka-qovurma`) |
+| 10 | `baliq-qovurma` ✅ | milliy taomlar va Yeymiz | Qovurilgan sazan (`sazan-qovurma`), Qovurilgan sazan (choyxona) (`kafe-sazan-qovurma`) |
+| 11 | `losos-steyk` ✅ | milliy taomlar va Yeymiz | Losos steyk (restoran) (`kafe-losos-steyk`), Losos (pishgan) (`losos`) |
+| 12 | `kabob-mol-qoy` ✅ | milliy taomlar va Yeymiz | Qo'y/mol kabob (choyxona) (`kafe-kabob`), Qo'y go'shti (kabobga, yog'siz, pishgan) (`qoy-kabob-bolak`) |
+| 13 | `qovurga-grill` ✅ | milliy taomlar va Yeymiz | Qo'zi qovurg'a grilda (choyxona) (`kafe-qovurga`) |
+| 14 | `sabzavot-shashlik` ✅ | milliy taomlar va Yeymiz | Sabzavot shashlik (qo'ziqorin, baqlajon, qalampir) (`kafe-sabzavot-shashlik`) |
+| 15 | `mol-gosht` ✅ | go'sht, ichki a'zolar, baliq | Mol go'shti (pishgan) (`mol-gosht`), Mol go'shti (qaynatilgan, yog'siz) (`mol-qaynatilgan`) |
+| 16 | `qiyma` ✅ | go'sht, ichki a'zolar, baliq | Qiyma (mol, pishgan) (`mol-qiyma`), Buzoq qiymasi (qovurilgan) (`buzoq-qiyma`), Qo'y qiymasi (pishgan) (`qoy-qiyma`), Kurka qiymasi (pishgan) (`kurka-qiyma`) |
+| 17 | `qoy-gosht` ✅ | go'sht, ichki a'zolar, baliq | Qo'y go'shti (pishgan) (`qoy-gosht`), Qo'y go'shti (son, qovurilgan/duxovka) (`qoy-son`), Qo'y go'shti (yog'siz, dimlangan) (`qoy-yogsiz-dim`) |
+| 18 | `tovuq-kokrak` ✅ | go'sht, ichki a'zolar, baliq | Tovuq ko'kragi (pishgan) (`tovuq-kokrak`), Tovuq go'shti (qaynatilgan, terisiz) (`tovuq-qaynatilgan`) |
+| 19 | `tovuq-kokrak-grill` ✅ | go'sht, ichki a'zolar, baliq | Tovuq ko'kragi (qovurilgan) (`tovuq-kokrak-qov`), Tovuq ko'kragi (duxovkada) (`tovuq-kokrak-duxovka`) |
+| 20 | `tovuq-qanot` ✅ | go'sht, ichki a'zolar, baliq | Tovuq qanotchalari (qovurilgan) (`tovuq-qanot`), Tovuq qanoti (qovurilgan) (`tovuq-qanot-qov`) |
+| 21 | `tovuq-boldir` ✅ | go'sht, ichki a'zolar, baliq | Tovuq boldiri (qovurilgan, terili) (`tovuq-boldir-qov`) |
+| 22 | `kurka` ✅ | go'sht, ichki a'zolar, baliq | Kurka go'shti (pishgan) (`kurka`), Kurka ko'kragi (pishgan) (`kurka-kokrak`) |
+| 23 | `ot-gosht` ✅ | go'sht, ichki a'zolar, baliq | Ot go'shti (pishgan) (`ot-gosht`) |
+| 24 | `jigar-mol` ✅ | go'sht, ichki a'zolar, baliq | Jigar (mol, pishgan) (`jigar`), Mol jigari (qovurilgan) (`mol-jigar-qov`), Mol jigari (dimlangan) (`mol-jigar-dim`), Qo'y jigari (qovurilgan) (`qoy-jigar-qov`) |
+| 25 | `jigar-tovuq` ✅ | go'sht, ichki a'zolar, baliq | Tovuq jigari (pishgan) (`tovuq-jigar`), Tovuq jigari (qovurilgan) (`tovuq-jigar-qov`) |
+| 26 | `buyrak` ✅ | go'sht, ichki a'zolar, baliq | Mol buyragi (pishgan) (`mol-buyrak`), Qo'y buyragi (pishgan) (`qoy-buyrak`) |
+| 27 | `yurak` ✅ | go'sht, ichki a'zolar, baliq | Mol yuragi (pishgan) (`mol-yurak`), Qo'y yuragi (pishgan) (`qoy-yurak`) |
+| 28 | `tovuq-yurak` ✅ | go'sht, ichki a'zolar, baliq | Tovuq yuragi (pishgan) (`tovuq-yurak`) |
+| 29 | `tovuq-oshqozon` ✅ | go'sht, ichki a'zolar, baliq | Tovuq oshqozoni (pishgan) (`tovuq-oshqozon`) |
+| 30 | `til` ✅ | go'sht, ichki a'zolar, baliq | Mol tili (qaynatilgan) (`mol-til`), Qo'y tili (pishgan) (`qoy-til`) |
+| 31 | `qorin` ✅ | go'sht, ichki a'zolar, baliq | Qorin (mol, qaynatilgan) (`qorin`) |
+| 32 | `miya` ✅ | go'sht, ichki a'zolar, baliq | Qo'y miyasi (pishgan) (`qoy-miya`), Mol miyasi (qaynatilgan) (`mol-miya`) |
+| 33 | `opka` ✅ | go'sht, ichki a'zolar, baliq | Qo'y o'pkasi (pishgan) (`qoy-opka`) |
+| 34 | `mol-tosh` ✅ | go'sht, ichki a'zolar, baliq | Mol go'shti (to'sh, dimlangan) (`mol-tosh`), Buzoq go'shti (dimlangan) (`buzoq`), Qo'y go'shti (kurak, dimlangan) (`qoy-kurak`) |
+| 35 | `echki` ✅ | go'sht, ichki a'zolar, baliq | Echki go'shti (pishgan) (`echki`) |
+| 36 | `quyon` ✅ | go'sht, ichki a'zolar, baliq | Quyon go'shti (pishgan) (`quyon`) |
+| 37 | `ordak` ✅ | go'sht, ichki a'zolar, baliq | O'rdak go'shti (terisiz, pishgan) (`ordak`) |
+| 38 | `kotlet` ✅ | go'sht, ichki a'zolar, baliq | Kotlet (go'shtli, qovurilgan) (`kotlet`), Mol go'shti kotleti (grill) (`mol-kotlet-grill`) |
+| 39 | `tefteli` ✅ | go'sht, ichki a'zolar, baliq | Tefteli (go'shtli kotletchalar) (`tefteli`) |
+| 40 | `steyk` ✅ | go'sht, ichki a'zolar, baliq | Steyk (mol go'shti) (`steyk`) |
+| 41 | `kolbasa` ✅ | go'sht, ichki a'zolar, baliq | Kolbasa (qaynatilgan) (`kolbasa`) |
+| 42 | `sosiska` ✅ | go'sht, ichki a'zolar, baliq | Sosiska (`sosiska`) |
 
 ## To'plam 3 (42)
 
