@@ -672,3 +672,4 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .sl-mnd{margin:2px 0 8px}
 .sl-mnp{font-weight:700;color:var(--ink)}
 .sl-hw .rz-p{margin:0 0 6px}
+.sl-hwL{margin:0 0 12px;font-size:var(--t-s);color:var(--mut);line-height:1.4}

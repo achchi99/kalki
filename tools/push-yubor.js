@@ -70,7 +70,7 @@ async function main(argv, deps) {
   }
   const natija = { vaqt: new Date(now).toISOString(), hafta: hf.id, tur: xul ? 'xulosa' : 'baliq', yuborildi: ok, xato: xato, ochirildi: ochirildi, test: !!(test || one) };
   if (!dry && ok > 0 && !(test || one)) { try { await q("INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, 'push_yuborildi', ?, 'veb', ?) ON CONFLICT(kun, hodisa, kalit, platforma) DO UPDATE SET son = son + excluded.son", [new Date(now + TZ_MS).toISOString().slice(0, 10), xul ? 'hafta' : '', ok]); } catch (e) {} }          // anonim statistika (admin «Statistika»): faqat son
-  if (!dry) { try { await q("INSERT INTO push_holat (kalit, qiymat, yangilangan) VALUES (?, ?, ?) ON CONFLICT(kalit) DO UPDATE SET qiymat = excluded.qiymat, yangilangan = excluded.yangilangan", [xul ? 'oxirgi_xulosa' : 'oxirgi', JSON.stringify(natija), now]); } catch (e) { console.log('holat yozilmadi'); } }
+  if (!dry) { try { await q("INSERT INTO push_holat (kalit, qiymat, yangilangan) VALUES ('" + (xul ? 'oxirgi_xulosa' : 'oxirgi') + "', ?, ?) ON CONFLICT(kalit) DO UPDATE SET qiymat = excluded.qiymat, yangilangan = excluded.yangilangan", [JSON.stringify(natija), now]); } catch (e) { console.log('holat yozilmadi'); } }
   console.log(JSON.stringify(natija)); return natija;
 }
 if (require.main === module) main(process.argv.slice(2)).catch((e) => { console.error('XATO:', e.message); process.exit(1); });

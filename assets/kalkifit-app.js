@@ -1814,7 +1814,7 @@
   function hwResched() { if (!NAT || NS.perm !== 'granted') return; if (!hwOn()) { NAT.notif.disable(HW_ID); return; } NAT.notif.schedule(hwOpts()).catch(function () {}); }          // standart: yoqilgan (bildirishnoma ruxsati bo'lsa)
   function hwRowHtml() {
     var on = hwOn();
-    return '<div id="hwRow">' + infoTitle('📊 ' + T('hwN'), T('hwNH')) + segHtml(T('hwN'), [{ attrs: 'data-act="hwtog" data-v="1"', on: on, text: T('hwOn') }, { attrs: 'data-act="hwtog" data-v="0"', on: !on, text: T('hwOff') }]) + '</div>';
+    return '<div id="hwRow"><div class="sl-sti"><h3 class="sl-bkT"><span aria-hidden="true">📊</span>' + esc(T('hwN')) + '</h3><button type="button" class="sl-infob" data-act="ibtog" aria-expanded="false" aria-label="ⓘ ' + esc(T('hwN')) + '">i</button></div><p class="sl-hwL sl-ibx" hidden>' + esc(T('hwNH')) + '</p>' + segHtml(T('hwN'), [{ attrs: 'data-act="hwtog" data-v="1"', on: on, text: T('hwOn') }, { attrs: 'data-act="hwtog" data-v="0"', on: !on, text: T('hwOff') }]) + '</div>';
   }
   function hwToggle(v) {
     prefs().hafta = v; commit();
