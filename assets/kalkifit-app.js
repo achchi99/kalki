@@ -1778,9 +1778,9 @@
   function kcShare() {                                // APK: Capacitor Filesystem + Share; veb: Web Share (fayl bilan), bo'lmasa — yuklab olish
     kcPaint(function (cv) {
       cv.toBlob(function (b) {
-        if (!b) return; stEv('kun_kartochka_ulashildi'); var C = window.Capacitor, P = C && C.Plugins;
-        if (isNativeApp() && P && P.Share && P.Filesystem) {
-          var r = new FileReader(); r.onload = function () { var b64 = String(r.result).split(',')[1] || ''; P.Filesystem.writeFile({ path: 'kalkifit-kun.png', data: b64, directory: 'CACHE' }).then(function (w) { return P.Share.share({ files: [w.uri], title: 'KalkiFit' }); }).catch(function () { kcDownload(b); }); }; r.readAsDataURL(b); return;
+        if (!b) return; stEv('kun_kartochka_ulashildi'); var N = window.KalkiNative;          // APK sahifasida @capacitor/* JS yo'q — native-bridge (KalkiNative.call)
+        if (isNativeApp() && N && N.has('Share') && N.has('Filesystem')) {
+          var r = new FileReader(); r.onload = function () { var b64 = String(r.result).split(',')[1] || ''; N.call('Filesystem', 'writeFile', { path: 'kalkifit-kun.png', data: b64, directory: 'CACHE' }).then(function (w) { return N.call('Share', 'share', { files: [w.uri], title: 'KalkiFit' }); }).catch(function () { kcDownload(b); }); }; r.readAsDataURL(b); return;
         }
         var f; try { f = new File([b], 'kalkifit-kun.png', { type: 'image/png' }); } catch (e) { f = null; }
         if (f && navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'KalkiFit' }).catch(function () {}); return; }
