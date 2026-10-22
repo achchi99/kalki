@@ -197,48 +197,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `shokolad-plitka` | v20 yangilari (sport, shokolad, gazaklar) | Alpen Gold (sutli shokolad, fundukli) (`alpen-gold`), Milka (sutli shokolad) (`milka`), Shokolad (`shokolad-sut`), Shokolad (shirin, qora) (`shokolad-shirin`), Kinder Chocolate (`kinder-shokolad`) |
-| 2 | `shokolad-oq` | v20 yangilari (sport, shokolad, gazaklar) | Oq shokolad (`shokolad-oq`) |
-| 3 | `shokolad-bodom` | v20 yangilari (sport, shokolad, gazaklar) | Sutli shokolad (bodomli) (`shokolad-bodom`) |
-| 4 | `kinder-bueno` | v20 yangilari (sport, shokolad, gazaklar) | Kinder Bueno (`kinder-bueno`) |
-| 5 | `nutella` | v20 yangilari (sport, shokolad, gazaklar) | Shokoladli pasta (`nutella`) |
-| 6 | `chips` | v20 yangilari (sport, shokolad, gazaklar) | Chips (kartoshka) (`chips`), Lay's (klassik, tuzli) (`lays`) |
-| 7 | `chips-pringles` | v20 yangilari (sport, shokolad, gazaklar) | Pringles (original) (`pringles`) |
-| 8 | `chips-nachos` | v20 yangilari (sport, shokolad, gazaklar) | Makkajo'xori chipslari (nachos) (`chips-nachos`) |
-| 9 | `pita-chips` | v20 yangilari (sport, shokolad, gazaklar) | Pita chipslari (`pita-chips`) |
-| 10 | `popkorn` | v20 yangilari (sport, shokolad, gazaklar) | Popkorn (`popkorn`), Popkorn (sariyog'li, mikroto'lqinli) (`popkorn-sariyog`), Popkorn (yog'siz, havoda) (`popkorn-yogsiz`) |
-| 11 | `popkorn-karamel` | v20 yangilari (sport, shokolad, gazaklar) | Popkorn (karamelli) (`popkorn-karamel`) |
-| 12 | `kraker` | v20 yangilari (sport, shokolad, gazaklar) | Kraker (`kraker`) |
-| 13 | `krendel` | v20 yangilari (sport, shokolad, gazaklar) | Krendel (tuzli, qattiq) (`krendel`) |
-| 14 | `pista` | v20 yangilari (sport, shokolad, gazaklar) | Pista (kungaboqar, qovurilgan, tuzli) (`pista-qovurilgan`), Kungaboqar urug'i (`kungaboqar`) |
-| 15 | `kungaboqar-yadro` | v20 yangilari (sport, shokolad, gazaklar) | Kunjut (`kunjut`), Qovoq urug'i (`qovoq-urugi`) |
-| 16 | `pistachio` | v20 yangilari (sport, shokolad, gazaklar) | Pista (`pista`), Pista (fistashka, qovurilgan, tuzli) (`pista-pistachio-tuzli`) |
-| 17 | `keshyu` | v20 yangilari (sport, shokolad, gazaklar) | Keshyu (qovurilgan, tuzli) (`keshyu`) |
-| 18 | `kedr` | v20 yangilari (sport, shokolad, gazaklar) | Kedr yong'og'i (`kedr-yongogi`) |
-| 19 | `aralash-yongoq` | v20 yangilari (sport, shokolad, gazaklar) | Aralash yong'oqlar (qovurilgan, tuzli) (`aralash-yongoq`), Yong'oq va quruq meva aralashmasi (`yongoq-mevali-aralash`) |
-| 20 | `yeryongoq` | v20 yangilari (sport, shokolad, gazaklar) | Yerfistiq (qovurilgan) (`yerfistiq`), Yeryong'oq (qovurilgan, tuzli) (`yerfistiq-tuzli`) |
-| 21 | `makadamiya` | v20 yangilari (sport, shokolad, gazaklar) | Makadamiya (`makadamiya`) |
-| 22 | `pekan` | v20 yangilari (sport, shokolad, gazaklar) | Pekan yong'og'i (`pekan`) |
-| 23 | `braziliya-yongogi` | v20 yangilari (sport, shokolad, gazaklar) | Braziliya yong'og'i (`braziliya-yongogi`) |
-| 24 | `kashtan` | v20 yangilari (sport, shokolad, gazaklar) | Kashtan (qovurilgan) (`kashtan`) |
-| 25 | `yongoq-grek` | v20 yangilari (sport, shokolad, gazaklar) | Yong'oq (grek) (`yongoq`) |
-| 26 | `bodom` | v20 yangilari (sport, shokolad, gazaklar) | Bodom (`bodom`), Bodom (qovurilgan, tuzli) (`bodom-qovurilgan`) |
-| 27 | `funduk` | v20 yangilari (sport, shokolad, gazaklar) | Funduk (`funduk`), Funduk (qovurilgan) (`funduk-qovurilgan`) |
-| 28 | `yeryongoq-pasta` | v20 yangilari (sport, shokolad, gazaklar) | Yeryong'oq pastasi (`yeryongoq-pasta`) |
-| 29 | `kokos-qirindi` | v20 yangilari (sport, shokolad, gazaklar) | Kokos qirindisi (`kokos-qirindi`) |
-| 30 | `kozinak` | v20 yangilari (sport, shokolad, gazaklar) | Kozinak (kunjutli) (`kozinak`) |
-| 31 | `holva-tahin` | v20 yangilari (sport, shokolad, gazaklar) | Holva (kunjutli, tahin) (`holva-kunjut`), Xalva (kungaboqarli) (`xalva`) |
+| 1 | `shokolad-plitka` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Alpen Gold (sutli shokolad, fundukli) (`alpen-gold`), Milka (sutli shokolad) (`milka`), Shokolad (`shokolad-sut`), Shokolad (shirin, qora) (`shokolad-shirin`), Kinder Chocolate (`kinder-shokolad`) |
+| 2 | `shokolad-oq` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Oq shokolad (`shokolad-oq`) |
+| 3 | `shokolad-bodom` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Sutli shokolad (bodomli) (`shokolad-bodom`) |
+| 4 | `kinder-bueno` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kinder Bueno (`kinder-bueno`) |
+| 5 | `nutella` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Shokoladli pasta (`nutella`) |
+| 6 | `chips` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Chips (kartoshka) (`chips`), Lay's (klassik, tuzli) (`lays`) |
+| 7 | `chips-pringles` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pringles (original) (`pringles`) |
+| 8 | `chips-nachos` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Makkajo'xori chipslari (nachos) (`chips-nachos`) |
+| 9 | `pita-chips` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pita chipslari (`pita-chips`) |
+| 10 | `popkorn` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Popkorn (`popkorn`), Popkorn (sariyog'li, mikroto'lqinli) (`popkorn-sariyog`), Popkorn (yog'siz, havoda) (`popkorn-yogsiz`) |
+| 11 | `popkorn-karamel` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Popkorn (karamelli) (`popkorn-karamel`) |
+| 12 | `kraker` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kraker (`kraker`) |
+| 13 | `krendel` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Krendel (tuzli, qattiq) (`krendel`) |
+| 14 | `pista` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pista (kungaboqar, qovurilgan, tuzli) (`pista-qovurilgan`), Kungaboqar urug'i (`kungaboqar`) |
+| 15 | `kungaboqar-yadro` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kunjut (`kunjut`), Qovoq urug'i (`qovoq-urugi`) |
+| 16 | `pistachio` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pista (`pista`), Pista (fistashka, qovurilgan, tuzli) (`pista-pistachio-tuzli`) |
+| 17 | `keshyu` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Keshyu (qovurilgan, tuzli) (`keshyu`) |
+| 18 | `kedr` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kedr yong'og'i (`kedr-yongogi`) |
+| 19 | `aralash-yongoq` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Aralash yong'oqlar (qovurilgan, tuzli) (`aralash-yongoq`), Yong'oq va quruq meva aralashmasi (`yongoq-mevali-aralash`) |
+| 20 | `yeryongoq` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Yerfistiq (qovurilgan) (`yerfistiq`), Yeryong'oq (qovurilgan, tuzli) (`yerfistiq-tuzli`) |
+| 21 | `makadamiya` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Makadamiya (`makadamiya`) |
+| 22 | `pekan` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pekan yong'og'i (`pekan`) |
+| 23 | `braziliya-yongogi` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Braziliya yong'og'i (`braziliya-yongogi`) |
+| 24 | `kashtan` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kashtan (qovurilgan) (`kashtan`) |
+| 25 | `yongoq-grek` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Yong'oq (grek) (`yongoq`) |
+| 26 | `bodom` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Bodom (`bodom`), Bodom (qovurilgan, tuzli) (`bodom-qovurilgan`) |
+| 27 | `funduk` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Funduk (`funduk`), Funduk (qovurilgan) (`funduk-qovurilgan`) |
+| 28 | `yeryongoq-pasta` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Yeryong'oq pastasi (`yeryongoq-pasta`) |
+| 29 | `kokos-qirindi` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kokos qirindisi (`kokos-qirindi`) |
+| 30 | `kozinak` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kozinak (kunjutli) (`kozinak`) |
+| 31 | `holva-tahin` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Holva (kunjutli, tahin) (`holva-kunjut`), Xalva (kungaboqarli) (`xalva`) |
 | 32 | `parvarda` | v20 yangilari (sport, shokolad, gazaklar) | Parvarda (`parvarda`) |
-| 33 | `pryanik` | v20 yangilari (sport, shokolad, gazaklar) | Pryanik (sgushenka bilan) (`pryanik`) |
+| 33 | `pryanik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pryanik (sgushenka bilan) (`pryanik`) |
 | 34 | `pechenye-oreo` | v20 yangilari (sport, shokolad, gazaklar) | Oreo (kremli shokolad pechenye) (`pechenye-oreo`) |
-| 35 | `pechenye-qumli` | v20 yangilari (sport, shokolad, gazaklar) | Qumli pechenye (sariyog'li) (`pechenye-qumli`), Sariyog'li pechenye (`pechenye-sariyog`), Pechenye (oddiy) (`pechenye`) |
-| 36 | `pechenye-suli` | v20 yangilari (sport, shokolad, gazaklar) | Suli pechenye (`pechenye-suli`) |
-| 37 | `pechenye-chip` | v20 yangilari (sport, shokolad, gazaklar) | Shokolad bo'lakli pechenye (`pechenye-shokolad`) |
-| 38 | `pechenye-zanjabil` | v20 yangilari (sport, shokolad, gazaklar) | Zanjabilli pechenye (`pechenye-zanjabil`) |
-| 39 | `pechenye-anjir` | v20 yangilari (sport, shokolad, gazaklar) | Anjirli pechenye (`pechenye-anjir`) |
-| 40 | `vafli-vanil` | v20 yangilari (sport, shokolad, gazaklar) | Vanilli vafli pechenye (`vafli-vanil`) |
-| 41 | `choko-pie` | v20 yangilari (sport, shokolad, gazaklar) | Choco Pie (zefirli shokolad pechenye) (`choko-pie`) |
-| 42 | `barni` | v20 yangilari (sport, shokolad, gazaklar) | Barni (sutli pirojnoe) (`barni`) |
+| 35 | `pechenye-qumli` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Qumli pechenye (sariyog'li) (`pechenye-qumli`), Sariyog'li pechenye (`pechenye-sariyog`), Pechenye (oddiy) (`pechenye`) |
+| 36 | `pechenye-suli` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Suli pechenye (`pechenye-suli`) |
+| 37 | `pechenye-chip` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Shokolad bo'lakli pechenye (`pechenye-shokolad`) |
+| 38 | `pechenye-zanjabil` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Zanjabilli pechenye (`pechenye-zanjabil`) |
+| 39 | `pechenye-anjir` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Anjirli pechenye (`pechenye-anjir`) |
+| 40 | `vafli-vanil` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Vanilli vafli pechenye (`vafli-vanil`) |
+| 41 | `choko-pie` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Choco Pie (zefirli shokolad pechenye) (`choko-pie`) |
+| 42 | `barni` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Barni (sutli pirojnoe) (`barni`) |
 
 ## To'plam 6 (42)
 
