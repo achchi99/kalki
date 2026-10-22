@@ -1,9 +1,9 @@
 /* kalki.uz — "KalkiFit" ilovasi uchun AI: erkin matn ("1 kosa osh, 2 somsa") → ovqat ro'yxati (taxminiy kkal va makro).
  * ariza.js infratuzilmasi: Origin tekshiruvi, kunlik limit (KV), model so'rovi. Ilova avval LOKAL baza bilan moslashtiradi — bu endpoint faqat topilmaganini taxmin qiladi.
  * Yuboriladigan narsa FAQAT ovqat matni (profil, vazn, tarix YO'Q); hech narsa saqlanmaydi — natijani foydalanuvchi ko'rib o'zi tasdiqlaydi.
- * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id } → { ovqatlar: [{ nom, porsiya, kcal, o, y, u }] } | { xato } */
+ * POST { matn, til: 'uz'|'ru'|'kirill', mijoz_id, manba?: 'ovoz', platforma? } → { ovqatlar: [{ nom, porsiya, kcal, o, y, u }] } | { xato }   (manba 'ovoz' — umumiy AI limit) */
 import { originOk, maskPII, askModel, json, num, UUID_RE } from './ariza.js';
-import { takeKfQuota } from './kalkifit-quota.js';
+import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
 import S from '../../assets/kalkifit-core.js';
 
 const DEFAULT_CLIENT_LIMIT = 30, DEFAULT_SITE_LIMIT = 3000;   // KALKIFIT_CLIENT_LIMIT, KALKIFIT_SITE_LIMIT (kuniga) — env bilan sozlanadi
@@ -65,12 +65,13 @@ export async function onRequest({ request, env }) {
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
   const cl = num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT);
-  let sabab; try { sabab = await takeKfQuota(env, request, clientId, { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
+  const ovoz = body.manba === 'ovoz', al = aiLimits(env, body), out = {};          // ovozli kiritish: rasm/retsept/menyu bilan UMUMIY kunlik AI hisobi ('ai'; Android 2, veb 5) — faqat AI chaqirilganda (hammasi bazada bo'lsa sanalmaydi)
+  let sabab; try { sabab = await takeKfQuota(env, request, clientId, ovoz ? { ns: 'tx', uns: 'ai', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: al.client, ip: al.ip, out } : { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
+  if (sabab) return json(429, ovoz ? { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(al.client), sabab, limit: al.client, qoldi: 0 } : { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askModel(env, maskPII(matn2), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
     if (r.err) continue;
-    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: lokal.concat(sanitize(list)).slice(0, 8) });
+    const list = extractJson(r.text); if (list) return json(200, ovoz ? { ovqatlar: lokal.concat(sanitize(list)).slice(0, 8), limit: al.client, qoldi: out.qoldi } : { ovqatlar: lokal.concat(sanitize(list)).slice(0, 8) });
   }
   return fail(502);
 }

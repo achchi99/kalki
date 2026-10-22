@@ -146,6 +146,10 @@
   function isCyr() { return document.documentElement.getAttribute('data-script') === 'cyr'; }
   Object.assign(D.uz, { updT: 'Yangi versiya tayyor', updGo: 'Yangilash', updLater: 'Keyinroq', moreWays: 'Boshqa usullar', sMine: "Mening ma'lumotlarim", pFoot: "Ma'lumot faqat shu qurilmada. Tibbiy maslahat emas.", sRem: 'Eslatmalar', sLangT: "Til va ko'rinish", profBackup: "Ma'lumotlarni saqlash", sHow: 'Qanday ishlaydi?', hEmpty: "Birinchi ovqatni qo'shing", aTabS: 'Qidirish', aTabM: 'Taomlarim', aTabT: 'Odatdagi', aTabV: 'Idishlar', aTabs: "Ovqat qo'shish bo'limlari", fuT: 'Foydali' });
   Object.assign(D.ru, { updT: 'Готова новая версия', updGo: 'Обновить', updLater: 'Позже', moreWays: 'Другие способы', sMine: 'Мои данные', pFoot: 'Данные только на этом устройстве. Не медицинский совет.', sRem: 'Напоминания', sLangT: 'Язык и вид', profBackup: 'Сохранение данных', sHow: 'Как это работает?', hEmpty: 'Добавьте первую еду', aTabS: 'Поиск', aTabM: 'Мои блюда', aTabT: 'Привычные', aTabV: 'Посуда', aTabs: 'Разделы «Добавить еду»', fuT: 'Полезное' });
+  Object.assign(D.uz, { vMic: "Ovoz bilan qo'shish", vT: "Ovoz bilan qo'shish", vListen: 'Gapiring… Masalan: «bir piyola osh, ikki tilim non va choy»', vStop: "To'xtatish", vPriv: 'Ovoz saqlanmaydi: telefoningiz uni matnga aylantiradi, ilova faqat matnni oladi.', vAgain: 'Qayta gapirish', vText: 'Matn bilan yozish',
+    vErr_ruxsat: 'Mikrofonga ruxsat berilmadi. Telefon sozlamalarida mikrofonni yoqing yoki matn bilan yozing.', vErr_jim: "Hech narsa eshitilmadi. Yana bir bor urinib ko'ring.", vErr_tarmoq: 'Ovozni tanish uchun internet kerak.', vErr_yoq: 'Bu qurilmada ovozni tanish ishlamayapti — matn bilan yozing.', vErr_xato: "Ovozni tanib bo'lmadi. Yana urinib ko'ring." });
+  Object.assign(D.ru, { vMic: 'Добавить голосом', vT: 'Добавить голосом', vListen: 'Говорите… Например: «тарелка плова, два куска хлеба и чай»', vStop: 'Остановить', vPriv: 'Голос не сохраняется: телефон превращает его в текст, приложение получает только текст.', vAgain: 'Сказать ещё раз', vText: 'Написать текстом',
+    vErr_ruxsat: 'Нет доступа к микрофону. Включите микрофон в настройках телефона или напишите текстом.', vErr_jim: 'Ничего не слышно. Попробуйте ещё раз.', vErr_tarmoq: 'Для распознавания голоса нужен интернет.', vErr_yoq: 'На этом устройстве распознавание голоса не работает — напишите текстом.', vErr_xato: 'Не удалось распознать голос. Попробуйте ещё раз.' });
   Object.assign(D.uz, { hwReady: 'Haftangiz xulosasi tayyor', hwOpen: "Ko'rish", hwT: 'Hafta xulosasi', hwRange: '{a} – {b}', hwAvg: "O'rtacha: {x} kkal/kun", hwAvgG: 'maqsad {x}', hwNear: 'Maqsadga yaqin kunlar: {n} / 7', hwWater: "Suv: kuniga o'rtacha {x} ml", hwSteps: "Qadam: kuniga o'rtacha {x}", hwBest: 'Eng yaxshi kun: {d}', hwStreak: 'Ketma-ket yozilgan kunlar: {n}', hwTipT: 'Keyingi haftaga bitta maslahat',
     hwTip_log: "Har kuni kamida bitta ovqatni yozing — xulosa aniqroq bo'ladi.", hwTip_water: 'Har ovqatdan oldin bir stakan suv iching.', hwTip_steps: "Har kuni 15 daqiqa piyoda yuring — bu taxminan 1 500 qadam.", hwTip_over: 'Kechki ovqatni kichikroq likopchaga soling.', hwTip_protein: "Har ovqatga oqsil qo'shing: tuxum, tvorog, tovuq yoki dukkakli.", hwTip_keep: 'Shu tartibni yana bir hafta saqlang.',
     hwEmpty: "Bu hafta yozuv yo'q. Hechqisi yo'q — ertaga bitta ovqat yozing, keyingi yakshanba xulosa tayyor bo'ladi.", hwN: 'Haftalik xulosa', hwNH: 'Yakshanba 19:00 da eslatma. Xulosa telefoningizda hisoblanadi.', hwOn: 'Yoqilgan', hwOff: "O'chiq", hwMsg: 'Haftangiz xulosasi tayyor' });
@@ -156,7 +160,7 @@
   var kit = RzKit.create({ root: root, K: Dt, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
   /* Funksiya oynasi (Ovqat qo'shish, Bugun nima yeymiz?, Retsept, Suv, Tez-tez, Idish, Mening taomlarim) yopilganda DOIM Bugun'ga qaytadi (o'tgan kunga yozilayotgan «Ovqat qo'shish» bundan mustasno) */
   var FUNC_KINDS = ['add', 'yeymiz', 'fish', 'retsept', 'tpls', 'vess', 'rcmine', 'recipe', 'water'], _cs0 = kit.closeSheet;
-  kit.closeSheet = function () { var k = kit.sheetKind(), past = k === 'add' && typeof fd !== 'undefined' && fd && fd.date && fd.date !== todayStr(); _cs0(); if (FUNC_KINDS.indexOf(k) > -1 && !past && view !== 'today') { view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); } };
+  kit.closeSheet = function () { try { if (typeof VO !== 'undefined' && VO && typeof fd !== 'undefined' && fd && fd.mode === 'voice') VO.stop(); } catch (e) {} var k = kit.sheetKind(), past = k === 'add' && typeof fd !== 'undefined' && fd && fd.date && fd.date !== todayStr(); _cs0(); if (FUNC_KINDS.indexOf(k) > -1 && !past && view !== 'today') { view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); } };
   var inst = KalkiInstall.create({ app: 'kalkifit', name: 'KalkiFit', nameAcc: "KalkiFit'ni", nameRu: 'KalkiFit', mark: 'KF', color: '#C2461F', kit: kit, lang: langNow, root: root, hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenFood = null; heroPrev = null; save(); }, onGate: function () { render(); }, rowIcon: 'sl-ci', setup: function () { return !!(st && st.setup); }, ready: function () { return !!(st && st.setup && Object.keys(st.days).some(function (d) { return st.days[d].food.length; })); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'me') && (!kit.sheetKind() || kit.sheetKind() === 'install')) { if (!kit.sheetKind()) render(); } } });
   reduce = kit.reduce;
   var esc = kit.esc, fmt = kit.fmt, digits = kit.digits, ico = kit.ico, toast = kit.toast, shHead = kit.shHead, flashEl = kit.flashEl, vib = kit.vib, wait = kit.wait;
@@ -613,7 +617,7 @@
     bowl: 'M3 11h18a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z M8 7c0-1 1-1 1-2 M12 7c0-1 1-1 1-2 M16 7c0-1 1-1 1-2',
     star: 'M12 3.500l2.700 5.500 6 .900-4.400 4.200 1 6-5.300-2.800-5.300 2.800 1-6L3.300 9.900l6-.900z',
     dots: 'M5.500 12h.010 M12 12h.010 M18.500 12h.010', undo: 'M4 12a8 8 0 1 0 2.500-5.800 M4 4v5h5', bm: 'M6 4h12v17l-6-4-6 4z',
-    chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', img: 'M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M9 9.500h.01', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
+    mic: 'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z M5 11a7 7 0 0 0 14 0 M12 18v3 M9 21h6', chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', img: 'M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M9 9.500h.01', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
     sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.900 4.900l1.400 1.400 M17.700 17.700l1.400 1.400 M4.900 19.100l1.400-1.400 M17.700 6.300l1.400-1.400', leaf: 'M5 19c0-8 5-13 14-14 0 9-5 14-13 14 M5 19c2-4 5-7 9-9', bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
     cal2: 'M7 5h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z M8 3v4 M16 3v4 M4 10h16', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
@@ -1094,7 +1098,7 @@
   function rcmineOpen() { openSheet('rcmine', shHead(T('aT')) + addTabs('m') + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); }
   function searchHtml() {
     var off = navigator.onLine === false;
-    return shHead(T('aT')) + addTabs('s') + mealSeg() + '<div class="sl-sr"><label class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></label><button type="button" class="sl-cam" id="phBtn" data-act="fphoto" aria-label="' + esc(T('phT')) + '"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '</button></div><div id="fdAiW">' + aiLineHtml() + '</div>' + '<div id="fdCat">' + chipsHtml() + '</div><div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
+    return shHead(T('aT')) + addTabs('s') + mealSeg() + '<div class="sl-sr"><label class="sl-search">' + ico('search') + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('aPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></label>' + (micOk() ? '<button type="button" class="sl-cam sl-mic" id="micBtn" data-act="fmic" aria-label="' + esc(T('vMic')) + '"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '</button>' : '') + '<button type="button" class="sl-cam" id="phBtn" data-act="fphoto" aria-label="' + esc(T('phT')) + '"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '</button></div><div id="fdAiW">' + aiLineHtml() + '</div>' + '<div id="fdCat">' + chipsHtml() + '</div><div class="sl-res" id="fdRes">' + resultsHtml() + '</div>';
   }
   /* kategoriya qatori: gorizontal scroll, chetlarda yumshoq soya, sichqoncha g'ildiragi va sudrab surish ishlaydi */
   function catsInit() {
@@ -1537,7 +1541,7 @@
       h += '<p class="rz-p warn">' + esc(T('tMiss', { x: fd.missing.join(', ') })) + '</p>';
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
-    if (fd.aiErr) h += '<p class="rz-p warn">' + esc(T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
+    if (fd.aiErr) h += '<p class="rz-p warn" id="txAiErr">' + esc(fd.aiErr === 'limit' ? T('aiLimit', { n: fd.aiLim }) : T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
     if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: items.length })) + '</button></div>';
     return h;
   }
@@ -1574,10 +1578,10 @@
   }
   function txAi() {
     if (fd.busy || !fd.missing.length) return; fd.busy = true; fd.aiErr = false; txRefresh();
-    var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
+    var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }; if (fd.usul === 'ovoz') { body.manba = 'ovoz'; if (aiPlat()) body.platforma = aiPlat(); }          // ovoz: umumiy AI hisobi (rasm/retsept/menyu bilan)
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
-      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
-      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok');
+      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : (res.j && res.j.sabab && res.j.limit > 0 ? 'limit' : true); fd.aiLim = res.j && res.j.limit; txRefresh(); return; }
+      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok'); if (fd.usul === 'ovoz') aiqSet(res.j);
       res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.xato'); fd.busy = false; fd.aiErr = true; txRefresh(); });
@@ -1763,6 +1767,27 @@
       if (!dl && f && navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'KalkiFit' }).catch(function () {}); return; }
       var a = document.createElement('a'), u = URL.createObjectURL(b); a.href = u; a.download = 'kalkifit.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500);
     });
+  }
+
+  /* ---------- ovozli kiritish (assets/kalkifit-ovoz.js): ovoz → matn (qurilmada) → odatiy matn oqimi (bazadan kkal; topilmagani — BITTA AI so'rov, umumiy limit) ---------- */
+  var VO = null, vs = null;
+  function micOk() { if (!VO && window.KalkiOvoz) VO = KalkiOvoz.create({ lang: function () { return lang; } }); return !!(VO && VO.ok()); }
+  function voiceHtml() {
+    var h = shHead(T('vT'));
+    if (vs.err) return h + '<p class="rz-p warn" id="vErr">' + esc(T('vErr_' + vs.err)) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="vtext">' + esc(T('vText')) + '</button>' + (vs.err === 'yoq' ? '' : '<button type="button" class="rz-btn primary" data-act="fmic">' + ico('mic') + ' ' + esc(T('vAgain')) + '</button>') + '</div><p class="rz-priv">' + esc(T('vPriv')) + '</p>';
+    return h + '<div class="sl-vo' + (vs.on ? ' on' : '') + '" id="vBox"><span class="sl-vmic" aria-hidden="true">' + ico('mic') + '</span><p class="sl-vpart" id="vPart" aria-live="polite">' + esc(vs.part || T('vListen')) + '</p></div><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="vstop" id="vStop">' + esc(T('vStop')) + '</button></div><p class="rz-priv">' + esc(T('vPriv')) + '</p>';
+  }
+  function voiceStart() {
+    if (!micOk() || navigator.onLine === false) return; var date = fd && fd.date || todayStr(), meal = fd && fd.meal;
+    vs = { on: true, part: '', err: '' }; if (kit.sheetKind() !== 'add') openAdd({}); fd.date = date; if (meal) fd.meal = meal; fd.mode = 'voice'; setSheet(voiceHtml());
+    VO.start({ onPart: function (t) { vs.part = t; var e = $('#vPart'); if (e) e.textContent = t; },
+      onText: function (t) { vs.text = t; },
+      onErr: function (c) { vs.err = c; vs.text = ''; },
+      onEnd: function () { vs.on = false; if (!fd || fd.mode !== 'voice') return; if (vs.text && !vs.err) voiceDone(vs.text); else { if (!vs.err) vs.err = 'jim'; setSheet(voiceHtml()); } } });
+  }
+  function voiceDone(t) {                              // matn → odatiy «Matn bilan qo'shish» oqimi: ro'yxat (tahrirlash/o'chirish) → «Hammasini qo'shish»; topilmagani bo'lsa — avtomatik BITTA AI so'rov
+    openText(null, true); fd.usul = 'ovoz'; fd.txt = t; setSheet(textHtml()); txGo();
+    setTimeout(function () { if (fd && fd.usul === 'ovoz' && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80);
   }
 
   /* ---------- haftalik xulosa (qurilmada hisoblanadi) — assets/kalkifit-hafta.js ---------- */
@@ -2043,6 +2068,7 @@
       case 'peact': peRead(); pe.act = +el.getAttribute('data-v'); peRepaint(); break;
       case 'pegoal': if (el.getAttribute('aria-disabled') !== 'true') { peRead(); pe.goal = el.getAttribute('data-v'); peRepaint(); } break;
       case 'pesave': peSave(); break;
+      case 'fmic': voiceStart(); break; case 'vstop': if (VO) VO.stop(); break; case 'vtext': openText(fd && fd.date); break;
       case 'hafta': openWeek(); break; case 'hwtog': hwToggle(el.getAttribute('data-v') === '1'); break;
       case 'daycard': openDayCard(); break; case 'kcgo': kcShare(); break;
       case 'share': openShare(); break; case 'shgo': shGo(false); break; case 'shdl': shGo(true); break;
