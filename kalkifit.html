@@ -271,7 +271,7 @@ window.__kfSplashHide=function(){var el=document.getElementById('kfSplash');if(!
       +'<span class="cur">'+name+'</span>';
     var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
     var base='https://kalki.uz/';
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';
     sc.id='bc-ld';
@@ -307,7 +307,7 @@ window.__kfSplashHide=function(){var el=document.getElementById('kfSplash');if(!
     var desc=d?d.getAttribute('content'):'';
     var lang=document.documentElement.lang==='ru'?'ru':'uz';
     var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';
     sc.id='app-ld';

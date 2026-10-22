@@ -666,7 +666,7 @@ KD.page({
     var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
     var isRu=/^\/ru(\/|$)/.test(location.pathname);
     var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';sc.id='bc-ld';
     sc.textContent=JSON.stringify({
@@ -700,7 +700,7 @@ KD.page({
     var d=document.querySelector('meta[name="description"]');
     var desc=d?d.getAttribute('content'):'';
     var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';sc.id='app-ld';
     sc.textContent=JSON.stringify({

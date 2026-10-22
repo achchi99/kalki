@@ -149,6 +149,43 @@ function local() {
     else if (buf.length < 200) dlBad.push(u + ' (juda kichik)');
   }
   T(dlBad.length === 0, 'e) yuklab olish havolalari haqiqiy faylga yechiladi va turi mos (' + uniq.length + ' noyob fayl, ' + refs.length + ' havola)', dlBad.slice(0, 4).join(', '));
+  // f) meta-havolalar: canonical, hreflang alternate, og:url va JSON-LD dagi kalki.uz URL'lari — fayl yoki yo'naltirish orqali haqiqiy sahifaga yechilsin
+  const okUrl = (u) => { const p = u.replace(/^https:\/\/kalki\.uz/, '') || '/'; if (resolves(p)) return true; const t = redirectTarget(decodeURI(p.split('?')[0])); return !!t && resolves(t.replace(/^https:\/\/kalki\.uz/, '')); };
+  const metaBad = {}; let metaN = 0;
+  for (const pg of pages) {
+    const html = fs.readFileSync(path.join(ROOT, pg), 'utf8');
+    const us = new Set();
+    for (const m of html.matchAll(/<link\b[^>]*\brel="(?:canonical|alternate)"[^>]*>/g)) { const h = (m[0].match(/\bhref="(https:\/\/kalki\.uz[^"]*)"/) || [])[1]; if (h) us.add(h); }
+    for (const m of html.matchAll(/<meta\b[^>]*\bproperty="og:url"[^>]*\bcontent="(https:\/\/kalki\.uz[^"]*)"/g)) us.add(m[1]);
+    for (const sc of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) for (const m of sc[1].matchAll(/"(?:url|@id|item)"\s*:\s*"(https:\/\/kalki\.uz[^"#]*)/g)) us.add(m[1]);
+    for (const u of us) { metaN++; if (!okUrl(u)) (metaBad[u] = metaBad[u] || new Set()).add(pg); }
+  }
+  const mk = Object.keys(metaBad);
+  T(mk.length === 0, 'f) canonical/hreflang/og:url/JSON-LD dagi kalki.uz URL\'lari haqiqiy sahifaga yechiladi (' + metaN + ' ta)', mk.slice(0, 4).map((k) => k + ' <- ' + [...metaBad[k]][0]).join(' | '));
+  // g) ichki skriptlardagi yo'l ko'rinishidagi satrlar ('/m²' kabi): Google ularni havola deb oladi — ASCII bo'lmagan yoki hech qayerga yechilmaydigan '/so'z' satri bo'lmasin
+  const jsBad = {};
+  for (const pg of pages) {
+    const html = fs.readFileSync(path.join(ROOT, pg), 'utf8');
+    for (const sc of html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/(?:ld\+)?json")[^>]*>([\s\S]*?)<\/script>/g)) {
+      for (const m of sc[1].matchAll(/["'`](\/[^\s"'`\/<>{}()\\*+?|$,;:=%#&\[\]@!^~]{1,60})["'`]/g)) {
+        const u = m[1];
+        if (/^\/(api|assets|cdn-cgi|data|ilova|ru|cyr|admin)(\/|$)/.test(u)) continue;
+        if (!/[^\x00-\x7f]/.test(u) && (resolves(u) || redirectTarget(u))) continue;
+        if (!/[^\x00-\x7f]/.test(u) && /^\/[a-z]$/i.test(u)) continue;
+        (jsBad[u] = jsBad[u] || new Set()).add(pg);
+      }
+    }
+  }
+  const jk = Object.keys(jsBad);
+  T(jk.length === 0, 'g) skript satrlarida buzuq yo\'l ko\'rinishidagi matn yo\'q (masalan \'/m²\')', jk.slice(0, 4).map((k) => k + ' <- ' + [...jsBad[k]][0]).join(' | ') + (jk.length > 4 ? ' … jami ' + jk.length : ''));
+  // h) _redirects: har bir nishon haqiqiy sahifaga yechilsin; Search Console 404 bergan URL'lar yo'naltirilgan bo'lsin
+  const rb = redirectRules().filter((r) => !/^https?:/.test(r.dst) && r.src.indexOf('*') < 0 && !/:splat/.test(r.dst) && !resolves(r.dst.split('?')[0])).map((r) => r.src + ' → ' + r.dst);
+  T(rb.length === 0, 'h1) _redirects nishonlari haqiqiy sahifaga yechiladi', rb.slice(0, 4).join(', '));
+  const GSC = ['/m²', '/m%C2%B2', '/cyr/tavsifnoma-namunasi', '/cyr/tolov-hisobi-namunasi', '/cyr/kafolat-xati-namunasi'];
+  const gb = GSC.filter((u) => resolves(u) || !redirectTarget(u) || !resolves(redirectTarget(u).split('?')[0]));
+  T(gb.length === 0, 'h2) Search Console 404 bergan URL\'lar 301 orqali haqiqiy sahifaga boradi', gb.join(', '));
+  const nocyr = fs.readdirSync(ROOT).filter((f) => /\.html$/.test(f) && !/^(404|offline|index)\.html$/.test(f) && !fs.existsSync(path.join(ROOT, 'cyr', f))).map((f) => '/cyr/' + f.replace(/\.html$/, '')).filter((u) => !redirectTarget(u));
+  T(nocyr.length === 0, 'h3) /cyr/<sahifa> (statik nusxasi yo\'q) har biri ?lang=cyr ga yo\'naltirilgan (node tools/cyr-redirects.js --write)', nocyr.slice(0, 4).join(', '));
   return out;
 }
 

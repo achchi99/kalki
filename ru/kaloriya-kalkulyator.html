@@ -511,7 +511,7 @@ img,svg{height:auto}
     var html='';
     for(var i=0;i<FOODS.length;i++){
       var mark=FOODS[i].id==='choy'?t('estMark'):'';
-      html+='<option value="'+FOODS[i].id+'">'+t('dishNames')[FOODS[i].id]+' — '+FOODS[i].k+' '+t('kcal')+'/100g'+mark+'</option>';
+      html+='<option value="'+FOODS[i].id+'">'+t('dishNames')[FOODS[i].id]+' — '+FOODS[i].k+' '+t('kcal')+' / 100g'+mark+'</option>';
     }
     var cur=$('dishSel').value;
     $('dishSel').innerHTML=html;
@@ -1240,7 +1240,7 @@ img,svg{height:auto}
     var desc=d?d.getAttribute('content'):'';
     var lang=document.documentElement.lang==='ru'?'ru':'uz';
     var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';
     sc.id='app-ld';

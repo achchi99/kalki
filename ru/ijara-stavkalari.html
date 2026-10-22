@@ -401,9 +401,9 @@ img,svg{height:auto}
     var ndfl=oylik*0.12;
     var qoladi=oylik-ndfl;
     $('rMain').textContent=fmtI(oylik)+' '+som();
-    $('rBaza').textContent=fmtI(baza)+' '+som()+'/m²';
+    $('rBaza').textContent=fmtI(baza)+' '+som()+' / m²';
     $('rKoeff').textContent=(koeff===1)?t('koeffYoq'):(Math.round(koeff*100)/100).toString().replace('.',',');
-    $('rYakuniy').textContent=fmtI(yakuniy)+' '+som()+'/m²';
+    $('rYakuniy').textContent=fmtI(yakuniy)+' '+som()+' / m²';
     $('rNdfl').textContent=fmtI(ndfl)+' '+som();
     $('rQoladi').textContent=fmtI(qoladi)+' '+som();
     var srcHtml=t('srcQaror')+' № '+qaror.raqam+' ('+qaror.sana+', '+qaror.ilova+')';
@@ -635,7 +635,7 @@ img,svg{height:auto}
     var d=document.querySelector('meta[name="description"]');
     var desc=d?d.getAttribute('content'):'';
     var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');
     sc.type='application/ld+json';
     sc.id='app-ld';
