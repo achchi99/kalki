@@ -83,8 +83,8 @@ try {
   p = await mk(seed(9), { url: '/ru/kalkifit' }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); const ru = await p.locator('[data-act=pushon]').locator('xpath=ancestor::section').innerText(); assert.match(ru, /Рыбный день[\s\S]*Напомним раз в неделю\. В какой день\?/); await p.click('[data-act=pushon]'); await p.waitForTimeout(600); assert.equal(p.posts[0][1].til, 'ru'); await p.context().close();
   log('Eslatma bosilganda (?baliq=1) Baliq kuni oynasi ochiladi (UZ/RU), manzil tozalanadi; RU Profil matnlari va obuna tili ru');
   /* 7. «Baliq» chipi tartibi: Mashhur + guruhlar, o'rtada */
-  p = await mk(seed(9)); await p.click('#mainAdd'); await p.waitForTimeout(500); const chips = await p.locator('#catsRow .rz-chip').allInnerTexts(); assert.equal(chips.length, 14); assert.equal(chips[5], 'Baliq', 'Go\'sht, baliq... dan keyin'); await p.context().close();
-  log('«Baliq» chipi: Mashhur + 13 guruh (14 chip), «Go\'sht, baliq, tuxum» dan keyin');
+  p = await mk(seed(9)); await p.click('#mainAdd'); await p.waitForTimeout(500); const chips = await p.locator('#catsRow .rz-chip').allInnerTexts(); assert.equal(chips.length, 15); assert.equal(chips[6], 'Baliq', 'Go\'sht, baliq... dan keyin'); await p.context().close();
+  log('«Baliq» chipi: Mashhur + 14 guruh (15 chip), «Go\'sht, baliq, tuxum» dan keyin');
   /* 8. domenlar: Profil qatori HAR QAYERDA (kalki.uz, preview) 1-kunda ham bor; avtomatik taklif (Kun yakuni) preview'da (3-kun sharti o'chiq) bor, kalki.uz'da 3-kundan keyin */
   const asHost = async (host, url, days) => { const c = await b.newContext({ viewport: { width: 360, height: 700 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); await c.addInitScript((s) => { localStorage.setItem('kalki_fit', JSON.stringify(s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); }, seed(days, { food: [[0, E('osh', 5, 190)]] })); await c.addInitScript(MOCK, {});
     const pg = await c.newPage(); await pg.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
