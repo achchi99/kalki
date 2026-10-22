@@ -21,7 +21,7 @@
       rFloor: "Kamaytirish tezligi xavfsiz chegaraga ({min} kkal) moslandi, shuning uchun haftasiga ≈ {kg} kg.", rDoc: "Shifokor bilan maslahatlashing. Bu hisob faqat vaznni saqlash uchun.", under18: "18 yoshdan kichiklar uchun dieta hisoblanmaydi.", pregN: "Homiladorlik va emizish davrida dieta hisoblanmaydi.", lowBmi: "Vazningiz me'yordan past (BMI < 18,5): dieta hisoblanmaydi.",
       disc: "Taxminiy hisob — tibbiy maslahat emas.", rMacro: 'Oqsil {p} g · yog\' {f} g · uglevod {c} g', rWater: 'Suv: {n} stakan ({ml} ml)',
       ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni yozing — «Yedingiz» va «Qoldi» shu yerda yangilanadi.", stEmpty: "Qadam yozsangiz, ustunlar shu yerda o'sadi.",
-      mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
+      mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wSplit: 'Suv {w} · Ichimliklar {d}', wDrinkNote: 'Choy, qahva, sut va sharbat ham suv hisobiga kiradi.', wListT: 'Ichimliklar va suyuq taomlar', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: 'Bugun hali kiritilmagan', sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
       aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Osh, «2 ta non»…', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
       cat_o: "O'zbek taomlari", cat_turk: 'Turk taomlari', cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
@@ -65,7 +65,7 @@
       rFloor: 'Темп снижения приведён к безопасной границе ({min} ккал), поэтому ≈ {kg} кг в неделю.', rDoc: 'Проконсультируйтесь с врачом. Этот расчёт только для сохранения веса.', under18: 'Для лиц младше 18 лет диета не рассчитывается.', pregN: 'Во время беременности и кормления диета не рассчитывается.', lowBmi: 'Ваш вес ниже нормы (ИМТ < 18,5): диета не рассчитывается.',
       disc: 'Приблизительный расчёт — не медицинская рекомендация.', rMacro: 'Белки {p} г · жиры {f} г · углеводы {c} г', rWater: 'Вода: {n} стаканов ({ml} мл)',
       ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду — «Съели» и «Осталось» обновятся здесь.', stEmpty: 'Запишете шаги — столбики вырастут здесь.',
-      mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
+      mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wSplit: 'Вода {w} · Напитки {d}', wDrinkNote: 'Чай, кофе, молоко и сок тоже входят в дневной счёт воды.', wListT: 'Напитки и жидкие блюда', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня ещё не введено', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
       aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Плов, «2 самсы»…', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
       cat_o: 'Узбекские блюда', cat_turk: 'Турецкая кухня', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
@@ -397,6 +397,7 @@
   }
   function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
     if (!G || !G.eventLine || prefs().jokes === false) return; var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
+    if (kind === 'food') { var pf = prefs(); if (!pf.suvIntro && wInfo(t).drink > 0) { pf.suvIntro = 1; p = Object.assign({}, p || {}, { drink1: true }); save(); } }          // birinchi ichimlik → «ichimlik_suvga_qoshildi»
     var ctx = jokeCtx(true), l = G.eventLine(ctx, kind, p); if (!l || !l.text) return; pr.jfl.n++; pr.jfl.t = now; pr.last = { d: t, text: l.text }; saveQuiet();
     if (view === 'today' && pr.jx !== t) jokeSwap(l.text);
   }
@@ -434,8 +435,29 @@
     if (!G || !masofa || !(km >= 1)) return ''; var rt = G.routeFor(masofa, prefs().city || 'toshkent', km), dest = lang === 'ru' ? 'до ' + (rt.to.ruGen || rt.to.ru) : rt.to.uz + 'gacha';
     return rt.type === 'full' ? dest : rt.pct + '% · ' + dest;
   }
+  /* ---------- suv: ichimlik/suyuq taomlar (data/suv-ulush.json) ---------- */
+  var suvState = 0;
+  function loadSuv() { if (suvState) return; suvState = 1; loadJson('/data/suv-ulush.json', function (j) { S.setSuv(j); suvState = 2; if ((view === 'today' || view === 'history') && !kit.sheetKind()) render(); }, function () { suvState = 0; }); }
+  function suvResolve() {                           // bazada yo'q yozuv (rasm/AI/retsept) nomi bazadagi ichimlik/suyuq taomga mos kelsa — e.sfid saqlanadi (bir marta); faqat suvFrom dan keyingi kunlar
+    if (suvState !== 2 || dbState !== 2) return; var from = prefs().suvFrom, ch = false;
+    Object.keys(st.days).forEach(function (d) { if (!from || d < from) return; st.days[d].food.forEach(function (e) { if (e.fid || e.sfid !== undefined) return; e.sfid = suvMatch(e.name) || ''; ch = true; }); });
+    if (ch) save();
+  }
+  function suvMatch(nom) {
+    var q = String(nom || '').split(/[(·,]/)[0].trim(); if (q.length < 3) return null;
+    try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom || !(S.suvShare({ fid: f.id }) > 0)) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0)) return f.id; } } catch (e) {}
+    return null;
+  }
+  function wInfo(d) { return S.waterInfo(st, d || todayStr()); }
+  function drinkRowsHtml(wi) {                      // karta oynasi: «Choy 2 piyola — 500 ml» (bir xil taom va birlik qo'shiladi)
+    var g = {}, order = []; wi.items.forEach(function (it) { var e = it.e, f = e.fid ? foodById(e.fid) : (e.sfid ? foodById(e.sfid) : null), base = f && f.al ? (foodById(f.al.f) || f) : f, nm = base ? nameOf(base) : String(e.name || '?').split(/\s*\(/)[0], k = (e.fid || e.sfid || nm) + '|' + (e.unit || 'g') + '|' + (e.vr || '');
+      if (!g[k]) { g[k] = { nm: nm, qty: 0, g: 0, e: e, ml: 0 }; order.push(k); } g[k].qty += e.qty || 1; g[k].g += e.g || 0; g[k].ml += it.ml; });
+    return order.map(function (k) { var o = g[k], pt = o.e.unit && o.e.unit !== 'g100' && String(o.e.unit).indexOf('v:') !== 0 ? qtyStr(o.qty) + ' ' + unitName(o.e.unit) : fmt(Math.round(o.g)) + ' ' + T('gram'); return '<div class="sl-wlr"><span class="m">' + esc(o.nm) + ' <small>' + esc(pt) + '</small></span><b>' + fmt(o.ml) + ' ' + ML() + '</b></div>'; }).join('');
+  }
   function renderToday() {
-    var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), h0 = num(pr.height), w0 = S.currentWeight(st);
+    if (!prefs().suvFrom) { prefs().suvFrom = todayStr(); save(); }          // yangi qoida bugundan; eski kunlar o'zgarmaydi
+    loadSuv(); suvResolve();
+    var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), h0 = num(pr.height), w0 = S.currentWeight(st), wi = wInfo(t);
     var bal = S.dayBalance(pl.target, tot.kcal, x.steps, h0, w0, pr.act), limit = pl.target + bal.credit, ratio = Math.min(1, tot.kcal / Math.max(1, limit)), over = bal.remaining < 0, info = S.dayStatus(st, t, t);
     var glasses = pl.water.glasses, wmax = glasses * S.GLASS_ML, note = info.complete ? T('stFull') + ' · ' + stLabel(info, t, t) : T('cNote');
     var prev = heroPrev, n = over ? -bal.remaining : bal.remaining, ty = tyOf(over ? 1 : ratio), now0 = performance.now(), cont = !!(heroAnim && !reduce && now0 - heroAnim.t0 < heroAnim.dur && heroAnim.to === n && heroAnim.ty === ty);
@@ -453,9 +475,8 @@
     h += '<div class="sl-doors">' + (R ? R.door() : '') + (Y ? Y.todayCard() : '') + '</div>';
     h += mealsHtml(t) + dayEndHtml(t, x);
     h += '<section class="sl-card sl-macs"><button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b><i class="dt" style="background:var(--' + m[1] + ')"></i>' + esc(T(m[0])) + '</b><span class="mv">' + v + ' <small>/ ' + goal + ' g</small></span><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + m[1] + ')"></i></span></span>'; }).join('') + '</button></section>';
-    var wsegs = ''; for (var wi2 = 0; wi2 < glasses; wi2++) wsegs += '<i' + (wi2 < Math.min(glasses, x.water) ? ' class="on"' : '') + '></i>';
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
-    h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(x.water * S.GLASS_ML) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span></button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
+    h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
       '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(qaOn() ? T('stepsT') : T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span>' + qaSrcHtml() + '</button>' + (qaOn() ? qaFitBtn() : '<button type="button" class="sl-pill" data-act="addsteps">' + ico('pen') + '<span>' + esc(T('stWrite')) + '</span></button>') + '</section></div>';
     if (st.weights.length) { var dl = wiInfo.delta; h += '<button type="button" class="sl-card sl-wrow" data-act="tab" data-v="history"><span class="ic">' + ico('trend') + '</span><span class="m"><b>' + esc(T('wRowT', { x: dec(S.currentWeight(st), 1) })) + '</b><span>' + esc(dl != null ? T('wRowW', { d: (dl > 0 ? '+' : '−') + dec(Math.abs(dl), 1) }) : weightLabel(wiInfo)) + '</span></span>' + ico('chev', 'r') + '</button>'; }
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div>' + '<div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button>' + (n.never ? '<button type="button" class="rz-btn sm ghost" data-act="' + n.never.act + '">' + esc(n.never.label) + '</button>' : '') + '</div></div>'; });
@@ -1632,7 +1653,7 @@
   }
   function spUpdate() { $('#spNum').textContent = sp.val ? fmt(+sp.val) : '0'; $('#spSave').disabled = !sp.val; }
   function afterWater() { /* qadam/suv/ovqat saqlangach sokin bayram tekshiruvi */ var t = todayStr(), x = S.dayOf(st, t); if (!x) return; var p = prefs(); if (!p.cel || p.cel.d !== t) p.cel = { d: t }; var pl = planNow();
-    if (x.water >= pl.water.glasses && !p.cel.w) { p.cel.w = 1; save(); celebrate('wCard', T('wDone')); }
+    if (wInfo(t).glasses >= pl.water.glasses && !p.cel.w) { p.cel.w = 1; save(); celebrate('wCard', T('wDone')); }
     if (x.steps >= st.stepGoal && !p.cel.s) { p.cel.s = 1; save(); celebrate('kcalBtn', T('sGoalDone')); } }
   function celebrate(id, msg) { setTimeout(function () { var el = document.getElementById(id) && $('#' + id); if (el) { el.classList.remove('glow'); void el.offsetWidth; el.classList.add('glow'); } toast(msg, null, true); vib(25); }, 350); }
   function spSave() {
@@ -1877,16 +1898,16 @@
 
   /* ---------- suv ---------- */
   function waterSheetHtml() {
-    var t = todayStr(), x = S.dayOf(st, t) || { water: 0 }, pl = planNow(), glasses = pl.water.glasses, wl = Math.min(glasses, x.water), h = shHead(T('wOpenT')) + '<div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
-    for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl ? ' on' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < wl ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
-    return h + '</div><p class="rz-p sm" id="wsTxt">' + esc(T('wOf', { n: wl, m: glasses }) + ' · ' + fmt(x.water * S.GLASS_ML) + ' ' + ML()) + '</p><p class="rz-mut sm">' + esc(T('wHint')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="xwater">' + esc(T('hHow')) + '</button><button type="button" class="rz-btn" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
+    var t = todayStr(), x = S.dayOf(st, t) || { water: 0 }, pl = planNow(), glasses = pl.water.glasses, wi = wInfo(t), man = Math.min(glasses, x.water || 0), wl = Math.min(glasses, wi.glasses), h = shHead(T('wOpenT')) + '<div class="sl-glasses" role="group" aria-label="' + esc(T('wT')) + '">';
+    for (var i = 0; i < glasses; i++) h += '<button type="button" class="sl-glass' + (i < wl ? ' on' : '') + (i >= man && i < wl ? ' dr' : '') + '" data-act="glass" data-i="' + i + '" data-d="' + (i < man ? 1 : 0) + '" aria-pressed="' + (i < wl) + '" aria-label="' + (i + 1) + '">' + glassSvg() + '</button>';
+    return h + '</div><p class="rz-p sm" id="wsTxt">' + esc(T('wOf', { n: wl, m: glasses }) + ' · ' + fmt(wi.ml) + ' ' + ML()) + '</p><p class="rz-mut sm">' + esc(T('wHint')) + '</p>' + (wi.items.length ? '<div class="sl-wl" id="wList"><div class="rz-st">' + esc(T('wListT')) + '</div>' + drinkRowsHtml(wi) + '</div>' : '') + '<p class="rz-p sm sl-wnote">' + esc(T('wDrinkNote')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="xwater">' + esc(T('hHow')) + '</button><button type="button" class="rz-btn" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
   }
   function openWaterSheet() { openSheet('water', waterSheetHtml(), { noFocus: true }); }
   function glassTap(i) {
     var t = todayStr(), x = S.ensureDay(st, t), pl = planNow(), n = (x.water === i + 1) ? i : i + 1; S.setWater(st, t, n); save();
-    $$('.sl-glass').forEach(function (g, j) { var on = j < Math.min(n, pl.water.glasses); g.classList.toggle('on', on); g.setAttribute('aria-pressed', on); });
-    $$('#wSegs i').forEach(function (g, j) { g.classList.toggle('on', j < Math.min(n, pl.water.glasses)); });
-    var w = $('#wTxt'); if (w) w.innerHTML = '<b>' + fmt(n * S.GLASS_ML) + '</b><small> / ' + fmt(pl.water.glasses * S.GLASS_ML) + ' ' + ML() + '</small>'; var ws = $('#wsTxt'); if (ws) ws.textContent = T('wOf', { n: Math.min(n, pl.water.glasses), m: pl.water.glasses }) + ' · ' + fmt(n * S.GLASS_ML) + ' ' + ML(); vib(10); afterWater(); jokeAfter('water');
+    var wi = wInfo(t), man = Math.min(n, pl.water.glasses), wl = Math.min(wi.glasses, pl.water.glasses);
+    $$('.sl-glass').forEach(function (g, j) { var on = j < wl; g.classList.toggle('on', on); g.classList.toggle('dr', j >= man && on); g.setAttribute('aria-pressed', on); g.setAttribute('data-d', j < man ? 1 : 0); });
+    var w = $('#wTxt'); if (w) w.innerHTML = '<b>' + fmt(wi.ml) + '</b><small> / ' + fmt(pl.water.glasses * S.GLASS_ML) + ' ' + ML() + '</small>'; var sp = $('#wSplit'); if (sp) sp.textContent = T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) }); var ws = $('#wsTxt'); if (ws) ws.textContent = T('wOf', { n: wl, m: pl.water.glasses }) + ' · ' + fmt(wi.ml) + ' ' + ML(); vib(10); afterWater(); jokeAfter('water');
   }
 
   /* ---------- hodisalar ---------- */

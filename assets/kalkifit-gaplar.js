@@ -117,9 +117,9 @@
     if (!x.steps && hour >= 13 && !fresh) return P('zero_steps');
     if (x.steps > 0 && x.steps < 3000 && hour >= 17 && !fresh) return P('steps_couch');
     if (x.food.length && hour >= 20 && eaten < 0.4 * lim && !x.done) return P('log_low');
-    var target = pl.water.glasses; if (x.water >= target) return P('water_ok', { glasses: x.water, target: target });
-    if (!x.water && hour >= 12 && !fresh) return P('water_none');
-    if (x.water >= Math.ceil(target / 2) && hour >= 14) return P('water_half');
+    var wg = S.waterInfo(st, t).glasses, target = pl.water.glasses; if (wg >= target) return P('water_ok', { glasses: wg, target: target });          // suv = qo'lda + ichimliklar (waterInfo)
+    if (!wg && hour >= 12 && !fresh) return P('water_none');
+    if (wg >= Math.ceil(target / 2) && hour >= 14) return P('water_half');
     if (x.steps >= 2000) {
       var h = Number(st.profile.height), w = S.currentWeight(st), km = S.distanceKm(x.steps, h), kc = S.stepKcal(x.steps, h, w), dom = Number(t.slice(8));
       var bf = ctx.foods ? burnFood(kc, ctx.foods, S, ctx.lang) : null, rt = ctx.masofa ? routeFor(ctx.masofa, ctx.city, km) : null;
@@ -144,6 +144,7 @@
       if (eaten > lim) { var on = overRun(jc); if (on) return ctx.jokesOn === false ? neutralLine(ctx, nk, np) : on; state = 'over'; par = { over: nf(eaten - lim) }; }
       else if (p.alt) state = 'alt_chosen';
       else if (p.fish) state = 'food_fish';
+      else if (p.drink1) state = 'ichimlik_suvga_qoshildi';          // birinchi marta ichimlik yozilganda: bitta yengil maslahat (keyin umumiy holatlar)
       else if (hour >= 22) state = 'late_food';
       else {
         var lastE = x.food.slice().sort(function (a, b) { return (a.ts || 0) - (b.ts || 0); }).pop(), lk = kindOf(ctx, lastE), nonN = x.food.filter(function (e) { return kindOf(ctx, e).non; }).length, choyN = x.food.filter(function (e) { return kindOf(ctx, e).choy; }).length;
@@ -160,8 +161,8 @@
       else if (hour >= 18 && eaten <= lim && x.food.length > 2) state = 'within', par = { left: nf(lim - eaten) };
       else state = 'food_add';
     } else if (kind === 'water') {
-      var tg = pl.water.glasses; nk = 'water'; np = { ml: nf(x.water * S.GLASS_ML), goal: nf(tg * S.GLASS_ML) };
-      if (x.water === tg) { state = 'water_ok'; par = { glasses: x.water, target: tg }; } else if (x.water === Math.ceil(tg / 2)) state = 'water_half';
+      var tg = pl.water.glasses, wi = S.waterInfo(st, t), wg2 = wi.glasses; nk = 'water'; np = { ml: nf(wi.ml), goal: nf(tg * S.GLASS_ML) };
+      if (wg2 === tg) { state = 'water_ok'; par = { glasses: wg2, target: tg }; } else if (wg2 === Math.ceil(tg / 2)) state = 'water_half';
     } else if (kind === 'steps') {
       var goal = st.stepGoal, sc = Number(p.steps) || x.steps; nk = 'steps'; np = par = { steps: nf(sc), goal: nf(goal) };
       if (sc >= goal && !(p.prev >= goal)) state = 'steps_goal'; else if (hour >= 18 && sc > 0 && sc < 2000) state = 'steps_couch'; else state = 'steps_add';
