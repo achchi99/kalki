@@ -228,9 +228,9 @@
 | 29 | `kokos-qirindi` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kokos qirindisi (`kokos-qirindi`) |
 | 30 | `kozinak` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kozinak (kunjutli) (`kozinak`) |
 | 31 | `holva-tahin` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Holva (kunjutli, tahin) (`holva-kunjut`), Xalva (kungaboqarli) (`xalva`) |
-| 32 | `parvarda` | v20 yangilari (sport, shokolad, gazaklar) | Parvarda (`parvarda`) |
+| 32 | `parvarda` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Parvarda (`parvarda`) |
 | 33 | `pryanik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Pryanik (sgushenka bilan) (`pryanik`) |
-| 34 | `pechenye-oreo` | v20 yangilari (sport, shokolad, gazaklar) | Oreo (kremli shokolad pechenye) (`pechenye-oreo`) |
+| 34 | `pechenye-oreo` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Oreo (kremli shokolad pechenye) (`pechenye-oreo`) |
 | 35 | `pechenye-qumli` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Qumli pechenye (sariyog'li) (`pechenye-qumli`), Sariyog'li pechenye (`pechenye-sariyog`), Pechenye (oddiy) (`pechenye`) |
 | 36 | `pechenye-suli` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Suli pechenye (`pechenye-suli`) |
 | 37 | `pechenye-chip` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Shokolad bo'lakli pechenye (`pechenye-shokolad`) |
