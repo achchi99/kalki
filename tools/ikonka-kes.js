@@ -37,7 +37,10 @@ async function main() {
     const med = (a) => { a.sort((x, y) => x - y); return a[a.length >> 1]; }; const B0 = [med(samp[0]), med(samp[1]), med(samp[2])];
     const dist = (k) => Math.abs(D[k] - B0[0]) + Math.abs(D[k + 1] - B0[1]) + Math.abs(D[k + 2] - B0[2]);
     /* 1) yozuvlar: slug matni to'q qizg'ish-jigarrang (R<90, G<35, B<35) — shu rangdagi piksellar gorizontal dilatatsiya bilan so'zga birlashtiriladi; so'z = past (18..80 px) va kengligi >= 24 */
-    const SC = 2, w = Math.ceil(W / SC), h = Math.ceil(H / SC), isTxt = (k) => D[k] < 80 && D[k + 1] < 20 && D[k + 2] < 20 && D[k] - D[k + 1] > 18;
+    const SC = 2, w = Math.ceil(W / SC), h = Math.ceil(H / SC);
+    /* yozuv rangi to'rdan avtomatik aniqlanadi: juda to'q piksellar orasida eng ko'p uchraydigan rang (42 ta yozuv — eng ko'p «siyoh»); har to'plamda generator boshqa to'q rang (qora, qizg'ish) ishlatishi mumkin */
+    const hist = new Map(); for (let k = 0; k < D.length; k += 4) if (D[k] < 100 && D[k + 1] < 100 && D[k + 2] < 100) { const key = (D[k] >> 4) * 256 + (D[k + 1] >> 4) * 16 + (D[k + 2] >> 4); hist.set(key, (hist.get(key) || 0) + 1); }
+    let tk = 0, tv = 0; hist.forEach((v, key) => { if (v > tv) { tv = v; tk = key; } }); const TC = [((tk >> 8) & 15) * 16 + 8, ((tk >> 4) & 15) * 16 + 8, (tk & 15) * 16 + 8], isTxt = (k) => Math.abs(D[k] - TC[0]) <= 36 && Math.abs(D[k + 1] - TC[1]) <= 36 && Math.abs(D[k + 2] - TC[2]) <= 36;
     const tm = new Uint8Array(w * h); for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) if (isTxt((j * W + i) * 4)) tm[(j >> 1) * w + (i >> 1)] = 1;
     const dilate = (src, Rx, Ry) => { const t = new Uint8Array(w * h), o = new Uint8Array(w * h);
       for (let j = 0; j < h; j++) { let c = 0; for (let i = -Rx; i < w + Rx; i++) { if (i + Rx < w) c += src[j * w + i + Rx]; if (i - Rx - 1 >= 0) c -= src[j * w + i - Rx - 1]; if (i >= 0 && i < w) t[j * w + i] = c > 0 ? 1 : 0; } }
@@ -95,7 +98,7 @@ async function main() {
     const PAD = 14, LH = 22, CW = 256 + PAD, CH = 256 + LH + PAD, sheet = document.createElement('canvas'); sheet.width = COLS * CW + PAD; sheet.height = ROWS * CH + PAD; const sx2 = sheet.getContext('2d'); sx2.fillStyle = '#fff'; sx2.fillRect(0, 0, sheet.width, sheet.height); sx2.font = '15px sans-serif'; sx2.textAlign = 'center'; sx2.fillStyle = '#222';
     out.forEach((o, i) => { const x = PAD + (i % COLS) * CW, y = PAD + ((i / COLS) | 0) * CH; if (o) sx2.drawImage(o.png[256], x, y); else { sx2.fillStyle = '#c00'; sx2.fillRect(x, y, 256, 256); sx2.fillStyle = '#222'; } sx2.fillStyle = '#222'; sx2.fillText(slugs[i], x + 128, y + 256 + 16); });
     const sheetB64 = sheet.toDataURL('image/png').split(',')[1];
-    return { dbg: window.__dbg, W, H, B0, PH, ncomp: big.length, warn, results, files, sheet: sheetB64, labs: out.map((o) => o ? o.nl : 0) };
+    return { dbg: window.__dbg, TC, W, H, B0, PH, ncomp: big.length, warn, results, files, sheet: sheetB64, labs: out.map((o) => o ? o.nl : 0) };
   }, [b64, mime, COLS, ROWS, BG, FILL, slugs]);
   await browser.close();
   return res;
@@ -103,7 +106,7 @@ async function main() {
 
 main().then((r) => {
   if (process.env.KES_DEBUG) console.log(JSON.stringify(r.dbg[+process.env.KES_DEBUG - 1]));
-  console.log('katak siljishi (px): x ' + r.PH.ox + ', y ' + r.PH.oy + '; to\'r ' + r.W + '×' + r.H + ', fon ' + r.B0.join(',') + ' → ' + BG.join(',') + ', komponent ' + r.ncomp + '; yozuv komponentlari/katak: ' + [...new Set(r.labs)].join(','));
+  console.log('yozuv rangi ' + r.TC.join(',') + '; to\'r ' + r.W + '×' + r.H + ', fon ' + r.B0.join(',') + ' → ' + BG.join(',') + ', komponent ' + r.ncomp + '; yozuv komponentlari/katak: ' + [...new Set(r.labs)].join(','));
   if (r.warn.length) { console.error(r.warn.join('\n')); }
   const dir = path.join(HOME, 'ikonka-toplamlar'); fs.mkdirSync(dir, { recursive: true });
   const sheet = path.join(dir, 'kontakt-' + N + '.png'); fs.writeFileSync(sheet, Buffer.from(r.sheet, 'base64')); console.log('kontakt-varaq:', sheet);

@@ -103,48 +103,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `jerki` | go'sht, ichki a'zolar, baliq | Quritilgan go'sht (jerki) (`gosht-quritilgan`) |
-| 2 | `losos-dudlangan` | go'sht, ichki a'zolar, baliq | Losos (dudlangan) (`losos-dudlangan`) |
-| 3 | `baliq-qovurilgan` | go'sht, ichki a'zolar, baliq | Baliq (qovurilgan) (`baliq-qov`), Treska (pishgan) (`treska`), Mintay (pishgan) (`mintay`), Tilapiya (pishgan) (`tilapiya`) |
-| 4 | `forel` | go'sht, ichki a'zolar, baliq | Forel (pishgan) (`forel`) |
-| 5 | `skumbriya` | go'sht, ichki a'zolar, baliq | Skumbriya (pishgan) (`skumbriya`) |
-| 6 | `seld` | go'sht, ichki a'zolar, baliq | Seld (marinadlangan) (`seld`), Seld (dudlangan) (`seld-dudlangan`) |
-| 7 | `chortan` | go'sht, ichki a'zolar, baliq | Cho'rtan (pishgan) (`chortan`), Okun (pishgan) (`okun`) |
-| 8 | `baliq-panirovka` | go'sht, ichki a'zolar, baliq | Baliq (panirovkada qovurilgan) (`baliq-panirovka`) |
-| 9 | `tunets` | go'sht, ichki a'zolar, baliq | Tunets (konserva) (`tunets`), Tunets (yog'da, konserva) (`tunets-yog`) |
-| 10 | `sardina` | go'sht, ichki a'zolar, baliq | Sardina (konserva) (`sardina`) |
-| 11 | `qizil-baliq-konserva` | go'sht, ichki a'zolar, baliq | Qizil baliq (gorbusha, konserva) (`qizil-baliq-konserva`) |
-| 12 | `krevetka` | go'sht, ichki a'zolar, baliq | Krevetka (`krevetka`) |
-| 13 | `krevetka-panirovka` | go'sht, ichki a'zolar, baliq | Krevetka (panirovkada qovurilgan) (`krevetka-panirovka`) |
-| 14 | `kalmar` | go'sht, ichki a'zolar, baliq | Kalmar (qovurilgan) (`kalmar`) |
-| 15 | `ikra` | go'sht, ichki a'zolar, baliq | Ikra (qizil/qora) (`ikra`) |
-| 16 | `krab-tayoq` | go'sht, ichki a'zolar, baliq | Krab tayoqchalari (`krab-tayoq`) |
-| 17 | `krab` | go'sht, ichki a'zolar, baliq | Krab go'shti (pishgan) (`krab`) |
-| 18 | `midiya` | go'sht, ichki a'zolar, baliq | Midiya (pishgan) (`midiya`) |
-| 19 | `tuxum-boltunya` | go'sht, ichki a'zolar, baliq | Tuxum (aralashtirib qovurilgan) (`tuxum-qov-aralash`) |
-| 20 | `kofe` | ichimliklar | Qahva (`kofe`), Espresso (`espresso`), Qora qahva (shakar bilan) (`qahva-shakar`) |
-| 21 | `kofe-sutli` | ichimliklar | Sutli qahva (`qahva-sutli`), Sutli qahva (shakar bilan) (`qahva-sutli-shakar`) |
-| 22 | `kofe-latte` | ichimliklar | Qahva → latte (`kofe#latte`), Qahva → kapuchino (`kofe#kapuchino`), Raf qahva (`raf`) |
-| 23 | `kofe-3v1` | ichimliklar | Qahva → 3in1 (`kofe#3in1`) |
-| 24 | `kofe-muzli` | ichimliklar | Sovuq qahva (sutli, shirin, tayyor) (`qahva-sovuq`) |
-| 25 | `kola` | ichimliklar | Kola (gazlangan ichimlik) (`kola`), Coca-Cola (`coca-cola`), Pepsi (`pepsi`), Coca-Cola Zero (shakarsiz) (`coca-cola-zero`), Pepsi (shakarsiz) (`pepsi-zero`) |
-| 26 | `limonad` | ichimliklar | Limonad (fanta, sprite) (`limonad`), Sprite (`sprite`), Sprite Zero (shakarsiz) (`sprite-zero`) |
-| 27 | `fanta` | ichimliklar | Fanta (apelsin) (`fanta`), Apelsinli gazli ichimlik (`apelsin-gazli`), Fanta Zero (shakarsiz) (`fanta-zero`) |
-| 28 | `energetik` | ichimliklar | Energetik ichimlik (`energetik`), Red Bull (energetik) (`red-bull`), Monster (energetik) (`monster`), Adrenaline Rush (energetik) (`adrenaline`), Red Bull (shakarsiz) (`red-bull-zero`) |
-| 29 | `sharbat-meva` | ichimliklar | Sharbat (`sharbat-olma`) |
-| 30 | `sharbat-ananas` | ichimliklar | Ananas sharbati (`sharbat-ananas`) |
-| 31 | `sharbat-olcha` | ichimliklar | Olcha sharbati (`sharbat-olcha`), Klyukva sharbati (shakarsiz) (`sharbat-klyukva`) |
-| 32 | `sharbat-olxori` | ichimliklar | Olxo'ri sharbati (`sharbat-olxori`) |
-| 33 | `nektar-shaftoli` | ichimliklar | Shaftoli nektari (`nektar-shaftoli`), O'rik nektari (`nektar-orik`) |
-| 34 | `nektar-mango` | ichimliklar | Mango nektari (`nektar-mango`) |
-| 35 | `nektar-nok` | ichimliklar | Nok nektari (`nektar-nok`) |
-| 36 | `sharbat-sabzi` | ichimliklar | Sabzi sharbati (`sabzi-sharbat`) |
-| 37 | `sharbat-greypfrut` | ichimliklar | Greypfrut sharbati (`sharbat-greypfrut`) |
-| 38 | `limon-suvi` | ichimliklar | Limon sharbati (siqilgan) (`limon-sharbat`) |
-| 39 | `mevali-ichimlik` | ichimliklar | Mevali ichimlik (punch) (`mevali-ichimlik`) |
-| 40 | `limonad-uy` | ichimliklar | Limonad (limonli, uy) (`limonad-limon`) |
-| 41 | `kompot` | ichimliklar | Kompot (shakar bilan) (`kompot`) |
-| 42 | `kvas` | ichimliklar | Kvas (`kvas`) |
+| 1 | `jerki` ✅ | go'sht, ichki a'zolar, baliq | Quritilgan go'sht (jerki) (`gosht-quritilgan`) |
+| 2 | `losos-dudlangan` ✅ | go'sht, ichki a'zolar, baliq | Losos (dudlangan) (`losos-dudlangan`) |
+| 3 | `baliq-qovurilgan` ✅ | go'sht, ichki a'zolar, baliq | Baliq (qovurilgan) (`baliq-qov`), Treska (pishgan) (`treska`), Mintay (pishgan) (`mintay`), Tilapiya (pishgan) (`tilapiya`) |
+| 4 | `forel` ✅ | go'sht, ichki a'zolar, baliq | Forel (pishgan) (`forel`) |
+| 5 | `skumbriya` ✅ | go'sht, ichki a'zolar, baliq | Skumbriya (pishgan) (`skumbriya`) |
+| 6 | `seld` ✅ | go'sht, ichki a'zolar, baliq | Seld (marinadlangan) (`seld`), Seld (dudlangan) (`seld-dudlangan`) |
+| 7 | `chortan` ✅ | go'sht, ichki a'zolar, baliq | Cho'rtan (pishgan) (`chortan`), Okun (pishgan) (`okun`) |
+| 8 | `baliq-panirovka` ✅ | go'sht, ichki a'zolar, baliq | Baliq (panirovkada qovurilgan) (`baliq-panirovka`) |
+| 9 | `tunets` ✅ | go'sht, ichki a'zolar, baliq | Tunets (konserva) (`tunets`), Tunets (yog'da, konserva) (`tunets-yog`) |
+| 10 | `sardina` ✅ | go'sht, ichki a'zolar, baliq | Sardina (konserva) (`sardina`) |
+| 11 | `qizil-baliq-konserva` ✅ | go'sht, ichki a'zolar, baliq | Qizil baliq (gorbusha, konserva) (`qizil-baliq-konserva`) |
+| 12 | `krevetka` ✅ | go'sht, ichki a'zolar, baliq | Krevetka (`krevetka`) |
+| 13 | `krevetka-panirovka` ✅ | go'sht, ichki a'zolar, baliq | Krevetka (panirovkada qovurilgan) (`krevetka-panirovka`) |
+| 14 | `kalmar` ✅ | go'sht, ichki a'zolar, baliq | Kalmar (qovurilgan) (`kalmar`) |
+| 15 | `ikra` ✅ | go'sht, ichki a'zolar, baliq | Ikra (qizil/qora) (`ikra`) |
+| 16 | `krab-tayoq` ✅ | go'sht, ichki a'zolar, baliq | Krab tayoqchalari (`krab-tayoq`) |
+| 17 | `krab` ✅ | go'sht, ichki a'zolar, baliq | Krab go'shti (pishgan) (`krab`) |
+| 18 | `midiya` ✅ | go'sht, ichki a'zolar, baliq | Midiya (pishgan) (`midiya`) |
+| 19 | `tuxum-boltunya` ✅ | go'sht, ichki a'zolar, baliq | Tuxum (aralashtirib qovurilgan) (`tuxum-qov-aralash`) |
+| 20 | `kofe` ✅ | ichimliklar | Qahva (`kofe`), Espresso (`espresso`), Qora qahva (shakar bilan) (`qahva-shakar`) |
+| 21 | `kofe-sutli` ✅ | ichimliklar | Sutli qahva (`qahva-sutli`), Sutli qahva (shakar bilan) (`qahva-sutli-shakar`) |
+| 22 | `kofe-latte` ✅ | ichimliklar | Qahva → latte (`kofe#latte`), Qahva → kapuchino (`kofe#kapuchino`), Raf qahva (`raf`) |
+| 23 | `kofe-3v1` ✅ | ichimliklar | Qahva → 3in1 (`kofe#3in1`) |
+| 24 | `kofe-muzli` ✅ | ichimliklar | Sovuq qahva (sutli, shirin, tayyor) (`qahva-sovuq`) |
+| 25 | `kola` ✅ | ichimliklar | Kola (gazlangan ichimlik) (`kola`), Coca-Cola (`coca-cola`), Pepsi (`pepsi`), Coca-Cola Zero (shakarsiz) (`coca-cola-zero`), Pepsi (shakarsiz) (`pepsi-zero`) |
+| 26 | `limonad` ✅ | ichimliklar | Limonad (fanta, sprite) (`limonad`), Sprite (`sprite`), Sprite Zero (shakarsiz) (`sprite-zero`) |
+| 27 | `fanta` ✅ | ichimliklar | Fanta (apelsin) (`fanta`), Apelsinli gazli ichimlik (`apelsin-gazli`), Fanta Zero (shakarsiz) (`fanta-zero`) |
+| 28 | `energetik` ✅ | ichimliklar | Energetik ichimlik (`energetik`), Red Bull (energetik) (`red-bull`), Monster (energetik) (`monster`), Adrenaline Rush (energetik) (`adrenaline`), Red Bull (shakarsiz) (`red-bull-zero`) |
+| 29 | `sharbat-meva` ✅ | ichimliklar | Sharbat (`sharbat-olma`) |
+| 30 | `sharbat-ananas` ✅ | ichimliklar | Ananas sharbati (`sharbat-ananas`) |
+| 31 | `sharbat-olcha` ✅ | ichimliklar | Olcha sharbati (`sharbat-olcha`), Klyukva sharbati (shakarsiz) (`sharbat-klyukva`) |
+| 32 | `sharbat-olxori` ✅ | ichimliklar | Olxo'ri sharbati (`sharbat-olxori`) |
+| 33 | `nektar-shaftoli` ✅ | ichimliklar | Shaftoli nektari (`nektar-shaftoli`), O'rik nektari (`nektar-orik`) |
+| 34 | `nektar-mango` ✅ | ichimliklar | Mango nektari (`nektar-mango`) |
+| 35 | `nektar-nok` ✅ | ichimliklar | Nok nektari (`nektar-nok`) |
+| 36 | `sharbat-sabzi` ✅ | ichimliklar | Sabzi sharbati (`sabzi-sharbat`) |
+| 37 | `sharbat-greypfrut` ✅ | ichimliklar | Greypfrut sharbati (`sharbat-greypfrut`) |
+| 38 | `limon-suvi` ✅ | ichimliklar | Limon sharbati (siqilgan) (`limon-sharbat`) |
+| 39 | `mevali-ichimlik` ✅ | ichimliklar | Mevali ichimlik (punch) (`mevali-ichimlik`) |
+| 40 | `limonad-uy` ✅ | ichimliklar | Limonad (limonli, uy) (`limonad-limon`) |
+| 41 | `kompot` ✅ | ichimliklar | Kompot (shakar bilan) (`kompot`) |
+| 42 | `kvas` ✅ | ichimliklar | Kvas (`kvas`) |
 
 ## To'plam 4 (42)
 
