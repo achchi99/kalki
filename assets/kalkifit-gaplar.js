@@ -134,6 +134,11 @@
     if (hour < 12) return P('day_morning');
     return P('day_any');
   }
+  function cardLine(ctx, state) {                  // kun kartasi uchun BITTA hazil (raqamsiz holat: on_target / dayend / dayend_high); kun va til bo'yicha barqaror — qayta chizilganda o'zgarmaydi
+    if (ctx.jokesOn === false) return null; var p = ctx.store || (ctx.st && ctx.st.prefs) || {}, k = p.kc;
+    if (k && k.d === ctx.today && k.s === state && k.l === ctx.lang) return { state: state, text: k.t };
+    var c = {}; for (var x in ctx) c[x] = ctx[x]; c.fresh = true; var l = pickLine(c, state, {}, 'card'); if (l) p.kc = { d: ctx.today, s: state, l: ctx.lang, t: l.text }; return l;
+  }
   function neutralLine(ctx, kind, p) { var n = NEUTRAL[kind], t = n && (n[ctx.lang] || n.uz); return t ? { state: 'neutral_' + kind, text: fill(t, p) } : null; }
   /* Hodisadan keyingi bir qatorli gap: kind = food | water | steps | weight | dayend. Hazil o'chirilgan bo'lsa shu vaziyat uchun NEUTRAL fakt qaytadi. */
   function eventLine(ctx, kind, p) {
@@ -191,7 +196,7 @@
   function streakLine(ctx) { if (ctx.jokesOn === false) return null; var n = ctx.S.streak(ctx.st, ctx.today); return n >= 3 ? pickLine(ctx, 'streak', { days: n }, 'streak2') : null; }
 
   var api = { TEXTS: TEXTS, NEUTRAL: NEUTRAL, setTexts: setTexts, BANNED: BANNED, FIXED: FIXED, isHoliday: isHoliday, kmBetween: kmBetween, nodeOf: nodeOf, routeFor: routeFor, routePhrase: routePhrase, burnFood: burnFood, fill: fill, pickLine: pickLine, pickTexts: pickTexts,
-    IDS: IDS, kindOf: kindOf, todayLine: todayLine, eventLine: eventLine, neutralLine: neutralLine, distLines: distLines, weightLine: weightLine, streakLine: streakLine, fmtKm: fmtKm };
+    IDS: IDS, kindOf: kindOf, todayLine: todayLine, eventLine: eventLine, cardLine: cardLine, neutralLine: neutralLine, distLines: distLines, weightLine: weightLine, streakLine: streakLine, fmtKm: fmtKm };
   if (typeof module === 'object' && module.exports) { try { var fs = require('fs'), path = require('path'); setTexts(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'hazillar.json'), 'utf8'))); } catch (e) {} }
   return api;
 });

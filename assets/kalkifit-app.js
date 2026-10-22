@@ -38,7 +38,7 @@
       meT: 'Men', meProf: 'Profil', meEdit: 'Tahrirlash', meW: 'Vazn', meAddW: "Vazn qo'shish", meAvg: '7 kunlik o\'rtacha: {x} kg', meAvgH: "Bir kunlik tebranish muhim emas — o'rtacha chiziqqa qarang.", meNoW: "Vazn yozilmagan", meGoalW: "Maqsad vazni, kg (ixtiyoriy)", meProg: "Maqsadgacha {x} kg qoldi", meDelta: 'Boshlanishdan {x} kg', meShare: 'Natijamni ulashish',
       pfAge: 'Yosh', pfH: "Bo'y, sm", pfW: 'Vazn, kg', pfAct: 'Faollik', pfGoal: 'Maqsad', pfSex: 'Jins', pfSaved: "Me'yor yangilandi: {x} kkal",
       wtT: 'Vaznni yozish', wDay: 'Qaysi kun?',
-      shT: 'Natijamni ulashish', shH: "Faqat o'zingiz tanlagan raqamlar rasmga tushadi.", shDays: 'Kunlar', shSteps: 'Qadam', shKm: 'Masofa', shWeight: "Vazn o'zgarishi", shGo: 'Rasmni ulashish', shDl: 'Rasmni yuklab olish', shTitle: 'Mening natijam', shWin: 'Oxirgi 30 kun', shDaysV: 'kun yozdim', shStepsV: 'qadam', shKmV: 'km yurdim', shWV: 'kg', shNone: 'Hech narsa tanlanmagan',
+      kcBtn: 'Kunni ulashish', kcT: 'Kun kartasi', kcH: "Rasmda faqat kun natijasi bor — vazn va shaxsiy ma'lumot yo'q.", kcGo: 'Ulashish', kcGoal: 'maqsad', kcKcal: 'kkal', kcSteps: 'Qadam', kcTop: 'Kunning asosiy taomi', shT: 'Natijamni ulashish', shH: "Faqat o'zingiz tanlagan raqamlar rasmga tushadi.", shDays: 'Kunlar', shSteps: 'Qadam', shKm: 'Masofa', shWeight: "Vazn o'zgarishi", shGo: 'Rasmni ulashish', shDl: 'Rasmni yuklab olish', shTitle: 'Mening natijam', shWin: 'Oxirgi 30 kun', shDaysV: 'kun yozdim', shStepsV: 'qadam', shKmV: 'km yurdim', shWV: 'kg', shNone: 'Hech narsa tanlanmagan',
       sExp: 'Zaxira nusxa olish', sImp: 'Zaxira nusxadan tiklash', sDel: "Hammasini o'chirish", sLang: 'Til', sFont: "Shrift o'lchami", fN: 'Oddiy', fB: 'Katta', sTips: "Yo'l-yo'riqni qayta ko'rish", sAbout: 'Ilova haqida', priv: "Ma'lumotlaringiz faqat shu qurilmada saqlanadi.", med: "Bu tibbiy maslahat emas. Taxminiy hisob: sog'liq masalasida shifokor bilan maslahatlashing.",
       expDone: 'Zaxira nusxa saqlandi', impT: 'Zaxira nusxadan tiklash', impAsk: "Hozirgi ma'lumot zaxira nusxadagi bilan almashtiriladi. Davom etasizmi?", impOk: 'Tiklandi', impBad: "Zaxira nusxa fayli noto'g'ri", delAsk1: "Hamma ma'lumot o'chiriladi.", delAsk2: "Aniq o'chiraymi? Qaytarib bo'lmaydi.", deleted: "Hammasi o'chirildi",
       xKcalT: "Bu raqam qanday hisoblanadi?", xTarget: "Kunlik me'yor", xLimit: "Bugungi me'yor", xEaten: 'Yeyilgan', xSteps: 'Odatiydan ortiq qadamlar', xRem: 'Yana yeyish mumkin', xWhyStep: "Faollik darajangizdagi odatiy qadam soni ({base}) me'yorga allaqachon kiritilgan. Faqat undan ORTIQ qadamlar uchun to'liq sof kaloriya qo'shiladi: (3,5 − 1) × vazn × (masofa ÷ 5 km/soat). Chegaradan kam bo'lsa 0 qo'shiladi — me'yor kamaymaydi.", xHowT: "Me'yor qanday chiqdi?", xBmr: 'Tinch holatdagi sarf (BMR)', xBmrN: 'Mifflin–St Jeor formulasi', xAct: 'Faollik koeffitsienti', xTdee: 'Kunlik sarf (TDEE)', xGoal: 'Maqsad uchun farq', xFloor: "Pastki xavfsiz chegara", xTargetR: "Kunlik me'yor",
@@ -82,7 +82,7 @@
       meT: 'Я', meProf: 'Профиль', meEdit: 'Изменить', meW: 'Вес', meAddW: 'Записать вес', meAvg: 'Среднее за 7 дней: {x} кг', meAvgH: 'Колебания за один день не важны — смотрите на линию среднего.', meNoW: 'Вес не записан', meGoalW: 'Желаемый вес, кг (по желанию)', meProg: 'До цели осталось {x} кг', meDelta: 'С начала: {x} кг', meShare: 'Поделиться результатом',
       pfAge: 'Возраст', pfH: 'Рост, см', pfW: 'Вес, кг', pfAct: 'Активность', pfGoal: 'Цель', pfSex: 'Пол', pfSaved: 'Норма обновлена: {x} ккал',
       wtT: 'Записать вес', wDay: 'За какой день?',
-      shT: 'Поделиться результатом', shH: 'На картинку попадут только выбранные вами цифры.', shDays: 'Дни', shSteps: 'Шаги', shKm: 'Расстояние', shWeight: 'Изменение веса', shGo: 'Поделиться картинкой', shDl: 'Скачать картинку', shTitle: 'Мой результат', shWin: 'Последние 30 дней', shDaysV: 'дн. вёл записи', shStepsV: 'шагов', shKmV: 'км пройдено', shWV: 'кг', shNone: 'Ничего не выбрано',
+      kcBtn: 'Поделиться днём', kcT: 'Карточка дня', kcH: 'На картинке только итог дня — без веса и личных данных.', kcGo: 'Поделиться', kcGoal: 'цель', kcKcal: 'ккал', kcSteps: 'Шаги', kcTop: 'Главное блюдо дня', shT: 'Поделиться результатом', shH: 'На картинку попадут только выбранные вами цифры.', shDays: 'Дни', shSteps: 'Шаги', shKm: 'Расстояние', shWeight: 'Изменение веса', shGo: 'Поделиться картинкой', shDl: 'Скачать картинку', shTitle: 'Мой результат', shWin: 'Последние 30 дней', shDaysV: 'дн. вёл записи', shStepsV: 'шагов', shKmV: 'км пройдено', shWV: 'кг', shNone: 'Ничего не выбрано',
       sExp: 'Сделать резервную копию', sImp: 'Восстановить из резервной копии', sDel: 'Удалить всё', sLang: 'Язык', sFont: 'Размер шрифта', fN: 'Обычный', fB: 'Крупный', sTips: 'Показать подсказки снова', sAbout: 'О приложении', priv: 'Ваши данные хранятся только на этом устройстве.', med: 'Это не медицинская рекомендация. Расчёт приблизительный: по вопросам здоровья консультируйтесь с врачом.',
       expDone: 'Резервная копия сохранена', impT: 'Восстановление из резервной копии', impAsk: 'Текущие данные будут заменены данными из резервной копии. Продолжить?', impOk: 'Восстановлено', impBad: 'Неверный файл резервной копии', delAsk1: 'Все данные будут удалены.', delAsk2: 'Точно удалить? Вернуть нельзя.', deleted: 'Всё удалено',
       xKcalT: 'Как считается это число?', xTarget: 'Дневная норма', xLimit: 'Норма на сегодня', xEaten: 'Съедено', xSteps: 'Шаги сверх обычного', xRem: 'Ещё можно съесть', xWhyStep: 'Обычное число шагов для вашего уровня активности ({base}) уже учтено в норме. Прибавляются калории только за шаги СВЕРХ этого порога, полностью и «чистыми»: (3,5 − 1) × вес × (расстояние ÷ 5 км/ч). Если шагов меньше порога — прибавляется 0, норма не уменьшается.', xHowT: 'Как получилась норма?', xBmr: 'Расход в покое (BMR)', xBmrN: 'формула Миффлина — Сан-Жеора', xAct: 'Коэффициент активности', xTdee: 'Дневной расход (TDEE)', xGoal: 'Разница для цели', xFloor: 'Нижняя безопасная граница', xTargetR: 'Дневная норма',
@@ -387,8 +387,9 @@
   }
   function dayEndHtml(t, x) {                        // «Kunni yakunlash» — ovqatlar ro'yxati oxirida kichik matnli tugma
     if (!x.food.length) return ''; if (!x.done && x.food.length < 2 && new Date().getHours() < 19) return '';          // kechqurun (19:00 dan) yoki kamida 2 ta yozuvdan keyin
-    if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + '</p>' + orbHtml() + pushOfferHtml();
-    return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button></p>';
+    var kc = '<button type="button" class="sl-txtbtn" data-act="daycard" id="dayCard">' + ico('share', 'sl-inl') + esc(T('kcBtn')) + '</button>';          // kun kartasi: kun yakunlangach yoki 19:00 dan
+    if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + ' · ' + kc + '</p>' + orbHtml() + pushOfferHtml();
+    return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button>' + (new Date().getHours() >= 19 ? ' · ' + kc : '') + '</p>';
   }
   var jShown = '';                                  // oxirgi ko'rsatilgan hazil matni (almashganda 200 ms fade)
   function jokeSwap(text) {                         // Bugun: qator o'rnida matn yumshoq (200 ms) almashadi; qator yo'q bo'lsa qayta chiziladi
@@ -1751,6 +1752,43 @@
     });
   }
 
+  /* ---------- kun kartasi (kun yakuni rasmi; vazn/yosh YO'Q) — assets/kalkifit-kunkarta.js ---------- */
+  var KK = null, kcImg = null;
+  function kcDark() { var t = themeNow(); if (t !== 'auto') return t === 'dark'; try { return !!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); } catch (e) { return false; } }
+  function kcData() {
+    var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), wi = wInfo(t);
+    var bal = S.dayBalance(pl.target, tot.kcal, x.steps, num(pr.height), S.currentWeight(st), pr.act), limit = pl.target + bal.credit, best = null;
+    x.food.forEach(function (e) { if (!best || e.kcal > best.kcal) best = e; });
+    var f = best && best.fid ? foodById(best.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = best ? (base ? nameOf(base) : String(best.name || '')) : '', fl = best ? imgFile(best.fid || iconFid(best), best.vr) : null;
+    var joke = ''; if (G && G.cardLine && prefs().jokes !== false && KK) { var l = G.cardLine(jokeCtx(false), KK.jokeState(tot.kcal, limit)); if (l) { joke = l.text; saveQuiet(); } }
+    var wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], tr = natTr;
+    return { dark: kcDark(), date: tr(wd + ', ' + kit.dLabel(t)), eaten: tot.kcal, limit: limit, ml: wi.ml, mlGoal: pl.water.glasses * S.GLASS_ML, steps: x.steps || 0, stepGoal: st.stepGoal || 8000, food: tr(nm), letter: tr(nm).charAt(0), joke: tr(joke), file: fl,
+      L: { goal: tr(T('kcGoal')), kcal: tr(T('kcKcal')), water: tr(T('wT')), steps: tr(T('kcSteps')), ml: tr(ML()), top: tr(T('kcTop')) } };
+  }
+  function kcPaint(cb) {
+    KK = window.KalkiKunKarta; if (!KK) return; var d = kcData(), cv = document.createElement('canvas');
+    var go = function () { d.img = kcImg && kcImg.f === d.file ? kcImg.im : null; KK.draw(cv, d); var v = $('#kcCv'); if (v) v.getContext('2d').drawImage(cv, 0, 0); if (cb) cb(cv); };
+    if (d.file && !(kcImg && kcImg.f === d.file)) { var im = new Image(); im.onload = function () { kcImg = { f: d.file, im: im }; go(); }; im.onerror = go; im.src = '/assets/ovqat/' + d.file + '-256.webp'; } else go();
+  }
+  function openDayCard() {
+    openSheet('daycard', shHead(T('kcT')) + '<p class="rz-p sm">' + esc(T('kcH')) + '</p><div class="sl-cvw"><canvas id="kcCv" width="1080" height="1350" role="img" aria-label="' + esc(T('kcT')) + '"></canvas></div><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="kcgo" id="kcGo">' + ico('share') + ' ' + esc(T('kcGo')) + '</button></div>');
+    kcPaint();
+  }
+  function kcDownload(b) { var a = document.createElement('a'), u = URL.createObjectURL(b); a.href = u; a.download = 'kalkifit-kun.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 500); }
+  function kcShare() {                                // APK: Capacitor Filesystem + Share; veb: Web Share (fayl bilan), bo'lmasa — yuklab olish
+    kcPaint(function (cv) {
+      cv.toBlob(function (b) {
+        if (!b) return; stEv('kun_kartochka_ulashildi'); var C = window.Capacitor, P = C && C.Plugins;
+        if (isNativeApp() && P && P.Share && P.Filesystem) {
+          var r = new FileReader(); r.onload = function () { var b64 = String(r.result).split(',')[1] || ''; P.Filesystem.writeFile({ path: 'kalkifit-kun.png', data: b64, directory: 'CACHE' }).then(function (w) { return P.Share.share({ files: [w.uri], title: 'KalkiFit' }); }).catch(function () { kcDownload(b); }); }; r.readAsDataURL(b); return;
+        }
+        var f; try { f = new File([b], 'kalkifit-kun.png', { type: 'image/png' }); } catch (e) { f = null; }
+        if (f && navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'KalkiFit' }).catch(function () {}); return; }
+        kcDownload(b);
+      }, 'image/png');
+    });
+  }
+
   /* ---------- eksport / import / o'chirish ---------- */
   function doExport() {
     st.lastBackup = Date.now(); save(); var txt = S.exportState(st);
@@ -1961,6 +1999,7 @@
       case 'peact': peRead(); pe.act = +el.getAttribute('data-v'); peRepaint(); break;
       case 'pegoal': if (el.getAttribute('aria-disabled') !== 'true') { peRead(); pe.goal = el.getAttribute('data-v'); peRepaint(); } break;
       case 'pesave': peSave(); break;
+      case 'daycard': openDayCard(); break; case 'kcgo': kcShare(); break;
       case 'share': openShare(); break; case 'shgo': shGo(false); break; case 'shdl': shGo(true); break;
       case 'dayend': { var t0 = todayStr(), r0 = S.finishDay(st, t0, t0); if (r0.why === 'empty') break; commit(); toast(T(r0.ok ? 'deDone' : 'deLow'), function () { if (st.days[t0]) delete st.days[t0].done; commit(); }, r0.ok); if (r0.ok) jokeAfter('dayend'); break; }
       case 'export': doExport(); break; case 'import': bk.restoreSheet(); break; case 'wipe': wipe(); break;
