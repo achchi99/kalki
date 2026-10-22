@@ -51,6 +51,10 @@ async function main() {
           for (const q of [p0 - 1, p0 + 1, p0 - w, p0 + w]) { if (q < 0 || q >= w * h || (q === p0 - 1 && px === 0) || (q === p0 + 1 && px === w - 1)) continue; if (mask[q] && lab[q] < 0) { lab[q] = id; st.push(q); } } } }
       return { lab, comps }; };
     const tw = components(dilate(tm, 3, 2)), words = tw.comps.filter((c) => { const ph = (c.y1 - c.y0 + 1) * SC, pw = (c.x1 - c.x0 + 1) * SC; return ph >= 18 && ph <= 80 && pw >= 24 && c.n > 20; });
+    /* yonma-yon turgan ikki yozuv bir komponentga qo'shilib ketishi mumkin (masalan «muzqaymoq-qulupnay» + «muzqaymoq-yumshoq»): ustun chegarasi yaqinidagi eng bo'sh joydan kesamiz */
+    const split = []; for (let wi = words.length - 1; wi >= 0; wi--) { const c = words[wi]; if ((c.x1 - c.x0 + 1) <= (w / COLS) * 1.1) continue; const cuts = []; for (let k = 1; k < COLS; k++) { const bx = Math.round(k * w / COLS); if (bx <= c.x0 + 6 || bx >= c.x1 - 6) continue; let bestX = bx, bv = 1e9; for (let x = bx - 16; x <= bx + 16; x++) { let v = 0; for (let y = c.y0; y <= c.y1; y++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) v++; if (v < bv) { bv = v; bestX = x; } } cuts.push(bestX); }
+      if (!cuts.length) continue; words.splice(wi, 1); const edges = [c.x0 - 1, ...cuts, c.x1]; for (let q = 0; q + 1 < edges.length; q++) { let n = 0, x0 = w, x1 = 0, y0 = h, y1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = edges[q] + 1; x <= edges[q + 1]; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) { n++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } if (n > 20) split.push({ id: c.id, x0, x1, y0, y1, n, sx: 0, sy: 0, part: [edges[q] + 1, edges[q + 1]] }); } }
+    words.push(...split);
     const colOf = (c) => Math.max(0, Math.min(COLS - 1, Math.floor(((c.x0 + c.x1) / 2) / (w / COLS)))); const labCols = Array.from({ length: COLS }, () => []); words.forEach((c) => labCols[colOf(c)].push(c)); labCols.forEach((l) => l.sort((a, b) => a.y0 - b.y0));
     const warn = [], labels = new Array(COLS * ROWS).fill(null); window.__dbg = labCols.map((l) => l.map((c) => [c.x0 * SC, c.y0 * SC, c.x1 * SC, c.y1 * SC, c.n].join(',')));
     /* nomzodlar ichidan ROWS ta yozuv: ketma-ket yozuvlar oralig'i ~ qator davri (H/ROWS ± 20%) bo'lishi shart, jami «siyoh» (n) maksimal — taom ichidagi to'q bo'laklar (qora tova, jigar) chetda qoladi */
@@ -61,7 +65,7 @@ async function main() {
     /* 2) taom: kuchli maska (fon rangidan farq) − yozuv bbox'lari (+3 px); komponentlar (dilatatsiya ~6 px), har biri ustun va qator bo'yicha yozuvga biriktiriladi */
     const T = 70, sm = new Uint8Array(w * h); for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) if (dist((j * W + i) * 4) > T) sm[(j >> 1) * w + (i >> 1)] = 1;
     /* yozuv bbox'i: so'z komponenti ichidagi AYNAN matn piksellarining qamrovi (+1 katak ≈ 2 px) — taom soyasi keraksiz kesilmasin */
-    const inLab = new Uint8Array(w * h); labels.forEach((c) => { if (!c) return; let tx0 = w, ty0 = h, tx1 = 0, ty1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = c.x0; x <= c.x1; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id) { if (x < tx0) tx0 = x; if (x > tx1) tx1 = x; if (y < ty0) ty0 = y; if (y > ty1) ty1 = y; }
+    const inLab = new Uint8Array(w * h); labels.forEach((c) => { if (!c) return; let tx0 = w, ty0 = h, tx1 = 0, ty1 = 0; for (let y = c.y0; y <= c.y1; y++) for (let x = c.x0; x <= c.x1; x++) if (tm[y * w + x] && tw.lab[y * w + x] === c.id && (!c.part || (x >= c.part[0] && x <= c.part[1]))) { if (x < tx0) tx0 = x; if (x > tx1) tx1 = x; if (y < ty0) ty0 = y; if (y > ty1) ty1 = y; }
       for (let y = Math.max(0, ty0 - 1); y <= Math.min(h - 1, ty1 + 1); y++) for (let x = Math.max(0, tx0 - 1); x <= Math.min(w - 1, tx1 + 1); x++) inLab[y * w + x] = 1; });
     for (let q = 0; q < w * h; q++) if (inLab[q]) sm[q] = 0;
     const ic = components(dilate(sm, 3, 3)), lab = ic.lab, big = ic.comps.filter((c) => c.n > 3);

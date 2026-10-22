@@ -150,48 +150,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `issiq-shokolad` | ichimliklar | Issiq shokolad (sutda) (`issiq-shokolad`), Kakao (sutda) (`kakao`) |
-| 2 | `shokoladli-sut` | ichimliklar | Shokoladli sut (`shokoladli-sut`) |
-| 3 | `smuzi` | ichimliklar | Smuzi (meva) (`smuzi`), Smuzi (mevali, tayyor) (`smuzi-mango`) |
-| 4 | `suv` | ichimliklar | Suv (`suv`) |
-| 5 | `sut-kokteyl` | ichimliklar | Sut kokteyli (`sut-kokteyl`) |
-| 6 | `choy-sovuq` | ichimliklar | Sovuq choy (limonli) (`sovuq-choy`) |
-| 7 | `choy-shakarli` | ichimliklar | Choy (1 choy qoshiq shakar bilan) (`choy-shakar1`), Choy (2 choy qoshiq shakar bilan) (`choy-shakar2`) |
-| 8 | `choy-sutli` | ichimliklar | Sutli choy (shakar bilan) (`choy-sut-shakar`) |
-| 9 | `choy-kok-shakar` | ichimliklar | Ko'k choy (1 choy qoshiq shakar bilan) (`kok-choy-shakar`) |
-| 10 | `izotonik` | ichimliklar | Izotonik ichimlik (Powerade) (`sport-izotonik`), Izotonik ichimlik (shakarsiz, Powerade Zero) (`sport-izotonik-zero`) |
-| 11 | `kokos-suvi` | ichimliklar | Kokos suvi (`kokos-suvi`) |
-| 12 | `bodom-sut` | ichimliklar | Bodom suti (shakarsiz) (`bodom-sut`), Soya suti (`soya-sut`) |
-| 13 | `vino` | ichimliklar | Vino (quruq) (`vino`) |
-| 14 | `pivo` | ichimliklar | Pivo (`pivo`) |
-| 15 | `muzqaymoq-plombir` | muzqaymoq | Muzqaymoq (plombir) (`muzqaymoq`), Plombir vanilli (15% yog', yorliq bo'yicha) (`mz-plombir-stakan`), Muzqaymoq (vanilli, sutli) (`mz-vanil`), Muzqaymoq (kam yog'li) (`mz-light`), Muzqaymoq (shakar qo'shilmagan) (`mz-shakarsiz`) |
-| 16 | `muzqaymoq-briket` | muzqaymoq | Plombir (briket, yog'li) (`mz-plombir-briket`) |
-| 17 | `plombir-vafli` | muzqaymoq | Plombir vafli stakanchada (chernika qatlamli) (`mz-plombir-vafli`) |
-| 18 | `muzqaymoq-shokolad` | muzqaymoq | Shokoladli muzqaymoq (`mz-shokolad`), Shokoladli plombir (yog'li) (`mz-shokolad-plombir`), Shokoladli muzqaymoq (kam yog'li) (`mz-shokolad-light`) |
-| 19 | `muzqaymoq-qulupnay` | muzqaymoq | Qulupnayli muzqaymoq (`mz-qulupnay`) |
-| 20 | `muzqaymoq-yumshoq` | muzqaymoq | Yumshoq muzqaymoq (apparatdan) (`mz-yumshoq`) |
-| 21 | `muzqaymoq-rojok` | muzqaymoq | Muzqaymoq vafli konusda (shokolad va yong'oq bilan) (`mz-konus-shokolad`) |
-| 22 | `muzqaymoq-rojok-sous` | muzqaymoq | Muzqaymoq vafli konusda (sousli) (`mz-konus-sundae`) |
-| 23 | `eskimo` | muzqaymoq | Muzqaymoq (eskimo) (`muzqaymoq-eskimo`), Eskimo (shokolad va yong'oqli qoplama) (`mz-eskimo-yongoq`) |
-| 24 | `sorbet` | muzqaymoq | Sorbet (mevali, sutli) (`mz-sorbet`) |
-| 25 | `muzli` | muzqaymoq | Muzli muzqaymoq (fruktoviy lyod) (`mz-muzli`), Mevali muzqaymoq (sharbatli) (`mz-meva-bar`) |
-| 26 | `sundae` | muzqaymoq | Sundae (muzqaymoq sous bilan) (`mz-sundae`) |
-| 27 | `vafli-stakancha` | muzqaymoq | Vafli stakancha (bo'sh) (`mz-vafli-stakan`) |
-| 28 | `makflurri` | muzqaymoq | McFlurry (Oreo bilan) (`mz-makflurri`) |
-| 29 | `muzlatilgan-yogurt` | muzqaymoq | Muzlatilgan yogurt (vanilli) (`mz-yogurt`), Muzlatilgan yogurt (shokoladli) (`mz-yogurt-shokolad`) |
-| 30 | `sport-protein-kukun` | v20 yangilari (sport, shokolad, gazaklar) | Protein kukuni (whey) (`protein-kukun`), Protein izolyat (whey isolate) (`protein-izolyat`), Kazein protein (`protein-kazein`) |
-| 31 | `aminokislota` | v20 yangilari (sport, shokolad, gazaklar) | BCAA / aminokislotalar (`aminokislota`) |
-| 32 | `protein-batonchik` | v20 yangilari (sport, shokolad, gazaklar) | Protein batonchik (`protein-bar`), Protein batonchik (60 g, shakarsiz) (`protein-bar-60`), Protein batonchik (40 g) (`protein-bar-40`) |
-| 33 | `sport-batonchik` | v20 yangilari (sport, shokolad, gazaklar) | Sport batonchik (Snickers Marathon) (`sport-snickers-marathon`) |
-| 34 | `protein-kokteyl` | v20 yangilari (sport, shokolad, gazaklar) | Protein kokteyl (tayyor, shishada) (`protein-kokteyl-tayyor`) |
-| 35 | `geyner` | v20 yangilari (sport, shokolad, gazaklar) | Geyner (mass gainer) (`geyner`) |
-| 36 | `protein-pechenye` | v20 yangilari (sport, shokolad, gazaklar) | Protein pechenye (Bombbar) (`protein-pechenye`) |
-| 37 | `snickers` | v20 yangilari (sport, shokolad, gazaklar) | Snickers (`snickers`) |
-| 38 | `mars` | v20 yangilari (sport, shokolad, gazaklar) | Mars (batonchik) (`mars`), Milky Way (`milky-way`) |
-| 39 | `twix` | v20 yangilari (sport, shokolad, gazaklar) | Twix (`twix`) |
+| 1 | `issiq-shokolad` ✅ | ichimliklar | Issiq shokolad (sutda) (`issiq-shokolad`), Kakao (sutda) (`kakao`) |
+| 2 | `shokoladli-sut` ✅ | ichimliklar | Shokoladli sut (`shokoladli-sut`) |
+| 3 | `smuzi` ✅ | ichimliklar | Smuzi (meva) (`smuzi`), Smuzi (mevali, tayyor) (`smuzi-mango`) |
+| 4 | `suv` ✅ | ichimliklar | Suv (`suv`) |
+| 5 | `sut-kokteyl` ✅ | ichimliklar | Sut kokteyli (`sut-kokteyl`) |
+| 6 | `choy-sovuq` ✅ | ichimliklar | Sovuq choy (limonli) (`sovuq-choy`) |
+| 7 | `choy-shakarli` ✅ | ichimliklar | Choy (1 choy qoshiq shakar bilan) (`choy-shakar1`), Choy (2 choy qoshiq shakar bilan) (`choy-shakar2`) |
+| 8 | `choy-sutli` ✅ | ichimliklar | Sutli choy (shakar bilan) (`choy-sut-shakar`) |
+| 9 | `choy-kok-shakar` ✅ | ichimliklar | Ko'k choy (1 choy qoshiq shakar bilan) (`kok-choy-shakar`) |
+| 10 | `izotonik` ✅ | ichimliklar | Izotonik ichimlik (Powerade) (`sport-izotonik`), Izotonik ichimlik (shakarsiz, Powerade Zero) (`sport-izotonik-zero`) |
+| 11 | `kokos-suvi` ✅ | ichimliklar | Kokos suvi (`kokos-suvi`) |
+| 12 | `bodom-sut` ✅ | ichimliklar | Bodom suti (shakarsiz) (`bodom-sut`), Soya suti (`soya-sut`) |
+| 13 | `vino` ✅ | ichimliklar | Vino (quruq) (`vino`) |
+| 14 | `pivo` ✅ | ichimliklar | Pivo (`pivo`) |
+| 15 | `muzqaymoq-plombir` ✅ | muzqaymoq | Muzqaymoq (plombir) (`muzqaymoq`), Plombir vanilli (15% yog', yorliq bo'yicha) (`mz-plombir-stakan`), Muzqaymoq (vanilli, sutli) (`mz-vanil`), Muzqaymoq (kam yog'li) (`mz-light`), Muzqaymoq (shakar qo'shilmagan) (`mz-shakarsiz`) |
+| 16 | `muzqaymoq-briket` ✅ | muzqaymoq | Plombir (briket, yog'li) (`mz-plombir-briket`) |
+| 17 | `plombir-vafli` ✅ | muzqaymoq | Plombir vafli stakanchada (chernika qatlamli) (`mz-plombir-vafli`) |
+| 18 | `muzqaymoq-shokolad` ✅ | muzqaymoq | Shokoladli muzqaymoq (`mz-shokolad`), Shokoladli plombir (yog'li) (`mz-shokolad-plombir`), Shokoladli muzqaymoq (kam yog'li) (`mz-shokolad-light`) |
+| 19 | `muzqaymoq-qulupnay` ✅ | muzqaymoq | Qulupnayli muzqaymoq (`mz-qulupnay`) |
+| 20 | `muzqaymoq-yumshoq` ✅ | muzqaymoq | Yumshoq muzqaymoq (apparatdan) (`mz-yumshoq`) |
+| 21 | `muzqaymoq-rojok` ✅ | muzqaymoq | Muzqaymoq vafli konusda (shokolad va yong'oq bilan) (`mz-konus-shokolad`) |
+| 22 | `muzqaymoq-rojok-sous` ✅ | muzqaymoq | Muzqaymoq vafli konusda (sousli) (`mz-konus-sundae`) |
+| 23 | `eskimo` ✅ | muzqaymoq | Muzqaymoq (eskimo) (`muzqaymoq-eskimo`), Eskimo (shokolad va yong'oqli qoplama) (`mz-eskimo-yongoq`) |
+| 24 | `sorbet` ✅ | muzqaymoq | Sorbet (mevali, sutli) (`mz-sorbet`) |
+| 25 | `muzli` ✅ | muzqaymoq | Muzli muzqaymoq (fruktoviy lyod) (`mz-muzli`), Mevali muzqaymoq (sharbatli) (`mz-meva-bar`) |
+| 26 | `sundae` ✅ | muzqaymoq | Sundae (muzqaymoq sous bilan) (`mz-sundae`) |
+| 27 | `vafli-stakancha` ✅ | muzqaymoq | Vafli stakancha (bo'sh) (`mz-vafli-stakan`) |
+| 28 | `makflurri` ✅ | muzqaymoq | McFlurry (Oreo bilan) (`mz-makflurri`) |
+| 29 | `muzlatilgan-yogurt` ✅ | muzqaymoq | Muzlatilgan yogurt (vanilli) (`mz-yogurt`), Muzlatilgan yogurt (shokoladli) (`mz-yogurt-shokolad`) |
+| 30 | `sport-protein-kukun` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Protein kukuni (whey) (`protein-kukun`), Protein izolyat (whey isolate) (`protein-izolyat`), Kazein protein (`protein-kazein`) |
+| 31 | `aminokislota` ✅ | v20 yangilari (sport, shokolad, gazaklar) | BCAA / aminokislotalar (`aminokislota`) |
+| 32 | `protein-batonchik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Protein batonchik (`protein-bar`), Protein batonchik (60 g, shakarsiz) (`protein-bar-60`), Protein batonchik (40 g) (`protein-bar-40`) |
+| 33 | `sport-batonchik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Sport batonchik (Snickers Marathon) (`sport-snickers-marathon`) |
+| 34 | `protein-kokteyl` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Protein kokteyl (tayyor, shishada) (`protein-kokteyl-tayyor`) |
+| 35 | `geyner` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Geyner (mass gainer) (`geyner`) |
+| 36 | `protein-pechenye` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Protein pechenye (Bombbar) (`protein-pechenye`) |
+| 37 | `snickers` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Snickers (`snickers`) |
+| 38 | `mars` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Mars (batonchik) (`mars`), Milky Way (`milky-way`) |
+| 39 | `twix` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Twix (`twix`) |
 | 40 | `kitkat` | v20 yangilari (sport, shokolad, gazaklar) | KitKat (`kitkat`) |
-| 41 | `kokos-batonchik` | v20 yangilari (sport, shokolad, gazaklar) | Kokosli shokoladli batonchik (Bounty turi) (`kokos-batonchik`) |
-| 42 | `mms` | v20 yangilari (sport, shokolad, gazaklar) | M&M's (shokoladli) (`mms`), M&M's (yeryong'oqli) (`mms-yongoq`) |
+| 41 | `kokos-batonchik` ✅ | v20 yangilari (sport, shokolad, gazaklar) | Kokosli shokoladli batonchik (Bounty turi) (`kokos-batonchik`) |
+| 42 | `mms` ✅ | v20 yangilari (sport, shokolad, gazaklar) | M&M's (shokoladli) (`mms`), M&M's (yeryong'oqli) (`mms-yongoq`) |
 
 ## To'plam 5 (42)
 
