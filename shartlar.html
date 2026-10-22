@@ -146,7 +146,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     var old=document.getElementById('bc-ld'),oldNext=old?old.nextSibling:null;if(old)old.remove();
     var isRu=/^\/ru(\/|$)/.test(location.pathname);
     var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
-    var page=location.pathname.replace(/^\//,'').replace(/\.html$/,'');
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
     var sc=document.createElement('script');sc.type='application/ld+json';sc.id='bc-ld';
     sc.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList",
       "itemListElement":[
