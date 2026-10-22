@@ -1,4 +1,5 @@
 # KalkiFit — ovqat ikonkalari rejasi (rasm hali yasalmagan). Format: guruh | slug | tavsif (inglizcha) | shu ikonkani ishlatadigan taom id'lari (bo'sh joy bilan)
+# USHLAB TURILGAN (rasm generatsiya qilingan, lekin ulanmagan — qayta generatsiya kerak): «pechenye-oreo» — pechenye ustida «OREO» yozuvi (logotip) bor; «parvarda» — rasm marshmallowga o'xshaydi (tavsif: kichik oq qattiq konfet tayoqchalari).
 # Guruh tartibi (eng ko'p ko'rinadiganlar birinchi): 1 milliy taomlar va Yeymiz (kafe/uy) · 2 go'sht, ichki a'zolar, baliq · 3 ichimliklar · 4 muzqaymoq · 5 v20 yangilari (sport, shokolad, gazaklar) · 6 qolganlari
 
 1|moshkichiri|mashkichiri, a thick Uzbek porridge-soup of mung beans and rice, pale beige-green with a few small carrot cubes, in a small white bowl.|moshkichiri
