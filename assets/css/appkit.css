@@ -29,7 +29,7 @@ html{--page-bg:#F7F5F2}
 .rz-langmenu[hidden]{display:none}
 .rz-langmenu button{border:0;background:transparent;text-align:left;padding:0 14px;min-height:44px;border-radius:10px;font-weight:700}
 .rz-langmenu button:hover{background:var(--soft)}
-.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px calc(150px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch;outline:0}
+.rz-main{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px max(calc(150px + env(safe-area-inset-bottom,0px)),calc(var(--navh,0px) + 96px));-webkit-overflow-scrolling:touch;outline:0}
 .rz-h{font-size:var(--t-xl,1.5rem);font-weight:800;margin:6px 2px 14px;letter-spacing:-.01em}
 .rz-bar{margin-top:14px;height:10px;border-radius:6px;background:var(--track);overflow:hidden}
 .rz-bar i{display:block;height:100%;width:100%;border-radius:6px;background:var(--acc2);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}

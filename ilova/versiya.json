@@ -1,13 +1,13 @@
 {
-  "version": "1.0.1",
-  "versionCode": 3,
-  "apk": "/ilova/kalkifit-1.0.1.apk",
-  "sha256": "814d7d332e01311383f087df9b2c846e4a0ca843bcbe4787e438d73af3993bc7",
-  "size": 7011853,
+  "version": "1.0.2",
+  "versionCode": 4,
+  "apk": "/ilova/kalkifit-1.0.2.apk",
+  "sha256": "f4f35ef31f31ae98b1a9524190db3f3186605e701418da247b142f1edd4ac670",
+  "size": 8561935,
   "minAndroid": "8.0",
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "notes": {
-    "uz": "Qadam o'zi sanaladi: telefonning qadam hisoblagichi (GPS ishlatilmaydi, batareyani yemaydi).",
-    "ru": "Шаги считаются сами: счётчик шагов телефона (без GPS, бережёт батарею)."
+    "uz": "Qadamlar Health Connect (Google Fit va boshqalar) orqali; katta shriftda ham matn sig'adi; tashqi havolalar brauzerda ochiladi.",
+    "ru": "Шаги через Health Connect (Google Fit и другие); текст помещается даже с крупным шрифтом; внешние ссылки открываются в браузере."
   }
 }

@@ -111,7 +111,7 @@
       if (rt) return pickLine(ctx, rt.type === 'full' ? 'dist_full_day' : 'dist_part', { km: fmtKm(km), route: routePhrase(rt, ctx.lang), routeKm: rt.km, pct: rt.pct }, 'day|' + rt.to.id);
     }
     var sk = S.streak(st, t); if (sk >= 3) return pickLine(ctx, sk >= 7 && sk % 7 === 0 ? 'streak7' : 'streak', { days: sk }, 'streak');
-    return null;
+    return pickLine(ctx, hour < 12 ? 'day_morning' : 'day_any', {}, hour < 12 ? 'day_morning' : 'day_any');          // hech bir holat mos kelmasa ham — kuniga kamida bitta qator
   }
   function neutralLine(ctx, kind, p) { var n = NEUTRAL[kind], t = n && (n[ctx.lang] || n.uz); return t ? { state: 'neutral_' + kind, text: fill(t, p) } : null; }
   /* Hodisadan keyingi bir qatorli gap: kind = food | water | steps | weight | dayend. Hazil o'chirilgan bo'lsa shu vaziyat uchun NEUTRAL fakt qaytadi. */

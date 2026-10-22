@@ -28,6 +28,7 @@
   var userTouched = false;
   var reloaded = false;
   var holds = 0;                          // fayl yasalayotgan jarayonlar soni
+  var quiet = false;                      // ilovalar (KalkiFit, Ro'zg'or): hech qachon avtomatik qayta yuklanmaydi, chiziq ham yo'q — yangi versiya KEYINGI ochilishda
 
   function slug() {
     try { return (w.location.pathname || '').replace(/^\//, '').replace(/\.html$/, '') || 'index'; }
@@ -131,6 +132,8 @@
     hold: hold,
     release: release,
     isDirty: function () { return userTouched || holds > 0; },
+    quiet: function () { quiet = true; },
+    isQuiet: function () { return quiet; },
     showBar: showBar
   };
 
@@ -157,6 +160,9 @@
   w.navigator.serviceWorker.addEventListener('controllerchange', function () {
     if (!hadController) { hadController = true; return; }
     if (reloaded) return;                 // cheksiz sikl bo'lmasin
+    /* Ilova (app-kit) ochilganda foydalanuvchi ko'z oldida qayta yuklanmasin: yangi service worker allaqachon faol,
+       keyingi ochilishda sahifa ham, fayllar ham yangi keshdan keladi. */
+    if (quiet) { ga('sw_update_quiet', { page: slug() }); return; }
     if (userTouched || holds > 0) {
       ga('sw_update_deferred', { page: slug() });
       showBar();

@@ -5,7 +5,8 @@
  *   pickPhoto(labels)                           — (eski) kamera yoki galereya (@capacitor/camera, native PROMPT oynasi) → Promise<File|null>
  *   pickPhotoFrom('PHOTOS'|'CAMERA')            — tanlangan manba (native oyna YO'Q; sayt o'z tanlov oynasini ko'rsatadi) → Promise<{file}|{cancel:true}|{error:'camera'|'other', message}>
  *   openUrl(url)                                — tashqi brauzer yoki tegishli ilova (Uzum Tezkor, Yandex Eda…) (@capacitor/app-launcher)
- *   qadam.ok() / status() / perm() / enable(on) / today() / days(n)   — apparat qadam hisoblagichi (ilovadagi «Qadam» plagini, kalkifit-android: qadam/)
+ *   qadam.ok() / status() / perm() / enable(on) / today() / days(n) / hcInstall()   — qadam: Health Connect (Google Fit, Samsung Health…) yoki apparat hisoblagich (ilovadagi «Qadam» plagini, kalkifit-android: qadam/);
+ *                                               status() → { available, granted, enabled, source: 'hc'|'sensor'|'', hc: 'ok'|'install'|'none' }
  *   setBack(fn) / back()                        — Android «Orqaga» (MainActivity chaqiradi): fn() → 'sheet'|'step'|'tab'|'onb'|'overlay' (ushlandi) yoki 'home'
  * Ilova ichida navigator.share/canShare (fayl bilan — Filesystem keshi orqali, @capacitor/share) va navigator.vibrate (@capacitor/haptics) native'ga yo'naltiriladi —
  * mavjud kod (retsept kartochkasi, natijalar rasmi, Telegram zaxira, ro'yxat ulashish, kit.vib) o'zgarmasdan ishlaydi.
@@ -16,7 +17,7 @@
   'use strict';
   function cap() { return root.Capacitor || null; }
   function call(plugin, method, opts) { var c = cap(); if (!c || typeof c.nativePromise !== 'function') return Promise.reject(new Error('native yo\'q')); return c.nativePromise(plugin, method, opts || {}); }
-  var backFn = null, NOTIF_ID = 7001;
+  var backFn = null, NOTIF_ID = 7001, open0 = root.open;
   var N = {
     isApp: function () {
       var c = cap(); if (!c) return false;
@@ -64,16 +65,23 @@
           function (e) { var m = String((e && (e.message || e.errorMessage || e.code)) || e || ''); if (/cancel/i.test(m)) return { cancel: true }; return { error: /denied|permission|camera|resolve/i.test(m) && source === 'CAMERA' ? 'camera' : 'other', message: m.slice(0, 80) }; });
     },
     /* ---------- tashqi havola: brauzer yoki tegishli ilova ---------- */
+    /* ilova ichida qoladigan manzil: shu sayt + /kalkifit (yoki /ru/kalkifit) va undagi ma'lumot/asset so'rovlari; qolgani — tashqi */
+    external: function (u) {
+      if (!u || !/^https?:$/.test(u.protocol)) return !!(u && /^(mailto|tel|sms|tg|whatsapp|intent|market|geo):$/.test(u.protocol));
+      if (u.host !== root.location.host) return true;
+      return !/^\/(ru\/)?kalkifit(\/|\.html|$|\?)/.test(u.pathname + (u.search ? '?' : ''));
+    },
     openUrl: function (url) {
       if (!N.isApp()) return false;
-      if (N.has('AppLauncher')) { call('AppLauncher', 'openUrl', { url: url }).catch(function () { try { root.open(url, '_blank'); } catch (e) {} }); return true; }
+      if (N.has('AppLauncher')) { call('AppLauncher', 'openUrl', { url: url }).catch(function () { try { if (open0) open0.call(root, url, '_blank'); } catch (e) {} }); return true; }
       return false;
     },
     /* ---------- qadam: apparat hisoblagich (faqat ilovada; veb/iPhone'da ok() = false) ---------- */
     qadam: {
       ok: function () { return N.has('Qadam'); },
       status: function () { if (!N.qadam.ok()) return Promise.resolve({ available: false, granted: false, enabled: false }); return call('Qadam', 'isAvailable').catch(function () { return { available: false, granted: false, enabled: false }; }); },
-      perm: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false }); return call('Qadam', 'requestPermission').catch(function () { return { granted: false }; }); },
+      perm: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false }); return call('Qadam', 'requestPermission').catch(function () { return { granted: false }; }); },          // → { granted, source: 'hc'|'sensor' } (Health Connect bo'lsa — u, bo'lmasa sensor)
+      hcInstall: function () { if (!N.qadam.ok()) return Promise.resolve(false); return call('Qadam', 'openHealthConnect').then(function () { return true; }, function () { return false; }); },
       enable: function (on) { if (!N.qadam.ok()) return Promise.resolve({ enabled: false }); return call('Qadam', 'setEnabled', { on: !!on }).catch(function () { return { enabled: false }; }); },
       today: function () { if (!N.qadam.ok()) return Promise.resolve(null); return call('Qadam', 'getToday').catch(function () { return null; }); },
       days: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getDays', { n: n || 7 }).then(function (r) { return (r && r.kunlar) || []; }, function () { return []; }); }
@@ -110,6 +118,19 @@
     if (N.has('Haptics')) {
       var vib = function (p) { var ms = Array.isArray(p) ? p.reduce(function (a, x, i) { return i % 2 ? a : a + (+x || 0); }, 0) : +p || 0; if (ms > 0) call('Haptics', 'vibrate', { duration: Math.min(ms, 400) }).catch(function () {}); return true; };
       try { Object.defineProperty(nav, 'vibrate', { value: vib, configurable: true, writable: true }); } catch (e) {}
+    }
+    /* Havolalar: ilova ichida faqat KalkiFit (/kalkifit, /ru/kalkifit) qoladi; boshqa kalki.uz sahifalari, maxfiylik, Uzum/Yandex Eda va h.k. —
+       TIZIM brauzerida/ilovasida (WebView ichida ochilsa «Internet yo'q» oynasi chiqardi, orqaga qaytish ham yo'qolardi). */
+    if (N.has('AppLauncher') && root.document) {
+      root.document.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey) return;
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null; if (!a || a.hasAttribute('download') || a.hasAttribute('data-act')) return;      // data-act — ilovaning o'z ishlovchisi (u o'zi openUrl qiladi)
+        var href = a.getAttribute('href') || ''; if (!href || href.charAt(0) === '#' || /^(javascript|blob|data):/i.test(href)) return;
+        var u; try { u = new root.URL(href, root.location.href); } catch (x) { return; }
+        if (!N.external(u)) return;
+        e.preventDefault(); N.openUrl(u.href);
+      });
+      root.open = function (url) { try { var u = new root.URL(String(url || ''), root.location.href); if (N.external(u)) { N.openUrl(u.href); return null; } } catch (x) {} return open0 ? open0.apply(root, arguments) : null; };
     }
     // native splash: sahifa birinchi chizilganda yopiladi (inline #kfSplash xuddi shu ko'rinishda davom etadi — chaqnash yo'q)
     if (N.has('SplashScreen')) { var hide = function () { call('SplashScreen', 'hide', { fadeOutDuration: 150 }).catch(function () {}); }; if (root.document && root.document.readyState !== 'loading') hide(); else if (root.document) root.document.addEventListener('DOMContentLoaded', hide); }

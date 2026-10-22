@@ -49,7 +49,8 @@ var DEFAULT_ABBR = [
   '@achchi90', '@kalki_uz', 'achchi90', 'kalki_uz',
   'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON', 'KalkiFit', 'NIH', 'USDA', 'Harvard', 'EFSA', 'FDA', 'Nutrition', 'Source',
   /* texnik qisqartma va brendlar — lotincha qoladi (kirillda «ИД», «УРЛ», «ҲТМЛ», «ПWА» emas) */
-  'ID', 'URL', 'API', 'HTML', 'HTTP', 'HTTPS', 'PWA', 'USD', 'OTP', 'LED', 'Wi-Fi', 'Claude', 'Apple', 'WhatsApp', 'cookie', 'Cookie'
+  'ID', 'URL', 'API', 'HTML', 'HTTP', 'HTTPS', 'PWA', 'USD', 'OTP', 'LED', 'Wi-Fi', 'Claude', 'Apple', 'WhatsApp', 'cookie', 'Cookie',
+  'Health Connect', 'Google Fit', 'Samsung Health', 'Mi Fitness', 'Play Market'
 ];
 /* Qo'shimchasi APOSTROF bilan kelganda apostrof SAQLANADI: iPhone'da -> iPhone'да, Safari'da -> Safari'да
  * (boshqa qisqartmalarda eski qoida: AI'ning -> AI-нинг). */

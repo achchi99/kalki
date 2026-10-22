@@ -123,7 +123,7 @@
   Object.assign(D.uz, {
     bkT: 'Baliq kuni eslatmasi', bkH: "Haftada bir marta — {d} kuni, 11:00 da. Boshqa xabar yuborilmaydi.", bkOn: 'Yoqish', bkOff: "O'chirish", bkIsOn: 'Yoqilgan: {d} kuni, 11:00 da.', bkIos: "Avval ilovani Bosh ekranga qo'shing (Safari: Ulashish → «Bosh ekranga qo'shish»), keyin eslatmani shu yerdan yoqing.", bkDenied: "Brauzerda bildirishnomalar o'chirilgan. Sayt sozlamalaridan ruxsat bering.", bkNA: "Bu brauzer yoki qurilmada bildirishnomalar mavjud emas. Baliq kuni ilova ichida eslatma ko'rsatiladi.", bkErr: "Yoqib bo'lmadi. Keyinroq urinib ko'ring.",
     fcT: 'Bugun baliq kuni', bkT2: 'Baliq kuni', bkLine: 'Haftada bir kun eslatamiz. Qaysi kun?', bkIos2: "Avval Bosh ekranga qo'shing: Ulashish → «Bosh ekranga»", bkDen2: "Bildirishnomalar o'chiq — brauzer sozlamasidan yoqing", bkDen3: "Bildirishnomalar o'chiq — telefon sozlamasidan yoqing", bkNA2: "Bu qurilmada eslatma yo'q — Bugun ekranida ko'rsatamiz", bkAsk: 'Haftalik baliq kuni eslatmasini yoqasizmi?', bkAskH: "Haftada bitta xabar, baliq kuni 11:00 da. Istalgan payt o'chirasiz.", bkNo: 'Hozir emas', bkOk: 'Tushunarli', bkMsg: "Bugun baliq kuni 🐟 — yaqin kafedan buyurtma qilasizmi yoki uyda pishirasizmi?", bkBtn: 'Baliq kuni', bkNever: "Bundan keyin ko'rsatma", bkDone: 'Yoqildi: baliq kuni 11:00 da eslatamiz.', bkDoneOff: "Eslatma o'chirildi.", cat_baliq: 'Baliq',
-    qaT: 'Qadamlaringizni avtomatik sanaymizmi?', qaH: "Telefon o'zi sanaydi, joylashuvingiz olinmaydi.", qaYes: 'Ruxsat berish', qaLater: 'Keyinroq', qaBadge: 'Avtomatik', qaRow: 'Qadamni avtomatik sanash', qaRowH: "Telefon qadamni o'zi sanaydi (GPS ishlatilmaydi). Ma'lumot telefoningizda qoladi.", qaOnT: 'Qadam endi avtomatik sanaladi', qaDenied: "Ruxsat berilmadi. Telefon sozlamalarida KalkiFit → Ruxsatlar → «Jismoniy faollik» ni yoqing.", qaExtra: "Telefonsiz yurgan qadamlaringizni qo'shing. Avtomatik sanalgani ({a}) o'zgarmaydi.", qaExtraNow: "Qo'shilgan: {m}", qaAdd: "Qo'shish", qaClear: "Qo'shilganini tozalash",
+    qaT: 'Qadamlaringizni avtomatik sanaymizmi?', qaH: "Qadamlar Health Connect (Google Fit va boshqalar) yoki telefon sensoridan olinadi. Joylashuv olinmaydi.", qaYes: 'Ruxsat berish', qaLater: 'Keyinroq', qaBadge: 'Avtomatik', qaRow: 'Qadamni avtomatik sanash', qaRowH: "Health Connect (Google Fit, Samsung Health va boshqalar) yoki telefon sensoridan. GPS ishlatilmaydi, ma'lumot telefoningizda qoladi.", qaSrc_hc: 'Health Connect', qaSrc_sensor: 'Telefon sensori', qaFix: "Qo'lda tuzatish", qaHcInst: "Health Connect'ni o'rnatish", qaHcInstH: "Google Fit va boshqa ilovalardagi qadamlar shu orqali keladi.", qaOnT: 'Qadam endi avtomatik sanaladi', qaDenied: "Ruxsat berilmadi. Health Connect yoki telefon sozlamalarida KalkiFit'ga qadamlarni o'qishga ruxsat bering.", qaExtra: "Telefonsiz yurgan qadamlaringizni qo'shing. Avtomatik sanalgani ({a}) o'zgarmaydi.", qaExtraNow: "Qo'shilgan: {m}", qaAdd: "Qo'shish", qaClear: "Qo'shilganini tozalash",
     mealAddS: "Qo'shish", vLeftK: 'kkal qoldi', cEaten2: "iste'mol", cGoal2: 'maqsad', cBurn2: 'yoqildi', stWrite: 'Yozish', stkQ: "Kun qanday hisoblanadi?", stkT: 'Ketma-ket kunlar', stkB: "Ketma-ket {n} kun ovqat yozdingiz. Kun hisobga olinishi uchun kamida bitta ovqat yozilgan bo'lishi kerak. Bugun hali yozilmagan bo'lsa ham, seriya kechagacha saqlanadi.", wkTap: "Kunni ochish", mealRepT: 'Takrorlash', mealRepD: "Shu ovqatdagi hamma taomni bugunga yana qo'shadi.", mealRepH: "Taomni uzun bosing — «Takrorlash»", mealEmptyD: 'Hali yozilmadi', histT: 'Tarix', navHist: 'Tarix', histDays: 'Kunlar', histRes: 'Natijalar', orWord: "O'rniga:", orLine: "O'rniga: {n} — {d}", orMore: 'Boshqa variantlar', orLess: 'Yopish', orP_up: 'oqsil +{x} g', orP_down: 'oqsil −{x} g', orP_same: 'oqsil deyarli bir xil', orF: "yog' {x} g", orK: '{x} kkal',
     orSet: "O'rinbosar takliflari", orSetH: "Porsiya oynasida o'xshash, oqsilga boyroq yoki yog'i kamroq taom taklif qilinadi", orOn: 'Yoqilgan', orOff: "O'chirilgan",
     orbT: 'Oqsil manbalari', orbEmpty: "3 kun yozgandan keyin shu yerda oqsil qaysi manbadan kelayotgani ko'rinadi.", orbSent: 'Bu hafta oqsilning {x}% i {s}. Baliq {n}.', orbTimes: '{n} marta',
@@ -133,7 +133,7 @@
   Object.assign(D.ru, {
     bkT: 'Напоминание о рыбном дне', bkH: 'Раз в неделю — в {d}, в 11:00. Других уведомлений не будет.', bkOn: 'Включить', bkOff: 'Выключить', bkIsOn: 'Включено: в {d}, в 11:00.', bkIos: 'Сначала добавьте приложение на экран «Домой» (Safari: Поделиться → «На экран Домой»), затем включите напоминание здесь.', bkDenied: 'В браузере уведомления отключены. Разрешите их в настройках сайта.', bkNA: 'В этом браузере или на этом устройстве уведомления недоступны. В рыбный день напоминание покажем внутри приложения.', bkErr: 'Не удалось включить. Попробуйте позже.',
     fcT: 'Сегодня рыбный день', bkT2: 'Рыбный день', bkLine: 'Напомним раз в неделю. В какой день?', bkIos2: 'Сначала добавьте на экран «Домой»: Поделиться → «На экран Домой»', bkDen2: 'Уведомления выключены — включите в настройках браузера', bkDen3: 'Уведомления выключены — включите в настройках телефона', bkNA2: 'Здесь уведомлений нет — покажем на экране «Сегодня»', bkAsk: 'Включить еженедельное напоминание о рыбном дне?', bkAskH: 'Одно уведомление в неделю, в рыбный день в 11:00. Отключить можно в любой момент.', bkNo: 'Не сейчас', bkOk: 'Понятно', bkMsg: 'Сегодня рыбный день 🐟 — закажете в ближайшем кафе или приготовите дома?', bkBtn: 'Рыбный день', bkNever: 'Больше не показывать', bkDone: 'Включено: напомним в рыбный день в 11:00.', bkDoneOff: 'Напоминание выключено.', cat_baliq: 'Рыба',
-    qaT: 'Считать шаги автоматически?', qaH: 'Телефон считает сам, местоположение не используется.', qaYes: 'Разрешить', qaLater: 'Позже', qaBadge: 'Авто', qaRow: 'Автоматический подсчёт шагов', qaRowH: 'Телефон сам считает шаги (без GPS). Данные остаются на телефоне.', qaOnT: 'Теперь шаги считаются автоматически', qaDenied: 'Разрешение не дано. В настройках телефона: KalkiFit → Разрешения → «Физическая активность».', qaExtra: 'Добавьте шаги, пройденные без телефона. Автоматический счёт ({a}) не изменится.', qaExtraNow: 'Добавлено: {m}', qaAdd: 'Добавить', qaClear: 'Очистить добавленное',
+    qaT: 'Считать шаги автоматически?', qaH: 'Шаги берутся из Health Connect (Google Fit и другие) или датчика телефона. Местоположение не используется.', qaYes: 'Разрешить', qaLater: 'Позже', qaBadge: 'Авто', qaRow: 'Автоматический подсчёт шагов', qaRowH: 'Из Health Connect (Google Fit, Samsung Health и другие) или датчика телефона. Без GPS, данные остаются на телефоне.', qaSrc_hc: 'Health Connect', qaSrc_sensor: 'Датчик телефона', qaFix: 'Исправить вручную', qaHcInst: 'Установить Health Connect', qaHcInstH: 'Через него приходят шаги из Google Fit и других приложений.', qaOnT: 'Теперь шаги считаются автоматически', qaDenied: 'Разрешение не дано. В Health Connect или настройках телефона разрешите KalkiFit читать шаги.', qaExtra: 'Добавьте шаги, пройденные без телефона. Автоматический счёт ({a}) не изменится.', qaExtraNow: 'Добавлено: {m}', qaAdd: 'Добавить', qaClear: 'Очистить добавленное',
     mealAddS: 'Добавить', vLeftK: 'ккал осталось', cEaten2: 'съедено', cGoal2: 'цель', cBurn2: 'сожжено', stWrite: 'Ввести', stkQ: 'Как считаются дни?', stkT: 'Дни подряд', stkB: 'Вы записывали еду {n} дн. подряд. День засчитывается, если записано хотя бы одно блюдо. Если сегодня ещё нет записей, серия сохраняется до вчерашнего дня.', wkTap: 'Открыть день', mealRepT: 'Повторить', mealRepD: 'Добавит на сегодня все блюда этого приёма пищи ещё раз.', mealRepH: 'Нажмите на приём пищи и удерживайте — «Повторить»', mealEmptyD: 'Пока не записано', histT: 'История', navHist: 'История', histDays: 'Дни', histRes: 'Итоги', orWord: 'Вместо:', orLine: 'Вместо: {n} — {d}', orMore: 'Другие варианты', orLess: 'Свернуть', orP_up: 'белка +{x} г', orP_down: 'белка −{x} г', orP_same: 'белка почти столько же', orF: 'жира {x} г', orK: '{x} ккал',
     orSet: 'Подсказки-замены', orSetH: 'В окне порции предлагается похожее блюдо с большим количеством белка или меньшим — жира', orOn: 'Включено', orOff: 'Выключено',
     orbT: 'Источники белка', orbEmpty: 'После 3 дней записей здесь будет видно, из чего складывается белок.', orbSent: 'На этой неделе {x}% белка — {s}. Рыба: {n}.', orbTimes: '{n}',
@@ -144,8 +144,8 @@
   var st = null, view = 'today', lang = langNow(), enterNext = true, foodDay = null, db = null, dbState = 0, heroPrev = null, seenFood = null, ob = null, reduce = false;
   function langNow() { return document.documentElement.lang === 'ru' ? 'ru' : 'uz'; }
   function isCyr() { return document.documentElement.getAttribute('data-script') === 'cyr'; }
-  Object.assign(D.uz, { sMine: "Mening ma'lumotlarim", pFoot: "Ma'lumot faqat shu qurilmada. Tibbiy maslahat emas.", sRem: 'Eslatmalar', sLangT: "Til va ko'rinish", profBackup: "Ma'lumotni saqlash (email)", sHow: 'Qanday ishlaydi?', hEmpty: "Birinchi ovqatni qo'shing", aTabS: 'Qidirish', aTabM: 'Taomlarim', aTabT: 'Odatdagi', aTabV: 'Idishlar', aTabs: "Ovqat qo'shish bo'limlari", fuT: 'Foydali' });
-  Object.assign(D.ru, { sMine: 'Мои данные', pFoot: 'Данные только на этом устройстве. Не медицинский совет.', sRem: 'Напоминания', sLangT: 'Язык и вид', profBackup: 'Сохранить данные (почта)', sHow: 'Как это работает?', hEmpty: 'Добавьте первую еду', aTabS: 'Поиск', aTabM: 'Мои блюда', aTabT: 'Привычные', aTabV: 'Посуда', aTabs: 'Разделы «Добавить еду»', fuT: 'Полезное' });
+  Object.assign(D.uz, { moreWays: 'Boshqa usullar', sMine: "Mening ma'lumotlarim", pFoot: "Ma'lumot faqat shu qurilmada. Tibbiy maslahat emas.", sRem: 'Eslatmalar', sLangT: "Til va ko'rinish", profBackup: "Ma'lumotlarni saqlash", sHow: 'Qanday ishlaydi?', hEmpty: "Birinchi ovqatni qo'shing", aTabS: 'Qidirish', aTabM: 'Taomlarim', aTabT: 'Odatdagi', aTabV: 'Idishlar', aTabs: "Ovqat qo'shish bo'limlari", fuT: 'Foydali' });
+  Object.assign(D.ru, { moreWays: 'Другие способы', sMine: 'Мои данные', pFoot: 'Данные только на этом устройстве. Не медицинский совет.', sRem: 'Напоминания', sLangT: 'Язык и вид', profBackup: 'Сохранение данных', sHow: 'Как это работает?', hEmpty: 'Добавьте первую еду', aTabS: 'Поиск', aTabM: 'Мои блюда', aTabT: 'Привычные', aTabV: 'Посуда', aTabs: 'Разделы «Добавить еду»', fuT: 'Полезное' });
   function T(k, o) { var s = (D[lang] && D[lang][k] != null) ? D[lang][k] : D.uz[k]; if (typeof s === 'string' && o) s = s.replace(/\{(\w+)\}/g, function (m, x) { return o[x] != null ? o[x] : m; }); return s; }
   var kit = RzKit.create({ root: root, K: Dt, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
   /* Funksiya oynasi (Ovqat qo'shish, Bugun nima yeymiz?, Retsept, Suv, Tez-tez, Idish, Mening taomlarim) yopilganda DOIM Bugun'ga qaytadi (o'tgan kunga yozilayotgan «Ovqat qo'shish» bundan mustasno) */
@@ -257,19 +257,28 @@
     if (f && f.fam && e.vr) lb = S.famLabel(f, e.vr, e.sz, lang) || '';
     return '<button type="button" class="sl-row' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '"><span class="m"><span class="nm">' + esc(name) + '</span><span class="tm">' + esc(portionText(e) + (lb ? ' · ' + lb : '')) + (e.est && !e.fid ? ' · ' + esc(T('aEst')) : '') + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button>';
   }
+  /* bazada yo'q (rasm/AI, matn) yozuvi uchun ikonka: nomi bazadagi taomga mos kelsa, o'sha taom id'si (ifid) — kkal o'zgarmaydi, faqat rasm.
+     Yangi yozuvda saqlash paytida qo'yiladi; eskilarida baza yuklangach bir marta topilib saqlanadi. */
+  function foldNm(x) { return String(x || '').toLowerCase().replace(/[ʻʼ'’`‘]/g, '').replace(/ё/g, 'е').replace(/[^a-zа-яўқғҳ0-9]+/g, ' ').trim(); }
+  function iconMatch(nom) {
+    if (dbState !== 2) return null; var q = String(nom || '').split(/[(·,]/)[0].trim(); if (q.length < 3) return null;
+    try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom || !imgFile(f.id, null)) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0)) return f.id; } } catch (e) {}
+    return null;
+  }
+  function iconFid(e) { if (!e || e.fid) return null; if (e.ifid !== undefined) return e.ifid; if (dbState !== 2) return null; e.ifid = iconMatch(e.name) || ''; save(); return e.ifid; }
   function mealTile(list) {                          // kartadagi 48 px rasm: eng ko'p kkal'li taom (rasmi yo'q bo'lsa — harfli tile)
     var best = null; list.forEach(function (e) { if (!best || e.kcal > best.kcal) best = e; });
     if (!best) return '<span class="sl-tile sl-te" style="--s:48px">' + ico('bowl') + '</span>';
     var f = best.fid ? foodById(best.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f;
-    return tileHtml(best.fid, best.vr, base ? nameOf(base) : (best.name || '?'), 48);
+    return tileHtml(best.fid || iconFid(best), best.vr, base ? nameOf(base) : (best.name || '?'), 48);
   }
   function mealsHtml(date) {
     var x = S.dayOf(st, date) || { food: [] }, h = '<section class="sl-meals">';
     S.MEALS.forEach(function (m) {
       var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal, yb = S.kechagidekOk(st, date, m);
-      h += '<section class="sl-meal' + (list.length ? '' : ' empty') + '" data-m="' + m + '"><div class="sl-mh" data-m="' + m + '" data-d="' + date + '">' + mealTile(list) + '<span class="m"><b>' + esc(mealName(m)) + '</b>' + (list.length ? '' : '<span class="s">' + esc(T('mealEmptyD')) + '</span>') + '</span>' +
-        (list.length ? '<span class="k">' + fmt(sum) + ' ' + T('kcal') + '</span><button type="button" class="sl-ib" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '</button><button type="button" class="sl-ib" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>'
-          : '<button type="button" class="sl-dash" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('mealAdd_' + m)) + '">' + ico('plus', '', 2.2) + '<span>' + esc(T('mealAddS')) + '</span></button>') + '</div>' +
+      h += '<section class="sl-meal' + (list.length ? '' : ' empty') + '" data-m="' + m + '"><div class="sl-mh" data-m="' + m + '" data-d="' + date + '">' + mealTile(list) + '<span class="m"><b>' + esc(mealName(m)) + '</b>' + (list.length ? '<span class="k">' + fmt(sum) + ' ' + T('kcal') + '</span>' : '') + '</span>' +
+        (list.length ? '<button type="button" class="sl-ib" data-act="tplsave" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('tplSave1') + ': ' + mealName(m)) + '">' + ico('star') + '</button><button type="button" class="sl-ib" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button>'
+          : '<button type="button" class="sl-dash" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('mealAdd_' + m)) + '">' + ico('plus', '', 2.4) + '</button>') + '</div>' +
         (list.length ? '<div class="sl-ents">' + list.map(function (e) { return entryRow(e, date); }).join('') + '</div>' : (yb ? '<button type="button" class="sl-txtbtn sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '')) + '</section>';
     });
     return h + '</section>';
@@ -282,6 +291,10 @@
     var x = S.dayOf(st, date), t = todayStr(), added = []; if (!x) return;
     x.food.filter(function (e) { return e.meal === m; }).forEach(function (e) { var c = {}; ['fid', 'name', 'meal', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) c[k] = e[k]; }); c.ts = nowTs(); added.push(S.addFood(st, t, c)); });
     kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { added.forEach(function (it) { S.removeFood(st, t, it.id); }); commit(); }, true);
+  }
+  function lpTipOnce(x) {                            // «uzun bosing — Takrorlash» doimiy matn emas: birinchi yozuvdan keyin BIR MARTA kichik maslahat
+    if (!x.food.length || prefs().lpTip || kit.sheetKind()) return; prefs().lpTip = 1; save();
+    setTimeout(function () { if (view === 'today' && !kit.sheetKind()) toast(T('mealRepH')); }, 1200);
   }
   var lpTimer = 0, lpFired = false;
   function lpBind() {                                // taom kartasini uzun bosish (550 ms) → «Takrorlash»
@@ -312,6 +325,7 @@
     akkaunt: function (n) { return goTab('profile', function () { akk.load(true, function () { if (akk.enabled()) akk.act('akk'); }); }); },
     daychip: function (n) { return goTab('today', function () { n.highlight($('.sl-infob') || $('#kcalBtn')); }); },
     stepcalc: function (n) { return goTab('today', function () { n.highlight($('#kcalBtn')); }); },
+    qadam: function (n) { return goTab('today', function () { n.highlight($('.sl-s') || $('#kcalBtn')); }); },
     search: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     portion: function (n) { return goTab('today', function () { openAdd(); pickFood('olma'); setTimeout(function () { n.highlight($('.sl-qty')); }, 500); }); },
     units: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('#fdUnits')); }, 500); }); },
@@ -354,14 +368,15 @@
     return '<p class="sl-dst" id="dayChip" data-state="' + i.state + '"><i class="c ' + i.state + '" aria-hidden="true"></i>' + esc(lab) + '</p>';
   }
   function dayEndHtml(t, x) {                        // «Kunni yakunlash» — ovqatlar ro'yxati oxirida kichik matnli tugma
-    if (!x.food.length) return ''; if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + '</p>' + orbHtml() + pushOfferHtml();
+    if (!x.food.length) return ''; if (!x.done && x.food.length < 2 && new Date().getHours() < 19) return '';          // kechqurun (19:00 dan) yoki kamida 2 ta yozuvdan keyin
+    if (x.done) return '<p class="sl-dayend done" id="dayEndDone">' + ico('check', 'sl-inl') + esc(T('deDoneL')) + '</p>' + orbHtml() + pushOfferHtml();
     return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button></p>';
   }
   var jShown = '';                                  // oxirgi ko'rsatilgan hazil matni (almashganda 200 ms fade)
   function jokeSwap(text) {                         // Bugun: qator o'rnida matn yumshoq (200 ms) almashadi; qator yo'q bo'lsa qayta chiziladi
-    var el = $('#jLine'); if (!el) { render(); return; } if (el.textContent === text) return;
+    var el = $('#jLine'), tx = el && el.querySelector('.t'); if (!el || !tx) { render(); return; } if (tx.textContent === text) return;
     el.classList.remove('jnew'); el.classList.add('jout');
-    setTimeout(function () { var e = $('#jLine'); if (!e) return; e.textContent = text; jShown = text; e.classList.remove('jout'); void e.offsetWidth; e.classList.add('jnew'); }, kit.reduce ? 0 : 200);
+    setTimeout(function () { var e = $('#jLine'), t2 = e && e.querySelector('.t'); if (!t2) return; t2.textContent = text; jShown = text; e.classList.remove('jout'); void e.offsetWidth; e.classList.add('jnew'); }, kit.reduce ? 0 : 200);
   }
   function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
     if (!G || !G.eventLine || prefs().jokes === false) return; var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
@@ -373,7 +388,7 @@
     if (!G || !G.todayLine || prefs().jokes === false) return ''; var pr = hazilStore(), t = todayStr(); if (pr.jx === t) return ''; var text;
     if (pr.last && pr.last.d === t) text = pr.last.text; else { if (masofaState === 1 || dbState === 1) return ''; var l = G.todayLine(jokeCtx(false)); if (!l) return ''; saveQuiet(); text = l.text; }
     var cls = text !== jShown ? ' jnew' : ''; jShown = text;
-    return '<button type="button" class="sl-jline' + cls + '" id="jLine" data-act="jclose" title="' + esc(T('jClose')) + '">' + esc(text) + '</button>';
+    return '<div class="sl-jline' + cls + '" id="jLine"><span class="t">' + esc(text) + '</span><button type="button" class="sl-jx" data-act="jclose" aria-label="' + esc(T('jClose')) + '">' + ico('x') + '</button></div>';          // yopish — faqat ✕ (butun qatorni tasodifan bosib, kun bo'yi yo'qotib qo'ymaslik uchun)
   }
   function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
   function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
@@ -418,19 +433,19 @@
     if (!tot.kcal && !x.food.length) h += '<p class="sl-first">' + esc(T('hEmpty')) + '</p>';
     h += '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span>' + esc(T('mainAdd')) + '</span></button>';
     h += '<div class="sl-doors">' + (R ? R.door() : '') + (Y ? Y.todayCard() : '') + '</div>';
-    h += mealsHtml(t) + (x.food.length ? '<p class="sl-lphint">' + esc(T('mealRepH')) + '</p>' : '') + dayEndHtml(t, x);
+    h += mealsHtml(t) + dayEndHtml(t, x);
     h += '<section class="sl-card sl-macs"><button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b><i class="dt" style="background:var(--' + m[1] + ')"></i>' + esc(T(m[0])) + '</b><span class="mv">' + v + ' <small>/ ' + goal + ' g</small></span><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + m[1] + ')"></i></span></span>'; }).join('') + '</button></section>';
     var wsegs = ''; for (var wi2 = 0; wi2 < glasses; wi2++) wsegs += '<i' + (wi2 < Math.min(glasses, x.water) ? ' class="on"' : '') + '></i>';
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
     h += '<div class="sl-duo"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(x.water * S.GLASS_ML) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span></button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button></section>' +
-      '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + qaBadge() + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span></button><button type="button" class="sl-pill" data-act="addsteps">' + ico(qaOn() ? 'plus' : 'pen') + '<span>' + esc(T(qaOn() ? 'qaAdd' : 'stWrite')) + '</span></button></section></div>';
+      '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(qaOn() ? T('stepsT') : T('sEnter')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span>' + qaSrcHtml() + '</button>' + (qaOn() ? '' : '<button type="button" class="sl-pill" data-act="addsteps">' + ico('pen') + '<span>' + esc(T('stWrite')) + '</span></button>') + '</section></div>';
     if (st.weights.length) { var dl = wiInfo.delta; h += '<button type="button" class="sl-card sl-wrow" data-act="tab" data-v="history"><span class="ic">' + ico('trend') + '</span><span class="m"><b>' + esc(T('wRowT', { x: dec(S.currentWeight(st), 1) })) + '</b><span>' + esc(dl != null ? T('wRowW', { d: (dl > 0 ? '+' : '−') + dec(Math.abs(dl), 1) }) : weightLabel(wiInfo)) + '</span></span>' + ico('chev', 'r') + '</button>'; }
     nudges().forEach(function (n) { h += '<div class="rz-card nudge" data-nudge="' + n.k + '"><div class="t">' + esc(n.msg) + '</div>' + '<div class="b">' + (n.btn ? '<button type="button" class="rz-btn sm" data-act="' + n.act + '">' + esc(n.btn) + '</button>' : '') + '<button type="button" class="rz-btn sm ghost" data-act="hide" data-k="' + n.k + '">' + esc(T('later')) + '</button>' + (n.never ? '<button type="button" class="rz-btn sm ghost" data-act="' + n.never.act + '">' + esc(n.never.label) + '</button>' : '') + '</div></div>'; });
     if (!inst.isTop()) h += inst.cardHtml();
     h += jokeLineHtml();
     h += '<button type="button" class="rz-link sl-suplink" data-act="supp">' + esc(T('spCardT')) + '</button>';
     h += '<p class="rz-priv">' + esc(T('disc')) + '</p>';
-    $('#rzMain').innerHTML = h; markSeen(); fishSwim(t);
+    $('#rzMain').innerHTML = h; markSeen(); fishSwim(t); lpTipOnce(x);
     animNum(curN, n, durN); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 900, from: startN, to: n, fromTy: fromTy, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty };
     if (G && !jokeBoot) { jokeBoot = true; loadHazil(); loadMasofa(); if (appDays() >= 3) loadPush(function () { pushSync(); if ((view === 'today' || view === 'profile') && !kit.sheetKind()) render(); }); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
@@ -476,7 +491,7 @@
   function stepsHtml() {
     var t = todayStr(), x = S.dayOf(st, t) || { steps: 0 }, stp = S.stepsStats(st, x.steps), ser = S.stepsSeries(st, t, 7), tot = S.stepsTotal(st, ser), mx = Math.max(st.stepGoal, Math.max.apply(null, ser.map(function (s) { return s.steps; })), 1), mon = S.monthSteps(st, Dt.monthOf(t));
     loadMasofa(); var dl = G && prefs().jokes !== false && masofa ? G.distLines(jokeCtx(false)) : null; if (dl && (dl.week || dl.month)) saveQuiet(); var jbox = function (l) { return '<p class="rz-p sl-fact">' + ico('flame', 'sl-inl') + esc(l.text) + '</p>'; }; var weekJoke = dl && dl.week ? jbox(dl.week) : routeFact(tot.km), monJoke = dl && dl.month ? jbox(dl.month) : routeFact(mon.km);
-    var h = '<section class="rz-card sl-stepbig"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('stepsT')) + qaBadge() + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span></button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, x.steps / st.stepGoal) + ')"></i></div><div class="rz-mut sm">' + esc(T('stGoal', { x: fmt(st.stepGoal) })) + '</div><button type="button" class="rz-btn full" data-act="addsteps">' + esc(T('sAdd')) + '</button><button type="button" class="rz-link" data-act="stephelp">' + esc(T('stWhere')) + '</button></section>';
+    var h = '<section class="rz-card sl-stepbig"><button type="button" class="sl-sn" data-act="xsteps"><span class="l">' + ico('steps') + esc(T('stepsT')) + '</span><b id="sNum">' + fmt(x.steps) + '</b><span class="u">' + (x.steps ? esc(stp.km.toString().replace('.', ',') + ' ' + T('km') + ' · ' + fmt(stp.kcal) + ' ' + T('kcal')) : esc(T('sNone'))) + '</span>' + qaSrcHtml() + '</button><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, x.steps / st.stepGoal) + ')"></i></div><div class="rz-mut sm">' + esc(T('stGoal', { x: fmt(st.stepGoal) })) + '</div><button type="button" class="rz-btn full" data-act="addsteps">' + esc(T('sAdd')) + '</button><button type="button" class="rz-link" data-act="stephelp">' + esc(T('stWhere')) + '</button></section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('stWeek')) + '</div><div class="sl-chart" style="--g:' + (st.stepGoal / mx).toFixed(3) + '" role="img" aria-label="' + esc(T('stWeek')) + '">' + ser.map(function (s) { var wd = S.weekdayIdx(s.d), nm = D[lang] && (lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'])[wd]; return '<button type="button" class="b' + (s.d === t ? ' td' : '') + '" data-act="editsteps" data-d="' + s.d + '" aria-label="' + esc(kit.dLabel(s.d) + ': ' + fmt(s.steps)) + '"><span class="v">' + (s.steps ? fmt(s.steps) : '') + '</span><span class="col"><i style="transform:scaleY(' + (s.steps / mx) + ')"></i></span><span class="d">' + esc(nm) + '</span></button>'; }).join('') + '</div>' +
       '<div class="sl-wtot"><b>' + esc(tot.km.toString().replace('.', ',') + ' ' + T('km')) + '</b><span>' + fmt(tot.steps) + ' · ' + fmt(tot.kcal) + ' ' + T('kcal') + '</span></div>' +
       (tot.steps ? weekJoke : '<p class="rz-mut">' + esc(T('stEmpty')) + '</p>') + '</section>';
@@ -661,7 +676,8 @@
     var s0 = NAT || PS.state === 2 ? pushStatus() : 'load';
     var btn = s0 === 'on' ? '<button type="button" class="rz-btn ghost full" data-act="pushoff">' + esc(T('bkOff')) + '</button>' : s0 === 'off' ? '<button type="button" class="rz-btn ghost full" data-act="pushon">' + esc(T('bkOn')) + '</button>' : '';
     var line = { ios: 'bkIos2', denied: NAT ? 'bkDen3' : 'bkDen2', na: 'bkNA2' }[s0] || 'bkLine';        // bitta qisqa qator (holatga qarab); vaqt (11:00) yoqilganda toast'da aytiladi
-    return '<div id="pushRow"><h3 class="sl-bkT"><span aria-hidden="true">🐟</span>' + esc(T('bkT2')) + '</h3><p class="sl-bkL">' + esc(T(line)) + '</p>' + (Y ? Y.profileDays() : '') + btn + '</div>';
+    var why = line === 'bkLine';                       // oddiy holat: izoh «ⓘ» ichida; muammo (iPhone, ruxsat yo'q) bo'lsa — ochiq qator
+    return '<div id="pushRow"><div class="sl-sti"><h3 class="sl-bkT"><span aria-hidden="true">🐟</span>' + esc(T('bkT2')) + '</h3>' + (why ? '<button type="button" class="sl-infob" data-act="ibtog" aria-expanded="false" aria-label="ⓘ ' + esc(T('bkT2')) + '">i</button>' : '') + '</div><p class="sl-bkL' + (why ? ' sl-ibx' : '') + '"' + (why ? ' hidden' : '') + '>' + esc(T(line)) + '</p>' + (Y ? Y.profileDays() : '') + btn + '</div>';
   }
   function pushOfferHtml() {                           // Kun yakuni: BITTA taklif; «Hozir emas» — 30 kun so'ramaydi
     if (appDays() < 3 || !pushAskDue()) return ''; var s0 = pushStatus(); if (s0 !== 'off' && s0 !== 'ios') return '';
@@ -996,7 +1012,7 @@
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
   function recRow(r, dim) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
-    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid, e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid || iconFid(e), e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
@@ -1071,7 +1087,7 @@
       var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8), true), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
       var pop = rec.length ? [] : (function () { var r0 = rSplit(st.recents.map(foodById).filter(Boolean)).show.slice(0, 5); return r0.length ? r0 : rSplit(foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6); })();
       var hidN = recH.length + favSp.hid.length;
-      return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : []), T('aRecHint')) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
+      return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : [])) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
     }
     if (!list.length && q) qtNote(q);
     if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
@@ -1504,7 +1520,7 @@
     var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
     list.forEach(function (it) {
       sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, vn: vOf(it.unit) ? vName(vOf(it.unit)) : null, vf: vOf(it.unit) ? (it.vfill || 'tola') : null, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
-      ids.push(e.id); if (!it.fid) e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : '');
+      ids.push(e.id); if (!it.fid) { e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); e.ifid = iconMatch(it.name) || ''; }
     });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true); jokeAfter('food');
   }
@@ -1512,21 +1528,27 @@
   /* ---------- qadam ---------- */
   /* Avtomatik qadam (faqat Android ilovasi: apparat hisoblagich, KalkiNative.qadam). Veb/iPhone'da QA = null — hamma narsa avvalgidek.
      prefs().qa: undefined (hali so'ralmagan) | 'on' | 'off' (rad etildi / o'chirildi) | 'later' («Keyinroq» — qayta so'ralmaydi, Profil'dan yoqiladi). */
-  var QA = window.KalkiNative && KalkiNative.qadam && KalkiNative.qadam.ok() ? KalkiNative.qadam : null, qaS = { avail: false, granted: false };
+  var QA = window.KalkiNative && KalkiNative.qadam && KalkiNative.qadam.ok() ? KalkiNative.qadam : null, qaS = { avail: false, granted: false, src: '', hc: '' };
   function qaOn() { return !!(QA && qaS.avail && qaS.granted && prefs().qa === 'on'); }
-  function qaBadge() { return qaOn() ? ' <span class="sl-auto">' + esc(T('qaBadge')) + '</span>' : ''; }
+  function qaBadge() { return ''; }                 // eski «Avtomatik» belgisi o'rniga kartada manba nomi (qaSrcHtml)
+  function qaSrcHtml() { return qaOn() ? '<span class="sl-src">' + esc(T(qaS.src === 'hc' ? 'qaSrc_hc' : 'qaSrc_sensor')) + '</span>' : ''; }
+  function qaInfo() {                               // avtomatik qadam: karta bosilganda — bugungi jami, manba va kichik «Qo'lda tuzatish» havolasi (asosiy tugma yo'q)
+    var x = S.dayOf(st, todayStr()) || { steps: 0 };
+    openSheet('qainfo', shHead(T('stepsT')) + '<div class="rz-amt"><span>' + fmt(x.steps || 0) + '</span><small> / ' + fmt(st.stepGoal) + '</small></div><p class="rz-mut sm sl-qasrc">' + esc(T(qaS.src === 'hc' ? 'qaSrc_hc' : 'qaSrc_sensor')) + '</p><p class="sl-qafix"><button type="button" class="sl-txtbtn" data-act="qafix">' + esc(T('qaFix')) + '</button></p>');
+  }
   function qaRowHtml() {
     if (!QA || !qaS.avail) return '';
     var on = qaOn();
-    return '<div class="sl-qa">' + infoTitle(T('qaRow'), T('qaRowH'), ' style="margin-top:14px"') + segHtml(T('qaRow'), [{ attrs: 'data-act="qatog" data-v="1"', on: on, text: T('jkOn') }, { attrs: 'data-act="qatog" data-v="0"', on: !on, text: T('jkOff') }]) + '</div>';
+    return '<div class="sl-qa">' + infoTitle(T('qaRow'), T('qaRowH'), ' style="margin-top:14px"') + segHtml(T('qaRow'), [{ attrs: 'data-act="qatog" data-v="1"', on: on, text: T('jkOn') }, { attrs: 'data-act="qatog" data-v="0"', on: !on, text: T('jkOff') }]) +
+      (qaS.hc === 'install' && !(on && qaS.src === 'hc') ? '<button type="button" class="rz-btn ghost full sl-hcinst" data-act="qahc">' + esc(T('qaHcInst')) + '</button><p class="rz-mut sm">' + esc(T('qaHcInstH')) + '</p>' : '') + '</div>';
   }
   function qaView() { return !kit.sheetKind() && st.setup && (view === 'today' || view === 'history' || view === 'profile'); }
   function qaRefresh() {
     if (!QA) return;
     QA.status().then(function (r) {
-      var was = qaOn() + '|' + qaS.avail; qaS.avail = !!(r && r.available); qaS.granted = !!(r && r.granted);
+      var was = qaOn() + '|' + qaS.avail + '|' + qaS.src + '|' + qaS.hc; qaS.avail = !!(r && r.available); qaS.granted = !!(r && r.granted); qaS.src = (r && r.source) || ''; qaS.hc = (r && r.hc) || '';
       if (qaS.avail && prefs().qa != null) QA.enable(qaOn());
-      if (qaOn()) qaSync(); if (was !== qaOn() + '|' + qaS.avail && qaView()) render();
+      if (qaOn()) qaSync(); if (was !== qaOn() + '|' + qaS.avail + '|' + qaS.src + '|' + qaS.hc && qaView()) render();
     });
   }
   function qaSync() {
@@ -1549,7 +1571,7 @@
   }
   function qaAllow(fromAsk) {
     QA.perm().then(function (r) {
-      qaS.granted = !!(r && r.granted); prefs().qa = qaS.granted ? 'on' : 'off'; save();
+      qaS.granted = !!(r && r.granted); if (r && r.source) qaS.src = r.source; prefs().qa = qaS.granted ? 'on' : 'off'; save();
       if (fromAsk) kit.closeSheet();
       if (qaS.granted) { QA.enable(true).then(function () { qaSync(); }); toast(T('qaOnT'), null, true); } else toast(T('qaDenied'));
       render();
@@ -1560,7 +1582,7 @@
     if (on) { qaAllow(false); return; }
     prefs().qa = 'off'; save(); QA.enable(false); render();
   }
-  function stepsOpen() { if (QA && qaS.avail && prefs().qa == null) { qaAsk(); return; } openSteps(todayStr()); }
+  function stepsOpen() { if (QA && qaS.avail && prefs().qa == null) { qaAsk(); return; } if (qaOn()) { qaInfo(); return; } openSteps(todayStr()); }
   var sp = null;
   function openSteps(date, goal) {
     date = date || todayStr(); var dx = S.dayOf(st, date), auto = !goal && qaOn() && !!(dx && dx.sa != null || date === todayStr()), cur = goal ? st.stepGoal : auto ? S.manualSteps(dx) : (dx || { steps: 0 }).steps;
@@ -1847,7 +1869,7 @@
       case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
       case 'xkcal': openExplainKcal(); break; case 'xmacro': openExplainMacro(); break; case 'xwater': openExplainWater(); break; case 'xsteps': openExplainSteps(); break; case 'xweight': openExplainWeight(); break; case 'stephelp': openStepHelp(); break;
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
-      case 'addsteps': stepsOpen(); break; case 'qayes': qaAllow(true); break; case 'qalater': prefs().qa = 'later'; save(); openSteps(todayStr()); break; case 'qatog': qaToggle(el.getAttribute('data-v') === '1'); break; case 'spclear': if (sp && sp.auto) { S.setManualSteps(st, sp.date, 0); kit.closeSheet(); commit(); toast(T('saved'), null, true); } break; case 'editsteps': openSteps(el.getAttribute('data-d')); break; case 'stepgoal': openSteps(null, true); break;
+      case 'addsteps': stepsOpen(); break; case 'qafix': openSteps(todayStr()); break; case 'qahc': if (QA && QA.hcInstall) QA.hcInstall(); break; case 'qayes': qaAllow(true); break; case 'qalater': prefs().qa = 'later'; save(); openSteps(todayStr()); break; case 'qatog': qaToggle(el.getAttribute('data-v') === '1'); break; case 'spclear': if (sp && sp.auto) { S.setManualSteps(st, sp.date, 0); kit.closeSheet(); commit(); toast(T('saved'), null, true); } break; case 'editsteps': openSteps(el.getAttribute('data-d')); break; case 'stepgoal': openSteps(null, true); break;
       case 'key': {
         var k = el.getAttribute('data-k'), ks = kit.sheetKind();
         if (ks === 'steps') { sp.val = sp.auto && !sp.val && k === '0' ? '0' : (sp.val === '0' && /^\d/.test(k) ? kit.padApply('', k, { max: 6 }) : kit.padApply(sp.val, k, { max: 6 })); spUpdate(); vib(5); }      // avtomatik rejimda «0» — qo'shilganini nolga tushirish
