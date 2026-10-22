@@ -9,48 +9,48 @@
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `moshkichiri` | milliy taomlar va Yeymiz | Moshkichiri (`moshkichiri`) |
-| 2 | `jigar-kabob` | milliy taomlar va Yeymiz | Jigar kabob (`jigar-kabob`) |
-| 3 | `lyulya` | milliy taomlar va Yeymiz | Lyulya kabob (`lyulya`) |
-| 4 | `tandir-gosht` | milliy taomlar va Yeymiz | Tandir go'sht (`tandir-gosht`) |
-| 5 | `dolma` | milliy taomlar va Yeymiz | Do'lma (`dolma`) |
-| 6 | `qazi` | milliy taomlar va Yeymiz | Qazi (`qazi`) |
-| 7 | `sumalak` | milliy taomlar va Yeymiz | Sumalak (`sumalak`) |
-| 8 | `halim` | milliy taomlar va Yeymiz | Halim (`halim`) |
-| 9 | `xonim` | milliy taomlar va Yeymiz | Xonim (`xonim`) |
-| 10 | `salat-sabzavot` | milliy taomlar va Yeymiz | Sabzavot salati (yog'li) (`salat-sabzavot`) |
-| 11 | `vinegret` | milliy taomlar va Yeymiz | Vinegret (`vinegret`) |
-| 12 | `koreys-sabzi` | milliy taomlar va Yeymiz | Koreyscha sabzi (`koreys-sabzi`) |
-| 13 | `jiz` | milliy taomlar va Yeymiz | Jiz (qovurilgan go'sht) (`jiz`) |
-| 14 | `beshbarmoq` | milliy taomlar va Yeymiz | Beshbarmoq (`beshbarmoq`) |
-| 15 | `jarkop` | milliy taomlar va Yeymiz | Jarkop (`jarkop`) |
-| 16 | `borsch` | milliy taomlar va Yeymiz | Borsh (`borsch`) |
-| 17 | `sabzavot-ragu` | milliy taomlar va Yeymiz | Sabzavotli ragu (`sabzavot-ragu`) |
-| 18 | `baliq-uxa` | milliy taomlar va Yeymiz | Baliq sho'rvasi (uxa) (`qaynatma-baliq`), Baliq sho'rva (`baliq-shurva`), Baliq sho'rva (kafe) (`kafe-baliq-shurva`) |
-| 19 | `shurva-lapsha` | milliy taomlar va Yeymiz | Tovuqli lapsha sho'rva (konserva) (`shurva-tovuq-lapsha`), Kesma (uy lapshasi sho'rva) (`kesma`) |
-| 20 | `shurva-pomidor` | milliy taomlar va Yeymiz | Pomidor sho'rva (krem-sup) (`shurva-pomidor`) |
-| 21 | `shurva-qoziqorin` | milliy taomlar va Yeymiz | Qo'ziqorinli krem-sup (`shurva-qoziqorin`) |
-| 22 | `shurva-mol` | milliy taomlar va Yeymiz | Mol go'shtli sabzavot sho'rva (konserva) (`shurva-mol-sabzavot`) |
-| 23 | `dimlama-konserva` | milliy taomlar va Yeymiz | Go'shtli sabzavot dimlamasi (konserva) (`gosht-dimlangan-konserva`), Tushonka (konserva) (`tushonka`) |
-| 24 | `shovla` | milliy taomlar va Yeymiz | Shovla (Xorazm) (`shovla`) |
-| 25 | `shirguruch` | milliy taomlar va Yeymiz | Shirguruch (sutli guruch bo'tqasi) (`shirguruch`) |
-| 26 | `ugra-osh` | milliy taomlar va Yeymiz | Ugra osh (`ugra-osh`) |
-| 27 | `chalop` | milliy taomlar va Yeymiz | Chalop (`chalop`) |
-| 28 | `baliq-dimlama` | milliy taomlar va Yeymiz | Dimlangan baliq (`baliq-dimlama`) |
-| 29 | `tovuq-qozon` | milliy taomlar va Yeymiz | Tovuq soni (qozonda) (`tovuq-son-qozon`), Tovuq ko'kragi (qozonda) (`tovuq-kokrak-qozon`) |
-| 30 | `osh-tovuq` | milliy taomlar va Yeymiz | Tovuqli osh (`osh-tovuq`) |
-| 31 | `dimlama-tovuq` | milliy taomlar va Yeymiz | Tovuqli dimlama (`dimlama-tovuq`) |
-| 32 | `loviya-shurva` | milliy taomlar va Yeymiz | Loviya sho'rva (`loviya-shurva`) |
-| 33 | `yasmiq-shurva` | milliy taomlar va Yeymiz | Yasmiq sho'rva (`yasmiq-shurva`) |
-| 34 | `noxat-ragu` | milliy taomlar va Yeymiz | No'xatli sabzavot taomi (`noxat-ragu`) |
-| 35 | `qoymoq` | milliy taomlar va Yeymiz | Tuxumli qo'ymoq (`qoymoq`) |
-| 36 | `salat-qatiq` | milliy taomlar va Yeymiz | Qatiqli salat (bodring, ko'kat) (`qatiq-salat`), Suzmali salat (`suzma-salat`) |
-| 37 | `moshxorda-goshtsiz` | milliy taomlar va Yeymiz | Moshxo'rda (go'shtsiz) (`moshxorda-gostsiz`) |
-| 38 | `sazan-duxovka` | milliy taomlar va Yeymiz | Duxovkada sazan (kartoshka bilan) (`sazan-duxovka`), Grilda sazan (`sazan-grill`) |
-| 39 | `kartoshka-shurva` | milliy taomlar va Yeymiz | Kartoshka sho'rva (kafe) (`kafe-kartoshka-shurva`) |
-| 40 | `tovuq-duxovka` | milliy taomlar va Yeymiz | Duxovkada tovuq (kartoshka bilan) (`uy-tovuq-duxovka`) |
-| 41 | `qoy-duxovka` | milliy taomlar va Yeymiz | Duxovkada qo'y go'shti (sabzavot bilan) (`uy-qoy-duxovka`) |
-| 42 | `tuxum-barak` | milliy taomlar va Yeymiz | Tuxum barak (Xorazm) (`tuxum-barak`) |
+| 1 | `moshkichiri` ✅ | milliy taomlar va Yeymiz | Moshkichiri (`moshkichiri`) |
+| 2 | `jigar-kabob` ✅ | milliy taomlar va Yeymiz | Jigar kabob (`jigar-kabob`) |
+| 3 | `lyulya` ✅ | milliy taomlar va Yeymiz | Lyulya kabob (`lyulya`) |
+| 4 | `tandir-gosht` ✅ | milliy taomlar va Yeymiz | Tandir go'sht (`tandir-gosht`) |
+| 5 | `dolma` ✅ | milliy taomlar va Yeymiz | Do'lma (`dolma`) |
+| 6 | `qazi` ✅ | milliy taomlar va Yeymiz | Qazi (`qazi`) |
+| 7 | `sumalak` ✅ | milliy taomlar va Yeymiz | Sumalak (`sumalak`) |
+| 8 | `halim` ✅ | milliy taomlar va Yeymiz | Halim (`halim`) |
+| 9 | `xonim` ✅ | milliy taomlar va Yeymiz | Xonim (`xonim`) |
+| 10 | `salat-sabzavot` ✅ | milliy taomlar va Yeymiz | Sabzavot salati (yog'li) (`salat-sabzavot`) |
+| 11 | `vinegret` ✅ | milliy taomlar va Yeymiz | Vinegret (`vinegret`) |
+| 12 | `koreys-sabzi` ✅ | milliy taomlar va Yeymiz | Koreyscha sabzi (`koreys-sabzi`) |
+| 13 | `jiz` ✅ | milliy taomlar va Yeymiz | Jiz (qovurilgan go'sht) (`jiz`) |
+| 14 | `beshbarmoq` ✅ | milliy taomlar va Yeymiz | Beshbarmoq (`beshbarmoq`) |
+| 15 | `jarkop` ✅ | milliy taomlar va Yeymiz | Jarkop (`jarkop`) |
+| 16 | `borsch` ✅ | milliy taomlar va Yeymiz | Borsh (`borsch`) |
+| 17 | `sabzavot-ragu` ✅ | milliy taomlar va Yeymiz | Sabzavotli ragu (`sabzavot-ragu`) |
+| 18 | `baliq-uxa` ✅ | milliy taomlar va Yeymiz | Baliq sho'rvasi (uxa) (`qaynatma-baliq`), Baliq sho'rva (`baliq-shurva`), Baliq sho'rva (kafe) (`kafe-baliq-shurva`) |
+| 19 | `shurva-lapsha` ✅ | milliy taomlar va Yeymiz | Tovuqli lapsha sho'rva (konserva) (`shurva-tovuq-lapsha`), Kesma (uy lapshasi sho'rva) (`kesma`) |
+| 20 | `shurva-pomidor` ✅ | milliy taomlar va Yeymiz | Pomidor sho'rva (krem-sup) (`shurva-pomidor`) |
+| 21 | `shurva-qoziqorin` ✅ | milliy taomlar va Yeymiz | Qo'ziqorinli krem-sup (`shurva-qoziqorin`) |
+| 22 | `shurva-mol` ✅ | milliy taomlar va Yeymiz | Mol go'shtli sabzavot sho'rva (konserva) (`shurva-mol-sabzavot`) |
+| 23 | `dimlama-konserva` ✅ | milliy taomlar va Yeymiz | Go'shtli sabzavot dimlamasi (konserva) (`gosht-dimlangan-konserva`), Tushonka (konserva) (`tushonka`) |
+| 24 | `shovla` ✅ | milliy taomlar va Yeymiz | Shovla (Xorazm) (`shovla`) |
+| 25 | `shirguruch` ✅ | milliy taomlar va Yeymiz | Shirguruch (sutli guruch bo'tqasi) (`shirguruch`) |
+| 26 | `ugra-osh` ✅ | milliy taomlar va Yeymiz | Ugra osh (`ugra-osh`) |
+| 27 | `chalop` ✅ | milliy taomlar va Yeymiz | Chalop (`chalop`) |
+| 28 | `baliq-dimlama` ✅ | milliy taomlar va Yeymiz | Dimlangan baliq (`baliq-dimlama`) |
+| 29 | `tovuq-qozon` ✅ | milliy taomlar va Yeymiz | Tovuq soni (qozonda) (`tovuq-son-qozon`), Tovuq ko'kragi (qozonda) (`tovuq-kokrak-qozon`) |
+| 30 | `osh-tovuq` ✅ | milliy taomlar va Yeymiz | Tovuqli osh (`osh-tovuq`) |
+| 31 | `dimlama-tovuq` ✅ | milliy taomlar va Yeymiz | Tovuqli dimlama (`dimlama-tovuq`) |
+| 32 | `loviya-shurva` ✅ | milliy taomlar va Yeymiz | Loviya sho'rva (`loviya-shurva`) |
+| 33 | `yasmiq-shurva` ✅ | milliy taomlar va Yeymiz | Yasmiq sho'rva (`yasmiq-shurva`) |
+| 34 | `noxat-ragu` ✅ | milliy taomlar va Yeymiz | No'xatli sabzavot taomi (`noxat-ragu`) |
+| 35 | `qoymoq` ✅ | milliy taomlar va Yeymiz | Tuxumli qo'ymoq (`qoymoq`) |
+| 36 | `salat-qatiq` ✅ | milliy taomlar va Yeymiz | Qatiqli salat (bodring, ko'kat) (`qatiq-salat`), Suzmali salat (`suzma-salat`) |
+| 37 | `moshxorda-goshtsiz` ✅ | milliy taomlar va Yeymiz | Moshxo'rda (go'shtsiz) (`moshxorda-gostsiz`) |
+| 38 | `sazan-duxovka` ✅ | milliy taomlar va Yeymiz | Duxovkada sazan (kartoshka bilan) (`sazan-duxovka`), Grilda sazan (`sazan-grill`) |
+| 39 | `kartoshka-shurva` ✅ | milliy taomlar va Yeymiz | Kartoshka sho'rva (kafe) (`kafe-kartoshka-shurva`) |
+| 40 | `tovuq-duxovka` ✅ | milliy taomlar va Yeymiz | Duxovkada tovuq (kartoshka bilan) (`uy-tovuq-duxovka`) |
+| 41 | `qoy-duxovka` ✅ | milliy taomlar va Yeymiz | Duxovkada qo'y go'shti (sabzavot bilan) (`uy-qoy-duxovka`) |
+| 42 | `tuxum-barak` ✅ | milliy taomlar va Yeymiz | Tuxum barak (Xorazm) (`tuxum-barak`) |
 
 ## To'plam 2 (42)
 
