@@ -290,6 +290,7 @@
   }
   function mealRepeat(date, m) {
     var x = S.dayOf(st, date), t = todayStr(), added = []; if (!x) return;
+    stEv('ovqat_qoshildi', 'odatdagi');
     x.food.filter(function (e) { return e.meal === m; }).forEach(function (e) { var c = {}; ['fid', 'name', 'meal', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) c[k] = e[k]; }); c.ts = nowTs(); added.push(S.addFood(st, t, c)); });
     kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { added.forEach(function (it) { S.removeFood(st, t, it.id); }); commit(); }, true);
   }
@@ -300,7 +301,7 @@
   function updCheck() {
     var N = window.KalkiNative; if (!N || !N.isApp() || !N.appInfo) return;
     N.appInfo().then(function (a) {
-      if (a && a.version) { appVer = a.version + ' (' + a.build + ')'; if (view === 'profile' && !kit.sheetKind()) render(); }
+      if (a && a.version) { var pv = lsGet('kalki_app_ver'); if (pv && pv !== a.version) stEv('ilova_yangilandi', a.version); try { localStorage.setItem('kalki_app_ver', a.version); } catch (e) {} appVer = a.version + ' (' + a.build + ')'; if (view === 'profile' && !kit.sheetKind()) render(); }
       if (!a || a.build < 5) return;
       fetch('/ilova/versiya.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (v) {
         if (!v || !(+v.versionCode > a.build) || !v.apk) return; var l = updLater(); if (l && l.c === +v.versionCode && Date.now() - (+l.t || 0) < UPD_DAYS * DAY_MS) return;
@@ -687,14 +688,14 @@
   function pushPost(sub) { return fetch('/api/push/obuna', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ obuna: sub.toJSON(), til: isCyr() ? 'cyr' : lang, baliqsiz: !!(Y && Y.avoids('baliq')), kun: Y ? Y.kunBugun() : 3 }) }).then(function (r) { if (!r.ok) throw new Error('push ' + r.status); return r; }); }
   function pushEnable() {                              // FAQAT foydalanuvchi bosganda (ruxsat so'rash bosishga bog'langan)
     var fail = function () { toast(T('bkErr')); };
-    if (NAT) { NAT.notif.enable(natOpts()).then(function (r) { if (r === 'on') { NS.perm = 'granted'; prefs().push = { on: true, local: true, t: Date.now() }; delete prefs().pushNo; commit(); toast(T('bkDone')); } else { if (r === 'denied') NS.perm = 'denied'; prefs().pushNo = Date.now(); commit(); } }).catch(fail); return; }
+    if (NAT) { NAT.notif.enable(natOpts()).then(function (r) { if (r === 'on') { stEv('baliq_kuni_obuna'); NS.perm = 'granted'; prefs().push = { on: true, local: true, t: Date.now() }; delete prefs().pushNo; commit(); toast(T('bkDone')); } else { if (r === 'denied') NS.perm = 'denied'; prefs().pushNo = Date.now(); commit(); } }).catch(fail); return; }
     Notification.requestPermission().then(function (perm) {
       if (perm !== 'granted') { prefs().pushNo = Date.now(); commit(); return; }
       return navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription().then(function (s) { return s || reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64(PS.key) }); }); })
-        .then(function (sub) { return pushPost(sub).then(function () { prefs().push = { on: true, ep: sub.endpoint, t: Date.now() }; delete prefs().pushNo; commit(); toast(T('bkDone')); }); });
+        .then(function (sub) { return pushPost(sub).then(function () { stEv('baliq_kuni_obuna'); prefs().push = { on: true, ep: sub.endpoint, t: Date.now() }; delete prefs().pushNo; commit(); toast(T('bkDone')); }); });
     }).catch(fail);
   }
-  function pushDisable() {
+  function pushDisable() { stEv('baliq_kuni_bekor');
     if (NAT || (prefs().push && prefs().push.local)) { if (NAT) NAT.notif.disable(); prefs().push = null; commit(); toast(T('bkDoneOff')); return; }
     var ep = prefs().push && prefs().push.ep; prefs().push = null; commit(); toast(T('bkDoneOff'));
     if (!pushSupported()) return; navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription(); }).then(function (sub) { if (!sub) return; ep = sub.endpoint; return sub.unsubscribe(); })
@@ -957,6 +958,7 @@
       fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         aiqSet(res.j);
         var done = function () { fd.busy = false; phRefresh(); };
+        stEv('ai_sorov', 'rasm.' + (res.s === 429 ? 'limit' : (res.s >= 200 && res.s < 300 ? 'ok' : 'xato')));
         if (res.s === 429) { fd.phErr = res.j && res.j.sabab !== 'sayt' && res.j.limit > 0 ? T('aiLimit', { n: res.j.limit }) : T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); done(); }
         else if (res.s !== 200 || !res.j || !res.j.ovqatlar) { fd.phErr = T('phErr'); done(); }
         else if (!res.j.ovqatlar.length) { fd.phErr = T('phNone'); done(); }
@@ -1146,6 +1148,7 @@
       var m = {}; try { m = JSON.parse(localStorage.getItem(QT_LS) || '{}') || {}; } catch (e) {}
       Object.keys(m).forEach(function (k) { if (k.slice(0, 10) !== d) delete m[k]; });
       if (m[d + '|' + w]) return; m[d + '|' + w] = 1; try { localStorage.setItem(QT_LS, JSON.stringify(m)); } catch (e) {}
+      stEv('qidiruv_topilmadi');
       try { fetch('/api/qidiruv', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ k: [{ s: d, q: w, n: 1 }] }), keepalive: true }).catch(function () {}); } catch (e) {}
     }, 2500);
   }
@@ -1434,6 +1437,7 @@
   function quickAdd(d, id, key) {                       // Oxirgilar [+]: oxirgi porsiya bilan shu zahoti (1 bosish); ✓ bo'ladi, qayta bosilsa — bekor
     fd.added = fd.added || {}; var cur = fd.added[key];
     if (cur) { var rm = S.removeFood(st, fd.date, cur); delete fd.added[key]; commit(); refreshRes(); return rm; }
+    stEv('ovqat_qoshildi', 'oxirgilar');
     var x = S.dayOf(st, d), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return; var o = {};
     ['fid', 'name', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) o[k] = e[k]; }); o.meal = fd.meal; o.ts = nowTs();
     var date = fd.date, it = S.addFood(st, date, o), f = e.fid ? foodById(e.fid) : null, nm = e.name || (f ? nameOf(f.al ? (foodById(f.al.f) || f) : f) : '');
@@ -1448,7 +1452,7 @@
       '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div>';
   }
   function fSave() {
-    var f = fd.food, pt = pwCalc(fd);
+    var f = fd.food, pt = pwCalc(fd); if (fd.editId == null) stEv('ovqat_qoshildi', fd.yBack ? 'tavsiya' : 'qidiruv');
     if (fd.editId != null) {
       var x = S.dayOf(st, fd.date), e = x && x.food.filter(function (y) { return y.id === fd.editId; })[0];
       if (e) {
@@ -1532,6 +1536,15 @@
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
   }
+  /* ---------- anonim statistika (assets/stat-kun.js → /api/stat): faqat hodisa nomi + qat'iy kalit; ovqat/vazn/yosh yuborilmaydi ---------- */
+  var STAT = null;
+  function stEv(h, k) { try { if (STAT) STAT.add(h, k); } catch (e) {} }
+  function statPlat() { try { if (window.KalkiNative && KalkiNative.isApp()) return 'android'; var ios = /iPad|iPhone|iPod/.test(navigator.userAgent), sa = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; return ios && sa ? 'ios-pwa' : 'veb'; } catch (e) { return 'veb'; } }
+  function statBoot() {
+    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); } }); window.KalkiStatApp = { add: stEv };
+    if (st && st.setup) STAT.faol();
+    if (/[?&]baliq=1\b/.test(location.search)) stEv('push_bosildi');
+  }
   function cid() { try { var c = lsGet(LS_CID); if (!c) { c = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (ch) { var r = Math.random() * 16 | 0; return (ch === 'x' ? r : (r & 3 | 8)).toString(16); })); localStorage.setItem(LS_CID, c); } return c; } catch (e) { return ''; } }
   function rGuess(nm) {                               // bazaga moslanmagan AI/rasm qatori: nomdan taom taniladimi? tanilsa — «Yemaydiganlarim» teglari (yumshoq ogohlantirish uchun)
     try { if (!Y || !Y.chReady()) return []; var r = S.parseText(String(nm || '').split(' · ')[0], allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); if (r.items.length !== 1 || r.missing.length) return []; var x = r.items[0]; return rI(x.fam || x.food, x.fam ? x.vr : null).hit; } catch (e) { return []; }
@@ -1549,13 +1562,15 @@
     if (fd.busy || !fd.missing.length) return; fd.busy = true; fd.aiErr = false; txRefresh();
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() };
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
-      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
+      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : true; txRefresh(); return; }
+      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok');
       res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
-    }).catch(function () { fd.busy = false; fd.aiErr = true; txRefresh(); });
+    }).catch(function () { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.xato'); fd.busy = false; fd.aiErr = true; txRefresh(); });
   }
   function txSave() {
     var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
+    stEv('ovqat_qoshildi', fd.mode === 'photo' ? 'rasm' : (fd.usul || 'matn'));
     list.forEach(function (it) {
       sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, vn: vOf(it.unit) ? vName(vOf(it.unit)) : null, vf: vOf(it.unit) ? (it.vfill || 'tola') : null, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
       ids.push(e.id); if (!it.fid) { e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); e.ifid = iconMatch(it.name) || ''; }
@@ -1634,7 +1649,7 @@
     (QA.ulash || QA.perm)().then(function (r) {
       qaS.granted = !!(r && r.granted); if (r && r.source != null) qaS.src = r.source; if (r && r.hc) qaS.hc = r.hc; if (r && r.sensor != null) { qaS.sensor = !!r.sensor; qaS.sensorG = !!r.sensorGranted; } prefs().qa = qaS.granted ? 'on' : 'off'; save();
       if (fromAsk) kit.closeSheet();
-      if (qaS.granted) { QA.enable(true).then(function () { qaSync(); }); toast(T('qaOnT'), null, true); } else toast(T('qaDenied'));
+      if (qaS.granted) { stEv('qadam_ulandi', qaS.src === 'hc' ? 'hc' : 'sensor'); QA.enable(true).then(function () { qaSync(); }); toast(T('qaOnT'), null, true); } else toast(T('qaDenied'));
       render();
     });
   }
@@ -1801,7 +1816,7 @@
     var cur = isCyr() ? 'cyr' : lang;
     return '<div class="sl-ob-top" data-cyr="skip"><div class="sl-ob-lang" role="group" aria-label="Til / Язык">' + [['uz', 'UZ'], ['cyr', 'ЎЗ'], ['ru', 'RU']].map(function (x) { return '<button type="button" data-act="oblang" data-l="' + x[0] + '" aria-pressed="' + (cur === x[0]) + '"' + (cur === x[0] ? ' class="on"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div></div>';
   }
-  function obLang(l) {
+  function obLang(l) { stEv('til_tanlandi', l);
     var cur = isCyr() ? 'cyr' : lang; if (!ob || l === cur) return;
     try { var sn = JSON.parse(JSON.stringify(ob)); sn.anim = null; sessionStorage.setItem(OB_RES, JSON.stringify({ t: Date.now(), ob: sn })); } catch (e) {}
     var tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click();
@@ -1822,7 +1837,7 @@
         return '<button type="button" class="rz-opt big sl-lp-b' + (cur === x[0] ? ' cur' : '') + '" data-act="lppick" data-l="' + x[0] + '" lang="' + x[2] + '"><b>' + x[1] + '</b></button>';
       }).join('') + '</div></div>';
   }
-  function lpPick(l) {
+  function lpPick(l) { stEv('til_tanlandi', l);
     lpDone = true;
     if (window.KalkiLang && KalkiLang.setLang) KalkiLang.setLang(l, { user: true }); else { var t = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (t) t.click(); }
     setTimeout(function () { lang = langNow(); render(); }, 60);          // joyida almashgan bo'lsa — onboarding yangi tilda; sahifa qayta yuklansa bu kod ishlamaydi (tanlov saqlangan)
@@ -1872,7 +1887,8 @@
   function obFinish(pr, later) {                          // yangi foydalanuvchi: holat yaratiladi (saqlash formati o'zgarmagan)
     var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
     if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
-    st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb();
+    stEv('yangi_foydalanuvchi'); stEv(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
+    st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb(); try { if (STAT) STAT.faol(); } catch (e) {}
     var el = $('#rzOnb'); el.classList.add('out');
     wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; if (IN && !KD.on && !prefs().introDone && !noIntro()) introPending = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);
   }
@@ -1904,7 +1920,7 @@
   }
   function openWaterSheet() { openSheet('water', waterSheetHtml(), { noFocus: true }); }
   function glassTap(i) {
-    var t = todayStr(), x = S.ensureDay(st, t), pl = planNow(), n = (x.water === i + 1) ? i : i + 1; S.setWater(st, t, n); save();
+    var t = todayStr(), x = S.ensureDay(st, t), pl = planNow(), n = (x.water === i + 1) ? i : i + 1; if (n > (x.water || 0)) stEv('suv_qoshildi'); S.setWater(st, t, n); save();
     var wi = wInfo(t), man = Math.min(n, pl.water.glasses), wl = Math.min(wi.glasses, pl.water.glasses);
     $$('.sl-glass').forEach(function (g, j) { var on = j < wl; g.classList.toggle('on', on); g.classList.toggle('dr', j >= man && on); g.setAttribute('aria-pressed', on); g.setAttribute('data-d', j < man ? 1 : 0); });
     var w = $('#wTxt'); if (w) w.innerHTML = '<b>' + fmt(wi.ml) + '</b><small> / ' + fmt(pl.water.glasses * S.GLASS_ML) + ' ' + ML() + '</small>'; var sp = $('#wSplit'); if (sp) sp.textContent = T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) }); var ws = $('#wsTxt'); if (ws) ws.textContent = T('wOf', { n: wl, m: pl.water.glasses }) + ' · ' + fmt(wi.ml) + ' ' + ML(); vib(10); afterWater(); jokeAfter('water');
@@ -1926,7 +1942,7 @@
       case 'add': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;
       case 'fab': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;
       case 'wopen': openWaterSheet(); break;
-      case 'wadd': { var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
+      case 'wadd': { stEv('suv_qoshildi'); var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
       case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
       case 'xkcal': openExplainKcal(); break; case 'xmacro': openExplainMacro(); break; case 'xwater': openExplainWater(); break; case 'xsteps': openExplainSteps(); break; case 'xweight': openExplainWeight(); break; case 'stephelp': openStepHelp(); break;
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
@@ -1951,12 +1967,12 @@
       case 'tips': prefs().tipsDone = false; save(); view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); break;
       case 'about': aboutOpen(true); break;
       case 'apk': { window.location.href = lang === 'ru' ? '/ilova/?lang=ru' : (isCyr() ? '/ilova/?lang=cyr' : '/ilova/'); break; }
-      case 'jclose': { hazilStore().jx = todayStr(); saveQuiet(); var jl = $('#jLine'); if (jl) jl.remove(); break; }
+      case 'jclose': { stEv('hazil_yopildi'); hazilStore().jx = todayStr(); saveQuiet(); var jl = $('#jLine'); if (jl) jl.remove(); break; }
       case 'hide': prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break;
       case 'hideweek': prefs().weekHide = todayStr(); commit(); break;
       case 'font': { var big = el.getAttribute('data-f') === 'b'; document.documentElement.classList.toggle('fs-big', big); try { if (big) localStorage.setItem('kalki_fs', 'big'); else localStorage.removeItem('kalki_fs'); } catch (x) {} render(); break; }
       case 'langmenu': lmenu.hidden = !lmenu.hidden; break;
-      case 'lang': { var l = el.getAttribute('data-l'), tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click(); break; }
+      case 'lang': { var l = el.getAttribute('data-l'); stEv('til_tanlandi', l); l = el.getAttribute('data-l'); var tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click(); break; }
       case 'dprev': foodDay = Dt.addDays(foodDay || todayStr(), -1); render(); break;
       case 'dnext': if ((foodDay || todayStr()) < todayStr()) { foodDay = Dt.addDays(foodDay || todayStr(), 1); render(); } break;
       case 'addto': openAdd({ meal: el.getAttribute('data-m'), date: el.getAttribute('data-d') }); break;
@@ -2123,11 +2139,11 @@
     window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
     var hv = viewOf(location.hash); if (hv && st.setup) { view = hv; render(); }
     if (location.hash === '#qoshish' && st.setup) openAdd({});
-    qaBoot(); updCheck();
+    statBoot(); qaBoot(); updCheck();
     setTimeout(pendingFish, 700); document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') pendingFish(); });
     if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) navigator.serviceWorker.addEventListener('message', function (ev) { if (ev.data && ev.data.t === 'baliq' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/baliq'); }); } catch (e) {} openFish(); } });
     if (window.KalkiNative) KalkiNative.setBack(nativeBack);
-    if (NAT) { NAT.notif.onTap(function () { if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; if (p === 'granted') natResched(); if (view === 'profile' && !kit.sheetKind()) render(); }); }
+    if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; if (p === 'granted') natResched(); if (view === 'profile' && !kit.sheetKind()) render(); }); }
     if (/[?&]baliq=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openFish, 500); }          // eslatma bosildi: baliq guruhi ochiladi
     if (location.hash === '#haqida') aboutOpen(true);
     window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile };

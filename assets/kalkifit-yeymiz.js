@@ -78,6 +78,8 @@
   function yemay() { var p = A.prefs().yemay; return Array.isArray(p) ? p : []; }
   function avoids(t) { return CH.toza(yemay()).indexOf(t) > -1; }
   function count(h, x) { if (hs) { try { hs.add(h, x); } catch (e) {} } }
+  function sev(h, k) { try { if (window.KalkiStatApp) window.KalkiStatApp.add(h, k); } catch (e) {} }          // anonim statistika (assets/stat-kun.js)
+  var CHIPS = { kabob: 1, suyuq: 1, tandir: 1, tez: 1, baliq: 1 };
   function lbl(o) { return L() === 'ru' ? (o.ru || o.uz) : o.uz; }
   function lsGet() { try { return localStorage.getItem(LSEG); } catch (e) { return null; } }
   function lsSet(v) { try { localStorage.setItem(LSEG, v); } catch (e) {} }
@@ -192,14 +194,14 @@
   function act(a, el, ev) {
     switch (a) {
       case 'yedoor': show('kabob'); return true;
-      case 'yechip': show(el.getAttribute('data-c')); return true;
-      case 'yechip2': { var c = el.getAttribute('data-c'); if (c === 'baliq') count('baliq_oyna_ochildi'); yv.toifa = c; draw(); return true; }
-      case 'yeseg': yv.seg = el.getAttribute('data-s'); lsSet(yv.seg); draw(); return true;
+      case 'yechip': sev('yeymiz_chip', CHIPS[el.getAttribute('data-c')] ? el.getAttribute('data-c') : 'boshqa'); show(el.getAttribute('data-c')); return true;
+      case 'yechip2': { var c = el.getAttribute('data-c'); sev('yeymiz_chip', CHIPS[c] ? c : 'boshqa'); if (c === 'baliq') count('baliq_oyna_ochildi'); yv.toifa = c; draw(); return true; }
+      case 'yeseg': sev('yeymiz_segment', /^(kafe|buyurtma|uyda)$/.test(el.getAttribute('data-s')) ? el.getAttribute('data-s') : 'kafe'); yv.seg = el.getAttribute('data-s'); lsSet(yv.seg); draw(); return true;
       case 'yemore': yv.open[yv.toifa + '|' + yv.seg] = true; draw(); return true;
       case 'yepick': { count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); A.pickKey(el.getAttribute('data-k'), 'y', porOf(el)); return true; }
-      case 'yeadd': { count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); A.logKey(el.getAttribute('data-k'), porOf(el)); return true; }
+      case 'yeadd': { sev('ovqat_qoshildi', 'tavsiya'); count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); A.logKey(el.getAttribute('data-k'), porOf(el)); return true; }
       case 'yesearch': A.openAdd({}); return true;
-      case 'yeorder': { var q = qWord(); count(yv.toifa === 'baliq' ? 'baliq_buyurtma_bosildi' : 'yeymiz_buyurtma_bosildi', el.getAttribute('data-p')); copyText(q, T('yzCopied', { q: q })); if (A.openExternal(el.getAttribute('href')) && ev) ev.preventDefault(); return true; }
+      case 'yeorder': { sev('buyurtma_hamkor', /uzum/.test(el.getAttribute('data-p') || '') ? 'uzum' : 'yandex'); var q = qWord(); count(yv.toifa === 'baliq' ? 'baliq_buyurtma_bosildi' : 'yeymiz_buyurtma_bosildi', el.getAttribute('data-p')); copyText(q, T('yzCopied', { q: q })); if (A.openExternal(el.getAttribute('href')) && ev) ev.preventDefault(); return true; }
       case 'yerec': { rv = { id: el.getAttribute('data-id'), n: UY.kishiOk(A.prefs().baliqKishi || uy.kishi.standart) }; count(yv.toifa === 'baliq' ? 'baliq_uyda_ochildi' : 'yeymiz_uyda_ochildi'); A.setSheet(recHtml()); return true; }
       case 'yeuyback': draw(); return true;
       case 'yntog': toggleYemay(el.getAttribute('data-t')); if (A.sheetKind() === 'yemay') A.setSheet(yemaySheet()); else A.render(); return true;

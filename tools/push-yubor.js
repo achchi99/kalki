@@ -61,6 +61,7 @@ async function main(argv, deps) {
     } catch (e) { xato++; console.log(' istisno', String(e.message).slice(0, 120)); }
   }
   const natija = { vaqt: new Date(now).toISOString(), hafta: hf.id, yuborildi: ok, xato: xato, ochirildi: ochirildi, test: !!(test || one) };
+  if (!dry && ok > 0 && !(test || one)) { try { await q("INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, 'push_yuborildi', '', 'veb', ?) ON CONFLICT(kun, hodisa, kalit, platforma) DO UPDATE SET son = son + excluded.son", [new Date(now + TZ_MS).toISOString().slice(0, 10), ok]); } catch (e) {} }          // anonim statistika (admin «Statistika»): faqat son
   if (!dry) { try { await q("INSERT INTO push_holat (kalit, qiymat, yangilangan) VALUES ('oxirgi', ?, ?) ON CONFLICT(kalit) DO UPDATE SET qiymat = excluded.qiymat, yangilangan = excluded.yangilangan", [JSON.stringify(natija), now]); } catch (e) { console.log('holat yozilmadi'); } }
   console.log(JSON.stringify(natija)); return natija;
 }

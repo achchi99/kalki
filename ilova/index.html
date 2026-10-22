@@ -107,4 +107,4 @@
   apply();
 })();
 </script>
-</body></html>
+<script>/* anonim statistika: APK yuklab olish (functions/api/stat.js; demo/preview/bot hisoblanmaydi) */(function(){var b=document.getElementById('ilDl');if(!b)return;b.addEventListener('click',function(){try{var h=location.hostname;if(h!=='kalki.uz'&&h!=='www.kalki.uz'&&localStorage.getItem('kalki_stat_test')!=='1')return;if(navigator.webdriver&&localStorage.getItem('kalki_stat_test')!=='1')return;var k='kalki_fit_cid',id=localStorage.getItem(k);if(!id){id=crypto.randomUUID?crypto.randomUUID():'00000000-0000-4000-8000-'+String(Date.now()).slice(-12).padStart(12,'0');localStorage.setItem(k,id)}var l=/[?&]lang=ru\b/.test(location.search)?'ru':(/[?&]lang=cyr\b/.test(location.search)?'cyr':'uz'),body=JSON.stringify({q:id,p:'veb',t:l,h:[['apk_yuklandi','',1]]});if(!(navigator.sendBeacon&&navigator.sendBeacon('/api/stat',new Blob([body],{type:'application/json'}))))fetch('/api/stat',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true}).catch(function(){})}catch(e){}})})();</script></body></html>

@@ -302,7 +302,7 @@
     var body = JSON.stringify({ matn: lines, til: A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid(), platforma: plat() || undefined }), done = false, tm = setTimeout(function () { if (!done) { done = true; cb({ ok: false, msg: T('rtErrNet') }); } }, 25000);
     fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (x) {
       if (done) return; done = true; clearTimeout(tm);
-      aiSet(x.j);
+      aiSet(x.j); try { if (window.KalkiStatApp) window.KalkiStatApp.add('ai_sorov', 'retsept.' + (x.s === 200 ? 'ok' : x.s === 429 ? 'limit' : 'xato')); } catch (e) {}
       if (x.s === 200 && x.j && Array.isArray(x.j.masalliqlar)) cb({ ok: true, list: x.j.masalliqlar }); else if (x.s === 429 && x.j && x.j.sabab !== 'sayt' && x.j.limit > 0) cb({ ok: false, msg: T('rtLimit', { n: x.j.limit }) }); else cb({ ok: false, msg: x.j && x.j.xato ? x.j.xato : T('rtErrAi') });
     }).catch(function () { if (done) return; done = true; clearTimeout(tm); cb({ ok: false, msg: T('rtErrNet') }); });
   }
