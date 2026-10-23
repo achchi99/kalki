@@ -31,8 +31,13 @@ let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
       const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/kalkifit.js')).href); globalThis.fetch = async () => new Response(JSON.stringify({ content: [{ text: '[{"nom":"X","porsiya":"1","kcal":100,"o":1,"y":1,"u":20}]' }] }), { status: 200 });
       const e2 = Object.assign({ ANTHROPIC_API_KEY: 'a' }, e1), pk = (tok) => API.onRequest({ request: new Request('https://kalki.uz/api/kalkifit', { method: 'POST', headers: { Origin: 'https://kalki.uz', 'Content-Type': 'application/json', 'CF-Connecting-IP': '8.8.8.8' }, body: JSON.stringify({ matn: 'qandaydir', til: 'uz', mijoz_id: '22222222-2222-4333-8444-555555555555', manba: 'ovoz', platforma: 'android', ovoz_tok: tok }) }), env: e2 });
       assert.equal((await pk(j.tok)).status, 200, 'limit tugagan bo\'lsa ham — shu ovoz uchun tok bilan o\'tadi'); assert.equal((await pk(j.tok)).status, 429, 'tok bir martalik');
+      /* OpenAI hisobi tugagan — yo'l 1 soat o'chadi (GET yoqilgan:false → 🎤 yo'q) */
+      const kv3 = new Map(), e3 = { OPENAI_API_KEY: 'k', KALKI_AI_KV: { get: async (k) => kv3.get(k) || null, put: async (k, v) => kv3.set(k, v), delete: async (k) => kv3.delete(k) } };
+      globalThis.fetch = async () => new Response(JSON.stringify({ error: { code: 'credit_balance_exhausted', type: 'insufficient_quota' } }), { status: 429 });
+      assert.equal((await OV.onRequest({ request: req('POST', new Uint8Array(2000), 'audio/mp4', '?til=uz'), env: e3 })).status, 503); assert.equal(kv3.get('ovoz:off'), '1'); assert.deepEqual(await (await OV.onRequest({ request: req('GET'), env: e3 })).json(), { yoqilgan: false }, 'kredit tugagan — o\'chiq');
+      assert.equal((await OV.onRequest({ request: req('POST', new Uint8Array(2000), 'audio/mp4', '?til=uz'), env: e3 })).status, 503, 'o\'chiq paytda OpenAI\'ga so\'rov ketmaydi');
     } finally { globalThis.fetch = g1; }
-    log('/api/ovoz: kalit yo\'q — yoqilgan:false/503; kalit bor — audio/mp4 va webm, gpt-4o-mini-transcribe (language uz), > 1,2 MB — 413, umumiy AI limit, bir martalik tok (taom ajratish qayta sanalmaydi)'); }
+    log('/api/ovoz: kalit yo\'q — yoqilgan:false/503; kalit bor — audio/mp4 va webm, gpt-4o-mini-transcribe (language uz), > 1,2 MB — 413, umumiy AI limit, bir martalik tok (taom ajratish qayta sanalmaydi); OpenAI hisobi tugasa — yo\'l 1 soat o\'chadi (yoqilgan:false)'); }
   log('Xato kodlari (ruxsat/jim/tarmoq/yoq); server: manba=ovoz → umumiy AI limit (Android 2, 3-chisi 429 «2 ta AI so\'rov»), oddiy matn — o\'z hisobi'); }
 /* 2. brauzer */
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
