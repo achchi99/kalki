@@ -27,8 +27,18 @@ async function transcribe(env, buf, ty, til) {
 }
 const OFF_KEY = 'ovoz:off', OFF_TTL = 3600;          // OpenAI hisobi/kaliti ishlamasa (kredit tugagan, kalit bekor) — yo'l 1 soat O'CHIQ: ilova 🎤 ni ko'rsatmaydi (buzilgan tugma yo'q)
 async function off(env) { try { return !!(await env.KALKI_AI_KV.get(OFF_KEY)); } catch (e) { return false; } }
+/* GET: yo'l haqiqatan ishlaydimi — kesh (ok 30 daqiqa / off 1 soat); kesh yo'q bo'lsa 0,5 s'lik jim WAV bilan sinov (foydalanuvchi limitiga kirmaydi) */
+export function silentWav() { const sr = 8000, n = 4000, b = new Uint8Array(44 + n * 2), v = new DataView(b.buffer), w = (o, t) => { for (let i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true); return b; }
+async function usable(env) {
+  if (!env.OPENAI_API_KEY || !env.KALKI_AI_KV) return false; if (await off(env)) return false;
+  try { if (await env.KALKI_AI_KV.get('ovoz:ok')) return true; } catch (e) { return false; }
+  const r = await transcribe(env, silentWav(), { t: 'audio/wav', ext: 'wav' }, 'uz');
+  try { if (!r.err) { await env.KALKI_AI_KV.put('ovoz:ok', '1', { expirationTtl: 1800 }); return true; } await env.KALKI_AI_KV.put(OFF_KEY, '1', { expirationTtl: OFF_TTL }); } catch (e) {}
+  return false;
+}
 export async function onRequest({ request, env }) {
-  if (request.method === 'GET') return json(200, { yoqilgan: !!(env.OPENAI_API_KEY && env.KALKI_AI_KV) && !(await off(env)) }, NC);
+  if (request.method === 'GET') return json(200, { yoqilgan: await usable(env) }, NC);
   if (request.method !== 'POST') return json(405, { xato: E[405] }, Object.assign({ Allow: 'GET, POST' }, NC));
   if (!originOk(request.headers.get('Origin'), env)) return fail(403);
   if (!env.OPENAI_API_KEY || !env.KALKI_AI_KV || await off(env)) return fail(503);
