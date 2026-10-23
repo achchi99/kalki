@@ -261,10 +261,11 @@
     if (fid === 'non-oq' || fid === 'non-qora') return IKX[fid] || null;
     return IMGS[fid] || IMGS[k] || IKX[fid] || IKX[k] || null;
   }
-  function tileHtml(fid, vr, name, px, hi) {
+  var KAT_ICO = { salat: 'kSalat', shorva: 'kShorva', issiq: 'kGosht', zakuska: 'kZakuska', desert: 'kDesert' };          // ikonkasi yo'q taom: bosh harf o'rniga toifa ikonkasi (menyudan qo'shilganlar — e.ikat)
+  function tileHtml(fid, vr, name, px, hi, kat) {
     var f = imgFile(fid, vr), sz = '--s:' + px + 'px';
     if (f) return '<span class="sl-tile" style="' + sz + '"><img src="/assets/ovqat/' + f + (hi ? '-256' : '-128') + '.webp"' + (hi ? '' : ' srcset="/assets/ovqat/' + f + '-128.webp 1x, /assets/ovqat/' + f + '-256.webp 2x"') + ' alt="" width="' + px + '" height="' + px + '" loading="lazy" decoding="async"></span>';
-    var ik = Y && fid ? Y.iconFor(fid) : null; if (ik) return '<span class="sl-tile sl-ti2" style="' + sz + '" aria-hidden="true">' + ico(ik) + '</span>';
+    var ik = Y && fid ? Y.iconFor(fid) : null; if (!ik && kat && KAT_ICO[kat]) ik = KAT_ICO[kat]; if (ik) return '<span class="sl-tile sl-ti2" style="' + sz + '" aria-hidden="true">' + ico(ik) + '</span>';
     var h = 0, n = String(name || '?'); for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % 360;
     return '<span class="sl-tile sl-tl" style="' + sz + ';--h:' + h + '" aria-hidden="true"><b>' + esc(n.charAt(0).toUpperCase()) + '</b></span>';
   }
@@ -282,9 +283,20 @@
     try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom || !imgFile(f.id, null)) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0)) return f.id; } } catch (e) {}
     return null;
   }
-  function menuMatch(nom) {                         // «Menyudan tanlash»: menyu nomi → bazadagi taom (faqat aniq mos: nom/ruscha nom teng yoki so'z boshi; o'z taomlari emas)
+  function lev1(a, b) { if (a === b) return 0; if (Math.abs(a.length - b.length) > 1) return 2; var i = 0, j = 0, d = 0; while (i < a.length && j < b.length) { if (a[i] === b[j]) { i++; j++; continue; } if (++d > 1) return 2; if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; } } return d + (a.length - i) + (b.length - j); }
+  function menuMatch(nom) {                         // «Menyudan tanlash»: menyu nomi → bazadagi taom. 1) to'liq/so'z boshi mosligi; 2) birinchi 1–2 so'z (rus menyusi: «Борщ с говядиной» → Borsh), bitta harf farqi (borsch/borsh). Bo'lim mosligini KalkiMenyu.plan tekshiradi.
     if (dbState !== 2) return null; var q = String(nom || '').split(/[(·,]/)[0].trim(); if (q.length < 3) return null;
-    try { var r = S.search(allFoods(), q, { limit: 3 }), b = foldNm(q); for (var i = 0; i < r.length; i++) { var f = r[i]; if (!f || f.custom) continue; var a = foldNm(f.n), c = foldNm(f.r); if (a === b || c === b || a.indexOf(b + ' ') === 0 || c.indexOf(b + ' ') === 0 || b.indexOf(a + ' ') === 0 || (c && b.indexOf(c + ' ') === 0) || (f.a || []).some(function (x) { return foldNm(x) === b; })) return f; } } catch (e) {}
+    var foods = allFoods(), b = foldNm(q), firstW = function (x) { return foldNm(x).split(' ')[0] || ''; };
+    var ok = function (f, bb) { var a = foldNm(f.n), c = foldNm(f.r); return a === bb || c === bb || a.indexOf(bb + ' ') === 0 || c.indexOf(bb + ' ') === 0 || bb.indexOf(a + ' ') === 0 || (c && bb.indexOf(c + ' ') === 0) || (f.a || []).some(function (x) { return foldNm(x) === bb; }); };
+    try {
+      var r = S.search(foods, q, { limit: 3 }); for (var i = 0; i < r.length; i++) if (r[i] && !r[i].custom && ok(r[i], b)) return r[i];
+      var ws = b.split(' ').filter(function (w) { return w.length >= 3; });
+      for (var n = Math.min(2, ws.length); n >= 1; n--) {
+        var qq = ws.slice(0, n).join(' '); if (qq.length < 4) continue; var rr = S.search(foods, qq, { limit: 3 });
+        for (var k = 0; k < rr.length; k++) { var f = rr[k]; if (!f || f.custom) continue; if (ok(f, qq)) return f;
+          if (n === 1 && k === 0 && qq.length >= 5 && [f.n, f.r].concat(f.a || []).some(function (x) { return lev1(firstW(x), qq) <= 1; })) return f; }
+      }
+    } catch (e) {}
     return null;
   }
   function iconFid(e) { if (!e || e.fid) return null; if (e.ifid !== undefined) return e.ifid; if (dbState !== 2) return null; e.ifid = iconMatch(e.name) || ''; save(); return e.ifid; }
@@ -292,7 +304,7 @@
     var best = null; list.forEach(function (e) { if (!best || e.kcal > best.kcal) best = e; });
     if (!best) return '<span class="sl-tile sl-te" style="--s:48px">' + ico('bowl') + '</span>';
     var f = best.fid ? foodById(best.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f;
-    return tileHtml(best.fid || iconFid(best), best.vr, base ? nameOf(base) : (best.name || '?'), 48);
+    return tileHtml(best.fid || iconFid(best), best.vr, base ? nameOf(base) : (best.name || '?'), 48, false, best.ikat);
   }
   function mealsHtml(date) {
     var x = S.dayOf(st, date) || { food: [] }, h = '<section class="sl-meals">';
@@ -616,7 +628,7 @@
     bowl: 'M3 11h18a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z M8 7c0-1 1-1 1-2 M12 7c0-1 1-1 1-2 M16 7c0-1 1-1 1-2',
     star: 'M12 3.500l2.700 5.500 6 .900-4.400 4.200 1 6-5.300-2.800-5.300 2.800 1-6L3.300 9.900l6-.900z',
     dots: 'M5.500 12h.010 M12 12h.010 M18.500 12h.010', undo: 'M4 12a8 8 0 1 0 2.500-5.800 M4 4v5h5', bm: 'M6 4h12v17l-6-4-6 4z',
-    mic: 'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z M5 11a7 7 0 0 0 14 0 M12 18v3 M9 21h6', chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', img: 'M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M9 9.500h.01', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
+    mic: 'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z M5 11a7 7 0 0 0 14 0 M12 18v3 M9 21h6', kSalat: 'M3 12h18a9 9 0 0 1-18 0z M8 12c0-3 2-5 4-6 M12 12c0-2 1-4 3-5 M15.500 12c0-1.500 1-3 2.500-3.500', kShorva: 'M3 11h18a9 9 0 0 1-18 0z M9 7.500c-1-1 1-2 0-3.500 M13 7.500c-1-1 1-2 0-3.500 M17 7.500c-1-1 1-2 0-3.500', kGosht: 'M14.500 4a5.500 5.500 0 0 1 5.500 5.500c0 3.500-3.500 5.500-6.500 5.500l-2.500 2.500a2.200 2.200 0 1 1-3 3 2.200 2.200 0 1 1-3-3 2.200 2.200 0 1 1 3-3L10.500 12c0-3.500 1.500-8 4-8z', kZakuska: 'M3 15h18a9 4 0 0 1-18 0z M12 4v7 M9.500 4v3.500a2.500 2.500 0 0 0 5 0V4', kDesert: 'M4 20h16 M5 20v-7h14v7 M5 15.500c2.300 1.200 4.700 1.200 7 0s4.700-1.200 7 0 M12 13V9.500 M12 7v.01', chat: 'M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', img: 'M4 5h16v14H4z M4 16l5-5 4 4 3-3 4 4 M9 9.500h.01', cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 16.500a3.500 3.500 0 1 0 0-7 3.500 3.500 0 0 0 0 7z', pill: 'M10.500 3.500l10 10a4.200 4.200 0 0 1-6 6l-10-10a4.200 4.200 0 0 1 6-6z M8 9l6 6',
     sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.900 4.900l1.400 1.400 M17.700 17.700l1.400 1.400 M4.900 19.100l1.400-1.400 M17.700 6.300l1.400-1.400', leaf: 'M5 19c0-8 5-13 14-14 0 9-5 14-13 14 M5 19c2-4 5-7 9-9', bolt: 'M13 3L5 13h6l-1 8 8-10h-6z',
     bone: 'M7 8.500a2.500 2.500 0 1 1 3.500-3L16 11l.5.500a2.500 2.500 0 1 1 3 3.500L13 20a2.500 2.500 0 1 1-3-3.500z', muscle: 'M5 15c0-4 3-7 7-7 2 0 3 1 3 3 0 1.500-1 2-2 2.500 3 0 5 1.500 5 4v1H8c-2 0-3-1.500-3-3.500z', book: 'M4 5h7a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4z M20 5h-3a3 3 0 0 0-3 3v11a3 3 0 0 1 3-3h3z',
     cal2: 'M7 5h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z M8 3v4 M16 3v4 M4 10h16', trash: 'M5 7h14 M9 7V4h6v3 M7 7l1 13h8l1-13', warn: 'M12 3l10 18H2z M12 10v5 M12 18h.01'
@@ -646,6 +658,11 @@
     return true;
   }
   function yzPick(key, back, por) { openAdd({}); fd.yBack = back; if (yzFd(key, por)) setSheet(portionHtml()); }                       // porsiya oynasi: Orqaga — chaqirgan oynaga (Bugun nima yeymiz? / Baliq kuni)
+  function menuLog(c) {                                // «Menyudan tanlash»: kundalikka ASL menyu nomi bilan (kkal bazadan; tarkibdan yig'ilgan bo'lsa — «taxminiy»)
+    var t = todayStr(), ml = S.mealByHour(new Date().getHours());
+    var e = S.addFood(st, t, { fid: null, name: String(c.asl || c.nom).slice(0, 80), meal: ml, unit: null, qty: 1, g: c.g || 0, kcal: Math.round(c.k), p: c.p || 0, f: c.f || 0, c: c.c || 0, est: !!c.est, ifid: c.ifid || '', ikat: c.bolim || '', src: 'menyu', ts: Date.now() });
+    kit.closeSheet(); commit(); vib(); stEv('ovqat_qoshildi', 'menyu'); toast(T('yzMeal_' + ml), function () { S.removeFood(st, t, e.id); commit(); }, true); jokeAfter('food');
+  }
   function yzLog(key, por) { var ml = S.mealByHour(new Date().getHours()); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
     if (HK) { HK.close(); return 'overlay'; }          // «Haftangiz» hikoyasi
@@ -1096,7 +1113,7 @@
   function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
   function recRow(r, dim) {
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
-    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid || iconFid(e), e.vr, nm, 50) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid || iconFid(e), e.vr, nm, 50, false, e.ikat) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
   }
   function moreHtml() {
     var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
@@ -2278,7 +2295,7 @@
     }
     if (Y) Y.init({ D: D, T: T, esc: esc, ico: ico, catIcon: catIcon, $: $, lang: function () { return lang; }, prefs: prefs, save: save, render: render, S: S, fmt: fmt, unitName: unitName, foodById: foodById, nameOf: nameOf, tileHtml: tileHtml, toast: toast, shHead: shHead,
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
-      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, imgPrep: imgPrep, aiNetErr: aiNetErr, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
+      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, logMenu: menuLog, imgPrep: imgPrep, aiNetErr: aiNetErr, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
     if (R) R.init({ D: D, T: T, esc: esc, ico: ico, $: $, $$: $$, lang: function () { return lang; }, isCyr: isCyr, toast: toast, openSheet: openSheet, setSheet: setSheet, sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons,
       count: function (h) { if (Y) Y.count(h); }, cid: cid, yemay: function () { return Array.isArray(prefs().yemay) ? prefs().yemay : []; },

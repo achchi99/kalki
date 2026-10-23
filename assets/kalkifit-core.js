@@ -99,6 +99,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function addFood(st, d, e) {
     var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
     if (e.vr) it.vr = String(e.vr).slice(0, 40); if (e.sz) it.sz = String(e.sz).slice(0, 20);
+    if (e.ifid) it.ifid = String(e.ifid).slice(0, 60); if (/^(salat|shorva|issiq|zakuska|desert)$/.test(e.ikat || '')) it.ikat = e.ikat;          // menyudan: ikonka uchun baza taomi va toifa (kkal'ga ta'sir yo'q)
     if (e.vn) { it.vn = String(e.vn).slice(0, 30); if (FILL[e.vf]) it.vf = e.vf; }                 // «Mening idishim»: idish nomi (snapshot) va to'ldirish
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
     return it;
