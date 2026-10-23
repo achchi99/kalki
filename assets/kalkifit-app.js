@@ -1042,7 +1042,7 @@
   var fd = null, CATS = ['o', 'turk', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
   function openAdd(o) {
     o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || S.mealByHour(new Date().getHours()), mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false };
-    openSheet('add', searchHtml()); catsInit(); if (Y) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
+    openSheet('add', searchHtml()); catsInit(); ovBoot();          // 🎤 server yo'li bormi — faqat qo'shish oynasi ochilganda (ishga tushishda tarmoq so'rovi yo'q) if (Y) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
     if (o.food) pickFood(o.food);
   }
   function entUnitTxt(e) { var vv = vOf(e.unit); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (vv) return qtyStr(e.qty) + ' ' + vName(vv); if (e.vn) return qtyStr(e.qty) + ' ' + e.vn; return qtyStr(e.qty) + ' ' + (e.unit && e.unit !== 'pc' ? unitName(e.unit) : unitName('porsiya')); }
@@ -1770,7 +1770,8 @@
   /* ---------- ovozli kiritish (assets/kalkifit-ovoz.js): ovoz → matn (qurilmada) → odatiy matn oqimi (bazadan kkal; topilmagani — BITTA AI so'rov, umumiy limit) ---------- */
   var VO = null, vs = null, ovSrv = false;            // ovSrv — serverda OPENAI kaliti bor (GET /api/ovoz); yo'q bo'lsa iOS'da 🎤 ko'rinmaydi
   function micOk() { if (!VO && window.KalkiOvoz) VO = KalkiOvoz.create({ lang: function () { return lang; }, server: function () { return ovSrv; }, post: ovPost }); return !!(VO && VO.ok()); }
-  function ovBoot() { try { loadJson('/api/ovoz', function (j) { var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search') { var q0 = fd.q; setSheet(searchHtml()); fd.q = q0; } }, function () { ovSrv = false; }); } catch (e) {} }
+  var ovAsked = false;
+  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz', function (j) { var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search') { var q0 = fd.q; setSheet(searchHtml()); fd.q = q0; } }, function () { ovSrv = false; }); } catch (e) {} }
   function ovPost(blob, mime, til, signal) {          // server yo'li: audio → /api/ovoz → { text, tok } (tok — shu ovozning AI hisobi; keyingi taom ajratish qayta sanalmaydi)
     var u = '/api/ovoz?til=' + encodeURIComponent(til) + '&mijoz_id=' + encodeURIComponent(cid()) + (aiPlat() ? '&platforma=' + aiPlat() : '');
     return fetch(u, { method: 'POST', headers: { 'Content-Type': mime }, body: blob, signal: signal }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
@@ -2262,7 +2263,7 @@
     window.addEventListener('offline', phSetOffline); window.addEventListener('online', phSetOffline);
     var hv = viewOf(location.hash); if (hv && st.setup) { view = hv; render(); }
     if (location.hash === '#qoshish' && st.setup) openAdd({});
-    statBoot(); qaBoot(); updCheck(); ovBoot();
+    statBoot(); qaBoot(); updCheck();
     setTimeout(pendingFish, 700); document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') pendingFish(); });
     if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) navigator.serviceWorker.addEventListener('message', function (ev) { if (ev.data && ev.data.t === 'baliq' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/baliq'); }); } catch (e) {} openFish(); } if (ev.data && ev.data.t === 'hafta' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/hafta'); }); } catch (e) {} openWeek(); } });
     if (window.KalkiNative) KalkiNative.setBack(nativeBack);
