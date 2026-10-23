@@ -1442,7 +1442,8 @@
     fd.base = null; fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
     var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
     var le = lastFor(vkey(fd)); if (le) pwApplyLast(le.e, pick);
-    setSheet(portionHtml()); if (OR && orState !== 2) loadOr(function () { if (kit.sheetKind() === 'add' && fd.mode === 'portion') orRefresh(); });
+    setSheet(portionHtml()); var shp = $('#rzSheet'); if (shp) shp.scrollTop = 0;          // porsiya oynasi har doim tepadan (qidiruv ro'yxatidagi scroll saqlanmaydi)
+    if (OR && orState !== 2) loadOr(function () { if (kit.sheetKind() === 'add' && fd.mode === 'portion') orRefresh(); });
   }
   function pwApplyLast(e, pick) {                        // shu taomning OXIRGI porsiyasi (va omillari) — boshlang'ich qiymat
     if (fd.fam && !pick) famOpen(fd, fd.fam, S.famSelOf(fd.fam, e.vr || null), e.sz || null);
