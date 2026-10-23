@@ -756,4 +756,33 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .sl-hkc .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.sl-hkc b{font-size:20px;font-weight:800}.sl-hkc .m span{font-size:15px;font-weight:600;opacity:.92}
 .sl-hkc .mini{display:flex;align-items:flex-end;gap:3px;height:42px;flex:none}.sl-hkc .mini i{width:7px;border-radius:3px;background:rgba(255,255,255,.9);height:calc(4px + var(--h) * 38px)}.sl-hkc .mini i.z{background:rgba(255,255,255,.35)}
 .sl-hkc .pl{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;flex:none;font-size:16px}
-#remCard #hwRow{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}          /* «Haftalik xulosa» — «Baliq kuni» dan alohida qator */
+/* v27: Profil → Eslatmalar — ikki qator, iOS uslubidagi switch */
+:root{--swk:#fff}
+.sl-remc .sl-remr{display:flex;align-items:center;gap:10px;min-height:60px;padding:6px 0}
+.sl-remc .sl-remr+.sl-remr{border-top:1px solid var(--line)}
+.sl-remc .sl-remm{flex:1;min-width:0;display:flex;align-items:center;gap:12px;border:0;background:transparent;color:var(--ink);text-align:left;padding:8px 0;min-height:48px;font:inherit}
+.sl-remc .sl-remm .ic{font-size:22px;width:28px;text-align:center;flex:none}
+.sl-remc .sl-remm .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sl-remc .sl-remm .t b{font-size:var(--t-m);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.sl-remc .sl-remm .t small{font-size:var(--t-s);color:var(--mut);line-height:1.35}
+.sl-remc .sl-remm .v{font-weight:600;color:var(--mut);font-size:var(--t-s)}
+.sl-remc .sl-remm .rz-i{width:18px;height:18px;color:var(--mut);flex:none}
+.sl-sw,.rz .sl-remc .sl-sw{position:relative;flex:0 0 52px;width:52px;min-width:0;max-width:52px;height:32px;min-height:0;margin:0;border:0;border-radius:16px;background:var(--line);padding:0;transition:background .2s ease}
+.sl-sw::before{content:"";position:absolute;inset:-8px}
+.sl-sw i{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:var(--swk);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s ease}
+.sl-sw.on,.rz .sl-remc .sl-sw.on{background:var(--acc2)}.sl-sw.on i{transform:translateX(20px)}
+.sl-sw[disabled]{opacity:.45}
+.sl-sw:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.sl-sw,.sl-sw i{transition:none}}
+/* v27: qo'shish oynasi — «Rasmdan» va «Menyudan» bir xil darajada; Yeymiz → Kafe: menyu tugmasi + bir martalik ko'rsatma */
+.rz .sl-qa2{display:flex;gap:8px;margin:8px 0 4px}
+.rz .sl-qa{flex:1;min-height:48px;border:0;border-radius:14px;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 var(--t-s) 'Manrope',sans-serif}
+.rz .sl-qa .rz-i{width:20px;height:20px;color:var(--acc2)}
+.rz .sl-qa[disabled]{opacity:.45}
+.sl-mncw{position:relative;margin:4px 0 12px}
+.sl-mncta{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 14px;border:1.5px solid var(--acc2);border-radius:16px;background:var(--accsoft);color:var(--ink);text-align:left;font:600 var(--t-s) 'Manrope',sans-serif}
+.sl-mncta .ic{font-size:22px;flex:none}.sl-mncta span:not(.ic){flex:1}.sl-mncta .rz-i{width:18px;height:18px;color:var(--acc2);flex:none}
+.sl-tipb{position:relative;margin:10px 0 0;padding:10px 12px;border-radius:12px;background:var(--ink);color:var(--card);font-size:var(--t-s);font-weight:600;line-height:1.35;animation:tipIn .3s ease both}
+.sl-tipb::before{content:"";position:absolute;top:-6px;left:28px;width:12px;height:12px;background:var(--ink);transform:rotate(45deg)}
+@keyframes tipIn{from{opacity:0;transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.sl-tipb{animation:none}}

@@ -16,6 +16,7 @@
 
   var D = {
     uz: {
+      gIn: 'Google bilan kirish', gOr: 'yoki', gErr: "Google bilan kirib bo'lmadi. Email bilan kiring yoki keyinroq urinib ko'ring.", gOk: 'Google bilan kirildi',
       rowT: 'Email bilan kirish', rowS: "Ma'lumotingiz avtomatik saqlanadi", rowOnT: 'Akkaunt', rowOnS: '{e}', rowOnSaved: '{e} · avtomatik saqlanadi',
       inT: 'Email bilan kirish', inP: "Emailingizga 6 xonali kod yuboramiz — parol kerak emas. Kirsangiz, ma'lumotingiz avtomatik saqlanadi va yangi telefonda shu email bilan tiklanadi.", inP2: "Kirmasangiz ham ilova avvalgidek ishlayveradi.",
       email: 'Email', emailPh: 'ism@pochta.uz', send: 'Kod yuborish', sending: 'Yuborilmoqda…', priv: "Tiklash kodingiz serverda maxfiy kalit bilan shifrlanib saqlanadi. Xohlamasangiz «Boshqa usullar»da «Qat'iy rejim»ni yoqing.", privLink: 'Maxfiylik',
@@ -39,6 +40,7 @@
       eTypo: "Email manzilida xato bo'lishi mumkin. «{a}» o'rniga «{b}» yozdik — to'g'ri bo'lsa «Kod yuborish»ni bosing.", eRestore: "Akkauntdagi ma'lumotni tiklab bo'lmadi. Internetni tekshirib, qaytadan kirib ko'ring."
     },
     ru: {
+      gIn: 'Войти через Google', gOr: 'или', gErr: 'Не удалось войти через Google. Войдите по email или попробуйте позже.', gOk: 'Вход через Google выполнен',
       rowT: 'Вход по email', rowS: 'Ваши данные сохраняются автоматически', rowOnT: 'Аккаунт', rowOnS: '{e}', rowOnSaved: '{e} · сохраняется автоматически',
       inT: 'Вход по email', inP: 'Мы отправим на email 6-значный код — пароль не нужен. После входа данные сохраняются автоматически и восстанавливаются на новом телефоне по этому email.', inP2: 'Если не входить, приложение работает как раньше.',
       email: 'Email', emailPh: 'imya@pochta.uz', send: 'Отправить код', sending: 'Отправляем…', priv: 'Ваш код восстановления хранится на сервере, зашифрованный секретным ключом. Не хотите — включите «Строгий режим» в «Других способах».', privLink: 'Конфиденциальность',
@@ -78,11 +80,11 @@
     function changed() { if (cfg.onChange) cfg.onChange(); }
     function hasData() { return !!(cfg.hasData && cfg.hasData()); }
     function isTrivial() { try { return !!(cfg.isTrivial && cfg.isTrivial()); } catch (e) { return false; } }   // faqat onboarding profili: yo'qotadigan narsa yo'q → bulutdagi to'liq nusxa ustiga HECH QACHON yozilmaydi, aksincha u olinadi
-    function sig() { return [S.yoq, S.kirgan, S.email, S.marketing, S.qur, JSON.stringify(S.il)].join('|'); }
+    function sig() { return [S.yoq, S.kirgan, S.email, S.marketing, S.qur, JSON.stringify(S.il), S.google || ''].join('|'); }
     function readCache() { try { var o = JSON.parse(localStorage.getItem(CACHE) || 'null'); return o && typeof o === 'object' ? o : null; } catch (e) { return null; } }
     function writeCache() { try { localStorage.setItem(CACHE, JSON.stringify(S)); } catch (e) {} }
-    function setState(o) { var before = sig(); S = { yoq: !!o.yoq, kirgan: !!o.kirgan, email: o.email || '', marketing: o.marketing ? 1 : 0, qur: o.qur || 0, dev: !!o.dev, il: o.il || {}, t: Date.now() }; writeCache(); return before !== sig(); }
-    var c0 = readCache(); if (c0) S = { yoq: !!c0.yoq, kirgan: !!c0.kirgan, email: c0.email || '', marketing: c0.marketing ? 1 : 0, qur: c0.qur || 0, dev: !!c0.dev, il: c0.il && typeof c0.il === 'object' ? c0.il : {}, t: +c0.t || 0 };
+    function setState(o) { var before = sig(); S = { yoq: !!o.yoq, kirgan: !!o.kirgan, email: o.email || '', marketing: o.marketing ? 1 : 0, qur: o.qur || 0, dev: !!o.dev, il: o.il || {}, google: o.google || '', t: Date.now() }; writeCache(); return before !== sig(); }
+    var c0 = readCache(); if (c0) S = { yoq: !!c0.yoq, kirgan: !!c0.kirgan, email: c0.email || '', marketing: c0.marketing ? 1 : 0, qur: c0.qur || 0, dev: !!c0.dev, il: c0.il && typeof c0.il === 'object' ? c0.il : {}, google: typeof c0.google === 'string' ? c0.google : '', t: +c0.t || 0 };
     var norm = function (c) { return String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); };
 
     function call(method, amal, body, qs) {
@@ -90,11 +92,30 @@
         .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j || {} }; }, function () { return { s: r.status, j: {} }; }); });
     }
     /* ---- holat: faqat kerak bo'lganda so'raladi ---- */
+    /* ---- Google bilan kirish: server GOOGLE_WEB_CLIENT_ID bersagina (S.google). Veb — Google Identity Services (rasmiy tugma); APK — native «GoogleKirish» (Credential Manager) ---- */
+    var G_SVG = '<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
+    var W = typeof window !== 'undefined' ? window : {};
+    function nat() { var N = W.KalkiNative; try { return N && N.isApp && N.isApp() ? N : null; } catch (e) { return null; } }
+    function gOk() { if (!S.yoq || S.kirgan || !S.google) return false; var N = nat(); if (N) return !!(N.has && N.has('GoogleKirish')); return typeof document !== 'undefined'; }          // APK'da plagin bo'lmasa (eski APK) — yo'q
+    var gis = 0, gq = [];
+    function gisLoad(cb) { if (gis === 2) return cb(); gq.push(cb); if (gis === 1) return; gis = 1; var sc = document.createElement('script'); sc.src = 'https://accounts.google.com/gsi/client'; sc.async = true; sc.onload = function () { try { W.google.accounts.id.initialize({ client_id: S.google, callback: gCred, ux_mode: 'popup', auto_select: false, cancel_on_tap_outside: true }); gis = 2; } catch (e) { gis = 0; } var q = gq; gq = []; if (gis === 2) q.forEach(function (f) { f(); }); }; sc.onerror = function () { gis = 0; gq = []; }; document.head.appendChild(sc); }
+    function gMount() { if (!gOk() || nat()) return; var els = document.querySelectorAll('[data-akkg]:not([data-m])'); if (!els.length) return; gisLoad(function () { [].forEach.call(document.querySelectorAll('[data-akkg]:not([data-m])'), function (el) { el.setAttribute('data-m', '1'); try { W.google.accounts.id.renderButton(el, { type: 'standard', theme: gDark() ? 'filled_black' : 'outline', size: 'large', text: 'signin_with', shape: 'pill', logo_alignment: 'left', width: Math.min(400, Math.max(220, el.clientWidth || 300)), locale: til() === 'ru' ? 'ru' : 'uz' }); } catch (e) {} }); }); }
+    function gDark() { var h = document.documentElement.getAttribute('data-theme'); if (h) return h === 'dark'; try { return matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { return false; } }
+    function gBtn(where) { if (nat()) return '<button type="button" class="akk-gnat" data-act="akkgoogle" data-akkgw="' + where + '">' + G_SVG + '<span>' + esc(L().gIn) + '</span></button>'; setTimeout(gMount, 0); return '<div class="akk-gbtn" data-akkg="' + where + '" aria-label="' + esc(L().gIn) + '"></div>'; }
+    function gCred(resp) {
+      var t = L(), cr = resp && resp.credential; if (!cr) { toast(t.gErr); return; }
+      call('POST', 'google', { credential: cr }).then(function (r) {
+        if (r.s === 200 && r.j.ok) { setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.gOk); changed(); sync(true); return; }
+        setErr(t.gErr); toast(t.gErr);
+      }, function () { toast(t.eNet); });
+    }
+    function gNative() { var N = nat(); if (!N) return; N.call('GoogleKirish', 'kirish', { clientId: S.google }).then(function (r) { if (r && r.idToken) gCred({ credential: r.idToken }); }, function (e) { if (!(e && /bekor|cancel/i.test(String(e.code || e.message)))) toast(L().gErr); }); }
+    ak.google = function () { return gOk(); };
     ak.load = function (force, done) {
       if (loading) { if (done) setTimeout(done, 600); return; } if (!force && S.t && Date.now() - S.t < (S.yoq ? TTL_ON : TTL_OFF)) { if (done) done(); return; } loading = true;
       call('GET', 'sessiya').then(function (r) {
         loading = false; var ch;
-        if (r.s === 200 && r.j && r.j.yoqilgan) ch = setState({ yoq: true, kirgan: !!r.j.kirgan, email: r.j.email, marketing: r.j.marketing, qur: r.j.qurilmalar, dev: !!r.j.dev, il: r.j.ilovalar });
+        if (r.s === 200 && r.j && r.j.yoqilgan) ch = setState({ yoq: true, kirgan: !!r.j.kirgan, email: r.j.email, marketing: r.j.marketing, qur: r.j.qurilmalar, dev: !!r.j.dev, il: r.j.ilovalar, google: r.j.google });
         else ch = setState({ yoq: false });
         if (ch) { changed(); if (cfg.onOnb) cfg.onOnb(); } if (done) done();
       }, function () { loading = false; S.t = Date.now() - (S.yoq ? TTL_ON : TTL_OFF) + 60000; });   // tarmoq xatosi: 1 daqiqadan keyin qayta uriniladi (har renderda emas)
@@ -105,7 +126,7 @@
     ak.rowHtml = function () {
       ak.load(); if (!S.yoq) return '';
       var t = L();
-      return '<button type="button" class="rz-row" data-act="akk" data-akk="row"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ICON + '</span><span class="m"><b>' + esc(S.kirgan ? t.rowOnT : t.rowT) + '</b><span>' + esc(S.kirgan ? fill(ak.autoSaved() ? t.rowOnSaved : t.rowOnS, { e: S.email }) : t.rowS) + '</span></span>' + CHEV + '</button>';
+      return (gOk() ? '<div class="akk-gblock">' + gBtn('row') + '</div>' : '') + '<button type="button" class="rz-row" data-act="akk" data-akk="row"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ICON + '</span><span class="m"><b>' + esc(S.kirgan ? t.rowOnT : t.rowT) + '</b><span>' + esc(S.kirgan ? fill(ak.autoSaved() ? t.rowOnSaved : t.rowOnS, { e: S.email }) : t.rowS) + '</span></span>' + CHEV + '</button>';
     };
     ak.more = function (inner) {                     // akkaunt yoqilgan bo'lsa: Telegram zaxira, bulut (kod), eksport/import «Boshqa usullar» ichida; o'chiq bo'lsa o'zgarishsiz
       if (!S.yoq) return inner;
@@ -139,7 +160,7 @@
       if (!k) return;
       if (S.kirgan && step !== 'del' && step !== 'delcode') step = 'acc';
       if (step === 'in') {
-        h = k.shHead(t.inT) + '<p class="rz-p">' + esc(t.inP) + '</p><label class="rz-f" for="akkEmail"><span>' + esc(t.email) + '</span><input id="akkEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="254" placeholder="' + esc(t.emailPh) + '" value="' + esc(cur.email) + '"></label>' + errHtml() +
+        h = k.shHead(t.inT) + (gOk() ? '<div class="akk-gblock">' + gBtn('sheet') + '</div><p class="akk-or"><span>' + esc(t.gOr) + '</span></p>' : '') + '<p class="rz-p">' + esc(t.inP) + '</p><label class="rz-f" for="akkEmail"><span>' + esc(t.email) + '</span><input id="akkEmail" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="254" placeholder="' + esc(t.emailPh) + '" value="' + esc(cur.email) + '"></label>' + errHtml() +
           '<div class="rz-actions"><button type="button" class="rz-btn primary" id="akkSend" data-act="akksend">' + esc(cur.busy ? t.sending : t.send) + '</button></div><p class="rz-p sm">' + esc(t.inP2) + '</p>' + privLine();
       } else if (step === 'code' || step === 'delcode') {
         var del = step === 'delcode';
@@ -188,7 +209,7 @@
       busy(true, 'akkGo', t.going);
       call('POST', 'kirish', { email: cur.email, kod: code }).then(function (r) {
         busy(false); if (r.s === 200 && r.j.ok) {
-          setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {} }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.okIn); changed();
+          setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.okIn); changed();
           sync(true); return;
         }
         busy(false, 'akkGo', t.go); setErr(errText(r.j.e, r.j)); var i = document.getElementById('akkCode'); if (i && r.j.e === 'kod_xato') { i.value = ''; try { i.focus(); } catch (e) {} }
@@ -283,6 +304,7 @@
 
     ak.act = function (a, el) {
       if (a === 'akk') { step = S.kirgan ? 'acc' : 'in'; cur.err = ''; if (el && el.getAttribute('data-akk') === 'onb') step = 'in'; sheet(); return true; }
+      if (a === 'akkgoogle') { gNative(); return true; }
       if (a === 'akksend') { sendCode('kirish'); return true; }
       if (a === 'akkgo') { verify(); return true; }
       if (a === 'akkresend') { sendCode(step === 'delcode' ? 'ochirish' : 'kirish'); return true; }

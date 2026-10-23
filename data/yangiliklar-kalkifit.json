@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 27,
+   "d": "2026-10-23",
+   "bn": {
+    "uz": "Eslatmalar soddalashdi.",
+    "ru": "Напоминания стали проще."
+   },
+   "items": [
+    {
+     "uz": "Eslatmalar soddalashdi: Profilda ikkita qator va bittadan switch.",
+     "ru": "Напоминания стали проще: в Профиле две строки и по одному переключателю.",
+     "show": "fishday",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Menyuni suratga olib tanlash — endi Yeymiz'da, ko'rinadigan joyda.",
+     "ru": "Выбор по фото меню — теперь в «Что поесть», на видном месте.",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 26,
    "d": "2026-10-23",
    "bn": {

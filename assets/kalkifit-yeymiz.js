@@ -12,7 +12,7 @@
       yzT: 'Bugun nima yeymiz?', yzDoorS: 'Kafe, buyurtma yoki uyda', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
       yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
       yzNote: 'Porsiya taxminiy — nomni bosib o\'zgartiring', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
-      mnBtn: 'Menyudan tanlash', mnT: 'Menyudan tanlash', mnH: "Kafe menyusini suratga oling — bugungi qoldig'ingizga mos 2–3 taomni tanlab beramiz.", mnPriv: 'Rasm saqlanmaydi. Kaloriya — bizning bazadan (odatiy porsiya).', mnPick: 'Menyu rasmini tanlash', mnCam: 'Rasmga olish', mnGal: 'Galereyadan', mnBusy: "Menyu o'qilmoqda…", mnRes: "Menyudan {n} ta taom topildi. Sizga mos:", mnLeft: "Bugun yana ≈ {k} kkal sig'adi", mnW_oqsil: 'Oqsilga boy', mnW_yengil: 'Yengilroq', mnW_sigadi: "Qoldiqqa sig'adi", mnNo: 'Menyudan taom topilmadi — rasmni yaqinroq va tekis oling.', mnNoFit: "Menyudagi taomlar bazamizda topilmadi. Qidiruvdan tanlang.", mnErr: "Menyuni o'qib bo'lmadi. Keyinroq urinib ko'ring.", mnAgain: 'Boshqa rasm', mnAdded: "Qo'shildi: {n}",
+      mnCta: 'Menyuni suratga oling — mosini tanlab beramiz', mnTip: 'Yangi: kafe menyusini suratga oling — 2–3 mos taomni tanlab beramiz.', mnBtn: 'Menyudan tanlash', mnT: 'Menyudan tanlash', mnH: "Kafe menyusini suratga oling — bugungi qoldig'ingizga mos 2–3 taomni tanlab beramiz.", mnPriv: 'Rasm saqlanmaydi. Kaloriya — bizning bazadan (odatiy porsiya).', mnPick: 'Menyu rasmini tanlash', mnCam: 'Rasmga olish', mnGal: 'Galereyadan', mnBusy: "Menyu o'qilmoqda…", mnRes: "Menyudan {n} ta taom topildi. Sizga mos:", mnLeft: "Bugun yana ≈ {k} kkal sig'adi", mnW_oqsil: 'Oqsilga boy', mnW_yengil: 'Yengilroq', mnW_sigadi: "Qoldiqqa sig'adi", mnNo: 'Menyudan taom topilmadi — rasmni yaqinroq va tekis oling.', mnNoFit: "Menyudagi taomlar bazamizda topilmadi. Qidiruvdan tanlang.", mnErr: "Menyuni o'qib bo'lmadi. Keyinroq urinib ko'ring.", mnAgain: 'Boshqa rasm', mnAdded: "Qo'shildi: {n}",
       yzNo: 'Bu yerda sizga mos taom topilmadi.', yzNoH: 'Qidiruvdan o\'zingiz tanlang.', yzSearch: 'Qidirish',
       yzOrdH: 'Yetkazib berish xizmatida «{q}» deb qidiring. Tugmani bossangiz so\'z nusxalanadi.', yzCopied: '«{q}» nusxalandi — ilovada qidiruvga qo\'ying', yzOrdList: 'Odatiy buyurtmalar (o\'rtacha porsiya)', yzOrdNone: 'Havolalar hozir yuklanmadi. Internetni tekshirib, qayta urining.', yzUyH: 'Qaysi usulda pishirasiz?',
       yzMeal_b: 'Nonushtaga yozildi', yzMeal_l: 'Tushlikka yozildi', yzMeal_d: 'Kechki ovqatga yozildi', yzMeal_s: 'Tamaddiga yozildi',
@@ -27,7 +27,7 @@
       yzT: 'Что поесть сегодня?', yzDoorS: 'Кафе, заказ или дома', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
       yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
       yzNote: 'Порция примерная — нажмите на название', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
-      mnBtn: 'Выбрать по меню', mnT: 'Выбрать по меню', mnH: 'Сфотографируйте меню кафе — подберём 2–3 блюда под ваш остаток на сегодня.', mnPriv: 'Фото не сохраняется. Калории — из нашей базы (обычная порция).', mnPick: 'Выбрать фото меню', mnCam: 'Сфотографировать', mnGal: 'Из галереи', mnBusy: 'Читаем меню…', mnRes: 'В меню найдено блюд: {n}. Вам подойдут:', mnLeft: 'Сегодня ещё влезает ≈ {k} ккал', mnW_oqsil: 'Богато белком', mnW_yengil: 'Полегче', mnW_sigadi: 'Влезает в остаток', mnNo: 'Блюда в меню не найдены — снимите ближе и ровнее.', mnNoFit: 'Блюд из меню нет в нашей базе. Выберите через поиск.', mnErr: 'Не удалось прочитать меню. Попробуйте позже.', mnAgain: 'Другое фото', mnAdded: 'Добавлено: {n}',
+      mnCta: 'Сфотографируйте меню — подберём подходящее', mnTip: 'Новое: сфотографируйте меню кафе — подберём 2–3 подходящих блюда.', mnBtn: 'Выбрать по меню', mnT: 'Выбрать по меню', mnH: 'Сфотографируйте меню кафе — подберём 2–3 блюда под ваш остаток на сегодня.', mnPriv: 'Фото не сохраняется. Калории — из нашей базы (обычная порция).', mnPick: 'Выбрать фото меню', mnCam: 'Сфотографировать', mnGal: 'Из галереи', mnBusy: 'Читаем меню…', mnRes: 'В меню найдено блюд: {n}. Вам подойдут:', mnLeft: 'Сегодня ещё влезает ≈ {k} ккал', mnW_oqsil: 'Богато белком', mnW_yengil: 'Полегче', mnW_sigadi: 'Влезает в остаток', mnNo: 'Блюда в меню не найдены — снимите ближе и ровнее.', mnNoFit: 'Блюд из меню нет в нашей базе. Выберите через поиск.', mnErr: 'Не удалось прочитать меню. Попробуйте позже.', mnAgain: 'Другое фото', mnAdded: 'Добавлено: {n}',
       yzNo: 'Подходящих блюд здесь не нашлось.', yzNoH: 'Выберите через поиск.', yzSearch: 'Искать',
       yzOrdH: 'Найдите «{q}» в сервисе доставки. По нажатию слово копируется.', yzCopied: '«{q}» скопировано — вставьте в поиск приложения', yzOrdList: 'Частые заказы (средняя порция)', yzOrdNone: 'Ссылки сейчас не загрузились. Проверьте интернет и повторите.', yzUyH: 'Как будете готовить?',
       yzMeal_b: 'Записано на завтрак', yzMeal_l: 'Записано на обед', yzMeal_d: 'Записано на ужин', yzMeal_s: 'Записано на перекус',
@@ -96,6 +96,8 @@
   function dayName(i) { return WDF[L()][i]; }
   function dayChips(act) { var cur = kunNow(); return '<div class="sl-days" role="radiogroup" aria-label="' + esc(T('fwDayRow')) + '">' + WD[L()].map(function (n, i) { return '<button type="button" role="radio" class="rz-chip' + (i === cur ? ' on' : '') + '" aria-checked="' + (i === cur) + '" data-act="' + act + '" data-d="' + i + '">' + esc(n) + '</button>'; }).join('') + '</div>'; }
   function profileDays() { return dayChips('fwdayprof'); }
+  function kunQisqa() { return WD[L()][kunNow()]; }
+  function daySheet() { A.openSheet('fwday', A.shHead(T('fwDayT')) + '<p class="rz-p">' + esc(T('fwDayH')) + '</p>' + dayChips('fwdaypick')); }          // Profil → Baliq kuni qatori: kun tanlash (7 chip)
   /* ---------- umumiy oyna ---------- */
   function iconName(id) { var s = OR.split(id).id; return IKON[id] || IKON[s] || null; }
   function badge(p) { return '<span class="sl-kb' + (p.kafe ? '' : ' uy') + '">' + esc(T(p.kafe ? 'yzKafe' : 'yzUy')) + '</span>'; }
@@ -128,7 +130,8 @@
     } else {
       var r = YC.list({ by: A.by(), data: data, toifa: tf, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem });
       yv.shown = r.items.map(function (p) { return p.key; });
-      body = (yv.seg === 'kafe' && window.KalkiMenyu ? '<p class="sl-mnd"><button type="button" class="sl-txtbtn" data-act="mnopen" data-f="yeymiz" id="mnDoor">' + A.ico('cam', 'sl-inl') + esc(T('mnBtn')) + '</button></p>' : '') + (yv.seg === 'buyurtma' ? orderLinks() + '<div class="rz-st">' + esc(T('yzOrdList')) + '</div>' : '') + (r.items.length ? rowsHtml(r.items) + '<p class="rz-priv">' + esc(T('yzNote')) + '</p>' : emptyHtml());
+      var tip = yv.seg === 'kafe' && window.KalkiMenyu && (yv.tip || !A.prefs().mnTip); if (tip && !yv.tip) { yv.tip = true; A.prefs().mnTip = 1; A.save(); }          // bir martalik ko'rsatma: shu ochilish davomida turadi, keyingi ochilishda yo'q
+      body = (yv.seg === 'kafe' && window.KalkiMenyu ? '<div class="sl-mncw"><button type="button" class="sl-mncta" data-act="mnopen" data-f="yeymiz" id="mnDoor"><span class="ic" aria-hidden="true">📷</span><span>' + esc(T('mnCta')) + '</span>' + A.ico('chev', 'r') + '</button>' + (tip ? '<p class="sl-tipb" id="mnTip" role="note">' + esc(T('mnTip')) + '</p>' : '') + '</div>' : '') + (yv.seg === 'buyurtma' ? orderLinks() + '<div class="rz-st">' + esc(T('yzOrdList')) + '</div>' : '') + (r.items.length ? rowsHtml(r.items) + '<p class="rz-priv">' + esc(T('yzNote')) + '</p>' : emptyHtml());
     }
     return body + (tf === 'baliq' ? '<div class="sl-fwf"><button type="button" class="sl-txtbtn" data-act="fwno">' + esc(T('fwNo')) + '</button><button type="button" class="sl-txtbtn" data-act="fwday">' + esc(T('fwDay')) + '</button></div>' : '');
   }
@@ -136,7 +139,7 @@
   function draw() { var sh = A.$('#rzSheet'), sc = sh ? sh.scrollTop : 0; A.setSheet(winHtml()); if (sh) sh.scrollTop = sc; }
   function show(toifa) {                                  // oynani ochish (chip, banner, eslatma)
     if (toifa === 'baliq') count('baliq_oyna_ochildi'); else count('yeymiz_ochildi');
-    load(function () { A.withDb(function () { loadPartners(function () { yv.toifa = toifa; yv.seg = YC.segBoshlang(new Date(), lsGet()); yv.open = {}; if (A.sheetKind() === 'yeymiz') draw(); else A.openSheet('yeymiz', winHtml()); }); }); });
+    yv.tip = false; load(function () { A.withDb(function () { loadPartners(function () { yv.toifa = toifa; yv.seg = YC.segBoshlang(new Date(), lsGet()); yv.open = {}; if (A.sheetKind() === 'yeymiz') draw(); else A.openSheet('yeymiz', winHtml()); }); }); });
   }
   function openFish() { show('baliq'); }
   function back() { A.withDb(function () { loadPartners(function () { if (A.sheetKind() === 'yeymiz') draw(); else A.openSheet('yeymiz', winHtml()); }); }); }
@@ -271,8 +274,9 @@
       case 'yewback': draw(); return true;
       case 'fwdayset': { var d = +el.getAttribute('data-d'); dayChosen(d); A.closeSheet(); A.render(); A.toast(T('fwDayDone', { d: dayName(d) }), null, true); return true; }
       case 'fwdayprof': { dayChosen(+el.getAttribute('data-d')); A.render(); return true; }
+      case 'fwdaypick': { var d2 = +el.getAttribute('data-d'); dayChosen(d2); A.closeSheet(); A.render(); A.toast(T('fwDayDone', { d: dayName(d2) }), null, true); return true; }
       case 'yevopen': openVariants(); return true;
-      case 'mnopen': menuOpen(el.getAttribute('data-f')); return true;
+      case 'mnopen': yv.tip = false; menuOpen(el.getAttribute('data-f')); return true;
       case 'mnpick': { var mi = A.$('#mnIn'); if (mi) { mi.value = ''; mi.click(); } return true; }
       case 'mngal': mnNativePick('PHOTOS'); return true; case 'mncam': mnNativePick('CAMERA'); return true;
       case 'mnagain': menuOpen(mv.from); return true;
@@ -287,5 +291,5 @@
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
     api.addIcons(ICONS); hs = HS && HS.browser ? HS.browser() : null;
   }
-  window.KalkiYeymizUI = { menuOpen: menuOpen, chReady: chReady, loadCh: loadCh, rinfo: rinfo, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
+  window.KalkiYeymizUI = { kunQisqa: kunQisqa, daySheet: daySheet, menuOpen: menuOpen, chReady: chReady, loadCh: loadCh, rinfo: rinfo, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
 })();

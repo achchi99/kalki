@@ -50,6 +50,7 @@
   ".rt-spk",
   ".rt-msg",
   ".rt-ing.need",
-  ".rt-soon"
+  ".rt-soon",
+  ".sl-sw.on"
  ]
 }

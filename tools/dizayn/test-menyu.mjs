@@ -51,7 +51,7 @@ const IMG = path.join(ROOT, 'assets/ovqat/osh-256.webp');
 async function shoot(p) { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.click('[data-act=mnpick]')]); await fc.setFiles(IMG); await p.waitForSelector('#mnRes, #mnErr', { timeout: 15000 }); }
 try {
   /* qo'shish oynasidan */
-  let p = await open(mk({ eaten: 900 })); await p.click('#mainAdd'); await p.waitForSelector('[data-act=fmore]'); await p.click('[data-act=fmore]'); await p.waitForSelector('#mnAdd'); await p.click('#mnAdd'); await p.waitForSelector('[data-act=mnpick]');
+  let p = await open(mk({ eaten: 900 })); await p.click('#mainAdd'); await p.waitForSelector('#mnAdd'); await p.click('#mnAdd'); await p.waitForSelector('[data-act=mnpick]');
   assert.match(await txt(p, '#rzSheet'), /Rasm saqlanmaydi/); await shoot(p); assert.equal(p.req.length, 1); assert.ok(p.req[0].img > 1000 && p.req[0].cid);
   const res = await txt(p, '#rzSheet'); assert.match(res, /Menyudan 8 ta taom topildi/); const rows = await p.locator('#mnList .sl-mnr').count(); assert.ok(rows >= 2 && rows <= 3, 'variantlar: ' + rows);
   assert.ok(!/pepperoni|Pepperoni|cho'chqa|Cho'chqa|Свин/i.test(res), 'cho\'chqa — taklif qilinmaydi (va bu haqda matn yo\'q)'); assert.match(res, /Oqsilga boy|Yengilroq|Qoldiqqa sig'adi/); assert.match(res, /\d[\d ]* so'm/, 'narx ko\'rsatiladi');
@@ -60,9 +60,9 @@ try {
   const before = await p.evaluate(() => window.__kalkifit.state.days[Object.keys(window.__kalkifit.state.days).sort().pop()].food.length);
   await p.click('#mnList [data-act=mnadd] >> nth=0'); await p.waitForTimeout(900); const after = await p.evaluate(() => window.__kalkifit.state.days[Object.keys(window.__kalkifit.state.days).sort().pop()].food); assert.equal(after.length, before + 1, 'bosilsa qo\'shiladi'); assert.ok(after[after.length - 1].fid, 'bazadagi taom (kkal bazadan)');
   assert.deepEqual(p.errs, []); await p.context().close();
-  log('Qo\'shish oynasi → «Boshqa usullar» → «Menyudan tanlash» → rasm (kichraytirilgan JPEG, mijoz_id) → 2–3 variant, sabab, narx; bosilsa bazadagi taom qo\'shiladi; cho\'chqa yo\'q');
+  log('Qo\'shish oynasi → «Rasmdan» yonidagi «Menyudan» → rasm (kichraytirilgan JPEG, mijoz_id) → 2–3 variant, sabab, narx; bosilsa bazadagi taom qo\'shiladi; cho\'chqa yo\'q');
   /* qoldiq kam → qoldiqqa sig'adiganlar; yemaydiganlar */
-  p = await open(mk({ eaten: 1900, yemay: ['baliq'] })); await p.click('#mainAdd'); await p.waitForSelector('[data-act=fmore]'); await p.click('[data-act=fmore]'); await p.click('#mnAdd'); await shoot(p);
+  p = await open(mk({ eaten: 1900, yemay: ['baliq'] })); await p.click('#mainAdd'); await p.click('#mnAdd'); await shoot(p);
   const left = await p.evaluate(() => window.__kalkifit.state && null); void left; const t2 = await txt(p, '#mnList'); assert.ok(!/Baliq|Рыба/i.test(t2), 'yemaydiganlar (baliq) — yo\'q: ' + t2);
   const ks2 = await p.$$eval('#mnList .sl-mnr .tm', (l) => l.map((e) => +((e.textContent.match(/([\d ]+) kkal/) || [])[1] || '0').replace(/\D/g, '')));
   const lim = await p.evaluate(() => { const K = window.__kalkifit, st = K.state, S = K.S; const t = Object.keys(st.days).sort().pop(), x = st.days[t], pl = S.plan(st.profile), tot = S.sumEntries(x.food); return S.dayBalance(pl.target, tot.kcal, x.steps || 0, 175, 80, 3).remaining; });
@@ -71,8 +71,13 @@ try {
   /* Yeymiz → Kafe → menyu; limit; RU */
   p = await open(mk(), { resp: { s: 429, j: { xato: 'x', sabab: 'mijoz', limit: 5, qoldi: 0 } } }); await p.click('#yeCard'); await p.waitForSelector('#rzSheet[data-kind=yeymiz] .sl-segs3'); await p.click('#rzSheet [data-act=yeseg][data-s=kafe]'); await p.waitForTimeout(300); await p.waitForSelector('#mnDoor'); await p.click('#mnDoor'); await shoot(p);
   assert.match(await txt(p, '#mnErr'), /5/, 'limit matni'); await p.context().close();
-  p = await open(mk(), { url: '/ru/kalkifit' }); await p.click('#mainAdd'); await p.waitForSelector('[data-act=fmore]'); await p.click('[data-act=fmore]'); await p.waitForSelector('#mnAdd'); assert.match(await txt(p, '#mnAdd'), /Выбрать по меню/); await p.click('#mnAdd'); await shoot(p); assert.match(await txt(p, '#rzSheet'), /В меню найдено блюд: 8/); assert.equal(p.req[0].til, 'ru'); await p.context().close();
-  p = await open(mk(), { resp: { s: 200, j: { taomlar: [], limit: 5, qoldi: 3 } } }); await p.click('#mainAdd'); await p.waitForSelector('[data-act=fmore]'); await p.click('[data-act=fmore]'); await p.click('#mnAdd'); await shoot(p); assert.match(await txt(p, '#mnErr'), /Menyudan taom topilmadi/); await p.context().close();
-  log('«Bugun nima yeymiz?» → Kafe → «Menyudan tanlash»; limit tugasa — aniq matn; RU; menyu o\'qilmasa — muloyim matn');
+  p = await open(mk(), { url: '/ru/kalkifit' }); await p.click('#mainAdd'); await p.waitForSelector('#mnAdd'); assert.match(await txt(p, '#mnAdd'), /По меню/); await p.click('#mnAdd'); await shoot(p); assert.match(await txt(p, '#rzSheet'), /В меню найдено блюд: 8/); assert.equal(p.req[0].til, 'ru'); await p.context().close();
+  p = await open(mk(), { resp: { s: 200, j: { taomlar: [], limit: 5, qoldi: 3 } } }); await p.click('#mainAdd'); await p.click('#mnAdd'); await shoot(p); assert.match(await txt(p, '#mnErr'), /Menyudan taom topilmadi/); await p.context().close();
+  p = await open(mk()); await p.click('#yeCard'); await p.waitForSelector('#rzSheet[data-kind=yeymiz] .sl-segs3'); await p.click('#rzSheet [data-act=yeseg][data-s=kafe]'); await p.waitForTimeout(300);
+  assert.match(await txt(p, '#mnDoor'), /📷\s*Menyuni suratga oling — mosini tanlab beramiz/); assert.equal(await p.locator('#mnTip').count(), 1, 'birinchi marta — ko\'rsatma');
+  const top = await p.evaluate(() => { const d = document.getElementById('mnDoor').getBoundingClientRect(), f = document.querySelector('#rzSheet .sl-yr, #rzSheet .rz-empty'); return f ? d.top < f.getBoundingClientRect().top : true; }); assert.ok(top, 'ro\'yxat tepasida');
+  await p.keyboard.press('Escape'); await p.waitForTimeout(300); await p.click('#yeCard'); await p.waitForSelector('#rzSheet[data-kind=yeymiz] .sl-segs3'); await p.click('#rzSheet [data-act=yeseg][data-s=kafe]'); await p.waitForTimeout(300); assert.equal(await p.locator('#mnTip').count(), 0, 'qayta ochilganda — ko\'rsatma yo\'q');
+  await p.keyboard.press('Escape'); await p.waitForTimeout(300); await p.click('#mainAdd'); await p.waitForSelector('#mnAdd'); const same = await p.evaluate(() => { const a = document.getElementById('phBtn'), b = document.getElementById('mnAdd'); const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return a.parentNode === b.parentNode && Math.abs(ra.top - rb.top) < 1 && Math.abs(ra.height - rb.height) < 1 && Math.abs(ra.width - rb.width) < 2; }); assert.ok(same, '«Rasmdan» va «Menyudan» — bir xil darajada'); assert.equal(await p.locator('.sl-morep #mnAdd').count(), 0, '«Boshqa usullar» ichida emas'); await p.context().close();
+  log('«Bugun nima yeymiz?» → Kafe → ro\'yxat tepasida «📷 Menyuni suratga oling — mosini tanlab beramiz» (birinchi marta ko\'rsatma, keyin yo\'q); qo\'shish oynasida «Rasmdan» va «Menyudan» bir xil darajada; limit tugasa — aniq matn; RU; menyu o\'qilmasa — muloyim matn');
 } finally { await b.close(); srv.close(); }
 console.log('\n' + n + '/' + n + ' OK');
