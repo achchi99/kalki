@@ -4,9 +4,10 @@
  *
  * Shartnoma (api/akkaunt/[amal].js shunga tayanadi):
  *   ping()                                      → true | xato tashlaydi (jadvallar tayyormi)
- *   akkauntEmail(email) / akkauntId(id)         → { id, email, usul, yaratilgan, oxirgi_kirish, marketing, marketing_vaqt, marketing_matn_v } | null
+ *   akkauntEmail(email) / akkauntId(id)         → { id, email, usul, yaratilgan, oxirgi_kirish, marketing, marketing_vaqt, marketing_matn_v, ism, ism_qolda } | null
  *   akkauntYarat({ id, email, usul, now })      → true | false (email band bo'lsa — poyga holati)
  *   kirishBelgila(id, now)                      → oxirgi_kirish yangilanadi
+ *   ismYoz(id, ism, qolda)                      → qolda=true: foydalanuvchi yozdi (ism_qolda=1); false: Google ismi — faqat ism_qolda=0 bo'lsa yoziladi
  *   marketingYoz(id, rozi, now, matnV)          → true | false
  *   kodYoz({ email, maqsad, hash, now, muddat })→ eski ishlatilmagan kodlar bekor, yangisi yoziladi
  *   kodTekshir({ email, maqsad, hash, now, maxUrinish }) → 'ok' | 'yoq' (faol kod yo'q/eskirgan/ishlatilgan) | 'qulf' (urinish tugadi) | 'xato' (kod noto'g'ri)
@@ -26,7 +27,7 @@ export function makeStore(env) {
   const db = env && env.KALKIFIT_DB;
   if (!db) return null;
   const changes = (r) => (r && r.meta && r.meta.changes) || 0;
-  const AK = 'id, email, usul, yaratilgan, oxirgi_kirish, marketing, marketing_vaqt, marketing_matn_v';
+  const AK = 'id, email, usul, yaratilgan, oxirgi_kirish, marketing, marketing_vaqt, marketing_matn_v, ism, ism_qolda';
   const SE = 'id, akkaunt_id, yaratilgan, oxirgi, muddat_abs, qurilma';
   const one = async (q, ...a) => (await db.prepare(q).bind(...a).first()) || null;
   const run = (q, ...a) => db.prepare(q).bind(...a).run();
@@ -36,6 +37,7 @@ export function makeStore(env) {
     akkauntId: (id) => one('SELECT ' + AK + ' FROM akkaunt WHERE id = ?', id),
     async akkauntYarat(o) { return changes(await run("INSERT OR IGNORE INTO akkaunt (id, email, usul, yaratilgan, oxirgi_kirish, marketing) VALUES (?, ?, ?, ?, ?, 0)", o.id, o.email, o.usul || 'email', o.now, o.now)) === 1; },
     async kirishBelgila(id, now) { await run('UPDATE akkaunt SET oxirgi_kirish = ? WHERE id = ?', now, id); },
+    async ismYoz(id, ism, qolda) { return changes(qolda ? await run('UPDATE akkaunt SET ism = ?, ism_qolda = 1 WHERE id = ?', ism, id) : await run('UPDATE akkaunt SET ism = ? WHERE id = ? AND ism_qolda = 0', ism, id)) === 1; },
     async marketingYoz(id, rozi, now, matnV) { return changes(await run('UPDATE akkaunt SET marketing = ?, marketing_vaqt = ?, marketing_matn_v = ? WHERE id = ?', rozi ? 1 : 0, now, matnV || null, id)) === 1; },
     async kodYoz(o) {
       await run('UPDATE kirish_kodi SET ishlatilgan = 1 WHERE email = ? AND maqsad = ? AND ishlatilgan = 0', o.email, o.maqsad);

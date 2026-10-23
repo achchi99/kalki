@@ -16,6 +16,7 @@
 
   var D = {
     uz: {
+      nmAsk: 'Ismingizni yozing', nmEdit: 'Ismni o\'zgartirish', nmT: 'Ismingiz', nmP: 'Ism faqat sizga ko\'rinadi va akkauntingizda saqlanadi.', nmPh: 'Ismingiz', nmSave: 'Saqlash', nmSaved: 'Ism saqlandi', nmEmpty: 'Ismni yozing (40 belgigacha).', nmHello: 'Salom', nmLbl: 'Ism',
       gIn: 'Google bilan kirish', gOr: 'yoki', gErr: "Google bilan kirib bo'lmadi. Email bilan kiring yoki keyinroq urinib ko'ring.", gOk: 'Google bilan kirildi',
       rowT: 'Email bilan kirish', rowS: "Ma'lumotingiz avtomatik saqlanadi", rowOnT: 'Akkaunt', rowOnS: '{e}', rowOnSaved: '{e} · avtomatik saqlanadi',
       inT: 'Email bilan kirish', inP: "Emailingizga 6 xonali kod yuboramiz — parol kerak emas. Kirsangiz, ma'lumotingiz avtomatik saqlanadi va yangi telefonda shu email bilan tiklanadi.", inP2: "Kirmasangiz ham ilova avvalgidek ishlayveradi.",
@@ -40,6 +41,7 @@
       eTypo: "Email manzilida xato bo'lishi mumkin. «{a}» o'rniga «{b}» yozdik — to'g'ri bo'lsa «Kod yuborish»ni bosing.", eRestore: "Akkauntdagi ma'lumotni tiklab bo'lmadi. Internetni tekshirib, qaytadan kirib ko'ring."
     },
     ru: {
+      nmAsk: 'Напишите своё имя', nmEdit: 'Изменить имя', nmT: 'Ваше имя', nmP: 'Имя видите только вы, оно хранится в вашем аккаунте.', nmPh: 'Ваше имя', nmSave: 'Сохранить', nmSaved: 'Имя сохранено', nmEmpty: 'Напишите имя (до 40 символов).', nmHello: 'Привет', nmLbl: 'Имя',
       gIn: 'Войти через Google', gOr: 'или', gErr: 'Не удалось войти через Google. Войдите по email или попробуйте позже.', gOk: 'Вход через Google выполнен',
       rowT: 'Вход по email', rowS: 'Ваши данные сохраняются автоматически', rowOnT: 'Аккаунт', rowOnS: '{e}', rowOnSaved: '{e} · сохраняется автоматически',
       inT: 'Вход по email', inP: 'Мы отправим на email 6-значный код — пароль не нужен. После входа данные сохраняются автоматически и восстанавливаются на новом телефоне по этому email.', inP2: 'Если не входить, приложение работает как раньше.',
@@ -80,11 +82,11 @@
     function changed() { if (cfg.onChange) cfg.onChange(); }
     function hasData() { return !!(cfg.hasData && cfg.hasData()); }
     function isTrivial() { try { return !!(cfg.isTrivial && cfg.isTrivial()); } catch (e) { return false; } }   // faqat onboarding profili: yo'qotadigan narsa yo'q → bulutdagi to'liq nusxa ustiga HECH QACHON yozilmaydi, aksincha u olinadi
-    function sig() { return [S.yoq, S.kirgan, S.email, S.marketing, S.qur, JSON.stringify(S.il), S.google || ''].join('|'); }
+    function sig() { return [S.yoq, S.kirgan, S.email, S.marketing, S.qur, JSON.stringify(S.il), S.google || '', S.ism || ''].join('|'); }
     function readCache() { try { var o = JSON.parse(localStorage.getItem(CACHE) || 'null'); return o && typeof o === 'object' ? o : null; } catch (e) { return null; } }
     function writeCache() { try { localStorage.setItem(CACHE, JSON.stringify(S)); } catch (e) {} }
-    function setState(o) { var before = sig(); S = { yoq: !!o.yoq, kirgan: !!o.kirgan, email: o.email || '', marketing: o.marketing ? 1 : 0, qur: o.qur || 0, dev: !!o.dev, il: o.il || {}, google: o.google || '', t: Date.now() }; writeCache(); return before !== sig(); }
-    var c0 = readCache(); if (c0) S = { yoq: !!c0.yoq, kirgan: !!c0.kirgan, email: c0.email || '', marketing: c0.marketing ? 1 : 0, qur: c0.qur || 0, dev: !!c0.dev, il: c0.il && typeof c0.il === 'object' ? c0.il : {}, google: typeof c0.google === 'string' ? c0.google : '', t: +c0.t || 0 };
+    function setState(o) { var before = sig(); S = { yoq: !!o.yoq, kirgan: !!o.kirgan, email: o.email || '', marketing: o.marketing ? 1 : 0, qur: o.qur || 0, dev: !!o.dev, il: o.il || {}, google: o.google || '', ism: o.ism || '', t: Date.now() }; writeCache(); return before !== sig(); }
+    var c0 = readCache(); if (c0) S = { yoq: !!c0.yoq, kirgan: !!c0.kirgan, email: c0.email || '', marketing: c0.marketing ? 1 : 0, qur: c0.qur || 0, dev: !!c0.dev, il: c0.il && typeof c0.il === 'object' ? c0.il : {}, google: typeof c0.google === 'string' ? c0.google : '', ism: typeof c0.ism === 'string' ? c0.ism : '', t: +c0.t || 0 };
     var norm = function (c) { return String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); };
 
     function call(method, amal, body, qs) {
@@ -105,7 +107,7 @@
     function gCred(resp) {
       var t = L(), cr = resp && resp.credential; if (!cr) { toast(t.gErr); return; }
       call('POST', 'google', { credential: cr }).then(function (r) {
-        if (r.s === 200 && r.j.ok) { setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.gOk); changed(); sync(true); return; }
+        if (r.s === 200 && r.j.ok) { setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google, ism: r.j.ism }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.gOk); changed(); sync(true); return; }
         setErr(t.gErr); toast(t.gErr);
       }, function () { toast(t.eNet); });
     }
@@ -115,7 +117,7 @@
       if (loading) { if (done) setTimeout(done, 600); return; } if (!force && S.t && Date.now() - S.t < (S.yoq ? TTL_ON : TTL_OFF)) { if (done) done(); return; } loading = true;
       call('GET', 'sessiya').then(function (r) {
         loading = false; var ch;
-        if (r.s === 200 && r.j && r.j.yoqilgan) ch = setState({ yoq: true, kirgan: !!r.j.kirgan, email: r.j.email, marketing: r.j.marketing, qur: r.j.qurilmalar, dev: !!r.j.dev, il: r.j.ilovalar, google: r.j.google });
+        if (r.s === 200 && r.j && r.j.yoqilgan) ch = setState({ yoq: true, kirgan: !!r.j.kirgan, email: r.j.email, marketing: r.j.marketing, qur: r.j.qurilmalar, dev: !!r.j.dev, il: r.j.ilovalar, google: r.j.google, ism: r.j.ism });
         else ch = setState({ yoq: false });
         if (ch) { changed(); if (cfg.onOnb) cfg.onOnb(); } if (done) done();
       }, function () { loading = false; S.t = Date.now() - (S.yoq ? TTL_ON : TTL_OFF) + 60000; });   // tarmoq xatosi: 1 daqiqadan keyin qayta uriniladi (har renderda emas)
@@ -133,6 +135,28 @@
       var t = cfg.lang && cfg.lang() === 'ru' ? 'Другие способы' : 'Boshqa usullar';
       return '<details class="akk-more" data-akkmore' + (moreOpen ? ' open' : '') + '><summary><span>' + esc(t) + '</span>' + CHEV + '</summary>' + inner + '</details>';
     };
+    /* ---- Profil tepasida ism: faqat kirgan foydalanuvchida (mehmonda — umuman yo'q) ---- */
+    function initial(n) { return Array.from(String(n || '').trim())[0] || ''; }
+    ak.nameHtml = function () {
+      ak.load(); if (!S.yoq || !S.kirgan) return '';
+      var t = L();
+      if (!S.ism) return '<div class="akk-nm" id="akkNm"><button type="button" class="akk-nmask" data-act="akkname">' + esc(t.nmAsk) + '</button></div>';
+      return '<div class="akk-nm" id="akkNm"><span class="akk-av" aria-hidden="true" data-cyr="skip">' + esc(initial(S.ism).toUpperCase()) + '</span><span class="akk-nmt"><small>' + esc(t.nmHello) + '</small><b id="akkNmV" data-cyr="skip">' + esc(S.ism) + '</b></span><button type="button" class="akk-nmpen" data-act="akkname" aria-label="' + esc(t.nmEdit) + '"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z M13.500 6.500l4 4" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>';
+    };
+    function nameSheet() {
+      var t = L(), k = cfg.kit; if (!k) return; step = 'name';
+      k.openSheet('akk', '<div class="bk-sheet akk-sheet" data-step="name">' + k.shHead(t.nmT) + '<p class="rz-p sm">' + esc(t.nmP) + '</p><label class="rz-f" for="akkName"><span>' + esc(t.nmLbl) + '</span><input id="akkName" type="text" maxlength="40" autocomplete="name" autocapitalize="words" enterkeyhint="done" placeholder="' + esc(t.nmPh) + '" value="' + esc(S.ism) + '" data-cyr="skip"></label>' + errHtml() + '<div class="rz-actions"><button type="button" class="rz-btn primary" id="akkNameGo" data-act="akknamego">' + esc(t.nmSave) + '</button></div></div>', { noFocus: false });
+      var i = document.getElementById('akkName'); if (i) { try { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } catch (e) {} }
+    }
+    function nameSave() {
+      var t = L(), i = document.getElementById('akkName'), v = Array.from(String((i && i.value) || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim()).slice(0, 40).join('').trim();
+      if (!v) { setErr(t.nmEmpty); return; } if (cur.busy) return; setErr(''); busy(true, 'akkNameGo');
+      call('POST', 'ism', { ism: v }).then(function (r) {
+        busy(false, 'akkNameGo', t.nmSave);
+        if (r.s === 200 && r.j.ok) { S.ism = r.j.ism; writeCache(); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(t.nmSaved); changed(); return; }
+        if (r.s === 401) { sessionLost(); return; } setErr(r.j.e === 'ism' ? t.nmEmpty : errText(r.j.e, r.j));
+      }, function () { busy(false, 'akkNameGo', t.nmSave); setErr(t.eNet); });
+    }
     ak.strictRow = function () {
       if (!S.yoq || !S.kirgan || !S.il[app]) return ''; var t = L(), on = S.il[app] === 'qatiy';
       return '<button type="button" class="rz-row" data-act="akkstrict" data-akk="strict"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ICON2 + '</span><span class="m"><b>' + esc(t.stT) + '</b><span>' + esc(on ? t.stOnS : t.stOffS) + '</span></span>' + CHEV + '</button>';
@@ -209,7 +233,7 @@
       busy(true, 'akkGo', t.going);
       call('POST', 'kirish', { email: cur.email, kod: code }).then(function (r) {
         busy(false); if (r.s === 200 && r.j.ok) {
-          setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.okIn); changed();
+          setState({ yoq: true, kirgan: true, email: r.j.email, marketing: r.j.marketing, qur: 1, dev: S.dev, il: {}, google: S.google, ism: r.j.ism }); step = 'acc'; if (cfg.kit) cfg.kit.closeSheet(); toast(r.j.yangi ? t.okNew : t.okIn); changed();
           sync(true); return;
         }
         busy(false, 'akkGo', t.go); setErr(errText(r.j.e, r.j)); var i = document.getElementById('akkCode'); if (i && r.j.e === 'kod_xato') { i.value = ''; try { i.focus(); } catch (e) {} }
@@ -305,6 +329,8 @@
     ak.act = function (a, el) {
       if (a === 'akk') { step = S.kirgan ? 'acc' : 'in'; cur.err = ''; if (el && el.getAttribute('data-akk') === 'onb') step = 'in'; sheet(); return true; }
       if (a === 'akkgoogle') { gNative(); return true; }
+      if (a === 'akkname') { nameSheet(); return true; }
+      if (a === 'akknamego') { nameSave(); return true; }
       if (a === 'akksend') { sendCode('kirish'); return true; }
       if (a === 'akkgo') { verify(); return true; }
       if (a === 'akkresend') { sendCode(step === 'delcode' ? 'ochirish' : 'kirish'); return true; }

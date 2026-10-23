@@ -106,6 +106,7 @@
     calT: 'Oylik taqvim', calNear: 'Maqsadga yaqin', calLow: 'Pastroq', calHigh: 'Yuqoriroq', calPart: 'Qisman / davom etmoqda', calNone: "Ma'lumot yo'q", calPre: 'Kuzatuv boshlanmagan', calStart: 'Kuzatuv boshlangan: {d}', stNone: "Ma'lumot yo'q", stLive: 'Kun davom etmoqda', stPart: 'Qisman yozilgan', stNear: 'Maqsadga yaqin', stLow: 'Pastroq', stHigh: 'Yuqoriroq', stPre: 'Kuzatuv boshlanmagan', stFull: "To'liq kun", deBtn: 'Kunni yakunlash', deHint: "Hamma ovqatni yozgan bo'lsangiz, kunni yakunlang — statistika faqat to'liq kunlardan hisoblanadi.", deDone: 'Kun yakunlandi', deLow: "Kun yakunlandi, lekin yozuv maqsadning yarmidan kam — «qisman» bo'lib qoladi", deDoneL: 'Kun yakunlandi ✓', wFirst: "Birinchi o'lchov", wLast: "Oxirgi o'lchov", wAvgN: "Oxirgi 7 kundagi {n} ta o'lchov o'rtachasi: {x} kg", wTrend: "7 kunlik o'rtacha (trend): {x} kg", wTrendD: 'oldingi 7 kunga nisbatan {d} kg', wkNoFull: "To'liq kun yo'q — o'rtacha hisoblanmadi", xStepBase: "Odatiy chegara: {base} qadam. Bugun ortig'i: {n} qadam → +{k} kkal (sof)", calStreak: '{n} kun ketma-ket yozdingiz', calStreak0: "Seriya hali yo'q — bugun yozilsa boshlanadi", calNote: "Faqat to'liq kunlar (yakunlangan yoki o'tib ketgan, yozuv maqsadning ≥50% i) maqsad bilan solishtiriladi. Ranglar baho emas.", calDays: '{n} kun', calOpen: 'Kunni ochish',
     phPerm: "Kameraga ruxsat berilmadi. Telefon sozlamalarida KalkiFit uchun kamerani yoqing yoki rasmni galereyadan tanlang.", phErrPick: "Rasm olinmadi. Boshqa usulni sinab ko'ring.", phFile: 'Fayllardan', phWhy: "Rasm ovqat tanishga yuboriladi",
     aiLeft: "Bugungi AI so'rovlari: {n} tadan {q} ta qoldi.", aiLimit: "Bugungi {n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.", phNotIt: 'Bu emasmi?', phFind: 'Boshqasini qidirish', phFindPh: 'Taom nomini yozing', phFindT: 'Bazadan qidirish', phDb: 'bazadan', phAiKcal: 'AI taxmini ±30%',
+    phErrFmt: "Rasm o'qilmadi. Boshqa rasm tanlang yoki qayta suratga oling.", phErrBig: "Rasm juda katta. Boshqa rasm tanlang.", phErrNet: "Internet yo'q yoki aloqa uzildi. Ulanishni tekshirib, qayta urinib ko'ring.", phErrTime: "Javob kechikdi. Qayta urinib ko'ring.", phErrSrv: "Server xatosi. Birozdan keyin qayta urinib ko'ring.",
     phBtn: 'Rasm', phGal: 'Galereyadan', phCam: 'Rasmga olish', phT: "Rasm bilan qo'shish", phNote: 'Rasm AI xizmatiga yuboriladi va saqlanmaydi.', phBusy: 'Rasm tahlil qilinmoqda…', phErr: "Rasmni aniqlab bo'lmadi. Qo'lda qo'shing.", phLimit: "Bugungi rasm limiti tugadi (kuniga 10 ta). Ertaga urinib ko'ring.", phOffline: "Internet yo'q — rasm tugmasi o'chiq", phApprox: 'taxminiy ±30%', phScale: 'Porsiyani tuzating', phNone: 'Rasmda ovqat topilmadi. Boshqa rasm yoki matn bilan urinib ko\'ring.', phSave: '{n} ta ovqatni saqlash', phHint: 'Natijani ko\'rib, porsiyani tuzatib tasdiqlang.', phPick: 'Kamera yoki galereya', tkNote: "Tasdiqlasangiz, ovqat nomi va kkal (shaxsiy ma'lumotsiz) umumiy bazaga taklif sifatida yuboriladi.",
     spT: 'Vitamin va qo\'shimchalar: kerakmi?', spCardT: '💊 Vitamin va BAD — kerakmi?', spH: "Ko'pchilikka kerak emas — avval ovqatni ko'ring.", spSearch: 'Qidirish (D vitamini, kreatin…)', spWhat: 'Nima va nima uchun kerak', spFood: 'Ovqatdan qayerdan olinadi', spWho: 'Kim uchun?', spNot: 'Qachon kerak emas?', spCare: "Ehtiyot bo'ling", spLvl: 'Dalil kuchi', spLvl_strong: 'Kuchli', spLvl_moderate: "O'rtacha", spLvl_low: 'Kam', spLvl_not: "Tavsiya etilmaydi", spEvL: 'Dalil: {t} {w}', spW_strong: 'kuchli', spW_moderate: "o'rtacha", spW_low: 'kam', spW_not: 'tavsiya etilmaydi', spTop: "Ro'yxatda — eng yuqori guruh bahosi; kartada hammasi.", spLvlH: "Foydasi haqidagi dalil kuchi (ma'lum guruhlar uchun).", spSrc: 'Manba: {s}', spChecked: 'Tekshirilgan: {d}', spProt: 'Bugun oqsil: {a} / {b} g', spNone: 'Topilmadi', spLoading: 'Yuklanmoqda…', spErr: "Ma'lumot yuklanmadi. Internetni tekshiring.", spRules: ["1. Avval ovqat.", "2. Tahlil bilan aniqlang.", "3. Ko'pi zararli bo'lishi mumkin."], spBack: 'Ro\'yxatga', srcNih: "NIH (AQSh Milliy sog'liqni saqlash institutlari), Qo'shimchalar idorasi", srcHarvard: "Harvard sog'liqni saqlash maktabi (Nutrition Source)"
   });
@@ -117,6 +118,7 @@
     calT: 'Календарь месяца', calNear: 'Близко к цели', calLow: 'Ниже цели', calHigh: 'Выше цели', calPart: 'Частично / день идёт', calNone: 'Нет данных', calPre: 'Наблюдение не начато', calStart: 'Наблюдение начато: {d}', stNone: 'Нет данных', stLive: 'День продолжается', stPart: 'Частично записано', stNear: 'Близко к цели', stLow: 'Ниже цели', stHigh: 'Выше цели', stPre: 'Наблюдение не начато', stFull: 'Полный день', deBtn: 'Завершить день', deHint: 'Если записали всю еду — завершите день: статистика считается только по полным дням.', deDone: 'День завершён', deLow: 'День завершён, но записано меньше половины цели — он останется «частичным»', deDoneL: 'День завершён ✓', wFirst: 'Первое измерение', wLast: 'Последнее измерение', wAvgN: 'Среднее за последние 7 дней по {n} измерениям: {x} кг', wTrend: 'Среднее за 7 дней (тренд): {x} кг', wTrendD: 'по сравнению с предыдущими 7 днями {d} кг', wkNoFull: 'Нет полных дней — среднее не посчитано', xStepBase: 'Обычный порог: {base} шагов. Сегодня сверх него: {n} шагов → +{k} ккал (чистыми)', calStreak: 'Записи подряд: {n} дн.', calStreak0: 'Серии пока нет — начнётся, как только появится запись сегодня', calNote: 'Только полные дни (завершённые или прошедшие, записано ≥50% цели) сравниваются с целью. Цвета — не оценка.', calDays: '{n} дн.', calOpen: 'Открыть день',
     phPerm: 'Нет доступа к камере. Включите камеру для KalkiFit в настройках телефона или выберите фото из галереи.', phErrPick: 'Не удалось получить фото. Попробуйте другой способ.', phFile: 'Из файлов', phWhy: 'Фото отправляется для распознавания еды',
     aiLeft: 'AI-запросов на сегодня: осталось {q} из {n}.', aiLimit: 'Сегодняшние AI-запросы ({n}) использованы. Попробуйте завтра.', phNotIt: 'Не то?', phFind: 'Найти другое', phFindPh: 'Введите название блюда', phFindT: 'Поиск по базе', phDb: 'из базы', phAiKcal: 'оценка ИИ ±30%',
+    phErrFmt: 'Фото не удалось прочитать. Выберите другое или снимите заново.', phErrBig: 'Фото слишком большое. Выберите другое.', phErrNet: 'Нет интернета или связь прервалась. Проверьте соединение и попробуйте снова.', phErrTime: 'Ответ задержался. Попробуйте ещё раз.', phErrSrv: 'Ошибка сервера. Попробуйте чуть позже.',
     phBtn: 'Фото', phGal: 'Из галереи', phCam: 'Сделать фото', phT: 'Добавить по фото', phNote: 'Фото отправляется сервису ИИ и не сохраняется.', phBusy: 'Анализирую фото…', phErr: 'Не удалось распознать фото. Добавьте вручную.', phLimit: 'Лимит фото на сегодня исчерпан (10 в день). Попробуйте завтра.', phOffline: 'Нет интернета — кнопка фото отключена', phApprox: 'примерно ±30%', phScale: 'Поправьте порцию', phNone: 'На фото не найдено еды. Попробуйте другое фото или текст.', phSave: 'Сохранить: {n}', phHint: 'Проверьте результат, поправьте порцию и подтвердите.', phPick: 'Камера или галерея', tkNote: 'Если подтвердите, название блюда и ккал (без личных данных) отправятся в общую базу как предложение.',
     spT: 'Витамины и добавки: нужны ли?', spCardT: '💊 БАД и витамины — нужны ли?', spH: 'Большинству не нужны — сначала посмотрите на питание.', spSearch: 'Поиск (витамин D, креатин…)', spWhat: 'Что это и зачем', spFood: 'Где взять из еды', spWho: 'Для кого?', spNot: 'Когда не нужно?', spCare: 'Осторожно', spLvl: 'Сила доказательств', spLvl_strong: 'Сильная', spLvl_moderate: 'Средняя', spLvl_low: 'Слабая', spLvl_not: 'Не рекомендуется', spEvL: 'Доказательства {t}: {w}', spW_strong: 'сильные', spW_moderate: 'средние', spW_low: 'слабые', spW_not: 'не рекомендуется', spTop: 'В списке — оценка самой сильной группы; в карточке все.', spLvlH: 'Насколько доказана польза (для определённых групп).', spSrc: 'Источник: {s}', spChecked: 'Проверено: {d}', spProt: 'Белок сегодня: {a} / {b} г', spNone: 'Не найдено', spLoading: 'Загрузка…', spErr: 'Данные не загрузились. Проверьте интернет.', spRules: ['1. Сначала еда.', '2. Уточните анализом.', '3. Лишнее может навредить.'], spBack: 'К списку', srcNih: 'NIH (Национальные институты здоровья США), Управление по пищевым добавкам', srcHarvard: 'Гарвардская школа общественного здравоохранения (Nutrition Source)'
   });
@@ -573,7 +575,7 @@
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
     var seg = function (act, key, opts, cur, label) { return segHtml(label || '', opts.map(function (o) { return { attrs: 'data-act="' + act + '" data-' + key + '="' + o[0] + '"', on: cur === o[0], text: o[1] }; })); };
-    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + taxRowHtml();
+    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + akk.nameHtml() + taxRowHtml();          // ism: faqat kirgan foydalanuvchida (mehmonda blok yo'q)
     h += '<section class="rz-card sl-prof"><div class="rz-st">' + esc(T('sMine')) + '</div><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
       '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button>' + qaRowHtml() + '</section>';
     h += '<section class="rz-card sl-remc" id="remCard" aria-label="' + esc(T('sRem')) + '"><div class="rz-st">' + esc(T('sRem')) + '</div>' + pushRowHtml(true) + hwRowHtml() + '</section>';
@@ -948,11 +950,34 @@
     fd.items[i] = m; fd.mode = 'photo'; setSheet(phHtml());
   }
   function phRefresh() { if (kit.sheetKind() === 'add' && fd && fd.mode === 'photo') setSheet(phHtml()); }
-  function phShrink(file, cb) {                     // mijozda 1024 px ga kichraytirish, JPEG 0,8
-    var url = URL.createObjectURL(file), img = new Image();
-    img.onload = function () { var s = Math.min(1, 1024 / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.width * s)); c.height = Math.max(1, Math.round(img.height * s)); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url); c.toBlob(function (b) { if (!b) return cb(null); var r = new FileReader(); r.onload = function () { cb(String(r.result).split(',')[1] || null); }; r.readAsDataURL(b); }, 'image/jpeg', 0.8); };
-    img.onerror = function () { URL.revokeObjectURL(url); cb(null); }; img.src = url;
+  /* Rasm tayyorlash (taom rasmi va menyu): iPhone HEIC/48 MP ham — createImageBitmap (EXIF aylanishi bilan) → bo'lmasa <img>; canvas orqali JPEG, uzun tomon ≤ px;
+     hajm > maxBytes bo'lsa sifat 0,8 → 0,46 gacha, keyin o'lcham ×0,8 (3 marta). cb(b64) yoki cb(null, 'format' | 'hajm'). Rasm saqlanmaydi. */
+  function imgPrep(file, o, cb) {
+    var px0 = (o && o.px) || 1024, max = (o && o.maxBytes) || 600000, done = false, closer = null, guard = setTimeout(function () { fin(null, 'format'); }, 20000);
+    function fin(b, e) { if (done) return; done = true; clearTimeout(guard); try { if (closer) closer(); } catch (x) {} cb(b, e); }
+    function read(b) { var r = new FileReader(); r.onload = function () { var v = String(r.result).split(',')[1] || ''; if (v) fin(v); else fin(null, 'format'); }; r.onerror = function () { fin(null, 'format'); }; r.readAsDataURL(b); }
+    function draw(src, w, h) {
+      var px = px0, round = 0, QS = [0.8, 0.68, 0.56, 0.46];
+      (function enc() {
+        var sc = Math.min(1, px / Math.max(w, h)), cw = Math.max(1, Math.round(w * sc)), ch = Math.max(1, Math.round(h * sc)), c = document.createElement('canvas'), qi = 0; c.width = cw; c.height = ch;
+        try { var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, cw, ch); x.drawImage(src, 0, 0, cw, ch); } catch (e) { fin(null, 'format'); return; }
+        (function tryQ() { c.toBlob(function (b) {
+          if (!b || !b.size) { fin(null, 'format'); return; }
+          if (b.size <= max) { read(b); return; }
+          if (qi < QS.length - 1) { qi++; tryQ(); return; }
+          if (round < 3) { round++; px = Math.round(px * 0.8); enc(); return; }
+          if (b.size <= max * 1.4) read(b); else fin(null, 'hajm');
+        }, 'image/jpeg', QS[qi]); })();
+      })();
+    }
+    function viaImg() {
+      var url = URL.createObjectURL(file), img = new Image(); closer = function () { URL.revokeObjectURL(url); };
+      img.onload = function () { var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height; if (!w || !h) { fin(null, 'format'); return; } draw(img, w, h); };
+      img.onerror = function () { fin(null, 'format'); }; img.src = url;
+    }
+    if (window.createImageBitmap) { createImageBitmap(file).then(function (bm) { closer = function () { try { bm.close(); } catch (x) {} }; draw(bm, bm.width, bm.height); }, viaImg); } else viaImg();
   }
+  function aiNetErr(e) { return navigator.onLine === false || (e && e.name === 'TypeError') ? 'tarmoq' : (e && e.name === 'AbortError' ? 'vaqt' : 'tarmoq'); }
   /* Android ilovasi (@capacitor/camera bor): sayt O'ZI tanlov oynasini ko'rsatadi (Galereyadan / Rasmga olish / Fayllardan) — native PROMPT oynasi ishlatilmaydi */
   function phNative() { return !!(window.KalkiNative && KalkiNative.canPickPhoto && KalkiNative.canPickPhoto() && KalkiNative.pickPhotoFrom); }
   function phChooser() { if (!fd || kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'photo'; fd.items = []; fd.phErr = ''; fd.busy = false; setSheet(phHtml()); aiPeek(); }
@@ -968,17 +993,21 @@
   }
   function phFile(file) {
     if (!file) return; if (!fd || kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'photo'; fd.busy = true; fd.phErr = ''; fd.items = []; setSheet(phHtml()); aiPeek();
-    phShrink(file, function (b64) {
-      if (!b64) { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); return; }
-      fetch('/api/kalkifit-rasm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
+    var bad = function (kind, key) { stEv('ai_sorov', 'rasm.' + kind); fd.busy = false; fd.phErr = T(key); phRefresh(); };
+    imgPrep(file, { px: 1024, maxBytes: 600000 }, function (b64, perr) {
+      if (!b64) { bad(perr === 'hajm' ? 'hajm' : 'format', perr === 'hajm' ? 'phErrBig' : 'phErrFmt'); return; }
+      var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 50000);
+      fetch('/api/kalkifit-rasm', { method: 'POST', signal: ctl ? ctl.signal : undefined, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { clearTimeout(tm); return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         aiqSet(res.j);
         var done = function () { fd.busy = false; phRefresh(); };
-        stEv('ai_sorov', 'rasm.' + (res.s === 429 ? 'limit' : (res.s >= 200 && res.s < 300 ? 'ok' : 'xato')));
+        stEv('ai_sorov', 'rasm.' + (res.s === 429 ? 'limit' : (res.s >= 200 && res.s < 300 ? 'ok' : (res.s === 413 ? 'hajm' : (res.s >= 500 ? 'server' : 'xato')))));
         if (res.s === 429) { fd.phErr = res.j && res.j.sabab !== 'sayt' && res.j.limit > 0 ? T('aiLimit', { n: res.j.limit }) : T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); done(); }
+        else if (res.s === 413) { fd.phErr = T('phErrBig'); done(); }
+        else if (res.s >= 500) { fd.phErr = T('phErrSrv'); done(); }
         else if (res.s !== 200 || !res.j || !res.j.ovqatlar) { fd.phErr = T('phErr'); done(); }
         else if (!res.j.ovqatlar.length) { fd.phErr = T('phNone'); done(); }
         else loadDb(function () { fd.items = res.j.ovqatlar.map(function (o) { return phItem(o, o.nom, [{ nom: o.nom, ehtimol: o.ehtimol }].concat(o.boshqa || [])); }); done(); });
-      }).catch(function () { fd.busy = false; fd.phErr = T('phErr'); phRefresh(); });
+      }).catch(function (e) { clearTimeout(tm); var k = aiNetErr(e); bad(k, k === 'vaqt' ? 'phErrTime' : 'phErrNet'); });
     });
   }
   function phSetOffline() { var off = navigator.onLine === false; $$('#phBtn').forEach(function (b) { b.disabled = off; b.title = off ? T('phOffline') : ''; b.setAttribute('aria-disabled', off); }); }
@@ -2249,7 +2278,7 @@
     }
     if (Y) Y.init({ D: D, T: T, esc: esc, ico: ico, catIcon: catIcon, $: $, lang: function () { return lang; }, prefs: prefs, save: save, render: render, S: S, fmt: fmt, unitName: unitName, foodById: foodById, nameOf: nameOf, tileHtml: tileHtml, toast: toast, shHead: shHead,
       openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
-      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
+      sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, imgPrep: imgPrep, aiNetErr: aiNetErr, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
     if (R) R.init({ D: D, T: T, esc: esc, ico: ico, $: $, $$: $$, lang: function () { return lang; }, isCyr: isCyr, toast: toast, openSheet: openSheet, setSheet: setSheet, sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons,
       count: function (h) { if (Y) Y.count(h); }, cid: cid, yemay: function () { return Array.isArray(prefs().yemay) ? prefs().yemay : []; },

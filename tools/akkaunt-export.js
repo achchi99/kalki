@@ -10,7 +10,7 @@
 'use strict';
 const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
 const COLS = {
-  akkaunt: ['id', 'email', 'usul', 'google_sub', 'yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt', 'marketing_matn_v'],
+  akkaunt: ['id', 'email', 'usul', 'google_sub', 'ism', 'ism_qolda', 'yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt', 'marketing_matn_v'],
   sessiya: ['id', 'akkaunt_id', 'yaratilgan', 'oxirgi', 'muddat_abs', 'qurilma'],
   audit: ['id', 'vaqt', 'akkaunt_id', 'hodisa'],
   akkaunt_ilova: ['akkaunt_id', 'ilova', 'zaxira_id', 'kod_konvert', 'rejim', 'master_v', 'ulangan']
@@ -21,7 +21,7 @@ const keyOf = (t, r) => keyCols(t).map((c) => r[c]).join('|');
 const INTS = { akkaunt: ['yaratilgan', 'oxirgi_kirish', 'marketing', 'marketing_vaqt'], sessiya: ['yaratilgan', 'oxirgi', 'muddat_abs'], audit: ['id', 'vaqt'], akkaunt_ilova: ['master_v', 'ulangan'] };
 const SQLITE_DDL = () => fs.readFileSync(path.join(__dirname, '..', 'migrations', 'akkaunt.sql'), 'utf8').split('\n').filter((l) => !/^\s*--\s/.test(l) || true).join('\n');
 const PG_DDL = [
-  'CREATE TABLE IF NOT EXISTS akkaunt (id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, usul TEXT NOT NULL DEFAULT \'email\', google_sub TEXT UNIQUE, yaratilgan BIGINT NOT NULL, oxirgi_kirish BIGINT NOT NULL, marketing INTEGER NOT NULL DEFAULT 0, marketing_vaqt BIGINT, marketing_matn_v TEXT);',
+  'CREATE TABLE IF NOT EXISTS akkaunt (id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, usul TEXT NOT NULL DEFAULT \'email\', google_sub TEXT UNIQUE, ism TEXT, ism_qolda INTEGER NOT NULL DEFAULT 0, yaratilgan BIGINT NOT NULL, oxirgi_kirish BIGINT NOT NULL, marketing INTEGER NOT NULL DEFAULT 0, marketing_vaqt BIGINT, marketing_matn_v TEXT);',
   'CREATE TABLE IF NOT EXISTS kirish_kodi (id BIGSERIAL PRIMARY KEY, email TEXT NOT NULL, maqsad TEXT NOT NULL, kod_hash TEXT NOT NULL, yaratilgan BIGINT NOT NULL, muddat BIGINT NOT NULL, urinish INTEGER NOT NULL DEFAULT 0, ishlatilgan INTEGER NOT NULL DEFAULT 0);',
   'CREATE INDEX IF NOT EXISTS kirish_kodi_email ON kirish_kodi (email, maqsad);', 'CREATE INDEX IF NOT EXISTS kirish_kodi_muddat ON kirish_kodi (muddat);',
   'CREATE TABLE IF NOT EXISTS sessiya (id TEXT PRIMARY KEY, akkaunt_id TEXT NOT NULL, yaratilgan BIGINT NOT NULL, oxirgi BIGINT NOT NULL, muddat_abs BIGINT NOT NULL, qurilma TEXT NOT NULL DEFAULT \'\');',
