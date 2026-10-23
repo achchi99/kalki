@@ -1,13 +1,13 @@
 {
-  "version": "1.0.4",
-  "versionCode": 6,
-  "apk": "/ilova/kalkifit-1.0.4.apk",
-  "sha256": "68a242e3dc17db209e6d5c06935e95265e8658e7053bd965179df58e3b612b46",
-  "size": 8562031,
+  "version": "1.0.5",
+  "versionCode": 7,
+  "apk": "/ilova/kalkifit-1.0.5.apk",
+  "sha256": "bf8ba1eabab26c591db96eeee0b6eba06c58326d7e44a305a78c0f0405611bdf",
+  "size": 9321747,
   "minAndroid": "8.0",
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "notes": {
-    "uz": "Ovqatni ovoz bilan qo'shish: 🎤 ni bosing va ayting — «bir piyola osh, ikki tilim non va choy».",
-    "ru": "Добавляйте еду голосом: нажмите 🎤 и скажите — «тарелка плова, два куска хлеба и чай»."
+    "uz": "Google bilan kirishga tayyorgarlik va kichik tuzatishlar.",
+    "ru": "Подготовка ко входу через Google и небольшие исправления."
   }
 }

@@ -63,7 +63,7 @@ await T('PRODUCTION\'DA DEV YO\'Q: kalki.uz / www / kalki-10y.pages.dev da AKKAU
 });
 
 await T('kod oqimi: kod → (dev) → kirish → yangi akkaunt; ikkinchi kirish — mavjud; kod 1 martalik; email kichik harfga', async () => {
-  const env = mkEnv(); const s0 = await call(env, 'sessiya'); assert.deepEqual(s0.j, { yoqilgan: true, dev: true, kirgan: false });
+  const env = mkEnv(); const s0 = await call(env, 'sessiya'); assert.deepEqual(s0.j, { yoqilgan: true, dev: true, kirgan: false, google: '' });
   const k = await call(env, 'kod', { body: { email: '  Test.User@Gmail.com ' } }); assert.equal(k.s, 200); assert.deepEqual(k.j, { ok: true, kut: 60, dev: true });
   const kod = await devKod(env, 'test.user@gmail.com'); assert.match(kod, /^\d{6}$/);
   const r = await call(env, 'kirish', { body: { email: 'TEST.user@gmail.com', kod: kod.slice(0, 3) + ' ' + kod.slice(3) } }); assert.equal(r.s, 200, r.txt); assert.equal(r.j.yangi, true); assert.equal(r.j.email, 'test.user@gmail.com'); assert.equal(r.j.marketing, 0);

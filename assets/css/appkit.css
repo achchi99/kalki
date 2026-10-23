@@ -287,3 +287,11 @@ html[data-theme=dark] .rz-chip.alt.on{color:var(--ink)}
 .rz input[type=checkbox]:checked{background:var(--fill);border-color:var(--fill)}.rz input[type=checkbox]:checked::after{opacity:1}
 .rz input[type=checkbox]:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
 .rz input[type=checkbox]:disabled{opacity:.5}
+/* Google bilan kirish (assets/app-akkaunt.js): rasmiy GIS tugmasi (veb) / Google uslubidagi native tugma (APK) — birinchi o'rinda */
+.akk-gblock{margin:4px 0 12px;min-height:44px;display:flex;justify-content:center}
+.akk-gbtn{width:100%;max-width:400px;min-height:44px;display:flex;justify-content:center}
+.akk-gnat{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:400px;min-height:48px;border-radius:24px;border:1px solid var(--gbd);background:var(--gbg);color:var(--gink);font:500 16px Roboto,'Manrope',system-ui,sans-serif}
+.akk-or{display:flex;align-items:center;gap:10px;margin:4px 0 10px;color:var(--mut,#6B625B);font-size:14px}.akk-or::before,.akk-or::after{content:"";flex:1;border-top:1px solid var(--line,rgba(0,0,0,.12))}
+:root{--gbg:#fff;--gbd:#747775;--gink:#1F1F1F}
+:root[data-theme=dark]{--gbg:#131314;--gbd:#8E918F;--gink:#E3E3E3}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--gbg:#131314;--gbd:#8E918F;--gink:#E3E3E3}}
