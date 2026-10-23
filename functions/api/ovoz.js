@@ -21,20 +21,21 @@ async function transcribe(env, buf, ty, til) {
     const fdt = new FormData(); fdt.append('file', new Blob([buf], { type: ty.t }), 'ovoz.' + ty.ext); fdt.append('model', MODEL); fdt.append('language', til); fdt.append('response_format', 'json');
     fdt.append('prompt', til === 'ru' ? 'Еда и напитки: плов, самса, лагман, чай, хлеб, порция, тарелка.' : "Ovqat va ichimliklar: osh, somsa, lag'mon, non, choy, piyola, kosa, likop, tilim, dona.");
     const r = await fetch('https://api.openai.com/v1/audio/transcriptions', { method: 'POST', signal: ctl.signal, headers: { Authorization: 'Bearer ' + env.OPENAI_API_KEY }, body: fdt });
-    if (!r.ok) { console.error('ovoz: model status', r.status); let c = ''; try { const e = await r.json(); c = (e && e.error && (e.error.code || e.error.type)) || ''; } catch (e) {} return { err: true, off: r.status === 401 || r.status === 403 || /insufficient_quota|credit_balance|billing|invalid_api_key/.test(c) }; }
+    if (!r.ok) { console.error('ovoz: model status', r.status); let c = ''; try { const e = await r.json(); c = (e && e.error && (e.error.code || e.error.type)) || ''; } catch (e) {} return { err: true, st: r.status, off: r.status === 401 || r.status === 403 || /insufficient_quota|credit_balance|billing|invalid_api_key/.test(c) }; }
     const j = await r.json(); return { text: cleanText(j.text) };
   } catch (e) { console.error('ovoz: model xato'); return { err: true }; } finally { clearTimeout(timer); }
 }
-const OFF_KEY = 'ovoz:off:v2', OK_KEY = 'ovoz:ok:v2', OFF_TTL = 600;          // OpenAI hisobi/kaliti ishlamasa (kredit tugagan, kalit bekor) — yo'l 10 daqiqa O'CHIQ (kalitlar versiyali: v2 — eski kesh e'tiborsiz): ilova 🎤 ni ko'rsatmaydi (buzilgan tugma yo'q)
+const OFF_KEY = 'ovoz:off:v3', OK_KEY = 'ovoz:ok:v3', OFF_TTL = 600;          // OpenAI hisobi/kaliti ishlamasa (kredit tugagan, kalit bekor) — yo'l 10 daqiqa O'CHIQ (kalitlar versiyali: v2 — eski kesh e'tiborsiz): ilova 🎤 ni ko'rsatmaydi (buzilgan tugma yo'q)
 async function off(env) { try { return !!(await env.KALKI_AI_KV.get(OFF_KEY)); } catch (e) { return false; } }
-/* GET: yo'l haqiqatan ishlaydimi — kesh (ok 30 daqiqa / off 10 daqiqa); kesh yo'q bo'lsa 0,5 s'lik jim WAV bilan sinov (foydalanuvchi limitiga kirmaydi) */
+/* GET: yo'l haqiqatan ishlaydimi — kesh (ok 30 daqiqa / off 10 daqiqa; v3); kesh yo'q bo'lsa 0,5 s'lik jim WAV bilan sinov (foydalanuvchi limitiga kirmaydi) */
 export function silentWav() { const sr = 8000, n = 4000, b = new Uint8Array(44 + n * 2), v = new DataView(b.buffer), w = (o, t) => { for (let i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
   w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true); return b; }
 async function usable(env) {
   if (!env.OPENAI_API_KEY || !env.KALKI_AI_KV) return false; if (await off(env)) return false;
   try { if (await env.KALKI_AI_KV.get(OK_KEY)) return true; } catch (e) { return false; }
   const r = await transcribe(env, silentWav(), { t: 'audio/wav', ext: 'wav' }, 'uz');
-  try { if (!r.err) { await env.KALKI_AI_KV.put(OK_KEY, '1', { expirationTtl: 1800 }); return true; } await env.KALKI_AI_KV.put(OFF_KEY, '1', { expirationTtl: OFF_TTL }); } catch (e) {}
+  const bad = !!(r.err && r.off), net = !!(r.err && r.st == null);          // faqat kalit/hisob xatosi (401/403, kredit) o'chiradi; jim sinovga 400 — kalit ishlaydi; tarmoq xatosi — keshlanmaydi
+  try { if (net) return false; if (!bad) { await env.KALKI_AI_KV.put(OK_KEY, '1', { expirationTtl: 1800 }); return true; } await env.KALKI_AI_KV.put(OFF_KEY, '1', { expirationTtl: OFF_TTL }); } catch (e) {}
   return false;
 }
 export async function onRequest({ request, env }) {
