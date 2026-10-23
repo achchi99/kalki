@@ -6,10 +6,14 @@ import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
 import { jpegBytes } from './kalkifit-rasm.js';
 
 const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 26000, BUDGET_MS = 42000, MAX_B64 = 1400000, MAX_BYTES = 1000000, DEFAULT_SITE = 300;          // menyu rasmi kattaroq (matn o'qiladi): 1600 px gacha, ≤ ~1 MB
-const SYSTEM = `Sen kafe/restoran MENYUSI suratini o'qiydigan yordamchisan (O'zbekiston). Vazifang: menyudagi TAOMLAR nomi va narxi. Kaloriya YOZMA.
-Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har taom uchun: {"nom": oddiy umumiy nom (bazada qidirsa topiladigan, masalan «Osh», «Lag'mon», «Shashlik (qo'y go'shti)», «Tovuq kabob», «Sezar salat», «Mastava», «Somsa», «Manti», «Lavash», «Burger», «Pitsa»), "asl": menyuda yozilgani (qisqa), "narx": narx so'mda butun son yoki null}.
-Qoidalar: eng ko'pi 30 taom; ichimliklar, souslar, non va qo'shimchalarni ham yoz; bir xil taomni takrorlama; narx «45 000» yoki «45.000» bo'lsa — 45000; «45» va menyu ming so'mda ekani aniq bo'lsa — 45000; aniq bo'lmasa null.
-Suratda menyu bo'lmasa bo'sh massiv [] qaytar. Odamlar, telefon raqamlari, manzil haqida yozma.`;
+import M from '../../assets/kalkifit-menyu.js';
+const KEYS = Object.keys(M.KOMP), BOL = M.BOLIM, VALS = ['UZS', 'RUB', 'USD', 'EUR', 'KZT'];
+export const SYSTEM = `Sen kafe/restoran MENYUSI suratini o'qiydigan yordamchisan (O'zbekiston va boshqa davlatlar, menyu o'zbek, rus yoki ingliz tilida bo'lishi mumkin). Vazifang — faqat AJRATIB OLISH. Kaloriya va gramm YOZMA.
+Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har taom uchun BITTA element:
+{"asl": menyuda yozilgan nomi aynan (tavsifsiz, qisqa, asl tilida), "nom": o'zbekcha oddiy umumiy nom (masalan «Grek salati», «Mol go'shti tartari», «Mol go'shti fileti, kartoshka pyuresi bilan», «Osh», «Lag'mon», «Shashlik (qo'y go'shti)»), "bolim": ${BOL.map((b) => '"' + b + '"').join(' | ')}, "tarkib": [asosiy tarkibiy qismlar, FAQAT shu ro'yxatdan: ${KEYS.join(', ')}], "narx": son yoki null, "valyuta": ${VALS.map((v) => '"' + v + '"').join(' | ')} yoki null}.
+Bo'lim — menyudagi sarlavha bo'yicha (Салаты → salat, Супы → shorva, Закуски/Холодные закуски → zakuska, Горячие блюда/Основные → issiq, Гарниры → garnir, Десерты → desert, Напитки → ichimlik, Соусы → sous, Хлеб → non); sarlavha bo'lmasa — taomning o'zidan. Masalan «Греческий» salatlar ichida bo'lsa — Grek salati (bolim: salat, tarkib: pomidor, bodring, qalampir, piyoz, feta, zaytun, zaytun_yogi); «Тартар из говядины» — zakuska, tarkib: mol_gosht_xom, mayonez (aioli bo'lsa), …; «Филе говядины с картофельным пюре и соусом» — issiq, tarkib: mol_gosht, kartoshka_pyure, qaymoq yoki qoziqorin (sous turiga qarab).
+Valyuta — menyudagi belgidan: ₽/руб → RUB, $ → USD, € → EUR, so'm/сум/UZS → UZS, ₸ → KZT; belgi yo'q bo'lsa va narxlar minglab (45 000) bo'lsa — UZS; aniq bo'lmasa — null. Narx: «45 000» yoki «45.000» — 45000; «560» — 560; «12,50» — 12.5.
+Qoidalar: eng ko'pi 25 taom; tarkibga ro'yxatda YO'Q narsani yozma (umuman mos kalit bo'lmasa — []); bir xil taomni takrorlama. Suratda menyu bo'lmasa bo'sh massiv [] qaytar. Odamlar, telefon raqamlari, manzil haqida yozma.`;
 const clean = (x, n) => String(x == null ? '' : x).replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
 /* javob kesilgan bo'lsa ham (max_tokens) tugallangan taomlar saqlanadi: '[' dan oxirgi to'liq '}' gacha */
 export function extractMenu(text) {
@@ -20,9 +24,13 @@ export function extractMenu(text) {
 export function sanitize(list) {
   const out = [], seen = new Set();
   for (const it of (list || []).slice(0, 40)) {
-    if (!it || typeof it !== 'object') continue; const nom = clean(it.nom, 60); if (!nom || seen.has(nom.toLowerCase())) continue; seen.add(nom.toLowerCase());
-    let narx = Math.round(Number(it.narx)); if (!(narx >= 500 && narx <= 5000000)) narx = null;
-    out.push({ nom, asl: clean(it.asl, 60) || nom, narx }); if (out.length >= 30) break;
+    if (!it || typeof it !== 'object') continue; const asl = clean(it.asl, 80), nom = clean(it.nom, 80) || asl; if (!nom || seen.has((asl || nom).toLowerCase())) continue; seen.add((asl || nom).toLowerCase());
+    const bolim = BOL.includes(it.bolim) ? it.bolim : 'boshqa', tarkib = (Array.isArray(it.tarkib) ? it.tarkib : []).filter((k) => typeof k === 'string' && KEYS.includes(k)).filter((k, i, a) => a.indexOf(k) === i).slice(0, 10);
+    let valyuta = VALS.includes(it.valyuta) ? it.valyuta : null, narx = Number(it.narx);
+    if (!(narx > 0) || !valyuta) { narx = null; valyuta = null; }
+    else if (valyuta === 'UZS') { narx = Math.round(narx); if (!(narx >= 100 && narx <= 10000000)) { narx = null; valyuta = null; } }
+    else { narx = Math.round(narx * 100) / 100; if (!(narx <= 1000000)) { narx = null; valyuta = null; } }
+    out.push({ asl: asl || nom, nom, bolim, tarkib, narx, valyuta }); if (out.length >= 30) break;
   }
   return out;
 }
@@ -30,7 +38,7 @@ async function askVision(env, b64, til, ms) {
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), ms || TIMEOUT_MS);
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', signal: ctl.signal, headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, max_tokens: 3000, thinking: { type: 'disabled' }, system: SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: til === 'ru' ? 'Прочитай меню. Названия — на русском.' : "Menyuni o'qi. Nomlarni o'zbek tilida yoz." }] }] }) });
+      body: JSON.stringify({ model: MODEL, max_tokens: 4000, thinking: { type: 'disabled' }, system: SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: til === 'ru' ? 'Прочитай меню. Названия — на русском.' : "Menyuni o'qi. Nomlarni o'zbek tilida yoz." }] }] }) });
     if (!res.ok) { console.error('menyu: model status', res.status); return { err: true }; }
     const j = await res.json(); return { text: (j.content || []).map((c) => c.text || '').join('') };
   } catch (e) { console.error('menyu: model xato'); return { err: true }; } finally { clearTimeout(timer); }

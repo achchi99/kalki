@@ -786,3 +786,8 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .sl-tipb::before{content:"";position:absolute;top:-6px;left:28px;width:12px;height:12px;background:var(--ink);transform:rotate(45deg)}
 @keyframes tipIn{from{opacity:0;transform:translateY(-4px)}}
 @media (prefers-reduced-motion:reduce){.sl-tipb{animation:none}}
+/* v29: menyu kartochkasi — asl nom katta, ostida «bazada: …» kichik */
+.sl-mnr .sl-mnb{cursor:default}
+.sl-mnr .sl-mnasl{font-size:var(--t-m);font-weight:700;line-height:1.25;overflow-wrap:anywhere}
+.sl-mnr .sl-mndb{font-size:var(--t-xs);color:var(--mut)}
+.sl-mnest{font-style:normal;color:var(--mut)}

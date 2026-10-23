@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 29,
+   "d": "2026-10-23",
+   "bn": {
+    "uz": "Menyudan tanlash aniqroq bo'ldi.",
+    "ru": "Выбор по меню стал точнее."
+   },
+   "items": [
+    {
+     "uz": "Menyudan tanlash aniqroq: salat salatga, go'shtli taom go'shtga ulanadi.",
+     "ru": "Выбор по меню точнее: салат — к салатам, мясное — к мясу.",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 28,
    "d": "2026-10-23",
    "bn": {
