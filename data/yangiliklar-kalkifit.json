@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 28,
+   "d": "2026-10-23",
+   "bn": {
+    "uz": "Profilda ismingiz; menyu o'qilishi tuzatildi.",
+    "ru": "Имя в Профиле; меню на айфоне исправлено."
+   },
+   "items": [
+    {
+     "uz": "Profil tepasida ismingiz chiqadi — qalam bilan o'zgartirishingiz mumkin.",
+     "ru": "Вверху Профиля — ваше имя, его можно изменить карандашом.",
+     "show": "akkaunt",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Menyu va taom rasmi tuzatildi: katta suratlar ham o'qiladi.",
+     "ru": "Меню и фото еды на айфоне исправлены: большие снимки тоже читаются.",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 27,
    "d": "2026-10-23",
    "bn": {

@@ -72,7 +72,7 @@ await T('kod oqimi: kod → (dev) → kirish → yangi akkaunt; ikkinchi kirish 
   adv(61000); await call(env, 'kod', { body: { email: 'test.user@gmail.com' } }); const kod2 = await devKod(env, 'test.user@gmail.com');
   const r2 = await call(env, 'kirish', { body: { email: 'test.user@gmail.com', kod: kod2 } }); assert.equal(r2.s, 200); assert.equal(r2.j.yangi, false);
   assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt')[0].c, 1); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM sessiya')[0].c, 2);
-  const a = raw(env, 'SELECT * FROM akkaunt')[0]; assert.deepEqual(Object.keys(a).sort(), ['email', 'google_sub', 'id', 'marketing', 'marketing_matn_v', 'marketing_vaqt', 'oxirgi_kirish', 'usul', 'yaratilgan']); assert.equal(a.usul, 'email'); assert.match(a.id, /^[0-9a-f]{24}$/);
+  const a = raw(env, 'SELECT * FROM akkaunt')[0]; assert.deepEqual(Object.keys(a).sort(), ['email', 'google_sub', 'id', 'ism', 'ism_qolda', 'marketing', 'marketing_matn_v', 'marketing_vaqt', 'oxirgi_kirish', 'usul', 'yaratilgan']); assert.equal(a.usul, 'email'); assert.match(a.id, /^[0-9a-f]{24}$/);
 });
 
 await T('xavfsizlik: kod bazada xesh (ochiq emas), sessiya token bazada xesh; cookie bayroqlari; javoblar no-store', async () => {
@@ -163,7 +163,7 @@ await T('marketing roziligi: odatda 0; yoqish/o\'chirish vaqt va matn versiyasi 
 await T('ma\'lumotni yuklab olish: faqat o\'z akkaunti, minimal maydonlar (ism/telefon yo\'q), token yo\'q', async () => {
   const env = mkEnv(); const A = await kirish(env, 'ya@x.uz'); adv(61000); await kirish(env, 'boshqa@x.uz'); await call(env, 'marketing', { cookie: A.cookie, body: { rozi: true } });
   const y = await call(env, 'yuklab', { cookie: A.cookie }); assert.equal(y.s, 200); assert.equal(y.j.v, 1); assert.equal(y.j.akkaunt.email, 'ya@x.uz'); assert.equal(y.j.akkaunt.marketing, 1); assert.equal(y.j.qurilmalar.length, 1);
-  assert.deepEqual(Object.keys(y.j.akkaunt).sort(), ['email', 'id', 'marketing', 'marketing_matn_v', 'marketing_vaqt', 'oxirgi_kirish', 'usul', 'yaratilgan']); assert.ok(!y.txt.includes('boshqa@x.uz')); assert.doesNotMatch(y.txt, /kalki_s|kod_hash|token/i);
+  assert.deepEqual(Object.keys(y.j.akkaunt).sort(), ['email', 'id', 'ism', 'marketing', 'marketing_matn_v', 'marketing_vaqt', 'oxirgi_kirish', 'usul', 'yaratilgan']); assert.ok(!y.txt.includes('boshqa@x.uz')); assert.doesNotMatch(y.txt, /kalki_s|kod_hash|token/i);
 });
 
 await T('akkauntni o\'chirish: faqat kirgan va email kodi bilan; hammasi (akkaunt, sessiyalar, kodlar, audit) o\'chadi; keyin shu email yangi akkaunt', async () => {
@@ -321,7 +321,7 @@ await T('eksport/import (VPS\'ga ko\'chirish): akkaunt JSON → yangi SQLite bir
     fs.writeFileSync(path.join(tmp, 'bad.json'), '{"v":2}'); assert.throws(() => execFileSync('node', [im, path.join(tmp, 'bad.json'), '--to', 'sqlite', '--db', path.join(tmp, 'x.sqlite')], { stdio: 'pipe' }));
     // yuklangan baza bilan handler ishlaydi (adapter bazaga bog'liq emas): eksportdan tiklangan akkaunt kod bilan kirishi mumkin
     const env2 = mkEnv(); env2.KALKIFIT_DB._raw.exec('DROP TABLE akkaunt'); env2.KALKIFIT_DB._raw.exec(fs.readFileSync(path.join(ROOT, 'migrations/akkaunt.sql'), 'utf8')); const s2 = new DatabaseSync(dst, { readOnly: true }); const rows = s2.prepare('SELECT * FROM akkaunt').all(); s2.close();
-    for (const r of rows) env2.KALKIFIT_DB._raw.prepare('INSERT INTO akkaunt VALUES (?,?,?,?,?,?,?,?,?)').run(r.id, r.email, r.usul, r.google_sub, r.yaratilgan, r.oxirgi_kirish, r.marketing, r.marketing_vaqt, r.marketing_matn_v);
+    for (const r of rows) env2.KALKIFIT_DB._raw.prepare('INSERT INTO akkaunt VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(r.id, r.email, r.usul, r.google_sub, r.ism, r.ism_qolda, r.yaratilgan, r.oxirgi_kirish, r.marketing, r.marketing_vaqt, r.marketing_matn_v);
     const re = await kirish(env2, 'ko\'chish@x.uz'); assert.equal(re.r.j.yangi, false); assert.equal(re.r.j.marketing, 1, 'rozilik ko\'chgan');
     const KT = require(path.join(ROOT, 'tools/akkaunt-kalit.js')); const K1 = 'a'.repeat(43); assert.equal(KT.izi(K1), await KL.izi(K1), 'vosita va lib barmoq izi bir xil'); assert.ok(KT.parse('1:' + K1 + ',1:' + K1).xato, 'takror versiya rad'); assert.ok(!KT.parse('1:' + K1).xato);
     const gen = execFileSync('node', [path.join(ROOT, 'tools/akkaunt-kalit.js'), 'yarat', '3'], { encoding: 'utf8' }); const gk = /^3:([A-Za-z0-9_-]+)$/m.exec(gen)[1]; assert.ok(gk.length >= 43); assert.ok(KL.kalitlar({ AKKAUNT_MASTER_KEYS: '3:' + gk })); assert.ok(gen.includes(KT.izi(gk)));

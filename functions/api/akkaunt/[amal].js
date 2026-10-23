@@ -3,6 +3,7 @@
  *   POST /api/akkaunt/kod        { email, til?, maqsad? }  → { ok, kut }          (har qanday to'g'ri email uchun bir xil javob — email bor-yo'qligi oshkor bo'lmaydi)
  *   POST /api/akkaunt/kirish     { email, kod }            → { ok, yangi, email, marketing } + cookie
  *   POST /api/akkaunt/google     { credential }            → { ok, yangi, email, marketing } + cookie   (Google ID token: imzo, aud = GOOGLE_WEB_CLIENT_ID, email_verified; o'sha email akkauntiga kiradi yoki yaratadi)
+ *   POST /api/akkaunt/ism        { ism }                   → { ok, ism }   (kirgan; ≤ 40 belgi, bo'sh bo'lsa 400; foydalanuvchi yozgan ism keyingi Google kirishlarida almashtirilmaydi)
  *   POST /api/akkaunt/chiqish    { hammasi? }              → { ok }  (cookie o'chadi; hammasi:true — barcha qurilmalardan)
  *   GET  /api/akkaunt/qurilmalar                           → { qurilmalar: [{ qurilma, yaratilgan, oxirgi, joriy }] }
  *   POST /api/akkaunt/marketing  { rozi: true|false }      → { ok, marketing }    (alohida rozilik, odatiy O'CHIQ)
@@ -20,10 +21,10 @@ import { makeStore } from '../../_lib/akkaunt-store.js';
 import { rejim, yubor } from '../../_lib/akkaunt-email.js';
 import { kalitlar } from '../../_lib/akkaunt-kalit.js';
 import { kodTahlil, zaxiraId, konvertYop, konvertOch, ILOVALAR } from '../../_lib/akkaunt-konvert.js';
-import { googleTekshir, cidOk } from '../../_lib/google-id.js';
+import { googleTekshir, cidOk, ismTozala } from '../../_lib/google-id.js';
 
 export const KOD_MUDDAT = 10 * 60 * 1000, MAX_URINISH = 5, SES_SLIDING = 30 * 86400000, SES_ABS = 180 * 86400000, MAX_SESSIYA = 20, MARKETING_MATN_V = 'm1';
-const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', google: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', ulash: 'POST', tiklash: 'GET', 'qayta-ora': 'POST', 'dev-kod': 'GET' };
+const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', google: 'POST', ism: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', ulash: 'POST', tiklash: 'GET', 'qayta-ora': 'POST', 'dev-kod': 'GET' };
 const E = { 400: "So'rov noto'g'ri.", 401: 'Kirilmagan.', 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq urinib ko'ring.", 502: "Xatni yuborib bo'lmadi.", 503: 'Xizmat sozlanmagan.' };
 const fail = (s, e, extra, h) => json(s, Object.assign({ xato: E[s] || 'Xato.', e: e || '' }, extra || {}), h);
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
@@ -91,7 +92,7 @@ export async function onRequest(ctx) {
       if (!ses) return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: false, google: gid }, yoqCookie);
       const q = await store.sessiyalar(ak.id);
       const il = {}; for (const x of await store.ilovalar(ak.id)) il[x.ilova] = x.rejim;
-      return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: true, email: ak.email, marketing: ak.marketing ? 1 : 0, yaratilgan: ak.yaratilgan, qurilmalar: q.length, ilovalar: il, google: gid });
+      return json(200, { yoqilgan: true, dev: rj === 'dev', kirgan: true, email: ak.email, marketing: ak.marketing ? 1 : 0, yaratilgan: ak.yaratilgan, qurilmalar: q.length, ilovalar: il, google: gid, ism: ak.ism || '' });
     }
     if (amal === 'dev-kod') {
       if (rj !== 'dev') return fail(404);
@@ -125,16 +126,17 @@ export async function onRequest(ctx) {
       return json(200, { ok: true, kut: 60, dev: rj === 'dev' });
     }
 
-    async function kir(email, usul) {                            // akkaunt (bor bo'lsa — o'sha, yo'q bo'lsa — yangi) + yangi sessiya cookie
+    async function kir(email, usul, ism) {                            // akkaunt (bor bo'lsa — o'sha, yo'q bo'lsa — yangi) + yangi sessiya cookie
       let a = await store.akkauntEmail(email), yangi = false;
       if (!a) { const id = hex(rnd(12)); yangi = await store.akkauntYarat({ id, email, usul, now }); a = await store.akkauntEmail(email); }
       if (!a) return fail(503);
       if (!yangi) await store.kirishBelgila(a.id, now);
+      if (usul === 'google' && ism) { await store.ismYoz(a.id, ism, false); a.ism = a.ism_qolda ? a.ism : ism; }          // Google ismi — faqat foydalanuvchi o'zi yozmagan bo'lsa
       const token = b64u(rnd(32)), id = await sha(token);
       await store.sessiyaYarat({ id, akkauntId: a.id, now, muddatAbs: now + SES_ABS, qurilma: qurilma(request.headers.get('User-Agent')) });
       const all = await store.sessiyalar(a.id); for (const s of all.slice(MAX_SESSIYA)) await store.sessiyaOchir(s.id);   // eng eskilari chiqarib yuboriladi
       await store.audit(a.id, yangi ? 'yaratildi' : (usul === 'google' ? 'kirish_google' : 'kirish'), now);
-      return json(200, { ok: true, yangi, email: a.email, marketing: a.marketing ? 1 : 0 }, { 'Set-Cookie': setCookie(request, token) });
+      return json(200, { ok: true, yangi, email: a.email, marketing: a.marketing ? 1 : 0, ism: a.ism || '' }, { 'Set-Cookie': setCookie(request, token) });
     }
     if (amal === 'kirish' || amal === 'ochirish') {
       const { b, err } = await bodyOf(request); if (err) return err;
@@ -158,10 +160,15 @@ export async function onRequest(ctx) {
       const ip = await lim(await ipH('ipkir'), 3600000, num(env.AKKAUNT_IP_TEKSHIR_LIMIT, 30)); if (!ip.ok) return fail(429, 'limit', { kut: Math.ceil(ip.qayta / 1000) });
       const g = await googleTekshir(b.credential, gid, { now, jwks: env.__GOOGLE_JWKS }); if (g.xato) return fail(400, 'google', { sabab: g.xato });
       const email = normEmail(g.email); if (!email) return fail(400, 'google', { sabab: 'email' });
-      return kir(email, 'google');
+      return kir(email, 'google', g.ism);
     }
 
     /* ---- quyidagilar uchun kirilgan bo'lishi shart ---- */
+    if (amal === 'ism') {
+      const { b, err } = await bodyOf(request); if (err) return err; if (!ses) return fail(401, 'sessiya');
+      const ism = ismTozala(b.ism); if (!ism) return fail(400, 'ism');
+      await store.ismYoz(ak.id, ism, true); return json(200, { ok: true, ism });
+    }
     if (amal === 'chiqish') {
       const { b, err } = await bodyOf(request); if (err) return err;
       if (ses) { if (b.hammasi === true) await store.sessiyaOchirHammasi(ak.id); else await store.sessiyaOchir(sesH); await store.audit(ak.id, b.hammasi === true ? 'chiqish_hammasi' : 'chiqish', now); }
@@ -201,7 +208,7 @@ export async function onRequest(ctx) {
     }
     if (amal === 'yuklab') {
       const y = await store.yuklab(ak.id), a = y.akkaunt;
-      return json(200, { v: 1, eksport: new Date(now).toISOString(), akkaunt: { id: a.id, email: a.email, usul: a.usul, yaratilgan: a.yaratilgan, oxirgi_kirish: a.oxirgi_kirish, marketing: a.marketing ? 1 : 0, marketing_vaqt: a.marketing_vaqt, marketing_matn_v: a.marketing_matn_v }, qurilmalar: y.sessiyalar.map((s) => ({ qurilma: s.qurilma, yaratilgan: s.yaratilgan, oxirgi: s.oxirgi })), ilovalar: y.ilovalar.map((x) => ({ ilova: x.ilova, rejim: x.rejim, ulangan: x.ulangan })) });
+      return json(200, { v: 1, eksport: new Date(now).toISOString(), akkaunt: { id: a.id, email: a.email, ism: a.ism || null, usul: a.usul, yaratilgan: a.yaratilgan, oxirgi_kirish: a.oxirgi_kirish, marketing: a.marketing ? 1 : 0, marketing_vaqt: a.marketing_vaqt, marketing_matn_v: a.marketing_matn_v }, qurilmalar: y.sessiyalar.map((s) => ({ qurilma: s.qurilma, yaratilgan: s.yaratilgan, oxirgi: s.oxirgi })), ilovalar: y.ilovalar.map((x) => ({ ilova: x.ilova, rejim: x.rejim, ulangan: x.ulangan })) });
     }
     return fail(404);
   } catch (e) { console.error('akkaunt xato'); return fail(503); }

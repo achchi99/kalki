@@ -5,6 +5,8 @@
 export const JWKS_URL = 'https://www.googleapis.com/oauth2/v3/certs';
 const ISS = ['accounts.google.com', 'https://accounts.google.com'], SKEW = 60000;
 let cache = { keys: null, until: 0 };
+/* ko'rsatiladigan ism: bo'shliqlar yig'iladi, < > olib tashlanadi, ≤ 40 belgi (Unicode bo'yicha); bo'sh bo'lsa '' */
+export function ismTozala(s) { const t = String(s == null ? '' : s).replace(/[<>\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim(); return Array.from(t).slice(0, 40).join('').trim(); }
 export const cidOk = (id) => typeof id === 'string' && /^[0-9]{5,30}-[a-z0-9]{10,64}\.apps\.googleusercontent\.com$/.test(id);
 function b64uBytes(s) { s = String(s).replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; const bin = atob(s), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
 function b64uJson(s) { return JSON.parse(new TextDecoder().decode(b64uBytes(s))); }
@@ -32,6 +34,6 @@ export async function googleTekshir(token, clientId, o) {
   if (!cidOk(clientId) || (Array.isArray(c.aud) ? !c.aud.includes(clientId) : c.aud !== clientId)) return { xato: 'aud' };
   if (!(typeof c.exp === 'number' && c.exp * 1000 > now - SKEW) || (typeof c.iat === 'number' && c.iat * 1000 > now + SKEW * 5)) return { xato: 'muddat' };
   if (!(c.email_verified === true || c.email_verified === 'true') || typeof c.email !== 'string') return { xato: 'email' };
-  return { email: c.email.trim().toLowerCase(), ism: typeof c.name === 'string' ? c.name.slice(0, 80) : '' };
+  return { email: c.email.trim().toLowerCase(), ism: ismTozala(c.name) || ismTozala(c.given_name) };
 }
 export const _test = { reset: () => { cache = { keys: null, until: 0 }; } };

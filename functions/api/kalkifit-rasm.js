@@ -38,10 +38,11 @@ export function sanitize(list) {
   }
   return out;
 }
-export function jpegBytes(b64) {                    // base64 → JPEG ekanini (FF D8 FF) va taxminiy hajmini tekshirish
+export function jpegBytes(b64, lim) {                    // lim — { b64, bytes } (menyu rasmi kattaroq); standart: rasm uchun MAX_B64 / MAX_BYTES
+  const MB64 = (lim && lim.b64) || MAX_B64, MBY = (lim && lim.bytes) || MAX_BYTES;                    // base64 → JPEG ekanini (FF D8 FF) va taxminiy hajmini tekshirish
   const clean = String(b64 || '').replace(/^data:image\/jpe?g;base64,/i, '').replace(/\s+/g, '');
-  if (clean.length < 100 || clean.length > MAX_B64 || !/^[A-Za-z0-9+/]+={0,2}$/.test(clean)) return null;
-  const bytes = Math.floor(clean.length * 3 / 4); if (bytes > MAX_BYTES) return { err: 413 };
+  if (clean.length < 100 || clean.length > MB64 || !/^[A-Za-z0-9+/]+={0,2}$/.test(clean)) return null;
+  const bytes = Math.floor(clean.length * 3 / 4); if (bytes > MBY) return { err: 413 };
   let head; try { head = atob(clean.slice(0, 8)); } catch (e) { return null; }
   if (head.charCodeAt(0) !== 0xFF || head.charCodeAt(1) !== 0xD8 || head.charCodeAt(2) !== 0xFF) return null;
   return { b64: clean, bytes };

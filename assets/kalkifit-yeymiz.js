@@ -12,7 +12,7 @@
       yzT: 'Bugun nima yeymiz?', yzDoorS: 'Kafe, buyurtma yoki uyda', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
       yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
       yzNote: 'Porsiya taxminiy — nomni bosib o\'zgartiring', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
-      mnCta: 'Menyuni suratga oling — mosini tanlab beramiz', mnTip: 'Yangi: kafe menyusini suratga oling — 2–3 mos taomni tanlab beramiz.', mnBtn: 'Menyudan tanlash', mnT: 'Menyudan tanlash', mnH: "Kafe menyusini suratga oling — bugungi qoldig'ingizga mos 2–3 taomni tanlab beramiz.", mnPriv: 'Rasm saqlanmaydi. Kaloriya — bizning bazadan (odatiy porsiya).', mnPick: 'Menyu rasmini tanlash', mnCam: 'Rasmga olish', mnGal: 'Galereyadan', mnBusy: "Menyu o'qilmoqda…", mnRes: "Menyudan {n} ta taom topildi. Sizga mos:", mnLeft: "Bugun yana ≈ {k} kkal sig'adi", mnW_oqsil: 'Oqsilga boy', mnW_yengil: 'Yengilroq', mnW_sigadi: "Qoldiqqa sig'adi", mnNo: 'Menyudan taom topilmadi — rasmni yaqinroq va tekis oling.', mnNoFit: "Menyudagi taomlar bazamizda topilmadi. Qidiruvdan tanlang.", mnErr: "Menyuni o'qib bo'lmadi. Keyinroq urinib ko'ring.", mnAgain: 'Boshqa rasm', mnAdded: "Qo'shildi: {n}",
+      mnCta: 'Menyuni suratga oling — mosini tanlab beramiz', mnTip: 'Yangi: kafe menyusini suratga oling — 2–3 mos taomni tanlab beramiz.', mnBtn: 'Menyudan tanlash', mnT: 'Menyudan tanlash', mnH: "Kafe menyusini suratga oling — bugungi qoldig'ingizga mos 2–3 taomni tanlab beramiz.", mnPriv: 'Rasm saqlanmaydi. Kaloriya — bizning bazadan (odatiy porsiya).', mnPick: 'Menyu rasmini tanlash', mnCam: 'Rasmga olish', mnGal: 'Galereyadan', mnBusy: "Menyu o'qilmoqda…", mnRes: "Menyudan {n} ta taom topildi. Sizga mos:", mnLeft: "Bugun yana ≈ {k} kkal sig'adi", mnW_oqsil: 'Oqsilga boy', mnW_yengil: 'Yengilroq', mnW_sigadi: "Qoldiqqa sig'adi", mnNo: "Rasmda menyu matni topilmadi — yaqinroq va tekis suratga oling.", mnNoFit: "Menyudagi taomlar bazamizda topilmadi. Qidiruvdan tanlang.", mnErr: "Menyuni o'qib bo'lmadi. Keyinroq urinib ko'ring.", mnE_net: "Internet yo'q yoki aloqa uzildi. Ulanishni tekshirib, qayta urinib ko'ring.", mnE_time: "Javob kechikdi. Qayta urinib ko'ring.", mnE_fmt: "Rasm o'qilmadi. Boshqa rasm tanlang yoki qayta suratga oling.", mnE_big: 'Rasm juda katta. Boshqa rasm tanlang.', mnE_srv: "Server xatosi. Birozdan keyin qayta urinib ko'ring.", mnE_site: 'Menyu tahlili bugun juda band. Ertaga yana ishlaydi.', mnAgain: 'Boshqa rasm', mnAdded: "Qo'shildi: {n}",
       yzNo: 'Bu yerda sizga mos taom topilmadi.', yzNoH: 'Qidiruvdan o\'zingiz tanlang.', yzSearch: 'Qidirish',
       yzOrdH: 'Yetkazib berish xizmatida «{q}» deb qidiring. Tugmani bossangiz so\'z nusxalanadi.', yzCopied: '«{q}» nusxalandi — ilovada qidiruvga qo\'ying', yzOrdList: 'Odatiy buyurtmalar (o\'rtacha porsiya)', yzOrdNone: 'Havolalar hozir yuklanmadi. Internetni tekshirib, qayta urining.', yzUyH: 'Qaysi usulda pishirasiz?',
       yzMeal_b: 'Nonushtaga yozildi', yzMeal_l: 'Tushlikka yozildi', yzMeal_d: 'Kechki ovqatga yozildi', yzMeal_s: 'Tamaddiga yozildi',
@@ -27,7 +27,7 @@
       yzT: 'Что поесть сегодня?', yzDoorS: 'Кафе, заказ или дома', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
       yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
       yzNote: 'Порция примерная — нажмите на название', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
-      mnCta: 'Сфотографируйте меню — подберём подходящее', mnTip: 'Новое: сфотографируйте меню кафе — подберём 2–3 подходящих блюда.', mnBtn: 'Выбрать по меню', mnT: 'Выбрать по меню', mnH: 'Сфотографируйте меню кафе — подберём 2–3 блюда под ваш остаток на сегодня.', mnPriv: 'Фото не сохраняется. Калории — из нашей базы (обычная порция).', mnPick: 'Выбрать фото меню', mnCam: 'Сфотографировать', mnGal: 'Из галереи', mnBusy: 'Читаем меню…', mnRes: 'В меню найдено блюд: {n}. Вам подойдут:', mnLeft: 'Сегодня ещё влезает ≈ {k} ккал', mnW_oqsil: 'Богато белком', mnW_yengil: 'Полегче', mnW_sigadi: 'Влезает в остаток', mnNo: 'Блюда в меню не найдены — снимите ближе и ровнее.', mnNoFit: 'Блюд из меню нет в нашей базе. Выберите через поиск.', mnErr: 'Не удалось прочитать меню. Попробуйте позже.', mnAgain: 'Другое фото', mnAdded: 'Добавлено: {n}',
+      mnCta: 'Сфотографируйте меню — подберём подходящее', mnTip: 'Новое: сфотографируйте меню кафе — подберём 2–3 подходящих блюда.', mnBtn: 'Выбрать по меню', mnT: 'Выбрать по меню', mnH: 'Сфотографируйте меню кафе — подберём 2–3 блюда под ваш остаток на сегодня.', mnPriv: 'Фото не сохраняется. Калории — из нашей базы (обычная порция).', mnPick: 'Выбрать фото меню', mnCam: 'Сфотографировать', mnGal: 'Из галереи', mnBusy: 'Читаем меню…', mnRes: 'В меню найдено блюд: {n}. Вам подойдут:', mnLeft: 'Сегодня ещё влезает ≈ {k} ккал', mnW_oqsil: 'Богато белком', mnW_yengil: 'Полегче', mnW_sigadi: 'Влезает в остаток', mnNo: 'На фото не найден текст меню — снимите ближе и ровнее.', mnNoFit: 'Блюд из меню нет в нашей базе. Выберите через поиск.', mnErr: 'Не удалось прочитать меню. Попробуйте позже.', mnE_net: 'Нет интернета или связь прервалась. Проверьте соединение и попробуйте снова.', mnE_time: 'Ответ задержался. Попробуйте ещё раз.', mnE_fmt: 'Фото не удалось прочитать. Выберите другое или снимите заново.', mnE_big: 'Фото слишком большое. Выберите другое.', mnE_srv: 'Ошибка сервера. Попробуйте чуть позже.', mnE_site: 'Разбор меню сегодня перегружен. Завтра снова заработает.', mnAgain: 'Другое фото', mnAdded: 'Добавлено: {n}',
       yzNo: 'Подходящих блюд здесь не нашлось.', yzNoH: 'Выберите через поиск.', yzSearch: 'Искать',
       yzOrdH: 'Найдите «{q}» в сервисе доставки. По нажатию слово копируется.', yzCopied: '«{q}» скопировано — вставьте в поиск приложения', yzOrdList: 'Частые заказы (средняя порция)', yzOrdNone: 'Ссылки сейчас не загрузились. Проверьте интернет и повторите.', yzUyH: 'Как будете готовить?',
       yzMeal_b: 'Записано на завтрак', yzMeal_l: 'Записано на обед', yzMeal_d: 'Записано на ужин', yzMeal_s: 'Записано на перекус',
@@ -214,11 +214,6 @@
   }
   function mnDraw() { if (A.sheetKind() !== 'menyu') A.openSheet('menyu', mnHtml()); else A.setSheet(mnHtml()); var i = A.$('#mnIn'); if (i && !i._b) { i._b = 1; i.addEventListener('change', function () { var f = i.files && i.files[0]; if (f) mnFile(f); }); } }
   function menuOpen(from) { mv = { busy: false, err: '', picks: null, n: 0, from: from === 'add' ? 'add' : 'yeymiz' }; mnDraw(); }
-  function mnShrink(file, px, cb) {
-    var url = URL.createObjectURL(file), img = new Image();
-    img.onload = function () { var s = Math.min(1, px / Math.max(img.width, img.height)), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(img.width * s)); c.height = Math.max(1, Math.round(img.height * s)); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url); c.toBlob(function (b) { if (!b) return cb(null); var r = new FileReader(); r.onload = function () { cb(String(r.result).split(',')[1] || null); }; r.readAsDataURL(b); }, 'image/jpeg', 0.8); };
-    img.onerror = function () { URL.revokeObjectURL(url); cb(null); }; img.src = url;
-  }
   function mnMatch(list) {                              // menyu nomi → bazadagi taom (aniq mos) → odatiy porsiya; cheklov + cho'chqa — taklif qilinmaydi
     var by = A.by(), out = [];
     list.forEach(function (t) {
@@ -230,17 +225,22 @@
   }
   function mnFile(file) {
     if (!file) return; mv.busy = true; mv.err = ''; mv.picks = null; mnDraw();
-    var fail = function (m) { mv.busy = false; mv.err = m || T('mnErr'); mnDraw(); };
-    mnShrink(file, 1400, function (b64) {
-      if (!b64) return fail();
-      fetch('/api/kalkifit-menyu', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: A.isCyr && A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid(), platforma: A.aiPlat() || undefined }) })
-        .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
-          sev('ai_sorov', 'menyu.' + (res.s === 429 ? 'limit' : (res.s === 200 ? 'ok' : 'xato')));
-          if (res.s === 429) return fail(res.j && res.j.limit > 0 && res.j.sabab !== 'sayt' ? T('aiLimit', { n: res.j.limit }) : (res.j && res.j.xato) || T('mnErr'));
-          if (res.s !== 200 || !res.j || !Array.isArray(res.j.taomlar)) return fail();
-          A.aiqSet && A.aiqSet(res.j);
-          load(function () { A.withDb(function () { var c = mnMatch(res.j.taomlar); mv.n = res.j.taomlar.length; mv.picks = res.j.taomlar.length ? KalkiMenyu.pick(c, A.remaining(), data.chegara) : []; mv.busy = false; mnDraw(); }); });
-        }).catch(function () { fail(); });
+    var fail = function (key, ev, txt) { if (ev) sev('ai_sorov', 'menyu.' + ev); mv.busy = false; mv.err = txt || T(key); mnDraw(); };
+    if (navigator.onLine === false) { fail('mnE_net', 'tarmoq'); return; }
+    A.imgPrep(file, { px: 1600, maxBytes: 700000 }, function (b64, perr) {
+      if (!b64) { perr === 'hajm' ? fail('mnE_big', 'hajm') : fail('mnE_fmt', 'format'); return; }
+      var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 50000);
+      fetch('/api/kalkifit-menyu', { method: 'POST', signal: ctl ? ctl.signal : undefined, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: A.isCyr && A.isCyr() ? 'kirill' : A.lang(), mijoz_id: A.cid(), platforma: A.aiPlat() || undefined }) })
+        .then(function (r) { clearTimeout(tm); return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
+          var j = res.j || {}; A.aiqSet && A.aiqSet(j);
+          if (res.s === 429) { sev('ai_sorov', 'menyu.limit'); fail('', '', j.sabab !== 'sayt' && j.limit > 0 ? T('aiLimit', { n: j.limit }) : T('mnE_site')); return; }
+          if (res.s === 413) { fail('mnE_big', 'hajm'); return; }
+          if (res.s === 400 && (j.sabab === 'format' || !j.sabab)) { fail('mnE_fmt', 'format'); return; }
+          if (res.s === 502 && j.sabab === 'parse') { fail('mnNo', 'bosh'); return; }          // model javobini o'qib bo'lmadi — odatda rasmda menyu matni yo'q/xira
+          if (res.s !== 200 || !Array.isArray(j.taomlar)) { fail('mnE_srv', 'server'); return; }
+          sev('ai_sorov', 'menyu.ok');
+          load(function () { A.withDb(function () { var c = mnMatch(j.taomlar); mv.n = j.taomlar.length; mv.picks = j.taomlar.length ? KalkiMenyu.pick(c, A.remaining(), data.chegara) : []; mv.busy = false; mnDraw(); }); });
+        }).catch(function (e) { clearTimeout(tm); var k = A.aiNetErr(e); fail(k === 'vaqt' ? 'mnE_time' : 'mnE_net', k); });
     });
   }
   function mnNativePick(src) { KalkiNative.pickPhotoFrom(src).then(function (r) { if (r && r.file) mnFile(r.file); else if (r && r.error) { mv.err = T('mnErr'); mnDraw(); } }); }
