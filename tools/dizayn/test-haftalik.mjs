@@ -60,16 +60,15 @@ const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await 
 const full = () => { const st = mk(), L = S.dayLimit(st, D.addDays(SUN, -3)); return week(st, [{ k: L, w: 8, s: 9000 }, { k: L, w: 6, s: 4000 }, { k: L, w: 8, s: 7000 }, { k: L - 30, w: 8, s: 12000 }, { k: 1500, s: 3000 }, { k: L, w: 4, s: 8000 }, { k: 900, w: 2 }]); };
 try {
   let p = await open(full(), { hour: 18 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'yakshanba 18:00 — hali yo\'q'); await p.context().close();
-  p = await open(full()); assert.match(await txt(p, '[data-nudge=hafta]'), /Haftangiz xulosasi tayyor/); await p.click('[data-nudge=hafta] [data-act=hafta]'); await p.waitForSelector('#hwRows');
-  const sh = await txt(p, '#rzSheet'); assert.match(sh, /O'rtacha: [\d ]+ kkal\/kun/); assert.match(sh, /Maqsadga yaqin kunlar: \d \/ 7/); assert.match(sh, /Qadam: kuniga o'rtacha/); assert.match(sh, /Eng yaxshi kun: /); assert.match(sh, /Ketma-ket yozilgan kunlar: 7/);
-  assert.ok(HZ.some((x) => sh.includes(x.uz)), 'bitta hazil (hafta_xulosa)'); assert.equal(await p.locator('#rzSheet .sl-joke').count(), 1); assert.match(await txt(p, '#hwTip'), /maslahat/i);
-  await p.click('#rzSheet [data-act=sheetclose]'); await p.waitForTimeout(500); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'ko\'rilgach — yana chiqmaydi'); assert.deepEqual(p.errs, []); await p.context().close();
+  p = await open(full()); assert.match(await txt(p, '[data-nudge=hafta]'), /Haftangiz xulosasi tayyor/); await p.click('[data-nudge=hafta] [data-act=hafta]'); await p.waitForSelector('#hkStory');
+  const sh = await txt(p, '#hkStory'); assert.match(sh, /Sizning haftangiz/); assert.ok(HZ.some((x) => sh.includes(x.uz)), 'bitta hazil (hafta_xulosa)'); assert.equal(await p.locator('#hkStory .hk-sl').count(), 5);
+  await p.keyboard.press('Escape'); await p.waitForTimeout(500); assert.equal(await p.locator('#hkStory').count(), 0); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'ko\'rilgach — yana chiqmaydi'); assert.deepEqual(p.errs, []); await p.context().close();
   p = await open(full(), { day: D.addDays(SUN, 1), hour: 9 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 1, 'dushanba ham'); await p.context().close();
   p = await open(full(), { day: D.addDays(SUN, 2), hour: 9 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'seshanba — yo\'q'); await p.context().close();
-  log('Bugun: yakshanba 19:00 dan dushanba oxirigacha «Haftangiz xulosasi tayyor» (eslatma kartasi, yangi doimiy karta emas); oynada o\'rtacha, maqsadga yaqin kunlar, qadam, eng yaxshi kun, seriya, bitta hazil, bitta maslahat');
-  p = await open(mk(), { url: '/kalkifit?hafta=1', day: D.addDays(SUN, 1), hour: 10 }); await p.waitForSelector('#hwEmpty'); assert.match(await txt(p, '#hwEmpty'), /Bu hafta yozuv yo'q\. Hechqisi yo'q/); await p.context().close();
-  p = await open(mk(), { url: '/ru/kalkifit?hafta=1' }); await p.waitForSelector('#hwEmpty'); assert.match(await txt(p, '#hwEmpty'), /На этой неделе записей нет/); await p.context().close();
-  p = await open(full(), { url: '/kalkifit?lang=cyr&hafta=1' }); await p.waitForSelector('#hwRows'); assert.match(await txt(p, '#rzSheet'), /Ўртача/); await p.context().close();
+  log('Bugun: yakshanba 19:00 dan dushanba oxirigacha «Haftangiz xulosasi tayyor» (eslatma kartasi) → «Haftangiz» hikoyasi (5 slayd, hazil); Esc bilan yopiladi, qayta chiqmaydi');
+  p = await open(mk(), { url: '/kalkifit?hafta=1', day: D.addDays(SUN, 1), hour: 10 }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /Bu hafta yozuv yo'q/); assert.equal(await p.locator('#hkStory .hk-sl').count(), 2, 'bo\'sh hafta — 2 slayd'); await p.context().close();
+  p = await open(mk(), { url: '/ru/kalkifit?hafta=1' }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /На этой неделе записей нет/); await p.context().close();
+  p = await open(full(), { url: '/kalkifit?lang=cyr&hafta=1' }); await p.waitForSelector('#hkStory'); await p.waitForTimeout(400); assert.match(await txt(p, '#hkStory'), /Сизнинг ҳафтангиз/); await p.context().close();
   log('?hafta=1 (eslatma bosildi) oynani ochadi; bo\'sh hafta — muloyim matn (UZ/RU); ЎЗ — kirillda');
   /* Profil + APK lokal bildirishnoma */
   p = await open(full(), { native: true, day: D.addDays(SUN, 2), hour: 10 }); await p.waitForTimeout(600);

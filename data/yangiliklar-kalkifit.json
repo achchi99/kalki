@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 26,
+   "d": "2026-10-23",
+   "bn": {
+    "uz": "Haftangiz — yangi ko'rinishda.",
+    "ru": "Ваша неделя — в новом виде."
+   },
+   "items": [
+    {
+     "uz": "Haftangiz — yangi ko'rinishda: Tarix tepasidagi «Haftangiz ▶» ni bosing.",
+     "ru": "Ваша неделя — в новом виде: нажмите «Ваша неделя ▶» вверху Истории.",
+     "show": "history",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Ovoz bilan qo'shish tuzatildi: «To'xtatish» endi darhol to'xtatadi.",
+     "ru": "Добавление голосом исправлено: «Остановить» теперь срабатывает сразу.",
+     "show": "ovoz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    }
+   ]
+  },
+  {
    "v": 25,
    "d": "2026-10-23",
    "bn": {

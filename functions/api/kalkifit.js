@@ -65,8 +65,9 @@ export async function onRequest({ request, env }) {
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
   const cl = num(env.KALKIFIT_CLIENT_LIMIT, DEFAULT_CLIENT_LIMIT);
-  const ovoz = body.manba === 'ovoz', al = aiLimits(env, body), out = {};          // ovozli kiritish: rasm/retsept/menyu bilan UMUMIY kunlik AI hisobi ('ai'; Android 2, veb 5) — faqat AI chaqirilganda (hammasi bazada bo'lsa sanalmaydi)
-  let sabab; try { sabab = await takeKfQuota(env, request, clientId, ovoz ? { ns: 'tx', uns: 'ai', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: al.client, ip: al.ip, out } : { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
+  let ovoz = body.manba === 'ovoz', tokOk = false; const al = aiLimits(env, body), out = {};
+  if (ovoz && typeof body.ovoz_tok === 'string' && /^[0-9a-f]{32}$/.test(body.ovoz_tok)) { try { const k = 'ovt:' + body.ovoz_tok; if (await env.KALKI_AI_KV.get(k)) { tokOk = true; await env.KALKI_AI_KV.delete(k); } } catch (e) { tokOk = false; } }          // server ovozi allaqachon 1 AI hisobidan o'tgan — bir martalik tok bilan qayta sanalmaydi          // ovozli kiritish: rasm/retsept/menyu bilan UMUMIY kunlik AI hisobi ('ai'; Android 2, veb 5) — faqat AI chaqirilganda (hammasi bazada bo'lsa sanalmaydi)
+  let sabab; try { sabab = tokOk ? null : await takeKfQuota(env, request, clientId, ovoz ? { ns: 'tx', uns: 'ai', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: al.client, ip: al.ip, out } : { ns: 'tx', site: num(env.KALKIFIT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
   if (sabab) return json(429, ovoz ? { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(al.client), sabab, limit: al.client, qoldi: 0 } : { xato: sabab === 'sayt' ? E[4291] : E[429], sabab });
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askModel(env, maskPII(matn2), SYSTEM + (body.til === 'ru' ? '\nНазвания блюд пиши по-русски (поле "nom" и "porsiya").' : '\nNomlarni o\'zbek tilida (lotin yozuvida) yoz.'), 700);
