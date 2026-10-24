@@ -25,8 +25,6 @@ const ck = (id) => Object.entries(CH.taom || CH).filter(([k]) => k === id);
 for (const id of ['tr-doner-mol-lavash', 'tr-iskender', 'tr-lahmajun', 'tr-pide-goshtli']) { const y = YM.taom[id]; assert.ok(y && /K/.test(y.s) && ['kabob', 'tez'].includes(y.t), id + ': Yeymiz «Kafe va choyxonada»'); }
 assert.ok(['tr-doner-mol-lavash', 'tr-adana-kabob', 'tr-iskender'].every((id) => YM.taom[id]));
 log('Yeymiz → Kafe va choyxonada: doner, iskender, lahmajun, pide (Kabob / Tez tayyor)');
-const app = fs.readFileSync(path.join(ROOT, 'assets/kalkifit-app.js'), 'utf8'); assert.match(app, /cat_turk: 'Turk taomlari'/); assert.match(app, /cat_turk: 'Турецкая кухня'/); assert.match(app, /c === 'turk'\) return \/\^tr-\//);
-log('«Turk taomlari» kategoriyasi (UZ/RU)');
 const pork = JSON.stringify(CH).match(/"choshqa"/); const pk = Object.entries(CH.taom || {}).filter(([id, v]) => /choshqa/.test(JSON.stringify(v)) && id.startsWith('tr-')); assert.equal(pk.length, 0, 'turk taomlarida cho\'chqa tegi yo\'q');
 log('Cho\'chqa tegi turk taomlariga qo\'yilmagan');
 console.log('\n' + n + '/' + n + ' OK');

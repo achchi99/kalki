@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 35,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Ovqat qo'shish soddalashdi.",
+    "ru": "Добавлять еду стало проще."
+   },
+   "items": [
+    {
+     "uz": "Bitta qidiruv, ichida mikrofon; ovqat vaqti soatga qarab o'zi tanlanadi.",
+     "ru": "Один поиск с микрофоном внутри; приём пищи выбирается сам по времени.",
+     "show": "simple",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "«Yaqinda yeganlaringiz»dagi «+» bir bosishda qo'shadi, oyna ochiq qoladi.",
+     "ru": "«+» в «Недавно ели» добавляет одним нажатием, окно остаётся открытым."
+    },
+    {
+     "uz": "Porsiya: Yarim · 1 · 1,5 · Gramm va bitta katta tugma.",
+     "ru": "Порция: ½ · 1 · 1,5 · Граммы и одна большая кнопка."
+    }
+   ]
+  },
+  {
    "v": 34,
    "d": "2026-10-24",
    "bn": {
