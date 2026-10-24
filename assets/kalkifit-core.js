@@ -323,10 +323,10 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
 
   /* ---------- qidiruv va matn tahlili ---------- */
   var CYR = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'j', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'x', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': '', 'ы': 'i', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'ў': 'o', 'қ': 'q', 'ғ': 'g', 'ҳ': 'h' };
-  function key(s) {                                  // lotin/kirill/rus + xato yozuvga chidamli kalit: o' o‘ oʻ o` o’ → o, g' → g, ў қ ғ ҳ х ш ч ё ю я → lotin
+  function key(s, raw) {                             // lotin/kirill/rus + xato yozuvga chidamli kalit: o' o‘ oʻ o` o’ → o, g' → g, ў қ ғ ҳ х ш ч ё ю я → lotin; raw — qo'sh harflar yig'ilmaydi (qatiq ≠ qattiq)
     var t = String(s || '').toLowerCase().replace(/[’'`‘ʻʼ´′]/g, ''), o = '';
     for (var i = 0; i < t.length; i++) o += CYR[t[i]] != null ? CYR[t[i]] : t[i];
-    return o.replace(/w/g, 'v').replace(/kh/g, 'x').replace(/ph/g, 'f').replace(/ts/g, 's').replace(/([a-z])\1+/g, '$1').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
+    return o.replace(/w/g, 'v').replace(/kh/g, 'x').replace(/ph/g, 'f').replace(/ts/g, 's').replace(raw ? /$^/ : /([a-z])\1+/g, '$1').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
   function dmax(len) { return len < 3 ? 0 : (len <= 5 ? 1 : 2); }            // xatoga chidamlilik: 3–5 harfda 1 ta, 6+ da 2 ta
   function osa(a, b, max) {                           // Damerau–Levenshtein (harf tushishi, ortiqcha harf, almashishi, ikki harf o'rin almashishi); max dan oshsa max+1
@@ -339,43 +339,80 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     }
     return prev[lb];
   }
-  function foodKeys(f) { if (!f._k) { var arr = [f.n, f.r].concat(f.a || []); f._k = arr.filter(Boolean).map(function (x) { return key(x); }); f._t = f._k.map(function (k) { return k.split(' '); }); f._nl = f._k[0] ? f._k[0].length : 99; } return f; }
-  function buildIndex(foods) { foods.forEach(foodKeys); return foods; }       // indeksni oldindan qurish (har harfda qayta hisoblanmaydi)
-  /* so'z darajasi: 1 so'zning o'zi · 2 so'z boshidan · 3 so'z boshida xato bilan · 4 ichida · 5 butun so'z xato bilan; {t, d (xato soni), l (uzunlik farqi)} */
-  function tokTier(w, q) {
-    if (w === q) return { t: 1, d: 0, l: 0 };
-    if (w.indexOf(q) === 0) return { t: 2, d: 0, l: w.length - q.length };
-    var ql = q.length; if (ql < 3) return null; var tol = dmax(ql), best = null, d, fl = ql <= 4 && w.charAt(0) !== q.charAt(0);      // qisqa so'rovda birinchi harfda xato qidirilmaydi (shovqin kamayadi)
-    if (!fl) for (var n = Math.max(3, ql - 1); n <= ql + 1; n++) { if (n > w.length) continue; d = osa(q, w.slice(0, n), tol); if (d <= tol && (!best || d < best.d)) best = { t: 3, d: d, l: Math.abs(w.length - ql) }; }
-    if (best) return best;
-    if (w.indexOf(q) > 0) return { t: 4, d: 0, l: w.length - ql };
-    if (fl) return null; d = osa(q, w, tol); if (d <= tol) return { t: 5, d: d, l: Math.abs(w.length - ql) };
-    return null;
-  }
-  function matchFood(f, qt, whole) {                   // → null | {tier, d, l}; tier 0 — butun so'rov nom/sinonimga aynan mos
-    foodKeys(f); for (var k = 0; k < f._k.length; k++) if (f._k[k] === whole) return { tier: 0, d: 0, l: 0 };
-    var tier = 0, dd = 0, ll = 0;
-    for (var i = 0; i < qt.length; i++) {
-      var best = null;
-      for (var k2 = 0; k2 < f._t.length; k2++) for (var j = 0; j < f._t[k2].length; j++) { var r = tokTier(f._t[k2][j], qt[i]); if (r && (!best || r.t < best.t || (r.t === best.t && (r.d < best.d || (r.d === best.d && r.l < best.l))))) best = r; }
-      if (!best) return null; if (best.t > tier) tier = best.t; dd += best.d; ll += best.l;
+  /* ---- QIDIRUV (v34) ----
+     Daraja (kichigi yaxshi): 0 — to'liq nom aynan · 1.2 — sinonim aynan · 1.3 — qavssiz nom aynan · 1.4 — guruh («osh/palov/плов/ош» → palov turlari) · 2 — nom so'rov bilan boshlanadi ·
+     3 — nomdagi so'zlar so'rov so'zlari bilan boshlanadi · 4 — sinonim/boshqa yozuv (boshlanadi › so'z boshi) · 5 — imlo xatosi (faqat 5+ harfli so'rovda).
+     3–4 harfli so'rovda faqat so'z boshidan mos keladi (so'z o'rtasidan va xato bilan — yo'q: «пло» → «пломбир» chiqmaydi).
+     Bir darajada: sevimli/ko'p yeyilgan › ommaboplik (milliy taomlar, POP) › qisqa nom. */
+  function foodKeys(f) {
+    if (!f._nk) {
+      var nm = [f.n, f.r].filter(Boolean), base = nm.map(function (x) { return String(x).replace(/\([^)]*\)/g, ' '); });
+      var kc = function (x) { return key(x); };          // .map(key) emas: map indeksni 2-argument (raw) qilib yuboradi
+      f._nk = nm.map(kc).concat(base.map(kc)).filter(function (x, i, a) { return x && a.indexOf(x) === i; });
+      f._nw = f._nk.map(function (k) { return k.split(' '); });
+      f._ak = (f.a || []).map(kc).filter(Boolean); f._aw = f._ak.map(function (k) { return k.split(' '); });
+      var kr = function (x) { return key(x, true); };
+      f._full = nm.map(kr);
+      f._nkr = nm.map(kr).concat(base.map(kr)).filter(function (x, i, a) { return x && a.indexOf(x) === i; }); f._nwr = f._nkr.map(function (k) { return k.split(' '); });
+      f._nl = f._nk[0] ? f._nk[0].length : 99;
     }
-    return { tier: tier, d: dd, l: ll };
+    return f;
+  }
+  function buildIndex(foods) { foods.forEach(foodKeys); return foods; }       // indeksni oldindan qurish (har harfda qayta hisoblanmaydi)
+  /* guruhlar: so'rov → bir oila taomlari (nomi boshqacha bo'lsa ham) */
+  var GROUP_Q = { osh: 'palov', palov: 'palov', plov: 'palov', pilov: 'palov', palav: 'palov', pilaf: 'palov', 'osh palov': 'palov', 'toy oshi': 'palov', qaymoq: 'qaymoq', kaymak: 'qaymoq', protein: 'protein' };
+  var GROUP = { palov: ['osh', 'toy-oshi', 'samarqand-oshi', 'fargona-oshi', 'buxoro-oshi', 'buxoro-oshi-qazili', 'buxoro-oshi-bedana', 'choyxona-osh', 'osh-tovuq'], qaymoq: ['qaymoq', 'smetana', 'qaymoq-10', 'qaymoq-yogli'], protein: ['protein-kukun', 'protein-izolyat', 'protein-kazein'] };          // «protein» — avval kukunlar, keyin batonchik
+  /* ommaboplik: mashhur milliy taomlar (bir darajada oldinda) */
+  var POP = { osh: 10, non: 10, choy: 10, shurva: 9, lagmon: 9, somsa: 9, manti: 9, chuchvara: 8, norin: 8, shashlik: 8, 'qozon-kabob': 8, dimlama: 7, mastava: 7, chalop: 6, moshxorda: 6, xonim: 6, qatiq: 7, sut: 7, kefir: 6, 'choyxona-osh': 7, 'toy-oshi': 8, 'samarqand-oshi': 7, 'fargona-oshi': 7, 'buxoro-oshi': 6, 'osh-tovuq': 6, halim: 5, beshbarmoq: 5, 'mosh-xorda': 6, tuxum: 7, kabob: 7, ayron: 5, qaymoq: 5, suzma: 5, 'protein-kukun': 3, 'protein-izolyat': 2, 'protein-kazein': 1 };
+  function popOf(f) { return (POP[f.id] || 0) + (f.top ? 2 : 0) + (f.t === 'o' ? 1 : 0); }
+  function wordsStart(words, qt, fuzzy) {              // har bir so'rov so'zi nomdagi biror so'z BOSHIDA (fuzzy: 5+ harfda xato bilan) → {d} | null
+    var d = 0;
+    for (var i = 0; i < qt.length; i++) {
+      var q = qt[i], ok = false, bd = 9;
+      for (var j = 0; j < words.length; j++) { var w = words[j];
+        if (w === q) { ok = true; bd = 0; break; } if (w.indexOf(q) === 0) { ok = true; if (bd > 0.1) bd = 0.1; continue; }          // butun so'z > so'z boshi
+        if (fuzzy && q.length >= 5) { var tol = q.length >= 6 ? 2 : 1, dd = osa(q, w.slice(0, q.length), tol); if (dd > tol) dd = osa(q, w, tol); if (dd <= tol && dd < bd) { ok = true; bd = dd; } }
+      }
+      if (!ok) return null; d += bd;
+    }
+    return { d: d };
+  }
+  function nameTier(nk, nw, qt, whole) {
+    var i; for (i = 0; i < nk.length; i++) if (nk[i] === whole) return 0;
+    for (i = 0; i < nk.length; i++) if (nk[i].indexOf(whole) === 0 && (nk[i].length === whole.length || nk[i].charAt(whole.length) === ' ')) return 2;          // nom so'rov (butun so'z) bilan boshlanadi; «choy» → «Choyxona oshi» emas, u so'z boshi darajasida
+    var b = -1; for (i = 0; i < nw.length; i++) { var w0 = wordsStart(nw[i], qt, false); if (w0 && (b < 0 || 3 + w0.d < b)) b = 3 + w0.d; } return b;          // 3 — butun so'z, 3.1 — so'z boshi
+  }
+  function matchFood(f, qt, whole, grp, fz, qtr, wholeR) {          // → null | {tier, d}; fz — imlo xatosi bilan qidirish (faqat aniq natija yo'q bo'lsa)
+    foodKeys(f); var i, m, tr = nameTier(f._nkr, f._nwr, qtr, wholeR);
+    if (f._full.indexOf(wholeR) > -1) return { tier: 0, d: 0 };          // to'liq nom aynan
+    for (i = 0; i < f._ak.length; i++) if (f._ak[i] === whole) return { tier: 1.2, d: 0 };          // sinonim AYNAN («пельмени» → chuchvara, «govyadina» → mol go'shti)
+    if (tr === 0) return { tier: 1.3, d: 0 };          // qavssiz nom aynan («Osh (palov)» ← osh)
+    if (grp && GROUP[grp].indexOf(f.id) > -1) return { tier: 1.4, d: 0 };
+    if (tr > 0) return { tier: tr, d: 0 };
+    var collapsed = nameTier(f._nk, f._nw, qt, whole) > -1;          // faqat qo'sh harf yig'ilganda mos (qatiq ~ qattiq) — sinonimlardan keyin
+    for (i = 0; i < f._ak.length; i++) if (f._ak[i].indexOf(whole) === 0) return { tier: 4.1, d: 0 };
+    for (i = 0; i < f._aw.length; i++) if (wordsStart(f._aw[i], qt, false)) return { tier: 4.2, d: 0 };
+    if (qt.length > 1) { if (!f._allw) f._allw = [].concat.apply([], f._nw.concat(f._aw)); if (wordsStart(f._allw, qt, false)) return { tier: 4.3, d: 0 }; }          // ko'p so'zli so'rov: so'zlar nom va sinonimlarda (masalan «sazan baliq»)
+    if (collapsed) return { tier: 4.5, d: 0 };
+    if (!fz || whole.replace(/ /g, '').length < 5) return null;          // qisqa so'rov: xato bilan qidirilmaydi
+    var best = null; f._nw.concat(f._aw).forEach(function (ws) { m = wordsStart(ws, qt, true); if (m && (!best || m.d < best.d)) best = m; });
+    return best ? { tier: 5, d: best.d } : null;
   }
   function freqMap(st, today, days, alias) {                  // oxirgi N kunda necha marta yeyilgan: { fid: son }
     var out = {}, from = D.addDays(today, -((days || 30) - 1));
     Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) { var id = (alias && alias[e.fid]) || e.fid; out[id] = (out[id] || 0) + 1; } }); });
     return out;
   }
-  function search(foods, q, o) {                       // ① aynan ② so'z boshidan ③ ichida/xato bilan ④ — bir xil darajada: ko'p yeyilgan va sevimlilar yuqorida
-    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' ');
+  function search(foods, q, o) {                       // daraja › sevimli/ko'p yeyilgan › ommaboplik › qisqa nom
+    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' '), grp = GROUP_Q[whole] || null, qtr = key(q, true).split(' ').filter(Boolean), wholeR = qtr.join(' ');
     var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
-    foods.forEach(function (f, ix) {
+    var pass = function (fz) { foods.forEach(function (f, ix) {
       if (f.h) return;                                  // eski id (alias) — qidiruvda ko'rinmaydi, oila ko'rinadi
-      var m = matchFood(f, qt, whole); if (!m) return; var r = rec.indexOf(f.id);
-      out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), d: m.d, l: m.l, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
-    });
-    out.sort(function (a, b) { return a.tier - b.tier || b.pref - a.pref || a.d - b.d || a.l - b.l || a.r - b.r || a.ix - b.ix; });
+      var m = matchFood(f, qt, whole, grp, fz, qtr, wholeR); if (!m || (fz && m.tier < 5)) return; var r = rec.indexOf(f.id);
+      out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), pop: popOf(f), d: m.d, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
+    }); };
+    pass(false); if (!out.length) pass(true);          // imlo xatosi — faqat aniq natija YO'Q bo'lsa (yozuv to'g'ri bo'lsa, shovqin yo'q)
+    out.sort(function (a, b) { return a.tier - b.tier || a.d - b.d || b.pref - a.pref || b.pop - a.pop || a.r - b.r || a.nl - b.nl || a.ix - b.ix; });
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };

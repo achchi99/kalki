@@ -179,6 +179,7 @@
    "sut",
    "glyuten"
   ],
+  "buxoro-oshi": [],
   "buzoq": [],
   "buzoq-qiyma": [],
   "chakchak": [
@@ -292,6 +293,7 @@
   ],
   "fanta": [],
   "fanta-zero": [],
+  "fargona-oshi": [],
   "feyxoa": [],
   "finik": [],
   "forel": [
@@ -774,6 +776,7 @@
   "muzqaymoq-eskimo": [
    "sut"
   ],
+  "mz-bomba-konus": [],
   "mz-eskimo-yongoq": [
    "sut",
    "yongoq"
@@ -787,6 +790,11 @@
    "sut",
    "glyuten"
   ],
+  "mz-korovka-eskimo": [],
+  "mz-korovka-eskimo-belgiya": [],
+  "mz-korovka-konteyner": [],
+  "mz-korovka-rojok": [],
+  "mz-korovka-stakan-shokolad": [],
   "mz-light": [
    "sut"
   ],
@@ -1282,6 +1290,7 @@
   "sabzi-sharbat": [],
   "salat-barg": [],
   "salat-sabzavot": [],
+  "samarqand-oshi": [],
   "sardina": [
    "baliq"
   ],
@@ -1534,7 +1543,13 @@
   "sut#f05": [
    "sut"
   ],
+  "sut#f1": [
+   "sut"
+  ],
   "sut#f15": [
+   "sut"
+  ],
+  "sut#f2": [
    "sut"
   ],
   "sut#f25": [
@@ -1654,6 +1669,7 @@
   "tovuq-son": [],
   "tovuq-son-qozon": [],
   "tovuq-yurak": [],
+  "toy-oshi": [],
   "tr-adana-kabob": [],
   "tr-asure": [
    "yongoq",
