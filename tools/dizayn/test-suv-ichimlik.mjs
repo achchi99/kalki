@@ -45,7 +45,7 @@ async function open(state, { url = '/kalkifit', w = 360, hour = 15 } = {}) {
 const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').replace(/ /g, ' ').trim() : null; };
 const num = (s) => +String(s).replace(/\D/g, '');
 const wml = async (p) => num((await txt(p, '#wTxt b')));
-const addFood = async (p, q) => { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(900); };
+const addFood = async (p, q) => { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(900); };
 try {
   const st0 = () => { const st = mk({ prefs: { suvFrom: undefined, jokes: true } }); delete st.prefs.suvFrom; return st; };
   let p = await open(st0()); assert.equal(await wml(p), 0); assert.equal(await p.locator('#wSplit').count(), 0, 'ichimlik yo\'q — qator yo\'q'); assert.ok((await p.evaluate(() => window.__kalkifit.state.prefs.suvFrom)) === TODAY, 'suvFrom bugun qo\'yildi');

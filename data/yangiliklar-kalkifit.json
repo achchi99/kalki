@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 33,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Ovqat qo'shish yana tezlashdi.",
+    "ru": "Добавлять еду стало ещё быстрее."
+   },
+   "items": [
+    {
+     "uz": "«Qo'shish» varag'ida tepada qidiruv va oxirgi 5 ta taom — bitta bosishda qo'shiladi.",
+     "ru": "В окне «Добавить» сверху поиск и 5 последних блюд — добавляются одним нажатием.",
+     "show": "simple",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 32,
    "d": "2026-10-24",
    "bn": {

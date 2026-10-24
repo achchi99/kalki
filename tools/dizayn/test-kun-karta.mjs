@@ -45,7 +45,7 @@ try {
   assert.equal(d.eaten, 622); assert.ok(d.limit > 1000); assert.equal(d.steps, 6400); assert.ok(d.ml >= 250, 'choy suvga kirgan'); assert.match(d.food, /Osh|Palov/i); assert.equal(d.img, true, 'osh ikonkasi'); assert.ok(d.date.length > 5);
   const flat = JSON.stringify(d); assert.ok(!/83[.,]4|\b37\b|\b77\b|weight|age|kg/i.test(flat), 'vazn/yosh/maqsad vazni yo\'q: ' + flat); assert.equal(d.dark, false);
   assert.ok(of('dayend').includes(d.joke), 'kam yegan kun → dayend hazili: ' + d.joke);
-  await p.click('#kcGo'); await p.waitForTimeout(900); const sh = await p.evaluate(() => window.__sh); assert.deepEqual(sh, [{ name: 'kalkifit-kun.png', type: 'image/png', w: 1080, h: 1350 }], 'Web Share: PNG 1080×1350');
+  await p.click('#kcGo'); await p.waitForFunction(() => window.__sh && window.__sh.length > 0, null, { timeout: 8000 }).catch(() => {}); const sh = await p.evaluate(() => window.__sh); assert.deepEqual(sh, [{ name: 'kalkifit-kun.png', type: 'image/png', w: 1080, h: 1350 }], 'Web Share: PNG 1080×1350');
   assert.deepEqual(p.errs, []); await p.context().close();
   log('Oyna: kanvas 1080×1350, BITTA «Ulashish»; Web Share fayl bilan (PNG 1080×1350); kartada iste\'mol/maqsad, suv (choy bilan), 6 400 qadam, osh ikonkasi, sana; vazn/yosh/maqsad vazni yo\'q');
   /* yuklab olish (Web Share yo'q) */

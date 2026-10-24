@@ -23,7 +23,7 @@ async function mk(o = {}) {
   await p.route('**/api/kalkifit-rasm', (r) => { p.rasm.push(JSON.parse(r.request().postData() || '{}')); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ovqatlar: [{ nom: 'Qovurilgan jigar', ehtimol: 0.6, boshqa: [{ nom: 'Jigar kabob', ehtimol: 0.3 }], porsiya: '1 porsiya', g: 200, kcal: 460, o: 40, y: 25, u: 20 }], aniqlik: '±30%', limit: 5, qoldi: 4 }) }); });
   await p.route('**/api/retsept', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ limit: 5, qoldi: 5 }) })); await p.route(/\/api\/(?!kalkifit-rasm|retsept)/, (r) => r.fulfill({ status: 204, body: '' }));
   await p.goto(BASE + (o.url || '/kalkifit'), { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
-const cam = async (p) => { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(300); await p.click('#phBtn'); await p.waitForTimeout(400); };
+const cam = async (p) => { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); await p.click('#phBtn'); await p.waitForTimeout(400); };
 const calls = (p) => p.evaluate(() => window.__cap.calls.slice());
 try {
   /* 1. Android: «Rasm» tugmasi native oynani chaqirmaydi — sayt oynasi 3 tugma bilan */
@@ -49,7 +49,7 @@ try {
   p = await mk({ cap: { photos: 'ok', camera: 'ok' } }); await cam(p); const fc2 = p.waitForEvent('filechooser', { timeout: 4000 }); await p.click('[data-act=fphotof]'); await (await fc2).setFiles({ name: 'r.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(JPG64, 'base64') }); await p.waitForSelector('[data-act=txsave]', { timeout: 8000 }); await p.context().close();
   log('Bekor qilish — xabarsiz; galereya xatosi → WebView fayl tanlovi zaxirada; «Fayllardan» tugmasi ham ishlaydi');
   /* 6. veb (Capacitor yo'q): avvalgidek — kamera tugmasi bevosita fayl tanlashni ochadi */
-  p = await mk({ cap: null }); await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(300); const fc3 = p.waitForEvent('filechooser', { timeout: 4000 }); await p.click('#phBtn'); await (await fc3).setFiles({ name: 'r.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(JPG64, 'base64') }); await p.waitForSelector('[data-act=txsave]', { timeout: 8000 }); assert.deepEqual(p.errs, []); await p.context().close();
+  p = await mk({ cap: null }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); const fc3 = p.waitForEvent('filechooser', { timeout: 4000 }); await p.click('#phBtn'); await (await fc3).setFiles({ name: 'r.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(JPG64, 'base64') }); await p.waitForSelector('[data-act=txsave]', { timeout: 8000 }); assert.deepEqual(p.errs, []); await p.context().close();
   log('Veb: kamera tugmasi avvalgidek fayl tanlashni ochadi, tanlov oynasi chiqmaydi');
   console.log('\nAndroid rasm tanlash: ' + n + ' tekshiruv OK');
 } finally { await b.close().catch(() => {}); srv.close(); }

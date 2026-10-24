@@ -813,8 +813,12 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz.sl .sl-hd2 .sl-h1,.rz.sl .rz-main>h2.rz-h:first-child{margin:var(--g1) 0 0;font-size:var(--t-xl);font-weight:600;letter-spacing:-.01em;line-height:1.2}
 .rz.sl .sl-hd2 .d{order:2}
 /* Bugun: pastda yopishqoq bitta katta «Qo'shish» */
-.rz .sl-addbar{position:sticky;bottom:var(--g1);z-index:3;padding-top:var(--g1);margin-top:auto}
+.rz.sl{--addh:72px}
+.rz .sl-addbar{position:absolute;left:0;right:0;bottom:var(--navh,92px);z-index:19;padding:8px 20px;background:var(--bg)}
+.rz .sl-addbar[hidden]{display:none}
 .rz .sl-addbar .sl-main{box-shadow:0 8px 24px color-mix(in srgb,var(--fill) 30%,transparent)}
+/* Bugun: aylantiriladigan maydon «Qo'shish» tugmasi tepasida tugaydi — hech qanday kontent tugma ostida qolmaydi; oxirgi element tagida 16 px bo'shliq */
+.rz.sl[data-view=today] .rz-main{margin-bottom:calc(var(--navh,92px) + var(--addh));padding-bottom:16px}
 .rz .sl-tdempty{padding:var(--g2);text-align:center;color:var(--mut);font-size:var(--t-s);line-height:1.45;background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow)}
 .rz .sl-tdempty p{margin:0}
 /* hazil: ovqat qo'shilgach 4 s — kaloriya kartasi ustida (absolute: boshqa bloklar sakramaydi) */
@@ -885,9 +889,12 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz .sl-big{padding:var(--g2) var(--g2) var(--g2);gap:var(--g2)}
 @media (max-width:400px){.rz .sl-vessel{width:208px;height:208px}}
 .rz .sl-yelink{font-size:var(--t-s);text-decoration:none}
-.rz .sl-addbar::before{content:"";position:absolute;left:-16px;right:-16px;bottom:-8px;height:calc(100% + 16px);background:linear-gradient(to top,var(--bg) 55%,transparent);z-index:-1;pointer-events:none}
 .rz .in-h{font-size:var(--t-pn);line-height:1.25;max-width:20ch;margin:0 auto;text-wrap:balance}
 .rz .sl-prof .sl-pg{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--g1)}
 .rz .sl-fishslot{padding:var(--g1) var(--g2);display:flex;align-items:center}
 .rz .sl-fishslot .sl-fishchip{min-height:44px}
 .rz .sl-stkrow{display:flex}
+/* varaq ixchamroq: Yaqinda + 3 plitka bir ekranga ko'proq sig'sin */
+.rz .sl-ptiles{gap:var(--g1);margin:var(--g1) 0 var(--g1)}
+.rz .sl-ptile{min-height:0;padding:12px;gap:4px}.rz .sl-ptile-ic{width:36px;height:36px;border-radius:12px}.rz .sl-ptile-ic .rz-i{width:20px;height:20px}
+.rz #fdPickW .sl-sech{margin-top:var(--g1)}
