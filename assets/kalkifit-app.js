@@ -417,6 +417,7 @@
     theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
     history: function (n) { return goTab('history', function () { n.highlight($('#hkCard') || $('.sl-sec2') || $('#rzMain')); }); },
+    bju: function (n) { return goTab('today', function () { var c = $('#bjuCard'); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'center' }); n.highlight(c); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
     yeymiz: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
     retsept: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=retsept]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // v32: Profil → Imkoniyatlar
@@ -592,6 +593,7 @@
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
     h += '<div class="sl-duo' + (QA ? '' : ' one') + '"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + (QA ? '' : '<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       (QA ? '<section class="sl-card sl-s"><button type="button" class="sl-sb" data-act="addsteps" aria-label="' + esc(T('stepsT')) + '"><span class="l">' + ico('steps') + esc(T('sT')) + '</span><span class="v"><b id="sNum">' + (x.steps ? fmt(x.steps) : '0') + '</b><small> / ' + fmt(st.stepGoal) + '</small></span>' + qaSrcHtml() + '</button>' + (qaOn() ? qaFitBtn() : qaS.avail ? '<button type="button" class="sl-pill" data-act="qaulash">' + ico('steps') + '<span>' + esc(T('qaOnPill')) + '</span></button>' : '') + '</section>' : '') + '</div>';          // qadam faqat avtomatik (Android ilova: sensor / Health Connect); qo'lda kiritish yo'q, vebda karta yo'q
+    h += bjuHtml(tot, pl);          // suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2"><h3>' + esc(T('tdMeals')) + '</h3></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
 
     setMain(h); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow();
@@ -1174,6 +1176,12 @@
   function xr(sg, label, val, cls, unit) { return '<div class="rz-xr ' + (cls || '') + '"><span class="sg" aria-hidden="true">' + sg + '</span><span class="lb">' + esc(label) + '</span>' + (val == null ? '' : '<b>' + val + (unit === false ? '' : '<small> ' + T('kcal') + '</small>') + '</b>') + '</div>'; }
   function okBtn() { return '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>'; }
   function macrosHtml(tot, pl) { return '<section class="sl-card sl-macs"><button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b><i class="dt" style="background:var(--' + m[1] + ')"></i>' + esc(T(m[0])) + '</b><span class="mv">' + v + ' <small>/ ' + goal + ' g</small></span><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + m[1] + ')"></i></span></span>'; }).join('') + '</button></section>'; }          // oqsil · yog' · uglevod — halqa bosilganda (kaloriya tushuntirishi oynasi tepasida)
+  function bjuHtml(tot, pl) {                          // Bugun: kunlik oqsil · yog' · uglevod kartasi (maqsad — halqa bosilganda ochiladigan makro hisobi bilan BIR manba: pl.macros); bosilsa makro tafsiloti
+    return '<section class="sl-card sl-bju" id="bjuCard"><button type="button" class="sl-bjub" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) {
+      var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]), over = v > goal;
+      return '<span class="mc" data-m="' + m[1] + '"><span class="mh">' + esc(T(m[0])) + '</span><span class="mv"><b>' + fmt(v) + '</b><small>/ ' + fmt(goal) + ' g</small></span><span class="tr"><i class="' + (over ? 'over' : '') + '" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + (over ? 'danger' : m[1]) + ')"></i></span></span>';
+    }).join('') + '</button></section>';
+  }
   function openExplainKcal() {
     var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), b = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st), st.profile.act);
     var di = S.dayStatus(st, t, t), dnote = di.complete ? T('stFull') + ' · ' + stLabel(di, t, t) : T('cNote');
@@ -2099,7 +2107,7 @@
   function noIntro() { try { return !!localStorage.getItem('kalki_no_intro'); } catch (e) { return false; } }      // sinov kaliti: avtomatik slayd chiqmasin (faqat test-soddalik2 uni tekshiradi)
   /* ochilish animatsiyasi: splash (seansda bir marta, ≤900 ms, ilovani kuttirmaydi) va Bugun'ning birinchi kirishida bloklar pastdan 12 px suzib chiqadi (50–60 ms stagger, ≤400 ms; tab almashganda takrorlanmaydi) */
   var todayIn = false;
-  function upIdx() { var m = $('#rzMain'); if (!m || !m.classList.contains('rzi')) return; var i = 0; ['.sl-duo', '.sl-meal', '#mainAdd'].forEach(function (q) { $$('#rzMain ' + q).forEach(function (e) { e.style.setProperty('--i', i++); }); }); }
+  function upIdx() { var m = $('#rzMain'); if (!m || !m.classList.contains('rzi')) return; var i = 0; ['.sl-duo', '.sl-bju', '.sl-meal', '#mainAdd'].forEach(function (q) { $$('#rzMain ' + q).forEach(function (e) { e.style.setProperty('--i', i++); }); }); }
   function staggerToday() {                                // .rzi — faqat birinchi ~1,9 s; shu vaqtda qayta chizilsa ham indekslar qayta qo'yiladi (render ichida upIdx)
     if (reduce || noIntro()) return; var m = $('#rzMain'); m.classList.add('rzi'); upIdx(); setTimeout(function () { m.classList.remove('rzi'); }, 1900);
   }

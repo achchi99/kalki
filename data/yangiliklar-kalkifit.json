@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 37,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Oqsil, yog' va uglevod doim ko'rinadi.",
+    "ru": "Белки, жиры и углеводы всегда на виду."
+   },
+   "items": [
+    {
+     "uz": "Bugun ekranida suv ostida kunlik oqsil · yog' · uglevod kartasi — bosilsa tafsiloti ochiladi.",
+     "ru": "Под водой на экране «Сегодня» — карточка белков, жиров и углеводов; по нажатию откроются подробности.",
+     "show": "bju",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 36,
    "d": "2026-10-24",
    "bn": {
