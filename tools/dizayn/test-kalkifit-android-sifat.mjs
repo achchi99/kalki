@@ -55,11 +55,9 @@ try {
   log('Ilova ichida o\'rnatish taklifi, «Brauzerda ochish», «Bosh ekranga qo\'shish», «yuklab olish» yo\'q; tashqi havolalar (Uzum, kalki.uz boshqa sahifalari, window.open) — tizim brauzerida (AppLauncher), KalkiFit — ichida');
   /* 4. hazil */
   for (const h of [9, 15]) { p = await open('/kalkifit', { state: seed({ prefs: { jokes: true }, entries: [{ fid: 'osh', unit: 'likop', qty: 1, g: 300, kcal: 500 }] }), hour: h }); await p.waitForTimeout(500);
-    const jl = await txt(p, '#jLine .t'); assert.ok(jl && jl.length > 15, h + ':00 — Bugun\'da hazil qatori bor: ' + jl);
-    if (h === 9) { await p.click('#jLine .t'); await p.waitForTimeout(300); assert.equal(await p.locator('#jLine').count(), 1, 'matnni bosish yopmaydi'); await p.click('#jLine [data-act=jclose]'); await p.waitForTimeout(300); assert.equal(await p.locator('#jLine').count(), 0, '✕ yopadi'); }
-    await p.context().close(); }
+    assert.equal(await p.locator('#jLine').count(), 0, h + ':00 — hazil Bugun\'da doimiy turmaydi (faqat ovqat qo\'shilgach 4 s)'); await p.context().close(); }
   p = await open('/kalkifit', { state: seed({ prefs: { jokes: false }, entries: [{ fid: 'osh', unit: 'likop', qty: 1, g: 300, kcal: 500 }] }), hour: 9 }); assert.equal(await p.locator('#jLine').count(), 0, 'o\'chirilganda yo\'q'); await p.context().close();
-  log('Hazil: yoqilganda Bugun\'da kuniga kamida bitta qator (ertalab ham, kunduzi ham — mos holat bo\'lmasa ham), o\'chirilganda yo\'q; yopish faqat ✕ bilan');
+  log('Hazil: Bugun\'da doimiy qator yo\'q (faqat ovqat qo\'shilgach 4 s pufak — test-kalkifit-qoshish), o\'chirilganda ham yo\'q');
   /* 5. rasm/AI yozuvi — bazadagi taom ikonkasi */
   p = await open('/kalkifit', { state: seed({ entries: [{ fid: null, name: 'Shovla (yarim kichik tarelka)', g: 200, kcal: 290, est: true, meal: 'd' }] }) }); await p.waitForTimeout(1500);
   const src = await p.locator('.sl-meal[data-m=d] .sl-mh .sl-tile img').getAttribute('src').catch(() => null); assert.match(src || '', /shovla/, 'kechki ovqat kartasida shovla ikonkasi (harf emas)');

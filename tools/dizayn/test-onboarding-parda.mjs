@@ -37,10 +37,10 @@ try {
     await p.context().close();
   }
   log('«Keyinroq» → Bugun (390/360, light/dark, reduced-motion bor/yo\'q, ' + eng + '): 1 s ichida onboarding yopiq, skroll 0, kartа ekran ichida, parda bosilsa yopiladi, «Ovqat qo\'shish» ko\'rinadi va bosiladi, sheet pardasi yopadi');
-  /* Escape yo'l-yo'riqni yopadi */
-  let p = await mk({ w: 390, h: 844 }); await p.click('[data-act=obsex][data-v=f]'); await p.click('[data-act=oblater]'); await p.waitForSelector('#rzTips', { state: 'visible', timeout: 3000 }); await p.keyboard.press('Escape'); await p.waitForTimeout(200);
-  let r = await probe(p); assert.equal(r.tipsOn, false, 'Escape yo\'l-yo\'riqni yopmadi'); assert.ok(r.addHit); assert.equal(await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.tipsDone), true, 'yopilgach qayta chiqmasligi kerak'); await p.context().close();
-  log('Escape yo\'l-yo\'riqni yopadi va qayta chiqmaydi (tipsDone)');
+  /* v32: eski yo'l-yo'riq (tips) yo'q — «Keyinroq» dan keyin darrov «Qo'shish» bosiladi */
+  let p = await mk({ w: 390, h: 844 }); await p.click('[data-act=obsex][data-v=f]'); await p.click('[data-act=oblater]'); await p.waitForTimeout(1500);
+  let r = await probe(p); assert.equal(r.tipsOn, false, 'yo\'l-yo\'riq chiqmaydi'); assert.ok(r.addHit); await p.context().close();
+  log('v32: onboarding\'dan keyin eski yo\'l-yo\'riq chiqmaydi, «Qo\'shish» darrov bosiladi');
   /* nishon ekrandan tashqarida: qadam o'tkaziladi / karta baribir ekran ichida, ilova qotmaydi */
   for (const [w, h] of [[390, 844], [360, 640]]) {
     p = await mk({ w, h, far: true }); await p.click('[data-act=obsex][data-v=m]'); await p.click('[data-act=oblater]'); await p.waitForTimeout(1200); r = await probe(p);
