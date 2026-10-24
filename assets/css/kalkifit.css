@@ -910,3 +910,9 @@ html.hk-on,html.hk-on body{overflow:hidden}
 html.fs-big .rz .sl-ptile .d{font-size:15px}
 .rz .sl-ptiles{gap:6px}.rz .sl-ptile{padding:10px 7px}
 .rz .sl-ptile .d{font-size:13px}html.fs-big .rz .sl-ptile .d{font-size:14px}
+/* halqa: SVG tugma o'lchamiga moslashadi (tor ekranda 208 px — kartadan chiqmaydi); ostidagi qator halqadan ≥12 px pastda; tor ekranda qiymatlar qatorga bo'linadi, ⓘ oxirgi qiymat bilan birga qoladi */
+.rz .sl-vessel .sl-vsvg{width:100%;height:100%}
+.rz .sl-big .sl-rsub{margin-top:0;row-gap:2px;column-gap:6px}
+.rz .sl-rsub .nw{white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.rz .sl-rsub .nw i{font-style:normal;color:var(--mut2,var(--mut));margin-left:4px}
+.rz .sl-rsub .sl-infob{flex:none}

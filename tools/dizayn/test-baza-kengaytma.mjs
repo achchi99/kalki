@@ -18,7 +18,7 @@ log('Yangi taomlar: ' + (yangi.length + milliy.length) + ' (kengaytma ' + yangi.
 for (const { r, f } of yangi) {
   const src = r[6]; assert.ok(f.ms && f.ms.u && f.ms.r && f.ms.u.length > 30, f.i + ': manba bayoni'); assert.ok(f.m, f.i + ': m');
   if (src.startsWith('u:')) { const U = USDA[src.slice(2)]; assert.ok(U, f.i + ': USDA id saqlangan'); assert.equal(f.k, Math.round(U.kcal), f.i + ': kkal = USDA'); assert.ok(Math.abs(f.p - U.p) < 0.06 && Math.abs(f.f - U.f) < 0.06, f.i + ': makro = USDA'); assert.match(f.ms.u, new RegExp('fdc_id ' + src.slice(2))); assert.equal(f.e, 0); }
-  else if (src.startsWith('y:')) { const L = YQ[src.slice(2)]; assert.ok(L && L.code, f.i + ': yorliq'); assert.equal(f.k, Math.round(L.k)); assert.match(f.ms.u, /yorlig'i bo'yicha.*shtrix-kod \d+/); assert.match(f.ms.r, /По этикетке/); assert.equal(f.e, 0); }
+  else if (src.startsWith('y:')) { const L = YQ[src.slice(2)]; assert.ok(L && (L.code || /^https:\/\//.test(L.url || '')), f.i + ': yorliq (shtrix-kod yoki ishlab chiqaruvchi sahifasi)'); assert.equal(f.k, Math.round(L.k)); assert.match(f.ms.u, L.code ? /yorlig'i bo'yicha.*shtrix-kod \d+/ : /yorlig'i bo'yicha.*ishlab chiqaruvchi sayti: https:/); assert.match(f.ms.r, /По этикетке/); assert.equal(f.e, 0); }
   else { assert.ok(src.startsWith('m:')); assert.equal(f.e, 1, f.i + ': aralashma — taxminiy'); assert.match(f.ms.u, /Hisob \(taxminiy/); }
   const atw = 4 * f.p + 9 * f.f + 4 * f.c; assert.ok(Math.abs(atw - f.k) <= Math.max(15, f.k * 0.15), f.i + ': Atwater ' + f.k + ' vs ' + Math.round(atw));
   assert.ok(f.k >= 0 && f.k <= 900 && f.p >= 0 && f.f >= 0 && f.c >= 0, f.i + ': oraliq');

@@ -7,6 +7,12 @@
  * Ichimliklarda 100 ml ≈ 100 g. Tur: tools/ovqatlar-build.js (o n s m g v f d i q h x). g100 avtomatik qo'shiladi. */
 'use strict';
 const T = `
+mz-korovka-rojok|Korovka iz Korenovki — plombir vafli rojokda (15%)|Коровка из Кореновки — пломбир в вафельном рожке 15%|korovka,коровка,коровка из кореновки,korovka rojok,рожок пломбир,plombir rojok,muzqaymoq rojok,muzqaymoq,мороженое|h|dona:100|y:kizk-rojok
+mz-korovka-eskimo-belgiya|Korovka iz Korenovki — eskimo (belgiya shokoladida, 15%)|Коровка из Кореновки — эскимо в бельгийском шоколаде 15%|korovka eskimo,коровка эскимо,eskimo plombir,эскимо пломбир,muzqaymoq,мороженое|h|dona:70|y:kizk-eskimo-belgiya
+mz-korovka-eskimo|Korovka iz Korenovki — eskimo (shokolad glazurida)|Коровка из Кореновки — эскимо в шоколадной глазури|korovka eskimo glazur,эскимо в глазури,eskimo glazur,muzqaymoq,мороженое|h|dona:60|y:kizk-eskimo
+mz-korovka-stakan-shokolad|Korovka iz Korenovki — shokoladli plombir vafli stakanchada (15%)|Коровка из Кореновки — пломбир шоколадный в вафельном стаканчике 15%|korovka stakancha,коровка стаканчик,shokoladli plombir stakancha,muzqaymoq,мороженое|h|dona:80|y:kizk-stakan-shokolad
+mz-korovka-konteyner|Korovka iz Korenovki — plombir shokolad parchali (300 g)|Коровка из Кореновки — пломбир с шоколадной крошкой (300 г)|korovka 300,коровка 300,plombir konteyner,пломбир контейнер,muzqaymoq,мороженое|h|shar:60,banka:300|y:kizk-konteyner
+mz-bomba-konus|Bomba konus XXL (qulupnay)|Бомба конус XXL клубника|bomba,бомба,bomba konus,бомба конус,shin-layn,шин-лайн,rojok qulupnay,muzqaymoq,мороженое|h|dona:145|y:shinline-bomba-konus
 mz-plombir-stakan|Plombir vanilli (15% yog', yorliq bo'yicha)|Пломбир ванильный (15%)|plombir stakancha,stakanchik,muzqaymoq stakancha,пломбир стаканчик,мороженое в стаканчике,ice cream cup|h|shar:60,dona:80|y:plombir-stakan
 mz-plombir-vafli|Plombir vafli stakanchada (chernika qatlamli)|Пломбир в вафельном стаканчике с черникой|plombir vafli stakancha,стаканчик пломбир,вафельный стаканчик мороженое|h|dona:93|y:rojok
 mz-plombir-briket|Plombir (briket, yog'li)|Пломбир (брикет)|plombir briket,брикет пломбир,мороженое брикет,vanilla rich|h|dona:200,bolak:50,shar:60|u:167573

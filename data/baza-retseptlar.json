@@ -4333,6 +4333,176 @@
     }
    ],
    "taxminiy": true
+  },
+  {
+   "id": "toy-oshi",
+   "nom": "To'y oshi",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "qoy",
+     "g": 700
+    },
+    {
+     "m": "noxat",
+     "g": 150
+    },
+    {
+     "m": "yog",
+     "g": 300
+    }
+   ],
+   "taxminiy": true,
+   "izoh": "To'y oshi: go'sht ko'p (qo'y), no'xat bilan, yog' ko'p — odatiy to'y retsepti (taxminiy, uy retsepti; masalliqlar USDA).",
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "samarqand-oshi",
+   "nom": "Samarqand oshi",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 250
+    },
+    {
+     "m": "mol",
+     "g": 800
+    },
+    {
+     "m": "yog",
+     "g": 250
+    }
+   ],
+   "taxminiy": true,
+   "izoh": "Samarqand oshi: qatlamli (guruch aralashtirilmaydi), mol go'shti ko'p, yog' o'rtacha (taxminiy, uy retsepti; masalliqlar USDA).",
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "fargona-oshi",
+   "nom": "Farg'ona oshi",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 1000
+    },
+    {
+     "m": "piyoz",
+     "g": 300
+    },
+    {
+     "m": "qoy",
+     "g": 600
+    },
+    {
+     "m": "yog",
+     "g": 350
+    }
+   ],
+   "taxminiy": true,
+   "izoh": "Farg'ona oshi: qizil sabzi, qo'y go'shti, yog' ko'p (rangi to'q) (taxminiy, uy retsepti; masalliqlar USDA).",
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "buxoro-oshi",
+   "nom": "Buxoro oshi (go'shtli)",
+   "eski": null,
+   "ingr": [
+    {
+     "m": "guruch",
+     "g": 1000
+    },
+    {
+     "m": "sabzi",
+     "g": 800
+    },
+    {
+     "m": "piyoz",
+     "g": 200
+    },
+    {
+     "m": "mol",
+     "g": 600
+    },
+    {
+     "m": "noxat",
+     "g": 100
+    },
+    {
+     "m": "yog",
+     "g": 250
+    }
+   ],
+   "taxminiy": true,
+   "izoh": "Buxoro oshi: mol go'shti, no'xat, sabzi kamroq (taxminiy, uy retsepti; masalliqlar USDA).",
+   "qaror": {
+    "k_koef": 1.0556,
+    "sabab": "Foydalanuvchi qarori 2026-10-17: osh standarti hozircha 190 kkal/100 g (retsept 180 va eski 200 o'rtasi); uy o'lchovidan keyin aniqlanadi. Koeffitsient osh oilasining hamma kombinatsiyasiga qo'llanadi."
+   }
+  },
+  {
+   "id": "sut.f1",
+   "nom": "Sut 1%",
+   "ingr": [
+    {
+     "m": "sut_1",
+     "g": 500
+    }
+   ],
+   "taxminiy": false,
+   "manba": {
+    "uz": "Sut 1%: USDA FoodData Central, fdc_id {fdc} («Milk, lowfat, fluid, 1% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 1%: USDA FoodData Central, fdc_id {fdc} («Milk, lowfat, 1%»). В зависимости от марки ±10% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "sut.f2",
+   "nom": "Sut 2%",
+   "ingr": [
+    {
+     "m": "sut_2",
+     "g": 500
+    }
+   ],
+   "taxminiy": false,
+   "manba": {
+    "uz": "Sut 2%: USDA FoodData Central, fdc_id {fdc} («Milk, reduced fat, 2% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Молоко 2%: USDA FoodData Central, fdc_id {fdc} («Milk, reduced fat, 2%»). В зависимости от марки ±10% — проверяйте упаковку."
+   }
   }
  ]
 }

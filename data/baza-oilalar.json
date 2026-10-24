@@ -1116,9 +1116,19 @@
        "r": "0,5%"
       },
       {
+       "id": "f1",
+       "n": "1%",
+       "r": "1%"
+      },
+      {
        "id": "f15",
        "n": "1,5%",
        "r": "1,5%"
+      },
+      {
+       "id": "f2",
+       "n": "2%",
+       "r": "2%"
       },
       {
        "id": "f25",
@@ -1146,8 +1156,16 @@
      "rc": "sut.f05"
     },
     {
+     "v": "f1",
+     "rc": "sut.f1"
+    },
+    {
      "v": "f15",
      "rc": "sut.f15"
+    },
+    {
+     "v": "f2",
+     "rc": "sut.f2"
     },
     {
      "v": "f25",
@@ -1217,13 +1235,13 @@
     {
      "q": "sut 1",
      "p": {
-      "yogliligi": "f15"
+      "yogliligi": "f1"
      }
     },
     {
      "q": "молоко 1",
      "p": {
-      "yogliligi": "f15"
+      "yogliligi": "f1"
      }
     },
     {
@@ -1265,13 +1283,13 @@
     {
      "q": "sut 2",
      "p": {
-      "yogliligi": "f25"
+      "yogliligi": "f2"
      }
     },
     {
      "q": "молоко 2",
      "p": {
-      "yogliligi": "f25"
+      "yogliligi": "f2"
      }
     },
     {
@@ -1332,6 +1350,36 @@
      "q": "топлёное молоко",
      "p": {
       "yogliligi": "f6"
+     }
+    },
+    {
+     "q": "sut 1%",
+     "p": {
+      "yogliligi": "f1"
+     }
+    },
+    {
+     "q": "молоко 1%",
+     "p": {
+      "yogliligi": "f1"
+     }
+    },
+    {
+     "q": "sut 2%",
+     "p": {
+      "yogliligi": "f2"
+     }
+    },
+    {
+     "q": "молоко 2%",
+     "p": {
+      "yogliligi": "f2"
+     }
+    },
+    {
+     "q": "moloko 2",
+     "p": {
+      "yogliligi": "f2"
      }
     }
    ]
@@ -2432,8 +2480,7 @@
    "r": "Шовла",
    "a": [
     "shavla",
-    "шавля",
-    "хорезмский плов"
+    "шавля"
    ],
    "t": "o",
    "u": [
@@ -3874,6 +3921,120 @@
     ]
    ],
    "rc": "kartoshka-qovurma",
+   "ub": "likop"
+  },
+  {
+   "i": "toy-oshi",
+   "n": "To'y oshi",
+   "r": "Свадебный плов",
+   "a": [
+    "toy oshi",
+    "to'y palovi",
+    "nahor oshi",
+    "свадебный плов",
+    "плов свадебный",
+    "to'y osh"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "toy-oshi",
+   "ub": "likop"
+  },
+  {
+   "i": "samarqand-oshi",
+   "n": "Samarqand oshi",
+   "r": "Плов самаркандский",
+   "a": [
+    "samarqand palovi",
+    "samarkand osh",
+    "самаркандский плов",
+    "plov samarkandskiy"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "samarqand-oshi",
+   "ub": "likop"
+  },
+  {
+   "i": "fargona-oshi",
+   "n": "Farg'ona oshi",
+   "r": "Плов ферганский",
+   "a": [
+    "fargona palovi",
+    "fergana osh",
+    "ферганский плов",
+    "plov ferganskiy"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "fargona-oshi",
+   "ub": "likop"
+  },
+  {
+   "i": "buxoro-oshi",
+   "n": "Buxoro oshi (go'shtli)",
+   "r": "Плов бухарский",
+   "a": [
+    "buxoro palovi",
+    "bukhara osh",
+    "бухарский плов",
+    "plov buxarskiy"
+   ],
+   "t": "o",
+   "u": [
+    [
+     "likop",
+     350
+    ],
+    [
+     "kosa",
+     250
+    ],
+    [
+     "porsiya",
+     300
+    ]
+   ],
+   "rc": "buxoro-oshi",
    "ub": "likop"
   }
  ],

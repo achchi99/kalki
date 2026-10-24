@@ -75,7 +75,7 @@ tvorog18|Tvorog (18%)|Творог 18%|tvorog 18,tvorog yogli|229|14|18|2.8|s|1|
 sariyog|Sariyog'|Сливочное масло|saryog,maslo,butter|717|0.8|81|0.6|s|0|qoshiq:12,choyq:5,bolak:10
 yogurt-meva|Yogurt (mevali)|Йогурт фруктовый|yogurt mevali|90|3|2|15|s|0|dona:125,stakan:200
 yogurt-tabiiy|Yogurt (tabiiy)|Йогурт натуральный|yogurt oddiy,yoghurt|60|4|3|5|s|0|dona:125,stakan:200
-muzqaymoq|Muzqaymoq (plombir)|Мороженое пломбир|morozhenoe,ice cream,мороженое|200|4|11|22|s|1|dona:80,qoshiq:25
+muzqaymoq|Muzqaymoq (o'rtacha)|Мороженое (среднее)|morozhenoe,ice cream,мороженое,plombir,пломбир,muzqaymoq plombir|200|4|11|22|s|1|shar:60,dona:80,qoshiq:25
 tuxum|Tuxum (qaynatilgan)|Яйцо варёное|yaytso,tuxum,яйцо|155|13|11|1|m|0|dona:50
 tuxum-xom|Tuxum (xom)|Яйцо сырое|xom tuxum|143|12.5|10|1|m|0|dona:55
 mol-gosht|Mol go'shti (pishgan)|Говядина варёная|mol gosht,govyadina,говядина|215|27|11|0|m|0|bolak:100,porsiya:150
@@ -318,7 +318,7 @@ for (const r of rows) {
     if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
     let v = null;
     if (/^u:\d+$/.test(src)) { const q = part(src), U = USDA[src.slice(2)]; if (q) v = Object.assign(q, { e: 0, m: 'USDA FDC ' + src.slice(2), ms: { u: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), 100 g uchun' + ich(t)[0] + '.', r: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), на 100 г' + ich(t)[1] + '.' } }); }
-    else if (/^y:/.test(src)) { const L = YQ[src.slice(2)]; if (L) v = { k: L.k, p: L.p, f: L.f, c: L.c, e: 0, m: 'Yorliq: ' + L.nom + ' (OFF ' + L.code + ')', ms: { u: "Ishlab chiqaruvchi yorlig'i bo'yicha: " + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + ' — Open Food Facts, shtrix-kod ' + L.code + '; 100 g uchun' + ich(t)[0] + '. Boshqa ishlab chiqaruvchida biroz farq qilishi mumkin.', r: 'По этикетке производителя: ' + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + ' — Open Food Facts, штрихкод ' + L.code + '; на 100 г' + ich(t)[1] + '. У другого производителя возможны небольшие отличия.' } }; }
+    else if (/^y:/.test(src)) { const L = YQ[src.slice(2)]; if (L) v = { k: L.k, p: L.p, f: L.f, c: L.c, e: 0, m: 'Yorliq: ' + L.nom + (L.code ? ' (OFF ' + L.code + ')' : ' (' + L.url + ')'), ms: { u: "Ishlab chiqaruvchi yorlig'i bo'yicha: " + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + (L.code ? ' — Open Food Facts, shtrix-kod ' + L.code : ' — ishlab chiqaruvchi sayti: ' + L.url) + (L.qadoq ? ', qadoq ' + L.qadoq : '') + '; 100 g uchun' + ich(t)[0] + '. Boshqa ishlab chiqaruvchida biroz farq qilishi mumkin.', r: 'По этикетке производителя: ' + L.nom + (L.brand ? ' (' + L.brand + ')' : '') + (L.code ? ' — Open Food Facts, штрихкод ' + L.code : ' — сайт производителя: ' + L.url) + (L.qadoq ? ', упаковка ' + L.qadoq : '') + '; на 100 г' + ich(t)[1] + '. У другого производителя возможны небольшие отличия.' } }; }
     else if (/^m:/.test(src)) {
       const ps = src.slice(2).split('+').map((x) => { const i = x.lastIndexOf('*'); return { tok: x.slice(0, i), g: +x.slice(i + 1), q: part(x.slice(0, i)) }; });
       if (ps.every((x) => x.q && x.g > 0)) { const G = ps.reduce((a, x) => a + x.g, 0), sum = (k) => ps.reduce((a, x) => a + x.q[k] * x.g / 100, 0) / G * 100;
@@ -336,6 +336,9 @@ for (const r of rows) {
 // Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
 const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');
 if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf8'))) { if (ids.has(x.i)) { warn.push('qo\'shimcha takror id: ' + x.i); continue; } ids.add(x.i); out.push(x); }
+// v34: muzqaymoq — bitta umumiy («Muzqaymoq (o'rtacha)») + brendli mahsulotlar; boshqa umumiy turlar qidiruvda ko'rinmaydi (h: 1), eski yozuvlar id bo'yicha ochiladi
+{ const YASHIR = new Set(['muzqaymoq-eskimo', 'mz-plombir-stakan', 'mz-plombir-vafli', 'mz-plombir-briket', 'mz-vanil', 'mz-shokolad', 'mz-shokolad-plombir', 'mz-qulupnay', 'mz-light', 'mz-shakarsiz', 'mz-yumshoq', 'mz-konus-shokolad', 'mz-konus-sundae', 'mz-eskimo-yongoq', 'mz-sorbet', 'mz-muzli', 'mz-meva-bar', 'mz-sundae', 'mz-makflurri', 'mz-shokolad-light']);
+  out.forEach((o) => { if (YASHIR.has(o.i)) o.h = 1; }); }
 const V2 = require('./baza-v2.js').apply(out);      // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 2, note: 'Qiymatlar 100 g uchun TAXMINIY: retsept taomlar — o\'rtacha uy retsepti (USDA FoodData Central + Скурихин, tools/baza-hisob.js), oddiy mahsulotlar — USDA/ochiq jadvallar. «x» — taxminiy (tarozida/ikki manba bilan tasdiqlanmagan).', mr: V2.mr, foods: V2.foods }));

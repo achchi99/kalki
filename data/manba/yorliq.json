@@ -234,6 +234,72 @@
    "p": 11.2,
    "f": 22.0,
    "c": 24.5
+  },
+  "kizk-rojok": {
+   "nom": "Мороженое пломбир ванильный в вафельном рожке 15%",
+   "brand": "Коровка из Кореновки",
+   "code": "",
+   "url": "https://kizk.ru/catalog/morozhenoe/rozhok/morozhenoe-plombir-vanilnyy-v-vafelnom-rozhke-15/",
+   "qadoq": "100 г",
+   "k": 310,
+   "p": 4.0,
+   "f": 18.0,
+   "c": 33.0
+  },
+  "kizk-eskimo-belgiya": {
+   "nom": "Мороженое пломбир ванильный эскимо в бельгийском шоколаде 15%",
+   "brand": "Коровка из Кореновки",
+   "code": "",
+   "url": "https://kizk.ru/catalog/morozhenoe/eskimo/morozhenoe-plombir-vanilnyy-eskimo-v-shokoladnoy-glazuri-15-0-70g/",
+   "qadoq": "70 г",
+   "k": 225,
+   "p": 3.5,
+   "f": 15.0,
+   "c": 19.0
+  },
+  "kizk-eskimo": {
+   "nom": "Мороженое пломбир ванильный эскимо в шоколадной глазури",
+   "brand": "Коровка из Кореновки",
+   "code": "",
+   "url": "https://kizk.ru/catalog/morozhenoe/eskimo/plombir-eskimo-v-shokoladnoy-glazuri/",
+   "qadoq": "60 г",
+   "k": 330,
+   "p": 3.5,
+   "f": 24.0,
+   "c": 25.0
+  },
+  "kizk-stakan-shokolad": {
+   "nom": "Мороженое пломбир шоколадное с крошкой шоколадного печенья в вафельном стаканчике 15%",
+   "brand": "Коровка из Кореновки",
+   "code": "",
+   "url": "https://kizk.ru/catalog/morozhenoe/vafelnyy-stakan/morozhenoe-plombir-shokoladnoe-s-kroshkoy-shokoladnogo-pechenya-i-vkusom-pechene-krem-v-vafelnom-sta/",
+   "qadoq": "80 г",
+   "k": 280,
+   "p": 5.0,
+   "f": 16.0,
+   "c": 29.0
+  },
+  "kizk-konteyner": {
+   "nom": "Мороженое пломбир ванильное с шоколадной крошкой 15%",
+   "brand": "Коровка из Кореновки",
+   "code": "",
+   "url": "https://kizk.ru/catalog/morozhenoe/semeynoe/morozhenoe-plombir-vanilnoe-s-shokoladnoy-kroshkoy-15/",
+   "qadoq": "300 г",
+   "k": 290,
+   "p": 4.0,
+   "f": 19.0,
+   "c": 25.0
+  },
+  "shinline-bomba-konus": {
+   "nom": "Мороженое «Бомба конус XXL клубника»",
+   "brand": "Шин-Лайн",
+   "code": "4870004909939",
+   "url": "https://world.openfoodfacts.org/product/4870004909939",
+   "qadoq": "145 г",
+   "k": 260,
+   "p": 3.7,
+   "f": 12.1,
+   "c": 34.2
   }
  }
 }

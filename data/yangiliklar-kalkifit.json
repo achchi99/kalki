@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 34,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Qidiruv aniqroq bo'ldi.",
+    "ru": "Поиск стал точнее."
+   },
+   "items": [
+    {
+     "uz": "«Osh», «palov», «плов» — avval milliy taomlar: to'y oshi, Samarqand, Farg'ona, Buxoro oshi.",
+     "ru": "«Плов», «osh», «palov» — сначала национальные блюда: свадебный, самаркандский, ферганский, бухарский плов.",
+     "show": "simple",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Sut, kefir, qatiq va qaymoq yog'liligi bo'yicha alohida qatorda chiqadi.",
+     "ru": "Молоко, кефир, катык и сметана — отдельной строкой для каждой жирности."
+    },
+    {
+     "uz": "Muzqaymoq: ishlab chiqaruvchi yorlig'idagi kaloriya bilan aniq turlar.",
+     "ru": "Мороженое: конкретные виды с калорийностью с этикетки производителя."
+    }
+   ]
+  },
+  {
    "v": 33,
    "d": "2026-10-24",
    "bn": {
