@@ -2,6 +2,34 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 32,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Ilova soddaroq bo'ldi.",
+    "ru": "Приложение стало проще."
+   },
+   "items": [
+    {
+     "uz": "«Qo'shish» — bitta tugma: yozing, ayting, suratga oling yoki menyudan tanlang.",
+     "ru": "«Добавить» — одна кнопка: напишите, скажите, сфотографируйте или выберите по меню.",
+     "show": "simple",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Bugun ekranida faqat kerakligi qoldi, qolgan imkoniyatlar Profilda bitta ro'yxatda.",
+     "ru": "На экране «Сегодня» только главное, остальные возможности — списком в Профиле.",
+     "show": "retsept",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 31,
    "d": "2026-10-24",
    "bn": {

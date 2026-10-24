@@ -1,39 +1,44 @@
-/* kalki.uz — KalkiFit: «Qanday ishlaydi?» — 3 slayd. Onboarding'dan keyin BIR marta (yangi foydalanuvchi), Profil → «Qanday ishlaydi?» dan qayta, ?demo=1&intro=1 da.
- * Hech qachon qotib qolmaydi: «O'tkazib yuborish» doim ko'rinadi, Escape va tugmalar yopadi. Eski «tips» bilan bir vaqtda chiqmaydi (ilova: isOpen() tekshiriladi, slayddan keyin tips boshlanadi).
- * kalkifit-app.js dan OLDIN yuklanadi: window.KalkiIntroUI = { init, show, isOpen }. */
+/* kalki.uz — KalkiFit: TANISHTIRUV — 3 ekran, har birida bitta katta jonli rasm (CSS animatsiya) va bitta jumla.
+ * Birinchi ochilishda til tanlangandan KEYIN, profil savollaridan OLDIN (bir marta: localStorage kalki_intro_v2); Profil → «Tanishtiruvni qayta ko'rish»; ?demo=1&intro=1.
+ *   1) ayting yoki suratga oling (ovoz · rasm · menyu)  2) qadam va suv o'zi hisoblanadi  3) har yakshanba — «Haftangiz» (hikoya kadri)
+ * Hech qachon qotib qolmaydi: «O'tkazib yuborish» doim ko'rinadi, Escape va tugmalar yopadi; prefers-reduced-motion — animatsiyasiz.
+ * kalkifit-app.js dan OLDIN yuklanadi: window.KalkiIntroUI = { init, show, isOpen, act }. */
 (function () {
   'use strict';
   var A = null, open = false, idx = 0, fin = null, last = null;
   var D = {
     uz: {
-      inT1: "Ovqatni yozing — kaloriya o'zi hisoblanadi", inD1: 'Nomini yozing, porsiyani tanlang. Qolganini ilova hisoblaydi.',
-      inT2: "Nima yeyishni bilmasangiz — so'rang", inD2: "«Bugun nima yeymiz?» kafe, buyurtma yoki uyda mos taomni ko'rsatadi.",
-      inT3: 'Sevimli taomingizni yengillashtiring', inD3: "Retseptingizni yuboring — ta'mi qoladi, kaloriyasi 20–30% kamayadi.",
-      inNext: 'Keyingi', inGo: 'Boshlash', inSkip: "O'tkazib yuborish", inOf: '{i}-slayd, {n} tadan', inM1: 'Osh · 1 kosa', inM2a: 'Kabob', inM2b: 'Suyuq ovqat', inM2c: 'Uyda', inM2: 'Bugun nima yeymiz?', inM3: 'Osh · 1 porsiya'
+      inT1: 'Nima yeganingizni ayting yoki suratga oling', inT2: "Qadamlar va suv o'zi hisoblanadi", inT2w: "Choy, sharbat va sho'rva ham suvga o'zi qo'shiladi", inT3: 'Har yakshanba: Haftangiz',
+      inNext: 'Keyingi', inGo: 'Boshlash', inSkip: "O'tkazib yuborish", inOf: '{i}-ekran, {n} tadan',
+      inM1: 'Osh · 1 kosa', inM1b: "Sho'rva · 1 kosa", inSay: "«bir kosa sho'rva va non»", inSt: 'qadam', inWt: 'Suv', inTea: '+ choy', inWk: 'Haftangiz', inWkA: "o'rtacha kkal/kun", inWkB: 'maqsadga yaqin kun'
     },
     ru: {
-      inT1: 'Запишите еду — калории посчитаются сами', inD1: 'Напишите название, выберите порцию. Остальное приложение посчитает.',
-      inT2: 'Не знаете, что поесть — спросите', inD2: '«Что поесть сегодня?» подскажет блюдо в кафе, с доставкой или дома.',
-      inT3: 'Облегчите любимое блюдо', inD3: 'Пришлите рецепт — вкус сохранится, калорий станет на 20–30% меньше.',
-      inNext: 'Дальше', inGo: 'Начать', inSkip: 'Пропустить', inOf: 'Слайд {i} из {n}', inM1: 'Плов · 1 касса', inM2a: 'Кебаб', inM2b: 'Суп', inM2c: 'Дома', inM2: 'Что поесть сегодня?', inM3: 'Плов · 1 порция'
+      inT1: 'Скажите или сфотографируйте, что вы съели', inT2: 'Шаги и вода считаются сами', inT2w: 'Чай, сок и суп сами добавляются к воде', inT3: 'Каждое воскресенье — «Ваша неделя»',
+      inNext: 'Дальше', inGo: 'Начать', inSkip: 'Пропустить', inOf: 'Экран {i} из {n}',
+      inM1: 'Плов · 1 тарелка', inM1b: 'Суп · 1 тарелка', inSay: '«тарелка супа и хлеб»', inSt: 'шагов', inWt: 'Вода', inTea: '+ чай', inWk: 'Ваша неделя', inWkA: 'ккал/день в среднем', inWkB: 'дней близко к цели'
     }
   };
   function T(k, o) { return A.T(k, o); }
   function esc(s) { return A.esc(s); }
   var N = 3;
-  function mock(i) {
-    if (i === 0) return '<div class="in-mk"><div class="r"><span class="sl-ci">' + A.ico('plus') + '</span><span class="m"><b>' + esc(T('inM1')) + '</b><small>250 g</small></span><b class="k">475</b></div></div>';
-    if (i === 1) return '<div class="in-mk"><b class="t">' + esc(T('inM2')) + '</b><div class="c"><span class="rz-chip on">' + esc(T('inM2a')) + '</span><span class="rz-chip">' + esc(T('inM2b')) + '</span><span class="rz-chip">' + esc(T('inM2c')) + '</span></div></div>';
-    return '<div class="in-mk"><div class="r"><span class="sl-ci rt-ci">' + A.ico('rspark') + '</span><span class="m"><b>' + esc(T('inM3')) + '</b><small class="a"><s>827</s> → <b>613</b> ' + esc(A.T('kcal')) + '</small></span><b class="p">−26%</b></div></div>';
+  function android() { try { var K = window.KalkiNative; return !!(K && K.isApp && K.isApp() && K.qadam && K.qadam.ok && K.qadam.ok()); } catch (e) { return false; } }
+  function art(i) {
+    if (i === 0) return '<div class="in-a in-a1"><div class="in-trio"><span class="in-c mic">' + A.ico('mic') + '</span><span class="in-c">' + A.ico('cam') + '</span><span class="in-c">' + A.ico('img') + '</span></div>' +
+      '<div class="in-say"><span class="in-wv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>' + esc(T('inSay')) + '</span></div>' +
+      '<div class="in-rows"><div class="in-r r1"><b>' + esc(T('inM1b')) + '</b><span>180 ' + esc(A.T('kcal')) + '</span></div><div class="in-r r2"><b>' + esc(T('inM1')) + '</b><span>475 ' + esc(A.T('kcal')) + '</span></div></div></div>';
+    if (i === 1) return '<div class="in-a in-a2">' + (android() ? '<div class="in-st"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="bg"/><circle cx="60" cy="60" r="50" class="fg" pathLength="100"/></svg><b>6 482</b><small>' + esc(T('inSt')) + '</small></div>' : '') +
+      '<div class="in-gl"><div class="in-glass"><i class="wv"></i></div><b>' + esc(T('inWt')) + '</b><span class="in-tea">' + esc(T('inTea')) + '</span></div></div>';
+    return '<div class="in-a in-a3"><div class="in-story"><div class="in-bars"><i class="on"></i><i></i><i></i><i></i></div><small>' + esc(T('inWk')) + '</small><b class="n">1 864</b><span>' + esc(T('inWkA')) + '</span><b class="n2">5 / 7</b><span>' + esc(T('inWkB')) + '</span></div></div>';
   }
+  function title(i) { return i === 1 && !android() ? T('inT2w') : T('inT' + (i + 1)); }
   function html() {
     var dots = ''; for (var i = 0; i < N; i++) dots += '<i' + (i === idx ? ' class="on"' : '') + '></i>';
     var lastS = idx === N - 1;
     return '<div class="in-top"><button type="button" class="sl-txtbtn" data-act="inskip">' + esc(T('inSkip')) + '</button></div>' +
-      '<div class="in-body" key="' + idx + '"><div class="in-art">' + mock(idx) + '</div><h2 class="in-h" id="inH">' + esc(T('inT' + (idx + 1))) + '</h2><p class="in-p">' + esc(T('inD' + (idx + 1))) + '</p></div>' +
+      '<div class="in-body" key="' + idx + '"><div class="in-art">' + art(idx) + '</div><h2 class="in-h" id="inH">' + esc(title(idx)) + '</h2></div>' +
       '<div class="in-foot"><span class="in-dots" role="img" aria-label="' + esc(T('inOf', { i: idx + 1, n: N })) + '">' + dots + '</span><button type="button" class="sl-main in-go" data-act="' + (lastS ? 'ingo' : 'innext') + '">' + esc(T(lastS ? 'inGo' : 'inNext')) + '</button></div>';
   }
-  function lock(on) { ['#rzMain', '.rz-nav', '.rz-top'].forEach(function (s) { var e = A.$(s); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); }
+  function lock(on) { ['#rzMain', '.rz-nav', '.rz-top', '#rzOnb'].forEach(function (s) { var e = A.$(s); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); }
   function draw(first) {
     var el = A.$('#rzIntro'); if (!el) return; el.innerHTML = html(); el.hidden = false;
     if (first) { el.setAttribute('tabindex', '-1'); try { el.focus({ preventScroll: true }); } catch (e) {} }      // fokus oynaning o'ziga (tugmada halqa chiqmasin)

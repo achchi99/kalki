@@ -13,7 +13,7 @@ async function mk(st, w = 360, h = 640, url = '/kalkifit') {
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
   await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(500); return p; }
 const txt = (p, s) => p.locator(s).first().innerText(); const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state)));
-async function pick(p, q, nth = 0) { await p.click('#mainAdd'); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=' + nth); await p.waitForTimeout(500); }
+async function pick(p, q, nth = 0) { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=' + nth); await p.waitForTimeout(500); }
 const noX = async (p) => assert.ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'gorizontal skroll yo\'q');
 try {
   /* 1. karta: osh → tovuqli osh (oqsil deyarli bir xil, yog' −14 g); 1 asosiy + «Boshqa variantlar» (ro'yxat oynasi); CTA'dan oldin */
@@ -54,7 +54,7 @@ try {
   await p.goto(BASE + '/ru/kalkifit', { waitUntil: 'networkidle' }); await p.waitForTimeout(600); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(800); const ru = await txt(p, '.sl-orb'); assert.match(ru, /Источники белка/); assert.match(ru, /На этой неделе \d+% белка — из .+\. Рыба: 1 раз\./); assert.ok(!/[A-Za-z]{4,}/.test(ru.replace(/KalkiFit/g, '')), 'RU matnda lotincha so\'z yo\'q: ' + ru); await p.context().close();
   log('RU: «' + ru.replace(/\n+/g, ' | ').slice(0, 150) + '»');
   /* 7. Kun yakuni: «Kunni yakunlash» dan keyin shu blok */
-  p = await mk(seed(wk)); await p.waitForSelector('#dayEnd'); await p.click('#dayEnd'); await p.waitForTimeout(700); assert.ok(await p.locator('#dayEndDone').count() >= 1); assert.ok(await p.locator('.sl-orb').count() >= 1, 'Kun yakunida blok bor'); assert.match(await txt(p, '.sl-orb'), /Baliq 1 marta/); await p.context().close();
+  p = await mk(seed(wk)); await p.waitForSelector('#dayEnd'); await p.click('#dayEnd'); await p.waitForTimeout(700); assert.ok(await p.locator('#dayEndDone').count() >= 1); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.ok(await p.locator('.sl-orb').count() >= 1, 'Oqsil manbalari bloki — Tarix\'da (Bugun ikkinchi qavat)'); assert.match(await txt(p, '.sl-orb'), /Baliq 1 marta/); await p.context().close();
   p = await mk(seed(wk)); await p.waitForSelector('#dayEnd'); assert.equal(await p.locator('.sl-orb').count(), 0, 'kun yopilmaguncha Bugun ekrani uzaymaydi'); await p.context().close();
   log('Kun yakuni: «Kunni yakunlash» dan keyingina blok chiqadi (Bugun ekrani yangi doimiy karta bilan uzaymaydi)');
   /* 8. hazil: baliq yozilganda va almashtirish tanlanganda (hazil yoqilgan) */

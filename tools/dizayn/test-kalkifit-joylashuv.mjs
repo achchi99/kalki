@@ -27,7 +27,7 @@ const ZOOM = (k) => { if (k === 1) return; const apply = (root) => { const els =
 const CHECK = (scope) => {
   const vis = (e) => { const c = getComputedStyle(e); if (c.visibility === 'hidden' || c.display === 'none' || +c.opacity === 0) return false; const r = e.getBoundingClientRect(); return r.width > 1 && r.height > 1; };
   const root = document.querySelector(scope); if (!root) return { err: 'yo\'q: ' + scope };
-  const all = [...root.querySelectorAll('*')].filter((e) => !e.closest('[hidden],[aria-hidden=true],svg,.rz-sr,.sl-vessel,#kfSplash,.sl-fishswim,.rz-tip') && [...e.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()) && vis(e));
+  const all = [...root.querySelectorAll('*')].filter((e) => !e.closest('[hidden],[aria-hidden=true],svg,.rz-sr,.sl-vessel,#kfSplash,.sl-fishswim,.rz-tip,.sl-addbar') && [...e.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()) && vis(e));
   /* matn to'rtburchagini overflow:hidden/clip ota-bobolar bilan kesamiz (line-clamp, ellipsis — ko'rinmaydigan qatorlar hisobga olinmaydi); gorizontal aylantiriladigan qator (chiplar) — o'z chegarasi */
   const clipOf = (e) => { let L = -1e9, T = -1e9, R = 1e9, B = 1e9, hs = false; for (let a = e; a && a !== document.body; a = a.parentElement) { const c = getComputedStyle(a); if (c.overflowX !== 'visible' || c.overflowY !== 'visible') { const r = a.getBoundingClientRect(); L = Math.max(L, r.left); T = Math.max(T, r.top); R = Math.min(R, r.right); B = Math.min(B, r.bottom); if (/auto|scroll/.test(c.overflowX)) hs = true; } } return { L, T, R, B, hs }; };
   const boxes = all.map((e) => { const rg = document.createRange(); rg.selectNodeContents(e); const cl = clipOf(e); const rs = [...rg.getClientRects()].map((r) => ({ left: Math.max(r.left, cl.L), top: Math.max(r.top, cl.T), right: Math.min(r.right, cl.R), bottom: Math.min(r.bottom, cl.B) })).filter((r) => r.right - r.left > 1 && r.bottom - r.top > 1); return { e, rs, hs: cl.hs }; }).filter((x) => x.rs.length);
@@ -71,7 +71,7 @@ try {
     if (pb.last > pb.nav - 4) fails.push(tag + ' Profil: oxirgi element pastki menyu ostida qoldi');
     await shot('profil-past');
     /* Ovqat qo'shish oynasi */
-    await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#mainAdd'); await p.waitForTimeout(900); await scan('Qo\'shish', '#rzSheet'); await shot('qoshish');
+    await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(900); await scan('Qo\'shish', '#rzSheet'); await shot('qoshish');
     if (errs.length) fails.push(tag + ' JS xato: ' + errs[0]);
     await c.close();
   }

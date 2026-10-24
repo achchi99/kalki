@@ -7,7 +7,7 @@ await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' +
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 async function mk(url, o = {}) {
   const c = await b.newContext({ locale: o.locale || 'en-US', viewport: { width: o.w || 390, height: o.h || 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
-  await c.addInitScript((o2) => { try { if (!sessionStorage.getItem('__t0')) { sessionStorage.setItem('__t0', '1'); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); if (o2.lang) localStorage.setItem('kalki_lang', o2.lang); if (o2.big) localStorage.setItem('kalki_fs', 'big'); } } catch (e) {} }, { lang: o.lang || null, big: !!o.big });
+  await c.addInitScript((o2) => { try { if (!sessionStorage.getItem('__t0')) { sessionStorage.setItem('__t0', '1'); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_intro_v2', '1'); if (o2.lang) localStorage.setItem('kalki_lang', o2.lang); if (o2.big) localStorage.setItem('kalki_fs', 'big'); } } catch (e) {} }, { lang: o.lang || null, big: !!o.big });
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js|\/api\//, (r) => r.abort());
   await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(700); return p; }
 const lp = (p) => p.locator('#rzOnb.sl-lp').count();

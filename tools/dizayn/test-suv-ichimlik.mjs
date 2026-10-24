@@ -45,18 +45,18 @@ async function open(state, { url = '/kalkifit', w = 360, hour = 15 } = {}) {
 const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').replace(/ /g, ' ').trim() : null; };
 const num = (s) => +String(s).replace(/\D/g, '');
 const wml = async (p) => num((await txt(p, '#wTxt b')));
-const addFood = async (p, q) => { await p.click('#mainAdd'); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(900); };
+const addFood = async (p, q) => { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(900); };
 try {
   const st0 = () => { const st = mk({ prefs: { suvFrom: undefined, jokes: true } }); delete st.prefs.suvFrom; return st; };
   let p = await open(st0()); assert.equal(await wml(p), 0); assert.equal(await p.locator('#wSplit').count(), 0, 'ichimlik yo\'q — qator yo\'q'); assert.ok((await p.evaluate(() => window.__kalkifit.state.prefs.suvFrom)) === TODAY, 'suvFrom bugun qo\'yildi');
-  await addFood(p, 'choy'); const w1 = await wml(p); assert.ok(w1 >= 150 && w1 <= 300, 'choy qo\'shildi → suv kartasida son ko\'paydi: ' + w1); const ent = await p.evaluate(() => { const x = window.__kalkifit.state.days[Object.keys(window.__kalkifit.state.days).pop()]; return x.food[0]; }); assert.equal(w1, Math.round(ent.g), 'karta = yozuv ml (' + ent.g + ')');
+  await addFood(p, 'choy'); const jl = await txt(p, '#jLine'); const w1 = await wml(p);          // birinchi ichimlik hazili — ovqatdan keyingi 4 s'lik pufakda assert.ok(w1 >= 150 && w1 <= 300, 'choy qo\'shildi → suv kartasida son ko\'paydi: ' + w1); const ent = await p.evaluate(() => { const x = window.__kalkifit.state.days[Object.keys(window.__kalkifit.state.days).pop()]; return x.food[0]; }); assert.equal(w1, Math.round(ent.g), 'karta = yozuv ml (' + ent.g + ')');
   assert.match(await txt(p, '#wSplit'), new RegExp('^Suv 0 · Ichimliklar ' + String(w1).replace(/(\d)(?=(\d{3})+$)/, '$1 ') + '$')); 
   /* qo'lda +250 */
   await p.click('.sl-w [data-act=wadd]'); await p.waitForTimeout(500); assert.equal(await wml(p), w1 + 250, 'qo\'lda +250 avvalgidek alohida'); assert.match(await txt(p, '#wSplit'), /^Suv 250 · Ichimliklar /);
   /* karta → ro'yxat + izoh */
   await p.click('.sl-w [data-act=wopen]'); await p.waitForSelector('#wList'); const sh = await txt(p, '#rzSheet'); assert.match(sh, /Ichimliklar va suyuq taomlar/); assert.match(sh, /Choy/); assert.match(sh, new RegExp(String(w1).replace(/(\d)(?=(\d{3})+$)/, '$1 ') + ' ml')); assert.match(sh, /Choy, qahva, sut va sharbat ham suv hisobiga kiradi\./); await p.keyboard.press('Escape'); await p.waitForTimeout(300);
   /* birinchi ichimlikka hazil */
-  const jl = await txt(p, '#jLine .t'); assert.ok(jl && HZ.items.filter((x) => x.holat === 'ichimlik_suvga_qoshildi').some((x) => x.uz === jl), 'birinchi ichimlikka yengil hazil-maslahat: ' + jl); assert.equal(await p.evaluate(() => window.__kalkifit.state.prefs.suvIntro), 1);
+  assert.ok(jl && HZ.items.filter((x) => x.holat === 'ichimlik_suvga_qoshildi').some((x) => x.uz === jl), 'birinchi ichimlikka yengil hazil-maslahat: ' + jl); assert.equal(await p.evaluate(() => window.__kalkifit.state.prefs.suvIntro), 1);
   await addFood(p, 'kefir'); assert.equal(await p.evaluate(() => window.__kalkifit.state.prefs.suvIntro), 1, 'bir marta (suvIntro) — qayta chiqmaydi');
   /* yozuvni o'chirish → suv kamayadi; porsiya o'zgarishi → suv yangilanadi */
   const before = await wml(p); await p.click('.sl-meal .sl-row >> nth=0'); await p.waitForSelector('[data-act=fdel]'); await p.click('[data-act=fdel]'); await p.waitForTimeout(700); const delConfirm = p.locator('[data-act=fdelok], #fdDelOk'); if (await delConfirm.count()) await delConfirm.first().click(); await p.waitForTimeout(700); const afterDel = await wml(p); assert.ok(afterDel < before, 'yozuv o\'chirilgach suv kamaydi: ' + before + ' → ' + afterDel);

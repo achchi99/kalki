@@ -22,7 +22,7 @@ const evs = (p) => p.bodies.flatMap((x) => { try { return JSON.parse(x).h.map((h
 try {
   let p = await open('/kalkifit');
   await p.click('.sl-w [data-act=wadd]'); await p.waitForTimeout(300);
-  await p.click('#mainAdd'); await p.waitForTimeout(400); await p.fill('#fdQ', 'osh'); await p.waitForSelector('[data-act=pickfood]'); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForSelector('#fsave'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(800);
+  await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(400); await p.fill('#fdQ', 'osh'); await p.waitForSelector('[data-act=pickfood]'); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForSelector('#fsave'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(800);
   await flush(p); const e = evs(p); assert.ok(e.includes('faol') && e.includes('suv_qoshildi') && e.includes('ovqat_qoshildi.qidiruv'), 'hodisalar: ' + e.join(','));
   const body = JSON.parse(p.bodies[0]); assert.deepEqual(Object.keys(body).sort(), ['h', 'p', 'q', 't']); assert.equal(body.p, 'veb'); assert.equal(body.t, 'uz'); assert.match(body.q, /^[0-9a-f-]{36}$/);
   for (const raw of p.bodies) { const j = JSON.parse(raw); assert.deepEqual(Object.keys(j).sort(), ['h', 'p', 'q', 't']); for (const h of j.h) assert.ok(h.length === 3 && typeof h[2] === 'number' && !/osh|palov|kkal|kcal|vazn|weight|\d{2,}/i.test(h[1]), 'tanada ovqat/kkal/vazn yo\'q: ' + h); } assert.deepEqual(p.errs, []); await p.context().close();
