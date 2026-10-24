@@ -86,7 +86,8 @@ export async function kpi(db, dan, gacha, bugun) {
   const yangi = await yangiSum(db, dan, gacha), ob = await evSum(db, 'onboarding_tugadi', dan, gacha), obNew = await evSum(db, 'yangi_foydalanuvchi', dan, gacha) || yangi;
   return { dau: await dauAvg(db, dan, gacha), wau: await devCount(db, addD(gacha, -6), gacha), mau: await devCount(db, addD(gacha, -29), gacha), yangi, onboarding: obNew ? Math.round(Math.min(1, ob / obNew) * 1000) / 10 : null,
     ret1: await retention(db, dan, gacha, 1, bugun), ret7: await retention(db, dan, gacha, 7, bugun), apk: await evSum(db, 'apk_yuklandi', dan, gacha),
-    ai: (await one(db, "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kun >= ? AND kun <= ?", dan, gacha)).n || 0 };
+    ai: (await one(db, "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kalit NOT LIKE 'ovoz.%' AND kun >= ? AND kun <= ?", dan, gacha)).n || 0,
+    ovoz: (await one(db, "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kalit LIKE 'ovoz.%' AND kun >= ? AND kun <= ?", dan, gacha)).n || 0 };          // AI va ovoz — alohida hisoblar (ovoz: ovoz.ok / ovoz.limit / ovoz.xato)
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;

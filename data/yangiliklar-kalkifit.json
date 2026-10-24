@@ -2,6 +2,20 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 31,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Ovozli kiritishning o'z limiti bor.",
+    "ru": "У голосового ввода свой лимит."
+   },
+   "items": [
+    {
+     "uz": "Ovozli kiritish endi alohida hisoblanadi: kuniga 15 tagacha, AI so'rovlar kamaymaydi.",
+     "ru": "Голосовой ввод считается отдельно: до 15 в день, AI-запросы не тратятся."
+    }
+   ]
+  },
+  {
    "v": 30,
    "d": "2026-10-24",
    "bn": {
