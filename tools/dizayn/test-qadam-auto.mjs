@@ -1,6 +1,6 @@
 // KalkiFit: Android'da avtomatik qadam (KalkiNative.qadam → ilovadagi «Qadam» plagini) — plagin SOXTA (Capacitor.nativePromise mock).
-// Plagin yo'q (veb/iPhone) — karta avvalgidek; sensor yo'q — funksiya ko'rinmaydi; birinchi bosishda tushuntirish oynasi (Ruxsat berish / Keyinroq), rad etilsa qayta so'ralmaydi;
-// avtomatik qiymat «Avtomatik» belgisi bilan, qo'lda qo'shilgani ustiga qo'shiladi (avtomatik yangilanganda yo'qolmaydi); Profil'da yoqish/o'chirish; UZ/ЎЗ/RU.   node tools/dizayn/test-qadam-auto.mjs
+// Qadam FAQAT avtomatik (qo'lda kiritish yo'q). Plagin yo'q (veb/iPhone) — Bugun'da karta yo'q, Tarix'da bitta qator; sensor yo'q — so'ralmaydi; birinchi bosishda ulash oynasi (Ruxsat berish / Keyinroq);
+// avtomatik qiymat + manba nomi; Profil'da switch (Eslatmalar kabi) bilan yoqish/o'chirish; UZ/ЎЗ/RU.   node tools/dizayn/test-qadam-auto.mjs
 import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2' };
@@ -31,53 +31,53 @@ const day = (p, d) => p.evaluate((d) => { const s = JSON.parse(localStorage.getI
 const prefs = (p) => p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs);
 const num = async (p) => +(await p.locator('#sNum').first().innerText()).replace(/\D/g, '');
 const calls = (p) => p.evaluate(() => window.__q.calls.slice());
-async function fixOpen(p) { await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#rzSheet [data-act=qafix]'); await p.click('#rzSheet [data-act=qafix]'); await p.waitForSelector('#spAmt'); }      // avtomatik rejim: karta → kichik «Qo'lda tuzatish»
-async function enter2(p, v) { await fixOpen(p); await enter(p, v); }
-async function enter(p, v) { for (const ch of String(v)) await p.click(`#rzSheet [data-k="${ch}"]`); await p.click('#spSave'); await p.waitForTimeout(450); }
 try {
-  /* 1. veb / iPhone: plagin yo'q — hamma narsa avvalgidek */
-  let p = await mk(); assert.equal(await p.locator('.sl-auto').count(), 0); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.match(await p.locator('#rzSheet').innerText(), /Telefondagi jami qadamni yozing/); await enter(p, 4200); assert.equal(await num(p), 4200);
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-qa').count(), 0, 'Profil: qator yo\'q'); assert.deepEqual(p.errs, []); await p.context().close();
-  log('Veb/iPhone (plagin yo\'q): karta, qo\'lda kiritish va Profil avvalgidek, xato yo\'q');
-  /* 2. sensor yo'q telefon */
-  p = await mk({ plugin: { available: false, granted: false, today: 0, yday: 0 } }); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.equal(await p.locator('[data-act=qayes]').count(), 0, 'so\'ralmaydi');
-  await p.keyboard.press('Escape'); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-qa').count(), 0); assert.deepEqual(p.errs, []); await p.context().close();
-  log('Sensor yo\'q telefonda funksiya ko\'rinmaydi, qo\'lda kiritish qoladi');
-  /* 3. birinchi bosish: tushuntirish oynasi → Keyinroq → qo'lda kiritish; qayta so'ralmaydi */
-  p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } }); assert.equal(await p.locator('.sl-auto').count(), 0, 'ruxsatsiz — belgi yo\'q');
+  /* 1. veb / iPhone: plagin yo'q — qadam kartasi YO'Q (qo'lda kiritish yo'q), Tarix'da bitta qator */
+  let p = await mk(); assert.equal(await p.locator('.sl-s').count(), 0, 'Bugun: qadam kartasi yo\'q'); assert.equal(await p.locator('[data-act=addsteps]').count(), 0); assert.equal(await p.locator('.sl-duo.one #wCard').count(), 1, 'suv kartasi to\'liq kenglikda');
+  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); assert.equal((await p.locator('.sl-stepweb').innerText()).trim(), 'Qadam ilovada avtomatik sanaladi'); assert.equal(await p.locator('.sl-stepbig, [data-act=stephelp]').count(), 0);
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('#qaRow').count(), 0, 'Profil: qator yo\'q'); assert.deepEqual(p.errs, []); await p.context().close();
+  log('Veb/iPhone (plagin yo\'q): Bugun\'da qadam kartasi yo\'q, Tarix\'da bitta qator «Qadam ilovada avtomatik sanaladi», Profil\'da qator yo\'q');
+  /* 2. sensor/Health Connect yo'q telefon: karta bor, bosilsa — ma'lumot oynasi (qo'lda kiritish yo'q) */
+  p = await mk({ plugin: { available: false, granted: false, today: 0, yday: 0 } }); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForTimeout(500); assert.equal(await p.locator('[data-act=qayes]').count(), 0, 'so\'ralmaydi'); assert.equal(await p.locator('#spAmt, [data-act=qafix]').count(), 0, 'qo\'lda kiritish yo\'q');
+  await p.keyboard.press('Escape'); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('#qaRow').count(), 0); assert.deepEqual(p.errs, []); await p.context().close();
+  log('Sensor yo\'q telefonda: so\'ralmaydi, qo\'lda kiritish yo\'q, Profil\'da qator yo\'q');
+  /* 3. birinchi bosish: ulash oynasi → Keyinroq → oyna yopiladi; kartada «Yoqish» */
+  p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } }); assert.equal(await p.locator('.sl-src').count(), 0, 'ruxsatsiz — manba yo\'q');
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); const ask = await p.locator('#rzSheet').innerText(); assert.match(ask, /Qadamlarni ulash/); assert.match(ask, /«Ruxsat berish»ni bosing/); assert.match(ask, /Qadamlar Health Connect \(Google Fit va boshqalar\) yoki telefon sensoridan olinadi\. Joylashuv olinmaydi\./); assert.match(ask, /Ruxsat berish/); assert.match(ask, /Keyinroq/); assert.doesNotMatch(ask, /halol/i);
-  await p.click('[data-act=qalater]'); await p.waitForSelector('#spAmt'); assert.equal((await prefs(p)).qa, 'later'); await p.keyboard.press('Escape'); await p.waitForTimeout(300);
-  await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.equal(await p.locator('[data-act=qayes]').count(), 0, '«Keyinroq»dan keyin qayta so\'ralmaydi'); assert.ok(!(await calls(p)).includes('Qadam.requestPermission'), 'ruxsat so\'ralmagan'); await p.context().close();
-  log('Birinchi bosishda oddiy oyna («Qadamlaringizni avtomatik sanaymizmi?» + manba: Health Connect yoki sensor [Ruxsat berish] [Keyinroq]); «Keyinroq» → qo\'lda kiritish, qayta so\'ralmaydi');
-  /* 4. Ruxsat berish → avtomatik qiymat + «Avtomatik» belgisi; qo'lda qo'shilgani ustiga qo'shiladi; yangilanganda yo'qolmaydi */
+  await p.click('[data-act=qalater]'); await p.waitForTimeout(400); assert.equal((await prefs(p)).qa, 'later'); assert.equal(await p.locator('#spAmt').count(), 0, 'qo\'lda kiritish oynasi yo\'q'); assert.ok(!(await calls(p)).includes('Qadam.requestPermission'), 'ruxsat so\'ralmagan');
+  assert.equal((await p.locator('.sl-s .sl-pill[data-act=qaulash]').innerText()).trim(), 'Yoqish'); await p.context().close();
+  log('Birinchi bosishda ulash oynasi [Ruxsat berish] [Keyinroq]; «Keyinroq» → oyna yopiladi, kartada «Yoqish» (qo\'lda kiritish yo\'q)');
+  /* 4. Ruxsat berish → avtomatik qiymat + manba; karta bosilsa — faqat ma'lumot */
   p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } });
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); await p.click('[data-act=qayes]'); await p.waitForTimeout(700);
-  assert.equal((await prefs(p)).qa, 'on'); assert.ok((await calls(p)).includes('Qadam.setEnabled:true')); assert.equal(await num(p), 3456); assert.equal(await p.locator('.sl-s .sl-src').innerText(), 'Telefon sensori'); assert.equal(await p.locator('.sl-s .sl-pill').count(), 0, 'avtomatik — «+ Qo\'shish» yo\'q');
+  assert.equal((await prefs(p)).qa, 'on'); assert.ok((await calls(p)).includes('Qadam.setEnabled:true')); assert.equal(await num(p), 3456); assert.equal(await p.locator('.sl-s .sl-src').innerText(), 'Telefon sensori'); assert.equal(await p.locator('.sl-s .sl-pill').count(), 0, 'avtomatik — tugma yo\'q');
   assert.deepEqual(await day(p, YDAY).then((x) => [x.sa, x.steps]), [8000, 8000], 'kechagi kun ham (tarix)');
-  await fixOpen(p); assert.match(await p.locator('#rzSheet').innerText(), /Telefonsiz yurgan qadamlaringizni qo'shing\. Avtomatik sanalgani \(3 456\) o'zgarmaydi\./); await enter(p, 500);
-  assert.equal(await num(p), 3956, 'avtomatik + qo\'lda'); assert.deepEqual(await day(p, TODAY).then((x) => [x.sa, x.steps]), [3456, 3956]);
-  await p.evaluate(() => { window.__q.today = 4100; document.dispatchEvent(new Event('visibilitychange')); }); await p.waitForTimeout(700); assert.equal(await num(p), 4600, 'avtomatik yangilandi, qo\'lda qo\'shilgan 500 saqlandi');
-  await fixOpen(p); assert.match(await p.locator('#spHint').innerText(), /Qo'shilgan: 500/); await enter(p, 200); assert.equal(await num(p), 4300, 'qo\'lda qismi 200 ga o\'zgardi (avtomatik 4 100 + 200)');
-  await fixOpen(p); await p.click('#rzSheet [data-k="0"]'); assert.equal(await p.locator('#spNum').innerText(), '0'); await p.click('#spSave'); await p.waitForTimeout(450); assert.equal(await num(p), 4100, '«0» — qo\'lda qismi nolga, avtomatik o\'zgarmadi'); assert.equal((await day(p, TODAY)).sa, 4100);
-  await enter2(p, 200); assert.equal(await num(p), 4300); await fixOpen(p); await p.waitForSelector('#spClear'); await p.click('#spClear'); await p.waitForTimeout(450); assert.equal(await num(p), 4100, '«Tozalash»'); assert.equal((await day(p, TODAY)).sa, 4100);
-  await enter2(p, 200); assert.equal(await num(p), 4300);
-  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.equal(await p.locator('.sl-stepbig .sl-src').count(), 1, 'Natijalar: manba nomi'); assert.equal(await num(p), 4300);
-  log('Ruxsat → bugungi qadam o\'zi (3 456) + manba nomi («Telefon sensori»), «+ Qo\'shish» yo\'q (qo\'lda — karta → «Qo\'lda tuzatish»), kechagi kun ham; qo\'lda +500 → 3 956; avtomatik 4 100 ga yangilansa → 4 600 (qo\'lda qismi saqlanadi); Natijalar ham');
+  await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForTimeout(500); assert.match(await p.locator('#rzSheet').innerText(), /3 456/); assert.equal(await p.locator('#rzSheet [data-act=qafix], #spAmt').count(), 0, '«Qo\'lda tuzatish» yo\'q'); await p.keyboard.press('Escape'); await p.waitForTimeout(300);
+  await p.evaluate(() => { document.querySelector('.sl-macs').__keep = 1; document.querySelector('#mainAdd').__keep = 1; });
+  await p.evaluate(() => { window.__q.today = 4100; document.dispatchEvent(new Event('visibilitychange')); }); await p.waitForTimeout(700); assert.equal(await num(p), 4100, 'avtomatik yangilandi');
+  const kept = await p.evaluate(() => ({ mac: document.querySelector('.sl-macs').__keep === 1, add: document.querySelector('#mainAdd').__keep === 1, anim: getComputedStyle(document.querySelector('.sl-big')).animationName, quiet: !!(window.KalkiSW && KalkiSW.isQuiet()) }));
+  assert.ok(kept.mac && kept.add, 'qadam yangilanganda o\'zgarmagan bloklar joyida qoldi (butun ekran qayta chizilmaydi): ' + JSON.stringify(kept)); assert.equal(kept.anim, 'none', 'kaloriya kartasi qayta chizilganda «fadeUp» qayta o\'ynamaydi'); assert.ok(kept.quiet, 'SW yangilansa ham ish paytida reload yo\'q (quiet)');
+  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.equal(await p.locator('.sl-stepbig .sl-src').count(), 1, 'Tarix: manba nomi'); assert.equal(await num(p), 4100); assert.equal(await p.locator('[data-act=editsteps], .sl-stepbig [data-act=addsteps], [data-act=stephelp]').count(), 0, 'Tarix: kiritish yo\'q');
+  log('Ruxsat → bugungi qadam o\'zi (3 456) + manba nomi, kechagi kun ham; karta bosilsa faqat jami va manba; avtomatik 4 100 ga yangilanadi — o\'zgarmagan bloklar joyida qoladi, animatsiya qayta o\'ynamaydi, reload yo\'q; Tarix\'da kiritish yo\'q');
   /* 5. maqsad va kaloriya avtomatik qiymat bilan */
   await p.evaluate(() => { window.__q.today = 15000; document.dispatchEvent(new Event('visibilitychange')); }); await p.waitForTimeout(400); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(700);
-  assert.equal(await num(p), 15200); assert.ok(await p.locator('#kBurn').count() === 1, 'qadam hisobiga kkal (+)'); const cel = await prefs(p); assert.ok(cel.cel && cel.cel.s === 1, 'kunlik maqsad bajarildi'); assert.deepEqual(p.errs, []);
-  /* 6. Profil: o'chirish → belgi yo'q, setEnabled(false); qayta yoqish */
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('.sl-qa').innerText(), /Qadamni avtomatik sanash/); await p.click('[data-act=qatog][data-v="0"]'); await p.waitForTimeout(300);
-  assert.equal((await prefs(p)).qa, 'off'); assert.ok((await calls(p)).includes('Qadam.setEnabled:false')); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-src').count(), 0); assert.equal(await p.locator('.sl-s .sl-pill').count(), 1, 'o\'chirilgach — qo\'lda tugma qaytadi'); assert.equal(await num(p), 15200, 'yozilgan qadam qoladi');
-  await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.equal(await p.locator('[data-act=qayes]').count(), 0); await p.keyboard.press('Escape');
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); await p.click('[data-act=qatog][data-v="1"]'); await p.waitForTimeout(600); assert.equal((await prefs(p)).qa, 'on'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-s .sl-src').count(), 1); assert.deepEqual(p.errs, []); await p.context().close();
-  log('Kunlik maqsad va kaloriya avtomatik qiymat bilan; Profil → «Qadamni avtomatik sanash» o\'chirish/yoqish (yozilgan qadam o\'chmaydi)');
-  /* 7. rad etildi → qayta-qayta so'ralmaydi */
+  assert.equal(await num(p), 15000); assert.ok(await p.locator('#kBurn').count() === 1, 'qadam hisobiga kkal (+)'); const cel = await prefs(p); assert.ok(cel.cel && cel.cel.s === 1, 'kunlik maqsad bajarildi'); assert.deepEqual(p.errs, []);
+  /* 6. Profil: switch (Eslatmalar kabi) — o'chirish / yoqish */
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('#qaRow').innerText(), /Qadamni avtomatik sanash\s*Telefon sensori orqali/); assert.equal(await p.locator('#qaRow [role=switch][aria-checked=true]').count(), 1); assert.equal(await p.locator('#qaRow').getByText(/Yoqilgan|O'chirilgan/).count(), 0, 'eski segment yo\'q');
+  await p.click('#qaRow [data-act=qatog]'); await p.waitForTimeout(300);
+  assert.equal((await prefs(p)).qa, 'off'); assert.ok((await calls(p)).includes('Qadam.setEnabled:false')); assert.equal(await p.locator('#qaRow [role=switch][aria-checked=false]').count(), 1); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-src').count(), 0); assert.equal(await p.locator('.sl-s .sl-pill[data-act=qaulash]').count(), 1, 'o\'chirilgach — «Yoqish»'); assert.equal(await num(p), 15000, 'yozilgan qadam qoladi');
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); await p.click('#qaRow [data-act=qatog]'); await p.waitForTimeout(600); assert.equal((await prefs(p)).qa, 'on'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); assert.equal(await p.locator('.sl-s .sl-src').count(), 1); assert.deepEqual(p.errs, []); await p.context().close();
+  log('Kunlik maqsad va kaloriya avtomatik qiymat bilan; Profil → «Qadamni avtomatik sanash» switch (izoh «Telefon sensori orqali»), o\'chirish/yoqish (yozilgan qadam o\'chmaydi)');
+  /* 7. rad etildi → toast; qo'lda kiritish yo'q */
   p = await mk({ plugin: { available: true, granted: false, grant: false, today: 3000, yday: 0 } }); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); await p.click('[data-act=qayes]'); await p.waitForTimeout(600);
-  assert.equal((await prefs(p)).qa, 'off'); assert.match(await p.locator('body').innerText(), /Ruxsat berilmadi/); assert.equal(await p.locator('.sl-src').count(), 0);
-  await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.equal(await p.locator('[data-act=qayes]').count(), 0, 'qayta so\'ralmaydi'); await p.keyboard.press('Escape');
-  await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(600); await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('#spAmt'); assert.equal(await p.locator('[data-act=qayes]').count(), 0, 'qayta ochilganda ham'); assert.deepEqual(p.errs, []); await p.context().close();
-  log('Rad etilsa: tushuntirish toast, qayta so\'ralmaydi (qayta ochilganda ham)');
+  assert.equal((await prefs(p)).qa, 'off'); assert.match(await p.locator('body').innerText(), /Ruxsat berilmadi/); assert.equal(await p.locator('.sl-src').count(), 0); assert.equal(await p.locator('#spAmt').count(), 0); assert.deepEqual(p.errs, []); await p.context().close();
+  log('Rad etilsa: tushuntirish toast, qo\'lda kiritish oynasi yo\'q');
+  /* 7b. Profil 360 px, katta shrift (textZoom ~115%): switch qatori — matn switch bilan kesishmaydi */
+  p = await mk({ plugin: { available: true, granted: true, grant: true, enabled: true, today: 3000, yday: 0 }, st: Object.assign(seed(), { prefs: Object.assign(seed().prefs, { qa: 'on' }) }), w: 360, h: 760 }); await p.evaluate(() => document.documentElement.classList.add('fs-big'));
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500);
+  const gq = await p.evaluate(() => { const r = (q) => document.querySelector(q).getBoundingClientRect(), t = r('#qaRow .t b'), sm = r('#qaRow .t small'), sw = r('#qaRow .sl-sw'), row = r('#qaRow'); return { w: Math.round(sw.width), ov: t.right > sw.left + 0.5 || sm.right > sw.left + 0.5, inRow: sw.right <= row.right + 0.5 && sw.top >= row.top - 0.5 && sw.bottom <= row.bottom + 0.5 }; });
+  assert.equal(gq.w, 52, 'switch 52 px'); assert.ok(!gq.ov, 'matn switch ustiga chiqmaydi'); assert.ok(gq.inRow, 'switch qator ichida'); assert.deepEqual(p.errs, []); await p.context().close();
+  log('Profil 360 px + katta shrift: «Qadamni avtomatik sanash» qatori — matn switch bilan kesishmaydi');
   /* 8. RU va ЎЗ matnlari, 360 px katta shrift: kartaga sig'adi */
   for (const [lang, url, re, badge] of [['ru', '/ru/kalkifit', /Подключить шаги[\s\S]*Шаги берутся из Health Connect \(Google Fit и другие\) или датчика телефона\. Местоположение не используется\.[\s\S]*Разрешить[\s\S]*Позже/, 'Датчик телефона'], ['cyr', '/kalkifit?lang=cyr', /Қадамларни улаш[\s\S]*Қадамлар Health Connect \(Google Fit ва бошқалар\) ёки телефон сенсоридан олинади\. Жойлашув олинмайди\.[\s\S]*Рухсат бериш[\s\S]*Кейинроқ/, 'Телефон сенсори']]) {
     p = await mk({ plugin: { available: true, granted: false, grant: true, today: 12345, yday: 0 }, url, lang, w: 360, h: 640 }); await p.evaluate(() => document.documentElement.classList.add('fs-big'));

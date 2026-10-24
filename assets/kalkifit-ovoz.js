@@ -1,16 +1,18 @@
 /* kalki.uz — KalkiFit: ovozli kiritish («bir piyola osh, ikki tilim non va choy» → matn). Matn ilovaning odatiy matn oqimiga beriladi (kkal bazadan).
-   Yo'llar (birinchi mosi): 1) APK — native «Ovoz» plagini (SpeechRecognizer);
+   Yo'llar (birinchi mosi): 0) APK 1.0.6+ (plaginda yozRuxsat) va serverda kalit bo'lsa — server yo'li (pastdagi 2): yozuv jimlikda TO'XTAMAYDI, foydalanuvchi to'xtatguncha (≤ 30 s);
+   1) eski APK — native «Ovoz» plagini (SpeechRecognizer; telefon nutq xizmati jimlikda o'zi tugatadi);
    2) server — MediaRecorder (iOS: audio/mp4, Android/desktop: audio/webm;opus) → POST /api/ovoz (OpenAI gpt-4o-mini-transcribe) — faqat serverda kalit bo'lsa (o.server() === true);
    3) Web Speech API — FAQAT ishonchli joyda (Android/desktop Chrome, Edge); iOS'da (Safari/PWA, iOS Chrome ham WebKit) kalitsiz tugma KO'RINMAYDI.
    Ovoz saqlanmaydi: server yo'lida audio faqat tanish uchun uzatiladi; Web Speech / native — telefon (yoki brauzer) nutq xizmati.
    create({ lang, server, post }) → { kind(), ok(), start(h), finish(), cancel() }
-     h: { onPart(t), onText(t, tok), onErr(kod, n), onRec() }; xato kodlari: ruxsat | jim | tarmoq | yoq | vaqt | limit | xato
+     h: { onPart(t), onText(t, tok), onErr(kod, n), onRec(), onLevel(0..1) — server yo'lida ovoz balandligi (to'lqin uchun) }; xato kodlari: ruxsat | jim | tarmoq | yoq | vaqt | limit | xato
      cancel() — DARHOL to'xtatadi (recognition.abort, mikrofon oqimi yopiladi, taymerlar, so'rov bekor) va hech qanday natija/xato qaytarmaydi. */
 (function (root) {
   'use strict';
-  var BCP = { uz: 'uz-UZ', ru: 'ru-RU' }, WAIT = 10000, MAXREC = 15000;
+  var BCP = { uz: 'uz-UZ', ru: 'ru-RU' }, WAIT = 10000, MAXREC = 30000;
   function webSR() { return root.SpeechRecognition || root.webkitSpeechRecognition || null; }
   function nat() { var N = root.KalkiNative; try { return N && N.isApp && N.isApp() && N.has && N.has('Ovoz') ? N : null; } catch (e) { return null; } }
+  function natRec() { var N = nat(); if (!N) return false; try { var h = root.Capacitor && root.Capacitor.PluginHeaders; return Array.isArray(h) && h.some(function (x) { return x && x.name === 'Ovoz' && (x.methods || []).some(function (m) { return m && m.name === 'yozRuxsat'; }); }); } catch (e) { return false; } }          // APK 1.0.6+: WebView'da yozish mumkin (MODIFY_AUDIO_SETTINGS + mikrofon ruxsati native so'raladi)
   function nav() { return root.navigator || {}; }
   function isIOS(ua, n) { ua = ua || nav().userAgent || ''; n = n || nav(); return /iPad|iPhone|iPod/.test(ua) || (n.platform === 'MacIntel' && n.maxTouchPoints > 1); }
   function webOk(ua) { ua = ua || nav().userAgent || ''; if (isIOS(ua)) return false; return /Chrome\/\d|Edg\/\d|CriOS/.test(ua) && !/Firefox|FxiOS|OPR\//.test(ua); }          // Web Speech ishonchli: Chrome/Edge (Android, desktop)
@@ -22,7 +24,7 @@
   function code(e) { e = String(e || ''); if (/not-allowed|service-not-allowed|permission|denied|NotAllowed|ruxsat/i.test(e)) return 'ruxsat'; if (/no-speech|no_match|speech_timeout|jim/i.test(e)) return 'jim'; if (/network|tarmoq|Failed to fetch/i.test(e)) return 'tarmoq'; if (/audio-capture|NotFound|language|yoq/i.test(e)) return 'yoq'; if (/vaqt|timeout/i.test(e)) return 'vaqt'; if (/limit/.test(e)) return 'limit'; return 'xato'; }
   function create(o) {
     o = o || {}; var lang = function () { return BCP[(o.lang && o.lang()) === 'ru' ? 'ru' : 'uz']; }, cur = null;
-    function kind() { if (nat()) return 'native'; if (o.server && o.server() && recOk() && o.post) return 'server'; if (webSR() && webOk()) return 'web'; return null; }
+    function kind() { var srv = o.server && o.server() && recOk() && o.post; if (nat()) return srv && natRec() ? 'server' : 'native'; if (srv) return 'server'; if (webSR() && webOk()) return 'web'; return null; }
     function start(h) {
       h = h || {}; if (cur) cur.cancel(); var k = kind(), off = false, tm = null, c = { kind: k };
       var end = function () { off = true; clearTimeout(tm); if (cur === c) cur = null; };
@@ -38,8 +40,13 @@
         return c;
       }
       if (k === 'server') {
-        var stream = null, mr = null, chunks = [], ctl = null, mime = mimeOf(), sent = false;
-        var tracks = function () { try { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {} stream = null; };
+        var stream = null, mr = null, chunks = [], ctl = null, mime = mimeOf(), sent = false, ac = null, lvT = null;
+        var tracks = function () { clearInterval(lvT); lvT = null; try { if (ac) ac.close(); } catch (e) {} ac = null; try { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {} stream = null; };
+        var level = function (s) {          // to'lqin: ovoz balandligi ~12 marta/soniyada (faqat ko'rsatish uchun; jimlik yozuvni TO'XTATMAYDI)
+          var AC = root.AudioContext || root.webkitAudioContext; if (!AC || !h.onLevel) return;
+          try { ac = new AC(); var an = ac.createAnalyser(); an.fftSize = 512; ac.createMediaStreamSource(s).connect(an); var buf = new Uint8Array(an.fftSize);
+            lvT = setInterval(function () { if (off) return; an.getByteTimeDomainData(buf); var m = 0; for (var i = 0; i < buf.length; i++) { var v = Math.abs(buf[i] - 128); if (v > m) m = v; } h.onLevel(Math.min(1, m / 64)); }, 80); } catch (e) {}
+        };
         c.cancel = function () { if (off) return; end(); try { if (ctl) ctl.abort(); } catch (e) {} try { if (mr && mr.state !== 'inactive') { mr.ondataavailable = null; mr.onstop = null; mr.stop(); } } catch (e) {} tracks(); };
         var send = function () {
           if (off || sent) return; sent = true; tracks(); var blob = new Blob(chunks, { type: (mime || 'audio/webm').split(';')[0] }); chunks = [];
@@ -48,12 +55,13 @@
           o.post(blob, blob.type, lang().slice(0, 2), ctl && ctl.signal).then(function (r) { if (r && r.text) text(String(r.text).trim(), r.tok); else if (r && r.err) err(r.err, r.n); else err('jim'); }, function (e) { if (e && e.name === 'AbortError') return; err(code(e && (e.code || e.message))); });
         };
         c.finish = function () { if (off || !mr) return; clearTimeout(tm); try { if (mr.state !== 'inactive') mr.stop(); else send(); } catch (e) { send(); } };
-        nav().mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }).then(function (s) {
+        var perm = natRec() ? nat().call('Ovoz', 'yozRuxsat', {}).then(function (r) { if (!(r && r.ruxsat)) throw { code: 'ruxsat' }; }) : Promise.resolve();          // APK: mikrofon ruxsati native oynada (WebView o'zi so'ray olmaydi)
+        perm.then(function () { return nav().mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); }).then(function (s) {
           if (off) { s.getTracks().forEach(function (t) { t.stop(); }); return; } stream = s;
           try { mr = mime ? new root.MediaRecorder(s, { mimeType: mime }) : new root.MediaRecorder(s); } catch (e) { tracks(); err('yoq'); return; }
           if (!mime) mime = mr.mimeType || ''; mr.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); }; mr.onstop = send;
-          mr.start(); clearTimeout(tm); tm = setTimeout(function () { c.finish(); }, MAXREC); if (h.onRec) h.onRec();          // ko'pi bilan 15 soniya — keyin o'zi yuboriladi
-        }, function (e) { err(code(e && (e.name || e.message))); });
+          mr.start(); clearTimeout(tm); tm = setTimeout(function () { c.finish(); }, MAXREC); level(s); if (h.onRec) h.onRec();          // ko'pi bilan 30 soniya — keyin o'zi yuboriladi; jimlik bo'yicha to'xtash YO'Q
+        }, function (e) { err(code(e && (e.code || e.name || e.message))); });
         return c;
       }
       var SR = webSR(); if (!SR || !k) { err('yoq'); return c; }
@@ -69,6 +77,6 @@
     }
     return { kind: kind, ok: function () { return !!kind(); }, start: start, finish: function () { if (cur && cur.finish) cur.finish(); }, cancel: function () { if (cur && cur.cancel) cur.cancel(); }, busy: function () { return !!cur; } };
   }
-  var api = { create: create, code: code, BCP: BCP, webOk: webOk, isIOS: isIOS, WAIT: WAIT, MAXREC: MAXREC };
+  var api = { natRec: natRec, create: create, code: code, BCP: BCP, webOk: webOk, isIOS: isIOS, WAIT: WAIT, MAXREC: MAXREC };
   if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiOvoz = api;
 })(typeof window !== 'undefined' ? window : this);

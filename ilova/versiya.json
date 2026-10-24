@@ -1,13 +1,13 @@
 {
-  "version": "1.0.5",
-  "versionCode": 7,
-  "apk": "/ilova/kalkifit-1.0.5.apk",
-  "sha256": "bf8ba1eabab26c591db96eeee0b6eba06c58326d7e44a305a78c0f0405611bdf",
-  "size": 9321747,
+  "version": "1.0.6",
+  "versionCode": 8,
+  "apk": "/ilova/kalkifit-1.0.6.apk",
+  "sha256": "0c42910191b4e626dbb730761e073b07d8561ef8dfb9e3b5c47833e327ade1ee",
+  "size": 9321787,
   "minAndroid": "8.0",
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "notes": {
-    "uz": "Google bilan kirishga tayyorgarlik va kichik tuzatishlar.",
-    "ru": "Подготовка ко входу через Google и небольшие исправления."
+    "uz": "Ovoz bilan qo'shish: to'xtatguningizcha yoziladi (30 soniyagacha), vaqt va to'lqin ko'rinadi.",
+    "ru": "Голосовой ввод: запись идёт, пока вы её не остановите (до 30 секунд), видны время и волна."
   }
 }

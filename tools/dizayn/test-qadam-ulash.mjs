@@ -69,8 +69,8 @@ try {
   await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(500); assert.match(await txt(p, '#rzSheet'), /Telefoningizda qadam sensori yo'q — qadamni Google Fit sanaydi\./); await p.context().close();
   /* 5. ruxsat rad */
   p = await open({ q: { st: ST({ hc: 'ok' }), ulash: { granted: false } } }); await p.click('.sl-s [data-act=addsteps]'); await p.waitForSelector('#rzSheet [data-act=qayes]'); assert.match(await txt(p, '#rzSheet'), /«Ruxsat berish»ni bosing — qadamlar o'zi keladi\./); await p.click('#rzSheet [data-act=qayes]'); await p.waitForTimeout(700);
-  assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.qa)), 'off'); assert.match(await p.locator('body').innerText(), /Ruxsat berilmadi/); assert.equal(await p.locator('.sl-s .sl-pill[data-act=addsteps]').count(), 1, 'qo\'lda kiritish qoladi'); await p.context().close();
-  log('Sensor yo\'q telefonda aniq izoh («…qadamni Google Fit sanaydi»); ruxsat rad etilsa — o\'chiq, tushuntirish, qo\'lda kiritish qoladi');
+  assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.qa)), 'off'); assert.match(await p.locator('body').innerText(), /Ruxsat berilmadi/); assert.equal(await txt(p, '.sl-s .sl-pill[data-act=qaulash]'), 'Yoqish', 'qayta yoqish tugmasi'); assert.equal(await p.locator('[data-act=qafix], #spNum').count(), 0, 'qo\'lda kiritish yo\'q'); await p.context().close();
+  log('Sensor yo\'q telefonda aniq izoh («…qadamni Google Fit sanaydi»); ruxsat rad etilsa — o\'chiq, tushuntirish, kartada «Yoqish» (qo\'lda kiritish yo\'q)');
   /* 6. RU matnlari */
   p = await open({ lang: 'ru', q: { st: ST({ hc: 'install' }) } }); await p.click('.sl-s [data-act=addsteps]'); await p.waitForSelector('#rzSheet [data-act=qahc]'); sh = await txt(p, '#rzSheet'); assert.match(sh, /Подключить шаги/); assert.match(sh, /1\/2 — Установите Health Connect и вернитесь сюда\./); await p.context().close();
   log('RU: «Подключить шаги», «1/2 — Установите Health Connect и вернитесь сюда.» (ЎЗ — translit)');

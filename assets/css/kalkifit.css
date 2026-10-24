@@ -146,7 +146,8 @@ html.fs-big .sl{--t-lbl:15px;--t-xs:17px;--t-s:17px;--t-m:19px;--t-ml:19px;--t-l
 .rz .sl-streak2{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:18px;background:var(--card);border:1px solid var(--line);font-size:var(--t-xs);font-weight:600}.rz .sl-streak2 .rz-i{width:16px;height:16px;stroke:var(--flame);color:var(--flame)}
 .rz .sl-av{width:44px;height:44px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--av1),var(--av2));color:var(--onacc);font:600 var(--t-m) 'Manrope',sans-serif}
 /* BUGUN: kaloriya «idishi» */
-.rz .sl-big{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:20px;animation:fadeUp .6s ease both}
+.rz .sl-big{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.rz .rz-main.rzi .sl-big{animation:fadeUp .6s ease both}          /* faqat ochilishda (qayta chizishda o'chib-yonmaydi) */
 .rz .sl-vessel{display:block;width:240px;height:240px;border:0;background:transparent;padding:0;position:relative;color:inherit;border-radius:50%}
 .rz .sl-vsvg{display:block}.rz .sl-vsvg text{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums}
 .rz .kv-vessel{fill:var(--vessel)}.rz .kv-sub{fill:var(--mut)}.rz .kv-sub.kv-n{fill:var(--ink)}.rz .kv-dk{fill:var(--vk-d)}.rz .kv-dk.kv-n{fill:var(--vk-n)}
@@ -655,6 +656,7 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .rz .sl-jline::before{content:"";position:absolute;top:-7px;left:50%;width:12px;height:12px;background:var(--card);border-left:1px solid var(--line);border-top:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
 .rz .sl-jline .t{padding-top:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rz .sl-jline .sl-jx{margin-top:0;width:36px;height:36px}
+.rz .sl-jline.sl-jskel{min-height:56px}.rz .sl-jskel .t{display:flex;flex-direction:column;gap:7px;padding:2px 14px 2px 0}.rz .sl-jskel i{display:block;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--line) 25%,var(--soft) 50%,var(--line) 75%);background-size:200% 100%;animation:skel 1.2s linear infinite}.rz .sl-jskel i+i{width:62%}@keyframes skel{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){.rz .sl-jskel i{animation:none}}
 /* suv kartasi: umumiy son katta; ostida bitta kichik qator «Suv 750 · Ichimliklar 600»; oynada ichimliklar ro'yxati */
 .rz .sl-wsplit{display:block;width:100%;font-size:var(--t-xs);font-weight:600;color:var(--mut);line-height:1.3;margin-top:2px;white-space:normal;overflow-wrap:anywhere;text-align:left}
 .rz .sl-glass.dr{opacity:.62}
@@ -665,6 +667,11 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .sl-vo{display:flex;flex-direction:column;align-items:center;gap:14px;padding:18px 4px 10px;text-align:center}
 .sl-vmic{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accsoft);color:var(--acc2)}
 .sl-vmic .rz-i{width:38px;height:38px}
+button.sl-vmic{border:0;padding:0;cursor:pointer;font:inherit}
+.sl-vwave{display:flex;align-items:center;justify-content:center;gap:3px;height:44px;width:100%;max-width:260px}
+.sl-vwave i{flex:1;max-width:6px;height:100%;border-radius:3px;background:var(--acc2);transform:scaleY(.08);transition:transform .08s linear}
+.sl-vtime{margin:0;font-size:var(--t-m);font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.sl-vwave i{transition:none}}
 .sl-vo.on .sl-vmic{animation:vPulse 1.4s ease-in-out infinite}
 @keyframes vPulse{0%,100%{box-shadow:0 0 0 0 var(--accsoft)}50%{box-shadow:0 0 0 14px transparent}}
 @media (prefers-reduced-motion:reduce){.sl-vo.on .sl-vmic{animation:none}}
@@ -774,6 +781,10 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .sl-sw[disabled]{opacity:.45}
 .sl-sw:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.sl-sw,.sl-sw i{transition:none}}
+/* Profil → «Qadamni avtomatik sanash»: Eslatmalar kabi switch qatori (sl-remc uslubi) */
+.rz .sl-qarow{margin-top:12px;border-top:1px solid var(--line)}
+.rz .sl-duo.one{grid-template-columns:minmax(0,1fr)}
+.rz .sl-stepweb p{display:flex;align-items:center;gap:8px;margin:0}.rz .sl-stepweb .rz-i{width:20px;height:20px;flex:none;color:var(--acc2)}
 /* v27: qo'shish oynasi — «Rasmdan» va «Menyudan» bir xil darajada; Yeymiz → Kafe: menyu tugmasi + bir martalik ko'rsatma */
 .rz .sl-qa2{display:flex;gap:8px;margin:8px 0 4px}
 .rz .sl-qa{flex:1;min-height:48px;border:0;border-radius:14px;background:var(--soft);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 var(--t-s) 'Manrope',sans-serif}
