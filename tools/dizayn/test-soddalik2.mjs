@@ -143,7 +143,7 @@ try {
   log('Aylana raqami: light/dark × 0/50/90%/ortiqcha — raqam BITTA qatlam, to\'lqin guruhidan keyin chiziladi (doim ustida, hech qanday chiziq bilan kesilmaydi); halo bilan fon va suyuqlikda ham o\'qiladi (kontrast ≥4,5 fonda, ≥3 suyuqlikda)');
   /* 15. Yozuvlar kam va katta: Bugun, Profil va oynalarda asosiy matn ≥17 px, ikkilamchi ≥15 px; 13 px faqat birlik/nishon (hafta harflari, «kafe», «Oqsilga boy», «Tez orada»); uzun izoh paragraflari yo'q (Profilda ⓘ ortida) */
   for (const o of [{}, { big: true }, { url: '/ru/kalkifit' }]) { const p = await mk(seed(), Object.assign({ wait: 900 }, o));
-    const scan = (name) => p.evaluate((name) => { const ok13 = (e) => e.closest('.sl-wk .w,.sl-week2 .w,.wd .w,.sl-kb,.sl-fl,.rt-soon,.rz-demo,.rz-badge,.rz-news-dot,small,sub,sup'); const root = (() => { const sh = document.getElementById('rzSheet'); return sh && !sh.hidden ? sh : document.getElementById('rzMain'); })(); const bad = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let t;
+    const scan = (name) => p.evaluate((name) => { const ok13 = (e) => e.closest('.sl-wk .w,.sl-week2 .w,.wd .w,.sl-kb,.sl-fl,.rt-soon,.rz-demo,.rz-badge,.rz-news-dot,.sl-ptile .d,small,sub,sup'); const root = (() => { const sh = document.getElementById('rzSheet'); return sh && !sh.hidden ? sh : document.getElementById('rzMain'); })(); const bad = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let t;
       while ((t = w.nextNode())) { const x = t.textContent.trim(); if (!x) continue; const e = t.parentElement; if (!e.getClientRects().length || e.closest('[hidden],[aria-hidden=true],.rz-sr')) continue; const fs = parseFloat(getComputedStyle(e).fontSize); if (fs < 15 && !(fs >= 13 && ok13(e))) bad.push(name + ': ' + fs + 'px «' + x.slice(0, 40) + '» ' + e.className); }
       return bad; }, name);
     const bad = []; const step = async (name, sel) => { if (sel) { await p.click(sel); await p.waitForTimeout(650); } bad.push(...await scan(name)); if (sel && await p.locator('#rzSheet:not([hidden]) .rz-x').count()) { await closeX(p); } };
@@ -151,6 +151,6 @@ try {
     await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); await step('Profil'); assert.deepEqual(bad, [], JSON.stringify(o) + ' kichik matn');
     const long = await p.evaluate(() => [...document.querySelectorAll('#rzMain .rz-card p')].filter((e) => e.getClientRects().length && !e.closest('[hidden]')).map((e) => e.textContent.trim()).filter((x) => x.length > 60)); assert.deepEqual(long, [], 'Profil: uzun ochiq izoh yo\'q');
     const ib = await p.locator('#rzMain .sl-infob[data-act=ibtog]').count(); assert.ok(ib >= 2, 'Profil: ⓘ tugmalari ' + ib); await p.context().close(); }
-  log('Yozuvlar: Bugun/Qo\'shish/Kaloriya/Makro/Profil (oddiy, katta shrift, RU) — matn ≥15 px (13 px faqat hafta harflari/nishonlar), Profilda uzun ochiq izoh yo\'q, izohlar ⓘ ortida');
+  log('Yozuvlar: Bugun/Qo\'shish/Kaloriya/Makro/Profil (oddiy, katta shrift, RU) — matn ≥15 px (13 px faqat hafta harflari/nishonlar/«Qo\'shish» plitka izohi (3 plitka bir qatorda)), Profilda uzun ochiq izoh yo\'q, izohlar ⓘ ortida');
   console.log('\n' + n + ' ta tekshiruv o\'tdi');
 } finally { await b.close(); srv.close(); }
