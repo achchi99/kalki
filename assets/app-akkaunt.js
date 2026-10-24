@@ -123,6 +123,7 @@
       }, function () { loading = false; S.t = Date.now() - (S.yoq ? TTL_ON : TTL_OFF) + 60000; });   // tarmoq xatosi: 1 daqiqadan keyin qayta uriniladi (har renderda emas)
     };
     ak.enabled = function () { return !!S.yoq; };
+    ak.loggedIn = function () { return !!(S.yoq && S.kirgan); };
     ak.state = function () { return JSON.parse(JSON.stringify(S)); };
     ak.autoSaved = function () { return !!(S.yoq && S.kirgan && S.il[app] && bk && bk.cloudOn()); };
     ak.rowHtml = function () {

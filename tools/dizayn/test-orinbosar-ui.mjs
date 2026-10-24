@@ -36,9 +36,9 @@ try {
   const oshKop = await p.locator('#orCard .sl-or-b.main b').count() ? await txt(p, '#orCard .sl-or-b.main b') : ''; assert.ok(!/Tovuqli osh/.test(oshKop), '«go\'sht ko\'p, yog\' ko\'p» oshga tovuqli osh taklif qilinmaydi (oqsil −)'); await p.context().close();
   log('Karta yo\'q: olma, tahrirlash oynasi, sozlama o\'chiq; qoidaga javob bermaydigan kombinatsiya (go\'sht ko\'p) oshga tovuqli osh chiqmaydi');
   /* 4. Profil: «O'rinbosar takliflari» o'chirish/yoqish */
-  p = await mk(seed()); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.ok(await p.locator('[data-act=ortog][data-v="1"][aria-pressed=true], [data-act=ortog][data-v="1"].on').count() >= 1, 'standart: yoqilgan');
-  await p.click('[data-act=ortog][data-v="0"]'); await p.waitForTimeout(250); assert.equal((await stOf(p)).prefs.orin, false); await p.click('[data-act=ortog][data-v="1"]'); await p.waitForTimeout(250); assert.equal((await stOf(p)).prefs.orin, true);
-  await p.click('[data-act=ortog][data-v="0"]'); await p.waitForTimeout(250); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(250); await pick(p, 'osh'); assert.equal(await p.locator('#orCard').count(), 0); await p.context().close();
+  p = await mk(seed()); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('#orRow [role=switch][aria-checked=true]').count(), 1, 'standart: yoqilgan (switch, sarlavha bilan)'); assert.match(await txt(p, '#orRow b'), /O'rinbosar takliflari/);
+  await p.click('[data-act=ortog]'); await p.waitForTimeout(250); assert.equal((await stOf(p)).prefs.orin, false); await p.click('[data-act=ortog]'); await p.waitForTimeout(250); assert.equal((await stOf(p)).prefs.orin, true);
+  await p.click('[data-act=ortog]'); await p.waitForTimeout(250); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(250); await pick(p, 'osh'); assert.equal(await p.locator('#orCard').count(), 0); await p.context().close();
   log('Profil → «O\'rinbosar takliflari»: standart yoqilgan, o\'chirsa karta chiqmaydi, qayta yoqsa saqlanadi');
   /* 5. 360 px + katta shrift + klaviatura balandligi (past ekran) */
   p = await mk(seed(), 360, 420); await p.evaluate(() => document.documentElement.classList.add('fs-big')); await pick(p, 'osh'); await p.waitForSelector('#orCard'); await noX(p);

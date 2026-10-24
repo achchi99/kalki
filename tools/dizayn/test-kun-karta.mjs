@@ -37,7 +37,7 @@ async function open(state, { url = '/kalkifit', hour = 20, native = false, share
 const openCard = async (p) => { if (!(await p.locator('[data-act=feat][data-fk=kunkarta]').count())) { await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); } await p.click('[data-act=feat][data-fk=kunkarta]'); await p.waitForSelector('#kcCv'); await p.waitForTimeout(700); return p.evaluate(() => window.__kd); };
 try {
   /* tugma qachon */
-  let p = await open(mk({ done: true }), { hour: 20 }); assert.equal(await p.locator('#dayCard').count(), 0, 'Bugun\'da tugma yo\'q (ikkinchi qavat)'); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('.sl-feat:has([data-fk=kunkarta])').innerText(), /Kun kartasi/);
+  let p = await open(mk({ done: true }), { hour: 20 }); assert.equal(await p.locator('#dayCard').count(), 0, 'Bugun\'da tugma yo\'q (ikkinchi qavat)'); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('[data-act=feat][data-fk=kunkarta]').innerText(), /Kun kartasi/);
   log('«Kun kartasi» — Profil → Imkoniyatlar (Bugun ekrani uzaymaydi)');
   /* karta ma'lumoti + bitta tugma + Web Share */
   const d = await openCard(p); const sheet = p.locator('#rzSheet'); assert.equal(await sheet.locator('button.rz-btn').count(), 1, 'bitta tugma'); assert.match(await sheet.locator('#kcGo').innerText(), /Ulashish/);
@@ -51,7 +51,7 @@ try {
   /* yuklab olish (Web Share yo'q) */
   p = await open(mk(), { share: false }); await openCard(p); const [dl] = await Promise.all([p.waitForEvent('download'), p.click('#kcGo')]); assert.equal(dl.suggestedFilename(), 'kalkifit-kun.png'); await p.context().close();
   /* APK: Capacitor */
-  p = await open(mk(), { native: true }); await openCard(p); await p.click('#kcGo'); await p.waitForTimeout(1000); const ns = await p.evaluate(() => window.__sh);
+  p = await open(mk(), { native: true }); await openCard(p); await p.click('#kcGo'); await p.waitForFunction(() => window.__sh && window.__sh.length > 1, null, { timeout: 8000 }).catch(() => {}); const ns = await p.evaluate(() => window.__sh);
   assert.equal(ns[0].fs, 'kalkifit-kun.png'); assert.equal(ns[0].dir, 'CACHE'); assert.ok(ns[0].len > 5000); assert.deepEqual(ns[1], { files: ['file:///cache/kalkifit-kun.png'] }); await p.context().close();
   log('Web Share yo\'q → «kalkifit-kun.png» yuklab olinadi; APK → Filesystem (CACHE) + Capacitor Share');
   /* hazil kun natijasiga mos; tema */
@@ -62,7 +62,7 @@ try {
   p = await open(mk({ prefs: { jokes: false } })); x = await openCard(p); assert.equal(x.joke, '', 'hazil o\'chiq'); await p.context().close();
   log('Hazil: maqsadga aniq → on_target, oshgan → dayend_high; qorong\'i temada qorong\'i fon; hazil o\'chiq bo\'lsa — yo\'q');
   /* tillar */
-  p = await open(mk(), { url: '/ru/kalkifit' }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('.sl-feat:has([data-fk=kunkarta]) b').innerText(), /Карточка дня/); x = await openCard(p); assert.match(x.L.steps, /Шаги/); assert.ok(of('dayend', 'ru').includes(x.joke)); await p.context().close();
+  p = await open(mk(), { url: '/ru/kalkifit' }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('[data-act=feat][data-fk=kunkarta] b').innerText(), /Карточка дня/); x = await openCard(p); assert.match(x.L.steps, /Шаги/); assert.ok(of('dayend', 'ru').includes(x.joke)); await p.context().close();
   p = await open(mk(), { url: '/kalkifit?lang=cyr' }); await p.waitForTimeout(500); x = await openCard(p); assert.match(x.date, /[А-Яа-яЎўҚқҒғҲҳ]/); assert.match(x.L.top, /^[^a-z]+$/i.test(x.L.top) ? /./ : /Кун/); assert.ok(!/[a-z]/i.test(x.joke), 'ЎЗ hazil kirillda: ' + x.joke); await p.context().close();
   log('RU («Поделиться днём», «Шаги») va ЎЗ (rasm matni kirillda) ishlaydi');
 } finally { await b.close(); srv.close(); }
