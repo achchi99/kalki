@@ -120,7 +120,7 @@ try {
   /* hazil o'chirilgan */
   p = await open('/kalkifit', seed({ jokes: false }), 9); await addFood(p, 'osh'); assert.equal(await p.locator('#jLine').count(), 0, 'hazil o\'chirilgan: ovqatdan keyin ham pufak YO\'Q'); await p.context().close();
   /* Profil: yoqish/o'chirish, sarlavha */
-  p = await open('/kalkifit', seed(), 9); await p.click('[data-act=tab][data-v=profile]'); assert.match(await txt(p, '[data-act=jktog]:first-child').then((x) => x || ''), /Yoqilgan/); assert.match(await p.locator('.rz-st:has-text("Maslahat va hazil")').first().innerText(), /Maslahat va hazil/); await p.click('[data-act=jktog][data-v="0"]'); assert.equal((await stOf(p)).prefs.jokes, false); await p.click('[data-act=jktog][data-v="1"]'); assert.equal((await stOf(p)).prefs.jokes, true); await p.context().close();
+  p = await open('/kalkifit', seed(), 9); await p.click('[data-act=tab][data-v=profile]'); assert.equal(await p.getAttribute('[data-act=jktog]', 'aria-checked'), 'true'); assert.match(await p.locator('#jkRow b').innerText(), /Maslahat va hazil/); await p.click('[data-act=jktog]'); assert.equal((await stOf(p)).prefs.jokes, false); await p.click('[data-act=jktog]'); assert.equal((await stOf(p)).prefs.jokes, true); await p.context().close();
   /* hodisasiz kun: qator yo'q; vazn va kun yakuni — hazil yo'q (faqat ovqatdan keyin) */
   p = await open('/kalkifit', seed({ entries: [400] }), 16); await p.waitForTimeout(800); assert.equal(await p.locator('#jLine, .sl-joke').count(), 0, 'hodisasiz — pufak yo\'q'); await p.context().close();
   p = await open('/kalkifit', seed({ entries: [400] }), 11); assert.equal(await p.locator('[data-act=addsteps]').count(), 0, 'vebda qadam kiritish yo\'q'); await p.context().close();

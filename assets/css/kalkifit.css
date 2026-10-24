@@ -845,11 +845,8 @@ html.hk-on,html.hk-on body{overflow:hidden}
 /* Profil: guruh sarlavhalari va «Imkoniyatlar» */
 .rz .sl-grp{margin:var(--g1) 2px 0;font-size:var(--t-s);font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
 .rz .sl-feats{padding:4px var(--g2)}
-.rz .sl-feat{display:flex;align-items:flex-start;gap:12px;min-height:64px;padding:12px 0}
-.rz .sl-feat+.sl-feat{border-top:1px solid var(--line)}
 .rz .sl-feat .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .rz .sl-feat .m b{font-size:var(--t-m);font-weight:600;line-height:1.3}.rz .sl-feat .m span{font-size:var(--t-xs);color:var(--mut);line-height:1.35}
-.rz .sl-feat .m b{overflow-wrap:anywhere}.rz .sl-feat .m .rz-btn{align-self:flex-start;margin-top:6px;min-height:40px;padding:0 16px}
 .rz .sl-qacard{padding:4px var(--g2)}.rz .sl-qacard .sl-qarow{margin:0;border:0}
 /* ---- tanishtiruv: katta jonli rasm + bitta jumla ---- */
 .rz .in-art{min-height:250px;align-items:center}
@@ -998,3 +995,27 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz-sheet[data-kind=add] .sl-cta{margin-top:12px;padding-top:12px}
 .rz-sheet[data-kind=add] .sl-cta .sl-main{height:56px;border-radius:18px}
 @media (max-height:700px){.rz .kq-food{width:84px;height:84px;border-radius:24px}.rz .kq-food .sl-tile{--s:84px;border-radius:24px}.rz.sl .kq-hero .sl-pn{margin-top:6px}.rz .kq-kc{margin-top:8px}.rz .kq-chips{margin-top:10px}}
+/* Suv kartasi vebda (qadam kartasi yo'q): ixcham bitta qator — ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress (~72 px). Android (QA) — ikki kichik karta yonma-yon */
+.rz .sl-duo.one .sl-w{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:8px;padding:8px 16px 10px}
+.rz .sl-duo.one .sl-wb{flex-direction:row;align-items:center;gap:10px;min-height:40px;width:auto;min-width:0}
+.rz .sl-duo.one .sl-wb .l{flex:none;font-size:var(--t-s);font-weight:600;color:var(--ink)}
+.rz .sl-duo.one .sl-wb .v{flex-wrap:nowrap;white-space:nowrap;min-width:0;margin-left:auto}
+.rz .sl-duo.one .sl-wb .v b{font-size:var(--t-m)}
+.rz .sl-duo.one .sl-wb{flex-wrap:wrap;row-gap:0}.rz .sl-duo.one .sl-wsplit{margin:0 0 2px}
+.rz .sl-duo.one .sl-w .sl-pill{width:auto;height:44px;min-width:92px;padding:0 14px;white-space:nowrap}
+.rz .sl-wbar{grid-column:1/-1;display:block;height:6px;border-radius:3px;background:var(--track);overflow:hidden}
+.rz .sl-wbar i{display:block;height:100%;border-radius:3px;background:var(--water);transition:width .4s ease}
+/* Profil → Imkoniyatlar: butun qator bosiladi, o'ngda «›» */
+.rz .sl-feats{padding:4px var(--g2)}
+.rz .sl-feats .sl-feat{display:flex;align-items:center;gap:12px;min-height:56px;padding:10px 0;width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;text-align:left;font:inherit}
+.rz .sl-feats .sl-feat:last-child{border-bottom:0}
+.rz .sl-feats .sl-feat .sl-ci{width:36px;height:36px;border-radius:11px;flex:none}
+.rz .sl-feats .sl-feat .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.rz .sl-feats .sl-feat .r{width:18px;height:18px;color:var(--mut);flex:none}
+.rz .sl-feats .sl-feat:active{background:var(--soft)}
+/* Profil: Maslahat/hazil va O'rinbosar — switch qatorlari (Eslatmalar kabi) */
+.rz .sl-remc .rz-row{border-top:1px solid var(--line);border-bottom:0}
+.rz .sl-remc .rz-chk{margin:4px 0 8px}
+.rz .sl-feats .sl-feat .m b{font-size:var(--t-s);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rz .sl-feats .sl-feat .m span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3}
+.rz .sl-feats .sl-feat{min-height:60px;padding:8px 0}

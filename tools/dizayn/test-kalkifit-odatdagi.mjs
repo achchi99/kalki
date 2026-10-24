@@ -30,7 +30,7 @@ async function mk(st, lang = '') { const c = await b.newContext({ viewport: { wi
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.abort()); await p.goto(BASE + (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit' + (lang === 'cyr' ? '?lang=cyr' : '')), { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
 const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state))); const txt = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
 const dayK = async (p) => { const s = await stOf(p); return Math.round(s.days[TODAY].food.reduce((a, e) => a + e.kcal, 0)); };
-const openTpls = async (p) => { await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('.sl-feat [data-fk=odatdagi]'); await p.waitForTimeout(400); };          // Profil → Imkoniyatlar → «Odatdagi ovqatlarim»
+const openTpls = async (p) => { await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=odatdagi]'); await p.waitForTimeout(400); };          // Profil → Imkoniyatlar → «Odatdagi ovqatlarim»
 const more = async (p) => { if (await p.locator('#pwMore[hidden]').count()) { await p.click('[data-act=pwmore]'); await p.waitForTimeout(120); } };
 try {
   /* 1. Kechagidek */

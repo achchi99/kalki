@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 36,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Bugun va Profil ixchamlashdi.",
+    "ru": "«Сегодня» и профиль стали компактнее."
+   },
+   "items": [
+    {
+     "uz": "Suv kartasi bitta qatorda: «+250 ml» bir bosishda, ostida progress.",
+     "ru": "Карточка воды в одну строку: «+250 мл» одним нажатием, снизу прогресс.",
+     "show": "simple",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Profil → Imkoniyatlar: butun qator bosiladi, ro'yxat qisqardi.",
+     "ru": "Профиль → Возможности: нажимается вся строка, список короче."
+    },
+    {
+     "uz": "Hazil va o'rinbosar sozlamalari endi switch.",
+     "ru": "Шутки и подсказки-замены теперь переключатели."
+    }
+   ]
+  },
+  {
    "v": 35,
    "d": "2026-10-24",
    "bn": {
