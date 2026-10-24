@@ -37,13 +37,13 @@ const CHECK = (scope) => {
   const esc = boxes.filter((x) => { if (x.hs) return false; const p = x.e.closest('.rz-card,.sl-card,.sl-meal,button,.rz-row'); if (!p || p === x.e) return false; const pr = p.getBoundingClientRect(); return x.rs.some((r) => r.right > pr.right + 2 || r.left < pr.left - 2); }).map((x) => name(x.e));
   return { bad: [...new Set(bad)], over: [...new Set(over)], esc: [...new Set(esc)], n: boxes.length };
 };
-const combos = []; for (const w of [360, 390]) for (const lang of ['uz', 'cyr', 'ru']) for (const th of ['light', 'dark']) combos.push({ w, lang, th });
-const list = TEZ ? combos.filter((c) => (c.w === 360 && c.th === 'dark' && c.lang === 'uz') || (c.w === 390 && c.th === 'light' && c.lang === 'ru')) : combos;
+const combos = []; for (const w of [360, 390]) for (const lang of ['uz', 'cyr', 'ru']) for (const th of ['light', 'dark']) combos.push({ w, lang, th }); for (const lang of ['uz', 'ru']) combos.push({ w: 360, h: 640, lang, th: 'dark' });          // kichik balandlik 360×640
+const list = TEZ ? combos.filter((c) => (c.w === 360 && !c.h && c.th === 'dark' && c.lang === 'uz') || (c.w === 390 && c.th === 'light' && c.lang === 'ru') || (c.h && c.lang === 'uz')) : combos;
 const fails = []; let shots = 0;
 try {
   for (const c of list) {
-    const tag = `${c.w}-${c.lang}-${c.th}`;
-    const mk = async (st, extra) => { const ctx = await b.newContext({ viewport: { width: c.w, height: 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: c.th, userAgent: 'Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130 Mobile Safari/537.36' });
+    const tag = `${c.w}${c.h ? 'x' + c.h : ''}-${c.lang}-${c.th}`;
+    const mk = async (st, extra) => { const ctx = await b.newContext({ viewport: { width: c.w, height: c.h || 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: c.th, userAgent: 'Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130 Mobile Safari/537.36' });
       await ctx.addInitScript((o) => { try { localStorage.clear(); if (o.st) localStorage.setItem('kalki_fit', JSON.stringify(o.st)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_lang', o.lang); localStorage.setItem('kalki_theme', o.th); if (!o.intro) localStorage.setItem('kalki_intro_v2', '1'); } catch (e) {} }, { st, lang: c.lang, th: c.th, intro: !!(extra && extra.intro) });
       await ctx.addInitScript(MOCK); const p = await ctx.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e)));
       await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: /ovoz/.test(r.request().url()) ? '{"yoqilgan":true,"limit":15,"qoldi":15}' : /retsept/.test(r.request().url()) ? '{"limit":5,"qoldi":3}' : '{}' }));
@@ -58,9 +58,11 @@ try {
     /* Bugun (bo'sh) */
     p = await mk(seed(c.lang, false)); await scan(p, 'Bugun bo\'sh', '#rzMain'); await shot(p, 'bugun-bosh'); await p.context().close();
     /* Bugun (to'la), Qo'shish, Yozish, Tarix, Profil */
-    p = await mk(seed(c.lang, true)); await scan(p, 'Bugun', '#rzMain'); await shot(p, 'bugun'); await mainAt(p, 'past'); await scan(p, 'Bugun past', '#rzMain'); await shot(p, 'bugun-past'); await mainAt(p, 'tepa');
+    p = await mk(seed(c.lang, true)); await scan(p, 'Bugun', '#rzMain'); await shot(p, 'bugun');
+    { const g = await p.evaluate(() => { const m = document.getElementById('rzMain'), bar = document.getElementById('rzAddBar').getBoundingClientRect(), mr = m.getBoundingClientRect(); m.scrollTop = m.scrollHeight; const last = [...m.children].filter((e) => e.getBoundingClientRect().height > 0).pop().getBoundingClientRect(); return { mainBottom: mr.bottom, barTop: bar.top, lastBottom: last.bottom, barH: bar.height }; }); if (g.mainBottom > g.barTop + 1) fails.push(tag + ' Bugun: kontent «Qo\'shish» tugmasi ostiga o\'tadi ' + JSON.stringify(g)); if (g.lastBottom > g.mainBottom - 15) fails.push(tag + ' Bugun: oxirgi element tagida 16 px bo\'shliq yo\'q ' + JSON.stringify(g)); await mainAt(p, 'tepa'); } await mainAt(p, 'past'); await scan(p, 'Bugun past', '#rzMain'); await shot(p, 'bugun-past'); await mainAt(p, 'tepa');
     await p.click('#mainAdd'); await p.waitForTimeout(700); await scan(p, 'Qo\'shish', '#rzSheet'); await shot(p, 'qoshish');
-    await p.click('#rzSheet [data-act=apick][data-fk=yozish]'); await p.waitForTimeout(700); await scan(p, 'Yozish', '#rzSheet'); await shot(p, 'yozish');
+    { const rc = await p.locator('#fdRecent .sl-rw').count(); if (rc < 1 || rc > 5) fails.push(tag + ' Yaqinda: ' + rc + ' qator'); }
+    await p.click('#rzSheet #fdQ'); await p.waitForTimeout(700); await scan(p, 'Qidiruv', '#rzSheet'); await shot(p, 'qidiruv');
     await p.click('#rzSheet [data-act=sheetclose]'); await p.waitForTimeout(500);
     await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(800); await scan(p, 'Tarix', '#rzMain'); await shot(p, 'tarix'); await mainAt(p, 'past'); await shot(p, 'tarix-past');
     await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(800); await scan(p, 'Profil', '#rzMain'); await shot(p, 'profil'); await mainAt(p, 'orta'); await shot(p, 'profil-orta'); await mainAt(p, 'past'); await shot(p, 'profil-past');

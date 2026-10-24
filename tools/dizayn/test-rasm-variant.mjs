@@ -23,7 +23,7 @@ async function mk(o = {}) {
   await p.goto(BASE + (o.url || '/kalkifit'), { waitUntil: 'networkidle' }); await p.waitForTimeout(600); return p; }
 const JIGAR = { status: 200, json: { ovqatlar: [{ nom: 'Qovurilgan jigar', ehtimol: 0.62, boshqa: [{ nom: 'Jigar kabob', ehtimol: 0.25 }, { nom: "Go'sht (aniq emas)", ehtimol: 0.13 }], porsiya: '1 porsiya', g: 200, kcal: 460, o: 40, y: 25, u: 20 }, { nom: 'Zzzyx taom', ehtimol: 0.9, boshqa: [], porsiya: '1 dona', g: 100, kcal: 250, o: 5, y: 10, u: 35 }], aniqlik: '±30%', limit: 2, qoldi: 1 } };
 let JPG;
-async function photo(p) { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(300); await p.setInputFiles('#phIn', { name: 'ovqat.jpg', mimeType: 'image/jpeg', buffer: JPG }); await p.waitForSelector('[data-act=txsave]', { timeout: 8000 }); await p.waitForTimeout(300); }
+async function photo(p) { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); await p.setInputFiles('#phIn', { name: 'ovqat.jpg', mimeType: 'image/jpeg', buffer: JPG }); await p.waitForSelector('[data-act=txsave]', { timeout: 8000 }); await p.waitForTimeout(300); }
 const rows = (p) => p.evaluate(() => [...document.querySelectorAll('#rzSheet .sl-ti')].map((x) => x.innerText.replace(/\s+/g, ' ').trim()));
 try {
   { const c = await b.newContext({ viewport: { width: 64, height: 64 } }); const pg = await c.newPage(); await pg.setContent('<body style="margin:0;background:#a33"></body>'); JPG = await pg.screenshot({ type: 'jpeg' }); await c.close(); }
@@ -47,11 +47,11 @@ try {
   /* 4. limit: rasm 429 → umumiy matn (UZ/RU), qo'lda qo'shish va qidiruv ishlaydi */
   for (const [lang, url, re] of [['uz', '/kalkifit', /Bugungi 2 ta AI so'rov ishlatildi\. Ertaga yana urinib ko'ring\./], ['ru', '/ru/kalkifit', /Сегодняшние AI-запросы \(2\) использованы/], ['cyr', '/kalkifit?lang=cyr', /Бугунги 2 та AI сўров ишлатилди/]]) {
     p = await mk({ android: true, lang, url, rasm: () => ({ status: 429, json: { xato: 'x', sabab: 'mijoz', limit: 2, qoldi: 0 } }), peek: () => ({ limit: 2, qoldi: 0 }) });
-    await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(300); await p.setInputFiles('#phIn', { name: 'o.jpg', mimeType: 'image/jpeg', buffer: JPG }); await p.waitForTimeout(1500);
+    await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); await p.setInputFiles('#phIn', { name: 'o.jpg', mimeType: 'image/jpeg', buffer: JPG }); await p.waitForTimeout(1500);
     assert.match(await p.locator('#rzSheet').innerText(), re, lang); await p.click('#rzSheet [data-act=fback]').catch(() => {}); await p.waitForTimeout(300); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('Limit (rasm 429): «Bugungi 2 ta AI so\'rov ishlatildi…» UZ/ЎЗ/RU — retsept oynasi bilan bir xil matn');
   /* 5. qidiruvda topilmagan so'z — anonim hisoblagich (faqat so'z + kun) */
-  p = await mk({ rasm: () => JIGAR }); await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(300); const inp = p.locator('#rzSheet input[type=search], #rzSheet #fdQ').first(); await inp.fill('qwzxyv taomi'); await p.waitForTimeout(3200);
+  p = await mk({ rasm: () => JIGAR }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); const inp = p.locator('#rzSheet input[type=search], #rzSheet #fdQ').first(); await inp.fill('qwzxyv taomi'); await p.waitForTimeout(3200);
   assert.equal(p.qt.length, 1, 'bitta yuborish'); assert.equal(p.qt[0].k.length, 1); assert.equal(p.qt[0].k[0].q, 'qwzxyv taomi'); assert.deepEqual(Object.keys(p.qt[0].k[0]).sort(), ['n', 'q', 's']);
   await inp.fill(''); await inp.fill('qwzxyv taomi'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'bir kunda bir so\'z bir marta');
   await inp.fill('+998901234567'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'telefon raqami yuborilmaydi'); await inp.fill('osh'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'topilgan so\'z yuborilmaydi'); await p.context().close();

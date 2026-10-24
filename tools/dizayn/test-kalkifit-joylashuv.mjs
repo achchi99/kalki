@@ -71,7 +71,7 @@ try {
     if (pb.last > pb.nav - 4) fails.push(tag + ' Profil: oxirgi element pastki menyu ostida qoldi');
     await shot('profil-past');
     /* Ovqat qo'shish oynasi */
-    await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(900); await scan('Qo\'shish', '#rzSheet'); await shot('qoshish');
+    await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(900); await scan('Qo\'shish', '#rzSheet'); await shot('qoshish');
     if (errs.length) fails.push(tag + ' JS xato: ' + errs[0]);
     await c.close();
   }

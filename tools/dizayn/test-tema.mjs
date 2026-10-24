@@ -67,7 +67,7 @@ try {
       const colored = await p.evaluate(SCAN, ISTISNO.rangliSelektorlar); assert.deepEqual(colored, [], `${app}/${scheme}/${nm}: rangli fonli katta bloklar`); const ax = await axeRun(p); assert.deepEqual(ax, [], `${app}/${scheme}/${nm}: kontrast (axe)`); }
     // oynalar (sheet): Ovqat qo'shish + Porsiya (KalkiFit), Xarajat (Ro'zg'or)
     await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500);
-    const sheets = []; if (app === 'kalkifit') { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(600); sheets.push('ovqat'); } else { await p.click('#rzFab'); await p.waitForTimeout(600); sheets.push('xarajat'); }
+    const sheets = []; if (app === 'kalkifit') { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(600); sheets.push('ovqat'); } else { await p.click('#rzFab'); await p.waitForTimeout(600); sheets.push('xarajat'); }
     for (const nm of sheets) { const sc = async (extra) => { const colored = await p.evaluate(SCAN, ISTISNO.rangliSelektorlar); assert.deepEqual(colored, [], `${app}/${scheme}/${nm}${extra}: rangli fonli bloklar`); const ax = await axeRun(p); assert.deepEqual(ax, [], `${app}/${scheme}/${nm}${extra}: kontrast`); }; await sc('');
       if (app === 'kalkifit') { await p.fill('#fdQ', 'chuchvara'); await p.waitForTimeout(500); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(700); await sc(' (porsiya)'); } }
     await p.keyboard.press('Escape'); await p.evaluate(() => document.querySelector('[data-act=sheetclose]') && document.querySelector('#rzSheet .rz-x') && document.querySelector('#rzSheet .rz-x').click()); await p.waitForTimeout(400);
@@ -114,7 +114,7 @@ try {
     assert.deepEqual(p.errs, []); await p.context().close(); }
   log('akkaunt oynalari (email, xato, kod+test bloki, akkaunt, marketing, o\'chirish, Boshqa usullar, qat\'iy rejim; ikkala mavzu, ikkala ilova): rangli fonli blok yo\'q, axe kontrast toza, xato/marketing bloklari surf2 + chap chiziq, katak ko\'rinadi, havola accent rangda');
   /* overlay yengil, blur yo'q */
-  { const p = await open('kalkifit', 'dark'); await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(600); const o = await p.evaluate(() => { const c = getComputedStyle(document.querySelector('#rzBg')); return { bg: c.backgroundColor, f: c.backdropFilter }; }); assert.equal(o.bg, 'rgba(0, 0, 0, 0.45)'); assert.ok(!o.f || o.f === 'none', 'overlay blur yo\'q'); await p.context().close(); }
+  { const p = await open('kalkifit', 'dark'); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(600); const o = await p.evaluate(() => { const c = getComputedStyle(document.querySelector('#rzBg')); return { bg: c.backgroundColor, f: c.backdropFilter }; }); assert.equal(o.bg, 'rgba(0, 0, 0, 0.45)'); assert.ok(!o.f || o.f === 'none', 'overlay blur yo\'q'); await p.context().close(); }
   log('overlay: rgba(0,0,0,.45), blur yo\'q (avval og\'ir qora + xiralashtirish edi)');
   console.log('\nTema: ' + n + ' tekshiruv OK');
 } finally { await b.close().catch(() => {}); srv.close(); }

@@ -13,7 +13,7 @@ async function mk(st, w = 360, h = 640, url = '/kalkifit') {
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
   await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(500); return p; }
 const txt = (p, s) => p.locator(s).first().innerText(); const stOf = (p) => p.evaluate(() => JSON.parse(JSON.stringify(window.__kalkifit.state)));
-async function pick(p, q, nth = 0) { await p.click('#mainAdd').then(() => p.click('#rzSheet [data-fk=yozish]')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=' + nth); await p.waitForTimeout(500); }
+async function pick(p, q, nth = 0) { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(300); await p.click('[data-act=pickfood] >> nth=' + nth); await p.waitForTimeout(500); }
 const noX = async (p) => assert.ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), 'gorizontal skroll yo\'q');
 try {
   /* 1. karta: osh → tovuqli osh (oqsil deyarli bir xil, yog' −14 g); 1 asosiy + «Boshqa variantlar» (ro'yxat oynasi); CTA'dan oldin */
