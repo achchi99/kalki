@@ -44,6 +44,7 @@ const OUT = await pool(TASKS, undefined, async ({ slug, lang }) => {
     await p.evaluate(AXE);
     for (const state of ['boshlang\'ich', 'hisoblangan']) {
       if (state === 'hisoblangan') await calculate(p);
+      await p.evaluate(() => { try { document.getAnimations().forEach((an) => { const t = an.effect && an.effect.getComputedTiming(); if (t && Number.isFinite(t.endTime)) an.finish(); }); } catch (e) {} });          // cheklangan «paydo bo'lish» animatsiyalari oxiriga (band serverda skan yarim shaffof holatga tushmasin); cheksizlari tegilmaydi
       const res = await p.evaluate(async () => { const r = await axe.run(document, { runOnly: { type: 'rule', values: ['color-contrast'] } });
         return r.violations.flatMap((v) => v.nodes.map((n) => ({ t: n.target.join(' ').slice(0, 70), m: (n.any[0] && n.any[0].message || '').slice(0, 130) }))); });
       // diagramma ranglari: seriya (fill/stroke) fonga nisbatan >= 3:1

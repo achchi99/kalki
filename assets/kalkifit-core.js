@@ -89,7 +89,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     var t = { kcal: 0, p: 0, f: 0, c: 0 }; (list || []).forEach(function (e) { t.kcal += e.kcal || 0; t.p += e.p || 0; t.f += e.f || 0; t.c += e.c || 0; });
     return { kcal: Math.round(t.kcal), p: Math.round(t.p), f: Math.round(t.f), c: Math.round(t.c) };
   }
-  function mealByHour(h) { return h >= 5 && h < 11 ? 'b' : (h >= 11 && h < 16 ? 'l' : (h >= 16 && h < 22 ? 'd' : 's')); }       // 05–11 nonushta, 11–16 tushlik, 16–22 kechki ovqat, qolgani tamaddi
+  function mealByHour(h, mi) { var t = h * 60 + (mi || 0); return t >= 300 && t < 630 ? 'b' : (t >= 630 && t < 930 ? 'l' : (t >= 930 && t < 1080 ? 's' : (t >= 1080 && t < 1380 ? 'd' : 's'))); }       // 05:00–10:30 nonushta, 10:30–15:30 tushlik, 15:30–18:00 tamaddi, 18:00–23:00 kechki ovqat, qolgan vaqt tamaddi
 
   /* ---------- sana bo'yicha ma'lumot ---------- */
   function dayOf(st, d) { return st.days[d] || null; }

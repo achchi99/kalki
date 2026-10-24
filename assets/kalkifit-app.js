@@ -23,13 +23,13 @@
       ringOf: '/ {t} kkal', remLbl: 'Yana yeyish mumkin', overLbl: "Me'yordan ko'p", stepPlus: 'Qadamlar hisobiga +{c} kkal', hHow: 'Bu raqam qanday hisoblanadi?', limitParts: "{t} me'yor + {c} qadamlardan", tAiSite: "AI bugun juda band — ovqatni qidiruv orqali qo'shing (u internetsiz ham ishlaydi). Ertaga AI yana ishlaydi.", phSite: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", hEmpty: "Birinchi ovqatni yozing — «Yedingiz» va «Qoldi» shu yerda yangilanadi.", stEmpty: "Qadamlar avtomatik sanalgach, ustunlar shu yerda o'sadi.",
       mP: 'Oqsil', mF: "Yog'", mC: 'Uglevod', wT: 'Suv', wOf: '{n} / {m} stakan', wSplit: 'Suv {w} · Ichimliklar {d}', wDrinkNote: 'Choy, qahva, sut va sharbat ham suv hisobiga kiradi.', wListT: 'Ichimliklar va suyuq taomlar', wHint: 'Stakanga bosing', wDone: "Suv me'yori bajarildi", sT: 'Qadam', sAdd: 'Qadam kiritish', sNone: "Bugun hali qadam yo'q", sGoalDone: 'Qadam maqsadi bajarildi',
       addMeal: "+ Qo'shish", emptyMeal: "Hali yo'q",
-      aT: "Ovqat qo'shish", aAiBtn: "AI bilan qo'shish", aSugBtn: 'Bazaga taklif qilish', aSugNote: "Saqlasangiz, nom va kaloriya (shaxsiy ma'lumotsiz) bazaga taklif sifatida yuboriladi.", aPh: 'Osh, «2 ta non»…', aRec: 'Oxirgi', aMine: 'Mening taomlarim', aCats: 'Guruhlar', aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aNoneH: "Boshqa nom bilan yozing yoki o'z taomingizni qo'shing.", aCustom: "O'z taomim", aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
-      cat_o: "O'zbek taomlari", cat_turk: 'Turk taomlari', cat_n: 'Non', cat_s: 'Sut', cat_m: "Go'sht, baliq, tuxum", cat_g: 'Don va makaron', cat_v: 'Sabzavot', cat_f: 'Meva', cat_d: "Yong'oq, quruq meva", cat_i: 'Ichimlik', cat_q: 'Fast-food', cat_h: 'Shirinlik', cat_x: 'Boshqa',
-      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplBar: 'Odatdagilar', tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", vNew: 'Mening idishim', vfT: "Ichiga to'ldirish", vf_yarim: 'Yarim', vf_tola: "To'la", vf_kop: "Ko'p", vk_kosa: 'Kosa', vk_lagan: 'Lagan', vk_piyola: 'Piyola', vk_likopcha: 'Likopcha', vk_custom: "O'zim yozaman", vn_kosa: 'Mening kosam', vn_lagan: 'Mening laganim', vn_piyola: 'Mening piyolam', vn_likopcha: 'Mening likopcham', vn_custom: 'Mening idishim', vs_kosa: 'Odatiy kosa', vs_lagan: 'Odatiy lagan', vs_piyola: 'Odatiy piyola', vs_likopcha: 'Odatiy likopcha', vs_custom: 'Odatiy porsiya', vcT: 'Mening idishim', vcFor: '«{x}» uchun', vcLink: 'Boshqa idishlaringiz', vcKind: 'Idish turi', vcName: 'Idish nomi', vcHow: 'Hajmini qanday aniqlaymiz?', vcScaleOn: 'Tarozida tortdim', vcScaleOff: "Tarozim yo'q", vcHint: "Idishni bo'sh torting, keyin ovqat bilan — farqi ovqatingiz.", vcFull: 'Ovqat bilan vazn (g)', vcEmpty: "Bo'sh idish vazni (g)", vcDirect: "Yoki to'g'ridan-to'g'ri ovqat grammi", vcRes: 'Ovqat: {g} g', vcStd: '{k} ≈ {g} g', vcCompare: 'Sizning idishingiz standartga nisbatan?', vc_kichik: 'Kichikroq (×0,75)', vc_ohshash: "Shunga o'xshash (×1)", vc_katta: 'Kattaroq (×1,3)', vcSave: 'Saqlash', vcBad: "Gramm 10 dan 3000 gacha bo'lsin", vcMax: "Ko'pi bilan 20 ta idish. Keraksizini Men → «Mening idishlarim»dan o'chiring.", vSaved: 'Saqlandi: {x}', vmT: 'Mening idishlarim', vmH: "O'z kosa va laganlaringiz", vmEmpty: "O'z kosangizni bir marta belgilang — keyin hisob aniqroq bo'ladi.", vmGuide: "Ovqat qo'shayotganda porsiya oynasida «+ Mening idishim» ni bosing.", vmMax: "Ko'pi bilan {n} ta idish.", vmDel1: "Idish o'chirildi", vmEdit: 'Tahrirlash', vmName: 'Nomi', vmFam: 'Taomlar', vsugL: 'Har safar laganingizdan yeysizmi? Uni bir marta belgilang.', vsugK: 'Har safar kosangizdan yeysizmi? Uni bir marta belgilang.', vsugYes: 'Belgilash', vsugNo: 'Keyin', navDiary: 'Kundalik', navResults: 'Natijalar', navProfile: 'Profil', navAdd: "Qo'shish", diaryT: 'Kundalik', resT: 'Natijalar', profT: 'Profil', todayDate: 'Bugun, {d}', cEaten: 'Yedingiz', cGoal: 'Maqsad', cLeft: 'Qoldi', cOver: "Maqsaddan {x} kkal ko'p", cNote: "Kiritilgan ovqatlar bo'yicha", mainAdd: "Qo'shish", wCard: '{a} / {b} ml', wAdd: '+250', sCard: '{n} qadam', sEnter: 'Kiritish', sNoneC: 'Bugun kiritilmagan', macroRow: "Oqsil · Yog' · Uglevod", fabMenuT: "Nimani qo'shamiz?", fabFood: 'Ovqat', fabWater: 'Suv', fabSteps: 'Qadam', fabWeight: 'Vazn', wOpenT: 'Suv', themeT: 'Mavzu', thAuto: 'Avto', thLight: 'Och', thDark: "Qorong'i", profData: "Maqsad va ma'lumotlar", resWeekT: 'Hafta xulosasi', resMore: 'Batafsil', diaryAdd: "Shu kunga ovqat qo'shish", profBackup: 'Zaxira va ko\'chirish', calInfoT: 'Taqvim qanday hisoblanadi?', hStreak: '{n} kun', cBurn: 'Yoqildi', vLeft: 'Qoldi', vOver1: 'Maqsaddan', vOver2: "kkal ko'p", vAria: 'Kunlik maqsadning {p} foizi yeyildi, {k} kkal qoldi', vAriaO: "Kunlik maqsaddan {k} kkal ko'p yeyildi", wAdd2: '+ 250 ml', sTap: 'Qadam kiriting', wRowT: 'Vazn: {x} kg', wRowW: 'Haftada {d} kg', avL: 'K',
+      aT: "Ovqat qo'shish", aFav: 'Sevimli', aPop: 'Mashhur', aNone: 'Topilmadi', aText: 'Matn bilan qo\'shish', aLoading: 'Baza yuklanmoqda…', aEst: 'taxminiy', per100: '{k} kkal / 100 g', all: 'Hammasi',
+                   
+      pwGramm: 'gramm', pwEq: '1 {u} ≈ {g} g', pwNow: 'hozir {g} g', pwQty: 'Miqdor', pwQuick: 'Tez tanlash', pwSwap: 'Taomni almashtirish', pwSwapT: "O'xshash taomlar", pwNoSim: "O'xshash taom topilmadi", pwDone: 'Tayyor', pwApprox: "Taxminiy qiymat — porsiyani o'zingizga moslang.", pwAll: "Hammasini qo'shish ({n})", pwEditRow: "{x} — porsiyani o'zgartirish", tplMore: 'Ovqat amallari', tplSave1: 'Shu ovqatni saqlash', tplSaveH: 'Odatdagi ovqat sifatida', tplNameT: 'Nomi', tplNameIn: "Yoki o'zingiz yozing", tplSaved: 'Saqlandi: {x}', tplFull: "12 ta to'ldi — Men → «Odatdagi ovqatlarim»dan keraksizini o'chiring.", tplMine: 'Odatdagi ovqatlarim', tplMineH: 'Tez-tez yeydiganlaringiz', tplEmpty: "Tez-tez yeydigan ovqatingizni bir marta saqlang — keyin bir bosishda qo'shiladi.", tplYest: 'Kechagidek', tplYestT: 'Kecha yegan ovqatlar', tplAdd: "Qo'shish ({n})", tplRen: "Nomini o'zgartirish", tplDel1: "Odatdagi ovqat o'chirildi", tplUp: 'Yuqoriga', tplDown: 'Pastga', tplCnt: '{n} ta · {k} kkal', tplChk: 'Tanlash', tplS0: 'Uy nonushtasi', tplS1: 'Ishdagi nonushta', tplS2: 'Mashqdan keyin', tplL0: 'Uy tushligi', tplL1: 'Ishdagi tushlik', tplD0: 'Uy kechki ovqati', tplD1: 'Yengil kechki ovqat', tplT0: 'Tamaddi', tplT1: 'Ishdagi tamaddi', tplSaveS: 'Saqlash', tplToday: 'Bugun yozilganlar', tplTodayRow: '{n} ta taom · {k} kkal', tplNoToday: 'Avval ovqat yozing, keyin uni shu yerda bir bosishda saqlaysiz.', tplAddFood: "Ovqat qo'shish", tplSugT: 'Siz tez-tez yeysiz: {x} — saqlaymi?', tplNo: "Yo'q", tplHint: "Bir marta saqlang — keyin bir bosishda qo'shiladi.", famN: '{n} xil', famDef: 'odatiy tanlov', srcBtn: 'Manba', srcNone: "Bu taom uchun manba yozuvi yo'q.", srcApprox: "Retsept o'rtacha uy taomiga asoslangan, ±15% farq bo'lishi mumkin.", srcApprox2: "Qiymat mavjud jadvallarga asoslangan, ±15% farq bo'lishi mumkin.", srcAi: "Bu qiymatni AI taxmin qildi — aniq emas.", srcUnitB: "birlik grammi mavjud baza qiymati (tarozida hali tekshirilmagan)", srcUnitA: "birlik grammi o'xshash taomdan olingan taxmin", vNew: 'Mening idishim', vfT: "Ichiga to'ldirish", vf_yarim: 'Yarim', vf_tola: "To'la", vf_kop: "Ko'p", vk_kosa: 'Kosa', vk_lagan: 'Lagan', vk_piyola: 'Piyola', vk_likopcha: 'Likopcha', vk_custom: "O'zim yozaman", vn_kosa: 'Mening kosam', vn_lagan: 'Mening laganim', vn_piyola: 'Mening piyolam', vn_likopcha: 'Mening likopcham', vn_custom: 'Mening idishim', vs_kosa: 'Odatiy kosa', vs_lagan: 'Odatiy lagan', vs_piyola: 'Odatiy piyola', vs_likopcha: 'Odatiy likopcha', vs_custom: 'Odatiy porsiya', vcT: 'Mening idishim', vcFor: '«{x}» uchun', vcLink: 'Boshqa idishlaringiz', vcKind: 'Idish turi', vcName: 'Idish nomi', vcHow: 'Hajmini qanday aniqlaymiz?', vcScaleOn: 'Tarozida tortdim', vcScaleOff: "Tarozim yo'q", vcHint: "Idishni bo'sh torting, keyin ovqat bilan — farqi ovqatingiz.", vcFull: 'Ovqat bilan vazn (g)', vcEmpty: "Bo'sh idish vazni (g)", vcDirect: "Yoki to'g'ridan-to'g'ri ovqat grammi", vcRes: 'Ovqat: {g} g', vcStd: '{k} ≈ {g} g', vcCompare: 'Sizning idishingiz standartga nisbatan?', vc_kichik: 'Kichikroq (×0,75)', vc_ohshash: "Shunga o'xshash (×1)", vc_katta: 'Kattaroq (×1,3)', vcSave: 'Saqlash', vcBad: "Gramm 10 dan 3000 gacha bo'lsin", vcMax: "Ko'pi bilan 20 ta idish. Keraksizini Men → «Mening idishlarim»dan o'chiring.", vSaved: 'Saqlandi: {x}', vmT: 'Mening idishlarim', vmH: "O'z kosa va laganlaringiz", vmEmpty: "O'z kosangizni bir marta belgilang — keyin hisob aniqroq bo'ladi.", vmGuide: "Ovqat qo'shayotganda porsiya oynasida «+ Mening idishim» ni bosing.", vmMax: "Ko'pi bilan {n} ta idish.", vmDel1: "Idish o'chirildi", vmEdit: 'Tahrirlash', vmName: 'Nomi', vmFam: 'Taomlar', vsugL: 'Har safar laganingizdan yeysizmi? Uni bir marta belgilang.', vsugK: 'Har safar kosangizdan yeysizmi? Uni bir marta belgilang.', vsugYes: 'Belgilash', vsugNo: 'Keyin', navDiary: 'Kundalik', navResults: 'Natijalar', navProfile: 'Profil', navAdd: "Qo'shish", diaryT: 'Kundalik', resT: 'Natijalar', profT: 'Profil', todayDate: 'Bugun, {d}', cEaten: 'Yedingiz', cGoal: 'Maqsad', cLeft: 'Qoldi', cOver: "Maqsaddan {x} kkal ko'p", cNote: "Kiritilgan ovqatlar bo'yicha", mainAdd: "Qo'shish", wCard: '{a} / {b} ml', wAdd: '+250', sCard: '{n} qadam', sEnter: 'Kiritish', sNoneC: 'Bugun kiritilmagan', macroRow: "Oqsil · Yog' · Uglevod", fabMenuT: "Nimani qo'shamiz?", fabFood: 'Ovqat', fabWater: 'Suv', fabSteps: 'Qadam', fabWeight: 'Vazn', wOpenT: 'Suv', themeT: 'Mavzu', thAuto: 'Avto', thLight: 'Och', thDark: "Qorong'i", profData: "Maqsad va ma'lumotlar", resWeekT: 'Hafta xulosasi', resMore: 'Batafsil', diaryAdd: "Shu kunga ovqat qo'shish", profBackup: 'Zaxira va ko\'chirish', calInfoT: 'Taqvim qanday hisoblanadi?', hStreak: '{n} kun', cBurn: 'Yoqildi', vLeft: 'Qoldi', vOver1: 'Maqsaddan', vOver2: "kkal ko'p", vAria: 'Kunlik maqsadning {p} foizi yeyildi, {k} kkal qoldi', vAriaO: "Kunlik maqsaddan {k} kkal ko'p yeyildi", wAdd2: '+ 250 ml', sTap: 'Qadam kiriting', wRowT: 'Vazn: {x} kg', wRowW: 'Haftada {d} kg', avL: 'K',
       mealAdd_b: "Nonushtani qo'shish", mealAdd_l: "Tushlikni qo'shish", mealAdd_d: "Kechki ovqatni qo'shish", mealAdd_s: "Tamaddini qo'shish", mealS_b: 'Nonushta', mealS_l: 'Tushlik', mealS_d: 'Kechki', mealS_s: 'Tamaddi',
       pCta_b: "Nonushtaga qo'shish · {k} kkal", pCta_l: "Tushlikka qo'shish · {k} kkal", pCta_d: "Kechki ovqatga qo'shish · {k} kkal", pCta_s: "Tamaddiga qo'shish · {k} kkal", pCtaE: 'Saqlash · {k} kkal',
-      aHint: "Gap bilan yozing — AI o'zi ajratib beradi", aRecHint: "bitta bosishda qo'shiladi", aMoreSub: "O'z taomim · Retsept · Kategoriyalar", aCnt: '{n} taom · {k} kkal', aYestSub: '{m} · {k} kkal', pTypeT: 'Turi va hajmi', pChange: "O'zgartirish", pCloseL: 'Yopish', pMealT: 'Ovqat vaqti', aDone: "Qo'shildi", pManba: 'Manba',
-      aAiLine: '✨ AI bilan aniqlash: «{q}»', aRecentT: 'Oxirgilar', aSavedT: 'Saqlanganlar', aMoreT: 'Boshqa usullar', aCatsBtn: "Kategoriyalar bo'yicha ko'rish", aLastTime: 'Oxirgi safar: {x}', aDefOne: '{x} ≈ {k} kkal', aQuickAdd: "Qo'shish", aAdded: "Qo'shildi: {x}", pAddBtn: "Qo'shish", pMoreT: "Turi va hajmini aniqlashtirish", pMore2T: 'Boshqa sozlamalar', srcPer100: '{k} kkal / 100 g', nbSee: "Ko'rish", nbClose: 'Yopish', pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
+      aCnt: '{n} taom · {k} kkal', pTypeT: 'Turi va hajmi', pChange: "O'zgartirish", pCloseL: 'Yopish', pMealT: 'Ovqat vaqti', aDone: "Qo'shildi", pManba: 'Manba',
+      aDefOne: '{x} ≈ {k} kkal', aQuickAdd: "Qo'shish", aAdded: "Qo'shildi: {x}", pAddBtn: "Qo'shish", pMoreT: "Turi va hajmini aniqlashtirish", pMore2T: 'Boshqa sozlamalar', srcPer100: '{k} kkal / 100 g', nbSee: "Ko'rish", nbClose: 'Yopish', pUnit: 'Qancha?', pMeal: 'Qaysi ovqat?', pSave: 'Saqlash', pEstNote: "Taxminiy qiymat: aniq retsept va porsiyaga qarab o'zgaradi.", pEdit: 'Ovqatni tahrirlash', pMacro: "oqsil {p} · yog' {f} · uglevod {c}", favOn: 'Sevimlilarga qo\'shildi', favOff: 'Sevimlilardan olindi',
       cT: "O'z taomim", cName: 'Nomi', cKcal: 'Necha kkal? (bir porsiyada)', cG: "Porsiya og'irligi, g (ixtiyoriy)", cP: 'Oqsil, g (ixtiyoriy)', cF: "Yog', g (ixtiyoriy)", cC: 'Uglevod, g (ixtiyoriy)',
       tT: "Matn bilan qo'shish", tPh: 'Masalan: 1 kosa osh, 2 somsa, choy shakar bilan', tGo: 'Aniqlash', tMiss: 'Topilmadi: {x}', tAi: 'AI bilan aniqlash', tAiNote: "Bu matn AI xizmatiga yuboriladi (profil, vazn va tarix yuborilmaydi).", tAiBusy: 'Aniqlanmoqda…', tAiErr: "AI hozir ishlamayapti. Qo'lda qo'shing.", tOffline: "Internet yo'q — AI ishlamaydi. Topilganlarini saqlashingiz mumkin.", tSave: '{n} ta ovqatni saqlash', tAiTag: 'AI taxmini', tHelp: "Faqat siz tasdiqlaganingizda saqlanadi.", tEmpty: 'Hech narsa topilmadi',
       fT: 'Ovqat', fDay: 'Kun', fAddText: "Matn bilan qo'shish", fFavs: 'Sevimlilar', fNoFavs: "Sevimli ovqatlar yo'q. Ovqat qo'shayotganda yurakchani bosing.",
@@ -67,13 +67,13 @@
       ringOf: '/ {t} ккал', remLbl: 'Ещё можно съесть', overLbl: 'Больше нормы', stepPlus: 'За счёт шагов +{c} ккал', hHow: 'Как считается это число?', limitParts: '{t} норма + {c} за шаги', tAiSite: 'ИИ сегодня перегружен — добавьте еду через поиск (он работает и без интернета). Завтра ИИ снова заработает.', phSite: 'Анализ фото сегодня перегружен — добавьте еду текстом или через поиск. Завтра снова заработает.', hEmpty: 'Запишите первую еду — «Съели» и «Осталось» обновятся здесь.', stEmpty: 'Когда шаги посчитаются автоматически, столбики вырастут здесь.',
       mP: 'Белки', mF: 'Жиры', mC: 'Углеводы', wT: 'Вода', wOf: '{n} / {m} стаканов', wSplit: 'Вода {w} · Напитки {d}', wDrinkNote: 'Чай, кофе, молоко и сок тоже входят в дневной счёт воды.', wListT: 'Напитки и жидкие блюда', wHint: 'Нажимайте на стакан', wDone: 'Норма воды выполнена', sT: 'Шаги', sAdd: 'Ввести шаги', sNone: 'Сегодня шагов ещё нет', sGoalDone: 'Цель по шагам выполнена',
       addMeal: '+ Добавить', emptyMeal: 'Пока пусто',
-      aT: 'Добавить еду', aAiBtn: 'Добавить через ИИ', aSugBtn: 'Предложить в базу', aSugNote: 'Если сохраните, название и калории (без личных данных) уйдут в базу как предложение.', aPh: 'Плов, «2 самсы»…', aRec: 'Недавние', aMine: 'Мои блюда', aCats: 'Группы', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aNoneH: 'Напишите иначе или добавьте своё блюдо.', aCustom: 'Своё блюдо', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
-      cat_o: 'Узбекские блюда', cat_turk: 'Турецкая кухня', cat_n: 'Хлеб', cat_s: 'Молочное', cat_m: 'Мясо, рыба, яйца', cat_g: 'Крупы и макароны', cat_v: 'Овощи', cat_f: 'Фрукты', cat_d: 'Орехи, сухофрукты', cat_i: 'Напитки', cat_q: 'Фастфуд', cat_h: 'Сладкое', cat_x: 'Другое',
-      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplBar: 'Привычное', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', vNew: 'Моя посуда', vfT: 'Насколько наполнена', vf_yarim: 'Половина', vf_tola: 'Полная', vf_kop: 'С горкой', vk_kosa: 'Миска', vk_lagan: 'Лаган', vk_piyola: 'Пиала', vk_likopcha: 'Тарелочка', vk_custom: 'Своя (впишу название)', vn_kosa: 'Моя миска', vn_lagan: 'Мой лаган', vn_piyola: 'Моя пиала', vn_likopcha: 'Моя тарелочка', vn_custom: 'Моя посуда', vs_kosa: 'Обычная миска', vs_lagan: 'Обычный лаган', vs_piyola: 'Обычная пиала', vs_likopcha: 'Обычная тарелочка', vs_custom: 'Обычная порция', vcT: 'Моя посуда', vcFor: 'для «{x}»', vcLink: 'Другая ваша посуда', vcKind: 'Вид посуды', vcName: 'Название', vcHow: 'Как определим объём?', vcScaleOn: 'Взвесил(а)', vcScaleOff: 'Весов нет', vcHint: 'Взвесьте пустую посуду, затем с едой — разница и есть ваша еда.', vcFull: 'Вес с едой (г)', vcEmpty: 'Вес пустой посуды (г)', vcDirect: 'Или сразу вес еды (г)', vcRes: 'Еда: {g} г', vcStd: '{k} ≈ {g} г', vcCompare: 'Ваша посуда по сравнению со стандартной?', vc_kichik: 'Меньше (×0,75)', vc_ohshash: 'Такая же (×1)', vc_katta: 'Больше (×1,3)', vcSave: 'Сохранить', vcBad: 'Вес от 10 до 3000 г', vcMax: 'Не больше 20 штук. Удалите лишнее в «Я» → «Моя посуда».', vSaved: 'Сохранено: {x}', vmT: 'Моя посуда', vmH: 'Ваши миски и лаганы', vmEmpty: 'Отметьте свою миску один раз — и расчёт станет точнее.', vmGuide: 'При добавлении еды в окне порции нажмите «+ Моя посуда».', vmMax: 'Не больше {n} штук.', vmDel1: 'Посуда удалена', vmEdit: 'Изменить', vmName: 'Название', vmFam: 'Блюда', vsugL: 'Вы всегда едите из своего лагана? Отметьте его один раз.', vsugK: 'Вы всегда едите из своей миски? Отметьте её один раз.', vsugYes: 'Отметить', vsugNo: 'Позже', navDiary: 'Дневник', navResults: 'Итоги', navProfile: 'Профиль', navAdd: 'Добавить', diaryT: 'Дневник', resT: 'Итоги', profT: 'Профиль', todayDate: 'Сегодня, {d}', cEaten: 'Съели', cGoal: 'Цель', cLeft: 'Осталось', cOver: 'На {x} ккал больше цели', cNote: 'По внесённым блюдам', mainAdd: 'Добавить', wCard: '{a} / {b} мл', wAdd: '+250', sCard: '{n} шагов', sEnter: 'Ввести', sNoneC: 'Сегодня не введено', macroRow: 'Белки · Жиры · Углеводы', fabMenuT: 'Что добавим?', fabFood: 'Еда', fabWater: 'Вода', fabSteps: 'Шаги', fabWeight: 'Вес', wOpenT: 'Вода', themeT: 'Тема', thAuto: 'Авто', thLight: 'Светлая', thDark: 'Тёмная', profData: 'Цель и данные', resWeekT: 'Итоги недели', resMore: 'Подробнее', diaryAdd: 'Добавить еду на этот день', profBackup: 'Резервная копия и перенос', calInfoT: 'Как считается календарь?', hStreak: '{n} дн.', cBurn: 'Сожжено', vLeft: 'Осталось', vOver1: 'Сверх цели', vOver2: 'ккал', vAria: 'Съедено {p}% дневной цели, осталось {k} ккал', vAriaO: 'Съедено на {k} ккал больше цели', wAdd2: '+ 250 мл', sTap: 'Введите шаги', wRowT: 'Вес: {x} кг', wRowW: 'За неделю {d} кг', avL: 'К',
+      aT: 'Добавить еду', aFav: 'Избранное', aPop: 'Популярное', aNone: 'Не найдено', aText: 'Добавить текстом', aLoading: 'Загрузка базы…', aEst: 'примерно', per100: '{k} ккал / 100 г', all: 'Все',
+                   
+      pwGramm: 'грамм', pwEq: '1 {u} ≈ {g} г', pwNow: 'сейчас {g} г', pwQty: 'Количество', pwQuick: 'Быстрый выбор', pwSwap: 'Заменить блюдо', pwSwapT: 'Похожие блюда', pwNoSim: 'Похожих блюд не найдено', pwDone: 'Готово', pwApprox: 'Примерное значение — подгоните порцию под себя.', pwAll: 'Добавить всё ({n})', pwEditRow: '{x} — изменить порцию', tplMore: 'Действия с приёмом пищи', tplSave1: 'Сохранить этот приём', tplSaveH: 'Как привычную еду', tplNameT: 'Название', tplNameIn: 'Или впишите своё', tplSaved: 'Сохранено: {x}', tplFull: 'Заполнено 12 — удалите ненужное в «Я» → «Привычная еда».', tplMine: 'Привычная еда', tplMineH: 'То, что вы едите часто', tplEmpty: 'Сохраните то, что часто едите, один раз — потом добавляйте в одно касание.', tplYest: 'Как вчера', tplYestT: 'Что вы ели вчера', tplAdd: 'Добавить ({n})', tplRen: 'Переименовать', tplDel1: 'Привычная еда удалена', tplUp: 'Выше', tplDown: 'Ниже', tplCnt: '{n} шт. · {k} ккал', tplChk: 'Выбрать', tplS0: 'Домашний завтрак', tplS1: 'Завтрак на работе', tplS2: 'После тренировки', tplL0: 'Домашний обед', tplL1: 'Обед на работе', tplD0: 'Домашний ужин', tplD1: 'Лёгкий ужин', tplT0: 'Перекус', tplT1: 'Перекус на работе', tplSaveS: 'Сохранить', tplToday: 'Записано сегодня', tplTodayRow: '{n} шт. · {k} ккал', tplNoToday: 'Сначала запишите еду — потом здесь её можно сохранить в одно касание.', tplAddFood: 'Добавить еду', tplSugT: 'Вы часто едите: {x} — сохранить?', tplNo: 'Нет', tplHint: 'Сохраните один раз — потом добавляйте в одно касание.', famN: '{n} вид.', famDef: 'обычный вариант', srcBtn: 'Источник', srcNone: 'Для этого блюда нет записи об источнике.', srcApprox: 'Рецепт основан на среднем домашнем блюде, возможно отклонение ±15%.', srcApprox2: 'Значение основано на существующих таблицах, возможно отклонение ±15%.', srcAi: 'Это значение оценил ИИ — оно неточное.', srcUnitB: 'граммы единицы — существующее значение базы (на весах пока не проверено)', srcUnitA: 'граммы единицы — оценка по похожему блюду', vNew: 'Моя посуда', vfT: 'Насколько наполнена', vf_yarim: 'Половина', vf_tola: 'Полная', vf_kop: 'С горкой', vk_kosa: 'Миска', vk_lagan: 'Лаган', vk_piyola: 'Пиала', vk_likopcha: 'Тарелочка', vk_custom: 'Своя (впишу название)', vn_kosa: 'Моя миска', vn_lagan: 'Мой лаган', vn_piyola: 'Моя пиала', vn_likopcha: 'Моя тарелочка', vn_custom: 'Моя посуда', vs_kosa: 'Обычная миска', vs_lagan: 'Обычный лаган', vs_piyola: 'Обычная пиала', vs_likopcha: 'Обычная тарелочка', vs_custom: 'Обычная порция', vcT: 'Моя посуда', vcFor: 'для «{x}»', vcLink: 'Другая ваша посуда', vcKind: 'Вид посуды', vcName: 'Название', vcHow: 'Как определим объём?', vcScaleOn: 'Взвесил(а)', vcScaleOff: 'Весов нет', vcHint: 'Взвесьте пустую посуду, затем с едой — разница и есть ваша еда.', vcFull: 'Вес с едой (г)', vcEmpty: 'Вес пустой посуды (г)', vcDirect: 'Или сразу вес еды (г)', vcRes: 'Еда: {g} г', vcStd: '{k} ≈ {g} г', vcCompare: 'Ваша посуда по сравнению со стандартной?', vc_kichik: 'Меньше (×0,75)', vc_ohshash: 'Такая же (×1)', vc_katta: 'Больше (×1,3)', vcSave: 'Сохранить', vcBad: 'Вес от 10 до 3000 г', vcMax: 'Не больше 20 штук. Удалите лишнее в «Я» → «Моя посуда».', vSaved: 'Сохранено: {x}', vmT: 'Моя посуда', vmH: 'Ваши миски и лаганы', vmEmpty: 'Отметьте свою миску один раз — и расчёт станет точнее.', vmGuide: 'При добавлении еды в окне порции нажмите «+ Моя посуда».', vmMax: 'Не больше {n} штук.', vmDel1: 'Посуда удалена', vmEdit: 'Изменить', vmName: 'Название', vmFam: 'Блюда', vsugL: 'Вы всегда едите из своего лагана? Отметьте его один раз.', vsugK: 'Вы всегда едите из своей миски? Отметьте её один раз.', vsugYes: 'Отметить', vsugNo: 'Позже', navDiary: 'Дневник', navResults: 'Итоги', navProfile: 'Профиль', navAdd: 'Добавить', diaryT: 'Дневник', resT: 'Итоги', profT: 'Профиль', todayDate: 'Сегодня, {d}', cEaten: 'Съели', cGoal: 'Цель', cLeft: 'Осталось', cOver: 'На {x} ккал больше цели', cNote: 'По внесённым блюдам', mainAdd: 'Добавить', wCard: '{a} / {b} мл', wAdd: '+250', sCard: '{n} шагов', sEnter: 'Ввести', sNoneC: 'Сегодня не введено', macroRow: 'Белки · Жиры · Углеводы', fabMenuT: 'Что добавим?', fabFood: 'Еда', fabWater: 'Вода', fabSteps: 'Шаги', fabWeight: 'Вес', wOpenT: 'Вода', themeT: 'Тема', thAuto: 'Авто', thLight: 'Светлая', thDark: 'Тёмная', profData: 'Цель и данные', resWeekT: 'Итоги недели', resMore: 'Подробнее', diaryAdd: 'Добавить еду на этот день', profBackup: 'Резервная копия и перенос', calInfoT: 'Как считается календарь?', hStreak: '{n} дн.', cBurn: 'Сожжено', vLeft: 'Осталось', vOver1: 'Сверх цели', vOver2: 'ккал', vAria: 'Съедено {p}% дневной цели, осталось {k} ккал', vAriaO: 'Съедено на {k} ккал больше цели', wAdd2: '+ 250 мл', sTap: 'Введите шаги', wRowT: 'Вес: {x} кг', wRowW: 'За неделю {d} кг', avL: 'К',
       mealAdd_b: 'Добавить завтрак', mealAdd_l: 'Добавить обед', mealAdd_d: 'Добавить ужин', mealAdd_s: 'Добавить перекус', mealS_b: 'Завтрак', mealS_l: 'Обед', mealS_d: 'Ужин', mealS_s: 'Перекус',
       pCta_b: 'Добавить в завтрак · {k} ккал', pCta_l: 'Добавить в обед · {k} ккал', pCta_d: 'Добавить в ужин · {k} ккал', pCta_s: 'Добавить в перекус · {k} ккал', pCtaE: 'Сохранить · {k} ккал',
-      aHint: 'Пишите фразой — ИИ сам разберёт', aRecHint: 'добавляется одним касанием', aMoreSub: 'Своё блюдо · Рецепт · Категории', aCnt: '{n} блюд · {k} ккал', aYestSub: '{m} · {k} ккал', pTypeT: 'Вид и размер', pChange: 'Изменить', pCloseL: 'Закрыть', pMealT: 'Приём пищи', aDone: 'Добавлено', pManba: 'Источник',
-      aAiLine: '✨ Определить через ИИ: «{q}»', aRecentT: 'Недавние', aSavedT: 'Сохранённое', aMoreT: 'Другие способы', aCatsBtn: 'Смотреть по категориям', aLastTime: 'В прошлый раз: {x}', aDefOne: '{x} ≈ {k} ккал', aQuickAdd: 'Добавить', aAdded: 'Добавлено: {x}', pAddBtn: 'Добавить', pMoreT: 'Уточнить вид и размер', pMore2T: 'Другие настройки', srcPer100: '{k} ккал / 100 г', nbSee: 'Смотреть', nbClose: 'Закрыть', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
+      aCnt: '{n} блюд · {k} ккал', pTypeT: 'Вид и размер', pChange: 'Изменить', pCloseL: 'Закрыть', pMealT: 'Приём пищи', aDone: 'Добавлено', pManba: 'Источник',
+      aDefOne: '{x} ≈ {k} ккал', aQuickAdd: 'Добавить', aAdded: 'Добавлено: {x}', pAddBtn: 'Добавить', pMoreT: 'Уточнить вид и размер', pMore2T: 'Другие настройки', srcPer100: '{k} ккал / 100 г', nbSee: 'Смотреть', nbClose: 'Закрыть', pUnit: 'Сколько?', pMeal: 'Какой приём пищи?', pSave: 'Сохранить', pEstNote: 'Значение примерное: зависит от рецепта и порции.', pEdit: 'Изменить запись', pMacro: 'белки {p} · жиры {f} · углеводы {c}', favOn: 'Добавлено в избранное', favOff: 'Убрано из избранного',
       cT: 'Моё блюдо', cName: 'Название', cKcal: 'Сколько ккал? (в одной порции)', cG: 'Вес порции, г (по желанию)', cP: 'Белки, г (по желанию)', cF: 'Жиры, г (по желанию)', cC: 'Углеводы, г (по желанию)',
       tT: 'Добавить текстом', tPh: 'Например: 1 миска плова, 2 самсы, чай с сахаром', tGo: 'Распознать', tMiss: 'Не найдено: {x}', tAi: 'Определить с помощью ИИ', tAiNote: 'Этот текст будет отправлен сервису ИИ (профиль, вес и история не отправляются).', tAiBusy: 'Определяю…', tAiErr: 'ИИ сейчас недоступен. Добавьте вручную.', tOffline: 'Нет интернета — ИИ не работает. Найденное можно сохранить.', tSave: 'Сохранить: {n}', tAiTag: 'оценка ИИ', tHelp: 'Сохраняется только после вашего подтверждения.', tEmpty: 'Ничего не найдено',
       fT: 'Еда', fDay: 'День', fAddText: 'Добавить текстом', fFavs: 'Избранное', fNoFavs: 'Избранного нет. Нажмите на сердечко при добавлении еды.',
@@ -124,7 +124,7 @@
   });
   Object.assign(D.uz, {
     bkT: 'Baliq kuni eslatmasi', bkH: "Haftada bir marta — {d} kuni, 11:00 da. Boshqa xabar yuborilmaydi.", bkOn: 'Yoqish', bkOff: "O'chirish", bkIsOn: 'Yoqilgan: {d} kuni, 11:00 da.', bkIos: "Avval ilovani Bosh ekranga qo'shing (Safari: Ulashish → «Bosh ekranga qo'shish»), keyin eslatmani shu yerdan yoqing.", bkDenied: "Brauzerda bildirishnomalar o'chirilgan. Sayt sozlamalaridan ruxsat bering.", bkNA: "Bu brauzer yoki qurilmada bildirishnomalar mavjud emas. Baliq kuni ilova ichida eslatma ko'rsatiladi.", bkErr: "Yoqib bo'lmadi. Keyinroq urinib ko'ring.",
-    fcT: 'Bugun baliq kuni', bkT2: 'Baliq kuni', bkLine: 'Haftada bir kun eslatamiz. Qaysi kun?', bkIos2: "Avval Bosh ekranga qo'shing: Ulashish → «Bosh ekranga»", bkDen2: "Bildirishnomalar o'chiq — brauzer sozlamasidan yoqing", bkDen3: "Bildirishnomalar o'chiq — telefon sozlamasidan yoqing", bkNA2: "Bu qurilmada eslatma yo'q — Bugun ekranida ko'rsatamiz", bkAsk: 'Haftalik baliq kuni eslatmasini yoqasizmi?', bkAskH: "Haftada bitta xabar, baliq kuni 11:00 da. Istalgan payt o'chirasiz.", bkNo: 'Hozir emas', bkOk: 'Tushunarli', bkMsg: "Bugun baliq kuni 🐟 — yaqin kafedan buyurtma qilasizmi yoki uyda pishirasizmi?", bkBtn: 'Baliq kuni', bkNever: "Bundan keyin ko'rsatma", bkDone: 'Yoqildi: baliq kuni 11:00 da eslatamiz.', bkDoneOff: "Eslatma o'chirildi.", cat_baliq: 'Baliq',
+    fcT: 'Bugun baliq kuni', bkT2: 'Baliq kuni', bkLine: 'Haftada bir kun eslatamiz. Qaysi kun?', bkIos2: "Avval Bosh ekranga qo'shing: Ulashish → «Bosh ekranga»", bkDen2: "Bildirishnomalar o'chiq — brauzer sozlamasidan yoqing", bkDen3: "Bildirishnomalar o'chiq — telefon sozlamasidan yoqing", bkNA2: "Bu qurilmada eslatma yo'q — Bugun ekranida ko'rsatamiz", bkAsk: 'Haftalik baliq kuni eslatmasini yoqasizmi?', bkAskH: "Haftada bitta xabar, baliq kuni 11:00 da. Istalgan payt o'chirasiz.", bkNo: 'Hozir emas', bkOk: 'Tushunarli', bkMsg: "Bugun baliq kuni 🐟 — yaqin kafedan buyurtma qilasizmi yoki uyda pishirasizmi?", bkBtn: 'Baliq kuni', bkNever: "Bundan keyin ko'rsatma", bkDone: 'Yoqildi: baliq kuni 11:00 da eslatamiz.', bkDoneOff: "Eslatma o'chirildi.",  
     qaT: 'Qadamlaringizni avtomatik sanaymizmi?', qaH: "Qadamlar Health Connect (Google Fit va boshqalar) yoki telefon sensoridan olinadi. Joylashuv olinmaydi.", qaYes: 'Ruxsat berish', qaLater: 'Keyinroq', qaBadge: 'Avtomatik', qaRow: 'Qadamni avtomatik sanash', qaRowH: "Health Connect (Google Fit, Samsung Health va boshqalar) yoki telefon sensoridan. GPS ishlatilmaydi, ma'lumot telefoningizda qoladi.", qaSrc_hc: 'Health Connect', qaSrc_sensor: 'Telefon sensori', qaConnT: 'Qadamlarni ulash', qaConn1: "1/2 — Health Connect'ni o'rnating, keyin shu yerga qayting.", qaConn2: "2/2 — «Ruxsat berish»ni bosing.", qaConnOne: "«Ruxsat berish»ni bosing — qadamlar o'zi keladi.", qaSkipHc: "O'rnatmasdan — faqat telefon sensori", qaNone: 'Qadamlar hali kelmayapti', qaFit: "Google Fit'ni o'rnatish", qaFitH: "Google Fit qadamni sanaydi va Health Connect'ga yozadi.", qaNoSensor: "Telefoningizda qadam sensori yo'q — qadamni Google Fit sanaydi.", diagT: 'Diagnostika', diagCopy: 'Nusxalash', diagOk: 'Nusxa olindi', qaFix: "Qo'lda tuzatish", qaHcInst: "Health Connect'ni o'rnatish", qaHcInstH: "Google Fit va boshqa ilovalardagi qadamlar shu orqali keladi.", qaOnT: 'Qadam endi avtomatik sanaladi', qaDenied: "Ruxsat berilmadi. Health Connect yoki telefon sozlamalarida KalkiFit'ga qadamlarni o'qishga ruxsat bering.", qaExtra: "Telefonsiz yurgan qadamlaringizni qo'shing. Avtomatik sanalgani ({a}) o'zgarmaydi.", qaExtraNow: "Qo'shilgan: {m}", qaAdd: "Qo'shish", qaClear: "Qo'shilganini tozalash",
     mealAddS: "Qo'shish", vLeftK: 'kkal qoldi', cEaten2: "iste'mol", cGoal2: 'maqsad', cBurn2: 'yoqildi', stWrite: 'Yozish', stkQ: "Kun qanday hisoblanadi?", stkT: 'Ketma-ket kunlar', stkB: "Ketma-ket {n} kun ovqat yozdingiz. Kun hisobga olinishi uchun kamida bitta ovqat yozilgan bo'lishi kerak. Bugun hali yozilmagan bo'lsa ham, seriya kechagacha saqlanadi.", wkTap: "Kunni ochish", mealRepT: 'Takrorlash', mealRepD: "Shu ovqatdagi hamma taomni bugunga yana qo'shadi.", mealRepH: "Taomni uzun bosing — «Takrorlash»", mealEmptyD: 'Hali yozilmadi', histT: 'Tarix', navHist: 'Tarix', histDays: 'Kunlar', histRes: 'Natijalar', orWord: "O'rniga:", orLine: "O'rniga: {n} — {d}", orMore: 'Boshqa variantlar', orLess: 'Yopish', orP_up: 'oqsil +{x} g', orP_down: 'oqsil −{x} g', orP_same: 'oqsil deyarli bir xil', orF: "yog' {x} g", orK: '{x} kkal',
     orSet: "O'rinbosar takliflari", orSetH: "Porsiya oynasida o'xshash, oqsilga boyroq yoki yog'i kamroq taom taklif qilinadi", orOn: 'Yoqilgan', orOff: "O'chirilgan",
@@ -134,7 +134,7 @@
   });
   Object.assign(D.ru, {
     bkT: 'Напоминание о рыбном дне', bkH: 'Раз в неделю — в {d}, в 11:00. Других уведомлений не будет.', bkOn: 'Включить', bkOff: 'Выключить', bkIsOn: 'Включено: в {d}, в 11:00.', bkIos: 'Сначала добавьте приложение на экран «Домой» (Safari: Поделиться → «На экран Домой»), затем включите напоминание здесь.', bkDenied: 'В браузере уведомления отключены. Разрешите их в настройках сайта.', bkNA: 'В этом браузере или на этом устройстве уведомления недоступны. В рыбный день напоминание покажем внутри приложения.', bkErr: 'Не удалось включить. Попробуйте позже.',
-    fcT: 'Сегодня рыбный день', bkT2: 'Рыбный день', bkLine: 'Напомним раз в неделю. В какой день?', bkIos2: 'Сначала добавьте на экран «Домой»: Поделиться → «На экран Домой»', bkDen2: 'Уведомления выключены — включите в настройках браузера', bkDen3: 'Уведомления выключены — включите в настройках телефона', bkNA2: 'Здесь уведомлений нет — покажем на экране «Сегодня»', bkAsk: 'Включить еженедельное напоминание о рыбном дне?', bkAskH: 'Одно уведомление в неделю, в рыбный день в 11:00. Отключить можно в любой момент.', bkNo: 'Не сейчас', bkOk: 'Понятно', bkMsg: 'Сегодня рыбный день 🐟 — закажете в ближайшем кафе или приготовите дома?', bkBtn: 'Рыбный день', bkNever: 'Больше не показывать', bkDone: 'Включено: напомним в рыбный день в 11:00.', bkDoneOff: 'Напоминание выключено.', cat_baliq: 'Рыба',
+    fcT: 'Сегодня рыбный день', bkT2: 'Рыбный день', bkLine: 'Напомним раз в неделю. В какой день?', bkIos2: 'Сначала добавьте на экран «Домой»: Поделиться → «На экран Домой»', bkDen2: 'Уведомления выключены — включите в настройках браузера', bkDen3: 'Уведомления выключены — включите в настройках телефона', bkNA2: 'Здесь уведомлений нет — покажем на экране «Сегодня»', bkAsk: 'Включить еженедельное напоминание о рыбном дне?', bkAskH: 'Одно уведомление в неделю, в рыбный день в 11:00. Отключить можно в любой момент.', bkNo: 'Не сейчас', bkOk: 'Понятно', bkMsg: 'Сегодня рыбный день 🐟 — закажете в ближайшем кафе или приготовите дома?', bkBtn: 'Рыбный день', bkNever: 'Больше не показывать', bkDone: 'Включено: напомним в рыбный день в 11:00.', bkDoneOff: 'Напоминание выключено.',  
     qaT: 'Считать шаги автоматически?', qaH: 'Шаги берутся из Health Connect (Google Fit и другие) или датчика телефона. Местоположение не используется.', qaYes: 'Разрешить', qaLater: 'Позже', qaBadge: 'Авто', qaRow: 'Автоматический подсчёт шагов', qaRowH: 'Из Health Connect (Google Fit, Samsung Health и другие) или датчика телефона. Без GPS, данные остаются на телефоне.', qaSrc_hc: 'Health Connect', qaSrc_sensor: 'Датчик телефона', qaConnT: 'Подключить шаги', qaConn1: '1/2 — Установите Health Connect и вернитесь сюда.', qaConn2: '2/2 — Нажмите «Разрешить».', qaConnOne: 'Нажмите «Разрешить» — шаги будут приходить сами.', qaSkipHc: 'Без установки — только датчик телефона', qaNone: 'Шаги пока не приходят', qaFit: 'Установить Google Fit', qaFitH: 'Google Fit считает шаги и записывает их в Health Connect.', qaNoSensor: 'В телефоне нет датчика шагов — шаги посчитает Google Fit.', diagT: 'Диагностика', diagCopy: 'Копировать', diagOk: 'Скопировано', qaFix: 'Исправить вручную', qaHcInst: 'Установить Health Connect', qaHcInstH: 'Через него приходят шаги из Google Fit и других приложений.', qaOnT: 'Теперь шаги считаются автоматически', qaDenied: 'Разрешение не дано. В Health Connect или настройках телефона разрешите KalkiFit читать шаги.', qaExtra: 'Добавьте шаги, пройденные без телефона. Автоматический счёт ({a}) не изменится.', qaExtraNow: 'Добавлено: {m}', qaAdd: 'Добавить', qaClear: 'Очистить добавленное',
     mealAddS: 'Добавить', vLeftK: 'ккал осталось', cEaten2: 'съедено', cGoal2: 'цель', cBurn2: 'сожжено', stWrite: 'Ввести', stkQ: 'Как считаются дни?', stkT: 'Дни подряд', stkB: 'Вы записывали еду {n} дн. подряд. День засчитывается, если записано хотя бы одно блюдо. Если сегодня ещё нет записей, серия сохраняется до вчерашнего дня.', wkTap: 'Открыть день', mealRepT: 'Повторить', mealRepD: 'Добавит на сегодня все блюда этого приёма пищи ещё раз.', mealRepH: 'Нажмите на приём пищи и удерживайте — «Повторить»', mealEmptyD: 'Пока не записано', histT: 'История', navHist: 'История', histDays: 'Дни', histRes: 'Итоги', orWord: 'Вместо:', orLine: 'Вместо: {n} — {d}', orMore: 'Другие варианты', orLess: 'Свернуть', orP_up: 'белка +{x} г', orP_down: 'белка −{x} г', orP_same: 'белка почти столько же', orF: 'жира {x} г', orK: '{x} ккал',
     orSet: 'Подсказки-замены', orSetH: 'В окне порции предлагается похожее блюдо с большим количеством белка или меньшим — жира', orOn: 'Включено', orOff: 'Выключено',
@@ -146,8 +146,8 @@
   var st = null, view = 'today', lang = langNow(), enterNext = true, foodDay = null, db = null, dbState = 0, heroPrev = null, seenFood = null, ob = null, reduce = false;
   function langNow() { return document.documentElement.lang === 'ru' ? 'ru' : 'uz'; }
   function isCyr() { return document.documentElement.getAttribute('data-script') === 'cyr'; }
-  Object.assign(D.uz, { updT: 'Yangi versiya tayyor', updGo: 'Yangilash', updLater: 'Keyinroq', moreWays: 'Boshqa usullar', sMine: "Mening ma'lumotlarim", pFoot: "Ma'lumot faqat shu qurilmada. Tibbiy maslahat emas.", sRem: 'Eslatmalar', sLangT: "Til va ko'rinish", profBackup: "Ma'lumotlarni saqlash", sHow: 'Qanday ishlaydi?', hEmpty: "Birinchi ovqatni qo'shing", aTabS: 'Qidirish', aTabM: 'Taomlarim', aTabT: 'Odatdagi', aTabV: 'Idishlar', aTabs: "Ovqat qo'shish bo'limlari", fuT: 'Foydali' });
-  Object.assign(D.ru, { updT: 'Готова новая версия', updGo: 'Обновить', updLater: 'Позже', moreWays: 'Другие способы', sMine: 'Мои данные', pFoot: 'Данные только на этом устройстве. Не медицинский совет.', sRem: 'Напоминания', sLangT: 'Язык и вид', profBackup: 'Сохранение данных', sHow: 'Как это работает?', hEmpty: 'Добавьте первую еду', aTabS: 'Поиск', aTabM: 'Мои блюда', aTabT: 'Привычные', aTabV: 'Посуда', aTabs: 'Разделы «Добавить еду»', fuT: 'Полезное' });
+  Object.assign(D.uz, { updT: 'Yangi versiya tayyor', updGo: 'Yangilash', updLater: 'Keyinroq', moreWays: 'Boshqa usullar', sMine: "Mening ma'lumotlarim", pFoot: "Ma'lumot faqat shu qurilmada. Tibbiy maslahat emas.", sRem: 'Eslatmalar', sLangT: "Til va ko'rinish", profBackup: "Ma'lumotlarni saqlash", sHow: 'Qanday ishlaydi?', hEmpty: "Birinchi ovqatni qo'shing",     fuT: 'Foydali' });
+  Object.assign(D.ru, { updT: 'Готова новая версия', updGo: 'Обновить', updLater: 'Позже', moreWays: 'Другие способы', sMine: 'Мои данные', pFoot: 'Данные только на этом устройстве. Не медицинский совет.', sRem: 'Напоминания', sLangT: 'Язык и вид', profBackup: 'Сохранение данных', sHow: 'Как это работает?', hEmpty: 'Добавьте первую еду',     fuT: 'Полезное' });
   Object.assign(D.uz, { hkTitle: 'Haftangiz', hkCardS: "{n} kun yozildi · o'rtacha {k} kkal", hkCard0: "Hafta endi boshlanmoqda — ko'rib qo'ying", hkHi: 'Sizning haftangiz', hkDays: '7 kundan {n} kuni ovqat yozdingiz', hkEmpty: "Bu hafta yozuv yo'q. Ertaga bitta ovqat yozing — keyingi hafta chiroyli xulosa chiqadi.", hkKcalT: 'Kaloriya', hkNearT: "kun maqsadga yaqin bo'ldi", hkAvg: "O'rtacha {x} kkal/kun · maqsad {g}", hkFew: "Hali ma'lumot kam — har kuni bitta ovqat yozing, grafik to'ladi.",
     hkWaterU: "ml suv — kuniga o'rtacha", hkStepsU: 'qadam — jami', hkMoveT: 'Suv va harakat', hkBestT: 'Eng yaxshi kun', hkStreakU: 'kun ketma-ket yozdingiz', hkFoodT: "Eng ko'p yeyilgan", hkWt: 'Vazn (faqat sizga ko\'rinadi): {d} kg', hkTipT: 'Keyingi haftaga maslahat', hkShare: 'Ulashish', hkClose: 'Yopish', hkAvgT: "o'rtacha kkal/kun", hkNearS: 'maqsadga yaqin kunlar' });
   Object.assign(D.ru, { hkTitle: 'Ваша неделя', hkCardS: 'Записано дней: {n} · в среднем {k} ккал', hkCard0: 'Неделя только начинается — загляните', hkHi: 'Ваша неделя', hkDays: 'Еда записана {n} из 7 дней', hkEmpty: 'На этой неделе записей нет. Запишите завтра одну еду — через неделю будет красивый итог.', hkKcalT: 'Калории', hkNearT: 'дн. около цели', hkAvg: 'В среднем {x} ккал/день · цель {g}', hkFew: 'Пока мало данных — записывайте хотя бы одну еду в день, и график заполнится.',
@@ -162,24 +162,31 @@
     ft_yeymiz: 'Что поесть сегодня?', ft_yeymizH: 'Блюдо в кафе, с доставкой или дома', ft_retsept: 'Облегчить рецепт', ft_retseptH: 'Вкус остаётся, калорий меньше', ft_odatdagi: 'Мои обычные приёмы пищи', ft_odatdagiH: 'Частое — в одно нажатие',
     ft_idishlar: 'Моя посуда', ft_idishlarH: 'Своя тарелка и ляган — точнее расчёт', ft_yesam: 'А если съесть это?', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_hafta: 'Ваша неделя', ft_haftaH: 'Итоги недели короткой историей',
     ft_kunkarta: 'Карточка дня', ft_kunkartaH: 'Поделитесь итогом дня картинкой', ft_ulashish: 'Поделиться результатом', ft_ulashishH: 'Только выбранные вами цифры', ft_supp: 'Витамины и добавки', ft_suppH: 'Что нужно, а что необязательно' });
-  Object.assign(D.uz, { apPh: 'Taom nomini yozing…', apRecent: 'Yaqinda', tdMeals: 'Bugungi ovqatlar', tdEmpty: "Bugun hali ovqat yozilmagan. Pastdagi «Qo'shish» tugmasini bosing — nomini yozing, ayting yoki suratga oling.",
-    apT: "Nima qo'shamiz?", aWrite: 'Yozish', ap_yozish: 'Yozish', ap_yozishH: 'Nomini yozing, bazadan topamiz', ap_ovoz: 'Ovoz', ap_ovozH: 'Ayting, yozamiz', ap_rasm: 'Rasm', ap_rasmH: 'Taomni suratga oling', ap_menyu: 'Menyu', ap_menyuH: 'Kafe menyusidan',
-    apLeft: 'bugun {n} ta qoldi', apNone: 'bugungi limit tugadi', apYe: "Yeymiz: nima yesam bo'ladi?", fwTry: "Sinab ko'rish",
+  Object.assign(D.uz, { apPh: 'Taom nomini yozing…',  tdMeals: 'Bugungi ovqatlar', tdEmpty: "Bugun hali ovqat yozilmagan. Pastdagi «Qo'shish» tugmasini bosing — nomini yozing, ayting yoki suratga oling.",
+              
+    fwTry: "Sinab ko'rish",
     fw_ovoz: "Ovoz bilan qo'shing", fw_ovozH: "Ayting: «bir kosa sho'rva va non» — ro'yxat o'zi tuziladi.", fw_rasm: 'Taomni suratga oling', fw_rasmH: 'Rasmdan taom va porsiya aniqlanadi, kaloriya bazadan olinadi.', fw_menyu: 'Kafe menyusidan tanlang', fw_menyuH: 'Menyuni suratga oling — maqsadingizga mos taomlar ko\'rsatiladi.',
     fw_yeymiz: 'Nima yeyishni bilmayapsizmi?', fw_yeymizH: '«Bugun nima yeymiz?» kafe, buyurtma yoki uyda mos taomni topadi.', fw_hafta: 'Haftangizni ko\'ring', fw_haftaH: 'Har yakshanba hafta xulosasi qisqa hikoya bo\'lib chiqadi.', fw_kunkarta: 'Kuningizni ulashing', fw_kunkartaH: "Kun natijasi chiroyli rasm bo'ladi — vazn va shaxsiy ma'lumotsiz.", fw_google: "Ma'lumotingizni saqlang", fw_googleH: 'Google bilan kirsangiz, telefon almashsa ham hammasi qoladi.' });
-  Object.assign(D.ru, { apPh: 'Название блюда…', apRecent: 'Недавнее', tdMeals: 'Еда за сегодня', tdEmpty: 'Сегодня еда ещё не записана. Нажмите «Добавить» внизу — напишите название, скажите или сфотографируйте.',
-    apT: 'Что добавим?', aWrite: 'Написать', ap_yozish: 'Написать', ap_yozishH: 'Напишите название — найдём в базе', ap_ovoz: 'Голос', ap_ovozH: 'Скажите — запишем', ap_rasm: 'Фото', ap_rasmH: 'Сфоткайте блюдо', ap_menyu: 'Меню', ap_menyuH: 'Из меню кафе',
-    apLeft: 'сегодня осталось {n}', apNone: 'лимит на сегодня исчерпан', apYe: 'Что поесть: что мне можно?', fwTry: 'Попробовать',
+  Object.assign(D.ru, { apPh: 'Название блюда…',  tdMeals: 'Еда за сегодня', tdEmpty: 'Сегодня еда ещё не записана. Нажмите «Добавить» внизу — напишите название, скажите или сфотографируйте.',
+              
+    fwTry: 'Попробовать',
     fw_ovoz: 'Добавляйте голосом', fw_ovozH: 'Скажите: «тарелка супа и хлеб» — список составится сам.', fw_rasm: 'Сфотографируйте блюдо', fw_rasmH: 'По фото определяются блюдо и порция, калории — из базы.', fw_menyu: 'Выбирайте по меню кафе', fw_menyuH: 'Сфотографируйте меню — покажем блюда под вашу цель.',
     fw_yeymiz: 'Не знаете, что поесть?', fw_yeymizH: '«Что поесть сегодня?» найдёт блюдо в кафе, с доставкой или дома.', fw_hafta: 'Посмотрите свою неделю', fw_haftaH: 'Каждое воскресенье — итоги недели короткой историей.', fw_kunkarta: 'Поделитесь днём', fw_kunkartaH: 'Итог дня станет красивой картинкой — без веса и личных данных.', fw_google: 'Сохраните данные', fw_googleH: 'Войдите через Google — при смене телефона всё сохранится.' });
   Object.assign(D.uz, { ovLeft: 'Bugun {q} ta ovozli kiritish qoldi ({n} tadan).', ovLimit: "Bugungi ovozli kiritish tugadi, yozib qo'shing" });
   Object.assign(D.ru, { ovLeft: 'Сегодня осталось голосовых вводов: {q} из {n}.', ovLimit: 'Сегодняшний голосовой ввод закончился, добавьте текстом' });
   Object.assign(D.uz, { qaOnPill: 'Yoqish', qaRowS: 'Telefon sensori orqali', qaRowHc: 'Health Connect orqali', stWeb: 'Qadam ilovada avtomatik sanaladi' });
   Object.assign(D.ru, { qaOnPill: 'Включить', qaRowS: 'Через датчик телефона', qaRowHc: 'Через Health Connect', stWeb: 'Шаги считаются автоматически в приложении' });
-  Object.assign(D.uz, { qaPhoto: 'Rasmdan', qaMenu: 'Menyudan', vMic: "Ovoz bilan qo'shish", vT: "Ovoz bilan qo'shish", vListen: 'Gapiring… Masalan: «bir piyola osh, ikki tilim non va choy»', vStop: "To'xtatish", vPriv: 'Ovoz saqlanmaydi: telefoningiz uni matnga aylantiradi, ilova faqat matnni oladi.', vAgain: 'Qayta gapirish', vText: 'Matn bilan yozish', vPrivS: 'Ovoz saqlanmaydi: qisqa yozuv faqat matnga aylantirish uchun yuboriladi.', vRec: 'Gapiring… tugatgach «Tayyor» yoki mikrofonni bosing (ko\'pi bilan 30 soniya).', vDone: 'Tayyor', vBusy: 'Ovoz tanilmoqda…', vErr_vaqt: "Ovoz tanilmadi. Qayta urinib ko'ring yoki yozib qo'shing.",
+  Object.assign(D.uz, { vMic: "Ovoz bilan qo'shish", vT: "Ovoz bilan qo'shish", vListen: 'Gapiring… Masalan: «bir piyola osh, ikki tilim non va choy»', vStop: "To'xtatish", vPriv: 'Ovoz saqlanmaydi: telefoningiz uni matnga aylantiradi, ilova faqat matnni oladi.', vAgain: 'Qayta gapirish', vText: 'Matn bilan yozish', vPrivS: 'Ovoz saqlanmaydi: qisqa yozuv faqat matnga aylantirish uchun yuboriladi.', vRec: 'Gapiring… tugatgach «Tayyor» yoki mikrofonni bosing (ko\'pi bilan 30 soniya).', vDone: 'Tayyor', vBusy: 'Ovoz tanilmoqda…', vErr_vaqt: "Ovoz tanilmadi. Qayta urinib ko'ring yoki yozib qo'shing.",
     vErr_ruxsat: 'Mikrofonga ruxsat berilmadi. Telefon sozlamalarida mikrofonni yoqing yoki matn bilan yozing.', vErr_jim: "Hech narsa eshitilmadi. Yana bir bor urinib ko'ring.", vErr_tarmoq: 'Ovozni tanish uchun internet kerak.', vErr_yoq: 'Bu qurilmada ovozni tanish ishlamayapti — matn bilan yozing.', vErr_xato: "Ovozni tanib bo'lmadi. Yana urinib ko'ring." });
-  Object.assign(D.ru, { qaPhoto: 'По фото', qaMenu: 'По меню', vMic: 'Добавить голосом', vT: 'Добавить голосом', vListen: 'Говорите… Например: «тарелка плова, два куска хлеба и чай»', vStop: 'Остановить', vPriv: 'Голос не сохраняется: телефон превращает его в текст, приложение получает только текст.', vAgain: 'Сказать ещё раз', vText: 'Написать текстом', vPrivS: 'Голос не сохраняется: короткая запись отправляется только для распознавания текста.', vRec: 'Говорите… затем нажмите «Готово» или микрофон (не дольше 30 секунд).', vDone: 'Готово', vBusy: 'Распознаём голос…', vErr_vaqt: 'Голос не распознан. Попробуйте ещё раз или добавьте текстом.',
+  Object.assign(D.ru, { vMic: 'Добавить голосом', vT: 'Добавить голосом', vListen: 'Говорите… Например: «тарелка плова, два куска хлеба и чай»', vStop: 'Остановить', vPriv: 'Голос не сохраняется: телефон превращает его в текст, приложение получает только текст.', vAgain: 'Сказать ещё раз', vText: 'Написать текстом', vPrivS: 'Голос не сохраняется: короткая запись отправляется только для распознавания текста.', vRec: 'Говорите… затем нажмите «Готово» или микрофон (не дольше 30 секунд).', vDone: 'Готово', vBusy: 'Распознаём голос…', vErr_vaqt: 'Голос не распознан. Попробуйте ещё раз или добавьте текстом.',
     vErr_ruxsat: 'Нет доступа к микрофону. Включите микрофон в настройках телефона или напишите текстом.', vErr_jim: 'Ничего не слышно. Попробуйте ещё раз.', vErr_tarmoq: 'Для распознавания голоса нужен интернет.', vErr_yoq: 'На этом устройстве распознавание голоса не работает — напишите текстом.', vErr_xato: 'Не удалось распознать голос. Попробуйте ещё раз.' });
+  /* ovqat qo'shish oqimi (maket: 3 ekran) */
+  Object.assign(D.uz, { qT: 'Nima yedingiz?', qPhoto: 'Taom rasmi', qPhotoH: 'Suratga oling', qMenu: 'Kafe menyusi', qMenuH: 'Mosini tanlaymiz', qRecent: 'Yaqinda yeganlaringiz', qMine: 'meniki', qTpl: 'odatiy',
+    qNone: 'Topilmadi', qOwn: "O'z taomimni qo'shish", qVoice: 'Ovoz bilan aytish', qAll: "Hammasini qo'shish: {x}", qHalf: 'Yarim', qGram: 'Gramm', qProt: 'oqsil', qLeft: '{n} ta qoldi', qNoLeft: 'limit tugadi',
+    pCta_b: "Nonushtaga qo'shish", pCta_l: "Tushlikka qo'shish", pCta_d: "Kechki ovqatga qo'shish", pCta_s: "Tamaddiga qo'shish", ft_taomlarim: 'Mening taomlarim', ft_taomlarimH: "O'zingiz qo'shgan taom va retseptlar" });
+  Object.assign(D.ru, { qT: 'Что вы съели?', qPhoto: 'Фото блюда', qPhotoH: 'Сфоткайте', qMenu: 'Меню кафе', qMenuH: 'Подберём блюдо', qRecent: 'Недавно ели', qMine: 'моё', qTpl: 'обычное',
+    qNone: 'Ничего не найдено', qOwn: 'Добавить своё блюдо', qVoice: 'Сказать голосом', qAll: 'Добавить всё: {x}', qHalf: '½', qGram: 'Грамм', qProt: 'белок', qLeft: 'осталось {n}', qNoLeft: 'лимит исчерпан',
+    pCta_b: 'Добавить в завтрак', pCta_l: 'Добавить в обед', pCta_d: 'Добавить в ужин', pCta_s: 'Добавить в перекус', ft_taomlarim: 'Мои блюда', ft_taomlarimH: 'Блюда и рецепты, которые вы добавили' });
   Object.assign(D.uz, { hwReady: 'Haftangiz xulosasi tayyor', hwOpen: "Ko'rish", hwT: 'Hafta xulosasi', hwRange: '{a} – {b}', hwAvg: "O'rtacha: {x} kkal/kun", hwAvgG: 'maqsad {x}', hwNear: 'Maqsadga yaqin kunlar: {n} / 7', hwWater: "Suv: kuniga o'rtacha {x} ml", hwSteps: "Qadam: kuniga o'rtacha {x}", hwBest: 'Eng yaxshi kun: {d}', hwStreak: 'Ketma-ket yozilgan kunlar: {n}', hwTipT: 'Keyingi haftaga bitta maslahat',
     hwTip_log: "Har kuni kamida bitta ovqatni yozing — xulosa aniqroq bo'ladi.", hwTip_water: 'Har ovqatdan oldin bir stakan suv iching.', hwTip_steps: "Har kuni 15 daqiqa piyoda yuring — bu taxminan 1 500 qadam.", hwTip_over: 'Kechki ovqatni kichikroq likopchaga soling.', hwTip_protein: "Har ovqatga oqsil qo'shing: tuxum, tvorog, tovuq yoki dukkakli.", hwTip_keep: 'Shu tartibni yana bir hafta saqlang.',
     hwEmpty: "Bu hafta yozuv yo'q. Hechqisi yo'q — ertaga bitta ovqat yozing, keyingi yakshanba xulosa tayyor bo'ladi.", hwN: 'Haftalik xulosa', hwNH: 'Yakshanba 19:00 da hafta xulosasi', hwMsg: 'Haftangiz xulosasi tayyor' });
@@ -203,8 +210,9 @@
   function num(v) { return S.num(v); }
   function KG() { return lang === 'ru' ? 'кг' : 'kg'; }
   function ML() { return lang === 'ru' ? 'мл' : 'ml'; }
-  function openSheet(kind, html, o) { kit.openSheet(kind, html, o || { noFocus: true }); if (SL) SL.mount($('#rzSheet')); }
-  function setSheet(html) { var sh = $('#rzSheet'); sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; kit.dpInit(); if (SL) SL.mount(sh); }
+  function openSheet(kind, html, o) { kit.openSheet(kind, html, o || { noFocus: true }); if (SL) SL.mount($('#rzSheet')); sheetFull(); }
+  function sheetFull() { var sh = $('#rzSheet'); if (sh) sh.classList.toggle('kq-full', kit.sheetKind() === 'add' && !!fd && fd.mode === 'search' && !!fd.q.trim()); }          // qo'shish: 1-ekran — kontent balandligida, natijalar (2-ekran) — to'liq balandlik
+  function setSheet(html) { var sh = $('#rzSheet'); sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; kit.dpInit(); if (SL) SL.mount(sh); sheetFull(); }
   function mealName(m) { return T('meal' + (m === 'd' ? 'd' : m)); }
   function isNativeApp() { try { return !!(window.KalkiNative && KalkiNative.isApp()); } catch (e) { return false; } }
   function nameOf(f) { return lang === 'ru' && f.r ? f.r : f.n; }
@@ -410,18 +418,18 @@
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
     history: function (n) { return goTab('history', function () { n.highlight($('#hkCard') || $('.sl-sec2') || $('#rzMain')); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
-    yeymiz: function (n) { return goTab('today', function () { openAdd({ pick: true }); setTimeout(function () { n.highlight($('.sl-yelink')); }, 450); }); },          // v32: «Qo'shish» varag'idagi havola
+    yeymiz: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
     retsept: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=retsept]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // v32: Profil → Imkoniyatlar
     bugun: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     yemaydi: function (n) { return goTab('profile', function () { n.highlight($('#ynCard')); }); },
     supp: function (n) { return goTab('history', function () { n.highlight($('[data-act=supp]')); }); },
     fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
-    cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#catsRow')); }, 450); }); },
+    cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     ovoz: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#micBtn') || $('#fdQ')); }, 450); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
     vessel: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('.sl-vnew')); }, 500); }); },
-    templates: function (n) { return goTab('today', function () { openAdd({}); setTimeout(function () { tplsOpen(); setTimeout(function () { n.highlight($('.sl-atab[data-t=t]')); }, 350); }, 450); }); },
+    templates: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=odatdagi]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },
     dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('#kcalBtn')); } }); } } });
   function backupJoke() { var l = G && G.pickLine && prefs().jokes !== false && hazilState === 2 ? G.pickLine(jokeCtx(false), 'backup', {}, 'backup') : null; if (l) saveQuiet(); return l ? l.text : ''; }
   function nudges() {
@@ -471,9 +479,9 @@
       case 'menyu': openAdd({}); if (Y && Y.menuOpen) Y.menuOpen('add'); return;
       case 'yeymiz': act('yedoor'); return;
       case 'retsept': act('rtopen'); return;
-      case 'odatdagi': openAdd({}); act('atab', { t: 't' }); return;
-      case 'taomlarim': openAdd({}); act('atab', { t: 'm' }); return;
-      case 'idishlar': openAdd({}); act('atab', { t: 'v' }); return;
+      case 'odatdagi': tplsOpen(); return;
+      case 'taomlarim': rcmineOpen(); return;
+      case 'idishlar': vmOpen(); return;
       case 'hafta': openWeek(null); return;
       case 'kunkarta': openDayCard(); return;
       case 'ulashish': openShare(); return;
@@ -651,7 +659,7 @@
   function applyTheme() { var t = themeNow(), h = document.documentElement; if (t === 'auto') h.removeAttribute('data-theme'); else h.setAttribute('data-theme', t); try { if (t === 'auto') localStorage.removeItem('kalki_theme'); else localStorage.setItem('kalki_theme', t); } catch (e) {} }
   /* Profil → «Imkoniyatlar»: barcha funksiyalar bitta ro'yxatda — nom, bir qatorli izoh va «Ochish» (feat() — maslahat kartasi bilan bitta yo'l) */
   function featsHtml() {
-    var L = [['ovoz', 'mic', micOk()], ['rasm', 'cam', true], ['menyu', 'img', !!(Y && Y.menuOpen && window.KalkiMenyu)], ['yeymiz', 'zfork', !!Y], ['retsept', 'rspark', !!R], ['odatdagi', 'star', true], ['idishlar', 'bowl', true], ['yesam', 'spark', true], ['hafta', 'rep', true], ['kunkarta', 'share', true], ['ulashish', 'trend', true], ['supp', 'pill', true]];
+    var L = [['ovoz', 'mic', micOk()], ['rasm', 'cam', true], ['menyu', 'img', !!(Y && Y.menuOpen && window.KalkiMenyu)], ['yeymiz', 'zfork', !!Y], ['retsept', 'rspark', !!R], ['odatdagi', 'star', true], ['taomlarim', 'book', true], ['idishlar', 'bowl', true], ['yesam', 'spark', true], ['hafta', 'rep', true], ['kunkarta', 'share', true], ['ulashish', 'trend', true], ['supp', 'pill', true]];
     return '<section class="rz-card sl-feats">' + L.filter(function (x) { return x[2]; }).map(function (x) { return '<div class="sl-feat"><span class="sl-ci">' + ico(x[1]) + '</span><span class="m"><b>' + esc(T('ft_' + x[0])) + '</b><span>' + esc(T('ft_' + x[0] + 'H')) + '</span><button type="button" class="rz-btn sm ghost" data-act="feat" data-fk="' + x[0] + '" aria-label="' + esc(T('ftOpen') + ': ' + T('ft_' + x[0])) + '">' + esc(T('ftOpen')) + '</button></span></div>'; }).join('') + '</section>';
   }
   function renderProfile() {
@@ -759,16 +767,18 @@
   }
   function yzPick(key, back, por) { openAdd({}); fd.yBack = back; if (yzFd(key, por)) setSheet(portionHtml()); }                       // porsiya oynasi: Orqaga — chaqirgan oynaga (Bugun nima yeymiz? / Baliq kuni)
   function menuLog(c) {                                // «Menyudan tanlash»: kundalikka ASL menyu nomi bilan (kkal bazadan; tarkibdan yig'ilgan bo'lsa — «taxminiy»)
-    var t = todayStr(), ml = S.mealByHour(new Date().getHours());
+    var t = todayStr(), ml = mealNow();
     var e = S.addFood(st, t, { fid: null, name: String(c.asl || c.nom).slice(0, 80), meal: ml, unit: null, qty: 1, g: c.g || 0, kcal: Math.round(c.k), p: c.p || 0, f: c.f || 0, c: c.c || 0, est: !!c.est, ifid: c.ifid || '', ikat: c.bolim || '', src: 'menyu', ts: Date.now() });
     kit.closeSheet(); commit(); vib(); stEv('ovqat_qoshildi', 'menyu'); toast(T('yzMeal_' + ml), function () { S.removeFood(st, t, e.id); commit(); }, true); jokeAfter('food');
   }
-  function yzLog(key, por) { var ml = S.mealByHour(new Date().getHours()); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
+  function yzLog(key, por) { var ml = mealNow(); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
     if (HK) { HK.close(); return 'overlay'; }          // «Haftangiz» hikoyasi
     if (IN && IN.isOpen && IN.isOpen()) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return 'overlay'; }
     if (kit.tipsOn()) { kit.tipsEnd(); return 'overlay'; }
     var yg = $('#ygOk'); if (yg) { yg.click(); return 'overlay'; }
+    var mm2 = $('#kqMM'); if (mm2 && !mm2.hidden) { mealMenu(false); return 'step'; }
+    if (kit.sheetKind() === 'add' && fd && !fd.yBack && fd.editId == null) { if (fd.mode === 'portion' || fd.mode === 'custom' || fd.mode === 'tpl') { backToSearch(); return 'step'; } if (fd.mode === 'search' && fd.q.trim()) { fd.q = ''; var qi = $('#fdQ'); if (qi) { qi.value = ''; qi.blur(); } refreshRes(); return 'step'; } }          // porsiya → qidiruv; natijalar → 1-ekran
     var sh = $('#rzSheet'); if (sh && !sh.hidden && kit.sheetKind()) { var b = sh.querySelector('.rz-sh-h > .rz-x:first-child:not([data-act=sheetclose]), .sl-yh > .sl-x'); if (b) { b.click(); return 'step'; } kit.closeSheet(); return 'sheet'; }
     var ob = $('#rzOnb'); if (ob && !ob.hidden) { var bb = ob.querySelector('[data-act=obback]'); if (bb) { bb.click(); return 'onb'; } return 'home'; }
     if (view !== 'today') { var tb = $('[data-act=tab][data-v=today]'); if (tb) { tb.click(); return 'tab'; } }
@@ -796,7 +806,6 @@
     fd.meal = meal; fd.date = date; fd.obFrom = 1; setSheet(portionHtml());
   }
   function orGo(i) { var l = orAlts(fd), a = l[i]; if (!a) return; if (Y) Y.count('orinbosar_tanlandi'); orApply(a); }
-  function inCat(f, c) { if (c === 'turk') return /^tr-/.test(f.id); if (c === 'baliq') return orState === 2 && OR.tegOf(orTags, f.id) === 'baliq' && !f.custom; return f.t === c; }       // «Baliq» — oqsil manbasi tegi bo'yicha virtual guruh (bazadagi tur o'zgarmaydi)
   /* ---------- «BALIQ KUNI» eslatmasi (Web Push) ---------- */
   var PS = { state: 0, on: false, key: null, wait: [] };
   /* Android ilovasi ichida (KalkiNative): Web Push o'rniga LOKAL haftalik bildirishnoma (tanlangan kun, 11:00; server kerak emas) */
@@ -879,7 +888,7 @@
     caches.open('kalkifit-pending').then(function (c) { return c.match('/__pending/baliq').then(function (r) { if (!r) return; return c.delete('/__pending/baliq').then(function () { return r.text(); }).then(function (t) { if (Date.now() - (+t || 0) < 600000) openFish(); }); }); }).catch(function () {});
     caches.open('kalkifit-pending').then(function (c) { return c.match('/__pending/hafta').then(function (r) { if (!r) return; return c.delete('/__pending/hafta').then(function () { return r.text(); }).then(function (t) { if (Date.now() - (+t || 0) < 600000) openWeek(); }); }); }).catch(function () {});          // «Haftalik xulosa» eslatmasi
   }
-  function openFish() { if (Y) { if (kit.sheetKind() !== 'fish') Y.openFish(); return; } if (kit.sheetKind() === 'add' && fd && fd.cat === 'baliq') return; openAdd(); fd.cat = 'baliq'; loadOr(function () { if (fd && fd.mode === 'search') refreshRes(); }); setSheet(searchHtml()); catsInit(); catView(); }
+  function openFish() { if (Y) { if (kit.sheetKind() !== 'fish') Y.openFish(); return; } openAdd(); }
   var ORB_TAGS = ['qizil', 'tovuq', 'baliq', 'sut', 'dukkak'];
   function orbStats() {                                // oxirgi 7 kun (bugun bilan): oqsil grammi manba bo'yicha, baliq marta, yozilgan kunlar
     var t = todayStr(), by = orIndex(), g = { qizil: 0, tovuq: 0, baliq: 0, sut: 0, dukkak: 0 }, fish = 0, days = 0, tot = 0;
@@ -961,7 +970,7 @@
     return rc.ings.length ? '<div class="sl-kc"><b>' + fmt(r.perPortion.kcal) + '</b><small> ' + T('perPortion') + '</small></div><div class="sl-mc">' + esc(T('rcPerMac', { p: dec(r.perPortion.p, 0), f: dec(r.perPortion.f, 0), c: dec(r.perPortion.c, 0), g: fmt(r.perPortion.g) })) + '</div><div class="rz-mut sm" style="text-align:center">' + esc(T('rcTotal', { g: fmt(r.total.g), k: fmt(r.total.kcal) })) + '</div>' : '';
   }
   function rcHtml() {
-    var h = shBack(rc.id ? T('rcEdit') : T('rcT'), 'data-act="atab" data-t="m"') + '<p class="rz-p sm">' + esc(T('rcMineH')) + '</p><label class="rz-f" for="rcName"><span>' + esc(T('rcName')) + '</span><input id="rcName" type="text" maxlength="60" placeholder="' + esc(T('rcNamePh')) + '" value="' + esc(rc.name) + '"></label>' +
+    var h = shBack(rc.id ? T('rcEdit') : T('rcT'), 'data-act="rcmine"') + '<p class="rz-p sm">' + esc(T('rcMineH')) + '</p><label class="rz-f" for="rcName"><span>' + esc(T('rcName')) + '</span><input id="rcName" type="text" maxlength="60" placeholder="' + esc(T('rcNamePh')) + '" value="' + esc(rc.name) + '"></label>' +
       '<div class="rz-fl">' + esc(T('rcIng')) + '</div>' + (rc.ings.length ? rc.ings.map(function (i, k) { var kc = Math.round(i.k * i.g / 100); return '<div class="sl-ti"><span class="m"><span class="nm">' + esc(rcIngName(i)) + '</span><span class="tm">' + fmt(i.g) + ' ' + T('gram') + '</span></span><b>' + fmt(kc) + '<small> ' + T('kcal') + '</small></b><button type="button" class="rz-x" data-act="rcdel" data-i="' + k + '" aria-label="' + esc(T('del')) + '">' + ico('x') + '</button></div>'; }).join('') : '<div class="rz-mut">' + esc(T('rcNoIng')) + '</div>') +
       '<button type="button" class="rz-btn ghost full" data-act="rcadd">' + esc(T('rcAdd')) + '</button>' +
       '<div class="rz-fl" style="margin-top:12px">' + esc(T('rcPortions')) + '</div><div class="sl-qty"><button type="button" data-act="rcport" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.4) + '</button><b id="rcPN">' + rc.portions + '</b><button type="button" data-act="rcport" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.4) + '</button></div>' +
@@ -1044,7 +1053,7 @@
   var ovq = null;          // ovoz limiti (AI hisobidan alohida): { limit, qoldi } — /api/ovoz va ovozdan keyingi taom ajratish javoblari
   function ovqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; ovq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
   function aiqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
-  function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); if (fd && !fd.active && kit.sheetKind() === 'add') { repaintPick(); return; } if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
+  function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); if (fd && fd.mode === 'search' && kit.sheetKind() === 'add') { repaintPick(); return; } if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
   /* rasm natijasi → bazadagi taom (kkal bazadan); topilmasa AI qiymati «taxminiy ±30%». vs — AI variantlari (ehtimol bo'yicha): asosiysi + «Bu emasmi?» */
   function phItem(o, nom, vs) {
     var g = o.g > 0 ? o.g : 0, m = aiItem({ nom: nom, porsiya: g ? g + ' g' : o.porsiya, kcal: o.kcal }, true), it;
@@ -1183,13 +1192,18 @@
   }
   function openExplainWeight() { openSheet('xweight', shHead(T('xWeightT')) + '<p class="rz-p">' + esc(T('xWeightN')) + '</p>' + okBtn()); }
 
-  /* ---------- ovqat qo'shish (qidiruv → porsiya → saqlash) ---------- */
-  var fd = null, CATS = ['o', 'turk', 'n', 's', 'm', 'baliq', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
+  /* ---------- ovqat qo'shish: BITTA oqim (tasdiqlangan maket, 3 ekran) ----------
+     1) «Nima yedingiz?» + ovqat vaqti chipi (soatga qarab o'zi), qidiruv (ichida mikrofon), «Taom rasmi» · «Kafe menyusi», «Yaqinda yeganlaringiz» ([+] — bir bosishda, varaq ochiq qoladi)
+     2) yozilganda — faqat natijalar (o'z taomlari birinchi, «meniki»); bir nechta taom yozilsa — tepada «Hammasini qo'shish: …»
+     3) qator bosilsa — porsiya oynasi (portionHtml). Barcha kirish nuqtalari (Qo'shish, ovqat vaqti «+», Tarix «+», maslahat kartalari) — openAdd() */
+  var fd = null;
+  function mealNow() { var d = new Date(); return S.mealByHour(d.getHours(), d.getMinutes()); }
   function openAdd(o) {
-    o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || S.mealByHour(new Date().getHours()), mode: 'search', q: '', cat: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false };
-    fd.active = !o.pick;          // «Qo'shish» tugmasi (pick) — qidiruv + «Yaqinda» + 3 plitka; boshqa yo'llar (ovqat vaqti «+», tab) — darrov natijalar
-    openSheet('add', searchHtml()); catsInit(); ovBoot(); if (o.pick) { loadDb(function (err) { if (fd && kit.sheetKind() === 'add') { var rc0 = $('#fdRecent'); if (rc0 && !fd.active) rc0.innerHTML = recentHtml(); if (fd.active) refreshRes(err); } }); if (!aiq && !(KD && KD.on) && navigator.onLine !== false) aiPeek(); }          // «bugun N ta qoldi»: seansda bir marta so'raladi (sanamaydi), keyin javoblardan yangilanadi
-              // 🎤 server yo'li bormi — faqat qo'shish oynasi ochilganda (ishga tushishda tarmoq so'rovi yo'q) if (Y) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); loadDb(function (err) { if (fd && fd.mode === 'search') refreshRes(err); });
+    o = o || {}; fd = { date: o.date || todayStr(), meal: o.meal || mealNow(), mode: 'search', q: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false, added: {} };
+    if (dbState === 2) lmIndex();
+    openSheet('add', searchHtml()); ovBoot();          // klaviatura o'zi chiqmaydi (openSheet — noFocus)
+    loadDb(function (err) { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(err); });
+    if (!aiq && !(KD && KD.on) && navigator.onLine !== false) aiPeek();          // «bugun N ta qoldi»: seansda bir marta so'raladi (sanamaydi), keyin javoblardan yangilanadi
     if (o.food) pickFood(o.food);
   }
   function entUnitTxt(e) { var vv = vOf(e.unit); if (e.unit === 'g100') return fmt(e.g) + ' ' + T('gram'); if (vv) return qtyStr(e.qty) + ' ' + vName(vv); if (e.vn) return qtyStr(e.qty) + ' ' + e.vn; return qtyStr(e.qty) + ' ' + (e.unit && e.unit !== 'pc' ? unitName(e.unit) : unitName('porsiya')); }
@@ -1202,126 +1216,100 @@
     return out;
   }
   var fdLM = {};
+  function lmIndex() { fdLM = {}; lastEntries(200).forEach(function (r) { fdLM[r.k] = r; }); }
   function lastFor(key) { return key ? (fdLM[key] || null) : null; }
   function defPortionTxt(f, sel) {
     var v = f.fam ? S.famVariant(f, sel || S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); if (!(g > 0)) return '';
     return T('aDefOne', { x: u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u), k: fmt(S.portion(v, g).kcal) });
   }
   function isSentence(q) { q = String(q || '').trim(); if (q.length < 6) return false; return /\d/.test(q) || /[,;+]/.test(q) || /(^|\s)(va|bilan|и|ва|ta|та)(\s|$)/i.test(q) || q.split(/\s+/).length >= 2; }
-  function aiLineHtml() {
-    var q = (fd && fd.q || '').trim();
-    return isSentence(q) ? '<button type="button" class="sl-ai" id="fdAi" data-act="fqai">' + ico('spark') + '<span>' + esc(T('aAiLine', { q: '\u0001' })).replace('\u0001', '<span data-cyr="skip">' + esc(q) + '</span>') + '</span></button>' : '<p class="sl-hint">' + ico('spark') + '<span>' + esc(T('aHint')) + '</span></p>';
-  }
-  function mealSeg() { return segHtml(T('pMeal'), S.MEALS.map(function (m) { return { attrs: 'data-act="fmeals" data-m="' + m + '"', on: fd.meal === m, text: T('mealS_' + m) }; })); }
-  function recRow(r, dim) {
-    var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?'), tx = entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), done = !!(fd.added && fd.added[r.k]);
-    return '<div class="sl-rw' + (dim ? ' dim' : '') + '"><button type="button" class="sl-rr" data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled') + '>' + tileHtml(e.fid || iconFid(e), e.vr, nm, 50, false, e.ikat) + '<span class="m"><span class="nm">' + esc(nm) + '</span><span class="tm">' + esc(tx) + '</span></span></button><button type="button" class="sl-pl' + (done ? ' done' : '') + '" data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '" aria-label="' + esc((done ? T('aDone') : T('aQuickAdd')) + ': ' + nm) + '">' + (done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
-  }
-  function moreHtml() {
-    var row = function (act, ic, k) { return '<button type="button" class="sl-row" data-act="' + act + '">' + ico(ic) + '<span class="m"><span class="nm">' + esc(T(k)) + '</span></span>' + ico('chev', 'r') + '</button>'; };
-    return '<div class="sl-more"><button type="button" class="sl-morebig" data-act="fmore" aria-expanded="' + !!fd.more + '">' + ico('grid') + '<span class="m"><b>' + esc(T('aMoreT')) + '</b><small>' + esc(T('aMoreSub')) + '</small></span>' + ico('chev', 'r' + (fd.more ? ' open' : '')) + '</button>' + (fd.more ? '<div class="sl-morep">' + row('fcustom', 'plus', 'aCustom') + row('frecipe', 'book', 'aRecipe') + row('fbrowse', 'search', 'aCatsBtn') + row('yesam', 'help', 'yBtn') + row('fqsug', 'chat', 'aSugBtn') + '</div>' : '') + '</div>';
-  }
-  function catChip(c, label) { var on = (fd.cat || '') === c; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="fcat" data-c="' + c + '" aria-pressed="' + on + '">' + esc(label) + '</button>'; }
-  function catsHtml() {                              // qidiruv ostidagi gorizontal kategoriya chiplari — TAB kabi: «Mashhur» (odatiy) + bazadagi guruhlar; tanlangani accent; qator kategoriya ochilganda ham joyida qoladi. «Boshqa usullar → Kategoriyalar» ham shu komponent
-    return '<div class="sl-catsw" id="catsW"><div class="sl-cats" id="catsRow" role="group" aria-label="' + esc(T('aCats')) + '">' + catChip('', T('aPop')) + CATS.filter(catVisible).map(function (c) { return catChip(c, T('cat_' + c)); }).join('') + '</div></div>';
-  }
-  function chipsHtml() { return fd.q.trim() ? '' : catsHtml(); }
-  function catSelect(c) {                            // chip bosildi: shu chip tanlanadi (qayta bosilsa — «Mashhur»ga qaytadi), ro'yxat darhol almashadi, yengil fade (150 ms), tepaga qaytadi
-    fd.cat = (c && c !== fd.cat) ? c : ''; var hadQ = !!fd.q.trim(); fd.q = ''; var qi = $('#fdQ'); if (qi) qi.value = '';
-    var r = $('#catsRow');
-    if (!r || hadQ) refreshRes(); else { [].forEach.call(r.querySelectorAll('.rz-chip'), function (b) { var on = (b.getAttribute('data-c') || '') === (fd.cat || ''); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); }); var cw = $('#fdCat'); if (cw) cw._k = chipsHtml(); var res = $('#fdRes'); if (res) { res.innerHTML = resultsHtml(); res.classList.remove('fi'); void res.offsetWidth; res.classList.add('fi'); } var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); }
-    var sh = $('#rzSheet'); if (sh) sh.scrollTop = 0; catView();
-  }
-  function catView() { var on = document.querySelector('#catsRow .rz-chip.on'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ inline: 'center', block: 'nearest', behavior: kit.reduce ? 'auto' : 'smooth' }); } catch (e) { on.scrollIntoView(); } } }
-  function actsHtml() { return ''; }
-  /* «Ovqat qo'shish» oynasi ichidagi bo'limlar (tablar): Qidirish · Mening taomlarim · Odatdagi · Idishlar — Profilda emas */
-  function addTabs(cur) {
-    return '<div class="sl-atabs" role="tablist" aria-label="' + esc(T('aTabs')) + '">' + [['s', 'aTabS'], ['m', 'aTabM'], ['t', 'aTabT'], ['v', 'aTabV']].map(function (x) {
-      var on = x[0] === cur; return '<button type="button" role="tab" class="sl-atab' + (on ? ' on' : '') + '" aria-selected="' + on + '" data-act="atab" data-t="' + x[0] + '">' + esc(T(x[1])) + '</button>'; }).join('') + '</div>';
-  }
   function shBack(title, attrs) { return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" ' + attrs + ' aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(title) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>'; }
-  function rcmineOpen() { openSheet('rcmine', shHead(T('aT')) + addTabs('m') + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); }
-  /* «Qo'shish» varag'i: 4 ta katta plitka (ikonka, nom, bir qatorli izoh) + pastida «Yeymiz» havolasi; AI/ovoz limiti ma'lum bo'lsa — «bugun N ta qoldi» */
-  function pickBodyHtml() {                            // 3 plitka (Ovoz · Rasm · Menyu) + «Yeymiz» havolasi; «Yozish» — tepadagi qidiruv maydoni
-    var off = navigator.onLine === false, left = function (q) { return q ? '<small class="sl-tl ' + (q.qoldi > 0 ? '' : 'z') + '">' + esc(q.qoldi > 0 ? T('apLeft', { n: q.qoldi }) : T('apNone')) + '</small>' : ''; };
-    var tile = function (k, ic, lim, dis) { return '<button type="button" class="sl-ptile" data-act="apick" data-fk="' + k + '"' + (dis ? ' disabled aria-disabled="true"' : '') + '><span class="sl-ptile-ic" aria-hidden="true">' + ico(ic) + '</span><b>' + esc(T('ap_' + k)) + '</b><span class="d">' + esc(T('ap_' + k + 'H')) + '</span>' + left(lim) + '</button>'; };
-    var h = '<div class="sl-ptiles" id="fdPickTiles">' + (micOk() ? tile('ovoz', 'mic', ovq, off) : '') + tile('rasm', 'cam', aiq, off) + (Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr() ? tile('menyu', 'img', aiq, off) : '') + '</div>';
-    if (Y) h += '<button type="button" class="rz-link sl-yelink" data-act="yedoor">' + ico('zfork', 'sl-inl') + esc(T('apYe')) + '</button>';
-    return h;
+  function rcmineOpen() { openSheet('rcmine', shHead(T('ft_taomlarim')) + rcMineHtml() + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>'); }
+  /* ovqat vaqti chipi: «Tushlik ▾» → 4 variantli kichik ro'yxat */
+  function mealPickHtml() {
+    return '<div class="kq-mw"><button type="button" class="kq-meal" id="kqMeal" data-act="qmeal" aria-haspopup="true" aria-expanded="false" aria-controls="kqMM" aria-label="' + esc(T('pMealT') + ': ' + mealName(fd.meal)) + '"><span>' + esc(T('mealS_' + fd.meal)) + '</span>' + ico('chev', 'dn') + '</button>' +
+      '<div class="kq-mm" id="kqMM" role="menu" hidden>' + S.MEALS.map(function (m) { var on = m === fd.meal; return '<button type="button" role="menuitemradio" aria-checked="' + on + '" data-act="qmealset" data-m="' + m + '"' + (on ? ' class="on"' : '') + '><span>' + esc(mealName(m)) + '</span>' + (on ? ico('check', '', 2.6) : '') + '</button>'; }).join('') + '</div></div>';
   }
-  function repaintPick() { var w = $('#fdPickTiles'); if (w && kit.sheetKind() === 'add' && fd) { var d = document.createElement('div'); d.innerHTML = pickBodyHtml(); var n2 = d.querySelector('#fdPickTiles'); if (n2) w.innerHTML = n2.innerHTML; } }
-  function recentHtml() {                              // «Yaqinda»: oxirgi 5 ta taom (cho'chqali va «yemaydigan» belgilanganlarsiz), bitta bosishda qo'shiladi
+  function mealMenu(open) { var mm = $('#kqMM'), b = $('#kqMeal'); if (!mm || !b) return; mm.hidden = !open; b.setAttribute('aria-expanded', String(!!open)); if (open) { var f = mm.querySelector('.on') || mm.querySelector('button'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} } }
+  function mealSet(m) { fd.meal = m; var w = $('.kq-mw'); if (w) w.outerHTML = mealPickHtml(); var b = $('#kqMeal'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {} }
+  /* «Taom rasmi» · «Kafe menyusi» — mavjud funksiyalar; AI limiti ma'lum bo'lsa — tugma ichida kichik yozuv */
+  function twoHtml() {
+    var off = navigator.onLine === false, menu = !!(Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr());
+    var lim = aiq ? '<small class="kq-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeft', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : '';
+    var btn = function (id, act, ic, k, attrs) { return '<button type="button" class="kq-b2" id="' + id + '" data-act="' + act + '"' + (attrs || '') + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico(ic) + '</i><span class="m"><b>' + esc(T(k)) + '</b><small>' + esc(T(k + 'H')) + '</small>' + lim + '</span></button>'; };
+    return '<div class="kq-two">' + btn('phBtn', 'fphoto', 'cam', 'qPhoto') + (menu ? btn('mnAdd', 'mnopen', 'img', 'qMenu', ' data-f="add"') : '') + '</div>';
+  }
+  function repaintPick() { var w = $('.kq-two'); if (w && fd && kit.sheetKind() === 'add' && fd.mode === 'search') w.outerHTML = twoHtml(); }
+  function searchHtml() {
+    var off = navigator.onLine === false, q = fd.q.trim();
+    return '<div class="kq-h"><h2 class="kq-t">' + esc(T('qT')) + '</h2>' + mealPickHtml() + '</div>' +
+      '<div class="kq-srch' + (q ? ' on' : '') + '"><input id="fdQ" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('apPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('qT')) + '">' +
+        (micOk() ? '<button type="button" class="kq-mic" id="micBtn" data-act="fmic" aria-label="' + esc(T('vMic')) + '"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '</button>' : '<span class="kq-mic z" aria-hidden="true">' + ico('search') + '</span>') + '</div>' +
+      '<div id="fdPickW"' + (q ? ' hidden' : '') + '>' + twoHtml() + '<div id="fdRecent">' + (q ? '' : recentHtml()) + '</div></div>' +
+      '<div class="sl-res" id="fdRes"' + (q ? '' : ' hidden') + '>' + (q ? resultsHtml() : '') + '</div>';
+  }
+  /* bitta qator: ikonka, nom (+ «meniki»/«odatiy» belgisi), porsiya · kkal, o'ngda [+] (✓ — qayta bosilsa bekor) */
+  function rowHtml(o) {
+    return '<div class="sl-rw' + (o.dim ? ' dim' : '') + '"><button type="button" class="sl-rr" ' + o.main + '>' + o.tile + '<span class="m"><span class="nm">' + esc(o.nm) + (o.tag ? ' <span class="sl-kb sl-mine">' + esc(o.tag) + '</span>' : '') + (o.bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (o.extra || '') + (o.fav ? ' ' + ico('heart', 'fv') : '') + '</span>' + (o.sub ? '<span class="tm">' + esc(o.sub) + '</span>' : '') + '</span></button>' +
+      '<button type="button" class="sl-pl' + (o.done ? ' done' : '') + '" ' + o.plus + ' aria-label="' + esc((o.done ? T('aDone') : T('aQuickAdd')) + ': ' + o.nm) + '">' + (o.done ? ico('check', '', 2.6) : ico('plus', '', 2.4)) + '</button></div>';
+  }
+  function recRow(r) {                               // oxirgi yozuv: [+] — xuddi o'sha porsiya (AI/rasm yozuvi ham)
+    var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?');
+    return rowHtml({ main: 'data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled'), tile: tileHtml(e.fid || iconFid(e), e.vr, nm, 46, false, e.ikat), nm: nm, tag: base && base.custom ? T('qMine') : '', sub: entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), plus: 'data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '"', done: !!fd.added[r.k] });
+  }
+  function foodKey(f, pk) { return (f.fam ? f.fam.id : (dbAlias[f.id] || f.id)) + (pk ? '|' + JSON.stringify(pk) : ''); }
+  function foodRow(f, pk, src) {                     // baza/o'z taomi: [+] — oxirgi marta yegan porsiyasi, bo'lmasa odatiy porsiya (qatorda aynan shu yoziladi)
+    var o = {}, ok = prepFood(o, f.id, pk), key = foodKey(f, pk), pt = ok ? pwCalc(o) : null, vl = ok && pk && o.fam ? S.famLabel(o.fam, o.food.vr, null, lang) : '', pj = pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '', nm = nameOf(f) + (vl ? ' · ' + vl : '');
+    return rowHtml({ main: 'data-act="pickfood" data-id="' + esc(f.id) + '"' + pj, tile: tileHtml(f.id, null, nameOf(f), 46), nm: nm, tag: f.custom ? T('qMine') : '', bad: rI(f).hit.length, fav: st.favs.indexOf(f.id) > -1, extra: f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '',
+      sub: pt ? pwSumQ(o) + ' · ' + fmt(pt.kcal) + ' ' + T('kcal') : '', plus: 'data-act="fadd" data-id="' + esc(f.id) + '"' + pj + ' data-fk="' + esc(key) + '" data-src="' + src + '"', done: !!fd.added[key] });
+  }
+  function tplRow(t) {                               // «Odatdagi» to'plam: qator — ro'yxat (belgilab qo'shish), [+] — hammasi bir bosishda
+    var x = t.items[0] || {};
+    return rowHtml({ main: 'data-act="tplopen" data-id="' + t.id + '"', tile: tileHtml(x.fid, x.vr, x.n || t.name, 46), nm: t.name, tag: T('qTpl'), sub: T('aCnt', { n: t.items.length, k: fmt(S.tplKcal(t)) }), plus: 'data-act="tpladd" data-id="' + t.id + '"', done: !!fd.added['t:' + t.id] });
+  }
+  function recentList() {                            // odatdagilar (≤2) → o'z taomlari (≤3, hali yeyilmaganlari ham) → oxirgi takrorlanmas taomlar; jami ≤ 8
+    var le = lastEntries(40).filter(function (r) { var i = rEntInfo(r.e); return !i.pork && !i.hit.length; });
+    var mine = function (r) { var f = r.e.fid ? foodById(r.e.fid) : null; return !!(f && f.custom); }, seen = {};
+    var mr = le.filter(mine).slice(0, 3); mr.forEach(function (r) { seen[r.e.fid] = 1; });
+    var mn = (st.customFoods || []).filter(function (f) { return !seen[f.id] && !le.some(function (r) { return r.e.fid === f.id; }); }).slice(-Math.max(0, 3 - mr.length)).reverse();
+    return (st.tpls || []).slice(0, 2).map(function (t) { return { t: t }; }).concat(mr.map(function (r) { return { r: r }; }), mn.map(function (f) { return { f: f }; }), le.filter(function (r) { return !mine(r); }).map(function (r) { return { r: r }; })).slice(0, 8);
+  }
+  function recentHtml() {                            // «Yaqinda yeganlaringiz» (ochilgandagi ro'yxat saqlanadi — [+] bosilganda qatorlar siljimaydi); hali hech narsa yo'q — mashhur milliy taomlar
     if (dbState !== 2) return '';
-    var l = lastEntries(14).filter(function (r) { var i = rEntInfo(r.e); return !i.pork && !i.hit.length; }).slice(0, 5); if (!l.length) return '';
-    return '<div class="sl-sech"><h3>' + esc(T('apRecent')) + '</h3></div>' + l.map(function (r) { return recRow(r); }).join('');
+    var l = fd.recSnap || (fd.recSnap = recentList());
+    if (l.length) return '<div class="sl-sech"><h3>' + esc(T('qRecent')) + '</h3></div>' + l.map(function (x) { return x.t ? tplRow(x.t) : (x.r ? recRow(x.r) : foodRow(x.f, null, 'oxirgilar')); }).join('');
+    var pop = rSplit(allFoods().filter(function (f) { return f.t === 'o' && f.top && !f.custom && !f.h; })).show.slice(0, 6);
+    if (pop.length < 4) pop = rSplit(allFoods().filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6);
+    return '<div class="sl-sech"><h3>' + esc(T('aPop')) + '</h3></div>' + pop.map(function (f) { return foodRow(f, null, 'qidiruv'); }).join('');
   }
-
-  function searchHtml() {                              // varaq: tepada qidiruv; faol bo'lmaguncha (fokus/yozuv/kategoriya) — «Yaqinda» + 3 plitka, faol bo'lsa — tablar, bo'lim, natijalar (bitta varaqda, ko'chirilmaydi)
-    var off = navigator.onLine === false, act = !!(fd.active || fd.q.trim() || fd.cat);
-    return shHead(T('aT')) + '<div class="sl-sr"><label class="sl-search">' + (micOk() && act ? '<button type="button" class="sl-micin" id="micBtn" data-act="fmic" aria-label="' + esc(T('vMic')) + '"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '</button>' : ico('search')) + '<input id="fdQ" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(T('apPh')) + '" value="' + esc(fd.q) + '" aria-label="' + esc(T('aT')) + '"></label></div>' +
-      '<div id="fdPickW"' + (act ? ' hidden' : '') + '><div id="fdRecent">' + (act ? '' : recentHtml()) + '</div>' + pickBodyHtml() + '</div>' +
-      '<div id="fdSearchW"' + (act ? '' : ' hidden') + '>' + addTabs('s') + mealSeg() + '<div class="sl-qa2"><button type="button" class="sl-qa" id="phBtn" data-act="fphoto" aria-label="' + esc(T('phT')) + '"' + (off ? ' disabled aria-disabled="true" title="' + esc(T('phOffline')) + '"' : '') + '>' + ico('cam') + '<span>' + esc(T('qaPhoto')) + '</span></button>' + (Y && Y.menuOpen && window.KalkiMenyu && fd.date === todayStr() ? '<button type="button" class="sl-qa" id="mnAdd" data-act="mnopen" data-f="add"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('img') + '<span>' + esc(T('qaMenu')) + '</span></button>' : '') + '</div><div id="fdAiW">' + aiLineHtml() + '</div><div id="fdCat">' + chipsHtml() + '</div><div class="sl-res" id="fdRes">' + resultsHtml() + '</div></div>';
+  /* ko'p taomli gap («osh va choy», «2 ta non, choy»): tepada BITTA qator — mavjud ajratish (lokal, topilmagani — AI, limit bilan) */
+  function multiHtml(q, n) {
+    if (!isSentence(q)) return ''; var r; try { r = S.parseText(q, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); } catch (e) { return ''; }
+    var lq = q.toLowerCase(), parts = r.items.map(function (x) { return x.text; }).concat(r.missing).map(function (s) { return String(s).trim(); }).filter(Boolean);
+    parts.sort(function (a, b) { return lq.indexOf(a.toLowerCase()) - lq.indexOf(b.toLowerCase()); });
+    if (parts.length < 2 && !(parts.length === 1 && !n && r.items.length)) return '';
+    var off = navigator.onLine === false && r.missing.length, lim = r.missing.length && aiq ? '<small class="kq-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeft', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : '';
+    return '<button type="button" class="kq-all" id="fdAi" data-act="fqai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('plus', '', 2.4) + '</i><span class="m"><b>' + esc(T('qAll', { x: parts.join(' + ') })) + '</b>' + lim + '</span></button>';
   }
-  function searchActivate() {                          // qidiruv maydoniga bosildi: «Yaqinda»+plitkalar yashirinadi, natijalar shu varaqda chiqadi (fokus saqlanadi — DOM almashtirilmaydi)
-    if (!fd || fd.active || kit.sheetKind() !== 'add') return; fd.active = true;
-    var pw = $('#fdPickW'), sw = $('#fdSearchW'), rcw = $('#fdRecent'); if (rcw) rcw.innerHTML = ''; if (pw) pw.hidden = true; if (sw) sw.hidden = false;          // «Yaqinda» tozalanadi: natijalar ichidagi «Oxirgilar» bilan takror bo'lmasin
-    var sr = $('.sl-search'); if (sr && micOk() && !$('#micBtn')) { var ic = sr.querySelector('.rz-i'); if (ic) ic.outerHTML = '<button type="button" class="sl-micin" id="micBtn" data-act="fmic" aria-label="' + esc(T('vMic')) + '"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '</button>'; }
-    loadDb(function (err) { if (fd && fd.active) refreshRes(err); });
+  function noneHtml() {
+    var off = navigator.onLine === false;
+    return '<div class="kq-none"><b>' + esc(T('qNone')) + '</b><div class="kq-nb"><button type="button" class="rz-btn" data-act="fcustom">' + ico('plus') + '<span>' + esc(T('qOwn')) + '</span></button>' + (micOk() ? '<button type="button" class="rz-btn" data-act="fmic"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '<span>' + esc(T('qVoice')) + '</span></button>' : '') + '</div></div>';
   }
-
-  /* kategoriya qatori: gorizontal scroll, chetlarda yumshoq soya, sichqoncha g'ildiragi va sudrab surish ishlaydi */
-  function catsInit() {
-    var w = $('#catsW'), r = $('#catsRow'); if (!w || !r || r._init) return; r._init = true;
-    var upd = function () { w.classList.toggle('l', r.scrollLeft > 4); w.classList.toggle('r', r.scrollLeft < r.scrollWidth - r.clientWidth - 4); };
-    r.addEventListener('scroll', upd, { passive: true }); upd(); setTimeout(upd, 300);
-    r.addEventListener('wheel', function (e) { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { r.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
-    var drag = null;
-    r.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; drag = { x: e.clientX, l: r.scrollLeft, moved: false }; });
-    window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 4) { drag.moved = true; r.scrollLeft = drag.l - dx; } });
-    window.addEventListener('pointerup', function () { if (drag && drag.moved) { r._swallow = true; setTimeout(function () { r._swallow = false; }, 0); } drag = null; });
-    r.addEventListener('click', function (e) { if (r._swallow) { e.stopPropagation(); e.preventDefault(); } }, true);
-    var on = r.querySelector('.rz-chip.on'); if (on && r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2); upd();
-  }
-  function defPortionCat(f) { var v = f.fam ? S.famVariant(f, S.famDefault(f), null) : f; if (!v || !v.u || !v.u.length) return ''; var u = defUnit(v), g = u === 'g100' ? 100 : (S.unitGrams(v, u) || 0); return g > 0 ? (u === 'g100' ? '100 ' + T('gram') : '1 ' + unitName(u)) + ' · ' + fmt(S.portion(v, g).kcal) + ' ' + T('kcal') : ''; }
-  /* «Yemaydiganlarim» qoidasi (yagona: kalkifit-yeymiz.js rinfo): cho'chqa — hech qayerda; cheklangan teglar — ro'yxatda yashiriladi (+ «Ko'rsatish»), qidiruvda belgi, porsiya oynasida yumshoq ogohlantirish */
   function rI(f, vr) { return Y ? Y.rinfo(f, vr) : { pork: false, hit: [] }; }
   function rSplit(list, keepPork) { var o = { show: [], hid: [] }; list.forEach(function (f) { var i = rI(f); if (i.pork && !keepPork) return; (i.hit.length ? o.hid : o.show).push(f); }); return o; }
   function rNoPork(list) { return list.filter(function (f) { return !rI(f).pork; }); }
-  function rFoot(n) { return n ? '<button type="button" class="sl-txtbtn sl-rhid" data-act="rshow" aria-expanded="' + !!fd.showR + '">' + esc(T(fd.showR ? 'rhHide' : 'rhShow', { n: n })) + '</button>' : ''; }
   function rEntInfo(e) { var f = e.fid ? foodById(e.fid) : null; return f ? rI(f.al ? (foodById(f.al.f) || f) : f, e.vr || null) : { pork: false, hit: [] }; }
-  var catCache = { k: '', m: {} };
-  function catVisible(c) {                              // butun guruh cheklangan bo'lsa (masalan «Baliq») — tabning o'zi yashiriladi
-    if (c === 'baliq' && Y && Y.avoids('baliq')) return false; if (!Y || !Y.chReady() || dbState !== 2) return true;
-    var k = dbState + '|' + Y.yemay().join(); if (catCache.k !== k) catCache = { k: k, m: {} }; if (catCache.m[c] != null) return catCache.m[c];
-    var l = allFoods().filter(function (f) { return inCat(f, c) && !f.h && !f.custom; }); return (catCache.m[c] = !l.length || l.some(function (f) { var i = rI(f); return !i.pork && !i.hit.length; }));
-  }
   function rHits() { if (!Y || !fd || (fd.mode !== 'portion' && fd.mode !== 'item')) return []; var o = fd.mode === 'item' ? fd.items[fd.ix] : fd; if (!o) return []; if (!o.food && fd.mode === 'item') return o.rHit || []; if (!o.food || o.food.custom || (fd.mode === 'portion' && fd.editId != null)) return []; var f = o.fam || o.food; return rI(f, o.fam ? o.food.vr : null).hit; }      // AI matn / rasm natijasi (item) ham: taom tanilsa — o'sha yumshoq ogohlantirish
   function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
-  function resRow(f, cat, dim, pkx) {
-    var pk = pkx || (f.fam && fd && fd.q ? S.famPick(f, fd.q) : null), key = f.fam ? f.fam.id : (dbAlias[f.id] || f.id), le = lastFor(key), fv = pk ? S.famVariant(f, Object.assign(S.famDefault(f), pk)) : null, vl = fv ? S.famLabel(f, fv.vr, null, lang) : '', sub = cat ? defPortionCat(f) : (le ? T('aLastTime', { x: entUnitTxt(le.e) }) : defPortionTxt(f, fv ? Object.assign(S.famDefault(f), pk) : null));      // «sut 1,5» → qatorda ham «Sut · 1,5%» va shu variantning kkal'i (bosganda porsiya oynasida o'sha tanlanadi)
-    var bad = rI(f).hit.length;
-    return '<button type="button" class="sl-rr' + (dim ? ' dim' : '') + '" data-act="pickfood" data-id="' + esc(f.id) + '"' + (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + '>' + tileHtml(f.id, null, nameOf(f), 44) + '<span class="m"><span class="nm">' + esc(nameOf(f) + (vl ? ' · ' + vl : '')) + (f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '') + (bad ? ' <span class="sl-kb sl-rb">' + esc(T('rBadge')) + '</span>' : '') + (st.favs.indexOf(f.id) > -1 ? ' ' + ico('heart', 'fv') : '') + '</span>' + (sub ? '<span class="tm">' + esc(sub) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>';
-  }
   function resultsHtml() {
-    if (dbState !== 2) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
-    if (Y && !Y.chReady()) { Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }); return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>'; }
-    var foods = allFoods(), q = fd.q.trim(), list, h = '', le = lastEntries(200); fdLM = {}; le.forEach(function (r) { fdLM[r.k] = r; });
-    var withR = function (sp, fn) { return sp.show.map(function (f) { return fn(f, false); }).join('') + (fd.showR ? sp.hid.map(function (f) { return fn(f, true); }).join('') : '') + rFoot(sp.hid.length); };
-    if (q) { list = S.search(foods, q, srchOpts(40)); if (fd.cat) list = list.filter(function (f) { return inCat(f, fd.cat); }); }      // qidiruv: odam o'zi yozgan — HAMMASI chiqadi (cho'chqali ham, belgisiz); cheklangani «Yemaydiganlaringizda» belgisi bilan
-    else if (fd.cat) { var sc = rSplit(foods.filter(function (f) { return inCat(f, fd.cat) && !f.h; })); return sc.show.length || sc.hid.length ? withR(sc, function (f, d) { return resRow(f, true, d); }) : '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b></div>'; }
-    else {                                           // birinchi ko'rinish («Mashhur»): Oxirgilar → Saqlanganlar → Boshqa usullar
-      var recAll = fd.recSnap || (fd.recSnap = le.slice(0, 8)), recI = recAll.filter(function (r) { return !rEntInfo(r.e).pork; }), recS = recI.filter(function (r) { return !rEntInfo(r.e).hit.length; }), recH = recI.filter(function (r) { return rEntInfo(r.e).hit.length; });
-      var rec = recS.slice(0, 5), favSp = rSplit(st.favs.map(foodById).filter(Boolean).slice(0, 8), true), sec = function (t, l, hint) { return l.length ? '<div class="sl-sech"><h3>' + esc(t) + '</h3>' + (hint ? '<span>' + esc(hint) + '</span>' : '') + '</div>' + l.join('') : ''; };
-      var pop = rec.length ? [] : (function () { var r0 = rSplit(st.recents.map(foodById).filter(Boolean)).show.slice(0, 5); return r0.length ? r0 : rSplit(foods.filter(function (f) { return f.t === 'o' && !f.custom && !f.h; })).show.slice(0, 6); })();
-      var hidN = recH.length + favSp.hid.length;
-      return sec(T('aRecentT'), rec.map(function (r) { return recRow(r); }).concat(fd.showR ? recH.map(function (r) { return recRow(r, true); }) : [])) + sec(T('aPop'), pop.map(function (f) { return resRow(f); })) + '<div class="sl-sech"><h3>' + esc(T('aSavedT')) + '</h3></div>' + tplBar() + favSp.show.map(function (f) { return resRow(f); }).join('') + (fd.showR ? favSp.hid.map(function (f) { return resRow(f, false, true); }).join('') : '') + st.customFoods.map(function (f) { return resRow(f); }).join('') + rFoot(hidN) + moreHtml();
-    }
-    if (!list.length && q) qtNote(q);
-    if (!list.length) return '<div class="rz-empty"><b>' + esc(T('aNone')) + '</b><span>' + esc(T('aNoneH')) + '</span>' + (q ? '<div class="sl-nact"><button type="button" class="rz-btn sm primary" data-act="fqai"' + (navigator.onLine === false ? ' disabled aria-disabled="true"' : '') + '>' + esc(T('aAiBtn')) + '</button><button type="button" class="rz-btn sm" data-act="fcustom">' + esc(T('aCustom')) + '</button><button type="button" class="rz-btn sm" data-act="fqsug">' + esc(T('aSugBtn')) + '</button></div>' : '') + '</div>';
+    if (dbState !== 2 || (Y && !Y.chReady())) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
+    var q = fd.q.trim(), all = S.search(allFoods(), q, srchOpts(40)), list = all.filter(function (f) { return f.custom; }).concat(all.filter(function (f) { return !f.custom; }));          // qidiruv: odam o'zi yozgan — HAMMASI (cheklangani belgi bilan); o'z taomlari birinchi
+    var head = multiHtml(q, list.length);
+    if (!list.length) { qtNote(q); return head + noneHtml(); }
     var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(q);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
-    return list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return resRow(f, false, false, pk); }).join(''); } return resRow(f); }).join('');
+    var own = '<button type="button" class="sl-txtbtn kq-own" data-act="fcustom">' + ico('plus', 'sl-inl') + esc(T('qOwn')) + '</button>';          // topilgani mos kelmasa — o'z taomi (ro'yxat oxirida, sokin havola)
+    return head + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv'); }).join(''); } return foodRow(f, f.fam ? S.famPick(f, q) : null, 'qidiruv'); }).join('') + own;
   }
-  /* qidiruvda topilmagan so'z — anonim hisoblagich (/api/qidiruv: faqat kun + so'z + son; id/IP yo'q). Yozib to'xtagandan 2,5 s keyin, har so'z kuniga bir marta; DNT/demo'da yo'q */
   var QT_LS = 'kalki_fit_qt', qtTm = null;
   function qtNorm(q) {
     var s0 = String(q == null ? '' : q).toLowerCase().replace(/[\u2019\u2018\u02bb\u02bc`\u00b4]/g, "'").replace(/\s+/g, ' ').trim();
@@ -1340,7 +1328,16 @@
       try { fetch('/api/qidiruv', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ k: [{ s: d, q: w, n: 1 }] }), keepalive: true }).catch(function () {}); } catch (e) {}
     }, 2500);
   }
-  function refreshRes(err) { var rcw = $('#fdRecent'); if (rcw) rcw.innerHTML = (err || fd.active) ? '' : recentHtml(); var r = $('#fdRes'); if (r) r.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); var w = $('#fdAiW'); if (w) w.innerHTML = aiLineHtml(); var cw = $('#fdCat'); if (cw) { var want = chipsHtml(); if (cw._k !== want) { cw.innerHTML = want; cw._k = want; catsInit(); } } }
+  function refreshRes(err) {                         // 1-ekran (bo'sh qidiruv) ↔ 2-ekran (natijalar): maydon DOM'i almashtirilmaydi — fokus/klaviatura saqlanadi
+    if (!fd || kit.sheetKind() !== 'add' || fd.mode !== 'search') return;
+    if (Y && !Y.chReady()) Y.loadCh(function () { if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); });
+    if (dbState === 2) lmIndex();
+    var q = fd.q.trim(), pw = $('#fdPickW'), rs = $('#fdRes'), rc = $('#fdRecent'), sr = $('.kq-srch');
+    if (sr) sr.classList.toggle('on', !!q); if (pw) pw.hidden = !!q; if (rs) rs.hidden = !q; sheetFull();
+    if (q) { if (rc) rc.innerHTML = ''; if (rs) rs.innerHTML = err ? '<div class="rz-mut">' + esc(T('aNone')) + '</div>' : resultsHtml(); }          // «Yaqinda» tozalanadi — natijalar bilan takrorlanmasin
+    else { if (rc) rc.innerHTML = err ? '' : recentHtml(); if (rs) rs.innerHTML = ''; }
+  }
+  function backToSearch() { fd.mode = 'search'; fd.food = null; fd.fam = null; fd.base = null; setSheet(searchHtml()); refreshRes(dbState === 0); }
   function mealChips(sel, act) { return '<div class="rz-chips" role="group" aria-label="' + esc(T('pMeal')) + '">' + S.MEALS.map(function (m) { return '<button type="button" class="rz-chip' + (sel === m ? ' on' : '') + '" data-act="' + act + '" data-m="' + m + '" aria-pressed="' + (sel === m) + '">' + esc(mealName(m)) + '</button>'; }).join('') + '</div>'; }
   /* ---------- porsiya oynasi (bitta): qidiruvdan tanlash, saqlangan yozuv, AI matn/rasm qatorlari ---------- */
   function pwO() { return fd.mode === 'item' ? fd.items[fd.ix] : fd; }
@@ -1368,18 +1365,25 @@
     var g = pwGrams(o), ug = pwUg(o, o.unit); if (o.unit === 'g100') return T('pwNow', { g: fmt(g) });
     return (ug > 0 ? T('pwEq', { u: pwUName(o.unit), g: fmt(ug) }) + (g > 0 ? ' · ' : '') : '') + (g > 0 ? T('pwNow', { g: fmt(g) }) : '');
   }
-  function pwQuick(o) { return [0.5, 1, 1.5, 2].map(function (v, i) { var q = o.unit === 'g100' ? v * 100 : v, on = Math.abs(o.qty - q) < 1e-6; return '<button type="button" class="rz-chip sm' + (on ? ' on' : '') + '" data-act="pwq" data-v="' + q + '" aria-pressed="' + on + '">' + ['½', '1', '1½', '2'][i] + '</button>'; }).join(''); }
+  function pwChipU(o) { if (o.unit !== 'g100') return o.unit; var l = pwUnits(o).filter(function (u) { return u !== 'g100'; }); return l[0] || 'g100'; }          // tezkor tugmalar birligi: «Gramm» tanlangan bo'lsa ham — taomning odatiy birligi
+  function pwKc(o, u, q) { return pwCalc({ food: o.food, fam: o.fam, base: o.base, unit: u, qty: q, vfill: o.vfill }).kcal; }
+  function pwQuick(o) {                              // Yarim · 1 likopcha · 1,5 · Gramm (har birida kkal); faqat grammli taom — 50 · 100 · 150 · 200 g
+    var cu = pwChipU(o), gr = cu === 'g100', vals = gr ? [50, 100, 150, 200] : [0.5, 1, 1.5], gOn = o.unit === 'g100' && !gr;
+    var lab = function (v, i) { return gr ? v + ' ' + T('gram') : (i === 0 ? T('qHalf') : (i === 1 ? '1 ' + pwUName(cu) : '1,5')); };
+    return vals.map(function (v, i) { var on = o.unit === cu && Math.abs(o.qty - v) < 1e-6; return '<button type="button" class="kq-chip' + (on ? ' on' : '') + '" data-act="pwq" data-v="' + v + '" data-u="' + esc(cu) + '" aria-pressed="' + on + '"><b>' + esc(lab(v, i)) + '</b><small>' + fmt(pwKc(o, cu, v)) + '</small></button>'; }).join('') +
+      (gr ? '' : '<button type="button" class="kq-chip' + (gOn ? ' on' : '') + '" data-act="pwgram" aria-pressed="' + gOn + '"><b>' + esc(T('qGram')) + '</b><small>' + (gOn ? fmt(pwGrams(o)) + ' ' + T('gram') : '…') + '</small></button>');
+  }
   function pwSumQ(o) { return o.unit === 'g100' ? fmt(pwGrams(o)) + ' ' + T('gram') : qtyStr(o.qty) + ' ' + pwUName(o.unit); }
   function pwBody(o, noName) {
     var pt = pwCalc(o), approx = !!o.base;                             // «taxminiy» faqat bazada yo'q (AI/rasm) taom uchun; baza taomlariniki — faqat ⓘ Manba ichida
     var nm = o.fam ? nameOf(o.fam) : (o.food ? nameOf(o.food) : (o.name || '')), lb = o.fam && o.food ? S.famLabel(o.fam, o.food.vr, o.szid, lang) : '', fidv = o.fam ? o.fam.id : (o.food ? o.food.id : null);
     var more = famChips(o) + '<div class="rz-fl">' + esc(T('pUnit')) + '</div><div class="rz-chips" id="fdUnits" role="group" aria-label="' + esc(T('pUnit')) + '">' + pwUnits(o).map(function (u) { var vv = vOf(u); return '<button type="button" class="rz-chip' + (vv ? ' sl-vc' : '') + (o.unit === u ? ' on' : '') + '" data-act="funit" data-u="' + u + '" aria-pressed="' + (o.unit === u) + '">' + esc(vv ? vLabel(vv, vkey(o)) : pwUName(u)) + '</button>'; }).join('') + (o.food ? '<button type="button" class="rz-chip sl-vnew" data-act="vnew">+ ' + esc(T('vNew')) + '</button>' : '') + '</div>' + vFillChips(o) +
       (fd.mode === 'portion' ? '<div class="rz-fl">' + esc(T('pMealT')) + '</div>' + mealChips(fd.meal, 'fmeal') : '') + '<div class="sl-pwi" id="fdInfo">' + esc(pwInfo(o)) + '</div>' + (fd.mode === 'portion' || fd.mode === 'item' ? '<button type="button" class="rz-btn ghost sl-sw" data-act="pwswap">' + esc(T('pwSwap')) + '</button>' : '');
-    return (noName ? '' : '<div class="sl-hero2"><span class="sl-pimg kf-pop">' + tileHtml(fidv, o.food ? o.food.vr : null, nm, 120, true) + '</span><h2 class="sl-pn" id="fdName">' + esc(nm) + '</h2><span class="sl-pv" id="fdVar">' + esc(lb) + '</span></div>') +
-      '<div class="sl-pk" aria-live="polite">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b><span> ' + T('kcal') + '</span></div><div class="sl-pm" id="fdMac"><span class="p">' + esc(T('mP')) + ' <b id="fdMp">' + Math.round(pt.p) + '</b> g</span><span class="f">' + esc(T('mF')) + ' <b id="fdMf">' + Math.round(pt.f) + '</b> g</span><span class="c">' + esc(T('mC')) + ' <b id="fdMc">' + Math.round(pt.c) + '</b> g</span></div>' +
+    return (noName ? '' : '<div class="kq-hero"><span class="kq-food kf-pop">' + tileHtml(fidv, o.food ? o.food.vr : null, nm, 110, true) + '</span><h2 class="sl-pn" id="fdName">' + esc(nm) + '</h2><span class="sl-pv" id="fdVar"' + (lb ? '' : ' hidden') + '>' + esc(lb) + '</span></div>') +
+      '<div class="kq-kc" aria-live="polite"><span class="n">' + (approx ? '<small>≈ </small>' : '') + '<b id="fdKcal">' + fmt(pt.kcal) + '</b></span><span class="u">' + esc(T('kcal')) + ' · ' + esc(T('qProt')) + ' <b id="fdMp">' + Math.round(pt.p) + '</b> ' + esc(T('gram')) + '</span></div>' +
       (approx ? '<p class="rz-p sm sl-ap">' + esc(T('pwApprox')) + '</p>' : '') +
+      '<div class="kq-chips" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
       '<div class="sl-qty"><button type="button" data-act="fqty" data-s="-1" aria-label="' + esc(T('qtyMinus')) + '">' + ico('minus', '', 2.6) + '</button><span class="c"><span class="pw-in"><input id="fdQty" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="' + esc(T('pwQty')) + '" value="' + esc(qtyStr(o.qty)) + '"><i id="fdQu">' + esc(o.unit === 'g100' ? T('gram') : pwUName(o.unit)) + '</i></span><small id="fdGr">≈ ' + fmt(pwGrams(o)) + ' ' + T('gram') + '</small></span><button type="button" data-act="fqty" data-s="1" aria-label="' + esc(T('qtyPlus')) + '">' + ico('plus', '', 2.6) + '</button></div>' +
-      '<div class="sl-q4" id="fdQuick" role="group" aria-label="' + esc(T('pwQuick')) + '">' + pwQuick(o) + '</div>' +
       '<button type="button" class="sl-type" data-act="pwmore" aria-expanded="' + !!o.pmore + '"><span class="m"><b>' + esc(T('pTypeT')) + '</b><small id="fdTSum">' + esc(lb || pwUName(o.unit)) + '</small></span><span class="a">' + esc(T(o.pmore ? 'pCloseL' : 'pChange')) + '</span></button><div class="sl-pwmore" id="pwMore"' + (o.pmore ? '' : ' hidden') + '>' + more + '</div>';
   }
   function fl(x) { return lang === 'ru' ? x.r : x.n; }
@@ -1411,7 +1415,7 @@
     var o = pwO(), pt = pwCalc(o); if (fd.mode === 'item') { o.ed = true; itSync(o); }
     kit.setNum($('#fdKcal'), num($('#fdKcal').textContent.replace(/\s/g, '')), pt.kcal, { dur: 200 });
     var set = function (id, v) { var e = $(id); if (e) e.textContent = v; }; var rw = $('#rWarn'); if (rw) rw.innerHTML = rWarnInner();
-    set('#fdMp', Math.round(pt.p)); set('#fdMf', Math.round(pt.f)); set('#fdMc', Math.round(pt.c));
+    set('#fdMp', Math.round(pt.p));
     if (!fromInput) $('#fdQty').value = qtyStr(o.qty);
     set('#fdQu', o.unit === 'g100' ? T('gram') : pwUName(o.unit)); set('#fdGr', '≈ ' + fmt(pwGrams(o)) + ' ' + T('gram')); set('#fdInfo', pwInfo(o)); if (!o.fam) set('#fdTSum', pwUName(o.unit)); $('#fdQuick').innerHTML = pwQuick(o);
     $$('[data-act=funit]').forEach(function (b) { var on = b.getAttribute('data-u') === o.unit; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
@@ -1499,7 +1503,7 @@
   function vFams(v) { return Object.keys(v.fam).map(function (k) { var f = foodById(k); return (f ? nameOf(f) : k) + ' ' + fmt(v.fam[k]) + ' ' + T('gram'); }).join(' · '); }
   function vmHtml() {
     var l = st.vessels || [];
-    return shHead(T('aT')) + addTabs('v') + (l.length ? l.map(function (v) {
+    return shHead(T('ft_idishlar')) + (l.length ? l.map(function (v) {
       return '<div class="sl-tr"><span class="m"><b>' + esc(vName(v)) + '</b><span>' + esc(vFams(v)) + '</span></span><button type="button" class="rz-x" data-act="vedit" data-id="' + v.id + '" aria-label="' + esc(T('vmEdit') + ': ' + vName(v)) + '">' + ico('pen') + '</button><button type="button" class="rz-x" data-act="vdel" data-id="' + v.id + '" aria-label="' + esc(T('del') + ': ' + vName(v)) + '">' + ico('x') + '</button></div>';
     }).join('') + '<p class="rz-p sm">' + esc(T('vmMax', { n: S.VESSEL_MAX })) + '</p>' : '<p class="rz-p">' + esc(T('vmEmpty')) + '</p><p class="rz-p sm">' + esc(T('vmGuide')) + '</p><button type="button" class="rz-btn primary full" data-act="tplgoadd">' + esc(T('tplAddFood')) + '</button>') + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="sheetclose">' + esc(T('close')) + '</button></div>';
   }
@@ -1539,17 +1543,8 @@
     return '<div class="sl-sug" id="tplSug"><p>' + esc(T('tplSugT', { x: names })) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost sm" data-act="tplsugno">' + esc(T('tplNo')) + '</button><button type="button" class="rz-btn primary sm" data-act="tplsugsave">' + esc(T('tplSaveS')) + '</button></div></div>';
   }
   var tmSug = null;
-  function tplBar() {
-    var yb = S.kechagidekOk(st, fd.date, fd.meal), l = st.tpls || [], cards = '';
-    var thumbs = function (arr) { return '<span class="th">' + arr.slice(0, 3).map(function (x) { return tileHtml(x.fid, x.vr, x.n, 30); }).join('') + '</span>'; };
-    if (yb) { var ye = S.yesterdayEntries(st, fd.date, fd.meal); cards += '<button type="button" class="sl-sc" data-act="yday2">' + thumbs(ye.map(function (e) { var f = e.fid ? foodById(e.fid) : null; return { fid: e.fid, vr: e.vr, n: f ? nameOf(f) : (e.name || '?') }; })) + '<b>' + esc(T('tplYest')) + '</b><small>' + esc(T('aYestSub', { m: mealName(fd.meal), k: fmt(S.sumEntries(ye).kcal) })) + '</small></button>'; }
-    l.forEach(function (t) { cards += '<button type="button" class="sl-sc" data-act="tplopen" data-id="' + t.id + '">' + thumbs(t.items.map(function (x) { return { fid: x.fid, vr: x.vr, n: x.n }; })) + '<b>' + esc(t.name) + '</b><small>' + esc(T('aCnt', { n: t.items.length, k: fmt(S.tplKcal(t)) })) + '</small></button>'; });
-    if (!l.length) cards += '<button type="button" class="sl-sc help" data-act="tplhelp"><span class="th">' + ico('star') + '</span><b>' + esc(T('tplBar')) + '</b><small>' + esc(T('tplSaveS')) + '</small></button>';
-    return tplSugHtml() + '<div class="sl-sgrid" id="tplBar" role="group" aria-label="' + esc(T('tplBar')) + '">' + cards + '</div>';
-  }
-  function tplHelpHtml() {
-    return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('tplBar')) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div><p class="rz-p">' + esc(T('tplEmpty')) + '</p>' + tplSugHtml() + tplTodayHtml(fd.date);
-  }
+
+
   function tplToItems(list) {                       // shablon/kecha yozuvlari → porsiya oynasi qatorlari
     return list.map(function (x) {
       var f = x.fid ? foodById(x.fid) : null, vr = x.vr || null, fam = null;
@@ -1582,7 +1577,7 @@
     var t = S.addTemplate(st, name, list.map(entryToTpl), tm.m); if (!t) { toast(T('tplFull')); return; }
     var back = tm.back; vib();
     if (back === 'tpls') { save(); setSheet(tplsHtml()); render(); }
-    else if (back === 'add') { save(); render(); fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); }
+    else if (back === 'add') { save(); render(); backToSearch(); }
     else { kit.closeSheet(); commit(); }
     toast(T('tplSaved', { x: t.name }), null, true);
   }
@@ -1593,7 +1588,7 @@
   }
   function tplsHtml() {
     var l = st.tpls || [];
-    return shHead(T('aT')) + addTabs('t') + (l.length ? l.map(function (t, i) {
+    return shHead(T('ft_odatdagi')) + (l.length ? l.map(function (t, i) {
       return '<div class="sl-tr"><span class="m"><b>' + esc(t.name) + '</b><span>' + esc(T('tplCnt', { n: t.items.length, k: fmt(S.tplKcal(t)) })) + '</span></span>' +
         '<button type="button" class="rz-x" data-act="tplup" data-id="' + t.id + '" aria-label="' + esc(T('tplUp') + ': ' + t.name) + '"' + (i === 0 ? ' disabled' : '') + '>' + ico('chev', 'up') + '</button>' +
         '<button type="button" class="rz-x" data-act="tpldn" data-id="' + t.id + '" aria-label="' + esc(T('tplDown') + ': ' + t.name) + '"' + (i === l.length - 1 ? ' disabled' : '') + '>' + ico('chev', 'dn') + '</button>' +
@@ -1606,39 +1601,68 @@
     o.fam = f; o.sel = sel; o.szid = szid || (f.fam.sz ? f.fam.sz.d : null); o.food = S.famVariant(f, o.sel, o.szid);
   }
   function defUnit(food) { var d = (food.b || []).filter(function (x) { return x.d; })[0]; return d && food.u.some(function (u) { return u[0] === d.k; }) ? d.k : food.u[0][0]; }
+  function prepFood(o, id, pick) {                   // taom → boshlang'ich porsiya: «Mening idishim» › shu taomning OXIRGI porsiyasi (va omillari) › odatiy porsiya. Porsiya oynasi ham, [+] ham shu yerdan
+    var f = foodById(id); if (!f) return false;
+    o.fam = null; o.sel = null; o.szid = null; o.favId = null; o.base = null;
+    if (f.al) { var bf = foodById(f.al.f); if (bf) { o.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
+    if (f.fam) famOpen(o, f, Object.assign(S.famDefault(f), pick || {})); else o.food = f;
+    o.unit = defUnit(o.food); o.qty = o.unit === 'g100' ? 100 : 1; o.vfill = 'tola';
+    var vs0 = S.vesselsFor(st, vkey(o)); if (vs0.length) { o.unit = 'v:' + vs0[0].id; o.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
+    var le = lastFor(vkey(o)); if (le) pwApplyLast(o, le.e, pick);
+    return true;
+  }
   function pickFood(id, pick) {
-    var f = foodById(id); if (!f) { loadDb(function () { pickFood(id, pick); }); return; }
-    fd.fam = null; fd.sel = null; fd.szid = null; fd.favId = null;
-    if (f.al) { var bf = foodById(f.al.f); if (bf) { fd.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
-    if (f.fam) { famOpen(fd, f, Object.assign(S.famDefault(f), pick || {})); }
-    else fd.food = f;
-    fd.base = null; fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.unit = defUnit(fd.food); fd.qty = fd.unit === 'g100' ? 100 : 1; fd.editId = null; fd.vfill = 'tola'; fd.vsugShown = null;
-    var vs0 = S.vesselsFor(st, vkey(fd)); if (vs0.length) { fd.unit = 'v:' + vs0[0].id; fd.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
-    var le = lastFor(vkey(fd)); if (le) pwApplyLast(le.e, pick);
+    if (!foodById(id)) { if (dbState !== 2) loadDb(function () { if (fd && foodById(id)) pickFood(id, pick); }); return; }
+    if (!Object.keys(fdLM).length) lmIndex();
+    prepFood(fd, id, pick); fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.editId = null; fd.vsugShown = null; fd.pmore = false;
     setSheet(portionHtml()); var shp = $('#rzSheet'); if (shp) shp.scrollTop = 0;          // porsiya oynasi har doim tepadan (qidiruv ro'yxatidagi scroll saqlanmaydi)
     if (OR && orState !== 2) loadOr(function () { if (kit.sheetKind() === 'add' && fd.mode === 'portion') orRefresh(); });
   }
-  function pwApplyLast(e, pick) {                        // shu taomning OXIRGI porsiyasi (va omillari) — boshlang'ich qiymat
-    if (fd.fam && !pick) famOpen(fd, fd.fam, S.famSelOf(fd.fam, e.vr || null), e.sz || null);
-    var ok = vOf(e.unit) ? S.vesselsFor(st, vkey(fd)).some(function (v) { return 'v:' + v.id === e.unit; }) : fd.food.u.some(function (u) { return u[0] === e.unit; });
-    if (!ok) return; fd.unit = e.unit; fd.qty = e.qty > 0 ? e.qty : 1; if (e.unit === 'g100' && e.qty < 5 && e.g > 5) fd.qty = e.g; if (vOf(e.unit)) fd.vfill = e.vf || 'tola';
+  function pwApplyLast(o, e, pick) {
+    if (o.fam && !pick) famOpen(o, o.fam, S.famSelOf(o.fam, e.vr || null), e.sz || null);
+    var ok = vOf(e.unit) ? S.vesselsFor(st, vkey(o)).some(function (v) { return 'v:' + v.id === e.unit; }) : o.food.u.some(function (u) { return u[0] === e.unit; });
+    if (!ok) return; o.unit = e.unit; o.qty = e.qty > 0 ? e.qty : 1; if (e.unit === 'g100' && e.qty < 5 && e.g > 5) o.qty = e.g; if (vOf(e.unit)) o.vfill = e.vf || 'tola';
   }
-  function quickAdd(d, id, key) {                       // Oxirgilar [+]: oxirgi porsiya bilan shu zahoti (1 bosish); ✓ bo'ladi, qayta bosilsa — bekor
-    fd.added = fd.added || {}; var cur = fd.added[key];
-    if (cur) { var rm = S.removeFood(st, fd.date, cur); delete fd.added[key]; commit(); refreshRes(); return rm; }
-    stEv('ovqat_qoshildi', 'oxirgilar');
+  function entryOf(o) {                              // porsiya → kundalik yozuvi (porsiya oynasi va [+] uchun bitta)
+    var f = o.food, pt = pwCalc(o), vv = vOf(o.unit);
+    return { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: o.unit, qty: o.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: o.fam ? f.vr : null, sz: o.fam && o.fam.fam.sz ? o.szid : null, vn: vv ? vName(vv) : null, vf: vv ? (o.vfill || 'tola') : null };
+  }
+  function addedToast(nm, date, ids, key) {
+    toast(T('aAdded', { x: nm }), function () { ids.forEach(function (x) { S.removeFood(st, date, x); }); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000);
+  }
+  function plusUndo(key) {                           // ✓ qayta bosildi — bekor
+    var cur = fd.added[key]; if (!cur) return false; [].concat(cur).forEach(function (x) { S.removeFood(st, fd.date, x); }); delete fd.added[key]; commit(); refreshRes(); kit.hideToast(); return true;
+  }
+  function addNow(id, pick, key, src) {              // natija / «Yaqinda» [+]: qatorda ko'rsatilgan porsiya bilan darhol; ✓ bo'ladi, varaq ochiq qoladi
+    if (plusUndo(key)) return; var o = {}; if (!prepFood(o, id, pick)) return;
+    stEv('ovqat_qoshildi', src === 'oxirgilar' ? 'oxirgilar' : 'qidiruv');
+    var date = fd.date, it = S.addFood(st, date, entryOf(o)), f = o.food; fd.added[key] = it.id; commit(); vib(); refreshRes();
+    addedToast(nameOf(o.fam || f) + ' · ' + pwSumQ(o), date, [it.id], key); afterWater(); jokeAfter('food', { sweet: f.t === 'h', fish: orFishKey(f, o) });
+  }
+  function quickAdd(d, id, key) {                    // «Yaqinda» [+] (oxirgi yozuv): xuddi o'sha porsiya bilan (AI/rasm yozuvi ham)
+    if (plusUndo(key)) return; stEv('ovqat_qoshildi', 'oxirgilar');
     var x = S.dayOf(st, d), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return; var o = {};
-    ['fid', 'name', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) o[k] = e[k]; }); o.meal = fd.meal; o.ts = nowTs();
+    ['fid', 'name', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf', 'ifid', 'ikat'].forEach(function (k) { if (e[k] != null) o[k] = e[k]; }); o.meal = fd.meal; o.ts = nowTs();
     var date = fd.date, it = S.addFood(st, date, o), f = e.fid ? foodById(e.fid) : null, nm = e.name || (f ? nameOf(f.al ? (foodById(f.al.f) || f) : f) : '');
+    if (o.ifid != null) it.ifid = o.ifid; if (o.ikat) it.ikat = o.ikat;
     fd.added[key] = it.id; commit(); vib(); refreshRes();
-    toast(T('aAdded', { x: nm + ' · ' + entUnitTxt(e) }), function () { S.removeFood(st, date, it.id); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000); afterWater(); jokeAfter('food', { sweet: !!(f && f.t === 'h') });
+    addedToast(nm + ' · ' + entUnitTxt(e), date, [it.id], key); afterWater(); jokeAfter('food', { sweet: !!(f && f.t === 'h') });
   }
-  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : (rHits().length ? T('pCtaForce', { k: fmt(k) }) : T('pCta_' + fd.meal, { k: fmt(k) })); }
+  function addItem(date, it) {                       // AI/rasm/shablon qatori → kundalik
+    var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, vn: vOf(it.unit) ? vName(vOf(it.unit)) : null, vf: vOf(it.unit) ? (it.vfill || 'tola') : null, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
+    if (!it.fid) { e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); e.ifid = iconMatch(it.name) || ''; } return e;
+  }
+  function tplAdd(id) {                              // «Odatdagi» [+]: to'plamdagi hamma taom bir bosishda
+    var t = S.tplById(st, id), key = 't:' + id; if (!t || plusUndo(key)) return; stEv('ovqat_qoshildi', 'odatdagi');
+    var date = fd.date, ids = tplToItems(t.items).map(function (it) { return addItem(date, it).id; }); fd.added[key] = ids; commit(); vib(); refreshRes();
+    addedToast(t.name, date, ids, key); afterWater(); jokeAfter('food');
+  }
+  function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : (rHits().length ? T('pCtaForce', { k: fmt(k) }) : T('pCta_' + fd.meal)); }          // «Tushlikka qo'shish» — kkal katta raqamda ko'rinib turadi
   function portionHtml() {
     var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1;
     return '<div class="sl-ph2"><button type="button" class="sl-x" data-act="fback" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><span class="sp"></span>' + (f ? '<button type="button" class="sl-x' + (fav ? ' fav' : '') + '" data-act="ffav" aria-label="' + esc(T('aFav')) + '" aria-pressed="' + fav + '">' + ico('heart') + '</button>' : '') + '<button type="button" class="sl-chip sl-src" data-act="pwsrc">' + ico('info') + '<span>' + esc(T('pManba')) + '</span></button><button type="button" class="sl-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>' +
-      '<div id="rWarn">' + rWarnInner() + '</div>' + vSugHtml() + pwBody(fd) + '<div id="orBox">' + orCardHtml() + '</div>' +
-      '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div>';
+      '<div id="rWarn">' + rWarnInner() + '</div>' + vSugHtml() + pwBody(fd) +
+      '<div class="sl-cta">' + (fd.editId != null ? '<button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div><div id="orBox">' + orCardHtml() + '</div>';          // katta tugma — porsiyadan keyin darhol; o'rinbosar taklifi — undan pastda
   }
   function fSave() {
     var f = fd.food, pt = pwCalc(fd); if (fd.editId == null) stEv('ovqat_qoshildi', fd.yBack ? 'tavsiya' : 'qidiruv');
@@ -1650,7 +1674,7 @@
       }
       kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); return;
     }
-    var it = S.addFood(st, fd.date, { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: fd.unit, qty: fd.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: fd.fam ? f.vr : null, sz: fd.fam && fd.fam.fam.sz ? fd.szid : null, vn: vOf(fd.unit) ? vName(vOf(fd.unit)) : null, vf: vOf(fd.unit) ? (fd.vfill || 'tola') : null });
+    var it = S.addFood(st, fd.date, entryOf(fd));
     var date = fd.date; kit.closeSheet(); commit(); vib(); toast(fd.saveMsg || T('saved'), function () { rowOut(it.id, function () { S.removeFood(st, date, it.id); commit(); }); }, true);
     afterWater(); jokeAfter('food', { sweet: f.t === 'h', fish: orFishKey(f, fd), alt: !!fd.obFrom });
   }
@@ -1659,7 +1683,7 @@
     var x = S.dayOf(st, date), e = x && x.food.filter(function (y) { return y.id === id; })[0]; if (!e) return;
     var f = e.fid ? foodById(e.fid) : null, vr = e.vr || null;
     if (f && f.al) { var bf = foodById(f.al.f); if (bf) { vr = vr || f.al.v; f = bf; } }       // eski id (alias) → oila + shu omillar oldindan tanlangan
-    fd = { date: date, meal: e.meal, mode: 'portion', q: '', cat: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [], name: e.name || '' };
+    fd = { date: date, meal: e.meal, mode: 'portion', q: '', food: f, unit: e.unit, qty: e.qty, editId: id, items: [], name: e.name || '' };
     if (f && f.fam) famOpen(fd, f, S.famSelOf(f, vr), e.sz || null);
     fd.vfill = e.vf || 'tola';
     var unitOk = fd.food && (vOf(e.unit) ? S.vesselsFor(st, vkey(fd)).some(function (v) { return 'v:' + v.id === e.unit; }) : fd.food.u.some(function (u) { return u[0] === e.unit; }));
@@ -1678,21 +1702,20 @@
   /* ---------- o'z taomim ---------- */
   function numFld(id, label, val, ph, mode) { return '<label class="rz-f" for="' + id + '"><span>' + esc(label) + '</span><input id="' + id + '" type="text" inputmode="' + (mode || 'decimal') + '" autocomplete="off" placeholder="' + esc(ph || '') + '" value="' + esc(val || '') + '"></label>'; }
   function openCustom(name) {
-    fd.mode = 'custom'; var sugNote = fd.suggest ? '<p class="rz-p sm">' + esc(T('aSugNote')) + '</p>' : '';
-    setSheet(shHead(T('cT')) + '<label class="rz-f" for="cuName"><span>' + esc(T('cName')) + '</span><input id="cuName" type="text" maxlength="60" value="' + esc(name || '') + '" placeholder="' + esc(T('cName')) + '"></label>' + numFld('cuK', T('cKcal'), '', '0', 'numeric') + numFld('cuG', T('cG'), '', '', 'numeric') + numFld('cuP', T('cP'), '', '') + numFld('cuF', T('cF'), '', '') + numFld('cuC', T('cC'), '', '') + sugNote +
+    fd.mode = 'custom';
+    setSheet(shHead(T('cT')) + '<label class="rz-f" for="cuName"><span>' + esc(T('cName')) + '</span><input id="cuName" type="text" maxlength="60" value="' + esc(name || '') + '" placeholder="' + esc(T('cName')) + '"></label>' + numFld('cuK', T('cKcal'), '', '0', 'numeric') + numFld('cuG', T('cG'), '', '', 'numeric') + numFld('cuP', T('cP'), '', '') + numFld('cuF', T('cF'), '', '') + numFld('cuC', T('cC'), '', '') +
       '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="cusave">' + esc(T('save')) + '</button></div>');
   }
   function cuSave() {
     var name = $('#cuName').value.trim(), k = num($('#cuK').value), g = num($('#cuG').value) || 100, m = 100 / g;
     if (!name) { flashEl($('#cuName')); return; } if (!(k > 0)) { flashEl($('#cuK')); return; }
     var f = S.addCustom(st, { name: name, k: k * m, p: num($('#cuP').value) * m, f: num($('#cuF').value) * m, c: num($('#cuC').value) * m, g: g }); if (!f) return; save();
-    if (fd.suggest) { fd.suggest = false; sendTaklif({ name: name, ptxt: fmt(g) + ' ' + T('gram'), kcal: k, p: num($('#cuP').value), f: num($('#cuF').value), c: num($('#cuC').value), ai: true }); }
     fd.food = f; fd.mode = 'portion'; fd.unit = f.u[0][0]; fd.qty = 1; setSheet(portionHtml());
   }
 
   /* ---------- matn bilan qo'shish (lokal + AI) ---------- */
   function openText(date, keep) {
-    fd = keep && fd ? fd : { date: date || todayStr(), meal: S.mealByHour(new Date().getHours()), q: '', cat: '', items: [] };
+    fd = keep && fd ? fd : { date: date || todayStr(), meal: mealNow(), q: '', items: [] };
     if (date) fd.date = date; if (!fd.date) fd.date = todayStr(); fd.mode = 'text'; fd.items = []; fd.missing = []; fd.busy = false; fd.txt = '';
     if (kit.sheetKind() === 'add') setSheet(textHtml()); else openSheet('add', textHtml()); loadDb();
   }
@@ -1760,10 +1783,7 @@
   function txSave() {
     var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
     stEv('ovqat_qoshildi', fd.mode === 'photo' ? 'rasm' : (fd.usul || 'matn'));
-    list.forEach(function (it) {
-      sendTaklif(it); var db1 = !!it.food, e = S.addFood(st, date, { vr: it.vr, sz: it.sz, vn: vOf(it.unit) ? vName(vOf(it.unit)) : null, vf: vOf(it.unit) ? (it.vfill || 'tola') : null, fid: it.fid || null, name: it.fid ? (it.food && it.food.custom ? it.name : null) : it.name, meal: fd.meal, unit: db1 ? it.unit : null, qty: db1 ? it.qty : 1, g: it.g, kcal: it.kcal, p: it.p, f: it.f, c: it.c, est: it.est, ts: nowTs() });
-      ids.push(e.id); if (!it.fid) { e.name = it.name + (it.ptxt ? ' (' + it.ptxt + ')' : ''); e.ifid = iconMatch(it.name) || ''; }
-    });
+    list.forEach(function (it) { sendTaklif(it); ids.push(addItem(date, it).id); });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true); jokeAfter('food');
   }
 
@@ -1936,7 +1956,7 @@
   var VO = null, vs = null, ovSrv = false;            // ovSrv — serverda OPENAI kaliti bor (GET /api/ovoz); yo'q bo'lsa iOS'da 🎤 ko'rinmaydi
   function micOk() { if (!VO && window.KalkiOvoz) VO = KalkiOvoz.create({ lang: function () { return lang; }, server: function () { return ovSrv; }, post: ovPost }); return !!(VO && VO.ok()); }
   var ovAsked = false;
-  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz?mijoz_id=' + encodeURIComponent(cid()), function (j) { ovqSet(j); var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (fd && !fd.active && kit.sheetKind() === 'add') repaintPick(); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search') { var q0 = fd.q; setSheet(searchHtml()); fd.q = q0; } }, function () { ovSrv = false; }); } catch (e) {} }
+  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz?mijoz_id=' + encodeURIComponent(cid()), function (j) { ovqSet(j); var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search' && document.activeElement !== $('#fdQ')) { setSheet(searchHtml()); refreshRes(); } }, function () { ovSrv = false; }); } catch (e) {} }
   function ovPost(blob, mime, til, signal) {          // server yo'li: audio → /api/ovoz → { text, tok } (tok — shu ovozning AI hisobi; keyingi taom ajratish qayta sanalmaydi)
     var u = '/api/ovoz?til=' + encodeURIComponent(til) + '&mijoz_id=' + encodeURIComponent(cid()) + (vs && vs.t0 ? '&dav=' + Math.min(31000, Date.now() - vs.t0) : '');          // dav — yozuv davomiyligi (ms): server ≤ 30 s ni tekshiradi
     return fetch(u, { method: 'POST', headers: { 'Content-Type': mime }, body: blob, signal: signal }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
@@ -2089,7 +2109,7 @@
   }
 
   /* ---------- onboarding: bir savol — bir ekran, KLAVIATURASIZ (slayder: assets/num-slider.js) ----------
-   Qadamlar: 1 jins · 2 yosh · 3 bo'y · 4 vazn · 5 faollik · 6 maqsad · 7 yemaydigan narsa (ixtiyoriy) · 8 natija. Saqlash formati va me'yor hisobi (S.plan) o'zgarmagan.
+  Qadamlar: 1 jins · 2 yosh · 3 bo'y · 4 vazn · 5 faollik · 6 maqsad · 7 yemaydigan narsa (ixtiyoriy) · 8 natija. Saqlash formati va me'yor hisobi (S.plan) o'zgarmagan.
    «Keyinroq» (1-ekran): jinsga qarab o'rtacha qiymatlar bilan me'yor hisoblanadi (taxminiy), keyin yumshoq karta («30 soniyada aniqlashtiring») → refine rejimi (2–6 + natija). */
   var SL = window.KalkiSlider, OBN = 7, OBID = { obAge: 'age', obHeight: 'height', obWeight: 'weight' };
   var OBDEF = { m: { age: 30, height: 175, weight: 75 }, f: { age: 30, height: 162, weight: 62 } }, OBLIM = { age: { min: 14, max: 90, step: 1 }, height: { min: 120, max: 220, step: 1 }, weight: { min: 35, max: 200, step: 0.5 } };
@@ -2237,7 +2257,8 @@
   /* ---------- hodisalar ---------- */
   lpBind();
   root.addEventListener('click', function (e) {
-    var lmenu = $('#rzLangMenu'), el = e.target.closest('[data-act]');
+    var lmenu = $('#rzLangMenu'), el = e.target.closest('[data-act]'), mm1 = $('#kqMM');
+    if (mm1 && !mm1.hidden && !e.target.closest('.kq-mw')) mealMenu(false);          // ovqat vaqti ro'yxati: tashqariga bosilsa yopiladi
     if (!el) { if (lmenu && !lmenu.hidden && !e.target.closest('.rz-langwrap')) lmenu.hidden = true; return; }
     var a = el.getAttribute('data-act');
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
@@ -2248,12 +2269,10 @@
     if (IN && IN.act(a)) return;
     switch (a) {
       case 'tab': kit.hideToast(); if (view !== viewOf(el.getAttribute('data-v'))) { view = viewOf(el.getAttribute('data-v')); enterNext = true; var mm = $('#rzMain'); if (mm) mm.scrollTop = 0; } render(); break;
-      case 'add': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr(), pick: true }); break;          // «Qo'shish» → 4 plitka (Yozish · Ovoz · Rasm · Menyu)
-      case 'apick': { var pk = el.getAttribute('data-fk'); used(pk); if (pk === 'ovoz') voiceStart(); else if (pk === 'rasm') act('fphoto'); else if (pk === 'menyu' && Y && Y.menuOpen) Y.menuOpen('add'); break; }
+      case 'add': case 'fab': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;          // Bugun «Qo'shish» va Tarix «+» — bitta oqim
       case 'fwtry': fwTry(el.getAttribute('data-fk')); break;
       case 'fwx': fwDone(el.getAttribute('data-fk')); render(); break;
       case 'feat': feat(el.getAttribute('data-fk')); break;
-      case 'fab': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr(), pick: true }); break;          // Tarix «+» ham o'sha varaq (bitta «Qo'shish»)
       case 'wopen': openWaterSheet(); break;
       case 'wadd': { stEv('suv_qoshildi'); var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
       case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
@@ -2296,19 +2315,13 @@
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
       case 'pickfood': { var pk0 = el.getAttribute('data-pick'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null); break; }
-      case 'fcat': catSelect(el.getAttribute('data-c') || ''); break;
-      case 'ftext': openText(null, true); break;
       case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
-      case 'fmeals': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeals]').forEach(function (b) { var on9 = b === el; b.classList.toggle('on', on9); b.setAttribute('aria-checked', on9); }); refreshRes(); break;
-      case 'fmore': fd.more = !fd.more; refreshRes(); break;
-      case 'fbrowse': fd.more = false; fd.q = ''; if (!fd.cat) fd.cat = CATS[0]; setSheet(searchHtml()); catsInit(); $('#rzSheet').scrollTop = 0; break;     // «Boshqa usullar → Kategoriyalar»: chiplar qatori (tab) ochiladi, birinchi guruh tanlanadi
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.a'); if (cv) cv.textContent = T(o8.pmore ? 'pCloseL' : 'pChange'); break; }
       case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
-      case 'fqsug': { var q1 = fd.q; fd.suggest = true; openCustom(q1); break; }
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
       case 'cusave': cuSave(); break;
-      case 'fback': if (fd.yBack) { var yb = fd.yBack; fd = null; if (yb === 'f') Y.fishBack(); else Y.yBack(); } else if (fd.editId != null) kit.closeSheet(); else { fd.mode = 'search'; fd.food = null; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } break;
+      case 'fback': if (fd.yBack) { var yb = fd.yBack; fd = null; if (yb === 'f') Y.fishBack(); else Y.yBack(); } else if (fd.editId != null) kit.closeSheet(); else backToSearch(); break;
       case 'ffav': { var on = S.toggleFav(st, fd.favId || fd.food.id); save(); var b = $('[data-act=ffav]'); b.classList.toggle('fav', on); b.setAttribute('aria-pressed', on); toast(T(on ? 'favOn' : 'favOff')); break; }
       case 'funit': { var o1 = pwO(), nu = el.getAttribute('data-u'), wasV = !!vOf(o1.unit); if (nu !== o1.unit) pwSetUnit(o1, nu); if (wasV || vOf(nu)) pwScreen(); else pwUpdate(); break; }
       case 'fqty': { var o2 = pwO(); pwSetQty(o2, o2.qty + (+el.getAttribute('data-s')) * pwStep(o2)); pwUpdate(); vib(5); break; }
@@ -2328,7 +2341,12 @@
       case 'phalt': phAlt(+el.getAttribute('data-i'), +el.getAttribute('data-k')); break; case 'phfind': phFind(+el.getAttribute('data-i')); break; case 'phpick': phPick(+el.getAttribute('data-i'), el.getAttribute('data-id')); break; case 'phfindx': fd.mode = 'photo'; setSheet(phHtml()); break;
       case 'itedit': itemOpen(+el.getAttribute('data-i'), fd.mode === 'photo' ? 'photo' : (fd.mode === 'tpl' ? 'tpl' : 'text')); break;
       case 'pwdone': itemBack(); break;
-      case 'pwq': { var o3 = pwO(); pwSetQty(o3, +el.getAttribute('data-v')); pwUpdate(); vib(5); break; }
+      case 'pwq': { var o3 = pwO(), u3 = el.getAttribute('data-u'), sw3 = u3 && u3 !== o3.unit && (!!vOf(u3) || !!vOf(o3.unit)); if (u3) o3.unit = u3; pwSetQty(o3, +el.getAttribute('data-v')); if (sw3) pwScreen(); else pwUpdate(); vib(5); break; }
+      case 'pwgram': { var o9 = pwO(), w9 = !!vOf(o9.unit); if (o9.unit !== 'g100') { pwSetUnit(o9, 'g100'); if (w9) pwScreen(); else pwUpdate(); } var qi9 = $('#fdQty'); if (qi9) { try { qi9.focus(); qi9.select(); } catch (x) {} } break; }
+      case 'qmeal': mealMenu($('#kqMM') && $('#kqMM').hidden); break;
+      case 'qmealset': mealSet(el.getAttribute('data-m')); break;
+      case 'fadd': { var pk1 = el.getAttribute('data-pick'); addNow(el.getAttribute('data-id'), pk1 ? JSON.parse(pk1) : null, el.getAttribute('data-fk'), el.getAttribute('data-src')); break; }
+      case 'tpladd': tplAdd(+el.getAttribute('data-id')); break;
       case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
       case 'pwswapx': pwScreen(); break;
       case 'baliqgo': openFish(); break;
@@ -2356,7 +2374,6 @@
       case 'vsave': vcSave(); break;
       case 'vessels': vmOpen(); break;
       case 'rcmine': rcmineOpen(); break;
-      case 'atab': { var at0 = el.getAttribute('data-t'); if (at0 === 's') openAdd({ date: (fd && fd.date) || todayStr() }); else if (at0 === 'm') rcmineOpen(); else if (at0 === 't') tplsOpen(); else vmOpen(); break; }
       case 'vedit': vmEdit(+el.getAttribute('data-id')); break;
       case 'vedsave': vmSave(); break;
       case 'vdel': vmDel(+el.getAttribute('data-id')); break;
@@ -2387,15 +2404,13 @@
       case 'supp': openSupp(); break;
       case 'tpls': tplsOpen(); break;
       case 'tplsave': tplStartSave(el.getAttribute('data-m'), el.getAttribute('data-d')); break;
-      case 'tplhelp': fd.mode = 'tplhelp'; setSheet(tplHelpHtml()); break;
-      case 'tplgoadd': if (kit.sheetKind() === 'add') { fd.mode = 'search'; setSheet(searchHtml()); catsInit(); refreshRes(dbState === 0); } else { kit.closeSheet(); setTimeout(function () { openAdd(); }, 250); } break;
+      case 'tplgoadd': if (kit.sheetKind() === 'add') backToSearch(); else { kit.closeSheet(); setTimeout(function () { openAdd(); }, 250); } break;
       case 'tplsugsave': if (tmSug) tplStartSave(tmSug.meal, todayStr(), tmSug.entries); break;
       case 'tplsugno': { if (tmSug) { var pr = prefs(); (pr.tplNo || (pr.tplNo = [])).push(tmSug.key); save(); var sg = $('#tplSug'); if (sg) sg.parentNode.removeChild(sg); } break; }
       case 'tplname': tplSaveAs(el.getAttribute('data-n')); break;
       case 'tplsave2': { var tn = $('#tplNm').value.trim(); if (!tn) { flashEl($('#tplNm')); break; } tplSaveAs(tn); break; }
       case 'tplopen': { var tp = S.tplById(st, +el.getAttribute('data-id')); if (tp) tplShow(tp.name, tp.items); break; }
       case 'yday': { openAdd({ meal: el.getAttribute('data-m'), date: el.getAttribute('data-d') }); tplShow(T('tplYestT'), S.yesterdayEntries(st, fd.date, fd.meal).map(entryToTpl)); break; }
-      case 'yday2': tplShow(T('tplYestT'), S.yesterdayEntries(st, fd.date, fd.meal).map(entryToTpl)); break;
       case 'tplchk': { var ti = fd.items[+el.getAttribute('data-i')]; if (ti) { ti.off = !ti.off; var sc = $('#rzSheet').scrollTop; setSheet(tplHtml()); $('#rzSheet').scrollTop = sc; } break; }
       case 'tplup': case 'tpldn': { S.moveTemplate(st, +el.getAttribute('data-id'), a === 'tplup' ? -1 : 1); save(); setSheet(tplsHtml()); break; }
       case 'tpldel': { var did = +el.getAttribute('data-id'), idx = (st.tpls || []).map(function (x) { return x.id; }).indexOf(did), rm = S.removeTemplate(st, did); if (rm) { save(); setSheet(tplsHtml()); toast(T('tplDel1'), function () { st.tpls.splice(Math.min(idx, st.tpls.length), 0, rm); save(); if (kit.sheetKind() === 'tpls') setSheet(tplsHtml()); }); } break; }
@@ -2407,7 +2422,6 @@
       case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; ['age', 'height', 'weight'].forEach(function (f) { if (!ob.touched[f]) ob[f] = ''; }); showOnb(); break;      // tegilmagan qiymatlar yangi jinsning boshlang'ich qiymatiga qaytadi
       case 'obact': ob.act = +el.getAttribute('data-v'); showOnb(); break;
       case 'obgoal': if (el.getAttribute('aria-disabled') !== 'true') { ob.goal = el.getAttribute('data-v'); showOnb(); } break;
-      case 'rshow': fd.showR = !fd.showR; refreshRes(); break;
       case 'obnext': obNext(); break; case 'obstart': obStart(); break;
       case 'obback': obBack(); break;
       case 'oblater': obLater(); break; case 'oblang': obLang(el.getAttribute('data-l')); break; case 'lppick': lpPick(el.getAttribute('data-l')); break;
@@ -2417,7 +2431,6 @@
   root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
   root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'fdQty') { e.preventDefault(); e.target.blur(); } });
   if (window.visualViewport) { var vv = window.visualViewport, vvf = function () { var kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)); root.style.setProperty('--kb', (kb > 80 ? kb : 0) + 'px'); }; vv.addEventListener('resize', vvf); vv.addEventListener('scroll', vvf); }
-  root.addEventListener('focusin', function (e) { if (e.target && e.target.id === 'fdQ') searchActivate(); });
   root.addEventListener('input', function (e) { var t = e.target; if (fd && fd.vc && /^vc(Name|Full|Empty|Direct)$/.test(t.id)) { fd.vc[{ vcName: 'name', vcFull: 'full', vcEmpty: 'empty', vcDirect: 'direct' }[t.id]] = t.value; var rs = $('#vcRes'); if (rs) rs.textContent = vcResTxt(); } else if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
@@ -2425,6 +2438,7 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    var mm0 = $('#kqMM'); if (mm0 && !mm0.hidden) { mealMenu(false); var mb0 = $('#kqMeal'); if (mb0) mb0.focus(); return; }
     if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (kit.sheetKind()) kit.closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
   });
   var lastDay = Dt.today();

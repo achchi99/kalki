@@ -2,12 +2,10 @@
  "izoh": "test-tema.mjs istisnolari. hex: token bo'lmagan qattiq hex (hozir bo'sh — hammasi CSS o'zgaruvchilarida). rangli: katta (≥60×24 px) rangli fonli elementlarga ruxsat — faqat accent TUGMA/CHIP/BELGI/PROGRESS ko'rinishlari (bloklar emas).",
  "hex": [],
  "rangliSelektorlar": [
-  ".sl-pimg",
   ".sl-tile",
   ".sl-main",
   ".sl-week7 .wd.on",
   ".sl-seg4 button.on",
-  ".sl-cats .rz-chip.on",
   ".rz-btn.primary",
   ".rz-fab",
   ".rz-seg button.on",
@@ -20,7 +18,6 @@
   ".rz-bar i",
   ".bar i",
   ".segs i",
-  ".sl-pm",
   ".rz-chk",
   ".sl-vessel",
   ".sl-ring",
@@ -33,7 +30,6 @@
   ".rz-cat.on",
   ".rz-opt.on",
   ".sl-opt.on",
-  ".sl-atab.on",
   ".rt-ch.on",
   ".rt-door",
   ".rt-door .ic",
@@ -51,6 +47,11 @@
   ".rt-msg",
   ".rt-ing.need",
   ".rt-soon",
-  ".sl-sw.on"
+  ".sl-sw.on",
+  ".kq-food",
+  ".kq-chip.on",
+  ".kq-meal",
+  ".kq-mm button.on",
+  ".kq-all"
  ]
 }

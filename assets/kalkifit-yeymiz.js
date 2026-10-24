@@ -8,7 +8,7 @@
   var CHIPS = ['kabob', 'suyuq', 'tandir', 'tez', 'baliq'], CHTAGS = ['baliq', 'tuxum', 'sut', 'yongoq', 'glyuten'], LSEG = 'kalki_fit_yseg';
   var D = {
     uz: {
-      rhShow: "{n} ta taom yashirildi (yemaydiganlaringiz) · Ko'rsatish", rhHide: "{n} ta taom ko'rsatilmoqda (yemaydiganlaringiz) · Yashirish", rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
+      rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
       yzT: 'Bugun nima yeymiz?', yzDoorS: 'Kafe, buyurtma yoki uyda', yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
       yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
       yzNote: 'Porsiya taxminiy — nomni bosib o\'zgartiring', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
@@ -24,7 +24,7 @@
       bvT: 'Boshqa variantlar', bvOpen: 'Boshqa variantlar', bvF_oqsil: 'Oqsili ko\'proq', bvF_kam: 'Kaloriyasi kamroq', bvF_tam: 'Boshqa ta\'m', bvFor: 'Siz tanlagan: {n}', bvNone: 'Bu filtr bo\'yicha variant topilmadi.'
     },
     ru: {
-      rhShow: 'Скрыто блюд: {n} («Не ем») · Показать', rhHide: 'Показано блюд: {n} («Не ем») · Скрыть', rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
+      rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
       yzT: 'Что поесть сегодня?', yzDoorS: 'Кафе, заказ или дома', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
       yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
       yzNote: 'Порция примерная — нажмите на название', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
