@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 30,
+   "d": "2026-10-24",
+   "bn": {
+    "uz": "Ovoz bilan qo'shish va qadam tuzatildi.",
+    "ru": "Исправлены голосовой ввод и шаги."
+   },
+   "items": [
+    {
+     "uz": "Ovoz bilan qo'shish: to'xtatguningizcha yoziladi (30 soniyagacha) — ilovani yangilang.",
+     "ru": "Голосовой ввод: запись идёт, пока вы её не остановите (до 30 секунд) — обновите приложение.",
+     "show": "ovoz",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Смотреть"
+     }
+    },
+    {
+     "uz": "Qadam endi faqat avtomatik sanaladi — Profilda bitta tugma bilan yoqiladi.",
+     "ru": "Шаги теперь считаются только автоматически — включаются одним переключателем в Профиле."
+    }
+   ]
+  },
+  {
    "v": 29,
    "d": "2026-10-23",
    "bn": {

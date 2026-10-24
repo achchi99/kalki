@@ -1,4 +1,4 @@
-/* kalki.uz — KalkiFit ovozli kiritish (server yo'li): audio (≤ 15 s; iOS audio/mp4, Android/desktop audio/webm) → OpenAI gpt-4o-mini-transcribe → matn.
+/* kalki.uz — KalkiFit ovozli kiritish (server yo'li): audio (≤ 30 s; iOS audio/mp4, Android/desktop audio/webm) → OpenAI gpt-4o-mini-transcribe → matn.
  * Kalit: Cloudflare secret OPENAI_API_KEY. Yo'q bo'lsa — yo'l O'CHIQ (GET → yoqilgan:false; POST → 503), ilova Web Speech'ga (faqat Chrome/Edge) tushadi, iOS'da 🎤 ko'rinmaydi.
  * Audio SAQLANMAYDI va LOGLANMAYDI: faqat tanish uchun uzatiladi. Limit: rasm/retsept/menyu bilan UMUMIY kunlik AI hisobi (kalkifit-quota.js 'ai'; Android 2, veb 5) + sayt tavani ('ov').
  * Javobda bir martalik tok (KV, 15 daqiqa): shu ovozdan keyingi taom ajratish (/api/kalkifit, manba=ovoz) AI hisobidan QAYTA sanalmaydi — «1 yozuv = 1 so'rov».
@@ -10,7 +10,7 @@ import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
 const MODEL = 'gpt-4o-mini-transcribe', MAX_BYTES = 1200000, TIMEOUT_MS = 20000, DEFAULT_SITE = 1000;
 const TYPES = { 'audio/mp4': 'm4a', 'audio/x-m4a': 'm4a', 'audio/aac': 'aac', 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mpeg': 'mp3', 'audio/wav': 'wav', 'audio/x-wav': 'wav' };
 const NC = { 'Cache-Control': 'no-store' };
-const E = { 400: "Ovoz noto'g'ri.", 403: "Ruxsat yo'q.", 405: "Usul noto'g'ri.", 413: 'Ovoz juda uzun (15 soniyagacha).', 415: 'Audio yuboring.', 4291: 'Ovoz tanish bugun juda band. Ertaga yana ishlaydi.', 502: 'Ovozni tanib bo\'lmadi.', 503: 'Ovoz xizmati yoqilmagan.' };
+const E = { 400: "Ovoz noto'g'ri.", 403: "Ruxsat yo'q.", 405: "Usul noto'g'ri.", 413: 'Ovoz juda uzun (30 soniyagacha).', 415: 'Audio yuboring.', 4291: 'Ovoz tanish bugun juda band. Ertaga yana ishlaydi.', 502: 'Ovozni tanib bo\'lmadi.', 503: 'Ovoz xizmati yoqilmagan.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' }, NC);
 const hex = (u8) => Array.from(u8).map((b) => b.toString(16).padStart(2, '0')).join('');
 export function typeOf(ct) { const t = String(ct || '').split(';')[0].trim().toLowerCase(); return TYPES[t] ? { t, ext: TYPES[t] } : null; }

@@ -1,7 +1,7 @@
 // KalkiFit Android ilovasi sifati (sinovchi skrinshotlari bo'yicha, v22): Capacitor mock bilan —
 //  1) ochilganda avtomatik qayta yuklanish YO'Q (service worker yangilansa ham; oddiy sahifada esa avvalgidek), 2) ilova ichida o'rnatish/«brauzerda oching» takliflari yo'q,
 //  3) tashqi havolalar tizim brauzerida (AppLauncher), KalkiFit havolalari ichida, 4) hazil: yoqilganda Bugun'da kuniga kamida bitta, o'chirilganda yo'q, faqat ✕ yopadi,
-//  5) rasm/AI yozuvi bazadagi taomga mos kelsa — o'sha ikonka, 6) avtomatik qadam: «+ Qo'shish» yo'q, manba nomi, karta → «Qo'lda tuzatish»; vebda qo'lda kiritish avvalgidek,
+//  5) rasm/AI yozuvi bazadagi taomga mos kelsa — o'sha ikonka, 6) avtomatik qadam: «+ Qo'shish» yo'q, manba nomi, bosilsa jami, qo'lda kiritish yo'q; vebda qadam kartasi yo'q,
 //  7) ortiqcha matnlar: «uzun bosing» doimiy matni yo'q (bir martalik maslahat), bo'sh ovqat kartasida «Hali yozilmadi» yo'q, «Kunni yakunlash» kechqurun yoki 2+ yozuvda.
 //   node tools/dizayn/test-kalkifit-android-sifat.mjs
 import assert from 'node:assert/strict'; import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
@@ -69,12 +69,11 @@ try {
   /* 6. qadam */
   p = await open('/kalkifit', { state: seed({ prefs: { qa: 'on' } }), app: true, qadam: { available: true, granted: true, enabled: true, source: 'hc', hc: 'ok' }, days: [{ sana: T0, qadam: 5432 }] }); await p.waitForTimeout(800);
   assert.equal(await p.locator('.sl-s .sl-pill').count(), 0, 'avtomatik: «+ Qo\'shish» yo\'q'); assert.equal(await txt(p, '.sl-s .sl-src'), 'Health Connect'); assert.match(await txt(p, '#sNum'), /5 432/);
-  await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(500); assert.equal(await p.locator('#rzSheet [data-act=qafix]').count(), 1, 'oynada kichik «Qo\'lda tuzatish»'); assert.equal(await p.locator('#rzSheet .rz-btn.primary').count(), 0, 'asosiy tugma yo\'q');
-  await p.click('#rzSheet [data-act=qafix]'); await p.waitForTimeout(500); assert.equal(await p.locator('#spNum').count(), 1, 'qo\'lda tuzatish — raqam klaviaturasi'); await p.context().close();
+  await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(500); assert.equal(await p.locator('#rzSheet [data-act=qafix], #spNum').count(), 0, 'qo\'lda kiritish yo\'q (faqat avtomatik)'); assert.match(await txt(p, '#rzSheet'), /5 432/); await p.context().close();
   p = await open('/kalkifit', { state: seed({ prefs: { qa: 'on' } }), app: true, qadam: { available: true, granted: true, enabled: true, source: 'sensor', hc: 'install', sensor: true, sensorGranted: true }, days: [{ sana: T0, qadam: 1500 }] }); assert.equal(await txt(p, '.sl-s .sl-src'), 'Telefon sensori');
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.equal(await p.locator('[data-act=qahc]').count(), 1, 'Health Connect o\'rnatilmagan — bitta tugma'); await p.click('[data-act=qahc]'); await p.waitForTimeout(200); assert.equal((await calls(p, 'Qadam', 'openHealthConnect')).length, 1); await p.context().close();
-  p = await open('/kalkifit', { state: seed() }); assert.equal(await p.locator('.sl-s .sl-pill').count(), 1, 'vebda — qo\'lda kiritish tugmasi avvalgidek'); assert.equal(await p.locator('.sl-s .sl-src').count(), 0); await p.context().close();
-  log('Qadam: avtomatik (Health Connect / Telefon sensori) — «+ Qo\'shish» yo\'q, kartada manba nomi, bosilsa jami + kichik «Qo\'lda tuzatish»; Health Connect o\'rnatilmagan bo\'lsa Profil\'da bitta tugma; vebda qo\'lda kiritish avvalgidek');
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.match(await txt(p, '#qaRow'), /Telefon sensori orqali/); assert.equal(await p.getAttribute('#qaRow [data-act=qatog]', 'aria-checked'), 'true', 'Profil: switch'); assert.equal(await p.locator('#qaRow [data-act=qahc]').count(), 0, 'switch qatori oddiy'); await p.context().close();
+  p = await open('/kalkifit', { state: seed() }); assert.equal(await p.locator('.sl-s, [data-act=addsteps]').count(), 0, 'vebda — qadam kartasi va qo\'lda kiritish yo\'q'); await p.context().close();
+  log('Qadam: faqat avtomatik (Health Connect / Telefon sensori) — kartada manba nomi, bosilsa jami (qo\'lda kiritish yo\'q); Profil\'da switch + «Telefon sensori orqali»; vebda qadam kartasi yo\'q');
   /* 7. matnlar */
   p = await open('/kalkifit', { state: seed({ entries: [{ fid: 'osh', unit: 'likop', qty: 1, g: 300, kcal: 500 }] }), hour: 10 });
   assert.equal(await p.locator('.sl-lphint').count(), 0, '«uzun bosing» doimiy matni yo\'q'); const all = await txt(p, '#rzMain'); assert.doesNotMatch(all, /Hali yozilmadi|uzun bosing/i);

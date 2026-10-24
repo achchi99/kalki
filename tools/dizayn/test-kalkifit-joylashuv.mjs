@@ -19,8 +19,8 @@ function seed(lang) {
   S.addFood(st, T0, { meal: 'd', ts: 3, fid: 'non', unit: 'dona', qty: 1, g: 250, kcal: 600, p: 20, f: 3, c: 120, est: false });
   return st;
 }
-const MOCK = () => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: ['LocalNotifications', 'Share', 'Filesystem', 'Camera', 'Haptics', 'AppLauncher', 'SplashScreen', 'App', 'Qadam'].map((name) => ({ name, methods: [] })),
-  nativePromise: (pl, m) => { if (pl === 'Qadam' && m === 'isAvailable') return Promise.resolve({ available: true, granted: true, enabled: true, source: 'hc', hc: 'ok' }); if (pl === 'Qadam' && m === 'getDays') return Promise.resolve({ kunlar: [] }); return Promise.resolve({}); }, addListener: () => ({ remove() {} }) }; };
+const MOCK = () => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: ['LocalNotifications', 'Share', 'Filesystem', 'Camera', 'Haptics', 'AppLauncher', 'SplashScreen', 'App', 'Qadam'].map((name) => ({ name, methods: [] })),          // Qadam: available+granted (sensor) — Bugun'da qadam kartasi, Profil'da switch qatori
+  nativePromise: (pl, m) => { if (pl === 'Qadam' && m === 'isAvailable') return Promise.resolve({ available: true, granted: true, enabled: true, source: 'sensor', hc: 'ok', sensor: true, sensorGranted: true }); if (pl === 'Qadam' && m === 'getDays') return Promise.resolve({ kunlar: [] }); return Promise.resolve({}); }, addListener: () => ({ remove() {} }) }; };
 const ZOOM = (k) => { if (k === 1) return; const apply = (root) => { const els = [root, ...root.querySelectorAll('*')].filter((e) => !e.__z); const sz = els.map((e) => parseFloat(getComputedStyle(e).fontSize)); els.forEach((e, i) => { e.__z = 1; e.style.setProperty('font-size', (sz[i] * k) + 'px', 'important'); }); };
   apply(document.body); new MutationObserver((ms) => ms.forEach((m) => m.addedNodes.forEach((x) => { if (x.nodeType === 1) apply(x); }))).observe(document.body, { childList: true, subtree: true }); };
 /* matnli barg elementlar (matn tuguni bevosita ichida) — ko'rinadigan, bir-birining ichida bo'lmaganlar juft-juft kesishmasin (2 px chidam) */
@@ -42,11 +42,11 @@ const CHECK = (scope) => {
   const esc = boxes.filter((x) => { if (x.hs) return false; const p = x.e.closest('.rz-card,.sl-card,.sl-meal,button,.rz-row'); if (!p || p === x.e) return false; const pr = p.getBoundingClientRect(); return x.rs.some((r) => r.right > pr.right + 2 || r.left < pr.left - 2); }).map((x) => name(x.e));
   return { bad: [...new Set(bad)], over: [...new Set(over)], esc: [...new Set(esc)], n: boxes.length };
 };
-const SIZES = [[360, 800], [393, 873]], ZOOMS = [1, 1.3, 1.6];
+const SIZES = [[360, 800], [393, 873]], ZOOMS = [1, 1.15, 1.3, 1.6];          // 1.15 — ilova cheklovi (Android tizim shrifti katta bo'lsa textZoom 115%), faqat 360 px da
 const fails = [];
 try {
   for (const lang of ['uz', 'ru']) for (const [w, h] of SIZES) for (const k of ZOOMS) {
-    if (lang === 'ru' && w !== 360) continue;
+    if (lang === 'ru' && w !== 360) continue; if (k === 1.15 && w !== 360) continue;
     const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: 'dark', userAgent: 'Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130 Mobile Safari/537.36' });
     await c.addInitScript((o) => { try { localStorage.setItem('kalki_fit', JSON.stringify(o.st)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); localStorage.setItem('kalki_lang', o.lang); } catch (e) {} }, { st: seed(lang), lang });
     await c.addInitScript(MOCK);
@@ -66,6 +66,7 @@ try {
     await shot('bugun-past');
     /* Profil */
     await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(700); await scan('Profil', '#rzMain'); await shot('profil');
+    if (!(await p.locator('#qaRow [role=switch]').count())) fails.push(tag + ' Profil: «Qadamni avtomatik sanash» switch qatori yo\'q'); else { const q = await p.evaluate(() => { const b2 = document.querySelector('#qaRow .t').getBoundingClientRect(), sw = document.querySelector('#qaRow .sl-sw').getBoundingClientRect(); return b2.right <= sw.left + 0.5 && sw.width === 52; }); if (!q) fails.push(tag + ' Profil: qadam qatori matni switch ustiga chiqdi'); }
     const pb = await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; const last = [...m.children].pop(), nav = document.querySelector('.rz-nav'); return { last: last.getBoundingClientRect().bottom, nav: nav.getBoundingClientRect().top }; });
     if (pb.last > pb.nav - 4) fails.push(tag + ' Profil: oxirgi element pastki menyu ostida qoldi');
     await shot('profil-past');
@@ -75,6 +76,6 @@ try {
     await c.close();
   }
   if (fails.length) { console.log(fails.join('\n')); assert.fail(fails.length + ' ta joylashuv muammosi'); }
-  log('Bugun, Profil va «Ovqat qo\'shish»: UZ (360×800, 393×873) va RU (360×800) × shrift 100/130/160% — matnlar kesishmaydi, ekrandan/kartadan chiqmaydi, kkal nom ostida, oxirgi element pastki menyudan yuqorida');
+  log('Bugun, Profil va «Ovqat qo\'shish»: UZ (360×800, 393×873) va RU (360×800) × shrift 100/115/130/160% (115% — 360 px), Profil\'da qadam switch qatori — matnlar kesishmaydi, ekrandan/kartadan chiqmaydi, kkal nom ostida, oxirgi element pastki menyudan yuqorida');
 } finally { await b.close(); srv.close(); }
 console.log('\n' + n + '/' + n + ' OK');

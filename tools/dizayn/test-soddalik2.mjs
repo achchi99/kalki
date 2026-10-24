@@ -31,7 +31,8 @@ try {
   const jl = await p.evaluate(() => { const j = document.getElementById('jLine'), big = document.querySelector('.sl-big'), add = document.getElementById('mainAdd'); if (!j) return 'yoq'; return j.previousElementSibling === big ? 'doira' : j.previousElementSibling === add ? 'tugma' : 'boshqa'; }); assert.ok(['yoq', 'doira', 'tugma'].includes(jl), 'hazil pufagi joyi: ' + jl);
   log('Bugun tartibi: sana → aylana → Ovqat qo\'shish → 2 eshik karta → ovqat vaqtlari → makro → suv/qadam; hazil pufagi — doira ostida (bo\'sh kunda tugma ostida): ' + jl);
   /* 2. har asosiy funksiya Bugun'dan 1 bosishda; 1 qavat; yopilganda Bugun */
-  const F = [['#mainAdd', 'add'], ['#rtDoor', 'retsept'], ['#yeCard', 'yeymiz'], ['#wCard [data-act=wopen]', 'water'], ['.rz-main [data-act=addsteps]', 'steps']];
+  const F = [['#mainAdd', 'add'], ['#rtDoor', 'retsept'], ['#yeCard', 'yeymiz'], ['#wCard [data-act=wopen]', 'water']];          // qadam — faqat Android ilovada (avtomatik), vebda karta yo'q
+  assert.equal(await p.locator('.rz-main [data-act=addsteps]').count(), 0, 'vebda qadam kartasi yo\'q');
   for (const [sel, k] of F) { await p.click(sel); await p.waitForTimeout(700); assert.equal(await kind(p), k, sel); assert.equal(await dialogs(p), 1, sel + ': oyna ustiga oyna (bir vaqtda 1 ta)'); await closeX(p); assert.equal(await kind(p), null); assert.equal(await view(p), 'today', sel + ': yopilganda Bugun'); }
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500); assert.equal(await view(p), 'history'); await p.click('[data-act=tab][data-v=today]');
   log('Ovqat qo\'shish · Retseptni yengillashtirish · Bugun nima yeymiz? · Suv · Qadam — Bugun\'dan 1 bosish, bir vaqtda 1 ta oyna, yopilganda Bugun; Tarix — 1 bosish');
