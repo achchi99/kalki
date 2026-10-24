@@ -1,13 +1,13 @@
 /* kalki.uz — KalkiFit ovozli kiritish (server yo'li): audio (≤ 30 s; iOS audio/mp4, Android/desktop audio/webm) → OpenAI gpt-4o-mini-transcribe → matn.
  * Kalit: Cloudflare secret OPENAI_API_KEY. Yo'q bo'lsa — yo'l O'CHIQ (GET → yoqilgan:false; POST → 503), ilova Web Speech'ga (faqat Chrome/Edge) tushadi, iOS'da 🎤 ko'rinmaydi.
- * Audio SAQLANMAYDI va LOGLANMAYDI: faqat tanish uchun uzatiladi. Limit: rasm/retsept/menyu bilan UMUMIY kunlik AI hisobi (kalkifit-quota.js 'ai'; Android 2, veb 5) + sayt tavani ('ov').
+ * Audio SAQLANMAYDI va LOGLANMAYDI: faqat tanish uchun uzatiladi. Limit: AI hisobidan ALOHIDA ovoz hisobi (kalkifit-quota.js 'ov'): qurilma 15, IP 30, sayt 1500 / kun.
  * Javobda bir martalik tok (KV, 15 daqiqa): shu ovozdan keyingi taom ajratish (/api/kalkifit, manba=ovoz) AI hisobidan QAYTA sanalmaydi — «1 yozuv = 1 so'rov».
  *   GET  /api/ovoz → { yoqilgan }
  *   POST /api/ovoz?til=uz|ru&mijoz_id=<uuid>&platforma=android   body: audio (Content-Type: audio/*) → { matn, tok, limit, qoldi } | { xato, sabab?, limit? } */
-import { originOk, json, num, UUID_RE } from './ariza.js';
-import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
+import { originOk, json, UUID_RE } from './ariza.js';
+import { takeKfQuota, peekKfQuota, ovozQuota, ovozLimits, ovozLimitMsg } from './kalkifit-quota.js';
 
-const MODEL = 'gpt-4o-mini-transcribe', MAX_BYTES = 1200000, TIMEOUT_MS = 20000, DEFAULT_SITE = 1000;
+const MODEL = 'gpt-4o-mini-transcribe', MAX_BYTES = 1000000, MAX_MS = 31000, TIMEOUT_MS = 20000;          // har yozuv ≤ 30 s: ilova davomiylikni (dav, ms) yuboradi — > 31 s rad; hajm chegarasi (≈ 30 s audio) ikkinchi to'siq
 const TYPES = { 'audio/mp4': 'm4a', 'audio/x-m4a': 'm4a', 'audio/aac': 'aac', 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mpeg': 'mp3', 'audio/wav': 'wav', 'audio/x-wav': 'wav' };
 const NC = { 'Cache-Control': 'no-store' };
 const E = { 400: "Ovoz noto'g'ri.", 403: "Ruxsat yo'q.", 405: "Usul noto'g'ri.", 413: 'Ovoz juda uzun (30 soniyagacha).', 415: 'Audio yuboring.', 4291: 'Ovoz tanish bugun juda band. Ertaga yana ishlaydi.', 502: 'Ovozni tanib bo\'lmadi.', 503: 'Ovoz xizmati yoqilmagan.' };
@@ -39,17 +39,22 @@ async function usable(env) {
   return false;
 }
 export async function onRequest({ request, env }) {
-  if (request.method === 'GET') return json(200, { yoqilgan: await usable(env) }, NC);
+  if (request.method === 'GET') {          // yoqilgan + (mijoz_id berilsa) bugungi qolgan ovozli kiritish — sanamaydi
+    const y = await usable(env), u0 = new URL(request.url), m0 = u0.searchParams.get('mijoz_id') || '', out0 = { yoqilgan: y };
+    if (y) { const l = ovozLimits(env); try { out0.limit = l.client; out0.qoldi = await peekKfQuota(env, request, UUID_RE.test(m0) ? m0 : '', ovozQuota(env)); } catch (e) { /* hisoblagich bo'lmasa — yozuv yo'q */ } }
+    return json(200, out0, NC);
+  }
   if (request.method !== 'POST') return json(405, { xato: E[405] }, Object.assign({ Allow: 'GET, POST' }, NC));
   if (!originOk(request.headers.get('Origin'), env)) return fail(403);
   if (!env.OPENAI_API_KEY || !env.KALKI_AI_KV || await off(env)) return fail(503);
   const ty = typeOf(request.headers.get('Content-Type')); if (!ty) return fail(415);
   const len = parseInt(request.headers.get('Content-Length') || '0', 10); if (len > MAX_BYTES) return fail(413);
+  const dav = parseInt(new URL(request.url).searchParams.get('dav') || '0', 10); if (dav > MAX_MS) return fail(413);
   const buf = await request.arrayBuffer(); if (buf.byteLength > MAX_BYTES) return fail(413); if (buf.byteLength < 500) return fail(400);
   const u = new URL(request.url), til = u.searchParams.get('til') === 'ru' ? 'ru' : 'uz', mid = u.searchParams.get('mijoz_id') || '', cid = UUID_RE.test(mid) ? mid : '';
-  const lim = aiLimits(env, { platforma: u.searchParams.get('platforma') }), out = {};
-  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'ov', uns: 'ai', site: num(env.KALKIFIT_OVOZ_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(lim.client), sabab, limit: lim.client, qoldi: 0 }, NC);
+  const lim = ovozLimits(env), out = {};
+  let sabab; try { sabab = await takeKfQuota(env, request, cid, ovozQuota(env, { out })); } catch (e) { return fail(503); }
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : ovozLimitMsg(), sabab, limit: lim.client, qoldi: 0 }, NC);
   const r = await transcribe(env, buf, ty, til); if (r.err) { if (r.off) { try { await env.KALKI_AI_KV.put(OFF_KEY, '1', { expirationTtl: OFF_TTL }); } catch (e) {} return fail(503); } return fail(502); }
   const tok = hex(crypto.getRandomValues(new Uint8Array(16))); try { await env.KALKI_AI_KV.put('ovt:' + tok, '1', { expirationTtl: 900 }); } catch (e) { /* tok bo'lmasa keyingi ajratish odatdagidek sanaladi */ }
   return json(200, { matn: r.text, tok, limit: lim.client, qoldi: out.qoldi }, NC);

@@ -152,6 +152,8 @@
     hkWaterU: "ml suv — kuniga o'rtacha", hkStepsU: 'qadam — jami', hkMoveT: 'Suv va harakat', hkBestT: 'Eng yaxshi kun', hkStreakU: 'kun ketma-ket yozdingiz', hkFoodT: "Eng ko'p yeyilgan", hkWt: 'Vazn (faqat sizga ko\'rinadi): {d} kg', hkTipT: 'Keyingi haftaga maslahat', hkShare: 'Ulashish', hkClose: 'Yopish', hkAvgT: "o'rtacha kkal/kun", hkNearS: 'maqsadga yaqin kunlar' });
   Object.assign(D.ru, { hkTitle: 'Ваша неделя', hkCardS: 'Записано дней: {n} · в среднем {k} ккал', hkCard0: 'Неделя только начинается — загляните', hkHi: 'Ваша неделя', hkDays: 'Еда записана {n} из 7 дней', hkEmpty: 'На этой неделе записей нет. Запишите завтра одну еду — через неделю будет красивый итог.', hkKcalT: 'Калории', hkNearT: 'дн. около цели', hkAvg: 'В среднем {x} ккал/день · цель {g}', hkFew: 'Пока мало данных — записывайте хотя бы одну еду в день, и график заполнится.',
     hkWaterU: 'мл воды — в среднем в день', hkStepsU: 'шагов — всего', hkMoveT: 'Вода и движение', hkBestT: 'Лучший день', hkStreakU: 'дн. подряд с записями', hkFoodT: 'Чаще всего ели', hkWt: 'Вес (видите только вы): {d} кг', hkTipT: 'Совет на следующую неделю', hkShare: 'Поделиться', hkClose: 'Закрыть', hkAvgT: 'ккал/день в среднем', hkNearS: 'дней около цели' });
+  Object.assign(D.uz, { ovLeft: 'Bugun {q} ta ovozli kiritish qoldi ({n} tadan).', ovLimit: "Bugungi ovozli kiritish tugadi, yozib qo'shing" });
+  Object.assign(D.ru, { ovLeft: 'Сегодня осталось голосовых вводов: {q} из {n}.', ovLimit: 'Сегодняшний голосовой ввод закончился, добавьте текстом' });
   Object.assign(D.uz, { qaOnPill: 'Yoqish', qaRowS: 'Telefon sensori orqali', qaRowHc: 'Health Connect orqali', stWeb: 'Qadam ilovada avtomatik sanaladi' });
   Object.assign(D.ru, { qaOnPill: 'Включить', qaRowS: 'Через датчик телефона', qaRowHc: 'Через Health Connect', stWeb: 'Шаги считаются автоматически в приложении' });
   Object.assign(D.uz, { qaPhoto: 'Rasmdan', qaMenu: 'Menyudan', vMic: "Ovoz bilan qo'shish", vT: "Ovoz bilan qo'shish", vListen: 'Gapiring… Masalan: «bir piyola osh, ikki tilim non va choy»', vStop: "To'xtatish", vPriv: 'Ovoz saqlanmaydi: telefoningiz uni matnga aylantiradi, ilova faqat matnni oladi.', vAgain: 'Qayta gapirish', vText: 'Matn bilan yozish', vPrivS: 'Ovoz saqlanmaydi: qisqa yozuv faqat matnga aylantirish uchun yuboriladi.', vRec: 'Gapiring… tugatgach «Tayyor» yoki mikrofonni bosing (ko\'pi bilan 30 soniya).', vDone: 'Tayyor', vBusy: 'Ovoz tanilmoqda…', vErr_vaqt: "Ovoz tanilmadi. Qayta urinib ko'ring yoki yozib qo'shing.",
@@ -964,6 +966,8 @@
   /* AI so'rovlari hisoblagichi (retsept bilan UMUMIY: functions/api/kalkifit-quota.js AI_LIMIT — Android ilovasi 2, veb 5) */
   var aiq = null;
   function aiPlat() { var N = window.KalkiNative; try { return N && N.isApp() && N.platform() === 'android' ? 'android' : ''; } catch (e) { return ''; } }
+  var ovq = null;          // ovoz limiti (AI hisobidan alohida): { limit, qoldi } — /api/ovoz va ovozdan keyingi taom ajratish javoblari
+  function ovqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; ovq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
   function aiqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
   function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
   /* rasm natijasi → bazadagi taom (kkal bazadan); topilmasa AI qiymati «taxminiy ±30%». vs — AI variantlari (ehtimol bo'yicha): asosiysi + «Bu emasmi?» */
@@ -1605,7 +1609,7 @@
       h += '<p class="rz-p warn">' + esc(T('tMiss', { x: fd.missing.join(', ') })) + '</p>';
       h += offline ? '<p class="rz-p sm">' + esc(T('tOffline')) + '</p>' : '<button type="button" class="rz-btn ghost full" data-act="txai"' + (fd.busy ? ' disabled' : '') + '>' + esc(fd.busy ? T('tAiBusy') : T('tAi')) + '</button><p class="rz-p sm">' + esc(T('tAiNote')) + '</p>';
     }
-    if (fd.aiErr) h += '<p class="rz-p warn" id="txAiErr">' + esc(fd.aiErr === 'limit' ? T('aiLimit', { n: fd.aiLim }) : T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
+    if (fd.aiErr) h += '<p class="rz-p warn" id="txAiErr">' + esc(fd.aiErr === 'limit' ? (fd.usul === 'ovoz' ? T('ovLimit') : T('aiLimit', { n: fd.aiLim })) : T(fd.aiErr === 'busy' ? 'tAiSite' : 'tAiErr')) + '</p>';
     if (items.length) h += '<div class="rz-fl">' + esc(T('pMeal')) + '</div>' + mealChips(fd.meal, 'fmeal3') + '<p class="rz-p sm">' + esc(T('tHelp')) + (items.some(function (x) { return x.ai; }) ? ' ' + esc(T('tkNote')) : '') + '</p><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="txsave">' + esc(T('pwAll', { n: items.length })) + '</button></div>';
     return h;
   }
@@ -1644,8 +1648,8 @@
     if (fd.busy || !fd.missing.length) return; fd.busy = true; fd.aiErr = false; txRefresh();
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }; if (fd.usul === 'ovoz') { body.manba = 'ovoz'; if (aiPlat()) body.platforma = aiPlat(); if (fd.ovTok) body.ovoz_tok = fd.ovTok; }          // ovoz: umumiy AI hisobi (rasm/retsept/menyu bilan)
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
-      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : (res.j && res.j.sabab && res.j.limit > 0 ? 'limit' : true); fd.aiLim = res.j && res.j.limit; txRefresh(); return; }
-      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok'); if (fd.usul === 'ovoz') aiqSet(res.j);
+      fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : (res.j && res.j.sabab && res.j.limit > 0 ? 'limit' : true); fd.aiLim = res.j && res.j.limit; if (fd.usul === 'ovoz' && res.j && res.j.sabab) ovqSet({ limit: res.j.limit, qoldi: 0 }); txRefresh(); return; }
+      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok'); if (fd.usul === 'ovoz') ovqSet(res.j);
       res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.xato'); fd.busy = false; fd.aiErr = true; txRefresh(); });
@@ -1829,19 +1833,19 @@
   var VO = null, vs = null, ovSrv = false;            // ovSrv — serverda OPENAI kaliti bor (GET /api/ovoz); yo'q bo'lsa iOS'da 🎤 ko'rinmaydi
   function micOk() { if (!VO && window.KalkiOvoz) VO = KalkiOvoz.create({ lang: function () { return lang; }, server: function () { return ovSrv; }, post: ovPost }); return !!(VO && VO.ok()); }
   var ovAsked = false;
-  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz', function (j) { var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search') { var q0 = fd.q; setSheet(searchHtml()); fd.q = q0; } }, function () { ovSrv = false; }); } catch (e) {} }
+  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz?mijoz_id=' + encodeURIComponent(cid()), function (j) { ovqSet(j); var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search') { var q0 = fd.q; setSheet(searchHtml()); fd.q = q0; } }, function () { ovSrv = false; }); } catch (e) {} }
   function ovPost(blob, mime, til, signal) {          // server yo'li: audio → /api/ovoz → { text, tok } (tok — shu ovozning AI hisobi; keyingi taom ajratish qayta sanalmaydi)
-    var u = '/api/ovoz?til=' + encodeURIComponent(til) + '&mijoz_id=' + encodeURIComponent(cid()) + (aiPlat() ? '&platforma=' + aiPlat() : '');
+    var u = '/api/ovoz?til=' + encodeURIComponent(til) + '&mijoz_id=' + encodeURIComponent(cid()) + (vs && vs.t0 ? '&dav=' + Math.min(31000, Date.now() - vs.t0) : '');          // dav — yozuv davomiyligi (ms): server ≤ 30 s ni tekshiradi
     return fetch(u, { method: 'POST', headers: { 'Content-Type': mime }, body: blob, signal: signal }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
-      aiqSet(j); if (r.status === 429) { stEv('ai_sorov', 'ovoz.limit'); return { err: 'limit', n: j.limit }; } if (!r.ok) { stEv('ai_sorov', 'ovoz.xato'); return { err: r.status === 503 ? 'yoq' : 'xato' }; } stEv('ai_sorov', 'ovoz.ok'); return { text: j.matn || '', tok: j.tok || '' }; }); });
+      ovqSet(j); if (r.status === 429) { stEv('ai_sorov', 'ovoz.limit'); return { err: 'limit', n: j.limit }; } if (!r.ok) { stEv('ai_sorov', 'ovoz.xato'); return { err: r.status === 503 ? 'yoq' : 'xato' }; } stEv('ai_sorov', 'ovoz.ok'); return { text: j.matn || '', tok: j.tok || '' }; }); });
   }
   function voiceHtml() {
     var h = shHead(T('vT'));
-    if (vs.err) return h + '<p class="rz-p warn" id="vErr">' + esc(vs.err === 'limit' ? T('aiLimit', { n: vs.n || 5 }) : T('vErr_' + vs.err)) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="vtext">' + esc(T('vText')) + '</button>' + (vs.err === 'yoq' || vs.err === 'limit' ? '' : '<button type="button" class="rz-btn primary" data-act="fmic">' + ico('mic') + ' ' + esc(T('vAgain')) + '</button>') + '</div><p class="rz-priv">' + esc(T('vPriv')) + '</p>';
+    if (vs.err) return h + '<p class="rz-p warn" id="vErr">' + esc(vs.err === 'limit' ? T('ovLimit') : T('vErr_' + vs.err)) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="vtext">' + esc(T('vText')) + '</button>' + (vs.err === 'yoq' || vs.err === 'limit' ? '' : '<button type="button" class="rz-btn primary" data-act="fmic">' + ico('mic') + ' ' + esc(T('vAgain')) + '</button>') + '</div><p class="rz-priv">' + esc(T('vPriv')) + '</p>';
     var srv = vs.kind === 'server';
     var mic = srv && !vs.busy ? '<button type="button" class="sl-vmic" data-act="vdone" aria-label="' + esc(T('vDone')) + '">' + ico('mic') + '</button>' : '<span class="sl-vmic" aria-hidden="true">' + ico('mic') + '</span>';          // yozuv: mikrofonni qayta bosish = «Tayyor»
     var wave = srv && !vs.busy ? '<div class="sl-vwave" id="vWave" aria-hidden="true">' + new Array(25).join('<i></i>') + '</div><p class="sl-vtime" id="vTime" aria-live="off">' + vTimeTxt() + '</p>' : '';
-    return h + '<div class="sl-vo' + (vs.on ? ' on' : '') + '" id="vBox">' + mic + wave + '<p class="sl-vpart" id="vPart" aria-live="polite">' + esc(vs.busy ? T('vBusy') : (vs.part || T(srv ? 'vRec' : 'vListen'))) + '</p></div><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="vstop" id="vStop">' + esc(T('vStop')) + '</button>' + (srv && !vs.busy ? '<button type="button" class="rz-btn primary" data-act="vdone" id="vDone">' + esc(T('vDone')) + '</button>' : '') + '</div><p class="rz-priv">' + esc(T(srv ? 'vPrivS' : 'vPriv')) + '</p>';
+    return h + '<div class="sl-vo' + (vs.on ? ' on' : '') + '" id="vBox">' + mic + wave + '<p class="sl-vpart" id="vPart" aria-live="polite">' + esc(vs.busy ? T('vBusy') : (vs.part || T(srv ? 'vRec' : 'vListen'))) + '</p></div><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="vstop" id="vStop">' + esc(T('vStop')) + '</button>' + (srv && !vs.busy ? '<button type="button" class="rz-btn primary" data-act="vdone" id="vDone">' + esc(T('vDone')) + '</button>' : '') + '</div><p class="rz-priv">' + esc(T(srv ? 'vPrivS' : 'vPriv')) + '</p>' + (srv && ovq && !vs.busy ? '<p class="rz-mut sm sl-aileft" id="vLeft">' + esc(T('ovLeft', { q: ovq.qoldi, n: ovq.limit })) + '</p>' : '');
   }
   var vTick = null, VMAX = (window.KalkiOvoz && KalkiOvoz.MAXREC || 30000) / 1000;
   function mmss(n) { n = Math.max(0, Math.floor(n)); return Math.floor(n / 60) + ':' + (n % 60 < 10 ? '0' : '') + (n % 60); }
@@ -1857,7 +1861,8 @@
   function voiceCancel() { if (VO) VO.cancel(); clearInterval(vTick); vs = null; }          // «To'xtatish» va ✕: DARHOL to'xtaydi (abort, mikrofon yopiladi) va oyna yopiladi
   function voiceStart() {
     if (!micOk() || navigator.onLine === false) return; var date = fd && fd.date || todayStr(), meal = fd && fd.meal;
-    var me = vs = { on: true, part: '', err: '', kind: VO.kind() }; if (kit.sheetKind() !== 'add') openAdd({}); fd.date = date; if (meal) fd.meal = meal; fd.mode = 'voice'; setSheet(voiceHtml());
+    var me = vs = { on: true, part: '', err: '', kind: VO.kind() }; if (me.kind === 'server' && ovq && ovq.qoldi <= 0) { me.on = false; me.err = 'limit'; if (kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'voice'; setSheet(voiceHtml()); return; }          // ovoz limiti tugagan — yozmasdan aniq xabar
+    if (kit.sheetKind() !== 'add') openAdd({}); fd.date = date; if (meal) fd.meal = meal; fd.mode = 'voice'; setSheet(voiceHtml());
     var live = function () { return vs === me && fd && fd.mode === 'voice' && kit.sheetKind() === 'add'; };
     clearInterval(vTick);
     VO.start({ onPart: function (t) { if (!live()) return; me.part = t; var e = $('#vPart'); if (e) e.textContent = t; },
