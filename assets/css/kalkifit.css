@@ -587,7 +587,7 @@ html.fs-big .rz .rt-odo{font-size:80px}
 /* aylana: raqam to'lqin ustida ham aniq o'qiladi — yorug' qatlam (to'lqin ostida emas, ustida) + yengil halo, to'lqin ichida to'q qatlam */
 .rz .kv-sub.kv-n{stroke:var(--vessel);stroke-width:2.2px;paint-order:stroke fill;stroke-linejoin:round}
 /* ---- ochilish animatsiyasi (faqat transform/opacity; prefers-reduced-motion'da yo'q — global qoida + JS) ---- */
-.rz .rz-main.rzi :is(#mainAdd,.sl-door,.sl-meal,.sl-macs,.sl-duo){animation:rzUp .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
+.rz .rz-main.rzi :is(#mainAdd,.sl-door,.sl-meal,.sl-macs,.sl-duo,.sl-bju){animation:rzUp .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
 @keyframes rzUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 /* Retsept eshigi: nozik yaltirash (4 s sikl) */
 .rz .rt-door{position:relative;overflow:hidden}
@@ -1019,3 +1019,13 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz .sl-feats .sl-feat .m b{font-size:var(--t-s);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rz .sl-feats .sl-feat .m span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3}
 .rz .sl-feats .sl-feat{min-height:60px;padding:8px 0}
+/* Bugun: kunlik BJU kartasi (suv kartasi uslubida: bir xil radius/bo'shliq/shrift; ~84 px). Ustunlar mazmuniga qarab kengayadi — so'z va qisqartma yo'q */
+.rz .sl-bju{padding:12px 14px}
+.rz .sl-bjub{width:100%;display:grid;grid-template-columns:repeat(3,minmax(min-content,1fr));column-gap:10px;border:0;background:transparent;padding:0;color:inherit;text-align:left;font:inherit;min-height:44px}
+.rz .sl-bju .mc{display:flex;flex-direction:column;gap:3px;min-width:0}
+.rz .sl-bju .mh{display:flex;align-items:center;gap:6px;font-size:var(--t-xs);font-weight:600;color:var(--mut);white-space:nowrap}
+.rz .sl-bju .mv{display:flex;align-items:baseline;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rz .sl-bju .mv b{font-size:var(--t-m);font-weight:600}.rz .sl-bju .mv small{font-size:var(--t-xs);color:var(--mut);font-weight:500;margin-left:4px}
+.rz .sl-bju .tr{display:block;height:5px;margin-top:4px;border-radius:3px;background:var(--track);overflow:hidden}
+.rz .sl-bju .tr i{display:block;height:100%;border-radius:3px;transition:width .4s ease,background-color .3s ease}
+.rz .sl-bjub:active{opacity:.85}
