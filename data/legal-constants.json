@@ -1105,11 +1105,12 @@
       "izoh": "Yangi/ishlatilgan avtomobilni davlat ro'yxatidan o'tkazish (odatiy yoqilg'i turi), BHM ko'paytmasi",
       "qiymat": 6.84,
       "amal_qiladi": null,
-      "izoh_uz": "985-xizmat (my.gov.uz) va 2303-son buyruqning amaldagi tahririda bir xil qiymat.",
-      "izoh_ru": "Совпадает в 985-услуге (my.gov.uz) и действующей редакции приказа №2303.",
+      "izoh_uz": "985-xizmat (my.gov.uz) va 2303-son buyruqning amaldagi tahririda bir xil qiymat. Real invoys: 3 009 600 so'm = 6,84 × 440 000.",
+      "izoh_ru": "Совпадает в 985-услуге (my.gov.uz) и действующей редакции приказа №2303. Реальный инвойс: 3 009 600 сум = 6,84 × 440 000.",
       "holat": "TASDIQLANGAN",
       "manba_url": "https://my.gov.uz/uz/service/985",
-      "manba_nomi": "2303-son buyruq (IIV, 23.12.2024 tahriri) 7¹-band; my.gov.uz 985-xizmat"
+      "manba_nomi": "2303-son buyruq (IIV, 23.12.2024 tahriri) 7¹-band; my.gov.uz 985-xizmat",
+      "tekshirildi": "2026-10-24"
     },
     {
       "id": "avto_royxat_ev_gibrid",
@@ -1131,11 +1132,12 @@
       "izoh": "Qayta ro'yxatdan o'tkazish (familiya, manzil, rang, agregat almashtirish, hujjat yo'qolishi va sh.k. — egasi ALMASHMAGAN holatlar), BHM ko'paytmasi",
       "qiymat": 0.1,
       "amal_qiladi": null,
-      "izoh_uz": "1-fazada UI'da ishlatilmaydi — faqat 683-son qaror 1-ilova 50-banddagi holatlarga tegishli, egasi almashishiga qo'llanmaydi (qarang: qoida_egasi_almashganda). MUHIM YANGILANISH (2026-09-26): 2303-5-son buyruq (31.03.2024) bilan kiritilgan 7¹-band aynan 'ro'yxatdan o'tkazish VA qayta ro'yxatdan o'tkazish' ikkalasini bitta 6,84 BHM stavkasiga birlashtiradi. Bu shuni bildirishi mumkinki, 2024-yildan buyon oddiy avtomobil uchun bu 0,1 BHM stavka endi qo'llanmasligi mumkin (2024-yilgacha shu band 0,1 BHM edi). Bu konstanta hamon ISHLATILMAYDI (1-fazadan beri UI'da hech qachon chaqirilmagan) — shuning uchun kodga ta'sir yo'q. lex.uz'ning 23.12.2024-dagi so'nggi tahriri hali to'liq tekshirilmagan (avto-tasdiqlash.md 16-savol).",
-      "izoh_ru": "В 1-й фазе не используется в UI — относится только к случаям из приложения 1 постановления №683 (п.50), не применяется при смене владельца. ВАЖНОЕ ОБНОВЛЕНИЕ (26.09.2026): приказ №2303-5 (31.03.2024) объединяет пункт 7¹ 'регистрация И перерегистрация' в одну ставку 6,84 БРВ. Это может означать, что для обычного автомобиля ставка 0,1 БРВ больше не применяется с 2024 года (до этого пункт был именно 0,1 БРВ). Эта константа по-прежнему НЕ ИСПОЛЬЗУЕТСЯ в UI — код не затронут. Последняя редакция lex.uz от 23.12.2024 пока не проверена полностью (см. вопрос 16 в avto-tasdiqlash.md).",
+      "izoh_uz": "Egasi almashganda qayta ro'yxatdan o'tkazish — BHMning 0,1 baravari (2303-son buyruq, 2303-7 tahriri 23.12.2024; Adliya vazirligi maslahati).",
+      "izoh_ru": "Перерегистрация при смене владельца — 0,1 БРВ (приказ №2303, ред. 2303-7 от 23.12.2024; разъяснение Минюста).",
       "holat": "TASDIQLANGAN",
-      "manba_url": "https://my.gov.uz/uz/service/985",
-      "manba_nomi": "2303-son buyruq 7²-band; my.gov.uz 985-xizmat"
+      "manba_url": "https://advice.adliya.uz/oz/document/3998",
+      "manba_nomi": "2303-son buyruq (2303-7 tahriri); advice.adliya.uz 3998",
+      "tekshirildi": "2026-10-24"
     },
     {
       "id": "avto_texpasport",
@@ -1144,24 +1146,26 @@
       "izoh": "Ro'yxatdan o'tkazilganlik to'g'risidagi guvohnoma (texnik pasport) berish, BHM ko'paytmasi",
       "qiymat": 1.4,
       "amal_qiladi": null,
-      "izoh_uz": "2303-son buyruqning 23.12.2024 tahririda 0,7 BHM ko'rsatilgan — sayt my.gov.uz'dagi amaldagi qiymatdan foydalanadi (docs/avto-tasdiqlash.md, 3-savol: normativ asosi hali aniqlanmoqda).",
-      "izoh_ru": "В редакции приказа №2303 от 23.12.2024 указано 0,7 БРВ — сайт использует действующее значение с my.gov.uz.",
+      "izoh_uz": "my.gov.uz 985-xizmat: BHMning 1,4 baravari. Real invoys: 616 000 so'm = 1,4 × 440 000. (Adliya maslahatidagi 0,7 BHM eskirgan.)",
+      "izoh_ru": "Услуга my.gov.uz №985: 1,4 БРВ. Реальный инвойс: 616 000 сум = 1,4 × 440 000. (0,7 БРВ в справке Минюста устарело.)",
       "holat": "TASDIQLANGAN",
       "manba_url": "https://my.gov.uz/uz/service/985",
-      "manba_nomi": "my.gov.uz 985-xizmat"
+      "manba_nomi": "my.gov.uz 985-xizmat; 2303-son buyruq (IIV 174-son, 23.11.2011) to'lov stavkalari",
+      "tekshirildi": "2026-10-24"
     },
     {
       "id": "avto_raqam_oddiy_juft",
       "sahifa": "avto-rasmiylashtirish",
       "tur": "son",
-      "izoh": "Oddiy (tasodifiy, Random) davlat raqam belgisi jufti berish, BHM ko'paytmasi",
-      "qiymat": 9,
+      "izoh": "Oddiy (tanlanmagan) davlat raqam belgisi — yangi avtomobil, BHM ko'paytmasi",
+      "qiymat": 10.5,
       "amal_qiladi": null,
-      "izoh_uz": "2303-son buyruqning 23.12.2024 tahririda 3,5 BHM ko'rsatilgan. 2026-yildan raqam berish tartibi 562-son VMQ bilan o'zgargan — yangi qiymatni belgilagan normativ hujjat hali aniqlanmagan (docs/avto-tasdiqlash.md, 2-savol). Sayt my.gov.uz'dagi amaldagi qiymatdan foydalanadi.",
-      "izoh_ru": "В редакции приказа №2303 от 23.12.2024 указано 3,5 БРВ. С 2026 года порядок выдачи номеров изменён постановлением №562 — нормативный акт для нового значения пока не найден. Сайт использует действующее значение с my.gov.uz.",
+      "izoh_uz": "my.gov.uz 985-xizmat: BHMning 10,5 baravari. Real YHXB invoysi bilan tasdiqlandi: 4 620 000 so'm = 10,5 × 440 000 (Qashqadaryo, 23.10.2026). Avvalgi 9 BHM eskirgan edi.",
+      "izoh_ru": "Услуга my.gov.uz №985: 10,5 БРВ. Подтверждено реальным инвойсом ГУБДД: 4 620 000 сум = 10,5 × 440 000 (Кашкадарья, 23.10.2026). Прежние 9 БРВ устарели.",
       "holat": "TASDIQLANGAN",
       "manba_url": "https://my.gov.uz/uz/service/985",
-      "manba_nomi": "my.gov.uz 985-xizmat"
+      "manba_nomi": "my.gov.uz 985-xizmat (to'lovlar); 562-son VMQ 04.09.2025 (raqam belgilari tartibi)",
+      "tekshirildi": "2026-10-24"
     },
     {
       "id": "avto_sayyor_1kun",
@@ -1585,6 +1589,62 @@
       "holat": "TASDIQLANGAN",
       "manba_url": null,
       "manba_nomi": "Soliq kodeksi (yangi tahrir), 258/259/260-moddalar — buxgalterPRO nusxasi; lex.uz'dan qayta tekshirish ixtiyoriy"
+    },
+    {
+      "id": "avto_hujjat_invoys",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "«Hujjatlarni rasmiylashtirish» — real YHXB invoysidagi qator (yangi avtomobil), BHM ko'paytmasi",
+      "qiymat": 0.1,
+      "amal_qiladi": null,
+      "izoh_uz": "Real YHXB invoysida bor: 44 000 so'm = 0,1 × 440 000 (Qashqadaryo, 23.10.2026). Rasmiy stavkalar ro'yxatida (my.gov.uz 985) yangi avtomobil uchun shu nomdagi aniq band TOPILMADI; 0,1 BHM 2303-son buyruqdagi qayta ro'yxat stavkasiga teng.",
+      "izoh_ru": "Есть в реальном инвойсе ГУБДД: 44 000 сум = 0,1 × 440 000 (Кашкадарья, 23.10.2026). В официальном перечне ставок (my.gov.uz №985) отдельный пункт с таким названием для нового автомобиля НЕ НАЙДЕН; 0,1 БРВ совпадает со ставкой перерегистрации приказа №2303.",
+      "holat": "INVOYS",
+      "manba_url": "https://my.gov.uz/uz/service/985",
+      "manba_nomi": "Real YHXB invoysi (23.10.2026); asos aniqlanmadi",
+      "tekshirildi": "2026-10-24"
+    },
+    {
+      "id": "taxminiy_agent_haqi",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "To'lov agenti / xizmat ko'rsatish markazi haqi (davlatga emas), so'm",
+      "qiymat": 180000,
+      "amal_qiladi": null,
+      "izoh_uz": "Taxminiy: real misoldagi viloyat to'lov agenti haqi. Agent va hududga qarab farq qiladi.",
+      "izoh_ru": "Примерно: сбор платёжного агента из реального примера. Зависит от агента и региона.",
+      "holat": "TAXMINIY",
+      "manba_url": null,
+      "manba_nomi": "Real misol (Qashqadaryo, 23.10.2026)",
+      "tekshirildi": "2026-10-24"
+    },
+    {
+      "id": "taxminiy_komissiya",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "Boshqa komissiya va agent haqlari (davlatga emas), so'm",
+      "qiymat": 140400,
+      "amal_qiladi": null,
+      "izoh_uz": "Taxminiy: real misoldagi qo'shimcha komissiyalar (aniq bo'linishi noma'lum).",
+      "izoh_ru": "Примерно: прочие комиссии из реального примера (точная разбивка неизвестна).",
+      "holat": "TAXMINIY",
+      "manba_url": null,
+      "manba_nomi": "Real misol (Qashqadaryo, 23.10.2026)",
+      "tekshirildi": "2026-10-24"
+    },
+    {
+      "id": "taxminiy_osago",
+      "sahifa": "avto-rasmiylashtirish",
+      "tur": "son",
+      "izoh": "OSAGO (majburiy fuqarolik javobgarligi sug'urtasi), yillik, so'm",
+      "qiymat": 160000,
+      "amal_qiladi": null,
+      "izoh_uz": "Taxminiy: real misoldagi polis narxi; haydovchilar soni, hudud va muddatga qarab farq qiladi.",
+      "izoh_ru": "Примерно: стоимость полиса из реального примера; зависит от числа водителей, региона и срока.",
+      "holat": "TAXMINIY",
+      "manba_url": null,
+      "manba_nomi": "Real misol (Qashqadaryo, 23.10.2026)",
+      "tekshirildi": "2026-10-24"
     }
   ]
 }
