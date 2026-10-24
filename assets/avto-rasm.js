@@ -26,7 +26,9 @@
 }(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var OK_HOLAT = { TASDIQLANGAN: 1, NORMATIV_TALQIN: 1 };
+  var OK_HOLAT = { TASDIQLANGAN: 1, NORMATIV_TALQIN: 1, INVOYS: 1 };          // INVOYS — real YHXB invoysida bor, rasmiy stavkalar ro'yxatida aniq band topilmagan (sahifada belgilanadi)
+  /* Qo'shimcha (davlatga emas) xarajatlar — taxminiy, foydalanuvchi o'chirib-yoqadi; holat TAXMINIY (huquqiy konstanta emas) */
+  function readTaxminiy(C, id) { var c = C[id]; if (!c || c.holat !== 'TAXMINIY') throw new Error('Taxminiy qiymat topilmadi: ' + id); return c.qiymat; }
 
   function readConst(C, id) {
     var c = C[id];
@@ -49,6 +51,12 @@
       royxat: function (ev) { return "Davlat ro'yxatidan o'tkazish" + (ev ? ' (elektromobil/gibrid)' : ''); },
       texpasport: "Ro'yxatdan o'tkazilganlik guvohnomasi (texpasport)",
       raqamOddiy: 'Davlat raqam belgisi (oddiy)',
+      qaytaRoyxat: "Qayta ro'yxatdan o'tkazish (egasi almashganda)",
+      hujjat: 'Hujjatlarni rasmiylashtirish',
+      raqamEvOgoh: "Elektromobil uchun raqam belgisi to'lovi pastroq belgilanishi mumkin (562-son VMQ, 2-band «v») — aniq summa YHXB invoysida.",
+      importMalumot: "Import avtomobil: YHXB to'lovlari xuddi shunday; bojxona to'lovlari va utilizatsiya yig'imi alohida (bojxona kalkulyatori).",
+      dvigatelMalumot: "Dvigatel hajmi va quvvati YHXB davlat to'lovlariga ta'sir qilmaydi (stavkalar BHM'da qat'iy).",
+      qAgent: "To'lov agenti / xizmat ko'rsatish markazi haqi", qKomissiya: 'Boshqa komissiya va agent haqlari', qOsago: "OSAGO sug'urta (yillik)",
       tanlanganRaqam: 'Tanlangan raqam',
       tanlanganRaqamSabab: 'AvtoRaqam ilovasidagi invoys summasi kiritilmagan',
       raqamOtkazish: "Raqamni o'tkazish",
@@ -85,6 +93,12 @@
       royxat: function (ev) { return 'Государственная регистрация' + (ev ? ' (электромобиль/гибрид)' : ''); },
       texpasport: 'Свидетельство о регистрации (техпаспорт)',
       raqamOddiy: 'Госномер (обычный)',
+      qaytaRoyxat: 'Перерегистрация (при смене владельца)',
+      hujjat: 'Оформление документов',
+      raqamEvOgoh: 'Для электромобиля плата за госномер может быть ниже (Постановление КМ №562, п.2 «в») — точная сумма в инвойсе ГУБДД.',
+      importMalumot: 'Импортный автомобиль: платежи ГУБДД те же; таможенные платежи и утилизационный сбор — отдельно (таможенный калькулятор).',
+      dvigatelMalumot: 'Объём и мощность двигателя не влияют на госплатежи ГУБДД (ставки фиксированы в БРВ).',
+      qAgent: 'Платёжный агент / центр услуг', qKomissiya: 'Прочие комиссии и сборы агентов', qOsago: 'ОСАГО (годовое)',
       tanlanganRaqam: 'Выбранный номер',
       tanlanganRaqamSabab: 'Не указана сумма инвойса в приложении AvtoRaqam',
       raqamOtkazish: 'Перенос номера',
@@ -160,15 +174,19 @@
     if (stsenariy === 'yangi') {
       stavkaQator(royxatK, T.royxat(evGibrid), readConst(C, royxatK), 'davlat', 'YHXX');
     } else {
-      stavkaQator(royxatK, T.royxat(evGibrid), readConst(C, royxatK), 'davlat', 'YHXX', 'NORMATIV_TALQIN');
+      // ikkinchi qo'l (egasi almashganda): qayta ro'yxat — 0,1 BHM (2303-son buyruq, 2303-7 tahriri; Adliya maslahati) — 6,84 EMAS
+      stavkaQator('avto_qayta_royxat', T.qaytaRoyxat, readConst(C, 'avto_qayta_royxat'), 'davlat', 'YHXX');
     }
 
     // ---------- texpasport ----------
     stavkaQator('avto_texpasport', T.texpasport, readConst(C, 'avto_texpasport'), 'davlat', 'YHXX');
+    // «Hujjatlarni rasmiylashtirish» — real invoysda 0,1 BHM (44 000); rasmiy stavkalar ro'yxatida yangi avtomobil uchun aniq band topilmadi → holat INVOYS
+    if (stsenariy === 'yangi') stavkaQator('avto_hujjat_invoys', T.hujjat, readConst(C, 'avto_hujjat_invoys'), 'davlat', 'YHXX');
 
     // ---------- raqam ----------
     if (kirish.raqam === 'oddiy') {
       stavkaQator('avto_raqam_oddiy_juft', T.raqamOddiy, readConst(C, 'avto_raqam_oddiy_juft'), 'davlat', 'YHXX');
+      if (evGibrid) ogohlantirishlar.push(T.raqamEvOgoh);
     } else if (kirish.raqam === 'tanlangan') {
       if (kirish.raqam_invoys == null || kirish.raqam_invoys === '') {
         kiritilmagan.push({ nomi: T.tanlanganRaqam, sabab: T.tanlanganRaqamSabab, maydon: 'raqam_invoys' });
@@ -183,6 +201,9 @@
       }
       malumot.push({ nomi: T.raqamOtkazish, matn: T.raqamOtkazishMalumot });
     }
+
+    if (kirish.import) malumot.push({ nomi: 'Import', matn: T.importMalumot });
+    malumot.push({ nomi: lang === 'ru' ? 'Двигатель' : 'Dvigatel', matn: T.dvigatelMalumot });
 
     // ---------- sayyor xizmat (faqat "yangi") ----------
     if (stsenariy === 'yangi' && kirish.sayyor) {
@@ -266,7 +287,6 @@
       }
 
       ogohlantirishlar.push(T.notariusOgohlantirish);
-      ogohlantirishlar.push(T.egasiOgohlantirish);
 
       // ---------- eskrou ----------
       if (kirish.ishlab_chiqarilgan_yil == null || kirish.ishlab_chiqarilgan_yil === '') {
@@ -288,11 +308,22 @@
       }
     }
 
-    var jami = 0;
-    for (var i = 0; i < qatorlar.length; i++) jami += qatorlar[i].summa;
+    // ---------- qo'shimcha xarajatlar (davlatga emas, taxminiy; o'chirib-yoqiladi) ----------
+    var qosh = [], Q = kirish.qoshimcha || {};
+    [['agent', 'taxminiy_agent_haqi', T.qAgent], ['komissiya', 'taxminiy_komissiya', T.qKomissiya], ['osago', 'taxminiy_osago', T.qOsago]].forEach(function (x) {
+      if (!C[x[1]]) return; qosh.push({ kalit: x[0], nomi: x[2], summa: Math.round(readTaxminiy(C, x[1])), yoqilgan: Q[x[0]] !== false, guruh: 'qoshimcha', holat: 'TAXMINIY' });
+    });
+
+    var jami = 0, jamiDavlat = 0, jamiQosh = 0;
+    for (var i = 0; i < qatorlar.length; i++) { jami += qatorlar[i].summa; if (qatorlar[i].guruh === 'davlat' && qatorlar[i].qayerga === 'YHXX') jamiDavlat += qatorlar[i].summa; }
+    qosh.forEach(function (q) { if (q.yoqilgan) jamiQosh += q.summa; });
 
     return {
       qatorlar: qatorlar,
+      qoshimcha: qosh,
+      jami_davlat_yhxb: jamiDavlat,
+      jami_qoshimcha: jamiQosh,
+      jami_umumiy: jami + jamiQosh,
       kiritilmagan: kiritilmagan,
       malumot: malumot,
       jami_hisoblangan: jami,

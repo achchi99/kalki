@@ -1,9 +1,9 @@
 /* kalki.uz -- assets/avto-rasm.js uchun sinovlar.
  *
  * Bu testlar formula ARIFMETIKASINI tekshiradi.
- * Huquqiy talqinning to'g'riligini (masalan, egasi almashganda 6,84 BHM)
+ * Huquqiy talqinning to'g'riligini (masalan, «Hujjatlarni rasmiylashtirish» 0,1 BHM — faqat real invoysda; rasmiy ro'yxatda band topilmagan)
  * ISBOTLAMAYDI. Invoys summalari test uchun ixtiyoriy tanlangan, real
- * narx emas.
+ * narx emas. REAL bloki — Kia Sonet, Qashqadaryo, 23.10.2026 YHXB invoyslari (8 289 600).
  *
  * Oddiy node skripti (tashqi test freymvorki yo'q). Ishga tushirish:
  *   node tools/test-avto.js
@@ -78,20 +78,20 @@ function check(label, cond, details) {
 // ---------- 1 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({}), C);
-  check('1) yangi/oddiy/raqam=oddiy — jami', jamiOf(n) === 7585600, 'chiqdi ' + jamiOf(n));
+  check('1) yangi/oddiy/raqam=oddiy — jami', jamiOf(n) === 8289600, 'chiqdi ' + jamiOf(n));
   check('1) kiritilmagan bo‘sh', n.kiritilmagan.length === 0);
 })();
 
 // ---------- 2 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ yoqilgi: 'ev_gibrid' }), C);
-  check('2) yangi/ev_gibrid — jami', jamiOf(n) === 5236000, 'chiqdi ' + jamiOf(n));
+  check('2) yangi/ev_gibrid — jami', jamiOf(n) === 5940000, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 3 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ raqam: 'tanlangan', raqam_invoys: null }), C);
-  check('3) tanlangan/invoys=null — jami', jamiOf(n) === 3625600, 'chiqdi ' + jamiOf(n));
+  check('3) tanlangan/invoys=null — jami', jamiOf(n) === 3669600, 'chiqdi ' + jamiOf(n));
   check('3) kiritilmagan: tanlangan raqam', topKiritilmagan(n, 'Tanlangan raqam'));
   check('3) oddiy raqam qatori yo‘q', !topQator(n, 'avto_raqam_oddiy_juft'));
 })();
@@ -99,7 +99,7 @@ function check(label, cond, details) {
 // ---------- 4 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ raqam: 'tanlangan', raqam_invoys: 5000000 }), C);
-  check('4) tanlangan/invoys=5mln — jami', jamiOf(n) === 8625600, 'chiqdi ' + jamiOf(n));
+  check('4) tanlangan/invoys=5mln — jami', jamiOf(n) === 8669600, 'chiqdi ' + jamiOf(n));
   var q = topQator(n, 'Tanlangan raqam');
   check('4) qayerga=Uzavtomotobelgi', q && q.qayerga === 'Uzavtomotobelgi');
 })();
@@ -107,10 +107,10 @@ function check(label, cond, details) {
 // ---------- 5 ----------
 (function () {
   var n = KalkiAvto.hisobla(ishlatilganBaza({}), C);
-  check('5) ishlatilgan baza — jami', jamiOf(n) === 9213600, 'chiqdi ' + jamiOf(n));
+  check('5) ishlatilgan baza — jami', jamiOf(n) === 6908000, 'chiqdi ' + jamiOf(n));
   var royxatQator = topQator(n, royxatKalitFor('oddiy'));
-  check('5) ro‘yxat holati NORMATIV_TALQIN', royxatQator && royxatQator.holat === 'NORMATIV_TALQIN');
-  check('5) 0,1 BHM qatori yo‘q', !topQator(n, 'avto_qayta_royxat'));
+  check('5) ikkinchi qo‘l: 6,84 BHM ro‘yxat qatori YO‘Q', !royxatQator);
+  var qr = topQator(n, 'avto_qayta_royxat'); check('5) qayta ro‘yxat 0,1 BHM (TASDIQLANGAN)', qr && qr.summa === Math.round(0.1 * BHM) && qr.holat === 'TASDIQLANGAN');
   check('5) kiritilmagan bo‘sh', n.kiritilmagan.length === 0);
   function royxatKalitFor() { return 'avto_royxat_oddiy'; }
 })();
@@ -120,7 +120,7 @@ function check(label, cond, details) {
   var n = KalkiAvto.hisobla(ishlatilganBaza({ qarindosh: true }), C);
   var boj = topQator(n, 'notarius_avto_oldisotdi');
   check('6) notarius boji=66000', boj && boj.summa === 66000, 'chiqdi ' + (boj && boj.summa));
-  check('6) jami=7959600', jamiOf(n) === 7959600, 'chiqdi ' + jamiOf(n));
+  check('6) jami=5654000', jamiOf(n) === 5654000, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 7 ----------
@@ -128,7 +128,7 @@ function check(label, cond, details) {
   var n = KalkiAvto.hisobla(ishlatilganBaza({ kredit: true }), C);
   var boj = topQator(n, 'notarius_avto_oldisotdi');
   check('7) notarius boji=132000', boj && boj.summa === 132000, 'chiqdi ' + (boj && boj.summa));
-  check('7) jami=8025600', jamiOf(n) === 8025600, 'chiqdi ' + jamiOf(n));
+  check('7) jami=5720000', jamiOf(n) === 5720000, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 8 ----------
@@ -171,7 +171,7 @@ function check(label, cond, details) {
 // ---------- 12 ----------
 (function () {
   var n = KalkiAvto.hisobla(ishlatilganBaza({ raqam: 'otkazish', raqam_invoys: null }), C);
-  check('12) jami=5253600', jamiOf(n) === 5253600, 'chiqdi ' + jamiOf(n));
+  check('12) jami=2288000', jamiOf(n) === 2288000, 'chiqdi ' + jamiOf(n));
   check('12) kiritilmagan: raqamni o‘tkazish', topKiritilmagan(n, "o'tkazish") || topKiritilmagan(n, '‘tkazish'));
   check('12) malumotda 50% matni bor', n.malumot.some(function (m) { return m.matn.indexOf('50 foizi') > -1; }));
   check('12) malumotda summa (so‘m) yo‘q', !n.malumot.some(function (m) { return /so'm|сум/i.test(m.matn); }));
@@ -182,7 +182,7 @@ function check(label, cond, details) {
   var C2 = JSON.parse(JSON.stringify(C));
   C2.bhm_qiymati.qiymat = 500000;
   var n = KalkiAvto.hisobla(baza({}), C2);
-  check('13) BHM=500000 — jami=8620000', jamiOf(n) === 8620000, 'chiqdi ' + jamiOf(n));
+  check('13) BHM=500000 — jami=9420000', jamiOf(n) === 9420000, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 14 ----------
@@ -219,27 +219,27 @@ function check(label, cond, details) {
 // ---------- 15 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ sayyor: '1kun', sayyor_masofa_km: 25 }), C);
-  check('15) sayyor 1kun+25km — jami=9675600', jamiOf(n) === 9675600, 'chiqdi ' + jamiOf(n));
+  check('15) sayyor 1kun+25km — jami=10379600', jamiOf(n) === 10379600, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 16 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ sayyor: '5kun', sayyor_masofa_km: 10 }), C);
-  check('16) sayyor 5kun+10km — jami=8465600', jamiOf(n) === 8465600, 'chiqdi ' + jamiOf(n));
+  check('16) sayyor 5kun+10km — jami=9169600', jamiOf(n) === 9169600, 'chiqdi ' + jamiOf(n));
   check('16) km qatori yo‘q', !topQator(n, 'avto_sayyor_km'));
 })();
 
 // ---------- 17 ----------
 (function () {
   var n = KalkiAvto.hisobla(baza({ sayyor: '3kun', sayyor_masofa_km: null }), C);
-  check('17) sayyor 3kun+masofa=null — jami=8905600', jamiOf(n) === 8905600, 'chiqdi ' + jamiOf(n));
+  check('17) sayyor 3kun+masofa=null — jami=9609600', jamiOf(n) === 9609600, 'chiqdi ' + jamiOf(n));
   check('17) kiritilmagan: masofa', topKiritilmagan(n, 'masofa'));
 })();
 
 // ---------- 18 ----------
 (function () {
   var n = KalkiAvto.hisobla(ishlatilganBaza({ sayyor: '1kun' }), C);
-  check('18) ishlatilganda sayyor e‘tiborga olinmaydi — jami=9213600', jamiOf(n) === 9213600, 'chiqdi ' + jamiOf(n));
+  check('18) ishlatilganda sayyor e‘tiborga olinmaydi — jami=6908000', jamiOf(n) === 6908000, 'chiqdi ' + jamiOf(n));
 })();
 
 // ---------- 19 ----------
@@ -261,7 +261,7 @@ function check(label, cond, details) {
 // ---------- 21 ----------
 (function () {
   var n = KalkiAvto.hisobla(ishlatilganBaza({ gerbli_blank: false }), C);
-  check('21) gerbli_blank=false — jami=9169600', jamiOf(n) === 9169600, 'chiqdi ' + jamiOf(n));
+  check('21) gerbli_blank=false — jami=6864000', jamiOf(n) === 6864000, 'chiqdi ' + jamiOf(n));
   check('21) gerb qatori yo‘q', !topQator(n, 'notarius_gerb_yigimi'));
   check('21) kiritilmagan ro‘yxatida gerb yo‘q', !topKiritilmagan(n, 'gerb') && !topKiritilmagan(n, 'Gerb'));
 })();
@@ -338,5 +338,23 @@ function check(label, cond, details) {
 
 console.log('');
 console.log('BHM (joriy, testda ishlatilgan): ' + BHM);
+// ---------- REAL: Kia Sonet 2026 (benzin, 1.5 L, 115 o.k., O'zbekistonda ishlab chiqarilgan), Qashqadaryo, 23.10.2026 — YHXB invoyslari ----------
+(function () {
+  var n = KalkiAvto.hisobla(baza({ stsenariy: 'yangi', yoqilgi: 'oddiy', raqam: 'oddiy' }), C, 'uz');
+  var by = function (k) { return (topQator(n, k) || {}).summa; };
+  check('REAL) ro‘yxat 3 009 600 (6,84 BHM)', by('avto_royxat_oddiy') === 3009600, by('avto_royxat_oddiy'));
+  check('REAL) texpasport 616 000 (1,4 BHM)', by('avto_texpasport') === 616000, by('avto_texpasport'));
+  check('REAL) davlat raqami 4 620 000 (10,5 BHM)', by('avto_raqam_oddiy_juft') === 4620000, by('avto_raqam_oddiy_juft'));
+  check('REAL) hujjatlarni rasmiylashtirish 44 000 (0,1 BHM, invoys)', by('avto_hujjat_invoys') === 44000 && topQator(n, 'avto_hujjat_invoys').holat === 'INVOYS');
+  check('REAL) majburiy davlat to‘lovlari = 8 289 600', n.jami_davlat_yhxb === 8289600, 'chiqdi ' + n.jami_davlat_yhxb);
+  check('REAL) qo‘shimcha (agent 180 000 + komissiya 140 400 + OSAGO 160 000) = 480 400', n.jami_qoshimcha === 480400, 'chiqdi ' + n.jami_qoshimcha);
+  check('REAL) haqiqatda to‘langan jami = 8 770 000', n.jami_umumiy === 8770000, 'chiqdi ' + n.jami_umumiy);
+  var o = KalkiAvto.hisobla(baza({ stsenariy: 'yangi', yoqilgi: 'oddiy', raqam: 'oddiy', qoshimcha: { agent: true, komissiya: false, osago: false } }), C, 'uz');
+  check('REAL) qo‘shimcha qatorlar o‘chirib-yoqiladi', o.jami_qoshimcha === 180000 && o.jami_davlat_yhxb === 8289600 && o.jami_umumiy === 8469600, o.jami_qoshimcha + ' / ' + o.jami_umumiy);
+  var ru = KalkiAvto.hisobla(baza({ stsenariy: 'yangi' }), C, 'ru'); check('REAL) ru — bir xil summa', ru.jami_davlat_yhxb === 8289600);
+  var ev = KalkiAvto.hisobla(baza({ stsenariy: 'yangi', yoqilgi: 'ev_gibrid' }), C, 'uz'); check('EV) ro‘yxat 1,5 BHM + ogohlantirish (raqam pastroq bo‘lishi mumkin)', (topQator(ev, 'avto_royxat_ev_gibrid') || {}).summa === 660000 && ev.ogohlantirishlar.some(function (x) { return /562/.test(x); }));
+  var im = KalkiAvto.hisobla(baza({ stsenariy: 'yangi', import: true }), C, 'uz'); check('IMPORT) YHXB to‘lovlari o‘zgarmaydi + bojxona eslatmasi', im.jami_davlat_yhxb === 8289600 && im.malumot.some(function (m) { return /bojxona/i.test(m.matn); }));
+  var tn = KalkiAvto.hisobla(baza({ stsenariy: 'yangi', raqam: 'tanlangan', raqam_invoys: 7000000 }), C, 'uz'); check('TANLANGAN) oddiy raqam o‘rniga AvtoRaqam invoysi', !topQator(tn, 'avto_raqam_oddiy_juft') && tn.jami_davlat_yhxb === 3009600 + 616000 + 44000 + 0, 'yhxb ' + tn.jami_davlat_yhxb);
+})();
 console.log(pass + ' ta o‘tdi, ' + fail + ' ta yiqildi (jami ' + (pass + fail) + ')');
 process.exit(fail ? 1 : 0);
