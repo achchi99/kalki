@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 42,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Uyda nima yeyish — endi aniq javob.",
+    "ru": "Что съесть дома — теперь чёткий ответ."
+   },
+   "items": [
+    {
+     "uz": "«Bugun nima yeymiz?» uyda tez tayyorlanadigan 67 sog'lom variant beradi — qolgan kkal va oqsilga mos.",
+     "ru": "«Что поесть сегодня?» даёт 67 быстрых полезных блюд для дома — под остаток ккал и белка.",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "«Uyda nima bor?» — mahsulotlarni belgilang, faqat shulardan tayyorlanadiganlar chiqadi.",
+     "ru": "«Что есть дома?» — отметьте продукты, покажем только то, что из них приготовить."
+    }
+   ]
+  },
+  {
    "v": 41,
    "d": "2026-10-25",
    "bn": {

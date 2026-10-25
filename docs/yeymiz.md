@@ -28,3 +28,17 @@ Faqat `kun + hodisa + son` (D1 `hisob_kun`). Hodisalar: `orinbosar_korsatildi`, 
 
 ## 2.1: umumiy oyna
 Har chip (Kabob, Suyuq ovqat, Tandir, Tez tayyor, Baliq) bitta oynani ochadi: 3 segment — **Kafe va choyxonada · Buyurtma · Uyda**. Birlamchi segment: 18:00 dan keyin yoki shanba/yakshanba — Kafe; boshqa paytda oxirgi tanlangani (`localStorage kalki_fit_yseg`, try/catch). Buyurtma: tugma bosilganda qidiruv so'zi (`shashlik`, `sho'rva`, `somsa`, `lavash`, `baliq`) buferga nusxalanadi. Birinchi 5 ta + «Yana ko'rsatish». «Qo'shish» joriy vaqtga qarab ovqat vaqtini tanlaydi va toast'da ko'rsatadi. «Baliq yoqtirmayman» / «Boshqa kun» faqat Baliq chipida. `yeymiz_toifa` — `data/yeymiz.json` `taom[*].t` (tegsiz taom hech qaysi chipga tushmaydi).
+
+## 2.2: «Uyda» — tez va sog'lom (PP) retseptlar (v42)
+«Bugun nima yeymiz?» oynasida segmentlar: **Uyda · Kafe va choyxonada · Buyurtma**; birlamchi HAR DOIM Uyda. Kafe/Buyurtma o'zgarmagan (toifa chiplari faqat shu ikkisida va Baliq kunida).
+
+| Qism | Qayerda |
+|---|---|
+| Retseptlar manbasi (67 ta: tayyorsiz 0–5 daq · tez 10–15 · pishirsa 25–45; har biri id, daqiqa, ovqat turlari b/l/d/s, nom UZ/RU, tarkib `baza id:gramm[:dona[:variant]]`, 3–4 qadam UZ/RU) | `tools/uyda-pp-manba.js` → `node tools/uyda-pp-yasa.js --yoz` → `data/uyda-pp.json` (qo'lda tahrir qilinmaydi; yasovchi bazada ID borligini, guruhga bog'langanini, vaqt oralig'ini, qadamlar tengligini, cho'chqa tegi yo'qligini tekshiradi) |
+| Kkal/BJU | QO'LDA YOZILMAYDI: `assets/uyda-pp-core.js` `calc` — tarkib grammi × bazadagi qiymat (oilada variant); ilovada har doim «taxminiy» |
+| Tanlash | `uyda-pp-core.js` `pick`: cheklov (Yemaydiganlarim, cho'chqa hech qachon) → vaqt filtri (0–5 / 10–15 / 30+) va ovqat turi → «Uyda nima bor?» (19 mahsulot chipi, `prefs.ppHave`) → saralash: ovqat vaqtiga mosligi, qolgan kkalga sig'ishi, oqsil hissasi, tezlik; bugun/kecha yeganlari tepada takrorlanmaydi (`prefs.ppAte`, 3 kun); tepada 3 ta (bitta guruhdan ≤2) |
+| Interfeys | `assets/kalkifit-yeymiz.js` (PP bloki: lead «Sizga X kkal va Y g oqsil qoldi», 3 eng mos, filtrlar, «Uyda nima bor?», karta: ⏱, kkal, oqsil, tarkib, qadamlar (yig'ilgan), porsiya ½/1/1½/2, «Yedim», «Odatdagiga saqlash»); stil — `assets/css/kalkifit.css` oxiri |
+| «Yedim» | `kalkifit-app.js` `ppLog`: kundalikka bitta yozuv (nom, porsiya, kkal/BJU/gramm, `est`, ikonka = asosiy mahsulot); oyna yopiladi (hazil pufagi shundan keyin ko'rinadi) |
+
+Eski toifa bo'yicha «Uyda» retseptlari (`data/uyda.json`: kishi soni, xarid ro'yxati) saqlandi: Baliq kuni va Uyda oxiridagi «Boshqa uyda taomlar» havolasi orqali.
+Bazaga qo'shilganlar (USDA SR Legacy, `data/manba/usda-sr-legacy.json` da bor edi): `un` (168894), `tunets-suv` (171986). Protein kokteyl — bazadagi «Protein kukuni (whey)» (yorliq o'rtachasi, 30 g). Test: `tools/dizayn/test-uyda-pp.mjs`.

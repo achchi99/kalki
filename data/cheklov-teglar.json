@@ -1827,6 +1827,9 @@
   "tunets": [
    "baliq"
   ],
+  "tunets-suv": [
+   "baliq"
+  ],
   "tunets-yog": [
    "baliq"
   ],
@@ -1895,6 +1898,9 @@
    "glyuten"
   ],
   "ugra-osh": [
+   "glyuten"
+  ],
+  "un": [
    "glyuten"
   ],
   "unash": [

@@ -7,6 +7,8 @@
  * Ichimliklarda 100 ml ≈ 100 g. Tur: tools/ovqatlar-build.js (o n s m g v f d i q h x). g100 avtomatik qo'shiladi. */
 'use strict';
 const T = `
+un|Un (bug'doy, oq)|Мука пшеничная|un,bugdoy uni,bug'doy uni,мука,пшеничная мука,wheat flour,flour|g|qoshiq:10,stakan:125|u:168894
+tunets-suv|Tunets (o'z sharbatida, konserva)|Тунец в собственном соку (консервы)|tunets suvda,tunets o'z sharbatida,tunets konserva,тунец в собственном соку,тунец консервированный,canned tuna in water|m|dona:130,porsiya:80|u:171986
 kakao-kukun|Kakao kukuni (shakarsiz)|Какао-порошок (без сахара)|kakao kukuni,kakao poroshok,какао порошок,какао-порошок,какао порошок без сахара,cocoa powder|x|qoshiq:5|u:169593
 kepak|Kepak (bug'doy kepagi)|Отруби пшеничные|kepak,bugdoy kepagi,bug'doy kepagi,отруби,отруби пшеничные,wheat bran|g|qoshiq:6,stakan:58|u:169722
 tuxum-qov-yogsiz|Tuxum, yog'siz qovurilgan (yopishmaydigan tovada)|Яичница без масла (на антипригарной сковороде)|qovurilgan tuxum yog'siz,yog'siz qovurilgan tuxum,tuxum yogsiz qovurilgan,яйца жареные без масла,яйцо жареное без масла,яичница без масла,глазунья без масла,fried egg no oil|m|dona:50|u:171287
@@ -363,11 +365,11 @@ const TEG = {
   tuxum: L(`protein-pechenye tuxum-qov-aralash biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya donut-glazur choko-pie pryanik keks-darchin shtrudel pirog-olcha pirog-qovoq pechenye-oreo pechenye-qumli pechenye-suli pechenye-sariyog pechenye-shokolad pechenye-zanjabil pechenye-anjir yubileynoe barni vafli-vanil
     lapsha-tuxum makaron-yangi krab-tayoq tefteli baliq-panirovka krevetka-panirovka tovuq-boneless tovuq-kfc sendvich-baliq sendvich-tovuq sendvich-tunets big-mac rench tartar-sous mz-makflurri protein-pechenye`),
   yongoq: L(`snickers sport-snickers-marathon mms-yongoq picnic nuts kinder-bueno mz-eskimo-yongoq mz-konus-shokolad shokolad-bodom nuga pesto keshyu kedr-yongogi aralash-yongoq yerfistiq-tuzli makadamiya pekan braziliya-yongogi pista-pistachio-tuzli kashtan bodom-qovurilgan funduk-qovurilgan yeryongoq-pasta yongoq-mevali-aralash granola-batonchik granola-uy protein-bar-60 protein-bar-40 protein-bar-50`),
-  glyuten: L(`protein-pechenye mz-plombir-vafli doshirak-pishloq mz-plombir-stakan mz-konus-shokolad mz-konus-sundae mz-vafli-stakan mz-makflurri sport-snickers-marathon protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye twix kitkat mars milky-way picnic nuts kinder-bueno barni pryanik sushki
+  glyuten: L(`un protein-pechenye mz-plombir-vafli doshirak-pishloq mz-plombir-stakan mz-konus-shokolad mz-konus-sundae mz-vafli-stakan mz-makflurri sport-snickers-marathon protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye twix kitkat mars milky-way picnic nuts kinder-bueno barni pryanik sushki
     pechenye-oreo pechenye-qumli pechenye-suli pechenye-sariyog pechenye-shokolad pechenye-zanjabil pechenye-anjir yubileynoe vafli-vanil krendel biskvit biskvit-oq tort-shokolad bulochka-darchin pirojnoe-pishloq maffin pankeyk vafli-belgiya sloyka donut-glazur choko-pie keks-darchin pirog-olcha pirog-qovoq shtrudel parvarda pita-chips granola-batonchik granola-uy
     non-pita non-bugdoy non-jovdar bagel burger-bulochka tortilya bulgur kuskus perlovka lapsha-tuxum ramen makaron-pishgan2 makaron-yangi suli-quruq shurva-tovuq-lapsha gosht-dimlangan-konserva
     big-mac chizburger pitsa-pishloq lazanya spagetti-bolonez piyoz-halqa tako burrito sendvich-baliq sendvich-tovuq sendvich-tunets sendvich-mol baliq-panirovka krevetka-panirovka tovuq-kfc tovuq-boneless tefteli falafel tovuq-shirin-nordon`),
-  baliq: L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`),
+  baliq: L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog tunets-suv losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`),
   choshqa: []                      // cho'chqa tegi FAQAT bekon va pepperonida (tools/cheklov-teglar.js QOLDA) — kengaytma taomlariga QO'YILMAYDI (CLAUDE.md «Cho'chqa tegi qoidasi»)
 };
 for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plombir-vafli', 'pishloq-hochland']], ['tuxum', ['protein-pechenye']], ['glyuten', ['protein-pechenye', 'mz-plombir-vafli', 'doshirak-pishloq']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
@@ -375,7 +377,7 @@ for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plom
 const OQSIL = Object.assign({},
   ...L(`mol-jigar-qov mol-jigar-dim qoy-jigar-qov mol-buyrak qoy-buyrak mol-yurak qoy-yurak mol-til qoy-til qorin qoy-miya mol-miya qoy-opka qoy-son qoy-kurak qoy-qiyma qoy-kabob-bolak qoy-yogsiz-dim mol-tosh mol-qaynatilgan mol-kotlet-grill buzoq buzoq-qiyma echki gosht-quritilgan gosht-dimlangan-konserva tefteli big-mac chizburger tako sendvich-mol shurva-mol-sabzavot`).map((i) => ({ [i]: 'qizil' })),
   ...L(`tovuq-jigar-qov tovuq-yurak tovuq-oshqozon ordak kurka-kokrak kurka-qiyma tovuq-qaynatilgan tovuq-boldir-qov tovuq-qanot-qov tovuq-kokrak-qov tovuq-kokrak-duxovka tovuq-kfc tovuq-boneless sendvich-tovuq shurva-tovuq-lapsha tovuq-shirin-nordon`).map((i) => ({ [i]: 'tovuq' })),
-  ...L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`).map((i) => ({ [i]: 'baliq' })),
+  ...L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog tunets-suv losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`).map((i) => ({ [i]: 'baliq' })),
   ...L(`tuxum-qov-aralash`).map((i) => ({ [i]: 'tuxum' })),
   ...L(`falafel xummus-uy tofu-qov edamame loviya-qora loviya-konserva loviya-tomat noxat-konserva`).map((i) => ({ [i]: 'dukkak' })),
   ...L(`protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye protein-kokteyl-tayyor pitsa-pishloq nachos-pishloq`).map((i) => ({ [i]: 'sut' })),
