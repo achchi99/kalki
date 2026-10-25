@@ -575,9 +575,10 @@
       if (!g[k]) { g[k] = { nm: nm, qty: 0, g: 0, e: e, ml: 0 }; order.push(k); } g[k].qty += e.qty || 1; g[k].g += e.g || 0; g[k].ml += it.ml; });
     return order.map(function (k) { var o = g[k], pt = o.e.unit && o.e.unit !== 'g100' && String(o.e.unit).indexOf('v:') !== 0 ? qtyStr(o.qty) + ' ' + unitName(o.e.unit) : fmt(Math.round(o.g)) + ' ' + T('gram'); return '<div class="sl-wlr"><span class="m">' + esc(o.nm) + ' <small>' + esc(pt) + '</small></span><b>' + fmt(o.ml) + ' ' + ML() + '</b></div>'; }).join('');
   }
-  document.addEventListener('animationend', function (e) { var t = e.target; if (t && t.id === 'ftBtn' && st && !prefs().ftAnim) { prefs().ftAnim = 1; save(); t.classList.remove('wob'); } });
+  function ftSeen(set) { try { if (set) localStorage.setItem('kalki_ft_anim', '1'); return !!localStorage.getItem('kalki_ft_anim'); } catch (e) { return set; } }          // qurilma belgisi (hisob/zaxiraga yozilmaydi — bulutga keraksiz yozuv bo'lmasin)
+  document.addEventListener('animationend', function (e) { var t = e.target; if (t && t.id === 'ftBtn') { ftSeen(true); t.classList.remove('wob'); } });
   function ftBtnHtml() {                             // «Imkoniyatlar» tugmasi: ikkilamchi (chegarali); yengil harakat — butun umr BIR marta
-    var anim = !prefs().ftAnim && !reduce; if (!prefs().ftAnim && reduce) { prefs().ftAnim = 1; save(); }          // «ftAnim» — harakat tugagach belgilanadi (animationend), qayta chizilish uni uzib qo'ymasin
+    var anim = !ftSeen() && !reduce; if (reduce) ftSeen(true);          // belgi harakat tugagach qo'yiladi (animationend), qayta chizilish uni uzib qo'ymasin
     return '<button type="button" class="ft-btn' + (anim ? ' wob' : '') + '" id="ftBtn" data-act="ftopen">' + ico('apps', '', 2) + '<span>' + esc(T('ftBtn')) + '</span></button>';
   }
   function renderToday() {
