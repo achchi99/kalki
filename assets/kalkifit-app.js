@@ -154,14 +154,14 @@
     hkWaterU: 'мл воды — в среднем в день', hkStepsU: 'шагов — всего', hkMoveT: 'Вода и движение', hkBestT: 'Лучший день', hkStreakU: 'дн. подряд с записями', hkFoodT: 'Чаще всего ели', hkWt: 'Вес (видите только вы): {d} кг', hkTipT: 'Совет на следующую неделю', hkShare: 'Поделиться', hkClose: 'Закрыть', hkAvgT: 'ккал/день в среднем', hkNearS: 'дней около цели' });
   Object.assign(D.uz, { pgMen: 'Men', pgSet: 'Sozlamalar', pgImk: 'Imkoniyatlar', pgApp: 'Ilova', pgAcc: 'Hisob va zaxira', sIntro: "Tanishtiruvni qayta ko'rish", ftOpen: 'Ochish',
     ft_ovoz: "Ovoz bilan qo'shish", ft_ovozH: "Ayting — ro'yxat o'zi tuziladi", ft_rasm: "Rasm bilan qo'shish", ft_rasmH: 'Taom va porsiya rasmdan aniqlanadi', ft_menyu: 'Menyudan tanlash', ft_menyuH: 'Kafe menyusidan maqsadga mos taomlar',
-    ft_yeymiz: 'Bugun nima yeymiz?', ft_yeymizH: 'Kafe, buyurtma yoki uyda mos taom', ft_retsept: 'Retseptni yengillashtirish', ft_retseptH: "Ta'mi qoladi, kaloriyasi kamayadi", ft_odatdagi: 'Odatdagi ovqatlarim', ft_odatdagiH: 'Tez-tez yeydiganingiz bir bosishda',
-    ft_idishlar: 'Mening idishlarim', ft_idishlarH: "O'z kosa va laganingiz — hisob aniqroq", ft_yesam: 'Buni yesam-chi?', ft_yesamH: "Yeyishdan oldin natijasini ko'ring", ft_hafta: 'Haftangiz', ft_haftaH: 'Hafta xulosasi qisqa hikoya bo\'lib',
-    ftBtn: 'Imkoniyatlar', ftMore: 'Yana', ft_kunkarta: 'Kun yakuni kartasi', ft_kunkartaH: 'Kun natijasini rasm qilib ulashing', ft_ulashish: 'Natijamni ulashish', ft_ulashishH: "Faqat o'zingiz tanlagan raqamlar", ft_supp: "Vitaminlar va qo'shimchalar", ft_suppH: 'Nima kerak, nima shart emas' });
+    ft_yeymiz: 'Bugun nima yeymiz?', ft_yeymizH: 'Kafe, buyurtma yoki uyda mos taom', ft_retsept: 'Retseptni yengillashtirish', ft_retseptH: "Ta'mi qoladi, kaloriyasi kamayadi", ft_odatdagi: 'Odatdagi ovqatlarim', ft_odatdagiH: "Bir bosishda qo'shish",
+    ft_idishlar: 'Mening idishlarim', ft_idishlarH: "O'z kosa va laganingiz bilan aniqroq", ft_yesam: 'Buni yesam-chi?', ft_yesamH: "Yeyishdan oldin kunga ta'sirini ko'ring", ft_hafta: 'Haftangiz', ft_haftaH: 'Hafta xulosasi qisqa hikoyada',
+    ftBtn: 'Imkoniyatlar', ftSub: 'KalkiFit nimalar qila oladi', ftNew: 'tayyor', ftIntro: "Tanishtiruvni qayta ko'rish", ftG_tez: "Tez qo'shish", ftG_natija: 'Natijalar', ftG_yemak: "Nima yesam bo'ladi?", ftG_mening: 'Mening', ftG_soglik: "Sog'liq", ftS_ovoz: 'Ovoz', ftS_rasm: 'Rasm', ftS_menyu: 'Menyu', ft_kunkarta: 'Kun yakuni kartasi', ft_kunkartaH: 'Natijani rasm qilib ulashing', ft_ulashish: 'Natijamni ulashish', ft_ulashishH: "Faqat o'zingiz tanlagan raqamlar", ft_supp: "Vitaminlar va qo'shimchalar", ft_suppH: 'Nima kerak, nima shart emas' });
   Object.assign(D.ru, { pgMen: 'Обо мне', pgSet: 'Настройки', pgImk: 'Возможности', pgApp: 'Приложение', pgAcc: 'Аккаунт и резервная копия', sIntro: 'Посмотреть знакомство снова', ftOpen: 'Открыть',
     ft_ovoz: 'Добавить голосом', ft_ovozH: 'Скажите — список составится сам', ft_rasm: 'Добавить по фото', ft_rasmH: 'Блюдо и порция определяются по фото', ft_menyu: 'Выбор по меню', ft_menyuH: 'Блюда из меню кафе под вашу цель',
     ft_yeymiz: 'Что поесть сегодня?', ft_yeymizH: 'Блюдо в кафе, с доставкой или дома', ft_retsept: 'Облегчить рецепт', ft_retseptH: 'Вкус остаётся, калорий меньше', ft_odatdagi: 'Мои обычные приёмы пищи', ft_odatdagiH: 'Частое — в одно нажатие',
     ft_idishlar: 'Моя посуда', ft_idishlarH: 'Своя тарелка и ляган — точнее расчёт', ft_yesam: 'А если съесть это?', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_hafta: 'Ваша неделя', ft_haftaH: 'Итоги недели короткой историей',
-    ftBtn: 'Возможности', ftMore: 'Ещё', ft_kunkarta: 'Карточка итога дня', ft_kunkartaH: 'Поделитесь итогом дня картинкой', ft_ulashish: 'Поделиться результатом', ft_ulashishH: 'Только выбранные вами цифры', ft_supp: 'Витамины и добавки', ft_suppH: 'Что нужно, а что необязательно' });
+    ftBtn: 'Возможности', ftSub: 'Что умеет KalkiFit', ftNew: 'готово', ftIntro: 'Посмотреть знакомство снова', ftG_tez: 'Быстро добавить', ftG_natija: 'Итоги', ftG_yemak: 'Что можно съесть?', ftG_mening: 'Моё', ftG_soglik: 'Здоровье', ftS_ovoz: 'Голос', ftS_rasm: 'Фото', ftS_menyu: 'Меню', ft_kunkarta: 'Карточка итога дня', ft_kunkartaH: 'Поделитесь итогом дня картинкой', ft_ulashish: 'Поделиться результатом', ft_ulashishH: 'Только выбранные вами цифры', ft_supp: 'Витамины и добавки', ft_suppH: 'Что нужно, а что необязательно' });
   Object.assign(D.uz, { apPh: 'Taom nomini yozing…',  tdMeals: 'Bugungi ovqatlar', tdEmpty: "Bugun hali ovqat yozilmagan. Pastdagi «Qo'shish» tugmasini bosing — nomini yozing, ayting yoki suratga oling.",
               
     fwTry: "Sinab ko'rish",
@@ -476,7 +476,7 @@
   function feat(k) {
     switch (k) {
       case 'yozish': openAdd({}); return;
-      case 'ovoz': openAdd({}); voiceStart(); return;
+      case 'ovoz': openAdd({}); if (micOk()) voiceStart(); else ovBoot(function () { if (kit.sheetKind() === 'add' && fd && fd.mode === 'search') { if (micOk()) voiceStart(); else toast(T(navigator.onLine === false ? 'vErr_tarmoq' : 'vErr_yoq')); } }); return;          // iPhone veb: server kaliti javobini kutadi
       case 'rasm': openAdd({}); act('fphoto'); return;
       case 'menyu': openAdd({}); if (Y && Y.menuOpen) Y.menuOpen('add'); return;
       case 'yeymiz': act('yedoor'); return;
@@ -576,10 +576,10 @@
     return order.map(function (k) { var o = g[k], pt = o.e.unit && o.e.unit !== 'g100' && String(o.e.unit).indexOf('v:') !== 0 ? qtyStr(o.qty) + ' ' + unitName(o.e.unit) : fmt(Math.round(o.g)) + ' ' + T('gram'); return '<div class="sl-wlr"><span class="m">' + esc(o.nm) + ' <small>' + esc(pt) + '</small></span><b>' + fmt(o.ml) + ' ' + ML() + '</b></div>'; }).join('');
   }
   function ftSeen(set) { try { if (set) localStorage.setItem('kalki_ft_anim', '1'); return !!localStorage.getItem('kalki_ft_anim'); } catch (e) { return set; } }          // qurilma belgisi (hisob/zaxiraga yozilmaydi — bulutga keraksiz yozuv bo'lmasin)
-  document.addEventListener('animationend', function (e) { var t = e.target; if (t && t.id === 'ftBtn') { ftSeen(true); t.classList.remove('wob'); } });
-  function ftBtnHtml() {                             // «Imkoniyatlar» tugmasi: ikkilamchi (chegarali); yengil harakat — butun umr BIR marta
-    var anim = !ftSeen() && !reduce; if (reduce) ftSeen(true);          // belgi harakat tugagach qo'yiladi (animationend), qayta chizilish uni uzib qo'ymasin
-    return '<button type="button" class="ft-btn' + (anim ? ' wob' : '') + '" id="ftBtn" data-act="ftopen">' + ico('apps', '', 2) + '<span>' + esc(T('ftBtn')) + '</span></button>';
+  document.addEventListener('animationend', function (e) { var t = e.target; if (t && t.id === 'ftBtn') { ftSeen(true); t.classList.remove('shine'); } });
+  function ftBtnHtml() {                             // «Imkoniyatlar» tugmasi (maket): gradient, rangli ikonka kvadrati, imkoniyatlar soni (featList'dan); yaltirash — butun umr BIR marta
+    var anim = !ftSeen() && !reduce; if (reduce) ftSeen(true);          // belgi yaltirash tugagach qo'yiladi (animationend), qayta chizilish uni uzib qo'ymasin
+    return '<button type="button" class="ft-btn' + (anim ? ' shine' : '') + '" id="ftBtn" data-act="ftopen" aria-haspopup="dialog"><span class="ic"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5" opacity=".75"/><rect x="3" y="13" width="8" height="8" rx="2.5" opacity=".75"/><rect x="13" y="13" width="8" height="8" rx="2.5"/></svg></span><b>' + esc(T('ftBtn')) + '</b><span class="n">' + featList().length + '</span></button>';
   }
   function renderToday() {
     if (!prefs().suvFrom) { prefs().suvFrom = todayStr(); save(); }          // yangi qoida bugundan; eski kunlar o'zgarmaydi
@@ -666,24 +666,65 @@
   }
   function themeNow() { var t = (prefs().theme || 'auto'); return t === 'light' || t === 'dark' ? t : 'auto'; }
   function applyTheme() { var t = themeNow(), h = document.documentElement; if (t === 'auto') h.removeAttribute('data-theme'); else h.setAttribute('data-theme', t); try { if (t === 'auto') localStorage.removeItem('kalki_theme'); else localStorage.setItem('kalki_theme', t); } catch (e) {} }
-  /* Profil → «Imkoniyatlar»: barcha funksiyalar bitta ro'yxatda — nom, bir qatorli izoh va «Ochish» (feat() — maslahat kartasi bilan bitta yo'l) */
-  /* BITTA ro'yxat konfiguratsiyasi: [kalit, ikonka, mavjudmi, asosiy (Bugun paneli tepasida), AI limiti]. Profil → «Imkoniyatlar» ham, Bugun paneli ham shundan chiziladi.
-     Tartib — Profildagi tartib; panelda asosiylari (2×3) tepada, qolganlari «Yana» ro'yxatida. Yangi imkoniyat — shu yerga bitta qator + ft_<kalit>/ft_<kalit>H matnlari + feat() dagi case */
+  /* BITTA ro'yxat konfiguratsiyasi (Bugun → «Imkoniyatlar» chap paneli va Profil → «Imkoniyatlar»): { k: kalit, ic: ikonka, g: guruh, c: ikonka rangi, ok: mavjudmi, lim: limit turi }.
+     Guruhlar tartibi FT_G; «tez» guruhi — rangli kartalar (ovoz/rasm/menyu), qolganlari ro'yxat. Yangi imkoniyat — shu yerga bitta qator + ft_<kalit>/ft_<kalit>H matnlari + feat() dagi case.
+     Mavjud bo'lmagani (masalan menyu moduli yuklanmagan) ro'yxatga KIRMAYDI — to'rda bo'sh joy qolmaydi (ustunlar soni kartalar soniga teng) */
+  var FT_G = ['tez', 'natija', 'yemak', 'mening', 'soglik'];
   function featList() {
-    return [['ovoz', 'mic', micOk(), 1, 1], ['rasm', 'cam', true, 1, 1], ['menyu', 'img', !!(Y && Y.menuOpen && window.KalkiMenyu), 1, 1], ['yeymiz', 'zfork', !!Y, 1], ['retsept', 'rspark', !!R], ['odatdagi', 'star', true], ['taomlarim', 'book', true], ['idishlar', 'bowl', true], ['yesam', 'spark', true], ['hafta', 'rep', true, 1], ['kunkarta', 'share', true, 1], ['ulashish', 'trend', true], ['supp', 'pill', true]].filter(function (x) { return x[2]; });
+    return [{ k: 'ovoz', ic: 'mic', g: 'tez', ok: micCan(), lim: 'ovoz' }, { k: 'rasm', ic: 'cam', g: 'tez', ok: true, lim: 'ai' }, { k: 'menyu', ic: 'menu', g: 'tez', ok: !!(Y && Y.menuOpen && window.KalkiMenyu), lim: 'ai' },
+      { k: 'hafta', ic: 'bars', g: 'natija', c: 'pu', ok: true }, { k: 'kunkarta', ic: 'upload', g: 'natija', c: 'ye', ok: true }, { k: 'ulashish', ic: 'trend', g: 'natija', c: 'pu', ok: true },
+      { k: 'yeymiz', ic: 'zfork', g: 'yemak', c: 'ac', ok: !!Y }, { k: 'yesam', ic: 'qmark', g: 'yemak', c: 'ac', ok: true }, { k: 'retsept', ic: 'rspark', g: 'yemak', c: 'ac', ok: !!R },
+      { k: 'odatdagi', ic: 'star', g: 'mening', c: 'gr', ok: true }, { k: 'taomlarim', ic: 'book', g: 'mening', c: 'gr', ok: true }, { k: 'idishlar', ic: 'bowl', g: 'mening', c: 'gr', ok: true },
+      { k: 'supp', ic: 'pill', g: 'soglik', c: 'bl', ok: true }].filter(function (x) { return x.ok; });
   }
-  function featRow(x) {                              // butun qator bosiladi, o'ngda «›» (Ilova bo'limi kabi)
-    return '<button type="button" class="rz-row sl-feat" data-act="feat" data-fk="' + x[0] + '" aria-label="' + esc(T('ft_' + x[0])) + '"><span class="sl-ci">' + ico(x[1]) + '</span><span class="m"><b>' + esc(T('ft_' + x[0])) + '</b><span>' + esc(T('ft_' + x[0] + 'H')) + '</span></span>' + ico('chev', 'r') + '</button>';
+  function featRow(x, cls) {                         // butun qator bosiladi, o'ngda «›»
+    return '<button type="button" class="rz-row sl-feat' + (cls || '') + '" data-act="feat" data-fk="' + x.k + '" aria-label="' + esc(T('ft_' + x.k)) + '"><span class="sl-ci' + (x.c ? ' fc-' + x.c : '') + '">' + ico(x.ic) + '</span><span class="m"><b>' + esc(T('ft_' + x.k)) + (x.k === 'hafta' && hwDue() ? ' <i class="ft-new">' + esc(T('ftNew')) + '</i>' : '') + '</b><span>' + esc(T('ft_' + x.k + 'H')) + '</span></span>' + ico('chev', 'r') + '</button>';
   }
-  function featsHtml() { return '<section class="rz-card sl-feats">' + featList().map(featRow).join('') + '</section>'; }
-  /* Bugun → «Imkoniyatlar» paneli: tepada 6 asosiy (2×3), ostida «Yana» ro'yxati. Ovoz/rasm/menyuda AI limiti kichik yozuv bilan */
-  function ftLim(x) { return x[4] && aiq ? '<small class="ft-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeft', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : ''; }
-  function ftPanelHtml() {
-    var L = featList(), top = L.filter(function (x) { return x[3]; }), more = L.filter(function (x) { return !x[3]; });
-    return shHead(T('ftBtn')) + '<div class="ft-grid">' + top.map(function (x) { return '<button type="button" class="ft-tile" data-act="feat" data-fk="' + x[0] + '"><span class="sl-ci">' + ico(x[1]) + '</span><b>' + esc(T('ft_' + x[0])) + '</b><span class="h">' + esc(T('ft_' + x[0] + 'H')) + '</span>' + ftLim(x) + '</button>'; }).join('') + '</div>' +
-      (more.length ? '<div class="sl-sec2"><h3>' + esc(T('ftMore')) + '</h3></div><div class="sl-feats ft-more">' + more.map(featRow).join('') + '</div>' : '');
+  function featsHtml() { return '<section class="rz-card sl-feats">' + featList().map(function (x) { return featRow(x); }).join('') + '</section>'; }          // Profil → «Imkoniyatlar» (guruhlar tartibida)
+  /* Bugun → «Imkoniyatlar»: CHAPDAN chiqadigan panel (maket: ~/imkoniyatlar-maket.html). Ochish/yopish: tugma, ✕, fon, chapga surish, Escape, Android «orqaga» (nativeBack) */
+  function ftLimTxt(x) {
+    var q = x.lim === 'ovoz' ? ovq : x.lim === 'ai' ? aiq : null; if (!q) return '';
+    return q.qoldi > 0 ? T('qLeft', { n: q.qoldi }) : T('qNoLeft');
   }
-  function openFeats() { openSheet('feats', ftPanelHtml()); if (!aiq && !(KD && KD.on) && navigator.onLine !== false) aiPeek(); }
+  function ftDrawerHtml() {
+    var L = featList(), it = function (h, cls) { return h.replace(/^<(\w+) class="/, '<$1 class="it ' + (cls || '')); };
+    var h = '<div class="ft-dh it"><div><h2 id="ftDrH">' + esc(T('ftBtn')) + '</h2><p>' + esc(T('ftSub')) + '</p></div><button type="button" class="ft-x" data-act="ftclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>';
+    FT_G.forEach(function (g) {
+      var xs = L.filter(function (x) { return x.g === g; }); if (!xs.length) return;
+      h += '<h3 class="ft-sec it">' + esc(T('ftG_' + g)) + '</h3>';
+      if (g === 'tez') h += '<div class="ft-qa" style="--n:' + xs.length + '">' + xs.map(function (x) { var lt = ftLimTxt(x); return '<button type="button" class="ft-t it ft-' + x.k + '" data-act="feat" data-fk="' + x.k + '" aria-label="' + esc(T('ft_' + x.k)) + '">' + ico(x.ic) + '<span class="m"><b>' + esc(T('ftS_' + x.k)) + '</b><small class="ft-lim' + (lt ? '' : ' e') + '">' + esc(lt) + '</small></span></button>'; }).join('') + '</div>';
+      else h += '<div class="ft-grp it">' + xs.map(function (x) { return featRow(x); }).join('') + '</div>';
+    });
+    return h + (IN ? '<button type="button" class="ft-ft it" data-act="ftintro">' + esc(T('ftIntro')) + '</button>' : '');
+  }
+  var ftEl = null, ftTm = null, ftFocus = null;
+  function ftOpenNow() { return !!(ftEl && ftEl.dr.classList.contains('op')); }
+  function ftLimRefresh() { if (!ftOpenNow()) return; featList().forEach(function (x) { var el = ftEl.dr.querySelector('.ft-t[data-fk=' + x.k + '] .ft-lim'); if (el) { var t = ftLimTxt(x); el.textContent = t; el.classList.toggle('e', !t); } }); }
+  function openFeats() {
+    if (!ftEl) {
+      var ov = document.createElement('div'), dr = document.createElement('aside'); ov.className = 'ft-ov'; ov.hidden = true; ov.setAttribute('data-act', 'ftclose');
+      dr.className = 'ft-dr'; dr.id = 'ftDr'; dr.hidden = true; dr.setAttribute('role', 'dialog'); dr.setAttribute('aria-modal', 'true'); dr.setAttribute('aria-labelledby', 'ftDrH');
+      root.appendChild(ov); root.appendChild(dr); ftEl = { ov: ov, dr: dr }; ftSwipe(dr);
+    }
+    clearTimeout(ftTm); var o = ftEl; o.dr.innerHTML = ftDrawerHtml(); o.dr.scrollTop = 0; o.dr.style.transform = ''; o.dr.classList.toggle('anim', !reduce);
+    [].forEach.call(o.dr.querySelectorAll('.it'), function (e, i) { e.style.animationDelay = (60 + i * 35) + 'ms'; });
+    ftFocus = document.activeElement; o.ov.hidden = false; o.dr.hidden = false; void o.dr.offsetWidth; o.ov.classList.add('op'); o.dr.classList.add('op'); document.documentElement.classList.add('ft-lock');
+    setTimeout(function () { var x = o.dr.querySelector('.ft-x'); if (x && ftOpenNow()) try { x.focus({ preventScroll: true }); } catch (e) {} }, 60);
+    if (!(KD && KD.on) && navigator.onLine !== false) { if (!aiq) aiPeek(); ovBoot(function () { if (!ftOpenNow()) return; var had = !!o.dr.querySelector('.ft-ovoz'); if (had !== micOk() && !micCan()) o.dr.innerHTML = ftDrawerHtml(); else ftLimRefresh(); }); }
+  }
+  function closeFeats(now) {
+    if (!ftOpenNow()) return false; var o = ftEl; o.dr.classList.remove('op'); o.ov.classList.remove('op'); o.dr.style.transform = ''; document.documentElement.classList.remove('ft-lock');
+    clearTimeout(ftTm); ftTm = setTimeout(function () { if (!ftOpenNow()) { o.dr.hidden = true; o.ov.hidden = true; o.dr.innerHTML = ''; } }, now || reduce ? 0 : 360);
+    if (ftFocus && ftFocus.focus && document.contains(ftFocus) && !now) try { ftFocus.focus({ preventScroll: true }); } catch (e) {}
+    return true;
+  }
+  function ftSwipe(dr) {                             // chapga surish: barmoqqa ergashadi; 70 px dan ko'p yoki tez surilsa — yopiladi. Vertikal aylantirish — brauzerniki (touch-action: pan-y)
+    var s = null;
+    dr.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse') return; s = { x: e.clientX, y: e.clientY, t: Date.now(), on: false }; });
+    dr.addEventListener('pointermove', function (e) { if (!s) return; var dx = e.clientX - s.x, dy = e.clientY - s.y; if (!s.on) { if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { s = null; return; } if (dx < -8 && Math.abs(dx) > Math.abs(dy)) s.on = true; else return; } dr.style.transition = 'none'; dr.style.transform = 'translateX(' + Math.min(0, dx) + 'px)'; });
+    var end = function (e) { if (!s) return; var dx = (e.clientX || s.x) - s.x, on = s.on, v = dx / Math.max(1, Date.now() - s.t); s = null; dr.style.transition = ''; if (!on) return; if (dx < -70 || v < -0.5) closeFeats(); else dr.style.transform = ''; };
+    dr.addEventListener('pointerup', end); dr.addEventListener('pointercancel', function () { if (s && s.on) { dr.style.transition = ''; dr.style.transform = ''; } s = null; });
+  }
   function renderProfile() {
     if (PS.state === 0) loadPush(function () { if (view === 'profile' && !kit.sheetKind()) render(); });          // yangi foydalanuvchida kalit so'rovi faqat Profil ochilganda (boshqa joyda tarmoq so'rovi yo'q)
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
@@ -796,6 +837,7 @@
   function yzLog(key, por) { var ml = mealNow(); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
     if (HK) { HK.close(); return 'overlay'; }          // «Haftangiz» hikoyasi
+    if (closeFeats()) return 'overlay';                // «Imkoniyatlar» chap paneli
     if (IN && IN.isOpen && IN.isOpen()) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return 'overlay'; }
     if (kit.tipsOn()) { kit.tipsEnd(); return 'overlay'; }
     var yg = $('#ygOk'); if (yg) { yg.click(); return 'overlay'; }
@@ -1078,7 +1120,7 @@
   var ovq = null;          // ovoz limiti (AI hisobidan alohida): { limit, qoldi } — /api/ovoz va ovozdan keyingi taom ajratish javoblari
   function ovqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; ovq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
   function aiqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
-  function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); if (kit.sheetKind() === 'feats') { setSheet(ftPanelHtml()); return; } if (fd && fd.mode === 'search' && kit.sheetKind() === 'add') { repaintPick(); return; } if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
+  function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); ftLimRefresh(); if (fd && fd.mode === 'search' && kit.sheetKind() === 'add') { repaintPick(); return; } if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
   /* rasm natijasi → bazadagi taom (kkal bazadan); topilmasa AI qiymati «taxminiy ±30%». vs — AI variantlari (ehtimol bo'yicha): asosiysi + «Bu emasmi?» */
   function phItem(o, nom, vs) {
     var g = o.g > 0 ? o.g : 0, m = aiItem({ nom: nom, porsiya: g ? g + ' g' : o.porsiya, kcal: o.kcal }, true), it;
@@ -1996,9 +2038,14 @@
 
   /* ---------- ovozli kiritish (assets/kalkifit-ovoz.js): ovoz → matn (qurilmada) → odatiy matn oqimi (bazadan kkal; topilmagani — BITTA AI so'rov, umumiy limit) ---------- */
   var VO = null, vs = null, ovSrv = false;            // ovSrv — serverda OPENAI kaliti bor (GET /api/ovoz); yo'q bo'lsa iOS'da 🎤 ko'rinmaydi
+  function micCan() {                               // ro'yxatda ko'rsatish: hozir ishlaydi YOKI server yo'li (iPhone veb) javobi hali kelmagan, lekin brauzer yozib ola oladi
+    if (micOk()) return true; if (ovDone || !window.KalkiOvoz) return false; var n = navigator; return !!(window.MediaRecorder && n.mediaDevices && n.mediaDevices.getUserMedia);
+  }
   function micOk() { if (!VO && window.KalkiOvoz) VO = KalkiOvoz.create({ lang: function () { return lang; }, server: function () { return ovSrv; }, post: ovPost }); return !!(VO && VO.ok()); }
   var ovAsked = false;
-  function ovBoot() { if (ovAsked || navigator.onLine === false || (KD && KD.on)) return; ovAsked = true; try { loadJson('/api/ovoz?mijoz_id=' + encodeURIComponent(cid()), function (j) { ovqSet(j); var was = ovSrv; ovSrv = !!(j && j.yoqilgan); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search' && document.activeElement !== $('#fdQ')) { setSheet(searchHtml()); refreshRes(); } }, function () { ovSrv = false; }); } catch (e) {} }
+  var ovDone = false, ovW = [];                       // ovDone — /api/ovoz javobi keldi (yoki so'ralmaydi); ovW — javobni kutayotganlar
+  function ovFlush() { ovDone = true; var w = ovW; ovW = []; w.forEach(function (f) { try { f(); } catch (e) {} }); }
+  function ovBoot(cb) { if (cb) { if (ovDone) { cb(); return; } ovW.push(cb); } if (ovAsked) return; if (navigator.onLine === false || (KD && KD.on)) { ovFlush(); return; } ovAsked = true; try { loadJson('/api/ovoz?mijoz_id=' + encodeURIComponent(cid()), function (j) { ovqSet(j); var was = ovSrv; ovSrv = !!(j && j.yoqilgan); ovFlush(); if (was !== ovSrv && kit.sheetKind() === 'add' && fd && fd.mode === 'search' && document.activeElement !== $('#fdQ')) { setSheet(searchHtml()); refreshRes(); } }, function () { ovSrv = false; ovFlush(); }); } catch (e) { ovFlush(); } }
   function ovPost(blob, mime, til, signal) {          // server yo'li: audio → /api/ovoz → { text, tok } (tok — shu ovozning AI hisobi; keyingi taom ajratish qayta sanalmaydi)
     var u = '/api/ovoz?til=' + encodeURIComponent(til) + '&mijoz_id=' + encodeURIComponent(cid()) + (vs && vs.t0 ? '&dav=' + Math.min(31000, Date.now() - vs.t0) : '');          // dav — yozuv davomiyligi (ms): server ≤ 30 s ni tekshiradi
     return fetch(u, { method: 'POST', headers: { 'Content-Type': mime }, body: blob, signal: signal }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) {
@@ -2314,8 +2361,10 @@
       case 'add': case 'fab': openAdd({ date: view === 'history' && foodDay ? foodDay : todayStr() }); break;          // Bugun «Qo'shish» va Tarix «+» — bitta oqim
       case 'fwtry': fwTry(el.getAttribute('data-fk')); break;
       case 'fwx': fwDone(el.getAttribute('data-fk')); render(); break;
-      case 'feat': feat(el.getAttribute('data-fk')); break;
+      case 'feat': { var fk0 = el.getAttribute('data-fk'); closeFeats(true); feat(fk0); break; }
       case 'ftopen': openFeats(); break;
+      case 'ftclose': closeFeats(); break;
+      case 'ftintro': closeFeats(true); if (IN && !IN.isOpen()) IN.show(function () { try { localStorage.setItem(INTRO_K, '1'); } catch (e) {} render(); }); break;
       case 'wopen': openWaterSheet(); break;
       case 'wadd': { stEv('suv_qoshildi'); var t9 = todayStr(), x9 = S.ensureDay(st, t9); S.setWater(st, t9, x9.water + 1); commit(); vib(10); afterWater(); jokeAfter('water'); break; }
       case 'theme': { prefs().theme = el.getAttribute('data-t'); save(); applyTheme(); render(); break; }
@@ -2481,6 +2530,7 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (closeFeats()) { e.preventDefault(); return; }          // «Imkoniyatlar» chap paneli
     var mm0 = $('#kqMM'); if (mm0 && !mm0.hidden) { mealMenu(false); var mb0 = $('#kqMeal'); if (mb0) mb0.focus(); return; }
     if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (kit.sheetKind()) kit.closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
   });

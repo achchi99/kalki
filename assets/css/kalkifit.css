@@ -1029,16 +1029,54 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz .sl-bju .tr{display:block;height:5px;margin-top:4px;border-radius:3px;background:var(--track);overflow:hidden}
 .rz .sl-bju .tr i{display:block;height:100%;border-radius:3px;transition:width .4s ease,background-color .3s ease}
 .rz .sl-bjub:active{opacity:.85}
-/* Bugun → «Imkoniyatlar» tugmasi va paneli (v39). Tugma — ikkilamchi (chegarali), «Qo'shish»dan kam ko'zga tashlanadi; tor ekranda sana ostiga tushadi, yozuv qisqarmaydi */
-.rz .sl-hd2{flex-wrap:wrap;gap:8px 12px}.rz .sl-hd2 .t{flex:1 1 auto}
-.rz .ft-btn{display:inline-flex;align-items:center;gap:8px;flex:none;min-height:40px;padding:0 14px 0 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:inherit;font-size:var(--t-s);font-weight:600;line-height:1.2;white-space:nowrap}
-.rz .ft-btn .rz-i{width:20px;height:20px;color:var(--accink);flex:none}.rz .ft-btn:active{background:var(--soft)}
-@keyframes ftWob{0%,100%{transform:none}15%{transform:rotate(-5deg)}30%{transform:rotate(5deg)}45%{transform:rotate(-3deg)}60%{transform:rotate(2deg)}75%{transform:none}}
-.rz .ft-btn.wob{animation:ftWob .9s ease-in-out .8s 1}
-@media (prefers-reduced-motion:reduce){.rz .ft-btn.wob{animation:none}}
-.rz .ft-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 4px}
-.rz .ft-tile{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;min-height:116px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:inherit;font:inherit;text-align:left}
-.rz .ft-tile .sl-ci{width:36px;height:36px;border-radius:11px;margin-bottom:4px}
-.rz .ft-tile b{font-size:var(--t-s);font-weight:600;line-height:1.3}.rz .ft-tile .h{font-size:var(--t-xs);color:var(--mut);line-height:1.35}
-.rz .ft-tile .ft-lim{font-size:var(--t-lbl);font-weight:600;color:var(--accink);line-height:1.25}.rz .ft-tile .ft-lim.z{color:var(--mut)}.rz .ft-tile:active{background:var(--soft)}
-.rz .ft-more{padding:0;margin-top:2px}
+/* Bugun → «Imkoniyatlar» (v40, maket: ~/imkoniyatlar-maket.html). Ranglar ilova tokenlariga moslangan; matn kontrasti WCAG AA (yorug' va tungi).
+   Tugma: gradient, rangli ikonka kvadrati, son nishoni; yaltirash — bir marta (.shine). Tor ekranda sana ostiga tushadi, yozuv qisqarmaydi */
+.sl{--ftqi:#FFFFFF;--ftic1:#F08A4B;--ftic2:#E8572F;--ftb1:#FFF3EA;--ftb2:#FFE1D2;--ftbsh:0 6px 18px -8px rgba(228,87,46,.55);--ftn:#FFFFFF;--ftov:rgba(35,22,12,.38);
+  --ftq1a:#CC4D26;--ftq1b:#AD3A19;--ftq2a:#2E78C2;--ftq2b:#215F9E;--ftq3a:#27824F;--ftq3b:#1C6640;
+  --fcpu:#F3E8FF;--fcpui:#7C3AED;--fcye:#FFF3D6;--fcyei:#A16207;--fcgr:#E7F3EC;--fcgri:#237A4E;--fcbl:#E3F0FA;--fcbli:#2A6FB5;--ftnew:#B93F1D;--ftnewi:#FFFFFF}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--ftb1:#3A2823;--ftb2:#46281E;--ftbsh:0 6px 18px -10px rgba(0,0,0,.6);--ftn:rgba(255,255,255,.1);--ftov:rgba(0,0,0,.55);
+  --ftq1a:#B5502F;--ftq1b:#8C3A21;--ftq2a:#2F6FA8;--ftq2b:#22507C;--ftq3a:#2D7A52;--ftq3b:#1F5A3C;
+  --fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}}
+html[data-theme=dark] .sl{--ftb1:#3A2823;--ftb2:#46281E;--ftbsh:0 6px 18px -10px rgba(0,0,0,.6);--ftn:rgba(255,255,255,.1);--ftov:rgba(0,0,0,.55);
+  --ftq1a:#B5502F;--ftq1b:#8C3A21;--ftq2a:#2F6FA8;--ftq2b:#22507C;--ftq3a:#2D7A52;--ftq3b:#1F5A3C;
+  --fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}
+.rz .sl-hd2{flex-wrap:wrap;gap:8px 12px;align-items:flex-start}.rz .sl-hd2 .t{flex:1 1 112px;min-width:112px}          /* sana o'raladi; .t 112 px dan torayadigan bo'lsa tugma pastki qatorga tushadi */
+.rz .ft-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;flex:none;min-height:48px;padding:7px 12px 7px 7px;border:0;border-radius:18px;background:linear-gradient(135deg,var(--ftb1),var(--ftb2));box-shadow:0 1px 0 rgba(255,255,255,.7) inset,var(--ftbsh);color:var(--ink);font:inherit;white-space:nowrap;cursor:pointer;transition:transform .12s}
+html[data-theme=dark] .rz .ft-btn{box-shadow:var(--ftbsh)}@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rz .ft-btn{box-shadow:var(--ftbsh)}}
+.rz .ft-btn .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--ftic1),var(--ftic2));box-shadow:0 4px 10px -4px rgba(228,87,46,.8)}
+.rz .ft-btn .ic svg{width:18px;height:18px}
+.rz .ft-btn b{font-size:var(--t-s);font-weight:600;line-height:1.2}
+.rz .ft-btn .n{font-size:var(--t-lbl);line-height:1.2;color:var(--accink);background:var(--ftn);border-radius:8px;padding:2px 6px;margin-left:-2px;font-weight:600}
+.rz .ft-btn:active{transform:scale(.97)}
+.rz .ft-btn.shine:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);transform:translateX(-120%);animation:ftSh 1.4s .6s ease-out 1}
+@keyframes ftSh{to{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){.rz .ft-btn.shine:after{animation:none;display:none}}
+/* chap panel */
+.rz .ft-ov{position:fixed;inset:0;z-index:95;background:var(--ftov);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .28s}
+.rz .ft-ov.op{opacity:1}
+.rz .ft-dr{position:fixed;top:0;bottom:0;left:0;z-index:96;width:min(86vw,360px);background:var(--bg);color:var(--ink);border-radius:0 28px 28px 0;box-shadow:12px 0 40px -12px rgba(0,0,0,.35);transform:translateX(-104%);transition:transform .34s cubic-bezier(.2,.9,.25,1);overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:calc(22px + env(safe-area-inset-top,0px)) 16px calc(30px + env(safe-area-inset-bottom,0px))}
+.rz .ft-dr.op{transform:none}
+.rz .ft-dr.anim.op .it{animation:ftIn .38s cubic-bezier(.2,.9,.25,1) both}
+@keyframes ftIn{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rz .ft-ov,.rz .ft-dr{transition:none}.rz .ft-dr.anim.op .it{animation:none}}
+html.ft-lock #rzMain{overflow:hidden}
+.rz .ft-dh{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rz .ft-dh h2{margin:0;font-size:var(--t-pn);font-weight:700;letter-spacing:-.02em;line-height:1.2}.rz .ft-dh p{margin:2px 0 0;color:var(--mut);font-size:var(--t-xs);line-height:1.35}
+.rz .ft-x{flex:none;width:40px;height:40px;border-radius:12px;border:0;background:var(--soft);color:var(--ink);display:grid;place-items:center;cursor:pointer}.rz .ft-x svg{width:20px;height:20px}
+.rz .ft-sec{margin:20px 4px 8px;font-size:var(--t-lbl);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);line-height:1.3}
+.rz .ft-qa{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:8px}
+.rz .ft-t{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:10px;min-height:104px;min-width:0;padding:12px 10px;border:0;border-radius:18px;color:var(--ftqi);font:inherit;text-align:left;cursor:pointer}
+.rz .ft-t svg{width:26px;height:26px}.rz .ft-t .m{display:flex;flex-direction:column;min-width:0}
+.rz .ft-t b{font-size:var(--t-s);font-weight:600;line-height:1.15}.rz .ft-t small{display:block;margin-top:2px;font-size:var(--t-lbl);font-weight:500;line-height:1.25;opacity:.95}.rz .ft-t small.e{display:none}
+.rz .ft-t:active{transform:scale(.97)}
+.rz .ft-t.ft-ovoz{background:linear-gradient(150deg,var(--ftq1a),var(--ftq1b))}.rz .ft-t.ft-rasm{background:linear-gradient(150deg,var(--ftq2a),var(--ftq2b))}.rz .ft-t.ft-menyu{background:linear-gradient(150deg,var(--ftq3a),var(--ftq3b))}
+.rz .ft-grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:2px 12px}
+.rz .ft-grp .sl-feat{display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 0;width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}
+.rz .ft-grp .sl-feat:last-child{border-bottom:0}
+.rz .ft-grp .sl-feat .sl-ci{width:38px;height:38px;border-radius:12px;flex:none}.rz .ft-grp .sl-feat .sl-ci svg{width:20px;height:20px}
+.rz .ft-grp .sl-feat .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.rz .ft-grp .sl-feat .m b{font-size:var(--t-s);font-weight:600;line-height:1.3}.rz .ft-grp .sl-feat .m>span{font-size:var(--t-lbl);font-weight:400;color:var(--mut);line-height:1.35}
+.rz .ft-grp .sl-feat .r{width:18px;height:18px;color:var(--mut);flex:none}.rz .ft-grp .sl-feat:active{background:var(--soft)}
+.rz .sl-ci.fc-pu{background:var(--fcpu);color:var(--fcpui)}.rz .sl-ci.fc-ye{background:var(--fcye);color:var(--fcyei)}.rz .sl-ci.fc-ac{background:var(--accsoft);color:var(--accink)}.rz .sl-ci.fc-gr{background:var(--fcgr);color:var(--fcgri)}.rz .sl-ci.fc-bl{background:var(--fcbl);color:var(--fcbli)}
+.rz .ft-new{font-style:normal;display:inline-block;margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--ftnew);color:var(--ftnewi);font-size:var(--t-lbl);font-weight:600;line-height:1.3;vertical-align:1px}
+.rz .ft-ft{display:block;width:100%;margin:18px 0 0;min-height:44px;border:0;background:transparent;color:var(--accink);font:inherit;font-size:var(--t-s);font-weight:600;cursor:pointer}
