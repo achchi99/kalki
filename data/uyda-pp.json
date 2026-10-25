@@ -250,6 +250,7 @@
    "t": "tayyorsiz",
    "min": 3,
    "m": "bs",
+   "ic": "tvorog",
    "n": {
     "uz": "Tvorog va yunon yogurti",
     "ru": "Творог с греческим йогуртом"
@@ -286,6 +287,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "bs",
+   "ic": "tvorog",
    "n": {
     "uz": "Tvorog va mevalar",
     "ru": "Творог с фруктами"
@@ -326,6 +328,7 @@
    "t": "tayyorsiz",
    "min": 2,
    "m": "bs",
+   "ic": "protein-kokteyl",
    "n": {
     "uz": "Protein kokteyl (suv bilan)",
     "ru": "Протеиновый коктейль (на воде)"
@@ -358,6 +361,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "bs",
+   "ic": "protein-kokteyl",
    "n": {
     "uz": "Protein kokteyl sut va banan bilan",
     "ru": "Протеиновый коктейль с молоком и бананом"
@@ -394,6 +398,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "bs",
+   "ic": "smuzi",
    "n": {
     "uz": "Kefir, banan va suli kokteyli",
     "ru": "Коктейль из кефира, банана и овсянки"
@@ -430,6 +435,7 @@
    "t": "tayyorsiz",
    "min": 3,
    "m": "bs",
+   "ic": "yogurt",
    "n": {
     "uz": "Yunon yogurti va yong'oq",
     "ru": "Греческий йогурт с орехами"
@@ -466,6 +472,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "bls",
+   "ic": "tuxum",
    "n": {
     "uz": "Qaynatilgan tuxum va sabzavot",
     "ru": "Варёные яйца с овощами"
@@ -503,6 +510,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "bs",
+   "ic": "tost",
    "n": {
     "uz": "Non va tvorog pastasi",
     "ru": "Хлеб с творожной пастой"
@@ -543,6 +551,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "bs",
+   "ic": "tost",
    "n": {
     "uz": "Avokado va tuxumli tost",
     "ru": "Тост с авокадо и яйцом"
@@ -580,6 +589,7 @@
    "t": "tayyorsiz",
    "min": 2,
    "m": "s",
+   "ic": "banan",
    "n": {
     "uz": "Banan va yong'oq",
     "ru": "Банан с орехами"
@@ -613,6 +623,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "bs",
+   "ic": "kefir",
    "n": {
     "uz": "Kefirli suli (kechadan tayyor)",
     "ru": "Овсянка на кефире (с вечера)"
@@ -653,6 +664,7 @@
    "t": "tayyorsiz",
    "min": 3,
    "m": "bs",
+   "ic": "yogurt-meva",
    "n": {
     "uz": "Yogurt va rezavorlar",
     "ru": "Йогурт с ягодами"
@@ -689,6 +701,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "bls",
+   "ic": "sendvich",
    "n": {
     "uz": "Pishloq va pomidorli buterbrod",
     "ru": "Бутерброд с сыром и помидором"
@@ -729,6 +742,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "ls",
+   "ic": "salat-sabzavot",
    "n": {
     "uz": "Sabzavot tayoqchalari va tvorog sousi",
     "ru": "Овощные палочки с творожным соусом"
@@ -773,6 +787,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "ls",
+   "ic": "ayron",
    "n": {
     "uz": "Kefir va bodring (sovuq)",
     "ru": "Кефир с огурцом (холодный)"
@@ -809,6 +824,7 @@
    "t": "tayyorsiz",
    "min": 2,
    "m": "s",
+   "ic": "aralash-yongoq",
    "n": {
     "uz": "Yong'oq va quruq mevalar",
     "ru": "Орехи с сухофруктами"
@@ -845,6 +861,7 @@
    "t": "tayyorsiz",
    "min": 4,
    "m": "bs",
+   "ic": "smuzi",
    "n": {
     "uz": "Banan va sutli smuzi",
     "ru": "Смузи с бананом и молоком"
@@ -881,6 +898,7 @@
    "t": "tayyorsiz",
    "min": 3,
    "m": "bs",
+   "ic": "tvorog",
    "n": {
     "uz": "Tvorog, asal va yong'oq",
     "ru": "Творог с мёдом и орехами"
@@ -917,6 +935,7 @@
    "t": "tayyorsiz",
    "min": 3,
    "m": "bs",
+   "ic": "yogurt",
    "n": {
     "uz": "Olma bilan yunon yogurti",
     "ru": "Греческий йогурт с яблоком"
@@ -953,6 +972,7 @@
    "t": "tayyorsiz",
    "min": 5,
    "m": "bls",
+   "ic": "lavash-yupqa",
    "n": {
     "uz": "Tvorogli lavash",
     "ru": "Лаваш с творогом"
@@ -993,6 +1013,7 @@
    "t": "tez",
    "min": 10,
    "m": "bl",
+   "ic": "tuxum-boltunya",
    "n": {
     "uz": "Sabzavotli omlet",
     "ru": "Омлет с овощами"
@@ -1039,6 +1060,7 @@
    "t": "tez",
    "min": 10,
    "m": "bl",
+   "ic": "tuxum-boltunya",
    "n": {
     "uz": "Pishloqli ismaloq omleti",
     "ru": "Омлет со шпинатом и сыром"
@@ -1081,6 +1103,7 @@
    "t": "tez",
    "min": 10,
    "m": "lds",
+   "ic": "lavash",
    "n": {
     "uz": "Tovuqli lavash-rulet",
     "ru": "Лаваш-ролл с курицей"
@@ -1125,6 +1148,7 @@
    "t": "tez",
    "min": 10,
    "m": "bl",
+   "ic": "lavash-yupqa",
    "n": {
     "uz": "Tuxumli lavash-rulet",
     "ru": "Лаваш-ролл с яйцом"
@@ -1166,6 +1190,7 @@
    "t": "tez",
    "min": 15,
    "m": "ld",
+   "ic": "tovuq-kokrak",
    "n": {
     "uz": "Grechka va tovuq",
     "ru": "Гречка с курицей"
@@ -1210,6 +1235,7 @@
    "t": "tez",
    "min": 10,
    "m": "bs",
+   "ic": "shirguruch",
    "n": {
     "uz": "Banan va yong'oqli suli bo'tqa",
     "ru": "Овсяная каша с бананом и орехами"
@@ -1254,6 +1280,7 @@
    "t": "tez",
    "min": 15,
    "m": "bs",
+   "ic": "sirniki",
    "n": {
     "uz": "Tvorogli sirniki (tovada)",
     "ru": "Сырники на сковороде"
@@ -1299,6 +1326,7 @@
    "t": "tez",
    "min": 10,
    "m": "ld",
+   "ic": "tunets",
    "n": {
     "uz": "Tunets salati",
     "ru": "Салат с тунцом"
@@ -1348,6 +1376,7 @@
    "t": "tez",
    "min": 10,
    "m": "ld",
+   "ic": "sendvich",
    "n": {
     "uz": "Tovuqli sendvich",
     "ru": "Сэндвич с курицей"
@@ -1396,6 +1425,7 @@
    "t": "tez",
    "min": 10,
    "m": "bl",
+   "ic": "tuxum",
    "n": {
     "uz": "Ismaloq va pomidorli tuxum",
     "ru": "Яичница со шпинатом и помидором"
@@ -1433,6 +1463,7 @@
    "t": "tez",
    "min": 12,
    "m": "ld",
+   "ic": "qovurilgan-guruch",
    "n": {
     "uz": "Tuxumli guruch (sabzavot bilan)",
     "ru": "Рис с яйцом и овощами"
@@ -1479,6 +1510,7 @@
    "t": "tez",
    "min": 12,
    "m": "ld",
+   "ic": "krevetka",
    "n": {
     "uz": "Krevetka va qovoqcha",
     "ru": "Креветки с кабачком"
@@ -1519,6 +1551,7 @@
    "t": "tez",
    "min": 15,
    "m": "ld",
+   "ic": "spagetti",
    "n": {
     "uz": "Makaron va tunets",
     "ru": "Паста с тунцом"
@@ -1563,6 +1596,7 @@
    "t": "tez",
    "min": 15,
    "m": "ld",
+   "ic": "tovuq-kokrak-grill",
    "n": {
     "uz": "Tovuq va brokkoli",
     "ru": "Курица с брокколи"
@@ -1603,6 +1637,7 @@
    "t": "tez",
    "min": 10,
    "m": "ld",
+   "ic": "salat-sabzavot",
    "n": {
     "uz": "Yasmiqli salat",
     "ru": "Салат с чечевицей"
@@ -1652,6 +1687,7 @@
    "t": "tez",
    "min": 12,
    "m": "bl",
+   "ic": "burrito",
    "n": {
     "uz": "Tuxum va loviyali tortilya",
     "ru": "Тортилья с яйцом и фасолью"
@@ -1697,6 +1733,7 @@
    "t": "tez",
    "min": 15,
    "m": "bld",
+   "ic": "turk-mucver",
    "n": {
     "uz": "Qovoqchali frittata",
     "ru": "Фриттата с кабачком"
@@ -1743,6 +1780,7 @@
    "t": "tez",
    "min": 15,
    "m": "ld",
+   "ic": "turk-kumpir",
    "n": {
     "uz": "Pishgan kartoshka va tvorog",
     "ru": "Печёный картофель с творогом"
@@ -1783,6 +1821,7 @@
    "t": "tez",
    "min": 12,
    "m": "bs",
+   "ic": "pankeyk",
    "n": {
     "uz": "Banan va sulili pankeyk",
     "ru": "Банано-овсяные панкейки"
@@ -1824,6 +1863,7 @@
    "t": "tez",
    "min": 10,
    "m": "ld",
+   "ic": "salat-qatiq",
    "n": {
     "uz": "Tovuq va bodring salati",
     "ru": "Салат с курицей и огурцом"
@@ -1868,6 +1908,7 @@
    "t": "tez",
    "min": 10,
    "m": "lds",
+   "ic": "pita",
    "n": {
     "uz": "Tovuqli pita",
     "ru": "Пита с курицей"
@@ -1912,6 +1953,7 @@
    "t": "tez",
    "min": 10,
    "m": "ld",
+   "ic": "salat-sabzavot",
    "n": {
     "uz": "Mosh va sabzavot salati",
     "ru": "Салат с машем и овощами"
@@ -1956,6 +1998,7 @@
    "t": "tez",
    "min": 12,
    "m": "ld",
+   "ic": "turk-cacik",
    "n": {
     "uz": "Kefirli okroshka",
     "ru": "Окрошка на кефире"
@@ -2001,6 +2044,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "yasmiq-shurva",
    "n": {
     "uz": "Yasmiq (chechevitsa) sho'rva",
     "ru": "Суп из чечевицы"
@@ -2049,6 +2093,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "tovuq-qozon",
    "n": {
     "uz": "Yasmiq garniri va tovuq",
     "ru": "Чечевица с курицей"
@@ -2093,6 +2138,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "tovuq-duxovka",
    "n": {
     "uz": "Duxovkada tovuq va sabzavot",
     "ru": "Курица с овощами в духовке"
@@ -2137,6 +2183,7 @@
    "t": "pishirsa",
    "min": 40,
    "m": "ld",
+   "ic": "mastava",
    "n": {
     "uz": "Yengil mastava",
     "ru": "Лёгкая мастава"
@@ -2189,6 +2236,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "sazan-duxovka",
    "n": {
     "uz": "Duxovkada baliq (treska)",
     "ru": "Треска в духовке"
@@ -2233,6 +2281,7 @@
    "t": "pishirsa",
    "min": 45,
    "m": "ld",
+   "ic": "dimlama",
    "n": {
     "uz": "Yengil dimlama",
     "ru": "Лёгкая димлама"
@@ -2285,6 +2334,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "moshxorda-goshtsiz",
    "n": {
     "uz": "Yengil moshxo'rda",
     "ru": "Лёгкая мошхурда"
@@ -2337,6 +2387,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "moshkichiri",
    "n": {
     "uz": "Yengil moshkichiri",
     "ru": "Лёгкая мошкичири"
@@ -2381,6 +2432,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "shorva",
    "n": {
     "uz": "Yengil tovuq sho'rva",
     "ru": "Лёгкий куриный суп"
@@ -2425,6 +2477,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "turk-ezogelin",
    "n": {
     "uz": "Qovoqli krem-sho'rva",
     "ru": "Тыквенный крем-суп"
@@ -2469,6 +2522,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "osh-tovuq",
    "n": {
     "uz": "Bulg'urli tovuq oshi (yengil)",
     "ru": "Бульгур с курицей (лёгкий плов)"
@@ -2513,6 +2567,7 @@
    "t": "pishirsa",
    "min": 25,
    "m": "ld",
+   "ic": "losos-steyk",
    "n": {
     "uz": "Losos va brokkoli (duxovka)",
     "ru": "Лосось с брокколи в духовке"
@@ -2553,6 +2608,7 @@
    "t": "pishirsa",
    "min": 40,
    "m": "ld",
+   "ic": "turk-karniyarik",
    "n": {
     "uz": "Baqlajon va qiyma (duxovka)",
     "ru": "Баклажан с фаршем в духовке"
@@ -2597,6 +2653,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "ld",
+   "ic": "kotlet",
    "n": {
     "uz": "Kurka kotleti (bug'da) va kartoshka",
     "ru": "Паровые котлеты из индейки с картофелем"
@@ -2641,6 +2698,7 @@
    "t": "pishirsa",
    "min": 40,
    "m": "ld",
+   "ic": "sabzavot-ragu",
    "n": {
     "uz": "Tovuq va sabzavotli ragu",
     "ru": "Рагу из курицы с овощами"
@@ -2689,6 +2747,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "turk-kuru-fasulye",
    "n": {
     "uz": "Loviya va pomidorli dimlama",
     "ru": "Фасоль с помидорами"
@@ -2734,6 +2793,7 @@
    "t": "pishirsa",
    "min": 45,
    "m": "ld",
+   "ic": "noxat-ragu",
    "n": {
     "uz": "Yengil no'xat sho'rva",
     "ru": "Лёгкий суп из нута"
@@ -2782,6 +2842,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "qiyma",
    "n": {
     "uz": "Grechka va qiyma",
     "ru": "Гречка с фаршем"
@@ -2826,6 +2887,7 @@
    "t": "pishirsa",
    "min": 45,
    "m": "ld",
+   "ic": "tovuq-duxovka",
    "n": {
     "uz": "Duxovkada tovuq va kartoshka",
     "ru": "Курица с картофелем в духовке"
@@ -2866,6 +2928,7 @@
    "t": "pishirsa",
    "min": 25,
    "m": "bld",
+   "ic": "turk-menemen",
    "n": {
     "uz": "Shakshuka (pomidorli tuxum)",
     "ru": "Шакшука"
@@ -2911,6 +2974,7 @@
    "t": "pishirsa",
    "min": 40,
    "m": "ld",
+   "ic": "shurva-mol",
    "n": {
     "uz": "Yengil qovurma sho'rva",
     "ru": "Лёгкий жаркое-суп"
@@ -2959,6 +3023,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "ld",
+   "ic": "baliq-uxa",
    "n": {
     "uz": "Yengil baliq sho'rva",
     "ru": "Лёгкая уха"
@@ -2999,6 +3064,7 @@
    "t": "pishirsa",
    "min": 35,
    "m": "bs",
+   "ic": "chizkeyk",
    "n": {
     "uz": "Tvorogli zapekanka",
     "ru": "Творожная запеканка"
@@ -3040,6 +3106,7 @@
    "t": "pishirsa",
    "min": 30,
    "m": "bs",
+   "ic": "pechenye-suli",
    "n": {
     "uz": "Suli va banan pishirig'i",
     "ru": "Овсяная запеканка с бананом"

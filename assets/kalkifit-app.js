@@ -154,24 +154,24 @@
     hkWaterU: 'мл воды — в среднем в день', hkStepsU: 'шагов — всего', hkMoveT: 'Вода и движение', hkBestT: 'Лучший день', hkStreakU: 'дн. подряд с записями', hkFoodT: 'Чаще всего ели', hkWt: 'Вес (видите только вы): {d} кг', hkTipT: 'Совет на следующую неделю', hkShare: 'Поделиться', hkClose: 'Закрыть', hkAvgT: 'ккал/день в среднем', hkNearS: 'дней около цели' });
   Object.assign(D.uz, { pgMen: 'Men', pgSet: 'Sozlamalar', pgImk: 'Imkoniyatlar', pgApp: 'Ilova', pgAcc: 'Hisob va zaxira', sIntro: "Tanishtiruvni qayta ko'rish", ftOpen: 'Ochish',
     ft_ovoz: "Ovoz bilan qo'shish", ft_ovozH: "Ayting — ro'yxat o'zi tuziladi", ft_rasm: "Rasm bilan qo'shish", ft_rasmH: 'Taom va porsiya rasmdan aniqlanadi', ft_menyu: 'Menyudan tanlash', ft_menyuH: 'Kafe menyusidan maqsadga mos taomlar',
-    ft_yeymiz: 'Bugun nima yeymiz?', ft_yeymizH: "Uyda tez va sog'lom (60+ retsept), kafe yoki buyurtma", ft_retsept: 'Retseptni yengillashtirish', ft_retseptH: "Ta'mi qoladi, kaloriyasi kamayadi", ft_odatdagi: 'Odatdagi ovqatlarim', ft_odatdagiH: "Bir bosishda qo'shish",
+    ft_yeymiz: 'Nima yesam ekan?', ft_yeymizH: "Uyda tez va sog'lom (60+ retsept), kafe yoki buyurtma", ft_retsept: 'Retseptni yengillashtirish', ft_retseptH: "Ta'mi qoladi, kaloriyasi kamayadi", ft_odatdagi: 'Odatdagi ovqatlarim', ft_odatdagiH: "Bir bosishda qo'shish",
     ft_idishlar: 'Mening idishlarim', ft_idishlarH: "O'z kosa va laganingiz bilan aniqroq", ft_yesam: 'Buni yesam-chi?', ft_yesamH: "Yeyishdan oldin kunga ta'sirini ko'ring", ft_hafta: 'Haftangiz', ft_haftaH: 'Hafta xulosasi qisqa hikoyada',
-    ftBtn: 'Imkoniyatlar', ftSub: 'KalkiFit nimalar qila oladi', ftNew: 'tayyor', ftIntro: "Tanishtiruvni qayta ko'rish", ftG_tez: "Tez qo'shish", ftG_natija: 'Natijalar', ftG_yemak: "Nima yesam bo'ladi?", ftG_mening: 'Mening', ftG_soglik: "Sog'liq", ftS_ovoz: 'Ovoz', ftS_rasm: 'Rasm', ftS_menyu: 'Menyu', ft_kunkarta: 'Kun yakuni kartasi', ft_kunkartaH: 'Natijani rasm qilib ulashing', ft_ulashish: 'Natijamni ulashish', ft_ulashishH: "Faqat o'zingiz tanlagan raqamlar", ft_supp: "Vitaminlar va qo'shimchalar", ft_suppH: 'Nima kerak, nima shart emas' });
+    ftBtn: 'Imkoniyatlar', ftSub: 'KalkiFit nimalar qila oladi', ftNew: 'tayyor', ftIntro: "Tanishtiruvni qayta ko'rish", ftG_tez: "Tez qo'shish", ftG_natija: 'Natijalar', ftG_yemak: 'Ovqat tanlash', ftG_mening: 'Mening', ftG_soglik: "Sog'liq", ftS_ovoz: 'Ovoz', ftS_rasm: 'Rasm', ftS_menyu: 'Menyu', ft_kunkarta: 'Kun yakuni kartasi', ft_kunkartaH: 'Natijani rasm qilib ulashing', ft_ulashish: 'Natijamni ulashish', ft_ulashishH: "Faqat o'zingiz tanlagan raqamlar", ft_supp: "Vitaminlar va qo'shimchalar", ft_suppH: 'Nima kerak, nima shart emas' });
   Object.assign(D.ru, { pgMen: 'Обо мне', pgSet: 'Настройки', pgImk: 'Возможности', pgApp: 'Приложение', pgAcc: 'Аккаунт и резервная копия', sIntro: 'Посмотреть знакомство снова', ftOpen: 'Открыть',
     ft_ovoz: 'Добавить голосом', ft_ovozH: 'Скажите — список составится сам', ft_rasm: 'Добавить по фото', ft_rasmH: 'Блюдо и порция определяются по фото', ft_menyu: 'Выбор по меню', ft_menyuH: 'Блюда из меню кафе под вашу цель',
-    ft_yeymiz: 'Что поесть сегодня?', ft_yeymizH: 'Дома быстро и полезно (60+ рецептов), кафе или заказ', ft_retsept: 'Облегчить рецепт', ft_retseptH: 'Вкус остаётся, калорий меньше', ft_odatdagi: 'Мои обычные приёмы пищи', ft_odatdagiH: 'Частое — в одно нажатие',
+    ft_yeymiz: 'Что бы мне съесть?', ft_yeymizH: 'Дома быстро и полезно (60+ рецептов), кафе или заказ', ft_retsept: 'Облегчить рецепт', ft_retseptH: 'Вкус остаётся, калорий меньше', ft_odatdagi: 'Мои обычные приёмы пищи', ft_odatdagiH: 'Частое — в одно нажатие',
     ft_idishlar: 'Моя посуда', ft_idishlarH: 'Своя тарелка и ляган — точнее расчёт', ft_yesam: 'А если съесть это?', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_hafta: 'Ваша неделя', ft_haftaH: 'Итоги недели короткой историей',
-    ftBtn: 'Возможности', ftSub: 'Что умеет KalkiFit', ftNew: 'готово', ftIntro: 'Посмотреть знакомство снова', ftG_tez: 'Быстро добавить', ftG_natija: 'Итоги', ftG_yemak: 'Что можно съесть?', ftG_mening: 'Моё', ftG_soglik: 'Здоровье', ftS_ovoz: 'Голос', ftS_rasm: 'Фото', ftS_menyu: 'Меню', ft_kunkarta: 'Карточка итога дня', ft_kunkartaH: 'Поделитесь итогом дня картинкой', ft_ulashish: 'Поделиться результатом', ft_ulashishH: 'Только выбранные вами цифры', ft_supp: 'Витамины и добавки', ft_suppH: 'Что нужно, а что необязательно' });
+    ftBtn: 'Возможности', ftSub: 'Что умеет KalkiFit', ftNew: 'готово', ftIntro: 'Посмотреть знакомство снова', ftG_tez: 'Быстро добавить', ftG_natija: 'Итоги', ftG_yemak: 'Выбор еды', ftG_mening: 'Моё', ftG_soglik: 'Здоровье', ftS_ovoz: 'Голос', ftS_rasm: 'Фото', ftS_menyu: 'Меню', ft_kunkarta: 'Карточка итога дня', ft_kunkartaH: 'Поделитесь итогом дня картинкой', ft_ulashish: 'Поделиться результатом', ft_ulashishH: 'Только выбранные вами цифры', ft_supp: 'Витамины и добавки', ft_suppH: 'Что нужно, а что необязательно' });
   Object.assign(D.uz, { apPh: 'Taom nomini yozing…',  tdMeals: 'Bugungi ovqatlar', tdEmpty: "Bugun hali ovqat yozilmagan. Pastdagi «Qo'shish» tugmasini bosing — nomini yozing, ayting yoki suratga oling.",
               
     fwTry: "Sinab ko'rish",
     fw_ovoz: "Ovoz bilan qo'shing", fw_ovozH: "Ayting: «bir kosa sho'rva va non» — ro'yxat o'zi tuziladi.", fw_rasm: 'Taomni suratga oling', fw_rasmH: 'Rasmdan taom va porsiya aniqlanadi, kaloriya bazadan olinadi.', fw_menyu: 'Kafe menyusidan tanlang', fw_menyuH: 'Menyuni suratga oling — maqsadingizga mos taomlar ko\'rsatiladi.',
-    fw_yeymiz: 'Nima yeyishni bilmayapsizmi?', fw_yeymizH: '«Bugun nima yeymiz?» kafe, buyurtma yoki uyda mos taomni topadi.', fw_hafta: 'Haftangizni ko\'ring', fw_haftaH: 'Har yakshanba hafta xulosasi qisqa hikoya bo\'lib chiqadi.', fw_kunkarta: 'Kuningizni ulashing', fw_kunkartaH: "Kun natijasi chiroyli rasm bo'ladi — vazn va shaxsiy ma'lumotsiz.", fw_google: "Ma'lumotingizni saqlang", fw_googleH: 'Google bilan kirsangiz, telefon almashsa ham hammasi qoladi.' });
+    fw_yeymiz: 'Nima yeyishni bilmayapsizmi?', fw_yeymizH: "«Nima yesam ekan?» uyda tez tayyorlanadigan, kafe yoki buyurtmadan mos taomni topadi.", fw_hafta: 'Haftangizni ko\'ring', fw_haftaH: 'Har yakshanba hafta xulosasi qisqa hikoya bo\'lib chiqadi.', fw_kunkarta: 'Kuningizni ulashing', fw_kunkartaH: "Kun natijasi chiroyli rasm bo'ladi — vazn va shaxsiy ma'lumotsiz.", fw_google: "Ma'lumotingizni saqlang", fw_googleH: 'Google bilan kirsangiz, telefon almashsa ham hammasi qoladi.' });
   Object.assign(D.ru, { apPh: 'Название блюда…',  tdMeals: 'Еда за сегодня', tdEmpty: 'Сегодня еда ещё не записана. Нажмите «Добавить» внизу — напишите название, скажите или сфотографируйте.',
               
     fwTry: 'Попробовать',
     fw_ovoz: 'Добавляйте голосом', fw_ovozH: 'Скажите: «тарелка супа и хлеб» — список составится сам.', fw_rasm: 'Сфотографируйте блюдо', fw_rasmH: 'По фото определяются блюдо и порция, калории — из базы.', fw_menyu: 'Выбирайте по меню кафе', fw_menyuH: 'Сфотографируйте меню — покажем блюда под вашу цель.',
-    fw_yeymiz: 'Не знаете, что поесть?', fw_yeymizH: '«Что поесть сегодня?» найдёт блюдо в кафе, с доставкой или дома.', fw_hafta: 'Посмотрите свою неделю', fw_haftaH: 'Каждое воскресенье — итоги недели короткой историей.', fw_kunkarta: 'Поделитесь днём', fw_kunkartaH: 'Итог дня станет красивой картинкой — без веса и личных данных.', fw_google: 'Сохраните данные', fw_googleH: 'Войдите через Google — при смене телефона всё сохранится.' });
+    fw_yeymiz: 'Не знаете, что поесть?', fw_yeymizH: '«Что бы мне съесть?» подберёт быстрое блюдо дома, в кафе или с доставкой.', fw_hafta: 'Посмотрите свою неделю', fw_haftaH: 'Каждое воскресенье — итоги недели короткой историей.', fw_kunkarta: 'Поделитесь днём', fw_kunkartaH: 'Итог дня станет красивой картинкой — без веса и личных данных.', fw_google: 'Сохраните данные', fw_googleH: 'Войдите через Google — при смене телефона всё сохранится.' });
   Object.assign(D.uz, { ovLeft: 'Bugun {q} ta ovozli kiritish qoldi ({n} tadan).', ovLimit: "Bugungi ovozli kiritish tugadi, yozib qo'shing" });
   Object.assign(D.ru, { ovLeft: 'Сегодня осталось голосовых вводов: {q} из {n}.', ovLimit: 'Сегодняшний голосовой ввод закончился, добавьте текстом' });
   Object.assign(D.uz, { qaOnPill: 'Yoqish', qaRowS: 'Telefon sensori orqali', qaRowHc: 'Health Connect orqali', stWeb: 'Qadam ilovada avtomatik sanaladi' });
@@ -295,6 +295,10 @@
     return IMGS[fid] || IMGS[k] || IKX[fid] || IKX[k] || null;
   }
   var KAT_ICO = { salat: 'kSalat', shorva: 'kShorva', issiq: 'kGosht', zakuska: 'kZakuska', desert: 'kDesert' };          // ikonkasi yo'q taom: bosh harf o'rniga toifa ikonkasi (menyudan qo'shilganlar — e.ikat)
+  function tileFile(file, name, px, hi) {             // rasm fayli nomi bo'yicha (retseptlar: data/uyda-pp.json `ic`); fayl bo'lmasa — oddiy tile
+    if (!file) return tileHtml(null, null, name, px, hi); var sz = '--s:' + px + 'px';
+    return '<span class="sl-tile" style="' + sz + '"><img src="/assets/ovqat/' + file + (hi ? '-256' : '-128') + '.webp"' + (hi ? '' : ' srcset="/assets/ovqat/' + file + '-128.webp 1x, /assets/ovqat/' + file + '-256.webp 2x"') + ' alt="" width="' + px + '" height="' + px + '" loading="lazy" decoding="async"></span>';
+  }
   function tileHtml(fid, vr, name, px, hi, kat) {
     var f = imgFile(fid, vr), sz = '--s:' + px + 'px';
     if (f) return '<span class="sl-tile" style="' + sz + '"><img src="/assets/ovqat/' + f + (hi ? '-256' : '-128') + '.webp"' + (hi ? '' : ' srcset="/assets/ovqat/' + f + '-128.webp 1x, /assets/ovqat/' + f + '-256.webp 2x"') + ' alt="" width="' + px + '" height="' + px + '" loading="lazy" decoding="async"></span>';
@@ -834,9 +838,26 @@
     return { k: k, p: Math.max(0, Math.round(pl.macros.p - tot.p)) };
   }
   function ppLog(it) {                               // «Uyda» retsepti: «Yedim» — kundalikka bitta yozuv (kkal/BJU tarkibdan hisoblangan, «taxminiy»); varaq yopiladi, hazil shundan keyin ko'rinadi
-    var t = todayStr(), ml = mealNow(), pa = prefs(), e = S.addFood(st, t, { fid: null, name: String(it.name).slice(0, 80), meal: ml, unit: 'porsiya', qty: it.qty, g: it.g, kcal: it.k, p: it.p, f: it.f, c: it.c, est: true, ifid: it.ifid || '', ts: Date.now() });
+    var t = todayStr(), ml = mealNow(), pa = prefs(), e = S.addFood(st, t, { fid: null, name: String(it.name).slice(0, 80), meal: ml, unit: 'porsiya', qty: it.qty, g: it.g, kcal: it.k, p: it.p, f: it.f, c: it.c, est: true, ifid: it.ifid || '', ts: nowTs() });
     var prev = pa.ppAte; pa.ppAte = (Array.isArray(prev) ? prev : []).concat([[t, it.id]]); var lim = Dt.addDays(t, -3); pa.ppAte = pa.ppAte.filter(function (z) { return z[0] >= lim; }).slice(-30);          // faqat bugun/kecha kerak (takrorlanmasin)
     kit.closeSheet(); commit(); vib(); toast(T('ppAteDone', { x: it.name }), function () { S.removeFood(st, t, e.id); pa.ppAte = (pa.ppAte || []).filter(function (z) { return !(z[0] === t && z[1] === it.id); }); commit(); }, true); jokeAfter('food', {});
+  }
+  /* «Nima yesam ekan?» [+]: bir bosishda 1 porsiya (qo'shish oqimidagi [+] kabi: ✓ bo'ladi, oyna ochiq qoladi, toast'da «Bekor qilish», qayta bosilsa — bekor; hazil oyna yopilgach) */
+  var yzAdded = {};
+  function yzAddToggle(key, nm, build) {
+    var t = todayStr();
+    if (yzAdded[key]) { S.removeFood(st, t, yzAdded[key]); delete yzAdded[key]; commit(); kit.hideToast(); if (Y) Y.redraw(); return; }
+    var e = build(); if (!e) return; e.meal = mealNow(); if (!e.ts) e.ts = nowTs(); var it = S.addFood(st, t, e); yzAdded[key] = it.id; commit(); vib(); if (Y) Y.redraw();
+    toast(T('aAdded', { x: nm }), function () { S.removeFood(st, t, it.id); delete yzAdded[key]; commit(); if (Y) Y.redraw(); }, true, 3000); afterWater(); jokeAfter('food', {});
+  }
+  function yzQuickRecipe(key, it) {
+    yzAddToggle(key, it.name, function () { var pa = prefs(), t = todayStr(), lim = Dt.addDays(t, -3); pa.ppAte = (Array.isArray(pa.ppAte) ? pa.ppAte : []).concat([[t, it.id]]).filter(function (z) { return z[0] >= lim; }).slice(-30); return { fid: null, name: String(it.name).slice(0, 80), unit: 'porsiya', qty: 1, g: it.g, kcal: it.k, p: it.p, f: it.f, c: it.c, est: true, ifid: it.ifid || '' }; });
+  }
+  function yzQuickKey(key, fkey, por, half) {          // Kafeda / Buyurtma: ko'rsatilgan porsiya (yoki yarmi)
+    var s = OR.split(fkey), f = foodById(s.id); if (!f) return; var b = f.al ? foodById(f.al.f) : f, o = {}; if (!prepFood(o, s.id, s.v && b && b.fam ? S.famSelOf(b, s.v) : null)) return;
+    if (por) { if (por.u && o.food.u.some(function (u) { return u[0] === por.u; })) { o.unit = por.u; o.qty = por.n || 1; } else if (por.g > 0) { o.unit = 'g100'; o.qty = Math.max(10, Math.round(por.g / 10) * 10); } }
+    if (half) o.qty = o.unit === 'g100' ? Math.max(10, Math.round(o.qty / 20) * 10) : o.qty / 2;
+    yzAddToggle(key, nameOf(o.fam || o.food) + ' · ' + pwSumQ(o), function () { return entryOf(o); });
   }
   function ppSaveTpl(name, item) {                   // «Odatdagi ovqatlarim»ga: bitta qator (porsiya bilan)
     var t = S.addTemplate(st, name, [item], mealNow()); if (!t) { toast(T('tplFull')); return; } vib(); commit();
@@ -857,6 +878,7 @@
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
     if (HK) { HK.close(); return 'overlay'; }          // «Haftangiz» hikoyasi
     if (closeFeats()) return 'overlay';                // «Imkoniyatlar» chap paneli
+    if (Y && Y.backStep && Y.backStep()) return 'step';          // «Nima yesam ekan?»: retsept sahifasi / «Uyda nima bor?» → ro'yxat
     if (IN && IN.isOpen && IN.isOpen()) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return 'overlay'; }
     if (kit.tipsOn()) { kit.tipsEnd(); return 'overlay'; }
     var yg = $('#ygOk'); if (yg) { yg.click(); return 'overlay'; }
@@ -1728,7 +1750,7 @@
   }
   function entryOf(o) {                              // porsiya → kundalik yozuvi (porsiya oynasi va [+] uchun bitta)
     var f = o.food, pt = pwCalc(o), vv = vOf(o.unit);
-    return { fid: f.id, name: f.custom ? f.n : null, meal: fd.meal, unit: o.unit, qty: o.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: o.fam ? f.vr : null, sz: o.fam && o.fam.fam.sz ? o.szid : null, vn: vv ? vName(vv) : null, vf: vv ? (o.vfill || 'tola') : null };
+    return { fid: f.id, name: f.custom ? f.n : null, meal: fd ? fd.meal : mealNow(), unit: o.unit, qty: o.qty, g: pt.g, kcal: pt.kcal, p: pt.p, f: pt.f, c: pt.c, est: !!f.e, ts: nowTs(), vr: o.fam ? f.vr : null, sz: o.fam && o.fam.fam.sz ? o.szid : null, vn: vv ? vName(vv) : null, vf: vv ? (o.vfill || 'tola') : null };
   }
   function addedToast(nm, date, ids, key) {
     toast(T('aAdded', { x: nm }), function () { ids.forEach(function (x) { S.removeFood(st, date, x); }); if (fd && fd.added) delete fd.added[key]; commit(); if (fd && kit.sheetKind() === 'add' && fd.mode === 'search') refreshRes(); }, true, 3000);
@@ -2550,6 +2572,7 @@
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (closeFeats()) { e.preventDefault(); return; }          // «Imkoniyatlar» chap paneli
+    if (Y && Y.backStep && Y.backStep()) { e.preventDefault(); return; }
     var mm0 = $('#kqMM'); if (mm0 && !mm0.hidden) { mealMenu(false); var mb0 = $('#kqMeal'); if (mb0) mb0.focus(); return; }
     if (document.body.classList.contains('rz-aboutopen')) aboutOpen(false); else if (kit.sheetKind()) kit.closeSheet(); else { var lm = $('#rzLangMenu'); if (lm) lm.hidden = true; }
   });
@@ -2567,7 +2590,7 @@
       ab.insertBefore(bar, ab.firstChild); bar.firstChild.addEventListener('click', function () { aboutOpen(false); });
     }
     if (Y) Y.init({ D: D, T: T, esc: esc, ico: ico, catIcon: catIcon, $: $, lang: function () { return lang; }, prefs: prefs, save: save, render: render, S: S, fmt: fmt, unitName: unitName, foodById: foodById, nameOf: nameOf, tileHtml: tileHtml, toast: toast, shHead: shHead,
-      openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, today: todayStr, addDays: function (d, n) { return Dt.addDays(d, n); }, mealNow: mealNow, remFull: yzRemFull, logRecipe: ppLog, saveTpl: ppSaveTpl, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
+      openSheet: openSheet, setSheet: setSheet, closeSheet: function () { kit.closeSheet(); }, today: todayStr, addDays: function (d, n) { return Dt.addDays(d, n); }, mealNow: mealNow, remFull: yzRemFull, logRecipe: ppLog, saveTpl: ppSaveTpl, tileFile: tileFile, quickRecipe: yzQuickRecipe, quickKey: yzQuickKey, added: function (k) { return !!yzAdded[k]; }, addedReset: function () { yzAdded = {}; }, reduce: function () { return !!reduce; }, openAdd: openAdd, by: orIndex, tags: function () { return orTags; }, table: function () { return orTable; }, remaining: yzRemaining, orSrc: function () { return orSrc(fd); }, orDesc: orDesc, orApply: orApply, portionHtml: portionHtml,
       sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons, withDb: function (cb) { loadDb(function (err) { if (err) return; loadOr(cb); }); }, pickKey: yzPick, logKey: yzLog, logMenu: menuLog, imgPrep: imgPrep, aiNetErr: aiNetErr, pushResync: pushResync, matchFood: menuMatch, cid: cid, aiPlat: aiPlat, aiqSet: aiqSet, isCyr: isCyr, openExternal: openExternal, infoTitle: infoTitle,
       obYnToggle: function (t) { var l = ob.yemay || (ob.yemay = []), i = l.indexOf(t); if (i > -1) l.splice(i, 1); else l.push(t); showOnb(); } });
     if (R) R.init({ D: D, T: T, esc: esc, ico: ico, $: $, $$: $$, lang: function () { return lang; }, isCyr: isCyr, toast: toast, openSheet: openSheet, setSheet: setSheet, sheetKind: function () { return kit.sheetKind(); }, addIcons: kit.addIcons,

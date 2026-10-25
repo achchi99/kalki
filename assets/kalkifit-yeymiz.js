@@ -9,16 +9,16 @@
   var D = {
     uz: {
       rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
-      ppLead0: "Uyda tez tayyorlanadigan sog'lom variantlar", ppLeft: 'Sizga {k} kkal va {p} g oqsil qoldi', ppLeftK: 'Sizga {k} kkal qoldi', ppLeftZ: "Bugungi kkal to'ldi — eng yengil variantlar",
-      ppNow_b: 'Hozir nonushtaga mos', ppNow_l: 'Hozir tushlikka mos', ppNow_d: 'Hozir kechki ovqatga mos', ppNow_s: 'Hozir tamaddiga mos',
-      ppT_all: 'Hammasi', ppT_0: '0–5 daq', ppT_1: '10–15 daq', ppT_3: '30+ daq', ppM_all: 'Har qanday', ppM_b: 'Nonushta', ppM_l: 'Tushlik', ppM_d: 'Kechki', ppM_s: 'Tamaddi',
-      ppG_tayyorsiz: 'Tayyorlamasdan · 0–5 daq', ppG_tez: 'Tez · 10–15 daq', ppG_pishirsa: 'Pishirsa · 25–45 daq',
-      ppHaveT: 'Uyda nima bor?', ppHaveH: "Belgilang — faqat shulardan tayyorlanadiganlar chiqadi.", ppHaveClear: 'Tozalash', ppHaveN: '{n} ta tanlandi', ppHaveSet: 'Shulardan tayyorlash mumkin · {n}', ppMore: 'Yana 1 mahsulot kerak · {n}', ppNeed: 'kerak: {x}',
-      ppNoRes: "Shu mahsulotlardan hozircha tayyorlanadigani yo'q — yana bittasini belgilang.", ppNoAll: "Mos retsept topilmadi. Filtrni o'zgartiring.", ppShow: "Yana ko'rsatish",
-      ppMin: '{n}\u00a0daq', ppK: '{k}\u00a0kkal', ppP: 'oqsil {p}\u00a0g', ppEst: 'taxminiy', ppIng: 'Tarkibi', ppSteps: 'Tayyorlash', ppPort: 'Porsiya', ppAte: 'Yedim', ppSave: 'Odatdagiga saqlash', ppSaved: "«{x}» Odatdagi ovqatlarimga saqlandi", ppNote: 'Qiymatlar mahsulotlar bazasidan tarkib bo\'yicha hisoblangan — taxminiy.', ppDona: 'dona',
-      ppAteDone: 'Yozildi: {x}', ppLegacy: "Boshqa uyda taomlar (kabob, sho'rva, tandir…)", ppBack: '‹ Tez PP retseptlar',
-      yzT: 'Bugun nima yeymiz?', yzDoorS: "Uyda tez va sog'lom, kafe yoki buyurtma", yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
-      yzS_kafe: 'Kafe va choyxonada', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
+      nyStNo: "Uyda tez tayyorlanadigan sog'lom variantlar", nyStNoS: "Profilni to'ldirsangiz, qolgan kkalga moslab beramiz.", nyStOk: 'Sizga {k} kkal va {p} g oqsil qoldi', nyStOkK: 'Sizga {k} kkal qoldi', nyStOkS: 'Kun vaqtiga mos variantlar tepada.', nyStOkP: 'Oqsilga boy variantlar tepada.', nyStOkPd: "Oqsil me'yori bajarildi — yengil variantlar ham bor.",
+      nyStLow: 'Bugungi limit deyarli tugadi — {k} kkal qoldi.', nyStLowP: "Lekin oqsil {p} g kam. Yengil, oqsilga boy variantlar tepada.", nyStLowN: 'Eng yengil variantlar tepada.', nyStOver: 'Bugungi limitga yetdingiz — bu ham yaxshi natija.', nyStOverS: 'Och qolsangiz, eng yengil variantlar tepada.',
+      chAll: 'Hammasi', ch5: '⚡ 5 daq gacha', ch15: '15 daq gacha', ch30: '30+ daq', chHave: '🧺 Uyda borlar', chHaveN: '🧺 Uyda borlar · {n}',
+      lbBest_b: 'Nonushtaga eng mos', lbBest_l: 'Tushlikka eng mos', lbBest_d: 'Kechki ovqatga eng mos', lbBest_s: 'Tamaddiga eng mos', lbMore: 'Yana variantlar', lbHave: 'Uyda borlardan', lbNeed: 'Yana 1 mahsulot kerak', lbNeedX: 'kerak: {x}', lbFish: 'Baliq kuni — uyda', lbFit: "Bugungi limitga sig'adi", lbOver: 'Bugungi limitdan oshadi', lbPop: 'Mashhur taomlar', lbHalf: 'yarim porsiya — {k} kkal',
+      tgOqsil: 'Oqsilga boy', tgYengil: 'yengil', fMin: '{n} daq', fK: '{k} kkal', fP: 'oqsil {p} g', nyNote: "Kkal — taxminiy, bazadagi mahsulotlardan hisoblangan.", nyNoHave: "Shu mahsulotlardan hozircha tayyorlanadigani yo'q — yana bittasini belgilang.", nyNoAll: "Mos retsept topilmadi — boshqa filtrni tanlang.",
+      dtMin: 'daqiqa', dtK: 'kkal', dtP: 'oqsil', dtF: "yog'", dtPort: 'Porsiya', dtIng: "Kerak bo'ladi", dtSteps: 'Tayyorlash', dtAte: 'Yedim · {k} kkal', dtSave: 'Odatdagiga saqlash', dtBack: 'Orqaga', dtDona: 'dona', addA: "Qo'shish: {x}", addHalf: "Yarim porsiya qo'shish: {x}",
+      hvT: 'Uyda nima bor?', hvH: 'Belgilang — faqat shulardan tayyorlanadiganlar chiqadi.', hvGo: "Ko'rsatish · {n}", hvGo0: "Belgilang", hvClear: 'Tozalash',
+      ppAteDone: 'Yozildi: {x}', ppSaved: "«{x}» Odatdagi ovqatlarimga saqlandi",
+      yzT: 'Nima yesam ekan?', yzDoorS: "Uyda tez va sog'lom, kafe yoki buyurtma", yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
+      yzS_kafe: 'Kafeda', yzS_buyurtma: 'Buyurtma', yzS_uyda: 'Uyda', yzKafe: 'kafe', yzUy: 'uyda', yzFacts: '{u} · {k} kkal · oqsil {p} g', yzAdd: 'Qo\'shish', yzMore: 'Yana ko\'rsatish',
       yzNote: 'Porsiya taxminiy — nomni bosib o\'zgartiring', yzF_oqsil: 'Oqsilga boy', yzF_yengil: 'Yengilroq', yzOsh: 'Bugungi limitdan oshadi', yzLeft: 'Bugun yana ≈ {k} kkal sig\'adi',
       mnBaza: 'bazada: {n} ≈ {g} g', mnYig: 'bazada: {n} ≈ {g} g (tarkibidan)', mnKk: '{k} kkal · oqsil {p} g', mnEst: 'taxminiy',
       mnCta: 'Menyuni suratga oling — mosini tanlab beramiz', mnTip: 'Yangi: kafe menyusini suratga oling — 2–3 mos taomni tanlab beramiz.', mnBtn: 'Menyudan tanlash', mnT: 'Menyudan tanlash', mnH: "Kafe menyusini suratga oling — bugungi qoldig'ingizga mos 2–3 taomni tanlab beramiz.", mnPriv: "Rasm saqlanmaydi. Kaloriya — bazamizdan; tarkibidan hisoblanganlari taxminiy.", mnPick: 'Menyu rasmini tanlash', mnCam: 'Rasmga olish', mnGal: 'Galereyadan', mnBusy: "Menyu o'qilmoqda…", mnRes: "Menyudan {n} ta taom topildi. Sizga mos:", mnLeft: "Bugun yana ≈ {k} kkal sig'adi", mnW_oqsil: 'Oqsilga boy', mnW_yengil: 'Yengilroq', mnW_sigadi: "Qoldiqqa sig'adi", mnNo: "Rasmda menyu matni topilmadi — yaqinroq va tekis suratga oling.", mnNoFit: "Menyudagi taomlar bazamizda topilmadi. Qidiruvdan tanlang.", mnErr: "Menyuni o'qib bo'lmadi. Keyinroq urinib ko'ring.", mnE_net: "Internet yo'q yoki aloqa uzildi. Ulanishni tekshirib, qayta urinib ko'ring.", mnE_time: "Javob kechikdi. Qayta urinib ko'ring.", mnE_fmt: "Rasm o'qilmadi. Boshqa rasm tanlang yoki qayta suratga oling.", mnE_big: 'Rasm juda katta. Boshqa rasm tanlang.', mnE_srv: "Server xatosi. Birozdan keyin qayta urinib ko'ring.", mnE_site: 'Menyu tahlili bugun juda band. Ertaga yana ishlaydi.', mnAgain: 'Boshqa rasm', mnAdded: "Qo'shildi: {n}",
@@ -33,16 +33,16 @@
     },
     ru: {
       rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
-      ppLead0: 'Быстрые полезные блюда дома', ppLeft: 'Вам осталось {k} ккал и {p} г белка', ppLeftK: 'Вам осталось {k} ккал', ppLeftZ: 'Калории на сегодня набраны — самые лёгкие варианты',
-      ppNow_b: 'Сейчас подходит на завтрак', ppNow_l: 'Сейчас подходит на обед', ppNow_d: 'Сейчас подходит на ужин', ppNow_s: 'Сейчас подходит на перекус',
-      ppT_all: 'Все', ppT_0: '0–5 мин', ppT_1: '10–15 мин', ppT_3: '30+ мин', ppM_all: 'Любой', ppM_b: 'Завтрак', ppM_l: 'Обед', ppM_d: 'Ужин', ppM_s: 'Перекус',
-      ppG_tayyorsiz: 'Без готовки · 0–5 мин', ppG_tez: 'Быстро · 10–15 мин', ppG_pishirsa: 'Приготовить · 25–45 мин',
-      ppHaveT: 'Что есть дома?', ppHaveH: 'Отметьте — покажем только то, что из этого можно приготовить.', ppHaveClear: 'Очистить', ppHaveN: 'Выбрано: {n}', ppHaveSet: 'Можно приготовить из этого · {n}', ppMore: 'Нужен ещё 1 продукт · {n}', ppNeed: 'нужно: {x}',
-      ppNoRes: 'Из этих продуктов пока ничего не приготовить — отметьте ещё один.', ppNoAll: 'Подходящих рецептов нет. Измените фильтр.', ppShow: 'Показать ещё',
-      ppMin: '{n}\u00a0мин', ppK: '{k}\u00a0ккал', ppP: 'белок {p}\u00a0г', ppEst: 'примерно', ppIng: 'Состав', ppSteps: 'Приготовление', ppPort: 'Порция', ppAte: 'Съел', ppSave: 'В «Обычные приёмы»', ppSaved: '«{x}» сохранено в «Обычные приёмы пищи»', ppNote: 'Значения рассчитаны по составу из базы продуктов — примерные.', ppDona: 'шт.',
-      ppAteDone: 'Записано: {x}', ppLegacy: 'Другие домашние блюда (кебаб, суп, тандыр…)', ppBack: '‹ Быстрые рецепты',
-      yzT: 'Что поесть сегодня?', yzDoorS: 'Дома быстро и полезно, кафе или заказ', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
-      yzS_kafe: 'Кафе и чайхана', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
+      nyStNo: 'Быстрые полезные блюда дома', nyStNoS: 'Заполните профиль — подберём под остаток калорий.', nyStOk: 'Вам осталось {k} ккал и {p} г белка', nyStOkK: 'Вам осталось {k} ккал', nyStOkS: 'Сверху — подходящее для этого времени.', nyStOkP: 'Сверху — блюда, богатые белком.', nyStOkPd: 'Норма белка выполнена — есть и лёгкие варианты.',
+      nyStLow: 'Лимит на сегодня почти исчерпан — осталось {k} ккал.', nyStLowP: 'Но белка не хватает {p} г. Лёгкие белковые варианты сверху.', nyStLowN: 'Самые лёгкие варианты сверху.', nyStOver: 'Лимит на сегодня набран — это тоже хороший результат.', nyStOverS: 'Если голодны — самые лёгкие варианты сверху.',
+      chAll: 'Все', ch5: '⚡ до 5 мин', ch15: 'до 15 мин', ch30: '30+ мин', chHave: '🧺 Что есть дома', chHaveN: '🧺 Что есть дома · {n}',
+      lbBest_b: 'Лучше всего на завтрак', lbBest_l: 'Лучше всего на обед', lbBest_d: 'Лучше всего на ужин', lbBest_s: 'Лучше всего на перекус', lbMore: 'Ещё варианты', lbHave: 'Из того, что есть дома', lbNeed: 'Нужен ещё 1 продукт', lbNeedX: 'нужно: {x}', lbFish: 'Рыбный день — дома', lbFit: 'Помещается в лимит', lbOver: 'Больше дневного лимита', lbPop: 'Популярные блюда', lbHalf: 'полпорции — {k} ккал',
+      tgOqsil: 'Много белка', tgYengil: 'лёгкое', fMin: '{n} мин', fK: '{k} ккал', fP: 'белок {p} г', nyNote: 'Ккал — примерно, рассчитано по продуктам из базы.', nyNoHave: 'Из этих продуктов пока ничего не приготовить — отметьте ещё один.', nyNoAll: 'Подходящих рецептов нет — выберите другой фильтр.',
+      dtMin: 'минут', dtK: 'ккал', dtP: 'белок', dtF: 'жиры', dtPort: 'Порция', dtIng: 'Понадобится', dtSteps: 'Приготовление', dtAte: 'Съел · {k} ккал', dtSave: 'Сохранить в «Обычные»', dtBack: 'Назад', dtDona: 'шт.', addA: 'Добавить: {x}', addHalf: 'Добавить полпорции: {x}',
+      hvT: 'Что есть дома?', hvH: 'Отметьте — покажем только то, что из этого можно приготовить.', hvGo: 'Показать · {n}', hvGo0: 'Отметьте продукты', hvClear: 'Очистить',
+      ppAteDone: 'Записано: {x}', ppSaved: '«{x}» сохранено в «Обычные приёмы пищи»',
+      yzT: 'Что бы мне съесть?', yzDoorS: 'Дома быстро и полезно, кафе или заказ', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
+      yzS_kafe: 'В кафе', yzS_buyurtma: 'Заказ', yzS_uyda: 'Дома', yzKafe: 'кафе', yzUy: 'дома', yzFacts: '{u} · {k} ккал · белок {p} г', yzAdd: 'Добавить', yzMore: 'Показать ещё',
       yzNote: 'Порция примерная — нажмите на название', yzF_oqsil: 'Много белка', yzF_yengil: 'Полегче', yzOsh: 'Превышает дневной лимит', yzLeft: 'Сегодня ещё поместится ≈ {k} ккал',
       mnBaza: 'по базе: {n} ≈ {g} г', mnYig: 'по базе: {n} ≈ {g} г (по составу)', mnKk: '{k} ккал · белок {p} г', mnEst: 'примерно',
       mnCta: 'Сфотографируйте меню — подберём подходящее', mnTip: 'Новое: сфотографируйте меню кафе — подберём 2–3 подходящих блюда.', mnBtn: 'Выбрать по меню', mnT: 'Выбрать по меню', mnH: 'Сфотографируйте меню кафе — подберём 2–3 блюда под ваш остаток на сегодня.', mnPriv: 'Фото не сохраняется. Калории — из нашей базы; рассчитанные по составу — примерные.', mnPick: 'Выбрать фото меню', mnCam: 'Сфотографировать', mnGal: 'Из галереи', mnBusy: 'Читаем меню…', mnRes: 'В меню найдено блюд: {n}. Вам подойдут:', mnLeft: 'Сегодня ещё влезает ≈ {k} ккал', mnW_oqsil: 'Богато белком', mnW_yengil: 'Полегче', mnW_sigadi: 'Влезает в остаток', mnNo: 'На фото не найден текст меню — снимите ближе и ровнее.', mnNoFit: 'Блюд из меню нет в нашей базе. Выберите через поиск.', mnErr: 'Не удалось прочитать меню. Попробуйте позже.', mnE_net: 'Нет интернета или связь прервалась. Проверьте соединение и попробуйте снова.', mnE_time: 'Ответ задержался. Попробуйте ещё раз.', mnE_fmt: 'Фото не удалось прочитать. Выберите другое или снимите заново.', mnE_big: 'Фото слишком большое. Выберите другое.', mnE_srv: 'Ошибка сервера. Попробуйте чуть позже.', mnE_site: 'Разбор меню сегодня перегружен. Завтра снова заработает.', mnAgain: 'Другое фото', mnAdded: 'Добавлено: {n}',
@@ -116,108 +116,138 @@
   function profileDays() { return dayChips('fwdayprof'); }
   function kunQisqa() { return WD[L()][kunNow()]; }
   function daySheet() { A.openSheet('fwday', A.shHead(T('fwDayT')) + '<p class="rz-p">' + esc(T('fwDayH')) + '</p>' + dayChips('fwdaypick')); }          // Profil → Baliq kuni qatori: kun tanlash (7 chip)
-  /* ---------- Uyda: tez PP retseptlar (data/uyda-pp.json; hisob va tanlash — assets/uyda-pp-core.js). Kkal/BJU tarkibdan bazadan hisoblanadi, «taxminiy» ---------- */
-  var pv = { t: null, m: null, open: {}, mult: {}, steps: {}, showG: {}, haveOpen: false, moreOpen: false, legacy: false };          // legacy — eski toifa bo'yicha «Uyda» taomlari (kabob, sho'rva, tandir…: kishi soni, xarid ro'yxati)
-  function ppView() { return !!(PP && pp) && yv.seg === 'uyda' && yv.toifa !== 'baliq' && !pv.legacy; }
-  function ppHave() { var h = A.prefs().ppHave; return Array.isArray(h) ? h.filter(function (k) { return pp.guruhlar.some(function (g) { return g.k === k; }); }) : []; }
+  /* ---------- «Nima yesam ekan?» — YAGONA karkas (maket: ~/nima-yesam-maket.html): oyna doim bir xil balandlikda; tepa qism (sarlavha, segment, holat qatori, BITTA chip qatori) qotib turadi, faqat ro'yxat aylanadi.
+     Uyda — tez PP retseptlar (data/uyda-pp.json; hisob va tanlash — assets/uyda-pp-core.js; kkal/BJU tarkibdan bazadan, «taxminiy» — ro'yxat oxirida bitta izoh). Kafeda / Buyurtma — data/yeymiz.json (shu karkasda).
+     Retsept sahifasi va «Uyda nima bor?» — oyna ICHIDA o'ngdan kirib keladigan qatlam (‹, Android «orqaga», Escape bilan qaytadi). ---------- */
+  var pv = { t: null, haveOn: false, dt: null, mult: {} };          // t: '5' | '15' | '30' | null; dt: retsept id | '#have' | null
+  var TF = { '5': { max: 5 }, '15': { max: 15 }, '30': { min: 25 } };
+  function ppHave() { var h = A.prefs().ppHave; return Array.isArray(h) && pp ? h.filter(function (k) { return pp.guruhlar.some(function (g) { return g.k === k; }); }) : []; }
   function ppSetHave(l) { A.prefs().ppHave = l; A.save(); }
   function ppRecent() { return PP.recentOf(A.prefs().ppAte, A.today(), A.addDays); }
   function ppGroupName(k) { var g = pp.guruhlar.filter(function (x) { return x.k === k; })[0]; return g ? lbl(g.n) : k; }
-  function ppSel() { return PP.pick({ data: pp, by: A.by(), ch: ch, yemaydi: yemay(), rem: A.remFull(), meal: A.mealNow(), filt: { t: pv.t, m: pv.m }, have: ppHave(), recent: ppRecent(), today: A.today() }); }
-  function ppMainId(c) { var b = null; c.items.forEach(function (i) { if (i.id !== 'suv' && (!b || i.k > b.k)) b = i; }); return b ? b.id : 'suv'; }
-  function ppIng(i) {
-    var f = A.foodById(i.id), nm = f ? nameOfKey({ id: i.id, v: i.v }) : i.id;
-    return '<li><span>' + esc(nm) + '</span><b>' + (i.n ? esc(fmtN(i.n) + ' ' + T('ppDona')) + ' · ' : '') + esc(i.g + ' ' + T('gram')) + '</b></li>';
-  }
+  function haveActive() { return pv.haveOn && ppHave().length > 0; }
+  function ppSel() { var f = Object.assign({}, TF[pv.t] || {}); return PP.pick({ data: pp, by: A.by(), ch: ch, yemaydi: yemay(), rem: A.remFull(), meal: A.mealNow(), filt: f, have: haveActive() ? ppHave() : [], recent: ppRecent(), today: A.today() }); }
   function fmtN(n) { return String(Math.round(n * 10) / 10).replace('.', ','); }
-  function ppFacts(c, rec) { return '<span class="tm">⏱ ' + esc(T('ppMin', { n: rec.min })) + ' · ' + esc(T('ppK', { k: c.k })) + ' · ' + esc(T('ppP', { p: Math.round(c.p) })) + ' · <i class="pp-est">' + esc(T('ppEst')) + '</i></span>'; }
-  function ppIsOpen(x, top) { var o = pv.open[x.rec.id]; return o == null ? !!top : !!o; }          // tepadagi eng mos variant — ochiq boshlanadi; sarlavhani bosish — yig'ish/ochish
-  function ppCard(x) {                                  // to'liq karta: nom, ⏱, kkal, oqsil, tarkib (gramm), qadamlar (yig'ilgan), porsiya, «Yedim», «Odatdagiga saqlash»
-    var r = x.rec, id = r.id, m = pv.mult[id] || 1, c = m === 1 ? x.c : PP.calc(r, A.by(), m), nm = lbl(r.n), op = !!pv.steps[id];
-    return '<article class="pp-card" data-id="' + esc(id) + '"><button type="button" class="pp-ch" data-act="ppopen" data-id="' + esc(id) + '" aria-expanded="true">' + A.tileHtml(ppMainId(c), null, nm, 44) + '<span class="m"><b class="nm">' + esc(nm) + '</b>' + ppFacts(c, r) + '</span>' + A.ico('chev', 'r') + '</button>' +
-      '<div class="pp-pt" role="group" aria-label="' + esc(T('ppPort')) + '">' + PP.MULTS.map(function (k) { return '<button type="button" class="rz-chip' + (k === m ? ' on' : '') + '" data-act="ppmul" data-id="' + esc(id) + '" data-m="' + k + '" aria-pressed="' + (k === m) + '">' + (k === 0.5 ? '½' : k === 1.5 ? '1½' : k) + '</button>'; }).join('') + '</div>' +
-      '<div class="pp-sl">' + esc(T('ppIng')) + '</div><ul class="pp-ing">' + c.items.map(ppIng).join('') + '</ul>' +
-      '<button type="button" class="pp-stb" data-act="ppsteps" data-id="' + esc(id) + '" aria-expanded="' + op + '">' + esc(T('ppSteps')) + A.ico('chev', 'r') + '</button>' + (op ? '<ol class="sl-stps pp-stps">' + r.qad[L()].map(function (z) { return '<li>' + esc(z) + '</li>'; }).join('') + '</ol>' : '') +
-      '<div class="pp-act"><button type="button" class="sl-main" data-act="ppate" data-id="' + esc(id) + '">' + esc(T('ppAte')) + ' · ' + esc(T('ppK', { k: c.k })) + '</button><button type="button" class="rz-btn ghost" data-act="ppsave" data-id="' + esc(id) + '">' + A.ico('star') + '<span>' + esc(T('ppSave')) + '</span></button></div></article>';
+  function recTile(r, px, hi) { return A.tileFile(r.ic, lbl(r.n), px, hi); }
+  /* holat qatori: qolgan kkal va oqsilga qarab bitta aniq gap (+ izoh) */
+  function statusHtml() {
+    var rem = A.remFull(), b, s;
+    if (!rem) { b = T('nyStNo'); s = T('nyStNoS'); }
+    else {
+      var k = Math.round(rem.k), p = Math.round(rem.p);
+      if (k <= 0) { b = T('nyStOver'); s = T('nyStOverS'); }
+      else if (k < PP.LOW) { b = T('nyStLow', { k: k }); s = p >= 15 ? T('nyStLowP', { p: p }) : T('nyStLowN'); }
+      else { b = p > 0 ? T('nyStOk', { k: k, p: p }) : T('nyStOkK', { k: k }); s = p <= 0 ? T('nyStOkPd') : (p * 4 >= k * 0.3 ? T('nyStOkP') : T('nyStOkS')); }
+    }
+    return '<div class="ny-st" id="nySt" role="status"><b>' + esc(b) + '</b>' + (s ? '<span>' + esc(s) + '</span>' : '') + '</div>';
   }
-  function ppRow(x, more, top) {                        // yig'ilgan qator (bosilsa to'liq karta ochiladi)
-    var r = x.rec, nm = lbl(r.n);
-    if (ppIsOpen(x, top)) return ppCard(x);
-    return '<button type="button" class="pp-row" data-act="ppopen" data-id="' + esc(r.id) + '" aria-expanded="false">' + A.tileHtml(ppMainId(x.c), null, nm, 44) + '<span class="m"><b class="nm">' + esc(nm) + '</b>' + ppFacts(x.c, r) + (more && x.miss.length ? '<span class="pp-need">' + esc(T('ppNeed', { x: x.miss.map(ppGroupName).join(', ') })) + '</span>' : '') + '</span>' + A.ico('chev', 'r') + '</button>';
+  function chipBtn(on, act, v, txt, cls, attr) { return '<button type="button" class="ny-c' + (on ? ' on' : '') + (cls ? ' ' + cls : '') + '" data-act="' + act + '" data-' + (attr || 'v') + '="' + esc(v) + '" aria-pressed="' + on + '">' + esc(txt) + '</button>'; }
+  function chipsHtmlNy() {
+    if (yv.seg === 'uyda') { var hv = ppHave(), on = haveActive(); return '<div class="ny-ch" role="group">' + [['', 'chAll'], ['5', 'ch5'], ['15', 'ch15'], ['30', 'ch30']].map(function (x) { return chipBtn((pv.t || '') === x[0], 'nyt', x[0], T(x[1])); }).join('') + chipBtn(on, 'nyhave', '', on ? T('chHaveN', { n: hv.length }) : T('chHave'), 'ho') + '</div>'; }
+    return '<div class="ny-ch" role="group">' + CHIPS.filter(function (c) { return !(c === 'baliq' && avoids('baliq')); }).map(function (c) { return chipBtn(c === yv.toifa, 'yechip2', c, T('yzC_' + c), '', 'c'); }).join('') + '</div>';
   }
-  function ppChips(act, cur, items) { return '<div class="sl-ye-chips in pp-fl" role="radiogroup">' + items.map(function (k) { var on = (k[0] || null) === (cur || null); return '<button type="button" role="radio" class="rz-chip' + (on ? ' on' : '') + '" aria-checked="' + on + '" data-act="' + act + '" data-v="' + (k[0] || '') + '">' + esc(k[1]) + '</button>'; }).join('') + '</div>'; }
-  function ppHaveHtml(have) {
-    var open = pv.haveOpen || have.length > 0, chips = pp.guruhlar.map(function (g) { var on = have.indexOf(g.k) > -1; return '<button type="button" class="rz-chip' + (on ? ' on' : '') + '" data-act="pph" data-v="' + g.k + '" aria-pressed="' + on + '">' + esc(lbl(g.n)) + '</button>'; }).join('');
-    return '<section class="pp-have"><button type="button" class="pp-hb" data-act="pphs" aria-expanded="' + open + '"><b>' + esc(T('ppHaveT')) + '</b><span>' + esc(have.length ? T('ppHaveN', { n: have.length }) : T('ppHaveH')) + '</span>' + A.ico('chev', 'r') + '</button>' +
-      (open ? '<div class="sl-ye-chips in pp-hc" role="group">' + chips + '</div>' + (have.length ? '<button type="button" class="sl-txtbtn" data-act="pphc">' + esc(T('ppHaveClear')) + '</button>' : '') : '') + '</section>';
+  function segHtml() { return '<div class="ny-seg" role="tablist">' + YC.SEG.map(function (s) { var on = s === yv.seg; return '<button type="button" role="tab" class="' + (on ? 'on' : '') + '" aria-selected="' + on + '" data-act="yeseg" data-s="' + s + '">' + (s === 'uyda' ? A.ico('zhome') : '') + '<span>' + esc(T('yzS_' + s)) + '</span></button>'; }).join('') + '</div>'; }
+  /* ixcham karta: rasm, nom, ⏱ daq · kkal · oqsil (yashil); o'ngda «+» — bir bosishda (✓ — qayta bosilsa bekor) */
+  function card(o) {
+    return '<div class="ny-it"' + (o.id ? ' data-id="' + esc(o.id) + '"' : '') + '><button type="button" class="ny-m" ' + o.main + '>' + o.tile + '<span class="tx">' + (o.tag ? '<span class="ny-tag">' + esc(o.tag) + '</span>' : '') + '<b class="nm">' + esc(o.name) + '</b><span class="mt">' + o.facts + '</span>' + (o.extra || '') + '</span></button>' +
+      (o.plus ? '<button type="button" class="ny-pl' + (o.done ? ' done' : '') + '" ' + o.plus + ' aria-label="' + esc(T(o.halfBtn ? 'addHalf' : 'addA', { x: o.name })) + '">' + (o.done ? A.ico('check', '', 2.6) : (o.halfBtn ? '½' : A.ico('plus', '', 2.4))) + '</button>' : A.ico('chev', 'r')) + '</div>';
   }
-  function ppBody() {
-    var sel = ppSel(), rem = sel.fit, have = ppHave(), meal = A.mealNow(), h = '';
-    h += '<p class="pp-lead">' + (rem ? (rem.k > 0 ? esc(rem.p > 0 ? T('ppLeft', { k: Math.round(rem.k), p: Math.round(rem.p) }) : T('ppLeftK', { k: Math.round(rem.k) })) : esc(T('ppLeftZ'))) : esc(T('ppLead0'))) + '</p>';
-    var flt = ppChips('ppt', pv.t, [['', T('ppT_all')], ['0', T('ppT_0')], ['1', T('ppT_1')], ['3', T('ppT_3')]]) + ppChips('ppm', pv.m, [['', T('ppM_all')], ['b', T('ppM_b')], ['l', T('ppM_l')], ['d', T('ppM_d')], ['s', T('ppM_s')]]) + ppHaveHtml(have);
-    if (!sel.list.length) return h + flt + '<div class="rz-empty"><b>' + esc(have.length ? T('ppNoRes') : T('ppNoAll')) + '</b></div>' + ppMoreHtml(sel, have) + ppLegacyBtn();
-    if (sel.top.length) h += '<h4 class="pp-h pp-h0">' + esc(have.length ? T('ppHaveSet', { n: sel.list.length }) : T('ppNow_' + meal)) + '</h4><div class="pp-list">' + sel.top.map(function (x, i) { return ppRow(x, false, i === 0); }).join('') + '</div>';
-    h += flt;
-    var topIds = sel.top.map(function (x) { return x.rec.id; }), rest = sel.list.filter(function (x) { return topIds.indexOf(x.rec.id) < 0; });
-    ['tayyorsiz', 'tez', 'pishirsa'].forEach(function (g) {
-      var xs = rest.filter(function (x) { return x.rec.t === g; }); if (!xs.length) return; var all = pv.showG[g], shown = all ? xs : xs.slice(0, YC.SHOW);
-      h += '<h4 class="pp-h">' + esc(T('ppG_' + g)) + '</h4><div class="pp-list">' + shown.map(function (x) { return ppRow(x); }).join('') + '</div>' + (xs.length > YC.SHOW && !all ? '<button type="button" class="sl-txtbtn sl-ymore" data-act="ppshow" data-v="' + g + '">' + esc(T('ppShow')) + ' (' + (xs.length - YC.SHOW) + ')</button>' : '');
-    });
-    return h + ppMoreHtml(sel, have) + '<p class="rz-priv">' + esc(T('ppNote')) + '</p>' + ppLegacyBtn();
+  function facts(min, k, p) { return (min ? '⏱ ' + esc(T('fMin', { n: min })) + ' · ' : '') + esc(T('fK', { k: k })) + ' · <i class="ny-p">' + esc(T('fP', { p: Math.round(p) })) + '</i>'; }
+  function recCard(x, best) {
+    var r = x.rec, tag = best ? [x.oqsil ? T('tgOqsil') : '', x.yengil ? T('tgYengil') : ''].filter(Boolean).join(' · ') : '';
+    if (tag) tag = tag.charAt(0).toUpperCase() + tag.slice(1);
+    return card({ id: r.id, main: 'data-act="nyopen" data-id="' + esc(r.id) + '"', tile: recTile(r, 56), name: lbl(r.n), tag: tag, facts: facts(r.min, x.c.k, x.c.p), extra: x.miss && x.miss.length ? '<span class="ny-need">' + esc(T('lbNeedX', { x: x.miss.map(ppGroupName).join(', ') })) + '</span>' : '', plus: 'data-act="nyadd" data-id="' + esc(r.id) + '"', done: A.added('r:' + r.id) });
   }
-  function ppLegacyBtn() { return '<div class="sl-fwf"><button type="button" class="sl-txtbtn" data-act="pplegacy">' + esc(T('ppLegacy')) + '</button></div>'; }
-  function ppMoreHtml(sel, have) {
-    if (!have.length || !sel.more.length) return ''; var xs = pv.moreOpen ? sel.more : sel.more.slice(0, YC.SHOW);
-    return '<h4 class="pp-h">' + esc(T('ppMore', { n: sel.more.length })) + '</h4><div class="pp-list">' + xs.map(function (x) { return ppRow(x, true); }).join('') + '</div>' + (sel.more.length > YC.SHOW && !pv.moreOpen ? '<button type="button" class="sl-txtbtn sl-ymore" data-act="ppshow" data-v="more">' + esc(T('ppShow')) + ' (' + (sel.more.length - YC.SHOW) + ')</button>' : '');
+  function lb(t) { return '<h3 class="ny-lb">' + esc(t) + '</h3>'; }
+  function uydaList() {
+    var sel = ppSel(), have = haveActive(), meal = A.mealNow(), h = '';
+    if (yv.toifa === 'baliq' && uy) {                    // Baliq kuni: uydagi baliq retseptlari (kishi soni, xarid ro'yxati) — tepada
+      var rs = YC.uyda({ data: data, toifa: 'baliq', uyda: uy, cheklov: ch, yemaydi: yemay() });
+      if (rs.length) h += lb(T('lbFish')) + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return card({ main: 'data-act="yerec" data-id="' + esc(r.id) + '"', tile: A.tileHtml(r.taom, null, lbl(r.nom), 56), name: lbl(r.nom), facts: esc(T('fwTime', { t: lbl(r.vaqt) })) + (p ? ' · ' + esc(T('fK', { k: p.k })) : '') }); }).join('');
+    }
+    if (!sel.list.length && !sel.more.length) return h + '<div class="rz-empty"><b>' + esc(have ? T('nyNoHave') : T('nyNoAll')) + '</b></div>';
+    var topIds = sel.top.map(function (x) { return x.rec.id; }), rest = sel.list.filter(function (x) { return topIds.indexOf(x.rec.id) < 0; });          // TAKRORSIZ: tepadagilar pastda yo'q
+    if (sel.top.length) h += lb(have ? T('lbHave') : T('lbBest_' + meal)) + sel.top.map(function (x) { return recCard(x, true); }).join('');
+    else if (have) h += '<div class="rz-empty"><b>' + esc(T('nyNoHave')) + '</b></div>';
+    if (rest.length) h += lb(T('lbMore')) + rest.map(function (x) { return recCard(x, false); }).join('');
+    if (have && sel.more.length) h += lb(T('lbNeed')) + sel.more.map(function (x) { return recCard(x, false); }).join('');
+    return h + '<p class="ny-note">' + esc(T('nyNote')) + '</p>';
   }
+  /* Kafeda / Buyurtma: shu karkas va karta uslubi; limitdan oshadiganlar pastda («yarim porsiya — N kkal» bilan) */
+  function kafeCard(p, over) {
+    var half = over ? Math.round(p.k / 2) : 0;
+    return card({ main: 'data-act="yepick" data-k="' + esc(p.key) + '"' + por(p), tile: A.tileHtml(p.id, p.v, nameOfKey(p), 56), name: nameOfKey(p), tag: [p.flags && p.flags.oqsil ? T('yzF_oqsil') : '', p.flags && p.flags.yengil ? T('yzF_yengil') : ''].filter(Boolean).join(' · '), facts: esc(unitTxt(p)) + ' · ' + esc(T('fK', { k: p.k })) + ' · <i class="ny-p">' + esc(T('fP', { p: Math.round(p.p) })) + '</i>',
+      extra: over ? '<span class="ny-half">' + esc(T('lbHalf', { k: half })) + '</span>' : '', halfBtn: over, plus: 'data-act="' + (over ? 'nykhalf' : 'nykadd') + '" data-k="' + esc(p.key) + '"' + por(p), done: A.added('k:' + p.key + (over ? '|h' : '')) });          // limitdan oshadigani: «+» — yarim porsiya (to'liq porsiya — kartani bosib)
+  }
+  function kafeList() {
+    var rem = A.remaining(), r = YC.list({ by: A.by(), data: data, toifa: yv.toifa, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem }), h = '';
+    yv.shown = r.items.map(function (p) { return p.key; });
+    if (yv.seg === 'kafe' && window.KalkiMenyu) { var tip = yv.tip || !A.prefs().mnTip; if (tip && !yv.tip) { yv.tip = true; A.prefs().mnTip = 1; A.save(); } h += '<div class="sl-mncw"><button type="button" class="sl-mncta" data-act="mnopen" data-f="yeymiz" id="mnDoor"><span class="ic" aria-hidden="true">📷</span><span>' + esc(T('mnCta')) + '</span>' + A.ico('chev', 'r') + '</button>' + (tip ? '<p class="sl-tipb" id="mnTip" role="note">' + esc(T('mnTip')) + '</p>' : '') + '</div>'; }
+    if (yv.seg === 'buyurtma') h += orderLinks();
+    if (!r.items.length) return h + emptyHtml();
+    var fit = r.items.filter(function (p) { return !p.flags.oshadi; }), over = r.items.filter(function (p) { return p.flags.oshadi; });
+    if (fit.length) h += lb(yv.seg === 'buyurtma' ? T('yzOrdList') : (rem != null ? T('lbFit') : T('lbPop'))) + fit.map(function (p) { return kafeCard(p, false); }).join('');
+    if (over.length) h += lb(T('lbOver')) + over.map(function (p) { return kafeCard(p, true); }).join('');
+    return h + '<p class="ny-note">' + esc(T('yzNote')) + '</p>' + (yv.toifa === 'baliq' ? fishFoot() : '');
+  }
+  function fishFoot() { return '<div class="sl-fwf"><button type="button" class="sl-txtbtn" data-act="fwno">' + esc(T('fwNo')) + '</button><button type="button" class="sl-txtbtn" data-act="fwday">' + esc(T('fwDay')) + '</button></div>'; }
+  /* retsept sahifasi: katta rasm, nom, 4 raqam, porsiya, «Kerak bo'ladi» (gramm porsiyaga qarab), «Tayyorlash» (raqamli, doim ochiq), «taxminiy»; pastda qotib turgan «Yedim · N kkal» + ☆ */
+  function dtHtml(anim) {
+    if (pv.dt === '#have') return haveHtml(anim);
+    var r = PP.byId(pp, pv.dt); if (!r) return ''; var m = pv.mult[r.id] || 1, c = PP.calc(r, A.by(), m), nm = lbl(r.n);
+    return '<div class="ny-dt' + (anim ? '' : ' in') + '" id="nyDt" role="dialog" aria-label="' + esc(nm) + '"><div class="ny-hero">' + recTile(r, 112, true) + '<button type="button" class="ny-bk" data-act="nyback" aria-label="' + esc(T('dtBack')) + '">' + A.ico('back') + '</button></div><div class="ny-db">' +
+      '<h2 class="ny-dn">' + esc(nm) + '</h2><div class="ny-kp"><div><b>' + r.min + '</b>' + esc(T('dtMin')) + '</div><div><b>' + c.k + '</b>' + esc(T('dtK')) + '</div><div><b>' + Math.round(c.p) + ' ' + esc(T('gram')) + '</b>' + esc(T('dtP')) + '</div><div><b>' + Math.round(c.f) + ' ' + esc(T('gram')) + '</b>' + esc(T('dtF')) + '</div></div>' +
+      lb(T('dtPort')) + '<div class="ny-por" role="radiogroup">' + PP.MULTS.map(function (k) { return '<button type="button" role="radio" class="' + (k === m ? 'on' : '') + '" aria-checked="' + (k === m) + '" data-act="nymul" data-m="' + k + '">' + (k === 0.5 ? '½' : k === 1.5 ? '1½' : k) + '</button>'; }).join('') + '</div>' +
+      lb(T('dtIng')) + '<div class="ny-ing">' + c.items.map(function (i) { return '<div><span>' + esc(nameOfKey({ id: i.id, v: i.v })) + '</span><b>' + (i.n ? esc(fmtN(i.n) + ' ' + T('dtDona')) + ' · ' : '') + esc(i.g + ' ' + T('gram')) + '</b></div>'; }).join('') + '</div>' +
+      lb(T('dtSteps')) + '<ol class="ny-stp">' + r.qad[L()].map(function (z, i) { return '<li><em>' + (i + 1) + '</em><span>' + esc(z) + '</span></li>'; }).join('') + '</ol><p class="ny-note">' + esc(T('nyNote')) + '</p></div>' +
+      '<div class="ny-bar"><button type="button" class="sl-main ny-yed" data-act="nyate" data-id="' + esc(r.id) + '">' + esc(T('dtAte', { k: c.k })) + '</button><button type="button" class="ny-sv" data-act="nysave" data-id="' + esc(r.id) + '" aria-label="' + esc(T('dtSave')) + '">' + A.ico('star') + '</button></div></div>';
+  }
+  function haveHtml(anim) {
+    var hv = ppHave();
+    return '<div class="ny-dt' + (anim ? '' : ' in') + '" id="nyDt" role="dialog" aria-label="' + esc(T('hvT')) + '"><div class="ny-db ny-hvb"><div class="ny-hd2"><button type="button" class="ny-bk" data-act="nyback" aria-label="' + esc(T('dtBack')) + '">' + A.ico('back') + '</button><h2 class="ny-dn">' + esc(T('hvT')) + '</h2></div><p class="ny-hvh">' + esc(T('hvH')) + '</p><div class="ny-hv" role="group">' +
+      pp.guruhlar.map(function (g) { var on = hv.indexOf(g.k) > -1; return chipBtn(on, 'pph', g.k, lbl(g.n)); }).join('') + '</div></div><div class="ny-bar"><button type="button" class="sl-main ny-yed" data-act="nyhvgo"' + (hv.length ? '' : ' disabled') + '>' + esc(hv.length ? T('hvGo', { n: hv.length }) : T('hvGo0')) + '</button>' + (hv.length ? '<button type="button" class="rz-btn ghost ny-hvc" data-act="pphc">' + esc(T('hvClear')) + '</button>' : '') + '</div></div>';
+  }
+  function frame(top, body, extra) { return '<div class="ny">' + (top ? '<div class="ny-top">' + top + '</div>' : '') + '<div class="ny-list" id="nyList">' + body + '</div>' + (extra || '') + '</div>'; }
+  function page(html) { return frame('', html); }           // eski ichki sahifalar (Baliq kuni retsepti, kun tanlash) — shu karkasda, butun sahifa aylanadi
+  function winHtml(anim) {
+    var title = yv.toifa === 'baliq' ? T('fwT') : T('yzT');          // Baliq kuni (eslatma/chip) — o'z sarlavhasi bilan
+    var top = '<div class="ny-hd"><h2 class="ny-t">' + esc(title) + '</h2><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + A.ico('x') + '</button></div>' + segHtml() + statusHtml() + chipsHtmlNy();
+    return frame(top, yv.seg === 'uyda' ? uydaList() : kafeList(), pv.dt && pp ? dtHtml(anim) : '');
+  }
+  function draw(o) {                                        // o: { anim — qatlam kirib kelsin, reset — ro'yxat tepadan }
+    o = o || {}; var l0 = A.$('#nyList'), d0 = A.$('#nyDt .ny-db'), ls = l0 && !o.reset ? l0.scrollTop : 0, ds = d0 && !o.anim ? d0.scrollTop : 0;
+    if (A.sheetKind() !== 'yeymiz') A.openSheet('yeymiz', winHtml(o.anim)); else A.setSheet(winHtml(o.anim)); var l1 = A.$('#nyList'), d1 = A.$('#nyDt .ny-db'); if (l1) l1.scrollTop = ls; if (d1) d1.scrollTop = ds;
+    if (o.anim) { var dt = A.$('#nyDt'); if (dt) { void dt.offsetWidth; requestAnimationFrame(function () { dt.classList.add('in'); var f = dt.querySelector('.ny-bk'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {} }); } }
+  }
+  function dtOpen(id) { pv.dt = id; draw({ anim: !A.reduce() }); }
+  function dtClose() {                                      // qatlam o'ngga chiqib ketadi, ro'yxat joyida
+    if (!pv.dt) return false; var dt = A.$('#nyDt'), id = pv.dt; pv.dt = null;
+    if (!dt || A.reduce()) { draw(); return true; } dt.classList.remove('in'); setTimeout(function () { if (!pv.dt && A.sheetKind() === 'yeymiz') draw(); var b = A.$('#nyList [data-id="' + id + '"] .ny-m'); if (b) try { b.focus({ preventScroll: true }); } catch (e) {} }, 300); return true;
+  }
+  function backStep() { return A.sheetKind() === 'yeymiz' && !!pv.dt && dtClose(); }
+  function redraw() { if (A.sheetKind() === 'yeymiz' && A.$('#nyList')) draw(); }
   function ppItem(id) { var r = PP.byId(pp, id), m = pv.mult[id] || 1; if (!r) return null; var c = PP.calc(r, A.by(), m); return c ? { r: r, c: c, m: m, name: lbl(r.n) + (m === 1 ? '' : ' × ' + fmtN(m)) } : null; }
-  function ppAte(id) {
-    var it = ppItem(id); if (!it) return; sev('ovqat_qoshildi', 'tavsiya'); count('yeymiz_tanlandi'); A.logRecipe({ id: id, name: it.name, qty: it.m, g: it.c.g, k: it.c.k, p: it.c.p, f: it.c.f, c: it.c.c, ifid: ppMainId(it.c) });
-  }
+  function ppEntry(it) { return { id: it.r.id, name: it.name, qty: it.m, g: it.c.g, k: it.c.k, p: it.c.p, f: it.c.f, c: it.c.c, ifid: it.r.ic }; }
+  function ppAte(id) { var it = ppItem(id); if (!it) return; sev('ovqat_qoshildi', 'tavsiya'); count('yeymiz_tanlandi'); pv.dt = null; A.logRecipe(ppEntry(it)); }
+  function ppQuick(id) { var r = PP.byId(pp, id), c = r && PP.calc(r, A.by(), 1); if (!c) return; if (!A.added('r:' + id)) { sev('ovqat_qoshildi', 'tavsiya'); count('yeymiz_tanlandi'); } A.quickRecipe('r:' + id, { id: id, name: lbl(r.n), qty: 1, g: c.g, k: c.k, p: c.p, f: c.f, c: c.c, ifid: r.ic }); }
   function ppSave(id) { var it = ppItem(id); if (!it) return; A.saveTpl(lbl(it.r.n), { n: lbl(it.r.n), unit: 'porsiya', qty: it.m, g: it.c.g, kcal: it.c.k, p: it.c.p, f: it.c.f, c: it.c.c, est: true }); }
-  /* ---------- umumiy oyna ---------- */
+  /* ---------- umumiy yordamchilar ---------- */
+  function badge(p) { return '<span class="sl-kb' + (p.kafe ? '' : ' uy') + '">' + esc(T(p.kafe ? 'yzKafe' : 'yzUy')) + '</span>'; }          // «Boshqa variantlar» (porsiya oynasi)
   function iconName(id) { var s = OR.split(id).id; return IKON[id] || IKON[s] || null; }
-  function badge(p) { return '<span class="sl-kb' + (p.kafe ? '' : ' uy') + '">' + esc(T(p.kafe ? 'yzKafe' : 'yzUy')) + '</span>'; }
   function unitTxt(p) { var u = p.u && p.u !== 'g100' ? A.unitName(p.u) : ''; return (u ? (p.n > 1 ? p.n + ' ' : '') + u + ' ' : '') + p.g + ' ' + T('gram'); }
-  function nameOfKey(p) { var f = A.foodById(p.id); if (!f) return p.id; var b = f.al ? (A.foodById(f.al.f) || f) : f, lb = p.v && b.fam ? A.S.famLabel(b, p.v, null, A.lang()) : ''; return A.nameOf(b) + (lb ? ' · ' + lb : ''); }
+  function nameOfKey(p) { var f = A.foodById(p.id); if (!f) return p.id; var b = f.al ? (A.foodById(f.al.f) || f) : f, lb0 = p.v && b.fam ? A.S.famLabel(b, p.v, null, A.lang()) : ''; return A.nameOf(b) + (lb0 ? ' · ' + lb0 : ''); }
   function por(p) { return ' data-u="' + esc(p.u || '') + '" data-n="' + (p.n || 1) + '" data-g="' + (p.g || 0) + '"'; }
   function porOf(el) { return { u: el.getAttribute('data-u') || null, n: +el.getAttribute('data-n') || 1, g: +el.getAttribute('data-g') || 0 }; }
-  function flagsHtml(p) { var f = p.flags || {}, s = ''; if (f.oqsil) s += '<span class="sl-fl o">' + esc(T('yzF_oqsil')) + '</span>'; if (f.yengil) s += '<span class="sl-fl y">' + esc(T('yzF_yengil')) + '</span>'; return s ? '<span class="sl-fls">' + s + '</span>' : ''; }
-  function yRow(p, fish) {
-    return '<div class="sl-yr"><button type="button" class="sl-yr-b" data-act="yepick" data-k="' + esc(p.key) + '"' + por(p) + '>' + A.tileHtml(p.id, p.v, nameOfKey(p), 44) + '<span class="m"><span class="nm">' + esc(nameOfKey(p)) + ' ' + badge(p) + '</span><span class="tm">' + esc(T('yzFacts', { u: unitTxt(p), k: p.k, p: Math.round(p.p) })) + '</span>' + flagsHtml(p) + (p.flags && p.flags.oshadi ? '<span class="sl-osh">' + esc(T('yzOsh')) + '</span>' : '') + '</span></button><button type="button" class="sl-pill sl-yr-add" data-act="yeadd" data-k="' + esc(p.key) + '"' + por(p) + '>' + esc(T('yzAdd')) + '</button></div>';
-  }
   function head(title, back) { return '<div class="sl-yh">' + (back ? '<button type="button" class="sl-x" data-act="' + back + '" aria-label="' + esc(T('fwBack')) + '">' + A.ico('back') + '</button>' : '') + '<h3 class="sl-fwt">' + esc(title) + '</h3><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + A.ico('x') + '</button></div>'; }
-  function chipsRow() { return '<div class="sl-ye-chips sc" role="group">' + CHIPS.filter(function (c) { return !(c === 'baliq' && avoids('baliq')); }).map(function (c) { return '<button type="button" class="rz-chip' + (c === yv.toifa ? ' on' : '') + '" data-act="yechip2" data-c="' + c + '" aria-pressed="' + (c === yv.toifa) + '">' + esc(T('yzC_' + c)) + '</button>'; }).join('') + '</div>'; }
-  function segs() { var ic = { kafe: 'zfork', buyurtma: 'zbag', uyda: 'zhome' }; return '<div class="sl-segs3" role="tablist">' + YC.SEG.map(function (s) { var on = s === yv.seg; return '<button type="button" role="tab" class="' + (on ? 'on' : '') + '" aria-selected="' + on + '" data-act="yeseg" data-s="' + s + '">' + A.ico(ic[s]) + '<span>' + esc(T('yzS_' + s)) + '</span></button>'; }).join('') + '</div>'; }
-  function rowsHtml(items) {
-    var open = yv.open[yv.toifa + '|' + yv.seg], shown = open ? items : items.slice(0, YC.SHOW);
-    return '<div class="sl-yrs">' + shown.map(yRow).join('') + '</div>' + (items.length > YC.SHOW && !open ? '<button type="button" class="sl-txtbtn sl-ymore" data-act="yemore">' + esc(T('yzMore')) + ' (' + (items.length - YC.SHOW) + ')</button>' : '');
-  }
   function emptyHtml() { return '<div class="rz-empty"><b>' + esc(T('yzNo')) + '</b><p>' + esc(T('yzNoH')) + '</p></div><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="yesearch">' + esc(T('yzSearch')) + '</button></div>'; }
   function qWord() { var q = data.toifalar[yv.toifa].qidiruv; return q[L()]; }
   function orderLinks() {
     var l = partners || [], q = qWord();
-    return '<p class="rz-p sm">' + esc(T('yzOrdH', { q: q })) + '</p>' + (l.length ? '<div class="sl-ylinks">' + l.map(function (p) { return '<a class="rz-btn primary full sl-ylink" data-act="yeorder" data-p="' + esc(p.id) + '" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.name) + ' ' + A.ico('share') + '</a>'; }).join('') + '</div>' : '<p class="rz-p warn">' + esc(T('yzOrdNone')) + '</p>');
+    return '<p class="ny-hint">' + esc(T('yzOrdH', { q: q })) + '</p>' + (l.length ? '<div class="sl-ylinks">' + l.map(function (p) { return '<a class="rz-btn primary full sl-ylink" data-act="yeorder" data-p="' + esc(p.id) + '" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.name) + ' ' + A.ico('share') + '</a>'; }).join('') + '</div>' : '<p class="rz-p warn">' + esc(T('yzOrdNone')) + '</p>');
   }
-  function winBody() {
-    var tf = yv.toifa, rem = A.remaining(), body = '';
-    if (ppView()) return ppBody();
-    if (yv.seg === 'uyda') {          // eski toifa bo'yicha «Uyda» (kishi soni, xarid ro'yxati): Baliq kuni va «Boshqa uyda taomlar»
-      var rs = YC.uyda({ data: data, toifa: tf, uyda: uy, cheklov: ch, yemaydi: yemay() });
-      body = (rs.length ? '<p class="rz-p">' + esc(T('yzUyH')) + '</p>' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return '<button type="button" class="rz-row sl-fwr" data-act="yerec" data-id="' + esc(r.id) + '">' + A.tileHtml(r.taom, null, lbl(r.nom), 44) + '<span class="m"><b>' + esc(lbl(r.nom)) + '</b><span>' + esc(T('fwTime', { t: lbl(r.vaqt) }) + (p ? ' · ' + T('fwK1', { k: p.k }) : '')) + '</span></span>' + A.ico('chev', 'r') + '</button>'; }).join('') : emptyHtml());
-    } else {
-      var r = YC.list({ by: A.by(), data: data, toifa: tf, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem });
-      yv.shown = r.items.map(function (p) { return p.key; });
-      var tip = yv.seg === 'kafe' && window.KalkiMenyu && (yv.tip || !A.prefs().mnTip); if (tip && !yv.tip) { yv.tip = true; A.prefs().mnTip = 1; A.save(); }          // bir martalik ko'rsatma: shu ochilish davomida turadi, keyingi ochilishda yo'q
-      body = (yv.seg === 'kafe' && window.KalkiMenyu ? '<div class="sl-mncw"><button type="button" class="sl-mncta" data-act="mnopen" data-f="yeymiz" id="mnDoor"><span class="ic" aria-hidden="true">📷</span><span>' + esc(T('mnCta')) + '</span>' + A.ico('chev', 'r') + '</button>' + (tip ? '<p class="sl-tipb" id="mnTip" role="note">' + esc(T('mnTip')) + '</p>' : '') + '</div>' : '') + (yv.seg === 'buyurtma' ? orderLinks() + '<div class="rz-st">' + esc(T('yzOrdList')) + '</div>' : '') + (r.items.length ? rowsHtml(r.items) + '<p class="rz-priv">' + esc(T('yzNote')) + '</p>' : emptyHtml());
-    }
-    return body + (tf === 'baliq' ? '<div class="sl-fwf"><button type="button" class="sl-txtbtn" data-act="fwno">' + esc(T('fwNo')) + '</button><button type="button" class="sl-txtbtn" data-act="fwday">' + esc(T('fwDay')) + '</button></div>' : '');
-  }
-  function winHtml() { return head(yv.toifa === 'baliq' ? T('fwT') : T('yzT')) + (ppView() ? '' : chipsRow()) + segs() + (pv.legacy && yv.seg === 'uyda' && yv.toifa !== 'baliq' ? '<button type="button" class="sl-txtbtn pp-back" data-act="ppback">' + esc(T('ppBack')) + '</button>' : '') + '<div class="sl-ybody">' + winBody() + '</div>'; }
-  function draw() { var sh = A.$('#rzSheet'), sc = sh ? sh.scrollTop : 0; A.setSheet(winHtml()); if (sh) sh.scrollTop = sc; }
-  function show(toifa) {                                  // oynani ochish (chip, banner, eslatma)
+  function show(toifa) {                                  // oynani ochish (Imkoniyatlar, banner, eslatma): doim Uyda
     if (toifa === 'baliq') count('baliq_oyna_ochildi'); else count('yeymiz_ochildi');
-    yv.tip = false; pv.legacy = false; load(function () { A.withDb(function () { loadPartners(function () { yv.toifa = toifa; yv.seg = YC.segBoshlang(new Date(), lsGet()); yv.open = {}; if (A.sheetKind() === 'yeymiz') draw(); else A.openSheet('yeymiz', winHtml()); }); }); });
+    yv.tip = false; pv.dt = null; A.addedReset(); load(function () { A.withDb(function () { loadPartners(function () { yv.toifa = toifa; yv.seg = YC.segBoshlang(new Date(), lsGet()); yv.open = {}; if (A.sheetKind() === 'yeymiz') draw({ reset: true }); else A.openSheet('yeymiz', winHtml()); }); }); });
   }
   function openFish() { show('baliq'); }
   function back() { A.withDb(function () { loadPartners(function () { if (A.sheetKind() === 'yeymiz') draw(); else A.openSheet('yeymiz', winHtml()); }); }); }
@@ -327,40 +357,38 @@
   function act(a, el, ev) {
     switch (a) {
       case 'yedoor': show('kabob'); return true;
-      case 'ppt': pv.t = el.getAttribute('data-v') || null; draw(); return true;
-      case 'ppm': pv.m = el.getAttribute('data-v') || null; draw(); return true;
+      case 'nyt': pv.t = el.getAttribute('data-v') || null; draw({ reset: true }); return true;
+      case 'nyhave': dtOpen('#have'); return true;
       case 'pph': { var hk = el.getAttribute('data-v'), hl = ppHave().slice(), hi = hl.indexOf(hk); if (hi > -1) hl.splice(hi, 1); else hl.push(hk); ppSetHave(hl); draw(); return true; }
-      case 'pphc': ppSetHave([]); draw(); return true;
-      case 'pphs': pv.haveOpen = !pv.haveOpen && !ppHave().length; draw(); return true;
-      case 'ppopen': pv.open[el.getAttribute('data-id')] = true; draw(); return true;
-      case 'ppsteps': { var si = el.getAttribute('data-id'); pv.steps[si] = !pv.steps[si]; draw(); return true; }
-      case 'ppmul': pv.mult[el.getAttribute('data-id')] = +el.getAttribute('data-m') || 1; draw(); return true;
-      case 'ppshow': { var sv = el.getAttribute('data-v'); if (sv === 'more') pv.moreOpen = true; else pv.showG[sv] = true; draw(); return true; }
-      case 'ppate': ppAte(el.getAttribute('data-id')); return true;
-      case 'ppsave': ppSave(el.getAttribute('data-id')); return true;
+      case 'pphc': ppSetHave([]); pv.haveOn = false; pv.dt = null; draw({ reset: true }); return true;
+      case 'nyhvgo': pv.haveOn = ppHave().length > 0; pv.dt = null; draw({ reset: true }); return true;
+      case 'nyopen': dtOpen(el.getAttribute('data-id')); return true;
+      case 'nyback': dtClose(); return true;
+      case 'nymul': if (pv.dt) { pv.mult[pv.dt] = +el.getAttribute('data-m') || 1; draw(); } return true;
+      case 'nyate': ppAte(el.getAttribute('data-id')); return true;
+      case 'nysave': ppSave(el.getAttribute('data-id')); return true;
+      case 'nyadd': ppQuick(el.getAttribute('data-id')); return true;
+      case 'nykadd': case 'nykhalf': { var kk = el.getAttribute('data-k'), half = a === 'nykhalf'; if (!A.added('k:' + kk + (half ? '|h' : ''))) { sev('ovqat_qoshildi', 'tavsiya'); count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); } A.quickKey('k:' + kk + (half ? '|h' : ''), kk, porOf(el), half); return true; }
       case 'yechip': sev('yeymiz_chip', STCH[el.getAttribute('data-c')] ? el.getAttribute('data-c') : 'boshqa'); show(el.getAttribute('data-c')); return true;
-      case 'yechip2': { var c = el.getAttribute('data-c'); sev('yeymiz_chip', STCH[c] ? c : 'boshqa'); if (c === 'baliq') count('baliq_oyna_ochildi'); yv.toifa = c; draw(); return true; }
-      case 'pplegacy': pv.legacy = true; draw(); return true;
-      case 'ppback': pv.legacy = false; draw(); return true;
-      case 'yeseg': if (el.getAttribute('data-s') === 'uyda') pv.legacy = false; sev('yeymiz_segment', /^(kafe|buyurtma|uyda)$/.test(el.getAttribute('data-s')) ? el.getAttribute('data-s') : 'kafe'); yv.seg = el.getAttribute('data-s'); lsSet(yv.seg); draw(); return true;
-      case 'yemore': yv.open[yv.toifa + '|' + yv.seg] = true; draw(); return true;
+      case 'yechip2': { var c = el.getAttribute('data-c'); sev('yeymiz_chip', STCH[c] ? c : 'boshqa'); if (c === 'baliq') count('baliq_oyna_ochildi'); yv.toifa = c; draw({ reset: true }); return true; }
+      case 'yeseg': pv.dt = null; sev('yeymiz_segment', /^(kafe|buyurtma|uyda)$/.test(el.getAttribute('data-s')) ? el.getAttribute('data-s') : 'kafe'); yv.seg = el.getAttribute('data-s'); lsSet(yv.seg); draw({ reset: true }); return true;
       case 'yepick': { count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); A.pickKey(el.getAttribute('data-k'), 'y', porOf(el)); return true; }
       case 'yeadd': { sev('ovqat_qoshildi', 'tavsiya'); count(yv.toifa === 'baliq' ? 'baliq_kafe_yozildi' : 'yeymiz_tanlandi'); A.logKey(el.getAttribute('data-k'), porOf(el)); return true; }
       case 'yesearch': A.openAdd({}); return true;
       case 'yeorder': { sev('buyurtma_hamkor', /uzum/.test(el.getAttribute('data-p') || '') ? 'uzum' : 'yandex'); var q = qWord(); count(yv.toifa === 'baliq' ? 'baliq_buyurtma_bosildi' : 'yeymiz_buyurtma_bosildi', el.getAttribute('data-p')); copyText(q, T('yzCopied', { q: q })); if (A.openExternal(el.getAttribute('href')) && ev) ev.preventDefault(); return true; }
-      case 'yerec': { rv = { id: el.getAttribute('data-id'), n: UY.kishiOk(A.prefs().baliqKishi || uy.kishi.standart) }; count(yv.toifa === 'baliq' ? 'baliq_uyda_ochildi' : 'yeymiz_uyda_ochildi'); A.setSheet(recHtml()); return true; }
+      case 'yerec': { rv = { id: el.getAttribute('data-id'), n: UY.kishiOk(A.prefs().baliqKishi || uy.kishi.standart) }; count(yv.toifa === 'baliq' ? 'baliq_uyda_ochildi' : 'yeymiz_uyda_ochildi'); A.setSheet(page(recHtml())); return true; }
       case 'yeuyback': draw(); return true;
       case 'yntog': toggleYemay(el.getAttribute('data-t')); if (A.sheetKind() === 'yemay') A.setSheet(yemaySheet()); else A.render(); return true;
       case 'obyntog': A.obYnToggle(el.getAttribute('data-t')); return true;
       case 'yqbel': A.openSheet('yemay', yemaySheet()); return true;
       case 'yqyoq': A.prefs().yemayK = 1; count('yemaydi_hammasi'); A.save(); A.render(); return true;
       case 'yqok': { A.prefs().yemayK = 1; count(yemay().length ? 'yemaydi_tanlandi' : 'yemaydi_hammasi'); A.save(); A.closeSheet(); A.render(); return true; }
-      case 'fwn': { rv.n = UY.kishiOk(Math.max(1, Math.min(8, rv.n + (+el.getAttribute('data-s'))))); A.prefs().baliqKishi = rv.n; A.save(); var sc = A.$('#rzSheet').scrollTop; A.setSheet(recHtml()); A.$('#rzSheet').scrollTop = sc; return true; }
+      case 'fwn': { rv.n = UY.kishiOk(Math.max(1, Math.min(8, rv.n + (+el.getAttribute('data-s'))))); A.prefs().baliqKishi = rv.n; A.save(); var sc = A.$('#nyList') ? A.$('#nyList').scrollTop : 0; A.setSheet(page(recHtml())); if (A.$('#nyList')) A.$('#nyList').scrollTop = sc; return true; }
       case 'fwcopy': copyText(listText(), T('fwCopied')); return true;
       case 'fwshare': { var txt = listText(); if (navigator.share) navigator.share({ text: txt }).catch(function () {}); else copyText(txt, T('fwCopied')); return true; }
       case 'fwlog': A.pickKey(el.getAttribute('data-k'), 'y'); return true;
       case 'fwno': { var prev = yemay().slice(), pb = A.prefs().baliqOff; setYemay(prev.indexOf('baliq') > -1 ? prev : prev.concat('baliq')); A.closeSheet(); A.render(); A.toast(T('fwNoDone'), function () { A.prefs().baliqOff = pb; setYemay(prev); A.render(); }, true); return true; }
-      case 'fwday': A.setSheet(dayHtml()); return true;
+      case 'fwday': A.setSheet(page(dayHtml())); return true;
       case 'yewback': draw(); return true;
       case 'fwdayset': { var d = +el.getAttribute('data-d'); dayChosen(d); A.closeSheet(); A.render(); A.toast(T('fwDayDone', { d: dayName(d) }), null, true); return true; }
       case 'fwdayprof': { dayChosen(+el.getAttribute('data-d')); A.render(); return true; }
@@ -381,5 +409,5 @@
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
     api.addIcons(ICONS); hs = HS && HS.browser ? HS.browser() : null;
   }
-  window.KalkiYeymizUI = { kunQisqa: kunQisqa, daySheet: daySheet, menuOpen: menuOpen, chReady: chReady, loadCh: loadCh, rinfo: rinfo, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
+  window.KalkiYeymizUI = { backStep: backStep, redraw: redraw, kunQisqa: kunQisqa, daySheet: daySheet, menuOpen: menuOpen, chReady: chReady, loadCh: loadCh, rinfo: rinfo, hitText: hitText, init: init, act: act, load: load, todayCard: todayCard, profileCard: profileCard, profileDays: profileDays, filterAlts: filterAlts, varBtn: varBtn, count: count, chipsHtml: chipsHtml, yemayCard: yemayCard, yBack: back, fishBack: back, openFish: openFish, avoids: avoids, yemay: yemay, kunBugun: kunNow, dayName: dayName, iconFor: iconName, badge: badge, chips: CHIPS, D: D, IKON: IKON };
 })();

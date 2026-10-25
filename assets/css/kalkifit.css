@@ -1082,33 +1082,60 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .sl-ci.fc-pu{background:var(--fcpu);color:var(--fcpui)}.rz .sl-ci.fc-ye{background:var(--fcye);color:var(--fcyei)}.rz .sl-ci.fc-ac{background:var(--accsoft);color:var(--accink)}.rz .sl-ci.fc-gr{background:var(--fcgr);color:var(--fcgri)}.rz .sl-ci.fc-bl{background:var(--fcbl);color:var(--fcbli)}
 .rz .ft-new{font-style:normal;display:inline-block;margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--ftnew);color:var(--ftnewi);font-size:var(--t-lbl);font-weight:600;line-height:1.3;vertical-align:1px}
 .rz .ft-ft{display:block;width:100%;margin:18px 0 0;min-height:44px;border:0;background:transparent;color:var(--accink);font:inherit;font-size:var(--t-s);font-weight:600;cursor:pointer}
-/* «Bugun nima yeymiz?» → Uyda: tez PP retseptlar (v42). Radius 20, 8 px setka, matn ≥15 px; ranglar tokenlardan */
-.rz .pp-lead{margin:8px 0 8px;padding:12px 16px;border-radius:20px;background:var(--accsoft);color:var(--ink);font-size:var(--t-s);font-weight:600;line-height:1.4}
-.rz .pp-fl{margin:8px 0 0}.rz .pp-fl .rz-chip{min-height:40px;padding:0 16px;font-size:var(--t-xs)}
-.rz .pp-h{margin:24px 0 8px;font-size:var(--t-m);font-weight:600;line-height:1.3;color:var(--ink)}
-.rz .pp-have{margin:16px 0 0;border:1px solid var(--line);border-radius:20px;background:var(--card);padding:8px 16px}
-.rz .pp-hb{display:flex;align-items:center;gap:8px;width:100%;min-height:48px;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:0}
-.rz .pp-hb b{font-size:var(--t-s);font-weight:600;flex:none}.rz .pp-hb span{flex:1;min-width:0;font-size:var(--t-xs);color:var(--mut);line-height:1.35}
-.rz .pp-hb .r{width:18px;height:18px;color:var(--mut);flex:none;transition:transform .2s}.rz .pp-hb[aria-expanded=true] .r{transform:rotate(90deg)}
-.rz .pp-hc{margin:0 0 8px}.rz .pp-hc .rz-chip{min-height:40px;padding:0 16px;font-size:var(--t-xs)}
-.rz .pp-card{margin:0 0 16px;padding:16px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
-.rz .pp-ch,.rz .pp-row{display:flex;align-items:center;gap:16px;min-width:0}
-.rz .pp-ch{width:100%;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}.rz .pp-ch .r{width:18px;height:18px;color:var(--mut);flex:none;transform:rotate(90deg)}
-.rz .pp-h0{margin-top:16px}
-.rz .pp-ch .m,.rz .pp-row .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.rz .pp-ch .nm,.rz .pp-row .nm{font-size:var(--t-m);font-weight:600;line-height:1.3;overflow-wrap:anywhere}
-.rz .pp-ch .tm,.rz .pp-row .tm{font-size:var(--t-xs);color:var(--mut);line-height:1.35}.rz .pp-est{font-style:normal}
-.rz .pp-pt{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}.rz .pp-pt .rz-chip{min-height:40px;min-width:48px;justify-content:center;padding:0 16px}
-.rz .pp-sl{margin:16px 0 8px;font-size:var(--t-xs);font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
-.rz .pp-ing{list-style:none;margin:0;padding:0}.rz .pp-ing li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--line);font-size:var(--t-s);line-height:1.35}
-.rz .pp-ing li:last-child{border-bottom:0}.rz .pp-ing li b{flex:none;font-weight:600;white-space:nowrap}
-.rz .pp-stb{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;margin:8px 0 0;padding:0 16px;border:1px solid var(--line);border-radius:16px;background:transparent;color:var(--ink);font:inherit;font-size:var(--t-s);font-weight:600;cursor:pointer}
-.rz .pp-stb .r{width:18px;height:18px;color:var(--mut);transition:transform .2s}.rz .pp-stb[aria-expanded=true] .r{transform:rotate(90deg)}
-.rz .pp-stps{margin:8px 0 0;padding-left:24px;font-size:var(--t-s);line-height:1.5}.rz .pp-stps li{margin:0 0 8px}
-.rz .pp-act{display:flex;flex-direction:column;gap:8px;margin:16px 0 0}.rz .pp-act .sl-main{width:100%;min-height:56px}.rz .pp-act .rz-btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px}
-.rz .pp-list{display:flex;flex-direction:column;gap:8px}
-.rz .pp-row{width:100%;min-height:72px;padding:8px 16px;border:1px solid var(--line);border-radius:20px;background:var(--card);color:inherit;font:inherit;text-align:left;cursor:pointer}
-.rz .pp-row .r{width:18px;height:18px;color:var(--mut);flex:none}.rz .pp-row:active{background:var(--soft)}
-.rz .pp-need{font-size:var(--t-xs);font-weight:600;color:var(--accink);line-height:1.35}
-.rz .pp-list+.pp-fl,.rz .pp-list+.pp-have{margin-top:16px}
-.rz .pp-back{margin:8px 0 0;min-height:48px}
+/* «Nima yesam ekan?» (v43, maket: ~/nima-yesam-maket.html) — yagona karkas: oyna doim bir xil balandlikda; tepa qotib turadi, faqat ro'yxat aylanadi; retsept sahifasi oyna ichida o'ngdan kiradi.
+   Radius 20, 8 px setka, matn ≥15 px, og'irlik ≤600; ranglar tokenlardan */
+.rz.sl .rz-sheet[data-kind=yeymiz]{height:calc(100% - 44px - var(--kb,0px));max-height:none;overflow:hidden;padding:0;display:flex;flex-direction:column;background:var(--bg)}
+.rz.sl .rz-sheet[data-kind=yeymiz] .rz-grab{flex:none;margin:0 0 4px}
+.rz .ny{flex:1;min-height:0;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.rz .ny-top{flex:none;padding:0 16px 8px;background:var(--bg)}
+.rz .ny-hd{display:flex;align-items:center;justify-content:space-between;gap:8px}.rz .ny-t{margin:0;font-size:var(--t-l);font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.rz .ny-hd .rz-x{flex:none;width:40px;height:40px;border-radius:12px;background:var(--soft)}
+.rz .ny-seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:16px 0 0;padding:4px;border-radius:16px;background:var(--soft)}
+.rz .ny-seg button{display:flex;align-items:center;justify-content:center;gap:4px;min-height:40px;padding:0 4px;border:0;border-radius:12px;background:transparent;color:var(--mut);font:inherit;font-size:var(--t-s);font-weight:600;cursor:pointer;min-width:0}
+.rz .ny-seg button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rz .ny-seg button .rz-i{width:16px;height:16px;flex:none}
+.rz .ny-seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.rz .ny-st{margin:8px 0 0;padding:8px 16px;border-radius:16px;background:var(--fcgr);font-size:var(--t-s);line-height:1.35;color:var(--ink)}
+.rz .ny-st b{font-weight:600;display:block}.rz .ny-st span{display:block;margin-top:2px;color:var(--mut);font-size:var(--t-xs)}
+.rz .ny-ch{display:flex;gap:8px;overflow-x:auto;margin:8px -16px 0;padding:0 16px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x}.rz .ny-ch::-webkit-scrollbar{display:none}
+.rz .ny-c{flex:none;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:var(--t-xs);font-weight:500;white-space:nowrap;cursor:pointer}
+.rz .ny-c.on{background:var(--fill);border-color:var(--fill);color:var(--onacc);font-weight:600}.rz .ny-c.ho:not(.on){border-style:dashed;border-color:var(--accink);color:var(--accink)}
+.rz .ny-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px));touch-action:pan-y}
+.rz .ny-lb{margin:16px 2px 8px;font-size:var(--t-xs);font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;line-height:1.3}
+.rz .ny-it{display:flex;align-items:center;gap:8px;margin:0 0 8px;padding:8px 8px 8px 12px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.rz .ny-m{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:64px;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.rz .ny-m .sl-tile{border-radius:14px;flex:none}
+.rz .ny-m .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rz .ny-m .nm{font-size:var(--t-m);font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.rz .ny-m .mt{font-size:var(--t-xs);color:var(--mut);line-height:1.35}.rz .ny-p{font-style:normal;color:var(--ok);font-weight:600}
+.rz .ny-tag{align-self:flex-start;padding:2px 8px;border-radius:8px;background:var(--fcgr);color:var(--fcgri);font-size:var(--t-xs);font-weight:600;line-height:1.35}
+.rz .ny-need,.rz .ny-half{font-size:var(--t-xs);font-weight:600;color:var(--accink);line-height:1.35}
+.rz .ny-pl{flex:none;width:44px;height:44px;border:0;border-radius:12px;background:var(--accsoft);color:var(--accink);display:grid;place-items:center;font:inherit;font-size:var(--t-m);font-weight:600;cursor:pointer}
+.rz .ny-pl .rz-i{width:22px;height:22px}.rz .ny-pl.done{background:var(--fill);color:var(--onacc)}
+.rz .ny-it>.r{width:18px;height:18px;color:var(--mut);flex:none;margin-right:8px}
+.rz .ny-note,.rz .ny-hint{margin:16px 2px 0;font-size:var(--t-xs);color:var(--mut);line-height:1.4;text-align:center}.rz .ny-hint{text-align:left;margin:16px 2px 8px}
+.rz .ny .sl-mncw{margin:16px 0 0}
+/* retsept sahifasi va «Uyda nima bor?» — oyna ichida o'ngdan kiradi */
+.rz .ny-dt{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;background:var(--bg);transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.9,.25,1);box-shadow:-12px 0 32px -16px rgba(0,0,0,.3)}
+.rz .ny-dt.in{transform:none}
+@media (prefers-reduced-motion:reduce){.rz .ny-dt{transition:none}}
+.rz .ny-hero{position:relative;flex:none;height:152px;display:grid;place-items:center;background:var(--accsoft)}
+.rz .ny-hero .sl-tile{border-radius:24px;background:transparent}
+.rz .ny-bk{position:absolute;left:16px;top:8px;width:44px;height:44px;border:0;border-radius:12px;background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer}.rz .ny-bk .rz-i{width:22px;height:22px}
+.rz .ny-hd2{position:relative;display:flex;align-items:center;gap:8px;min-height:52px}.rz .ny-hd2 .ny-bk{position:static}
+.rz .ny-db{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px 16px 120px}
+.rz .ny-dn{margin:0;font-size:var(--t-pn);font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+.rz .ny-kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0 0}
+.rz .ny-kp div{padding:8px 4px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-align:center;font-size:var(--t-xs);color:var(--mut);line-height:1.3;min-width:0;overflow-wrap:anywhere}
+.rz .ny-kp b{display:block;font-size:var(--t-m);color:var(--ink);font-weight:600;white-space:nowrap}
+.rz .ny-por{display:flex;gap:8px}.rz .ny-por button{flex:1;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:var(--t-s);cursor:pointer}
+.rz .ny-por button.on{border-color:var(--accink);color:var(--accink);background:var(--accsoft);font-weight:600}
+.rz .ny-ing{padding:0 16px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.rz .ny-ing div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--t-s);line-height:1.35}.rz .ny-ing div:last-child{border-bottom:0}
+.rz .ny-ing b{flex:none;font-weight:400;color:var(--mut);white-space:nowrap}
+.rz .ny-stp{list-style:none;margin:0;padding:8px 16px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.rz .ny-stp li{display:flex;gap:12px;padding:8px 0;font-size:var(--t-s);line-height:1.45}
+.rz .ny-stp em{flex:none;width:28px;height:28px;border-radius:8px;background:var(--accsoft);color:var(--accink);font-style:normal;font-weight:600;font-size:var(--t-xs);display:grid;place-items:center}
+.rz .ny-bar{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 30%)}
+.rz .ny-bar .ny-yed{flex:1;min-height:56px;width:auto}.rz .ny-sv{flex:none;width:56px;height:56px;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer}.rz .ny-sv .rz-i{width:24px;height:24px}
+.rz .ny-hvc{flex:none;min-height:56px;padding:0 16px}
+.rz .ny-hvh{margin:8px 2px 16px;font-size:var(--t-s);color:var(--mut);line-height:1.4}.rz .ny-hv{display:flex;flex-wrap:wrap;gap:8px}

@@ -16,7 +16,7 @@ function hisobot(j, kun) {
     l.push((NOM[k] + ':').padEnd(36) + String(sum(k)).padStart(7) + '   (oxirgi 7 kun: ' + h7 + ')');
     if (/_buyurtma_bosildi$/.test(k)) Object.keys(jami).filter((x) => x.startsWith(k + '.')).sort().forEach((x) => l.push('    ' + x.slice(k.length + 1).padEnd(32) + String(jami[x]).padStart(7)));
   }
-  l.push('', "O'rniga: ko'rsatildi → tanlandi:        " + pct(sum('orinbosar_tanlandi'), sum('orinbosar_korsatildi')), 'Bugun nima yeymiz?: ochildi → tanlandi: ' + pct(sum('yeymiz_tanlandi'), sum('yeymiz_ochildi')), 'Baliq kuni: oyna → buyurtma bosildi:    ' + pct(sum('baliq_buyurtma_bosildi'), sum('baliq_oyna_ochildi')), 'Onboarding: boshlandi → tugadi (+ keyinroq): ' + pct(sum('onboarding_tugadi') + sum('onboarding_keyinroq'), sum('onboarding_boshlandi')));
+  l.push('', "O'rniga: ko'rsatildi → tanlandi:        " + pct(sum('orinbosar_tanlandi'), sum('orinbosar_korsatildi')), 'Nima yesam ekan?: ochildi → tanlandi: ' + pct(sum('yeymiz_tanlandi'), sum('yeymiz_ochildi')), 'Baliq kuni: oyna → buyurtma bosildi:    ' + pct(sum('baliq_buyurtma_bosildi'), sum('baliq_oyna_ochildi')), 'Onboarding: boshlandi → tugadi (+ keyinroq): ' + pct(sum('onboarding_tugadi') + sum('onboarding_keyinroq'), sum('onboarding_boshlandi')));
   return l.join('\n');
 }
 async function main(argv) {
