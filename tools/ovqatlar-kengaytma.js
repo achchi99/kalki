@@ -7,6 +7,11 @@
  * Ichimliklarda 100 ml ≈ 100 g. Tur: tools/ovqatlar-build.js (o n s m g v f d i q h x). g100 avtomatik qo'shiladi. */
 'use strict';
 const T = `
+kakao-kukun|Kakao kukuni (shakarsiz)|Какао-порошок (без сахара)|kakao kukuni,kakao poroshok,какао порошок,какао-порошок,какао порошок без сахара,cocoa powder|x|qoshiq:5|u:169593
+kepak|Kepak (bug'doy kepagi)|Отруби пшеничные|kepak,bugdoy kepagi,bug'doy kepagi,отруби,отруби пшеничные,wheat bran|g|qoshiq:6,stakan:58|u:169722
+tuxum-qov-yogsiz|Tuxum, yog'siz qovurilgan (yopishmaydigan tovada)|Яичница без масла (на антипригарной сковороде)|qovurilgan tuxum yog'siz,yog'siz qovurilgan tuxum,tuxum yogsiz qovurilgan,яйца жареные без масла,яйцо жареное без масла,яичница без масла,глазунья без масла,fried egg no oil|m|dona:50|u:171287
+kotleta-kiyev|Kotleta po-kiyevski (pishloqli)|Котлета по-киевски с сыром|kotleta po kiyevski,kotleta kiyevski,po-kiyevski,котлета по-киевски,котлета по киевски,котлета по-киевски с сыром,котлета по киевски с сыром,chicken kiev|m|dona:150|m:171078*65+173410*12+170845*10+174928*10+171287*3
+bulochka-shokolad|Bulochka/kruassan (shokoladli to'ldirma bilan)|Булочка с шоколадной начинкой|shokoladli bulochka,bulochka shokoladli,shokoladli kruassan,булочка с шоколадной начинкой,булочка с шоколадом,шоколадная булочка,круассан с шоколадом,круассан с какао,7days|h|dona:75|y:7days-kruassan-kakao
 mz-korovka-rojok|Korovka iz Korenovki — plombir vafli rojokda (15%)|Коровка из Кореновки — пломбир в вафельном рожке 15%|korovka,коровка,коровка из кореновки,korovka rojok,рожок пломбир,plombir rojok,muzqaymoq rojok,muzqaymoq,мороженое|h|dona:100|y:kizk-rojok
 mz-korovka-eskimo-belgiya|Korovka iz Korenovki — eskimo (belgiya shokoladida, 15%)|Коровка из Кореновки — эскимо в бельгийском шоколаде 15%|korovka eskimo,коровка эскимо,eskimo plombir,эскимо пломбир,muzqaymoq,мороженое|h|dona:70|y:kizk-eskimo-belgiya
 mz-korovka-eskimo|Korovka iz Korenovki — eskimo (shokolad glazurida)|Коровка из Кореновки — эскимо в шоколадной глазури|korovka eskimo glazur,эскимо в глазури,eskimo glazur,muzqaymoq,мороженое|h|dona:60|y:kizk-eskimo

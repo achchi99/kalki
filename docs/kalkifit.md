@@ -53,6 +53,8 @@ A onboarding (6 ekran: jins → yosh → bo'y → vazn → faollik → maqsad �
 ## Ovqatlar bazasi
 Qiymatlar 100 g uchun: USDA FoodData Central va ochiq jadvallar asosida **taxminiy**; retsept taomlar — o'rtacha uy retsepti (belgi: «taxminiy»). Porsiya variantlari oddiy tilda (kosa, dona, bo'lak…). Qidiruv: lotin/kirill/rus + xato yozuv (translit + takror harf + Levenshtein ≤1), oxirgi va sevimlilar tepada, o'z taomini qo'shish.
 
+**Qidiruvda miqdor va bir nechta taom (v38, AI'siz).** `splitQty`: boshidagi son/so'z (+ birlik) yoki oxiridagi «son + birlik» ajraladi («рис вареный 100 г», «200 мл», «2 ta», «yarimta», «1,5 kosa»); yolg'iz oxirgi son miqdor emas («sut 1,5» — yog'liligi). Natija qatori va «+» shu miqdor bilan, porsiya oynasi ham shu miqdor bilan ochiladi. `splitParts`: «, ; + va и» va o'rtadagi miqdor guruhi bo'yicha bo'linadi («yarimta non 50 gram qaymoq» → non ½ + qaymoq 50 g); hammasi topilsa «Hammasini qo'shish» AI chaqirmaydi, AI'ga faqat topilmagan qism boradi. Yozilish: bo'shliq/chiziqcha e'tiborsiz («sutlikofe»), 8+ harfda 1 harf farqi, sifatlar (вареный, пастеризованное, без масла…) topilmasa tashlab qayta qidiriladi; «qora/ko'k (quruq)» — choy (shakarsiz). Admin «topilmagan so'zlar» miqdorsiz yig'iladi (`functions/_lib/soz-norm.js`) va har biri yonida hozirgi baza bilan «endi topiladimi» (✓/✗). Test: `tools/test-qidiruv-miqdor.js`.
+
 ## AI
 Avval lokal parser («2 somsa», «1 kosa osh») baza bilan moslashtiradi; topilmaganini AI taxmin qiladi (`est:true`). Yuboriladi faqat shu matn bo'lagi (profil/tarix/vazn emas). Foydalanuvchi ko'rib «N ta ovqatni saqlash»ni bosadi; AI o'zi hech narsa saqlamaydi. Internet yo'q bo'lsa lokal rejim ishlaydi. Haftalik AI izoh va rasm — keyingi bosqich.
 

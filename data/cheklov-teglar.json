@@ -160,6 +160,10 @@
    "sut",
    "glyuten"
   ],
+  "bulochka-shokolad": [
+   "sut",
+   "glyuten"
+  ],
   "burger": [
    "glyuten"
   ],
@@ -422,6 +426,7 @@
   "kakao": [
    "sut"
   ],
+  "kakao-kukun": [],
   "kalmar": [
    "baliq"
   ],
@@ -477,6 +482,9 @@
   "keks-darchin": [
    "tuxum",
    "sut",
+   "glyuten"
+  ],
+  "kepak": [
    "glyuten"
   ],
   "keshyu": [
@@ -546,6 +554,11 @@
   ],
   "kotlet": [
    "tuxum",
+   "glyuten"
+  ],
+  "kotleta-kiyev": [
+   "tuxum",
+   "sut",
    "glyuten"
   ],
   "kozinak": [],
@@ -1845,6 +1858,9 @@
   "tuxum-qov-aralash": [
    "tuxum",
    "sut"
+  ],
+  "tuxum-qov-yogsiz": [
+   "tuxum"
   ],
   "tuxum-xom": [
    "tuxum"

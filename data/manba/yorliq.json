@@ -300,6 +300,16 @@
    "p": 3.7,
    "f": 12.1,
    "c": 34.2
+  },
+  "7days-kruassan-kakao": {
+   "nom": "7DAYS Croissant with Cocoa Filling",
+   "brand": "7Days",
+   "code": "5201360599202",
+   "qadoq": "75 g",
+   "k": 453,
+   "p": 5.3,
+   "f": 28.0,
+   "c": 42.7
   }
  }
 }

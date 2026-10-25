@@ -5,6 +5,7 @@
 :root{color-scheme:light dark;--bg:#F1F2EE;--card:#fff;--ink:#16211C;--mut:#3F4F46;--line:#D5DDD8;--acc:#0E3B2E;--ok:#1E7A4A;--bad:#B2412F;--c1:#E8572F;--c2:#2F7FD6;--c3:#1E7A4A;--soft:#E8ECE9}
 @media (prefers-color-scheme:dark){:root{--bg:#0F1714;--card:#18231E;--ink:#EEF3F0;--mut:#B9C7BF;--line:#2A3830;--acc:#8FDDB4;--ok:#3FAE78;--bad:#FF9B8A;--c1:#FF8A6F;--c2:#7FB6F5;--c3:#57C48A;--soft:#22302A}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:16px}
+.tp.ok{color:var(--ok)}.tp.no{color:var(--bad)}.tp{font-size:.9rem}
 main{max-width:1180px;margin:0 auto}h1{font-size:1.35rem;margin:0 0 4px}h2{font-size:1.05rem;margin:0 0 8px}h3{font-size:.95rem;margin:12px 0 6px}p.s{color:var(--mut);margin:0 0 12px;font-size:.92rem}
 .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
 input,button,select{font:inherit;color:inherit;min-height:44px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:0 12px}
@@ -61,8 +62,13 @@ function renderKpi(r){var k=r.kpi,o=r.oldingi||{},x=r.xarajat||{jami:0,tur:{}};k
  h+='<div class="c"><h2>Platforma va til</h2>'+share(r.platforma,{veb:'Veb',android:'Android ilova','ios-pwa':'iPhone (PWA)'})+'<h3>Til</h3>'+share(r.til,{uz:'UZ',cyr:'ЎЗ',ru:'RU'})+'</div></div>';
  h+='<div class="c"><h2>Push: yuborilgan → bosilgan</h2><p>'+nf(r.push.yuborildi)+' → '+nf(r.push.bosildi)+(r.push.foiz!=null?' ('+nf(r.push.foiz)+'%)':'')+'</p></div>';
  h+='<div class="c"><h2>Barcha hodisalar</h2>'+(r.funksiyalar.length?'<table><tr><th>Hodisa</th><th>Kalit</th><th class="n">Soni</th></tr>'+r.funksiyalar.map(function(y){return'<tr><td>'+esc(NOM[y.hodisa]||y.hodisa)+'</td><td>'+esc(y.kalit)+'</td><td class="n">'+nf(y.son)+'</td></tr>'}).join('')+'</table>':'<p class="s">Hali hodisa yo\'q.</p>')+'</div>';
- h+='<div class="c"><h2>Qidiruvda topilmagan 20 so\'z</h2>'+(r.topilmadi.length?'<table>'+r.topilmadi.map(function(y){return'<tr><td>'+esc(y.soz)+'</td><td class="n">'+nf(y.son)+'</td></tr>'}).join('')+'</table>':'<p class="s">Yo\'q.</p>')+'</div><div id="prBox"></div>';
- $('v-kpi').innerHTML=h}
+ h+='<div class="c"><h2>Qidiruvda topilmagan 20 so\'z</h2><p class="s">Miqdorsiz yig\'ilgan («рис 100 г» va «рис 90 г» — bitta). O\'ng ustun: hozirgi qidiruv bazasi bilan endi topiladimi.</p>'+(r.topilmadi.length?'<table id="tpT"><tr><th>So\'z</th><th class="n">Soni</th><th>Endi</th></tr>'+r.topilmadi.map(function(y){return'<tr><td>'+esc(y.soz)+'</td><td class="n">'+nf(y.son)+'</td><td class="tp" data-w="'+esc(y.soz)+'">…</td></tr>'}).join('')+'</table>':'<p class="s">Yo\'q.</p>')+'</div><div id="prBox"></div>';
+ $('v-kpi').innerHTML=h;tpFlag()}
+/* topilmagan so'z hozir topiladimi: ilovaning o'z qidiruvi (assets/kalkifit-core.js) va bazasi (data/ovqatlar.json) bilan — miqdor va bir nechta taom ham ajratiladi */
+var tpDb=null,tpW=[];function tpLoad(cb){if(tpDb)return cb();tpW.push(cb);if(tpW.length>1)return;var n=0,go=function(){if(++n<3)return;fetch('/data/ovqatlar.json').then(function(r){return r.json()}).then(function(j){var S=window.KalkiFit;tpDb=S.normFoods(j.foods);S.buildIndex(tpDb);var w=tpW;tpW=[];w.forEach(function(f){f()})}).catch(function(){tpW=[];[].forEach.call(document.querySelectorAll('#tpT .tp'),function(c){c.textContent='—'})})};
+ ['/assets/rozgor-core.js','/assets/kalkifit-core.js'].forEach(function(u,i){var sc=document.createElement('script');sc.src=u;sc.async=false;sc.onload=go;sc.onerror=go;document.head.appendChild(sc)});go()}
+function tpFlag(){if(!document.querySelector('#tpT .tp'))return;tpLoad(function(){var S=window.KalkiFit;[].forEach.call(document.querySelectorAll('#tpT .tp'),function(c){var w=c.getAttribute('data-w'),nm=[];try{var r=S.parseText(w,tpDb,{});if(r.items.length&&!r.missing.length)nm=r.items.map(function(x){return(x.fam||x.food).n||x.food.n});else{var f=S.search(tpDb,S.splitQty(w).name||w,{limit:1})[0];if(f)nm=[f.n]}}catch(e){}
+ c.className='tp '+(nm.length?'ok':'no');c.textContent=nm.length?'✓ '+nm.join(' + '):'✗ yo\'q'})})}
 /* ---------- qurilmalar ---------- */
 var TUR={'android-ilova':'Android ilova','android-brauzer':'Android brauzer','iphone-safari':'iPhone Safari','iphone-pwa':'iPhone PWA (bosh ekranda)','iphone-boshqa':'iPhone: boshqa brauzer','ipad':'iPad','kompyuter':'Kompyuter','boshqa':'Boshqa'};
 function renderDev(r){var q=r.qurilmalar;if(!q){$('v-dev').innerHTML='<div class="c"><p class="s">Qurilma turi hali yig\'ilmagan (migrations/admin-stat.sql).</p></div>';return}

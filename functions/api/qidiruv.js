@@ -5,6 +5,7 @@
  * Migratsiya: migrations/qidiruv.sql. Uslub — functions/api/hisob.js. */
 import { originOk, json } from './ariza.js';
 import { adminAuth } from '../_lib/admin-auth.js';
+import { yigMiqdorsiz } from '../_lib/soz-norm.js';
 
 const NC = { 'Cache-Control': 'no-store' };
 const E = { 400: "So'rov noto'g'ri.", 401: "Parol noto'g'ri.", 403: "Ruxsat yo'q.", 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq.", 503: 'Sozlanmagan.' };
@@ -37,8 +38,8 @@ export async function onRequest({ request, env }) {
   if (request.method === 'GET') {
     const deny = await adminAuth(request, env); if (deny) return deny;          // admin sessiyasi yoki X-Admin-Password (5 xato → 15 daqiqa blok)
     const kun = Math.max(1, Math.min(365, parseInt(new URL(request.url).searchParams.get('kun'), 10) || 30)), dan = tosh(Date.now() - (kun - 1) * 86400000);
-    let r; try { r = await db.prepare('SELECT soz, SUM(son) AS son, COUNT(*) AS kun FROM qidiruv_topilmadi WHERE sana >= ? GROUP BY soz ORDER BY son DESC, soz LIMIT 500').bind(dan).all(); } catch (e) { return fail(503); }
-    return json(200, { sozlar: r.results || [] }, NC);
+    let r; try { r = await db.prepare('SELECT soz, SUM(son) AS son, COUNT(*) AS kun FROM qidiruv_topilmadi WHERE sana >= ? GROUP BY soz ORDER BY son DESC, soz LIMIT 2000').bind(dan).all(); } catch (e) { return fail(503); }
+    return json(200, { sozlar: yigMiqdorsiz(r.results, 500) }, NC);          // miqdorsiz yig'iladi (functions/_lib/soz-norm.js)
   }
   const origin = request.headers.get('Origin'); if (!origin || !originOk(origin, env)) return fail(403);
   if (!/^application\/json\b/i.test(request.headers.get('Content-Type') || '')) return fail(415);
