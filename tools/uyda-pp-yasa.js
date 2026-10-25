@@ -20,16 +20,17 @@ const ODDIY = 'suv yog zaytun-yogi asal limon un sariyog'.split(' ');          /
 const GR = new Set(['tayyorsiz', 'tez', 'pishirsa']), errs = [], out = [], seen = new Set();
 const grpOf = {}; G.forEach((g) => g.ids.forEach((i) => { if (grpOf[i]) errs.push('ikki guruhda: ' + i); grpOf[i] = g.k; }));
 R.trim().split(/\n\s*\n/).forEach((blk) => {
-  const L = blk.trim().split('\n'), h = L[0].split('|'); if (h.length !== 6) { errs.push('sarlavha: ' + L[0]); return; }
-  const [id, t, min, meals, nu, nr] = h, ing = (L.find((x) => x.startsWith('ing:')) || '').slice(4).split(',').map((s) => s.trim()).filter(Boolean).map((s) => { const a = s.split(':'); const r = [a[0], +a[1]]; if (a[2] || a[3]) r.push(a[2] ? +a[2] : 0); if (a[3]) r.push(a[3]); return r; });
+  const L = blk.trim().split('\n'), h = L[0].split('|'); if (h.length !== 7) { errs.push('sarlavha: ' + L[0]); return; }
+  const [id, t, min, meals, nu, nr, ic] = h, ing = (L.find((x) => x.startsWith('ing:')) || '').slice(4).split(',').map((s) => s.trim()).filter(Boolean).map((s) => { const a = s.split(':'); const r = [a[0], +a[1]]; if (a[2] || a[3]) r.push(a[2] ? +a[2] : 0); if (a[3]) r.push(a[3]); return r; });
   const su = (L.find((x) => x.startsWith('uz:')) || '').slice(3).split(' / ').map((s) => s.trim()).filter(Boolean), sr = (L.find((x) => x.startsWith('ru:')) || '').slice(3).split(' / ').map((s) => s.trim()).filter(Boolean);
   if (seen.has(id)) errs.push('takror id: ' + id); seen.add(id); if (!GR.has(t)) errs.push(id + ': guruh ' + t);
   if (!/^[bkld]*$/.test(meals.replace(/s/g, '')) || !meals) errs.push(id + ': ovqat turi ' + meals);
   if (!(+min > 0)) errs.push(id + ': daqiqa'); if (t === 'tayyorsiz' && +min > 5) errs.push(id + ': tayyorsiz ≤5 daq'); if (t === 'tez' && (+min < 10 || +min > 15)) errs.push(id + ': tez 10–15 daq'); if (t === 'pishirsa' && (+min < 25 || +min > 45)) errs.push(id + ': pishirsa 25–45 daq');
   if (!ing.length) errs.push(id + ': tarkib yo\'q');
+  if (!ic || !['128', '256'].every((z) => fs.existsSync(path.join(ROOT, 'assets/ovqat', ic + '-' + z + '.webp')))) errs.push(id + ': rasm yo\'q ' + ic);
   ing.forEach((r) => { const f = by[r[0]]; if (!f) { errs.push(id + ': bazada yo\'q ' + r[0]); return; } if (!(r[1] > 0)) errs.push(id + ': gramm ' + r[0]); if (!grpOf[r[0]] && ODDIY.indexOf(r[0]) < 0) errs.push(id + ': guruhsiz ingredient ' + r[0]); if (r[3] && !(f.fam && f.fam.g[r[3]])) errs.push(id + ': variant ' + r[0] + '#' + r[3]); if ((chk.taom[r[0]] || []).indexOf('choshqa') > -1) errs.push(id + ': cho\'chqa ' + r[0]); });
   if (su.length < 3 || su.length > 4 || sr.length !== su.length) errs.push(id + ': qadamlar UZ ' + su.length + ' / RU ' + sr.length);
-  out.push({ id, t, min: +min, m: meals, n: { uz: nu.trim(), ru: nr.trim() }, ing, qad: { uz: su, ru: sr } });
+  out.push({ id, t, min: +min, m: meals, ic, n: { uz: nu.trim(), ru: nr.trim() }, ing, qad: { uz: su, ru: sr } });
 });
 if (errs.length) { console.error(errs.join('\n')); process.exit(1); }
 const n = {}; out.forEach((r) => { n[r.t] = (n[r.t] || 0) + 1; });

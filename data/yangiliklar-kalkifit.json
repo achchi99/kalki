@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 43,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "«Nima yesam ekan?» — yangi ko'rinishda.",
+    "ru": "«Что бы мне съесть?» — в новом виде."
+   },
+   "items": [
+    {
+     "uz": "Qolgan kkal va oqsilga qarab aniq maslahat, 3 ta eng mos variant va «+» bilan bir bosishda qo'shish.",
+     "ru": "Чёткий совет по остатку ккал и белка, 3 лучших варианта и добавление одним нажатием «+».",
+     "show": "yeymiz",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Retsept sahifasi: rasm, porsiya, kerakli mahsulotlar va tayyorlash qadamlari bir joyda.",
+     "ru": "Страница рецепта: фото, порция, продукты и шаги приготовления в одном месте."
+    }
+   ]
+  },
+  {
    "v": 42,
    "d": "2026-10-25",
    "bn": {

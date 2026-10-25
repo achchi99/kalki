@@ -42,3 +42,12 @@ Har chip (Kabob, Suyuq ovqat, Tandir, Tez tayyor, Baliq) bitta oynani ochadi: 3 
 
 Eski toifa bo'yicha «Uyda» retseptlari (`data/uyda.json`: kishi soni, xarid ro'yxati) saqlandi: Baliq kuni va Uyda oxiridagi «Boshqa uyda taomlar» havolasi orqali.
 Bazaga qo'shilganlar (USDA SR Legacy, `data/manba/usda-sr-legacy.json` da bor edi): `un` (168894), `tunets-suv` (171986). Protein kokteyl — bazadagi «Protein kukuni (whey)» (yorliq o'rtachasi, 30 g). Test: `tools/dizayn/test-uyda-pp.mjs`.
+
+## 2.3: «Nima yesam ekan?» — yagona karkas (v43, maket: `~/nima-yesam-maket.html`)
+Nom hamma joyda: «Nima yesam ekan?» / «Нима есам экан?» / «Что бы мне съесть?»; Imkoniyatlar guruhi — «Ovqat tanlash». Oyna doim bir xil balandlikda (`[data-kind=yeymiz]`: `calc(100% - 44px)`), tepa qism qotib turadi (sarlavha, segment **Uyda · Kafeda · Buyurtma**, holat qatori, BITTA gorizontal chip qatori), faqat `#nyList` aylanadi.
+- **Holat qatori** (`statusHtml`): qolgan kkal < 250 — «Bugungi limit deyarli tugadi — X kkal qoldi» (+ oqsil kam bo'lsa — «Lekin oqsil Y g kam…»); limit oshgan — yumshoq matn; aks holda «Sizga X kkal va Y g oqsil qoldi».
+- **Uyda chiplari**: Hammasi · 5 daq gacha · 15 daq gacha · 30+ daq · «Uyda borlar» (oyna ichidagi sahifa, `prefs.ppHave`). Ovqat turi — kun vaqtidan.
+- **Tavsiya** (`uyda-pp-core.js` `pick`): kam limit (`LOW` 250) — avval kkal ≤ qolgan + `ZAX` (60), oqsil zichligi yuqori; sig'adigan yetmasa — eng yengillari; limit oshgan — eng yengil 3 ta. Ro'yxat: «[Kun vaqti]ga eng mos» (3) + «Yana variantlar» — TAKRORSIZ. Teglar («Oqsilga boy», «yengil») faqat tepadagi 3 tada, ma'noli bo'lsa.
+- **Karta**: rasm (har retseptda `ic` — `assets/ovqat`; harf-zaglushka yo'q), nom, ⏱ · kkal · oqsil (yashil); «+» — 1 porsiya (qo'shish oqimidagi [+] kabi: ✓, oyna ochiq, Bekor qilish, hazil oyna yopilgach). «taxminiy» — ro'yxat oxirida bitta izoh.
+- **Retsept sahifasi** (`dtHtml`, oyna ichida o'ngdan, ‹ / Escape / Android «orqaga» — `Y.backStep`): katta rasm, nom, 4 raqam, porsiya ½–2, «Kerak bo'ladi», «Tayyorlash» (raqamli, doim ochiq), qotgan «Yedim · N kkal» + ☆.
+- **Kafeda / Buyurtma**: shu karkas va karta; limitdan oshadiganlar pastda, «yarim porsiya — N kkal» va «½» bilan; Kafeda — menyu kartasi qoladi.
