@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 39,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Imkoniyatlar endi Bugun ekranida.",
+    "ru": "Возможности теперь на экране «Сегодня»."
+   },
+   "items": [
+    {
+     "uz": "Bugun sarlavhasi yonidagi «Imkoniyatlar» tugmasi: ovoz, rasm, menyu, hafta va boshqa hamma imkoniyat bir joyda.",
+     "ru": "Кнопка «Возможности» рядом с заголовком «Сегодня»: голос, фото, меню, неделя и всё остальное в одном месте.",
+     "show": "imkoniyatlar",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 38,
    "d": "2026-10-25",
    "bn": {
