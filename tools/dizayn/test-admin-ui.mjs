@@ -11,6 +11,7 @@ for (let i = 0; i < 6; i++) await STAT.qabul(new Request('https://kalki.uz/api/s
 const raw = db.raw; for (let i = 0; i < 12; i++) raw.prepare('INSERT INTO akkaunt (id, email, usul, ism, yaratilgan, oxirgi_kirish, marketing) VALUES (?, ?, ?, ?, ?, ?, 0)').run(('a' + String(i).padStart(2, '0')).padEnd(24, '0'), 'user' + i + '@mail.uz', i % 2 ? 'google' : 'email', i % 3 ? 'Ism ' + i : null, NOW - (20 + i) * D, NOW - i * D);
 raw.prepare("INSERT INTO sessiya (id, akkaunt_id, yaratilgan, oxirgi, muddat_abs, qurilma) VALUES ('s1', ?, ?, ?, ?, 'Chrome · Android')").run('a00'.padEnd(24, '0'), NOW - 5 * D, NOW - 3600000, NOW + 90 * D);
 raw.prepare("INSERT INTO admin_kirish (vaqt, ok, usul, ip) VALUES (?, 0, 'brauzer', '185.213.x.x'), (?, 1, 'brauzer', '185.213.x.x')").run(NOW - 7200000, NOW - 3600000);
+const TK = new Date(NOW + 5 * 3600000).toISOString().slice(0, 10); for (const [w, c] of [['рис вареный 100 г', 3], ['рис вареный 90 г', 2], ['xqzvbnm', 1]]) raw.prepare('INSERT INTO qidiruv_topilmadi (sana, soz, son) VALUES (?, ?, ?)').run(TK, w, c);
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch());
@@ -35,6 +36,8 @@ try {
     await p.fill('#pw', PW); await p.click('#login button'); await p.waitForSelector('#v-kpi .k'); assert.equal(await p.inputValue('#pw'), '', 'parol maydoni tozalandi');
     const kp = await p.locator('#v-kpi .k small').allInnerTexts(); for (const k of ['DAU (o\'rtacha)', 'WAU', 'MAU', 'Yangi: bugun', 'Yangi: 7 kun', 'Retention 1-kun', 'Retention 7-kun', 'Retention 30-kun', 'Kunlik ovqat yozuvi (1 qurilma)', 'Akkaunt konversiyasi', 'AI/ovoz xarajati (taxminiy)']) assert.ok(kp.includes(k), k);
     const t = await p.locator('#v-kpi').innerText(); assert.match(t, /Retention kogortalari/); assert.match(t, /Funksiyalar ishlatilishi[\s\S]*Qidiruv[\s\S]*Ovoz[\s\S]*Rasm[\s\S]*Menyu[\s\S]*Yeymiz[\s\S]*Haftangiz[\s\S]*Ulashish/); assert.match(t, /\$0\.0\d/);
+    await p.waitForFunction(() => !/…/.test(document.querySelector('#tpT').innerText)); const tp = await p.locator('#tpT tr').allInnerTexts();
+    assert.ok(tp.some((x) => /^рис вареный\s+5\s+✓ Guruch/.test(x)), 'miqdorsiz yig\'ildi va endi topiladi: ' + tp.join(' | ')); assert.ok(tp.some((x) => /^xqzvbnm\s+1\s+✗/.test(x)), 'topilmaydigani ✗');
     await shot(p, 'kpi', w); await p.click('#davr [data-d="90"]'); await p.waitForTimeout(300); assert.equal(await p.locator('#davr [data-d="90"].on').count(), 1);
     await p.click('#tabs [data-t=dev]'); await p.waitForTimeout(200); const dv = await p.locator('#v-dev').innerText(); assert.match(dv, /Android ilova/); assert.match(dv, /1\.0\.6/); assert.match(dv, /Samsung Galaxy A54/); assert.match(dv, /390–429/); await shot(p, 'qurilma', w);
     await p.click('#tabs [data-t=usr]'); await p.waitForSelector('#ut tr.row'); assert.equal(await p.locator('#ut tr.row').count(), 12);
@@ -50,6 +53,6 @@ try {
     await p.click('#out'); await p.waitForTimeout(300); assert.equal(await p.locator('#login').isVisible(), true, 'Chiqish — forma'); assert.equal(await p.locator('#v-usr').innerText(), '');
     assert.equal(await p.evaluate(() => [sessionStorage.length, localStorage.length].join()), '0,0', 'parol brauzer xotirasida yo\'q'); assert.deepEqual(p.errs, []); await p.context().close();
   }
-  log('Admin sahifa (1280 va 360 px): xato parol — xabar, to\'g\'ri — sessiya; KPI (DAU/WAU/MAU, yangi bugun/7 kun, retention 1/7/30, kunlik ovqat, konversiya, AI xarajati), kogortalar, funksiyalar; 90 kun; Qurilmalar (tur, versiya, model, ekran); Foydalanuvchilar — qidiruv (fokus saqlanadi), saralash, CSV, tafsilot (30 kun, qurilmalar, profil yopiq, vazn yo\'q); jurnal — IP qisqa; Chiqish; brauzer xotirasida parol yo\'q');
+  log('Admin sahifa (1280 va 360 px): xato parol — xabar, to\'g\'ri — sessiya; topilmagan so\'zlar miqdorsiz + «endi topiladimi» (✓/✗); KPI (DAU/WAU/MAU, yangi bugun/7 kun, retention 1/7/30, kunlik ovqat, konversiya, AI xarajati), kogortalar, funksiyalar; 90 kun; Qurilmalar (tur, versiya, model, ekran); Foydalanuvchilar — qidiruv (fokus saqlanadi), saralash, CSV, tafsilot (30 kun, qurilmalar, profil yopiq, vazn yo\'q); jurnal — IP qisqa; Chiqish; brauzer xotirasida parol yo\'q');
   console.log('\n' + n + '/' + n + ' OK');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }

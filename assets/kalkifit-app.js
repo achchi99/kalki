@@ -1268,9 +1268,9 @@
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?');
     return rowHtml({ main: 'data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled'), tile: tileHtml(e.fid || iconFid(e), e.vr, nm, 46, false, e.ikat), nm: nm, tag: base && base.custom ? T('qMine') : '', sub: entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), plus: 'data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '"', done: !!fd.added[r.k] });
   }
-  function foodKey(f, pk) { return (f.fam ? f.fam.id : (dbAlias[f.id] || f.id)) + (pk ? '|' + JSON.stringify(pk) : ''); }
-  function foodRow(f, pk, src) {                     // baza/o'z taomi: [+] — oxirgi marta yegan porsiyasi, bo'lmasa odatiy porsiya (qatorda aynan shu yoziladi)
-    var o = {}, ok = prepFood(o, f.id, pk), key = foodKey(f, pk), pt = ok ? pwCalc(o) : null, vl = ok && pk && o.fam ? S.famLabel(o.fam, o.food.vr, null, lang) : '', pj = pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '', nm = nameOf(f) + (vl ? ' · ' + vl : '');
+  function foodKey(f, pk, pre) { return (f.fam ? f.fam.id : (dbAlias[f.id] || f.id)) + (pk ? '|' + JSON.stringify(pk) : '') + (pre ? '|' + pre.q + (pre.u || '') : ''); }
+  function foodRow(f, pk, src, pre) {                     // baza/o'z taomi: [+] — oxirgi marta yegan porsiyasi, bo'lmasa odatiy porsiya (qatorda aynan shu yoziladi)
+    var o = {}, ok = prepFood(o, f.id, pk, pre), key = foodKey(f, pk, pre), pt = ok ? pwCalc(o) : null, vl = ok && pk && o.fam ? S.famLabel(o.fam, o.food.vr, null, lang) : '', pj = (pk ? ' data-pick="' + esc(JSON.stringify(pk)) + '"' : '') + (pre ? ' data-pre="' + esc(JSON.stringify(pre)) + '"' : ''), nm = nameOf(f) + (vl ? ' · ' + vl : '');
     return rowHtml({ main: 'data-act="pickfood" data-id="' + esc(f.id) + '"' + pj, tile: tileHtml(f.id, null, nameOf(f), 46), nm: nm, tag: f.custom ? T('qMine') : '', bad: rI(f).hit.length, fav: st.favs.indexOf(f.id) > -1, extra: f.kf && Y ? ' ' + Y.badge({ kafe: true }) : '',
       sub: pt ? pwSumQ(o) + ' · ' + fmt(pt.kcal) + ' ' + T('kcal') : '', plus: 'data-act="fadd" data-id="' + esc(f.id) + '"' + pj + ' data-fk="' + esc(key) + '" data-src="' + src + '"', done: !!fd.added[key] });
   }
@@ -1294,10 +1294,14 @@
     return '<div class="sl-sech"><h3>' + esc(T('aPop')) + '</h3></div>' + pop.map(function (f) { return foodRow(f, null, 'qidiruv'); }).join('');
   }
   /* ko'p taomli gap («osh va choy», «2 ta non, choy»): tepada BITTA qator — mavjud ajratish (lokal, topilmagani — AI, limit bilan) */
+  var multiMiss = 0;                                  // «Hammasini qo'shish»da topilmagan qism bormi (hammasi topilsa — «topilmadi» deb yozilmaydi)
   function multiHtml(q, n) {
-    if (!isSentence(q)) return ''; var r; try { r = S.parseText(q, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); } catch (e) { return ''; }
-    var lq = q.toLowerCase(), parts = r.items.map(function (x) { return x.text; }).concat(r.missing).map(function (s) { return String(s).trim(); }).filter(Boolean);
-    parts.sort(function (a, b) { return lq.indexOf(a.toLowerCase()) - lq.indexOf(b.toLowerCase()); });
+    multiMiss = 0; if (!isSentence(q)) return ''; var r; try { r = S.parseText(q, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); } catch (e) { return ''; }
+    multiMiss = r.missing.length;
+    var parts = r.items.map(function (x) {          // qisqa: «non ½ + qaymoq 50 g + qora choy»
+      var nm = S.splitQty(x.text).name || x.text;     // gramm va yarimta — qisqa; qolgani yozilganidek («2 ta somsa», «1 kosa osh»)
+      return x.unit === 'g100' ? nm + ' ' + fmt(Math.round(x.g)) + ' ' + unitName('g100') : (x.qty === 0.5 ? nm + ' ½' : x.text);
+    }).concat(r.missing).map(function (s) { return String(s).trim(); }).filter(Boolean);
     if (parts.length < 2 && !(parts.length === 1 && !n && r.items.length)) return '';
     var off = navigator.onLine === false && r.missing.length, lim = r.missing.length && aiq ? '<small class="kq-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeft', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : '';
     return '<button type="button" class="kq-all" id="fdAi" data-act="fqai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('plus', '', 2.4) + '</i><span class="m"><b>' + esc(T('qAll', { x: parts.join(' + ') })) + '</b>' + lim + '</span></button>';
@@ -1314,12 +1318,13 @@
   function rWarnInner() { var h = rHits(); return h.length ? '<div class="sl-rwarn" role="note">' + ico('warn') + '<span>' + esc(T('rWarn', { x: Y.hitText(h) })) + '</span></div>' : ''; }
   function resultsHtml() {
     if (dbState !== 2 || (Y && !Y.chReady())) return '<div class="rz-mut">' + esc(T('aLoading')) + '</div>';
-    var q = fd.q.trim(), all = S.search(allFoods(), q, srchOpts(40)), list = all.filter(function (f) { return f.custom; }).concat(all.filter(function (f) { return !f.custom; }));          // qidiruv: odam o'zi yozgan — HAMMASI (cheklangani belgi bilan); o'z taomlari birinchi
+    var q = fd.q.trim(), sq = S.splitParts(q).length > 1 ? {} : S.splitQty(q), pre = sq.qty != null && sq.name ? { q: sq.qty, u: sq.unit } : null, qn = pre ? sq.name : q, all = S.search(allFoods(), qn, srchOpts(40)),          // «рис вареный 100 г» → «рис вареный» qidiriladi, natija 100 g bilan
+        list = all.filter(function (f) { return f.custom; }).concat(all.filter(function (f) { return !f.custom; }));          // qidiruv: odam o'zi yozgan — HAMMASI (cheklangani belgi bilan); o'z taomlari birinchi
     var head = multiHtml(q, list.length);
-    if (!list.length) { qtNote(q); return head + noneHtml(); }
-    var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(q);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
+    if (!list.length) { if (!head || multiMiss) qtNote(q); return head + noneHtml(); }
+    var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(qn);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
     var own = '<button type="button" class="sl-txtbtn kq-own" data-act="fcustom">' + ico('plus', 'sl-inl') + esc(T('qOwn')) + '</button>';          // topilgani mos kelmasa — o'z taomi (ro'yxat oxirida, sokin havola)
-    return head + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv'); }).join(''); } return foodRow(f, f.fam ? S.famPick(f, q) : null, 'qidiruv'); }).join('') + own;
+    return head + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv', pre); }).join(''); } return foodRow(f, f.fam ? S.famPick(f, qn) : null, 'qidiruv', pre); }).join('') + own;
   }
   var QT_LS = 'kalki_fit_qt', qtTm = null;
   function qtNorm(q) {
@@ -1327,11 +1332,11 @@
     if (s0.length < 2 || s0.length > 40 || /[@\/\\<>{}\[\]|=:;#$%^&*_~+]|https?|www\./.test(s0) || (s0.match(/\d/g) || []).length > 4 || !/[a-z\u0430-\u044f\u0451\u045e\u049b\u0493\u04b3]/i.test(s0)) return '';
     return /^[a-z0-9\u0430-\u044f\u0451\u045e\u049b\u0493\u04b3' ,.()%-]+$/i.test(s0) ? s0 : '';
   }
-  function qtNote(q) {
+  function qtNote(q) {                               // topilmagan so'z: miqdorsiz («рис вареный 100 г» → «рис вареный»)
     if (KD.on || (navigator.doNotTrack === '1') || !window.fetch) return;
     clearTimeout(qtTm);
     qtTm = setTimeout(function () {
-      if (!fd || fd.q.trim() !== q) return; var w = qtNorm(q), d = todayStr(); if (!w) return;
+      if (!fd || fd.q.trim() !== q) return; var w = qtNorm(S.splitQty(q).name || q), d = todayStr(); if (!w) return;
       var m = {}; try { m = JSON.parse(localStorage.getItem(QT_LS) || '{}') || {}; } catch (e) {}
       Object.keys(m).forEach(function (k) { if (k.slice(0, 10) !== d) delete m[k]; });
       if (m[d + '|' + w]) return; m[d + '|' + w] = 1; try { localStorage.setItem(QT_LS, JSON.stringify(m)); } catch (e) {}
@@ -1612,7 +1617,7 @@
     o.fam = f; o.sel = sel; o.szid = szid || (f.fam.sz ? f.fam.sz.d : null); o.food = S.famVariant(f, o.sel, o.szid);
   }
   function defUnit(food) { var d = (food.b || []).filter(function (x) { return x.d; })[0]; return d && food.u.some(function (u) { return u[0] === d.k; }) ? d.k : food.u[0][0]; }
-  function prepFood(o, id, pick) {                   // taom → boshlang'ich porsiya: «Mening idishim» › shu taomning OXIRGI porsiyasi (va omillari) › odatiy porsiya. Porsiya oynasi ham, [+] ham shu yerdan
+  function prepFood(o, id, pick, pre) {                   // taom → boshlang'ich porsiya: «Mening idishim» › shu taomning OXIRGI porsiyasi (va omillari) › odatiy porsiya. Porsiya oynasi ham, [+] ham shu yerdan
     var f = foodById(id); if (!f) return false;
     o.fam = null; o.sel = null; o.szid = null; o.favId = null; o.base = null;
     if (f.al) { var bf = foodById(f.al.f); if (bf) { o.favId = f.id; pick = S.famSelOf(bf, f.al.v); f = bf; } }
@@ -1620,12 +1625,18 @@
     o.unit = defUnit(o.food); o.qty = o.unit === 'g100' ? 100 : 1; o.vfill = 'tola';
     var vs0 = S.vesselsFor(st, vkey(o)); if (vs0.length) { o.unit = 'v:' + vs0[0].id; o.qty = 1; }             // shu oila uchun «Mening idishim» bor — oldindan tanlangan
     var le = lastFor(vkey(o)); if (le) pwApplyLast(o, le.e, pick);
+    if (pre && pre.q > 0) pwPre(o, pre);
     return true;
   }
-  function pickFood(id, pick) {
-    if (!foodById(id)) { if (dbState !== 2) loadDb(function () { if (fd && foodById(id)) pickFood(id, pick); }); return; }
+  function pwPre(o, pre) {                           // qidiruvda yozilgan miqdor: «100 г» / «200 мл» → gramm; «2 ta» — taom birligida; «yarimta non» — odatiy birlik × 0,5
+    o.vfill = 'tola';
+    if (pre.u === 'g100' || pre.u === 'ml') { o.unit = 'g100'; o.qty = Math.round(pre.q); return; }
+    o.unit = pre.u && o.food.u.some(function (u) { return u[0] === pre.u; }) ? pre.u : defUnit(o.food); o.qty = o.unit === 'g100' ? Math.round(pre.q * 100) : pre.q;
+  }
+  function pickFood(id, pick, pre) {
+    if (!foodById(id)) { if (dbState !== 2) loadDb(function () { if (fd && foodById(id)) pickFood(id, pick, pre); }); return; }
     if (!Object.keys(fdLM).length) lmIndex();
-    prepFood(fd, id, pick); fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.editId = null; fd.vsugShown = null; fd.pmore = false;
+    prepFood(fd, id, pick, pre); fd.obFrom = null; fd.orMore = false; fd.orSeen = false; fd.mode = 'portion'; fd.editId = null; fd.vsugShown = null; fd.pmore = false;
     setSheet(portionHtml()); var shp = $('#rzSheet'); if (shp) shp.scrollTop = 0;          // porsiya oynasi har doim tepadan (qidiruv ro'yxatidagi scroll saqlanmaydi)
     if (OR && orState !== 2) loadOr(function () { if (kit.sheetKind() === 'add' && fd.mode === 'portion') orRefresh(); });
   }
@@ -1644,8 +1655,8 @@
   function plusUndo(key) {                           // ✓ qayta bosildi — bekor
     var cur = fd.added[key]; if (!cur) return false; [].concat(cur).forEach(function (x) { S.removeFood(st, fd.date, x); }); delete fd.added[key]; commit(); refreshRes(); kit.hideToast(); return true;
   }
-  function addNow(id, pick, key, src) {              // natija / «Yaqinda» [+]: qatorda ko'rsatilgan porsiya bilan darhol; ✓ bo'ladi, varaq ochiq qoladi
-    if (plusUndo(key)) return; var o = {}; if (!prepFood(o, id, pick)) return;
+  function addNow(id, pick, key, src, pre) {              // natija / «Yaqinda» [+]: qatorda ko'rsatilgan porsiya bilan darhol; ✓ bo'ladi, varaq ochiq qoladi
+    if (plusUndo(key)) return; var o = {}; if (!prepFood(o, id, pick, pre)) return;
     stEv('ovqat_qoshildi', src === 'oxirgilar' ? 'oxirgilar' : 'qidiruv');
     var date = fd.date, it = S.addFood(st, date, entryOf(o)), f = o.food; fd.added[key] = it.id; commit(); vib(); refreshRes();
     addedToast(nameOf(o.fam || f) + ' · ' + pwSumQ(o), date, [it.id], key); afterWater(); jokeAfter('food', { sweet: f.t === 'h', fish: orFishKey(f, o) });
@@ -2325,7 +2336,7 @@
       case 'addtext': openText(el.getAttribute('data-d')); break;
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
-      case 'pickfood': { var pk0 = el.getAttribute('data-pick'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null); break; }
+      case 'pickfood': { var pk0 = el.getAttribute('data-pick'); var pr0 = el.getAttribute('data-pre'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null, pr0 ? JSON.parse(pr0) : null); break; }
       case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); var cv = el.querySelector('.a'); if (cv) cv.textContent = T(o8.pmore ? 'pCloseL' : 'pChange'); break; }
@@ -2356,7 +2367,7 @@
       case 'pwgram': { var o9 = pwO(), w9 = !!vOf(o9.unit); if (o9.unit !== 'g100') { pwSetUnit(o9, 'g100'); if (w9) pwScreen(); else pwUpdate(); } var qi9 = $('#fdQty'); if (qi9) { try { qi9.focus(); qi9.select(); } catch (x) {} } break; }
       case 'qmeal': mealMenu($('#kqMM') && $('#kqMM').hidden); break;
       case 'qmealset': mealSet(el.getAttribute('data-m')); break;
-      case 'fadd': { var pk1 = el.getAttribute('data-pick'); addNow(el.getAttribute('data-id'), pk1 ? JSON.parse(pk1) : null, el.getAttribute('data-fk'), el.getAttribute('data-src')); break; }
+      case 'fadd': { var pk1 = el.getAttribute('data-pick'); addNow(el.getAttribute('data-id'), pk1 ? JSON.parse(pk1) : null, el.getAttribute('data-fk'), el.getAttribute('data-src'), el.getAttribute('data-pre') ? JSON.parse(el.getAttribute('data-pre')) : null); break; }
       case 'tpladd': tplAdd(+el.getAttribute('data-id')); break;
       case 'pwswap': loadDb(function () { setSheet(pwSwapHtml(pwO())); }); break;
       case 'pwswapx': pwScreen(); break;

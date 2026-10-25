@@ -7,6 +7,7 @@
  * Hodisalar va qo'shimcha kalitlar QAT'IY ro'yxatdan (erkin matn qabul qilinmaydi). Chegara: bir so'rovda ≤ 30 qator, n ≤ 20; qurilma kuniga ≤ 400 hodisa. */
 import { json } from './ariza.js';
 import { turOf, ekranOf } from '../_lib/qurilma-tur.js';
+import { yigMiqdorsiz } from '../_lib/soz-norm.js';
 import { adminAuth } from '../_lib/admin-auth.js';
 
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
@@ -133,7 +134,7 @@ export async function hisobot(db, davr, now) {
   const ulush = async (col) => { let r = await all(db, 'SELECT ' + col + ' AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? GROUP BY ' + col, dan, gacha); if (!r.length) r = await all(db, 'SELECT ' + col + ' AS k, SUM(dau) AS n FROM stat_yig WHERE kun >= ? AND kun <= ? GROUP BY ' + col, dan, gacha); return r; };
   const funk = await all(db, 'SELECT hodisa, kalit, SUM(son) AS son FROM stat_kun WHERE kun >= ? AND kun <= ? GROUP BY hodisa, kalit ORDER BY son DESC', dan, gacha);
   const pushY = await evSum(db, 'push_yuborildi', dan, gacha), pushB = await evSum(db, 'push_bosildi', dan, gacha);
-  let topilmadi = []; try { topilmadi = await all(db, 'SELECT soz, SUM(son) AS son FROM qidiruv_topilmadi WHERE sana >= ? AND sana <= ? GROUP BY soz ORDER BY son DESC LIMIT 20', dan, gacha); } catch (e) {}
+  let topilmadi = []; try { topilmadi = yigMiqdorsiz(await all(db, 'SELECT soz, SUM(son) AS son FROM qidiruv_topilmadi WHERE sana >= ? AND sana <= ? GROUP BY soz ORDER BY son DESC LIMIT 500', dan, gacha), 20).map((x) => ({ soz: x.soz, son: x.son })); } catch (e) {}          // miqdorsiz yig'iladi: «рис 100 г» + «рис 90 г» = «рис»
   const ext = await kengaytma(db, dan, gacha, bugun, now);
   return Object.assign({ davr: d, dan, gacha, kpi: Object.assign(cur, { baliq }, ext.kpi), oldingi: prev, seriya, platforma: await ulush('platforma'), til: await ulush('til'), funksiyalar: funk, push: { yuborildi: pushY, bosildi: pushB, foiz: pushY ? Math.round(pushB / pushY * 1000) / 10 : null }, topilmadi }, ext.bolim);
 }

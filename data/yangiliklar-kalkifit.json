@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 38,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Qidiruv miqdorni o'zi tushunadi.",
+    "ru": "Поиск сам понимает количество."
+   },
+   "items": [
+    {
+     "uz": "«Guruch 100 g» yoki «yarimta non» deb yozing — natija shu miqdor bilan chiqadi, «+» aynan shuni qo'shadi.",
+     "ru": "Напишите «рис 100 г» или «половина лепёшки» — результат покажется с этим количеством, «+» добавит именно его.",
+     "show": "search",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Bir nechta taom: «non va qaymoq 50 g» — hammasi bitta tugma bilan qo'shiladi.",
+     "ru": "Несколько блюд: «лепёшка и сметана 50 г» — всё добавляется одной кнопкой."
+    }
+   ]
+  },
+  {
    "v": 37,
    "d": "2026-10-24",
    "bn": {

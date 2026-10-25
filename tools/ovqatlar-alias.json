@@ -226,7 +226,9 @@
   "obi non",
   "нон",
   "lepeshka",
-  "non tandirda"
+  "non tandirda",
+  "лепёшки",
+  "лепешки"
  ],
  "patir": [
   "patyr",
@@ -404,7 +406,12 @@
   "yaytso",
   "tuxum",
   "tuxum qaynatma",
-  "сваренное яйцо"
+  "сваренное яйцо",
+  "яйца",
+  "яйца вареные",
+  "яйца варёные",
+  "яйцо вареное",
+  "yaytsa"
  ],
  "tuxum-xom": [
   "xom tuxum",
@@ -555,7 +562,12 @@
   "ris",
   "guruch pishgan",
   "oq guruch",
-  "рис"
+  "рис",
+  "рис вареный",
+  "рис отварной",
+  "guruch qaynatilgan",
+  "qaynatilgan guruch",
+  "oq guruch qaynatilgan"
  ],
  "grechka": [
   "grechka bo'tqa",
@@ -746,7 +758,12 @@
   "chay",
   "tea",
   "choy shakarsiz",
-  "choy"
+  "choy",
+  "qora choy shakarsiz",
+  "qora choy quruq",
+  "choy quruq",
+  "чай без сахара",
+  "черный чай"
  ],
  "choy-shakar": [
   "shakarli choy",
@@ -832,5 +849,17 @@
   "zigir yog'i",
   "paxta yog'i",
   "yog'"
+ ],
+ "yashil-choy": [
+  "ko'k choy",
+  "kok choy",
+  "ko'k choy shakarsiz",
+  "kok choy quruq",
+  "зеленый чай без сахара"
+ ],
+ "qahva-sutli": [
+  "sutli kofe",
+  "sutlikofe",
+  "sutli qahva"
  ]
 }
