@@ -823,7 +823,9 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz .sl-tdempty p{margin:0}
 /* hazil: ovqat qo'shilgach 4 s — kaloriya kartasi ustida (absolute: boshqa bloklar sakramaydi) */
 .rz .sl-big{position:relative}
-.rz .sl-jline.sl-jfl{position:absolute;left:var(--g2);right:var(--g2);bottom:var(--g2);margin:0;padding:10px 14px;display:block;min-height:0;border-radius:var(--r-btn);background:var(--ink);color:var(--card);border:0;font-size:var(--t-s);font-weight:600;line-height:1.35;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.18);animation:jIn .2s ease both;transition:opacity .25s;z-index:2}
+.rz .sl-jline.sl-jfl{position:absolute;left:var(--g2);right:var(--g2);width:auto;bottom:var(--g2);margin:0;padding:10px 14px;display:block;min-height:0;border-radius:var(--r-btn);background:var(--ink);color:var(--card);border:0;font-size:var(--t-s);font-weight:600;line-height:1.35;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.18);animation:jIn .2s ease both;transition:opacity .25s;z-index:2}
+.rz .sl-big{position:relative}          /* hazil pufagi (absolute) kaloriya kartasiga bog'lanadi — avval kartadan tashqariga chiqib ketardi */
+.rz .sl-jline.sl-jfl.top{top:var(--g2);bottom:auto}          /* karta pastki «Qo'shish» paneli ostida qolsa (past ekran) — pufak kartaning tepasida */
 .rz .sl-jline.sl-jfl::before{display:none}.rz .sl-jline.sl-jfl.out{opacity:0}
 /* birinchi hafta maslahati (halqa ostida, bitta) */
 .rz .sl-fw{display:flex;align-items:flex-start;gap:12px;padding:var(--g2)}

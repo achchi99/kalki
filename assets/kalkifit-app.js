@@ -517,17 +517,23 @@
 
   var jFlash = null, jT = 0;
   function jokeShow() {                              // kaloriya kartasi ustida 4 s turadigan pufak (absolute — boshqa bloklar sakramaydi), keyin yo'qoladi
-    var big = $('.sl-big'), el = $('#jLine'); if (!jFlash || Date.now() >= jFlash.until || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); return; }
+    var big = $('.sl-big'), el = $('#jLine');
+    if (jFlash && jFlash.pend) {                     // [+] bilan qo'shilganda varaq OCHIQ qoladi: pufak varaq ostida qolib ko'rinmay o'tardi (v35) — hazil varaq yopilgach, 4 s ko'rsatiladi
+      if (kit.sheetKind() || ftOpenNow() || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); if (Date.now() - jFlash.t0 > 180000) jFlash = null; return; }          // yopilishi yoki Bugun'ga qaytishi kutiladi; 3 daqiqadan eskisi — o'tib ketgan
+      jFlash.pend = false; jFlash.until = Date.now() + 4000;
+    }
+    if (!jFlash || Date.now() >= jFlash.until || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); return; }
     if (!el || el.parentNode !== big) { if (el && el.parentNode) el.parentNode.removeChild(el); el = document.createElement('div'); el.className = 'sl-jline sl-jfl'; el.id = 'jLine'; el.setAttribute('role', 'status'); big.appendChild(el); }
-    el.textContent = jFlash.text; clearTimeout(jT);
+    el.textContent = jFlash.text; el.classList.remove('top'); var bar = $('#rzAddBar'); if (bar && big.getBoundingClientRect().bottom > bar.getBoundingClientRect().top - 8) el.classList.add('top'); clearTimeout(jT);          // karta pastki panel ostida qolsa — pufak tepada
     jT = setTimeout(function () { var e = $('#jLine'); jFlash = null; if (!e) return; e.classList.add('out'); setTimeout(function () { if (e.parentNode) e.parentNode.removeChild(e); }, reduce ? 0 : 250); }, Math.max(0, jFlash.until - Date.now()));
   }
+  kit.onClose = function () { if (jFlash && jFlash.pend && view === 'today') jokeShow(); };          // varaq yopildi → kutayotgan hazil
   function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
     if (kind !== 'food' || !G || !G.eventLine || prefs().jokes === false) return;          // hazil FAQAT ovqat qo'shilgandan keyin, 4 soniya (doimiy qator yo'q)
     var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
     if (kind === 'food') { var pf = prefs(); if (!pf.suvIntro && wInfo(t).drink > 0) { pf.suvIntro = 1; p = Object.assign({}, p || {}, { drink1: true }); save(); } }          // birinchi ichimlik → «ichimlik_suvga_qoshildi»
     var ctx = jokeCtx(true), l = G.eventLine(ctx, kind, p); if (!l || !l.text) return; pr.jfl.n++; pr.jfl.t = now; pr.last = { d: t, text: l.text }; saveQuiet();
-    jFlash = { text: l.text, until: Date.now() + 4000 }; if (view === 'today') jokeShow();
+    jFlash = kit.sheetKind() ? { text: l.text, pend: true, t0: now, until: 0 } : { text: l.text, until: Date.now() + 4000 }; if (view === 'today') jokeShow();          // varaq ochiq bo'lsa — yopilgach (kit.onClose)
   }
   function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
   function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
