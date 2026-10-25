@@ -22,6 +22,7 @@ import { rejim, yubor } from '../../_lib/akkaunt-email.js';
 import { kalitlar } from '../../_lib/akkaunt-kalit.js';
 import { kodTahlil, zaxiraId, konvertYop, konvertOch, ILOVALAR } from '../../_lib/akkaunt-konvert.js';
 import { googleTekshir, cidOk, ismTozala } from '../../_lib/google-id.js';
+import { adminAuth } from '../../_lib/admin-auth.js';
 
 export const KOD_MUDDAT = 10 * 60 * 1000, MAX_URINISH = 5, SES_SLIDING = 30 * 86400000, SES_ABS = 180 * 86400000, MAX_SESSIYA = 20, MARKETING_MATN_V = 'm1';
 const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', google: 'POST', ism: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', ulash: 'POST', tiklash: 'GET', 'qayta-ora': 'POST', 'dev-kod': 'GET' };
@@ -50,7 +51,6 @@ async function bodyOf(request) {
   if (!/^application\/json\b/i.test(request.headers.get('Content-Type') || '')) return { err: fail(415) };
   try { const raw = await request.text(); if (raw.length > 2000) return { err: fail(400) }; const b = raw ? JSON.parse(raw) : {}; return b && typeof b === 'object' && !Array.isArray(b) ? { b } : { err: fail(400) }; } catch (e) { return { err: fail(400) }; }
 }
-const same = async (a, b) => (await sha('akk|' + a)) === (await sha('akk|' + b));
 function xat(til, kod, maqsad) {
   const T = {
     uz: { k: ['Kalki.uz kirish kodi: ', "Kirish kodingiz: ", 'Kod 10 daqiqa amal qiladi. Uni hech kimga bermang.', "Agar siz so'ramagan bo'lsangiz, bu xatni e'tiborsiz qoldiring."], o: ["Kalki.uz akkauntni o'chirish kodi: ", "Akkauntni o'chirish kodi: ", 'Kod 10 daqiqa amal qiladi. Uni faqat akkauntni o\'chirmoqchi bo\'lsangiz kiriting.', "Agar siz so'ramagan bo'lsangiz, bu xatni e'tiborsiz qoldiring — akkauntingiz o'chmaydi."] },
@@ -98,7 +98,7 @@ export async function onRequest(ctx) {
       if (rj !== 'dev') return fail(404);
       const ip = await lim(await ipH('adm'), 3600000, 60); if (!ip.ok) return fail(429, 'limit');
       const pw = env.AKKAUNT_ADMIN_PASSWORD || env.KALKIFIT_ADMIN_PASSWORD; if (!pw) return fail(503);
-      if (!(await same(request.headers.get('X-Admin-Password') || '', pw))) return fail(401);
+      const deny = await adminAuth(request, env, { pw, now }); if (deny) return deny;
       const email = normEmail(new URL(request.url).searchParams.get('email')); if (!email) return fail(400, 'email');
       const d = await store.devOl(email, now); return d ? json(200, d) : fail(404);
     }
@@ -106,7 +106,7 @@ export async function onRequest(ctx) {
     if (amal === 'qayta-ora') {                                  // kalit almashtirish: eski versiya bilan o'ralgan konvertlarni joriy kalit bilan qayta o'raydi (X-Admin-Password; takror chaqirib tugatiladi)
       const ip = await lim(await ipH('adm'), 3600000, 60); if (!ip.ok) return fail(429, 'limit');
       const pw = env.AKKAUNT_ADMIN_PASSWORD || env.KALKIFIT_ADMIN_PASSWORD; if (!pw) return fail(503);
-      if (!(await same(request.headers.get('X-Admin-Password') || '', pw))) return fail(401);
+      const deny = await adminAuth(request, env, { pw, now }); if (deny) return deny;
       const K = kalitlar(env), { qatorlar } = await store.eskiKonvertlar(K.joriy.v, 200); let ora = 0, xato = 0;
       for (const q of qatorlar) { const o = await konvertOch(env, q.akkaunt_id, q.ilova, q.kod_konvert); if (o.xato) { xato++; continue; } const y = await konvertYop(env, q.akkaunt_id, q.ilova, o.kod); if (y && await store.ilovaKonvert(q.akkaunt_id, q.ilova, y.konvert, y.v)) ora++; else xato++; }
       const left = await store.eskiKonvertlar(K.joriy.v, 1); return json(200, { ok: true, ora, xato, qoldi: left.qoldi, joriy: K.joriy.v });

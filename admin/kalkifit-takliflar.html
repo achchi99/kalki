@@ -16,24 +16,26 @@ button{cursor:pointer;font-weight:700}button.p{background:var(--ok);border-color
 </style></head><body><main>
 <h1>KalkiFit — taklif qilingan ovqatlar</h1>
 <p class="s">AI taxmin qilgan va foydalanuvchi tasdiqlagan yangi ovqatlar. 3 turli kundan kelgani «tasdiqlangan» deb belgilanadi. Ma'qullash uchun porsiya og'irligi (g) va toifa kerak. Baza avtomatik o'zgarmaydi: «Eksport» faylini <code>node tools/ovqatlar-merge.js fayl.json --write</code> bilan qo'shing.</p>
-<div class="bar"><input id="pw" type="password" placeholder="Parol" autocomplete="current-password"><button id="go" class="p">Kirish</button>
+<form class="bar" id="login" hidden><input id="pw" type="password" placeholder="Admin parol" autocomplete="current-password" required><button class="p" type="submit">Kirish</button></form><div class="bar"><a href="/admin/kalkifit-statistika">← Statistika</a><button id="out" type="button">Chiqish</button>
 <select id="holat"><option value="tasdiqlangan">Tasdiqlangan (3 kun)</option><option value="yangi">Yangi</option><option value="maqullangan">Ma'qullangan</option><option value="rad">Rad etilgan</option><option value="hammasi">Hammasi</option></select><button id="exp">Eksport (ma'qullanganlar)</button></div>
 <div id="msg" role="status"></div><div id="list"></div>
 <script>
 (function(){
 var KAT={o:"O'zbek taomlari",n:'Non',s:'Sut',m:"Go'sht/baliq/tuxum",g:'Don/makaron',v:'Sabzavot',f:'Meva',d:"Yong'oq/quruq meva",i:'Ichimlik',q:'Fast-food',h:'Shirinlik',x:'Boshqa'};
-var $=function(i){return document.getElementById(i)},pw=sessionStorage.getItem('kf_adm')||'';if(pw)$('pw').value=pw;
+var $=function(i){return document.getElementById(i)};try{sessionStorage.removeItem('kf_adm')}catch(e){}          // admin sessiyasi — HttpOnly cookie (12 soat), parol brauzerda saqlanmaydi
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function api(path,opt){opt=opt||{};opt.headers=Object.assign({'X-Admin-Password':$('pw').value},opt.headers||{});return fetch(path,opt).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.xato||'Xato');return j})})}
-function load(){$('msg').textContent='';api('/api/kalkifit-admin?holat='+$('holat').value).then(function(j){sessionStorage.setItem('kf_adm',$('pw').value);render(j.takliflar)}).catch(function(e){$('msg').textContent=e.message;$('list').innerHTML=''})}
+function api(path,opt){opt=opt||{};opt.credentials='same-origin';return fetch(path,opt).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status===401){$('login').hidden=false;throw new Error(j.xato||'Kirish kerak')}if(!r.ok)throw new Error(j.xato||'Xato');$('login').hidden=true;return j})})}
+function load(){$('msg').textContent='';api('/api/kalkifit-admin?holat='+$('holat').value).then(function(j){render(j.takliflar)}).catch(function(e){$('msg').textContent=e.message;$('list').innerHTML=''})}
 function render(l){if(!l.length){$('list').innerHTML='<p class="m">Bo\'sh.</p>';return}
 $('list').innerHTML=l.map(function(t){return '<div class="c" data-h="'+t.h+'"><h2>'+esc(t.nom)+' <span class="b'+(t.holat==='tasdiqlangan'?' t':'')+'">'+esc(t.holat)+'</span></h2><div class="m">'+esc(t.porsiya)+' · o\'rtacha '+t.kcal+' kkal · O '+t.o+' / Y '+t.y+' / U '+t.u+' · '+t.kunlar+' kun, '+t.jami+' marta · til: '+esc(t.til)+'</div>'+
 '<div class="f"><input type="number" class="g" min="5" max="2000" placeholder="Porsiya, g" value="'+(t.g||'')+'"><select class="k">'+Object.keys(KAT).map(function(k){return '<option value="'+k+'"'+((t.kat||'x')===k?' selected':'')+'>'+KAT[k]+'</option>'}).join('')+'</select><input type="text" class="nu" placeholder="Nomi (UZ)" value="'+esc(t.nom_uz||t.nom)+'"><input type="text" class="nr" placeholder="Nomi (RU)" value="'+esc(t.nom_ru||'')+'"></div>'+
 '<div class="f"><button class="p a" data-a="maqullash">Ma\'qullash</button><button class="d a" data-a="rad">Rad etish</button><button class="a" data-a="qaytarish">Qaytarish</button><button class="d a" data-a="ochirish">O\'chirish</button></div></div>'}).join('')}
 $('list').addEventListener('click',function(e){var b=e.target.closest('.a');if(!b)return;var c=b.closest('.c');var body={h:c.getAttribute('data-h'),amal:b.getAttribute('data-a'),g:c.querySelector('.g').value,kat:c.querySelector('.k').value,nom_uz:c.querySelector('.nu').value,nom_ru:c.querySelector('.nr').value};
 api('/api/kalkifit-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(load).catch(function(er){$('msg').textContent=er.message})});
-$('go').onclick=load;$('holat').onchange=load;
+$('holat').onchange=load;
 $('exp').onclick=function(){api('/api/kalkifit-admin?eksport=1').then(function(j){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(j,null,1)],{type:'application/json'}));a.download='kalkifit-takliflar-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove()}).catch(function(er){$('msg').textContent=er.message})};
-if(pw)load();
+$('login').onsubmit=function(ev){ev.preventDefault();fetch('/api/admin/kirish',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({parol:$('pw').value})}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){$('pw').value='';if(!r.ok){$('msg').textContent=j.xato||'Xato';return}$('login').hidden=true;load()})})};
+$('out').onclick=function(){fetch('/api/admin/chiqish',{method:'POST',credentials:'same-origin'}).then(function(){$('list').innerHTML='';$('login').hidden=false})};
+load();
 })();
 </script></main></body></html>

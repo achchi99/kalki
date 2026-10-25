@@ -1,14 +1,12 @@
 /* kalki.uz — KalkiFit admin API (taklif navbati): ro'yxat, ma'qullash/rad etish, ma'qullanganlarni eksport.
- * Himoya: oddiy parol (Cloudflare secret KALKIFIT_ADMIN_PASSWORD), sarlavha X-Admin-Password; noto'g'ri urinishlar IP bo'yicha soatiga 10 ta (KV).
+ * Himoya: functions/_lib/admin-auth.js — admin sessiyasi (cookie, 12 soat) yoki X-Admin-Password; 5 xato → 15 daqiqa blok.
  * GET  ?holat=yangi|tasdiqlangan|maqullangan|rad|hammasi  → { takliflar: [...] }
  * GET  ?eksport=1                                           → { v:1, taomlar: [ ma'qullangan, bazaga tayyor ] }
  * POST { h, amal: 'maqullash'|'rad'|'qaytarish'|'ochirish', g, kat, nom_uz, nom_ru }   ('ochirish' — taklifni butunlay o'chiradi) */
 import { originOk, json, num } from './ariza.js';
+import { adminAuth } from '../_lib/admin-auth.js';
 
 const HOLAT = ['yangi', 'tasdiqlangan', 'maqullangan', 'rad'], KAT = ['o', 'n', 's', 'm', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
-async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return new Uint8Array(d); }
-async function same(a, b) { const x = await sha('kf|' + a), y = await sha('kf|' + b); let r = 0; for (let i = 0; i < x.length; i++) r |= x[i] ^ y[i]; return r === 0; }
-const ipKey = async (request) => 'adm:' + Array.from(await sha('adm' + (request.headers.get('CF-Connecting-IP') || '?'))).slice(0, 8).map((b) => b.toString(16).padStart(2, '0')).join('');
 const row = (r) => ({ h: r.h, nom: r.nom, til: r.til, porsiya: r.porsiya, jami: r.jami, kunlar: r.kunlar, kcal: r.jami ? Math.round(r.kcal_sum / r.jami) : 0, o: r.jami ? Math.round(r.o_sum / r.jami * 10) / 10 : 0, y: r.jami ? Math.round(r.y_sum / r.jami * 10) / 10 : 0, u: r.jami ? Math.round(r.u_sum / r.jami * 10) / 10 : 0, holat: r.holat, g: r.g, kat: r.kat, nom_uz: r.nom_uz, nom_ru: r.nom_ru, birinchi: r.birinchi, oxirgi: r.oxirgi });
 const E = { 400: "So'rov noto'g'ri.", 401: "Parol noto'g'ri.", 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: 'GET yoki POST.', 429: "Juda ko'p urinish. Keyinroq.", 503: 'Sozlanmagan.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' });
@@ -17,10 +15,7 @@ export async function onRequest({ request, env }) {
   if (request.method !== 'GET' && request.method !== 'POST') return json(405, { xato: E[405] }, { Allow: 'GET, POST' });
   const origin = request.headers.get('Origin'); if (origin && !originOk(origin, env)) return fail(403);
   if (!env.KALKIFIT_ADMIN_PASSWORD || !env.KALKIFIT_DB) return fail(503);
-  const kv = env.KALKI_AI_KV, k = await ipKey(request);
-  if (kv) { const c = parseInt(await kv.get(k), 10) || 0; if (c >= 10) return fail(429); }
-  const pw = request.headers.get('X-Admin-Password') || '';
-  if (!pw || !(await same(pw, env.KALKIFIT_ADMIN_PASSWORD))) { if (kv) await kv.put(k, String((parseInt(await kv.get(k), 10) || 0) + 1), { expirationTtl: 3600 }); return fail(401); }
+  const deny = await adminAuth(request, env); if (deny) return deny;          // admin sessiyasi yoki X-Admin-Password (5 xato → 15 daqiqa blok)
   const db = env.KALKIFIT_DB, url = new URL(request.url);
   if (request.method === 'GET') {
     if (url.searchParams.get('eksport')) {

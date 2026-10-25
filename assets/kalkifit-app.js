@@ -1764,7 +1764,7 @@
   function stEv(h, k) { try { if (STAT) STAT.add(h, k); } catch (e) {} }
   function statPlat() { try { if (window.KalkiNative && KalkiNative.isApp()) return 'android'; var ios = /iPad|iPhone|iPod/.test(navigator.userAgent), sa = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; return ios && sa ? 'ios-pwa' : 'veb'; } catch (e) { return 'veb'; } }
   function statBoot() {
-    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); } }); window.KalkiStatApp = { add: stEv };
+    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; } }); window.KalkiStatApp = { add: stEv };
     if (st && st.setup) STAT.faol();
     if (/[?&]baliq=1\b/.test(location.search)) stEv('push_bosildi');
   }
