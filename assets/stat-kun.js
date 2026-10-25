@@ -1,5 +1,6 @@
 /* kalki.uz — KalkiFit anonim statistika (mijoz): hodisalar navbati (localStorage) → POST /api/stat (sendBeacon; bo'lmasa fetch keepalive). Server: functions/api/stat.js.
- * Yuboriladi: hodisa nomi + qat'iy qo'shimcha kalit (usul/manba/tur…), platforma, til, mijoz_id (server uni sirli tuz bilan xeshlaydi — xom saqlanmaydi).
+ * Yuboriladi: hodisa nomi + qat'iy qo'shimcha kalit (usul/manba/tur…), platforma, til, ekran kengligi (guruh sifatida saqlanadi), APK versiyasi, mijoz_id (server uni sirli tuz bilan xeshlaydi — xom saqlanmaydi).
+ * Server User-Agent'dan faqat qurilma TURINI aniqlaydi (OS, brauzer, model — UA bergan bo'lsa); IP va joylashuv saqlanmaydi.
  * YUBORILMAYDI: ovqat, vazn, yosh, ism, email. Hisoblanmaydi: ?demo=1, *.pages.dev (preview), localhost, navigator.webdriver (avtomat/headless), bot UA. Xatoda jim.
  *   var stat = KalkiStat.create({ cid: () => id, platform: () => 'veb', lang: () => 'uz' }); stat.add('ovqat_qoshildi', 'qidiruv'); stat.flush(); */
 (function (root, factory) { var api = factory(); if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiStat = api; })(typeof self !== 'undefined' ? self : this, function () {
@@ -27,7 +28,8 @@
       faol: function () { if (dis) return false; var t = today(); try { if (ls && ls.getItem(DAYK) === t) return false; if (ls) ls.setItem(DAYK, t); } catch (e) {} return api.add('faol'); },          // kuniga 1 marta
       flush: function () {
         if (dis) return false; var a = read(); if (!a.length) return false; var id = o.cid ? o.cid() : ''; if (!id) return false;
-        var body = JSON.stringify({ q: id, p: o.platform ? o.platform() : 'veb', t: o.lang ? o.lang() : 'uz', h: a.slice(0, 30) }), ok = false;
+        var sw = 0; try { sw = Math.round((w.screen && w.screen.width) || w.innerWidth || 0); } catch (e) {}
+        var body = JSON.stringify({ q: id, p: o.platform ? o.platform() : 'veb', t: o.lang ? o.lang() : 'uz', h: a.slice(0, 30), e: sw, v: o.ver ? String(o.ver() || '') : '' }), ok = false;          // e — ekran kengligi (serverda guruhga aylanadi), v — APK versiyasi
         try { var nav = w.navigator; if (nav && nav.sendBeacon) ok = nav.sendBeacon('/api/stat', new w.Blob([body], { type: 'application/json' })); } catch (e) { ok = false; }
         if (!ok) { try { w.fetch('/api/stat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {}); ok = true; } catch (e) { ok = false; } }
         if (ok) write(a.slice(30)); return ok;

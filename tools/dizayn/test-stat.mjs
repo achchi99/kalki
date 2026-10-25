@@ -1,4 +1,4 @@
-// KalkiFit anonim statistika: server (functions/api/stat.js) — whitelist, rate-limit, demo/preview/bot hisoblanmasligi, xom mijoz_id saqlanmasligi, 35 kunlik tozalash,
+// KalkiFit anonim statistika: server (functions/api/stat.js) — whitelist, rate-limit, demo/preview/bot hisoblanmasligi, xom mijoz_id saqlanmasligi, 100 kunlik tozalash,
 // DAU/WAU/retention hisobi, admin himoyasi; mijoz (assets/stat-kun.js) — demo/preview/webdriver o'chiq, navbat; PR matni (assets/stat-pr.js) — faqat haqiqiy raqamlar, UZ/ЎЗ/RU.
 //   node tools/dizayn/test-stat.mjs
 import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url'; import { createRequire } from 'node:module';
@@ -6,11 +6,11 @@ import { d1 } from './d1-sqlite.mjs';
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/stat.js')).href), C = require(path.join(ROOT, 'assets/stat-kun.js')), PR = require(path.join(ROOT, 'assets/stat-pr.js')), TR = require(path.join(ROOT, 'assets/translit.js'));
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
-const SQL = [fs.readFileSync(path.join(ROOT, 'migrations/stat.sql'), 'utf8'), fs.readFileSync(path.join(ROOT, 'migrations/qidiruv.sql'), 'utf8'), 'CREATE TABLE push_obuna (id TEXT PRIMARY KEY, endpoint TEXT, p256dh TEXT, auth TEXT, til TEXT, akkaunt_id TEXT, yaratilgan INTEGER, oxirgi_hafta TEXT, xato INTEGER);'];
+const SQL = [fs.readFileSync(path.join(ROOT, 'migrations/stat.sql'), 'utf8'), fs.readFileSync(path.join(ROOT, 'migrations/admin-stat.sql'), 'utf8'), fs.readFileSync(path.join(ROOT, 'migrations/qidiruv.sql'), 'utf8'), 'CREATE TABLE push_obuna (id TEXT PRIMARY KEY, endpoint TEXT, p256dh TEXT, auth TEXT, til TEXT, akkaunt_id TEXT, yaratilgan INTEGER, oxirgi_hafta TEXT, xato INTEGER);'];
 const DAY = 86400000, NOW = Date.parse('2026-10-22T10:00:00Z'), K = (ms) => API.tosh(ms);
 const U = (i) => '00000000-0000-4000-8000-' + String(i).padStart(12, '0');
 const req = (body, h = {}) => new Request('https://kalki.uz/api/stat', { method: 'POST', headers: Object.assign({ Origin: 'https://kalki.uz', 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (Linux; Android 14) Chrome/130 Mobile' }, h), body: JSON.stringify(body) });
-const ENV = (db) => ({ KALKIFIT_DB: db, IP_HASH_SALT: 'sir-tuz', KALKIFIT_ADMIN_PASSWORD: 'admin-sir', STAT_PRUNE_P: '0' });
+const ENV = (db) => ({ KALKIFIT_DB: db, IP_HASH_SALT: 'sir-tuz', KALKIFIT_ADMIN_PASSWORD: 'admin-sir', STAT_PRUNE_P: '0', KALKI_AI_KV: (() => { const m = new Map(); return { get: async (k) => (m.has(k) ? m.get(k) : null), put: async (k, v) => { m.set(k, v); }, delete: async (k) => { m.delete(k); } }; })() });
 /* 1. whitelist */
 { assert.ok(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [['faol', '', 1], ['ovqat_qoshildi', 'qidiruv', 2], ['ai_sorov', 'rasm.limit', 1], ['buyurtma_hamkor', 'uzum', 1], ['qadam_ulandi', 'hc', 1], ['ilova_yangilandi', '1.0.4', 1]] }));
   for (const bad of [[['erkin_matn', '', 1]], [['ovqat_qoshildi', 'osh 300 g', 1]], [['ai_sorov', 'rasm', 1]], [['buyurtma_hamkor', 'evil', 1]], [['faol', 'x', 1]], [['push_yuborildi', '', 1]], [['ovqat_qoshildi', 'qidiruv', 50]]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: bad }), null, JSON.stringify(bad));
@@ -32,7 +32,7 @@ const db = d1(SQL), env = ENV(db);
   for (let i = 0; i < 25; i++) await API.qabul(req({ q: U(3), p: 'android', t: 'ru', h: [['suv_qoshildi', '', 20]] }), env, NOW);
   const s3 = db.raw.prepare("SELECT son FROM stat_kun WHERE hodisa = 'suv_qoshildi' AND platforma = 'android'").get().son; assert.ok(s3 <= API.DEV_CAP && s3 >= 380, 'rate-limit: qurilma kuniga ≤ ' + API.DEV_CAP + ' hodisa (' + s3 + ')');
   log('Qabul: 204 (har doim jim); qurilma = 16 belgili xesh (sirli tuz bilan), xom mijoz_id va shaxsiy ustun yo\'q; preview (*.pages.dev), headless, bot, begona Origin — hisoblanmaydi; buzuq JSON jim; qurilma kuniga ≤ 400 hodisa'); }
-/* 3. DAU/WAU/MAU, yangi, retention, 35 kunlik tozalash */
+/* 3. DAU/WAU/MAU, yangi, retention, 100 kunlik tozalash */
 { const db2 = d1(SQL), e2 = ENV(db2), day = (i) => NOW - i * DAY;
   const go = (id, i, ev = [['faol', '', 1]], p = 'veb', t = 'uz') => API.qabul(req({ q: U(id), p, t, h: ev }), e2, day(i));
   // 4 ta yangi qurilma 10 kun oldin: 1,2 ertasi qaytdi; 1 — 7-kuni ham; 3,4 qaytmadi
@@ -43,20 +43,20 @@ const db = d1(SQL), env = ENV(db);
   const k1 = await API.kpi(db2, K(NOW), K(NOW), K(NOW)); assert.equal(k1.dau, 3, 'bugungi DAU = 3');
   const rep = await API.hisobot(db2, 30, NOW); assert.equal(rep.seriya.length, 30); assert.equal(rep.seriya.at(-1).dau, 3); assert.equal(rep.seriya.find((x) => x.kun === K(day(10))).yangi, 4);
   assert.deepEqual(rep.platforma.map((x) => [x.k, x.n]).sort(), [['android', 1], ['ios-pwa', 1], ['veb', 4]]);
-  // 35 kunlik tozalash: 40 kun oldingi qator stat_yig ga o'tadi va o'chadi
-  await go(30, 40, [['faol', '', 1], ['yangi_foydalanuvchi', '', 1]]); await go(31, 40); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun = ?').get(K(day(40))).n, 2);
-  await API.tozalash(db2, NOW); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun < ?').get(K(day(35))).n, 0, '35 kundan eski qurilma qatorlari o\'chdi');
-  assert.deepEqual({ ...db2.raw.prepare('SELECT dau, yangi FROM stat_yig WHERE kun = ?').get(K(day(40))) }, { dau: 2, yangi: 1 }, 'yig\'ma son qoldi'); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun = ?').get(K(day(10))).n, 4, '35 kun ichidagilar qoladi');
+  // 100 kunlik tozalash: 105 kun oldingi qator stat_yig ga o'tadi va o'chadi
+  assert.equal(API.KEEP_DAYS, 100); await go(30, 105, [['faol', '', 1], ['yangi_foydalanuvchi', '', 1]]); await go(31, 105); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun = ?').get(K(day(105))).n, 2);
+  await API.tozalash(db2, NOW); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun < ?').get(K(day(100))).n, 0, '100 kundan eski qurilma qatorlari o\'chdi');
+  assert.deepEqual({ ...db2.raw.prepare('SELECT dau, yangi FROM stat_yig WHERE kun = ?').get(K(day(105))) }, { dau: 2, yangi: 1 }, 'yig\'ma son qoldi'); assert.equal(db2.raw.prepare('SELECT COUNT(*) AS n FROM stat_qurilma WHERE kun = ?').get(K(day(10))).n, 4, '100 kun ichidagilar qoladi');
   const all = await API.hisobot(db2, 0, NOW); assert.equal(all.kpi.yangi, 5, 'Hammasi: eski (yig\'ma) yangi ham hisobda');
-  log('Hisob: DAU (bugun 3), WAU 3, MAU 6, yangi 4, onboarding 75%, 1-kun retention 50%, 7-kun 25%, 30 kunlik seriya, platforma ulushi; 35 kundan eski qurilma qatorlari o\'chadi, sonlari stat_yig da qoladi («Hammasi» davrida ham)'); }
+  log('Hisob: DAU (bugun 3), WAU 3, MAU 6, yangi 4, onboarding 75%, 1-kun retention 50%, 7-kun 25%, 30 kunlik seriya, platforma ulushi; 100 kundan eski qurilma qatorlari o\'chadi, sonlari stat_yig da qoladi («Hammasi» davrida ham)'); }
 /* 4. admin himoyasi */
 { const env3 = Object.assign(ENV(d1(SQL)), { KALKI_AI_KV: (() => { const m = {}; return { get: async (k) => m[k] || null, put: async (k, v) => { m[k] = v; } }; })() });
   const g = (h) => API.onRequest({ request: new Request('https://kalki.uz/api/stat?davr=7', { headers: h || {} }), env: env3 });
   assert.equal((await g()).status, 401); assert.equal((await g({ 'X-Admin-Password': 'xato' })).status, 401); const ok = await g({ 'X-Admin-Password': 'admin-sir' }); assert.equal(ok.status, 200); const j = await ok.json(); assert.equal(j.davr, 7); assert.ok(j.kpi && j.seriya && j.push);
-  for (let i = 0; i < 10; i++) await g({ 'X-Admin-Password': 'x' + i }); assert.equal((await g({ 'X-Admin-Password': 'admin-sir' })).status, 429, '10 xato urinishdan keyin — 429');
+  for (let i = 0; i < 3; i++) await g({ 'X-Admin-Password': 'x' + i }); assert.equal((await g({ 'X-Admin-Password': 'admin-sir' })).status, 200, '4 xato (yuqoridagi bilan) — hali ochiq'); await g({ 'X-Admin-Password': 'x5' }); assert.equal((await g({ 'X-Admin-Password': 'admin-sir' })).status, 429, '5 xato urinishdan keyin — 429');
   assert.equal((await API.onRequest({ request: new Request('https://kalki.uz/api/stat', { method: 'PUT' }), env: env3 })).status, 405); assert.equal((await API.onRequest({ request: new Request('https://kalki.uz/api/stat'), env: {} })).status, 503);
-  const page = fs.readFileSync(path.join(ROOT, 'admin/kalkifit-statistika.html'), 'utf8'); assert.match(page, /noindex,nofollow/); assert.match(page, /X-Admin-Password/); assert.ok(!/admin-sir|KALKIFIT_ADMIN_PASSWORD/.test(page), 'sahifada parol yo\'q');
-  log('Admin: parolsiz/noto\'g\'ri — 401, 10 xato — 429, to\'g\'ri parol — hisobot; sahifa noindex, parol sahifada yo\'q'); }
+  const page = fs.readFileSync(path.join(ROOT, 'admin/kalkifit-statistika.html'), 'utf8'); assert.match(page, /noindex,nofollow/); assert.match(page, /\/api\/admin\/kirish/); assert.ok(!/X-Admin-Password/.test(page), 'sahifa — HttpOnly sessiya (parol sarlavhada yuborilmaydi)'); assert.ok(!/admin-sir|KALKIFIT_ADMIN_PASSWORD/.test(page), 'sahifada parol yo\'q');
+  log('Admin: parolsiz/noto\'g\'ri — 401, 5 xato — 429 (15 daqiqa), to\'g\'ri parol — hisobot; sahifa noindex, sessiya orqali, parol sahifada yo\'q'); }
 /* 5. mijoz moduli */
 { const SENT = []; const mem = () => { const m = {}; return { getItem: (k) => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); } }; };
   const win = (o) => Object.assign({ location: { hostname: 'kalki.uz', search: '' }, navigator: { userAgent: 'Mozilla/5.0 Chrome', webdriver: false, sendBeacon: (u, b) => { SENT.push(u); return true; } }, Blob: class { constructor(a) { this.a = a; } }, addEventListener() {}, document: { addEventListener() {} } }, o || {});

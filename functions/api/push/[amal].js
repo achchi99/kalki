@@ -6,6 +6,7 @@
  * Xavfsizlik: POST faqat Origin tekshiruvi + application/json; endpoint faqat ma'lum push xizmatlari (SSRF yo'q); IP boshiga soatiga 20 ta obuna (KV). Secret'lar: VAPID_PUBLIC_KEY (ochiq),
  * VAPID_PRIVATE_KEY/VAPID_SUBJECT (shu yerda ishlatilmaydi), KALKIFIT_ADMIN_PASSWORD. Migratsiya: migrations/push.sql. */
 import { originOk, json } from '../ariza.js';
+import { adminAuth } from '../../_lib/admin-auth.js';
 
 const METOD = { kalit: 'GET', obuna: 'POST', ochir: 'POST', holat: 'GET' };
 const E = { 400: "So'rov noto'g'ri.", 401: "Parol noto'g'ri.", 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq.", 503: 'Sozlanmagan.' };
@@ -23,7 +24,6 @@ export function obunaTekshir(o, til) {                // → { endpoint, p256dh,
   return { endpoint: o.endpoint, p256dh: k.p256dh, auth: k.auth, til: til === 'ru' || til === 'cyr' ? til : 'uz' };
 }
 function cookieOf(request) { const m = /(?:^|;\s*)(?:__Host-)?kalki_s=([A-Za-z0-9_-]{43})(?:;|$)/.exec(request.headers.get('Cookie') || ''); return m ? m[1] : null; }
-async function same(a, b) { const x = await sha('push|' + a), y = await sha('push|' + b); return x === y; }
 
 export async function onRequest({ request, env, params }) {
   const amal = params && (Array.isArray(params.amal) ? params.amal[0] : params.amal);
@@ -37,8 +37,7 @@ export async function onRequest({ request, env, params }) {
   }
   if (!db) return fail(503);
   if (amal === 'holat') {
-    if (!env.KALKIFIT_ADMIN_PASSWORD) return fail(503);
-    const pw = request.headers.get('X-Admin-Password') || ''; if (!pw || !(await same(pw, env.KALKIFIT_ADMIN_PASSWORD))) return fail(401);
+    const deny = await adminAuth(request, env); if (deny) return deny;
     const c = await db.prepare("SELECT COUNT(*) AS n, SUM(CASE WHEN akkaunt_id IS NOT NULL THEN 1 ELSE 0 END) AS a, SUM(CASE WHEN til = 'uz' THEN 1 ELSE 0 END) AS uz, SUM(CASE WHEN til = 'cyr' THEN 1 ELSE 0 END) AS cyr, SUM(CASE WHEN til = 'ru' THEN 1 ELSE 0 END) AS ru FROM push_obuna").first();
     const h = await db.prepare("SELECT qiymat, yangilangan FROM push_holat WHERE kalit = 'oxirgi'").first(); let oxirgi = null; try { oxirgi = h ? JSON.parse(h.qiymat) : null; } catch (e) { oxirgi = null; }
     return json(200, { obunalar: (c && c.n) || 0, akkaunt_bilan: (c && c.a) || 0, til: { uz: (c && c.uz) || 0, cyr: (c && c.cyr) || 0, ru: (c && c.ru) || 0 }, oxirgi }, NC);

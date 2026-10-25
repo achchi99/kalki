@@ -4,12 +4,11 @@
  * Saqlanadi FAQAT: kun + tozalangan so'z + son. Foydalanuvchi id, IP, qurilma — YO'Q. So'z qat'iy tozalanadi (telefon/email/havola kabi matn rad etiladi).
  * Migratsiya: migrations/qidiruv.sql. Uslub — functions/api/hisob.js. */
 import { originOk, json } from './ariza.js';
+import { adminAuth } from '../_lib/admin-auth.js';
 
 const NC = { 'Cache-Control': 'no-store' };
 const E = { 400: "So'rov noto'g'ri.", 401: "Parol noto'g'ri.", 403: "Ruxsat yo'q.", 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq.", 503: 'Sozlanmagan.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' }, NC);
-async function sha(s) { return new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s))); }
-async function same(a, b) { const x = await sha('qt|' + a), y = await sha('qt|' + b); let r = 0; for (let i = 0; i < x.length; i++) r |= x[i] ^ y[i]; return r === 0; }
 const tosh = (now) => new Date(now + 5 * 3600000).toISOString().slice(0, 10);
 /* qidiruv matnini tozalash (mijoz bilan bir xil qoida: assets/kalkifit-app.js qtNorm) */
 export function sozTozala(q) {
@@ -36,11 +35,7 @@ export async function onRequest({ request, env }) {
   if (request.method !== 'GET' && request.method !== 'POST') return json(405, { xato: E[405] }, Object.assign({ Allow: 'GET, POST' }, NC));
   const db = env.KALKIFIT_DB; if (!db) return fail(503);
   if (request.method === 'GET') {
-    if (!env.KALKIFIT_ADMIN_PASSWORD) return fail(503);
-    const kv = env.KALKI_AI_KV, ip = 'qt:' + Array.from((await sha('qt' + (request.headers.get('CF-Connecting-IP') || '?'))).slice(0, 8)).map((x) => x.toString(16).padStart(2, '0')).join('');
-    if (kv && (parseInt(await kv.get(ip), 10) || 0) >= 10) return fail(429);
-    const pw = request.headers.get('X-Admin-Password') || '';
-    if (!pw || !(await same(pw, env.KALKIFIT_ADMIN_PASSWORD))) { if (kv) await kv.put(ip, String((parseInt(await kv.get(ip), 10) || 0) + 1), { expirationTtl: 3600 }); return fail(401); }
+    const deny = await adminAuth(request, env); if (deny) return deny;          // admin sessiyasi yoki X-Admin-Password (5 xato → 15 daqiqa blok)
     const kun = Math.max(1, Math.min(365, parseInt(new URL(request.url).searchParams.get('kun'), 10) || 30)), dan = tosh(Date.now() - (kun - 1) * 86400000);
     let r; try { r = await db.prepare('SELECT soz, SUM(son) AS son, COUNT(*) AS kun FROM qidiruv_topilmadi WHERE sana >= ? GROUP BY soz ORDER BY son DESC, soz LIMIT 500').bind(dan).all(); } catch (e) { return fail(503); }
     return json(200, { sozlar: r.results || [] }, NC);
