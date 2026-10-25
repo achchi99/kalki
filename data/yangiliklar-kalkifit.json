@@ -2,6 +2,20 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 45,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "«Yaqinda yeganlaringiz» — qator bosiladi.",
+    "ru": "«Недавно ели» — строки нажимаются."
+   },
+   "items": [
+    {
+     "uz": "Ro'yxatdagi taomning o'zini bossangiz ham ishlaydi, faqat «+» emas.",
+     "ru": "Работает нажатие на само блюдо в списке, а не только на «+»."
+    }
+   ]
+  },
+  {
    "v": 44,
    "d": "2026-10-25",
    "bn": {

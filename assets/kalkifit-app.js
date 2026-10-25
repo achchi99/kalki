@@ -1403,7 +1403,9 @@
   }
   function recRow(r) {                               // oxirgi yozuv: [+] — xuddi o'sha porsiya (AI/rasm yozuvi ham)
     var e = r.e, f = e.fid ? foodById(e.fid) : null, base = f && f.al ? (foodById(f.al.f) || f) : f, nm = e.name || (base ? nameOf(base) : '?');
-    return rowHtml({ main: 'data-act="pickfood" data-id="' + esc(e.fid || '') + '"' + (e.fid ? '' : ' disabled'), tile: tileHtml(e.fid || iconFid(e), e.vr, nm, 46, false, e.ikat), nm: nm, tag: base && base.custom ? T('qMine') : '', sub: entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), plus: 'data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '"', done: !!fd.added[r.k] });
+    var plus = 'data-act="fquick" data-d="' + r.d + '" data-i="' + e.id + '" data-fk="' + esc(r.k) + '"';
+    /* bazadagi taom — qator porsiya oynasini ochadi; fid'siz yozuv (AI/rasm/matn) yoki bazadan o'chgan taom — qator [+] bilan bir xil (xuddi o'sha porsiya qo'shiladi) */
+    return rowHtml({ main: f ? 'data-act="pickfood" data-id="' + esc(e.fid) + '"' : plus, tile: tileHtml(e.fid || iconFid(e), e.vr, nm, 46, false, e.ikat), nm: nm, tag: base && base.custom ? T('qMine') : '', sub: entUnitTxt(e) + ' · ' + fmt(e.kcal) + ' ' + T('kcal'), plus: plus, done: !!fd.added[r.k] });
   }
   function foodKey(f, pk, pre) { return (f.fam ? f.fam.id : (dbAlias[f.id] || f.id)) + (pk ? '|' + JSON.stringify(pk) : '') + (pre ? '|' + pre.q + (pre.u || '') : ''); }
   function foodRow(f, pk, src, pre) {                     // baza/o'z taomi: [+] — oxirgi marta yegan porsiyasi, bo'lmasa odatiy porsiya (qatorda aynan shu yoziladi)
