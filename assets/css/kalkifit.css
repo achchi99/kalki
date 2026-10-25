@@ -953,7 +953,7 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz-sheet[data-kind=add] .sl-res{margin-top:6px}
 .rz-sheet[data-kind=add] .sl-rw{gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
 .rz-sheet[data-kind=add] .sl-rw:last-child{border-bottom:0}
-.rz-sheet[data-kind=add] .sl-rw .sl-rr{min-height:46px;gap:12px}
+.rz-sheet[data-kind=add] .sl-rw .sl-rr{min-height:48px;gap:12px}
 .rz-sheet[data-kind=add] .sl-rw .sl-tile{--s:46px;border-radius:14px}
 .rz-sheet[data-kind=add] .sl-rw .nm{font-size:var(--t-s);font-weight:600}
 .rz-sheet[data-kind=add] .sl-rw .tm{font-size:var(--t-xs);font-weight:500;color:var(--mut);margin-top:2px}
