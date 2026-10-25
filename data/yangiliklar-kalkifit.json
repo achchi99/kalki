@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 40,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Imkoniyatlar paneli yangilandi.",
+    "ru": "Обновили панель возможностей."
+   },
+   "items": [
+    {
+     "uz": "«Imkoniyatlar» endi chapdan ochiladi: tez qo'shish, natijalar va boshqalar guruhlarga ajratilgan.",
+     "ru": "«Возможности» теперь открываются слева: быстрое добавление, итоги и остальное — по группам.",
+     "show": "imkoniyatlar",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "iPhone'da ovoz bilan qo'shish ham panelda ko'rinadi.",
+     "ru": "На iPhone добавление голосом тоже есть в панели."
+    }
+   ]
+  },
+  {
    "v": 39,
    "d": "2026-10-25",
    "bn": {
