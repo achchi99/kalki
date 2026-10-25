@@ -17,7 +17,7 @@
   };
   var MON_CYR = ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр'];
   var IC = {
-    check: 'M5 12l5 5 9-10', menu: 'M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M9 8h6 M9 12h6 M9 16h4', bars: 'M5 20V10 M12 20V4 M19 20v-7', upload: 'M12 15V3 M7 8l5-5 5 5 M5 14v6h14v-6', qmark: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M9.5 9.5a2.5 2.5 0 1 1 3 2.4V14 M12 17.5v.01', apps: 'M4 4h6.5v6.5H4z M13.5 4H20v6.5h-6.5z M4 13.5h6.5V20H4z M13.5 13.5H20V20h-6.5z', back: 'M15 6l-6 6 6 6', x: 'M6 6l12 12 M18 6L6 18', chev: 'M9 6l6 6-6 6', plus: 'M12 5v14 M5 12h14', cal: 'M5 5h14v15H5z M5 10h14 M9 3v4 M15 3v4',
+    check: 'M5 12l5 5 9-10', menu: 'M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M9 8h6 M9 12h6 M9 16h4', bars: 'M5 20V10 M12 20V4 M19 20v-7', upload: 'M12 15V3 M7 8l5-5 5 5 M5 14v6h14v-6', qmark: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M9.5 9.5a2.5 2.5 0 1 1 3 2.4V14 M12 17.5v.01', download: 'M12 3v12 M7 10l5 5 5-5 M5 17v3h14v-3', trash: 'M4 7h16 M10 11v6 M14 11v6 M6 7l1 13h10l1-13 M9 7V4h6v3', apps: 'M4 4h6.5v6.5H4z M13.5 4H20v6.5h-6.5z M4 13.5h6.5V20H4z M13.5 13.5H20V20h-6.5z', back: 'M15 6l-6 6 6 6', x: 'M6 6l12 12 M18 6L6 18', chev: 'M9 6l6 6-6 6', plus: 'M12 5v14 M5 12h14', cal: 'M5 5h14v15H5z M5 10h14 M9 3v4 M15 3v4',
     lang: 'M3 5h12 M9 3v2 M5 5c1 4 4 7 8 8 M13 5c-1 4-3 7-7 9 M13 21l4-10 4 10 M14.5 17h5', help: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M9.6 9.4a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.1.9-1.1 1.7 M12 16.8h.01',
     info: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v5 M12 7.8h.01', set: 'M4 6h9 M17 6h3 M13 4v4 M4 12h3 M11 12h9 M7 10v4 M4 18h11 M19 18h1 M15 16v4', boshqa: 'M5 12h.01 M12 12h.01 M19 12h.01'
   };
@@ -80,28 +80,58 @@
     kit.shHead = function (title) { return '<div class="rz-sh-h"><b>' + esc(title) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(t('close')) + '">' + ico('x') + '</button></div>'; };
     kit.openSheet = function (kind, html, o) {
       o = o || {}; var sh = $('#rzSheet'), bg = $('#rzBg'); sheetKind = kind; sh.setAttribute('data-kind', kind);
-      sh.style.transform = ''; sh.style.transition = '';
+      sh.style.transform = ''; sh.style.transition = ''; bg.style.transition = ''; bg.style.opacity = ''; sw = null; sh.classList.remove('rz-drag', 'rz-done');
       sh.innerHTML = '<div class="rz-grab" aria-hidden="true"><i></i></div>' + html; sh.hidden = false; bg.hidden = false; kit.dpInit(); void sh.offsetWidth; sh.classList.add('open'); bg.classList.add('open');
       var f = sh.querySelector('input:not([type=hidden]):not([type=checkbox]),textarea'); if (f && !o.noFocus) setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 260);
     };
-    kit.closeSheet = function () {
-      var sh = $('#rzSheet'), bg = $('#rzBg'); if (sh.hidden) return; sh.style.transition = ''; sh.style.transform = ''; sh.classList.remove('open'); bg.classList.remove('open'); sheetKind = null;
-      setTimeout(function () { if (!sheetKind) { sh.hidden = true; bg.hidden = true; sh.innerHTML = ''; if (kit.onClose) kit.onClose(); } }, kit.reduce ? 0 : 260);
+    kit.closeSheet = function (dragged) {          // dragged — tortib yopildi: oyna allaqachon pastda, darhol yashiriladi
+      var sh = $('#rzSheet'), bg = $('#rzBg'); if (sh.hidden) return; sw = null; sh.classList.remove('rz-drag');
+      dragged = dragged === true; if (!dragged) { sh.style.transition = ''; sh.style.transform = ''; bg.style.transition = ''; bg.style.opacity = ''; }
+      sh.classList.remove('open'); bg.classList.remove('open'); sheetKind = null;
+      setTimeout(function () { if (!sheetKind) { sh.hidden = true; bg.hidden = true; sh.innerHTML = ''; sh.style.transition = ''; sh.style.transform = ''; bg.style.transition = ''; bg.style.opacity = ''; if (kit.onClose) kit.onClose(); } }, dragged || kit.reduce ? 0 : 260);
     };
     kit.fld = function (id, label, val, ph, extra) { return '<label class="rz-f" for="' + id + '"><span>' + esc(label) + '</span><input id="' + id + '" type="text" inputmode="numeric" autocomplete="off" data-fmt placeholder="' + esc(ph || '') + '" value="' + esc(val || '') + '"' + (extra || '') + '></label>'; };
-    /* pastga tortib yopish */
-    function swStart(e) {
-      var z = e.target.closest('.rz-grab,.rz-sh-h'); if (!z || e.target.closest('.rz-x') || $('#rzSheet').hidden) return;
-      sw = { y: e.clientY, t: performance.now(), dy: 0, id: e.pointerId }; try { z.setPointerCapture(e.pointerId); } catch (x) {}
-      $('#rzSheet').style.transition = 'none';
+    /* pastga tortib yopish — BARCHA pastki oynalar uchun bitta mexanizm (v44):
+       tortqich / sarlavha (yoki ichki ro'yxat tepasida turganda — ro'yxatning o'zi) barmoqqa ergashadi; fon xiraligi masofaga qarab kamayadi;
+       ~25% balandlik yoki tez siltash (≥0,5 px/ms) — yumshoq yopiladi (250 ms ease-out), aks holda prujina bilan joyiga qaytadi.
+       Teginish — touch hodisalari (iOS: preventDefault → sahifa «rezina» aylanmaydi), sichqoncha — faqat tortqich/sarlavhadan. */
+    var HANDLE = '.rz-grab,.rz-sh-h,.sl-ph,.sl-ph2,.sl-yh,.ny-top,.ny-hero,.ny-hd2,[data-drag]', NODRAG = 'input[type=range],.rz-x,[data-nodrag],.rz-cal';
+    function scrollerOf(t, sh) { for (var e = t; e && e !== sh; e = e.parentElement) { var cs = getComputedStyle(e); if (/(auto|scroll)/.test(cs.overflowY) && e.scrollHeight > e.clientHeight + 1) return e; } return sh.scrollHeight > sh.clientHeight + 1 ? sh : null; }
+    function dStart(x, y, t, mouse) {
+      var sh = $('#rzSheet'); if (!sheetKind || sh.hidden || !t || !t.closest || !sh.contains(t) || t.closest(NODRAG)) return;
+      var hd = !!t.closest(HANDLE); if (mouse && !hd) return;
+      sw = { x: x, y0: y, y: y, on: false, hd: hd, sc: hd ? null : scrollerOf(t, sh), h: sh.getBoundingClientRect().height, pts: [[y, performance.now()]] };
     }
-    function swMove(e) { if (!sw || e.pointerId !== sw.id) return; sw.dy = Math.max(0, e.clientY - sw.y); $('#rzSheet').style.transform = 'translateY(' + sw.dy + 'px)'; }
-    function swEnd(e) {
-      if (!sw || e.pointerId !== sw.id) return; var s = sw, sh = $('#rzSheet'); sw = null; sh.style.transition = '';
-      var v = s.dy / Math.max(1, performance.now() - s.t);
-      if (s.dy > 110 || (s.dy > 40 && v > 0.5)) kit.closeSheet(); else sh.style.transform = '';
+    function dMove(x, y, ev) {
+      if (!sw) return; var dy = y - sw.y0, dx = x - sw.x, sh = $('#rzSheet'), bg = $('#rzBg');
+      if (!sw.on) {
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) { sw = null; return; }          // gorizontal (chiplar, surish) — bizniki emas
+        if (dy < 6) { if (dy < -6) sw = null; return; }                                         // yuqoriga — ichki aylantirish
+        if (sw.sc && sw.sc.scrollTop > 0) { sw = null; return; }                                // ro'yxat tepasida emas — oddiy aylantirish
+        sw.on = true; sw.y0 = y; dy = 0; sh.style.transition = 'none'; bg.style.transition = 'none'; sh.classList.add('rz-drag');
+      }
+      if (ev && ev.cancelable) ev.preventDefault();
+      sw.y = y; sw.pts.push([y, performance.now()]); if (sw.pts.length > 6) sw.pts.shift();
+      var d = Math.max(0, y - sw.y0), r = d > 0 ? d : d * 0; sh.style.transform = 'translateY(' + r + 'px)'; bg.style.opacity = String(Math.max(0, 1 - r / Math.max(1, sw.h)));
     }
-    root.addEventListener('pointerdown', swStart); root.addEventListener('pointermove', swMove); root.addEventListener('pointerup', swEnd); root.addEventListener('pointercancel', swEnd);
+    function dEnd() {
+      if (!sw) return; var s = sw, sh = $('#rzSheet'), bg = $('#rzBg'); sw = null; if (!s.on) return; sh.classList.remove('rz-drag');
+      var d = Math.max(0, s.y - s.y0), a = s.pts[0], z = s.pts[s.pts.length - 1], v = (z[0] - a[0]) / Math.max(1, z[1] - a[1]);
+      if (d > s.h * 0.25 || (v > 0.5 && d > 24)) {
+        sh.style.transition = kit.reduce ? 'none' : 'transform .25s cubic-bezier(0,0,.2,1)'; bg.style.transition = kit.reduce ? 'none' : 'opacity .25s ease-out'; sh.style.transform = 'translateY(' + (s.h + 24) + 'px)'; bg.style.opacity = '0';
+        setTimeout(function () { kit.closeSheet(true); }, kit.reduce ? 0 : 250);
+      } else {
+        sh.style.transition = kit.reduce ? 'none' : 'transform .38s cubic-bezier(.34,1.45,.5,1)'; bg.style.transition = 'opacity .25s'; sh.style.transform = ''; bg.style.opacity = '';
+        setTimeout(function () { if (!sw) { sh.style.transition = ''; bg.style.transition = ''; } }, 400);
+      }
+    }
+    root.addEventListener('animationend', function (e) { if (e.target && e.target.id === 'rzSheet') e.target.classList.add('rz-done'); });          // ochilish animatsiyasi (fill: both) tugadi — endi tortishdagi transform'ni bosmaydi
+    root.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) { sw = null; return; } dStart(e.touches[0].clientX, e.touches[0].clientY, e.target, false); }, { passive: true });
+    root.addEventListener('touchmove', function (e) { if (sw) dMove(e.touches[0].clientX, e.touches[0].clientY, e); }, { passive: false });
+    root.addEventListener('touchend', dEnd); root.addEventListener('touchcancel', dEnd);
+    root.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' && e.button === 0) dStart(e.clientX, e.clientY, e.target, true); });
+    root.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse' && sw) dMove(e.clientX, e.clientY, null); });
+    root.addEventListener('pointerup', function (e) { if (e.pointerType === 'mouse') dEnd(); }); root.addEventListener('pointercancel', function (e) { if (e.pointerType === 'mouse') dEnd(); });
 
     /* ---------- toast ---------- */
     kit.toast = function (msg, undo, ok, ms) {

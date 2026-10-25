@@ -76,12 +76,13 @@ try {
     for (const [d, h] of [[1, 'kirish'], [1, 'kirish_google'], [3, 'ulandi_kalkifit'], [12, 'kirish'], [45, 'kirish']]) raw.prepare("INSERT INTO audit (vaqt, akkaunt_id, hodisa) VALUES (?, 'a1b2c3d4e5f60718293a4b5c', ?)").run(now - d * D, h);
     const ck = cookieOf(await adm('kirish', { env, body: { parol: PW } }));
     let r = await adm('foydalanuvchilar', { env, h: { Cookie: ck } }), j = await r.json(), u = j.foydalanuvchilar;
-    assert.equal(u.length, 2); assert.equal(u[0].email, 'ali@mail.uz'); assert.deepEqual([u[0].ism, u[0].usul, u[0].sessiyalar, u[0].ilovalar, u[0].faol_kun30], ['Ali', 'google', 2, ['kalkifit'], 5]);
+    const FK30 = new Set([now - D, now - 3 * D, now - 12 * D, now - 3600000, now - 9 * D].map((ms) => new Date(ms + 5 * 3600000).toISOString().slice(0, 10))).size;          // faol kunlar Toshkent sanasi bo'yicha (yarim tun atrofida «1 soat oldin» = «kecha»)
+    assert.equal(u.length, 2); assert.equal(u[0].email, 'ali@mail.uz'); assert.deepEqual([u[0].ism, u[0].usul, u[0].sessiyalar, u[0].ilovalar, u[0].faol_kun30], ['Ali', 'google', 2, ['kalkifit'], FK30]);          // faol kunlar Toshkent sanasi bo'yicha (yarim tun atrofida «1 soat oldin» = «kecha»)
     assert.deepEqual(u[0].qurilmalar.sort(), ['Chrome · Android', 'Safari · iOS']); assert.equal(u[0].oxirgi, now - 3600000, 'oxirgi faollik — eng so\'nggi sessiya/kirish/zaxira'); assert.equal(u[0].zaxira_oxirgi, now - 7200000);
     const dump = JSON.stringify(j); assert.ok(!/SHIFRLANGAN|KONVERT|vazn|weight|kod_konvert|blob/i.test(dump), 'zaxira, konvert, vazn — javobda yo\'q');
     r = await adm('foydalanuvchilar', { env, h: { Cookie: ck }, ...{} });
     r = await ADM.onRequest({ request: rq('/api/admin/foydalanuvchilar?id=a1b2c3d4e5f60718293a4b5c', { h: { Cookie: ck } }), env, params: { amal: 'foydalanuvchilar' } }); const t = await r.json();
-    assert.equal(t.faollik.length, 30); assert.equal(t.faollik.filter((x) => x.n).length, 5, '30 kun: 3 kun hodisa + 2 sessiyaning oxirgi kuni (45 kun oldingisi — hisobda yo\'q)'); assert.equal(t.faollik.filter((x) => x.n).length, u[0].faol_kun30, 'ro\'yxat va tafsilot bir xil'); assert.equal(t.profil, null, 'profil — server ko\'rmaydi'); assert.equal(t.qurilmalar.length, 2); assert.equal(t.ilovalar[0].zaxira, now - 7200000);
+    assert.equal(t.faollik.length, 30); assert.equal(t.faollik.filter((x) => x.n).length, FK30, '30 kun: 3 kun hodisa + 2 sessiyaning oxirgi kuni (45 kun oldingisi — hisobda yo\'q)'); assert.equal(t.faollik.filter((x) => x.n).length, u[0].faol_kun30, 'ro\'yxat va tafsilot bir xil'); assert.equal(t.profil, null, 'profil — server ko\'rmaydi'); assert.equal(t.qurilmalar.length, 2); assert.equal(t.ilovalar[0].zaxira, now - 7200000);
     assert.ok(!/SHIFRLANGAN|KONVERT|zaxira_id/.test(JSON.stringify(t)));
     r = await ADM.onRequest({ request: rq("/api/admin/foydalanuvchilar?id=x' OR 1=1", { h: { Cookie: ck } }), env, params: { amal: 'foydalanuvchilar' } }); assert.equal(r.status, 400);
     r = await adm('foydalanuvchilar', { env }); assert.equal(r.status, 401);

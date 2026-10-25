@@ -27,7 +27,7 @@ assert.match(DB.mr['kefir.f1'].u, /170904/); assert.match(DB.mr['sut.f6'].u, /17
 for (const id of ['tvorog0', 'tvorog18']) { const f = DB.foods.find((x) => x.i === id); assert.equal(f.x, 1); assert.ok(f.ms && /Скурихин/.test(f.ms.u) && /USDA'da/.test(f.ms.u) && /±15%/.test(f.ms.u), id + ': manba izohi (taxminiy, USDA\'da yo\'q)'); }
 log('Sut/kefir/smetana/tvorog: yog\'lilik variantlari (' + Object.entries(FAM).map(([k, v]) => k + ' ' + v.join('·')).join('; ') + '), kkal va yog\' monoton, Atwater ±15%, yog\' ≈ yorliq, standart variant (3,2 / 2,5 / 20 / 5 / qatiq odatiy) o\'zgarmagan; hisoblangan variantlar — USDA fdc_id lar bilan retsept, «taxminiy»');
 /* eski id lar alias bo'lib qoldi (tarix buzilmaydi) */
-for (const [old, fid, v] of [['sut-yogsiz', 'sut', 'f05'], ['qatiq-yogsiz', 'qatiq', 'yogsiz'], ['tvorog9', 'tvorog5', '9'], ['tvorog0', 'tvorog5', '0'], ['tvorog18', 'tvorog5', '18']]) { const f = by[old]; assert.ok(f && f.h && f.al && f.al.f === fid && f.al.v === v, old + ' → ' + fid + '.' + v); }
+for (const [old, fid, v] of [['sut-yogsiz', 'sut', 'f1'],          /* v44: eski «Sut (1%)» yozuvi — 1% varianti (0,5% alohida) */ ['qatiq-yogsiz', 'qatiq', 'yogsiz'], ['tvorog9', 'tvorog5', '9'], ['tvorog0', 'tvorog5', '0'], ['tvorog18', 'tvorog5', '18']]) { const f = by[old]; assert.ok(f && f.h && f.al && f.al.f === fid && f.al.v === v, old + ' → ' + fid + '.' + v); }
 assert.equal(by.sut.fam.ax[0].o.length, 7); assert.deepEqual(S.famSelOf(by.sut, 'yogsiz'), S.famDefault(by.sut), 'noma\'lum eski variant kodi — standartga tushadi (xato yo\'q)');
 log('Eski id lar (sut-yogsiz, qatiq-yogsiz, tvorog9) alias; tvorog0/18 yashirin alias; noma\'lum variant kodi standartga tushadi');
 /* sport */

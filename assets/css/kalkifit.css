@@ -1139,3 +1139,33 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .ny-bar .ny-yed{flex:1;min-height:56px;width:auto}.rz .ny-sv{flex:none;width:56px;height:56px;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer}.rz .ny-sv .rz-i{width:24px;height:24px}
 .rz .ny-hvc{flex:none;min-height:56px;padding:0 16px}
 .rz .ny-hvh{margin:8px 2px 16px;font-size:var(--t-s);color:var(--mut);line-height:1.4}.rz .ny-hv{display:flex;flex-wrap:wrap;gap:8px}
+/* «Bugungi ovqatlar» (v44): doimiy ovqat vaqti ikonkasi, sarlavha (N ta · kunning X%, ingichka chiziq, katta kkal, «+»), bir qatorli taomlar, chapga surib o'chirish. Radius 20, 8 px, ≥15 px */
+.rz .sl-meal.ml{padding:16px;gap:8px;border-radius:20px}
+.rz .ml-h{display:flex;align-items:center;gap:12px;min-height:48px}
+.rz .ml-ic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center}.rz .ml-ic .rz-i{width:24px;height:24px}
+.rz .ml-ic.ml-b{background:var(--fcye);color:var(--fcyei)}.rz .ml-ic.ml-l{background:var(--fcgr);color:var(--fcgri)}.rz .ml-ic.ml-d{background:var(--fcbl);color:var(--fcbli)}.rz .ml-ic.ml-s{background:var(--fcpu);color:var(--fcpui)}
+.rz .ml-h .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rz .ml-h .m b{font-size:var(--t-m);font-weight:600;line-height:1.25;display:block;-webkit-line-clamp:unset;overflow:visible}
+.rz .ml-sub{font-size:var(--t-xs);color:var(--mut);line-height:1.3}
+.rz .ml-bar{display:block;height:4px;margin-top:4px;border-radius:2px;background:var(--track);overflow:hidden}.rz .ml-bar i{display:block;height:100%;border-radius:2px}
+.rz .ml-bar i.ml-b{background:var(--fcyei)}.rz .ml-bar i.ml-l{background:var(--fcgri)}.rz .ml-bar i.ml-d{background:var(--fcbli)}.rz .ml-bar i.ml-s{background:var(--fcpui)}
+.rz .ml-k{flex:none;display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}.rz .ml-k b{font-size:var(--t-l);font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}.rz .ml-k small{font-size:var(--t-xs);color:var(--mut)}
+.rz .ml-add{flex:none;width:44px;height:44px;border:0;border-radius:12px;background:var(--accsoft);color:var(--accink);display:grid;place-items:center;cursor:pointer}.rz .ml-add .rz-i{width:22px;height:22px}
+.rz .ml-rows{padding:0;display:flex;flex-direction:column;gap:0}
+.rz .ml-sw{position:relative;overflow:hidden;border-radius:12px}
+.rz .ml-del{visibility:hidden;position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:16px;background:var(--danger);color:var(--on-err);opacity:0;transition:opacity .15s}.rz .ml-sw.drag .ml-del{opacity:.75;visibility:visible}.rz .ml-sw.arm .ml-del{opacity:1}.rz .ml-del .rz-i{width:22px;height:22px}
+.rz .sl-ents.ml-rows .sl-row.ml-r{gap:12px;padding:8px 0;min-height:48px}
+.rz .ml-r{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:8px 0;border:0;background:var(--card);color:inherit;font:inherit;text-align:left;cursor:pointer;transition:transform .2s ease}
+.rz .ml-sw.drag .ml-r{transition:none}.rz .ml-sw.gone{transition:opacity .2s,max-height .2s;opacity:0;max-height:0}
+.rz .ml-r .sl-tile{--s:34px;border-radius:10px;flex:none}
+.rz .sl-ents.ml-rows .sl-row.ml-r .ml-t{flex:1;min-width:0;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--t-s);line-height:1.35}
+.rz .sl-ents.ml-rows .sl-row.ml-r .ml-t .nm{display:inline;-webkit-line-clamp:unset;white-space:nowrap;font-size:inherit;font-weight:500;color:var(--ink);overflow:visible}
+.rz .sl-ents.ml-rows .sl-row.ml-r .ml-t .tm{display:inline;font-size:inherit;color:var(--mut);white-space:nowrap}.rz .sl-ents.ml-rows .sl-row.ml-r .ml-t .tm::before{content:' · '}.rz .ml-r .am{flex:none;font-size:var(--t-s);font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.rz .ml-more{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:4px 0;border:0;background:transparent;color:var(--accink);font:inherit;font-size:var(--t-xs);font-weight:600;text-align:left;cursor:pointer}.rz .ml-more span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rz .ml-more .r{width:18px;height:18px;flex:none}
+.rz .sl-meal.ml.empty{padding:0;background:transparent;box-shadow:none;border:1.5px dashed var(--line2)}
+.rz .ml-empty{display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:12px 16px;border:0;border-radius:20px;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.rz .ml-empty .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.rz .ml-empty b{font-size:var(--t-m);font-weight:600}.rz .ml-empty .m span{font-size:var(--t-xs);color:var(--mut)}
+.rz .ml-empty .ml-add{pointer-events:none}.rz .sl-meal.ml.empty .sl-yb{margin:0 16px 12px}
+.rz .ml-edx{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rz.sl .rz-sheet{overscroll-behavior:contain}.rz.sl .rz-sheet.rz-drag,.rz.sl .rz-sheet.rz-done{animation:none}          /* tortib yopish: iOS «rezina» aylanmaydi; tortish paytida ochilish animatsiyasi aralashmaydi */
+.rz .ny-acc{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;margin:24px 0 8px;padding:12px 16px;border:1px solid var(--line);border-radius:20px;background:var(--card);color:inherit;font:inherit;text-align:left;cursor:pointer}.rz .ny-acc .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.rz .ny-acc b{font-size:var(--t-m);font-weight:600}.rz .ny-acc .tx span{font-size:var(--t-xs);color:var(--mut)}.rz .ny-acc .r{width:18px;height:18px;color:var(--mut);transition:transform .2s;flex:none}.rz .ny-acc[aria-expanded=true] .r{transform:rotate(90deg)}
