@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 41,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Hazil yana ko'rinadi.",
+    "ru": "Шутки снова на виду."
+   },
+   "items": [
+    {
+     "uz": "Ovqatni «+» bilan qo'shsangiz ham hazil endi oynani yopganingizda kaloriya kartasida ko'rinadi — avval u oyna ostida qolib ketardi.",
+     "ru": "Если добавляете еду кнопкой «+», шутка теперь появляется на карточке калорий после закрытия окна — раньше она пряталась под ним.",
+     "show": "jokes",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 40,
    "d": "2026-10-25",
    "bn": {

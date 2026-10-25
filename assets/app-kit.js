@@ -86,7 +86,7 @@
     };
     kit.closeSheet = function () {
       var sh = $('#rzSheet'), bg = $('#rzBg'); if (sh.hidden) return; sh.style.transition = ''; sh.style.transform = ''; sh.classList.remove('open'); bg.classList.remove('open'); sheetKind = null;
-      setTimeout(function () { if (!sheetKind) { sh.hidden = true; bg.hidden = true; sh.innerHTML = ''; } }, kit.reduce ? 0 : 260);
+      setTimeout(function () { if (!sheetKind) { sh.hidden = true; bg.hidden = true; sh.innerHTML = ''; if (kit.onClose) kit.onClose(); } }, kit.reduce ? 0 : 260);
     };
     kit.fld = function (id, label, val, ph, extra) { return '<label class="rz-f" for="' + id + '"><span>' + esc(label) + '</span><input id="' + id + '" type="text" inputmode="numeric" autocomplete="off" data-fmt placeholder="' + esc(ph || '') + '" value="' + esc(val || '') + '"' + (extra || '') + '></label>'; };
     /* pastga tortib yopish */
