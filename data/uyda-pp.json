@@ -1,0 +1,3080 @@
+{
+ "v": 1,
+ "izoh": "Uyda PP retseptlari (tools/uyda-pp-yasa.js yasaydi, qo'lda tahrir qilinmaydi). Kkal/BJU yo'q: tarkibdan bazadagi qiymatlar bo'yicha hisoblanadi (assets/uyda-pp-core.js).",
+ "oddiy": [
+  "suv",
+  "yog",
+  "zaytun-yogi",
+  "asal",
+  "limon",
+  "un",
+  "sariyog"
+ ],
+ "guruhlar": [
+  {
+   "k": "tuxum",
+   "n": {
+    "uz": "Tuxum",
+    "ru": "Яйца"
+   },
+   "ids": [
+    "tuxum",
+    "tuxum-xom",
+    "tuxum-qov-yogsiz"
+   ]
+  },
+  {
+   "k": "tvorog",
+   "n": {
+    "uz": "Tvorog",
+    "ru": "Творог"
+   },
+   "ids": [
+    "tvorog5"
+   ]
+  },
+  {
+   "k": "yogurt",
+   "n": {
+    "uz": "Yogurt",
+    "ru": "Йогурт"
+   },
+   "ids": [
+    "yogurt-yunon",
+    "yogurt-tabiiy"
+   ]
+  },
+  {
+   "k": "sut",
+   "n": {
+    "uz": "Sut, kefir",
+    "ru": "Молоко, кефир"
+   },
+   "ids": [
+    "sut",
+    "sut-yogsiz",
+    "kefir"
+   ]
+  },
+  {
+   "k": "lavash",
+   "n": {
+    "uz": "Lavash, non",
+    "ru": "Лаваш, хлеб"
+   },
+   "ids": [
+    "lavash-non",
+    "tortilya",
+    "non-bugdoy",
+    "non-pita"
+   ]
+  },
+  {
+   "k": "tovuq",
+   "n": {
+    "uz": "Tovuq",
+    "ru": "Курица"
+   },
+   "ids": [
+    "tovuq-kokrak",
+    "tovuq-kokrak-duxovka",
+    "kurka-qiyma"
+   ]
+  },
+  {
+   "k": "gosht",
+   "n": {
+    "uz": "Go'sht",
+    "ru": "Мясо"
+   },
+   "ids": [
+    "mol-qiyma",
+    "mol-qaynatilgan"
+   ]
+  },
+  {
+   "k": "baliq",
+   "n": {
+    "uz": "Baliq, tunets",
+    "ru": "Рыба, тунец"
+   },
+   "ids": [
+    "treska",
+    "losos",
+    "krevetka",
+    "tunets-suv"
+   ]
+  },
+  {
+   "k": "grechka",
+   "n": {
+    "uz": "Grechka",
+    "ru": "Гречка"
+   },
+   "ids": [
+    "grechka"
+   ]
+  },
+  {
+   "k": "yasmiq",
+   "n": {
+    "uz": "Yasmiq, mosh, loviya",
+    "ru": "Чечевица, маш, фасоль"
+   },
+   "ids": [
+    "yasmiq",
+    "mosh",
+    "noxat",
+    "loviya"
+   ]
+  },
+  {
+   "k": "suli",
+   "n": {
+    "uz": "Suli",
+    "ru": "Овсянка"
+   },
+   "ids": [
+    "suli-xom",
+    "suli-quruq"
+   ]
+  },
+  {
+   "k": "guruch",
+   "n": {
+    "uz": "Guruch, makaron",
+    "ru": "Рис, макароны"
+   },
+   "ids": [
+    "guruch",
+    "guruch-xom",
+    "bulgur",
+    "makaron-pishgan2"
+   ]
+  },
+  {
+   "k": "kartoshka",
+   "n": {
+    "uz": "Kartoshka",
+    "ru": "Картофель"
+   },
+   "ids": [
+    "kartoshka",
+    "kartoshka-xom"
+   ]
+  },
+  {
+   "k": "banan",
+   "n": {
+    "uz": "Banan",
+    "ru": "Банан"
+   },
+   "ids": [
+    "banan"
+   ]
+  },
+  {
+   "k": "meva",
+   "n": {
+    "uz": "Meva",
+    "ru": "Фрукты"
+   },
+   "ids": [
+    "olma",
+    "qulupnay",
+    "malina",
+    "avokado",
+    "quruq-orik"
+   ]
+  },
+  {
+   "k": "sabzavot",
+   "n": {
+    "uz": "Sabzavot",
+    "ru": "Овощи"
+   },
+   "ids": [
+    "pomidor",
+    "bodring",
+    "sabzi",
+    "piyoz",
+    "qalampir",
+    "ismaloq",
+    "brokkoli",
+    "qovoqcha",
+    "baqlajon",
+    "gulkaram",
+    "salat-barg",
+    "kok-piyoz",
+    "kokat",
+    "sarimsoq",
+    "karam",
+    "qovoq"
+   ]
+  },
+  {
+   "k": "pishloq",
+   "n": {
+    "uz": "Pishloq",
+    "ru": "Сыр"
+   },
+   "ids": [
+    "pishloq"
+   ]
+  },
+  {
+   "k": "yongoq",
+   "n": {
+    "uz": "Yong'oq",
+    "ru": "Орехи"
+   },
+   "ids": [
+    "yongoq",
+    "bodom"
+   ]
+  },
+  {
+   "k": "protein",
+   "n": {
+    "uz": "Protein",
+    "ru": "Протеин"
+   },
+   "ids": [
+    "protein-kukun"
+   ]
+  }
+ ],
+ "retseptlar": [
+  {
+   "id": "tvorog-yogurt",
+   "t": "tayyorsiz",
+   "min": 3,
+   "m": "bs",
+   "n": {
+    "uz": "Tvorog va yunon yogurti",
+    "ru": "Творог с греческим йогуртом"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     120
+    ],
+    [
+     "yogurt-yunon",
+     100
+    ],
+    [
+     "asal",
+     8
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorog va yogurtni piyolaga soling.",
+     "Silliq bo'lguncha aralashtiring.",
+     "Ustiga asal tomizing."
+    ],
+    "ru": [
+     "Выложите творог и йогурт в пиалу.",
+     "Перемешайте до однородности.",
+     "Сверху добавьте мёд."
+    ]
+   }
+  },
+  {
+   "id": "tvorog-meva",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "bs",
+   "n": {
+    "uz": "Tvorog va mevalar",
+    "ru": "Творог с фруктами"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     150
+    ],
+    [
+     "qulupnay",
+     80
+    ],
+    [
+     "banan",
+     60
+    ],
+    [
+     "asal",
+     8
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Mevalarni yuvib, mayda to'g'rang.",
+     "Tvorogni likopchaga soling.",
+     "Mevalarni ustiga qo'yib, asal tomizing."
+    ],
+    "ru": [
+     "Помойте и нарежьте фрукты.",
+     "Выложите творог на тарелку.",
+     "Добавьте фрукты и полейте мёдом."
+    ]
+   }
+  },
+  {
+   "id": "protein-suv",
+   "t": "tayyorsiz",
+   "min": 2,
+   "m": "bs",
+   "n": {
+    "uz": "Protein kokteyl (suv bilan)",
+    "ru": "Протеиновый коктейль (на воде)"
+   },
+   "ing": [
+    [
+     "protein-kukun",
+     30
+    ],
+    [
+     "suv",
+     300
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Shakerga sovuq suv quying.",
+     "1 skup (30 g) protein kukunini soling.",
+     "20 soniya chayqating."
+    ],
+    "ru": [
+     "Налейте в шейкер холодную воду.",
+     "Добавьте 1 мерную ложку (30 г) протеина.",
+     "Взбалтывайте 20 секунд."
+    ]
+   }
+  },
+  {
+   "id": "protein-sut-banan",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "bs",
+   "n": {
+    "uz": "Protein kokteyl sut va banan bilan",
+    "ru": "Протеиновый коктейль с молоком и бананом"
+   },
+   "ing": [
+    [
+     "protein-kukun",
+     30
+    ],
+    [
+     "sut",
+     250
+    ],
+    [
+     "banan",
+     80
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Sut, banan va protein kukunini blenderga soling.",
+     "30 soniya aralashtiring.",
+     "Stakanga quyib darrov iching."
+    ],
+    "ru": [
+     "Положите молоко, банан и протеин в блендер.",
+     "Взбейте 30 секунд.",
+     "Перелейте в стакан и выпейте сразу."
+    ]
+   }
+  },
+  {
+   "id": "kefir-banan-suli",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "bs",
+   "n": {
+    "uz": "Kefir, banan va suli kokteyli",
+    "ru": "Коктейль из кефира, банана и овсянки"
+   },
+   "ing": [
+    [
+     "kefir",
+     250
+    ],
+    [
+     "banan",
+     100
+    ],
+    [
+     "suli-xom",
+     30
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Kefir, banan va suli yormasini blenderga soling.",
+     "1 daqiqa aralashtiring.",
+     "5 daqiqa qoldiring — quyuqlashadi."
+    ],
+    "ru": [
+     "Положите кефир, банан и овсяные хлопья в блендер.",
+     "Взбейте 1 минуту.",
+     "Дайте постоять 5 минут — загустеет."
+    ]
+   }
+  },
+  {
+   "id": "yunon-yogurt-yongoq",
+   "t": "tayyorsiz",
+   "min": 3,
+   "m": "bs",
+   "n": {
+    "uz": "Yunon yogurti va yong'oq",
+    "ru": "Греческий йогурт с орехами"
+   },
+   "ing": [
+    [
+     "yogurt-yunon",
+     150
+    ],
+    [
+     "yongoq",
+     20
+    ],
+    [
+     "asal",
+     8
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Yogurtni piyolaga soling.",
+     "Yong'oqni maydalab ustiga sepin.",
+     "Asal tomizing."
+    ],
+    "ru": [
+     "Выложите йогурт в пиалу.",
+     "Измельчите орехи и посыпьте сверху.",
+     "Добавьте мёд."
+    ]
+   }
+  },
+  {
+   "id": "tuxum-sabzavot",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "bls",
+   "n": {
+    "uz": "Qaynatilgan tuxum va sabzavot",
+    "ru": "Варёные яйца с овощами"
+   },
+   "ing": [
+    [
+     "tuxum",
+     100,
+     2
+    ],
+    [
+     "bodring",
+     100
+    ],
+    [
+     "pomidor",
+     100
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Oldindan qaynatilgan tuxumni archib, ikkiga kesing.",
+     "Bodring va pomidorni bo'laklang.",
+     "Likopchaga yoyib, tuz sepin."
+    ],
+    "ru": [
+     "Очистите заранее сваренные яйца и разрежьте пополам.",
+     "Нарежьте огурец и помидор.",
+     "Выложите на тарелку и посолите."
+    ]
+   }
+  },
+  {
+   "id": "non-tvorog-pasta",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "bs",
+   "n": {
+    "uz": "Non va tvorog pastasi",
+    "ru": "Хлеб с творожной пастой"
+   },
+   "ing": [
+    [
+     "non-bugdoy",
+     60
+    ],
+    [
+     "tvorog5",
+     80
+    ],
+    [
+     "kokat",
+     10
+    ],
+    [
+     "bodring",
+     50
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorogni ko'katlar bilan ezib aralashtiring.",
+     "Nonga surting.",
+     "Ustiga bodring tilimlarini qo'ying."
+    ],
+    "ru": [
+     "Разомните творог с зеленью.",
+     "Намажьте на хлеб.",
+     "Сверху выложите ломтики огурца."
+    ]
+   }
+  },
+  {
+   "id": "avokado-tost",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "bs",
+   "n": {
+    "uz": "Avokado va tuxumli tost",
+    "ru": "Тост с авокадо и яйцом"
+   },
+   "ing": [
+    [
+     "non-bugdoy",
+     60
+    ],
+    [
+     "avokado",
+     70
+    ],
+    [
+     "tuxum",
+     50,
+     1
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Nonni quruq tovada yoki tosterda qizdiring.",
+     "Avokadoni vilka bilan ezib, nonga surting.",
+     "Ustiga qaynatilgan tuxum tilimlarini qo'ying."
+    ],
+    "ru": [
+     "Подсушите хлеб на сухой сковороде или в тостере.",
+     "Разомните авокадо вилкой и намажьте на хлеб.",
+     "Сверху выложите ломтики варёного яйца."
+    ]
+   }
+  },
+  {
+   "id": "banan-yongoq",
+   "t": "tayyorsiz",
+   "min": 2,
+   "m": "s",
+   "n": {
+    "uz": "Banan va yong'oq",
+    "ru": "Банан с орехами"
+   },
+   "ing": [
+    [
+     "banan",
+     120,
+     1
+    ],
+    [
+     "yongoq",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Bananni archib, yumaloq to'g'rang.",
+     "Likopchaga soling.",
+     "Yong'oqni maydalab ustiga sepin."
+    ],
+    "ru": [
+     "Очистите банан и нарежьте кружочками.",
+     "Выложите на тарелку.",
+     "Измельчите орехи и посыпьте сверху."
+    ]
+   }
+  },
+  {
+   "id": "kefirli-suli",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "bs",
+   "n": {
+    "uz": "Kefirli suli (kechadan tayyor)",
+    "ru": "Овсянка на кефире (с вечера)"
+   },
+   "ing": [
+    [
+     "suli-xom",
+     40
+    ],
+    [
+     "kefir",
+     150
+    ],
+    [
+     "olma",
+     80
+    ],
+    [
+     "yongoq",
+     10
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Suli yormasini kefir bilan idishga solib aralashtiring.",
+     "Muzlatkichda kamida 2 soat (yoki kechasi) qoldiring.",
+     "Olmani tuxumdon qilib ustiga sepin, yong'oq qo'shing."
+    ],
+    "ru": [
+     "Смешайте овсяные хлопья с кефиром в банке.",
+     "Уберите в холодильник минимум на 2 часа (или на ночь).",
+     "Добавьте тёртое яблоко и орехи."
+    ]
+   }
+  },
+  {
+   "id": "yogurt-rezavor",
+   "t": "tayyorsiz",
+   "min": 3,
+   "m": "bs",
+   "n": {
+    "uz": "Yogurt va rezavorlar",
+    "ru": "Йогурт с ягодами"
+   },
+   "ing": [
+    [
+     "yogurt-tabiiy",
+     150
+    ],
+    [
+     "malina",
+     80
+    ],
+    [
+     "yongoq",
+     10
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Yogurtni piyolaga soling.",
+     "Rezavorlarni yuvib qo'shing.",
+     "Maydalangan yong'oq sepin."
+    ],
+    "ru": [
+     "Выложите йогурт в пиалу.",
+     "Добавьте промытые ягоды.",
+     "Посыпьте измельчёнными орехами."
+    ]
+   }
+  },
+  {
+   "id": "pishloqli-buterbrod",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "bls",
+   "n": {
+    "uz": "Pishloq va pomidorli buterbrod",
+    "ru": "Бутерброд с сыром и помидором"
+   },
+   "ing": [
+    [
+     "non-bugdoy",
+     60
+    ],
+    [
+     "pishloq",
+     30
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "salat-barg",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Nonni qizdiring.",
+     "Ustiga salat bargi, pishloq va pomidor tilimlarini qo'ying.",
+     "Ikkiga bukib yeng."
+    ],
+    "ru": [
+     "Подсушите хлеб.",
+     "Сверху выложите листья салата, сыр и ломтики помидора.",
+     "Сложите пополам и ешьте."
+    ]
+   }
+  },
+  {
+   "id": "sabzavot-tvorog-sous",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "ls",
+   "n": {
+    "uz": "Sabzavot tayoqchalari va tvorog sousi",
+    "ru": "Овощные палочки с творожным соусом"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     100
+    ],
+    [
+     "yogurt-yunon",
+     50
+    ],
+    [
+     "kokat",
+     10
+    ],
+    [
+     "sabzi",
+     80
+    ],
+    [
+     "bodring",
+     100
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorog, yogurt va ko'katni aralashtirib sous tayyorlang.",
+     "Sabzi va bodringni tayoqcha qilib kesing.",
+     "Tayoqchalarni sousga botirib yeng."
+    ],
+    "ru": [
+     "Смешайте творог, йогурт и зелень — получится соус.",
+     "Нарежьте морковь и огурец палочками.",
+     "Макайте палочки в соус."
+    ]
+   }
+  },
+  {
+   "id": "kefir-bodring",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "ls",
+   "n": {
+    "uz": "Kefir va bodring (sovuq)",
+    "ru": "Кефир с огурцом (холодный)"
+   },
+   "ing": [
+    [
+     "kefir",
+     250
+    ],
+    [
+     "bodring",
+     120
+    ],
+    [
+     "kokat",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Bodringni mayda to'g'rang.",
+     "Kefirga bodring va maydalangan ko'katni qo'shing.",
+     "Tuz sepib aralashtiring, sovuq holda iching."
+    ],
+    "ru": [
+     "Мелко нарежьте огурец.",
+     "Добавьте в кефир огурец и рубленую зелень.",
+     "Посолите, перемешайте и пейте холодным."
+    ]
+   }
+  },
+  {
+   "id": "yongoq-quruqmeva",
+   "t": "tayyorsiz",
+   "min": 2,
+   "m": "s",
+   "n": {
+    "uz": "Yong'oq va quruq mevalar",
+    "ru": "Орехи с сухофруктами"
+   },
+   "ing": [
+    [
+     "yongoq",
+     20
+    ],
+    [
+     "bodom",
+     15
+    ],
+    [
+     "quruq-orik",
+     30
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Quruq o'rikni mayda to'g'rang.",
+     "Yong'oq, bodom va o'rikni kosachaga soling.",
+     "Aralashtirib, sekin yeng."
+    ],
+    "ru": [
+     "Мелко нарежьте курагу.",
+     "Положите грецкие орехи, миндаль и курагу в пиалу.",
+     "Перемешайте и ешьте не спеша."
+    ]
+   }
+  },
+  {
+   "id": "banan-sutli-smuzi",
+   "t": "tayyorsiz",
+   "min": 4,
+   "m": "bs",
+   "n": {
+    "uz": "Banan va sutli smuzi",
+    "ru": "Смузи с бананом и молоком"
+   },
+   "ing": [
+    [
+     "sut",
+     200
+    ],
+    [
+     "banan",
+     100
+    ],
+    [
+     "yogurt-yunon",
+     50
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Barcha masalliqni blenderga soling.",
+     "30 soniya aralashtiring.",
+     "Stakanga quying."
+    ],
+    "ru": [
+     "Положите все продукты в блендер.",
+     "Взбейте 30 секунд.",
+     "Перелейте в стакан."
+    ]
+   }
+  },
+  {
+   "id": "tvorog-asal-yongoq",
+   "t": "tayyorsiz",
+   "min": 3,
+   "m": "bs",
+   "n": {
+    "uz": "Tvorog, asal va yong'oq",
+    "ru": "Творог с мёдом и орехами"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     150
+    ],
+    [
+     "asal",
+     10
+    ],
+    [
+     "yongoq",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorogni piyolaga soling.",
+     "Asal tomizing.",
+     "Maydalangan yong'oq sepin."
+    ],
+    "ru": [
+     "Выложите творог в пиалу.",
+     "Добавьте мёд.",
+     "Посыпьте измельчёнными орехами."
+    ]
+   }
+  },
+  {
+   "id": "olma-yunon-yogurt",
+   "t": "tayyorsiz",
+   "min": 3,
+   "m": "bs",
+   "n": {
+    "uz": "Olma bilan yunon yogurti",
+    "ru": "Греческий йогурт с яблоком"
+   },
+   "ing": [
+    [
+     "olma",
+     150
+    ],
+    [
+     "yogurt-yunon",
+     100
+    ],
+    [
+     "yongoq",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Olmani mayda kubik qilib to'g'rang.",
+     "Yogurt bilan aralashtiring.",
+     "Yong'oq sepin."
+    ],
+    "ru": [
+     "Нарежьте яблоко мелкими кубиками.",
+     "Смешайте с йогуртом.",
+     "Посыпьте орехами."
+    ]
+   }
+  },
+  {
+   "id": "tvorogli-lavash",
+   "t": "tayyorsiz",
+   "min": 5,
+   "m": "bls",
+   "n": {
+    "uz": "Tvorogli lavash",
+    "ru": "Лаваш с творогом"
+   },
+   "ing": [
+    [
+     "lavash-non",
+     40
+    ],
+    [
+     "tvorog5",
+     100
+    ],
+    [
+     "kokat",
+     10
+    ],
+    [
+     "bodring",
+     60
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Lavashni stolga yoying.",
+     "Tvorogni ko'kat bilan aralashtirib surting, bodring qo'ying.",
+     "Rulet qilib o'rang va ikkiga kesing."
+    ],
+    "ru": [
+     "Разложите лаваш на столе.",
+     "Намажьте творог с зеленью, добавьте огурец.",
+     "Заверните рулетом и разрежьте пополам."
+    ]
+   }
+  },
+  {
+   "id": "omlet-sabzavot",
+   "t": "tez",
+   "min": 10,
+   "m": "bl",
+   "n": {
+    "uz": "Sabzavotli omlet",
+    "ru": "Омлет с овощами"
+   },
+   "ing": [
+    [
+     "tuxum",
+     100,
+     2,
+     "omlet"
+    ],
+    [
+     "pomidor",
+     60
+    ],
+    [
+     "qalampir",
+     40
+    ],
+    [
+     "sut",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tuxumni sut va tuz bilan chayqating.",
+     "Sabzavotlarni mayda to'g'rab, yog'da 2 daqiqa qovuring.",
+     "Tuxum aralashmasini quyib, qopqoq ostida 5 daqiqa pishiring."
+    ],
+    "ru": [
+     "Взбейте яйца с молоком и солью.",
+     "Мелко нарежьте овощи и обжарьте 2 минуты на масле.",
+     "Залейте яйцами и готовьте под крышкой 5 минут."
+    ]
+   }
+  },
+  {
+   "id": "omlet-pishloq-ismaloq",
+   "t": "tez",
+   "min": 10,
+   "m": "bl",
+   "n": {
+    "uz": "Pishloqli ismaloq omleti",
+    "ru": "Омлет со шпинатом и сыром"
+   },
+   "ing": [
+    [
+     "tuxum",
+     100,
+     2,
+     "omlet"
+    ],
+    [
+     "pishloq",
+     25
+    ],
+    [
+     "ismaloq",
+     50
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Ismaloqni 1 daqiqa tovada soling.",
+     "Chayqatilgan tuxumni quying.",
+     "Pishay deganda ustiga pishloq sepib, buking."
+    ],
+    "ru": [
+     "Прогрейте шпинат 1 минуту на сковороде.",
+     "Влейте взбитые яйца.",
+     "Когда схватится, посыпьте сыром и сложите пополам."
+    ]
+   }
+  },
+  {
+   "id": "lavash-rulet-tovuq",
+   "t": "tez",
+   "min": 10,
+   "m": "lds",
+   "n": {
+    "uz": "Tovuqli lavash-rulet",
+    "ru": "Лаваш-ролл с курицей"
+   },
+   "ing": [
+    [
+     "lavash-non",
+     40
+    ],
+    [
+     "tovuq-kokrak",
+     80
+    ],
+    [
+     "bodring",
+     50
+    ],
+    [
+     "yogurt-yunon",
+     30
+    ],
+    [
+     "kokat",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tovuq ko'kragini (pishgan) mayda to'g'rang.",
+     "Lavashga yogurtni surting, tovuq, bodring va ko'kat qo'ying.",
+     "Rulet qilib o'rang, tovada har tomonini 1 daqiqadan qizdiring."
+    ],
+    "ru": [
+     "Нарежьте готовую куриную грудку.",
+     "Смажьте лаваш йогуртом, выложите курицу, огурец и зелень.",
+     "Заверните рулетом и подрумяньте по минуте с каждой стороны."
+    ]
+   }
+  },
+  {
+   "id": "lavash-rulet-tuxum",
+   "t": "tez",
+   "min": 10,
+   "m": "bl",
+   "n": {
+    "uz": "Tuxumli lavash-rulet",
+    "ru": "Лаваш-ролл с яйцом"
+   },
+   "ing": [
+    [
+     "lavash-non",
+     40
+    ],
+    [
+     "tuxum",
+     100,
+     2
+    ],
+    [
+     "kok-piyoz",
+     15
+    ],
+    [
+     "pishloq",
+     20
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tuxumni qaynatib, maydalang.",
+     "Ko'k piyoz va pishloq bilan aralashtiring.",
+     "Lavashga soling, rulet qilib o'rang."
+    ],
+    "ru": [
+     "Сварите яйца и покрошите.",
+     "Смешайте с зелёным луком и сыром.",
+     "Выложите на лаваш и заверните рулетом."
+    ]
+   }
+  },
+  {
+   "id": "grechka-tovuq",
+   "t": "tez",
+   "min": 15,
+   "m": "ld",
+   "n": {
+    "uz": "Grechka va tovuq",
+    "ru": "Гречка с курицей"
+   },
+   "ing": [
+    [
+     "grechka",
+     150
+    ],
+    [
+     "tovuq-kokrak",
+     100
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Grechkani oldindan qaynating.",
+     "Piyoz va sabzini yog'da yumshatib, mayda to'g'ralgan tovuqni qo'shing 5 daqiqa.",
+     "Grechka bilan aralashtirib, 2 daqiqa damlang."
+    ],
+    "ru": [
+     "Заранее сварите гречку.",
+     "Обжарьте лук и морковь, добавьте нарезанную курицу на 5 минут.",
+     "Смешайте с гречкой и дайте настояться 2 минуты."
+    ]
+   }
+  },
+  {
+   "id": "suli-botqa-banan",
+   "t": "tez",
+   "min": 10,
+   "m": "bs",
+   "n": {
+    "uz": "Banan va yong'oqli suli bo'tqa",
+    "ru": "Овсяная каша с бананом и орехами"
+   },
+   "ing": [
+    [
+     "suli-xom",
+     50
+    ],
+    [
+     "sut",
+     150
+    ],
+    [
+     "suv",
+     100
+    ],
+    [
+     "banan",
+     60
+    ],
+    [
+     "yongoq",
+     10
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Suli, sut va suvni qozonchaga solib, 7 daqiqa qaynating.",
+     "Doim aralashtirib turing.",
+     "Banan va yong'oq qo'shib bering."
+    ],
+    "ru": [
+     "Сварите хлопья на молоке и воде 7 минут.",
+     "Постоянно помешивайте.",
+     "Подавайте с бананом и орехами."
+    ]
+   }
+  },
+  {
+   "id": "sirniki-tovada",
+   "t": "tez",
+   "min": 15,
+   "m": "bs",
+   "n": {
+    "uz": "Tvorogli sirniki (tovada)",
+    "ru": "Сырники на сковороде"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     200
+    ],
+    [
+     "tuxum-xom",
+     50,
+     1
+    ],
+    [
+     "un",
+     25
+    ],
+    [
+     "asal",
+     10
+    ],
+    [
+     "yog",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorog, tuxum va unni aralashtiring.",
+     "Kichik dumaloq qilib shakllang.",
+     "Yog'langan tovada har tomonini 3 daqiqadan qovuring."
+    ],
+    "ru": [
+     "Смешайте творог, яйцо и муку.",
+     "Слепите небольшие лепёшки.",
+     "Обжарьте на смазанной сковороде по 3 минуты с каждой стороны."
+    ]
+   }
+  },
+  {
+   "id": "tunets-salat",
+   "t": "tez",
+   "min": 10,
+   "m": "ld",
+   "n": {
+    "uz": "Tunets salati",
+    "ru": "Салат с тунцом"
+   },
+   "ing": [
+    [
+     "tunets-suv",
+     90
+    ],
+    [
+     "tuxum",
+     50,
+     1
+    ],
+    [
+     "bodring",
+     80
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "kok-piyoz",
+     15
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tunetsni suvidan oqizib, vilka bilan ezing.",
+     "Tuxum, bodring va pomidorni to'g'rang.",
+     "Hammasini aralashtirib, zaytun yog'i va tuz qo'shing."
+    ],
+    "ru": [
+     "Слейте жидкость с тунца и разомните вилкой.",
+     "Нарежьте яйцо, огурец и помидор.",
+     "Смешайте всё, добавьте масло и соль."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-sendvich",
+   "t": "tez",
+   "min": 10,
+   "m": "ld",
+   "n": {
+    "uz": "Tovuqli sendvich",
+    "ru": "Сэндвич с курицей"
+   },
+   "ing": [
+    [
+     "non-bugdoy",
+     60
+    ],
+    [
+     "tovuq-kokrak",
+     80
+    ],
+    [
+     "pomidor",
+     60
+    ],
+    [
+     "salat-barg",
+     15
+    ],
+    [
+     "pishloq",
+     20
+    ],
+    [
+     "yogurt-yunon",
+     20
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Nonni qizdiring va yogurt surting.",
+     "Salat bargi, tovuq, pomidor va pishloqni terib chiqing.",
+     "Ikkinchi non bilan yoping. Tilimlab eng."
+    ],
+    "ru": [
+     "Подсушите хлеб и намажьте йогуртом.",
+     "Выложите салат, курицу, помидор и сыр.",
+     "Накройте вторым ломтиком и разрежьте."
+    ]
+   }
+  },
+  {
+   "id": "ismaloqli-tuxum",
+   "t": "tez",
+   "min": 10,
+   "m": "bl",
+   "n": {
+    "uz": "Ismaloq va pomidorli tuxum",
+    "ru": "Яичница со шпинатом и помидором"
+   },
+   "ing": [
+    [
+     "tuxum-qov-yogsiz",
+     100,
+     2
+    ],
+    [
+     "ismaloq",
+     80
+    ],
+    [
+     "pomidor",
+     60
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Yopishmaydigan tovada ismaloq va pomidorni 2 daqiqa dimlang.",
+     "Tuxumni sindirib qo'ying.",
+     "Qopqoq ostida 4 daqiqa pishiring."
+    ],
+    "ru": [
+     "Потушите шпинат и помидор 2 минуты на антипригарной сковороде.",
+     "Вбейте яйца.",
+     "Готовьте под крышкой 4 минуты."
+    ]
+   }
+  },
+  {
+   "id": "tuxumli-guruch",
+   "t": "tez",
+   "min": 12,
+   "m": "ld",
+   "n": {
+    "uz": "Tuxumli guruch (sabzavot bilan)",
+    "ru": "Рис с яйцом и овощами"
+   },
+   "ing": [
+    [
+     "guruch",
+     150
+    ],
+    [
+     "tuxum",
+     100,
+     2,
+     "omlet"
+    ],
+    [
+     "kok-piyoz",
+     20
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Pishgan guruchni (kechagi yoki yangi) tayyorlang.",
+     "Sabzini mayda to'g'rab, yog'da yumshating, tuxumni aralashtirib qovuring.",
+     "Guruch va ko'k piyozni qo'shib, 2 daqiqa qizdiring."
+    ],
+    "ru": [
+     "Подготовьте готовый рис.",
+     "Обжарьте тёртую морковь, добавьте яйца и перемешайте.",
+     "Добавьте рис и зелёный лук, прогрейте 2 минуты."
+    ]
+   }
+  },
+  {
+   "id": "krevetka-qovoqcha",
+   "t": "tez",
+   "min": 12,
+   "m": "ld",
+   "n": {
+    "uz": "Krevetka va qovoqcha",
+    "ru": "Креветки с кабачком"
+   },
+   "ing": [
+    [
+     "krevetka",
+     120
+    ],
+    [
+     "qovoqcha",
+     150
+    ],
+    [
+     "sarimsoq",
+     5
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Qovoqchani yarim halqa qilib to'g'rang.",
+     "Yog'da sarimsoq bilan 3 daqiqa qovuring.",
+     "Krevetkani qo'shib, yana 4 daqiqa pishiring."
+    ],
+    "ru": [
+     "Нарежьте кабачок полукольцами.",
+     "Обжарьте с чесноком 3 минуты.",
+     "Добавьте креветки и готовьте ещё 4 минуты."
+    ]
+   }
+  },
+  {
+   "id": "makaron-tunets",
+   "t": "tez",
+   "min": 15,
+   "m": "ld",
+   "n": {
+    "uz": "Makaron va tunets",
+    "ru": "Паста с тунцом"
+   },
+   "ing": [
+    [
+     "makaron-pishgan2",
+     150
+    ],
+    [
+     "tunets-suv",
+     80
+    ],
+    [
+     "pomidor",
+     100
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Makaronni qaynatib suzing.",
+     "Piyoz va pomidorni yog'da 4 daqiqa dimlang.",
+     "Tunets va makaron qo'shib, 2 daqiqa aralashtiring."
+    ],
+    "ru": [
+     "Отварите пасту и откиньте.",
+     "Потушите лук и помидор 4 минуты.",
+     "Добавьте тунец и пасту, перемешайте 2 минуты."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-brokkoli",
+   "t": "tez",
+   "min": 15,
+   "m": "ld",
+   "n": {
+    "uz": "Tovuq va brokkoli",
+    "ru": "Курица с брокколи"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak",
+     120
+    ],
+    [
+     "brokkoli",
+     120
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Brokkolini bo'laklarga ajrating, sabzini yupqa to'g'rang.",
+     "Tovuqni (pishgan) kubik qilib, sabzavot bilan 6 daqiqa dimlang.",
+     "Tuz va ziravor qo'shing."
+    ],
+    "ru": [
+     "Разберите брокколи на соцветия, морковь нарежьте тонко.",
+     "Потушите нарезанную курицу с овощами 6 минут.",
+     "Добавьте соль и специи."
+    ]
+   }
+  },
+  {
+   "id": "yasmiq-salat",
+   "t": "tez",
+   "min": 10,
+   "m": "ld",
+   "n": {
+    "uz": "Yasmiqli salat",
+    "ru": "Салат с чечевицей"
+   },
+   "ing": [
+    [
+     "yasmiq",
+     120
+    ],
+    [
+     "tuxum",
+     50,
+     1
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "bodring",
+     80
+    ],
+    [
+     "piyoz",
+     20
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Yasmiqni (pishgan) sovuting.",
+     "Sabzavot va tuxumni to'g'rang.",
+     "Hammasini aralashtirib, zaytun yog'i va tuz qo'shing."
+    ],
+    "ru": [
+     "Остудите готовую чечевицу.",
+     "Нарежьте овощи и яйцо.",
+     "Смешайте всё, добавьте масло и соль."
+    ]
+   }
+  },
+  {
+   "id": "tuxumli-tortilya",
+   "t": "tez",
+   "min": 12,
+   "m": "bl",
+   "n": {
+    "uz": "Tuxum va loviyali tortilya",
+    "ru": "Тортилья с яйцом и фасолью"
+   },
+   "ing": [
+    [
+     "tortilya",
+     45
+    ],
+    [
+     "tuxum-qov-yogsiz",
+     100,
+     2
+    ],
+    [
+     "loviya",
+     50
+    ],
+    [
+     "pomidor",
+     50
+    ],
+    [
+     "pishloq",
+     15
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tuxumni yopishmaydigan tovada aralashtirib pishiring.",
+     "Tortilyani qizdiring.",
+     "Tuxum, loviya, pomidor va pishloqni solib, buking."
+    ],
+    "ru": [
+     "Приготовьте яичницу-болтунью на антипригарной сковороде.",
+     "Подогрейте тортилью.",
+     "Выложите яйцо, фасоль, помидор и сыр, сверните."
+    ]
+   }
+  },
+  {
+   "id": "qovoqcha-frittata",
+   "t": "tez",
+   "min": 15,
+   "m": "bld",
+   "n": {
+    "uz": "Qovoqchali frittata",
+    "ru": "Фриттата с кабачком"
+   },
+   "ing": [
+    [
+     "qovoqcha",
+     150
+    ],
+    [
+     "tuxum",
+     100,
+     2,
+     "omlet"
+    ],
+    [
+     "pishloq",
+     20
+    ],
+    [
+     "piyoz",
+     20
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Qovoqcha va piyozni 4 daqiqa yog'da yumshating.",
+     "Tuxum va pishloqni aralashtirib quying.",
+     "Qopqoq ostida past olovda 6 daqiqa pishiring."
+    ],
+    "ru": [
+     "Потушите кабачок и лук 4 минуты на масле.",
+     "Залейте яйцами с сыром.",
+     "Готовьте под крышкой на слабом огне 6 минут."
+    ]
+   }
+  },
+  {
+   "id": "kartoshka-tvorog",
+   "t": "tez",
+   "min": 15,
+   "m": "ld",
+   "n": {
+    "uz": "Pishgan kartoshka va tvorog",
+    "ru": "Печёный картофель с творогом"
+   },
+   "ing": [
+    [
+     "kartoshka",
+     200
+    ],
+    [
+     "tvorog5",
+     100
+    ],
+    [
+     "kokat",
+     10
+    ],
+    [
+     "bodring",
+     60
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Kartoshkani yuvib, mikroto'lqinli pechda 8 daqiqa pishiring (yoki oldindan qaynatilganini oling).",
+     "Ikkiga kesib, tvorog va ko'katni qo'ying.",
+     "Yonida bodring bilan bering."
+    ],
+    "ru": [
+     "Помойте картофель и запеките в микроволновке 8 минут (или возьмите отварной).",
+     "Разрежьте и выложите творог с зеленью.",
+     "Подавайте с огурцом."
+    ]
+   }
+  },
+  {
+   "id": "banan-suli-pankeyk",
+   "t": "tez",
+   "min": 12,
+   "m": "bs",
+   "n": {
+    "uz": "Banan va sulili pankeyk",
+    "ru": "Банано-овсяные панкейки"
+   },
+   "ing": [
+    [
+     "suli-quruq",
+     40
+    ],
+    [
+     "banan",
+     100
+    ],
+    [
+     "tuxum-xom",
+     50,
+     1
+    ],
+    [
+     "yog",
+     3
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Banan, suli va tuxumni blenderda aralashtiring.",
+     "Yog'langan tovada kichik pankeyk quying.",
+     "Har tomonini 2 daqiqadan pishiring."
+    ],
+    "ru": [
+     "Взбейте банан, хлопья и яйцо в блендере.",
+     "Выпекайте маленькие панкейки на смазанной сковороде.",
+     "По 2 минуты с каждой стороны."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-yogurt-salat",
+   "t": "tez",
+   "min": 10,
+   "m": "ld",
+   "n": {
+    "uz": "Tovuq va bodring salati",
+    "ru": "Салат с курицей и огурцом"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak",
+     100
+    ],
+    [
+     "bodring",
+     80
+    ],
+    [
+     "yogurt-yunon",
+     40
+    ],
+    [
+     "salat-barg",
+     30
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tovuq ko'kragini (pishgan) tolalarga ajrating.",
+     "Bodring va salat bargini to'g'rang.",
+     "Yogurt va yog' bilan aralashtiring."
+    ],
+    "ru": [
+     "Разберите куриную грудку на волокна.",
+     "Нарежьте огурец и салат.",
+     "Заправьте йогуртом и маслом."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-pita",
+   "t": "tez",
+   "min": 10,
+   "m": "lds",
+   "n": {
+    "uz": "Tovuqli pita",
+    "ru": "Пита с курицей"
+   },
+   "ing": [
+    [
+     "non-pita",
+     60
+    ],
+    [
+     "tovuq-kokrak",
+     80
+    ],
+    [
+     "yogurt-yunon",
+     30
+    ],
+    [
+     "pomidor",
+     50
+    ],
+    [
+     "bodring",
+     40
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Pitani ikkiga kesib, ichini yogurt bilan suring.",
+     "Tovuq, pomidor va bodringni soling.",
+     "Yengil qizdirib bering."
+    ],
+    "ru": [
+     "Разрежьте питу и смажьте йогуртом внутри.",
+     "Начините курицей, помидором и огурцом.",
+     "Слегка подогрейте."
+    ]
+   }
+  },
+  {
+   "id": "mosh-salat",
+   "t": "tez",
+   "min": 10,
+   "m": "ld",
+   "n": {
+    "uz": "Mosh va sabzavot salati",
+    "ru": "Салат с машем и овощами"
+   },
+   "ing": [
+    [
+     "mosh",
+     120
+    ],
+    [
+     "bodring",
+     80
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "kok-piyoz",
+     15
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Moshni (pishgan) sovuting.",
+     "Sabzavotni mayda to'g'rang.",
+     "Aralashtirib, zaytun yog'i va tuz qo'shing."
+    ],
+    "ru": [
+     "Остудите готовый маш.",
+     "Мелко нарежьте овощи.",
+     "Смешайте, добавьте масло и соль."
+    ]
+   }
+  },
+  {
+   "id": "kefirli-okroshka",
+   "t": "tez",
+   "min": 12,
+   "m": "ld",
+   "n": {
+    "uz": "Kefirli okroshka",
+    "ru": "Окрошка на кефире"
+   },
+   "ing": [
+    [
+     "kefir",
+     300
+    ],
+    [
+     "bodring",
+     120
+    ],
+    [
+     "tuxum",
+     50,
+     1
+    ],
+    [
+     "kokat",
+     15
+    ],
+    [
+     "kartoshka",
+     100
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Kartoshka va tuxumni oldindan qaynating.",
+     "Hammasini mayda kubik qilib to'g'rang.",
+     "Kefir quyib, tuz qo'shing, sovuq bering."
+    ],
+    "ru": [
+     "Заранее сварите картофель и яйцо.",
+     "Нарежьте всё мелкими кубиками.",
+     "Залейте кефиром, посолите, подавайте холодной."
+    ]
+   }
+  },
+  {
+   "id": "yasmiq-shurva",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Yasmiq (chechevitsa) sho'rva",
+    "ru": "Суп из чечевицы"
+   },
+   "ing": [
+    [
+     "yasmiq",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "suv",
+     300
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va sabzini yog'da 3 daqiqa yumshating.",
+     "Kartoshka, yasmiq va suv qo'shib, 25 daqiqa qaynating.",
+     "Tuz va zira bilan ta'm bering."
+    ],
+    "ru": [
+     "Обжарьте лук и морковь 3 минуты.",
+     "Добавьте картофель, чечевицу и воду, варите 25 минут.",
+     "Приправьте солью и зирой."
+    ]
+   }
+  },
+  {
+   "id": "yasmiq-garnir-tovuq",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Yasmiq garniri va tovuq",
+    "ru": "Чечевица с курицей"
+   },
+   "ing": [
+    [
+     "yasmiq",
+     150
+    ],
+    [
+     "tovuq-kokrak",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Yasmiqni oldindan yumshoq qilib qaynating.",
+     "Piyoz, sabzi va tovuqni 8 daqiqa dimlang.",
+     "Yasmiq bilan aralashtirib, 5 daqiqa damlang."
+    ],
+    "ru": [
+     "Заранее сварите чечевицу до мягкости.",
+     "Потушите лук, морковь и курицу 8 минут.",
+     "Смешайте с чечевицей и дайте настояться 5 минут."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-sabzavot-duxovka",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Duxovkada tovuq va sabzavot",
+    "ru": "Курица с овощами в духовке"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak-duxovka",
+     130
+    ],
+    [
+     "brokkoli",
+     100
+    ],
+    [
+     "gulkaram",
+     100
+    ],
+    [
+     "qalampir",
+     60
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Duxovkani 200° gacha qizdiring.",
+     "Sabzavotni bo'laklab, tovuq bilan qoliplarga soling, yog' va tuz qo'shing.",
+     "25 daqiqa pishiring."
+    ],
+    "ru": [
+     "Разогрейте духовку до 200°.",
+     "Выложите овощи и курицу на противень, добавьте масло и соль.",
+     "Запекайте 25 минут."
+    ]
+   }
+  },
+  {
+   "id": "mastava-yengil",
+   "t": "pishirsa",
+   "min": 40,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil mastava",
+    "ru": "Лёгкая мастава"
+   },
+   "ing": [
+    [
+     "mol-qiyma",
+     60
+    ],
+    [
+     "guruch-xom",
+     30
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "pomidor",
+     60
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz, sabzi va qiymani yog'da 5 daqiqa qovuring.",
+     "Pomidor, kartoshka va suv qo'shing.",
+     "Guruchni solib, 20 daqiqa qaynating."
+    ],
+    "ru": [
+     "Обжарьте лук, морковь и фарш 5 минут.",
+     "Добавьте помидор, картофель и воду.",
+     "Всыпьте рис и варите 20 минут."
+    ]
+   }
+  },
+  {
+   "id": "baliq-duxovka",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Duxovkada baliq (treska)",
+    "ru": "Треска в духовке"
+   },
+   "ing": [
+    [
+     "treska",
+     150
+    ],
+    [
+     "pomidor",
+     100
+    ],
+    [
+     "qovoqcha",
+     100
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ],
+    [
+     "limon",
+     20
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Duxovkani 190° ga qizdiring.",
+     "Baliq, pomidor va qovoqchani qolipga soling, limon sixing.",
+     "20 daqiqa pishiring."
+    ],
+    "ru": [
+     "Разогрейте духовку до 190°.",
+     "Выложите рыбу, помидор и кабачок в форму, сбрызните лимоном.",
+     "Запекайте 20 минут."
+    ]
+   }
+  },
+  {
+   "id": "dimlama-yengil",
+   "t": "pishirsa",
+   "min": 45,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil dimlama",
+    "ru": "Лёгкая димлама"
+   },
+   "ing": [
+    [
+     "mol-qaynatilgan",
+     100
+    ],
+    [
+     "kartoshka-xom",
+     150
+    ],
+    [
+     "karam",
+     100
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "piyoz",
+     50
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Qozonga go'sht, piyoz va sabzini yotqizing.",
+     "Ustiga kartoshka, karam va pomidorni qatlam-qatlam soling.",
+     "Qopqoq ostida 35 daqiqa past olovda dimlang."
+    ],
+    "ru": [
+     "Выложите в казан мясо, лук и морковь.",
+     "Сверху слоями картофель, капусту и помидор.",
+     "Тушите под крышкой 35 минут на слабом огне."
+    ]
+   }
+  },
+  {
+   "id": "moshxorda-yengil",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil moshxo'rda",
+    "ru": "Лёгкая мошхурда"
+   },
+   "ing": [
+    [
+     "mosh",
+     100
+    ],
+    [
+     "guruch",
+     30
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "yogurt-yunon",
+     30
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va sabzini yog'da yumshating.",
+     "Mosh, kartoshka va suv solib, 20 daqiqa qaynating.",
+     "Guruch qo'shib, yana 8 daqiqa pishiring; yogurt bilan bering."
+    ],
+    "ru": [
+     "Обжарьте лук и морковь.",
+     "Добавьте маш, картофель и воду, варите 20 минут.",
+     "Всыпьте рис, варите ещё 8 минут; подавайте с йогуртом."
+    ]
+   }
+  },
+  {
+   "id": "moshkichiri-yengil",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil moshkichiri",
+    "ru": "Лёгкая мошкичири"
+   },
+   "ing": [
+    [
+     "guruch-xom",
+     40
+    ],
+    [
+     "mosh",
+     80
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va sabzini yog'da yumshating.",
+     "Mosh, guruch va suv qo'shing (suv ikki barobar).",
+     "Past olovda 25 daqiqa pishiring."
+    ],
+    "ru": [
+     "Обжарьте лук и морковь.",
+     "Добавьте маш, рис и воду (в два раза больше).",
+     "Варите на слабом огне 25 минут."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-shurva-yengil",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil tovuq sho'rva",
+    "ru": "Лёгкий куриный суп"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "kokat",
+     10
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tovuqni sovuq suvda 15 daqiqa qaynating.",
+     "Kartoshka, sabzi va piyozni qo'shing.",
+     "Yana 15 daqiqa qaynatib, ko'kat sepin."
+    ],
+    "ru": [
+     "Варите курицу в холодной воде 15 минут.",
+     "Добавьте картофель, морковь и лук.",
+     "Варите ещё 15 минут, посыпьте зеленью."
+    ]
+   }
+  },
+  {
+   "id": "qovoq-krem-shurva",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Qovoqli krem-sho'rva",
+    "ru": "Тыквенный крем-суп"
+   },
+   "ing": [
+    [
+     "qovoq",
+     250
+    ],
+    [
+     "kartoshka-xom",
+     80
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "yogurt-yunon",
+     30
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Qovoq, kartoshka va piyozni kubik qilib, suvda 20 daqiqa qaynating.",
+     "Blenderda pyure qiling.",
+     "Yogurt qo'shib bering."
+    ],
+    "ru": [
+     "Сварите кубики тыквы, картофеля и лука 20 минут.",
+     "Пробейте блендером в пюре.",
+     "Подавайте с йогуртом."
+    ]
+   }
+  },
+  {
+   "id": "bulgur-tovuq-osh",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Bulg'urli tovuq oshi (yengil)",
+    "ru": "Бульгур с курицей (лёгкий плов)"
+   },
+   "ing": [
+    [
+     "bulgur",
+     150
+    ],
+    [
+     "tovuq-kokrak",
+     100
+    ],
+    [
+     "sabzi",
+     60
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     8
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz, sabzi va tovuqni yog'da 8 daqiqa qovuring.",
+     "Bulg'ur va oz suv qo'shing.",
+     "Qopqoq ostida 15 daqiqa damlang."
+    ],
+    "ru": [
+     "Обжарьте лук, морковь и курицу 8 минут.",
+     "Добавьте бульгур и немного воды.",
+     "Томите под крышкой 15 минут."
+    ]
+   }
+  },
+  {
+   "id": "losos-brokkoli",
+   "t": "pishirsa",
+   "min": 25,
+   "m": "ld",
+   "n": {
+    "uz": "Losos va brokkoli (duxovka)",
+    "ru": "Лосось с брокколи в духовке"
+   },
+   "ing": [
+    [
+     "losos",
+     120
+    ],
+    [
+     "brokkoli",
+     150
+    ],
+    [
+     "limon",
+     20
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Duxovkani 200° ga qizdiring.",
+     "Losos va brokkolini qolipga soling, limon sixib, tuz sepin.",
+     "18 daqiqa pishiring."
+    ],
+    "ru": [
+     "Разогрейте духовку до 200°.",
+     "Выложите лосось и брокколи в форму, сбрызните лимоном, посолите.",
+     "Запекайте 18 минут."
+    ]
+   }
+  },
+  {
+   "id": "baqlajon-qiyma",
+   "t": "pishirsa",
+   "min": 40,
+   "m": "ld",
+   "n": {
+    "uz": "Baqlajon va qiyma (duxovka)",
+    "ru": "Баклажан с фаршем в духовке"
+   },
+   "ing": [
+    [
+     "baqlajon",
+     200
+    ],
+    [
+     "mol-qiyma",
+     80
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "pishloq",
+     20
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Baqlajonni uzunasiga ikkiga kesing, o'rtasini bo'shating.",
+     "Piyoz, pomidor va qiymani dimlab, ichiga soling.",
+     "Pishloq sepib, 25 daqiqa pishiring."
+    ],
+    "ru": [
+     "Разрежьте баклажан вдоль и выберите серединку.",
+     "Потушите лук, помидор и фарш, начините баклажан.",
+     "Посыпьте сыром и запекайте 25 минут."
+    ]
+   }
+  },
+  {
+   "id": "kurka-kotlet-bugda",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "ld",
+   "n": {
+    "uz": "Kurka kotleti (bug'da) va kartoshka",
+    "ru": "Паровые котлеты из индейки с картофелем"
+   },
+   "ing": [
+    [
+     "kurka-qiyma",
+     120
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "tuxum-xom",
+     25
+    ],
+    [
+     "kartoshka-xom",
+     150
+    ],
+    [
+     "sabzi",
+     50
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Qiymaga maydalangan piyoz va tuxum qo'shib, kotlet qiling.",
+     "Kartoshka va sabzi bilan bug'da 25 daqiqa pishiring.",
+     "Issiq holda bering."
+    ],
+    "ru": [
+     "Смешайте фарш с луком и яйцом, слепите котлеты.",
+     "Готовьте на пару с картофелем и морковью 25 минут.",
+     "Подавайте горячими."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-ragu",
+   "t": "pishirsa",
+   "min": 40,
+   "m": "ld",
+   "n": {
+    "uz": "Tovuq va sabzavotli ragu",
+    "ru": "Рагу из курицы с овощами"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     120
+    ],
+    [
+     "qovoqcha",
+     100
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "pomidor",
+     80
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Sabzavotni kubik qilib to'g'rang.",
+     "Tovuqni 5 daqiqa qovurib, sabzavot va pomidorni qo'shing.",
+     "Oz suv bilan 25 daqiqa dimlang."
+    ],
+    "ru": [
+     "Нарежьте овощи кубиками.",
+     "Обжарьте курицу 5 минут, добавьте овощи и помидор.",
+     "Тушите с небольшим количеством воды 25 минут."
+    ]
+   }
+  },
+  {
+   "id": "loviya-dimlama",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Loviya va pomidorli dimlama",
+    "ru": "Фасоль с помидорами"
+   },
+   "ing": [
+    [
+     "loviya",
+     150
+    ],
+    [
+     "pomidor",
+     150
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "tuxum",
+     50,
+     1
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyozni yog'da yumshating, pomidor qo'shing.",
+     "Loviya solib, 12 daqiqa dimlang.",
+     "Ustiga qaynatilgan tuxum qo'ying."
+    ],
+    "ru": [
+     "Обжарьте лук, добавьте помидоры.",
+     "Всыпьте фасоль и тушите 12 минут.",
+     "Сверху положите варёное яйцо."
+    ]
+   }
+  },
+  {
+   "id": "noxat-shurva",
+   "t": "pishirsa",
+   "min": 45,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil no'xat sho'rva",
+    "ru": "Лёгкий суп из нута"
+   },
+   "ing": [
+    [
+     "noxat",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "pomidor",
+     50
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va sabzini yog'da yumshating.",
+     "No'xat, kartoshka, pomidor va suv qo'shing.",
+     "30 daqiqa past olovda qaynating."
+    ],
+    "ru": [
+     "Обжарьте лук и морковь.",
+     "Добавьте нут, картофель, помидор и воду.",
+     "Варите 30 минут на слабом огне."
+    ]
+   }
+  },
+  {
+   "id": "grechka-qiyma",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Grechka va qiyma",
+    "ru": "Гречка с фаршем"
+   },
+   "ing": [
+    [
+     "grechka",
+     150
+    ],
+    [
+     "mol-qiyma",
+     80
+    ],
+    [
+     "piyoz",
+     30
+    ],
+    [
+     "pomidor",
+     60
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va qiymani yog'da 8 daqiqa qovuring.",
+     "Pomidor qo'shib, 5 daqiqa dimlang.",
+     "Pishgan grechka bilan aralashtiring."
+    ],
+    "ru": [
+     "Обжарьте лук и фарш 8 минут.",
+     "Добавьте помидор, тушите 5 минут.",
+     "Смешайте с готовой гречкой."
+    ]
+   }
+  },
+  {
+   "id": "tovuq-kartoshka-duxovka",
+   "t": "pishirsa",
+   "min": 45,
+   "m": "ld",
+   "n": {
+    "uz": "Duxovkada tovuq va kartoshka",
+    "ru": "Курица с картофелем в духовке"
+   },
+   "ing": [
+    [
+     "tovuq-kokrak-duxovka",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     200
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Kartoshka va sabzini bo'laklarga to'g'rang.",
+     "Tovuq bilan qolipga yoyib, yog' va tuz qo'shing.",
+     "200° da 35 daqiqa pishiring."
+    ],
+    "ru": [
+     "Нарежьте картофель и морковь.",
+     "Выложите с курицей в форму, добавьте масло и соль.",
+     "Запекайте при 200° 35 минут."
+    ]
+   }
+  },
+  {
+   "id": "shakshuka",
+   "t": "pishirsa",
+   "min": 25,
+   "m": "bld",
+   "n": {
+    "uz": "Shakshuka (pomidorli tuxum)",
+    "ru": "Шакшука"
+   },
+   "ing": [
+    [
+     "tuxum-xom",
+     150,
+     3
+    ],
+    [
+     "pomidor",
+     250
+    ],
+    [
+     "qalampir",
+     80
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "zaytun-yogi",
+     8
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Piyoz va qalampirni yog'da 4 daqiqa yumshating.",
+     "Pomidor qo'shib, 8 daqiqa dimlang.",
+     "Tuxumni sindirib, qopqoq ostida 6 daqiqa pishiring."
+    ],
+    "ru": [
+     "Обжарьте лук и перец 4 минуты.",
+     "Добавьте помидоры и тушите 8 минут.",
+     "Вбейте яйца и готовьте под крышкой 6 минут."
+    ]
+   }
+  },
+  {
+   "id": "qovurma-shurva-yengil",
+   "t": "pishirsa",
+   "min": 40,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil qovurma sho'rva",
+    "ru": "Лёгкий жаркое-суп"
+   },
+   "ing": [
+    [
+     "mol-qaynatilgan",
+     100
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     50
+    ],
+    [
+     "piyoz",
+     40
+    ],
+    [
+     "pomidor",
+     60
+    ],
+    [
+     "zaytun-yogi",
+     5
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Go'sht, piyoz va sabzini yog'da 5 daqiqa qovuring.",
+     "Pomidor, kartoshka va suv qo'shing.",
+     "25 daqiqa qaynatib, ko'kat sepin."
+    ],
+    "ru": [
+     "Обжарьте мясо, лук и морковь 5 минут.",
+     "Добавьте помидор, картофель и воду.",
+     "Варите 25 минут, посыпьте зеленью."
+    ]
+   }
+  },
+  {
+   "id": "baliq-shurva-yengil",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "ld",
+   "n": {
+    "uz": "Yengil baliq sho'rva",
+    "ru": "Лёгкая уха"
+   },
+   "ing": [
+    [
+     "treska",
+     120
+    ],
+    [
+     "kartoshka-xom",
+     100
+    ],
+    [
+     "sabzi",
+     40
+    ],
+    [
+     "piyoz",
+     30
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Kartoshka, sabzi va piyozni suvda 12 daqiqa qaynating.",
+     "Baliq bo'laklarini solib, yana 8 daqiqa pishiring.",
+     "Tuz va ko'kat qo'shing."
+    ],
+    "ru": [
+     "Варите картофель, морковь и лук 12 минут.",
+     "Добавьте кусочки рыбы, варите ещё 8 минут.",
+     "Посолите и посыпьте зеленью."
+    ]
+   }
+  },
+  {
+   "id": "tvorogli-zapekanka",
+   "t": "pishirsa",
+   "min": 35,
+   "m": "bs",
+   "n": {
+    "uz": "Tvorogli zapekanka",
+    "ru": "Творожная запеканка"
+   },
+   "ing": [
+    [
+     "tvorog5",
+     200
+    ],
+    [
+     "tuxum-xom",
+     50,
+     1
+    ],
+    [
+     "un",
+     20
+    ],
+    [
+     "banan",
+     60
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Tvorog, tuxum, un va ezilgan bananni aralashtiring.",
+     "Qolipga solib tekislang.",
+     "180° da 25 daqiqa pishiring."
+    ],
+    "ru": [
+     "Смешайте творог, яйцо, муку и размятый банан.",
+     "Выложите в форму и разровняйте.",
+     "Запекайте при 180° 25 минут."
+    ]
+   }
+  },
+  {
+   "id": "suli-banan-pishiriq",
+   "t": "pishirsa",
+   "min": 30,
+   "m": "bs",
+   "n": {
+    "uz": "Suli va banan pishirig'i",
+    "ru": "Овсяная запеканка с бананом"
+   },
+   "ing": [
+    [
+     "suli-xom",
+     60
+    ],
+    [
+     "banan",
+     120
+    ],
+    [
+     "tuxum-xom",
+     50,
+     1
+    ],
+    [
+     "sut",
+     100
+    ]
+   ],
+   "qad": {
+    "uz": [
+     "Suli, ezilgan banan, tuxum va sutni aralashtiring.",
+     "Qolipga quying.",
+     "180° da 20 daqiqa pishiring."
+    ],
+    "ru": [
+     "Смешайте хлопья, размятый банан, яйцо и молоко.",
+     "Выложите в форму.",
+     "Запекайте при 180° 20 минут."
+    ]
+   }
+  }
+ ]
+}

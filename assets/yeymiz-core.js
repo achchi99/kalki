@@ -4,7 +4,7 @@
  * (3) tartib — mashhurlik (qo'lda); belgilar: «Oqsilga boy» (oqsil/kkal), «Yengilroq» (toifa o'rtachasidan ≥20% kam kkal), «Bugungi limitdan oshadi» (yumshoq izoh). Takliflar ko'rsatma emas: hech narsa avtomatik yozilmaydi. */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(require('./orinbosar-core.js'), require('./cheklov-core.js')); else root.KalkiYeymiz = factory(root.KalkiOrinbosar, root.KalkiCheklov); })(typeof self !== 'undefined' ? self : this, function (OR, CH) {
   'use strict';
-  var SEG = ['kafe', 'buyurtma', 'uyda'], SEGH = { kafe: 'K', buyurtma: 'B' }, SHOW = 5;
+  var SEG = ['uyda', 'kafe', 'buyurtma'], SEGH = { kafe: 'K', buyurtma: 'B' }, SHOW = 5;
   function r1(x) { return Math.round(x * 10) / 10; }
   /* taomning «odatiy porsiyasi»: yeymiz.json birlik[] → 'porsiya' → birinchi birlik → 100 g. → { u, n, g, k, p, f, c, sifat, kafe } */
   function portion(by, data, key) {
@@ -56,7 +56,7 @@
   }
   function baliqKunOchiq(yemaydi) { return CH.toza(yemaydi).indexOf('baliq') < 0; }
   function kunOk(n) { n = Math.round(Number(n)); return n >= 0 && n <= 6 ? n : 3; }
-  /* birlamchi segment: soat 18:00 dan keyin yoki dam olish kuni (shanba/yakshanba) — Kafe; aks holda oxirgi tanlangani (saqlangan), u yo'q bo'lsa Kafe */
-  function segBoshlang(now, saqlangan) { var h = now.getHours(), d = now.getDay(); if (h >= 18 || d === 0 || d === 6) return 'kafe'; return SEG.indexOf(saqlangan) > -1 ? saqlangan : 'kafe'; }
+  /* birlamchi segment: HAR DOIM «Uyda» (tez PP retseptlar, v42); Kafe va Buyurtma — yonidagi segmentlarda */
+  function segBoshlang() { return 'uyda'; }
   return { SEG: SEG, SHOW: SHOW, portion: portion, toifaOf: toifaOf, members: members, list: list, uyda: uyda, variants: variants, groupsOf: groupsOf, baliqKunOchiq: baliqKunOchiq, kunOk: kunOk, segBoshlang: segBoshlang };
 });
