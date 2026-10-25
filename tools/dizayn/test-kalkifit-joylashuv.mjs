@@ -58,8 +58,8 @@ try {
     const scan = async (where, scope) => { const r = await p.evaluate(CHECK, scope); if (r.err) { fails.push(tag + ' ' + where + ': ' + r.err); return; } if (r.bad.length) fails.push(tag + ' ' + where + ' KESISHADI: ' + r.bad.slice(0, 6).join(' | ')); if (r.over.length) fails.push(tag + ' ' + where + ' ekrandan chiqadi: ' + r.over.slice(0, 6).join(' | ')); if (r.esc.length) fails.push(tag + ' ' + where + ' kartadan chiqadi: ' + r.esc.slice(0, 6).join(' | ')); return r; };
     /* Bugun */
     await scan('Bugun', '#rzMain'); await shot('bugun');
-    const mh = await p.evaluate(() => [...document.querySelectorAll('.sl-mh')].filter((x) => x.querySelector('.k')).map((x) => { const b2 = x.querySelector('b').getBoundingClientRect(), k2 = x.querySelector('.k').getBoundingClientRect(); return k2.top >= b2.bottom - 1; }));
-    if (!mh.length || mh.some((v) => !v)) fails.push(tag + ' ovqat kartasi: kkal nom ostida emas');
+    const mh = await p.evaluate(() => [...document.querySelectorAll('.sl-mh.ml-h')].map((x) => { const m = x.querySelector('.m').getBoundingClientRect(), k2 = x.querySelector('.ml-k').getBoundingClientRect(), a = x.querySelector('.ml-add').getBoundingClientRect(), c = x.getBoundingClientRect(); return m.right <= k2.left + 1 && k2.right <= a.left + 1 && a.right <= c.right + 1; }));          // v44: nom | katta kkal | «+» — bir qatorda, ustma-ust tushmaydi
+    if (!mh.length || mh.some((v) => !v)) fails.push(tag + ' ovqat kartasi sarlavhasi: nom / kkal / «+» ustma-ust');
     /* pastki menyu: oxirgi element (izoh) menyudan yuqoriga chiqariladi */
     const bottom = await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; const last = [...m.children].pop(), nav = document.querySelector('.rz-nav'); return { last: last.getBoundingClientRect().bottom, nav: nav.getBoundingClientRect().top }; });
     if (bottom.last > bottom.nav - 4) fails.push(tag + ' Bugun: oxirgi element pastki menyu ostida qoldi (' + Math.round(bottom.last) + ' > ' + Math.round(bottom.nav) + ')');

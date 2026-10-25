@@ -15,6 +15,7 @@
       lbBest_b: 'Nonushtaga eng mos', lbBest_l: 'Tushlikka eng mos', lbBest_d: 'Kechki ovqatga eng mos', lbBest_s: 'Tamaddiga eng mos', lbMore: 'Yana variantlar', lbHave: 'Uyda borlardan', lbNeed: 'Yana 1 mahsulot kerak', lbNeedX: 'kerak: {x}', lbFish: 'Baliq kuni — uyda', lbFit: "Bugungi limitga sig'adi", lbOver: 'Bugungi limitdan oshadi', lbPop: 'Mashhur taomlar', lbHalf: 'yarim porsiya — {k} kkal',
       tgOqsil: 'Oqsilga boy', tgYengil: 'yengil', fMin: '{n} daq', fK: '{k} kkal', fP: 'oqsil {p} g', nyNote: "Kkal — taxminiy, bazadagi mahsulotlardan hisoblangan.", nyNoHave: "Shu mahsulotlardan hozircha tayyorlanadigani yo'q — yana bittasini belgilang.", nyNoAll: "Mos retsept topilmadi — boshqa filtrni tanlang.",
       dtMin: 'daqiqa', dtK: 'kkal', dtP: 'oqsil', dtF: "yog'", dtPort: 'Porsiya', dtIng: "Kerak bo'ladi", dtSteps: 'Tayyorlash', dtAte: 'Yedim · {k} kkal', dtSave: 'Odatdagiga saqlash', dtBack: 'Orqaga', dtDona: 'dona', addA: "Qo'shish: {x}", addHalf: "Yarim porsiya qo'shish: {x}",
+      lbGuest: 'Mehmonga va bayramga', lbGuestH: "{n} ta retsept — kishi soni va xarid ro'yxati bilan",
       hvT: 'Uyda nima bor?', hvH: 'Belgilang — faqat shulardan tayyorlanadiganlar chiqadi.', hvGo: "Ko'rsatish · {n}", hvGo0: "Belgilang", hvClear: 'Tozalash',
       ppAteDone: 'Yozildi: {x}', ppSaved: "«{x}» Odatdagi ovqatlarimga saqlandi",
       yzT: 'Nima yesam ekan?', yzDoorS: "Uyda tez va sog'lom, kafe yoki buyurtma", yzC_kabob: 'Kabob', yzC_suyuq: 'Suyuq ovqat', yzC_tandir: 'Tandir', yzC_tez: 'Tez tayyor', yzC_baliq: 'Baliq',
@@ -39,6 +40,7 @@
       lbBest_b: 'Лучше всего на завтрак', lbBest_l: 'Лучше всего на обед', lbBest_d: 'Лучше всего на ужин', lbBest_s: 'Лучше всего на перекус', lbMore: 'Ещё варианты', lbHave: 'Из того, что есть дома', lbNeed: 'Нужен ещё 1 продукт', lbNeedX: 'нужно: {x}', lbFish: 'Рыбный день — дома', lbFit: 'Помещается в лимит', lbOver: 'Больше дневного лимита', lbPop: 'Популярные блюда', lbHalf: 'полпорции — {k} ккал',
       tgOqsil: 'Много белка', tgYengil: 'лёгкое', fMin: '{n} мин', fK: '{k} ккал', fP: 'белок {p} г', nyNote: 'Ккал — примерно, рассчитано по продуктам из базы.', nyNoHave: 'Из этих продуктов пока ничего не приготовить — отметьте ещё один.', nyNoAll: 'Подходящих рецептов нет — выберите другой фильтр.',
       dtMin: 'минут', dtK: 'ккал', dtP: 'белок', dtF: 'жиры', dtPort: 'Порция', dtIng: 'Понадобится', dtSteps: 'Приготовление', dtAte: 'Съел · {k} ккал', dtSave: 'Сохранить в «Обычные»', dtBack: 'Назад', dtDona: 'шт.', addA: 'Добавить: {x}', addHalf: 'Добавить полпорции: {x}',
+      lbGuest: 'Для гостей и праздника', lbGuestH: '{n} рецептов — на число гостей, со списком покупок',
       hvT: 'Что есть дома?', hvH: 'Отметьте — покажем только то, что из этого можно приготовить.', hvGo: 'Показать · {n}', hvGo0: 'Отметьте продукты', hvClear: 'Очистить',
       ppAteDone: 'Записано: {x}', ppSaved: '«{x}» сохранено в «Обычные приёмы пищи»',
       yzT: 'Что бы мне съесть?', yzDoorS: 'Дома быстро и полезно, кафе или заказ', yzC_kabob: 'Кебаб', yzC_suyuq: 'Суп', yzC_tandir: 'Тандыр', yzC_tez: 'Быстро', yzC_baliq: 'Рыба',
@@ -171,7 +173,14 @@
     else if (have) h += '<div class="rz-empty"><b>' + esc(T('nyNoHave')) + '</b></div>';
     if (rest.length) h += lb(T('lbMore')) + rest.map(function (x) { return recCard(x, false); }).join('');
     if (have && sel.more.length) h += lb(T('lbNeed')) + sel.more.map(function (x) { return recCard(x, false); }).join('');
-    return h + '<p class="ny-note">' + esc(T('nyNote')) + '</p>';
+    return h + '<p class="ny-note">' + esc(T('nyNote')) + '</p>' + guestHtml();
+  }
+  /* «Mehmonga va bayramga»: eski toifa bo'yicha uyda retseptlari (kishi soni, xarid ro'yxati) — ro'yxat ENG OXIRIDA, yig'ilgan; asosiy tavsiyalarga aralashmaydi */
+  function guestHtml() {
+    if (!uy) return ''; var rs = uy.retseptlar.filter(function (r) { return CH.ruxsat(ch, r.taom, yemay()); }); if (!rs.length) return '';
+    var h = '<button type="button" class="ny-acc" data-act="nyguest" aria-expanded="' + !!pv.guest + '"><span class="tx"><b>' + esc(T('lbGuest')) + '</b><span>' + esc(T('lbGuestH', { n: rs.length })) + '</span></span>' + A.ico('chev', 'r') + '</button>';
+    if (!pv.guest) return h;
+    return h + '<div class="ny-guest">' + rs.map(function (r) { var p = YC.portion(A.by(), { birlik: {} }, r.taom); return card({ main: 'data-act="yerec" data-id="' + esc(r.id) + '"', tile: A.tileHtml(r.taom, null, lbl(r.nom), 56), name: lbl(r.nom), facts: esc(T('fwTime', { t: lbl(r.vaqt) })) + (p ? ' · ' + esc(T('fwK1', { k: p.k })) : '') }); }).join('') + '</div>';
   }
   /* Kafeda / Buyurtma: shu karkas va karta uslubi; limitdan oshadiganlar pastda («yarim porsiya — N kkal» bilan) */
   function kafeCard(p, over) {
@@ -364,6 +373,7 @@
       case 'nyhvgo': pv.haveOn = ppHave().length > 0; pv.dt = null; draw({ reset: true }); return true;
       case 'nyopen': dtOpen(el.getAttribute('data-id')); return true;
       case 'nyback': dtClose(); return true;
+      case 'nyguest': pv.guest = !pv.guest; draw(); if (pv.guest) { var gl = A.$('#nyList'), ga = A.$('#nyList .ny-acc'); if (gl && ga) gl.scrollTop = Math.max(0, ga.offsetTop - 8); } return true;
       case 'nymul': if (pv.dt) { pv.mult[pv.dt] = +el.getAttribute('data-m') || 1; draw(); } return true;
       case 'nyate': ppAte(el.getAttribute('data-id')); return true;
       case 'nysave': ppSave(el.getAttribute('data-id')); return true;

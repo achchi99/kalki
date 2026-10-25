@@ -65,7 +65,7 @@ try {
   /* 7. Vitamin va BAD: Tarix TEPASIDA ixcham karta + Bugun'da eng pastda bitta qator havola */
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500);
   const histTop = await p.evaluate(() => { const m = document.getElementById('rzMain'), b = m.querySelector('[data-act=supp]'), hk = m.querySelector('#hkCard'), h2 = m.querySelector('h2.rz-h'); if (!b || !h2) return -1; if (hk && hk.nextElementSibling !== b.closest('section')) return -2; return b.getBoundingClientRect().top - (hk || h2).getBoundingClientRect().bottom; });
-  assert.ok(histTop >= 0 && histTop < 80, 'Tarix: tepada «Haftangiz ▶», darhol keyin Vitamin kartasi: ' + histTop); assert.match(await txt(p, '.rz-main [data-act=supp]'), /💊/, 'pill emoji'); await p.click('.rz-main [data-act=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
+  assert.ok(histTop >= 0 && histTop < 80, 'Tarix: tepada «Haftangiz ▶», darhol keyin Vitamin kartasi: ' + histTop); assert.ok(!/💊/.test(await txt(p, '.rz-main [data-act=supp]')) && await p.locator('.rz-main [data-act=supp] svg').count() >= 1, 'v44: ikonka bitta (emoji takrorlanmaydi)'); await p.click('.rz-main [data-act=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
   await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); assert.equal(await p.locator('.sl-suplink').count(), 0, 'v32: Bugun\'da havola yo\'q (Tarix va Profil → Imkoniyatlar)'); await p.context().close();
   log('Vitamin va BAD — Tarix TEPASIDA ixcham karta (💊 + qisqa qator), oynani ochadi; Bugun\'da yo\'q');
   /* 8. bo'sh holat: aylana ostida yo'riqnoma (hazil emas) */

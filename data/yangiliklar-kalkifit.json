@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 44,
+   "d": "2026-10-25",
+   "bn": {
+    "uz": "Bugungi ovqatlar — ixcham va aniq.",
+    "ru": "Еда за сегодня — компактно и понятно."
+   },
+   "items": [
+    {
+     "uz": "Har ovqat vaqtining o'z ikonkasi, kunning necha foizi va bir qatorli taomlar; chapga sursangiz — o'chadi.",
+     "ru": "У каждого приёма пищи своя иконка и доля дня, блюда в одну строку; смахните влево — удалится.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Oynalar pastga tortib osongina yopiladi; ichimliklar ml va litrda ko'rsatiladi.",
+     "ru": "Окна легко закрываются свайпом вниз; напитки показываются в мл и литрах."
+    }
+   ]
+  },
+  {
    "v": 43,
    "d": "2026-10-25",
    "bn": {

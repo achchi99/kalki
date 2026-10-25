@@ -60,7 +60,7 @@ try {
   log('Hazil: Bugun\'da doimiy qator yo\'q (faqat ovqat qo\'shilgach 4 s pufak — test-kalkifit-qoshish), o\'chirilganda ham yo\'q');
   /* 5. rasm/AI yozuvi — bazadagi taom ikonkasi */
   p = await open('/kalkifit', { state: seed({ entries: [{ fid: null, name: 'Shovla (yarim kichik tarelka)', g: 200, kcal: 290, est: true, meal: 'd' }] }) }); await p.waitForTimeout(1500);
-  const src = await p.locator('.sl-meal[data-m=d] .sl-mh .sl-tile img').getAttribute('src').catch(() => null); assert.match(src || '', /shovla/, 'kechki ovqat kartasida shovla ikonkasi (harf emas)');
+  assert.equal(await p.locator('.sl-meal[data-m=d] .sl-mh .ml-ic.ml-d svg').count(), 1, 'v44: kechki ovqat kartasida DOIMIY oy ikonkasi (taom rasmi emas)'); const src = await p.locator('.sl-meal[data-m=d] .ml-r .sl-tile img').first().getAttribute('src').catch(() => null); assert.match(src || '', /shovla/, 'qatorda shovla rasmi (harf emas)');
   assert.equal((await p.evaluate(() => window.__kalkifit.state.days[Object.keys(window.__kalkifit.state.days).pop()].food[0].ifid)), 'shovla', 'mos bazaviy taom id\'si saqlandi');
   assert.match(await txt(p, '.sl-meal[data-m=d] .sl-ents'), /≈ 290/, 'kkal o\'zgarmadi (AI qiymati)'); await p.context().close();
   log('Rasm/AI orqali qo\'shilgan «Shovla (yarim kichik tarelka)» — bazadagi shovla ikonkasi, id saqlanadi (ifid), kkal o\'zgarmaydi');
