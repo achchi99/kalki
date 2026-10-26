@@ -1,23 +1,33 @@
 /* kalki.uz — KalkiFit: «Vazn trendi» va «Nega sekin ozyapman?» (shaxsiy plato tahlili). AI YO'Q — foydalanuvchining o'z ma'lumotidan deterministik hisob, DOM yo'q (UMD).
- * Trend: vaqtga moslangan eksponensial o'rtacha (alfa 0,1 / kun; oraliq dt kun bo'lsa a = 1 − 0,9^dt) — kunlik ±1 kg sakrash chiziqni buzmaydi.
+ * Trend (v47): Holt ikki parametrli silliqlash — daraja + tezlik (kg/kun), oraliq dt kunga moslangan (a = 1 − (1 − 0,2)^dt, b = 1 − (1 − 0,08)^dt); doimiy ozishda EMA kabi orqada qolmaydi.
+ *   Yolg'iz sakrash (|farq| > 2σ, keyingi o'lchov tasdiqlamasa) ±0,3σ gacha cheklanadi; tasdiqlansa (haqiqiy o'zgarish) ±3σ. σ — so'nggi 12 bashorat xatosining robust bahosi (≥ 0,3 kg). Tanlov sababi va raqamlar: docs/plato.md.
  * Tahlil (so'nggi 28 kun, bugun hisobga kirmaydi): kutilgan = Σ(sarf − yozilgan kkal) / 7700, sarf = TDEE (limit + rejadagi defitsit) + ortiqcha qadam krediti (ilova hisobi bilan bir xil);
  * haqiqiy = trend o'zgarishi. Sabablar kkal/kun ta'siri bo'yicha saralanadi (ko'pi bilan 3). Limit hech qachon pastki chegaradan (S.FLOOR) past tavsiya qilinmaydi.
  * Raqamlar va manbalar: docs/plato.md.   window.KalkiPlato / require() */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiPlato = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var ALPHA = 0.1, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
+  var ALPHA = 0.2, BETA = 0.08, KSIG = 2, LOCLIP = 0.3, SMIN = 0.3, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
   var LOSE = { lose: 1, slow: 1 };
   function r1(x) { return Math.round(x * 10) / 10; }
   function num(x) { var n = Number(x); return isFinite(n) ? n : 0; }
 
   /* ---------- trend ---------- */
-  /* weights: [{d, kg}] (sana bo'yicha) → [{d, kg, t}] ; t — shu o'lchovgacha bo'lgan trend */
+  /* weights: [{d, kg}] (sana bo'yicha) → [{d, kg, t, s}] ; t — shu o'lchovdagi trend darajasi, s — tezlik (kg/kun) */
   function trend(weights, D) {
-    var out = [], t = null, prev = null;
-    (weights || []).forEach(function (w) {
-      if (!(w && w.kg > 0)) return;
-      if (t == null) t = w.kg; else { var dt = Math.max(1, D.daysBetween(prev, w.d)), a = 1 - Math.pow(1 - ALPHA, dt); t = t + a * (w.kg - t); }
-      prev = w.d; out.push({ d: w.d, kg: w.kg, t: Math.round(t * 100) / 100 });
+    var W = (weights || []).filter(function (w) { return w && w.kg > 0; }), out = [], L = null, T = 0, prev = null, res = [];
+    W.forEach(function (w, i) {
+      if (L == null) L = w.kg;
+      else {
+        var dt = Math.max(1, D.daysBetween(prev, w.d)), A = 1 - Math.pow(1 - ALPHA, dt), B = 1 - Math.pow(1 - BETA, dt), pred = L + T * dt, e = w.kg - pred;
+        var rs = res.slice(-12).map(Math.abs).sort(function (x, y) { return x - y; }), sg = Math.max(SMIN, 1.4826 * (rs.length ? rs[Math.floor(rs.length / 2)] : 0));
+        res.push(Math.max(-3 * sg, Math.min(3 * sg, e)));
+        if (Math.abs(e) > KSIG * sg) {                 // katta farq: keyingi o'lchov ham shu tomonda bo'lsa — haqiqiy o'zgarish, bo'lmasa — yolg'iz sakrash (sho'r ovqat, suv)
+          var nx = W[i + 1], e2 = nx ? nx.kg - (pred + T * D.daysBetween(w.d, nx.d)) : 0, ok = !!nx && (e2 > 0) === (e > 0) && Math.abs(e2) > KSIG * sg, c = (ok ? 3 : LOCLIP) * sg;
+          if (Math.abs(e) > c) e = e > 0 ? c : -c;
+        }
+        var L2 = pred + A * e; T = T + B * ((L2 - L) / dt - T); L = L2;
+      }
+      prev = w.d; out.push({ d: w.d, kg: w.kg, t: Math.round(L * 100) / 100, s: Math.round(T * 1000) / 1000 });
     });
     return out;
   }
@@ -187,5 +197,5 @@
     }
   };
   var SRC = ['plS1', 'plS2', 'plS3', 'plS4', 'plS5', 'plS6'];
-  return { ALPHA: ALPHA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, isLose: isLose, stalled: stalled, weekKey: weekKey, refWeight: refWeight, TX: TX, SRC: SRC };
+  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, isLose: isLose, stalled: stalled, weekKey: weekKey, refWeight: refWeight, TX: TX, SRC: SRC };
 });

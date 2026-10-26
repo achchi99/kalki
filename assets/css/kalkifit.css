@@ -1212,3 +1212,9 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .pl-src{margin:4px 0 8px;padding:0 0 0 22px;font-size:var(--t-s);color:var(--mut);line-height:1.45}.rz .pl-src li{margin:0 0 6px}
 .hk-pl{margin:14px 0 0;font-size:16px;line-height:1.4;opacity:.92}
 .rz.sl .rz-sheet[data-kind=plato],.rz .rz-sheet[data-kind=plato]{background:var(--bg)}.rz-sheet[data-kind=plato] .pl-note.ye,.rz-sheet[data-kind=plato] .pl-note.gr{background-color:color-mix(in srgb,var(--gold) 20%,var(--bg))}.rz-sheet[data-kind=plato] .pl-note.gr{background-color:color-mix(in srgb,var(--ok) 14%,var(--bg))}
+/* v47: Tarix «+» — qotib turgan dumaloq tugma kartalar («›», ovqat vaqti «+») ustiga tushardi. Endi Bugun'dagi kabi aylantiriladigan maydondan tashqarida, ro'yxat uning ustida tugaydi */
+.rz.sl .rz-fab .fl{display:none}
+.rz.sl[data-view=history] .rz-main{margin-bottom:calc(var(--navh,92px) + var(--addh));padding-bottom:16px}
+.rz.sl[data-view=history] .rz-fab{left:20px;right:20px;top:auto;bottom:calc(100% + 8px);width:auto;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:8px;font:600 var(--t-m) 'Manrope',sans-serif}
+.rz.sl[data-view=history] .rz-fab .fl{display:inline}.rz.sl[data-view=history] .rz-fab .rz-i{width:22px;height:22px}
+.rz.sl[data-view=history] .rz-nav::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:var(--addh);background:var(--bg);pointer-events:none}

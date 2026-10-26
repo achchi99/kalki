@@ -6,21 +6,35 @@ const ROOT = path.resolve(__dirname, '..'); const S = require(path.join(ROOT, 'a
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const T = '2026-10-26', st0 = (k) => PD.build(k, S, T), an = (st) => P.analyze({ st, S, today: T });
 
-/* 1. trend: shovqinli qator — silliq, kunlik ±1 kg sakrash chiziqni 0,15 kg dan ko'p siljitmaydi, vaqtga moslangan */
+/* 1. trend (Holt, v47): doimiy ozishda nuqtalar o'rtasidan (o'rtacha og'ish ≤ 0,2 kg), +1,5 kg sakrash ≤ 0,3 kg, plato, 2–3 yozuv; eski EMA bilan solishtirish */
 {
-  let s = 3; const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; }, W = [];
-  for (let i = 0; i < 60; i++) W.push({ d: D.addDays('2026-08-01', i), kg: 90 - i * 0.05 + (rnd() - 0.5) * 2 });
-  const ser = P.trend(W, D), raw = W.map((w) => w.kg), tr = ser.map((x) => x.t);
-  const jit = (a) => a.slice(1).reduce((m, x, i) => Math.max(m, Math.abs(x - a[i])), 0);
-  assert.ok(jit(tr) < 0.25 && jit(raw) > 1, 'kunlik o\'zgarish: trend ' + jit(tr).toFixed(2) + ' / xom ' + jit(raw).toFixed(2));
-  assert.ok(Math.abs(tr[59] - (90 - 59 * 0.05)) < 0.9, 'trend haqiqiy darajaga yaqin: ' + tr[59]);
-  const W2 = W.map((w) => ({ ...w })); W2[40].kg += 3; const t2 = P.trend(W2, D);
-  assert.ok(Math.abs(t2[40].t - tr[40]) <= 0.31 && Math.abs(t2[45].t - tr[45]) < 0.2, '+3 kg bitta sakrash: trend ≤ 0,3 kg siljiydi, 5 kunda qaytadi');
-  const a = P.trend([{ d: '2026-01-01', kg: 80 }, { d: '2026-01-02', kg: 79 }], D), b = P.trend([{ d: '2026-01-01', kg: 80 }, { d: '2026-01-11', kg: 79 }], D);
-  assert.equal(a[1].t, 79.9); assert.ok(Math.abs(b[1].t - (80 - (1 - Math.pow(0.9, 10)))) < 0.01, '10 kunlik oraliq: a = 1 − 0,9^10');
-  const sm = P.summary(W, D.addDays('2026-08-01', 59), 28, D); assert.ok(sm.perWeek < 0 && sm.change < 0 && sm.n >= 28, 'davr xulosasi: ' + JSON.stringify({ c: sm.change, w: sm.perWeek }));
-  assert.equal(P.summary(W, D.addDays('2026-08-01', 59), 0, D).n, 60, '«Hammasi» — barcha o\'lchovlar');
-  ok('Trend: alfa 0,1 (oraliqqa moslangan), shovqinda silliq, +3 kg sakrashga chidamli; davr bo\'yicha o\'zgarish va haftalik tezlik');
+  const rngf = (s) => () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+  const ser = (kind, step, seed, amp = 1.0) => { const r = rngf(seed), W = [], tru = []; for (let i = 0; i < 70; i += step) { const t = kind === 'plato' ? 90 - Math.min(i, 35) * 0.08 : 90 - i * 0.08; tru.push(t); W.push({ d: D.addDays('2026-07-01', i), kg: Math.round((t + (r() - 0.5) * amp) * 10) / 10 }); } return { W, tru }; };
+  const ema = (W) => { let t = null, p = null; return W.map((w) => { if (t == null) t = w.kg; else t += (1 - 0.9 ** D.daysBetween(p, w.d)) * (w.kg - t); p = w.d; return { t }; }); };
+  const M = {}, R = [];
+  for (const step of [1, 2, 3]) {
+    let bias = 0, be = 0, nb = 0, lift = 0, lmax = 0, pe = 0, ps = 0;
+    for (let k = 1; k <= 30; k++) {
+      const { W } = ser('loss', step, k * 7), tr = P.trend(W, D), te = ema(W); tr.forEach((x, q) => { if (q * step >= 21) { bias += x.t - x.kg; be += te[q].t - x.kg; nb++; } });
+      const j = Math.floor(50 / step), W2 = W.map((w) => ({ ...w })); W2[j].kg += 1.5; const t2 = P.trend(W2, D), l = Math.max(...[0, 1, 2, 3].map((q) => t2[j + q].t - tr[j + q].t)); lift += l / 30; lmax = Math.max(lmax, l);
+      const pl = ser('plato', step, k * 11), tp = P.trend(pl.W, D), z = tp[tp.length - 1]; pe += Math.abs(z.t - pl.tru[pl.tru.length - 1]) / 30; ps += Math.abs(z.s * 7) / 30;
+    }
+    M[step] = { bias: bias / nb, ema: be / nb, lift, lmax, pe, ps };
+    R.push('har ' + step + ' kunda: og\'ish ' + (bias / nb).toFixed(2) + ' (EMA ' + (be / nb).toFixed(2) + '), sakrash ' + lift.toFixed(2) + ' (eng yomoni ' + lmax.toFixed(2) + '), plato xato ' + pe.toFixed(2) + ' kg, tezlik ' + ps.toFixed(2) + ' kg/hafta');
+  }
+  for (const st of [1, 2, 3]) { assert.ok(Math.abs(M[st].bias) <= 0.2, 'doimiy ozish: o\'rtacha og\'ish ' + M[st].bias); assert.ok(M[st].ema > 0.5, 'eski EMA orqada qolardi: ' + M[st].ema); assert.ok(M[st].lift <= 0.3, '+1,5 kg sakrash (o\'rtacha): ' + M[st].lift); assert.ok(M[st].pe <= 0.25 && M[st].ps <= 0.15, 'plato: daraja va tezlik ' + M[st].pe + ' / ' + M[st].ps); }
+  assert.ok(M[1].lmax <= 0.3, 'har kuni tortishda eng yomon sakrash ≤ 0,3: ' + M[1].lmax);
+  /* shovqinsiz: aniq chiziq, bitta sakrash */
+  const W0 = Array.from({ length: 30 }, (_, i) => ({ d: D.addDays('2026-07-01', i * 2), kg: Math.round((90 - i * 0.16) * 10) / 10 })), t0 = P.trend(W0, D);
+  assert.ok(Math.abs(t0[29].t - W0[29].kg) <= 0.1, 'shovqinsiz ozish: trend = tarozi (' + t0[29].t + ' / ' + W0[29].kg + ')'); assert.ok(Math.abs(t0[29].s * 7 + 0.56) < 0.05, 'tezlik −0,56 kg/hafta: ' + t0[29].s * 7);
+  const W1 = W0.map((w) => ({ ...w })); W1[20].kg += 1.5; const t1 = P.trend(W1, D); assert.ok(Math.max(...[20, 21, 22, 23].map((q) => t1[q].t - t0[q].t)) <= 0.3, 'shovqinsiz qatorda bitta +1,5 kg sakrash ≤ 0,3 kg');
+  const Wend = W0.map((w) => ({ ...w })); Wend[29].kg += 1.5; assert.ok(P.trend(Wend, D)[29].t - t0[29].t <= 0.3, 'oxirgi o\'lchov sakrash bo\'lsa ham ≤ 0,3 kg (tasdiq yo\'q)');
+  const Wjump = W0.map((w, i) => ({ ...w, kg: i >= 20 ? w.kg - 2 : w.kg })), tj = P.trend(Wjump, D); assert.ok(Math.abs(tj[29].t - Wjump[29].kg) < 0.5, 'tasdiqlangan haqiqiy o\'zgarish (−2 kg) qabul qilinadi: ' + tj[29].t + ' / ' + Wjump[29].kg);
+  /* 2–3 yozuv */
+  const f2 = P.trend([{ d: '2026-01-01', kg: 85 }, { d: '2026-01-08', kg: 84.4 }], D), f3 = P.trend([{ d: '2026-01-01', kg: 85 }, { d: '2026-01-08', kg: 84.4 }, { d: '2026-01-15', kg: 84.0 }], D);
+  assert.equal(P.trend([{ d: '2026-01-01', kg: 85 }], D)[0].t, 85); assert.ok(f2[1].t < 85 && f2[1].t >= 84.4 && f3[2].t >= 84.0 && f3[2].t < f3[1].t, '2–3 yozuv: ' + f2.map((x) => x.t) + ' | ' + f3.map((x) => x.t));
+  const sm = P.summary(ser('loss', 1, 5).W, D.addDays('2026-07-01', 69), 28, D); assert.ok(sm.perWeek < -0.4 && sm.perWeek > -0.75, 'haftalik tezlik yangi trenddan: ' + sm.perWeek);
+  ok('Trend (Holt, sakrash cheklovi): ' + R.join('; '));
 }
 /* 2. birinchi hafta «suv» oralig'i */
 {
@@ -35,7 +49,7 @@ const T = '2026-10-26', st0 = (k) => PD.build(k, S, T), an = (st) => P.analyze({
   const r = a.reasons[0], want = (r.a - r.b) * 178 * 0.415 / 100 / 1000 * S.currentWeight(st0('qadam')) * 0.5; assert.ok(Math.abs(r.kcal - want) < 15 && r.a >= 7800 && r.b <= 5500, 'qadam kkal: ' + r.kcal + ' ≈ ' + Math.round(want));
   assert.ok(a.tries.includes('walk'));
   a = R('kechki'); assert.equal(ks(a)[0], 'yozilmagan'); assert.equal(a.reasons[0].m, 'd'); assert.ok(a.reasons[0].n >= 7 && a.reasons[0].n <= 9, 'kechki: ' + a.reasons[0].n + ' kun');
-  assert.ok(Math.abs(a.reasons[0].kcal - Math.round(a.reasons[0].n * 600 * 1.12 / 28)) <= 6, 'yozilmagan kkal = kunlar × shaxsiy o\'rtacha / 28: ' + a.reasons[0].kcal); assert.ok(a.tries.includes('log_d'));
+  assert.ok(Math.abs(a.reasons[0].kcal - Math.round(a.reasons[0].n * 600 * 1.2 / 28)) <= 6, 'yozilmagan kkal = kunlar × shaxsiy o\'rtacha / 28: ' + a.reasons[0].kcal); assert.ok(a.tries.includes('log_d'));
   a = R('damolish'); assert.equal(ks(a)[0], 'damolish'); assert.ok(a.reasons[0].diff >= 300, 'dam olish farqi ' + a.reasons[0].diff); assert.equal(a.reasons[0].kcal, Math.round(a.reasons[0].diff * 2 / 7));
   a = R('oqsil'); assert.ok(ks(a).includes('oqsil')); const o = a.reasons.find((x) => x.k === 'oqsil'); assert.ok(o.g < o.need && o.need === Math.round(1.2 * P.refWeight(st0('oqsil').profile, S.currentWeight(st0('oqsil'))) / 5) * 5, 'oqsil ' + o.g + ' / ' + o.need);
   a = R('demo'); assert.deepEqual(ks(a), ['yozilmagan', 'qadam', 'oqsil'], 'demo tartibi (kkal bo\'yicha, oqsil oxirida): ' + ks(a)); assert.ok(a.reasons[0].kcal > a.reasons[1].kcal);

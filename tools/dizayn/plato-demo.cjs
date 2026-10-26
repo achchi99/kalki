@@ -9,7 +9,7 @@ function build(kind, S, today) {
   st.profile = { sex: 'm', age: 35, height: 178, weight: 88, act: 2, goal: kind === 'saqlash' ? 'keep' : kind === 'olish' ? 'gain' : 'lose' };
   st.prefs = { tipsDone: true, lpTip: 1, suvFrom: T, jokes: false, hwSeen: T, yemayK: 1 };
   const pl = S.plan(st.profile), N = kind === 'kam' ? 12 : 35, prot = kind === 'oqsil' || kind === 'demo' ? 0.55 : 1.7;
-  const eat = kind === 'tez' ? 0.5 : kind === 'olish' ? 1.6 : kind === 'saqlash' ? 1.35 : 1.12;          // ~1 900 kkal: limitga yaqin
+  const eat = kind === 'tez' ? 0.5 : kind === 'olish' ? 1.6 : kind === 'saqlash' ? 1.35 : 1.2;          // ~1 900 kkal: limitga yaqin
   let kg = 88, wsum = 0; const W = [];
   for (let i = N; i >= 1; i--) {
     const d = D.addDays(T, -i), x = S.ensureDay(st, d), we = S.weekdayIdx(d) >= 5;
