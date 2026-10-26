@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 48,
+   "d": "2026-10-28",
+   "bn": {
+    "uz": "«Mening tartibim» va oqsil maqsadi",
+    "ru": "«Мой режим» и цель по белку"
+   },
+   "items": [
+    {
+     "uz": "Qanday ovqatlanishingizni tanlang — kunlik limit ovqatlarga bo'linadi, tejalgani keyingisiga o'tadi.",
+     "ru": "Выберите, как вы питаетесь, — дневной лимит делится по приёмам пищи, сэкономленное переходит дальше.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Bugun'da oqsil kartasi: qancha qoldi va nimadan olsa bo'ladi.",
+     "ru": "На «Сегодня» — карточка белка: сколько осталось и из чего добрать."
+    }
+   ]
+  },
+  {
    "v": 47,
    "d": "2026-10-26",
    "bn": {

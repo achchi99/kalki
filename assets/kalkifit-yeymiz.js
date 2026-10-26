@@ -139,7 +139,7 @@
       var k = Math.round(rem.k), p = Math.round(rem.p);
       if (k <= 0) { b = T('nyStOver'); s = T('nyStOverS'); }
       else if (k < PP.LOW) { b = T('nyStLow', { k: k }); s = p >= 15 ? T('nyStLowP', { p: p }) : T('nyStLowN'); }
-      else { b = p > 0 ? T('nyStOk', { k: k, p: p }) : T('nyStOkK', { k: k }); s = p <= 0 ? T('nyStOkPd') : (p * 4 >= k * 0.3 ? T('nyStOkP') : T('nyStOkS')); }
+      else { b = rem.lab ? (p > 0 ? T('nyStMeal', { m: rem.lab, k: A.fmt(k), p: p }) : T('nyStMealK', { m: rem.lab, k: A.fmt(k) })) : (p > 0 ? T('nyStOk', { k: k, p: p }) : T('nyStOkK', { k: k })); s = p <= 0 ? T('nyStOkPd') : (p * 4 >= k * 0.3 ? T('nyStOkP') : T('nyStOkS')); }          // v48: «Kechki ovqatga 1 090 kkal va 45 g oqsil qoldi"
     }
     return '<div class="ny-st" id="nySt" role="status"><b>' + esc(b) + '</b>' + (s ? '<span>' + esc(s) + '</span>' : '') + '</div>';
   }

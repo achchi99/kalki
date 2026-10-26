@@ -12,7 +12,7 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
 await new Promise((o) => srv.listen(0, o)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch()); let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const nb = (x) => x.replace(/ /g, ' ');
 function seed(o = {}) {
-  const st = S.emptyState(); st.setup = true; st.created = Date.now() - 9 * 86400000; st.prefs = Object.assign({ tipsDone: true, lpTip: 1, suvFrom: TODAY, jokes: false }, o.prefs || {}); st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'keep' }; st.trackStart = D.addDays(TODAY, -8); S.addWeight(st, TODAY, 80);
+  const st = S.emptyState(); st.setup = true; st.created = Date.now() - 9 * 86400000; st.prefs = Object.assign({ tipsDone: true, lpTip: 1, suvFrom: TODAY, jokes: false }, o.prefs || {}); st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'keep', tartib: 'erkin' };          // v48: v44 ko'rinishi (budjetsiz) tekshiriladi st.trackStart = D.addDays(TODAY, -8); S.addWeight(st, TODAY, 80);
   const A = (e) => S.addFood(st, TODAY, Object.assign({ ts: 1, est: false, p: 5, f: 5, c: 20 }, e));
   if (o.food !== false) {
     A({ meal: 'b', fid: 'choy', unit: 'piyola', qty: 1, g: 200, kcal: 2 }); A({ meal: 'b', fid: 'tuxum', unit: 'dona', qty: 2, g: 100, kcal: 155 });

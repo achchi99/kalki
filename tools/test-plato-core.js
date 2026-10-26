@@ -51,7 +51,7 @@ const T = '2026-10-26', st0 = (k) => PD.build(k, S, T), an = (st) => P.analyze({
   a = R('kechki'); assert.equal(ks(a)[0], 'yozilmagan'); assert.equal(a.reasons[0].m, 'd'); assert.ok(a.reasons[0].n >= 7 && a.reasons[0].n <= 9, 'kechki: ' + a.reasons[0].n + ' kun');
   assert.ok(Math.abs(a.reasons[0].kcal - Math.round(a.reasons[0].n * 600 * 1.2 / 28)) <= 6, 'yozilmagan kkal = kunlar × shaxsiy o\'rtacha / 28: ' + a.reasons[0].kcal); assert.ok(a.tries.includes('log_d'));
   a = R('damolish'); assert.equal(ks(a)[0], 'damolish'); assert.ok(a.reasons[0].diff >= 300, 'dam olish farqi ' + a.reasons[0].diff); assert.equal(a.reasons[0].kcal, Math.round(a.reasons[0].diff * 2 / 7));
-  a = R('oqsil'); assert.ok(ks(a).includes('oqsil')); const o = a.reasons.find((x) => x.k === 'oqsil'); assert.ok(o.g < o.need && o.need === Math.round(1.2 * P.refWeight(st0('oqsil').profile, S.currentWeight(st0('oqsil'))) / 5) * 5, 'oqsil ' + o.g + ' / ' + o.need);
+  a = R('oqsil'); assert.ok(ks(a).includes('oqsil')); const o = a.reasons.find((x) => x.k === 'oqsil'); assert.ok(o.g < o.need * P.PROT_SH && o.need === S.protein(st0('oqsil').profile, S.currentWeight(st0('oqsil'))).g, 'oqsil (v48: S.protein bilan bir xil) ' + o.g + ' / ' + o.need);
   a = R('demo'); assert.deepEqual(ks(a), ['yozilmagan', 'qadam', 'oqsil'], 'demo tartibi (kkal bo\'yicha, oqsil oxirida): ' + ks(a)); assert.ok(a.reasons[0].kcal > a.reasons[1].kcal);
   assert.ok(a.expected < a.actual && a.expected < 0, 'kutilgan > haqiqiy tushish');
   ok('Sabablar: qadam (Δqadam × bo\'y×0,415 × vazn × 0,5), kechki ovqat yozilmagan (kun × o\'rtacha / 28), dam olish (+≥300), oqsil (< 1,2 g/kg); tartib — ta\'sir bo\'yicha, ≤ 3');

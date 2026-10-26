@@ -16,7 +16,8 @@ export const HODISA = {
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
-  plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram)$/          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
+  plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram)$/,
+  tartib_tanlandi: /^(std|kech|nobf|erkin)$/, tartib_kun: /^(std|kech|nobf|erkin)$/, oqsil_kun: /^(ha|yoq)$/          // v48: tartib taqsimoti, kecha oqsil maqsadiga yetildimi (anonim)          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
 };
 export const SERVER_HODISA = ['push_yuborildi'];          // faqat server (tools/push-yubor.js D1 REST orqali) yozadi — mijozdan qabul qilinmaydi
 const PLAT = /^(veb|android|ios-pwa)$/, UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

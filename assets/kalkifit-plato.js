@@ -6,7 +6,7 @@
  * Raqamlar va manbalar: docs/plato.md.   window.KalkiPlato / require() */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiPlato = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var ALPHA = 0.2, BETA = 0.08, KSIG = 2, LOCLIP = 0.3, SMIN = 0.3, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
+  var PROT_SH = 0.85, ALPHA = 0.2, BETA = 0.08, KSIG = 2, LOCLIP = 0.3, SMIN = 0.3, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
   var LOSE = { lose: 1, slow: 1 };
   function r1(x) { return Math.round(x * 10) / 10; }
   function num(x) { var n = Number(x); return isFinite(n) ? n : 0; }
@@ -54,11 +54,6 @@
   function fewWeighs(weights, today, D) { var from = D.addDays(today, -13); return (weights || []).filter(function (w) { return w.d >= from && w.d <= today; }).length < 2; }
 
   /* ---------- tahlil ---------- */
-  function refWeight(p, cur) {                     // oqsil uchun: maqsad vazni → ortiqcha vaznda tavsiya qilinadigan (BMI 25) → joriy
-    var h = num(p.height) / 100, bmi25 = h > 0 ? 25 * h * h : cur;
-    if (num(p.goalWeight) > 0) return Math.min(cur, num(p.goalWeight));
-    return h > 0 && cur / (h * h) > 25 ? bmi25 : cur;
-  }
   function isLose(st) { return !!(st && st.setup && st.profile && LOSE[st.profile.goal]); }
   function avg(a) { return a.length ? a.reduce(function (s, x) { return s + x; }, 0) / a.length : 0; }
   /* o: { st, S (kalkifit-core), today } → natija (pastdagi izoh) */
@@ -103,7 +98,7 @@
       if (ds >= 1000) R.push({ k: 'qadam', kcal: Math.round(ds * h * STRIDE / 100 / 1000 * cur * WALK_K), a: Math.round(a1 / 100) * 100, b: Math.round(a2 / 100) * 100 });
     }
     /* 2) yozilmagan ovqatlar: odatda yeyiladigan ovqat vaqti (≥ 50% kunda) yozilmagan kunlar + kun jami limitning 60% idan past kunlar */
-    var mAvg = {}, best = null; ['b', 'l', 'd'].forEach(function (m) {
+    var mAvg = {}, best = null; ['b', 'l', 'd'].filter(function (m) { return !(m === 'b' && S.tartibOf && S.tartibOf(p) === 'nobf'); }).forEach(function (m) {          // «Nonushta qilmayman» — nonushta sababi chiqmaydi
       var has = logged.filter(function (r) { return r.m[m] > 0; }), mis = logged.filter(function (r) { return !(r.m[m] > 0); });
       mAvg[m] = has.length ? avg(has.map(function (r) { return r.m[m]; })) : 0;
       if (has.length >= logged.length * 0.5 && mis.length && (!best || mis.length * mAvg[m] > best.n * mAvg[best.m])) best = { m: m, n: mis.length, list: mis };
@@ -115,9 +110,9 @@
     /* 3) dam olish kunlari (shanba–yakshanba) ish kunlaridan ≥ 300 kkal ko'p */
     var we = full.filter(function (r) { return r.wd >= 5; }), wk = full.filter(function (r) { return r.wd < 5; });
     if (we.length >= 2 && wk.length >= 4) { var dw = Math.round(avg(we.map(function (r) { return r.k; })) - avg(wk.map(function (r) { return r.k; }))); if (dw >= WKEND) R.push({ k: 'damolish', kcal: Math.round(dw * 2 / 7), diff: dw }); }
-    /* 4) oqsil kam (< 1,2 g/kg ga nisbatan) — kkal emas, «58 / 100 g» */
-    var need = Math.round(PROT * refWeight(p, cur) / 5) * 5, pa = Math.round(avg(full.map(function (r) { return r.p; })));
-    if (full.length >= 5 && pa < PROT * refWeight(p, cur)) R.push({ k: 'oqsil', g: pa, need: need });
+    /* 4) oqsil kam — maqsad Bugun kartasidagi bilan BIR XIL (S.protein: 1,6 / 1,2 g/kg, BMI > 27 da tavsiya vazni); o'rtacha maqsadning 85% idan past bo'lsa. kkal emas, «58 / 110 g» */
+    var need = S.protein(p, cur).g, pa = Math.round(avg(full.map(function (r) { return r.p; })));
+    if (full.length >= 5 && pa < need * PROT_SH) R.push({ k: 'oqsil', g: pa, need: need });
     /* 6) rejadagi defitsit juda kichik (< 250 kkal) — maqsadni ko'rib chiqish; limit pastki chegaradan tushirilmaydi */
     var def = pl.tdee - pl.target; if (def < SMALL_DEF) R.push({ k: 'defitsit', def: Math.max(0, def), floor: pl.floorApplied, minK: pl.floorMin });
     var slow = perWeek > -0.1 || (expKg < 0 && actKg > expKg * 0.5);
@@ -197,5 +192,5 @@
     }
   };
   var SRC = ['plS1', 'plS2', 'plS3', 'plS4', 'plS5', 'plS6'];
-  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, isLose: isLose, stalled: stalled, weekKey: weekKey, refWeight: refWeight, TX: TX, SRC: SRC };
+  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, isLose: isLose, stalled: stalled, weekKey: weekKey, PROT_SH: PROT_SH, TX: TX, SRC: SRC };
 });

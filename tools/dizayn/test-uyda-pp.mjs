@@ -121,7 +121,7 @@ try {
   await door(p); const top2 = await p.locator('#nyList .ny-it').evaluateAll((l) => l.slice(0, 3).map((e) => e.dataset.id)); assert.ok(!top2.includes(ids[1]), 'yegani tepada takrorlanmadi'); assert.deepEqual(p.errs, []); await p.context().close();
   ok('retsept sahifasi: oyna ichida o\'ngdan kiradi; katta rasm, nom, 4 raqam (daqiqa, kkal, oqsil, yog\'), porsiya ½–2, «Kerak bo\'ladi» (gramm porsiyaga qarab), «Tayyorlash» raqamli va doim ochiq, «taxminiy»; pastda qotgan «Yedim · N kkal» + ☆; ‹ / Escape / Android «orqaga» — ro\'yxatga');
   /* holat qatori va tavsiya — limitga qarab */
-  for (const [kc, re, chk] of [[0, /^Sizga \d+ kkal va \d+ g oqsil qoldi/, null], [2600, /^Bugungi limit deyarli tugadi — \d+ kkal qoldi\.[\s\S]*Lekin oqsil \d+ g kam/, 'low'], [3400, /^Bugungi limitga yetdingiz/, 'over']]) {
+  for (const [kc, re, chk] of [[0, /^(Sizga|(Nonushta|Tushlik|Kechki ovqat|Tamaddi)(ga|ka)) \d+ kkal va \d+ g oqsil qoldi/, null], [2600, /^Bugungi limit deyarli tugadi — \d+ kkal qoldi\.[\s\S]*Lekin oqsil \d+ g kam/, 'low'], [3400, /^Bugungi limitga yetdingiz/, 'over']]) {
     p = await open('/kalkifit', seed({ kcal: kc })); await door(p); const st = nbsp(await p.locator('#nySt').innerText()); assert.match(st, re, kc + ': ' + st);
     if (chk) { const rem = await p.evaluate(() => null); const m = /(\d+) kkal qoldi/.exec(st), left = m ? +m[1] : -1, top = (await p.locator('#nyList .ny-it').evaluateAll((l) => l.slice(0, 3).map((e) => e.dataset.id))).map((id) => PP.calc(R.find((r) => r.id === id), by).k);
       const lightest = R.map((r) => PP.calc(r, by).k).sort((a, b) => a - b).slice(0, 3); assert.ok(top.every((k) => (left >= 0 && k <= left + PP.ZAX) || k <= lightest[2]), kc + ': tavsiya ' + top + ' (qolgan ' + left + ')'); }
