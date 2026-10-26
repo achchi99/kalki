@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 46,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Vazn trendi va «Nega sekin ozyapman?»",
+    "ru": "Тренд веса и «Почему вес уходит медленно?»"
+   },
+   "items": [
+    {
+     "uz": "Tarix'da vazn trendi: kunlik sakrashlar emas, yashil chiziq — haqiqiy yo'nalish.",
+     "ru": "В Истории — тренд веса: не скачки по дням, а зелёная линия — настоящее направление.",
+     "show": "vazn",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Ozish sekinlashsa, ilova yozuvlaringizdan sababini topadi va shu hafta uchun 2–3 ish taklif qiladi.",
+     "ru": "Если похудение замедлилось, приложение найдёт причину по вашим записям и предложит 2–3 дела на неделю."
+    }
+   ]
+  },
+  {
    "v": 45,
    "d": "2026-10-25",
    "bn": {
