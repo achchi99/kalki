@@ -1292,7 +1292,7 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .pf-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .rz .pf-ti{background:var(--card);border:0;border-radius:16px;padding:10px 4px;text-align:center;color:var(--ink);font:inherit;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;min-height:48px;animation:pfUp .5s cubic-bezier(.2,.9,.25,1) both;animation-delay:calc(var(--i,0) * 60ms)}
 .rz .pf-tic{color:var(--accink)}.rz .pf-tic .rz-i{width:20px;height:20px}
-.rz .pf-ti b{font-size:var(--t-m);font-weight:600;line-height:1.2;max-width:100%;overflow-wrap:anywhere}.rz .pf-ti>span:last-child{font-size:13px;color:var(--mut);line-height:1.2;max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+.rz .pf-ti b{font-size:var(--t-m);font-weight:600;line-height:1.2;max-width:100%;overflow-wrap:anywhere}.rz .pf-ti>span:last-child{font-size:var(--t-s);color:var(--mut);line-height:1.2;max-width:100%;overflow-wrap:anywhere;hyphens:auto}
 @keyframes pfUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .rz .pf-norm{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:var(--card);border-radius:20px;padding:14px;color:var(--ink);font:inherit}
 .rz .pf-nic{width:44px;height:44px;border-radius:14px;background:var(--accsoft);color:var(--accink);display:grid;place-items:center;flex:none}.rz .pf-nic .rz-i{width:22px;height:22px}
