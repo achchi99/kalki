@@ -196,21 +196,29 @@
     hwTip_log: 'Записывайте хотя бы одну еду в день — итоги будут точнее.', hwTip_water: 'Выпивайте стакан воды перед каждым приёмом пищи.', hwTip_steps: 'Гуляйте 15 минут каждый день — это примерно 1 500 шагов.', hwTip_over: 'Кладите ужин на тарелку поменьше.', hwTip_protein: 'Добавляйте белок к каждой еде: яйцо, творог, курицу или бобовые.', hwTip_keep: 'Сохраните этот порядок ещё на неделю.',
     hwEmpty: 'На этой неделе записей нет. Ничего страшного — запишите завтра одну еду, и в следующее воскресенье итоги будут готовы.', hwN: 'Итоги недели', hwNH: 'В воскресенье в 19:00 — итоги недели', hwMsg: 'Итоги вашей недели готовы' });
   var TT = {          // v48: «Mening tartibim» + «Oqsil maqsadi» matnlari (ЎЗ — translit); «halol» so'zi yo'q
-    uz: { ttQ: 'Qanday ovqatlanasiz?', ttSub: "Qoida yo'q — o'zingizga qulayini tanlang. Kunlik limit o'zgarmaydi, faqat ovqatlarga bo'linadi.", tt_std: '3 mahal', tt_stdH: 'Nonushta, tushlik va kechki ovqat', tt_kech: "Kechqurun ko'p yeyman", tt_kechH: 'Kunduzi yengil, kechki ovqat katta', tt_nobf: 'Nonushta qilmayman', tt_nobfH: 'Ertalab faqat choy yoki qahva', tt_erkin: 'Erkin', tt_erkinH: "Bo'linmasin — faqat kunlik jami",
-      ttSave: 'Saqlash', ttHint: "Profil → «Mening tartibim»da istalgan payt o'zgartirasiz", ttSkip: "O'tkazib yuborish", ttRow: 'Mening tartibim', ttCardS: 'Limitni ovqatlaringizga moslaymiz', ft_tartib: 'Mening tartibim', ft_tartibH: "Kunlik limitni ovqatlarga bo'lish",
+    uz: { ttQ: "Qachon ko'proq yeysiz?", ttSub: "Shunga qarab kaloriyangizni nonushta, tushlik va kechki ovqatga bo'lib beramiz.", tt_std: "Kun bo'yi teng", tt_kech: "Kechqurun ko'proq", tt_nobf: 'Nonushta qilmayman', tt_erkin: "Farqi yo'q — bo'lmasin",
+      ttL_b: 'nonushta', ttL_l: 'tushlik', ttL_d: 'kechki', ttL_s: 'tamaddi', ttCardT: "Kechqurun ko'proq yeysizmi?", ttCardS: "Kaloriyani shunga moslab bo'lib beramiz",
+      ttSave: 'Saqlash', ttHint: "Raqamlar — sizning kunlik {k} kkal me'yoringizdan", ttRow: 'Kun tartibi', ft_tartib: 'Kun tartibi', ft_tartibH: "Kaloriyani ovqatlarga bo'lish",
       mlD_b: 'nonushtaga', mlD_l: 'tushlikka', mlD_d: 'kechki ovqatga', mlD_s: 'tamaddiga', mlA_b: 'nonushta', mlA_l: 'tushlik', mlA_d: 'kechki ovqat', mlA_s: 'tamaddi',
       ttS_l: 'Tushlik', ttS_d: 'Kechki', mbOf: '{e} / {b} kkal', mbLeft: 'Sizga {k} kkal qoldirilgan', mbNow: 'hozir', mbNote: "{x}dan tejalgan {k} kkal {m} o'tdi", mbTook: '+{k} kkal {m}dan olindi', mbAnd: ' va ',
+      prDone2: 'Oqsil maqsadi bajarildi ✓', prTipD: "Oqsilga yana ~{p} g — masalan, {g} g {f}", prTipD0: 'Oqsilga yana ~{p} g', xFatLow: "Bugun yog' kaloriyaning 20% idan kam — biroz yong'oq, yog' yoki baliq qo'shing.",
       prT: 'Oqsil', prTip: '{m} ~{p} g qoldi — masalan, {g} g {f}.', prTip0: '{m} ~{p} g qoldi.', prTipE: 'Bugun yana ~{p} g — masalan, {g} g {f}.', prTipE0: 'Bugun yana ~{p} g.', prDone: 'Bugungi oqsil maqsadiga yetdingiz ✓',
       prFat: "yog' · 20%+ ✓", prFatLow: "yog' · 20% dan kam — biroz qo'shing", prFat0: "yog'", prCarb: 'uglevod · erkin',
       pgRow: 'Oqsil maqsadi', pgAuto: 'avtomatik', pgT: 'Oqsil maqsadi', pgH: "Oqsil to'q tutadi va ozishda mushakni saqlaydi. Ozish va vazn olishda 1,6 g/kg, saqlashda 1,2 g/kg.", pgAutoV: 'Avtomatik: {g} g ({k} g/kg × {w} kg)', pgReset: 'Avtomatik',
+      pfHi: 'Xush kelibsiz 👋', pfEditName: "Ismni o'zgartirish", pfYou: 'Profilingiz', pfAddName: 'Ismingizni yozing', pfGoalT: 'Maqsad: {g} kg gacha', pfNow: 'Hozir {w} kg', pfGoalAdd: "Maqsad vaznini qo'shing", pfSexM: 'Erkak', pfSexF: 'Ayol', pfSexL: 'jins', pfAgeL: 'yosh', pfHL: "bo'y, sm", pfWL: 'vazn, kg', pfNormS: "Kunlik me'yoringiz · {g}", pfDay: 'kun', pfGrpFood: 'Ovqatlanish', pfYmNone: "Yo'q", pfYmN: '{n} ta',
+      gS_keep: 'saqlash', gS_slow: 'sekin ozish', gS_lose: 'ozish', gS_gain: 'vazn olish',
       hkProt: 'Bu hafta {n} kun oqsil maqsadiga yetdingiz', nyStMeal: '{m} {k} kkal va {p} g oqsil qoldi', nyStMealK: '{m} {k} kkal qoldi' },
-    ru: { ttQ: 'Как вы питаетесь?', ttSub: 'Правил нет — выберите, как вам удобно. Дневной лимит не меняется, он только делится по приёмам пищи.', tt_std: '3 раза в день', tt_stdH: 'Завтрак, обед и ужин', tt_kech: 'Вечером ем больше', tt_kechH: 'Днём легко, ужин большой', tt_nobf: 'Не завтракаю', tt_nobfH: 'Утром только чай или кофе', tt_erkin: 'Свободно', tt_erkinH: 'Без деления — только дневной итог',
-      ttSave: 'Сохранить', ttHint: 'Изменить можно в любой момент: Профиль → «Мой режим»', ttSkip: 'Пропустить', ttRow: 'Мой режим', ttCardS: 'Подстроим лимит под ваши приёмы пищи', ft_tartib: 'Мой режим', ft_tartibH: 'Деление дневного лимита по приёмам пищи',
+    ru: { ttQ: 'Когда вы едите больше?', ttSub: 'Так мы разделим ваши калории на завтрак, обед и ужин.', tt_std: 'Ровно весь день', tt_kech: 'Вечером больше', tt_nobf: 'Не завтракаю', tt_erkin: 'Без разницы — не делить',
+      ttL_b: 'завтрак', ttL_l: 'обед', ttL_d: 'ужин', ttL_s: 'перекус', ttCardT: 'Вечером едите больше?', ttCardS: 'Разделим калории под ваш режим',
+      ttSave: 'Сохранить', ttHint: 'Цифры — от вашей дневной нормы {k} ккал', ttRow: 'Режим питания', ft_tartib: 'Режим питания', ft_tartibH: 'Деление калорий по приёмам пищи',
       mlD_b: 'на завтрак', mlD_l: 'на обед', mlD_d: 'на ужин', mlD_s: 'на перекус', mlA_b: 'завтрака', mlA_l: 'обеда', mlA_d: 'ужина', mlA_s: 'перекуса',
       ttS_l: 'Обед', ttS_d: 'Ужин', mbOf: '{e} / {b} ккал', mbLeft: 'Вам оставлено {k} ккал', mbNow: 'сейчас', mbNote: '{k} ккал, сэкономленные с {x}, перешли {m}', mbTook: '+{k} ккал взяли из {m}', mbAnd: ' и ',
+      prDone2: 'Цель по белку выполнена ✓', prTipD: 'Белка ещё ~{p} г — например, {g} г: {f}', prTipD0: 'Белка ещё ~{p} г', xFatLow: 'Сегодня жиров меньше 20% калорий — добавьте немного орехов, масла или рыбы.',
       prT: 'Белок', prTip: '{m} осталось ~{p} г — например, {g} г: {f}.', prTip0: '{m} осталось ~{p} г.', prTipE: 'Сегодня ещё ~{p} г — например, {g} г: {f}.', prTipE0: 'Сегодня ещё ~{p} г.', prDone: 'Цель по белку на сегодня выполнена ✓',
       prFat: 'жиры · 20%+ ✓', prFatLow: 'жиры · меньше 20% — добавьте немного', prFat0: 'жиры', prCarb: 'углеводы · свободно',
       pgRow: 'Цель по белку', pgAuto: 'авто', pgT: 'Цель по белку', pgH: 'Белок дольше насыщает и сохраняет мышцы при похудении. Для похудения и набора — 1,6 г/кг, для поддержания — 1,2 г/кг.', pgAutoV: 'Авто: {g} г ({k} г/кг × {w} кг)', pgReset: 'Авто',
+      pfHi: 'Привет 👋', pfEditName: 'Изменить имя', pfYou: 'Ваш профиль', pfAddName: 'Напишите имя', pfGoalT: 'Цель: до {g} кг', pfNow: 'Сейчас {w} кг', pfGoalAdd: 'Добавьте целевой вес', pfSexM: 'Муж.', pfSexF: 'Жен.', pfSexL: 'пол', pfAgeL: 'возраст', pfHL: 'рост, см', pfWL: 'вес, кг', pfNormS: 'Ваша дневная норма · {g}', pfDay: 'день', pfGrpFood: 'Питание', pfYmNone: 'Нет', pfYmN: '{n}',
+      gS_keep: 'поддержание', gS_slow: 'медленное похудение', gS_lose: 'похудение', gS_gain: 'набор веса',
       hkProt: 'На этой неделе вы {n} дн. добрали норму белка', nyStMeal: '{m} осталось {k} ккал и {p} г белка', nyStMealK: '{m} осталось {k} ккал' }
   };
   ['uz', 'ru'].forEach(function (l) { var x = TT[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; });
@@ -278,7 +286,7 @@
 
   /* ---------- ikonkalar ---------- */
   kit.addIcons({
-    trend: 'M3 17l5-5 4 4 8-8 M15 8h5v5', cup: 'M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9z M17 11h1.5a2.5 2.5 0 0 1 0 5H17 M9 3c-.8 1 .8 2 0 3 M13 3c-.8 1 .8 2 0 3', spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z', info: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v6 M12 7.500v.500', grid: 'M6 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M15 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M6 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z M15 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z', today: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z', food: 'M7 3v8 M4 3v5a3 3 0 0 0 6 0V3 M7 11v10 M17 21V3c-2.2 1.5-3.5 4-3.5 7.5 0 2 1.2 3 3.5 3', steps: 'M7 20c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5S9.5 15 9.5 17c0 1.8-1 3-2.5 3z M16 13c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5s2.5 1.5 2.5 3.5c0 1.8-1 3-2.5 3z',
+    trend: 'M3 17l5-5 4 4 8-8 M15 8h5v5', cake: 'M4 21h16 M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7 M5 16c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 M12 12V8 M12 5.5c.8-.8.8-1.7 0-2.5-.8.8-.8 1.7 0 2.5z', ruler: 'M4 16L16 4l4 4L8 20z M8 12l2 2 M11 9l1.5 1.5 M14 6l2 2', cup: 'M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9z M17 11h1.5a2.5 2.5 0 0 1 0 5H17 M9 3c-.8 1 .8 2 0 3 M13 3c-.8 1 .8 2 0 3', spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z', info: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 11v6 M12 7.500v.500', grid: 'M6 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M15 4h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M6 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z M15 13h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z', today: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z', food: 'M7 3v8 M4 3v5a3 3 0 0 0 6 0V3 M7 11v10 M17 21V3c-2.2 1.5-3.5 4-3.5 7.5 0 2 1.2 3 3.5 3', steps: 'M7 20c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5S9.5 15 9.5 17c0 1.8-1 3-2.5 3z M16 13c-1.5 0-2.5-1.2-2.5-3 0-2 1-3.5 2.5-3.5s2.5 1.5 2.5 3.5c0 1.8-1 3-2.5 3z',
     me: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6', drop: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z', heart: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z', search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M21 21l-5-5',
     minus: 'M5 12h14', pen: 'M4 20h4L19 9l-4-4L4 16v4z M13 7l4 4', share: 'M12 3v12 M7 8l5-5 5 5 M5 14v6h14v-6', text: 'M5 6h14 M5 12h14 M5 18h9', shield: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z', rep: 'M4 4v6h6 M20 20v-6h-6 M5 15a8 8 0 0 0 14 3 M19 9A8 8 0 0 0 5 6',
     chart: 'M4 20V10 M10 20V4 M16 20v-7 M22 20H2',
@@ -385,23 +393,25 @@
     var bal = S.dayBalance(pl.target, S.sumEntries(x.food).kcal, x.steps, num(pr.height), S.currentWeight(st), pr.act), r = S.mealBudgets({ limit: pl.target + bal.credit, mode: ttMode(), eaten: ea, min: nowMin() });
     return r.meals && !r.dayOver ? r : null;          // kunlik jami oshsa — budjetlar ko'rsatilmaydi (oddiy holat)
   }
-  function ttDistHtml(m) {
-    var sh = S.TARTIB[m]; if (!sh) return '';
-    return '<span class="tt-dist" aria-hidden="true">' + S.MEALS.filter(function (k) { return sh[k] > 0; }).map(function (k) { return '<i class="ml-' + k + '" style="flex:' + sh[k] + '"></i>'; }).join('') + '</span><span class="tt-dl">' + S.MEALS.filter(function (k) { return sh[k] > 0; }).map(function (k) { return '<span style="flex:' + sh[k] + '">' + (m === 'nobf' && k !== 's' ? esc(T('ttS_' + k)) + ' ' : '') + sh[k] + '%</span>'; }).join('') + '</span>';
+  function ttTilesHtml(m, lim) {                       // v50: foiz/chiziq o'rniga — shu odamning REAL kunlik me'yoridan kkal (nonushtasizda nonushta «—» xira)
+    var x = S.mealSplit(lim, m); if (!x) return '';
+    return '<span class="tt-ex">' + S.MEALS.map(function (k) { var z = S.TARTIB[m][k] === 0; return '<span class="' + (z ? 'z' : '') + '"><b>' + (z ? '—' : fmt(x[k])) + '</b>' + esc(T('ttL_' + k)) + '</span>'; }).join('') + '</span>';
   }
   function ttOptsHtml(sel, act) {
+    var lim = planNow().target;
     return '<div class="tt-opts" role="radiogroup" aria-label="' + esc(T('ttQ')) + '">' + TT_MODES.map(function (m) {
       var on = m === sel;
-      return '<button type="button" class="tt-opt' + (on ? ' on' : '') + '" role="radio" aria-checked="' + on + '" data-act="' + act + '" data-k="' + m + '"><span class="tt-oh"><span class="sl-ci fc-' + TT_C[m] + '">' + ico(TT_IC[m]) + '</span><span class="m"><b>' + esc(ttName(m)) + '</b><span>' + esc(T('tt_' + m + 'H')) + '</span></span><span class="tt-rd" aria-hidden="true"></span></span>' + ttDistHtml(m) + '</button>';
+      return '<button type="button" class="tt-opt' + (on ? ' on' : '') + '" role="radio" aria-checked="' + on + '" data-act="' + act + '" data-k="' + m + '"><span class="tt-oh"><span class="sl-ci fc-' + TT_C[m] + '">' + ico(TT_IC[m]) + '</span><span class="m"><b>' + esc(ttName(m)) + '</b></span><span class="tt-rd" aria-hidden="true"></span></span>' + ttTilesHtml(m, lim) + '</button>';
     }).join('') + '</div>';
   }
   var tv = null;
-  function ttSheetHtml() { return shHead(T('ttQ')) + '<p class="rz-p tt-sub">' + esc(T('ttSub')) + '</p>' + ttOptsHtml(tv.sel, 'ttpick') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="ttsave">' + esc(T('ttSave')) + '</button></div><p class="rz-mut sm tt-hint">' + esc(T('ttHint')) + '</p>'; }
+  function ttSheetHtml() { return shHead(T('ttQ')) + '<p class="rz-p tt-sub">' + esc(T('ttSub')) + '</p>' + ttOptsHtml(tv.sel, 'ttpick') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="ttsave">' + esc(T('ttSave')) + '</button></div><p class="rz-mut sm tt-hint">' + esc(T('ttHint', { k: fmt(planNow().target) })) + '</p>'; }
   function openTartib() { tv = { sel: ttMode() }; if (ftOpenNow()) closeFeats(true); openSheet('tartib', ttSheetHtml()); }
   function ttSet(m, from) { if (!S.TARTIB.hasOwnProperty(m)) return; st.profile.tartib = m; prefs().ttAsked = 1; stEv('tartib_tanlandi', m); save(); }
   function ttCardHtml() {                              // mavjud foydalanuvchilarga BIR MARTA (yopsa qaytmaydi): «Qanday ovqatlanasiz?»
-    if (!st || !st.setup || st.profile.tartib || prefs().ttAsked) return '';
-    return '<section class="rz-card tt-card" id="ttCard"><button type="button" class="tt-cb" data-act="ttopen"><span class="sl-ci fc-bl">' + ico('mlMoon') + '</span><span class="m"><b>' + esc(T('ttQ')) + '</b><span>' + esc(T('ttCardS')) + '</span></span>' + ico('chev', 'r') + '</button><button type="button" class="rz-x tt-cx" data-act="ttno" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></section>';
+    if (!st || !st.setup || st.profile.tartib || prefs().ttAsked || appDays() < 5) return '';          // v50: faqat 5+ kun ishlatgan va kamida 3 kun ovqat yozganlarga
+    var nd = 0; Object.keys(st.days).forEach(function (d) { var x = st.days[d]; if (x && x.food && x.food.length) nd++; }); if (nd < 3) return '';
+    return '<section class="rz-card tt-card" id="ttCard"><button type="button" class="tt-cb" data-act="ttopen"><span class="sl-ci fc-bl">' + ico('mlMoon') + '</span><span class="m"><b>' + esc(T('ttCardT')) + '</b><span>' + esc(T('ttCardS')) + '</span></span>' + ico('chev', 'r') + '</button><button type="button" class="rz-x tt-cx" data-act="ttno" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></section>';
   }
   /* oqsil kartasi (BJU qatori shu yerga birlashdi): «Oqsil 62 / 110 g», ko'k chiziq, maslahat (hozirgi/keyingi ovqat vaqtiga qolgan oqsil + bazadan misol), yog' va uglevod plitkalari */
   function protEx(need) {
@@ -415,19 +425,6 @@
     if (m) { var sum = rest.reduce(function (a, k) { return a + mb.meals[k].left; }, 0); part = sum > 0 ? Math.max(5, Math.round(left * mb.meals[m].left / sum / 5) * 5) : left; }
     return { m: m, part: part, left: left };
   }
-  function protTip(tot, pg) {
-    var sh = protShare(tot, pg, mbOf(todayStr())), m = sh.m, part = sh.part; if (sh.left <= 0) return T('prDone');
-    var ex = protEx(part), mm = m ? T('mlD_' + m) : '';
-    var cap = function (x) { return x.charAt(0).toUpperCase() + x.slice(1); };
-    if (m) return cap(ex ? T('prTip', { m: mm, p: part, g: ex.g, f: ex.n }) : T('prTip0', { m: mm, p: part }));
-    return ex ? T('prTipE', { p: part, g: ex.g, f: ex.n }) : T('prTipE0', { p: part });
-  }
-  function protHtml(tot) {
-    var pg = protNow(), v = Math.round(tot.p), fk = tot.kcal > 0 ? tot.f * 9 / tot.kcal : 0, fOk = fk >= 0.2;
-    return '<section class="sl-card pr-card" id="bjuCard"><button type="button" class="pr-b" data-act="xmacro" aria-label="' + esc(T('prT') + ': ' + v + ' / ' + pg.g + ' g') + '"><span class="pr-h"><b>' + esc(T('prT')) + '</b><span class="pr-v"><em>' + fmt(v) + '</em> / ' + fmt(pg.g) + ' g</span></span>' +
-      '<span class="pr-bar" aria-hidden="true"><i style="transform:scaleX(' + Math.min(1, v / Math.max(1, pg.g)).toFixed(3) + ')"></i></span><span class="pr-tip" id="prTip">' + esc(protTip(tot, pg)) + '</span>' +
-      '<span class="pr-mini"><span class="mc" data-m="f"><b>' + fmt(Math.round(tot.f)) + ' g</b> <span>' + esc(tot.kcal < 300 ? T('prFat0') : fOk ? T('prFat') : T('prFatLow')) + '</span></span><span class="mc" data-m="c"><b>' + fmt(Math.round(tot.c)) + ' g</b> <span>' + esc(T('prCarb')) + '</span></span></span></button></section>';
-  }
   /* «Oqsil maqsadi» oynasi: avtomatik (1,6 / 1,2 g/kg) yoki qo'lda 60–250 g (10 g qadam) */
   var pgv = null;
   function pgSheetHtml() {
@@ -436,11 +433,7 @@
       '<p class="rz-mut sm pg-auto">' + esc(T('pgAutoV', { g: a.auto, k: dec(a.perKg, 1), w: dec(a.ref, 1) })) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="pgauto">' + esc(T('pgReset')) + '</button><button type="button" class="rz-btn primary" data-act="pgsave">' + esc(T('ttSave')) + '</button></div>';
   }
   function openProtG() { pgv = { g: protNow().g }; openSheet('protg', pgSheetHtml()); }
-  function ttProfHtml() {
-    var pg = protNow();
-    return '<section class="rz-card tt-prof"><button type="button" class="rz-row" data-act="ttopen">' + catIcon('star') + '<span class="m"><b>' + esc(T('ttRow')) + '</b><span>' + esc(ttName(ttMode())) + '</span></span>' + ico('chev', 'r') + '</button>' +
-      '<button type="button" class="rz-row" data-act="protg">' + catIcon('muscle') + '<span class="m"><b>' + esc(T('pgRow')) + '</b><span>' + esc(pg.g + ' g' + (pg.manual ? '' : ' · ' + T('pgAuto'))) + '</span></span>' + ico('chev', 'r') + '</button></section>';
-  }
+
   function protDays(days) { var n = 0; (days || []).forEach(function (d) { var x = S.dayOf(st, d); if (x && x.food && x.food.length >= 2 && S.sumEntries(x.food).p >= protNow().g) n++; }); return n; }
   function protStat() {                               // anonim: kecha oqsil maqsadiga yetildimi (kuniga bitta hodisa; faqat yozuv bo'lgan kun)
     var y = Dt.addDays(todayStr(), -1), pr = prefs(); if (!st || !st.setup || pr.oqK === y) return; var x = S.dayOf(st, y); pr.oqK = y; save(); if (!x || !x.food || x.food.length < 2) return;
@@ -554,6 +547,7 @@
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
     history: function (n) { return goTab('history', function () { n.highlight($('#hkCard') || $('.sl-sec2') || $('#rzMain')); }); },
     vazn: function (n) { return goTab('history', function () { n.highlight($('.pl-w') || $('#rzMain')); }); },
+    profil: function (n) { return goTab('profile', function () { n.highlight($('#pfHero') || $('#rzMain')); }); },
     bju: function (n) { return goTab('today', function () { var c = $('#bjuCard'); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'center' }); n.highlight(c); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
     yeymiz: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
@@ -655,25 +649,53 @@
     return '<p class="sl-dayend"><button type="button" class="sl-txtbtn" data-act="dayend" id="dayEnd" title="' + esc(T('deHint')) + '">' + esc(T('deBtn')) + '</button></p>';
   }
 
-  var jFlash = null, jT = 0;
-  function jokeShow() {                              // kaloriya kartasi ustida 4 s turadigan pufak (absolute — boshqa bloklar sakramaydi), keyin yo'qoladi
-    var big = $('.sl-big'), el = $('#jLine');
-    if (jFlash && jFlash.pend) {                     // [+] bilan qo'shilganda varaq OCHIQ qoladi: pufak varaq ostida qolib ko'rinmay o'tardi (v35) — hazil varaq yopilgach, 4 s ko'rsatiladi
-      if (kit.sheetKind() || ftOpenNow() || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); if (Date.now() - jFlash.t0 > 180000) jFlash = null; return; }          // yopilishi yoki Bugun'ga qaytishi kutiladi; 3 daqiqadan eskisi — o'tib ketgan
-      jFlash.pend = false; jFlash.until = Date.now() + 4000;
-    }
-    if (!jFlash || Date.now() >= jFlash.until || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); return; }
-    if (!el || el.parentNode !== big) { if (el && el.parentNode) el.parentNode.removeChild(el); el = document.createElement('div'); el.className = 'sl-jline sl-jfl'; el.id = 'jLine'; el.setAttribute('role', 'status'); big.appendChild(el); }
-    el.textContent = jFlash.text; el.classList.remove('top'); var bar = $('#rzAddBar'); if (bar && big.getBoundingClientRect().bottom > bar.getBoundingClientRect().top - 8) el.classList.add('top'); clearTimeout(jT);          // karta pastki panel ostida qolsa — pufak tepada
-    jT = setTimeout(function () { var e = $('#jLine'); jFlash = null; if (!e) return; e.classList.add('out'); setTimeout(function () { if (e.parentNode) e.parentNode.removeChild(e); }, reduce ? 0 : 250); }, Math.max(0, jFlash.until - Date.now()));
+  /* v50: hazil — halqa kartasi ICHIDA, «iste'mol · maqsad» qatori OSTIDA (oqimda: kontentni suradi, halqani hech qachon yopmaydi); sariq fon, emoji, matn, ✕, ingichka vaqt chizig'i.
+     8 s; barmoq tekkanda yoki ekranda ko'rinmasa — taymer to'xtaydi; ✕ — darhol. Paydo bo'lish: opacity + 8 px; yo'qolish: balandligi silliq yig'iladi. v41 qoidalari jokeAfter'da (kuniga ≤ 4, ≥ 60 s) */
+  var jFlash = null, jT = 0, JK_MS = 8000, jkIO = null;
+  function jkFrac() { return jFlash ? Math.max(0, Math.min(1, jFlash.rem / JK_MS)) : 0; }
+  function jkRun() {
+    var el = $('#jLine'); if (!jFlash || !el || jFlash.run || jFlash.hold) return; jFlash.run = true; jFlash.at = Date.now(); clearTimeout(jT); jT = setTimeout(jokeHide, jFlash.rem);
+    var i = el.querySelector('.hz-bar i'); if (i) { i.style.transition = 'none'; i.style.transform = 'scaleX(' + jkFrac().toFixed(4) + ')'; void i.offsetWidth; i.style.transition = 'transform ' + jFlash.rem + 'ms linear'; i.style.transform = 'scaleX(0)'; }
   }
-  kit.onClose = function () { if (jFlash && jFlash.pend && view === 'today') jokeShow(); };          // varaq yopildi → kutayotgan hazil
+  function jkPause(why) {
+    if (!jFlash) return; jFlash.hold = (jFlash.hold || 0) | why; if (!jFlash.run) return; jFlash.run = false; clearTimeout(jT); jFlash.rem = Math.max(0, jFlash.rem - (Date.now() - jFlash.at));
+    var i = $('#jLine .hz-bar i'); if (i) { i.style.transition = 'none'; i.style.transform = 'scaleX(' + jkFrac().toFixed(4) + ')'; }
+  }
+  function jkResume(why) { if (!jFlash) return; jFlash.hold = (jFlash.hold || 0) & ~why; if (!jFlash.hold) jkRun(); }
+  function jokeHide(now) {
+    clearTimeout(jT); var e = $('#jLine'); jFlash = null; if (jkIO) { jkIO.disconnect(); jkIO = null; } if (!e) return;
+    if (reduce || now) { if (e.parentNode) e.parentNode.removeChild(e); return; }
+    e.style.height = e.offsetHeight + 'px'; void e.offsetWidth; e.classList.add('out'); e.style.height = '0px';          // balandligi silliq yig'iladi (sakramaydi)
+    setTimeout(function () { if (e.parentNode) e.parentNode.removeChild(e); }, 320);
+  }
+  function jokeShow() {
+    var big = $('.sl-big'), el = $('#jLine');
+    if (jFlash && jFlash.pend) {                     // [+] bilan qo'shilganda varaq OCHIQ qoladi — hazil varaq yopilgach ko'rsatiladi (v35)
+      if (kit.sheetKind() || ftOpenNow() || !big) { if (el && el.parentNode) el.parentNode.removeChild(el); if (Date.now() - jFlash.t0 > 180000) jFlash = null; return; }
+      jFlash.pend = false; jFlash.rem = JK_MS;
+    }
+    if (!jFlash || jFlash.rem <= 0 || !big) { if (el && el.parentNode && !el.classList.contains('out')) el.parentNode.removeChild(el); return; }
+    if (el && el.parentNode === big) return;          // allaqachon turibdi (qayta chizishda animatsiya takrorlanmaydi)
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+    var fresh = !jFlash.seen; jFlash.seen = true;
+    el = document.createElement('div'); el.className = 'hz-card' + (fresh && !reduce ? ' in' : ''); el.id = 'jLine'; el.setAttribute('role', 'status');
+    el.innerHTML = '<span class="hz-e" aria-hidden="true"></span><span class="hz-m"><p class="hz-t">' + esc(jFlash.text) + '</p><span class="hz-bar" aria-hidden="true"><i></i></span></span><button type="button" class="hz-x" data-act="jkx" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button>';
+    big.appendChild(el);
+    var hold = function (e) { if (e.target.closest && e.target.closest('.hz-x')) return; jkPause(1); }, rel = function () { jkResume(1); };
+    el.addEventListener('pointerdown', hold); el.addEventListener('pointerup', rel); el.addEventListener('pointercancel', rel); el.addEventListener('pointerleave', rel);
+    el.addEventListener('touchstart', hold, { passive: true }); el.addEventListener('touchend', rel); el.addEventListener('touchcancel', rel);
+    if (jkIO) jkIO.disconnect(); jkIO = null;
+    if (window.IntersectionObserver) { jkIO = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.intersectionRatio >= 0.5) jkResume(2); else jkPause(2); }); }, { root: $('#rzMain'), threshold: [0, 0.5, 1] }); /* ko'rinish — aylantiriladigan maydon ichida (pastki panel ostida emas) */ jkIO.observe(el); }
+    jFlash.run = false; jkRun();
+  }
+  kit.onClose = function () { if (jFlash && jFlash.pend && view === 'today') jokeShow(); if (view === 'profile' && st && st.setup) setTimeout(function () { if (view === 'profile' && !kit.sheetKind()) render(); }, 0); };          // Profil: oynada o'zgargan qiymat (Yemaydiganlarim va h.k.) qatorda yangilansin
+  function jkPrev() { var e = $('#jLine'); clearTimeout(jT); if (jkIO) { jkIO.disconnect(); jkIO = null; } if (e && e.parentNode) e.parentNode.removeChild(e); }          // yangi hazil — eskisi o'rniga          // varaq yopildi → kutayotgan hazil
   function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
     if (kind !== 'food' || !G || !G.eventLine || prefs().jokes === false) return;          // hazil FAQAT ovqat qo'shilgandan keyin, 4 soniya (doimiy qator yo'q)
     var pr = hazilStore(), t = todayStr(), now = Date.now(); if (!pr.jfl || pr.jfl.d !== t) pr.jfl = { d: t, n: 0, t: 0 }; if (pr.jfl.n >= 4 || now - (pr.jfl.t || 0) < 60000) return;
     if (kind === 'food') { var pf = prefs(); if (!pf.suvIntro && wInfo(t).drink > 0) { pf.suvIntro = 1; p = Object.assign({}, p || {}, { drink1: true }); save(); } }          // birinchi ichimlik → «ichimlik_suvga_qoshildi»
     var ctx = jokeCtx(true), l = G.eventLine(ctx, kind, p); if (!l || !l.text) return; pr.jfl.n++; pr.jfl.t = now; pr.last = { d: t, text: l.text }; saveQuiet();
-    jFlash = kit.sheetKind() ? { text: l.text, pend: true, t0: now, until: 0 } : { text: l.text, until: Date.now() + 4000 }; if (view === 'today') jokeShow();          // varaq ochiq bo'lsa — yopilgach (kit.onClose)
+    jkPrev(); jFlash = kit.sheetKind() ? { text: l.text, pend: true, t0: now, rem: 0 } : { text: l.text, rem: JK_MS }; if (view === 'today') jokeShow();          // varaq ochiq bo'lsa — yopilgach (kit.onClose)
   }
   function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
   function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
@@ -746,7 +768,7 @@
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
     qaDetect(); h += '<div class="sl-duo' + (stepCard() ? '' : ' one') + '"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + (stepCard() ? '' : '<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       (stepCard() ? stepCardHtml(x) : '') + '</div>';          // qadam faqat avtomatik (Android ilova: sensor / Health Connect); qo'lda kiritish yo'q, vebda karta yo'q
-    h += protHtml(tot);          // v48: oqsil kartasi (BJU shu yerga birlashdi) — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
+    h += bjuHtml(tot, pl);          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2"><h3>' + esc(T('tdMeals')) + '</h3></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
 
     setMain(h); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow();
@@ -967,23 +989,50 @@
     var end = function (e) { if (!s) return; var dx = (e.clientX || s.x) - s.x, on = s.on, v = dx / Math.max(1, Date.now() - s.t); s = null; dr.style.transition = ''; if (!on) return; if (dx < -70 || v < -0.5) closeFeats(); else dr.style.transform = ''; };
     dr.addEventListener('pointerup', end); dr.addEventListener('pointercancel', function () { if (s && s.on) { dr.style.transition = ''; dr.style.transform = ''; } s = null; });
   }
+  /* v50: Profil (maket ~/profil-maket.html, 2-ekran): hero (gradient, avatar, «Salom 👋», maqsad progressi — trend vaznidan), 4 plitka (bosilsa — o'sha maydon), kunlik me'yor, «Ovqatlanish» guruhi.
+     Animatsiyalar faqat ekran ochilganda bir marta (setMain o'zgarmagan bloklarni qayta qo'ymaydi); prefers-reduced-motion — o'chadi */
+  function pfHeroHtml() {
+    var pr = st.profile, nm = akk.name ? akk.name() : '', kg = protKg(), gw = num(pr.goalWeight), start = st.weights.length ? st.weights[0].kg : num(pr.weight), lin = !!(akk.loggedIn && akk.loggedIn());
+    var h = '<section class="pf-hero" id="pfHero"><span class="pf-b1" aria-hidden="true"></span><span class="pf-b2" aria-hidden="true"></span><div class="pf-hr"><span class="pf-av" aria-hidden="true" data-cyr="skip">' + (nm ? esc(nm.trim().charAt(0).toUpperCase()) : ico('me')) + '</span><span class="pf-nm"><span>' + esc(T('pfHi')) + '</span>' +
+      (nm ? (lin ? '<button type="button" class="pf-nmv" id="pfNmV" data-act="akkname" data-cyr="skip" aria-label="' + esc(T('pfEditName') + ': ' + nm) + '">' + esc(nm) + '</button>' : '<b data-cyr="skip">' + esc(nm) + '</b>') : lin ? '<button type="button" class="pf-nmb" data-act="akkname">' + esc(T('pfAddName')) + '</button>' : '<b>' + esc(T('pfYou')) + '</b>') + '</span><button type="button" class="pf-ed" data-act="editprof" aria-label="' + esc(T('meEdit')) + '">' + ico('pen') + '</button></div>';
+    if (gw > 0) {
+      var tot = start - gw, share = tot ? Math.max(0, Math.min(1, (start - kg) / tot)) : 1, ch = Math.round((kg - start) * 10) / 10, good = (pr.goal === 'gain') ? ch > 0 : ch < 0;
+      h += '<div class="pf-goal"><div class="pf-gt"><span>' + esc(T('pfGoalT', { g: dec(gw, 1) })) + '</span><b>' + plSign(ch) + ' ' + KG() + (good ? ' ✓' : '') + '</b></div><div class="pf-gb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(share * 100) + '"><i style="--w:' + (share * 100).toFixed(1) + '%"></i></div><div class="pf-gs"><span>' + dec(start, 1) + ' ' + KG() + '</span><span>' + esc(T('pfNow', { w: dec(kg, 1) })) + '</span><span>' + dec(gw, 1) + ' ' + KG() + '</span></div></div>';
+    } else h += '<button type="button" class="pf-gadd" data-act="pftile" data-k="goal">' + ico('plus') + '<span>' + esc(T('pfGoalAdd')) + '</span></button>';
+    return h + '</section>';
+  }
+  function pfTilesHtml() {
+    var pr = st.profile, kg = protKg();
+    return '<div class="pf-tiles">' + [['sex', 'me', T(pr.sex === 'f' ? 'pfSexF' : 'pfSexM'), T('pfSexL')], ['age', 'cake', String(pr.age), T('pfAgeL')], ['height', 'ruler', String(pr.height), T('pfHL')], ['weight', 'scale', dec(kg, 1), T('pfWL')]].map(function (x, i) {
+      return '<button type="button" class="pf-ti" data-act="pftile" data-k="' + x[0] + '" style="--i:' + i + '"><span class="pf-tic" aria-hidden="true">' + ico(x[1]) + '</span><b>' + esc(x[2]) + '</b><span>' + esc(x[3]) + '</span></button>';
+    }).join('') + '</div>';
+  }
+  function pfNormHtml() {
+    var pl = planNow(), d = pl.target - pl.tdee;
+    return '<button type="button" class="pf-norm" data-act="xkcal"><span class="pf-nic" aria-hidden="true">' + ico('flame') + '</span><span class="m"><b>' + fmt(pl.target) + ' ' + esc(T('kcal')) + '</b><span>' + esc(T('pfNormS', { g: T('gS_' + pl.goal) })) + '</span></span>' + (d ? '<em class="' + (d < 0 ? 'neg' : 'pos') + '">' + (d < 0 ? '−' : '+') + fmt(Math.abs(d)) + '/' + esc(T('pfDay')) + '</em>' : '') + '</button>';
+  }
+  function pfFoodHtml() {
+    var pg = protNow(), ym = Array.isArray(prefs().yemay) ? prefs().yemay.length : 0, row = function (act, ic, c, t, v) { return '<button type="button" class="rz-row pf-r" data-act="' + act + '"><span class="sl-ci fc-' + c + '" aria-hidden="true">' + ico(ic) + '</span><span class="m"><b>' + esc(t) + '</b></span><span class="v">' + esc(v) + '</span>' + ico('chev', 'r') + '</button>'; };
+    return '<h3 class="sl-grp">' + esc(T('pfGrpFood')) + '</h3><section class="rz-card pf-grp">' + row('ttopen', 'mlMoon', 'bl', T('ttRow'), ttName(ttMode())) + row('protg', 'muscle', 'gr', T('pgRow'), pg.g + ' g') + (Y ? row('yqbel', 'shield', 'ac', T('ynT'), ym ? T('pfYmN', { n: ym }) : T('pfYmNone')) : '') + '</section>';
+  }
+  function pfField(k) {                              // plitka bosilsa — profil oynasi o'sha maydonga aylanadi
+    openProfile(); var sel = { sex: '.rz-seg', age: '#peA', height: '#peH', weight: '#peW', goal: '#peG' }[k];
+    setTimeout(function () { var e = sel && $('#rzSheet ' + sel); if (!e) return; var box = e.closest('[data-sld], .rz-f, .rz-seg') || e; try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); } catch (x) {} if (k === 'goal' && e.focus) try { e.focus({ preventScroll: true }); } catch (x) {} box.classList.add('pf-hl'); setTimeout(function () { box.classList.remove('pf-hl'); }, 1400); }, 380);
+  }
   function renderProfile() {
     if (PS.state === 0) loadPush(function () { if (view === 'profile' && !kit.sheetKind()) render(); });          // yangi foydalanuvchida kalit so'rovi faqat Profil ochilganda (boshqa joyda tarmoq so'rovi yo'q)
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
     var seg = function (act, key, opts, cur, label) { return segHtml(label || '', opts.map(function (o) { return { attrs: 'data-act="' + act + '" data-' + key + '="' + o[0] + '"', on: cur === o[0], text: o[1] }; })); };
     var grp = function (k) { return '<h3 class="sl-grp">' + esc(T(k)) + '</h3>'; };          // Profil: Men · Sozlamalar · Imkoniyatlar · Ilova · (eng pastda) Hisob va zaxira
-    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + grp('pgMen') + akk.nameHtml() + taxRowHtml();          // ism: faqat kirgan foydalanuvchida (mehmonda blok yo'q)
-    h += '<section class="rz-card sl-prof"><div class="rz-st">' + esc(T('sMine')) + '</div><div class="sl-pg"><div><small>' + esc(T('pfSex')) + '</small><b>' + esc(T(pr.sex === 'f' ? 'female' : 'male')) + '</b></div><div><small>' + esc(T('pfAge')) + '</small><b>' + pr.age + '</b></div><div><small>' + esc(T('pfH')) + '</small><b>' + pr.height + '</b></div><div><small>' + esc(T('pfW')) + '</small><b>' + dec(num(pr.weight), 1) + '</b></div></div>' +
-      '<div class="sl-pt"><span>' + esc(T('rT')) + '</span><b>' + fmt(pl.target) + ' ' + T('kcal') + '</b></div><button type="button" class="rz-btn ghost full" data-act="editprof">' + ico('pen') + ' ' + esc(T('meEdit')) + '</button>' + '</section>';
+    var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + pfHeroHtml() + taxRowHtml() + pfTilesHtml() + pfNormHtml();          // v50: hero · plitkalar · me'yor          // ism: faqat kirgan foydalanuvchida (mehmonda blok yo'q)
+    h += pfFoodHtml();          // «Ovqatlanish»: Kun tartibi · Oqsil maqsadi · Yemaydiganlarim
     h += grp('pgSet');
     h += '<section class="rz-card sl-remc" id="remCard" aria-label="' + esc(T('sRem')) + '"><div class="rz-st">' + esc(T('sRem')) + '</div>' + pushRowHtml(true) + hwRowHtml() + '</section>';
     var qr = qaRowHtml(); if (qr) h += '<section class="rz-card sl-qacard">' + qr + '</section>';
     h += '<section class="rz-card"><div class="rz-st">' + esc(T('sLangT')) + '</div>' + segHtml(T('sLang'), [{ attrs: 'data-act="lang" data-l="uz"', on: curL === 'uz', text: 'UZ' }, { attrs: 'data-act="lang" data-l="cyr"', on: curL === 'cyr', text: 'ЎЗ' }, { attrs: 'data-act="lang" data-l="ru"', on: curL === 'ru', text: 'RU' }], ' data-cyr="skip"') +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('themeT')) + '</div>' + seg('theme', 't', [['auto', T('thAuto')], ['light', T('thLight')], ['dark', T('thDark')]], th, T('themeT')) +
       '<div class="rz-st" style="margin-top:14px">' + esc(T('sFont')) + '</div>' + segHtml(T('sFont'), [{ attrs: 'data-act="font" data-f="n"', on: !big, text: T('fN') }, { attrs: 'data-act="font" data-f="b"', on: big, text: T('fB') }]) + '</section>';
-    h += ttProfHtml();          // v48: «Mening tartibim» va «Oqsil maqsadi»
-    if (Y) h += Y.profileCard();
     h += jokesCardHtml();
     h += grp('pgImk') + featsHtml();
     h += grp('pgApp');
@@ -1515,11 +1564,16 @@
   function xr(sg, label, val, cls, unit) { return '<div class="rz-xr ' + (cls || '') + '"><span class="sg" aria-hidden="true">' + sg + '</span><span class="lb">' + esc(label) + '</span>' + (val == null ? '' : '<b>' + val + (unit === false ? '' : '<small> ' + T('kcal') + '</small>') + '</b>') + '</div>'; }
   function okBtn() { return '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('close')) + '</button></div>'; }
   function macrosHtml(tot, pl) { return '<section class="sl-card sl-macs"><button type="button" class="sl-mac3" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) { var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]); return '<span class="mc"><b><i class="dt" style="background:var(--' + m[1] + ')"></i>' + esc(T(m[0])) + '</b><span class="mv">' + v + ' <small>/ ' + goal + ' g</small></span><span class="tr"><i class="kf-bar2" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + m[1] + ')"></i></span></span>'; }).join('') + '</button></section>'; }          // oqsil · yog' · uglevod — halqa bosilganda (kaloriya tushuntirishi oynasi tepasida)
-  function bjuHtml(tot, pl) {                          // Bugun: kunlik oqsil · yog' · uglevod kartasi (maqsad — halqa bosilganda ochiladigan makro hisobi bilan BIR manba: pl.macros); bosilsa makro tafsiloti
-    return '<section class="sl-card sl-bju" id="bjuCard"><button type="button" class="sl-bjub" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) {
+  function bjuHtml(tot, pl) {                          // Bugun: oqsil · yog' · uglevod (maqsad — makro tafsiloti bilan BIR manba: planNow().macros; oqsil — S.protein); bosilsa makro tafsiloti. Oshsa ham qizil yo'q (yumshoq)
+    var cols = [['mP', 'p'], ['mF', 'f'], ['mC', 'c']].map(function (m) {
       var goal = pl.macros[m[1]], v = Math.round(tot[m[1]]), over = v > goal;
-      return '<span class="mc" data-m="' + m[1] + '"><span class="mh">' + esc(T(m[0])) + '</span><span class="mv"><b>' + fmt(v) + '</b><small>/ ' + fmt(goal) + ' g</small></span><span class="tr"><i class="' + (over ? 'over' : '') + '" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%;background:var(--' + (over ? 'danger' : m[1]) + ')"></i></span></span>';
-    }).join('') + '</button></section>';
+      return '<span class="mc" data-m="' + m[1] + '"><span class="mh">' + esc(T(m[0])) + '</span><span class="mv"><b>' + fmt(v) + '</b><small>/ ' + fmt(goal) + ' g</small></span><span class="tr"><i class="' + (over ? 'over' : '') + '" style="width:' + Math.min(100, Math.round(v / Math.max(1, goal) * 100)) + '%"></i></span></span>';
+    }).join('');
+    return '<section class="sl-card sl-bju bj3" id="bjuCard"><button type="button" class="sl-bjub" data-act="xmacro" aria-label="' + esc(T('macroRow')) + '">' + cols + '<span class="bj-tip" id="prTip">' + esc(protTipDay(tot, pl)) + '</span></button></section>';
+  }
+  function protTipDay(tot, pl) {                     // bitta qator: «Oqsilga yana ~67 g — masalan, 200 g mol go'shti» (kunlik qoldiq; misol bazadan, kunga qarab almashadi) | «Oqsil maqsadi bajarildi ✓»
+    var left = Math.round(pl.macros.p - tot.p); if (left <= 0) return T('prDone2');
+    var ex = protEx(left); return ex ? T('prTipD', { p: left, g: ex.g, f: ex.n }) : T('prTipD0', { p: left });
   }
   function openExplainKcal() {
     var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), b = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st), st.profile.act);
@@ -1533,7 +1587,7 @@
   }
   function openExplainMacro() {
     var pl = planNow(), m = pl.macros, pg = pl.protein || S.protein(st.profile, S.currentWeight(st));          // v48: oqsil — maqsad (1,6 / 1,2 g/kg × trend yoki tavsiya vazni)
-    openSheet('xmacro', shHead(T('xMacroT')) + '<div class="rz-xrows">' + xr('', T('xProt', { pk: dec(pg.manual ? Math.round(pg.g / pg.ref * 10) / 10 : pg.perKg, 1), w: dec(pg.ref, 1), p: m.p }), null) + xr('', T('xFat', { f: m.f }), null) + xr('', T('xCarb', { c: m.c }), null) + '</div><p class="rz-p sm">' + esc(T('xMacroN')) + '</p><p class="rz-p sm">' + esc(T('rMacro', { p: m.p, f: m.f, c: m.c })) + '</p>' + okBtn());
+    openSheet('xmacro', shHead(T('xMacroT')) + '<div class="rz-xrows">' + xr('', T('xProt', { pk: dec(pg.manual ? Math.round(pg.g / pg.ref * 10) / 10 : pg.perKg, 1), w: dec(pg.ref, 1), p: m.p }), null) + xr('', T('xFat', { f: m.f }), null) + xr('', T('xCarb', { c: m.c }), null) + '</div>' + (function () { var tt = S.dayTotals(st, todayStr()); return tt.kcal >= 300 && tt.f * 9 / tt.kcal < 0.2 ? '<p class="rz-p sm sl-fatlow">' + esc(T('xFatLow')) + '</p>' : ''; })() + '<p class="rz-p sm">' + esc(T('xMacroN')) + '</p><p class="rz-p sm">' + esc(T('rMacro', { p: m.p, f: m.f, c: m.c })) + '</p>' + okBtn());          // yog' 20% dan kam — yumshoq eslatma faqat tafsilotda
   }
   function openExplainWater() { var pl = planNow(); openSheet('xwater', shHead(T('xWaterT')) + '<div class="rz-xrows">' + xr('', T('xWater', { w: dec(S.currentWeight(st), 1), ml: fmt(pl.water.ml), n: pl.water.glasses }), null) + '</div><p class="rz-p sm">' + esc(T('xWaterN')) + '</p>' + okBtn()); }
   function openExplainSteps() {
@@ -2293,6 +2347,7 @@
   function peRepaint() { var cur = peRead() || {}; var p = Object.assign({}, st.profile, cur); var sh = $('#rzSheet'); var keep = sh.scrollTop; setSheet(profHtml(p)); sh.scrollTop = keep; }
   function peSave() {
     var r = peRead(), np = { sex: pe.sex, preg: pe.sex === 'f' && pe.preg, age: r.age, height: r.height, weight: r.weight, act: pe.act, goal: pe.goal, goalWeight: r.goalWeight };
+    if (st.profile.tartib) np.tartib = st.profile.tartib; if (st.profile.protG) np.protG = st.profile.protG;          // v50: tahrirlashda «Kun tartibi» va qo'lda oqsil maqsadi o'chib ketmasin
     var er = S.validate(np); if (er.age) return flashEl($('#peA')); if (er.height) return flashEl($('#peH')); if (er.weight) return flashEl($('#peW'));
     st.profile = np; var d = todayStr(); if (st.weights.length === 0 || Math.abs(S.currentWeight(st) - np.weight) > 0.04) S.addWeight(st, d, np.weight);
     kit.closeSheet(); heroPrev = null; commit(); vib(); toast(T('pfSaved', { x: fmt(planNow().target) }), null, true);
@@ -2580,9 +2635,8 @@
         pl.notes.filter(function (n) { return n !== 'floor'; }).map(function (n) { return '<p class="rz-p warn">' + esc(T(n === 'preg' ? 'pregN' : n)) + '</p>'; }).join('') + (pl.doctor ? '<p class="rz-p warn"><b>' + esc(T('rDoc')) + '</b></p>' : '') +
         '<p class="rz-p">' + esc(T('rMacro', { p: pl.macros.p, f: pl.macros.f, c: pl.macros.c })) + '<br>' + esc(T('rWater', { n: pl.water.glasses, ml: fmt(pl.water.ml) })) + '</p><p class="rz-p sm">' + esc(T('disc')) + '</p></div>'; foot = 'start';
     }
-    if (s === 9) { body = '<h2 class="rz-q">' + esc(T('ttQ')) + '</h2><p class="rz-p">' + esc(T('ttSub')) + '</p>' + ttOptsHtml(ob.tartib || 'std', 'obtpick'); foot = 'tartib'; }          // v48: ixtiyoriy — «O'tkazib yuborish» = 3 mahal
     var first = ob.refine ? 2 : 1, dots = [1, 2, 3, 4, 5, 6, 7].map(function (i) { return '<i class="' + (i === s ? 'on' : (i < s ? 'done' : '')) + '"></i>'; }).join('');
-    var btn = foot === 'tartib' ? '<button type="button" class="rz-btn primary" data-act="obtsave">' + esc(T('ttSave')) + '</button><button type="button" class="rz-btn ghost sl-ob-later" data-act="obtskip">' + esc(T('ttSkip')) + '</button>' : foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
+    var btn = foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
     nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + '<span class="sl-ob-sp"></span></div>';
     var later = s === 1 && ob.sex ? '<button type="button" class="rz-btn ghost sl-ob-later" data-act="oblater">' + esc(T('obLater2')) + '</button>' : '';
     h = obLangHtml() + '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
@@ -2599,24 +2653,24 @@
     if (s === 6) { if (!ob.goal) ob.goal = 'keep'; obGo(ob.refine ? 8 : 7, 'f'); return; }
     if (s === 7) { if (!ob.ycounted) { ob.ycounted = true; if (Y) Y.count(ob.yemay.length ? 'yemaydi_tanlandi' : 'yemaydi_hammasi'); } obGo(8, 'f'); return; }
   }
-  function obBack() { if (ob.step === 9) { obGo(8, 'b'); return; } var first = ob.refine ? 2 : 1; if (ob.refine && ob.step === first) { obClose(); return; } obGo(Math.max(first, ob.step === 8 && ob.refine ? 6 : ob.step - 1), 'b'); }
+  function obBack() { var first = ob.refine ? 2 : 1; if (ob.refine && ob.step === first) { obClose(); return; } obGo(Math.max(first, ob.step === 8 && ob.refine ? 6 : ob.step - 1), 'b'); }
   function obPrefs() { var p = {}, l = ob && ob.yemay; if (l && l.length) { p.yemay = l.slice(); if (l.indexOf('baliq') > -1) p.baliqOff = true; } if (ob && ob.ycounted) p.yemayK = 1; return p; }
   function obFinish(pr, later) {                          // yangi foydalanuvchi: holat yaratiladi (saqlash formati o'zgarmagan)
-    var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (ob && ob.tartib) { pr.tartib = ob.tartib; n.prefs.ttAsked = 1; stEv('tartib_tanlandi', ob.tartib); } if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
+    var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
     if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     stEv('yangi_foydalanuvchi'); stEv(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb(); try { if (STAT) STAT.faol(); } catch (e) {}
     var el = $('#rzOnb'); el.classList.add('out');
     wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);
   }
-  function obStart() { if (ob.refine) { obRefineSave(); return; } obGo(9, 'f'); }          // natijadan keyin — «Qanday ovqatlanasiz?» (ixtiyoriy)
+  function obStart() { if (ob.refine) { obRefineSave(); return; } obFinish(obProfile(), false); }          // v50: tartib savoli onboarding'da YO'Q (standart — «Farqi yo'q»)
   function obLater() { if (!ob || !ob.sex) return; var d = obDef(ob.sex); obFinish({ sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: d.age, height: d.height, weight: d.weight, act: 2, goal: 'keep', goalWeight: null }, true); }
   /* «Me'yoringiz taxminiy» → aniqlashtirish (slayder ekranlari 2–6 + natija); mavjud holat saqlanadi, faqat profil yangilanadi */
   function obLock(on) { ['#rzMain', '.rz-nav'].forEach(function (q) { var e = $(q); if (e) { e.inert = on; if (on) e.setAttribute('aria-hidden', 'true'); else e.removeAttribute('aria-hidden'); } }); }
   function obClose() { var el = $('#rzOnb'); el.classList.add('out'); ob = null; wait(function () { el.hidden = true; el.classList.remove('out'); obLock(false); render(); }, 220); }
   function taxOpen() { var p = st.profile; ob = { step: 2, refine: true, sex: p.sex, preg: !!p.preg, age: String(Math.round(num(p.age))), height: String(Math.round(num(p.height))), weight: String(num(p.weight)).replace('.', ','), act: p.act, goal: p.goal, yemay: [], touched: { age: 1, height: 1, weight: 1 }, anim: null, counted: true, ycounted: true }; obLock(true); showOnb(); }
   function obRefineSave() {
-    var r = obProfile(), np = { sex: r.sex, preg: r.preg, age: r.age, height: r.height, weight: r.weight, act: r.act, goal: r.goal, goalWeight: st.profile.goalWeight || null }; if (S.restrictions(np).keepOnly) np.goal = 'keep';
+    var r = obProfile(), np = { sex: r.sex, preg: r.preg, age: r.age, height: r.height, weight: r.weight, act: r.act, goal: r.goal, goalWeight: st.profile.goalWeight || null }; if (S.restrictions(np).keepOnly) np.goal = 'keep'; if (st.profile.tartib) np.tartib = st.profile.tartib; if (st.profile.protG) np.protG = st.profile.protG;
     st.profile = np; var d = todayStr(); if (st.weights.length === 0 || Math.abs(S.currentWeight(st) - np.weight) > 0.04) S.addWeight(st, d, np.weight); prefs().taxminiy = null; save(); ob = null;
     var el = $('#rzOnb'); el.classList.add('out'); wait(function () { el.hidden = true; el.classList.remove('out'); obLock(false); render(); toast(T('saved'), null, true); }, 220);
   }
@@ -2684,8 +2738,10 @@
       case 'editprof': openProfile(); break;
       case 'wper': { plPrefs().per = el.getAttribute('data-k'); save(); render(); break; }
       case 'plwater': { plPrefs().water = 1; save(); render(); break; }          // «1-hafta: suv» izohi — bir marta; yopsa qayta chiqmaydi
+      case 'jkx': jokeHide(); break;
       case 'plato': openPlato(); break;
       case 'ttopen': openTartib(); break;
+      case 'pftile': pfField(el.getAttribute('data-k')); break;
       case 'ttno': { prefs().ttAsked = 1; save(); render(); break; }
       case 'ttpick': { if (tv) { tv.sel = el.getAttribute('data-k'); var sh0 = $('#rzSheet'), sc0 = sh0.scrollTop; setSheet(ttSheetHtml()); sh0.scrollTop = sc0; } break; }
       case 'ttsave': { if (tv) { ttSet(tv.sel); kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); } break; }
@@ -2693,8 +2749,6 @@
       case 'pgm': { if (pgv) { pgv.g = Math.max(60, Math.min(250, pgv.g + +el.getAttribute('data-d'))); var sh1 = $('#rzSheet'), sc1 = sh1.scrollTop; setSheet(pgSheetHtml()); sh1.scrollTop = sc1; } break; }
       case 'pgsave': { if (pgv) { st.profile.protG = pgv.g; kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); } break; }
       case 'pgauto': { delete st.profile.protG; kit.closeSheet(); commit(); vib(); toast(T('saved'), null, true); break; }
-      case 'obtpick': { if (ob) { ob.tartib = el.getAttribute('data-k'); showOnb(); } break; }
-      case 'obtsave': case 'obtskip': { if (ob) { ob.tartib = a === 'obtskip' ? 'std' : (ob.tartib || 'std'); obFinish(obProfile(), false); } break; }
       case 'pltry': { var kk = el.getAttribute('data-k'); if (plCheckSet(kk)) stEv('plato_belgi', kk.replace(/_.*/, '')); vib(); save(); plRefresh(); plResched(); break; }
       case 'plrem': { var pq = plPrefs(); pq.rem = !pq.rem; pq.remD = todayStr(); save(); plRefresh(); if (pq.rem) { toast(T('plRemOn'), null, true); var px = plRemTxt(); if (NAT && NS.perm !== 'granted' && px) NAT.notif.enable({ id: PL_ID, day: (S.weekdayIdx(todayStr()) + 1) % 7, hour: 12, title: 'KalkiFit', body: natTr(T('plRemToast', { x: px })), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?plato=1' }).then(function (r) { if (r === 'on') NS.perm = 'granted'; else if (r === 'denied') NS.perm = 'denied'; }).catch(function () {}); else plResched(); } else plResched(); break; }
       case 'plsrc': { if (pv) { pv.src = !pv.src; plRefresh(); } break; }
@@ -2895,7 +2949,7 @@
     if (/[?&]plato=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openPlato, 500); }          // «Eslatib turilsin» bildirishnomasi bosildi
     plBootRem(); protStat();
     if (location.hash === '#haqida') aboutOpen(true);
-    window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile, tile: function (fid, name) { return tileHtml(fid, null, name || fid, 34); } };
+    window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile, tile: function (fid, name) { return tileHtml(fid, null, name || fid, 34); }, jokeTest: function (t) { jkPrev(); jFlash = { text: t, rem: JK_MS }; jokeShow(); }, remFull: yzRemFull };          // jokeTest — faqat sinov/skrinshot uchun
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
     if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }

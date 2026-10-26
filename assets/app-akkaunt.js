@@ -138,6 +138,7 @@
     };
     /* ---- Profil tepasida ism: faqat kirgan foydalanuvchida (mehmonda — umuman yo'q) ---- */
     function initial(n) { return Array.from(String(n || '').trim())[0] || ''; }
+    ak.name = function () { ak.load(); return S.yoq && S.kirgan ? (S.ism || '') : ''; };          // ism (kirgan bo'lsa) — KalkiFit Profil hero kartasi
     ak.nameHtml = function () {
       ak.load(); if (!S.yoq || !S.kirgan) return '';
       var t = L();

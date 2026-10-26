@@ -13,7 +13,7 @@
   var GOAL_DELTA = { keep: 0, slow: -275, lose: -550, gain: 275 };           // kcal/kun: −0,25 / −0,5 / +0,25 kg/hafta
   var FLOOR = { m: 1500, f: 1200 };                                          // kunlik maqsadning pastki chegarasi
   var PROTEIN_PER_KG = { keep: 1.6, slow: 1.8, lose: 2.0, gain: 1.8 };
-  var PROTEIN_MAX_SHARE = 0.35, FAT_SHARE = 0.275;
+  var PROTEIN_MAX_SHARE = 0.35, FAT_SHARE = 0.2;          // v50: yog' maqsadi — kunlik kkalning 20% i (pastki chegara, IOM AMDR 20–35%); uglevod — qolgani
   var WATER_ML_PER_KG = 33, GLASS_ML = 250;
   var STRIDE_K = 0.414, MET_WALK = 3.5, WALK_KMH = 5, MET_NET = MET_WALK - 1;           // MET_NET: sof sarf (dam olish sarfisiz)
 var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };                    // faollik darajasiga odatiy kunlik qadam (kam harakat / o'rtacha / faol / juda faol) — me'yorga allaqachon kiritilgan
@@ -41,7 +41,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   }
   function macros(kcal, weight, goal, pg) {          // pg — oqsil maqsadi (protein()); berilmasa eski hisob (moslik uchun)
     var perKg = PROTEIN_PER_KG[goal] || PROTEIN_PER_KG.keep, p = pg > 0 ? pg : Math.min(perKg * weight, PROTEIN_MAX_SHARE * kcal / 4);
-    p = Math.round(p); var f = Math.round(FAT_SHARE * kcal / 9), c = Math.max(0, Math.round((kcal - 4 * p - 9 * f) / 4));
+    p = Math.round(p); var f = Math.ceil(FAT_SHARE * kcal / 9),          /* ≥ 20% (pastga yaxlitlansa chegaradan tushardi) */ c = Math.max(0, Math.round((kcal - 4 * p - 9 * f) / 4));
     return { p: p, f: f, c: c, pKcal: 4 * p, fKcal: 9 * f, cKcal: 4 * c, pPerKg: round1(p / weight) };
   }
   /* ---------- oqsil maqsadi (v48): ozish/vazn olish 1,6 g/kg, saqlash 1,2 g/kg; kg — BMI > 27 bo'lsa bo'ydan tavsiya vazni (BMI 25), aks holda joriy (trend) vazn.
@@ -54,7 +54,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     return { g: g, auto: auto, manual: man >= PROT_MIN_G, ref: ref, perKg: k };
   }
   /* ---------- «Mening tartibim» (v48): kunlik limit ovqat vaqtlariga bo'linadi (limit o'zgarmaydi). Ulushlar: nonushta / tushlik / kechki / tamaddi ---------- */
-  var TARTIB = { std: { b: 30, l: 35, d: 25, s: 10 }, kech: { b: 15, l: 30, d: 45, s: 10 }, nobf: { b: 0, l: 40, d: 45, s: 15 }, erkin: null }, TARTIB_DEF = 'std';
+  var TARTIB = { std: { b: 30, l: 35, d: 25, s: 10 }, kech: { b: 15, l: 30, d: 45, s: 10 }, nobf: { b: 0, l: 40, d: 45, s: 15 }, erkin: null }, TARTIB_DEF = 'erkin';          // v50: standart — «Farqi yo'q» (budjet ko'rinmaydi); tanlaganlarniki saqlanadi
   function tartibOf(p) { var t = p && p.tartib; return TARTIB.hasOwnProperty(t) ? t : TARTIB_DEF; }
   function mealSplit(limit, mode) {                // butun sonlar, yig'indisi AYNAN limitga teng (eng katta qoldiq usuli)
     var sh = TARTIB[mode]; limit = Math.max(0, Math.round(num(limit))); if (!sh) return null;
