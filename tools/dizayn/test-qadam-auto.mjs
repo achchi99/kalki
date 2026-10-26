@@ -61,7 +61,7 @@ try {
   log('Ruxsat → bugungi qadam o\'zi (3 456) + manba nomi, kechagi kun ham; karta bosilsa faqat jami va manba; avtomatik 4 100 ga yangilanadi — o\'zgarmagan bloklar joyida qoladi, animatsiya qayta o\'ynamaydi, reload yo\'q; Tarix\'da kiritish yo\'q');
   /* 5. maqsad va kaloriya avtomatik qiymat bilan */
   await p.evaluate(() => { window.__q.today = 15000; document.dispatchEvent(new Event('visibilitychange')); }); await p.waitForTimeout(400); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(700);
-  assert.equal(await num(p), 15000); assert.ok(await p.locator('#kBurn').count() === 1, 'qadam hisobiga kkal (+)'); const cel = await prefs(p); assert.ok(cel.cel && cel.cel.s === 1, 'kunlik maqsad bajarildi'); assert.deepEqual(p.errs, []);
+  assert.equal(await num(p), 15000); assert.equal(await p.locator('#kBurn').count(), 0, 'v51: ish turi tasdiqlanmagan — qadam me\'yorga qo\'shilmaydi (ikki marta hisoblanmaydi)'); const cel = await prefs(p); assert.ok(cel.cel && cel.cel.s === 1, 'kunlik maqsad bajarildi'); assert.deepEqual(p.errs, []);
   /* 6. Profil: switch (Eslatmalar kabi) — o'chirish / yoqish */
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.match(await p.locator('#qaRow').innerText(), /Qadamni avtomatik sanash\s*Telefon sensori orqali/); assert.equal(await p.locator('#qaRow [role=switch][aria-checked=true]').count(), 1); assert.equal(await p.locator('#qaRow').getByText(/Yoqilgan|O'chirilgan/).count(), 0, 'eski segment yo\'q');
   await p.click('#qaRow [data-act=qatog]'); await p.waitForTimeout(300);

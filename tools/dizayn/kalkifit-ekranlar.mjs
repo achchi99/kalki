@@ -11,7 +11,7 @@ const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.cs
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch());
 function seed(lang, full) {
-  const st = S.emptyState(); st.setup = true; st.created = Date.now() - 3 * 86400000; st.prefs = { tipsDone: true, jokes: true, qa: 'on', lpTip: 1, yemayK: 1, introDone: true, suvFrom: T0 }; st.profile = { sex: 'f', preg: false, age: 30, height: 165, weight: 70, act: 3, goal: 'lose', goalWeight: null }; st.trackStart = D.addDays(T0, -3); S.addWeight(st, T0, 70);
+  const st = S.emptyState(); st.setup = true; st.created = Date.now() - 3 * 86400000; st.prefs = { tipsDone: true, jokes: true, qa: 'on', lpTip: 1, yemayK: 1, introDone: true, suvFrom: T0 }; st.profile = { sex: 'f', preg: false, age: 30, height: 165, weight: 70, act: 3, goal: 'lose', goalWeight: null, job: 'stand' };          /* v51: Android — ish turi tasdiqlangan (qadam krediti bor) */ st.trackStart = D.addDays(T0, -3); S.addWeight(st, T0, 70);
   if (full) { S.addFood(st, T0, { meal: 'b', ts: 1, fid: 'choy', unit: 'piyola', qty: 1, g: 200, kcal: 38, p: 0, f: 0, c: 9, est: false }); S.addFood(st, T0, { meal: 'l', ts: 2, fid: 'osh', unit: 'kosa', qty: 1, g: 300, kcal: 520, p: 18, f: 22, c: 60, est: false }); S.addFood(st, T0, { meal: 'd', ts: 3, fid: null, name: lang === 'ru' ? 'Шовла (половина тарелки, с мясом и морковью)' : "Shovla (yarim tarelka, go'sht va sabzi bilan)", g: 200, kcal: 290, p: 9, f: 10, c: 40, est: true }); S.setWater(st, T0, 3); }
   return st;
 }
@@ -194,6 +194,13 @@ try {
       if (!o.pr || o.old) fails.push(tag + ' oqsil kartasi: ' + JSON.stringify(o)); if (!o.sub.some((x) => /\d+ \/ \d+|qoldirilgan|оставлено|қолдирилган/.test(x))) fails.push(tag + ' ovqat budjeti ko\'rinmaydi: ' + o.sub.join(' | '));
       await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); await p.click('[data-act=ttopen]'); await p.waitForTimeout(700); await scan(p, 'Mening tartibim', '#rzSheet'); await shot(p, 'tartib-oyna'); if (OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET4)) await yonma4(p, c.th, 'tartib-maket-1', 0);
       if (p.errs.length) fails.push(tag + ' JS (tartib): ' + p.errs[0]); await p.context().close(); }
+    /* v51: mavjud Android — ish turi kartasi → oyna (Hozirgi → Yangi) → tasdiqlash → (i) formula va qatorlar (docs/limit.md) */
+    { const st = seed(c.lang, true); delete st.profile.job; st.prefs.ttAsked = 1; st.prefs.h_hafta = Date.now(); st.prefs.h_backup = Date.now();
+      p = await mk(st); await p.waitForTimeout(400); if (!(await p.locator('#jbCard').count())) fails.push(tag + ' v51: ish turi kartasi yo\'q');
+      else { await scan(p, 'Ish turi kartasi', '#rzMain'); await shot(p, 'v51-karta'); await p.click('#jbCard [data-act=jbopen]'); await p.waitForTimeout(600); await p.click('#rzSheet [data-act=jbpick][data-v=stand]'); await p.waitForTimeout(400);
+        await scan(p, 'Ish turi oynasi', '#rzSheet'); await shot(p, 'v51-oyna'); await p.click('#rzSheet [data-act=jbok]'); await p.waitForTimeout(600); }
+      await p.click('#kcalBtn'); await p.waitForTimeout(700); await scan(p, 'Me\'yor (i)', '#rzSheet'); await shot(p, 'v51-xkcal');
+      if (p.errs.length) fails.push(tag + ' JS (v51): ' + p.errs[0]); await p.context().close(); }
     console.log('✓', tag);
   }
 } finally { await b.close(); srv.close(); }

@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 51,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Kunlik me'yor aniqroq",
+    "ru": "Дневная норма точнее"
+   },
+   "items": [
+    {
+     "uz": "Qadamlar endi ikki marta hisoblanmaydi, me'yor aniqroq.",
+     "ru": "Шаги больше не учитываются дважды — норма точнее.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 50,
    "d": "2026-10-26",
    "bn": {

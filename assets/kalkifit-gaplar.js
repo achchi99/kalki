@@ -102,7 +102,7 @@
   }
   function todayLine(ctx) {                        // Bugun ekrani (kaloriya doirasi ostidagi pufak) uchun BITTA qator; mos holat bo'lmasa ham kunlik umumiy hazil (hazil o'chirilgan bo'lsa — null)
     if (ctx.jokesOn === false) return null;
-    var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = S.plan(st.profile), tot = S.sumEntries(x.food), eaten = tot.kcal, lim = S.dayLimit(st, t), D = S.dates, hour = ctx.hour == null ? 12 : ctx.hour;
+    var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = (S.planSt ? S.planSt(st) : S.plan(st.profile)), tot = S.sumEntries(x.food), eaten = tot.kcal, lim = S.dayLimit(st, t), D = S.dates, hour = ctx.hour == null ? 12 : ctx.hour;
     var P = function (state, par) { return pickLine(ctx, state, par || {}, state); }, K = x.food.map(function (e) { return kindOf(ctx, e); }), cnt = function (k) { return K.filter(function (q) { return q[k]; }).length; };
     if (isHoliday(t, D) || x.party) return P('holiday');
     var on = overRun(ctx); if (on) return on;
@@ -142,7 +142,7 @@
   function neutralLine(ctx, kind, p) { var n = NEUTRAL[kind], t = n && (n[ctx.lang] || n.uz); return t ? { state: 'neutral_' + kind, text: fill(t, p) } : null; }
   /* Hodisadan keyingi bir qatorli gap: kind = food | water | steps | weight | dayend. Hazil o'chirilgan bo'lsa shu vaziyat uchun NEUTRAL fakt qaytadi. */
   function eventLine(ctx, kind, p) {
-    p = p || {}; var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = S.plan(st.profile), eaten = S.sumEntries(x.food).kcal, lim = S.dayLimit(st, t), hour = ctx.hour == null ? 12 : ctx.hour, sk = S.streak(st, t);
+    p = p || {}; var S = ctx.S, st = ctx.st, t = ctx.today, x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, pl = (S.planSt ? S.planSt(st) : S.plan(st.profile)), eaten = S.sumEntries(x.food).kcal, lim = S.dayLimit(st, t), hour = ctx.hour == null ? 12 : ctx.hour, sk = S.streak(st, t);
     var jc = {}; Object.keys(ctx).forEach(function (k) { jc[k] = ctx[k]; }); jc.fresh = true; jc.jokesOn = true; var state = null, par = {}, nk = kind, np = {};
     if (kind === 'food') {
       nk = 'food'; np = { eaten: nf(eaten) };

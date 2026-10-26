@@ -23,7 +23,7 @@ function build(kind, S, today) {
     } else hidden += 1700 * eat;
     if (kind === 'ios') hidden += 350;          // qadamsiz, porsiyalar «ko'z bilan»
     if (kind === 'demo') hidden += 150;
-    const spend = pl.tdee + S.stepCredit(x.steps || 0, 178, kg, 2) - (kind === 'qadam' || kind === 'demo' ? (i <= 14 ? 120 : 0) : 0);          // dietada harakat kamayishi (NEAT)
+    const spend = pl.tdee + 0 - (kind === 'qadam' || kind === 'demo' ? (i <= 14 ? 120 : 0) : 0);          // dietada harakat kamayishi (NEAT)
     kg -= (spend - logged - hidden) / 7700 + (kind === 'demo' && i > N - 7 ? 0.3 : 0);          // demo: 1-haftada suv
     W.push([d, kg]);
   }

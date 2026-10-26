@@ -7,7 +7,7 @@
   /* S — KalkiFit core; end — haftaning oxirgi kuni (odatda bugun, yakshanba) */
   function summary(S, st, end, today) {
     var D = S.dates, days = [], i; today = today || end; for (i = 6; i >= 0; i--) days.push(D.addDays(end, -i));
-    var pl = S.plan(st.profile), rows = days.map(function (d) {
+    var pl = S.planSt ? S.planSt(st) : S.plan(st.profile), rows = days.map(function (d) {
       var x = S.dayOf(st, d) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), ds = S.dayStatus(st, d, today), wi = S.waterInfo ? S.waterInfo(st, d) : { ml: (x.water || 0) * S.GLASS_ML };
       return { d: d, food: x.food.length, kcal: tot.kcal, p: tot.p, steps: x.steps || 0, ml: wi.ml || 0, state: ds.state, limit: ds.limit || S.dayLimit(st, d) };
     });

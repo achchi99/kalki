@@ -97,7 +97,7 @@ try {
   p = await open(mk({ eaten: 1900, yemay: ['baliq'] })); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.click('#mnAdd'); await shoot(p);
   const left = await p.evaluate(() => window.__kalkifit.state && null); void left; const t2 = await txt(p, '#mnList'); assert.ok(!/Baliq|Рыба/i.test(t2), 'yemaydiganlar (baliq) — yo\'q: ' + t2);
   const ks2 = await p.$$eval('#mnList .sl-mnr .tm:not(.sl-mndb)', (l) => l.map((e) => +((e.textContent.match(/([\d ]+) kkal/) || [])[1] || '0').replace(/\D/g, '')));
-  const lim = await p.evaluate(() => { const K = window.__kalkifit, st = K.state, S = K.S; const t = Object.keys(st.days).sort().pop(), x = st.days[t], pl = S.plan(st.profile), tot = S.sumEntries(x.food); return S.dayBalance(pl.target, tot.kcal, x.steps || 0, 175, 80, 3).remaining; });
+  const lim = await p.evaluate(() => { const K = window.__kalkifit, st = K.state, S = K.S; const t = Object.keys(st.days).sort().pop(), x = st.days[t], tot = S.sumEntries(x.food); return S.dayBalance(st, t, tot.kcal).remaining; });
   assert.ok(ks2.length >= 1, 'variant bor'); if (lim > 0) assert.ok(ks2.every((k) => k <= lim), 'qoldiqqa sig\'adi: ' + lim + ' / ' + ks2); else assert.ok(ks2.length <= 3); await p.context().close();
   log('«Yemaydiganlarim» (baliq) hisobga olinadi; qoldiq kkal bo\'yicha tanlanadi');
   /* Yeymiz → Kafe → menyu; limit; RU */

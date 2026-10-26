@@ -16,7 +16,7 @@
   var PROTEIN_MAX_SHARE = 0.35, FAT_SHARE = 0.2;          // v50: yog' maqsadi — kunlik kkalning 20% i (pastki chegara, IOM AMDR 20–35%); uglevod — qolgani
   var WATER_ML_PER_KG = 33, GLASS_ML = 250;
   var STRIDE_K = 0.414, MET_WALK = 3.5, WALK_KMH = 5, MET_NET = MET_WALK - 1;           // MET_NET: sof sarf (dam olish sarfisiz)
-var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };                    // faollik darajasiga odatiy kunlik qadam (kam harakat / o'rtacha / faol / juda faol) — me'yorga allaqachon kiritilgan
+var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // ESKI (v50 gacha) — faqat eski testlar/ko'rsatkich uchun; limitda ishlatilmaydi                    // faollik darajasiga odatiy kunlik qadam (kam harakat / o'rtacha / faol / juda faol) — me'yorga allaqachon kiritilgan
   var MEALS = ['b', 'l', 'd', 's'];                                          // nonushta, tushlik, kechki ovqat, gazak
   var LIMITS = { age: [10, 100], height: [120, 230], weight: [30, 250] };
 
@@ -95,13 +95,28 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     return { mode: mode, meals: meals, now: tgt, note: saved >= 50 ? { k: saved, from: got.map(function (x) { return x.from; }).filter(function (v, i, a) { return a.indexOf(v) === i; }) } : null, took: tookFrom, dayOver: eatenAll > limit, limit: limit };
   }
   function water(weight) { var ml = Math.round(WATER_ML_PER_KG * weight); return { ml: ml, glasses: Math.max(1, Math.round(ml / GLASS_ML)), glassMl: GLASS_ML }; }
-  function plan(p) {
-    var w = num(p.weight), h = num(p.height), a = num(p.age), sex = p.sex === 'f' ? 'f' : 'm';
+  /* ---------- v51: KUNLIK ME'YOR — YAGONA MODEL (docs/limit.md) ----------
+     limit = BMR (Mifflin–St Jeor) × koeff + shaxsiy tuzatish + qadam krediti ± maqsad, pastki chegaradan (S.FLOOR) past emas.
+     Koeff: Android ilovada (ish turi tanlangan va qadam yoqilgan) — ISH TURI (yurishsiz, kundalik hayot; shu turga kiritilgan qadam bazasi bilan), aks holda — umumiy faollik (ACT, yurish ichida) va kredit 0.
+     Qadam krediti: max(0, qadam − baza) × bo'y × 0,415 / 1000 km × vazn × 0,5 kkal/kg/km (ACSM sof) × 0,7, kuniga ≤ 500. Bazadan kam qadam ayirilmaydi. */
+  var LIM = {
+    JOB: { sit: { k: 1.40, base: 5000 }, stand: { k: 1.60, base: 7500 }, heavy: { k: 1.85, base: 10000 } },          // FAO/WHO/UNU 2004 PAL (sedentary/light 1,40–1,69, active 1,70–1,99) + Tudor-Locke qadam toifalari (<5 000 / 7 500 / 10 000)
+    JOB_ACT: { sit: 2, stand: 3, heavy: 5 },          // qadam o'chsa — mos umumiy daraja (yurish ichida)
+    STRIDE: 0.415, WALK: 0.5, CRED_K: 0.7, CRED_MAX: 500,
+    CORR_MAX: 1000
+  };
+  function jobOn(st) { var p = st && st.profile; return !!(p && LIM.JOB[p.job] && st.prefs && st.prefs.qa === 'on'); }          // ish turi modeli: Android'da tasdiqlangan ish turi + avtomatik qadam yoqilgan
+  function creditOf(steps, height, weight, base) {
+    var extra = Math.max(0, Math.round(num(steps)) - base); if (!extra) return 0;
+    return Math.min(LIM.CRED_MAX, Math.round(extra * num(height) * LIM.STRIDE / 100 / 1000 * num(weight) * LIM.WALK * LIM.CRED_K));
+  }
+  function plan(p, o) {
+    var w = num(p.weight), h = num(p.height), a = num(p.age), sex = p.sex === 'f' ? 'f' : 'm', job = !!(o && o.job) && LIM.JOB[p.job] ? p.job : null;
     var r = restrictions(p), goal = r.keepOnly ? 'keep' : (GOAL_DELTA[p.goal] != null ? p.goal : 'keep');
-    var bmr = bmrRaw(sex, w, h, a), tdee = Math.round(bmr * (ACT[p.act] || ACT[1]));
+    var kk = job ? LIM.JOB[job].k : (ACT[p.act] || ACT[1]), corr = Math.max(-LIM.CORR_MAX, Math.min(LIM.CORR_MAX, Math.round(num(p.corr)))), bmr = bmrRaw(sex, w, h, a), base0 = Math.round(bmr * kk), tdee = base0 + corr;
     var delta = GOAL_DELTA[goal], raw = tdee + delta, floorMin = FLOOR[sex], target = raw, floorApplied = false;
     if (delta < 0 && raw < floorMin) { target = floorMin; floorApplied = true; }
-    var out = { sex: sex, bmrRaw: bmr, bmr: Math.round(bmr), act: p.act, actK: ACT[p.act] || ACT[1], tdee: tdee, goal: goal, goalAsked: p.goal, goalOverridden: goal !== p.goal, delta: delta, rawTarget: raw,
+    var out = { sex: sex, bmrRaw: bmr, bmr: Math.round(bmr), act: p.act, actK: kk, job: job, jobBase: job ? LIM.JOB[job].base : 0, base0: base0, corr: corr, tdee: tdee, goal: goal, goalAsked: p.goal, goalOverridden: goal !== p.goal, delta: delta, rawTarget: raw,
       target: target, floorApplied: floorApplied, floorMin: floorMin, kgPerWeek: Math.round((target - tdee) * 7 / KCAL_PER_KG * 100) / 100, bmi: round1(bmi(w, h)), restrictions: r, doctor: r.keepOnly, notes: [] };
     out.protein = protein(p, w); out.macros = macros(target, w, goal, out.protein.g); out.water = water(w);
     if (r.under18) out.notes.push('under18'); if (r.preg) out.notes.push('preg'); if (r.lowBmi) out.notes.push('lowBmi'); if (floorApplied) out.notes.push('floor');
@@ -114,7 +129,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   function stepKcal(steps, height, weight) { return Math.round(MET_WALK * weight * (distanceKm(steps, height) / WALK_KMH)); }
   function stepBase(act) { return STEP_BASE[act] || STEP_BASE[2]; }
   function extraSteps(steps, act) { return Math.max(0, Math.round(num(steps)) - stepBase(act)); }                      // odatiy chegaradan ORTIQ qadamlar
-  function stepCredit(steps, height, weight, act) { return Math.round(MET_NET * weight * (distanceKm(extraSteps(steps, act), height) / WALK_KMH)); }   // faqat ortiqcha qadamlar uchun, to'liq sof qiymat (50% emas)
+  function stepCredit(steps, height, weight, base) { return creditOf(steps, height, weight, base == null ? 0 : base); }          // v51: yagona kredit formulasi (creditOf)
   var ROUTES = [                                                            // taxminiy yo'l masofalari (km): taqqoslash uchun
     [35, 'Toshkent — Chirchiq', 'Ташкент — Чирчик'], [90, 'Qarshi — Shahrisabz', 'Карши — Шахрисабз'], [120, 'Toshkent — Guliston', 'Ташкент — Гулистан'],
     [190, 'Toshkent — Jizzax', 'Ташкент — Джизак'], [270, 'Samarqand — Buxoro', 'Самарканд — Бухара'], [300, 'Toshkent — Samarqand', 'Ташкент — Самарканд'], [450, 'Buxoro — Xiva', 'Бухара — Хива']
@@ -126,10 +141,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   }
 
   /* ---------- kun balansi ---------- */
-  function dayBalance(target, eaten, steps, height, weight, act) {
-    var sk = stepKcal(steps, height, weight), credit = stepCredit(steps, height, weight, act);
-    return { target: target, eaten: eaten, stepKcal: sk, credit: credit, base: stepBase(act), extraSteps: extraSteps(steps, act), remaining: target - eaten + credit };
-  }
+  function dayBalance(st, d, eaten) { var dp = dayPlan(st, d); return { target: dp.target, eaten: eaten, credit: Math.max(0, dp.limit - dp.target), base: dp.base, extraSteps: dp.extra, limit: dp.limit, remaining: dp.limit - eaten, dp: dp }; }          // v51: dayPlan ustida
 
   /* ---------- ovqat hisobi ---------- */
   function portion(food, grams) {                    // food: 100 g uchun k,p,f,c; grams → yozuv qiymatlari
@@ -176,10 +188,15 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   }
 
   /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
-  function dayLimit(st, d) {                       // shu kun uchun maqsad = me'yor + odatiy qadamdan ORTIQ qadamlarning sof kaloriyasi
-    var pl = plan(st.profile), x = dayOf(st, d), steps = x ? x.steps || 0 : 0;
-    return pl.target + stepCredit(steps, num(st.profile.height), currentWeight(st), st.profile.act);
+  function planSt(st) { return plan(st.profile, { job: jobOn(st) }); }
+  /* BITTA manba: shu kun uchun to'liq hisob (halqa, budjetlar, «Nima yesam», plato, Haftangiz, (i) — hammasi shundan) */
+  function dayPlan(st, d, stepsOver) {
+    var pl = planSt(st), x = d ? dayOf(st, d) : null, steps = stepsOver != null ? num(stepsOver) : (x ? x.steps || 0 : 0), h = num(st.profile.height), w = currentWeight(st) || num(st.profile.weight);
+    var credit = pl.job ? creditOf(steps, h, w, pl.jobBase) : 0, spend = pl.tdee + credit, raw = spend + pl.delta, limit = raw, floorAdd = 0;
+    if (pl.delta < 0 && raw < pl.floorMin) { floorAdd = pl.floorMin - raw; limit = pl.floorMin; }
+    return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: pl.job ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, credit: credit, spend: spend, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
   }
+  function dayLimit(st, d) { return dayPlan(st, d).limit; }
   function logged(st, d) { var x = dayOf(st, d); return !!(x && (x.food.length || x.steps > 0)); }
   function hasData(x) { return !!(x && (x.food.length || x.steps > 0 || x.water > 0)); }
   function trackStart(st) {                        // kuzatuv boshlanishi: profil yaratilgan kun; eski foydalanuvchida — eng birinchi yozuv sanasi
@@ -291,6 +308,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     s.profile = raw.profile && typeof raw.profile === 'object' ? { sex: raw.profile.sex === 'f' ? 'f' : 'm', preg: !!raw.profile.preg, age: num(raw.profile.age), height: num(raw.profile.height), weight: num(raw.profile.weight), act: ACT[raw.profile.act] ? +raw.profile.act : 2, goal: GOAL_DELTA[raw.profile.goal] != null ? raw.profile.goal : 'keep', goalWeight: num(raw.profile.goalWeight) || null } : null;
     if (s.profile && TARTIB.hasOwnProperty(raw.profile.tartib)) s.profile.tartib = raw.profile.tartib;          // v48: «Mening tartibim» va qo'lda oqsil maqsadi (yo'q bo'lsa — standart, avtomatik)
     if (s.profile && num(raw.profile.protG) >= PROT_MIN_G) s.profile.protG = Math.min(PROT_MAX_G, Math.round(num(raw.profile.protG)));
+    if (s.profile && LIM.JOB[raw.profile.job]) s.profile.job = raw.profile.job;          // v51: Android ish turi (tasdiqlangan) va shaxsiy tuzatish (adaptiv me'yor)
+    if (s.profile && num(raw.profile.corr) && Math.abs(num(raw.profile.corr)) <= LIM.CORR_MAX) s.profile.corr = Math.round(num(raw.profile.corr));
     if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     Object.keys(s.days).forEach(function (d) { s.days[d].food.forEach(function (e) { if (!e.fid && typeof e.name === 'string' && !e.pt) { var sp = ptSplit(e.name); if (sp.pt) { e.name = sp.n; e.pt = sp.pt.slice(0, 60); } } }); });          // nomga yopishgan porsiya → `pt`
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
@@ -633,7 +652,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayPlan: dayPlan, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });
