@@ -37,7 +37,7 @@ try {
   assert.equal(d.left, 0); assert.equal(d.w, Math.round(Math.min(390 * 0.86, 360))); assert.equal(d.h, 800); assert.notEqual(d.rad, '0px'); assert.equal(d.radL, '0px'); assert.ok(d.ov && d.blur, 'fon xiralashgan va blur'); assert.equal(d.role, 'dialog'); assert.ok(d.focus, 'fokus ✕ da');
   assert.deepEqual(d.secs.map((x) => x.toLowerCase()), ["tez qo'shish", 'natijalar', 'ovqat tanlash', 'mening', "sog'liq"]);
   assert.deepEqual(d.tiles, ['ovoz:15 ta qoldi', 'rasm:4 ta qoldi', 'menyu:4 ta qoldi']); assert.equal(d.keys.length, d.cnt, 'nishon soni = panel elementlari'); assert.equal(d.foot, "Tanishtiruvni qayta ko'rish"); assert.ok(d.its > 8 && /ms$/.test(d.dly), 'elementlar ketma-ket paydo bo\'ladi');
-  assert.deepEqual(d.keys, ['ovoz', 'rasm', 'menyu', 'hafta', 'kunkarta', 'ulashish', 'yeymiz', 'yesam', 'retsept', 'odatdagi', 'taomlarim', 'idishlar', 'supp']);
+  assert.deepEqual(d.keys, ['ovoz', 'rasm', 'menyu', 'hafta', 'kunkarta', 'ulashish', 'yeymiz', 'yesam', 'retsept', 'odatdagi', 'taomlarim', 'idishlar', 'tartib', 'supp']);          // v48: «Mening tartibim» — «Mening» guruhida
   ok('panel chapdan: kenglik min(86vw, 360), o\'ng burchaklari yumaloq, fon xira + blur, fokus ✕; guruhlar maketdagidek; Ovoz/Rasm/Menyu limiti bilan; son = ' + d.cnt);
   /* 3. yopish: ✕, fon, Escape, chapga surish, Android «orqaga» */
   await p.click('#ftDr .ft-x'); await closedAfter(p, '✕'); assert.equal(await p.evaluate(() => document.activeElement && document.activeElement.id), 'ftBtn', 'fokus tugmaga qaytdi');

@@ -39,10 +39,59 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     r.keepOnly = r.under18 || r.preg || r.lowBmi;
     return r;
   }
-  function macros(kcal, weight, goal) {
-    var perKg = PROTEIN_PER_KG[goal] || PROTEIN_PER_KG.keep, p = Math.min(perKg * weight, PROTEIN_MAX_SHARE * kcal / 4);
+  function macros(kcal, weight, goal, pg) {          // pg — oqsil maqsadi (protein()); berilmasa eski hisob (moslik uchun)
+    var perKg = PROTEIN_PER_KG[goal] || PROTEIN_PER_KG.keep, p = pg > 0 ? pg : Math.min(perKg * weight, PROTEIN_MAX_SHARE * kcal / 4);
     p = Math.round(p); var f = Math.round(FAT_SHARE * kcal / 9), c = Math.max(0, Math.round((kcal - 4 * p - 9 * f) / 4));
     return { p: p, f: f, c: c, pKcal: 4 * p, fKcal: 9 * f, cKcal: 4 * c, pPerKg: round1(p / weight) };
+  }
+  /* ---------- oqsil maqsadi (v48): ozish/vazn olish 1,6 g/kg, saqlash 1,2 g/kg; kg — BMI > 27 bo'lsa bo'ydan tavsiya vazni (BMI 25), aks holda joriy (trend) vazn.
+     Yuqori chegara 2,2 g/kg, 10 g ga yaxlitlanadi; qo'lda (profile.protG) 60–250 g. Plato tahlili ham AYNAN shu funksiyadan foydalanadi. Manbalar: docs/tartib.md */
+  var PROT_K = { lose: 1.6, slow: 1.6, gain: 1.6, keep: 1.2 }, PROT_MAX = 2.2, PROT_MIN_G = 60, PROT_MAX_G = 250, REF_BMI = 27, REF_TO = 25;
+  function refWeight(p, kg) { var h = num(p && p.height) / 100, w = num(kg) || num(p && p.weight); return h > 0 && w / (h * h) > REF_BMI ? Math.round(REF_TO * h * h * 10) / 10 : w; }
+  function protein(p, kg) {
+    var ref = refWeight(p, kg), goal = (restrictions(p).keepOnly ? 'keep' : p && p.goal) || 'keep', k = PROT_K[goal] || PROT_K.keep;
+    var auto = Math.round(Math.min(k, PROT_MAX) * ref / 10) * 10, man = num(p && p.protG), g = man >= PROT_MIN_G ? Math.min(PROT_MAX_G, Math.round(man)) : auto;
+    return { g: g, auto: auto, manual: man >= PROT_MIN_G, ref: ref, perKg: k };
+  }
+  /* ---------- «Mening tartibim» (v48): kunlik limit ovqat vaqtlariga bo'linadi (limit o'zgarmaydi). Ulushlar: nonushta / tushlik / kechki / tamaddi ---------- */
+  var TARTIB = { std: { b: 30, l: 35, d: 25, s: 10 }, kech: { b: 15, l: 30, d: 45, s: 10 }, nobf: { b: 0, l: 40, d: 45, s: 15 }, erkin: null }, TARTIB_DEF = 'std';
+  function tartibOf(p) { var t = p && p.tartib; return TARTIB.hasOwnProperty(t) ? t : TARTIB_DEF; }
+  function mealSplit(limit, mode) {                // butun sonlar, yig'indisi AYNAN limitga teng (eng katta qoldiq usuli)
+    var sh = TARTIB[mode]; limit = Math.max(0, Math.round(num(limit))); if (!sh) return null;
+    var raw = MEALS.map(function (m) { return limit * sh[m] / 100; }), out = {}, fl = raw.map(Math.floor), left = limit - fl.reduce(function (a, b) { return a + b; }, 0);
+    raw.map(function (v, i) { return [v - fl[i], i]; }).sort(function (a, b) { return b[0] - a[0] || a[1] - b[1]; }).slice(0, left).forEach(function (x) { fl[x[1]]++; });
+    MEALS.forEach(function (m, i) { out[m] = fl[i]; }); return out;
+  }
+  /* ovqat vaqti budjetlari + qoldiq o'tkazish.  o = { limit, mode, eaten: {b,l,d,s}, min (kun daqiqasi, 0–1439) }
+     Tartib vaqtda: nonushta (10:30 gacha) → tushlik (15:30 gacha) → kechki (23:00 gacha); tamaddi — butun kun (o'tib ketmaydi).
+     O'tib ketgan ovqat vaqtining farqi (tejalgan +, oshgan −) keyingi, hali o'tmagan ovqatlarga ULUSHIGA qarab o'tadi; hozirgi/keyingi ovqatda oshgani darhol keyingilardan olinadi.
+     Budjet hech qachon 0 dan past bo'lmaydi. Ulushi 0 bo'lgan ovqat (nonushtasiz tartibda nonushta) yozilsa — farq avval TUSHLIKdan olinadi. */
+  var MEAL_END = { b: 630, l: 930, d: 1380 }, CARRY_ORD = ['b', 'l', 'd', 's'];
+  function mealBudgets(o) {
+    var mode = TARTIB[o.mode] ? o.mode : (o.mode === 'erkin' ? 'erkin' : TARTIB_DEF), sh = TARTIB[mode], limit = Math.max(0, Math.round(num(o.limit))), ea = o.eaten || {}, min = o.min == null ? 720 : o.min;
+    if (!sh) return { mode: mode, meals: null };
+    var base = mealSplit(limit, mode), bud = {}, st = {}, now = mealByHour(Math.floor(min / 60), min % 60), moves = [];
+    MEALS.forEach(function (m) { bud[m] = base[m]; st[m] = m !== 's' && min >= MEAL_END[m] ? 'past' : (m === now ? 'now' : 'next'); });
+    if (min >= MEAL_END.d) st.s = 'now';
+    var give = function (from, amt) {                                    // amt > 0 — tejalgan, < 0 — oshgan; ulushiga qarab keyingilarga
+      var idx = CARRY_ORD.indexOf(from), rcp = CARRY_ORD.slice(idx + 1).filter(function (m) { return st[m] !== 'past' && sh[m] > 0; });
+      if (!rcp.length) return;
+      if (amt < 0 && sh[from] === 0 && rcp.indexOf('l') > -1) {           // nonushtasiz tartibda yozilgan nonushta — avval tushlikdan
+        var take = Math.min(bud.l, -amt); bud.l -= take; moves.push({ from: from, to: 'l', k: -take }); amt += take; if (amt >= 0) return; rcp = rcp.filter(function (m) { return m !== 'l'; }); if (!rcp.length) return;
+      }
+      var tot = rcp.reduce(function (a, m) { return a + sh[m]; }, 0), rest = amt;
+      rcp.forEach(function (m, i) { var part = i === rcp.length - 1 ? rest : Math.round(amt * sh[m] / tot); rest -= part; var nb = Math.max(0, bud[m] + part); moves.push({ from: from, to: m, k: nb - bud[m] }); bud[m] = nb; });
+    };
+    CARRY_ORD.forEach(function (m) {
+      var e = Math.round(num(ea[m]));
+      if (st[m] === 'past') give(m, bud[m] - e);
+      else if (e > bud[m]) give(m, bud[m] - e);
+    });
+    var meals = {}; MEALS.forEach(function (m) { var e = Math.round(num(ea[m])); meals[m] = { share: sh[m], base: base[m], budget: bud[m], eaten: e, left: Math.max(0, bud[m] - e), state: st[m], over: e > bud[m] ? e - bud[m] : 0 }; });
+    var tgt = st[now] === 'past' ? null : now, got = moves.filter(function (x) { return x.to === tgt && x.k > 0; }), saved = got.reduce(function (a, x) { return a + x.k; }, 0);
+    var tookFrom = {}; moves.forEach(function (x) { if (x.k < 0) { if (!tookFrom[x.from] || x.k < tookFrom[x.from].k) tookFrom[x.from] = { to: x.to, k: x.k }; } });
+    var eatenAll = MEALS.reduce(function (a, m) { return a + Math.round(num(ea[m])); }, 0);
+    return { mode: mode, meals: meals, now: tgt, note: saved >= 50 ? { k: saved, from: got.map(function (x) { return x.from; }).filter(function (v, i, a) { return a.indexOf(v) === i; }) } : null, took: tookFrom, dayOver: eatenAll > limit, limit: limit };
   }
   function water(weight) { var ml = Math.round(WATER_ML_PER_KG * weight); return { ml: ml, glasses: Math.max(1, Math.round(ml / GLASS_ML)), glassMl: GLASS_ML }; }
   function plan(p) {
@@ -53,7 +102,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     if (delta < 0 && raw < floorMin) { target = floorMin; floorApplied = true; }
     var out = { sex: sex, bmrRaw: bmr, bmr: Math.round(bmr), act: p.act, actK: ACT[p.act] || ACT[1], tdee: tdee, goal: goal, goalAsked: p.goal, goalOverridden: goal !== p.goal, delta: delta, rawTarget: raw,
       target: target, floorApplied: floorApplied, floorMin: floorMin, kgPerWeek: Math.round((target - tdee) * 7 / KCAL_PER_KG * 100) / 100, bmi: round1(bmi(w, h)), restrictions: r, doctor: r.keepOnly, notes: [] };
-    out.macros = macros(target, w, goal); out.water = water(w);
+    out.protein = protein(p, w); out.macros = macros(target, w, goal, out.protein.g); out.water = water(w);
     if (r.under18) out.notes.push('under18'); if (r.preg) out.notes.push('preg'); if (r.lowBmi) out.notes.push('lowBmi'); if (floorApplied) out.notes.push('floor');
     return out;
   }
@@ -239,6 +288,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     var s = emptyState(); if (v === 0 && !raw.profile && !raw.days && !raw.log) return null;
     s.setup = !!raw.setup || !!raw.profile; s.created = raw.created || null; s.seq = Math.max(1, Math.round(num(raw.seq)) || 1);
     s.profile = raw.profile && typeof raw.profile === 'object' ? { sex: raw.profile.sex === 'f' ? 'f' : 'm', preg: !!raw.profile.preg, age: num(raw.profile.age), height: num(raw.profile.height), weight: num(raw.profile.weight), act: ACT[raw.profile.act] ? +raw.profile.act : 2, goal: GOAL_DELTA[raw.profile.goal] != null ? raw.profile.goal : 'keep', goalWeight: num(raw.profile.goalWeight) || null } : null;
+    if (s.profile && TARTIB.hasOwnProperty(raw.profile.tartib)) s.profile.tartib = raw.profile.tartib;          // v48: «Mening tartibim» va qo'lda oqsil maqsadi (yo'q bo'lsa — standart, avtomatik)
+    if (s.profile && num(raw.profile.protG) >= PROT_MIN_G) s.profile.protG = Math.min(PROT_MAX_G, Math.round(num(raw.profile.protG)));
     if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     Object.keys(s.days).forEach(function (d) { s.days[d].food.forEach(function (e) { if (!e.fid && typeof e.name === 'string' && !e.pt) { var sp = ptSplit(e.name); if (sp.pt) { e.name = sp.n; e.pt = sp.pt.slice(0, 60); } } }); });          // nomga yopishgan porsiya → `pt`
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
@@ -572,7 +623,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
   }
 
   return { VERSION: VERSION, ACT: ACT, setSuv: setSuv, suvShare: suvShare, waterInfo: waterInfo, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
-    bmrRaw: bmrRaw, bmi: bmi, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
+    bmrRaw: bmrRaw, bmi: bmi, refWeight: refWeight, protein: protein, PROT_K: PROT_K, TARTIB: TARTIB, TARTIB_DEF: TARTIB_DEF, tartibOf: tartibOf, mealSplit: mealSplit, mealBudgets: mealBudgets, MEAL_END: MEAL_END, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
