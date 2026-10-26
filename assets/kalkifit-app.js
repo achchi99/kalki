@@ -674,7 +674,8 @@
   }
   /* ---------- «Vazn trendi» + «Nega sekin ozyapman?» (assets/kalkifit-plato.js; maket ~/plato-maket.html). AI yo'q — hisob qurilmada, foydalanuvchining o'z yozuvlaridan ---------- */
   var PL = window.KalkiPlato || null, PL_ID = 7003, PL_PER = { p28: 28, p91: 91, all: 0 };
-  function plPrefs() { var p = prefs(); if (!p.plato || typeof p.plato !== 'object') p.plato = {}; return p.plato; }
+  function plPrefs() { var p = prefs(); if (!p.plato || typeof p.plato !== 'object') p.plato = {}; return p.plato; }          // yozish uchun (yaratadi)
+  function plGet() { var p = prefs().plato; return p && typeof p === 'object' ? p : {}; }          // faqat o'qish — holatni o'zgartirmaydi
   function plSign(x, d) { return (x > 0 ? '+' : x < 0 ? '−' : '') + dec(Math.abs(x), d == null ? 1 : d); }
   function kg1(x) { return (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }          // «84,0» — trend vazni doim bitta kasr bilan
   function plAn() { return PL ? PL.analyze({ st: st, S: S, today: todayStr() }) : null; }
@@ -689,7 +690,7 @@
     return '<svg class="sl-wchart pl-ch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(T('plTrendT') + ': ' + dec(sm.kg, 1) + ' ' + KG()) + '">' + band + '<g class="gr">' + grid + '</g>' + ser.map(function (s) { return '<circle class="dot" cx="' + X(s.d).toFixed(1) + '" cy="' + Y(s.kg).toFixed(1) + '" r="3.5"/>'; }).join('') + (sm.span >= 6 ? '<path class="avg" d="' + line + '" pathLength="1"/>' : '') + '</svg>' + (all.length ? '' : '');
   }
   function weightCardHtml() {
-    var cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), pk = plPrefs().per || 'p28', sm = PL && st.weights.length ? PL.summary(st.weights, todayStr(), PL_PER[pk], Dt) : null;
+    var cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), pk = plGet().per || 'p28', sm = PL && st.weights.length ? PL.summary(st.weights, todayStr(), PL_PER[pk], Dt) : null;
     var wjoke = G && prefs().jokes !== false ? G.weightLine(jokeCtx(false)) : null; if (wjoke) saveQuiet();
     var tr = !!(sm && sm.ser.length >= 2 && Dt.daysBetween(sm.ser[0].d, sm.ser[sm.ser.length - 1].d) >= 6), lose = PL && PL.isLose(st), good = sm && (lose ? sm.change < 0 : (st.profile.goal === 'gain' ? sm.change > 0 : Math.abs(sm.change) < 0.5));
     var per = st.weights.length > 1 ? '<div class="pl-per" role="group" aria-label="' + esc(T('plTrendT')) + '">' + ['p28', 'p91', 'all'].map(function (k) { return '<button type="button" class="pl-pc' + (k === pk ? ' on' : '') + '" data-act="wper" data-k="' + k + '" aria-pressed="' + (k === pk) + '">' + esc(T(k === 'p28' ? 'plP28' : k === 'p91' ? 'plP91' : 'plPAll')) + '</button>'; }).join('') + '</div>' : '';
@@ -699,7 +700,7 @@
     else h += '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>';
     if (wjoke) h += '<p class="rz-p sl-fact">' + esc(wjoke.text) + '</p>';
     if (sm) { h += wTrendChart(sm); if (sm.sub.length >= 2) h += '<div class="pl-lg" aria-hidden="true"><span><i class="d"></i>' + esc(T('plDots')) + '</span>' + (tr && sm.span >= 6 ? '<span><i class="t"></i>' + esc(T('plLine')) + '</span>' : '') + '</div>'; }
-    if (sm && sm.water && !plPrefs().water) h += '<div class="pl-note bl" id="plWater">' + ico('drop', 'pl-ni') + '<span>' + esc(T('plWater')) + '</span><button type="button" class="rz-x pl-nx" data-act="plwater" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>';
+    if (sm && sm.water && !plGet().water) h += '<div class="pl-note bl" id="plWater">' + ico('drop', 'pl-ni') + '<span>' + esc(T('plWater')) + '</span><button type="button" class="rz-x pl-nx" data-act="plwater" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>';
     else if (st.weights.length && PL && PL.fewWeighs(st.weights, todayStr(), Dt) && st.weights.length < 12) h += '<p class="rz-mut sm pl-tip">' + esc(T('plWeigh')) + '</p>';
     if (gp) h += '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>';
     return h + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>' + platoCtaHtml();
@@ -724,7 +725,8 @@
     return '<div class="pl-cs" data-r="' + r.k + '"><span class="n c-' + c + '">' + (i + 1) + '</span><div><b>' + esc(t) + '</b><p>' + esc(p) + '</p><span class="k c-' + c + '">' + esc(k) + '</span></div></div>';
   }
   function plWeek() { return PL.weekKey(todayStr(), S); }
-  function plChecks() { var pp = plPrefs(); if (pp.wk !== plWeek()) { pp.wk = plWeek(); pp.c = {}; } return pp.c || (pp.c = {}); }
+  function plChecks() { var pp = plGet(); return pp.wk === plWeek() && pp.c ? pp.c : {}; }          // o'qish: shu hafta belgilari
+  function plCheckSet(k) { var pp = plPrefs(); if (pp.wk !== plWeek()) { pp.wk = plWeek(); pp.c = {}; } pp.c = pp.c || {}; pp.c[k] = !pp.c[k]; return pp.c[k]; }
   function platoHtml(a) {
     var h = shHead(T('plQ')), n = a.period ? a.period.days : PL.WIN;
     if (a.state === 'need') {
@@ -741,7 +743,7 @@
     return h + plTriesHtml(a) + plFoot();
   }
   function plTriesHtml(a) {
-    var c = plChecks(), on = !!plPrefs().rem;
+    var c = plChecks(), on = !!plGet().rem;
     return '<h3 class="pl-lbl">' + esc(T('plTry')) + '</h3><div class="pl-tr">' + a.tries.map(function (k) { var v = !!c[k]; return '<button type="button" class="pl-ti' + (v ? ' on' : '') + '" data-act="pltry" data-k="' + k + '" role="checkbox" aria-checked="' + v + '"><span class="cb" aria-hidden="true">' + (v ? ico('check', '', 2.6) : '') + '</span><span>' + esc(T('plT_' + k)) + '</span></button>'; }).join('') + '</div>' +
       '<button type="button" class="rz-btn ' + (on ? 'ghost' : 'primary') + ' full pl-rem" data-act="plrem" aria-pressed="' + on + '">' + esc(on ? T('plRemOff') : T('plRem')) + '</button>';
   }
@@ -759,16 +761,16 @@
   function plRefresh() { if (kit.sheetKind() !== 'plato' || !plA) return; var sh = $('#rzSheet'), sc = sh.scrollTop; setSheet(platoHtml(plA)); sh.scrollTop = sc; }
   function plRemTxt() { var a = plA || plAn(); if (!a || !a.tries) return ''; var c = plChecks(), k = a.tries.filter(function (x) { return !c[x]; })[0]; return k ? T('plT_' + k) : ''; }
   function plResched() {
-    if (!NAT || NS.perm !== 'granted') return; var pp = plPrefs(); if (!pp.rem) { NAT.notif.disable(PL_ID); return; }
+    if (!NAT || NS.perm !== 'granted') return; var pp = plGet(); if (!pp.rem) { NAT.notif.disable(PL_ID); return; }
     var x = plRemTxt(); if (!x) { NAT.notif.disable(PL_ID); return; }
     NAT.notif.schedule({ id: PL_ID, day: (S.weekdayIdx(todayStr()) + 1) % 7, hour: 12, title: 'KalkiFit', body: natTr(T('plRemToast', { x: x })), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?plato=1' }).catch(function () {});
   }
   function plBootRem() {                                // «Eslatib turilsin» (bildirishnoma bo'lmasa): ilova ochilganda kuniga bir marta — hali belgilanmagan birinchi ish
-    if (!PL || !st.setup) return; var pp = plPrefs(); if (!pp.rem || pp.remD === todayStr() || !PL.isLose(st)) return; var x = plRemTxt(); if (!x) return;
+    if (!PL || !st.setup) return; var pp = plGet(); if (!pp.rem || pp.remD === todayStr() || !PL.isLose(st)) return; pp = plPrefs(); var x = plRemTxt(); if (!x) return;
     pp.remD = todayStr(); save(); setTimeout(function () { if (!kit.sheetKind()) toast(T('plRemToast', { x: x }), null, false, 6000); }, 1800);
   }
   function plHk() {                                    // «Haftangiz» ichida BIR MARTA: trend 14+ kun deyarli joyida yoki kutilganning yarmidan kam
-    if (!PL || plPrefs().hk) return null; var a = plAn(); if (!a || !PL.stalled(a)) return null; return { t: T('plHk'), b: T('plHkB') };
+    if (!PL || plGet().hk) return null; var a = plAn(); if (!a || !PL.stalled(a)) return null; return { t: T('plHk'), b: T('plHkB') };
   }
   /* ---------- TARIX (Kundalik + Natijalar birlashgan) ---------- */
   function secHead(k) { return '<div class="sl-sec2"><h3>' + esc(T(k)) + '</h3></div>'; }
@@ -2561,7 +2563,7 @@
       case 'wper': { plPrefs().per = el.getAttribute('data-k'); save(); render(); break; }
       case 'plwater': { plPrefs().water = 1; save(); render(); break; }          // «1-hafta: suv» izohi — bir marta; yopsa qayta chiqmaydi
       case 'plato': openPlato(); break;
-      case 'pltry': { var ck = plChecks(), kk = el.getAttribute('data-k'); ck[kk] = !ck[kk]; if (ck[kk]) stEv('plato_belgi', kk.replace(/_.*/, '')); vib(); save(); plRefresh(); plResched(); break; }
+      case 'pltry': { var kk = el.getAttribute('data-k'); if (plCheckSet(kk)) stEv('plato_belgi', kk.replace(/_.*/, '')); vib(); save(); plRefresh(); plResched(); break; }
       case 'plrem': { var pq = plPrefs(); pq.rem = !pq.rem; pq.remD = todayStr(); save(); plRefresh(); if (pq.rem) { toast(T('plRemOn'), null, true); var px = plRemTxt(); if (NAT && NS.perm !== 'granted' && px) NAT.notif.enable({ id: PL_ID, day: (S.weekdayIdx(todayStr()) + 1) % 7, hour: 12, title: 'KalkiFit', body: natTr(T('plRemToast', { x: px })), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?plato=1' }).then(function (r) { if (r === 'on') NS.perm = 'granted'; else if (r === 'denied') NS.perm = 'denied'; }).catch(function () {}); else plResched(); } else plResched(); break; }
       case 'plsrc': { if (pv) { pv.src = !pv.src; plRefresh(); } break; }
       case 'plgoal': { kit.closeSheet(); setTimeout(openProfile, 260); break; }
