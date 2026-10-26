@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 47,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Vazn trendi aniqroq",
+    "ru": "Тренд веса точнее"
+   },
+   "items": [
+    {
+     "uz": "Vazn trendi endi tarozi bilan teng yuradi: kechikmaydi, bitta sakrashga esa ishonmaydi.",
+     "ru": "Тренд веса теперь идёт вровень с весами: не отстаёт и не верит одиночному скачку.",
+     "show": "vazn",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Tarix'da «Qo'shish» tugmasi pastga tushdi — endi kartalarni yopmaydi.",
+     "ru": "В Истории кнопка «Добавить» опустилась вниз — больше не закрывает карточки."
+    }
+   ]
+  },
+  {
    "v": 46,
    "d": "2026-10-26",
    "bn": {

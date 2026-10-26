@@ -280,7 +280,7 @@
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
       '<div class="sl-addbar" id="rzAddBar" hidden><button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span data-k="mainAdd"></span></button></div>' +          // Bugun: bitta katta «Qo'shish» — aylantiriladigan maydondan TASHQARIDA (kontent tugma ostida qolmaydi)
       '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('history', 'cal2', 'navHist') + tab('profile', 'me', 'navProfile') +
-      '<button type="button" class="rz-fab" id="rzFab" data-act="fab" aria-label="' + esc(T('navAdd')) + '">' + ico('plus', '', 2.6) + '</button></nav>' +
+      '<button type="button" class="rz-fab" id="rzFab" data-act="fab" aria-label="' + esc(T('navAdd')) + '">' + ico('plus', '', 2.6) + '<span class="fl" data-k="navAdd"></span></button></nav>' +          // Tarix: aylantiriladigan maydondan TASHQARIDA (v47: kontent ustiga tushmaydi) +
       kit.shellHtml() + '<input type="file" id="phIn" accept="image/*" hidden><div class="rz-onb" id="rzOnb" hidden></div><div class="rz-onb rz-intro" id="rzIntro" hidden></div>';
   }
 
@@ -676,7 +676,7 @@
   var PL = window.KalkiPlato || null, PL_ID = 7003, PL_PER = { p28: 28, p91: 91, all: 0 };
   function plPrefs() { var p = prefs(); if (!p.plato || typeof p.plato !== 'object') p.plato = {}; return p.plato; }          // yozish uchun (yaratadi)
   function plGet() { var p = prefs().plato; return p && typeof p === 'object' ? p : {}; }          // faqat o'qish — holatni o'zgartirmaydi
-  function plSign(x, d) { return (x > 0 ? '+' : x < 0 ? '−' : '') + dec(Math.abs(x), d == null ? 1 : d); }
+  function plSign(x, d) { return (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x).toFixed(d == null ? 1 : d).replace('.', ','); }          // «−2,0 kg» — doim belgilangan kasr
   function kg1(x) { return (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }          // «84,0» — trend vazni doim bitta kasr bilan
   function plAn() { return PL ? PL.analyze({ st: st, S: S, today: todayStr() }) : null; }
   function wTrendChart(sm) {

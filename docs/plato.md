@@ -1,7 +1,7 @@
 # «Vazn trendi» va «Nega sekin ozyapman?» (KalkiFit, v46)
 
 Maqsad: odam «ozmayapman» deb ilovani tashlab ketmasin. Ilova uning **o'z ma'lumotidan** sababni topadi va 2–3 aniq ish taklif qiladi.
-AI yo'q. Hisob qurilmada (`assets/kalkifit-plato.js`, sof funksiyalar) bajariladi. Akkaunt ulangan bo'lsa ham shu ma'lumot bilan ishlaydi: server faqat shifrlangan zaxirani saqlaydi va uni o'qiy olmaydi, qurilmadagi holat esa o'sha zaxiradan tiklanadi.
+AI yo'q. Hisob qurilmada (`assets/kalkifit-plato.js`, sof funksiyalar) bajariladi. Trend formulasi v47 da almashgan. Akkaunt ulangan bo'lsa ham shu ma'lumot bilan ishlaydi: server faqat shifrlangan zaxirani saqlaydi va uni o'qiy olmaydi, qurilmadagi holat esa o'sha zaxiradan tiklanadi.
 
 Maket: `~/plato-maket.html` (repoda emas). Yonma-yon skrinshot: `OUT=<papka> node tools/dizayn/kalkifit-ekranlar.mjs` → `plato-maket-1|2-<tema>.png`.
 
@@ -16,12 +16,26 @@ Maket: `~/plato-maket.html` (repoda emas). Yonma-yon skrinshot: `OUT=<papka> nod
 | Mashg'ulot | **yozuvi yo'q** — 5-sabab (mashg'ulot kunlari) hozircha hisoblanmaydi |
 
 ## Formulalar
-- **Trend.** Eksponensial o'rtacha, alfa = 0,1 (kuniga). Oraliq `dt` kun bo'lsa: `a = 1 − 0,9^dt`, `t = t + a·(vazn − t)`. Kunlik ±1 kg sakrash chiziqni ≤ 0,1–0,3 kg siljitadi.
+- **Trend (v47).** Holt ikki parametrli silliqlash: daraja L + tezlik T (kg/kun). Oraliq dt kun bo'lsa: `A = 1 − 0,8^dt`, `B = 1 − 0,92^dt`, bashorat `L + T·dt`.
+  - Yolg'iz sakrash: bashoratdan farq > 2σ bo'lsa va keyingi o'lchov shu tomonda tasdiqlamasa, farq ±0,3σ gacha cheklanadi. Tasdiqlansa (haqiqiy o'zgarish) ±3σ gacha qabul qilinadi.
+  - σ — so'nggi 12 bashorat xatosining robust bahosi (1,48 × mediana), kamida 0,3 kg.
+  - Trend har ochilishda butun qatordan qayta hisoblanadi, shuning uchun «keyingi o'lchov» bilan tekshirish mumkin.
+  - **Nega Holt:** v46 dagi EMA (alfa 0,1) doimiy ozishda 0,6–0,7 kg orqada qolardi. Natijada katta raqam tarozidagidan yuqori chiqardi.
+  - 14–21 kunlik og'irlikli chiziqli regressiya ham sinaldi. U ham orqada qolmaydi, lekin oxirgi nuqtaning ta'siri juda katta: bitta +1,5 kg sakrash trendni 0,3–1,2 kg ko'tardi (robust og'irlik bilan ham). Shuning uchun Holt tanlandi.
+  - Sinov qatori: 70 kun, haftasiga −0,56 kg, ±0,5 kg shovqin, 30 tasodifiy qator. Natijalar:
+
+    | Tortish | O'rtacha og'ish (EMA) | +1,5 kg sakrash: o'rtacha (eng yomoni) | Plato xatosi |
+    |---|---|---|---|
+    | Har kuni | 0,03 (0,69) | 0,03 (0,30) | 0,12 kg |
+    | 2 kunda | 0,02 (0,65) | 0,07 (0,54) | 0,14 kg |
+    | 3 kunda | 0,04 (0,62) | 0,16 (0,74) | 0,15 kg |
+
+  - Shovqinsiz qatorda trend tarozi bilan teng (≤ 0,1 kg). Oxirgi o'lchov sakrash bo'lsa trend ≤ 0,3 kg ko'tariladi. Tasdiqlangan −2 kg o'zgarish qabul qilinadi.
 - **Davr sarlavhasi.** O'zgarish = trend(oxiri) − trend(davr boshi). Haftalik tezlik = o'zgarish ÷ kunlar × 7.
 - **«1-hafta: suv».** Kamida 14 kunlik tarix bo'lishi kerak. Birinchi 10 kunda xom vazn ≥ 1 kg tushgan va bu tezlik keyingi trend tezligidan ≥ 1,5 barobar katta bo'lsa belgilanadi. Izoh bir marta chiqadi (`prefs.plato.water`).
 - **Shart.** Faqat ozish maqsadida ishlaydi. Kerak: ≥ 21 kun foydalanish, so'nggi 28 kunda ≥ 3 vazn yozuvi (oraliq ≥ 14 kun) va ≥ 10 kun ovqat yozuvi. Yetmasa, aniq nima yetishmasligi aytiladi.
 - **Kutilgan.** Yozilgan kunlardagi `Σ(TDEE + ortiqcha qadam krediti − yozilgan kkal)` ning o'rtachasi × davrdagi kunlar ÷ 7 700. Bu hisob limit hisobi bilan bir xil (`S.plan().tdee`, `S.stepCredit`).
-- **Haqiqiy.** Trend o'zgarishi. Farq kkal/kun ko'rinishida beriladi: `(haqiqiy − kutilgan) × 7 700 ÷ kunlar`.
+- **Haqiqiy.** Trend o'zgarishi (Holt). Haftalik tezlik ham shu trenddan olinadi. Farq kkal/kun ko'rinishida beriladi: `(haqiqiy − kutilgan) × 7 700 ÷ kunlar`.
 - **Sabablar** kkal/kun ta'siri bo'yicha saralanadi, ko'pi bilan 3 tasi ko'rsatiladi. Oqsil va defitsit kkal emas, shuning uchun ular oxirida turadi.
   1. **Qadam kamaydi.** Faqat qadam ma'lumoti bo'lsa (har yarimda ≥ 5 kun). Birinchi 14 kun o'rtachasi so'nggi 14 kundan ≥ 1 000 ko'p bo'lsa. Ta'sir: `Δqadam × bo'y × 0,415 ÷ 1000 × vazn × 0,5` kkal.
   2. **Yozilmagan ovqatlar.** Odatda yeyiladigan (≥ 50% kunda) ovqat vaqti yozilmagan kunlar (≥ 3), ustiga kun jami limitning 60% idan past bo'lgan kunlar qo'shiladi. Ta'sir: `kunlar × shaxsiy o'rtacha ÷ 28` (past kunlarda: to'liq kun o'rtachasigacha bo'lgan farq).
