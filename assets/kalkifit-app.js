@@ -273,7 +273,7 @@
   /* ---------- saqlash ---------- */
   var loadDirty = false;                             // migratsiya yangi maydon (kuzatuv boshi) qo'shdi — bir marta saqlanadi (zaxira/ko'chirish kodi bilan bir xil bo'lsin)
   function load() {
-    try { var raw = lsGet(LS); if (raw) { var o0 = JSON.parse(raw), s = S.migrate(o0); if (s) { if (!s.prefs) s.prefs = {}; if (s.setup && o0 && !o0.trackStart) loadDirty = true; return s; } } } catch (e) {}
+    try { var raw = lsGet(LS); if (raw) { var o0 = JSON.parse(raw), s = S.migrate(o0); if (s) { if (!s.prefs) s.prefs = {}; if ((s.setup && o0 && !o0.trackStart) || (s.profile && !(o0.prefs && o0.prefs.tm50))) loadDirty = true; return s; } } } catch (e) {}
     var s2 = S.emptyState(); s2.prefs = {}; return s2;
   }
   var persistAsked = false;
@@ -1024,7 +1024,7 @@
     var pr = st.profile, pl = planNow(), big = document.documentElement.classList.contains('fs-big'), curL = isCyr() ? 'cyr' : lang, th = themeNow();
     var row = function (act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; };
     var seg = function (act, key, opts, cur, label) { return segHtml(label || '', opts.map(function (o) { return { attrs: 'data-act="' + act + '" data-' + key + '="' + o[0] + '"', on: cur === o[0], text: o[1] }; })); };
-    var grp = function (k) { return '<h3 class="sl-grp">' + esc(T(k)) + '</h3>'; };          // Profil: Men · Sozlamalar · Imkoniyatlar · Ilova · (eng pastda) Hisob va zaxira
+    var grp = function (k) { return '<h3 class="sl-grp">' + esc(T(k)) + '</h3>'; };          // Profil (v50): hero (ism, maqsad, 4 plitka, me'yor) → Ovqatlanish → Sozlamalar → Imkoniyatlar → Ilova → (eng pastda) Hisob va zaxira
     var h = '<h2 class="rz-h">' + esc(T('profT')) + '</h2>' + pfHeroHtml() + taxRowHtml() + pfTilesHtml() + pfNormHtml();          // v50: hero · plitkalar · me'yor          // ism: faqat kirgan foydalanuvchida (mehmonda blok yo'q)
     h += pfFoodHtml();          // «Ovqatlanish»: Kun tartibi · Oqsil maqsadi · Yemaydiganlarim
     h += grp('pgSet');

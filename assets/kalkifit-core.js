@@ -54,6 +54,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     return { g: g, auto: auto, manual: man >= PROT_MIN_G, ref: ref, perKg: k };
   }
   /* ---------- «Mening tartibim» (v48): kunlik limit ovqat vaqtlariga bo'linadi (limit o'zgarmaydi). Ulushlar: nonushta / tushlik / kechki / tamaddi ---------- */
+  var TM50_FROM = 1793003413000, TM50_TO = 1793021775000;          // v48 va v50 relizlari (merge vaqti, UTC ms) — onboarding'da tartib savoli bo'lgan oraliq
   var TARTIB = { std: { b: 30, l: 35, d: 25, s: 10 }, kech: { b: 15, l: 30, d: 45, s: 10 }, nobf: { b: 0, l: 40, d: 45, s: 15 }, erkin: null }, TARTIB_DEF = 'erkin';          // v50: standart — «Farqi yo'q» (budjet ko'rinmaydi); tanlaganlarniki saqlanadi
   function tartibOf(p) { var t = p && p.tartib; return TARTIB.hasOwnProperty(t) ? t : TARTIB_DEF; }
   function mealSplit(limit, mode) {                // butun sonlar, yig'indisi AYNAN limitga teng (eng katta qoldiq usuli)
@@ -298,6 +299,9 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };              
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
     s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
+    /* v50 bir martalik tuzatish (qurilmada): v48 onboarding'da «Kun tartibi» savoli bor edi — «O'tkazib yuborish» ham 'std' yozardi. v48 (2026-10-26 08:30 UTC) dan v50 (13:36 UTC) gacha YARATILGAN va tartibi 'std' qolganlar
+       tanlamagan hisoblanadi → «Farqi yo'q». Tanlov belgisi yo'q (o'tkazib yuborish bilan tanlov bir xil yoziladi), shuning uchun sana bo'yicha. Oraliqdan oldingi/keyingilarga tegilmaydi. prefs.tm50 — bir marta (keyin 'std' ni o'zi tanlasa qaytarilmaydi). */
+    if (s.profile && !s.prefs.tm50) { s.prefs.tm50 = 1; if (s.profile.tartib === 'std' && s.created >= TM50_FROM && s.created < TM50_TO) delete s.profile.tartib; }
     return s;
   }
   /* ---------- «Odatdagi ovqatlarim» (shablonlar) va «Kechagidek» ---------- */
