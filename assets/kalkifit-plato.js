@@ -61,7 +61,7 @@
     var st = o.st, S = o.S, D = S.dates, today = o.today || D.today(), p = st && st.profile;
     var res = { show: isLose(st), state: 'none', reasons: [], tries: [], need: null };
     if (!res.show) return res;
-    var cur = S.currentWeight(st), pl = S.plan(Object.assign({}, p, { weight: cur || p.weight })), end = D.addDays(today, -1), start = D.addDays(today, -WIN);
+    var cur = S.currentWeight(st), pl = S.plan(Object.assign({}, p, { weight: cur || p.weight }), { job: S.jobOn ? S.jobOn(st) : false }), end = D.addDays(today, -1), start = D.addDays(today, -WIN);
     var since = st.trackStart || (st.created ? D.ymd(new Date(st.created)) : null) || (st.weights[0] && st.weights[0].d) || today;
     if (st.created && D.ymd(new Date(st.created)) < since) since = D.ymd(new Date(st.created)); var firstFood = null; Object.keys(st.days || {}).forEach(function (d) { var x = st.days[d]; if (x && x.food && x.food.length && (!firstFood || d < firstFood)) firstFood = d; });
     if (firstFood && firstFood < since) since = firstFood;
@@ -74,7 +74,7 @@
     if (miss.days || miss.weights || miss.span || miss.food) { res.state = 'need'; res.need = miss; res.needDays = Math.max(miss.days, miss.food, miss.weights ? 0 : miss.span); return res; }
 
     var ser = trend(st.weights, D), wFrom = wIn[0].d, t0 = trendAt(ser, wFrom), t1 = trendAt(ser, today), n = Math.max(1, D.daysBetween(wFrom, today));
-    var spend = function (r) { return pl.tdee + S.stepCredit(r.steps, num(p.height), cur, p.act); };
+    var spend = function (r) { return S.dayPlan ? S.dayPlan(st, r.d).spend : pl.tdee; };          // v51: kunlik sarf — yagona model (kredit ikki marta qo'shilmaydi)
     var lg = logged.filter(function (r) { return r.d >= wFrom; }); if (lg.length < 5) lg = logged;
     var defAvg = avg(lg.map(function (r) { return spend(r) - r.k; }));
     var expKg = r1(-defAvg * n / KCAL_KG), actKg = r1(t1 - t0), perWeek = Math.round((t1 - t0) / n * 7 * 100) / 100;
@@ -126,6 +126,29 @@
     res.state = res.reasons.length ? 'slow' : 'fine';          // sabab topilmasa — «Hammasi to'g'ri ketyapti, sabr qiling»
     res.tries = tries(res.reasons);
     return res;
+  }
+  /* v51: O'ZINI TO'G'RILAYDIGAN ME'YOR (adaptiv). Shart: ≥ 21 kun foydalanish; so'nggi davr (≤ 28 kun) kunlarining ≥ 80% i «to'liq yozilgan» (kun jami ≥ limitning 60% i — sabablar bilan bir xil mezon);
+     ≥ 4 vazn yozuvi. Haqiqiy sarf = o'rtacha yozilgan kkal − trend o'zgarishi × 7 700 / kunlar; formula sarfi = o'sha kunlardagi BMR × koeff + tuzatish + qadam krediti (S.dayPlan().spend).
+     Farq ≥ 150 kkal/kun — taklif (avtomatik emas): bir martada ±10% dan ko'p emas, 14 kunda bir martadan ko'p emas, juda tez ozishda faqat oshirish, pastki chegaradan pastga tushmaydi.
+     o = { st, S, today, last (oxirgi taklif vaqti, ms), now } → null | { actual, formula, diff, delta, corr (yangi), limitOld, limitNew, days, full } */
+  var AD = { DAYS: 21, WIN: 28, FULL: 0.8, WEIGHTS: 4, MIN: 150, PCT: 0.10, COOL: 14 };
+  function adapt(o) {
+    var st = o.st, S = o.S, D = S.dates, today = o.today || D.today(), p = st && st.profile; if (!st || !st.setup || !p) return null;
+    if (o.last && (o.now || Date.now()) - o.last < AD.COOL * 864e5) return null;
+    var since = st.trackStart || (st.created ? D.ymd(new Date(st.created)) : today), used = D.daysBetween(since, today); if (used < AD.DAYS) return null;
+    var n = Math.min(AD.WIN, used), start = D.addDays(today, -n), days = []; for (var d = start; d < today; d = D.addDays(d, 1)) days.push(d);
+    var rows = days.map(function (d) { var x = S.dayOf(st, d), k = x && x.food && x.food.length ? S.sumEntries(x.food).kcal : 0, dp = S.dayPlan(st, d); return { d: d, k: k, full: k > 0 && k >= dp.limit * LOWDAY, spend: dp.spend }; });
+    var full = rows.filter(function (r) { return r.full; }); if (full.length < rows.length * AD.FULL) return null;
+    var ws = st.weights.filter(function (w) { return w.d >= start && w.d <= today; }); if (ws.length < AD.WEIGHTS) return null;
+    var ser = trend(st.weights, D), t0 = trendAt(ser, ws[0].d), t1 = trendAt(ser, ws[ws.length - 1].d), span = Math.max(1, D.daysBetween(ws[0].d, ws[ws.length - 1].d));
+    var intake = avg(full.map(function (r) { return r.k; })), formula = avg(full.map(function (r) { return r.spend; })), actual = intake - (t1 - t0) * KCAL_KG / span, diff = Math.round(actual - formula);
+    if (Math.abs(diff) < AD.MIN) return null;
+    var fastA = analyze({ st: st, S: S, today: today }); if (fastA && fastA.state === 'fast' && diff < 0) return null;          // juda tez ozish — faqat oshirish
+    var cap = Math.round(formula * AD.PCT), delta = Math.max(-cap, Math.min(cap, diff)); delta = Math.round(delta / 10) * 10; if (!delta) return null;
+    var corrOld = Math.round(num(p.corr)), corrNew = corrOld + delta, limOld = S.dayPlan(st, today, 0).limit;
+    var st2 = { profile: Object.assign({}, p, { corr: corrNew }), prefs: st.prefs, days: st.days, weights: st.weights }, limNew = S.dayPlan(st2, today, 0).limit;
+    if (limNew === limOld) return null;          // pastki chegarada — o'zgarmaydi
+    return { actual: Math.round(actual), formula: Math.round(formula), diff: diff, delta: delta, corr: corrNew, limitOld: limOld, limitNew: limNew, days: rows.length, full: full.length };
   }
   /* «Shu hafta sinab ko'ring» — sabablarga mos 2–3 ish; hech qachon «kamroq yeng» birinchi emas (umuman yo'q) */
   var TRY = { qadam: 'walk', yozilmagan: 'log', damolish: 'wkend', oqsil: 'prot', defitsit: 'goal', porsiya: 'gram' };
@@ -192,5 +215,5 @@
     }
   };
   var SRC = ['plS1', 'plS2', 'plS3', 'plS4', 'plS5', 'plS6'];
-  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, isLose: isLose, stalled: stalled, weekKey: weekKey, PROT_SH: PROT_SH, TX: TX, SRC: SRC };
+  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, adapt: adapt, AD: AD, isLose: isLose, stalled: stalled, weekKey: weekKey, PROT_SH: PROT_SH, TX: TX, SRC: SRC };
 });

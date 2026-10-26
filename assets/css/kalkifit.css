@@ -638,7 +638,7 @@ html[data-theme=dark] .rz .rt-door::after{background:linear-gradient(105deg,tran
 .rz .sl-jline .t{flex:1;min-width:0;padding-top:5px}
 .rz .sl-jx{flex:none;width:36px;height:36px;border:0;background:transparent;color:var(--mut);display:inline-flex;align-items:center;justify-content:center;border-radius:10px;margin-top:-2px}.rz .sl-jx .rz-i{width:16px;height:16px}
 /* katta tizim shrifti (Android textZoom) va «Katta» shriftda ham sig'sin: makro qiymati, manba nomi va tugmalar sinmaydi/chiqib ketmaydi */
-.rz .sl-mac3 .mc{min-width:0}.rz .sl-mac3 .mv{white-space:normal;overflow-wrap:anywhere}.rz .sl-mac3 .mv small{white-space:nowrap}
+.rz .sl-mac3{grid-template-columns:repeat(3,minmax(min-content,1fr))}.rz .sl-mac3 .mc{min-width:0}.rz .sl-mac3 .mv{white-space:normal;overflow-wrap:anywhere}.rz .sl-mac3 .mv small{white-space:nowrap}
 .rz .sl-sn .sl-src,.rz .sl-sb .sl-src{white-space:normal;overflow:visible;line-height:1.25}
 .rz .sl-pill{white-space:nowrap;max-width:100%}
 .rz .sl-seg4{grid-template-columns:repeat(auto-fit,minmax(max(calc(25% - 4px),4.6em),1fr))}.rz .sl-seg4 button{white-space:normal;line-height:1.15;min-height:44px;height:auto;padding:4px 2px;overflow-wrap:anywhere}
@@ -1302,3 +1302,8 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .pf-grp{padding:2px 14px}.rz .pf-r{min-height:56px;gap:12px}.rz .pf-r .m{flex:1 1 auto;min-width:0}.rz .pf-r .m b{font-weight:500;white-space:normal;overflow-wrap:anywhere}.rz .pf-r .v{flex:0 1 auto;min-width:0;font-size:var(--t-s);color:var(--mut);max-width:45%;text-align:right;white-space:normal;overflow-wrap:anywhere}
 .rz .pf-hl{box-shadow:0 0 0 3px color-mix(in srgb,var(--fill) 45%,transparent);border-radius:14px;transition:box-shadow .3s}
 @media (prefers-reduced-motion:reduce){.rz .pf-b1,.rz .pf-b2,.rz .pf-gb i,.rz .pf-ti{animation:none}}
+/* v51: yagona me'yor — (i) formula, ish turi, adaptiv taklif, shaxsiy tuzatish */
+.rz .xk-f{font-variant-numeric:tabular-nums;font-weight:600;background:var(--soft);border-radius:12px;padding:10px 12px;margin:8px 0}
+.rz .jb-opts{display:flex;flex-direction:column;gap:8px;margin-top:8px}.rz .jb-cmp{margin-top:12px}
+.rz .ad-card .rz-p{margin:0 0 4px}.rz .ad-card .rz-actions{margin-top:8px}
+.rz .pf-corr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;width:100%;min-height:44px;margin-top:-4px;padding:8px 14px;border:0;border-radius:16px;background:var(--card);color:var(--mut);font:inherit;font-size:var(--t-s);text-align:left}.rz .pf-corr b{color:var(--accink);font-weight:600}
