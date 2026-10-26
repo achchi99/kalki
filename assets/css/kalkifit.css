@@ -1307,3 +1307,8 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .jb-opts{display:flex;flex-direction:column;gap:8px;margin-top:8px}.rz .jb-cmp{margin-top:12px}
 .rz .ad-card .rz-p{margin:0 0 4px}.rz .ad-card .rz-actions{margin-top:8px}
 .rz .pf-corr{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;width:100%;min-height:44px;margin-top:-4px;padding:8px 14px;border:0;border-radius:16px;background:var(--card);color:var(--mut);font:inherit;font-size:var(--t-s);text-align:left}.rz .pf-corr b{color:var(--accink);font-weight:600}
+/* v52: ovoz natijasi — aytilgan gap (matn maydoni o'rniga) */
+.rz .sl-heard{display:flex;flex-direction:column;gap:2px;padding:8px 14px 2px;margin:0 0 6px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.rz .sl-heard q{font-weight:500;font-size:var(--t-s);color:var(--ink);quotes:"«" "»";overflow-wrap:anywhere}
+.rz .sl-heard .sl-txtbtn{align-self:flex-start;min-height:44px;padding:0;display:inline-flex;align-items:center;gap:6px}
+.rz .crd-steps{margin:4px 0 8px}

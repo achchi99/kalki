@@ -7,6 +7,12 @@
  * Ichimliklarda 100 ml ≈ 100 g. Tur: tools/ovqatlar-build.js (o n s m g v f d i q h x). g100 avtomatik qo'shiladi. */
 'use strict';
 const T = `
+kepak-non|Kepak non (kepakli, do'kon noni)|Хлеб отрубной|kepak non,kepakli non,kepakli,kepak noni,отрубной хлеб,хлеб с отрубями,хлеб отрубной,bran bread|n|tilim:30,bolak:50|m:u:174924*85+u:169722*15
+olma-sirka|Olma sirkasi|Яблочный уксус|olma sirkasi,olma sirka,sirka,uksus,яблочный уксус,уксус,apple cider vinegar|x|qoshiq:15,choy qoshiq:5|u:173469
+sezar-salat|Sezar salati (tovuqli)|Салат «Цезарь» с курицей|sezar,sezar salat,salat sezar,sezar salati,tsezar,цезарь,салат цезарь,цезарь с курицей,caesar,caesar salad|q|porsiya:250|m:u:169247*45+u:171477*25+u:169055*12+u:172752*10+u:170848*8
+lotus-biscoff|Lotus Biscoff (karamelli pechenye)|Печенье Lotus Biscoff|lotus,lotus biscoff,biscoff,lotus pechenye,лотус,печенье лотус,бискофф|h|dona:8,paket:125|y:lotus-biscoff
+pechenye-molochnoe|Sutli pechenye (molochnoye, Yubileynoye turi)|Печенье молочное («Юбилейное»)|molochnoye pechenye,molochnoe pechenye,sutli pechenye,yubileynoe,yubileynoye,молочное печенье,печенье молочное,юбилейное,юбилейное молочное|h|dona:12,paket:112|y:yubileynoe-molochnoe
+fuze-tea|Fuse Tea (muzli choy)|Fuse Tea (холодный чай)|fuse tea,fuze tea,fuse,fuze,fuzetea,fyuz ti,фьюз ти,фуз ти,холодный чай,muzli choy,ice tea,айс ти|i|shisha:500,stakan:250|y:fuze-tea
 un|Un (bug'doy, oq)|Мука пшеничная|un,bugdoy uni,bug'doy uni,мука,пшеничная мука,wheat flour,flour|g|qoshiq:10,stakan:125|u:168894
 tunets-suv|Tunets (o'z sharbatida, konserva)|Тунец в собственном соку (консервы)|tunets suvda,tunets o'z sharbatida,tunets konserva,тунец в собственном соку,тунец консервированный,canned tuna in water|m|dona:130,porsiya:80|u:171986
 kakao-kukun|Kakao kukuni (shakarsiz)|Какао-порошок (без сахара)|kakao kukuni,kakao poroshok,какао порошок,какао-порошок,какао порошок без сахара,cocoa powder|x|qoshiq:5|u:169593
@@ -372,7 +378,9 @@ const TEG = {
   baliq: L(`skumbriya seld seld-dudlangan forel mintay baliq-panirovka kalmar ikra krab-tayoq qizil-baliq-konserva midiya krab tunets-yog tunets-suv losos-dudlangan krevetka-panirovka tilapiya chortan okun sendvich-baliq sendvich-tunets`),
   choshqa: []                      // cho'chqa tegi FAQAT bekon va pepperonida (tools/cheklov-teglar.js QOLDA) — kengaytma taomlariga QO'YILMAYDI (CLAUDE.md «Cho'chqa tegi qoidasi»)
 };
-for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plombir-vafli', 'pishloq-hochland']], ['tuxum', ['protein-pechenye']], ['glyuten', ['protein-pechenye', 'mz-plombir-vafli', 'doshirak-pishloq']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
+for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plombir-vafli', 'pishloq-hochland']], ['tuxum', ['protein-pechenye']], ['glyuten', ['protein-pechenye', 'mz-plombir-vafli', 'doshirak-pishloq']],
+  /* v52: Sezar sousi — tuxum va baliq (anchous, ehtiyot), parmezan, kruton; sutli pechenye — sut, tuxum, un; Lotus — bug'doy uni; kepak non — bug'doy */
+  ['glyuten', ['kepak-non', 'sezar-salat', 'lotus-biscoff', 'pechenye-molochnoe']], ['sut', ['sezar-salat', 'pechenye-molochnoe']], ['tuxum', ['sezar-salat', 'pechenye-molochnoe']], ['baliq', ['sezar-salat']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
 /* oqsil manbasi (tools/oqsil-teglar.js): qolganlari tur bo'yicha (s — sut, boshqalar — yoq) */
 const OQSIL = Object.assign({},
   ...L(`mol-jigar-qov mol-jigar-dim qoy-jigar-qov mol-buyrak qoy-buyrak mol-yurak qoy-yurak mol-til qoy-til qorin qoy-miya mol-miya qoy-opka qoy-son qoy-kurak qoy-qiyma qoy-kabob-bolak qoy-yogsiz-dim mol-tosh mol-qaynatilgan mol-kotlet-grill buzoq buzoq-qiyma echki gosht-quritilgan gosht-dimlangan-konserva tefteli big-mac chizburger tako sendvich-mol shurva-mol-sabzavot`).map((i) => ({ [i]: 'qizil' })),
@@ -381,6 +389,7 @@ const OQSIL = Object.assign({},
   ...L(`tuxum-qov-aralash`).map((i) => ({ [i]: 'tuxum' })),
   ...L(`falafel xummus-uy tofu-qov edamame loviya-qora loviya-konserva loviya-tomat noxat-konserva`).map((i) => ({ [i]: 'dukkak' })),
   ...L(`protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye protein-kokteyl-tayyor pitsa-pishloq nachos-pishloq`).map((i) => ({ [i]: 'sut' })),
-  ...L(`quyon burrito chili-konkarne lazanya spagetti-bolonez`).map((i) => ({ [i]: 'aralash' })));
+  ...L(`quyon burrito chili-konkarne lazanya spagetti-bolonez`).map((i) => ({ [i]: 'aralash' })),
+  ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })));          // v52
 { const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }   // turk taomlari (v21)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

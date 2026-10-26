@@ -492,24 +492,37 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     Object.keys(st.days).forEach(function (d) { if (d >= from && d <= today) st.days[d].food.forEach(function (e) { if (e.fid) { var id = (alias && alias[e.fid]) || e.fid; out[id] = (out[id] || 0) + 1; } }); });
     return out;
   }
+  /* v52: telefonda o'zbek lotin yozuvi — aniq natija bo'lmasa (aniq moslik tartibi buzilmaydi): w → sh («ow», «qowiq»), yolg'iz c → ch («coy»), ruscha so'zlarning lotin yozuvi */
+  var SPELL = { kurasan: 'kruassan', kurassan: 'kruassan', kruasan: 'kruassan', kruason: 'kruassan', molokoli: 'molochnoye', malokoli: 'molochnoye', molochniy: 'molochnoye', molochnoe: 'molochnoye', pecheniya: 'pechenye', pechenya: 'pechenye', pechene: 'pechenye', pechenie: 'pechenye', pechenyi: 'pechenye', sasiska: 'sosiska', sosiskalar: 'sosiska', qaynagan: 'qaynatilgan', qaynagani: 'qaynatilgan', kepakli: 'kepak' };
+  function spellVar(q) {
+    var t = String(q || '').toLowerCase().split(/\s+/).map(function (w) {
+      if (!/^[a-z'’ʻ`0-9-]+$/.test(w)) return w; var k = key(w, true); if (SPELL[k]) return SPELL[k];
+      var v = w.replace(/w/g, 'sh').replace(/c(?!h)/g, 'ch'); var kv = key(v, true); return SPELL[kv] || v;
+    }).join(' ');
+    return t !== String(q || '').toLowerCase() ? t : null;
+  }
   function search(foods, q, o) {                       // daraja › sevimli/ko'p yeyilgan › ommaboplik › qisqa nom
-    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return []; var whole = qt.join(' '), grp = GROUP_Q[whole] || null, qtr = key(q, true).split(' ').filter(Boolean), wholeR = qtr.join(' ');
+    o = o || {}; var qt = key(q).split(' ').filter(Boolean); if (!qt.length) return [];
+    if (!o._sv && /^[a-z0-9 '’ʻ`-]+$/i.test(q) && /w|c(?!h)/i.test(q)) { var svf = spellVar(q); if (svf) { var rf = search(foods, svf, Object.assign({}, o, { _sv: 1, _nofz: 1 })); if (rf.length) return rf; } }          /* v52: «ow», «coy» — telefonda sh/ch; inglizcha nom (waffle) variantda topilmasa — o'zi qidiriladi */
+    var whole = qt.join(' '), grp = GROUP_Q[whole] || null, qtr = key(q, true).split(' ').filter(Boolean), wholeR = qtr.join(' ');
     var rec = o.recents || [], fav = o.favs || [], freq = o.freq || {}, out = [];
     var pass = function (fz) { foods.forEach(function (f, ix) {
       if (f.h) return;                                  // eski id (alias) — qidiruvda ko'rinmaydi, oila ko'rinadi
       var m = matchFood(f, qt, whole, grp, fz, qtr, wholeR); if (!m || (fz && m.tier < 5)) return; var r = rec.indexOf(f.id);
       out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), pop: popOf(f), d: m.d, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
     }); };
-    pass(false); if (!out.length) { var soft = qt.filter(function (w) { return !SOFT[w]; }); if (!o._soft && soft.length && soft.length < qt.length) return search(foods, soft.join(' '), Object.assign({}, o, { _soft: 1 })); pass(true); }          // aniq natija yo'q: avval «вареный/отварной/пастеризованное/без масла»siz, keyin imlo xatosi bilan
+    pass(false); if (!out.length) { var soft = qt.filter(function (w) { return !SOFT[w]; }); if (!o._soft && soft.length && soft.length < qt.length) return search(foods, soft.join(' '), Object.assign({}, o, { _soft: 1 })); var sv = !o._sv && spellVar(q); if (sv) { var r2 = search(foods, sv, Object.assign({}, o, { _sv: 1, _soft: 0 })); if (r2.length) return r2; } if (!o._nofz) pass(true); }          // aniq natija yo'q: avval «вареный/отварной/пастеризованное/без масла»siz, keyin imlo xatosi bilan
     out.sort(function (a, b) { return a.tier - b.tier || a.d - b.d || b.pref - a.pref || b.pop - a.pop || a.r - b.r || a.nl - b.nl || a.ix - b.ix; });
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, yarimta: 0.5, yarimtasi: 0.5, polovinka: 0.5, polovinu: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
-  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', skup: 'skup', skupa: 'skup', skuplar: 'skup', skoop: 'skup', scoop: 'skup', shar: 'shar', shari: 'shar', sharik: 'shar', sharikov: 'shar', banka: 'banka', banki: 'banka', bankasi: 'banka', plitka: 'plitka', plitki: 'plitka', paket: 'paket', paketcha: 'paket', pachka: 'paket', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100', gramma: 'g100', grammov: 'g100', ml: 'ml', millilitr: 'ml', mililitr: 'ml' };
+  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', porsiy: 'porsiya', portsiy: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', skup: 'skup', skupa: 'skup', skuplar: 'skup', skoop: 'skup', scoop: 'skup', shar: 'shar', shari: 'shar', sharik: 'shar', sharikov: 'shar', banka: 'banka', banki: 'banka', bankasi: 'banka', plitka: 'plitka', plitki: 'plitka', paket: 'paket', paketcha: 'paket', pachka: 'paket', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100', gramma: 'g100', grammov: 'g100', ml: 'ml', millilitr: 'ml', mililitr: 'ml', pml: 'ml', qoshiqda: 'qoshiq', qoshiqdan: 'qoshiq', oshqoshiq: 'qoshiq', oshqoshiqda: 'qoshiq', piyolada: 'piyola', stakanda: 'stakan', bolagi: 'bolak' };          // v52: «30pml» (telefonda xato), «1 qoshiqda» («kesim non» — nom: oq non tilimi)
   var MYW = { laganim: 'lagan', laganimda: 'lagan', laganimdagi: 'lagan', laganimdan: 'lagan', kosam: 'kosa', kosamda: 'kosa', kosamdagi: 'kosa', kosamdan: 'kosa', piyolam: 'piyola', piyolamda: 'piyola', piyolamdagi: 'piyola', likopcham: 'likopcha', likopchamda: 'likopcha' };
   var SZW = { kichik: 'kichik', kichkina: 'kichik', mayda: 'kichik', malenkiy: 'kichik', malenkaya: 'kichik', malenkie: 'kichik', orta: 'orta', ortacha: 'orta', srednyaya: 'orta', sredniy: 'orta', katta: 'katta', yirik: 'katta', bolshoy: 'katta', bolshaya: 'katta', bolshie: 'katta' };
-  var STOP = { bilan: 1, sho: 0, bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 };
-  [WORDS, UNITW, STOP, SZW, MYW].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });          // kalitlar key() shaklida (ikki → iki)
+  var SLICEW = { kesim: 1, kesma: 1, kesilgan: 1, kesimi: 1 };
+  var STOP = { bilan: 1, sho: 0, bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 , bn: 1, bln: 1 };
+  [WORDS, UNITW, STOP, SZW, MYW].forEach(function (m) { Object.keys(m).forEach(function (k) { var kk = key(k); if (kk !== k) { m[kk] = m[k]; delete m[k]; } }); });
+  [WORDS, UNITW].forEach(function (m) { Object.keys(m).forEach(function (k) { var a = k.replace(/sh/g, 'v'), b = k.replace(/ch/g, 'c'); if (a !== k && m[a] == null) m[a] = m[k]; if (b !== k && m[b] == null) m[b] = m[k]; }); });          // v52: «qowiq» (w = sh → key: v), «piyola» … «c» = «ch»          // kalitlar key() shaklida (ikki → iki)
   /* qidiruvda YUMSHOQ so'zlar: aniq natija bo'lmasa tashlab qayta qidiriladi (sifat, pishirish usuli) — key() shaklida */
   var SOFT = {}; 'vareniy varyoniy varenniy varenaya varyonaya varenoe varyonoe varenie varyonie otvarnoy otvarnaya otvarnoe otvarnie otvarnoy pasterizovannoe pasterizovanniy pasterizovannaya pasterizovannie svejiy svejaya svejee domashniy domashnyaya domashnee bez masla maslom qaynatilgan qaynatma pishgan uy uyda s so'.split(' ').forEach(function (w) { SOFT[key(w)] = 1; });
   function qtyNum(t) { var m = /^(\d+(?:[.,]\d+)?)$/.exec(t); if (m) return parseFloat(m[1].replace(',', '.')); m = /^(\d+)\/(\d+)$/.exec(t); return m && +m[2] ? +m[1] / +m[2] : null; }
@@ -528,7 +541,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     splitText(text).forEach(function (part) {
       var t = qtyToks(part), cur = { w: [], qn: 0 }, i = 0, U = function (j) { return j < t.length && !!UNITW[key(t[j])]; };
       while (i < t.length) {
-        var g = (qtyNum(t[i]) != null || isWordQ(t[i])) ? (U(i + 1) ? 2 : (isWordQ(t[i]) ? 1 : 0)) : 0;
+        var g = (qtyNum(t[i]) != null || isWordQ(t[i])) ? (U(i + 1) ? 2 : (isWordQ(t[i]) || !cur.w.length ? 1 : 0)) : 0;          // v52: qism boshidagi yolg'iz son ham miqdor («4 non 2 piyola choy»)
         if (g && cur.w.slice(cur.qn).some(function (w) { return !STOP[key(w)]; }) && i + g < t.length) {          // chapda faqat «bugun», «men» — alohida qism emas
           if (cur.qn) { out.push(cur.w.join(' ')); cur = { w: [], qn: 0 }; }
           else { out.push(cur.w.concat(t.slice(i, i + g)).join(' ')); cur = { w: [], qn: 0 }; i += g; continue; }
@@ -557,7 +570,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       if (WORDS[k] != null && qty == null && more && !name.length) { qty = WORDS[k]; return; }       // "to'rt" va "tort" (торт) farqi: so'zdan keyin nom bo'lsagina son
       if (MYW[k] && unit == null && more) { my = MYW[k]; unit = VUNIT[my] || 'likop'; if (qty == null) qty = 1; return; }       // «laganimda osh», «kosamda mastava»
       if (UNITW[k] && unit == null && (qty != null || !name.length) && more) { unit = UNITW[k]; if (qty == null) qty = 1; return; }
-      if (STOP[k]) return; raw.push(t); if (SZW[k] && sz == null && more) { sz = SZW[k]; return; } name.push(t);
+      if (STOP[k]) return; raw.push(t); if (SZW[k] && sz == null && more) { sz = SZW[k]; return; } if (SLICEW[k] && unit == null && more) { unit = 'tilim'; if (qty == null) qty = 1; } name.push(t);          // v52: «4 kesim non» — 4 tilim, nom «kesim non» (oq non)
     });
     if (qty == null && unit == null && name.length >= 3) {                      // "to'y oshidan bir lagan": oxirida «son + birlik»
       var u1 = UNITW[key(name[name.length - 1])], q1 = key(name[name.length - 2]), qv = /^\d+(?:[.,]\d+)?$/.test(q1) ? parseFloat(q1.replace(',', '.')) : WORDS[q1];
@@ -619,9 +632,14 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       var p = parseFragment(fr); if (!p.name) { miss.push(fr); return; }
       var hit = bestHit(foods, p.name, o), szid = p.sz;
       if (hit && p.sz && !(hit.fam && hit.fam.sz)) { var h2 = bestHit(foods, p.raw, o); if (h2) { hit = h2; szid = null; } }      // "katta burger" — o'lcham omili yo'q, sinonim bo'lishi mumkin
+      if (!hit) { var fr2 = fr.replace(/\s+\d+(?:[.,]\d+)?(?:\s+\S+)?$/, ''); if (fr2 !== fr && /\d/.test(fr2)) { var p2 = parseFragment(fr2), h2b = p2.name && bestHit(foods, p2.name, o); if (h2b) { p = p2; hit = h2b; fr = fr2; } } }          // v52: oxiridagi to'liq yozilmagan «… 2 piyola» (keyingi taom hali yozilmagan)
       if (!hit) { miss.push(fr); return; }
       var fam = null, food = hit, sel = null, qn = p.name;
       if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
+      if (fam && p.unit && p.unit !== 'g100' && unitGrams(food, p.unit) == null && fam.fam.uv) {          // v52: so'ralgan birlik shu variantda yo'q («2 tilim non» → obi non emas, tilimli variant)
+        var vk2 = Object.keys(fam.fam.uv).filter(function (k) { return fam.fam.uv[k] && fam.fam.uv[k][p.unit] != null; })[0];
+        if (vk2) { sel = famSelOf(fam, vk2); food = famVariant(fam, sel, szid); }
+      }
       var qty = p.qty > 0 ? p.qty : 1, u = p.unit, g;
       if (u === 'g100' && p.qty > 0) { g = p.qty; qty = p.qty; }                // "200 g tovuq"
       else { if (!u || unitGrams(food, u) == null) u = (food.b && food.b.filter(function (b) { return b.d; })[0] || { k: food.u[0][0] }).k; if (unitGrams(food, u) == null) u = food.u[0][0]; g = unitGrams(food, u) * qty; if (u === 'g100') { g = qty * 100; } }
