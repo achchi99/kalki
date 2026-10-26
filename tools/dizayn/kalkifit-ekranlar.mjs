@@ -48,6 +48,14 @@ async function yonma2(p, th, nm, hash) {
   await m.setContent('<body style="margin:0;display:flex;gap:20px;background:#888;padding:10px"><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">maket</figcaption><img width="390" src="data:image/png;base64,' + a + '"></figure><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">ilova</figcaption><img width="390" src="data:image/png;base64,' + bb + '"></figure></body>');
   await m.screenshot({ path: path.join(OUT, nm + '-' + th + '.png'), fullPage: true }); await cx.close();
 }          // tasdiqlangan maket (repoda emas): 390×844 da shu holat bilan yonma-yon — «maket | ilova»
+const MAKET3 = path.join(process.env.HOME || '', 'plato-maket.html'), PD = require(path.join(ROOT, 'tools/dizayn/plato-demo.cjs'));          // «Vazn trendi» + «Nega sekin ozyapman?» maketi
+async function yonma3(p, th, nm, sel) {          // maketda sel (karta yoki oyna) tepaga aylantiriladi — ilovaning shu holati bilan yonma-yon
+  const cx = await b.newContext({ viewport: { width: 390, height: 844 }, colorScheme: th }), m = await cx.newPage(); await m.goto('file://' + MAKET3); await m.waitForTimeout(300);
+  await m.evaluate((q) => { const e = document.querySelector(q); if (e) window.scrollTo(0, e.getBoundingClientRect().top + scrollY - 8); }, sel); await m.waitForTimeout(150);
+  const a = (await m.screenshot()).toString('base64'), bb = (await p.screenshot()).toString('base64'); await m.setViewportSize({ width: 800, height: 900 });
+  await m.setContent('<body style="margin:0;display:flex;gap:20px;background:#888;padding:10px"><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">maket</figcaption><img width="390" src="data:image/png;base64,' + a + '"></figure><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">ilova</figcaption><img width="390" src="data:image/png;base64,' + bb + '"></figure></body>');
+  await m.screenshot({ path: path.join(OUT, nm + '-' + th + '.png'), fullPage: true }); await cx.close();
+}
 async function yonma(p, th, nm) {
   const cx = await b.newContext({ viewport: { width: 390, height: 844 }, colorScheme: th }), m = await cx.newPage(); await m.goto('file://' + MAKET); await m.waitForTimeout(300); await m.click('.fb'); await m.waitForTimeout(900);
   if (/-3$/.test(nm)) { await m.evaluate(() => { document.getElementById('dr').scrollTop = 1e5; }); await m.waitForTimeout(200); }
@@ -128,6 +136,18 @@ try {
     await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(800); await scan(p, 'Tarix', '#rzMain'); await shot(p, 'tarix'); await mainAt(p, 'past'); await shot(p, 'tarix-past');
     await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(800); await scan(p, 'Profil', '#rzMain'); await shot(p, 'profil'); await mainAt(p, 'orta'); await shot(p, 'profil-orta'); await mainAt(p, 'past'); await shot(p, 'profil-past');
     if (p.errs.length) fails.push(tag + ' JS: ' + p.errs[0]); await p.context().close();
+    /* «Vazn trendi» + «Nega sekin ozyapman?» (demo foydalanuvchi: 1-hafta suv, kechki ovqat yozilmagan, qadam kamaygan, oqsil kam) */
+    { p = await mk(PD.build('demo', S)); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(900);
+      await p.evaluate(() => { const m = document.getElementById('rzMain'), w = document.querySelector('.pl-w'); m.scrollTop = w.offsetTop - 12; }); await p.waitForTimeout(400);
+      await scan(p, 'Vazn trendi', '.pl-w'); await shot(p, 'plato-trend'); if (OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET3)) await yonma3(p, c.th, 'plato-maket-1', '.c');
+      const t = await p.evaluate(() => ({ ch: !!document.querySelector('.pl-w svg .avg'), band: !!document.querySelector('.pl-w svg .wb'), note: !!document.getElementById('plWater'), cta: !!document.getElementById('plCta'), x: document.documentElement.scrollWidth > innerWidth + 1 }));
+      if (!t.ch || !t.cta) fails.push(tag + ' Vazn trendi: chiziq/karta yo\'q ' + JSON.stringify(t)); if (t.x) fails.push(tag + ' Vazn trendi: gorizontal siljish');
+      await p.click('#plCta'); await p.waitForTimeout(800); await scan(p, 'Nega sekin (tepa)', '#rzSheet'); await shot(p, 'plato-1'); if (OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET3)) await yonma3(p, c.th, 'plato-maket-2', '.sh');
+      const o = await p.evaluate(() => { const sh = document.getElementById('rzSheet'); return { n: sh.querySelectorAll('.pl-cs').length, tr: sh.querySelectorAll('.pl-ti').length, x: sh.scrollWidth > sh.clientWidth + 1, small: [...sh.querySelectorAll('*')].filter((e) => [...e.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()) && parseFloat(getComputedStyle(e).fontSize) < 14.9 && !e.closest('svg')).map((e) => e.className).slice(0, 3), heavy: [...sh.querySelectorAll('*')].filter((e) => +getComputedStyle(e).fontWeight > 700).length }; });
+      if (o.n < 1 || o.tr < 2) fails.push(tag + ' Nega sekin: sabab/ish yo\'q ' + JSON.stringify(o)); if (o.x) fails.push(tag + ' Nega sekin: gorizontal siljish'); if (o.small.length) fails.push(tag + ' Nega sekin: 15 px dan kichik ' + o.small); if (o.heavy) fails.push(tag + ' Nega sekin: og\'irlik > 700');
+      await p.evaluate(() => { const sh = document.getElementById('rzSheet'); sh.scrollTop = sh.scrollHeight; }); await p.waitForTimeout(250); await p.click('#rzSheet [data-act=plsrc]'); await p.waitForTimeout(300);
+      await p.evaluate(() => { const sh = document.getElementById('rzSheet'); sh.scrollTop = sh.scrollHeight; }); await p.waitForTimeout(250); await scan(p, 'Nega sekin (past, manbalar)', '#rzSheet'); await shot(p, 'plato-2');
+      if (p.errs.length) fails.push(tag + ' JS (plato): ' + p.errs[0]); await p.context().close(); }
     console.log('✓', tag);
   }
 } finally { await b.close(); srv.close(); }

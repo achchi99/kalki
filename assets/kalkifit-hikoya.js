@@ -25,7 +25,7 @@
         '<div class="hk-r"><svg viewBox="0 0 120 120" class="hk-ring" aria-hidden="true"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" style="--c:' + C.toFixed(1) + ';--o:' + (C * (1 - sf)).toFixed(1) + '"/></svg><b data-cu="' + (s.sum || 0) + '">0</b><span>' + esc(L.stepsU) + '</span></div></div></div>';
     }
     if (kind === 'best') return '<div class="hk-s hk-best"><div class="hk-fire" aria-hidden="true"><span class="f1"></span><span class="f2"></span><span class="st">★</span></div><p class="hk-k">' + esc(L.bestT) + '</p><h2 class="hk-big sm">' + esc(d.best || '—') + '</h2><p class="hk-sub"><b data-cu="' + (d.streak || 0) + '">0</b> ' + esc(L.streakU) + '</p>' + (d.food ? '<div class="hk-food">' + (d.food.img ? '<img src="' + esc(d.food.img) + '" alt="" width="56" height="56">' : '<i>' + esc(String(d.food.name).charAt(0)) + '</i>') + '<span><small>' + esc(L.foodT) + '</small><b>' + esc(d.food.name) + '</b></span></div>' : '') + (d.weight ? '<p class="hk-wt" id="hkWt">' + esc(d.weight) + '</p>' : '') + '</div>';
-    return '<div class="hk-s hk-tip"><p class="hk-k">' + esc(L.tipT) + '</p><h2 class="hk-big sm">' + esc(d.tip) + '</h2><div class="hk-act"><button type="button" class="hk-btn pri" data-hk="share">' + esc(L.share) + '</button><button type="button" class="hk-btn" data-hk="close">' + esc(L.close) + '</button></div></div>';
+    return '<div class="hk-s hk-tip"><p class="hk-k">' + esc(L.tipT) + '</p><h2 class="hk-big sm">' + esc(d.tip) + '</h2>' + (d.plato ? '<p class="hk-pl">' + esc(d.plato.t) + '</p>' : '') + '<div class="hk-act">' + (d.plato ? '<button type="button" class="hk-btn pri" data-hk="plato">' + esc(d.plato.b) + '</button>' : '') + '<button type="button" class="hk-btn' + (d.plato ? '' : ' pri') + '" data-hk="share">' + esc(L.share) + '</button><button type="button" class="hk-btn" data-hk="close">' + esc(L.close) + '</button></div></div>';
   }
   function countUp(el, reduce) {
     [].forEach.call(el.querySelectorAll('[data-cu]'), function (e) {
@@ -57,7 +57,7 @@
     el.addEventListener('pointermove', function (e) { if (y0 == null) return; var dy = e.clientY - y0; if (dy > 10) { moved = true; el.style.transform = 'translateY(' + Math.min(dy, 240) + 'px)'; } });
     el.addEventListener('pointerup', function (e) {
       var dy = y0 == null ? 0 : e.clientY - y0, long = Date.now() - t0 > 350; y0 = null; paused = false; el.classList.remove('hold'); el.style.transform = '';
-      var b = e.target.closest && e.target.closest('[data-hk]'); if (b) { var a = b.getAttribute('data-hk'); if (a === 'close') close(); else if (a === 'share' && o.onShare) { var cv = doc.createElement('canvas'); api.drawShare(cv, api.shareData(d), o.tr); o.onShare(cv); } arm(); return; }
+      var b = e.target.closest && e.target.closest('[data-hk]'); if (b) { var a = b.getAttribute('data-hk'); if (a === 'close') close(); else if (a === 'plato') { close(); if (o.onPlato) o.onPlato(); } else if (a === 'share' && o.onShare) { var cv = doc.createElement('canvas'); api.drawShare(cv, api.shareData(d), o.tr); o.onShare(cv); } arm(); return; }
       if (dy > 90) { close(); return; } if (moved || long) { arm(); return; }
       if (x0 != null && x0 < el.clientWidth * 0.33) prev(); else next();
     });

@@ -195,6 +195,7 @@
   Object.assign(D.ru, { hwReady: 'Итоги вашей недели готовы', hwOpen: 'Смотреть', hwT: 'Итоги недели', hwRange: '{a} – {b}', hwAvg: 'В среднем: {x} ккал/день', hwAvgG: 'цель {x}', hwNear: 'Дней около цели: {n} / 7', hwWater: 'Вода: в среднем {x} мл в день', hwSteps: 'Шаги: в среднем {x} в день', hwBest: 'Лучший день: {d}', hwStreak: 'Дней подряд с записями: {n}', hwTipT: 'Один совет на следующую неделю',
     hwTip_log: 'Записывайте хотя бы одну еду в день — итоги будут точнее.', hwTip_water: 'Выпивайте стакан воды перед каждым приёмом пищи.', hwTip_steps: 'Гуляйте 15 минут каждый день — это примерно 1 500 шагов.', hwTip_over: 'Кладите ужин на тарелку поменьше.', hwTip_protein: 'Добавляйте белок к каждой еде: яйцо, творог, курицу или бобовые.', hwTip_keep: 'Сохраните этот порядок ещё на неделю.',
     hwEmpty: 'На этой неделе записей нет. Ничего страшного — запишите завтра одну еду, и в следующее воскресенье итоги будут готовы.', hwN: 'Итоги недели', hwNH: 'В воскресенье в 19:00 — итоги недели', hwMsg: 'Итоги вашей недели готовы' });
+  if (window.KalkiPlato) ['uz', 'ru'].forEach(function (l) { var x = KalkiPlato.TX[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; });          // «Nega sekin ozyapman?» matnlari — modulda
   function T(k, o) { var s = (D[lang] && D[lang][k] != null) ? D[lang][k] : D.uz[k]; if (typeof s === 'string' && o) s = s.replace(/\{(\w+)\}/g, function (m, x) { return o[x] != null ? o[x] : m; }); return s; }
   var kit = RzKit.create({ root: root, K: Dt, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
   /* Funksiya oynasi (Ovqat qo'shish, Bugun nima yeymiz?, Retsept, Suv, Tez-tez, Idish, Mening taomlarim) yopilganda DOIM Bugun'ga qaytadi (o'tgan kunga yozilayotgan «Ovqat qo'shish» bundan mustasno) */
@@ -453,6 +454,7 @@
     theme: function (n) { return goTab('profile', function () { var b = $('[data-act=theme]'); n.highlight(b && b.parentNode); }); },
     jokes: function (n) { return goTab('profile', function () { var b = $('[data-act=jktog]'); n.highlight(b && b.parentNode); }); },
     history: function (n) { return goTab('history', function () { n.highlight($('#hkCard') || $('.sl-sec2') || $('#rzMain')); }); },
+    vazn: function (n) { return goTab('history', function () { n.highlight($('.pl-w') || $('#rzMain')); }); },
     bju: function (n) { return goTab('today', function () { var c = $('#bjuCard'); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'center' }); n.highlight(c); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
     yeymiz: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
@@ -519,6 +521,7 @@
       case 'retsept': act('rtopen'); return;
       case 'odatdagi': tplsOpen(); return;
       case 'taomlarim': rcmineOpen(); return;
+      case 'plato': openPlato(); return;
       case 'idishlar': vmOpen(); return;
       case 'hafta': openWeek(null); return;
       case 'kunkarta': openDayCard(); return;
@@ -661,18 +664,113 @@
   /* ---------- NATIJALAR ---------- */
   function rowBtn(act, ic, t1, t2) { return '<button type="button" class="rz-row" data-act="' + act + '">' + catIcon(ic) + '<span class="m"><b>' + esc(t1) + '</b>' + (t2 ? '<span>' + esc(t2) + '</span>' : '') + '</span>' + ico('chev', 'r') + '</button>'; }
   function histResultsHtml() {
-    var pr = st.profile, cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), first = st.weights.length ? st.weights[0].kg : cur; loadMasofa();
-    var h = '';
-    var wjoke = G && prefs().jokes !== false ? G.weightLine(jokeCtx(false)) : null; if (wjoke) saveQuiet();
-    h += '<section class="rz-card sl-weight"><div class="sl-wh"><b>' + ico('scale') + esc(T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + (st.weights.length ? '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>' + (wjoke ? '<p class="rz-p sl-fact">' + esc(wjoke.text) + '</p>' : '') : '<div class="rz-mut">' + esc(T('meNoW')) + '</div>') + weightChart() +
-      (gp ? '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>' : '') +
-      (st.weights.length > 1 ? '<div class="rz-mut sm">' + esc(T('meDelta', { x: (cur - first > 0 ? '+' : '') + dec(cur - first, 1) })) + '</div>' : '') + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>';
+    loadMasofa(); var h = weightCardHtml();
     h += orbHtml() + stepsHtml() + '<section class="rz-card"><button type="button" class="rz-row" data-act="share"><span class="sl-ci">' + ico('share') + '</span><span class="m"><b>' + esc(T('meShare')) + '</b><span>' + esc(T('shH')) + '</span></span>' + ico('chev', 'r') + '</button></section>';
     return h;
   }
   function resultsAfter() {
     stepsAnim();
     var p = $('.sl-wchart .avg'); if (p && !reduce && !p.__a) { p.__a = 1; p.style.strokeDashoffset = '1'; requestAnimationFrame(function () { requestAnimationFrame(function () { p.style.strokeDashoffset = '0'; }); }); }
+  }
+  /* ---------- «Vazn trendi» + «Nega sekin ozyapman?» (assets/kalkifit-plato.js; maket ~/plato-maket.html). AI yo'q — hisob qurilmada, foydalanuvchining o'z yozuvlaridan ---------- */
+  var PL = window.KalkiPlato || null, PL_ID = 7003, PL_PER = { p28: 28, p91: 91, all: 0 };
+  function plPrefs() { var p = prefs(); if (!p.plato || typeof p.plato !== 'object') p.plato = {}; return p.plato; }          // yozish uchun (yaratadi)
+  function plGet() { var p = prefs().plato; return p && typeof p === 'object' ? p : {}; }          // faqat o'qish — holatni o'zgartirmaydi
+  function plSign(x, d) { return (x > 0 ? '+' : x < 0 ? '−' : '') + dec(Math.abs(x), d == null ? 1 : d); }
+  function kg1(x) { return (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }          // «84,0» — trend vazni doim bitta kasr bilan
+  function plAn() { return PL ? PL.analyze({ st: st, S: S, today: todayStr() }) : null; }
+  function wTrendChart(sm) {
+    var ser = sm.sub, all = sm.ser; if (ser.length < 2) return '';
+    var W = 340, H = 150, pl = 10, pr = 10, pt = 14, pb = 22, d0 = ser[0].d, span = Math.max(1, Dt.daysBetween(d0, ser[ser.length - 1].d));
+    var vs = ser.map(function (s) { return s.kg; }).concat(ser.map(function (s) { return s.t; })), mn = Math.min.apply(null, vs) - 0.4, mx = Math.max.apply(null, vs) + 0.4;
+    var X = function (d) { return pl + (W - pl - pr) * Dt.daysBetween(d0, d) / span; }, Y = function (v) { return pt + (H - pt - pb) * (mx - v) / (mx - mn); };
+    var line = ser.map(function (s, i) { return (i ? 'L' : 'M') + X(s.d).toFixed(1) + ' ' + Y(s.t).toFixed(1); }).join(' '), wa = sm.water, band = '';
+    if (wa && wa.to >= d0 && !(prefs().plato && prefs().plato.water)) { var x1 = Math.max(0, X(wa.from < d0 ? d0 : wa.from) - 6), x2 = Math.min(W, X(wa.to) + 6); band = '<rect class="wb" x="' + x1.toFixed(1) + '" y="0" width="' + (x2 - x1).toFixed(1) + '" height="' + H + '"/><text class="wt" x="' + (x1 + 6).toFixed(1) + '" y="' + (H - 7) + '">' + esc(T('plWaterL')) + '</text>'; }
+    var grid = [0.15, 0.5, 0.85].map(function (f) { var y = (pt + (H - pt - pb) * f).toFixed(1); return '<line x1="0" y1="' + y + '" x2="' + W + '" y2="' + y + '"/>'; }).join('');
+    return '<svg class="sl-wchart pl-ch" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(T('plTrendT') + ': ' + dec(sm.kg, 1) + ' ' + KG()) + '">' + band + '<g class="gr">' + grid + '</g>' + ser.map(function (s) { return '<circle class="dot" cx="' + X(s.d).toFixed(1) + '" cy="' + Y(s.kg).toFixed(1) + '" r="3.5"/>'; }).join('') + (sm.span >= 6 ? '<path class="avg" d="' + line + '" pathLength="1"/>' : '') + '</svg>' + (all.length ? '' : '');
+  }
+  function weightCardHtml() {
+    var cur = S.currentWeight(st), wi = S.weightInfo(st, todayStr()), gp = S.goalProgress(st), pk = plGet().per || 'p28', sm = PL && st.weights.length ? PL.summary(st.weights, todayStr(), PL_PER[pk], Dt) : null;
+    var wjoke = G && prefs().jokes !== false ? G.weightLine(jokeCtx(false)) : null; if (wjoke) saveQuiet();
+    var tr = !!(sm && sm.ser.length >= 2 && Dt.daysBetween(sm.ser[0].d, sm.ser[sm.ser.length - 1].d) >= 6), lose = PL && PL.isLose(st), good = sm && (lose ? sm.change < 0 : (st.profile.goal === 'gain' ? sm.change > 0 : Math.abs(sm.change) < 0.5));
+    var per = st.weights.length > 1 ? '<div class="pl-per" role="group" aria-label="' + esc(T('plTrendT')) + '">' + ['p28', 'p91', 'all'].map(function (k) { return '<button type="button" class="pl-pc' + (k === pk ? ' on' : '') + '" data-act="wper" data-k="' + k + '" aria-pressed="' + (k === pk) + '">' + esc(T(k === 'p28' ? 'plP28' : k === 'p91' ? 'plP91' : 'plPAll')) + '</button>'; }).join('') + '</div>' : '';
+    var h = '<section class="rz-card sl-weight pl-w"><div class="sl-wh"><b>' + ico('scale') + esc(tr ? T('plTrendT') : T('meW')) + '</b><button type="button" class="sl-wv" data-act="xweight">?</button></div>' + per;
+    if (!st.weights.length) h += '<div class="rz-mut">' + esc(T('meNoW')) + '</div>';
+    else if (tr) h += '<div class="sl-wbig"><b>' + kg1(sm.kg) + '</b><small> ' + KG() + ' · ' + esc(T('plTrend')) + '</small></div><div class="pl-chg' + (good ? ' ok' : '') + '" id="wLbl">' + esc(sm.perWeek != null ? T('plChg', { c: plSign(sm.change), w: plSign(sm.perWeek, 2) }) : T('plChg0', { c: plSign(sm.change) })) + '</div>';
+    else h += '<div class="sl-wbig"><b>' + dec(cur, 1) + '</b><small> ' + KG() + '</small></div><div class="rz-mut" id="wLbl">' + esc(weightLabel(wi)) + '</div>';
+    if (wjoke) h += '<p class="rz-p sl-fact">' + esc(wjoke.text) + '</p>';
+    if (sm) { h += wTrendChart(sm); if (sm.sub.length >= 2) h += '<div class="pl-lg" aria-hidden="true"><span><i class="d"></i>' + esc(T('plDots')) + '</span>' + (tr && sm.span >= 6 ? '<span><i class="t"></i>' + esc(T('plLine')) + '</span>' : '') + '</div>'; }
+    if (sm && sm.water && !plGet().water) h += '<div class="pl-note bl" id="plWater">' + ico('drop', 'pl-ni') + '<span>' + esc(T('plWater')) + '</span><button type="button" class="rz-x pl-nx" data-act="plwater" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>';
+    else if (st.weights.length && PL && PL.fewWeighs(st.weights, todayStr(), Dt) && st.weights.length < 12) h += '<p class="rz-mut sm pl-tip">' + esc(T('plWeigh')) + '</p>';
+    if (gp) h += '<div class="sl-gp"><div class="rz-bar thin" aria-hidden="true"><i style="transform:scaleX(' + gp.share + ')"></i></div><span>' + esc(gp.left > 0 ? T('meProg', { x: dec(gp.left, 1) }) : '✓') + '</span></div>';
+    return h + '<button type="button" class="rz-btn primary full" data-act="addweight">' + esc(T('meAddW')) + '</button></section>' + platoCtaHtml();
+  }
+  function plCtaSub(a) {
+    if (a.state === 'need') { var n = a.need; return n.weights ? T('plNeedW', { n: n.weights }) : n.food && n.food >= n.days ? T('plNeedF', { n: n.food }) : n.days ? T('plNeedD', { n: n.days }) : T('plNeedS', { n: n.span }); }
+    if (a.state === 'fast') return T('plCtaFast'); if (a.state === 'fine') return T('plCtaOk');
+    return a.reasons.length === 1 ? T('plCta1') : T('plCtaN', { n: a.reasons.length });
+  }
+  function platoCtaHtml() {
+    var a = plAn(); if (!a || !a.show) return '';
+    return '<button type="button" class="pl-cta' + (a.state === 'need' ? ' need' : '') + '" id="plCta" data-act="plato"><span class="ic" aria-hidden="true">?</span><span class="m"><b>' + esc(T('plQ')) + '</b><span>' + esc(plCtaSub(a)) + '</span></span>' + ico('chev', 'r') + '</button>';
+  }
+  function plReasonHtml(r, i) {
+    var t, p, k, c = ['ac', 'ye', 'bl'][i] || 'bl';
+    if (r.k === 'qadam') { t = T('plR_qadam'); p = T('plR_qadamP', { a: fmt(r.a), b: fmt(r.b) }); k = T('plKd', { k: fmt(r.kcal) }); }
+    else if (r.k === 'yozilmagan') { t = r.m ? T('plR_yoz_' + r.m, { n: r.n }) : T('plR_yozLow', { n: r.low }); p = (r.m ? T('plR_yozP') + (r.low >= 3 ? T('plR_yozX', { n: r.low }) : '') : T('plR_yozPLow')); k = T('plDays', { n: r.m ? r.n : r.low, of: r.of }) + ' · ' + T('plKd', { k: fmt(r.kcal) }); }
+    else if (r.k === 'damolish') { t = T('plR_damolish'); p = T('plR_damolishP', { d: fmt(r.diff) }); k = T('plKd', { k: fmt(r.kcal) }); }
+    else if (r.k === 'oqsil') { t = T('plR_oqsil', { g: r.g }); p = T('plR_oqsilP', { n: r.need }); k = T('plGr', { g: r.g, n: r.need }); }
+    else if (r.k === 'porsiya') { t = T('plR_porsiya'); p = T('plR_porsiyaP'); k = T('plKd', { k: fmt(r.kcal) }); }
+    else { t = T('plR_defitsit'); p = r.floor ? T('plR_defitsitF', { k: fmt(r.minK) }) : T('plR_defitsitP', { d: fmt(r.def) }); k = T('plR_defK', { d: fmt(r.def) }); }
+    return '<div class="pl-cs" data-r="' + r.k + '"><span class="n c-' + c + '">' + (i + 1) + '</span><div><b>' + esc(t) + '</b><p>' + esc(p) + '</p><span class="k c-' + c + '">' + esc(k) + '</span></div></div>';
+  }
+  function plWeek() { return PL.weekKey(todayStr(), S); }
+  function plChecks() { var pp = plGet(); return pp.wk === plWeek() && pp.c ? pp.c : {}; }          // o'qish: shu hafta belgilari
+  function plCheckSet(k) { var pp = plPrefs(); if (pp.wk !== plWeek()) { pp.wk = plWeek(); pp.c = {}; } pp.c = pp.c || {}; pp.c[k] = !pp.c[k]; return pp.c[k]; }
+  function platoHtml(a) {
+    var h = shHead(T('plQ')), n = a.period ? a.period.days : PL.WIN;
+    if (a.state === 'need') {
+      var nd = a.need, L = []; if (nd.days) L.push(T('plNeedD', { n: nd.days })); if (nd.weights) L.push(T('plNeedW', { n: nd.weights })); else if (nd.span) L.push(T('plNeedS', { n: nd.span })); if (nd.food) L.push(T('plNeedF', { n: nd.food }));
+      return h + '<p class="rz-p">' + esc(T('plNeedT')) + '</p><div class="pl-tr">' + L.map(function (x) { return '<div class="pl-ti">' + ico('cal2', 'pl-ni') + '<span>' + esc(x) + '</span></div>'; }).join('') + '</div><p class="rz-mut sm pl-ft">' + esc(T('plNeedH')) + '</p>' + plFoot() + okBtn();
+    }
+    h += '<p class="rz-mut pl-sub">' + esc(T('plSub', { n: n })) + '</p>';
+    if (a.state === 'fast') return h + '<div class="pl-note ye">' + ico('scale', 'pl-ni') + '<span><b>' + esc(T('plFastT')) + '.</b> ' + esc(a.kind === 'low' ? T('plLow', { k: fmt(a.avgK) }) : T('plFast', { w: dec(a.rate, 1) })) + '</span></div><p class="rz-p sm">' + esc(T('plFastH')) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="plgoal">' + esc(T('plFastB')) + '</button></div>' + plFoot();
+    var e = Math.abs(Math.min(0, a.expected)), r = Math.abs(Math.min(0, a.actual)), mx = Math.max(e, r, 0.1);
+    h += '<div class="pl-cmp"><div><span class="rz-mut">' + esc(T('plExp')) + '</span><b>' + plSign(a.expected) + ' ' + KG() + '</b><div class="pl-bar"><i style="transform:scaleX(' + (e / mx).toFixed(3) + ')"></i></div></div><div><span class="rz-mut">' + esc(T('plAct')) + '</span><b class="ok">' + plSign(a.actual) + ' ' + KG() + '</b><div class="pl-bar ok"><i style="transform:scaleX(' + (r / mx).toFixed(3) + ')"></i></div></div></div>';
+    if (a.state === 'fine') return h + '<div class="pl-note gr">' + ico('check', 'pl-ni') + '<span><b>' + esc(T('plOkT')) + '.</b> ' + esc(T('plOk')) + (a.perWeek != null ? ' ' + esc(T('plOkW', { w: plSign(a.perWeek, 2) })) : '') + '</span></div>' + plTriesHtml(a) + plFoot();
+    h += '<div class="pl-note ye">' + ico('scale', 'pl-ni') + '<span>' + esc(a.gapKcal >= 50 ? T('plGap', { kg: dec(a.gapKg, 1), k: fmt(a.gapKcal) }) : T('plGap0')) + '</span></div>';
+    h += '<h3 class="pl-lbl">' + esc(T('plRs')) + '</h3>' + a.reasons.map(plReasonHtml).join('');
+    return h + plTriesHtml(a) + plFoot();
+  }
+  function plTriesHtml(a) {
+    var c = plChecks(), on = !!plGet().rem;
+    return '<h3 class="pl-lbl">' + esc(T('plTry')) + '</h3><div class="pl-tr">' + a.tries.map(function (k) { var v = !!c[k]; return '<button type="button" class="pl-ti' + (v ? ' on' : '') + '" data-act="pltry" data-k="' + k + '" role="checkbox" aria-checked="' + v + '"><span class="cb" aria-hidden="true">' + (v ? ico('check', '', 2.6) : '') + '</span><span>' + esc(T('plT_' + k)) + '</span></button>'; }).join('') + '</div>' +
+      '<button type="button" class="rz-btn ' + (on ? 'ghost' : 'primary') + ' full pl-rem" data-act="plrem" aria-pressed="' + on + '">' + esc(on ? T('plRemOff') : T('plRem')) + '</button>';
+  }
+  function plFoot() {
+    var o = !!(pv && pv.src);
+    return '<p class="pl-ft">' + esc(T('plFoot')) + '</p><button type="button" class="pl-srcb" data-act="plsrc" aria-expanded="' + o + '">' + esc(T('plSrc')) + ' ' + ico('chev', o ? 'up' : 'dn') + '</button>' + (o ? '<ol class="pl-src">' + PL.SRC.map(function (k) { return '<li>' + esc(T(k)) + '</li>'; }).join('') + '</ol>' : '');
+  }
+  var pv = null, plA = null;
+  function openPlato() {
+    if (!PL) return; plA = plAn(); if (!plA || !plA.show) return; pv = { src: false };
+    stEv('plato_ochildi', plA.state); if (plA.state === 'slow') plA.reasons.forEach(function (r) { stEv('plato_sabab', r.k); }); else if (plA.state === 'fast') stEv('plato_sabab', plA.kind); else if (plA.state === 'fine') stEv('plato_sabab', 'joyida');
+    if (ftOpenNow()) closeFeats(true);
+    openSheet('plato', platoHtml(plA));
+  }
+  function plRefresh() { if (kit.sheetKind() !== 'plato' || !plA) return; var sh = $('#rzSheet'), sc = sh.scrollTop; setSheet(platoHtml(plA)); sh.scrollTop = sc; }
+  function plRemTxt() { var a = plA || plAn(); if (!a || !a.tries) return ''; var c = plChecks(), k = a.tries.filter(function (x) { return !c[x]; })[0]; return k ? T('plT_' + k) : ''; }
+  function plResched() {
+    if (!NAT || NS.perm !== 'granted') return; var pp = plGet(); if (!pp.rem) { NAT.notif.disable(PL_ID); return; }
+    var x = plRemTxt(); if (!x) { NAT.notif.disable(PL_ID); return; }
+    NAT.notif.schedule({ id: PL_ID, day: (S.weekdayIdx(todayStr()) + 1) % 7, hour: 12, title: 'KalkiFit', body: natTr(T('plRemToast', { x: x })), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?plato=1' }).catch(function () {});
+  }
+  function plBootRem() {                                // «Eslatib turilsin» (bildirishnoma bo'lmasa): ilova ochilganda kuniga bir marta — hali belgilanmagan birinchi ish
+    if (!PL || !st.setup) return; var pp = plGet(); if (!pp.rem || pp.remD === todayStr() || !PL.isLose(st)) return; pp = plPrefs(); var x = plRemTxt(); if (!x) return;
+    pp.remD = todayStr(); save(); setTimeout(function () { if (!kit.sheetKind()) toast(T('plRemToast', { x: x }), null, false, 6000); }, 1800);
+  }
+  function plHk() {                                    // «Haftangiz» ichida BIR MARTA: trend 14+ kun deyarli joyida yoki kutilganning yarmidan kam
+    if (!PL || plGet().hk) return null; var a = plAn(); if (!a || !PL.stalled(a)) return null; return { t: T('plHk'), b: T('plHkB') };
   }
   /* ---------- TARIX (Kundalik + Natijalar birlashgan) ---------- */
   function secHead(k) { return '<div class="sl-sec2"><h3>' + esc(T(k)) + '</h3></div>'; }
@@ -715,6 +813,7 @@
   function featList() {
     return [{ k: 'ovoz', ic: 'mic', g: 'tez', ok: micCan(), lim: 'ovoz' }, { k: 'rasm', ic: 'cam', g: 'tez', ok: true, lim: 'ai' }, { k: 'menyu', ic: 'menu', g: 'tez', ok: !!(Y && Y.menuOpen && window.KalkiMenyu), lim: 'ai' },
       { k: 'hafta', ic: 'bars', g: 'natija', c: 'pu', ok: true }, { k: 'kunkarta', ic: 'upload', g: 'natija', c: 'ye', ok: true }, { k: 'ulashish', ic: 'trend', g: 'natija', c: 'pu', ok: true },
+      { k: 'plato', ic: 'qmark', g: 'natija', c: 'gr', ok: !!(window.KalkiPlato && KalkiPlato.isLose(st)) },
       { k: 'yeymiz', ic: 'zfork', g: 'yemak', c: 'ac', ok: !!Y }, { k: 'yesam', ic: 'qmark', g: 'yemak', c: 'ac', ok: true }, { k: 'retsept', ic: 'rspark', g: 'yemak', c: 'ac', ok: !!R },
       { k: 'odatdagi', ic: 'star', g: 'mening', c: 'gr', ok: true }, { k: 'taomlarim', ic: 'book', g: 'mening', c: 'gr', ok: true }, { k: 'idishlar', ic: 'bowl', g: 'mening', c: 'gr', ok: true },
       { k: 'supp', ic: 'pill', g: 'soglik', c: 'bl', ok: true }].filter(function (x) { return x.ok; });
@@ -2168,7 +2267,10 @@
 
   /* ---------- haftalik xulosa (qurilmada hisoblanadi) — assets/kalkifit-hafta.js ---------- */
   var HW_ID = 7002;
-  function hwDue() { var H = window.KalkiHafta; return H && st && st.setup ? H.dueEnd(S, todayStr(), new Date().getHours()) : null; }
+  function hwDue() {                                   // «Haftangiz» vaqti (yakshanba 19:00 – dushanba); o'sha haftada birorta ovqat yozilmagan bo'lsa (yangi foydalanuvchi) — xulosa yo'q
+    var H = window.KalkiHafta, e = H && st && st.setup ? H.dueEnd(S, todayStr(), new Date().getHours()) : null; if (!e) return null;
+    for (var i = 0; i < 7; i++) { var x = S.dayOf(st, Dt.addDays(e, -i)); if (x && x.food && x.food.length) return e; } return null;
+  }
   function hwOn() { return prefs().hafta !== false; }
   function hwDay(d) { var wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(d)]; return wd + ', ' + kit.dLabel(d); }
   var HK = null;
@@ -2185,8 +2287,8 @@
   function openWeek(end) {                             // «Haftangiz» — to'liq ekranli hikoya (assets/kalkifit-hikoya.js); Tarix kartasi, yakshanba eslatmasi va ?hafta=1 shu yerni ochadi
     var H = window.KalkiHafta, KH = window.KalkiHikoya; if (!H || !KH || HK) return; end = end || hwDue() || todayStr(); prefs().hwSeen = end; save(); stEv('haftalik_ochildi'); var nd = $('[data-nudge=hafta]'); if (nd) nd.remove();
     if (kit.sheetKind()) kit.closeSheet();
-    var d = hkData(end); d.L.nearT2 = d.L.nearS;
-    HK = KH.open({ data: d, reduce: !!(reduce || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)), tr: natTr, onShare: function (cv) { sharePng(cv, 'kalkifit-hafta.png', 'kun_kartochka_ulashildi'); }, onClose: function () { HK = null; } });
+    var d = hkData(end); d.L.nearT2 = d.L.nearS; d.plato = plHk(); if (d.plato) { plPrefs().hk = end; save(); }          // «Nega sekin?» — Haftangiz ichida bir marta
+    HK = KH.open({ data: d, onPlato: function () { setTimeout(openPlato, 260); }, reduce: !!(reduce || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)), tr: natTr, onShare: function (cv) { sharePng(cv, 'kalkifit-hafta.png', 'kun_kartochka_ulashildi'); }, onClose: function () { HK = null; } });
   }
   function hkCardHtml() {                              // Tarix tepasida: «Haftangiz ▶» — 7 kunlik mini ustunlar + asosiy raqam
     if (!window.KalkiHafta || !window.KalkiHikoya) return ''; var t = todayStr(), w = KalkiHafta.summary(S, st, t, t), mx = Math.max(w.target || 1, Math.max.apply(null, w.rows.map(function (r) { return r.kcal; }).concat([1])));
@@ -2458,6 +2560,13 @@
         break; }
       case 'spsave': spSave(); break; case 'addweight': openWeight(); break; case 'wfsave': wfSave(); break;
       case 'editprof': openProfile(); break;
+      case 'wper': { plPrefs().per = el.getAttribute('data-k'); save(); render(); break; }
+      case 'plwater': { plPrefs().water = 1; save(); render(); break; }          // «1-hafta: suv» izohi — bir marta; yopsa qayta chiqmaydi
+      case 'plato': openPlato(); break;
+      case 'pltry': { var kk = el.getAttribute('data-k'); if (plCheckSet(kk)) stEv('plato_belgi', kk.replace(/_.*/, '')); vib(); save(); plRefresh(); plResched(); break; }
+      case 'plrem': { var pq = plPrefs(); pq.rem = !pq.rem; pq.remD = todayStr(); save(); plRefresh(); if (pq.rem) { toast(T('plRemOn'), null, true); var px = plRemTxt(); if (NAT && NS.perm !== 'granted' && px) NAT.notif.enable({ id: PL_ID, day: (S.weekdayIdx(todayStr()) + 1) % 7, hour: 12, title: 'KalkiFit', body: natTr(T('plRemToast', { x: px })), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?plato=1' }).then(function (r) { if (r === 'on') NS.perm = 'granted'; else if (r === 'denied') NS.perm = 'denied'; }).catch(function () {}); else plResched(); } else plResched(); break; }
+      case 'plsrc': { if (pv) { pv.src = !pv.src; plRefresh(); } break; }
+      case 'plgoal': { kit.closeSheet(); setTimeout(openProfile, 260); break; }
       case 'pesex': { peRead(); pe.sex = el.getAttribute('data-v'); if (pe.sex === 'm') pe.preg = false; peRepaint(); break; }
       case 'peact': peRead(); pe.act = +el.getAttribute('data-v'); peRepaint(); break;
       case 'pegoal': if (el.getAttribute('aria-disabled') !== 'true') { peRead(); pe.goal = el.getAttribute('data-v'); peRepaint(); } break;
@@ -2648,9 +2757,11 @@
     if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) navigator.serviceWorker.addEventListener('message', function (ev) { if (ev.data && ev.data.t === 'baliq' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/baliq'); }); } catch (e) {} openFish(); } if (ev.data && ev.data.t === 'hafta' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/hafta'); }); } catch (e) {} openWeek(); } });
     if (window.KalkiNative) KalkiNative.setBack(nativeBack);
     if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi', 'hafta'); if (st && st.setup) openWeek(); }, HW_ID); }
-    if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; if (p === 'granted') { natResched(); hwResched(); } if (view === 'profile' && !kit.sheetKind()) render(); }); }
+    if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; if (p === 'granted') { natResched(); hwResched(); plResched(); } if (view === 'profile' && !kit.sheetKind()) render(); }); }
     if (/[?&]baliq=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openFish, 500); }          // eslatma bosildi: baliq guruhi ochiladi
     if (/[?&]hafta=1\b/.test(location.search) && st.setup) { stEv('push_bosildi', 'hafta'); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(function () { openWeek(); }, 500); }          // «Haftangiz xulosasi tayyor» bosildi
+    if (/[?&]plato=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openPlato, 500); }          // «Eslatib turilsin» bildirishnomasi bosildi
+    plBootRem();
     if (location.hash === '#haqida') aboutOpen(true);
     window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile, tile: function (fid, name) { return tileHtml(fid, null, name || fid, 34); } };
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz

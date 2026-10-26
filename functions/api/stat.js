@@ -15,7 +15,8 @@ export const HODISA = {
   faol: ANY, yangi_foydalanuvchi: ANY, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
-  push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY
+  push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
+  plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram)$/          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
 };
 export const SERVER_HODISA = ['push_yuborildi'];          // faqat server (tools/push-yubor.js D1 REST orqali) yozadi — mijozdan qabul qilinmaydi
 const PLAT = /^(veb|android|ios-pwa)$/, UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -96,7 +97,7 @@ export async function kpi(db, dan, gacha, bugun) {
 export const NARX = { matn: 0.0015, rasm: 0.004, menyu: 0.008, retsept: 0.003, ovoz: 0.0015 };
 export const FUNK = [['qidiruv', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ovqat_qoshildi' AND kalit = 'qidiruv' AND kun >= ? AND kun <= ?"], ['ovoz', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kalit LIKE 'ovoz.%' AND kun >= ? AND kun <= ?"],
   ['rasm', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kalit LIKE 'rasm.%' AND kun >= ? AND kun <= ?"], ['menyu', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'ai_sorov' AND kalit LIKE 'menyu.%' AND kun >= ? AND kun <= ?"],
-  ['yeymiz', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'yeymiz_segment' AND kun >= ? AND kun <= ?"], ['haftangiz', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'haftalik_ochildi' AND kun >= ? AND kun <= ?"], ['ulashish', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'kun_kartochka_ulashildi' AND kun >= ? AND kun <= ?"]];
+  ['yeymiz', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'yeymiz_segment' AND kun >= ? AND kun <= ?"], ['haftangiz', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'haftalik_ochildi' AND kun >= ? AND kun <= ?"], ['ulashish', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'kun_kartochka_ulashildi' AND kun >= ? AND kun <= ?"], ['plato', "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'plato_ochildi' AND kun >= ? AND kun <= ?"]];
 /* kogortalar: davr ichidagi 7 kunlik guruhlar (eng yangisi birinchi) — hajm va 1/7/30-kun qaytish ulushi (yetilmaganlari null) */
 export async function kogortalar(db, dan, gacha, bugun) {
   const out = []; let end = gacha; const start = dan < addD(gacha, -89) ? addD(gacha, -89) : dan;
