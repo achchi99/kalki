@@ -1243,3 +1243,7 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .ml-note{margin:4px 4px 0;font-size:var(--t-s);color:var(--mut);text-align:center;line-height:1.4}
 .rz .pg-stp{justify-content:center;margin:14px 0 6px}.rz .pg-stp b{min-width:4ch;font-variant-numeric:tabular-nums}.rz .pg-auto{text-align:center;margin:0 0 4px}
 .hk-pr{font-weight:600}
+/* v49: qadam kartasi holatlari (Android ilova) */
+.rz .sl-s .sl-stnote{display:block;margin:4px 0 0;font-size:var(--t-s);color:var(--mut);line-height:1.35;white-space:normal}
+.rz .sl-qahint{margin-top:10px}
+.rz .sl-s .sl-pill{width:100%;height:auto;min-height:44px;padding:6px 10px;white-space:normal;line-height:1.2;text-align:center;gap:6px}.rz .sl-s .sl-pill .rz-i{display:none}.rz .sl-s .sl-pill span{min-width:0;overflow-wrap:anywhere}

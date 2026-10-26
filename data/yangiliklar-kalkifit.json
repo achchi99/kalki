@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 49,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Qadam kartasi qaytdi",
+    "ru": "Карточка шагов вернулась"
+   },
+   "items": [
+    {
+     "uz": "Android ilovada Bugun'da qadam kartasi doim ko'rinadi: yoqish tugmasi, sensor yo'q bo'lsa izoh.",
+     "ru": "В приложении Android карточка шагов на «Сегодня» теперь всегда на месте: кнопка включения, подсказка без датчика.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 48,
    "d": "2026-10-28",
    "bn": {

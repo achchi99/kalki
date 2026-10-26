@@ -45,8 +45,8 @@ try {
   p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } }); assert.equal(await p.locator('.sl-src').count(), 0, 'ruxsatsiz — manba yo\'q');
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); const ask = await p.locator('#rzSheet').innerText(); assert.match(ask, /Qadamlarni ulash/); assert.match(ask, /«Ruxsat berish»ni bosing/); assert.match(ask, /Qadamlar Health Connect \(Google Fit va boshqalar\) yoki telefon sensoridan olinadi\. Joylashuv olinmaydi\./); assert.match(ask, /Ruxsat berish/); assert.match(ask, /Keyinroq/); assert.doesNotMatch(ask, /halol/i);
   await p.click('[data-act=qalater]'); await p.waitForTimeout(400); assert.equal((await prefs(p)).qa, 'later'); assert.equal(await p.locator('#spAmt').count(), 0, 'qo\'lda kiritish oynasi yo\'q'); assert.ok(!(await calls(p)).includes('Qadam.requestPermission'), 'ruxsat so\'ralmagan');
-  assert.equal((await p.locator('.sl-s .sl-pill[data-act=qaulash]').innerText()).trim(), 'Yoqish'); await p.context().close();
-  log('Birinchi bosishda ulash oynasi [Ruxsat berish] [Keyinroq]; «Keyinroq» → oyna yopiladi, kartada «Yoqish» (qo\'lda kiritish yo\'q)');
+  assert.equal((await p.locator('.sl-s .sl-pill[data-act=qaulash]').innerText()).trim(), 'Qadamni yoqish'); await p.context().close();
+  log('Birinchi bosishda ulash oynasi [Ruxsat berish] [Keyinroq]; «Keyinroq» → oyna yopiladi, kartada «Qadamni yoqish» (qo\'lda kiritish yo\'q)');
   /* 4. Ruxsat berish → avtomatik qiymat + manba; karta bosilsa — faqat ma'lumot */
   p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } });
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); await p.click('[data-act=qayes]'); await p.waitForTimeout(700);
