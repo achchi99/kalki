@@ -75,4 +75,25 @@ const db = d1(SQL), env = ENV(db);
   const empty = PR.build({ davr: 1, dan: '2026-10-22', gacha: '2026-10-22', kpi: { dau: 0, wau: 0, mau: 0, yangi: 0, onboarding: null, ret1: null, ret7: null, apk: 0, ai: 0, baliq: 0 }, oldingi: null, funksiyalar: [], platforma: [], til: [] }, 'uz');
   assert.equal(empty.split('\n').length, 1, 'raqam yo\'q bo\'lsa — o\'ylab topilgan qator yo\'q (faqat sarlavha)'); assert.doesNotMatch(uz + ru, /halol|ҳалол/i);
   log('PR matni: 8–10 qator, faqat haqiqiy raqamlar (yo\'q qiymat — qator yo\'q), o\'zgarish % oldingi davrga, UZ/RU, ЎЗ — translit'); }
+/* v52: AI natija voronkasi, qaytish (D1/D7/D30) platforma bo'yicha, veb → ilova / akkaunt kunlar bo'yicha */
+{ const db3 = d1(SQL), e3 = ENV(db3), day = (i) => NOW - i * DAY;
+  const go = (id, i, ev, p = 'veb') => API.qabul(req({ q: U(id), p, t: 'uz', h: ev }), e3, day(i));
+  assert.ok(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [['ai_natija', 'ovoz.ochildi', 1], ['ai_natija', 'rasm.qt30', 1], ['ai_natija', 'menyu.yt180', 1], ['ai_natija', 'matn.bosh', 1], ['karta', 'ilova.bosildi', 1], ['karta', 'akkaunt.korsatildi', 1]] }));
+  for (const bad of [['ai_natija', 'ovoz', 1], ['ai_natija', 'retsept.ochildi', 1], ['ai_natija', 'ovoz.qt5', 1], ['karta', 'ilova', 1], ['karta', 'boshqa.bosildi', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
+  await go(1, 1, [['faol', '', 1], ['ai_sorov', 'ovoz.ok', 4], ['ai_natija', 'ovoz.ochildi', 4], ['ai_natija', 'ovoz.tahrir', 2], ['ai_natija', 'ovoz.qoshildi', 3], ['ai_natija', 'ovoz.qt30', 3], ['ai_natija', 'ovoz.yopildi', 1], ['ai_natija', 'ovoz.yt10', 1], ['ovqat_qoshildi', 'ovoz', 3]]);
+  await go(2, 1, [['ai_sorov', 'rasm.ok', 5], ['ai_natija', 'rasm.ochildi', 5], ['ai_natija', 'rasm.qoshildi', 4], ['ai_natija', 'rasm.bosh', 1], ['ai_natija', 'matn.ochildi', 2], ['ai_natija', 'matn.qoshildi', 1]], 'android');
+  const v = await API.voronka(db3, K(day(29)), K(NOW)), V = Object.fromEntries(v.map((x) => [x.usul, x]));
+  assert.deepEqual([V.ovoz.tanidi, V.ovoz.ochildi, V.ovoz.tahrir, V.ovoz.qoshildi, V.ovoz.yopildi, V.ovoz.ovqat, V.ovoz.foiz, V.ovoz.qt['30'], V.ovoz.yt['10']], [4, 4, 2, 3, 1, 3, 75, 3, 1], 'ovoz: 4 tanidi → 3 qo\'shildi = 75%');
+  assert.deepEqual([V.rasm.foiz, V.rasm.bosh], [80, 1]); assert.equal(V.matn.foiz, 50, 'matn: ochildi asos (lokal tahlil)'); assert.equal(V.menyu.foiz, null, 'ma\'lumot yo\'q — null');
+  /* qaytish platforma bo'yicha: veb 2 yangi (1 ta ertasi qaytdi), android 1 yangi (7-kuni qaytdi) */
+  for (const [id, p] of [[41, 'veb'], [42, 'veb'], [43, 'android']]) await go(id, 10, [['faol', '', 1], ['yangi_foydalanuvchi', '', 1]], p);
+  await go(41, 9, [['faol', '', 1]]); await go(43, 3, [['faol', '', 1]], 'android');
+  const q = Object.fromEntries((await API.retPlat(db3, K(day(29)), K(NOW), K(NOW))).map((x) => [x.platforma, x]));
+  assert.deepEqual([q.veb.yangi, q.veb.d1, q.veb.d7], [2, 50, 0]); assert.deepEqual([q.android.yangi, q.android.d1, q.android.d7], [1, 0, 100]); assert.equal(q['ios-pwa'].d1, null, 'iPhone: yangi yo\'q — null'); assert.equal(q.veb.d30, null, '30 kun o\'tmagan — null');
+  /* kunlar bo'yicha konversiya */
+  await go(44, 2, [['faol', '', 1], ['karta', 'ilova.korsatildi', 1], ['karta', 'ilova.bosildi', 1], ['apk_yuklandi', '', 1], ['karta', 'akkaunt.korsatildi', 1]]);
+  const kk = await API.konvKun(db3, K(day(29)), K(NOW)), r2 = kk.find((x) => x.kun === K(day(2)));
+  assert.equal(kk.length, 30); assert.deepEqual([r2.veb, r2.ilova_k, r2.ilova_b, r2.apk, r2.akk_k, r2.akk_b], [1, 1, 1, 1, 1, 0]); assert.equal(kk.find((x) => x.kun === K(day(10))).yangi_android, 1);
+  const rep = await API.hisobot(db3, 30, NOW); assert.ok(Array.isArray(rep.voronka) && Array.isArray(rep.qaytish) && Array.isArray(rep.konv_kun), 'hisobotda yangi bo\'limlar');
+  log('v52: ai_natija (ovoz/rasm/matn/menyu × ochildi/tahrir/ochirildi/qoshildi/yopildi/bosh/qt·yt soniya) va karta (ilova/ekran/akkaunt × ko\'rsatildi/bosildi/yopildi) — qat\'iy; voronka (ovoz 75%, rasm 80%, matn — ochildi asos), D1/D7/D30 platforma bo\'yicha, kunlik konversiya'); }
 console.log('\n' + n + '/' + n + ' OK');

@@ -207,7 +207,17 @@
       xRest: 'Расход в покое', xLifeJ: 'Повседневная жизнь · {j}', xLifeA: 'Повседневная жизнь и активность', xStepX: 'Шаги сверх базы ({s} шагов, ваша база {b})', xCorrL: 'Личная поправка', xGoalL: 'Для похудения', xGoalG: 'Для набора', xFloorA: 'До нижней границы', xLimitR: 'Дневная норма',
       xCredJob: 'Шаги: учитываются только реально пройденные сегодня сверх вашей базы ({b}) — с осторожным коэффициентом 0,7, не больше 500 ккал в день.', xCredOff: 'Ваш уровень активности уже включает ходьбу — шаги отдельно не добавляются.', xCredAsk: 'Пока шаги не добавляются: ваш уровень активности включает ходьбу. Выберите тип работы — и шаги сверх базы будут учитываться.', xNoCred: 'Шаги не добавляются к норме (уже в уровне активности).' }
   };
-  ['uz', 'ru'].forEach(function (l) { var x = LM[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; });
+  var LK = {          // v52: veb → ilova / bosh ekran, akkaunt kartalari (bir martalik, yopsa 14 kun)
+    uz: { wcIlT: "Ilovani o'rnating — qadam avtomatik, eslatmalar", wcIlS: "Android ilovasida qadamni telefon o'zi sanaydi va eslatmalar keladi.", wcIlB: "O'rnatish", wcEkT: "Bosh ekranga qo'shing", wcEkS: "KalkiFit ilova kabi bir bosishda ochiladi.", wcEkB: "Qanday?", wcLater: 'Keyinroq',
+      wcEkSh: "Bosh ekranga qo'shish", wcEk1: "Pastdagi «Ulashish» tugmasini bosing (kvadrat va yuqoriga strelka).", wcEk2: "«Bosh ekranga qo'shish» → «Qo'shish»ni bosing.", wcEkN: "Bosh ekrandagi ilova ma'lumotni alohida saqlaydi. Avval nusxalang — ilovani ochganda «Ko'chirish»ni bosasiz.", wcEkCp: "Ma'lumotlarimni nusxalash", wcEkOk: 'Tushunarli',
+      vHeard: 'Siz aytdingiz:', vEditTx: 'Matnni tuzatish',
+      akCT: "Ma'lumotlaringiz yo'qolmasin — Google bilan saqlang", akCS: "Telefon almashsa yoki brauzer tozalansa ham yozuvlaringiz qoladi.", akCB: 'Saqlash' },
+    ru: { wcIlT: 'Установите приложение — шаги сами, напоминания', wcIlS: 'В приложении для Android шаги считает телефон и приходят напоминания.', wcIlB: 'Установить', wcEkT: 'Добавьте на главный экран', wcEkS: 'KalkiFit будет открываться в одно касание, как приложение.', wcEkB: 'Как?', wcLater: 'Позже',
+      wcEkSh: 'Добавить на главный экран', wcEk1: 'Нажмите «Поделиться» внизу (квадрат со стрелкой вверх).', wcEk2: 'Выберите «На экран «Домой»» → «Добавить».', wcEkN: 'Приложение на главном экране хранит данные отдельно. Сначала скопируйте их — в приложении нажмёте «Перенести».', wcEkCp: 'Скопировать мои данные', wcEkOk: 'Понятно',
+      vHeard: 'Вы сказали:', vEditTx: 'Исправить текст',
+      akCT: 'Чтобы данные не потерялись — сохраните через Google', akCS: 'Записи останутся, даже если смените телефон или очистите браузер.', akCB: 'Сохранить' }
+  };
+  ['uz', 'ru'].forEach(function (l) { var x = LM[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; x = LK[l]; for (k in x) if (D[l][k] == null) D[l][k] = x[k]; });
   var TT = {          // v48: «Mening tartibim» + «Oqsil maqsadi» matnlari (ЎЗ — translit); «halol» so'zi yo'q
     uz: { ttQ: "Qachon ko'proq yeysiz?", ttSub: "Shunga qarab kaloriyangizni nonushta, tushlik va kechki ovqatga bo'lib beramiz.", tt_std: "Kun bo'yi teng", tt_kech: "Kechqurun ko'proq", tt_nobf: 'Nonushta qilmayman', tt_erkin: "Farqi yo'q — bo'lmasin",
       ttL_b: 'nonushta', ttL_l: 'tushlik', ttL_d: 'kechki', ttL_s: 'tamaddi', ttCardT: "Kechqurun ko'proq yeysizmi?", ttCardS: "Kaloriyani shunga moslab bo'lib beramiz",
@@ -589,6 +599,27 @@
   var JOBS = ['sit', 'stand', 'heavy'];
   function jobUi() { return isNativeApp() && !!qaDetect(); }
   function jobOpts(sel, act) { return JOBS.map(function (j) { return optBtn(act, j, T('job_' + j), T('job_' + j + 'H'), sel === j); }).join(''); }
+  /* v52: veb → ilova (Android: APK sahifasi) / bosh ekran (iPhone: 2 qadam) — brauzerda 3+ kun, 5+ ovqat; akkauntsizlarga 5+ kun — «Google bilan saqlang». Bir martalik: bosilsa qaytmaydi, yopilsa 14 kun (ko'pi bilan 2 marta) */
+  var CRD_WAIT = 14 * DAY_MS, crdSeen = {};
+  function usedDays() { var d = 0, f = 0; Object.keys(st.days || {}).forEach(function (k) { var x = st.days[k]; if (x && x.food && x.food.length) { d++; f += x.food.length; } }); return { d: d, f: f }; }
+  function crdDue(k) { var c = (prefs().crd || {})[k]; return !c || (!c.ok && (c.n || 0) < 2 && Date.now() - (c.t || 0) >= CRD_WAIT); }
+  function crdMark(k, ok) { var p = prefs(); p.crd = p.crd || {}; var c = p.crd[k] || { n: 0 }; c.t = Date.now(); if (ok) c.ok = 1; else c.n = (c.n || 0) + 1; p.crd[k] = c; save(); stEv('karta', k + (ok ? '.bosildi' : '.yopildi')); }
+  function crdShown(k) { if (!crdSeen[k]) { crdSeen[k] = 1; stEv('karta', k + '.korsatildi'); } }
+  function crdHtml(k, t, sub, b) { crdShown(k); return '<section class="rz-card nudge crd" id="crd_' + k + '"><div class="t">' + esc(T(t)) + '</div><p class="inst-s">' + esc(T(sub)) + '</p><div class="b"><button type="button" class="rz-btn sm primary" data-act="crdgo" data-k="' + k + '">' + esc(T(b)) + '</button><button type="button" class="rz-btn sm ghost" data-act="crdno" data-k="' + k + '">' + esc(T('wcLater')) + '</button></div></section>'; }
+  function webAppCard() {
+    if (!st || !st.setup || statPlat() !== 'veb' || !inst.env || inst.installed() || isNativeApp()) return ''; var k = inst.env.kind === 'android' ? 'ilova' : (inst.env.kind === 'ios' && inst.env.browser === 'safari' ? 'ekran' : ''); if (!k || !crdDue(k)) return '';
+    var u = usedDays(); if (u.d < 3 || u.f < 5) return '';
+    return k === 'ilova' ? crdHtml('ilova', 'wcIlT', 'wcIlS', 'wcIlB') : crdHtml('ekran', 'wcEkT', 'wcEkS', 'wcEkB');
+  }
+  var akkAsk = false;
+  function akkCard() { if (!st || !st.setup || (akk.loggedIn && akk.loggedIn()) || !crdDue('akkaunt') || usedDays().d < 5) return ''; if (!akk.enabled()) { if (!akkAsk && navigator.onLine !== false) { akkAsk = true; akk.load(false, function () { if (akk.enabled() && view === 'today' && !kit.sheetKind()) render(); }); } return ''; } return crdHtml('akkaunt', 'akCT', 'akCS', 'akCB'); }          // holat noma'lum — bir marta so'raladi (TTL bilan)
+  function iosAddHtml() { return shHead(T('wcEkSh')) + '<ol class="sl-rules crd-steps"><li>' + esc(T('wcEk1')) + '</li><li>' + esc(T('wcEk2')) + '</li></ol><p class="rz-p sm">' + esc(T('wcEkN')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="crdcopy">' + esc(T('wcEkCp')) + '</button><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(T('wcEkOk')) + '</button></div>'; }
+  function crdGo(k) {
+    crdMark(k, k !== 'akkaunt'); render();          // akkaunt: bosilsa 14 kun (kirmasa qayta eslatiladi); ilova/ekran — qaytmaydi
+    if (k === 'ilova') { try { location.href = '/ilova?from=kalkifit'; } catch (e) {} return; }
+    if (k === 'ekran') { openSheet('iosadd', iosAddHtml()); return; }
+    akk.load(true, function () { if (akk.enabled()) akk.act('akk'); });
+  }
   function jobCardHtml() {                             // mavjud Android foydalanuvchisi (qadam yoqilgan, ish turi yo'q) — bir martalik; tasdiqlamaguncha kredit 0 (ikki marta hisoblanmaydi)
     if (!st || !st.setup || st.profile.job || prefs().jobAsked || !jobUi() || !qaOn()) return '';
     return '<section class="rz-card tt-card jb-card" id="jbCard"><button type="button" class="tt-cb" data-act="jbopen"><span class="sl-ci fc-gr">' + ico('steps') + '</span><span class="m"><b>' + esc(T('jbCardT')) + '</b><span>' + esc(T('jbCardB')) + '</span></span></button><button type="button" class="rz-x tt-cx" data-act="jbno" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></section>';
@@ -612,7 +643,9 @@
     if (fishDay(t)) return '<section class="rz-card sl-fishslot">' + fishChipHtml(t) + '</section>';          // baliq kuni — chip shu kartada (sarlavhada emas)
     if (x && x.done) { var po = pushOfferHtml(); if (po) return po; }          // kun yakunlangach — eslatma taklifi (bir marta, 30 kun so'ralmaydi)
     var nd = nudges(); if (nd.length) return nudgeHtml(nd[0]);          // vaqtga bog'liq eslatmalar (zaxira, yakshanba «Haftangiz») — bir martalik savol va maslahatdan oldin
-    var ic = inst.cardHtml(); if (ic) return ic;          // ilovani o'rnatish taklifi (bir martalik, rad etilsa qaytmaydi)
+    var wc = webAppCard(); if (wc) return wc;          // v52: veb → ilova / bosh ekran (o'rnatish kartasidan oldin: Android'da APK)
+    var cr0 = prefs().crd || {}, ic = cr0.ekran || cr0.ilova ? '' : inst.cardHtml(); if (ic) return ic;          // v52: yangi karta ko'rilgan bo'lsa — eski o'rnatish kartasi takror so'ramaydi
+    var kc = oneTimeOk() ? akkCard() : ''; if (kc) return kc;          // v52: akkauntsizlarga 5+ kun          // ilovani o'rnatish taklifi (bir martalik, rad etilsa qaytmaydi)
     var ac = oneTimeOk() ? adCardHtml() : ''; if (ac) return ac;          // v51: adaptiv me'yor taklifi
     var jc = oneTimeOk() ? jobCardHtml() : ''; if (jc) return jc;          // v51: Android — ish turi (ikki marta hisoblamaslik)
     var yq = Y && oneTimeOk() ? Y.yemayCard() : ''; if (yq) return yq;
@@ -724,7 +757,7 @@
     if (window.IntersectionObserver) { jkIO = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.intersectionRatio >= 0.5) jkResume(2); else jkPause(2); }); }, { root: $('#rzMain'), threshold: [0, 0.5, 1] }); /* ko'rinish — aylantiriladigan maydon ichida (pastki panel ostida emas) */ jkIO.observe(el); }
     jFlash.run = false; jkRun();
   }
-  kit.onClose = function () { if (jFlash && jFlash.pend && view === 'today') jokeShow(); if (view === 'profile' && st && st.setup) setTimeout(function () { if (view === 'profile' && !kit.sheetKind()) render(); }, 0); };          // Profil: oynada o'zgargan qiymat (Yemaydiganlarim va h.k.) qatorda yangilansin
+  kit.onClose = function () { aiFEnd(false); if (jFlash && jFlash.pend && view === 'today') jokeShow(); if (view === 'profile' && st && st.setup) setTimeout(function () { if (view === 'profile' && !kit.sheetKind()) render(); }, 0); };          // Profil: oynada o'zgargan qiymat (Yemaydiganlarim va h.k.) qatorda yangilansin
   function jkPrev() { var e = $('#jLine'); clearTimeout(jT); if (jkIO) { jkIO.disconnect(); jkIO = null; } if (e && e.parentNode) e.parentNode.removeChild(e); }          // yangi hazil — eskisi o'rniga          // varaq yopildi → kutayotgan hazil
   function jokeAfter(kind, p) {                     // hodisadan (ovqat/suv/qadam/vazn/kun yakuni) keyin hazil: toast YO'Q — oxirgi hazil Bugun'dagi qatorda keyingi hodisagacha (yoki kun almashguncha) turadi; kuniga ≤4 marta, oralig'i ≥60 s; hazil o'chirilgan bo'lsa — qator yo'q
     if (kind !== 'food' || !G || !G.eventLine || prefs().jokes === false) return;          // hazil FAQAT ovqat qo'shilgandan keyin, 4 soniya (doimiy qator yo'q)
@@ -1193,7 +1226,7 @@
   function menuLog(c) {                                // «Menyudan tanlash»: kundalikka ASL menyu nomi bilan (kkal bazadan; tarkibdan yig'ilgan bo'lsa — «taxminiy»)
     var t = todayStr(), ml = mealNow();
     var e = S.addFood(st, t, { fid: null, name: String(c.asl || c.nom).slice(0, 80), meal: ml, unit: null, qty: 1, g: c.g || 0, kcal: Math.round(c.k), p: c.p || 0, f: c.f || 0, c: c.c || 0, est: !!c.est, ifid: c.ifid || '', ikat: c.bolim || '', src: 'menyu', ts: Date.now() });
-    kit.closeSheet(); commit(); vib(); stEv('ovqat_qoshildi', 'menyu'); toast(T('yzMeal_' + ml), function () { S.removeFood(st, t, e.id); commit(); }, true); jokeAfter('food');
+    aiFEnd(true); kit.closeSheet(); commit(); vib(); stEv('ovqat_qoshildi', 'menyu'); toast(T('yzMeal_' + ml), function () { S.removeFood(st, t, e.id); commit(); }, true); jokeAfter('food');
   }
   function yzLog(key, por) { var ml = mealNow(); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
@@ -1467,10 +1500,10 @@
 
   /* ---------- rasm bilan qo'shish ---------- */
   function phHtml() {
-    var h = shHead(T('phT')) + '<p class="rz-p sm">' + esc(T('phNote')) + '</p>';
+    var res = fd.items.length && !fd.busy, h = shHead(T('phT')) + (res ? '' : '<p class="rz-p sm">' + esc(T('phNote')) + '</p>');          // v52: natija chiqqach — izoh va limit qatori yo'q (360 px'da ikkinchi taom ko'rinsin)
     if (fd.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('phBusy')) + '</b></div>';
     if (fd.phErr) h += '<p class="rz-p warn">' + esc(fd.phErr) + '</p>';
-    if (aiq && !fd.busy) h += '<p class="rz-mut sm sl-aileft" id="phAiLeft">' + esc(aiq.qoldi > 0 ? T('aiLeft', { q: aiq.qoldi, n: aiq.limit }) : T('aiLimit', { n: aiq.limit })) + '</p>';
+    if (aiq && !fd.busy && !res) h += '<p class="rz-mut sm sl-aileft" id="phAiLeft">' + esc(aiq.qoldi > 0 ? T('aiLeft', { q: aiq.qoldi, n: aiq.limit }) : T('aiLimit', { n: aiq.limit })) + '</p>';
     if (!fd.items.length && phNative()) return h + '<div class="sl-phc"><button type="button" class="rz-btn primary full" data-act="fphotog">' + ico('img') + ' ' + esc(T('phGal')) + '</button><button type="button" class="rz-btn primary full" data-act="fphotoc">' + ico('cam') + ' ' + esc(T('phCam')) + '</button><button type="button" class="rz-btn ghost full" data-act="fphotof">' + esc(T('phFile')) + '</button></div><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button></div>';
     if (!fd.items.length) return h + '<div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="fphoto">' + ico('cam') + ' ' + esc(T('phPick')) + '</button></div>';
     h += '<p class="rz-p sm">' + esc(T('phHint')) + '</p>' + itRows(fd.items);
@@ -1563,8 +1596,8 @@
         else if (res.s === 413) { fd.phErr = T('phErrBig'); done(); }
         else if (res.s >= 500) { fd.phErr = T('phErrSrv'); done(); }
         else if (res.s !== 200 || !res.j || !res.j.ovqatlar) { fd.phErr = T('phErr'); done(); }
-        else if (!res.j.ovqatlar.length) { fd.phErr = T('phNone'); done(); }
-        else loadDb(function () { fd.items = res.j.ovqatlar.map(function (o) { return phItem(o, o.nom, [{ nom: o.nom, ehtimol: o.ehtimol }].concat(o.boshqa || [])); }); done(); });
+        else if (!res.j.ovqatlar.length) { fd.phErr = T('phNone'); stEv('ai_natija', 'rasm.bosh'); done(); }
+        else loadDb(function () { fd.items = res.j.ovqatlar.map(function (o) { return phItem(o, o.nom, [{ nom: o.nom, ehtimol: o.ehtimol }].concat(o.boshqa || [])); }); done(); aiFOpen('rasm'); });
       }).catch(function (e) { clearTimeout(tm); var k = aiNetErr(e); bad(k, k === 'vaqt' ? 'phErrTime' : 'phErrNet'); });
     });
   }
@@ -2121,7 +2154,7 @@
       '<div class="sl-cta">' + (fd.editId != null ? '<div class="ml-edx"><button type="button" class="sl-txtbtn" data-act="tplsave" data-m="' + fd.meal + '" data-d="' + fd.date + '">' + ico('star', 'sl-inl') + esc(T('tplSave1') + ': ' + mealName(fd.meal)) + '</button><button type="button" class="sl-txtbtn danger" data-act="fdel">' + esc(T('del')) + '</button></div>' : '') + '<button type="button" class="sl-main" id="fsave" data-act="fsave">' + esc(ctaText(pwCalc(fd).kcal)) + '</button></div><div id="orBox">' + orCardHtml() + '</div>';          // katta tugma — porsiyadan keyin darhol; o'rinbosar taklifi — undan pastda
   }
   function fSave() {
-    var f = fd.food, pt = pwCalc(fd); if (fd.editId == null) stEv('ovqat_qoshildi', fd.yBack ? 'tavsiya' : 'qidiruv');
+    var f = fd.food, pt = pwCalc(fd); if (fd.editId == null) { stEv('ovqat_qoshildi', fd.yBack ? 'tavsiya' : 'qidiruv'); aiFEnd(true); }          /* v52: menyu/rasm natijasidan porsiya orqali qo'shilsa ham — qo'shildi */
     if (fd.editId != null) {
       var x = S.dayOf(st, fd.date), e = x && x.food.filter(function (y) { return y.id === fd.editId; })[0];
       if (e) {
@@ -2172,12 +2205,13 @@
   /* ---------- matn bilan qo'shish (lokal + AI) ---------- */
   function openText(date, keep) {
     fd = keep && fd ? fd : { date: date || todayStr(), meal: mealNow(), q: '', items: [] };
-    if (date) fd.date = date; if (!fd.date) fd.date = todayStr(); fd.mode = 'text'; fd.items = []; fd.missing = []; fd.busy = false; fd.txt = '';
+    if (date) fd.date = date; if (!fd.date) fd.date = todayStr(); fd.mode = 'text'; fd.items = []; fd.missing = []; fd.busy = false; fd.txt = ''; fd.vEdit = 0; fd.usul = '';
     if (kit.sheetKind() === 'add') setSheet(textHtml()); else openSheet('add', textHtml()); loadDb();
   }
   function textHtml() {
     var offline = navigator.onLine === false, items = fd.items;
-    var h = shHead(T('tT')) + '<input id="txQ" class="sl-ta" type="text" autocomplete="off" autocapitalize="off" enterkeyhint="done" placeholder="' + esc(T('tPh')) + '" aria-label="' + esc(T('tT')) + '" value="' + esc(fd.txt || '') + '"><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn primary" data-act="txgo">' + esc(T('tGo')) + '</button></div><div id="txOut">' + textOut() + '</div>';
+    if (fd.usul === 'ovoz' && !fd.vEdit) return shHead(T('vT')) + '<div class="sl-heard"><span class="rz-mut sm">' + esc(T('vHeard')) + '</span><q>' + esc(fd.txt || '') + '</q><button type="button" class="sl-txtbtn" data-act="vtxedit">' + ico('pen', 'sl-inl') + esc(T('vEditTx')) + '</button></div><div id="txOut">' + textOut() + '</div>';          // v52: ovozdan keyin — aytilgan gap (matn maydoni va 2-tugma yo'q; asosiy tugma bitta — «Hammasini qo'shish»)
+    var h = shHead(T(fd.usul === 'ovoz' ? 'vT' : 'tT')) + '<input id="txQ" class="sl-ta" type="text" autocomplete="off" autocapitalize="off" enterkeyhint="done" placeholder="' + esc(T('tPh')) + '" aria-label="' + esc(T('tT')) + '" value="' + esc(fd.txt || '') + '"><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button><button type="button" class="rz-btn ' + (items.length ? 'ghost' : 'primary') + '" data-act="txgo">' + esc(T('tGo')) + '</button></div><div id="txOut">' + textOut() + '</div>';
     return h;
   }
   function itRows(items, tpl) {
@@ -2197,19 +2231,25 @@
   }
   function txRefresh() { var o = $('#txOut'); if (o) o.innerHTML = textOut(); }
   function txGo() {
-    fd.txt = $('#txQ').value; var run = function () {
+    var tq = $('#txQ'); if (tq) fd.txt = tq.value; var run = function () {
       var r = S.parseText(fd.txt, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); fd.parsed = true; fd.aiErr = false;
       fd.items = r.items.map(function (x) { var it = { name: nameOf(x.fam || x.food), fid: x.fid, food: x.food, unit: x.unit, qty: x.unit === 'g100' ? Math.round(x.g) : x.qty, est: x.est, ai: false, vfill: x.vfill }; if (x.fam) { it.fam = x.fam; it.sel = x.sel; it.szid = x.szid; it.vr = x.vr; it.sz = x.sz; var lb = S.famLabel(x.fam, x.vr, x.szid, lang); if (lb) it.name += ' · ' + lb; } itSync(it); return it; });
-      fd.missing = r.missing; txRefresh();
+      fd.missing = r.missing; txRefresh(); var u0 = fd.usul === 'ovoz' ? 'ovoz' : 'matn'; if (fd.items.length || fd.missing.length) aiFOpen(u0); else stEv('ai_natija', u0 + '.bosh');
     };
     if (dbState === 2) run(); else loadDb(function () { run(); });
   }
   /* ---------- anonim statistika (assets/stat-kun.js → /api/stat): faqat hodisa nomi + qat'iy kalit; ovqat/vazn/yosh yuborilmaydi ---------- */
   var STAT = null;
-  function stEv(h, k) { try { if (STAT) STAT.add(h, k); } catch (e) {} }
+  var stPre = [];          // v52: statistika hali yuklanmagan paytdagi hodisalar (birinchi chizish) — yuklangach yuboriladi
+  function stEv(h, k) { try { if (STAT) STAT.add(h, k); else if (stPre.length < 30) stPre.push([h, k]); } catch (e) {} }
+  /* v52: AI natija voronkasi (anonim): natija ekrani ochildi → qator tahrirlandi / o'chirildi → «Qo'shish» yoki qo'shmasdan yopildi (+ necha soniyada). Usul: ovoz | rasm | matn | menyu */
+  var aiF = null;
+  function aiFOpen(u) { if (aiF && aiF.u === u) return; if (aiF) aiFEnd(false); aiF = { u: u, t0: Date.now() }; stEv('ai_natija', u + '.ochildi'); }
+  function aiFMark(k) { if (!aiF || aiF[k]) return; aiF[k] = 1; stEv('ai_natija', aiF.u + '.' + k); }
+  function aiFEnd(ok) { if (!aiF) return; var sec = (Date.now() - aiF.t0) / 1000, b = sec < 10 ? '10' : (sec < 30 ? '30' : (sec < 60 ? '60' : (sec < 180 ? '180' : 'x'))); stEv('ai_natija', aiF.u + (ok ? '.qoshildi' : '.yopildi')); stEv('ai_natija', aiF.u + (ok ? '.qt' : '.yt') + b); aiF = null; }
   function statPlat() { try { if (window.KalkiNative && KalkiNative.isApp()) return 'android'; var ios = /iPad|iPhone|iPod/.test(navigator.userAgent), sa = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; return ios && sa ? 'ios-pwa' : 'veb'; } catch (e) { return 'veb'; } }
   function statBoot() {
-    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; } }); window.KalkiStatApp = { add: stEv };
+    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; } }); window.KalkiStatApp = { add: stEv, aiOpen: aiFOpen }; stPre.splice(0).forEach(function (x) { stEv(x[0], x[1]); });
     if (st && st.setup) STAT.faol();
     if (/[?&]baliq=1\b/.test(location.search)) stEv('push_bosildi');
   }
@@ -2231,14 +2271,14 @@
     var body = { matn: fd.missing.join(', ').slice(0, 300), til: isCyr() ? 'kirill' : lang, mijoz_id: cid() }; if (fd.usul === 'ovoz') { body.manba = 'ovoz'; if (aiPlat()) body.platforma = aiPlat(); if (fd.ovTok) body.ovoz_tok = fd.ovTok; }          // ovoz: umumiy AI hisobi (rasm/retsept/menyu bilan)
     fetch('/api/kalkifit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); }).then(function (res) {
       fd.busy = false; if (!res.ok || !res.j || !res.j.ovqatlar) { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + (res.j && res.j.sabab ? '.limit' : '.xato')); fd.aiErr = res.j && res.j.sabab === 'sayt' ? 'busy' : (res.j && res.j.sabab && res.j.limit > 0 ? 'limit' : true); fd.aiLim = res.j && res.j.limit; if (fd.usul === 'ovoz' && res.j && res.j.sabab) ovqSet({ limit: res.j.limit, qoldi: 0 }); txRefresh(); return; }
-      stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok'); if (fd.usul === 'ovoz') ovqSet(res.j);
+      if (!(fd.usul === 'ovoz' && fd.ovTok)) stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.ok'); if (fd.usul === 'ovoz') ovqSet(res.j);          // v52: server ovozi transkripsiyada (ovPost) allaqachon «ovoz.ok» — ikki marta sanalmaydi
       res.j.ovqatlar.forEach(function (o) { var m = aiItem(o); if (m) { fd.items.push(m); return; } fd.items.push({ name: o.nom, fid: null, food: null, rHit: rGuess(o.nom), unit: 'pc', qty: 1, g: o.g || 0, kcal: Math.round(o.kcal), p: o.o, f: o.y, c: o.u, est: true, ai: true, ptxt: o.porsiya || '', base: { g: o.g || 0, kcal: Math.round(o.kcal), p: o.o || 0, f: o.y || 0, c: o.u || 0 } }); });
       fd.missing = []; txRefresh();
     }).catch(function () { stEv('ai_sorov', (fd.usul === 'ovoz' ? 'ovoz' : 'matn') + '.xato'); fd.busy = false; fd.aiErr = true; txRefresh(); });
   }
   function txSave() {
     var list = fd.items.filter(function (i) { return !i.off; }), n = list.length, date = fd.date, ids = []; if (!n) return;
-    stEv('ovqat_qoshildi', fd.mode === 'photo' ? 'rasm' : (fd.usul || 'matn'));
+    stEv('ovqat_qoshildi', fd.mode === 'photo' ? 'rasm' : (fd.usul || 'matn')); aiFEnd(true);
     list.forEach(function (it) { sendTaklif(it); ids.push(addItem(date, it).id); });
     kit.closeSheet(); commit(); vib(); toast(T('saved') + ': ' + n, function () { ids.forEach(function (id) { S.removeFood(st, date, id); }); commit(); }, true); jokeAfter('food');
   }
@@ -2844,7 +2884,9 @@
       case 'fmeal3': fd.meal = el.getAttribute('data-m'); $$('[data-act=fmeal3]').forEach(function (b) { var on4 = b === el; b.classList.toggle('on', on4); b.setAttribute('aria-pressed', on4); }); break;
       case 'fsave': fSave(); break; case 'fdel': fDelete(); break;
       case 'txgo': txGo(); break; case 'txai': txAi(); break; case 'txsave': txSave(); break;
-      case 'txdel': fd.items.splice(+el.getAttribute('data-i'), 1); txRefresh(); break;
+      case 'vtxedit': fd.vEdit = 1; setSheet(textHtml()); break;
+      case 'crdgo': crdGo(el.getAttribute('data-k')); break; case 'crdno': crdMark(el.getAttribute('data-k'), false); render(); break; case 'crdcopy': inst.copyData(); break;
+      case 'txdel': aiFMark('ochirildi'); fd.items.splice(+el.getAttribute('data-i'), 1); txRefresh(); break;
       case 'yesam': openYesam(); break;
       case 'ypick': yPick(el.getAttribute('data-id')); break;
       case 'yback': yd.food = null; setSheet(ySearchHtml()); yRefresh(); break;
@@ -2852,8 +2894,8 @@
       case 'yqty': { var ys = yd.unit === 'g100' ? 25 : 0.5, yq = yd.qty + (+el.getAttribute('data-s')) * ys; yd.qty = Math.max(ys, Math.min(yd.unit === 'g100' ? 3000 : 50, Math.round(yq * 100) / 100)); yUpdate(); vib(5); break; }
       case 'fphoto': if (navigator.onLine !== false) { if (phNative()) { phChooser(); break; } phFromFile(); } break;      // ilovada: o'z tanlov oynamiz (Galereyadan / Rasmga olish / Fayllardan), vebda — fayl tanlash
       case 'fphotog': phNativePick('PHOTOS'); break; case 'fphotoc': phNativePick('CAMERA'); break; case 'fphotof': phFromFile(); break;
-      case 'phalt': phAlt(+el.getAttribute('data-i'), +el.getAttribute('data-k')); break; case 'phfind': phFind(+el.getAttribute('data-i')); break; case 'phpick': phPick(+el.getAttribute('data-i'), el.getAttribute('data-id')); break; case 'phfindx': fd.mode = 'photo'; setSheet(phHtml()); break;
-      case 'itedit': itemOpen(+el.getAttribute('data-i'), fd.mode === 'photo' ? 'photo' : (fd.mode === 'tpl' ? 'tpl' : 'text')); break;
+      case 'phalt': aiFMark('tahrir'); phAlt(+el.getAttribute('data-i'), +el.getAttribute('data-k')); break; case 'phfind': aiFMark('tahrir'); phFind(+el.getAttribute('data-i')); break; case 'phpick': phPick(+el.getAttribute('data-i'), el.getAttribute('data-id')); break; case 'phfindx': fd.mode = 'photo'; setSheet(phHtml()); break;
+      case 'itedit': aiFMark('tahrir'); itemOpen(+el.getAttribute('data-i'), fd.mode === 'photo' ? 'photo' : (fd.mode === 'tpl' ? 'tpl' : 'text')); break;
       case 'pwdone': itemBack(); break;
       case 'pwq': { var o3 = pwO(), u3 = el.getAttribute('data-u'), sw3 = u3 && u3 !== o3.unit && (!!vOf(u3) || !!vOf(o3.unit)); if (u3) o3.unit = u3; pwSetQty(o3, +el.getAttribute('data-v')); if (sw3) pwScreen(); else pwUpdate(); vib(5); break; }
       case 'pwgram': { var o9 = pwO(), w9 = !!vOf(o9.unit); if (o9.unit !== 'g100') { pwSetUnit(o9, 'g100'); if (w9) pwScreen(); else pwUpdate(); } var qi9 = $('#fdQty'); if (qi9) { try { qi9.focus(); qi9.select(); } catch (x) {} } break; }
@@ -2998,7 +3040,7 @@
     if (/[?&]plato=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openPlato, 500); }          // «Eslatib turilsin» bildirishnomasi bosildi
     plBootRem(); protStat();
     if (location.hash === '#haqida') aboutOpen(true);
-    window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile, tile: function (fid, name) { return tileHtml(fid, null, name || fid, 34); }, jokeTest: function (t) { jkPrev(); jFlash = { text: t, rem: JK_MS }; jokeShow(); }, remFull: yzRemFull };          // jokeTest — faqat sinov/skrinshot uchun
+    window.__kalkifit = { get state() { return st; }, render: render, S: S, imgFile: imgFile, tile: function (fid, name) { return tileHtml(fid, null, name || fid, 34); }, jokeTest: function (t) { jkPrev(); jFlash = { text: t, rem: JK_MS }; jokeShow(); }, remFull: yzRemFull, voiceTest: function (t) { voiceDone(t, ''); } };          // jokeTest, voiceTest — faqat sinov/skrinshot uchun (ovoz natijasi: matn → ro'yxat)
     // pwa-install.js (KalkiPwa: iPhone ko'rsatmasi, Android o'rnatish) shu skriptdan KEYIN yuklanadi — sahifa yuklangach "o'rnatish" kartasi uchun qayta chizamiz
     if (document.readyState !== 'complete') window.addEventListener('load', function () { if (st && st.setup && view === 'today' && !kit.sheetKind() && !kit.tipsOn()) render(); });
   }

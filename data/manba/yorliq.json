@@ -310,6 +310,36 @@
    "p": 5.3,
    "f": 28.0,
    "c": 42.7
+  },
+  "lotus-biscoff": {
+   "nom": "Lotus Biscoff (karamelli pechenye)",
+   "brand": "Lotus",
+   "code": "5410126006049",
+   "qadoq": "125 g",
+   "k": 484,
+   "p": 4.9,
+   "f": 19.0,
+   "c": 72.6
+  },
+  "yubileynoe-molochnoe": {
+   "nom": "Юбилейное молочное (печенье)",
+   "brand": "Большевик / Юбилейное",
+   "code": "7622210457554",
+   "qadoq": "112 g",
+   "k": 460,
+   "p": 8.1,
+   "f": 17.5,
+   "c": 66.5
+  },
+  "fuze-tea": {
+   "nom": "Fuze Tea (muzli choy, shakarli)",
+   "brand": "Coca-Cola",
+   "code": "8656170005592",
+   "qadoq": "1.25 L",
+   "k": 38,
+   "p": 0.0,
+   "f": 0.0,
+   "c": 9.3
   }
  }
 }

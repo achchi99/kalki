@@ -5549,6 +5549,56 @@
    "f": 5.3,
    "c": 71.98,
    "kcal": 395
+  },
+  "169055": {
+   "d": "Salad dressing, caesar dressing, regular",
+   "suv": 34.3,
+   "f": 57.85,
+   "p": 2.17,
+   "c": 3.3,
+   "kcal": 542.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.7
+    },
+    {
+     "nom": "serving (2 tbsp)",
+     "miqdor": 1.0,
+     "g": 30.0
+    }
+   ]
+  },
+  "172752": {
+   "d": "Croutons, seasoned",
+   "suv": 3.6,
+   "f": 18.3,
+   "p": 10.8,
+   "c": 63.5,
+   "kcal": 465.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 40.0
+    }
+   ]
+  },
+  "169247": {
+   "d": "Lettuce, cos or romaine, raw",
+   "suv": 94.61,
+   "f": 0.3,
+   "p": 1.23,
+   "c": 3.29,
+   "kcal": 17.0,
+   "o": [
+    {
+     "nom": "cup shredded",
+     "miqdor": 1.0,
+     "g": 47.0
+    }
+   ]
   }
  }
 }

@@ -33,7 +33,7 @@ try {
   assert.match(r[0], /Mol jigari \(qovurilgan\)/); assert.match(r[0], /bazadan/); assert.match(r[0], /350/, 'kkal bazadan: ' + r[0]); assert.doesNotMatch(r[0], /460/);
   assert.match(r[1], /Zzzyx taom/); assert.match(r[1], /±30%/); assert.match(r[1], /250/);
   const chips = await p.locator('#rzSheet .sl-alt').first().innerText(); assert.match(chips, /Bu emasmi\?/); assert.match(chips, /Jigar kabob/); assert.match(chips, /Go'sht \(aniq emas\)/); assert.match(chips, /Boshqasini qidirish/);
-  assert.match(await p.locator('#phAiLeft').innerText(), /2 tadan 1 ta qoldi/, 'hisoblagich (umumiy)');
+  assert.equal(await p.locator('#phAiLeft').count(), 0, 'v52: natija chiqqach limit qatori yo\'q (360 px — ikkinchi taom ko\'rinsin; limit rasm tanlashda ko\'rinadi)');
   log('Rasm: asosiy variant + «Bu emasmi?» (Jigar kabob, Go\'sht (aniq emas)) + «Boshqasini qidirish»; kkal BAZADAN (mol jigari qovurilgan, 200 g → 350 kkal, AI 460 emas), bazada yo\'q taom — AI «±30%»; Android belgisi, hisoblagich');
   /* 2. bir bosishda almashtirish */
   await p.click('#rzSheet .sl-alt [data-act=phalt][data-k="0"] >> nth=0'); await p.waitForTimeout(300); r = await rows(p); assert.match(r[0], /Jigar kabob/i); assert.match(r[0], /bazadan/);

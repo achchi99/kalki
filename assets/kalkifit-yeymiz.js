@@ -354,7 +354,7 @@
           if (res.s === 400 && (j.sabab === 'format' || !j.sabab)) { fail('mnE_fmt', 'format'); return; }
           if (res.s === 502 && j.sabab === 'parse') { fail('mnNo', 'bosh'); return; }          // model javobini o'qib bo'lmadi — odatda rasmda menyu matni yo'q/xira
           if (res.s !== 200 || !Array.isArray(j.taomlar)) { fail('mnE_srv', 'server'); return; }
-          sev('ai_sorov', 'menyu.ok');
+          sev('ai_sorov', 'menyu.ok'); try { if (window.KalkiStatApp && KalkiStatApp.aiOpen) KalkiStatApp.aiOpen('menyu'); } catch (e) {}          // v52: AI natija voronkasi
           load(function () { A.withDb(function () { var c = mnMatch(j.taomlar); mv.n = j.taomlar.length; mv.picks = j.taomlar.length ? KalkiMenyu.pick(c, A.remaining(), data.chegara) : []; mv.busy = false; mnDraw(); }); });
         }).catch(function (e) { clearTimeout(tm); var k = A.aiNetErr(e); fail(k === 'vaqt' ? 'mnE_time' : 'mnE_net', k); });
     });

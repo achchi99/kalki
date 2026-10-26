@@ -145,7 +145,7 @@ banan|Banan|Банан|banan,банан|89|1.1|0.3|23|f|0|dona:120
 apelsin|Apelsin|Апельсин|apelsin,апельсин|47|0.9|0.1|12|f|0|dona:150
 mandarin|Mandarin|Мандарин|mandarin,мандарин|53|0.8|0.3|13|f|0|dona:80
 limon|Limon|Лимон|limon,лимон|29|1.1|0.3|9|f|0|dona:100,tilim:10
-uzum|Uzum|Виноград|uzum,vinograd,виноград|69|0.7|0.2|18|f|0|hovuch:100
+uzum|Uzum|Виноград|uzum,vinograd,виноград|69|0.7|0.2|18|f|0|hovuch:100,dona:5
 qovun|Qovun|Дыня|qovun,dynya,дыня|34|0.8|0.2|8|f|0|tilim:200
 tarvuz|Tarvuz|Арбуз|tarvuz,arbuz,арбуз|30|0.6|0.2|8|f|0|tilim:300
 shaftoli|Shaftoli|Персик|shaftoli,persik,персик|39|0.9|0.3|10|f|0|dona:150

@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 53,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Qidiruv va ovoz yaxshilandi",
+    "ru": "Поиск и голос стали лучше"
+   },
+   "items": [
+    {
+     "uz": "Qidiruv xato yozilganini va bir qatordagi bir nechta taomni tushunadi.",
+     "ru": "Поиск понимает опечатки и сразу несколько блюд в одной строке.",
+     "show": "search",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Ovozdan keyin aytganingiz ko'rinadi, «ikki tilim non» endi to'g'ri hisoblanadi.",
+     "ru": "После голоса видно, что вы сказали, а «два ломтика хлеба» считаются верно."
+    }
+   ]
+  },
+  {
    "v": 52,
    "d": "2026-10-26",
    "bn": {

@@ -255,7 +255,16 @@
   "bulka",
   "bulochka oq",
   "хлеб белый",
-  "nan"
+  "nan",
+  "kesim non",
+  "kesma non",
+  "kesilgan non",
+  "do'kon non",
+  "dokon non",
+  "baton non",
+  "нарезной",
+  "нарезной хлеб",
+  "хлеб нарезка"
  ],
  "non-qora": [
   "qora non",
@@ -861,5 +870,16 @@
   "sutli kofe",
   "sutlikofe",
   "sutli qahva"
+ ],
+ "loviya-shurva": [
+  "суп из фасоли",
+  "фасолевый суп",
+  "суп с фасолью",
+  "loviyali sho'rva"
+ ],
+ "kartoshka-fri": [
+  "фри",
+  "порция фри",
+  "картофель фри"
  ]
 }

@@ -309,6 +309,7 @@
   "funduk-qovurilgan": [
    "yongoq"
   ],
+  "fuze-tea": [],
   "geyner": [
    "sut"
   ],
@@ -485,6 +486,9 @@
    "glyuten"
   ],
   "kepak": [
+   "glyuten"
+  ],
+  "kepak-non": [
    "glyuten"
   ],
   "keshyu": [
@@ -670,6 +674,9 @@
   ],
   "losos-dudlangan": [
    "baliq"
+  ],
+  "lotus-biscoff": [
+   "glyuten"
   ],
   "loviya": [],
   "loviya-konserva": [],
@@ -939,6 +946,7 @@
    "tuxum"
   ],
   "olma": [],
+  "olma-sirka": [],
   "oluxori": [],
   "omlet": [
    "tuxum",
@@ -991,6 +999,11 @@
   ],
   "pechenye-anjir": [
    "tuxum",
+   "glyuten"
+  ],
+  "pechenye-molochnoe": [
+   "tuxum",
+   "sut",
    "glyuten"
   ],
   "pechenye-oreo": [
@@ -1346,6 +1359,12 @@
    "glyuten"
   ],
   "sendvich-tunets": [
+   "baliq",
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "sezar-salat": [
    "baliq",
    "tuxum",
    "sut",
