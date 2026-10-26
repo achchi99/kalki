@@ -68,7 +68,7 @@
     var used = Math.max(0, D.daysBetween(since, today));
     var wIn = st.weights.filter(function (w) { return w.d >= start && w.d <= today; }), wSpan = wIn.length > 1 ? D.daysBetween(wIn[0].d, wIn[wIn.length - 1].d) : 0;
     var days = [], d; for (d = start; d <= end; d = D.addDays(d, 1)) days.push(d);
-    var rows = days.map(function (d) { var x = S.dayOf(st, d), f = (x && x.food) || [], t = S.sumEntries(f), m = {}; f.forEach(function (e) { m[e.meal] = (m[e.meal] || 0) + (e.kcal || 0); }); return { d: d, n: f.length, k: t.kcal, p: t.p, m: m, steps: num(x && x.steps), wd: S.weekdayIdx(d) }; });
+    var rows = days.map(function (d) { var x = S.dayOf(st, d), f = (x && x.food) || [], t = S.sumEntries(f), m = {}; f.forEach(function (e) { m[e.meal] = (m[e.meal] || 0) + (e.kcal || 0); }); return { d: d, n: f.length, k: t.kcal, p: t.p, m: m, steps: (num(x && x.steps) > S.STEPS_SANE ? 0 : num(x && x.steps)), wd: S.weekdayIdx(d) }; });
     var logged = rows.filter(function (r) { return r.n > 0; });
     var miss = { days: Math.max(0, 21 - used), weights: Math.max(0, 3 - wIn.length), span: wIn.length >= 2 ? Math.max(0, 14 - wSpan) : 14, food: Math.max(0, 10 - logged.length) };
     if (miss.days || miss.weights || miss.span || miss.food) { res.state = 'need'; res.need = miss; res.needDays = Math.max(miss.days, miss.food, miss.weights ? 0 : miss.span); return res; }

@@ -14,7 +14,7 @@ const BMR = S.bmrRaw('m', 80, 175, 35);
   const want = Math.round((9000 - 5000) * 175 * 0.415 / 100 / 1000 * 80 * 0.5 * 0.7); assert.equal(dp.credit, want); assert.equal(dp.k, 1.4); assert.equal(dp.base, 5000); assert.equal(dp.life, Math.round(BMR * 1.4) - Math.round(BMR));
   assert.equal(Math.round(dp.credit / 0.7), Math.round((9000 - 5000) * 175 * 0.415 / 100 / 1000 * 80 * 0.5), '0,7 — konservativ');
   S.ensureDay(st, T0).steps = 4000; dp = S.dayPlan(st, T0); assert.equal(dp.credit, 0); assert.equal(dp.limit, S.planSt(st).target, 'bazadan kam — limitdan AYIRILMAYDI');
-  S.ensureDay(st, T0).steps = 80000; assert.equal(S.dayPlan(st, T0).credit, 500, 'kuniga ≤ 500');
+  S.ensureDay(st, T0).steps = 38000; assert.equal(S.dayPlan(st, T0).credit, 500, 'kuniga ≤ 500'); S.ensureDay(st, T0).steps = 80000; assert.equal(S.dayPlan(st, T0).credit, 0, '40 000+ — shubhali kun, kredit 0 (v52)');
   for (const [j, k, b] of [['stand', 1.6, 7500], ['heavy', 1.85, 10000]]) { st.profile.job = j; S.ensureDay(st, T0).steps = b + 2000; const q = S.dayPlan(st, T0); assert.equal(q.k, k); assert.equal(q.base, b); assert.ok(q.credit > 0); }
   ok('Android (ish turi + qadam): kredit = (qadam − baza) × bo\'y×0,415 × vazn × 0,5 × 0,7 (4 000 qadam ustida → ' + want + ' kkal); bazadan kam — 0 (ayirilmaydi); ≤ 500; o\'tirib/tik turib/og\'ir: 1,40/5 000 · 1,60/7 500 · 1,85/10 000');
 }

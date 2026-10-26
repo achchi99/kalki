@@ -133,7 +133,7 @@ T('55 avtomatik qadam (Android): sa — avtomatik qism, qo\'lda qo\'shilgani ust
   assert.equal(S.setAutoSteps(st, d, 3000), true); assert.deepEqual([st.days[d].sa, st.days[d].steps], [3000, 3000]);
   S.setManualSteps(st, d, 500); assert.equal(st.days[d].steps, 3500); assert.equal(S.manualSteps(st.days[d]), 500);
   assert.equal(S.setAutoSteps(st, d, 4200), true); assert.equal(st.days[d].steps, 4700, 'qo\'lda 500 saqlandi'); assert.equal(S.setAutoSteps(st, d, 4200), false, 'o\'zgarmasa — false');
-  const st2 = mk(); S.setSteps(st2, d, 6000); S.setAutoSteps(st2, d, 1000); assert.equal(st2.days[d].steps, 7000, 'avval qo\'lda yozilgan 6000 — qo\'shimcha qism bo\'lib qoladi');
+  const st2 = mk(); S.setSteps(st2, d, 6000); S.setAutoSteps(st2, d, 1000); assert.equal(st2.days[d].steps, 6000, 'v52: manbasi noma\'lum eski yozuv QO\'SHILMAYDI — kattasi (6 000)'); S.setAutoSteps(st2, d, 6000); S.setAutoSteps(st2, d, 6000); assert.equal(st2.days[d].steps, 6000, 'idempotent'); S.setAutoSteps(st2, d, 6500); assert.equal(st2.days[d].steps, 6500);
   const m = S.migrate(JSON.parse(JSON.stringify(st))); assert.deepEqual([m.days[d].sa, m.days[d].steps], [4200, 4700]);
   const raw = JSON.parse(JSON.stringify(st)); raw.days[d] = { food: [], water: 0, steps: 100, sa: 999 }; assert.equal(S.migrate(raw).days[d].sa, 100, 'sa steps dan oshmaydi');
 });
