@@ -106,6 +106,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     CORR_MAX: 1000
   };
   function jobOn(st) { var p = st && st.profile; return !!(p && LIM.JOB[p.job] && st.prefs && st.prefs.qa === 'on'); }          // ish turi modeli: Android'da tasdiqlangan ish turi + avtomatik qadam yoqilgan
+  var STEPS_SANE = 40000;          /* v52: kuniga 40 000 dan ko'p qadam — xato deb olinadi: kredit va plato hisobiga kirmaydi */
   function creditOf(steps, height, weight, base) {
     var extra = Math.max(0, Math.round(num(steps)) - base); if (!extra) return 0;
     return Math.min(LIM.CRED_MAX, Math.round(extra * num(height) * LIM.STRIDE / 100 / 1000 * num(weight) * LIM.WALK * LIM.CRED_K));
@@ -171,14 +172,19 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function restoreFood(st, d, rm) { if (!rm) return; ensureDay(st, d).food.splice(Math.min(rm.index, st.days[d].food.length), 0, rm.item); }
   function setWater(st, d, n) { ensureDay(st, d).water = Math.max(0, Math.min(40, Math.round(n))); return st.days[d].water; }
   function setSteps(st, d, n) { ensureDay(st, d).steps = Math.max(0, Math.min(200000, Math.round(num(n)))); return st.days[d].steps; }
-  /* avtomatik qadam (Android: apparat hisoblagich): day.sa — avtomatik qism; day.steps = sa + qo'lda qo'shilgan (telefonsiz yurilgan).
-     Avtomatik qiymat yangilansa qo'lda qo'shilgani saqlanadi; qolgan hisob (maqsad, kaloriya, tarix) day.steps bilan ishlaydi. */
-  function manualSteps(x) { return x ? Math.max(0, Math.round(num(x.steps)) - Math.round(num(x.sa))) : 0; }
+  /* avtomatik qadam (Android: sensor / Health Connect — native qatlam har kun uchun KATTASINI beradi, bu JAMI qiymat).
+     day.sa — shu kungacha ko'rilgan eng katta avtomatik jami (KAMAYMAYDI); day.steps = sa + (eski qo'lda qo'shilgan, o'zgarmas ustama).
+     Idempotent: bir xil jami necha marta kelsa ham natija bir xil; kechikkan kichik qiymat kattasini bosmaydi.
+     Manbasi noma'lum eski yozuv (sa yo'q, steps > 0 — qo'lda kiritilgan yoki boshqa qurilmadan) QO'SHILMAYDI: kun = max(eski, avtomatik). */
+  function manualSteps(x) { return x && x.sa != null ? Math.max(0, Math.round(num(x.steps)) - Math.round(num(x.sa))) : 0; }
   function setAutoSteps(st, d, n) {
     n = Math.max(0, Math.min(200000, Math.round(num(n)))); var x = st.days[d];
     if (!x) { if (!n) return false; x = ensureDay(st, d); }
-    if (x.sa === n && x.steps >= n) return false;
-    var m = manualSteps(x); x.sa = n; x.steps = Math.min(200000, n + m); return true;
+    var old = Math.round(num(x.steps)), a;
+    if (x.sa == null) { a = Math.max(old, n); if (!a) return false; x.sa = a; x.steps = a; return true; }          /* eski yozuv: kattasi, yig'ma emas */
+    var sa = Math.round(num(x.sa)), m = Math.max(0, old - sa); a = Math.max(sa, n);
+    if (a === sa && old === a + m) return false;
+    x.sa = a; x.steps = Math.min(200000, a + m); return true;
   }
   function setManualSteps(st, d, n) { var x = ensureDay(st, d), a = Math.round(num(x.sa)); x.steps = Math.max(0, Math.min(200000, a + Math.max(0, Math.round(num(n))))); return x.steps; }
   function toggleFav(st, fid) { var i = st.favs.indexOf(fid); if (i > -1) st.favs.splice(i, 1); else st.favs.unshift(fid); return i === -1; }
@@ -191,10 +197,10 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function planSt(st) { return plan(st.profile, { job: jobOn(st) }); }
   /* BITTA manba: shu kun uchun to'liq hisob (halqa, budjetlar, «Nima yesam», plato, Haftangiz, (i) — hammasi shundan) */
   function dayPlan(st, d, stepsOver) {
-    var pl = planSt(st), x = d ? dayOf(st, d) : null, steps = stepsOver != null ? num(stepsOver) : (x ? x.steps || 0 : 0), h = num(st.profile.height), w = currentWeight(st) || num(st.profile.weight);
-    var credit = pl.job ? creditOf(steps, h, w, pl.jobBase) : 0, spend = pl.tdee + credit, raw = spend + pl.delta, limit = raw, floorAdd = 0;
+    var pl = planSt(st), x = d ? dayOf(st, d) : null, steps = stepsOver != null ? num(stepsOver) : (x ? x.steps || 0 : 0), suspect = steps > STEPS_SANE, h = num(st.profile.height), w = currentWeight(st) || num(st.profile.weight);
+    var credit = pl.job && !suspect ? creditOf(steps, h, w, pl.jobBase) : 0, spend = pl.tdee + credit, raw = spend + pl.delta, limit = raw, floorAdd = 0;
     if (pl.delta < 0 && raw < pl.floorMin) { floorAdd = pl.floorMin - raw; limit = pl.floorMin; }
-    return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: pl.job ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, credit: credit, spend: spend, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
+    return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: pl.job && !suspect ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, suspect: suspect, credit: credit, spend: spend, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
   }
   function dayLimit(st, d) { return dayPlan(st, d).limit; }
   function logged(st, d) { var x = dayOf(st, d); return !!(x && (x.food.length || x.steps > 0)); }
@@ -310,7 +316,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (s.profile && num(raw.profile.protG) >= PROT_MIN_G) s.profile.protG = Math.min(PROT_MAX_G, Math.round(num(raw.profile.protG)));
     if (s.profile && LIM.JOB[raw.profile.job]) s.profile.job = raw.profile.job;          // v51: Android ish turi (tasdiqlangan) va shaxsiy tuzatish (adaptiv me'yor)
     if (s.profile && num(raw.profile.corr) && Math.abs(num(raw.profile.corr)) <= LIM.CORR_MAX) s.profile.corr = Math.round(num(raw.profile.corr));
-    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); var dd = s.days[d]; if (dd.sa >= 500 && Math.abs(dd.steps - 2 * dd.sa) <= dd.sa * 0.02) dd.steps = dd.sa;          /* v52: eski xato (qo'lda yozilgan + sensor yig'ilgan) — ANIQ ikki barobar bo'lsa tuzatiladi */ if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     Object.keys(s.days).forEach(function (d) { s.days[d].food.forEach(function (e) { if (!e.fid && typeof e.name === 'string' && !e.pt) { var sp = ptSplit(e.name); if (sp.pt) { e.name = sp.n; e.pt = sp.pt.slice(0, 60); } } }); });          // nomga yopishgan porsiya → `pt`
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
@@ -652,7 +658,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayPlan: dayPlan, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayPlan: dayPlan, STEPS_SANE: STEPS_SANE, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

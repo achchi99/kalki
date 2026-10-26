@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 52,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Qadam soni to'g'rilandi",
+    "ru": "Исправлен подсчёт шагов"
+   },
+   "items": [
+    {
+     "uz": "Qadam soni endi ba'zan ikki baravar chiqmaydi — telefon ko'rsatgan son aynan o'zi.",
+     "ru": "Шаги больше не удваиваются — показывается ровно то, что насчитал телефон.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 51,
    "d": "2026-10-26",
    "bn": {

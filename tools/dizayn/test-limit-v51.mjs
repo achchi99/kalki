@@ -24,7 +24,7 @@ async function ringLimit(p) { return p.evaluate(() => { const eaten = +document.
 try {
   /* (g) + (f): Android, ish turi tasdiqlangan, 9 000 qadam — hamma ekran bitta limit */
   const st = seed({ profile: { job: 'sit' }, prefs: { qa: 'on' }, steps: 9000 }); let p = await open(st, { android: true, steps: 9000 }); await p.waitForTimeout(800);
-  const s1 = await stOf(p), dp = S.dayPlan(s1, TODAY); assert.ok(dp.credit > 0 && dp.job === 'sit', 'Android modeli: ' + JSON.stringify({ c: dp.credit, j: dp.job }));
+  const s1 = await stOf(p), dp = S.dayPlan(s1, TODAY); assert.equal(dp.steps, 9000, 'qadam YIG\'ILMAYDI: yozuvdagi 9 000 + sensor 9 000 = 9 000 (ikki baravar emas)'); assert.ok(dp.credit > 0 && dp.job === 'sit', 'Android modeli: ' + JSON.stringify({ c: dp.credit, j: dp.job }));
   const rl = await ringLimit(p); assert.equal(rl.eaten + rl.left, dp.limit, 'halqa: iste\'mol + qoldi = limit');
   const ny = await p.evaluate(() => window.__kalkifit.remFull()); assert.ok(ny.k === dp.limit - 400 || ny.m, '«Nima yesam ekan?» qoldig\'i shu limitdan: ' + JSON.stringify(ny));
   const wk = await p.evaluate(() => { const K = window.__kalkifit, H = window.KalkiHafta, t = K.S.dates.today(); return H.summary(K.S, K.state, t, t).rows.find((r) => r.d === t).limit; }); assert.equal(wk, dp.limit, 'Haftangiz kun limiti');
