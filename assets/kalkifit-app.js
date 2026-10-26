@@ -1070,7 +1070,7 @@
   function yzRemaining() { var r = yzRemFull(); return r ? r.k : null; }          // v48: tartib bo'lsa — HOZIRGI ovqat vaqtining qolgan budjeti (kunlik qoldiq emas)
   function yzRemFull() {                            // «Nima yesam»: qolgan kkal va oqsil ({ k, p, m, lab }); tartib bo'lsa — hozirgi ovqat vaqti uchun; profil yo'q — null
     if (!st || !st.setup) return null; var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), k = S.dayBalance(pl.target, tot.kcal, x.steps, num(st.profile.height), S.currentWeight(st), st.profile.act).remaining, pg = protNow();
-    var mb = mbOf(t); if (mb && mb.now && mb.meals[mb.now].budget > 0) { var m = mb.now, sh = protShare(tot, pg, mb), lb = T('mlD_' + m); return { k: Math.min(k, mb.meals[m].left), p: sh.m === m ? sh.part : 0, m: m, lab: lang === 'ru' ? lb.charAt(0).toUpperCase() + lb.slice(1) : lb.charAt(0).toUpperCase() + lb.slice(1) }; }
+    var mb = mbOf(t); if (mb && mb.now && mb.meals[mb.now].left >= 100) { /* hozirgi ovqat budjeti deyarli tugagan bo'lsa — kunlik qoldiq (tavsiya ma'nosiz bo'lmasin) */ var m = mb.now, sh = protShare(tot, pg, mb), lb = T('mlD_' + m); return { k: Math.min(k, mb.meals[m].left), p: sh.m === m ? sh.part : 0, m: m, lab: lang === 'ru' ? lb.charAt(0).toUpperCase() + lb.slice(1) : lb.charAt(0).toUpperCase() + lb.slice(1) }; }
     return { k: k, p: Math.max(0, Math.round(pg.g - tot.p)) };
   }
   function ppLog(it) {                               // «Uyda» retsepti: «Yedim» — kundalikka bitta yozuv (kkal/BJU tarkibdan hisoblangan, «taxminiy»); varaq yopiladi, hazil shundan keyin ko'rinadi
