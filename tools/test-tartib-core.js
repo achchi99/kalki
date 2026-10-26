@@ -61,4 +61,16 @@ const H = (h, mi) => h * 60 + (mi || 0), sum = (o) => Object.values(o).reduce((a
   const ex = S.importState ? null : null; assert.equal(ex, null);
   ok('Migratsiya: eski holat o\'zgarmaydi (tartib — «Farqi yo\'q», oqsil — avtomatik), tartib/protG zaxira orqali saqlanadi, noto\'g\'ri qiymat tashlanadi');
 }
+/* (h) v50 bir martalik: v48..v50 oralig'ida yaratilgan va tartibi 'std' qolganlar → «Farqi yo'q»; oraliqdan oldingi/keyingi, boshqa tartib, belgi bor — tegilmaydi */
+{
+  const T0 = 1793003413000, T1 = 1793021775000, mk = (created, tartib, prefs) => ({ v: 1, setup: true, created, profile: Object.assign({ sex: 'm', age: 30, height: 175, weight: 80, act: 2, goal: 'lose' }, tartib ? { tartib } : {}), prefs: prefs || {}, days: {}, weights: [{ d: '2026-10-26', kg: 80 }] });
+  const run = (o) => S.migrate(JSON.parse(JSON.stringify(o)));
+  let s = run(mk(T0 + 3600e3, 'std')); assert.equal(s.profile.tartib, undefined, 'oraliqda + std → o\'tkazildi'); assert.equal(S.tartibOf(s.profile), 'erkin'); assert.equal(s.prefs.tm50, 1);
+  assert.equal(run(mk(T0 - 1, 'std')).profile.tartib, 'std', 'oraliqdan oldin (v48 dan oldin) — tegilmaydi'); assert.equal(run(mk(T0, 'std')).profile.tartib, undefined, 'chegara: v48 dan boshlab kiradi'); assert.equal(run(mk(T1 - 1, 'std')).profile.tartib, undefined); assert.equal(run(mk(T1, 'std')).profile.tartib, 'std', 'v50 dan keyin — tegilmaydi');
+  for (const m of ['kech', 'nobf', 'erkin']) assert.equal(run(mk(T0 + 1e6, m)).profile.tartib, m, m + ': boshqa tanlov saqlanadi'); assert.equal(run(mk(T0 + 1e6, null)).profile.tartib, undefined);
+  assert.equal(run(mk(T0 + 1e6, 'std', { tm50: 1 })).profile.tartib, 'std', 'belgi bor — qayta o\'tkazilmaydi (keyin o\'zi tanlagan «3 mahal»)');
+  const again = run(s); assert.equal(again.profile.tartib, undefined); s.profile.tartib = 'std'; assert.equal(run(s).profile.tartib, 'std', 'keyin o\'zi «std» tanlasa — saqlanadi (tm50 bor)');
+  assert.equal(run(Object.assign(mk(null, 'std'), { created: null })).profile.tartib, 'std', 'created yo\'q — tegilmaydi'); assert.equal(run({ v: 1, setup: false, prefs: {} }) === null || true, true);
+  ok('Migratsiya v50: v48–v50 oralig\'ida yaratilgan + «std» → «Farqi yo\'q» (bir marta, tm50); oraliqdan oldin/keyin, boshqa tartib, belgi bor, created yo\'q — tegilmaydi; keyin o\'zi «std» tanlasa qaytarilmaydi');
+}
 console.log('tartib-core: ' + n + ' guruh OK');

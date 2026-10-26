@@ -89,6 +89,14 @@ try {
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500); await p.click('#hkCard'); await p.waitForTimeout(600); for (let i = 0; i < 6; i++) { await p.keyboard.press('ArrowRight'); await p.waitForTimeout(300); }
   assert.match(nb(await p.locator('.hk-pr').textContent()), /^Bu hafta \d kun oqsil maqsadiga yetdingiz$/); await p.keyboard.press('Escape'); assert.deepEqual(p.errs, []); await p.context().close();
   ok('Oqsil maqsadi: Profil\'da ±10 g (60–250), Bugun kartasi yangilanadi, «Avtomatik» qaytaradi; «Haftangiz»: «Bu hafta N kun oqsil maqsadiga yetdingiz»');
+  /* ---- 5b. v50 bir martalik migratsiya qurilmada: v48–v50 oralig'ida yaratilgan + «std» → «Farqi yo'q», bir marta saqlanadi ---- */
+  { const old = seed({ tartib: 'std' }); old.created = 1793003413000 + 3600e3; delete old.prefs.tm50; let q = await open(old);
+    let s5 = await stOf(q); assert.equal(s5.profile.tartib, undefined, 'qurilmada o\'tkazildi'); assert.equal(s5.prefs.tm50, 1, 'belgi saqlandi'); assert.equal(await q.locator('.ml-now, #mbNote').count(), 0, 'budjetlar ko\'rinmaydi (Farqi yo\'q)');
+    await q.click('[data-act=tab][data-v=profile]'); await q.waitForTimeout(500); assert.match(nb(await q.locator('.pf-grp').innerText()), /Kun tartibi Farqi yo'q — bo'lmasin/);
+    await q.click('.pf-grp [data-act=ttopen]'); await q.waitForTimeout(500); await q.click('#rzSheet [data-act=ttpick][data-k=std]'); await q.click('#rzSheet [data-act=ttsave]'); await q.waitForTimeout(500); assert.equal((await stOf(q)).profile.tartib, 'std');
+    await q.reload({ waitUntil: 'networkidle' }); await q.waitForTimeout(800); assert.equal((await stOf(q)).profile.tartib, 'std', 'o\'zi tanlagan «Kun bo\'yi teng» qayta yuklashda o\'zgarmaydi'); await q.context().close();
+    const out = seed({ tartib: 'std' }); out.created = 1793003413000 - 86400e3; delete out.prefs.tm50; q = await open(out); assert.equal((await stOf(q)).profile.tartib, 'std', 'oraliqdan oldin yaratilgan — tegilmaydi'); await q.context().close(); }
+  ok('Migratsiya qurilmada: oraliqdagi «std» → «Farqi yo\'q» (budjet yo\'q), keyin o\'zi tanlagan «std» saqlanadi; oraliqdan oldingi — tegilmaydi');
   /* ---- 6. 360 px × 115% × RU / ЎЗ × tungi ---- */
   for (const [lang, th] of [['ru', 'light'], ['cyr', 'dark'], ['uz', 'dark']]) {
     p = await open(seed({ tartib: 'kech' }), { w: 360, h: 740, lang, th, zoom: 1.15 });
