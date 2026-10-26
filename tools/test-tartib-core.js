@@ -55,10 +55,10 @@ const H = (h, mi) => h * 60 + (mi || 0), sum = (o) => Object.values(o).reduce((a
 /* (g) migratsiya: eski holat buzilmaydi; yangi maydonlar saqlanadi, noto'g'risi tashlanadi */
 {
   const old = { v: 1, setup: true, profile: { sex: 'f', age: 40, height: 160, weight: 70, act: 2, goal: 'lose' }, days: { '2026-10-20': { food: [{ id: 1, meal: 'b', fid: 'tuxum', kcal: 155, p: 13, f: 11, c: 1, g: 100 }], water: 0, steps: 0 } }, weights: [{ d: '2026-10-20', kg: 70 }] };
-  let s = S.migrate(JSON.parse(JSON.stringify(old))); assert.equal(s.profile.tartib, undefined); assert.equal(S.tartibOf(s.profile), 'std', 'eski foydalanuvchi — standart 3 mahal'); assert.equal(s.profile.protG, undefined); assert.equal(s.days['2026-10-20'].food.length, 1);
+  let s = S.migrate(JSON.parse(JSON.stringify(old))); assert.equal(s.profile.tartib, undefined); assert.equal(S.tartibOf(s.profile), 'erkin', 'v50: eski / yangi foydalanuvchi — standart «Farqi yo\'q» (budjet yo\'q)'); assert.equal(s.profile.protG, undefined); assert.equal(s.days['2026-10-20'].food.length, 1);
   s = S.migrate(Object.assign(JSON.parse(JSON.stringify(old)), { profile: Object.assign({}, old.profile, { tartib: 'kech', protG: 120 }) })); assert.equal(s.profile.tartib, 'kech'); assert.equal(s.profile.protG, 120);
   s = S.migrate(Object.assign(JSON.parse(JSON.stringify(old)), { profile: Object.assign({}, old.profile, { tartib: 'xyz', protG: 10 }) })); assert.equal(s.profile.tartib, undefined); assert.equal(s.profile.protG, undefined);
   const ex = S.importState ? null : null; assert.equal(ex, null);
-  ok('Migratsiya: eski holat o\'zgarmaydi (tartib — standart, oqsil — avtomatik), tartib/protG zaxira orqali saqlanadi, noto\'g\'ri qiymat tashlanadi');
+  ok('Migratsiya: eski holat o\'zgarmaydi (tartib — «Farqi yo\'q», oqsil — avtomatik), tartib/protG zaxira orqali saqlanadi, noto\'g\'ri qiymat tashlanadi');
 }
 console.log('tartib-core: ' + n + ' guruh OK');

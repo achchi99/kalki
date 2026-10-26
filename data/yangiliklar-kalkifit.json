@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 50,
+   "d": "2026-10-26",
+   "bn": {
+    "uz": "Yangi Profil va qulayroq Bugun",
+    "ru": "Новый Профиль и удобнее «Сегодня»"
+   },
+   "items": [
+    {
+     "uz": "Profil yangilandi: maqsadgacha yo'l, ma'lumotlar va kunlik me'yor bir qarashda.",
+     "ru": "Обновлён Профиль: путь к цели, данные и дневная норма — с одного взгляда.",
+     "show": "profil",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "BJU yana uch ustunda, hazil esa halqani yopmaydi va 8 soniya turadi.",
+     "ru": "БЖУ снова в три колонки, а шутка не закрывает кольцо и держится 8 секунд."
+    },
+    {
+     "uz": "«Kun tartibi» soddalashdi: har variantda sizning kaloriyangiz ko'rinadi.",
+     "ru": "«Режим питания» стал проще: в каждом варианте видны ваши калории."
+    }
+   ]
+  },
+  {
    "v": 49,
    "d": "2026-10-26",
    "bn": {

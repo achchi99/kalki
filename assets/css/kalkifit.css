@@ -101,7 +101,7 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-nearb:#57C48A;-
 .sl-vbar{margin-top:6px}.sl-vbar .rz-actions{margin-top:2px}
 /* ===================== KalkiFit dizayn tokenlari (maket asosida) — BITTA joyda ===================== */
 /* Qorong'i/Och: Avto (tizim sozlamasi) yoki Profil → Mavzu (<html data-theme="dark|light">). Matn kontrasti WCAG AA — test-kalkifit-soddalik.mjs (axe) tekshiradi. */
-.sl{--bg:#F7F5F2;--card:#FFFFFF;--soft:#F1EEE9;--line:#E7E2DB;--line2:#D9D3CA;--track:#ECE8E1;--ink:#1F2125;--mut:#5E6470;--mut2:#676C73;--vessel:#F1EEE9;--field:#F1EEE9;--nav:rgba(255,255,255,.96);
+.sl{--onhero:#FFFFFF;--hero1:#C2410C;--hero2:#B23A0E;--hero3:#9A3412;--bg:#F7F5F2;--card:#FFFFFF;--soft:#F1EEE9;--line:#E7E2DB;--line2:#D9D3CA;--track:#ECE8E1;--ink:#1F2125;--mut:#5E6470;--mut2:#676C73;--vessel:#F1EEE9;--field:#F1EEE9;--nav:rgba(255,255,255,.96);
   --btn:#FFFFFF;--fill:#E8572F;--bline:var(--fill);--acc2:#B93F1D;--acc:#B93F1D;--onacc:#1C0C06;--on:#1C0C06;--onbtn:#FFFFFF;--accink:#B93F1D;--accsoft:#FDEDE7;--p:#5B8DEF;--f:#F2B33D;--c:#3DBE8B;--pink:#2F5FD0;--fink:#7A5200;--cink:#0B7A55;--water:#4FA9E8;--waterink:#1F7FC0;--step:#3DBE8B;--ok:#0E8F63;--danger:#C0392B;--err:#C0392B;--on-err:#fff;--toast-acc:#FF8A6F;--fav:#D6336C;--flame:#E8572F;--gold:#F2B33D;--av1:#E8572F;--av2:#F2B33D;--photo-bg:#F5F1EA;--vk-d:#3A1408;--vk-n:#1A0A05;--liq1:#F2B33D;--liq2:#E8572F;--liq3:#EE7A4E;--lv-strong:#2E9E63;--lv-mod:#E3A008;--lv-low:#D2553A;--lv-not:#5B6470;--tl:24%;--r:20px;--shadow:0 1px 2px rgba(31,33,37,.06),0 4px 16px rgba(31,33,37,.05);--segon-bg:var(--card);--segon-ink:var(--ink);--segon-line:transparent;--page-bg:#F7F5F2;
   --t-lbl:13px;--t-xs:15px;--t-s:15px;--t-m:17px;--t-ml:17px;--t-l:20px;--t-pn:24px;--t-xl:28px;--t-n:40px;--t-ring:52px}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--btn:#2A2C31;--fill:#FF7E5C;--bline:var(--fill);--acc2:#FF9A7E;--acc:#FF9A7E;--onacc:#1C0C06;--on:#1C0C06;--onbtn:#1C0C06;--bg:#18191C;--card:#212327;--soft:#2A2C31;--line:#34373D;--line2:#44474E;--track:#2A2C31;--ink:#DEDCD8;--mut:#ABA7A0;--mut2:#96938D;--tl:77%;--vessel:#2A2C31;--field:#2A2C31;--nav:rgba(33,35,39,.96);--accink:#FF9A7E;--accsoft:#3A2823;--p:#5481DA;--f:#DCA43A;--c:#39AE80;--water:#4A9BD4;--step:#39AE80;--pink:#9DBBFF;--fink:#FFD27A;--cink:#6EE7B7;--waterink:#5AB8FF;--ok:#34D399;--danger:#FF5C5C;--err:#FF5C5C;--on-err:#1A0A05;--toast-acc:#FF9A7E;--fav:#FF6B8A;--flame:#FF7E5C;--liq1:#DCA43A;--liq2:#FF7E5C;--liq3:#E8704F;--shadow:none;--segon-bg:#3A2823;--segon-ink:#FF9A7E;--segon-line:rgba(255,126,92,.4);--page-bg:#18191C}}
@@ -1247,3 +1247,58 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .sl-s .sl-stnote{display:block;margin:4px 0 0;font-size:var(--t-s);color:var(--mut);line-height:1.35;white-space:normal}
 .rz .sl-qahint{margin-top:10px}
 .rz .sl-s .sl-pill{width:100%;height:auto;min-height:44px;padding:6px 10px;white-space:normal;line-height:1.2;text-align:center;gap:6px}.rz .sl-s .sl-pill .rz-i{display:none}.rz .sl-s .sl-pill span{min-width:0;overflow-wrap:anywhere}
+/* ---------- v50: BJU 3 ustun (oqsil birinchi, kengroq, ko'k) + pastda oqsil maslahati (maket ~/profil-maket.html, 1-ekran) ---------- */
+.rz .sl-bju.bj3 .sl-bjub{grid-template-columns:minmax(0,1.2fr) minmax(0,.85fr) minmax(0,1.15fr);column-gap:8px;row-gap:0}
+.rz .sl-bju.bj3 .mh{font-size:var(--t-s);font-weight:500}
+.rz .sl-bju.bj3 .mv{flex-wrap:wrap;row-gap:0}.rz .sl-bju.bj3 .mv b{font-size:var(--t-l);font-weight:600}.rz .sl-bju.bj3 .mv small{font-size:var(--t-s);font-weight:500;white-space:nowrap}
+.rz .sl-bju.bj3 .mc[data-m=p] .mv b{color:color-mix(in srgb,var(--waterink) 82%,var(--ink))}          /* AA ≥ 4,5 (oq va tungi fonda) */
+.rz .sl-bju.bj3 .tr{display:block;height:6px;border-radius:3px;background:var(--track);overflow:hidden;margin-top:4px}.rz .sl-bju.bj3 .tr i{display:block;height:100%;border-radius:3px;max-width:100%}
+.rz .sl-bju.bj3 [data-m=p] .tr i{background:var(--water)}.rz .sl-bju.bj3 [data-m=f] .tr i{background:var(--fcyei)}.rz .sl-bju.bj3 [data-m=c] .tr i{background:var(--fcgri)}
+.rz .sl-bju.bj3 .bj-tip{grid-column:1/-1;display:block;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:var(--t-s);color:var(--mut);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rz .sl-fatlow{color:var(--ink)}
+/* v50: hazil — halqa kartasi ichida, «iste'mol · maqsad» ostida (oqimda; ustma-ust emas) */
+.rz .sl-big .hz-card{display:flex;gap:10px;align-items:flex-start;width:100%;box-sizing:border-box;margin-top:-8px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--gold) 20%,var(--card));color:var(--ink);text-align:left;overflow:hidden;transition:height .3s cubic-bezier(.4,0,.2,1),opacity .25s ease,margin-top .3s ease,padding .3s ease}
+.rz .sl-big .hz-card.in{animation:hzIn .5s cubic-bezier(.2,.9,.25,1) both}
+@keyframes hzIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.rz .sl-big .hz-card.out{opacity:0;margin-top:-20px;padding-top:0;padding-bottom:0}          /* .sl-big gap 20 px ham yig'iladi */
+.rz .hz-e{font-size:22px;line-height:1.2;flex:none}.rz .hz-e::before{content:'😄'}
+.rz .hz-m{flex:1;min-width:0}.rz .hz-t{margin:0;font-size:var(--t-s);line-height:1.4;font-weight:500}
+.rz .hz-bar{display:block;height:3px;border-radius:2px;background:color-mix(in srgb,var(--ink) 10%,transparent);margin-top:8px;overflow:hidden}.rz .hz-bar i{display:block;height:100%;background:var(--gold);transform-origin:left;transform:scaleX(1)}
+.rz .hz-x{flex:none;width:32px;height:32px;margin:-6px -6px 0 0;border:0;border-radius:10px;background:transparent;color:var(--mut);display:grid;place-items:center}.rz .hz-x .rz-i{width:16px;height:16px}
+@media (prefers-reduced-motion:reduce){.rz .sl-big .hz-card.in{animation:none}.rz .sl-big .hz-card{transition:none}}
+/* v50: «Kun tartibi» — har variantda real kkal plitkalari (foiz/chiziq yo'q) */
+.rz .tt-ex{display:flex;gap:6px;margin-top:12px}
+.rz .tt-ex span{flex:1;min-width:0;background:var(--bg);border-radius:10px;padding:6px 2px;text-align:center;font-size:13px;line-height:1.25;color:var(--mut);overflow-wrap:anywhere}
+.rz .tt-ex b{display:block;font-size:var(--t-s);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.rz .tt-ex .z{opacity:.45}
+.rz .tt-opt .tt-oh b{font-size:var(--t-ml)}
+/* ---------- v50: Profil (maket ~/profil-maket.html, 2-ekran) ---------- */
+.rz .pf-hero{position:relative;overflow:hidden;border-radius:24px;padding:20px 16px 16px;color:var(--onhero);background:linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);          /* oq matn bilan AA (≥ 5:1) */isolation:isolate}
+.rz .pf-b1,.rz .pf-b2{position:absolute;border-radius:50%;background:rgba(255,255,255,.12);z-index:-1;pointer-events:none}
+.rz .pf-b1{width:180px;height:180px;right:-50px;top:-60px;animation:pfFl 6s ease-in-out infinite}.rz .pf-b2{width:110px;height:110px;left:-30px;bottom:-50px;animation:pfFl 7s ease-in-out infinite reverse}
+@keyframes pfFl{50%{transform:translate(8px,10px)}}
+.rz .pf-hr{display:flex;align-items:center;gap:14px}
+.rz .pf-av{width:60px;height:60px;border-radius:20px;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:26px;font-weight:600;flex:none}.rz .pf-av .rz-i{width:28px;height:28px}
+.rz .pf-nm{flex:1;min-width:0;display:flex;flex-direction:column}.rz .pf-nm>span{font-size:var(--t-s);opacity:.92}.rz .pf-nm b{font-size:var(--t-pn);font-weight:600;line-height:1.2;overflow-wrap:anywhere}
+.rz .pf-nmv{align-self:flex-start;max-width:100%;border:0;background:transparent;color:inherit;padding:0;text-align:left;font:600 var(--t-pn)/1.2 'Manrope',sans-serif;overflow-wrap:anywhere;min-height:32px}
+.rz .pf-nmb{align-self:flex-start;margin-top:2px;border:0;border-radius:10px;padding:4px 10px;background:rgba(255,255,255,.2);color:var(--onhero);font:600 var(--t-s) 'Manrope',sans-serif}
+.rz .pf-ed{width:44px;height:44px;border:0;border-radius:14px;background:rgba(255,255,255,.2);color:var(--onhero);display:grid;place-items:center;flex:none}.rz .pf-ed .rz-i{width:20px;height:20px}
+.rz .pf-goal{margin-top:16px;background:rgba(0,0,0,.14);border-radius:16px;padding:12px}
+.rz .pf-gt{display:flex;justify-content:space-between;gap:8px;font-size:var(--t-s)}.rz .pf-gt b{font-weight:600;white-space:nowrap}
+.rz .pf-gb{height:8px;border-radius:4px;background:rgba(255,255,255,.28);margin-top:8px;overflow:hidden}.rz .pf-gb i{display:block;height:100%;width:var(--w);border-radius:4px;background:var(--onhero);animation:pfGw 1.2s .3s cubic-bezier(.2,.9,.25,1) both}
+@keyframes pfGw{from{width:0}to{width:var(--w)}}
+.rz .pf-gs{display:flex;justify-content:space-between;gap:6px;font-size:var(--t-s);opacity:.92;margin-top:6px}.rz .pf-gs span{white-space:nowrap}
+.rz .pf-gadd{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;margin-top:16px;border:0;border-radius:16px;background:rgba(0,0,0,.16);color:var(--onhero);font:600 var(--t-s) 'Manrope',sans-serif}.rz .pf-gadd .rz-i{width:18px;height:18px}
+.rz .pf-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rz .pf-ti{background:var(--card);border:0;border-radius:16px;padding:10px 4px;text-align:center;color:var(--ink);font:inherit;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;min-height:48px;animation:pfUp .5s cubic-bezier(.2,.9,.25,1) both;animation-delay:calc(var(--i,0) * 60ms)}
+.rz .pf-tic{color:var(--accink)}.rz .pf-tic .rz-i{width:20px;height:20px}
+.rz .pf-ti b{font-size:var(--t-m);font-weight:600;line-height:1.2;max-width:100%;overflow-wrap:anywhere}.rz .pf-ti>span:last-child{font-size:var(--t-s);color:var(--mut);line-height:1.2;max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+@keyframes pfUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rz .pf-norm{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:var(--card);border-radius:20px;padding:14px;color:var(--ink);font:inherit}
+.rz .pf-nic{width:44px;height:44px;border-radius:14px;background:var(--accsoft);color:var(--accink);display:grid;place-items:center;flex:none}.rz .pf-nic .rz-i{width:22px;height:22px}
+.rz .pf-norm .m{flex:1;min-width:0;display:flex;flex-direction:column}.rz .pf-norm b{font-size:var(--t-l);font-weight:600}.rz .pf-norm .m span{font-size:var(--t-s);color:var(--mut)}
+.rz .pf-norm em{font-style:normal;font-size:var(--t-s);font-weight:600;border-radius:8px;padding:4px 8px;white-space:nowrap;flex:none}
+.rz .pf-norm em.neg{color:color-mix(in srgb,var(--ok) 68%,var(--ink));background:color-mix(in srgb,var(--ok) 12%,var(--card))}.rz .pf-norm em.pos{color:color-mix(in srgb,var(--waterink) 72%,var(--ink));background:color-mix(in srgb,var(--water) 14%,var(--card))}          /* AA ≥ 4,5 */
+.rz .pf-grp{padding:2px 14px}.rz .pf-r{min-height:56px;gap:12px}.rz .pf-r .m{flex:1 1 auto;min-width:0}.rz .pf-r .m b{font-weight:500;white-space:normal;overflow-wrap:anywhere}.rz .pf-r .v{flex:0 1 auto;min-width:0;font-size:var(--t-s);color:var(--mut);max-width:45%;text-align:right;white-space:normal;overflow-wrap:anywhere}
+.rz .pf-hl{box-shadow:0 0 0 3px color-mix(in srgb,var(--fill) 45%,transparent);border-radius:14px;transition:box-shadow .3s}
+@media (prefers-reduced-motion:reduce){.rz .pf-b1,.rz .pf-b2,.rz .pf-gb i,.rz .pf-ti{animation:none}}
