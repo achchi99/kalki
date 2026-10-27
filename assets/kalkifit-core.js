@@ -102,10 +102,20 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   var LIM = {
     JOB: { sit: { k: 1.40, base: 5000 }, stand: { k: 1.60, base: 7500 }, heavy: { k: 1.85, base: 10000 } },          // FAO/WHO/UNU 2004 PAL (sedentary/light 1,40–1,69, active 1,70–1,99) + Tudor-Locke qadam toifalari (<5 000 / 7 500 / 10 000)
     JOB_ACT: { sit: 2, stand: 3, heavy: 5 },          // qadam o'chsa — mos umumiy daraja (yurish ichida)
-    STRIDE: 0.415, WALK: 0.5, CRED_K: 0.7, CRED_MAX: 500,
+    STRIDE: 0.415, WALK: 0.5, CRED_K: 0.7, CRED_MAX: 500, SUM_MAX: 800,          // v55: qadam + mashg'ulot krediti birga kuniga ≤ 800 kkal
     CORR_MAX: 1000
   };
-  function jobOn(st) { var p = st && st.profile; return !!(p && LIM.JOB[p.job] && st.prefs && st.prefs.qa === 'on'); }          // ish turi modeli: Android'da tasdiqlangan ish turi + avtomatik qadam yoqilgan
+  function jobOn(st) { var p = st && st.profile, q = st && st.prefs; return !!(p && LIM.JOB[p.job] && q && (q.qa === 'on' || q.qm === 'on')); }          // ish turi modeli: tasdiqlangan ish turi + qadam manbasi (Android avtomatik «qa» yoki v55: iPhone/veb qo'lda «qm»)
+  /* v55: MASHG'ULOT — 2024 Adult Compendium of Physical Activities (Herrmann va boshq., J Sport Health Sci 2024; pacompendium.com), MET: [yengil, o'rtacha, og'ir] (kodlar — docs/limit.md).
+     spm — mashg'ulotda taxminiy qadam/daqiqa (qadam hosil qiladigan turlar; qadam bilan ikki marta hisoblamaslik uchun). Kkal (NET) = (MET − 1) × vazn × soat (tinch holat BMR'da bor). */
+  var EX = {
+    yugurish: { met: [6.5, 7.5, 9.3], spm: 160, e: '🏃' }, zal: { met: [3.5, 5.0, 6.0], e: '🏋️' }, velosiped: { met: [4.0, 6.8, 8.0], e: '🚴' }, futbol: { met: [3.5, 7.0, 9.5], spm: 110, e: '⚽' },
+    suzish: { met: [5.8, 8.0, 9.8], e: '🏊' }, uyda: { met: [2.8, 3.8, 7.5], e: '🤸' }, raqs: { met: [3.0, 5.0, 9.8], spm: 70, e: '💃' }, yoga: { met: [2.3, 2.7, 4.0], e: '🧘' },
+    kurash: { met: [5.3, 7.8, 10.3], e: '🥊' }, voleybol: { met: [3.0, 6.0, 8.0], spm: 80, e: '🏐' }, ogir: { met: [3.8, 5.0, 7.8], e: '🧹' }, boshqa: { met: [3.0, 4.5, 7.0], e: '➕' }
+  };
+  var EX_ORDER = ['yugurish', 'zal', 'velosiped', 'futbol', 'suzish', 'uyda', 'raqs', 'yoga', 'kurash', 'voleybol', 'ogir', 'boshqa'];
+  function exNet(e, w) { var d = EX[e && e.t]; if (!d) return 0; var met = d.met[Math.max(0, Math.min(2, e.lv == null ? 1 : e.lv))]; return Math.round(Math.max(0, met - 1) * num(w) * Math.max(0, num(e.min)) / 60); }
+  function walkNet(steps, height, weight) { return Math.max(0, num(steps)) * num(height) * LIM.STRIDE / 100 / 1000 * num(weight) * LIM.WALK; }          // qadam sof kkal (0,7 siz)
   var STEPS_SANE = 40000;          /* v52: kuniga 40 000 dan ko'p qadam — xato deb olinadi: kredit va plato hisobiga kirmaydi */
   function creditOf(steps, height, weight, base) {
     var extra = Math.max(0, Math.round(num(steps)) - base); if (!extra) return 0;
@@ -196,12 +206,32 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
   function planSt(st) { return plan(st.profile, { job: jobOn(st) }); }
   /* BITTA manba: shu kun uchun to'liq hisob (halqa, budjetlar, «Nima yesam», plato, Haftangiz, (i) — hammasi shundan) */
+  /* v55: limit = BMR × k + qadam krediti + MASHG'ULOT krediti + shaxsiy tuzatish ± maqsad (ozishda pastki chegaradan past emas). Ikki marta hisoblamaslik:
+     • qadam bazasidagi qadam — k ichida (kredit faqat bazadan ortig'iga);
+     • qadam hosil qiladigan mashg'ulot (yugurish, futbol…): uning taxminiy qadami = daqiqa × spm (kunlik qadamdan oshmaydi); shundan bazadan ORTIQ qismga allaqachon qadam krediti berilgan bo'lishi mumkin —
+       ustma-ust qism = min(mashg'ulot qadami, max(0, kunlik qadam − baza)); mashg'ulot NET = max(0, mashg'ulot kkal − ustma-ust qadamning sof kkal'i);
+     • kreditlar: qadam — creditOf (×0,7, ≤ 500), mashg'ulot — NET × 0,7; ikkalasi birga ≤ 800. Ish turi modeli bo'lmasa (ACT, yurish va odatiy sport daraja ichida) — kredit 0.
+     Balans (ko'rsatish): sarf = BMR × k + tuzatish + qadam NET (bazadan ortig'i, to'liq) + mashg'ulot NET (to'liq); balans = iste'mol − sarf. */
   function dayPlan(st, d, stepsOver) {
     var pl = planSt(st), x = d ? dayOf(st, d) : null, steps = stepsOver != null ? num(stepsOver) : (x ? x.steps || 0 : 0), suspect = steps > STEPS_SANE, h = num(st.profile.height), w = currentWeight(st) || num(st.profile.weight);
-    var credit = pl.job && !suspect ? creditOf(steps, h, w, pl.jobBase) : 0, spend = pl.tdee + credit, raw = spend + pl.delta, limit = raw, floorAdd = 0;
+    var exs = x && Array.isArray(x.ex) ? x.ex : [], exRaw = 0, exMin = 0, exSteps = 0; exs.forEach(function (e) { exRaw += exNet(e, w); exMin += Math.max(0, num(e.min)); exSteps += Math.max(0, num(e.min)) * ((EX[e.t] || {}).spm || 0); });
+    var okSteps = pl.job && !suspect, extra = okSteps ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, overlap = okSteps ? Math.min(Math.min(exSteps, steps), extra) : 0;
+    var overKcal = Math.round(walkNet(overlap, h, w)), exNetV = Math.max(0, exRaw - overKcal), stepNet = Math.round(walkNet(extra, h, w));
+    var stepCredit = okSteps ? creditOf(steps, h, w, pl.jobBase) : 0, exCredit = pl.job ? Math.round(exNetV * LIM.CRED_K) : 0, credit = Math.min(LIM.SUM_MAX, stepCredit + exCredit);
+    if (stepCredit + exCredit > LIM.SUM_MAX) exCredit = Math.max(0, LIM.SUM_MAX - stepCredit);
+    var spend = pl.tdee + credit, raw = spend + pl.delta, limit = raw, floorAdd = 0;
     if (pl.delta < 0 && raw < pl.floorMin) { floorAdd = pl.floorMin - raw; limit = pl.floorMin; }
-    return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: pl.job && !suspect ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, suspect: suspect, credit: credit, spend: spend, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
+    var sarf = pl.tdee + (pl.job ? stepNet + exNetV : 0);
+    return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: extra, suspect: suspect, stepCredit: stepCredit, stepNet: pl.job ? stepNet : 0,
+      ex: exs, exMin: exMin, exRaw: exRaw, exOverlap: overKcal, exNet: exNetV, exCredit: exCredit, credit: credit, spend: spend, sarf: sarf, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
   }
+  function dayBal(st, d, eaten) { var dp = dayPlan(st, d), e = Math.round(num(eaten)); return { eaten: e, sarf: dp.sarf, bal: e - dp.sarf, reja: dp.delta, dp: dp }; }          // v55: kunlik balans (iste'mol − to'liq sarf)
+  /* mashg'ulot yozuvlari (kun ichida) */
+  function addEx(st, d, o) { var x = ensureDay(st, d); x.ex = Array.isArray(x.ex) ? x.ex : []; var e = { id: 'e' + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36), t: EX[o.t] ? o.t : 'boshqa', min: Math.max(1, Math.min(600, Math.round(num(o.min)))), lv: Math.max(0, Math.min(2, Math.round(num(o.lv == null ? 1 : o.lv)))), ts: o.ts || Date.now() }; x.ex.push(e); return e; }
+  function updEx(st, d, id, o) { var x = dayOf(st, d), e = x && x.ex && x.ex.filter(function (y) { return y.id === id; })[0]; if (!e) return null; if (o.t && EX[o.t]) e.t = o.t; if (o.min != null) e.min = Math.max(1, Math.min(600, Math.round(num(o.min)))); if (o.lv != null) e.lv = Math.max(0, Math.min(2, Math.round(num(o.lv)))); return e; }
+  function removeEx(st, d, id) { var x = dayOf(st, d); if (!x || !x.ex) return null; for (var i = 0; i < x.ex.length; i++) if (x.ex[i].id === id) return { item: x.ex.splice(i, 1)[0], index: i }; return null; }
+  function restoreEx(st, d, rm) { if (!rm) return; var x = ensureDay(st, d); x.ex = Array.isArray(x.ex) ? x.ex : []; x.ex.splice(Math.min(rm.index, x.ex.length), 0, rm.item); }
+  function cleanEx(a) { return Array.isArray(a) ? a.filter(function (e) { return e && EX[e.t] && num(e.min) > 0; }).slice(0, 30).map(function (e) { return { id: String(e.id || ('e' + Math.random().toString(36).slice(2, 8))).slice(0, 24), t: e.t, min: Math.max(1, Math.min(600, Math.round(num(e.min)))), lv: Math.max(0, Math.min(2, Math.round(num(e.lv == null ? 1 : e.lv)))), ts: num(e.ts) || 0 }; }) : []; }
   function dayLimit(st, d) { return dayPlan(st, d).limit; }
   function logged(st, d) { var x = dayOf(st, d); return !!(x && (x.food.length || x.steps > 0)); }
   function hasData(x) { return !!(x && (x.food.length || x.steps > 0 || x.water > 0)); }
@@ -323,7 +353,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (s.profile && num(raw.profile.protG) >= PROT_MIN_G) s.profile.protG = Math.min(PROT_MAX_G, Math.round(num(raw.profile.protG)));
     if (s.profile && LIM.JOB[raw.profile.job]) s.profile.job = raw.profile.job;          // v51: Android ish turi (tasdiqlangan) va shaxsiy tuzatish (adaptiv me'yor)
     if (s.profile && num(raw.profile.corr) && Math.abs(num(raw.profile.corr)) <= LIM.CORR_MAX) s.profile.corr = Math.round(num(raw.profile.corr));
-    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); var dd = s.days[d]; if (dd.sa >= 500 && Math.abs(dd.steps - 2 * dd.sa) <= dd.sa * 0.02) dd.steps = dd.sa;          /* v52: eski xato (qo'lda yozilgan + sensor yig'ilgan) — ANIQ ikki barobar bo'lsa tuzatiladi */ if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
+    if (raw.days && typeof raw.days === 'object') Object.keys(raw.days).forEach(function (d) { if (!D.parse(d)) return; var x = raw.days[d] || {}; s.days[d] = { food: Array.isArray(x.food) ? x.food.filter(function (e) { return e && typeof e === 'object'; }) : [], water: Math.max(0, Math.round(num(x.water))), steps: Math.max(0, Math.round(num(x.steps))) }; if (Array.isArray(x.ex) && x.ex.length) { var cx = cleanEx(x.ex); if (cx.length) s.days[d].ex = cx; } if (num(x.sa) > 0) s.days[d].sa = Math.min(s.days[d].steps, Math.round(num(x.sa))); var dd = s.days[d]; if (dd.sa >= 500 && Math.abs(dd.steps - 2 * dd.sa) <= dd.sa * 0.02) dd.steps = dd.sa;          /* v52: eski xato (qo'lda yozilgan + sensor yig'ilgan) — ANIQ ikki barobar bo'lsa tuzatiladi */ if (x.party) s.days[d].party = true; if (x.done) s.days[d].done = true; });
     Object.keys(s.days).forEach(function (d) { s.days[d].food.forEach(function (e) { if (!e.fid && typeof e.name === 'string' && !e.pt) { var sp = ptSplit(e.name); if (sp.pt) { e.name = sp.n; e.pt = sp.pt.slice(0, 60); } } }); });          // nomga yopishgan porsiya → `pt`
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
@@ -628,9 +658,24 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var st = name.split(/\s+/).map(function (w) { return w.length > 4 ? w.replace(CASE_SUF, '') : w; }).join(' ');      // "osh-dan", "плов-а": kelishik/падеж qo'shimchasi
     return st !== name ? search(foods, st, { limit: 1, recents: o && o.recents, favs: o && o.favs, freq: o && o.freq })[0] : null;
   }
+  /* v55: matn/ovozdan mashg'ulot: «30 daqiqa futbol o'ynadim», «bir soat zal», «пробежка 20 минут». Kkal — formula (S.exNet), AI emas */
+  var EXW = {}; [['yugurish', 'yugurish yugurdim yuguraman yugurib jogging jog run running бег бегал бегала побегал пробежка пробежал'], ['zal', 'zal zalda trenajor trenajyor kuch shtanga качалка зал зале залe тренажер тренажёр тренажерный силовая штанга'],
+    ['velosiped', 'velosiped velosipedda velo велосипед велосипеде вело'], ['futbol', 'futbol futbolga futbolda футбол футбола мини-футбол'], ['suzish', 'suzish suzdim suzdik basseyn basseynda плавание плавал плавала бассейн бассейне'],
+    ['uyda', 'zaryadka fitnes fitness mashq mashqlar зарядка фитнес отжимания приседания'], ['raqs', 'raqs raqsga raqsga tushdim zumba танцы танцевал танцевала зумба'], ['yoga', 'yoga chozilish йога растяжка'],
+    ['kurash', 'kurash boks karate dzyudo judo kikboksing бокс борьба карате дзюдо кикбоксинг'], ['voleybol', 'voleybol basketbol волейбол баскетбол'], ['ogir', 'bogda qurilish ogir ish огород стройка ремонт'], ['boshqa', 'sport trenirovka тренировка спорт']].forEach(function (r) { r[1].split(' ').forEach(function (w) { EXW[key(w)] = r[0]; }); });
+  function parseEx(fr) {
+    var k = key(fr), ws = k.split(' '), t = null, i;
+    for (i = 0; i < ws.length; i++) { var c = EXW[ws[i]] || (i < ws.length - 1 ? EXW[ws[i] + ' ' + ws[i + 1]] : null); if (c && (!t || t === 'boshqa')) t = c; }          // aniq tur «sport/тренировка» dan ustun
+    if (!t) return null;
+    var m = /(\d+(?:[.,]\d+)?)\s*(daqiqa|daq|min|minut|minuta|minutlik|мин|минут|минуты|минута)/i.exec(fr), h = /(\d+(?:[.,]\d+)?)\s*(soat|час|часа|часов)/i.exec(fr), min = null;
+    if (m) min = parseFloat(m[1].replace(',', '.')); else if (h) min = parseFloat(h[1].replace(',', '.')) * 60; else if (/yarim soat|полчаса/i.test(fr)) min = 30; else if (/bir soat|(^|\s)час(\s|$)/i.test(fr)) min = 60;
+    var lv = /yengil|sekin|легк|медлен/i.test(fr) ? 0 : (/qattiq|tez|og'?ir|kuchli|интенсив|тяжел|быстр/i.test(fr) ? 2 : 1);
+    return { t: t, min: min ? Math.max(1, Math.min(600, Math.round(min))) : 30, lv: lv, guess: !min };
+  }
   function parseText(text, foods, o) {                // lokal tahlil: topilganlar va topilmaganlar (oila: omillar sinonimdan, o'lcham so'zdan)
-    var items = [], miss = [];
-    var frs = []; splitParts(text).forEach(function (fr) {          // «non bilan choy», «чай с сахаром»: butun nom topilmasa — «bilan / с» bo'yicha bo'linadi
+    var items = [], miss = [], exs = [];
+    var frs = []; splitParts(text).forEach(function (fr) {
+      var ex = parseEx(fr); if (ex && !(parseFragment(fr).name && bestHit(foods, parseFragment(fr).name, o) && !/\d\s*(daqiqa|daq|min|minut|мин|минут|soat|час)/i.test(fr))) { ex.text = fr; exs.push(ex); return; }          // v55: mashg'ulot (ovqat emas)          // «non bilan choy», «чай с сахаром»: butun nom topilmasa — «bilan / с» bo'yicha bo'linadi
       var m = /^(.+?)\s+(?:bilan|с|со)\s+(.+)$/i.exec(fr), p0 = parseFragment(fr);
       if (m && !(p0.name && bestHit(foods, p0.name, o))) { var a1 = parseFragment(m[1]), b1 = parseFragment(m[2]); if (a1.name && b1.name && bestHit(foods, a1.name, o) && bestHit(foods, b1.name, o)) { frs.push(m[1], m[2]); return; } }
       frs.push(fr);
@@ -661,7 +706,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       if (fam) { it.fam = fam; it.sel = sel; it.szid = fam.fam.sz ? (szid || fam.fam.sz.d) : null; it.vr = food.vr; it.sz = fam.fam.sz ? it.szid : null; }
       items.push(it);
     });
-    return { items: items, missing: miss };
+    return { items: items, missing: miss, ex: exs };
   }
 
   /* ---------- suv hisobi: qo'lda stakanlar + ichimlik/suyuq taomlar (data/suv-ulush.json: id → 0…1) ----------
@@ -683,7 +728,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayPlan: dayPlan, STEPS_SANE: STEPS_SANE, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayPlan: dayPlan, STEPS_SANE: STEPS_SANE, dayBal: dayBal, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

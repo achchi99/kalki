@@ -9,7 +9,8 @@
     var D = S.dates, days = [], i; today = today || end; for (i = 6; i >= 0; i--) days.push(D.addDays(end, -i));
     var pl = S.planSt ? S.planSt(st) : S.plan(st.profile), rows = days.map(function (d) {
       var x = S.dayOf(st, d) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), ds = S.dayStatus(st, d, today), wi = S.waterInfo ? S.waterInfo(st, d) : { ml: (x.water || 0) * S.GLASS_ML };
-      return { d: d, food: x.food.length, kcal: tot.kcal, p: tot.p, steps: x.steps || 0, ml: wi.ml || 0, state: ds.state, limit: ds.limit || S.dayLimit(st, d) };
+      var exm = (x.ex || []).reduce(function (a, e) { return a + (e.min || 0); }, 0), exk = exm && S.dayPlan ? (function (dp) { return dp.job ? dp.exNet : dp.exRaw; })(S.dayPlan(st, d)) : 0;          // v55: mashg'ulot daqiqasi va sarfi
+      return { d: d, food: x.food.length, kcal: tot.kcal, p: tot.p, steps: x.steps || 0, ml: wi.ml || 0, state: ds.state, limit: ds.limit || S.dayLimit(st, d), exMin: exm, exKcal: exk || 0 };
     });
     var logged = rows.filter(function (r) { return r.food > 0; }), stepD = rows.filter(function (r) { return r.steps > 0; }), wD = rows.filter(function (r) { return r.ml > 0 || r.food > 0; });
     var empty = !logged.length && !stepD.length && !rows.some(function (r) { return r.ml > 0; });
@@ -26,7 +27,7 @@
     else if (high.length >= 3) tip = 'over';
     else if (pl.macros && pAvg != null && pAvg < pl.macros.p * 0.7) tip = 'protein';
     return { days: days, rows: rows, empty: empty, logged: logged.length, avgKcal: avg(logged.map(function (r) { return r.kcal; })), target: pl.target, near: near.length, high: high.length,
-      waterAvg: waterAvg, waterGoal: waterGoal, stepsAvg: stepsAvg, stepsSum: stepD.reduce(function (s, r) { return s + r.steps; }, 0), stepGoal: stepGoal, best: best ? best.d : null, streak: S.streak(st, end), tip: tip };
+      waterAvg: waterAvg, waterGoal: waterGoal, stepsAvg: stepsAvg, stepsSum: stepD.reduce(function (s, r) { return s + r.steps; }, 0), exMin: rows.reduce(function (s, r) { return s + r.exMin; }, 0), exKcal: rows.reduce(function (s, r) { return s + r.exKcal; }, 0), exDays: rows.filter(function (r) { return r.exMin > 0; }).length, stepGoal: stepGoal, best: best ? best.d : null, streak: S.streak(st, end), tip: tip };
   }
   /* Yakshanba 19:00 dan dushanba oxirigacha ko'rsatiladi; end — xulosa haftasining oxirgi kuni (yakshanba) */
   function dueEnd(S, today, hour) { var wd = S.weekdayIdx(today); if (wd === 6 && hour >= 19) return today; if (wd === 0) return S.dates.addDays(today, -1); return null; }

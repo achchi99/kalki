@@ -104,4 +104,10 @@ const db = d1(SQL), env = ENV(db);
   assert.deepEqual([a.korsatildi, a.javob, a.ok, a.foiz, a.ulashildi, a.kun_foiz], [3, 19, 10, 52.6, 1, 75]); assert.deepEqual(a.adash.map((x) => [x.id, x.xato, x.jami, x.foiz]), [['a09', 5, 10, 50], ['a02', 3, 4, 75], ['a14', 1, 1, 100]]);
   assert.ok((await API.hisobot(db4, 30, NOW)).afsona, 'hisobotda');
   log('v54: afsona (korsatildi/kirish.kun|feat/ulashildi) va afsona_javob (aNN.ok|xato) — qat\'iy; javoblar 19, to\'g\'ri 52,6%, eng ko\'p adashilgan (a09, a02, a14), kunning savoli orqali kirish 75%'); }
+/* v55: harakat — mashg'ulot (tur × daqiqa), qo'lda qadam, balans */
+{ const db5 = d1(SQL), e5 = ENV(db5), day = (i) => NOW - i * DAY;
+  for (const bad of [['mashq_qoshildi', 'piyoda.d30', 1], ['mashq_qoshildi', 'yugurish.30', 1], ['qadam_qolda', 'ertaga', 1], ['balans_ochildi', 'x', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
+  await API.qabul(req({ q: U(61), p: 'ios-pwa', t: 'uz', h: [['mashq_qoshildi', 'yugurish.d30', 3], ['mashq_qoshildi', 'zal.d60', 2], ['mashq_qoshildi', 'futbol.d90', 1], ['qadam_qolda', 'bugun', 4], ['qadam_qolda', 'kecha', 1], ['balans_ochildi', '', 2]] }), e5, day(1));
+  const h = await API.harakat(db5, K(day(29)), K(NOW)); assert.deepEqual([h.mashq, h.tur[0].k, h.oraliq.d30, h.qolda.bugun, h.qolda.kecha, h.balans], [6, 'yugurish', 3, 4, 1, 2]); assert.ok((await API.hisobot(db5, 30, NOW)).harakat);
+  log('v55: mashq_qoshildi (tur.d15|d30|d60|d90|dx), qadam_qolda (bugun|kecha), balans_ochildi — qat\'iy; hisobot: 6 mashg\'ulot (yugurish birinchi), qo\'lda 4 + 1, balans 2'); }
 console.log('\n' + n + '/' + n + ' OK');
