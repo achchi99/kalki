@@ -18,7 +18,8 @@ export const HODISA = {
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram)$/,
   ai_natija: /^(ovoz|rasm|matn|menyu)\.(ochildi|tahrir|ochirildi|qoshildi|yopildi|bosh|[qy]t(10|30|60|180|x))$/,          // v52: AI natija voronkasi (natija ekrani → qo'shildi / yopildi, soniya guruhi)
-  karta: /^(ilova|ekran|akkaunt)\.(korsatildi|bosildi|yopildi)$/,          // v52: bir martalik kartalar (veb → ilova / bosh ekran, akkaunt)
+  karta: /^(ilova|ekran|akkaunt)\.(korsatildi|bosildi|yopildi)$/,
+  afsona: /^(korsatildi|kirish\.(kun|feat)|ulashildi)$/, afsona_javob: /^a\d{2}\.(ok|xato)$/,          // v54: «Afsona yoki haqiqat?» (kunning savoli ko'rsatildi, kirish joyi, ulashish; har karta javobi to'g'ri/xato)          // v52: bir martalik kartalar (veb → ilova / bosh ekran, akkaunt)
   tartib_tanlandi: /^(std|kech|nobf|erkin)$/, tartib_kun: /^(std|kech|nobf|erkin)$/, oqsil_kun: /^(ha|yoq)$/          // v48: tartib taqsimoti, kecha oqsil maqsadiga yetildimi (anonim)          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
 };
 export const SERVER_HODISA = ['push_yuborildi'];          // faqat server (tools/push-yubor.js D1 REST orqali) yozadi — mijozdan qabul qilinmaydi
@@ -146,6 +147,14 @@ export async function konvKun(db, dan, gacha) {
   try { const t0 = Date.parse(s0 + 'T00:00:00Z') - 5 * 3600000; (await all(db, "SELECT ulangan FROM akkaunt_ilova WHERE ilova = 'kalkifit' AND ulangan >= ?", t0)).forEach((r) => { const x = m[tosh(r.ulangan)]; if (x) x.akkaunt++; }); } catch (e) {}
   return Object.values(m);
 }
+/* v54: «Afsona yoki haqiqat?» — ko'rsatildi (kunning savoli), javoblar, to'g'ri %, eng ko'p adashilgan 5 karta, ulashildi, «Kunning savoli» orqali kirish % */
+export async function afsona(db, dan, gacha) {
+  const r = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE (hodisa = 'afsona' OR hodisa = 'afsona_javob') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), m = {}, kart = {};
+  r.forEach((x) => { if (x.hodisa === 'afsona') m[x.kalit] = x.n || 0; else { const [id, k] = x.kalit.split('.'); kart[id] = kart[id] || { id, ok: 0, xato: 0 }; kart[id][k] += x.n || 0; } });
+  const kl = Object.values(kart), javob = kl.reduce((a, x) => a + x.ok + x.xato, 0), ok = kl.reduce((a, x) => a + x.ok, 0), kun = m['kirish.kun'] || 0, feat = m['kirish.feat'] || 0;
+  const adash = kl.filter((x) => x.xato > 0).map((x) => ({ id: x.id, xato: x.xato, jami: x.ok + x.xato, foiz: Math.round(x.xato / (x.ok + x.xato) * 1000) / 10 })).sort((a, b) => b.xato - a.xato || b.foiz - a.foiz || (a.id < b.id ? -1 : 1)).slice(0, 5);
+  return { korsatildi: m.korsatildi || 0, javob, ok, foiz: javob ? Math.round(ok / javob * 1000) / 10 : null, adash, ulashildi: m.ulashildi || 0, kirish_kun: kun, kirish_feat: feat, kun_foiz: kun + feat ? Math.round(kun / (kun + feat) * 1000) / 10 : null };
+}
 export async function kengaytma(db, dan, gacha, bugun, now) {
   const kpi = { yangi_bugun: await yangiSum(db, bugun, bugun), yangi_hafta: await yangiSum(db, addD(bugun, -6), bugun), ret30: await retention(db, dan, gacha, 30, bugun) };
   const dauJami = (await all(db, 'SELECT kun, COUNT(*) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? GROUP BY kun', dan, gacha)).reduce((a, x) => a + x.n, 0), ovq = await evSum(db, 'ovqat_qoshildi', dan, gacha);
@@ -159,7 +168,7 @@ export async function kengaytma(db, dan, gacha, bugun, now) {
   kpi.konversiya = konversiya ? konversiya.foiz : null;
   const guruh = async (col, extra) => all(db, 'SELECT ' + col + " AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND " + col + " != ''" + (extra || '') + ' GROUP BY ' + col + ' ORDER BY n DESC LIMIT 20', dan, gacha);
   let qurilmalar = null; try { qurilmalar = { tur: await guruh('tur'), versiya: await guruh('ver', " AND tur = 'android-ilova'"), os: await guruh('os'), brauzer: await guruh('br'), model: await guruh('model'), ekran: await guruh('ekran'), til: await guruh('til'), aniqlanmagan: (await one(db, "SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND tur = ''", dan, gacha)).n || 0 }; } catch (e) {}
-  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha) } };
+  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha) } };
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30, 90].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;

@@ -64,6 +64,13 @@ async function yonma4(p, th, nm, idx) {
   await m.screenshot({ path: path.join(OUT, nm + '-' + th + '.png'), fullPage: true }); await cx.close();
 }
 const MAKET5 = path.join(process.env.HOME || '', 'profil-maket.html');          // v50 maketi: 1290 px da uch telefon (0 — Bugun BJU + hazil, 1 — Profil, 2 — Kun tartibi)
+const MAKET6 = path.join(process.env.HOME || '', 'afsona-maket.html');          // v54 «Afsona yoki haqiqat?» maketi: 1290 px da uch telefon (0 — Bugun kunning savoli, 1 — savol, 2 — javob)
+async function yonma6(p, th, nm, idx) {
+  const cx = await b.newContext({ viewport: { width: 1290, height: 900 }, colorScheme: th }), m = await cx.newPage(); await m.goto('file://' + MAKET6); await m.waitForTimeout(800);
+  const a = (await m.locator('.ph').nth(idx).screenshot()).toString('base64'), bb = (await p.screenshot()).toString('base64');
+  await m.setContent('<body style="margin:0;display:flex;gap:20px;background:#888;padding:10px"><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">maket</figcaption><img width="390" src="data:image/png;base64,' + a + '"></figure><figure style="margin:0"><figcaption style="font:600 14px sans-serif;color:#fff">ilova</figcaption><img width="390" src="data:image/png;base64,' + bb + '"></figure></body>');
+  await m.screenshot({ path: path.join(OUT, nm + '-' + th + '.png'), fullPage: true }); await cx.close();
+}
 async function yonma5(p, th, nm, idx) {
   const cx = await b.newContext({ viewport: { width: 1290, height: 900 }, colorScheme: th }), m = await cx.newPage(); await m.goto('file://' + MAKET5); await m.waitForTimeout(2000);
   const a = (await m.locator('.ph').nth(idx).screenshot()).toString('base64'), bb = (await p.screenshot()).toString('base64');
@@ -194,6 +201,15 @@ try {
       if (!o.pr || o.old) fails.push(tag + ' oqsil kartasi: ' + JSON.stringify(o)); if (!o.sub.some((x) => /\d+ \/ \d+|qoldirilgan|оставлено|қолдирилган/.test(x))) fails.push(tag + ' ovqat budjeti ko\'rinmaydi: ' + o.sub.join(' | '));
       await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); await p.click('[data-act=ttopen]'); await p.waitForTimeout(700); await scan(p, 'Mening tartibim', '#rzSheet'); await shot(p, 'tartib-oyna'); if (OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET4)) await yonma4(p, c.th, 'tartib-maket-1', 0);
       if (p.errs.length) fails.push(tag + ' JS (tartib): ' + p.errs[0]); await p.context().close(); }
+    /* v54: «Afsona yoki haqiqat?» — Bugun kunning savoli, savol, javob (maket bilan yonma-yon: 390 uz) */
+    { const st = seed(c.lang, false); st.created = Date.now() - 10 * 86400000; st.prefs.ttAsked = 1; st.prefs.h_hafta = Date.now(); st.prefs.h_backup = Date.now(); st.prefs.crd = { ekran: { ok: 1 }, ilova: { ok: 1 }, akkaunt: { ok: 1 } }; st.prefs.fw = { x: [], d: T0 }; st.afsona = { a: {}, ok: {}, dq: { d: T0, id: 'a01' } };
+      const YM = OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET6);
+      p = await mk(st); await p.waitForTimeout(500); if (!(await p.locator('#afTz').count())) fails.push(tag + ' v54: kunning savoli yo\'q');
+      else { await p.evaluate(() => { const m = document.getElementById('rzMain'), c2 = document.getElementById('afTz'); m.scrollTop = c2.offsetTop - 300; }); await p.waitForTimeout(250); await scan(p, 'Kunning savoli', '#afTz'); await shot(p, 'v54-kun'); if (YM) await yonma6(p, c.th, 'v54-maket-1', 0);
+        await p.evaluate(() => { localStorage.setItem('kalki_stat_q', '[]'); }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=afsona]'); await p.waitForTimeout(900);
+        await scan(p, 'Afsona savol', '#afOv'); await shot(p, 'v54-savol'); if (YM) await yonma6(p, c.th, 'v54-maket-2', 1);
+        await p.click('#afOv [data-act=afans][data-v=a]'); await p.waitForTimeout(900); await scan(p, 'Afsona javob', '#afOv'); await shot(p, 'v54-javob'); if (YM) await yonma6(p, c.th, 'v54-maket-3', 2); }
+      if (p.errs.length) fails.push(tag + ' JS (v54): ' + p.errs[0]); await p.context().close(); }
     /* v51: mavjud Android — ish turi kartasi → oyna (Hozirgi → Yangi) → tasdiqlash → (i) formula va qatorlar (docs/limit.md) */
     { const st = seed(c.lang, true); delete st.profile.job; st.prefs.ttAsked = 1; st.prefs.h_hafta = Date.now(); st.prefs.h_backup = Date.now();
       p = await mk(st); await p.waitForTimeout(400); if (!(await p.locator('#jbCard').count())) fails.push(tag + ' v51: ish turi kartasi yo\'q');

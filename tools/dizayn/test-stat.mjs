@@ -96,4 +96,12 @@ const db = d1(SQL), env = ENV(db);
   assert.equal(kk.length, 30); assert.deepEqual([r2.veb, r2.ilova_k, r2.ilova_b, r2.apk, r2.akk_k, r2.akk_b], [1, 1, 1, 1, 1, 0]); assert.equal(kk.find((x) => x.kun === K(day(10))).yangi_android, 1);
   const rep = await API.hisobot(db3, 30, NOW); assert.ok(Array.isArray(rep.voronka) && Array.isArray(rep.qaytish) && Array.isArray(rep.konv_kun), 'hisobotda yangi bo\'limlar');
   log('v52: ai_natija (ovoz/rasm/matn/menyu × ochildi/tahrir/ochirildi/qoshildi/yopildi/bosh/qt·yt soniya) va karta (ilova/ekran/akkaunt × ko\'rsatildi/bosildi/yopildi) — qat\'iy; voronka (ovoz 75%, rasm 80%, matn — ochildi asos), D1/D7/D30 platforma bo\'yicha, kunlik konversiya'); }
+/* v54: «Afsona yoki haqiqat?» — ko'rsatildi, javoblar, to'g'ri %, eng ko'p adashilgan 5 ta, ulashildi, kunning savoli orqali kirish % */
+{ const db4 = d1(SQL), e4 = ENV(db4), day = (i) => NOW - i * DAY; const go = (id, ev) => API.qabul(req({ q: U(id), p: 'veb', t: 'uz', h: ev }), e4, day(1));
+  for (const bad of [['afsona', 'boshqa', 1], ['afsona_javob', 'a1.ok', 1], ['afsona_javob', 'a01.togri', 1], ['afsona', 'kirish.sayt', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
+  await go(51, [['afsona', 'korsatildi', 3], ['afsona', 'kirish.kun', 3], ['afsona', 'kirish.feat', 1], ['afsona', 'ulashildi', 1], ['afsona_javob', 'a01.ok', 4], ['afsona_javob', 'a02.xato', 3], ['afsona_javob', 'a02.ok', 1], ['afsona_javob', 'a09.xato', 5], ['afsona_javob', 'a09.ok', 5], ['afsona_javob', 'a14.xato', 1]]);
+  const a = await API.afsona(db4, K(day(29)), K(NOW));
+  assert.deepEqual([a.korsatildi, a.javob, a.ok, a.foiz, a.ulashildi, a.kun_foiz], [3, 19, 10, 52.6, 1, 75]); assert.deepEqual(a.adash.map((x) => [x.id, x.xato, x.jami, x.foiz]), [['a09', 5, 10, 50], ['a02', 3, 4, 75], ['a14', 1, 1, 100]]);
+  assert.ok((await API.hisobot(db4, 30, NOW)).afsona, 'hisobotda');
+  log('v54: afsona (korsatildi/kirish.kun|feat/ulashildi) va afsona_javob (aNN.ok|xato) — qat\'iy; javoblar 19, to\'g\'ri 52,6%, eng ko\'p adashilgan (a09, a02, a14), kunning savoli orqali kirish 75%'); }
 console.log('\n' + n + '/' + n + ' OK');

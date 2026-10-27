@@ -62,8 +62,8 @@
     var res = { show: isLose(st), state: 'none', reasons: [], tries: [], need: null };
     if (!res.show) return res;
     var cur = S.currentWeight(st), pl = S.plan(Object.assign({}, p, { weight: cur || p.weight }), { job: S.jobOn ? S.jobOn(st) : false }), end = D.addDays(today, -1), start = D.addDays(today, -WIN);
-    var since = st.trackStart || (st.created ? D.ymd(new Date(st.created)) : null) || (st.weights[0] && st.weights[0].d) || today;
-    if (st.created && D.ymd(new Date(st.created)) < since) since = D.ymd(new Date(st.created)); var firstFood = null; Object.keys(st.days || {}).forEach(function (d) { var x = st.days[d]; if (x && x.food && x.food.length && (!firstFood || d < firstFood)) firstFood = d; });
+    var since = st.trackStart || (st.created ? msDay(D, st.created) : null) || (st.weights[0] && st.weights[0].d) || today;
+    if (st.created && msDay(D, st.created) < since) since = msDay(D, st.created); var firstFood = null; Object.keys(st.days || {}).forEach(function (d) { var x = st.days[d]; if (x && x.food && x.food.length && (!firstFood || d < firstFood)) firstFood = d; });
     if (firstFood && firstFood < since) since = firstFood;
     var used = Math.max(0, D.daysBetween(since, today));
     var wIn = st.weights.filter(function (w) { return w.d >= start && w.d <= today; }), wSpan = wIn.length > 1 ? D.daysBetween(wIn[0].d, wIn[wIn.length - 1].d) : 0;
@@ -132,10 +132,11 @@
      Farq ≥ 150 kkal/kun — taklif (avtomatik emas): bir martada ±10% dan ko'p emas, 14 kunda bir martadan ko'p emas, juda tez ozishda faqat oshirish, pastki chegaradan pastga tushmaydi.
      o = { st, S, today, last (oxirgi taklif vaqti, ms), now } → null | { actual, formula, diff, delta, corr (yangi), limitOld, limitNew, days, full } */
   var AD = { DAYS: 21, WIN: 28, FULL: 0.8, WEIGHTS: 4, MIN: 150, PCT: 0.10, COOL: 14 };
+  function msDay(D, ms) { var d = new Date(ms); return D.ymd(d.getFullYear(), d.getMonth() + 1, d.getDate()); }          // v54: D.ymd(y, m, d) — sana obyekti emas (eski xato: «Mon Oct …-undefined»)
   function adapt(o) {
     var st = o.st, S = o.S, D = S.dates, today = o.today || D.today(), p = st && st.profile; if (!st || !st.setup || !p) return null;
     if (o.last && (o.now || Date.now()) - o.last < AD.COOL * 864e5) return null;
-    var since = st.trackStart || (st.created ? D.ymd(new Date(st.created)) : today), used = D.daysBetween(since, today); if (used < AD.DAYS) return null;
+    var since = st.trackStart || (st.created ? msDay(D, st.created) : today), used = D.daysBetween(since, today); if (used < AD.DAYS) return null;
     var n = Math.min(AD.WIN, used), start = D.addDays(today, -n), days = []; for (var d = start; d < today; d = D.addDays(d, 1)) days.push(d);
     var rows = days.map(function (d) { var x = S.dayOf(st, d), k = x && x.food && x.food.length ? S.sumEntries(x.food).kcal : 0, dp = S.dayPlan(st, d); return { d: d, k: k, full: k > 0 && k >= dp.limit * LOWDAY, spend: dp.spend }; });
     var full = rows.filter(function (r) { return r.full; }); if (full.length < rows.length * AD.FULL) return null;

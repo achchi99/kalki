@@ -2,6 +2,25 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 54,
+   "d": "2026-10-27",
+   "bn": {
+    "uz": "Yangi o'yin: Afsona yoki haqiqat?",
+    "ru": "Новая игра: миф или правда?"
+   },
+   "items": [
+    {
+     "uz": "Har kuni bitta savol: ozish haqidagi afsonalarni 1 daqiqada toping.",
+     "ru": "Каждый день один вопрос: найдите мифы о похудении за минуту.",
+     "show": "afsona",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 53,
    "d": "2026-10-26",
    "bn": {
