@@ -306,6 +306,13 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   }
 
   /* ---------- migratsiya / eksport / import ---------- */
+  function cleanAfsona(x) {                          // v54: «Afsona yoki haqiqat?» — javoblar (a/h), to'g'rilar, kunning savoli
+    if (!x || typeof x !== 'object') return undefined; var o = { a: {}, ok: {} }, ID = /^a\d{2}$/;
+    if (x.a && typeof x.a === 'object') Object.keys(x.a).forEach(function (k) { if (ID.test(k) && (x.a[k] === 'a' || x.a[k] === 'h')) o.a[k] = x.a[k]; });
+    if (x.ok && typeof x.ok === 'object') Object.keys(x.ok).forEach(function (k) { if (o.a[k] && x.ok[k]) o.ok[k] = 1; });
+    if (x.dq && typeof x.dq === 'object' && D.parse(String(x.dq.d || '')) && ID.test(String(x.dq.id || ''))) o.dq = { d: x.dq.d, id: x.dq.id, x: x.dq.x ? 1 : 0 };
+    return o;
+  }
   function migrate(raw) {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
     var v = raw.v == null ? 0 : raw.v; if (typeof v !== 'number' || v > VERSION || v < 0) return null;
@@ -322,7 +329,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
-    s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s);
+    s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s); s.afsona = cleanAfsona(raw.afsona);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     /* v50 bir martalik tuzatish (qurilmada): v48 onboarding'da «Kun tartibi» savoli bor edi — «O'tkazib yuborish» ham 'std' yozardi. v48 (2026-10-26 08:30 UTC) dan v50 (13:36 UTC) gacha YARATILGAN va tartibi 'std' qolganlar
        tanlamagan hisoblanadi → «Farqi yo'q». Tanlov belgisi yo'q (o'tkazib yuborish bilan tanlov bir xil yoziladi), shuning uchun sana bo'yicha. Oraliqdan oldingi/keyingilarga tegilmaydi. prefs.tm50 — bir marta (keyin 'std' ni o'zi tanlasa qaytarilmaydi). */

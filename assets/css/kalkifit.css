@@ -1312,3 +1312,61 @@ html.ft-lock #rzMain{overflow:hidden}
 .rz .sl-heard q{font-weight:500;font-size:var(--t-s);color:var(--ink);quotes:"«" "»";overflow-wrap:anywhere}
 .rz .sl-heard .sl-txtbtn{align-self:flex-start;min-height:44px;padding:0;display:inline-flex;align-items:center;gap:6px}
 .rz .crd-steps{margin:4px 0 8px}
+/* ===================== v54: «Afsona yoki haqiqat?» (maket: ~/afsona-maket.html; assets/kalkifit-afsona.js) ===================== */
+.sl{--af1:#6D4AE0;--af2:#4E34C4;--afsoft:#EFE8FF;--afink:#5B3BCF;--afr:#FCE4DF;--afrink:#B3361F;--afg:#E3F4EA;--afgink:#0B7A55;--afvA:#C8402B;--afvH:#0B7A55;--afvQ:#9A6700}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--af1:#5A3CC8;--af2:#3F2AA0;--afsoft:#2E2650;--afink:#C9B8FF;--afr:#3A2420;--afrink:#FF9A85;--afg:#17322A;--afgink:#6FD6A8;--afvA:#B3361F;--afvH:#0B7A55;--afvQ:#8A5C00}}
+html[data-theme=dark] .sl{--af1:#5A3CC8;--af2:#3F2AA0;--afsoft:#2E2650;--afink:#C9B8FF;--afr:#3A2420;--afrink:#FF9A85;--afg:#17322A;--afgink:#6FD6A8;--afvA:#B3361F;--afvH:#0B7A55;--afvQ:#8A5C00}
+.rz .af-tz{position:relative;overflow:hidden;border-radius:22px;padding:16px;color:var(--onhero);background:linear-gradient(135deg,var(--af1),var(--af2))}
+.rz .af-tz:after{content:"?";position:absolute;right:-6px;top:-30px;font-size:140px;font-weight:800;opacity:.12;pointer-events:none}
+.rz .af-tz small{display:block;font-size:var(--t-lbl);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.92)}
+.rz .af-tz b{display:block;position:relative;margin-top:6px;font-size:var(--t-l);font-weight:700;line-height:1.3}
+.rz .af-tzb{position:relative;display:flex;gap:8px;margin-top:14px}
+.rz .af-tzb button{flex:1;min-height:48px;border:0;border-radius:16px;background:rgba(255,255,255,.2);color:var(--onhero);font-weight:600;font-size:var(--t-s);line-height:1.2;font-family:inherit}
+.rz .af-tzb button:active{background:rgba(255,255,255,.3)}
+.rz .af-ov{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;gap:14px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--bg);color:var(--ink);animation:fadeUp .22s ease both;overflow:hidden}
+.rz .af-ov.out{opacity:0;transition:opacity .2s}
+html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important}
+.rz .af-top{display:flex;align-items:center;gap:10px;flex:none}
+.rz .af-x{width:44px;height:44px;flex:none;border:0;border-radius:14px;background:var(--soft);color:var(--ink);font-size:var(--t-m)}
+.rz .af-pg{flex:1;height:6px;border-radius:3px;background:var(--track);overflow:hidden}.rz .af-pg i{display:block;height:100%;background:var(--af1);border-radius:3px;transition:width .4s}
+.rz .af-sc{font-size:var(--t-xs);font-weight:600;color:var(--afink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rz .af-ld{flex:1;display:grid;place-items:center;text-align:center;color:var(--mut)}
+.rz .af-deck{position:relative;flex:1;min-height:300px;margin-top:8px;perspective:1400px}
+.rz .af-c{position:absolute;inset:0;border-radius:28px;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 40px -20px rgba(60,30,10,.35)}
+.rz .af-c.b1{transform:translateY(14px) scale(.94);opacity:.6}.rz .af-c.b2{transform:translateY(26px) scale(.88);opacity:.35}
+.rz .af-deck.done .af-c.b1,.rz .af-deck.done .af-c.b2{opacity:0;transition:opacity .3s}
+.rz .af-c.top{background:transparent;border:0;box-shadow:none;touch-action:pan-y;cursor:grab;will-change:transform}
+.rz .af-in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,.1,.2,1)}
+.rz .af-c.flip .af-in{transform:rotateY(180deg)}
+.rz .af-c.flip .af-fr{visibility:hidden;transition:visibility 0s .22s}          /* ag'darilgach old yuz ko'rinmaydi (ekran o'quvchi ham o'qimaydi) */
+.rz .af-face{position:absolute;inset:0;display:flex;flex-direction:column;padding:22px;border-radius:28px;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 40px -20px rgba(60,30,10,.35);-webkit-backface-visibility:hidden;backface-visibility:hidden;overflow:hidden}
+.rz .af-bk{transform:rotateY(180deg);overflow-y:auto;gap:12px}
+.rz .af-tag{align-self:flex-start;font-size:var(--t-lbl);font-weight:600;color:var(--afink);background:var(--afsoft);border-radius:8px;padding:4px 10px}
+.rz .af-emo{font-size:56px;line-height:1;margin:22px 0 10px}
+.rz .af-q{font-size:var(--t-pn);font-weight:700;line-height:1.25;letter-spacing:-.01em;overflow-wrap:anywhere}
+.rz .af-hint{margin-top:auto;font-size:var(--t-s);color:var(--mut)}
+.rz .af-lbl{position:absolute;top:22px;padding:6px 12px;border-radius:12px;font-weight:800;font-size:var(--t-m);line-height:1;font-family:inherit;font-style:normal;text-transform:uppercase;opacity:0;transition:opacity .12s}
+.rz .af-lbl.l{right:20px;color:var(--afrink);border:2px solid currentColor;transform:rotate(8deg)}.rz .af-lbl.r{right:20px;color:var(--afgink);border:2px solid currentColor;transform:rotate(-8deg)}
+.rz .af-c.gl .af-lbl.l,.rz .af-c.gr .af-lbl.r{opacity:1}
+.rz .af-ans{display:flex;gap:10px;flex:none}
+.rz .af-btn{flex:1;min-height:58px;border:0;border-radius:20px;font-weight:600;font-size:var(--t-ml);line-height:1.2;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px}
+.rz .af-btn.af{background:var(--afr);color:var(--afrink)}.rz .af-btn.hq{background:var(--afg);color:var(--afgink)}
+.rz .af-sw{margin:-4px 0 0;text-align:center;font-size:var(--t-s);color:var(--mut);flex:none}
+.rz .af-nx{display:block;width:100%;min-height:56px;border:0;border-radius:20px;background:var(--af1);color:var(--onhero);font-weight:600;font-size:var(--t-ml);line-height:1.2;font-family:inherit}
+.rz .af-nx.gh{background:transparent;color:var(--afink);border:1.5px solid var(--line2);margin-top:10px}
+.rz .af-verd{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.rz .af-vb{font-size:var(--t-s);font-weight:700;color:var(--onhero);border-radius:10px;padding:6px 12px;letter-spacing:.03em}.rz .af-vb.vA{background:var(--afvA)}.rz .af-vb.vH{background:var(--afvH)}.rz .af-vb.vQ{background:var(--afvQ)}
+.rz .af-ok{font-size:var(--t-s);font-weight:600}.rz .af-ok.y{color:var(--afgink)}.rz .af-ok.n{color:var(--afrink)}
+.rz .af-q2{font-size:var(--t-l);font-weight:700;line-height:1.3;color:var(--mut)}.rz .af-q2.st{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--afvA) 60%,transparent);text-decoration-thickness:2px}
+.rz .af-ex{margin:0;font-size:var(--t-m);line-height:1.5}
+.rz .af-tip{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:flex-start;width:100%;text-align:left;background:var(--afg);color:var(--ink);border:0;border-radius:16px;padding:12px;font-weight:500;font-size:var(--t-s);line-height:1.4;font-family:inherit}
+.rz .af-tip>span:nth-child(2){flex:1 1 170px;min-width:0}.rz .af-tip b{margin-left:auto;flex:none;color:var(--afgink);font-weight:700;white-space:nowrap}
+.rz .af-src{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:var(--t-lbl);color:var(--mut)}
+.rz .af-src span{background:var(--soft);border-radius:8px;padding:4px 8px}
+.rz .af-src button{flex:none;min-height:44px;border:0;border-radius:12px;background:var(--soft);color:var(--ink);font-weight:600;font-size:var(--t-xs);line-height:1;font-family:inherit;padding:0 12px}
+.rz .af-sum{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;gap:8px}.rz .af-sum h2{margin:0;font-size:var(--t-xl);font-weight:700}.rz .af-sum p{margin:0 0 14px;color:var(--mut);font-size:var(--t-m)}
+.rz .af-cf{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.rz .af-cf i{position:absolute;top:60px;width:8px;height:12px;border-radius:2px;animation:afCf 1.1s cubic-bezier(.2,.7,.4,1) var(--d) both}
+@keyframes afCf{from{transform:translateY(-30px) rotate(0);opacity:1}to{transform:translateY(150px) rotate(var(--r));opacity:0}}
+.rz .af-ov.rm,.rz .af-ov.rm *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){.rz .af-ov,.rz .af-ov *{animation:none!important;transition:none!important}}

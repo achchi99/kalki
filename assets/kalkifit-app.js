@@ -211,10 +211,12 @@
     uz: { wcIlT: "Ilovani o'rnating — qadam avtomatik, eslatmalar", wcIlS: "Android ilovasida qadamni telefon o'zi sanaydi va eslatmalar keladi.", wcIlB: "O'rnatish", wcEkT: "Bosh ekranga qo'shing", wcEkS: "KalkiFit ilova kabi bir bosishda ochiladi.", wcEkB: "Qanday?", wcLater: 'Keyinroq',
       wcEkSh: "Bosh ekranga qo'shish", wcEk1: "Pastdagi «Ulashish» tugmasini bosing (kvadrat va yuqoriga strelka).", wcEk2: "«Bosh ekranga qo'shish» → «Qo'shish»ni bosing.", wcEkN: "Bosh ekrandagi ilova ma'lumotni alohida saqlaydi. Avval nusxalang — ilovani ochganda «Ko'chirish»ni bosasiz.", wcEkCp: "Ma'lumotlarimni nusxalash", wcEkOk: 'Tushunarli',
       vHeard: 'Siz aytdingiz:', vEditTx: 'Matnni tuzatish',
+      ftG_bilim: 'Bilim', ft_afsona: 'Afsona yoki haqiqat?', ft_afsonaH: "1 daqiqalik o'yin: ozish haqidagi afsonalarni toping",
       akCT: "Ma'lumotlaringiz yo'qolmasin — Google bilan saqlang", akCS: "Telefon almashsa yoki brauzer tozalansa ham yozuvlaringiz qoladi.", akCB: 'Saqlash' },
     ru: { wcIlT: 'Установите приложение — шаги сами, напоминания', wcIlS: 'В приложении для Android шаги считает телефон и приходят напоминания.', wcIlB: 'Установить', wcEkT: 'Добавьте на главный экран', wcEkS: 'KalkiFit будет открываться в одно касание, как приложение.', wcEkB: 'Как?', wcLater: 'Позже',
       wcEkSh: 'Добавить на главный экран', wcEk1: 'Нажмите «Поделиться» внизу (квадрат со стрелкой вверх).', wcEk2: 'Выберите «На экран «Домой»» → «Добавить».', wcEkN: 'Приложение на главном экране хранит данные отдельно. Сначала скопируйте их — в приложении нажмёте «Перенести».', wcEkCp: 'Скопировать мои данные', wcEkOk: 'Понятно',
       vHeard: 'Вы сказали:', vEditTx: 'Исправить текст',
+      ftG_bilim: 'Знания', ft_afsona: 'Миф или правда?', ft_afsonaH: 'Игра на минуту: найдите мифы о похудении',
       akCT: 'Чтобы данные не потерялись — сохраните через Google', akCS: 'Записи останутся, даже если смените телефон или очистите браузер.', akCB: 'Сохранить' }
   };
   ['uz', 'ru'].forEach(function (l) { var x = LM[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; x = LK[l]; for (k in x) if (D[l][k] == null) D[l][k] = x[k]; });
@@ -579,6 +581,7 @@
     bugun: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
     yemaydi: function (n) { return goTab('profile', function () { n.highlight($('#ynCard')); }); },
     supp: function (n) { return goTab('history', function () { n.highlight($('[data-act=supp]')); }); },
+    afsona: function (n) { return goTab('today', function () { var t = $('#afTz'); if (t) { if (t.scrollIntoView) t.scrollIntoView({ block: 'center' }); n.highlight(t); } else if (AF) AF.open({ from: 'feat' }); }); },          // v54
     fishday: function (n) { return goTab('profile', function () { var r = $('#pushRow') || $('[data-act=jktog]'); n.highlight(r && (r.id === 'pushRow' ? r : r.parentNode)); }); },
     cats: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#fdQ')); }, 450); }); },
     simple: function (n) { return goTab('today', function () { n.highlight($('#mainAdd')); }); },
@@ -637,6 +640,21 @@
     if (!st || !st.setup || !window.KalkiPlato || !KalkiPlato.adapt) return ''; adS = KalkiPlato.adapt({ st: st, S: S, today: todayStr(), last: prefs().adT || 0 }); if (!adS) return '';
     return '<section class="rz-card ad-card" id="adCard"><p class="rz-p">' + esc(T('adT', { x: fmt(adS.actual), n: fmt(adS.limitNew) })) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="adno">' + esc(T('adNo')) + '</button><button type="button" class="rz-btn primary" data-act="adyes">' + esc(T('adYes')) + '</button></div></section>';
   }
+  /* v54: «Afsona yoki haqiqat?» (assets/kalkifit-afsona.js, data/afsonalar.json) — Bugun'da «Kunning savoli» (ilovaning 3-kunidan), Imkoniyatlar → «Bilim» */
+  var AF = window.KalkiAfsona ? KalkiAfsona.create({ root: root, lang: function () { return lang; }, state: function (v) { if (v !== undefined) st.afsona = v; return st.afsona; }, save: save, ev: stEv, go: afGo,
+    share: function (cv, nm) { sharePng(cv, nm); }, reduce: function () { return !!reduce; }, today: todayStr, haptic: function (ok) { vib(ok ? 18 : 8); }, onClose: function () { if (view === 'today' && !kit.sheetKind()) render(); } }) : null;
+  function afTeaser() {
+    if (!AF || !st || !st.setup || !oneTimeOk() || Dt.daysBetween((function (d) { return Dt.ymd(d.getFullYear(), d.getMonth() + 1, d.getDate()); })(new Date(st.created || Date.now())), todayStr()) < 2) return '';          // birinchi 2 kunda yo'q
+    if (!AF.ready()) { AF.load(function (d) { if (d && view === 'today' && !kit.sheetKind() && !AF.isOpen()) render(); }); return ''; }
+    return AF.teaserHtml();
+  }
+  function afGo(k) {                                   // maslahat → ilovadagi joy
+    if (k === 'tartib') return openTartib(); if (k === 'oqsil') return openProtG(); if (k === 'plato') return goTab('history', function () { openPlato(); });
+    if (k === 'kcal') return goTab('today', function () { openExplainKcal(); }); if (k === 'search') return goTab('today', function () { openAdd({}); });
+    if (k === 'suv') return goTab('today', function () { var w = $('#wCard'); if (w) { if (w.scrollIntoView) w.scrollIntoView({ block: 'center' }); flashEl(w); } });
+    if (k === 'qadam') return goTab(stepCard() ? 'today' : 'history', function () { var c = $('.sl-s') || $('.sl-stepbig') || $('.sl-stepweb'); if (c) { if (c.scrollIntoView) c.scrollIntoView({ block: 'center' }); flashEl(c); } });
+    if (k === 'vazn') return goTab('history', function () { var c = $('.pl-w') || $('#wtCard'); if (c) { if (c.scrollIntoView) c.scrollIntoView({ block: 'center' }); flashEl(c); } });
+  }
   /* Bugun: halqa ostida ko'pi bilan BITTA karta — ilova yangilanishi › baliq kuni › (kun yakunida) eslatma taklifi › eslatma (zaxira, Haftangiz) › o'rnatish taklifi › «Yemaydigan narsangiz bormi?» › birinchi hafta maslahati */
   function slotHtml(t, x) {
     var u = updCardHtml(); if (u) return u; if (inst.isTop()) return '';          // ichki brauzer (Telegram va h.k.): o'rnatish kartasi ekran TEPASIDA (renderToday)
@@ -650,7 +668,7 @@
     var jc = oneTimeOk() ? jobCardHtml() : ''; if (jc) return jc;          // v51: Android — ish turi (ikki marta hisoblamaslik)
     var yq = Y && oneTimeOk() ? Y.yemayCard() : ''; if (yq) return yq;
     var tq = oneTimeOk() ? ttCardHtml() : ''; if (tq) return tq;          // «Qanday ovqatlanasiz?» — mavjud foydalanuvchiga bir marta
-    return fwHtml(t);
+    return fwHtml(t) || afTeaser();          // v54: «Kunning savoli» — eng past ustuvorlik
   }
   /* ---------- BIRINCHI HAFTA MASLAHATLARI: kuniga bitta, «Sinab ko'rish» bilan; yopilsa yoki funksiya ishlatilsa — qaytmaydi, keyingisi ertaga ---------- */
   var FW = ['ovoz', 'rasm', 'menyu', 'yeymiz', 'hafta', 'kunkarta', 'google'];
@@ -691,6 +709,7 @@
       case 'kunkarta': openDayCard(); return;
       case 'ulashish': openShare(); return;
       case 'supp': openSupp(); return;
+      case 'afsona': if (AF) AF.open({ from: 'feat' }); return;
       case 'yesam': openYesam(); return;
       case 'tarix': goTab('history', function () {}); return;
       case 'google': goTab('profile', function () { var g = document.querySelector('[data-akkg], .akk-gnat, [data-act=akk]'); if (g && g.scrollIntoView) g.scrollIntoView({ block: 'center' }); }); return;
@@ -1001,14 +1020,14 @@
   /* BITTA ro'yxat konfiguratsiyasi (Bugun → «Imkoniyatlar» chap paneli va Profil → «Imkoniyatlar»): { k: kalit, ic: ikonka, g: guruh, c: ikonka rangi, ok: mavjudmi, lim: limit turi }.
      Guruhlar tartibi FT_G; «tez» guruhi — rangli kartalar (ovoz/rasm/menyu), qolganlari ro'yxat. Yangi imkoniyat — shu yerga bitta qator + ft_<kalit>/ft_<kalit>H matnlari + feat() dagi case.
      Mavjud bo'lmagani (masalan menyu moduli yuklanmagan) ro'yxatga KIRMAYDI — to'rda bo'sh joy qolmaydi (ustunlar soni kartalar soniga teng) */
-  var FT_G = ['tez', 'natija', 'yemak', 'mening', 'soglik'];
+  var FT_G = ['tez', 'natija', 'yemak', 'mening', 'soglik', 'bilim'];
   function featList() {
     return [{ k: 'ovoz', ic: 'mic', g: 'tez', ok: micCan(), lim: 'ovoz' }, { k: 'rasm', ic: 'cam', g: 'tez', ok: true, lim: 'ai' }, { k: 'menyu', ic: 'menu', g: 'tez', ok: !!(Y && Y.menuOpen && window.KalkiMenyu), lim: 'ai' },
       { k: 'hafta', ic: 'bars', g: 'natija', c: 'pu', ok: true }, { k: 'kunkarta', ic: 'upload', g: 'natija', c: 'ye', ok: true }, { k: 'ulashish', ic: 'trend', g: 'natija', c: 'pu', ok: true },
       { k: 'plato', ic: 'qmark', g: 'natija', c: 'gr', ok: !!(window.KalkiPlato && KalkiPlato.isLose(st)) },
       { k: 'yeymiz', ic: 'zfork', g: 'yemak', c: 'ac', ok: !!Y }, { k: 'yesam', ic: 'qmark', g: 'yemak', c: 'ac', ok: true }, { k: 'retsept', ic: 'rspark', g: 'yemak', c: 'ac', ok: !!R },
       { k: 'odatdagi', ic: 'star', g: 'mening', c: 'gr', ok: true }, { k: 'taomlarim', ic: 'book', g: 'mening', c: 'gr', ok: true }, { k: 'idishlar', ic: 'bowl', g: 'mening', c: 'gr', ok: true }, { k: 'tartib', ic: 'mlMoon', g: 'mening', c: 'bl', ok: true },
-      { k: 'supp', ic: 'pill', g: 'soglik', c: 'bl', ok: true }].filter(function (x) { return x.ok; });
+      { k: 'supp', ic: 'pill', g: 'soglik', c: 'bl', ok: true }, { k: 'afsona', ic: 'qmark', g: 'bilim', c: 'pu', ok: !!AF }].filter(function (x) { return x.ok; });
   }
   function featRow(x, cls) {                         // butun qator bosiladi, o'ngda «›»
     return '<button type="button" class="rz-row sl-feat' + (cls || '') + '" data-act="feat" data-fk="' + x.k + '" aria-label="' + esc(T('ft_' + x.k)) + '"><span class="sl-ci' + (x.c ? ' fc-' + x.c : '') + '">' + ico(x.ic) + '</span><span class="m"><b>' + esc(T('ft_' + x.k)) + (x.k === 'hafta' && hwDue() ? ' <i class="ft-new">' + esc(T('ftNew')) + '</i>' : '') + '</b><span>' + esc(T('ft_' + x.k + 'H')) + '</span></span>' + ico('chev', 'r') + '</button>';
@@ -1230,7 +1249,8 @@
   }
   function yzLog(key, por) { var ml = mealNow(); fd = { saveMsg: T('yzMeal_' + ml), date: todayStr(), meal: ml, mode: 'search', q: '', food: null, unit: null, qty: 1, editId: null, items: [], busy: false }; if (yzFd(key, por)) fSave(); }   // bir bosishda: ko'rsatilgan porsiya bilan yoziladi (Bekor qilish tugmasi bilan)
   function nativeBack() {                            // Android «Orqaga» (KalkiNative.back): oyna → ichki qadam orqaga / yopish; slayd, yo'l-yo'riq — yopiladi; boshqa bo'lim → Bugun; Bugun → 'home' (ilova ikki bosishda chiqadi)
-    if (HK) { HK.close(); return 'overlay'; }          // «Haftangiz» hikoyasi
+    if (HK) { HK.close(); return 'overlay'; }
+    if (AF && AF.isOpen()) { AF.close(); return 'overlay'; }          // v54: «Afsona yoki haqiqat?»          // «Haftangiz» hikoyasi
     if (closeFeats()) return 'overlay';                // «Imkoniyatlar» chap paneli
     if (Y && Y.backStep && Y.backStep()) return 'step';          // «Nima yesam ekan?»: retsept sahifasi / «Uyda nima bor?» → ro'yxat
     if (IN && IN.isOpen && IN.isOpen()) { document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); return 'overlay'; }
@@ -2885,6 +2905,7 @@
       case 'fsave': fSave(); break; case 'fdel': fDelete(); break;
       case 'txgo': txGo(); break; case 'txai': txAi(); break; case 'txsave': txSave(); break;
       case 'vtxedit': fd.vEdit = 1; setSheet(textHtml()); break;
+      case 'aftz': { var tc = AF && AF.todayCard(); if (tc) AF.open({ from: 'kun', id: tc.id, pick: el.getAttribute('data-v') }); break; }
       case 'crdgo': crdGo(el.getAttribute('data-k')); break; case 'crdno': crdMark(el.getAttribute('data-k'), false); render(); break; case 'crdcopy': inst.copyData(); break;
       case 'txdel': aiFMark('ochirildi'); fd.items.splice(+el.getAttribute('data-i'), 1); txRefresh(); break;
       case 'yesam': openYesam(); break;

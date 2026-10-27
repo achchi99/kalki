@@ -45,7 +45,7 @@ Bir qator formula (`1 724 + 689 + 264 − 550 = 2 127 kkal`) va qatorlar: tinch 
 - **Ish koeffitsientlari.** FAO/WHO/UNU *Human energy requirements* (2004): PAL 1,40–1,69 «o'tirib/yengil», 1,70–1,99 «faol», 2,00–2,40 «og'ir». Bizning 1,40 / 1,60 / 1,85 — yurish **chiqarilgan** holat uchun shu oraliqlarning pastki-o'rta qismi (yurish sensordan alohida qo'shiladi).
 - **Baza qadamlar.** Tudor-Locke C., Bassett D. R. *How many steps/day are enough?* Sports Med 2004;34:1–8: < 5 000 — o'tirib, 7 500–9 999 — bir oz faol, ≥ 10 000 — faol. Kasbga qarab aniq baza qadam soni manbada berilmagan — 5 000 / 7 500 / 10 000 shu toifalardan bizning tanlov.
 - **Yurish narxi.** ACSM *Guidelines for Exercise Testing and Prescription* metabolik tenglamalari: tekis yurishda sof sarf ~0,5 kkal/kg/km. Qadam uzunligi ≈ bo'y × 0,415 (pedometriya amaliyoti).
-- **0,7 koeffitsient.** Riou M.-È. va boshq. *Predictors of energy compensation during exercise interventions.* PLoS One 2015;10:e0136392 — mashq sarfining bir qismi kamroq harakat va ko'proq ishtaha bilan qoplanadi. 0,7 — shu kompensatsiyaga ehtiyotkor taxmin (aniq raqam manbadan olinmagan).
+- **0,7 koeffitsient.** Riou M.-È. va boshq. *Predictors of energy compensation during exercise interventions: a systematic review.* *Nutrients* 2015;7(5):3677–3704 (PMID 25988763) — mashq sarfining bir qismi kamroq harakat va ko'proq ishtaha bilan qoplanadi. 0,7 — shu kompensatsiyaga ehtiyotkor taxmin (aniq raqam manbadan olinmagan).
 - **≤ 500 kkal/kun.** Qadam sensorining xatosi (silkinish, transport) va kompensatsiya sababli cheklov — bizning tanlov.
 - **7 700 kkal/kg.** An'anaviy yaqinlashish (Hall K. D. 2008 dinamik modelga ko'ra boshlang'ich bosqichda ehtiyotkor) — adaptiv hisob faqat taklif, ±10% bilan cheklangan.
 

@@ -1,0 +1,576 @@
+{
+ "v": 1,
+ "izoh": "«Afsona yoki haqiqat?» — 30 karta. Matnlar original; manbalar: docs/afsonalar.md. ЎЗ — translit.",
+ "items": [
+  {
+   "id": "a01",
+   "m": "ozish",
+   "e": "🌙",
+   "j": "qisman",
+   "go": "tartib",
+   "uz": {
+    "d": "18:00 dan keyin ovqat yesangiz semirasiz",
+    "t": "Soatning o'zi semirtirmaydi — kunlik jami kaloriya hal qiladi. Lekin kech ovqatlanish ochlikni kuchaytirishi va kechqurun ortiqcha yeyishga olib kelishi mumkin. Shuning uchun gap soatda emas, kechki porsiyada.",
+    "m": "Kechqurun ko'proq yesangiz, «Kun tartibi»da budjetni kechki ovqatga qoldiring."
+   },
+   "ru": {
+    "d": "Если есть после 18:00 — поправишься",
+    "t": "Само время не полнит — решает сумма калорий за день. Но поздняя еда может усиливать голод и подталкивать переесть вечером. Поэтому важен не час, а вечерняя порция.",
+    "m": "Если вечером едите больше, в «Режиме дня» оставьте бюджет на ужин."
+   },
+   "s": "Vujović va boshq., 2022, Cell Metabolism",
+   "pm": "PMID 36198293"
+  },
+  {
+   "id": "a02",
+   "m": "ovqat",
+   "e": "🍞",
+   "j": "afsona",
+   "go": "kcal",
+   "uz": {
+    "d": "Uglevodlar organizmda to'g'ridan-to'g'ri yog'ga aylanadi",
+    "t": "Oddiy ovqatlanishda uglevodning juda kichik qismi yog'ga aylanadi — organizm uni avval energiyaga sarflaydi va glikogen qilib saqlaydi. Semirishni kunlik jami kaloriya belgilaydi, alohida mahsulot emas.",
+    "m": "Non va guruchni tashlash shart emas — porsiyani kunlik me'yorga sig'diring."
+   },
+   "ru": {
+    "d": "Углеводы напрямую превращаются в жир",
+    "t": "При обычном питании в жир превращается очень малая часть углеводов — организм сначала тратит их на энергию и запасает как гликоген. Вес определяет сумма калорий за день, а не отдельный продукт.",
+    "m": "Хлеб и рис бросать не нужно — уместите порцию в дневную норму."
+   },
+   "s": "Hellerstein, 1999, European Journal of Clinical Nutrition",
+   "pm": "PMID 10365981"
+  },
+  {
+   "id": "a03",
+   "m": "ovqat",
+   "e": "🍳",
+   "j": "afsona",
+   "go": "tartib",
+   "uz": {
+    "d": "Nonushta qilmasangiz semirasiz",
+    "t": "Tadqiqotlarda nonushtani tashlash vazn oshishiga olib kelmagan. Nonushta qiladiganlar kuniga biroz ko'proq kaloriya yegani kuzatilgan. Muhimi — o'zingizga qulay tartib.",
+    "m": "Nonushtasiz qulay bo'lsangiz, «Kun tartibi»da «Nonushta qilmayman»ni tanlang."
+   },
+   "ru": {
+    "d": "Не завтракаешь — набираешь вес",
+    "t": "В исследованиях пропуск завтрака не приводил к набору веса. Те, кто завтракал, в среднем съедали за день чуть больше. Главное — удобный для вас режим.",
+    "m": "Удобно без завтрака — выберите в «Режиме дня» «Не завтракаю»."
+   },
+   "s": "Sievert va boshq., 2019, BMJ",
+   "pm": "PMID 30700403"
+  },
+  {
+   "id": "a04",
+   "m": "ozish",
+   "e": "🥚",
+   "j": "afsona",
+   "go": "kcal",
+   "uz": {
+    "d": "Kechasi 2 ta tuxum yesangiz, ertalab yarim kilo ozasiz",
+    "t": "2 ta tuxum — taxminan 145 kkal. Yarim kilo yog' yo'qotish uchun esa bir necha ming kkal tanqislik kerak. Ertalabki tarozi asosan suv va ichakdagi ovqat hisobiga o'zgaradi.",
+    "m": "Natijani bir kunlik tarozidan emas, haftalik o'rtachadan baholang."
+   },
+   "ru": {
+    "d": "Два яйца на ночь — и утром минус полкило",
+    "t": "Два яйца — около 145 ккал. А чтобы потерять полкило жира, нужен дефицит в несколько тысяч ккал. Утренние весы меняются в основном из-за воды и содержимого кишечника.",
+    "m": "Оценивайте результат по среднему за неделю, а не по одному утру."
+   },
+   "s": "Hall, 2008, International Journal of Obesity; USDA FoodData Central (tuxum, fdc 171287)",
+   "pm": "PMID 17848938; USDA 171287"
+  },
+  {
+   "id": "a05",
+   "m": "harakat",
+   "e": "🏋️",
+   "j": "afsona",
+   "go": "qadam",
+   "uz": {
+    "d": "Zalga qatnasangiz, o'zi ozib ketasiz",
+    "t": "Mashg'ulot sarfi ko'pincha ishtaha oshishi va kunning qolgan qismida kamroq harakat bilan qoplanadi. Shuning uchun ovqatni o'zgartirmasdan faqat sport bilan ozish sekin bo'ladi. Sport sog'liq va mushak uchun juda foydali.",
+    "m": "Sportni kunlik me'yor bilan birga yuriting — ikkalasi birga ishlaydi."
+   },
+   "ru": {
+    "d": "Ходишь в зал — похудеешь сам собой",
+    "t": "Затраты на тренировку часто компенсируются аппетитом и меньшей подвижностью в остальное время. Поэтому худеть только за счёт спорта, не меняя питание, — медленно. При этом спорт очень полезен для здоровья и мышц.",
+    "m": "Совмещайте спорт с дневной нормой — вместе они работают."
+   },
+   "s": "Hall va boshq., 2012, American Journal of Clinical Nutrition",
+   "pm": "PMID 22434603"
+  },
+  {
+   "id": "a06",
+   "m": "harakat",
+   "e": "🍰",
+   "j": "haqiqat",
+   "go": "kcal",
+   "uz": {
+    "d": "Mashg'ulotdan keyingi «mukofot» ovqat natijani yo'qotishi mumkin",
+    "t": "Bir soatlik yurish yoki yengil mashg'ulot sarfini bitta shirinlik oson qoplaydi. Odamlar mashg'ulotda yoqilgan kaloriyani ko'pincha oshirib baholaydi. Mukofot bo'lsa, uni kunlik me'yorga kiriting.",
+    "m": "Shirinlik yemoqchi bo'lsangiz, avval qo'shib, me'yorga sig'ishini ko'ring."
+   },
+   "ru": {
+    "d": "«Награда» после тренировки может съесть весь результат",
+    "t": "Одна сладость легко перекрывает час ходьбы или лёгкую тренировку. Люди часто переоценивают, сколько сожгли на занятии. Если награда — включите её в дневную норму.",
+    "m": "Хочется сладкого — сначала добавьте и посмотрите, укладывается ли в норму."
+   },
+   "s": "Riou va boshq., 2015, Nutrients",
+   "pm": "PMID 25988763"
+  },
+  {
+   "id": "a07",
+   "m": "ovqat",
+   "e": "🍗",
+   "j": "haqiqat",
+   "go": "oqsil",
+   "uz": {
+    "d": "Oqsil ozishga yordam beradi",
+    "t": "Kaloriya kam paytida oqsilga boy ovqat uzoqroq to'q tutadi va mushakni saqlashga yordam beradi. Shu sababli ozish osonroq kechadi. Oqsil sehrli emas — umumiy me'yor baribir muhim.",
+    "m": "«Oqsil maqsadi»ni ko'ring va har ovqatga oqsil manbasini qo'shing."
+   },
+   "ru": {
+    "d": "Белок помогает худеть",
+    "t": "При дефиците калорий еда с большим количеством белка дольше насыщает и помогает сохранить мышцы. Поэтому худеть легче. Белок не волшебный — общая норма всё равно важна.",
+    "m": "Посмотрите «Цель по белку» и добавляйте источник белка в каждый приём."
+   },
+   "s": "Leidy va boshq., 2015, American Journal of Clinical Nutrition",
+   "pm": "PMID 25926512"
+  },
+  {
+   "id": "a08",
+   "m": "ovqat",
+   "e": "🍎",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "Mevadagi shakar zararli, mevadan voz kechish kerak",
+    "t": "Katta kuzatuvlarda meva ko'proq yeganlar yillar davomida kamroq vazn yig'gan. Mevada tola va suv ko'p, u to'q tutadi. Sharbat esa boshqa gap — unda tola kam.",
+    "m": "Shirinlik o'rniga meva tanlang, sharbatdan ko'ra butun mevani."
+   },
+   "ru": {
+    "d": "Сахар во фруктах вреден, от фруктов надо отказаться",
+    "t": "В больших наблюдениях люди, евшие больше фруктов, за годы набирали меньше веса. Во фруктах много клетчатки и воды, они насыщают. Сок — другое дело: в нём мало клетчатки.",
+    "m": "Выбирайте фрукт вместо сладкого и целый фрукт вместо сока."
+   },
+   "s": "Bertoia va boshq., 2015, PLoS Medicine",
+   "pm": "PMID 26394033"
+  },
+  {
+   "id": "a09",
+   "m": "ozish",
+   "e": "⚡",
+   "j": "afsona",
+   "go": "vazn",
+   "uz": {
+    "d": "Birinchi haftada tez ketgan kilolar — yog'",
+    "t": "Dastlabki kunlarda asosan glikogen va u bilan bog'langan suv ketadi. Shuning uchun boshida tez tushadi, keyin sekinlashadi — bu normal. Yog' sekinroq, lekin barqaror ketadi.",
+    "m": "Sekinlashsa, «Nega sekin ozyapman?» bo'limida sababini ko'ring."
+   },
+   "ru": {
+    "d": "Быстро ушедшие в первую неделю килограммы — это жир",
+    "t": "В первые дни уходят в основном гликоген и связанная с ним вода. Поэтому сначала вес падает быстро, потом медленнее — это нормально. Жир уходит медленнее, но стабильно.",
+    "m": "Если замедлилось — посмотрите причины в «Почему худею медленно?»."
+   },
+   "s": "Kreitzman va boshq., 1992, American Journal of Clinical Nutrition",
+   "pm": "PMID 1615908"
+  },
+  {
+   "id": "a10",
+   "m": "tana",
+   "e": "😴",
+   "j": "haqiqat",
+   "go": "plato",
+   "uz": {
+    "d": "Kam uxlash ozishga xalaqit beradi",
+    "t": "Tajribada bir xil dietada kam uxlaganlar kamroq yog' yo'qotgan va ko'proq och qolgan. Uyqu yetishmasa, ishtaha va iroda ham susayadi. Yaxshi uyqu — ozishning bir qismi.",
+    "m": "Ozish sekinlashsa, «Nega sekin ozyapman?»da uyquni ham belgilang."
+   },
+   "ru": {
+    "d": "Недосып мешает худеть",
+    "t": "В эксперименте при одинаковой диете недосыпавшие теряли меньше жира и были голоднее. Без сна страдают и аппетит, и сила воли. Хороший сон — часть похудения.",
+    "m": "Если похудение замедлилось, отметьте сон в «Почему худею медленно?»."
+   },
+   "s": "Nedeltcheva va boshq., 2010, Annals of Internal Medicine",
+   "pm": "PMID 20921542"
+  },
+  {
+   "id": "a11",
+   "m": "harakat",
+   "e": "🏃",
+   "j": "afsona",
+   "go": "qadam",
+   "uz": {
+    "d": "Kardio 30–45 daqiqadan keyingina yog' yoqila boshlaydi",
+    "t": "Yog' mashg'ulotning birinchi daqiqasidanoq yoqiladi — faqat ulushi intensivlik va davomiylikka qarab o'zgaradi. Qisqa yurishlar ham hisobga kiradi. Eng muhimi — kunlik jami harakat.",
+    "m": "Qisqa yurishlar ham qo'shiladi — kunlik qadamingizni kuzating."
+   },
+   "ru": {
+    "d": "Жир начинает гореть только после 30–45 минут кардио",
+    "t": "Жир сгорает с первой минуты нагрузки — меняется лишь его доля в зависимости от интенсивности и длительности. Короткие прогулки тоже считаются. Главное — общая подвижность за день.",
+    "m": "Короткие прогулки тоже идут в зачёт — следите за шагами за день."
+   },
+   "s": "Achten va Jeukendrup, 2004, Nutrition",
+   "pm": "PMID 15212756"
+  },
+  {
+   "id": "a12",
+   "m": "tana",
+   "e": "⏳",
+   "j": "afsona",
+   "go": null,
+   "uz": {
+    "d": "Uzoq ochlik organizmni «tozalaydi»",
+    "t": "Organizmni jigar va buyrak har kuni o'zi tozalaydi; «tozalovchi» ochlik bunga isbot topmagan. Uzoq och qolish xavfli bo'lishi mumkin, ayniqsa dori ichadiganlar, homiladorlar va surunkali kasalligi borlar uchun. Uzoq ochlikni faqat shifokor bilan maslahatlashib boshlang.",
+    "m": "Ozish uchun uzoq ochlik shart emas — kunlik me'yorni ushlash yetarli."
+   },
+   "ru": {
+    "d": "Долгое голодание «очищает» организм",
+    "t": "Организм каждый день очищают печень и почки; доказательств «очищающего» голодания нет. Долгое голодание может быть опасным, особенно при приёме лекарств, беременности и хронических болезнях. Начинайте его только после консультации с врачом.",
+    "m": "Для похудения долгое голодание не нужно — достаточно держать дневную норму."
+   },
+   "s": "Klein va Kiat, 2015, Journal of Human Nutrition and Dietetics",
+   "pm": "PMID 25522674"
+  },
+  {
+   "id": "a13",
+   "m": "ovqat",
+   "e": "📉",
+   "j": "qisman",
+   "go": "search",
+   "uz": {
+    "d": "Glikemik indeksi past mahsulot o'zi ozdiradi",
+    "t": "Past GI ovqat ba'zilarga to'qlikni uzaytiradi va natijani biroz yaxshilashi mumkin. Lekin kaloriyasi ko'p bo'lsa, baribir semirtiradi. Asosiysi — kunlik me'yor, GI esa yordamchi.",
+    "m": "Mahsulotni qidiruvda tanlab, kaloriyasini ko'ring — GI yozuviga emas."
+   },
+   "ru": {
+    "d": "Продукт с низким гликемическим индексом сам по себе стройнит",
+    "t": "Еда с низким ГИ может дольше насыщать и немного улучшать результат. Но если калорий много, она всё равно полнит. Главное — дневная норма, а ГИ — помощник.",
+    "m": "Найдите продукт в поиске и смотрите на калории, а не на надпись про ГИ."
+   },
+   "s": "Thomas va boshq., 2007, Cochrane Database of Systematic Reviews",
+   "pm": "PMID 17636786"
+  },
+  {
+   "id": "a14",
+   "m": "ovqat",
+   "e": "🥖",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "Qora non oq nondan ancha kam kaloriyali",
+    "t": "100 g da oq non — 266 kkal, to'liq donli non — 252, javdar noni — 259 kkal. Farq atigi 5% atrofida. Qora nonning foydasi — tolada va to'qlikda, kaloriyada emas.",
+    "m": "Nonni turidan qat'i nazar tilim yoki grammda yozing."
+   },
+   "ru": {
+    "d": "Чёрный хлеб намного менее калорийный, чем белый",
+    "t": "На 100 г белого хлеба — 266 ккал, цельнозернового — 252, ржаного — 259 ккал. Разница всего около 5%. Польза тёмного хлеба — в клетчатке и сытости, а не в калориях.",
+    "m": "Записывайте хлеб ломтиками или граммами, какой бы он ни был."
+   },
+   "s": "USDA FoodData Central, SR Legacy (fdc 174924, 172688, 172684)",
+   "pm": "USDA 174924, 172688, 172684"
+  },
+  {
+   "id": "a15",
+   "m": "harakat",
+   "e": "💦",
+   "j": "afsona",
+   "go": "qadam",
+   "uz": {
+    "d": "Ter ko'p chiqsa — ko'p yog' yoqildi",
+    "t": "Ter — tanani sovutish uchun chiqadigan suv. Issiqda yoki qalin kiyimda ko'p terlaysiz, lekin bu ko'proq yog' yoqilgani emas. Yo'qolgan suv ichilgach qaytadi.",
+    "m": "Natijani terdan emas, qadam va haftalik vazndan baholang."
+   },
+   "ru": {
+    "d": "Много пота — много сожжённого жира",
+    "t": "Пот — это вода, которой тело охлаждается. В жару или тёплой одежде вы потеете сильнее, но жира сгорает не больше. Потерянная вода возвращается, когда вы пьёте.",
+    "m": "Оценивайте результат по шагам и весу за неделю, а не по поту."
+   },
+   "s": "American College of Sports Medicine (Sawka va boshq.), 2007, Medicine & Science in Sports & Exercise",
+   "pm": "PMID 17277604"
+  },
+  {
+   "id": "a16",
+   "m": "harakat",
+   "e": "🧘",
+   "j": "afsona",
+   "go": null,
+   "uz": {
+    "d": "Qorin mashqlari qorindagi yog'ni yoqadi",
+    "t": "Tajribada 6 hafta qorin mashqlari qorin yog'ini kamaytirmagan, faqat mushak chidamliligi oshgan. Yog' butun tanadan ketadi, qayerdan oldin ketishini tanlab bo'lmaydi. Qorin mashqlari baribir mushakni mustahkamlaydi.",
+    "m": "Qorin uchun ham asosiy yo'l bitta — kunlik me'yor va ko'proq harakat."
+   },
+   "ru": {
+    "d": "Упражнения на пресс сжигают жир на животе",
+    "t": "В эксперименте 6 недель упражнений на пресс не уменьшили жир на животе — выросла лишь выносливость мышц. Жир уходит со всего тела, и выбрать, откуда раньше, нельзя. Пресс при этом укрепляет мышцы.",
+    "m": "Для живота путь тот же — дневная норма и больше движения."
+   },
+   "s": "Vispute va boshq., 2011, Journal of Strength and Conditioning Research",
+   "pm": "PMID 21804427"
+  },
+  {
+   "id": "a17",
+   "m": "tana",
+   "e": "💪",
+   "j": "afsona",
+   "go": null,
+   "uz": {
+    "d": "Sportni tashlasangiz, mushak yog'ga aylanadi",
+    "t": "Mushak va yog' — butunlay boshqa to'qimalar, biri ikkinchisiga aylanmaydi. Sport tashlanganda mushak kichrayadi, ovqat avvalgidek qolsa — yog' ko'payadi. Shuning uchun ikkalasi bir vaqtda o'zgarganday ko'rinadi.",
+    "m": "Harakat kamaysa, kunlik me'yor ham kamayishini yodda tuting."
+   },
+   "ru": {
+    "d": "Бросишь спорт — мышцы превратятся в жир",
+    "t": "Мышцы и жир — совершенно разные ткани, одна не превращается в другую. Без спорта мышцы уменьшаются, а если еды столько же — прибавляется жир. Поэтому кажется, что одно стало другим.",
+    "m": "Если движения стало меньше, помните: норма калорий тоже снижается."
+   },
+   "s": "Frontera va Ochala, 2015, Calcified Tissue International",
+   "pm": "PMID 25294644"
+  },
+  {
+   "id": "a18",
+   "m": "tana",
+   "e": "⚖️",
+   "j": "haqiqat",
+   "go": "vazn",
+   "uz": {
+    "d": "Tarozida kundan-kunga ±1 kg sakrash — normal",
+    "t": "Vazn suv, tuz, glikogen va ichakdagi ovqat hisobiga kun sayin o'zgaradi. Hafta kunlari va bayramlarda ham tebranadi. Bir kunlik sakrash yog' o'zgarishi emas.",
+    "m": "Vazn grafigida trend chizig'iga qarang — u kunlik sakrashni silliqlaydi."
+   },
+   "ru": {
+    "d": "Скачки на весах ±1 кг день ото дня — норма",
+    "t": "Вес меняется изо дня в день из-за воды, соли, гликогена и содержимого кишечника. Он колеблется и по дням недели, и после праздников. Скачок за день — не изменение жира.",
+    "m": "Смотрите на линию тренда в графике веса — она сглаживает скачки."
+   },
+   "s": "Turicchi va boshq., 2020, PLoS One; Kreitzman va boshq., 1992, AJCN",
+   "pm": "PMID 32353079; PMID 1615908"
+  },
+  {
+   "id": "a19",
+   "m": "ovqat",
+   "e": "🧂",
+   "j": "qisman",
+   "go": null,
+   "uz": {
+    "d": "Tuz semirtiradi",
+    "t": "Tuzda kaloriya yo'q, u yog' qo'shmaydi. Lekin sho'r ovqatdan keyin tana suv ushlaydi — tarozi vaqtincha oshadi. Ko'p tuz va sho'r gazaklar ko'proq yeyish bilan ham bog'liq.",
+    "m": "Sho'r kechki ovqatdan keyin tarozi oshsa, xavotir olmang — bu suv."
+   },
+   "ru": {
+    "d": "Соль полнит",
+    "t": "В соли нет калорий, жира она не добавляет. Но после солёной еды тело задерживает воду — весы временно растут. Много соли и солёных закусок связано и с тем, что едят больше.",
+    "m": "Весы выросли после солёного ужина — не волнуйтесь, это вода."
+   },
+   "s": "Ma, He va MacGregor, 2015, Hypertension",
+   "pm": "PMID 26238447"
+  },
+  {
+   "id": "a20",
+   "m": "tana",
+   "e": "🎯",
+   "j": "haqiqat",
+   "go": "vazn",
+   "uz": {
+    "d": "Ozganda yog' tananing hamma joyidan bir tekisda ketmaydi",
+    "t": "Yog' qayerdan oldin ketishini genlar, jins va yosh belgilaydi. Tajribada faqat bitta oyoqni mashq qildirish o'sha oyoqdan yog'ni ketkazmagan. Sabr qiling — oxirgi joylar ham navbatini kutadi.",
+    "m": "Faqat tarozi emas, bel o'lchamini ham kuzating."
+   },
+   "ru": {
+    "d": "При похудении жир уходит неравномерно",
+    "t": "Откуда жир уйдёт раньше, решают гены, пол и возраст. В эксперименте тренировка одной ноги не убрала жир именно с этой ноги. Наберитесь терпения — до «упрямых» мест очередь тоже дойдёт.",
+    "m": "Следите не только за весом, но и за объёмом талии."
+   },
+   "s": "Ramírez-Campillo va boshq., 2013, Journal of Strength and Conditioning Research",
+   "pm": "PMID 23222084"
+  },
+  {
+   "id": "a21",
+   "m": "ozish",
+   "e": "🍵",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "Detoks choylar ozdiradi",
+    "t": "«Detoks» choylarning ozdirishi isbotlanmagan. Ko'plarida ich suradigan yoki siydik haydaydigan o'tlar bor — tarozi suv hisobiga vaqtincha tushadi. Bunday choylarni muntazam ichish xavfli bo'lishi mumkin.",
+    "m": "Oddiy choy yoki qahvani shakarsiz iching — deyarli 0 kkal."
+   },
+   "ru": {
+    "d": "Детокс-чаи помогают похудеть",
+    "t": "Похудение от «детокс»-чаёв не доказано. Во многих есть слабительные или мочегонные травы — весы падают временно, за счёт воды. Регулярно пить такие чаи может быть опасно.",
+    "m": "Пейте обычный чай или кофе без сахара — почти 0 ккал."
+   },
+   "s": "Klein va Kiat, 2015, Journal of Human Nutrition and Dietetics",
+   "pm": "PMID 25522674"
+  },
+  {
+   "id": "a22",
+   "m": "ovqat",
+   "e": "☕",
+   "j": "haqiqat",
+   "go": "search",
+   "uz": {
+    "d": "Shakarsiz choy va qahva deyarli 0 kkal",
+    "t": "Damlangan choy va qora qahvada 100 ml ga taxminan 1 kkal bor. Kaloriyani shakar, sut va qaymoq qo'shadi. Bir qoshiq shakarning o'zi choydan ko'proq kaloriya beradi.",
+    "m": "Choyni qo'shganda shakarni alohida belgilang — farqni ko'rasiz."
+   },
+   "ru": {
+    "d": "Чай и кофе без сахара — почти 0 ккал",
+    "t": "В заваренном чае и чёрном кофе — около 1 ккал на 100 мл. Калории добавляют сахар, молоко и сливки. Одна ложка сахара даёт больше калорий, чем сам чай.",
+    "m": "Добавляя чай, отмечайте сахар отдельно — увидите разницу."
+   },
+   "s": "USDA FoodData Central, SR Legacy (fdc 173227, 171890)",
+   "pm": "USDA 173227, 171890"
+  },
+  {
+   "id": "a23",
+   "m": "ovqat",
+   "e": "🥗",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "Sabzavotli ovqat har doim kam kaloriyali",
+    "t": "Sabzavotning o'zi yengil, lekin yog' qo'shilsa hisob o'zgaradi: bir osh qoshiq yog' — taxminan 120 kkal. Qovurilgan sabzavot yoki moyli salat ba'zan go'shtli taomdan ham og'ir bo'ladi. Pishirish usuli muhim.",
+    "m": "Sabzavotli taomni yozganda, porsiyada yog'li yoki yog'siz variantini tanlang."
+   },
+   "ru": {
+    "d": "Овощные блюда всегда низкокалорийные",
+    "t": "Сами овощи лёгкие, но с маслом счёт меняется: одна столовая ложка масла — около 120 ккал. Жареные овощи или салат с маслом порой тяжелее мясного блюда. Важен способ приготовления.",
+    "m": "Записывая овощное блюдо, выбирайте в порции вариант с маслом или без."
+   },
+   "s": "USDA FoodData Central, SR Legacy (o'simlik yog'i, fdc 171024)",
+   "pm": "USDA 171024"
+  },
+  {
+   "id": "a24",
+   "m": "harakat",
+   "e": "🚶",
+   "j": "haqiqat",
+   "go": "qadam",
+   "uz": {
+    "d": "Ko'proq yurish — eng oson qo'shimcha sarf",
+    "t": "Kundalik harakat — yurish, tik turish, uy ishlari — odamlar orasidagi sarf farqining katta qismini beradi. Tadqiqotda ozg'in odamlar kuniga ancha ko'p vaqt tik turib va yurib o'tkazgan. Yurish uchun kiyim ham, zal ham kerak emas.",
+    "m": "Kunlik qadam maqsadingizni kuzating — har yurish hisobga kiradi."
+   },
+   "ru": {
+    "d": "Больше ходить — самый простой способ тратить больше",
+    "t": "Повседневное движение — ходьба, стояние, домашние дела — даёт большую часть разницы в расходе между людьми. В исследовании стройные люди гораздо больше времени проводили стоя и в движении. Для ходьбы не нужны ни форма, ни зал.",
+    "m": "Следите за дневной целью по шагам — каждая прогулка в зачёт."
+   },
+   "s": "Levine va boshq., 2005, Science",
+   "pm": "PMID 15681386"
+  },
+  {
+   "id": "a25",
+   "m": "ozish",
+   "e": "🕐",
+   "j": "haqiqat",
+   "go": "tartib",
+   "uz": {
+    "d": "Ovqat vaqti emas, kunlik jami kaloriya muhim",
+    "t": "Bir yillik tajribada bir xil kaloriyada «faqat 8 soat ichida yeyish» qo'shimcha natija bermagan. Demak, asosiy omil — kunlik jami. Vaqtni o'zingizga qulay qilib tanlang.",
+    "m": "«Kun tartibi»da o'zingizga qulay taqsimotni tanlang."
+   },
+   "ru": {
+    "d": "Важно не время еды, а сумма калорий за день",
+    "t": "В годовом эксперименте при одинаковых калориях «еда только в 8-часовое окно» не дала дополнительного результата. Значит, главное — сумма за день. Время выбирайте удобное вам.",
+    "m": "Выберите удобное распределение в «Режиме дня»."
+   },
+   "s": "Liu va boshq., 2022, New England Journal of Medicine",
+   "pm": "PMID 35443107"
+  },
+  {
+   "id": "a26",
+   "m": "tana",
+   "e": "🌆",
+   "j": "haqiqat",
+   "go": "tartib",
+   "uz": {
+    "d": "Kechqurun ochlik kuchliroq bo'lishi tabiiy",
+    "t": "Ichki biologik soat ochlikni ertalab past, kechqurun yuqori qiladi — ovqatdan qat'i nazar. Bu iroda zaifligi emas. Kechqurun ko'proq yeyishni oldindan rejalash osonroq.",
+    "m": "«Kun tartibi»da «Kechqurun ko'proq»ni tanlang — budjet kechga qoladi."
+   },
+   "ru": {
+    "d": "Вечером голод сильнее — это естественно",
+    "t": "Внутренние биологические часы делают голод низким утром и высоким вечером — независимо от еды. Это не слабая воля. Проще заранее запланировать вечернюю еду.",
+    "m": "Выберите в «Режиме дня» «Вечером больше» — бюджет останется на вечер."
+   },
+   "s": "Scheer, Morris va Shea, 2013, Obesity",
+   "pm": "PMID 23456944"
+  },
+  {
+   "id": "a27",
+   "m": "ovqat",
+   "e": "🏷️",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "«Fitnes» yozuvli mahsulot doim kam kaloriyali",
+    "t": "«Fitnes», «eko», «foydali» — reklama so'zlari, kaloriyani faqat tarkib jadvali ko'rsatadi. Tajribada odamlar «foydali» deb aytilgan pechenyeni ko'proq yegan. Yorliqdagi 100 g dagi kkal ga qarang.",
+    "m": "Mahsulotni qidiruvda topib, 100 g dagi kaloriyasini solishtiring."
+   },
+   "ru": {
+    "d": "Продукт с надписью «фитнес» всегда низкокалорийный",
+    "t": "«Фитнес», «эко», «полезный» — рекламные слова, калории показывает только таблица состава. В эксперименте люди съедали больше печенья, когда его называли полезным. Смотрите ккал на 100 г на этикетке.",
+    "m": "Найдите продукт в поиске и сравните калории на 100 г."
+   },
+   "s": "Provencher, Polivy va Herman, 2009, Appetite",
+   "pm": "PMID 19071169"
+  },
+  {
+   "id": "a28",
+   "m": "ozish",
+   "e": "💧",
+   "j": "qisman",
+   "go": "suv",
+   "uz": {
+    "d": "Ko'p suv ichish ozdiradi",
+    "t": "Suv yog'ni yoqmaydi. Lekin ovqatdan oldin bir-ikki stakan suv ichganlar dietada biroz ko'proq ozgan — ular kamroq yegan. Shirin ichimlik o'rniga suv ham ko'p kaloriya tejaydi.",
+    "m": "Ovqatdan oldin bir stakan suv iching va suvni ilovada belgilang."
+   },
+   "ru": {
+    "d": "Если пить много воды — похудеешь",
+    "t": "Вода не сжигает жир. Но те, кто пил стакан-два воды перед едой, на диете худели немного больше — они ели меньше. А вода вместо сладких напитков экономит много калорий.",
+    "m": "Выпивайте стакан воды перед едой и отмечайте воду в приложении."
+   },
+   "s": "Dennis va boshq., 2010, Obesity",
+   "pm": "PMID 19661958"
+  },
+  {
+   "id": "a29",
+   "m": "tana",
+   "e": "🌧️",
+   "j": "haqiqat",
+   "go": "qadam",
+   "uz": {
+    "d": "Stress va xavotir harakatni kamaytiradi",
+    "t": "Kuzatuvlarning ko'pchiligida stressli davrlarda odamlar kamroq harakat qilgan va ko'proq o'tirgan. Bu tabiiy reaksiya, uni bilish — uni yengishning birinchi qadami. Qisqa yurish stressni ham yengillashtiradi.",
+    "m": "Og'ir kunda maqsadni kichraytiring — 10 daqiqalik yurish ham hisob."
+   },
+   "ru": {
+    "d": "Стресс и тревога снижают подвижность",
+    "t": "В большинстве наблюдений в стрессовые периоды люди меньше двигались и больше сидели. Это естественная реакция, и знать о ней — первый шаг, чтобы её преодолеть. Короткая прогулка ещё и снижает стресс.",
+    "m": "В тяжёлый день уменьшите цель — 10 минут ходьбы тоже в зачёт."
+   },
+   "s": "Stults-Kolehmainen va Sinha, 2014, Sports Medicine",
+   "pm": "PMID 24030837"
+  },
+  {
+   "id": "a30",
+   "m": "ovqat",
+   "e": "🍛",
+   "j": "afsona",
+   "go": "search",
+   "uz": {
+    "d": "Ozish uchun osh yemaslik kerak",
+    "t": "Vaznni bitta taom emas, kunlik jami kaloriya belgilaydi. Osh og'ir taom, lekin kichikroq porsiya va salat bilan me'yorga sig'adi. Sevimli taomdan voz kechish ko'pincha dietani tashlashga olib keladi.",
+    "m": "Oshni yozganda idish hajmini tanlang — porsiyangizni aniq ko'rasiz."
+   },
+   "ru": {
+    "d": "Чтобы похудеть, плов есть нельзя",
+    "t": "Вес определяет не одно блюдо, а сумма калорий за день. Плов сытный, но меньшая порция с салатом укладывается в норму. Отказ от любимой еды часто приводит к тому, что диету бросают.",
+    "m": "Записывая плов, укажите размер посуды — увидите свою порцию точно."
+   },
+   "s": "Hall va boshq., 2012, American Journal of Clinical Nutrition",
+   "pm": "PMID 22434603"
+  }
+ ]
+}
