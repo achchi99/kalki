@@ -1,5 +1,5 @@
 // KalkiFit: birinchi ochilishda til tanlash ekrani (onboarding'dan oldin): faqat yangi + tili saqlanmagan + demo emas. node tools/dizayn/test-til-ekran.mjs
-import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs'; import { sld, sldVal } from './ob-yordam.mjs';
+import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs'; import { kut } from './kut.mjs'; import { sld, sldVal } from './ob-yordam.mjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p.endsWith('/')) p += 'index'; const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
@@ -23,8 +23,8 @@ try {
   assert.ok((await p.locator('#rzOnb .sl-lp-b').evaluateAll((a) => a.map((x) => Math.round(x.getBoundingClientRect().height)))).every((h) => h >= 56), 'katta tugmalar');
   log('Yangi foydalanuvchi: til ekrani (3 katta tugma o\'z tilida, sarlavha uch tilda), hech narsa saqlanmagan, skrollsiz'); await p.context().close();
   /* 2. UZ tanlansa: joyida onboarding (lotin), saqlanadi, qayta ochilganda so'ralmaydi */
-  p = await mk('/kalkifit'); await p.click('#rzOnb .sl-lp-b[data-l=uz]'); await p.waitForTimeout(500); let i = await st(p); assert.equal(i.stored, 'uz'); assert.equal(i.q, 'Jinsingiz?'); assert.equal(await lp(p), 0);
-  await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(600); assert.equal(await lp(p), 0, 'qayta so\'ralmaydi'); assert.equal((await st(p)).q, 'Jinsingiz?'); assert.deepEqual(p.errs, []); await p.context().close();
+  p = await mk('/kalkifit'); await p.click('#rzOnb .sl-lp-b[data-l=uz]'); let i = await kut(() => st(p), (x) => x.q === 'Jinsingiz?' && x.stored === 'uz');          // shartli kutish (yuk ostida ham) assert.equal(i.stored, 'uz'); assert.equal(i.q, 'Jinsingiz?'); assert.equal(await lp(p), 0);
+  await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(600); assert.equal(await lp(p), 0, 'qayta so\'ralmaydi'); assert.equal((await kut(() => st(p), (x) => x.q === 'Jinsingiz?')).q, 'Jinsingiz?'); assert.deepEqual(p.errs, []); await p.context().close();
   log('UZ: saqlanadi, onboarding lotincha, qayta ochilganda til ekrani YO\'Q');
   /* 3. RU */
   p = await mk('/kalkifit'); await p.click('#rzOnb .sl-lp-b[data-l=ru]'); await p.waitForURL(/\/ru\/kalkifit/); await settle(p); i = await st(p); assert.equal(i.stored, 'ru'); assert.equal(i.dl, 'ru'); assert.equal(i.q, 'Ваш пол?'); assert.equal(await lp(p), 0);
@@ -36,7 +36,7 @@ try {
   log('ЎЗ: ?lang=cyr, saqlanadi, qayta so\'ralmaydi');
   /* 5. telefon tili RU/ЎЗ bo'lsa ham ekran chiqadi; joriy til bilan bir xil tugma bosilsa ham saqlanadi */
   p = await mk('/kalkifit', { locale: 'ru-RU' }); assert.equal(await lp(p), 1); await p.click('#rzOnb .sl-lp-b[data-l=ru]'); await p.waitForFunction(() => /Ваш пол/.test((document.querySelector('#rzOnb .rz-q') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {}); i = await st(p); assert.equal(i.stored, 'ru', 'avto-til ham bosilganda saqlanadi');          // yukda 500 ms yetmasdi — savol chiqishini kutamiz assert.equal(i.q, 'Ваш пол?'); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500); assert.equal(await lp(p), 0); await p.context().close();
-  p = await mk('/kalkifit', { locale: 'uz-Cyrl-UZ' }); assert.equal(await lp(p), 1); await p.click('#rzOnb .sl-lp-b[data-l=cyr]'); await p.waitForTimeout(700); i = await st(p); assert.equal(i.stored, 'cyr'); assert.match(i.q, /Жинсингиз/); await p.context().close();
+  p = await mk('/kalkifit', { locale: 'uz-Cyrl-UZ' }); assert.equal(await lp(p), 1); await p.click('#rzOnb .sl-lp-b[data-l=cyr]'); i = await kut(() => st(p), (x) => x.stored === 'cyr' && /Жинсингиз/.test(x.q || '')); assert.equal(i.stored, 'cyr'); assert.match(i.q, /Жинсингиз/); await p.context().close();
   log('Avto-til (ru / uz-Cyrl) turgan bo\'lsa ham tanlov bosilganda saqlanadi va qayta so\'ralmaydi');
   /* 6. chiqmaydigan holatlar: saqlangan til, ?lang=, /ru/ yo'li, demo, mavjud foydalanuvchi */
   for (const [u, o] of [['/kalkifit', { lang: 'uz' }], ['/kalkifit', { lang: 'ru' }], ['/kalkifit?lang=cyr', {}], ['/kalkifit?lang=uz', {}], ['/ru/kalkifit', {}], ['/kalkifit?demo=1', {}], ['/kalkifit?demo=1&intro=1', {}]]) {

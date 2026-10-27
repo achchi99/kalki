@@ -20,7 +20,7 @@ tekshiruvlarni sekinlashtiradi va xotirani to'ldiradi.
    pgrep -fa "[w]rangler|[w]orkerd"      # [w] — pgrep o'z shell'ini ushlamasligi uchun
    pkill -f "[w]rangler|[w]orkerd"       # bo'lsa
    ```
-4. **Parallel Chromium ko'p ochmang.** Tekshiruvlarni ketma-ket ishga tushiring, har biriga `timeout 300`.
+4. **Parallel Chromium ko'p ochmang (qo'lda).** Qo'lda yurgizilgan tekshiruvlar ketma-ket, har biriga `timeout 300`. Parallellikni faqat `tools/testlar.js` boshqaradi (yukga qarab: bo'sh CPU ≥ 20 %, bo'sh xotira ≥ 1,5 GB) — ikkita runner yoki runner + to'liq skrinshotni bir vaqtda yurgizmang.
    To'liq `npm run check` bitta yirik qadam sifatida emas, bo'laklarga bo'lib.
 5. `pkill -f "node tools/"` kabi buyruq o'z shell'ining buyruq matniga ham tushadi (exit 144) —
    `pgrep` + `kill <pid>` yoki `[x]` hiylasini ishlating.
@@ -54,13 +54,17 @@ Faqat ko'rinish/imlo o'zgartirsangiz commit nomi `design:` yoki `matn:` bilan bo
 
 To'liq `test:tez` ~50 daqiqa edi va har tuzatishdan keyin qayta yurilardi. Endi:
 
-1. **Preview tarmog'ida ishlayotganda** (`main` emas): faqat o'zgarishga tegishli testlar — `node tools/testlar.js tez --only <id>[,<id>]` (qaysilari tanlanishi: `node tools/testlar.js tez --list`) — va `npm run check:sw`.
-   To'liq `test:tez` YURGIZILMAYDI. Test yiqilsa — tuzat va FAQAT o'sha testni qayta yurgiz.
-2. **Reliz darvozasi:** to'liq `test:tez` (umumiy fayl o'zgargan bo'lsa `test:toliq`) faqat `main`'ga merge qilishdan OLDIN, BIR MARTA yuriladi.
-   Unda yiqilganlar tuzatiladi va faqat ular qayta yuritiladi (`--only`). Darvoza yashil bo'lmaguncha `main`'ga merge qilinmaydi.
-3. **Skrinshotlar:** faqat o'zgargan ekran, 1–2 holatda (390 dark + 360 light). Barcha kombinatsiyalar (til, tema, shrift, o'lcham) faqat testda, rasmsiz.
-4. **Hisobot qisqa:** nima qilindi, preview havolasi, foydalanuvchi nimani sinashi kerak. Uzun tafsilot faqat `docs/` da (hisobotga ko'chirilmaydi).
-5. Test tezligi: `docs/testlar.md` (bo'laklash, yukga qarab parallel, eng sekin testlar). Yangi og'ir sahifa testi yozsangiz — slug bo'yicha bo'linadigan qiling (`shard`, `tools/testlar.js`).
+1. **Iteratsiya** (preview tarmog'i, `main` emas): faqat o'zgarishga tegishli testlar — `node tools/testlar.js tez --only <id>[,<id>]` (qaysilari tanlanishi: `node tools/testlar.js tez --list`) — va `npm run check:sw`.
+   Skrinshot: FAQAT `OUT=<papka> node tools/dizayn/kalkifit-ekranlar.mjs --faqat` (o'zgargan fayllarga qarab bo'limlar, 2 kombinatsiya; qo'lda: `--faqat v56,asosiy`, ko'rish: `--list`).
+   To'liq `test:tez` va to'liq skrinshot YURGIZILMAYDI. Test yiqilsa — tuzat va FAQAT o'sha testni qayta yurgiz.
+2. **Kamchiliklarni to'plab tuzat:** tekshiruv bir nechta kamchilik topsa — HAMMASINI birga tuzatib, keyin BIR marta qayta tekshir (har biridan keyin emas).
+3. **Fondagi jarayon:** kodni o'zgartirsangiz, fonda yurayotgan test/skrinshot DARHOL to'xtatiladi — eski kod natijasini kutma. `tools/testlar.js` va `kalkifit-ekranlar.mjs` o'zi ham kod o'zgarganini sezib to'xtaydi (chiqish kodi 3, `tools/kod-kuzat.cjs`).
+4. **Ish oxirida BIR marta:** to'liq skrinshot (`kalkifit-ekranlar.mjs`, 4 sahifa parallel) + to'liq darvoza (`npm run test:tez`/`test:toliq`, parallel ishchilar) → merge → production.
+   Darvozada yiqilganlar tuzatiladi va faqat ular qayta yuritiladi (`--only`). Darvoza yashil bo'lmaguncha `main`'ga merge qilinmaydi.
+   «OK*» (qayta urinib o'tdi) — beqarorlik belgisi: sababini qayd et (hisobotda), keyingi ishda tuzat.
+5. **Skrinshotlar (foydalanuvchiga):** faqat o'zgargan ekran, 1–2 holatda (390 dark + 360 light). Barcha kombinatsiyalar (til, tema, shrift, o'lcham) faqat testda, rasmsiz.
+6. **Hisobot qisqa:** nima qilindi, preview havolasi, foydalanuvchi nimani sinashi kerak. Uzun tafsilot faqat `docs/` da (hisobotga ko'chirilmaydi).
+7. Test tezligi: `docs/testlar.md` (ishchilar, bo'laklash, ketma-ket guruh, qayta urinish, eng sekin testlar). Yangi og'ir sahifa testi — slug bo'yicha (`shard`); katta ilova testi — mustaqil bo'limlar bilan (`bolak`, `tools/bolak.cjs`); kutish — `waitForTimeout` emas, shartli (`tools/dizayn/kut.mjs`). Testlar repoga yozmasin: skrinshot — `SKRINSHOT_DIR`/`OUT`, vaqtinchalik fayl — `os.tmpdir()` (runner har ishga alohida beradi).
 
 ## Testlar: ikki rejim (tezlik)
 
@@ -73,7 +77,7 @@ To'liq to'plam avval ~5 soat olardi. Endi ikki rejim (`tools/testlar.js`; slug b
 
 **Qaysi biri:**
 - `matn:`, kichik `design:`, yangi sahifa, bitta kalkulyator/generator → `test:tez`.
-- `tools/site-chrome.js`, `assets/css/typo.css` (va boshqa `assets/css/*`), `sw.js`, `tools/prerender.js`, `assets/tarif-core.js`,
+- `tools/site-chrome.js`, `assets/css/typo.css` (va boshqa `assets/css/*`), `sw.js` (faqat `SW_VERSION` qatori o'zgarsa — umumiy EMAS: `sw`, `pwa` testlari), `tools/prerender.js`, `assets/tarif-core.js`,
   `nav.js`/`lang.js`/`footer-lang.js`/`calc-v2.js` yoki boshqa umumiy modul → `test:toliq` (`test:tez` o'zi ham shunga o'tadi).
 
 **Qoidalar:**

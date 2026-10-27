@@ -3,12 +3,13 @@ import http from 'node:http'; import fs from 'node:fs'; import path from 'node:p
 import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
+const SHOTDIR = process.env.SKRINSHOT_DIR || path.join(ROOT, 'docs/dizayn-skrinshot');          // runner: vaqtinchalik papka (repo o'zgarmaydi)
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; if (p === '/ru/') p = '/ru/index';
   const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
   if (!f) { r.writeHead(404); return r.end(); }
   r.writeHead(200, { 'Content-Type': { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' }[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
-await new Promise((ok) => srv.listen(8794, ok));
-const B = 'http://localhost:8794';
+await new Promise((ok) => srv.listen(0, ok));          // bo'sh port (parallel yurishda to'qnashmaydi)
+const B = 'http://localhost:' + srv.address().port;
 const b = track(await chromium.launch());
 const errors = [];
 const log = (s) => console.log('OK   ' + s);
@@ -40,9 +41,9 @@ log('320/390/768/1280px: gorizontal toshish yo\'q; sarlavha bitta qator (<=64px)
   assert.equal(await p.getAttribute('.sb2-burger', 'aria-expanded'), 'true');
   const fs1 = await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector('#topmenu .tm2>li>a')).fontSize)); assert.ok(fs1 >= 17, 'menyu shrifti ' + fs1);
   const h1 = await p.evaluate(() => Math.round(document.querySelector('#topmenu .tm2>li>a').getBoundingClientRect().height)); assert.ok(h1 >= 44, 'tegish maydoni ' + h1);
-  await p.screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/yangi-menyu-390-yopiq.jpg'), type: 'jpeg', quality: 70 });
+  await p.screenshot({ path: path.join(SHOTDIR, 'yangi-menyu-390-yopiq.jpg'), type: 'jpeg', quality: 70 });
   await p.click('.tm2>li.has-sub:first-child .tm2-chev'); assert.equal(await p.isVisible('.tm2-sub >> nth=0'), true);
-  await p.screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/yangi-menyu-390-ochiq.jpg'), type: 'jpeg', quality: 70 });
+  await p.screenshot({ path: path.join(SHOTDIR, 'yangi-menyu-390-ochiq.jpg'), type: 'jpeg', quality: 70 });
   await p.keyboard.press('Escape'); assert.equal(await p.isVisible('#topmenu'), false);
   log('mobil menyu: burger ochadi, akkordeon, Escape yopadi; band ' + fs1 + 'px / ' + h1 + 'px'); }
 
@@ -50,7 +51,7 @@ log('320/390/768/1280px: gorizontal toshish yo\'q; sarlavha bitta qator (<=64px)
 { const p = await pg(1280, 800); await go(p, '/');
   await p.hover('.tm2>li.has-sub:first-child'); assert.equal(await p.isVisible('.tm2-sub >> nth=0'), true);
   const nf = await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector('.tm2 a')).fontSize)); assert.ok(nf >= 15);
-  await p.screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/yangi-menyu-1280-ochilma.jpg'), clip: { x: 0, y: 0, width: 1280, height: 360 }, type: 'jpeg', quality: 70 });
+  await p.screenshot({ path: path.join(SHOTDIR, 'yangi-menyu-1280-ochilma.jpg'), clip: { x: 0, y: 0, width: 1280, height: 360 }, type: 'jpeg', quality: 70 });
   log('desktop: ochilma hover bilan ochiladi, menyu ' + nf + 'px'); }
 
 // 5. til almashtirish (RU) — menyu va kontent

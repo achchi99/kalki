@@ -73,7 +73,7 @@ async function read(p, page) {
       msg: (q('#pgMsg') || {}).textContent || '', list: [...document.querySelectorAll('#pgList li')].length, plate: bar ? bar.getBoundingClientRect().width : 0 };
   }, PAGES[page].rows);
 }
-async function axeOk(p) { await p.evaluate(AXE); const r = await p.evaluate(async () => { const x = await axe.run('#receipt', { runOnly: ['color-contrast'] }); return x.violations.map((v) => v.nodes.map((n) => n.target.join(' ') + ' ' + (n.any[0] ? n.any[0].message : '')).join('; ')); }); return r; }
+async function axeOk(p) { await p.evaluate(AXE); const r = await p.evaluate(async () => { const x = await axe.run('#receipt', { resultTypes: ['violations'], runOnly: ['color-contrast'] }); return x.violations.map((v) => v.nodes.map((n) => n.target.join(' ') + ' ' + (n.any[0] ? n.any[0].message : '')).join('; ')); }); return r; }
 
 // [nom, sahifa, davr(oy, kun), toifa, yozuvlar, jami, [sarf, sur'at, prognoz], chegara sana [kun, oy] va yangi narx, maslahat [x matn son, y], tier-chizig'i [x, hozir x], pog'ona]
 const CASES = [
@@ -449,7 +449,7 @@ for (const page of ['elektr', 'gaz']) for (const w of [390, 320]) {
   chk('natija nomi', r.k, 17); chk('natija qiymati', r.v, 18, { fw: 600 }); chk('pog\'ona izohi (m × narx)', r.fx, 15); chk('chiziq: narx', r.seg, 15); chk('chiziq: chegara', r.tick, 14); chk('chiziq: izoh', r.cap, 14); chk('chiziq: strelka yozuvi', r.val, 15); chk('chiziq: hozir', r.lab, 14); if (r.blk) chk('ogohlantirish', r.blk, 17); chk('yig\'iq sarlavha', r.det, 17, { fw: 600 });
   if (r.num.fs !== 40 && r.num.fs !== 44) why.push('katta summa o\'zgargan: ' + r.num.fs);
   // kontrast (axe) forma va natija: >= 4,5:1
-  await o.p.evaluate(AXE); const ax = await o.p.evaluate(async () => { const x = await axe.run(['#progAfter', '#receipt', '.form-card'], { runOnly: ['color-contrast'] }); return x.violations.map((v) => v.nodes.map((n) => n.target.join(' ')).join('; ')); });
+  await o.p.evaluate(AXE); const ax = await o.p.evaluate(async () => { const x = await axe.run(['#progAfter', '#receipt', '.form-card'], { resultTypes: ['violations'], runOnly: ['color-contrast'] }); return x.violations.map((v) => v.nodes.map((n) => n.target.join(' ')).join('; ')); });
   if (ax.length) why.push('kontrast: ' + ax.join(' | ').slice(0, 160));
   T(!why.length, 'TIPOGRAFIYA · ' + page + ' · ' + w + ' px: label 17/600, matn 17, izoh 15 (kontrast >= 4,5), natija nomi 17 / qiymati 18/600, chiziq raqami 15 / chegara 14, havolalar chiziqsiz, o\'lchamlar shkalada', why.join(' | ')); await o.ctx.close();
 }

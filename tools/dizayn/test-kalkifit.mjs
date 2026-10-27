@@ -3,7 +3,7 @@
 // reduced-motion, animatsiya, oflayn, eksport/import.   node tools/dizayn/test-kalkifit.mjs [https://host]
 import assert from 'node:assert/strict'; import { sld, sldVal, onb as onbFlow } from './ob-yordam.mjs'; import http from 'node:http'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path'; import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
-import { track } from '../test-cleanup.cjs';
+import { track } from '../test-cleanup.cjs'; import { bolim } from '../bolak.cjs';
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const D = S.dates; const AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
@@ -68,9 +68,17 @@ const infoChip = async (p) => { await p.click('#kcalBtn'); await p.waitForTimeou
   const chip = async (p) => { await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); const t = await txt(p, '#dayChip'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); return t; };
 const textMode = async (p, q) => { await p.fill('#fdQ', q); await p.waitForTimeout(250); await p.locator('[data-act=fqai]').first().click(); await p.waitForTimeout(1100); };
 const more = async (p) => { if (await p.locator('#pwMore[hidden]').count()) { await p.click('[data-act=pwmore]'); await p.waitForTimeout(120); } };
+/* bo'laklash (tools/testlar.js `bolak: 4`, TEST_BOLAK=i/n): har bo'lim o'z sahifasini ochadi; VAQT — bo'lim vaqti (s), oxirgi o'lchov («bo'limlar vaqti» qatori) */
+const B = bolim({ '1': 20, '1c': 20, '2': 20, '3': 20, '4': 20, '5': 20, '6': 20, '7': 20, '8': 20, '9': 20, '10': 20, '11': 20, '12': 20, '13': 20, '14': 20, '15': 20, '16': 20, '17': 20, '18': 20, '19': 20, '20': 20, '21': 20, '22': 20, '23': 20, '24': 20, '25': 20, '26': 20, '27': 20, '28': 20, '29': 20, '30': 20 });
+const yd = D.addDays(TODAY, -1);
+const QM = (a) => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: [{ name: 'Qadam', methods: [] }], addListener: () => ({ remove() {} }),
+  nativePromise: (pl, m) => { if (pl !== 'Qadam') return Promise.reject(new Error('yo\'q')); if (m === 'isAvailable') return Promise.resolve({ available: true, granted: true, enabled: true, source: 'sensor', sensor: true, sensorGranted: true }); if (m === 'getDays') return Promise.resolve({ kunlar: [{ sana: a.yd, qadam: a.ky == null ? 5000 : a.ky }, { sana: a.t, qadam: a.kt || 8000 }], source: 'sensor' }); return Promise.resolve({}); } }; };
+const FD = TODAY, FN = Date.parse(FD + 'T19:30:00'), fd = (k) => D.addDays(FD, k);
+let p;
 try {
   /* ---- 1. onboarding: bir savol — bir ekran, o'z klaviaturasi, xatolar, natija ekrani ---- */
-  let p = await open('/kalkifit');
+  if (B('1')) {
+  p = await open('/kalkifit');
   assert.equal(await p.locator('#rzOnb').isVisible(), true); assert.equal(await p.locator('.rz-dots i').count(), 7); assert.equal(await p.locator('h1').count(), 1, 'sahifada bitta H1'); assert.equal(await p.locator('select, input[type=date]').count(), 0, 'tizim select/date yo\'q');
   assert.equal(await txt(p, '#rzOnb .rz-q'), 'Jinsingiz?'); assert.equal(await p.locator('[data-act=obnext]').isDisabled(), true, 'tanlanmaguncha "Keyingi" yopiq'); const t0 = Date.now();
   await p.click('[data-act=obsex][data-v=m]'); assert.equal(await p.locator('#obPreg').count(), 0, 'erkak uchun homiladorlik belgisi yo\'q'); await p.click('[data-act=obnext]');
@@ -87,7 +95,9 @@ try {
   await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(900); assert.equal(await p.locator('#rzTips').isVisible().catch(() => false), false);
   await p.click('[data-act=tab][data-v=profile]'); await p.click('[data-act=intro]'); await p.waitForSelector('#rzIntro:not([hidden])'); assert.equal(await p.locator('#rzIntro .in-dots i').count(), 3, 'Profil → «Tanishtiruvni qayta ko\'rish»'); await p.click('[data-act=inskip]'); await p.waitForTimeout(300);
   log('1b. Onboarding\'dan keyin: eski yo\'l-yo\'riq yo\'q, halqa ostida birinchi hafta maslahati; Profil → «Tanishtiruvni qayta ko\'rish» (3 ekran)'); assert.deepEqual(p.errs, []); await p.context().close();
+  }
   /* ---- 1c. xavfsizlik: 18 dan kichik, homilador, BMI < 18,5, pastki chegara ---- */
+  if (B('1c')) {
   p = await open('/kalkifit'); await onb(p, { sex: 'm', age: 16, h: 175, w: 80, act: 3, goal: null });
   let rt2 = await txt(p, '.sl-res7'); assert.match(rt2, /18 yoshdan kichiklar uchun dieta hisoblanmaydi/); assert.match(rt2, /Shifokor bilan maslahatlashing/); assert.equal(await txt(p, '#obTarget'), '2 819', 'saqlash rejimi = TDEE (16 yosh: BMR 1 819 × 1,55)'); await p.context().close();
   p = await open('/kalkifit'); await p.click('[data-act=obsex][data-v=f]'); await p.check('#obPreg'); await p.click('[data-act=obnext]'); await sld(p, 'obAge', 28); await p.click('[data-act=obnext]'); await sld(p, 'obHeight', 165); await p.click('[data-act=obnext]'); await sld(p, 'obWeight', 65); await p.click('[data-act=obnext]'); await p.click('[data-act=obact][data-v="2"]'); await p.click('[data-act=obnext]');
@@ -95,20 +105,26 @@ try {
   p = await open('/kalkifit'); await onb(p, { sex: 'm', age: 30, h: 178, w: 50, act: 3, goal: null }); assert.match(await txt(p, '.sl-res7'), /BMI < 18,5/); await p.context().close();
   p = await open('/kalkifit'); await onb(p, { sex: 'f', age: 45, h: 155, w: 52, act: 1, goal: 'lose' }); const fl = await txt(p, '.sl-res7'); assert.equal(await txt(p, '#obTarget'), '1 200'); assert.match(fl, /xavfsiz chegaraga \(1 200 kkal\) moslandi/); await p.context().close();
   log('1c. Xavfsizlik: 18 yoshdan kichik / homilador / BMI < 18,5 → faqat saqlash + «shifokor bilan maslahatlashing»; ayol uchun 1 200 kkal pastki chegara (sabab yoziladi)');
+  }
   /* ---- 2. kaloriya-kalkulyatordan "Ilovada davom etish" ---- */
+  if (B('2')) {
   p = await open('/kaloriya-kalkulyator'); await p.fill('#weight', '75'); await p.click('#calcBtn'); await p.waitForTimeout(300); assert.match(await txt(p, '#btnKalkiFit'), /Ilovada davom etish/); await Promise.all([p.waitForURL(/\/kalkifit#boshlash$/), p.click('#btnKalkiFit')]); await p.waitForTimeout(700);
   assert.equal(await p.locator('#rzOnb').isVisible(), true); assert.equal(await txt(p, '#rzOnb .rz-q'), 'Yoshingiz nechida?', 'taxminiy yosh/bo\'y uzatilmaydi — so\'raladi'); await sld(p, 'obAge', 41); await p.click('[data-act=obnext]'); await sld(p, 'obHeight', 168); await p.click('[data-act=obnext]'); assert.equal(await sldVal(p, 'obWeight'), '75', 'vazn uzatildi'); await p.click('[data-act=obnext]'); assert.equal(await p.locator('[data-act=obact].on').getAttribute('data-v'), '3'); await p.context().close();
   p = await open('/kaloriya-kalkulyator'); await p.click('#gF'); await p.fill('#weight', '64'); await p.click('#detailToggle'); await p.fill('#age', '41'); await p.fill('#height', '168'); await p.click('[data-g=lose]'); await p.click('#calcBtn'); await Promise.all([p.waitForURL(/\/kalkifit#boshlash$/), p.click('#btnKalkiFit')]); await p.waitForTimeout(900);
   assert.equal(await txt(p, '#rzOnb .rz-q'), 'Yemaydigan narsangiz bormi?', 'hamma ma\'lumot bor — yemaydigan ekraniga (so\'ng natija)'); await p.click('[data-act=obnext]'); await p.waitForSelector('#obTarget'); await p.click('[data-act=obstart]'); await p.waitForTimeout(800); const hs = await stOf(p); assert.deepEqual([hs.profile.sex, hs.profile.age, hs.profile.height, hs.profile.weight, hs.profile.goal], ['f', 41, 168, 64, 'lose']); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_fit_import')), null);
   log('2.  kaloriya-kalkulyator → «Ilovada davom etish» → /kalkifit#boshlash: jins/vazn/faollik/maqsad o\'tadi (taxminiy yosh va bo\'y so\'raladi); «Aniqroq» rejimda to\'g\'ri yemaydigan ekraniga → natijaga'); assert.deepEqual(p.errs, []); await p.context().close();
+  }
   /* ---- 3. Bugun + "bu raqam qanday hisoblanadi" ---- */
+  if (B('3')) {
   p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 350, meal: 'l' }] }) });
   assert.equal(await txt(p, '#kNum'), '700'); assert.equal(await kgoal(p), '2 161'); assert.equal(await kleft(p), '1 461'); assert.equal(await p.locator('#rzMain .sl-mac3').count(), 0, 'makrolar Bugun\'da emas (halqa bosilganda)'); assert.deepEqual(await p.locator('.sl-meal .m > b').evaluateAll((l) => l.map((e) => e.firstChild.textContent)), ['Nonushta', 'Tushlik', 'Kechki ovqat', 'Tamaddi']);          // v48: «hozir» belgisi nomdan alohida assert.equal(await p.locator('#kcalBtn').count(), 1, 'raqamlar bosiladi (hisob tushuntirishi)');
   await p.click('#kcalBtn'); await p.waitForTimeout(500); const xr = await p.locator('.rz-xr').evaluateAll((els) => els.map((e) => e.innerText.replace(/\s+/g, ' ').replace(/ /g, ' ').trim()));
   assert.deepEqual(xr, ['Tinch holatda sarf · Mifflin–St Jeor formulasi 1 749 kkal', '+ Kundalik hayot va faollik 962 kkal', '− Ozish uchun (0,5 kg/hafta) 550 kkal', "= Kunlik me'yor 2 161 kkal", '− Yeyilgan 700 kkal', '= Yana yeyish mumkin 1 461 kkal']);          // v51: bitta formula (docs/limit.md)
   assert.match(await txt(p, '#xkFormula'), /1 749 \+ 962 − 550 = 2 161 kkal/); assert.match(await txt(p, '#xkCred'), /qadam alohida qo'shilmaydi/); await p.click('#rzSheet [data-act=xmacro]'); assert.match(await txt(p, '#rzSheet'), /Oqsil: 1,6 g\/kg × 80 kg = 130 g/); assert.match(await txt(p, '#rzSheet'), /Uglevod: qolgan kaloriya ÷ 4 = 300 g/); await p.click('#rzSheet .rz-x'); await p.waitForTimeout(400);
   await p.click('[data-act=wopen]'); await p.waitForTimeout(400); await p.click('[data-act=xwater]'); assert.match(await txt(p, '#rzSheet'), /33 ml × 80 kg = 2 640 ml ÷ 250 ml = 11 stakan/); log('3.  Bugun: halqa 700/2 161, «yana yeyish mumkin» 1 461; halqa bosilsa hisob qatorlari (BMR + kundalik hayot − maqsad = 2 161 − yeyilgan = qoldiq), makro va suv tushuntirishi, «?» belgisi'); await p.context().close();
+  }
   /* ---- 4. ovqat 3 bosishda; qidiruv; o'z taomi; tahrirlash/o'chirish/bekor qilish ---- */
+  if (B('4')) {
   p = await open('/kalkifit', { state: seed({ recents: ['osh', 'somsa'] }) }); let taps = 0; const tap = async (sel) => { taps++; await p.click(sel); };
   await tap('.sl-meal[data-m=l] [data-act=addto]'); await p.waitForTimeout(500); await tap('.sl-rr >> nth=0'); /* v32: ovqat vaqti «+» → qidiruv (3 bosish) */ await tap('#fsave'); await p.waitForTimeout(500); let s4 = await stOf(p); const e4 = s4.days[TODAY].food[0]; assert.ok(taps <= 3, 'bosishlar: ' + taps); assert.equal(e4.fid, 'osh'); assert.equal(e4.kcal, 665, 'birinchi porsiya: 1 lagan (likop) = 350 g × 190 (osh standarti, baza v2)'); assert.equal(await txt(p, '#kNum'), '665'); assert.match(await txt(p, '#rzToast'), /Saqlandi/); assert.equal(await p.locator('#rzToast .rz-okc').count(), 1);
   await p.click('#rzToast [data-act=undo]'); await p.waitForTimeout(700); assert.equal((await stOf(p)).days[TODAY].food.length, 0); assert.equal(await txt(p, '#kNum'), '0');
@@ -118,7 +134,9 @@ try {
   await p.click('.sl-row >> nth=0'); await p.waitForTimeout(500); await p.click('[data-act=fqty][data-s="1"]'); await p.click('#fsave'); await p.waitForTimeout(500); assert.equal((await stOf(p)).days[TODAY].food[0].kcal, 750); await p.click('.sl-row >> nth=0'); await p.waitForTimeout(500); await p.click('[data-act=fdel]'); await p.waitForTimeout(700); assert.equal((await stOf(p)).days[TODAY].food.length, 0); await p.click('#rzToast [data-act=undo]'); await p.waitForTimeout(500); assert.equal((await stOf(p)).days[TODAY].food.length, 1);
   await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', 'tovuq'); await p.waitForTimeout(220); await p.click('[data-act=pickfood] >> nth=0'); await p.click('[data-act=ffav]'); assert.equal((await stOf(p)).favs.length, 1); await more(p); await p.click('[data-act=funit][data-u=g100]'); const q100 = Number(await p.inputValue('#fdQty')); assert.equal(await txt(p, '#fdQu'), 'g'); assert.ok(q100 > 0); await p.click('[data-act=fqty][data-s="1"]'); assert.equal(Number(await p.inputValue('#fdQty')), q100 + 10, 'gramm qadami 10');
   log('4.  Ovqat: 3 bosish (+ → mahsulot → Saqlash), bekor qilish; qidiruv: osh/palov/plov/плов/ош, samsa/самса, lagman, bannan; o\'z taomi (500 kkal, 250 g); porsiya/miqdor tahriri, o\'chirish + qaytarish, sevimli, grammda miqdor'); assert.deepEqual(p.errs, []); await p.context().close();
+  }
   /* ---- 5. matn bilan qo'shish: lokal (internetsiz) va AI (soxta) ---- */
+  if (B('5')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await textMode(p, 'bugun 1 kosa osh, 2 somsa, choy shakar bilan');
   const items = await p.locator('.sl-ti .nm').allInnerTexts(); assert.equal(items.length, 3); assert.ok(/Osh/.test(items[0]) && /Somsa/.test(items[1]) && /Choy/.test(items[2])); assert.equal(await p.locator('[data-act=txai]').count(), 0, 'hammasi lokal topildi — AI kerak emas'); assert.match(await txt(p, '#txOut'), /Faqat siz tasdiqlaganingizda saqlanadi/);
   await p.click('[data-act=fmeal3][data-m=l]'); await p.click('[data-act=txsave]'); await p.waitForTimeout(600); const s5 = await stOf(p); assert.deepEqual(s5.days[TODAY].food.map((e) => e.fid), ['osh', 'somsa', 'choy']); assert.deepEqual(s5.days[TODAY].food.map((e) => e.qty), [1, 2, 1]); assert.ok(s5.days[TODAY].food.every((e) => e.meal === 'l')); assert.equal(p.reqs.filter((r) => /\/api\//.test(r.u) && !/\/api\/ovoz(\?|$)/.test(r.u) && !/"sorov":"qoldi"/.test(r.d || '')).length, 0, 'lokal rejimda tarmoq so\'rovi yo\'q (🎤 holati va «bugun N ta qoldi» hisoblagichi — sanamaydi)');
@@ -127,10 +145,10 @@ try {
   await p.click('[data-act=txsave]'); await p.waitForTimeout(500); const s5b = await stOf(p); const aiE = s5b.days[TODAY].food.filter((e) => e.est && !e.fid); assert.equal(aiE.length, 1); assert.equal(aiE[0].kcal, 320); assert.match(aiE[0].name, /Qwerty keki/);
   await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.unroute('**/api/kalkifit'); await p.route('**/api/kalkifit', (r) => r.fulfill({ status: 502, contentType: 'application/json', body: '{"xato":"x"}' })); await textMode(p, '1 kosa osh, qwertyzzz'); assert.match(await txt(p, '#txOut'), /AI hozir ishlamayapti/); assert.match(await txt(p, '#txOut'), /AI xizmatiga yuboriladi \(profil, vazn va tarix yuborilmaydi\)/); assert.equal(await p.locator('[data-act=txai]').count(), 1);
   log('5.  Matn bilan qo\'shish: «1 kosa osh, 2 somsa, choy shakar bilan» → 3 ta ovqat LOKAL (tarmoqsiz), tasdiqdan keyin saqlanadi; topilmagani uchun AI (soxta): faqat shu bo\'lak yuboriladi (matn/til/mijoz_id), «AI taxmini», xato xabari'); assert.deepEqual(p.errs, []); await p.context().close();
+  }
   /* ---- 6. qadam: FAQAT avtomatik (Android ilova — «Qadam» plagini soxta); qo'lda kiritish yo'q ---- */
-  const yd = D.addDays(TODAY, -1);
-  const QM = (a) => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: [{ name: 'Qadam', methods: [] }], addListener: () => ({ remove() {} }),
-    nativePromise: (pl, m) => { if (pl !== 'Qadam') return Promise.reject(new Error('yo\'q')); if (m === 'isAvailable') return Promise.resolve({ available: true, granted: true, enabled: true, source: 'sensor', sensor: true, sensorGranted: true }); if (m === 'getDays') return Promise.resolve({ kunlar: [{ sana: a.yd, qadam: a.ky == null ? 5000 : a.ky }, { sana: a.t, qadam: a.kt || 8000 }], source: 'sensor' }); return Promise.resolve({}); } }; };
+  if (B('6')) {
+  // (yd, QM — yuqorida: 30-bo'lim ham ishlatadi)
   p = await open('/kalkifit', { state: seed({ prefs: { qa: 'on' } }), init: [QM, { yd, t: TODAY }] }); await p.waitForTimeout(900);
   assert.equal(await txt(p, '#sNum'), '8 000'); assert.equal(await txt(p, '.sl-s .sl-src'), 'Telefon sensori'); assert.equal(await kgoal(p), '2 161', 'Maqsad — asosiy me\'yor'); assert.equal(await p.locator('#kBurn').count(), 0, 'v51: ish turi tasdiqlanmagan Android — kredit 0 (ikki marta hisoblanmaydi)'); assert.equal(await kleft(p), '2 161'); await p.click('#kcalBtn'); await p.waitForTimeout(400); assert.match(await txt(p, '#xkCred'), /Ish turini tanlasangiz/); await p.click('#rzSheet .rz-x'); await p.waitForTimeout(400);
   await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(400); assert.equal(await p.locator('#spNum, [data-act=qafix]').count(), 0, 'qo\'lda kiritish yo\'q'); await p.click('#rzSheet .rz-x'); await p.waitForTimeout(400);
@@ -140,32 +158,44 @@ try {
   await p.click('[data-act=stepgoal]'); await p.click('[data-act=key][data-k="1"]'); await p.click('[data-act=key][data-k="000"]'); await p.click('#spSave'); await p.waitForTimeout(500); assert.equal((await stOf(p)).stepGoal, 1000); assert.deepEqual(p.errs.filter((e) => !/navigator\.vibrate/.test(e)), []); await p.context().close();
   p = await open('/kalkifit', { state: seed({ days: { [TODAY]: { steps: 3000 } } }) }); assert.equal(await p.locator('.sl-s:not([data-st=web]), [data-act=addsteps]').count(), 0, 'v55: vebda avtomatik qadam kartasi yo\'q — faqat qo\'lda kiritish'); assert.equal(await p.locator('[data-act=stepin]').count(), 2, 'v56: «+» va doira'); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); assert.equal(await txt(p, '.sl-stepweb'), 'Qadam ilovada avtomatik sanaladi'); assert.equal(await p.locator('.sl-stepbig').count(), 0);
   log('6.  Qadam (faqat avtomatik, Android): 8 000 → 5,8 km · 325 kkal, balansga faqat 7 000 dan ortiq 1 000 qadam uchun +29 kkal (sof); tushuntirish (72,5 sm qadam, MET 3,5); 7 kunlik diagramma, hafta 9,4 km → yo\'l taqqoslashi, maqsad, reyting yo\'q; qo\'lda kiritish yo\'q; vebda karta yo\'q, Tarix\'da «Qadam ilovada avtomatik sanaladi»'); await p.context().close();
+  }
   /* ---- 7. suv + sokin bayram ---- */
+  if (B('7')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('[data-act=wopen]'); await p.waitForTimeout(400); for (const i of [0, 1, 2]) await p.click(`[data-act=glass][data-i="${i}"]`); assert.equal((await stOf(p)).days[TODAY].water, 3); assert.equal(await txt(p, '#wsTxt'), '3 / 11 stakan · 750 ml'); await p.click('[data-act=glass][data-i="2"]'); assert.equal((await stOf(p)).days[TODAY].water, 2);
   for (let i = 2; i < 11; i++) await p.click(`[data-act=glass][data-i="${i}"]`); await p.waitForTimeout(800); assert.equal(await txt(p, '#wsTxt'), '11 / 11 stakan · 2 750 ml'); assert.match(await txt(p, '#rzToast'), /Suv me'yori bajarildi/); assert.equal(await p.locator('#wCard.glow').count(), 1, 'sokin bayram'); await p.reload({ waitUntil: 'networkidle' }); assert.equal((await stOf(p)).days[TODAY].water, 11);
   log('7.  Suv: stakanga bosib qo\'shish/olish (3 → 750 ml), 11/11 bo\'lganda sokin bayram (halqa + xabar), saqlanadi'); await p.context().close();
+  }
   /* ---- 8. vazn: grafik, 7 kunlik o'rtacha, maqsad progress ---- */
+  if (B('8')) {
   p = await open('/kalkifit', { state: seed({ profile: { goalWeight: 75 }, weights: [[D.addDays(TODAY, -3), 81], [D.addDays(TODAY, -2), 80.4]] }) }); await p.click('[data-act=tab][data-v=history]'); assert.equal(await p.locator('.sl-wchart').count(), 1); assert.match(await txt(p, '.sl-weight'), /Oxirgi 7 kundagi 3 ta o'lchov o'rtachasi: 80,5 kg/); assert.equal(await p.locator('.sl-wchart .avg').count(), 0, '7 kunlik tarix yo\'q — o\'rtacha chiziq chizilmaydi');
   await p.click('[data-act=addweight]'); await p.waitForTimeout(400); await keys(p, '79,5'); await p.click('#wfDate [data-q=yesterday]'); await p.click('[data-act=wfsave]'); await p.waitForTimeout(600); const s8 = await stOf(p); assert.deepEqual(s8.weights.map((w) => w.kg), [81, 80.4, 79.5, 80]); assert.equal(s8.weights[2].d, D.addDays(TODAY, -1)); assert.match(await txt(p, '.sl-weight'), /Maqsadgacha 5 kg qoldi/); assert.equal(await p.locator('.sl-wchart .dot').count(), 4);
   await p.click('[data-act=xweight]'); assert.match(await txt(p, '#rzSheet'), /«Birinchi o'lchov»/); assert.match(await txt(p, '#rzSheet'), /2–6 ta/); log('8.  Vazn: yozish (79,5, «Kecha»), grafik nuqtalari + 7 kunlik o\'rtacha chiziq (80,5 → …), maqsadgacha 5 kg, o\'rtacha tushuntirishi'); assert.deepEqual(p.errs, []); await p.context().close();
+  }
   /* ---- 9. profil tahriri: me'yor qayta hisoblanadi, cheklovlar ---- */
+  if (B('9')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('[data-act=tab][data-v=profile]'); await p.click('[data-act=editprof]'); await p.waitForTimeout(400); await sld(p, 'peW', '72,5'); await p.click('[data-act=peact][data-v="2"]'); await p.click('[data-act=pegoal][data-v=keep]'); await p.click('[data-act=pesave]'); await p.waitForTimeout(700);
   const s9 = await stOf(p), pl9 = S.plan(s9.profile); assert.equal(s9.profile.weight, 72.5); assert.equal(s9.profile.act, 2); assert.equal(s9.profile.goal, 'keep'); assert.match(await txt(p, '#rzToast'), new RegExp('Me\'yor yangilandi: ' + String(pl9.target).replace(/(\d)(\d{3})$/, '$1 $2')));
   await p.click('[data-act=tab][data-v=today]'); assert.equal(await kgoal(p), String(pl9.target).replace(/(\d)(\d{3})$/, '$1 $2'));
   await p.click('[data-act=tab][data-v=profile]'); await p.click('[data-act=editprof]'); await p.waitForTimeout(400); await sld(p, 'peA', 16); await p.click('[data-act=pesex][data-v=f]'); await p.waitForTimeout(200); assert.equal(await p.locator('[data-act=pegoal][aria-disabled=true]').count(), 3); assert.match(await txt(p, '#rzSheet'), /faqat vaznni saqlash rejimi hisoblanadi/); await sld(p, 'peH', 999); assert.equal(await sldVal(p, 'peH'), '220', 'slayder noto\'g\'ri qiymatni chegaraga qaytaradi (saqlanmaydigan qiymat bo\'lishi mumkin emas)');
   log('9.  Profil tahriri: vazn 72,5 / faollik / maqsad o\'zgarsa me\'yor qayta hisoblanadi (xabar + halqada); yosh 16 → maqsadlar yopiq; noto\'g\'ri qiymat chegaraga qaytariladi'); await p.context().close();
+  }
   /* ---- 10. ulashish kartasi ---- */
+  if (B('10')) {
   p = await open('/kalkifit', { state: seed({ days: { [TODAY]: { food: [], water: 2, steps: 9000 }, [D.addDays(TODAY, -1)]: { food: [], water: 0, steps: 7000 } }, weights: [[D.addDays(TODAY, -10), 82]] }) }); await p.click('[data-act=tab][data-v=history]'); await p.click('[data-act=share]'); await p.waitForTimeout(500);
   const du = () => p.evaluate(() => document.getElementById('shCv').toDataURL()); const d1 = await du(); assert.ok(d1.length > 8000, 'rasm bo\'sh emas'); assert.equal(await p.locator('[data-sh=w]').isChecked(), false, 'vazn ixtiyoriy — tanlanmagan'); await p.check('[data-sh=w]'); await p.waitForTimeout(200); const d2 = await du(); assert.notEqual(d1, d2); await p.uncheck('[data-sh=steps]'); await p.waitForTimeout(200); const d3 = await du(); assert.notEqual(d2, d3);
   const [dl] = await Promise.all([p.waitForEvent('download'), p.click('[data-act=shdl]')]); assert.equal(dl.suggestedFilename(), 'kalkifit.png'); const f = path.join(os.tmpdir(), 'sl-' + Date.now() + '.png'); await dl.saveAs(f); const png = fs.readFileSync(f); assert.equal(png.slice(1, 4).toString(), 'PNG'); assert.ok(png.length > 8000); fs.unlinkSync(f);
   log('10. Ulashish kartasi: canvas rasm (1080×1350), faqat tanlangan raqamlar (vazn — ixtiyoriy), tanlov rasmni o\'zgartiradi, PNG yuklab olinadi'); await p.context().close();
+  }
   /* ---- 11. haftalik xulosa (dushanba) ---- */
+  if (B('11')) {
   const MON = '2026-10-19'; const wk = {}; for (let i = 1; i <= 7; i++) wk[D.addDays(MON, -i)] = { food: [{ id: i, fid: null, name: 'x', meal: 'l', unit: null, qty: 1, g: 0, kcal: 1800 + (i % 2) * 200, p: 0, f: 0, c: 0, est: false, ts: 1 }], water: 0, steps: 6000 + i * 500 };
   p = await open('/kalkifit', { state: (() => { const s = seed({}); Object.assign(s.days, wk); s.weights = [{ d: '2026-10-12', kg: 81 }, { d: '2026-10-18', kg: 80 }]; return s; })(), fakeNow: new Date('2026-10-19T09:00:00').getTime() });
   assert.equal(await p.locator('.sl-week').count(), 0, 'Bugun ekranida hafta kartasi yo\'q'); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); const wc = await txt(p, '#hkCard'); assert.match(wc, /Haftangiz/); assert.match(wc, /\d kun yozildi · o'rtacha \d[\d ]* kkal/); assert.ok(!/kg|Vazn/.test(wc), 'kartada vazn yo\'q'); assert.ok(!/(yomon|ortiqcha|ayb|afsus)/i.test(wc), 'baho/uyaltirish yo\'q');
   await p.context().close(); p = await open('/kalkifit', { state: (() => { const s = seed({}); Object.assign(s.days, wk); return s; })(), fakeNow: new Date('2026-10-21T09:00:00').getTime() }); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.equal(await p.locator('#hkCard').count(), 1, 'Tarix: «Haftangiz ▶» har kuni (oxirgi 7 kun)');
   log('11. Hafta xulosasi (Natijalar): o\'rtacha kkal (faqat to\'liq kunlar), qadam, vazn trendi — faqat faktlar (baho yo\'q); Bugun ekranida kartasi yo\'q'); await p.context().close();
+  }
   /* ---- 12. til aralashuvi: UZ / RU / ЎЗ — onboarding va barcha ekran/panellar ---- */
+  if (B('12')) {
   for (const [url, lng] of [['/kalkifit', 'uz'], ['/ru/kalkifit', 'ru'], ['/kalkifit?lang=cyr', 'cyr']]) {
     p = await open(url, { state: undefined }); const ob = []; const grabOb = async (name) => { await p.waitForTimeout(350); ob.push({ name, t: await p.evaluate(() => { const r = document.getElementById('rzOnb'); return r.innerText + ' ' + [...r.querySelectorAll('input[placeholder]')].map((i) => i.placeholder).join(' '); }), dates: await p.locator('input[type=date], select').count() }); };
     await grabOb('o1'); await p.click('[data-act=obsex][data-v=f]'); await grabOb('o1-homilador'); await p.click('[data-act=obnext]'); await grabOb('o2'); await p.click('[data-act=obnext]'); await grabOb('o3'); await p.click('[data-act=obnext]'); await grabOb('o4'); await p.click('[data-act=obnext]'); await grabOb('o5'); await p.click('[data-act=obact][data-v="3"]'); await p.click('[data-act=obnext]'); await grabOb('o6'); await p.click('[data-act=obgoal][data-v=lose]'); await p.click('[data-act=obnext]'); await grabOb('o7-yemaydi'); await p.click('[data-act=obnext]'); await p.waitForTimeout(900); await grabOb('natija');
@@ -174,7 +204,9 @@ try {
     await p.waitForTimeout(700); const tl = [{ name: 'maslahat', t: await p.evaluate(() => (document.getElementById('fwCard') || {}).innerText || ''), dates: 0 }];
     const list = tl.concat(await screens(p, lng)); langCheck(list, lng === 'cyr' ? 'cyr' : lng, url + ' ilova'); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('12. Til aralashuvi testi: UZ / RU / ЎЗ — onboarding (9 holat) + yo\'l-yo\'riq + ~25 ekran va panel (Bugun, izohlar, qidiruv, porsiya, o\'z taomi, matn, qadam, vazn, profil, ulashish…) — UZ da kirill, RU/ЎЗ da lotincha so\'z yo\'q, tizim date/select yo\'q');
+  }
   /* ---- 13. pastki menyu, 100dvh, "Ilova haqida", standalone ---- */
+  if (B('13')) {
   for (const [w, h] of [[390, 844], [390, 667]]) { p = await open('/kalkifit', { state: seed({}), w, h });
     const ly = await p.evaluate(() => { const nv = document.querySelector('.rz-nav').getBoundingClientRect(), a = document.getElementById('rzApp').getBoundingClientRect(); return { navBottom: Math.round(nv.bottom), appH: Math.round(a.height), appTop: Math.round(a.top), ih: innerHeight, scrollable: document.documentElement.scrollHeight > innerHeight + 1, hs: document.documentElement.scrollWidth > innerWidth, about: getComputedStyle(document.getElementById('rzAbout')).display, labels: [...document.querySelectorAll('.rz-tab .l')].map((e) => e.textContent) }; });
     assert.equal(ly.navBottom, ly.ih, `${w}x${h}: menyu pastga mahkam ` + JSON.stringify(ly)); assert.equal(ly.appH, ly.ih); assert.equal(ly.appTop, 0); assert.equal(ly.scrollable, false); assert.equal(ly.hs, false); assert.equal(ly.about, 'none'); assert.deepEqual(ly.labels, ['Bugun', 'Tarix', 'Profil']);
@@ -188,19 +220,23 @@ try {
     await p.click('[data-act=tab][data-v=profile]'); const sa = await p.evaluate(() => ({ cls: document.body.classList.contains('rz-standalone'), about: getComputedStyle(document.getElementById('rzAbout')).display, row: getComputedStyle(document.querySelector('.rz-aboutrow')).display })); assert.ok(sa.cls && sa.about === 'none' && sa.row === 'none', JSON.stringify(sa)); await c.close(); }
   p = await open('/kalkifit', { state: seed({}), w: 1280, h: 800 }); const dk = await p.evaluate(() => { const r = document.getElementById('rzApp').getBoundingClientRect(); return { w: Math.round(r.width), left: Math.round(r.left), right: Math.round(innerWidth - r.right), sitebar: getComputedStyle(document.getElementById('sitebar')).display, sw: document.documentElement.scrollWidth <= innerWidth }; }); assert.ok(dk.w <= 480 && Math.abs(dk.left - dk.right) <= 2, JSON.stringify(dk)); assert.equal(dk.sitebar, 'none'); assert.ok(dk.sw); await p.context().close();
   log('13. Pastki menyu 390×844 va 390×667 da ekran pastiga mahkam (sahifa siljimaydi); tab nomlari Bugun · Tarix · Profil (RU: Сегодня · История · Профиль); SEO matni «Ilova haqida» qatlamida (H1, 5 FAQ, FAQPage, ≥200 so\'z); standalone\'da yashirin; kompyuterda markazda ustun');
+  }
   /* ---- 14. Katta shrift, tungi rejim (axe) ---- */
+  if (B('14')) {
   p = await open('/kalkifit', { state: seed({}), ls: { kalki_fs: 'big' }, w: 320, h: 640 }); const kt = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth <= innerWidth, tabs: [...document.querySelectorAll('.rz-tab')].map((e) => { const r = e.getBoundingClientRect(); const sp = [...e.querySelectorAll('span')].filter((x) => getComputedStyle(x).display !== 'none')[0].getBoundingClientRect(); return [Math.round(r.left), Math.round(r.right), Math.round(sp.right), Math.round(sp.left)]; }), fab: (() => { const r = document.getElementById('rzFab').getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth; })() }));
   assert.ok(kt.sw && kt.fab, JSON.stringify(kt)); kt.tabs.forEach(([l, r, sr, sl]) => assert.ok(sl >= l - 1 && sr <= r + 1 && l >= 0 && r <= 320, 'tab yorlig\'i sig\'madi: ' + JSON.stringify(kt.tabs))); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(500); assert.ok(await p.evaluate(() => { const r = document.getElementById('rzSheet').getBoundingClientRect(); return r.left >= 0 && r.right <= innerWidth && document.documentElement.scrollWidth <= innerWidth; })); await p.context().close();
   for (const scheme of ['light', 'dark']) { p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 350 }, { id: 'somsa', g: 240, meal: 'b' }], days: { [TODAY]: { steps: 6000, water: 4 } }, weights: [[D.addDays(TODAY, -2), 81]] }), scheme });
     const bg = await p.evaluate(() => getComputedStyle(document.getElementById('rzApp')).backgroundColor); assert.equal(bg, scheme === 'dark' ? 'rgb(24, 25, 28)' : 'rgb(247, 245, 242)');
-    const axeRun = async (sel, rules) => { await p.evaluate(AXE); return p.evaluate(async ([s, r]) => { const x = await axe.run(document.querySelector(s), { runOnly: { type: 'rule', values: r } }); return x.violations.flatMap((v) => v.nodes.map((nd) => v.id + ' ' + nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 190) : ''))); }, [sel, rules]); };
+    const axeRun = async (sel, rules) => { await p.evaluate(AXE); return p.evaluate(async ([s, r]) => { const x = await axe.run(document.querySelector(s), { resultTypes: ['violations'], runOnly: { type: 'rule', values: r } }); return x.violations.flatMap((v) => v.nodes.map((nd) => v.id + ' ' + nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 190) : ''))); }, [sel, rules]); };
     for (const v of ['today', 'history', 'profile']) { await p.click(`[data-act=tab][data-v=${v}]`); await p.waitForTimeout(500); const res = await axeRun('#rzApp', ['color-contrast', 'button-name', 'label']); assert.deepEqual(res, [], scheme + '/' + v + ': axe: ' + res.slice(0, 3).join(' | ')); }
     await p.click('[data-act=tab][data-v=today]'); const sheets = [['#mainAdd', null], ['#kcalBtn', null], ['.sl-row >> nth=0', null]];
     for (const [sel] of sheets) { await p.click(sel); await p.waitForTimeout(500); const rs = await axeRun('#rzSheet', ['color-contrast', 'button-name']); assert.deepEqual(rs, [], scheme + ' panel ' + sel + ': ' + rs.join('|')); await p.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))); await p.waitForTimeout(400); }
     await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(220); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300); let rs2 = await axeRun('#rzSheet', ['color-contrast', 'button-name']); assert.deepEqual(rs2, [], scheme + ' porsiya: ' + rs2.join('|')); await p.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))); await p.waitForTimeout(400);
     await p.click('[data-act=tab][data-v=profile]'); await p.click('[data-act=editprof]'); await p.waitForTimeout(500); rs2 = await axeRun('#rzSheet', ['color-contrast', 'button-name', 'label']); assert.deepEqual(rs2, [], scheme + ' profil: ' + rs2.join('|')); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('14. Katta shrift 320px (tab yorliqlari, «+», panel sig\'adi); yorug\'/tungi rejim: 4 ekran + qidiruv/porsiya/izoh/tahrir/profil panellari — axe (kontrast, tugma nomi, yorliq) 0 xato');
+  }
   /* ---- 15. animatsiyalar va reduced-motion: kaloriya «idishi» (maket: 1,8 s ko'tarilish, to'lqin 3,2 / 4,6 s cheksiz, raqam 0 dan sanaydi) ---- */
+  if (B('15')) {
   { const c0 = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); const eaten = seed({ food: [{ id: 'osh', g: 350 }] }); await c0.addInitScript((s) => { localStorage.setItem('kalki_fit', JSON.stringify(s)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); window.__kl = []; new MutationObserver(() => { const e = document.getElementById('kLeft'); if (e) window.__kl.push([Math.round(performance.now()), e.textContent]); }).observe(document, { subtree: true, childList: true, characterData: true }); }, eaten);
     const q = await c0.newPage(); await q.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await q.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await q.waitForTimeout(2600);
     const kl = await q.evaluate(() => window.__kl); const vals = [...new Set(kl.map((x) => x[1]))]; assert.ok(vals.length >= 6, 'raqam 0 dan sanab chiqadi: ' + vals.length + ' qiymat'); assert.equal(vals[0], '0'); assert.equal(vals[vals.length - 1].replace(/\s/g, ''), String(await q.locator('#kLeft').getAttribute('data-n'))); const span = kl[kl.length - 1][0] - kl[0][0]; assert.ok(span >= 600 && span <= 1250, 'sanash ~0,9 s (ochilish animatsiyasi): ' + span);
@@ -214,11 +250,15 @@ try {
   await p.click('#kcalBtn'); await p.waitForSelector('#rzSheet .sl-mac3'); const rm = await p.evaluate(() => ({ sheet: getComputedStyle(document.getElementById('rzSheet')).transitionDuration, bar: getComputedStyle(document.querySelector('#rzSheet .sl-mac3 .tr i')).animationName })); assert.equal(rm.sheet, '0s'); assert.equal(rm.bar, 'none'); await p.click('#rzSheet .rz-x'); await p.waitForTimeout(300);
   await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.fill('#fdQ', 'olma'); await p.waitForTimeout(250); await p.click('[data-act=pickfood] >> nth=0'); const fin = await p.evaluate(() => new Promise((ok) => { const before = document.getElementById('kLeft').textContent; document.getElementById('fsave').click(); setTimeout(() => ok([before, document.getElementById('kLeft').textContent, document.getElementById('kLeft').getAttribute('data-n')]), 60); })); assert.notEqual(fin[0], fin[1]); assert.equal(fin[1].replace(/\s/g, ''), fin[2], 'reduced-motion: raqam darrov o\'zgaradi'); await p.context().close();
   log('15. Animatsiyalar: idish suyuqligi 1,8 s da ko\'tariladi (cubic-bezier .22 1 .36 1), to\'lqinlar 3,2 s chapga / 4,6 s o\'ngga cheksiz, raqam 0 dan ~1,8 s sanaydi; ovqat qo\'shilganda yangi darajaga 1,2 s (eski darajadan) va raqam silliq; chiziqlar o\'sadi; reduced-motion\'da animateTransform yo\'q, daraja/raqam darhol, panel 0s');
+  }
   /* ---- 16. oflayn (baza sw keshidan) ---- */
+  if (B('16')) {
   p = await open('/kalkifit', { state: seed({}), sw: 'allow' }); await p.evaluate(() => navigator.serviceWorker && navigator.serviceWorker.ready); await p.waitForTimeout(2000); await p.context().setOffline(true);
   await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(1000); assert.equal(await kgoal(p), '2 161'); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(800); await p.fill('#fdQ', 'somsa'); await p.waitForTimeout(220); assert.match(await txt(p, '.sl-rr .nm'), /Somsa/); await p.click('[data-act=pickfood] >> nth=0'); await p.click('#fsave'); await p.waitForTimeout(500); assert.equal((await stOf(p)).days[TODAY].food.length, 1); await p.context().setOffline(false);
   log('16. Oflayn: service worker keshi bilan sahifa qayta yuklandi, ovqatlar bazasi (data/ovqatlar.json) keshdan o\'qildi, qidiruv va saqlash internetsiz ishladi'); await p.context().close();
+  }
   /* ---- 17. eksport / wipe / import, #qoshish, eslatmalar ---- */
+  if (B('17')) {
   p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 350 }], days: { [TODAY]: { steps: 5000, water: 3 } }, favs: ['osh'] }) }); await p.click('[data-act=tab][data-v=profile]'); const [ed] = await Promise.all([p.waitForEvent('download'), p.click('[data-act=export]')]); const file = path.join(os.tmpdir(), 'sl-' + Date.now() + '.json'); await ed.saveAs(file); const exp = JSON.parse(fs.readFileSync(file, 'utf8'));
   assert.equal(exp.app, 'kalki-kalkifit'); assert.match(ed.suggestedFilename(), /^kalkifit-zaxira-\d{4}-\d{2}-\d{2}\.json$/); assert.equal(exp.state.days[TODAY].steps, 5000);
   await p.click('[data-act=wipe]'); await p.click('#cfGo'); await p.waitForTimeout(600); await p.click('#cfGo'); await p.waitForTimeout(500); assert.equal(await p.locator('#rzOnb').isVisible(), true); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_fit')), null);
@@ -230,12 +270,16 @@ try {
   p = await open('/kalkifit', { state: seed({ ageDays: 10, food: [{ id: 'osh', g: 350 }] }) }); assert.equal(await p.locator('[data-nudge=backup]').count(), 0, '<3 kunlik ma\'lumotda eslatma yo\'q'); await p.context().close();
   { const st8 = seed({ ageDays: 20, food: [{ id: 'osh', g: 350 }], days: d3b }); st8.lastBackup = Date.now() - 2 * 86400000; p = await open('/kalkifit', { state: st8 }); assert.equal(await p.locator('[data-nudge=backup]').count(), 0, '2 kun oldin zaxira — eslatma yo\'q'); await p.context().close(); st8.lastBackup = Date.now() - 8 * 86400000; p = await open('/kalkifit', { state: st8 }); assert.equal(await p.locator('[data-nudge=backup]').count(), 1, '8 kun — eslatma bor'); await p.context().close(); }
   log('17. Eksport (JSON) → «Hammasini o\'chirish» (ikki tasdiq → onboarding) → import: kunlar/profil/sevimlilar aynan tiklandi; #qoshish (manifest shortcut) qidiruvni ochadi; zaxira eslatmasi 7 kunga yashiriladi');
+  }
   /* ---- 18. maxfiylik: oddiy ishlashda serverga hech narsa ketmaydi ---- */
+  if (B('18')) {
   p = await open('/kalkifit', { state: undefined }); await onb(p, OBFULL); await p.click('[data-act=obstart]'); await p.waitForTimeout(1200); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(500); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(220); await p.click('[data-act=pickfood] >> nth=0'); await p.click('#fsave'); await p.waitForTimeout(500); await p.click('[data-act=wopen]'); await p.waitForTimeout(400); await p.click('[data-act=glass][data-i="0"]');
   for (const r of p.reqs.filter((x) => /\/api\/hisob$/.test(x.u))) { const b = JSON.parse(r.d); assert.deepEqual(Object.keys(b), ['k']); for (const x of b.k) assert.deepEqual(Object.keys(x).sort(), ['h', 'n', 's']); }      // faqat anonim hodisa sonlari ({kun, hodisa, son}) — shaxsiy ma'lumot yo'q
   assert.deepEqual(p.reqs.filter((r) => !/^data:/.test(r.u) && !/\/api\/hisob$/.test(r.u) && !(r.m === 'GET' && /\/api\/(akkaunt\/sessiya|push\/kalit|ovoz)(\?mijoz_id=[0-9a-f-]+)?$/.test(r.u)) && !(/\/api\/retsept$/.test(r.u) && /^\{"sorov":"qoldi","mijoz_id":"[0-9a-f-]+"\}$/.test(r.d || '')) && (r.m !== 'GET' || /\/api\//.test(r.u))), [], 'POST/API so\'rovlar yo\'q (istisno: «bugun N ta qoldi» hisoblagichi — faqat anonim mijoz_id, sanamaydi; akkaunt yoqilganmi — tanasiz GET; anonim hodisa sonlari — faqat {kun, hodisa, son}) (istisno: akkaunt yoqilganmi / 🎤 server yo\'li bormi — tanasiz GET, ma\'lumot yubormaydi)'); assert.deepEqual(p.errs, []); log('18. Maxfiylik: onboarding + ovqat + suv jarayonida serverga hech qanday POST/API so\'rov ketmaydi (profil, vazn, ovqat faqat localStorage\'da)'); await p.context().close();
 
+  }
   /* ---- 19. hazillar: bugun kartasi, takror yo'q, o'chirish, taqiqlangan so'zlar ---- */
+  if (B('19')) {
   const GP = require(path.join(ROOT, 'assets/kalkifit-gaplar.js')); const BAN = GP.BANNED.map((w) => new RegExp(w, 'i'));
   for (const lg of ['uz', 'ru']) { let cnt = 0; for (const [k, arr] of Object.entries(GP.TEXTS[lg])) { assert.ok(arr.length >= 5, lg + '/' + k + ': ≥5 variant'); for (const t of arr) { cnt++; for (const re of BAN) assert.ok(!re.test(t), lg + '/' + k + ': taqiqlangan so\'z: ' + t); assert.ok(!/limit|лимит/i.test(t), lg + '/' + k + ': «limit» so\'zi yo\'q (me\'yor/норма): ' + t); assert.ok(!/tartibli|молодец|умница|aybdor|ortiqcha yedingiz|переели/i.test(t), lg + '/' + k + ': maqtov/ayblov ohangi yo\'q: ' + t); } } assert.ok(cnt > 120, lg + ' hazil soni'); }
   const addOne = async (p, q) => { await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', q); await p.waitForTimeout(250); await p.click('[data-act=pickfood] >> nth=0'); await p.click('#fsave'); await p.waitForTimeout(900); };
@@ -247,12 +291,16 @@ try {
   assert.deepEqual(p.errs, []); await p.context().close();
   p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 900 }, { id: 'osh', g: 900, meal: 'd' }] }) }); await addOne(p, 'choy'); const over = await txt(p, '#jFlash'); if (over) for (const re of BAN) assert.ok(!re.test(over), 'oshib ketganda taqiqlangan so\'z: ' + over); assert.match(await txt(p, '.sl-over'), /Maqsaddan [\d ]+ kkal ko'p/); await p.context().close();
   log('19. Hazillar: ≥5 variant/holat (UZ+RU), taqiqlangan so\'z yo\'q; doimiy karta yo\'q — ovqat qo\'shilgach bir qatorli gap, kuniga ≤4 marta, o\'zi o\'chadi; Profilda o\'chadi; oshganda «Maqsaddan N kkal ko\'p» (neytral)');
+  }
   /* ---- 20. «Buni yesam-chi?» — hech narsa saqlanmaydi ---- */
+  if (B('20')) {
   p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 300 }] }) }); const before = JSON.stringify((await stOf(p)).days); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=yesam]'); await p.fill('#ydQ', 'somsa'); await p.waitForTimeout(220); await p.waitForTimeout(300); await p.click('[data-act=ypick] >> nth=0'); await p.waitForTimeout(400);
   assert.match(await txt(p, '#ydOut'), /kkal/); assert.match(await txt(p, '#ydOut'), /daqiqa/); assert.equal(JSON.stringify((await stOf(p)).days), before, 'yesam-chi hech narsa yozmaydi'); await p.evaluate(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))); await p.waitForTimeout(400);
   assert.equal(JSON.stringify((await stOf(p)).days), before); assert.deepEqual(p.reqs.filter((r) => r.m !== 'GET' && !/"sorov":"qoldi"/.test(r.d || '')), []);          /* «bugun N ta qoldi» hisoblagichi — sanamaydi */ await p.context().close();
   log('20. «Buni yesam-chi?»: qoldiq, yeyilsa natija, yoqish uchun daqiqa ko\'rinadi; kunlar o\'zgarmaydi, so\'rov ketmaydi');
+  }
   /* ---- 21. retsept hisoblagich + taqvim ---- */
+  if (B('21')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=taomlarim]'); await p.waitForTimeout(400); await p.click('[data-act=rcnew]');
   assert.ok(await p.locator('#rzSheet.open').count(), 'retsept paneli'); await p.fill('#rcName', 'Onamning oshi'); await p.click('[data-act=rcadd]'); await p.fill('#rcQ', 'guruch'); await p.waitForTimeout(220); await p.waitForTimeout(300); await p.click('[data-act=rcpick] >> nth=0'); await p.waitForTimeout(300);
   await p.fill('#rcgN, #rcgK', '').catch(() => {}); assert.deepEqual(p.errs, []); await p.context().close();
@@ -261,7 +309,9 @@ try {
   assert.equal(await p.locator('#calCard').count(), 1); assert.ok(await p.locator('#calCard .sl-cd, #calCard [data-act=calday]').count() >= 28, 'oy kataklari'); assert.match(await txt(p, '#calCard'), /ketma-ket|Seriya/); assert.doesNotMatch((await txt(p, '#calCard')).replace(/Faqat ranglar.*$/, ''), /\bball\b|reyting|\bscore/i);
   await p.click('[data-act=calprev]'); await p.waitForTimeout(200); await p.click('[data-act=calnext]'); assert.deepEqual(p.errs, []); await p.context().close();
   log('21. Retsept: porsiya/100 g hisobi to\'g\'ri; taqvim: oy kataklari, seriya matni, ball/baho yo\'q, oldingi/keyingi oy');
+  }
   /* ---- 22. rasm → AI (soxta javob), oflayn o'chiq, serverga faqat JPEG ---- */
+  if (B('22')) {
   const tinyJpg = Buffer.from('/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=', 'base64');
   p = await open('/kalkifit', { state: seed({}), aiRoute: false }); let phBody = null; await p.route('**/api/kalkifit-rasm', (r) => { phBody = r.request().postDataJSON(); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ovqatlar: [{ nom: 'Osh', porsiya: '1 likop', g: 350, kcal: 700, o: 20, y: 30, u: 85 }], aniqlik: '±30%' }) }); });
   await p.route('**/api/kalkifit-taklif', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' })); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); assert.equal(await p.locator('[data-act=fphoto]').isEnabled(), true);
@@ -269,14 +319,18 @@ try {
   if (phBody) { assert.ok(typeof phBody.img === 'string' && phBody.img.length > 50); assert.deepEqual(Object.keys(phBody).sort().filter((k) => !['img', 'til', 'mijoz_id'].includes(k)), [], 'rasm so\'rovida ortiqcha maydon yo\'q'); }
   await p.context().setOffline(true); await p.waitForTimeout(400); const offDis = await p.locator('[data-act=fphoto]').evaluate((e) => e.disabled || e.getAttribute('aria-disabled') === 'true').catch(() => true); assert.equal(offDis, true, 'oflaynda rasm tugmasi o\'chiq');
   await p.context().close(); log('22. Rasm: soxta AI javobi bilan oqim, so\'rovda faqat img/til/mijoz_id, oflaynda tugma o\'chiq');
+  }
   /* ---- 23. qo'shimchalar bo'limi: 19 ta, 5 qism, xavfsizlik matni ---- */
+  if (B('23')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); await p.click('[data-act=supp]'); await p.waitForTimeout(700);
   const spN = await p.locator('[data-act=spitem]').count(); assert.equal(spN, 19, 'qo\'shimcha soni'); assert.match(await txt(p, '#rzSheet'), /Avval ovqat/); await p.click('[data-act=spitem][data-id="vitamin-d"]'); await p.waitForTimeout(400);
   const card = await txt(p, '#rzSheet'); for (const k of [/Nima va nima uchun/, /Ovqatdan/, /Kim uchun\?/, /Qachon kerak emas\?/, /Ehtiyot bo.ling/, /Dalil: tasdiqlangan yetishmovchilikda kuchli/, /Manba/, /Tekshirilgan: 2026-\d\d-\d\d/, /Yuqori chegara|UL/]) assert.match(card, k); assert.doesNotMatch(card, /(^|\s)Kuchli(\s|$)/);
   assert.doesNotMatch(card, /so'm|narx|sotib ol|buyurtma|http/i, 'brend/narx/havola yo\'q'); assert.doesNotMatch(card, /\bkuniga\s+\d+\s*(mg|mcg|g)\b.*\bichin?g\b/i); assert.deepEqual(p.errs, []); await p.context().close();
   const SP = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/qoshimchalar.json'), 'utf8')); assert.equal(SP.items.length, 19); for (const it of SP.items) for (const lg of ['uz', 'ru']) { for (const f of ['name', 'what', 'food', 'who', 'not', 'care']) assert.ok(it[lg][f] && it[lg][f].length > (f === 'name' ? 2 : 8), it.id + '/' + lg + '/' + f); assert.doesNotMatch(JSON.stringify(it[lg]), /https?:|so'm|сум|купи/i, it.id + ' havola/narx'); assert.ok(['strong', 'moderate', 'low'].includes(it.level), it.id + ' level'); }
   log('23. Qo\'shimchalar: 19 ta, 5 qism + dalil kuchi + manba + UL, narx/brend/havola yo\'q (UZ+RU ma\'lumot to\'liq)');
+  }
   /* ---- 24. «+» kontentni yopmaydi (390×844 va 390×667), Hammasi guruhlangan, bitta scroll, onboarding bir marta ---- */
+  if (B('24')) {
   for (const h of [844, 667]) { p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 300 }, { id: 'osh', g: 100, meal: 'd' }] }), h });
     for (const tab of ['today', 'history', 'profile']) { await p.click(`[data-act=tab][data-v=${tab}]`); await p.waitForTimeout(250); const r = await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; const fe = document.getElementById('rzFab'), fab = (getComputedStyle(fe).display === 'none' ? document.querySelector('.rz-nav') : fe).getBoundingClientRect(); const last = [...m.querySelectorAll('*')].filter((e) => e.getBoundingClientRect().height > 0).reduce((a, e) => Math.max(a, e.getBoundingClientRect().bottom), 0); return { fab: fab.top, last }; }); await p.waitForTimeout(100); const r2 = await p.evaluate(() => { const m = document.getElementById('rzMain'); const fe2 = document.getElementById('rzFab'), fab = (getComputedStyle(fe2).display === 'none' ? document.querySelector('.rz-nav') : fe2).getBoundingClientRect(); let mx = 0; m.querySelectorAll('*').forEach((e) => { const b = e.getBoundingClientRect(); if (b.height > 0 && b.width > 0) mx = Math.max(mx, b.bottom); }); return { fab: fab.top, mx }; }); assert.ok(r2.mx <= r2.fab + 1, `${h}/${tab}: «+» kontentni yopadi (${r2.mx} > ${r2.fab})`); }
     await p.context().close(); }
@@ -285,7 +339,9 @@ try {
   const w = await open('/kalkifit', { state: undefined, sw: 'allow' }); await w.evaluate(() => navigator.serviceWorker && navigator.serviceWorker.ready).catch(() => {}); await w.waitForTimeout(1500); let loads = 0; w.on('load', () => loads++); await w.click('[data-act=obsex][data-v=m]'); await w.click('[data-act=obnext]'); await sld(w, 'obAge', 31); await w.waitForTimeout(2500); assert.equal(loads, 0, 'onboarding paytida sahifa qayta yuklanmadi'); assert.equal(await w.locator('#sw-update-bar').count(), 0, 'birinchi tashrifda «Sayt yangilandi» chizig\'i chiqmaydi (tugmalarni to\'sib qo\'ymaydi)'); assert.equal(await w.locator('[data-sld=obAge]').isVisible().catch(() => true), true); assert.equal(await sldVal(w, 'obAge'), '31', 'onboarding qiymati yo\'qolmadi'); await w.context().close();
   log('24. «+» 390×844 va 390×667 da barcha tab kontentini yopmaydi; qo\'shish oynasi (kategoriyalarsiz); panelda bitta scroll; onboarding service worker bilan sahifani qayta yuklamaydi');
 
+  }
   /* ---- 25. yangi ekranlarda til aralashmasi (RU / ЎЗ) va «KalkiFit» brendi ---- */
+  if (B('25')) {
   for (const [url, lng] of [['/ru/kalkifit', 'ru'], ['/kalkifit?lang=cyr', 'cyr']]) {
     p = await open(url, { state: seed({ food: [{ id: 'osh', g: 300 }], days: { [TODAY]: { steps: 8000 } } }) }); const got = [];
     const grab2 = async (name) => { await p.waitForTimeout(450); got.push({ name, t: await p.evaluate(() => { const r = document.getElementById('rzApp') || document.body; return (r.innerText || '').replace(/\s+/g, ' '); }) }); };
@@ -299,7 +355,9 @@ try {
     assert.deepEqual(p.errs, []); await p.context().close(); }
   log('25. RU va ЎЗ: yangi ekranlar (yesam-chi, ovqat/qadam/men, qo\'shimchalar ro\'yxati va kartasi) da lotincha so\'z yo\'q; brend «KalkiFit» lotincha, eski nom yo\'q');
 
+  }
   /* ---- 26. qo'shimcha dalil darajasi «kim uchun» (guruhlar), ro'yxatda eng yuqori baho ---- */
+  if (B('26')) {
   { const SPD = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/qoshimchalar.json'), 'utf8')); const R = { strong: 3, moderate: 2, low: 1, not: 0 };
     for (const it of SPD.items) { assert.ok(it.ev && it.ev.length >= 1 && it.ev.length <= 3, it.id + ': 1–3 guruh'); for (const e of it.ev) { assert.ok(e.level in R && e.uz.length > 5 && e.uz.length <= 70 && e.ru.length > 5, it.id + ' guruh matni'); assert.doesNotMatch(e.uz + e.ru, /\d+\s*(mg|mkg|mcg|мг|мкг)\b/i, it.id + ': shaxsiy doza yo\'q'); } assert.equal(it.level, it.ev.reduce((a, e) => R[e.level] > R[a] ? e.level : a, it.ev[0].level), it.id + ': ro\'yxatdagi baho = eng yuqori guruh'); }
     const lv = (id) => SPD.items.find((x) => x.id === id).ev.map((e) => e.level).join(',');
@@ -313,7 +371,9 @@ try {
     await p.click('[data-act=spback]'); await p.click('[data-act=spitem][data-id=foliy]'); await p.waitForTimeout(400); const fm = await txt(p, '.sl-evs'); assert.match(fm, /homilador/i); assert.match(fm, /Dalil: homiladorlikni rejalashtirganda kuchli/); assert.match(fm, /Dalil: boshqalarda kam/); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('26. Qo\'shimchalar: har kartada 1–3 «kim uchun» guruh (Kuchli/O\'rtacha/Kam/Tavsiya etilmaydi), ro\'yxatda eng yuqori guruh bahosi; shaxsiy doza yo\'q; foliy/temir/B12/omega-3/kreatin/D baholari to\'g\'ri');
 
+  }
   /* ---- 27. tez bosish: iPhone — klaviaturada «1» «1» «1» 80 ms oraliqda → 111, zoom o'zgarmaydi; touch-action; input ≥ 16 px; viewport'da user-scalable=no yo'q ---- */
+  if (B('27')) {
   { const { devices } = await import('playwright'); const c = await b.newContext({ ...devices['iPhone 13'], serviceWorkers: 'block' }); await c.addInitScript(() => { try { localStorage.setItem('kalki_inst_kalkifit', JSON.stringify({ choice: 'browser' })); } catch (e) {} }); const q = await c.newPage(); q.errs = []; q.on('pageerror', (e) => q.errs.push(String(e)));
     await q.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await q.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await q.waitForTimeout(600);
     assert.doesNotMatch(await q.locator('meta[name=viewport]').getAttribute('content'), /maximum-scale|user-scalable/i, 'viewport cheklanmagan (qulaylik)');
@@ -330,14 +390,18 @@ try {
     await q.keyboard.press('Escape'); await q.waitForTimeout(300); await q.click('[data-act=tab][data-v=profile]'); await q.click('[data-act=editprof]'); await q.waitForTimeout(400); const small2 = await q.evaluate(() => [...document.querySelectorAll('#rzSheet input,#rzSheet textarea,#rzSheet select')].map((e) => parseFloat(getComputedStyle(e).fontSize)).filter((x) => x < 16)); assert.deepEqual(small2, []); await c.close(); }
   log('27. Tez bosish (iPhone 13 emulyatsiyasi): klaviaturada «1»«1»«1» 80 ms oraliqda → 111, aralash tez bosish to\'g\'ri, visualViewport.scale = 1; barcha tugma va ildizda touch-action: manipulation; input shrifti ≥ 16 px; viewport\'da maximum-scale/user-scalable yo\'q');
 
+  }
   /* ---- 28. umumiy kunlik chegara (sabab=sayt): yumshoq xabar, lokal parser ishlayveradi ---- */
+  if (B('28')) {
   p = await open('/kalkifit', { state: seed({}) }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.unroute('**/api/kalkifit'); await p.route('**/api/kalkifit', (r) => r.fulfill({ status: 429, contentType: 'application/json', body: JSON.stringify({ xato: 'band', sabab: 'sayt' }) })); await textMode(p, '1 kosa osh, qwertyzzz keki');
   await p.waitForTimeout(100);
   assert.match(await txt(p, '#txOut'), /AI bugun juda band — ovqatni qidiruv orqali qo'shing/); assert.equal(await p.locator('.sl-ti').count(), 1, 'lokal topilgan ovqat qoladi'); await p.click('[data-act=txsave]'); await p.waitForTimeout(500); assert.equal((await stOf(p)).days[TODAY].food.length, 1, 'lokal parser bilan saqlandi'); assert.deepEqual(p.errs, []); await p.context().close();
   log('28. AI umumiy kunlik chegarasi (sabab=sayt): yumshoq «AI bugun juda band» xabari, lokal tahlil va saqlash ishlayveradi');
 
+  }
   /* ---- 29. kun holati: Ma'lumot yo'q / Kun davom etmoqda / «Kunni yakunlash» / To'liq; faqat to'liq kunlar maqsad bilan solishtiriladi (±10%) ---- */
-  const FD = TODAY, FN = Date.parse(FD + 'T19:30:00'), fd = (k) => D.addDays(FD, k);
+  if (B('29')) {
+  // (FD, FN, fd — yuqorida: 30-bo'lim ham ishlatadi)
   p = await open('/kalkifit', { state: seed({}), fakeNow: FN }); assert.equal(await chip(p), "Ma'lumot yo'q", 'Tarix: holat yozuvi'); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); assert.equal(await p.locator('#dayChip').getAttribute('data-state'), 'none'); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(300); assert.equal(await p.locator('#dayEnd').count(), 0, 'yozuv yo\'q — tugma yo\'q'); await p.context().close();
   p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 600, d: FD }], prefs: { lpTip: 1 } }), fakeNow: Date.parse(FD + 'T19:30:00') }); assert.equal(await chip(p), 'Kun davom etmoqda'); assert.equal(await infoChip(p), "Kiritilgan ovqatlar bo'yicha", 'Bugun: kun tugamagan — izoh ⓘ ichida'); assert.equal(await p.locator('#dayEnd').count(), 1); assert.equal(await txt(p, '#dayEnd'), 'Kunni yakunlash', 'kichik matnli tugma'); assert.equal(await p.locator('#dayCard').count(), 0, 'v32: kun kartasi — Profil → Imkoniyatlar'); assert.match(await p.locator('#dayEnd').getAttribute('title'), /statistika faqat to'liq kunlardan hisoblanadi/);
   await p.click('#dayEnd'); await p.waitForTimeout(500); assert.match(await txt(p, '#rzToast'), /Kun yakunlandi/); assert.equal(await p.locator('#dayEnd').count(), 0); assert.match(await txt(p, '#dayEndDone'), /Kun yakunlandi/); assert.match(await infoChip(p), /^To'liq kun · (Maqsadga yaqin|Pastroq|Yuqoriroq)$/); assert.equal((await stOf(p)).days[FD].done, true);
@@ -352,7 +416,9 @@ try {
   assert.equal(await p.locator(`[data-act=calday][data-d="${fd(-8)}"]`).isDisabled(), true, 'kuzatuv boshlanmagan kun bosilmaydi'); assert.match(await p.locator(`[data-act=calday][data-d="${fd(-8)}"]`).getAttribute('aria-label'), /Kuzatuv boshlanmagan/); assert.match(await p.locator(`[data-act=calday][data-d="${fd(-1)}"]`).getAttribute('aria-label'), /Maqsadga yaqin/); assert.match(await p.locator(`[data-act=calday][data-d="${fd(0)}"]`).getAttribute('aria-label'), /Kun davom etmoqda/);
   const colors = await p.evaluate((ds) => ds.map((d) => { const c = document.querySelector(`[data-act=calday][data-d="${d}"]`); const cs = getComputedStyle(c); return [cs.backgroundColor, cs.borderTopColor]; }), [fd(-1), fd(-2), fd(-3), fd(-4)]); assert.equal(new Set(colors.map((x) => x.join())).size, 4, 'to\'rt holat — to\'rt xil rang'); const g = (c) => { const m = c.match(/\d+/g).map(Number); return m; }; const lowB = g(colors[1][1]); assert.ok(lowB[2] > lowB[1] && lowB[2] > lowB[0], '«Pastroq» — ko\'k (yashil emas)'); assert.deepEqual(p.errs, []); await p.context().close();
   log('29. Kun holati: «Ma\'lumot yo\'q» (kulrang) / «Kun davom etmoqda» / «Kunni yakunlash» (bekor qilish bor, <50% — qisman) / «To\'liq kun»; taqvimda faqat to\'liq kunlar maqsad ±10% bilan: Maqsadga yaqin · Pastroq (neytral ko\'k, vazn olishda ham) · Yuqoriroq; «Limit ichida» yorlig\'i yo\'q; boshlanishdan oldingi kunlar bo\'sh va sanalmaydi');
+  }
   /* ---- 30. qadam: odatiy chegaradan ortig'iga sof qo'shimcha; vazn yorlig'i; til ---- */
+  if (B('30')) {
   p = await open('/kalkifit', { state: seed({ days: { [TODAY]: { steps: 6000 } } }) }); assert.equal(await kgoal(p), '2 161'); assert.equal(await kleft(p), '2 161', 'chegaradan kam — hech narsa qo\'shilmaydi'); await p.click('[data-act=xkcal]'); assert.doesNotMatch(await txt(p, '#rzSheet'), /Ortiqcha qadam/); await p.context().close();
   p = await open('/kalkifit', { state: seed({ days: { [TODAY]: { steps: 14000 } } }) }); assert.equal(await p.locator('#kBurn').count(), 0, 'v51: veb/iPhone — yurish faollik darajasi ichida, kredit yo\'q'); assert.equal(await kleft(p), '2 161'); await p.click('[data-act=xkcal]'); const xk = await txt(p, '#rzSheet'); assert.match(xk, /qadam alohida qo'shilmaydi/); assert.doesNotMatch(xk, /Ortiqcha qadam/); await p.context().close();
   p = await open('/kalkifit', { state: seed({ prefs: { qa: 'on' } }), init: [QM, { yd, t: TODAY, ky: 0, kt: 14000 }] }); await p.waitForTimeout(900); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); await p.click('[data-act=xsteps]'); assert.match(await txt(p, '#rzSheet'), /Qadam me'yorga qo'shilmaydi[\s\S]*Ish turini tanlasangiz/); await p.context().close();          // qadam tushuntirishi — Tarix'da (faqat ilovada)
@@ -362,5 +428,6 @@ try {
   for (const [url, lang, re] of [['/ru/kalkifit', 'ru', { chip: /Нет данных/, btn: /Завершить день/, leg: ['Близко к цели', 'Ниже цели', 'Выше цели', 'Частично / день идёт'], w: /Первое измерение/ }], ['/kalkifit?lang=cyr', 'cyr', { chip: /Маълумот йўқ/, btn: /Кунни якунлаш/, leg: ['Мақсадга яқин', 'Пастроқ', 'Юқорироқ'], w: /Биринчи ўлчов/ }]]) {
     p = await open(url, { state: seed({ food: [{ id: 'osh', g: 200, d: FD }], weights: [] }), fakeNow: FN }); assert.match(await txt(p, '#dayEnd'), re.btn); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); const L = (await txt(p, '#dayChip')); assert.ok(L && /[А-Яа-я]/.test(L), lang + ' chip: ' + L); const lg = await txt(p, '.sl-leg'); for (const w of re.leg) assert.ok(lg.includes(w), lang + ': ' + w + ' | ' + lg); const cc = await txt(p, '#calCard'); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(400); assert.match(await txt(p, '#wLbl'), re.w); assert.doesNotMatch(cc.replace(/KalkiFit/g, ''), /\b[A-Za-z]{4,}\b/, lang + ' taqvim lotincha'); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('30. Qadam: chegaradan kam (6 000) → hech narsa qo\'shilmaydi; 14 000 → faqat ortiqcha 7 000 qadam uchun +203 kkal (sof), tushuntirishda «50%» yo\'q; vazn yorlig\'i: Birinchi o\'lchov / 2–6 ta o\'rtachasi / ≥7 kunlik trend (o\'rtacha chiziq faqat trendda); RU va ЎЗ da');
+  }
 } finally { await b.close(); if (srv) srv.close(); }
 console.log(`\n${n} ta tekshiruv guruhi o'tdi`);
