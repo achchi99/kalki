@@ -881,7 +881,7 @@
     var fresh = !jFlash.seen; jFlash.seen = true;
     el = document.createElement('div'); el.className = 'hz-card' + (fresh && !reduce ? ' in' : ''); el.id = 'jLine'; el.setAttribute('role', 'status');
     el.innerHTML = '<span class="hz-e" aria-hidden="true"></span><span class="hz-m"><p class="hz-t">' + esc(jFlash.text) + '</p><span class="hz-bar" aria-hidden="true"><i></i></span></span><button type="button" class="hz-x" data-act="jkx" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button>';
-    big.appendChild(el);
+    var bb = big.querySelector('#balBtn'); if (bb) big.insertBefore(el, bb); else big.appendChild(el);          // v55: hazil — iste'mol qatori ostida (balansdan oldin), v50 joyi o'zgarmaydi
     var hold = function (e) { if (e.target.closest && e.target.closest('.hz-x')) return; jkPause(1); }, rel = function () { jkResume(1); };
     el.addEventListener('pointerdown', hold); el.addEventListener('pointerup', rel); el.addEventListener('pointercancel', rel); el.addEventListener('pointerleave', rel);
     el.addEventListener('touchstart', hold, { passive: true }); el.addEventListener('touchend', rel); el.addEventListener('touchcancel', rel);
