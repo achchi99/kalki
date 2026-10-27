@@ -27,9 +27,22 @@ ok('Yugurish 25 daq + 9 000 qadam (Android va iPhone qo\'lda): yugurishdagi ~4 0
   const none = mk({ q: { qa: undefined, qm: 'on' } }); const z = S.dayPlan(none, T); assert.deepEqual([z.credit, z.k, z.job], [0, 1.4, 'sit'], 'qadam kiritilmagan kun — kredit 0, k ish turidan (eski daraja emas)');
   ok('iPhone/veb: qo\'lda qadam + ish turi tasdiqlangan → kredit (k = 1,40); tasdiqlanmasa — kredit 0, sarf = umumiy daraja; kiritilmagan kun — kredit 0, k ish turidan'); }
 /* 5. balans = iste'mol − sarf; tafsilot yig'indisi = sarf */
-{ const a = mk(); S.setSteps(a, T, 8420); S.addEx(a, T, { t: 'yugurish', min: 25, lv: 1 }); S.addEx(a, T, { t: 'zal', min: 20, lv: 1 }); const b = S.dayBal(a, T, 1635), d = b.dp;
-  assert.equal(b.bal, 1635 - b.sarf); assert.equal(d.bmr + d.life + d.corr + d.stepNet + d.exNet, b.sarf, 'tinch + kundalik + tuzatish + qadam + mashg\'ulot = jami sarf'); assert.equal(b.reja, d.delta);
-  assert.equal(S.dayBalance(a, T, 1635).remaining, d.limit - 1635, 'halqa qoldig\'i — shu limitdan'); ok('Balans = iste\'mol − sarf (' + b.bal + '); tafsilot qatorlari yig\'indisi = jami sarf (' + b.sarf + '); halqa qoldig\'i — o\'sha dayPlan limitidan'); }
+{ const a = mk(); S.setSteps(a, T, 8420); S.addEx(a, T, { t: 'yugurish', min: 25, lv: 1 }); S.addEx(a, T, { t: 'zal', min: 20, lv: 1 }); const b1 = S.dayBal(a, T, 1635), d = b1.dp;
+  assert.equal(b1.bal, 1635 - b1.sarfNow); assert.equal(d.bmr + d.life + d.corr + d.stepNet + d.exNet, b1.sarfDay, 'tinch + kundalik + tuzatish + qadam + mashg\'ulot = kunlik jami sarf'); assert.equal(b1.reja, d.delta);
+  assert.equal(S.dayBalance(a, T, 1635).remaining, d.limit - 1635, 'halqa qoldig\'i — shu limitdan'); ok('Balans = iste\'mol − hozirgacha sarf (' + b1.bal + '); tafsilot qatorlari yig\'indisi = kunlik jami sarf (' + b1.sarfDay + '); halqa qoldig\'i — o\'sha dayPlan limitidan'); }
+/* 5b. v56: balans — HOZIRGACHA sarf (tinch qism kunning o'tgan ulushida, harakat to'liq); 08 / 14 / 23:59; o'tgan kun — to'liq */
+{ const at = (h, m) => { const [y, mo, dd] = T.split('-').map(Number); return new Date(y, mo - 1, dd, h, m || 0); };
+  const a = mk(); S.setSteps(a, T, 8420); S.addEx(a, T, { t: 'zal', min: 30, lv: 1 }); const dp = S.dayPlan(a, T), mov = dp.stepNet + dp.exNet, base = dp.sarf - mov;
+  assert.ok(mov > 0 && dp.delta < 0);
+  const h8 = S.dayBal(a, T, 450, at(8)); assert.equal(h8.f, 8 / 24); assert.equal(h8.sarfNow, Math.round(base * 8 / 24) + mov); assert.equal(h8.bal, 450 - h8.sarfNow); assert.equal(h8.rejaF, Math.round(dp.delta / 3));
+  assert.notEqual(h8.holat, 'ortiq', 'ertalab nonushtadan keyin «ortiqcha» emas: ' + JSON.stringify(h8));
+  const h14 = S.dayBal(a, T, 1200, at(14)); assert.equal(h14.sarfNow, Math.round(base * 14 / 24) + mov); assert.equal(h14.holat, h14.bal > 100 ? 'ortiq' : h14.bal < h14.rejaF - 100 ? 'ozish' : 'mos');
+  const big = S.dayBal(a, T, h14.sarfNow + 300, at(14)); assert.equal(big.holat, 'ortiq'); assert.equal(S.dayBal(a, T, h14.sarfNow + h14.rejaF, at(14)).holat, 'mos'); assert.equal(S.dayBal(a, T, h14.sarfNow + h14.rejaF - 300, at(14)).holat, 'ozish');
+  const h23 = S.dayBal(a, T, 1800, at(23, 59)); assert.ok(Math.abs(h23.sarfNow - dp.sarf) <= Math.ceil(base / 1440) + 1, '23:59 ≈ to\'liq kun');
+  const h24 = S.dayBal(a, T, 1800, new Date(at(23, 59).getTime() + 59999)); assert.ok(h24.sarfNow <= dp.sarf);
+  assert.equal(S.dayBal(a, T, 1800, at(0)).sarfNow, mov, '00:00 — faqat harakat');
+  const y = D.addDays(T, -1); S.setSteps(a, y, 3000); const yb = S.dayBal(a, y, 1800, at(8)); assert.equal(yb.f, 1); assert.equal(yb.sarfNow, S.dayPlan(a, y).sarf, 'o\'tgan kun — to\'liq sarf');
+  ok('«Hozirgacha» balans: 08:00 — sarf ' + h8.sarfNow + ' (tinch × 8/24 + harakat), «ortiqcha» emas; 14:00 — holat chegaralari (±100, reja ulushi); 23:59 — kunlik to\'liq sarf (' + dp.sarf + '); 00:00 — faqat harakat; kecha — to\'liq'); }
 /* 6. matndan mashg'ulot */
 { const P = (q) => S.parseText(q, foods, {}); let r = P("30 daqiqa futbol o'ynadim"); assert.deepEqual(r.ex.map((e) => [e.t, e.min, e.lv]), [['futbol', 30, 1]]); assert.equal(r.items.length + r.missing.length, 0);
   r = P('yarim soat yugurdim, 2 ta non va choy'); assert.deepEqual(r.ex.map((e) => [e.t, e.min]), [['yugurish', 30]]); assert.deepEqual(r.items.map((x) => x.fid), ['non', 'choy']);

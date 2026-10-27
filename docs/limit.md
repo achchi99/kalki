@@ -1,4 +1,4 @@
-# Kunlik kaloriya me'yori (KalkiFit, v51 → v55: mashg'ulot, qo'lda qadam, balans)
+# Kunlik kaloriya me'yori (KalkiFit, v51 → v56: mashg'ulot, qo'lda qadam, «hozirgacha» balans)
 
 Bitta model, bitta funksiya: `S.dayPlan(st, d)` (`assets/kalkifit-core.js`). Halqa, ovqat budjetlari, «Nima yesam ekan?», (i) tushuntirish, plato tahlili, «Haftangiz» — hammasi shundan oladi (`S.dayBalance`, `S.dayLimit`, `S.planSt` uning ustida). Konstantalar bitta joyda — `LIM` (core) va `AD` (`assets/kalkifit-plato.js`).
 
@@ -83,11 +83,28 @@ balans = iste'mol − sarf
 - **Yopilsa** (`qm = 'off'`): qadam faqat ko'rinadi, kredit 0, eski umumiy daraja qoladi. Ish turini keyin Profil'da tanlash mumkin.
 - **Android'da** qo'lda kiritish yo'q (avtomatik; v49 / v52 qoidalari o'zgarmaydi).
 
-**Balans ko'rsatish:**
-- Halqa kartasida: «yedingiz − sarfladingiz = balans». Ostida bitta qator holat: «Bugun ozish tomonda — reja: −550 kkal» yoki «Bugun ortiqcha: +200 kkal». Ayblovchi qizil rang yo'q.
-- Tafsilot qatorlari: tinch holat, kundalik hayot (ish turi), shaxsiy tuzatish, qadam (soni), mashg'ulot (daqiqa), jami sarf. Ularning yig'indisi = sarf (test).
-- Sarf to'liq ko'rsatiladi, yeyish limitiga esa uning 70% i qo'shiladi.
-- Tinch holat va kundalik hayot — kunlik to'liq qiymat (kun ichida qancha o'tganidan qat'i nazar). Qadam va mashg'ulot — hozirgacha kiritilgani.
+**Balans ko'rsatish (v56 — «hozirgacha»):**
+
+Ertalab 08:00 da butun kunlik tinch sarfni ayirish noto'g'ri edi (kun boshida har doim «katta minus», nonushtadan keyin «ortiqcha»). Endi balans **hozirgacha** sarf bilan solishtiriladi (`S.dayBal(st, d, eaten, now)`, `S.dayFrac`):
+
+```
+f        = (soat + daqiqa/60) / 24          — telefon mahalliy vaqti, 00:00 dan chiziqli (o'tgan kun 1, kelajak 0)
+sarfNow  = round((BMR × k + tuzatish) × f) + qadam NET + mashg'ulot NET     — harakat to'liq: u allaqachon bo'lgan
+balans   = yedingiz − sarfNow
+rejaF    = round(reja × f)                    — reja (−500 / +300) ham shu ulushda
+```
+
+Holat (chegara ±100 kkal, `BAL_TOL`):
+- ozish/saqlash: balans > +100 → «Hozircha ortiqcha +N»; ozishda balans < rejaF − 100 → «Ozish tomonda · reja −500»; aks holda «Rejaga mos».
+- vazn olish: balans < rejaF − 100 → «Hozircha kam»; aks holda «Rejaga mos».
+
+Chiziqli ulush — soddalashtirish: tinch sarf kechasi biroz kam, kunduzi biroz ko'p, lekin farq kichik va tushunarli. 23:59 da sarfNow = kunlik to'liq sarf (test).
+
+- Halqa kartasida: «■ Yedingiz» va «Hozirgacha sarf ■» raqamlari, ostida ikki chiziq (uzunligi kattasiga nisbatan), pastda balans belgisi (↓ yashil / ↑ sariq, qizil yo'q) + holat + «›». Halqadagi «kkal qoldi» o'zgarmaydi (u kunlik limitdan).
+- Batafsil: ikki ustun — «Hozirgacha» va «Kun yakunida (taxminan)». Qatorlar: tinch holat, kundalik hayot, tuzatish, qadam, mashg'ulot, jami sarf, yedingiz, balans, reja; ikkala ustunda yig'indi = jami sarf (test). Tarix'dagi o'tgan kunlar — bitta ustun, to'liq kun.
+- Sarf to'liq ko'rsatiladi, yeyish limitiga esa harakatning 70% i qo'shiladi.
+
+**Mashg'ulot kartasi doirasi** — kunlik 60 daqiqaga nisbatan (`EX_GOAL`). Bu bizning tanlov: JSST tavsiyasi haftasiga 150–300 daqiqa o'rtacha faollik (kuniga ~20–45), 60 — «to'liq doira» uchun yumaloq, erishsa bo'ladigan maqsad. Qadam doirasi — `st.stepGoal` (8 000 standart).
 
 **Plato 5-sabab** («Mashg'ulot kunlari ko'proq yeyiladi»): mashg'ulot kunlari (≥ 2) va boshqa to'liq kunlar (≥ 3) bor bo'lsa, iste'mol farqidan limitga qo'shilgan o'rtacha mashg'ulot krediti ayiriladi. Natija ≥ 200 kkal bo'lsa, sabab chiqadi.
 
@@ -120,7 +137,8 @@ Bir qator formula (`1 724 + 689 + 264 − 550 = 2 127 kkal`) va qatorlar: tinch 
 - **7 700 kkal/kg.** An'anaviy yaqinlashish (Hall K. D. 2008 dinamik modelga ko'ra boshlang'ich bosqichda ehtiyotkor) — adaptiv hisob faqat taklif, ±10% bilan cheklangan.
 
 ## Testlar
-- `node tools/test-mashq.js` (`--only mashq`): MET NET, yugurish + qadam ikki marta emas (Android va qo'lda), 0,7 va 800, iPhone tasdiq/rad, balans va tafsilot yig'indisi, matndan mashg'ulot, migratsiya, plato 5-sabab.
-- `node tools/dizayn/test-mashq.mjs` (`--only mashq-ui`): qo'lda qadam → ish turi → kredit, mashg'ulot oynasi, tahrir/surib o'chirish, ogohlantirishlar, balans, bir xil limit, ovoz/matn, Android, RU 360 × 115%.
+- `node tools/test-mashq.js` (`--only mashq`): MET NET, yugurish + qadam ikki marta emas (Android va qo'lda), 0,7 va 800, iPhone tasdiq/rad, balans va tafsilot yig'indisi, v56 «hozirgacha» balans (08:00 / 14:00 / 23:59 / 00:00, o'tgan kun — to'liq, holat chegaralari), matndan mashg'ulot, migratsiya, plato 5-sabab.
+- `node tools/dizayn/test-mashq.mjs` (`--only mashq-ui`): qo'lda qadam → ish turi → kredit, mashg'ulot oynasi, tahrir/surib o'chirish, ogohlantirishlar, kartalar (bo'sh / to'lgan, «+» 34/44 px, bitta mashg'ulot — tur ikonkasi), balans «Ikki chiziq» + ikki ustunli tafsilot, bir xil limit, ovoz/matn, Android, RU 360 × 115%.
+- `node tools/dizayn/test-tahrir.mjs` (`--only tahrir`): ovqatni tahrirlash oynasi (maket 3) — 42 px tugmalar, 4 plitka, segment porsiya, qatorlar, «Saqlash · N kkal» jonli, saqlash, 🗑 + qaytarish, 360 × 115% UZ/RU bir qatorda, panel kontentni yopmaydi; qo'shish oqimi — o'sha komponent.
 - `node tools/test-limit-v51.js` (`--only limit-v51`): (a) Android kredit, (b) iPhone/tasdiqlanmagan → 0, (c) Android ↔ iPhone ±10%, (f) (i) yig'indisi = limit, (d) adaptiv (shartlar, ±10%, 14 kun, chegara, tez ozish), (e) migratsiya.
 - `node tools/dizayn/test-limit-v51.mjs` (`--only limit-v51-ui`): (g) halqa / «Nima yesam» / Haftangiz / (i) bitta limit; migratsiya kartasi; onboarding; adaptiv Ha / Hozir emas / Profil qaytarish; RU 360 px.
