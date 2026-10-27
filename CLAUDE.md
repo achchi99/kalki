@@ -77,7 +77,7 @@ To'liq to'plam avval ~5 soat olardi. Endi ikki rejim (`tools/testlar.js`; slug b
 
 **Qaysi biri:**
 - `matn:`, kichik `design:`, yangi sahifa, bitta kalkulyator/generator → `test:tez`.
-- `tools/site-chrome.js`, `assets/css/typo.css` (va boshqa `assets/css/*`), `sw.js`, `tools/prerender.js`, `assets/tarif-core.js`,
+- `tools/site-chrome.js`, `assets/css/typo.css` (va boshqa `assets/css/*`), `sw.js` (faqat `SW_VERSION` qatori o'zgarsa — umumiy EMAS: `sw`, `pwa` testlari), `tools/prerender.js`, `assets/tarif-core.js`,
   `nav.js`/`lang.js`/`footer-lang.js`/`calc-v2.js` yoki boshqa umumiy modul → `test:toliq` (`test:tez` o'zi ham shunga o'tadi).
 
 **Qoidalar:**
