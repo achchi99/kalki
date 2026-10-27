@@ -1408,7 +1408,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .bl-a{display:block;width:100%;margin-top:12px;padding:0;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit}
 .rz .bl-a .t{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .rz .bl-a .t>span{display:flex;flex-direction:column;min-width:0}.rz .bl-a .t .r{align-items:flex-end;text-align:right}
-.rz .bl-a small{display:flex;align-items:center;gap:6px;font-size:var(--t-s);color:var(--mut);white-space:nowrap}
+.rz .bl-a small{display:flex;align-items:center;gap:6px;font-size:var(--t-s);color:var(--mut);line-height:1.25}.rz .bl-a .t>span{flex:1 1 0}          /* katta shriftda yorliq 2 qatorga o'tadi (kesishmaydi) */
 .rz .bl-a .dt{width:10px;height:10px;border-radius:3px;flex:none}.rz .bl-a .dt.e{background:var(--fill)}.rz .bl-a .dt.s{background:var(--fcbli)}
 .rz .bl-a .t b{font-size:var(--t-pn);font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:2px}
 .rz .bl-a .bars{display:grid;gap:6px;margin-top:12px}
@@ -1477,5 +1477,5 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .pw-row b,.rz .pw-rows .sl-type.pw-row b{flex:1;min-width:0;font-weight:500;color:var(--ink);font-size:var(--t-s)}.rz .pw-row small{flex:none;max-width:45%;color:var(--mut);font-size:var(--t-s);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rz .pw-row .a{flex:none;color:var(--mut2);font-size:var(--t-m);transition:transform .2s}.rz .pw-row[aria-expanded=true] .a{transform:rotate(90deg)}
 .rz .pw-meal{padding:10px 0;border-bottom:1px solid var(--line)}
 .rz .pw-bar{--pb:calc(var(--shb,18px) + env(safe-area-inset-bottom,0px));position:sticky;bottom:calc(-1 * var(--pb));z-index:3;display:flex;gap:10px;margin:14px calc(-1 * var(--shx,20px)) calc(-1 * var(--pb));padding:12px var(--shx,20px) var(--pb);background:var(--card);border-top:1px solid var(--line);box-shadow:0 40px 0 var(--card)}          /* soya (scroll'ga ta'sir qilmaydi) oynaning pastki ichki chetini ham yopadi — ostidan kontent ko'rinmaydi */
-.rz .pw-bar .sl-main{flex:1;min-width:0;height:54px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rz .pw-bar .sl-main span{font-weight:inherit}          /* kontrast: matn bilan bir xil (yirik qalin matn ≥ 3:1) */
+.rz .pw-bar .sl-main{flex:1;min-width:0;height:54px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rz .pw-bar .sl-main span{font-weight:inherit}.rz .pw-bar .sl-main .ct{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}          /* kontrast: matn bilan bir xil (yirik qalin matn ≥ 3:1) */
 .rz .pw-del{flex:none;width:54px;height:54px;border:0;border-radius:18px;background:color-mix(in srgb,var(--danger) 14%,var(--card));color:var(--danger);display:grid;place-items:center}.rz .pw-del svg{width:22px;height:22px}

@@ -32,7 +32,7 @@ try {
   /* 1. veb / iPhone — kartasiz, suv ixcham */
   let p = await mk({ mode: 'none' }); assert.equal(await p.locator('.sl-s:not([data-st=web])').count(), 0, 'v55: vebda faqat qo\'lda kiritish kartasi'); assert.equal(await p.locator('.sl-duo.one #wCard').count(), 1, 'suv bitta ixcham qator'); assert.equal(await p.locator('#wBar').count(), 1); assert.deepEqual(p.errs, []); await p.context().close();
   /* 2. ruxsat BOR — son, progress; qadam st.days[d].steps ga yoziladi */
-  p = await mk({ pl: { granted: true, enabled: true, today: 3456, sensorGranted: true }, prefs: { qa: 'on' } }); let c = await card(p); assert.equal(c.st, 'on'); assert.match(c.text, /^Qadam (Telefon sensori )?👟 3 456 \/ [\d ]+$/, 'v56: manba belgisi + doira + son'); assert.ok(c.side && c.duo, 'v55: mashg\'ulot bilan yonma-yon'); assert.ok(!c.out.length && !c.hs);
+  p = await mk({ pl: { granted: true, enabled: true, today: 3456, sensorGranted: true }, prefs: { qa: 'on' } }); let c = await card(p); assert.equal(c.st, 'on'); assert.match(c.text, /^Qadam 👟 3 456 \/ [\d ]+( Telefon sensori)?$/, 'v56: manba belgisi + doira + son'); assert.ok(c.side && c.duo, 'v55: mashg\'ulot bilan yonma-yon'); assert.ok(!c.out.length && !c.hs);
   assert.equal((await stOf(p)).days[TODAY].steps, 3456, 'st.days[bugun].steps yozildi (plato tahlili uchun)'); await p.context().close();
   ok('Ruxsat bor: «' + c.text + '» suv yonida, qadam st.days[d].steps ga yozildi; veb — kartasiz, suv ixcham');
   /* 3. ruxsat YO'Q (hali so'ralmagan) — «Qadamni yoqish»; bosilsa ruxsat oynasi */

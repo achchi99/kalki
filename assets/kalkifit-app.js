@@ -2318,7 +2318,7 @@
     var date = fd.date, ids = tplToItems(t.items).map(function (it) { return addItem(date, it).id; }); fd.added[key] = ids; commit(); vib(); refreshRes();
     addedToast(t.name, date, ids, key); afterWater(); jokeAfter('food');
   }
-  function ctaHtml(k) { var t = ctaText(k), i = t.indexOf(' · '); return i > 0 ? esc(t.slice(0, i)) + '<span> · ' + esc(t.slice(i + 3)) + '</span>' : esc(t); }          // «Saqlash <span>· 665 kkal</span>»
+  function ctaHtml(k) { var t = ctaText(k), i = t.indexOf(' · '); return i > 0 ? '<span class="ct">' + esc(t.slice(0, i)) + '<span> · ' + esc(t.slice(i + 3)) + '</span></span>' : esc(t); }          // bitta flex bola — matn bir butun (o'quvchi va innerText uchun)          // «Saqlash <span>· 665 kkal</span>»
   function ctaText(k) { return fd.editId != null ? T('pCtaE', { k: fmt(k) }) : (rHits().length ? T('pCtaForce', { k: fmt(k) }) : T('pCta_' + fd.meal)); }          // «Tushlikka qo'shish» — kkal katta raqamda ko'rinib turadi
   function portionHtml() {
     var f = fd.food, fav = f && st.favs.indexOf(f.id) > -1;
