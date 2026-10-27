@@ -3,6 +3,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright';
 import { track } from '../test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); const res = [];
+const SHOTDIR = process.env.SKRINSHOT_DIR || path.join(ROOT, 'docs/dizayn-skrinshot');          // runner: vaqtinchalik papka (repo o'zgarmaydi)
 const T = (ok, name, info = '') => { res.push(ok); console.log((ok ? 'OK   ' : 'YIQILDI ') + name + (info ? ' — ' + info : '')); };
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p.endsWith('/')) p += 'index'; const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
@@ -54,14 +55,14 @@ await c.close();
 // RU matni
 c = await b.newContext({ viewport: { width: 390, height: 800 } }); p = await c.newPage(); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + '/ru/kredit-kalkulyator', { waitUntil: 'networkidle' }); await p.waitForTimeout(2500);   // sw-boot birinchi marta sahifani qayta yuklashi mumkin
 await p.evaluate(() => { const e = new Event('beforeinstallprompt', { cancelable: true }); e.prompt = () => {}; window.dispatchEvent(e); }); await p.waitForTimeout(200);
-T(/Установить на телефон/.test(await p.locator('#pwaBtn').innerText()), 'RU: "Установить на телефон"'); await p.screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/pwa-ru-footer-390.png'), clip: { x: 0, y: 0, width: 390, height: 10 } }).catch(() => {});
-await p.locator('#sf2').scrollIntoViewIfNeeded(); await p.locator('#pwaInst').screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/pwa-ru-tugma.png') }); await c.close();
+T(/Установить на телефон/.test(await p.locator('#pwaBtn').innerText()), 'RU: "Установить на телефон"'); await p.screenshot({ path: path.join(SHOTDIR, 'pwa-ru-footer-390.png'), clip: { x: 0, y: 0, width: 390, height: 10 } }).catch(() => {});
+await p.locator('#sf2').scrollIntoViewIfNeeded(); await p.locator('#pwaInst').screenshot({ path: path.join(SHOTDIR, 'pwa-ru-tugma.png') }); await c.close();
 // iPhone Safari: ko'rsatma
 c = await b.newContext({ viewport: { width: 390, height: 800 }, userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1' }); p = await c.newPage();
 await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + '/kredit-kalkulyator', { waitUntil: 'networkidle' }); await p.waitForTimeout(2500);
 const hint = await p.locator('#pwaInst .pwa-ios').innerText().catch(() => ''); T(/Ulashish.*Bosh ekranga qo'shish/.test(hint) && !(await p.locator('#pwaBtn').isVisible()), 'iPhone Safari: "Ulashish → Bosh ekranga qo\'shish" ko\'rsatmasi, tugma yo\'q', hint);
 await p.evaluate(() => { document.documentElement.lang = 'ru'; }); await p.waitForTimeout(200); T(/Поделиться/.test(await p.locator('#pwaInst .pwa-ios').innerText()), 'iPhone: RU ko\'rsatma');
-await p.locator('#pwaInst').scrollIntoViewIfNeeded(); await p.locator('#pwaInst').screenshot({ path: path.join(ROOT, 'docs/dizayn-skrinshot/pwa-ios-korsatma.png') }); await c.close();
+await p.locator('#pwaInst').scrollIntoViewIfNeeded(); await p.locator('#pwaInst').screenshot({ path: path.join(SHOTDIR, 'pwa-ios-korsatma.png') }); await c.close();
 // standalone: hech narsa
 c = await b.newContext({ viewport: { width: 390, height: 800 } }); p = await c.newPage(); await p.addInitScript(() => { const mm = window.matchMedia.bind(window); window.matchMedia = (q) => (/display-mode: standalone/.test(q) ? { matches: true, addListener() {}, addEventListener() {}, removeEventListener() {} } : mm(q)); });
 await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|t\.me/, (r) => r.abort()); await p.goto(BASE + '/', { waitUntil: 'networkidle' }); await p.waitForTimeout(2500); await p.evaluate(() => { const e = new Event('beforeinstallprompt', { cancelable: true }); e.prompt = () => {}; window.dispatchEvent(e); }); await p.waitForTimeout(200);

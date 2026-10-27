@@ -50,7 +50,7 @@ async function open(url, { ua = 'android', scheme = 'light', w = 360, h = 800, c
   await c.addInitScript((o) => { try { localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); if (o.seed) localStorage.setItem('kalki_fit', JSON.stringify(o.seed)); if (o.cap) window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android' }; } catch (e) {} }, { seed, cap });
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js|\/api\//, (r) => r.abort()); await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(500); return p; }
 const T = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
-const axeRun = async (p) => { await p.evaluate(AXE); return p.evaluate(async () => { const x = await axe.run(document.body, { runOnly: { type: 'rule', values: ['color-contrast', 'link-name', 'button-name'] } }); return x.violations.flatMap((v) => v.nodes.map((nd) => v.id + ' ' + nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 120) : ''))); }); };
+const axeRun = async (p) => { await p.evaluate(AXE); return p.evaluate(async () => { const x = await axe.run(document.body, { resultTypes: ['violations'], runOnly: { type: 'rule', values: ['color-contrast', 'link-name', 'button-name'] } }); return x.violations.flatMap((v) => v.nodes.map((nd) => v.id + ' ' + nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 120) : ''))); }); };
 const MB = (V.size / 1048576).toFixed(1).replace('.', ',') + ' MB';
 try {
   /* Android */

@@ -23,6 +23,11 @@ const { DEFAULT_ABBR } = require('./translit');
 
 const ROOT = path.resolve(__dirname, '..');
 const FAST = process.argv.indexOf('--fast') > -1;
+/* bo'laklash (tools/testlar.js, TEST_BOLAK=i/n): bandlar mustaqil; render keshini baham ko'radigan 3/13/22 — bitta «render» bo'limi.
+   «24. tools/ hech nima yozmadi» HAR bo'lakda yuradi (o'z bo'lagidagi tool chaqiruvlari repoga yozmaganini tekshiradi).
+   VAQT — bandlar vaqti (soniya, oxirgi o'lchov: hisobot oxiridagi «bo'limlar vaqti» qatori). */
+const VAQT = { '1': 1, '2': 1, 'render': 1, '4': 1, '5': 1, '6': 1, '7': 1, '8': 1, '9': 1, '10': 1, '11': 1, '12': 1, '21': 1, 'ctr': 1, '25': 1, '26': 1, '27': 1, '28': 1, '29': 1, '30': 1, '31': 1, '32': 1, '34': 1, '35': 1, '36': 1, '37': 1, '38': 1, '39': 1, '40': 1 };
+const B = require('./bolak.cjs').bolim(VAQT);
 const LAT = /[a-zA-Z]/, CYR = /[Ѐ-ӿ]/;
 
 const results = [];
@@ -67,7 +72,7 @@ function runTool(args) {
   const fpBefore = fingerprint();
 
   /* ---------- 1. Matn tozaligi ---------- */
-  {
+  if (B('1')) {
     const esc = [], mixed = [];
     // Matn tozaligi SPECIAL_PAGES ga ham tegishli: ular ham foydalanuvchiga
     // ko'rinadi, faqat sayt navigatsiyasidan tashqarida turadi.
@@ -114,7 +119,7 @@ function runTool(args) {
   }
 
   /* ---------- 2. GA teglari, h1, footer ---------- */
-  {
+  if (B('2')) {
     const ga = [], noFoot = [];
     for (const f of list) {
       const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -158,7 +163,7 @@ function runTool(args) {
   }
 
   /* ---------- 3. Bo'sh h1 (render qilingan holatda) ---------- */
-  {
+  if (B('render')) {
     const bad = [];
     for (const f of list) {
       const { dom } = await getUzRender(f);
@@ -169,14 +174,14 @@ function runTool(args) {
   }
 
   /* ---------- 4. sw.js ---------- */
-  {
+  if (B('4')) {
     const r = runTool(['verify-sw.js']);
     const fails = (r.out.match(/^FAIL .*/gm) || []);
     add(r.code === 0, '6. sw.js statik tahlili', fails.join(' | '));
   }
 
   /* ---------- 5. sw versiyasi avtomatik va barqaror ---------- */
-  {
+  if (B('5')) {
     const before = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
     const r1 = runTool(['sw-version.js']);
     const r2 = runTool(['sw-version.js']);
@@ -187,14 +192,14 @@ function runTool(args) {
   }
 
   /* ---------- 6. Hamkorlar ---------- */
-  {
+  if (B('6')) {
     const r = runTool(['check-partners.js', '--no-net']);
     const errs = (r.out.match(/^   !! .*/gm) || []).map((x) => x.trim());
     add(r.code === 0, '8. check-partners (fallback qamrovi, note_verified, zakot taqiqi)', errs.join(' | '));
   }
 
   /* ---------- 7. og:image ---------- */
-  {
+  if (B('7')) {
     const ogDir = path.join(ROOT, 'assets', 'og');
     const imgs = fs.existsSync(ogDir) ? fs.readdirSync(ogDir).filter((f) => f.endsWith('.png')) : [];
     const big = imgs.filter((f) => fs.statSync(path.join(ogDir, f)).size > 300 * 1024);
@@ -209,7 +214,7 @@ function runTool(args) {
   }
 
   /* ---------- 8. Hamkor bloki: prerenderda muzlamagan ---------- */
-  {
+  if (B('8')) {
     const bad = [];
     for (const f of list) {
       const s = fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -221,7 +226,7 @@ function runTool(args) {
 
   /* ---------- 9. "Oylik ko'rsatkichlar" bloki hamkorlik sahifasidan olib tashlangan ----------
      Raqamlar (METRICS ma'lumoti) hamkorlik.html ichida saqlanadi — faqat sahifada ko'rsatilmaydi. */
-  {
+  if (B('9')) {
     const orig = fs.readFileSync(path.join(ROOT, 'hamkorlik.html'), 'utf8'), ru = fs.readFileSync(path.join(ROOT, 'ru/hamkorlik.html'), 'utf8');
     const { dom: d1 } = await loadHtml(orig, 'hamkorlik.html', { shims: true });
     add(!d1.window.document.querySelector('.stat-box') && !d1.window.document.querySelector('#metricsSlot'), '12. "Oylik ko\'rsatkichlar" bloki sahifada yo\'q (UZ)');
@@ -234,7 +239,7 @@ function runTool(args) {
   }
 
   /* ---------- 10. Prerender barqarorligi va diskdagi holat ---------- */
-  if (!FAST) {
+  if (!B('10')) { /* boshqa bo'lakda */ } else if (!FAST) {
     const r = runTool(['prerender-twice.js', '--all']);
     add(r.code === 0 && /barqaror/.test(r.out), '15. prerender ikki yugurishda bayt-bayt bir xil',
       (r.out.match(/^FARQ .*/gm) || []).join(' | '));
@@ -248,7 +253,7 @@ function runTool(args) {
   }
 
   /* ---------- 11. og teglari va rasmlari ---------- */
-  {
+  if (B('11')) {
     const t = runTool(['og-tags.js']);
     add(t.code === 0, '16. og teglari sahifalarda dolzarb', (t.out.match(/eskirgan: [1-9]\d*/) || [''])[0]);
     const i = runTool(['og-images.js']);
@@ -262,7 +267,7 @@ function runTool(args) {
      ishga tushiradi: har qanday sahifa kanonikdan farq qilsa — masalan
      birov qo'lda header'ga tegib qo'ysa — shu yerda ushlanadi. Aynan shu
      naqsh (og-tags.js) allaqachon 16-bandda ishlatilgan. */
-  {
+  if (B('12')) {
     const r = runTool(['site-chrome.js']);
     add(r.code === 0, '19. barcha sahifada sarlavha kanonik variant bilan bir xil',
       (r.out.match(/^ESKI .*/gm) || []).concat(r.out.match(/^  .*/gm) || []).slice(0, 6).join(' | '));
@@ -274,7 +279,7 @@ function runTool(args) {
      bo'lishi, UZ tanlangach esa data-lf-uz ga teng bo'lishi kerak.
      Bitta elementning ham eskirib qolishi footerda "Maqolalar" kabi
      o'zbekcha so'z RU sahifada turib qolishiga olib kelardi. */
-  {
+  if (B.yana('render')) {
     const bad = [];
     for (const f of list) {
       // RU_PAGES'dagi sahifalarda til-tugma endi joyida bosmaydi, /ru/...ga
@@ -314,7 +319,7 @@ function runTool(args) {
      (uz-Cyrl juftligi bilan birga, band 28'da to'liq tekshiriladi). Qolgan
      tekshiruvlar (data-ru-page, ru lang, hreflang=ru/x-default, canonical)
      ular uchun ham to'g'ri qoladi, shu sababli chetlanmaydi. */
-  {
+  if (B('21')) {
     const bad = [];
     for (const f of RU_PAGES) {
       const ruFile = path.join(ROOT, 'ru', f);
@@ -359,7 +364,7 @@ function runTool(args) {
      keyingi holatni ikki yo'l bilan tekshiradi: (a) <html lang> ru'da
      qolganmi, (b) <h1>/<main>dagi matnda kamida bitta kirill harfi bormi
      (o'zbekcha lotin yozuvida kirill umuman bo'lmaydi). */
-  {
+  if (B.yana('render')) {
     const bad = [];
     for (const f of RU_PAGES) {
       const ruFile = path.join(ROOT, 'ru', f);
@@ -393,7 +398,7 @@ function runTool(args) {
      ko'pincha ulardan birini indeksdan chetlab qo'yadi. index.html
      brend bosh sahifa sifatida chegaradan ozroq chiqishi mumkin, shu
      sabab uzunlik tekshiruvidan chetlanadi (lekin noyoblikka kiradi). */
-  {
+  if (B('ctr')) {
     const bad = [];
     const titles = new Map(), descs = new Map();
     for (const f of list) {
@@ -439,7 +444,7 @@ function runTool(args) {
      harfi bor-yo'qligini tekshiradi — agar yo'q bo'lsa va matn UZ-safe
      ro'yxatidan (brend nomi, PDF/Word/Excel, raqamlar) tashqari bo'lsa,
      bu UZ matn qoldig'i hisoblanadi. */
-  {
+  if (B('25')) {
     const { JSDOM: JSDOM25 } = require('jsdom');
     function isUzSafe(s) {
       if (!s) return true;
@@ -517,7 +522,7 @@ function runTool(args) {
      sitemap'ga qo'shilishni unutib qolgan edi. Bu band har bir joriy
      UZ sahifa (sitePages()) va har bir RU_PAGES a'zosining RU jufti
      sitemap.xml'da <loc> sifatida bor-yo'qligini tekshiradi. */
-  {
+  if (B('26')) {
     const sitemapPath = path.join(ROOT, 'sitemap.xml');
     const sm = fs.readFileSync(sitemapPath, 'utf8');
     const urls = new Set([...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]));
@@ -550,7 +555,7 @@ function runTool(args) {
      yaxlitlashi. manba_turar_stavka/manba_noturar_stavka null bo'lgan
      qatorlar (manba faqat koeffitsient bergan, yakuniy qiymat bermagan)
      o'tkazib yuboriladi — solishtiradigan narsa yo'q. */
-  {
+  if (B('27')) {
     const ijaraPath = path.join(ROOT, 'data', 'ijara-stavkalari.json');
     const bad = [];
     if (!fs.existsSync(ijaraPath)) {
@@ -598,7 +603,7 @@ function runTool(args) {
      uchun uz manba, ru chiqish va cyr chiqishning barchasida hreflang
      to'plami bir xil (uz-Latn/uz-Cyrl/ru/x-default, 3 emas — 4 teg) va
      canonical/data-cyr-page izchilligini tekshiradi. */
-  {
+  if (B('28')) {
     const bad = [];
     for (const f of CYR_PAGES) {
       const cyrFile = path.join(ROOT, 'cyr', f);
@@ -670,7 +675,7 @@ function runTool(args) {
      (pastda, sababi bilan). Yangi sahifa qo'shilganda bu band SHU turdagi
      bug'ni ushlab qolish uchun mo'ljallangan — "band bo'lmasa, 13-chisi ham
      paydo bo'ladi" tamoyili bilan. */
-  {
+  if (B('29')) {
     // Ikkala tan olingan tuzatish naqshi: (A) qayta hisoblash (calc...(),
     // .click() orqali bosh tugmani bosish) YOKI (B) natijani ataylab
     // tozalash (hideResult/clearResult/resetResult — masalan aliment va
@@ -820,7 +825,7 @@ function runTool(args) {
      ishlaydigan xatti-harakatni tekshiradi, va kimdir shareState() ni
      olib tashlasa yoki yangi shaxsiy maydon cfg.personal sahifaga
      share:true bilan qo'shsa, band buni ushlaydi. */
-  {
+  if (B('30')) {
     const personalPages = pages().filter((f) => {
       if (!fs.existsSync(path.join(ROOT, f))) return false;
       const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -866,7 +871,7 @@ function runTool(args) {
 
   /* ---------- 31. Avtomobil rasmiylashtirish — dvigatel, konstanta
      sinxronligi, taqiqlangan summalar ---------- */
-  {
+  if (B('31')) {
     const bad = [];
 
     // (a) tools/test-avto.js barcha fixture'lar
@@ -926,7 +931,7 @@ function runTool(args) {
   }
 
   /* ---------- 32. Hujjatlar zanjiri — ziddiyat qoidalari (sof funksiyalar) ---------- */
-  {
+  if (B('32')) {
     const t = runTool(['test-doc-checks.js']);
     add(t.code === 0, '32. assets/doc-checks.js — ziddiyat qoidalari testlari',
       t.code === 0 ? '' : t.out.split('\n').filter((l) => l.indexOf('FAIL') === 0).slice(0, 6).join(' | '));
@@ -937,7 +942,7 @@ function runTool(args) {
 
   /* ---------- 34. Matn tozaligi (OGOHLANTIRISH): lotin/kirill aralashmasi, /cyr/ translit qoldiqlari ----------
      tools/matn-skaner.mjs; istisnolar tools/matn-istisno.json da. Kritik emas — yiqilsa faqat OGOH chiqadi. */
-  {
+  if (B('34')) {
     const t = runTool([path.join(__dirname, 'matn-skaner.mjs'), '--json']);
     let rows = null; try { rows = JSON.parse(t.out); } catch (e) { /* skaner o'zi yiqildi */ }
     const pages = rows ? [...new Set(rows.map((r) => r.sahifa))] : [];
@@ -946,7 +951,7 @@ function runTool(args) {
   }
 
   /* ---------- 35. Ichki fayllar saytdan tarqatilmaydi (Pages repo ildizini to'liq tarqatadi) ---------- */
-  {
+  if (B('35')) {
     let ok = true, why = [];
     try {
       const mw = fs.readFileSync(path.join(ROOT, 'functions', '_middleware.js'), 'utf8');
@@ -973,7 +978,7 @@ function runTool(args) {
   }
 
   /* ---------- 36. Haqiqiy 404 sahifa + sitemap URL'lari fayl topadi + ichki havolalar yechiladi ---------- */
-  {
+  if (B('36')) {
     try {
       execFileSync(process.execPath, [path.join(__dirname, 'verify-404.js')], { stdio: 'pipe' });
       add(true, '36. 404.html (noindex, absolyut yo\'llar), sitemap URL\'lari 200, noma\'lum yo\'llar 404, ichki havolalar yaxlit');
@@ -984,7 +989,7 @@ function runTool(args) {
   }
 
   /* ---------- 37. Elektr pog'onali tarifi: hisob qo'lda qiymatlarga teng, eski tarif yo'q, meta/manba/sana mos ---------- */
-  {
+  if (B('37')) {
     const why = [];
     try { execFileSync(process.execPath, [path.join(__dirname, 'test-elektr-tarif.js')], { stdio: 'pipe' }); }
     catch (e) { why.push('tools/test-elektr-tarif.js yiqildi'); }
@@ -1023,7 +1028,7 @@ function runTool(args) {
   }
 
   /* ---------- 38. Ishonch matnlari: "faqat brauzerda" / "bepul" da'volari kodga mos ---------- */
-  {
+  if (B('38')) {
     const why = [];
     try {
       const rd = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -1110,7 +1115,7 @@ function runTool(args) {
   }
 
   /* ---------- 39. Gaz pog'onali tarifi: raqamlar faqat gaz-tarif.js da, sahifa/FAQ shundan oladi, manba+sana bir marta, saytga ulangan ---------- */
-  {
+  if (B('39')) {
     const why = [];
     try {
       const rd = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
@@ -1169,7 +1174,7 @@ function runTool(args) {
   }
 
   /* ---------- 40. Oy oxiri prognozi (assets/prognoz.js): tarif raqami yo'q, serverga ketmaydi, sahifalar/FAQ/maxfiylik/sw ulangan ---------- */
-  {
+  if (B('40')) {
     const why = [];
     try {
       const rd = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');

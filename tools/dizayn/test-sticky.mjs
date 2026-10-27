@@ -12,7 +12,8 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
   r.writeHead(200, { 'Content-Type': { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.json': 'application/json' }[path.extname(f)] || 'application/octet-stream' }); r.end(fs.readFileSync(f)); });
 await new Promise((ok) => srv.listen(0, ok)); const PORT = srv.address().port;
 const b = track(await chromium.launch());
-const out = (n) => path.join(ROOT, 'docs/dizayn-skrinshot', n);
+const SHOTDIR = process.env.SKRINSHOT_DIR || path.join(ROOT, 'docs/dizayn-skrinshot');          // runner: vaqtinchalik papka (repo o'zgarmaydi)
+const out = (n) => path.join(SHOTDIR, n);
 const PAGES = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/pages.json'), 'utf8'));
 const V2 = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/dizayn/v2-pages.json'), 'utf8')).map((f) => f.replace(/\.html$/, ''));
 const CALCS = PAGES.filter((p) => p.tur === 'kalkulyator' && V2.includes(p.slug)).map((p) => p.slug).filter((sl) => !process.argv[2] || process.argv.slice(2).includes(sl));

@@ -17,7 +17,7 @@ for (const slug of SL) { const probs = [];
     if (m.sw > m.iw) probs.push(`${w}px: toshdi`); if (m.scripts) probs.push('ijro etiladigan skript bor'); if (!m.v2) probs.push('body.v2 yo\'q'); if (errs.length) probs.push(`${w}: konsol ${errs[0]}`);
     if (w < 900) { const menu = p.locator('#topmenu'); const before = await menu.isVisible(); await p.locator('#navtoggle').click(); const open = await menu.isVisible(); await p.locator('#navtoggle').click(); const closed = !(await menu.isVisible());
       if (before || !open || !closed) probs.push(`${w}px: mobil menyu (yopiq=${!before}, ochiq=${open}, qayta yopildi=${closed})`); }
-    if (w === 390 || w === 1280) { await p.evaluate(AXE); const v = await p.evaluate(async () => (await axe.run(document, { runOnly: { type: 'rule', values: ['color-contrast'] } })).violations.flatMap((x) => x.nodes.map((n) => n.target.join(' ').slice(0, 60)))); if (v.length) probs.push(`${w}px: kontrast ${v.length} (${v[0]})`); }
+    if (w === 390 || w === 1280) { await p.evaluate(AXE); const v = await p.evaluate(async () => (await axe.run(document, { resultTypes: ['violations'], runOnly: { type: 'rule', values: ['color-contrast'] } })).violations.flatMap((x) => x.nodes.map((n) => n.target.join(' ').slice(0, 60)))); if (v.length) probs.push(`${w}px: kontrast ${v.length} (${v[0]})`); }
     await c.close(); }
   console.log((probs.length ? 'MUAMMO ' : 'OK     ') + 'cyr/' + slug + (probs.length ? ' — ' + probs.join(' | ') : '')); bad += probs.length; }
 await b.close(); srv.close(); process.exit(bad ? 1 : 0);
