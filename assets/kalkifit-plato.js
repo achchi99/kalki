@@ -6,7 +6,7 @@
  * Raqamlar va manbalar: docs/plato.md.   window.KalkiPlato / require() */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiPlato = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var PROT_SH = 0.85, ALPHA = 0.2, BETA = 0.08, KSIG = 2, LOCLIP = 0.3, SMIN = 0.3, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
+  var PROT_SH = 0.85, ALPHA = 0.2, BETA = 0.08, KSIG = 2, LOCLIP = 0.3, SMIN = 0.3, KCAL_KG = 7700, WIN = 28, WALK_K = 0.5, STRIDE = 0.415, PROT = 1.2, WKEND = 300, EXEAT = 200, LOWDAY = 0.6, SMALL_DEF = 250, FAST = 0.01;
   var LOSE = { lose: 1, slow: 1 };
   function r1(x) { return Math.round(x * 10) / 10; }
   function num(x) { var n = Number(x); return isFinite(n) ? n : 0; }
@@ -68,7 +68,7 @@
     var used = Math.max(0, D.daysBetween(since, today));
     var wIn = st.weights.filter(function (w) { return w.d >= start && w.d <= today; }), wSpan = wIn.length > 1 ? D.daysBetween(wIn[0].d, wIn[wIn.length - 1].d) : 0;
     var days = [], d; for (d = start; d <= end; d = D.addDays(d, 1)) days.push(d);
-    var rows = days.map(function (d) { var x = S.dayOf(st, d), f = (x && x.food) || [], t = S.sumEntries(f), m = {}; f.forEach(function (e) { m[e.meal] = (m[e.meal] || 0) + (e.kcal || 0); }); return { d: d, n: f.length, k: t.kcal, p: t.p, m: m, steps: (num(x && x.steps) > S.STEPS_SANE ? 0 : num(x && x.steps)), wd: S.weekdayIdx(d) }; });
+    var rows = days.map(function (d) { var x = S.dayOf(st, d), f = (x && x.food) || [], t = S.sumEntries(f), m = {}; f.forEach(function (e) { m[e.meal] = (m[e.meal] || 0) + (e.kcal || 0); }); return { d: d, n: f.length, k: t.kcal, p: t.p, m: m, steps: (num(x && x.steps) > S.STEPS_SANE ? 0 : num(x && x.steps)), wd: S.weekdayIdx(d), ex: x && Array.isArray(x.ex) ? x.ex.length : 0, exc: x && x.ex && x.ex.length && S.dayPlan ? S.dayPlan(st, d).exCredit : 0 }; });
     var logged = rows.filter(function (r) { return r.n > 0; });
     var miss = { days: Math.max(0, 21 - used), weights: Math.max(0, 3 - wIn.length), span: wIn.length >= 2 ? Math.max(0, 14 - wSpan) : 14, food: Math.max(0, 10 - logged.length) };
     if (miss.days || miss.weights || miss.span || miss.food) { res.state = 'need'; res.need = miss; res.needDays = Math.max(miss.days, miss.food, miss.weights ? 0 : miss.span); return res; }
@@ -110,6 +110,10 @@
     /* 3) dam olish kunlari (shanba–yakshanba) ish kunlaridan ≥ 300 kkal ko'p */
     var we = full.filter(function (r) { return r.wd >= 5; }), wk = full.filter(function (r) { return r.wd < 5; });
     if (we.length >= 2 && wk.length >= 4) { var dw = Math.round(avg(we.map(function (r) { return r.k; })) - avg(wk.map(function (r) { return r.k; }))); if (dw >= WKEND) R.push({ k: 'damolish', kcal: Math.round(dw * 2 / 7), diff: dw }); }
+    /* 5) v55: mashg'ulot kunlari ko'proq yeyiladi — mashg'ulot kunlari (≥ 2) iste'moli boshqa to'liq kunlardan (≥ 3) farqi limitga qo'shilgan mashg'ulot kreditidan ≥ 200 kkal ortiq («mukofot» ovqat; Riou 2015 — kompensatsiya) */
+    var exD = full.filter(function (r) { return r.ex > 0; }), noD = full.filter(function (r) { return !r.ex; });
+    if (exD.length >= 2 && noD.length >= 3) { var de = Math.round(avg(exD.map(function (r) { return r.k; })) - avg(noD.map(function (r) { return r.k; }))), ce = Math.round(avg(exD.map(function (r) { return r.exc || 0; }))), sur = de - ce;
+      if (sur >= EXEAT) R.push({ k: 'mashq', kcal: Math.round(sur * exD.length / WIN), diff: de, cred: ce, n: exD.length }); }
     /* 4) oqsil kam — maqsad Bugun kartasidagi bilan BIR XIL (S.protein: 1,6 / 1,2 g/kg, BMI > 27 da tavsiya vazni); o'rtacha maqsadning 85% idan past bo'lsa. kkal emas, «58 / 110 g» */
     var need = S.protein(p, cur).g, pa = Math.round(avg(full.map(function (r) { return r.p; })));
     if (full.length >= 5 && pa < need * PROT_SH) R.push({ k: 'oqsil', g: pa, need: need });
@@ -152,7 +156,7 @@
     return { actual: Math.round(actual), formula: Math.round(formula), diff: diff, delta: delta, corr: corrNew, limitOld: limOld, limitNew: limNew, days: rows.length, full: full.length };
   }
   /* «Shu hafta sinab ko'ring» — sabablarga mos 2–3 ish; hech qachon «kamroq yeng» birinchi emas (umuman yo'q) */
-  var TRY = { qadam: 'walk', yozilmagan: 'log', damolish: 'wkend', oqsil: 'prot', defitsit: 'goal', porsiya: 'gram' };
+  var TRY = { qadam: 'walk', yozilmagan: 'log', damolish: 'wkend', oqsil: 'prot', defitsit: 'goal', porsiya: 'gram', mashq: 'exeat' };
   function tries(reasons) {
     var out = []; (reasons || []).forEach(function (r) { var k = TRY[r.k]; if (k && out.indexOf(k) < 0) out.push(k === 'log' && r.m ? 'log_' + r.m : k); });
     ['walk', 'weigh', 'sleep'].forEach(function (k) { if (out.length < 3 && out.indexOf(k) < 0) out.push(k); });
@@ -173,6 +177,7 @@
       plRs: 'Topilgan sabablar', plTry: "Shu hafta sinab ko'ring", plRem: 'Eslatib turilsin', plRemOn: 'Eslatish yoqildi', plRemOff: "Eslatishni o'chirish", plFoot: "Hisob taxminiy: 1 kg yog' ≈ 7 700 kkal. Bu tibbiy maslahat emas.", plSrc: 'Manbalar',
       plR_qadam: 'Kamroq yura boshladingiz', plR_qadamP: "Boshida kuniga {a} qadam edi, so'nggi 2 haftada {b}. Dietada organizm sezdirmasdan harakatni kamaytiradi — platoning eng ko'p uchraydigan sababi shu.", plKd: '≈ −{k} kkal/kun',
       plR_yoz_b: 'Nonushta {n} kunda yozilmagan', plR_yoz_l: 'Tushlik {n} kunda yozilmagan', plR_yoz_d: 'Kechki ovqat {n} kunda yozilmagan', plR_yozLow: "{n} kunda yozuv kam", plR_yozP: 'Yozilmagan ovqat ham kaloriya. Kechki ovqat odatda kunning eng kattasi.', plR_yozPLow: "Kun jami limitning 60% idan past bo'lgan kunlar — to'liq yozilmagan bo'lishi mumkin.", plR_yozX: ' Yana {n} kunda kun jami limitning 60% idan past.', plDays: '{n} kun / {of}',
+      plR_mashq: "Mashg'ulot kunlari ko'proq yeyiladi", plR_mashqP: "Mashg'ulot kunlari o'rtacha {d} kkal ko'p yeyilgan, limitga esa {c} kkal qo'shilgan. Sport ishtahani oshiradi — bu tabiiy.", plT_exeat: "Mashg'ulotdan keyin ham limitga qarang — yoqilganning 70% i qo'shiladi",
       plR_damolish: "Dam olish kunlari ko'proq", plR_damolishP: "Shanba–yakshanba kuniga o'rtacha {d} kkal ko'p yeyilgan. Ikki kun haftaning foydasini yeb qo'yishi mumkin.",
       plR_oqsil: "Oqsil kam: o'rtacha {g} g", plR_oqsilP: 'Sizga ~{n} g tavsiya. Oqsil to\'q tutadi va hazmiga ko\'proq kaloriya ketadi.', plGr: '{g} / {n} g',
       plR_porsiya: "Porsiyalar taxminan yozilgan bo'lishi mumkin", plR_porsiyaP: "Yozuvlarga ko'ra vazn tezroq tushishi kerak edi. Ko'pincha sabab — ko'z bilan chamalangan porsiya, ovqatga qo'shilgan yog' va shirin ichimliklar. Bu hammada bo'ladi.",
@@ -198,6 +203,7 @@
       plRs: 'Найденные причины', plTry: 'Попробуйте на этой неделе', plRem: 'Напоминать', plRemOn: 'Напоминание включено', plRemOff: 'Выключить напоминание', plFoot: 'Расчёт примерный: 1 кг жира ≈ 7 700 ккал. Это не медицинский совет.', plSrc: 'Источники',
       plR_qadam: 'Вы стали меньше ходить', plR_qadamP: 'В начале было {a} шагов в день, за последние 2 недели — {b}. На диете организм незаметно снижает движение — это самая частая причина плато.', plKd: '≈ −{k} ккал/день',
       plR_yoz_b: 'Завтрак не записан {n} дн.', plR_yoz_l: 'Обед не записан {n} дн.', plR_yoz_d: 'Ужин не записан {n} дн.', plR_yozLow: 'Мало записей в {n} дн.', plR_yozP: 'Незаписанная еда тоже калории. Ужин обычно самый большой приём пищи.', plR_yozPLow: 'Дни, когда итог ниже 60% лимита, — возможно, записано не всё.', plR_yozX: ' Ещё {n} дн. итог ниже 60% лимита.', plDays: '{n} дн. / {of}',
+      plR_mashq: 'В дни тренировок едите больше', plR_mashqP: 'В дни тренировок в среднем на {d} ккал больше, а к лимиту добавлено {c} ккал. Спорт разжигает аппетит — это естественно.', plT_exeat: 'И после тренировки смотрите на лимит — к нему добавляется 70% сожжённого',
       plR_damolish: 'В выходные больше', plR_damolishP: 'В субботу–воскресенье в среднем на {d} ккал в день больше. Два дня могут съесть пользу всей недели.',
       plR_oqsil: 'Мало белка: в среднем {g} г', plR_oqsilP: 'Вам рекомендуется ~{n} г. Белок дольше насыщает, и на его усвоение уходит больше калорий.', plGr: '{g} / {n} г',
       plR_porsiya: 'Порции могли быть записаны примерно', plR_porsiyaP: 'По записям вес должен был уходить быстрее. Чаще всего причина — порции «на глаз», масло в блюдах и сладкие напитки. Так бывает у всех.',

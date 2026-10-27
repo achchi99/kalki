@@ -70,7 +70,7 @@ try {
   await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(500); assert.equal(await p.locator('#rzSheet [data-act=qafix], #spNum').count(), 0, 'qo\'lda kiritish yo\'q (faqat avtomatik)'); assert.match(await txt(p, '#rzSheet'), /5 432/); await p.context().close();
   p = await open('/kalkifit', { state: seed({ prefs: { qa: 'on' } }), app: true, qadam: { available: true, granted: true, enabled: true, source: 'sensor', hc: 'install', sensor: true, sensorGranted: true }, days: [{ sana: T0, qadam: 1500 }] }); assert.equal(await txt(p, '.sl-s .sl-src'), 'Telefon sensori');
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.match(await txt(p, '#qaRow'), /Telefon sensori orqali/); assert.equal(await p.getAttribute('#qaRow [data-act=qatog]', 'aria-checked'), 'true', 'Profil: switch'); assert.equal(await p.locator('#qaRow [data-act=qahc]').count(), 0, 'switch qatori oddiy'); await p.context().close();
-  p = await open('/kalkifit', { state: seed() }); assert.equal(await p.locator('.sl-s, [data-act=addsteps]').count(), 0, 'vebda — qadam kartasi va qo\'lda kiritish yo\'q'); await p.context().close();
+  p = await open('/kalkifit', { state: seed() }); assert.equal(await p.locator('.sl-s:not([data-st=web]), [data-act=addsteps]').count(), 0, 'v55: vebda avtomatik qadam kartasi yo\'q — faqat qo\'lda kiritish (Android\'da emas)'); await p.context().close();
   log('Qadam: faqat avtomatik (Health Connect / Telefon sensori) — kartada manba nomi, bosilsa jami (qo\'lda kiritish yo\'q); Profil\'da switch + «Telefon sensori orqali»; vebda qadam kartasi yo\'q');
   /* 7. matnlar */
   p = await open('/kalkifit', { state: seed({ entries: [{ fid: 'osh', unit: 'likop', qty: 1, g: 300, kcal: 500 }] }), hour: 10 });

@@ -1370,3 +1370,37 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 @keyframes afCf{from{transform:translateY(-30px) rotate(0);opacity:1}to{transform:translateY(150px) rotate(var(--r));opacity:0}}
 .rz .af-ov.rm,.rz .af-ov.rm *{animation:none!important;transition:none!important}
 @media (prefers-reduced-motion:reduce){.rz .af-ov,.rz .af-ov *{animation:none!important;transition:none!important}}
+/* ===================== v55: kunlik balans, qadam + mashg'ulot (maket: ~/mashq-maket.html) ===================== */
+.rz .sl-bal{display:block;width:100%;margin-top:10px;padding:10px 0 0;border:0;border-top:1px solid var(--line);background:transparent;color:inherit;text-align:center}
+.rz .sl-bal .r{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 2px}
+.rz .sl-bal .r>span{display:flex;flex-direction:column;flex:1 1 0;min-width:max-content}.rz .sl-bal .r b{font-size:var(--t-m);font-weight:600;line-height:1.3;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rz .sl-bal .r small{font-size:var(--t-s);color:var(--mut);line-height:1.25;white-space:nowrap}.rz .sl-bal .r i{font-style:normal;color:var(--mut);font-size:var(--t-m);padding:0 1px}
+.rz .sl-bal .r .g b{color:var(--cink)}.rz .sl-bal .r .w b{color:var(--fink)}
+.rz .sl-bal .s{display:block;margin-top:6px;font-size:var(--t-s);color:var(--mut)}
+.rz .sl-duo.sl-act{align-items:stretch}
+.rz .sl-ab{display:flex;flex-direction:column;gap:2px;padding:14px;min-width:0}
+.rz .sl-ab .h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:var(--t-s);color:var(--mut);min-width:0;overflow-wrap:anywhere}
+.rz .sl-ab .ic{width:32px;height:32px;flex:none;border-radius:10px;display:grid;place-items:center;font-size:17px}.rz .sl-ab .ic svg{width:18px;height:18px}
+.rz .c-bl{background:var(--fcbl);color:var(--fcbli)}.rz .c-pu{background:var(--fcpu);color:var(--fcpui)}
+.rz .sl-ab>b{margin-top:6px;font-size:var(--t-l);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rz .sl-abs{font-size:var(--t-s);color:var(--mut);min-height:1.3em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rz .sl-abb{margin-top:auto;min-height:44px;border:0;border-radius:12px;font-weight:600;font-size:var(--t-s);font-family:inherit;padding:0 8px}
+.rz .sl-ab .sl-abb{margin-top:10px}
+.rz .sl-abb.c-bl,.rz .sl-abb.c-pu{background:var(--soft);color:var(--ink)}          /* tema: rangli fonli katta blok yo'q — neytral fon, rangli matn */
+.rz .sl-exl{padding:4px 0;overflow:hidden}
+.rz .sl-exw{position:relative;overflow:hidden}.rz .sl-exw+.sl-exw{border-top:1px solid var(--line)}
+.rz .sl-exr{position:relative;z-index:1;display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 16px;border:0;background:var(--card);color:var(--ink);text-align:left;font:inherit;transition:transform .2s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
+.rz .sl-exr .ic{font-size:20px;flex:none}.rz .sl-exr .m{flex:1;min-width:0;font-size:var(--t-s)}.rz .sl-exr b{flex:none;font-weight:600;color:var(--cink);font-variant-numeric:tabular-nums}.rz .sl-exr b small{font-weight:500;color:var(--mut)}
+.rz .sl-exdel{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding:0 18px;background:var(--danger);color:var(--onhero);font-weight:600;font-size:var(--t-s)}
+.rz .ex-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:4px 0 6px}
+.rz .ex-t{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:72px;padding:10px 2px;border-radius:16px;border:2px solid transparent;background:var(--card);color:var(--mut);font:inherit;font-size:var(--t-lbl);line-height:1.15;text-align:center;overflow-wrap:anywhere}
+.rz .ex-t i{font-style:normal;font-size:24px;line-height:1}.rz .ex-t.on{border-color:var(--fill);background:var(--accsoft);color:var(--ink);font-weight:600}
+.rz .ex-dur{flex-wrap:nowrap}.rz .ex-dur .rz-chip{flex:1;justify-content:center;min-width:0}
+.rz .ex-rng{display:flex;align-items:center;gap:12px;margin:10px 2px 2px}.rz .ex-rng input{flex:1;accent-color:var(--fill);min-height:44px}.rz .ex-rng b{flex:none;min-width:72px;text-align:right;font-variant-numeric:tabular-nums}
+.rz .ex-lv .rz-chip{flex:1;justify-content:center}
+.rz .ex-prev{display:flex;align-items:center;gap:12px;margin-top:14px;padding:14px;border-radius:18px;background:var(--fcgr)}
+.rz .ex-prev b{flex:none;font-size:var(--t-pn);font-weight:600;color:var(--cink);font-variant-numeric:tabular-nums}.rz .ex-prev span{font-size:var(--t-s);color:var(--mut);line-height:1.4}
+.rz .ex-note{text-align:center;margin-top:8px}
+.rz .si-day{display:flex;margin:6px 0 10px}.rz .si-day button{flex:1;min-height:44px}
+.rz .bl-rows .bl-v b{color:var(--cink)}
+.rz .bl-rows .rz-xr.sm .lb{font-size:var(--t-s);font-weight:500;color:var(--mut);line-height:1.35}.rz .bl-rows .rz-xr.sm{padding-top:2px}
