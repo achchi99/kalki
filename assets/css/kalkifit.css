@@ -1404,30 +1404,15 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .ex-dur{flex-wrap:nowrap}.rz .ex-dur .rz-chip{flex:1;justify-content:center;min-width:0}
 .rz .ex-rng{display:flex;align-items:center;gap:12px;margin:10px 2px 2px}.rz .ex-rng input{flex:1;accent-color:var(--fill);min-height:44px}.rz .ex-rng b{flex:none;min-width:72px;text-align:right;font-variant-numeric:tabular-nums}
 .rz .ex-lv .rz-chip{flex:1;justify-content:center}
-.rz .ex-prev{display:flex;align-items:center;gap:12px;margin-top:14px;padding:14px;border-radius:18px;background:var(--fcgr)}
-.rz .ex-prev b{flex:none;font-size:var(--t-pn);font-weight:600;color:var(--cink);font-variant-numeric:tabular-nums}.rz .ex-prev span{font-size:var(--t-s);color:var(--mut);line-height:1.4}
+.rz .ex-prev{display:grid;gap:6px;margin-top:14px;padding:12px 14px;border-radius:18px;background:var(--fcgr)}          /* v58: ikki oddiy qator */
+.rz .ex-prev p{display:flex;align-items:center;gap:8px;margin:0;font-size:var(--t-s);color:var(--ink);line-height:1.35}.rz .ex-prev .l1{font-weight:600}
+.rz .ex-prev .ex-why{flex:none;width:44px;height:44px;margin:-12px -10px -12px auto;padding:0;border:0;background:transparent;color:var(--mut);display:grid;place-items:center}.rz .ex-prev .ex-why .rz-i{width:18px;height:18px}
+.rz .ex-prev .ex-whyt{display:block;font-size:var(--t-s);color:var(--mut)}.rz .ex-prev .ex-whyt[hidden]{display:none}
 .rz .ex-note{text-align:center;margin-top:8px}
 .rz .si-day{display:flex;margin:6px 0 10px}.rz .si-day button{flex:1;min-height:44px}
 .rz .bl-rows .bl-v b{color:var(--cink)}
 .rz .bl-rows .rz-xr.sm .lb{font-size:var(--t-s);font-weight:500;color:var(--mut);line-height:1.35}.rz .bl-rows .rz-xr.sm{padding-top:2px}
 /* ===================== v56: balans «Ikki chiziq» (~/balans-variant.html A), harakat kartalari va tahrir oynasi (~/harakat-maket.html) ===================== */
-.rz .bl-a{display:block;width:100%;margin-top:12px;padding:0;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit}
-.rz .bl-a .t{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
-.rz .bl-a .t>span{display:flex;flex-direction:column;min-width:0}.rz .bl-a .t .r{align-items:flex-end;text-align:right}
-.rz .bl-a small{display:flex;align-items:center;gap:6px;font-size:var(--t-s);color:var(--mut);line-height:1.25}.rz .bl-a .t>span{flex:1 1 0}          /* katta shriftda yorliq 2 qatorga o'tadi (kesishmaydi) */
-.rz .bl-a .dt{width:10px;height:10px;border-radius:3px;flex:none}.rz .bl-a .dt.e{background:var(--fill)}.rz .bl-a .dt.s{background:var(--fcbli)}
-.rz .bl-a .t b{font-size:var(--t-pn);font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:2px}
-.rz .bl-a .bars{display:grid;gap:6px;margin-top:12px}
-.rz .bl-a .bar{display:block;height:12px;border-radius:6px;background:var(--track);overflow:hidden}
-.rz .bl-a .bar i{display:block;height:100%;border-radius:6px}
-.rz .bl-a .bar.in i{background:linear-gradient(90deg,color-mix(in srgb,var(--fill) 55%,white),var(--fill))}
-.rz .bl-a .bar.out i{background:linear-gradient(90deg,color-mix(in srgb,var(--fcbli) 50%,white),var(--fcbli))}
-.rz .bl-a.anim .bar i{animation:barIn .7s cubic-bezier(.22,1,.36,1) both}.rz .bl-a.anim .bar.out i{animation-delay:.08s}
-.rz .bl-a .bot{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);min-height:44px}
-.rz .bl-a .pill{flex:none;display:inline-flex;align-items:center;gap:4px;border-radius:12px;padding:6px 10px;font-size:var(--t-s);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.rz .bl-a .pill.g{background:var(--fcgr);color:var(--cink)}.rz .bl-a .pill.w{background:var(--fcye);color:var(--fink)}
-.rz .bl-a .s{flex:1;min-width:0;font-size:var(--t-s);color:var(--mut);line-height:1.3}
-.rz .bl-a .ch{flex:none;color:var(--accink);font-weight:600;font-size:var(--t-m)}
 .rz .sl-ab2{display:flex;flex-direction:column;align-items:stretch;padding:10px 10px 14px 14px;min-width:0;border-radius:22px}
 .rz .sl-ab2 .ah{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:44px}
 .rz .sl-ab2 .ah>b{font-size:min(var(--t-s),4.2vw);font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -1457,15 +1442,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .sl-ab2 .sl-abs2{display:block;margin-top:8px;min-width:0}.rz .sl-ab2 .sl-abs2 .sl-src{display:inline-block;max-width:100%;padding:2px 8px;border-radius:8px;background:var(--soft);color:var(--mut);font-size:var(--t-lbl);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:top}          /* Android: kichik manba belgisi («Telefon sensori») */
 .rz .sl-ab2.pulse{animation:cardPulse .5s cubic-bezier(.2,.8,.2,1) 1}
 @keyframes cardPulse{50%{transform:scale(1.03)}}
-.rz .bl-tab{display:grid;gap:0;margin:2px 0 8px}
-.rz .bl-tab .bt-r{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:var(--t-s)}
-.rz .bl-tab.two .bt-r{grid-template-columns:minmax(0,1fr) minmax(64px,auto) minmax(64px,auto)}
-.rz .bl-tab .bt-r .lb{color:var(--mut);min-width:0}.rz .bl-tab .bt-r b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.rz .bl-tab .bt-r.hd{padding:4px 0;font-size:var(--t-lbl)}.rz .bl-tab .bt-r.hd b{font-weight:600;color:var(--mut);white-space:normal;max-width:96px;line-height:1.2}
-.rz .bl-tab .bt-r.sum .lb{color:var(--ink);font-weight:600}.rz .bl-tab .bt-r.big b{font-size:var(--t-m);color:var(--cink)}.rz .bl-tab .bt-r.mut b{color:var(--mut)}
-.rz .bl-lim{margin:6px 0}
-.rz .sl-dbal{margin-top:0}
-@media (prefers-reduced-motion:reduce){.rz .bl-a .bar i,.rz .sl-ab2 .mini .fg,.rz .sl-ab2.pulse{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.rz .sl-ab2 .mini .fg,.rz .sl-ab2.pulse{animation:none!important}}
 /* v56: ovqat tahrirlash / porsiya oynasi (maket 3) */
 .rz .sl-ph2 .sl-x{width:42px;height:42px;border-radius:14px}
 .rz .kq-m4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
@@ -1485,3 +1462,20 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .pw-bar{--pb:calc(var(--shb,18px) + env(safe-area-inset-bottom,0px));position:sticky;bottom:calc(-1 * var(--pb));z-index:3;display:flex;gap:10px;margin:14px calc(-1 * var(--shx,20px)) calc(-1 * var(--pb));padding:12px var(--shx,20px) var(--pb);background:var(--card);border-top:1px solid var(--line);box-shadow:0 40px 0 var(--card)}          /* soya (scroll'ga ta'sir qilmaydi) oynaning pastki ichki chetini ham yopadi — ostidan kontent ko'rinmaydi */
 .rz .pw-bar .sl-main{flex:1;min-width:0;height:54px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rz .pw-bar .sl-main span{font-weight:inherit}.rz .pw-bar .sl-main .ct{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}          /* kontrast: matn bilan bir xil (yirik qalin matn ≥ 3:1) */
 .rz .pw-del{flex:none;width:54px;height:54px;border:0;border-radius:18px;background:color-mix(in srgb,var(--danger) 14%,var(--card));color:var(--danger);display:grid;place-items:center}.rz .pw-del svg{width:22px;height:22px}
+
+/* v58 (maket ~/sodda-maket.html): halqa ostida oddiy chiplar + birinchi ochilishlarda izoh; «N kkal qanday chiqdi?» oynasi */
+.rz .kc-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.rz .kc-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:6px 12px;border-radius:12px;background:var(--soft);color:var(--ink);font-size:var(--t-s);line-height:1.25}
+.rz .sl-big .kc-chip b{font-size:inherit;letter-spacing:normal;line-height:inherit;font-weight:600;font-variant-numeric:tabular-nums}.rz .kc-chip.g{background:var(--fcgr);color:var(--cink)}
+.rz .kc-hint{margin:10px 8px 0;text-align:center;font-size:var(--t-s);color:var(--mut);line-height:1.35}
+.rz .hw-sub{margin-top:-6px}
+.rz .hw-rows{display:grid;margin-top:6px}
+.rz .hw-r{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.rz .hw-r .ic{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--soft)}
+.rz .hw-r .ic.y{background:var(--fcye)}.rz .hw-r .ic.b{background:var(--fcbl)}.rz .hw-r .ic.p{background:var(--fcpu)}.rz .hw-r .ic.o{background:var(--accsoft)}
+.rz .hw-r .m{flex:1;min-width:0;display:flex;flex-direction:column}.rz .hw-r .m b{font-weight:500;font-size:var(--t-s)}.rz .hw-r .m small{font-size:var(--t-s);color:var(--mut);line-height:1.3}
+.rz .hw-r .v{flex:none;font-size:var(--t-m);font-weight:600;font-variant-numeric:tabular-nums}.rz .hw-r .v.g{color:var(--cink)}.rz .hw-r .v.z{color:var(--mut)}
+.rz .hw-res{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:14px;border-radius:16px;background:var(--accsoft)}
+.rz .hw-res span{font-weight:600;font-size:var(--t-s)}.rz .hw-res b{font-size:var(--t-pn);font-weight:600;color:var(--accink);font-variant-numeric:tabular-nums}
+.rz .hw-res.ov{background:var(--fcye)}.rz .hw-res.ov b{color:var(--fink)}
+.rz .hw-tip{margin-top:12px}.rz .rz-link.hw-how{display:flex;align-items:center;justify-content:flex-start;width:auto;min-height:44px;margin:2px 0 4px;padding:0;font-size:var(--t-s);font-weight:500;text-align:left}

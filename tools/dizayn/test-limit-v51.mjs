@@ -28,7 +28,7 @@ try {
   const rl = await ringLimit(p); assert.equal(rl.eaten + rl.left, dp.limit, 'halqa: iste\'mol + qoldi = limit');
   const ny = await p.evaluate(() => window.__kalkifit.remFull()); assert.ok(ny.k === dp.limit - 400 || ny.m, '«Nima yesam ekan?» qoldig\'i shu limitdan: ' + JSON.stringify(ny));
   const wk = await p.evaluate(() => { const K = window.__kalkifit, H = window.KalkiHafta, t = K.S.dates.today(); return H.summary(K.S, K.state, t, t).rows.find((r) => r.d === t).limit; }); assert.equal(wk, dp.limit, 'Haftangiz kun limiti');
-  await p.click('#kcalBtn'); await p.waitForTimeout(600); assert.equal(await sheet(p), 'xkcal');
+  await p.click('#kcalBtn').then(() => p.click('#rzSheet [data-act=xkform]')); await p.waitForTimeout(600); assert.equal(await sheet(p), 'xkcal');
   const xk = await p.evaluate(() => ({ f: document.getElementById('xkFormula').textContent, rows: [...document.querySelectorAll('#xkRows .rz-xr, #xkRows > *')].map((r) => r.textContent.replace(/\s+/g, ' ').trim()), cred: document.getElementById('xkCred').textContent }));
   const fv = nb(xk.f).match(/= ([\d ]+) kkal$/); assert.ok(fv && num(fv[1]) === dp.limit, '(i) formula = limit: ' + xk.f);
   const terms = nb(xk.f).split('=')[0].trim().split(/\s(?=[+−])/).map((t) => (t.startsWith('−') ? -1 : 1) * num(t)); assert.equal(terms.reduce((a, c) => a + c, 0), dp.limit, '(i) qo\'shiluvchilar yig\'indisi = limit: ' + xk.f);
@@ -36,12 +36,12 @@ try {
   await p.keyboard.press('Escape'); assert.deepEqual(p.errs, []); await p.context().close();
   ok('(g) bitta limit: halqa (iste\'mol + qoldi), «Nima yesam», Haftangiz, (i) = ' + dp.limit + ' kkal; (f) formula «' + nb(xk.f) + '» yig\'indisi = limit');
   /* iPhone veb: kredit 0, (i) da «qadam alohida qo'shilmaydi» */
-  p = await open(seed({ steps: 9000 })); const s2 = await stOf(p), d2 = S.dayPlan(s2, TODAY); assert.equal(d2.credit, 0); assert.equal((await ringLimit(p)).eaten + (await ringLimit(p)).left, d2.limit); await p.click('#kcalBtn'); await p.waitForTimeout(500); assert.match(nb(await p.locator('#xkCred').innerText()), /qadam alohida qo'shilmaydi/); await p.context().close();
+  p = await open(seed({ steps: 9000 })); const s2 = await stOf(p), d2 = S.dayPlan(s2, TODAY); assert.equal(d2.credit, 0); assert.equal((await ringLimit(p)).eaten + (await ringLimit(p)).left, d2.limit); await p.click('#kcalBtn').then(() => p.click('#rzSheet [data-act=xkform]')); await p.waitForTimeout(500); assert.match(nb(await p.locator('#xkCred').innerText()), /qadam alohida qo'shilmaydi/); await p.context().close();
   ok('iPhone veb: kredit 0, halqa = umumiy daraja me\'yori, (i) «qadam alohida qo\'shilmaydi»');
   /* migratsiya: mavjud Android (qa on, ish turi yo'q) — kredit 0, bir martalik karta → ish turi → eski/yangi → tasdiqlash */
   const old = seed({ prefs: { qa: 'on' }, steps: 11000 }); p = await open(old, { android: true, steps: 11000 }); await p.waitForTimeout(600);
   const o0 = S.dayPlan(await stOf(p), TODAY); assert.equal(o0.credit, 0, 'tasdiqlanmagan — kredit 0'); assert.equal(await p.locator('#jbCard').count(), 1, 'bir martalik karta'); assert.match(nb(await p.locator('#jbCard').innerText()), /Qadamni ilova o'zi sanaydi — me'yoringizni aniqroq hisoblaylik/);
-  await p.click('#kcalBtn'); await p.waitForTimeout(500); assert.match(nb(await p.locator('#xkCred').innerText()), /Ish turini tanlasangiz/); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
+  await p.click('#kcalBtn').then(() => p.click('#rzSheet [data-act=xkform]')); await p.waitForTimeout(500); assert.match(nb(await p.locator('#xkCred').innerText()), /Ish turini tanlasangiz/); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   await p.click('#jbCard [data-act=jbopen]'); await p.waitForTimeout(500); assert.equal(await sheet(p), 'job'); assert.equal(await p.locator('#rzSheet [data-act=jbok][disabled]').count(), 1, 'tanlanmaguncha tasdiqlab bo\'lmaydi');
   await p.click('#rzSheet [data-act=jbpick][data-v=sit]'); await p.waitForTimeout(300); const cmp = nb(await p.locator('#rzSheet .jb-cmp').innerText()); assert.match(cmp, /Hozirgi me'yor [\d ]+ kkal → Yangi me'yor [\d ]+ kkal/);
   await p.click('#rzSheet [data-act=jbok]'); await p.waitForTimeout(600); const s3 = await stOf(p); assert.equal(s3.profile.job, 'sit'); assert.equal(s3.profile.act, 2, 'eski daraja saqlanadi (qadam o\'chsa — zaxira)'); assert.ok(S.dayPlan(s3, TODAY).credit > 0, 'tasdiqlangach kredit');
@@ -70,6 +70,6 @@ try {
   p = await open(seed({ prefs: { qa: 'on' }, steps: 9000 }), { android: true, steps: 9000, w: 360, h: 740, lang: 'ru' }); await p.evaluate(() => { document.documentElement.style.fontSize = '115%'; });
   await p.click('#jbCard [data-act=jbopen]'); await p.waitForTimeout(500); await p.click('#rzSheet [data-act=jbpick][data-v=heavy]'); await p.waitForTimeout(300);
   const fit = await p.evaluate(() => { const sh = document.getElementById('rzSheet'); return { x: sh.scrollWidth > sh.clientWidth + 1, t: sh.innerText }; }); assert.ok(!fit.x); assert.match(nb(fit.t), /Какая у вас работа\?[\s\S]*Тяжёлый физический труд[\s\S]*Текущая норма/);
-  await p.click('#rzSheet [data-act=jbok]'); await p.waitForTimeout(500); await p.click('#kcalBtn'); await p.waitForTimeout(500); assert.match(nb(await p.locator('#rzSheet').innerText()), /Расход в покое[\s\S]*Повседневная жизнь · тяжёлый физический труд[\s\S]*Дневная норма/); assert.deepEqual(p.errs, []); await p.context().close();
+  await p.click('#rzSheet [data-act=jbok]'); await p.waitForTimeout(500); await p.click('#kcalBtn').then(() => p.click('#rzSheet [data-act=xkform]')); await p.waitForTimeout(500); assert.match(nb(await p.locator('#rzSheet').innerText()), /Расход в покое[\s\S]*Повседневная жизнь · тяжёлый физический труд[\s\S]*Дневная норма/); assert.deepEqual(p.errs, []); await p.context().close();
   ok('RU 360 px: ish turi oynasi va (i) — «Расход в покое + Повседневная жизнь · … = Дневная норма»');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }
