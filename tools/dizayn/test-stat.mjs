@@ -80,11 +80,18 @@ const db = d1(SQL), env = ENV(db);
   const go = (id, i, ev, p = 'veb') => API.qabul(req({ q: U(id), p, t: 'uz', h: ev }), e3, day(i));
   assert.ok(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [['ai_natija', 'ovoz.ochildi', 1], ['ai_natija', 'rasm.qt30', 1], ['ai_natija', 'menyu.yt180', 1], ['ai_natija', 'matn.bosh', 1], ['karta', 'ilova.bosildi', 1], ['karta', 'akkaunt.korsatildi', 1]] }));
   for (const bad of [['ai_natija', 'ovoz', 1], ['ai_natija', 'retsept.ochildi', 1], ['ai_natija', 'ovoz.qt5', 1], ['karta', 'ilova', 1], ['karta', 'boshqa.bosildi', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
+  await go(3, 20, [['faol', '', 1], ['ai_sorov', 'ovoz.ok', 6], ['ai_sorov', 'rasm.ok', 5]]);          // v60: voronka o'lchovi BOSHLANGANDAN OLDINGI eski «tanidi» — jadvalga kirmaydi
   await go(1, 1, [['faol', '', 1], ['ai_sorov', 'ovoz.ok', 4], ['ai_natija', 'ovoz.ochildi', 4], ['ai_natija', 'ovoz.tahrir', 2], ['ai_natija', 'ovoz.qoshildi', 3], ['ai_natija', 'ovoz.qt30', 3], ['ai_natija', 'ovoz.yopildi', 1], ['ai_natija', 'ovoz.yt10', 1], ['ovqat_qoshildi', 'ovoz', 3]]);
   await go(2, 1, [['ai_sorov', 'rasm.ok', 5], ['ai_natija', 'rasm.ochildi', 5], ['ai_natija', 'rasm.qoshildi', 4], ['ai_natija', 'rasm.bosh', 1], ['ai_natija', 'matn.ochildi', 2], ['ai_natija', 'matn.qoshildi', 1]], 'android');
   const v = await API.voronka(db3, K(day(29)), K(NOW)), V = Object.fromEntries(v.map((x) => [x.usul, x]));
   assert.deepEqual([V.ovoz.tanidi, V.ovoz.ochildi, V.ovoz.tahrir, V.ovoz.qoshildi, V.ovoz.yopildi, V.ovoz.ovqat, V.ovoz.foiz, V.ovoz.qt['30'], V.ovoz.yt['10']], [4, 4, 2, 3, 1, 3, 75, 3, 1], 'ovoz: 4 tanidi → 3 qo\'shildi = 75%');
-  assert.deepEqual([V.rasm.foiz, V.rasm.bosh], [80, 1]); assert.equal(V.matn.foiz, 50, 'matn: ochildi asos (lokal tahlil)'); assert.equal(V.menyu.foiz, null, 'ma\'lumot yo\'q — null');
+  assert.deepEqual([V.rasm.foiz, V.rasm.bosh, V.rasm.tanidi], [80, 1, 5], 'rasm: tanidi 5 (eski 5 qo\'shilmaydi), qo\'shildi/ochildi = 4/5'); assert.equal(V.matn.foiz, 50, 'matn: qo\'shildi / ochildi'); assert.equal(V.menyu.foiz, null, 'ma\'lumot yo\'q — null');
+  /* v60: DAVR ARALASHUVI — hamma ustun o'lchov boshlangan kundan (birinchi ai_natija) keyin; konversiya = qo'shildi / ochildi */
+  assert.equal(await API.olchovBosh(db3, 'voronka'), K(day(1)), 'o\'lchov boshlangan kun = birinchi ai_natija'); assert.equal(await API.olchovBosh(db3, 'harakat'), null); assert.equal(await API.olchovBosh(db3, 'afsona'), null);
+  assert.ok(V.ovoz.tanidi <= V.ovoz.ochildi + 0 && V.ovoz.tanidi === 4, 'eski 6 ta tanidi hisobga olinmadi (aks holda 10 tanidi, 4 ochildi)'); assert.equal(await API.olchovBosh(db3, 'konv'), null, 'karta hodisasi hali yo\'q');
+  { const v0 = Object.fromEntries((await API.voronka(db3, K(day(0)), K(NOW))).map((x) => [x.usul, x])); assert.deepEqual([v0.ovoz.tanidi, v0.ovoz.ochildi, v0.ovoz.qoshildi, v0.ovoz.foiz], [0, 0, 0, null], 'o\'lchov boshlanishidan keyingi davr — hamma ustun birga'); }
+  { const dbE = d1(SQL), vE = await API.voronka(dbE, K(day(29)), K(NOW)); assert.ok(vE.every((x) => x.tanidi === 0 && x.ochildi === 0 && x.foiz === null), 'hodisa yo\'q — hamma 0 / null'); }
+  { const dbO = d1(SQL); await API.qabul(req({ q: U(9), p: 'veb', t: 'uz', h: [['ai_sorov', 'ovoz.ok', 9]] }), ENV(dbO), day(5)); const vO = await API.voronka(dbO, K(day(29)), K(NOW)); assert.equal(vO.find((x) => x.usul === 'ovoz').tanidi, 0, 'faqat eski ai_sorov bor (voronka hodisasi yo\'q) — o\'lchov boshlanmagan: tanidi ham 0'); }
   /* qaytish platforma bo'yicha: veb 2 yangi (1 ta ertasi qaytdi), android 1 yangi (7-kuni qaytdi) */
   for (const [id, p] of [[41, 'veb'], [42, 'veb'], [43, 'android']]) await go(id, 10, [['faol', '', 1], ['yangi_foydalanuvchi', '', 1]], p);
   await go(41, 9, [['faol', '', 1]]); await go(43, 3, [['faol', '', 1]], 'android');
@@ -93,21 +100,21 @@ const db = d1(SQL), env = ENV(db);
   /* kunlar bo'yicha konversiya */
   await go(44, 2, [['faol', '', 1], ['karta', 'ilova.korsatildi', 1], ['karta', 'ilova.bosildi', 1], ['apk_yuklandi', '', 1], ['karta', 'akkaunt.korsatildi', 1]]);
   const kk = await API.konvKun(db3, K(day(29)), K(NOW)), r2 = kk.find((x) => x.kun === K(day(2)));
-  assert.equal(kk.length, 30); assert.deepEqual([r2.veb, r2.ilova_k, r2.ilova_b, r2.apk, r2.akk_k, r2.akk_b], [1, 1, 1, 1, 1, 0]); assert.equal(kk.find((x) => x.kun === K(day(10))).yangi_android, 1);
-  const rep = await API.hisobot(db3, 30, NOW); assert.ok(Array.isArray(rep.voronka) && Array.isArray(rep.qaytish) && Array.isArray(rep.konv_kun), 'hisobotda yangi bo\'limlar');
-  log('v52: ai_natija (ovoz/rasm/matn/menyu × ochildi/tahrir/ochirildi/qoshildi/yopildi/bosh/qt·yt soniya) va karta (ilova/ekran/akkaunt × ko\'rsatildi/bosildi/yopildi) — qat\'iy; voronka (ovoz 75%, rasm 80%, matn — ochildi asos), D1/D7/D30 platforma bo\'yicha, kunlik konversiya'); }
+  assert.equal(await API.olchovBosh(db3, 'konv'), K(day(2))); assert.equal(kk.length, 3, 'v60: kunlar kartalar o\'lchovi boshlangan kundan (day 2 → bugun)'); assert.deepEqual([r2.veb, r2.ilova_k, r2.ilova_b, r2.apk, r2.akk_k, r2.akk_b], [1, 1, 1, 1, 1, 0]); assert.equal(kk.find((x) => x.kun === K(day(10))), undefined, 'o\'lchovdan oldingi kunlar ko\'rsatilmaydi');
+  const rep = await API.hisobot(db3, 30, NOW); assert.equal(rep.olchov.voronka, K(day(1)), 'hisobotda o\'lchov boshlanishi'); assert.ok(Array.isArray(rep.voronka) && Array.isArray(rep.qaytish) && Array.isArray(rep.konv_kun), 'hisobotda yangi bo\'limlar');
+  log('v52: ai_natija (ovoz/rasm/matn/menyu × ochildi/tahrir/ochirildi/qoshildi/yopildi/bosh/qt·yt soniya) va karta (ilova/ekran/akkaunt × ko\'rsatildi/bosildi/yopildi) — qat\'iy; voronka (ovoz 75%, rasm 80%, matn 50% = qo\'shildi / ochildi; v60: hamma ustun o\'lchov boshlangan kundan keyin — eski «tanidi» kirmaydi; kunlar ham), D1/D7/D30 platforma bo\'yicha, kunlik konversiya'); }
 /* v54: «Afsona yoki haqiqat?» — ko'rsatildi, javoblar, to'g'ri %, eng ko'p adashilgan 5 ta, ulashildi, kunning savoli orqali kirish % */
 { const db4 = d1(SQL), e4 = ENV(db4), day = (i) => NOW - i * DAY; const go = (id, ev) => API.qabul(req({ q: U(id), p: 'veb', t: 'uz', h: ev }), e4, day(1));
   for (const bad of [['afsona', 'boshqa', 1], ['afsona_javob', 'a1.ok', 1], ['afsona_javob', 'a01.togri', 1], ['afsona', 'kirish.sayt', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
   await go(51, [['afsona', 'korsatildi', 3], ['afsona', 'kirish.kun', 3], ['afsona', 'kirish.feat', 1], ['afsona', 'ulashildi', 1], ['afsona_javob', 'a01.ok', 4], ['afsona_javob', 'a02.xato', 3], ['afsona_javob', 'a02.ok', 1], ['afsona_javob', 'a09.xato', 5], ['afsona_javob', 'a09.ok', 5], ['afsona_javob', 'a14.xato', 1]]);
   const a = await API.afsona(db4, K(day(29)), K(NOW));
   assert.deepEqual([a.korsatildi, a.javob, a.ok, a.foiz, a.ulashildi, a.kun_foiz], [3, 19, 10, 52.6, 1, 75]); assert.deepEqual(a.adash.map((x) => [x.id, x.xato, x.jami, x.foiz]), [['a09', 5, 10, 50], ['a02', 3, 4, 75], ['a14', 1, 1, 100]]);
-  assert.ok((await API.hisobot(db4, 30, NOW)).afsona, 'hisobotda');
+  assert.equal(a.bosh, K(day(1)), 'v60: afsona o\'lchovi boshlangan kun'); assert.equal((await API.afsona(db4, K(day(0)), K(NOW))).javob, 0, 'o\'lchov boshlanishidan keyingi davr — hamma ustun birga'); assert.ok((await API.hisobot(db4, 30, NOW)).afsona, 'hisobotda');
   log('v54: afsona (korsatildi/kirish.kun|feat/ulashildi) va afsona_javob (aNN.ok|xato) — qat\'iy; javoblar 19, to\'g\'ri 52,6%, eng ko\'p adashilgan (a09, a02, a14), kunning savoli orqali kirish 75%'); }
 /* v55: harakat — mashg'ulot (tur × daqiqa), qo'lda qadam, balans */
 { const db5 = d1(SQL), e5 = ENV(db5), day = (i) => NOW - i * DAY;
   for (const bad of [['mashq_qoshildi', 'piyoda.d30', 1], ['mashq_qoshildi', 'yugurish.30', 1], ['qadam_qolda', 'ertaga', 1], ['balans_ochildi', 'x', 1]]) assert.equal(API.tozala({ q: U(1), p: 'veb', t: 'uz', h: [bad] }), null, bad.join(' '));
   await API.qabul(req({ q: U(61), p: 'ios-pwa', t: 'uz', h: [['mashq_qoshildi', 'yugurish.d30', 3], ['mashq_qoshildi', 'zal.d60', 2], ['mashq_qoshildi', 'futbol.d90', 1], ['qadam_qolda', 'bugun', 4], ['qadam_qolda', 'kecha', 1], ['balans_ochildi', '', 2]] }), e5, day(1));
-  const h = await API.harakat(db5, K(day(29)), K(NOW)); assert.deepEqual([h.mashq, h.tur[0].k, h.oraliq.d30, h.qolda.bugun, h.qolda.kecha, h.balans], [6, 'yugurish', 3, 4, 1, 2]); assert.ok((await API.hisobot(db5, 30, NOW)).harakat);
+  const h = await API.harakat(db5, K(day(29)), K(NOW)); assert.deepEqual([h.mashq, h.tur[0].k, h.oraliq.d30, h.qolda.bugun, h.qolda.kecha, h.balans], [6, 'yugurish', 3, 4, 1, 2]); assert.ok((await API.hisobot(db5, 30, NOW)).harakat); assert.equal(h.bosh, await API.olchovBosh(db5, 'harakat')); assert.match(h.bosh, /^\d{4}-\d\d-\d\d$/, 'v60: harakat o\'lchovi boshlangan kun');
   log('v55: mashq_qoshildi (tur.d15|d30|d60|d90|dx), qadam_qolda (bugun|kecha), balans_ochildi — qat\'iy; hisobot: 6 mashg\'ulot (yugurish birinchi), qo\'lda 4 + 1, balans 2'); }
 console.log('\n' + n + '/' + n + ' OK');

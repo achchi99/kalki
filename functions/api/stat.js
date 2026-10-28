@@ -78,6 +78,12 @@ export async function qabul(request, env, now) {
 /* ---------- admin hisobot ---------- */
 const all = async (db, sql, ...a) => ((await db.prepare(sql).bind(...a).all()).results || []);
 const one = async (db, sql, ...a) => (await db.prepare(sql).bind(...a).first()) || {};
+/* v60: «DAVR ARALASHUVI» qoidasi — yangi hodisalar oilasi (voronka v53, harakat v55, afsona v54, veb→ilova kartalari v52) o'lchovi boshlangan kundan oldin hodisa yo'q,
+   eski hodisalar (ai_sorov .ok, qurilmalar) esa bor: ular yonma-yon ko'rsatilsa «tanidi 10, ochildi 1» kabi chalg'ituvchi nisbat chiqadi.
+   Qoida: jadvalning BARCHA ustunlari faqat shu oilaning BIRINCHI hodisasi kunidan (o'lchov boshlanishi) keyingi ma'lumotdan hisoblanadi; admin'da «O'lchov boshlangan: <sana>». */
+export const OLCHOV = { voronka: ['ai_natija'], harakat: ['mashq_qoshildi', 'qadam_qolda', 'balans_ochildi'], afsona: ['afsona', 'afsona_javob'], konv: ['karta', 'apk_yuklandi'] };
+export async function olchovBosh(db, k) { const hs = OLCHOV[k]; return (await one(db, 'SELECT MIN(kun) AS d FROM stat_kun WHERE hodisa IN (' + hs.map(() => '?').join(',') + ')', ...hs)).d || null; }
+export async function olchovDan(db, k, dan, gacha) { const bosh = await olchovBosh(db, k); return { bosh, dan: !bosh ? addD(gacha, 1) : (bosh > dan ? bosh : dan) }; }          // bosh yo'q — bo'sh oraliq (hamma ustun 0 / null)
 async function devCount(db, dan, gacha) { return (await one(db, 'SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ?', dan, gacha)).n || 0; }
 async function evSum(db, h, dan, gacha) { return (await one(db, 'SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = ? AND kun >= ? AND kun <= ?', h, dan, gacha)).n || 0; }
 async function dauAvg(db, dan, gacha) {
@@ -118,13 +124,14 @@ export async function kogortalar(db, dan, gacha, bugun) {
 }
 /* v52: AI natija voronkasi — usul bo'yicha: AI tanidi (ai_sorov .ok) → natija ochildi → tahrir / o'chirish → qo'shildi / yopildi (+ soniya guruhi) */
 export const VUSUL = ['ovoz', 'rasm', 'matn', 'menyu'];
-export async function voronka(db, dan, gacha) {
+export async function voronka(db, dan0, gacha) {
+  const dan = (await olchovDan(db, 'voronka', dan0, gacha)).dan;          // v60: barcha ustunlar — o'lchov boshlangandan keyin
   const rows = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE (hodisa = 'ai_natija' OR hodisa = 'ai_sorov' OR hodisa = 'ovqat_qoshildi') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), m = {};
   rows.forEach((r) => { m[r.hodisa + ':' + r.kalit] = r.n || 0; });
   return VUSUL.map((u) => { const g = (k) => m['ai_natija:' + u + '.' + k] || 0, o = { usul: u, tanidi: m['ai_sorov:' + u + '.ok'] || 0, ochildi: g('ochildi'), tahrir: g('tahrir'), ochirildi: g('ochirildi'), qoshildi: g('qoshildi'), yopildi: g('yopildi'), bosh: g('bosh'), ovqat: m['ovqat_qoshildi:' + u] || 0, qt: {}, yt: {} };
     ['10', '30', '60', '180', 'x'].forEach((b) => { o.qt[b] = g('qt' + b); o.yt[b] = g('yt' + b); });
-    const asos = u === 'matn' ? o.ochildi : o.tanidi;          // matn — lokal tahlil ham natija (AI faqat topilmaganiga)
-    o.foiz = asos ? Math.round(Math.min(1, o.qoshildi / asos) * 1000) / 10 : null; o.foiz_ochildi = o.ochildi ? Math.round(Math.min(1, o.qoshildi / o.ochildi) * 1000) / 10 : null; return o; });
+    o.foiz = o.ochildi ? Math.round(Math.min(1, o.qoshildi / o.ochildi) * 1000) / 10 : null;          // konversiya = qo'shildi / ochildi (v60; maqsad ≥ 70%). «Tanidi» matn uchun faqat AI ga o'tgan so'rovlar (lokal tahlil emas) — ustun sifatida ko'rsatiladi, nisbatga kirmaydi
+    return o; });
 }
 /* v52: qaytish (D1/D7/D30) platforma bo'yicha — yangi qurilma N kundan keyin qaytdimi (faqat N kun o'tgan kogortalar) */
 export async function retPlat(db, dan, gacha, bugun) {
@@ -139,8 +146,8 @@ export async function retPlat(db, dan, gacha, bugun) {
   return out;
 }
 /* v52: veb → ilova / bosh ekran va akkaunt konversiyasi kunlar bo'yicha (oxirgi ≤ 30 kun) */
-export async function konvKun(db, dan, gacha) {
-  const s0 = dan > addD(gacha, -29) ? dan : addD(gacha, -29), m = {};
+export async function konvKun(db, dan0, gacha) {
+  const dan = (await olchovDan(db, 'konv', dan0, gacha)).dan, s0 = dan > addD(gacha, -29) ? dan : addD(gacha, -29), m = {};          // v60: kunlar — kartalar o'lchovi boshlangan kundan
   for (let d = s0; d <= gacha; d = addD(d, 1)) m[d] = { kun: d, veb: 0, yangi_veb: 0, yangi_android: 0, yangi_ios: 0, ilova_k: 0, ilova_b: 0, ekran_k: 0, ekran_b: 0, akk_k: 0, akk_b: 0, apk: 0, akkaunt: 0 };
   (await all(db, 'SELECT kun, platforma, COUNT(*) AS dau, SUM(yangi) AS yangi FROM stat_qurilma WHERE kun >= ? AND kun <= ? GROUP BY kun, platforma', s0, gacha)).forEach((r) => { const x = m[r.kun]; if (!x) return; if (r.platforma === 'veb') { x.veb = r.dau; x.yangi_veb = r.yangi || 0; } else if (r.platforma === 'android') x.yangi_android = r.yangi || 0; else if (r.platforma === 'ios-pwa') x.yangi_ios = r.yangi || 0; });
   const KK = { 'ilova.korsatildi': 'ilova_k', 'ilova.bosildi': 'ilova_b', 'ekran.korsatildi': 'ekran_k', 'ekran.bosildi': 'ekran_b', 'akkaunt.korsatildi': 'akk_k', 'akkaunt.bosildi': 'akk_b' };
@@ -149,18 +156,20 @@ export async function konvKun(db, dan, gacha) {
   return Object.values(m);
 }
 /* v54: «Afsona yoki haqiqat?» — ko'rsatildi (kunning savoli), javoblar, to'g'ri %, eng ko'p adashilgan 5 karta, ulashildi, «Kunning savoli» orqali kirish % */
-export async function afsona(db, dan, gacha) {
+export async function afsona(db, dan0, gacha) {
+  const ol = await olchovDan(db, 'afsona', dan0, gacha), dan = ol.dan;
   const r = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE (hodisa = 'afsona' OR hodisa = 'afsona_javob') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), m = {}, kart = {};
   r.forEach((x) => { if (x.hodisa === 'afsona') m[x.kalit] = x.n || 0; else { const [id, k] = x.kalit.split('.'); kart[id] = kart[id] || { id, ok: 0, xato: 0 }; kart[id][k] += x.n || 0; } });
   const kl = Object.values(kart), javob = kl.reduce((a, x) => a + x.ok + x.xato, 0), ok = kl.reduce((a, x) => a + x.ok, 0), kun = m['kirish.kun'] || 0, feat = m['kirish.feat'] || 0;
   const adash = kl.filter((x) => x.xato > 0).map((x) => ({ id: x.id, xato: x.xato, jami: x.ok + x.xato, foiz: Math.round(x.xato / (x.ok + x.xato) * 1000) / 10 })).sort((a, b) => b.xato - a.xato || b.foiz - a.foiz || (a.id < b.id ? -1 : 1)).slice(0, 5);
-  return { korsatildi: m.korsatildi || 0, javob, ok, foiz: javob ? Math.round(ok / javob * 1000) / 10 : null, adash, ulashildi: m.ulashildi || 0, kirish_kun: kun, kirish_feat: feat, kun_foiz: kun + feat ? Math.round(kun / (kun + feat) * 1000) / 10 : null };
+  return { bosh: ol.bosh, korsatildi: m.korsatildi || 0, javob, ok, foiz: javob ? Math.round(ok / javob * 1000) / 10 : null, adash, ulashildi: m.ulashildi || 0, kirish_kun: kun, kirish_feat: feat, kun_foiz: kun + feat ? Math.round(kun / (kun + feat) * 1000) / 10 : null };
 }
 /* v55: mashg'ulot (tur × daqiqa oralig'i), qo'lda qadam (bugun/kecha), balans oynasi */
-export async function harakat(db, dan, gacha) {
+export async function harakat(db, dan0, gacha) {
+  const ol = await olchovDan(db, 'harakat', dan0, gacha), dan = ol.dan;
   const r = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE hodisa IN ('mashq_qoshildi', 'qadam_qolda', 'balans_ochildi') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), tur = {}, oraliq = {}, qolda = { bugun: 0, kecha: 0 }; let mashq = 0, balans = 0;
   r.forEach((x) => { if (x.hodisa === 'mashq_qoshildi') { const [t, d] = x.kalit.split('.'); tur[t] = (tur[t] || 0) + x.n; oraliq[d] = (oraliq[d] || 0) + x.n; mashq += x.n; } else if (x.hodisa === 'qadam_qolda') qolda[x.kalit] = (qolda[x.kalit] || 0) + x.n; else balans += x.n; });
-  return { mashq, tur: Object.entries(tur).map(([k, n]) => ({ k, n })).sort((a, b) => b.n - a.n), oraliq, qolda, balans };
+  return { bosh: ol.bosh, mashq, tur: Object.entries(tur).map(([k, n]) => ({ k, n })).sort((a, b) => b.n - a.n), oraliq, qolda, balans };
 }
 export async function kengaytma(db, dan, gacha, bugun, now) {
   const kpi = { yangi_bugun: await yangiSum(db, bugun, bugun), yangi_hafta: await yangiSum(db, addD(bugun, -6), bugun), ret30: await retention(db, dan, gacha, 30, bugun) };
@@ -175,7 +184,7 @@ export async function kengaytma(db, dan, gacha, bugun, now) {
   kpi.konversiya = konversiya ? konversiya.foiz : null;
   const guruh = async (col, extra) => all(db, 'SELECT ' + col + " AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND " + col + " != ''" + (extra || '') + ' GROUP BY ' + col + ' ORDER BY n DESC LIMIT 20', dan, gacha);
   let qurilmalar = null; try { qurilmalar = { tur: await guruh('tur'), versiya: await guruh('ver', " AND tur = 'android-ilova'"), os: await guruh('os'), brauzer: await guruh('br'), model: await guruh('model'), ekran: await guruh('ekran'), til: await guruh('til'), aniqlanmagan: (await one(db, "SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND tur = ''", dan, gacha)).n || 0 }; } catch (e) {}
-  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha) } };
+  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30, 90].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;
