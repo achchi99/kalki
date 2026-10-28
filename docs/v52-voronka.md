@@ -12,10 +12,14 @@ Hodisa `ai_natija`, kalit `<usul>.<bosqich>`. `usul`: `ovoz | rasm | matn | meny
 | `yopildi` + `yt…` | oyna qo'shmasdan yopildi + necha soniyada |
 | `bosh` | hech narsa tanilmadi (rasm — bo'sh javob, matn — bo'sh tahlil) |
 
-Admin → «AI tanidi → qo'shildi (voronka)»:
-- `foiz = qoshildi / tanidi`;
-- `tanidi` — `ai_sorov <usul>.ok`, matnda esa `ochildi`, chunki u lokal tahlil;
-- maqsad ≥ 70%.
+Admin → «AI tanidi → qo'shildi (voronka)» (v60 dan):
+- **Davr aralashuvi qoidasi.** `ai_sorov .ok` voronkadan ancha oldin ham yig'ilgan, `ai_natija` (ochildi, qo'shildi, …) esa v53 dan. Ikkalasini butun davr bo'yicha yonma-yon qo'ysak «ovoz: tanidi 10, ochildi 1» kabi chalg'ituvchi raqam chiqadi.
+  Endi jadvalning BARCHA ustunlari faqat birinchi `ai_natija` hodisasi kunidan (o'lchov boshlanishi) keyingi ma'lumotdan hisoblanadi (`functions/api/stat.js` `olchovDan`); jadval ostida «O'lchov boshlangan: <sana>». Hodisa hali yo'q bo'lsa — hamma ustun 0 / «—».
+- **Konv. %** = `qoshildi / ochildi` (barcha usullarda, matnda ham); maqsad ≥ 70% (✓). Eski `qoshildi / tanidi` olib tashlandi.
+- «Tanidi» — `ai_sorov <usul>.ok` (matn: faqat lokal tahlil topmay AI ga o'tgani, shuning uchun «Ochdi» dan kam bo'lishi mumkin).
+- Ustun nomlari qisqartirildi (Tanidi, Ochdi, Tahrir, O'chdi, Qo'shdi, Yopdi, Bo'sh, Konv. %); 360 px da jadval har usul uchun 4 ustunli kartaga aylanadi (gorizontal siljish yo'q); «Qo'shishgacha / yopishgacha» soniya guruhlari alohida jadvalda.
+- Xuddi shu qoida boshqa jadvallarda: **Harakat** (`mashq_qoshildi`, `qadam_qolda`, `balans_ochildi`), **Afsona** (`afsona`, `afsona_javob`), **Veb → ilova** (`karta`, `apk_yuklandi` — kunlar kartalar o'lchovi boshlangan kundan; «Veb DAU» / «Yangi …» ustunlari ham shu kunlardan). Har birida «O'lchov boshlangan: <sana>»; hodisa yo'q — «O'lchov hali boshlanmagan».
+- Tekshirilib, o'zgarmagani: Qaytish (D1/D7/D30 — faqat `stat_qurilma`, bitta manba), Akkaunt konversiyasi (qurilmalar ↔ akkaunt jadvali — ikkalasi eski), Funksiyalar/Xarajat (alohida sonlar, nisbat yo'q).
 
 **O'lchov tuzatilgani:** server ovozida `ovoz.ok` endi faqat transkripsiyada sanaladi. Avval topilmaganlarni AI ajratganda ikkinchi marta sanalardi, shuning uchun eski «ovoz.ok» soni ~2 baravar yuqori ko'rinardi.
 
