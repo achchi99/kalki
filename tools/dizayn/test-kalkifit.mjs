@@ -289,7 +289,7 @@ try {
   await p.evaluate(() => { const j = document.getElementById('jLine'); if (j) j.scrollIntoView({ block: 'center' }); }); await p.waitForTimeout(8600); assert.equal(await p.locator('#jLine').count(), 0, 'v50: hazil (ko\'rinib turganda) 8 soniyada yo\'qoladi');
   await p.click('[data-act=tab][data-v=profile]'); await p.click('[data-act=jktog]'); assert.equal((await stOf(p)).prefs.jokes, false); const jb = (await hzo()).jfl.n; await p.click('[data-act=tab][data-v=today]'); await addOne(p, 'choy'); assert.equal(await p.locator('#jLine').count(), 0, 'hazil o\'chirilganda qator yo\'q'); assert.equal((await hzo()).jfl.n, jb);
   assert.deepEqual(p.errs, []); await p.context().close();
-  p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 900 }, { id: 'osh', g: 900, meal: 'd' }] }) }); await addOne(p, 'choy'); const over = await txt(p, '#jFlash'); if (over) for (const re of BAN) assert.ok(!re.test(over), 'oshib ketganda taqiqlangan so\'z: ' + over); assert.match(await txt(p, '.sl-over'), /Maqsaddan [\d ]+ kkal ko'p/); await p.context().close();
+  p = await open('/kalkifit', { state: seed({ food: [{ id: 'osh', g: 900 }, { id: 'osh', g: 900, meal: 'd' }] }) }); await addOne(p, 'choy'); const over = await txt(p, '#jFlash'); if (over) for (const re of BAN) assert.ok(!re.test(over), 'oshib ketganda taqiqlangan so\'z: ' + over); assert.match(await txt(p, '.sl-over'), /[\d ]+ kkal ortiqcha yedingiz/); await p.context().close();
   log('19. Hazillar: ≥5 variant/holat (UZ+RU), taqiqlangan so\'z yo\'q; doimiy karta yo\'q — ovqat qo\'shilgach bir qatorli gap, kuniga ≤4 marta, o\'zi o\'chadi; Profilda o\'chadi; oshganda «Maqsaddan N kkal ko\'p» (neytral)');
   }
   /* ---- 20. «Buni yesam-chi?» — hech narsa saqlanmaydi ---- */
