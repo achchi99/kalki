@@ -2463,6 +2463,7 @@
   function statPlat() { try { if (window.KalkiNative && KalkiNative.isApp()) return 'android'; var ios = /iPad|iPhone|iPod/.test(navigator.userAgent), sa = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; return ios && sa ? 'ios-pwa' : 'veb'; } catch (e) { return 'veb'; } }
   function statBoot() {
     if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; } }); window.KalkiStatApp = { add: stEv, aiOpen: aiFOpen }; stPre.splice(0).forEach(function (x) { stEv(x[0], x[1]); });
+    STAT.manba();          // v61: manba birinchi ochilishda (onboarding'dan OLDIN) qurilmada bir marta saqlanadi
     if (st && st.setup) STAT.faol();
     if (/[?&]baliq=1\b/.test(location.search)) stEv('push_bosildi');
   }
@@ -2951,7 +2952,7 @@
   function obFinish(pr, later) {                          // yangi foydalanuvchi: holat yaratiladi (saqlash formati o'zgarmagan)
     var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
     if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
-    stEv('yangi_foydalanuvchi'); stEv(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
+    stEv('yangi_foydalanuvchi', STAT ? STAT.manba() : ''); stEv(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb(); try { if (STAT) STAT.faol(); } catch (e) {}
     var el = $('#rzOnb'); el.classList.add('out');
     wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);

@@ -7,7 +7,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..',
 const AUTH = await imp('functions/_lib/admin-auth.js'), QT = await imp('functions/_lib/qurilma-tur.js'), ADM = await imp('functions/api/admin/[amal].js'), STAT = await imp('functions/api/stat.js');
 const HIS = await imp('functions/api/hisob.js'), QID = await imp('functions/api/qidiruv.js'), KFA = await imp('functions/api/kalkifit-admin.js'), PUSH = await imp('functions/api/push/[amal].js');
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
-const SQL = ['stat.sql', 'admin-stat.sql', 'akkaunt.sql', 'zaxira.sql', 'qidiruv.sql', 'hisob.sql', 'kalkifit-taklif.sql', 'push.sql'].map((f) => fs.readFileSync(path.join(ROOT, 'migrations', f), 'utf8'));
+const SQL = ['stat.sql', 'admin-stat.sql', 'manba.sql', 'akkaunt.sql', 'zaxira.sql', 'qidiruv.sql', 'hisob.sql', 'kalkifit-taklif.sql', 'push.sql'].map((f) => fs.readFileSync(path.join(ROOT, 'migrations', f), 'utf8'));
 function kvMock() { const m = new Map(); return { m, get: async (k) => (m.has(k) ? m.get(k).v : null), put: async (k, v, o) => { m.set(k, { v, ttl: o && o.expirationTtl }); }, delete: async (k) => { m.delete(k); } }; }
 const PW = 'yangi-kuchli-parol-24-belgidan-uzun!', OLD = 'eski-parol';
 const mkEnv = (db, kv, pw = PW) => ({ KALKIFIT_DB: db, KALKI_AI_KV: kv, KALKIFIT_ADMIN_PASSWORD: pw, IP_HASH_SALT: 'tuz', STAT_PRUNE_P: '0' });

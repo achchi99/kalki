@@ -32,5 +32,23 @@ try {
   log('?demo=1 va avtomat/lokal (webdriver, localhost) — hech narsa yuborilmaydi');
   p = await open('/ilova/'); await p.evaluate(() => { const a = document.getElementById('ilDl'); a.removeAttribute('download'); a.href = '#'; }); await p.click('#ilDl'); await p.waitForTimeout(500); assert.ok(evs(p).includes('apk_yuklandi'), 'APK sahifasi: ' + evs(p)); await p.context().close();
   log('/ilova: «Yuklab olish» bosilganda apk_yuklandi');
+  /* v61: manba — birinchi ochilishda (onboarding'dan oldin) aniqlanib bir marta saqlanadi; «yangi_foydalanuvchi» kaliti = faqat kod */
+  async function fresh(url, referer) {
+    const c = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', extraHTTPHeaders: referer ? { Referer: referer } : {} });
+    await c.addInitScript(() => { try { localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); localStorage.setItem('kalki_lang', 'uz'); localStorage.setItem('kalki_stat_test', '1'); } catch (e) {} });
+    const p = await c.newPage(); p.bodies = []; p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
+    await p.route('**/api/stat', async (r) => { p.bodies.push(r.request().postData()); await r.fulfill({ status: 204, body: '' }); }); await p.route(/\/api\/(?!stat)/, (r) => r.fulfill({ status: 204, body: '' }));
+    await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(800); return p;
+  }
+  const yangi = (p) => p.bodies.flatMap((x) => { try { return JSON.parse(x).h.filter((h) => h[0] === 'yangi_foydalanuvchi').map((h) => h[1]); } catch (e) { return []; } });
+  p = await fresh('/kalkifit?utm_source=tg'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), 'tg', 'birinchi ochilishdayoq (onboarding\'dan oldin) saqlandi');
+  await p.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await p.waitForTimeout(500); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), 'tg', 'keyingi ochilishda o\'zgarmaydi (utm yo\'q)');
+  await p.click('[data-act=obsex][data-v=m]'); await p.click('[data-act=oblater]'); await p.waitForTimeout(700); await flush(p); assert.deepEqual(yangi(p), ['tg'], 'yangi_foydalanuvchi kaliti = manba kodi'); assert.ok(evs(p).includes('onboarding_keyinroq'));
+  for (const raw of p.bodies) { const j = JSON.parse(raw); assert.deepEqual(Object.keys(j).sort(), ['e', 'h', 'p', 'q', 't', 'v']); for (const h of j.h) assert.ok(!/utm|https?:|t\.me|\./.test(h[1]) || /^\d+\.\d+\.\d+$|\.(ok|ochildi|d\d+)/.test(h[1]), 'URL / domen yuborilmadi: ' + h.join()); } assert.deepEqual(p.errs, []); await p.context().close();
+  p = await fresh('/kalkifit', 'https://t.co/abcDEF'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), 'x', 'referrer domeni t.co → x'); await p.context().close();
+  p = await fresh('/kalkifit', 'https://www.google.com/'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), 'google'); await p.context().close();
+  p = await fresh('/kalkifit'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), 'dir', 'referrer yo\'q → to\'g\'ridan'); await p.context().close();
+  p = await fresh('/kalkifit?demo=1&utm_source=x'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_manba')), null, '?demo=1 — saqlanmaydi'); await p.context().close();
+  log('Ilova: birinchi ochilishda manba (utm_source=tg / referrer t.co → x, google, bo\'sh → dir) kod sifatida bir marta saqlanadi; «yangi_foydalanuvchi» kaliti = kod; tanada URL / domen yo\'q; ?demo=1 — saqlanmaydi');
 } finally { await b.close(); srv.close(); }
 console.log('\n' + n + '/' + n + ' OK');

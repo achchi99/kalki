@@ -10,9 +10,10 @@ import { turOf, ekranOf } from '../_lib/qurilma-tur.js';
 import { yigMiqdorsiz } from '../_lib/soz-norm.js';
 import { adminAuth } from '../_lib/admin-auth.js';
 
+export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa)?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
 export const HODISA = {
-  faol: ANY, yangi_foydalanuvchi: ANY, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
+  faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
@@ -65,9 +66,12 @@ export async function qabul(request, env, now) {
   if (BOT.test(request.headers.get('User-Agent') || '') || !originOk(request, env)) return quiet();
   let b; try { const raw = await request.text(); if (raw.length > 6000) return quiet(); b = JSON.parse(raw); } catch (e) { return quiet(); }
   const c = tozala(b); if (!c || !c.h.length) return quiet();
-  const kun = tosh(now), q = await qurilma(env, c.q), jami = c.h.reduce((a, x) => a + x.n, 0), yangi = c.h.some((x) => x.h === 'yangi_foydalanuvchi') ? 1 : 0, d = turOf(request.headers.get('User-Agent'), c.p, c.v), ek = ekranOf(c.e);
+  const kun = tosh(now), q = await qurilma(env, c.q), jami = c.h.reduce((a, x) => a + x.n, 0), yangi = c.h.some((x) => x.h === 'yangi_foydalanuvchi') ? 1 : 0, manba = (c.h.find((x) => x.h === 'yangi_foydalanuvchi') || {}).k || '', ob = c.h.some((x) => x.h === 'onboarding_tugadi') ? 1 : 0, d = turOf(request.headers.get('User-Agent'), c.p, c.v), ek = ekranOf(c.e);
   try {
-    const row = await db.prepare("INSERT INTO stat_qurilma (kun, q, platforma, til, yangi, n, tur, os, br, model, ekran, ver) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(kun, q) DO UPDATE SET n = n + excluded.n, yangi = MAX(yangi, excluded.yangi), til = excluded.til, tur = excluded.tur, os = excluded.os, br = excluded.br, model = CASE WHEN excluded.model != '' THEN excluded.model ELSE model END, ekran = CASE WHEN excluded.ekran != '' THEN excluded.ekran ELSE ekran END, ver = CASE WHEN excluded.ver != '' THEN excluded.ver ELSE ver END RETURNING n").bind(kun, q, c.p, c.t, yangi, jami, d.tur, d.os, d.br, d.model, ek, d.ver).first();
+    /* v61: manba (yangi_foydalanuvchi kaliti) va onboarding tugadimi (ob) — QURILMA qatoriga; D1/D7 va onboarding % manba bo'yicha. Ustunlar migrations/manba.sql dan; hali yurgizilmagan bo'lsa — eski INSERT (statistika to'xtamaydi) */
+    let row; try {
+      row = await db.prepare("INSERT INTO stat_qurilma (kun, q, platforma, til, yangi, n, tur, os, br, model, ekran, ver, manba, ob) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(kun, q) DO UPDATE SET n = n + excluded.n, yangi = MAX(yangi, excluded.yangi), til = excluded.til, tur = excluded.tur, os = excluded.os, br = excluded.br, model = CASE WHEN excluded.model != '' THEN excluded.model ELSE model END, ekran = CASE WHEN excluded.ekran != '' THEN excluded.ekran ELSE ekran END, ver = CASE WHEN excluded.ver != '' THEN excluded.ver ELSE ver END, manba = CASE WHEN excluded.manba != '' THEN excluded.manba ELSE manba END, ob = MAX(ob, excluded.ob) RETURNING n").bind(kun, q, c.p, c.t, yangi, jami, d.tur, d.os, d.br, d.model, ek, d.ver, manba, ob).first();
+    } catch (e) { row = await db.prepare("INSERT INTO stat_qurilma (kun, q, platforma, til, yangi, n, tur, os, br, model, ekran, ver) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(kun, q) DO UPDATE SET n = n + excluded.n, yangi = MAX(yangi, excluded.yangi), til = excluded.til, tur = excluded.tur, os = excluded.os, br = excluded.br, model = CASE WHEN excluded.model != '' THEN excluded.model ELSE model END, ekran = CASE WHEN excluded.ekran != '' THEN excluded.ekran ELSE ekran END, ver = CASE WHEN excluded.ver != '' THEN excluded.ver ELSE ver END RETURNING n").bind(kun, q, c.p, c.t, yangi, jami, d.tur, d.os, d.br, d.model, ek, d.ver).first(); }
     if (row && row.n > DEV_CAP) return quiet();                                       // qurilma kuniga ≤ 400 hodisa (rate-limit)
     await db.batch(c.h.filter((x) => x.h !== 'faol').map((x) => db.prepare('INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, ?, ?, ?, ?) ON CONFLICT(kun, hodisa, kalit, platforma) DO UPDATE SET son = son + excluded.son').bind(kun, x.h, x.k, c.p, x.n)));
     if (Math.random() < (env.STAT_PRUNE_P ? Number(env.STAT_PRUNE_P) : 0.02)) await tozalash(db, now);
@@ -145,6 +149,21 @@ export async function retPlat(db, dan, gacha, bugun) {
   }
   return out;
 }
+/* v61: MANBALAR — manba bo'yicha yangi qurilmalar, D1 / D7 (faqat yetilgan kogorta; qavsda hajmi), onboarding tugatish % («Keyinroq» emas).
+   Davr aralashuvi qoidasi: o'lchov boshlangan kun = manbasi bor birinchi yangi qurilma kuni; hamma ustun faqat shu kundan keyin. migrations/manba.sql yurgizilmagan bo'lsa — null. */
+export async function manbalar(db, dan0, gacha, bugun) {
+  let bosh = null; try { bosh = (await one(db, "SELECT MIN(kun) AS d FROM stat_qurilma WHERE yangi = 1 AND manba != ''")).d || null; } catch (e) { return null; }
+  const dan = !bosh ? addD(gacha, 1) : (bosh > dan0 ? bosh : dan0), out = [];
+  for (const r of await all(db, 'SELECT manba, COUNT(*) AS yangi, SUM(ob) AS ob FROM stat_qurilma WHERE yangi = 1 AND kun >= ? AND kun <= ? GROUP BY manba', dan, gacha)) {
+    const row = { manba: r.manba, yangi: r.yangi || 0, ob: r.ob || 0, ob_foiz: r.yangi ? Math.round((r.ob || 0) / r.yangi * 1000) / 10 : null };
+    for (const n of [1, 7]) { const lim = addD(bugun, -n), g2 = gacha < lim ? gacha : lim; if (g2 < dan) { row['d' + n] = null; row['n' + n] = 0; continue; }
+      const q = await one(db, 'SELECT COUNT(*) AS jami, SUM(CASE WHEN EXISTS (SELECT 1 FROM stat_qurilma b WHERE b.q = a.q AND b.kun = date(a.kun, ?)) THEN 1 ELSE 0 END) AS qaytdi FROM stat_qurilma a WHERE a.yangi = 1 AND a.manba = ? AND a.kun >= ? AND a.kun <= ?', '+' + n + ' day', r.manba, dan, g2);
+      row['n' + n] = q.jami || 0; row['d' + n] = q.jami ? Math.round((q.qaytdi || 0) / q.jami * 1000) / 10 : null; }
+    out.push(row);
+  }
+  out.sort((a, b) => (a.manba === '') - (b.manba === '') || b.yangi - a.yangi || (a.manba < b.manba ? -1 : 1));
+  return { bosh, dan, qatorlar: out };
+}
 /* v52: veb → ilova / bosh ekran va akkaunt konversiyasi kunlar bo'yicha (oxirgi ≤ 30 kun) */
 export async function konvKun(db, dan0, gacha) {
   const dan = (await olchovDan(db, 'konv', dan0, gacha)).dan, s0 = dan > addD(gacha, -29) ? dan : addD(gacha, -29), m = {};          // v60: kunlar — kartalar o'lchovi boshlangan kundan
@@ -184,7 +203,7 @@ export async function kengaytma(db, dan, gacha, bugun, now) {
   kpi.konversiya = konversiya ? konversiya.foiz : null;
   const guruh = async (col, extra) => all(db, 'SELECT ' + col + " AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND " + col + " != ''" + (extra || '') + ' GROUP BY ' + col + ' ORDER BY n DESC LIMIT 20', dan, gacha);
   let qurilmalar = null; try { qurilmalar = { tur: await guruh('tur'), versiya: await guruh('ver', " AND tur = 'android-ilova'"), os: await guruh('os'), brauzer: await guruh('br'), model: await guruh('model'), ekran: await guruh('ekran'), til: await guruh('til'), aniqlanmagan: (await one(db, "SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND tur = ''", dan, gacha)).n || 0 }; } catch (e) {}
-  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
+  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), manbalar: await manbalar(db, dan, gacha, bugun), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30, 90].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;
