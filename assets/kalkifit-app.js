@@ -228,12 +228,14 @@
       blNote: "Hisob taxminiy. Tinch holat va kundalik hayot — kunlik to'liq qiymat, qadam va mashg'ulot — hozirgacha kiritilgani.", blK70: "Sarf to'liq ko'rsatiladi, yeyish limitiga uning 70% i qo'shiladi — ehtiyot uchun.", 
       hkEx: "Mashg'ulot: {n} kun, {m} daqiqa · ~{k} kkal sarf",
       stEmptyW: 'Qadamni kiriting',
-      vL1: 'kkal yana', vL2: 'yeyishingiz mumkin', vO1: 'kkal ortiqcha', vO2: 'yedingiz', kcAte: 'Yedingiz', kcStep: 'Yurganingiz uchun', kcEx: "Mashg'ulot uchun", kcMove: 'Harakat uchun', kcHint: 'Raqam qayerdan kelganini bilish uchun doirani bosing',
+      kcHisob: 'Hisob', kcOpenA: 'Hisobni ochish', kcInfoA: 'Qanday hisoblangan?',
+      exTurL: 'Tur', exDurL: 'Davomiyligi', exMinus: '5 daqiqa kamroq', exPlus: '5 daqiqa ko\'proq', lvD0: 'Bemalol gaplasha olasiz', lvD1: "Nafas tezlashadi, gaplashsa bo'ladi", lvD2: 'Gaplashish qiyin, terlaysiz', exBurnT: 'Yoqasiz', exMoreT: "Qo'shimcha yeyish",
+      vL1: 'kkal yana', vL2: 'yeyishingiz mumkin', vO1: 'kkal ortiqcha', vO2: 'yedingiz', kcAte: 'Yedingiz', kcStep: 'Yurganingiz uchun', kcEx: "Mashg'ulot uchun", kcMove: 'Harakat uchun', 
       khT: '{k} kkal qanday chiqdi?', khTo: '{k} kkal ortiqcha — qanday chiqdi?', khSub: 'Bugun uchun hisob', khNorm: "Kunlik me'yoringiz", khNormL: 'ozish uchun hisoblangan', khNormK: 'vaznni saqlash uchun', khNormG: 'vazn olish uchun',
       khStep: 'Qadam · {n}', khStepS: "yurganingiz uchun qo'shildi", khStep0: "bugun hali yo'q", khStepIn: "odatiy yurish me'yor ichida", khOff: "me'yorga qo'shilmadi", khEx: "Mashg'ulot", khExS: "{m} daqiqa — qo'shildi", khEx0: "bugun hali yo'q",
       khAte: 'Yedingiz', khAteS: '{n} ta ovqat', khAte0: 'hali hech narsa', khRem: 'Yana yeyishingiz mumkin', khOver: 'Ortiqcha yedingiz',
       khWkL: "Shu raqamdan oshmasangiz — rejaga ko'ra haftasiga ~{x} kg ozasiz.", khWkK: 'Shu raqamdan oshmasangiz — vazningiz saqlanadi.', khWkG: "Shu raqamgacha yesangiz — rejaga ko'ra haftasiga ~{x} kg vazn olasiz.", khOverN: "Hech gap yo'q — ertaga odatdagidek davom eting.", khHow: "Me'yor qanday hisoblangan?",
-      exBurn: '~{k} kkal sarflaysiz', exMore: "Bugun yana +{k} kkal yeyishingiz mumkin bo'ladi", exMore0: "Me'yorga qo'shilishi uchun ish turini tanlang", exWhy: "Hisob taxminiy — ehtiyot uchun yoqilgan kaloriyaning bir qismigina qo'shiladi.", exWhyA: 'Nega shuncha?', exEmpty: 'Futbol, zal, yugurish…', exMinW: 'daqiqa', exTodayT: "Bugungi mashg'ulotlar",
+      exMore0: "Me'yorga qo'shilishi uchun ish turini tanlang", exWhy: "Hisob taxminiy — ehtiyot uchun yoqilgan kaloriyaning bir qismigina qo'shiladi.", exWhyA: 'Nega shuncha?', exEmpty: 'Futbol, zal, yugurish…', exMinW: 'daqiqa', exTodayT: "Bugungi mashg'ulotlar",
       m4P: 'oqsil', m4F: "yog'", m4C: 'uglevod', tplSaveR: 'Odatdagilarga saqlash',
       
       
@@ -250,12 +252,14 @@
       blNote: 'Расчёт примерный. Покой и повседневная жизнь — за полный день, шаги и тренировки — внесённые на сейчас.', blK70: 'Расход показан полностью, а к лимиту еды добавляется 70% — для осторожности.', 
       hkEx: 'Тренировки: {n} дн., {m} мин · ~{k} ккал расхода',
       stEmptyW: 'Введите шаги',
-      vL1: 'ккал ещё', vL2: 'можно съесть', vO1: 'ккал сверх', vO2: 'нормы', kcAte: 'Съели', kcStep: 'За ходьбу', kcEx: 'За тренировку', kcMove: 'За движение', kcHint: 'Нажмите на круг, чтобы узнать, откуда это число',
+      kcHisob: 'Расчёт', kcOpenA: 'Открыть расчёт', kcInfoA: 'Как это рассчитано?',
+      exTurL: 'Тип', exDurL: 'Длительность', exMinus: 'На 5 минут меньше', exPlus: 'На 5 минут больше', lvD0: 'Можно свободно разговаривать', lvD1: 'Дыхание учащается, поговорить можно', lvD2: 'Говорить трудно, вспотеете', exBurnT: 'Сожжёте', exMoreT: 'Можно съесть ещё',
+      vL1: 'ккал ещё', vL2: 'можно съесть', vO1: 'ккал сверх', vO2: 'нормы', kcAte: 'Съели', kcStep: 'За ходьбу', kcEx: 'За тренировку', kcMove: 'За движение', 
       khT: 'Откуда {k} ккал?', khTo: 'Откуда {k} ккал сверх нормы?', khSub: 'Расчёт на сегодня', khNorm: 'Ваша дневная норма', khNormL: 'рассчитана для похудения', khNormK: 'для поддержания веса', khNormG: 'для набора веса',
       khStep: 'Шаги · {n}', khStepS: 'добавлено за ходьбу', khStep0: 'сегодня пока нет', khStepIn: 'обычная ходьба уже в норме', khOff: 'не добавлено к норме', khEx: 'Тренировка', khExS: '{m} мин — добавлено', khEx0: 'сегодня пока нет',
       khAte: 'Съели', khAteS: 'приёмов пищи: {n}', khAte0: 'пока ничего', khRem: 'Можно ещё съесть', khOver: 'Съедено сверх нормы',
       khWkL: 'Если не превышать это число — по плану минус ~{x} кг в неделю.', khWkK: 'Если не превышать это число — вес сохранится.', khWkG: 'Если съесть до этого числа — по плану плюс ~{x} кг в неделю.', khOverN: 'Ничего страшного — завтра продолжайте как обычно.', khHow: 'Как рассчитана норма?',
-      exBurn: '~{k} ккал потратите', exMore: 'Сегодня можно будет съесть ещё +{k} ккал', exMore0: 'Чтобы добавить к норме, выберите тип работы', exWhy: 'Расчёт примерный — для надёжности добавляется только часть сожжённых калорий.', exWhyA: 'Почему столько?', exEmpty: 'Футбол, зал, бег…', exMinW: 'минут', exTodayT: 'Тренировки за сегодня',
+      exMore0: 'Чтобы добавить к норме, выберите тип работы', exWhy: 'Расчёт примерный — для надёжности добавляется только часть сожжённых калорий.', exWhyA: 'Почему столько?', exEmpty: 'Футбол, зал, бег…', exMinW: 'минут', exTodayT: 'Тренировки за сегодня',
       m4P: 'белок', m4F: 'жиры', m4C: 'углеводы', tplSaveR: 'Сохранить в привычные',
       
       
@@ -710,15 +714,14 @@
   }
   var EX_GOAL = 60;          // kunlik mashg'ulot doirasi — 60 daqiqa (bizning tanlov; JSST: haftasiga 150–300 daqiqa o'rtacha — docs/limit.md)
   /* v58 (maket ~/sodda-maket.html): halqa ostida — oddiy chiplar (Yedingiz; limitga HAQIQATAN qo'shilgan harakat krediti), birinchi 3 ochilishda xira izoh. «Hozirgacha sarf»/balans Bugun'da yo'q (S.dayBal — plato/admin uchun core'da) */
-  var kHintSeen = false;
-  function kcChipsHtml(eaten, t) {
-    var dp = S.dayPlan(st, t), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, h = '<div class="kc-chips" id="kChips"><span class="kc-chip"><span aria-hidden="true">🍽</span> ' + esc(T('kcAte')) + ' <b id="kNum">' + fmt(eaten) + '</b></span>';
-    if (sc > 0 && ec > 0) h += '<span class="kc-chip g"><span aria-hidden="true">👟</span> ' + esc(T('kcMove')) + ' <b>+' + fmt(sc + ec) + '</b></span>';
-    else if (sc > 0) h += '<span class="kc-chip g"><span aria-hidden="true">👟</span> ' + esc(T('kcStep')) + ' <b>+' + fmt(sc) + '</b></span>';
-    else if (ec > 0) h += '<span class="kc-chip g"><span aria-hidden="true">⚽</span> ' + esc(T('kcEx')) + ' <b>+' + fmt(ec) + '</b></span>';
-    h += '</div>'; var pf = prefs();
-    if ((pf.kHint || 0) < 3 || kHintSeen === 'on') { if (!kHintSeen) { kHintSeen = 'on'; pf.kHint = (pf.kHint || 0) + 1; save(); } h += '<p class="kc-hint" id="kHint">' + esc(T('kcHint')) + '</p>'; }          // birinchi 3 marta ochishda (shu ochilish davomida qoladi)
-    return h;
+  var kcPulseT0 = 0;
+  function kcPulseAttr() {                             // «i» — birinchi 3 kunda ekran ochilganda 3 marta yumshoq «nafas oladi» (2,4 s × 3), keyin tinch; qayta chizishda o'z vaqtidan davom etadi
+    if (reduce || appDays() >= 3) return ''; var now = performance.now(); if (!kcPulseT0) kcPulseT0 = now; var el = (now - kcPulseT0) / 1000;
+    return el < 7.2 ? ' data-pl="1" style="--pd:-' + el.toFixed(2) + 's"' : '';
+  }
+  function kcChipsHtml(eaten, t) {                     // v59 (maket ~/mashq2-maket.html): bitta ixcham bosiladigan qator «🍽 339 | 👟 +95 · Hisob ›»
+    var dp = S.dayPlan(st, t), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, mv = sc + ec, ic = sc > 0 ? '👟' : '⚽', aria = T('kcAte') + ' ' + fmt(eaten) + ' ' + T('kcal') + (mv > 0 ? ', ' + T(sc > 0 && ec > 0 ? 'kcMove' : (sc > 0 ? 'kcStep' : 'kcEx')).toLowerCase() + ' +' + fmt(mv) + ' ' + T('kcal') : '') + '. ' + T('kcOpenA');
+    return '<button type="button" class="kc-row" id="kChips" data-act="xkcal" aria-label="' + esc(aria) + '"><span class="kc-it"><span aria-hidden="true">🍽</span> <b id="kNum">' + fmt(eaten) + '</b></span>' + (mv > 0 ? '<i class="kc-sep" aria-hidden="true"></i><span class="kc-it g"><span aria-hidden="true">' + ic + '</span> <b>+' + fmt(mv) + '</b></span>' : '') + '<em class="kc-go">' + esc(T('kcHisob')) + ' ›</em></button>';
   }
   function openKcalHow() {                             // halqa bosilganda: «N kkal qanday chiqdi?» — yig'indi = halqa raqami (S.dayPlan limiti − yeyilgan)
     var t = todayStr(), x = S.dayOf(st, t) || { food: [], ex: [], steps: 0 }, tot = S.sumEntries(x.food), dp = S.dayPlan(st, t), pl = planNow(), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, base = dp.limit - sc - ec, rem = dp.limit - tot.kcal, over = rem < 0;
@@ -739,28 +742,41 @@
     var t = todayStr(), l = exListHtml(t);
     (re ? function (k, h) { setSheet(h); } : openSheet)('exlist', shHead(T('exTodayT')) + (l || '<p class="rz-p rz-mut">' + esc(T('exEmpty')) + '</p>') + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="exadd">' + esc(T('exAdd')) + '</button></div>');
   }
-  /* mashg'ulot oynasi (maket 2): tur → davomiylik (15/25/30/45/60 + slayder 5–180) → og'irlik → «+N kkal taxminan» → Qo'shish */
+  /* mashg'ulot oynasi (v59, maket ~/mashq2-maket.html): tur to'ri → davomiylik (− 30 + / 15…90) → og'irlik kartalari → 2 natija plitkasi → qotgan panel «Qo'shish · 30 daq yugurish». Hammasi joyida yangilanadi (qayta chizilmaydi) */
   var exv = null;
   function openEx(id, d) {
     d = d || todayStr(); var x = S.dayOf(st, d), e = id && x && x.ex ? x.ex.filter(function (y) { return y.id === id; })[0] : null;
-    exv = e ? { id: e.id, d: d, t: e.t, min: e.min, lv: e.lv } : { id: null, d: d, t: prefs().exLast || 'yugurish', min: 30, lv: 1 }; openSheet('mashq', exSheetHtml());
+    exv = e ? { id: e.id, d: d, t: e.t, min: e.min, lv: e.lv } : { id: null, d: d, t: prefs().exLast || 'yugurish', min: 30, lv: 1 }; openSheet('mashq', exSheetHtml()); exApply();
   }
   function exSheetHtml() {
-    var w = S.currentWeight(st) || num(st.profile.weight), k = S.exNet(exv, w), on = S.jobOn(st), stepsOn = on && S.EX[exv.t].spm && (qaOn() || (S.dayOf(st, exv.d) || {}).steps > 0);
-    return shHead(T('exQ')) + '<div class="ex-grid" role="radiogroup" aria-label="' + esc(T('exQ')) + '">' + S.EX_ORDER.map(function (k2) { var o = exv.t === k2; return '<button type="button" class="ex-t' + (o ? ' on' : '') + '" role="radio" aria-checked="' + o + '" data-act="ext" data-v="' + k2 + '"><i aria-hidden="true">' + S.EX[k2].e + '</i><span>' + esc(T('exS_' + k2)) + '</span></button>'; }).join('') + '</div>' +
-      '<div class="rz-fl">' + esc(T('exDur')) + '</div><div class="rz-chips ex-dur">' + [15, 25, 30, 45, 60].map(function (m) { return '<button type="button" class="rz-chip' + (exv.min === m ? ' on' : '') + '" data-act="exmin" data-v="' + m + '" aria-pressed="' + (exv.min === m) + '">' + m + '</button>'; }).join('') + '</div>' +
-      '<label class="ex-rng"><span class="rz-sr">' + esc(T('exDur')) + '</span><input type="range" id="exRange" min="5" max="180" step="5" value="' + Math.min(180, Math.max(5, exv.min)) + '" aria-valuetext="' + esc(T('exMinA', { n: exv.min })) + '"><b id="exMinV">' + esc(T('exMin', { n: exv.min })) + '</b></label>' +
-      '<div class="rz-fl">' + esc(T('exLv')) + '</div><div class="rz-chips ex-lv">' + [0, 1, 2].map(function (l) { return '<button type="button" class="rz-chip' + (exv.lv === l ? ' on' : '') + '" data-act="exlv" data-v="' + l + '" aria-pressed="' + (exv.lv === l) + '">' + esc(T('lv' + l)) + '</button>'; }).join('') + '</div>' +
-      (exv.t === 'ogir' && st.profile.job === 'heavy' ? '<p class="rz-p sm warn" id="exHeavy">' + esc(T('exHeavy')) + '</p>' : '') +
-      '<div class="ex-prev" id="exPrev"><p class="l1"><span aria-hidden="true">🔥</span> <span id="exBurn">' + esc(T('exBurn', { k: fmt(k) })) + '</span></p><p class="l2"><span aria-hidden="true">🍽</span> <span id="exMore">' + esc(on ? T('exMore', { k: fmt(exGain()) }) : T('exMore0')) + '</span>' + (on ? '<button type="button" class="ex-why" data-act="exwhy" aria-label="' + esc(T('exWhyA')) + '" aria-expanded="false">' + ico('info') + '</button>' : '') + '</p>' + (on ? '<p class="ex-whyt" id="exWhy" hidden>' + esc(T('exWhy')) + '</p>' : '') + '</div>' +          // v58: ikki oddiy qator; foiz yo'q, sababi — ⓘ ichida
-      '<div class="rz-actions">' + (exv.id ? '<button type="button" class="rz-btn ghost" data-act="exdel">' + esc(T('exDel')) + '</button>' : '') + '<button type="button" class="rz-btn primary" data-act="exsave">' + esc(T(exv.id ? 'exUpd' : 'exSave')) + '</button></div>' +
-      (stepsOn ? '<p class="rz-p sm ex-note" id="exStepN">' + esc(T('exStepN')) + '</p>' : '');
+    var on = S.jobOn(st), edit = !!exv.id;
+    return shHead(T('exQ')) + '<div class="rz-fl">' + esc(T('exTurL')) + '</div><div class="ex-grid" role="radiogroup" aria-label="' + esc(T('exTurL')) + '">' + S.EX_ORDER.map(function (k2) { return '<button type="button" class="ex-t" role="radio" aria-checked="false" data-act="ext" data-v="' + k2 + '"><span class="ic c-' + k2 + '" aria-hidden="true">' + S.EX[k2].e + '</span><span class="nm">' + esc(T('exS_' + k2)) + '</span><span class="ck" aria-hidden="true">✓</span></button>'; }).join('') + '</div>' +
+      '<div class="rz-fl">' + esc(T('exDurL')) + '</div><div class="ex-dur2"><button type="button" class="ex-st" data-act="exstep" data-s="-5" aria-label="' + esc(T('exMinus')) + '">−</button><div class="v" role="status"><b id="exMinV">' + exv.min + '</b><small>' + esc(T('exMinW')) + '</small></div><button type="button" class="ex-st" data-act="exstep" data-s="5" aria-label="' + esc(T('exPlus')) + '">+</button></div>' +
+      '<div class="rz-chips ex-dur">' + [15, 25, 30, 45, 60, 90].map(function (m) { return '<button type="button" class="rz-chip" data-act="exmin" data-v="' + m + '" aria-pressed="false">' + m + '</button>'; }).join('') + '</div>' +
+      '<div class="rz-fl">' + esc(T('exLv')) + '</div><div class="ex-int" role="radiogroup" aria-label="' + esc(T('exLv')) + '">' + [0, 1, 2].map(function (l) { return '<button type="button" class="ex-in" role="radio" aria-checked="false" data-act="exlv" data-v="' + l + '"><span class="bars" aria-hidden="true">' + [0, 1, 2].map(function (b2) { return '<i' + (b2 <= l ? ' class="f"' : '') + ' style="height:' + [8, 14, 22][b2] + 'px"></i>'; }).join('') + '</span><span class="m"><b>' + esc(T('lv' + l)) + '</b><small>' + esc(T('lvD' + l)) + '</small></span></button>'; }).join('') + '</div>' +
+      '<p class="rz-p sm warn" id="exHeavy" hidden>' + esc(T('exHeavy')) + '</p>' +
+      '<div class="ex-res" id="exPrev"><div class="rs r1"><small><span aria-hidden="true">🔥</span> ' + esc(T('exBurnT')) + '</small><b>~<i id="exBurnN">0</i> <span class="u">' + T('kcal') + '</span></b></div>' +
+      (on ? '<div class="rs r2"><small><span aria-hidden="true">🍽</span> ' + esc(T('exMoreT')) + '</small><b>+<i id="exMoreN">0</i> <span class="u">' + T('kcal') + '</span></b><button type="button" class="ex-why" data-act="exwhy" aria-label="' + esc(T('exWhyA')) + '" aria-expanded="false">' + ico('info') + '</button></div>' : '<div class="rs r2"><small><span aria-hidden="true">🍽</span> ' + esc(T('exMoreT')) + '</small><span class="n0">' + esc(T('exMore0')) + '</span></div>') + '</div>' +
+      (on ? '<p class="ex-whyt" id="exWhy" hidden>' + esc(T('exWhy')) + '</p>' : '') +
+      '<p class="rz-p sm ex-note" id="exStepN" hidden>' + esc(T('exStepN')) + '</p>' +
+      '<div class="pw-bar">' + (edit ? '<button type="button" class="pw-del" data-act="exdel" aria-label="' + esc(T('exDel')) + '">' + ico('trash') + '</button>' : '') + '<button type="button" class="sl-main" id="exSaveB" data-act="exsave"></button></div>';
   }
   function exGain() {                                  // v58: shu mashg'ulot bugungi me'yorga aniq qancha qo'shadi (u bilan va usiz S.dayPlan farqi — 0,7, 800 chegarasi, qadam bilan ustma-ustlik hisobda)
     var d = exv.d, d0 = (st.days && st.days[d]) || {}, l = (d0.ex || []).filter(function (e) { return e.id !== exv.id; }), mk = function (ex) { var days = Object.assign({}, st.days); days[d] = Object.assign({}, d0, { ex: ex }); return S.dayPlan(Object.assign({}, st, { days: days }), d).limit; };
     return Math.max(0, mk(l.concat([{ id: '_p', t: exv.t, min: exv.min, lv: exv.lv, ts: 0 }])) - mk(l));
   }
-  function exPrevUpd() { var k = S.exNet(exv, S.currentWeight(st) || num(st.profile.weight)), pv = $('#exBurn'), pm = $('#exMore'), mv = $('#exMinV'), r = $('#exRange'); if (pv) pv.textContent = T('exBurn', { k: fmt(k) }); if (pm && S.jobOn(st)) pm.textContent = T('exMore', { k: fmt(exGain()) }); if (mv) mv.textContent = T('exMin', { n: exv.min }); if (r) r.setAttribute('aria-valuetext', T('exMinA', { n: exv.min })); $$('.ex-dur .rz-chip').forEach(function (b) { var o = +b.getAttribute('data-v') === exv.min; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); }); }
+  function exNum(el, v) { if (!el) return; kit.setNum(el, el._v == null ? null : el._v, v, { dur: 350 }); el._v = v; }
+  function exApply(popKey) {                           // tanlov o'zgardi: faqat o'zgargan qismlar yangilanadi (sahifa/aylantirish joyida qoladi)
+    if (!exv || kit.sheetKind() !== 'mashq') return;
+    var w = S.currentWeight(st) || num(st.profile.weight), k = S.exNet(exv, w), on = S.jobOn(st), stepsOn = on && S.EX[exv.t].spm && (qaOn() || (S.dayOf(st, exv.d) || {}).steps > 0);
+    $$('#rzSheet .ex-t').forEach(function (b) { var o = b.getAttribute('data-v') === exv.t; b.classList.toggle('on', o); b.setAttribute('aria-checked', o); if (o && popKey === exv.t) { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); } });
+    $$('#rzSheet .ex-in').forEach(function (b) { var o = +b.getAttribute('data-v') === exv.lv; b.classList.toggle('on', o); b.setAttribute('aria-checked', o); });
+    $$('#rzSheet .ex-dur .rz-chip').forEach(function (b) { var o = +b.getAttribute('data-v') === exv.min; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
+    var mv = $('#exMinV'); if (mv) mv.textContent = exv.min; var st$ = $$('#rzSheet .ex-st'); if (st$[0]) st$[0].disabled = exv.min <= 5; if (st$[1]) st$[1].disabled = exv.min >= 180;
+    exNum($('#exBurnN'), k); if (on) exNum($('#exMoreN'), exGain());
+    var hv = $('#exHeavy'); if (hv) hv.hidden = !(exv.t === 'ogir' && st.profile.job === 'heavy'); var sn = $('#exStepN'); if (sn) sn.hidden = !stepsOn;
+    var nm = T('exS_' + exv.t).toLowerCase(), bt = $('#exSaveB'); if (bt) { var a = T(exv.id ? 'exUpd' : 'exSave'), b2 = T('exMin', { n: exv.min }) + (exv.t === 'boshqa' ? '' : ' ' + nm); bt.innerHTML = '<span class="ct">' + esc(a) + '<span> · ' + esc(b2) + '</span></span>'; }
+  }
   function exBucket(m) { return m <= 15 ? 'd15' : (m <= 30 ? 'd30' : (m <= 60 ? 'd60' : (m <= 90 ? 'd90' : 'dx'))); }
   function exSave() {
     if (!exv) return; var d = exv.d, isNew = !exv.id; if (isNew) { S.addEx(st, d, exv); stEv('mashq_qoshildi', exv.t + '.' + exBucket(exv.min)); } else S.updEx(st, d, exv.id, exv);
@@ -786,7 +802,6 @@
     var i = $('#siN'), n = Math.max(0, Math.min(60000, Math.round(num(i && i.value)))), d = siv.d, first = prefs().qm == null; S.setSteps(st, d, n); stEv('qadam_qolda', d === todayStr() ? 'bugun' : 'kecha');
     siv = null; kit.closeSheet(); heroPrev = null; commit(); vib(); toast(T('stInDone'), null, true); if (first && n > 0) jobAskOnce();
   }
-  document.addEventListener('input', function (e) { if (e.target && e.target.id === 'exRange' && exv) { exv.min = Math.round(+e.target.value) || 30; exPrevUpd(); } });
   /* chapga surib o'chirish (mashg'ulot qatori) */
   (function () {
     var row = null, x0 = 0, y0 = 0, dx = 0, hz = null;
@@ -1020,7 +1035,7 @@
     var h = inst.isTop() ? inst.cardHtml() : '';
     h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="rz-h sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div>' + ftBtnHtml() + '</div>';          // har ekranda sarlavha bir joyda (rz-h)
     h += weekStripHtml(t);
-    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: '', b: fmt(curN), c: over ? [T('vO1'), T('vO2')] : [T('vL1'), T('vL2')] }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
+    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><div class="kc-vw"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: '', b: fmt(curN), c: over ? [T('vO1'), T('vO2')] : [T('vL1'), T('vL2')] }) + '</button><button type="button" class="kc-i" id="kcalI" data-act="xkcal" aria-label="' + esc(T('kcInfoA')) + '"' + kcPulseAttr() + '><span aria-hidden="true">i</span></button></div>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
       kcChipsHtml(tot.kcal, t) + taxChipHtml() + '</section>' ;
     h += slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
@@ -3085,9 +3100,10 @@
       case 'pwmeal': { fd.pmeal = !fd.pmeal; pwScreen(); break; }
       case 'exadd': openEx(null); break;
       case 'exedit': { if (el.__sw) { el.__sw = 0; break; } openEx(el.getAttribute('data-id'), el.getAttribute('data-d')); break; }
-      case 'ext': { if (exv) { exv.t = el.getAttribute('data-v'); setSheet(exSheetHtml()); } break; }
-      case 'exmin': { if (exv) { exv.min = +el.getAttribute('data-v'); var rg = $('#exRange'); if (rg) rg.value = exv.min; exPrevUpd(); } break; }
-      case 'exlv': { if (exv) { exv.lv = +el.getAttribute('data-v'); setSheet(exSheetHtml()); } break; }
+      case 'ext': { if (exv) { exv.t = el.getAttribute('data-v'); exApply(exv.t); } break; }
+      case 'exmin': { if (exv) { exv.min = +el.getAttribute('data-v'); exApply(); } break; }
+      case 'exstep': { if (exv) { exv.min = Math.max(5, Math.min(180, exv.min + (+el.getAttribute('data-s') || 0))); exApply(); } break; }
+      case 'exlv': { if (exv) { exv.lv = +el.getAttribute('data-v'); exApply(); } break; }
       case 'exsave': exSave(); break;
       case 'exdel': { if (exv && exv.id) exDel(exv.id, exv.d); break; }
       case 'stepin': openStepIn(); break;
