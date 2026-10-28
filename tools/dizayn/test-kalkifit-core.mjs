@@ -40,15 +40,15 @@ T('16 oqsil kcal ning 35% idan oshmaydi (past kaloriya, katta vazn)', () => { co
 T('17 oqsil g/kg maqsadga qarab 1,6 / 1,8 / 2,0 / 1,8', () => { assert.deepEqual(['keep', 'slow', 'lose', 'gain'].map((g) => S.macros(2500, 80, g).p), [128, 144, 160, 144]); });
 T('18 suv: 33 ml/kg → 80 kg = 2640 ml = 11 stakan (250 ml)', () => { const w = S.water(80); assert.equal(w.ml, 2640); assert.equal(w.glasses, 11); assert.equal(w.glassMl, 250); });
 T('19 qadam uzunligi = bo\'y × 0,414: 175 sm → 72,45 sm; 10 000 qadam = 7,245 km', () => { assert.ok(Math.abs(S.strideM(175) - 0.72450) < 1e-9); assert.ok(Math.abs(S.distanceKm(10000, 175) - 7.245) < 1e-9); });
-T('20 qadam: yalpi sarf (MET 3,5) = 406 kkal/10 000 qadam (ko\'rsatkich); v51 kredit — max(0, qadam − baza) × bo\'y×0,415 × vazn × 0,5 kkal/kg/km × 0,7, ≤ 500', () => {
+T('20 qadam: yalpi sarf (MET 3,5) = 406 kkal/10 000 qadam (ko\'rsatkich); v51 kredit — max(0, qadam − baza) × bo\'y×0,415 × vazn × 0,5 kkal/kg/km × 0,7 (v62: 12 000 dan ortig\'i × 0,5), ≤ 500', () => {
   assert.equal(S.stepKcal(10000, 175, 80), 406); assert.equal(S.stepKcal(0, 175, 80), 0);
   const cr = (extra) => Math.min(500, Math.round(extra * 175 * 0.415 / 100 / 1000 * 80 * 0.5 * 0.7)); assert.equal(cr(4000), 81);
-  assert.equal(S.creditOf(14000, 175, 80, 10000), 81); assert.equal(S.creditOf(9000, 175, 80, 10000), 0, 'bazadan kam — 0 (ayirilmaydi)'); assert.equal(S.creditOf(60000, 175, 80, 5000), 500, 'kuniga ≤ 500');
-  assert.deepEqual(S.LIM.JOB, { sit: { k: 1.4, base: 5000 }, stand: { k: 1.6, base: 7500 }, heavy: { k: 1.85, base: 10000 } }); assert.equal(S.LIM.CRED_K, 0.7);
+  assert.equal(S.creditOf(11000, 175, 80, 7000), 81); assert.equal(S.creditOf(14000, 175, 80, 10000), Math.round(2000 * 175 * 0.415 / 100 / 1000 * 80 * 0.5 * 0.7 + 2000 * 175 * 0.415 / 100 / 1000 * 80 * 0.5 * 0.5), 'v62: 12 000 dan ortig\'i × 0,5'); assert.equal(S.creditOf(9000, 175, 80, 10000), 0, 'bazadan kam — 0 (ayirilmaydi)'); assert.equal(S.creditOf(60000, 175, 80, 5000), 500, 'kuniga ≤ 500');
+  assert.deepEqual(S.LIM.JOB, { sit: { k: 1.35, base: 5000 }, stand: { k: 1.6, base: 7500 }, heavy: { k: 1.85, base: 10000 } }); assert.equal(S.LIM.CRED_K, 0.7);
 });
 T('21 kun balansi (v51: S.dayPlan ustida) — iPhone: kredit 0; Android (ish turi + qadam): bazadan ortig\'i', () => {
   const st = mk({ act: 3, goal: 'keep' }); S.setSteps(st, TODAY, 12000); let b = S.dayBalance(st, TODAY, 1500); assert.equal(b.credit, 0, 'iPhone / qadamsiz — kredit 0'); assert.equal(b.remaining, S.plan(st.profile).target - 1500);
-  st.prefs.qa = 'on'; st.profile.job = 'sit'; b = S.dayBalance(st, TODAY, 1500); const dp = S.dayPlan(st, TODAY); assert.equal(b.credit, S.creditOf(12000, 175, 80, 5000)); assert.equal(b.remaining, dp.limit - 1500); assert.equal(dp.k, 1.4);
+  st.prefs.qa = 'on'; st.profile.job = 'sit'; b = S.dayBalance(st, TODAY, 1500); const dp = S.dayPlan(st, TODAY); assert.equal(b.credit, S.creditOf(12000, 175, 80, 5000)); assert.equal(b.remaining, dp.limit - 1500); assert.equal(dp.k, 1.35);
   S.setSteps(st, TODAY, 3000); assert.equal(S.dayPlan(st, TODAY).credit, 0, 'bazadan kam — ayirilmaydi'); assert.equal(S.dayPlan(st, TODAY).limit, S.planSt(st).target);
 });
 T('21b ikki marta hisoblash yo\'q: qadam yoqilgan, lekin ish turi tasdiqlanmagan — umumiy faollik (yurish ichida), kredit 0', () => {
