@@ -5,9 +5,9 @@ const foods = S.buildIndex(S.normFoods(require('../data/ovqatlar.json').foods));
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const mk = (o = {}) => { const st = S.emptyState(); st.setup = true; st.profile = Object.assign({ sex: 'm', age: 35, height: 175, weight: 80, act: 2, goal: 'lose', job: 'sit' }, o.p); st.prefs = Object.assign({ qa: 'on' }, o.q); S.addWeight(st, T, 80); return st; };
 /* 1. MET (2024 Compendium) — NET: (MET − 1) × kg × soat */
-{ assert.equal(S.exNet({ t: 'yugurish', min: 25, lv: 1 }, 80), Math.round(6.5 * 80 * 25 / 60)); assert.equal(S.exNet({ t: 'zal', min: 60, lv: 0 }, 70), Math.round(2.5 * 70)); assert.equal(S.exNet({ t: 'futbol', min: 45, lv: 2 }, 80), Math.round(8.5 * 80 * 0.75));
+{ assert.equal(S.exNet({ t: 'yugurish', min: 25, lv: 1 }, 80), Math.round(6.5 * 80 * 25 / 60)); assert.equal(S.exNet({ t: 'zal', min: 60, lv: 0 }, 70), Math.round(2.0 * 70)); assert.deepEqual(S.EX.zal.met, [3.0, 3.5, 5.0], 'v62: zal — Compendium 02054 (3,5) o\'rtacha'); assert.equal(S.exNet({ t: 'futbol', min: 45, lv: 2 }, 80), Math.round(8.5 * 80 * 0.75));
   assert.deepEqual(S.EX.yugurish.met, [6.5, 7.5, 9.3]); assert.equal(S.EX_ORDER.length, 12); assert.ok(!S.EX.piyoda, 'piyoda yurish alohida tur emas (qadam bilan)'); for (const k of S.EX_ORDER) assert.ok(S.EX[k].met.every((m, i, a) => m > 1 && (!i || m >= a[i - 1])), k);
-  ok('MET NET: yugurish o\'rtacha 25 daq × 80 kg = (7,5 − 1) × 80 × 25/60 = 217 kkal; zal yengil 60 daq × 70 kg = 175; 12 tur, piyoda yurish yo\'q (qadam), yengil ≤ o\'rtacha ≤ og\'ir'); }
+  ok('MET NET: yugurish o\'rtacha 25 daq × 80 kg = (7,5 − 1) × 80 × 25/60 = 217 kkal; zal yengil 60 daq × 70 kg = 140 (v62: MET 3,0); 12 tur, piyoda yurish yo\'q (qadam), yengil ≤ o\'rtacha ≤ og\'ir'); }
 /* 2. yugurish + qadam — ikki marta emas (Android avtomatik va iPhone qo'lda) */
 for (const q of [{ qa: 'on' }, { qa: undefined, qm: 'on' }]) {
   const a = mk({ q }); S.addEx(a, T, { t: 'yugurish', min: 25, lv: 1 }); const run = S.dayPlan(a, T);
@@ -22,10 +22,10 @@ ok('Yugurish 25 daq + 9 000 qadam (Android va iPhone qo\'lda): yugurishdagi ~4 0
   const b = mk(); S.addEx(b, T, { t: 'kurash', min: 180, lv: 2 }); S.setSteps(b, T, 30000); const e = S.dayPlan(b, T); assert.equal(e.credit, 800, 'qadam + mashg\'ulot ≤ 800'); assert.equal(e.stepCredit + e.exCredit, 800); assert.ok(e.sarf > e.plan.tdee + 1500, 'sarf to\'liq (cheklovsiz)');
   assert.equal(e.limit, e.plan.tdee + 800 + e.delta); ok('Mashg\'ulot krediti = NET × 0,7; qadam + mashg\'ulot krediti ≤ 800 kkal (sarf esa to\'liq ko\'rsatiladi)'); }
 /* 4. iPhone: qo'lda qadam → ish turi tasdiqlangan (qm) — kredit; tasdiqlanmagan / ACT — 0; kiritilmagan kun — k ish turidan */
-{ const web = mk({ q: { qa: undefined, qm: 'on' } }); S.setSteps(web, T, 9000); assert.ok(S.dayPlan(web, T).stepCredit > 0); assert.equal(S.dayPlan(web, T).k, 1.4);
+{ const web = mk({ q: { qa: undefined, qm: 'on' } }); S.setSteps(web, T, 9000); assert.ok(S.dayPlan(web, T).stepCredit > 0); assert.equal(S.dayPlan(web, T).k, 1.35);
   const off = mk({ q: { qa: undefined, qm: 'off' } }); S.setSteps(off, T, 9000); S.addEx(off, T, { t: 'futbol', min: 60, lv: 1 }); const o = S.dayPlan(off, T); assert.deepEqual([o.credit, o.job, o.sarf], [0, null, o.plan.tdee], 'tasdiqlanmagan — kredit 0, sarf = umumiy daraja (yurish ichida)');
-  const none = mk({ q: { qa: undefined, qm: 'on' } }); const z = S.dayPlan(none, T); assert.deepEqual([z.credit, z.k, z.job], [0, 1.4, 'sit'], 'qadam kiritilmagan kun — kredit 0, k ish turidan (eski daraja emas)');
-  ok('iPhone/veb: qo\'lda qadam + ish turi tasdiqlangan → kredit (k = 1,40); tasdiqlanmasa — kredit 0, sarf = umumiy daraja; kiritilmagan kun — kredit 0, k ish turidan'); }
+  const none = mk({ q: { qa: undefined, qm: 'on' } }); const z = S.dayPlan(none, T); assert.deepEqual([z.credit, z.k, z.job], [0, 1.35, 'sit'], 'qadam kiritilmagan kun — kredit 0, k ish turidan (eski daraja emas)');
+  ok('iPhone/veb: qo\'lda qadam + ish turi tasdiqlangan → kredit (k = 1,35); tasdiqlanmasa — kredit 0, sarf = umumiy daraja; kiritilmagan kun — kredit 0, k ish turidan'); }
 /* 5. balans = iste'mol − sarf; tafsilot yig'indisi = sarf */
 { const a = mk(); S.setSteps(a, T, 8420); S.addEx(a, T, { t: 'yugurish', min: 25, lv: 1 }); S.addEx(a, T, { t: 'zal', min: 20, lv: 1 }); const b1 = S.dayBal(a, T, 1635), d = b1.dp;
   assert.equal(b1.bal, 1635 - b1.sarfNow); assert.equal(d.bmr + d.life + d.corr + d.stepNet + d.exNet, b1.sarfDay, 'tinch + kundalik + tuzatish + qadam + mashg\'ulot = kunlik jami sarf'); assert.equal(b1.reja, d.delta);

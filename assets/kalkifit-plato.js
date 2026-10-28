@@ -131,11 +131,11 @@
     res.tries = tries(res.reasons);
     return res;
   }
-  /* v51: O'ZINI TO'G'RILAYDIGAN ME'YOR (adaptiv). Shart: ≥ 21 kun foydalanish; so'nggi davr (≤ 28 kun) kunlarining ≥ 80% i «to'liq yozilgan» (kun jami ≥ limitning 60% i — sabablar bilan bir xil mezon);
+  /* v51: O'ZINI TO'G'RILAYDIGAN ME'YOR (adaptiv). Shart: ≥ 14 kun foydalanish (v62: 21 → 14); so'nggi davr (≤ 28 kun) kunlarining ≥ 80% i «to'liq yozilgan» (kun jami ≥ limitning 60% i — sabablar bilan bir xil mezon);
      ≥ 4 vazn yozuvi. Haqiqiy sarf = o'rtacha yozilgan kkal − trend o'zgarishi × 7 700 / kunlar; formula sarfi = o'sha kunlardagi BMR × koeff + tuzatish + qadam krediti (S.dayPlan().spend).
      Farq ≥ 150 kkal/kun — taklif (avtomatik emas): bir martada ±10% dan ko'p emas, 14 kunda bir martadan ko'p emas, juda tez ozishda faqat oshirish, pastki chegaradan pastga tushmaydi.
      o = { st, S, today, last (oxirgi taklif vaqti, ms), now } → null | { actual, formula, diff, delta, corr (yangi), limitOld, limitNew, days, full } */
-  var AD = { DAYS: 21, WIN: 28, FULL: 0.8, WEIGHTS: 4, MIN: 150, PCT: 0.10, COOL: 14 };
+  var AD = { DAYS: 14, WIN: 28, FULL: 0.8, WEIGHTS: 4, MIN: 150, PCT: 0.10, COOL: 14 };
   function msDay(D, ms) { var d = new Date(ms); return D.ymd(d.getFullYear(), d.getMonth() + 1, d.getDate()); }          // v54: D.ymd(y, m, d) — sana obyekti emas (eski xato: «Mon Oct …-undefined»)
   function adapt(o) {
     var st = o.st, S = o.S, D = S.dates, today = o.today || D.today(), p = st && st.profile; if (!st || !st.setup || !p) return null;

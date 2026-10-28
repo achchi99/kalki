@@ -221,7 +221,11 @@
       exHeavy: "Ishingiz og'ir jismoniy — ish vaqtidagi mehnat me'yoringizda bor. Faqat ishdan tashqari ishni qo'shing.", exSave: "Qo'shish", exUpd: 'Saqlash', exDel: "O'chirish", exDone: "Mashg'ulot qo'shildi", exGone: "Mashg'ulot o'chirildi", exNone: "Hali yo'q",
       ex_yugurish: 'Yugurish', ex_zal: 'Zal (kuch)', ex_velosiped: 'Velosiped', ex_futbol: 'Futbol', ex_suzish: 'Suzish', ex_uyda: 'Uyda mashq', ex_raqs: 'Raqs', ex_yoga: "Yoga, cho'zilish", ex_kurash: 'Kurash, boks', ex_voleybol: 'Voleybol, basketbol', ex_ogir: "Og'ir jismoniy ish", ex_boshqa: 'Boshqa',
       exS_yugurish: 'Yugurish', exS_zal: 'Zal', exS_velosiped: 'Velosiped', exS_futbol: 'Futbol', exS_suzish: 'Suzish', exS_uyda: 'Uyda', exS_raqs: 'Raqs', exS_yoga: 'Yoga', exS_kurash: 'Boks', exS_voleybol: 'Voleybol', exS_ogir: "Og'ir ish", exS_boshqa: 'Boshqa',
-      stIn: "+ Qo'lda kiritish", stInT: 'Qadamni kiritish', stInH: "iPhone: «Salomatlik» (Health) ilovasi → «Qadamlar» bo'limidagi kunlik sonni yozing.", stInL: 'Qadam soni', stD0: 'Bugun', stD1: 'Kecha', stInSave: 'Saqlash', stNone: 'Bugun qadam kiritilmadi', stInDone: 'Qadam saqlandi',
+      stIn: "+ Qo'lda kiritish", stInT: 'Qadamni kiritish', stInH: "iPhone: «Salomatlik» (Health) ilovasi → «Qadamlar» bo'limidagi kunlik sonni yozing.", stInL: 'Qadam soni', stD0: 'Bugun', stD1: 'Kecha', stInSave: 'Saqlash', stNone: 'Bugun qadam kiritilmadi', stInDone: 'Qadam saqlandi', aeL: "Soatingiz bor bo'lsa — «Активная энергия», kkal (ixtiyoriy)", aeH: "Salomatlik → Faollik → «Активная энергия». Kiritsangiz, qadam va mashg'ulot o'rniga shu hisoblanadi.",
+      khAe: 'Soat · aktiv {a}', khAeS: "kundalik harakatdan ({b}) ortig'i × 0,7; qadam va mashg'ulot shu ichida", khDev: "Soatingiz ma'lumoti bo'yicha", khDevS: "soat sarfi {d} kkal — hisobdan 10%+ kam, kamini oldik",
+      hcEon: "⌚ Soatingiz bormi? Sarfini ulash", hcEok: "Soat ulandi: kun oxirida hisob bilan solishtiriladi", hcEno: 'Ruxsat berilmadi', hcEold: 'Buning uchun ilovani yangilang (1.0.7)', hcEis: "⌚ Soat ulangan: kun oxirida sarfi solishtiriladi",
+      xAeX: 'Soat: aktiv energiya {a} − kundalik {b}, × 0,7', xDevX: "Soatingiz ma'lumoti bo'yicha (sarf {d})", kcAe: "soat bo'yicha",
+      lmT: "Kunlik me'yoringiz yangilandi: {a} → {b} kkal", lmH: "Hisobni ehtiyotkorroq qildik: o'tirib ishlaydiganlar va juda ko'p qadamli kunlar uchun qo'shimcha biroz kamaydi. Maqsad — bilmasdan vazn olmaslik.", lmOk: 'Tushunarli',
       jobHw: "Qadamni o'zingiz kiritasiz — bu yerda faqat ish turini tanlang. Qadam kiritmagan kunlar yurish qo'shilmaydi.",
       blEat: 'yedingiz', blSpend: 'sarfladingiz', blBal: 'balans', blLose: 'Bugun ozish tomonda — reja: {p} kkal', blOver: 'Bugun ortiqcha: +{b} kkal', blGain: 'Bugun vazn olish tomonda — reja: +{p} kkal', blUnder: 'Bugun kamroq: {b} kkal', blKeep: 'Bugun muvozanatda — reja: 0',
       
@@ -245,7 +249,11 @@
       exHeavy: 'У вас тяжёлая физическая работа — труд в рабочее время уже в норме. Добавляйте только то, что вне работы.', exSave: 'Добавить', exUpd: 'Сохранить', exDel: 'Удалить', exDone: 'Тренировка добавлена', exGone: 'Тренировка удалена', exNone: 'Пока нет',
       ex_yugurish: 'Бег', ex_zal: 'Зал (силовая)', ex_velosiped: 'Велосипед', ex_futbol: 'Футбол', ex_suzish: 'Плавание', ex_uyda: 'Тренировка дома', ex_raqs: 'Танцы', ex_yoga: 'Йога, растяжка', ex_kurash: 'Борьба, бокс', ex_voleybol: 'Волейбол, баскетбол', ex_ogir: 'Тяжёлая физическая работа', ex_boshqa: 'Другое',
       exS_yugurish: 'Бег', exS_zal: 'Зал', exS_velosiped: 'Велосипед', exS_futbol: 'Футбол', exS_suzish: 'Плавание', exS_uyda: 'Дома', exS_raqs: 'Танцы', exS_yoga: 'Йога', exS_kurash: 'Бокс', exS_voleybol: 'Волейбол', exS_ogir: 'Тяжёлый труд', exS_boshqa: 'Другое',
-      stIn: '+ Ввести вручную', stInT: 'Ввести шаги', stInH: 'iPhone: приложение «Здоровье» (Health) → «Шаги» — впишите число за день.', stInL: 'Количество шагов', stD0: 'Сегодня', stD1: 'Вчера', stInSave: 'Сохранить', stNone: 'Сегодня шаги не введены', stInDone: 'Шаги сохранены',
+      stIn: '+ Ввести вручную', stInT: 'Ввести шаги', stInH: 'iPhone: приложение «Здоровье» (Health) → «Шаги» — впишите число за день.', stInL: 'Количество шагов', stD0: 'Сегодня', stD1: 'Вчера', stInSave: 'Сохранить', stNone: 'Сегодня шаги не введены', stInDone: 'Шаги сохранены', aeL: 'Есть часы — «Активная энергия», ккал (необязательно)', aeH: 'Здоровье → Активность → «Активная энергия». Если введёте — считаем по ней вместо шагов и тренировок.',
+      khAe: 'Часы · активная {a}', khAeS: 'сверх обычного движения ({b}) × 0,7; шаги и тренировки уже внутри', khDev: 'По данным ваших часов', khDevS: 'расход по часам {d} ккал — на 10%+ меньше расчёта, берём меньшее',
+      hcEon: '⌚ Есть часы? Подключить расход', hcEok: 'Часы подключены: вечером сверим с расчётом', hcEno: 'Доступ не дан', hcEold: 'Для этого обновите приложение (1.0.7)', hcEis: '⌚ Часы подключены: вечером сверяем расход',
+      xAeX: 'Часы: активная энергия {a} − обычная {b}, × 0,7', xDevX: 'По данным часов (расход {d})', kcAe: 'по часам',
+      lmT: 'Дневная норма обновилась: {a} → {b} ккал', lmH: 'Расчёт стал осторожнее: для сидячей работы и для дней с очень большим числом шагов прибавка чуть меньше. Цель — не набирать вес незаметно.', lmOk: 'Понятно',
       jobHw: 'Шаги вы вводите сами — здесь выберите только тип работы. В дни без шагов ходьба не добавляется.',
       blEat: 'съели', blSpend: 'потратили', blBal: 'баланс', blLose: 'Сегодня вы в минусе — план: {p} ккал', blOver: 'Сегодня с избытком: +{b} ккал', blGain: 'Сегодня в плюсе для набора — план: +{p} ккал', blUnder: 'Сегодня меньше: {b} ккал', blKeep: 'Сегодня баланс — план: 0',
       
@@ -720,21 +728,24 @@
     return el < 7.2 ? ' data-pl="1" style="--pd:-' + el.toFixed(2) + 's"' : '';
   }
   function kcChipsHtml(eaten, t) {                     // v59 (maket ~/mashq2-maket.html): bitta ixcham bosiladigan qator «🍽 339 | 👟 +95 · Hisob ›»
-    var dp = S.dayPlan(st, t), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, mv = sc + ec, ic = sc > 0 ? '👟' : '⚽', aria = T('kcAte') + ' ' + fmt(eaten) + ' ' + T('kcal') + (mv > 0 ? ', ' + T(sc > 0 && ec > 0 ? 'kcMove' : (sc > 0 ? 'kcStep' : 'kcEx')).toLowerCase() + ' +' + fmt(mv) + ' ' + T('kcal') : '') + '. ' + T('kcOpenA');
+    var dp = S.dayPlan(st, t), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, ac = dp.aeCredit || 0, mv = sc + ec + ac, ic = ac > 0 ? '⌚' : sc > 0 ? '👟' : '⚽', aria = T('kcAte') + ' ' + fmt(eaten) + ' ' + T('kcal') + (mv > 0 ? ', ' + (ac > 0 ? T('kcAe') : T(sc > 0 && ec > 0 ? 'kcMove' : (sc > 0 ? 'kcStep' : 'kcEx')).toLowerCase()) + ' +' + fmt(mv) + ' ' + T('kcal') : '') + '. ' + T('kcOpenA');
     return '<button type="button" class="kc-row" id="kChips" data-act="xkcal" aria-label="' + esc(aria) + '"><span class="kc-it"><span aria-hidden="true">🍽</span> <b id="kNum">' + fmt(eaten) + '</b></span>' + (mv > 0 ? '<i class="kc-sep" aria-hidden="true"></i><span class="kc-it g"><span aria-hidden="true">' + ic + '</span> <b>+' + fmt(mv) + '</b></span>' : '') + '<em class="kc-go">' + esc(T('kcHisob')) + ' ›</em></button>';
   }
   function openKcalHow() {                             // halqa bosilganda: «N kkal qanday chiqdi?» — yig'indi = halqa raqami (S.dayPlan limiti − yeyilgan)
-    var t = todayStr(), x = S.dayOf(st, t) || { food: [], ex: [], steps: 0 }, tot = S.sumEntries(x.food), dp = S.dayPlan(st, t), pl = planNow(), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, base = dp.limit - sc - ec, rem = dp.limit - tot.kcal, over = rem < 0;
+    var t = todayStr(), x = S.dayOf(st, t) || { food: [], ex: [], steps: 0 }, tot = S.sumEntries(x.food), dp = S.dayPlan(st, t), pl = planNow(), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, ac = dp.aeCredit || 0, dc = dp.dev ? dp.dev.cut : 0, base = dp.limit - sc - ec - ac + dc, rem = dp.limit - tot.kcal, over = rem < 0;
     var g = st.profile.goal, exL = x.ex || [], exM = exL.reduce(function (a, e) { return a + e.min; }, 0), nf = (x.food || []).length;
     var row = function (ic, bg, lb, sub, v, cls) { return '<div class="hw-r"><span class="ic ' + bg + '" aria-hidden="true">' + ic + '</span><span class="m"><b>' + esc(lb) + '</b><small>' + esc(sub) + '</small></span><b class="v' + (cls ? ' ' + cls : '') + '">' + v + '</b></div>'; };
     var stepSub = !x.steps ? T('khStep0') : (sc > 0 ? T('khStepS') : (dp.job ? T('khStepIn') : T('khOff'))), exSub = !exL.length ? T('khEx0') : (ec > 0 ? T('khExS', { m: exM }) : T('khOff'));
     var h = shHead(T(over ? 'khTo' : 'khT', { k: fmt(Math.abs(rem)) })) + '<p class="rz-p sm rz-mut hw-sub">' + esc(T('khSub')) + '</p><div class="hw-rows" id="hwRows">' +
       row('🎯', 'y', T('khNorm'), T(g === 'lose' ? 'khNormL' : g === 'gain' ? 'khNormG' : 'khNormK'), fmt(base)) +
+      (dp.ae ? row('⌚', 'b', T('khAe', { a: fmt(dp.ae) }), T('khAeS', { b: fmt(dp.aeBase) }), ac > 0 ? '+' + fmt(ac) : '0', ac > 0 ? 'g' : 'z') :          // v62: soat — qadam + mashg'ulot o'rniga (ikki marta emas)
       row('👟', 'b', x.steps ? T('khStep', { n: fmt(x.steps) }) : T('sT'), stepSub, sc > 0 ? '+' + fmt(sc) : '0', sc > 0 ? 'g' : 'z') +
-      row('⚽', 'p', T('khEx'), exSub, ec > 0 ? '+' + fmt(ec) : '0', ec > 0 ? 'g' : 'z') +
+      row('⚽', 'p', T('khEx'), exSub, ec > 0 ? '+' + fmt(ec) : '0', ec > 0 ? 'g' : 'z')) +
+      (dc ? row('⌚', 'b', T('khDev'), T('khDevS', { d: fmt(dp.dev.total) }), '−' + fmt(dc)) : '') +
       row('🍽', 'o', T('khAte'), nf ? T('khAteS', { n: nf }) : T('khAte0'), tot.kcal ? '−' + fmt(tot.kcal) : '0') + '</div>' +
       '<div class="hw-res' + (over ? ' ov' : '') + '" id="hwRes"><span>' + esc(T(over ? 'khOver' : 'khRem')) + '</span><b>' + fmt(Math.abs(rem)) + '</b></div>' +
       '<p class="rz-p sm hw-tip">' + esc(over ? T('khOverN') : T(g === 'lose' ? 'khWkL' : g === 'gain' ? 'khWkG' : 'khWkK', { x: dec(Math.abs(pl.kgPerWeek || 0), 1) })) + '</p>' +
+      (QA && st.profile.job ? (prefs().hcE === 'on' ? '<p class="rz-p sm rz-mut hw-dv" id="hcEis">' + esc(T('hcEis')) + '</p>' : '<button type="button" class="rz-link hw-how" id="hcEon" data-act="hcEon">' + esc(T('hcEon')) + ' ›</button>') : '') +          // v62: Android — soat sarfi (Health Connect, ixtiyoriy)
       '<button type="button" class="rz-link hw-how" data-act="xkform">' + esc(T('khHow')) + ' ›</button>' + okBtn();
     stEv('balans_ochildi'); openSheet('xkcal', h);
   }
@@ -796,10 +807,12 @@
   function stepInHtml() {
     var t = todayStr(), y = Dt.addDays(t, -1), v = (S.dayOf(st, siv.d) || {}).steps || '';
     return shHead(T('stInT')) + '<p class="rz-p sm">' + esc(T('stInH')) + '</p><div class="rz-seg si-day" role="group">' + [[t, 'stD0'], [y, 'stD1']].map(function (o) { return '<button type="button" class="' + (siv.d === o[0] ? 'on' : '') + '" data-act="sid" data-v="' + o[0] + '" aria-pressed="' + (siv.d === o[0]) + '">' + esc(T(o[1])) + '</button>'; }).join('') + '</div>' +
-      '<label class="rz-f" for="siN"><span>' + esc(T('stInL')) + '</span><input id="siN" type="number" inputmode="numeric" min="0" max="60000" step="1" value="' + esc(v) + '" placeholder="8 000"></label><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sisave">' + esc(T('stInSave')) + '</button></div>';
+      '<label class="rz-f" for="siN"><span>' + esc(T('stInL')) + '</span><input id="siN" type="number" inputmode="numeric" min="0" max="60000" step="1" value="' + esc(v) + '" placeholder="8 000"></label>' +
+      (prefs().qm === 'on' || st.profile.job ? '<label class="rz-f si-ae" for="siAe"><span>' + esc(T('aeL')) + '</span><input id="siAe" type="number" inputmode="numeric" min="0" max="' + S.AE_MAX + '" step="1" value="' + esc((S.dayOf(st, siv.d) || {}).ae || '') + '" placeholder="650"></label><p class="rz-p sm rz-mut si-aeh">' + esc(T('aeH')) + '</p>' : '') +          // v62: iPhone soat — qadam + mashg'ulot krediti o'rniga
+      '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sisave">' + esc(T('stInSave')) + '</button></div>';
   }
   function stepInSave() {
-    var i = $('#siN'), n = Math.max(0, Math.min(60000, Math.round(num(i && i.value)))), d = siv.d, first = prefs().qm == null; S.setSteps(st, d, n); stEv('qadam_qolda', d === todayStr() ? 'bugun' : 'kecha');
+    var i = $('#siN'), n = Math.max(0, Math.min(60000, Math.round(num(i && i.value)))), d = siv.d, first = prefs().qm == null; S.setSteps(st, d, n); var ae = $('#siAe'); if (ae) { S.setAe(st, d, ae.value); if (num(ae.value) > 0) stEv('aktiv_energiya'); } stEv('qadam_qolda', d === todayStr() ? 'bugun' : 'kecha');
     siv = null; kit.closeSheet(); heroPrev = null; commit(); vib(); toast(T('stInDone'), null, true); if (first && n > 0) jobAskOnce();
   }
   /* chapga surib o'chirish (mashg'ulot qatori) */
@@ -826,8 +839,16 @@
     if (k === 'vazn') return goTab('history', function () { var c = $('.pl-w') || $('#wtCard'); if (c) { if (c.scrollIntoView) c.scrollIntoView({ block: 'center' }); flashEl(c); } });
   }
   /* Bugun: halqa ostida ko'pi bilan BITTA karta — ilova yangilanishi › baliq kuni › (kun yakunida) eslatma taklifi › eslatma (zaxira, Haftangiz) › o'rnatish taklifi › «Yemaydigan narsangiz bormi?» › birinchi hafta maslahati */
+  /* v62: me'yor formulasi ehtiyotkorroq bo'ldi — eski foydalanuvchida oxirgi 7 kun o'rtacha limiti > 8% o'zgarsa, bir martalik izoh (S.limShift) */
+  function limChgHtml(t) {
+    if (!st || !st.setup || (KD && KD.on)) return ''; var p = prefs();
+    if (!p.limV62) { p.limV62 = 1; var r = S.limShift(st, t), old = !st.created || st.created < Date.now() - 864e5; if (old && Math.abs(r.pct) > 0.08) p.limShow = { a: r.old, b: r.cur }; save(); }
+    var m = p.limShow; if (!m) return '';
+    return '<section class="rz-card sl-lim" id="limCard"><b>' + esc(T('lmT', { a: fmt(m.a), b: fmt(m.b) })) + '</b><p class="rz-p sm">' + esc(T('lmH')) + '</p><div class="rz-actions"><button type="button" class="rz-btn sm ghost" data-act="xkcal">' + esc(T('kcHisob')) + '</button><button type="button" class="rz-btn sm primary" data-act="lmok">' + esc(T('lmOk')) + '</button></div></section>';
+  }
   function slotHtml(t, x) {
-    var u = updCardHtml(); if (u) return u; if (inst.isTop()) return '';          // ichki brauzer (Telegram va h.k.): o'rnatish kartasi ekran TEPASIDA (renderToday)
+    var u = updCardHtml(); if (u) return u; if (inst.isTop()) return '';
+    var lm = limChgHtml(t); if (lm) return lm;          // ichki brauzer (Telegram va h.k.): o'rnatish kartasi ekran TEPASIDA (renderToday)
     if (fishDay(t)) return '<section class="rz-card sl-fishslot">' + fishChipHtml(t) + '</section>';          // baliq kuni — chip shu kartada (sarlavhada emas)
     if (x && x.done) { var po = pushOfferHtml(); if (po) return po; }          // kun yakunlangach — eslatma taklifi (bir marta, 30 kun so'ralmaydi)
     var nd = nudges(); if (nd.length) return nudgeHtml(nd[0]);          // vaqtga bog'liq eslatmalar (zaxira, yakshanba «Haftangiz») — bir martalik savol va maslahatdan oldin
@@ -1855,11 +1876,11 @@
   function openExplainKcal() {                       // v51: BITTA tushuntirish — S.dayPlan (yig'indi = kunlik me'yor)
     var t = todayStr(), pl = planNow(), x = S.dayOf(st, t) || { food: [], steps: 0 }, tot = S.sumEntries(x.food), dp = S.dayPlan(st, t), rem = dp.limit - tot.kcal;
     var di = S.dayStatus(st, t, t), dnote = di.complete ? T('stFull') + ' · ' + stLabel(di, t, t) : T('cNote'), sg = function (v) { return (v < 0 ? '−' : '+') + fmt(Math.abs(v)); };
-    var parts = [fmt(dp.bmr), '+ ' + fmt(dp.life)].concat(dp.stepCredit ? ['+ ' + fmt(dp.stepCredit)] : [], dp.exCredit ? ['+ ' + fmt(dp.exCredit)] : [], dp.corr ? [(dp.corr < 0 ? '− ' : '+ ') + fmt(Math.abs(dp.corr))] : [], dp.delta ? [(dp.delta < 0 ? '− ' : '+ ') + fmt(Math.abs(dp.delta))] : [], dp.floorAdd ? ['+ ' + fmt(dp.floorAdd)] : []);
+    var parts = [fmt(dp.bmr), '+ ' + fmt(dp.life)].concat(dp.stepCredit ? ['+ ' + fmt(dp.stepCredit)] : [], dp.exCredit ? ['+ ' + fmt(dp.exCredit)] : [], dp.aeCredit ? ['+ ' + fmt(dp.aeCredit)] : [], dp.dev ? ['− ' + fmt(dp.dev.cut)] : [], dp.corr ? [(dp.corr < 0 ? '− ' : '+ ') + fmt(Math.abs(dp.corr))] : [], dp.delta ? [(dp.delta < 0 ? '− ' : '+ ') + fmt(Math.abs(dp.delta))] : [], dp.floorAdd ? ['+ ' + fmt(dp.floorAdd)] : []);
     var h = shHead(T('xKcalT')) + macrosHtml(tot, pl) + '<p class="rz-p sm" id="dayChip" data-state="' + di.state + '">' + esc(dnote) + '</p>' +
       '<p class="rz-p xk-f" id="xkFormula">' + esc(parts.join(' ') + ' = ' + fmt(dp.limit) + ' ' + T('kcal')) + '</p><div class="rz-xrows" id="xkRows">' +
       xr('', T('xRest') + ' · ' + T('xBmrN'), fmt(dp.bmr)) + xr('+', dp.job ? T('xLifeJ', { j: T('job_' + dp.job).toLowerCase() }) : T('xLifeA'), fmt(dp.life)) +
-      (dp.stepCredit ? xr('+', T('xStepX', { s: fmt(dp.steps), b: fmt(dp.base) }), fmt(dp.stepCredit)) : '') + (dp.exCredit ? xr('+', T('xExX', { n: dp.exMin }), fmt(dp.exCredit)) : '') + (dp.corr ? xr(dp.corr < 0 ? '−' : '+', T('xCorrL'), fmt(Math.abs(dp.corr))) : '') +
+      (dp.stepCredit ? xr('+', T('xStepX', { s: fmt(dp.steps), b: fmt(dp.base) }), fmt(dp.stepCredit)) : '') + (dp.exCredit ? xr('+', T('xExX', { n: dp.exMin }), fmt(dp.exCredit)) : '') + (dp.aeCredit ? xr('+', T('xAeX', { a: fmt(dp.ae), b: fmt(dp.aeBase) }), fmt(dp.aeCredit)) : '') + (dp.dev ? xr('−', T('xDevX', { d: fmt(dp.dev.total) }), fmt(dp.dev.cut)) : '') + (dp.corr ? xr(dp.corr < 0 ? '−' : '+', T('xCorrL'), fmt(Math.abs(dp.corr))) : '') +
       (dp.delta ? xr(dp.delta < 0 ? '−' : '+', T(dp.delta < 0 ? 'xGoalL' : 'xGoalG') + ' (' + dec(Math.abs(pl.kgPerWeek), 2) + ' ' + KG() + '/' + (lang === 'ru' ? 'нед.' : 'hafta') + ')', fmt(Math.abs(dp.delta))) : '') +
       (dp.floorAdd ? xr('+', T('xFloorA') + ' (' + fmt(pl.floorMin) + ')', fmt(dp.floorAdd)) : '') + xr('=', T('xLimitR'), fmt(dp.limit), 'sum') + xr('−', T('xEaten'), fmt(tot.kcal)) + xr('=', T('xRem'), sg(rem).replace('+', ''), 'sum big') + '</div>' +
       '<p class="rz-p sm" id="xkCred">' + esc(dp.job ? (prefs().qa !== 'on' && !dp.steps ? T('xCredQm') : T('xCredJob', { b: fmt(dp.base) })) + (dp.exCredit || dp.stepCredit ? ' ' + T('blK70') : '') : (jobUi() && qaOn() ? T('xCredAsk') : T('xCredOff'))) + '</p><p class="rz-p sm">' + esc(T('disc')) + '</p>' + okBtn();
@@ -2555,7 +2576,21 @@
       if (qaOn()) qaSync(); if (was !== key() && qaView()) render();
     });
   }
+  function devSync() {                               // v62: soat sarfi (Health Connect, 1.0.7) — oxirgi 7 kun; S.dayPlan kun oxirida solishtiradi
+    if (!QA || !QA.energiya || prefs().hcE !== 'on' || !st.setup) return Promise.resolve();
+    return QA.energiya(7).then(function (list) {
+      var t = todayStr(), ch = false; (list || []).forEach(function (k) { if (!k || typeof k.sana !== 'string' || !Dt.parse(k.sana) || k.sana > t) return; var x = S.dayOf(st, k.sana), old = JSON.stringify(x && x.dev || null); S.setDev(st, k.sana, k); var nx = S.dayOf(st, k.sana); if (JSON.stringify(nx && nx.dev || null) !== old) ch = true; });
+      if (ch) { save(); if (view === 'today' && !kit.sheetKind()) render(); }
+    });
+  }
+  function hcEon() {
+    if (!QA || !QA.eUlash) return; QA.eUlash().then(function (r) {
+      if (r && r.old) return toast(T('hcEold')); if (!(r && r.granted)) return toast(T('hcEno'));
+      prefs().hcE = 'on'; save(); stEv('soat_ulandi'); toast(T('hcEok'), null, true); devSync().then(function () { if (kit.sheetKind() === 'xkcal') openKcalHow(); });
+    });
+  }
   function qaSync() {
+    devSync();
     if (!qaOn()) return;
     QA.days(7).then(function (list) {
       if (!qaOn() || !st.setup) return; var ch = false, t = todayStr(); if (list.source != null && list.source !== qaS.src) { qaS.src = list.source; ch = true; } if (list.hcToday != null) qaS.hcToday = +list.hcToday || 0;
@@ -3110,6 +3145,8 @@
       case 'stepin': openStepIn(); break;
       case 'sid': { if (siv) { siv.d = el.getAttribute('data-v'); setSheet(stepInHtml()); } break; }
       case 'sisave': stepInSave(); break;
+      case 'hcEon': hcEon(); break;
+      case 'lmok': { delete prefs().limShow; save(); render(); break; }
       case 'exlist': openExList(); break; case 'xkform': openExplainKcal(); break; case 'exwhy': { var wy = $('#exWhy'); if (wy) { wy.hidden = !wy.hidden; el.setAttribute('aria-expanded', !wy.hidden); } break; }
       case 'vtxedit': fd.vEdit = 1; setSheet(textHtml()); break;
       case 'aftz': { var tc = AF && AF.todayCard(); if (tc) AF.open({ from: 'kun', id: tc.id, pick: el.getAttribute('data-v') }); break; }

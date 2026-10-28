@@ -20,7 +20,7 @@ export const HODISA = {
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|mashq|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram|exeat)$/,
   ai_natija: /^(ovoz|rasm|matn|menyu)\.(ochildi|tahrir|ochirildi|qoshildi|yopildi|bosh|[qy]t(10|30|60|180|x))$/,          // v52: AI natija voronkasi (natija ekrani → qo'shildi / yopildi, soniya guruhi)
   karta: /^(ilova|ekran|akkaunt)\.(korsatildi|bosildi|yopildi)$/,
-  mashq_qoshildi: /^(yugurish|zal|velosiped|futbol|suzish|uyda|raqs|yoga|kurash|voleybol|ogir|boshqa)\.(d15|d30|d60|d90|dx)$/, qadam_qolda: /^(bugun|kecha)$/, balans_ochildi: ANY,          // v55: mashg'ulot (tur.daqiqa oralig'i), qo'lda qadam, balans oynasi
+  mashq_qoshildi: /^(yugurish|zal|velosiped|futbol|suzish|uyda|raqs|yoga|kurash|voleybol|ogir|boshqa)\.(d15|d30|d60|d90|dx)$/, qadam_qolda: /^(bugun|kecha)$/, balans_ochildi: ANY, aktiv_energiya: ANY, soat_ulandi: ANY,          /* v62: iPhone «Aktiv energiya» kiritildi; Android soat sarfi ulandi (anonim, son) */          // v55: mashg'ulot (tur.daqiqa oralig'i), qo'lda qadam, balans oynasi
   afsona: /^(korsatildi|kirish\.(kun|feat)|ulashildi)$/, afsona_javob: /^a\d{2}\.(ok|xato)$/,          // v54: «Afsona yoki haqiqat?» (kunning savoli ko'rsatildi, kirish joyi, ulashish; har karta javobi to'g'ri/xato)          // v52: bir martalik kartalar (veb → ilova / bosh ekran, akkaunt)
   tartib_tanlandi: /^(std|kech|nobf|erkin)$/, tartib_kun: /^(std|kech|nobf|erkin)$/, oqsil_kun: /^(ha|yoq)$/          // v48: tartib taqsimoti, kecha oqsil maqsadiga yetildimi (anonim)          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
 };

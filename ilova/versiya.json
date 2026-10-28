@@ -1,13 +1,13 @@
 {
-  "version": "1.0.6",
-  "versionCode": 8,
-  "apk": "/ilova/kalkifit-1.0.6.apk",
-  "sha256": "0c42910191b4e626dbb730761e073b07d8561ef8dfb9e3b5c47833e327ade1ee",
-  "size": 9321787,
+  "version": "1.0.7",
+  "versionCode": 9,
+  "apk": "/ilova/kalkifit-1.0.7.apk",
+  "sha256": "10477a5707876c12b4cfe507c32bb8137ede27bb9944b79174ac591adafc8a35",
+  "size": 9338239,
   "minAndroid": "8.0",
-  "date": "2026-10-24",
+  "date": "2026-10-28",
   "notes": {
-    "uz": "Ovoz bilan qo'shish: to'xtatguningizcha yoziladi (30 soniyagacha), vaqt va to'lqin ko'rinadi.",
-    "ru": "Голосовой ввод: запись идёт, пока вы её не остановите (до 30 секунд), видны время и волна."
+    "uz": "Soatingiz bo'lsa — uning sarfi (Health Connect) bilan kunlik me'yor solishtiriladi.",
+    "ru": "Если есть часы — дневная норма сверяется с их расходом (Health Connect)."
   }
 }

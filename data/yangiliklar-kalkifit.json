@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 60,
+   "d": "2026-10-28",
+   "bn": {
+    "uz": "Kunlik me'yor aniqroq bo'ldi",
+    "ru": "Дневная норма стала точнее"
+   },
+   "items": [
+    {
+     "uz": "Kunlik me'yor ehtiyotkorroq: o'tirib ishlaydiganlar va juda ko'p qadamli kunlar uchun qo'shimcha biroz kamaydi.",
+     "ru": "Дневная норма осторожнее: для сидячей работы и дней с очень большим числом шагов прибавка чуть меньше.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Soatingiz bormi? iPhone'da qadam oynasiga «Активная энергия»ni yozing, Android'da soat sarfini ulang.",
+     "ru": "Есть часы? На iPhone впишите «Активную энергию» в окне шагов, на Android подключите расход часов."
+    }
+   ]
+  },
+  {
    "v": 59,
    "d": "2026-10-28",
    "bn": {

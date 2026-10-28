@@ -5,7 +5,7 @@
  *   pickPhoto(labels)                           — (eski) kamera yoki galereya (@capacitor/camera, native PROMPT oynasi) → Promise<File|null>
  *   pickPhotoFrom('PHOTOS'|'CAMERA')            — tanlangan manba (native oyna YO'Q; sayt o'z tanlov oynasini ko'rsatadi) → Promise<{file}|{cancel:true}|{error:'camera'|'other', message}>
  *   openUrl(url)                                — tashqi brauzer yoki tegishli ilova (Uzum Tezkor, Yandex Eda…) (@capacitor/app-launcher)
- *   qadam.ok() / status() / perm() / enable(on) / today() / days(n) / hcInstall()   — qadam: Health Connect (Google Fit, Samsung Health…) yoki apparat hisoblagich (ilovadagi «Qadam» plagini, kalkifit-android: qadam/);
+ *   qadam.ok() / status() / perm() / enable(on) / today() / days(n) / hcInstall() / eHolat() / eUlash() / energiya(n) (1.0.7: soat sarfi)   — qadam: Health Connect (Google Fit, Samsung Health…) yoki apparat hisoblagich (ilovadagi «Qadam» plagini, kalkifit-android: qadam/);
  *                                               status() → { available, granted, enabled, source: 'hc'|'sensor'|'', hc: 'ok'|'install'|'none' }
  *   setBack(fn) / back()                        — Android «Orqaga» (MainActivity chaqiradi): fn() → 'sheet'|'step'|'tab'|'onb'|'overlay' (ushlandi) yoki 'home'
  * Ilova ichida navigator.share/canShare (fayl bilan — Filesystem keshi orqali, @capacitor/share) va navigator.vibrate (@capacitor/haptics) native'ga yo'naltiriladi —
@@ -88,6 +88,10 @@
       hcInstall: function () { if (!N.qadam.ok()) return Promise.resolve(false); return call('Qadam', 'openHealthConnect').then(function () { return true; }, function () { return false; }); },
       enable: function (on) { if (!N.qadam.ok()) return Promise.resolve({ enabled: false }); return call('Qadam', 'setEnabled', { on: !!on }).catch(function () { return { enabled: false }; }); },
       today: function () { if (!N.qadam.ok()) return Promise.resolve(null); return call('Qadam', 'getToday').catch(function () { return null; }); },
+      /* 1.0.7: soat sarfi (Health Connect Total/ActiveCaloriesBurned, faqat ishonchli manba — kalkifit-android EnergiyaHisob). Eski APK'da — { old: true } */
+      eHolat: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false, old: true }); return call('Qadam', 'energiyaHolat').catch(function () { return { granted: false, old: true }; }); },
+      eUlash: function () { if (!N.qadam.ok()) return Promise.resolve({ granted: false, old: true }); return call('Qadam', 'energiyaUlash').catch(function () { return { granted: false, old: true }; }); },
+      energiya: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getEnergy', { n: n || 7 }).then(function (r) { return (r && r.kunlar) || []; }, function () { return []; }); },          // [{ sana, tot?, totH?, act?, actH?, src }]
       days: function (n) { if (!N.qadam.ok()) return Promise.resolve([]); return call('Qadam', 'getDays', { n: n || 7 }).then(function (r) { var l = (r && r.kunlar) || []; if (r && r.source != null) l.source = r.source; if (r && r.hcToday != null) l.hcToday = r.hcToday; return l; }, function () { return []; }); }      // ro'yxat + .source ('hc'|'sensor'|''), .hcToday
     },
     /* ---------- ilova versiyasi (App.getInfo: { version, build }) — yangilanish banneri uchun ---------- */
