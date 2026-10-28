@@ -1041,13 +1041,13 @@ html.hk-on,html.hk-on body{overflow:hidden}
    Tugma: gradient, rangli ikonka kvadrati, son nishoni; yaltirash — bir marta (.shine). Tor ekranda sana ostiga tushadi, yozuv qisqarmaydi */
 .sl{--ftqi:#FFFFFF;--ftic1:#F08A4B;--ftic2:#E8572F;--ftb1:#FFF3EA;--ftb2:#FFE1D2;--ftbsh:0 6px 18px -8px rgba(228,87,46,.55);--ftn:#FFFFFF;--ftov:rgba(35,22,12,.38);
   --ftq1a:#CC4D26;--ftq1b:#AD3A19;--ftq2a:#2E78C2;--ftq2b:#215F9E;--ftq3a:#27824F;--ftq3b:#1C6640;
-  --fcpu:#F3E8FF;--fcpui:#7C3AED;--fcye:#FFF3D6;--fcyei:#A16207;--fcgr:#E7F3EC;--fcgri:#237A4E;--fcbl:#E3F0FA;--fcbli:#2A6FB5;--ftnew:#B93F1D;--ftnewi:#FFFFFF}
+  --fcpk:#FCE4EF;--fccy:#DFF3F8;--fcpu:#F3E8FF;--fcpui:#7C3AED;--fcye:#FFF3D6;--fcyei:#A16207;--fcgr:#E7F3EC;--fcgri:#237A4E;--fcbl:#E3F0FA;--fcbli:#2A6FB5;--ftnew:#B93F1D;--ftnewi:#FFFFFF}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]) .sl{--ftb1:#3A2823;--ftb2:#46281E;--ftbsh:0 6px 18px -10px rgba(0,0,0,.6);--ftn:rgba(255,255,255,.1);--ftov:rgba(0,0,0,.55);
   --ftq1a:#B5502F;--ftq1b:#8C3A21;--ftq2a:#2F6FA8;--ftq2b:#22507C;--ftq3a:#2D7A52;--ftq3b:#1F5A3C;
-  --fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}}
+  --fcpk:rgba(244,143,177,.14);--fccy:rgba(125,211,230,.13);--fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}}
 html[data-theme=dark] .sl{--ftb1:#3A2823;--ftb2:#46281E;--ftbsh:0 6px 18px -10px rgba(0,0,0,.6);--ftn:rgba(255,255,255,.1);--ftov:rgba(0,0,0,.55);
   --ftq1a:#B5502F;--ftq1b:#8C3A21;--ftq2a:#2F6FA8;--ftq2b:#22507C;--ftq3a:#2D7A52;--ftq3b:#1F5A3C;
-  --fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}
+  --fcpk:rgba(244,143,177,.14);--fccy:rgba(125,211,230,.13);--fcpu:rgba(167,139,250,.14);--fcpui:#C4B5FD;--fcye:rgba(232,198,106,.13);--fcyei:#E8C66A;--fcgr:rgba(134,211,168,.12);--fcgri:#86D3A8;--fcbl:rgba(147,197,253,.12);--fcbli:#93C5FD;--ftnew:#FF9A7E;--ftnewi:#1C0C06}
 .rz .sl-hd2{flex-wrap:wrap;gap:8px 12px;align-items:flex-start}.rz .sl-hd2 .t{flex:1 1 112px;min-width:112px}          /* sana o'raladi; .t 112 px dan torayadigan bo'lsa tugma pastki qatorga tushadi */
 .rz .ft-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;flex:none;min-height:48px;padding:7px 12px 7px 7px;border:0;border-radius:18px;background:linear-gradient(135deg,var(--ftb1),var(--ftb2));box-shadow:0 1px 0 rgba(255,255,255,.7) inset,var(--ftbsh);color:var(--ink);font:inherit;white-space:nowrap;cursor:pointer;transition:transform .12s}
 html[data-theme=dark] .rz .ft-btn{box-shadow:var(--ftbsh)}@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rz .ft-btn{box-shadow:var(--ftbsh)}}
@@ -1398,16 +1398,33 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .sl-exr{position:relative;z-index:1;display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 16px;border:0;background:var(--card);color:var(--ink);text-align:left;font:inherit;transition:transform .2s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
 .rz .sl-exr .ic{font-size:20px;flex:none}.rz .sl-exr .m{flex:1;min-width:0;font-size:var(--t-s)}.rz .sl-exr b{flex:none;font-weight:600;color:var(--cink);font-variant-numeric:tabular-nums}.rz .sl-exr b small{font-weight:500;color:var(--mut)}
 .rz .sl-exdel{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding:0 18px;background:var(--danger);color:var(--onhero);font-weight:600;font-size:var(--t-s)}
-.rz .ex-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:4px 0 6px}
-.rz .ex-t{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:72px;padding:10px 2px;border-radius:16px;border:2px solid transparent;background:var(--card);color:var(--mut);font:inherit;font-size:var(--t-lbl);line-height:1.15;text-align:center;overflow-wrap:anywhere}
-.rz .ex-t i{font-style:normal;font-size:24px;line-height:1}.rz .ex-t.on{border-color:var(--fill);background:var(--accsoft);color:var(--ink);font-weight:600}
-.rz .ex-dur{flex-wrap:nowrap}.rz .ex-dur .rz-chip{flex:1;justify-content:center;min-width:0}
-.rz .ex-rng{display:flex;align-items:center;gap:12px;margin:10px 2px 2px}.rz .ex-rng input{flex:1;accent-color:var(--fill);min-height:44px}.rz .ex-rng b{flex:none;min-width:72px;text-align:right;font-variant-numeric:tabular-nums}
-.rz .ex-lv .rz-chip{flex:1;justify-content:center}
-.rz .ex-prev{display:grid;gap:6px;margin-top:14px;padding:12px 14px;border-radius:18px;background:var(--fcgr)}          /* v58: ikki oddiy qator */
-.rz .ex-prev p{display:flex;align-items:center;gap:8px;margin:0;font-size:var(--t-s);color:var(--ink);line-height:1.35}.rz .ex-prev .l1{font-weight:600}
-.rz .ex-prev .ex-why{flex:none;width:44px;height:44px;margin:-12px -10px -12px auto;padding:0;border:0;background:transparent;color:var(--mut);display:grid;place-items:center}.rz .ex-prev .ex-why .rz-i{width:18px;height:18px}
-.rz .ex-prev .ex-whyt{display:block;font-size:var(--t-s);color:var(--mut)}.rz .ex-prev .ex-whyt[hidden]{display:none}
+.rz .ex-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:4px -12px 6px}          /* −12 px: tor ekran + 115 % da «Велосипед» sig'sin */          /* v59 (maket ~/mashq2-maket.html): tur to'ri — rangli yumaloq kvadrat + nom */
+.rz .ex-t{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:84px;padding:10px 0 9px;border-radius:18px;border:2px solid transparent;background:var(--soft);color:var(--ink);font:inherit;font-size:var(--t-lbl);line-height:1.15;letter-spacing:-.02em;text-align:center}
+.rz .ex-t .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:24px;line-height:1;background:var(--soft)}
+.rz .ex-t .nm{min-width:0;max-width:100%;font-size:min(var(--t-lbl),13px);overflow-wrap:anywhere}          /* 13 px (ruxsat etilgan yorliq) — katta shriftda ham, aks holda «Велосипед» 4 ustunda sig'maydi */
+.rz .ex-t .ck{display:none;position:absolute;top:5px;right:5px;width:18px;height:18px;border-radius:50%;background:var(--fill);color:var(--onacc);font-size:11px;font-weight:600;place-items:center;line-height:1}
+.rz .ex-t.on{background:var(--card);border-color:var(--fill);box-shadow:0 6px 16px -10px var(--fill)}.rz .ex-t.on .ck{display:grid}
+.rz .ex-t.pop{animation:exPop .22s ease-out}@keyframes exPop{from{transform:scale(.96)}to{transform:scale(1)}}
+.rz .ex-t .c-yugurish{background:var(--accsoft)}.rz .ex-t .c-zal{background:var(--fcpu)}.rz .ex-t .c-velosiped{background:var(--fcbl)}.rz .ex-t .c-futbol,.rz .ex-t .c-yoga{background:var(--fcgr)}.rz .ex-t .c-suzish{background:var(--fccy)}.rz .ex-t .c-uyda,.rz .ex-t .c-voleybol{background:var(--fcye)}.rz .ex-t .c-raqs{background:var(--fcpk)}.rz .ex-t .c-kurash{background:var(--accsoft)}
+.rz .ex-dur2{display:flex;align-items:center;gap:14px;padding:10px;border-radius:20px;background:var(--soft)}
+.rz .ex-dur2 .ex-st{flex:none;width:44px;height:44px;border-radius:14px;border:0;background:var(--card);color:var(--ink);font-size:22px;line-height:1;box-shadow:0 2px 6px -3px rgba(0,0,0,.25);display:grid;place-items:center}.rz .ex-dur2 .ex-st:disabled{opacity:.35}
+.rz .ex-dur2 .v{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:center;gap:6px}.rz .ex-dur2 .v b{font-size:34px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}.rz .ex-dur2 .v small{font-size:var(--t-s);color:var(--mut)}
+.rz .ex-dur{flex-wrap:nowrap;gap:6px;margin-top:8px}.rz .ex-dur .rz-chip{flex:1;justify-content:center;min-width:0;padding:0 2px}
+.rz .ex-int{display:grid;gap:8px}
+.rz .ex-in{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 12px;border-radius:16px;border:2px solid transparent;background:var(--soft);color:var(--ink);font:inherit;text-align:left}
+.rz .ex-in .bars{flex:none;display:flex;align-items:flex-end;gap:3px;width:26px;height:22px}.rz .ex-in .bars i{width:6px;border-radius:2px;background:var(--line2)}
+.rz .ex-in .m{flex:1;min-width:0;display:flex;flex-direction:column}.rz .ex-in .m b{font-size:var(--t-s);font-weight:600}.rz .ex-in .m small{font-size:var(--t-s);color:var(--mut);line-height:1.3}
+.rz .ex-in.on{background:var(--card);border-color:var(--fill)}.rz .ex-in.on .bars i.f{background:var(--fill)}
+.rz .ex-res{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.rz .ex-res .rs{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-width:0;padding:12px;border-radius:18px}
+.rz .ex-res .rs small{display:flex;align-items:center;gap:6px;font-size:var(--t-s);color:var(--mut);line-height:1.25}
+.rz .ex-res .rs b{font-size:var(--t-pn);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1.15}.rz .ex-res .rs b i{font-style:normal}.rz .ex-res .rs b .u{font-size:var(--t-s);font-weight:500}          /* birlik kichikroq — tor ekran + 115 % da ikki plitka bir-biriga tegmasin */
+.rz .ex-res .r1{background:var(--accsoft)}.rz .ex-res .r1 b{color:var(--accink)}.rz .ex-res .r2{background:var(--fcgr)}.rz .ex-res .r2 b{color:var(--cink)}
+.rz .ex-res .r2 .n0{font-size:var(--t-s);color:var(--mut);line-height:1.3}
+.rz .ex-res .ex-why{position:absolute;bottom:0;right:0;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--mut);display:grid;place-items:center}.rz .ex-res .ex-why .rz-i{width:18px;height:18px}
+.rz .ex-whyt{margin:8px 2px 0;font-size:var(--t-s);color:var(--mut);line-height:1.4}.rz .ex-whyt[hidden],.rz .warn[hidden],.rz .ex-note[hidden]{display:none}
+.rz .rz-sheet[data-kind=mashq] .pw-bar .sl-main .ct span{font-weight:inherit}
+@media (prefers-reduced-motion:reduce){.rz .ex-t.pop,.rz .kc-i[data-pl] span{animation:none!important}}
 .rz .ex-note{text-align:center;margin-top:8px}
 .rz .si-day{display:flex;margin:6px 0 10px}.rz .si-day button{flex:1;min-height:44px}
 .rz .bl-rows .bl-v b{color:var(--cink)}
@@ -1464,10 +1481,14 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .pw-del{flex:none;width:54px;height:54px;border:0;border-radius:18px;background:color-mix(in srgb,var(--danger) 14%,var(--card));color:var(--danger);display:grid;place-items:center}.rz .pw-del svg{width:22px;height:22px}
 
 /* v58 (maket ~/sodda-maket.html): halqa ostida oddiy chiplar + birinchi ochilishlarda izoh; «N kkal qanday chiqdi?» oynasi */
-.rz .kc-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
-.rz .kc-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:6px 12px;border-radius:12px;background:var(--soft);color:var(--ink);font-size:var(--t-s);line-height:1.25}
-.rz .sl-big .kc-chip b{font-size:inherit;letter-spacing:normal;line-height:inherit;font-weight:600;font-variant-numeric:tabular-nums}.rz .kc-chip.g{background:var(--fcgr);color:var(--cink)}
-.rz .kc-hint{margin:10px 8px 0;text-align:center;font-size:var(--t-s);color:var(--mut);line-height:1.35}
+.rz .kc-vw{position:relative;display:block}          /* v59: halqa + yuqori o'ngda kichik «i» (bosiladigan zona 44 px) */
+.rz .kc-i{position:absolute;right:calc(8.5% - 5px);top:calc(8.5% - 5px);width:44px;height:44px;padding:0;border:0;background:transparent;display:grid;place-items:center}
+.rz .kc-i span{width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--line);box-shadow:0 4px 12px -4px rgba(0,0,0,.25);display:grid;place-items:center;font:600 15px/1 'Manrope',sans-serif;color:var(--accink)}
+.rz .kc-i[data-pl] span{animation:kcPulse 2.4s ease-in-out var(--pd,0s) 3}@keyframes kcPulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--fill) 16%,transparent),0 4px 12px -4px rgba(0,0,0,.25)}}
+.rz .kc-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;width:100%;min-height:44px;margin-top:14px;padding:10px 12px;border:0;border-radius:16px;background:var(--soft);color:var(--ink);font:inherit;font-size:var(--t-s);text-align:left}
+.rz .kc-it{display:inline-flex;align-items:center;gap:6px;line-height:1.25}.rz .sl-big .kc-row b{font-size:inherit;letter-spacing:normal;line-height:inherit;font-weight:600;font-variant-numeric:tabular-nums}.rz .kc-it.g{color:var(--cink)}
+.rz .kc-sep{flex:none;width:1px;height:18px;background:var(--line2)}
+.rz .kc-go{margin-left:auto;font-style:normal;font-weight:600;color:var(--accink);white-space:nowrap}
 .rz .hw-sub{margin-top:-6px}
 .rz .hw-rows{display:grid;margin-top:6px}
 .rz .hw-r{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}

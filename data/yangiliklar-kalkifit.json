@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 59,
+   "d": "2026-10-28",
+   "bn": {
+    "uz": "Mashg'ulot oynasi yangilandi",
+    "ru": "Окно тренировки обновилось"
+   },
+   "items": [
+    {
+     "uz": "Mashg'ulot qo'shish oynasi qulay bo'ldi: rangli turlar, vaqt — «−» va «+» bilan.",
+     "ru": "Добавлять тренировку стало удобнее: цветные типы, время кнопками «−» и «+».",
+     "show": "mashq",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Halqada kichik «i» belgisi va «Hisob ›» qatori — raqam qayerdan kelganini shu yerdan ko'ring.",
+     "ru": "В кольце появился значок «i» и строка «Расчёт ›» — смотрите, откуда число."
+    }
+   ]
+  },
+  {
    "v": 58,
    "d": "2026-10-28",
    "bn": {
