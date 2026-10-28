@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 58,
+   "d": "2026-10-28",
+   "bn": {
+    "uz": "Bugun ekrani soddalashdi",
+    "ru": "Экран «Сегодня» стал проще"
+   },
+   "items": [
+    {
+     "uz": "Bugun ekranida endi bitta raqam: yana qancha yeyishingiz mumkin.",
+     "ru": "На экране «Сегодня» теперь одно число: сколько ещё можно съесть.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Doirani bosing — raqam qayerdan kelgani oddiy qatorlarda ko'rinadi.",
+     "ru": "Нажмите на круг — увидите, откуда это число, простыми строками."
+    }
+   ]
+  },
+  {
    "v": 57,
    "d": "2026-10-28",
    "bn": {

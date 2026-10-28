@@ -71,6 +71,7 @@ async function yonma4(p, th, nm, idx) {
   await m.screenshot({ path: path.join(OUT, nm + '-' + th + '.png'), fullPage: true }); await cx.close();
 }
 const MAKET5 = path.join(process.env.HOME || '', 'profil-maket.html');          // v50 maketi: 1290 px da uch telefon (0 — Bugun BJU + hazil, 1 — Profil, 2 — Kun tartibi)
+const MAKET9 = path.join(process.env.HOME || '', 'sodda-maket.html');          // v58: 2 telefon (0 — Bugun: bitta raqam + chiplar, 1 — «N kkal qanday chiqdi?»)
 const MAKET8 = path.join(process.env.HOME || '', 'harakat-maket.html'), MAKET8B = path.join(process.env.HOME || '', 'balans-variant.html');          // v56: 3 telefon (0 — Bugun balans + harakat, 1 — bo'sh / to'lgan kartalar, 2 — tahrir oynasi); balans — A «Ikki chiziq» (.col 0)
 async function yonmaG(p, th, nm, file, sel, idx) {
   const cx = await b.newContext({ viewport: { width: 1290, height: 900 }, colorScheme: th }), m = await cx.newPage(); await m.goto('file://' + file); await m.waitForTimeout(800);
@@ -133,8 +134,8 @@ BOLIM['bosh'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
 BOLIM['asosiy'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
   /* Bugun (to'la), Qo'shish, Yozish, Tarix, Profil */
   p = await mk(seed(c.lang, true)); await scan(p, 'Bugun', '#rzMain'); await shot(p, 'bugun');
-  { const r = await p.evaluate(() => { const big = document.querySelector('.sl-big').getBoundingClientRect(), v = document.querySelector('#kcalBtn svg').getBoundingClientRect(), bb = document.getElementById('balBtn'), br = bb ? bb.getBoundingClientRect() : null; return { inCard: v.left >= big.left - 0.5 && v.right <= big.right + 0.5 && v.top >= big.top - 0.5, gap: br ? Math.round(br.top - v.bottom) : -1, old: document.querySelectorAll('.sl-rsub, #kGoal').length, bal: !!bb && br.bottom <= big.bottom + 0.5 }; });          // v56: «iste'mol · maqsad» qatori o'rniga balans bloki
-    if (!r.inCard) fails.push(tag + ' halqa kartadan chiqqan'); if (r.gap < 12) fails.push(tag + ' halqa ostidagi balans bloki ' + r.gap + ' px (≥12 kerak)'); if (r.old) fails.push(tag + ' eski «iste\'mol · maqsad» qatori qolgan'); if (!r.bal) fails.push(tag + ' balans bloki kartada emas'); }
+  { const r = await p.evaluate(() => { const big = document.querySelector('.sl-big').getBoundingClientRect(), v = document.querySelector('#kcalBtn svg').getBoundingClientRect(), bb = document.getElementById('kChips'), br = bb ? bb.getBoundingClientRect() : null; return { inCard: v.left >= big.left - 0.5 && v.right <= big.right + 0.5 && v.top >= big.top - 0.5, gap: br ? Math.round(br.top - v.bottom) : -1, old: document.querySelectorAll('.sl-rsub, #kGoal').length, bal: !!bb && br.bottom <= big.bottom + 0.5 }; });          // v56: «iste'mol · maqsad» qatori o'rniga balans bloki
+    if (!r.inCard) fails.push(tag + ' halqa kartadan chiqqan'); if (r.gap < 12) fails.push(tag + ' halqa ostidagi chiplar ' + r.gap + ' px (≥12 kerak)'); if (r.old) fails.push(tag + ' eski «iste\'mol · maqsad» qatori qolgan'); if (!r.bal) fails.push(tag + ' chiplar kartada emas'); if (await p.locator('#balBtn, .bl-a').count()) fails.push(tag + ' v58: balans bloki qolgan'); }
   await p.evaluate(() => { const m = document.getElementById('rzMain'), c = document.getElementById('bjuCard'); m.scrollTop = c.offsetTop - 330; }); await p.waitForTimeout(250); await shot(p, 'bju');
   { const r = await p.evaluate(() => { const c = document.getElementById('bjuCard'); if (!c) return null; const cr = c.getBoundingClientRect(), du = document.querySelector('.sl-duo').getBoundingClientRect(), ml = document.querySelector('.sl-meal, .sl-meals').getBoundingClientRect(), cols = [...c.querySelectorAll('.mc')].map((e) => { const er = e.getBoundingClientRect(); return er.right <= cr.right + 1 && er.left >= cr.left - 1 && [...e.querySelectorAll('.mh, .mv')].every((x) => x.scrollWidth <= x.clientWidth + 1); }), tip = c.querySelector('.bj-tip');          // v50: BJU 3 ustun + oqsil maslahati
     return { h: Math.round(cr.height), after: cr.top >= du.bottom - 1, before: cr.bottom <= ml.top, cols, tip: !!tip && (function () { const rg = document.createRange(); rg.selectNodeContents(tip); return new Set([...rg.getClientRects()].map((q) => Math.round(q.top))).size === 1; })() }; });
@@ -237,12 +238,12 @@ BOLIM['tartib'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
 BOLIM['v56'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
   /* v56: balans «Ikki chiziq» + Qadam/Mashg'ulot kartalari (bo'sh / to'lgan) + tahrir oynasi (maket bilan yonma-yon: 390 uz) */
   { const base = () => { const st = seed(c.lang, true); st.created = Date.now() - 10 * 86400000; st.prefs.ttAsked = 1; st.prefs.h_hafta = Date.now(); st.prefs.h_backup = Date.now(); st.prefs.crd = { ekran: { ok: 1 }, ilova: { ok: 1 }, akkaunt: { ok: 1 } }; st.prefs.fw = { x: [], d: T0 }; st.afsona = { a: {}, ok: {}, dq: { d: T0, id: 'a01', x: 1 } }; st.profile.job = 'sit'; return st; };
-    const YM = OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET8), toCards = (p) => p.evaluate(() => { const m = document.getElementById('rzMain'), c2 = document.querySelector('.sl-big'); m.scrollTop = c2.offsetTop + c2.offsetHeight - 470; });
+    const YM = OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET8), YM9 = OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET9), toCards = (p) => p.evaluate(() => { const m = document.getElementById('rzMain'), c2 = document.querySelector('.sl-big'); m.scrollTop = c2.offsetTop + c2.offsetHeight - 470; });
     let st = base(); S.ensureDay(st, T0).steps = 5620; S.addEx(st, T0, { t: 'futbol', min: 45, lv: 1 });
-    p = await mk(st); await p.waitForTimeout(900); await toCards(p); await p.waitForTimeout(300); await scan(p, 'Balans + harakat', '#rzMain'); await shot(p, 'v56-bugun'); if (YM) { await yonmaG(p, c.th, 'v56-maket-1', MAKET8, '.ph', 0); if (fs.existsSync(MAKET8B)) await yonmaG(p, c.th, 'v56-maket-balans', MAKET8B, '.col', 0); }
+    p = await mk(st); await p.waitForTimeout(900); await toCards(p); await p.waitForTimeout(300); await scan(p, 'Balans + harakat', '#rzMain'); await shot(p, 'v56-bugun'); if (YM) await yonmaG(p, c.th, 'v56-maket-1', MAKET8, '.ph', 0); if (YM9) { await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = document.querySelector('.sl-big').offsetTop - 60; }); await p.waitForTimeout(250); await yonmaG(p, c.th, 'v58-maket-1', MAKET9, '.ph', 0); await toCards(p); await p.waitForTimeout(200); }
     await p.click('.sl-exc .mr'); await p.waitForTimeout(600); await scan(p, 'Mashg\'ulotlar ro\'yxati', '#rzSheet'); await shot(p, 'v56-exlist'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
     await p.click('[data-act=exadd]'); await p.waitForTimeout(600); await scan(p, 'Mashg\'ulot qo\'shish', '#rzSheet'); await shot(p, 'v56-mashq'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
-    await p.click('#balBtn'); await p.waitForTimeout(600); await scan(p, 'Balans tafsiloti', '#rzSheet'); await shot(p, 'v56-balans'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
+    await p.click('#kcalBtn'); await p.waitForTimeout(600); await scan(p, 'Qanday chiqdi?', '#rzSheet'); await shot(p, 'v58-qanday'); if (YM9) await yonmaG(p, c.th, 'v58-maket-2', MAKET9, '.ph', 1); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
     await p.evaluate(() => { const r = document.querySelector('#rzMain .sl-row'); r.scrollIntoView({ block: 'center' }); }); await p.waitForTimeout(200); await p.click('#rzMain .sl-row >> nth=0'); await p.waitForTimeout(800); await scan(p, 'Tahrir oynasi', '#rzSheet'); await shot(p, 'v56-tahrir'); if (YM) await yonmaG(p, c.th, 'v56-maket-3', MAKET8, '.ph', 2);
     if (p.errs.length) fails.push(tag + ' JS (v56): ' + p.errs[0]); await p.context().close();
     st = base(); st.days[T0] && (st.days[T0].steps = 0); p = await mk(st); await p.waitForTimeout(900); await toCards(p); await p.waitForTimeout(300); await scan(p, 'Bo\'sh kartalar', '#rzMain'); await shot(p, 'v56-bosh'); if (YM) await yonmaG(p, c.th, 'v56-maket-2', MAKET8, '.ph', 1);
@@ -265,7 +266,7 @@ BOLIM['v51'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
     p = await mk(st); await p.waitForTimeout(400); if (!(await p.locator('#jbCard').count())) fails.push(tag + ' v51: ish turi kartasi yo\'q');
     else { await scan(p, 'Ish turi kartasi', '#rzMain'); await shot(p, 'v51-karta'); await p.click('#jbCard [data-act=jbopen]'); await p.waitForTimeout(600); await p.click('#rzSheet [data-act=jbpick][data-v=stand]'); await p.waitForTimeout(400);
       await scan(p, 'Ish turi oynasi', '#rzSheet'); await shot(p, 'v51-oyna'); await p.click('#rzSheet [data-act=jbok]'); await p.waitForTimeout(600); }
-    await p.click('#kcalBtn'); await p.waitForTimeout(700); await scan(p, 'Me\'yor (i)', '#rzSheet'); await shot(p, 'v51-xkcal');
+    await p.click('#kcalBtn'); await p.waitForTimeout(500); await p.click('#rzSheet [data-act=xkform]'); await p.waitForTimeout(600); await scan(p, 'Me\'yor (i)', '#rzSheet'); await shot(p, 'v51-xkcal');
     if (p.errs.length) fails.push(tag + ' JS (v51): ' + p.errs[0]); await p.context().close(); }
 };
 /* ---------- --faqat: o'zgargan fayl → bo'limlar ---------- */
@@ -280,7 +281,7 @@ const KALIT = {          // umumiy fayl o'zgarsa — diff matnida shu kalit so'z
   asosiy: ['sl-big', 'vessel', 'kcalBtn', 'bjuCard', 'bj3', 'ftBtn', 'ftDr', 'ft-', 'jLine', 'hz-', 'yeymiz', 'ny-', 'fdQ', 'fdRes', 'sl-rr', 'kq-', 'sl-meal', 'rzAddBar', 'mainAdd', 'sl-duo', 'wCard', 'sl-hd2', 'renderToday', 'renderHistory', 'renderProfile', 'rz-tab'],
   plato: ['plato', 'pl-', 'wTrend', 'hikoya'], android: ['qaSrc', 'stepCardHtml', 'qaulash', 'addsteps', 'qaFit', 'qaState', 'stepState'],
   v50: ['sl-prof', 'pf-', 'hero', 'jokeTest', 'kunTartib', 'renderProfile'], tartib: ['tartib', 'tt-', 'ttopen', 'bj-tip'],
-  v56: ['bl-a', 'balBtn', 'balHtml', 'sl-ab2', 'pw-bar', 'pw-row', 'kq-m4', 'kq-seg', 'exlist', 'openBal', 'exCard', 'stepWeb', 'stepCardHtml', 'portionHtml', 'pwBody', 'miniRing', 'sl-exc', 'dayBal'],
+  v56: ['kc-chip', 'kcChipsHtml', 'openKcalHow', 'hw-r', 'exGain', 'sl-ab2', 'pw-bar', 'pw-row', 'kq-m4', 'kq-seg', 'exlist', 'openBal', 'exCard', 'stepWeb', 'stepCardHtml', 'portionHtml', 'pwBody', 'miniRing', 'sl-exc'],
   afsona: ['afsona', 'af-', 'afTz'], v51: ['jbCard', 'jb-', 'jobOn', 'dayPlan', 'xkcal', 'xkRows'],
 };
 function tanla() {
