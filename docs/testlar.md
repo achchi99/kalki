@@ -35,7 +35,7 @@ Kontekstni qayta ishlatish sinaldi: −17 % CPU, lekin localStorage/kesh holati 
 ### Ochiq KalkiFit sahifasi bo'sh turganda
 4 sahifa 10 s: **151 % CPU** (1,5 yadro). Sabab — idishdagi cheksiz SMIL to'lqin (`animateTransform` clipPath ichida, har kadr SVG qayta chiziladi).
 SMIL to'xtatilsa — 17 %. CSS animatsiyalar arzon (sinab ko'rildi). Chromium bayroqlari (--disable-gpu, headless-shell/full) — farq yo'q.
-Real testlarda foydasi kichik (sahifalar tez yopiladi): kalkifit-soddalik CPU 263 → 242 s (−8 %).
+Real testlarda foydasi kichik (sahifalar tez yopiladi): kalkifit-soddalik CPU 263 → 242 s (−8 %). **v57:** ilovada tuzatildi — to'lqin CSS animatsiya, ~10 s da to'xtaydi, ko'rinmasa pauza: bo'sh holatda 1 sahifa 0,36 → 0,001 yadro.
 
 ## Nima o'zgardi
 1. **Haqiqiy CPU o'lchovi.** Har ish `systemd-run --user --scope` ichida — CPU Chromium bilan birga (`@@CG`). `TEST_CGROUP=0` — o'chirish.
@@ -46,7 +46,7 @@ Real testlarda foydasi kichik (sahifalar tez yopiladi): kalkifit-soddalik CPU 26
 6. **Shartli kutish** (`tools/dizayn/kut.mjs`: `kut()`, `barqaror()`): yuk ostida yiqilgan joylar — `til-ekran` (til tanlangach holat), `yemaydi` (tugma matni, ogohlantirish), `google` (so'rov va ism yangilanishi), `onboarding2` (yo'l-ko'rsatkich, joylashuv barqarorligi), `mashq-ui` (daqiqa almashishi ±3 kkal).
 7. **axe `resultTypes: ['violations']`** — 11 chaqiruvda; o'tgan elementlar uchun selektor/tafsilot yasalmaydi. Natija aynan bir xil (16 yuklashda farq 0), axe CPU −60 %.
 8. **sw.js versiyasi umumiy emas.** Har relizda `tools/sw-version.js` faqat `SW_VERSION` qatorini o'zgartiradi — ilgari bu har KalkiFit relizini to'liq to'plamga (83 sahifali sweep'lar bilan) o'tkazardi. Endi faqat shu qator o'zgarsa — `sw`, `pwa` testlari (mosligini `check:sw` va verify-all 7-band tekshiradi); sw.js'ning boshqa har qanday o'zgarishi — avvalgidek to'liq to'plam.
-9. **«Tinch» preload** (`tools/test-tinch.cjs`, faqat `*.mjs` brauzer testlariga `NODE_OPTIONS`): SVG paydo bo'lgandan 1,6 s keyin (ko'tarilish tugagach) SMIL bezak to'lqinini to'xtatadi. DOM/atributlar o'zgarmaydi. Skrinshot asbobida yo'q. `TEST_TINCH=0` — o'chirish.
+9. ~~«Tinch» preload~~ — olib tashlandi (v57): ilovaning o'zida to'lqin CSS'ga o'tdi va ~10 s da to'xtaydi (bo'sh holatda 0,36 → 0,001 yadro), testlarda alohida to'xtatish kerak emas.
 10. **Kod o'zgarsa to'xtash** (`tools/kod-kuzat.cjs`): har 5 s HEAD + o'zgargan/kuzatilmagan fayllar mazmuni; farq bo'lsa runner bola jarayonlar guruhini o'ldiradi, `! Kod o'zgardi (<fayl>)` va chiqish kodi 3. Ctrl+C / SIGTERM ham butun guruhni (Chromium bilan) yopadi.
 
 ## Skrinshot asbobi (kalkifit-ekranlar.mjs)

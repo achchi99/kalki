@@ -936,8 +936,16 @@
   function tyOf(L) { return L <= 0 ? 245 : (L >= 1 ? 8 : Math.round((221 - 208 * L) * 10) / 10); }
   function vesselSvg(o) {                            // kaloriya «idishi»: maketdan aynan (to'lqin yo'li mk(), ikki qatlamli matn, animatsiya vaqtlari)
     var ty = o.ty, ty2 = ty - 6, fy = o.fromTy, fy2 = fy - 6, d1 = o.upd ? '1.2s' : '.95s', d2 = o.upd ? '1.3s' : '1.05s', rd = reduce;
-    var rise = function (a, b, d) { return '<animateTransform attributeName="transform" type="translate" from="0 ' + a + '" to="0 ' + b + '" dur="' + d + '"' + (o.begin ? ' begin="-' + o.begin.toFixed(2) + 's"' : '') + ' fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".22 1 .36 1"/>'; };
-    var sway1 = '<animateTransform attributeName="transform" type="translate" from="0 0" to="-240 0" dur="3.2s" repeatCount="indefinite" additive="sum"/>', sway2 = '<animateTransform attributeName="transform" type="translate" from="-240 0" to="0 0" dur="4.6s" repeatCount="indefinite" additive="sum"/>';
+    /* batareya (v57): SMIL animateTransform o'rniga CSS animatsiya — ko'tarilish `translate` da, chayqalish `transform` da (clipPath ichida <g> yo'q, shuning uchun ikkalasi bitta yo'lda).
+       Chayqalish cheksiz emas: asl tezlikda boshlanib (3,2 s / 4,6 s davr), sekinlashib ~10 s da TO'XTAYDI (masofa davrga karrali — to'xtaganda shakl sakramaydi).
+       Raqam/daraja o'zgarsa yangidan jonlanadi (swayKey), oddiy qayta chizishda o'z vaqt chizig'idan davom etadi (o.swEl). Ko'rinmasa — pauza (kv-tin), reduced-motion — statik. */
+    var sw = o.swEl || 0, bg = o.begin || 0, cssA = function (r0, r1, rDur, w) {
+      var a = 'translate:0 ' + r1 + 'px'; if (rd) return a;
+      var an = ['kvRise ' + rDur + ' cubic-bezier(.22,1,.36,1) ' + (-bg).toFixed(2) + 's both'];
+      if (sw < w.T) { if (w.n) an.push(w.a + ' ' + w.p + 's linear ' + (-sw).toFixed(2) + 's ' + w.n); an.push(w.b + ' ' + w.e + 's cubic-bezier(.33,.67,.67,1) ' + (w.p * w.n - sw).toFixed(2) + 's forwards'); }
+      return a + ';--r0:' + r0 + 'px;--r1:' + r1 + 'px;animation:' + an.join(',');
+    };
+    var W1 = { a: 'kvSw1', b: 'kvSw1z', p: 3.2, n: 1, e: 6.4, T: 9.6 }, W2 = { a: 'kvSw2', b: 'kvSw2z', p: 4.6, n: 0, e: 9.2, T: 9.2 };          // e = 2 × davr: sekinlashuv boshida tezlik asl tezlikka teng (silliq)
     var capTxt = function (cls, a, c) {                 // yon yozuvlar («{n} kkal qoldi» kabi) — to'lqin ichida/ustida ikki rangli (mavjud naqsh)
       return (a ? '<text class="' + cls + '" x="120" y="82" text-anchor="middle" font-size="15" font-weight="500">' + esc(a) + '</text>' : '') + '<text class="' + cls + '" x="120" y="162" text-anchor="middle" font-size="15" font-weight="500">' + esc(c) + '</text>';
     };
@@ -945,11 +953,15 @@
       return '<text class="kv-sub kv-n" x="120" y="132" text-anchor="middle" font-size="52" font-weight="800" letter-spacing="-1.5"' + ids + '>' + esc(b) + '</text>';
     };
     return '<svg class="sl-vsvg" width="240" height="240" viewBox="0 0 240 240" aria-hidden="true" focusable="false"><defs><linearGradient id="kfLiq" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" style="stop-color:var(--liq1)"/><stop offset="100%" style="stop-color:var(--liq2)"/></linearGradient><linearGradient id="kfRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" style="stop-color:var(--liq2)"/><stop offset="100%" style="stop-color:var(--liq1)"/></linearGradient><clipPath id="kfVessel"><circle cx="120" cy="120" r="104"/></clipPath>' +
-      '<clipPath id="kfWave"><path d="' + waveD(7, 0) + '"' + (rd ? ' transform="translate(0 ' + ty + ')"' : '') + '>' + (rd ? '' : rise(fy, ty, d1) + sway1) + '</path></clipPath></defs>' +
+      '<clipPath id="kfWave"><path class="kv-w" d="' + waveD(7, 0) + '" style="' + cssA(fy, ty, d1, W1) + '"/></clipPath></defs>' +
       '<circle cx="120" cy="120" r="115" fill="none" stroke="url(#kfRim)" stroke-width="3" opacity=".55"/><circle class="kv-vessel" cx="120" cy="120" r="104"/>' +
-      '<g clip-path="url(#kfVessel)"><path d="' + waveD(9, 1.6) + '" style="fill:var(--liq3)" opacity=".45"' + (rd ? ' transform="translate(0 ' + ty2 + ')"' : '') + '>' + (rd ? '' : rise(fy2, ty2, d2) + sway2) + '</path>' + capTxt('kv-sub', o.a, o.c) + '<g clip-path="url(#kfWave)"><rect x="0" y="0" width="240" height="240" fill="url(#kfLiq)"/>' + capTxt('kv-dk', o.a, o.c) + '</g>' + numTxt(o.b, ' id="kLeft" data-n="' + o.n + '"') + '</g></svg>';
+      '<g clip-path="url(#kfVessel)"><path class="kv-w kv-w2" d="' + waveD(9, 1.6) + '" style="fill:var(--liq3);' + cssA(fy2, ty2, d2, W2) + '" opacity=".45"/>' + capTxt('kv-sub', o.a, o.c) + '<g clip-path="url(#kfWave)"><rect x="0" y="0" width="240" height="240" fill="url(#kfLiq)"/>' + capTxt('kv-dk', o.a, o.c) + '</g>' + numTxt(o.b, ' id="kLeft" data-n="' + o.n + '"') + '</g></svg>';
   }
-  var animRaf = 0, heroAnim = null;
+  var animRaf = 0, heroAnim = null, swayKey = null, swayT0 = 0, swayHid = 0;
+  document.addEventListener('visibilitychange', function () {          // v57: ko'rinmasa to'lqin to'liq to'xtaydi; qaytganda vaqt chizig'i surilib davom etadi
+    var h = document.visibilityState === 'hidden'; root.classList.toggle('kv-tin', h);
+    if (h) swayHid = performance.now(); else if (swayHid) { swayT0 += performance.now() - swayHid; swayHid = 0; }
+  });
   function animNum(from, to, dur) {
     var els = function () { return [$('#kLeft')]; }, set = function (n) { els().forEach(function (e) { if (e) e.textContent = fmt(n); }); };
     cancelAnimationFrame(animRaf); if (reduce || !(dur > 0) || from === to) { set(to); return; }
@@ -990,14 +1002,16 @@
     var t = todayStr(), pr = st.profile, pl = planNow(), x = S.dayOf(st, t) || { food: [], water: 0, steps: 0 }, tot = S.sumEntries(x.food), h0 = num(pr.height), w0 = S.currentWeight(st), wi = wInfo(t);
     var bal = S.dayBalance(st, t, tot.kcal), limit = bal.limit, ratio = Math.min(1, tot.kcal / Math.max(1, limit)), over = bal.remaining < 0, info = S.dayStatus(st, t, t);
     var glasses = pl.water.glasses, wmax = glasses * S.GLASS_ML, note = info.complete ? T('stFull') + ' · ' + stLabel(info, t, t) : T('cNote');
-    var prev = heroPrev, n = over ? -bal.remaining : bal.remaining, ty = tyOf(over ? 1 : ratio), now0 = performance.now(), cont = !!(heroAnim && !reduce && now0 - heroAnim.t0 < heroAnim.dur && heroAnim.to === n && heroAnim.ty === ty);
+    var prev = heroPrev, n = over ? -bal.remaining : bal.remaining, ty = tyOf(over ? 1 : ratio), now0 = performance.now(), swK = n + '|' + ty;
+    if (swK !== swayKey) { swayKey = swK; swayT0 = now0; }          // v57: raqam/daraja o'zgardi — to'lqin yangidan jonlanadi
+    var swEl = (now0 - swayT0) / 1000, cont = !!(heroAnim && !reduce && now0 - heroAnim.t0 < heroAnim.dur && heroAnim.to === n && heroAnim.ty === ty);
     var fromTy = cont ? heroAnim.fromTy : (prev ? prev.ty : 250), upd = cont ? heroAnim.upd : (!!prev && prev.ty !== ty), el0 = cont ? (now0 - heroAnim.t0) / 1000 : 0, startN = prev ? prev.n : 0, curN = startN, durN = prev ? (prev.n !== n ? 1200 : 0) : 900;
     if (cont) { var kk = Math.min(1, (now0 - heroAnim.t0) / heroAnim.dur); curN = Math.round(heroAnim.from + (heroAnim.to - heroAnim.from) * (1 - Math.pow(1 - kk, 3))); durN = heroAnim.dur - (now0 - heroAnim.t0); startN = heroAnim.from; }
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = inst.isTop() ? inst.cardHtml() : '';
     h += '<div class="sl-hd2"><div class="t"><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span><h2 class="rz-h sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2></div>' + ftBtnHtml() + '</div>';          // har ekranda sarlavha bir joyda (rz-h)
     h += weekStripHtml(t);
-    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, n: n, a: over ? T('vOver1') : '', b: fmt(curN), c: over ? T('vOver2') : T('vLeftK') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
+    h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) })) + '">' + vesselSvg({ ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: over ? T('vOver1') : '', b: fmt(curN), c: over ? T('vOver2') : T('vLeftK') }) + '</button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
       balHtml(tot.kcal, t) + taxChipHtml() + '</section>' ;
     h += slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);

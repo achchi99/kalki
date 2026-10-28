@@ -149,7 +149,13 @@ html.fs-big .sl{--t-lbl:15px;--t-xs:17px;--t-s:17px;--t-m:19px;--t-ml:19px;--t-l
 .rz .sl-big{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:20px}
 .rz .rz-main.rzi .sl-big{animation:fadeUp .6s ease both}          /* faqat ochilishda (qayta chizishda o'chib-yonmaydi) */
 .rz .sl-vessel{display:block;width:240px;height:240px;border:0;background:transparent;padding:0;position:relative;color:inherit;border-radius:50%}
-.rz .sl-vsvg{display:block}.rz .sl-vsvg text{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums}
+.rz .sl-vsvg{display:block}
+/* v57 batareya: idish to'lqini — CSS animatsiya (SMIL o'rniga), cheklangan vaqt (~13 s, sekinlashib to'xtaydi); ko'rinmasa pauza; reduced-motion — yo'q */
+@keyframes kvRise{from{translate:0 var(--r0)}to{translate:0 var(--r1)}}
+@keyframes kvSw1{from{transform:translateX(0)}to{transform:translateX(-240px)}}@keyframes kvSw1z{from{transform:translateX(0)}to{transform:translateX(-240px)}}
+@keyframes kvSw2z{from{transform:translateX(-240px)}to{transform:translateX(0)}}
+.rz.kv-tin .kv-w,.kv-tin .rz .kv-w{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.rz .kv-w{animation:none!important}}.rz .sl-vsvg text{font-family:'Manrope',sans-serif;font-variant-numeric:tabular-nums}
 .rz .kv-vessel{fill:var(--vessel)}.rz .kv-sub{fill:var(--mut)}.rz .kv-sub.kv-n{fill:var(--ink)}.rz .kv-dk{fill:var(--vk-d)}.rz .kv-dk.kv-n{fill:var(--vk-n)}
 .rz .sl-trio{width:100%;display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:8px}
 .rz .sl-trio>div{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border-radius:16px;background:var(--soft)}.rz .sl-trio span{font-size:var(--t-xs);color:var(--mut);font-weight:500}.rz .sl-trio b{font-size:var(--t-m);font-weight:600;font-variant-numeric:tabular-nums}

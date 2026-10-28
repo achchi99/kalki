@@ -2,6 +2,20 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 57,
+   "d": "2026-10-28",
+   "bn": {
+    "uz": "Batareya tejaladi",
+    "ru": "Экономия батареи"
+   },
+   "items": [
+    {
+     "uz": "Halqadagi to'lqin bir necha soniyada tinchlanadi — telefon kamroq qiziydi va batareya uzoqroq yetadi.",
+     "ru": "Волна в кольце успокаивается через несколько секунд — телефон меньше греется, батарея держится дольше."
+    }
+   ]
+  },
+  {
    "v": 56,
    "d": "2026-10-27",
    "bn": {
