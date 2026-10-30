@@ -2,55 +2,8 @@
 
 `node tools/ikonka-toplam.js` — `data/ikonka-reja.txt` dan hali rasmi yo'q ikonkalar to'plamlari (`docs/ikonka-toplam-N.txt`) va shu jadval. Rasm: to'rni yarating → `node tools/ikonka-kes.js ~/toplam-N.jpg --quru` (kontakt-varaqni ko'ring) → `node tools/ikonka-kes.js ~/toplam-N.jpg` (oxirgi to'plam 7 qatordan kam bo'lsa: `--qator <qatorlar>`).
 
-- Generic (tur ikonkasi) taom: **144** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
-- Yangi ikonka: **132**; to'plam: **3** (№9 — 42 ta, 6×7; №10 — 42 ta, 6×7; №11 — 48 ta, 6×8)
-
-## To'plam 9 (42)
-
-| № | slug | guruh | ishlatadigan taomlar |
-|---|---|---|---|
-| 1 | `lavlagi` | qolganlari | Lavlagi (`lavlagi`), Lavlagi (qaynatilgan) (`lavlagi-qaynatilgan`) |
-| 2 | `turp` | qolganlari | Turp (`turp`) |
-| 3 | `ismaloq` | qolganlari | Ismaloq (`ismaloq`), Ismaloq (qaynatilgan) (`ismaloq-qaynatilgan`) |
-| 4 | `kokat` | qolganlari | Ko'katlar (kashnich, ukrop) (`kokat`) |
-| 5 | `salat-barg` | qolganlari | Salat bargi (`salat-barg`) |
-| 6 | `yashil-loviya` | qolganlari | Yashil loviya (`yashil-loviya`) |
-| 7 | `yashil-noxat` | qolganlari | Yashil no'xat (`yashil-noxat`) |
-| 8 | `zaytun` | qolganlari | Zaytun (`zaytun`) |
-| 9 | `avokado` | qolganlari | Avokado (`avokado`) |
-| 10 | `shampinon` | qolganlari | Qo'ziqorin (shampinon) (`shampinon`), Qo'ziqorin (qaynatilgan) (`qoziqorin-qaynatilgan`) |
-| 11 | `tuzlangan-bodring` | qolganlari | Tuzlangan bodring (`tuzlangan-bodring`) |
-| 12 | `selderey` | qolganlari | Selderey (`selderey`) |
-| 13 | `qovoqcha` | qolganlari | Qovoqcha (kabachok, qaynatilgan) (`qovoqcha`) |
-| 14 | `konserva-makkajoxori` | qolganlari | Makkajo'xori (konserva) (`makkajoxori-konserva`) |
-| 15 | `konserva-noxat` | qolganlari | Ko'k no'xat (konserva) (`noxat-konserva`) |
-| 16 | `konserva-loviya` | qolganlari | Qizil loviya (konserva) (`loviya-konserva`) |
-| 17 | `loviya-tomat` | qolganlari | Loviya (tomatda, konserva) (`loviya-tomat`) |
-| 18 | `karam-tuzlangan` | qolganlari | Tuzlangan karam (kvashenaya) (`karam-tuzlangan`) |
-| 19 | `batat` | qolganlari | Batat (shirin kartoshka, pishirilgan) (`batat`) |
-| 20 | `sparja` | qolganlari | Sparja (qaynatilgan) (`sparja`) |
-| 21 | `kok-piyoz` | qolganlari | Ko'k piyoz (`kok-piyoz`) |
-| 22 | `shivit` | qolganlari | Shivit (ukrop) (`shivit`) |
-| 23 | `kashnich` | qolganlari | Kashnich (kinza) (`kashnich`) |
-| 24 | `petrushka` | qolganlari | Petrushka (`petrushka`) |
-| 25 | `zanjabil` | qolganlari | Zanjabil (ildiz) (`zanjabil`) |
-| 26 | `daykon` | qolganlari | Oq turp (daykon) (`turp-oq`) |
-| 27 | `porey` | qolganlari | Porey piyozi (`porey`) |
-| 28 | `kolrabi` | qolganlari | Kolrabi (`kolrabi`) |
-| 29 | `veshenka` | qolganlari | Veshenka qo'ziqorini (`qoziqorin-veshenka`) |
-| 30 | `edamame` | qolganlari | Edamame (soya dukkagi) (`edamame`) |
-| 31 | `bamiya` | qolganlari | Bamiya (qaynatilgan) (`bamiya`) |
-| 32 | `nok` | qolganlari | Nok (`nok`) |
-| 33 | `apelsin` | qolganlari | Apelsin (`apelsin`) |
-| 34 | `mandarin` | qolganlari | Mandarin (`mandarin`) |
-| 35 | `limon` | qolganlari | Limon (`limon`) |
-| 36 | `shaftoli` | qolganlari | Shaftoli (`shaftoli`) |
-| 37 | `orik` | qolganlari | O'rik (`orik`) |
-| 38 | `gilos` | qolganlari | Gilos (`gilos`), Olcha (`olcha`) |
-| 39 | `oluxori` | qolganlari | Olxo'ri (`oluxori`) |
-| 40 | `anjir` | qolganlari | Anjir (yangi) (`anjir`) |
-| 41 | `behi` | qolganlari | Behi (`behi`) |
-| 42 | `kivi` | qolganlari | Kivi (`kivi`) |
+- Generic (tur ikonkasi) taom: **98** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
+- Yangi ikonka: **90**; to'plam: **2** (№10 — 42 ta, 6×7; №11 — 48 ta, 6×8)
 
 ## To'plam 10 (42)
 
