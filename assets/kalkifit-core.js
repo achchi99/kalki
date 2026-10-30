@@ -204,7 +204,10 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function toggleFav(st, fid) { var i = st.favs.indexOf(fid); if (i > -1) st.favs.splice(i, 1); else st.favs.unshift(fid); return i === -1; }
   function addCustom(st, o) {
     var f = { id: 'c' + st.seq++, n: String(o.name || '').slice(0, 60), k: Math.round(num(o.k)), p: round1(num(o.p)), f: round1(num(o.f)), c: round1(num(o.c)), u: [['g100', 100]], e: 1, t: 'x', custom: 1 };
-    if (o.g > 0) f.u.unshift(['porsiya', Math.round(o.g)]); if (!f.n || !(f.k >= 0)) return null; st.customFoods.push(f); return f;
+    if (o.pack > 0) f.u.unshift(['qadoq', Math.round(o.pack)]); if (o.g > 0) f.u.unshift(['porsiya', Math.round(o.g)]); if (!f.n || !(f.k >= 0)) return null;
+    if (o.src) f.src = o.src;                         // v67: 'yorliq' (suratdan, AI o'qigan) | 'qolda'
+    if (o.lbl) { f.e = 0; f.ms = { u: "Qadoq yorlig'i — o'zingiz " + (o.src === 'yorliq' ? 'tasdiqlagan' : 'kiritgan') + ' qiymat (100 g uchun)', r: 'Этикетка упаковки — значения ' + (o.src === 'yorliq' ? 'проверены' : 'введены') + ' вами (на 100 г)' }; }
+    st.customFoods.push(f); return f;
   }
 
   /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
@@ -546,7 +549,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   var GROUP = { palov: ['osh', 'toy-oshi', 'samarqand-oshi', 'fargona-oshi', 'buxoro-oshi', 'buxoro-oshi-qazili', 'buxoro-oshi-bedana', 'choyxona-osh', 'osh-tovuq'], qaymoq: ['qaymoq', 'smetana', 'qaymoq-10', 'qaymoq-yogli'], protein: ['protein-kukun', 'protein-izolyat', 'protein-kazein'] };          // «protein» — avval kukunlar, keyin batonchik
   /* ommaboplik: mashhur milliy taomlar (bir darajada oldinda) */
   var POP = { osh: 10, non: 10, choy: 10, shurva: 9, lagmon: 9, somsa: 9, manti: 9, chuchvara: 8, norin: 8, shashlik: 8, 'qozon-kabob': 8, dimlama: 7, mastava: 7, chalop: 6, moshxorda: 6, xonim: 6, qatiq: 7, sut: 7, kefir: 6, 'choyxona-osh': 7, 'toy-oshi': 8, 'samarqand-oshi': 7, 'fargona-oshi': 7, 'buxoro-oshi': 6, 'osh-tovuq': 6, halim: 5, beshbarmoq: 5, 'mosh-xorda': 6, tuxum: 7, kabob: 7, ayron: 5, qaymoq: 5, suzma: 5, 'protein-kukun': 3, 'protein-izolyat': 2, 'protein-kazein': 1 };
-  function popOf(f) { return (POP[f.id] || 0) + (f.top ? 2 : 0) + (f.t === 'o' ? 1 : 0); }
+  function popOf(f) { return (POP[f.id] || 0) + (f.top ? 2 : 0) + (f.t === 'o' ? 1 : 0) + (f.pp || 0); }          // v67: pp — tarmoq menyusidagi asosiy taom (lavash, pitsa…)
   function wordsStart(words, qt, fuzzy) {              // har bir so'rov so'zi nomdagi biror so'z BOSHIDA (fuzzy: 5+ harfda xato bilan) → {d} | null
     var d = 0;
     for (var i = 0; i < qt.length; i++) {

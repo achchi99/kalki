@@ -313,8 +313,8 @@ for (const r of rows) {
     const id = tok.replace(/^u:/, ''), U = USDA[id]; return U ? { k: U.kcal, p: U.p, f: U.f, c: U.c, u: 'USDA ' + id + ' («' + U.d + '»)', r: 'USDA ' + id + ' («' + U.d + '»)' } : null;
   };
   const ich = (t) => t === 'i' ? [' (ichimlik: 100 ml ≈ 100 g)', ' (напиток: 100 мл ≈ 100 г)'] : ['', ''];
-  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'))) {          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)
-    const [id, n, ru, al, t, un, src] = row;
+  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'), require('./ovqatlar-kengaytma5.js'))) {          // v67: fast-food tarmoqlari (taxminiy) va muzqaymoq turlari          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)
+    const [id, n, ru, al, t, un, src, tm, izU, izR] = row;          // v67: tm — fast-food TARMOG'I kaliti (evos, maxway…): qiymat taxminiy, tarmoq rasmiy qiymat e'lon qilmagan; izU/izR — og'irlik/tarkib qayerdan
     if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
     let v = null;
     if (/^u:\d+$/.test(src)) { const q = part(src), U = USDA[src.slice(2)]; if (q) v = Object.assign(q, { e: 0, m: 'USDA FDC ' + src.slice(2), ms: { u: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), 100 g uchun' + ich(t)[0] + '.', r: 'USDA FoodData Central, fdc_id ' + src.slice(2) + ' («' + U.d + '»), на 100 г' + ich(t)[1] + '.' } }); }
@@ -329,6 +329,8 @@ for (const r of rows) {
     ids.add(id);
     const u = un.split(',').map((x) => { const [a, b] = x.split(':'); return [a, +b]; }); u.push(['g100', 100]);
     const o = { i: id, n, r: ru, a: al.split(',').filter(Boolean), k: Math.round(v.k), p: r1(v.p), f: r1(v.f), c: r1(v.c), t, e: v.e, u, m: v.m, ms: v.ms };
+    if (tm) { if (!izU || !izR) throw new Error('kengaytma: tarmoq taomida og\'irlik manbasi izohi yo\'q ' + id); o.tm = tm; o.e = 1; { const tt = (/^tm-[a-z]+-([a-z]+)-/.exec(id) || [])[1], PP = { lavash: 3, tvister: 3, pitsa: 3, shaurma: 2, donar: 2, burger: 2, chizburger: 2, hotdog: 1 }; o.pp = PP[tt] || -1; }          // «evos» qidiruvida asosiy taomlar (lavash…) birinchi o.m = 'Taxminiy (tarmoq rasmiy qiymat e\'lon qilmagan): ' + o.m;
+      o.ms = { u: "Taxminiy — tarmoq rasmiy qiymat e'lon qilmagan. " + izU + ' ' + o.ms.u, r: 'Примерно — сеть не публикует официальные значения. ' + izR + ' ' + o.ms.r }; }
     { const have = new Set([o.n, o.r].concat(o.a).map(normA)); (ALIAS[id] || []).forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); }
     out.push(o);
   }
@@ -336,8 +338,8 @@ for (const r of rows) {
 // Admin ma'qullagan qo'shimcha taomlar (tools/ovqatlar-merge.js shu faylga yozadi): baza qayta yasalganda ham yo'qolmaydi
 const EXTRA = path.join(__dirname, 'ovqatlar-extra.json');
 if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf8'))) { if (ids.has(x.i)) { warn.push('qo\'shimcha takror id: ' + x.i); continue; } ids.add(x.i); out.push(x); }
-// v34: muzqaymoq — bitta umumiy («Muzqaymoq (o'rtacha)») + brendli mahsulotlar; boshqa umumiy turlar qidiruvda ko'rinmaydi (h: 1), eski yozuvlar id bo'yicha ochiladi
-{ const YASHIR = new Set(['muzqaymoq-eskimo', 'mz-plombir-stakan', 'mz-plombir-vafli', 'mz-plombir-briket', 'mz-vanil', 'mz-shokolad', 'mz-shokolad-plombir', 'mz-qulupnay', 'mz-light', 'mz-shakarsiz', 'mz-yumshoq', 'mz-konus-shokolad', 'mz-konus-sundae', 'mz-eskimo-yongoq', 'mz-sorbet', 'mz-muzli', 'mz-meva-bar', 'mz-sundae', 'mz-makflurri', 'mz-shokolad-light']);
+// v67: muzqaymoq TURLARI ko'rinadi (mevali muz, sorbet, sutli, qaymoqli, plombir, eskimo, stakancha, rojok, sendvich, vafli — foydalanuvchi so'radi); qolgan dublikat/brendsiz variantlar yashirin. v34: muzqaymoq — bitta umumiy («Muzqaymoq (o'rtacha)») + brendli mahsulotlar; boshqa umumiy turlar qidiruvda ko'rinmaydi (h: 1), eski yozuvlar id bo'yicha ochiladi
+{ const YASHIR = new Set(['muzqaymoq-eskimo', 'mz-plombir-stakan', 'mz-plombir-vafli', 'mz-shokolad', 'mz-shokolad-plombir', 'mz-qulupnay', 'mz-shakarsiz', 'mz-yumshoq', 'mz-konus-sundae', 'mz-eskimo-yongoq', 'mz-sundae', 'mz-makflurri', 'mz-shokolad-light']);
   out.forEach((o) => { if (YASHIR.has(o.i)) o.h = 1; }); }
 const V2 = require('./baza-v2.js').apply(out);      // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });

@@ -56,7 +56,7 @@ for (const [s, id] of [['osh', 'osh'], ['choy', 'choy'], ['non', 'non'], ['sut',
   assert.equal(top(s, 1)[0], id, 'regressiya: «' + s + '» → ' + top(s).join(','));
 log('Qidiruv: ' + Q.length + ' brend/fast-food so\'rovi (lotin, kirill, imlo) 1-o\'rinda; regressiya — 19 asosiy so\'rov (snickers, milka, burger, lavash, smetana… ) o\'zgarmagan');
 /* 6. takror yo'q: har yorliq va har USDA id bitta taomda */
-const used = {}; A.forEach((f) => { const m = /^(?:Yorliq: .*\(OFF (\d+)\)|USDA FDC (\d+))$/.exec(f.m || ''); const k = m && (m[1] || m[2]); if (k) (used[k] = used[k] || []).push(f.i); });
+const used = {}; A.forEach((f) => { const m = /^(?:Yorliq: .*\(OFF (\d+)\)|USDA FDC (\d+))$/.exec(f.m || ''); const k = m && (m[1] || m[2]); if (k && !f.tm) (used[k] = used[k] || []).push(f.i); });          // v67: tarmoq taomlari (tm) — o'sha turdagi umumiy qiymat, tarmoq nomi bilan (ataylab)
 for (const { r } of yangi) { const k = r[6].startsWith('y:') ? YQ[r[6].slice(2)].code : (/^m:u:(\d+)\*100$/.exec(r[6]) || [])[1]; if (k && used[k]) assert.ok(used[k].length <= 1, r[0] + ': manba boshqa taomda ham: ' + used[k]); }
 assert.ok(!by.bounty && by['kokos-batonchik'], 'Bounty — mavjud «Bounty turi» (takror yaratilmadi)');
 log('Takror taom yo\'q: har yorliq/USDA manbasi bitta taomda; Bounty — mavjud yozuvda');

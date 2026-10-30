@@ -142,14 +142,14 @@
 3|vino|a glass of red dry wine, dark ruby color.|vino vino-oq vino-shirin
 3|pivo|a glass of golden beer with white foam.|pivo pivo-yengil
 4|muzqaymoq-plombir|two white vanilla plombir ice cream scoops in a glass dessert cup.|muzqaymoq mz-plombir-stakan mz-vanil mz-light mz-shakarsiz
-4|muzqaymoq-briket|a rectangular block of white plombir ice cream on a small plate, one slice cut off.|mz-plombir-briket
-4|plombir-vafli|white plombir ice cream in a waffle cup with a blueberry swirl on top.|mz-plombir-vafli
+4|muzqaymoq-briket|a rectangular block of white plombir ice cream on a small plate, one slice cut off.|mz-plombir-briket mz-vafli-briket mz-sendvich
+4|plombir-vafli|white plombir ice cream in a waffle cup with a blueberry swirl on top.|mz-plombir-vafli mz-stakancha
 4|muzqaymoq-shokolad|two chocolate ice cream scoops in a glass dessert cup.|mz-shokolad mz-shokolad-plombir mz-shokolad-light
 4|muzqaymoq-qulupnay|two pink strawberry ice cream scoops in a glass cup with a strawberry.|mz-qulupnay
 4|muzqaymoq-yumshoq|swirled soft-serve vanilla ice cream in a paper cup.|mz-yumshoq
-4|muzqaymoq-rojok|ice cream in a waffle cone, chocolate and nuts coating on the vanilla scoop.|mz-konus-shokolad
+4|muzqaymoq-rojok|ice cream in a waffle cone, chocolate and nuts coating on the vanilla scoop.|mz-konus-shokolad mz-rojok
 4|muzqaymoq-rojok-sous|vanilla ice cream in a waffle cone with caramel sauce drizzle.|mz-konus-sundae
-4|eskimo|a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.|muzqaymoq-eskimo mz-eskimo-yongoq inmarko-eskimo
+4|eskimo|a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.|muzqaymoq-eskimo mz-eskimo-yongoq inmarko-eskimo mz-eskimo-glazur
 4|sorbet|two pastel orange fruit sorbet scoops in a small glass cup.|mz-sorbet
 4|muzli|a fruit ice pop on a stick, orange-red, with a few droplets.|mz-muzli mz-meva-bar
 4|sundae|a sundae in a tall glass with vanilla ice cream, chocolate sauce and a wafer.|mz-sundae

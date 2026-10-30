@@ -405,6 +405,20 @@
     "172429",
     "173475",
     "174271"
+   ],
+   "v67": [
+    "169248",
+    "169677",
+    "170293",
+    "170360",
+    "170692",
+    "170694",
+    "170698",
+    "172055",
+    "172226",
+    "173317",
+    "173466",
+    "175001"
    ]
   }
  },
@@ -7371,6 +7385,271 @@
      "nom": "tbsp",
      "miqdor": 1.0,
      "g": 10.7
+    }
+   ]
+  },
+  "169248": {
+   "d": "Lettuce, iceberg (includes crisphead types), raw",
+   "c": 2.97,
+   "kcal": 14.0,
+   "p": 0.9,
+   "f": 0.14,
+   "suv": 95.64,
+   "o": [
+    {
+     "nom": "cup shredded",
+     "miqdor": 1.0,
+     "g": 72.0
+    },
+    {
+     "nom": "cup, chopped (1/2\" pieces, loosely packed)",
+     "miqdor": 1.0,
+     "g": 57.0
+    },
+    {
+     "nom": "head, large",
+     "miqdor": 1.0,
+     "g": 755.0
+    },
+    {
+     "nom": "head, medium (6\" dia)",
+     "miqdor": 1.0,
+     "g": 539.0
+    },
+    {
+     "nom": "head, small",
+     "miqdor": 1.0,
+     "g": 324.0
+    },
+    {
+     "nom": "leaf, large",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "leaf, medium",
+     "miqdor": 1.0,
+     "g": 8.0
+    },
+    {
+     "nom": "leaf, small",
+     "miqdor": 1.0,
+     "g": 5.0
+    },
+    {
+     "nom": "NLEA Serving",
+     "miqdor": 1.0,
+     "g": 89.0
+    }
+   ]
+  },
+  "169677": {
+   "d": "Snacks, potato chips, plain, salted",
+   "f": 33.98,
+   "c": 53.83,
+   "kcal": 532.0,
+   "suv": 1.86,
+   "p": 6.39,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.0
+    },
+    {
+     "nom": "chips",
+     "miqdor": 22.0,
+     "g": 28.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "bag (8 oz)",
+     "miqdor": 1.0,
+     "g": 227.0
+    }
+   ]
+  },
+  "170293": {
+   "d": "Fast foods, cheeseburger, double, regular patty and bun, with condiments",
+   "f": 16.18,
+   "c": 17.97,
+   "kcal": 282.0,
+   "suv": 47.16,
+   "p": 16.24,
+   "o": [
+    {
+     "nom": "sandwich",
+     "miqdor": 1.0,
+     "g": 155.0
+    }
+   ]
+  },
+  "170360": {
+   "d": "Fast Foods, Fried Chicken, Wing, meat and skin and breading",
+   "kcal": 310.0,
+   "suv": 44.57,
+   "f": 20.09,
+   "c": 11.19,
+   "p": 21.14,
+   "o": [
+    {
+     "nom": "wing, with skin",
+     "miqdor": 1.0,
+     "g": 58.0
+    },
+    {
+     "nom": "wing, without skin",
+     "miqdor": 1.0,
+     "g": 37.0
+    },
+    {
+     "nom": "wing, bone and skin removed",
+     "miqdor": 1.0,
+     "g": 20.0
+    }
+   ]
+  },
+  "170692": {
+   "d": "Fast foods, cheeseburger; single, regular patty, with condiments and vegetables",
+   "p": 13.06,
+   "f": 11.5,
+   "c": 24.97,
+   "kcal": 254.0,
+   "suv": 48.06,
+   "o": [
+    {
+     "nom": "sandwich",
+     "miqdor": 1.0,
+     "g": 115.0
+    }
+   ]
+  },
+  "170694": {
+   "d": "Fast foods, hamburger; single, regular patty; with condiments",
+   "p": 13.3,
+   "f": 10.18,
+   "c": 29.57,
+   "kcal": 263.0,
+   "suv": 44.82,
+   "o": [
+    {
+     "nom": "sandwich",
+     "miqdor": 1.0,
+     "g": 97.0
+    }
+   ]
+  },
+  "170698": {
+   "d": "Fast foods, potato, french fried in vegetable oil",
+   "p": 3.43,
+   "f": 14.73,
+   "c": 41.44,
+   "kcal": 312.0,
+   "suv": 38.55,
+   "o": [
+    {
+     "nom": "serving small",
+     "miqdor": 1.0,
+     "g": 71.0
+    },
+    {
+     "nom": "serving medium",
+     "miqdor": 1.0,
+     "g": 117.0
+    },
+    {
+     "nom": "serving large",
+     "miqdor": 1.0,
+     "g": 154.0
+    }
+   ]
+  },
+  "172055": {
+   "d": "Fast Food, Pizza Chain, 14\" pizza, meat and vegetable topping, regular crust",
+   "f": 10.9,
+   "suv": 50.4,
+   "p": 11.02,
+   "c": 25.38,
+   "kcal": 244.0,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 136.0
+    },
+    {
+     "nom": "pie",
+     "miqdor": 1.0,
+     "g": 1168.0
+    }
+   ]
+  },
+  "172226": {
+   "d": "Ice cream sandwich",
+   "f": 8.57,
+   "c": 37.14,
+   "kcal": 237.0,
+   "suv": 48.9,
+   "p": 4.29,
+   "o": [
+    {
+     "nom": "serving",
+     "miqdor": 1.0,
+     "g": 70.0
+    }
+   ]
+  },
+  "173317": {
+   "d": "Fast foods, hamburger; single, large patty; with condiments, vegetables and mayonnaise",
+   "p": 11.34,
+   "suv": 57.52,
+   "f": 12.37,
+   "c": 17.33,
+   "kcal": 226.0,
+   "o": [
+    {
+     "nom": "item",
+     "miqdor": 1.0,
+     "g": 247.0
+    }
+   ]
+  },
+  "173466": {
+   "d": "Ice cream, bar or stick, chocolate covered",
+   "p": 4.1,
+   "f": 24.1,
+   "c": 24.5,
+   "kcal": 331.0,
+   "suv": 46.3,
+   "o": [
+    {
+     "nom": "bar",
+     "miqdor": 1.0,
+     "g": 50.0
+    }
+   ]
+  },
+  "175001": {
+   "d": "Ice cream cones, sugar, rolled-type",
+   "p": 7.9,
+   "f": 3.8,
+   "c": 84.1,
+   "kcal": 402.0,
+   "suv": 3.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cone",
+     "miqdor": 1.0,
+     "g": 10.0
     }
    ]
   }
