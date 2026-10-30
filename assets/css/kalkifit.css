@@ -1000,6 +1000,18 @@ html.hk-on,html.hk-on body{overflow:hidden}
 .rz .kq-nb{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .rz .kq-own{display:flex;width:100%;margin:8px 0 4px;text-decoration:none;color:var(--accink)}
 .rz .kq-nb .rz-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;border-radius:14px}.rz .kq-nb .rz-i{width:18px;height:18px;color:var(--accink)}
+/* v67 «Yorliqdan qo'shish»: topilmadi kartasi, bo'sh qidiruvdagi sokin havola, yorliq varag'i */
+.rz .kq-lbc{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:12px 14px;border:0;border-radius:16px;background:var(--soft);color:var(--ink);text-align:left;font:inherit}
+.rz .kq-lbc:active{transform:scale(.99)}.rz .kq-lbc[disabled]{opacity:.5}
+.rz .kq-lbc>i,.rz .kq-lbx>i{flex:none;width:40px;height:40px;border-radius:12px;background:var(--card);color:var(--accink);display:inline-flex;align-items:center;justify-content:center}.rz .kq-lbc>i .rz-i,.rz .kq-lbx>i .rz-i{width:22px;height:22px}
+.rz .kq-lbc .m{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}.rz .kq-lbc b{font-size:var(--t-m);font-weight:600;line-height:1.25}.rz .kq-lbc small{font-size:var(--t-s);color:var(--mut);line-height:1.3}
+.rz .kq-lbc>.rz-i{flex:none;width:18px;height:18px;color:var(--mut)}
+.rz .kq-tip{margin:0;font-size:var(--t-s);color:var(--mut);line-height:1.35}.rz .kq-tip .rz-i{color:var(--accink)}
+.rz .kq-lbl{display:flex;width:100%;margin:12px 0 0;color:var(--accink);text-decoration:none}
+.rz .kq-lbx{display:flex;align-items:flex-start;gap:12px;margin:4px 0 12px}.rz .kq-lbx p{margin:0}
+.rz .kq-lbm{margin-top:10px}
+.rz .kq-lbg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px}
+.rz .kq-lbok{color:var(--accink)}.rz .kq-lbsh{margin:6px 0 2px}
 /* 3-ekran: porsiya */
 .rz .kq-hero{display:flex;flex-direction:column;align-items:center;gap:2px;padding:2px 0 0}
 .rz .kq-food{width:110px;height:110px;border-radius:30px;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden}

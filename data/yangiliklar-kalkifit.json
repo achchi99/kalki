@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 65,
+   "d": "2026-10-30",
+   "bn": {
+    "uz": "Yangi: qadoq yorlig'idan qo'shish",
+    "ru": "Новое: добавление по этикетке"
+   },
+   "items": [
+    {
+     "uz": "Topilmagan mahsulot — qadoq yorlig'ini suratga oling: raqamlarni o'qiymiz, u «Mening taomlarim»ga tushadi.",
+     "ru": "Продукт не нашёлся — сфотографируйте этикетку: цифры прочитаем, он попадёт в «Мои блюда».",
+     "show": "yorliq",
+     "btn": {
+      "uz": "Sinab ko'rish",
+      "ru": "Попробовать"
+     }
+    },
+    {
+     "uz": "Evos, Max Way, Oqtepa, Feed Up, KFC, Bellissimo va boshqa tarmoqlar menyusi (taxminiy qiymat bilan).",
+     "ru": "Меню Evos, Max Way, Oqtepa, Feed Up, KFC, Bellissimo и других сетей (с примерными значениями).",
+     "show": "search",
+     "btn": {
+      "uz": "Qidiruvni ochish",
+      "ru": "Открыть поиск"
+     }
+    },
+    {
+     "uz": "Muzqaymoq turlari: mevali muz, sorbet, sutli, plombir, eskimo, stakancha, rojok.",
+     "ru": "Виды мороженого: фруктовый лёд, сорбет, молочное, пломбир, эскимо, стаканчик, рожок."
+    }
+   ]
+  },
+  {
    "v": 64,
    "d": "2026-10-30",
    "bn": {

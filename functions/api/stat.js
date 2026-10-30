@@ -15,13 +15,14 @@ const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|ma
 export const HODISA = {
   faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
-  ai_sorov: /^(matn|rasm|retsept|ovoz|menyu)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
+  ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|mashq|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram|exeat)$/,
   ai_natija: /^(ovoz|rasm|matn|menyu)\.(ochildi|tahrir|ochirildi|qoshildi|yopildi|bosh|[qy]t(10|30|60|180|x))$/,          // v52: AI natija voronkasi (natija ekrani → qo'shildi / yopildi, soniya guruhi)
   karta: /^(ilova|ekran|akkaunt)\.(korsatildi|bosildi|yopildi)$/,
   mashq_qoshildi: /^(yugurish|zal|velosiped|futbol|suzish|uyda|raqs|yoga|kurash|voleybol|ogir|boshqa)\.(d15|d30|d60|d90|dx)$/, qadam_qolda: /^(bugun|kecha)$/, balans_ochildi: ANY, aktiv_energiya: ANY, soat_ulandi: ANY,          /* v62: iPhone «Aktiv energiya» kiritildi; Android soat sarfi ulandi (anonim, son) */          // v55: mashg'ulot (tur.daqiqa oralig'i), qo'lda qadam, balans oynasi
   afsona: /^(korsatildi|kirish\.(kun|feat)|ulashildi)$/, afsona_javob: /^a\d{2}\.(ok|xato)$/,          // v54: «Afsona yoki haqiqat?» (kunning savoli ko'rsatildi, kirish joyi, ulashish; har karta javobi to'g'ri/xato)          // v52: bir martalik kartalar (veb → ilova / bosh ekran, akkaunt)
+  yorliq: /^(rasm|qolda|taklif)$/, tarmoq_qidiruv: /^(evos|maxway|oqtepa|bellissimo|kfc|feedup|lesailes|chopar)$/,          // v67: «Yorliqdan qo'shish» (suratdan / qo'lda saqlandi, anonim taklif yuborildi); fast-food tarmog'i qidirildi (qaysi tarmoq — qat'iy ro'yxat)
   tartib_tanlandi: /^(std|kech|nobf|erkin)$/, tartib_kun: /^(std|kech|nobf|erkin)$/, oqsil_kun: /^(ha|yoq)$/          // v48: tartib taqsimoti, kecha oqsil maqsadiga yetildimi (anonim)          // «Nega sekin ozyapman?»: anonim — holat, sabab turi, belgilangan ish
 };
 export const SERVER_HODISA = ['push_yuborildi'];          // faqat server (tools/push-yubor.js D1 REST orqali) yozadi — mijozdan qabul qilinmaydi

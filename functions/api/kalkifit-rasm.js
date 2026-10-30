@@ -2,7 +2,9 @@
  * Rasm mijozda 1024 px ga kichraytirilgan JPEG (sifat 0,8) sifatida keladi. Rasm SAQLANMAYDI va LOGLANMAYDI: faqat model so'roviga uzatiladi, javobdan keyin tashlanadi.
  * AI FAQAT nom (2–3 variant, ehtimol bo'yicha) va porsiya og'irligini aniqlaydi; ilova kaloriyani iloji bo'lsa BAZADAN oladi (bazada yo'q bo'lsa AI qiymati «taxminiy ±30%»).
  * Limit: retsept bilan UMUMIY kunlik AI hisobi (kalkifit-quota.js AI_LIMIT: Android ilovasi 2, veb 5; mijoz_id + IP), sayt tavani alohida. Origin — ariza.js kabi.
- * POST { img: <base64 JPEG yoki data URL>, til: 'uz'|'ru'|'kirill', mijoz_id, platforma? } →
+ * v67: tur: 'yorliq' — QADOQ YORLIG'I (ozuqaviy qiymat jadvali): AI FAQAT raqamlarni o'qiydi (100 g uchun kkal, oqsil, yog', uglevod; ixtiyoriy — qadoq og'irligi va nomi). Limit — shu rasm limitidan (umumiy AI hisobi).
+ *   → { yorliq: { nom, kcal, o, y, u, qadoq, birlik: 'g'|'ml' } | null (yorliq o'qilmadi), limit, qoldi }. Rasm bu rejimda ham SAQLANMAYDI.
+ * POST { img: <base64 JPEG yoki data URL>, til: 'uz'|'ru'|'kirill', mijoz_id, platforma?, tur? } →
  *   { ovqatlar: [{ nom, ehtimol, boshqa: [{ nom, ehtimol }], porsiya, g, kcal, o, y, u }], aniqlik: '±30%', limit, qoldi } | { xato, sabab?, limit?, qoldi? } */
 import { originOk, json, num, UUID_RE } from './ariza.js';
 import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
@@ -19,6 +21,24 @@ Bilish kerak:
 - Variantlar ehtimol bo'yicha kamayib borsin (yig'indisi ≈ 1); ikkilansang uchinchi variantni ham ber.
 Qoidalar: eng ko'pi 6 taom; qiymatlar suratdagi ANIQ porsiya uchun (100 g uchun emas); suratda ovqat bo'lmasa bo'sh massiv [] qaytar; odamlar, matn yoki boshqa narsalar haqida yozma; tibbiy maslahat berma.`;
 
+const SYSTEM_YORLIQ = `Sen oziq-ovqat QADOG'IDAGI ozuqaviy qiymat jadvalini (Пищевая ценность / Nutrition facts / Ozuqaviy qiymati) O'QIYDIGAN yordamchisan. Faqat suratda YOZILGAN raqamlarni ko'chir — o'zingdan taxmin qilma, to'ldirma.
+Faqat JSON obyekt qaytar, boshqa hech narsa yozma:
+{"yorliq": true|false, "nom": qadoqdagi mahsulot nomi (brend + nom, qisqa; ko'rinmasa ""), "kcal": 100 g (yoki 100 ml) uchun kkal, "oqsil": g, "yog": g, "uglevod": g, "asos": "100" yoki "porsiya", "porsiya_g": porsiya og'irligi (asos "porsiya" bo'lsa), "qadoq": qadoqdagi sof og'irlik/hajm soni (yozilmagan bo'lsa 0), "birlik": "g" yoki "ml"}
+Qoidalar: jadvalda 100 g uchun ustun bo'lsa — FAQAT o'shani ol; faqat porsiya uchun berilgan bo'lsa asos "porsiya" va porsiya_g ni yoz. Faqat kJ yozilgan bo'lsa kkal = kJ / 4,184. Yozilmagan makro — null. Vergul — o'nli kasr (12,5 → 12.5).
+Suratda ozuqaviy qiymat jadvali bo'lmasa yoki raqamlar o'qilmasa {"yorliq": false} qaytar. Odamlar, boshqa matn haqida yozma; tibbiy maslahat berma.`;
+export function extractObj(text) { const t = String(text || '').replace(/```(?:json)?/gi, '').trim(), i = t.indexOf('{'), j = t.lastIndexOf('}'); if (i < 0 || j < i) return null; try { const a = JSON.parse(t.slice(i, j + 1)); return a && typeof a === 'object' && !Array.isArray(a) ? a : null; } catch (e) { return null; } }
+/* yorliq javobi → 100 g uchun qiymatlar (yoki null). Mantiqsiz raqam (100 g da > 900 kkal, makro > 100 g) — o'qilmagan deb hisoblanadi; 4/9/4 mosligi bu yerda TUZATILMAYDI — ilova foydalanuvchiga ogohlantiradi */
+export function sanitizeLabel(a) {
+  if (!a || a.yorliq === false) return null;
+  const n = (x) => (x == null || x === '' ? NaN : Number(String(x).replace(',', '.')));
+  let k = n(a.kcal), o = n(a.oqsil), y = n(a.yog), u = n(a.uglevod);
+  if (a.asos === 'porsiya') { const pg = n(a.porsiya_g); if (!(pg >= 5 && pg <= 2000)) return null; const m = 100 / pg; k *= m; o *= m; y *= m; u *= m; }
+  if (!(k >= 0 && k <= 900)) return null;
+  const r1 = (x) => (isFinite(x) && x >= 0 && x <= 100 ? Math.round(x * 10) / 10 : null);
+  o = r1(o); y = r1(y); u = r1(u); if ((o || 0) + (y || 0) + (u || 0) > 105) return null;
+  const q = n(a.qadoq);
+  return { nom: cleanNom(a.nom), kcal: Math.round(k), o, y, u, qadoq: q >= 1 && q <= 5000 ? Math.round(q) : 0, birlik: a.birlik === 'ml' ? 'ml' : 'g' };
+}
 export function extractJson(text) { const t = String(text || '').replace(/```(?:json)?/gi, '').trim(), i = t.indexOf('['), j = t.lastIndexOf(']'); if (i < 0 || j < i) return null; try { const a = JSON.parse(t.slice(i, j + 1)); return Array.isArray(a) ? a : null; } catch (e) { return null; } }
 const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 const cleanNom = (x) => String(x == null ? '' : x).replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
@@ -47,16 +67,16 @@ export function jpegBytes(b64, lim) {                    // lim — { b64, bytes
   if (head.charCodeAt(0) !== 0xFF || head.charCodeAt(1) !== 0xD8 || head.charCodeAt(2) !== 0xFF) return null;
   return { b64: clean, bytes };
 }
-async function askVision(env, b64, til) {
+async function askVision(env, b64, til, yorliq) {
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', signal: ctl.signal, headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, max_tokens: 700, thinking: { type: 'disabled' }, system: SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: til === 'ru' ? 'Определи блюда на фото. Названия — на русском.' : "Suratdagi taomlarni aniqla. Nomlarni o'zbek tilida yoz." }] }] }) });
+      body: JSON.stringify({ model: MODEL, max_tokens: 700, thinking: { type: 'disabled' }, system: yorliq ? SYSTEM_YORLIQ : SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: yorliq ? "Qadoq yorlig'idagi ozuqaviy qiymatni o'qi." : (til === 'ru' ? 'Определи блюда на фото. Названия — на русском.' : "Suratdagi taomlarni aniqla. Nomlarni o'zbek tilida yoz.") }] }] }) });
     if (!res.ok) { console.error('rasm: model status', res.status); return { err: true }; }
     const j = await res.json(); return { text: (j.content || []).map((c) => c.text || '').join('') };
   } catch (e) { console.error('rasm: model xato'); return { err: true }; } finally { clearTimeout(timer); }
 }
-export const _test = { extractJson, sanitize, jpegBytes, SYSTEM };
+export const _test = { extractJson, sanitize, jpegBytes, SYSTEM, extractObj, sanitizeLabel, SYSTEM_YORLIQ };
 
 const E = { 400: "Rasm noto'g'ri. JPEG yuboring.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 413: 'Rasm juda katta.', 415: 'JSON yuboring.', 4291: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' });
@@ -74,8 +94,10 @@ export async function onRequest({ request, env }) {
   const lim = aiLimits(env, body), out = {};
   let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'img', uns: 'ai', site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
   if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(lim.client), sabab, limit: lim.client, qoldi: 0 });
+  const yorliq = body.tur === 'yorliq';
   for (let attempt = 0; attempt < 2; attempt++) {
-    const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz'); if (r.err) continue;
+    const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz', yorliq); if (r.err) continue;
+    if (yorliq) { const a = extractObj(r.text); if (a) return json(200, { yorliq: sanitizeLabel(a), limit: lim.client, qoldi: out.qoldi }); continue; }
     const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%', limit: lim.client, qoldi: out.qoldi });
   }
   return fail(502);

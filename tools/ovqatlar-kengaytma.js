@@ -28,20 +28,20 @@ mz-korovka-konteyner|Korovka iz Korenovki — plombir shokolad parchali (300 g)|
 mz-bomba-konus|Bomba konus XXL (qulupnay)|Бомба конус XXL клубника|bomba,бомба,bomba konus,бомба конус,shin-layn,шин-лайн,rojok qulupnay,muzqaymoq,мороженое|h|dona:145|y:shinline-bomba-konus
 mz-plombir-stakan|Plombir vanilli (15% yog', yorliq bo'yicha)|Пломбир ванильный (15%)|plombir stakancha,stakanchik,muzqaymoq stakancha,пломбир стаканчик,мороженое в стаканчике,ice cream cup|h|shar:60,dona:80|y:plombir-stakan
 mz-plombir-vafli|Plombir vafli stakanchada (chernika qatlamli)|Пломбир в вафельном стаканчике с черникой|plombir vafli stakancha,стаканчик пломбир,вафельный стаканчик мороженое|h|dona:93|y:rojok
-mz-plombir-briket|Plombir (briket, yog'li)|Пломбир (брикет)|plombir briket,брикет пломбир,мороженое брикет,vanilla rich|h|dona:200,bolak:50,shar:60|u:167573
-mz-vanil|Muzqaymoq (vanilli, sutli)|Мороженое сливочное ванильное|vanil muzqaymoq,slivochnoe,сливочное мороженое,ванильное мороженое,vanilla ice cream,kafe shar,шарик мороженого|h|shar:60,dona:80|u:167575
+mz-plombir-briket|Plombir (yog'li muzqaymoq)|Пломбир|plombir,plombir briket,briket muzqaymoq,брикет пломбир,мороженое брикет,пломбир,vanilla rich|h|shar:60,porsiya:100,paket:200|u:167573
+mz-vanil|Qaymoqli muzqaymoq (vanilli)|Мороженое сливочное ванильное|qaymoqli muzqaymoq,vanil muzqaymoq,slivochnoe,сливочное мороженое,ванильное мороженое,vanilla ice cream,kafe shar,шарик мороженого|h|shar:60,dona:80|u:167575
 mz-shokolad|Shokoladli muzqaymoq|Мороженое шоколадное|shokolad muzqaymoq,шоколадное мороженое,chocolate ice cream|h|shar:60,dona:80|u:168809
 mz-shokolad-plombir|Shokoladli plombir (yog'li)|Пломбир шоколадный|shokoladli plombir,шоколадный пломбир|h|shar:60,dona:80|u:168136
 mz-qulupnay|Qulupnayli muzqaymoq|Мороженое клубничное|qulupnay muzqaymoq,клубничное мороженое,strawberry ice cream|h|shar:60,dona:80|u:168810
-mz-light|Muzqaymoq (kam yog'li)|Мороженое нежирное|yengil muzqaymoq,нежирное мороженое,лёгкое мороженое,light ice cream|h|shar:60,dona:80|u:167572
+mz-light|Sutli muzqaymoq (kam yog'li)|Мороженое молочное (нежирное)|sutli muzqaymoq,молочное мороженое,yengil muzqaymoq,нежирное мороженое,лёгкое мороженое,light ice cream|h|shar:60,dona:80|u:167572
 mz-shakarsiz|Muzqaymoq (shakar qo'shilmagan)|Мороженое без сахара|shakarsiz muzqaymoq,мороженое без сахара,no sugar ice cream|h|shar:60|u:169631
 mz-yumshoq|Yumshoq muzqaymoq (apparatdan)|Мягкое мороженое|soft muzqaymoq,мягкое мороженое,soft serve,мороженое из аппарата|h|dona:120,porsiya:150|u:167981
-mz-konus-shokolad|Muzqaymoq vafli konusda (shokolad va yong'oq bilan)|Мороженое в рожке (шоколад, орехи)|rojok,рожок,konus muzqaymoq,vafli konus,мороженое рожок,cone|h|dona:110|u:172228
+mz-konus-shokolad|Rojok (shokolad va yong'oq bilan)|Рожок (в шоколаде с орехами)|rojok shokoladli,rojok yongoqli,рожок с орехами,konus muzqaymoq,vafli konus,мороженое рожок,cone|h|dona:110|u:172228
 mz-konus-sundae|Muzqaymoq vafli konusda (sousli)|Рожок с мороженым и топпингом|sundae konus,рожок с топпингом|h|dona:120|u:171306
 mz-eskimo-yongoq|Eskimo (shokolad va yong'oqli qoplama)|Эскимо в шоколаде с орехами|eskimo yongoqli,эскимо с орехами,ice cream bar nuts|h|dona:80|u:168130
-mz-sorbet|Sorbet (mevali, sutli)|Сорбет (щербет)|sherbet,щербет,сорбет,sorbet|h|shar:60|u:167577
-mz-muzli|Muzli muzqaymoq (fruktoviy lyod)|Фруктовый лёд|fruktoviy led,фруктовый лед,muzli,ice pop,popsicle|h|dona:70|u:168813
-mz-meva-bar|Mevali muzqaymoq (sharbatli)|Мороженое фруктовое (сок)|mevali muzqaymoq,фруктовое мороженое,fruit bar|h|dona:70|u:169632
+mz-sorbet|Sorbet (mevali)|Сорбет (щербет)|sherbet,щербет,сорбет,sorbet,mevali sorbet|h|shar:60,porsiya:100|u:167577
+mz-muzli|Mevali muz (muzli muzqaymoq)|Фруктовый лёд|mevali muz,muzli muzqaymoq,fruktoviy led,фруктовый лед,фруктовый лёд,muzli,muz tayoqcha,ice pop,popsicle|h|dona:70|u:168813
+mz-meva-bar|Mevali muzqaymoq (sharbatli, tayoqchada)|Мороженое фруктовое (на соке)|mevali muzqaymoq,meva muzqaymoq,kam kaloriyali muzqaymoq,фруктовое мороженое,fruit bar|h|dona:70|u:169632
 mz-sundae|Sundae (muzqaymoq sous bilan)|Сандей (мороженое с топпингом)|sande,сандэ,сандей,sundae|h|porsiya:150|u:169900
 mz-vafli-stakan|Vafli stakancha (bo'sh)|Вафельный стаканчик|vafli konus bosh,вафельный рожок,ice cream cone empty|h|dona:12|u:175000
 mz-makflurri|McFlurry (Oreo bilan)|Макфлурри с Oreo|mcflurry,макфлури,макфлурри|h|porsiya:285|u:173304
@@ -393,6 +393,7 @@ const OQSIL = Object.assign({},
   ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })));          // v52
 { const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }
 { const K4 = require('./ovqatlar-kengaytma4.js'); for (const k of Object.keys(K4.TEG)) TEG[k] = (TEG[k] || []).concat(K4.TEG[k]); Object.assign(OQSIL, K4.OQSIL); }   // v66: 3-bosqich
+{ const K5 = require('./ovqatlar-kengaytma5.js'); for (const k of Object.keys(K5.TEG)) TEG[k] = (TEG[k] || []).concat(K5.TEG[k]); Object.assign(OQSIL, K5.OQSIL); }   // v67: fast-food tarmoqlari va muzqaymoq turlari
 { const K3 = require('./ovqatlar-kengaytma3.js'); for (const k of Object.keys(K3.TEG)) TEG[k] = (TEG[k] || []).concat(K3.TEG[k]); Object.assign(OQSIL, K3.OQSIL); }   // v65: 2-bosqich
 { const K2 = require('./ovqatlar-kengaytma2.js'); for (const k of Object.keys(K2.TEG)) TEG[k] = (TEG[k] || []).concat(K2.TEG[k]); Object.assign(OQSIL, K2.OQSIL); }   // v64: bazani kengaytirish, 1-bosqich   // turk taomlari (v21)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

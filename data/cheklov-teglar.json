@@ -980,6 +980,10 @@
    "sut"
   ],
   "mz-bomba-konus": [],
+  "mz-eskimo-glazur": [
+   "sut",
+   "glyuten"
+  ],
   "mz-eskimo-yongoq": [
    "sut",
    "yongoq"
@@ -1022,6 +1026,14 @@
   "mz-qulupnay": [
    "sut"
   ],
+  "mz-rojok": [
+   "sut",
+   "glyuten"
+  ],
+  "mz-sendvich": [
+   "sut",
+   "glyuten"
+  ],
   "mz-shakarsiz": [
    "sut"
   ],
@@ -1037,8 +1049,16 @@
   "mz-sorbet": [
    "sut"
   ],
+  "mz-stakancha": [
+   "sut",
+   "glyuten"
+  ],
   "mz-sundae": [
    "sut"
+  ],
+  "mz-vafli-briket": [
+   "sut",
+   "glyuten"
   ],
   "mz-vafli-stakan": [
    "glyuten"
@@ -1923,6 +1943,315 @@
   ],
   "tilapiya": [
    "baliq"
+  ],
+  "tm-bellissimo-pitsa-donar": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-bellissimo-pitsa-gosht": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-bellissimo-pitsa-katta": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-bellissimo-pitsa-margarita": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-bellissimo-pitsa-pishloq": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-bellissimo-qanot-x": [],
+  "tm-bellissimo-strips-x": [
+   "glyuten"
+  ],
+  "tm-chopar-pitsa-donar": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-chopar-pitsa-gosht": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-chopar-pitsa-pishloq": [
+   "sut",
+   "glyuten"
+  ],
+  "tm-evos-burger-chiken": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-burger-gamburger": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-chizburger-chiz": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-evos-chizburger-dabl": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-evos-fri-m": [
+   "glyuten"
+  ],
+  "tm-evos-hotdog-m": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-mol-l": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-mol-m": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-molp-m": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-evos-lavash-tovuq-m": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-tovuqp-m": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-evos-lavash-yengil": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-naggets-x": [
+   "glyuten"
+  ],
+  "tm-evos-shaurma-mol": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-shaurma-tovuq": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-burger-chikenzinger": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-burger-prince": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-burger-xl-bbq": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-chizburger-dabl": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-feedup-chizburger-xl-bbq": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-feedup-donar-mangal": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-hotdog-updog": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-lavash-mangal": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-lavash-mini": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-lavash-mini-tovuq": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-lavash-mol": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-feedup-lavash-pishloq": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-feedup-sendvich-klab": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-kfc-burger-longer": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-kfc-burger-shef": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-kfc-chizburger-x": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-kfc-fri-x": [
+   "glyuten"
+  ],
+  "tm-kfc-naggets-bayts": [
+   "glyuten"
+  ],
+  "tm-kfc-naggets-x": [
+   "glyuten"
+  ],
+  "tm-kfc-qanot-achchiq": [],
+  "tm-kfc-strips-x": [
+   "glyuten"
+  ],
+  "tm-kfc-tvister-x": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-lesailes-burger-klassik": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-lesailes-fri-x": [
+   "glyuten"
+  ],
+  "tm-lesailes-qanot-x": [],
+  "tm-lesailes-strips-x": [
+   "glyuten"
+  ],
+  "tm-lesailes-tvister-lester": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-maxway-burger-gamburger": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-chizburger-big": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-maxway-chizburger-chiz": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-maxway-donar-non": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-fri-x": [
+   "glyuten"
+  ],
+  "tm-maxway-hotdog-king": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-hotdog-x": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-lavash-mol": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-lavash-mol-mini": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-lavash-molp": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-maxway-lavash-tovuq": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-naggets-x": [
+   "glyuten"
+  ],
+  "tm-maxway-sendvich-klab": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-shaurma-mol": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-maxway-strips-x": [
+   "glyuten"
+  ],
+  "tm-oqtepa-burger-gamburger": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-chizburger-chiz": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-oqtepa-donar-pita": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-fri-x": [
+   "glyuten"
+  ],
+  "tm-oqtepa-hotdog-x": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-lavash-katta": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-lavash-mini": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-lavash-pishloq": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-oqtepa-lavash-tandir": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "tm-oqtepa-lavash-tovuq": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-oqtepa-naggets-x": [
+   "glyuten"
+  ],
+  "tm-oqtepa-shaurma-x": [
+   "tuxum",
+   "glyuten"
   ],
   "toblerone": [
    "sut",
