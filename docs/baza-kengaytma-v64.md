@@ -20,3 +20,13 @@ Maqsad: o'zbekistonlik foydalanuvchi yozadigan narsalarning 95%+ topilsin. Qoida
 - Ikonka: 42 ta yangi taom mos mavjud rasm bilan; 26 tasi rejalashtirilgan — `docs/ikonka-toplam-v64.txt` (30 ikonka, 2-bosqichda 42 taga to'ldiriladi).
 - Qo'shilmadi: do'lana, jiyda (USDA/OFF da manba yo'q), «Barkosay», «Abet non», «Barbeliak» (AI uydirgan nomlar), Samarqand noni alohida (manbali qiymat yo'q — «non» sinonimi), kalla-pocha (ishonchli manba yo'q).
 - Testlar: `tools/dizayn/test-baza1.mjs` (`--only baza1`) — sxema, manba, Atwater ±15% (alkogol istisno), qidiruv (207 so'rov), «topilmadi» 31 so'rov, regressiya 23 so'rov, takror yo'q, cho'chqa tegi, ikonka.
+
+## 2-bosqich natijasi (v65)
+- **54 ta yangi mahsulot** (`tools/ovqatlar-kengaytma3.js`): brend 47 (hammasi Open Food Facts shtrix-kodli yorliq bilan, `data/manba/yorliq.json`) · fast-food 5 + sous 2 (USDA tayyor taomi / aralashma — «taxminiy»).
+- Toifalar: shokolad/konfet 17 (Raffaello, Ferrero Rocher, Merci, Toffifee, Toblerone, Lion, Haribo, Chupa Chups, Roshen ×2, «Мишка косолапый», Grilyazh, Alpen Gold ×2, Milka funduqli, Snickers oq/Krisper), gazak 4 (TUC, Belvita, Cheetos, Kirieshki), ichimlik 7 (Mirinda, Lipton Ice Tea, Rich, J7, Flash Up, Gorilla, Burn), sut 13 (Activia, Danissimo, Chudo, Agusha, Ehrmann ×3, President ×3, Valio ×2, «Домик в деревне»), muzqaymoq 1 (Inmarko), sport 5 (Protein Rex ×2, Fit Kit, Optimum Nutrition whey, Nesquik), fast-food 7.
+- **O'zbekiston bozori:** OFF'da «Uzbekistan» belgili 440 mahsulot bor, lekin faqat 35 tasida kkal yozilgan; mahalliy brendlar (Danon Berkut, Montella, Krember, Tanho, N'medov, Chipsella, Ittfoq, Flash) — OFF'da yorlig'i yo'q, qo'shilmadi. Import brendlar — Rossiya/Qozog'iston/Yevropa bozoridagi bir xil formula yorlig'i.
+- **Fast-food tarmoqlari** (Evos, Max Way, Oqtepa Lavash, Bellissimo, KFC Uzbekistan) — rasmiy kkal/BJU e'lon qilmagan (evos.uz da yo'q, kfc.com.uz yopiq) → brend nomi ishlatilmadi, faqat umumiy nom.
+- Takror yaratilmadi: Bounty (mavjud «Bounty turi»), stripslar (mavjud «Tovuq bo'laklari»), chikenburger (mavjud «Tovuqli sendvich») — sinonim. Suv brendlari (Bonaqua, Hydrolife, Nestle Pure Life, Montella) — «Suv» sinonimi.
+- «pamil» — tekshirildi (choy brendi/navi topilmadi), sinonim qilinmadi.
+- **Ikonka vositasi** (`tools/ikonka-toplam.js`) qayta yozildi: holat hozirgi ilova xaritasidan, yashirin taomlar xato emas, rasmi bor to'plam fayllari o'zgarmaydi; `--tekshir` (test uchun). Natija: generic **172** taom → **152** yangi ikonka, 4 to'plam: `docs/ikonka-toplam-8…11.txt` (42+42+42+26; oxirgisi 6×5), jadval — `docs/ikonka-jadval.md`.
+- Test: `tools/dizayn/test-baza2.mjs` (`--only baza2`).

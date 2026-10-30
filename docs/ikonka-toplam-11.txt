@@ -1,0 +1,35 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 26 food icons, exactly 6 columns × 5 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+The last 4 cell(s) of the bottom row stay EMPTY (background only).
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+rench — a small bowl of white-green ranch dressing.
+achchiq-sous — a small bowl of red chili sauce with a small bottle.
+tartar — a small bowl of creamy tartar sauce with pickle bits.
+shokolad-sirop — a small jug pouring dark chocolate syrup.
+grechka-sut — buckwheat porridge with milk poured over it, in a white bowl.
+chilonjiyda — a small heap of fresh red-brown jujube fruits (unabi), oval and glossy, in a small bowl.
+namatak — a small heap of bright red-orange rose hip berries, in a small ceramic bowl.
+zigir — brown flax seeds in a small wooden spoon and a small pile beside it.
+chia — tiny grey-black chia seeds in a small glass bowl.
+mosh-quruq — dry green mung beans in a small bowl, a few spilled beside it.
+noxat-quruq — dry beige chickpeas in a small bowl, a few spilled beside it.
+loviya-quruq — dry red kidney beans in a small bowl, a few spilled beside it.
+yasmiq-quruq — dry orange-red lentils in a small bowl, a few spilled beside it.
+tariq-quruq — dry yellow millet grains in a small bowl.
+perlovka-quruq — dry pearl barley grains, pale beige, in a small bowl.
+bulgur-quruq — dry golden bulgur wheat grains in a small bowl.
+kuskus-quruq — dry fine couscous grains, pale yellow, in a small bowl.
+kinoa-quruq — dry white and red quinoa seeds in a small bowl.
+manka-quruq — dry semolina, fine pale yellow flour-like grains, in a small bowl with a wooden spoon.
+guruch-jigarrang-quruq — dry brown rice grains in a small bowl.
+olma-sirka — a small glass bottle of golden apple cider vinegar without label, with a fresh apple beside it.
+un — white wheat flour in a small bowl with a small heap and a wooden scoop.
+kakao-kukun — dark brown cocoa powder in a small bowl with a spoon.
+kepak — light brown wheat bran flakes in a small bowl.
+sous-pishloq — a small bowl of smooth warm yellow cheese sauce with a spoon.
+sous-oq — a small bowl of thick white garlic sauce with a few herb flecks.
