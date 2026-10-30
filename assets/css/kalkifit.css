@@ -78,7 +78,7 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-nearb:#57C48A;-
 .sl-stc{display:flex;align-items:center;gap:12px;border-radius:22px;padding:14px;color:var(--onhero);background:linear-gradient(135deg,var(--hero1),var(--hero2) 60%,var(--hero3));box-shadow:0 8px 24px -12px rgba(194,65,12,.5)}
 .sl-stc .fl{flex:none;width:34px;height:34px;display:grid;place-items:center;animation:stcFl 1.6s ease-in-out 4}.sl-stc .fl .rz-i{width:30px;height:30px;stroke:var(--onhero);fill:rgba(255,255,255,.22)}@keyframes stcFl{50%{transform:scale(1.1) rotate(-4deg)}}
 .sl-stc .m{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.sl-stc b{font-size:var(--t-l);font-weight:600;line-height:1.2}.sl-stc small{font-size:var(--t-s);font-weight:500;line-height:1.3}
-.sl-stc .wk{display:flex;gap:3px;flex:none}.sl-stc .wk i{width:8px;height:22px;border-radius:4px;background:#fff}.sl-stc .wk i.n{background:rgba(255,255,255,.3)}
+.sl-stc .wk{display:flex;gap:3px;flex:none}.sl-stc .wk i{width:8px;height:22px;border-radius:4px;background:var(--onhero)}.sl-stc .wk i.n{background:rgba(255,255,255,.3)}
 .sl-stc.z{color:var(--ink);background:var(--card);box-shadow:var(--shadow)}.sl-stc.z .fl{animation:none}.sl-stc.z .fl .rz-i{stroke:var(--mut);fill:none}.sl-stc.z .wk i{background:var(--fill)}.sl-stc.z .wk i.n{background:var(--track)}
 @media (prefers-reduced-motion:reduce){.sl-stc .fl{animation:none}}
 .sl-streak{margin:6px 0 2px;font-weight:600}
