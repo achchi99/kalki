@@ -33,6 +33,13 @@
   }
   /* d sanadagi trend: oxirgi o'lchov ≤ d (bo'lmasa null) */
   function trendAt(ser, d) { var v = null; for (var i = 0; i < ser.length; i++) { if (ser[i].d <= d) v = ser[i].t; else break; } return v; }
+  /* v63: oy bo'yicha vazn (Tarix plitkasi): trend o'zgarishi oy boshidan — oy boshidan oldingi oxirgi o'lchovning trendidan (bo'lmasa oydagi birinchi o'lchovdan) oxirgi o'lchovgacha; oyda o'lchov yo'q yoki bitta nuqta bo'lsa — null */
+  function monthDelta(weights, ym, today, D) {
+    var ser = trend(weights, D), first = ym + '-01', p = D.parse(first), last = D.ymd(p.y, p.m, D.dim(p.y, p.m)), end = last < today ? last : today, inM = ser.filter(function (x) { return x.d >= first && x.d <= end; });
+    if (!inM.length) return null; var before = null; ser.forEach(function (x) { if (x.d < first) before = x; });
+    var a = before ? before.t : inM[0].t, b = inM[inM.length - 1].t; if (!before && inM.length < 2) return null;
+    return Math.round((b - a) * 10) / 10;
+  }
   /* birinchi 7–10 kundagi tez tushish (asosan suv): kamida 14 kunlik tarix, boshlang'ich 10 kunda ≥ 1 kg va keyingi tezlikdan ≥ 2 barobar tez */
   function waterSpan(ser, D) {
     if (ser.length < 4) return null; var d0 = ser[0].d, last = ser[ser.length - 1].d; if (D.daysBetween(d0, last) < 14) return null;
@@ -222,5 +229,5 @@
     }
   };
   var SRC = ['plS1', 'plS2', 'plS3', 'plS4', 'plS5', 'plS6'];
-  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, adapt: adapt, AD: AD, isLose: isLose, stalled: stalled, weekKey: weekKey, PROT_SH: PROT_SH, TX: TX, SRC: SRC };
+  return { ALPHA: ALPHA, BETA: BETA, KCAL_KG: KCAL_KG, WIN: WIN, WALK_K: WALK_K, STRIDE: STRIDE, PROT: PROT, trend: trend, trendAt: trendAt, monthDelta: monthDelta, waterSpan: waterSpan, summary: summary, fewWeighs: fewWeighs, analyze: analyze, tries: tries, adapt: adapt, AD: AD, isLose: isLose, stalled: stalled, weekKey: weekKey, PROT_SH: PROT_SH, TX: TX, SRC: SRC };
 });

@@ -861,8 +861,8 @@
   {
    "id": "streak7-1",
    "holat": "streak7",
-   "uz": "Ketma-ket yetti kun yozdingiz! Daftar sizni endi shaxsan taniydi.",
-   "ru": "Семь дней подряд вы записывали! Дневник теперь знает вас лично."
+   "uz": "Ketma-ket yetti kun yozdingiz! Daftar sizni endi yaxshi taniydi.",
+   "ru": "Семь дней подряд вы записывали! Дневник уже хорошо вас знает."
   },
   {
    "id": "streak7-2",
@@ -873,14 +873,14 @@
   {
    "id": "streak7-3",
    "holat": "streak7",
-   "uz": "Bir hafta uzilishsiz — hisobchi ta'tilga chiqmoqchi edi, qoldi.",
-   "ru": "Неделя без перерыва — бухгалтер хотел в отпуск, но остался."
+   "uz": "Bir hafta uzilishsiz. Bahonalar bu hafta ta'tilda.",
+   "ru": "Неделя без перерывов. Отговорки на этой неделе в отпуске."
   },
   {
    "id": "streak7-4",
    "holat": "streak7",
-   "uz": "Yetti kun qator: telefondagi eslatmalar ham hayron.",
-   "ru": "Семь дней подряд: даже напоминания в телефоне удивлены."
+   "uz": "Yetti kun qator: kalendarda bitta ham bo'sh katak yo'q.",
+   "ru": "Семь дней подряд: в календаре ни одной пустой клетки."
   },
   {
    "id": "streak7-5",
@@ -903,8 +903,8 @@
   {
    "id": "streak7-8",
    "holat": "streak7",
-   "uz": "Seriya 7 kunga yetdi. Daftar sizga ishonch tamg'asini bosdi.",
-   "ru": "Серия дошла до 7 дней. Дневник поставил на вас печать доверия."
+   "uz": "Seriya 7 kunga yetdi. Daftar sizdan mamnun.",
+   "ru": "Серия дошла до 7 дней. Дневник вами доволен."
   },
   {
    "id": "empty_day-1",
@@ -1816,50 +1816,50 @@
   {
    "id": "streak-y1",
    "holat": "streak",
-   "uz": "{days} kun ketma-ket. Bahonalar ishsiz qolib, ta'tilga chiqdi.",
-   "ru": "Серия — {days}. Отговорки остались без работы и ушли в отпуск.",
+   "uz": "{days} kun ketma-ket. Bahonalar ishsiz qoldi.",
+   "ru": "Серия — {days}. Отговорки остались без работы.",
    "yangi": true
   },
   {
    "id": "streak-y2",
    "holat": "streak",
-   "uz": "Ketma-ket {days} kun. Kalendar sizning rasmingizni muqovaga qo'ymoqchi.",
-   "ru": "Серия — {days}. Календарь думает поставить ваше фото на обложку.",
+   "uz": "{days} kun ketma-ket. Kalendarda bo'sh katak qolmadi.",
+   "ru": "Серия — {days}. В календаре не осталось пустых клеток.",
    "yangi": true
   },
   {
    "id": "streak-y3",
    "holat": "streak",
-   "uz": "{days} kunlik zanjir. Uni uzish endi rostdan ham achinarli bo'ladi.",
+   "uz": "{days} kunlik zanjir. Uni uzish endi achinarli bo'ladi.",
    "ru": "Цепочка длиной {days} — рвать её теперь по-настоящему жалко.",
    "yangi": true
   },
   {
    "id": "streak-y4",
    "holat": "streak",
-   "uz": "{days} kun uzluksiz. Choynak ham bunchalik muntazam emas.",
-   "ru": "Без пропусков уже {days}. Даже чайник не так регулярен.",
+   "uz": "{days} kun uzluksiz. Soatdek aniq ishlayapsiz.",
+   "ru": "Без пропусков уже {days}. Работаете как часы.",
    "yangi": true
   },
   {
    "id": "streak-y5",
    "holat": "streak",
-   "uz": "Seriya: {days} kun. Eslatmalar endi o'zini ortiqcha his qilmoqda.",
-   "ru": "Серия: {days}. Напоминания начинают чувствовать себя лишними.",
+   "uz": "Seriya: {days} kun. Odat endi o'zi eslatadi.",
+   "ru": "Серия: {days}. Привычка теперь напоминает сама.",
    "yangi": true
   },
   {
    "id": "streak-y6",
    "holat": "streak",
-   "uz": "{days} kun qatorasiga. Bu allaqachon odat, tasodif emas.",
+   "uz": "{days} kun qatorda. Bu tasodif emas, odat.",
    "ru": "Дней подряд — {days}. Это уже привычка, а не случайность.",
    "yangi": true
   },
   {
    "id": "streak-y7",
    "holat": "streak",
-   "uz": "{days} kun. Ilova sizni endi foydalanuvchi emas, hamkor deb ataydi.",
-   "ru": "Уже {days}. Приложение называет вас не пользователем, а партнёром.",
+   "uz": "{days} kun qatorda. Bu endi sinov emas, tartib.",
+   "ru": "Уже {days} подряд. Это не проба, а режим.",
    "yangi": true
   },
   {

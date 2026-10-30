@@ -191,6 +191,12 @@
   Object.assign(D.ru, { hwReady: 'Итоги вашей недели готовы', hwOpen: 'Смотреть', hwT: 'Итоги недели', hwRange: '{a} – {b}', hwAvg: 'В среднем: {x} ккал/день', hwAvgG: 'цель {x}', hwNear: 'Дней около цели: {n} / 7', hwWater: 'Вода: в среднем {x} мл в день', hwSteps: 'Шаги: в среднем {x} в день', hwBest: 'Лучший день: {d}', hwStreak: 'Дней подряд с записями: {n}', hwTipT: 'Один совет на следующую неделю',
     hwTip_log: 'Записывайте хотя бы одну еду в день — итоги будут точнее.', hwTip_water: 'Выпивайте стакан воды перед каждым приёмом пищи.', hwTip_steps: 'Гуляйте 15 минут каждый день — это примерно 1 500 шагов.', hwTip_over: 'Кладите ужин на тарелку поменьше.', hwTip_protein: 'Добавляйте белок к каждой еде: яйцо, творог, курицу или бобовые.', hwTip_keep: 'Сохраните этот порядок ещё на неделю.',
     hwEmpty: 'На этой неделе записей нет. Ничего страшного — запишите завтра одну еду, и в следующее воскресенье итоги будут готовы.', hwN: 'Итоги недели', hwNH: 'В воскресенье в 19:00 — итоги недели', hwMsg: 'Итоги вашей недели готовы' });
+  Object.assign(D.uz, { tlUnit: 'ta mahsulot', tlRes: '~{k} kkal qoldirilgan', tlNo: "Hali yo'q", tlOpen: 'Ochish', tlLess: "Yig'ish", tlGrpOpen: "alohida yozuvlarni ko'rish", tlGrpTot: 'Jami: {q} · {k} kkal', tlGrpDel: "O'chirish",
+    cmDays: 'Yozilgan kun', cmAvg: "O'rtacha, kkal", cmWt: 'Vazn', cmNear: 'Maqsadda', cmLow: 'Kamroq', cmHigh: "Ko'proq", cmPart: 'Qisman',
+    stcN: '{n} kun ketma-ket', stcN1: 'Seriya boshlandi', stcN1s: 'Bugun 1-kun. Ertaga ham yozing!', stc0: "Seriya hali yo'q", stcRec: 'Rekordingiz — {n} kun. Davom eting!', stcBest: 'Rekord: {n} kun', stc0b: 'Rekord: {n} kun. Bugun yozing — yangi seriya boshlanadi', stc0s: 'Bugun yozing — seriya boshlanadi', stcWk: 'Oxirgi 7 kun: {n} kun yozilgan' });
+  Object.assign(D.ru, { tlUnit: 'продуктов', tlRes: '~{k} ккал отложено', tlNo: 'Пока нет', tlOpen: 'Открыть', tlLess: 'Свернуть', tlGrpOpen: 'показать отдельные записи', tlGrpTot: 'Всего: {q} · {k} ккал', tlGrpDel: 'Удалить',
+    cmDays: 'Записано дней', cmAvg: 'В среднем, ккал', cmWt: 'Вес', cmNear: 'В цель', cmLow: 'Меньше', cmHigh: 'Больше', cmPart: 'Частично',
+    stcN: '{n} дн. подряд', stcN1: 'Серия началась', stcN1s: 'Сегодня 1-й день. Запишите и завтра!', stc0: 'Серии пока нет', stcRec: 'Ваш рекорд — {n} дн. Продолжайте!', stcBest: 'Рекорд: {n} дн.', stc0b: 'Рекорд: {n} дн. Запишите сегодня — начнётся новая серия', stc0s: 'Запишите сегодня — серия начнётся', stcWk: 'Последние 7 дней: записано {n}' });
   var LM = {          // v51: yagona me'yor modeli — ish turi (Android), qadam krediti, adaptiv me'yor, (i) tushuntirish
     uz: { jobQ: 'Ishingiz qanday?', jobH: "Yurishni ilova o'zi sanaydi — bu yerda faqat ish turini tanlang.", job_sit: "O'tirib ishlayman", job_sitH: 'Ofis, uy, haydovchi', job_stand: 'Tik turib / yurib ishlayman', job_standH: "Sotuvchi, oshpaz, o'qituvchi", job_heavy: "Og'ir jismoniy mehnat", job_heavyH: "Qurilish, dala, yuk tashish", jobRow: 'Ish turi',
       jbCardT: "Qadamni ilova o'zi sanaydi — me'yoringizni aniqroq hisoblaylik", jbCardB: 'Hisoblash', jbOld: "Hozirgi me'yor", jbNew: "Yangi me'yor", jbNewS: "+ qadam: bugun +{c} kkal", jbOk: 'Tasdiqlash', jbDone: "Me'yor yangilandi: qadam endi ikki marta hisoblanmaydi",
@@ -518,30 +524,76 @@
     var y = Dt.addDays(todayStr(), -1), pr = prefs(); if (!st || !st.setup || pr.oqK === y) return; var x = S.dayOf(st, y); pr.oqK = y; save(); if (!x || !x.food || x.food.length < 2) return;
     stEv('oqsil_kun', S.sumEntries(x.food).p >= protNow().g ? 'ha' : 'yoq'); stEv('tartib_kun', ttMode());
   }
-  /* «Bugungi ovqatlar» (v44): ovqat vaqti ikonkasi DOIMIY (nonushta — quyosh, tushlik — kosa, kechki — oy, tamaddi — olma); sarlavha: nom, «N ta · kunning X%», ingichka chiziq, katta kkal, «+».
-     Har taom BITTA qatorda (34 px rasm, «Nom · miqdor», kkal); 3 tadan ko'p bo'lsa — «Yana N ta · …» bilan yig'iladi. Bosish — tahrirlash, chapga surish — o'chirish (Bekor qilish bilan). */
-  var ML_IC = { b: 'mlSun', l: 'mlBowl', d: 'mlMoon', s: 'mlSnack' }, mlOpen = {};
+  /* v63 (maket ~/tarix-maket.html): «Bugungi ovqatlar» — VAQT CHIZIG'I. Chapda gradient chiziq + ovqat vaqti nuqtasi; to'lgan karta: ikonka, nom, «08:10 · 4 ta mahsulot» (birinchi yozuv vaqti), o'ngda mini halqa (52 px, ichida kkal;
+     to'lishi = shu ovqat budjeti — «Kun tartibi» bo'lmasa kunlik limitdan ulush) va «+»; mahsulot qatori: rasm, nom, miqdor (2-qator), kkal.
+     BIR XIL mahsulot (taom + variant + o'lcham) bir ovqat vaqtida bitta qatorga birlashadi («Olma ×3», miqdor/kkal yig'indisi) — faqat KO'RINISH, yozuvlar o'zgarmaydi; bosilsa alohida yozuvlar ro'yxati (tahrir/o'chirish).
+     > 4 qator — yig'ilgan (ustma-ust rasmlar + «Ochish ›»). Bo'sh ovqat vaqti — ixcham qator: ikonka, nom, «~900 kkal qoldirilgan» / «Hali yo'q», «↺ Kechagidek», «+». */
+  var ML_IC = { b: 'mlSun', l: 'mlBowl', d: 'mlMoon', s: 'mlSnack' }, mlOpen = {}, ML_FULL = 4;
+  function two(n) { return (n < 10 ? '0' : '') + n; }
+  function plRu(n, a, b, c) { var m = n % 100, k = n % 10; return m > 10 && m < 15 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c; }
+  function cntTxt(n) { return n + ' ' + (lang === 'ru' ? plRu(n, 'продукт', 'продукта', 'продуктов') : T('tlUnit')); }
+  function mealTime(list, date) {                    // birinchi yozuv vaqti: faqat shu kunning o'zida yozilgan bo'lsa (keyin qo'shilgan eski kun yozuvi soxta vaqt ko'rsatmasin)
+    var t = 0; list.forEach(function (e) { var ts = +e.ts; if (ts > 1e11 && (!t || ts < t)) t = ts; }); if (!t) return '';
+    var d = new Date(t); return Dt.ymd(d.getFullYear(), d.getMonth() + 1, d.getDate()) === date ? two(d.getHours()) + ':' + two(d.getMinutes()) : '';
+  }
+  function mlName(e) { var f = e.fid ? foodById(e.fid) : null, base = baseOf(f); return base ? nameOf(base) : (e.name || '?'); }
+  function mlQty(e) { var f = e.fid ? foodById(e.fid) : null, lb = f && f.fam && e.vr ? (S.famLabel(f, e.vr, e.sz, lang) || '') : '', q = portionText(e); return q + (lb ? ' · ' + lb : ''); }
+  function mlGroups(list) {                          // bir xil mahsulotlar → bitta qator (birinchi paydo bo'lish tartibida)
+    var out = [], idx = {};
+    list.forEach(function (e) { var k = (e.fid || ('n:' + String(e.name || '').toLowerCase())) + '|' + (e.vr || '') + '|' + (e.sz || ''); if (idx[k] == null) { idx[k] = out.length; out.push({ es: [] }); } out[idx[k]].es.push(e); });
+    return out;
+  }
+  function mlGroupQty(es) {                          // birlashgan miqdor: bir xil birlik — qty yig'indisi; aks holda gramm yig'indisi; matnli porsiya — «a + b»
+    var e0 = es[0], g = 0, q = 0; es.forEach(function (e) { g += num(e.g); q += num(e.qty); });
+    if (!e0.fid && e0.pt) return es.map(portionText).join(' + ');
+    var same = e0.unit && e0.unit !== 'g100' && es.every(function (e) { return e.unit === e0.unit; });
+    return mlQty(same ? Object.assign({}, e0, { qty: q, g: g }) : Object.assign({}, e0, { unit: 'g100', g: g, pt: null }));
+  }
   function mlRow(e, date) {
-    var f = e.fid ? foodById(e.fid) : null, base = baseOf(f), name = base ? nameOf(base) : (e.name || '?'), lb = f && f.fam && e.vr ? (S.famLabel(f, e.vr, e.sz, lang) || '') : '', isNew = seenFood && !seenFood[e.id], q = portionText(e) + (lb ? ' · ' + lb : '');
-    return '<div class="ml-sw" data-id="' + e.id + '"><span class="ml-del" aria-hidden="true">' + ico('trash') + '</span><button type="button" class="sl-row ml-r' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '">' + tileHtml(e.fid || iconFid(e), e.vr, name, 34, false, e.ikat) +
-      '<span class="ml-t"><span class="nm">' + esc(name) + '</span>' + (q ? '<span class="tm">' + esc(q) + '</span>' : '') + '</span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button></div>';
+    var isNew = seenFood && !seenFood[e.id], q = mlQty(e), name = mlName(e);
+    return '<div class="ml-sw" data-id="' + e.id + '"><span class="ml-del" aria-hidden="true">' + ico('trash') + '</span><button type="button" class="sl-row ml-r' + (isNew ? ' rz-new' : '') + '" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '">' + tileHtml(e.fid || iconFid(e), e.vr, name, 36, false, e.ikat) +
+      '<span class="ml-t"><span class="nm">' + esc(name) + '</span>' + (q ? '<span class="tm">' + esc(q) + '</span>' : '') + '</span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button></div>';
+  }
+  function mlGroupRow(g, date) {
+    if (g.es.length === 1) return mlRow(g.es[0], date);
+    var e0 = g.es[0], name = mlName(e0), kc = 0, est = false, isNew = false; g.es.forEach(function (e) { kc += num(e.kcal); if (e.est && !e.fid) est = true; if (seenFood && !seenFood[e.id]) isNew = true; });
+    return '<div class="ml-gw"><button type="button" class="sl-row ml-r ml-g' + (isNew ? ' rz-new' : '') + '" data-act="mlgrp" data-d="' + date + '" data-ids="' + g.es.map(function (e) { return e.id; }).join(',') + '" aria-label="' + esc(name + ' ×' + g.es.length + '. ' + T('tlGrpOpen')) + '">' + tileHtml(e0.fid || iconFid(e0), e0.vr, name, 36, false, e0.ikat) +
+      '<span class="ml-t"><span class="nm">' + esc(name) + '<span class="x2">×' + g.es.length + '</span></span><span class="tm">' + esc(mlGroupQty(g.es)) + '</span></span><span class="am">' + (est ? '≈ ' : '') + fmt(kc) + '</span></button></div>';
+  }
+  var ringPend = {};
+  function mlRing(key, frac, kcal, m, label) {              // mini halqa: ringMem — qiymat o'zgarsa yoki ekran ochilganda 0 dan to'ladi (animatsiya vaqtida qayta chizilsa ham bir xil HTML — tugamasdan uzilmaydi)
+    var C = 2 * Math.PI * 22, o1 = C * (1 - Math.max(0, Math.min(1, frac))), prev = ringMem[key], o0 = prev == null ? C : prev, anim = !reduce && Math.abs(o0 - o1) > 0.5;
+    if (anim) { if (ringPend[key] !== o1) { ringPend[key] = o1; setTimeout(function () { if (ringPend[key] === o1) { ringMem[key] = o1; delete ringPend[key]; } }, 1100); } } else ringMem[key] = o1;
+    return '<span class="ml-k ml-' + m + '" role="img" aria-label="' + esc(label || (fmt(kcal) + ' ' + T('kcal'))) + '"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="22" class="bg"/><circle cx="26" cy="26" r="22" class="fg' + (anim ? ' anim' : '') + '" style="stroke-dasharray:' + C.toFixed(1) + ';stroke-dashoffset:' + o1.toFixed(1) + ';--o0:' + o0.toFixed(1) + ';--o1:' + o1.toFixed(1) + '"/></svg><b class="k">' + Math.round(kcal) + '</b></span>';
   }
   function mealsHtml(date) {
-    var x = S.dayOf(st, date) || { food: [] }, pl = planNow(), tgt = Math.max(1, pl.target || 1), h = '<section class="sl-meals">', mb = mbOf(date), nobf = ttMode() === 'nobf';
+    var x = S.dayOf(st, date) || { food: [] }, limit = Math.max(1, S.dayPlan(st, date).limit || 1), h = '<section class="sl-meals tl">', mb = mbOf(date), nobf = ttMode() === 'nobf', mx = 0;
     S.MEALS.forEach(function (m) {
-      var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal, yb = S.kechagidekOk(st, date, m), ic = '<span class="ml-ic ml-' + m + '" aria-hidden="true">' + ico(ML_IC[m]) + '</span>';
-      var bm = mb ? mb.meals[m] : null, isNow = !!(mb && mb.now === m), tag = isNow ? '<span class="ml-now">' + esc(T('mbNow')) + '</span>' : '', nc = isNow ? ' now' : '';          // v48: ovqat vaqti budjeti («Mening tartibim»)
-      var bsub = bm ? (isNow && bm.left > 0 ? T('mbLeft', { k: fmt(bm.left) }) : bm.over > 0 && mb.took[m] ? T('mbTook', { k: fmt(bm.over), m: T('mlA_' + mb.took[m].to) }) : T('mbOf', { e: fmt(bm.eaten), b: fmt(bm.budget) })) : '';
+      var list = x.food.filter(function (e) { return e.meal === m; }), sum = S.sumEntries(list).kcal, yb = S.kechagidekOk(st, date, m), ic = '<span class="ml-ic ml-' + m + '" aria-hidden="true">' + ico(ML_IC[m]) + '</span>', dot = '<span class="tl-dot ml-' + m + '" aria-hidden="true"></span>';
+      var bm = mb ? mb.meals[m] : null, isNow = !!(mb && mb.now === m), tag = isNow ? '<span class="ml-now">' + esc(T('mbNow')) + '</span>' : '', nc = isNow ? ' now' : '', sty = ' style="--mx:' + (mx++) + '"';          // v48: ovqat vaqti budjeti («Mening tartibim»)
       if (!list.length && nobf && m === 'b') return;          // «Nonushta qilmayman»: bo'sh nonushta kartasi ham chiqmaydi
-      if (!list.length) { h += '<section class="sl-meal ml empty' + nc + '" data-m="' + m + '"><button type="button" class="ml-empty" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('mealAdd_' + m)) + '">' + ic + '<span class="m"><b>' + esc(mealName(m)) + tag + '</b><span>' + esc(bm ? bsub : T('mlEmpty')) + '</span></span><span class="ml-add" aria-hidden="true">' + ico('plus', '', 2.4) + '</span></button>' + (yb ? '<button type="button" class="sl-txtbtn sl-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '') + '</section>'; return; }
-      var pct = Math.round(sum / tgt * 100), open = mlOpen[date + m] || list.length <= 3, shown = open ? list : list.slice(0, 3), rest = open ? [] : list.slice(3);
-      var bw = bm ? (bm.budget > 0 ? Math.round(bm.eaten / bm.budget * 100) : 100) : pct;
-      h += '<section class="sl-meal ml' + nc + '" data-m="' + m + '"><div class="sl-mh ml-h" data-m="' + m + '" data-d="' + date + '">' + ic + '<span class="m"><b>' + esc(mealName(m)) + tag + '</b><span class="ml-sub">' + esc(bm ? bsub : T('mlPct', { n: list.length, p: pct })) + '</span><span class="ml-bar" aria-hidden="true"><i class="ml-' + m + '" style="width:' + Math.min(100, bw) + '%"></i></span></span>' +
-        '<span class="ml-k"><b class="k">' + fmt(sum) + '</b><small>' + esc(T('kcal')) + '</small></span><button type="button" class="ml-add" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button></div>' +
-        '<div class="sl-ents ml-rows">' + shown.map(function (e) { return mlRow(e, date); }).join('') + (rest.length ? '<button type="button" class="ml-more" data-act="mlmore" data-m="' + m + '" data-d="' + date + '"><span>' + esc(T('mlMore', { n: rest.length, x: rest.map(function (e) { var f = baseOf(e.fid ? foodById(e.fid) : null); return f ? nameOf(f) : (e.name || '?'); }).join(', ') })) + '</span>' + ico('chev', 'r') + '</button>' : '') + '</div></section>';
+      if (!list.length) {
+        var sub = bm ? T('tlRes', { k: fmt(Math.round((isNow && bm.left > 0 ? bm.left : bm.budget) / 50) * 50) }) : T('tlNo');
+        h += '<section class="sl-meal ml tl-m empty' + nc + '" data-m="' + m + '"' + sty + '>' + dot + '<button type="button" class="ml-empty" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('mealAdd_' + m)) + '">' + ic + '<span class="m"><b>' + esc(mealName(m)) + tag + '</b><span>' + esc(sub) + '</span></span></button>' +
+          '<span class="ml-ac">' + (yb ? '<button type="button" class="ml-yb" data-act="yday" data-m="' + m + '" data-d="' + date + '">' + ico('undo') + '<span>' + esc(T('tplYest')) + '</span></button>' : '') + '<button type="button" class="ml-add" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button></span></section>'; return;
+      }
+      var gs = mlGroups(list), key = date + m, open = mlOpen[key] || gs.length <= ML_FULL, tm = mealTime(list, date), frac = bm ? (bm.budget > 0 ? bm.eaten / bm.budget : 1) : sum / limit;
+      var subTxt = (tm ? '<span class="ti">' + esc(tm) + ' ·</span> ' : '') + '<span class="ct">' + esc(cntTxt(gs.length)) + '</span>', took = bm && bm.over > 0 && mb.took[m] ? '<span class="ml-bs">' + esc(T('mbTook', { k: fmt(bm.over), m: T('mlA_' + mb.took[m].to) })) + '</span>' : '';
+      var body;
+      if (open) body = '<div class="sl-ents ml-rows">' + gs.map(function (g) { return mlGroupRow(g, date); }).join('') + (gs.length > ML_FULL ? '<button type="button" class="ml-more ml-less" data-act="mlless" data-m="' + m + '" data-d="' + date + '"><span>' + esc(T('tlLess')) + '</span>' + ico('chev', 'u') + '</button>' : '') + '</div>';
+      else body = '<button type="button" class="ml-stack" data-act="mlmore" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(mealName(m) + ': ' + T('tlOpen')) + '"><span class="stk" aria-hidden="true">' + gs.slice(0, 4).map(function (g) { var e = g.es[0]; return '<i>' + tileHtml(e.fid || iconFid(e), e.vr, mlName(e), 34, false, e.ikat) + '</i>'; }).join('') + (gs.length > 4 ? '<i class="mo">+' + (gs.length - 4) + '</i>' : '') + '</span><em>' + esc(T('tlOpen')) + ' ›</em></button>';
+      h += '<section class="sl-meal ml tl-m' + nc + '" data-m="' + m + '"' + sty + '>' + dot + '<div class="sl-mh ml-h" data-m="' + m + '" data-d="' + date + '">' + ic + '<span class="m"><b>' + esc(mealName(m)) + tag + '</b><span class="ml-sub">' + subTxt + '</span>' + took + '</span>' +
+        mlRing('ml:' + date + m, frac, sum, m, bm ? T('mbOf', { e: fmt(bm.eaten), b: fmt(bm.budget) }) : '') + '<button type="button" class="ml-add" data-act="addto" data-m="' + m + '" data-d="' + date + '" aria-label="' + esc(T('add') + ': ' + mealName(m)) + '">' + ico('plus', '', 2.4) + '</button></div>' + body + '</section>';
     });
     if (mb && mb.note && mb.now) { var fr = mb.note.from.map(function (k) { return T('mlA_' + k); }), xs = fr.join(T('mbAnd')); h += '<p class="ml-note" id="mbNote">' + esc(T('mbNote', { x: lang === 'ru' ? xs : xs.charAt(0).toUpperCase() + xs.slice(1), k: fmt(mb.note.k), m: T('mlD_' + mb.now) })) + '</p>'; }          // «Nonushta va tushlikdan tejalgan 100 kkal kechki ovqatga o'tdi» (≥ 50 kkal)
     return h + '</section>';
+  }
+  /* bir xil mahsulotlar ro'yxati (birlashgan qator bosilganda): har yozuv alohida — tahrirlash yoki o'chirish */
+  function mlGrpHtml(date, ids) {
+    var x = S.dayOf(st, date), es = (x ? x.food : []).filter(function (e) { return ids.indexOf(e.id) > -1; }); if (!es.length) return '';
+    var kc = 0; es.forEach(function (e) { kc += num(e.kcal); });
+    return shHead(mlName(es[0]) + ' ×' + es.length) + '<p class="rz-p sm rz-mut">' + esc(T('tlGrpTot', { q: mlGroupQty(es), k: fmt(kc) })) + '</p><div class="ml-gl" data-d="' + date + '" data-ids="' + es.map(function (e) { return e.id; }).join(',') + '">' + es.map(function (e) {
+      var q = mlQty(e); return '<div class="ml-gr"><button type="button" class="sl-row ml-r" data-act="editfood" data-d="' + date + '" data-id="' + e.id + '">' + tileHtml(e.fid || iconFid(e), e.vr, mlName(e), 36, false, e.ikat) + '<span class="ml-t"><span class="nm">' + esc(q || mlName(e)) + '</span></span><span class="am">' + (e.est && !e.fid ? '≈ ' : '') + fmt(e.kcal) + '</span></button><button type="button" class="ml-gx" data-act="mlgdel" data-d="' + date + '" data-id="' + e.id + '" aria-label="' + esc(T('tlGrpDel') + ': ' + (q || mlName(e))) + '">' + ico('trash') + '</button></div>'; }).join('') + '</div>' + okBtn();
   }
   /* chapga surish → o'chirish (Bekor qilish bilan); vertikal aylantirish xalaqit bermaydi */
   (function () {
@@ -1064,7 +1116,7 @@
     h += '<div class="sl-duo one"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + ('<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       '</div>';          // v55: suv — alohida ixcham qator (qadam va mashg'ulot yuqorida, ikki kichik karta)
     h += bjuHtml(tot, pl);          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
-    h += '<div class="sl-sec2"><h3>' + esc(T('tdMeals')) + '</h3></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
+    h += '<div class="sl-sec2 sl-sec2k"><h3>' + esc(T('tdMeals')) + '</h3><span class="sl-secv" id="mealTot"><b>' + fmt(tot.kcal) + '</b> / ' + fmt(dpT.limit) + ' ' + esc(T('kcal')) + '</span></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
 
     setMain(h); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow();
     animNum(curN, n, durN); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 900, from: startN, to: n, fromTy: fromTy, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty };
@@ -1376,6 +1428,7 @@
     var lt = $('#rzLangTxt'); if (lt) lt.textContent = isCyr() ? 'ЎЗ' : lang.toUpperCase();
     $('#rzFab').setAttribute('aria-label', T('navAdd'));
     var main = $('#rzMain'), sc = main.scrollTop;
+    if (mainView !== view) { Object.keys(ringMem).forEach(function (k) { if (k.indexOf('ml:') === 0) delete ringMem[k]; }); ringPend = {}; calFresh = true; setTimeout(function () { calFresh = false; }, 2600); }          // v63: ekran ochilganda halqalar 0 dan to'ladi (qayta chizishda emas)
     ({ today: renderToday, history: renderHistory, profile: renderProfile })[view]();
     main.classList.toggle('enter', enterNext); enterNext = false; main.scrollTop = sc;
     if (view === 'today') { if (!todayIn) { todayIn = true; staggerToday(); } else upIdx(); }
@@ -1691,17 +1744,28 @@
   /* ---------- oylik taqvim (Men) ---------- */
   var calYm = null;
   function stLabel(i, d, t) { return { pre: T('stPre'), none: T('stNone'), part: i.live ? T('stLive') : T('stPart'), near: T('stNear'), low: T('stLow'), high: T('stHigh') }[i.state]; }
+  /* v63 (maket ~/tarix-maket.html): Tarix — OYLIK NATIJA. Kalendar ustida 3 plitka (yozilgan kun, o'rtacha kkal, vazn o'zgarishi), kun = halqa (to'lishi = iste'mol/limit ≤ 100%; maqsadda yashil, kamroq ko'k, ko'proq sariq;
+     qisman — uzuq-uzuq kulrang; ma'lumotsiz — oddiy xira raqam; bugun — to'la aksent doira), ixcham izoh chiplari, seriya kartasi (gradient, 🔥, rekord, oxirgi 7 kun). Halqalar ekran ochilganda bir marta to'ladi. */
+  var calFresh = false;
   function calHtml() {
-    var t = todayStr(), ym = calYm || Dt.monthOf(t), g = S.monthGrid(st, ym, t), p = Dt.parse(ym + '-01'), wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], sk = S.streak(st, t), start = S.trackStart(st);
-    var st2 = { near: T('calNear'), low: T('calLow'), high: T('calHigh'), part: T('calPart'), none: T('calNone'), pre: T('calPre') };
-    var h = '<section class="rz-card sl-cal" id="calCard"><div class="sl-wh"><b>' + ico('cal2') + esc(T('calT')) + '</b><button type="button" class="rz-x sl-info" data-act="calinfo" aria-label="ⓘ ' + esc(T('calInfoT')) + '">ⓘ</button></div><div class="rz-monthnav"><button type="button" data-act="calprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(kit.monthName(p.m, true) + ' ' + p.y) + '</b><button type="button" data-act="calnext" aria-label="›"' + (ym >= Dt.monthOf(t) ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-calg" role="grid">';
+    var t = todayStr(), ym = calYm || Dt.monthOf(t), ms = S.monthSummary(st, ym, t), g = ms.grid, p = Dt.parse(ym + '-01'), wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], sk = S.streak(st, t), start = S.trackStart(st);
+    var st2 = { near: T('calNear'), low: T('calLow'), high: T('calHigh'), part: T('calPart'), none: T('calNone'), pre: T('calPre') }, short = { near: T('cmNear'), low: T('cmLow'), high: T('cmHigh'), part: T('cmPart') };
+    var wdl = null; try { if (window.KalkiPlato && KalkiPlato.monthDelta) wdl = KalkiPlato.monthDelta(st.weights, ym, t, Dt); } catch (e) {}
+    var goal = st.profile && st.profile.goal, good = wdl != null && ((goal === 'lose' && wdl < 0) || (goal === 'gain' && wdl > 0) || (goal === 'keep' && Math.abs(wdl) < 0.5)), wtx = wdl == null ? '—' : (wdl > 0 ? '+' : wdl < 0 ? '−' : '') + dec(Math.abs(wdl), 1) + ' ' + KG();
+    var h = '<div class="sl-cmt" id="calSum"><div class="s"><small>' + esc(T('cmDays')) + '</small><b>' + (ms.total ? ms.logged + ' / ' + ms.total : '—') + '</b></div><div class="s"><small>' + esc(T('cmAvg')) + '</small><b>' + (ms.avg != null ? fmt(ms.avg) : '—') + '</b></div><div class="s"><small>' + esc(T('cmWt')) + '</small><b' + (good ? ' class="g"' : '') + '>' + esc(wtx) + '</b></div></div>';
+    h += '<section class="rz-card sl-cal" id="calCard"><div class="sl-wh"><b>' + ico('cal2') + esc(T('calT')) + '</b><button type="button" class="rz-x sl-info" data-act="calinfo" aria-label="ⓘ ' + esc(T('calInfoT')) + '">ⓘ</button></div><div class="rz-monthnav"><button type="button" data-act="calprev" aria-label="‹">' + ico('back') + '</button><b>' + esc(kit.monthName(p.m, true) + ' ' + p.y) + '</b><button type="button" data-act="calnext" aria-label="›"' + (ym >= Dt.monthOf(t) ? ' disabled' : '') + '>' + ico('chev') + '</button></div><div class="sl-calg' + (calFresh && !reduce ? ' cin' : '') + '" role="grid">';
     wd.forEach(function (w) { h += '<i>' + esc(w) + '</i>'; }); for (var i = 0; i < g.first; i++) h += '<span></span>';
-    g.days.forEach(function (d) { var pre = d.state === 'pre'; h += '<button type="button" class="c ' + d.state + (d.d === t ? ' td' : '') + (d.d > t ? ' fut' : '') + '" data-act="calday" data-d="' + d.d + '" aria-label="' + esc(kit.dLabel(d.d) + ': ' + (d.live ? T('stLive') : st2[d.state])) + '"' + (d.d > t || pre ? ' disabled' : '') + '>' + d.n + '</button>'; });
-    h += '</div><div class="sl-leg">' + ['near', 'low', 'high', 'part', 'none'].map(function (k) { return '<span><i class="c ' + k + '" aria-hidden="true"></i>' + esc(st2[k]) + ' · ' + esc(T('calDays', { n: g.counts[k] })) + '</span>'; }).join('') + '</div>';
+    g.days.forEach(function (d, i) {
+      var pre = d.state === 'pre', ring = d.state === 'near' || d.state === 'low' || d.state === 'high', pv = ring ? Math.max(1, Math.min(100, Math.round(d.limit > 0 ? d.eaten / d.limit * 100 : 100))) : 0;
+      h += '<button type="button" class="c ' + d.state + (ring ? ' r' : '') + (d.d === t ? ' td' : '') + (d.d > t ? ' fut' : '') + '" data-act="calday" data-d="' + d.d + '"' + (ring ? ' style="--cp:' + pv + ';--ci:' + i + '"' : '') + ' aria-label="' + esc(kit.dLabel(d.d) + ': ' + (d.live ? T('stLive') : st2[d.state])) + '"' + (d.d > t || pre ? ' disabled' : '') + '><span>' + d.n + '</span></button>';
+    });
+    h += '</div><div class="sl-leg">' + ['near', 'low', 'high', 'part'].map(function (k) { return '<span><i class="c ' + k + '" aria-hidden="true"></i>' + esc(short[k]) + ' · ' + g.counts[k] + '</span>'; }).join('') + '</div>';
     if (start) h += '<p class="rz-mut sm sl-cstart">' + esc(T('calStart', { d: kit.dLabel(start) })) + '</p>';
-    h += '<div class="sl-streak"><b>' + ico('flame', 'sl-inl') + esc(sk ? T('calStreak', { n: sk }) : T('calStreak0')) + '</b></div>';
+    h += '</section>';
+    var best = Math.max(S.bestStreak(st, t), sk), wk = S.streakWeek(st, t), wn = wk.filter(Boolean).length;
+    h += '<section class="sl-stc' + (sk ? '' : ' z') + '" id="stkCard"><span class="fl" aria-hidden="true">' + ico('flame') + '</span><div class="m"><b>' + esc(sk >= 2 ? T('stcN', { n: sk }) : sk === 1 ? T('stcN1') : T('stc0')) + '</b><small>' + esc(sk >= 2 ? (sk >= best ? T('stcRec', { n: best }) : T('stcBest', { n: best })) : sk === 1 ? T('stcN1s') : (best > 0 ? T('stc0b', { n: best }) : T('stc0s'))) + '</small></div><span class="wk" role="img" aria-label="' + esc(T('stcWk', { n: wn })) + '">' + wk.map(function (v) { return '<i' + (v ? '' : ' class="n"') + '></i>'; }).join('') + '</span></section>';
     var sj = G ? G.streakLine(jokeCtx()) : null; if (sj) { h += '<p class="rz-p sl-fact">' + esc(sj.text) + '</p>'; }
-    return h + '</section>';
+    return h;
   }
 
   /* ---------- hazil sozlamalari, shahar ---------- */
@@ -3117,6 +3181,13 @@
       case 'pickfav': openAdd({ date: el.getAttribute('data-d'), food: el.getAttribute('data-id') }); break;
       case 'editfood': openEdit(el.getAttribute('data-d'), +el.getAttribute('data-id')); break;
       case 'mlmore': mlOpen[el.getAttribute('data-d') + el.getAttribute('data-m')] = true; render(); break;
+      case 'mlless': delete mlOpen[el.getAttribute('data-d') + el.getAttribute('data-m')]; render(); break;
+      case 'mlgrp': { var gh = mlGrpHtml(el.getAttribute('data-d'), el.getAttribute('data-ids').split(',').map(Number)); if (gh) openSheet('mlgrp', gh); break; }          // v63: birlashgan qator — alohida yozuvlar
+      case 'mlgdel': {
+        var gd = el.getAttribute('data-d'), gid = +el.getAttribute('data-id'), gl = el.closest('.ml-gl'), left = gl ? gl.getAttribute('data-ids').split(',').map(Number).filter(function (i) { return i !== gid; }) : [], grm = S.removeFood(st, gd, gid); if (!grm) break;
+        commit(); vib(); if (left.length >= 2) setSheet(mlGrpHtml(gd, left)); else kit.closeSheet();
+        toast(T('del1'), function () { S.restoreFood(st, gd, grm); commit(); }, true); break;
+      }
       case 'pickfood': { var pk0 = el.getAttribute('data-pick'); var pr0 = el.getAttribute('data-pre'); pickFood(el.getAttribute('data-id'), pk0 ? JSON.parse(pk0) : null, pr0 ? JSON.parse(pr0) : null); break; }
       case 'calinfo': openSheet('calinfo', shHead(T('calInfoT')) + '<p class="rz-p">' + esc(T('calNote')) + '</p><p class="rz-p sm">' + esc(T('deHint')) + '</p>' + okBtn()); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;

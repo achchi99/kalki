@@ -307,6 +307,19 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     while (logged(st, d) && n < 3650) { n++; d = D.addDays(d, -1); }
     return n;
   }
+  /* v63: eng uzun seriya (rekord) va oxirgi 7 kun (eskidan yangiga: shu kuni yozilganmi) */
+  function bestStreak(st, today) {
+    today = today || D.today(); var ds = Object.keys(st.days).filter(function (d) { return d <= today && logged(st, d); }).sort(), best = 0, run = 0, prev = null;
+    ds.forEach(function (d) { run = prev && D.addDays(prev, 1) === d ? run + 1 : 1; if (run > best) best = run; prev = d; });
+    return best;
+  }
+  function streakWeek(st, today) { var out = []; for (var i = 6; i >= 0; i--) out.push(logged(st, D.addDays(today, -i))); return out; }
+  /* v63: oy xulosasi (Tarix plitkalari): yozilgan kun / kuzatuv boshlanganidan beri kunlar, to'liq kunlar o'rtacha kkal'i */
+  function monthSummary(st, ym, today) {
+    var g = monthGrid(st, ym, today), c = g.counts, logd = c.near + c.low + c.high + c.part, total = logd + c.none, s = 0, n = 0;
+    g.days.forEach(function (d) { if (d.state === 'near' || d.state === 'low' || d.state === 'high') { s += d.eaten; n++; } });
+    return { logged: logd, total: total, avg: n ? Math.round(s / n) : null, avgN: n, grid: g };
+  }
   function monthGrid(st, ym, today) {              // ym = 'YYYY-MM': kunlar + hisob (baho/ball yo'q)
     var p = D.parse(ym + '-01'), n = D.dim(p.y, p.m), days = [], c = { near: 0, low: 0, high: 0, part: 0, none: 0, pre: 0 }; today = today || D.today();
     for (var i = 1; i <= n; i++) { var d = D.ymd(p.y, p.m, i), r = dayStatus(st, d, today); days.push({ d: d, n: i, state: r.state, eaten: r.eaten, limit: r.limit, live: r.live }); if (d <= today) c[r.state]++; }
@@ -773,7 +786,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayPlan: dayPlan, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });
