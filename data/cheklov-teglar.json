@@ -72,6 +72,7 @@
    "yongoq"
   ],
   "aroq": [],
+  "artishok": [],
   "asal": [],
   "avokado": [],
   "ayron": [
@@ -181,6 +182,7 @@
   ],
   "brokkoli": [],
   "brokkoli-qaynatilgan": [],
+  "bryussel-karam": [],
   "bulgur": [
    "glyuten"
   ],
@@ -493,6 +495,7 @@
   "jigar-kabob": [],
   "jigar-qovurma": [],
   "jiz": [],
+  "jusay": [],
   "kafe-baliq-shashlik": [
    "baliq"
   ],
@@ -655,6 +658,7 @@
   ],
   "kok-olma": [],
   "kok-piyoz": [],
+  "kok-pomidor": [],
   "kokat": [],
   "kokos": [],
   "kokos-batonchik": [
@@ -724,7 +728,9 @@
   ],
   "kumkvat": [],
   "kungaboqar": [],
+  "kungaboqar-qovurilgan": [],
   "kunjut": [],
+  "kunjut-qovurilgan": [],
   "kurka": [],
   "kurka-kokrak": [],
   "kurka-qiyma": [],
@@ -765,6 +771,10 @@
    "tuxum",
    "glyuten"
   ],
+  "lapsha-xom": [
+   "tuxum",
+   "glyuten"
+  ],
   "latte": [
    "sut"
   ],
@@ -789,12 +799,14 @@
   "lavlagi": [],
   "lavlagi-qaynatilgan": [],
   "lavlagi-salat": [],
+  "laym": [],
   "lays": [],
   "lazanya": [
    "sut",
    "glyuten"
   ],
   "ledenets": [],
+  "lichi": [],
   "limon": [],
   "limon-sharbat": [],
   "limonad": [],
@@ -817,6 +829,7 @@
   ],
   "loviya": [],
   "loviya-konserva": [],
+  "loviya-oq": [],
   "loviya-qora": [],
   "loviya-shurva": [],
   "loviya-tomat": [],
@@ -831,6 +844,12 @@
    "yongoq"
   ],
   "makaron": [
+   "glyuten"
+  ],
+  "makaron-butun-don": [
+   "glyuten"
+  ],
+  "makaron-butun-don-xom": [
    "glyuten"
   ],
   "makaron-gosht": [
@@ -855,6 +874,7 @@
   ],
   "mandarin": [],
   "mango": [],
+  "mango-quruq": [],
   "manka": [
    "sut",
    "glyuten"
@@ -874,6 +894,7 @@
   "manti#qovoq": [
    "glyuten"
   ],
+  "marakuya": [],
   "margarin": [
    "sut"
   ],
@@ -885,6 +906,7 @@
   "marshmallow": [],
   "mastava": [],
   "mayiz": [],
+  "mayiz-sariq": [],
   "mayonez": [
    "tuxum"
   ],
@@ -942,6 +964,7 @@
   "mol-yurak": [],
   "monster": [],
   "mosh": [],
+  "mosh-nihol": [],
   "mosh-xom": [],
   "moshkichiri": [],
   "moshxorda": [],
@@ -1093,6 +1116,7 @@
   ],
   "noxat": [],
   "noxat-konserva": [],
+  "noxat-pallali": [],
   "noxat-ragu": [],
   "noxat-xom": [],
   "nuga": [
@@ -1111,6 +1135,7 @@
    "baliq"
   ],
   "olcha": [],
+  "olcha-quruq": [],
   "olivye": [
    "tuxum"
   ],
@@ -1146,6 +1171,7 @@
   "pahta": [
    "sut"
   ],
+  "pak-choy": [],
   "pankeyk": [
    "tuxum",
    "sut",
@@ -1159,6 +1185,7 @@
   "patir": [
    "glyuten"
   ],
+  "patisson": [],
   "paxlava": [
    "tuxum",
    "sut",
@@ -1209,6 +1236,7 @@
   "pekan": [
    "yongoq"
   ],
+  "pekin-karam": [],
   "pelmeni": [
    "tuxum",
    "glyuten"
@@ -1455,10 +1483,13 @@
   "qizil-baliq-konserva": [
    "baliq"
   ],
+  "qizil-karam": [],
+  "qoqi": [],
   "qorin": [],
   "qovoq": [],
   "qovoq-qaynatilgan": [],
   "qovoq-urugi": [],
+  "qovoq-urugi-qovurilgan": [],
   "qovoqcha": [],
   "qovun": [],
   "qovun-kantalupa": [],
@@ -1506,6 +1537,7 @@
   "ramen": [
    "glyuten"
   ],
+  "rayhon": [],
   "red-bull": [],
   "red-bull-zero": [],
   "rench": [
@@ -1518,6 +1550,7 @@
    "sut",
    "yongoq"
   ],
+  "rovoch": [],
   "sabzavot-ragu": [],
   "sabzi": [],
   "sabzi-qaynatilgan": [],
@@ -1557,6 +1590,7 @@
    "baliq"
   ],
   "selderey": [],
+  "selderey-ildiz": [],
   "sendvich": [
    "glyuten"
   ],
@@ -1653,6 +1687,8 @@
   "shokoladli-sut": [
    "sut"
   ],
+  "sholgom": [],
+  "sholgom-pishgan": [],
   "shovla": [],
   "shtrudel": [
    "tuxum",
@@ -1783,6 +1819,7 @@
    "sut"
   ],
   "sovuq-choy": [],
+  "soya-pishgan": [],
   "soya-sous": [
    "glyuten"
   ],
@@ -2282,6 +2319,8 @@
   "xummus": [],
   "xummus-uy": [],
   "xurmo": [],
+  "xurmo-quruq": [],
+  "yalpiz": [],
   "yashil-choy": [],
   "yashil-loviya": [],
   "yashil-noxat": [],
@@ -2290,6 +2329,7 @@
   "yasmiq-tovuq": [],
   "yasmiq-xom": [],
   "yengil-osh": [],
+  "yer-nok": [],
   "yerfistiq": [
    "yongoq"
   ],

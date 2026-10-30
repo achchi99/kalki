@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 64,
+   "d": "2026-10-30",
+   "bn": {
+    "uz": "Bazaga 33 ta meva, sabzavot va ko'kat",
+    "ru": "В базе 33 новых фрукта, овоща и зелени"
+   },
+   "items": [
+    {
+     "uz": "Mahalliy ko'katlar va sabzavotlar: rovoch, qoqi, jusay, sholg'om, rayhon, yalpiz, topinambur.",
+     "ru": "Местная зелень и овощи: ревень, одуванчик, джусай, репа, базилик, мята, топинамбур.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidiruvni ochish",
+      "ru": "Открыть поиск"
+     }
+    },
+    {
+     "uz": "Qoq xurmo, olcha qoqi, qovurilgan semechki; butun donli makaron va dukkaklar — xom va pishgan holda.",
+     "ru": "Сушёная хурма и вишня, жареные семечки; цельнозерновые макароны и бобовые — сухие и отварные."
+    }
+   ]
+  },
+  {
    "v": 63,
    "d": "2026-10-30",
    "bn": {

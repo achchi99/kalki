@@ -392,6 +392,7 @@ const OQSIL = Object.assign({},
   ...L(`quyon burrito chili-konkarne lazanya spagetti-bolonez`).map((i) => ({ [i]: 'aralash' })),
   ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })));          // v52
 { const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }
+{ const K4 = require('./ovqatlar-kengaytma4.js'); for (const k of Object.keys(K4.TEG)) TEG[k] = (TEG[k] || []).concat(K4.TEG[k]); Object.assign(OQSIL, K4.OQSIL); }   // v66: 3-bosqich
 { const K3 = require('./ovqatlar-kengaytma3.js'); for (const k of Object.keys(K3.TEG)) TEG[k] = (TEG[k] || []).concat(K3.TEG[k]); Object.assign(OQSIL, K3.OQSIL); }   // v65: 2-bosqich
 { const K2 = require('./ovqatlar-kengaytma2.js'); for (const k of Object.keys(K2.TEG)) TEG[k] = (TEG[k] || []).concat(K2.TEG[k]); Object.assign(OQSIL, K2.OQSIL); }   // v64: bazani kengaytirish, 1-bosqich   // turk taomlari (v21)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

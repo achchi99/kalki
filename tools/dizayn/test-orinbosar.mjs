@@ -17,7 +17,7 @@ const c = cnt(vis); assert.ok(c.baliq >= 11 && c.tovuq >= 14 && c.qizil >= 30 &&
 log('oqsil manbasi: ' + foods.length + ' taom + oila kombinatsiyalari (' + Object.keys(T.taom).length + ' kalit) teglangan, retseptdan avtomatik (yangilangan); ko\'rinadigan ' + vis.length + ': ' + JSON.stringify(c));
 /* 2. yangi mahalliy oqsilli taomlar: manba (retsept, fdc_id), ±15% (Atwater), 3 til, birliklar */
 const YANGI = ['sazan-grill', 'sazan-qovurma', 'baliq-dimlama', 'baliq-shurva', 'tovuq-son-qozon', 'tovuq-kokrak-qozon', 'osh-tovuq', 'dimlama-tovuq', 'loviya-shurva', 'yasmiq-shurva', 'noxat-ragu', 'moshxorda-gostsiz', 'qoymoq', 'omlet-sabzavot', 'qatiq-salat', 'suzma-salat'];
-assert.equal(foods.length, 860);          // v65: +54 (2-bosqich); v64: +68 (1-bosqich); v52: +6 taom
+assert.equal(foods.length, 893);          // v66: +33 (3-bosqich); v65: +54 (2-bosqich); v64: +68 (1-bosqich); v52: +6 taom
 for (const id of YANGI) {
   const f = by[id]; assert.ok(f, id + ': bazada yo\'q'); assert.ok(f.rc && f.x === 1 && f.e === 1, id + ': retsept + «taxminiy»');
   assert.ok(f.ms && /fdc_id \d{6}/.test(f.ms.u) && /fdc_id \d{6}/.test(f.ms.r), id + ': manba bayoni (fdc_id) UZ/RU');

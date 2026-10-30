@@ -755,13 +755,21 @@
   "qovun",
   "дыня",
   "dynya",
-  "melon"
+  "melon",
+  "torlama",
+  "ich-kizil",
+  "shakarpalak",
+  "bo'rikalla",
+  "gulobi",
+  "handalak",
+  "oq qovun"
  ],
  "tarvuz": [
   "tarvuz",
   "арбуз",
   "arbuz",
-  "watermelon"
+  "watermelon",
+  "karpuz"
  ],
  "shaftoli": [
   "shaftoli",
@@ -978,5 +986,31 @@
   "chicken burger",
   "tovuqli burger",
   "бургер с курицей"
+ ],
+ "oluxori": [
+  "alcha",
+  "алыча",
+  "olxo'ri",
+  "olxori"
+ ],
+ "quruq-orik": [
+  "turshak",
+  "qaysi",
+  "o'rik qoqi",
+  "orik qoqi",
+  "урюк"
+ ],
+ "guruch-xom": [
+  "devzira",
+  "devzira guruch",
+  "lazer guruch",
+  "alanga guruch",
+  "девзира",
+  "рис девзира"
+ ],
+ "mayiz": [
+  "soyaki mayiz",
+  "qora mayiz",
+  "кишмиш"
  ]
 }
