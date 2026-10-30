@@ -317,6 +317,51 @@
    "2026-10-25": [
     "169722",
     "174928"
+   ],
+   "2026-10-30": [
+    "167635",
+    "168151",
+    "168203",
+    "168556",
+    "168558",
+    "168667",
+    "168749",
+    "168874",
+    "168998",
+    "169414",
+    "169699",
+    "169702",
+    "169703",
+    "169902",
+    "170284",
+    "170554",
+    "170688",
+    "171009",
+    "171025",
+    "171117",
+    "171247",
+    "171799",
+    "172179",
+    "172183",
+    "172184",
+    "172191",
+    "172388",
+    "172512",
+    "172935",
+    "173176",
+    "173201",
+    "173232",
+    "173430",
+    "173740",
+    "174107",
+    "174203",
+    "174237",
+    "174277",
+    "174536",
+    "174815",
+    "174818",
+    "175033",
+    "175193"
    ]
   }
  },
@@ -5597,6 +5642,874 @@
      "nom": "cup shredded",
      "miqdor": 1.0,
      "g": 47.0
+    }
+   ]
+  },
+  "167635": {
+   "d": "Frybread, made with lard (Navajo)",
+   "p": 6.69,
+   "f": 12.22,
+   "c": 48.26,
+   "kcal": 330.0,
+   "suv": 31.57,
+   "o": [
+    {
+     "nom": "piece",
+     "miqdor": 1.0,
+     "g": 152.0
+    }
+   ]
+  },
+  "168151": {
+   "d": "Jujube, raw",
+   "f": 0.2,
+   "c": 20.23,
+   "kcal": 79.0,
+   "suv": 77.86,
+   "p": 1.2
+  },
+  "168203": {
+   "d": "Apples, raw, granny smith, with skin (Includes foods for USDA's Food Distribution Program)",
+   "p": 0.44,
+   "f": 0.19,
+   "c": 13.61,
+   "kcal": 58.0,
+   "suv": 85.46,
+   "o": [
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 109.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 206.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 167.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 144.0
+    }
+   ]
+  },
+  "168556": {
+   "d": "Catsup",
+   "p": 1.04,
+   "suv": 68.51,
+   "f": 0.1,
+   "c": 27.4,
+   "kcal": 101.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "packet",
+     "miqdor": 1.0,
+     "g": 9.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 240.0
+    }
+   ]
+  },
+  "168558": {
+   "d": "Pickles, cucumber, dill or kosher dill",
+   "suv": 94.34,
+   "f": 0.3,
+   "c": 2.41,
+   "p": 0.5,
+   "kcal": 12.0,
+   "o": [
+    {
+     "nom": "spear, small",
+     "miqdor": 1.0,
+     "g": 35.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "large (4\" long)",
+     "miqdor": 1.0,
+     "g": 135.0
+    },
+    {
+     "nom": "cup, chopped or diced",
+     "miqdor": 1.0,
+     "g": 143.0
+    },
+    {
+     "nom": "cup (about 23 slices)",
+     "miqdor": 1.0,
+     "g": 155.0
+    }
+   ]
+  },
+  "168667": {
+   "d": "Beef, chuck, arm pot roast, separable lean and fat, trimmed to 1/8\" fat, all grades, cooked, braised",
+   "p": 30.12,
+   "suv": 50.45,
+   "f": 19.22,
+   "kcal": 302.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "piece, cooked, excluding refuse (yield from 1 lb raw meat with refuse)",
+     "miqdor": 1.0,
+     "g": 258.0
+    }
+   ]
+  },
+  "168874": {
+   "d": "Quinoa, uncooked",
+   "p": 14.12,
+   "f": 6.07,
+   "suv": 13.28,
+   "c": 64.16,
+   "kcal": 368.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 170.0
+    }
+   ]
+  },
+  "168998": {
+   "d": "Rose Hips, wild (Northern Plains Indians)",
+   "f": 0.34,
+   "c": 38.22,
+   "kcal": 162.0,
+   "suv": 58.66,
+   "p": 1.6,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 127.0
+    }
+   ]
+  },
+  "169414": {
+   "d": "Seeds, flaxseed",
+   "suv": 6.96,
+   "f": 42.16,
+   "p": 18.29,
+   "c": 28.88,
+   "kcal": 534.0,
+   "o": [
+    {
+     "nom": "tbsp, whole",
+     "miqdor": 1.0,
+     "g": 10.3
+    },
+    {
+     "nom": "cup, whole",
+     "miqdor": 1.0,
+     "g": 168.0
+    },
+    {
+     "nom": "tbsp, ground",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "tsp, whole",
+     "miqdor": 1.0,
+     "g": 3.4
+    },
+    {
+     "nom": "tsp, ground",
+     "miqdor": 1.0,
+     "g": 2.5
+    }
+   ]
+  },
+  "169699": {
+   "d": "Couscous, dry",
+   "p": 12.76,
+   "f": 0.64,
+   "c": 77.43,
+   "kcal": 376.0,
+   "suv": 8.56,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 173.0
+    }
+   ]
+  },
+  "169702": {
+   "d": "Millet, raw",
+   "f": 4.22,
+   "c": 72.85,
+   "kcal": 378.0,
+   "suv": 8.67,
+   "p": 11.02,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 200.0
+    }
+   ]
+  },
+  "169703": {
+   "d": "Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",
+   "f": 3.2,
+   "c": 76.25,
+   "kcal": 367.0,
+   "suv": 11.8,
+   "p": 7.54,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 185.0
+    }
+   ]
+  },
+  "169902": {
+   "d": "Quail, cooked, total edible",
+   "p": 25.1,
+   "f": 14.1,
+   "c": 0.0,
+   "kcal": 227.0,
+   "suv": 60.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.0
+    }
+   ]
+  },
+  "170284": {
+   "d": "Barley, pearled, raw",
+   "f": 1.16,
+   "c": 77.72,
+   "kcal": 352.0,
+   "suv": 10.09,
+   "p": 9.91,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 200.0
+    }
+   ]
+  },
+  "170554": {
+   "d": "Seeds, chia seeds, dried",
+   "p": 16.54,
+   "f": 30.74,
+   "c": 42.12,
+   "kcal": 486.0,
+   "suv": 5.8,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "170688": {
+   "d": "Bulgur, dry",
+   "f": 1.33,
+   "c": 75.87,
+   "kcal": 342.0,
+   "suv": 9.0,
+   "p": 12.29,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 140.0
+    }
+   ]
+  },
+  "171009": {
+   "d": "Salad dressing, mayonnaise, regular",
+   "p": 0.96,
+   "suv": 21.65,
+   "f": 74.85,
+   "c": 0.57,
+   "kcal": 680.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 13.8
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 220.0
+    },
+    {
+     "nom": "packet",
+     "miqdor": 1.0,
+     "g": 10.0
+    }
+   ]
+  },
+  "171025": {
+   "d": "Oil, sunflower, linoleic, (approx. 65%)",
+   "p": 0.0,
+   "f": 100.0,
+   "c": 0.0,
+   "kcal": 884.0,
+   "suv": 0.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 13.6
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 218.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 4.5
+    }
+   ]
+  },
+  "171117": {
+   "d": "Chicken, ground, crumbles, cooked, pan-browned",
+   "p": 23.28,
+   "f": 10.92,
+   "c": 0.0,
+   "kcal": 189.0,
+   "suv": 64.92,
+   "o": [
+    {
+     "nom": "oz crumbled",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "171247": {
+   "d": "Cheese, parmesan, grated",
+   "f": 27.84,
+   "c": 13.91,
+   "kcal": 420.0,
+   "suv": 22.65,
+   "p": 28.42,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 100.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 5.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "171799": {
+   "d": "Beef, ground, 80% lean meat / 20% fat, crumbles, cooked, pan-browned",
+   "kcal": 272.0,
+   "p": 27.0,
+   "c": 0.0,
+   "suv": 54.54,
+   "f": 17.36,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "172179": {
+   "d": "Cheese, cottage, creamed, large or small curd",
+   "c": 3.38,
+   "kcal": 98.0,
+   "p": 11.12,
+   "f": 4.3,
+   "suv": 79.79,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "cup, large curd (not packed)",
+     "miqdor": 1.0,
+     "g": 210.0
+    },
+    {
+     "nom": "cup, small curd (not packed)",
+     "miqdor": 1.0,
+     "g": 225.0
+    }
+   ]
+  },
+  "172183": {
+   "d": "Egg, white, raw, fresh",
+   "p": 10.9,
+   "f": 0.17,
+   "suv": 87.57,
+   "kcal": 52.0,
+   "c": 0.73,
+   "o": [
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 33.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 243.0
+    }
+   ]
+  },
+  "172184": {
+   "d": "Egg, yolk, raw, fresh",
+   "f": 26.54,
+   "suv": 52.31,
+   "p": 15.86,
+   "c": 3.59,
+   "kcal": 322.0,
+   "o": [
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 243.0
+    }
+   ]
+  },
+  "172191": {
+   "d": "Egg, quail, whole, fresh, raw",
+   "p": 13.05,
+   "f": 11.09,
+   "c": 0.41,
+   "kcal": 158.0,
+   "suv": 74.35,
+   "o": [
+    {
+     "nom": "egg",
+     "miqdor": 1.0,
+     "g": 9.0
+    }
+   ]
+  },
+  "172388": {
+   "d": "Chicken, broilers or fryers, thigh, meat only, cooked, roasted",
+   "p": 24.76,
+   "f": 8.15,
+   "kcal": 179.0,
+   "suv": 67.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "thigh without skin",
+     "miqdor": 1.0,
+     "g": 116.0
+    },
+    {
+     "nom": "thigh with skin",
+     "miqdor": 1.0,
+     "g": 137.0
+    }
+   ]
+  },
+  "172935": {
+   "d": "Salami, cooked, beef",
+   "p": 12.6,
+   "f": 22.2,
+   "c": 1.9,
+   "suv": 60.0,
+   "kcal": 261.0,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 26.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "173232": {
+   "d": "Beverages, tea, herb, other than chamomile, brewed",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.2,
+   "kcal": 1.0,
+   "suv": 99.7,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 6.0,
+     "g": 178.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 237.0
+    }
+   ]
+  },
+  "173430": {
+   "d": "Butter, without salt",
+   "kcal": 717.0,
+   "f": 81.11,
+   "c": 0.06,
+   "p": 0.85,
+   "suv": 16.17,
+   "o": [
+    {
+     "nom": "pat (1\" sq, 1/3\" high)",
+     "miqdor": 1.0,
+     "g": 5.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.2
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 227.0
+    },
+    {
+     "nom": "stick",
+     "miqdor": 1.0,
+     "g": 113.0
+    }
+   ]
+  },
+  "173740": {
+   "d": "Beans, kidney, all types, mature seeds, cooked, boiled, without salt",
+   "kcal": 127.0,
+   "suv": 66.94,
+   "f": 0.5,
+   "c": 22.8,
+   "p": 8.67,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 177.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 11.0
+    }
+   ]
+  },
+  "174107": {
+   "d": "Rolls, dinner, sweet",
+   "p": 10.04,
+   "f": 7.37,
+   "c": 53.58,
+   "kcal": 321.0,
+   "suv": 27.83,
+   "o": [
+    {
+     "nom": "roll",
+     "miqdor": 1.0,
+     "g": 30.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 39.0
+    }
+   ]
+  },
+  "174203": {
+   "d": "Crustaceans, crab, alaska king, imitation, made from surimi",
+   "suv": 74.66,
+   "p": 7.62,
+   "f": 0.46,
+   "c": 15.0,
+   "kcal": 95.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "174237": {
+   "d": "Fish, pollock, Atlantic, cooked, dry heat",
+   "p": 24.92,
+   "f": 1.26,
+   "c": 0.0,
+   "kcal": 118.0,
+   "suv": 72.03,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 0.5,
+     "g": 151.0
+    }
+   ]
+  },
+  "174277": {
+   "d": "Soy sauce made from soy and wheat (shoyu)",
+   "f": 0.57,
+   "c": 4.93,
+   "suv": 71.15,
+   "p": 8.14,
+   "kcal": 53.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 16.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 5.3
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 255.0
+    },
+    {
+     "nom": "individual packet",
+     "miqdor": 1.0,
+     "g": 8.9
+    }
+   ]
+  },
+  "174536": {
+   "d": "Soup, chicken broth, ready-to-serve",
+   "p": 0.64,
+   "suv": 97.81,
+   "f": 0.21,
+   "c": 0.44,
+   "kcal": 6.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 249.0
+    }
+   ]
+  },
+  "175033": {
+   "d": "Sweet rolls, cheese",
+   "f": 18.3,
+   "c": 43.7,
+   "kcal": 360.0,
+   "suv": 29.4,
+   "p": 7.1,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "roll",
+     "miqdor": 1.0,
+     "g": 66.0
+    }
+   ]
+  },
+  "175193": {
+   "d": "Beans, kidney, all types, mature seeds, raw",
+   "c": 60.01,
+   "kcal": 333.0,
+   "f": 0.83,
+   "suv": 11.75,
+   "p": 23.58,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 184.0
+    }
+   ]
+  },
+  "168749": {
+   "d": "Alcoholic beverage, beer, light",
+   "f": 0.0,
+   "suv": 94.88,
+   "c": 1.64,
+   "kcal": 29.0,
+   "p": 0.24,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.5
+    },
+    {
+     "nom": "can or bottle (12 fl oz)",
+     "miqdor": 1.0,
+     "g": 354.0
+    }
+   ]
+  },
+  "172512": {
+   "d": "Lamb, New Zealand, imported, frozen, composite of trimmed retail cuts, separable fat, cooked",
+   "p": 9.72,
+   "f": 60.39,
+   "c": 0.0,
+   "kcal": 586.0,
+   "suv": 26.12,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "unit, cooked (yield from 1 lb raw meat)",
+     "miqdor": 1.0,
+     "g": 286.0
+    }
+   ]
+  },
+  "173176": {
+   "d": "Alcoholic beverage, wine, dessert, sweet",
+   "f": 0.0,
+   "p": 0.2,
+   "c": 13.69,
+   "kcal": 160.0,
+   "suv": 70.51,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.5
+    },
+    {
+     "nom": "glass (3.5 fl oz)",
+     "miqdor": 1.0,
+     "g": 103.0
+    }
+   ]
+  },
+  "173201": {
+   "d": "Alcoholic beverage, wine, table, white, Sauvignon Blanc",
+   "f": 0.0,
+   "c": 2.05,
+   "suv": 87.16,
+   "p": 0.07,
+   "kcal": 81.0,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.3
+    },
+    {
+     "nom": "serving (5 fl oz)",
+     "miqdor": 1.0,
+     "g": 147.0
+    }
+   ]
+  },
+  "174815": {
+   "d": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",
+   "suv": 66.6,
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 231.0,
+   "p": 0.0,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 27.8
+    },
+    {
+     "nom": "jigger (1.5 fl oz)",
+     "miqdor": 1.0,
+     "g": 42.0
+    }
+   ]
+  },
+  "174818": {
+   "d": "Alcoholic beverage, distilled, vodka, 80 proof",
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 231.0,
+   "suv": 66.6,
+   "p": 0.0,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 27.8
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.5,
+     "g": 42.0
     }
    ]
   }
