@@ -10,37 +10,37 @@
 1|sumalak|sumalak, thick dark brown sweet wheat-sprout pudding, glossy, in a small black cast-iron bowl, a wooden spoon is not included.|sumalak
 1|halim|Uzbek halim, a thick creamy porridge of wheat and shredded meat, pale beige, in a deep bowl with a small pool of melted butter on top.|halim
 1|xonim|Uzbek khanum, a spiral steamed rolled dough with potato-and-meat filling cut into thick slices, pale, on a plate.|xonim
-1|salat-sabzavot|fresh vegetable salad with tomato wedges, cucumber slices, onion rings and herbs with a glossy oil sheen, in a shallow white bowl.|salat-sabzavot
-1|vinegret|vinegret salad, diced beetroot, potato, carrot, pickled cucumber and peas, deep magenta-red, in a small glass bowl.|vinegret
+1|salat-sabzavot|fresh vegetable salad with tomato wedges, cucumber slices, onion rings and herbs with a glossy oil sheen, in a shallow white bowl.|salat-sabzavot karam-salat
+1|vinegret|vinegret salad, diced beetroot, potato, carrot, pickled cucumber and peas, deep magenta-red, in a small glass bowl.|vinegret lavlagi-salat
 1|koreys-sabzi|Korean-style spicy carrot salad, thin orange carrot strips with sesame and a bit of chili, in a small white bowl.|koreys-sabzi
 1|jiz|Uzbek jiz, small crispy fried lamb cubes with fried onion rings, golden brown, in a black cast-iron pan.|jiz
 1|beshbarmoq|Uzbek beshbarmoq, wide flat boiled noodles topped with boiled meat slices and onion rings, on a big round platter.|beshbarmoq
-1|jarkop|Uzbek jarkop, stewed lamb with potato wedges and carrot pieces in a small cast-iron pot, thick brown gravy.|jarkop
+1|jarkop|Uzbek jarkop, stewed lamb with potato wedges and carrot pieces in a small cast-iron pot, thick brown gravy.|jarkop gulyash
 1|borsch|red beet borscht in a bowl with a spoonful of white sour cream on top, a few cabbage and carrot pieces visible.|borsch
 1|sabzavot-ragu|vegetable stew with zucchini, carrot, potato and tomato chunks in a light tomato sauce, in a small bowl.|sabzavot-ragu
 1|baliq-uxa|clear fish soup (ukha) with carrot slices, potato cubes and a piece of white fish and dill, in a deep white bowl.|qaynatma-baliq baliq-shurva kafe-baliq-shurva
-1|shurva-lapsha|chicken noodle soup in a deep bowl, golden clear broth with thin egg noodles and a few carrot coins.|shurva-tovuq-lapsha kesma
+1|shurva-lapsha|chicken noodle soup in a deep bowl, golden clear broth with thin egg noodles and a few carrot coins.|shurva-tovuq-lapsha kesma sut-oshi
 1|shurva-pomidor|smooth red tomato cream soup in a white bowl with a swirl of cream and a basil leaf.|shurva-pomidor
 1|shurva-qoziqorin|creamy beige mushroom cream soup in a white bowl with a few small mushroom slices on top.|shurva-qoziqorin
-1|shurva-mol|beef and vegetable soup with chunks of beef, potato and carrot in a clear brown broth, in a deep bowl.|shurva-mol-sabzavot
+1|shurva-mol|beef and vegetable soup with chunks of beef, potato and carrot in a clear brown broth, in a deep bowl.|shurva-mol-sabzavot solyanka
 1|dimlama-konserva|a small round tin can opened, filled with stewed beef chunks and vegetables in gravy.|gosht-dimlangan-konserva tushonka
 1|shovla|Khorezm shovla, a soft rice-and-lamb pilaf cooked in broth, slightly mushy, with carrot strips and a lamb piece, on a round plate.|shovla
-1|shirguruch|Uzbek shirguruch, rice porridge cooked in milk, creamy white, in a bowl with a small pat of butter in the middle.|shirguruch
+1|shirguruch|Uzbek shirguruch, rice porridge cooked in milk, creamy white, in a bowl with a small pat of butter in the middle.|shirguruch suli-sutli tariq-sutli
 1|ugra-osh|Uzbek ugra osh, thin short homemade noodle soup in a pale broth with a little carrot and herbs, in a bowl.|ugra-osh
-1|chalop|chalop, cold sour yogurt soup with cucumber cubes, radish slices and dill, white-green, in a deep bowl.|chalop
+1|chalop|chalop, cold sour yogurt soup with cucumber cubes, radish slices and dill, white-green, in a deep bowl.|chalop okroshka
 1|baliq-dimlama|stewed whole fish with potato wedges and tomato slices in a small cast-iron pot.|baliq-dimlama
 1|tovuq-qozon|chicken pieces stewed with onion and tomato in a black cast-iron kazan, golden-brown, glossy.|tovuq-son-qozon tovuq-kokrak-qozon
 1|osh-tovuq|Uzbek chicken plov, a mound of golden rice with carrot strips and a roasted chicken piece on top, on a round plate.|osh-tovuq
 1|dimlama-tovuq|chicken dimlama, layered stewed chicken, potato, carrot and cabbage in a small pot.|dimlama-tovuq
 1|loviya-shurva|Uzbek bean soup, white-bean broth with potato and carrot pieces in a deep bowl.|loviya-shurva
-1|yasmiq-shurva|orange-yellow lentil soup in a deep bowl with a few herbs on top.|yasmiq-shurva
+1|yasmiq-shurva|orange-yellow lentil soup in a deep bowl with a few herbs on top.|yasmiq-shurva yasmiq-tovuq
 1|noxat-ragu|chickpea and vegetable stew, golden chickpeas with carrot and tomato pieces in a small bowl.|noxat-ragu
 1|qoymoq|Uzbek qoymoq, fried eggs scrambled with onion and tomato pieces in a small black frying pan, yolks visible.|qoymoq
 1|salat-qatiq|cucumber and herb salad in white yogurt dressing, in a small glass bowl.|qatiq-salat suzma-salat
 1|moshxorda-goshtsiz|moshkhorda without meat, a light mung-bean soup with potato and carrot, in a deep bowl with a dollop of yogurt.|moshxorda-gostsiz
 1|sazan-duxovka|oven-baked whole carp on a bed of potato slices with lemon slice, on a baking tray.|sazan-duxovka sazan-grill
 1|kartoshka-shurva|simple potato soup with potato cubes, carrot and dill in a clear broth, in a deep bowl.|kafe-kartoshka-shurva
-1|tovuq-duxovka|oven-roasted chicken legs with potato wedges and carrot, golden skin, on a baking tray.|uy-tovuq-duxovka
+1|tovuq-duxovka|oven-roasted chicken legs with potato wedges and carrot, golden skin, on a baking tray.|uy-tovuq-duxovka tovuq-grill
 1|qoy-duxovka|oven-baked lamb pieces with carrot and potato in a baking dish, brown and juicy.|uy-qoy-duxovka
 1|tuxum-barak|Khorezm tuxum barak, small folded dumplings filled with egg, golden-brown, on a plate, a little melted butter.|tuxum-barak
 1|hasip|Uzbek hasip, a few thick slices of homemade rice-and-liver sausage, grey-brown with visible rice, on a small plate.|hasip
@@ -49,7 +49,7 @@
 1|mampar|Uzbek mampar, a soup with small torn pieces of dough, meat, potato and carrot in a red-brown broth, in a deep bowl.|mampar
 1|shivit-oshi|Uzbek shivit oshi, bright green dill noodles with a meaty vegetable sauce and a spoonful of yogurt, in a wide bowl.|shivit-oshi
 1|kok-chuchvara|green chuchvara, small herb-green dumplings with a yogurt dollop, in a shallow bowl.|kok-chuchvara
-1|yupqa|Khorezm yupqa, a flat layered meat pie, golden, cut open to show a thin layered dough with meat inside, on a plate.|yupqa
+1|yupqa|Khorezm yupqa, a flat layered meat pie, golden, cut open to show a thin layered dough with meat inside, on a plate.|yupqa chalpak
 1|goshtli-non|Uzbek meat-filled flatbread (gosht non), round golden-brown, one slice cut out showing the minced meat and onion filling.|goshtli-non
 1|kartoshka-qovurdoq|kartoshkali qovurdoq, fried beef chunks with golden potato pieces and onion in a black cast-iron pan.|kartoshka-qovurma
 1|baliq-qovurma|whole fried carp, golden-crispy, on an oval plate with lemon slices and onion rings.|sazan-qovurma kafe-sazan-qovurma
@@ -80,10 +80,10 @@
 2|echki|roasted goat meat pieces on the bone, brown, on a plate.|echki
 2|quyon|roasted rabbit leg, golden-brown, on a plate.|quyon
 2|ordak|roasted duck pieces without skin, dark brown, on a plate.|ordak
-2|kotlet|a fried meat cutlet, golden-brown with a crisp crust, on a plate.|kotlet mol-kotlet-grill
+2|kotlet|a fried meat cutlet, golden-brown with a crisp crust, on a plate.|kotlet mol-kotlet-grill tovuq-kotlet baliq-kotlet
 2|tefteli|three round meatballs in a light tomato sauce, in a small bowl.|tefteli
 2|steyk|a grilled beef steak with grill marks and a pink cut edge, on a plate.|steyk
-2|kolbasa|three slices of boiled sausage, pale pink, on a small plate.|kolbasa
+2|kolbasa|three slices of boiled sausage, pale pink, on a small plate.|kolbasa kolbasa-dudlangan
 2|sosiska|two boiled sausages, pink-brown, on a small plate.|sosiska
 2|jerki|dried cured beef jerky strips, dark brown, in a small pile.|gosht-quritilgan
 2|losos-dudlangan|smoked salmon slices, thin orange-pink layers, rolled, on a small plate with a dill sprig.|losos-dudlangan
@@ -100,7 +100,7 @@
 2|krevetka-panirovka|breaded fried shrimps, golden crumb, a few on a plate.|krevetka-panirovka
 2|kalmar|fried squid rings, golden, on a plate.|kalmar
 2|ikra|red salmon caviar, bright orange pearls, in a small glass bowl.|ikra
-2|krab-tayoq|a few crab sticks, white with red-orange stripe on one side, on a small plate.|krab-tayoq
+2|krab-tayoq|a few crab sticks, white with red-orange stripe on one side, on a small plate.|krab-tayoq krab-salat
 2|krab|cooked crab meat pieces and a red claw, on a small plate.|krab
 2|midiya|steamed mussels in open black shells, orange flesh, in a small bowl.|midiya
 2|tuxum-boltunya|scrambled eggs, soft yellow curds, on a small white plate.|tuxum-qov-aralash
@@ -110,7 +110,7 @@
 3|kofe-3v1|a white cup of instant coffee with a small sachet beside it, light brown.|kofe#3in1
 3|kofe-muzli|iced coffee in a tall plastic cup with ice cubes, light brown.|qahva-sovuq
 3|kola|a clear glass of dark cola with bubbles beside a plain unlabeled dark glass bottle.|kola coca-cola pepsi coca-cola-zero pepsi-zero
-3|limonad|a glass of clear sparkling lemon-lime soda with bubbles, a lemon slice.|limonad sprite sprite-zero
+3|limonad|a glass of clear sparkling lemon-lime soda with bubbles, a lemon slice.|limonad sprite sprite-zero tarxun
 3|fanta|a glass of orange sparkling soda with bubbles and an orange slice.|fanta apelsin-gazli fanta-zero
 3|energetik|a slim plain silver energy drink can with a blue-silver design and no text.|energetik red-bull monster adrenaline red-bull-zero
 3|sharbat-meva|a tall glass of golden-orange fruit juice with an apple slice.|sharbat-olma
@@ -132,15 +132,15 @@
 3|smuzi|a thick fruit smoothie in a tall glass, pink-purple, with a berry on the rim.|smuzi smuzi-mango
 3|suv|a glass of clear still water, slightly blue, with a few droplets.|suv
 3|sut-kokteyl|a milkshake in a tall glass, white-cream colored, with a thin froth.|sut-kokteyl
-3|choy-sovuq|iced tea in a tall glass with ice cubes and a lemon slice, amber.|sovuq-choy
-3|choy-shakarli|black tea in a clear glass cup with two sugar cubes on the saucer, amber.|choy-shakar1 choy-shakar2
+3|choy-sovuq|iced tea in a tall glass with ice cubes and a lemon slice, amber.|sovuq-choy fuze-tea
+3|choy-shakarli|black tea in a clear glass cup with two sugar cubes on the saucer, amber.|choy-shakar1 choy-shakar2 choy-navvot choy-limon-shakar choy-asal
 3|choy-sutli|milk tea in a ceramic cup, beige-brown.|choy-sut-shakar
 3|choy-kok-shakar|green tea in a clear glass cup with one sugar cube on the saucer, pale green-yellow.|kok-choy-shakar
 3|izotonik|a sports isotonic drink in a plain clear bottle with bright lime-green liquid, no label.|sport-izotonik sport-izotonik-zero
 3|kokos-suvi|young green coconut with a straw, with a glass of coconut water beside it.|kokos-suvi
 3|bodom-sut|a glass of white plant milk (almond or soy) with a few almonds and soybeans beside it.|bodom-sut soya-sut
-3|vino|a glass of red dry wine, dark ruby color.|vino
-3|pivo|a glass of golden beer with white foam.|pivo
+3|vino|a glass of red dry wine, dark ruby color.|vino vino-oq vino-shirin
+3|pivo|a glass of golden beer with white foam.|pivo pivo-yengil
 4|muzqaymoq-plombir|two white vanilla plombir ice cream scoops in a glass dessert cup.|muzqaymoq mz-plombir-stakan mz-vanil mz-light mz-shakarsiz
 4|muzqaymoq-briket|a rectangular block of white plombir ice cream on a small plate, one slice cut off.|mz-plombir-briket
 4|plombir-vafli|white plombir ice cream in a waffle cup with a blueberry swirl on top.|mz-plombir-vafli
@@ -203,7 +203,7 @@
 5|parvarda|Uzbek parvarda, small white hard candy sticks, in a small pile.|parvarda
 5|pryanik|a round glazed gingerbread with a swirl of condensed milk filling.|pryanik
 5|pechenye-oreo|two dark chocolate sandwich cookies with white cream, one twisted open.|pechenye-oreo
-5|pechenye-qumli|round shortbread cookies, pale golden, two stacked.|pechenye-qumli pechenye-sariyog pechenye
+5|pechenye-qumli|round shortbread cookies, pale golden, two stacked.|pechenye-qumli pechenye-sariyog pechenye lotus-biscoff pechenye-molochnoe
 5|pechenye-suli|oat cookies with visible oat flakes, two stacked.|pechenye-suli
 5|pechenye-chip|cookies with chocolate chips, two stacked.|pechenye-shokolad
 5|pechenye-zanjabil|round ginger cookies with cracked top, brown.|pechenye-zanjabil
@@ -244,13 +244,13 @@
 5|shakar|a small heap of white granulated sugar.|shakar
 5|qand|a few white sugar cubes stacked.|qand
 6|qurt|a few small round white dried yogurt balls on a small blue-white plate.|qurt
-6|sut|a glass of white milk next to a small glass bottle of milk.|sut
+6|sut|a glass of white milk next to a small glass bottle of milk.|sut sariyogli-sut
 6|kefir|a glass of white kefir, thick, next to a small bottle.|kefir kefir-qulupnay pahta
 6|qaymoq|a small bowl of thick pale cream (qaymoq) with a spoon-swirl.|qaymoq qaymoq-10 qaymoq-yogli qaymoq-kukun
 6|smetana|a small bowl of white sour cream with a spoon swirl.|smetana
 6|pishloq-qattiq|a wedge of yellow hard cheese with a few small holes, and two slices.|pishloq pishloq-chedder pishloq-gauda pishloq-shveytsar
 6|pishloq-brynza|a block of white brynza cheese with small cuts and a cube sliced.|pishloq-yumshoq pishloq-feta
-6|tvorog|a small bowl of crumbly white cottage cheese with a spoon.|tvorog5
+6|tvorog|a small bowl of crumbly white cottage cheese with a spoon.|tvorog5 tvorog-donador
 6|sariyog|a block of butter with a slice cut off, pale yellow.|sariyog margarin
 6|yogurt|a small cup of thick white plain yogurt with a spoon.|yogurt-tabiiy yogurt-vanil yogurt-yunon
 6|yogurt-meva|a small cup of pink fruit yogurt with a strawberry.|yogurt-meva2
@@ -265,14 +265,14 @@
 6|non-qora|a loaf of dark rye bread with two slices cut.|non-qora non-jovdar
 6|lavash-yupqa|a thin lavash flatbread folded loosely, pale.|lavash-non tortilya
 6|baget|a long French baguette with golden crust, two slices cut.|baget
-6|bulochka|a sweet round bun, glossy golden.|bulochka burger-bulochka
+6|bulochka|a sweet round bun, glossy golden.|bulochka burger-bulochka sdoba vatrushka
 6|kruassan|a golden crescent croissant with flaky layers.|kruassan
-6|pirojki|two fried piroshki pies, golden, one cut showing filling.|pirojki
+6|pirojki|two fried piroshki pies, golden, one cut showing filling.|pirojki gumma
 6|tost|two slices of toasted white bread, golden.|tost
 6|suxari|small golden bread rusks cubes in a pile.|suxari
 6|xlebets|round puffed rice cakes, light, in a stack.|guruch-xlebets
 6|pita|a round pita bread, puffed and pale, one half open.|non-pita
-6|non-bugdoy|a loaf of whole-grain wheat bread with seeds, two slices cut.|non-bugdoy
+6|non-bugdoy|a loaf of whole-grain wheat bread with seeds, two slices cut.|non-bugdoy kepak-non
 6|bagel|a ring bagel with sesame seeds.|bagel
 6|chebureki|a crescent fried cheburek with blistered golden crust.|chebureki belyashi
 6|naggets|four golden chicken nuggets.|naggets tovuq-boneless
@@ -281,19 +281,19 @@
 6|pelmeni|a plate of boiled pelmeni, small round dumplings, with a spoon of sour cream.|pelmeni
 6|vareniki|a plate of vareniki, potato-filled half-moon dumplings, with fried onion.|vareniki
 6|blin|a stack of thin crepes with a fold, with sour cream.|blin
-6|sirniki|three golden fried curd pancakes with a spoon of sour cream.|sirniki
+6|sirniki|three golden fried curd pancakes with a spoon of sour cream.|sirniki tvorog-zapekanka
 6|tovuq-kfc|crispy battered fried chicken pieces, golden-brown, on a plate.|tovuq-kfc
 6|big-mac|a large double beef burger with sesame bun, lettuce and cheese.|big-mac
 6|chizburger|a cheeseburger with a beef patty, melted cheese, sesame bun.|chizburger
 6|pitsa-pishloq|a pizza with melted cheese and tomato sauce, one slice pulled.|pitsa-pishloq
 6|lazanya|a square slice of layered lasagna with meat sauce and melted cheese.|lazanya
-6|spagetti|spaghetti with meat tomato sauce on a plate.|spagetti-bolonez
+6|spagetti|spaghetti with meat tomato sauce on a plate.|spagetti-bolonez makaron-gosht
 6|piyoz-halqa|golden fried onion rings, stacked.|piyoz-halqa
 6|tako|a taco with beef, lettuce, tomato and cheese in a folded corn shell.|tako
 6|burrito|a burrito, wrapped tortilla cut in half showing beans and meat.|burrito chili-konkarne
 6|nachos|nachos with melted cheese sauce over corn chips.|nachos-pishloq
 6|qovurilgan-guruch|Chinese fried rice with egg, carrot and peas, in a small bowl.|guruch-qovurilgan
-6|shirin-nordon-tovuq|sweet and sour chicken pieces in red-orange sauce with pineapple, in a bowl.|tovuq-shirin-nordon
+6|shirin-nordon-tovuq|sweet and sour chicken pieces in red-orange sauce with pineapple, in a bowl.|tovuq-shirin-nordon tovuq-soya
 6|falafel|four round golden-brown falafel balls, one cut open green inside.|falafel
 6|guruch-xom|a small heap of raw white rice grains.|guruch-xom guruch-yovvoyi
 6|guruch-jigarrang|cooked brown rice in a small bowl.|guruch-jigarrang
@@ -421,3 +421,35 @@
 6|achchiq-sous|a small bowl of red chili sauce with a small bottle.|achchiq-sous
 6|tartar|a small bowl of creamy tartar sauce with pickle bits.|tartar-sous
 6|shokolad-sirop|a small jug pouring dark chocolate syrup.|shokolad-sirop
+
+# v64 (bazani kengaytirish, 1-bosqich): yangi taomlar uchun rejalashtirilgan ikonkalar (rasm hali yasalmagan)
+1|qushtili|Uzbek qushtili, a small pile of golden deep-fried dough strips (twisted ribbons), on a small round plate.|qushtili
+1|qalampir-dolma|two red bell peppers stuffed with minced meat and rice, cooked in a light tomato sauce, in a shallow bowl.|qalampir-dolma
+1|grechka-gosht|buckwheat porridge (brown grains) mixed with stewed beef pieces and fried onion, in a small bowl.|grechka-gosht
+1|ikra-sabzavot|vegetable caviar spread (eggplant or squash), thick orange-brown puree, in a small glass jar with a spoon beside it.|ikra-baqlajon ikra-qovoqcha
+2|dumba|a few thick slices of cooked lamb tail fat, creamy white with golden edges, on a small wooden board.|dumba
+2|bedana|two small roasted quails, golden brown, on a small oval plate with herbs.|bedana
+2|bedana-tuxum|five small speckled quail eggs, two of them peeled, in a small ceramic dish.|bedana-tuxum
+3|aroq|a small clear shot glass of a clear spirit next to a frosted clear glass bottle without label.|aroq
+3|konyak|a short tumbler glass with amber spirit, no label, no ice.|konyak
+6|grechka-sut|buckwheat porridge with milk poured over it, in a white bowl.|grechka-sutli
+6|chilonjiyda|a small heap of fresh red-brown jujube fruits (unabi), oval and glossy, in a small bowl.|chilonjiyda
+6|namatak|a small heap of bright red-orange rose hip berries, in a small ceramic bowl.|namatak
+6|zigir|brown flax seeds in a small wooden spoon and a small pile beside it.|zigir
+6|chia|tiny grey-black chia seeds in a small glass bowl.|chia
+6|mosh-quruq|dry green mung beans in a small bowl, a few spilled beside it.|mosh-xom
+6|noxat-quruq|dry beige chickpeas in a small bowl, a few spilled beside it.|noxat-xom
+6|loviya-quruq|dry red kidney beans in a small bowl, a few spilled beside it.|loviya-xom
+6|yasmiq-quruq|dry orange-red lentils in a small bowl, a few spilled beside it.|yasmiq-xom
+6|tariq-quruq|dry yellow millet grains in a small bowl.|tariq-xom
+6|perlovka-quruq|dry pearl barley grains, pale beige, in a small bowl.|perlovka-xom
+6|bulgur-quruq|dry golden bulgur wheat grains in a small bowl.|bulgur-xom
+6|kuskus-quruq|dry fine couscous grains, pale yellow, in a small bowl.|kuskus-xom
+6|kinoa-quruq|dry white and red quinoa seeds in a small bowl.|kinoa-xom
+6|manka-quruq|dry semolina, fine pale yellow flour-like grains, in a small bowl with a wooden spoon.|manka-xom
+6|guruch-jigarrang-quruq|dry brown rice grains in a small bowl.|guruch-jigarrang-xom
+6|olma-sirka|a small glass bottle of golden apple cider vinegar without label, with a fresh apple beside it.|olma-sirka
+6|un|white wheat flour in a small bowl with a small heap and a wooden scoop.|un
+6|kakao-kukun|dark brown cocoa powder in a small bowl with a spoon.|kakao-kukun
+6|kepak|light brown wheat bran flakes in a small bowl.|kepak
+1|sezar-salat|Caesar salad with romaine lettuce, grilled chicken slices, croutons and shaved parmesan, in a shallow white bowl.|sezar-salat

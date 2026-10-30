@@ -1,7 +1,7 @@
 {
  "meta": {
   "manba": "Open Food Facts (openfoodfacts.org) — ishlab chiqaruvchi yorlig'i ma'lumotlari, ODbL litsenziyasi",
-  "olingan": "2026-10-21",
+  "olingan": "2026-10-30",
   "eslatma": "Har yozuv: shtrix-kod (code), mahsulot nomi va brendi, 100 g (ichimlik — 100 ml) uchun kkal/oqsil/yog'/uglevod. tools/ovqatlar-kengaytma.js dagi y:<kalit> shu yerdan oladi."
  },
  "yorliq": {
@@ -11,9 +11,9 @@
    "code": "7622201695958",
    "qadoq": "80 г",
    "k": 531,
-   "p": 6.0,
-   "f": 30.0,
-   "c": 58.0
+   "p": 6,
+   "f": 30,
+   "c": 58
   },
   "barni": {
    "nom": "Barni Milk filling",
@@ -21,9 +21,9 @@
    "code": "5906747318321",
    "qadoq": "",
    "k": 394,
-   "p": 5.0,
-   "f": 16.0,
-   "c": 60.0
+   "p": 5,
+   "f": 16,
+   "c": 60
   },
   "bombbar-60": {
    "nom": "Chocolate hazelnut protein bar",
@@ -31,7 +31,7 @@
    "code": "4680046720634",
    "qadoq": "",
    "k": 328,
-   "p": 33.0,
+   "p": 33,
    "f": 13.6,
    "c": 6.9
   },
@@ -41,9 +41,9 @@
    "code": "5000112558265",
    "qadoq": "50cl",
    "k": 0,
-   "p": 0.0,
-   "f": 0.0,
-   "c": 0.0
+   "p": 0,
+   "f": 0,
+   "c": 0
   },
   "doshirak": {
    "nom": "Cheese рамен",
@@ -52,8 +52,8 @@
    "qadoq": "110 g",
    "k": 418,
    "p": 9.5,
-   "f": 12.0,
-   "c": 68.0
+   "f": 12,
+   "c": 68
   },
   "fanta": {
    "nom": "Fanta orange 1.5l",
@@ -61,8 +61,8 @@
    "code": "5449000052926",
    "qadoq": "1.5 L",
    "k": 48,
-   "p": 0.0,
-   "f": 0.0,
+   "p": 0,
+   "f": 0,
    "c": 11.7
   },
   "fanta-zero": {
@@ -71,8 +71,8 @@
    "code": "5449000235367",
    "qadoq": "330 ml",
    "k": 3,
-   "p": 0.0,
-   "f": 0.0,
+   "p": 0,
+   "f": 0,
    "c": 0.4
   },
   "fitness-bar-40": {
@@ -81,9 +81,9 @@
    "code": "4680089892077",
    "qadoq": "",
    "k": 373,
-   "p": 16.0,
-   "f": 19.0,
-   "c": 22.0
+   "p": 16,
+   "f": 19,
+   "c": 22
   },
   "kinder-bueno": {
    "nom": "Kinder bueno",
@@ -102,7 +102,7 @@
    "qadoq": "50g",
    "k": 566,
    "p": 8.7,
-   "f": 35.0,
+   "f": 35,
    "c": 53.5
   },
   "lays": {
@@ -111,9 +111,9 @@
    "code": "8410199023094",
    "qadoq": "170 g",
    "k": 523,
-   "p": 5.0,
-   "f": 31.0,
-   "c": 54.0
+   "p": 5,
+   "f": 31,
+   "c": 54
   },
   "mars": {
    "nom": "Mars",
@@ -122,8 +122,8 @@
    "qadoq": "51 g e",
    "k": 443,
    "p": 4.5,
-   "f": 16.0,
-   "c": 70.0
+   "f": 16,
+   "c": 70
   },
   "milka": {
    "nom": "Milka au lait du pays alpin",
@@ -132,8 +132,8 @@
    "qadoq": "3 x 100g",
    "k": 539,
    "p": 6.5,
-   "f": 31.0,
-   "c": 57.0
+   "f": 31,
+   "c": 57
   },
   "pepsi-zero": {
    "nom": "Pepsi Zero Zucker",
@@ -141,9 +141,9 @@
    "code": "4062139025299",
    "qadoq": "1.25l",
    "k": 0,
-   "p": 0.0,
-   "f": 0.0,
-   "c": 0.0
+   "p": 0,
+   "f": 0,
+   "c": 0
   },
   "plavlenniy": {
    "nom": "Hochland плавленый сыр",
@@ -162,8 +162,8 @@
    "qadoq": "400 г.",
    "k": 240,
    "p": 3.5,
-   "f": 15.0,
-   "c": 22.0
+   "f": 15,
+   "c": 22
   },
   "pringles": {
    "nom": "Pringles Original",
@@ -172,8 +172,8 @@
    "qadoq": "175 g",
    "k": 528,
    "p": 6.2,
-   "f": 31.0,
-   "c": 54.0
+   "f": 31,
+   "c": 54
   },
   "protein-shake-rtd": {
    "nom": "High Quality Protein",
@@ -191,9 +191,9 @@
    "code": "4601713001719",
    "qadoq": "140 g",
    "k": 380,
-   "p": 7.0,
-   "f": 8.0,
-   "c": 69.0
+   "p": 7,
+   "f": 8,
+   "c": 69
   },
   "rojok": {
    "nom": "Мороженое пломбир с черничным наполнителем в вафельном стаканчике с глазурью зол",
@@ -222,7 +222,7 @@
    "qadoq": "",
    "k": 51,
    "p": 0.3,
-   "f": 0.0,
+   "f": 0,
    "c": 12.2
   },
   "bombbar-cookie": {
@@ -232,7 +232,7 @@
    "qadoq": "",
    "k": 368,
    "p": 11.2,
-   "f": 22.0,
+   "f": 22,
    "c": 24.5
   },
   "kizk-rojok": {
@@ -242,9 +242,9 @@
    "url": "https://kizk.ru/catalog/morozhenoe/rozhok/morozhenoe-plombir-vanilnyy-v-vafelnom-rozhke-15/",
    "qadoq": "100 г",
    "k": 310,
-   "p": 4.0,
-   "f": 18.0,
-   "c": 33.0
+   "p": 4,
+   "f": 18,
+   "c": 33
   },
   "kizk-eskimo-belgiya": {
    "nom": "Мороженое пломбир ванильный эскимо в бельгийском шоколаде 15%",
@@ -254,8 +254,8 @@
    "qadoq": "70 г",
    "k": 225,
    "p": 3.5,
-   "f": 15.0,
-   "c": 19.0
+   "f": 15,
+   "c": 19
   },
   "kizk-eskimo": {
    "nom": "Мороженое пломбир ванильный эскимо в шоколадной глазури",
@@ -265,8 +265,8 @@
    "qadoq": "60 г",
    "k": 330,
    "p": 3.5,
-   "f": 24.0,
-   "c": 25.0
+   "f": 24,
+   "c": 25
   },
   "kizk-stakan-shokolad": {
    "nom": "Мороженое пломбир шоколадное с крошкой шоколадного печенья в вафельном стаканчике 15%",
@@ -275,9 +275,9 @@
    "url": "https://kizk.ru/catalog/morozhenoe/vafelnyy-stakan/morozhenoe-plombir-shokoladnoe-s-kroshkoy-shokoladnogo-pechenya-i-vkusom-pechene-krem-v-vafelnom-sta/",
    "qadoq": "80 г",
    "k": 280,
-   "p": 5.0,
-   "f": 16.0,
-   "c": 29.0
+   "p": 5,
+   "f": 16,
+   "c": 29
   },
   "kizk-konteyner": {
    "nom": "Мороженое пломбир ванильное с шоколадной крошкой 15%",
@@ -286,9 +286,9 @@
    "url": "https://kizk.ru/catalog/morozhenoe/semeynoe/morozhenoe-plombir-vanilnoe-s-shokoladnoy-kroshkoy-15/",
    "qadoq": "300 г",
    "k": 290,
-   "p": 4.0,
-   "f": 19.0,
-   "c": 25.0
+   "p": 4,
+   "f": 19,
+   "c": 25
   },
   "shinline-bomba-konus": {
    "nom": "Мороженое «Бомба конус XXL клубника»",
@@ -308,7 +308,7 @@
    "qadoq": "75 g",
    "k": 453,
    "p": 5.3,
-   "f": 28.0,
+   "f": 28,
    "c": 42.7
   },
   "lotus-biscoff": {
@@ -318,7 +318,7 @@
    "qadoq": "125 g",
    "k": 484,
    "p": 4.9,
-   "f": 19.0,
+   "f": 19,
    "c": 72.6
   },
   "yubileynoe-molochnoe": {
@@ -337,9 +337,39 @@
    "code": "8656170005592",
    "qadoq": "1.25 L",
    "k": 38,
-   "p": 0.0,
-   "f": 0.0,
+   "p": 0,
+   "f": 0,
    "c": 9.3
+  },
+  "tarxun-chernogolovka": {
+   "nom": "Напиток безалкогольный сильногазированный \"Тархун\"",
+   "brand": "Черноголовка",
+   "code": "4602441005116",
+   "qadoq": "2l",
+   "k": 20,
+   "p": 0,
+   "f": 0,
+   "c": 4.6
+  },
+  "ikra-baqlajon": {
+   "nom": "Икра баклажанная «нежная»",
+   "brand": "Лукашинские",
+   "code": "4607062672228",
+   "qadoq": "460 г",
+   "k": 85,
+   "p": 1.2,
+   "f": 5,
+   "c": 8.2
+  },
+  "ikra-qovoqcha": {
+   "nom": "Икра Кабачковая",
+   "brand": "Zajamnae",
+   "code": "4815462001498",
+   "qadoq": "",
+   "k": 110,
+   "p": 2,
+   "f": 5.5,
+   "c": 14
   }
  }
 }

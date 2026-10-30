@@ -7,12 +7,6 @@ const assert = require('assert'); const S = require('../assets/kalkifit-core.js'
 const SOZ = ["150gram olma sirkasi 1owqowiqda asal bn", "1kosa sariyog'li sut 1bo'lak non", "1ta tuxum qaynagan", "2 qovurilgan tuxum", "2 ta mandarin", "2 tuxum", "4kesim non", "4kesim non 2piyola", "4kesim non 2piyola coy", "4kesim non 2piyola qora coy", "4kesim non 2piyola qora coy 50dona uzum", "fuse", "fuse tea", "g'ilak", "kepak non", "kurasan 3dona choy 30pml sasiska 2dona", "lotus", "malokoli", "molokoli pecheniya", "ow1kosa", "pirashki", "sut 200gr qora va kok quruq", "sutlickofe", "teftel", "tovuq file soya", "yarimta non", "yarimta non 50 gram qaymoq", "булочка с шоколадной начинкой", "булочка с шоколадной начинкой 150 г", "булочка с шоколадной начинкой 200 г", "булочка с шоколадом 150 г", "бургеров и 100 порций фри", "какао порошок", "какао порошок 6 г", "котлета по киевски с сыром 110 г", "молоко пастеризованное", "молоко пастеризованное 200 г", "отруби", "отруби 20 г", "отруби 30 г", "рис вареный 100 г", "рис вареный 90 г", "суп 5 злаков", "суп из", "суп из перловки, фасоли", "суп из перловки, фасоли, маша", "суп из перловки, фасоли, маша, мяса", "суп из фасоли", "суп из фасоли и мяса", "суп из фасоли, перловки, мяса", "цезарь", "яйца жареные без масла", "яйца жареные без масла 200 г"];
 const TOPILMAYDI = {          // so'z → sabab (bazada yo'q yoki ma'nosi noaniq — foydalanuvchi AI bilan qo'shadi)
   "g'ilak": "ma'nosi aniqlanmadi (mahalliy nom?) — bazaga qo'shilmadi",
-  'tovuq file soya': "«bilan»siz ikki taom (tovuq filesi + soya sousi) — qism ajratilmaydi",
-  'суп 5 злаков': "«5 donli sho'rva» — bazada mos retsept yo'q",
-  "1kosa sariyog'li sut 1bo'lak non": "«sariyog'li sut» — bazada yo'q (sut + sariyog'?), non topiladi",
-  'суп из перловки, фасоли': "perlovka-loviyali sho'rva — bazada yo'q (vergul bilan masalliqlar)",
-  'суп из перловки, фасоли, маша': "xuddi shu",
-  'суп из перловки, фасоли, маша, мяса': "xuddi shu"
 };
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const found = (q) => { const r = S.parseText(q, foods, {}); return r.items.length && !r.missing.length ? r.items : null; };

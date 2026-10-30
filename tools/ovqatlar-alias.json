@@ -106,7 +106,11 @@
   "tovuq shashlik",
   "shashlyk kurinyy",
   "куриный шашлык",
-  "tovuq kabab"
+  "tovuq kabab",
+  "jo'ja kabob",
+  "joja kabob",
+  "jo'ja",
+  "jo'ja shashlik"
  ],
  "jigar-kabob": [
   "jigar kabab",
@@ -228,7 +232,18 @@
   "lepeshka",
   "non tandirda",
   "лепёшки",
-  "лепешки"
+  "лепешки",
+  "tuyur non",
+  "bozor noni",
+  "bozor non",
+  "yarimta non",
+  "yarim non",
+  "samarqand non",
+  "samarqand noni",
+  "uy noni",
+  "kesim non",
+  "tandir noni",
+  "non bo'lagi"
  ],
  "patir": [
   "patyr",
@@ -293,7 +308,11 @@
  "kruassan": [
   "kruassan",
   "круассан",
-  "croissant"
+  "croissant",
+  "kurasan",
+  "kruasan",
+  "rogalik",
+  "рогалик"
  ],
  "pirojki": [
   "pirojki qovurma",
@@ -311,7 +330,9 @@
  "suzma": [
   "suzma qatiq",
   "сузьма",
-  "suzma"
+  "suzma",
+  "chakka",
+  "чакка"
  ],
  "qurt": [
   "qurt sut",
@@ -772,7 +793,16 @@
   "qora choy quruq",
   "choy quruq",
   "чай без сахара",
-  "черный чай"
+  "черный чай",
+  "quruq choy",
+  "quruqchoy",
+  "quruq coy",
+  "quruqcoy",
+  "qora va ko'k quruq choy",
+  "ko'k va qora choy",
+  "choy qand-shirinliksiz",
+  "coy",
+  "choi"
  ],
  "choy-shakar": [
   "shakarli choy",
@@ -802,7 +832,12 @@
   "voda",
   "water",
   "mineral suv",
-  "gazsiz suv"
+  "gazsiz suv",
+  "gazli suv",
+  "mineralka",
+  "минеральная вода",
+  "газированная вода",
+  "минералка"
  ],
  "lavash-tovuq": [
   "shaurma",
@@ -881,5 +916,45 @@
   "фри",
   "порция фри",
   "картофель фри"
+ ],
+ "choy-shakar1": [
+  "qandli choy",
+  "qand bilan choy",
+  "choy qand bilan",
+  "shirin choy"
+ ],
+ "chernika": [
+  "golubika",
+  "голубика",
+  "golubika rezavor"
+ ],
+ "pankeyk": [
+  "oladi",
+  "оладьи",
+  "oladya"
+ ],
+ "jarkop": [
+  "jarkoe",
+  "жаркое из говядины",
+  "говяжье жаркое",
+  "jarkoye"
+ ],
+ "yasmiq-shurva": [
+  "chechevitsa sho'rva",
+  "chechevitsa shorva",
+  "чечевичный суп",
+  "суп из чечевицы"
+ ],
+ "kompot": [
+  "uzvar",
+  "узвар",
+  "quruq meva kompoti"
+ ],
+ "bulochka-darchin": [
+  "mayizli bulochka",
+  "bulochka mayiz bilan",
+  "mayizli bulka",
+  "булочка с изюмом",
+  "изюмная булочка"
  ]
 }
