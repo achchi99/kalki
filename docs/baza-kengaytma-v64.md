@@ -30,3 +30,11 @@ Maqsad: o'zbekistonlik foydalanuvchi yozadigan narsalarning 95%+ topilsin. Qoida
 - «pamil» — tekshirildi (choy brendi/navi topilmadi), sinonim qilinmadi.
 - **Ikonka vositasi** (`tools/ikonka-toplam.js`) qayta yozildi: holat hozirgi ilova xaritasidan, yashirin taomlar xato emas, rasmi bor to'plam fayllari o'zgarmaydi; `--tekshir` (test uchun). Natija: generic **172** taom → **152** yangi ikonka, 4 to'plam: `docs/ikonka-toplam-8…11.txt` (42+42+42+26; oxirgisi 6×5), jadval — `docs/ikonka-jadval.md`.
 - Test: `tools/dizayn/test-baza2.mjs` (`--only baza2`).
+
+## 3-bosqich natijasi (v66)
+- **33 ta yangi taom** (`tools/ovqatlar-kengaytma4.js`): USDA 32 + 1 yaqin analog (jusay — USDA «chives», «taxminiy»). Meva 3 (laym, liči, marakuya), quruq meva va urug' 7 (qoq xurmo, olcha qoqi, quritilgan mango, sariq mayiz, qovurilgan kungaboqar/qovoq urug'i/kunjut), sabzavot va ko'kat 17 (sholg'om xom/qaynatilgan, rovoch, qoqi, jusay, rayhon, yalpiz, topinambur, qizil/pekin/pak-choy/bryussel karam, patisson, artishok, selderey ildizi, ko'k pomidor, mosh nihollari), dukkak va makaron 6 (soya, pallali no'xat, oq loviya, butun donli makaron xom/pishgan, tuxumli lapsha xom).
+- **Sinonim (takror emas):** alcha → olxo'ri; turshak, qaysi, urük → quruq o'rik; devzira, lazer, alanga → xom guruch; torlama, ich-kizil, shakarpalak, bo'rikalla, gulobi, handalak → qovun; karpuz → tarvuz; soyaki mayiz → mayiz. Qovun turlari alohida qiymat bilan qo'shilmadi (USDA'da navlar bo'yicha ajratilmagan).
+- Qo'shilmadi: jiyda, do'lana, zarang (manba yo'q).
+- Yangi birliklar: bog' (пучок), barg (лист).
+- Ikonka: generic 202 → rejada 174 yangi ikonka, 4 to'plam (`docs/ikonka-toplam-8…11.txt`: 42 + 42 + 42 + 48 (6×8)).
+- Test: `tools/dizayn/test-baza3.mjs` (`--only baza3`); laym — USDA sitrus Atwater omillari (istisno, testda izohli).

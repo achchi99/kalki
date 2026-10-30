@@ -183,7 +183,7 @@
 5|kraker|a few square thin crackers, golden, on a small plate.|kraker tuc
 5|krendel|three salted hard pretzels, brown with white salt crystals.|krendel
 5|pista|roasted sunflower seeds in shells, a small handful with a few husks.|pista-qovurilgan kungaboqar
-5|kungaboqar-yadro|a small pile of shelled sunflower seeds.|kunjut qovoq-urugi
+5|kungaboqar-yadro|a small pile of shelled sunflower seeds.|kunjut qovoq-urugi kunjut-qovurilgan qovoq-urugi-qovurilgan kungaboqar-qovurilgan
 5|pistachio|salted pistachios in half-open shells, in a small pile.|pista pista-pistachio-tuzli
 5|keshyu|a handful of curved roasted cashew nuts.|keshyu
 5|kedr|a small pile of small pine nuts.|kedr-yongogi
@@ -303,8 +303,8 @@
 6|suli-xom|raw rolled oats, a small heap on a spoon.|suli-xom suli-quruq
 6|manka|semolina porridge in a bowl, white-cream.|manka
 6|mosh|cooked green mung beans in a small bowl.|mosh
-6|noxat|cooked chickpeas in a small bowl, golden beige.|noxat
-6|loviya|cooked red kidney beans in a small bowl.|loviya
+6|noxat|cooked chickpeas in a small bowl, golden beige.|noxat noxat-pallali
+6|loviya|cooked red kidney beans in a small bowl.|loviya loviya-oq soya-pishgan
 6|loviya-qora|cooked black beans in a small white bowl, glossy dark with a little broth.|loviya-qora
 6|yasmiq|cooked orange lentils in a small bowl.|yasmiq
 6|kartoshka|boiled potatoes, two whole, pale yellow, with a bit of dill.|kartoshka kartoshka-xom
@@ -396,7 +396,7 @@
 6|qovun-kantalupa|a cantaloupe slice, orange flesh.|qovun-kantalupa
 6|kumkvat|a few small orange kumquats.|kumkvat
 6|klyukva|a small pile of fresh cranberries.|klyukva
-6|mayiz|a small pile of golden raisins.|mayiz
+6|mayiz|a small pile of golden raisins.|mayiz mayiz-sariq
 6|quruq-orik|a small pile of dried apricots.|quruq-orik
 6|finik|a small pile of dark brown wrinkled dried dates on a small plate, one split open showing the pit.|finik
 6|quruq-anjir|a small pile of flat tan-brown dried figs on a small plate, one torn open showing seeds.|quruq-anjir
@@ -456,3 +456,26 @@
 # v65 (bazani kengaytirish, 2-bosqich): rejalashtirilgan ikonkalar
 6|sous-pishloq|a small bowl of smooth warm yellow cheese sauce with a spoon.|sous-pishloqli
 6|sous-oq|a small bowl of thick white garlic sauce with a few herb flecks.|sous-sarimsoqli
+# v66 (bazani kengaytirish, 3-bosqich): rejalashtirilgan ikonkalar
+6|laym|two whole green limes and one lime half, on a small plate.|laym
+6|lichi|a small pile of lychees, rough red shells, one peeled showing white flesh.|lichi
+6|marakuya|two purple passion fruits, one cut in half showing yellow pulp with seeds.|marakuya
+6|xurmo-quruq|a few dried persimmons (flattened, orange-brown, sugar-dusted) on a small plate.|xurmo-quruq
+6|olcha-quruq|a small heap of dried dark red sour cherries in a small bowl.|olcha-quruq
+6|mango-quruq|a few strips of dried mango, bright orange, on a small plate.|mango-quruq
+6|sholgom|two white-and-purple turnips with short green tops, one cut in half.|sholgom sholgom-pishgan
+6|rovoch|a few fresh rhubarb stalks, red-pink with green ends, tied together.|rovoch
+6|qoqi|a small bunch of fresh dandelion leaves, serrated dark green.|qoqi
+6|jusay|a small bunch of garlic chives (flat green leaves) tied together.|jusay
+6|rayhon|a small bunch of fresh purple and green basil leaves.|rayhon
+6|yalpiz|a small bunch of fresh mint sprigs, bright green leaves.|yalpiz
+6|yer-nok|a few knobby beige Jerusalem artichoke tubers, one cut showing white flesh.|yer-nok
+6|qizil-karam|half a red cabbage, purple, cut side showing the layers.|qizil-karam
+6|pekin-karam|a whole napa cabbage, pale green, elongated.|pekin-karam pak-choy
+6|bryussel-karam|a small heap of Brussels sprouts, small green heads, one halved.|bryussel-karam
+6|patisson|a pale yellow-green pattypan squash with scalloped edges.|patisson
+6|artishok|a whole green globe artichoke.|artishok
+6|selderey-ildiz|a knobby beige celeriac root with a few green stems.|selderey-ildiz
+6|kok-pomidor|two hard green unripe tomatoes, one sliced.|kok-pomidor
+6|mosh-nihol|a small heap of mung bean sprouts, white with tiny green tips, in a small bowl.|mosh-nihol
+6|makaron-quruq|dry short pasta (penne) and a few strands of dry noodles in a small bowl.|makaron-butun-don makaron-butun-don-xom lapsha-xom

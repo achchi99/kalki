@@ -372,6 +372,39 @@
     "170786",
     "171191",
     "173321"
+   ],
+   "2026-10-30c": [
+    "167758",
+    "168164",
+    "168910",
+    "169086",
+    "169091",
+    "169108",
+    "169205",
+    "169226",
+    "169236",
+    "169289",
+    "169731",
+    "169738",
+    "169942",
+    "169957",
+    "169977",
+    "169979",
+    "169994",
+    "170058",
+    "170151",
+    "170383",
+    "170390",
+    "170400",
+    "170456",
+    "170465",
+    "170557",
+    "170563",
+    "171708",
+    "172232",
+    "172429",
+    "173475",
+    "174271"
    ]
   }
  },
@@ -6650,6 +6683,694 @@
      "nom": "serving",
      "miqdor": 1.0,
      "g": 184.0
+    }
+   ]
+  },
+  "167758": {
+   "d": "Rhubarb, raw",
+   "p": 0.9,
+   "f": 0.2,
+   "c": 4.54,
+   "kcal": 21.0,
+   "suv": 93.61,
+   "o": [
+    {
+     "nom": "cup, diced",
+     "miqdor": 1.0,
+     "g": 122.0
+    },
+    {
+     "nom": "stalk",
+     "miqdor": 1.0,
+     "g": 51.0
+    }
+   ]
+  },
+  "168164": {
+   "d": "Raisins, golden, seedless",
+   "f": 0.2,
+   "c": 80.02,
+   "kcal": 301.0,
+   "suv": 14.9,
+   "p": 3.28,
+   "o": [
+    {
+     "nom": "cup, packed",
+     "miqdor": 1.0,
+     "g": 165.0
+    },
+    {
+     "nom": "cup (not packed)",
+     "miqdor": 1.0,
+     "g": 145.0
+    }
+   ]
+  },
+  "168910": {
+   "d": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
+   "f": 1.71,
+   "c": 30.07,
+   "kcal": 149.0,
+   "suv": 61.8,
+   "p": 5.99,
+   "o": [
+    {
+     "nom": "cup spaghetti not packed",
+     "miqdor": 1.0,
+     "g": 117.0
+    },
+    {
+     "nom": "cup spaghetti packed",
+     "miqdor": 1.0,
+     "g": 151.0
+    },
+    {
+     "nom": "cup elbows",
+     "miqdor": 1.0,
+     "g": 117.0
+    },
+    {
+     "nom": "cup penne",
+     "miqdor": 1.0,
+     "g": 97.0
+    },
+    {
+     "nom": "cup shells",
+     "miqdor": 1.0,
+     "g": 105.0
+    },
+    {
+     "nom": "cup lasagne",
+     "miqdor": 1.0,
+     "g": 116.0
+    },
+    {
+     "nom": "cup rotini",
+     "miqdor": 1.0,
+     "g": 107.0
+    },
+    {
+     "nom": "cup farfalle",
+     "miqdor": 1.0,
+     "g": 107.0
+    }
+   ]
+  },
+  "169086": {
+   "d": "Litchis, raw",
+   "f": 0.44,
+   "c": 16.53,
+   "kcal": 66.0,
+   "suv": 81.76,
+   "p": 0.83,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 190.0
+    },
+    {
+     "nom": "fruit without refuse",
+     "miqdor": 1.0,
+     "g": 9.6
+    }
+   ]
+  },
+  "169091": {
+   "d": "Mango, dried, sweetened",
+   "p": 2.45,
+   "f": 1.18,
+   "c": 78.58,
+   "kcal": 319.0,
+   "suv": 16.6
+  },
+  "169108": {
+   "d": "Passion-fruit, (granadilla), purple, raw",
+   "f": 0.7,
+   "c": 23.38,
+   "kcal": 97.0,
+   "suv": 72.93,
+   "p": 2.2,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 236.0
+    },
+    {
+     "nom": "fruit without refuse",
+     "miqdor": 1.0,
+     "g": 18.0
+    }
+   ]
+  },
+  "169205": {
+   "d": "Artichokes, (globe or french), raw",
+   "kcal": 47.0,
+   "c": 10.51,
+   "f": 0.15,
+   "suv": 84.94,
+   "p": 3.27,
+   "o": [
+    {
+     "nom": "artichoke, medium",
+     "miqdor": 1.0,
+     "g": 128.0
+    },
+    {
+     "nom": "artichoke, large",
+     "miqdor": 1.0,
+     "g": 162.0
+    }
+   ]
+  },
+  "169226": {
+   "d": "Dandelion greens, raw",
+   "c": 9.2,
+   "kcal": 45.0,
+   "suv": 85.6,
+   "f": 0.7,
+   "p": 2.7,
+   "o": [
+    {
+     "nom": "cup, chopped",
+     "miqdor": 1.0,
+     "g": 55.0
+    }
+   ]
+  },
+  "169236": {
+   "d": "Jerusalem-artichokes, raw",
+   "c": 17.44,
+   "kcal": 73.0,
+   "p": 2.0,
+   "suv": 78.01,
+   "f": 0.01,
+   "o": [
+    {
+     "nom": "cup slices",
+     "miqdor": 1.0,
+     "g": 150.0
+    }
+   ]
+  },
+  "169289": {
+   "d": "Squash, summer, scallop, raw",
+   "f": 0.2,
+   "c": 3.84,
+   "kcal": 18.0,
+   "suv": 94.18,
+   "p": 1.2,
+   "o": [
+    {
+     "nom": "cup slices",
+     "miqdor": 1.0,
+     "g": 130.0
+    }
+   ]
+  },
+  "169731": {
+   "d": "Noodles, egg, dry, enriched",
+   "c": 71.27,
+   "kcal": 384.0,
+   "p": 14.16,
+   "f": 4.44,
+   "suv": 9.01,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 38.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 2.0,
+     "g": 57.0
+    }
+   ]
+  },
+  "169738": {
+   "d": "Pasta, whole-wheat, dry (Includes foods for USDA's Food Distribution Program)",
+   "p": 13.87,
+   "f": 2.93,
+   "c": 73.37,
+   "kcal": 352.0,
+   "suv": 8.21,
+   "o": [
+    {
+     "nom": "cup spaghetti",
+     "miqdor": 1.0,
+     "g": 91.0
+    },
+    {
+     "nom": "cup elbows",
+     "miqdor": 1.0,
+     "g": 122.0
+    },
+    {
+     "nom": "cup penne",
+     "miqdor": 1.0,
+     "g": 95.0
+    },
+    {
+     "nom": "cup farfalle",
+     "miqdor": 1.0,
+     "g": 81.0
+    },
+    {
+     "nom": "cup rotini",
+     "miqdor": 1.0,
+     "g": 96.0
+    },
+    {
+     "nom": "cup shells",
+     "miqdor": 1.0,
+     "g": 64.0
+    },
+    {
+     "nom": "cup lasagne",
+     "miqdor": 1.0,
+     "g": 90.0
+    }
+   ]
+  },
+  "169942": {
+   "d": "Persimmons, japanese, dried",
+   "f": 0.59,
+   "c": 73.43,
+   "kcal": 274.0,
+   "suv": 23.01,
+   "p": 1.38,
+   "o": [
+    {
+     "nom": "fruit without refuse",
+     "miqdor": 1.0,
+     "g": 34.0
+    }
+   ]
+  },
+  "169957": {
+   "d": "Mung beans, mature seeds, sprouted, raw",
+   "c": 5.94,
+   "kcal": 30.0,
+   "p": 3.04,
+   "f": 0.18,
+   "suv": 90.4,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 104.0
+    },
+    {
+     "nom": "package (12 oz)",
+     "miqdor": 1.0,
+     "g": 340.0
+    }
+   ]
+  },
+  "169977": {
+   "d": "Cabbage, red, raw",
+   "c": 7.37,
+   "kcal": 31.0,
+   "suv": 90.39,
+   "f": 0.16,
+   "p": 1.43,
+   "o": [
+    {
+     "nom": "cup, chopped",
+     "miqdor": 1.0,
+     "g": 89.0
+    },
+    {
+     "nom": "cup, shredded",
+     "miqdor": 1.0,
+     "g": 70.0
+    },
+    {
+     "nom": "head, large (about 5-1/2\" dia)",
+     "miqdor": 1.0,
+     "g": 1134.0
+    },
+    {
+     "nom": "leaf",
+     "miqdor": 1.0,
+     "g": 23.0
+    },
+    {
+     "nom": "head, medium (about 5\" dia)",
+     "miqdor": 1.0,
+     "g": 839.0
+    },
+    {
+     "nom": "head, small (4\" dia)",
+     "miqdor": 1.0,
+     "g": 567.0
+    }
+   ]
+  },
+  "169979": {
+   "d": "Cabbage, chinese (pe-tsai), raw",
+   "c": 3.23,
+   "p": 1.2,
+   "f": 0.2,
+   "suv": 94.39,
+   "kcal": 16.0,
+   "o": [
+    {
+     "nom": "cup, shredded",
+     "miqdor": 1.0,
+     "g": 76.0
+    }
+   ]
+  },
+  "169994": {
+   "d": "Chives, raw",
+   "kcal": 30.0,
+   "p": 3.27,
+   "f": 0.73,
+   "suv": 90.65,
+   "c": 4.35,
+   "o": [
+    {
+     "nom": "tbsp chopped",
+     "miqdor": 1.0,
+     "g": 3.0
+    },
+    {
+     "nom": "tsp chopped",
+     "miqdor": 1.0,
+     "g": 1.0
+    }
+   ]
+  },
+  "170058": {
+   "d": "Turnips, cooked, boiled, drained, without salt",
+   "c": 5.06,
+   "kcal": 22.0,
+   "f": 0.08,
+   "suv": 93.6,
+   "p": 0.71,
+   "o": [
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 156.0
+    },
+    {
+     "nom": "cup, mashed",
+     "miqdor": 1.0,
+     "g": 230.0
+    }
+   ]
+  },
+  "170151": {
+   "d": "Seeds, sesame seeds, whole, roasted and toasted",
+   "f": 48.0,
+   "c": 25.74,
+   "kcal": 565.0,
+   "suv": 3.3,
+   "p": 16.96,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "170383": {
+   "d": "Brussels sprouts, raw",
+   "c": 8.95,
+   "kcal": 43.0,
+   "p": 3.38,
+   "f": 0.3,
+   "suv": 86.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 88.0
+    },
+    {
+     "nom": "sprout",
+     "miqdor": 1.0,
+     "g": 19.0
+    }
+   ]
+  },
+  "170390": {
+   "d": "Cabbage, chinese (pak-choi), raw",
+   "p": 1.5,
+   "f": 0.2,
+   "suv": 95.32,
+   "c": 2.18,
+   "kcal": 13.0,
+   "o": [
+    {
+     "nom": "cup, shredded",
+     "miqdor": 1.0,
+     "g": 70.0
+    },
+    {
+     "nom": "head",
+     "miqdor": 1.0,
+     "g": 840.0
+    },
+    {
+     "nom": "leaf",
+     "miqdor": 1.0,
+     "g": 14.0
+    }
+   ]
+  },
+  "170400": {
+   "d": "Celeriac, raw",
+   "kcal": 42.0,
+   "f": 0.3,
+   "c": 9.2,
+   "suv": 88.0,
+   "p": 1.5,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 156.0
+    }
+   ]
+  },
+  "170456": {
+   "d": "Tomatoes, green, raw",
+   "c": 5.1,
+   "kcal": 23.0,
+   "p": 1.2,
+   "suv": 93.0,
+   "f": 0.2,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 180.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 182.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 123.0
+    },
+    {
+     "nom": "slice or wedge",
+     "miqdor": 1.0,
+     "g": 20.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 91.0
+    }
+   ]
+  },
+  "170465": {
+   "d": "Turnips, raw",
+   "c": 6.43,
+   "kcal": 28.0,
+   "p": 0.9,
+   "f": 0.1,
+   "suv": 91.87,
+   "o": [
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 130.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 183.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 122.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 61.0
+    },
+    {
+     "nom": "cup, cubes",
+     "miqdor": 0.5,
+     "g": 65.0
+    }
+   ]
+  },
+  "170557": {
+   "d": "Seeds, pumpkin and squash seed kernels, roasted, without salt",
+   "p": 29.84,
+   "f": 49.05,
+   "c": 14.71,
+   "kcal": 574.0,
+   "suv": 2.03,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 118.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "170563": {
+   "d": "Seeds, sunflower seed kernels, dry roasted, without salt",
+   "p": 19.33,
+   "f": 49.8,
+   "c": 24.07,
+   "kcal": 582.0,
+   "suv": 1.2,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 128.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "171708": {
+   "d": "Cherries, tart, dried, sweetened (Includes foods for USDA's Food Distribution Program)",
+   "f": 0.73,
+   "c": 80.45,
+   "kcal": 333.0,
+   "suv": 16.6,
+   "p": 1.25,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 0.25,
+     "g": 40.0
+    }
+   ]
+  },
+  "172232": {
+   "d": "Basil, fresh",
+   "f": 0.64,
+   "c": 2.65,
+   "kcal": 23.0,
+   "suv": 92.06,
+   "p": 3.15,
+   "o": [
+    {
+     "nom": "leaves",
+     "miqdor": 5.0,
+     "g": 2.5
+    },
+    {
+     "nom": "tbsp, chopped",
+     "miqdor": 2.0,
+     "g": 5.3
+    },
+    {
+     "nom": "cup leaves, whole",
+     "miqdor": 0.25,
+     "g": 6.0
+    }
+   ]
+  },
+  "172429": {
+   "d": "Peas, split, mature seeds, cooked, boiled, without salt",
+   "c": 21.1,
+   "kcal": 118.0,
+   "p": 8.34,
+   "f": 0.39,
+   "suv": 69.49,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 196.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 12.2
+    }
+   ]
+  },
+  "173475": {
+   "d": "Spearmint, fresh",
+   "f": 0.73,
+   "c": 8.41,
+   "kcal": 44.0,
+   "suv": 85.55,
+   "p": 3.29,
+   "o": [
+    {
+     "nom": "leaves",
+     "miqdor": 2.0,
+     "g": 0.3
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 2.0,
+     "g": 11.4
+    }
+   ]
+  },
+  "174271": {
+   "d": "Soybeans, mature cooked, boiled, without salt",
+   "c": 8.36,
+   "kcal": 172.0,
+   "p": 18.21,
+   "f": 8.97,
+   "suv": 62.55,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 172.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 10.7
     }
    ]
   }
