@@ -2,55 +2,8 @@
 
 `node tools/ikonka-toplam.js` — `data/ikonka-reja.txt` dan hali rasmi yo'q ikonkalar to'plamlari (`docs/ikonka-toplam-N.txt`) va shu jadval. Rasm: to'rni yarating → `node tools/ikonka-kes.js ~/toplam-N.jpg --quru` (kontakt-varaqni ko'ring) → `node tools/ikonka-kes.js ~/toplam-N.jpg` (oxirgi to'plam 7 qatordan kam bo'lsa: `--qator <qatorlar>`).
 
-- Generic (tur ikonkasi) taom: **202** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
-- Yangi ikonka: **174**; to'plam: **4** (№8 — 42 ta, 6×7; №9 — 42 ta, 6×7; №10 — 42 ta, 6×7; №11 — 48 ta, 6×8)
-
-## To'plam 8 (42)
-
-| № | slug | guruh | ishlatadigan taomlar |
-|---|---|---|---|
-| 1 | `qushtili` | milliy taomlar va Yeymiz | Qushtili (yog'da qovurilgan xamir) (`qushtili`) |
-| 2 | `qalampir-dolma` | milliy taomlar va Yeymiz | Qalampir do'lma (go'sht va guruch bilan) (`qalampir-dolma`) |
-| 3 | `grechka-gosht` | milliy taomlar va Yeymiz | Grechka go'sht bilan (`grechka-gosht`) |
-| 4 | `ikra-sabzavot` | milliy taomlar va Yeymiz | Baqlajon ikrasi (`ikra-baqlajon`), Qovoqcha ikrasi (`ikra-qovoqcha`) |
-| 5 | `sezar-salat` | milliy taomlar va Yeymiz | Sezar salati (tovuqli) (`sezar-salat`) |
-| 6 | `dumba` | go'sht, ichki a'zolar, baliq | Dumba (qo'y yog'i, pishgan) (`dumba`) |
-| 7 | `bedana` | go'sht, ichki a'zolar, baliq | Bedana (pishgan) (`bedana`) |
-| 8 | `bedana-tuxum` | go'sht, ichki a'zolar, baliq | Bedana tuxumi (`bedana-tuxum`) |
-| 9 | `aroq` | ichimliklar | Aroq (40%) (`aroq`) |
-| 10 | `konyak` | ichimliklar | Konyak, viski (40%) (`konyak`) |
-| 11 | `grechka` | qolganlari | Grechka (pishgan) (`grechka`), Grechka (xom) (`grechka-xom`) |
-| 12 | `suli-botqa` | qolganlari | Suli bo'tqasi (suvda) (`suli`) |
-| 13 | `suli-xom` | qolganlari | Suli yormasi (xom) (`suli-xom`), Suli yormasi (quruq) (`suli-quruq`) |
-| 14 | `manka` | qolganlari | Manka bo'tqasi (sutda) (`manka`) |
-| 15 | `mosh` | qolganlari | Mosh (pishgan) (`mosh`) |
-| 16 | `noxat` | qolganlari | No'xat (pishgan) (`noxat`), No'xat (pallali, pishgan) (`noxat-pallali`) |
-| 17 | `loviya` | qolganlari | Loviya (pishgan) (`loviya`), Oq loviya (pishgan) (`loviya-oq`), Soya (pishgan) (`soya-pishgan`) |
-| 18 | `loviya-qora` | qolganlari | Qora loviya (pishgan) (`loviya-qora`) |
-| 19 | `yasmiq` | qolganlari | Yasmiq (pishgan) (`yasmiq`) |
-| 20 | `kartoshka` | qolganlari | Kartoshka (`kartoshka`), Kartoshka (xom) (`kartoshka-xom`) |
-| 21 | `makkajoxori` | qolganlari | Makkajo'xori (qaynatilgan) (`makkajoxori`) |
-| 22 | `makkajoxori-botqa` | qolganlari | Makkajo'xori bo'tqasi (suvda) (`makkajoxori-botqa`) |
-| 23 | `kornfleks` | qolganlari | Kornfleks (`kornfleks`) |
-| 24 | `granola` | qolganlari | Granola (`granola`), Granola (uyda) (`granola-uy`) |
-| 25 | `kuskus` | qolganlari | Kuskus (pishgan) (`kuskus`) |
-| 26 | `perlovka` | qolganlari | Arpa yormasi (perlovka, pishgan) (`perlovka`) |
-| 27 | `tariq` | qolganlari | Tariq (pishgan) (`tariq`) |
-| 28 | `ramen` | qolganlari | Tez tayyor lapsha (quruq) (`ramen`), Doshirak (pishloqli ramen, quruq) (`doshirak-pishloq`) |
-| 29 | `guruch-lapsha` | qolganlari | Guruch lapshasi (pishgan) (`guruch-lapsha`) |
-| 30 | `kinoa` | qolganlari | Kinoa (pishgan) (`kinoa`) |
-| 31 | `pomidor` | qolganlari | Pomidor (`pomidor`) |
-| 32 | `bodring` | qolganlari | Bodring (`bodring`) |
-| 33 | `sabzi` | qolganlari | Sabzi (`sabzi`), Sabzi (qaynatilgan) (`sabzi-qaynatilgan`) |
-| 34 | `piyoz` | qolganlari | Piyoz (`piyoz`) |
-| 35 | `sarimsoq` | qolganlari | Sarimsoq (`sarimsoq`) |
-| 36 | `karam` | qolganlari | Karam (oq) (`karam`), Karam (qaynatilgan) (`karam-qaynatilgan`) |
-| 37 | `gulkaram` | qolganlari | Gulkaram (`gulkaram`), Gulkaram (qaynatilgan) (`gulkaram-qaynatilgan`) |
-| 38 | `brokkoli` | qolganlari | Brokkoli (`brokkoli`), Brokkoli (qaynatilgan) (`brokkoli-qaynatilgan`) |
-| 39 | `qovoq` | qolganlari | Qovoq (`qovoq`), Qovoq (qaynatilgan) (`qovoq-qaynatilgan`) |
-| 40 | `baqlajon` | qolganlari | Baqlajon (`baqlajon`), Baqlajon (qaynatilgan) (`baqlajon-qaynatilgan`) |
-| 41 | `qalampir` | qolganlari | Bulg'or qalampiri (`qalampir`), Bulg'or qalampiri (qizil) (`qalampir-qizil`) |
-| 42 | `achchiq-qalampir` | qolganlari | Achchiq qalampir (`achchiq-qalampir`) |
+- Generic (tur ikonkasi) taom: **144** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
+- Yangi ikonka: **132**; to'plam: **3** (№9 — 42 ta, 6×7; №10 — 42 ta, 6×7; №11 — 48 ta, 6×8)
 
 ## To'plam 9 (42)
 
@@ -182,7 +135,7 @@
 | 30 | `xurmo-quruq` | qolganlari | Qoq xurmo (quritilgan) (`xurmo-quruq`) |
 | 31 | `olcha-quruq` | qolganlari | Olcha qoqi (shakarli, quritilgan) (`olcha-quruq`) |
 | 32 | `mango-quruq` | qolganlari | Mango (quritilgan, shakarli) (`mango-quruq`) |
-| 33 | `sholgom` | qolganlari | Sholg'om (`sholgom`), Sholg'om (qaynatilgan) (`sholgom-pishgan`) |
+| 33 | `sholgom` | qolganlari | Sholg'om (`sholgom`), Qaynatilgan sholg'om (`sholgom-pishgan`) |
 | 34 | `rovoch` | qolganlari | Rovoch (`rovoch`) |
 | 35 | `qoqi` | qolganlari | Qoqi (momaqaymoq barglari) (`qoqi`) |
 | 36 | `jusay` | qolganlari | Jusay (ko'k piyoz turi) (`jusay`) |
@@ -197,5 +150,5 @@
 | 45 | `selderey-ildiz` | qolganlari | Selderey ildizi (`selderey-ildiz`) |
 | 46 | `kok-pomidor` | qolganlari | Pomidor (ko'k, pishmagan) (`kok-pomidor`) |
 | 47 | `mosh-nihol` | qolganlari | Mosh nihollari (ko'kartirilgan) (`mosh-nihol`) |
-| 48 | `makaron-quruq` | qolganlari | Makaron (butun donli, pishgan) (`makaron-butun-don`), Makaron (butun donli, xom) (`makaron-butun-don-xom`), Tuxumli lapsha (xom) (`lapsha-xom`) |
+| 48 | `makaron-quruq` | qolganlari | Butun donli makaron (pishgan) (`makaron-butun-don`), Butun donli makaron (xom) (`makaron-butun-don-xom`), Tuxumli lapsha (xom) (`lapsha-xom`) |
 
