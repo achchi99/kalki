@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 61,
+   "d": "2026-10-30",
+   "bn": {
+    "uz": "Ovqatlar va Tarix yangilandi",
+    "ru": "Еда и История обновились"
+   },
+   "items": [
+    {
+     "uz": "Bugungi ovqatlar vaqt chizig'ida: har ovqat vaqtida rangli nuqta va to'lib boruvchi halqa.",
+     "ru": "Еда за сегодня теперь на линии времени: цветная точка и заполняющееся кольцо у каждого приёма.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Bir xil mahsulotlar bitta qatorga birlashadi: «Olma ×3». Bossangiz — alohida yozuvlar.",
+     "ru": "Одинаковые продукты объединяются в одну строку: «Яблоко ×3». Нажмите — отдельные записи."
+    },
+    {
+     "uz": "Tarixda oylik natija: yozilgan kunlar, o'rtacha kkal, vazn va kun halqalari.",
+     "ru": "В Истории итоги месяца: дни с записями, средние ккал, вес и кольца по дням.",
+     "show": "history",
+     "btn": {
+      "uz": "Ko'rsat",
+      "ru": "Показать"
+     }
+    }
+   ]
+  },
+  {
    "v": 60,
    "d": "2026-10-28",
    "bn": {
