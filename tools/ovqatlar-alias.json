@@ -837,7 +837,16 @@
   "mineralka",
   "минеральная вода",
   "газированная вода",
-  "минералка"
+  "минералка",
+  "bonaqua",
+  "bon aqua",
+  "hydrolife",
+  "nestle pure life",
+  "montella daily",
+  "montella suv",
+  "hayat su",
+  "бонаква",
+  "гидролайф"
  ],
  "lavash-tovuq": [
   "shaurma",
@@ -956,5 +965,18 @@
   "mayizli bulka",
   "булочка с изюмом",
   "изюмная булочка"
+ ],
+ "tovuq-boneless": [
+  "stripslar",
+  "tovuq strips",
+  "tovuq stripslari",
+  "chicken strips",
+  "куриные стрипсы"
+ ],
+ "sendvich-tovuq": [
+  "tovuq burger",
+  "chicken burger",
+  "tovuqli burger",
+  "бургер с курицей"
  ]
 }

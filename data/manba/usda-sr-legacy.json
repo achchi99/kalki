@@ -362,6 +362,16 @@
     "174818",
     "175033",
     "175193"
+   ],
+   "2026-10-30b": [
+    "170309",
+    "170318",
+    "170368",
+    "170765",
+    "170785",
+    "170786",
+    "171191",
+    "173321"
    ]
   }
  },
@@ -6510,6 +6520,136 @@
      "nom": "fl oz",
      "miqdor": 1.5,
      "g": 42.0
+    }
+   ]
+  },
+  "170309": {
+   "d": "Fast foods, submarine sandwich, oven roasted chicken on white bread with lettuce and tomato",
+   "f": 3.15,
+   "c": 21.35,
+   "kcal": 157.0,
+   "suv": 63.15,
+   "p": 10.84,
+   "o": [
+    {
+     "nom": "inch sub",
+     "miqdor": 6.0,
+     "g": 198.0
+    },
+    {
+     "nom": "inch sub",
+     "miqdor": 12.0,
+     "g": 396.0
+    }
+   ]
+  },
+  "170318": {
+   "d": "Fast Foods, crispy chicken filet sandwich, with lettuce and mayonnaise",
+   "p": 10.94,
+   "f": 13.59,
+   "c": 27.4,
+   "kcal": 276.0,
+   "suv": 45.84,
+   "o": [
+    {
+     "nom": "sandwich",
+     "miqdor": 1.0,
+     "g": 152.0
+    }
+   ]
+  },
+  "170368": {
+   "d": "Fast Foods, grilled chicken filet sandwich, with lettuce, tomato and spread",
+   "p": 17.34,
+   "f": 4.57,
+   "c": 16.78,
+   "kcal": 182.0,
+   "suv": 60.44,
+   "o": [
+    {
+     "nom": "sandwich",
+     "miqdor": 1.0,
+     "g": 230.0
+    }
+   ]
+  },
+  "170765": {
+   "d": "Fast foods, quesadilla, with chicken",
+   "f": 15.25,
+   "c": 24.04,
+   "kcal": 294.0,
+   "suv": 42.62,
+   "p": 15.05,
+   "o": [
+    {
+     "nom": "each quesadilla",
+     "miqdor": 1.0,
+     "g": 180.0
+    }
+   ]
+  },
+  "170785": {
+   "d": "Fast foods, crispy chicken in tortilla, with lettuce, cheese, and ranch sauce",
+   "f": 15.1,
+   "c": 23.22,
+   "kcal": 275.0,
+   "suv": 47.88,
+   "p": 11.48,
+   "o": [
+    {
+     "nom": "item",
+     "miqdor": 1.0,
+     "g": 133.0
+    }
+   ]
+  },
+  "170786": {
+   "d": "Fast foods, grilled chicken in tortilla, with lettuce, cheese, and ranch sauce",
+   "p": 13.77,
+   "f": 10.31,
+   "c": 18.43,
+   "kcal": 222.0,
+   "suv": 55.17,
+   "o": [
+    {
+     "nom": "item",
+     "miqdor": 1.0,
+     "g": 123.0
+    }
+   ]
+  },
+  "171191": {
+   "d": "Sauce, cheese, ready-to-serve",
+   "p": 6.71,
+   "f": 13.29,
+   "c": 6.83,
+   "kcal": 174.0,
+   "suv": 70.5,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 0.25,
+     "g": 63.0
+    }
+   ]
+  },
+  "173321": {
+   "d": "Fast foods, chicken tenders",
+   "p": 19.22,
+   "f": 13.95,
+   "c": 17.25,
+   "kcal": 271.0,
+   "suv": 46.64,
+   "o": [
+    {
+     "nom": "strip",
+     "miqdor": 1.0,
+     "g": 30.0
+    },
+    {
+     "nom": "serving",
+     "miqdor": 1.0,
+     "g": 184.0
     }
    ]
   }

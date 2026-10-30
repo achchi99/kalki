@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 63,
+   "d": "2026-10-30",
+   "bn": {
+    "uz": "Bazaga 54 ta yangi mahsulot",
+    "ru": "В базе 54 новых продукта"
+   },
+   "items": [
+    {
+     "uz": "Bazaga 54 ta yangi mahsulot: do'kondagi shokolad, yogurt, sharbat, energetiklar — yorlig'idagi qiymat bilan.",
+     "ru": "В базе 54 новых продукта: шоколад, йогурты, соки, энергетики из магазинов — по данным этикетки.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidiruvni ochish",
+      "ru": "Открыть поиск"
+     }
+    },
+    {
+     "uz": "Fast-food: tvister, kesadilya, sendvich-baget, pishloqli va sarimsoqli sous («taxminiy»).",
+     "ru": "Фастфуд: твистер, кесадилья, сэндвич-багет, сырный и чесночный соус («примерно»)."
+    }
+   ]
+  },
+  {
    "v": 62,
    "d": "2026-10-30",
    "bn": {

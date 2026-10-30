@@ -111,10 +111,10 @@
 3|kofe-muzli|iced coffee in a tall plastic cup with ice cubes, light brown.|qahva-sovuq
 3|kola|a clear glass of dark cola with bubbles beside a plain unlabeled dark glass bottle.|kola coca-cola pepsi coca-cola-zero pepsi-zero
 3|limonad|a glass of clear sparkling lemon-lime soda with bubbles, a lemon slice.|limonad sprite sprite-zero tarxun
-3|fanta|a glass of orange sparkling soda with bubbles and an orange slice.|fanta apelsin-gazli fanta-zero
-3|energetik|a slim plain silver energy drink can with a blue-silver design and no text.|energetik red-bull monster adrenaline red-bull-zero
-3|sharbat-meva|a tall glass of golden-orange fruit juice with an apple slice.|sharbat-olma
-3|sharbat-ananas|a glass of pale yellow pineapple juice with a pineapple wedge.|sharbat-ananas
+3|fanta|a glass of orange sparkling soda with bubbles and an orange slice.|fanta apelsin-gazli fanta-zero mirinda
+3|energetik|a slim plain silver energy drink can with a blue-silver design and no text.|energetik red-bull monster adrenaline red-bull-zero flash-up gorilla burn
+3|sharbat-meva|a tall glass of golden-orange fruit juice with an apple slice.|sharbat-olma j7-apelsin
+3|sharbat-ananas|a glass of pale yellow pineapple juice with a pineapple wedge.|sharbat-ananas rich-sharbat
 3|sharbat-olcha|a glass of deep red cherry-cranberry juice with two cherries and a few cranberries beside it.|sharbat-olcha sharbat-klyukva
 3|sharbat-olxori|a glass of dark purple-brown prune juice with a dried plum.|sharbat-olxori
 3|nektar-shaftoli|a glass of thick orange peach-apricot nectar with a peach half and an apricot beside it.|nektar-shaftoli nektar-orik
@@ -127,12 +127,12 @@
 3|limonad-uy|homemade lemonade in a tall glass with lemon slices and ice.|limonad-limon
 3|kompot|homemade fruit compote in a tall glass, pinkish-red with a few cherries and apricot pieces, no ice.|kompot
 3|kvas|kvass, dark amber-brown fermented drink, in a tall glass with light foam.|kvas
-3|issiq-shokolad|a ceramic mug of hot cocoa with milk, warm chocolate brown with a little foam on top.|issiq-shokolad kakao
+3|issiq-shokolad|a ceramic mug of hot cocoa with milk, warm chocolate brown with a little foam on top.|issiq-shokolad kakao nesquik
 3|shokoladli-sut|a glass of chocolate milk, light brown.|shokoladli-sut
 3|smuzi|a thick fruit smoothie in a tall glass, pink-purple, with a berry on the rim.|smuzi smuzi-mango
 3|suv|a glass of clear still water, slightly blue, with a few droplets.|suv
 3|sut-kokteyl|a milkshake in a tall glass, white-cream colored, with a thin froth.|sut-kokteyl
-3|choy-sovuq|iced tea in a tall glass with ice cubes and a lemon slice, amber.|sovuq-choy fuze-tea
+3|choy-sovuq|iced tea in a tall glass with ice cubes and a lemon slice, amber.|sovuq-choy fuze-tea lipton-ice-tea
 3|choy-shakarli|black tea in a clear glass cup with two sugar cubes on the saucer, amber.|choy-shakar1 choy-shakar2 choy-navvot choy-limon-shakar choy-asal
 3|choy-sutli|milk tea in a ceramic cup, beige-brown.|choy-sut-shakar
 3|choy-kok-shakar|green tea in a clear glass cup with one sugar cube on the saucer, pale green-yellow.|kok-choy-shakar
@@ -149,38 +149,38 @@
 4|muzqaymoq-yumshoq|swirled soft-serve vanilla ice cream in a paper cup.|mz-yumshoq
 4|muzqaymoq-rojok|ice cream in a waffle cone, chocolate and nuts coating on the vanilla scoop.|mz-konus-shokolad
 4|muzqaymoq-rojok-sous|vanilla ice cream in a waffle cone with caramel sauce drizzle.|mz-konus-sundae
-4|eskimo|a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.|muzqaymoq-eskimo mz-eskimo-yongoq
+4|eskimo|a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.|muzqaymoq-eskimo mz-eskimo-yongoq inmarko-eskimo
 4|sorbet|two pastel orange fruit sorbet scoops in a small glass cup.|mz-sorbet
 4|muzli|a fruit ice pop on a stick, orange-red, with a few droplets.|mz-muzli mz-meva-bar
 4|sundae|a sundae in a tall glass with vanilla ice cream, chocolate sauce and a wafer.|mz-sundae
 4|vafli-stakancha|an empty crisp waffle ice cream cone, golden-brown.|mz-vafli-stakan
 4|makflurri|ice cream with crushed dark chocolate cookie pieces in a plastic cup.|mz-makflurri
 4|muzlatilgan-yogurt|swirled frozen yogurt, pale cream, in a small cup with a berry on top.|mz-yogurt mz-yogurt-shokolad
-5|sport-protein-kukun|a plain white tub of protein powder with a scoop on the lid and a little powder heap beside it, no label.|protein-kukun protein-izolyat protein-kazein
+5|sport-protein-kukun|a plain white tub of protein powder with a scoop on the lid and a little powder heap beside it, no label.|protein-kukun protein-izolyat protein-kazein on-whey
 5|aminokislota|a small plain tub with a few colorful capsules next to it, no label.|aminokislota
-5|protein-batonchik|a protein bar bitten, with chocolate coating and layers, in a plain wrapper half open.|protein-bar protein-bar-60 protein-bar-40
+5|protein-batonchik|a protein bar bitten, with chocolate coating and layers, in a plain wrapper half open.|protein-bar protein-bar-60 protein-bar-40 protein-rex protein-rex-tiramisu
 5|sport-batonchik|a long chocolate sports bar with nuts and caramel layers, half unwrapped.|sport-snickers-marathon
 5|protein-kokteyl|a plain shaker bottle with creamy protein shake and a little cocoa, no label.|protein-kokteyl-tayyor
 5|geyner|a big plain tub of mass gainer powder with a scoop, no label.|geyner
-5|protein-pechenye|a round oat protein cookie with chocolate chips, two stacked.|protein-pechenye
-5|snickers|a chocolate bar with a bite taken, showing caramel, nougat and peanuts inside.|snickers
+5|protein-pechenye|a round oat protein cookie with chocolate chips, two stacked.|protein-pechenye fitkit-cake
+5|snickers|a chocolate bar with a bite taken, showing caramel, nougat and peanuts inside.|snickers lion snickers-oq snickers-krisper
 5|mars|a chocolate bar with a bite taken, showing nougat and caramel inside.|mars milky-way
 5|twix|two chocolate cookie fingers with caramel, side by side.|twix
 5|kitkat|a four-finger chocolate wafer bar, one finger snapped off showing wafer layers.|kitkat
 5|kokos-batonchik|two chocolate-coated coconut bars, one cut to show white coconut filling.|kokos-batonchik
 5|mms|a small pile of colorful round chocolate candies, no letters.|mms mms-yongoq
-5|shokolad-plitka|a milk chocolate bar with a few squares broken off and stacked.|alpen-gold milka shokolad-sut shokolad-shirin kinder-shokolad
+5|shokolad-plitka|a milk chocolate bar with a few squares broken off and stacked.|alpen-gold milka shokolad-sut shokolad-shirin kinder-shokolad toblerone roshen-shokolad alpen-gold-maxfun alpen-gold-oreo milka-funduk
 5|shokolad-oq|a white chocolate bar with a few squares broken off.|shokolad-oq
 5|shokolad-bodom|a milk chocolate bar with whole almonds visible, a square broken off.|shokolad-bodom
 5|kinder-bueno|two wafer bars coated with chocolate, one cut to show hazelnut cream.|kinder-bueno
 5|nutella|a small glass jar of chocolate hazelnut spread with a knife-swirl in the open jar.|nutella
 5|chips|a handful of golden potato chips on a plate.|chips lays
 5|chips-pringles|a stack of uniform saddle-shaped potato crisps.|pringles
-5|chips-nachos|corn tortilla chips, triangle, golden, in a small pile.|chips-nachos
+5|chips-nachos|corn tortilla chips, triangle, golden, in a small pile.|chips-nachos cheetos
 5|pita-chips|baked pita chips, rectangular pieces, golden.|pita-chips
 5|popkorn|a bowl of fluffy white-yellow popcorn.|popkorn popkorn-sariyog popkorn-yogsiz
 5|popkorn-karamel|caramel popcorn, glossy amber pieces, in a bowl.|popkorn-karamel
-5|kraker|a few square thin crackers, golden, on a small plate.|kraker
+5|kraker|a few square thin crackers, golden, on a small plate.|kraker tuc
 5|krendel|three salted hard pretzels, brown with white salt crystals.|krendel
 5|pista|roasted sunflower seeds in shells, a small handful with a few husks.|pista-qovurilgan kungaboqar
 5|kungaboqar-yadro|a small pile of shelled sunflower seeds.|kunjut qovoq-urugi
@@ -204,7 +204,7 @@
 5|pryanik|a round glazed gingerbread with a swirl of condensed milk filling.|pryanik
 5|pechenye-oreo|two dark chocolate sandwich cookies with white cream, one twisted open.|pechenye-oreo
 5|pechenye-qumli|round shortbread cookies, pale golden, two stacked.|pechenye-qumli pechenye-sariyog pechenye lotus-biscoff pechenye-molochnoe
-5|pechenye-suli|oat cookies with visible oat flakes, two stacked.|pechenye-suli
+5|pechenye-suli|oat cookies with visible oat flakes, two stacked.|pechenye-suli belvita
 5|pechenye-chip|cookies with chocolate chips, two stacked.|pechenye-shokolad
 5|pechenye-zanjabil|round ginger cookies with cracked top, brown.|pechenye-zanjabil
 5|pechenye-anjir|a fig bar cut diagonally, showing fig filling.|pechenye-anjir
@@ -212,8 +212,8 @@
 5|choko-pie|two round chocolate-coated marshmallow cookies, one cut in half.|choko-pie
 5|barni|a small rectangular sponge cake with milk filling cut open.|barni
 5|sirok|a chocolate-glazed curd cheese bar, one bite taken showing white inside.|sirok sirok-glazur2
-5|ledenets|a swirled round lollipop on a stick, multicolor.|ledenets karamel
-5|jele-konfet|a small pile of colorful jelly beans.|jele-konfet
+5|ledenets|a swirled round lollipop on a stick, multicolor.|ledenets karamel chupa-chups roshen-karamel
+5|jele-konfet|a small pile of colorful jelly beans.|jele-konfet haribo
 5|marshmallow|three white puffy marshmallows.|marshmallow zefir
 5|iriska|three wrapped toffee candies, golden-brown, one unwrapped.|iriska
 5|nuga|a block of white nougat with whole almonds, a slice cut.|nuga
@@ -239,22 +239,22 @@
 5|murabbo|a small glass jar of dark red fruit jam with a spoon-swirl.|murabbo
 5|sgushyonka|a can of boiled condensed milk, opened, caramel brown, with a spoon.|sgushyonka
 5|asal|a glass jar of golden honey with a dipper.|asal
-5|konfet|three chocolate candies, one cut open showing filling.|konfet
+5|konfet|three chocolate candies, one cut open showing filling.|konfet raffaello ferrero-rocher merci toffifee mishka-kosolapiy grilyazh
 5|marmelad|colorful fruit marmalade squares, sugar-coated.|marmelad
 5|shakar|a small heap of white granulated sugar.|shakar
 5|qand|a few white sugar cubes stacked.|qand
 6|qurt|a few small round white dried yogurt balls on a small blue-white plate.|qurt
 6|sut|a glass of white milk next to a small glass bottle of milk.|sut sariyogli-sut
 6|kefir|a glass of white kefir, thick, next to a small bottle.|kefir kefir-qulupnay pahta
-6|qaymoq|a small bowl of thick pale cream (qaymoq) with a spoon-swirl.|qaymoq qaymoq-10 qaymoq-yogli qaymoq-kukun
-6|smetana|a small bowl of white sour cream with a spoon swirl.|smetana
+6|qaymoq|a small bowl of thick pale cream (qaymoq) with a spoon-swirl.|qaymoq qaymoq-10 qaymoq-yogli qaymoq-kukun domik-qaymoq
+6|smetana|a small bowl of white sour cream with a spoon swirl.|smetana president-smetana
 6|pishloq-qattiq|a wedge of yellow hard cheese with a few small holes, and two slices.|pishloq pishloq-chedder pishloq-gauda pishloq-shveytsar
-6|pishloq-brynza|a block of white brynza cheese with small cuts and a cube sliced.|pishloq-yumshoq pishloq-feta
-6|tvorog|a small bowl of crumbly white cottage cheese with a spoon.|tvorog5 tvorog-donador
+6|pishloq-brynza|a block of white brynza cheese with small cuts and a cube sliced.|pishloq-yumshoq pishloq-feta president-brinza
+6|tvorog|a small bowl of crumbly white cottage cheese with a spoon.|tvorog5 tvorog-donador danissimo chudo-tvorojok agusha-tvorog valio-tvorog
 6|sariyog|a block of butter with a slice cut off, pale yellow.|sariyog margarin
-6|yogurt|a small cup of thick white plain yogurt with a spoon.|yogurt-tabiiy yogurt-vanil yogurt-yunon
+6|yogurt|a small cup of thick white plain yogurt with a spoon.|yogurt-tabiiy yogurt-vanil yogurt-yunon activia valio-yogurt ehrmann-kokteyl ehrmann-protein ehrmann-desert
 6|yogurt-meva|a small cup of pink fruit yogurt with a strawberry.|yogurt-meva2
-6|krem-pishloq|a small tub of cream cheese with a knife-spread.|krem-pishloq pishloq-hochland pishloq-eritilgan
+6|krem-pishloq|a small tub of cream cheese with a knife-spread.|krem-pishloq pishloq-hochland pishloq-eritilgan president-pishloq
 6|motsarella|a ball of white mozzarella in a small bowl of water, one slice cut.|motsarella
 6|parmezan|a wedge of aged parmesan, pale yellow with crumbly texture.|pishloq-parmezan
 6|rikotta|a small bowl of soft white ricotta with a spoon.|pishloq-rikotta
@@ -269,14 +269,14 @@
 6|kruassan|a golden crescent croissant with flaky layers.|kruassan
 6|pirojki|two fried piroshki pies, golden, one cut showing filling.|pirojki gumma
 6|tost|two slices of toasted white bread, golden.|tost
-6|suxari|small golden bread rusks cubes in a pile.|suxari
+6|suxari|small golden bread rusks cubes in a pile.|suxari kirieshki
 6|xlebets|round puffed rice cakes, light, in a stack.|guruch-xlebets
 6|pita|a round pita bread, puffed and pale, one half open.|non-pita
 6|non-bugdoy|a loaf of whole-grain wheat bread with seeds, two slices cut.|non-bugdoy kepak-non
 6|bagel|a ring bagel with sesame seeds.|bagel
 6|chebureki|a crescent fried cheburek with blistered golden crust.|chebureki belyashi
 6|naggets|four golden chicken nuggets.|naggets tovuq-boneless
-6|sendvich|a sandwich on sliced bread with lettuce, tomato and a filling of chicken, tuna or roast beef, cut in half.|sendvich sendvich-tovuq sendvich-tunets sendvich-mol
+6|sendvich|a sandwich on sliced bread with lettuce, tomato and a filling of chicken, tuna or roast beef, cut in half.|sendvich sendvich-tovuq sendvich-tunets sendvich-mol sendvich-baget
 6|sendvich-baliq|a fish sandwich with a breaded fillet and sauce in a soft bun.|sendvich-baliq
 6|pelmeni|a plate of boiled pelmeni, small round dumplings, with a spoon of sour cream.|pelmeni
 6|vareniki|a plate of vareniki, potato-filled half-moon dumplings, with fried onion.|vareniki
@@ -453,3 +453,6 @@
 6|kakao-kukun|dark brown cocoa powder in a small bowl with a spoon.|kakao-kukun
 6|kepak|light brown wheat bran flakes in a small bowl.|kepak
 1|sezar-salat|Caesar salad with romaine lettuce, grilled chicken slices, croutons and shaved parmesan, in a shallow white bowl.|sezar-salat
+# v65 (bazani kengaytirish, 2-bosqich): rejalashtirilgan ikonkalar
+6|sous-pishloq|a small bowl of smooth warm yellow cheese sauce with a spoon.|sous-pishloqli
+6|sous-oq|a small bowl of thick white garlic sauce with a few herb flecks.|sous-sarimsoqli
