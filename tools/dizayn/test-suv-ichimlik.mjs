@@ -15,7 +15,7 @@ let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
   for (const id of ['suv', 'choy', 'kofe', 'latte', 'kapuchino', 'espresso', 'kompot', 'sharbat-olma', 'sharbat-apelsin', 'nektar-mango', 'limonad', 'kola', 'coca-cola', 'energetik', 'red-bull', 'ayron', 'qatiq', 'kefir', 'sut', 'kakao', 'kvas', 'protein-kokteyl-tayyor', 'tr-choy', 'tr-qahva', 'kokos-suvi', 'yashil-choy']) assert.equal(u[id], 1, id + ' → 1.0');
   for (const id of ['shurva', 'mastava', 'moshxorda', 'chalop', 'mampar', 'unash', 'qaynatma-baliq', 'tovuq-shurva', 'borsch', 'kesma', 'tr-mercimek']) assert.equal(u[id], 0.6, id + ' → 0.6');
   for (const id of ['pivo', 'vino']) assert.equal(u[id], 0, id + ' → 0 (spirtli)'); for (const id of ['osh', 'non', 'somsa', 'kabob', 'tuxum', 'olma', 'yogurt-tabiiy', 'smetana', 'protein-kukun', 'lagmon']) assert.ok(!u[id], id + ' → 0 (jadvalda yo\'q)');
-  const ich = FOODS.filter((f) => f.t === 'i' && f.i !== 'pivo' && f.i !== 'vino' && !f.al); for (const f of ich) assert.equal(u[f.i], 1, 'barcha ichimliklar 1.0: ' + f.i);
+  const SP = new Set(['pivo', 'vino', 'pivo-yengil', 'vino-oq', 'vino-shirin', 'aroq', 'konyak']); for (const id of SP) assert.equal(u[id], 0, id + ' → 0 (spirtli)'); const ich = FOODS.filter((f) => f.t === 'i' && !SP.has(f.i) && !f.al); for (const f of ich) assert.equal(u[f.i], 1, 'barcha ichimliklar 1.0: ' + f.i);
   for (const f of FOODS) if (f.al && u[f.al.f] != null) assert.equal(u[f.i], u[f.al.f], 'alias ' + f.i);
   log('Jadval data/suv-ulush.json: ' + Object.keys(u).length + ' yozuv — suv/choy/qahva/kompot/sharbat/nektar/limonad/gazli/energetik/ayron/qatiq/kefir/sut/kakao/kvas/protein kokteyl 1.0; sho\'rva/mastava/chalop/mampar… 0.6; pivo/vino 0; qolgani yo\'q (=0)'); }
 /* 2. hisob (core) */
