@@ -201,11 +201,11 @@
   /* v68: «Birinchi kun ishonchi» — noaniq miqdor, halqa holatlari, bo'sh holatlar, aniq matnlar */
   Object.assign(D.uz, { amb_tilim: '1 tilim', amb_chorak: 'Chorak', amb_yarim: 'Yarim', amb_butun: 'Butun', ambQ: 'Qancha edi?', ambNote: 'Hozircha taxminiy miqdor — qanchasini tanlang', aqShort: 'miqdor taxminiy',
     pfNone: 'Kiritilmagan', hkFew: 'Haftalik xulosa uchun hali yozuv yetarli emas', rgGoal: 'Kunlik maqsad', rgFirst: 'Birinchi ovqatni yozing', rgLeft: 'kkal qoldi', rgOverA: 'Maqsaddan', rgOverC: 'kkal yuqori',
-    vAriaE: 'Kunlik maqsad: {k} kkal. Birinchi ovqatni yozing', kcNote: "kiritilgan ovqatlar bo'yicha", kcTmp: 'Vaqtinchalik hisob', actAdd: "qo'shish", qLeftPh: 'Bugun yana {n} ta rasm', qLeftAi: "Bugun yana {n} ta AI so'rov", qLeftOv: 'Bugun yana {n} ta ovozli kiritish', qNoLeft: 'Bugungi limit tugadi',
+    vAriaE: 'Kunlik maqsad: {k} kkal. Birinchi ovqatni yozing', kcNote: "kiritilgan ovqatlar bo'yicha", kcTmp: 'Vaqtinchalik hisob', actAdd: "qo'shish", qLeftPh: 'Bugun yana {n} ta rasm', qLeftAi: "Bugun yana {n} ta AI so'rov", qLeftOv: 'Bugun yana {n} ta ovozli kiritish', qLeftS: 'Bugun yana {n} ta', qNoLeft: 'Bugungi limit tugadi',
     kcHisob: 'Kaloriya hisobi', tt_erkin: 'Vaqtlarga ajratmaslik', txChip: "Profilni to'ldiring — aniqroq hisob", txP: 'Hisob vaqtinchalik' });
   Object.assign(D.ru, { amb_tilim: '1 ломтик', amb_chorak: 'Четверть', amb_yarim: 'Половина', amb_butun: 'Целиком', ambQ: 'Сколько было?', ambNote: 'Пока примерное количество — выберите, сколько', aqShort: 'количество примерно',
     pfNone: 'Не указано', hkFew: 'Для итогов недели пока мало записей', rgGoal: 'Цель на день', rgFirst: 'Запишите первую еду', rgLeft: 'ккал осталось', rgOverA: 'Выше цели на', rgOverC: 'ккал',
-    vAriaE: 'Цель на день: {k} ккал. Запишите первую еду', kcNote: 'по записанной еде', kcTmp: 'Предварительный расчёт', actAdd: 'добавить', qLeftPh: 'Сегодня ещё {n} фото', qLeftAi: 'Сегодня ещё {n} AI-запросов', qLeftOv: 'Сегодня ещё {n} голосовых вводов', qNoLeft: 'Лимит на сегодня исчерпан',
+    vAriaE: 'Цель на день: {k} ккал. Запишите первую еду', kcNote: 'по записанной еде', kcTmp: 'Предварительный расчёт', actAdd: 'добавить', qLeftPh: 'Сегодня ещё {n} фото', qLeftAi: 'Сегодня ещё {n} AI-запросов', qLeftOv: 'Сегодня ещё {n} голосовых вводов', qLeftS: 'Сегодня ещё {n}', qNoLeft: 'Лимит на сегодня исчерпан',
     kcHisob: 'Расчёт калорий', tt_erkin: 'Не делить по приёмам пищи', txChip: 'Заполните профиль — расчёт будет точнее', txP: 'Расчёт предварительный' });
   Object.assign(D.uz, { pwChain: "Taxminiy — tarmoq rasmiy qiymat e'lon qilmagan. Menyudagi og'irlik va tarkib bo'yicha hisoblandi.", qApprox: 'taxminiy' });
   Object.assign(D.ru, { pwChain: 'Примерно — сеть не публикует официальные значения. Рассчитано по весу и составу из меню.', qApprox: 'примерно' });
@@ -1348,7 +1348,7 @@
   /* Bugun → «Imkoniyatlar»: CHAPDAN chiqadigan panel (maket: ~/imkoniyatlar-maket.html). Ochish/yopish: tugma, ✕, fon, chapga surish, Escape, Android «orqaga» (nativeBack) */
   function ftLimTxt(x) {
     var q = x.lim === 'ovoz' ? ovq : x.lim === 'ai' ? aiq : null; if (!q) return '';
-    return q.qoldi > 0 ? T(x.lim === 'ovoz' ? 'qLeftOv' : (x.k === 'rasm' || x.k === 'menyu' ? 'qLeftPh' : 'qLeftAi'), { n: q.qoldi }) : T('qNoLeft');          // v68: aniq davr va tur bilan («Bugun yana 5 ta rasm»)
+    return q.qoldi > 0 ? T('qLeftS', { n: q.qoldi }) : T('qNoLeft');          // v68: aniq davr bilan («Bugun yana 5 ta»; tur — kartaning o'z nomi: Ovoz / Rasm / Menyu)
   }
   function ftDrawerHtml() {
     var L = featList(), it = function (h, cls) { return h.replace(/^<(\w+) class="/, '<$1 class="it ' + (cls || '')); };
