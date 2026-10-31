@@ -52,7 +52,9 @@
       flush: function () {
         if (dis) return false; var a = read(); if (!a.length) return false; var id = o.cid ? o.cid() : ''; if (!id) return false;
         var sw = 0; try { sw = Math.round((w.screen && w.screen.width) || w.innerWidth || 0); } catch (e) {}
-        var body = JSON.stringify({ q: id, p: o.platform ? o.platform() : 'veb', t: o.lang ? o.lang() : 'uz', h: a.slice(0, 30), e: sw, v: o.ver ? String(o.ver() || '') : '' }), ok = false;          // e — ekran kengligi (serverda guruhga aylanadi), v — APK versiyasi
+        var inst = null; try { if (o.inst) { var iv = o.inst(); inst = iv === 1 || iv === true ? 1 : (iv === 0 || iv === false ? 0 : null); } } catch (e) {}          // v66+: bosh ekranga qo'shilganmi (standalone / Android ilova) — 1 | 0 (belgisiz — yuborilmaydi)
+        var bodyO = { q: id, p: o.platform ? o.platform() : 'veb', t: o.lang ? o.lang() : 'uz', h: a.slice(0, 30), e: sw, v: o.ver ? String(o.ver() || '') : '' }; if (inst != null) bodyO.i = inst;
+        var body = JSON.stringify(bodyO), ok = false;          // e — ekran kengligi (serverda guruhga aylanadi), v — APK versiyasi
         try { var nav = w.navigator; if (nav && nav.sendBeacon) ok = nav.sendBeacon('/api/stat', new w.Blob([body], { type: 'application/json' })); } catch (e) { ok = false; }
         if (!ok) { try { w.fetch('/api/stat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {}); ok = true; } catch (e) { ok = false; } }
         if (ok) write(a.slice(30)); return ok;
