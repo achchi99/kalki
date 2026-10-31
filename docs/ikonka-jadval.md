@@ -2,55 +2,8 @@
 
 `node tools/ikonka-toplam.js` — `data/ikonka-reja.txt` dan hali rasmi yo'q ikonkalar to'plamlari (`docs/ikonka-toplam-N.txt`) va shu jadval. Rasm: to'rni yarating → `node tools/ikonka-kes.js ~/toplam-N.jpg --quru` (kontakt-varaqni ko'ring) → `node tools/ikonka-kes.js ~/toplam-N.jpg` (oxirgi to'plam 7 qatordan kam bo'lsa: `--qator <qatorlar>`).
 
-- Generic (tur ikonkasi) taom: **98** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
-- Yangi ikonka: **90**; to'plam: **2** (№10 — 42 ta, 6×7; №11 — 48 ta, 6×8)
-
-## To'plam 10 (42)
-
-| № | slug | guruh | ishlatadigan taomlar |
-|---|---|---|---|
-| 1 | `ananas` | qolganlari | Ananas (`ananas`) |
-| 2 | `mango` | qolganlari | Mango (`mango`) |
-| 3 | `qulupnay` | qolganlari | Qulupnay (`qulupnay`) |
-| 4 | `malina` | qolganlari | Malina (`malina`) |
-| 5 | `tut` | qolganlari | Tut (`tut`) |
-| 6 | `greypfrut` | qolganlari | Greypfrut (`greypfrut`), Pomelo (`pomelo`) |
-| 7 | `kokos` | qolganlari | Kokos (yangi, eti) (`kokos`) |
-| 8 | `chernika` | qolganlari | Chernika (`chernika`) |
-| 9 | `ejevika` | qolganlari | Ejevika (`ejevika`) |
-| 10 | `papayya` | qolganlari | Papayya (`papayya`) |
-| 11 | `smorodina` | qolganlari | Qora smorodina (`smorodina-qora`), Qizil smorodina (`smorodina-qizil`) |
-| 12 | `krijovnik` | qolganlari | Krijovnik (`krijovnik`) |
-| 13 | `nektarin` | qolganlari | Nektarin (`nektarin`) |
-| 14 | `konserva-shaftoli` | qolganlari | Shaftoli (konserva, sharbatli) (`shaftoli-konserva`) |
-| 15 | `konserva-ananas` | qolganlari | Ananas (konserva) (`ananas-konserva`) |
-| 16 | `konserva-gilos` | qolganlari | Gilos (konserva) (`gilos-konserva`) |
-| 17 | `feyxoa` | qolganlari | Feyxoa (`feyxoa`) |
-| 18 | `guava` | qolganlari | Guava (`guava`) |
-| 19 | `qovun-kantalupa` | qolganlari | Qovun (kantalupa) (`qovun-kantalupa`) |
-| 20 | `kumkvat` | qolganlari | Kumkvat (`kumkvat`) |
-| 21 | `klyukva` | qolganlari | Klyukva (yangi) (`klyukva`) |
-| 22 | `mayiz` | qolganlari | Mayiz (kishmish) (`mayiz`), Sariq mayiz (kishmish, oltinrang) (`mayiz-sariq`) |
-| 23 | `quruq-orik` | qolganlari | Quruq o'rik (`quruq-orik`) |
-| 24 | `finik` | qolganlari | Xurmo (quruq, finik) (`finik`) |
-| 25 | `quruq-anjir` | qolganlari | Anjir (quritilgan) (`quruq-anjir`) |
-| 26 | `chernosliv` | qolganlari | Olxo'ri (quritilgan) (`chernosliv`) |
-| 27 | `quruq-olma` | qolganlari | Quritilgan olma (`quruq-olma`) |
-| 28 | `quruq-nok` | qolganlari | Quritilgan nok (`quruq-nok`) |
-| 29 | `banan-chips` | qolganlari | Banan chipslari (`banan-chips`) |
-| 30 | `quruq-klyukva` | qolganlari | Quritilgan klyukva (shirin) (`klyukva-quruq`) |
-| 31 | `yog` | qolganlari | Osh yog'i (o'simlik) (`yog`) |
-| 32 | `zaytun-yogi` | qolganlari | Zaytun yog'i (`zaytun-yogi`) |
-| 33 | `mayonez` | qolganlari | Mayonez (`mayonez`) |
-| 34 | `ketchup` | qolganlari | Ketchup (`ketchup`) |
-| 35 | `soya-sous` | qolganlari | Soya sousi (`soya-sous`) |
-| 36 | `xummus` | qolganlari | Xummus (`xummus`), Xummus (uyda) (`xummus-uy`) |
-| 37 | `tahini` | qolganlari | Tahini (kunjut pastasi) (`tahini`) |
-| 38 | `tofu` | qolganlari | Tofu (`tofu`) |
-| 39 | `tofu-qovurilgan` | qolganlari | Tofu (qovurilgan) (`tofu-qov`) |
-| 40 | `xantal` | qolganlari | Xantal (gorchitsa) (`xantal`) |
-| 41 | `bbq-sous` | qolganlari | BBQ sousi (`bbq-sous`) |
-| 42 | `pesto` | qolganlari | Pesto sousi (`pesto`) |
+- Generic (tur ikonkasi) taom: **52** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
+- Yangi ikonka: **48**; to'plam: **1** (№11 — 48 ta, 6×8)
 
 ## To'plam 11 (48)
 
