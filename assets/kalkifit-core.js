@@ -159,6 +159,20 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function dayBalance(st, d, eaten) { var dp = dayPlan(st, d); return { target: dp.target, eaten: eaten, credit: Math.max(0, dp.limit - dp.target), base: dp.base, extraSteps: dp.extra, limit: dp.limit, remaining: dp.limit - eaten, dp: dp }; }          // v51: dayPlan ustida
 
   /* ---------- ovqat hisobi ---------- */
+  var OB_DEF_W = { m: 75, f: 62 };          // onboarding «Keyinroq» namunaviy vazni (kalkifit-app.js OBDEF bilan bir xil)
+  /* v68: NOANIQ MIQDOR — miqdor aytilmagan va 1 birligi katta (> AMB_KCAL kkal) taom avtomatik «1 butun» bo'lmaydi: «Qancha edi?» tanlovi.
+     Faqat «dona» birligi. Non (t = n): 1 tilim (bo'lak bo'lsa) · chorak · yarim · butun; boshqalar: yarim · butun (1 birlik). def — tanlanmaguncha taxminiy miqdor: ≤ 350 kkal bo'lgan eng katta variant. */
+  var AMB_KCAL = 250, AMB_DEF = 350;
+  function ambOpts(food, unit) {
+    if (!food || unit !== 'dona') return null;          // faqat DONA birligi (non, somsa, lavash, burger…): lagan/kosa/piyola/bo'lak — o'zi odatiy porsiya
+    var ug = unitGrams(food, unit); if (!(ug > 0)) return null; var kc = portion(food, ug).kcal; if (!(kc > AMB_KCAL)) return null;
+    var bread = food.t === 'n', o = [];
+    if (bread && unit !== 'bolak' && unitGrams(food, 'bolak') > 0 && unitGrams(food, 'bolak') < ug / 3) o.push({ k: 'tilim', unit: 'bolak', qty: 1 });
+    if (bread) o.push({ k: 'chorak', unit: unit, qty: 0.25 });
+    o.push({ k: 'yarim', unit: unit, qty: 0.5 }, { k: 'butun', unit: unit, qty: 1 });
+    var def = 0; o.forEach(function (x, i) { x.kcal = portion(food, unitGrams(food, x.unit) * x.qty).kcal; if (x.kcal <= AMB_DEF) def = i; });
+    return { opts: o, def: def, kcal: kc };
+  }
   function portion(food, grams) {                    // food: 100 g uchun k,p,f,c; grams → yozuv qiymatlari
     var m = grams / 100; return { g: round1(grams), kcal: Math.round(food.k * m), p: round1(food.p * m), f: round1(food.f * m), c: round1(food.c * m) };
   }
@@ -174,7 +188,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function dayTotals(st, d) { var x = dayOf(st, d); return sumEntries(x ? x.food : []); }
   function emptyState() { return { v: VERSION, setup: false, created: null, seq: 1, profile: null, days: {}, weights: [], customFoods: [], recents: [], favs: [], tpls: [], vessels: [], stepGoal: 8000, prefs: {}, lastBackup: null, trackStart: null }; }
   function addFood(st, d, e) {
-    var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 };
+    var x = ensureDay(st, d), it = { id: st.seq++, fid: e.fid || null, name: e.name || null, meal: MEALS.indexOf(e.meal) > -1 ? e.meal : 's', unit: e.unit || null, qty: e.qty || 1, g: e.g || 0, kcal: Math.round(e.kcal) || 0, p: round1(e.p || 0), f: round1(e.f || 0), c: round1(e.c || 0), est: !!e.est, ts: e.ts || 0 }; if (e.aq) it.aq = 1;          // v68: aq — miqdor aytilmagan («Qancha edi?» tanlanmagan), taxminiy miqdor
     if (e.vr) it.vr = String(e.vr).slice(0, 40); if (e.sz) it.sz = String(e.sz).slice(0, 20);
     if (e.pt && !it.fid) it.pt = String(e.pt).slice(0, 60);          // bazada yo'q yozuv (AI/rasm/matn): porsiya matni ALOHIDA — nomga qo'shilmaydi
     if (e.ifid) it.ifid = String(e.ifid).slice(0, 60); if (/^(salat|shorva|issiq|zakuska|desert)$/.test(e.ikat || '')) it.ikat = e.ikat;          // menyudan: ikonka uchun baza taomi va toifa (kkal'ga ta'sir yo'q)
@@ -419,6 +433,11 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (v === 0 && Array.isArray(raw.log)) raw.log.forEach(function (e) { if (e && D.parse(e.d || e.date)) { var d = e.d || e.date; ensureDay(s, d).food.push({ id: s.seq++, fid: null, name: String(e.name || '?'), meal: 's', unit: null, qty: 1, g: 0, kcal: Math.round(num(e.kcal)), p: 0, f: 0, c: 0, est: true, ts: 0 }); } });   // eski v0: tekis "log"
     (Array.isArray(raw.weights) ? raw.weights : []).forEach(function (w) { if (w && D.parse(w.d)) addWeight(s, w.d, w.kg); });
     s.customFoods = Array.isArray(raw.customFoods) ? raw.customFoods.filter(function (f) { return f && f.id && f.n; }) : [];
+    /* v68: «O'rtacha me'yor bilan boshlash» (Keyinroq) avval namunaviy vaznni vazn tarixiga «birinchi o'lchov» qilib yozardi. Hali aniqlashtirilmagan (prefs.taxminiy) holatda
+       boshlang'ich kundagi namunaviy (75 / 62 kg) yozuv tarixdan YASHIRILADI — o'chirilmaydi: s.wHid ga ko'chadi (sabab 'ob'). Profil vazni hisob uchun qoladi. */
+    s.wHid = Array.isArray(raw.wHid) ? raw.wHid.filter(function (w) { return w && D.parse(w.d); }) : [];
+    var rp = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}, w0 = s.weights[0];
+    if (rp.taxminiy && s.profile && w0 && w0.d === raw.trackStart && w0.kg === OB_DEF_W[s.profile.sex] && num(s.profile.weight) === w0.kg) { s.weights.shift(); s.wHid.push({ d: w0.d, kg: w0.kg, sabab: 'ob' }); }
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
     s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s); s.afsona = cleanAfsona(raw.afsona);
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
@@ -762,7 +781,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
         if (want) want.forEach(function (kd) { if (!pickV) pickV = vs.filter(function (v) { return v.kind === kd; })[0]; }); else if (!p.unit) pickV = vs[0];
         if (pickV) { u = 'v:' + pickV.id; g = pickV.fam[vk] * qty; }
       }
-      var it = { text: fr, fid: hit.id, food: food, unit: u, qty: qty, g: g, est: !!food.e };
+      var it = { text: fr, fid: hit.id, food: food, unit: u, qty: qty, g: g, est: !!food.e }; if (!(p.qty > 0) && !p.unit && u.indexOf('v:') !== 0) it.nq = true;          // v68: miqdor aytilmagan («non») — «Qancha edi?»
       if (u.indexOf('v:') === 0) { it.vfill = 'tola'; it.vessel = u; }
       if (fam) { it.fam = fam; it.sel = sel; it.szid = fam.fam.sz ? (szid || fam.fam.sz.d) : null; it.vr = food.vr; it.sz = fam.fam.sz ? it.szid : null; }
       items.push(it);
@@ -786,7 +805,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     bmrRaw: bmrRaw, bmi: bmi, refWeight: refWeight, protein: protein, PROT_K: PROT_K, TARTIB: TARTIB, TARTIB_DEF: TARTIB_DEF, tartibOf: tartibOf, mealSplit: mealSplit, mealBudgets: mealBudgets, MEAL_END: MEAL_END, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
-    addFood: addFood, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
+    addFood: addFood, ambOpts: ambOpts, AMB_KCAL: AMB_KCAL, OB_DEF_W: OB_DEF_W, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,

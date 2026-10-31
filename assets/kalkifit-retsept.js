@@ -24,7 +24,7 @@
       rtNote: 'Raqamlar taxminiy, KalkiFit bazasi (USDA) asosida.', rtSave: 'Saqlash — Mening taomlarim', rtShare: 'Ulashish', rtSaved: 'Saqlandi: «{n}» — 1 porsiya {k} kkal', rtSavedBtn: 'Bugunga yozish', rtLight: 'yengil', rtNoSave: "Saqlab bo'lmadi — masalliq yo'q",
       rtCardT: 'Ulashish kartochkasi', rtCardH: "Instagram yoki Telegram'ga qo'yish uchun rasm.", rtDl: 'Yuklab olish', rtShared: 'Ulashildi', rtMaking: 'Rasm tayyorlanmoqda…',
       rtLightV: 'Yengil versiya', rtBy: 'KalkiFit bilan hisoblandi', rtCardSub: '1 porsiya: {a} → {b} kkal', rtPeopleN: '{n} kishilik',
-      rtLimit: "Bugungi {n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.", rtAiLeft: "Bugungi AI so'rovlari: {n} tadan {q} ta qoldi.",
+      rtLimit: "Bugungi {n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.", rtAiLeft: "Bugungi AI so'rovlari: {n} tadan {q} ta qoldi. Tanilmagan qatorlar AI tahliliga yuboriladi, retsept matni saqlanmaydi.",
       rtErrNet: "Internetga ulanib bo'lmadi. Masalliqlarni qo'lda tanlang.", rtErrAi: "AI bu qatorlarni aniqlay olmadi. Quyidagilarni o'zingiz tanlang.", rtErrNone: "Masalliq topilmadi. Retseptni gram bilan yozing yoki masalliqni qo'lda qo'shing.",
       rtBack: 'Orqaga'
     },
@@ -45,7 +45,7 @@
       rtNote: 'Цифры примерные, по базе KalkiFit (USDA).', rtSave: 'Сохранить — Мои блюда', rtShare: 'Поделиться', rtSaved: 'Сохранено: «{n}» — 1 порция {k} ккал', rtSavedBtn: 'Записать на сегодня', rtLight: 'лёгкая', rtNoSave: 'Не удалось сохранить — нет ингредиентов',
       rtCardT: 'Карточка для соцсетей', rtCardH: 'Картинка для Instagram или Telegram.', rtDl: 'Скачать', rtShared: 'Отправлено', rtMaking: 'Готовим картинку…',
       rtLightV: 'Лёгкая версия', rtBy: 'Посчитано в KalkiFit', rtCardSub: '1 порция: {a} → {b} ккал', rtPeopleN: 'на {n} чел.',
-      rtLimit: 'Сегодняшние AI-запросы ({n}) использованы. Попробуйте завтра.', rtAiLeft: 'AI-запросов на сегодня: осталось {q} из {n}.',
+      rtLimit: 'Сегодняшние AI-запросы ({n}) использованы. Попробуйте завтра.', rtAiLeft: 'AI-запросов на сегодня: осталось {q} из {n}. Нераспознанные строки отправляются на AI-анализ, текст рецепта не сохраняется.',
       rtErrNet: 'Нет соединения с интернетом. Выберите ингредиенты вручную.', rtErrAi: 'ИИ не смог распознать эти строки. Выберите их сами.', rtErrNone: 'Ингредиенты не найдены. Напишите рецепт с граммами или добавьте ингредиент вручную.',
       rtBack: 'Назад'
     }
