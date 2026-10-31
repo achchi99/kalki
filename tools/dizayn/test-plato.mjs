@@ -37,10 +37,10 @@ try {
   await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(700); await hist(p); assert.equal(await p.locator('#plWater').count(), 0, 'yopilgan izoh qayta chiqmaydi'); assert.equal(await p.locator('.pl-w svg .wb').count(), 0, 'fon ham'); assert.equal(await p.locator('.pl-pc[data-k=all]').getAttribute('aria-pressed'), 'true', 'davr tanlovi eslab qolinadi');
   ok('Vazn trendi: EMA trend vazni (' + c.big + ' kg), «' + nb(c.lbl) + '», nuqtalar + yashil chiziq, «1-hafta: suv» fon/izoh (yopsa qaytmaydi), davr 4 hafta / 3 oy / hammasi (eslab qolinadi)');
   /* ---- 2. «Nega sekin ozyapman?» kartasi va oyna ---- */
-  assert.match(nb(await p.locator('#plCta').innerText()), /Nega sekin ozyapman\?\s+Ma'lumotlaringizdan 3 ta sabab topildi/);
+  assert.match(nb(await p.locator('#plCta').innerText()), /Natijaga ta'sir qilishi mumkin bo'lgan omillar\s+Ma'lumotlaringizdan 3 ta sabab topildi/);
   await p.click('#plCta'); await p.waitForTimeout(700); assert.equal(await sheet(p), 'plato');
   let o = await p.evaluate(() => { const s = document.getElementById('rzSheet'); return { h: s.querySelector('h2, .rz-sh-h b, .rz-h').textContent.trim(), sub: s.querySelector('.pl-sub').textContent, cmp: [...s.querySelectorAll('.pl-cmp b')].map((x) => x.textContent), gap: s.querySelector('.pl-note.ye').textContent, rs: [...s.querySelectorAll('.pl-cs')].map((x) => x.dataset.r), k: [...s.querySelectorAll('.pl-cs .k')].map((x) => x.textContent), tr: [...s.querySelectorAll('.pl-ti')].map((x) => x.dataset.k), ft: s.querySelector('.pl-ft').textContent, bg: getComputedStyle(s).backgroundColor, card: getComputedStyle(s.querySelector('.pl-cs')).backgroundColor }; });
-  assert.match(o.h, /Nega sekin ozyapman/); assert.match(nb(o.sub), /^So'nggi \d+ kun · sizning yozuvlaringiz bo'yicha$/); assert.ok(o.cmp.length === 2 && o.cmp.every((x) => /^[−+]?\d+,\d kg$/.test(nb(x))), 'kutilgan / haqiqiy: ' + o.cmp);
+  assert.match(o.h, /Natijaga ta'sir qilishi mumkin/); assert.match(nb(o.sub), /^So'nggi \d+ kun · sizning yozuvlaringiz bo'yicha$/); assert.ok(o.cmp.length === 2 && o.cmp.every((x) => /^[−+]?\d+,\d kg$/.test(nb(x))), 'kutilgan / haqiqiy: ' + o.cmp);
   assert.match(nb(o.gap), /Farq ~\d+,\d kg — kuniga ~\d+ kkal/); assert.deepEqual(o.rs, ['yozilmagan', 'qadam', 'oqsil'], 'sabablar tartibi'); assert.match(nb(o.k[0]), /^\d kun \/ 28 · ≈ −\d+ kkal\/kun$/); assert.match(nb(o.k[1]), /^≈ −\d+ kkal\/kun$/); assert.match(nb(o.k[2]), /^\d+ \/ \d+ g$/);
   assert.deepEqual(o.tr, ['log_d', 'walk', 'prot']); assert.equal(nb(o.ft), 'Hisob taxminiy: 1 kg yog\' ≈ 7 700 kkal. Bu tibbiy maslahat emas.'); assert.notEqual(o.bg, o.card, 'oyna foni va kartalar farqlanadi (maket)');
   assert.equal(await p.locator('#rzSheet .pl-src li').count(), 0); await p.click('#rzSheet [data-act=plsrc]'); await p.waitForTimeout(250); assert.equal(await p.locator('#rzSheet .pl-src li').count(), 6, 'Manbalar — 6 ta'); assert.equal(await p.locator('#rzSheet [data-act=plsrc]').getAttribute('aria-expanded'), 'true');
@@ -70,7 +70,7 @@ try {
   ok('Holatlar: ma\'lumot kam — «Yana N …»; juda tez — ogohlantirish + «Limitni oshirish» (Profil); qadamsiz — qadam sababi ham, bu haqda gap ham yo\'q; joyida — «Hammasi to\'g\'ri»; saqlash / vazn olish — karta va qator yo\'q');
   /* ---- 4. Imkoniyatlar → Natijalar; «Haftangiz» ichida bir marta ---- */
   p = await open(PD.build('demo', S)); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(600);
-  const fr = p.locator('.sl-feats [data-act=feat][data-fk=plato]'); assert.equal(await fr.count(), 1); assert.match(nb(await fr.innerText()), /Nega sekin ozyapman\?\s+Ma'lumotlaringizdan sababni topadi/);
+  const fr = p.locator('.sl-feats [data-act=feat][data-fk=plato]'); assert.equal(await fr.count(), 1); assert.match(nb(await fr.innerText()), /Natijaga ta'sir qilishi mumkin bo'lgan omillar\s+Vazn kutilganidan sekin o'zgarsa — ma'lumotlaringiz bo'yicha/);
   await fr.click(); await p.waitForTimeout(600); assert.equal(await sheet(p), 'plato'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('[data-act=ftopen]'); await p.waitForTimeout(500);
   assert.equal(await p.locator('#ftDr.op').count(), 1, 'chap panel ochildi'); { const g = await p.evaluate(() => { const el = document.querySelector('#ftDr [data-fk=plato]'); if (!el) return null; let h = el.closest('.ft-grp').previousElementSibling; return h && h.textContent; }); assert.equal(g, 'Natijalar', 'chap panel: Natijalar guruhida'); await p.keyboard.press('Escape'); await p.waitForTimeout(400); }
@@ -88,8 +88,8 @@ try {
       return { x: document.documentElement.scrollWidth > innerWidth + 1, out: tx.filter((e) => { const b = e.getBoundingClientRect(); return b.right > W + 1 || b.left < -1; }).map((e) => e.className).slice(0, 3), small: tx.filter((e) => parseFloat(getComputedStyle(e).fontSize) < 14.9 * 1.0).map((e) => e.className + ':' + getComputedStyle(e).fontSize).slice(0, 3), heavy: tx.filter((e) => +getComputedStyle(e).fontWeight > 700).length, mix: tx.map((e) => e.textContent).join(' ').split(/[\s«»().,:;!?—–\/·~≈−+%]+/).filter((w) => /[a-z]/i.test(w) && /[а-яёўқғҳ]/i.test(w)) }; }, sel);
     let r = await chk('.pl-w'); assert.ok(!r.x && !r.out.length && !r.small.length && !r.heavy, lang + ' Tarix: ' + JSON.stringify(r)); assert.deepEqual(r.mix, [], lang + ': aralash alifbo');
     await p.click('#plCta'); await p.waitForTimeout(700); await p.click('#rzSheet [data-act=plsrc]'); await p.waitForTimeout(250); r = await chk('#rzSheet'); assert.ok(!r.x && !r.out.length && !r.small.length && !r.heavy, lang + ' oyna: ' + JSON.stringify(r)); assert.deepEqual(r.mix, [], lang + ' oyna: aralash alifbo');
-    if (lang === 'ru') assert.match(nb(await p.locator('#rzSheet').innerText()), /Почему вес уходит медленно\?[\s\S]*Найденные причины[\s\S]*Это не медицинский совет/);
-    if (lang === 'cyr') assert.match(nb(await p.locator('#rzSheet').innerText()), /Нега секин озяпман\?/);
+    if (lang === 'ru') assert.match(nb(await p.locator('#rzSheet').innerText()), /Факторы, которые могут влиять на результат[\s\S]*Найденные причины[\s\S]*Это не медицинский совет/);
+    if (lang === 'cyr') assert.match(nb(await p.locator('#rzSheet').innerText()), /Натижага таъсир қилиши мумкин/);
     assert.deepEqual(p.errs, []); await p.context().close();
   }
   ok('360 px × 115%: RU (yorug\'), ЎЗ va UZ (tungi) — gorizontal siljish yo\'q, matn ≥ 15 px, og\'irlik ≤ 700, so\'zda aralash alifbo yo\'q');

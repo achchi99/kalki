@@ -84,7 +84,7 @@ async function shoot(p) { const [fc] = await Promise.all([p.waitForEvent('filech
 try {
   /* qo'shish oynasidan */
   let p = await open(mk({ eaten: 900 })); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForSelector('#mnAdd'); await p.click('#mnAdd'); await p.waitForSelector('[data-act=mnpick]');
-  assert.match(await txt(p, '#rzSheet'), /Rasm saqlanmaydi/); await shoot(p); assert.equal(p.req.length, 1); assert.ok(p.req[0].img > 1000 && p.req[0].cid);
+  assert.match(await txt(p, '#rzSheet'), /Rasm AI tahliliga yuboriladi va saqlanmaydi/); await shoot(p); assert.equal(p.req.length, 1); assert.ok(p.req[0].img > 1000 && p.req[0].cid);
   const res = await txt(p, '#rzSheet'); assert.match(res, /Menyudan 10 ta taom topildi/); const rows = await p.locator('#mnList .sl-mnr').count(); assert.ok(rows >= 2 && rows <= 3, 'variantlar: ' + rows);
   assert.ok(!/pepperoni|Pepperoni|cho'chqa|Cho'chqa|Свин/i.test(res), 'cho\'chqa — taklif qilinmaydi (va bu haqda matn yo\'q)'); assert.match(res, /Oqsilga boy|Yengilroq|Qoldiqqa sig'adi/); assert.match(res, /\d[\d ]* so'm/, 'narx ko\'rsatiladi'); assert.ok((await p.$$eval('#mnList .sl-mnr', (l) => l.map((e) => e.getAttribute('data-src')))).includes('baza'), 'o\'zbek menyusi: tayyor taomlar bazadan (osh, shashlik, mastava)');
   const rem = await p.evaluate(() => { const x = window.__kalkifit; return null; }); void rem;

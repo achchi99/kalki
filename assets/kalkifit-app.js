@@ -202,11 +202,11 @@
   Object.assign(D.uz, { amb_tilim: '1 tilim', amb_chorak: 'Chorak', amb_yarim: 'Yarim', amb_butun: 'Butun', ambQ: 'Qancha edi?', ambNote: 'Hozircha taxminiy miqdor — qanchasini tanlang', aqShort: 'miqdor taxminiy',
     pfNone: 'Kiritilmagan', hkFew: 'Haftalik xulosa uchun hali yozuv yetarli emas', rgGoal: 'Kunlik maqsad', rgFirst: 'Birinchi ovqatni yozing', rgLeft: 'kkal qoldi', rgOverA: 'Maqsaddan', rgOverC: 'kkal yuqori',
     vAriaE: 'Kunlik maqsad: {k} kkal. Birinchi ovqatni yozing', kcNote: "kiritilgan ovqatlar bo'yicha", kcTmp: 'Vaqtinchalik hisob', actAdd: "qo'shish", qLeftPh: 'Bugun yana {n} ta rasm', qLeftAi: "Bugun yana {n} ta AI so'rov", qLeftOv: 'Bugun yana {n} ta ovozli kiritish', qNoLeft: 'Bugungi limit tugadi',
-    kcHisob: 'Kaloriya hisobi', tt_erkin: 'Vaqtlarga ajratmaslik', txChip: "Profilni to'ldiring — aniqroq hisob", txP: "Hisob vaqtinchalik: yosh, bo'y va vazn kiritilmagan" });
+    kcHisob: 'Kaloriya hisobi', tt_erkin: 'Vaqtlarga ajratmaslik', txChip: "Profilni to'ldiring — aniqroq hisob", txP: 'Hisob vaqtinchalik' });
   Object.assign(D.ru, { amb_tilim: '1 ломтик', amb_chorak: 'Четверть', amb_yarim: 'Половина', amb_butun: 'Целиком', ambQ: 'Сколько было?', ambNote: 'Пока примерное количество — выберите, сколько', aqShort: 'количество примерно',
     pfNone: 'Не указано', hkFew: 'Для итогов недели пока мало записей', rgGoal: 'Цель на день', rgFirst: 'Запишите первую еду', rgLeft: 'ккал осталось', rgOverA: 'Выше цели на', rgOverC: 'ккал',
     vAriaE: 'Цель на день: {k} ккал. Запишите первую еду', kcNote: 'по записанной еде', kcTmp: 'Предварительный расчёт', actAdd: 'добавить', qLeftPh: 'Сегодня ещё {n} фото', qLeftAi: 'Сегодня ещё {n} AI-запросов', qLeftOv: 'Сегодня ещё {n} голосовых вводов', qNoLeft: 'Лимит на сегодня исчерпан',
-    kcHisob: 'Расчёт калорий', tt_erkin: 'Не делить по приёмам пищи', txChip: 'Заполните профиль — расчёт будет точнее', txP: 'Расчёт предварительный: возраст, рост и вес не указаны' });
+    kcHisob: 'Расчёт калорий', tt_erkin: 'Не делить по приёмам пищи', txChip: 'Заполните профиль — расчёт будет точнее', txP: 'Расчёт предварительный' });
   Object.assign(D.uz, { pwChain: "Taxminiy — tarmoq rasmiy qiymat e'lon qilmagan. Menyudagi og'irlik va tarkib bo'yicha hisoblandi.", qApprox: 'taxminiy' });
   Object.assign(D.ru, { pwChain: 'Примерно — сеть не публикует официальные значения. Рассчитано по весу и составу из меню.', qApprox: 'примерно' });
   Object.assign(D.uz, { lbT: "Yorliqdan qo'shish", lbManT: "Qo'lda kiritish", lbPickH: "Qadoqdagi «Ozuqaviy qiymat» jadvalini suratga oling: kkal, oqsil, yog' va uglevod raqamlari aniq ko'rinsin. Raqamlarni o'qiymiz — siz tekshirasiz. Rasm AI tahliliga yuboriladi va saqlanmaydi.",
@@ -1163,7 +1163,7 @@
     qaDetect(); var dpT = S.dayPlan(st, t);          // v68 TARTIB (birinchi kun ishonchi): halqa → BJU → bugungi ovqatlar → qadam/mashg'ulot (ma'lumot yo'q — ixcham bitta qator) → qolganlar (bitta karta, suv)
     h += bjuHtml(tot, pl);          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2 sl-sec2k"><h3>' + esc(T('tdMeals')) + '</h3><span class="sl-secv" id="mealTot"><b>' + fmt(tot.kcal) + '</b> / ' + fmt(dpT.limit) + ' ' + esc(T('kcal')) + '</span></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
-    h += (x.steps || (x.ex || []).length ? '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>' : actRowHtml());
+    h += (x.steps || (x.ex || []).length || stepCard() ? '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>' : actRowHtml());
     h += slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
     h += '<div class="sl-duo one"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + ('<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       '</div>';          // v55: suv — alohida ixcham qator (qadam va mashg'ulot yuqorida, ikki kichik karta)
@@ -1348,7 +1348,7 @@
   /* Bugun → «Imkoniyatlar»: CHAPDAN chiqadigan panel (maket: ~/imkoniyatlar-maket.html). Ochish/yopish: tugma, ✕, fon, chapga surish, Escape, Android «orqaga» (nativeBack) */
   function ftLimTxt(x) {
     var q = x.lim === 'ovoz' ? ovq : x.lim === 'ai' ? aiq : null; if (!q) return '';
-    return q.qoldi > 0 ? T(x.lim === 'ovoz' ? 'qLeftOv' : (x.k === 'rasm' ? 'qLeftPh' : 'qLeftAi'), { n: q.qoldi }) : T('qNoLeft');          // v68: aniq davr va tur bilan («Bugun yana 5 ta rasm»)
+    return q.qoldi > 0 ? T(x.lim === 'ovoz' ? 'qLeftOv' : (x.k === 'rasm' || x.k === 'menyu' ? 'qLeftPh' : 'qLeftAi'), { n: q.qoldi }) : T('qNoLeft');          // v68: aniq davr va tur bilan («Bugun yana 5 ta rasm»)
   }
   function ftDrawerHtml() {
     var L = featList(), it = function (h, cls) { return h.replace(/^<(\w+) class="/, '<$1 class="it ' + (cls || '')); };
