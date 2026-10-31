@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 66,
+   "d": "2026-10-31",
+   "bn": {
+    "uz": "Birinchi kundan aniqroq hisob",
+    "ru": "Точнее с первого дня"
+   },
+   "items": [
+    {
+     "uz": "Non, somsa kabi taomlarda «Qancha edi?» — miqdor aytilmasa butun non hisoblanmaydi.",
+     "ru": "Для хлеба, самсы и похожих блюд — «Сколько было?»: без количества не считается целая лепёшка.",
+     "show": "search",
+     "btn": {
+      "uz": "Qidiruvni ochish",
+      "ru": "Открыть поиск"
+     }
+    },
+    {
+     "uz": "Halqa aniqroq: kunlik maqsad, qolgan yoki maqsaddan oshgan kkal.",
+     "ru": "Кольцо понятнее: цель на день, сколько осталось или на сколько выше цели.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Maxfiylik matnlari aniqlashtirildi: nima yuboriladi va nima saqlanmaydi.",
+     "ru": "Уточнили тексты о конфиденциальности: что отправляется и что не хранится."
+    }
+   ]
+  },
+  {
    "v": 65,
    "d": "2026-10-30",
    "bn": {

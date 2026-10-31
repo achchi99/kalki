@@ -540,7 +540,7 @@ html.fs-big .rz.sl .rz-tab .l{display:block}html.fs-big .rz.sl .rz-tab .s{displa
 html.fs-big .rz .rt-odo{font-size:80px}
 .rz .rt-odo .d{display:inline-block;height:1em;overflow:hidden;width:.58em;transition:width .3s ease}.rz .rt-odo .d.b{width:0}
 .rz .rt-odo .s{display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.rz .rt-odo .s i{display:block;height:1em;font-style:normal;text-align:center}
-.rz .rt-pchip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:var(--fill);color:var(--onbtn);font-weight:800;font-size:var(--t-s);font-variant-numeric:tabular-nums}
+.rz .rt-pchip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;background:var(--fill);color:var(--onacc);font-weight:800;font-size:var(--t-s);font-variant-numeric:tabular-nums}
 .rz .rt-pchip.none{background:var(--card);color:var(--mut);border:1px solid var(--line2)}
 .rz .rt-cmp{margin:0 0 18px}
 .rz .rt-leg{display:flex;gap:14px;margin:-2px 0 8px;font-size:var(--t-lbl);font-weight:700;color:var(--mut)}.rz .rt-leg span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px;background:var(--line2)}.rz .rt-leg .n::before{background:linear-gradient(90deg,var(--fill) 0 33%,var(--p) 33% 66%,var(--f) 66%)}
@@ -1554,3 +1554,16 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .hw-res span{font-weight:600;font-size:var(--t-s)}.rz .hw-res b{font-size:var(--t-pn);font-weight:600;color:var(--accink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .rz .hw-res.ov{background:var(--fcye)}.rz .hw-res.ov b{color:var(--fink)}
 .rz .hw-tip{margin-top:12px}.rz .rz-link.hw-how{display:flex;align-items:center;justify-content:flex-start;width:auto;min-height:44px;margin:2px 0 4px;padding:0;font-size:var(--t-s);font-weight:500;text-align:left}
+/* v68 «Birinchi kun ishonchi»: halqa izohi, «Vaqtinchalik hisob», «Qancha edi?», ixcham qadam/mashg'ulot qatori, haftalik xulosa yetarli emas */
+.rz .kc-note{margin:6px 0 0;text-align:center;font-size:var(--t-xs);color:var(--mut);line-height:1.35}
+.rz .kc-tmp{font-size:var(--t-xs);line-height:1.35;display:inline-block;padding:1px 8px;border-radius:999px;background:var(--accsoft);color:var(--accink);font-weight:600}
+.rz .kq-ambq{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin-top:14px}.rz .kq-ambq b{font-size:var(--t-s);font-weight:600;color:var(--ink)}.rz .kq-ambq span{font-size:var(--t-xs);color:var(--accink)}
+.rz .kq-amb{margin-top:6px}
+.rz .kq-ambr{flex-wrap:wrap}
+.rz .sl-actrow{display:flex;align-items:stretch;gap:0;padding:0;overflow:hidden}
+.rz .sl-actrow>button{flex:1;display:flex;align-items:center;gap:8px;min-height:52px;padding:10px 14px;border:0;background:transparent;color:var(--ink);font:inherit;text-align:left;min-width:0}
+.rz .sl-actrow>button b{font-size:var(--t-s);font-weight:600}.rz .sl-actrow>button small{margin-left:auto;font-size:var(--t-xs);color:var(--accink);white-space:nowrap}
+.rz .sl-actrow>i{width:1px;margin:10px 0;background:var(--line)}
+.sl-hkc.off{cursor:default}
+.sl .sl-hkc{background:linear-gradient(135deg,var(--hero1),var(--hero2) 60%,var(--hero3))}          /* v68 kontrast: oq kichik matn och to'q sariq fonda 2,2:1 edi → ≥ 5:1 */
+.sl .sl-hkc .m span{opacity:1}
