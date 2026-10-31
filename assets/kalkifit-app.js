@@ -651,7 +651,7 @@
   }
   function mealRepeat(date, m) {
     var x = S.dayOf(st, date), t = todayStr(), added = []; if (!x) return;
-    stEv('ovqat_qoshildi', 'odatdagi');
+    boFirst('kechagidek'); stEv('ovqat_qoshildi', 'odatdagi');
     x.food.filter(function (e) { return e.meal === m; }).forEach(function (e) { var c = {}; ['fid', 'name', 'pt', 'meal', 'unit', 'qty', 'g', 'kcal', 'p', 'f', 'c', 'est', 'vr', 'sz', 'vn', 'vf'].forEach(function (k) { if (e[k] != null) c[k] = e[k]; }); c.ts = nowTs(); added.push(S.addFood(st, t, c)); });
     kit.closeSheet(); commit(); vib(); toast(T('saved'), function () { added.forEach(function (it) { S.removeFood(st, t, it.id); }); commit(); }, true);
   }
@@ -2649,7 +2649,21 @@
   /* ---------- anonim statistika (assets/stat-kun.js → /api/stat): faqat hodisa nomi + qat'iy kalit; ovqat/vazn/yosh yuborilmaydi ---------- */
   var STAT = null;
   var stPre = [];          // v52: statistika hali yuklanmagan paytdagi hodisalar (birinchi chizish) — yuklangach yuboriladi
-  function stEv(h, k) { try { if (STAT) STAT.add(h, k); else if (stPre.length < 30) stPre.push([h, k]); } catch (e) {} }
+  function stEv(h, k) { try { if (STAT) STAT.add(h, k); else if (stPre.length < 30) stPre.push([h, k]); if (h === 'ovqat_qoshildi') boFirst(k); } catch (e) {} }
+  /* v66+: AKTIVATSIYA o'lchovi (anonim; faqat belgilar — ovqat nomi, matn yuborilmaydi). «ilk_ochilish» — qurilma ilovani ilk marta ochganda BIR marta (holat yo'q edi); flag kalki_stat_ilk: '1' — ilk (kogorta), '0' — eski qurilma (o'lchanmaydi).
+     «birinchi_ovqat» — kogorta qurilmasining BIRINCHI ovqati: usul.vaqt guruhi (onboarding tugashidan: d5 0–5 daq · d30 5–30 · d120 30–120 · dx 2 soat+ · dn vaqt noma'lum), bir marta (flag kalki_stat_bo). */
+  var ILK_LS = 'kalki_stat_ilk', BO_LS = 'kalki_stat_bo', OBT_LS = 'kalki_stat_obt', BO_USUL = { qidiruv: 1, oxirgilar: 1, rasm: 1, matn: 1, ovoz: 1, menyu: 1, odatdagi: 1, kechagidek: 1, retsept: 1, tavsiya: 1 };
+  function boFirst(usul) {
+    if (!STAT || STAT.disabled() || lsGet(BO_LS) || lsGet(ILK_LS) !== '1') return;
+    var t0 = parseInt(lsGet(OBT_LS), 10), m = t0 > 0 ? (Date.now() - t0) / 60000 : -1, g = m < 0 ? 'dn' : (m < 5 ? 'd5' : (m < 30 ? 'd30' : (m < 120 ? 'd120' : 'dx')));
+    try { localStorage.setItem(BO_LS, '1'); } catch (e) {} STAT.add('birinchi_ovqat', (BO_USUL[usul] ? usul : 'boshqa') + '.' + g);
+  }
+  function ilkBoot() {
+    if (!STAT || STAT.disabled() || lsGet(ILK_LS) != null) return;
+    if (st && st.setup) { try { localStorage.setItem(ILK_LS, '0'); } catch (e) {} return; }          // holati bor qurilma — yangi emas
+    if (STAT.add('ilk_ochilish', '')) { try { localStorage.setItem(ILK_LS, '1'); } catch (e) {} }
+  }
+  function statInst() { try { if (window.KalkiNative && KalkiNative.isApp()) return 1; return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true ? 1 : 0; } catch (e) { return null; } }
   /* v52: AI natija voronkasi (anonim): natija ekrani ochildi → qator tahrirlandi / o'chirildi → «Qo'shish» yoki qo'shmasdan yopildi (+ necha soniyada). Usul: ovoz | rasm | matn | menyu */
   var aiF = null;
   function aiFOpen(u) { if (aiF && aiF.u === u) return; if (aiF) aiFEnd(false); aiF = { u: u, t0: Date.now() }; stEv('ai_natija', u + '.ochildi'); }
@@ -2657,8 +2671,9 @@
   function aiFEnd(ok) { if (!aiF) return; var sec = (Date.now() - aiF.t0) / 1000, b = sec < 10 ? '10' : (sec < 30 ? '30' : (sec < 60 ? '60' : (sec < 180 ? '180' : 'x'))); stEv('ai_natija', aiF.u + (ok ? '.qoshildi' : '.yopildi')); stEv('ai_natija', aiF.u + (ok ? '.qt' : '.yt') + b); aiF = null; }
   function statPlat() { try { if (window.KalkiNative && KalkiNative.isApp()) return 'android'; var ios = /iPad|iPhone|iPod/.test(navigator.userAgent), sa = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; return ios && sa ? 'ios-pwa' : 'veb'; } catch (e) { return 'veb'; } }
   function statBoot() {
-    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; } }); window.KalkiStatApp = { add: stEv, aiOpen: aiFOpen }; stPre.splice(0).forEach(function (x) { stEv(x[0], x[1]); });
+    if (!window.KalkiStat || STAT) return; STAT = KalkiStat.create({ cid: cid, platform: statPlat, lang: function () { return isCyr() ? 'cyr' : (lang === 'ru' ? 'ru' : 'uz'); }, ver: function () { return statPlat() === 'android' ? (appVer || lsGet('kalki_app_ver') || '') : ''; }, inst: statInst }); window.KalkiStatApp = { add: stEv, aiOpen: aiFOpen }; stPre.splice(0).forEach(function (x) { stEv(x[0], x[1]); });
     STAT.manba();          // v61: manba birinchi ochilishda (onboarding'dan OLDIN) qurilmada bir marta saqlanadi
+    ilkBoot();          // v66+: ilk ochilish (aktivatsiya voronkasi)
     if (st && st.setup) STAT.faol();
     if (/[?&]baliq=1\b/.test(location.search)) stEv('push_bosildi');
   }
@@ -3162,6 +3177,7 @@
     var n = S.emptyState(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; n.prefs = obPrefs(); if (later) n.prefs.taxminiy = { t: Date.now(), n: 0 }; n.profile = pr; n.setup = true; n.created = Date.now(); n.trackStart = todayStr(); S.addWeight(n, todayStr(), pr.weight);
     if (Y) Y.count(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
     stEv('yangi_foydalanuvchi', STAT ? STAT.manba() : ''); stEv(later ? 'onboarding_keyinroq' : 'onboarding_tugadi');
+    try { localStorage.setItem(OBT_LS, String(Date.now())); } catch (e) {}          // v66+: onboarding tugagan vaqt (faqat qurilmada; birinchi ovqatgacha vaqt GURUHI hisoblanadi, vaqt yuborilmaydi)
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb(); try { if (STAT) STAT.faol(); } catch (e) {}
     var el = $('#rzOnb'); el.classList.add('out');
     wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);
