@@ -11,7 +11,7 @@
       rBadge: 'Yemaydiganlaringizda', rWarn: "Siz {x} yemaydiganlar ro'yxatiga qo'shgansiz", pCtaForce: "Baribir qo'shish · {k} kkal", ya_baliq: 'baliqni', ya_tuxum: 'tuxumni', ya_sut: 'sut mahsulotlarini', ya_yongoq: "yong'oqni", ya_glyuten: 'glyutenni',
       nyStNo: "Uyda tez tayyorlanadigan sog'lom variantlar", nyStNoS: "Profilni to'ldirsangiz, qolgan kkalga moslab beramiz.", nyStOk: 'Sizga {k} kkal va {p} g oqsil qoldi', nyStOkK: 'Sizga {k} kkal qoldi', nyStOkS: 'Kun vaqtiga mos variantlar tepada.', nyStOkP: 'Oqsilga boy variantlar tepada.', nyStOkPd: "Oqsil me'yori bajarildi — yengil variantlar ham bor.",
       nyStLow: 'Bugungi limit deyarli tugadi — {k} kkal qoldi.', nyStLowP: "Lekin oqsil {p} g kam. Yengil, oqsilga boy variantlar tepada.", nyStLowN: 'Eng yengil variantlar tepada.', nyStOver: 'Bugungi limitga yetdingiz — bu ham yaxshi natija.', nyStOverS: 'Och qolsangiz, eng yengil variantlar tepada.',
-      chAll: 'Hammasi', ch5: '⚡ 5 daq gacha', ch15: '15 daq gacha', ch30: '30+ daq', chHave: '🧺 Uyda borlar', chHaveN: '🧺 Uyda borlar · {n}',
+      chAll: 'Hammasi', ch5: '5 daq gacha', ch15: '15 daq gacha', ch30: '30+ daq', chHave: 'Uyda borlar', chHaveN: 'Uyda borlar · {n}',
       lbBest_b: 'Nonushtaga eng mos', lbBest_l: 'Tushlikka eng mos', lbBest_d: 'Kechki ovqatga eng mos', lbBest_s: 'Tamaddiga eng mos', lbMore: 'Yana variantlar', lbHave: 'Uyda borlardan', lbNeed: 'Yana 1 mahsulot kerak', lbNeedX: 'kerak: {x}', lbFish: 'Baliq kuni — uyda', lbFit: "Bugungi limitga sig'adi", lbOver: 'Bugungi limitdan oshadi', lbPop: 'Mashhur taomlar', lbHalf: 'yarim porsiya — {k} kkal',
       tgOqsil: 'Oqsilga boy', tgYengil: 'yengil', fMin: '{n} daq', fK: '{k} kkal', fP: 'oqsil {p} g', nyNote: "Kkal — taxminiy, bazadagi mahsulotlardan hisoblangan.", nyNoHave: "Shu mahsulotlardan hozircha tayyorlanadigani yo'q — yana bittasini belgilang.", nyNoAll: "Mos retsept topilmadi — boshqa filtrni tanlang.",
       dtMin: 'daqiqa', dtK: 'kkal', dtP: 'oqsil', dtF: "yog'", dtPort: 'Porsiya', dtIng: "Kerak bo'ladi", dtSteps: 'Tayyorlash', dtAte: 'Yedim · {k} kkal', dtSave: 'Odatdagiga saqlash', dtBack: 'Orqaga', dtDona: 'dona', addA: "Qo'shish: {x}", addHalf: "Yarim porsiya qo'shish: {x}",
@@ -36,7 +36,7 @@
       rBadge: 'В «Не ем»', rWarn: 'Вы добавили в «Не ем»: {x}', pCtaForce: 'Всё равно добавить · {k} ккал', ya_baliq: 'рыба', ya_tuxum: 'яйца', ya_sut: 'молочные продукты', ya_yongoq: 'орехи', ya_glyuten: 'глютен',
       nyStNo: 'Быстрые полезные блюда дома', nyStNoS: 'Заполните профиль — подберём под остаток калорий.', nyStOk: 'Вам осталось {k} ккал и {p} г белка', nyStOkK: 'Вам осталось {k} ккал', nyStOkS: 'Сверху — подходящее для этого времени.', nyStOkP: 'Сверху — блюда, богатые белком.', nyStOkPd: 'Норма белка выполнена — есть и лёгкие варианты.',
       nyStLow: 'Лимит на сегодня почти исчерпан — осталось {k} ккал.', nyStLowP: 'Но белка не хватает {p} г. Лёгкие белковые варианты сверху.', nyStLowN: 'Самые лёгкие варианты сверху.', nyStOver: 'Лимит на сегодня набран — это тоже хороший результат.', nyStOverS: 'Если голодны — самые лёгкие варианты сверху.',
-      chAll: 'Все', ch5: '⚡ до 5 мин', ch15: 'до 15 мин', ch30: '30+ мин', chHave: '🧺 Что есть дома', chHaveN: '🧺 Что есть дома · {n}',
+      chAll: 'Все', ch5: 'до 5 мин', ch15: 'до 15 мин', ch30: '30+ мин', chHave: 'Что есть дома', chHaveN: 'Что есть дома · {n}',
       lbBest_b: 'Лучше всего на завтрак', lbBest_l: 'Лучше всего на обед', lbBest_d: 'Лучше всего на ужин', lbBest_s: 'Лучше всего на перекус', lbMore: 'Ещё варианты', lbHave: 'Из того, что есть дома', lbNeed: 'Нужен ещё 1 продукт', lbNeedX: 'нужно: {x}', lbFish: 'Рыбный день — дома', lbFit: 'Помещается в лимит', lbOver: 'Больше дневного лимита', lbPop: 'Популярные блюда', lbHalf: 'полпорции — {k} ккал',
       tgOqsil: 'Много белка', tgYengil: 'лёгкое', fMin: '{n} мин', fK: '{k} ккал', fP: 'белок {p} г', nyNote: 'Ккал — примерно, рассчитано по продуктам из базы.', nyNoHave: 'Из этих продуктов пока ничего не приготовить — отметьте ещё один.', nyNoAll: 'Подходящих рецептов нет — выберите другой фильтр.',
       dtMin: 'минут', dtK: 'ккал', dtP: 'белок', dtF: 'жиры', dtPort: 'Порция', dtIng: 'Понадобится', dtSteps: 'Приготовление', dtAte: 'Съел · {k} ккал', dtSave: 'Сохранить в «Обычные»', dtBack: 'Назад', dtDona: 'шт.', addA: 'Добавить: {x}', addHalf: 'Добавить полпорции: {x}',
@@ -154,7 +154,7 @@
     return '<div class="ny-it"' + (o.id ? ' data-id="' + esc(o.id) + '"' : '') + '><button type="button" class="ny-m" ' + o.main + '>' + o.tile + '<span class="tx">' + (o.tag ? '<span class="ny-tag">' + esc(o.tag) + '</span>' : '') + '<b class="nm">' + esc(o.name) + '</b><span class="mt">' + o.facts + '</span>' + (o.extra || '') + '</span></button>' +
       (o.plus ? '<button type="button" class="ny-pl' + (o.done ? ' done' : '') + '" ' + o.plus + ' aria-label="' + esc(T(o.halfBtn ? 'addHalf' : 'addA', { x: o.name })) + '">' + (o.done ? A.ico('check', '', 2.6) : (o.halfBtn ? '½' : A.ico('plus', '', 2.4))) + '</button>' : A.ico('chev', 'r')) + '</div>';
   }
-  function facts(min, k, p) { return (min ? '⏱ ' + esc(T('fMin', { n: min })) + ' · ' : '') + esc(T('fK', { k: k })) + ' · <i class="ny-p">' + esc(T('fP', { p: Math.round(p) })) + '</i>'; }
+  function facts(min, k, p) { return (min ? '' + esc(T('fMin', { n: min })) + ' · ' : '') + esc(T('fK', { k: k })) + ' · <i class="ny-p">' + esc(T('fP', { p: Math.round(p) })) + '</i>'; }
   function recCard(x, best) {
     var r = x.rec, tag = best ? [x.oqsil ? T('tgOqsil') : '', x.yengil ? T('tgYengil') : ''].filter(Boolean).join(' · ') : '';
     if (tag) tag = tag.charAt(0).toUpperCase() + tag.slice(1);
@@ -191,7 +191,7 @@
   function kafeList() {
     var rem = A.remaining(), r = YC.list({ by: A.by(), data: data, toifa: yv.toifa, seg: yv.seg, tags: A.tags(), cheklov: ch, yemaydi: yemay(), qoldiq: rem }), h = '';
     yv.shown = r.items.map(function (p) { return p.key; });
-    if (yv.seg === 'kafe' && window.KalkiMenyu) { var tip = yv.tip || !A.prefs().mnTip; if (tip && !yv.tip) { yv.tip = true; A.prefs().mnTip = 1; A.save(); } h += '<div class="sl-mncw"><button type="button" class="sl-mncta" data-act="mnopen" data-f="yeymiz" id="mnDoor"><span class="ic" aria-hidden="true">📷</span><span>' + esc(T('mnCta')) + '</span>' + A.ico('chev', 'r') + '</button>' + (tip ? '<p class="sl-tipb" id="mnTip" role="note">' + esc(T('mnTip')) + '</p>' : '') + '</div>'; }
+    if (yv.seg === 'kafe' && window.KalkiMenyu) { var tip = yv.tip || !A.prefs().mnTip; if (tip && !yv.tip) { yv.tip = true; A.prefs().mnTip = 1; A.save(); } h += '<div class="sl-mncw"><button type="button" class="sl-mncta" data-act="mnopen" data-f="yeymiz" id="mnDoor"><span class="ic" aria-hidden="true">' + A.ico('mlist') + '</span><span>' + esc(T('mnCta')) + '</span>' + A.ico('chev', 'r') + '</button>' + (tip ? '<p class="sl-tipb" id="mnTip" role="note">' + esc(T('mnTip')) + '</p>' : '') + '</div>'; }
     if (yv.seg === 'buyurtma') h += orderLinks();
     if (!r.items.length) return h + emptyHtml();
     var fit = r.items.filter(function (p) { return !p.flags.oshadi; }), over = r.items.filter(function (p) { return p.flags.oshadi; });

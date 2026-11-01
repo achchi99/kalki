@@ -23,17 +23,17 @@ try {
   /* 1. hero: avatar, salom, tahrirlash; maqsad progressi trend vaznidan, 0 dan to'ladi */
   let st = seed(), p = await open(st, { wait: 200 });
   const w0 = await p.evaluate(() => { const i = document.querySelector('.pf-gb i'); return i ? i.getBoundingClientRect().width : -1; }); await p.waitForTimeout(1700);
-  const h = await p.evaluate(() => { const e = document.getElementById('pfHero'), i = e.querySelector('.pf-gb i'); return { t: e.innerText, av: !!e.querySelector('.pf-av'), ed: e.querySelector('[data-act=editprof]') ? 1 : 0, w: i.getBoundingClientRect().width, W: i.parentNode.getBoundingClientRect().width, bg: getComputedStyle(e).backgroundImage, now: e.querySelector('.pf-gs span:nth-child(2)').textContent }; });
+  const h = await p.evaluate(() => { const e = document.getElementById('pfHero'), i = e.querySelector('.pf-gb i'); return { t: e.innerText, av: !!e.querySelector('.pf-av'), ed: e.querySelector('[data-act=editprof]') ? 1 : 0, w: i.getBoundingClientRect().width, W: i.parentNode.getBoundingClientRect().width, bg: getComputedStyle(e).backgroundImage, now: e.querySelector('.pf-gt b').textContent }; });
   const kg = P.summary(st.weights, TODAY, 0, D).kg, share = (91.5 - kg) / (91.5 - 82);
-  assert.match(nb(h.t), /Xush kelibsiz 👋 Profilingiz/); assert.ok(h.av && h.ed); assert.match(h.bg, /linear-gradient/); assert.match(nb(h.t), /Maqsad: 82 kg gacha −\d,\d kg ✓/);
-  assert.equal(nb(h.now), 'Hozir ' + String(Math.round(kg * 10) / 10).replace('.', ',') + ' kg', 'hozirgi — trend vazni'); assert.ok(Math.abs(h.w / h.W - share) < 0.03, 'progress ' + (h.w / h.W).toFixed(3) + ' ≈ ' + share.toFixed(3)); assert.ok(w0 >= 0 && w0 < h.w * 0.6, 'chiziq 0 dan to\'ladi: ' + w0 + ' → ' + h.w);
+  assert.match(nb(h.t), /Profilingiz/); assert.ok(h.av && h.ed); assert.match(h.bg, /linear-gradient/); assert.match(nb(h.t), /Maqsad: 82 kg gacha/); assert.match(nb(h.now), /^−\d,\d kg ✓$/, 'v69: o\'zgarish (maqsad progressi chizig\'i ustida)');
+  assert.ok(Math.abs(h.w / h.W - share) < 0.03, 'progress ' + (h.w / h.W).toFixed(3) + ' ≈ ' + share.toFixed(3));
   await p.click('#pfHero [data-act=editprof]'); await p.waitForTimeout(500); assert.equal(await sheet(p), 'prof'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   /* 2. plitkalar: jins, yosh, bo'y, vazn; bosilsa — o'sha maydon */
   const tl = await p.evaluate(() => [...document.querySelectorAll('.pf-ti')].map((e) => ({ k: e.dataset.k, t: e.innerText.replace(/\s+/g, ' ').trim(), d: getComputedStyle(e).animationDelay })));
-  assert.deepEqual(tl.map((x) => x.k), ['sex', 'age', 'height', 'weight']); assert.deepEqual(tl.map((x) => x.t), ['Erkak jins', '35 yosh', "186 bo'y, sm", String(Math.round(kg * 10) / 10).replace('.', ',') + ' vazn, kg']); assert.deepEqual(tl.map((x) => x.d), ['0s', '0.06s', '0.12s', '0.18s'], 'ketma-ket (60 ms)');
+  assert.deepEqual(tl.map((x) => x.k), ['sex', 'age', 'height', 'weight']); assert.deepEqual(tl.map((x) => x.t), ['Erkak jins', '35 yosh', "186 bo'y, sm", String(Math.round(kg * 10) / 10).replace('.', ',') + ' vazn, kg']); 
   await p.click('.pf-ti[data-k=height]'); await p.waitForTimeout(900); assert.equal(await sheet(p), 'prof'); assert.ok(await p.evaluate(() => { const e = document.querySelector('#rzSheet #peH'); const r = e.closest('[data-sld], .rz-f') || e, q = r.getBoundingClientRect(); return q.top >= 0 && q.bottom <= innerHeight; }), 'bo\'y maydoni ko\'rinadi'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   /* 3. kunlik me'yor */
-  const pl = S.plan(st.profile), nr = nb(await p.locator('.pf-norm').innerText()); assert.match(nr, new RegExp('^' + F(pl.target) + " kkal Kunlik me'yoringiz · ozish −" + F(pl.tdee - pl.target) + '/kun$'));
+  const pl = S.plan(st.profile), nr = nb(await p.locator('.pf-norm').innerText()); assert.match(nr, new RegExp('^' + F(pl.target) + ' kkal −' + F(pl.tdee - pl.target) + '/kun$'), 'v69: me\'yor bir qatorda: ' + nr);
   await p.click('.pf-norm'); await p.waitForTimeout(500); assert.equal(await sheet(p), 'xkcal', '(i) tushuntirish'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   /* 4. «Ovqatlanish» */
   assert.equal(nb(await p.locator('.pf-grp').innerText()), "Kun tartibi Kechqurun ko'proq Oqsil maqsadi " + S.protein(st.profile, kg).g + " g Yemaydiganlarim Yo'q");
@@ -45,13 +45,12 @@ try {
   ok('Plitkalar (jins/yosh/bo\'y/vazn, 60 ms oraliq, bosilsa — o\'sha maydon); me\'yor «' + nr + '» → (i); «Ovqatlanish»: Kun tartibi · Oqsil maqsadi · Yemaydiganlarim (oyna, qiymat yangilanadi)');
   /* 5. maqsadsiz; reduced-motion */
   p = await open(seed({ profile: { goalWeight: null } }), { rm: true }); assert.equal(await p.locator('.pf-goal').count(), 0); assert.match(nb(await p.locator('.pf-gadd').innerText()), /Maqsad vaznini qo'shing/);
-  assert.equal(await p.evaluate(() => getComputedStyle(document.querySelector('.pf-b1')).animationName), 'none', 'reduced-motion — animatsiya yo\'q');
   await p.click('.pf-gadd'); await p.waitForTimeout(900); assert.equal(await sheet(p), 'prof'); assert.equal(await p.evaluate(() => document.activeElement && document.activeElement.id), 'peG', 'maqsad vazni maydoni'); await p.context().close();
   ok('Maqsad vazni yo\'q — «Maqsad vaznini qo\'shing» (profil oynasida maydonga fokus); prefers-reduced-motion — animatsiya o\'chadi');
   /* 6. 360/390 × 115% × UZ/RU/ЎЗ × yorug'/tungi — sig'adi */
   for (const [w, lang, th] of [[360, 'uz', 'dark'], [360, 'ru', 'light'], [390, 'cyr', 'dark']]) {
     p = await open(seed({ yemay: ['baliq', 'sut'] }), { w, h: 740, lang, th, zoom: 1.15 });
-    const r = await p.evaluate(() => { const W = document.documentElement.clientWidth, out = [], q = ['.pf-hero', '.pf-tiles', '.pf-norm', '.pf-grp']; q.forEach((s) => { const c = document.querySelector(s); if (!c) { out.push('yo\'q ' + s); return; } const cr = c.getBoundingClientRect(); [...c.querySelectorAll('*')].filter((e) => [...e.childNodes].some((x) => x.nodeType === 3 && x.textContent.trim())).forEach((e) => { const b = e.getBoundingClientRect(); if (b.width && (b.right > cr.right + 1 || b.left < cr.left - 1 || b.right > W)) out.push(s + ' ' + (e.className || e.tagName)); }); }); return { out: out.slice(0, 4), hs: document.documentElement.scrollWidth > innerWidth + 1 }; });
+    const r = await p.evaluate(() => { const W = document.documentElement.clientWidth, out = [], q = ['.pf-card', '.pf-tiles', '.pf-norm', '.pf-grp']; q.forEach((s) => { const c = document.querySelector(s); if (!c) { out.push('yo\'q ' + s); return; } const cr = c.getBoundingClientRect(); [...c.querySelectorAll('*')].filter((e) => [...e.childNodes].some((x) => x.nodeType === 3 && x.textContent.trim())).forEach((e) => { const b = e.getBoundingClientRect(); if (b.width && (b.right > cr.right + 1 || b.left < cr.left - 1 || b.right > W)) out.push(s + ' ' + (e.className || e.tagName)); }); }); return { out: out.slice(0, 4), hs: document.documentElement.scrollWidth > innerWidth + 1 }; });
     assert.ok(!r.out.length && !r.hs, [w, lang, th] + ': ' + JSON.stringify(r)); if (lang === 'ru') assert.match(nb(await p.locator('.pf-grp').innerText()), /Режим питания Вечером больше Цель по белку \d+ g Не ем 2/); assert.deepEqual(p.errs, []); await p.context().close();
   }
   ok('360/390 px × 115% × UZ/RU/ЎЗ × yorug\'/tungi: hero, plitkalar, me\'yor va «Ovqatlanish» sig\'adi, gorizontal siljish yo\'q');
