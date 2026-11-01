@@ -1875,3 +1875,4 @@ html.fs-big .rz .sl-main{font-size:var(--fs-body)}
 html.fs-big .rz .ft-paths{grid-template-columns:1fr}html.fs-big .rz .ft-pt{display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-areas:"i b" "i s";column-gap:12px;row-gap:2px;align-items:center;min-height:72px;padding:12px 14px}html.fs-big .rz .ft-pt .ic{grid-area:i;align-self:center}html.fs-big .rz .ft-pt b{grid-area:b;align-self:end;font-size:15px}html.fs-big .rz .ft-pt small{grid-area:s;align-self:start;-webkit-line-clamp:1}
 @media (max-width:380px){.rz .ft-qb small{font-size:11px;letter-spacing:-.02em}.rz .ft-qb{padding-left:0;padding-right:0}}
 html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .rz .ft-qb{padding-left:0;padding-right:0}
+.rz .ft-pt small{color:color-mix(in srgb,var(--ink) 74%,var(--card))}
