@@ -616,7 +616,6 @@ html.fs-big .rz .rt-odo{font-size:80px}
 .rz .rt-plist{display:flex;flex-direction:column;max-height:56vh;overflow-y:auto}
 .rz .rt-pr{min-height:52px}
 /* aylana: raqam to'lqin ustida ham aniq o'qiladi — yorug' qatlam (to'lqin ostida emas, ustida) + yengil halo, to'lqin ichida to'q qatlam */
-.rz .kv-sub.kv-n{stroke:var(--vessel);stroke-width:2.2px;paint-order:stroke fill;stroke-linejoin:round}
 /* ---- ochilish animatsiyasi (faqat transform/opacity; prefers-reduced-motion'da yo'q — global qoida + JS) ---- */
 .rz .rz-main.rzi :is(#mainAdd,.sl-door,.sl-meal,.sl-macs,.sl-duo,.sl-bju){animation:rzUp .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
 .rz #rzMain.rzi .sl-meal.tl-m{animation-delay:calc(var(--i,0) * 55ms + var(--mx,0) * 10ms + 420ms)}          /* v63: ovqat kartalari 65 ms oraliqda ketma-ket */
@@ -1655,7 +1654,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .sl-bju.bj3 .bj-tip{white-space:normal;overflow:visible;text-overflow:clip;font-size:var(--fs-aux);line-height:var(--lh-b)}
 .rz .pf-card .pf-av{width:52px;height:52px;background:var(--fill);color:var(--onacc);font-size:22px}
 .rz .pf-card .pf-ed{background:color-mix(in srgb,var(--card) 70%,transparent)}
-.rz .pf-card .pf-gb{height:8px;border-radius:4px;background:color-mix(in srgb,var(--fill) 18%,var(--track))}.rz .pf-card .pf-gb i{border-radius:4px;background:var(--fill)}
+.rz .pf-card .pf-gb{height:8px;border-radius:4px;background:var(--track);box-shadow:inset 0 0 0 1px var(--line)}.rz .pf-card .pf-gb i{border-radius:4px;background:var(--fill)}
 .rz .pf-card .pf-ti{background:color-mix(in srgb,var(--card) 72%,transparent)}
 .rz .ft-p-yozish .ic,.rz .ft-grp .sl-feat .sl-ci.fc-ac{background:var(--accsoft);color:var(--accink)}
 .rz .ft-p-yeyman .ic,.rz .ft-grp .sl-feat .sl-ci.fc-gr{background:var(--fcgr);color:var(--fcgri)}
@@ -1696,7 +1695,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 /* tuzatish: yuqori xavfsiz zona (iPhone PWA/Safari status bar) — sarlavha («Bugun/Tarix/Profil») status bar ostida qolmasin; --safe-top testda soxtalashtiriladi */
 :root{--safe-top:env(safe-area-inset-top,0px)}
 .rz.sl .rz-main{padding-top:calc(8px + var(--safe-top))}
-.rz.sl::before{content:"";position:fixed;top:0;left:0;right:0;height:var(--safe-top);background:var(--bg);z-index:40}          /* aylantirilganda kontent status bar ostida ko'rinmasin */
+.rz.sl::before{content:"";position:absolute;top:0;left:0;right:0;height:var(--safe-top);background:var(--bg);z-index:40;-webkit-backdrop-filter:none;backdrop-filter:none}          /* aylantirilganda kontent status bar ostida ko'rinmasin */
 
 /* ===================== v70: OXIRGI TOZALASH — bitta qoida: kartalar tekis, rangli soya/yaltirash yo'q, tugmalar bitta oila, tipografika ===================== */
 html .rz.sl{--shadow:none}          /* soya faqat ko'tarilgan varaq/panel/chip (--sh-up) */
@@ -1711,7 +1710,7 @@ html .rz.sl{--shadow:none}          /* soya faqat ko'tarilgan varaq/panel/chip (
 .rz.sl .rz-btn.primary:disabled{opacity:.5}
 .rz.sl .rz-btn:not(.primary):not(.link):not(.danger){background:var(--card);color:var(--ink);border:1px solid var(--line2)}
 .rz.sl .rz-btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line2)}
-.rz.sl .rz-btn.link,.rz.sl .sl-txtbtn{background:transparent;border:0;color:var(--accink);min-height:44px;font-weight:600}
+.rz.sl .rz-btn.link,.rz.sl .sl-txtbtn{background:transparent;border:0;color:var(--accink);min-height:44px;font-weight:600;font-size:14px}
 .rz.sl .rz-btn.danger{background:var(--card);color:var(--err);border:1px solid var(--err)}.rz.sl .rz-btn.primary.danger{background:var(--err);color:var(--on-err);border:0}
 .rz.sl .rz-btn.sm{min-height:44px;font-size:var(--fs-aux);padding:0 16px;border-radius:14px}
 /* TIPOGRAFIKA: sarlavha 28/700 · halqa raqami 52/700 · karta sarlavhasi 18/600 · matn 16 · izoh 14/400 · nav 12/500 */
@@ -1767,7 +1766,7 @@ html.fs-big .rz .sl-main{font-size:var(--fs-body)}
 .rz .sl-vessel .sl-vsvg{position:absolute;inset:0;width:100%;height:100%}
 .rz .kv-trk{stroke:var(--line)}.rz .kv-vessel{fill:var(--vessel)}
 .rz .kv-ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:44px;pointer-events:none;text-align:center}
-.rz .kv-ctr small{font-size:13px;font-weight:500;color:var(--mut)}.rz .kv-ctr b{margin:2px 0;font-size:var(--fs-hero);font-weight:700;line-height:1;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;color:var(--ink);text-shadow:none;-webkit-text-stroke:0}.rz .kv-ctr span{font-size:12px;font-weight:500;color:var(--mut)}
+.rz .kv-ctr small{font-size:13px;font-weight:500;color:var(--mut)}.rz .kv-ctr b{margin:2px 0;font-size:var(--fs-hero);font-weight:700;line-height:1;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;color:var(--ink)}.rz .kv-ctr span{font-size:12px;font-weight:500;color:var(--mut)}
 @keyframes kvArc{from{stroke-dasharray:var(--a0) 700}to{stroke-dasharray:var(--a1) 700}}
 @media (prefers-reduced-motion:reduce){.rz .kv-arc,.rz .kv-w,.rz .kv-lv{animation:none!important}}
 .rz .kc-i{position:absolute;right:6px;top:6px;width:44px;height:44px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer;left:auto}

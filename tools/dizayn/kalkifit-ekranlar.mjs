@@ -5,15 +5,18 @@
 //   OUT=<papka> node tools/dizayn/kalkifit-ekranlar.mjs --faqat          ITERATSIYA: o'zgargan fayllarga qarab bo'limlar (xarita: FAYL_BOLIM, KALIT), 2 kombinatsiya (390 uz tungi + 360 ru yorug')
 //   OUT=<papka> node tools/dizayn/kalkifit-ekranlar.mjs --faqat v56,asosiy   — bo'limlarni qo'lda; --list — nima tanlanishini ko'rsatadi
 //   --tez: 3 kombinatsiya (360 dark uz + 390 light ru + 360×640 uz), hamma bo'lim.  EKRAN_PAR=N — parallel sahifalar (standart 4).
+//   --webkit: SAFARI/iPhone — Playwright WebKit (iPhone 15 emulyatsiyasi), faqat asosiy ekranlar (Bugun, Qo'shish, Tarix, Profil) × yorug'/tungi; fayllar `wk-` bilan boshlanadi.
+//     Bu mashinada: `source ~/wk-env.sh` (foydalanuvchi kutubxonalari + Mesa). WebKit ishga tushmasa — o'tkazib yuboriladi (chiqish kodi 0, ogohlantirish).
 //   Yurish paytida kod o'zgarsa (tools/kod-kuzat.cjs) — yurish to'xtatiladi (chiqish kodi 3): eski kod natijasi kerak emas.
 import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { createRequire } from 'node:module';
-import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs'; import { pool } from './parallel.mjs';
+import { chromium, webkit, devices } from 'playwright'; import { track } from '../test-cleanup.cjs'; import { pool } from './parallel.mjs';
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
 const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const D = S.dates; const T0 = D.today(); const OUT = process.env.OUT || ''; const TEZ = process.argv.includes('--tez');
 if (OUT) fs.mkdirSync(OUT, { recursive: true });
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.woff2': 'font/woff2' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); if (p === '/') p = '/index'; const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((c) => fs.existsSync(c) && fs.statSync(c).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream', 'Cache-Control': 'no-cache' }); fs.createReadStream(f).pipe(r); });
-await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch());
+await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const WK = process.argv.includes('--webkit'); let b;
+try { b = track(await (WK ? webkit : chromium).launch()); } catch (e) { if (!WK) throw e; console.log('WebKit ishga tushmadi — o\'tkazib yuborildi (source ~/wk-env.sh?): ' + String(e.message || e).split('\n')[0]); srv.close(); process.exit(0); }
 function seed(lang, full) {
   const st = S.emptyState(); st.setup = true; st.created = Date.now() - 3 * 86400000; st.prefs = { tipsDone: true, jokes: true, qa: 'on', lpTip: 1, yemayK: 1, introDone: true, suvFrom: T0 }; st.profile = { sex: 'f', preg: false, age: 30, height: 165, weight: 70, act: 3, goal: 'lose', goalWeight: null, job: 'stand' };          /* v51: Android — ish turi tasdiqlangan (qadam krediti bor) */ st.trackStart = D.addDays(T0, -3); S.addWeight(st, T0, 70);
   if (full) { S.addFood(st, T0, { meal: 'b', ts: 1, fid: 'choy', unit: 'piyola', qty: 1, g: 200, kcal: 38, p: 0, f: 0, c: 9, est: false }); S.addFood(st, T0, { meal: 'l', ts: 2, fid: 'osh', unit: 'kosa', qty: 1, g: 300, kcal: 520, p: 18, f: 22, c: 60, est: false }); S.addFood(st, T0, { meal: 'd', ts: 3, fid: null, name: lang === 'ru' ? 'Шовла (половина тарелки, с мясом и морковью)' : "Shovla (yarim tarelka, go'sht va sabzi bilan)", g: 200, kcal: 290, p: 9, f: 10, c: 40, est: true }); S.setWater(st, T0, 3); }
@@ -45,7 +48,7 @@ const CHECK = (scope) => {
 const combos = []; for (const w of [360, 390]) for (const lang of ['uz', 'cyr', 'ru']) for (const th of ['light', 'dark']) combos.push({ w, lang, th }); for (const lang of ['uz', 'ru']) combos.push({ w: 360, h: 640, lang, th: 'dark' });          // kichik balandlik 360×640
 const ARG = (n) => { const i = process.argv.indexOf('--' + n); return i < 0 ? null : (process.argv[i + 1] && !process.argv[i + 1].startsWith('--') ? process.argv[i + 1] : true); };
 const FAQAT = ARG('faqat'), PAR = Math.max(1, Number(process.env.EKRAN_PAR) || 4);
-const list = FAQAT ? combos.filter((c) => !c.h && ((c.w === 390 && c.lang === 'uz' && c.th === 'dark') || (c.w === 360 && c.lang === 'ru' && c.th === 'light'))) : TEZ ? combos.filter((c) => (c.w === 360 && !c.h && c.th === 'dark' && c.lang === 'uz') || (c.w === 390 && c.th === 'light' && c.lang === 'ru') || (c.h && c.lang === 'uz')) : combos;
+const list = WK ? combos.filter((c) => !c.h && c.w === 390 && c.lang === 'uz') : FAQAT ? combos.filter((c) => !c.h && ((c.w === 390 && c.lang === 'uz' && c.th === 'dark') || (c.w === 360 && c.lang === 'ru' && c.th === 'light'))) : TEZ ? combos.filter((c) => (c.w === 360 && !c.h && c.th === 'dark' && c.lang === 'uz') || (c.w === 390 && c.th === 'light' && c.lang === 'ru') || (c.h && c.lang === 'uz')) : combos;
 const fails = []; let shots = 0;
 const MAKET = path.join(process.env.HOME || '', 'imkoniyatlar-maket.html');
 const MAKET2 = path.join(process.env.HOME || '', 'nima-yesam-maket.html');          // «Nima yesam ekan?» maketi: ro'yxat va #d (retsept sahifasi) — yonma-yon
@@ -102,8 +105,8 @@ async function yonma(p, th, nm) {
 }
 /* bir kombinatsiya (o'lcham × til × tema) uchun yordamchilar: mk (yangi kontekst), shot, scan, mainAt */
 function yordam(c) {
-  const tag = `${c.w}${c.h ? 'x' + c.h : ''}-${c.lang}-${c.th}`;
-  const mk = async (st, extra) => { const ctx = await b.newContext({ viewport: { width: c.w, height: c.h || 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: c.th, userAgent: 'Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130 Mobile Safari/537.36' });
+  const tag = (WK ? 'wk-' : '') + `${c.w}${c.h ? 'x' + c.h : ''}-${c.lang}-${c.th}`;
+  const mk = async (st, extra) => { const ctx = await b.newContext(WK ? { ...devices['iPhone 15'], serviceWorkers: 'block', colorScheme: c.th } : { viewport: { width: c.w, height: c.h || 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: c.th, userAgent: 'Mozilla/5.0 (Linux; Android 14; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130 Mobile Safari/537.36' });
     await ctx.addInitScript((o) => { try { localStorage.clear(); if (o.st) localStorage.setItem('kalki_fit', JSON.stringify(o.st)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_lang', o.lang); localStorage.setItem('kalki_theme', o.th); if (!o.intro) localStorage.setItem('kalki_intro_v2', '1'); } catch (e) {} window.__qaState = o.qa || 'on'; }, { st, lang: c.lang, th: c.th, intro: !!(extra && extra.intro), qa: extra && extra.qa });
     await ctx.addInitScript(MOCK); const p = await ctx.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e)));
     await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: /ovoz/.test(r.request().url()) ? '{"yoqilgan":true,"limit":15,"qoldi":15}' : /retsept/.test(r.request().url()) ? '{"limit":5,"qoldi":3}' : '{}' }));
@@ -149,7 +152,7 @@ BOLIM['asosiy'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
     if (!r) fails.push(tag + ' «Imkoniyatlar» tugmasi yo\'q'); else { if (!r.txt) fails.push(tag + ' tugma yozuvi bo\'sh'); if (!r.right || !r.left) fails.push(tag + ' tugma ekrandan chiqdi'); if (r.clip) fails.push(tag + ' tugma yozuvi qisqardi'); if (r.h < 44) fails.push(tag + ' tugma balandligi ' + r.h); if (!r.noOverlap || !r.titleOk) fails.push(tag + ' tugma sarlavha/halqa bilan to\'qnashdi: ' + JSON.stringify(r)); }
     await p.click('#ftBtn'); await p.waitForTimeout(1300); await scan(p, 'Imkoniyatlar paneli', '#ftDr'); await shot(p, 'imkoniyatlar');
     const q = await p.evaluate(() => { const dr = document.getElementById('ftDr'), t = [...dr.querySelectorAll('.ft-pt')], r = dr.getBoundingClientRect(); return { n: t.length, rows: new Set(t.map((e) => Math.round(e.getBoundingClientRect().top))).size, w: Math.round(r.width), bottom: Math.round(r.bottom), bilim: dr.querySelectorAll('.ft-bc').length, cnt: document.querySelector('#ftBtn .n') ? 1 : 0, clipX: dr.scrollWidth > dr.clientWidth + 1, tileClip: t.some((e) => [...e.querySelectorAll('b,small')].some((x) => x.getBoundingClientRect().right > e.getBoundingClientRect().right + 0.5)) }; });          // v69: 4 yo'l (2×2) + «Bilim» qatori, pastdan
-    if (q.n !== 4 || q.rows !== 2) fails.push(tag + ' panel: 4 yo\'l 2×2 bo\'lishi kerak: ' + JSON.stringify(q)); if (q.bilim !== 2) fails.push(tag + ' «Bilim» qatori: ' + q.bilim); if (q.cnt) fails.push(tag + ' v68: Imkoniyatlar tugmasida raqam bo\'lmasligi kerak'); if (q.clipX || q.tileClip) fails.push(tag + ' panel/karta matni sig\'madi'); if (q.bottom !== c.h && q.bottom !== await p.evaluate(() => innerHeight)) fails.push(tag + ' panel pastdan chiqmagan: ' + q.bottom); if (q.w > Math.min(c.w, 560)) fails.push(tag + ' panel kengligi ' + q.w);
+    if (q.n !== 4 || q.rows !== 2) fails.push(tag + ' panel: 4 yo\'l 2×2 bo\'lishi kerak: ' + JSON.stringify(q)); if (q.bilim !== 2) fails.push(tag + ' «Bilim» qatori: ' + q.bilim); if (q.cnt) fails.push(tag + ' v68: Imkoniyatlar tugmasida raqam bo\'lmasligi kerak'); if (q.clipX || q.tileClip) fails.push(tag + ' panel/karta matni sig\'madi'); if (q.bottom !== c.h && q.bottom !== await p.evaluate(() => innerHeight)) fails.push(tag + ' panel pastdan chiqmagan: ' + q.bottom); if (q.w > Math.min(WK ? 393 : c.w, 560)) fails.push(tag + ' panel kengligi ' + q.w);
     if (OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET)) await yonma(p, c.th, 'imkoniyatlar-maket-2');
     await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(400); await scan(p, 'Imkoniyatlar → Ovqat yozish', '#ftDr'); await shot(p, 'imkoniyatlar-yozish');
     await p.evaluate(() => { document.getElementById('ftDr').scrollTop = 1e5; }); await p.waitForTimeout(300); await scan(p, 'Imkoniyatlar paneli (past)', '#ftDr');
@@ -287,6 +290,7 @@ const KALIT = {          // umumiy fayl o'zgarsa — diff matnida shu kalit so'z
   afsona: ['afsona', 'af-', 'afTz'], v51: ['jbCard', 'jb-', 'jobOn', 'dayPlan', 'xkcal', 'xkRows'],
 };
 function tanla() {
+  if (WK) return { ids: ['asosiy'], why: 'webkit: faqat asosiy ekranlar' };
   if (!FAQAT) return { ids: Object.keys(BOLIM), why: 'to\'liq' };
   if (FAQAT !== true) { const ids = String(FAQAT).split(','); ids.forEach((x) => { if (!BOLIM[x]) { console.log('Noma\'lum bo\'lim: ' + x + ' (bor: ' + Object.keys(BOLIM).join(', ') + ')'); process.exit(2); } }); return { ids, why: 'qo\'lda' }; }
   const git = (...a) => { try { return require('child_process').execFileSync('git', a, { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 << 20 }).toString(); } catch (e) { return ''; } };

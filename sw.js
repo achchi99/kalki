@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '84e41949';   /* sw-version:auto */
+const SW_VERSION = 'c36f8b90';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -381,6 +381,19 @@ function networkFirst(req, cacheName, fallbackPath) {
   }));
 }
 
+/* fresh-first: 3 s ichida tarmoqdan yangisi, bo'lmasa (oflayn/sekin) keshdan */
+function freshFirst(req, cacheName) {
+  return new Promise((resolve) => {
+    let done = false;
+    const fallback = () => caches.match(req).then((m) => m || fetch(req).catch(() => Response.error()));
+    const t = setTimeout(() => { if (!done) { done = true; fallback().then(resolve); } }, 3000);
+    fetch(req, { cache: 'no-cache' }).then((r) => {
+      if (cacheable(r)) { const cl = r.clone(); caches.open(cacheName).then((c) => c.put(req, cl)); }
+      if (!done) { done = true; clearTimeout(t); resolve(r); }
+    }).catch(() => { if (!done) { done = true; clearTimeout(t); fallback().then(resolve); } });
+  });
+}
+
 /* stale-while-revalidate: tez ochiladi, fonda albatta yangilanadi */
 function staleWhileRevalidate(req, cacheName) {
   return caches.match(req).then((cached) => {
@@ -448,8 +461,10 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // assets/*.js va *.css — stale-while-revalidate
+  // assets/*.js va *.css — stale-while-revalidate, lekin ILOVA fayllari (KalkiFit/Ro'zg'or JS+CSS) avval tarmoqdan:
+  // aks holda yangi CSS bilan eski JS aralashib qoladi (iPhone'da: yangi dizayn + eski belgilash).
   if (isAsset(p)) {
+    if (/^\/assets\/(css\/(kalkifit|appkit|rozgor)|kalkifit-|rozgor-|app-)/.test(p)) { e.respondWith(freshFirst(e.request, STATIC)); return; }
     e.respondWith(staleWhileRevalidate(e.request, STATIC));
     return;
   }
