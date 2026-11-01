@@ -3,12 +3,12 @@
 import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright'; import { track } from './test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 export const DEVICES = [[430, 932, 3], [440, 956, 3], [402, 874, 3], [393, 852, 3], [428, 926, 3], [390, 844, 3], [375, 812, 3], [414, 896, 3], [414, 896, 2], [375, 667, 2]];
-const THEME = { light: { bg: '#F7F8FA', tile: '#F5683A', k: '#FFFFFF' }, dark: { bg: '#111316', tile: '#F5683A', k: '#FFFFFF' } };
-const svg = (t) => `<svg width="96" height="96" viewBox="0 0 84 84"><rect width="84" height="84" rx="26" fill="${t.tile}"/><path d="M28 20h9v18.5L52.5 20H63L46.5 39.5 64 64H53.2L40.7 46.2 37 50.3V64h-9z" fill="${t.k}"/></svg>`;
+const THEME = { light: { bg: '#F7F8FA', tile: '#F5683A', k: '#FFFFFF', tx: '#20242B' }, dark: { bg: '#111316', tile: '#F5683A', k: '#FFFFFF', tx: '#F2F4F7' } };
+const svg = (t) => `<svg width="84" height="84" viewBox="0 0 84 84" style="display:block"><rect width="84" height="84" rx="26" fill="${t.tile}"/><path d="M28 20h9v18.5L52.5 20H63L46.5 39.5 64 64H53.2L40.7 46.2 37 50.3V64h-9z" fill="${t.k}"/></svg>`;
 const b = track(await chromium.launch()); const links = [];
 for (const [w, h, d] of DEVICES) for (const th of ['light', 'dark']) {
   const c = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: d }); const p = await c.newPage(); const t = THEME[th];
-  await p.setContent(`<html><body style="margin:0;background:${t.bg};height:100vh;display:flex;align-items:center;justify-content:center">${svg(t)}</body></html>`);
+  await p.setContent(`<html><body style="margin:0;background:${t.bg};height:100vh;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;font:800 26px/1 Manrope,system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:-.02em;color:${t.tx}">${svg(t)}<b>KalkiFit</b></body></html>`);
   const f = `assets/splash/kalkifit-${w * d}x${h * d}-${th}.png`; await p.screenshot({ path: path.join(ROOT, f) }); await c.close();
   links.push(`<link rel="apple-touch-startup-image" media="screen and (device-width: ${w}px) and (device-height: ${h}px) and (-webkit-device-pixel-ratio: ${d}) and (orientation: portrait) and (prefers-color-scheme: ${th})" href="/${f}">`);
 }

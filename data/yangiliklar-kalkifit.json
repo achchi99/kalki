@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 70,
+   "d": "2026-11-01",
+   "bn": {
+    "uz": "Imkoniyatlar qo'l ostida",
+    "ru": "Возможности под рукой"
+   },
+   "items": [
+    {
+     "uz": "«Imkoniyatlar» tugmasi pastga, «Ovqat qo'shish» yoniga ko'chdi: bosh barmoq bilan oson yetadi.",
+     "ru": "Кнопка «Возможности» теперь внизу, рядом с «Добавить еду»: легко достать большим пальцем.",
+     "show": "imkoniyatlar",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Ovqat yozish — Matn, Ovoz, Rasm, Yorliq bitta bosishda; panel yangi ko'rinishda.",
+     "ru": "Записать еду — Текст, Голос, Фото, Этикетка в одно касание; панель в новом виде."
+    },
+    {
+     "uz": "Ochilish ekrani bitta va jonli: mandarin «K» belgisi, halqa chiziladi, ichida to'lqin ko'tariladi.",
+     "ru": "Заставка теперь одна и живая: мандариновая «K», кольцо рисуется, внутри поднимается волна."
+    }
+   ]
+  },
+  {
    "v": 69,
    "d": "2026-11-01",
    "bn": {
