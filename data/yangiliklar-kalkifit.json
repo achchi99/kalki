@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 68,
+   "d": "2026-11-01",
+   "bn": {
+    "uz": "Soddaroq ko'rinish",
+    "ru": "Проще и аккуратнее"
+   },
+   "items": [
+    {
+     "uz": "Halqa soddalashdi: «Qoldi» va bitta qator — «Yeyildi · Maqsad»; BJU shu kartada.",
+     "ru": "Кольцо проще: «Осталось» и одна строка «Съедено · Цель»; БЖУ в той же карточке.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Tugmalar bir xil: asosiy tugma — oq yozuv, kartalar tekis, rangli soyalar yo'q.",
+     "ru": "Кнопки единые: главная — с белым текстом, карточки плоские, без цветных теней."
+    },
+    {
+     "uz": "Profil bo'sh bo'lsa — bitta karta; vitaminlar endi Imkoniyatlar → Bilim'da.",
+     "ru": "Пустой профиль — одна карточка; витамины теперь в «Возможности» → «Знания».",
+     "show": "profil",
+     "btn": {
+      "uz": "Profilni ochish",
+      "ru": "Открыть профиль"
+     }
+    }
+   ]
+  },
+  {
    "v": 67,
    "d": "2026-11-01",
    "bn": {
