@@ -21,16 +21,16 @@ async function open(url, { state = seed(), w = 390, h = 844, scheme = 'light', z
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
   await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(1500); if (big) { await p.evaluate(() => document.documentElement.classList.add('fs-big')); await p.waitForTimeout(300); } return p;
 }
-const ringTxt = (p) => p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-sub.kv-n, #kcalBtn text.kv-sub')].map((e) => e.textContent.trim()).filter(Boolean));
+const ringTxt = (p) => p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-ctr small, #kcalBtn .kv-ctr span')].map((e) => e.textContent.trim()).filter(Boolean));
 const axeRun = async (p, sel) => { await p.evaluate(AXE); return p.evaluate(async (s) => { const x = await axe.run(document.querySelector(s), { resultTypes: ['violations'], runOnly: { type: 'rule', values: ['color-contrast'] } }); return x.violations.flatMap((v) => v.nodes.map((nd) => nd.target.join(' ').slice(0, 60) + ' ' + (nd.any[0] ? nd.any[0].message.slice(0, 120) : ''))); }, sel); };
 try {
   /* 1. halqa kartasi: holatlar */
   let p = await open('/kalkifit', { state: seed({ food: 'none' }) });
   let t = await ringTxt(p); assert.deepEqual(t, ['Kunlik maqsad', '2 205', 'kkal'].filter((x, i) => i !== 1).concat([]).length ? t : t); assert.ok(t.includes('Kunlik maqsad') && t.includes('kkal') && !t.some((x) => /Birinchi/.test(x)), 'ovqat yo\'q: ' + t);
-  assert.equal(await p.locator('#kChips').count(), 0, 'ovqat yo\'q — «Yeyildi» qatori yo\'q'); assert.equal(await p.locator('.kc-note').count(), 0, '«kiritilgan ovqatlar bo\'yicha» halqa ostida yo\'q'); assert.equal(await p.locator('.sl-taxrow').count(), 0);
+  assert.match(nb(await p.locator('#kChips').innerText()), /^0 Iste'mol [\d ]+ Maqsad$/, 'ovqat yo\'q — Iste\'mol 0'); assert.equal(await p.locator('.kc-note').count(), 0, '«kiritilgan ovqatlar bo\'yicha» halqa ostida yo\'q'); assert.equal(await p.locator('.sl-taxrow').count(), 0);
   await p.click('#kcalI'); await p.waitForTimeout(600); assert.match(nb(await p.locator('#rzSheet').innerText()), /kiritilgan ovqatlar bo'yicha|Halqa kiritilgan ovqatlar bo'yicha hisoblanadi/); await p.context().close();
   p = await open('/kalkifit', { state: seed() }); t = await ringTxt(p); assert.ok(t.includes('Qoldi') && t.includes('kkal'), 'ovqat bor: ' + t);
-  assert.equal(nb(await p.locator('#kChips').innerText()), 'Yeyildi 820 · Maqsad 2 205 ›'); assert.equal(await p.locator('#kChips').getAttribute('data-act'), 'xkcal');
+  assert.equal((await p.waitForTimeout(1200), nb(await p.locator('#kChips').innerText())), '820 Iste\'mol 2 205 Maqsad'); assert.equal(await p.locator('#kChips').getAttribute('data-act'), 'xkcal');
   const lay = await p.evaluate(() => { const big = document.querySelector('.sl-big'), br = big.getBoundingClientRect(), bj = document.querySelector('.sl-big #bjuCard'); return { bju: !!bj, cards: document.querySelectorAll('.sl-big ~ #bjuCard, section#bjuCard').length, sh: getComputedStyle(big).boxShadow, bg: getComputedStyle(big).backgroundColor, h: Math.round(br.height) }; });
   assert.ok(lay.bju && lay.cards === 0, 'BJU halqa kartasi ichida (bitta blok)'); assert.equal(lay.sh, 'none', 'kartada soya yo\'q');
   await p.click('#kChips'); await p.waitForTimeout(600); assert.ok(/qanday|Kaloriya|hisob/i.test(nb(await p.locator('#rzSheet').innerText())), 'hisob varag\'i ochildi'); await p.context().close();
@@ -68,13 +68,13 @@ try {
 
   /* 5. tipografika va yozuvlar */
   p = await open('/kalkifit'); const ty = await p.evaluate(() => { const g = (s, pr) => { const e = document.querySelector(s); return e ? getComputedStyle(e)[pr] : null; }; return { h1: [g('#todayHd', 'fontSize'), g('#todayHd', 'fontWeight')], num: [g('#kLeft', 'fontSize'), g('#kLeft', 'fontWeight')], sec: [g('.sl-sec2k h3', 'fontSize'), g('.sl-sec2k h3', 'fontWeight')], tab: [g('.rz-tab:not(.on)', 'fontSize'), g('.rz-tab:not(.on)', 'fontWeight')] }; });
-  assert.deepEqual(ty.h1, ['28px', '700']); assert.equal(ty.num[1], '700'); assert.ok(/^52/.test(ty.num[0]) || ty.num[0] === '52px', 'halqa raqami 52: ' + ty.num); assert.deepEqual(ty.sec, ['18px', '600']); assert.deepEqual(ty.tab, ['12px', '500']); await p.context().close();
+  assert.deepEqual(ty.h1, ['30px', '700']); assert.equal(ty.num[1], '700'); assert.equal(ty.num[0], '56px', 'halqa raqami 56: ' + ty.num); assert.deepEqual(ty.sec, ['18px', '700']); assert.deepEqual(ty.tab, ['12px', '500']); await p.context().close();
   p = await open('/kalkifit'); { const tx = nb(await p.locator('#rzMain').textContent()); assert.match(tx, /Hali yozilmagan/); assert.ok(!/Hali yo'q/.test(tx)); } await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(700);
   const pt = nb(await p.locator('#rzMain').innerText()); assert.match(pt, /Ko'rinish/); assert.match(pt, /Yorug'/); assert.ok(!/Mavzu|\bOch\b|Vaqtlarga ajratmaslik/.test(pt), pt.slice(0, 300)); assert.match(pt, /Ovqat vaqtlariga ajratilmagan/); assert.match(pt, /Muqobil taomlar/);
   await p.click('.rz-tab[data-v=today]'); await p.waitForTimeout(500); await p.click('#ftBtn'); await p.waitForTimeout(600); const ft = nb(await p.locator('#ftDr').innerText()); assert.match(ft, /boshqa variantlar/); assert.ok(!/alternativalar/.test(ft)); await p.click('[data-act=ftpath][data-p=yeyman]'); await p.waitForTimeout(300); assert.match(nb(await p.locator('#ftDr').innerText()), /Retseptning yengilroq varianti/); await p.context().close();
   ok('tipografika: sarlavha 28/700, halqa raqami 52/700, bo\'lim 18/600, nav 12/500; yozuvlar: «Ovqat qo\'shish», «Nima yedingiz?», «N ta taomni qo\'shish», «Hali yozilmagan», «Ovqat vaqtlariga ajratilmagan», «Muqobil taomlar», «Ko\'rinish/Yorug\'», «boshqa variantlar», «Retseptning yengilroq varianti»');
   /* ru */
-  p = await open('/ru/kalkifit'); assert.equal(await p.locator('#mainAdd').innerText(), 'Добавить еду'); t = await ringTxt(p); assert.ok(t.includes('Осталось'), 'ru halqa: ' + t); assert.match(nb(await p.locator('#kChips').innerText()), /^Съедено 820 · Цель 2 205 ›$/); await p.context().close();
+  p = await open('/ru/kalkifit'); assert.equal(await p.locator('#mainAdd').innerText(), 'Добавить еду'); t = await ringTxt(p); assert.ok(t.includes('Осталось'), 'ru halqa: ' + t); assert.match((await p.waitForTimeout(1200), nb(await p.locator('#kChips').innerText())), /^820 Съедено 2 205 Цель$/); await p.context().close();
   p = await open('/kalkifit?lang=cyr'); assert.equal(await p.locator('#mainAdd').innerText(), 'Овқат қўшиш'); await p.context().close();
   ok('ru/ЎЗ: «Добавить еду», «Осталось», «Съедено … · Цель …», «Овқат қўшиш»');
 

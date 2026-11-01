@@ -28,15 +28,15 @@ const msOf = (d) => parseFloat(d) * (/ms$/.test(d) ? 1 : 1000);
 try {
   /* 1. tokenlar (kalkifit.css) */
   const css = fs.readFileSync(path.join(ROOT, 'assets/css/kalkifit.css'), 'utf8'), tok = css.slice(css.indexOf('/* v69 DIZAYN TIZIMI — tipografiya'));
-  for (const [k, v] of [['--fs-page', '28px'], ['--fs-sec', '18px'], ['--fs-body', '16px'], ['--fs-aux', '14px'], ['--h-btn', '54px'], ['--ms-panel', '250ms'], ['--pad-c', '18px'], ['--r-c', '22px']]) assert.ok(new RegExp(k + ':' + v).test(tok), 'token: ' + k + ' = ' + v);
-  assert.match(tok, /--fs-nav:12px/); assert.match(tok, /--fs-hero:52px/); assert.match(css, /--fs-hero:54px/);
+  for (const [k, v] of [['--fs-page', '30px'], ['--fs-sec', '18px'], ['--fs-body', '16px'], ['--fs-aux', '13px'], ['--h-btn', '54px'], ['--ms-panel', '280ms'], ['--pad-c', '18px'], ['--r-c', '22px']]) assert.ok(new RegExp(k + ':' + v).test(tok), 'token: ' + k + ' = ' + v);
+  assert.match(tok, /--fs-nav:12px/); assert.match(tok, /--fs-hero:56px/); assert.match(css, /--fs-hero:58px/);
   const v69all = css.slice(css.indexOf('/* ===================== v69 DIZAYN TIZIMI: sarlavha')), v70i = v69all.indexOf('/* ===================== v70:'), v69 = v70i > 0 ? v69all.slice(0, v70i) : v69all, v70 = v70i > 0 ? v69all.slice(v70i) : '';
   assert.deepEqual(v70.match(/#[0-9A-Fa-f]{3,8}\b|rgba?\([^)]*\)/g) || [], [], 'v70 bloklarida ham qattiq rang yo\'q'); assert.deepEqual(v70.match(/font-weight:\s*(8|9)00|font-weight:\s*bold/g) || [], [], 'v70: shrift og\'irligi ≤ 700 (faqat sarlavha va halqa raqami 700)');
   assert.deepEqual(v69.match(/#[0-9A-Fa-f]{3,8}\b|rgba?\([^)]*\)/g) || [], [], 'v69 bloklarida qattiq rang yo\'q — faqat tokenlar'); assert.deepEqual(v69.match(/font-weight:\s*(7|8|9)00|font-weight:\s*bold/g) || [], [], 'v69: shrift og\'irligi ≤ 600');
   assert.ok((v69.match(/min-height:var\(--h-btn\)/g) || []).length >= 1, 'asosiy tugma balandligi tokendan');
   let p = await open('/kalkifit');
   const m = await p.evaluate(() => { const g = (s) => { const e = document.querySelector(s); return e ? getComputedStyle(e) : null; }, mb = document.querySelector('#mainAdd'), card = g('#bjuCard'), hd = g('#todayHd'); return { title: hd.fontSize, tw: hd.fontWeight, btn: Math.round(mb.getBoundingClientRect().height), cardSh: card.boxShadow }; });
-  assert.equal(m.title, '28px'); assert.ok(+m.tw >= 600 && +m.tw <= 700); assert.ok(m.btn >= 52 && m.btn <= 56, 'asosiy tugma 52–56: ' + m.btn); assert.equal(m.cardSh, 'none', 'oddiy karta tekis (soya faqat ko\'tarilgan panelda)');
+  assert.equal(m.title, '30px'); assert.ok(+m.tw >= 600 && +m.tw <= 700); assert.ok(m.btn >= 52 && m.btn <= 56, 'asosiy tugma 52–56: ' + m.btn); assert.equal(m.cardSh, 'none', 'oddiy karta tekis (soya faqat ko\'tarilgan panelda)');
   ok('tokenlar: 28/20/16/14/12.5, ring 52 (katta shriftda 54), karta 18/22, tugma 54; v69 bloklarida #hex/rgb va og\'ir shrift yo\'q; Bugun sarlavhasi 28, tugma 52–56, karta tekis');
 
   /* 2. Imkoniyatlar paneli: 4 yo'l */
@@ -45,7 +45,7 @@ try {
   await p.click('#ftBtn'); await p.waitForTimeout(500);
   const dr = await p.evaluate(() => { const d = document.getElementById('ftDr'), cs = getComputedStyle(d), r = d.getBoundingClientRect(); return { open: d.classList.contains('op'), bottom: Math.round(r.bottom), vh: innerHeight, dur: cs.transitionDuration, paths: [...d.querySelectorAll('.ft-pt')].map((e) => e.dataset.p + ':' + e.querySelector('b').textContent), bilim: [...d.querySelectorAll('.ft-bc')].map((e) => e.dataset.fk), intro: d.querySelectorAll('[data-act=ftintro]').length, bg: [...d.querySelectorAll('.ft-pt .ic')].map((e) => getComputedStyle(e).backgroundColor) }; });
   assert.ok(dr.open); assert.equal(dr.bottom, dr.vh, 'panel pastdan'); assert.deepEqual(dr.paths, ['yozish:Ovqat yozish', 'yeyman:Nima yeyman?', 'mening:Mening taomlarim', 'natija:Natijalarim']); assert.deepEqual(dr.bilim, ['supp', 'afsona']); assert.equal(dr.intro, 0, 'tanishtiruv havolasi panelda yo\'q');
-  const ms = msOf(dr.dur); assert.ok(ms >= 220 && ms <= 280, 'panel animatsiyasi 220–280 ms: ' + dr.dur); assert.equal(new Set(dr.bg).size, 4, 'har yo\'lning o\'z ikonka foni: ' + dr.bg.join(' | '));
+  const ms = msOf(dr.dur); assert.ok(ms >= 260 && ms <= 300, 'panel animatsiyasi 260–300 ms: ' + dr.dur); assert.equal(new Set(dr.bg).size, 4, 'har yo\'lning o\'z ikonka foni: ' + dr.bg.join(' | '));
   const want = { yozish: ['yozish', 'ovoz', 'rasm', 'yorliq'], yeyman: ['yeymiz', 'yesam', 'retsept'], mening: ['odatdagi', 'taomlarim', 'idishlar', 'tartib'], natija: ['hafta', 'kunkarta', 'ulashish'] };
   for (const k of Object.keys(want)) {
     await p.click('[data-act=ftpath][data-p=' + k + ']'); await p.waitForTimeout(250);

@@ -4,8 +4,8 @@
   'use strict';
   var W = 1080, H = 1350, F = 'Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif';
   var THEME = {
-    light: { bg0: '#FBF6F1', bg1: '#F3EBE4', card: '#FFFFFF', ink: '#1E1A17', mut: '#6B625B', acc: '#E0603F', ring: '#EADFD6', water: '#2F8FD8', steps: '#2E9E6A', tile: '#F3EBE4' },
-    dark: { bg0: '#1B1714', bg1: '#2A221D', card: '#2F2722', ink: '#F7F1EC', mut: '#C9BDB3', acc: '#FF8A66', ring: '#43382F', water: '#6FB8F0', steps: '#5CCB93', tile: '#F3EBE4' }
+    light: { bg0: '#F7F8FA', bg1: '#F2F4F7', card: '#FFFFFF', ink: '#20242B', mut: '#657083', acc: '#F5683A', ring: '#ECEEF2', water: '#4C8DF0', steps: '#2BB673', tile: '#F2F4F7' },
+    dark: { bg0: '#111316', bg1: '#1A1D22', card: '#1A1D22', ink: '#F2F4F7', mut: '#98A2B3', acc: '#FF9A5C', ring: '#262A31', water: '#6FA6F5', steps: '#34C98B', tile: '#F2F4F7' }
   };
   /* d: { dark, date (matn), eaten, limit, ml, mlGoal, steps, stepGoal, food (taom nomi), img (Image|null), letter, joke, L: { eaten, goal, water, steps, kcal, ml, top } } */
   function card(d) {
