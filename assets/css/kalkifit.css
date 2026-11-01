@@ -1710,7 +1710,7 @@ html .rz.sl{--shadow:none}          /* soya faqat ko'tarilgan varaq/panel/chip (
 .rz.sl .rz-btn.primary:disabled{opacity:.5}
 .rz.sl .rz-btn:not(.primary):not(.link):not(.danger){background:var(--card);color:var(--ink);border:1px solid var(--line2)}
 .rz.sl .rz-btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line2)}
-.rz.sl .rz-btn.link,.rz.sl .sl-txtbtn{background:transparent;border:0;color:var(--accink);min-height:44px;font-weight:600}
+.rz.sl .rz-btn.link,.rz.sl .sl-txtbtn{background:transparent;border:0;color:var(--accink);min-height:44px;font-weight:600;font-size:14px}
 .rz.sl .rz-btn.danger{background:var(--card);color:var(--err);border:1px solid var(--err)}.rz.sl .rz-btn.primary.danger{background:var(--err);color:var(--on-err);border:0}
 .rz.sl .rz-btn.sm{min-height:44px;font-size:var(--fs-aux);padding:0 16px;border-radius:14px}
 /* TIPOGRAFIKA: sarlavha 28/700 · halqa raqami 52/700 · karta sarlavhasi 18/600 · matn 16 · izoh 14/400 · nav 12/500 */
