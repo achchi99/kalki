@@ -1693,3 +1693,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 @media (max-height:700px){.sl-ob-in{padding:3px 0}.sl-ob .sl-res7 .sl-big b{font-size:40px}}          /* kichik ekran + katta shrift: natija ekrani aylantirishsiz sig'adi */
 .rz .sl-mac3 b,.rz .sl-mac3 .mv small{font-size:var(--fs-aux)}.rz .sl-mac3{gap:10px}          /* makro ustunlari: yordamchi matn 14 — «Углеводы» 360 px'da sig'adi */
 .rz .ft-pt{min-width:0}.rz .ft-pt b,.rz .ft-pt small{overflow-wrap:anywhere;hyphens:auto;max-width:100%}          /* kirill uzun so'zlar karta ichida qoladi */
+/* tuzatish: yuqori xavfsiz zona (iPhone PWA/Safari status bar) — sarlavha («Bugun/Tarix/Profil») status bar ostida qolmasin; --safe-top testda soxtalashtiriladi */
+:root{--safe-top:env(safe-area-inset-top,0px)}
+.rz.sl .rz-main{padding-top:calc(8px + var(--safe-top))}
+.rz.sl::before{content:"";position:fixed;top:0;left:0;right:0;height:var(--safe-top);background:var(--bg);z-index:40}          /* aylantirilganda kontent status bar ostida ko'rinmasin */

@@ -1,0 +1,34 @@
+// KalkiFit: yuqori xavfsiz zona (iPhone PWA/Safari status bar). Yangi ixcham sarlavha (Bugun · sana · Imkoniyatlar; Tarix; Profil) status bar zonasi ostida QOLMASIN:
+// --safe-top (env(safe-area-inset-top) o'rniga testda 47 px) berilganda sarlavha matni va «Imkoniyatlar» tugmasi shu zonadan PASTDA; aylantirilganda kontent status bar ostida ko'rinmaydi (qoplama).
+//   node tools/dizayn/test-kalkifit-safe-top.mjs
+import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { createRequire } from 'node:module'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs';
+const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const D = S.dates, TODAY = D.today();
+const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
+const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
+await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch()); let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
+const seed = () => { const st = S.emptyState(); st.setup = true; st.created = Date.now() - 9 * 864e5; st.prefs = { tipsDone: true, jokes: false, lpTip: 1, introDone: true }; st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'lose', goalWeight: 75 }; st.trackStart = D.addDays(TODAY, -8); S.addWeight(st, TODAY, 80); for (let i = 3; i >= 0; i--) S.addFood(st, D.addDays(TODAY, -i), { fid: 'osh', meal: 'l', unit: 'g100', qty: 350, g: 350, kcal: 665, p: 33, f: 16, c: 55, ts: 1 }); return st; };
+async function open(url, { w = 390, scheme = 'light', safe = '47px', big = false } = {}) {
+  const c = await b.newContext({ viewport: { width: w, height: 800 }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: scheme });
+  await c.addInitScript((o) => { try { localStorage.setItem('kalki_fit', JSON.stringify(o.st)); localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); } catch (e) {} document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.setProperty('--safe-top', o.safe); if (o.big) document.documentElement.classList.add('fs-big'); }); }, { st: seed(), safe, big });
+  const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
+  await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(1200); return p;
+}
+const tops = (p, sels) => p.evaluate((l) => l.map((s) => { const e = document.querySelector(s); return e ? Math.round(e.getBoundingClientRect().top) : null; }), sels);
+try {
+  for (const [w, big, url, th] of [[390, false, '/kalkifit', 'light'], [360, true, '/kalkifit', 'dark'], [360, false, '/ru/kalkifit', 'light']]) {
+    const p = await open(url, { w, big, scheme: th });
+    let t = await tops(p, ['#todayHd', '.sl-hd2 .d', '#ftBtn']); assert.ok(t.every((v) => v !== null && v >= 47), url + ' Bugun: sarlavha/sana/Imkoniyatlar status bar ostida: ' + t);
+    await p.click('.rz-tab[data-v=history]'); await p.waitForTimeout(600); t = await tops(p, ['.rz-main h2', '.rz-main .rz-h']); assert.ok(t.some((v) => v !== null) && t.filter((v) => v !== null).every((v) => v >= 47), url + ' Tarix sarlavhasi: ' + t);
+    await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(600); t = await tops(p, ['.rz-main h2', '.rz-main .rz-h']); assert.ok(t.filter((v) => v !== null).length && t.filter((v) => v !== null).every((v) => v >= 47), url + ' Profil sarlavhasi: ' + t);
+    /* aylantirilganda status bar zonasi (yuqori 47 px) kontent emas, fon bilan qoplanadi */
+    await p.click('.rz-tab[data-v=today]'); await p.waitForTimeout(600); await p.evaluate(() => { document.getElementById('rzMain').scrollTop = 400; }); await p.waitForTimeout(300);
+    const cv = await p.evaluate(() => { const rz = document.querySelector('.rz.sl'), cs = getComputedStyle(rz, '::before'); const hit = document.elementFromPoint(100, 20); return { pos: cs.position, h: cs.height, bg: cs.backgroundColor, hitInMain: !!hit && !!hit.closest('#rzMain') }; });
+    assert.equal(cv.pos, 'fixed'); assert.equal(cv.h, '47px'); assert.ok(cv.bg && cv.bg !== 'rgba(0, 0, 0, 0)', 'qoplama foni'); assert.equal(cv.hitInMain, false, 'status bar zonasida kontent emas: ' + JSON.stringify(cv)); assert.deepEqual(p.errs, []); await p.context().close();
+  }
+  ok('--safe-top 47 px: Bugun (sarlavha, sana, «Imkoniyatlar»), Tarix va Profil sarlavhalari status bar zonasidan pastda; aylantirilganda yuqori zona fon bilan qoplanadi (390 uz / 360 uz katta shrift tungi / 360 ru)');
+  const p0 = await open('/kalkifit', { safe: '0px' }); const t0 = await tops(p0, ['#todayHd', '#ftBtn']); assert.ok(t0.every((v) => v >= 0 && v < 40), 'safe-area yo\'q (oddiy brauzer/Android): sarlavha tepada qoladi, ortiqcha bo\'shliq yo\'q: ' + t0);
+  ok('safe-area 0 (Safari oddiy brauzer / Android): ortiqcha bo\'shliq yo\'q');
+  const css = fs.readFileSync(path.join(ROOT, 'assets/css/kalkifit.css'), 'utf8'); assert.match(css, /:root\{--safe-top:env\(safe-area-inset-top,0px\)\}/); assert.match(css, /\.rz\.sl \.rz-main\{padding-top:calc\(8px \+ var\(--safe-top\)\)\}/);
+  ok('CSS: --safe-top = env(safe-area-inset-top); .rz-main yuqori padding shundan (oxirgi qoida — boshqa qoida bekor qila olmaydi)');
+  console.log('\n' + n + '/' + n + ' OK');
+} catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }
