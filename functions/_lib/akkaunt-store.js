@@ -19,7 +19,7 @@
  *   eskiKonvertlar(joriyV, limit) → { qatorlar: [{ akkaunt_id, ilova, kod_konvert, master_v }], qoldi }   (kalit almashtirish: qayta o'rash uchun)
  *   devYoz(email, kod, maqsad, now) / devOl(email, now) → FAQAT preview dev rejimi (jadval `dev_kod` shu yerda, birinchi chaqiruvda yaratiladi; production'da hech qachon chaqirilmaydi va jadval ochilmaydi)
  *   audit(akkauntId, hodisa, now)
- *   akkauntOchir(id, email)                     → akkaunt, sessiyalar, kodlar va audit qatorlari BUTUNLAY o'chadi
+ *   akkauntOchir(id, email)                     → akkaunt, sessiyalar, kodlar, audit va eslatma (push) obunasi BUTUNLAY o'chadi
  *   yuklab(id)                                  → { akkaunt, sessiyalar: [...] }  (foydalanuvchi o'z ma'lumotini yuklab olishi uchun)
  *   tozala(now)                                 → eskirgan kod/sessiya/limit qatorlari o'chadi
  *   sanoq()                                     → { akkaunt, sessiya } (monitoring) */
@@ -87,6 +87,7 @@ export function makeStore(env) {
     async audit(akkauntId, hodisa, now) { await run('INSERT INTO audit (vaqt, akkaunt_id, hodisa) VALUES (?, ?, ?)', now, akkauntId || null, hodisa); },
     async akkauntOchir(id, email) {
       await run('DELETE FROM akkaunt_ilova WHERE akkaunt_id = ?', id); await run('DELETE FROM sessiya WHERE akkaunt_id = ?', id); await run('DELETE FROM kirish_kodi WHERE email = ?', email); await run('DELETE FROM audit WHERE akkaunt_id = ?', id);
+      try { await run('DELETE FROM push_obuna WHERE akkaunt_id = ?', id); } catch (e) {}          // v68+ MAXFIYLIK: eslatma obunasi ham o'chadi (akkaunt bog'lanishi qolmaydi); jadval bo'lmasa — o'tkazib yuboriladi
       return changes(await run('DELETE FROM akkaunt WHERE id = ?', id)) > 0;
     },
     async yuklab(id) { return { akkaunt: await one('SELECT ' + AK + ' FROM akkaunt WHERE id = ?', id), sessiyalar: await this.sessiyalar(id), ilovalar: await this.ilovalar(id) }; },

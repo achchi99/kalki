@@ -30,7 +30,7 @@
   }
   function browser() {
     var w = typeof window !== 'undefined' ? window : null; if (!w) return null; var ls = null; try { ls = w.localStorage; } catch (e) {}
-    var h = create({ storage: ls, dnt: w.navigator && (w.navigator.doNotTrack === '1' || w.doNotTrack === '1'), setTimeout: w.setTimeout.bind(w), online: function () { return w.navigator.onLine !== false; },
+    var h = create({ storage: ls, dnt: w.navigator && (w.navigator.doNotTrack === '1' || w.navigator.globalPrivacyControl === true || w.doNotTrack === '1'), setTimeout: w.setTimeout.bind(w), online: function () { return w.navigator.onLine !== false; },
       today: function () { var d = new Date(Date.now() + 5 * 3600000); return d.toISOString().slice(0, 10); },           // Toshkent kuni
       post: function (b) { return w.fetch('/api/hisob', { method: 'POST', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }).then(function (r) { return r.status === 204 || r.ok; }); } });
     w.addEventListener('pagehide', function () { h.flush(); }); w.document.addEventListener('visibilitychange', function () { if (w.document.visibilityState === 'hidden') h.flush(); }); w.addEventListener('online', function () { h.flush(); });

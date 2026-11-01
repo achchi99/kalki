@@ -66,6 +66,7 @@ export async function tozalash(db, now) {
 export async function qabul(request, env, now) {
   const db = env.KALKIFIT_DB; if (!db) return quiet();
   if (BOT.test(request.headers.get('User-Agent') || '') || !originOk(request, env)) return quiet();
+  if (request.headers.get('DNT') === '1' || request.headers.get('Sec-GPC') === '1') return quiet();          // v68+: DNT / GPC sarlavhasi — hech narsa yozilmaydi (mijoz ham yubormaydi; bu — zaxira to'siq)
   let b; try { const raw = await request.text(); if (raw.length > 6000) return quiet(); b = JSON.parse(raw); } catch (e) { return quiet(); }
   const c = tozala(b); if (!c || !c.h.length) return quiet();
   const kun = tosh(now), q = await qurilma(env, c.q), jami = c.h.reduce((a, x) => a + x.n, 0), yangi = c.h.some((x) => x.h === 'yangi_foydalanuvchi') ? 1 : 0, manba = (c.h.find((x) => x.h === 'yangi_foydalanuvchi') || {}).k || '', ob = c.h.some((x) => x.h === 'onboarding_tugadi') ? 1 : 0, d = turOf(request.headers.get('User-Agent'), c.p, c.v), ek = ekranOf(c.e);

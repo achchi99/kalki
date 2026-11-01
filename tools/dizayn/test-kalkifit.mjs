@@ -73,7 +73,7 @@ const B = bolim({ '1': 20, '1c': 20, '2': 20, '3': 20, '4': 20, '5': 20, '6': 20
 const yd = D.addDays(TODAY, -1);
 const QM = (a) => { window.Capacitor = { isNativePlatform: () => true, getPlatform: () => 'android', PluginHeaders: [{ name: 'Qadam', methods: [] }], addListener: () => ({ remove() {} }),
   nativePromise: (pl, m) => { if (pl !== 'Qadam') return Promise.reject(new Error('yo\'q')); if (m === 'isAvailable') return Promise.resolve({ available: true, granted: true, enabled: true, source: 'sensor', sensor: true, sensorGranted: true }); if (m === 'getDays') return Promise.resolve({ kunlar: [{ sana: a.yd, qadam: a.ky == null ? 5000 : a.ky }, { sana: a.t, qadam: a.kt || 8000 }], source: 'sensor' }); return Promise.resolve({}); } }; };
-const FD = TODAY, FN = Date.parse(FD + 'T19:30:00'), fd = (k) => D.addDays(FD, k);
+const FD = +TODAY.slice(8) < 8 ? D.addDays(TODAY, 14) : TODAY, FN = Date.parse(FD + 'T19:30:00'),          /* oy boshida (1–7) taqvim testi o'tgan oy kunlariga tushmasin — soxta «bugun» oy o'rtasida */ fd = (k) => D.addDays(FD, k);
 let p;
 try {
   /* ---- 1. onboarding: bir savol — bir ekran, o'z klaviaturasi, xatolar, natija ekrani ---- */

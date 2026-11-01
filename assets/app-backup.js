@@ -24,6 +24,7 @@
       clIntro: "Ma'lumotingiz tiklash kodi bilan shifrlanib serverga saqlanadi. Ro'yxatdan o'tish shart emas.", clConsent: "Ma'lumotlaringiz shifrlangan holda serverda saqlanadi", clAgree: 'Roziman', clCancel: 'Bekor qilish',
       clCodeT: 'Tiklash kodingiz', clCodeS: "Bu kodni xavfsiz joyga yozib qo'ying. Kod yo'qolsa, ma'lumotni tiklab bo'lmaydi — akkauntga ulanmagan bo'lsa, uni hech kim, biz ham, qayta tiklay olmaydi.", clCopy: 'Nusxalash', clTg: 'Telegramga yuborish', clSaved: 'Saqladim', clSavedHint: "«Saqladim»ni bosmaguncha bulutga saqlash yoqilmaydi.", clCopied: 'Kod nusxalandi', clCopiedTg: "Kod nusxalandi — Telegram'ga yuboring", clOnToast: 'Bulutga saqlash yoqildi',
       clLast: 'Oxirgi saqlangan: {d} ✓', clNever: 'Hali saqlanmagan', clQueue: 'Navbatda — internet kelganda saqlanadi', clBusy: 'Saqlanmoqda…', clShow: "Kodni ko'rsatish", clNow: 'Hozir saqlash', clDel: "Bulutdan o'chirish",
+      clMudT: 'Bulut zaxira: saqlash muddati', clMudS: "Bulutdagi zaxirangizga 12 oydan beri hech qanday sinxron bo'lmagan edi va u 30 kundan keyin o'chirilishi rejalashtirilgan edi. Ilovani ochganingiz uchun zaxira saqlanib qoladi. Qoida: 12 oy sinxron bo'lmasa — ogohlantiramiz, undan 30 kun o'tib ham bo'lmasa — o'chiramiz.", clMudOk: 'Tushunarli',
       clDelT: "Bulutdan o'chirish", clDelS: "Serverdagi nusxa o'chiriladi. Telefondagi ma'lumot saqlanib qoladi. Kodni qayta yoqmaguningizcha bulutga saqlanmaydi.", clDelGo: "O'chirish", clDelOk: "Bulutdagi nusxa o'chirildi", clDelErr: "O'chirib bo'lmadi — internetni tekshiring",
       clNA: "Bulutga saqlash hozircha ishga tushirilmagan — keyinroq urinib ko'ring", clConfT: 'Boshqa qurilmada yangiroq nusxa bor', clConfS: "Bulutdagi nusxa boshqa qurilmadan yangilangan. Qaysi biri qolsin?", clKeepMine: 'Shu qurilmadagini saqlash', clTakeCloud: 'Bulutdagini yuklash', clTaken: 'Bulutdagi nusxa yuklandi',
       rcLink: 'Avval ishlatganmisiz? Tiklash kodini kiriting', rcT: 'Tiklash kodi', rcS: "Avval bulutga saqlashni yoqqan bo'lsangiz, tiklash kodini kiriting.", rcPh: 'KF-XXXX-XXXX-…', rcGo: 'Tiklash', rcBusy: 'Tiklanmoqda…', rcOk: "Ma'lumotlaringiz tiklandi",
@@ -38,6 +39,7 @@
       clIntro: 'Данные шифруются кодом восстановления и сохраняются на сервере. Регистрация не нужна.', clConsent: 'Ваши данные хранятся на сервере в зашифрованном виде', clAgree: 'Согласен', clCancel: 'Отмена',
       clCodeT: 'Ваш код восстановления', clCodeS: 'Запишите этот код в надёжном месте. Если код потерян, данные восстановить невозможно — если копия не привязана к аккаунту, никто, в том числе мы, не сможет их открыть.', clCopy: 'Скопировать', clTg: 'Отправить в Telegram', clSaved: 'Я сохранил', clSavedHint: 'Пока вы не нажмёте «Я сохранил», сохранение в облако не включится.', clCopied: 'Код скопирован', clCopiedTg: 'Код скопирован — отправьте его в Telegram', clOnToast: 'Сохранение в облако включено',
       clLast: 'Последнее сохранение: {d} ✓', clNever: 'Ещё не сохранялось', clQueue: 'В очереди — сохранится, когда появится интернет', clBusy: 'Сохраняем…', clShow: 'Показать код', clNow: 'Сохранить сейчас', clDel: 'Удалить из облака',
+      clMudT: 'Облачная копия: срок хранения', clMudS: 'Облачная копия не синхронизировалась больше 12 месяцев, и её удаление через 30 дней было запланировано. Раз вы открыли приложение, копия сохраняется. Правило: нет синхронизации 12 месяцев — предупреждаем, ещё 30 дней без синхронизации — удаляем.', clMudOk: 'Понятно',
       clDelT: 'Удалить из облака', clDelS: 'Копия на сервере будет удалена. Данные на телефоне сохранятся. В облако ничего не сохранится, пока вы снова не включите функцию.', clDelGo: 'Удалить', clDelOk: 'Копия в облаке удалена', clDelErr: 'Не удалось удалить — проверьте интернет',
       clNA: 'Сохранение в облако пока не запущено — попробуйте позже', clConfT: 'На другом устройстве есть более новая копия', clConfS: 'Копия в облаке обновлена с другого устройства. Какую оставить?', clKeepMine: 'Оставить копию с этого устройства', clTakeCloud: 'Загрузить из облака', clTaken: 'Копия из облака загружена',
       rcLink: 'Уже пользовались? Введите код восстановления', rcT: 'Код восстановления', rcS: 'Если раньше вы включали сохранение в облако, введите код восстановления.', rcPh: 'KF-XXXX-XXXX-…', rcGo: 'Восстановить', rcBusy: 'Восстанавливаем…', rcOk: 'Данные восстановлены',
@@ -271,6 +273,23 @@
         clearTimeout(timer); CS = empty(); saveCloud(); if (cfg.kit) { cfg.kit.closeSheet(); cfg.kit.toast(L().clDelOk, null, true); } changed();
       }, function () { if (cfg.kit) cfg.kit.toast(L().clDelErr); });
     }
+
+    bk.delCloudQuiet = function () {                  // akkaunt o'chirilganda: bulut zaxira darhol o'chadi (jim; qat'iy rejimda serverda bog'lanish yo'q — shu yerda o'chiriladi)
+      if (!CS.on || !CS.code) return Promise.resolve(false);
+      return keysFor(CS.code).then(function (k) { return api('DELETE', '?id=' + k.id); }).then(function () { clearTimeout(timer); CS = empty(); saveCloud(); changed(); return true; }, function () { return false; });
+    };
+    /* v68+ SAQLASH MUDDATI: kuniga bir marta blobsiz «holat» so'rovi (sinxron hisoblanadi). Server 12 oy sinxronsiz bo'lgan zaxiraga ogoh qo'ygan bo'lsa — bir martalik xabar. */
+    var HK = 'kalki_zaxira_' + cfg.app + '_h', OK = 'kalki_zaxira_' + cfg.app + '_og';
+    bk.holat = function () {
+      if (!CS.on || !CS.code || !online()) return Promise.resolve(null); var now = Date.now(), lastH = 0; try { lastH = +localStorage.getItem(HK) || 0; } catch (e) {} if (now - lastH < 20 * 3600000) return Promise.resolve(null);
+      return keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id + '&holat=1'); }).then(function (r) {
+        if (r.s !== 200) return null; try { localStorage.setItem(HK, String(now)); } catch (e) {}
+        var og = +r.j.ogoh || 0, seen = 0; try { seen = +localStorage.getItem(OK) || 0; } catch (e) {}
+        if (og && og !== seen && cfg.kit && !cfg.kit.sheetKind()) { try { localStorage.setItem(OK, String(og)); } catch (e) {} var t = L(); cfg.kit.openSheet('bkmud', '<div class="bk-sheet">' + cfg.kit.shHead(t.clMudT) + '<p class="rz-p">' + esc(t.clMudS) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(t.clMudOk) + '</button></div></div>'); }
+        return { ogoh: og };
+      }, function () { return null; });
+    };
+    if (typeof setTimeout !== 'undefined') setTimeout(function () { try { bk.holat(); } catch (e) {} }, 4000);
 
     bk.act = function (a) {
       if (a === 'bktg') { bk.tg(); return true; }
