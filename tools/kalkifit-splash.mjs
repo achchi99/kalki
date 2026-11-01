@@ -3,7 +3,7 @@
 import fs from 'node:fs'; import path from 'node:path'; import { chromium } from 'playwright'; import { track } from './test-cleanup.cjs';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 export const DEVICES = [[430, 932, 3], [440, 956, 3], [402, 874, 3], [393, 852, 3], [428, 926, 3], [390, 844, 3], [375, 812, 3], [414, 896, 3], [414, 896, 2], [375, 667, 2]];
-const THEME = { light: { bg: '#F7F5F2', tile: '#E8572F', k: '#FFFFFF' }, dark: { bg: '#18191C', tile: '#FF7E5C', k: '#1C0C06' } };
+const THEME = { light: { bg: '#F7F8FA', tile: '#F5683A', k: '#FFFFFF' }, dark: { bg: '#111316', tile: '#F5683A', k: '#FFFFFF' } };
 const svg = (t) => `<svg width="96" height="96" viewBox="0 0 84 84"><rect width="84" height="84" rx="26" fill="${t.tile}"/><path d="M28 20h9v18.5L52.5 20H63L46.5 39.5 64 64H53.2L40.7 46.2 37 50.3V64h-9z" fill="${t.k}"/></svg>`;
 const b = track(await chromium.launch()); const links = [];
 for (const [w, h, d] of DEVICES) for (const th of ['light', 'dark']) {

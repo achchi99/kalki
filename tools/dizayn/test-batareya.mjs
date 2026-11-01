@@ -15,7 +15,7 @@ async function open(o = {}) {
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
   await p.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await p.waitForSelector('#kcalBtn .kv-w', { state: 'attached' }); return p;
 }
-const waves = (p) => p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-w')].map((e) => e.getAnimations().map((a) => { const t = a.effect.getComputedTiming(); return { n: a.animationName, s: a.playState, end: t.endTime, it: t.iterations, cur: a.currentTime }; })));
+const waves = (p) => p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-lv')].map((g) => [...g.getAnimations(), ...g.querySelector('.kv-w').getAnimations()].map((a) => { const t = a.effect.getComputedTiming(); return { n: a.animationName, s: a.playState, end: t.endTime, it: t.iterations, cur: a.currentTime }; })));
 try {
   /* 1. SMIL yo'q; cheklangan; ~10 s da tugaydi */
   let p = await open(); assert.equal(await p.locator('#kcalBtn animate, #kcalBtn animateTransform, #kcalBtn animateMotion, #kcalBtn set').count(), 0, 'SMIL yo\'q (CPU)');
@@ -29,16 +29,16 @@ try {
   ok('Sahifa ko\'rinmasa (visibilitychange → hidden) to\'lqin to\'liq pauza, vaqti yurmaydi; ko\'rinsa davom etadi');
   /* 3. oddiy qayta chizish — davom (qaytadan boshlanmaydi); raqam o'zgarsa — yangidan jonlanadi */
   await p.waitForTimeout(2500); const before = (await waves(p))[0].find((a) => a.n === 'kvSw1z' || a.n === 'kvSw1'); await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(200);
-  const after = await p.evaluate(() => { const e = document.querySelector('#kcalBtn .kv-w'); return parseFloat(getComputedStyle(e).animationDelay.split(', ')[1]); }); assert.ok(after <= -2.5, 'qayta chizishda vaqt chizig\'i davom etadi (delay ' + after + ' s, oldin ' + JSON.stringify(before) + ')');
-  await p.click('[data-act=wadd]'); await p.waitForTimeout(150); const same = await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector('#kcalBtn .kv-w')).animationDelay.split(', ')[1])); assert.ok(same <= -2.5, 'suv qo\'shish (raqam o\'zgarmaydi) — to\'lqin qayta boshlanmaydi: ' + same);
+  const after = await p.evaluate(() => { const e = document.querySelector('#kcalBtn .kv-lv:last-child .kv-w'); return parseFloat(getComputedStyle(e).animationDelay.split(', ')[0]); }); assert.ok(after <= -2.5, 'qayta chizishda vaqt chizig\'i davom etadi (delay ' + after + ' s, oldin ' + JSON.stringify(before) + ')');
+  await p.click('[data-act=wadd]'); await p.waitForTimeout(150); const same = await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector('#kcalBtn .kv-lv:last-child .kv-w')).animationDelay.split(', ')[0])); assert.ok(same <= -2.5, 'suv qo\'shish (raqam o\'zgarmaydi) — to\'lqin qayta boshlanmaydi: ' + same);
   await p.evaluate(() => { const K = window.__kalkifit, t = K.S.dates.today(); K.S.addFood(K.state, t, { meal: 's', fid: 'olma', kcal: 80, p: 0, f: 0, c: 20, g: 150, ts: 2 }); K.render(); }); await p.waitForTimeout(150);
-  const fresh = await p.evaluate(() => { const c = getComputedStyle(document.querySelector('#kcalBtn .kv-w')); return [c.animationName, parseFloat(c.animationDelay.split(', ')[1])]; }); assert.ok(fresh[0].startsWith('kvRise, kvSw1') && fresh[1] > -0.5, 'raqam o\'zgardi — to\'lqin yangidan jonlanadi: ' + fresh);
+  const fresh = await p.evaluate(() => { const g = getComputedStyle(document.querySelector('#kcalBtn .kv-lv:last-child')), c = getComputedStyle(document.querySelector('#kcalBtn .kv-lv:last-child .kv-w')); return [g.animationName + ', ' + c.animationName, parseFloat(c.animationDelay.split(', ')[0])]; }); assert.ok(fresh[0].startsWith('kvRise, kvSw1') && fresh[1] > -0.5, 'raqam o\'zgardi — to\'lqin yangidan jonlanadi: ' + fresh);
   ok('Oddiy qayta chizish (tab, suv) — to\'lqin o\'z vaqt chizig\'idan davom etadi; ovqat qo\'shilib raqam o\'zgarsa — yangidan jonlanadi');
   /* 4. 11 s dan keyin Bugun ekranida birorta animatsiya yurmaydi (bo'sh holat — CPU ~0) */
   await p.waitForTimeout(11000); const run = await p.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').map((a) => (a.animationName || a.constructor.name) + ' @' + (a.effect && a.effect.target ? (a.effect.target.id || a.effect.target.className.baseVal || a.effect.target.className) : '')));
   assert.deepEqual(run, [], 'bo\'sh Bugun — yurayotgan animatsiya yo\'q'); assert.deepEqual(p.errs, []); await p.context().close();
   ok('11 s dan keyin Bugun ekranida birorta animatsiya yurmaydi (bo\'sh holatda CPU ~0)');
   /* 5. reduced-motion — animatsiyasiz, suyuqlik darhol o'z darajasida */
-  p = await open({ reduced: true }); w = await waves(p); assert.ok(w.every((l) => l.length === 0), 'reduced-motion: animatsiya yo\'q: ' + JSON.stringify(w)); assert.ok((await p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-w')].every((e) => /^0px \d/.test(getComputedStyle(e).translate)))), 'suyuqlik o\'z darajasida'); await p.context().close();
+  p = await open({ reduced: true }); w = await waves(p); assert.ok(w.every((l) => l.length === 0), 'reduced-motion: animatsiya yo\'q: ' + JSON.stringify(w)); assert.ok((await p.evaluate(() => [...document.querySelectorAll('#kcalBtn .kv-lv')].every((e) => /^0px \d/.test(getComputedStyle(e).translate)))), 'suyuqlik o\'z darajasida'); await p.context().close();
   ok('prefers-reduced-motion — to\'lqin harakatsiz, suyuqlik darhol o\'z darajasida');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }

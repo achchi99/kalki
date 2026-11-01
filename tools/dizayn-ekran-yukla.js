@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* kalki.uz — dizayn skrinshotlarini admin sahifasiga (admin/dizayn-ekranlar.html) yuklash: D1 jadval dizayn_ekran.
  *   node tools/dizayn-ekran-yukla.js <papka> [--muhit production|preview] [--tozala]
- * Papkadagi <oldin|keyin>-<guruh>-<light|dark>.png fayllari (masalan keyin-1-bugun-dark.png) base64 bo'lib yoziladi.
+ * Papkadagi <oldin|keyin|maket>-<guruh>-<light|dark>.png fayllari (masalan keyin-1-bugun-dark.png) base64 bo'lib yoziladi.
  * Kalit ~/.cf-token — repoda yo'q, chiqarilmaydi. Skrinshotlar repoga qo'shilmaydi. */
 'use strict';
 const fs = require('fs'), os = require('os'), path = require('path');
@@ -14,9 +14,9 @@ async function main(argv) {
   const tok = fs.readFileSync(path.join(os.homedir(), '.cf-token'), 'utf8').trim(), url = 'https://api.cloudflare.com/client/v4/accounts/' + ACC + '/d1/database/' + DB[muhit] + '/query';
   const q = async (sql, params) => { const r = await fetch(url, { method: 'POST', headers: { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' }, body: JSON.stringify({ sql, params }) }), j = await r.json(); if (!j.success) throw new Error('D1: ' + JSON.stringify(j.errors || []).slice(0, 200)); return j; };
   if (argv.includes('--tozala')) await q('DELETE FROM dizayn_ekran', []);
-  const fl = fs.readdirSync(dir).filter((f) => /^(oldin|keyin)-.+-(light|dark)\.png$/.test(f)).sort(); let n = 0;
+  const fl = fs.readdirSync(dir).filter((f) => /^(oldin|keyin|maket)-.+-(light|dark)\.png$/.test(f)).sort(); let n = 0;
   for (const f of fl) {
-    const m = /^(oldin|keyin)-(.+)-(light|dark)\.png$/.exec(f), guruh = m[2], buf = fs.readFileSync(path.join(dir, f));
+    const m = /^(oldin|keyin|maket)-(.+)-(light|dark)\.png$/.exec(f), guruh = m[2], buf = fs.readFileSync(path.join(dir, f));
     await q('INSERT OR REPLACE INTO dizayn_ekran (id, guruh, holat, tema, nom, tartib, rasm, yangilandi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [f.slice(0, -4), guruh, m[1], m[3], NOM[guruh] || guruh, parseInt(guruh, 10) || 0, 'data:image/png;base64,' + buf.toString('base64'), Date.now()]); n++;
   }
   console.log(muhit + ': ' + n + ' skrinshot yuklandi'); return 0;

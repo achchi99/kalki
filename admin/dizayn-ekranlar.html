@@ -10,7 +10,7 @@ main{max-width:900px;margin:0 auto}h1{font-size:1.35rem;margin:0 0 4px}h2{font-s
 input,button{font:inherit;color:inherit;min-height:44px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:0 12px}
 button{cursor:pointer;font-weight:700}button.p{background:var(--ok);border-color:var(--ok);color:#fff}
 .g{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:0 0 14px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.row:last-child{margin:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.row.c3{grid-template-columns:1fr 1fr 1fr}.row.c1{grid-template-columns:minmax(0,1fr);max-width:420px}.row:last-child{margin:0}
 .row.one{grid-template-columns:minmax(0,1fr);max-width:420px}.row figure{margin:0}.row figcaption{font-size:.82rem;font-weight:700;color:var(--mut);margin:0 0 4px}
 .row img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in}
 .th{font-size:.8rem;color:var(--mut);font-weight:700;margin:0 0 4px}
@@ -19,27 +19,27 @@ button{cursor:pointer;font-weight:700}button.p{background:var(--ok);border-color
 #msg{min-height:1.4em;color:var(--bad);font-weight:700}[hidden]{display:none!important}
 </style></head><body><main>
 <h1>KalkiFit — dizayn ekranlari</h1>
-<p class="s">Dizayn tizimi: oldin / keyin (390 px, yorug' va tungi). Rasmni bosing — kattalashadi. Ommaga ochiq emas.</p>
+<p class="s">Dizayn tizimi: oldin (production) / keyin / maket (390 px, yorug' va tungi). Rasmni bosing — kattalashadi. Ommaga ochiq emas.</p>
 <form class="bar" id="login" hidden autocomplete="on"><input id="pw" type="password" placeholder="Admin parol" autocomplete="current-password" required><button class="p" type="submit">Kirish</button></form>
 <div id="msg" role="status"></div><div id="app"></div>
-<div id="lb" hidden><div class="t"><button type="button" id="lbF">Oldin ⇄ Keyin</button><button type="button" id="lbX">Yopish</button></div><img id="lbI" alt=""></div>
+<div id="lb" hidden><div class="t"><button type="button" id="lbF">Oldin ⇄ Keyin ⇄ Maket</button><button type="button" id="lbX">Yopish</button></div><img id="lbI" alt=""></div>
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-var by={},cur=null;
+var by={},cur=null,ORD=['oldin','keyin','maket'];
 function api(p,o){o=o||{};o.credentials='same-origin';return fetch(p,o).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(r.status===401){$('login').hidden=false;throw new Error(j.xato||'Kirish kerak')}if(!r.ok)throw new Error(j.xato||'Xato');return j})})}
 function load(){api('/api/admin/dizayn-ekranlar').then(function(j){$('login').hidden=true;$('msg').textContent='';render(j.ekranlar||[])}).catch(function(e){$('msg').textContent=e.message})}
 function render(L){by={};var gs=[],seen={};L.forEach(function(x){by[x.id]=x;if(!seen[x.guruh]){seen[x.guruh]=1;gs.push(x.guruh)}});
  if(!L.length){$('app').innerHTML='<p class="s">Hali skrinshot yo\'q.</p>';return}
  $('app').innerHTML=gs.map(function(g){var one=L.filter(function(x){return x.guruh===g}),nm=one[0].nom;
-  return'<section class="g"><h2>'+esc(nm)+'</h2>'+['light','dark'].map(function(t){var o=by['oldin-'+g+'-'+t],k=by['keyin-'+g+'-'+t];if(!o&&!k)return'';
-   return'<div class="th">'+(t==='light'?"Yorug'":'Tungi')+'</div><div class="row'+(o&&k?'':' one')+'">'+(o?fig(o,'Oldin'):'')+(k?fig(k,'Keyin'):'')+'</div>'}).join('')+'</section>'}).join('')}
+  return'<section class="g"><h2>'+esc(nm)+'</h2>'+['light','dark'].map(function(t){var o=by['oldin-'+g+'-'+t],k=by['keyin-'+g+'-'+t],m=by['maket-'+g+'-'+t],c=(o?1:0)+(k?1:0)+(m?1:0);if(!c)return'';
+   return'<div class="th">'+(t==='light'?"Yorug'":'Tungi')+'</div><div class="row c'+c+'">'+(o?fig(o,'Oldin'):'')+(k?fig(k,'Keyin'):'')+(m?fig(m,'Maket'):'')+'</div>'}).join('')+'</section>'}).join('')}
 function fig(x,c){return x?'<figure><figcaption>'+c+'</figcaption><img loading="lazy" src="'+x.rasm+'" alt="'+esc(x.nom+' — '+c)+'" data-id="'+esc(x.id)+'"></figure>':'<figure><figcaption>'+c+'</figcaption></figure>'}
 function openLb(id){cur=id;$('lbI').src=by[id].rasm;$('lb').hidden=false}
 $('app').addEventListener('click',function(e){var i=e.target.closest('img[data-id]');if(i)openLb(i.getAttribute('data-id'))});
 $('lbX').onclick=function(){$('lb').hidden=true};
-$('lbF').onclick=function(){var o=cur.indexOf('oldin-')===0?'keyin-'+cur.slice(6):'oldin-'+cur.slice(6);if(by[o])openLb(o)};
+$('lbF').onclick=function(){var k=cur.split('-')[0],rest=cur.slice(k.length),i=ORD.indexOf(k);for(var n=1;n<=3;n++){var nx=ORD[(i+n)%3]+rest;if(by[nx]){openLb(nx);return}}};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')$('lb').hidden=true});
 $('login').addEventListener('submit',function(e){e.preventDefault();api('/api/admin/kirish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({parol:$('pw').value})}).then(function(){$('pw').value='';load()}).catch(function(x){$('msg').textContent=x.message})});
 api('/api/admin/holat').then(function(j){if(j.kirgan)load();else $('login').hidden=false})

@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 69,
+   "d": "2026-11-01",
+   "bn": {
+    "uz": "Grafit va mandarin",
+    "ru": "Графит и мандарин"
+   },
+   "items": [
+    {
+     "uz": "Yangi ko'rinish: grafit va mandarin ranglar, yengil karta va ravon to'lqinli halqa.",
+     "ru": "Новый вид: графит и мандарин, лёгкие карточки и кольцо со спокойными волнами.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Halqa ostida «Iste'mol | Maqsad»: raqamlar sanaladi, ovqat qo'shilsa «+134» ko'rinadi.",
+     "ru": "Под кольцом «Съедено | Цель»: числа считаются, при добавлении еды — «+134»."
+    },
+    {
+     "uz": "Bosh tugma grafit, sana qatorida tanlangan kun siljiydi, suv qo'shilsa progress ravon to'ladi.",
+     "ru": "Главная кнопка графитовая, выбранный день плавно сдвигается, при добавлении воды прогресс плавно заполняется."
+    }
+   ]
+  },
+  {
    "v": 68,
    "d": "2026-11-01",
    "bn": {
