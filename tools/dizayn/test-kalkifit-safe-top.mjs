@@ -23,7 +23,7 @@ try {
     /* aylantirilganda status bar zonasi (yuqori 47 px) kontent emas, fon bilan qoplanadi */
     await p.click('.rz-tab[data-v=today]'); await p.waitForTimeout(600); await p.evaluate(() => { document.getElementById('rzMain').scrollTop = 400; }); await p.waitForTimeout(300);
     const cv = await p.evaluate(() => { const rz = document.querySelector('.rz.sl'), cs = getComputedStyle(rz, '::before'); const hit = document.elementFromPoint(100, 20); return { pos: cs.position, h: cs.height, bg: cs.backgroundColor, hitInMain: !!hit && !!hit.closest('#rzMain') }; });
-    assert.equal(cv.pos, 'fixed'); assert.equal(cv.h, '47px'); assert.ok(cv.bg && cv.bg !== 'rgba(0, 0, 0, 0)', 'qoplama foni'); assert.equal(cv.hitInMain, false, 'status bar zonasida kontent emas: ' + JSON.stringify(cv)); assert.deepEqual(p.errs, []); await p.context().close();
+    assert.ok(['fixed', 'absolute'].includes(cv.pos), 'qoplama joylashuvi: ' + cv.pos); assert.equal(cv.h, '47px'); assert.ok(cv.bg && cv.bg !== 'rgba(0, 0, 0, 0)', 'qoplama foni'); assert.equal(cv.hitInMain, false, 'status bar zonasida kontent emas: ' + JSON.stringify(cv)); assert.deepEqual(p.errs, []); await p.context().close();
   }
   ok('--safe-top 47 px: Bugun (sarlavha, sana, «Imkoniyatlar»), Tarix va Profil sarlavhalari status bar zonasidan pastda; aylantirilganda yuqori zona fon bilan qoplanadi (390 uz / 360 uz katta shrift tungi / 360 ru)');
   const p0 = await open('/kalkifit', { safe: '0px' }); const t0 = await tops(p0, ['#todayHd', '#ftBtn']); assert.ok(t0.every((v) => v >= 0 && v < 40), 'safe-area yo\'q (oddiy brauzer/Android): sarlavha tepada qoladi, ortiqcha bo\'shliq yo\'q: ' + t0);

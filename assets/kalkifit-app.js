@@ -1144,7 +1144,7 @@
     jkPrev(); jFlash = kit.sheetKind() ? { text: l.text, pend: true, t0: now, rem: 0 } : { text: l.text, rem: JK_MS }; if (view === 'today') jokeShow();          // varaq ochiq bo'lsa — yopilgach (kit.onClose)
   }
   function waveD(amp, ph) { var d = 'M0 ' + (amp * Math.sin(ph)).toFixed(1); for (var x = 6; x <= 480; x += 6) d += ' L' + x + ' ' + (amp * Math.sin(2 * Math.PI * x / 120 + ph)).toFixed(1); return d + ' L480 270 L0 270 Z'; }
-  function tyOf(L) { return L <= 0 ? 196 : Math.round((172 - 32 * Math.min(1, L)) * 10) / 10; }          // v71: to'lqin sathi 172 → 140 (raqam doim ustida, to'lqin ostida emas)
+  function tyOf(L) { return L <= 0 ? 200 : Math.round((186 - 28 * Math.min(1, L)) * 10) / 10; }          // to'lqin sathi 186 → 158: raqam va «Qoldi/Iste'mol» yozuvi doim to'lqindan yuqorida
   function vesselSvg(o) {                            // v71 GRAFIT+MANDARIN: tashqi halqa (ingichka iz + mandarin gradient yoy), ichida och doira va IKKITA sokin to'lqin; raqam/yozuvlar HTML qatlamida (qimirlamaydi, konturisiz)
     var ty = o.ty, ty2 = ty - 7, fy = o.fromTy, fy2 = fy - 7, d1 = o.upd ? '1.2s' : '.95s', d2 = o.upd ? '1.3s' : '1.05s', rd = reduce;
     /* to'lqin: ko'tarilish `translate` da, chayqalish `transform` da; chayqalish cheksiz emas (batareya) — sekinlashib ~10 s da to'xtaydi; ko'rinmasa pauza (kv-tin); reduced-motion — statik */
