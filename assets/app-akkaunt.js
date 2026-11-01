@@ -26,7 +26,7 @@
       accT: 'Akkaunt', accOn: 'Kirgansiz: {e}', accDev: 'Kirgan qurilmalar: {n}', accSaved: "✓ Ma'lumotingiz avtomatik saqlanadi — yangi telefonda shu email bilan kirsangiz tiklanadi.", accWait: "Ma'lumot kiritganingizdan keyin avtomatik saqlanadi.", accStrict: "Qat'iy rejim yoqilgan: yangi telefonda ma'lumotni faqat tiklash kodi bilan tiklaysiz.",
       mk: 'Yangilik va maslahatlarni emailga yuborishga roziman', mkS: "Ixtiyoriy. Istalgan payt o'chirib qo'yasiz. Emailingiz boshqalarga berilmaydi.",
       out: 'Chiqish', outAll: 'Hamma qurilmadan chiqish', dl: "Ma'lumotimni yuklab olish", del: "Akkauntni o'chirish",
-      delT: "Akkauntni o'chirish", delP: "Email va akkaunt ma'lumotlaringiz serverdan butunlay o'chadi, tiklash kodingiz akkauntdan ajraladi. Telefondagi ilova ma'lumoti va bulutdagi zaxira (tiklash kodi bilan) saqlanib qoladi.", delSend: 'Tasdiqlash kodini yuborish', delGo: "Butunlay o'chirish", delCd: '{e} manziliga tasdiqlash kodini yubordik.', back: 'Orqaga',
+      delT: "Akkauntni o'chirish", delP: "Email va akkaunt ma'lumotlaringiz, eslatma obunasi va bulutdagi zaxira serverdan butunlay o'chadi. Telefondagi ilova ma'lumoti saqlanib qoladi.", delSend: 'Tasdiqlash kodini yuborish', delGo: "Butunlay o'chirish", delCd: '{e} manziliga tasdiqlash kodini yubordik.', back: 'Orqaga',
       eEmpty: 'Email yozilmagan. Manzilingizni kiriting, masalan: ism@pochta.uz.', eEmail: "Email noto'g'ri yozilgan. «@» belgisi va domenni tekshiring (masalan: ism@pochta.uz).", eCodeEmpty: 'Emaildagi 6 xonali kodni kiriting.',
       eKut: "Kod yaqinda yuborilgan. {n} soniyadan keyin qayta yuborishingiz mumkin — hozircha emaildagi kodni kiriting.", eLimit: "Urinishlar chegarasi to'ldi. {n} daqiqadan keyin qayta urinib ko'ring.",
       eXato: "Kod noto'g'ri. Emaildagi 6 xonali kodni qayta kiriting.", eYoq: "Kod eskirgan (10 daqiqa o'tgan) yoki undan keyin yangi kod yuborilgan. «Kodni qayta yuborish»ni bosing va oxirgi xatdagi kodni kiriting.", eQulf: "Juda ko'p noto'g'ri urinish — xavfsizlik uchun kod bekor qilindi. «Kodni qayta yuborish»ni bosib yangi kod oling.",
@@ -51,7 +51,7 @@
       accT: 'Аккаунт', accOn: 'Вы вошли: {e}', accDev: 'Устройств с входом: {n}', accSaved: '✓ Данные сохраняются автоматически — на новом телефоне войдите по этому email, и они восстановятся.', accWait: 'Данные начнут сохраняться автоматически, когда вы что-нибудь добавите.', accStrict: 'Строгий режим включён: на новом телефоне данные восстанавливаются только по коду восстановления.',
       mk: 'Согласен получать новости и советы на email', mkS: 'Необязательно. Можно отключить в любой момент. Email не передаётся третьим лицам.',
       out: 'Выйти', outAll: 'Выйти на всех устройствах', dl: 'Скачать мои данные', del: 'Удалить аккаунт',
-      delT: 'Удалить аккаунт', delP: 'Email и данные аккаунта будут полностью удалены с сервера, код восстановления отвяжется от аккаунта. Данные приложения на телефоне и облачная копия (по коду восстановления) сохранятся.', delSend: 'Отправить код подтверждения', delGo: 'Удалить навсегда', delCd: 'Мы отправили код подтверждения на {e}.', back: 'Назад',
+      delT: 'Удалить аккаунт', delP: 'Email и данные аккаунта, подписка на напоминания и облачная копия будут полностью удалены с сервера. Данные приложения на телефоне сохранятся.', delSend: 'Отправить код подтверждения', delGo: 'Удалить навсегда', delCd: 'Мы отправили код подтверждения на {e}.', back: 'Назад',
       eEmpty: 'Email не указан. Введите адрес, например: imya@pochta.uz.', eEmail: 'Email записан неверно. Проверьте знак «@» и домен (например: imya@pochta.uz).', eCodeEmpty: 'Введите 6-значный код из письма.',
       eKut: 'Код уже отправлен. Повторно можно через {n} с — пока введите код из письма.', eLimit: 'Лимит попыток исчерпан. Повторите через {n} мин.',
       eXato: 'Код неверный. Введите 6-значный код из письма ещё раз.', eYoq: 'Код устарел (прошло 10 минут) или после него отправлен новый. Нажмите «Отправить код ещё раз» и введите код из последнего письма.', eQulf: 'Слишком много неверных попыток — код аннулирован для безопасности. Нажмите «Отправить код ещё раз» и получите новый.',
@@ -99,11 +99,19 @@
     var W = typeof window !== 'undefined' ? window : {};
     function nat() { var N = W.KalkiNative; try { return N && N.isApp && N.isApp() ? N : null; } catch (e) { return null; } }
     function gOk() { if (!S.yoq || S.kirgan || !S.google) return false; var N = nat(); if (N) return !!(N.has && N.has('GoogleKirish')); return typeof document !== 'undefined'; }          // APK'da plagin bo'lmasa (eski APK) — yo'q
-    var gis = 0, gq = [];
-    function gisLoad(cb) { if (gis === 2) return cb(); gq.push(cb); if (gis === 1) return; gis = 1; var sc = document.createElement('script'); sc.src = 'https://accounts.google.com/gsi/client'; sc.async = true; sc.onload = function () { try { W.google.accounts.id.initialize({ client_id: S.google, callback: gCred, ux_mode: 'popup', auto_select: false, cancel_on_tap_outside: true }); gis = 2; } catch (e) { gis = 0; } var q = gq; gq = []; if (gis === 2) q.forEach(function (f) { f(); }); }; sc.onerror = function () { gis = 0; gq = []; }; document.head.appendChild(sc); }
-    function gMount() { if (!gOk() || nat()) return; var els = document.querySelectorAll('[data-akkg]:not([data-m])'); if (!els.length) return; gisLoad(function () { [].forEach.call(document.querySelectorAll('[data-akkg]:not([data-m])'), function (el) { el.setAttribute('data-m', '1'); try { W.google.accounts.id.renderButton(el, { type: 'standard', theme: gDark() ? 'filled_black' : 'outline', size: 'large', text: 'signin_with', shape: 'pill', logo_alignment: 'left', width: Math.min(400, Math.max(220, el.clientWidth || 300)), locale: til() === 'ru' ? 'ru' : 'uz' }); } catch (e) {} }); }); }
+    var gis = 0, gq = [], gf = [];
+    function gisLoad(cb, fail) { if (gis === 2) return cb(); gq.push(cb); if (fail) gf.push(fail); if (gis === 1) return; gis = 1; var sc = document.createElement('script'); sc.src = 'https://accounts.google.com/gsi/client'; sc.async = true; sc.onload = function () { try { W.google.accounts.id.initialize({ client_id: S.google, callback: gCred, ux_mode: 'popup', auto_select: false, cancel_on_tap_outside: true }); gis = 2; } catch (e) { gis = 0; } var q = gq; gq = []; if (gis === 2) q.forEach(function (f) { f(); }); }; sc.onerror = function () { gis = 0; gq = []; var f = gf; gf = []; f.forEach(function (x) { x(); }); }; document.head.appendChild(sc); }
+    /* v68+ MAXFIYLIK: Google skripti (accounts.google.com/gsi/client) FAQAT «Google bilan kirish» tugmasi BOSILGANDA yuklanadi (ilgari — Profil ochilishi bilanoq).
+       Tugma — o'zimizning (APK'dagi bilan bir xil ko'rinish); bosilganda skript yuklanadi → bir bosishli oyna (One Tap); chiqmasa — Google'ning o'z tugmasi shu joyda ko'rsatiladi. */
+    function gWeb(el) {
+      if (!el || !gOk() || nat()) return; var t = L(); el.disabled = true;
+      gisLoad(function () {
+        el.disabled = false; var done = false, mount = function () { if (done) return; done = true; var box = document.createElement('div'); box.className = 'akk-gbtn'; box.setAttribute('data-m', '1'); el.parentNode.replaceChild(box, el); try { W.google.accounts.id.renderButton(box, { type: 'standard', theme: gDark() ? 'filled_black' : 'outline', size: 'large', text: 'signin_with', shape: 'pill', logo_alignment: 'left', width: Math.min(400, Math.max(220, box.clientWidth || 300)), locale: til() === 'ru' ? 'ru' : 'uz' }); } catch (e) {} };
+        try { W.google.accounts.id.prompt(function (n) { try { if (n.isNotDisplayed() || n.isSkippedMoment()) mount(); } catch (e) { mount(); } }); } catch (e) { mount(); }
+      }, function () { el.disabled = false; toast(t.eNet); });
+    }
     function gDark() { var h = document.documentElement.getAttribute('data-theme'); if (h) return h === 'dark'; try { return matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { return false; } }
-    function gBtn(where) { if (nat()) return '<button type="button" class="akk-gnat" data-act="akkgoogle" data-akkgw="' + where + '">' + G_SVG + '<span>' + esc(L().gIn) + '</span></button>'; setTimeout(gMount, 0); return '<div class="akk-gbtn" data-akkg="' + where + '" aria-label="' + esc(L().gIn) + '"></div>'; }
+    function gBtn(where) { return '<button type="button" class="akk-gnat" data-act="' + (nat() ? 'akkgoogle' : 'akkgweb') + '" data-akkgw="' + where + '">' + G_SVG + '<span>' + esc(L().gIn) + '</span></button>'; }          // veb: skript tugma bosilgandan keyin yuklanadi
     function gCred(resp) {
       var t = L(), cr = resp && resp.credential; if (!cr) { toast(t.gErr); return; }
       call('POST', 'google', { credential: cr }).then(function (r) {
@@ -247,7 +255,7 @@
       if (code.length !== 6) { setErr(code.length ? t.eXato : t.eCodeEmpty); return; }
       busy(true, 'akkGo', t.going);
       call('POST', 'ochirish', { kod: code }).then(function (r) {
-        busy(false); if (r.s === 200 && r.j.ok) { setState({ yoq: true, il: {} }); step = 'in'; cur = { email: '', next: 0, busy: false, err: '' }; if (cfg.kit) { cfg.kit.closeSheet(); } toast(t.okDel); changed(); return; }
+        busy(false); if (r.s === 200 && r.j.ok) { try { var bki = W.KalkiBackup && W.KalkiBackup.instances && W.KalkiBackup.instances[cfg.app]; if (bki && bki.delCloudQuiet) bki.delCloudQuiet(); } catch (e) {} setState({ yoq: true, il: {} }); step = 'in'; cur = { email: '', next: 0, busy: false, err: '' }; if (cfg.kit) { cfg.kit.closeSheet(); } toast(t.okDel); changed(); return; }          // v68+: bulut zaxira ham darhol o'chadi
         busy(false, 'akkGo', t.delGo); if (r.s === 401) { sessionLost(); } setErr(errText(r.j.e, r.j));
       }, function () { busy(false, 'akkGo', t.delGo); setErr(t.eNet); });
     }
@@ -331,6 +339,7 @@
     ak.act = function (a, el) {
       if (a === 'akk') { step = S.kirgan ? 'acc' : 'in'; cur.err = ''; if (el && el.getAttribute('data-akk') === 'onb') step = 'in'; sheet(); return true; }
       if (a === 'akkgoogle') { gNative(); return true; }
+      if (a === 'akkgweb') { gWeb(el); return true; }
       if (a === 'akkname') { nameSheet(); return true; }
       if (a === 'akknamego') { nameSave(); return true; }
       if (a === 'akksend') { sendCode('kirish'); return true; }

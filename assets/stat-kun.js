@@ -28,6 +28,7 @@
   }
   function off(o) {
     var w = o.win || (typeof window !== 'undefined' ? window : null); if (!w) return true;
+    var nv0 = w.navigator || {}; if (nv0.doNotTrack === '1' || nv0.doNotTrack === 'yes' || w.doNotTrack === '1' || nv0.msDoNotTrack === '1' || nv0.globalPrivacyControl === true) return true;          // v68+ MAXFIYLIK: «Do Not Track» / «Global Privacy Control» — qurilma darajasidagi hodisalar umuman yuborilmaydi (test belgisi ham buni aylanib o'tmaydi)
     try { if (w.localStorage && w.localStorage.getItem('kalki_stat_test') === '1') return false; } catch (e) {}            // faqat test
     var loc = w.location || {}, host = String(loc.hostname || ''), q = String(loc.search || ''), ua = String((w.navigator && w.navigator.userAgent) || '');
     return /[?&]demo=1\b/.test(q) || /\.pages\.dev$/.test(host) || host === 'localhost' || host === '127.0.0.1' || !!(w.navigator && w.navigator.webdriver) || /bot\b|crawl|spider|headless|lighthouse/i.test(ua);

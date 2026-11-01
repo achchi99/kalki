@@ -23,6 +23,7 @@ import { kalitlar } from '../../_lib/akkaunt-kalit.js';
 import { kodTahlil, zaxiraId, konvertYop, konvertOch, ILOVALAR } from '../../_lib/akkaunt-konvert.js';
 import { googleTekshir, cidOk, ismTozala } from '../../_lib/google-id.js';
 import { adminAuth } from '../../_lib/admin-auth.js';
+import { makeStore as makeZaxira } from '../../_lib/zaxira-store.js';
 
 export const KOD_MUDDAT = 10 * 60 * 1000, MAX_URINISH = 5, SES_SLIDING = 30 * 86400000, SES_ABS = 180 * 86400000, MAX_SESSIYA = 20, MARKETING_MATN_V = 'm1';
 const METOD = { sessiya: 'GET', kod: 'POST', kirish: 'POST', google: 'POST', ism: 'POST', chiqish: 'POST', qurilmalar: 'GET', marketing: 'POST', yuklab: 'POST', ochirish: 'POST', ulash: 'POST', tiklash: 'GET', 'qayta-ora': 'POST', 'dev-kod': 'GET' };
@@ -149,6 +150,7 @@ export async function onRequest(ctx) {
       if (r === 'qulf') return fail(400, 'kod_qulf', { xato: "Juda ko'p noto'g'ri urinish. Yangi kod so'rang." });
       if (r === 'xato') return fail(400, 'kod_xato', { xato: "Kod noto'g'ri." });
       if (maqsad === 'ochirish') {
+        try { const zs = makeZaxira(env); if (zs) await zs.delAkkaunt(ak.id); } catch (e) {}          // v68+ MAXFIYLIK: akkauntga bog'langan bulut zaxira DARHOL o'chadi (konvert rejimi; qat'iy rejimda bog'lanish yo'q — ilova o'zi o'chiradi)
         await store.akkauntOchir(ak.id, ak.email); await store.audit(null, 'ochirildi', now);
         return json(200, { ok: true }, { 'Set-Cookie': setCookie(request, '') });
       }

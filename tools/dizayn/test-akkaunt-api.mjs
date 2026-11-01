@@ -275,7 +275,7 @@ await T('B: akkaunt-zaxira almashtirish: boshqa kod 409 «boshqa» (almashtir:tr
   // o'chirish
   const k = await BK.deriveKeys('kalkifit', BK.parseCode('kalkifit', KOD2).body); await zreq(env, 'PUT', '', { id: k.id, ilova: 'kalkifit', kutilgan: 0, blob: 'B'.repeat(40) }); adv(61000);
   await call(env, 'kod', { cookie: A.cookie, body: { maqsad: 'ochirish' } }); const dk = await devKod(env, 'a@x.uz'); assert.equal((await call(env, 'ochirish', { cookie: A.cookie, body: { kod: dk } })).s, 200);
-  assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idA)[0].c, 0); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idB)[0].c, 1); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM zaxira')[0].c, 1, 'zaxira nusxasi saqlanib qoladi');
+  assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idA)[0].c, 0); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM akkaunt_ilova WHERE akkaunt_id = ?', idB)[0].c, 1); assert.equal(raw(env, 'SELECT COUNT(*) AS c FROM zaxira')[0].c, 0, 'v68+ MAXFIYLIK: akkauntga bog\'langan zaxira akkaunt bilan birga o\'chadi');
 });
 
 await T('B: qat\'iy rejim — konvert ham, zaxira_id ham saqlanmaydi; tiklash «qatiy» qaytaradi; konvertga qaytish; qatiyga o\'tganda eski konvert o\'chadi', async () => {

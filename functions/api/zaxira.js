@@ -2,6 +2,7 @@
  *   GET    /api/zaxira?id=<64 hex>                          → 200 { ilova, blob, versiya, yangilangan } | 404
  *   PUT    /api/zaxira   { id, ilova, kutilgan, blob }       → 200 { versiya } | 409 { versiya } (boshqa qurilma yangiroq yozgan — eskisi yozib yuborilmaydi) | 400 | 413 | 429
  *   DELETE /api/zaxira?id=<64 hex>                          → 200 { ok: true, topildi }
+ *   GET    /api/zaxira?id=<64 hex>&holat=1                  → 200 { yangilangan, ogoh } (blobsiz; sinxron hisoblanadi; ogoh ≠ 0 — 12 oy sinxronsiz edi, o'chirish rejalashtirilgan edi) | 404
  *   GET    /api/zaxira?ping=1                               → 200 { tayyor: true } (baza/jadval tayyor) | 503
  * Chegara: blob ≤ 1 MB; kuniga ≤ 50 yozish/id; IP bo'yicha kuniga ≤ 600 so'rov; yangi yozuvlar kuniga ≤ 3000 (sayt). Origin tekshiruvi (PUT/DELETE majburiy).
  * Server kodni ham, ochiq ma'lumotni ham ko'rmaydi: id = SHA-256(HKDF(kod)), blob = AES-GCM(kalit = HKDF(kod)).
@@ -36,6 +37,7 @@ export async function onRequest({ request, env }) {
   if (m === 'GET' || m === 'DELETE') {
     const id = url.searchParams.get('id') || ''; if (!ID_RE.test(id)) return fail(400);
     try {
+      if (m === 'GET' && url.searchParams.get('holat')) { const h = await store.holat(id, Date.now()); return h ? ok({ yangilangan: h.yangilangan, ogoh: h.ogoh }) : fail(404); }          // v68+: blobsiz holat; oxirgi sinxronni yangilaydi (muddat ogohlantirishi bekor), avvalgi ogoh qaytadi
       if (m === 'GET') { const r = await store.get(id); if (!r) return fail(404); return ok({ ilova: r.ilova, blob: r.blob, versiya: r.versiya, yangilangan: r.yangilangan }); }
       return ok({ ok: true, topildi: await store.del(id) });
     } catch (e) { console.error('zaxira db xato'); return fail(503); }
