@@ -2,6 +2,38 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 67,
+   "d": "2026-11-01",
+   "bn": {
+    "uz": "Yangi ko'rinish",
+    "ru": "Новый вид"
+   },
+   "items": [
+    {
+     "uz": "«Imkoniyatlar» pastdan ochiladi: 4 yo'l — Ovqat yozish, Nima yeyman?, Mening taomlarim, Natijalarim.",
+     "ru": "«Возможности» открываются снизу: 4 пути — Записать еду, Что съесть?, Мои блюда, Мои итоги.",
+     "show": "imkoniyatlar",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "Bugun va Profil ixchamroq, ikonkalar chiziqli va bir xil uslubda.",
+     "ru": "Сегодня и Профиль компактнее, значки в одном стиле.",
+     "show": "profil",
+     "btn": {
+      "uz": "Profilni ochish",
+      "ru": "Открыть профиль"
+     }
+    },
+    {
+     "uz": "Kerakli paytda bitta chip: «Odatdagilarga saqlash», «Kechki ovqat tanlash», «Haftangiz tayyor».",
+     "ru": "Подсказка-чип в нужный момент: «Сохранить в привычные», «Выбрать ужин», «Ваша неделя готова»."
+    }
+   ]
+  },
+  {
    "v": 66,
    "d": "2026-10-31",
    "bn": {

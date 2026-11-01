@@ -1,7 +1,7 @@
-// KalkiFit v40: Bugun → «Imkoniyatlar» (maket: ~/imkoniyatlar-maket.html). Tugma: gradient, son nishoni (featList'dan), yaltirash faqat BIR marta.
-// Panel CHAPDAN chiqadi (min(86vw, 360px)), guruhlar: Tez qo'shish (Ovoz/Rasm/Menyu, limiti bilan) → Natijalar → Nima yesam bo'ladi? → Mening → Sog'liq, pastda «Tanishtiruvni qayta ko'rish».
-// Yopish: ✕, fon, chapga surish (barmoqqa ergashadi), Escape, Android «orqaga». Har element o'z funksiyasini ochadi; Profil → Imkoniyatlar bilan BITTA ro'yxat.
-// iPhone veb: ovoz (server orqali) ko'rinadi; server ovozni o'chirgan bo'lsa — karta yo'q va to'rda bo'sh joy qolmaydi. Halqaga tegilmaydi.   node tools/dizayn/test-kalkifit-imkoniyatlar.mjs
+// KalkiFit v69: Bugun → «Imkoniyatlar» (pastdan chiqadigan panel, 4 yo'l: Ovqat yozish · Nima yeyman? · Mening taomlarim · Natijalarim; pastda «Bilim»). Limitlar (Ovoz/Rasm/Menyu — aniq davr bilan),
+// yopish: ✕, fon, Escape, pastga surish, Android «orqaga»; har band o'z funksiyasini ochadi; Profil → Imkoniyatlar bilan BITTA ro'yxat; iPhone veb ovozi (server orqali); uz/cyr/ru, 360 px × 115%. (Tokenlar/chiplar/kontrast — test-kalkifit-dizayn-tizim.)
+// Halqaga tegilmaydi.   node tools/dizayn/test-kalkifit-imkoniyatlar.mjs
+
 import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import { createRequire } from 'node:module'; import { chromium } from 'playwright'; import { track } from '../test-cleanup.cjs';
 const require = createRequire(import.meta.url); const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); const S = require(path.join(ROOT, 'assets/kalkifit-core.js')); const D = S.dates;
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
@@ -21,63 +21,62 @@ const isOpen = (p) => p.evaluate(() => { const d = document.getElementById('ftDr
 const openDr = async (p) => { await p.click('#ftBtn'); await p.waitForTimeout(500); assert.ok(await isOpen(p), 'panel ochildi'); };
 const closedAfter = async (p, how) => { await p.waitForTimeout(450); assert.equal(await isOpen(p), false, how + ': yopildi'); assert.equal(await p.evaluate(() => document.getElementById('ftDr').hidden), true, how + ': yashirildi'); };
 try {
-  /* 1. tugma: gradient, ikonka kvadrati, son = featList; yaltirash faqat bir marta */
+  /* 1. tugma: «Imkoniyatlar» + 4 kvadrat belgisi, raqam va puls yo'q; 390 px — sarlavha yonida */
   let p = await open(390, '/kalkifit');
-  const g = await p.evaluate(() => { const b = document.getElementById('ftBtn'), cs = getComputedStyle(b), br = b.getBoundingClientRect(), h = document.getElementById('todayHd').getBoundingClientRect(); return { txt: b.querySelector('b').textContent, n: b.querySelector('.n') ? 1 : 0, bg: cs.backgroundImage, ic: getComputedStyle(b.querySelector('.ic')).backgroundImage, shine: b.classList.contains('shine'), right: br.right <= innerWidth - 8, beside: br.top < h.bottom && br.left > h.right }; });
-  assert.equal(g.txt, 'Imkoniyatlar'); assert.match(g.bg, /linear-gradient/); assert.match(g.ic, /linear-gradient/); assert.equal(g.shine, true, 'birinchi ochilishda yaltiraydi'); assert.ok(g.right); assert.ok(g.beside, '390 px: sarlavha yonida (maketdagidek)');
-  await p.waitForTimeout(2400); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_ft_anim')), '1'); assert.equal(await p.locator('#ftBtn.shine').count(), 0);
-  await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500); assert.equal(await p.locator('#ftBtn.shine').count(), 0, 'qayta yuklaganda yaltiramaydi');
-  ok('tugma: gradient, rangli ikonka kvadrati, «Imkoniyatlar» (v68: raqam nishoni yo\'q); yaltirash faqat bir marta; 390 px — sarlavha yonida');
-  /* 2. panel chapdan: o'lcham, fon, fokus, guruhlar tartibi, limitlar */
+  const g = await p.evaluate(() => { const bt = document.getElementById('ftBtn'), br = bt.getBoundingClientRect(), h = document.getElementById('todayHd').getBoundingClientRect(); return { txt: bt.querySelector('b').textContent, n: bt.querySelectorAll('.n').length, shine: bt.classList.contains('shine'), right: br.right > 300, beside: br.top < h.bottom + 6 }; });
+  assert.equal(g.txt, 'Imkoniyatlar'); assert.equal(g.n, 0); assert.equal(g.shine, false); assert.ok(g.right && g.beside, '390 px: sarlavha yonida');
+  ok('tugma: «Imkoniyatlar» + belgi; raqam va yaltirash yo\'q; sarlavha yonida');
+  /* 2. panel pastdan: 4 yo'l, limitlar aniq davr bilan, tanishtiruv havolasi yo'q */
   const ring0 = await p.evaluate(() => { const r = document.getElementById('kcalBtn').getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height)]; });
   await openDr(p);
-  const d = await p.evaluate(() => { const dr = document.getElementById('ftDr'), r = dr.getBoundingClientRect(), ov = document.querySelector('.ft-ov'), cs = getComputedStyle(dr);
-    return { left: Math.round(r.left), w: Math.round(r.width), h: Math.round(r.height), rad: cs.borderTopRightRadius, radL: cs.borderTopLeftRadius, ov: !ov.hidden && +getComputedStyle(ov).opacity > 0.9, blur: /blur/.test(getComputedStyle(ov).backdropFilter || getComputedStyle(ov).webkitBackdropFilter || ''), role: dr.getAttribute('role'), focus: document.activeElement && document.activeElement.classList.contains('ft-x'),
-      secs: [...dr.querySelectorAll('.ft-sec')].map((e) => e.textContent), tiles: [...dr.querySelectorAll('.ft-t')].map((e) => e.dataset.fk + ':' + e.querySelector('small').textContent), keys: [...dr.querySelectorAll('[data-act=feat]')].map((e) => e.dataset.fk), cnt: document.querySelector('#ftBtn .n') ? 1 : 0, foot: (dr.querySelector('[data-act=ftintro]') || {}).textContent, its: dr.querySelectorAll('.it').length, dly: dr.querySelector('.ft-grp.it').style.animationDelay }; });
-  assert.equal(d.left, 0); assert.equal(d.w, Math.round(Math.min(390 * 0.86, 360))); assert.equal(d.h, 800); assert.notEqual(d.rad, '0px'); assert.equal(d.radL, '0px'); assert.ok(d.ov && d.blur, 'fon xiralashgan va blur'); assert.equal(d.role, 'dialog'); assert.ok(d.focus, 'fokus ✕ da');
-  assert.deepEqual(d.secs.map((x) => x.toLowerCase()), ["tez qo'shish", 'natijalar', 'ovqat tanlash', 'mening', "sog'liq", 'bilim']);          // v54: «Bilim» — Afsona yoki haqiqat?
-  assert.deepEqual(d.tiles, ['ovoz:Bugun yana 15 ta', 'rasm:Bugun yana 4 ta', 'menyu:Bugun yana 4 ta']); assert.equal(d.cnt, 0, 'v68: Imkoniyatlar tugmasida raqam yo\'q'); assert.equal(d.foot, "Tanishtiruvni qayta ko'rish"); assert.ok(d.its > 8 && /ms$/.test(d.dly), 'elementlar ketma-ket paydo bo\'ladi');
-  assert.deepEqual(d.keys, ['ovoz', 'rasm', 'menyu', 'hafta', 'kunkarta', 'ulashish', 'yeymiz', 'yesam', 'retsept', 'odatdagi', 'taomlarim', 'yorliq', 'idishlar', 'tartib', 'supp', 'afsona']);          // v48: «Mening tartibim» — «Mening» guruhida
-  ok('panel chapdan: kenglik min(86vw, 360), o\'ng burchaklari yumaloq, fon xira + blur, fokus ✕; guruhlar maketdagidek; Ovoz/Rasm/Menyu limiti aniq davr bilan; tugmada raqam yo\'q');
-  /* 3. yopish: ✕, fon, Escape, chapga surish, Android «orqaga» */
+  const d = await p.evaluate(() => { const dr = document.getElementById('ftDr'), r = dr.getBoundingClientRect(), ov = document.querySelector('.ft-ov'), cs = getComputedStyle(dr); return { bottom: Math.round(r.bottom), w: Math.round(r.width), vh: innerHeight, radT: cs.borderTopLeftRadius, radB: cs.borderBottomLeftRadius, ov: !ov.hidden && +getComputedStyle(ov).opacity > 0.9, role: dr.getAttribute('role'), focus: document.activeElement && document.activeElement.className, paths: [...dr.querySelectorAll('.ft-pt')].map((e) => e.dataset.p), intro: dr.querySelectorAll('[data-act=ftintro]').length, bilim: [...dr.querySelectorAll('.ft-bc')].map((e) => e.dataset.fk) }; });
+  assert.equal(d.bottom, d.vh); assert.ok(d.w <= 560); assert.notEqual(d.radT, '0px'); assert.equal(d.radB, '0px'); assert.ok(d.ov, 'fon xiralashgan'); assert.equal(d.role, 'dialog'); assert.deepEqual(d.paths, ['yozish', 'yeyman', 'mening', 'natija']); assert.equal(d.intro, 0); assert.deepEqual(d.bilim, ['supp', 'afsona']);
+  await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(250);
+  const lim = await p.evaluate(() => [...document.querySelectorAll('#ftDr .sl-feat')].filter((e) => e.querySelector('.ft-lim')).map((e) => e.dataset.fk + ':' + e.querySelector('.ft-lim').textContent)); assert.deepEqual(lim, ['ovoz:Bugun yana 15 ta', 'rasm:Bugun yana 4 ta', 'menyu:Bugun yana 4 ta']);
+  await p.click('[data-act=ftback]'); await p.waitForTimeout(250);
+  ok('panel pastdan: yuqori burchaklar yumaloq, fon xira; 4 yo\'l + «Bilim»; tanishtiruv havolasi yo\'q; Ovoz/Rasm/Menyu limiti aniq davr bilan');
+  /* 3. yopish: ✕, fon, Escape, Android «orqaga», pastga surish */
   await p.click('#ftDr .ft-x'); await closedAfter(p, '✕'); assert.equal(await p.evaluate(() => document.activeElement && document.activeElement.id), 'ftBtn', 'fokus tugmaga qaytdi');
-  await openDr(p); await p.mouse.click(380, 400); await closedAfter(p, 'fon');
+  await openDr(p); await p.mouse.click(200, 60); await closedAfter(p, 'fon');
   await openDr(p); await p.keyboard.press('Escape'); await closedAfter(p, 'Escape');
   await openDr(p); assert.equal(await p.evaluate(() => window.KalkiNative.back()), 'overlay'); await closedAfter(p, 'Android orqaga');
-  const cdp = await p.context().newCDPSession(p), tp = (type, x) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x, y: 400 }] });
-  await openDr(p); await tp('touchStart', 250); for (const x of [235, 215, 195]) { await tp('touchMove', x); await p.waitForTimeout(16); }
-  const mid = await p.evaluate(() => document.getElementById('ftDr').style.transform); assert.match(mid, /translateX\(-\d+/, 'barmoqqa ergashadi: ' + mid); await tp('touchEnd'); await p.waitForTimeout(80); assert.equal(await isOpen(p), true, '55 px — qaytadi'); assert.equal(await p.evaluate(() => document.getElementById('ftDr').style.transform), '');
-  await tp('touchStart', 250); for (const x of [220, 180, 140, 110]) { await tp('touchMove', x); await p.waitForTimeout(16); } await tp('touchEnd'); await closedAfter(p, 'chapga surish');
-  ok('yopish: ✕ (fokus tugmaga qaytadi), fonga bosish, Escape, Android «orqaga», chapga surish (barmoqqa ergashadi; oz surilsa — joyiga qaytadi)');
-  /* 4. har element o'z funksiyasini ochadi */
-  for (const k of d.keys) {
-    await openDr(p); await p.locator('#ftDr [data-act=feat][data-fk=' + k + ']').scrollIntoViewIfNeeded(); await p.locator('#ftDr [data-act=feat][data-fk=' + k + ']').click(); await p.waitForTimeout(650);
+  await openDr(p); await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(250); assert.equal(await p.evaluate(() => window.KalkiNative.back()), 'overlay'); await p.waitForTimeout(300); assert.equal(await isOpen(p), true, 'yo\'l ichida «orqaga» — 4 yo\'lga qaytadi'); assert.equal(await p.locator('#ftDr .ft-pt').count(), 4); await p.keyboard.press('Escape'); await closedAfter(p, 'Escape (yo\'l)');
+  const cdp = await p.context().newCDPSession(p), tp = (type, y) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: 195, y }] });
+  await openDr(p); const top = await p.evaluate(() => Math.round(document.getElementById('ftDr').getBoundingClientRect().top)); await tp('touchStart', top + 50); for (const y of [top + 60, top + 80, top + 100]) { await tp('touchMove', y); await p.waitForTimeout(16); }
+  const mid = await p.evaluate(() => document.getElementById('ftDr').style.transform); assert.match(mid, /translateY\(\d+/, 'barmoqqa ergashadi: ' + mid); await tp('touchEnd'); await p.waitForTimeout(80); assert.equal(await isOpen(p), true, 'oz surilsa qaytadi');
+  await tp('touchStart', top + 50); for (const y of [top + 90, top + 170, top + 250, top + 330]) { await tp('touchMove', y); await p.waitForTimeout(16); } await tp('touchEnd'); await closedAfter(p, 'pastga surish');
+  ok('yopish: ✕ (fokus tugmaga qaytadi), fon, Escape, Android «orqaga», pastga surish (barmoqqa ergashadi; oz surilsa joyiga qaytadi)');
+  /* 4. har band o'z funksiyasini ochadi */
+  const keys = ['yozish', 'ovoz', 'rasm', 'yorliq', 'menyu', 'yeymiz', 'yesam', 'retsept', 'odatdagi', 'taomlarim', 'idishlar', 'tartib', 'hafta', 'kunkarta', 'ulashish']; const pOf = { yozish: 'yozish', ovoz: 'yozish', rasm: 'yozish', yorliq: 'yozish', menyu: 'yozish', yeymiz: 'yeyman', yesam: 'yeyman', retsept: 'yeyman', odatdagi: 'mening', taomlarim: 'mening', idishlar: 'mening', tartib: 'mening', hafta: 'natija', kunkarta: 'natija', ulashish: 'natija' };
+  for (const k of keys.concat(['supp', 'afsona'])) {
+    await openDr(p); if (pOf[k]) { await p.click('[data-act=ftpath][data-p=' + pOf[k] + ']'); await p.waitForTimeout(250); }
+    const sel = pOf[k] ? '#ftDr [data-act=feat][data-fk=' + k + ']' : '#ftDr .ft-bc[data-fk=' + k + ']'; if (!(await p.locator(sel).count())) continue; await p.locator(sel).scrollIntoViewIfNeeded(); await p.locator(sel).click(); await p.waitForTimeout(700);
     assert.equal(await isOpen(p), false, k + ': panel yopildi');
     const st = await p.evaluate(() => ({ sheet: !document.getElementById('rzSheet').hidden && document.getElementById('rzSheet').classList.contains('open'), kind: document.getElementById('rzSheet').getAttribute('data-kind'), story: !!document.querySelector('.hk, [class*=hikoya], [class*=hk-]'), full: [...document.querySelectorAll('.yg-full, .sl-yfull, [class*=yeymiz]')].some((e) => e.getBoundingClientRect().height > 300) }));
-    if (k === 'afsona') { assert.equal(await p.locator('#afOv').count(), 1, 'afsona: to\'liq ekran'); await p.click('#afOv [data-act=afx]'); await p.waitForTimeout(400); continue; }          // v54
+    if (k === 'afsona') { assert.equal(await p.locator('#afOv').count(), 1, 'afsona: to\'liq ekran'); await p.click('#afOv [data-act=afx]'); await p.waitForTimeout(400); continue; }
     if (k === 'hafta') { assert.ok(st.story, 'hafta: hikoya'); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500); continue; }
     assert.ok(st.sheet || st.full, k + ': funksiya ochildi ' + JSON.stringify(st)); if (k === 'ovoz' || k === 'rasm') assert.equal(st.kind, 'add');
     await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500);
   }
-  ok('har element bosilganda panel yopilib, o\'z funksiyasi ochiladi (' + d.keys.join(', ') + ')');
-  /* 5. tanishtiruv, halqa, Profil bilan bitta ro'yxat */
-  await openDr(p); await p.click('#ftDr [data-act=ftintro]'); await p.waitForTimeout(600); assert.equal(await p.evaluate(() => !document.getElementById('rzIntro').hidden), true, 'tanishtiruv ochildi'); await p.keyboard.press('Escape'); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500);
+  ok('har band bosilganda panel yopilib, o\'z funksiyasi ochiladi (' + keys.join(', ') + ', supp, afsona)');
+  /* 5. halqa o'zgarmadi; Profil → Imkoniyatlar — panel bilan bitta ro'yxat; tanishtiruv Profil → Sozlamalar'da */
   const ring1 = await p.evaluate(() => { const r = document.getElementById('kcalBtn').getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height)]; }); assert.deepEqual(ring1, ring0, 'halqa o\'lchami o\'zgarmadi');
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.deepEqual(await p.locator('.sl-feats .sl-feat').evaluateAll((l) => l.map((e) => e.dataset.fk)), d.keys, 'Profil va panel — bitta ro\'yxat, bir xil tartib');
-  assert.deepEqual(p.errs, []); await p.context().close(); ok('«Tanishtiruvni qayta ko\'rish» — tanishtiruv ochiladi; halqa o\'zgarmadi; Profil → Imkoniyatlar — shu ro\'yxat, shu tartib');
-  /* 6. iPhone veb: ovoz server orqali — javob kelmasdan ham ko'rinadi; server o'chirgan bo'lsa — yo'q va bo'sh joy qolmaydi */
-  p = await open(390, '/kalkifit', { ua: IPHONE, noWebSR: true, ovDelay: 1500 }); await openDr(p);
-  assert.equal(await p.locator('#ftDr .ft-t[data-fk=ovoz]').count(), 1, 'iPhone: ovoz javobdan oldin ham ko\'rinadi'); await p.waitForTimeout(1800); assert.equal(await p.locator('#ftDr .ft-t[data-fk=ovoz]').count(), 1, 'server yoqilgan — qoladi'); assert.match(await p.locator('#ftDr .ft-t[data-fk=ovoz] small').innerText(), /Bugun yana 15 ta/);
-  await p.click('#ftDr .ft-t[data-fk=ovoz]'); await p.waitForTimeout(700); assert.equal(await p.evaluate(() => document.getElementById('rzSheet').getAttribute('data-kind')), 'add'); await p.context().close();
-  p = await open(390, '/kalkifit', { ua: IPHONE, noWebSR: true, ovOff: true }); await p.waitForTimeout(300); await openDr(p); await p.waitForTimeout(600);
-  const q = await p.evaluate(() => { const t = [...document.querySelectorAll('#ftDr .ft-t')], qa = document.querySelector('#ftDr .ft-qa').getBoundingClientRect(); return { keys: t.map((e) => e.dataset.fk), fill: Math.round(t[t.length - 1].getBoundingClientRect().right) >= Math.round(qa.right) - 1, eq: new Set(t.map((e) => Math.round(e.getBoundingClientRect().width))).size === 1, cnt: document.querySelector('#ftBtn .n') ? 1 : 0, all: document.querySelectorAll('#ftDr [data-act=feat]').length }; });
-  assert.deepEqual(q.keys, ['rasm', 'menyu']); assert.ok(q.fill && q.eq, 'to\'rda bo\'sh joy yo\'q: ' + JSON.stringify(q)); await p.context().close();
-  ok('iPhone veb (Web Speech yo\'q): ovoz server orqali — panelda doim ko\'rinadi, bosilsa ovoz oynasi; server ovozni o\'chirgan bo\'lsa karta yo\'q, qolganlari qatorni to\'ldiradi');
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.deepEqual(await p.locator('.sl-feats .sl-feat').evaluateAll((l) => l.map((e) => e.dataset.fk).sort()), keys.concat(['supp', 'afsona']).sort(), 'Profil va panel — bitta ro\'yxat');
+  await p.click('[data-act=intro]'); await p.waitForTimeout(600); assert.equal(await p.evaluate(() => !document.getElementById('rzIntro').hidden), true, 'tanishtiruv ochildi (Profil → Sozlamalar)');
+  assert.deepEqual(p.errs, []); await p.context().close(); ok('Profil → Imkoniyatlar — shu ro\'yxat; «Tanishtiruvni qayta ko\'rish» Profil → Sozlamalar\'da ishlaydi; halqa o\'zgarmadi');
+  /* 6. iPhone veb: ovoz server orqali — javob kelmasdan ham ko'rinadi; server o'chirgan bo'lsa — qator yo'q */
+  p = await open(390, '/kalkifit', { ua: IPHONE, noWebSR: true, ovDelay: 1500 }); await openDr(p); await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(250);
+  assert.equal(await p.locator('#ftDr [data-fk=ovoz]').count(), 1, 'iPhone: ovoz javobdan oldin ham ko\'rinadi'); await p.waitForTimeout(1800); assert.equal(await p.locator('#ftDr [data-fk=ovoz]').count(), 1, 'server yoqilgan — qoladi'); assert.match(await p.locator('#ftDr [data-fk=ovoz] .ft-lim').innerText(), /Bugun yana 15 ta/);
+  await p.click('#ftDr [data-fk=ovoz]'); await p.waitForTimeout(700); assert.equal(await p.evaluate(() => document.getElementById('rzSheet').getAttribute('data-kind')), 'add'); await p.context().close();
+  p = await open(390, '/kalkifit', { ua: IPHONE, noWebSR: true, ovOff: true }); await p.waitForTimeout(300); await openDr(p); await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(400);
+  assert.deepEqual(await p.evaluate(() => [...document.querySelectorAll('#ftDr .sl-feat')].map((e) => e.dataset.fk)), ['yozish', 'rasm', 'yorliq', 'menyu']); await p.context().close();
+  ok('iPhone veb (Web Speech yo\'q): ovoz server orqali — doim ko\'rinadi, bosilsa ovoz oynasi; server ovozni o\'chirgan bo\'lsa — qator yo\'q');
   /* 7. tillar va 360 px × 115% */
-  for (const [url, t1, t2] of [['/ru/kalkifit', 'Возможности', 'Быстро добавить'], ['/kalkifit?lang=cyr', 'Имкониятлар', 'Тез қўшиш']]) { p = await open(390, url, { th: 'dark' }); assert.equal(await p.locator('#ftBtn b').innerText(), t1); await openDr(p); const tx = await p.locator('#ftDr').innerText(); assert.ok(tx.includes(t1) && tx.toLowerCase().includes(t2.toLowerCase()), url + ': ' + tx.slice(0, 80)); assert.deepEqual(p.errs, []); await p.context().close(); }
+  for (const [url, t1, t2] of [['/ru/kalkifit', 'Возможности', 'Записать еду'], ['/kalkifit?lang=cyr', 'Имкониятлар', 'Овқат ёзиш']]) { p = await open(390, url, { th: 'dark' }); assert.equal(await p.locator('#ftBtn b').innerText(), t1); await openDr(p); const tx = await p.locator('#ftDr').innerText(); assert.ok(tx.includes(t1) && tx.toLowerCase().includes(t2.toLowerCase()), url + ': ' + tx.slice(0, 80)); assert.deepEqual(p.errs, []); await p.context().close(); }
   p = await open(360, '/kalkifit'); await p.evaluate(() => document.documentElement.classList.add('fs-big')); await p.waitForTimeout(300);
-  const t = await p.evaluate(() => { const b = document.getElementById('ftBtn'), dd = document.querySelector('.sl-hd2 .d'), br = b.getBoundingClientRect(); const kids = [...b.children].map((e) => e.getBoundingClientRect()); return { clip: kids.some((r) => r.right > br.right + 0.5 || r.left < br.left - 0.5) || b.querySelector('b').scrollWidth > b.querySelector('b').clientWidth + 1, inside: br.left >= 8 && br.right <= innerWidth - 8, below: br.top >= dd.getBoundingClientRect().bottom - 2 }; });
-  assert.ok(!t.clip && t.inside, '360 px 115% (v68: raqamsiz tugma — sarlavha yonida yoki ostida, kesilmaydi): ' + JSON.stringify(t)); await openDr(p); assert.equal(await p.evaluate(() => { const d = document.getElementById('ftDr'); return d.scrollWidth <= d.clientWidth + 1; }), true, 'panelda gorizontal siljish yo\'q'); await p.context().close();
-  ok('uz / cyr / ru (yorug\' va tungi); 360 px × 115%: tugma sana ostiga tushadi, yozuvi qisqarmaydi; panelda gorizontal siljish yo\'q');
+  const t = await p.evaluate(() => { const bt = document.getElementById('ftBtn'), br = bt.getBoundingClientRect(); const kids = [...bt.children].map((e) => e.getBoundingClientRect()); return { clip: kids.some((r) => r.right > br.right + 1 || r.left < br.left - 1), inside: br.left >= 0 && br.right <= innerWidth }; });
+  assert.ok(!t.clip && t.inside, '360 px 115%: tugma kesilmaydi: ' + JSON.stringify(t)); await openDr(p); assert.equal(await p.evaluate(() => { const d = document.getElementById('ftDr'); return d.scrollWidth <= d.clientWidth + 1 && document.documentElement.scrollWidth <= innerWidth; }), true, 'panelda gorizontal siljish yo\'q');
+  for (const k of ['yozish', 'yeyman', 'mening', 'natija']) { await p.click('[data-act=ftpath][data-p=' + k + ']'); await p.waitForTimeout(250); assert.equal(await p.evaluate(() => { const d = document.getElementById('ftDr'); return d.scrollWidth <= d.clientWidth + 1; }), true, k + ': siljish yo\'q'); await p.click('[data-act=ftback]'); await p.waitForTimeout(250); }
+  ok('uz / cyr / ru (tungi); 360 px × 115%: tugma kesilmaydi; panel va 4 yo\'lda gorizontal siljish yo\'q');
   console.log('\n' + n + '/' + n + ' OK');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }

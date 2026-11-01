@@ -6,7 +6,8 @@
 'use strict';
 const fs = require('fs'), os = require('os'), path = require('path');
 const ACC = 'bf90d092fb22440ba355ad117ed4291a', DB = { production: '8da68cf2-2f3a-4dd7-bb81-bccc3f8f13bf', preview: 'a96a0cb6-25b7-4323-afd8-773285d15201' };
-const NOM = { '1-bugun': 'Bugun (yuqori)', '1b-bugun-past': 'Bugun (pastki qism)', '2-imkoniyatlar': 'Imkoniyatlar paneli', '2b-imkoniyatlar-yozish': 'Imkoniyatlar → Ovqat yozish', '3-profil': 'Profil (yuqori)', '3b-profil-past': 'Profil (pastki qism)' };
+const NOM = { '1-bugun': 'Bugun (yuqori)', '1b-bugun-past': 'Bugun (pastki qism)', '2-imkoniyatlar': 'Imkoniyatlar paneli', '2b-imkoniyatlar-yozish': 'Imkoniyatlar → Ovqat yozish', '3-profil': 'Profil (yuqori)', '3b-profil-past': 'Profil (pastki qism)',
+  '4-tarix': 'Tarix', '4b-tarix-orta': 'Tarix (o\'rta)', '4c-tarix-past': 'Tarix (past)', '5-qosh': 'Ovqat qo\'shish', '5b-qosh-natija': 'Ovqat qo\'shish — natijalar', '6-porsiya': 'Porsiya', '6b-porsiya-past': 'Porsiya (past)', '7-yeyman': 'Imkoniyatlar → Nima yeyman?', '7b-yeymiz': 'Nima yesam ekan?', '8-mashq': 'Mashg\'ulot', '8b-qadam': 'Qadam kiritish', '9-chip-hafta': 'Kontekstli chip («Haftangiz tayyor»)' };
 async function main(argv) {
   const dir = argv[0], mi = argv.indexOf('--muhit'), muhit = mi > -1 ? argv[mi + 1] : 'production';
   if (!dir || !DB[muhit]) { console.error('node tools/dizayn-ekran-yukla.js <papka> [--muhit production|preview] [--tozala]'); return 1; }

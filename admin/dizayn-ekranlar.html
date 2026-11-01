@@ -11,7 +11,7 @@ input,button{font:inherit;color:inherit;min-height:44px;border:1.5px solid var(-
 button{cursor:pointer;font-weight:700}button.p{background:var(--ok);border-color:var(--ok);color:#fff}
 .g{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:0 0 14px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}.row:last-child{margin:0}
-.row figure{margin:0}.row figcaption{font-size:.82rem;font-weight:700;color:var(--mut);margin:0 0 4px}
+.row.one{grid-template-columns:minmax(0,1fr);max-width:420px}.row figure{margin:0}.row figcaption{font-size:.82rem;font-weight:700;color:var(--mut);margin:0 0 4px}
 .row img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in}
 .th{font-size:.8rem;color:var(--mut);font-weight:700;margin:0 0 4px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9;overflow:auto;padding:12px}#lb img{display:block;width:100%;max-width:520px;margin:0 auto;border-radius:10px}
@@ -34,7 +34,7 @@ function render(L){by={};var gs=[],seen={};L.forEach(function(x){by[x.id]=x;if(!
  if(!L.length){$('app').innerHTML='<p class="s">Hali skrinshot yo\'q.</p>';return}
  $('app').innerHTML=gs.map(function(g){var one=L.filter(function(x){return x.guruh===g}),nm=one[0].nom;
   return'<section class="g"><h2>'+esc(nm)+'</h2>'+['light','dark'].map(function(t){var o=by['oldin-'+g+'-'+t],k=by['keyin-'+g+'-'+t];if(!o&&!k)return'';
-   return'<div class="th">'+(t==='light'?"Yorug'":'Tungi')+'</div><div class="row">'+fig(o,'Oldin')+fig(k,'Keyin')+'</div>'}).join('')+'</section>'}).join('')}
+   return'<div class="th">'+(t==='light'?"Yorug'":'Tungi')+'</div><div class="row'+(o&&k?'':' one')+'">'+(o?fig(o,'Oldin'):'')+(k?fig(k,'Keyin'):'')+'</div>'}).join('')+'</section>'}).join('')}
 function fig(x,c){return x?'<figure><figcaption>'+c+'</figcaption><img loading="lazy" src="'+x.rasm+'" alt="'+esc(x.nom+' — '+c)+'" data-id="'+esc(x.id)+'"></figure>':'<figure><figcaption>'+c+'</figcaption></figure>'}
 function openLb(id){cur=id;$('lbI').src=by[id].rasm;$('lb').hidden=false}
 $('app').addEventListener('click',function(e){var i=e.target.closest('img[data-id]');if(i)openLb(i.getAttribute('data-id'))});

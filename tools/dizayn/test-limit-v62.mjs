@@ -46,9 +46,9 @@ try {
   assert.equal(nb(await p.locator('.si-ae span').innerText()), "Soatingiz bor bo'lsa — «Активная энергия», kkal (ixtiyoriy)"); assert.match(nb(await p.locator('.si-aeh').innerText()), /qadam va mashg'ulot o'rniga/);
   await p.fill('#siN', '15780'); await p.fill('#siAe', '690'); await p.click('[data-act=sisave]'); await p.waitForTimeout(600);
   let st = await stOf(p); assert.equal(st.days[T0].ae, 690); assert.equal(st.days[T0].steps, 15780); const dp = S.dayPlan(st, T0);
-  assert.equal(dp.stepCredit + dp.exCredit, 0); assert.ok(dp.aeCredit > 0); assert.equal(nb(await p.locator('#kChips').innerText()), '🍽 640 ⌚ +' + dp.aeCredit.toLocaleString('ru').replace(/\s/g, ' ') + ' Kaloriya hisobi ›');
+  assert.equal(dp.stepCredit + dp.exCredit, 0); assert.ok(dp.aeCredit > 0); assert.equal(nb(await p.locator('#kChips').innerText()), '640 +' + dp.aeCredit.toLocaleString('ru').replace(/\s/g, ' ') + ' Kaloriya hisobi ›');
   await p.click('#kChips'); await p.waitForTimeout(450); let rows = await howRows(p);
-  assert.deepEqual(rows.map((r) => r[0]), ['🎯', '⌚', '🍽'], 'qadam va mashg\'ulot qatorlari yo\'q — bitta soat qatori'); assert.equal(rows[1][1], 'Soat · aktiv 690'); assert.equal(num(rows[1][3]), dp.aeCredit);
+  assert.deepEqual(rows.map((r) => r[0]), ['', '', ''], 'qadam va mashg\'ulot qatorlari yo\'q — bitta soat qatori'); assert.equal(rows[1][1], 'Soat · aktiv 690'); assert.equal(num(rows[1][3]), dp.aeCredit);
   const rem = num(await p.locator('#hwRes b').innerText()); assert.equal(num(rows[0][3]) + num(rows[1][3]) + num(rows[2][3]), rem, 'yig\'indi = halqa'); assert.equal(rem, dp.limit - 640);
   await p.click('[data-act=xkform]'); await p.waitForTimeout(400); assert.match(nb(await p.locator('#xkRows').innerText()), /Soat: aktiv energiya 690 − kundalik [\d ]+, × 0,7/); assert.match(nb(await p.locator('#xkFormula').innerText()), new RegExp('= ' + dp.limit.toLocaleString('ru').replace(/\s/g, ' ') + ' kkal'));
   assert.deepEqual(p.errs, []); await p.context().close();
