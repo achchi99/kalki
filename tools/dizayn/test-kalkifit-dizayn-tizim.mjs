@@ -28,9 +28,10 @@ const msOf = (d) => parseFloat(d) * (/ms$/.test(d) ? 1 : 1000);
 try {
   /* 1. tokenlar (kalkifit.css) */
   const css = fs.readFileSync(path.join(ROOT, 'assets/css/kalkifit.css'), 'utf8'), tok = css.slice(css.indexOf('/* v69 DIZAYN TIZIMI — tipografiya'));
-  for (const [k, v] of [['--fs-page', '28px'], ['--fs-sec', '20px'], ['--fs-body', '16px'], ['--fs-aux', '14px'], ['--h-btn', '54px'], ['--ms-panel', '250ms'], ['--pad-c', '18px'], ['--r-c', '22px']]) assert.ok(new RegExp(k + ':' + v).test(tok), 'token: ' + k + ' = ' + v);
-  assert.match(tok, /--fs-nav:12\.5px/); assert.match(tok, /--fs-hero:52px/); assert.match(css, /--fs-hero:54px/);
-  const v69 = css.slice(css.indexOf('/* ===================== v69 DIZAYN TIZIMI: sarlavha'));
+  for (const [k, v] of [['--fs-page', '28px'], ['--fs-sec', '18px'], ['--fs-body', '16px'], ['--fs-aux', '14px'], ['--h-btn', '54px'], ['--ms-panel', '250ms'], ['--pad-c', '18px'], ['--r-c', '22px']]) assert.ok(new RegExp(k + ':' + v).test(tok), 'token: ' + k + ' = ' + v);
+  assert.match(tok, /--fs-nav:12px/); assert.match(tok, /--fs-hero:52px/); assert.match(css, /--fs-hero:54px/);
+  const v69all = css.slice(css.indexOf('/* ===================== v69 DIZAYN TIZIMI: sarlavha')), v70i = v69all.indexOf('/* ===================== v70:'), v69 = v70i > 0 ? v69all.slice(0, v70i) : v69all, v70 = v70i > 0 ? v69all.slice(v70i) : '';
+  assert.deepEqual(v70.match(/#[0-9A-Fa-f]{3,8}\b|rgba?\([^)]*\)/g) || [], [], 'v70 bloklarida ham qattiq rang yo\'q'); assert.deepEqual(v70.match(/font-weight:\s*(8|9)00|font-weight:\s*bold/g) || [], [], 'v70: shrift og\'irligi ≤ 700 (faqat sarlavha va halqa raqami 700)');
   assert.deepEqual(v69.match(/#[0-9A-Fa-f]{3,8}\b|rgba?\([^)]*\)/g) || [], [], 'v69 bloklarida qattiq rang yo\'q — faqat tokenlar'); assert.deepEqual(v69.match(/font-weight:\s*(7|8|9)00|font-weight:\s*bold/g) || [], [], 'v69: shrift og\'irligi ≤ 600');
   assert.ok((v69.match(/min-height:var\(--h-btn\)/g) || []).length >= 1, 'asosiy tugma balandligi tokendan');
   let p = await open('/kalkifit');

@@ -40,7 +40,7 @@ try {
 
   /* 4. AI natijasi: har qator porsiya oynasi bilan, «taxminiy», keyin bitta «Hammasini qo'shish» */
   p = await mk(); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await textMode(p, '1 qwertyzzz olma, 1 zxcv kek'); 
-  assert.equal(await p.locator('.sl-ti').count(), 2); assert.match(await txt(p, '#txOut'), /AI taxmini/); assert.match(await txt(p, '#txOut'), /≈ 80/); assert.match(await txt(p, '#txOut'), /Hammasini qo'shish \(2\)/);
+  assert.equal(await p.locator('.sl-ti').count(), 2); assert.match(await txt(p, '#txOut'), /AI taxmini/); assert.match(await txt(p, '#txOut'), /≈ 80/); assert.match(await txt(p, '#txOut'), /2 ta taomni qo'shish/);
   await p.click('[data-act=itedit] >> nth=0'); await p.waitForTimeout(300); await more(p); assert.equal(await txt(p, '.sl-ph b'), 'Qwerty olma'); assert.equal(await kc(p), 80); assert.match(await txt(p, '.sl-ap'), /Taxminiy/); assert.equal(await p.locator('#fdUnits .rz-chip').count(), 2); assert.match(await txt(p, '#fdInfo'), /1 porsiya ≈ 150 g · hozir 150 g/);
   await p.click('[data-act=fqty][data-s="-1"]'); assert.equal(await qv(p), 0.5); assert.equal(await kc(p), 40, 'AI natijasi: olma 1 → 0,5 dona = yarmi kkal'); await more(p); await p.click('[data-act=funit][data-u=g100]'); assert.equal(await qv(p), 75); assert.equal(await kc(p), 40, 'dona → gramm: kkal saqlanadi'); await p.click('[data-act=fqty][data-s="1"]'); assert.equal(await qv(p), 85); assert.equal(await kc(p), 45);
   await p.click('[data-act=pwdone]'); await p.waitForTimeout(300); assert.match(await txt(p, '#txOut'), /≈ 45/); assert.match(await txt(p, '#txOut'), /85 g/); assert.equal(await p.inputValue('#txQ'), '1 qwertyzzz olma, 1 zxcv kek', 'matn saqlanib qoladi');

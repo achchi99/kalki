@@ -25,7 +25,7 @@ try {
   const w0 = await p.evaluate(() => { const i = document.querySelector('.pf-gb i'); return i ? i.getBoundingClientRect().width : -1; }); await p.waitForTimeout(1700);
   const h = await p.evaluate(() => { const e = document.getElementById('pfHero'), i = e.querySelector('.pf-gb i'); return { t: e.innerText, av: !!e.querySelector('.pf-av'), ed: e.querySelector('[data-act=editprof]') ? 1 : 0, w: i.getBoundingClientRect().width, W: i.parentNode.getBoundingClientRect().width, bg: getComputedStyle(e).backgroundImage, now: e.querySelector('.pf-gt b').textContent }; });
   const kg = P.summary(st.weights, TODAY, 0, D).kg, share = (91.5 - kg) / (91.5 - 82);
-  assert.match(nb(h.t), /Profilingiz/); assert.ok(h.av && h.ed); assert.match(h.bg, /linear-gradient/); assert.match(nb(h.t), /Maqsad: 82 kg gacha/); assert.match(nb(h.now), /^−\d,\d kg ✓$/, 'v69: o\'zgarish (maqsad progressi chizig\'i ustida)');
+  assert.doesNotMatch(nb(h.t), /Profilingiz/, 'v70: «Profil» sarlavhasi ostida «Profilingiz» yo\'q'); assert.ok(h.av && h.ed); assert.equal(h.bg, 'none', 'v70: gradient yo\'q'); assert.match(nb(h.t), /Maqsad: 82 kg gacha/); assert.match(nb(h.now), /^−\d,\d kg ✓$/, 'v69: o\'zgarish (maqsad progressi chizig\'i ustida)');
   assert.ok(Math.abs(h.w / h.W - share) < 0.03, 'progress ' + (h.w / h.W).toFixed(3) + ' ≈ ' + share.toFixed(3));
   await p.click('#pfHero [data-act=editprof]'); await p.waitForTimeout(500); assert.equal(await sheet(p), 'prof'); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   /* 2. plitkalar: jins, yosh, bo'y, vazn; bosilsa — o'sha maydon */

@@ -36,7 +36,7 @@
   API.on = true;
   var LBL = { uz: 'Namuna', ru: 'Образец' };
   API.mark = function (lang) {                         // sarlavha yoniga «Namuna» belgisi (har render'da, bir marta qo'shiladi)
-    var t = document.getElementById('rzTitle'); if (!t || !t.parentNode) return; var b = t.parentNode.querySelector('.rz-demo');
+    var t = document.getElementById('rzTitle') || document.querySelector('#rzMain .rz-h'); if (!t || !t.parentNode) return; var b = t.parentNode.querySelector('.rz-demo');          // v69+: yuqori panel yo'q — «Namuna» belgisi sahifa sarlavhasi ostida
     if (!b) { b = document.createElement('span'); b.className = 'rz-demo'; t.parentNode.insertBefore(b, t.nextSibling); } b.textContent = LBL[lang === 'ru' ? 'ru' : 'uz'];
   };
 })();
