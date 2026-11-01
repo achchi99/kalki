@@ -1,5 +1,6 @@
 /* kalki.uz — admin: kirish va akkaunt ochganlar ro'yxati (KalkiFit statistika sahifasi: admin/kalkifit-statistika.html).
  *   POST /api/admin/kirish   { parol }  → { ok, muddat } + HttpOnly cookie (12 soat). 5 xato → 15 daqiqa blok. Jurnalga yoziladi (IP qisqartirilgan).
+ *   GET  /api/admin/dizayn-ekranlar → { ekranlar: [...] } (dizayn oldin/keyin skrinshotlari, jadval dizayn_ekran).
  *   POST /api/admin/chiqish             → cookie o'chadi
  *   GET  /api/admin/holat               → { kirgan }
  *   GET  /api/admin/jurnal              → { kirishlar: [{ vaqt, ok, usul, ip }] }  (oxirgi 100)
@@ -45,10 +46,11 @@ export async function onRequest({ request, env, params }) {
   if (amal === 'chiqish') return m === 'POST' ? ajson(200, { ok: true }, { 'Set-Cookie': cookieClear() }) : ajson(405, { xato: 'POST.' });
   if (amal === 'holat') { const pw = env.KALKIFIT_ADMIN_PASSWORD; return ajson(200, { kirgan: !!(pw && await tokenOk(pw, cookieOf(request), now)) }); }
   if (m !== 'GET') return ajson(405, { xato: 'GET.' });
-  if (amal !== 'jurnal' && amal !== 'foydalanuvchilar') return ajson(404, { xato: 'Topilmadi.' });
+  if (amal !== 'jurnal' && amal !== 'foydalanuvchilar' && amal !== 'dizayn-ekranlar') return ajson(404, { xato: 'Topilmadi.' });
   const deny = await adminAuth(request, env, { now }); if (deny) return deny;
   const db = env.KALKIFIT_DB; if (!db) return ajson(503, { xato: 'Sozlanmagan.' });
   try {
+    if (amal === 'dizayn-ekranlar') return ajson(200, { ekranlar: await all(db, 'SELECT id, guruh, holat, tema, nom, tartib, rasm, yangilandi FROM dizayn_ekran ORDER BY tartib, guruh, holat, tema') });          // oldin/keyin skrinshotlar (faqat admin)
     if (amal === 'jurnal') return ajson(200, { kirishlar: await all(db, 'SELECT vaqt, ok, usul, ip FROM admin_kirish ORDER BY vaqt DESC LIMIT 100') });
     const id = new URL(request.url).searchParams.get('id');
     if (id) { if (!/^[0-9a-f]{8,64}$/.test(id)) return ajson(400, { xato: "So'rov noto'g'ri." }); const t = await tafsilot(db, id, now); return t ? ajson(200, t) : ajson(404, { xato: 'Topilmadi.' }); }
