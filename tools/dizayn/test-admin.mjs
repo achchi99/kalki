@@ -7,7 +7,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..',
 const AUTH = await imp('functions/_lib/admin-auth.js'), QT = await imp('functions/_lib/qurilma-tur.js'), ADM = await imp('functions/api/admin/[amal].js'), STAT = await imp('functions/api/stat.js');
 const HIS = await imp('functions/api/hisob.js'), QID = await imp('functions/api/qidiruv.js'), KFA = await imp('functions/api/kalkifit-admin.js'), PUSH = await imp('functions/api/push/[amal].js');
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
-const SQL = ['stat.sql', 'admin-stat.sql', 'manba.sql', 'akkaunt.sql', 'zaxira.sql', 'qidiruv.sql', 'hisob.sql', 'kalkifit-taklif.sql', 'push.sql'].map((f) => fs.readFileSync(path.join(ROOT, 'migrations', f), 'utf8'));
+const SQL = ['stat.sql', 'admin-stat.sql', 'manba.sql', 'akkaunt.sql', 'zaxira.sql', 'qidiruv.sql', 'hisob.sql', 'kalkifit-taklif.sql', 'push.sql', 'dizayn-ekranlar.sql'].map((f) => fs.readFileSync(path.join(ROOT, 'migrations', f), 'utf8'));
 function kvMock() { const m = new Map(); return { m, get: async (k) => (m.has(k) ? m.get(k).v : null), put: async (k, v, o) => { m.set(k, { v, ttl: o && o.expirationTtl }); }, delete: async (k) => { m.delete(k); } }; }
 const PW = 'yangi-kuchli-parol-24-belgidan-uzun!', OLD = 'eski-parol';
 const mkEnv = (db, kv, pw = PW) => ({ KALKIFIT_DB: db, KALKI_AI_KV: kv, KALKIFIT_ADMIN_PASSWORD: pw, IP_HASH_SALT: 'tuz', STAT_PRUNE_P: '0' });
@@ -60,13 +60,13 @@ try {
     log('Kirish: to\'g\'ri parol → HttpOnly/Secure/SameSite=Strict cookie, 12 soat (imzo paroldan: parol almashsa eski sessiya bekor; soxta/uzaytirilgan token rad); eski parol — 401; 5 xato → 15 daqiqa blok (barcha admin endpointlarda), boshqa manzil ishlaydi; jurnal: vaqt, natija, usul, IP faqat 94.158.x.x'); }
   /* 3. barcha admin endpointlar bitta tekshiruvda */
   { const db = d1(SQL), env = mkEnv(db, kvMock()); const ck = cookieOf(await adm('kirish', { env, body: { parol: PW } }));
-    const EP = [['stat', STAT.onRequest, '/api/stat?davr=7'], ['hisob', HIS.onRequest, '/api/hisob?kun=7'], ['qidiruv', QID.onRequest, '/api/qidiruv?kun=7'], ['takliflar', KFA.onRequest, '/api/kalkifit-admin?holat=hammasi'], ['push', PUSH.onRequest, '/api/push/holat', { amal: 'holat' }]];
-    for (const [nm, fn, url, params] of EP) {
+    const EP = [['stat', STAT.onRequest, '/api/stat?davr=7'], ['hisob', HIS.onRequest, '/api/hisob?kun=7'], ['qidiruv', QID.onRequest, '/api/qidiruv?kun=7'], ['takliflar', KFA.onRequest, '/api/kalkifit-admin?holat=hammasi'], ['push', PUSH.onRequest, '/api/push/holat', { amal: 'holat' }], ['dizayn-ekranlar', ADM.onRequest, '/api/admin/dizayn-ekranlar', { amal: 'dizayn-ekranlar' }]];
+    let ei = 0; for (const [nm, fn, url, params] of EP) { ei++;
       assert.equal((await fn({ request: rq(url), env, params })).status, 401, nm + ': kirishsiz — 401');
-      assert.equal((await fn({ request: rq(url, { h: { 'X-Admin-Password': OLD } }), env, params })).status, 401, nm + ': eski parol — 401');
+      assert.equal((await fn({ request: rq(url, { ip: '10.7.' + ei + '.1', h: { 'X-Admin-Password': OLD } }), env, params })).status, 401, nm + ': eski parol — 401');
       assert.equal((await fn({ request: rq(url, { h: { Cookie: ck } }), env, params })).status, 200, nm + ': sessiya bilan — 200');
       assert.equal((await fn({ request: rq(url, { ip: '10.1.1.1', h: { 'X-Admin-Password': PW } }), env, params })).status, 200, nm + ': CLI sarlavhasi (yangi parol) — 200'); }
-    log('Admin endpointlar (statistika, hisob, qidiruv, takliflar, push holati): kirishsiz va eski parol — 401, sessiya cookie yoki yangi parol sarlavhasi (CLI) — 200'); }
+    log('Admin endpointlar (statistika, hisob, qidiruv, takliflar, push holati, dizayn ekranlari): kirishsiz va eski parol — 401, sessiya cookie yoki yangi parol sarlavhasi (CLI) — 200'); }
   /* 4. foydalanuvchilar: faqat akkaunt jadvallari */
   { const db = d1(SQL), env = mkEnv(db, kvMock()), now = Date.now(), D = 86400000, raw = db.raw;
     raw.prepare("INSERT INTO akkaunt (id, email, usul, ism, yaratilgan, oxirgi_kirish, marketing) VALUES ('a1b2c3d4e5f60718293a4b5c', 'ali@mail.uz', 'google', 'Ali', ?, ?, 1), ('ffeeddccbbaa998877665544', 'vali@mail.uz', 'email', NULL, ?, ?, 0)").run(now - 40 * D, now - 2 * D, now - 5 * D, now - 5 * D);
@@ -105,7 +105,7 @@ try {
     assert.equal(h.kpi.yangi_bugun, 0); assert.ok(h.kpi.ovqat_kun > 0); assert.ok(h.konversiya && h.konversiya.yangi === 2);
     log('Statistika: qurilma turi/OS/model/ekran/APK versiyasi saqlanadi (IP yo\'q); hisobot 7/30/90: qurilmalar (tur, versiya, model…), funksiyalar (qidiruv, ovoz, rasm, menyu, Yeymiz, Haftangiz, ulashish), AI xarajati, retention 1/7/30 va kogortalar, kunlik ovqat yozuvi, akkaunt konversiyasi'); }
   /* 6. admin sahifalar: noindex, parol brauzerda saqlanmaydi */
-  { for (const f of ['admin/kalkifit-statistika.html', 'admin/kalkifit-takliflar.html']) { const s = fs.readFileSync(path.join(ROOT, f), 'utf8'); assert.match(s, /<meta name="robots" content="noindex,nofollow/); assert.ok(!/sessionStorage\.setItem\(|localStorage\.setItem\(/.test(s), f + ': parol brauzerda saqlanmaydi'); assert.ok(!/X-Admin-Password/.test(s), f + ': sarlavha emas — sessiya'); }
+  { for (const f of ['admin/kalkifit-statistika.html', 'admin/kalkifit-takliflar.html', 'admin/dizayn-ekranlar.html']) { const s = fs.readFileSync(path.join(ROOT, f), 'utf8'); assert.match(s, /<meta name="robots" content="noindex,nofollow/); assert.ok(!/sessionStorage\.setItem\(|localStorage\.setItem\(/.test(s), f + ': parol brauzerda saqlanmaydi'); assert.ok(!/X-Admin-Password/.test(s), f + ': sarlavha emas — sessiya'); }
     const hd = fs.readFileSync(path.join(ROOT, '_headers'), 'utf8'); assert.match(hd, /\/admin\/\*\n  X-Robots-Tag: noindex/); assert.match(hd, /\/api\/admin\/\*\n  X-Robots-Tag: noindex/); assert.match(fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8'), /Disallow: \/admin\//);
     const repo = ['functions', 'admin', 'assets', 'tools', 'migrations'].flatMap((d) => fs.readdirSync(path.join(ROOT, d), { recursive: true }).filter((f) => /\.(js|mjs|html|sql)$/.test(f)).map((f) => path.join(ROOT, d, f)));
     const home = process.env.HOME || ''; let real = ''; try { real = fs.readFileSync(path.join(home, '.kalkifit-admin-pass'), 'utf8').trim(); } catch (e) {}
