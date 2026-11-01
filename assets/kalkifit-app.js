@@ -226,10 +226,10 @@
     qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
-  Object.assign(D.uz, { chK: 'Mening kosam', chOd: 'Odatdagilarga saqlash', chKd: 'Kechki ovqat tanlash', chHf: 'Haftangiz tayyor', ftB_supp: 'Vitaminlar', ftB_afsona: 'Afsona yoki haqiqat', ftP_yozish: 'Ovqat yozish', ftPS_yozish: 'Matn, ovoz, rasm, yorliq', ftP_yeyman: 'Nima yeyman?', ftPS_yeyman: 'Uyda, kafeda, buyurtma, boshqa variantlar', ftP_mening: 'Mening taomlarim', ftPS_mening: 'Odatdagilar, retseptlar, idishlar', ftP_natija: 'Natijalarim', ftPS_natija: 'Haftalik xulosa, rivojlanish, ulashish',
-    ft_yozish: 'Matn bilan yozish', ft_yozishH: 'Nima yeganingizni yozing', ft_yeymizH: 'Uyda, kafeda yoki buyurtma', ft_menyuH: 'Kafe menyusidan mos taom', ft_rasmH: 'Taom rasmdan aniqlanadi', ft_ovozH: "Ayting — ro'yxat tuziladi", ft_idishlarH: 'Kosa va laganingiz bilan aniqroq', ft_yesamH: "Yeyishdan oldin ta'sirini ko'ring", ft_odatdagiH: "Bir bosishda qo'shish", ft_retseptH: "Retseptning yengilroq varianti", ft_suppH: 'Nima kerak, nima shart emas', ft_haftaH: 'Hafta xulosasi qisqa hikoyada' });
-  Object.assign(D.ru, { chK: 'Моя миска', chOd: 'Сохранить в привычные', chKd: 'Выбрать ужин', chHf: 'Ваша неделя готова', ftB_supp: 'Витамины', ftB_afsona: 'Миф или правда', ftP_yozish: 'Записать еду', ftPS_yozish: 'Текст, голос, фото, этикетка', ftP_yeyman: 'Что съесть?', ftPS_yeyman: 'Дома, в кафе, заказ, другие варианты', ftP_mening: 'Мои блюда', ftPS_mening: 'Привычные, рецепты, посуда', ftP_natija: 'Мои результаты', ftPS_natija: 'Итоги недели, прогресс, поделиться',
-    ft_yozish: 'Записать текстом', ft_yozishH: 'Напишите, что вы съели', ft_yeymizH: 'Дома, в кафе или заказ', ft_menyuH: 'Блюдо из меню кафе', ft_rasmH: 'Блюдо определится по фото', ft_ovozH: 'Скажите — список составится', ft_idishlarH: 'Своя посуда — точнее расчёт', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_odatdagiH: 'Частое — в одно нажатие', ft_retseptH: 'Более лёгкий вариант рецепта', ft_suppH: 'Что нужно, что нет', ft_haftaH: 'Итоги недели короткой историей' });
+  Object.assign(D.uz, { chK: 'Mening kosam', chOd: 'Odatdagilarga saqlash', chKd: 'Kechki ovqat tanlash', chHf: 'Haftangiz tayyor', ftB_supp: 'Vitaminlar', ftB_afsona: 'Afsona yoki haqiqat', ftP_yozish: 'Ovqat yozish', ftPS_yozish: 'Matn, ovoz, rasm, yorliq', ftP_yeyman: 'Nima yeyman?', ftPS_yeyman: 'Uyda, kafeda', ftP_mening: 'Mening taomlarim', ftPS_mening: 'Odatdagi, idish', ftP_natija: 'Natijalarim', ftPS_natija: 'Hafta, rivojlanish',
+    ftQ_yozish: 'Matn', ftQ_ovoz: 'Ovoz', ftQ_rasm: 'Rasm', ftQ_yorliq: 'Yorliq', ft_yozish: 'Matn bilan yozish', ft_yozishH: 'Nima yeganingizni yozing', ft_yeymizH: 'Uyda, kafeda yoki buyurtma', ft_menyuH: 'Kafe menyusidan mos taom', ft_rasmH: 'Taom rasmdan aniqlanadi', ft_ovozH: "Ayting — ro'yxat tuziladi", ft_idishlarH: 'Kosa va laganingiz bilan aniqroq', ft_yesamH: "Yeyishdan oldin ta'sirini ko'ring", ft_odatdagiH: "Bir bosishda qo'shish", ft_retseptH: "Retseptning yengilroq varianti", ft_suppH: 'Nima kerak, nima shart emas', ft_haftaH: 'Hafta xulosasi qisqa hikoyada' });
+  Object.assign(D.ru, { chK: 'Моя миска', chOd: 'Сохранить в привычные', chKd: 'Выбрать ужин', chHf: 'Ваша неделя готова', ftB_supp: 'Витамины', ftB_afsona: 'Миф или правда', ftP_yozish: 'Записать еду', ftPS_yozish: 'Текст, голос, фото, этикетка', ftP_yeyman: 'Что съесть?', ftPS_yeyman: 'Дома, в кафе', ftP_mening: 'Мои блюда', ftPS_mening: 'Привычное, посуда', ftP_natija: 'Мои результаты', ftPS_natija: 'Неделя, прогресс',
+    ftQ_yozish: 'Текст', ftQ_ovoz: 'Голос', ftQ_rasm: 'Фото', ftQ_yorliq: 'Этикетка', ft_yozish: 'Записать текстом', ft_yozishH: 'Напишите, что вы съели', ft_yeymizH: 'Дома, в кафе или заказ', ft_menyuH: 'Блюдо из меню кафе', ft_rasmH: 'Блюдо определится по фото', ft_ovozH: 'Скажите — список составится', ft_idishlarH: 'Своя посуда — точнее расчёт', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_odatdagiH: 'Частое — в одно нажатие', ft_retseptH: 'Более лёгкий вариант рецепта', ft_suppH: 'Что нужно, что нет', ft_haftaH: 'Итоги недели короткой историей' });
   var LM = {          // v51: yagona me'yor modeli — ish turi (Android), qadam krediti, adaptiv me'yor, (i) tushuntirish
     uz: { jobQ: 'Ishingiz qanday?', jobH: "Yurishni ilova o'zi sanaydi — bu yerda faqat ish turini tanlang.", job_sit: "O'tirib ishlayman", job_sitH: 'Ofis, uy, haydovchi', job_stand: 'Tik turib / yurib ishlayman', job_standH: "Sotuvchi, oshpaz, o'qituvchi", job_heavy: "Og'ir jismoniy mehnat", job_heavyH: "Qurilish, dala, yuk tashish", jobRow: 'Ish turi',
       jbCardT: "Qadamni ilova o'zi sanaydi — me'yoringizni aniqroq hisoblaylik", jbCardB: 'Hisoblash', jbOld: "Hozirgi me'yor", jbNew: "Yangi me'yor", jbNewS: "+ qadam: bugun +{c} kkal", jbOk: 'Tasdiqlash', jbDone: "Me'yor yangilandi: qadam endi ikki marta hisoblanmaydi",
@@ -434,7 +434,7 @@
     var tab = function (v, ic, k) { return '<button type="button" class="rz-tab" data-act="tab" data-v="' + v + '">' + ico(ic) + '<span class="l" data-k="' + k + '"></span><span class="s" data-k="' + k + '"></span></button>'; };
     root.innerHTML =
       '<main class="rz-main" id="rzMain" tabindex="-1"></main>' +
-      '<div class="sl-addbar" id="rzAddBar" hidden><button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span data-k="mainAdd"></span></button></div>' +          // Bugun: bitta katta «Qo'shish» — aylantiriladigan maydondan TASHQARIDA (kontent tugma ostida qolmaydi)
+      '<div class="sl-addbar" id="rzAddBar" hidden>' + ftBtnHtml() + '<button type="button" class="sl-main" id="mainAdd" data-act="add">' + ico('plus', '', 2.5) + '<span data-k="mainAdd"></span></button></div>' +          // Bugun: bitta katta «Qo'shish» — aylantiriladigan maydondan TASHQARIDA (kontent tugma ostida qolmaydi)
       '<nav class="rz-nav" aria-label="' + esc(T('appName')) + '">' + tab('today', 'today', 'navToday') + tab('history', 'cal2', 'navHist') + tab('profile', 'me', 'navProfile') +
       '<button type="button" class="rz-fab" id="rzFab" data-act="fab" aria-label="' + esc(T('navAdd')) + '">' + ico('plus', '', 2.6) + '<span class="fl" data-k="navAdd"></span></button></nav>' +          // Tarix: aylantiriladigan maydondan TASHQARIDA (v47: kontent ustiga tushmaydi) +
       kit.shellHtml() + '<input type="file" id="phIn" accept="image/*" hidden><div class="rz-onb" id="rzOnb" hidden></div><div class="rz-onb rz-intro" id="rzIntro" hidden></div>';
@@ -1199,14 +1199,18 @@
   }
   function ftSeen(set) { try { if (set) localStorage.setItem('kalki_ft_anim', '1'); return !!localStorage.getItem('kalki_ft_anim'); } catch (e) { return set; } }          // qurilma belgisi (hisob/zaxiraga yozilmaydi — bulutga keraksiz yozuv bo'lmasin)
   document.addEventListener('animationend', function (e) { var t = e.target; if (t && t.id === 'ftBtn') { ftSeen(true); t.classList.remove('shine'); } });
-  function ftBtnHtml() {                             // v69: «Imkoniyatlar» — 4 katak belgisi + yozuv; raqam, yaltirash va pulsatsiya YO'Q
-    return '<button type="button" class="ft-btn" id="ftBtn" data-act="ftopen" aria-haspopup="dialog"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5"/><rect x="3" y="13" width="8" height="8" rx="2.5"/><rect x="13" y="13" width="8" height="8" rx="2.5"/></svg></span><b>' + esc(T('ftBtn')) + '</b></button>';
+  function ftBtnHtml() {                             // v72: 54×54 kvadrat tugma (pastki qatorda, «Ovqat qo'shish» yonida): grafit, ichida mandarin 2×2 katak; ochilganda 45° burilib «×» ga aylanadi
+    return '<button type="button" class="ft-btn" id="ftBtn" data-act="ftopen" aria-haspopup="dialog" aria-expanded="false" aria-label="' + esc(T('ftBtn')) + '"><svg class="ft-g" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5"/><rect x="3" y="13" width="8" height="8" rx="2.5"/><rect x="13" y="13" width="8" height="8" rx="2.5"/></svg><svg class="ft-c" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   }
 
   /* v69 DIZAYN TIZIMI: BITTA ixcham sarlavha («Bugun · sana · Imkoniyatlar») — eski «Kalki.uz / KalkiFit» qatlami yo'q. Til tugmasi (faqat globus) — har ekran sarlavhasida; «Kalki.uz» havolasi — Profil pastida. */
   function hdLangHtml() {
-    return '<div class="rz-langwrap"><button type="button" class="rz-lang sl-lang" id="rzLang" data-act="langmenu" aria-label="Til / Язык" aria-haspopup="true" data-cyr="skip">' + ico('lang', '', 2) + '<span id="rzLangTxt" class="rz-sr" data-cyr="skip">' + (isCyr() ? 'ЎЗ' : lang.toUpperCase()) + '</span></button>' +
-      '<div class="rz-langmenu" id="rzLangMenu" hidden data-cyr="skip"><button type="button" data-act="lang" data-l="uz">UZ</button><button type="button" data-act="lang" data-l="cyr">ЎЗ</button><button type="button" data-act="lang" data-l="ru">RU</button></div></div>';
+    return '<div class="rz-langwrap"><button type="button" class="rz-lang sl-lang" id="rzLang" data-act="langmenu" aria-label="Til / Язык" aria-haspopup="true" aria-expanded="false" data-cyr="skip">' + ico('lang', '', 2) + '<span id="rzLangTxt" class="rz-sr" data-cyr="skip">' + (isCyr() ? 'ЎЗ' : lang.toUpperCase()) + '</span></button></div>';
+  }
+  function langMenuEl() {                            // v72: til tanlovi BITTA, ildizda (sarlavha/karta qatlamlaridan tashqarida) — har doim hamma narsa ustida
+    var m = $('#rzLangMenu'); if (m) return m;
+    m = document.createElement('div'); m.className = 'rz-langmenu'; m.id = 'rzLangMenu'; m.hidden = true; m.setAttribute('data-cyr', 'skip'); m.setAttribute('role', 'menu');
+    m.innerHTML = '<button type="button" role="menuitem" data-act="lang" data-l="uz">UZ</button><button type="button" role="menuitem" data-act="lang" data-l="cyr">ЎЗ</button><button type="button" role="menuitem" data-act="lang" data-l="ru">RU</button>'; root.appendChild(m); return m;
   }
   function pgHd(title) { return '<div class="sl-hd2 sl-hd-s"><div class="t"><h2 class="rz-h sl-h1">' + esc(title) + '</h2></div><div class="r">' + hdLangHtml() + '</div></div>'; }
   function renderToday() {
@@ -1222,7 +1226,7 @@
     if (cont) { var kk = Math.min(1, (now0 - heroAnim.t0) / heroAnim.dur); curN = Math.round(heroAnim.from + (heroAnim.to - heroAnim.from) * (1 - Math.pow(1 - kk, 3))); durN = heroAnim.dur - (now0 - heroAnim.t0); startN = heroAnim.from; }
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = inst.isTop() ? inst.cardHtml() : '';
-    h += '<div class="sl-hd2"><div class="t"><h2 class="rz-h sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span></div><div class="r">' + ftBtnHtml() + '</div></div>';          // v69: Bugun sarlavhasida til tugmasi yo'q (joy tor; til — Tarix/Profil sarlavhasi va Profil → Sozlamalar)          // har ekranda sarlavha bir joyda (rz-h)
+    h += '<div class="sl-hd2"><div class="t"><h2 class="rz-h sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span></div></div>';          // v69: Bugun sarlavhasida til tugmasi yo'q (joy tor; til — Tarix/Profil sarlavhasi va Profil → Sozlamalar)          // har ekranda sarlavha bir joyda (rz-h)
     h += weekStripHtml(t);
     h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><div class="kc-vw"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(!x.food.length ? T('vAriaE', { k: fmt(n) }) : (over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) }))) + '">' + vesselSvg({ ratio: ratio, fromR: fromR, ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: !x.food.length ? T('rgGoal') : (over ? T('rgOverA') : T('rgRest')), b: fmt(curN), c: over ? [T('rgOverC')] : [T('kcal')] }) + '</button></div><button type="button" class="kc-i" id="kcalI" data-act="xkcal" aria-label="' + esc(T('kcInfoA')) + '"><span aria-hidden="true">i</span></button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
       kcChipsHtml(tot.kcal, t) + taxChipHtml() + bjuHtml(tot, pl) + '</section>' ;          // v70: halqa + BJU — bitta ixcham blok          // v68: halqa ostida «kiritilgan ovqatlar bo'yicha»; «Keyinroq» — «Vaqtinchalik hisob»
@@ -1425,8 +1429,10 @@
         '<div class="ft-grp">' + xs.map(function (x) { return featRow(Object.assign({}, x, { c: FT_PC[ftPath] })); }).join('') + '</div>';
       return h;
     }
-    h = '<div class="ft-dh"><div><h2 id="ftDrH">' + esc(T('ftBtn')) + '</h2><p>' + esc(T('ftSub')) + '</p></div><button type="button" class="ft-x" data-act="ftclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div><div class="ft-paths">';
-    FT_P.forEach(function (g) { if (!L.some(function (x) { return x.p === g; })) return; h += '<button type="button" class="ft-pt ft-p-' + g + '" data-act="ftpath" data-p="' + g + '"><span class="ic" aria-hidden="true">' + ico(FT_PI[g]) + '</span><b>' + esc(T('ftP_' + g)) + '</b><small>' + esc(T('ftPS_' + g)) + '</small></button>'; });
+    h = '<div class="ft-dh"><h2 id="ftDrH">' + esc(T('ftBtn')) + '</h2><button type="button" class="ft-x" data-act="ftclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>';
+    var qs = ['yozish', 'ovoz', 'rasm', 'yorliq'].filter(function (k) { return L.some(function (x) { return x.k === k; }); }), QI = { yozish: 'pen', ovoz: 'mic', rasm: 'cam', yorliq: 'lbl' };
+    h += '<section class="ft-wide it"><button type="button" class="ft-wh" data-act="ftpath" data-p="yozish"><b>' + esc(T('ftP_yozish')) + '</b>' + ico('chev', 'r') + '</button><div class="ft-q" style="--n:' + qs.length + '">' + qs.map(function (k) { return '<button type="button" class="ft-qb ft-q-' + k + '" data-act="feat" data-fk="' + k + '"><span class="ic" aria-hidden="true">' + ico(QI[k]) + '</span><small>' + esc(T('ftQ_' + k)) + '</small></button>'; }).join('') + '</div></section><div class="ft-paths">';
+    ['yeyman', 'mening', 'natija'].forEach(function (g) { if (!L.some(function (x) { return x.p === g; })) return; h += '<button type="button" class="ft-pt it ft-p-' + g + '" data-act="ftpath" data-p="' + g + '"><span class="ic" aria-hidden="true">' + ico(FT_PI[g]) + '</span><b>' + esc(T('ftP_' + g)) + '</b><small>' + esc(T('ftPS_' + g)) + '</small></button>'; });
     h += '</div>';
     var bl = L.filter(function (x) { return x.p === 'bilim'; });          // v69: «Bilim» — 4 yo'ldan tashqari alohida kichik qator
     if (bl.length) h += '<div class="ft-bil"><span class="ft-bl">' + esc(T('ftG_bilim')) + '</span>' + bl.map(function (x) { return '<button type="button" class="ft-bc" data-act="feat" data-fk="' + x.k + '">' + ico(x.ic) + esc(T('ftB_' + x.k)) + '</button>'; }).join('') + '</div>';
@@ -1442,12 +1448,12 @@
       root.appendChild(ov); root.appendChild(dr); ftEl = { ov: ov, dr: dr }; ftSwipe(dr);
     }
     clearTimeout(ftTm); var o = ftEl; ftPath = null; o.dr.innerHTML = ftDrawerHtml(); o.dr.scrollTop = 0; o.dr.style.transform = '';
-    ftFocus = document.activeElement; o.ov.hidden = false; o.dr.hidden = false; void o.dr.offsetWidth; o.ov.classList.add('op'); o.dr.classList.add('op'); document.documentElement.classList.add('ft-lock');
+    ftFocus = document.activeElement; o.ov.hidden = false; o.dr.hidden = false; void o.dr.offsetWidth; o.ov.classList.add('op'); o.dr.classList.add('op'); document.documentElement.classList.add('ft-lock'); var fb = $('#ftBtn'); if (fb) fb.setAttribute('aria-expanded', 'true');
     setTimeout(function () { var x = o.dr.querySelector('.ft-x'); if (x && ftOpenNow()) try { x.focus({ preventScroll: true }); } catch (e) {} }, 60);
     if (!(KD && KD.on) && navigator.onLine !== false) { if (!aiq) aiPeek(); ovBoot(function () { if (!ftOpenNow()) return; var had = !!o.dr.querySelector('.sl-feat[data-fk=ovoz]'); if (ftPath === 'yozish' && had !== micOk() && !micCan()) o.dr.innerHTML = ftDrawerHtml(); else ftLimRefresh(); }); }
   }
   function closeFeats(now) {
-    if (!ftOpenNow()) return false; var o = ftEl; o.dr.classList.remove('op'); o.ov.classList.remove('op'); o.dr.style.transform = ''; document.documentElement.classList.remove('ft-lock');
+    if (!ftOpenNow()) return false; var o = ftEl; o.dr.classList.remove('op'); o.ov.classList.remove('op'); o.dr.style.transform = ''; document.documentElement.classList.remove('ft-lock'); var fb = $('#ftBtn'); if (fb) fb.setAttribute('aria-expanded', 'false');
     clearTimeout(ftTm); ftTm = setTimeout(function () { if (!ftOpenNow()) { o.dr.hidden = true; o.ov.hidden = true; o.dr.innerHTML = ''; } }, now || reduce ? 0 : 360);
     if (ftFocus && ftFocus.focus && document.contains(ftFocus) && !now) try { ftFocus.focus({ preventScroll: true }); } catch (e) {}
     return true;
@@ -3342,9 +3348,9 @@
   /* ---------- hodisalar ---------- */
   lpBind();
   root.addEventListener('click', function (e) {
-    var lmenu = $('#rzLangMenu'), el = e.target.closest('[data-act]'), mm1 = $('#kqMM');
+    var lmenu = $('#rzLangMenu'), el = e.target.closest('[data-act]'), mm1 = $('#kqMM'); if (lmenu && !lmenu.hidden && !e.target.closest('#rzLangMenu, .rz-langwrap')) { lmenu.hidden = true; var lb0 = $('#rzLang'); if (lb0) lb0.setAttribute('aria-expanded', 'false'); }
     if (mm1 && !mm1.hidden && !e.target.closest('.kq-mw')) mealMenu(false);          // ovqat vaqti ro'yxati: tashqariga bosilsa yopiladi
-    if (!el) { if (lmenu && !lmenu.hidden && !e.target.closest('.rz-langwrap')) lmenu.hidden = true; return; }
+    if (!el) return;
     var a = el.getAttribute('data-act');
     if (a !== 'langmenu' && lmenu) lmenu.hidden = true;
     var UA = { fmic: 'ovoz', fphoto: 'rasm', mnopen: 'menyu', yedoor: 'yeymiz', hafta: 'hafta', daycard: 'kunkarta' }; if (UA[a] && st && st.setup) used(UA[a]);          // birinchi hafta maslahati: o'zi ishlatgan funksiya o'tkazib yuboriladi
@@ -3422,7 +3428,7 @@
       case 'hide': prefs()['h_' + el.getAttribute('data-k')] = Date.now(); commit(); break;
       case 'hideweek': prefs().weekHide = todayStr(); commit(); break;
       case 'font': { var big = el.getAttribute('data-f') === 'b'; document.documentElement.classList.toggle('fs-big', big); try { if (big) localStorage.setItem('kalki_fs', 'big'); else localStorage.removeItem('kalki_fs'); } catch (x) {} render(); break; }
-      case 'langmenu': lmenu.hidden = !lmenu.hidden; break;
+      case 'langmenu': { var lm2 = langMenuEl(), lb = el.closest('#rzLang') || el, op = lm2.hidden; if (op) { var r = lb.getBoundingClientRect(), rr = root.getBoundingClientRect(); lm2.style.top = Math.round(r.bottom - rr.top + 6) + 'px'; lm2.style.right = Math.max(8, Math.round(rr.right - r.right)) + 'px'; } lm2.hidden = !op; lb.setAttribute('aria-expanded', op ? 'true' : 'false'); } break;
       case 'lang': { var l = el.getAttribute('data-l'); stEv('til_tanlandi', l); l = el.getAttribute('data-l'); var tgt = document.getElementById(l === 'cyr' ? 'langCyr' : (l === 'ru' ? 'langRu' : 'langUz')); if (tgt) tgt.click(); break; }
       case 'dprev': foodDay = Dt.addDays(foodDay || todayStr(), -1); render(); break;
       case 'dnext': if ((foodDay || todayStr()) < todayStr()) { foodDay = Dt.addDays(foodDay || todayStr(), 1); render(); } break;
