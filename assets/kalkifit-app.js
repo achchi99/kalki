@@ -226,9 +226,11 @@
     qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
-  Object.assign(D.uz, { chK: 'Mening kosam', chOd: 'Odatdagilarga saqlash', chKd: 'Kechki ovqat tanlash', chHf: 'Haftangiz tayyor', ftB_supp: 'Vitaminlar', ftB_afsona: 'Afsona yoki haqiqat', ftP_yozish: 'Ovqat yozish', ftPS_yozish: 'Matn, ovoz, rasm, yorliq', ftP_yeyman: 'Nima yeyman?', ftPS_yeyman: 'Uyda, kafeda', ftP_mening: 'Mening taomlarim', ftPS_mening: 'Odatdagi, idish', ftP_natija: 'Natijalarim', ftPS_natija: 'Hafta, rivojlanish',
+  Object.assign(D.uz, { gcT: "Ma'lumotingiz faqat shu telefonda", gcS: "Ilova o'chirilsa yoki telefon almashsa yo'qoladi — Google bilan 1 bosishda saqlang.", gcBtn: 'Saqlash', gcNo: 'Keyinroq',
+    chK: 'Mening kosam', chOd: 'Odatdagilarga saqlash', chKd: 'Kechki ovqat tanlash', chHf: 'Haftangiz tayyor', ftB_supp: 'Vitaminlar', ftB_afsona: 'Afsona yoki haqiqat', ftP_yozish: 'Ovqat yozish', ftPS_yozish: 'Matn, ovoz, rasm, yorliq', ftP_yeyman: 'Nima yeyman?', ftPS_yeyman: 'Uyda, kafeda', ftP_mening: 'Mening taomlarim', ftPS_mening: 'Odatdagi, idish', ftP_natija: 'Natijalarim', ftPS_natija: 'Hafta, rivojlanish',
     ftQ_yozish: 'Matn', ftQ_ovoz: 'Ovoz', ftQ_rasm: 'Rasm', ftQ_yorliq: 'Yorliq', ft_yozish: 'Matn bilan yozish', ft_yozishH: 'Nima yeganingizni yozing', ft_yeymizH: 'Uyda, kafeda yoki buyurtma', ft_menyuH: 'Kafe menyusidan mos taom', ft_rasmH: 'Taom rasmdan aniqlanadi', ft_ovozH: "Ayting — ro'yxat tuziladi", ft_idishlarH: 'Kosa va laganingiz bilan aniqroq', ft_yesamH: "Yeyishdan oldin ta'sirini ko'ring", ft_odatdagiH: "Bir bosishda qo'shish", ft_retseptH: "Retseptning yengilroq varianti", ft_suppH: 'Nima kerak, nima shart emas', ft_haftaH: 'Hafta xulosasi qisqa hikoyada' });
-  Object.assign(D.ru, { chK: 'Моя миска', chOd: 'Сохранить в привычные', chKd: 'Выбрать ужин', chHf: 'Ваша неделя готова', ftB_supp: 'Витамины', ftB_afsona: 'Миф или правда', ftP_yozish: 'Записать еду', ftPS_yozish: 'Текст, голос, фото, этикетка', ftP_yeyman: 'Что съесть?', ftPS_yeyman: 'Дома, в кафе', ftP_mening: 'Мои блюда', ftPS_mening: 'Привычное, посуда', ftP_natija: 'Мои результаты', ftPS_natija: 'Неделя, прогресс',
+  Object.assign(D.ru, { gcT: 'Ваши данные только на этом телефоне', gcS: 'Если удалить приложение или сменить телефон, они пропадут — сохраните одним нажатием через Google.', gcBtn: 'Сохранить', gcNo: 'Позже',
+    chK: 'Моя миска', chOd: 'Сохранить в привычные', chKd: 'Выбрать ужин', chHf: 'Ваша неделя готова', ftB_supp: 'Витамины', ftB_afsona: 'Миф или правда', ftP_yozish: 'Записать еду', ftPS_yozish: 'Текст, голос, фото, этикетка', ftP_yeyman: 'Что съесть?', ftPS_yeyman: 'Дома, в кафе', ftP_mening: 'Мои блюда', ftPS_mening: 'Привычное, посуда', ftP_natija: 'Мои результаты', ftPS_natija: 'Неделя, прогресс',
     ftQ_yozish: 'Текст', ftQ_ovoz: 'Голос', ftQ_rasm: 'Фото', ftQ_yorliq: 'Этикетка', ft_yozish: 'Записать текстом', ft_yozishH: 'Напишите, что вы съели', ft_yeymizH: 'Дома, в кафе или заказ', ft_menyuH: 'Блюдо из меню кафе', ft_rasmH: 'Блюдо определится по фото', ft_ovozH: 'Скажите — список составится', ft_idishlarH: 'Своя посуда — точнее расчёт', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_odatdagiH: 'Частое — в одно нажатие', ft_retseptH: 'Более лёгкий вариант рецепта', ft_suppH: 'Что нужно, что нет', ft_haftaH: 'Итоги недели короткой историей' });
   var LM = {          // v51: yagona me'yor modeli — ish turi (Android), qadam krediti, adaptiv me'yor, (i) tushuntirish
     uz: { jobQ: 'Ishingiz qanday?', jobH: "Yurishni ilova o'zi sanaydi — bu yerda faqat ish turini tanlang.", job_sit: "O'tirib ishlayman", job_sitH: 'Ofis, uy, haydovchi', job_stand: 'Tik turib / yurib ishlayman', job_standH: "Sotuvchi, oshpaz, o'qituvchi", job_heavy: "Og'ir jismoniy mehnat", job_heavyH: "Qurilish, dala, yuk tashish", jobRow: 'Ish turi',
@@ -346,7 +348,7 @@
   /* Funksiya oynasi (Ovqat qo'shish, Bugun nima yeymiz?, Retsept, Suv, Tez-tez, Idish, Mening taomlarim) yopilganda DOIM Bugun'ga qaytadi (o'tgan kunga yozilayotgan «Ovqat qo'shish» bundan mustasno) */
   var FUNC_KINDS = ['add', 'yeymiz', 'fish', 'retsept', 'tpls', 'vess', 'rcmine', 'recipe', 'water'], _cs0 = kit.closeSheet;
   kit.closeSheet = function () { try { if (typeof VO !== 'undefined' && VO && typeof fd !== 'undefined' && fd && fd.mode === 'voice') voiceCancel(); } catch (e) {} var k = kit.sheetKind(), past = k === 'add' && typeof fd !== 'undefined' && fd && fd.date && fd.date !== todayStr(); _cs0(); if (FUNC_KINDS.indexOf(k) > -1 && !past && view !== 'today') { view = 'today'; enterNext = true; var m0 = $('#rzMain'); if (m0) m0.scrollTop = 0; render(); } };
-  var inst = KalkiInstall.create({ app: 'kalkifit', name: 'KalkiFit', nameAcc: "KalkiFit'ni", nameRu: 'KalkiFit', mark: 'KF', color: '#F5683A', kit: kit, lang: langNow, root: root, hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenFood = null; heroPrev = null; save(); }, onGate: function () { render(); }, rowIcon: 'sl-ci', setup: function () { return !!(st && st.setup); }, ready: function () { return !!(st && st.setup && Object.keys(st.days).some(function (d) { return st.days[d].food.length; })); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'me') && (!kit.sheetKind() || kit.sheetKind() === 'install')) { if (!kit.sheetKind()) render(); } } });
+  var inst = KalkiInstall.create({ app: 'kalkifit', name: 'KalkiFit', nameAcc: "KalkiFit'ni", nameRu: 'KalkiFit', mark: 'KF', color: '#F5683A', kit: kit, lang: langNow, root: root, hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; try { S.stamp(st); } catch (e) {} seenFood = null; heroPrev = null; save(); }, onGate: function () { render(); }, rowIcon: 'sl-ci', setup: function () { return !!(st && st.setup); }, ready: function () { return !!(st && st.setup && Object.keys(st.days).some(function (d) { return st.days[d].food.length; })); }, onChange: function () { if (st && st.setup && !kit.tipsOn() && (view === 'today' || view === 'me') && (!kit.sheetKind() || kit.sheetKind() === 'install')) { if (!kit.sheetKind()) render(); } } });
   reduce = kit.reduce;
   var esc = kit.esc, fmt = kit.fmt, digits = kit.digits, ico = kit.ico, toast = kit.toast, shHead = kit.shHead, flashEl = kit.flashEl, vib = kit.vib, wait = kit.wait;
   function $(s, r) { return (r || root).querySelector(s); }
@@ -410,6 +412,7 @@
   }
   var persistAsked = false;
   function save() {
+    try { S.stamp(st); } catch (e) {}          // v70: yozuv belgilari (u/m) va o'chirish belgilari — qurilmalar birlashtirilishi uchun
     try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {}
     if (typeof bk !== 'undefined' && bk) bk.touch();
     if (!persistAsked) { persistAsked = true; try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {} }
@@ -747,7 +750,9 @@
   function animRing(id, ratio) { var el = $('#' + id); if (!el) return; requestAnimationFrame(function () { requestAnimationFrame(function () { el.style.strokeDashoffset = (C * (1 - ratio)).toFixed(1); }); }); }
   function glassSvg() { return '<svg viewBox="0 0 24 28" aria-hidden="true"><path class="fill" d="M5.6 9h12.8l-1.3 14.6a1.6 1.6 0 0 1-1.6 1.4H8.5a1.6 1.6 0 0 1-1.6-1.4L5.6 9z"/><path class="ln" d="M4 4h16l-1.8 19.6A2.6 2.6 0 0 1 15.600 26H8.400a2.6 2.6 0 0 1-2.600-2.400L4 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>'; }
 
-  var bk = KalkiBackup.create({ app: 'kalkifit', autoSaved: function () { return akk.autoSaved(); }, fileBase: 'kalkifit', name: 'KalkiFit', kit: kit, lang: langNow, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { return Object.keys(st.days).filter(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }).length; }, pickFile: function () { doImport(); }, sig: function () { return JSON.stringify(st); }, root: root, importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; seenFood = null; heroPrev = null; save(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
+  var bk = KalkiBackup.create({ app: 'kalkifit', autoSaved: function () { return akk.autoSaved(); }, fileBase: 'kalkifit', name: 'KalkiFit', kit: kit, lang: langNow, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, exportText: function () { return S.exportState(st); }, today: function () { return todayStr(); }, getLast: function () { return st.lastBackup || 0; }, setLast: function (t) { st.lastBackup = t; save(); }, created: function () { return st.created; }, dayCount: function () { return Object.keys(st.days).filter(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }).length; }, pickFile: function () { doImport(); }, sig: function () { return JSON.stringify(st); }, root: root, merge: function (text) { var res = S.importState(text); if (!res || !res.ok) return false; var m = S.mergeStates(st, res.state); m.prefs = m.prefs || {}; m.setup = true; var same = S.sameState(m, res.state); if (!S.sameState(m, st)) { st = m; seenFood = null; heroPrev = null; save(); } return same ? 'same' : true; },          // 'same' — bulutdagi nusxa bilan bir xil: qayta yuborish shart emas
+                // v70: bulutdagi nusxa yozuv darajasida birlashtiriladi (hech bir yozuv yo'qolmaydi)
+       importText: function (t) { return S.importState(t); }, applyState: function (ns) { ns.prefs = ns.prefs || {}; ns.setup = true; st = ns; try { S.stamp(st); } catch (e) {} seenFood = null; heroPrev = null; save(); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); } });
   var akk = KalkiAkkaunt.create({ app: 'kalkifit', kit: kit, lang: langNow, bk: bk, rowIcon: 'sl-ci', hasData: function () { return !!(st && st.setup); }, isTrivial: function () { var e = function (x) { return !x || (Array.isArray(x) ? !x.length : !Object.keys(x).length); }; return !!(st && st.setup && !Object.keys(st.days || {}).some(function (d) { var x = st.days[d]; return x && ((x.food && x.food.length) || x.steps || x.water); }) && (st.weights || []).length <= 1 && e(st.customFoods) && e(st.favs) && e(st.tpls) && e(st.vessels)); }, onChange: function () { if (st && st.setup && !kit.sheetKind() && !kit.tipsOn()) render(); }, onOnb: function () { if (st && !st.setup && $('#rzOnb') && !$('#rzOnb').hidden && ob && ob.step === 1) showOnb(); } });
   var VIEW_ALIAS = { food: 'history', steps: 'history', me: 'profile', ovqat: 'history', qadam: 'history', men: 'profile', bugun: 'today', kundalik: 'history', natijalar: 'history', tarix: 'history', profil: 'profile', today: 'today', diary: 'history', results: 'history', history: 'history', profile: 'profile' };
   function viewOf(v) { return VIEW_ALIAS[String(v || '').replace(/^#/, '').toLowerCase()] || null; }       // eski nomlar/manzillar (#ovqat, #qadam, #men …) yangi joyga
@@ -1213,6 +1218,21 @@
     m.innerHTML = '<button type="button" role="menuitem" data-act="lang" data-l="uz">UZ</button><button type="button" role="menuitem" data-act="lang" data-l="cyr">ЎЗ</button><button type="button" role="menuitem" data-act="lang" data-l="ru">RU</button>'; root.appendChild(m); return m;
   }
   function pgHd(title) { return '<div class="sl-hd2 sl-hd-s"><div class="t"><h2 class="rz-h sl-h1">' + esc(title) + '</h2></div><div class="r">' + hdLangHtml() + '</div></div>'; }
+  /* v70: MA'LUMOT XAVFSIZLIGI — Bugun'da banner: (1) bulut 24 soatdan ko'p yuborilmagan / hal qilish kerak (sariq, sabab bilan); (2) akkauntsiz: 2+ kunlik yozuvdan keyin har 7 kunda yumshoq taklif */
+  function bkBannerHtml() {
+    var b = null; try { b = bk && bk.banner ? bk.banner() : null; } catch (e) { b = null; }
+    if (b) return '<section class="sl-bkb" role="status"><b>' + esc(b.title) + '</b><p>' + esc(b.text) + '</p><button type="button" class="rz-btn sm" data-act="' + b.act + '">' + esc(b.btn) + '</button></section>';
+    var g = guestCardOn(); if (!g) return '';
+    return '<section class="sl-bkb sl-gc" role="note"><b>' + esc(T('gcT')) + '</b><p>' + esc(T('gcS')) + '</p><div class="gc-a"><button type="button" class="rz-btn sm primary" data-act="akk" data-akk="gc">' + esc(T('gcBtn')) + '</button><button type="button" class="sl-txtbtn" data-act="gcno">' + esc(T('gcNo')) + '</button></div></section>';
+  }
+  var gcAsked = false;
+  function guestCardOn() {
+    try { if (!akk || !st || !st.setup) return false; if (bk && bk.cloudOn && bk.cloudOn()) return false; } catch (e) { return false; }
+    var n = Object.keys(st.days).filter(function (d) { var x = st.days[d]; return x && x.food && x.food.length; }).length; if (n < 2) return false;
+    var last = 0; try { last = +localStorage.getItem('kalki_fit_gcard') || 0; } catch (e) {} if (Date.now() - last <= 7 * 86400000) return false;
+    var g = akk.guestOk(); if (g === null) { if (!gcAsked) { gcAsked = true; setTimeout(function () { try { akk.load(false, function () { if (st && st.setup && !kit.sheetKind() && view === 'today') render(); }); } catch (e) {} }, 2500); } return false; }          // akkaunt holati hali noma'lum: ilova ochilgach 2,5 s o'tib BIR marta so'raladi
+    return g;
+  }
   function renderToday() {
     if (!prefs().suvFrom) { prefs().suvFrom = todayStr(); save(); }          // yangi qoida bugundan; eski kunlar o'zgarmaydi
     loadSuv(); suvResolve();
@@ -1227,6 +1247,7 @@
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     var h = inst.isTop() ? inst.cardHtml() : '';
     h += '<div class="sl-hd2"><div class="t"><h2 class="rz-h sl-h1" id="todayHd">' + esc(T('navToday')) + '</h2><span class="d">' + esc(wd + ', ' + kit.dLabel(t)) + '</span></div></div>';          // v69: Bugun sarlavhasida til tugmasi yo'q (joy tor; til — Tarix/Profil sarlavhasi va Profil → Sozlamalar)          // har ekranda sarlavha bir joyda (rz-h)
+    h += bkBannerHtml();
     h += weekStripHtml(t);
     h += '<section class="sl-big' + (over ? ' ovr' : '') + '"><div class="kc-vw"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(!x.food.length ? T('vAriaE', { k: fmt(n) }) : (over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) }))) + '">' + vesselSvg({ ratio: ratio, fromR: fromR, ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: !x.food.length ? T('rgGoal') : (over ? T('rgOverA') : T('rgRest')), b: fmt(curN), c: over ? [T('rgOverC')] : [T('kcal')] }) + '</button></div><button type="button" class="kc-i" id="kcalI" data-act="xkcal" aria-label="' + esc(T('kcInfoA')) + '"><span aria-hidden="true">i</span></button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
       kcChipsHtml(tot.kcal, t) + taxChipHtml() + bjuHtml(tot, pl) + '</section>' ;          // v70: halqa + BJU — bitta ixcham blok          // v68: halqa ostida «kiritilgan ovqatlar bo'yicha»; «Keyinroq» — «Vaqtinchalik hisob»
@@ -3365,6 +3386,7 @@
       case 'fwx': fwDone(el.getAttribute('data-fk')); render(); break;
       case 'feat': { var fk0 = el.getAttribute('data-fk'); closeFeats(true); feat(fk0); break; }
       case 'ftopen': openFeats(); break;
+      case 'gcno': try { localStorage.setItem('kalki_fit_gcard', String(Date.now())); } catch (e) {} render(); break;
       case 'ftpath': ftPath = el.getAttribute('data-p'); ftEl.dr.innerHTML = ftDrawerHtml(); ftEl.dr.scrollTop = 0; { var f1 = ftEl.dr.querySelector('.ft-bk'); if (f1) try { f1.focus({ preventScroll: true }); } catch (e) {} } break;
       case 'ftback': ftPath = null; ftEl.dr.innerHTML = ftDrawerHtml(); ftEl.dr.scrollTop = 0; { var f2 = ftEl.dr.querySelector('.ft-pt'); if (f2) try { f2.focus({ preventScroll: true }); } catch (e) {} } break;
       case 'ftclose': closeFeats(); break;
@@ -3605,7 +3627,7 @@
 
   /* ---------- ishga tushirish ---------- */
   function init() {
-    st = load(); if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
+    st = load(); try { S.stamp(st); } catch (e) {} if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
     try { if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true) document.body.classList.add('rz-standalone'); } catch (e) {}
     var ab = document.getElementById('rzAbout');
     if (ab && !document.getElementById('rzAboutBar')) {

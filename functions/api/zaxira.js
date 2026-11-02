@@ -37,7 +37,7 @@ export async function onRequest({ request, env }) {
   if (m === 'GET' || m === 'DELETE') {
     const id = url.searchParams.get('id') || ''; if (!ID_RE.test(id)) return fail(400);
     try {
-      if (m === 'GET' && url.searchParams.get('holat')) { const h = await store.holat(id, Date.now()); return h ? ok({ yangilangan: h.yangilangan, ogoh: h.ogoh }) : fail(404); }          // v68+: blobsiz holat; oxirgi sinxronni yangilaydi (muddat ogohlantirishi bekor), avvalgi ogoh qaytadi
+      if (m === 'GET' && url.searchParams.get('holat')) { const h = await store.holat(id, Date.now()); return h ? ok({ yangilangan: h.yangilangan, ogoh: h.ogoh, versiya: h.versiya }) : fail(404); }          // v68+: blobsiz holat; oxirgi sinxronni yangilaydi (muddat ogohlantirishi bekor), avvalgi ogoh qaytadi
       if (m === 'GET') { const r = await store.get(id); if (!r) return fail(404); return ok({ ilova: r.ilova, blob: r.blob, versiya: r.versiya, yangilangan: r.yangilangan }); }
       return ok({ ok: true, topildi: await store.del(id) });
     } catch (e) { console.error('zaxira db xato'); return fail(503); }

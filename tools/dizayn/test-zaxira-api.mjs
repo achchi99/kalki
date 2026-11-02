@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'; import path from 'node:path'; import fs
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..'); const require = createRequire(import.meta.url);
 const BK = require(path.join(ROOT, 'assets/app-backup.js'));
 const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/zaxira.js')).href); const STORE = await import(pathToFileURL(path.join(ROOT, 'functions/_lib/zaxira-store.js')).href);
-const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8');
+const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8') + '\n' + fs.readFileSync(path.join(ROOT, 'migrations/zaxira-tarix.sql'), 'utf8');
 let n = 0; const T = async (name, fn) => { try { await fn(); n++; } catch (e) { console.log('XATO ' + name + ': ' + (e && e.stack || e)); process.exit(1); } };
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
 const mkEnv = (x = {}) => Object.assign({ KALKI_AI_KV: kv(), KALKIFIT_DB: makeD1(SCHEMA) }, x);
@@ -95,4 +95,14 @@ await T('15 HIMOYA: bulutda mazmunli nusxa (≥900 bayt) bo\'lsa, bo\'sh/juda ki
   const id2 = '8'.repeat(64); await call('PUT', '', { id: id2, ilova: 'kalkifit', kutilgan: 0, blob: 'E'.repeat(500) }, env, { ip: '5.5.5.6' }); assert.equal((await call('PUT', '', { id: id2, ilova: 'kalkifit', kutilgan: 1, blob: 'F'.repeat(40) }, env, { ip: '5.5.5.7' })).status, 200, 'kichik nusxa (<900) — himoya yo\'q');
   r = await call('PUT', '', { id: '9'.repeat(64), ilova: 'kalkifit', kutilgan: 0, blob: EMPTY }, env, { ip: '5.5.5.8' }); assert.equal(r.status, 200, 'yangi yozuv (kutilgan 0) — to\'siqsiz');
   const id3 = 'a1'.repeat(32); await call('PUT', '', { id: id3, ilova: 'kalkifit', kutilgan: 0, blob: BIG }, env, { ip: '5.5.5.9' }); r = await call('PUT', '', { id: id3, ilova: 'kalkifit', kutilgan: 5, blob: EMPTY }, env, { ip: '5.5.5.10' }); assert.equal(r.status, 409, 'versiya mos kelmasa — oddiy 409 (konflikt)'); });
+await T('16 VERSIYALAR TARIXI: har yangilashda oldingi versiya saqlanadi (oxirgi 20 + 30 kunlik kunlar), holat versiyani qaytaradi, tanlangan versiyadan tiklash joriyni tarixga tushiradi', async () => {
+  const env = mkEnv(), id = 'b2'.repeat(32), st = STORE.makeStore(env); let ver = 0;
+  for (let i = 0; i < 30; i++) { const r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: ver, blob: ('V' + i).padEnd(1000, String.fromCharCode(65 + (i % 26))) }, env, { ip: '6.6.' + i + '.1' }); assert.equal(r.status, 200, 'yozish ' + i); ver = (await r.json()).versiya; }
+  assert.equal(ver, 30); const h = await st.tarix(id); assert.equal(h[0].joriy, true); assert.equal(h[0].versiya, 30); assert.ok(h.length >= 21 && h.length <= 31, 'oxirgi 20 + joriy (+ kunlik): ' + h.length); assert.ok(h.slice(1).every((x) => x.versiya < 30));
+  const hl = await call('GET', '?id=' + id + '&holat=1', undefined, env); assert.equal((await hl.json()).versiya, 30, 'holat versiyani qaytaradi (ilova ochilganda bulutdan tortish uchun)');
+  const old = (await env.KALKIFIT_DB.prepare('SELECT blob FROM zaxira_tarix WHERE id = ? AND versiya = ?').bind(id, 25).first()); assert.ok(old, 'v25 tarixda');
+  const cur = (await st.get(id)).blob; const tk = await st.tiklash(id, 25, Date.now()); assert.deepEqual(tk, { ok: true, versiya: 31 }); const after = await st.get(id); assert.equal(after.blob, old.blob, 'tanlangan nusxa joriy bo\'ldi'); assert.equal(after.versiya, 31);
+  const keep = await env.KALKIFIT_DB.prepare('SELECT blob FROM zaxira_tarix WHERE id = ? AND versiya = ?').bind(id, 30).first(); assert.equal(keep.blob, cur, 'tiklashdan oldingi joriy holat tarixga tushdi (yo\'qolmadi)');
+  assert.equal((await st.tiklash(id, 31, Date.now())).ok, false); assert.equal((await st.tiklash(id, 999, Date.now())).ok, false);
+  await st.del(id); assert.equal((await st.tarix(id)).length, 0, 'zaxira o\'chirilganda tarix ham o\'chadi'); });
 console.log(n + ' ta holat o\'tdi');

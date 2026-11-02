@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 71,
+   "d": "2026-11-02",
+   "bn": {
+    "uz": "Ma'lumotlaringiz endi avtomatik saqlanadi",
+    "ru": "Данные теперь сохраняются автоматически"
+   },
+   "items": [
+    {
+     "uz": "Akkauntga kirsangiz — ma'lumot bulutga o'zi saqlanadi; telefon almashsangiz yoki ilovani qayta o'rnatsangiz, kirishingiz bilan hammasi qaytadi.",
+     "ru": "Войдите в аккаунт — данные сами сохранятся в облаке; при смене телефона или переустановке всё вернётся сразу после входа.",
+     "show": "profil",
+     "btn": {
+      "uz": "Profilni ochish",
+      "ru": "Открыть профиль"
+     }
+    },
+    {
+     "uz": "Ikki qurilmada yozsangiz ham hech narsa yo'qolmaydi: yozuvlar o'zi birlashadi. Profilda «Bulutda saqlandi · 5 daqiqa oldin».",
+     "ru": "Даже если записывать на двух устройствах, ничего не потеряется: записи объединятся сами. В профиле — «Сохранено в облаке · 5 мин назад»."
+    },
+    {
+     "uz": "Akkauntsiz bo'lsangiz — ma'lumot faqat telefonda: Bugun'da Google bilan saqlash taklifi chiqadi.",
+     "ru": "Если аккаунта нет — данные только на телефоне: на экране «Сегодня» появится предложение сохранить через Google."
+    }
+   ]
+  },
+  {
    "v": 70,
    "d": "2026-11-01",
    "bn": {
