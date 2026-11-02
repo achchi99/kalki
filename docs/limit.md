@@ -105,7 +105,7 @@ limit = BMR × k  +  qadam_krediti  +  corr  ±  maqsad      (ozishda pastki che
 |---|---|
 | BMR | Mifflin–St Jeor |
 | k — Android, qadam yoqilgan, ish turi tasdiqlangan | o'tirib ishlayman **1,35** (v62 gacha 1,40) · tik turib / yurib 1,60 · og'ir jismoniy 1,85 |
-| k — iPhone, veb, qadam ruxsati yo'q yoki ish turi tasdiqlanmagan | avvalgi umumiy faollik `ACT` (1,2 / 1,375 / 1,55 / 1,725 / 1,9), kredit 0 |
+| k — iPhone, veb, qadam ruxsati yo'q yoki ish turi tasdiqlanmagan | avvalgi umumiy faollik `ACT` (1,2 / 1,375 / 1,55 / 1,725 / 1,9); QADAM krediti 0, lekin MASHG'ULOT krediti (NET × 0,7, ≤ 800) **har doim** beriladi (v72) — ish turi tasdiqlangach qo'lda kiritilgan qadam ham kredit beradi |
 | Baza qadam (ish turi ichida) | 5 000 / 7 500 / 10 000 |
 | Qadam krediti | `max(0, qadam − baza) × bo'y × 0,415 (qadam uzunligi) × vazn × 0,5 kkal/kg/km × 0,7`, **12 000 dan ortig'i × 0,5** (v62), kuniga ≤ 500 |
 | corr | shaxsiy tuzatish (adaptiv), ±1 000 gacha |

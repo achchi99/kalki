@@ -226,10 +226,12 @@
     qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
-  Object.assign(D.uz, { gcT: "Ma'lumotingiz faqat shu telefonda", gcS: "Ilova o'chirilsa yoki telefon almashsa yo'qoladi — Google bilan 1 bosishda saqlang.", gcBtn: 'Saqlash', gcNo: 'Keyinroq',
+  Object.assign(D.uz, { jbCardTW: "Qadam me'yoringizga qo'shilmayapti — ish turingizni tasdiqlang", khStepJob: "Qadam me'yoringizga allaqachon kiritilgan — ish turingizni tasdiqlang", khJobBtn: 'Ish turini tasdiqlash', exAddC: "Mashg'ulot qo'shish",
+    gcT: "Ma'lumotingiz faqat shu telefonda", gcS: "Ilova o'chirilsa yoki telefon almashsa yo'qoladi — Google bilan 1 bosishda saqlang.", gcBtn: 'Saqlash', gcNo: 'Keyinroq',
     chK: 'Mening kosam', chOd: 'Odatdagilarga saqlash', chKd: 'Kechki ovqat tanlash', chHf: 'Haftangiz tayyor', ftB_supp: 'Vitaminlar', ftB_afsona: 'Afsona yoki haqiqat', ftP_yozish: 'Ovqat yozish', ftPS_yozish: 'Matn, ovoz, rasm, yorliq', ftP_yeyman: 'Nima yeyman?', ftPS_yeyman: 'Uyda, kafeda', ftP_mening: 'Mening taomlarim', ftPS_mening: 'Odatdagi, idish', ftP_natija: 'Natijalarim', ftPS_natija: 'Hafta, rivojlanish',
     ftQ_yozish: 'Matn', ftQ_ovoz: 'Ovoz', ftQ_rasm: 'Rasm', ftQ_yorliq: 'Yorliq', ft_yozish: 'Matn bilan yozish', ft_yozishH: 'Nima yeganingizni yozing', ft_yeymizH: 'Uyda, kafeda yoki buyurtma', ft_menyuH: 'Kafe menyusidan mos taom', ft_rasmH: 'Taom rasmdan aniqlanadi', ft_ovozH: "Ayting — ro'yxat tuziladi", ft_idishlarH: 'Kosa va laganingiz bilan aniqroq', ft_yesamH: "Yeyishdan oldin ta'sirini ko'ring", ft_odatdagiH: "Bir bosishda qo'shish", ft_retseptH: "Retseptning yengilroq varianti", ft_suppH: 'Nima kerak, nima shart emas', ft_haftaH: 'Hafta xulosasi qisqa hikoyada' });
-  Object.assign(D.ru, { gcT: 'Ваши данные только на этом телефоне', gcS: 'Если удалить приложение или сменить телефон, они пропадут — сохраните одним нажатием через Google.', gcBtn: 'Сохранить', gcNo: 'Позже',
+  Object.assign(D.ru, { jbCardTW: 'Шаги пока не добавляются к норме — подтвердите вид работы', khStepJob: 'Шаги уже учтены в норме — подтвердите вид работы', khJobBtn: 'Подтвердить вид работы', exAddC: 'Добавить тренировку',
+    gcT: 'Ваши данные только на этом телефоне', gcS: 'Если удалить приложение или сменить телефон, они пропадут — сохраните одним нажатием через Google.', gcBtn: 'Сохранить', gcNo: 'Позже',
     chK: 'Моя миска', chOd: 'Сохранить в привычные', chKd: 'Выбрать ужин', chHf: 'Ваша неделя готова', ftB_supp: 'Витамины', ftB_afsona: 'Миф или правда', ftP_yozish: 'Записать еду', ftPS_yozish: 'Текст, голос, фото, этикетка', ftP_yeyman: 'Что съесть?', ftPS_yeyman: 'Дома, в кафе', ftP_mening: 'Мои блюда', ftPS_mening: 'Привычное, посуда', ftP_natija: 'Мои результаты', ftPS_natija: 'Неделя, прогресс',
     ftQ_yozish: 'Текст', ftQ_ovoz: 'Голос', ftQ_rasm: 'Фото', ftQ_yorliq: 'Этикетка', ft_yozish: 'Записать текстом', ft_yozishH: 'Напишите, что вы съели', ft_yeymizH: 'Дома, в кафе или заказ', ft_menyuH: 'Блюдо из меню кафе', ft_rasmH: 'Блюдо определится по фото', ft_ovozH: 'Скажите — список составится', ft_idishlarH: 'Своя посуда — точнее расчёт', ft_yesamH: 'Посмотрите итог до того, как съесть', ft_odatdagiH: 'Частое — в одно нажатие', ft_retseptH: 'Более лёгкий вариант рецепта', ft_suppH: 'Что нужно, что нет', ft_haftaH: 'Итоги недели короткой историей' });
   var LM = {          // v51: yagona me'yor modeli — ish turi (Android), qadam krediti, adaptiv me'yor, (i) tushuntirish
@@ -702,10 +704,21 @@
      «Kechki ovqat tanlash» (17:00 dan keyin kechki ovqat bo'sh — kuniga bir marta), «Haftangiz tayyor» (haftada bir marta, 3+ kun yozuv; yakshanba kartasi bo'lsa chiqmaydi). Prefs: prefs().chip = { od: {fid:1}, kd: sana, hf: hafta } */
   var chipEl = null, chipKey = null, chipPend = null, chipSeen = {};
   function chipPf() { var p = prefs(); return p.chip || (p.chip = { od: {} }); }
-  function chipHide() { chipKey = null; if (chipEl) chipEl.hidden = true; }
+  var chipInT = 0;
+  function chipHide() { chipKey = null; if (chipEl) chipEl.hidden = true; clearTimeout(chipInT); var ci = $('#rzChipIn'); if (ci) ci.remove(); }
+  /* v72: «Odatdagilarga saqlash» — KONTEKST chipi: saqlangan ovqat qatorining OSTIDA (oqimda, suzuvchi emas — hech narsani yopmaydi); 6 s dan keyin o'zi yo'qoladi */
+  function inlineChipMount() {
+    var old = $('#rzChipIn'); if (old) old.remove(); if (chipKey !== 'od' || !chipPend || !chipPend.e || view !== 'today') return false;
+    var id = String(chipPend.e.id), row = $('#rzMain [data-act=editfood][data-id="' + id + '"]');
+    if (!row) { var gs = $$('#rzMain [data-act=mlgrp]'); for (var i = 0; i < gs.length; i++) if (String(gs[i].getAttribute('data-ids') || '').split(',').indexOf(id) > -1) { row = gs[i]; break; } }
+    if (!row) return false; var host = row.closest('.ml-gw') || row, el = document.createElement('div'); el.id = 'rzChipIn'; el.className = 'sl-chipi';
+    el.innerHTML = '<button type="button" class="sl-chip" data-act="chipgo">' + ico('star') + '<span>' + esc(T('chOd')) + '</span></button><button type="button" class="sl-chip-x" data-act="chipx" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button>';
+    host.after(el); return true;
+  }
   function weekKey(t) { return Dt.addDays(t, -S.weekdayIdx(t)); }
   function chipShow(key, label, icon) {
     if (chipKey || kit.sheetKind() || view !== 'today') return false;
+    if (key === 'od') { chipKey = 'od'; if (!inlineChipMount()) { chipKey = null; return false; } chipSeen.od = 1; clearTimeout(chipInT); chipInT = setTimeout(function () { if (chipKey === 'od') chipDone('od', true); }, 6000); return true; }
     if (!chipEl) { chipEl = document.createElement('div'); chipEl.id = 'rzChip'; chipEl.className = 'sl-chipf'; root.appendChild(chipEl); }
     chipEl.innerHTML = '<button type="button" class="sl-chip" data-act="chipgo">' + ico(icon) + '<span>' + esc(label) + '</span></button><button type="button" class="sl-chip-x" data-act="chipx" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button>';
     chipEl.hidden = false; chipKey = key; chipSeen[key] = 1; return true;
@@ -838,6 +851,8 @@
     akk.load(true, function () { if (akk.enabled()) akk.act('akk'); });
   }
   function jobCardHtml() {                             // mavjud Android foydalanuvchisi (qadam yoqilgan, ish turi yo'q) — bir martalik; tasdiqlamaguncha kredit 0 (ikki marta hisoblanmaydi)
+    var web = !isNativeApp() && !qaOn() && st && st.setup && !S.jobOn(st) && ((S.dayOf(st, todayStr()) || {}).steps > 0) && prefs().jbDay !== todayStr();          // v72: iPhone/veb — qo'lda qadam kiritilgan, ish turi tasdiqlanmagan: kredit 0 — karta (kuniga bir marta yopiladi)
+    if (web) return '<section class="rz-card tt-card jb-card" id="jbCard"><button type="button" class="tt-cb" data-act="jbopen"><span class="sl-ci fc-gr">' + ico('steps') + '</span><span class="m"><b>' + esc(T('jbCardTW')) + '</b><span>' + esc(T('jbCardB')) + '</span></span></button><button type="button" class="rz-x tt-cx" data-act="jbno" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></section>';
     if (!st || !st.setup || st.profile.job || prefs().jobAsked || !jobUi() || !qaOn()) return '';
     return '<section class="rz-card tt-card jb-card" id="jbCard"><button type="button" class="tt-cb" data-act="jbopen"><span class="sl-ci fc-gr">' + ico('steps') + '</span><span class="m"><b>' + esc(T('jbCardT')) + '</b><span>' + esc(T('jbCardB')) + '</span></span></button><button type="button" class="rz-x tt-cx" data-act="jbno" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></section>';
   }
@@ -870,8 +885,8 @@
   }
   function stepWebHtml(x, dp) {                        // iPhone/veb: qo'lda kiritish (Salomatlik ilovasidan)
     var n = x.steps || 0, g = st.stepGoal || 8000, late = new Date().getHours() >= 18, kc = dp.stepCredit || 0;          // v58: limitga qo'shilgan kredit (halqa chiplari bilan bir xil raqam)
-    var foot = kc ? '<span class="chip c-bl">+' + fmt(kc) + ' ' + T('kcal') + '</span>' : '<span class="sl-abe">' + esc(n ? '' : (prefs().qm === 'on' && late ? T('stNone') : T('stEmptyW'))) + '</span>';
-    return '<section class="sl-card sl-ab2 sl-s" data-st="web"><div class="ah"><b>' + esc(T('sT')) + '</b><button type="button" class="pl c-bl" data-act="stepin" aria-label="' + esc(T('stInT')) + '"><span>+</span></button></div><button type="button" class="mr' + (n >= 10000 ? ' w5' : '') + '" data-act="stepin" aria-label="' + esc(T('sT') + ': ' + fmt(n) + ' / ' + fmt(g)) + '">' + miniRing('s', n / g, ico('steps'), 'c-bl') + '<span class="mv"><b id="sNum"' + (n ? '' : ' class="z"') + '>' + fmt(n) + '</b><small>/ ' + fmt(g) + '</small></span></button>' + foot + '</section>';
+    var foot = kc ? '<span class="chip c-bl">+' + fmt(kc) + ' ' + T('kcal') + '</span>' : (!n ? '<button type="button" class="sl-cta c-bl" data-act="stepin">' + esc(T('stEmptyW')) + '</button>' : (!S.jobOn(st) ? '<button type="button" class="sl-cta c-bl sm" data-act="jbopen">' + esc(T('khJobBtn')) + '</button>' : '<span class="sl-abe">' + esc(T('khStepIn')) + '</span>'));          // v72: kredit — «+N kkal»; 0 bo'lsa sabab/tugma
+    return '<section class="sl-card sl-ab2 sl-s' + (n ? '' : ' emp') + '" data-st="web"><div class="ah"><b>' + esc(T('sT')) + '</b><button type="button" class="pl c-bl" data-act="stepin" aria-label="' + esc(T('stInT')) + '"><span>+</span></button></div><button type="button" class="mr' + (n >= 10000 ? ' w5' : '') + '" data-act="stepin" aria-label="' + esc(T('sT') + ': ' + fmt(n) + ' / ' + fmt(g)) + '">' + miniRing('s', n / g, ico('steps'), 'c-bl') + '<span class="mv"><b id="sNum"' + (n ? '' : ' class="z"') + '>' + fmt(n) + '</b><small>/ ' + fmt(g) + '</small></span></button>' + foot + '</section>';
   }
   function actRowHtml() {                            // v68: qadam va mashg'ulot hali yo'q — ixcham BITTA qator (ikkala kirish saqlanadi)
     return '<section class="sl-card sl-actrow" id="actRow"><button type="button" data-act="' + (stepCard() ? 'xsteps' : 'stepin') + '"><span class="ai" aria-hidden="true">' + ico('steps') + '</span><b>' + esc(T('sT')) + '</b><small>' + esc(T('actAdd')) + '</small></button><i aria-hidden="true"></i><button type="button" data-act="exadd"><span class="ai" aria-hidden="true">' + ico('dumb') + '</span><b>' + esc(T('exT')) + '</b><small>' + esc(T('actAdd')) + '</small></button></section>';
@@ -879,8 +894,8 @@
   function exCardHtml(x, dp) {
     var l = x.ex || [], m = l.reduce(function (a, e) { return a + e.min; }, 0), k = dp.exCredit || 0,          // v58: limitga qo'shilgan kredit (halqa chiplari bilan bir xil)
       ic = ico('dumb');          // v69: chiziqli ikonka (emoji — faqat hazil/afsona)
-    var foot = k > 0 ? '<span class="chip c-pu">+' + fmt(k) + ' ' + T('kcal') + '</span>' : '<span class="sl-abe">' + esc(m ? '' : T('exEmpty')) + '</span>', pu = exPulse && !reduce; exPulse = false;
-    return '<section class="sl-card sl-ab2 sl-exc' + (pu ? ' pulse' : '') + '"><div class="ah"><b>' + esc(T('exT')) + '</b><button type="button" class="pl c-pu" data-act="exadd" aria-label="' + esc(T('exQ')) + '"><span>+</span></button></div><button type="button" class="mr" data-act="exlist" aria-label="' + esc(T('exT') + ': ' + T('exMinA', { n: m })) + '">' + miniRing('e', m / EX_GOAL, ic, 'c-pu') + '<span class="mv"><b id="exNum"' + (m ? '' : ' class="z"') + '>' + m + '</b><small>' + esc(T('exMinW')) + '</small></span></button>' + foot + '</section>';
+    var foot = k > 0 ? '<span class="chip c-pu">+' + fmt(k) + ' ' + T('kcal') + '</span>' : (!m ? '<button type="button" class="sl-cta c-pu" data-act="exadd">' + esc(T('exAddC')) + '</button>' : '<span class="sl-abe"></span>'), pu = exPulse && !reduce; exPulse = false;
+    return '<section class="sl-card sl-ab2 sl-exc' + (pu ? ' pulse' : '') + (m ? '' : ' emp') + '"><div class="ah"><b>' + esc(T('exT')) + '</b><button type="button" class="pl c-pu" data-act="exadd" aria-label="' + esc(T('exQ')) + '"><span>+</span></button></div><button type="button" class="mr" data-act="exlist" aria-label="' + esc(T('exT') + ': ' + T('exMinA', { n: m })) + '">' + miniRing('e', m / EX_GOAL, ic, 'c-pu') + '<span class="mv"><b id="exNum"' + (m ? '' : ' class="z"') + '>' + m + '</b><small>' + esc(T('exMinW')) + '</small></span></button>' + foot + '</section>';
   }
   var EX_GOAL = 60;          // kunlik mashg'ulot doirasi — 60 daqiqa (bizning tanlov; JSST: haftasiga 150–300 daqiqa o'rtacha — docs/limit.md)
   /* v58 (maket ~/sodda-maket.html): halqa ostida — oddiy chiplar (Yedingiz; limitga HAQIQATAN qo'shilgan harakat krediti), birinchi 3 ochilishda xira izoh. «Hozirgacha sarf»/balans Bugun'da yo'q (S.dayBal — plato/admin uchun core'da) */
@@ -920,7 +935,7 @@
     var t = todayStr(), x = S.dayOf(st, t) || { food: [], ex: [], steps: 0 }, tot = S.sumEntries(x.food), dp = S.dayPlan(st, t), pl = planNow(), sc = dp.stepCredit || 0, ec = dp.exCredit || 0, ac = dp.aeCredit || 0, dc = dp.dev ? dp.dev.cut : 0, base = dp.limit - sc - ec - ac + dc, rem = dp.limit - tot.kcal, over = rem < 0;
     var g = st.profile.goal, exL = x.ex || [], exM = exL.reduce(function (a, e) { return a + e.min; }, 0), nf = (x.food || []).length;
     var row = function (ic, bg, lb, sub, v, cls) { return '<div class="hw-r"><span class="ic ' + bg + '" aria-hidden="true">' + ic + '</span><span class="m"><b>' + esc(lb) + '</b><small>' + esc(sub) + '</small></span><b class="v' + (cls ? ' ' + cls : '') + '">' + v + '</b></div>'; };
-    var stepSub = !x.steps ? T('khStep0') : (sc > 0 ? T('khStepS') : (dp.job ? T('khStepIn') : T('khOff'))), exSub = !exL.length ? T('khEx0') : (ec > 0 ? T('khExS', { m: exM }) : T('khOff'));
+    var stepSub = !x.steps ? T('khStep0') : (sc > 0 ? T('khStepS') : (dp.job ? T('khStepIn') : T('khStepJob'))), exSub = !exL.length ? T('khEx0') : (ec > 0 ? T('khExS', { m: exM }) : T('khOff'));
     var h = shHead(T(over ? 'khTo' : 'khT', { k: fmt(Math.abs(rem)) })) + '<p class="rz-p sm rz-mut hw-sub">' + esc(T('khSub')) + '</p><p class="rz-p sm rz-mut" id="kcExpl">' + esc(T('kcExpl')) + (prefs().taxminiy ? ' ' + esc(T('kcTmpH')) : '') + '</p><div class="hw-rows" id="hwRows">' +
       row(ico('flag'), 'y', T('khNorm'), T(g === 'lose' ? 'khNormL' : g === 'gain' ? 'khNormG' : 'khNormK'), fmt(base)) +
       (dp.ae ? row(ico('watch'), 'b', T('khAe', { a: fmt(dp.ae) }), T('khAeS', { b: fmt(dp.aeBase) }), ac > 0 ? '+' + fmt(ac) : '0', ac > 0 ? 'g' : 'z') :          // v62: soat — qadam + mashg'ulot o'rniga (ikki marta emas)
@@ -929,6 +944,7 @@
       (dc ? row(ico('watch'), 'b', T('khDev'), T('khDevS', { d: fmt(dp.dev.total) }), '−' + fmt(dc)) : '') +
       row(ico('zfork'), 'o', T('khAte'), nf ? T('khAteS', { n: nf }) : T('khAte0'), tot.kcal ? '−' + fmt(tot.kcal) : '0') + '</div>' +
       '<div class="hw-res' + (over ? ' ov' : '') + '" id="hwRes"><span>' + esc(T(over ? 'khOver' : 'khRem')) + '</span><b>' + fmt(Math.abs(rem)) + '</b></div>' +
+      (x.steps && !dp.job && !dp.ae ? '<button type="button" class="rz-btn sm hw-job" data-act="jbopen">' + esc(T('khJobBtn')) + '</button>' : '') +
       '<p class="rz-p sm hw-tip">' + esc(over ? T('khOverN') : T(g === 'lose' ? 'khWkL' : g === 'gain' ? 'khWkG' : 'khWkK', { x: dec(Math.abs(pl.kgPerWeek || 0), 1) })) + '</p>' +
       (QA && st.profile.job ? (prefs().hcE === 'on' ? '<p class="rz-p sm rz-mut hw-dv" id="hcEis">' + esc(T('hcEis')) + '</p>' : '<button type="button" class="rz-link hw-how" id="hcEon" data-act="hcEon">' + esc(T('hcEon')) + ' ›</button>') : '') +          // v62: Android — soat sarfi (Health Connect, ixtiyoriy)
       '<button type="button" class="rz-link hw-how" data-act="xkform">' + esc(T('khHow')) + ' ›</button>' + okBtn();
@@ -945,7 +961,7 @@
     exv = e ? { id: e.id, d: d, t: e.t, min: e.min, lv: e.lv } : { id: null, d: d, t: prefs().exLast || 'yugurish', min: 30, lv: 1 }; openSheet('mashq', exSheetHtml()); exApply();
   }
   function exSheetHtml() {
-    var on = S.jobOn(st), edit = !!exv.id;
+    var on = true, edit = !!exv.id;          // v72: mashg'ulot krediti HAR QANDAY platformada
     return shHead(T('exQ')) + '<div class="rz-fl">' + esc(T('exTurL')) + '</div><div class="ex-grid" role="radiogroup" aria-label="' + esc(T('exTurL')) + '">' + S.EX_ORDER.map(function (k2) { return '<button type="button" class="ex-t" role="radio" aria-checked="false" data-act="ext" data-v="' + k2 + '"><span class="ic c-' + k2 + '" aria-hidden="true">' + ico('exr_' + k2) + '</span><span class="nm">' + esc(T('exS_' + k2)) + '</span><span class="ck" aria-hidden="true">✓</span></button>'; }).join('') + '</div>' +
       '<div class="rz-fl">' + esc(T('exDurL')) + '</div><div class="ex-dur2"><button type="button" class="ex-st" data-act="exstep" data-s="-5" aria-label="' + esc(T('exMinus')) + '">−</button><div class="v" role="status"><b id="exMinV">' + exv.min + '</b><small>' + esc(T('exMinW')) + '</small></div><button type="button" class="ex-st" data-act="exstep" data-s="5" aria-label="' + esc(T('exPlus')) + '">+</button></div>' +
       '<div class="rz-chips ex-dur">' + [15, 25, 30, 45, 60, 90].map(function (m) { return '<button type="button" class="rz-chip" data-act="exmin" data-v="' + m + '" aria-pressed="false">' + m + '</button>'; }).join('') + '</div>' +
@@ -964,7 +980,7 @@
   function exNum(el, v) { if (!el) return; kit.setNum(el, el._v == null ? null : el._v, v, { dur: 350 }); el._v = v; }
   function exApply(popKey) {                           // tanlov o'zgardi: faqat o'zgargan qismlar yangilanadi (sahifa/aylantirish joyida qoladi)
     if (!exv || kit.sheetKind() !== 'mashq') return;
-    var w = S.currentWeight(st) || num(st.profile.weight), k = S.exNet(exv, w), on = S.jobOn(st), stepsOn = on && S.EX[exv.t].spm && (qaOn() || (S.dayOf(st, exv.d) || {}).steps > 0);
+    var w = S.currentWeight(st) || num(st.profile.weight), k = S.exNet(exv, w), on = true, stepsOn = S.jobOn(st) && S.EX[exv.t].spm && (qaOn() || (S.dayOf(st, exv.d) || {}).steps > 0);
     $$('#rzSheet .ex-t').forEach(function (b) { var o = b.getAttribute('data-v') === exv.t; b.classList.toggle('on', o); b.setAttribute('aria-checked', o); if (o && popKey === exv.t) { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); } });
     $$('#rzSheet .ex-in').forEach(function (b) { var o = +b.getAttribute('data-v') === exv.lv; b.classList.toggle('on', o); b.setAttribute('aria-checked', o); });
     $$('#rzSheet .ex-dur .rz-chip').forEach(function (b) { var o = +b.getAttribute('data-v') === exv.min; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
@@ -1269,12 +1285,12 @@
     qaDetect(); var dpT = S.dayPlan(st, t);          // v68 TARTIB (birinchi kun ishonchi): halqa → BJU → bugungi ovqatlar → qadam/mashg'ulot (ma'lumot yo'q — ixcham bitta qator) → qolganlar (bitta karta, suv)
     // v70: BJU halqa kartasi ichida (yuqorida)          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2 sl-sec2k"><h3>' + esc(T('tdMeals')) + '</h3><span class="sl-secv" id="mealTot"><b>' + fmt(tot.kcal) + '</b> / ' + fmt(dpT.limit) + ' ' + esc(T('kcal')) + '</span></div>' + (x.food.length ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
-    h += (x.steps || (x.ex || []).length || stepCard() ? '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>' : actRowHtml());
+    h += '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>';          // v72: bo'sh holatda ham to'liq kartalar (0 dan mini halqa, och fon, «Qadamni kiriting» / «Mashg'ulot qo'shish»)
     h += slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
     h += '<div class="sl-duo one"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + ('<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       '</div>';          // v55: suv — alohida ixcham qator (qadam va mashg'ulot yuqorida, ikki kichik karta)
 
-    setMain(h); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow(); setTimeout(function () { chipTry(0); }, 1800);
+    setMain(h); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow(); inlineChipMount(); setTimeout(function () { chipTry(0); }, 1800);
     animNum(curN, n, durN); statsAnim(tot.kcal, limit, !prev); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 900, from: startN, to: n, fromTy: fromTy, fromR: fromR, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty, r: ratio };
     if (G && !jokeBoot) { jokeBoot = true; loadHazil(); loadMasofa(); if (appDays() >= 3) loadPush(function () { pushSync(); if ((view === 'today' || view === 'profile') && !kit.sheetKind()) render(); }); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
@@ -1609,7 +1625,7 @@
     bowl: 'M3 11h18a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8z M8 7c0-1 1-1 1-2 M12 7c0-1 1-1 1-2 M16 7c0-1 1-1 1-2',
     lbl: 'M3 8V5a2 2 0 0 1 2-2h3 M16 3h3a2 2 0 0 1 2 2v3 M21 16v3a2 2 0 0 1-2 2h-3 M8 21H5a2 2 0 0 1-2-2v-3 M7 8v8 M10 8v8 M13 8v8 M16.500 8v8',          // yorliq: skaner ramkasi + shtrix-kod
     mlist: 'M9 6h11 M9 12h11 M9 18h11 M4.500 6h.010 M4.500 12h.010 M4.500 18h.010',          // menyu: nuqtali ro'yxat
-    steps: 'M3 17.500V13l3.500-.600L9 9l2.500 2.500 4.500 1.500c2.500.800 5 1.500 5 4v.500z M3 20.500h18 M9 14.500l1.500 1 M12 15.500l1.500 1',          // qadam: krossovka
+    steps: 'M2.500 15.500v-2.200c0-.600.400-1.100 1-1.300l3.200-1 2.100-3.300c.300-.500.900-.600 1.400-.300l1.600 1.100c.600.400 1.300.700 2 .800l3.600.600c1.800.300 3.100 1.900 3.100 3.700v.900c0 .600-.400 1-1 1H3.500c-.600 0-1-.400-1-1z M2.500 19h19 M10.500 9.800l1.700 1.700 M13 11.200l1.600 1.400',          // qadam: krossovka
     clock: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M12 7v5l3 2', fish: 'M3 12c3-5 8-6 12-3l5-3v12l-5-3c-4 3-9 2-12-3z M7.500 11.500h.010', play: 'M8 5l11 7-11 7z', swap: 'M7 7h11 M15 4l3 3-3 3 M17 17H6 M9 14l-3 3 3 3',
     exr_yugurish: 'M15 4a1.500 1.500 0 1 0 .010 0 M8 20.500l3-6 3 2 2 4.500 M11 14.500l1-5.500 3 3 3 .500 M12 9l-4 1.500', exr_zal: 'M6.500 7v10 M17.500 7v10 M3.500 9.500v5 M20.500 9.500v5 M6.500 12h11',
     exr_velosiped: 'M3 17.500a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M15 17.500a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M6 17.500l4-7h6l2 7 M10 10.500l-1-3H7 M14 7.500h3', exr_futbol: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M12 8l3.500 2.500-1.300 4h-4.400l-1.300-4z M12 8V3 M15.500 10.500L20 9 M14.200 14.500l2.800 3.500 M9.800 14.500L7 18 M8.500 10.500L4 9',
@@ -3425,7 +3441,7 @@
       case 'plwater': { plPrefs().water = 1; save(); render(); break; }          // «1-hafta: suv» izohi — bir marta; yopsa qayta chiqmaydi
       case 'jkx': jokeHide(); break;
       case 'jbopen': openJob(); break;
-      case 'jbno': { prefs().jobAsked = 1; save(); render(); break; }
+      case 'jbno': { if (isNativeApp() || qaOn()) prefs().jobAsked = 1; else prefs().jbDay = todayStr(); save(); render(); break; }
       case 'jbpick': { if (jv) { jv.sel = el.getAttribute('data-v'); setSheet(jobSheetHtml()); } break; }
       case 'jbok': { if (jv && jv.sel) { st.profile.job = jv.sel; prefs().jobAsked = 1; if (jv.web) prefs().qm = 'on'; jv.ok = 1; kit.closeSheet(); heroPrev = null; commit(); vib(); toast(T('jbDone'), null, true); } break; }
       case 'adyes': { if (adS) { st.profile.corr = adS.corr; prefs().adT = Date.now(); heroPrev = null; commit(); vib(); toast(T('adOn'), null, true); } break; }
