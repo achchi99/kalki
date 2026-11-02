@@ -195,7 +195,7 @@
     var mergeN = 0;
     function pullMerge() {                           // → Promise<boolean>: bulutdagi nusxani olib, shu qurilmaga birlashtiradi; CS.ver = bulut versiyasi; natija bulutga yoziladi (pending)
       return keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id).then(function (r) {
-        if (r.s === 404) return true;                // bulutda hali yo'q — birlashtiradigan narsa yo'q
+        if (r.s === 404) { CS.conflict = 0; CS.shrink = 0; CS.pending = true; if (!CS.psince) CS.psince = Date.now(); CS.force = 1; saveCloud(); return true; }                // bulutda hali yo'q — birlashtiradigan narsa yo'q: mahalliy to'liq yoziladi
         if (r.s !== 200 || !r.j || typeof r.j.blob !== 'string') throw new Error('net');
         return open(cfg.app, k, r.j.blob).then(function (text) {
           var ok = false, same = false; try { var mr = cfg.merge(text); ok = mr !== false; same = mr === 'same'; } catch (e) { ok = false; } if (!ok) throw new Error('bad');
