@@ -1497,7 +1497,7 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .sl-ab2 .pl{background:transparent!important}
 .rz .sl-ab2 .mr{display:flex;align-items:center;gap:10px;margin-top:6px;padding:0;border:0;background:transparent;color:inherit;text-align:left;font-family:inherit;min-height:58px}
 .rz .sl-ab2 .mini{position:relative;width:58px;height:58px;flex:none;display:grid;place-items:center;background:transparent!important}
-.rz .sl-ab2 .mini svg{position:absolute;inset:0;width:58px;height:58px;transform:rotate(-90deg)}
+.rz .sl-ab2 .mini>svg{position:absolute;inset:0;width:58px;height:58px;transform:rotate(-90deg)}
 .rz .sl-ab2 .mini circle{fill:none;stroke-width:6}.rz .sl-ab2 .mini .bg{stroke:var(--track)}.rz .sl-ab2 .mini .fg{stroke-linecap:round}
 .rz .sl-ab2 .mini.c-bl .fg{stroke:var(--fcbli)}.rz .sl-ab2 .mini.c-pu .fg{stroke:var(--fcpui)}
 .rz .sl-ab2 .mini .fg.anim{animation:miniFill .8s cubic-bezier(.22,1,.36,1) both}
@@ -1511,8 +1511,8 @@ html.af-on .rz-fab,html.af-on #rzFab,html.af-on #rzAddBar{display:none!important
 .rz .sl-ab2 .sl-abe{margin-top:10px;font-size:var(--t-s);color:var(--mut);line-height:1.35}.rz .sl-ab2 .sl-abe:empty{display:none}
 .rz .sl-ab2 .sl-pill{margin-top:10px;align-self:flex-start}.rz .sl-ab2 .sl-stnote{margin-top:10px}
 .rz .sl-ab2 .mr{margin-right:-4px}
-@media (max-width:374px){.rz .sl-ab2 .mr{gap:8px}.rz .sl-ab2 .mini,.rz .sl-ab2 .mini svg{width:52px;height:52px}}          /* 360 px (+ katta shrift) (ЎЗ «дақиқа») sig'sin */
-.rz .sl-ab2 .mr.w5{gap:6px}.rz .sl-ab2 .mr.w5 .mini,.rz .sl-ab2 .mr.w5 .mini svg{width:46px!important;height:46px!important}.rz .sl-ab2 .mr.w5 .mini i{font-size:17px}.rz .sl-ab2 .mr.w5 .mv b{font-size:var(--t-ml)}          /* 10 000+ qadam — son sig'sin */
+@media (max-width:374px){.rz .sl-ab2 .mr{gap:8px}.rz .sl-ab2 .mini,.rz .sl-ab2 .mini>svg{width:52px;height:52px}}          /* 360 px (+ katta shrift) (ЎЗ «дақиқа») sig'sin */
+.rz .sl-ab2 .mr.w5{gap:6px}.rz .sl-ab2 .mr.w5 .mini,.rz .sl-ab2 .mr.w5 .mini>svg{width:46px!important;height:46px!important}.rz .sl-ab2 .mr.w5 .mini i{font-size:17px}.rz .sl-ab2 .mr.w5 .mv b{font-size:var(--t-ml)}          /* 10 000+ qadam — son sig'sin */
 .rz .sl-ab2 .sl-abs2{display:block;margin-top:8px;min-width:0}.rz .sl-ab2 .sl-abs2 .sl-src{display:inline-block;max-width:100%;padding:2px 8px;border-radius:8px;background:var(--soft);color:var(--mut);font-size:var(--t-lbl);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:top}          /* Android: kichik manba belgisi («Telefon sensori») */
 .rz .sl-ab2.pulse{animation:cardPulse .5s cubic-bezier(.2,.8,.2,1) 1}
 @keyframes cardPulse{50%{transform:scale(1.03)}}
@@ -1884,3 +1884,34 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-bkb .gc-a{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .rz .sl-bkb .rz-btn.sm{min-height:44px;padding:0 16px}
 .rz .sl-gc{background:var(--card);border-color:var(--line2)}
+
+/* ===================== v72: QADAM / MASHG'ULOT kartalari — halqa ichida aniq ikonka (chiziqqa tegmaydi), bo'sh holatda to'liq karta (och fon + CTA), «+N kkal» ===================== */
+.rz .sl-ab2 .mini circle{stroke-width:5}
+.rz .sl-ab2 .mini i{position:relative;display:grid;place-items:center;width:26px;height:26px;font-style:normal;line-height:0}
+.rz .sl-ab2 .mini i svg{position:static;width:22px;height:22px;transform:none;inset:auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rz .sl-ab2 .mini.c-bl i{color:var(--fcbli)}.rz .sl-ab2 .mini.c-pu i{color:var(--fcpui)}
+.rz .sl-ab2.emp.sl-s{background:color-mix(in srgb,var(--fcbli) 8%,var(--card))}.rz .sl-ab2.emp.sl-exc{background:color-mix(in srgb,var(--fcpui) 8%,var(--card))}
+.rz .sl-ab2.emp .mini .bg{stroke:color-mix(in srgb,currentColor 18%,transparent)}.rz .sl-ab2.emp .mini.c-bl{color:var(--fcbli)}.rz .sl-ab2.emp .mini.c-pu{color:var(--fcpui)}
+.rz .sl-ab2 .sl-cta{align-self:stretch;margin-top:10px;min-height:44px;padding:0 12px;border:0;border-radius:14px;font:inherit;font-size:var(--t-s);font-weight:600;line-height:1.2;white-space:normal;text-align:center}
+.rz .sl-ab2 .sl-cta.c-bl{background:var(--fcbl);color:var(--fcbli)}.rz .sl-ab2 .sl-cta.c-pu{background:var(--fcpu);color:var(--fcpui)}.rz .sl-ab2 .sl-cta.sm{font-size:var(--t-lbl)}
+.rz .sl-ab2 .sl-cta:active{transform:scale(.96)}
+.rz .hw-job{margin:10px 0 0;width:100%}
+/* v72: kontekst chipi — ovqat qatori ostida, oqimda (suzuvchi emas) */
+.rz .sl-chipi{display:flex;align-items:center;gap:4px;margin:2px 0 8px;animation:chipIn var(--ms-panel) ease-out}
+.rz .sl-chipi .sl-chip{background:var(--card);border:var(--bd-c);box-shadow:none;min-width:0}.rz .sl-chipi .sl-chip span{white-space:normal;text-align:left}
+.rz .sl-chipi .sl-chip-x{background:transparent;border:0}
+@media (prefers-reduced-motion:reduce){.rz .sl-chipi{animation:none}}
+
+/* ===================== v72: kesilgan matnlar va Afsona javob tugmalari ===================== */
+.rz .sl-meal .sl-row .nm,.rz .ml-r .nm,.rz .sl-row .nm,.rz .sl-rr .nm{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;line-height:1.3}
+.rz .sl-row .tm,.rz .sl-rr .tm{white-space:normal;overflow-wrap:anywhere}
+.rz .bj-tip,.rz .sl-bju.bj3 .bj-tip{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere;line-height:1.35}
+.rz .af-tz{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:start}
+.rz .af-tz small,.rz .af-tz b,.rz .af-tzb{grid-column:1}.rz .af-tz small{justify-self:start}
+.rz .af-tz b{overflow-wrap:anywhere}
+.rz .af-tzb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px;width:100%}
+.rz .af-tzb button{flex:none;width:100%;min-width:0;min-height:44px;padding:8px 10px;white-space:normal;overflow-wrap:anywhere;line-height:1.2;display:flex;align-items:center;justify-content:center;text-align:center}
+.rz .sl-ab2 .sl-cta{font-size:14px}
+/* v72: CTA — katta rangli blok emas: kartaning o'z fonida, rangli matn + yupqa chegara (tema: «rangli fonli katta bloklar» yo'q) */
+.rz .sl-ab2 .sl-cta.c-bl,.rz .sl-ab2 .sl-cta.c-pu{background:transparent;border:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+.rz .sl-ab2.emp .mv small,.rz .sl-ab2.emp .sl-abe,.rz .sl-ab2.emp .mv b.z{color:color-mix(in srgb,var(--ink) 74%,var(--card))}

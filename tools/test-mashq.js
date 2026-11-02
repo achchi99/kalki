@@ -23,7 +23,7 @@ ok('Yugurish 25 daq + 9 000 qadam (Android va iPhone qo\'lda): yugurishdagi ~4 0
   assert.equal(e.limit, e.plan.tdee + 800 + e.delta); ok('Mashg\'ulot krediti = NET × 0,7; qadam + mashg\'ulot krediti ≤ 800 kkal (sarf esa to\'liq ko\'rsatiladi)'); }
 /* 4. iPhone: qo'lda qadam → ish turi tasdiqlangan (qm) — kredit; tasdiqlanmagan / ACT — 0; kiritilmagan kun — k ish turidan */
 { const web = mk({ q: { qa: undefined, qm: 'on' } }); S.setSteps(web, T, 9000); assert.ok(S.dayPlan(web, T).stepCredit > 0); assert.equal(S.dayPlan(web, T).k, 1.35);
-  const off = mk({ q: { qa: undefined, qm: 'off' } }); S.setSteps(off, T, 9000); S.addEx(off, T, { t: 'futbol', min: 60, lv: 1 }); const o = S.dayPlan(off, T); assert.deepEqual([o.credit, o.job, o.sarf], [0, null, o.plan.tdee], 'tasdiqlanmagan — kredit 0, sarf = umumiy daraja (yurish ichida)');
+  const off = mk({ q: { qa: undefined, qm: 'off' } }); S.setSteps(off, T, 9000); S.addEx(off, T, { t: 'futbol', min: 60, lv: 1 }); const o = S.dayPlan(off, T); assert.equal(o.stepCredit, 0, 'tasdiqlanmagan — QADAM krediti 0'); assert.equal(o.job, null); assert.ok(o.exCredit > 0 && o.credit === o.exCredit, 'v72: MASHG\'ULOT krediti ish turisiz ham beriladi'); assert.equal(o.sarf, o.plan.tdee + o.exNet, 'sarf = umumiy daraja + mashg\'ulot NET');
   const none = mk({ q: { qa: undefined, qm: 'on' } }); const z = S.dayPlan(none, T); assert.deepEqual([z.credit, z.k, z.job], [0, 1.35, 'sit'], 'qadam kiritilmagan kun — kredit 0, k ish turidan (eski daraja emas)');
   ok('iPhone/veb: qo\'lda qadam + ish turi tasdiqlangan → kredit (k = 1,35); tasdiqlanmasa — kredit 0, sarf = umumiy daraja; kiritilmagan kun — kredit 0, k ish turidan'); }
 /* 5. balans = iste'mol − sarf; tafsilot yig'indisi = sarf */

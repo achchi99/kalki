@@ -77,8 +77,11 @@ try {
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) });
   await p.click('#mainAdd'); await p.waitForTimeout(700); await p.keyboard.type('osh'); await p.waitForTimeout(800);
   await p.locator('[data-act=pickfood]').first().click(); await p.waitForTimeout(800); await p.locator('[data-act=fsave]').first().click(); await p.waitForTimeout(900);
-  assert.equal(await waitChip(p, 14000), 'Odatdagilarga saqlash', 'osh 2+ marta yozilgan — saqlash chipi');
-  await p.click('#rzChip .sl-chip'); await p.waitForTimeout(500); assert.ok(await p.evaluate(() => (window.__kalkifit.state.tpls || []).some((t) => t.items.some((x) => x.fid === 'osh'))), 'odatdagiga saqlandi'); assert.equal(await chipTxt(p), null);
+  { const t0 = Date.now(); let c = null; while (Date.now() - t0 < 14000 && !c) { c = await p.evaluate(() => { const e = document.querySelector('#rzChipIn .sl-chip span'); return e ? e.textContent : null; }); if (!c) await p.waitForTimeout(300); } assert.equal(c, 'Odatdagilarga saqlash', 'osh 2+ marta yozilgan — saqlash chipi (ovqat qatori OSTIDA)');
+    const pos = await p.evaluate(() => { const ch = document.getElementById('rzChipIn'), pr = ch.previousElementSibling, r = ch.getBoundingClientRect(), pb = pr.getBoundingClientRect(); return { below: r.top >= pb.bottom - 1, inFlow: getComputedStyle(ch).position !== 'fixed' && getComputedStyle(ch).position !== 'absolute', floating: !!document.querySelector('#rzChip:not([hidden])'), prev: pr.className }; }); assert.ok(pos.below && pos.inFlow && !pos.floating, 'chip oqimda, qator ostida, suzuvchi emas: ' + JSON.stringify(pos));
+    await p.waitForTimeout(6500); assert.equal(await p.locator('#rzChipIn').count(), 0, '6 s dan keyin o\'zi yo\'qoladi'); }
+  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); await p.click('#mainAdd'); await p.waitForTimeout(700); await p.keyboard.type('osh'); await p.waitForTimeout(800); await p.locator('[data-act=pickfood]').first().click(); await p.waitForTimeout(800); await p.locator('[data-act=fsave]').first().click(); await p.waitForTimeout(900); await p.waitForSelector('#rzChipIn .sl-chip', { timeout: 14000 });
+  await p.click('#rzChipIn .sl-chip'); await p.waitForTimeout(500); assert.ok(await p.evaluate(() => (window.__kalkifit.state.tpls || []).some((t) => t.items.some((x) => x.fid === 'osh'))), 'odatdagiga saqlandi'); assert.equal(await p.locator('#rzChipIn').count(), 0);
   ok('chip «Odatdagilarga saqlash»: 2+ marta yozilgan taom qo\'shilgach; bosilsa «Odatdagi»ga yoziladi');
 
   /* «Mening kosam»: porsiya oynasida (idishli taom 2+ marta yozilgan, o'z idishi yo'q) — bitta chip; yopilsa shu taom uchun qayta chiqmaydi */

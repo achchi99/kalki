@@ -251,7 +251,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
      • qadam bazasidagi qadam — k ichida (kredit faqat bazadan ortig'iga);
      • qadam hosil qiladigan mashg'ulot (yugurish, futbol…): uning taxminiy qadami = daqiqa × spm (kunlik qadamdan oshmaydi); shundan bazadan ORTIQ qismga allaqachon qadam krediti berilgan bo'lishi mumkin —
        ustma-ust qism = min(mashg'ulot qadami, max(0, kunlik qadam − baza)); mashg'ulot NET = max(0, mashg'ulot kkal − ustma-ust qadamning sof kkal'i);
-     • kreditlar: qadam — creditOf (×0,7, ≤ 500), mashg'ulot — NET × 0,7; ikkalasi birga ≤ 800. Ish turi modeli bo'lmasa (ACT, yurish va odatiy sport daraja ichida) — kredit 0.
+     • kreditlar: qadam — creditOf (×0,7, ≤ 500), mashg'ulot — NET × 0,7; ikkalasi birga ≤ 800. Ish turi modeli bo'lmasa (ACT, yurish va odatiy sport daraja ichida) — QADAM krediti 0; MASHG'ULOT krediti (NET × 0,7) HAR QANDAY platformada va ish turisiz ham beriladi (v72).
      Balans (ko'rsatish): sarf = BMR × k + tuzatish + qadam NET (bazadan ortig'i, to'liq) + mashg'ulot NET (to'liq); balans = iste'mol − sarf. */
   function dayPlan(st, d, stepsOver, o) {
     if (o && o.old) o = { jobT: LIM.JOB_V61, taper: Infinity, ex: EX_V61, noDev: true, noAe: true };          // v62 gacha formulasi (faqat solishtirish)
@@ -259,7 +259,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var exs = x && Array.isArray(x.ex) ? x.ex : [], exRaw = 0, exMin = 0, exSteps = 0; exs.forEach(function (e) { exRaw += exNet(e, w, exT); exMin += Math.max(0, num(e.min)); exSteps += Math.max(0, num(e.min)) * ((EX[e.t] || {}).spm || 0); });
     var okSteps = pl.job && !suspect, extra = okSteps ? Math.max(0, Math.round(steps) - pl.jobBase) : 0, overlap = okSteps ? Math.min(Math.min(exSteps, steps), extra) : 0;
     var overKcal = Math.round(walkNet(overlap, h, w)), exNetV = Math.max(0, exRaw - overKcal), stepNet = Math.round(walkNet(extra, h, w));
-    var stepCredit = okSteps ? creditOf(steps, h, w, pl.jobBase, o && o.taper) : 0, exCredit = pl.job ? Math.round(exNetV * LIM.CRED_K) : 0, credit = Math.min(LIM.SUM_MAX, stepCredit + exCredit);
+    var stepCredit = okSteps ? creditOf(steps, h, w, pl.jobBase, o && o.taper) : 0, exCredit = Math.round(exNetV * LIM.CRED_K), credit = Math.min(LIM.SUM_MAX, stepCredit + exCredit);
     if (stepCredit + exCredit > LIM.SUM_MAX) exCredit = Math.max(0, LIM.SUM_MAX - stepCredit);
     var ae = x && num(x.ae) > 0 && pl.job && !(o && o.noAe) ? Math.round(num(x.ae)) : 0, aeB = ae ? aeBase(pl.bmrRaw, pl.actK) : 0, aeNet = ae ? Math.max(0, ae - aeB) : 0, aeCredit = 0;
     if (ae) { aeCredit = Math.min(LIM.SUM_MAX, Math.round(aeNet * LIM.CRED_K)); stepCredit = 0; exCredit = 0; credit = aeCredit; }          // v62: soat — qadam + mashg'ulot krediti O'RNIGA
@@ -267,7 +267,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (dvT != null && dvT <= spend * DEV_CUT) { dev = { total: dvT, formula: spend, cut: spend - dvT, src: x.dev.src || '' }; spend = dvT; }          // v62: soat formuladan ≥ 10% kam — kichigi
     var raw = spend + pl.delta, limit = raw, floorAdd = 0;
     if (pl.delta < 0 && raw < pl.floorMin) { floorAdd = pl.floorMin - raw; limit = pl.floorMin; }
-    var sarf = dev ? dev.total : ae ? pl.tdee + aeNet : pl.tdee + (pl.job ? stepNet + exNetV : 0);
+    var sarf = dev ? dev.total : ae ? pl.tdee + aeNet : pl.tdee + (pl.job ? stepNet : 0) + exNetV;
     return { plan: pl, bmr: pl.bmr, k: pl.actK, life: pl.base0 - pl.bmr, corr: pl.corr, job: pl.job, base: pl.jobBase, steps: steps, extra: extra, suspect: suspect, stepCredit: stepCredit, stepNet: pl.job && !ae ? stepNet : 0,
       ae: ae, aeBase: aeB, aeNet: aeNet, aeCredit: aeCredit, dev: dev,
       ex: exs, exMin: exMin, exRaw: exRaw, exOverlap: overKcal, exNet: exNetV, exCredit: exCredit, credit: credit, spend: spend, sarf: sarf, delta: pl.delta, floorAdd: floorAdd, limit: limit, target: pl.target };
@@ -278,7 +278,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   var BAL_TOL = 100;
   function dayFrac(d, now) { now = now || new Date(); var t = D.today(now); if (d < t) return 1; if (d > t) return 0; return Math.max(0, Math.min(1, (now.getHours() + now.getMinutes() / 60) / 24)); }
   function dayBal(st, d, eaten, now) {
-    var dp = dayPlan(st, d, null, { now: now }), e = Math.round(num(eaten)), f = dayFrac(d, now), mov = dp.dev ? 0 : dp.ae ? dp.aeNet : dp.job ? dp.stepNet + dp.exNet : 0, base = dp.sarf - mov, sarfNow = Math.round(base * f) + mov, bal = e - sarfNow, rejaF = Math.round(dp.delta * f);
+    var dp = dayPlan(st, d, null, { now: now }), e = Math.round(num(eaten)), f = dayFrac(d, now), mov = dp.dev ? 0 : dp.ae ? dp.aeNet : (dp.job ? dp.stepNet : 0) + dp.exNet, base = dp.sarf - mov, sarfNow = Math.round(base * f) + mov, bal = e - sarfNow, rejaF = Math.round(dp.delta * f);
     var st0 = dp.delta > 0 ? (bal < rejaF - BAL_TOL ? 'kam' : 'mos') : (bal > BAL_TOL ? 'ortiq' : (dp.delta < 0 && bal < rejaF - BAL_TOL ? 'ozish' : 'mos'));
     return { eaten: e, f: f, base: base, mov: mov, sarfNow: sarfNow, sarf: sarfNow, sarfDay: dp.sarf, bal: bal, balDay: e - dp.sarf, reja: dp.delta, rejaF: rejaF, holat: st0, dp: dp };
   }

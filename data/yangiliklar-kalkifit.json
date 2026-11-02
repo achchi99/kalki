@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 72,
+   "d": "2026-11-02",
+   "bn": {
+    "uz": "Qadam va mashg'ulot hisobi",
+    "ru": "Учёт шагов и тренировок"
+   },
+   "items": [
+    {
+     "uz": "Mashg'ulot kaloriyasi endi hamma telefonda me'yorga qo'shiladi, iPhone ham.",
+     "ru": "Калории тренировки теперь добавляются к норме на любом телефоне, и на iPhone.",
+     "show": "bugun",
+     "btn": {
+      "uz": "Ko'rish",
+      "ru": "Показать"
+     }
+    },
+    {
+     "uz": "iPhone'da qadam kiritsangiz, ish turini tasdiqlash kartasi chiqadi.",
+     "ru": "На iPhone после ввода шагов появится карточка подтверждения вида работы."
+    },
+    {
+     "uz": "Qadam va Mashg'ulot kartalari doim ko'rinadi, matnlar kesilmaydi.",
+     "ru": "Карточки шагов и тренировки видны всегда, тексты не обрезаются."
+    }
+   ]
+  },
+  {
    "v": 71,
    "d": "2026-11-02",
    "bn": {
