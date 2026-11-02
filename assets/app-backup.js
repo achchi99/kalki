@@ -202,14 +202,12 @@
       pullMerge().then(function (ok) { if (ok) { retry = 0; schedule(100); } else backoff(); changed(); });
     }
     bk.pullMerge = pullMerge; bk.canMerge = function () { return !!cfg.merge; };
-    bk.pullIfNewer = function (force) {              // ilova ochilganda/qaytganda: bulutdagi versiya bizniki bilan teng emasmi? → birlashtirish
+    bk.pullIfNewer = function (force) {              // ilova ochilganda/qaytganda: bulutdagi versiya bizniki bilan teng emasmi? → birlashtirish (bir so'rovda muddat ogohi ham tekshiriladi — holat)
       if (!CS.on || !CS.code || !online() || !cfg.merge) return Promise.resolve(false);
-      return keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id + '&holat=1'); }).then(function (r) {
-        if (r.s === 404) return false; if (r.s !== 200) { setErr('server'); return false; }
-        try { localStorage.setItem(HK, String(Date.now())); } catch (e) {}
-        if (!force && r.j.versiya && r.j.versiya === CS.ver && !CS.conflict) return false;
+      return bk.holat(true).then(function (h) {
+        if (!h) return false; if (!force && h.versiya && h.versiya === CS.ver && !CS.conflict) return false;
         var was = hold; hold = true; return pullMerge().then(function (ok) { hold = was; if (ok) { mergeN = 0; changed(); } if (!hold && CS.pending) schedule(300); return ok; });
-      }, function () { return false; });
+      });
     };
     bk.adoptMerge = function (raw, ver) {            // akkaunt kodi: shu qurilmadagi ma'lumot bulutdagi bilan BIRLASHTIRILADI (yozib yuborilmaydi)
       var pc = parseCode(cfg.app, raw); if (!pc.ok) return Promise.resolve(false); var code = PREFIX[cfg.app] + '-' + pc.body.match(/.{4}/g).join('-');
@@ -356,13 +354,13 @@
     };
     /* v68+ SAQLASH MUDDATI: kuniga bir marta blobsiz «holat» so'rovi (sinxron hisoblanadi). Server 12 oy sinxronsiz bo'lgan zaxiraga ogoh qo'ygan bo'lsa — bir martalik xabar. */
     var HK = 'kalki_zaxira_' + cfg.app + '_h', OK = 'kalki_zaxira_' + cfg.app + '_og';
-    bk.holat = function () {
-      if (!CS.on || !CS.code || !online()) return Promise.resolve(null); var now = Date.now(), lastH = 0; try { lastH = +localStorage.getItem(HK) || 0; } catch (e) {} if (now - lastH < 20 * 3600000) return Promise.resolve(null);
+    bk.holat = function (force) {
+      if (!CS.on || !CS.code || !online()) return Promise.resolve(null); var now = Date.now(), lastH = 0; try { lastH = +localStorage.getItem(HK) || 0; } catch (e) {} if (!force && now - lastH < 20 * 3600000) return Promise.resolve(null);
       return keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id + '&holat=1'); }).then(function (r) {
         if (r.s !== 200) return null; try { localStorage.setItem(HK, String(now)); } catch (e) {}
         var og = +r.j.ogoh || 0, seen = 0; try { seen = +localStorage.getItem(OK) || 0; } catch (e) {}
         if (og && og !== seen && cfg.kit && !cfg.kit.sheetKind()) { try { localStorage.setItem(OK, String(og)); } catch (e) {} var t = L(); cfg.kit.openSheet('bkmud', '<div class="bk-sheet">' + cfg.kit.shHead(t.clMudT) + '<p class="rz-p">' + esc(t.clMudS) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(t.clMudOk) + '</button></div></div>'); }
-        return { ogoh: og };
+        return { ogoh: og, versiya: r.j.versiya || 0 };
       }, function () { return null; });
     };
     if (typeof setTimeout !== 'undefined') setTimeout(function () { try { bk.holat(); } catch (e) {} }, 4000);
