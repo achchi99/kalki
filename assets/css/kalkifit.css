@@ -1876,3 +1876,11 @@ html.fs-big .rz .ft-paths{grid-template-columns:1fr}html.fs-big .rz .ft-pt{displ
 @media (max-width:380px){.rz .ft-qb small{font-size:11px;letter-spacing:-.02em}.rz .ft-qb{padding-left:0;padding-right:0}}
 html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .rz .ft-qb{padding-left:0;padding-right:0}
 .rz .ft-pt small{color:color-mix(in srgb,var(--ink) 74%,var(--card))}
+
+/* ===================== v70.1: MA'LUMOT XAVFSIZLIGI — Bugun'dagi banner (bulut yuborilmayapti / akkauntsiz taklif) ===================== */
+.rz .sl-bkb{margin:0 0 12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--gold) 16%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 45%,var(--line));color:var(--ink)}
+.rz .sl-bkb b{display:block;font-size:var(--fs-body);font-weight:700;line-height:1.25}
+.rz .sl-bkb p{margin:4px 0 10px;font-size:var(--fs-aux);line-height:1.35;color:color-mix(in srgb,var(--ink) 78%,var(--card))}
+.rz .sl-bkb .gc-a{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rz .sl-bkb .rz-btn.sm{min-height:44px;padding:0 16px}
+.rz .sl-gc{background:var(--card);border-color:var(--line2)}

@@ -369,7 +369,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var w = st.weights.filter(function (x) { return x.d === d; })[0]; if (w) w.kg = kg; else st.weights.push({ d: d, kg: kg });
     st.weights.sort(function (a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; }); return { d: d, kg: kg };
   }
-  function removeWeight(st, d) { var n = st.weights.length; st.weights = st.weights.filter(function (x) { return x.d !== d; }); return st.weights.length < n; }
+  function removeWeight(st, d) { var n = st.weights.length; st.weights = st.weights.filter(function (x) { return x.d !== d; }); if (st.weights.length < n) { if (!st.tomb) st.tomb = {}; st.tomb['w:' + d] = Date.now(); } return st.weights.length < n; }          // tomb — birlashtirishda o'chirilgan vazn qayta tirilmasin
   function avg7(weights, d) {                       // d va undan oldingi 6 kalendar kundagi yozuvlar o'rtachasi (bo'lmasa null)
     var from = D.addDays(d, -6), s = 0, n = 0;
     weights.forEach(function (w) { if (w.d >= from && w.d <= d) { s += w.kg; n++; } });
@@ -440,6 +440,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (rp.taxminiy && s.profile && w0 && w0.d === raw.trackStart && w0.kg === OB_DEF_W[s.profile.sex] && num(s.profile.weight) === w0.kg) { s.weights.shift(); s.wHid.push({ d: w0.d, kg: w0.kg, sabab: 'ob' }); }
     s.recents = Array.isArray(raw.recents) ? raw.recents.slice(0, 12) : []; s.favs = Array.isArray(raw.favs) ? raw.favs.slice() : [];
     s.tpls = cleanTpls(raw.tpls, s); s.vessels = cleanVessels(raw.vessels, s); s.afsona = cleanAfsona(raw.afsona);
+    s.tomb = cleanTomb(raw.tomb); s.upd = Math.max(0, Math.round(num(raw.upd))) || 0;          // v70: o'chirish belgilari va oxirgi o'zgarish vaqti (qurilmalar birlashtirilishi uchun)
     s.stepGoal = Math.max(1000, Math.round(num(raw.stepGoal)) || 8000); s.prefs = raw.prefs && typeof raw.prefs === 'object' ? raw.prefs : {}; s.lastBackup = raw.lastBackup || null; s.trackStart = raw.trackStart && D.parse(raw.trackStart) ? raw.trackStart : null; if (s.setup && !s.trackStart) s.trackStart = trackStart(s);
     /* v50 bir martalik tuzatish (qurilmada): v48 onboarding'da «Kun tartibi» savoli bor edi — «O'tkazib yuborish» ham 'std' yozardi. v48 (2026-10-26 08:30 UTC) dan v50 (13:36 UTC) gacha YARATILGAN va tartibi 'std' qolganlar
        tanlamagan hisoblanadi → «Farqi yo'q». Tanlov belgisi yo'q (o'tkazib yuborish bilan tanlov bir xil yoziladi), shuning uchun sana bo'yicha. Oraliqdan oldingi/keyingilarga tegilmaydi. prefs.tm50 — bir marta (keyin 'std' ni o'zi tanlasa qaytarilmaydi). */
@@ -801,6 +802,82 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var ml = manual + drink; return { manual: manual, drink: drink, ml: ml, glasses: Math.floor(ml / GLASS_ML + 1e-9), items: items };
   }
 
+
+  /* ================= v70: QURILMALARNI BIRLASHTIRISH (yozuv darajasida; hech bir yozuv yo'qolmaydi) =================
+     Har ovqat yozuvida: u (barqaror id, qurilmalar o'rtasida bir xil), m (oxirgi o'zgarish vaqti), h (mazmun xeshi). O'chirilgan yozuv — st.tomb[u] = o'chirilgan vaqt.
+     stamp(st, now) — har saqlashda (kalkifit-app.js save): yangi yozuvga u/m beradi, o'zgarganda m ni yangilaydi, yo'qolganini (o'chirilganini) tomb ga yozadi, st.upd ni yangilaydi.
+     mergeStates(L, R) — ikki holatni birlashtiradi: kunlar bo'yicha yozuvlar birlashmasi (bir yozuvning ikki nusxasi — m katta bo'lgani; tomb > m bo'lsa — o'chirilgan), suv/qadam — kattasi,
+     profil/sozlamalar — upd yangisidan, vazn/o'z taomlari/shablon/idishlar — birlashma. Natija: yangi holat (L o'zgarmaydi). */
+  function cleanTomb(t) { var o = {}; if (t && typeof t === 'object' && !Array.isArray(t)) Object.keys(t).slice(0, 5000).forEach(function (k) { var v = Math.round(num(t[k])); if (v > 0 && String(k).length <= 40) o[k] = v; }); return o; }
+  function hash36(str) { var h = 0x811c9dc5; for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h.toString(36); }
+  function entryFp(e) { return [e.fid || '', e.name || '', e.meal || '', e.unit || '', e.qty, e.g, e.kcal, e.p, e.f, e.c, e.ts || 0, e.pt || '', e.vr || '', e.est ? 1 : 0, e.aq ? 1 : 0].join('|'); }
+  var TOMB_KEEP = 120 * 86400000, stampSt = null, stampLive = null;
+  function stamp(st, now) {
+    now = now || Date.now(); if (!st || !st.days) return false;
+    if (!st.tomb) st.tomb = {}; var live = {}, changed = false, prev = stampSt === st ? stampLive : null;
+    Object.keys(st.days).forEach(function (d) {
+      var seen = {}; (st.days[d].food || []).forEach(function (e) {
+        var h = hash36(entryFp(e));
+        if (!e.u) { var fp = h + '@' + d; seen[fp] = (seen[fp] || 0) + 1; e.u = 'L' + hash36(fp) + (seen[fp] > 1 ? '.' + seen[fp] : ''); e.m = e.m || 0; e.h = h; changed = changed || !prev; }     // eski yozuv: mazmun+sanadan barqaror id (ikki qurilmada bir xil), m = 0 (eng eski)
+        else if (e.h !== h) { e.h = h; e.m = now; changed = true; }
+        if (!e.m && prev && !prev[e.u]) { e.m = now; changed = true; }             // yangi yozuv
+        live[e.u] = 1;
+      });
+    });
+    if (prev) { Object.keys(prev).forEach(function (u) { if (!live[u] && !st.tomb[u]) { st.tomb[u] = now; changed = true; } }); }
+    Object.keys(st.days).forEach(function (d) { (st.days[d].food || []).forEach(function (e) { if (st.tomb[e.u] && st.tomb[e.u] <= (e.m || 0)) delete st.tomb[e.u]; }); });           // qayta tiklangan (undo) — o'chirish bekor
+    Object.keys(st.tomb).forEach(function (u) { if (now - st.tomb[u] > TOMB_KEEP) delete st.tomb[u]; });
+    var gh = hash36(JSON.stringify(st, function (k, v) { return k === 'upd' || k === 'gh' ? undefined : v; }));
+    if (st.gh !== gh) { st.gh = gh; if (prev || !st.upd) st.upd = now; changed = true; }
+    stampSt = st; stampLive = live; return changed;
+  }
+  function stampReset() { stampSt = null; stampLive = null; }
+  function jclone(x) { return JSON.parse(JSON.stringify(x)); }
+  function mergeStates(L, R) {
+    if (!R || !R.days) return L; if (!L || !L.days) return R;
+    var l = jclone(L), r = jclone(R); stamp(l, 0 || (L.upd || 1)); stamp(r, R.upd || 1); stampReset();
+    var newer = (r.upd || 0) > (l.upd || 0) ? r : l, older = newer === r ? l : r, out = jclone(newer), seq = Math.max(l.seq || 1, r.seq || 1);
+    out.seq = seq; out.created = [l.created, r.created].filter(Boolean).sort()[0] || out.created; out.lastBackup = Math.max(l.lastBackup || 0, r.lastBackup || 0) || null; out.setup = true;
+    if (l.trackStart && r.trackStart) out.trackStart = l.trackStart < r.trackStart ? l.trackStart : r.trackStart;
+    out.upd = Math.max(l.upd || 0, r.upd || 0, 1);
+    var tomb = {}; [l.tomb, r.tomb].forEach(function (t) { Object.keys(t || {}).forEach(function (u) { tomb[u] = Math.max(tomb[u] || 0, t[u]); }); });
+    /* o'z taomlari: id to'qnashuvi (ikki qurilmada 'c5' har xil taom) — eskisining id si yangilanadi va yozuvlardagi fid ham */
+    var cf = {}; (l.customFoods || []).forEach(function (f) { if (f && f.id) cf[f.id] = f; });
+    (r.customFoods || []).forEach(function (f) {
+      if (!f || !f.id) return; if (!cf[f.id]) { cf[f.id] = f; return; } if (cf[f.id].n === f.n) return;
+      var nid = 'c' + (seq++), old = f.id, g = jclone(f); g.id = nid; cf[nid] = g;          // bir id — ikki xil taom: yangisiga id beriladi, yozuvlardagi fid ham
+      Object.keys(r.days).forEach(function (d) { (r.days[d].food || []).forEach(function (e) { if (e.fid === old) e.fid = nid; }); });
+    });
+    out.customFoods = Object.keys(cf).map(function (k) { return cf[k]; });
+    /* kunlar */
+    var dates = {}; Object.keys(l.days).concat(Object.keys(r.days)).forEach(function (d) { dates[d] = 1; }); out.days = {}; var used = {};
+    Object.keys(dates).sort().forEach(function (d) {
+      var a = l.days[d] || { food: [], water: 0, steps: 0 }, b = r.days[d] || { food: [], water: 0, steps: 0 }, base = newer.days[d] || older.days[d] || a, day = jclone(base), best = {}, order = [];
+      [a, b].forEach(function (x, side) { (x.food || []).forEach(function (e) { var cur = best[e.u]; if (!cur || (e.m || 0) > (cur.m || 0)) { if (!cur) order.push(e.u); best[e.u] = e; } }); });
+      day.food = []; order.forEach(function (u) { var e = best[u]; if (tomb[u] && tomb[u] > (e.m || 0)) return; day.food.push(jclone(e)); });
+      day.water = Math.max(a.water || 0, b.water || 0); day.steps = Math.max(a.steps || 0, b.steps || 0); if ((a.sa || 0) || (b.sa || 0)) day.sa = Math.max(a.sa || 0, b.sa || 0);
+      var ex = {}; (a.ex || []).concat(b.ex || []).forEach(function (e) { if (e && e.id && !ex[e.id]) ex[e.id] = e; }); var exl = Object.keys(ex).map(function (k) { return ex[k]; }); if (exl.length) day.ex = exl; else delete day.ex;
+      day.food.forEach(function (e) { if (used[d + '#' + e.id]) e.id = seq++; used[d + '#' + e.id] = 1; });
+      out.days[d] = day;
+    });
+    var ids = {}; Object.keys(out.days).forEach(function (d) { out.days[d].food.forEach(function (e) { if (ids[e.id]) e.id = seq++; ids[e.id] = 1; }); });          // id butun holatda yagona
+    /* vazn: sana bo'yicha birlashma; bir sana ikkalasida — yangi tomonniki; boshqa tomon o'chirgan (tomb 'w:sana') va u eskirgan bo'lsa — tiklanmaydi */
+    var wm = {}; [older, newer].forEach(function (x) { (x.weights || []).forEach(function (w) { var o = x === newer ? older : newer, t = (o.tomb || {})['w:' + w.d]; if (x !== newer && t && t > (x.upd || 0)) return; wm[w.d] = w; }); });
+    out.weights = Object.keys(wm).sort().map(function (d) { return wm[d]; }); tomb = tomb;
+    var wh = {}; (l.wHid || []).concat(r.wHid || []).forEach(function (w) { if (w && w.d) wh[w.d] = w; }); out.wHid = Object.keys(wh).map(function (d) { return wh[d]; });
+    var rc = []; (newer.recents || []).concat(older.recents || []).forEach(function (x) { if (rc.indexOf(x) < 0) rc.push(x); }); out.recents = rc.slice(0, 12);
+    var fv = []; (l.favs || []).concat(r.favs || []).forEach(function (x) { if (fv.indexOf(x) < 0) fv.push(x); }); out.favs = fv;
+    var tp = {}, tpn = 1; [older, newer].forEach(function (x) { (x.tpls || []).forEach(function (t) { tp[String(t.name).toLowerCase()] = t; }); }); out.tpls = Object.keys(tp).map(function (k) { return tp[k]; }).slice(0, TPL_MAX); var tid = {}; out.tpls.forEach(function (t) { if (tid[t.id]) t.id = seq++; tid[t.id] = 1; });
+    var vs = {}; [older, newer].forEach(function (x) { (x.vessels || []).forEach(function (v) { vs[(v.kind || '') + '|' + (v.name || '')] = v; }); }); out.vessels = Object.keys(vs).map(function (k) { return vs[k]; }); var vid = {}; out.vessels.forEach(function (v) { if (vid[v.id]) v.id = seq++; vid[v.id] = 1; });
+    out.seq = seq; out.tomb = tomb; stamp(out, out.upd); stampReset(); return out;
+  }
+  function sameState(a, b) {                          // mazmun tengligi (upd/gh/m e'tiborsiz — faqat qiymatlar); birlashtirishdan keyin ortiqcha yuborishning oldini oladi
+    var strip = function (k, v) { return k === 'upd' || k === 'gh' ? undefined : v; }, plain = function (x) { var c = JSON.parse(JSON.stringify(x, strip)); if (c.tomb && !Object.keys(c.tomb).length) delete c.tomb; Object.keys(c.days || {}).forEach(function (d) { (c.days[d].food || []).forEach(function (e) { delete e.u; delete e.m; delete e.h; }); }); return c; }, sort = function (x) { if (Array.isArray(x)) return x.map(sort); if (x && typeof x === 'object') { var o = {}; Object.keys(x).sort().forEach(function (k) { o[k] = sort(x[k]); }); return o; } return x; };
+    return JSON.stringify(sort(plain(a))) === JSON.stringify(sort(plain(b)));
+  }
+  /* yozuvlar soni (hisobot/himoya uchun): { days, food } */
+  function countState(st) { var d = 0, f = 0; Object.keys((st && st.days) || {}).forEach(function (k) { var n = ((st.days[k].food) || []).length; if (n || st.days[k].steps || st.days[k].water) d++; f += n; }); return { days: d, food: f }; }
+
   return { VERSION: VERSION, ACT: ACT, setSuv: setSuv, suvShare: suvShare, waterInfo: waterInfo, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
     bmrRaw: bmrRaw, bmi: bmi, refWeight: refWeight, protein: protein, PROT_K: PROT_K, TARTIB: TARTIB, TARTIB_DEF: TARTIB_DEF, tartibOf: tartibOf, mealSplit: mealSplit, mealBudgets: mealBudgets, MEAL_END: MEAL_END, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
@@ -809,6 +886,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

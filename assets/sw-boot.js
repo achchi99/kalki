@@ -19,6 +19,7 @@
  * yo'qotardi. Shuning uchun `e.isTrusted` tekshiriladi.
  */
 (function (w, d) {
+  var bootT = Date.now();
   'use strict';
   if (w.KalkiSW) return;                  // idempotent: ikki marta ulansa ham bitta nusxa
 
@@ -162,6 +163,8 @@
     if (reloaded) return;                 // cheksiz sikl bo'lmasin
     /* Ilova (app-kit) ochilganda foydalanuvchi ko'z oldida qayta yuklanmasin: yangi service worker allaqachon faol,
        keyingi ochilishda sahifa ham, fayllar ham yangi keshdan keladi. */
+    /* Android ilovasi (WebView): ochilgandan ≤ 15 s ichida yangi SW egallasa va foydalanuvchi hali tegmagan bo'lsa — DARHOL qayta yuklanadi: eski keshdan eski interfeys ochilib qolmasin (v70). */
+    var nat = w.KalkiNative; if (quiet && nat && nat.isApp && nat.isApp() && !userTouched && holds === 0 && Date.now() - bootT < 15000) { reloaded = true; ga('sw_update_app_reload', { page: slug() }); w.location.reload(); return; }
     if (quiet) { ga('sw_update_quiet', { page: slug() }); return; }
     if (userTouched || holds > 0) {
       ga('sw_update_deferred', { page: slug() });

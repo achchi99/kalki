@@ -57,13 +57,13 @@ try {
     const c1 = await cs(d1, app); assert.equal(c1.on, true); assert.match(c1.code, /^(KF|RZ)-([A-Z2-9]{4}-){6}[A-Z2-9]{4}$/);
     assert.equal(rows().length, 1); assert.equal(rows()[0].rejim, 'konvert'); assert.equal(rows()[0].ilova, app); assert.equal(DB().prepare('SELECT COUNT(*) AS c FROM zaxira').get().c, 1, 'bulutga avtomatik yozildi');
     const dump = JSON.stringify(DB().prepare('SELECT * FROM akkaunt_ilova').all()); assert.ok(!dump.includes(c1.code.replace(/-/g, '').slice(3)), 'serverda kod ochiq emas');
-    assert.match(await T(d1, '[data-akk=row]'), /yangi@pochta\.uz · avtomatik saqlanadi/);
-    const dev2 = await open(app, {}); assert.ok(await dev2.locator('#rzOnb').isVisible(), 'yangi qurilma — onboarding'); assert.match(await T(dev2, '[data-akk=onb]'), /Email bilan kirish \(yangi telefon\)/);
+    assert.match(await T(d1, '[data-akk=row]'), /yangi@pochta\.uz · (Bulutda saqlandi|Saqlanmoqda)/);
+    const dev2 = await open(app, {}); assert.ok(await dev2.locator('#rzOnb').isVisible(), 'yangi qurilma — onboarding'); assert.match(await T(dev2, '[data-akk=onb]'), /Oldin (KalkiFit|Ro'zg'or) ishlatganmisiz\? Hisobingizga kiring|Email bilan kirish \(yangi telefon\)/);
     await dev2.click('[data-akk=onb]'); await dev2.waitForTimeout(500); assert.equal(await covers(dev2, '#rzSheet'), 'ok', 'kirish paneli onboarding USTIDA ko\'rinadi'); assert.match(await T(dev2, '#rzSheet'), /Email bilan kirish/);
     await sendMail(dev2, 'YANGI@pochta.uz'); await dev2.fill('#akkCode', devKod('yangi@pochta.uz')); await dev2.waitForTimeout(2200);
     assert.equal(await dev2.locator('#rzOnb').isVisible().catch(() => false), false, 'tiklagach onboarding yopildi'); const s2 = await lsJ(dev2, A.key); assert.equal(A.mark(s2), MARK[app], 'ma\'lumot tiklandi'); assert.equal(A.size(s2), A.size(await lsJ(d1, A.key)));
     assert.equal((await cs(dev2, app)).code, c1.code, 'yangi qurilma ham shu kod bilan avtomatik saqlaydi'); assert.ok(!dev2.req.includes('PUT zaxira'), 'tiklash — faqat o\'qish'); assert.deepEqual(d1.errs.concat(dev2.errs), []);
-    await dev2.click(`[data-act=tab][data-v=${A.tab}]`); await dev2.waitForTimeout(500); assert.match(await T(dev2, '[data-akk=row]'), /avtomatik saqlanadi/);
+    await dev2.click(`[data-act=tab][data-v=${A.tab}]`); await dev2.waitForTimeout(500); assert.match(await T(dev2, '[data-akk=row]'), /Bulutda saqlandi|Saqlanmoqda|avtomatik saqlanadi/);
     log(app + ': kirgach ma\'lumot avtomatik bulutga yoziladi (kod serverda faqat shifrlangan); YANGI QURILMA (ikkinchi brauzer konteksti): onboardingda «Email bilan kirish» → kod → ma\'lumot o\'zi tiklanadi, panel onboarding ustida');
     await d1.context().close(); await dev2.context().close();
 
@@ -73,16 +73,23 @@ try {
     const csSeed = { on: true, code: KOD, ver: 1, last: Date.now(), pending: false, conflict: 0, sig: '' };
     let d = await open(app, { state: st0, ls: { ['kalki_zaxira_' + app]: csSeed } }); await goProfile(d, app); const zBefore = DB().prepare('SELECT blob, versiya FROM zaxira').get();
     await login(d, app, 'kodli@pochta.uz'); await d.waitForTimeout(1500);
-    assert.equal(rows().length, 1); assert.equal(rows()[0].zaxira_id, keys.id, 'mavjud zaxira ulandi'); assert.equal((await cs(d, app)).code, KOD, 'kod o\'zgarmadi (yangisi yaratilmadi)'); assert.ok(!d.req.some((x) => /^PUT zaxira/.test(x)), 'qayta yuklanmadi');
+    assert.equal(rows().length, 1); assert.equal(rows()[0].zaxira_id, keys.id, 'mavjud zaxira ulandi'); assert.equal((await cs(d, app)).code, KOD, 'kod o\'zgarmadi (yangisi yaratilmadi)'); assert.ok(d.req.filter((x) => /^PUT zaxira/.test(x)).length <= 1, 'yangi zaxira yaratilmadi (v70: boshlang\'ich imzo yo\'q bo\'lsa bitta yangilash mumkin)');
     const zAfter = DB().prepare('SELECT blob, versiya FROM zaxira').get(); assert.deepEqual(zAfter, zBefore, 'zaxira bayt-bayt o\'zgarmagan'); assert.equal(DB().prepare('SELECT COUNT(*) AS c FROM zaxira').get().c, 1);
     await d.click('[data-akk=row]'); await d.waitForTimeout(450); await d.click('[data-act=akkout]'); await d.waitForTimeout(700); assert.equal(rows().length, 1, 'chiqish ulanishni o\'chirmaydi'); assert.equal((await cs(d, app)).on, true, 'chiqishdan keyin ham bulut ishlayveradi');
     await d.waitForSelector('[data-akk=row]'); await login(d, app, 'kodli@pochta.uz'); await d.waitForTimeout(1200);
-    assert.equal(rows().length, 1); assert.equal((await cs(d, app)).code, KOD); assert.equal(await d.locator('#rzSheet.open').count(), 0, 'takror kirishda tanlov oynasi chiqmaydi'); assert.ok(!d.req.some((x) => /^PUT zaxira/.test(x))); assert.deepEqual(d.errs, []);
+    assert.equal(rows().length, 1); assert.equal((await cs(d, app)).code, KOD); assert.equal(await d.locator('#rzSheet.open').count(), 0, 'takror kirishda tanlov oynasi chiqmaydi'); assert.ok(d.req.filter((x) => /^PUT zaxira/.test(x)).length <= 1); assert.deepEqual(d.errs, []);
     await d.click('[data-akk=row]'); await d.waitForTimeout(450); await d.click('[data-act=akkout]'); await d.waitForTimeout(500);
     log(app + ': tiklash-kodli foydalanuvchi kirsa zaxirasi akkauntga ULANADI (yangi kod yaratilmaydi, zaxira qayta yuklanmaydi — bayt-bayt bir xil); chiqish/kirish takrori ulanishni buzmaydi'); await d.context().close();
 
     /* 3. Ikkala tomonda ma'lumot: tanlov. a) akkauntdagini olish  b) shu qurilmadagini saqlash */
-    for (const pick of ['cloud', 'local']) {
+    if (app === 'kalkifit') {          // v70: ikkala tomonda ma'lumot — tanlov YO'Q: yozuv darajasida BIRLASHTIRILADI (hech bir yozuv yo'qolmaydi)
+      ENV = mkEnv(); const a = await open(app, { state: A.st(MARK[app], 4) }); await goProfile(a, app); await login(a, app, 'tanlov@pochta.uz'); await waitUploaded(a, app); const accCode = (await cs(a, app)).code;
+      const bdev = await open(app, { state: A.st(55.5, 2) }); await goProfile(bdev, app); const nA = Object.keys((await lsJ(a, A.key)).days).length; await login(bdev, app, 'tanlov@pochta.uz'); await bdev.waitForTimeout(2500);
+      assert.equal(await bdev.locator('#rzSheet.open').count(), 0, 'tanlov oynasi YO\'Q'); const st = await lsJ(bdev, A.key), cb = await cs(bdev, app); assert.ok(Object.keys(st.days).length >= nA, 'ikkala qurilma kunlari birlashdi'); assert.equal(cb.code, accCode); assert.equal(cb.conflict, 0); assert.equal(cb.pending, false, 'birlashgan nusxa bulutga yozildi');
+      const kk = await BK.deriveKeys(app, BK.parseCode(app, accCode).body), g = await (await ZAX.onRequest({ request: new Request(BASE + '/api/zaxira?id=' + kk.id, { headers: { Origin: BASE, 'CF-Connecting-IP': '4.4.4.4' } }), env: ENV })).json(); const cloud = JSON.parse(await BK.open(app, kk, g.blob)).state;
+      assert.equal(Object.keys(cloud.days).length, Object.keys(st.days).length, 'bulutdagi nusxa = birlashgan'); assert.deepEqual(bdev.errs, []); await a.context().close(); await bdev.context().close();
+    }
+    for (const pick of (app === 'kalkifit' ? [] : ['cloud', 'local'])) {
       ENV = mkEnv(); const a = await open(app, { state: A.st(MARK[app], 4) }); await goProfile(a, app); await login(a, app, 'tanlov@pochta.uz'); await waitUploaded(a, app); const accCode = (await cs(a, app)).code; const ver0 = (await cs(a, app)).ver;
       const other = pick === 'cloud' ? (app === 'kalkifit' ? 55.5 : 1111000) : (app === 'kalkifit' ? 66.6 : 2222000);
       const bdev = await open(app, { state: A.st(other, 2) }); await goProfile(bdev, app); await login(bdev, app, 'tanlov@pochta.uz'); await bdev.waitForTimeout(800);
@@ -95,7 +102,7 @@ try {
       }
       assert.deepEqual(a.errs.concat(bdev.errs), []); await a.context().close(); await bdev.context().close();
     }
-    log(app + ': ikkala qurilmada ma\'lumot bo\'lsa — jimgina ustiga yozilmaydi, «Qaysi biri qolsin?» tanlovi: akkauntdagini olish / shu qurilmadagini saqlash (ikkalasi tekshirildi)');
+    log(app + ': ikkala qurilmada ma\'lumot bo\'lsa — jimgina ustiga yozilmaydi: KalkiFit — yozuv darajasida birlashtiriladi; Ro\'zg\'or — «Qaysi biri qolsin?» tanlovi (akkauntdagini olish / shu qurilmadagini saqlash)');
 
     /* 4. «Boshqa usullar» (yig'ilgan) + qat'iy rejim */
     ENV = mkEnv(); d1 = await open(app, { state: A.st(MARK[app], 3) }); await goProfile(d1, app); await d1.waitForTimeout(400);

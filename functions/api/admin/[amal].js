@@ -8,6 +8,8 @@
  * MA'LUMOT FAQAT mavjud akkaunt jadvallaridan (akkaunt, sessiya, akkaunt_ilova, zaxira.yangilangan, audit) — yangi kuzatuv yo'q.
  *   Ovqat soni, AI/ovoz, til va profil akkauntga BOG'LANMAGAN (statistika anonim, zaxira uchidan-uchiga shifrlangan — server ochmaydi): bu ustunlar qaytarilmaydi. Vazn hech qachon. */
 import { adminAuth, kirish, ajson, cookieClear, tokenOk, cookieOf } from '../../_lib/admin-auth.js';
+import { makeStore } from '../../_lib/zaxira-store.js';
+import { originOk } from '../ariza.js';
 
 const DAY = 86400000, TZ = 5 * 3600000;
 const kunOf = (ms) => new Date(ms + TZ).toISOString().slice(0, 10);
@@ -40,17 +42,36 @@ export async function tafsilot(db, id, now) {
     faollik: Object.keys(kun).map((k) => ({ kun: k, n: kun[k] })), hodisalar: ev.slice(-50).reverse(), profil: null };          // profil — shifrlangan zaxirada; server ochmaydi
 }
 
+/* KalkiFit zaxirasi (konvert rejimi: akkaunt_ilova.zaxira_id). Server blob'ni ochmaydi — versiyalar faqat vaqt/hajm bilan ko'rinadi. */
+async function zaxiraIdOf(db, akkauntId) { const r = await db.prepare("SELECT zaxira_id FROM akkaunt_ilova WHERE akkaunt_id = ? AND ilova = 'kalkifit' AND zaxira_id IS NOT NULL").bind(akkauntId).first(); return r ? r.zaxira_id : null; }
+/* POST { akkaunt, versiya }: tanlangan versiyadan tiklash. Joriy holat AVVAL tarixga tushadi (yo'qolmaydi). Jurnal: audit 'admin_zaxira_tiklash'. */
+export async function zaxiraTiklash(request, env, now) {
+  if (request.method !== 'POST') return ajson(405, { xato: 'POST.' });
+  const origin = request.headers.get('Origin'); if (!origin || !originOk(origin, env)) return ajson(403, { xato: "Ruxsat yo'q." });
+  const deny = await adminAuth(request, env, { now }); if (deny) return deny; const db = env.KALKIFIT_DB; if (!db) return ajson(503, { xato: 'Sozlanmagan.' });
+  let b; try { b = await request.json(); } catch (e) { return ajson(400, { xato: "So'rov noto'g'ri." }); }
+  if (!b || !/^[0-9a-f]{8,64}$/.test(String(b.akkaunt || '')) || !Number.isInteger(b.versiya) || b.versiya < 1) return ajson(400, { xato: "So'rov noto'g'ri." });
+  try {
+    const zid = await zaxiraIdOf(db, b.akkaunt); if (!zid) return ajson(404, { xato: 'Zaxira topilmadi.' });
+    const r = await makeStore(env).tiklash(zid, b.versiya, now); if (!r.ok) return ajson(409, { xato: r.xato });
+    try { await db.prepare('INSERT INTO audit (vaqt, akkaunt_id, hodisa) VALUES (?, ?, ?)').bind(now, b.akkaunt, 'admin_zaxira_tiklash_v' + b.versiya).run(); } catch (e) { /* audit */ }
+    return ajson(200, { ok: true, versiya: r.versiya });
+  } catch (e) { return ajson(503, { xato: "Jadval yo'q (migrations/zaxira-tarix.sql)." }); }
+}
+
 export async function onRequest({ request, env, params }) {
   const amal = String(params.amal || ''), now = Date.now(), m = request.method;
   if (amal === 'kirish') return m === 'POST' ? kirish(request, env, now) : ajson(405, { xato: 'POST.' });
   if (amal === 'chiqish') return m === 'POST' ? ajson(200, { ok: true }, { 'Set-Cookie': cookieClear() }) : ajson(405, { xato: 'POST.' });
   if (amal === 'holat') { const pw = env.KALKIFIT_ADMIN_PASSWORD; return ajson(200, { kirgan: !!(pw && await tokenOk(pw, cookieOf(request), now)) }); }
+  if (amal === 'zaxira-tiklash') return zaxiraTiklash(request, env, now);
   if (m !== 'GET') return ajson(405, { xato: 'GET.' });
-  if (amal !== 'jurnal' && amal !== 'foydalanuvchilar' && amal !== 'dizayn-ekranlar') return ajson(404, { xato: 'Topilmadi.' });
+  if (amal !== 'jurnal' && amal !== 'foydalanuvchilar' && amal !== 'dizayn-ekranlar' && amal !== 'zaxira-versiyalar') return ajson(404, { xato: 'Topilmadi.' });
   const deny = await adminAuth(request, env, { now }); if (deny) return deny;
   const db = env.KALKIFIT_DB; if (!db) return ajson(503, { xato: 'Sozlanmagan.' });
   try {
     if (amal === 'dizayn-ekranlar') return ajson(200, { ekranlar: await all(db, 'SELECT id, guruh, holat, tema, nom, tartib, rasm, yangilandi FROM dizayn_ekran ORDER BY tartib, guruh, holat, tema') });          // oldin/keyin skrinshotlar (faqat admin)
+    if (amal === 'zaxira-versiyalar') { const a = new URL(request.url).searchParams.get('akkaunt') || ''; if (!/^[0-9a-f]{8,64}$/.test(a)) return ajson(400, { xato: "So'rov noto'g'ri." }); const zid = await zaxiraIdOf(db, a); if (!zid) return ajson(404, { xato: 'Zaxira topilmadi.' }); return ajson(200, { versiyalar: await makeStore(env).tarix(zid) }); }
     if (amal === 'jurnal') return ajson(200, { kirishlar: await all(db, 'SELECT vaqt, ok, usul, ip FROM admin_kirish ORDER BY vaqt DESC LIMIT 100') });
     const id = new URL(request.url).searchParams.get('id');
     if (id) { if (!/^[0-9a-f]{8,64}$/.test(id)) return ajson(400, { xato: "So'rov noto'g'ri." }); const t = await tafsilot(db, id, now); return t ? ajson(200, t) : ajson(404, { xato: 'Topilmadi.' }); }

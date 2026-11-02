@@ -36,7 +36,7 @@ try {
   let p = await open('/kalkifit', { state: seed(), app: true, sw: true });
   assert.equal(await p.evaluate(() => !!(window.KalkiSW && KalkiSW.isQuiet())), true, 'ilova sw-boot\'ni «jim» rejimga o\'tkazdi');
   await p.evaluate(() => { window.__mark = 1; const e = navigator.serviceWorker; e.dispatchEvent(new Event('controllerchange')); e.dispatchEvent(new Event('controllerchange')); }); await p.waitForTimeout(1500);
-  assert.equal(await p.evaluate(() => window.__mark), 1, 'service worker almashsa ham sahifa qayta yuklanmadi'); assert.equal(await p.locator('#sw-update-bar').count(), 0, 'chiziq ham yo\'q'); await p.context().close();
+  assert.equal(await p.evaluate(() => window.__mark), undefined, 'v70: ilovada ochilgandan ≤15 s ichida yangi service worker egallasa — sahifa DARHOL qayta yuklanadi (eski interfeys qolmasin)'); assert.equal(await p.locator('#sw-update-bar').count(), 0, 'chiziq ham yo\'q'); await p.context().close();
   p = await open('/kredit-kalkulyator', { sw: true }); await p.evaluate(() => { window.__mark = 1; const e = navigator.serviceWorker; e.dispatchEvent(new Event('controllerchange')); e.dispatchEvent(new Event('controllerchange')); }); await p.waitForTimeout(2500);
   assert.equal(await p.evaluate(() => window.__mark), undefined, 'oddiy sahifada (tegilmagan) — avvalgidek qayta yuklanadi'); await p.context().close();
   log('Ilova ochilganda avtomatik qayta yuklanish yo\'q (service worker almashsa ham, chiziq ham yo\'q — yangi versiya keyingi ochilishda); oddiy sahifalarda avvalgi xatti-harakat');

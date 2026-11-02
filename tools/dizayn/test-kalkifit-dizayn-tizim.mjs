@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url); const ROOT = path.resolve(path.d
 const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'Content-Type': MT[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch()); let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
-const TODAY = D.today();
+const REAL_TODAY = D.today(), TODAY = D.addDays(REAL_TODAY, -((new Date().getDay() - 3 + 7) % 7));          // «bugun» — eng yaqin o'tgan CHORSHANBA: «Haftangiz» (yakshanba 19:00 – dushanba) kabi hafta kuniga bog'liq qoidalar testni tebratmasin
 function seed({ days = 4, dinner = false } = {}) {
   const st = S.emptyState(); st.setup = true; st.created = Date.now() - 12 * 864e5; st.prefs = { tipsDone: true, jokes: false, lpTip: 1, introDone: true, yemayK: 1 }; st.profile = { sex: 'm', age: 32, height: 178, weight: 82, act: 3, goal: 'lose', goalWeight: 76 }; st.trackStart = D.addDays(TODAY, -3); S.addWeight(st, D.addDays(TODAY, -2), 82);
   const add = (d, fid, g, kc, m) => S.addFood(st, d, { fid, meal: m, unit: 'g100', qty: g, g, kcal: kc, p: kc / 20, f: kc / 40, c: kc / 12, ts: 1 });
@@ -17,7 +17,7 @@ function seed({ days = 4, dinner = false } = {}) {
 async function open(url, { state = seed(), w = 390, h = 844, scheme = 'light', fakeHour = null, reduce = false } = {}) {
   const c = await b.newContext({ viewport: { width: w, height: h }, isMobile: true, hasTouch: true, serviceWorkers: 'block', colorScheme: scheme, reducedMotion: reduce ? 'reduce' : 'no-preference' });
   await c.addInitScript((o) => { try { if (!sessionStorage.getItem('__t')) { sessionStorage.setItem('__t', '1'); localStorage.setItem('kalki_fit', JSON.stringify(o.state)); } localStorage.setItem('kalki_news_kalkifit', '{"shown":999,"read":999}'); localStorage.setItem('kalki_no_intro', '1'); localStorage.setItem('kalki_lang', 'uz');
-    if (o.fakeHour != null) { const R = Date; const off = new R(new R().setHours(o.fakeHour, 5, 0, 0)).getTime() - R.now(); class D2 extends R { constructor(...a) { if (a.length === 0) super(R.now() + off); else super(...a); } static now() { return R.now() + off; } } window.Date = D2; } } catch (e) {} }, { state, fakeHour });
+    { const R = Date, pp = o.vt.split('-'); const off = new R(+pp[0], +pp[1] - 1, +pp[2], o.fakeHour != null ? o.fakeHour : new R().getHours(), 5, 0, 0).getTime() - R.now(); class D2 extends R { constructor(...a) { if (a.length === 0) super(R.now() + off); else super(...a); } static now() { return R.now() + off; } } window.Date = D2; } } catch (e) {} }, { state, fakeHour, vt: TODAY });
   const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
   await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.waitForTimeout(900); return p;
 }
@@ -68,10 +68,10 @@ try {
   await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); assert.equal(await chipTxt(p), null, 'yopildi'); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'yopilgach shu kuni qayta chiqmaydi');
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '17:00 dan oldin yo\'q');
   p = await open('/kalkifit', { fakeHour: 19, state: seed({ days: 2, dinner: true }) }); assert.equal(await waitChip(p, 5000), null, 'kechki ovqat bor — yo\'q');
-  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); assert.equal(await waitChip(p), 'Haftangiz tayyor', '3+ kun yozuv');
-  await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'Haftangiz: yopilgach shu haftada qayta chiqmaydi');
+  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); const MON = false; { const mon = MON; /* dushanba — «Haftangiz» nudge kartasi chiqadi (hwDue), chip emas: sana-ga bog'liq test */ if (mon) assert.equal(await waitChip(p, 4000), null, 'dushanba: hafta xulosasi kartasi (chip yo\'q)'); else assert.equal(await waitChip(p), 'Haftangiz tayyor', '3+ kun yozuv'); }
+  if (!MON) { await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'Haftangiz: yopilgach shu haftada qayta chiqmaydi'); }
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '<3 kun — Haftangiz chipi yo\'q');
-  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p); await p.click('#rzChip .sl-chip'); await p.waitForTimeout(900); assert.ok(await p.evaluate(() => document.documentElement.classList.contains('hk-on') || !!document.querySelector('.hk')), 'chip «Haftangiz»ni ochadi');
+  if (!MON) { p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p); await p.click('#rzChip .sl-chip'); await p.waitForTimeout(900); assert.ok(await p.evaluate(() => document.documentElement.classList.contains('hk-on') || !!document.querySelector('.hk')), 'chip «Haftangiz»ni ochadi'); }
   ok('chiplar: «Kechki ovqat tanlash» (17:00 dan keyin, kechki bo\'sh; yopilsa shu kuni qayta yo\'q), «Haftangiz tayyor» (3+ kun; yopilsa shu haftada qayta yo\'q; bosilsa ochiladi); shart bajarilmasa chiqmaydi');
   /* «Odatdagilarga saqlash»: osh 2+ marta yozilgan, yana qo'shilgach */
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) });

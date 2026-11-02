@@ -22,7 +22,7 @@
       inT: 'Email bilan kirish', inP: "Emailingizga 6 xonali kod yuboramiz — parol kerak emas. Kirsangiz, ma'lumotingiz avtomatik saqlanadi va yangi telefonda shu email bilan tiklanadi.", inP2: "Kirmasangiz ham ilova avvalgidek ishlayveradi.",
       email: 'Email', emailPh: 'ism@pochta.uz', send: 'Kod yuborish', sending: 'Yuborilmoqda…', priv: "Tiklash kodingiz serverda maxfiy kalit bilan shifrlanib saqlanadi. Xohlamasangiz «Boshqa usullar»da «Qat'iy rejim»ni yoqing.", privLink: 'Maxfiylik',
       cdT: 'Kodni kiriting', cdP: '{e} manziliga 6 xonali kod yubordik. Kod 10 daqiqa amal qiladi.', cdPh: '000000', cdLbl: 'Emaildagi kod', go: 'Kirish', going: 'Tekshirilmoqda…', other: 'Boshqa email', resend: 'Kodni qayta yuborish', resendIn: 'Qayta yuborish: {n} s', spam: "Kod kelmadimi? «Spam» papkasini ham tekshiring.",
-      okIn: 'Kirdingiz ✓', okNew: 'Akkaunt ochildi ✓', okOut: 'Chiqdingiz', okDel: "Akkaunt o'chirildi", okMk: 'Saqlandi', okRestored: "Ma'lumotingiz akkauntdan tiklandi ✓", okSaved: "Ma'lumotingiz avtomatik saqlanadi ✓", okStrict: "Qat'iy rejim yoqildi", okKonv: "Email bilan tiklash qayta yoqildi",
+      okIn: 'Kirdingiz ✓', okNew: 'Akkaunt ochildi ✓', okOut: 'Chiqdingiz', okDel: "Akkaunt o'chirildi", okMk: 'Saqlandi', okMerged: "Ma'lumotlar birlashtirildi ✓", okRestored: "Ma'lumotingiz akkauntdan tiklandi ✓", okSaved: "Ma'lumotingiz avtomatik saqlanadi ✓", okStrict: "Qat'iy rejim yoqildi", okKonv: "Email bilan tiklash qayta yoqildi",
       accT: 'Akkaunt', accOn: 'Kirgansiz: {e}', accDev: 'Kirgan qurilmalar: {n}', accSaved: "✓ Ma'lumotingiz avtomatik saqlanadi — yangi telefonda shu email bilan kirsangiz tiklanadi.", accWait: "Ma'lumot kiritganingizdan keyin avtomatik saqlanadi.", accStrict: "Qat'iy rejim yoqilgan: yangi telefonda ma'lumotni faqat tiklash kodi bilan tiklaysiz.",
       mk: 'Yangilik va maslahatlarni emailga yuborishga roziman', mkS: "Ixtiyoriy. Istalgan payt o'chirib qo'yasiz. Emailingiz boshqalarga berilmaydi.",
       out: 'Chiqish', outAll: 'Hamma qurilmadan chiqish', dl: "Ma'lumotimni yuklab olish", del: "Akkauntni o'chirish",
@@ -37,7 +37,7 @@
       stP: "Qat'iy rejimda tiklash kodingiz serverda saqlanmaydi: yangi telefonda ma'lumotni FAQAT shu kod bilan tiklaysiz. Kodni yo'qotsangiz, ma'lumotni hech kim — biz ham — tiklay olmaydi.", stCode: 'Kodingiz (avval yozib oling):', stGo: "Qat'iy rejimni yoqish",
       stOnP: "Qat'iy rejim yoqilgan: tiklash kodi serverda saqlanmaydi, ma'lumotni faqat kod bilan tiklaysiz. Email bilan tiklashni qayta yoqmoqchimisiz?", stBack: 'Email bilan tiklashni yoqish', stNoCode: "Qaytish uchun bu qurilmada tiklash kodi kerak. Avval kod bilan tiklang.",
       stLoginT: "Qat'iy rejim yoqilgan", stLoginP: "Bu akkaunt qat'iy rejimda: ma'lumotni faqat tiklash kodi bilan tiklaysiz.", stLoginGo: 'Tiklash kodini kiritish', stLoginNo: 'Hozir emas',
-      onbLink: 'Email bilan kirish (yangi telefon)',
+      onbLink: 'Oldin {a} ishlatganmisiz? Hisobingizga kiring — ma\'lumotingiz qaytadi',
       eTypo: "Email manzilida xato bo'lishi mumkin. «{a}» o'rniga «{b}» yozdik — to'g'ri bo'lsa «Kod yuborish»ni bosing.", eRestore: "Akkauntdagi ma'lumotni tiklab bo'lmadi. Internetni tekshirib, qaytadan kirib ko'ring."
     },
     ru: {
@@ -47,7 +47,7 @@
       inT: 'Вход по email', inP: 'Мы отправим на email 6-значный код — пароль не нужен. После входа данные сохраняются автоматически и восстанавливаются на новом телефоне по этому email.', inP2: 'Если не входить, приложение работает как раньше.',
       email: 'Email', emailPh: 'imya@pochta.uz', send: 'Отправить код', sending: 'Отправляем…', priv: 'Ваш код восстановления хранится на сервере, зашифрованный секретным ключом. Не хотите — включите «Строгий режим» в «Других способах».', privLink: 'Конфиденциальность',
       cdT: 'Введите код', cdP: 'Мы отправили 6-значный код на {e}. Код действует 10 минут.', cdPh: '000000', cdLbl: 'Код из письма', go: 'Войти', going: 'Проверяем…', other: 'Другой email', resend: 'Отправить код ещё раз', resendIn: 'Повторно через {n} с', spam: 'Код не пришёл? Проверьте папку «Спам».',
-      okIn: 'Вы вошли ✓', okNew: 'Аккаунт создан ✓', okOut: 'Вы вышли', okDel: 'Аккаунт удалён', okMk: 'Сохранено', okRestored: 'Данные восстановлены из аккаунта ✓', okSaved: 'Данные теперь сохраняются автоматически ✓', okStrict: 'Строгий режим включён', okKonv: 'Восстановление по email снова включено',
+      okIn: 'Вы вошли ✓', okNew: 'Аккаунт создан ✓', okOut: 'Вы вышли', okDel: 'Аккаунт удалён', okMk: 'Сохранено', okMerged: 'Данные объединены ✓', okRestored: 'Данные восстановлены из аккаунта ✓', okSaved: 'Данные теперь сохраняются автоматически ✓', okStrict: 'Строгий режим включён', okKonv: 'Восстановление по email снова включено',
       accT: 'Аккаунт', accOn: 'Вы вошли: {e}', accDev: 'Устройств с входом: {n}', accSaved: '✓ Данные сохраняются автоматически — на новом телефоне войдите по этому email, и они восстановятся.', accWait: 'Данные начнут сохраняться автоматически, когда вы что-нибудь добавите.', accStrict: 'Строгий режим включён: на новом телефоне данные восстанавливаются только по коду восстановления.',
       mk: 'Согласен получать новости и советы на email', mkS: 'Необязательно. Можно отключить в любой момент. Email не передаётся третьим лицам.',
       out: 'Выйти', outAll: 'Выйти на всех устройствах', dl: 'Скачать мои данные', del: 'Удалить аккаунт',
@@ -62,7 +62,7 @@
       stP: 'В строгом режиме код восстановления не хранится на сервере: на новом телефоне данные восстанавливаются ТОЛЬКО по этому коду. Если потерять код, никто, включая нас, не сможет восстановить данные.', stCode: 'Ваш код (сначала запишите):', stGo: 'Включить строгий режим',
       stOnP: 'Строгий режим включён: код не хранится на сервере, данные восстанавливаются только по коду. Хотите снова включить восстановление по email?', stBack: 'Включить восстановление по email', stNoCode: 'Для возврата на этом устройстве нужен код восстановления. Сначала восстановите данные по коду.',
       stLoginT: 'Строгий режим включён', stLoginP: 'Этот аккаунт в строгом режиме: данные восстанавливаются только по коду восстановления.', stLoginGo: 'Ввести код восстановления', stLoginNo: 'Не сейчас',
-      onbLink: 'Вход по email (новый телефон)',
+      onbLink: 'Уже пользовались {a}? Войдите в аккаунт — данные вернутся',
       eTypo: 'Возможна опечатка в email. Мы заменили «{a}» на «{b}» — если верно, нажмите «Отправить код».', eRestore: 'Не удалось восстановить данные из аккаунта. Проверьте интернет и войдите ещё раз.'
     }
   };
@@ -133,11 +133,12 @@
     ak.enabled = function () { return !!S.yoq; };
     ak.loggedIn = function () { return !!(S.yoq && S.kirgan); };
     ak.state = function () { return JSON.parse(JSON.stringify(S)); };
+    ak.guestOk = function () { return S.t ? !!(S.yoq && !S.kirgan) : null; };          // akkauntsiz-mi (faqat KESH bo'yicha, so'rov yo'q); null — hali bilinmaydi
     ak.autoSaved = function () { return !!(S.yoq && S.kirgan && S.il[app] && bk && bk.cloudOn()); };
     ak.rowHtml = function () {
       ak.load(); if (!S.yoq) return '';
       var t = L();
-      return (gOk() ? '<div class="akk-gblock">' + gBtn('row') + '</div>' : '') + '<button type="button" class="rz-row" data-act="akk" data-akk="row"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ICON + '</span><span class="m"><b>' + esc(S.kirgan ? t.rowOnT : t.rowT) + '</b><span>' + esc(S.kirgan ? fill(ak.autoSaved() ? t.rowOnSaved : t.rowOnS, { e: S.email }) : t.rowS) + '</span></span>' + CHEV + '</button>';
+      return (gOk() ? '<div class="akk-gblock">' + gBtn('row') + '</div>' : '') + '<button type="button" class="rz-row" data-act="akk" data-akk="row"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ICON + '</span><span class="m"><b>' + esc(S.kirgan ? t.rowOnT : t.rowT) + '</b><span>' + esc(S.kirgan ? (ak.autoSaved() && bk.agoText && bk.agoText() ? S.email + ' · ' + bk.agoText() : fill(ak.autoSaved() ? t.rowOnSaved : t.rowOnS, { e: S.email })) : t.rowS) + '</span></span>' + CHEV + '</button>';
     };
     ak.more = function (inner) {                     // akkaunt yoqilgan bo'lsa: Telegram zaxira, bulut (kod), eksport/import «Boshqa usullar» ichida; o'chiq bo'lsa o'zgarishsiz
       if (!S.yoq) return inner;
@@ -173,7 +174,7 @@
     };
     ak.restoreLink = function () {                   // onboarding: yangi telefonda email bilan kirish
       ak.load(); if (!S.yoq || S.kirgan) return '';
-      return '<button type="button" class="rz-link bk-rclink" data-act="akk" data-akk="onb">' + esc(L().onbLink) + '</button>';
+      return '<button type="button" class="rz-link bk-rclink" data-act="akk" data-akk="onb">' + esc(fill(L().onbLink, { a: app === 'rozgor' ? (cfg.lang && cfg.lang() === 'ru' ? 'Рузгор' : "Ro'zg'or") : 'KalkiFit' })) + '</button>';
     };
 
     /* ---- panel ---- */
@@ -306,7 +307,10 @@
       if (!hasData() || isTrivial()) return restoreFrom(code, loud);                                              // yangi qurilma (yoki faqat onboarding profili bor): avtomatik tiklash — bulutdagi nusxa yo'qolmaydi
       return bk.peekCode(code).then(function (p) {
         if (p.s === 404) { bk.adoptCode(code, 0); markLinked('konvert'); toast(L().okSaved); changed(); return; }  // akkauntda nusxa yo'q → shu qurilma yozadi
-        if (p.s === 200) { conflictSheet(code, p); return; }                                                     // ikkala tomonda ma'lumot → foydalanuvchi tanlaydi
+        if (p.s === 200) {                                                                                       // ikkala tomonda ma'lumot → BIRLASHTIRILADI (hech bir yozuv yo'qolmaydi); birlashtirib bo'lmasa — foydalanuvchi tanlaydi
+          if (bk.canMerge && bk.canMerge()) return bk.adoptMerge(code, p.versiya).then(function (ok) { if (ok) { markLinked('konvert'); toast(L().okMerged); changed(); } else conflictSheet(code, p); });
+          conflictSheet(code, p); return;
+        }
       });
     }
     function strictOnLogin() {
@@ -324,7 +328,7 @@
       }).then(function () { syncing = false; changed(); }, function () { syncing = false; if (afterLogin && cfg.kit) cfg.kit.toast(L().eNet); });
     }
     ak.check = function () {                         // render paytida: kirgan, lekin bu ilova ulanmagan va ma'lumot bor → ulash (tarmoq faqat shu holatda)
-      if (S.yoq && S.kirgan && hasData() && !syncing && (!S.il[app] || (S.il[app] === 'konvert' && !bk.cloudOn() && isTrivial())) && Date.now() - lastTry > 60000) { lastTry = Date.now(); sync(false); }
+      if (S.yoq && S.kirgan && hasData() && !syncing && (!S.il[app] || (S.il[app] === 'konvert' && !bk.cloudOn() && (isTrivial() || (bk.canMerge && bk.canMerge())))) && Date.now() - lastTry > 60000) { lastTry = Date.now(); sync(false); }
     };
     function strictSheet() {
       var t = L(), k = cfg.kit; if (!k) return; var on = S.il[app] === 'qatiy', code = bk.cloudCode();

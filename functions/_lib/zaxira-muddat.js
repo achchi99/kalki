@@ -12,6 +12,7 @@ export async function muddat(db, now, quruq) {
   out.ochirildi = 0;
   for (const id of ids) {                                   // avval bog'langan akkaunt konverti (jadval bo'lmasa — o'tkazib yuboriladi), keyin zaxira
     try { await db.prepare('DELETE FROM akkaunt_ilova WHERE zaxira_id = ?').bind(id).run(); } catch (e) {}
+    try { await db.prepare('DELETE FROM zaxira_tarix WHERE id = ?').bind(id).run(); } catch (e) { /* tarix jadvali yo'q */ }
     out.ochirildi += ch(await db.prepare('DELETE FROM zaxira WHERE id = ?').bind(id).run());
   }
   out.ogoh = ch(await db.prepare('UPDATE zaxira SET ogoh = ? WHERE ogoh IS NULL AND COALESCE(oxirgi, yangilangan) < ?').bind(now, now - YIL_MS).run());
