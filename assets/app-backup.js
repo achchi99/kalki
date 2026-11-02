@@ -26,7 +26,8 @@
       clLast: 'Oxirgi saqlangan: {d} ✓', clNever: 'Hali saqlanmagan', clQueue: 'Navbatda — internet kelganda saqlanadi', clBusy: 'Saqlanmoqda…', clShow: "Kodni ko'rsatish", clNow: 'Hozir saqlash', clDel: "Bulutdan o'chirish",
       clMudT: 'Bulut zaxira: saqlash muddati', clMudS: "Bulutdagi zaxirangizga 12 oydan beri hech qanday sinxron bo'lmagan edi va u 30 kundan keyin o'chirilishi rejalashtirilgan edi. Ilovani ochganingiz uchun zaxira saqlanib qoladi. Qoida: 12 oy sinxron bo'lmasa — ogohlantiramiz, undan 30 kun o'tib ham bo'lmasa — o'chiramiz.", clMudOk: 'Tushunarli',
       clDelT: "Bulutdan o'chirish", clDelS: "Serverdagi nusxa o'chiriladi. Telefondagi ma'lumot saqlanib qoladi. Kodni qayta yoqmaguningizcha bulutga saqlanmaydi.", clDelGo: "O'chirish", clDelOk: "Bulutdagi nusxa o'chirildi", clDelErr: "O'chirib bo'lmadi — internetni tekshiring",
-      clNA: "Bulutga saqlash hozircha ishga tushirilmagan — keyinroq urinib ko'ring", clConfT: 'Boshqa qurilmada yangiroq nusxa bor', clConfS: "Bulutdagi nusxa boshqa qurilmadan yangilangan. Qaysi biri qolsin?", clKeepMine: 'Shu qurilmadagini saqlash', clTakeCloud: 'Bulutdagini yuklash', clTaken: 'Bulutdagi nusxa yuklandi',
+      clNA: "Bulutga saqlash hozircha ishga tushirilmagan — keyinroq urinib ko'ring", clShT: "Bulutda ma'lumotingiz bor — tiklaysizmi?", clShS: "Bulutdagi nusxa bu qurilmadagidan ancha to'liq. Bu qurilmada ma'lumot yo'qolgan bo'lishi mumkin. Avval bulutdagini tiklang — bulutdagi nusxa ustidan yozmaymiz.", clShTake: 'Tiklash', clShKeep: "Baribir shu qurilmadagini saqlash",
+      clConfT: 'Boshqa qurilmada yangiroq nusxa bor', clConfS: "Bulutdagi nusxa boshqa qurilmadan yangilangan. Qaysi biri qolsin?", clKeepMine: 'Shu qurilmadagini saqlash', clTakeCloud: 'Bulutdagini yuklash', clTaken: 'Bulutdagi nusxa yuklandi',
       rcLink: 'Avval ishlatganmisiz? Tiklash kodini kiriting', rcT: 'Tiklash kodi', rcS: "Avval bulutga saqlashni yoqqan bo'lsangiz, tiklash kodini kiriting.", rcPh: 'KF-XXXX-XXXX-…', rcGo: 'Tiklash', rcBusy: 'Tiklanmoqda…', rcOk: "Ma'lumotlaringiz tiklandi",
       eFmt: "Kod noto'g'ri yozilgan. Kodda 0, 1, I, O belgilari yo'q. Uni qayta tekshiring.", eApp: "Bu kod boshqa ilovaniki.", eNone: "Bu kod bo'yicha saqlangan nusxa topilmadi. Kodni tekshiring.", eBad: "Kod noto'g'ri yoki ma'lumot buzilgan.", eNet: "Internet yo'q yoki server band. Keyinroq urinib ko'ring.", eLimit: "Juda ko'p urinish. Keyinroq urinib ko'ring."
     },
@@ -41,7 +42,8 @@
       clLast: 'Последнее сохранение: {d} ✓', clNever: 'Ещё не сохранялось', clQueue: 'В очереди — сохранится, когда появится интернет', clBusy: 'Сохраняем…', clShow: 'Показать код', clNow: 'Сохранить сейчас', clDel: 'Удалить из облака',
       clMudT: 'Облачная копия: срок хранения', clMudS: 'Облачная копия не синхронизировалась больше 12 месяцев, и её удаление через 30 дней было запланировано. Раз вы открыли приложение, копия сохраняется. Правило: нет синхронизации 12 месяцев — предупреждаем, ещё 30 дней без синхронизации — удаляем.', clMudOk: 'Понятно',
       clDelT: 'Удалить из облака', clDelS: 'Копия на сервере будет удалена. Данные на телефоне сохранятся. В облако ничего не сохранится, пока вы снова не включите функцию.', clDelGo: 'Удалить', clDelOk: 'Копия в облаке удалена', clDelErr: 'Не удалось удалить — проверьте интернет',
-      clNA: 'Сохранение в облако пока не запущено — попробуйте позже', clConfT: 'На другом устройстве есть более новая копия', clConfS: 'Копия в облаке обновлена с другого устройства. Какую оставить?', clKeepMine: 'Оставить копию с этого устройства', clTakeCloud: 'Загрузить из облака', clTaken: 'Копия из облака загружена',
+      clNA: 'Сохранение в облако пока не запущено — попробуйте позже', clShT: 'В облаке есть ваши данные — восстановить?', clShS: 'Копия в облаке заметно полнее, чем на этом устройстве. Возможно, данные на устройстве потерялись. Сначала восстановите из облака — мы не перезапишем облачную копию.', clShTake: 'Восстановить', clShKeep: 'Всё равно сохранить с этого устройства',
+      clConfT: 'На другом устройстве есть более новая копия', clConfS: 'Копия в облаке обновлена с другого устройства. Какую оставить?', clKeepMine: 'Оставить копию с этого устройства', clTakeCloud: 'Загрузить из облака', clTaken: 'Копия из облака загружена',
       rcLink: 'Уже пользовались? Введите код восстановления', rcT: 'Код восстановления', rcS: 'Если раньше вы включали сохранение в облако, введите код восстановления.', rcPh: 'KF-XXXX-XXXX-…', rcGo: 'Восстановить', rcBusy: 'Восстанавливаем…', rcOk: 'Данные восстановлены',
       eFmt: 'Код записан неверно. В коде нет символов 0, 1, I, O. Проверьте его.', eApp: 'Этот код от другого приложения.', eNone: 'Копия по этому коду не найдена. Проверьте код.', eBad: 'Код неверный или данные повреждены.', eNet: 'Нет интернета или сервер занят. Попробуйте позже.', eLimit: 'Слишком много попыток. Попробуйте позже.'
     }
@@ -143,9 +145,9 @@
 
     /* ================= B) Bulutga saqlash (tiklash kodi, uchidan-uchiga shifrlangan) ================= */
     var LS = 'kalki_zaxira_' + cfg.app, timer = null, busy = false, retry = 0, pendingCode = null, rcBusy = false;
-    var empty = function () { return { on: false, code: '', ver: 0, last: 0, pending: false, conflict: 0, sig: '' }; };
+    var empty = function () { return { on: false, code: '', ver: 0, last: 0, pending: false, conflict: 0, shrink: 0, sig: '' }; };
     var curSig = function () { try { return hash32(cfg.sig ? cfg.sig() : cfg.exportText().replace(/"exportedAt":\d+,?/, '')); } catch (e) { return ''; } };
-    var CS = (function () { try { var o = JSON.parse(localStorage.getItem(LS) || 'null'); return o && o.on && o.code ? { on: true, code: String(o.code), ver: +o.ver || 0, last: +o.last || 0, pending: !!o.pending, conflict: +o.conflict || 0, sig: o.sig || '' } : empty(); } catch (e) { return empty(); } })();
+    var CS = (function () { try { var o = JSON.parse(localStorage.getItem(LS) || 'null'); return o && o.on && o.code ? { on: true, code: String(o.code), ver: +o.ver || 0, last: +o.last || 0, pending: !!o.pending, conflict: +o.conflict || 0, shrink: +o.shrink || 0, sig: o.sig || '' } : empty(); } catch (e) { return empty(); } })();
     bk.debounceMs = 30000;
     function saveCloud() { try { if (CS.on) localStorage.setItem(LS, JSON.stringify(CS)); else localStorage.removeItem(LS); } catch (e) {} }
     function online() { return NAV.onLine !== false; }
@@ -158,32 +160,37 @@
     function backoff() { retry++; schedule(Math.min(300000, 30000 * Math.pow(2, retry))); }
     bk.cloudOn = function () { return CS.on; };
     bk.cloudState = function () { return JSON.parse(JSON.stringify(CS)); };
-    bk.touch = function () { if (!CS.on) return; if (curSig() === CS.sig) return; CS.pending = true; saveCloud(); schedulePrep(); if (!CS.conflict) schedule(cfg.autoSaved && cfg.autoSaved() ? 4000 : undefined); };   // akkaunt bilan avtomatik saqlashda 4 s (iOS fonga o'tganda JS to'xtaydi); oddiy bulutda 30 s   // faqat HAQIQIY o'zgarishda (render paytidagi bir xil save() hisobga olinmaydi)    // ma'lumot o'zgardi → 30 s kutib yuboriladi
+    bk.touch = function () { if (!CS.on) return; if (curSig() === CS.sig) return; CS.pending = true; saveCloud(); schedulePrep(); if (!CS.conflict && !CS.shrink) schedule(cfg.autoSaved && cfg.autoSaved() ? 4000 : undefined); };   // akkaunt bilan avtomatik saqlashda 4 s (iOS fonga o'tganda JS to'xtaydi); oddiy bulutda 30 s   // faqat HAQIQIY o'zgarishda (render paytidagi bir xil save() hisobga olinmaydi)    // ma'lumot o'zgardi → 30 s kutib yuboriladi
     function flush(force) {
-      if (!CS.on || busy || CS.conflict || (!CS.pending && !force)) return Promise.resolve(false);
+      if (!CS.on || busy || CS.conflict || CS.shrink || (!CS.pending && !force)) return Promise.resolve(false);
       if (!online()) { changed(); return Promise.resolve(false); }                  // oflayn: navbatda (pending saqlangan), 'online' hodisasida yuboriladi
       busy = true; clearTimeout(timer); var text, mark = curSig(); try { text = cfg.exportText(); } catch (e) { busy = false; return Promise.resolve(false); }
       var sent = CS.ver;
-      return keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { return api('PUT', '', { id: k.id, ilova: cfg.app, kutilgan: sent, blob: blob }, blob.length < 60000); }); }).then(function (r) {
+      return keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { return api('PUT', '', { id: k.id, ilova: cfg.app, kutilgan: sent, blob: blob, majbur: CS.force ? true : undefined }, blob.length < 60000); }); }).then(function (r) {
         busy = false;
-        if (r.s === 200) { CS.ver = r.j.versiya; CS.last = Date.now(); retry = 0; CS.sig = mark; CS.pending = curSig() !== mark; saveCloud(); if (CS.pending) schedule(); }
+        if (r.s === 200) { CS.ver = r.j.versiya; CS.last = Date.now(); retry = 0; CS.force = 0; CS.sig = mark; CS.pending = curSig() !== mark; saveCloud(); if (CS.pending) schedule(); }
         else if (r.s === 409 && r.j.versiya && r.j.versiya < sent) { CS.ver = r.j.versiya; saveCloud(); schedule(300); }   // serverdagi versiya biz bilganimizdan KAM: oldingi (keepalive) yozuv yetib bormagan, boshqa qurilma yozmagan → xavfsiz qayta urinish
         else if (r.s === 409) { CS.conflict = r.j.versiya || 1; saveCloud(); }
+        else if (r.s === 422 && r.j && r.j.himoya) { CS.shrink = r.j.versiya || 1; CS.force = 0; CS.pending = true; saveCloud(); shrinkSheet(); }          // himoya: bulutda to'liqroq nusxa bor — ustidan yozilmadi, foydalanuvchidan so'raladi
         else backoff();
         changed(); return r.s === 200;
       }, function () { busy = false; backoff(); changed(); return false; });
     }
     bk.flush = flush;
+    function shrinkSheet() {                           // HIMOYA oynasi: foydalanuvchi aniq tanlamaguncha bulutdagi nusxa ustidan yozilmaydi
+      var t = L(); if (!cfg.kit || cfg.kit.sheetKind()) return;
+      cfg.kit.openSheet('bkshrink', '<div class="bk-sheet">' + cfg.kit.shHead(t.clShT) + '<p class="rz-p">' + esc(t.clShS) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="bktake">' + esc(t.clShTake) + '</button><button type="button" class="rz-btn ghost danger" data-act="bkforce">' + esc(t.clShKeep) + '</button></div></div>');
+    }
     /* iOS Safari/Chrome: sahifa fonga o'tganda yoki yopilganda JS tez to'xtaydi — asinxron shifrlash (WebCrypto) tugamay qolishi mumkin. Shuning uchun o'zgarishdan keyin
        (250 ms) shifrlangan nusxa OLDINDAN tayyorlab qo'yiladi; pagehide/visibilitychange'da u SINXRON keepalive PUT bilan yuboriladi (kutish yo'q). */
     var prep = null, prepTimer = null;
     function prepare() {
-      if (!CS.on || CS.conflict) return; var mark = curSig(), text; try { text = cfg.exportText(); } catch (e) { return; }
+      if (!CS.on || CS.conflict || CS.shrink) return; var mark = curSig(), text; try { text = cfg.exportText(); } catch (e) { return; }
       keysFor(CS.code).then(function (k) { return seal(cfg.app, k, text).then(function (blob) { prep = { mark: mark, id: k.id, blob: blob }; }); }, function () {});
     }
     function schedulePrep() { clearTimeout(prepTimer); prepTimer = setTimeout(prepare, 250); }
     function beacon() {                                // true = yuborildi
-      if (!CS.on || !CS.pending || CS.conflict || busy || !prep || prep.mark !== curSig() || prep.blob.length >= 60000 || !online()) return false;
+      if (!CS.on || !CS.pending || CS.conflict || CS.shrink || busy || !prep || prep.mark !== curSig() || prep.blob.length >= 60000 || !online()) return false;
       var p0 = prep; prep = null;
       try { fetch(ZAXIRA_API, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: p0.id, ilova: cfg.app, kutilgan: CS.ver, blob: p0.blob }), keepalive: true, cache: 'no-store' })['catch'](function () {}); } catch (e) { return false; }
       CS.ver += 1; CS.pending = false; CS.sig = p0.mark; CS.last = Date.now(); saveCloud(); clearTimeout(timer); return true;
@@ -219,8 +226,9 @@
       var t = L();
       if (!CS.on) { var ic = '<svg class="rz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 8.5a4.5 4.5 0 0 1 .5 9z"/></svg>'; return '<button type="button" class="rz-row" data-act="bkcl" data-bk="cloudoff"><span class="' + esc(cfg.rowIcon || 'rz-ci') + '">' + ic + '</span><span class="m"><b>' + esc(t.clOffT) + '</b><span>' + esc(t.clOffS) + '</span></span><svg class="rz-i r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>'; }
       var st = busy ? t.clBusy : (CS.last ? fill(t.clLast, { d: fmtWhen(CS.last) }) : t.clNever); if (CS.pending && !busy && !online()) st += ' · ' + t.clQueue;
+      var shr = CS.shrink ? '<div class="bk-conf" role="alert"><b>' + esc(t.clShT) + '</b><p class="rz-p sm">' + esc(t.clShS) + '</p><div class="rz-actions"><button type="button" class="rz-btn sm primary" data-act="bktake">' + esc(t.clShTake) + '</button><button type="button" class="rz-btn sm ghost danger" data-act="bkforce">' + esc(t.clShKeep) + '</button></div></div>' : '';
       var conf = CS.conflict ? '<div class="bk-conf" role="alert"><b>' + esc(t.clConfT) + '</b><p class="rz-p sm">' + esc(t.clConfS) + '</p><div class="rz-actions"><button type="button" class="rz-btn sm" data-act="bkkeep">' + esc(t.clKeepMine) + '</button><button type="button" class="rz-btn sm primary" data-act="bktake">' + esc(t.clTakeCloud) + '</button></div></div>' : '';
-      return '<div class="bk-cloud" data-bk="cloudon"><div class="bk-ct"><b>' + esc(t.clOnT) + '</b></div><p class="rz-p sm bk-st" id="bkCloudSt" role="status">' + esc(st) + '</p>' + conf + '<div class="bk-cb"><button type="button" class="rz-btn sm" data-act="bkshow">' + esc(t.clShow) + '</button><button type="button" class="rz-btn sm" data-act="bknow">' + esc(t.clNow) + '</button><button type="button" class="rz-btn sm ghost danger" data-act="bkdel">' + esc(t.clDel) + '</button></div></div>';
+      return '<div class="bk-cloud" data-bk="cloudon"><div class="bk-ct"><b>' + esc(t.clOnT) + '</b></div><p class="rz-p sm bk-st" id="bkCloudSt" role="status">' + esc(st) + '</p>' + shr + conf + '<div class="bk-cb"><button type="button" class="rz-btn sm" data-act="bkshow">' + esc(t.clShow) + '</button><button type="button" class="rz-btn sm" data-act="bknow">' + esc(t.clNow) + '</button><button type="button" class="rz-btn sm ghost danger" data-act="bkdel">' + esc(t.clDel) + '</button></div></div>';
     };
     bk.restoreLink = function () { return '<button type="button" class="rz-link bk-rclink" data-act="bkcodeopen">' + esc(L().rcLink) + '</button>'; };
     function rcOverlay(err) {
@@ -265,7 +273,7 @@
       CS = { on: true, code: code, ver: ver || 0, last: 0, pending: true, conflict: 0, sig: '' }; saveCloud(); schedule(50); changed(); return true;
     };
     function takeCloud() {
-      keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id).then(function (r) { if (r.s !== 200) throw new Error('net'); return open(cfg.app, k, r.j.blob).then(function (text) { var res = cfg.importText(text); if (!res || !res.ok) throw new Error('bad'); cfg.applyState(res.state); CS.ver = r.j.versiya; CS.last = r.j.yangilangan || Date.now(); CS.conflict = 0; CS.pending = false; CS.sig = curSig(); saveCloud(); if (cfg.kit) cfg.kit.toast(L().clTaken, null, true); changed(); }); }); })['catch'](function () { if (cfg.kit) cfg.kit.toast(L().eNet); });
+      keysFor(CS.code).then(function (k) { return api('GET', '?id=' + k.id).then(function (r) { if (r.s !== 200) throw new Error('net'); return open(cfg.app, k, r.j.blob).then(function (text) { var res = cfg.importText(text); if (!res || !res.ok) throw new Error('bad'); cfg.applyState(res.state); CS.ver = r.j.versiya; CS.last = r.j.yangilangan || Date.now(); CS.conflict = 0; CS.shrink = 0; CS.pending = false; CS.sig = curSig(); saveCloud(); if (cfg.kit) cfg.kit.toast(L().clTaken, null, true); changed(); }); }); })['catch'](function () { if (cfg.kit) cfg.kit.toast(L().eNet); });
     }
     function delCloud() {
       keysFor(CS.code).then(function (k) { return api('DELETE', '?id=' + k.id); }).then(function (r) {
@@ -305,6 +313,7 @@
       if (a === 'bkdelgo') { delCloud(); return true; }
       if (a === 'bkkeep') { CS.ver = CS.conflict; CS.conflict = 0; CS.pending = true; saveCloud(); flush(true); changed(); return true; }
       if (a === 'bktake') { takeCloud(); return true; }
+      if (a === 'bkforce') { CS.ver = CS.shrink || CS.ver; CS.shrink = 0; CS.force = 1; CS.pending = true; saveCloud(); if (cfg.kit) cfg.kit.closeSheet(); flush(true); changed(); return true; }
       if (a === 'bkcodeopen') { rcOverlay(''); return true; }
       if (a === 'bkcodeno') { var g = document.getElementById('rzRestore'); if (g) g.remove(); return true; }
       if (a === 'bkcodego') { restoreFromCode(); return true; }

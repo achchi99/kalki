@@ -4,7 +4,7 @@
  *
  * Shartnoma (api/zaxira.js shunga tayanadi):
  *   get(id)                                  → { id, ilova, blob, versiya, yangilangan } | null
- *   put(id, ilova, blob, kutilgan, now)      → { ok: true, versiya } | { ok: false, versiya }   (kutilgan = mijoz bilgan versiya, yangi yozuv uchun 0; mos kelmasa — ok:false, hech narsa yozilmaydi)
+ *   put(id, ilova, blob, kutilgan, now, majbur) → { ok: true, versiya } | { ok: false, versiya } | { ok: false, himoya: true, versiya } (bo'sh/kichik nusxa mazmunli nusxa ustiga yozilmaydi; majbur=true — foydalanuvchi tasdiqlagan)   (kutilgan = mijoz bilgan versiya, yangi yozuv uchun 0; mos kelmasa — ok:false, hech narsa yozilmaydi)
  *   del(id)                                  → true | false (o'chirildi / topilmadi)
  *   count()                                  → yozuvlar soni (monitoring uchun)
  *   holat(id, now)                           → { ogoh, yangilangan } | null — blobsiz, oxirgi sinxronni yangilaydi va muddat ogohlantirishini bekor qiladi (ogoh — avvalgi qiymat: ilova bir martalik xabar ko'rsatadi)
@@ -16,7 +16,14 @@ export function makeStore(env) {
   if (!db) return null;
   const changes = (r) => (r && r.meta && r.meta.changes) || 0;
   async function get(id) { return (await db.prepare('SELECT id, ilova, blob, versiya, yangilangan FROM zaxira WHERE id = ?').bind(id).first()) || null; }
-  async function put(id, ilova, blob, kutilgan, now) {
+  /* HIMOYA (2026-11-02): bulutdagi nusxa mazmunli (≥ SHRINK_MIN bayt), yangisi esa bo'sh/juda kichik (< SHRINK_EMPTY bayt yoki eskisining yarmidan kam) bo'lsa — ustidan YOZILMAYDI ({ ok:false, himoya:true });
+     mijoz foydalanuvchidan so'raydi va aniq tasdiqlasa `majbur` bilan qayta yuboradi. Server mazmunni ko'rmaydi (shifrlangan) — o'lcham (siqilgan blob) taxminiy, lekin bo'sh holatni (~330 bayt) aniq ushlaydi. */
+  const SHRINK_MIN = 900, SHRINK_EMPTY = 400;
+  async function put(id, ilova, blob, kutilgan, now, majbur) {
+    if (kutilgan > 0 && !majbur) {
+      const cur0 = await db.prepare('SELECT versiya, LENGTH(blob) AS n FROM zaxira WHERE id = ? AND ilova = ?').bind(id, ilova).first();
+      if (cur0 && cur0.versiya === kutilgan && cur0.n >= SHRINK_MIN && (blob.length < SHRINK_EMPTY || blob.length * 2 < cur0.n)) return { ok: false, himoya: true, versiya: cur0.versiya };
+    }
     if (kutilgan === 0) {                                       // yangi yozuv: faqat yo'q bo'lsa
       let r; try { r = await db.prepare('INSERT OR IGNORE INTO zaxira (id, ilova, blob, versiya, yangilangan, oxirgi) VALUES (?, ?, ?, 1, ?, ?)').bind(id, ilova, blob, now, now).run(); }
       catch (e) { r = await db.prepare('INSERT OR IGNORE INTO zaxira (id, ilova, blob, versiya, yangilangan) VALUES (?, ?, ?, 1, ?)').bind(id, ilova, blob, now).run(); }          // muddat ustunlari (zaxira-muddat.sql) hali yo'q — eski yozuv
