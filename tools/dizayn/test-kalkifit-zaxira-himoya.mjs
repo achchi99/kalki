@@ -22,13 +22,13 @@ try {
     const p = await c.newPage(); p.errs = []; p.on('pageerror', (e) => p.errs.push(String(e))); const puts = [];
     await p.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort());
     await p.route('**/api/**', (r) => r.fulfill({ status: 204, body: '' }));
-    await p.route('**/api/zaxira**', async (r) => { const q = r.request(); if (q.method() === 'PUT') { const bd = JSON.parse(q.postData()); puts.push(bd); return r.fulfill({ status: bd.majbur ? 200 : 422, contentType: 'application/json', body: JSON.stringify(bd.majbur ? { versiya: bd.kutilgan + 1 } : { xato: 'x', himoya: true, versiya: 7 }) }); } return r.fulfill({ status: 404, contentType: 'application/json', body: '{}' }); });
+    await p.route('**/api/zaxira**', async (r) => { const q = r.request(); if (q.method() === 'PUT') { const bd = JSON.parse(q.postData()); puts.push(bd); const ok = bd.majbur || puts.length > 1; return r.fulfill({ status: ok ? 200 : 422, contentType: 'application/json', body: JSON.stringify(ok ? { versiya: bd.kutilgan + 1 } : { xato: 'x', himoya: true, versiya: 7 }) }); } return r.fulfill({ status: 404, contentType: 'application/json', body: '{}' }); });
     await p.goto(BASE + url, { waitUntil: 'networkidle' }); await p.evaluate(() => KalkiBackup.instances.kalkifit.flush(true)); await p.waitForSelector('#rzSheet:not([hidden]) .bk-sheet', { timeout: 15000 });
     const tx = await p.locator('#rzSheet').innerText(); assert.ok(tx.includes(T.t) && tx.includes(T.take) && tx.includes(T.keep), url + ': himoya oynasi: ' + tx.slice(0, 120));
     assert.equal(puts.length >= 1 && puts.every((x) => !x.majbur), true, 'majbur yuborilmadi'); const n0 = puts.length;
     const cs = await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_zaxira_kalkifit'))); assert.equal(cs.shrink, 7); assert.equal(cs.pending, true);
     await p.evaluate(() => KalkiBackup.instances.kalkifit.flush(true)); await p.waitForTimeout(800); assert.equal(puts.length, n0, 'himoya holatida qayta urinilmaydi (flush to\'xtaydi)');
-    await p.click('[data-act=bkforce]'); await p.waitForTimeout(1500); assert.equal(puts[puts.length - 1].majbur, true); assert.equal(puts[puts.length - 1].kutilgan, 7); const cs2 = await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_zaxira_kalkifit'))); assert.equal(cs2.shrink, 0); assert.deepEqual(p.errs, []); await c.close();
+    await p.click('[data-act=bkforce]'); await p.waitForTimeout(1500); assert.ok(puts.every((x) => !x.majbur), 'v71.1: «Baribir saqlash» ham almashtirmaydi/majburlamaydi — birlashtiradi (majbur yuborilmaydi)'); const cs2 = await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_zaxira_kalkifit'))); assert.equal(cs2.shrink, 0); assert.deepEqual(p.errs, []); await c.close();
   }
   console.log('OK zaxira-himoya: 422 → «tiklaysizmi?» oynasi (uz/ru), qayta urinish yo\'q, «baribir saqlash» — majbur bilan');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }

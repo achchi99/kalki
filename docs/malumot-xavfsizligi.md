@@ -13,6 +13,16 @@
 - `navigator.storage.persist()` har saqlashda birinchi marta so'raladi.
 - Ro'zg'or hozircha eski (konfliktda tanlov) yo'ldan foydalanadi; birlashtirish `cfg.merge` bergan ilovada yoqiladi.
 
+## HOTFIX v71.1 (2026-11-02, achchii99): yozuv soni KAMAYMASIN
+**Sabab (kod joyi):** v71 `assets/app-backup.js` — eski (v70) qurilmada saqlangan `CS.conflict` belgisi ochilishda `pullMerge()` bilan birlashtirilgach TOZALANMADI → `flush()` to'xtab qoldi, Bugun'da «Hal qilish» banneri chiqdi; banner → `bkresolve` → «Bulutdagini yuklash» (`takeCloud()`) mahalliy holatni bulutdagi (eskiroq) nusxa bilan ALMASHTIRDI → bulutga hali yozilmagan kunlar yo'qoldi. (Sinov: 16 kun/48 yozuv → bosgach 11 kun/33.) Bulutning o'zi hech qachon kamaymagan (10 akkaunt, barcha versiyalar monoton, birlashmada yo'qotilgan yozuv 0).
+**Tuzatish:**
+1. `pullMerge` muvaffaqiyatli bo'lsa `conflict/shrink` tozalanadi; ochilishda eski belgilar avtomatik birlashtiriladi (oyna yo'q). «Bulutdagini yuklash», «Shu qurilmadagini saqlash», «Baribir saqlash», «Hal qilish» — birlashtiruvchi ilovada (KalkiFit) HECH QACHON almashtirmaydi, faqat birlashtiradi (`mergeOnly`).
+2. **Yozuv soni invarianti (mijoz):** `CS.n/CS.tb` (oxirgi sinxron yozuvlar soni / o'chirish belgilari). Mahalliy yozuv + aniq o'chirilganlar (tomb) < `CS.n` bo'lsa — `flush`/`beacon` yubormaydi, himoya oynasi («Tiklash» = birlashtirish).
+3. **Server invarianti:** PUT `n` (yozuvlar soni) va `d` (aniq o'chirilganlar) bilan keladi; `zaxira.yozuv` (migrations/zaxira-yozuv.sql) dan kam bo'lsa — 422 (`majbur` bilan o'tadi). Eski mijozlar uchun hajm qoidasi qoladi.
+4. **Yedek:** `kalki_fit_yedek` — oxirgi 3 mahalliy nusxa; v71 migratsiyasidan, almashtirish/birlashtirish/importdan OLDIN saqlanadi. Ochilishda joriy holat yedekdan kam yozuvli bo'lsa — yedek bilan birlashtiriladi (tomb bor yozuv qayta tirilmaydi).
+5. `applyState` kamroq yozuvli holat bilan almashtirishni rad etadi (birlashtiradi).
+**Testlar (darvozada majburiy):** `test-kalkifit-invariant` (v70 holat → migratsiya → sinxron; eski «yuklash» yo'li; bo'sh/eskiroq bulut; bo'sh lokal; ikki qurilma; invariant; yedek; akkauntsiz) + `test-zaxira-api` #17.
+
 ## Server tarixi va admin tiklash
 - Jadval `zaxira_tarix` (migrations/zaxira-tarix.sql): har yangilashda oldingi versiya saqlanadi; oxirgi 20 versiya + oxirgi 30 kun uchun har kunning oxirgi versiyasi qoladi. Zaxira o'chirilsa (yoki muddat/akkaunt o'chirilsa) tarix ham o'chadi.
 - Admin (admin/kalkifit-statistika.html → «Foydalanuvchilar» → qatorni oching → «Zaxira versiyalari»): ro'yxat (versiya, vaqt, hajm — mazmun ko'rinmaydi) va «Shu versiyadan tiklash». Tiklashdan oldin JORIY holat tarixga tushadi; tanlangan nusxa YANGI versiya bo'ladi; foydalanuvchi ilovani ochganda u qurilmadagi bilan birlashtiriladi (ustidan yozilmaydi). Jurnal: `audit` → `admin_zaxira_tiklash_vN`.

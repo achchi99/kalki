@@ -19,20 +19,23 @@ export function makeStore(env) {
   /* HIMOYA (2026-11-02): bulutdagi nusxa mazmunli (≥ SHRINK_MIN bayt), yangisi esa bo'sh/juda kichik (< SHRINK_EMPTY bayt yoki eskisining yarmidan kam) bo'lsa — ustidan YOZILMAYDI ({ ok:false, himoya:true });
      mijoz foydalanuvchidan so'raydi va aniq tasdiqlasa `majbur` bilan qayta yuboradi. Server mazmunni ko'rmaydi (shifrlangan) — o'lcham (siqilgan blob) taxminiy, lekin bo'sh holatni (~330 bayt) aniq ushlaydi. */
   const SHRINK_MIN = 900, SHRINK_EMPTY = 400;
-  async function put(id, ilova, blob, kutilgan, now, majbur) {
+  async function put(id, ilova, blob, kutilgan, now, majbur, da) {          // da — mijoz da'vosi { n: yozuvlar soni, d: aniq o'chirilganlar soni } (ixtiyoriy)
     if (kutilgan > 0 && !majbur) {
-      const cur0 = await db.prepare('SELECT versiya, LENGTH(blob) AS n FROM zaxira WHERE id = ? AND ilova = ?').bind(id, ilova).first();
-      if (cur0 && cur0.versiya === kutilgan && cur0.n >= SHRINK_MIN && (blob.length < SHRINK_EMPTY || blob.length * 2 < cur0.n)) return { ok: false, himoya: true, versiya: cur0.versiya };
+      let cur0; try { cur0 = await db.prepare('SELECT versiya, LENGTH(blob) AS n, yozuv FROM zaxira WHERE id = ? AND ilova = ?').bind(id, ilova).first(); } catch (e) { cur0 = await db.prepare('SELECT versiya, LENGTH(blob) AS n FROM zaxira WHERE id = ? AND ilova = ?').bind(id, ilova).first(); }
+      if (cur0 && cur0.versiya === kutilgan) {
+        if (cur0.n >= SHRINK_MIN && (blob.length < SHRINK_EMPTY || blob.length * 2 < cur0.n)) return { ok: false, himoya: true, versiya: cur0.versiya };
+        if (da && Number.isInteger(da.n) && cur0.yozuv != null && da.n + Math.max(0, da.d || 0) < cur0.yozuv) return { ok: false, himoya: true, versiya: cur0.versiya, sabab: 'yozuv' };          // YOZUV SONI INVARIANTI: kamroq yozuv (aniq o'chirishlardan tashqari) yozilmaydi
+      }
     }
     if (kutilgan === 0) {                                       // yangi yozuv: faqat yo'q bo'lsa
       let r; try { r = await db.prepare('INSERT OR IGNORE INTO zaxira (id, ilova, blob, versiya, yangilangan, oxirgi) VALUES (?, ?, ?, 1, ?, ?)').bind(id, ilova, blob, now, now).run(); }
       catch (e) { r = await db.prepare('INSERT OR IGNORE INTO zaxira (id, ilova, blob, versiya, yangilangan) VALUES (?, ?, ?, 1, ?)').bind(id, ilova, blob, now).run(); }          // muddat ustunlari (zaxira-muddat.sql) hali yo'q — eski yozuv
-      if (changes(r) === 1) return { ok: true, versiya: 1 };
+      if (changes(r) === 1) { if (da && Number.isInteger(da.n)) { try { await db.prepare('UPDATE zaxira SET yozuv = ? WHERE id = ?').bind(da.n, id).run(); } catch (e) { /* ustun yo'q */ } } return { ok: true, versiya: 1 }; }
     } else {                                                    // yangilash: versiya hali o'sha bo'lsa (boshqa qurilma yozib ulgurmagan)
       await tarixga(id, kutilgan, ilova);                       // oldingi versiya TARIXGA (tiklash uchun); jadval yo'q bo'lsa — tarixsiz davom etadi
       let r; try { r = await db.prepare('UPDATE zaxira SET blob = ?, versiya = versiya + 1, yangilangan = ?, oxirgi = ?, ogoh = NULL WHERE id = ? AND ilova = ? AND versiya = ?').bind(blob, now, now, id, ilova, kutilgan).run(); }
       catch (e) { r = await db.prepare('UPDATE zaxira SET blob = ?, versiya = versiya + 1, yangilangan = ? WHERE id = ? AND ilova = ? AND versiya = ?').bind(blob, now, id, ilova, kutilgan).run(); }
-      if (changes(r) === 1) { if ((kutilgan + 1) % 5 === 0) await tarixTozala(id, now); return { ok: true, versiya: kutilgan + 1 }; }
+      if (changes(r) === 1) { if (da && Number.isInteger(da.n)) { try { await db.prepare('UPDATE zaxira SET yozuv = ? WHERE id = ?').bind(da.n, id).run(); } catch (e) { /* ustun yo'q */ } } if ((kutilgan + 1) % 5 === 0) await tarixTozala(id, now); return { ok: true, versiya: kutilgan + 1 }; }
     }
     const cur = await get(id); return { ok: false, versiya: cur ? cur.versiya : 0 };
   }

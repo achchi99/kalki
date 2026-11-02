@@ -50,7 +50,7 @@ export async function onRequest({ request, env }) {
   try {
     if (!(await bump(kv, 'zx:w:' + day + ':' + b.id.slice(0, 24), num(env.ZAXIRA_WRITE_LIMIT, 50)))) return fail(429);
     if (b.kutilgan === 0 && !(await bump(kv, 'zx:new:' + day, num(env.ZAXIRA_NEW_LIMIT, 3000)))) return fail(429);
-    const r = await store.put(b.id, b.ilova, b.blob, b.kutilgan, Date.now(), b.majbur === true);
+    const r = await store.put(b.id, b.ilova, b.blob, b.kutilgan, Date.now(), b.majbur === true, Number.isInteger(b.n) && b.n >= 0 ? { n: b.n, d: Number.isInteger(b.d) && b.d > 0 ? b.d : 0 } : null);
     return r.ok ? ok({ versiya: r.versiya }) : r.himoya ? fail(422, { himoya: true, versiya: r.versiya }) : fail(409, { versiya: r.versiya });
   } catch (e) { console.error('zaxira db xato'); return fail(503); }
 }
