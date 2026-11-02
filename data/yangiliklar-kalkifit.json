@@ -10,8 +10,8 @@
    },
    "items": [
     {
-     "uz": "Mashg'ulot kaloriyasi endi hamma telefonda me'yorga qo'shiladi (iPhone ham): 60 daqiqa zal — Maqsad oshadi.",
-     "ru": "Калории тренировки теперь добавляются к норме на любом телефоне (и на iPhone): 60 минут зала — цель растёт.",
+     "uz": "Mashg'ulot kaloriyasi endi hamma telefonda me'yorga qo'shiladi, iPhone ham.",
+     "ru": "Калории тренировки теперь добавляются к норме на любом телефоне, и на iPhone.",
      "show": "bugun",
      "btn": {
       "uz": "Ko'rish",
@@ -19,12 +19,12 @@
      }
     },
     {
-     "uz": "iPhone'da qadam kiritsangiz — ish turini tasdiqlash kartasi chiqadi; «Kaloriya hisobi»da sababi va tugmasi bor. Kartalarda «+N kkal».",
-     "ru": "На iPhone после ввода шагов появится карточка подтверждения вида работы; в «Расчёте калорий» — причина и кнопка. На карточках — «+N ккал»."
+     "uz": "iPhone'da qadam kiritsangiz, ish turini tasdiqlash kartasi chiqadi.",
+     "ru": "На iPhone после ввода шагов появится карточка подтверждения вида работы."
     },
     {
-     "uz": "Qadam va Mashg'ulot kartalari doim ko'rinadi (aniq ikonkalar), «Odatdagilarga saqlash» — ovqat ostida, uzun nomlar o'raladi, Afsona tugmalari sig'adi.",
-     "ru": "Карточки «Шаги» и «Тренировка» видны всегда (понятные значки), «Сохранить в привычные» — под блюдом, длинные названия переносятся, кнопки «Мифа» помещаются."
+     "uz": "Qadam va Mashg'ulot kartalari doim ko'rinadi, matnlar kesilmaydi.",
+     "ru": "Карточки шагов и тренировки видны всегда, тексты не обрезаются."
     }
    ]
   },

@@ -1912,3 +1912,6 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .af-tzb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px;width:100%}
 .rz .af-tzb button{flex:none;width:100%;min-width:0;min-height:44px;padding:8px 10px;white-space:normal;overflow-wrap:anywhere;line-height:1.2;display:flex;align-items:center;justify-content:center;text-align:center}
 .rz .sl-ab2 .sl-cta{font-size:14px}
+/* v72: CTA — katta rangli blok emas: kartaning o'z fonida, rangli matn + yupqa chegara (tema: «rangli fonli katta bloklar» yo'q) */
+.rz .sl-ab2 .sl-cta.c-bl,.rz .sl-ab2 .sl-cta.c-pu{background:transparent;border:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+.rz .sl-ab2.emp .mv small,.rz .sl-ab2.emp .sl-abe,.rz .sl-ab2.emp .mv b.z{color:color-mix(in srgb,var(--ink) 74%,var(--card))}
