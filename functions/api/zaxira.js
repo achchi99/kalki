@@ -1,6 +1,6 @@
 /* kalki.uz — Zaxira API (bulutga saqlash): faqat SHIFRLANGAN blob. Saqlash qatlami: ../_lib/zaxira-store.js (D1 shu yerda emas).
  *   GET    /api/zaxira?id=<64 hex>                          → 200 { ilova, blob, versiya, yangilangan } | 404
- *   PUT    /api/zaxira   { id, ilova, kutilgan, blob }       → 200 { versiya } | 409 { versiya } (boshqa qurilma yangiroq yozgan — eskisi yozib yuborilmaydi) | 400 | 413 | 429
+ *   PUT    /api/zaxira   { id, ilova, kutilgan, blob, majbur? } → 200 { versiya } | 409 { versiya } (boshqa qurilma yangiroq yozgan — eskisi yozib yuborilmaydi) | 422 { himoya, versiya } (bulutdagi nusxa mazmunli, yangisi bo'sh/kichik — majbur:true bilan tasdiqlansa o'tadi) | 400 | 413 | 429
  *   DELETE /api/zaxira?id=<64 hex>                          → 200 { ok: true, topildi }
  *   GET    /api/zaxira?id=<64 hex>&holat=1                  → 200 { yangilangan, ogoh } (blobsiz; sinxron hisoblanadi; ogoh ≠ 0 — 12 oy sinxronsiz edi, o'chirish rejalashtirilgan edi) | 404
  *   GET    /api/zaxira?ping=1                               → 200 { tayyor: true } (baza/jadval tayyor) | 503
@@ -12,7 +12,7 @@ import { makeStore } from '../_lib/zaxira-store.js';
 
 export const MAX_BLOB = 1048576, ILOVALAR = ['kalkifit', 'rozgor'], ID_RE = /^[0-9a-f]{64}$/, BLOB_RE = /^[A-Za-z0-9_-]+$/;
 const KV_TTL = 172800;
-const E = { 400: "So'rov noto'g'ri.", 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: 'GET, PUT yoki DELETE.', 409: 'Bulutda yangiroq nusxa bor.', 413: 'Ma\'lumot juda katta.', 415: 'JSON yuboring.', 429: "Limit tugadi. Keyinroq urinib ko'ring.", 502: 'Server javob bermadi.', 503: 'Xizmat sozlanmagan.' };
+const E = { 400: "So'rov noto'g'ri.", 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: 'GET, PUT yoki DELETE.', 409: 'Bulutda yangiroq nusxa bor.', 422: "Bulutdagi nusxa to'liqroq — ustidan yozilmadi.", 413: 'Ma\'lumot juda katta.', 415: 'JSON yuboring.', 429: "Limit tugadi. Keyinroq urinib ko'ring.", 502: 'Server javob bermadi.', 503: 'Xizmat sozlanmagan.' };
 const fail = (s, extra) => json(s, Object.assign({ xato: E[s] || 'Xato.' }, extra || {}), { 'Cache-Control': 'no-store' });
 const ok = (o) => json(200, o, { 'Cache-Control': 'no-store' });
 const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().slice(0, 10);
@@ -50,7 +50,7 @@ export async function onRequest({ request, env }) {
   try {
     if (!(await bump(kv, 'zx:w:' + day + ':' + b.id.slice(0, 24), num(env.ZAXIRA_WRITE_LIMIT, 50)))) return fail(429);
     if (b.kutilgan === 0 && !(await bump(kv, 'zx:new:' + day, num(env.ZAXIRA_NEW_LIMIT, 3000)))) return fail(429);
-    const r = await store.put(b.id, b.ilova, b.blob, b.kutilgan, Date.now());
-    return r.ok ? ok({ versiya: r.versiya }) : fail(409, { versiya: r.versiya });
+    const r = await store.put(b.id, b.ilova, b.blob, b.kutilgan, Date.now(), b.majbur === true);
+    return r.ok ? ok({ versiya: r.versiya }) : r.himoya ? fail(422, { himoya: true, versiya: r.versiya }) : fail(409, { versiya: r.versiya });
   } catch (e) { console.error('zaxira db xato'); return fail(503); }
 }
