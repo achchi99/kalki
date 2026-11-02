@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'; import path from 'node:path'; import fs
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..'); const require = createRequire(import.meta.url);
 const BK = require(path.join(ROOT, 'assets/app-backup.js'));
 const API = await import(pathToFileURL(path.join(ROOT, 'functions/api/zaxira.js')).href); const STORE = await import(pathToFileURL(path.join(ROOT, 'functions/_lib/zaxira-store.js')).href);
-const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8') + '\n' + fs.readFileSync(path.join(ROOT, 'migrations/zaxira-tarix.sql'), 'utf8');
+const { makeD1 } = await import('./d1-shim.mjs'); const SCHEMA = fs.readFileSync(path.join(ROOT, 'migrations/zaxira.sql'), 'utf8') + '\n' + fs.readFileSync(path.join(ROOT, 'migrations/zaxira-tarix.sql'), 'utf8') + '\n' + fs.readFileSync(path.join(ROOT, 'migrations/zaxira-yozuv.sql'), 'utf8');
 let n = 0; const T = async (name, fn) => { try { await fn(); n++; } catch (e) { console.log('XATO ' + name + ': ' + (e && e.stack || e)); process.exit(1); } };
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
 const mkEnv = (x = {}) => Object.assign({ KALKI_AI_KV: kv(), KALKIFIT_DB: makeD1(SCHEMA) }, x);
@@ -33,7 +33,7 @@ await T('4 shifrlash/ochish aylanmasi (round-trip, UTF-8, katta hajm); noto\'g\'
 await T('5 blob\'da ochiq matn YO\'Q (profil vazni, ism, ovqat nomi topilmaydi) — xom bayt, base64 va ochiq-matn bo\'laklari bo\'yicha', async () => {
   const k = await keysFor('kalkifit', BK.genCode('kalkifit')), blob = await BK.seal('kalkifit', k, STATE); const raw = Buffer.from(blob.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('latin1'); const rawU = Buffer.from(blob.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8');
   for (const s of [MARK, 'Madina', '64.5', 'weight', 'profile', 'kalkifit', 'Osh', 'steps', 'kcal', '6543', 'sex']) { assert.ok(!blob.includes(s), 'blob: ' + s); assert.ok(!raw.includes(s) && !rawU.includes(s), 'bayt: ' + s); }
-  const env = mkEnv(); const id = k.id; assert.equal((await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 0, blob }, env)).status, 200); const row = await env.KALKIFIT_DB.prepare('SELECT * FROM zaxira WHERE id = ?').bind(id).first(); const dump = JSON.stringify(row); for (const s of [MARK, 'Madina', '64.5', 'profile', 'weight']) assert.ok(!dump.includes(s), 'D1 qatorida ochiq matn: ' + s); assert.equal(Object.keys(row).sort().join(), 'blob,id,ilova,versiya,yangilangan'); });
+  const env = mkEnv(); const id = k.id; assert.equal((await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 0, blob }, env)).status, 200); const row = await env.KALKIFIT_DB.prepare('SELECT * FROM zaxira WHERE id = ?').bind(id).first(); const dump = JSON.stringify(row); for (const s of [MARK, 'Madina', '64.5', 'profile', 'weight']) assert.ok(!dump.includes(s), 'D1 qatorida ochiq matn: ' + s); assert.equal(Object.keys(row).sort().join(), 'blob,id,ilova,versiya,yangilangan,yozuv'); });
 
 /* ---------- server ---------- */
 const BLOB = 'A'.repeat(60);
@@ -105,4 +105,11 @@ await T('16 VERSIYALAR TARIXI: har yangilashda oldingi versiya saqlanadi (oxirgi
   const keep = await env.KALKIFIT_DB.prepare('SELECT blob FROM zaxira_tarix WHERE id = ? AND versiya = ?').bind(id, 30).first(); assert.equal(keep.blob, cur, 'tiklashdan oldingi joriy holat tarixga tushdi (yo\'qolmadi)');
   assert.equal((await st.tiklash(id, 31, Date.now())).ok, false); assert.equal((await st.tiklash(id, 999, Date.now())).ok, false);
   await st.del(id); assert.equal((await st.tarix(id)).length, 0, 'zaxira o\'chirilganda tarix ham o\'chadi'); });
+await T('17 YOZUV SONI INVARIANTI (server): mijoz da\'vosi n+d saqlangan sondan kam bo\'lsa — 422 (hajm bir xil bo\'lsa ham); aniq o\'chirish (d) ruxsat; majbur o\'tadi; da\'vosiz (eski mijoz) — hajm qoidasi', async () => {
+  const env = mkEnv(), id = 'd4'.repeat(32), B = (c, n) => c.repeat(n);
+  assert.equal((await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 0, blob: B('A', 2000), n: 50, d: 0 }, env)).status, 200);
+  let r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 1, blob: B('B', 2000), n: 40, d: 0 }, env, { ip: '7.7.7.1' }); assert.equal(r.status, 422, 'n=40 < 50: kamroq yozuv'); const j = await r.json(); assert.equal(j.himoya, true);
+  r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 1, blob: B('B', 2000), n: 48, d: 2 }, env, { ip: '7.7.7.2' }); assert.equal(r.status, 200, 'n+d = 50: 2 ta aniq o\'chirilgan — ruxsat');
+  r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 2, blob: B('C', 2000), n: 10, d: 0 }, env, { ip: '7.7.7.3' }); assert.equal(r.status, 422); r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 2, blob: B('C', 2000), n: 10, d: 0, majbur: true }, env, { ip: '7.7.7.4' }); assert.equal(r.status, 200, 'majbur');
+  r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 3, blob: B('D', 2000), n: 11, d: 0 }, env, { ip: '7.7.7.5' }); assert.equal(r.status, 200, 'majburdan keyin yangi taglik n=10 — 11 ko\'proq'); r = await call('PUT', '', { id, ilova: 'kalkifit', kutilgan: 4, blob: B('E', 2000) }, env, { ip: '7.7.7.6' }); assert.equal(r.status, 200, 'da\'vosiz — faqat hajm qoidasi'); });
 console.log(n + ' ta holat o\'tdi');

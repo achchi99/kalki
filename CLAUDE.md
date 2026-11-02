@@ -116,7 +116,7 @@ Har yangi funksiya shu qoidalarga javob berishi shart (relizdan oldin tekshirila
 KalkiFit foydalanuvchi ma'lumoti HECH QACHON yo'qolmasligi shart (2026-11-02 voqeasi: jimgina to'xtagan sinxron + qayta o'rnatish). Batafsil: `docs/malumot-xavfsizligi.md`.
 
 - Saqlash (`save()`, `S.stamp`), sinxron (`assets/app-backup.js`, `assets/app-akkaunt.js`), birlashtirish (`assets/kalkifit-core.js` `mergeStates`), zaxira API/store/tarix (`functions/api/zaxira.js`, `functions/_lib/zaxira-store.js`, `migrations/zaxira*.sql`), admin tiklash, `sw.js`/`assets/sw-boot.js` va Android qobig'iga (`~/projects/kalkifit-android`) tegadigan HAR QANDAY o'zgarish quyidagi testlardan o'tishi SHART (iteratsiyada `--only`, oxirida darvoza):
-  `merge, sinxron, zaxira, zaxira-api, zaxira-himoya, akkaunt-b-ui, akkaunt-ui, admin` (+ `sw`, `pwa`).
+  `merge, invariant, sinxron, zaxira, zaxira-api, zaxira-himoya, akkaunt-b-ui, akkaunt-ui, admin` (+ `sw`, `pwa`); `merge`, `invariant`, `zaxira-api` darvozada HAR DOIM yuradi. Qoida: foydalanuvchi aniq o'chirmagan yozuv hech qachon kamaymaydi — almashtirish emas, birlashtirish.
 - Qoidalar: konflikt sinxronni TO'XTATMAYDI (birlashtiriladi); o'chirilgan yozuv qayta tirilmaydi (tomb); bo'sh/kichik holat bulutdagi mazmunli nusxa ustiga yozilmaydi (server 422 + ilova so'raydi); `majbur` faqat foydalanuvchi aniq tasdiqlaganda; yangi saqlanadigan maydon — `S.mergeStates`da qoidasi va `test-kalkifit-merge` da testi bo'lsin.
 - D1 sxemasi o'zgarsa: avval `~/backups`, keyin migratsiya; zaxira tarixi (`zaxira_tarix`) ni buzmang.
 - Android: ilova jonli saytni ochadi (`server.url`), imzo kaliti va paket nomi o'zgarmaydi; yangi APK — yangi `versionCode`, saytdagi `ilova/versiya.json` + `ilova/index.html` havolasi yangilanadi.
