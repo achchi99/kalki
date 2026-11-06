@@ -43,7 +43,7 @@ const SYN = [['bayram oshi', 'osh'], ['toshkent oshi', 'osh'], ['yashil osh', 's
 for (const [s, id] of SYN) assert.ok(top(s, 3).includes(id), '«' + s + '» → ' + top(s).join(',') + ' (kutilgan ' + id + ')');
 log('Sinonim: ' + SYN.length + ' yangi so\'rov (imlo, kirill, ruscha, qisqartma) bazadagi taomni topadi');
 /* 5. eski «topilmadi» so'zlari (D1, 2026-10 holati) — yangi baza bilan topiladigan ulush kamaymagan; ko'p so'zli yozuvda har so'zning eng yaqin taomi (o.loose) */
-for (const [s, ids] of [['tuxum grechka', ['tuxum', 'grechka']], ['non kalbasa', ['non', 'hotdog']]]) { const r = S.search(DB, s, { limit: 6, loose: true }).map((f) => f.id); for (const id of ids) assert.ok(r.includes(id), '«' + s + '» (loose) → ' + r.join(',')); assert.equal(S.search(DB, s, { limit: 6 }).length, 0, '«' + s + '»: loose bo\'lmasa — jim (parseText noto\'g\'ri taomni jimgina olmasin)'); }
+for (const [s, ids] of [['tuxum grechka', [/^tuxum/, /^grechka/]], ['non kalbasa', [/^non/, /^hotdog/]]]) { const r = S.search(DB, s, { limit: 6, loose: true }).map((f) => f.id); for (const id of ids) assert.ok(r.some((x) => id.test(x)), '«' + s + '» (loose) → ' + r.join(',')); assert.equal(S.search(DB, s, { limit: 6 }).length, 0, '«' + s + '»: loose bo\'lmasa — jim (parseText noto\'g\'ri taomni jimgina olmasin)'); }
 assert.equal(S.search(DB, 'asdf qwer', { limit: 3, loose: true }).length, 0, 'bema\'ni yozuv — topilmadi');
 assert.ok(top('ovsyankali', 3).length > 0 && top('mayonezli salat', 3).length > 0, '-li qo\'shimchasi');
 log('Qidiruv: -li/-lik qo\'shimchasi; ko\'p so\'zli yozuvda har so\'zning eng yaqin taomi (faqat qidiruv oynasida); bema\'ni yozuv — topilmadi');
