@@ -393,6 +393,7 @@ const OQSIL = Object.assign({},
   ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })));          // v52
 { const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }
 { const K4 = require('./ovqatlar-kengaytma4.js'); for (const k of Object.keys(K4.TEG)) TEG[k] = (TEG[k] || []).concat(K4.TEG[k]); Object.assign(OQSIL, K4.OQSIL); }   // v66: 3-bosqich
+{ const K6 = require('./ovqatlar-kengaytma6.js'); for (const k of Object.keys(K6.TEG)) TEG[k] = (TEG[k] || []).concat(K6.TEG[k]); Object.assign(OQSIL, K6.OQSIL); }   // v73: baza kengaytirish (topilmagan qidiruvlar)
 { const K5 = require('./ovqatlar-kengaytma5.js'); for (const k of Object.keys(K5.TEG)) TEG[k] = (TEG[k] || []).concat(K5.TEG[k]); Object.assign(OQSIL, K5.OQSIL); }   // v67: fast-food tarmoqlari va muzqaymoq turlari
 { const K3 = require('./ovqatlar-kengaytma3.js'); for (const k of Object.keys(K3.TEG)) TEG[k] = (TEG[k] || []).concat(K3.TEG[k]); Object.assign(OQSIL, K3.OQSIL); }   // v65: 2-bosqich
 { const K2 = require('./ovqatlar-kengaytma2.js'); for (const k of Object.keys(K2.TEG)) TEG[k] = (TEG[k] || []).concat(K2.TEG[k]); Object.assign(OQSIL, K2.OQSIL); }   // v64: bazani kengaytirish, 1-bosqich   // turk taomlari (v21)

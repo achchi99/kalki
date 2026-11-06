@@ -2,6 +2,33 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 73,
+   "d": "2026-11-06",
+   "bn": {
+    "uz": "Baza kengaydi",
+    "ru": "База стала шире"
+   },
+   "items": [
+    {
+     "uz": "Bazaga 39 ta yangi taom qo'shildi: osh turlari, kuksi, somsa va shashlik turlari, sushi va roll, kimchi, bibimbap, ichimliklar.",
+     "ru": "В базу добавлено 39 новых блюд: виды плова, кукси, самса и шашлык, суши и роллы, кимчи, бибимбап, напитки.",
+     "show": "search",
+     "btn": {
+      "uz": "Qo'shish",
+      "ru": "Добавить"
+     }
+    },
+    {
+     "uz": "Topilmasa — «AI bilan baholash» yoki qadoq yorlig'ini suratga olish tugmasi chiqadi.",
+     "ru": "Если не нашли — появится кнопка «Оценить с помощью ИИ» или фото этикетки."
+    },
+    {
+     "uz": "Ko'p so'zli yozuv («tuxum grechka») endi har so'z uchun taom ko'rsatadi.",
+     "ru": "Запись из нескольких слов («яйцо гречка») теперь показывает блюдо для каждого слова."
+    }
+   ]
+  },
+  {
    "v": 72,
    "d": "2026-11-02",
    "bn": {

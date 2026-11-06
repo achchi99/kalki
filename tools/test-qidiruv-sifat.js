@@ -6,7 +6,7 @@ const assert = require('assert'), path = require('path');
 const S = require(path.join(__dirname, '..', 'assets', 'kalkifit-core.js'));
 const DB = S.normFoods(require(path.join(__dirname, '..', 'data', 'ovqatlar.json')).foods); S.buildIndex(DB);
 const by = {}; DB.forEach((f) => { by[f.id] = f; });
-const PALOV = ['osh', 'toy-oshi', 'samarqand-oshi', 'fargona-oshi', 'buxoro-oshi', 'choyxona-osh', 'osh-tovuq'];
+const PALOV = ['osh', 'toy-oshi', 'samarqand-oshi', 'fargona-oshi', 'buxoro-oshi', 'choyxona-osh', 'osh-tovuq', 'osh-qoy', 'osh-mol', 'osh-mevali'];
 const top = (q, n = 5) => S.search(DB, q, { limit: n });
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 // [so'rov, 1-natija (id yoki id lar), birinchi 3 talikka ruxsat etilgan id'lar (null — tekshiruv aloqa bo'yicha)]
@@ -38,7 +38,7 @@ for (const [q, first, top3] of CASES) {
 }
 ok(CASES.length + ' ta mashhur so\'rov (UZ/RU/ЎЗ): 1-natija kutilgan taom, birinchi 3 tasi mantiqiy, 5 talikda aloqasiz taom yo\'q');
 /* palov turlari */
-{ for (const q of ['плов', 'palov', 'osh', 'ош']) { const ids = top(q, 10).map((f) => f.id); PALOV.forEach((id) => assert.ok(ids.includes(id), q + ': ' + id)); }
+{ for (const q of ['плов', 'palov', 'osh', 'ош']) { const ids = top(q, 10).map((f) => f.id); PALOV.slice(0, 7).forEach((id) => assert.ok(ids.includes(id), q + ': ' + id)); }
   ['toy-oshi', 'samarqand-oshi', 'fargona-oshi', 'buxoro-oshi'].forEach((id) => { const f = by[id]; assert.ok(f && f.k > 150 && f.k < 260, id + ' kkal ' + (f && f.k)); assert.equal(f.x, 1, id + ': taxminiy (retsept hisobi)'); });
   ok('Palov turlari: oddiy (osh, to\'y oshi), Samarqand, Farg\'ona, Buxoro, choyxona, tovuqli — «плов/palov/osh/ош» da 10 talikda; yangilari retsept bo\'yicha (taxminiy)'); }
 /* shovqin: kam harfli so'rov va imlo xatosi */

@@ -14,7 +14,7 @@ SUT_ICHIMLIK.push('sariyogli-sut');          // v64
 const SUYUQ_TAOM = ['shurva', 'tovuq-shurva', 'uy-tovuq-shurva', 'mastava', 'moshxorda', 'moshxorda-gostsiz', 'chalop', 'mampar', 'unash', 'kesma', 'borsch', 'chuchvara-sho',
   'qaynatma-baliq', 'baliq-shurva', 'loviya-shurva', 'yasmiq-shurva', 'shurva-tovuq-lapsha', 'shurva-pomidor', 'shurva-mol-sabzavot',
   'kafe-shurva', 'kafe-mastava', 'kafe-moshxorda', 'kafe-chuchvara-shorva', 'kafe-tovuq-shurva', 'kafe-kartoshka-shurva', 'kafe-baliq-shurva', 'kafe-lagmon-qoy', 'tr-mercimek', 'tr-ezogelin',
-  'guruch-shurva', 'besh-don-shurva', 'yasmiq-tovuq', 'okroshka', 'solyanka', 'tovuq-bulon', 'sut-oshi'];          // v64
+  'guruch-shurva', 'besh-don-shurva', 'yasmiq-tovuq', 'okroshka', 'solyanka', 'tovuq-bulon', 'sut-oshi', 'kuksi'];          // v64
 const u = {};
 foods.forEach((f) => { if (f.t === 'i') u[f.i] = SPIRTLI.includes(f.i) ? 0 : 1; });
 SUT_ICHIMLIK.forEach((i) => { u[i] = 1; }); SUYUQ_TAOM.forEach((i) => { u[i] = 0.6; });

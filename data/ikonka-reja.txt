@@ -479,3 +479,17 @@
 6|kok-pomidor|two hard green unripe tomatoes, one sliced.|kok-pomidor
 6|mosh-nihol|a small heap of mung bean sprouts, white with tiny green tips, in a small bowl.|mosh-nihol
 6|makaron-quruq|dry short pasta (penne) and a few strands of dry noodles in a small bowl.|makaron-butun-don makaron-butun-don-xom lapsha-xom
+7|nishalda|nishalda, a white airy whipped sugar-egg confection, a soft cloud-like piece with a spoon, on a small plate.|nishalda
+7|pishmaniye|pishmaniye, fine golden-white cotton-like threads of sweet in a loose round heap, on a small plate.|pishmaniye xalvaitar
+7|gazli-suv|a clear glass of sparkling water with small bubbles and a slice of lemon, next to a small bottle.|gazli-suv
+7|sushi-nigiri|three nigiri sushi pieces, oval rice with a slice of orange salmon on top, on a small dark plate with a little soy sauce.|sushi-nigiri
+7|roll-sushi|eight sushi rolls (maki) with white rice, nori and salmon-cream cheese filling, arranged in a row on a rectangular plate.|roll-filadelfiya roll-kaliforniya roll-tempura
+7|kimchi|kimchi, red-spiced fermented cabbage pieces in a small white bowl.|kimchi
+7|bibimbap|bibimbap, rice in a bowl topped with small neat piles of beef, carrot, spinach, kimchi and a fried egg.|bibimbap
+7|tteokbokki|tteokbokki, short cylindrical rice cakes in glossy red spicy sauce in a small bowl.|tteokbokki
+7|funchoza|funchoza, glass noodles with thin carrot strips, beef and herbs in a salad bowl.|funchoza
+7|yunon-salat|Greek salad, chunks of tomato, cucumber, red onion, olives and a square of feta cheese, in a white bowl.|yunon-salat
+7|shakshuka|shakshuka, eggs baked in thick red tomato sauce in a small black pan.|shakshuka
+7|selyodka-shuba|herring under a fur coat, a layered salad slice with purple beet top, on a small plate.|selyodka-shuba
+7|lapsha-vok|wok-fried noodles with chicken and carrot strips in a takeaway box.|lapsha-udon vok-lapsha
+7|bruschetta|bruschetta, two toasted bread slices topped with diced tomato, mozzarella and basil, on a board.|bruschetta
