@@ -1,0 +1,23 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 14 food icons, exactly 6 columns × 3 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+The last 4 cell(s) of the bottom row stay EMPTY (background only).
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+nishalda — nishalda, a white airy whipped sugar-egg confection, a soft cloud-like piece with a spoon, on a small plate.
+pishmaniye — pishmaniye, fine golden-white cotton-like threads of sweet in a loose round heap, on a small plate.
+gazli-suv — a clear glass of sparkling water with small bubbles and a slice of lemon, next to a small bottle.
+sushi-nigiri — three nigiri sushi pieces, oval rice with a slice of orange salmon on top, on a small dark plate with a little soy sauce.
+roll-sushi — eight sushi rolls (maki) with white rice, nori and salmon-cream cheese filling, arranged in a row on a rectangular plate.
+kimchi — kimchi, red-spiced fermented cabbage pieces in a small white bowl.
+bibimbap — bibimbap, rice in a bowl topped with small neat piles of beef, carrot, spinach, kimchi and a fried egg.
+tteokbokki — tteokbokki, short cylindrical rice cakes in glossy red spicy sauce in a small bowl.
+funchoza — funchoza, glass noodles with thin carrot strips, beef and herbs in a salad bowl.
+yunon-salat — Greek salad, chunks of tomato, cucumber, red onion, olives and a square of feta cheese, in a white bowl.
+shakshuka — shakshuka, eggs baked in thick red tomato sauce in a small black pan.
+selyodka-shuba — herring under a fur coat, a layered salad slice with purple beet top, on a small plate.
+lapsha-vok — wok-fried noodles with chicken and carrot strips in a takeaway box.
+bruschetta — bruschetta, two toasted bread slices topped with diced tomato, mozzarella and basil, on a board.

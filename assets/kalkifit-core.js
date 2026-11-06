@@ -630,6 +630,14 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       out.push({ f: f, tier: m.tier, pref: (fav.indexOf(f.id) > -1 ? 1000 : 0) + (freq[f.id] || 0), pop: popOf(f), d: m.d, r: r > -1 ? r : 99, nl: f._nl, ix: ix });
     }); };
     pass(false); if (!out.length) { var soft = qt.filter(function (w) { return !SOFT[w]; }); if (!o._soft && soft.length && soft.length < qt.length) return search(foods, soft.join(' '), Object.assign({}, o, { _soft: 1 })); var sv = !o._sv && spellVar(q); if (sv) { var r2 = search(foods, sv, Object.assign({}, o, { _sv: 1, _soft: 0 })); if (r2.length) return r2; } if (!o._nofz) pass(true); }          // aniq natija yo'q: avval «вареный/отварной/пастеризованное/без масла»siz, keyin imlo xatosi bilan
+    if (!out.length && !o._loose) {                    // v73: «-li/-lik» qo'shimchasi («sasiskali», «ovsyankali»); qidiruv oynasida (o.loose) ko'p so'zli yozuv — har so'zning eng yaqin taomi
+      var dl = function (w) { return w.length > 5 ? w.replace(/(lik|li)$/, '') : w; }, lt = qt.map(dl);
+      if (lt.join(' ') !== whole) { var rl = search(foods, lt.join(' '), Object.assign({}, o, { _loose: 1 })); if (rl.length) return rl; }
+      if (o.loose && qt.length > 1) {
+        var ws = qt.filter(function (w) { return w.length > 2 && !SOFT[w] && !STOP[w] && WORDS[w] == null && !UNITW[w] && qtyNum(w) == null; }), seen = {}, acc = [];
+        if (ws.length > 1) { var all = ws.every(function (w) { var r = search(foods, dl(w), Object.assign({}, o, { _loose: 1, _nofz: 1, limit: 2 })); r.forEach(function (f) { if (!seen[f.id]) { seen[f.id] = 1; acc.push(f); } }); return r.length > 0; }); if (all && acc.length) return acc.slice(0, o.limit || 30); }
+      }
+    }
     out.sort(function (a, b) { return a.tier - b.tier || a.d - b.d || b.pref - a.pref || b.pop - a.pop || a.r - b.r || a.nl - b.nl || a.ix - b.ix; });
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
