@@ -215,7 +215,7 @@
     lbNamePh: 'masalan, qulupnayli yogurt 2,5%', lbBasis: 'Qiymatlar', lbB100: '100 g uchun', lbBp: '1 porsiya uchun', lbKcal: 'Kkal (100 g da)', lbP: 'Oqsil, g', lbF: "Yog', g", lbC: 'Uglevod, g',
     lbPack: "Qadoq og'irligi, g (ixtiyoriy)", lbWarn: "Raqamlar bir-biriga mos emas: oqsil×4 + yog'×9 + uglevod×4 ≈ {a} kkal, yozilgani {k} kkal. Yorliqni qayta tekshiring.",
     lbShare: "Boshqalarga ham yordam bering: mahsulot nomi va raqamlarini (rasmsiz, anonim) umumiy bazaga taklif qilish",
-    qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
+    cheksiz: 'Cheksiz', qPart: '{b} tadan {a} tasi topildi', qAiFor: 'AI baholaydi: {x}', qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
     qLblLink: "Qadoqli mahsulot? Yorlig'idan qo'shing", ft_yorliq: "Yorliqdan qo'shish", ft_yorliqH: "Qadoqli mahsulot: yorliqni suratga oling yoki raqamlarni yozing", rcLbl: "Yorliqdan qo'shish" });
   Object.assign(D.ru, { lbT: 'Добавить по этикетке', lbManT: 'Ввести вручную', lbPickH: 'Сфотографируйте таблицу «Пищевая ценность» на упаковке: чтобы были чётко видны ккал, белки, жиры и углеводы. Цифры прочитаем мы — проверите вы. Фото отправляется на AI-анализ и не сохраняется.',
     lbShot: 'Сфотографировать этикетку', lbMan: 'Введу вручную', lbLeft: 'Сегодня ещё {q} фото (общий лимит с фото блюда, из {n}).', lbBusy: 'Читаем этикетку…',
@@ -223,7 +223,7 @@
     lbNamePh: 'например, йогурт клубничный 2,5%', lbBasis: 'Значения', lbB100: 'на 100 г', lbBp: 'на 1 порцию', lbKcal: 'Ккал (на 100 г)', lbP: 'Белки, г', lbF: 'Жиры, г', lbC: 'Углеводы, г',
     lbPack: 'Вес упаковки, г (по желанию)', lbWarn: 'Цифры не сходятся: белки×4 + жиры×9 + углеводы×4 ≈ {a} ккал, а указано {k} ккал. Проверьте этикетку ещё раз.',
     lbShare: 'Помочь другим: отправить название и цифры продукта (без фото, анонимно) в общую базу',
-    qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
+    cheksiz: 'Без лимита', qPart: 'Найдено {a} из {b}', qAiFor: 'ИИ оценит: {x}', qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
   Object.assign(D.uz, { jbCardTW: "Qadam me'yoringizga qo'shilmayapti — ish turingizni tasdiqlang", khStepJob: "Qadam me'yoringizga allaqachon kiritilgan — ish turingizni tasdiqlang", khJobBtn: 'Ish turini tasdiqlash', exAddC: "Mashg'ulot qo'shish",
@@ -345,7 +345,8 @@
   };
   ['uz', 'ru'].forEach(function (l) { var x = TT[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; });
   if (window.KalkiPlato) ['uz', 'ru'].forEach(function (l) { var x = KalkiPlato.TX[l]; for (var k in x) if (D[l][k] == null) D[l][k] = x[k]; });          // «Nega sekin ozyapman?» matnlari — modulda
-  function T(k, o) { var s = (D[lang] && D[lang][k] != null) ? D[lang][k] : D.uz[k]; if (typeof s === 'string' && o) s = s.replace(/\{(\w+)\}/g, function (m, x) { return o[x] != null ? o[x] : m; }); return s; }
+  var LEFT_KEYS = /^(aiLeft|qLeftPh|qLeftAi|qLeftS|lbLeft|ovLeft)$/;          // v74: «Cheksiz AI» akkaunti — server qoldi = 9999 qaytaradi; «Bugun yana N ta» o'rniga «Cheksiz»
+  function T(k, o) { var s = (D[lang] && D[lang][k] != null) ? D[lang][k] : D.uz[k]; if (o && (o.n === 9999 || o.q === 9999) && LEFT_KEYS.test(k)) return (D[lang] && D[lang].cheksiz) || D.uz.cheksiz; if (typeof s === 'string' && o) s = s.replace(/\{(\w+)\}/g, function (m, x) { return o[x] != null ? o[x] : m; }); return s; }
   var kit = RzKit.create({ root: root, K: Dt, t: function (k) { return T(k); }, lang: langNow, isCyr: isCyr });
   /* Funksiya oynasi (Ovqat qo'shish, Bugun nima yeymiz?, Retsept, Suv, Tez-tez, Idish, Mening taomlarim) yopilganda DOIM Bugun'ga qaytadi (o'tgan kunga yozilayotgan «Ovqat qo'shish» bundan mustasno) */
   var FUNC_KINDS = ['add', 'yeymiz', 'fish', 'retsept', 'tpls', 'vess', 'rcmine', 'recipe', 'water'], _cs0 = kit.closeSheet;
@@ -2255,19 +2256,19 @@
   /* ko'p taomli gap («osh va choy», «2 ta non, choy»): tepada BITTA qator — mavjud ajratish (lokal, topilmagani — AI, limit bilan) */
   var multiMiss = 0;                                  // «Hammasini qo'shish»da topilmagan qism bormi (hammasi topilsa — «topilmadi» deb yozilmaydi)
   function multiHtml(q, n) {
-    multiMiss = 0; if (!isSentence(q)) return ''; var r; try { r = S.parseText(q, allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); } catch (e) { return ''; }
-    multiMiss = r.missing.length;
+    multiMiss = 0; fd.qPart = 0; if (!isSentence(q)) return ''; var r; try { r = S.parseText(S.respace(q, allFoods(), {}), allFoods(), { recents: st.recents, favs: st.favs, freq: S.freqMap(st, todayStr(), 30, dbAlias), vessels: st.vessels }); } catch (e) { return ''; }
+    multiMiss = r.missing.length; fd.qPart = r.items.length && r.missing.length ? 1 : 0;          // v74: qisman topilgan — «3 tadan 2 tasi», AI faqat topilmagan qism uchun
     var parts = r.items.map(function (x) {          // qisqa: «non ½ + qaymoq 50 g + qora choy»
       var nm = S.splitQty(x.text).name || x.text;     // gramm va yarimta — qisqa; qolgani yozilganidek («2 ta somsa», «1 kosa osh»)
       return x.unit === 'g100' ? nm + ' ' + fmt(Math.round(x.g)) + ' ' + unitName('g100') : (x.qty === 0.5 ? nm + ' ½' : x.text);
     }).concat(r.missing).map(function (s) { return String(s).trim(); }).filter(Boolean);
     if (parts.length < 2 && !(parts.length === 1 && !n && r.items.length)) return '';
-    var off = navigator.onLine === false && r.missing.length, lim = r.missing.length && aiq ? '<small class="kq-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeftAi', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : '';
-    return '<button type="button" class="kq-all" id="fdAi" data-act="fqai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('plus', '', 2.4) + '</i><span class="m"><b>' + esc(T('qAll', { x: parts.join(' + ') })) + '</b>' + lim + '</span></button>';
+    var off = navigator.onLine === false && r.missing.length, lim = r.missing.length && aiq ? '<small class="kq-lim' + (aiq.qoldi > 0 ? '' : ' z') + '">' + esc(aiq.qoldi > 0 ? T('qLeftAi', { n: aiq.qoldi }) : T('qNoLeft')) + '</small>' : '', part = fd.qPart ? '<p class="kq-part">' + esc(T('qPart', { a: r.items.length, b: r.items.length + r.missing.length })) + ' · ' + esc(T('qAiFor', { x: r.missing.join(', ') })) + '</p>' : '';
+    return part + '<button type="button" class="kq-all" id="fdAi" data-act="fqai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('plus', '', 2.4) + '</i><span class="m"><b>' + esc(T('qAll', { x: parts.join(' + ') })) + '</b>' + lim + '</span></button>';
   }
   function noneHtml() {                               // v67: «Topilmadimi? Qadoq yorlig'ini suratga oling» (karta) + «Qo'lda kiritish» + ovoz; birinchi «topilmadi»da — bir martalik maslahat
     var off = navigator.onLine === false, tip = fd.lbTip || !prefs().lbTip; if (!prefs().lbTip) { prefs().lbTip = 1; fd.lbTip = true; save(); }
-    return '<div class="kq-none"><b>' + esc(T('qNone')) + '</b>' + (fd && fd.q && fd.q.trim().length > 2 ? '<button type="button" class="kq-lbc" data-act="qnai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('spark') + '</i><span class="m"><b>' + esc(T('qNoneAi')) + '</b><small>' + esc(T('qNoneAiH')) + '</small></span>' + ico('chev', 'r') + '</button>' : '') + '<button type="button" class="kq-lbc" data-act="lbphoto"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('lbl') + '</i><span class="m"><b>' + esc(T('qNoneLbl')) + '</b><small>' + esc(T('qNoneLblH')) + '</small></span>' + ico('chev', 'r') + '</button>' +
+    return '<div class="kq-none"><b>' + esc(T('qNone')) + '</b>' + (fd && fd.q && fd.q.trim().length > 2 && !fd.qPart ? '<button type="button" class="kq-lbc" data-act="qnai"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('spark') + '</i><span class="m"><b>' + esc(T('qNoneAi')) + '</b><small>' + esc(T('qNoneAiH')) + '</small></span>' + ico('chev', 'r') + '</button>' : '') + '<button type="button" class="kq-lbc" data-act="lbphoto"' + (off ? ' disabled aria-disabled="true"' : '') + '><i aria-hidden="true">' + ico('lbl') + '</i><span class="m"><b>' + esc(T('qNoneLbl')) + '</b><small>' + esc(T('qNoneLblH')) + '</small></span>' + ico('chev', 'r') + '</button>' +
       '<div class="kq-nb"><button type="button" class="rz-btn" data-act="lbman">' + ico('pen') + '<span>' + esc(T('lbManT')) + '</span></button>' + (micOk() ? '<button type="button" class="rz-btn" data-act="fmic"' + (off ? ' disabled aria-disabled="true"' : '') + '>' + ico('mic') + '<span>' + esc(T('qVoice')) + '</span></button>' : '') + '</div>' +
       (tip ? '<p class="kq-tip">' + ico('spark', 'sl-inl') + esc(T('qLblTip')) + '</p>' : '') + '</div>';
   }
@@ -2282,10 +2283,20 @@
     var q = fd.q.trim(), sq = S.splitParts(q).length > 1 ? {} : S.splitQty(q), pre = sq.qty != null && sq.name ? { q: sq.qty, u: sq.unit } : null, qn = pre ? sq.name : q, all = S.search(allFoods(), qn, srchOpts(40, true)),          // «рис вареный 100 г» → «рис вареный» qidiriladi, natija 100 g bilan
         list = all.filter(function (f) { return f.custom; }).concat(all.filter(function (f) { return !f.custom; }));          // qidiruv: odam o'zi yozgan — HAMMASI (cheklangani belgi bilan); o'z taomlari birinchi
     var head = multiHtml(q, list.length);
+    qjNote(q, !!list.length || !!(head && !multiMiss));
     if (!list.length) { if (!head || multiMiss) qtNote(q); return head && !multiMiss ? head : head + noneHtml(); }          // v68: gap to'liq tanilgan — faqat «Hammasini qo'shish» («Topilmadi» yo'q)
     var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(qn);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
     var own = '<button type="button" class="sl-txtbtn kq-own" data-act="fcustom">' + ico('plus', 'sl-inl') + esc(T('qOwn')) + '</button>';          // topilgani mos kelmasa — o'z taomi (ro'yxat oxirida, sokin havola)
     return head + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv', pre); }).join(''); } return foodRow(f, f.fam ? S.famPick(f, qn) : null, 'qidiruv', pre); }).join('') + own;
+  }
+  /* v74: umumiy qidiruv hisobi (anonim, so'zsiz): har xil so'rov seansda bir marta — «qidiruv_jami»; natija chiqmasa qo'shimcha «qidiruv_natijasiz» (admin: natijasiz ulush) */
+  var qjTm = null;
+  function qjNote(q, found) {
+    clearTimeout(qjTm);
+    qjTm = setTimeout(function () {
+      if (!fd || fd.q.trim() !== q || q.length < 2) return; var k = q.toLowerCase(); fd.qjSeen = fd.qjSeen || {}; if (fd.qjSeen[k]) return; fd.qjSeen[k] = 1;
+      stEv('qidiruv_jami'); if (!found) stEv('qidiruv_natijasiz');
+    }, 2500);
   }
   var QT_LS = 'kalki_fit_qt', qtTm = null;
   function qtNorm(q) {
@@ -3501,7 +3512,7 @@
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); break; }          // «›» CSS bilan buriladi (aria-expanded)
       case 'qnai': { var q1 = fd.q; openText(null, true); fd.txt = q1; setSheet(textHtml()); txGo(); break; }          // v73: topilmadi → matn ekrani (AI yuborilishi haqida izoh va «AI bilan aniqlash» tugmasi — tasdiq shu yerda)
-      case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = q0; setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
+      case 'fqai': { var q0 = fd.q; openText(null, true); fd.txt = S.respace(q0, allFoods(), {}); setSheet(textHtml()); txGo(); setTimeout(function () { if (fd && fd.missing && fd.missing.length && navigator.onLine !== false) txAi(); }, 80); break; }
       case 'fcustom': { var qv = $('#fdQ'); openCustom(qv ? qv.value : ''); break; }
       case 'cusave': cuSave(); break;
       case 'lbphoto': openLbl('rasm'); break;

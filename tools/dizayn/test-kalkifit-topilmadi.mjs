@@ -38,5 +38,30 @@ try {
   assert.equal(await p2.locator('#fdRes .kq-none').count(), 0, 'ko\'p so\'zli yozuv: topilmadi emas'); assert.ok(await p2.locator('#fdRes .kq-row, #fdRes [data-act=pick], #fdRes button').count() >= 2, 'tuxum va grechka ko\'rinadi');
   assert.match(await p2.locator('#fdRes').innerText(), /[Tt]uxum/); assert.match(await p2.locator('#fdRes').innerText(), /[Gg]rechka/); assert.deepEqual(p2.errs, []);
   log('Ko\'p so\'zli yozuv («tuxum grechka»): har so\'zning eng yaqin taomi ko\'rinadi'); await p2.context().close();
+  /* v74: qisman topilgan gap — «2 tadan 1 tasi topildi», AI faqat topilmagan qism uchun */
+  { const p3 = await open({}); const bodies = []; await p3.route('**/api/kalkifit', (r) => { try { bodies.push(JSON.parse(r.request().postData()).matn); } catch (e) {} r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ovqatlar: [] }) }); });
+    await p3.click('#mainAdd'); await p3.waitForSelector('#fdQ'); await p3.waitForTimeout(400);
+    await p3.fill('#fdQ', 'tuxum grechka guruch non'); await p3.waitForTimeout(500);
+    assert.equal(await p3.locator('#fdRes .kq-part').count(), 0, 'hammasi topildi — qisman yozuvi yo\'q'); assert.equal(await p3.locator('#fdRes [data-act=fqai]').count(), 1, '«Hammasini qo\'shish»'); assert.equal(await p3.locator('#fdRes .kq-none').count(), 0);
+    await p3.fill('#fdQ', 'qatiq qwzxyv'); await p3.waitForTimeout(500);
+    assert.match(await txt(p3, '#fdRes .kq-part'), /2 tadan 1 tasi topildi/); assert.match(await txt(p3, '#fdRes .kq-part'), /AI baholaydi: qwzxyv/); assert.equal(await p3.locator('#fdRes [data-act=qnai]').count(), 0, 'butun matn uchun AI tugmasi yo\'q — faqat topilmagan qism');
+    await p3.click('#fdRes [data-act=fqai]'); await p3.waitForTimeout(900);
+    assert.deepEqual(bodies, ['qwzxyv'], 'AI faqat topilmagan qismni oladi: ' + JSON.stringify(bodies)); assert.deepEqual(p3.errs, []); await p3.context().close(); }
+  log('Qisman topilgan gap: «2 tadan 1 tasi topildi · AI baholaydi: qwzxyv»; AI so\'rovi faqat topilmagan qism; hammasi topilsa — qisman yozuvi va topilmadi yo\'q');
+  /* Cheksiz AI akkaunti: «Bugun yana N ta» o'rniga «Cheksiz» */
+  for (const [lang, re] of [['uz', /Cheksiz/], ['ru', /Без лимита/]]) { const p4 = await open({ lang, ai: { limit: 2, qoldi: 9999 } }); await p4.click('#mainAdd'); await p4.waitForSelector('#fdQ'); await p4.waitForTimeout(700);
+    const body = await p4.locator('#rzSheet').innerText(); assert.match(body, re, lang + ': «Cheksiz»'); assert.doesNotMatch(body, /9999/, lang + ': 9999 ko\'rinmaydi'); assert.deepEqual(p4.errs, []); await p4.context().close(); }
+  { const p5 = await open({ ai: { limit: 5, qoldi: 3 } }); await p5.click('#mainAdd'); await p5.waitForSelector('#fdQ'); await p5.waitForTimeout(700); assert.doesNotMatch(await p5.locator('#rzSheet').innerText(), /Cheksiz/, 'belgisiz akkaunt — oddiy son'); await p5.context().close(); }
+  log('Cheksiz AI akkaunti (server qoldi = 9999): qo\'shish oynasida «Cheksiz» (UZ/RU), 9999 ko\'rinmaydi; oddiy akkaunt — son');
+  /* umumiy qidiruv hodisasi */
+  { const c6 = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' }); const seedSt = seed();
+    await c6.addInitScript((o) => { try { if (!sessionStorage.getItem('__t0')) { sessionStorage.setItem('__t0', '1'); localStorage.setItem('kalki_fit', JSON.stringify(o.st)); localStorage.setItem('kalki_lang', 'uz'); localStorage.setItem('kalki_intro_v2', '1'); } } catch (e) {} }, { st: seedSt });
+    const p6 = await c6.newPage(); p6.errs = []; p6.on('pageerror', (e) => p6.errs.push(String(e))); await p6.route(/googlesyndication|googletagmanager|google-analytics|fonts\.g|ga\.js/, (r) => r.abort()); await p6.route('**/api/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+    await p6.route('**/assets/stat-kun.js*', (r) => r.fulfill({ status: 200, contentType: 'text/javascript', body: "window.__ev=[];window.KalkiStat={create:function(){var o={add:function(h,k){window.__ev.push([h,k||''])},disabled:function(){return false}};return new Proxy(o,{get:function(t,p){return p in t?t[p]:function(){return null}}})}};" }));
+    await p6.goto(BASE + '/kalkifit', { waitUntil: 'networkidle' }); await p6.waitForTimeout(700);
+    await p6.click('#mainAdd'); await p6.waitForSelector('#fdQ'); await p6.waitForTimeout(400); await p6.fill('#fdQ', 'osh'); await p6.waitForTimeout(3200); await p6.fill('#fdQ', 'zzqxwv'); await p6.waitForTimeout(3200);
+    const ev = await p6.evaluate(() => window.__ev.map((x) => x[0])); assert.equal(ev.filter((x) => x === 'qidiruv_jami').length, 2, 'ikki xil so\'rov: ' + ev); assert.equal(ev.filter((x) => x === 'qidiruv_natijasiz').length, 1, 'faqat natijasiz: ' + ev);
+    assert.ok((await p6.evaluate(() => window.__ev.filter((x) => /qidiruv_/.test(x[0])).every((x) => x[1] === ''))), 'so\'z/kalit yuborilmaydi'); await c6.close(); }
+  log('Umumiy qidiruv hodisasi: «qidiruv_jami» har xil so\'rovga, «qidiruv_natijasiz» natija bo\'lmaganda; so\'z yuborilmaydi');
   console.log('topilmadi: ' + n + ' guruh OK');
 } finally { await b.close(); srv.close(); }

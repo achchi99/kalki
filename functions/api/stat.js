@@ -14,7 +14,7 @@ export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa)?$/;          // v6
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
 export const HODISA = {
   faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
-  ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
+  ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, qidiruv_jami: ANY, qidiruv_natijasiz: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|mashq|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram|exeat)$/,
@@ -255,7 +255,8 @@ export async function hisobot(db, davr, now) {
   const pushY = await evSum(db, 'push_yuborildi', dan, gacha), pushB = await evSum(db, 'push_bosildi', dan, gacha);
   let topilmadi = []; try { topilmadi = yigMiqdorsiz(await all(db, 'SELECT soz, SUM(son) AS son FROM qidiruv_topilmadi WHERE sana >= ? AND sana <= ? GROUP BY soz ORDER BY son DESC LIMIT 500', dan, gacha), 20).map((x) => ({ soz: x.soz, son: x.son })); } catch (e) {}          // miqdorsiz yig'iladi: «рис 100 г» + «рис 90 г» = «рис»
   const ext = await kengaytma(db, dan, gacha, bugun, now);
-  return Object.assign({ davr: d, dan, gacha, kpi: Object.assign(cur, { baliq }, ext.kpi), oldingi: prev, seriya, platforma: await ulush('platforma'), til: await ulush('til'), funksiyalar: funk, push: { yuborildi: pushY, bosildi: pushB, foiz: pushY ? Math.round(pushB / pushY * 1000) / 10 : null }, topilmadi }, ext.bolim);
+  const q7a = addD(bugun, -6), qj = await evSum(db, 'qidiruv_jami', q7a, bugun), qn = await evSum(db, 'qidiruv_natijasiz', q7a, bugun), qidiruv7 = { kun: 7, jami: qj, natijasiz: qn, foiz: qj ? Math.round(qn / qj * 1000) / 10 : null };          // v74: natijasiz qidiruv ulushi (so'zsiz hisoblagich; davrdan qat'i nazar 7 kun)
+  return Object.assign({ qidiruv7, davr: d, dan, gacha, kpi: Object.assign(cur, { baliq }, ext.kpi), oldingi: prev, seriya, platforma: await ulush('platforma'), til: await ulush('til'), funksiyalar: funk, push: { yuborildi: pushY, bosildi: pushB, foiz: pushY ? Math.round(pushB / pushY * 1000) / 10 : null }, topilmadi }, ext.bolim);
 }
 
 export async function onRequest({ request, env }) {
