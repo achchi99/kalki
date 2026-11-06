@@ -15,6 +15,7 @@ export function ovozLimits(env) { return { client: pint(env.KALKIFIT_OVOZ_LIMIT,
 export const ovozLimitMsg = () => "Bugungi ovozli kiritish tugadi, yozib qo'shing";
 export const ovozQuota = (env, o) => { const l = ovozLimits(env); return Object.assign({ ns: 'ov', uns: 'ov', site: l.site, client: l.client, ip: l.ip }, o || {}); };
 export const aiLimitMsg = (n) => `Bugungi ${n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.`;
+import { cheksizAkkaunt, takeCheksiz, cheksizNs, CHEKSIZ_QOLDI } from '../_lib/ai-cheksiz.js';
 const KV_TTL = 172800;
 async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 24); }
 const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().slice(0, 10);
@@ -30,6 +31,7 @@ function leftOf(keys, counts, plus) {
   return Math.max(0, q === Infinity ? 0 : q);
 }
 export async function takeKfQuota(env, request, cid, o) {         // o: { ns, site, client, ip, out? }
+  if (cheksizNs(o.ns)) { const ak = await cheksizAkkaunt(env, request); if (ak) { const r = await takeCheksiz(env, ak, o, o.ns + ':site:' + tashkentDay()); return r; } }          // v74: «Cheksiz AI» belgisi — faqat server sessiyasi orqali
   const kv = env.KALKI_AI_KV, keys = await quotaKeys(request, env, cid, o);
   const counts = await Promise.all(keys.map((x) => kv.get(x.k)));
   for (let i = 0; i < keys.length; i++) if ((parseInt(counts[i], 10) || 0) >= keys[i].lim) { if (o.out) o.out.qoldi = 0; return keys[i].s; }
@@ -39,6 +41,7 @@ export async function takeKfQuota(env, request, cid, o) {         // o: { ns, si
 }
 /* sanamasdan: bugun qancha qoldi (hisoblagich uchun) */
 export async function peekKfQuota(env, request, cid, o) {
+  if (cheksizNs(o.ns) && await cheksizAkkaunt(env, request)) return CHEKSIZ_QOLDI;
   const kv = env.KALKI_AI_KV, keys = await quotaKeys(request, env, cid, o);
   return leftOf(keys, await Promise.all(keys.map((x) => kv.get(x.k))), 0);
 }

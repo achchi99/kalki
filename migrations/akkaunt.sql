@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS akkaunt (
   google_sub TEXT UNIQUE,                        -- C bosqichda (Google); hozir NULL
   ism TEXT,                                      -- ko'rsatiladigan ism (≤ 40 belgi): Google ismi yoki foydalanuvchi yozgani; faqat egasiga ko'rinadi
   ism_qolda INTEGER NOT NULL DEFAULT 0,          -- 1 — foydalanuvchi o'zi yozgan: keyingi Google kirishlarida ALMASHTIRILMAYDI
+  ai_cheksiz INTEGER NOT NULL DEFAULT 0,          -- 1 — admin «Cheksiz AI» belgisi qo'ygan (migrations/ai-cheksiz.sql): rasm/yorliq/menyu/matn/ovoz AI kunlik limitlari qo'llanmaydi (kuniga 150 ta chegara)
   yaratilgan INTEGER NOT NULL,
   oxirgi_kirish INTEGER NOT NULL,
   marketing INTEGER NOT NULL DEFAULT 0,          -- alohida rozilik, odatiy 0 (o'chiq)
