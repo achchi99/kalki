@@ -24,7 +24,8 @@ log('Aniq natija o\'zgarmaydi (osh, choy, hotdog…); «6 ta somsa», «6ta soms
 { const r1 = S.respace('tuxum grechka guruch non', DB, {}); const p1 = pt(r1); assert.ok(!p1.missing.length && p1.items.length >= 3, r1 + ' → ' + JSON.stringify(p1.missing)); assert.ok(p1.items.some((x) => x.fid === 'tuxum') && p1.items.some((x) => x.fid === 'grechka'));
   const r2 = S.respace('qatiq zig\'ir', DB, {}); assert.equal(r2, "qatiq, zig'ir"); assert.deepEqual(fids(r2), ['qatiq', 'zigir']);
   const r3 = S.respace('qatiq qwzxyv', DB, {}), p3 = pt(r3); assert.equal(r3, 'qatiq, qwzxyv'); assert.deepEqual(p3.items.map((x) => x.fid), ['qatiq']); assert.deepEqual(p3.missing, ['qwzxyv'], 'topilmagan qism alohida (AI faqat shuni oladi)');
-  const r4 = S.respace('tuxum qwzxyv guruch zzkqxw', DB, {}), p4 = pt(r4); assert.deepEqual(p4.items.map((x) => x.fid), ['tuxum', 'guruch']); assert.deepEqual(p4.missing, ['qwzxyv', 'zzkqxw']);
+  const r4 = S.respace('tuxum qwzxyv guruch zzkqxw', DB, {}), p4 = pt(r4); assert.deepEqual(p4.items.map((x) => x.fid), ['tuxum']); assert.deepEqual(p4.missing, ['qwzxyv guruch', 'zzkqxw'], 'topilmagan so\'z taomdan oldin — sifat («napoleon keki»): butun ibora AI\'ga');
+  assert.equal(S.respace('qwzxyv keki', DB, {}), 'qwzxyv keki', 'sifat + taom: o\'zgarmaydi');
   assert.equal(S.respace('qwzxyv zzkqxw', DB, {}), 'qwzxyv zzkqxw', 'hech narsa topilmasa o\'zgarmaydi'); assert.equal(S.respace('osh', DB, {}), 'osh'); assert.equal(S.respace('1 kosa osh va choy', DB, {}), '1 kosa osh va choy');
   assert.ok(pt(S.respace('2 tuxum grechka', DB, {})).items.find((x) => x.fid === 'tuxum').qty === 2, 'miqdor bo\'lak bilan qoladi'); }
 log('Ko\'p taomli gap: «tuxum grechka guruch non» → 3+ taom; «qatiq zig\'ir» → 2; qisman topilganda topilmagan qism alohida bo\'lak; miqdor saqlanadi; hech narsa topilmasa matn o\'zgarmaydi');

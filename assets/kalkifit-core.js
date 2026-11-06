@@ -788,7 +788,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       while (i < w.length) {
         if (isQ(w[i]) && i < w.length - 1) { pend.push(w[i]); i++; continue; }
         var got = 0;
-        for (var len = Math.min(3, w.length - i); len >= 1 && !got; len--) { var span = pend.concat(w.slice(i, i + len)).join(' '); if (ok(span)) { flush(); parts.push(span); pend = []; i += len; got = 1; hit++; } }
+        for (var len = Math.min(3, w.length - i); len >= 1 && !got; len--) { var span = pend.concat(w.slice(i, i + len)).join(' '); if (ok(span)) { if (bad.length) { parts.push(bad.concat(span).join(' ')); bad = []; } else { parts.push(span); hit++; } pend = []; i += len; got = 1; }          /* topilmagan so'z topilgan taomdan OLDIN bo'lsa — sifat («napoleon keki»): butun ibora topilmagan bo'lib qoladi (AI baholaydi) */ }
         if (!got) { bad = bad.concat(pend, [w[i]]); pend = []; i++; }
       }
       bad = bad.concat(pend); flush();
