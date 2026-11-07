@@ -65,4 +65,10 @@ log('Email kodda/migratsiyada yo\'q — belgi faqat D1 ustuni orqali');
   const ins = db.raw.prepare("INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, ?, '', 'veb', ?)"); ins.run(bugun, 'qidiruv_jami', 200); ins.run(bugun, 'qidiruv_natijasiz', 22); ins.run(old, 'qidiruv_jami', 1000); ins.run(old, 'qidiruv_natijasiz', 900);
   const h = await STAT.hisobot(db, 7, Date.now()); assert.deepEqual(h.qidiruv7, { kun: 7, jami: 200, natijasiz: 22, foiz: 11 }); }
 log('Qidiruv hisobi: «qidiruv_jami» / «qidiruv_natijasiz» qabul qilinadi (so\'zsiz), admin hisobotida 7 kunlik natijasiz ulush (11%), eski kunlar kirmaydi');
+/* 8. v75: birinchi ovqat kartasi voronkasi (ko'rsatildi → tanlandi → ovqat qo'shildi) admin hisobotida */
+{ const bugun = new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10), ins = db.raw.prepare("INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, 'birinchi_karta', ?, 'veb', ?)");
+  for (const [k, v] of [['korsatildi', 50], ['rasm', 3], ['ovoz', 2], ['qidiruv', 10], ['chip', 15], ['qoshildi', 24], ['yopildi', 12]]) ins.run(bugun, k, v);
+  const h = await STAT.hisobot(db, 7, Date.now()); assert.deepEqual(h.birinchiKarta, { korsatildi: 50, tanlandi: 30, qoshildi: 24, yopildi: 12, usul: { rasm: 3, ovoz: 2, qidiruv: 10, chip: 15 } });
+  const html = fs.readFileSync(path.join(ROOT, 'admin/kalkifit-statistika.html'), 'utf8'); assert.match(html, /Birinchi ovqat kartasi/); assert.match(html, /Ko\\'rsatildi/); }
+log('Birinchi ovqat kartasi: ko\'rsatildi 50 → tanlandi 30 (rasm 3, ovoz 2, qidiruv 10, tez tanlov 15) → ovqat qo\'shildi 24; admin\'da «Birinchi ovqat kartasi» qatori');
 console.log('\nai-cheksiz: ' + n + ' guruh OK');
