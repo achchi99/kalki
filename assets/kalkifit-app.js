@@ -1060,7 +1060,7 @@
   };
   function fcAnyFood() { return Object.keys(st.days || {}).some(function (d) { var x = st.days[d]; return x && x.food && x.food.length; }); }
   function fcShow(t) {
-    if (!st || !st.setup || (KD && KD.on) || !st.created) return false;
+    if (!st || !st.setup || (KD && KD.on) || !st.created || lsGet('kalki_no_fc') === '1') return false;          // kalki_no_fc — sinov/ichki o'chirgich (kalki_no_intro kabi)
     var p = prefs(), f = p.fc || (p.fc = {}); if (f.done || fcAnyFood()) return false;
     var cd = new Date(st.created), age = Dt.daysBetween(Dt.ymd(cd.getFullYear(), cd.getMonth() + 1, cd.getDate()), t);
     if (age < 0 || age > 1 || f.c === t) return false;
