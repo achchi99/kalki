@@ -6,7 +6,8 @@ const M = await import(pathToFileURL(path.join(ROOT, 'functions/api/retsept.js')
 let n = 0; const T = async (name, fn) => { try { await fn(); n++; console.log('OK  ', n + '.', name); } catch (e) { console.log('XATO ' + name + ': ' + e.message); process.exit(1); } };
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
 const ASSETS = { fetch: async () => new Response(JSON.stringify(TABLE), { status: 200, headers: { 'Content-Type': 'application/json' } }) };
-const mkEnv = (extra = {}) => Object.assign({ ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), ASSETS }, extra);
+/* v75: bu test ESKI limitni (Android 2 / veb 5) tekshiradi — umumiy chegara oshgan holat (img:site >= RASM_UMUMIY_CHEGARA) */
+const mkEnv = (extra = {}) => { const e = Object.assign({ ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), ASSETS }, extra); e.KALKI_AI_KV.put('img:site:' + new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10), '1000'); return e; };
 const CID = '3f6c1e0a-5b0a-4d0e-9d3c-0a1b2c3d4e5f';
 const req = (body, o = {}) => new Request('https://kalki.uz/api/retsept', { method: o.method || 'POST', headers: Object.assign({ 'Content-Type': 'application/json', Origin: 'https://kalki.uz', 'CF-Connecting-IP': '1.2.3.4' }, o.headers || {}), body: o.method === 'GET' ? undefined : (typeof body === 'string' ? body : JSON.stringify(body)) });
 let sent = []; const model = (reply, ok = true) => { globalThis.fetch = async (url, opt) => { sent.push(JSON.parse(opt.body)); return { ok, status: ok ? 200 : 500, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: reply }] }) }; }; };
@@ -27,14 +28,14 @@ await T('Android ilovasi (platforma: android): kuniga 2 ta, 3-si 429 «Bugungi 2
   model(OK); const env = mkEnv(); const A2 = '11111111-2222-4333-8444-555555555555', W = '66666666-7777-4888-9999-aaaaaaaaaaaa';
   assert.deepEqual(M._test.CLIENT_LIMIT, { veb: 5, android: 2 });
   const peek = async (id, pl) => (await call({ sorov: 'qoldi', mijoz_id: id, platforma: pl }, {}, env)).json();
-  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 2 }, 'boshida 2');
+  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 2, akkaunt: false }, 'boshida 2');
   const r1 = await (await call({ matn: 'android matn 1', mijoz_id: A2, platforma: 'android' }, {}, env)).json(); assert.equal(r1.limit, 2); assert.equal(r1.qoldi, 1);
-  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 1 }, 'peek sanamaydi');  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 1 });
+  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 1, akkaunt: false }, 'peek sanamaydi');  assert.deepEqual(await peek(A2, 'android'), { limit: 2, qoldi: 1, akkaunt: false });
   const r2 = await (await call({ matn: 'android matn 2', mijoz_id: A2, platforma: 'android' }, {}, env)).json(); assert.equal(r2.qoldi, 0);
   const r3 = await call({ matn: 'android matn 3', mijoz_id: A2, platforma: 'android' }, {}, env); assert.equal(r3.status, 429); const j3 = await r3.json(); assert.equal(j3.sabab, 'mijoz'); assert.equal(j3.limit, 2); assert.equal(j3.qoldi, 0); assert.equal(j3.xato, "Bugungi 2 ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.");
   const c = await call({ matn: 'android matn 1', mijoz_id: A2, platforma: 'android' }, {}, env); assert.equal(c.status, 200, 'limitdan keyin ham kesh ishlaydi'); assert.equal((await c.json()).kesh, true);
   const envW = mkEnv(); for (let i = 0; i < 5; i++) { const r = await call({ matn: 'veb matn ' + i, mijoz_id: W }, {}, envW); assert.equal(r.status, 200, 'veb ' + (i + 1)); assert.equal((await r.json()).qoldi, 4 - i); }
-  assert.equal((await call({ matn: 'veb matn 6', mijoz_id: W }, {}, envW)).status, 429); assert.deepEqual(await (await call({ sorov: 'qoldi', mijoz_id: W }, {}, envW)).json(), { limit: 5, qoldi: 0 });
+  assert.equal((await call({ matn: 'veb matn 6', mijoz_id: W }, {}, envW)).status, 429); assert.deepEqual(await (await call({ sorov: 'qoldi', mijoz_id: W }, {}, envW)).json(), { limit: 5, qoldi: 0, akkaunt: false });
   assert.equal((await call({ sorov: 'qoldi', mijoz_id: W, platforma: 'boshqa' }, {}, mkEnv())).status, 200, 'noma\'lum belgi — veb');
 });
 await T('bo\'sh massiv (masalliq emas) — 200 va []', async () => { model('[]'); const j = await (await call({ matn: 'salom qalaysiz', mijoz_id: CID })).json(); assert.deepEqual(j.masalliqlar, []); });

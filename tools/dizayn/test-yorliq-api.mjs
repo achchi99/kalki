@@ -24,7 +24,7 @@ await T('AI yorliq: javobdan FAQAT 100 g raqamlari; porsiya asosida — 100 g ga
 });
 
 await T('MAXFIYLIK: yorliq rasmi KV/D1 ga yozilmaydi (faqat limit hisoblagichlari), modelga faqat bir marta uzatiladi; limit — taom rasmi bilan UMUMIY (ai hisobi)', async () => {
-  const K = kv(), sent = []; const realFetch = globalThis.fetch;
+  const K = kv(), sent = []; K.put('img:site:' + new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10), '1000');          /* v75: ESKI limit (umumiy chegara oshgan holat) */ const realFetch = globalThis.fetch;
   globalThis.fetch = async (url, o) => { sent.push({ url: String(url), body: o && o.body }); return new Response(JSON.stringify({ content: [{ type: 'text', text: '{"yorliq":true,"nom":"Nestle yogurt","kcal":98,"oqsil":3,"yog":2.6,"uglevod":15.6,"asos":"100","qadoq":290,"birlik":"g"}' }] }), { status: 200 }); };
   const db = makeD1(SCHEMA); const env = { ANTHROPIC_API_KEY: 'x', KALKI_AI_KV: K, KALKIFIT_DB: db, IP_HASH_SALT: 't' };
   const IMG = '/9j/' + 'A'.repeat(4000);
@@ -32,7 +32,7 @@ await T('MAXFIYLIK: yorliq rasmi KV/D1 ga yozilmaydi (faqat limit hisoblagichlar
     const r = await rd(await RASM.onRequest({ request: req('/api/kalkifit-rasm', { body: { img: IMG, tur: 'yorliq', til: 'uz', mijoz_id: '11111111-2222-4333-8444-555555555555' } }), env }));
     assert.equal(r.s, 200, r.t); assert.deepEqual(r.j.yorliq, { nom: 'Nestle yogurt', kcal: 98, o: 3, y: 2.6, u: 15.6, qadoq: 290, birlik: 'g' }); assert.equal(r.j.limit, 5); assert.equal(r.j.qoldi, 4);
     assert.equal(sent.length, 1); assert.match(sent[0].body, /ozuqaviy qiymat/i, 'yorliq tizim matni');
-    for (const [k, v] of K.m) { assert.ok(!k.includes('AAAA') && !String(v).includes('AAAA'), 'KV da rasm yo\'q: ' + k); assert.match(k, /^(img:site|ai:(cid|ip)):/, 'faqat limit kaliti: ' + k); assert.match(String(v), /^\d+$/); }
+    for (const [k, v] of K.m) { assert.ok(!k.includes('AAAA') && !String(v).includes('AAAA'), 'KV da rasm yo\'q: ' + k); assert.match(k, /^(img:site|rasm:umumiy|ai:(cid|ip)):/, 'faqat limit kaliti: ' + k); assert.match(String(v), /^\d+$/); }
     assert.equal((await db.prepare('SELECT COUNT(*) AS n FROM yorliq_taklif').first()).n, 0, 'rasm so\'rovi taklif yozmaydi');
     /* oddiy taom rasmi xuddi shu ai hisobidan: 5 tadan 2 tasi ishlatildi */
     globalThis.fetch = async () => new Response(JSON.stringify({ content: [{ type: 'text', text: '[]' }] }), { status: 200 });

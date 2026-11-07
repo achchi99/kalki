@@ -39,7 +39,8 @@ async function aiResolve(env, o, sess) {
   const day = tashkentDay(), kv = env.KALKI_AI_KV, ak = !!sess; let umumiy = false;
   try { umumiy = (parseInt(await kv.get('img:site:' + day), 10) || 0) >= RASM_UMUMIY_CHEGARA; } catch (e) { umumiy = false; }
   const old = aiLimits(env, { platforma: o.platforma });
-  o.client = umumiy ? old.client : (ak ? RASM_LIMIT.akkaunt : RASM_LIMIT.mehmon); o.ip = umumiy ? old.ip : AI_IP.yangi;
+  const ov = parseInt(env.KALKIFIT_AI_LIMIT || env.RETSEPT_CLIENT_LIMIT, 10);          // operatsion o'zgartirish (env): berilsa — mehmon va akkaunt uchun bir xil
+  o.client = umumiy ? old.client : (ov > 0 ? ov : (ak ? RASM_LIMIT.akkaunt : RASM_LIMIT.mehmon)); o.ip = umumiy ? old.ip : (ov > 0 ? ov * 2 : AI_IP.yangi);
   if (o.out) { o.out.limit = o.client; o.out.akkaunt = ak; o.out.umumiy = umumiy; }
   if (umumiy) await umumiyBelgi(env, day);
 }
@@ -51,7 +52,7 @@ async function umumiyBelgi(env, day) {                       // kuniga bir marta
 }
 export async function takeKfQuota(env, request, cid, o) {         // o: { ns, site, client, ip, out? }
   const sess = await sessiyaAkkaunt(env, request);          // v74: sessiya → akkaunt (mehmon — null); belgi FAQAT server sessiyasi orqali
-  if (cheksizNs(o.ns) && sess && sess.c === 1) return takeCheksiz(env, sess.id, o, o.ns + ':site:' + tashkentDay());
+  if (cheksizNs(o.ns) && sess && sess.c === 1) { if (o.out) o.out.akkaunt = true; return takeCheksiz(env, sess.id, o, o.ns + ':site:' + tashkentDay()); }
   if (o.ai) await aiResolve(env, o, sess);
   const kv = env.KALKI_AI_KV, keys = await quotaKeys(request, env, cid, o);
   const counts = await Promise.all(keys.map((x) => kv.get(x.k)));
@@ -62,7 +63,7 @@ export async function takeKfQuota(env, request, cid, o) {         // o: { ns, si
 }
 /* sanamasdan: bugun qancha qoldi (hisoblagich uchun) */
 export async function peekKfQuota(env, request, cid, o) {
-  const sess = await sessiyaAkkaunt(env, request); if (cheksizNs(o.ns) && sess && sess.c === 1) return CHEKSIZ_QOLDI;
+  const sess = await sessiyaAkkaunt(env, request); if (cheksizNs(o.ns) && sess && sess.c === 1) { if (o.out) o.out.akkaunt = true; return CHEKSIZ_QOLDI; }
   if (o.ai) await aiResolve(env, o, sess);
   const kv = env.KALKI_AI_KV, keys = await quotaKeys(request, env, cid, o);
   return leftOf(keys, await Promise.all(keys.map((x) => kv.get(x.k))), 0);

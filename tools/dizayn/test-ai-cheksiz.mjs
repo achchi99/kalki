@@ -10,7 +10,8 @@ const mig = rd('ai-cheksiz.sql'); assert.match(mig, /ALTER TABLE akkaunt ADD COL
 const db = d1([rd('akkaunt.sql'), rd('zaxira.sql'), rd('zaxira-muddat.sql'), rd('zaxira-tarix.sql'), rd('stat.sql'), rd('admin-stat.sql'), tbl]);
 db.raw.exec("CREATE TABLE IF NOT EXISTS audit_dummy (x INTEGER)");
 const kv = () => { const m = new Map(); return { get: async (k) => (m.has(k) ? m.get(k) : null), put: async (k, v) => { m.set(k, v); }, delete: async (k) => { m.delete(k); }, m }; };
-const env = { ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), KALKIFIT_DB: db, KALKIFIT_ADMIN_PASSWORD: 'sir-parol', IP_HASH_SALT: 'tuz' };
+/* v75: bu test ESKI limitni (Android 2 / veb 5) tekshiradi — umumiy chegara oshgan holat (img:site >= RASM_UMUMIY_CHEGARA) */
+const env = { ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), KALKIFIT_DB: db, KALKIFIT_ADMIN_PASSWORD: 'sir-parol', IP_HASH_SALT: 'tuz' }; await env.KALKI_AI_KV.put('img:site:' + new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10), '1000');
 const JPG = Buffer.concat([Buffer.from([0xFF, 0xD8, 0xFF, 0xE0]), Buffer.alloc(300, 7)]).toString('base64');
 globalThis.fetch = async (url, opt) => { const b = JSON.parse(opt.body); const img = JSON.stringify(b).includes('"image"'); return { ok: true, status: 200, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: img ? '[{"variantlar":[{"nom":"Osh","ehtimol":0.9}],"porsiya":"1 porsiya","g":200,"kcal":300,"o":10,"y":10,"u":30}]' : '[{"nom":"x","porsiya":"1","kcal":100,"o":1,"y":1,"u":1}]' }] }) }; };
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex'), tok = () => crypto.randomBytes(32).toString('base64url');
@@ -38,7 +39,7 @@ log('Belgi faqat server sessiyasi orqali: cookie yo\'q / soxta / eskirgan sessiy
 { const out = []; for (let i = 0; i < 6; i++) { const r = await rs(P, tB, '5.5.5.5'); assert.equal(r.status, 200, 'rasm ' + i); out.push(await r.json()); }
   assert.ok(out.every((j) => j.qoldi === CK.CHEKSIZ_QOLDI), 'rasm javobida qoldi=9999');
   for (let i = 0; i < 3; i++) assert.equal((await tx({ matn: 'zzqxw ovqat ' + i, mijoz_id: CID, platforma: 'android' }, tB, '5.5.5.5')).status, 200, 'matn ' + i);
-  assert.deepEqual(await (await rtq({ sorov: 'qoldi', ...P }, tB, '5.5.5.5')).json(), { limit: 2, qoldi: CK.CHEKSIZ_QOLDI }); const qa = await (await rtq({ sorov: 'qoldi', ...P }, tA, '5.5.5.6')).json(); assert.ok(qa.qoldi < 9999); }
+  assert.deepEqual(await (await rtq({ sorov: 'qoldi', ...P }, tB, '5.5.5.5')).json(), { limit: 2, qoldi: CK.CHEKSIZ_QOLDI, akkaunt: true }); const qa = await (await rtq({ sorov: 'qoldi', ...P }, tA, '5.5.5.6')).json(); assert.ok(qa.qoldi < 9999); }
 log('Belgili akkaunt: rasm 6 + matn 3 so\'rov limitdan o\'tdi; hisoblagich qoldi = 9999 («Cheksiz»), belgisizda oddiy son');
 /* 4. kuniga 150 da to'xtaydi (jami, xizmatlar bo'yicha), 151-chi 429 + admin ogohlantirishi */
 { let ok = 9; for (; ok < 150; ok++) { const r = await rs(P, tB, '5.5.5.5'); assert.equal(r.status, 200, 'so\'rov ' + (ok + 1)); }
