@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 74,
+   "d": "2026-11-07",
+   "bn": {
+    "uz": "Birinchi ovqat — 1 daqiqada",
+    "ru": "Первый приём пищи — за минуту"
+   },
+   "items": [
+    {
+     "uz": "Yangi foydalanuvchiga Bugun ekranida «Birinchi ovqatingizni yozing» kartasi chiqadi: rasm, ovoz yoki qidiruv.",
+     "ru": "Новому пользователю на экране «Сегодня» показывается карточка «Запишите первый приём пищи»: фото, голос или поиск."
+    },
+    {
+     "uz": "Soatga qarab 6 ta tez tanlov: bir bosishda standart porsiya qo'shiladi, keyin tahrirlash mumkin.",
+     "ru": "Шесть быстрых вариантов по времени суток: одно нажатие добавляет стандартную порцию, потом можно изменить."
+    }
+   ]
+  },
+  {
    "v": 73,
    "d": "2026-11-06",
    "bn": {
