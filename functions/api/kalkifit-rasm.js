@@ -7,9 +7,9 @@
  * POST { img: <base64 JPEG yoki data URL>, til: 'uz'|'ru'|'kirill', mijoz_id, platforma?, tur? } →
  *   { ovqatlar: [{ nom, ehtimol, boshqa: [{ nom, ehtimol }], porsiya, g, kcal, o, y, u }], aniqlik: '±30%', limit, qoldi } | { xato, sabab?, limit?, qoldi? } */
 import { originOk, json, num, UUID_RE } from './ariza.js';
-import { takeKfQuota, aiLimits, aiLimitMsg } from './kalkifit-quota.js';
+import { takeKfQuota, aiLimits, aiLimitMsg, RASM_SAYT_TAVAN } from './kalkifit-quota.js';
 
-const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 25000, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_SITE = 500;   // sayt tavani: kuniga 500 (KALKIFIT_IMG_SITE_LIMIT); foydalanuvchi limiti — umumiy AI hisobi
+const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 25000, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_SITE = RASM_SAYT_TAVAN;   // sayt tavani: kuniga 500 (KALKIFIT_IMG_SITE_LIMIT); foydalanuvchi limiti — umumiy AI hisobi
 const SYSTEM = `Sen ovqat suratidagi taomlarni ANIQLOVCHI yordamchisan (O'zbekiston va Markaziy Osiyo oshxonasi + kundalik ovqatlar). Vazifang: taom NOMI va porsiya og'irligi; kaloriya faqat zaxira uchun (ilova bazadan oladi).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har taom uchun BITTA element:
 {"variantlar": [{"nom": eng ehtimolli nom, "ehtimol": 0..1}, {"nom": ikkinchi variant, "ehtimol": ...}, {"nom": uchinchi (ixtiyoriy), "ehtimol": ...}], "porsiya": oddiy so'zlarda ("1 lagan", "2 dona"), "g": taxminiy og'irlik gramm (butun son), "kcal": butun porsiya kkal, "o": oqsil g, "y": yog' g, "u": uglevod g}.
@@ -92,13 +92,13 @@ export async function onRequest({ request, env }) {
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
   const cid = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
   const lim = aiLimits(env, body), out = {};
-  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'img', uns: 'ai', site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(lim.client), sabab, limit: lim.client, qoldi: 0 });
+  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'img', uns: 'ai', ai: true, platforma: body.platforma, site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(out.limit || lim.client), sabab, limit: out.limit || lim.client, qoldi: 0, akkaunt: !!out.akkaunt });
   const yorliq = body.tur === 'yorliq';
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz', yorliq); if (r.err) continue;
-    if (yorliq) { const a = extractObj(r.text); if (a) return json(200, { yorliq: sanitizeLabel(a), limit: lim.client, qoldi: out.qoldi }); continue; }
-    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%', limit: lim.client, qoldi: out.qoldi });
+    if (yorliq) { const a = extractObj(r.text); if (a) return json(200, { yorliq: sanitizeLabel(a), limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); continue; }
+    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%', limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt });
   }
   return fail(502);
 }

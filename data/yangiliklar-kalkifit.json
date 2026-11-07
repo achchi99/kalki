@@ -2,6 +2,29 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 75,
+   "d": "2026-11-07",
+   "bn": {
+    "uz": "Rasm bilan ko'proq",
+    "ru": "Больше фото"
+   },
+   "items": [
+    {
+     "uz": "Rasm bilan kiritish kuniga 8 tagacha, Google akkaunt bilan kirsangiz — 15 tagacha.",
+     "ru": "Добавление по фото — до 8 в день, а с аккаунтом Google — до 15.",
+     "show": "akkaunt",
+     "btn": {
+      "uz": "Kirish",
+      "ru": "Войти"
+     }
+    },
+    {
+     "uz": "Limit tugasa, nima qilish kerakligini aniq ko'rsatamiz: Google bilan kirish yoki qidiruv orqali qo'shish.",
+     "ru": "Если лимит закончился, мы подскажем, что делать: войти через Google или добавить через поиск."
+    }
+   ]
+  },
+  {
    "v": 74,
    "d": "2026-11-07",
    "bn": {

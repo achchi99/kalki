@@ -1946,3 +1946,8 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .fc-b{min-height:68px}.rz .fc-later{min-height:40px}.rz .sl-fc{padding-bottom:2px;margin-bottom:6px}
 .rz.sl .sl-fc{padding-bottom:2px;margin-bottom:6px}.rz.sl .fc-later{min-height:36px}.rz.sl .fc-b{padding:8px 6px;gap:4px}.rz.sl .fc-b i{width:30px;height:30px}
 .rz.sl .fc-later{min-height:44px}
+/* v75: rasm limiti oynasi (mehmon / akkaunt) — grafit + mandarin */
+.rz .sl-rl{display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0 4px;text-align:center}
+.rz .sl-rl-i{width:56px;height:56px;border-radius:18px;display:inline-flex;align-items:center;justify-content:center;background:var(--accsoft);color:var(--acc2)}.rz .sl-rl-i .rz-i{width:28px;height:28px}
+.rz .sl-rl .rl-t{margin:0;font-size:var(--t-m);font-weight:600;line-height:1.4;overflow-wrap:anywhere;color:var(--ink)}
+.rz .sl-rl .rl-b{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:4px}

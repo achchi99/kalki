@@ -59,13 +59,13 @@ export async function onRequest({ request, env }) {
   if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503, 'sozlanmagan');
   const cid = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
   const lim = aiLimits(env, body), out = {};
-  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'mn', uns: 'ai', site: num(env.KALKIFIT_MENYU_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(lim.client), sabab, limit: lim.client, qoldi: 0 });
+  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'mn', uns: 'ai', ai: true, platforma: body.platforma, site: num(env.KALKIFIT_MENYU_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(out.limit || lim.client), sabab, limit: out.limit || lim.client, qoldi: 0, akkaunt: !!out.akkaunt });
   const t0 = Date.now(); let sabab2 = 'ai';          // 1–2 urinish, jami ≤ BUDGET_MS (mijoz 50 s kutadi)
   for (let attempt = 0; attempt < 2; attempt++) {
     const left = BUDGET_MS - (Date.now() - t0); if (attempt && left < 12000) break;
     const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz', Math.min(TIMEOUT_MS, left)); if (r.err) { sabab2 = 'ai'; continue; }
-    const list = extractMenu(r.text); if (list) return json(200, { taomlar: sanitize(list), limit: lim.client, qoldi: out.qoldi });
+    const list = extractMenu(r.text); if (list) return json(200, { taomlar: sanitize(list), limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt });
     sabab2 = 'parse';
   }
   return fail(502, sabab2);
