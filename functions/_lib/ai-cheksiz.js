@@ -7,14 +7,18 @@ const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().s
 async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join(''); }
 function cookieOf(request) { const m = /(?:^|;\s*)(?:__Host-)?kalki_s=([A-Za-z0-9_-]{43})(?:;|$)/.exec(request.headers.get('Cookie') || ''); return m ? m[1] : null; }
 const SES_SLIDING = 30 * 86400000;
-/* → akkaunt id (belgisi bor va sessiyasi amalda) | null. Xato/baza yo'q/ustun yo'q — null (cheklov qo'llanadi: xavfsiz tomon). */
-export async function cheksizAkkaunt(env, request) {
+/* → { id, c } (sessiyasi amalda akkaunt; c — «Cheksiz AI» belgisi 0/1) | null (mehmon yoki xato). Tekshiruv FAQAT serverda: HttpOnly sessiya cookie → sessiya → akkaunt. */
+export async function sessiyaAkkaunt(env, request) {
   const db = env && env.KALKIFIT_DB, tok = cookieOf(request); if (!db || !tok) return null;
   try {
     const now = Date.now(), r = await db.prepare('SELECT a.id AS id, a.ai_cheksiz AS c FROM sessiya s JOIN akkaunt a ON a.id = s.akkaunt_id WHERE s.id = ? AND s.muddat_abs > ? AND s.oxirgi > ?').bind(await sha(tok), now, now - SES_SLIDING).first();
-    return r && r.c === 1 ? r.id : null;
-  } catch (e) { return null; }
+    return r ? { id: r.id, c: r.c === 1 ? 1 : 0 } : null;
+  } catch (e) {
+    try { const now = Date.now(), r = await db.prepare('SELECT a.id AS id FROM sessiya s JOIN akkaunt a ON a.id = s.akkaunt_id WHERE s.id = ? AND s.muddat_abs > ? AND s.oxirgi > ?').bind(await sha(tok), now, now - SES_SLIDING).first(); return r ? { id: r.id, c: 0 } : null; } catch (e2) { return null; }          // ai_cheksiz ustuni yo'q (migratsiya) — oddiy akkaunt
+  }
 }
+/* → akkaunt id (belgisi bor va sessiyasi amalda) | null. Xato/baza yo'q/ustun yo'q — null (cheklov qo'llanadi: xavfsiz tomon). */
+export async function cheksizAkkaunt(env, request) { const a = await sessiyaAkkaunt(env, request); return a && a.c === 1 ? a.id : null; }
 const COUNTED = (ns) => ns !== 'tk' && ns !== 'yq';          // taklif / yorliq yuborish — AI so'rovi emas
 export const cheksizNs = COUNTED;
 /* Belgili akkaunt uchun bitta so'rovni hisoblash: butun sayt chegarasi (KV) + akkaunt kunlik chegarasi (D1). null = ruxsat; 'sayt' | 'cheksiz' = rad. */

@@ -215,7 +215,7 @@
     lbNamePh: 'masalan, qulupnayli yogurt 2,5%', lbBasis: 'Qiymatlar', lbB100: '100 g uchun', lbBp: '1 porsiya uchun', lbKcal: 'Kkal (100 g da)', lbP: 'Oqsil, g', lbF: "Yog', g", lbC: 'Uglevod, g',
     lbPack: "Qadoq og'irligi, g (ixtiyoriy)", lbWarn: "Raqamlar bir-biriga mos emas: oqsil×4 + yog'×9 + uglevod×4 ≈ {a} kkal, yozilgani {k} kkal. Yorliqni qayta tekshiring.",
     lbShare: "Boshqalarga ham yordam bering: mahsulot nomi va raqamlarini (rasmsiz, anonim) umumiy bazaga taklif qilish",
-    bkT: 'Birinchi ovqatingizni yozing', bkH: "1 daqiqa yetadi — qaysi usul qulay?", bkCam: 'Rasmga olish', bkMic: 'Aytib berish', bkSrch: 'Qidirish', bkQ: 'Tez tanlov', bkLater: 'Keyinroq', bkOk: "Zo'r boshlanish! Bugun yana {k} kkal", bkOk0: "Zo'r boshlanish!", cheksiz: 'Cheksiz', qPart: '{b} tadan {a} tasi topildi', qAiFor: 'AI baholaydi: {x}', qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
+    bkT: 'Birinchi ovqatingizni yozing', bkH: "1 daqiqa yetadi — qaysi usul qulay?", bkCam: 'Rasmga olish', bkMic: 'Aytib berish', bkSrch: 'Qidirish', bkQ: 'Tez tanlov', bkLater: 'Keyinroq', bkOk: "Zo'r boshlanish! Bugun yana {k} kkal", bkOk0: "Zo'r boshlanish!", rlMeh: "Bugungi rasm limiti tugadi. Google bilan kirsangiz — kuniga 15 ta rasm, ma'lumotlaringiz ham bulutda saqlanadi.", rlAkk: "Bugungi rasm limiti tugadi, ertaga yangilanadi.", rlGoogle: 'Google bilan kirish', rlSearch: "Qidiruv orqali qo'shish", cheksiz: 'Cheksiz', qPart: '{b} tadan {a} tasi topildi', qAiFor: 'AI baholaydi: {x}', qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
     qLblLink: "Qadoqli mahsulot? Yorlig'idan qo'shing", ft_yorliq: "Yorliqdan qo'shish", ft_yorliqH: "Qadoqli mahsulot: yorliqni suratga oling yoki raqamlarni yozing", rcLbl: "Yorliqdan qo'shish" });
   Object.assign(D.ru, { lbT: 'Добавить по этикетке', lbManT: 'Ввести вручную', lbPickH: 'Сфотографируйте таблицу «Пищевая ценность» на упаковке: чтобы были чётко видны ккал, белки, жиры и углеводы. Цифры прочитаем мы — проверите вы. Фото отправляется на AI-анализ и не сохраняется.',
     lbShot: 'Сфотографировать этикетку', lbMan: 'Введу вручную', lbLeft: 'Сегодня ещё {q} фото (общий лимит с фото блюда, из {n}).', lbBusy: 'Читаем этикетку…',
@@ -223,7 +223,7 @@
     lbNamePh: 'например, йогурт клубничный 2,5%', lbBasis: 'Значения', lbB100: 'на 100 г', lbBp: 'на 1 порцию', lbKcal: 'Ккал (на 100 г)', lbP: 'Белки, г', lbF: 'Жиры, г', lbC: 'Углеводы, г',
     lbPack: 'Вес упаковки, г (по желанию)', lbWarn: 'Цифры не сходятся: белки×4 + жиры×9 + углеводы×4 ≈ {a} ккал, а указано {k} ккал. Проверьте этикетку ещё раз.',
     lbShare: 'Помочь другим: отправить название и цифры продукта (без фото, анонимно) в общую базу',
-    bkT: 'Запишите первый приём пищи', bkH: 'Хватит минуты — выберите удобный способ', bkCam: 'Сфотографировать', bkMic: 'Сказать голосом', bkSrch: 'Найти', bkQ: 'Быстрый выбор', bkLater: 'Позже', bkOk: 'Отличное начало! Сегодня ещё {k} ккал', bkOk0: 'Отличное начало!', cheksiz: 'Без лимита', qPart: 'Найдено {a} из {b}', qAiFor: 'ИИ оценит: {x}', qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
+    bkT: 'Запишите первый приём пищи', bkH: 'Хватит минуты — выберите удобный способ', bkCam: 'Сфотографировать', bkMic: 'Сказать голосом', bkSrch: 'Найти', bkQ: 'Быстрый выбор', bkLater: 'Позже', bkOk: 'Отличное начало! Сегодня ещё {k} ккал', bkOk0: 'Отличное начало!', rlMeh: 'Лимит фото на сегодня исчерпан. Войдите через Google — 15 фото в день, а данные будут храниться в облаке.', rlAkk: 'Лимит фото на сегодня исчерпан, завтра обновится.', rlGoogle: 'Войти через Google', rlSearch: 'Добавить через поиск', cheksiz: 'Без лимита', qPart: 'Найдено {a} из {b}', qAiFor: 'ИИ оценит: {x}', qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
   Object.assign(D.uz, { jbCardTW: "Qadam me'yoringizga qo'shilmayapti — ish turingizni tasdiqlang", khStepJob: "Qadam me'yoringizga allaqachon kiritilgan — ish turingizni tasdiqlang", khJobBtn: 'Ish turini tasdiqlash', exAddC: "Mashg'ulot qo'shish",
@@ -2043,9 +2043,17 @@
   }
 
   /* ---------- rasm bilan qo'shish ---------- */
+  /* v75: rasm limiti tugaganda oyna. Mehmon: Google bilan kirish (kuniga 15 ta + bulut zaxira) yoki qidiruv; akkaunt: ertaga yangilanadi + qidiruv. Hodisalar: rasm.limit.mehmon / .akkaunt / .akkaunt_bosildi */
+  function rlHtml(akk) {
+    return '<div class="sl-rl"><i class="sl-rl-i" aria-hidden="true">' + ico('cam') + '</i><p class="rl-t">' + esc(T(akk ? 'rlAkk' : 'rlMeh')) + '</p><div class="rz-actions rl-b">' +
+      (akk ? '' : '<button type="button" class="rz-btn primary full" data-act="rlgoogle">' + esc(T('rlGoogle')) + '</button>') +
+      '<button type="button" class="rz-btn ' + (akk ? 'primary' : 'ghost') + ' full" data-act="rlqid">' + ico('search') + ' ' + esc(T('rlSearch')) + '</button></div></div>';
+  }
   function phHtml() {
     var res = fd.items.length && !fd.busy, h = shHead(T('phT')) + (res ? '' : '<p class="rz-p sm">' + esc(T('phNote')) + '</p>');          // v52: natija chiqqach — izoh va limit qatori yo'q (360 px'da ikkinchi taom ko'rinsin)
     if (fd.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('phBusy')) + '</b></div>';
+    var pl = !res && !fd.items.length && (fd.phLim || (aiq && aiq.qoldi <= 0 && aiq.limit > 0 ? { akk: aiq.akk } : null));          // v75: rasm limiti tugadi — mehmon / akkaunt oynasi
+    if (pl) return h + rlHtml(pl.akk);
     if (fd.phErr) h += '<p class="rz-p warn">' + esc(fd.phErr) + '</p>';
     if (aiq && !fd.busy && !res) h += '<p class="rz-mut sm sl-aileft" id="phAiLeft">' + esc(aiq.qoldi > 0 ? T('aiLeft', { q: aiq.qoldi, n: aiq.limit }) : T('aiLimit', { n: aiq.limit })) + '</p>';
     if (!fd.items.length && phNative()) return h + '<div class="sl-phc"><button type="button" class="rz-btn primary full" data-act="fphotog">' + ico('img') + ' ' + esc(T('phGal')) + '</button><button type="button" class="rz-btn primary full" data-act="fphotoc">' + ico('cam') + ' ' + esc(T('phCam')) + '</button><button type="button" class="rz-btn ghost full" data-act="fphotof">' + esc(T('phFile')) + '</button></div><div class="rz-actions"><button type="button" class="rz-btn ghost" data-act="fback">' + esc(T('back')) + '</button></div>';
@@ -2058,7 +2066,7 @@
   function aiPlat() { var N = window.KalkiNative; try { return N && N.isApp() && N.platform() === 'android' ? 'android' : ''; } catch (e) { return ''; } }
   var ovq = null;          // ovoz limiti (AI hisobidan alohida): { limit, qoldi } — /api/ovoz va ovozdan keyingi taom ajratish javoblari
   function ovqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; ovq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
-  function aiqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi) }; }
+  function aiqSet(j) { if (!j || !(j.limit > 0) || typeof j.qoldi !== 'number') return; aiq = { limit: j.limit, qoldi: Math.max(0, j.qoldi), akk: !!j.akkaunt }; }
   function aiPeek() { try { fetch('/api/retsept', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sorov: 'qoldi', mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { aiqSet(j); ftLimRefresh(); if (fd && fd.mode === 'search' && kit.sheetKind() === 'add') { repaintPick(); return; } if (!fd || !fd.busy) phRefresh(); }).catch(function () {}); } catch (e) {} }
   /* rasm natijasi → bazadagi taom (kkal bazadan); topilmasa AI qiymati «taxminiy ±30%». vs — AI variantlari (ehtimol bo'yicha): asosiysi + «Bu emasmi?» */
   function phItem(o, nom, vs) {
@@ -2127,7 +2135,7 @@
     });
   }
   function phFile(file) {
-    if (!file) return; if (!fd || kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'photo'; fd.busy = true; fd.phErr = ''; fd.items = []; setSheet(phHtml()); aiPeek();
+    if (!file) return; if (!fd || kit.sheetKind() !== 'add') openAdd({}); fd.mode = 'photo'; fd.busy = true; fd.phErr = ''; fd.phLim = null; fd.items = []; setSheet(phHtml()); aiPeek();
     var bad = function (kind, key) { stEv('ai_sorov', 'rasm.' + kind); fd.busy = false; fd.phErr = T(key); phRefresh(); };
     imgPrep(file, { px: 1024, maxBytes: 600000 }, function (b64, perr) {
       if (!b64) { bad(perr === 'hajm' ? 'hajm' : 'format', perr === 'hajm' ? 'phErrBig' : 'phErrFmt'); return; }
@@ -2135,8 +2143,8 @@
       fetch('/api/kalkifit-rasm', { method: 'POST', signal: ctl ? ctl.signal : undefined, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ img: b64, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) }).then(function (r) { clearTimeout(tm); return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
         aiqSet(res.j);
         var done = function () { fd.busy = false; phRefresh(); };
-        stEv('ai_sorov', 'rasm.' + (res.s === 429 ? 'limit' : (res.s >= 200 && res.s < 300 ? 'ok' : (res.s === 413 ? 'hajm' : (res.s >= 500 ? 'server' : 'xato')))));
-        if (res.s === 429) { fd.phErr = res.j && res.j.sabab !== 'sayt' && res.j.limit > 0 ? T('aiLimit', { n: res.j.limit }) : T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); done(); }
+        stEv('ai_sorov', 'rasm.' + (res.s === 429 ? 'limit' + (res.j && res.j.sabab !== 'sayt' ? (res.j.akkaunt ? '.akkaunt' : '.mehmon') : '') : (res.s >= 200 && res.s < 300 ? 'ok' : (res.s === 413 ? 'hajm' : (res.s >= 500 ? 'server' : 'xato')))));
+        if (res.s === 429) { if (res.j && res.j.sabab !== 'sayt' && res.j.limit > 0) { fd.phLim = { akk: !!res.j.akkaunt }; fd.phErr = ''; } else fd.phErr = T(res.j && res.j.sabab === 'sayt' ? 'phSite' : 'phLimit'); done(); }
         else if (res.s === 413) { fd.phErr = T('phErrBig'); done(); }
         else if (res.s >= 500) { fd.phErr = T('phErrSrv'); done(); }
         else if (res.s !== 200 || !res.j || !res.j.ovqatlar) { fd.phErr = T('phErr'); done(); }
@@ -3565,6 +3573,8 @@
       case 'fcqid': fcUse('qidiruv'); feat('yozish'); break;
       case 'fcchip': fcChipAdd(+el.getAttribute('data-i')); break;
       case 'fcx': fcLater(); break;
+      case 'rlgoogle': stEv('ai_sorov', 'rasm.limit.akkaunt_bosildi'); if (fd) fd.phLim = null; kit.closeSheet(); akk.load(true, function () { if (akk.enabled()) akk.act('akk'); }); break;
+      case 'rlqid': if (fd) fd.phLim = null; openAdd({}); break;
       case 'fquick': quickAdd(el.getAttribute('data-d'), +el.getAttribute('data-i'), el.getAttribute('data-fk')); break;
       case 'pwmore': { var o8 = pwO(); o8.pmore = !o8.pmore; var pm = $('#pwMore'); if (pm) pm.hidden = !o8.pmore; el.setAttribute('aria-expanded', !!o8.pmore); break; }          // «›» CSS bilan buriladi (aria-expanded)
       case 'qnai': { var q1 = fd.q; openText(null, true); fd.txt = q1; setSheet(textHtml()); txGo(); break; }          // v73: topilmadi → matn ekrani (AI yuborilishi haqida izoh va «AI bilan aniqlash» tugmasi — tasdiq shu yerda)

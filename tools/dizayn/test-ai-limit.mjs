@@ -7,7 +7,8 @@ const TABLE = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/retsept-masalliq.
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const kv = () => { const m = new Map(); return { get: async (k) => m.get(k), put: async (k, v) => { m.set(k, v); }, m }; };
 const ASSETS = { fetch: async () => new Response(JSON.stringify(TABLE), { status: 200, headers: { 'Content-Type': 'application/json' } }) };
-const mkEnv = () => ({ ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), ASSETS });
+/* v75: bu test ESKI limitni (Android 2 / veb 5) tekshiradi — umumiy chegara oshgan holat (img:site >= RASM_UMUMIY_CHEGARA) */
+const mkEnv = () => { const e = { ANTHROPIC_API_KEY: 'k', KALKI_AI_KV: kv(), ASSETS }; e.KALKI_AI_KV.put('img:site:' + new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10), '1000'); return e; };
 const JPG = Buffer.concat([Buffer.from([0xFF, 0xD8, 0xFF, 0xE0]), Buffer.alloc(300, 7)]).toString('base64');
 const RT_OK = '[{"nom":"mayiz","id":"mayiz","miqdor":40,"birlik":"g"}]', RS_OK = '[{"variantlar":[{"nom":"Qovurilgan jigar","ehtimol":0.6},{"nom":"Jigar kabob","ehtimol":0.25},{"nom":"Go\'sht (aniq emas)","ehtimol":0.15}],"porsiya":"1 porsiya","g":200,"kcal":380,"o":50,"y":16,"u":8}]';
 globalThis.fetch = async (url, opt) => { const b = JSON.parse(opt.body); const img = JSON.stringify(b).includes('"image"'); return { ok: true, status: 200, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: img ? RS_OK : RT_OK }] }) }; };
@@ -24,7 +25,7 @@ for (const third of ['rasm', 'retsept']) {
   assert.deepEqual(j.ovqatlar[0].boshqa.map((x) => x.nom), ['Jigar kabob', "Go'sht (aniq emas)"]); assert.equal(j.ovqatlar[0].nom, 'Qovurilgan jigar');
   r = third === 'rasm' ? await rs(env, { ...P, img: JPG }) : await rt(env, { ...P, matn: 'android retsept 2' }); assert.equal(r.status, 429, third); j = await r.json();
   assert.equal(j.sabab, 'mijoz'); assert.equal(j.limit, 2); assert.equal(j.xato, "Bugungi 2 ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.");
-  assert.deepEqual(await (await rt(env, { sorov: 'qoldi', ...P })).json(), { limit: 2, qoldi: 0 }, 'hisoblagich ikkala oynada bir xil');
+  assert.deepEqual(await (await rt(env, { sorov: 'qoldi', ...P })).json(), { limit: 2, qoldi: 0, akkaunt: false }, 'hisoblagich ikkala oynada bir xil');
   r = await rt(env, { ...P, matn: 'android retsept 1' }); assert.equal(r.status, 200, 'kesh — limitdan keyin ham'); assert.equal((await r.json()).kesh, true);
 }
 log('Android: retsept 1 + rasm 1 → 3-so\'rov (rasm ham, retsept ham) 429 «Bugungi 2 ta AI so\'rov ishlatildi»; hisoblagich umumiy (2 → 1 → 0); kesh limitdan keyin ham, sanalmaydi');

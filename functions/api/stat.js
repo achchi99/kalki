@@ -15,7 +15,7 @@ const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|ma
 export const HODISA = {
   faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, qidiruv_jami: ANY, birinchi_karta: /^(korsatildi|rasm|ovoz|qidiruv|chip|yopildi|qoshildi)$/, qidiruv_natijasiz: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
-  ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
+  ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$|^rasm\.limit\.(mehmon|akkaunt|akkaunt_bosildi)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|mashq|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram|exeat)$/,
   ai_natija: /^(ovoz|rasm|matn|menyu)\.(ochildi|tahrir|ochirildi|qoshildi|yopildi|bosh|[qy]t(10|30|60|180|x))$/,          // v52: AI natija voronkasi (natija ekrani → qo'shildi / yopildi, soniya guruhi)
@@ -100,6 +100,7 @@ export const OLCHOV = { voronka: ['ai_natija'], harakat: ['mashq_qoshildi', 'qad
 export async function olchovBosh(db, k) { const hs = OLCHOV[k]; return (await one(db, 'SELECT MIN(kun) AS d FROM stat_kun WHERE hodisa IN (' + hs.map(() => '?').join(',') + ')', ...hs)).d || null; }
 export async function olchovDan(db, k, dan, gacha) { const bosh = await olchovBosh(db, k); return { bosh, dan: !bosh ? addD(gacha, 1) : (bosh > dan ? bosh : dan) }; }          // bosh yo'q — bo'sh oraliq (hamma ustun 0 / null)
 async function devCount(db, dan, gacha) { return (await one(db, 'SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ?', dan, gacha)).n || 0; }
+async function evKey(db, h, k, dan, gacha) { return (await one(db, 'SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = ? AND kalit = ? AND kun >= ? AND kun <= ?', h, k, dan, gacha)).n || 0; }
 async function evSum(db, h, dan, gacha) { return (await one(db, 'SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = ? AND kun >= ? AND kun <= ?', h, dan, gacha)).n || 0; }
 async function dauAvg(db, dan, gacha) {
   const r = await all(db, 'SELECT kun, COUNT(*) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? GROUP BY kun', dan, gacha), y = await all(db, 'SELECT kun, SUM(dau) AS n FROM stat_yig WHERE kun >= ? AND kun <= ? GROUP BY kun', dan, gacha), m = {};
@@ -255,10 +256,12 @@ export async function hisobot(db, davr, now) {
   const pushY = await evSum(db, 'push_yuborildi', dan, gacha), pushB = await evSum(db, 'push_bosildi', dan, gacha);
   let topilmadi = []; try { topilmadi = yigMiqdorsiz(await all(db, 'SELECT soz, SUM(son) AS son FROM qidiruv_topilmadi WHERE sana >= ? AND sana <= ? GROUP BY soz ORDER BY son DESC LIMIT 500', dan, gacha), 20).map((x) => ({ soz: x.soz, son: x.son })); } catch (e) {}          // miqdorsiz yig'iladi: «рис 100 г» + «рис 90 г» = «рис»
   const ext = await kengaytma(db, dan, gacha, bugun, now);
+  let rasmUmumiy = []; try { rasmUmumiy = (await all(db, "SELECT kun FROM stat_kun WHERE hodisa = 'rasm_umumiy_chegara' AND kun >= ? ORDER BY kun DESC", addD(bugun, -13))).map((x) => x.kun); } catch (e) {}          // v75: rasm so'rovlari kunlik umumiy chegaradan oshgan kunlar (oxirgi 14 kun)
+  const rasmLim = { mehmon: await evKey(db, 'ai_sorov', 'rasm.limit.mehmon', dan, gacha), akkaunt: await evKey(db, 'ai_sorov', 'rasm.limit.akkaunt', dan, gacha), bosildi: await evKey(db, 'ai_sorov', 'rasm.limit.akkaunt_bosildi', dan, gacha) };
   const bk = async (k) => (await one(db, "SELECT SUM(son) AS n FROM stat_kun WHERE hodisa = 'birinchi_karta' AND kalit = ? AND kun >= ? AND kun <= ?", k, dan, gacha)).n || 0;          // v75: birinchi ovqat kartasi: ko'rsatildi → tanlandi → ovqat qo'shildi
   const bkU = { rasm: await bk('rasm'), ovoz: await bk('ovoz'), qidiruv: await bk('qidiruv'), chip: await bk('chip') }, birinchiKarta = { korsatildi: await bk('korsatildi'), tanlandi: bkU.rasm + bkU.ovoz + bkU.qidiruv + bkU.chip, qoshildi: await bk('qoshildi'), yopildi: await bk('yopildi'), usul: bkU };
   const q7a = addD(bugun, -6), qj = await evSum(db, 'qidiruv_jami', q7a, bugun), qn = await evSum(db, 'qidiruv_natijasiz', q7a, bugun), qidiruv7 = { kun: 7, jami: qj, natijasiz: qn, foiz: qj ? Math.round(qn / qj * 1000) / 10 : null };          // v74: natijasiz qidiruv ulushi (so'zsiz hisoblagich; davrdan qat'i nazar 7 kun)
-  return Object.assign({ qidiruv7, birinchiKarta, davr: d, dan, gacha, kpi: Object.assign(cur, { baliq }, ext.kpi), oldingi: prev, seriya, platforma: await ulush('platforma'), til: await ulush('til'), funksiyalar: funk, push: { yuborildi: pushY, bosildi: pushB, foiz: pushY ? Math.round(pushB / pushY * 1000) / 10 : null }, topilmadi }, ext.bolim);
+  return Object.assign({ qidiruv7, birinchiKarta, rasmUmumiy, rasmLim, davr: d, dan, gacha, kpi: Object.assign(cur, { baliq }, ext.kpi), oldingi: prev, seriya, platforma: await ulush('platforma'), til: await ulush('til'), funksiyalar: funk, push: { yuborildi: pushY, bosildi: pushB, foiz: pushY ? Math.round(pushB / pushY * 1000) / 10 : null }, topilmadi }, ext.bolim);
 }
 
 export async function onRequest({ request, env }) {

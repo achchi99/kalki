@@ -44,8 +44,8 @@ try {
   assert.ok(await p.locator('#phFl [data-act=phpick]').count() >= 1); await p.click('#phFl [data-act=phpick] >> nth=0'); await p.waitForSelector('[data-act=txsave]'); r = await rows(p); assert.match(r[0], /buyrag/i); assert.match(r[0], /bazadan/);
   await p.click('[data-act=txsave]'); await p.waitForTimeout(500); const day = await p.evaluate(() => { const s = JSON.parse(localStorage.getItem('kalki_fit')); return Object.values(s.days).flatMap((d) => d.food); }); assert.ok(day.some((e) => /buyrak/.test(e.fid || '')), 'saqlandi (bazadagi taom): ' + JSON.stringify(day.map((e) => e.fid))); assert.deepEqual(p.errs, []); await p.context().close();
   log('«Boshqasini qidirish»: nom yozib bazadan tanlash (buyrak) → kkal bazadan, saqlanadi');
-  /* 4. limit: rasm 429 → umumiy matn (UZ/RU), qo'lda qo'shish va qidiruv ishlaydi */
-  for (const [lang, url, re] of [['uz', '/kalkifit', /Bugungi 2 ta AI so'rov ishlatildi\. Ertaga yana urinib ko'ring\./], ['ru', '/ru/kalkifit', /Сегодняшние AI-запросы \(2\) использованы/], ['cyr', '/kalkifit?lang=cyr', /Бугунги 2 та AI сўров ишлатилди/]]) {
+  /* 4. limit: rasm 429 → v75 limit oynasi (mehmon: Google bilan kirish + qidiruv; UZ/RU/ЎЗ) — batafsil: test-rasm-limit-ui */
+  for (const [lang, url, re] of [['uz', '/kalkifit', /Bugungi rasm limiti tugadi\. Google bilan kirsangiz/], ['ru', '/ru/kalkifit', /Лимит фото на сегодня исчерпан/], ['cyr', '/kalkifit?lang=cyr', /Бугунги расм лимити тугади/]]) {
     p = await mk({ android: true, lang, url, rasm: () => ({ status: 429, json: { xato: 'x', sabab: 'mijoz', limit: 2, qoldi: 0 } }), peek: () => ({ limit: 2, qoldi: 0 }) });
     await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); await p.setInputFiles('#phIn', { name: 'o.jpg', mimeType: 'image/jpeg', buffer: JPG }); await p.waitForTimeout(1500);
     assert.match(await p.locator('#rzSheet').innerText(), re, lang); await p.click('#rzSheet [data-act=fback]').catch(() => {}); await p.waitForTimeout(300); assert.deepEqual(p.errs, []); await p.context().close(); }

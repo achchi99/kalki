@@ -53,10 +53,10 @@ export async function onRequest({ request, env }) {
   let body;
   try { const raw = await request.text(); if (raw.length > 3000) return fail(400); body = JSON.parse(raw); } catch (e) { return fail(400); }
   if (!body || typeof body !== 'object' || Array.isArray(body)) return fail(400);
-  const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '', lim = limits(env, body), qo = { ns: 'rt', uns: 'ai', site: num(env.RETSEPT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: lim.client, ip: lim.ip };
+  const clientId = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '', lim = limits(env, body), qo = { ns: 'rt', uns: 'ai', ai: true, platforma: body.platforma, site: num(env.RETSEPT_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: lim.client, ip: lim.ip };
   if (body.sorov === 'qoldi') {                                     // hisoblagich: sanamaydi
     if (!env.KALKI_AI_KV) return fail(503);
-    try { return json(200, { limit: lim.client, qoldi: await peekKfQuota(env, request, clientId, qo) }); } catch (e) { return fail(503); }
+    try { const o0 = {}; qo.out = o0; const q0 = await peekKfQuota(env, request, clientId, qo); return json(200, { limit: o0.limit || lim.client, qoldi: q0, akkaunt: !!o0.akkaunt }); } catch (e) { return fail(503); }
   }
   if (typeof body.matn !== 'string') return fail(400);
   const matn = body.matn.trim(); if (matn.length < 2 || matn.length > MAX_LEN) return fail(400);
@@ -65,12 +65,12 @@ export async function onRequest({ request, env }) {
   try { const hit = await env.KALKI_AI_KV.get(key); if (hit) { const j = JSON.parse(hit); if (j && Array.isArray(j.masalliqlar)) return json(200, { masalliqlar: j.masalliqlar, kesh: true }); } } catch (e) { /* kesh o'qilmadi — davom */ }
   const out = {}; qo.out = out;
   let sabab; try { sabab = await takeKfQuota(env, request, clientId, qo); } catch (e) { return fail(503); }
-  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : limitMsg(lim.client), sabab, limit: lim.client, qoldi: 0 });
+  if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : limitMsg(out.limit || lim.client), sabab, limit: out.limit || lim.client, qoldi: 0, akkaunt: !!out.akkaunt });
   for (let attempt = 0; attempt < 2; attempt++) {
     const r = await askModel(env, maskPII(matn), SYS + (body.til === 'ru' ? '\nMatn ruscha bo\'lishi mumkin: ruscha masalliqlarni ham ro\'yxatdagi id bilan moslashtir.' : ''), 1100);
     if (r.err) continue;
     const list = extractJson(r.text);
-    if (list) { const masalliqlar = sanitize(list); try { await env.KALKI_AI_KV.put(key, JSON.stringify({ masalliqlar }), { expirationTtl: CACHE_TTL }); } catch (e) { /* keshga yozilmadi */ } return json(200, { masalliqlar, limit: lim.client, qoldi: out.qoldi }); }
+    if (list) { const masalliqlar = sanitize(list); try { await env.KALKI_AI_KV.put(key, JSON.stringify({ masalliqlar }), { expirationTtl: CACHE_TTL }); } catch (e) { /* keshga yozilmadi */ } return json(200, { masalliqlar, limit: out.limit || lim.client, qoldi: out.qoldi }); }
   }
   return fail(502);
 }
