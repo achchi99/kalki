@@ -215,7 +215,7 @@
     lbNamePh: 'masalan, qulupnayli yogurt 2,5%', lbBasis: 'Qiymatlar', lbB100: '100 g uchun', lbBp: '1 porsiya uchun', lbKcal: 'Kkal (100 g da)', lbP: 'Oqsil, g', lbF: "Yog', g", lbC: 'Uglevod, g',
     lbPack: "Qadoq og'irligi, g (ixtiyoriy)", lbWarn: "Raqamlar bir-biriga mos emas: oqsil×4 + yog'×9 + uglevod×4 ≈ {a} kkal, yozilgani {k} kkal. Yorliqni qayta tekshiring.",
     lbShare: "Boshqalarga ham yordam bering: mahsulot nomi va raqamlarini (rasmsiz, anonim) umumiy bazaga taklif qilish",
-    fcT: 'Birinchi ovqatingizni yozing', fcH: "1 daqiqa yetadi — qaysi usul qulay?", fcCam: 'Rasmga olish', fcMic: 'Aytib berish', fcSrch: 'Qidirish', fcQ: 'Tez tanlov', fcLater: 'Keyinroq', fcOk: "Zo'r boshlanish! Bugun yana {k} kkal", fcOk0: "Zo'r boshlanish!", cheksiz: 'Cheksiz', qPart: '{b} tadan {a} tasi topildi', qAiFor: 'AI baholaydi: {x}', qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
+    bkT: 'Birinchi ovqatingizni yozing', bkH: "1 daqiqa yetadi — qaysi usul qulay?", bkCam: 'Rasmga olish', bkMic: 'Aytib berish', bkSrch: 'Qidirish', bkQ: 'Tez tanlov', bkLater: 'Keyinroq', bkOk: "Zo'r boshlanish! Bugun yana {k} kkal", bkOk0: "Zo'r boshlanish!", cheksiz: 'Cheksiz', qPart: '{b} tadan {a} tasi topildi', qAiFor: 'AI baholaydi: {x}', qNoneAi: 'AI bilan baholash', qNoneAiH: "Yozganingizni AI taxminiy baholaydi — yuborishdan oldin so'raymiz.", qNoneLbl: "Topilmadimi? Qadoq yorlig'ini suratga oling", qNoneLblH: "Raqamlarni o'qiymiz, siz tekshirasiz — taom «Mening taomlarim»ga tushadi.", qLblTip: "Maslahat: bir marta qo'shgan taomingiz keyingi safar qidiruvda birinchi chiqadi.",
     qLblLink: "Qadoqli mahsulot? Yorlig'idan qo'shing", ft_yorliq: "Yorliqdan qo'shish", ft_yorliqH: "Qadoqli mahsulot: yorliqni suratga oling yoki raqamlarni yozing", rcLbl: "Yorliqdan qo'shish" });
   Object.assign(D.ru, { lbT: 'Добавить по этикетке', lbManT: 'Ввести вручную', lbPickH: 'Сфотографируйте таблицу «Пищевая ценность» на упаковке: чтобы были чётко видны ккал, белки, жиры и углеводы. Цифры прочитаем мы — проверите вы. Фото отправляется на AI-анализ и не сохраняется.',
     lbShot: 'Сфотографировать этикетку', lbMan: 'Введу вручную', lbLeft: 'Сегодня ещё {q} фото (общий лимит с фото блюда, из {n}).', lbBusy: 'Читаем этикетку…',
@@ -223,7 +223,7 @@
     lbNamePh: 'например, йогурт клубничный 2,5%', lbBasis: 'Значения', lbB100: 'на 100 г', lbBp: 'на 1 порцию', lbKcal: 'Ккал (на 100 г)', lbP: 'Белки, г', lbF: 'Жиры, г', lbC: 'Углеводы, г',
     lbPack: 'Вес упаковки, г (по желанию)', lbWarn: 'Цифры не сходятся: белки×4 + жиры×9 + углеводы×4 ≈ {a} ккал, а указано {k} ккал. Проверьте этикетку ещё раз.',
     lbShare: 'Помочь другим: отправить название и цифры продукта (без фото, анонимно) в общую базу',
-    fcT: 'Запишите первый приём пищи', fcH: 'Хватит минуты — выберите удобный способ', fcCam: 'Сфотографировать', fcMic: 'Сказать голосом', fcSrch: 'Найти', fcQ: 'Быстрый выбор', fcLater: 'Позже', fcOk: 'Отличное начало! Сегодня ещё {k} ккал', fcOk0: 'Отличное начало!', cheksiz: 'Без лимита', qPart: 'Найдено {a} из {b}', qAiFor: 'ИИ оценит: {x}', qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
+    bkT: 'Запишите первый приём пищи', bkH: 'Хватит минуты — выберите удобный способ', bkCam: 'Сфотографировать', bkMic: 'Сказать голосом', bkSrch: 'Найти', bkQ: 'Быстрый выбор', bkLater: 'Позже', bkOk: 'Отличное начало! Сегодня ещё {k} ккал', bkOk0: 'Отличное начало!', cheksiz: 'Без лимита', qPart: 'Найдено {a} из {b}', qAiFor: 'ИИ оценит: {x}', qNoneAi: 'Оценить с помощью ИИ', qNoneAiH: 'ИИ приблизительно оценит написанное — перед отправкой спросим.', qNoneLbl: 'Не нашли? Сфотографируйте этикетку', qNoneLblH: 'Цифры прочитаем мы, проверите вы — продукт попадёт в «Мои блюда».', qLblTip: 'Совет: добавленный один раз продукт в следующий раз будет первым в поиске.',
     qLblLink: 'Продукт в упаковке? Добавьте по этикетке', ft_yorliq: 'Добавить по этикетке', ft_yorliqH: 'Продукт в упаковке: сфотографируйте этикетку или введите цифры', rcLbl: 'Добавить по этикетке' });
   /* v69: «Imkoniyatlar» — 4 yo'l; qisqa jumlali izohlar (kesilgan «…» yo'q) */
   Object.assign(D.uz, { jbCardTW: "Qadam me'yoringizga qo'shilmayapti — ish turingizni tasdiqlang", khStepJob: "Qadam me'yoringizga allaqachon kiritilgan — ish turingizni tasdiqlang", khJobBtn: 'Ish turini tasdiqlash', exAddC: "Mashg'ulot qo'shish",
@@ -1075,12 +1075,12 @@
     var p = prefs(), f = p.fc, t = todayStr(), first = !(f.sh && f.sh[t]);
     if (first) { (f.sh || (f.sh = {}))[t] = 1; f.s = 1; save(); stEv('birinchi_karta', 'korsatildi'); }
     var chips = fcList().map(function (c, i) { return '<button type="button" class="sl-chip fc-chip" data-act="fcchip" data-i="' + i + '" title="' + esc(c.q + ' ' + (unitName(c.u))) + '">' + esc(nameOf(c.f).replace(/\s*\(.*\)\s*$/, '')) + '</button>'; }).join('');
-    return '<section class="rz-card sl-fc" id="fcCard" aria-labelledby="fcT"><h3 id="fcT">' + esc(T('fcT')) + '</h3><p class="rz-p sm">' + esc(T('fcH')) + '</p>' +
-      '<div class="fc-big"><button type="button" class="fc-b" data-act="fcrasm"><i aria-hidden="true">' + ico('cam') + '</i><span>' + esc(T('fcCam')) + '</span></button>' +
-      '<button type="button" class="fc-b" data-act="fcovoz"><i aria-hidden="true">' + ico('mic') + '</i><span>' + esc(T('fcMic')) + '</span></button>' +
-      '<button type="button" class="fc-b" data-act="fcqid"><i aria-hidden="true">' + ico('search') + '</i><span>' + esc(T('fcSrch')) + '</span></button></div>' +
-      '<div class="fc-chips" role="group" aria-label="' + esc(T('fcQ')) + '">' + chips + '</div>' +
-      '<button type="button" class="sl-txtbtn fc-later" data-act="fcx">' + esc(T('fcLater')) + '</button></section>';
+    return '<section class="rz-card sl-fc" id="fcCard" aria-labelledby="fcT"><h3 id="fcT">' + esc(T('bkT')) + '</h3><p class="rz-p sm">' + esc(T('bkH')) + '</p>' +
+      '<div class="fc-big"><button type="button" class="fc-b" data-act="fcrasm"><i aria-hidden="true">' + ico('cam') + '</i><span>' + esc(T('bkCam')) + '</span></button>' +
+      '<button type="button" class="fc-b" data-act="fcovoz"><i aria-hidden="true">' + ico('mic') + '</i><span>' + esc(T('bkMic')) + '</span></button>' +
+      '<button type="button" class="fc-b" data-act="fcqid"><i aria-hidden="true">' + ico('search') + '</i><span>' + esc(T('bkSrch')) + '</span></button></div>' +
+      '<div class="fc-chips" role="group" aria-label="' + esc(T('bkQ')) + '">' + chips + '</div>' +
+      '<button type="button" class="sl-txtbtn fc-later" data-act="fcx">' + esc(T('bkLater')) + '</button></section>';
   }
   function fcUse(usul) { stEv('birinchi_karta', usul); }
   function fcLater() { var f = prefs().fc || (prefs().fc = {}); f.c = todayStr(); save(); stEv('birinchi_karta', 'yopildi'); render(); }
@@ -1094,7 +1094,7 @@
   function fcAfter(t, x, n) {                          // birinchi ovqat qo'shildi: karta yo'qoladi, iliq tasdiq (halqa animatsiyasi bilan 1,5 s)
     var f = prefs().fc; if (!f || !f.s || f.done || !fcAnyFood()) return;
     f.done = 1; save(); stEv('birinchi_karta', 'qoshildi'); fcCel = n; fcCelAt = Date.now(); var k = 0;
-    var go = function () { if (view !== 'today') return; if (kit.sheetKind() && k++ < 40) { setTimeout(go, 600); return; } var el = $('.sl-big'); if (el && !reduce) { el.classList.add('fc-pop'); setTimeout(function () { el.classList.remove('fc-pop'); }, 1500); } toast(n > 0 ? T('fcOk', { k: fmt(n) }) : T('fcOk0'), null, true, 1500); if (fcLast) { var row = $('#rzMain [data-act=editfood][data-id="' + fcLast + '"]'); if (row) flashEl(row); fcLast = null; } };
+    var go = function () { if (view !== 'today') return; if (kit.sheetKind() && k++ < 40) { setTimeout(go, 600); return; } var el = $('.sl-big'); if (el && !reduce) { el.classList.add('fc-pop'); setTimeout(function () { el.classList.remove('fc-pop'); }, 1500); } toast(n > 0 ? T('bkOk', { k: fmt(n) }) : T('bkOk0'), null, true, 1500); if (fcLast) { var row = $('#rzMain [data-act=editfood][data-id="' + fcLast + '"]'); if (row) flashEl(row); fcLast = null; } };
     setTimeout(go, 500);
   }
   function slotHtml(t, x) {
