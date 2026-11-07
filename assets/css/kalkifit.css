@@ -1929,3 +1929,20 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 @keyframes fcIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes fcPop{0%{box-shadow:0 0 0 0 var(--accsoft)}35%{box-shadow:0 0 0 8px var(--accsoft)}100%{box-shadow:0 0 0 0 transparent}}
 @media (prefers-reduced-motion:reduce){.rz .sl-fc{animation:none}.rz .sl-big.fc-pop{animation:none}}
+/* v75: karta ko'ringanda halqa ixchamlashadi (kartaga joy: iPhone'da ekranga to'liq sig'sin); BJU va «Iste'mol | Maqsad» bo'sh kunda yashirin */
+.rz .sl-big.fc-on{padding:8px var(--g2) 0;gap:0;margin-bottom:8px}
+.rz .sl-big.fc-on .kc-vw{transform:scale(.58);transform-origin:50% 0;height:128px;margin-bottom:0}
+.rz .sl-big.fc-on #kChips,.rz .sl-big.fc-on #bjuCard,.rz .sl-big.fc-on .kc-i{display:none}
+
+.rz.fc-card #rzAddBar,.fc-card #rzAddBar{display:none}          /* karta o'zi «Ovqat qo'shish» — pastki tugma yashirin (almashadi) */
+.rz .fc-chip{background:var(--soft);border:0}
+.rz .fc-b{min-height:78px;padding:10px 6px;gap:6px}.rz .fc-b i{width:34px;height:34px;border-radius:12px}.rz .fc-b i .rz-i{width:20px;height:20px}
+.rz .sl-big.fc-on .kc-vw{transform:scale(.52);height:116px}
+.rz.sl.fc-card{--addh:0px}          /* karta ko'ringanda pastki tugma yo'q — ro'yxat navigatsiyagacha cho'ziladi */
+.rz .sl-big.fc-on{padding:4px var(--g2) 0}.rz .sl-big.fc-on .kc-vw{height:100px}
+.rz .fc-later{margin:0 auto}.rz .sl-fc{padding-bottom:6px}
+.rz .sl-big.fc-on{padding-bottom:6px}.rz .sl-big.fc-on .kc-vw{height:118px}
+.rz .fc-chips{margin:8px 0 0}.rz .fc-b{min-height:72px}
+.rz .fc-b{min-height:68px}.rz .fc-later{min-height:40px}.rz .sl-fc{padding-bottom:2px;margin-bottom:6px}
+.rz.sl .sl-fc{padding-bottom:2px;margin-bottom:6px}.rz.sl .fc-later{min-height:36px}.rz.sl .fc-b{padding:8px 6px;gap:4px}.rz.sl .fc-b i{width:30px;height:30px}
+.rz.sl .fc-later{min-height:44px}
