@@ -51,7 +51,7 @@ try {
     assert.match(await p.locator('#rzSheet').innerText(), re, lang); await p.click('#rzSheet [data-act=fback]').catch(() => {}); await p.waitForTimeout(300); assert.deepEqual(p.errs, []); await p.context().close(); }
   log('Limit (rasm 429): «Bugungi 2 ta AI so\'rov ishlatildi…» UZ/ЎЗ/RU — retsept oynasi bilan bir xil matn');
   /* 5. qidiruvda topilmagan so'z — anonim hisoblagich (faqat so'z + kun) */
-  p = await mk({ rasm: () => JIGAR }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); const inp = p.locator('#rzSheet input[type=search], #rzSheet #fdQ').first(); await inp.fill('qwzxyv taomi'); await p.waitForTimeout(3200);
+  p = await mk({ rasm: () => JIGAR }); await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(300); const inp = p.locator('#rzSheet input[type=search], #rzSheet #fdQ').first(); await inp.fill('qwzxyv taomi'); for (let i = 0; i < 48 && !p.qt.length; i++) await p.waitForTimeout(250);          /* shartli kutish (yuk ostida debounce uzayishi mumkin) */ await p.waitForTimeout(400);
   assert.equal(p.qt.length, 1, 'bitta yuborish'); assert.equal(p.qt[0].k.length, 1); assert.equal(p.qt[0].k[0].q, 'qwzxyv taomi'); assert.deepEqual(Object.keys(p.qt[0].k[0]).sort(), ['n', 'q', 's']);
   await inp.fill(''); await inp.fill('qwzxyv taomi'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'bir kunda bir so\'z bir marta');
   await inp.fill('+998901234567'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'telefon raqami yuborilmaydi'); await inp.fill('osh'); await p.waitForTimeout(3000); assert.equal(p.qt.length, 1, 'topilgan so\'z yuborilmaydi'); await p.context().close();
