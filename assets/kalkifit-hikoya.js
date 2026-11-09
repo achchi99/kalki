@@ -82,7 +82,7 @@
   function sGoal(m, o) {
     var g = m.goal, t = o.t, gp = m.goalPrev;
     return '<p class="hk-k">' + esc(t('wrGoalK')) + '</p>' + (gp ? '<p class="hk-pill ' + (gp.ok ? '' : 'alt') + '">' + svgI(gp.ok ? 'check' : 'target') + '<span>' + esc(t(gp.ok ? 'wrGoalOk' : 'wrGoalNo')) + '</span></p>' : '') + '<h2 class="hk-big sm">' + esc(t('wrGoal_' + g.id, { n: g.n })) + '</h2><p class="hk-sub">' + esc(t('wrGoalD_' + g.id, { n: g.n })) + '</p>' +
-      (o.plato ? '<p class="hk-foot">' + esc(o.plato.t) + '</p>' : '') + '<div class="hk-act"><button type="button" class="hk-btn pri" data-hk="goal">' + esc(t('wrAccept')) + '</button>' + (o.plato ? '<button type="button" class="hk-btn" data-hk="plato">' + esc(o.plato.b) + '</button>' : '') + '</div><p class="hk-foot ok" hidden>' + esc(t('wrAccepted')) + '</p>';
+      (o.plato ? '<p class="hk-foot hk-pl">' + esc(o.plato.t) + '</p>' : '') + '<div class="hk-act"><button type="button" class="hk-btn pri" data-hk="goal">' + esc(t('wrAccept')) + '</button>' + (o.plato ? '<button type="button" class="hk-btn" data-hk="plato">' + esc(o.plato.b) + '</button>' : '') + '</div><p class="hk-foot ok" hidden>' + esc(t('wrAccepted')) + '</p>';
   }
   function sFinal(m, o) {
     var t = o.t; return '<p class="hk-k">' + esc(t('wrFinalK')) + '</p><div class="hk-card9"><canvas width="1080" height="1920" aria-label="' + esc(t('wrShareA')) + '"></canvas></div><div class="hk-act col"><button type="button" class="hk-btn pri" data-hk="share">' + esc(t('wrShare')) + '</button><button type="button" class="hk-btn" data-hk="save">' + esc(t('wrSave')) + '</button>' +

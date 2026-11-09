@@ -3231,7 +3231,7 @@
       foodImg: function (fid) { var fl = imgFile(fid, null); return fl ? '/assets/ovqat/' + fl + '-256.webp' : ''; }, kcalUnit: hkKcalUnit };
   }
   function hkOpts(end, m) {
-    var dow = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], reached = {}, plato = plHk(), joke = G && G.cardLine && prefs().jokes !== false ? G.cardLine(jokeCtx(false), 'hafta_xulosa', 'w') : null; if (joke) saveQuiet();
+    var dow = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], reached = {}, plato = plHk(), jl = G && G.cardLine && prefs().jokes !== false ? G.cardLine(jokeCtx(false), 'hafta_xulosa', 'w') : null, joke = jl ? jl.text : null; if (jl) saveQuiet();
     if (plato) { plPrefs().hk = end; save(); }          // «Nega sekin?» — Haftangiz ichida bir marta
     return { m: m, t: function (k, p) { return T(k, p); }, tr: natTr, range: kit.dLabel(m.from) + ' – ' + kit.dLabel(end), dow: dow, dayName: function (d) { return (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(d)]; },
       dark: isDarkNow(), reduce: !!(reduce || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)), joke: joke, plato: plato ? { t: plato.t, b: plato.b } : null,

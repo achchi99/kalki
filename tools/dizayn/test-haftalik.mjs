@@ -61,14 +61,14 @@ const full = () => { const st = mk(), L = S.dayLimit(st, D.addDays(SUN, -3)); re
 try {
   let p = await open(full(), { hour: 18 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'yakshanba 18:00 — hali yo\'q'); await p.context().close();
   p = await open(full()); assert.match(await txt(p, '[data-nudge=hafta]'), /Haftangiz xulosasi tayyor/); await p.click('[data-nudge=hafta] [data-act=hafta]'); await p.waitForSelector('#hkStory');
-  const sh = await txt(p, '#hkStory'); assert.match(sh, /Sizning haftangiz/); assert.ok(HZ.some((x) => sh.includes(x.uz)), 'bitta hazil (hafta_xulosa)'); assert.equal(await p.locator('#hkStory .hk-sl').count(), 5);
+  const sh = await txt(p, '#hkStory'); assert.match(sh, /Haftangiz tayyor/); assert.ok(HZ.some((x) => sh.includes(x.uz)), 'bitta hazil (hafta_xulosa)'); assert.ok(await p.locator('#hkStory .hk-sl').count() >= 12, 'v76: to\'liq hafta — Wrapped slaydlar');
   await p.keyboard.press('Escape'); await p.waitForTimeout(500); assert.equal(await p.locator('#hkStory').count(), 0); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'ko\'rilgach — yana chiqmaydi'); assert.deepEqual(p.errs, []); await p.context().close();
   p = await open(full(), { day: D.addDays(SUN, 1), hour: 9 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 1, 'dushanba ham'); await p.context().close();
   p = await open(full(), { day: D.addDays(SUN, 2), hour: 9 }); assert.equal(await p.locator('[data-nudge=hafta]').count(), 0, 'seshanba — yo\'q'); await p.context().close();
   log('Bugun: yakshanba 19:00 dan dushanba oxirigacha «Haftangiz xulosasi tayyor» (eslatma kartasi) → «Haftangiz» hikoyasi (5 slayd, hazil); Esc bilan yopiladi, qayta chiqmaydi');
-  p = await open(mk(), { url: '/kalkifit?hafta=1', day: D.addDays(SUN, 1), hour: 10 }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /Bu hafta yozuv yo'q/); assert.equal(await p.locator('#hkStory .hk-sl').count(), 2, 'bo\'sh hafta — 2 slayd'); await p.context().close();
-  p = await open(mk(), { url: '/ru/kalkifit?hafta=1' }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /На этой неделе записей нет/); await p.context().close();
-  p = await open(full(), { url: '/kalkifit?lang=cyr&hafta=1' }); await p.waitForSelector('#hkStory'); await p.waitForTimeout(400); assert.match(await txt(p, '#hkStory'), /Сизнинг ҳафтангиз/); await p.context().close();
+  p = await open(mk(), { url: '/kalkifit?hafta=1', day: D.addDays(SUN, 1), hour: 10 }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /Yangi hafta — yangi boshlanish/); assert.equal(await p.locator('#hkStory .hk-sl').count(), 4, 'bo\'sh hafta — 2 slayd'); await p.context().close();
+  p = await open(mk(), { url: '/ru/kalkifit?hafta=1' }); await p.waitForSelector('#hkStory'); assert.match(await txt(p, '#hkStory'), /Новая неделя — новое начало/); await p.context().close();
+  p = await open(full(), { url: '/kalkifit?lang=cyr&hafta=1' }); await p.waitForSelector('#hkStory'); await p.waitForTimeout(400); assert.match(await txt(p, '#hkStory'), /Ҳафтангиз тайёр/); await p.context().close();
   log('?hafta=1 (eslatma bosildi) oynani ochadi; bo\'sh hafta — muloyim matn (UZ/RU); ЎЗ — kirillda');
   /* Profil + APK lokal bildirishnoma */
   p = await open(full(), { native: true, day: D.addDays(SUN, 2), hour: 10 }); await p.waitForTimeout(600);
