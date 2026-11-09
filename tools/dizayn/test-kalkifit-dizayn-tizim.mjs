@@ -68,7 +68,7 @@ try {
   await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); assert.equal(await chipTxt(p), null, 'yopildi'); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'yopilgach shu kuni qayta chiqmaydi');
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '17:00 dan oldin yo\'q');
   p = await open('/kalkifit', { fakeHour: 19, state: seed({ days: 2, dinner: true }) }); assert.equal(await waitChip(p, 5000), null, 'kechki ovqat bor — yo\'q');
-  const isMon = new Date().getDay() === 1;          // v76: «Haftangiz tayyor» chipi — DUSHANBA kuni ilk ochilishda (o'tgan Du–Ya haftada 3+ kun yozuv); boshqa kunlari chip yo'q (nudge kartasi yakshanba kechqurun)
+  const isMon = S.weekdayIdx(TODAY) === 0;          // v76: «Haftangiz tayyor» chipi — DUSHANBA kuni ilk ochilishda (o'tgan Du–Ya haftada 3+ kun yozuv); boshqa kunlari chip yo'q (nudge kartasi yakshanba kechqurun)
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); if (isMon) assert.equal(await waitChip(p), 'Haftangiz tayyor', 'dushanba: 3+ kun yozuv'); else assert.equal(await waitChip(p, 4000), null, 'dushanba emas — Haftangiz chipi yo\'q');
   if (isMon) { await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'Haftangiz: yopilgach shu haftada qayta chiqmaydi'); }
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '<3 kun — Haftangiz chipi yo\'q');
