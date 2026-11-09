@@ -68,11 +68,12 @@ try {
   await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); assert.equal(await chipTxt(p), null, 'yopildi'); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'yopilgach shu kuni qayta chiqmaydi');
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '17:00 dan oldin yo\'q');
   p = await open('/kalkifit', { fakeHour: 19, state: seed({ days: 2, dinner: true }) }); assert.equal(await waitChip(p, 5000), null, 'kechki ovqat bor — yo\'q');
-  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); const MON = false; { const mon = MON; /* dushanba — «Haftangiz» nudge kartasi chiqadi (hwDue), chip emas: sana-ga bog'liq test */ if (mon) assert.equal(await waitChip(p, 4000), null, 'dushanba: hafta xulosasi kartasi (chip yo\'q)'); else assert.equal(await waitChip(p), 'Haftangiz tayyor', '3+ kun yozuv'); }
-  if (!MON) { await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'Haftangiz: yopilgach shu haftada qayta chiqmaydi'); }
+  const isMon = S.weekdayIdx(TODAY) === 0;          // v76: «Haftangiz tayyor» chipi — DUSHANBA kuni ilk ochilishda (o'tgan Du–Ya haftada 3+ kun yozuv); boshqa kunlari chip yo'q (nudge kartasi yakshanba kechqurun)
+  p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); if (isMon) assert.equal(await waitChip(p), 'Haftangiz tayyor', 'dushanba: 3+ kun yozuv'); else assert.equal(await waitChip(p, 4000), null, 'dushanba emas — Haftangiz chipi yo\'q');
+  if (isMon) { await p.click('#rzChip .sl-chip-x'); await p.waitForTimeout(300); await p.reload({ waitUntil: 'networkidle' }); assert.equal(await waitChip(p, 5000), null, 'Haftangiz: yopilgach shu haftada qayta chiqmaydi'); }
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) }); assert.equal(await waitChip(p, 5000), null, '<3 kun — Haftangiz chipi yo\'q');
-  if (!MON) { p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p); await p.click('#rzChip .sl-chip'); await p.waitForTimeout(900); assert.ok(await p.evaluate(() => document.documentElement.classList.contains('hk-on') || !!document.querySelector('.hk')), 'chip «Haftangiz»ni ochadi'); }
-  ok('chiplar: «Kechki ovqat tanlash» (17:00 dan keyin, kechki bo\'sh; yopilsa shu kuni qayta yo\'q), «Haftangiz tayyor» (3+ kun; yopilsa shu haftada qayta yo\'q; bosilsa ochiladi); shart bajarilmasa chiqmaydi');
+  if (isMon) { p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p); await p.click('#rzChip .sl-chip'); await p.waitForTimeout(900); assert.ok(await p.evaluate(() => document.documentElement.classList.contains('hk-on') || !!document.querySelector('.hk')), 'chip «Haftangiz»ni ochadi'); }
+  ok('chiplar: «Kechki ovqat tanlash» (17:00 dan keyin, kechki bo\'sh; yopilsa shu kuni qayta yo\'q), «Haftangiz tayyor» (faqat dushanba, 3+ kun; yopilsa shu haftada qayta yo\'q; bosilsa ochiladi); shart bajarilmasa chiqmaydi');
   /* «Odatdagilarga saqlash»: osh 2+ marta yozilgan, yana qo'shilgach */
   p = await open('/kalkifit', { fakeHour: 10, state: seed({ days: 2 }) });
   await p.click('#mainAdd'); await p.waitForTimeout(700); await p.keyboard.type('osh'); await p.waitForTimeout(800);
@@ -94,7 +95,7 @@ try {
 
   /* 4. kontrast (axe) + emoji faqat hazil/afsonada */
   for (const th of ['light', 'dark']) {
-    p = await open('/kalkifit', { scheme: th, fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p);
+    p = await open('/kalkifit', { scheme: th, fakeHour: 19, state: seed({ days: 2 }) }); await waitChip(p);          /* v76: chip — «Kechki ovqat tanlash» (Haftangiz chipi faqat dushanba) */
     let v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Bugun kontrast: ' + v.join('; ')); v = await axeRun(p, '#rzChip'); assert.deepEqual(v, [], th + ' chip kontrast: ' + v.join('; '));
     await p.click('#rzChip .sl-chip-x'); await p.click('#ftBtn'); await p.waitForTimeout(500); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' panel kontrast: ' + v.join('; '));
     await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(300); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' yo\'l kontrast: ' + v.join('; ')); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
