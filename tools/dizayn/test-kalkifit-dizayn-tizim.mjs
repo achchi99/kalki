@@ -95,7 +95,7 @@ try {
 
   /* 4. kontrast (axe) + emoji faqat hazil/afsonada */
   for (const th of ['light', 'dark']) {
-    p = await open('/kalkifit', { scheme: th, fakeHour: 10, state: seed({ days: 4 }) }); await waitChip(p);
+    p = await open('/kalkifit', { scheme: th, fakeHour: 19, state: seed({ days: 2 }) }); await waitChip(p);          /* v76: chip — «Kechki ovqat tanlash» (Haftangiz chipi faqat dushanba) */
     let v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Bugun kontrast: ' + v.join('; ')); v = await axeRun(p, '#rzChip'); assert.deepEqual(v, [], th + ' chip kontrast: ' + v.join('; '));
     await p.click('#rzChip .sl-chip-x'); await p.click('#ftBtn'); await p.waitForTimeout(500); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' panel kontrast: ' + v.join('; '));
     await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(300); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' yo\'l kontrast: ' + v.join('; ')); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
