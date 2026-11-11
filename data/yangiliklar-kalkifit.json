@@ -2,6 +2,20 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 77,
+   "d": "2026-11-11",
+   "bn": {
+    "uz": "Rasm bilan qo'shish — barqarorroq",
+    "ru": "Добавление по фото — стабильнее"
+   },
+   "items": [
+    {
+     "uz": "Ko'p taomli suratlar endi xatosiz tahlil qilinadi, xato bo'lsa sababi aniq yoziladi va limitingiz kamaymaydi.",
+     "ru": "Фото с несколькими блюдами теперь разбираются без ошибок, а если сбой всё же случится — причина понятна, и лимит не тратится."
+    }
+   ]
+  },
+  {
    "v": 76,
    "d": "2026-11-09",
    "bn": {

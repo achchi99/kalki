@@ -18,7 +18,7 @@ export function ovozLimits(env) { return { client: pint(env.KALKIFIT_OVOZ_LIMIT,
 export const ovozLimitMsg = () => "Bugungi ovozli kiritish tugadi, yozib qo'shing";
 export const ovozQuota = (env, o) => { const l = ovozLimits(env); return Object.assign({ ns: 'ov', uns: 'ov', site: l.site, client: l.client, ip: l.ip }, o || {}); };
 export const aiLimitMsg = (n) => `Bugungi ${n} ta AI so'rov ishlatildi. Ertaga yana urinib ko'ring.`;
-import { sessiyaAkkaunt, takeCheksiz, cheksizNs, CHEKSIZ_QOLDI } from '../_lib/ai-cheksiz.js';
+import { sessiyaAkkaunt, takeCheksiz, refundCheksiz, cheksizNs, CHEKSIZ_QOLDI } from '../_lib/ai-cheksiz.js';
 const KV_TTL = 172800;
 async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 24); }
 const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().slice(0, 10);
@@ -60,6 +60,15 @@ export async function takeKfQuota(env, request, cid, o) {         // o: { ns, si
   await Promise.all(keys.map((x, i) => kv.put(x.k, String((parseInt(counts[i], 10) || 0) + 1), { expirationTtl: KV_TTL })));
   if (o.out) o.out.qoldi = leftOf(keys, counts, 1);
   return null;
+}
+/* v77: MUVAFFAQIYATSIZ so'rov (AI xatosi) hisobdan qaytariladi: takeKfQuota ning aksi — bir ta kamaytiradi (0 dan pastga tushmaydi). Xato yutiladi (qaytarilmasa — kam zarar). */
+export async function refundKfQuota(env, request, cid, o) {
+  try {
+    const sess = await sessiyaAkkaunt(env, request);
+    if (cheksizNs(o.ns) && sess && sess.c === 1) return await refundCheksiz(env, sess.id, o, o.ns + ':site:' + tashkentDay());
+    const kv = env.KALKI_AI_KV, keys = await quotaKeys(request, env, cid, o), counts = await Promise.all(keys.map((x) => kv.get(x.k)));
+    await Promise.all(keys.map((x, i) => { const c = parseInt(counts[i], 10) || 0; return c > 0 ? kv.put(x.k, String(c - 1), { expirationTtl: KV_TTL }) : null; }));
+  } catch (e) { console.error('kvota qaytarilmadi'); }
 }
 /* sanamasdan: bugun qancha qoldi (hisoblagich uchun) */
 export async function peekKfQuota(env, request, cid, o) {

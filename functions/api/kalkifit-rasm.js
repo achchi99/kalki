@@ -7,9 +7,10 @@
  * POST { img: <base64 JPEG yoki data URL>, til: 'uz'|'ru'|'kirill', mijoz_id, platforma?, tur? } →
  *   { ovqatlar: [{ nom, ehtimol, boshqa: [{ nom, ehtimol }], porsiya, g, kcal, o, y, u }], aniqlik: '±30%', limit, qoldi } | { xato, sabab?, limit?, qoldi? } */
 import { originOk, json, num, UUID_RE } from './ariza.js';
-import { takeKfQuota, aiLimits, aiLimitMsg, RASM_SAYT_TAVAN } from './kalkifit-quota.js';
+import { rasmStat } from '../_lib/rasm-stat.js';
+import { takeKfQuota, refundKfQuota, aiLimits, aiLimitMsg, RASM_SAYT_TAVAN } from './kalkifit-quota.js';
 
-const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 25000, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_SITE = RASM_SAYT_TAVAN;   // sayt tavani: kuniga 500 (KALKIFIT_IMG_SITE_LIMIT); foydalanuvchi limiti — umumiy AI hisobi
+const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 18000, TOTAL_MS = 42000, MAX_TOKENS = 1800, MAX_ATTEMPTS = 3, RETRY_WAIT = { band: 1500, default: 700 }, MAX_B64 = 1000000, MAX_BYTES = 700000, DEFAULT_SITE = RASM_SAYT_TAVAN;   // sayt tavani: kuniga 500 (KALKIFIT_IMG_SITE_LIMIT); foydalanuvchi limiti — umumiy AI hisobi
 const SYSTEM = `Sen ovqat suratidagi taomlarni ANIQLOVCHI yordamchisan (O'zbekiston va Markaziy Osiyo oshxonasi + kundalik ovqatlar). Vazifang: taom NOMI va porsiya og'irligi; kaloriya faqat zaxira uchun (ilova bazadan oladi).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har taom uchun BITTA element:
 {"variantlar": [{"nom": eng ehtimolli nom, "ehtimol": 0..1}, {"nom": ikkinchi variant, "ehtimol": ...}, {"nom": uchinchi (ixtiyoriy), "ehtimol": ...}], "porsiya": oddiy so'zlarda ("1 lagan", "2 dona"), "g": taxminiy og'irlik gramm (butun son), "kcal": butun porsiya kkal, "o": oqsil g, "y": yog' g, "u": uglevod g}.
@@ -39,7 +40,17 @@ export function sanitizeLabel(a) {
   const q = n(a.qadoq);
   return { nom: cleanNom(a.nom), kcal: Math.round(k), o, y, u, qadoq: q >= 1 && q <= 5000 ? Math.round(q) : 0, birlik: a.birlik === 'ml' ? 'ml' : 'g' };
 }
-export function extractJson(text) { const t = String(text || '').replace(/```(?:json)?/gi, '').trim(), i = t.indexOf('['), j = t.lastIndexOf(']'); if (i < 0 || j < i) return null; try { const a = JSON.parse(t.slice(i, j + 1)); return Array.isArray(a) ? a : null; } catch (e) { return null; } }
+/* v77: javob max_tokens ga urilib kesilib qolsa (5–6 taomli dasturxon) — to'liq tugagan obyektlar saqlab olinadi (kesilgan oxirgisi tashlanadi) */
+function salvageArray(t) {
+  const i = t.indexOf('['); if (i < 0) return null; const out = []; let depth = 0, st = -1, str = false, esc = false;
+  for (let k = i + 1; k < t.length; k++) {
+    const c = t[k];
+    if (str) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') str = false; continue; }
+    if (c === '"') str = true; else if (c === '{') { if (depth === 0) st = k; depth++; } else if (c === '}') { depth--; if (depth === 0 && st >= 0) { try { out.push(JSON.parse(t.slice(st, k + 1))); } catch (e) { /* o'tkazib yuboriladi */ } st = -1; } }
+  }
+  return out.length ? out : null;
+}
+export function extractJson(text) { const t = String(text || '').replace(/```(?:json)?/gi, '').trim(), i = t.indexOf('['), j = t.lastIndexOf(']'); if (i < 0) return null; if (j > i) { try { const a = JSON.parse(t.slice(i, j + 1)); if (Array.isArray(a)) return a; } catch (e) { /* kesilgan bo'lishi mumkin */ } } return salvageArray(t); }
 const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 const cleanNom = (x) => String(x == null ? '' : x).replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
 export function sanitize(list) {
@@ -67,38 +78,57 @@ export function jpegBytes(b64, lim) {                    // lim — { b64, bytes
   if (head.charCodeAt(0) !== 0xFF || head.charCodeAt(1) !== 0xD8 || head.charCodeAt(2) !== 0xFF) return null;
   return { b64: clean, bytes };
 }
-async function askVision(env, b64, til, yorliq) {
-  const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+/* → { text } | { err: 'band'|'provayder'|'vaqt'|'format'|'ichki', status?, qayta: bool }  (qayta — vaqtinchalik xato: qayta urinish mantiqli) */
+async function askVision(env, b64, til, yorliq, ms) {
+  const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), ms || TIMEOUT_MS);
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', signal: ctl.signal, headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, max_tokens: 700, thinking: { type: 'disabled' }, system: yorliq ? SYSTEM_YORLIQ : SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: yorliq ? "Qadoq yorlig'idagi ozuqaviy qiymatni o'qi." : (til === 'ru' ? 'Определи блюда на фото. Названия — на русском.' : "Suratdagi taomlarni aniqla. Nomlarni o'zbek tilida yoz.") }] }] }) });
-    if (!res.ok) { console.error('rasm: model status', res.status); return { err: true }; }
-    const j = await res.json(); return { text: (j.content || []).map((c) => c.text || '').join('') };
-  } catch (e) { console.error('rasm: model xato'); return { err: true }; } finally { clearTimeout(timer); }
+      body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOKENS, thinking: { type: 'disabled' }, system: yorliq ? SYSTEM_YORLIQ : SYSTEM, messages: [{ role: 'user', content: [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }, { type: 'text', text: yorliq ? "Qadoq yorlig'idagi ozuqaviy qiymatni o'qi." : (til === 'ru' ? 'Определи блюда на фото. Названия — на русском.' : "Suratdagi taomlarni aniqla. Nomlarni o'zbek tilida yoz.") }] }] }) });
+    if (!res.ok) {
+      console.error('rasm: model status', res.status);
+      if (res.status === 429 || res.status === 529) return { err: 'band', status: res.status, qayta: true, wait: Math.min(2000, (parseInt(res.headers.get('retry-after'), 10) || 0) * 1000) };
+      if (res.status >= 500) return { err: 'provayder', status: res.status, qayta: true };
+      if (res.status === 400 || res.status === 413) return { err: 'format', status: res.status, qayta: false };            // rasm provayderga yaramadi (hajm/format)
+      return { err: 'ichki', status: res.status, qayta: false };                                                      // 401/403/404 — kalit yoki model sozlamasi: foydalanuvchi aybi emas
+    }
+    const j = await res.json(); return { text: (j.content || []).map((c) => c.text || '').join(''), stop: j.stop_reason };
+  } catch (e) { const t = e && e.name === 'AbortError'; console.error('rasm: model xato', t ? 'vaqt' : 'tarmoq'); return { err: t ? 'vaqt' : 'provayder', qayta: true }; } finally { clearTimeout(timer); }
 }
 export const _test = { extractJson, sanitize, jpegBytes, SYSTEM, extractObj, sanitizeLabel, SYSTEM_YORLIQ };
 
+/* Xato sabablari (v77): har biri alohida kod — mijoz sabab bo'yicha aniq matn ko'rsatadi (uz/ЎЗ/ru), admin statistikada ajratib ko'rinadi.
+ *   provayder — AI xizmati 5xx/tarmoq xatosi · band — 429/529 (AI band) · vaqt — javob kechikdi · hajm — rasm juda katta · format — rasm o'qilmadi/JPEG emas · ichki — bizning xato (kalit/model sozlamasi, KV/kvota); AI javobi o'qilmasa — provayder */
+const SABAB_HTTP = { provayder: 502, band: 503, vaqt: 504, hajm: 413, format: 400, ichki: 503 };
+const SABAB_MSG = { provayder: "AI hozir javob bermadi. Qidiruv orqali qo'shing.", band: "AI hozir band, 1 daqiqadan keyin urinib ko'ring.", vaqt: "Javob kechikdi. Qayta urinib ko'ring yoki qidiruv orqali qo'shing.", hajm: 'Rasm juda katta.', format: "Rasm o'qilmadi. Boshqa rasm tanlang.", ichki: "Xizmat vaqtincha ishlamayapti. Qidiruv orqali qo'shing." };
 const E = { 400: "Rasm noto'g'ri. JPEG yuboring.", 403: "Ruxsat yo'q.", 405: 'Faqat POST.', 413: 'Rasm juda katta.', 415: 'JSON yuboring.', 4291: "Rasm tahlili bugun juda band — ovqatni matn yoki qidiruv bilan qo'shing. Ertaga yana ishlaydi.", 502: "AI hozir javob bermadi. Qo'lda qo'shing.", 503: 'Xizmat vaqtincha ishlamayapti.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' });
-
+const failS = (sabab, extra) => json(SABAB_HTTP[sabab] || 500, Object.assign({ xato: SABAB_MSG[sabab] || 'Xato.', sabab, qidiruv: sabab !== 'hajm' && sabab !== 'format' }, extra || {}), sabab === 'band' ? { 'Retry-After': '60' } : undefined);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export async function onRequest({ request, env }) {
   if (request.method !== 'POST') return json(405, { xato: E[405] }, { Allow: 'POST' });
   if (!originOk(request.headers.get('Origin'), env)) return fail(403);
   if (!/^application\/json\b/i.test(request.headers.get('Content-Type') || '')) return fail(415);
-  const len = parseInt(request.headers.get('Content-Length') || '0', 10); if (len > MAX_B64 + 2000) return fail(413);
-  let body; try { const raw = await request.text(); if (raw.length > MAX_B64 + 2000) return fail(413); body = JSON.parse(raw); } catch (e) { return fail(400); }
+  const len = parseInt(request.headers.get('Content-Length') || '0', 10); if (len > MAX_B64 + 2000) { await rasmStat(env, 'hajm'); return failS('hajm'); }
+  let body; try { const raw = await request.text(); if (raw.length > MAX_B64 + 2000) { await rasmStat(env, 'hajm'); return failS('hajm'); } body = JSON.parse(raw); } catch (e) { return fail(400); }
   if (!body || typeof body !== 'object' || typeof body.img !== 'string') return fail(400);
-  const img = jpegBytes(body.img); if (!img) return fail(400); if (img.err) return fail(img.err);
-  if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) return fail(503);
+  const img = jpegBytes(body.img); if (!img) { await rasmStat(env, 'format'); return failS('format'); } if (img.err) { await rasmStat(env, 'hajm'); return failS('hajm'); }
+  if (!env.ANTHROPIC_API_KEY || !env.KALKI_AI_KV) { await rasmStat(env, 'ichki'); return failS('ichki'); }
   const cid = typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '';
-  const lim = aiLimits(env, body), out = {};
-  let sabab; try { sabab = await takeKfQuota(env, request, cid, { ns: 'img', uns: 'ai', ai: true, platforma: body.platforma, site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out }); } catch (e) { return fail(503); }
+  const lim = aiLimits(env, body), out = {}, qo = { ns: 'img', uns: 'ai', ai: true, platforma: body.platforma, site: num(env.KALKIFIT_IMG_SITE_LIMIT, DEFAULT_SITE), client: lim.client, ip: lim.ip, out };
+  let sabab; try { sabab = await takeKfQuota(env, request, cid, qo); } catch (e) { console.error('rasm: kvota xato'); await rasmStat(env, 'ichki'); return failS('ichki'); }
   if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(out.limit || lim.client), sabab, limit: out.limit || lim.client, qoldi: 0, akkaunt: !!out.akkaunt });
-  const yorliq = body.tur === 'yorliq';
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const r = await askVision(env, img.b64, body.til === 'ru' ? 'ru' : 'uz', yorliq); if (r.err) continue;
-    if (yorliq) { const a = extractObj(r.text); if (a) return json(200, { yorliq: sanitizeLabel(a), limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); continue; }
-    const list = extractJson(r.text); if (list) return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%', limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt });
+  const yorliq = body.tur === 'yorliq', til = body.til === 'ru' ? 'ru' : 'uz', t0 = Date.now();
+  let last = 'ichki';
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    const left = TOTAL_MS - (Date.now() - t0); if (attempt > 0 && left < 6000) break;
+    const r = await askVision(env, img.b64, til, yorliq, Math.min(TIMEOUT_MS, left));
+    if (r.err) { last = r.err; if (!r.qayta) break; await sleep(Math.max(r.wait || 0, r.err === 'band' ? RETRY_WAIT.band : RETRY_WAIT.default)); continue; }
+    if (yorliq) { const a = extractObj(r.text); if (a) { await rasmStat(env, 'ok'); return json(200, { yorliq: sanitizeLabel(a), limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); } last = 'provayder'; await sleep(RETRY_WAIT.default); continue; }
+    const list = extractJson(r.text); if (list) { await rasmStat(env, 'ok'); return json(200, { ovqatlar: sanitize(list), aniqlik: '±30%', limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); }
+    if (/^\s*(```(?:json)?)?\s*\[\s*\]/.test(String(r.text || ''))) { await rasmStat(env, 'ok'); return json(200, { ovqatlar: [], aniqlik: '±30%', limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); }          // ovqat yo'q: bo'sh massiv — xato emas
+    last = 'provayder'; console.error('rasm: javob o\'qilmadi', r.stop || ''); await sleep(RETRY_WAIT.default);
   }
-  return fail(502);
+  await refundKfQuota(env, request, cid, qo);                       // muvaffaqiyatsiz so'rov foydalanuvchi hisobiga yozilmaydi
+  await rasmStat(env, last);
+  return failS(last, { limit: out.limit || lim.client, akkaunt: !!out.akkaunt });
 }
