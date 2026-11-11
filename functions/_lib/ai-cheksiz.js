@@ -35,3 +35,9 @@ export async function takeCheksiz(env, akkauntId, o, siteKey) {
   if (o.out) o.out.qoldi = CHEKSIZ_QOLDI;
   return null;
 }
+/* v77: AI xato bergan so'rov hisobdan qaytariladi (akkaunt kunlik hisobi D1 + butun sayt KV): son 0 dan pastga tushmaydi */
+export async function refundCheksiz(env, akkauntId, o, siteKey) {
+  const kv = env.KALKI_AI_KV, db = env.KALKIFIT_DB, day = tashkentDay();
+  await db.prepare('UPDATE ai_cheksiz_kun SET son = son - 1 WHERE kun = ? AND akkaunt_id = ? AND ns = ? AND son > 0').bind(day, akkauntId, o.ns).run();
+  if (siteKey && kv) { const c = parseInt(await kv.get(siteKey), 10) || 0; if (c > 0) await kv.put(siteKey, String(c - 1), { expirationTtl: 172800 }); }
+}

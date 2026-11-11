@@ -150,7 +150,7 @@ try {
     p = await rasmOpen({ s: 200, j: { ovqatlar: [{ nom: 'Osh', ehtimol: 0.9, boshqa: [], porsiya: '1', g: 350, kcal: 600, o: 20, y: 25, u: 70 }] } }, 'window.createImageBitmap = () => Promise.reject(new Error("HEIC"));'); await feed(p, PORT); assert.equal(p.rasm.length, 1, 'rasm-AI: createImageBitmap xato → <img> orqali'); await p.context().close();
     p = await rasmOpen({ s: 200, j: {} }); await feed(p, BAD); assert.match(await txt(p, '.rz-p.warn'), /Rasm o'qilmadi\. Boshqa rasm tanlang/); assert.equal(p.rasm.length, 0); await p.context().close();
     p = await rasmOpen('net'); await feed(p, PORT); assert.match(await txt(p, '.rz-p.warn'), /Internet yo'q yoki aloqa uzildi/); await p.context().close();
-    p = await rasmOpen({ s: 500, j: {} }); await feed(p, PORT); assert.match(await txt(p, '.rz-p.warn'), /Server xatosi/); await p.context().close();
+    p = await rasmOpen({ s: 500, j: {} }); await feed(p, PORT); assert.match(await txt(p, '.rz-p.warn'), /AI hozir javob bermadi/); await p.context().close();
     p = await rasmOpen({ s: 429, j: { xato: 'x', sabab: 'mijoz', limit: 5, qoldi: 0 } }); await feed(p, PORT); assert.match(await txt(p, '.sl-rl .rl-t'), /Bugungi rasm limiti tugadi\. Google bilan kirsangiz/, 'v75: rasm limiti oynasi'); await p.context().close();
     log('iPhone: 6000×4500 rasm → ≤ 1600 px va ≤ ~1 MB (tik rasm yo\'nalishi saqlanadi); createImageBitmap xato/yo\'q bo\'lsa <img> orqali; o\'qilmagan rasm yuborilmaydi; aniq xato matnlari: limit / sayt tavani / internet yo\'q / rasm o\'qilmadi / juda katta / menyu matni topilmadi / server xatosi (RU ham)');
   } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
