@@ -56,7 +56,7 @@ assert.deepEqual(pork, ['bekon', 'pitsa#pepperoni', 'pitsa-pepperoni'].sort(), '
 for (const [id, t] of [['somsa-pishloq', 'sut'], ['somsa-pishloq', 'glyuten'], ['sushi-nigiri', 'baliq'], ['roll-filadelfiya', 'sut'], ['shakshuka', 'tuxum']]) assert.ok((CT[id] || []).includes(t), id + ': ' + t);
 log('Cheklov teglari: cho\'chqa — faqat bekon/pepperoni; yangi taomlarda sut/tuxum/baliq/glyuten');
 /* 8. jami baza hajmi o'sgan va ikonka rejasi to'liq */
-assert.ok(A.length >= 1016, 'baza hajmi ' + A.length);
+assert.ok(A.length >= 1017, 'baza hajmi ' + A.length);
 const { spawnSync } = await import('node:child_process'); const tt = spawnSync(process.execPath, [path.join(ROOT, 'tools/ikonka-toplam.js'), '--tekshir'], { encoding: 'utf8' });
 assert.equal(tt.status, 0, 'ikonka-toplam.js: ' + (tt.stderr || tt.stdout).slice(0, 400));
 log('Baza: ' + A.length + ' taom; ikonka rejasi xatosiz (rasmsiz yangi taomlar — rejada)');

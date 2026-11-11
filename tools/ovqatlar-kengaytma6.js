@@ -21,7 +21,7 @@ xalvaitar|Xalvaytar (un halvasi)|Халвайтар (мучная халва)|xa
 gazli-suv|Gazlangan suv (shakarsiz)|Газированная вода (без сахара)|gazlangan suv,gazli suv,mineral suv gazli,sparkling water,газированная вода,газировка без сахара,минералка газированная|i|stakan:250,shisha05:500|u:173204
 gazli-limonad|Gazli limonad (buratino, baykal, tarxun…)|Газированный лимонад (буратино, байкал, тархун)|buratino,baykal,tarxun,gazli limonad,буратино,байкал,тархун,лимонад газированный|i|stakan:250,shisha05:500|m:u:173205*100
 mohito|Mohito (alkogolsiz)|Мохито (безалкогольный)|mohito,mojito,moxito,мохито,мохито безалкогольный|i|stakan:300|m:u:173205*90+u:169655*10
-mokka|Mokka (kofe + shokolad + sut)|Мокка|mokka,mocha,мокко,moka,mokachino|i|stakan:250,piyola:200|m:u:171891*30+u:171265*55+u:174117*15
+mokka|Mokka (kofe + shokolad + sut)|Мокка|mokka,mocha,мокко,moka,mokachino|i|chashka:200,stakan:250|m:u:171891*30+u:171265*55+u:174117*15
 choy-qaymoqli|Choy (qaymoq bilan)|Чай со сливками|qaymoqli choy,choy qaymoq,чай со сливками|i|piyola:200,stakan:250|m:u:173227*80+u:171255*20
 ryajenka|Ryajenka (pishirilgan qaymoqli sut)|Ряженка|ryajenka,ryazhenka,ряженка,pishirilgan sut|i|stakan:250|m:u:171265*60+u:171284*40
 prostokvasha|Prostokvasha (snejok)|Простокваша|prostokvasha,snejok,простокваша,снежок|i|stakan:250|m:u:171265*50+u:171284*50

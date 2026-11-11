@@ -76,10 +76,11 @@ limonad-limon|Limonad (limonli, uy)|Лимонад лимонный|limonli ichi
 choy-shakar1|Choy (1 choy qoshiq shakar bilan)|Чай с 1 ложкой сахара|shakarli choy,чай с сахаром,choy shakar bilan,sweet tea|i|piyola:205,stakan:255|m:173227*200+169655*5
 choy-shakar2|Choy (2 choy qoshiq shakar bilan)|Чай с 2 ложками сахара|choy ikki qoshiq shakar,чай с двумя ложками сахара|i|piyola:210,stakan:260|m:173227*200+169655*10
 choy-sut-shakar|Sutli choy (shakar bilan)|Чай с молоком и сахаром|sutli choy shakarli,чай с молоком и сахаром|i|piyola:210|m:173227*150+171265*50+169655*5
-espresso|Espresso|Эспрессо|espresso,эспрессо,expresso|i|dona:30|u:171891
-qahva-sutli|Sutli qahva|Кофе с молоком|sutli kofe,кофе с молоком,coffee with milk|i|stakan:200,piyola:150|m:171890*150+171265*50
-qahva-sutli-shakar|Sutli qahva (shakar bilan)|Кофе с молоком и сахаром|shirin kofe,кофе с сахаром,кофе сладкий|i|stakan:205|m:171890*150+171265*50+169655*5
-raf|Raf qahva|Раф-кофе|raf,раф,раф кофе|i|stakan:250|m:171891*60+171255*170+169655*15
+espresso|Espresso (1 porsiya, 30 ml)|Эспрессо (1 порция, 30 мл)|espresso,эспрессо,expresso|i|dona:30|u:171891
+amerikano|Amerikano|Американо|americano,amerikano,американо|i|chashka:200,stakan:250|m:u:171891*60+u:171890*140
+qahva-sutli|Qahva (sut bilan, shakarsiz)|Кофе с молоком (без сахара)|sutli kofe,sutli qahva,кофе с молоком,coffee with milk|i|chashka:200,stakan:250|m:171890*150+171265*50
+qahva-sutli-shakar|Qahva (sut va 2 choy qoshiq shakar bilan)|Кофе с молоком и сахаром (2 ч. ложки)|sutli shakarli kofe,shirin kofe,кофе с молоком и сахаром,coffee with milk and sugar|i|chashka:210,stakan:260|m:171890*150+171265*50+169655*10
+raf|Raf qahva|Раф-кофе|raf,раф,раф кофе|i|chashka:200,stakan:250|m:171891*60+171255*170+169655*15
 qahva-sovuq|Sovuq qahva (sutli, shirin, tayyor)|Холодный кофе (молочный, сладкий)|ice coffee,айс кофе,холодный кофе,iced coffee|i|shisha05:500,stakan:250|u:171880
 issiq-shokolad|Issiq shokolad (sutda)|Горячий шоколад (на молоке)|issiq shokolad,горячий шоколад,hot chocolate|i|stakan:250|u:174118
 shokoladli-sut|Shokoladli sut|Шоколадное молоко|shokolad sut,шоколадное молоко,chocolate milk|i|stakan:250,shisha05:500|u:170880
@@ -173,7 +174,7 @@ ordak|O'rdak go'shti (terisiz, pishgan)|Утка (без кожи)|ordak,утк�
 kurka-kokrak|Kurka ko'kragi (pishgan)|Индейка грудка запечённая|kurka kokragi,грудка индейки|m|porsiya:150|u:171496
 tovuq-qaynatilgan|Tovuq go'shti (qaynatilgan, terisiz)|Курица отварная (без кожи)|qaynatilgan tovuq,отварная курица|m|porsiya:150|u:171451
 tovuq-boldir-qov|Tovuq boldiri (qovurilgan, terili)|Куриная голень жареная|boldir,голень,куриная ножка жареная|m|dona:75|u:172374
-tovuq-qanot-qov|Tovuq qanoti (qovurilgan)|Куриные крылья жареные|qanot qovurma,жареные крылышки|m|dona:35|u:173628
+tovuq-qanot-qov|Tovuq qanoti (panirovkada, qovurilgan)|Куриные крылья в панировке (жареные)|qanot qovurma,жареные крылышки,крылышки в панировке|m|dona:35|u:173628
 tovuq-kfc|Tovuq (KFC uslubida, qovurilgan)|Курица жареная (как в KFC)|kfc,кфс,qarsildoq tovuq|q|bolak:150|u:170744
 tovuq-boneless|Tovuq bo'laklari (panirovkada qovurilgan)|Курица в панировке (стрипсы)|strips,стрипсы,tenders|q|dona:20,porsiya:150|u:170718
 skumbriya|Skumbriya (pishgan)|Скумбрия|skumbriya,скумбрия,mackerel|m|porsiya:150|u:175120
@@ -252,7 +253,7 @@ tako|Tako (mol go'shtli)|Тако с говядиной|taco,тако|q|dona:80|
 burrito|Burrito (loviya va go'shtli)|Буррито с фасолью и говядиной|burrito,буррито|q|dona:200|u:173277
 nachos-pishloq|Nachos (pishloqli)|Начос с сыром|nachos pishloq,начос с сыром|q|porsiya:120|u:170291
 sendvich-baliq|Baliqli sendvich (tartar sousi bilan)|Сэндвич с рыбой|filet o fish,филе о фиш,fish sandwich|q|dona:140|u:170296
-sendvich-tovuq|Tovuqli sendvich|Сэндвич с курицей|chicken sandwich,сэндвич с курицей,чикенбургер|q|dona:180|u:170295
+sendvich-tovuq|Tovuqli sendvich (fast-food, kotletli)|Сэндвич с куриной котлетой (фастфуд)|chicken sandwich,сэндвич с курицей,чикенбургер|q|dona:180|u:170295
 guruch-qovurilgan|Qovurilgan guruch (xitoycha)|Жареный рис по-китайски|fried rice,жареный рис|q|likop:250|u:167668
 tovuq-shirin-nordon|Shirin-nordon tovuq (xitoycha)|Курица в кисло-сладком соусе|shirin nordon tovuq,кисло-сладкая курица|q|likop:250|u:168081
 falafel|Falafel|Фалафель|falafel,фалафель|q|dona:17,porsiya:100|u:172455
@@ -270,7 +271,7 @@ margarin|Margarin|Маргарин|margarin,маргарин|x|qoshiq:14|u:17234
 qaymoq-kukun|Qahva uchun quruq qaymoq|Сухие сливки|suxie slivki,сухие сливки,creamer|x|qoshiq:2|u:171263
 shokolad-sirop|Shokolad siropi|Шоколадный сироп|shokolad sous,шоколадный сироп,chocolate syrup|x|qoshiq:20|u:174117
 qaymoq-yogli|Qaymoq (ko'pirtirish uchun, 33%)|Сливки жирные (33%)|slivki,сливки 33,whipping cream|s|qoshiq:15|u:170859
-qahva-shakar|Qora qahva (shakar bilan)|Кофе чёрный с сахаром|shakarli kofe,кофе с сахаром,qahva shakarli|i|piyola:155,stakan:205|m:171890*150+169655*5
+qahva-shakar|Qahva (qora, 2 choy qoshiq shakar bilan)|Кофе чёрный с сахаром (2 ч. ложки)|shakarli kofe,shakarli qahva,qora qahva shakar bilan,кофе с сахаром,кофе сладкий,coffee with sugar|i|chashka:210,stakan:260|m:171890*200+169655*10
 kok-choy-shakar|Ko'k choy (1 choy qoshiq shakar bilan)|Зелёный чай с сахаром|kok choy shakarli,зеленый чай с сахаром|i|piyola:205|m:171917*200+169655*5
 sabzi-sharbat|Sabzi sharbati|Морковный сок|sabzi sharbat,морковный сок,carrot juice|i|stakan:250|u:170491
 limon-sharbat|Limon sharbati (siqilgan)|Лимонный сок|limon suvi,лимонный сок,lemon juice|i|qoshiq:15|u:167747
