@@ -11,7 +11,7 @@ choy-limon|Limonli choy (shakarsiz)|Чай с лимоном (без сахар�
 choy-limon-shakar|Limonli choy (shakar bilan)|Чай с лимоном и сахаром|limonli choy shakarli,choy limon shakar bilan,limon shakarli choy,чай с лимоном и сахаром|i|piyola:200,stakan:250|m:u:173227*92+u:167747*3+u:169655*5
 choy-asal|Choy (asal bilan)|Чай с мёдом|asalli choy,choy asal bilan,chay s medom,чай с мёдом,чай с медом|i|piyola:200,stakan:250|m:u:173227*95+u:169640*5
 otli-choy|O'tli choy (yalpiz, na'matak, romashka, zanjabil)|Травяной чай (мята, шиповник, ромашка)|otli choy,o'tli choy,yalpiz choy,yalpizli choy,namatak choy,na'matak choy,na'matakli choy,romashka,romashka choy,zanjabil choy,karkade,mayramdori,травяной чай,чай с мятой,мятный чай,шиповник,чай из шиповника,ромашковый чай,имбирный чай,каркаде,herbal tea|i|piyola:200,stakan:250|u:173232
-sariyogli-sut|Sut (sariyog' bilan)|Молоко со сливочным маслом|sariyog'li sut,sariyogli sut,sut sariyog' bilan,yog'li sut,молоко с маслом,молоко со сливочным маслом|i|piyola:200,stakan:250,kosa:250|m:u:171265*97+u:173430*3
+sariyogli-sut|Sut (sariyog' bilan)|Молоко со сливочным маслом|sariyog'li sut,sariyogli sut,sut sariyog' bilan,yog'li sut,молоко с маслом,молоко со сливочным маслом|i|stakan:250,chashka:200,kosa:250|m:u:171265*97+u:173430*3
 tarxun|Tarxun (gazli ichimlik)|Тархун (лимонад)|tarxun,tarhun,tarkhun,tarxun limonad,тархун,лимонад тархун|i|stakan:250,banka:330,shisha05:500,shisha1:1000,shisha15:1500|y:tarxun-chernogolovka
 chalpak|Chalpak (yog'da qovurilgan yupqa non)|Чалпак (жареная лепёшка)|chalpak,shalpak,chalpaq,qovurilgan non,чалпак,шелпек,жареная лепешка|n|dona:60|m:u:167635*100
 qushtili|Qushtili (yog'da qovurilgan xamir)|Куштили (жареное тесто)|qushtili,qush tili,qushtil,куштили|n|dona:15,porsiya:100|m:u:167635*100
@@ -65,7 +65,7 @@ kuskus-xom|Kuskus (xom)|Кускус (сухой)|kuskus xom,xom kuskus,куск
 kinoa-xom|Kinoa (xom)|Киноа (сухая)|kinoa xom,xom kinoa,киноа сухая|g|stakan:170,qoshiq:12|u:168874
 manka-xom|Manka (xom yorma)|Манная крупа (сухая)|manka xom,manka yorma,quruq manka,манка сухая,манная крупа|g|stakan:170,qoshiq:12|u:169715
 suli-sutli|Suli bo'tqasi (sutda)|Овсяная каша на молоке|suli sutli,sutli suli,suli bo'tqa sutda,ovsyanka na moloke,овсянка на молоке,овсяная каша на молоке|g|kosa:250,likop:250|m:u:171675*50+u:171265*50
-grechka-sutli|Grechka (sut bilan)|Гречка с молоком|grechka sutli,sutli grechka,grechka sut bilan,гречка с молоком,гречневая каша с молоком|g|kosa:250,likop:250|m:u:170686*60+u:171265*40
+grechka-sutli|Grechka (sut bilan)|Гречка с молоком|grechka sutli,sutli grechka,grechka sut bilan,гречка с молоком,гречневая каша с молоком|g|kosa:260,likop:330|m:u:170686*250+u:171265*80
 tariq-sutli|Tariq bo'tqasi (sutda)|Пшённая каша на молоке|tariq sutli,sutli tariq,tariq bo'tqa sutda,пшенная каша на молоке,пшённая каша молочная|g|kosa:250,likop:250|m:u:168871*60+u:171265*40
 dumba|Dumba (qo'y yog'i, pishgan)|Курдюк (бараний жир, приготовленный)|dumba,dumba yog'i,qo'y yog'i,kurdyuk,курдюк,курдючный жир,бараний жир|m|bolak:20,qoshiq:15|m:u:172512*100
 aroq|Aroq (40%)|Водка (40%)|aroq,vodka,водка,araq|i|ryumka:50,stakan:100|u:174818

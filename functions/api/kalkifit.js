@@ -37,7 +37,7 @@ async function loadFoods(env, request) {
   if (FOODS) return FOODS; if (!env.ASSETS || typeof env.ASSETS.fetch !== 'function') return null;       // Pages: statik baza; boshqa muhitda (test) — lokal parse o'tkazib yuboriladi
   try { const r = await env.ASSETS.fetch(new URL('/data/ovqatlar.json', request.url)); if (!r.ok) return null; const j = await r.json(); FOODS = S.buildIndex(S.normFoods(j.foods)); return FOODS; } catch (e) { return null; }
 }
-const UN = { uz: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' }, ru: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' } };
+const UN = { uz: { g100: 'g', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', chashka: 'chashka', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' }, ru: { g100: 'г', kosa: 'миска', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', chashka: 'чашка', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' } };
 export function localItems(matn, foods, til) {
   const ru = til === 'ru', r = S.parseText(matn, foods, {}), out = [];
   for (const x of r.items) {

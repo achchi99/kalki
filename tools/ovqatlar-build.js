@@ -181,8 +181,8 @@ murabbo|Murabbo|Варенье|murabbo,varene,варенье,jem|260|0.4|0.1|65|
 choy|Choy (shakarsiz)|Чай без сахара|choy,chay,чай,qora choy|1|0|0|0.3|i|0|piyola:200,stakan:250
 choy-shakar|Choy (shakar bilan)|Чай с сахаром|choy shakar bilan,чай с сахаром|20|0|0|5|i|1|piyola:200,stakan:250
 choy-sut|Choy (sut bilan)|Чай с молоком|choy sut bilan,чай с молоком|22|0.7|0.7|3|i|1|piyola:200,stakan:250
-kofe|Kofe (qora, shakarsiz)|Кофе чёрный|kofe,coffee,кофе|2|0.1|0|0.3|i|0|piyola:150,stakan:250
-kofe-3in1|Kofe (3 in 1)|Кофе 3 в 1|kofe 3in1,кофе 3в1|37|0.6|0.9|6.8|i|1|stakan:200,piyola:200
+kofe|Qahva (qora, shakarsiz)|Кофе чёрный (без сахара)|kofe,qahva,kahva,coffee,кофе,qora kofe,qora qahva,кофе чёрный,американо черный|1|0.1|0|0|i|0|chashka:200,stakan:250
+kofe-3in1|Kofe 3 in 1 (paketli, shakarli, 1 chashka)|Кофе 3 в 1 (пакетик, с сахаром, 1 чашка)|kofe 3in1,3 in 1,3 в 1,кофе 3в1,кофе 3 в 1,nescafe 3in1,paketli kofe|37|0.6|0.9|6.8|i|1|chashka:200,stakan:250
 kola|Kola (gazlangan ichimlik)|Кола|cola,coca cola,pepsi,кола|42|0|0|10.6|i|0|stakan:250,shisha:500
 limonad|Limonad (fanta, sprite)|Лимонад газированный|fanta,sprite,limonad,лимонад|40|0|0|10|i|0|stakan:250,shisha:500
 energetik|Energetik ichimlik|Энергетик|energetik,energy drink,flash,энергетик|45|0|0|11|i|0|dona:250
@@ -193,7 +193,7 @@ sharbat-uzum|Sharbat (uzum)|Сок виноградный|uzum sharbati|60|0.4|0
 sharbat-pomidor|Sharbat (pomidor)|Сок томатный|pomidor sharbati|17|0.8|0.1|3.5|i|0|stakan:250
 kompot|Kompot (shakar bilan)|Компот|kompot,компот|55|0.2|0|14|i|1|stakan:250
 kvas|Kvas|Квас|kvas,квас|27|0.2|0|5.2|i|0|stakan:250
-kakao|Kakao (sutda)|Какао на молоке|kakao,какао|80|3|3|11|i|1|stakan:250,piyola:200
+kakao|Kakao (sutda)|Какао на молоке|kakao,какао|80|3|3|11|i|1|chashka:200,stakan:250
 smuzi|Smuzi (meva)|Смузи фруктовый|smoothie,smuzi,смузи|60|1|0.5|13|i|1|stakan:250
 suv|Suv|Вода|suv,voda,вода,mineral suv|0|0|0|0|i|0|stakan:250,shisha:500
 pivo|Pivo|Пиво|beer,pivo,пиво|43|0.5|0|3.6|i|0|stakan:250,shisha:500
@@ -270,8 +270,8 @@ selderey|Selderey|Сельдерей|seldereya,selderey,сельдерей|16|0.
 sut-kokteyl|Sut kokteyli|Молочный коктейль|sut kokteyl,milkshake|90|3|3|13|i|1|stakan:250
 yashil-choy|Yashil choy|Зелёный чай|yashil choy,green tea,зелёный чай|1|0|0|0.2|i|0|piyola:200
 sovuq-choy|Sovuq choy (limonli)|Холодный чай|ice tea,ledyanoy chay,холодный чай|25|0|0|6|i|0|stakan:250
-latte|Kofe (latte)|Латте|latte,латте|45|2.5|2|4.5|i|1|stakan:250
-kapuchino|Kofe (kapuchino)|Капучино|cappuccino,kapuchino,капучино|40|2|2|4|i|1|stakan:200
+latte|Latte (sutli, shakarsiz)|Латте (с молоком, без сахара)|latte,латте,kofe latte|45|2.5|2|4.5|i|1|chashka:200,stakan:250
+kapuchino|Kapuchino (sutli, shakarsiz)|Капучино (с молоком, без сахара)|cappuccino,kapuchino,капучино,kofe kapuchino|40|2|2|4|i|1|chashka:180,stakan:250
 lavash-roll|Lavash roll|Ролл в лаваше|roll,ролл|210|10|9|23|q|1|dona:250
 pitsa-4|Pitsa (4 pishloq)|Пицца 4 сыра|pitsa 4 pishloq,четыре сыра|280|13|14|27|q|1|bolak:110
 qatiq-yogsiz|Qatiq (yog'siz)|Катык обезжиренный|yogsiz qatiq|35|3.5|0.5|4|s|1|stakan:250
