@@ -1,5 +1,5 @@
 ---
-Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 14 food icons, exactly 6 columns × 3 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 20 food icons, exactly 6 columns × 4 rows, all cells the same size, evenly spaced, no borders or lines between cells.
 Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
 The last 4 cell(s) of the bottom row stay EMPTY (background only).
 Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
@@ -21,3 +21,9 @@ shakshuka — shakshuka, eggs baked in thick red tomato sauce in a small black p
 selyodka-shuba — herring under a fur coat, a layered salad slice with purple beet top, on a small plate.
 lapsha-vok — wok-fried noodles with chicken and carrot strips in a takeaway box.
 bruschetta — bruschetta, two toasted bread slices topped with diced tomato, mozzarella and basil, on a board.
+togramach — to'g'ramach, an Uzbek noodle soup with thin noodles, lamb pieces, carrot and tomato in a clear broth, in a deep bowl.
+noxat-shurva — nohat sho'rva, a rich Uzbek soup with chickpeas, lamb, potato and carrot in a deep bowl.
+lochira — lochira, a small round flat tandir bread with a dimpled center and sesame seeds.
+shirchoy — shirchoy, Uzbek creamy salted milk tea in a small round piyola bowl, with a little butter on top.
+udon — udon, thick white boiled noodles in a bowl, plain, with chopsticks.
+soba — soba, thin brown buckwheat noodles in a bowl, plain, with chopsticks.

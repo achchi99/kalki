@@ -855,6 +855,7 @@
    "glyuten"
   ],
   "lipton-ice-tea": [],
+  "lochira": [],
   "losos": [
    "baliq"
   ],
@@ -1182,6 +1183,7 @@
   "noxat-konserva": [],
   "noxat-pallali": [],
   "noxat-ragu": [],
+  "noxat-shurva": [],
   "noxat-xom": [],
   "nuga": [
    "sut",
@@ -1752,6 +1754,7 @@
   "shashlik-dumba": [],
   "shashlik-tovuq": [],
   "shashlik-yurak": [],
+  "shirchoy": [],
   "shirguruch": [
    "sut"
   ],
@@ -1854,6 +1857,7 @@
    "sut",
    "yongoq"
   ],
+  "soba": [],
   "solyanka": [],
   "somsa": [
    "glyuten"
@@ -2099,6 +2103,14 @@
    "glyuten"
   ],
   "tm-evos-hotdog-m": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-fitter": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tm-evos-lavash-lavashello": [
    "tuxum",
    "glyuten"
   ],
@@ -2360,6 +2372,7 @@
   ],
   "tofu": [],
   "tofu-qov": [],
+  "togramach": [],
   "tort": [
    "tuxum",
    "sut",
@@ -2685,6 +2698,7 @@
    "sut",
    "glyuten"
   ],
+  "udon": [],
   "ugra-osh": [
    "glyuten"
   ],

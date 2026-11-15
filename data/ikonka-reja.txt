@@ -493,3 +493,9 @@
 7|selyodka-shuba|herring under a fur coat, a layered salad slice with purple beet top, on a small plate.|selyodka-shuba
 7|lapsha-vok|wok-fried noodles with chicken and carrot strips in a takeaway box.|lapsha-udon vok-lapsha
 7|bruschetta|bruschetta, two toasted bread slices topped with diced tomato, mozzarella and basil, on a board.|bruschetta
+8|togramach|to'g'ramach, an Uzbek noodle soup with thin noodles, lamb pieces, carrot and tomato in a clear broth, in a deep bowl.|togramach
+8|noxat-shurva|nohat sho'rva, a rich Uzbek soup with chickpeas, lamb, potato and carrot in a deep bowl.|noxat-shurva
+8|lochira|lochira, a small round flat tandir bread with a dimpled center and sesame seeds.|lochira
+8|shirchoy|shirchoy, Uzbek creamy salted milk tea in a small round piyola bowl, with a little butter on top.|shirchoy
+8|udon|udon, thick white boiled noodles in a bowl, plain, with chopsticks.|udon
+8|soba|soba, thin brown buckwheat noodles in a bowl, plain, with chopsticks.|soba

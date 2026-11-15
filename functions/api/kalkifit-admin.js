@@ -3,6 +3,7 @@
  * GET  ?holat=yangi|tasdiqlangan|maqullangan|rad|hammasi  → { takliflar: [...] }
  * GET  ?eksport=1                                           → { v:1, taomlar: [ ma'qullangan, bazaga tayyor ] }
  * POST { h, amal: 'maqullash'|'rad'|'qaytarish'|'ochirish', g, kat, nom_uz, nom_ru }   ('ochirish' — taklifni butunlay o'chiradi)
+ * v78 «Xato xabarlari» (xato_xabar): GET ?xato=yangi|korildi|hammasi → { xatolar: [...] }; POST { tur: 'xato', h, amal: 'korildi'|'qaytarish'|'ochirish' }
  * v67 «Yorliq takliflari» (yorliq_taklif): GET ?yorliq=yangi|qoshildi|rad|hammasi → { yorliqlar: [...] } (har qatorda nom_son — shu nom necha xil qiymat bilan kelgan)
  *   POST { tur: 'yorliq', h, amal: 'qoshish'|'rad'|'qaytarish'|'ochirish', kat, nom_uz, nom_ru } — 'qoshish' BITTA bosishda umumiy bazaga (GET /api/kalkifit-yorliq, manba «yorliq (foydalanuvchi)») */
 import { originOk, json, num } from './ariza.js';
@@ -26,6 +27,12 @@ export async function onRequest({ request, env }) {
     if (!r) return fail(400);
     return json(200, { yorliqlar: (r.results || []).map((x) => { const f = asFood(x); return { h: x.h, nom: x.nom, til: x.til, kcal: f.k, o: f.p, y: f.f, u: f.c, g: x.g, birlik: x.birlik, jami: x.jami, rasm: x.rasm, nom_son: x.nom_son, holat: x.holat, kat: x.kat, nom_uz: x.nom_uz, nom_ru: x.nom_ru, birinchi: x.birinchi, oxirgi: x.oxirgi }; }) });
   }
+  if (request.method === 'GET' && url.searchParams.get('xato')) {          // v78: «Xato topdingizmi?» xabarlari (xato_xabar)
+    const hl = url.searchParams.get('xato'), q = 'SELECT * FROM xato_xabar';
+    let r; try { r = hl === 'hammasi' ? await db.prepare(q + ' ORDER BY oxirgi DESC, jami DESC LIMIT 500').all() : (['yangi', 'korildi'].includes(hl) ? await db.prepare(q + ' WHERE holat = ? ORDER BY jami DESC, oxirgi DESC LIMIT 500').bind(hl).all() : null); } catch (e) { return json(200, { xatolar: [] }); }
+    if (!r) return fail(400);
+    return json(200, { xatolar: (r.results || []).map((x) => ({ h: x.h, taom: x.taom, vr: x.vr, turi: x.turi, izoh: x.izoh, til: x.til, jami: x.jami, holat: x.holat, birinchi: x.birinchi, oxirgi: x.oxirgi })) });
+  }
   if (request.method === 'GET') {
     if (url.searchParams.get('eksport')) {
       const r = await db.prepare("SELECT * FROM taklif WHERE holat = 'maqullangan' AND g > 0 ORDER BY nom").all();
@@ -38,6 +45,13 @@ export async function onRequest({ request, env }) {
   }
   let b; try { const raw = await request.text(); if (raw.length > 2000) return fail(400); b = JSON.parse(raw); } catch (e) { return fail(400); }
   if (!b || typeof b.h !== 'string' || !/^[0-9a-f]{16}$/.test(b.h)) return fail(400);
+  if (b.tur === 'xato') {
+    if (b.amal === 'ochirish') await db.prepare('DELETE FROM xato_xabar WHERE h = ?').bind(b.h).run();
+    else if (b.amal === 'korildi') await db.prepare("UPDATE xato_xabar SET holat = 'korildi' WHERE h = ?").bind(b.h).run();
+    else if (b.amal === 'qaytarish') await db.prepare("UPDATE xato_xabar SET holat = 'yangi' WHERE h = ?").bind(b.h).run();
+    else return fail(400);
+    return json(200, { ok: true });
+  }
   if (b.tur === 'yorliq') {
     const y = await db.prepare('SELECT * FROM yorliq_taklif WHERE h = ?').bind(b.h).first(); if (!y) return fail(404);
     if (b.amal === 'ochirish') await db.prepare('DELETE FROM yorliq_taklif WHERE h = ?').bind(b.h).run();

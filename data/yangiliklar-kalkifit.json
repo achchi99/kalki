@@ -2,6 +2,28 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 78,
+   "d": "2026-11-15",
+   "bn": {
+    "uz": "Baza tekshirildi — milliy taomlar aniqroq",
+    "ru": "База проверена — национальные блюда точнее"
+   },
+   "items": [
+    {
+     "uz": "Milliy taomlar va kundalik mahsulotlar manba bo'yicha tekshirildi: kartada «✓ Tekshirilgan» belgisi, bosilsa — qayerdan olingani.",
+     "ru": "Национальные блюда и повседневные продукты проверены по источникам: на карточке значок «✓ Проверено», по нажатию — откуда данные."
+    },
+    {
+     "uz": "Chuchvara, qurt, qahva, non va shashlik porsiyalari real grammga keltirildi; Evos Lavashello va Fitter alohida.",
+     "ru": "Порции чучвары, курта, кофе, лепёшки и шашлыка приведены к реальным граммам; Evos Лавашелло и Фиттер — отдельно."
+    },
+    {
+     "uz": "Xato topdingizmi? Taom kartasidagi havola orqali bir bosishda xabar bering — ism va ma'lumotlaringiz yuborilmaydi.",
+     "ru": "Нашли ошибку? Сообщите в одно касание по ссылке на карточке блюда — имя и данные не отправляются."
+    }
+   ]
+  },
+  {
    "v": 77,
    "d": "2026-11-11",
    "bn": {
@@ -1796,7 +1818,7 @@
    "items": [
     {
      "uz": "O'z kosangiz va laganingizni belgilang: «Mening laganimda osh» bir bosishda yoziladi.",
-     "ru": "Отметьте свою миску и лаган: «Плов в моём лагане» записывается в одно касание.",
+     "ru": "Отметьте свою косу и лаган: «Плов в моём лагане» записывается в одно касание.",
      "show": "vessel",
      "btn": {
       "uz": "Mening idishimni ko'rish",
@@ -1811,7 +1833,7 @@
    "items": [
     {
      "uz": "O'zbek taomlari endi kosa, lagan va donada: «1 kosa ≈ 350 g» ko'rinadi.",
-     "ru": "Узбекские блюда теперь в мисках, тарелках и штуках: видно «1 миска ≈ 350 г».",
+     "ru": "Узбекские блюда теперь в косах, тарелках и штуках: видно «1 коса ≈ 350 г».",
      "show": "units",
      "btn": {
       "uz": "Porsiya oynasini ko'rish",

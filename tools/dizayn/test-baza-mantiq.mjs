@@ -7,13 +7,15 @@ const J = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ovqatlar.json'), 'utf
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 /* 1. a–e: ro'yxatlar bo'sh (istisnolar sababi bilan) */
 const r = M.tekshir(J.foods);
-for (const k of ['a', 'b', 'c', 'd', 'e']) assert.equal(r[k].length, 0, k + ' qoidasi buzilgan:\n' + r[k].map((x) => JSON.stringify(x)).join('\n'));
-for (const k of ['a', 'b', 'c', 'd', 'e']) for (const key of Object.keys(M.ISTISNO[k])) assert.ok(String(M.ISTISNO[k][key]).length > 10, k + ' istisno sababsiz: ' + key);
-log('a–e: ziddiyat yo\'q (istisnolar: ' + ['a', 'b', 'c', 'd', 'e'].map((k) => k + '=' + (r['istisno_' + k] || []).length).join(', ') + ')');
+for (const k of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']) assert.equal(r[k].length, 0, k + ' qoidasi buzilgan:\n' + r[k].map((x) => JSON.stringify(x)).join('\n'));
+for (const k of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']) for (const key of Object.keys(M.ISTISNO[k])) assert.ok(String(M.ISTISNO[k][key]).length > 10, k + ' istisno sababsiz: ' + key);
+log('a–h: ziddiyat yo\'q (istisnolar: ' + ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].map((k) => k + '=' + (r['istisno_' + k] || []).length).join(', ') + ')');
 /* 2. qoida o'zi ishlaydi: sun'iy ziddiyatlar topiladi */
 let _c = 0; const mk = (o) => { _c++; return Object.assign({ i: 'x' + _c, n: 'N' + _c, r: 'R' + _c, k: 10, p: 0, f: 0, c: 2.5, t: 'i', u: [['stakan', 200], ['g100', 100]] }, o); };
 const bad = M.tekshir([mk({ i: 'k1', n: 'Kofe', k: 30 }), mk({ i: 'k2', n: 'Kofe (shakar bilan)', r: 'Кофе с сахаром', k: 10 }), mk({ i: 'k3', n: 'Kakao', u: [['piyola', 200], ['g100', 100]] }), mk({ i: 'k4', n: 'Choy (shakarsiz)', r: 'Чай', k: 40 }), mk({ i: 'k5', n: 'Dub', r: 'Дуб', k: 400, p: 0, c: 0 }), mk({ i: 'k6', n: 'Dub', r: 'Дуб2' })]);
 assert.equal(bad.a.length, 1, JSON.stringify(bad.a)); assert.equal(bad.b.length, 1, JSON.stringify(bad.b)); assert.ok(bad.c.length >= 1); assert.ok(bad.d.length >= 1); assert.equal(bad.e.length, 1); log('qoidalar sun\'iy ziddiyatni topadi (a–e)');
+const bad2 = M.tekshir([mk({ i: 'f1', n: 'Evos — Lavashello / Fitter', r: 'Лавашелло / Фиттер', t: 'q' }), mk({ i: 'f2', n: 'Mastava', r: 'Мастава', t: 'o', u: [['kosa', 350], ['piyola', 300], ['g100', 100]] }), mk({ i: 'kofe-x', n: 'Qahva', r: 'Кофе', t: 'i', u: [['chashka', 200], ['stakan', 250], ['g100', 100]] }), mk({ i: 'f3', n: 'Osh', r: 'Одна миска плова', t: 'o', u: [['kosa', 250], ['g100', 100]] })]);
+assert.ok(bad2.f.length >= 2, 'f: «A / B» topilmadi'); assert.ok(bad2.g.length >= 2, 'g: birlik aralashmasi topilmadi: ' + JSON.stringify(bad2.g)); assert.equal(bad2.h.length, 1, 'h: «миска» topilmadi'); log('yangi qoidalar f–h sun\'iy ziddiyatni topadi');
 /* 3. qahva oilasi: har birlikda kkal mantiqli, qo'shimcha kamaytirmaydi */
 const kk = (f, u) => { const x = f.u.find((q) => q[0] === u); return x ? Math.round(f.k * x[1] / 100 * 10) / 10 : null; };
 const kofe = by.kofe; assert.ok(kofe && kofe.fam, 'kofe oilasi'); assert.ok(!kofe.u.some((x) => x[0] === 'piyola'), 'qahvada «piyola» yo\'q');

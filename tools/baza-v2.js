@@ -61,7 +61,7 @@ function apply(foods) {
       [of.n, of.r].concat(of.a || []).forEach((nm) => { const k = key(nm); if (k && !have.has(k)) { have.add(k); sy.push({ q: nm, p }); } names.push(nm); });
       of.h = 1; of.al = { f: d.id, v };
     }
-    base.fam = { id: d.id, ax: axes, g, uv: Object.keys(uv).length ? uv : undefined, sz: d.size ? { u: d.size.u, d: d.size.d, n: d.size.n, r: d.size.r, o: d.size.o.map((x) => ({ i: x.id, n: x.n, r: x.r, m: x.m })) } : undefined, sy, N: Object.keys(g).length };
+    base.fam = { id: d.id, ax: axes, g, uv: Object.keys(uv).length ? uv : undefined, sz: d.size ? { u: d.size.u, d: d.size.d, n: d.size.n, r: d.size.r, o: d.size.o.map((x) => ({ i: x.id, n: x.n, r: x.r, m: x.m })) } : undefined, sy, N: Object.keys(g).length, fn: d.fn };
     base.n = d.n; base.r = d.r; setVals(base, dq); base.x = dq.x; base.e = dq.x;
     if (dq.rc) base.rc = dq.rc;
     const seen = new Set([key(base.n), key(base.r)].concat((base.a || []).map(key)));
