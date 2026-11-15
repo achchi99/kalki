@@ -1989,3 +1989,4 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sc-nf b{display:block;font-size:var(--t-l)}.rz .sc-nf span{display:block;margin-top:4px;color:var(--mut)}.rz .sc-code{display:block;margin-top:10px;color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.06em}
 .rz .sc-nf~.rz-btn{margin-top:8px}
 .rz .sl-off{flex-basis:100%;text-align:center;font-size:var(--t-xs);color:var(--mut)}.rz .sl-off a{color:var(--acc2);font-weight:600;text-decoration:underline}
+.rz .sc-man input::placeholder{letter-spacing:0;font-weight:500}

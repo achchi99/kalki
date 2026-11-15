@@ -238,8 +238,9 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var off = m.manba === 'off', ml = m.birlik === 'ml', pack = Math.round(num(m.qadoq)), sv = Math.round(num(m.porsiya));
     var f = { id: 'c' + st.seq++, n: String(m.nom).slice(0, 60), k: Math.round(num(m.k)), p: round1(num(m.p)), f: round1(num(m.f)), c: round1(num(m.c)), u: [], e: off ? 1 : 0, t: ml ? 'i' : 'x', custom: 1, src: 'shtrix', bc: kod };
     if (m.brend) { f.brand = String(m.brend).slice(0, 40); f.a = [f.brand]; }
-    if (pack > 0) f.u.push([!ml && pack <= 300 ? 'dona' : 'qadoq', pack]);
-    if (sv > 0 && (!(pack > 0) || Math.abs(sv - pack) > pack * 0.1)) f.u.push(['porsiya', sv]);
+    var pu = pack > 0 ? [!ml && pack <= 300 ? 'dona' : 'qadoq', pack] : null, su = sv > 0 && (!pu || Math.abs(sv - pack) > pack * 0.1) ? ['porsiya', sv] : null;
+    if (su && pu && pack > 150 && sv < pack * 0.6) f.u.push(su, pu);          // katta banka/paket (masalan 400 g pasta): odatiy porsiya — yorliqdagi 1 porsiya, butun qadoq — keyingi birlik
+    else { if (pu) f.u.push(pu); if (su) f.u.push(su); }
     f.u.push(['g100', 100]); if (off) f.off = 1;
     f.ms = off ? { u: "Ma'lumot: Open Food Facts (ODbL litsenziyasi), shtrix-kod " + kod + '. Foydalanuvchilar kiritgan ochiq ma\'lumot — tekshirilmagan, ±15 % farq bo\'lishi mumkin. 100 ' + (ml ? 'ml' : 'g') + ' uchun.', r: 'Данные: Open Food Facts (лицензия ODbL), штрихкод ' + kod + '. Открытые данные, внесённые пользователями — не проверены, возможно отклонение ±15 %. На 100 ' + (ml ? 'мл' : 'г') + '.' }
       : { u: "Ma'lumot: KalkiFit shtrix-kod jadvali (yorliqdan), shtrix-kod " + kod + '. 100 ' + (ml ? 'ml' : 'g') + ' uchun.', r: 'Данные: таблица штрихкодов KalkiFit (по этикетке), штрихкод ' + kod + '. На 100 ' + (ml ? 'мл' : 'г') + '.' };
