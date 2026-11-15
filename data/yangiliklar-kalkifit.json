@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 79,
+   "d": "2026-11-15",
+   "bn": {
+    "uz": "Shtrix-kod skaneri",
+    "ru": "Сканер штрихкода"
+   },
+   "items": [
+    {
+     "uz": "Qadoqdagi shtrix-kodni skanerlang — mahsulot kkal va makrosi bilan chiqadi.",
+     "ru": "Отсканируйте штрихкод на упаковке — продукт появится с ккал и БЖУ."
+    },
+    {
+     "uz": "Mahsulot topilmasa, yorliqni suratga oling — keyingi safar shtrix-kod o'zi taniydi.",
+     "ru": "Если продукт не найден, сфотографируйте этикетку — в следующий раз штрихкод распознается сам."
+    }
+   ]
+  },
+  {
    "v": 78,
    "d": "2026-11-15",
    "bn": {

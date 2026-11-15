@@ -224,6 +224,28 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     st.customFoods.push(f); return f;
   }
 
+  /* v79: SHTRIX-KOD. normKod: EAN-13 / EAN-8 / UPC-A (12 → oldiga 0) + GS1 nazorat raqami. addScanned: server mahsuloti (/api/shtrix) → «Mening taomlarim» (custom, src 'shtrix', bc = kod);
+     bir kod — bitta yozuv (qayta skanerlanganda yangisi yaratilmaydi). Open Food Facts (off:1) ma'lumoti faqat foydalanuvchining shaxsiy ro'yxatida — bizning tekshirilgan bazaga aralashmaydi (ODbL). */
+  function normKod(s) {
+    var k = String(s == null ? '' : s).trim(); if (!/^\d{8}$|^\d{12,13}$/.test(k)) return null;
+    if (k.length === 12) k = '0' + k;
+    var sum = 0, i; for (i = 0; i < k.length - 1; i++) sum += +k[k.length - 2 - i] * (i % 2 === 0 ? 3 : 1);
+    return (10 - (sum % 10)) % 10 === +k[k.length - 1] ? k : null;
+  }
+  function addScanned(st, m) {
+    var kod = m && normKod(m.kod); if (!kod || !m.nom || !(num(m.k) >= 0)) return null;
+    var ex = st.customFoods.filter(function (x) { return x.bc === kod; })[0]; if (ex) return ex;
+    var off = m.manba === 'off', ml = m.birlik === 'ml', pack = Math.round(num(m.qadoq)), sv = Math.round(num(m.porsiya));
+    var f = { id: 'c' + st.seq++, n: String(m.nom).slice(0, 60), k: Math.round(num(m.k)), p: round1(num(m.p)), f: round1(num(m.f)), c: round1(num(m.c)), u: [], e: off ? 1 : 0, t: ml ? 'i' : 'x', custom: 1, src: 'shtrix', bc: kod };
+    if (m.brend) { f.brand = String(m.brend).slice(0, 40); f.a = [f.brand]; }
+    if (pack > 0) f.u.push([!ml && pack <= 300 ? 'dona' : 'qadoq', pack]);
+    if (sv > 0 && (!(pack > 0) || Math.abs(sv - pack) > pack * 0.1)) f.u.push(['porsiya', sv]);
+    f.u.push(['g100', 100]); if (off) f.off = 1;
+    f.ms = off ? { u: "Ma'lumot: Open Food Facts (ODbL litsenziyasi), shtrix-kod " + kod + '. Foydalanuvchilar kiritgan ochiq ma\'lumot — tekshirilmagan, ±15 % farq bo\'lishi mumkin. 100 ' + (ml ? 'ml' : 'g') + ' uchun.', r: 'Данные: Open Food Facts (лицензия ODbL), штрихкод ' + kod + '. Открытые данные, внесённые пользователями — не проверены, возможно отклонение ±15 %. На 100 ' + (ml ? 'мл' : 'г') + '.' }
+      : { u: "Ma'lumot: KalkiFit shtrix-kod jadvali (yorliqdan), shtrix-kod " + kod + '. 100 ' + (ml ? 'ml' : 'g') + ' uchun.', r: 'Данные: таблица штрихкодов KalkiFit (по этикетке), штрихкод ' + kod + '. На 100 ' + (ml ? 'мл' : 'г') + '.' };
+    st.customFoods.push(f); return f;
+  }
+
   /* ---------- kun limiti, holat, ketma-ket kunlar, taqvim ---------- */
   function planSt(st, o) { return plan(st.profile, { job: jobOn(st), jobT: o && o.jobT }); }
   /* v62: SOAT MA'LUMOTI (docs/limit.md).
@@ -925,7 +947,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     bmrRaw: bmrRaw, bmi: bmi, refWeight: refWeight, protein: protein, PROT_K: PROT_K, TARTIB: TARTIB, TARTIB_DEF: TARTIB_DEF, tartibOf: tartibOf, mealSplit: mealSplit, mealBudgets: mealBudgets, MEAL_END: MEAL_END, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
-    addFood: addFood, ambOpts: ambOpts, AMB_KCAL: AMB_KCAL, OB_DEF_W: OB_DEF_W, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom,
+    addFood: addFood, ambOpts: ambOpts, AMB_KCAL: AMB_KCAL, OB_DEF_W: OB_DEF_W, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom, addScanned: addScanned, normKod: normKod,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,

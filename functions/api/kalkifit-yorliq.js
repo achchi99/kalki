@@ -7,6 +7,7 @@
 import { originOk, json, num, UUID_RE } from './ariza.js';
 import { takeKfQuota } from './kalkifit-quota.js';
 import { normNom } from './kalkifit-taklif.js';
+import { normKod } from './shtrix.js';
 
 const DEFAULT_CLIENT_LIMIT = 20, DEFAULT_SITE_LIMIT = 2000;          // KALKIFIT_YORLIQ_LIMIT, KALKIFIT_YORLIQ_SITE_LIMIT
 export const KAT = ['o', 'n', 's', 'm', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
@@ -23,8 +24,9 @@ export function validate(b) {
   if (![k, o, y, u].every(isFinite) || k < 1 || k > 900 || [o, y, u].some((x) => x < 0 || x > 100) || o + y + u > 105) return null;
   const atw = 4 * o + 9 * y + 4 * u; if (Math.abs(atw - k) > Math.max(15, k * 0.2)) return null;
   const key = normNom(nom); if (key.length < 2) return null;
+  const kod = b.kod == null || b.kod === '' ? '' : normKod(b.kod); if (kod === null) return null;          // v79: shtrix-kod (ixtiyoriy); yaroqsiz kod — butun taklif rad
   const g = Math.round(Number(b.g) || 0);
-  return { nom, key, kcal: Math.round(k), o: Math.round(o * 10) / 10, y: Math.round(y * 10) / 10, u: Math.round(u * 10) / 10, g: g >= 1 && g <= 5000 ? g : 0, birlik: b.birlik === 'ml' ? 'ml' : 'g',
+  return { nom, key, kod, kcal: Math.round(k), o: Math.round(o * 10) / 10, y: Math.round(y * 10) / 10, u: Math.round(u * 10) / 10, g: g >= 1 && g <= 5000 ? g : 0, birlik: b.birlik === 'ml' ? 'ml' : 'g',
     rasm: b.manba === 'rasm' ? 1 : 0, til: b.til === 'ru' ? 'ru' : (b.til === 'kirill' ? 'kirill' : 'uz') };
 }
 /* D1 qatori → baza yozuvi (ilova: S.normFoods). id — 'yq-' + xesh (barqaror) */
@@ -34,6 +36,13 @@ export function asFood(r) {
   return { i: 'yq-' + r.h.slice(0, 10), n: nu, r: nr, a: [], k: r.kcal, p: r1(r.o_sum / j), f: r1(r.y_sum / j), c: r1(r.u_sum / j), t: KAT.includes(r.kat) ? r.kat : 'x', e: 0, u, m: "Qadoq yorlig'i", ms: MANBA_YQ, yq: 1 };
 }
 
+/* v79: bir xil shtrix-kod + nom + kkal bilan ≥ 2 taklif kelsa — mahsulot hamma uchun (shtrix_mahsulot, manba 'yorliq', tasdiqlanmagan). Mavjud (admin/tasdiqlangan) qator ustiga yozilmaydi. */
+export async function promote(db, h, kod, kun) {
+  const r = await db.prepare('SELECT * FROM yorliq_taklif WHERE h = ?').bind(h).first(); if (!r || r.jami < 2 || r.holat === 'rad') return false;
+  const j = r.jami, r1 = (x) => Math.round(x * 10) / 10, nom = r.nom_uz || r.nom;
+  await db.prepare("INSERT OR IGNORE INTO shtrix_mahsulot (kod, nom, brend, kcal, oqsil, yog, uglevod, qadoq, porsiya, birlik, manba, tasdiqlangan, yaratildi, yangilandi) VALUES (?, ?, '', ?, ?, ?, ?, ?, 0, ?, 'yorliq', 0, ?, ?)").bind(kod, nom, r.kcal, r1(r.o_sum / j), r1(r.y_sum / j), r1(r.u_sum / j), r.g || 0, r.birlik === 'ml' ? 'ml' : 'g', kun, kun).run();
+  return true;
+}
 const E = { 400: "Ma'lumot noto'g'ri.", 403: "Ruxsat yo'q.", 405: 'GET yoki POST.', 415: 'JSON yuboring.', 429: 'Limit tugadi.', 503: 'Xizmat vaqtincha ishlamayapti.' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' });
 
@@ -52,10 +61,12 @@ export async function onRequest({ request, env }) {
   const cl = num(env.KALKIFIT_YORLIQ_LIMIT, DEFAULT_CLIENT_LIMIT);
   let sabab; try { sabab = await takeKfQuota(env, request, typeof body.mijoz_id === 'string' && UUID_RE.test(body.mijoz_id) ? body.mijoz_id : '', { ns: 'yq', site: num(env.KALKIFIT_YORLIQ_SITE_LIMIT, DEFAULT_SITE_LIMIT), client: cl, ip: cl * 2 }); } catch (e) { return fail(503); }
   if (sabab) return fail(429);
-  const h = await sha(v.key + '|' + v.kcal), kun = tashkentDay(), db = env.KALKIFIT_DB;
+  const h = await sha((v.kod ? v.kod + '|' : '') + v.key + '|' + v.kcal), kun = tashkentDay(), db = env.KALKIFIT_DB;
   try {
-    await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun).run();
+    if (v.kod) { try { await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi, kod) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun, v.kod).run(); } catch (e) { await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun).run(); } }          // kod ustuni yo'q bo'lsa (migratsiya hali qo'llanmagan) — oddiy taklif
+    else await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun).run();
     await db.prepare('UPDATE yorliq_taklif SET jami = jami + 1, rasm = rasm + ?, o_sum = o_sum + ?, y_sum = y_sum + ?, u_sum = u_sum + ?, g = CASE WHEN ? > 0 THEN ? ELSE g END, oxirgi = ? WHERE h = ?').bind(v.rasm, v.o, v.y, v.u, v.g, v.g, kun, h).run();
+    if (v.kod) { try { await promote(db, h, v.kod, kun); } catch (e) { /* shtrix jadvali yo'q — keyin */ } }          // ≥2 bir xil taklif (bir xil kod + nom + kkal) → shtrix_mahsulot (hamma uchun)
   } catch (e) { console.error('yorliq db xato'); return fail(503); }
   return json(200, { ok: true });
 }
