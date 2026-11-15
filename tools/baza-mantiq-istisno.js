@@ -20,5 +20,8 @@ module.exports = {
     'laym': 'USDA: kletchatka — Atwater farqi'
   },
   d: {},
-  e: {}
+  e: {},
+  f: {},
+  g: {},
+  h: {}
 };

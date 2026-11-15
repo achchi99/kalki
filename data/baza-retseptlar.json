@@ -1509,7 +1509,7 @@
     },
     {
      "m": "suv",
-     "g": 800,
+     "g": 1300,
      "y": 0.95
     }
    ],
@@ -1630,7 +1630,7 @@
     },
     {
      "m": "suv",
-     "g": 800,
+     "g": 1300,
      "y": 0.95
     }
    ],
@@ -2686,7 +2686,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {
@@ -2871,7 +2871,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g (yog' odatdagidan ko'proq)",
-    "asos_ru": "типичная миска в кафе ≈ 450 г (масла больше обычного)"
+    "asos_ru": "типичная коса в кафе ≈ 450 г (масла больше обычного)"
    }
   },
   {
@@ -3144,7 +3144,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {
@@ -3189,7 +3189,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {
@@ -3234,7 +3234,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {
@@ -3274,14 +3274,14 @@
     },
     {
      "m": "suv",
-     "g": 800,
+     "g": 1300,
      "y": 0.95
     }
    ],
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 400 g (~14 dona chuchvara)",
-    "asos_ru": "типичная миска в кафе ≈ 400 г (~14 пельмешек)"
+    "asos_ru": "типичная коса в кафе ≈ 400 г (~14 пельмешек)"
    }
   },
   {
@@ -3338,7 +3338,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {
@@ -3379,7 +3379,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 400 g",
-    "asos_ru": "типичная миска в кафе ≈ 400 г"
+    "asos_ru": "типичная коса в кафе ≈ 400 г"
    }
   },
   {
@@ -3420,7 +3420,7 @@
    "taxminiy": true,
    "kafe": {
     "asos_uz": "kafedagi odatiy kosa ≈ 450 g",
-    "asos_ru": "типичная миска в кафе ≈ 450 г"
+    "asos_ru": "типичная коса в кафе ≈ 450 г"
    }
   },
   {

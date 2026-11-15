@@ -14,6 +14,8 @@ const R = {
   lavMolP: mix([TORT, 70], [MOL, 100], [POM, 40], [CHIPS, 25], [KETCH, 20], [MAY, 20], [PIY, 10], [CHED, 25]),
   lavTov: mix([TORT, 70], [TOV, 100], [POM, 40], [CHIPS, 25], [KETCH, 20], [MAY, 20], [PIY, 10]),
   lavTovP: mix([TORT, 70], [TOV, 100], [POM, 40], [CHIPS, 25], [KETCH, 20], [MAY, 20], [PIY, 10], [CHED, 25]),
+  lavShello: mix([TORT, 70], [TOV, 90], [POM, 40], [CHIPS, 20], [KETCH, 15], [MAY, 20]),         // Lavashello (taxminiy): klassik tovuqli lavash, kichik porsiya
+  lavFitter: mix([TORT, 75], [TOV, 100], [POM, 30], [KARAM, 30], [BOD, 20], ['u:171284', 20], [MAY, 10]),         // Fitter (taxminiy): tovuq ko'kragi, sabzavot, yogurtli yengil sous, chipssiz
   lavYengil: mix([TORT, 70], [TOV, 90], [POM, 40], [KARAM, 40], [MAY, 15]),                 // Lavashello / Fitter: tovuq, sabzavot, sous (chipssiz)
   shaurmaMol: mix([BULO, 80], [MOL, 90], [BOD, 30], [POM, 30], [KETCH, 15], [MAY, 15]),
   shaurmaTov: mix([BULO, 80], [TOV, 90], [BOD, 30], [POM, 30], [KETCH, 15], [MAY, 15]),
@@ -41,7 +43,9 @@ const L = [
   ['evos', 'lavash', 'molp-m', 'Lavash mol, pishloqli (M)', 'Лаваш с говядиной и сыром (M)', 'evos pishloqli lavash,сырный лаваш', 'q', 'dona:320', 'lavMolP'],
   ['evos', 'lavash', 'tovuq-m', 'Lavash tovuq (M)', 'Лаваш с курицей (M)', 'evos tovuqli lavash,эвос лаваш курица', 'q', 'dona:300', 'lavTov'],
   ['evos', 'lavash', 'tovuqp-m', 'Lavash tovuq, pishloqli (M)', 'Лаваш с курицей и сыром (M)', 'evos tovuq pishloq lavash', 'q', 'dona:320', 'lavTovP'],
-  ['evos', 'lavash', 'yengil', 'Lavashello / Fitter', 'Лавашелло / Фиттер', 'lavashello,лавашелло,fitter,фиттер', 'q', 'dona:260', 'lavYengil'],
+  ['evos', 'lavash', 'yengil', 'Lavashello / Fitter', 'Лавашелло / Фиттер', '', 'q', 'dona:260', 'lavYengil'],          // ESKI id (foydalanuvchi tarixi uchun saqlanadi): tools/baza-tuzatish.js uni qidiruvdan yashiradi
+  ['evos', 'lavash', 'lavashello', 'Lavashello', 'Лавашелло', 'lavashello,лавашелло,evos lavashello,эвос лавашелло', 'q', 'dona:230', 'lavShello'],
+  ['evos', 'lavash', 'fitter', 'Fitter', 'Фиттер', 'fitter,фиттер,evos fitter,эвос фиттер,fitter lavash,фиттер лаваш', 'q', 'dona:260', 'lavFitter'],
   ['evos', 'shaurma', 'mol', "Shaurma mol go'shtli", 'Шаурма с говядиной', 'evos shaurma,эвос шаурма', 'q', 'dona:260', 'shaurmaMol'],
   ['evos', 'shaurma', 'tovuq', 'Shaurma tovuqli', 'Шаурма с курицей', 'evos shaurma tovuq', 'q', 'dona:260', 'shaurmaTov'],
   ['evos', 'burger', 'gamburger', 'Gamburger', 'Гамбургер', 'evos burger,evos gamburger,эвос бургер', 'q', 'dona:180', 'burger'],
@@ -141,6 +145,6 @@ const tmIds = (re) => rows.filter((r) => re.test(r[0])).map((r) => r[0]);
 const TEG = { sut: tmIds(/-(molp|tovuqp|pishloq|tandir)\b|-chizburger-|-pitsa-|-tvister-/).concat(Lx('mz-eskimo-glazur mz-stakancha mz-rojok mz-sendvich mz-vafli-briket')),
   tuxum: tmIds(/-(lavash|shaurma|donar|hotdog|burger|chizburger|sendvich|tvister)-/), yongoq: [], baliq: [], choshqa: [],
   glyuten: tmIds(/./).filter((i) => !/-qanot-/.test(i)).concat(Lx('mz-stakancha mz-rojok mz-sendvich mz-vafli-briket mz-eskimo-glazur')) };
-const OQSIL = Object.assign({}, ...rows.map((r) => ({ [r[0]]: /-(lavash|shaurma|donar)-.*(tovuq|yengil)|-(naggets|strips|qanot|tvister)-|chiken|chikenzinger|-shef|longer|klab|lester|-kfc-burger|-lesailes-burger|-kfc-chizburger/.test(r[0]) ? 'tovuq' : (/-fri-/.test(r[0]) ? 'yoq' : (/-pitsa-(margarita|pishloq|katta)/.test(r[0]) ? 'sut' : (/-pitsa-/.test(r[0]) ? 'aralash' : 'qizil'))) })),
+const OQSIL = Object.assign({}, ...rows.map((r) => ({ [r[0]]: /-(lavash|shaurma|donar)-.*(tovuq|yengil|lavashello|fitter)|-(naggets|strips|qanot|tvister)-|chiken|chikenzinger|-shef|longer|klab|lester|-kfc-burger|-lesailes-burger|-kfc-chizburger/.test(r[0]) ? 'tovuq' : (/-fri-/.test(r[0]) ? 'yoq' : (/-pitsa-(margarita|pishloq|katta)/.test(r[0]) ? 'sut' : (/-pitsa-/.test(r[0]) ? 'aralash' : 'qizil'))) })),
   ...Lx('mz-eskimo-glazur mz-stakancha mz-rojok mz-sendvich mz-vafli-briket').map((i) => ({ [i]: 'sut' })));
 module.exports = all; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

@@ -10,7 +10,7 @@ const USDA = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/manba/usda-sr-lega
 const DB = S.normFoods(A); S.buildIndex(DB); const top = (q, n = 3) => S.search(DB, q, { limit: n }).map((f) => f.id);
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const ALC = new Set(['aroq', 'konyak', 'vino-oq', 'vino-shirin', 'pivo-yengil']);          // alkogol: 7 kkal/g — Atwater (4·9·4) dan katta bo'ladi
-const yangi = K.map((r) => ({ r, f: by[r[0]] }));
+const yangi = K.map((r) => ({ r, f: by[r[0]] })).filter(({ f }) => !f.h);          // v78: yashirin (ajratilgan) eski pozitsiyalar qidiruvda yo'q
 /* 1. sxema va manba */
 const ids = new Set(); for (const { r, f } of yangi) { assert.ok(f, r[0] + ': bazada yo\'q'); assert.ok(!ids.has(f.i), 'takror id ' + f.i); ids.add(f.i); }
 const tur = {}, src = { usda: 0, yorliq: 0, hisob: 0 };

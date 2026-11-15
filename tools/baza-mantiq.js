@@ -5,6 +5,9 @@
  *   c) makro: 4·oqsil + 4·uglevod + 9·yog' ≈ kkal (±15 %, kichik qiymatda ±10 kkal; spirtli ichimlik — istisno);
  *   d) shubhali: shakarsiz choy/qahva/suv > 10 kkal/100 g; bir o'lchovli ichimlik > 400 kkal (sut kokteyli/ proteindan tashqari);
  *   e) bir xil nomli (uz yoki ru) dublikat — turli id'da, ko'rinadigan (h≠1) taomlar.
+ *   f) nomi «A / B» ko'rinishidagi birlashtirilgan pozitsiya bo'lmasin (har biri alohida taom) — v78;
+ *   g) bir toifada birlik aralashmasin: sho'rva — faqat kosa; qahva/kakao — faqat chashka; issiq choy — faqat piyola — v78;
+ *   h) ruscha matnlarda «миска» uchramasin (O'zbekiston lug'ati: коса, тарелка, пиала) — v78.
  *   node tools/baza-mantiq.js [--json]   — ro'yxatni chiqaradi (istisnolar alohida ko'rsatiladi). */
 'use strict';
 const fs = require('fs'), path = require('path');
@@ -20,7 +23,7 @@ const nameAll = (f) => (f.n + ' ' + f.r);
 const unitG = (f, u) => { const x = (f.u || []).find((q) => q[0] === u); return x ? x[1] : null; };
 const perUnit = (f, u) => { const g = unitG(f, u); return g ? f.k * g / 100 : null; };
 function tekshir(foods) {
-  const out = { a: [], b: [], c: [], d: [], e: [] }, vis = foods.filter((f) => !f.h);
+  const out = { a: [], b: [], c: [], d: [], e: [], f: [], g: [], h: [] }, vis = foods.filter((f) => !f.h);
   /* a) qo'shimchali ≥ asosiy */
   const groups = {}; vis.forEach((f) => { const k = stripQ(f.n) + '|' + f.t; (groups[k] = groups[k] || []).push(f); });
   vis.forEach((f) => {
@@ -42,13 +45,24 @@ function tekshir(foods) {
   /* e) dublikat nomlar */
   const seen = {}; vis.forEach((f) => { [['n', f.n], ['r', f.r]].forEach(([l, v]) => { const nv = String(v || '').toLowerCase().replace(/[’‘ʻʼ`´]/g, "'").replace(/ё/g, 'е').replace(/\s+/g, ' ').trim(), k = l + '|' + nv; if (!nv) return; (seen[k] = seen[k] || []).push(f); }); });
   const dup = {}; Object.keys(seen).forEach((k) => { const l = seen[k]; if (l.length > 1) { const key = l.map((x) => x.i).sort().join(','); if (!dup[key]) { dup[key] = 1; out.e.push({ nom: k.split('|')[1], idlar: l.map((x) => x.i), ildiz: l.map((x) => x.n + ' / ' + x.r).join(' || ') }); } } });
+  /* f) «A / B» */
+  vis.forEach((f) => { [['n', f.n], ['r', f.r]].forEach(([l, v]) => { if (/\S\s\/\s\S/.test(String(v || ''))) out.f.push({ id: f.i, til: l, nom: v }); }); });
+  /* g) birlik aralashmasi */
+  const T = require('./baza-tuzatish.js');
+  vis.forEach((f) => { const us = (f.u || []).map((x) => x[0]).filter((x) => x !== 'g100'), has = (k) => us.includes(k);
+    if (f.t === 'o' && (T.SHORVA_ID.test(f.i) || (T.SHORVA_RE.test(f.n) && !/lag'mon|chuchvara|qovurma/i.test(f.n))) && us.some((x) => x !== 'kosa' && x !== 'qoshiq')) out.g.push({ id: f.i, n: f.n, sabab: "sho'rva — faqat kosa", birliklar: us.join(',') });
+    if (f.t === 'i' && T.QAHVA_ID.test(f.i) && (has('stakan') || has('piyola'))) out.g.push({ id: f.i, n: f.n, sabab: 'qahva/kakao — faqat chashka', birliklar: us.join(',') });
+    if (f.t === 'i' && T.CHOY_ID.test(f.i) && !/sovuq|ice|lipton|fuze/.test(f.i) && (has('stakan') || has('chashka'))) out.g.push({ id: f.i, n: f.n, sabab: 'issiq choy — faqat piyola', birliklar: us.join(',') }); });
+  /* h) «миска» */
+  foods.forEach((f) => { if (/миск/i.test(JSON.stringify(f))) out.h.push({ id: f.i, n: f.n }); });
   /* istisnolar */
   const filt = (rule, idOf) => { const ex = ISTISNO[rule] || {}; const keep = [], skipped = []; out[rule].forEach((x) => { const k = idOf(x); (ex[k] ? skipped : keep).push(x); }); out[rule] = keep; out['istisno_' + rule] = skipped; };
   filt('a', (x) => x.id + '>' + x.asos); filt('b', (x) => x.id); filt('c', (x) => x.id); filt('d', (x) => x.id); filt('e', (x) => x.idlar.join(','));
+  filt('f', (x) => x.id); filt('g', (x) => x.id); filt('h', (x) => x.id);
   return out;
 }
 module.exports = { tekshir, ISTISNO };
 if (require.main === module) {
   const foods = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), 'utf8')).foods, r = tekshir(foods);
-  if (process.argv.includes('--json')) console.log(JSON.stringify(r, null, 1)); else { for (const k of ['a', 'b', 'c', 'd', 'e']) { console.log('== ' + k + ': ' + r[k].length + ' ta (istisno: ' + (r['istisno_' + k] || []).length + ')'); r[k].forEach((x) => console.log('  ' + JSON.stringify(x))); } }
+  if (process.argv.includes('--json')) console.log(JSON.stringify(r, null, 1)); else { for (const k of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']) { console.log('== ' + k + ': ' + r[k].length + ' ta (istisno: ' + (r['istisno_' + k] || []).length + ')'); r[k].forEach((x) => console.log('  ' + JSON.stringify(x))); } }
 }

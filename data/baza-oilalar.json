@@ -514,8 +514,8 @@
   },
   {
    "id": "chuchvara",
-   "n": "Chuchvara",
-   "r": "Чучвара",
+   "n": "Chuchvara (sho'rvada)",
+   "r": "Чучвара (в бульоне)",
    "axes": [
     {
      "id": "ichi",
@@ -556,7 +556,7 @@
        "r": "жареная"
       }
      ],
-     "d": "qaynatma"
+     "d": "shorvada"
     }
    ],
    "grid": [
@@ -589,6 +589,18 @@
     "chuchvara-sho": "goshtli.shorvada"
    },
    "uv": {
+    "goshtli.qaynatma": {
+     "kosa": 220
+    },
+    "tovuq.qaynatma": {
+     "kosa": 220
+    },
+    "goshtli.qovurma": {
+     "kosa": 180
+    },
+    "tovuq.qovurma": {
+     "kosa": 180
+    },
     "goshtli.shorvada": {
      "kosa": 400
     },
@@ -615,7 +627,33 @@
       "berilishi": "qovurma"
      }
     }
-   ]
+   ],
+   "fn": {
+    "goshtli.shorvada": {
+     "n": "Chuchvara go'shtli (sho'rvada)",
+     "r": "Чучвара мясные (в бульоне)"
+    },
+    "goshtli.qaynatma": {
+     "n": "Chuchvara go'shtli (suvsiz, qaynatma)",
+     "r": "Чучвара мясные (отварная, без бульона)"
+    },
+    "goshtli.qovurma": {
+     "n": "Chuchvara go'shtli (qovurilgan)",
+     "r": "Чучвара мясные (жареная)"
+    },
+    "tovuq.shorvada": {
+     "n": "Chuchvara tovuqli (sho'rvada)",
+     "r": "Чучвара куриные (в бульоне)"
+    },
+    "tovuq.qaynatma": {
+     "n": "Chuchvara tovuqli (suvsiz, qaynatma)",
+     "r": "Чучвара куриные (отварная, без бульона)"
+    },
+    "tovuq.qovurma": {
+     "n": "Chuchvara tovuqli (qovurilgan)",
+     "r": "Чучвара куриные (жареная)"
+    }
+   }
   },
   {
    "id": "lagmon",
@@ -832,8 +870,8 @@
   },
   {
    "id": "shashlik",
-   "n": "Kabob / shashlik",
-   "r": "Шашлык",
+   "n": "Shashlik (kabob)",
+   "r": "Шашлык (кебаб)",
    "axes": [
     {
      "id": "gosht",
@@ -868,7 +906,7 @@
     "shashlik-tovuq": "tovuq"
    },
    "size": {
-    "u": "dona",
+    "u": "six",
     "o": [
      {
       "id": "kichik",
@@ -1003,8 +1041,8 @@
   },
   {
    "id": "non",
-   "n": "Non",
-   "r": "Хлеб/лепёшка",
+   "n": "Non (obi non)",
+   "r": "Лепёшка (нон)",
    "axes": [
     {
      "id": "turi",
@@ -1098,7 +1136,25 @@
       "turi": "buxanka"
      }
     }
-   ]
+   ],
+   "fn": {
+    "obi": {
+     "n": "Obi non (tandir noni)",
+     "r": "Лепёшка тандырная (обинон)"
+    },
+    "patir": {
+     "n": "Patir",
+     "r": "Патыр"
+    },
+    "qatlama": {
+     "n": "Qatlama",
+     "r": "Катлама"
+    },
+    "buxanka": {
+     "n": "Oq non (buxanka)",
+     "r": "Булка (белый хлеб)"
+    }
+   }
   },
   {
    "id": "sut",
@@ -1661,8 +1717,8 @@
   },
   {
    "id": "kofe",
-   "n": "Qahva",
-   "r": "Кофе",
+   "n": "Qahva (qora, shakarsiz)",
+   "r": "Кофе чёрный (без сахара)",
    "axes": [
     {
      "id": "turi",
@@ -1715,6 +1771,24 @@
     "kofe-3in1": "3in1",
     "latte": "latte",
     "kapuchino": "kapuchino"
+   },
+   "fn": {
+    "qora": {
+     "n": "Qahva (qora, shakarsiz)",
+     "r": "Кофе чёрный (без сахара)"
+    },
+    "3in1": {
+     "n": "Kofe 3 in 1 (paketli, shakarli)",
+     "r": "Кофе 3 в 1 (пакетик, с сахаром)"
+    },
+    "latte": {
+     "n": "Latte (sutli, shakarsiz)",
+     "r": "Латте (с молоком, без сахара)"
+    },
+    "kapuchino": {
+     "n": "Kapuchino (sutli, shakarsiz)",
+     "r": "Капучино (с молоком, без сахара)"
+    }
    }
   },
   {
@@ -1883,8 +1957,8 @@
   },
   {
    "id": "lavash-tovuq",
-   "n": "Lavash / shaurma",
-   "r": "Лаваш / шаурма",
+   "n": "Lavash (tovuqli, mol go'shtli)",
+   "r": "Лаваш (с курицей, с говядиной)",
    "axes": [
     {
      "id": "gosht",
@@ -1969,7 +2043,17 @@
       "gosht": "mol"
      }
     }
-   ]
+   ],
+   "fn": {
+    "tovuq": {
+     "n": "Lavash tovuqli",
+     "r": "Лаваш с курицей"
+    },
+    "mol": {
+     "n": "Lavash mol go'shtli",
+     "r": "Лаваш с говядиной"
+    }
+   }
   },
   {
    "id": "burger",
